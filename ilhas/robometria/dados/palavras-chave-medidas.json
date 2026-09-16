@@ -1,0 +1,2317 @@
+{
+ "id": "palavras-chave-medidas",
+ "ilha": "robometria",
+ "entidade": "MEDICAO",
+ "publicar": false,
+ "gerado_em": "2026-09-16",
+ "gerado_por": "ferramentas/medir-palavras-chave.py",
+ "fonte_da_medicao": "Open API de Afiliados da Shopee (productOfferV2), secao 25.6 do ARQUIPELAGO.md",
+ "nota_de_universo": "A API de afiliado e o catalogo de OFERTAS do programa, e nao a busca do site que o leitor ve. As duas discordam e a discordancia foi medida em 16/09/2026: `WAP escova lateral robo aspirador` devolve zero na busca do site (medida pela Sentinela no Chrome do Raphael) e dez aqui. A busca do site NAO e mensuravel desta nuvem — `/api/v4/search/search_items` devolve `error 90309999, redirect_to_error_page` e a pagina de busca serve casca de JavaScript identica byte a byte para palavras diferentes. Entao esta medicao prova o que prova: que a chave existe no catalogo que PAGA comissao. Chave com zero AQUI e pior que chave com zero la.",
+ "escada": [
+  {
+   "degrau": 1,
+   "composicao": "marca + tipo + contexto"
+  },
+  {
+   "degrau": 2,
+   "composicao": "marca + batismo do fabricante + contexto"
+  },
+  {
+   "degrau": 3,
+   "composicao": "marca + codigo da peca + substantivo do tipo + contexto"
+  },
+  {
+   "degrau": 4,
+   "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto"
+  },
+  {
+   "degrau": 5,
+   "composicao": "marca + contexto"
+  }
+ ],
+ "contagem": {
+  "palavras_chave_distintas": 20,
+  "com_resultado": 20,
+  "com_a_peca_no_topo": 7,
+  "criterio_literal_do_despacho": 16,
+  "registros_publicaveis": 73
+ },
+ "registros": [
+  {
+   "id": "multi-pr10124",
+   "marca": "multi",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Multilaser escova lateral robo aspirador",
+    "resultados": 7,
+    "titulo_do_topo": "Par De Escova Lateral Para Robô Aspirador Multilaser Hydra HO243",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1AQk0Nh5x"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Multilaser escova lateral robo aspirador",
+     "resultados": 7,
+     "titulo_do_topo": "Par De Escova Lateral Para Robô Aspirador Multilaser Hydra HO243",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/1AQk0Nh5x"
+    }
+   ]
+  },
+  {
+   "id": "multi-pr10205",
+   "marca": "multi",
+   "tipo": "filtro",
+   "nome_na_fonte": "Filtro para Aspirador Robô Mars, Moon e Duster",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Multilaser filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Tampa Do Filtro Do Aspirador Robô Multilaser Ho041",
+    "topo_e_a_peca": false,
+    "por_que": "o titulo troca o objeto (a peca que cobre a peca)",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/W6hKvLn54"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Multilaser filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Tampa Do Filtro Do Aspirador Robô Multilaser Ho041",
+     "topo_e_a_peca": false,
+     "por_que": "o titulo troca o objeto (a peca que cobre a peca)",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/W6hKvLn54"
+    }
+   ]
+  },
+  {
+   "id": "multi-pr10343",
+   "marca": "multi",
+   "tipo": "filtro",
+   "nome_na_fonte": "Filtro para Aspirador Robô OB010",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Multilaser filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Tampa Do Filtro Do Aspirador Robô Multilaser Ho041",
+    "topo_e_a_peca": false,
+    "por_que": "o titulo troca o objeto (a peca que cobre a peca)",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/W6hKvLn54"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Multilaser filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Tampa Do Filtro Do Aspirador Robô Multilaser Ho041",
+     "topo_e_a_peca": false,
+     "por_que": "o titulo troca o objeto (a peca que cobre a peca)",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/W6hKvLn54"
+    }
+   ]
+  },
+  {
+   "id": "multi-pr10342",
+   "marca": "multi",
+   "tipo": "mop",
+   "nome_na_fonte": "Pano para Aspirador Robô p/ OB010",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Multilaser mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "APZ 2x Para Multilaser HO041 WAP Robot W100 Robô Aspirador De Peças Mop Pano",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/LnH8cMQQ3"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Multilaser mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "APZ 2x Para Multilaser HO041 WAP Robot W100 Robô Aspirador De Peças Mop Pano",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/LnH8cMQQ3"
+    }
+   ]
+  },
+  {
+   "id": "multi-pr10127",
+   "marca": "multi",
+   "tipo": "bateria",
+   "nome_na_fonte": "Bateria p/ Aspirador Robô Ho041 Versão A",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Multilaser bateria robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Carregador para Robo Aspirador Multilaser HO041 Bivoltt 19v Nova",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": false,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20bateria%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/2BEvJzFRhQ"
+   },
+   "parou_por": "nenhum degrau passa em criterio nenhum; ficou o primeiro com resultado",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Multilaser bateria robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Carregador para Robo Aspirador Multilaser HO041 Bivoltt 19v Nova",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20bateria%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/2BEvJzFRhQ"
+    },
+    {
+     "degrau": 3,
+     "composicao": "marca + codigo da peca + substantivo do tipo + contexto",
+     "chave": "Multilaser PR10127 bateria robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Multilaser HO041 bateria robo aspirador",
+     "resultados": 4,
+     "titulo_do_topo": "Carregador para Robo Aspirador Multilaser HO041 Bivoltt 19v Nova",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 5,
+     "composicao": "marca + contexto",
+     "chave": "Multilaser robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Roda Frontal Dianteira Giratória Robô Aspirador Multilaser Mondial Wap W100-100C ObaBox-Duste Roldana",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    }
+   ]
+  },
+  {
+   "id": "multi-pr8116",
+   "marca": "multi",
+   "tipo": "bateria",
+   "nome_na_fonte": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Multilaser bateria robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Carregador para Robo Aspirador Multilaser HO041 Bivoltt 19v Nova",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": false,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20bateria%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/2BEvJzFRhQ"
+   },
+   "parou_por": "nenhum degrau passa em criterio nenhum; ficou o primeiro com resultado",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Multilaser bateria robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Carregador para Robo Aspirador Multilaser HO041 Bivoltt 19v Nova",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20bateria%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/2BEvJzFRhQ"
+    },
+    {
+     "degrau": 3,
+     "composicao": "marca + codigo da peca + substantivo do tipo + contexto",
+     "chave": "Multilaser PR8116 bateria robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Multilaser HO041 bateria robo aspirador",
+     "resultados": 4,
+     "titulo_do_topo": "Carregador para Robo Aspirador Multilaser HO041 Bivoltt 19v Nova",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 5,
+     "composicao": "marca + contexto",
+     "chave": "Multilaser robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Roda Frontal Dianteira Giratória Robô Aspirador Multilaser Mondial Wap W100-100C ObaBox-Duste Roldana",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    }
+   ]
+  },
+  {
+   "id": "electrolux-kpcel01",
+   "marca": "electrolux",
+   "tipo": "kit",
+   "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Electrolux kit robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Electrolux kit robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+    }
+   ]
+  },
+  {
+   "id": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+   "marca": "electrolux",
+   "tipo": "filtro",
+   "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Electrolux filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro Hepa Do Aspirador Robo Electrolux Erb30 Original",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/5AsWtVLtoR"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Electrolux filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Filtro Hepa Do Aspirador Robo Electrolux Erb30 Original",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/5AsWtVLtoR"
+    }
+   ]
+  },
+  {
+   "id": "electrolux-kit-performance-erb60-erb61-erb62",
+   "marca": "electrolux",
+   "tipo": "kit",
+   "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Electrolux kit robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Electrolux kit robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+    }
+   ]
+  },
+  {
+   "id": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+   "marca": "electrolux",
+   "tipo": "escova principal",
+   "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+   "escolhido": {
+    "degrau": 2,
+    "composicao": "marca + batismo do fabricante + contexto",
+    "chave": "Electrolux Escova Rotativa Central robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "Escova Rotativa Central Electrolux para Robô Aspirador ERB44",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": false,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20Escova%20Rotativa%20Central%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/8V8zNt6OWJ"
+   },
+   "parou_por": "nenhum degrau passa em criterio nenhum; ficou o primeiro com resultado",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Electrolux escova principal robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "Electrolux Escova Rotativa Central robo aspirador",
+     "resultados": 1,
+     "titulo_do_topo": "Escova Rotativa Central Electrolux para Robô Aspirador ERB44",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20Escova%20Rotativa%20Central%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/8V8zNt6OWJ"
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Electrolux ERB60 escova robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Electrolux ERB61 escova robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Electrolux ERB62 escova robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Electrolux ERB80 escova robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 5,
+     "composicao": "marca + contexto",
+     "chave": "Electrolux robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Filtro Hepa Do Aspirador Robo Electrolux Erb30 Original",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    }
+   ]
+  },
+  {
+   "id": "electrolux-kit-performance-erb44",
+   "marca": "electrolux",
+   "tipo": "kit",
+   "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Electrolux kit robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Electrolux kit robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+    }
+   ]
+  },
+  {
+   "id": "electrolux-kit-performance-erb30",
+   "marca": "electrolux",
+   "tipo": "kit",
+   "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Electrolux kit robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Electrolux kit robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+    }
+   ]
+  },
+  {
+   "id": "positivo-11206518",
+   "marca": "positivo",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Positivo escova lateral robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra2000 Smart",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20escova%20lateral%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/4AzzhfPhqH"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Positivo escova lateral robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra2000 Smart",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20escova%20lateral%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/4AzzhfPhqH"
+    }
+   ]
+  },
+  {
+   "id": "positivo-11206519",
+   "marca": "positivo",
+   "tipo": "escova principal",
+   "nome_na_fonte": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000",
+   "escolhido": {
+    "degrau": 4,
+    "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+    "chave": "Positivo PRA800 escova robo aspirador",
+    "resultados": 4,
+    "titulo_do_topo": "Escova E Filtro Hepa Para Robô Aspirador Positivo Pra800",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": false,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20PRA800%20escova%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/6Al4bbFHHf"
+   },
+   "parou_por": "nenhum degrau passa em criterio nenhum; ficou o primeiro com resultado",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Positivo escova principal robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "Positivo Escova Central robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 3,
+     "composicao": "marca + codigo da peca + substantivo do tipo + contexto",
+     "chave": "Positivo 11206519 escova robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Positivo PRA800 escova robo aspirador",
+     "resultados": 4,
+     "titulo_do_topo": "Escova E Filtro Hepa Para Robô Aspirador Positivo Pra800",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20PRA800%20escova%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/6Al4bbFHHf"
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Positivo PRA2000 escova robo aspirador",
+     "resultados": 4,
+     "titulo_do_topo": "KIT Escova e Filtro Hepa Compatível Para Robô Aspirador Positivo Pra2000",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 5,
+     "composicao": "marca + contexto",
+     "chave": "Positivo robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Carregador Para Smart Robô Aspirador Wi-fi Pra100 Positivo",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    }
+   ]
+  },
+  {
+   "id": "positivo-11206540",
+   "marca": "positivo",
+   "tipo": "mop",
+   "nome_na_fonte": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Positivo mop robo aspirador",
+    "resultados": 2,
+    "titulo_do_topo": "Robô Aspirador Positivo PRA100 com MOP Filtro Hepa Branco para Casa Inteligente",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/4Vcq6HORAN"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Positivo mop robo aspirador",
+     "resultados": 2,
+     "titulo_do_topo": "Robô Aspirador Positivo PRA100 com MOP Filtro Hepa Branco para Casa Inteligente",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/4Vcq6HORAN"
+    }
+   ]
+  },
+  {
+   "id": "electrolux-kit-performance-erb80",
+   "marca": "electrolux",
+   "tipo": "kit",
+   "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Electrolux kit robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Electrolux kit robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit Performance Para Aspirador Robô Electrolux Erb40",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/20vV7gG52P"
+    }
+   ]
+  },
+  {
+   "id": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+   "marca": "electrolux",
+   "tipo": "mop",
+   "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Electrolux mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Pano Mop Flanela para Robô Aspirador Compatível com Electrolux Erb10 Erb11 Erb20 Erb30",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/5LBx5ocrcV"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Electrolux mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Pano Mop Flanela para Robô Aspirador Compatível com Electrolux Erb10 Erb11 Erb20 Erb30",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/5LBx5ocrcV"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-b112-zs",
+   "marca": "xiaomi",
+   "tipo": "escova principal",
+   "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova principal robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7ptI4PTLY0"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova principal robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7ptI4PTLY0"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-b112-ch",
+   "marca": "xiaomi",
+   "tipo": "filtro",
+   "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Acessórios de Reposição para Robô Aspirador Xiaomi S10+: Pincéis, Filtro HEPA e Panos de Limpeza",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7fZrs6Tysz"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Acessórios de Reposição para Robô Aspirador Xiaomi S10+: Pincéis, Filtro HEPA e Panos de Limpeza",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7fZrs6Tysz"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-b112-tb",
+   "marca": "xiaomi",
+   "tipo": "mop",
+   "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-d106-tb",
+   "marca": "xiaomi",
+   "tipo": "mop",
+   "nome_na_fonte": "Xiaomi Robot Vacuum S20 Mop Pad",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-b106gl-bx",
+   "marca": "xiaomi",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova lateral robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": false,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx"
+   },
+   "parou_por": "nenhum degrau passa em criterio nenhum; ficou o primeiro com resultado",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova lateral robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx"
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "Xiaomi Robot Vacuum S20 Side Brush robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 3,
+     "composicao": "marca + codigo da peca + substantivo do tipo + contexto",
+     "chave": "Xiaomi B106GL-BX escova robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi S20 escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Para o robô aspirador de pó Xiaomi S20 / D106, peças de reposição como escova de rolo, escova de borda, filtro e pano",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi S10 escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi E10 escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Peças compatíveis com o robô aspirador Xiaomi E10 E10C E12 B112/Mijia 3C Plus C103: escova principal, escovas laterais,",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi S12 escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Escova Central de Reposição para Robô Aspirador Compatível com S40C S10 S12",
+     "topo_e_a_peca": false,
+     "por_que": "a marca nao aparece no titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi E12 escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Peças compatíveis com o robô aspirador Xiaomi E10 E10C E12 B112/Mijia 3C Plus C103: escova principal, escovas laterais,",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi X20 escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit de Peças de Reposição para Robô Aspirador Compatível com Xiaomi X20+ X20 Plus: escovas principais e laterais, filtro",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 5,
+     "composicao": "marca + contexto",
+     "chave": "Xiaomi robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit com 2 Sacos de Pó para aspirador Robo Xiaomi X20",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-ov81gl-bs",
+   "marca": "xiaomi",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova lateral robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": false,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx"
+   },
+   "parou_por": "nenhum degrau passa em criterio nenhum; ficou o primeiro com resultado",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova lateral robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx"
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 3,
+     "composicao": "marca + codigo da peca + substantivo do tipo + contexto",
+     "chave": "Xiaomi OV81GL-BS escova robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi H40 escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Escovas Laterais para Robô Aspirador Compatível com S40 H40 S40 Pro 5 5 Pro",
+     "topo_e_a_peca": false,
+     "por_que": "a marca nao aparece no titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi S40 escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Kit de peças de reposição para Robô Aspirador XIAOMI S40: escova principal, escovas laterais, filtros e acessórios de",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "Xiaomi S40 Pro escova robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Escovas Laterais para Robô Aspirador Compatível com S40 H40 S40 Pro 5 5 Pro",
+     "topo_e_a_peca": false,
+     "por_que": "a marca nao aparece no titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 5,
+     "composicao": "marca + contexto",
+     "chave": "Xiaomi robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit com 2 Sacos de Pó para aspirador Robo Xiaomi X20",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-e101-tb",
+   "marca": "xiaomi",
+   "tipo": "mop",
+   "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-escova-principal-h40-s40",
+   "marca": "xiaomi",
+   "tipo": "escova principal",
+   "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova principal robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7ptI4PTLY0"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova principal robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7ptI4PTLY0"
+    }
+   ]
+  },
+  {
+   "id": "wap-escova-direita-w300",
+   "marca": "wap",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "Escova Direita Para Robô Aspirador de Pó Robot W300",
+   "escolhido": {
+    "degrau": 2,
+    "composicao": "marca + batismo do fabricante + contexto",
+    "chave": "WAP Escova Direita robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Motor Escova Lateral Direita (R) Para Robo aspirador WAP W400 - FW009274",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Escova%20Direita%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/AUu3lZ3FS8"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP escova lateral robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "KIT 2 Escovas Laterais 1 Filtro e 1 Pano Mop V2 Originais para Robô Aspirador Wap W310",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "WAP Escova Direita robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Motor Escova Lateral Direita (R) Para Robo aspirador WAP W400 - FW009274",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Escova%20Direita%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/AUu3lZ3FS8"
+    }
+   ]
+  },
+  {
+   "id": "wap-escova-esquerda-w300",
+   "marca": "wap",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "Escova Esquerda Para Robô Aspirador WAP Robot W300",
+   "escolhido": {
+    "degrau": 2,
+    "composicao": "marca + batismo do fabricante + contexto",
+    "chave": "WAP Escova Esquerda robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Motor da Escova Esquerda Para Robô Mondial RB01 Multilaser HO041 Wap W100",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Escova%20Esquerda%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/5foo0gLNFL"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP escova lateral robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "KIT 2 Escovas Laterais 1 Filtro e 1 Pano Mop V2 Originais para Robô Aspirador Wap W310",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "WAP Escova Esquerda robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Motor da Escova Esquerda Para Robô Mondial RB01 Multilaser HO041 Wap W100",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Escova%20Esquerda%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/5foo0gLNFL"
+    }
+   ]
+  },
+  {
+   "id": "wap-escova-central-wsmart",
+   "marca": "wap",
+   "tipo": "escova principal",
+   "nome_na_fonte": "Escova Central Para Robô Aspirador de Pó WAP Robot WSMART",
+   "escolhido": {
+    "degrau": 2,
+    "composicao": "marca + batismo do fabricante + contexto",
+    "chave": "WAP Escova Central robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Tampa Bateria/ Escova Central Aspirador Robô WAP W310",
+    "topo_e_a_peca": false,
+    "por_que": "o titulo troca o objeto (a peca que cobre a peca)",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Escova%20Central%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/3B7T25V1ou"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP escova principal robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "WAP Escova Central robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Tampa Bateria/ Escova Central Aspirador Robô WAP W310",
+     "topo_e_a_peca": false,
+     "por_que": "o titulo troca o objeto (a peca que cobre a peca)",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Escova%20Central%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/3B7T25V1ou"
+    }
+   ]
+  },
+  {
+   "id": "wap-escova-frontal-wsmart",
+   "marca": "wap",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
+   "escolhido": {
+    "degrau": 2,
+    "composicao": "marca + batismo do fabricante + contexto",
+    "chave": "WAP Escova Frontal robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Escova Frontal De Limpeza Para Aspirador Robô Wap W90 Reposição",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Escova%20Frontal%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9peMyLA7KC"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP escova lateral robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "KIT 2 Escovas Laterais 1 Filtro e 1 Pano Mop V2 Originais para Robô Aspirador Wap W310",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "WAP Escova Frontal robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Escova Frontal De Limpeza Para Aspirador Robô Wap W90 Reposição",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Escova%20Frontal%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/9peMyLA7KC"
+    }
+   ]
+  },
+  {
+   "id": "wap-recipiente-de-po-w300",
+   "marca": "wap",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "WAP reservatorio robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9AOferfjPW"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP reservatorio robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
+    }
+   ]
+  },
+  {
+   "id": "wap-fw008024",
+   "marca": "wap",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "WAP reservatorio robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9AOferfjPW"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP reservatorio robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
+    }
+   ]
+  },
+  {
+   "id": "wap-fw008543",
+   "marca": "wap",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "WAP reservatorio robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9AOferfjPW"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP reservatorio robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-b106gl-zx",
+   "marca": "xiaomi",
+   "tipo": "escova principal",
+   "nome_na_fonte": "Xiaomi Robot Vacuum S10 Main Brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova principal robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7ptI4PTLY0"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova principal robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7ptI4PTLY0"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-b106gl-lw",
+   "marca": "xiaomi",
+   "tipo": "filtro",
+   "nome_na_fonte": "Xiaomi Robot Vacuum S10 Filter",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Acessórios de Reposição para Robô Aspirador Xiaomi S10+: Pincéis, Filtro HEPA e Panos de Limpeza",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7fZrs6Tysz"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Acessórios de Reposição para Robô Aspirador Xiaomi S10+: Pincéis, Filtro HEPA e Panos de Limpeza",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7fZrs6Tysz"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-mop-s10",
+   "marca": "xiaomi",
+   "tipo": "mop",
+   "nome_na_fonte": "Xiaomi Robot Vacuum S10 Mop Pad",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+    }
+   ]
+  },
+  {
+   "id": "multi-ho041",
+   "marca": "multi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Multilaser HO041 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Roda Completa L Aspirador Robô Multilaser Ho041",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO041%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/905FSYgMkV"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "multi-ho400",
+   "marca": "multi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Multilaser HO400 robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "Tampa do Reservatório Compatível com Robô Aspirador Multilaser Multi Home Mars HO400",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO400%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/8AW8T1jXRM"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "multi-ho407",
+   "marca": "multi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Multilaser HO407 robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "Tampa do Reservatório Compatível com Robô Aspirador Multilaser Duster HO407",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO407%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9fKwFnmICT"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "multi-ob010",
+   "marca": "multi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Multilaser OB010 robo aspirador",
+    "resultados": 0,
+    "titulo_do_topo": null,
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20OB010%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9V1W3UmvXS"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "multi-ho243",
+   "marca": "multi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Multilaser HO243 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro Hepa Para Robô Aspirador Compatível com Multilaser Hydra Ho243 e Ho402",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO243%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9Ki5rBnYsR"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "multi-ho411",
+   "marca": "multi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Multilaser HO411 robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "Tampa do Reservatório Compatível com Robô Aspirador Multilaser Midnight HO411",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO411%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/gQ7XGKYSm"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb44",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB44 robo aspirador",
+    "resultados": 8,
+    "titulo_do_topo": "Aspirador de po robo Electrolux conectado automatico varre aspira passa pano ERB44 bivolt azul sensor antiqueda",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB44%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/qjXjZJv7p"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb10",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB10 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro Hepa P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB10%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/4fwGIcMvSF"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb11",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB11 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro Hepa P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB11%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/4Vcq6JNYnE"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb20",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB20 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Controle Remoto P/ Aspirador Robô Electrolux Erb20 Original",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB20%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/4LJPu0OC8D"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-s20",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi S20 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S20%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/4AzzhhOpTC"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "positivo-pra800",
+   "marca": "positivo",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Positivo PRA800 robo aspirador",
+    "resultados": 8,
+    "titulo_do_topo": "Filtro Hepa compatível para Robô Aspirador Positivo Smart Wi Fi Pra800",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20PRA800%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/40gZVOPSoB"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb60",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB60 robo aspirador",
+    "resultados": 8,
+    "titulo_do_topo": "Bateria Li-ion P/ Aspirador Robô Electrolux Erb60",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/AAHCqjJaR9"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb61",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB61 robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Cinza (ERB61)",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB61%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9fKwFoLUS4"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb62",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB62 robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Branco (ERB62)",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB62%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9peMS7Kr77"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb80",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB80 robo aspirador",
+    "resultados": 5,
+    "titulo_do_topo": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB80%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9Ki5rCMl82"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "electrolux-erb30",
+   "marca": "electrolux",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Electrolux ERB30 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro Hepa Do Aspirador Robo Electrolux Erb30 Original",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB30%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9V1W3VM7n5"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "positivo-pra2000",
+   "marca": "positivo",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Positivo PRA2000 robo aspirador",
+    "resultados": 8,
+    "titulo_do_topo": "Filtro Hepa compatível para Robo Aspirador Positivo Smart Wi Fi Pra2000",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20PRA2000%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/BTqwMDK6M"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "positivo-pra500",
+   "marca": "positivo",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Positivo PRA500 robo aspirador",
+    "resultados": 9,
+    "titulo_do_topo": "Par Escovas Lateral Para Smart Robô Aspirador Wi-FI+ Positivo Casa Inteligente PRA100 e PRA500",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20PRA500%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1AQk3DxRL"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-s10",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi S10 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S10%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1BMO8C9W4a"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-e10",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi E10 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Peças compatíveis com o robô aspirador Xiaomi E10 E10C E12 B112/Mijia 3C Plus C103: escova principal, escovas laterais,",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20E10%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/112xvtA9PZ"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-s40",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi S40 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Kit de peças de reposição para Robô Aspirador XIAOMI S40: escova principal, escovas laterais, filtros e acessórios de",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S40%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/qjXjaAmkY"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-s40c",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi S40C robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Kit de Peças de Reposição para Robô Aspirador Xiaomi | Compatível com S40C (E101), S40 (OV81) e H40 (OV51)",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S40C%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/20vV7k5wON"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-h40",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi H40 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Kit de Peças de Reposição para Robô Aspirador Xiaomi | Compatível com S40C (E101), S40 (OV81) e H40 (OV51)",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20H40%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/W6hKzBeR6"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-mop-2",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi Mop 2 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20Mop%202%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/LnH8gCHm5"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "wap-w400",
+   "marca": "wap",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "WAP W400 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "WAP Robô Aspirador Controle Remoto W400 3 em 1",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W400%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/BTqwNCv74"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "wap-w1000",
+   "marca": "wap",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "WAP W1000 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real GYRO, Base de Carregamento, Compatível com Alexa e Google Wap",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W1000%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1AQk4DYS3"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "wap-w310",
+   "marca": "wap",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "WAP W310 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Tampa Bateria/ Escova Central Aspirador Robô WAP W310",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W310%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1qc4vRO2IM"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "wap-w300",
+   "marca": "wap",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "WAP W300 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Carcaça Inferior Aspirador Robô Wap Robot W300 Original",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W300%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1gIej8OfdL"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "wap-w90",
+   "marca": "wap",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "WAP W90 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Escova Frontal De Limpeza Para Aspirador Robô Wap W90 Reposição",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W90%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/2BEvK3MlcS"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "wap-w100",
+   "marca": "wap",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "WAP W100 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Roda Frontal Dianteira Giratória Robô Aspirador Multilaser Mondial Wap W100-100C ObaBox-Duste Roldana",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W100%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/20vV7kNOxR"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "wap-w100c",
+   "marca": "wap",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "WAP W100C robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Placa Principal Eletrônica Aspirador Robô WAP Robot W100C Original",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W100C%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/2VrlifLUwY"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "wap-wsmart",
+   "marca": "wap",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "WAP WSMART robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Contato Para Carregamento Aspirador Robô Wap Robot WSMART Original",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20WSMART%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1gIej8gL1b"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-e10c",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi E10C robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Peças compatíveis com o robô aspirador Xiaomi E10 E10C E12 B112/Mijia 3C Plus C103: escova principal, escovas laterais,",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20E10C%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/905FypUU7R"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-e12",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi E12 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Peças compatíveis com o robô aspirador Xiaomi E10 E10C E12 B112/Mijia 3C Plus C103: escova principal, escovas laterais,",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20E12%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/50Z7DTo70N"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-s12",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi S12 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Xiaomi Mi Robot Aspirador S10/Mop 3C/B106CN/2S XMSTJQR2S/S12 2026 Substituição Tanque 2 em 1",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S12%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/6L4UnvnEK2"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-s40-pro",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi S40 Pro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Robô Aspirador Xiaomi S40 Pro 15000Pa | Mops Giratorios e Expansivel | Passa Pano Laser LDS Bivolt Lançamento 2026",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S40%20Pro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9peMyMeVm2"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  },
+  {
+   "id": "xiaomi-x20",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi X20 robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit com 2 Sacos de Pó para aspirador Robo Xiaomi X20",
+    "topo_e_a_peca": null,
+    "por_que": "modelo nao desce escada: o codigo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20X20%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1BMOeRFhMR"
+   },
+   "parou_por": "entidade MODELO_ROBO: chave unica, conferida e nao escolhida",
+   "tentativas": []
+  }
+ ],
+ "nota_das_contagens": "As contagens acima sao de PECA. Registros de MODELO_ROBO entram na lista com `topo_e_a_peca` nulo de proposito: a pergunta do item 3 do despacho e sobre peca, e modelo nao desce escada (ver medir_modelos)."
+}

@@ -98,10 +98,15 @@ ANCORAS = {
     # marca cujo id e palavra comum e cujo nome de tela gasta tres tokens.
     "positivo-pra800": "Positivo PRA800 robo aspirador",
     "electrolux-erb60": "Electrolux ERB60 robo aspirador",
-    # PECA: a chave leva o TIPO e nao o codigo. Esta e a peca que o fabricante
-    # batiza pela POSICAO ("Escova Direita") e a ilha classifica pela FUNCAO —
-    # e quem busca digita a funcao, nao a posicao.
-    "wap-escova-direita-w300": "WAP escova lateral robo aspirador",
+    # PECA QUE MUDOU DE CHAVE EM 16/09/2026, E ELA E A BORDA MAIS CARA DESTA
+    # LISTA. Ate hoje a ancora era "WAP escova lateral robo aspirador", com o
+    # comentario *"quem busca digita a funcao, nao a posicao"* — e a frase estava
+    # ERRADA, escrita sem medicao porque nao havia como medir. A ronda de 16/09
+    # abriu essa busca no navegador e ela devolveu ZERO resultado; a Open API da
+    # 25.6 confirmou que quem devolve e a POSICAO, o batismo da WAP. A ilha
+    # continua classificando pela funcao no banco e na tela (secao 26); o que
+    # mudou e a palavra que vai a loja, e so ela.
+    "wap-escova-direita-w300": "WAP Escova Direita robo aspirador",
     # peca com codigo_fabricante null: a chave sai igual, porque o codigo nunca
     # entrou nela.
     "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62":
@@ -125,6 +130,18 @@ marcas = carregar("dados/marcas.json")
 bancos = {rel: carregar("dados/" + rel) for rel in ENTIDADES}
 
 escada = esquema["tipos_compostos"]["afiliado"].get("escada_de_compra") or {}
+
+# A MEDICAO DE PALAVRA-CHAVE (16/09/2026). Este arquivo continua sem importar o
+# gerador e sem importar o validador — le o ARQUIVO DE DADOS, que e o resultado
+# publicado da medicao, do mesmo jeito que le o banco. Arquivo ausente nao e
+# erro: a regra antiga volta a valer inteira para todo mundo, que e o
+# comportamento certo quando ninguem mediu nada.
+try:
+    _medicao = carregar("dados/palavras-chave-medidas.json")
+except FileNotFoundError:
+    _medicao = {"registros": [], "gerado_em": None}
+MEDIDO_EM = _medicao.get("gerado_em")
+MEDIDAS = {r["id"]: (r.get("escolhido") or {}) for r in _medicao.get("registros", [])}
 
 # ------------------------------------------- 1. O UNIVERSO NAO CRESCEU AS ESCURAS
 ok(set(TOKEN_DA_MARCA) == {m["id"] for m in marcas["registros"]},
@@ -217,16 +234,42 @@ for rel, doc in bancos.items():
                "nome comercial: ninguem vende 'Electrolux robo aspirador'"
                % (onde, codigo, chave))
         else:
+            # ESTA TRAVA MUDOU EM 16/09/2026, E O AVISO QUE ELA CARREGAVA E QUEM
+            # MANDOU MUDA-LA: *"Se isto mudar de proposito, mude tambem esta trava
+            # e escreva a medicao que sustenta a mudanca."* A medicao existe e mora
+            # em `dados/palavras-chave-medidas.json`.
+            #
+            # Ate hoje a lei era "a chave de peca leva o TIPO e nunca o codigo",
+            # escrita sem medicao porque a busca do site nao era mensuravel da
+            # nuvem. A Open API da 25.6 mediu, e ela derrubou as duas metades: o
+            # TIPO e vocabulario da ILHA (secao 26) e devolve zero em tres marcas,
+            # e o CODIGO DA PECA, que a trava jurava que ninguem digita, devolve
+            # resultado em loja de reposicao.
+            #
+            # A lei nova e mais dura, nao mais frouxa. Chave que foge da
+            # composicao de sempre so passa se for EXATAMENTE a que a medicao
+            # escolheu e se a medicao tiver registrado resultado para ela. Chave
+            # sem medicao continua obrigada ao tipo e proibida de levar o codigo —
+            # ou seja, ninguem mais estreita uma chave "no olho".
             tipo = (reg.get("tipo") or "").strip()
-            ok(tipo and tipo in chave,
-               "%s: peca sem o tipo %r dentro da busca %r" % (onde, tipo, chave))
-            ok(not codigo or codigo.lower() not in chave.lower(),
-               "%s: a busca %r carrega o codigo de peca %r. E SKU interno de "
-               "fabricante, o vendedor de marketplace nao o digita no titulo, e chave "
-               "com token que ninguem usa traz zero resultado — o beco sem saida que o "
-               "piso existe para impedir. Se isto mudar de proposito, mude tambem esta "
-               "trava e escreva a medicao que sustenta a mudanca"
-               % (onde, chave, codigo))
+            medida = MEDIDAS.get(reg["id"]) or {}
+            if medida.get("chave") == chave:
+                ok((medida.get("resultados") or 0) > 0,
+                   "%s: a busca %r e a chave MEDIDA, e a medicao de %s registrou "
+                   "%r resultado(s). Chave medida em zero e beco sem saida com "
+                   "procedencia — pior que chave nao medida, porque parece conferida"
+                   % (onde, chave, MEDIDO_EM, medida.get("resultados")))
+            else:
+                ok(tipo and tipo in chave,
+                   "%s: peca sem o tipo %r dentro da busca %r, e esta chave NAO e a "
+                   "que a medicao de %s escolheu (%r). Chave estreitada fora da "
+                   "medicao e palpite com cara de dado"
+                   % (onde, tipo, chave, MEDIDO_EM, medida.get("chave")))
+                ok(not codigo or codigo.lower() not in chave.lower(),
+                   "%s: a busca %r carrega o codigo de peca %r sem medicao que o "
+                   "sustente. Com medicao o codigo e legitimo (degrau 3); sem ela e "
+                   "o SKU interno de sempre, que o vendedor nao digita"
+                   % (onde, chave, codigo))
 
         # O QUE FALTA SE DECLARA. Piso sem o link encurtado exige motivo escrito.
         if not a.get("url_busca"):

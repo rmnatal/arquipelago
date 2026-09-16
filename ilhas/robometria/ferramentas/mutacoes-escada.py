@@ -40,6 +40,7 @@ import json
 import os
 import shutil
 import subprocess
+from urllib.parse import quote
 import sys
 import tempfile
 
@@ -52,8 +53,9 @@ ESQUEMA = 'dados/esquema-banco.json'
 MARCAS = 'dados/marcas.json'
 MODELOS = 'dados/modelos-robo.json'
 PECAS = 'dados/pecas.json'
+MEDICAO = 'dados/palavras-chave-medidas.json'
 
-INDENT = {MARCAS: 1, ESQUEMA: 1, MODELOS: 2, PECAS: 1}
+INDENT = {MARCAS: 1, ESQUEMA: 1, MODELOS: 2, PECAS: 1, MEDICAO: 1}
 
 ALVO_MODELO = 'xiaomi-s20'
 ALVO_PECA = 'wap-escova-direita-w300'
@@ -195,9 +197,17 @@ def _multi_volta_ao_nome_de_tela(base):
 
 
 def m05_nome_de_busca_vira_o_de_tela(base):
-    """A marca volta a ser buscada pelo `nome` de tela E O BANCO E REGERADO, entao
-    "Multi (ex-Multilaser)" leva PARENTESE para dentro da consulta. E o defeito que
-    fez o campo nome_de_busca nascer, escrito de volta.
+    """A marca volta a ser buscada pelo `nome` de tela E O BANCO E REGERADO.
+
+    QUEM PEGA MUDOU EM 16/09/2026, E A MUDANCA E UM ENDURECIMENTO. Antes da medicao
+    de palavra-chave, regerar escrevia "Multi (ex-Multilaser)" dentro da consulta e
+    quem reprovava era o PORTAO DA ESCADA, pelo parentese. Agora a chave gravada e a
+    chave MEDIDA, e regerar nao consegue mais injetar o nome de tela em lugar
+    nenhum: o defeito fica preso dentro do `marcas.json` e quem o pega e o
+    VALIDADOR, que le a marca do arquivo em vez de confiar na chave. O buraco que
+    isso poderia abrir — chave medida que ninguem mais confere contra a marca — esta
+    fechado pela mesma afirmacao que pega a m05b, e as duas mutacoes provam a mesma
+    trava por caminhos diferentes de proposito: uma regerando, a outra nao.
 
     A PRIMEIRA VERSAO DESTA MUTACAO ERA INERTE E QUEM MOSTROU FOI A BATERIA: ela
     so editava o marcas.json, e o portao seguia verde — porque a chave ja gravada
@@ -307,8 +317,28 @@ def m11_motivo_apagado(base):
 def m12_contagem_mente(base):
     """O cabecalho diz que nao ha divida. E o defeito que a casca ja pagou uma vez,
     com o cartao dizendo zero enquanto a categoria tinha cinco produtos: numero de
-    cabecalho nasce contado, nunca digitado."""
+    cabecalho nasce contado, nunca digitado.
+
+    ELA FICOU INERTE EM 16/09/2026 E O CONSERTO E PRODUZIR O MUNDO. Ate aquele dia
+    cinco modelos publicaveis estavam sem link curto, e escrever 0 no cabecalho era
+    mentira suficiente. A Open API da 25.6 encurtou os cinco, a divida virou ZERO de
+    verdade, e "mentir zero" passou a ser dizer a verdade — mutacao que nao muda
+    nada mede a intencao de quem a escreveu, nao a trava. Entao ela agora TIRA o
+    link curto de um registro primeiro, criando divida de uma linha, e so depois
+    jura no cabecalho que ela nao existe. E a mesma licao da secao 8 que fez a
+    mutacao do `intestavel` fabricar o link em vez de esperar por ele.
+    """
     d = _ler_json(base, MODELOS)
+    a = _registro(d, ALVO_MODELO)['afiliado']
+    if not (a.get('url_busca') or '').strip():
+        raise AssertionError('%s ja estava sem link curto — a mutacao seria inerte'
+                             % ALVO_MODELO)
+    a['url'] = ''
+    a['url_busca'] = ''
+    a['motivo_sem_url_busca'] = 'mundo de bancada: o link curto foi tirado'
+    _refazer_contagem(d)
+    if d['contagem']['itens_com_piso_nao_rastreavel'] == 0:
+        raise AssertionError('a divida nao foi criada — a mentira seguinte seria verdade')
     d['contagem']['itens_com_piso_nao_rastreavel'] = 0
     _gravar_json(base, MODELOS, d)
 
@@ -347,6 +377,46 @@ def m16_mundo_do_link_intacto(base):
     falso-positivo esperando o dia em que a monetizacao comeca — e quem chegasse
     naquele dia aprenderia a ignora-las."""
     _dar_ficha(base, MODELOS, ALVO_MODELO)
+
+
+# ---------------- AS DUAS DA MEDICAO DE PALAVRA-CHAVE (despacho da Sentinela 16/09)
+def _medida(d, ident):
+    for r in d['registros']:
+        if r['id'] == ident:
+            return r['escolhido']
+    raise AssertionError('%s nao esta na medicao — a mutacao seria inerte' % ident)
+
+
+def m21_chave_medida_em_zero(base):
+    """A medicao registra ZERO resultado para a chave que esta no banco.
+
+    E o defeito do item 1 do despacho da Sentinela de 16/09/2026 com procedencia:
+    nao a busca vazia que ninguem mediu, e sim a busca vazia MEDIDA, gravada com
+    data, e servida assim mesmo. Esta e a pior das duas, porque parece conferida —
+    a mesma familia do numero de tela digitado da secao 8.
+    """
+    d = _ler_json(base, MEDICAO)
+    e = _medida(d, ALVO_PECA)
+    if e['resultados'] == 0:
+        raise AssertionError('a chave de %s ja estava medida em zero — inerte' % ALVO_PECA)
+    e['resultados'] = 0
+    _gravar_json(base, MEDICAO, d)
+
+
+def m22_chave_estreitada_sem_medicao(base):
+    """Alguem estreita a chave no olho: o banco passa a levar o CODIGO da peca e
+    perde o tipo, e a medicao continua dizendo outra coisa.
+
+    Era exatamente o que a trava antiga proibia com a frase *"se isto mudar de
+    proposito, mude tambem esta trava e escreva a medicao que sustenta a mudanca"*.
+    A medicao chegou e a trava mudou — e o que nao pode e a chave mudar SEM ela.
+    """
+    d = _ler_json(base, PECAS)
+    r = _registro(d, 'multi-pr10205')
+    chave = 'Multilaser PR10205 filtro robo aspirador'
+    r['afiliado']['url_busca_produto'] = (
+        'https://shopee.com.br/search?keyword=' + quote(chave))
+    _gravar_json(base, PECAS, d)
 
 
 # ------------------- AS QUATRO DO DESPACHO DO RAPHAEL DE 14/09/2026 (itens 2 e 3)
@@ -407,7 +477,7 @@ MUTACOES = [
      m04_peca_ganha_o_codigo, 'escada', 'SKU interno'),
     ('a marca volta a ser buscada pelo nome de tela, e o banco e regerado',
      'o parentese de "Multi (ex-Multilaser)" entra na consulta — o defeito de origem',
-     m05_nome_de_busca_vira_o_de_tela, 'escada', 'parentese'),
+     m05_nome_de_busca_vira_o_de_tela, 'validar', 'nome_de_busca da marca'),
     ('o nome_de_busca muda e o banco NAO e regerado',
      'duas copias do mesmo fato em desacordo: quem ve e o validador, nao o portao',
      m05b_nome_de_busca_diverge_do_banco, 'validar', 'nome_de_busca da marca'),
@@ -444,6 +514,12 @@ MUTACOES = [
     ('MUNDO NOVO: primeiro link da ilha, INTACTO — esta TEM de passar',
      'regua que reprova o mundo sem defeito e falso-positivo esperando a monetizacao',
      m16_mundo_do_link_intacto, None, None),
+    ('a medicao registra ZERO resultado para a chave que esta no banco',
+     'busca vazia medida e pior que busca vazia nao medida: ela parece conferida',
+     m21_chave_medida_em_zero, 'escada', 'resultado'),
+    ('a chave e estreitada no olho, sem medicao que a sustente',
+     'chave estreitada fora da medicao e palpite com cara de dado',
+     m22_chave_estreitada_sem_medicao, 'escada', 'sem medicao que o sustente'),
     ('o item com piso volta a ter degrau nulo — o estado de ontem',
      'degrau null quer dizer "ninguem decidiu", e a decisao estava tomada havia um dia',
      m17_piso_sem_degrau, 'validar', 'publicavel com piso e degrau'),

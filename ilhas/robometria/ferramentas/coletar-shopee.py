@@ -91,7 +91,13 @@ PALAVRAS_DO_TIPO = {
                          'rolo', 'escova'],
     'mop': ['mop', 'pano'],
     'bateria': ['bateria'],
-    'reservatorio': ['reservatorio', 'tanque', 'deposito'],
+    # 'recipiente' entrou em 16/09/2026 pela regua de palavra-chave: o batismo
+    # da propria WAP para esta peca, escrito em `nome_na_fonte` de dois
+    # registros do banco, e "Recipiente de Po" — e a lista nao o conhecia, entao
+    # "Recipiente Reservatorio Compativel com Robo Aspirador WAP W90" era
+    # reprovado por nao abrir com o tipo. A palavra saiu do banco, nao da
+    # cabeca de quem escreve a lista.
+    'reservatorio': ['reservatorio', 'recipiente', 'tanque', 'deposito'],
     'kit': ['kit'],
 }
 
@@ -288,8 +294,13 @@ def troca_o_objeto(titulo):
     return any(q in t for q in QUALIFICADOR_QUE_TROCA_O_OBJETO)
 
 
-def abre_com_o_tipo(titulo, tipo):
+def abre_com_o_tipo(titulo, tipo, alvos=None):
     """O TIPO E A CABECA DO TITULO, e nao uma palavra perdida no meio dele.
+
+    `alvos` permite a quem chama apertar a lista de palavras sem recopiar esta
+    funcao: `medir-palavras-chave.py` retira o substantivo pelado (`escova`)
+    porque a pergunta dele e outra — ver `palavras_estritas_do_tipo` la. A
+    regra de CABECA, que e o que esta funcao guarda, continua sendo uma so.
 
     "Filtro Hepa Para Robo Multilaser HO041" abre com o tipo e e o filtro.
     "Tampa Do Filtro Do Aspirador Ho041" cita o filtro e vende a tampa. A
@@ -298,14 +309,24 @@ def abre_com_o_tipo(titulo, tipo):
     abrir, porque nao troca o objeto, so conta.
     """
     palavras = [p for p in re.split(r'[^a-z0-9]+', sem_acento(titulo)) if p]
-    alvos = palavras_do_tipo(tipo)
+    alvos = alvos if alvos is not None else palavras_do_tipo(tipo)
+    # ALVO DE DUAS PALAVRAS SO CASA COM AS DUAS, EM SEQUENCIA. Ate 16/09/2026
+    # esta comparacao era `palavra == a or a.startswith(palavra + ' ') or palavra
+    # in a.split()`, e as duas ultimas metades deixavam a palavra SOLTA casar com
+    # o alvo composto: `escova` casava com `escova principal`. Dentro da coleta
+    # isso nunca apareceu, porque la o codigo do registro ou do modelo ja tinha
+    # amarrado o anuncio antes — mas a regua de palavra-chave, que pergunta outra
+    # coisa, aprovou "Escova Frontal De Limpeza (...) Wap W90" como topo legitimo
+    # de uma busca de ESCOVA PRINCIPAL. Frontal e lateral; a secao 26 diz que sao
+    # funcoes OPOSTAS. A comparacao por sequencia fecha isso sem tirar nada de
+    # quem chama com lista de uma palavra so.
+    alvos_em_palavras = [a.split() for a in alvos]
     # "Kit" so abre titulo legitimo quando o proprio registro e um kit.
     abertura = list(ABERTURA_DE_QUANTIDADE)
     if sem_acento(tipo).strip() == 'kit':
         abertura += ABERTURA_DE_CONJUNTO
-    for pos, palavra in enumerate(palavras[:6]):
-        if any(palavra == a or a.startswith(palavra + ' ') or palavra in a.split()
-               for a in alvos):
+    for pos in range(min(6, len(palavras))):
+        if any(palavras[pos:pos + len(a)] == a for a in alvos_em_palavras):
             # tudo que veio antes tem de ser quantidade, nunca outro objeto
             return all(p in abertura or p.isdigit() for p in palavras[:pos])
     return False

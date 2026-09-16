@@ -103,12 +103,21 @@ ORDEM_AFILIADO = [
 # com o do esquema por outro caminho.
 DEGRAU_DO_PISO = 4
 
+# Onde mora a medicao da palavra-chave (16/09/2026). Ver carregar_medicao().
+MEDICAO = "dados/palavras-chave-medidas.json"
+
 HOJE = date.today().isoformat()
 
+# ESTE MOTIVO FICOU RARO EM 16/09/2026, e a frase mudou junto. Ate aquele dia ele
+# era a verdade de 65 registros: a escolha estava feita e o ENCURTAMENTO esperava
+# a sessao logada do painel da Shopee. A Open API da 25.6 tem generateShortLink,
+# aceita sub-id, e fecha o elo — entao o motivo deixou de descrever a fabrica e
+# passou a descrever a falha: registro que chega aqui sem link curto e registro
+# que a medicao nao alcancou.
 MOTIVO_SEM_URL_BUSCA = (
-    "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a "
-    "sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em "
-    "url_busca_produto, e no dia da sessao e colar."
+    "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) "
+    "nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar "
+    "--encurtar com a credencial da Open API no ambiente."
 )
 
 
@@ -138,13 +147,43 @@ def gravar(rel, dados, indent):
         fh.write("\n")
 
 
-def palavra_chave(registro, entidade, nome_de_busca, termo):
-    """marca + (codigo, so no modelo) + (tipo, so na peca) + contexto.
+def carregar_medicao():
+    """A chave MEDIDA de cada registro, quando existir.
+
+    `ferramentas/medir-palavras-chave.py` chama a Open API da Shopee e desce uma
+    escada ate achar a chave que serve o leitor; o resultado, com a data e com o
+    que a API devolveu, mora em `dados/palavras-chave-medidas.json`. Este arquivo
+    continua sendo quem GRAVA, e continua sendo deterministico e conferivel sem
+    rede — ele nao chama ninguem, so le o que ja foi medido.
+
+    Arquivo ausente nao e erro: a ilha nasceu sem ele e a composicao de sempre
+    continua valendo. O que seria erro e o contrario — gravar uma chave que
+    ninguem chamou, que foi como tres buscas de ZERO resultado ficaram um dia
+    inteiro no ar com o botao de compra em cima delas (item 1 do despacho da
+    Sentinela de 16/09/2026).
+    """
+    try:
+        doc = carregar(MEDICAO)
+    except FileNotFoundError:
+        return {}, None
+    por_id = {}
+    for reg in doc.get("registros", []):
+        escolhido = reg.get("escolhido") or {}
+        if escolhido.get("chave"):
+            por_id[reg["id"]] = escolhido
+    return por_id, doc.get("gerado_em")
+
+
+def palavra_chave(registro, entidade, nome_de_busca, termo, medida=None):
+    """marca + (codigo, so no modelo) + (tipo, so na peca) + contexto — ou a
+    chave MEDIDA, quando a medicao provou que a composicao de sempre nao serve.
 
     A ordem e a de quem digita na loja: a marca primeiro porque e o filtro mais
     forte, o que distingue o item depois, e o contexto por ultimo porque e
     desempate, nao busca.
     """
+    if medida and medida.get("chave"):
+        return medida["chave"]
     partes = [nome_de_busca]
     if entidade == "modelo_robo":
         partes.append(str(registro.get("codigo_fabricante") or "").strip())
@@ -182,6 +221,10 @@ def main():
     gravando = "--gravar" in sys.argv
     esquema = carregar("dados/esquema-banco.json")
     marcas = carregar("dados/marcas.json")
+    medidas, medido_em = carregar_medicao()
+    if medidas:
+        print("chave medida disponivel para %d registro(s), medicao de %s"
+              % (len(medidas), medido_em))
 
     escada = esquema["tipos_compostos"]["afiliado"]["escada_de_compra"]
     base = escada["base_da_busca"]
@@ -224,8 +267,16 @@ def main():
                     erros.append("%s/%s: marca %r sem nome_de_busca"
                                  % (rel, reg.get("id"), reg.get("marca")))
                     continue
-                chave = palavra_chave(reg, entidade, nome, termo)
+                medida = medidas.get(reg.get("id"))
+                chave = palavra_chave(reg, entidade, nome, termo, medida)
                 nova_busca = base + quote(chave)
+                # O LINK CURTO VEM DA MEDICAO, e so dela. Ele e o segundo elo do
+                # piso da 25.2, e ate 16/09/2026 era o elo que esperava alguem.
+                # Nunca se escreve link curto para uma chave que nao foi a
+                # medida: link curto e chave sao um par, e trocar um sem o outro
+                # e mandar o leitor para a busca de ontem com o carimbo de hoje.
+                if medida and medida.get("url_busca") and medida.get("url_busca_produto") == nova_busca:
+                    afil["url_busca"] = medida["url_busca"]
                 novo_motivo = None if afil.get("url_busca") else MOTIVO_SEM_URL_BUSCA
 
             antes = (afil.get("url_busca_produto"), afil.get("motivo_sem_url_busca"),
@@ -266,8 +317,26 @@ def main():
                     print("  %-52s %s" % (reg.get("id"),
                                           palavra_chave(reg, entidade,
                                                         nomes_de_busca[reg["marca"]],
-                                                        termo)))
+                                                        termo,
+                                                        medidas.get(reg.get("id")))))
             reg["afiliado"] = afil
+
+        # A CONTAGEM DE DIVIDA DO CABECALHO ANDA JUNTO COM O CAMPO QUE ELA CONTA.
+        # `itens_com_piso_nao_rastreavel` conta quem tem busca crua e nao tem link
+        # curto — exatamente o que este arquivo acabou de mexer. Ate 16/09/2026 o
+        # numero era escrito a mao e so o `validar-banco.py` o conferia: encher os
+        # cinco modelos de link curto deixou o cabecalho dizendo 5 com o arquivo em
+        # 0, e a gravacao passou no gerador e reprovou no validador. Contar aqui
+        # nao afrouxa portao nenhum — o validador continua recontando por outro
+        # caminho, e a mutacao que mente no numero continua reprovando.
+        publicaveis = [r for r in arquivo["registros"] if r.get("status") == "publicavel"]
+        contagem = arquivo.get("contagem")
+        if isinstance(contagem, dict) and "itens_com_piso_nao_rastreavel" in contagem:
+            contagem["itens_com_piso_nao_rastreavel"] = sum(
+                1 for r in publicaveis
+                if not (r["afiliado"].get("url") or "")
+                and not (r["afiliado"].get("url_busca") or "")
+                and (r["afiliado"].get("url_busca_produto") or ""))
 
         if gravando and not erros:
             gravar(rel, arquivo, indent)
