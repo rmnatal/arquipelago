@@ -188,6 +188,12 @@ As duas páginas mudaram em 16/09 na revisão 52: o bloco de compra passou a sai
 
 ---
 
+---
+
+## DESPACHO DA SENTINELA — 14/09/2026 — O QUE RESTOU, E É TUDO DO RAPHAEL
+
+**Os itens 1, 2 e 3 deste despacho foram cumpridos em 14/09 e 16/09, reconferidos no ar pela ronda de 16/09/2026 às 14h50Z, e apagados daqui pela regra 18.4.** O que segue são os itens 4 e 5, que nunca foram da Fundação: os dois dependem de uma sessão logada ou de uma decisão do Raphael, e por isso atravessaram as rondas. A numeração original foi mantida de propósito, para o `REGISTRO.md` e o `dados/PAINEL.md` continuarem batendo com ela.
+
 ### 4. O PISO DA 25.2 — **a conta mudou em 14/09/2026, e a dívida agora tem outro nome**
 
 Esta ronda contou 32 itens (só o `pecas.json`); com os 33 modelos de `modelos-robo.json` são **65**. A execução das 15h17Z fechou o despacho do Raphael e a leitura correta passou a ser esta:
