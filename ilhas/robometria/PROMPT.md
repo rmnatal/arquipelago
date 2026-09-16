@@ -30,6 +30,33 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 ---
 
+## DESPACHO DO RAPHAEL — 16/09/2026 — A API DA SHOPEE FOI LIBERADA, E ELA FECHA QUATRO BURACOS DESTA ILHA DE UMA VEZ
+
+Em 16/09/2026 o Raphael habilitou a API de Afiliados da Shopee e o endereco `open-api.affiliate.shopee.com.br` entrou na lista de dominios permitidos da conta. **Medido na mesma hora, da nuvem:** antes o proxy devolvia `CONNECT tunnel failed, response 403`; agora devolve `http=200` e quem responde e o servidor da Shopee (com credencial falsa de proposito, ele retorna `error [10020]: Invalid Credential`, que e a prova de que a chamada chegou). A consulta `productOfferV2` tambem volta 200. **Este despacho sai inteiro numa execucao so, pela secao 18.**
+
+**O QUE A API DA.** GraphQL em `https://open-api.affiliate.shopee.com.br/graphql`. Cabecalho `Authorization: SHA256 Credential=<AppId>, Timestamp=<unix em segundos>, Signature=<sha256(AppId + Timestamp + Payload + Secret)>`, onde `Payload` e o corpo JSON exato enviado. A consulta `productOfferV2` devolve, por produto, no minimo: `itemId`, `productName`, `imageUrl`, `productLink` (a ficha canonica), `offerLink` (o link de afiliado ja pronto), preco e `shopName`. Existe tambem `generateShortLink`.
+
+**OS QUATRO BURACOS QUE ISSO FECHA — e a ordem importa, do mais barato ao mais valioso:**
+
+1. **A FOTO.** A secao 6 do ARQUIPELAGO.md pede `imagem: {url, largura, altura, fonte, coletado_em, alt}` no modelo de produto, e ate hoje nenhum registro tem — o egresso barra dominio de fabricante e de varejo, entao nao havia de onde baixar. `imageUrl` da API e a fonte legitima: a imagem do anuncio ao lado do link do anuncio e exatamente o que o programa de afiliado existe para permitir. **A `fonte` desse campo e `shopee-api`, e o `coletado_em` e a data da chamada.**
+2. **O ENCURTAMENTO DEIXA DE DEPENDER DO RAPHAEL.** A regra 25.6 diz que gerar link de afiliado exige a sessao logada dele no painel. Com `offerLink` e `generateShortLink`, nao exige mais. **A 25.6 nao deve ser apagada neste despacho** — quem apaga regra e quem mediu que ela caiu; registre a medicao e proponha a troca no relatorio.
+3. **`url_produto` DEIXA DE SER `null`.** Os 68 itens do banco estao todos em `url_busca` porque nao existia ficha de produto. Com `productLink` passa a existir — e so entao o **teste de vida da 25.4-b**, que hoje nao existe nesta ilha, comeca a existir. Item com ficha sobe da escada do degrau 4 para o degrau 1 ou 2.
+4. **O PORTAO "CANAL BRASILEIRO" VIRA LEITURA MECANICA.** E o portao que a regua do item 2 da DEFINICAO DE PRONTA passou a exigir em 16/09. Consultar o modelo na API e ver se a Shopee BR vende deixa de ser julgamento e vira medicao. **Este e o item mais valioso do despacho: e o caminho para sair de 8 e chegar a 15 sem despejar modelo global no banco.**
+
+**COMO AS CREDENCIAIS CHEGAM — E A REGRA QUE NAO SE NEGOCIA.** O `AppID` e a `Senha` **NAO entram no repositorio**, que e publico: o que entra fica no historico do git para sempre. Elas tambem **nao entram na variavel de ambiente do ambiente de nuvem** — a propria tela daquele campo avisa que o conteudo fica visivel para quem usar o ambiente e manda nao colocar credencial la. Elas moram num documento privado do Google Drive do Raphael chamado **`arquipelago-credenciais`**, no formato `NOME=valor`, uma por linha, com comentarios e linhas em branco a ignorar. A Fundacao ja roda com o conector do Google Drive ligado: leia o documento, extraia `SHOPEE_APP_ID` e `SHOPEE_SECRET`, e **passe os dois para o processo apenas como variavel de ambiente, em memoria**. Nunca grave o valor em arquivo, nunca imprima em log, nunca escreva em relatorio, nunca inclua em mensagem de commit. Se um valor ainda estiver como `COLE_AQUI...`, a credencial nao foi preenchida: pare antes do passo de coleta, registre isso no `REGISTRO.md` e entregue o que der sem ela.
+
+**O QUE CONSTRUIR, nesta ordem:**
+
+**(a) `ferramentas/shopee-api.py`** — le `SHOPEE_APP_ID` e `SHOPEE_SECRET` **do ambiente** (`os.environ`), monta a assinatura, e expoe duas operacoes: buscar por palavra-chave e buscar por `itemId`. Devolve JSON normalizado com `item_id`, `titulo`, `imagem_url`, `url_produto`, `url_afiliado`, `preco`, `loja`. Falha alto e claro se a credencial nao estiver no ambiente — **e a mensagem de erro nao repete o valor de nada**. A ferramenta nunca escreve credencial em disco.
+
+**(b) O ESQUEMA DO BANCO** — `dados/esquema-banco.json` ganha o bloco `imagem` que a secao 6 descreve, e o `validar-banco.py` passa a conferi-lo. Registro sem imagem continua **valido** e continua aparecendo na vitrine: a secao 6 e clara que perder a recomendacao tecnica certa por falta de foto e trocar o certo pelo bonito. A foto e ganho, nunca requisito.
+
+**(c) A COLETA** — para cada registro publicavel de `dados/pecas.json` e `dados/modelos-robo.json`, consulte a API pela palavra-chave que ja esta em `afiliado.url_busca_produto` e grave o que voltar: `imagem`, `afiliado.url_produto`, e `afiltado.url` quando o `offerLink` vier. **Nao invente correspondencia:** se o titulo que voltou nao contiver o codigo da peca ou o nome do modelo, o registro fica sem foto e sem ficha, com o motivo escrito no campo de motivo. Um casamento errado no banco e pior que casamento nenhum, porque parece dado. **Confira uma amostra com os olhos antes de gravar**, como manda a 25.3.
+
+**(d) A VITRINE** — com `imagem.url` presente, o cartao mostra a foto: `loading="lazy"`, `width`/`height` declarados, `alt` descritivo, como manda a secao 6. Sem imagem, continua valendo o espaco reservado neutro do despacho seguinte a este.
+
+**COMO SE SABE QUE FICOU PRONTO:** `ferramentas/shopee-api.py` roda e devolve JSON para pelo menos uma consulta real; o banco tem pelo menos um registro com `imagem.url` e `afiliado.url_produto` preenchidos e conferidos a mao; o HTML servido de uma pagina mostra a foto desse registro; `validar-banco.py` passa; e **nenhum arquivo do repositorio, nenhuma linha de log e nenhuma mensagem de commit contem o AppID ou a Senha** — confira isto com `git grep` antes de empurrar, procurando pelo nome dos campos, nunca imprimindo valor.
+
 ## DESPACHO DO RAPHAEL — 16/09/2026 — o espaco reservado da foto esta desenhado como uma roda de carregamento
 
 O Raphael olhou um cartao da vitrine e perguntou se a ilha vai ao ar sem foto. A resposta de regra e sim, e esta certa (secao 6 e 25.3 do ARQUIPELAGO.md): a foto legitima sai do `image_link` do feed da Shopee, peca fora do feed nao tem foto, e perder a recomendacao tecnica certa por falta de foto seria trocar o certo pelo bonito. **O problema nao e a ausencia da foto — e o desenho do lugar vazio.**
