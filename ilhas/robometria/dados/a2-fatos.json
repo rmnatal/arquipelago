@@ -12,11 +12,11 @@
     "por_que_chega_as_dez_primeiras": "Nenhuma das paginas que ocupam a cabeca desta familia publica a contagem de quantos fabricantes declaram area por carga, nem a dispersao entre os pares declarados. Elas publicam o numero; esta publica de onde ele vem, com o catalogo contado e datado."
   },
   "resumo": {
-    "modelos_publicaveis": 33,
+    "modelos_publicaveis": 38,
     "marcas": 5,
     "com_cobertura": 5,
-    "sem_cobertura": 28,
-    "com_autonomia": 26,
+    "sem_cobertura": 33,
+    "com_autonomia": 29,
     "com_recarga": 2,
     "com_os_tres": 0,
     "pares_declarados": 5,
@@ -350,11 +350,11 @@
   "perguntas": [
     {
       "pergunta": "Quantos m² um robô aspirador limpa por carga?",
-      "resposta": "Depende do fabricante dizer, e quase nenhum diz. Dos 33 modelos que a Robometria conferiu, 5 declaram área coberta por carga, e todos são de uma marca só (Electrolux) — as outras 4 não publicam o número em canal nenhum. Quando um site promete metragem para um robô dessas marcas, esse número foi calculado por alguém, não declarado pelo fabricante."
+      "resposta": "Depende do fabricante dizer, e quase nenhum diz. Dos 38 modelos que a Robometria conferiu, 5 declaram área coberta por carga, e todos são de uma marca só (Electrolux) — as outras 4 não publicam o número em canal nenhum. Quando um site promete metragem para um robô dessas marcas, esse número foi calculado por alguém, não declarado pelo fabricante."
     },
     {
       "pergunta": "Quanto tempo um robô aspirador leva para limpar a casa inteira?",
-      "resposta": "Não dá para saber com dado publicado, e essa é a resposta honesta. A conta precisa de três números declarados pelo fabricante — área por carga, autonomia e tempo de recarga — e nenhum dos 33 modelos que a Robometria conferiu tem os três: 5 declaram a área, 2 declaram a recarga, e os conjuntos não se sobrepõem em modelo nenhum."
+      "resposta": "Não dá para saber com dado publicado, e essa é a resposta honesta. A conta precisa de três números declarados pelo fabricante — área por carga, autonomia e tempo de recarga — e nenhum dos 38 modelos que a Robometria conferiu tem os três: 5 declaram a área, 2 declaram a recarga, e os conjuntos não se sobrepõem em modelo nenhum."
     },
     {
       "pergunta": "Dá para calcular a área que um robô limpa a partir dos minutos de autonomia?",

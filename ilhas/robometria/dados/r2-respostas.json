@@ -765,7 +765,8 @@
       ],
       "no_limiar": [],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     },
     "liso|curto": {
       "elegiveis": [
@@ -779,7 +780,8 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     },
     "liso|longo": {
       "elegiveis": [
@@ -793,7 +795,8 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     },
     "tapete-fino|nao": {
       "elegiveis": [
@@ -807,7 +810,8 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     },
     "tapete-fino|curto": {
       "elegiveis": [
@@ -821,7 +825,8 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     },
     "tapete-fino|longo": {
       "elegiveis": [
@@ -835,7 +840,8 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     },
     "carpete|nao": {
       "elegiveis": [
@@ -849,7 +855,8 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     },
     "carpete|curto": {
       "elegiveis": [
@@ -863,7 +870,8 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     },
     "carpete|longo": {
       "elegiveis": [
@@ -877,7 +885,8 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 22
+      "sem_pa_declarado": 21,
+      "sem_canal_brasileiro": 6
     }
   },
   "rotulos_de_origem": {
@@ -1777,8 +1786,8 @@
       "dispersao_pct": 23
     },
     "funil": {
-      "sem_pa": 22,
-      "publicaveis": 33,
+      "sem_pa": 21,
+      "publicaveis": 38,
       "marcas_mudas": [
         "Electrolux",
         "Multi (ex-Multilaser)"
@@ -1787,6 +1796,19 @@
         "WAP"
       ]
     },
+    "canal": {
+      "fora": [
+        "Electrolux ERB20",
+        "Xiaomi E10C",
+        "Xiaomi E12",
+        "Xiaomi S12",
+        "Xiaomi S40 Pro",
+        "Xiaomi X20"
+      ],
+      "fora_com_pa": 5,
+      "maior_pa_rotulo": "Xiaomi S40 Pro",
+      "maior_pa_valor": 15000
+    },
     "tempo_total": {
       "com_cobertura": 5,
       "com_recarga": 2,
@@ -1794,7 +1816,7 @@
     }
   },
   "resumo": {
-    "modelos_publicaveis": 33,
+    "modelos_publicaveis": 38,
     "modelos_na_tela": 11,
     "modelos_esperando_link": 11,
     "modelos_com_link": 0,

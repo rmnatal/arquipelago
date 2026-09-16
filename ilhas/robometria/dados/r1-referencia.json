@@ -728,6 +728,66 @@
         "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
       }
     },
+    "xiaomi-e10c": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-b112-zs",
+          "frase": "Escova principal: B112-ZS, que a Xiaomi declara compativel com E10, E12, E10C e S20 (fabricante-via-busca, verificado em 13/09/2026). Quem chama esta peca de escova principal e a Robometria, pelo contraste do catalogo do proprio fabricante: o titulo dela nao nomeia a funcao."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-b112-ch",
+          "frase": "A Xiaomi declara o filtro B112-CH compativel com E10, E10C e S20 (fabricante-via-busca, verificado em 13/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-b112-tb",
+          "frase": "A Xiaomi declara o mop B112-TB compativel com E10, E12 e E10C (fabricante-via-busca, verificado em 13/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-e12": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-b112-zs",
+          "frase": "Escova principal: B112-ZS, que a Xiaomi declara compativel com E10, E12, E10C e S20 (fabricante-via-busca, verificado em 13/09/2026). Quem chama esta peca de escova principal e a Robometria, pelo contraste do catalogo do proprio fabricante: o titulo dela nao nomeia a funcao."
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-b112-tb",
+          "frase": "A Xiaomi declara o mop B112-TB compativel com E10, E12 e E10C (fabricante-via-busca, verificado em 13/09/2026)."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "frase": "A Xiaomi Colombia declara a escova lateral B106GL-BX compativel com S20, S10, E10, S12, E12 e X20 (fabricante-via-busca, verificado em 14/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
     "xiaomi-h40": {
       "aviso_de_variante": null,
       "fabricante": [
@@ -802,6 +862,26 @@
         "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
       }
     },
+    "xiaomi-s12": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "frase": "A Xiaomi Colombia declara a escova lateral B106GL-BX compativel com S20, S10, E10, S12, E12 e X20 (fabricante-via-busca, verificado em 14/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
     "xiaomi-s20": {
       "aviso_de_variante": null,
       "fabricante": [
@@ -862,6 +942,26 @@
         "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
       }
     },
+    "xiaomi-s40-pro": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-ov81gl-bs",
+          "frase": "A Xiaomi Global declara a escova lateral OV81GL-BS compativel com H40, S40 e S40 Pro (fabricante-via-busca, verificado em 13/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
     "xiaomi-s40c": {
       "aviso_de_variante": null,
       "fabricante": [
@@ -869,6 +969,26 @@
           "tipo": "mop",
           "peca": "xiaomi-e101-tb",
           "frase": "A Xiaomi Global declara o mop E101-TB compativel com S40C (fabricante-via-busca, verificado em 13/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-x20": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "frase": "A Xiaomi Colombia declara a escova lateral B106GL-BX compativel com S20, S10, E10, S12, E12 e X20 (fabricante-via-busca, verificado em 14/09/2026)."
         }
       ],
       "terceiro": [],

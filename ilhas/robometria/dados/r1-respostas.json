@@ -299,6 +299,22 @@
       "so_kit": false
     },
     {
+      "id": "xiaomi-e10c",
+      "marca": "xiaomi",
+      "codigo": "E10C",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-e12",
+      "marca": "xiaomi",
+      "codigo": "E12",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
       "id": "xiaomi-h40",
       "marca": "xiaomi",
       "codigo": "H40",
@@ -323,6 +339,14 @@
       "so_kit": false
     },
     {
+      "id": "xiaomi-s12",
+      "marca": "xiaomi",
+      "codigo": "S12",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
       "id": "xiaomi-s20",
       "marca": "xiaomi",
       "codigo": "S20",
@@ -339,9 +363,25 @@
       "so_kit": false
     },
     {
+      "id": "xiaomi-s40-pro",
+      "marca": "xiaomi",
+      "codigo": "S40 Pro",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
       "id": "xiaomi-s40c",
       "marca": "xiaomi",
       "codigo": "S40C",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-x20",
+      "marca": "xiaomi",
+      "codigo": "X20",
       "linha": null,
       "responde": true,
       "so_kit": false
@@ -385,9 +425,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -426,9 +466,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -467,9 +507,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -515,9 +555,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -556,9 +596,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -597,9 +637,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -645,9 +685,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -686,9 +726,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -727,9 +767,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -770,9 +810,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -806,9 +846,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -842,9 +882,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -888,9 +928,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/5AsWtVLtoR",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -924,9 +964,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -960,9 +1000,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1006,9 +1046,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/5AsWtVLtoR",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1044,9 +1084,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1082,9 +1122,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1120,9 +1160,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1159,9 +1199,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/40gZVMQLBE",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1198,9 +1238,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/5LBx5ocrcV",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1244,9 +1284,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/5AsWtVLtoR",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1282,9 +1322,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1320,9 +1360,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1358,9 +1398,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1397,9 +1437,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/40gZVMQLBE",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1436,9 +1476,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/5LBx5ocrcV",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1482,9 +1522,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/5AsWtVLtoR",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1520,9 +1560,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1558,9 +1598,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1596,9 +1636,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1635,9 +1675,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/40gZVMQLBE",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1674,9 +1714,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/5LBx5ocrcV",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1720,9 +1760,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/40gZVMQLBE",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1756,9 +1796,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1792,9 +1832,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1828,9 +1868,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1867,9 +1907,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/5LBx5ocrcV",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1923,9 +1963,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/1AQk0Nh5x",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1959,9 +1999,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/W6hKvLn54",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -1995,9 +2035,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/2BEvJzFRhQ",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20bateria%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2031,9 +2071,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/2BEvJzFRhQ",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20bateria%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2084,9 +2124,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/1AQk0Nh5x",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2131,9 +2171,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/1AQk0Nh5x",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2184,9 +2224,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/1AQk0Nh5x",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2220,9 +2260,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/W6hKvLn54",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2256,9 +2296,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/LnH8cMQQ3",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2300,9 +2340,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/4AzzhfPhqH",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2337,9 +2377,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/4LJPtyP4VK",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2374,9 +2414,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/4Vcq6HORAN",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2424,9 +2464,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/4AzzhfPhqH",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2461,9 +2501,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/4LJPtyP4VK",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2498,9 +2538,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/4Vcq6HORAN",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2542,9 +2582,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2597,9 +2637,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/8plpGFh05Q",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2633,9 +2673,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/8plpGFh05Q",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2669,9 +2709,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2725,9 +2765,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2768,9 +2808,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/8fSP3whdQP",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2804,9 +2844,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/8plpGFh05Q",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2840,9 +2880,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2889,9 +2929,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2930,9 +2970,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7fZrs6Tysz",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -2968,9 +3008,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3012,9 +3052,268 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-e10c": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-b112-zs",
+          "codigo": "B112-ZS",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+          "tipo_da_peca": "escova principal",
+          "funcao_declarada_por": "contraste-no-catalogo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E12",
+            "E10C",
+            "S20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "6 a 12",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-b112-ch",
+          "codigo": "B112-CH",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+          "tipo_da_peca": "filtro",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E10C",
+            "S20"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7fZrs6Tysz",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-b112-tb",
+          "codigo": "B112-TB",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
+          "tipo_da_peca": "mop",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E12",
+            "E10C"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-e12": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-b112-zs",
+          "codigo": "B112-ZS",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+          "tipo_da_peca": "escova principal",
+          "funcao_declarada_por": "contraste-no-catalogo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E12",
+            "E10C",
+            "S20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "6 a 12",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-b112-tb",
+          "codigo": "B112-TB",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
+          "tipo_da_peca": "mop",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E12",
+            "E10C"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "codigo": "B106GL-BX",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "funcao_declarada_por": "titulo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Colombia",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+          "verificado_em": "2026-09-14",
+          "declarados": [
+            "S20",
+            "S10",
+            "E10",
+            "S12",
+            "E12",
+            "X20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3057,9 +3356,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3094,9 +3393,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3151,9 +3450,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3187,9 +3486,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3223,9 +3522,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7fZrs6Tysz",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3259,9 +3558,60 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-s12": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "codigo": "B106GL-BX",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "funcao_declarada_por": "titulo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Colombia",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+          "verificado_em": "2026-09-14",
+          "declarados": [
+            "S20",
+            "S10",
+            "E10",
+            "S12",
+            "E12",
+            "X20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3308,9 +3658,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3349,9 +3699,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7fZrs6Tysz",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3388,9 +3738,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3432,9 +3782,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3477,9 +3827,9 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3514,9 +3864,54 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-s40-pro": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-ov81gl-bs",
+          "codigo": "OV81GL-BS",
+          "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "funcao_declarada_por": "titulo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "H40",
+            "S40",
+            "S40 Pro"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -3557,9 +3952,60 @@
           "esperando_link": true,
           "afiliado": {
             "url": "",
-            "url_busca": "",
+            "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
-            "programa": null,
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-x20": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "codigo": "B106GL-BX",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "funcao_declarada_por": "titulo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Colombia",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+          "verificado_em": "2026-09-14",
+          "declarados": [
+            "S20",
+            "S10",
+            "E10",
+            "S12",
+            "E12",
+            "X20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+            "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
@@ -4444,29 +4890,42 @@
       "verificado_em": "2026-09-12"
     },
     {
-      "modelo": "xiaomi-h40",
-      "modelo_rotulo": "Xiaomi H40",
-      "tipo": "escova lateral",
-      "peca": "xiaomi-ov81gl-bs",
-      "codigo": "OV81GL-BS",
-      "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
-      "dentro_de_kit": false,
-      "divergencia": true,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
-      "verificado_em": "2026-09-13"
-    },
-    {
-      "modelo": "xiaomi-h40",
-      "modelo_rotulo": "Xiaomi H40",
+      "modelo": "xiaomi-e10c",
+      "modelo_rotulo": "Xiaomi E10C",
       "tipo": "escova principal",
-      "peca": "xiaomi-escova-principal-h40-s40",
-      "codigo": null,
-      "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+      "peca": "xiaomi-b112-zs",
+      "codigo": "B112-ZS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-e10c",
+      "modelo_rotulo": "Xiaomi E10C",
+      "tipo": "filtro",
+      "peca": "xiaomi-b112-ch",
+      "codigo": "B112-CH",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-e10c",
+      "modelo_rotulo": "Xiaomi E10C",
+      "tipo": "mop",
+      "peca": "xiaomi-b112-tb",
+      "codigo": "B112-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
       "verificado_em": "2026-09-13"
     },
     {
@@ -4535,6 +4994,149 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "xiaomi-e12",
+      "modelo_rotulo": "Xiaomi E12",
+      "tipo": "escova principal",
+      "peca": "xiaomi-b112-zs",
+      "codigo": "B112-ZS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-e12",
+      "modelo_rotulo": "Xiaomi E12",
+      "tipo": "mop",
+      "peca": "xiaomi-b112-tb",
+      "codigo": "B112-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-e12",
+      "modelo_rotulo": "Xiaomi E12",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-b106gl-bx",
+      "codigo": "B106GL-BX",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+      "verificado_em": "2026-09-14"
+    },
+    {
+      "modelo": "electrolux-erb11",
+      "modelo_rotulo": "Electrolux ERB11",
+      "tipo": "filtro",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb11",
+      "modelo_rotulo": "Electrolux ERB11",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb11",
+      "modelo_rotulo": "Electrolux ERB11",
+      "tipo": "mop",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "xiaomi-h40",
+      "modelo_rotulo": "Xiaomi H40",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-ov81gl-bs",
+      "codigo": "OV81GL-BS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-h40",
+      "modelo_rotulo": "Xiaomi H40",
+      "tipo": "escova principal",
+      "peca": "xiaomi-escova-principal-h40-s40",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "electrolux-erb20",
+      "modelo_rotulo": "Electrolux ERB20",
+      "tipo": "filtro",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb20",
+      "modelo_rotulo": "Electrolux ERB20",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb20",
+      "modelo_rotulo": "Electrolux ERB20",
+      "tipo": "mop",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
       "modelo": "xiaomi-s40",
       "modelo_rotulo": "Xiaomi S40",
       "tipo": "escova lateral",
@@ -4561,134 +5163,56 @@
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "electrolux-erb11",
-      "modelo_rotulo": "Electrolux ERB11",
+      "modelo": "electrolux-erb30",
+      "modelo_rotulo": "Electrolux ERB30",
       "tipo": "filtro",
-      "peca": "electrolux-kpcel01",
-      "codigo": "KPCEL01",
-      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "peca": "electrolux-kit-performance-erb30",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
       "dentro_de_kit": true,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
-      "verificado_em": "2026-09-09"
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+      "verificado_em": "2026-09-12"
     },
     {
-      "modelo": "electrolux-erb11",
-      "modelo_rotulo": "Electrolux ERB11",
+      "modelo": "electrolux-erb30",
+      "modelo_rotulo": "Electrolux ERB30",
       "tipo": "escova lateral",
-      "peca": "electrolux-kpcel01",
-      "codigo": "KPCEL01",
-      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "peca": "electrolux-kit-performance-erb30",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
       "dentro_de_kit": true,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
-      "verificado_em": "2026-09-09"
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+      "verificado_em": "2026-09-12"
     },
     {
-      "modelo": "electrolux-erb11",
-      "modelo_rotulo": "Electrolux ERB11",
+      "modelo": "electrolux-erb30",
+      "modelo_rotulo": "Electrolux ERB30",
       "tipo": "mop",
-      "peca": "electrolux-kpcel01",
-      "codigo": "KPCEL01",
-      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "peca": "electrolux-kit-performance-erb30",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
       "dentro_de_kit": true,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
-      "verificado_em": "2026-09-09"
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+      "verificado_em": "2026-09-12"
     },
     {
-      "modelo": "xiaomi-s40c",
-      "modelo_rotulo": "Xiaomi S40C",
-      "tipo": "mop",
-      "peca": "xiaomi-e101-tb",
-      "codigo": "E101-TB",
-      "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
+      "modelo": "xiaomi-s12",
+      "modelo_rotulo": "Xiaomi S12",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-b106gl-bx",
+      "codigo": "B106GL-BX",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
       "dentro_de_kit": false,
-      "divergencia": true,
+      "divergencia": false,
       "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/specs/",
-      "verificado_em": "2026-09-13"
-    },
-    {
-      "modelo": "electrolux-erb20",
-      "modelo_rotulo": "Electrolux ERB20",
-      "tipo": "filtro",
-      "peca": "electrolux-kpcel01",
-      "codigo": "KPCEL01",
-      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
-      "dentro_de_kit": true,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "electrolux-erb20",
-      "modelo_rotulo": "Electrolux ERB20",
-      "tipo": "escova lateral",
-      "peca": "electrolux-kpcel01",
-      "codigo": "KPCEL01",
-      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
-      "dentro_de_kit": true,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "electrolux-erb20",
-      "modelo_rotulo": "Electrolux ERB20",
-      "tipo": "mop",
-      "peca": "electrolux-kpcel01",
-      "codigo": "KPCEL01",
-      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
-      "dentro_de_kit": true,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "electrolux-erb30",
-      "modelo_rotulo": "Electrolux ERB30",
-      "tipo": "filtro",
-      "peca": "electrolux-kit-performance-erb30",
-      "codigo": null,
-      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
-      "dentro_de_kit": true,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
-      "verificado_em": "2026-09-12"
-    },
-    {
-      "modelo": "electrolux-erb30",
-      "modelo_rotulo": "Electrolux ERB30",
-      "tipo": "escova lateral",
-      "peca": "electrolux-kit-performance-erb30",
-      "codigo": null,
-      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
-      "dentro_de_kit": true,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
-      "verificado_em": "2026-09-12"
-    },
-    {
-      "modelo": "electrolux-erb30",
-      "modelo_rotulo": "Electrolux ERB30",
-      "tipo": "mop",
-      "peca": "electrolux-kit-performance-erb30",
-      "codigo": null,
-      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
-      "dentro_de_kit": true,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
-      "verificado_em": "2026-09-12"
+      "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+      "verificado_em": "2026-09-14"
     },
     {
       "modelo": "electrolux-erb44",
@@ -4728,6 +5252,45 @@
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
       "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "xiaomi-s40-pro",
+      "modelo_rotulo": "Xiaomi S40 Pro",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-ov81gl-bs",
+      "codigo": "OV81GL-BS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-s40c",
+      "modelo_rotulo": "Xiaomi S40C",
+      "tipo": "mop",
+      "peca": "xiaomi-e101-tb",
+      "codigo": "E101-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-x20",
+      "modelo_rotulo": "Xiaomi X20",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-b106gl-bx",
+      "codigo": "B106GL-BX",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+      "verificado_em": "2026-09-14"
     }
   ],
   "entrada_vazia": [
@@ -4741,15 +5304,15 @@
     "xiaomi-mop-2"
   ],
   "resumo": {
-    "linhas_da_tabela": 78,
-    "celulas_respondidas": 68,
-    "pares_na_tabela": 61,
+    "linhas_da_tabela": 87,
+    "celulas_respondidas": 77,
+    "pares_na_tabela": 70,
     "linhas_de_segunda_peca": 10,
-    "modelos_publicaveis": 33,
-    "modelos_que_respondem": 25,
+    "modelos_publicaveis": 38,
+    "modelos_que_respondem": 30,
     "modelos_com_entrada_vazia": 8,
-    "celulas": 198,
-    "celulas_sem_resposta": 130,
+    "celulas": 228,
+    "celulas_sem_resposta": 151,
     "pares_declarados": 71,
     "pecas_publicaveis": 35,
     "marcas": 5,

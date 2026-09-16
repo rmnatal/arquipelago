@@ -355,7 +355,12 @@ rbm_ok( false !== strpos( $bloco, 'rbm-aviso-comissao' ),
    com a frase que a secao 7 proibiu, agora se contam as SAIDAS pela busca crua. O
    numero esperado e o mesmo — um por item sem ficha de produto —, e e essa
    igualdade que impede a vitrine de perder um cartao pelo caminho. */
-$sem_link_na_tela = substr_count( $retorno, 'rbm-comprar-cru' );
+/* EM 16/09/2026 ESTA CONTA DEIXOU DE MEDIR UM DEGRAU E PASSOU A MEDIR A ESCADA,
+   pelo mesmo motivo da seccao equivalente do teste-r1.php: chegaram os 35 links
+   de busca encurtada, a escada da 25.1 parou no degrau 3 em vez do 4, e a regua
+   presa a `rbm-comprar-cru` reprovou uma pagina que tinha MELHORADO. Regua
+   amarrada a um degrau reprova a subida. */
+$sem_link_na_tela = substr_count( $retorno, 'rbm-comprar-busca' );
 $sem_link_nos_fatos = 0;
 foreach ( $fatos['vitrine'] as $v ) {
 	if ( empty( $v['afiliado']['url'] ) ) {

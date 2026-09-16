@@ -6,12 +6,12 @@
   "nota": "Fatos do artigo-ancora A1, derivados do banco commitado por ferramentas/gerar-a1.py. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a1.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
   "resumo": {
     "marcas": 5,
-    "modelos_publicaveis": 33,
+    "modelos_publicaveis": 38,
     "pecas_publicaveis": 35,
     "pares_declarados": 71,
     "pecas_que_atravessam_marca": 0,
-    "celulas_total": 198,
-    "celulas_sem_resposta": 130,
+    "celulas_total": 228,
+    "celulas_sem_resposta": 151,
     "pecas_esperando_link": 35
   },
   "maior_alcance": {
@@ -37,7 +37,7 @@
       "E12",
       "X20"
     ],
-    "modelos_publicaveis": 3,
+    "modelos_publicaveis": 6,
     "marcas_atendidas": [
       "xiaomi"
     ],
@@ -67,7 +67,7 @@
         "E12",
         "X20"
       ],
-      "modelos_publicaveis": 3,
+      "modelos_publicaveis": 6,
       "marcas_atendidas": [
         "xiaomi"
       ],
@@ -203,7 +203,7 @@
         "E10C",
         "S20"
       ],
-      "modelos_publicaveis": 2,
+      "modelos_publicaveis": 4,
       "marcas_atendidas": [
         "xiaomi"
       ],
@@ -281,7 +281,7 @@
         "E10C",
         "S20"
       ],
-      "modelos_publicaveis": 2,
+      "modelos_publicaveis": 3,
       "marcas_atendidas": [
         "xiaomi"
       ],
@@ -307,7 +307,7 @@
         "E12",
         "E10C"
       ],
-      "modelos_publicaveis": 1,
+      "modelos_publicaveis": 3,
       "marcas_atendidas": [
         "xiaomi"
       ],
@@ -333,7 +333,7 @@
         "S40",
         "S40 Pro"
       ],
-      "modelos_publicaveis": 2,
+      "modelos_publicaveis": 3,
       "marcas_atendidas": [
         "xiaomi"
       ],
@@ -992,38 +992,38 @@
     {
       "tipo": "escova lateral",
       "nome": "escova lateral",
-      "modelos_com_declaracao": 21,
-      "modelos_publicaveis": 33
+      "modelos_com_declaracao": 25,
+      "modelos_publicaveis": 38
     },
     {
       "tipo": "mop",
       "nome": "mop",
-      "modelos_com_declaracao": 16,
-      "modelos_publicaveis": 33
+      "modelos_com_declaracao": 18,
+      "modelos_publicaveis": 38
     },
     {
       "tipo": "filtro",
       "nome": "filtro",
-      "modelos_com_declaracao": 14,
-      "modelos_publicaveis": 33
+      "modelos_com_declaracao": 15,
+      "modelos_publicaveis": 38
     },
     {
       "tipo": "escova principal",
       "nome": "escova principal",
-      "modelos_com_declaracao": 12,
-      "modelos_publicaveis": 33
+      "modelos_com_declaracao": 14,
+      "modelos_publicaveis": 38
     },
     {
       "tipo": "reservatorio",
       "nome": "reservatorio",
       "modelos_com_declaracao": 4,
-      "modelos_publicaveis": 33
+      "modelos_publicaveis": 38
     },
     {
       "tipo": "bateria",
       "nome": "bateria",
       "modelos_com_declaracao": 1,
-      "modelos_publicaveis": 33
+      "modelos_publicaveis": 38
     }
   ],
   "vitrine": [
@@ -1062,9 +1062,9 @@
       },
       "afiliado": {
         "url": "",
-        "url_busca": "",
+        "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
-        "programa": null,
+        "programa": "shopee",
         "sub_id_1": "robometria",
         "sub_id_2": "A1"
       },
@@ -1106,9 +1106,9 @@
       },
       "afiliado": {
         "url": "",
-        "url_busca": "",
+        "url_busca": "https://s.shopee.com.br/1AQk0Nh5x",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
-        "programa": null,
+        "programa": "shopee",
         "sub_id_1": "robometria",
         "sub_id_2": "A1"
       },
@@ -1149,9 +1149,9 @@
       },
       "afiliado": {
         "url": "",
-        "url_busca": "",
+        "url_busca": "https://s.shopee.com.br/40gZVMQLBE",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20escova%20principal%20robo%20aspirador",
-        "programa": null,
+        "programa": "shopee",
         "sub_id_1": "robometria",
         "sub_id_2": "A1"
       },
@@ -1192,9 +1192,9 @@
       },
       "afiliado": {
         "url": "",
-        "url_busca": "",
+        "url_busca": "https://s.shopee.com.br/5AsWtVLtoR",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
-        "programa": null,
+        "programa": "shopee",
         "sub_id_1": "robometria",
         "sub_id_2": "A1"
       },

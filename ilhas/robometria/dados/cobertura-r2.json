@@ -416,14 +416,14 @@
     "leitura": "TEMPO REAL ATE TERMINAR = ciclos x autonomia + (ciclos-1) x recarga precisa de TRES numeros declarados, e nenhum modelo do banco tem os tres. Quem declara cobertura por carga (Electrolux) nao declara recarga; quem declara recarga (Xiaomi S20, Positivo PRA2000) nao declara cobertura. A R2 publica os ciclos e o tempo de limpeza somado, e diz que o total depende de um numero que o fabricante nao publica. Coletar recarga_min_declarada dos modelos Electrolux que ja declaram cobertura e o trabalho de MENOR custo e MAIOR retorno que esta varredura encontrou."
   },
   "contagem": {
-    "modelos_publicaveis": 33,
-    "com_pa_declarado": 11,
+    "modelos_publicaveis": 38,
+    "com_pa_declarado": 16,
     "sem_pa_declarado": 22,
     "modelos_de_referencia": 5,
     "situacoes": 9,
     "situacoes_com_fonte_direta": 8,
     "situacoes_por_ponte": 1,
     "situacoes_no_portao": 9,
-    "modelos_esperando_link": 33
+    "modelos_esperando_link": 38
   }
 }

@@ -639,14 +639,28 @@ def responder_r1(modelo_id, tipo=None):
 def cruzar_com_a_r2(por_modelo):
     """Quais modelos cada uma das duas ferramentas da ilha consegue atender.
 
-    A R2 so tem o que dizer sobre um modelo quando ele tem pa_declarado; a R1 so tem
-    o que dizer quando ele tem peca declarada. Medir as duas coberturas separadas nao
-    mostra o que este cruzamento mostra — e o cruzamento e barato, entao ele fica
+    A R2 so tem o que dizer sobre um modelo quando ela consegue RECOMENDA-LO; a R1 so
+    tem o que dizer quando ele tem peca declarada. Medir as duas coberturas separadas
+    nao mostra o que este cruzamento mostra — e o cruzamento e barato, entao ele fica
     aqui e nao numa frase escrita a mao que envelhece sozinha.
+
+    O QUE "A R2 RESPONDE" QUER DIZER MUDOU EM 16/09/2026, E A REGUA MUDOU JUNTO. Ate
+    aqui esta funcao perguntava so se o modelo tinha pa_declarado, porque era isso que
+    a elegibilidade da R2 pedia. A R2 passou a exigir tambem canal brasileiro, e uma
+    regua que continuasse contando o Pa sozinho passaria a contar como "atendido pelas
+    duas" um modelo que a R2 se recusa a recomendar. Isso importa mais do que parece:
+    o item 2 da definicao de pronta desta ilha e uma META NUMERICA sobre exatamente
+    este numero, e a forma mais barata de atingi-la seria despejar no banco modelos
+    globais com Pa declarado — a intersecao subiria sem que UMA pessoa a mais fosse
+    atendida. Regua que mede a meta nao pode ser mais frouxa que a ferramenta que a
+    meta descreve, senao a meta se fecha sozinha.
     """
     r1 = {l["modelo"]: l["resultado"] == "responde" for l in por_modelo}
     r2 = {
-        mid: (modelos[mid].get("pa_declarado") or {}).get("valor") is not None
+        mid: (
+            (modelos[mid].get("pa_declarado") or {}).get("valor") is not None
+            and (modelos[mid].get("canal_brasileiro") or {}).get("valor") is not None
+        )
         for mid in r1
     }
     balde = {"as_duas": [], "so_a_r2": [], "so_a_r1": [], "nenhuma": []}
@@ -976,7 +990,8 @@ def relatorio(v):
         print("")
 
     c = v["cruzamento"]
-    print("  cruzamento com a R2 (a R2 responde quando o modelo tem pa_declarado):")
+    print("  cruzamento com a R2 (a R2 responde quando o modelo tem pa_declarado"
+          " E canal brasileiro):")
     print("    as duas respondem ......... %d  %s"
           % (len(c["as_duas_respondem"]), c["as_duas_respondem"]))
     print("    so a R2 ................... %d  marcas: %s"

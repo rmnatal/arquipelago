@@ -695,13 +695,27 @@ foreach ( $dados['respostas'][ $ancora ]['fabricante'] as $i ) {
 $esperando_ancora = count( array_filter( $pecas_no_ancora ) );
 /* Contado DENTRO da vitrine: a folha de estilo tambem cita a classe, e medir
    na pagina inteira daria um a mais sem que nada estivesse errado. */
-/* UM BOTAO POR PECA, NEM A MAIS NEM A MENOS — e a conta que importa mudou de
-   sinal: antes se contavam os lugares RESERVADOS, agora se contam as SAIDAS. Peca
-   sem ficha sai pela busca crua, com a classe propria, e a soma tem de fechar com
-   o numero de pecas sem ficha na ancora. */
-rbm_ok( substr_count( $vitrine, 'rbm-comprar-cru' ) === $esperando_ancora,
-	'uma saida pela busca crua por peca sem ficha, nem a mais nem a menos',
-	substr_count( $vitrine, 'rbm-comprar-cru' ) . ' de ' . $esperando_ancora );
+/* UM BOTAO POR PECA, NEM A MAIS NEM A MENOS — e a conta mudou de sinal DUAS vezes.
+   Em 14/09/2026 ela deixou de contar os lugares RESERVADOS com a frase que a secao
+   7 proibiu e passou a contar as SAIDAS. Em 16/09/2026 ela deixou de contar um
+   DEGRAU e passou a contar a ESCADA.
+
+   POR QUE, e o motivo e o melhor possivel: chegaram os 35 links de busca
+   encurtada. A escada da 25.1 para no PRIMEIRO degrau que servir, entao a peca
+   sem ficha que ganhou `url_busca` passou a sair pelo degrau 3 e nao mais pelo 4
+   — e a regua, que contava `rbm-comprar-cru`, achou ZERO onde esperava quatro e
+   reprovou uma pagina que tinha acabado de MELHORAR.
+
+   Regua amarrada a um degrau reprova a subida. A afirmacao que interessa nunca
+   foi "quantas buscas cruas" — e "toda peca sem ficha tem UMA saida de compra",
+   e e ela que passa a ser medida, somando os dois degraus de busca. O degrau que
+   cada uma usa e conferido logo abaixo, pelo `sponsored`, que e onde a distincao
+   importa de verdade. */
+$saidas_de_busca = substr_count( $vitrine, 'rbm-comprar-busca' );
+rbm_ok( $saidas_de_busca === $esperando_ancora,
+	'uma saida de busca por peca sem ficha, nem a mais nem a menos (escada da 25.1)',
+	$saidas_de_busca . ' de ' . $esperando_ancora
+		. ' — cruas: ' . substr_count( $vitrine, 'rbm-comprar-cru' ) );
 rbm_ok( 0 === substr_count( $vitrine, 'rbm-sem-saida' ),
 	'nenhum cartao da vitrine fica sem saida de compra (25.2)' );
 /* O `sponsored` E A DECLARACAO DE RELACAO PAGA, e a busca crua nao paga nada. A

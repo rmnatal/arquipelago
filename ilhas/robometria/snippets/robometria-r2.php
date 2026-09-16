@@ -1,5 +1,15 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.7.0 (16/09/2026) — O PORTÃO DO CANAL BRASILEIRO. Esta ferramenta
+ * recomenda uma COMPRA, e até hoje a elegibilidade pedia status publicável e
+ * Pa declarado e nunca perguntava se o leitor consegue comprar o aparelho
+ * aqui. A invariante valia por coincidência: as cinco marcas coletadas até
+ * 16/09 eram todas de canal brasileiro. No mesmo dia entraram cinco modelos
+ * Xiaomi que as próprias páginas de acessório da marca declaram e que a Xiaomi
+ * Brasil não lista — um deles com 15.000 Pa, a maior sucção do banco, que sem
+ * o portão entraria em PRIMEIRO lugar em toda situação de pelo. A página passa
+ * a dizer quantos ficaram de fora, quais são e qual o custo disso.
+ *
  * Versão: 1.6.0 (14/09/2026) — A FRASE QUE PROMETIA DESACORDO E APRESENTAVA UMA
  * FONTE SÓ (item 3 do despacho da Sentinela), e mais três defeitos que estavam
  * no ar desde 09/09 na mesma família. A situação-âncora servia "as fontes
@@ -121,7 +131,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.6.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.7.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -713,10 +723,51 @@ function robometria_r2_frase_funil() {
 		);
 	}
 
-	return sprintf(
+	$frase = sprintf(
 		'%d dos %d modelos publicáveis do banco não entram em lista nenhuma desta ferramenta: %s. São, em boa parte, exatamente os modelos que a outra ferramenta desta ilha responde melhor — quem publica código de peça costuma não publicar pascal, e vice-versa.',
 		$f['sem_pa'], $f['publicaveis'], $trecho
 	);
+
+	return $frase . robometria_r2_frase_canal();
+}
+}
+
+/**
+ * Os que ficam de fora por não terem onde ser comprados aqui.
+ *
+ * Frase SEPARADA da do funil partido de propósito: as duas contam ausências e as
+ * causas não têm nada a ver uma com a outra. Somar as duas num número só diria
+ * "o mercado não publica o dado" sobre modelos cujo dado está publicado e
+ * completo — o que falta neles é a loja, não o pascal.
+ *
+ * E ela diz o CUSTO do portão, com o número na mesa: o modelo de maior sucção
+ * deste banco está entre os barrados. Portão que só anuncia o que protege, e
+ * nunca o que custa, é portão que ninguém consegue discutir.
+ */
+if ( ! function_exists( 'robometria_r2_frase_canal' ) ) {
+function robometria_r2_frase_canal() {
+	$d = robometria_r2_dados();
+	$c = isset( $d['contexto']['canal'] ) ? $d['contexto']['canal'] : null;
+	if ( empty( $c ) || empty( $c['fora'] ) ) {
+		return '';
+	}
+
+	$frase = sprintf(
+		' Outros %d ficam de fora por um motivo diferente: o fabricante não os publica em canal brasileiro (%s). Esta ferramenta recomenda o que você consegue comprar aqui, então eles não entram — mas continuam no banco e a ferramenta de peças segue respondendo por eles, porque compatibilidade declarada pelo fabricante vale onde o aparelho estiver.',
+		count( $c['fora'] ),
+		implode( ', ', $c['fora'] )
+	);
+
+	if ( ! empty( $c['fora_com_pa'] ) ) {
+		$frase .= sprintf(
+			' Vale dizer qual o custo disso, para o número não parecer conveniente: %d deles declaram sucção, e o %s declara %s Pa — a maior deste banco. Ele não está na lista acima por escolha desta página, não por falta de dado.',
+			$c['fora_com_pa'],
+			$c['maior_pa_rotulo'],
+			number_format( $c['maior_pa_valor'], 0, ',', '.' )
+		);
+	}
+
+	return $frase;
 }
 }
 

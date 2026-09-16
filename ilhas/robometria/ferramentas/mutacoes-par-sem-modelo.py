@@ -84,20 +84,82 @@ def _regerar(base):
         raise AssertionError('gerar-a1.py falhou depois da mutacao: %s' % saida.stderr[-200:])
 
 
+def _plantar_par_null(base):
+    """PRODUZ O MUNDO que esta bateria mede, em vez de torcer para o banco o ter.
+
+    ATE 16/09/2026 ELA NAO FAZIA ISSO, E O PRECO VENCEU NO MESMO DIA. A bateria
+    nasceu em 13/09 medindo um defeito real: o banco tinha pares com `modelo`
+    null — codigos que o fabricante declarava e que ainda nao tinham registro de
+    modelo — e o gerador do A1 os contava como uma segunda marca. A mutacao
+    reescrevia o gerador de volta ao defeito e o teste reprovava, porque havia
+    nulls no banco para o defeito morder.
+
+    Em 16/09/2026 os cinco modelos Xiaomi que faltavam (E10C, E12, S12, S40 Pro,
+    X20) entraram no banco e os NOVE pares null viraram zero. A mutacao continuou
+    rodando, continuou aplicando o defeito, e passou a ser INERTE: sem null no
+    banco, o gerador com defeito produz exatamente o mesmo numero que o gerador
+    certo. A bancada disse "PASSOU — a trava NAO pegou", e a trava esta la,
+    inteira e funcionando.
+
+    E a familia que o docstring deste arquivo ja nomeava, virada do avesso:
+    "regua que depende de um caso raro do banco morre no dia em que o banco
+    melhora". Ela morreu de melhora — que e a unica morte que da para prever e,
+    por isso mesmo, a que nao tem desculpa.
+
+    Entao a mutacao passa a PLANTAR o par null antes de aplicar o defeito. O
+    mundo deixa de ser sorteado pelo estado da coleta.
+    """
+    import json
+    caminho = os.path.join(base, 'dados/pecas.json')
+    with open(caminho, encoding='utf-8') as f:
+        banco = json.load(f)
+    for r in banco['registros']:
+        if r['id'] == 'xiaomi-b112-zs':
+            r['compatibilidade'].append({
+                'modelo': None,
+                'codigo_declarado': 'E14',
+                'variante_de_hardware': None,
+                'selo': 'declarada_fabricante',
+                'fonte': list(r['fontes'])[0],
+            })
+            break
+    else:
+        raise AssertionError('xiaomi-b112-zs sumiu — a mutacao seria inerte')
+    with open(caminho, 'w', encoding='utf-8') as f:
+        json.dump(banco, f, ensure_ascii=False, indent=1)
+        f.write('\n')
+
+
 def _marca_do_null(base):
     """O defeito 1: modelo desconhecido contado como uma segunda marca."""
+    _plantar_par_null(base)
     _troca(base, GERADOR, MARCAS_CERTO, MARCAS_DEFEITO)
+    _regerar(base)
+
+
+def _mundo_novo_intacto(base):
+    """A OUTRA METADE, e ela tem de PASSAR.
+
+    Plantar o par null e aplicar NENHUM defeito. Se esta bateria reprovasse aqui,
+    a trava estaria reprovando o mundo sadio — ou seja, o banco nao poderia mais
+    receber um codigo declarado sem registro de modelo, que e justamente o que o
+    esquema permite e o que a coleta faz toda semana.
+    """
+    _plantar_par_null(base)
     _regerar(base)
 
 
 def _dispersao_por_modelo(base):
     """O defeito 2, so no gerador."""
+    _plantar_par_null(base)
     _troca(base, GERADOR, DISPERSAO_CERTO, DISPERSAO_DEFEITO)
     _regerar(base)
 
 
 def _dispersao_por_modelo_so_no_php(base):
     """O mesmo defeito, do lado de quem confere."""
+    _plantar_par_null(base)
+    _regerar(base)
     _troca(base, TESTE_PHP, PHP_CERTO, PHP_DEFEITO)
 
 
@@ -106,6 +168,7 @@ def _dispersao_nos_dois_lados(base):
     compara as duas contas fica verde e o numero publicado encolhe sem que nada
     discorde. So a terceira conta — a que le codigo declarado e compara com o
     que foi PUBLICADO — pega."""
+    _plantar_par_null(base)
     _troca(base, GERADOR, DISPERSAO_CERTO, DISPERSAO_DEFEITO)
     _troca(base, TESTE_PHP, PHP_CERTO, PHP_DEFEITO)
     _regerar(base)
@@ -140,6 +203,12 @@ def _par_sem_codigo_declarado(base):
 
 MUTACOES = [
     (
+        'MUNDO NOVO intacto: o par null plantado e NENHUM defeito',
+        'esta TEM de passar — se reprovar, a trava esta barrando o que o esquema permite',
+        _mundo_novo_intacto,
+        'passa',
+    ),
+    (
         'o modelo null volta a contar como a marca "?"',
         'o defeito original: a primeira peca com par null faz a tese do A1 trocar de forma sozinha',
         _marca_do_null,
@@ -173,7 +242,13 @@ def main():
 
     print('Mutacoes deliberadas no par sem modelo — cada uma TEM que reprovar\n')
 
-    for nome, porque, aplicar in MUTACOES:
+    for entrada in MUTACOES:
+        # A bateria passou a ter DOIS tipos de linha em 16/09/2026: as que tem de
+        # reprovar (o normal) e a do MUNDO NOVO INTACTO, que tem de passar. Sem a
+        # segunda, plantar o par null so mostraria que a trava morde — e nao que
+        # ela morde apenas o defeito.
+        nome, porque, aplicar = entrada[0], entrada[1], entrada[2]
+        espera = entrada[3] if len(entrada) > 3 else 'reprova'
         with tempfile.TemporaryDirectory() as tmp:
             base = os.path.join(tmp, 'ilha')
             shutil.copytree(RAIZ, base)
@@ -193,6 +268,18 @@ def main():
                     pegou_em.append(os.path.basename(teste))
                     falhas += [l.strip() for l in saida.stdout.splitlines()
                                if l.strip().startswith(('FALHA', 'ERRO'))]
+
+            if espera == 'passa':
+                if pegou_em:
+                    print('  REPROVOU %-60s <- o mundo SADIO foi reprovado' % nome)
+                    print('         (%s)' % porque)
+                    for l in falhas[:2]:
+                        print('         %s' % l[:120])
+                    passaram.append(nome)
+                else:
+                    print('  ok     %-62s mundo sadio passou' % nome)
+                    reprovadas += 1
+                continue
 
             if not pegou_em:
                 print('  PASSOU %-62s <- a trava NAO pegou' % nome)

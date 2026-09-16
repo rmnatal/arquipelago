@@ -49,6 +49,22 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DADOS = os.path.join(BASE, "dados")
 
 
+def _maior_pa_fora(ref, valor=False):
+    """O modelo de maior Pa entre os que o portao barra, e o numero dele.
+
+    Existe para a frase poder dizer o custo do portao em vez de so anunciar que
+    ele existe. Numero que so aparece quando e conveniente e numero que o leitor
+    nao tem como pesar.
+    """
+    fora = [m for m in ref.publicaveis()
+            if not ref.tem_canal_brasileiro(m)
+            and ref.valor(m.get("pa_declarado")) is not None]
+    if not fora:
+        return None
+    maior = max(fora, key=lambda m: ref.valor(m["pa_declarado"]))
+    return ref.valor(maior["pa_declarado"]) if valor else ref.rotulo_do_modelo(maior)
+
+
 def _carregar_referencia():
     """Importa ferramentas/cobertura-r2.py como modulo (o hifen impede o import
     normal). A referencia e uma so: se ela mudar, este gerador muda junto."""
@@ -219,6 +235,12 @@ def montar():
                 "no_limiar": [m["id"] for m in g["no_limiar"]],
                 "nao_atendem": len(g["nao_atendem"]),
                 "sem_pa_declarado": len(g["sem_pa_declarado"]),
+                # O portao do canal brasileiro sai NOMEADO na resposta servida, e
+                # nao apenas subtraido dos outros grupos. Quem barra em silencio
+                # entrega um numero menor sem nada para discordar dele; quem
+                # declara o grupo deixa a soma fechar com o banco, e e nessa soma
+                # que conferir-canal-na-resposta.py pega um modelo desaparecido.
+                "sem_canal_brasileiro": len(g["sem_canal_brasileiro"]),
             }
 
             r = ref.responder_r2(area_ancora, piso, pelo)
@@ -306,8 +328,8 @@ def montar():
     marcas_com_cobertura = sorted({m["marca"] for m in pares})
     marcas_sem_cobertura = [b for b in marcas_todas if b not in marcas_com_cobertura]
 
-    sem_pa = [m for m in ref.publicaveis() if ref.valor(m.get("pa_declarado")) is None]
-    marcas_com_pa = {m["marca"] for m in ref.publicaveis()
+    sem_pa = [m for m in ref.recomendaveis() if ref.valor(m.get("pa_declarado")) is None]
+    marcas_com_pa = {m["marca"] for m in ref.recomendaveis()
                      if ref.valor(m.get("pa_declarado")) is not None}
     marcas_sem_pa = sorted({m["marca"] for m in sem_pa})
 
@@ -327,6 +349,21 @@ def montar():
                              if b not in marcas_com_pa],
             "marcas_parciais": [ref.marcas[b]["nome"] for b in marcas_sem_pa
                                 if b in marcas_com_pa],
+        },
+        # O PORTAO DO CANAL BRASILEIRO VIAJA COMO FATO, nao como frase pronta: o
+        # PHP escreve a frase a partir destes campos, como faz com o funil logo
+        # acima, e teste-r2.php compara as duas redacoes. Mandar a frase pronta
+        # daqui pouparia dez linhas de PHP e mataria a unica comparacao que
+        # existe entre as duas implementacoes.
+        "canal": {
+            "fora": [ref.rotulo_do_modelo(m) for m in sorted(
+                (m for m in ref.publicaveis() if not ref.tem_canal_brasileiro(m)),
+                key=ref.rotulo_do_modelo)],
+            "fora_com_pa": len([m for m in ref.publicaveis()
+                                if not ref.tem_canal_brasileiro(m)
+                                and ref.valor(m.get("pa_declarado")) is not None]),
+            "maior_pa_rotulo": _maior_pa_fora(ref),
+            "maior_pa_valor": _maior_pa_fora(ref, valor=True),
         },
         "tempo_total": {
             "com_cobertura": len(v["tempo_total"]["modelos_com_cobertura_declarada"]),

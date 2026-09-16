@@ -11,8 +11,8 @@
     "vazia": "nada declarado — a R1 recusa com todas as letras e para ali"
   },
   "resumo": {
-    "modelos_publicaveis": 33,
-    "modelos_que_respondem": 25,
+    "modelos_publicaveis": 38,
+    "modelos_que_respondem": 30,
     "modelos_so_com_kit_de_composicao_nao_transcrita": 0,
     "modelos_com_entrada_vazia": 8,
     "tipos_consultaveis": [
@@ -24,11 +24,11 @@
       "reservatorio"
     ],
     "celulas": {
-      "declarada": 68,
+      "declarada": 77,
       "kit_sem_composicao": 0,
-      "vazia": 130
+      "vazia": 151
     },
-    "celulas_total": 198
+    "celulas_total": 228
   },
   "cruzamento_com_a_r2": {
     "o_que_e": "Quais modelos publicaveis cada ferramenta da ilha consegue atender, e a intersecao entre as duas.",
@@ -64,7 +64,12 @@
       "wap-w100",
       "wap-w300",
       "wap-w90",
-      "wap-wsmart"
+      "wap-wsmart",
+      "xiaomi-e10c",
+      "xiaomi-e12",
+      "xiaomi-s12",
+      "xiaomi-s40-pro",
+      "xiaomi-x20"
     ],
     "nenhuma_das_duas_responde": [
       "multi-ho243",
@@ -81,52 +86,53 @@
     "marcas_que_so_a_r1_atende": [
       "electrolux",
       "multi",
-      "wap"
+      "wap",
+      "xiaomi"
     ],
     "contagem": {
       "as_duas": 8,
       "so_a_r2": 3,
-      "so_a_r1": 17,
+      "so_a_r1": 22,
       "nenhuma": 5
     }
   },
   "leitura": [
-    "A R1 responde alguma peca em 25 dos 33 modelos publicaveis, e sai VAZIA em 8. Contar os 33 pares declarados do cabecalho escondia isso: par novo num modelo que ja respondia nao tira modelo nenhum do vazio, e so a varredura separa as duas coisas.",
-    "O ACHADO, e ele so aparece cruzando as duas ferramentas: das 33 entradas publicaveis, apenas 8 sao atendidas pelas DUAS. A R2 atende 3 modelos que a R1 nao atende (positivo, wap, xiaomi) e a R1 atende 17 que a R2 nao atende (electrolux, multi, wap). A cobertura das duas ferramentas da ilha e quase disjunta, e a causa e a mesma nos dois sentidos: Electrolux e Multi publicam peca com compatibilidade declarada e NAO publicam Pa; Xiaomi e WAP publicam Pa e NAO publicam peca com codigo.",
+    "A R1 responde alguma peca em 30 dos 38 modelos publicaveis, e sai VAZIA em 8. Contar os 33 pares declarados do cabecalho escondia isso: par novo num modelo que ja respondia nao tira modelo nenhum do vazio, e so a varredura separa as duas coisas.",
+    "O ACHADO, e ele so aparece cruzando as duas ferramentas: das 38 entradas publicaveis, apenas 8 sao atendidas pelas DUAS. A R2 atende 3 modelos que a R1 nao atende (positivo, wap, xiaomi) e a R1 atende 22 que a R2 nao atende (electrolux, multi, wap, xiaomi). A cobertura das duas ferramentas da ilha e quase disjunta, e a causa e a mesma nos dois sentidos: Electrolux e Multi publicam peca com compatibilidade declarada e NAO publicam Pa; Xiaomi e WAP publicam Pa e NAO publicam peca com codigo.",
     "POR QUE ISSO CUSTA DINHEIRO: a ilha ganha a visita pela R2 ('quantos Pa para pelo de cachorro'), que hoje so consegue recomendar Xiaomi na faixa alta. Quem compra volta meses depois procurando o filtro daquele robo — a consulta de maior intencao de compra do nicho, e a razao de a R1 existir — e recebe 'nao localizamos declaracao do fabricante'. As duas ferramentas nao se entregam a visita uma para a outra. O funil esta partido na emenda, e nenhuma das duas medicoes isoladas mostrava a emenda.",
     "O QUE ISSO MUDA NA ORDEM DA FILA: a leva anterior deixou 'pecas da Xiaomi e da WAP com codigo' em ULTIMO lugar entre os alvos de coleta. A varredura diz que ele e o primeiro entre os coletaveis, por dois motivos medidos. Primeiro: e o unico alvo que fecha a emenda pelo lado que da para colher — a lacuna simetrica (Pa da Electrolux e da Multi) ja foi medida como inexistente no mercado, essas marcas nao publicam Pa em canal nenhum, entao insistir nela e trabalho sem fim. Segundo: sao exatamente os 3 modelos que a R2 ja recomenda, ou seja, o retorno chega na visita que a ilha ja sabe atrair, nao numa visita hipotetica.",
-    "O QUE A VARREDURA NAO E: ela nao aplica o portao de 3 itens da secao 9. Na R2 a faixa produz uma lista de produtos concorrentes e tres e o minimo honesto; na R1 a resposta certa costuma ser UMA peca, a que o fabricante declarou, e exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: das 198 celulas (modelo x tipo), 130 nao tem o que responder."
+    "O QUE A VARREDURA NAO E: ela nao aplica o portao de 3 itens da secao 9. Na R2 a faixa produz uma lista de produtos concorrentes e tres e o minimo honesto; na R1 a resposta certa costuma ser UMA peca, a que o fabricante declarou, e exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: das 228 celulas (modelo x tipo), 151 nao tem o que responder."
   ],
   "por_tipo": {
     "filtro": {
-      "declarada": 14,
+      "declarada": 15,
       "kit_sem_composicao": 0,
-      "vazia": 19
+      "vazia": 23
     },
     "escova lateral": {
-      "declarada": 21,
+      "declarada": 25,
       "kit_sem_composicao": 0,
-      "vazia": 12
+      "vazia": 13
     },
     "escova principal": {
-      "declarada": 12,
+      "declarada": 14,
       "kit_sem_composicao": 0,
-      "vazia": 21
+      "vazia": 24
     },
     "mop": {
-      "declarada": 16,
+      "declarada": 18,
       "kit_sem_composicao": 0,
-      "vazia": 17
+      "vazia": 20
     },
     "bateria": {
       "declarada": 1,
       "kit_sem_composicao": 0,
-      "vazia": 32
+      "vazia": 37
     },
     "reservatorio": {
       "declarada": 4,
       "kit_sem_composicao": 0,
-      "vazia": 29
+      "vazia": 34
     }
   },
   "por_marca": {
@@ -147,8 +153,8 @@
       "respondem": 4
     },
     "xiaomi": {
-      "modelos": 7,
-      "respondem": 6
+      "modelos": 12,
+      "respondem": 11
     }
   },
   "entrada_vazia": [
@@ -644,6 +650,42 @@
       "tem_aviso_de_variante": false
     },
     {
+      "modelo": "xiaomi-e10c",
+      "marca": "xiaomi",
+      "codigo_fabricante": "E10C",
+      "resultado": "responde",
+      "tipos_cobertos": [
+        "escova principal",
+        "filtro",
+        "mop"
+      ],
+      "tipos_vazios": [
+        "escova lateral",
+        "bateria",
+        "reservatorio"
+      ],
+      "pecas_do_fabricante": 3,
+      "tem_aviso_de_variante": false
+    },
+    {
+      "modelo": "xiaomi-e12",
+      "marca": "xiaomi",
+      "codigo_fabricante": "E12",
+      "resultado": "responde",
+      "tipos_cobertos": [
+        "escova lateral",
+        "escova principal",
+        "mop"
+      ],
+      "tipos_vazios": [
+        "filtro",
+        "bateria",
+        "reservatorio"
+      ],
+      "pecas_do_fabricante": 3,
+      "tem_aviso_de_variante": false
+    },
+    {
       "modelo": "xiaomi-h40",
       "marca": "xiaomi",
       "codigo_fabricante": "H40",
@@ -697,6 +739,24 @@
       "tem_aviso_de_variante": false
     },
     {
+      "modelo": "xiaomi-s12",
+      "marca": "xiaomi",
+      "codigo_fabricante": "S12",
+      "resultado": "responde",
+      "tipos_cobertos": [
+        "escova lateral"
+      ],
+      "tipos_vazios": [
+        "filtro",
+        "escova principal",
+        "mop",
+        "bateria",
+        "reservatorio"
+      ],
+      "pecas_do_fabricante": 1,
+      "tem_aviso_de_variante": false
+    },
+    {
       "modelo": "xiaomi-s20",
       "marca": "xiaomi",
       "codigo_fabricante": "S20",
@@ -733,6 +793,24 @@
       "tem_aviso_de_variante": false
     },
     {
+      "modelo": "xiaomi-s40-pro",
+      "marca": "xiaomi",
+      "codigo_fabricante": "S40 Pro",
+      "resultado": "responde",
+      "tipos_cobertos": [
+        "escova lateral"
+      ],
+      "tipos_vazios": [
+        "filtro",
+        "escova principal",
+        "mop",
+        "bateria",
+        "reservatorio"
+      ],
+      "pecas_do_fabricante": 1,
+      "tem_aviso_de_variante": false
+    },
+    {
       "modelo": "xiaomi-s40c",
       "marca": "xiaomi",
       "codigo_fabricante": "S40C",
@@ -744,6 +822,24 @@
         "filtro",
         "escova lateral",
         "escova principal",
+        "bateria",
+        "reservatorio"
+      ],
+      "pecas_do_fabricante": 1,
+      "tem_aviso_de_variante": false
+    },
+    {
+      "modelo": "xiaomi-x20",
+      "marca": "xiaomi",
+      "codigo_fabricante": "X20",
+      "resultado": "responde",
+      "tipos_cobertos": [
+        "escova lateral"
+      ],
+      "tipos_vazios": [
+        "filtro",
+        "escova principal",
+        "mop",
         "bateria",
         "reservatorio"
       ],

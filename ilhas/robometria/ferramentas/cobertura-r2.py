@@ -265,6 +265,35 @@ def publicaveis():
     return [m for m in modelos if m.get("status") == "publicavel"]
 
 
+def tem_canal_brasileiro(m):
+    """O portao da RECOMENDACAO, e ele e diferente do portao da RESPOSTA.
+
+    A R1 responde "qual peca serve no meu robo": a pergunta e de quem JA TEM o
+    aparelho, e a compatibilidade e declarada pelo fabricante, entao ela vale
+    onde o aparelho estiver. A R2 responde "qual robo comprar para a minha
+    metragem": e uma recomendacao de COMPRA, feita a um leitor brasileiro, e
+    modelo sem canal brasileiro nao e recomendacao — e um beco.
+
+    Ate 16/09/2026 nada nesta ferramenta fazia essa pergunta, e a lista saia
+    certa mesmo assim, porque as cinco marcas coletadas ate aqui eram todas de
+    canal brasileiro. Era verdade por COINCIDENCIA DO BANCO, a mesma familia de
+    defeito que esta ilha ja pagou nos dois 63 da R1 e na funcao morta do
+    snippet: regra que so erra quando o mundo se move parece certa ate o mundo
+    se mover. O mundo se moveu no mesmo dia em que o campo nasceu — o banco ja
+    carregava cinco codigos Xiaomi (E10C, E12, S12, S40 Pro, X20) declarados
+    pelas paginas de acessorio do proprio fabricante e ausentes da linha da
+    Xiaomi Brasil, e um deles declara 15.000 Pa, que e a maior succao do banco
+    inteiro. Sem este portao, o primeiro a entrar na lista seria justamente o
+    que o leitor nao consegue comprar aqui — e por ser o de maior Pa, entraria
+    em PRIMEIRO lugar.
+    """
+    return valor(m.get("canal_brasileiro")) is not None
+
+
+def recomendaveis():
+    return [m for m in publicaveis() if tem_canal_brasileiro(m)]
+
+
 def rotulo_do_modelo(m):
     return "%s %s" % (marcas[m["marca"]]["nome"], m["codigo_fabricante"])
 
@@ -569,8 +598,16 @@ def classificar_modelos(sit):
     teto = sit["teto"]
 
     elegiveis, no_limiar, nao_atendem, sem_pa = [], [], [], []
+    sem_canal = []
 
     for m in publicaveis():
+        # O canal vem ANTES do Pa de proposito: um modelo sem canal brasileiro
+        # nao entra em lista nenhuma desta ferramenta, tenha ele Pa ou nao, e
+        # contar o mesmo modelo em dois grupos faria as somas da tela nao
+        # fecharem com o total de publicaveis.
+        if not tem_canal_brasileiro(m):
+            sem_canal.append(m)
+            continue
         pa = valor(m.get("pa_declarado"))
         if pa is None:
             sem_pa.append(m)
@@ -598,6 +635,7 @@ def classificar_modelos(sit):
         "no_limiar": no_limiar,
         "nao_atendem": nao_atendem,
         "sem_pa_declarado": sem_pa,
+        "sem_canal_brasileiro": sem_canal,
     }
 
 
@@ -975,9 +1013,9 @@ def frase_do_funil_partido():
     ja esta escrita na fila do 3c como a urgencia numero 1. A pagina publica o
     numero para o leitor saber que a lista curta e do mercado, nao de preguica.
     """
-    sem_pa = [m for m in publicaveis() if valor(m.get("pa_declarado")) is None]
+    sem_pa = [m for m in recomendaveis() if valor(m.get("pa_declarado")) is None]
     marcas_sem = sorted({m["marca"] for m in sem_pa})
-    marcas_com = {m["marca"] for m in publicaveis()
+    marcas_com = {m["marca"] for m in recomendaveis()
                   if valor(m.get("pa_declarado")) is not None}
     # Marca MUDA e a que nao declara Pa em modelo nenhum; marca PARCIAL declara em
     # alguns e cala em outros. Somar as duas numa frase so diria "a WAP nao publica
@@ -990,13 +1028,47 @@ def frase_do_funil_partido():
     if parciais:
         trecho += "; %s declara em parte da linha e cala no resto" % (
             ", ".join(marcas[b]["nome"] for b in parciais))
-    return (
+    frase = (
         "%d dos %d modelos publicaveis do banco nao entram em lista nenhuma desta "
         "ferramenta: %s. Sao, em boa parte, exatamente os modelos que a outra "
         "ferramenta desta ilha responde melhor — quem publica codigo de peca "
         "costuma nao publicar pascal, e vice-versa."
         % (len(sem_pa), len(publicaveis()), trecho)
     )
+    return frase + frase_do_canal_brasileiro()
+
+
+def frase_do_canal_brasileiro():
+    """Os que ficam de fora por nao terem onde ser comprados aqui.
+
+    Frase separada da do funil partido de proposito: as duas contam ausencias, e
+    as causas nao tem nada a ver uma com a outra. Somar as duas num numero so
+    diria "o mercado nao publica o dado" sobre modelos cujo dado esta publicado
+    e completo — o que falta neles e a loja, nao o pascal.
+    """
+    fora = [m for m in publicaveis() if not tem_canal_brasileiro(m)]
+    if not fora:
+        return ""
+    com_pa = [m for m in fora if valor(m.get("pa_declarado")) is not None]
+    nomes = ", ".join(sorted(rotulo_do_modelo(m) for m in fora))
+    frase = (
+        " Outros %d ficam de fora por um motivo diferente: o fabricante nao os "
+        "publica em canal brasileiro (%s). Esta ferramenta recomenda o que voce "
+        "consegue comprar aqui, entao eles nao entram — mas continuam no banco e "
+        "a ferramenta de pecas segue respondendo por eles, porque compatibilidade "
+        "declarada pelo fabricante vale onde o aparelho estiver."
+        % (len(fora), nomes)
+    )
+    if com_pa:
+        maior = max(com_pa, key=lambda m: valor(m["pa_declarado"]))
+        frase += (
+            " Vale dizer qual o custo disso, para o numero nao parecer conveniente: "
+            "%d deles declaram succao, e o %s declara %s Pa — a maior deste banco. "
+            "Ele nao esta na lista acima por escolha desta pagina, nao por falta de dado."
+            % (len(com_pa), rotulo_do_modelo(maior),
+               "{:,}".format(valor(maior["pa_declarado"])).replace(",", "."))
+        )
+    return frase
 
 
 def frase_do_cartao(m, sit, ressalvas):

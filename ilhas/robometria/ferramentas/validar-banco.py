@@ -41,6 +41,41 @@ def carregar(nome):
         return json.load(fh)
 
 
+# ------------------------------------------------ TODO dados/*.json TEM DE PARSEAR
+#
+# NASCEU EM 16/09/2026, MEDINDO UM ARQUIVO QUEBRADO NO MAIN. O commit 4d24dbe
+# gravou `dados/pecas.json` com DOIS documentos JSON completos, um atras do outro:
+# o novo, com os 35 links de afiliado, e uma copia velha inteira anexada depois.
+# O arquivo tinha 6.052 linhas, 316 KB, abria no editor e parecia certo — e
+# `json.load` morria na linha 3.027.
+#
+# Isto e a MESMA familia do cabecalho YAML da secao 2 do ARQUIPELAGO.md, e a
+# frase de la serve inteira aqui: "cabecalho que so o olho le e cabecalho sem
+# portao". As reguas desta ilha sao muitas e boas, e nenhuma delas roda quando o
+# arquivo nao parseia — elas nem chegam a comecar. O portao mais barato do banco
+# e tambem o unico que estava faltando.
+#
+# E ele varre a pasta INTEIRA, nao a lista de arquivos que este validador conhece:
+# o que quebrou nao foi um arquivo esquecido, foi um arquivo central, e amanha
+# pode ser r1-respostas.json, que o Sync leva para o site sem ninguem reler.
+_quebrados = []
+for _nome in sorted(os.listdir(DADOS)):
+    if not _nome.endswith(".json"):
+        continue
+    try:
+        with open(os.path.join(DADOS, _nome), encoding="utf-8") as _fh:
+            json.load(_fh)
+    except (ValueError, UnicodeDecodeError) as _e:
+        _quebrados.append((_nome, _e))
+
+if _quebrados:
+    print("REPROVADO antes de qualquer invariante — arquivo do banco que nao parseia:")
+    for _nome, _e in _quebrados:
+        print("  x dados/%s: %s" % (_nome, _e))
+    print("\nNenhuma outra regua desta ilha chega a rodar sobre um arquivo assim.")
+    sys.exit(1)
+
+
 esquema = carregar("esquema-banco.json")
 marcas = carregar("marcas.json")
 modelos = carregar("modelos-robo.json")
@@ -708,6 +743,51 @@ conferir_contagem(modelos, "modelos-robo.json", "com_par_minutos_m2_declarado",
 conferir_contagem(modelos, "modelos-robo.json", "marcas_que_declaram_pa",
                   sorted({r["marca"] for r in _pub
                           if r["pa_declarado"]["valor"] is not None}))
+
+# O PORTAO DA RECOMENDACAO (esquema versao 8, 16/09/2026). Estas tres contagens sao a
+# unica coisa que separa "o banco cresceu" de "a R2 passou a recomendar o que o leitor
+# nao compra". `recomendaveis_pela_r2` e a que importa: e ela que o item 2 da definicao
+# de pronta desta ilha mede, e e por ela que um despejo de modelos globais com Pa
+# declarado passaria a APARECER como progresso sem atender ninguem a mais.
+_com_canal = [r for r in _pub if r["canal_brasileiro"]["valor"] is not None]
+conferir_contagem(modelos, "modelos-robo.json", "com_canal_brasileiro", len(_com_canal))
+conferir_contagem(modelos, "modelos-robo.json", "sem_canal_brasileiro",
+                  len(_pub) - len(_com_canal))
+conferir_contagem(modelos, "modelos-robo.json", "recomendaveis_pela_r2",
+                  sum(1 for r in _com_canal if r["pa_declarado"]["valor"] is not None))
+
+# E a invariante que nao e contagem: canal brasileiro e um ENDERECO DO FABRICANTE, e
+# marketplace nao serve. Qualquer codigo tem busca em marketplace — aceitar marketplace
+# faria o portao aprovar tudo e voltar a ser o que era antes de existir: verdade por
+# coincidencia da coleta.
+_MARKETPLACE = ("shopee.", "mercadolivre.", "mercadolibre.", "amazon.", "magazineluiza.",
+                "americanas.", "casasbahia.", "kabum.", "aliexpress.")
+for _r in modelos["registros"]:
+    _cb = _r["canal_brasileiro"]
+    _onde = "modelos-robo.json/%s" % _r["id"]
+    if _cb["valor"] is None:
+        if not _cb.get("motivo_do_null"):
+            erro("%s: canal_brasileiro null sem motivo_do_null. 'o fabricante nao "
+                 "publica este codigo em canal brasileiro' e resposta legitima e vai "
+                 "para a tela com essas palavras — o que nao pode e o silencio" % _onde)
+        continue
+    if not _cb.get("fonte"):
+        erro("%s: canal_brasileiro com valor e sem fonte" % _onde)
+    elif _cb["fonte"] not in (_r.get("fontes") or {}):
+        erro("%s: canal_brasileiro aponta para a fonte %r, que nao existe neste registro"
+             % (_onde, _cb["fonte"]))
+    elif (_r["fontes"][_cb["fonte"]].get("url") or "") != _cb["valor"]:
+        erro("%s: canal_brasileiro nao bate com a url da fonte %r que ele mesmo cita. "
+             "Endereco digitado ao lado de endereco derivado e o jeito de os dois "
+             "divergirem sem ninguem ver" % (_onde, _cb["fonte"]))
+    _u = (_cb["valor"] or "").lower()
+    if any(_mk in _u for _mk in _MARKETPLACE):
+        erro("%s: canal_brasileiro aponta para marketplace (%s). O campo e para pagina "
+             "do FABRICANTE: marketplace existe para todo codigo e aprovaria tudo"
+             % (_onde, _cb["valor"]))
+    if ".br" not in _u and "/br/" not in _u:
+        erro("%s: canal_brasileiro %r nao tem marca de canal brasileiro nem no dominio "
+             "nem no caminho" % (_onde, _cb["valor"]))
 conferir_contagem(pecas, "pecas.json", "total", len(pecas["registros"]))
 
 # `publicavel` E `esperando_link_de_afiliado` ERAM CONFERIDOS SO EM UM DOS DOIS BANCOS,
