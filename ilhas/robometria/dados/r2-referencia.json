@@ -140,18 +140,18 @@
   "cartoes": {
     "liso|nao@10": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-e10",
@@ -186,18 +186,18 @@
     ],
     "liso|nao@200": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-e10",
@@ -232,18 +232,18 @@
     ],
     "liso|nao@400": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-e10",
@@ -278,18 +278,18 @@
     ],
     "liso|curto@10": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -310,18 +310,18 @@
     ],
     "liso|curto@200": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -342,18 +342,18 @@
     ],
     "liso|curto@400": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -374,18 +374,18 @@
     ],
     "liso|longo@10": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -406,18 +406,18 @@
     ],
     "liso|longo@200": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -438,18 +438,18 @@
     ],
     "liso|longo@400": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -470,18 +470,18 @@
     ],
     "tapete-fino|nao@10": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -502,18 +502,18 @@
     ],
     "tapete-fino|nao@200": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -534,18 +534,18 @@
     ],
     "tapete-fino|nao@400": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -566,18 +566,18 @@
     ],
     "tapete-fino|curto@10": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -598,18 +598,18 @@
     ],
     "tapete-fino|curto@200": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -630,18 +630,18 @@
     ],
     "tapete-fino|curto@400": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -662,18 +662,18 @@
     ],
     "tapete-fino|longo@10": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -694,18 +694,18 @@
     ],
     "tapete-fino|longo@200": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -726,18 +726,18 @@
     ],
     "tapete-fino|longo@400": [
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "xiaomi-h40",
@@ -772,18 +772,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|nao@200": [
@@ -802,18 +802,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|nao@400": [
@@ -832,18 +832,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|curto@10": [
@@ -862,18 +862,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|curto@200": [
@@ -892,18 +892,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|curto@400": [
@@ -922,18 +922,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|longo@10": [
@@ -952,18 +952,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|longo@200": [
@@ -982,18 +982,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|longo@400": [
@@ -1012,18 +1012,18 @@
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
-        "modelo": "xiaomi-s20",
-        "ressalvas": [
-          "cobertura_nao_declarada"
-        ],
-        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
-      },
-      {
         "modelo": "xiaomi-s40c",
         "ressalvas": [
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ]
   },

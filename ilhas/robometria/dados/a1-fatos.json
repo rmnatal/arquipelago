@@ -2,7 +2,7 @@
   "id": "a1-fatos",
   "ilha": "robometria",
   "artigo": "A1",
-  "gerado_em": "2026-09-13",
+  "gerado_em": "2026-09-16",
   "nota": "Fatos do artigo-ancora A1, derivados do banco commitado por ferramentas/gerar-a1.py. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a1.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
   "resumo": {
     "marcas": 5,
@@ -12,7 +12,7 @@
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 228,
     "celulas_sem_resposta": 151,
-    "pecas_esperando_link": 35
+    "pecas_esperando_link": 23
   },
   "maior_alcance": {
     "peca": "xiaomi-b106gl-bx",
@@ -1051,15 +1051,8 @@
       ],
       "codigos_declarados": 6,
       "tipos_do_kit": [],
-      "imagem": {
-        "url": null,
-        "largura": null,
-        "altura": null,
-        "fonte": null,
-        "coletado_em": null,
-        "alt": null,
-        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
-      },
+      "imagem": null,
+      "tem_imagem": false,
       "afiliado": {
         "url": "",
         "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
@@ -1095,15 +1088,8 @@
       ],
       "codigos_declarados": 5,
       "tipos_do_kit": [],
-      "imagem": {
-        "url": null,
-        "largura": null,
-        "altura": null,
-        "fonte": null,
-        "coletado_em": null,
-        "alt": null,
-        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
-      },
+      "imagem": null,
+      "tem_imagem": false,
       "afiliado": {
         "url": "",
         "url_busca": "https://s.shopee.com.br/1AQk0Nh5x",
@@ -1138,15 +1124,8 @@
       ],
       "codigos_declarados": 4,
       "tipos_do_kit": [],
-      "imagem": {
-        "url": null,
-        "largura": null,
-        "altura": null,
-        "fonte": null,
-        "coletado_em": null,
-        "alt": null,
-        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
-      },
+      "imagem": null,
+      "tem_imagem": false,
       "afiliado": {
         "url": "",
         "url_busca": "https://s.shopee.com.br/40gZVMQLBE",
@@ -1181,15 +1160,8 @@
       ],
       "codigos_declarados": 4,
       "tipos_do_kit": [],
-      "imagem": {
-        "url": null,
-        "largura": null,
-        "altura": null,
-        "fonte": null,
-        "coletado_em": null,
-        "alt": null,
-        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
-      },
+      "imagem": null,
+      "tem_imagem": false,
       "afiliado": {
         "url": "",
         "url_busca": "https://s.shopee.com.br/5AsWtVLtoR",

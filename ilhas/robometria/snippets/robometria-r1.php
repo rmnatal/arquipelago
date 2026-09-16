@@ -1,5 +1,9 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.10.0 (16/09/2026) — a vitrine mostra a foto, e o painel dela sai da
+ * casca. A imagem vem da Open API da Shopee (seção 25.6), com dimensão MEDIDA
+ * do arquivo.
+ *
  * Versão: 1.9.1 (16/09/2026) — o comentário do painel vazio deixa de prometer
  * um encaixe em traço que nunca foi ao ar, e a régua da vitrine passa a contar
  * item SEM foto em vez de um painel por peça.
@@ -158,7 +162,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.9.1' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.10.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -990,9 +994,9 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		   está carregando" e, como ela nunca carrega, "este site está
 		   quebrado". Hoje o painel escreve "sem foto", pela regra de
 		   `.rbm-vitrine-vazia` em `robometria_casca_css_vitrine()`. */
-		$html .= '<span class="rbm-vitrine-foto" aria-hidden="true">'
-			. ( $i['tem_imagem'] ? '' : '<span class="rbm-vitrine-vazia"></span>' )
-			. '</span>';
+		/* O painel sai da CASCA desde 16/09/2026 — uma decisao, quatro
+		   ferramentas. Ver robometria_casca_painel_da_foto(). */
+		$html .= robometria_casca_painel_da_foto( isset( $i['imagem'] ) ? $i['imagem'] : null );
 
 		$html .= '<span class="rbm-vitrine-tipo">' . esc_html( robometria_r1_lista( $tipos_do_cartao ) ) . '</span>';
 		$html .= '<span class="rbm-codigo-peca">'

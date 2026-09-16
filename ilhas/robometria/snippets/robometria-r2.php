@@ -1,5 +1,8 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.8.0 (16/09/2026) — a vitrine mostra a foto, e o painel dela sai da
+ * casca.
+ *
  * Versão: 1.7.1 (16/09/2026) — a vitrine só emite o painel "sem foto" quando o
  * item NÃO tem imagem. Até aqui ela o emitia sempre, e só não aparecia porque
  * nenhum modelo tinha foto: verdade por coincidência do banco.
@@ -135,7 +138,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.7.1' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.8.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -946,9 +949,9 @@ function robometria_r2_vitrine( $itens, $s ) {
 		   nenhum item tinha foto — verdade por coincidência do banco, a mesma
 		   família dos dois 63 da R1. No dia em que a primeira imagem entrasse,
 		   a R2 escreveria "sem foto" por cima de um cartão com foto. */
-		$html .= '<span class="rbm-vitrine-foto" aria-hidden="true">'
-			. ( $m['tem_imagem'] ? '' : '<span class="rbm-vitrine-vazia"></span>' )
-			. '</span>';
+		/* O painel sai da CASCA desde 16/09/2026 — uma decisao, quatro
+		   ferramentas. Ver robometria_casca_painel_da_foto(). */
+		$html .= robometria_casca_painel_da_foto( isset( $m['imagem'] ) ? $m['imagem'] : null );
 
 		$html .= '<span class="rbm-vitrine-tipo">' . esc_html( $m['rotulo'] ) . '</span>';
 		$html .= '<span class="rbm-vitrine-nome rbm-num">' . esc_html( robometria_r2_n( $m['pa'] ) . ' Pa' ) . '</span>';

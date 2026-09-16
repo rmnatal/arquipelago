@@ -2,7 +2,7 @@
   "id": "a2-fatos",
   "ilha": "robometria",
   "artigo": "A2",
-  "gerado_em": "2026-09-13",
+  "gerado_em": "2026-09-16",
   "nota": "Fatos do artigo-ancora A2, derivados do banco commitado por ferramentas/gerar-a2.py, lendo o banco pela mesma implementacao de referencia que a R2 usa. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a2.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
   "serp": {
     "verificada_nesta_execucao": false,
@@ -20,7 +20,7 @@
     "com_recarga": 2,
     "com_os_tres": 0,
     "pares_declarados": 5,
-    "modelos_esperando_link": 5
+    "modelos_esperando_link": 0
   },
   "marcas_que_declaram": [
     "Electrolux"
@@ -126,10 +126,16 @@
         "verificado_em": "2026-09-09"
       },
       "mesma_origem": true,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-824hy-mfina6noy68849",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Aspirador Robô Electrolux 4 em 1 Wi-Fi Experience com 0,47 Litros - ERB60"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/7ptINupGy6",
         "url_busca": "https://s.shopee.com.br/AAHCqjJaR9",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador",
         "programa": "shopee",
@@ -167,10 +173,16 @@
         "verificado_em": "2026-09-09"
       },
       "mesma_origem": true,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-824hm-meykyj4cjzt4d6",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Cinza (ERB61)"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/8plpZkuKiR",
         "url_busca": "https://s.shopee.com.br/9fKwFoLUS4",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB61%20robo%20aspirador",
         "programa": "shopee",
@@ -208,10 +220,16 @@
         "verificado_em": "2026-09-09"
       },
       "mesma_origem": true,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-8259f-meykzul2j8jlee",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Branco (ERB62)"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/1BMORfRmak",
         "url_busca": "https://s.shopee.com.br/9peMS7Kr77",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB62%20robo%20aspirador",
         "programa": "shopee",
@@ -249,10 +267,16 @@
         "verificado_em": "2026-09-09"
       },
       "mesma_origem": true,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-824ih-mfina7p6wqh9c5",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Aspirador Robô Electrolux 4 em 1 Wi-Fi Experience com 0,47 Litros - ERB80"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/LnHS8dp5a",
         "url_busca": "https://s.shopee.com.br/9Ki5rCMl82",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB80%20robo%20aspirador",
         "programa": "shopee",
@@ -290,10 +314,16 @@
         "verificado_em": "2026-09-09"
       },
       "mesma_origem": true,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-825bd-meykuu1kn37l70",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 2h Azul (ERB44)"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/8fSPNQzlsn",
         "url_busca": "https://s.shopee.com.br/qjXjZJv7p",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB44%20robo%20aspirador",
         "programa": "shopee",

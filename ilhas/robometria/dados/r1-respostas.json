@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-r1.py",
-  "banco_gerado_em": "2026-09-13",
+  "banco_gerado_em": "2026-09-16",
   "o_que_e": "Combustivel da ferramenta R1 no site: para cada modelo publicavel, os FATOS de cada peca que o fabricante declarou compativel — codigo, publicador, conjunto declarado, endereco e data. Sem prosa: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a implementacao de referencia por ferramentas/teste-r1.php.",
   "marcas": [
     {
@@ -421,10 +421,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -462,10 +468,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -503,10 +515,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -551,10 +569,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -592,10 +616,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -633,10 +663,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -681,10 +717,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -722,10 +764,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -763,10 +811,16 @@
             "valor": 6,
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/gQ7qXmH0Z",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -806,10 +860,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rdyf-m1efq6hxdbpz33",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance Filtros + Escovas P/ Aspirador Robô Electrolux Erb30 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/1VzEq5R1rp",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -842,10 +902,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rdyf-m1efq6hxdbpz33",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance Filtros + Escovas P/ Aspirador Robô Electrolux Erb30 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/1VzEq5R1rp",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -878,10 +944,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7rdyf-m1efq6hxdbpz33",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance Filtros + Escovas P/ Aspirador Robô Electrolux Erb30 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/1VzEq5R1rp",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -925,6 +997,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -961,6 +1034,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -997,6 +1071,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1043,6 +1118,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1081,6 +1157,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1119,6 +1196,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1157,6 +1235,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1196,6 +1275,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1235,6 +1315,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1281,6 +1362,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1319,6 +1401,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1357,6 +1440,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1395,6 +1479,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1434,6 +1519,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1473,6 +1559,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1519,6 +1606,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1557,6 +1645,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1595,6 +1684,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1633,6 +1723,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1672,6 +1763,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1711,6 +1803,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1757,6 +1850,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1792,10 +1886,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-8262t-mkjtqstanrb7e2",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/LnHS2buo3",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -1828,10 +1928,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-8262t-mkjtqstanrb7e2",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/LnHS2buo3",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -1864,10 +1970,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-8262t-mkjtqstanrb7e2",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/LnHS2buo3",
             "url_busca": "https://s.shopee.com.br/20vV7gG52P",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
             "programa": "shopee",
@@ -1904,6 +2016,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1960,6 +2073,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1996,6 +2110,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2032,6 +2147,7 @@
           "variante_do_par": "A",
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2068,6 +2184,7 @@
           "variante_do_par": "B",
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2121,6 +2238,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2168,6 +2286,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2221,6 +2340,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2257,6 +2377,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2293,6 +2414,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2336,10 +2458,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820lt-mnhki751h79ccb",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra800 Smart"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/9V1WMnE6WW",
             "url_busca": "https://s.shopee.com.br/4AzzhfPhqH",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20escova%20lateral%20robo%20aspirador",
             "programa": "shopee",
@@ -2374,6 +2502,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2411,6 +2540,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2460,10 +2590,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820lt-mnhki751h79ccb",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra800 Smart"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/9V1WMnE6WW",
             "url_busca": "https://s.shopee.com.br/4AzzhfPhqH",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20escova%20lateral%20robo%20aspirador",
             "programa": "shopee",
@@ -2498,6 +2634,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2535,6 +2672,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2578,10 +2716,16 @@
           "divergencia": true,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820m8-mpcfqh3h3zlx95",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Recipiente Completo Original WAP Robot Código FW008543"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/3g3jQD6PlW",
             "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
             "programa": "shopee",
@@ -2634,6 +2778,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2670,6 +2815,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2705,10 +2851,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-825a7-mt4j2cqubll1af",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Reservatório de Pó Original Wap Para Aspirador Robot W300 - Manutenção e Desempenho Superior! ID56730"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/8fSPNORJSo",
             "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
             "programa": "shopee",
@@ -2761,10 +2913,16 @@
           "divergencia": true,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820m8-mpcfqh3h3zlx95",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Kit Recipiente Completo Original WAP Robot Código FW008543"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/3g3jQD6PlW",
             "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
             "programa": "shopee",
@@ -2805,6 +2963,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2841,6 +3000,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2876,10 +3036,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lri2d9zirc3xd5",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Reservatório Lixeira Caixa De Poeira Para Robô Wap Wsmart"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/30o2cz012H",
             "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
             "programa": "shopee",
@@ -2925,10 +3091,16 @@
             "valor": "6 a 12",
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820l9-mnuead36s3r830",
+            "largura": 700,
+            "altura": 700,
+            "alt": "Xiaomi S20 Escova Principal D106, B112, E10, E12, E10C, C103, Mijia reposição - B112-ZS"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/9AOfyHHLk5",
             "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
             "programa": "shopee",
@@ -2966,10 +3138,16 @@
             "valor": "3 a 6",
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820me-mpb7z09urksmf3",
+            "largura": 300,
+            "altura": 300,
+            "alt": "Xiaomi S20 Filtro Hepa D106, B112, E10, E12, E10C, C103, Mijia 3C Plus, Mijia 3C Pro - B112-CH Kit"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/8KpYykTSUc",
             "url_busca": "https://s.shopee.com.br/7fZrs6Tysz",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
             "programa": "shopee",
@@ -3004,10 +3182,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7qvcr-ljfs2pzs1ah57f",
+            "largura": 800,
+            "altura": 800,
+            "alt": "Pano Para Robô Xiaomi Vacuum Mop E10 B112 2uns"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/AAHDA7Zg6p",
             "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
             "programa": "shopee",
@@ -3049,6 +3233,7 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3097,10 +3282,16 @@
             "valor": "6 a 12",
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820l9-mnuead36s3r830",
+            "largura": 700,
+            "altura": 700,
+            "alt": "Xiaomi S20 Escova Principal D106, B112, E10, E12, E10C, C103, Mijia reposição - B112-ZS"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/9AOfyHHLk5",
             "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
             "programa": "shopee",
@@ -3138,10 +3329,16 @@
             "valor": "3 a 6",
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820me-mpb7z09urksmf3",
+            "largura": 300,
+            "altura": 300,
+            "alt": "Xiaomi S20 Filtro Hepa D106, B112, E10, E12, E10C, C103, Mijia 3C Plus, Mijia 3C Pro - B112-CH Kit"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/8KpYykTSUc",
             "url_busca": "https://s.shopee.com.br/7fZrs6Tysz",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
             "programa": "shopee",
@@ -3176,10 +3373,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7qvcr-ljfs2pzs1ah57f",
+            "largura": 800,
+            "altura": 800,
+            "alt": "Pano Para Robô Xiaomi Vacuum Mop E10 B112 2uns"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/AAHDA7Zg6p",
             "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
             "programa": "shopee",
@@ -3225,10 +3428,16 @@
             "valor": "6 a 12",
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820l9-mnuead36s3r830",
+            "largura": 700,
+            "altura": 700,
+            "alt": "Xiaomi S20 Escova Principal D106, B112, E10, E12, E10C, C103, Mijia reposição - B112-ZS"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/9AOfyHHLk5",
             "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
             "programa": "shopee",
@@ -3263,10 +3472,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-7qvcr-ljfs2pzs1ah57f",
+            "largura": 800,
+            "altura": 800,
+            "alt": "Pano Para Robô Xiaomi Vacuum Mop E10 B112 2uns"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/AAHDA7Zg6p",
             "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
             "programa": "shopee",
@@ -3308,6 +3523,7 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3352,10 +3568,16 @@
           "divergencia": true,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-825zp-mlm8yyo0qqdrd2",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Escova Lateral Para Robô Xiaomi Vacumm H40 OV51 2uns"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/qjY2z00SM",
             "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
             "programa": "shopee",
@@ -3390,6 +3612,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3447,6 +3670,7 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3483,6 +3707,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3519,6 +3744,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3555,6 +3781,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3606,6 +3833,7 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3654,10 +3882,16 @@
             "valor": "6 a 12",
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820l9-mnuead36s3r830",
+            "largura": 700,
+            "altura": 700,
+            "alt": "Xiaomi S20 Escova Principal D106, B112, E10, E12, E10C, C103, Mijia reposição - B112-ZS"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/9AOfyHHLk5",
             "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
             "programa": "shopee",
@@ -3695,10 +3929,16 @@
             "valor": "3 a 6",
             "unidade": "meses"
           },
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820me-mpb7z09urksmf3",
+            "largura": 300,
+            "altura": 300,
+            "alt": "Xiaomi S20 Filtro Hepa D106, B112, E10, E12, E10C, C103, Mijia 3C Plus, Mijia 3C Pro - B112-CH Kit"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/8KpYykTSUc",
             "url_busca": "https://s.shopee.com.br/7fZrs6Tysz",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
             "programa": "shopee",
@@ -3735,6 +3975,7 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3779,6 +4020,7 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3823,10 +4065,16 @@
           "divergencia": true,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-825zp-mlm8yyo0qqdrd2",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Escova Lateral Para Robô Xiaomi Vacumm H40 OV51 2uns"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/qjY2z00SM",
             "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
             "programa": "shopee",
@@ -3861,6 +4109,7 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3905,10 +4154,16 @@
           "divergencia": true,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/sg-11134201-825zp-mlm8yyo0qqdrd2",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Escova Lateral Para Robô Xiaomi Vacumm H40 OV51 2uns"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/qjY2z00SM",
             "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
             "programa": "shopee",
@@ -3948,10 +4203,16 @@
           "divergencia": true,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-820lu-mml3jyadetxj2c",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Pano Mop Para Robô Aspirador Xiaomi Robot Vacuum S40C E101 Microfibra"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/3g3jQC2HWa",
             "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
             "programa": "shopee",
@@ -4000,6 +4261,7 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
+          "imagem": null,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -5318,7 +5580,7 @@
     "marcas": 5,
     "as_duas_ferramentas": 8,
     "pecas_recomendadas": 35,
-    "pecas_esperando_link": 35,
-    "pecas_com_link": 0
+    "pecas_esperando_link": 23,
+    "pecas_com_link": 12
   }
 }

@@ -49,6 +49,28 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DADOS = os.path.join(BASE, "dados")
 
 
+def foto_de(imagem):
+    """A imagem reduzida ao que a TELA usa, e nada alem.
+
+    Quatro campos: `url`, `largura`, `altura` e `alt`. `fonte`, `coletado_em` e
+    `motivo_do_null` ficam no banco — sao procedencia da COLETA, e nao chegam a
+    pixel nenhum. Mandar o bloco inteiro poria motivo de ausencia no HTML
+    servido de toda pagina sem ninguem precisar dele.
+
+    `largura` e `altura` viajam porque sem elas o <img> nao pode declara-las, e
+    sem a declaracao a pagina PULA quando a foto carrega (secao 6).
+    """
+    imagem = imagem or {}
+    if not imagem.get("url"):
+        return None
+    return {
+        "url": imagem["url"],
+        "largura": imagem.get("largura"),
+        "altura": imagem.get("altura"),
+        "alt": imagem.get("alt"),
+    }
+
+
 def _carregar_referencia():
     """Importa ferramentas/cobertura-r1.py como modulo (o hifen impede o import
     normal). A referencia e uma so, e o artigo nao ganha uma copia dela."""
@@ -292,7 +314,8 @@ def vitrine(alcance, quantas=4):
             "codigos_na_fonte": l["codigos_na_fonte"],
             "codigos_declarados": l["codigos_declarados"],
             "tipos_do_kit": tipos_do_kit(p),
-            "imagem": p.get("imagem", {}),
+            "imagem": foto_de(p.get("imagem")),
+            "tem_imagem": bool((p.get("imagem") or {}).get("url")),
             # O CODIGO DA PAGINA DE ORIGEM E CARIMBADO AQUI, e nao copiado do
             # banco. Este gerador repassava `afiliado` inteiro do registro, e o
             # registro da peca traz `sub_id_2: "R1"` — entao o artigo publicava

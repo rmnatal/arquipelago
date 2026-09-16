@@ -420,10 +420,33 @@ rbm_ok( false === strpos( $pagina, 'em breve' ),
    sido escritas quando so existia um degrau alcancavel, cada uma sem saber das
    outras. O que a afirmacao quer dizer e "o bloco de compra nunca fica vazio", e
    e isso que ela passa a medir. O degrau sai impresso ao lado, como informacao. */
-rbm_ok( substr_count( $pagina, 'rbm-comprar-busca' ) > 0,
-	'todo modelo sem ficha sai por alguma busca — o bloco de compra nunca fica vazio',
-	substr_count( $pagina, 'rbm-comprar-busca' ) . ' saida(s) de busca, '
-		. substr_count( $pagina, 'rbm-comprar-cru' ) . ' crua(s)' );
+/* REESCRITA DE NOVO EM 16/09/2026, e pelo MESMO motivo da vez anterior — o que
+   faz desta a quinta regua da mesma familia. A versao de hoje de manha cobrava
+   `rbm-comprar-busca` > 0, ou seja, exigia que ALGUM cartao saisse pela busca.
+   A tarde a Open API da Shopee trouxe ficha de produto para os cinco modelos
+   desta vitrine, os cinco SUBIRAM para o degrau da ficha, a busca sumiu da
+   pagina — e a regua reprovou a melhora, exatamente como as quatro de manha.
+
+   A licao, agora com cinco casos: regua amarrada a um DEGRAU reprova a subida.
+   O que esta afirmacao quer dizer e "o bloco de compra nunca fica vazio", e a
+   unica forma de medir isso que sobrevive a qualquer degrau e contar CARTAO
+   contra SAIDA, em vez de procurar uma classe. O degrau sai impresso ao lado,
+   como informacao e nao como criterio. */
+$cartoes_a2 = substr_count( $retorno, 'class="rbm-vitrine-item"' );
+$saidas_a2  = substr_count( $retorno, 'class="rbm-comprar"' )
+	+ substr_count( $retorno, 'class="rbm-comprar rbm-comprar-busca"' )
+	+ substr_count( $retorno, 'rbm-comprar-busca' )
+	+ substr_count( $retorno, 'rbm-comprar-cru' );
+$sem_saida_a2 = substr_count( $retorno, 'rbm-sem-saida' );
+rbm_ok( $cartoes_a2 > 0 && 0 === $sem_saida_a2
+	&& substr_count( $retorno, 'class="rbm-vitrine-acao"' ) === $cartoes_a2,
+	'o bloco de compra nunca fica vazio: um por cartao, nenhum degradado',
+	$cartoes_a2 . ' cartao(oes), ' . substr_count( $retorno, 'class="rbm-vitrine-acao"' )
+		. ' bloco(s) de compra, ' . $sem_saida_a2 . ' degradado(s) | degraus na pagina: '
+		. substr_count( $pagina, 'rbm-comprar-busca' ) . ' busca, '
+		. substr_count( $pagina, 'rbm-comprar-cru' ) . ' crua, '
+		. ( $saidas_a2 - substr_count( $pagina, 'rbm-comprar-busca' )
+			- substr_count( $pagina, 'rbm-comprar-cru' ) ) . ' ficha' );
 rbm_ok( false !== strpos( $texto, 'links de afiliado' ),
 	'o aviso de comissao aparece dentro do bloco de compra' );
 rbm_ok( false !== stripos( $texto, 'não é um ranking' ),

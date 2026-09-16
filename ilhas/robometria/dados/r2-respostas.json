@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-r2.py",
-  "banco_gerado_em": "2026-09-13",
+  "banco_gerado_em": "2026-09-16",
   "o_que_e": "Combustivel da ferramenta R2 no site: as 9 situacoes de piso x pelo com os limiares de Pa que cada fonte brasileira declara para elas, a classificacao dos modelos do banco em cada situacao, e os numeros de cada modelo de referencia. Sem prosa: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a implementacao de referencia por ferramentas/teste-r2.php.",
   "entrada": {
     "area_minima": 10,
@@ -756,8 +756,8 @@
   "classificacao": {
     "liso|nao": {
       "elegiveis": [
-        "xiaomi-s20",
         "xiaomi-s40c",
+        "xiaomi-s20",
         "xiaomi-e10",
         "xiaomi-s10",
         "xiaomi-h40",
@@ -770,8 +770,8 @@
     },
     "liso|curto": {
       "elegiveis": [
-        "xiaomi-s20",
         "xiaomi-s40c",
+        "xiaomi-s20",
         "xiaomi-h40",
         "xiaomi-s40"
       ],
@@ -785,8 +785,8 @@
     },
     "liso|longo": {
       "elegiveis": [
-        "xiaomi-s20",
         "xiaomi-s40c",
+        "xiaomi-s20",
         "xiaomi-h40",
         "xiaomi-s40"
       ],
@@ -800,8 +800,8 @@
     },
     "tapete-fino|nao": {
       "elegiveis": [
-        "xiaomi-s20",
         "xiaomi-s40c",
+        "xiaomi-s20",
         "xiaomi-h40",
         "xiaomi-s40"
       ],
@@ -815,8 +815,8 @@
     },
     "tapete-fino|curto": {
       "elegiveis": [
-        "xiaomi-s20",
         "xiaomi-s40c",
+        "xiaomi-s20",
         "xiaomi-h40",
         "xiaomi-s40"
       ],
@@ -830,8 +830,8 @@
     },
     "tapete-fino|longo": {
       "elegiveis": [
-        "xiaomi-s20",
         "xiaomi-s40c",
+        "xiaomi-s20",
         "xiaomi-h40",
         "xiaomi-s40"
       ],
@@ -847,8 +847,8 @@
       "elegiveis": [
         "xiaomi-h40",
         "xiaomi-s40",
-        "xiaomi-s20",
-        "xiaomi-s40c"
+        "xiaomi-s40c",
+        "xiaomi-s20"
       ],
       "no_limiar": [
         "xiaomi-e10",
@@ -862,8 +862,8 @@
       "elegiveis": [
         "xiaomi-h40",
         "xiaomi-s40",
-        "xiaomi-s20",
-        "xiaomi-s40c"
+        "xiaomi-s40c",
+        "xiaomi-s20"
       ],
       "no_limiar": [
         "xiaomi-e10",
@@ -877,8 +877,8 @@
       "elegiveis": [
         "xiaomi-h40",
         "xiaomi-s40",
-        "xiaomi-s20",
-        "xiaomi-s40c"
+        "xiaomi-s40c",
+        "xiaomi-s20"
       ],
       "no_limiar": [
         "xiaomi-e10",
@@ -947,10 +947,16 @@
       "retoma_apos_recarga": null,
       "fonte": null,
       "procedencia": null,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-825bd-meykuu1kn37l70",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 2h Azul (ERB44)"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/8fSPNQzlsn",
         "url_busca": "https://s.shopee.com.br/qjXjZJv7p",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB44%20robo%20aspirador",
         "programa": "shopee",
@@ -971,10 +977,16 @@
       "retoma_apos_recarga": true,
       "fonte": null,
       "procedencia": null,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-824hy-mfina6noy68849",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Aspirador Robô Electrolux 4 em 1 Wi-Fi Experience com 0,47 Litros - ERB60"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/7ptINupGy6",
         "url_busca": "https://s.shopee.com.br/AAHCqjJaR9",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador",
         "programa": "shopee",
@@ -995,10 +1007,16 @@
       "retoma_apos_recarga": true,
       "fonte": null,
       "procedencia": null,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-824hm-meykyj4cjzt4d6",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Cinza (ERB61)"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/8plpZkuKiR",
         "url_busca": "https://s.shopee.com.br/9fKwFoLUS4",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB61%20robo%20aspirador",
         "programa": "shopee",
@@ -1019,10 +1037,16 @@
       "retoma_apos_recarga": true,
       "fonte": null,
       "procedencia": null,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-8259f-meykzul2j8jlee",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Branco (ERB62)"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/1BMORfRmak",
         "url_busca": "https://s.shopee.com.br/9peMS7Kr77",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB62%20robo%20aspirador",
         "programa": "shopee",
@@ -1043,10 +1067,16 @@
       "retoma_apos_recarga": null,
       "fonte": null,
       "procedencia": null,
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-824ih-mfina7p6wqh9c5",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Aspirador Robô Electrolux 4 em 1 Wi-Fi Experience com 0,47 Litros - ERB80"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/LnHS8dp5a",
         "url_busca": "https://s.shopee.com.br/9Ki5rCMl82",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB80%20robo%20aspirador",
         "programa": "shopee",
@@ -1078,6 +1108,7 @@
         "verificado_em": "2026-09-09"
       },
       "tem_imagem": false,
+      "imagem": null,
       "esperando_link": true,
       "afiliado": {
         "url": "",
@@ -1111,10 +1142,16 @@
         "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-h40/specs/",
         "verificado_em": "2026-09-09"
       },
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-8259z-mqwb80n6zt3952",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Robo Aspirador Xiaomi Robot Vacuum H40 10000pa Branco"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/7fZsBvLlCx",
         "url_busca": "https://s.shopee.com.br/W6hKzBeR6",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20H40%20robo%20aspirador",
         "programa": "shopee",
@@ -1146,6 +1183,7 @@
         "verificado_em": "2026-09-09"
       },
       "tem_imagem": false,
+      "imagem": null,
       "esperando_link": true,
       "afiliado": {
         "url": "",
@@ -1180,6 +1218,7 @@
         "verificado_em": "2026-09-09"
       },
       "tem_imagem": false,
+      "imagem": null,
       "esperando_link": true,
       "afiliado": {
         "url": "",
@@ -1213,10 +1252,16 @@
         "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s40/specs/",
         "verificado_em": "2026-09-09"
       },
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-820m3-mqutntugv56q07",
+        "largura": 800,
+        "altura": 800,
+        "alt": "Robô Aspirador Xiaomi S40 Lds 10.000pa 3 Em 1 Alexa Wi-fi Branco"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/4LJQETmLp7",
         "url_busca": "https://s.shopee.com.br/qjXjaAmkY",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20S40%20robo%20aspirador",
         "programa": "shopee",
@@ -1247,10 +1292,16 @@
         "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s40c/specs/",
         "verificado_em": "2026-09-09"
       },
-      "tem_imagem": false,
-      "esperando_link": true,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-825ai-mqz5x0l19d6o18",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Robô Aspirador Inteligente Xiaomi Mi Robot Vacuum S40C BIVOLT"
+      },
+      "esperando_link": false,
       "afiliado": {
-        "url": "",
+        "url": "https://s.shopee.com.br/1gIf2tZs3S",
         "url_busca": "https://s.shopee.com.br/20vV7k5wON",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20S40C%20robo%20aspirador",
         "programa": "shopee",
@@ -1818,8 +1869,8 @@
   "resumo": {
     "modelos_publicaveis": 38,
     "modelos_na_tela": 11,
-    "modelos_esperando_link": 11,
-    "modelos_com_link": 0,
+    "modelos_esperando_link": 3,
+    "modelos_com_link": 8,
     "modelos_de_referencia": 5,
     "situacoes": 9,
     "situacoes_por_ponte": 1,

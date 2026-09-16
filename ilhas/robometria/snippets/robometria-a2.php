@@ -1,5 +1,8 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.4.0 (16/09/2026) — a vitrine mostra a foto, e o painel dela sai da
+ * casca.
+ *
  * Versão: 1.3.1 (16/09/2026) — a vitrine só emite o painel "sem foto" quando o
  * item NÃO tem imagem; antes ela o emitia sempre.
  *
@@ -72,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.3.1' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.4.0' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -426,9 +429,9 @@ function robometria_a2_vitrine() {
 		   neutro, e o painel DIZ que está vazio. A checagem entrou em
 		   16/09/2026 — até aqui a linha emitia o painel vazio SEMPRE, e só não
 		   se via porque nenhum item tinha foto. */
-		$html .= '<span class="rbm-vitrine-foto" aria-hidden="true">'
-			. ( $i['tem_imagem'] ? '' : '<span class="rbm-vitrine-vazia"></span>' )
-			. '</span>';
+		/* O painel sai da CASCA desde 16/09/2026 — uma decisao, quatro
+		   ferramentas. Ver robometria_casca_painel_da_foto(). */
+		$html .= robometria_casca_painel_da_foto( isset( $i['imagem'] ) ? $i['imagem'] : null );
 		$html .= '<span class="rbm-vitrine-tipo">' . esc_html( $i['rotulo'] ) . '</span>';
 		$html .= '<span class="rbm-vitrine-nome rbm-num">'
 			. esc_html( robometria_a2_n( $i['cobertura_m2'] ) . ' m² por carga' ) . '</span>';

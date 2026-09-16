@@ -3,7 +3,7 @@
  "ilha": "robometria",
  "entidade": "peca",
  "esquema": "dados/esquema-banco.json",
- "gerado_em": "2026-09-13",
+ "gerado_em": "2026-09-16",
  "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. LEVA DE 13/09/2026: 8 pecas da XIAOMI COM CODIGO, e a coleta so aconteceu porque o dominio testado ate entao estava errado. O PROMPT.md e o ESTADO.md mandavam testar mi.com.br e xiaomi.com.br; o banco desta ilha sempre citou www.mi.com/br. O egresso direto segue fechado por politica nos tres (000, 403 ao CONNECT, duas passadas), mas a BUSCA alcanca mi.com — e nunca tinha sido testada nele. A REGUA DE COMPATIBILIDADE DESTA LEVA, escrita antes de gravar: a Xiaomi declara compatibilidade no TITULO PUBLICADO da peca ('Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush'), e o codigo mora na subpagina /specs/ como 'Product model'. Um par entra quando o modelo e nomeado num titulo que aparece na pagina de acessorio daquele modelo ou numa pagina de peca dedicada; titulo de listagem que nomeia modelo que a especificacao da peca nao repete vai para divergencias e e resolvido pelo MAIS ESTREITO (secao 10 do ARQUIPELAGO.md). LEVA DE 13/09/2026 (segunda do dia): 4 pecas da WAP, as primeiras da marca — 2 do W300 e 2 do WSMART. TODAS com codigo_fabricante null: ver lista_de_compras. A REGRA QUE ESTA LEVA ESCREVEU, e ela subiu para a secao 26 do ARQUIPELAGO.md: a FUNCAO da peca nao se le do nome do produto. O fabricante batiza pela POSICAO (Direita, Esquerda, Central, Frontal, Rotativa) e este banco classifica pela FUNCAO (escova lateral, escova principal). A WAP desmente a si mesma no proprio canal — 'escovas giratorias direita e esquerda' e o par LATERAL do W300, e 'Escova Principal (Escova giratoria)' e a PRINCIPAL do W90 —, entao toda escova passa a carregar funcao{} dizendo onde a funcao foi declarada: no titulo, no contraste do catalogo daquele modelo, ou no canal de manutencao. Sem nenhum dos tres o registro nao nasce, e foi por isso que a escova do W90 ficou de fora. LEVA DE 14/09/2026 (19h17Z): a familia B106GL do Xiaomi S10. O registro B106GL-BX, que estava no banco desde 13/09 com compatibilidade so do S20, foi ALARGADO — nao duplicado — porque a propria Xiaomi publica o mesmo codigo sob titulo que nomeia S10, E10, S12, E12 e X20. Nasceram B106GL-ZX (escova principal), B106GL-LW (filtro) e o mop do S10 sem codigo, com a causa medida. Canal: busca web restrita a mi.com; o egresso direto e o WebFetch seguem devolvendo EGRESS_BLOCKED, remedido nesta execucao, e por isso as fontes sao de nivel 3.",
  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
  "contagem": {
@@ -12,11 +12,13 @@
   "excluido_do_banco": 3,
   "nao_publicavel": 0,
   "pares_peca_x_modelo_declarados": 71,
-  "esperando_link_de_afiliado": 35,
-  "itens_com_ficha": 0,
+  "esperando_link_de_afiliado": 23,
+  "itens_com_ficha": 12,
   "itens_sem_saida_de_compra": 0,
   "itens_com_piso_nao_rastreavel": 0,
-  "links_sem_degrau": 0
+  "links_sem_degrau": 0,
+  "itens_com_link_de_afiliado": 12,
+  "itens_com_foto": 12
  },
  "lista_de_compras": [
   {
@@ -102,12 +104,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -184,12 +186,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -251,12 +253,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -310,12 +312,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -369,12 +371,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -452,12 +454,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -669,27 +671,32 @@
     "declarado_como": "vida util do filtro HEPA declarada em manual do fabricante; se apresentar dano antes do prazo, substituir imediatamente"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/gQ7qXmH0Z",
+    "url_produto": "https://shopee.com.br/product/425803788/23392969686",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/20vV7gG52P",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 23392969686,
+    "shop_id_shopee": 425803788,
+    "degrau_da_palavra_chave": 3,
+    "palavra_chave_que_casou": "Electrolux Robô Aspirador Electrolux ERB10 kit",
+    "titulo_na_loja": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
    },
    "fontes": {
     "f-peca": {
@@ -777,12 +784,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -868,12 +875,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -954,12 +961,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -1031,12 +1038,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -1102,27 +1109,32 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rdyf-m1efq6hxdbpz33",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Kit Performance Filtros + Escovas P/ Aspirador Robô Electrolux Erb30 Original",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/1VzEq5R1rp",
+    "url_produto": "https://shopee.com.br/product/425803788/21797973368",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/20vV7gG52P",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 21797973368,
+    "shop_id_shopee": 425803788,
+    "degrau_da_palavra_chave": 4,
+    "palavra_chave_que_casou": "Electrolux kit robo aspirador",
+    "titulo_na_loja": "Kit Performance Filtros + Escovas P/ Aspirador Robô Electrolux Erb30 Original"
    },
    "fontes": {
     "f-peca": {
@@ -1173,27 +1185,32 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/br-11134207-820lt-mnhki751h79ccb",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra800 Smart",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/9V1WMnE6WW",
+    "url_produto": "https://shopee.com.br/product/1459460424/58259586952",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/4AzzhfPhqH",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20escova%20lateral%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 58259586952,
+    "shop_id_shopee": 1459460424,
+    "degrau_da_palavra_chave": 4,
+    "palavra_chave_que_casou": "Positivo escova lateral robo aspirador",
+    "titulo_na_loja": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra800 Smart"
    },
    "fontes": {
     "f-peca": {
@@ -1250,12 +1267,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -1316,12 +1333,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -1484,27 +1501,32 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/sg-11134201-8262t-mkjtqstanrb7e2",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/LnHS2buo3",
+    "url_produto": "https://shopee.com.br/product/425803788/58254977794",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/20vV7gG52P",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 58254977794,
+    "shop_id_shopee": 425803788,
+    "degrau_da_palavra_chave": 4,
+    "palavra_chave_que_casou": "Electrolux kit robo aspirador",
+    "titulo_na_loja": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original"
    },
    "fontes": {
     "f-peca": {
@@ -1582,12 +1604,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -1673,27 +1695,32 @@
     "declarado_como": "clean every week and replace every 6-12 months to ensure the cleaning effect"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/br-11134207-820l9-mnuead36s3r830",
+    "largura": 700,
+    "altura": 700,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Xiaomi S20 Escova Principal D106, B112, E10, E12, E10C, C103, Mijia reposição - B112-ZS",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/9AOfyHHLk5",
+    "url_produto": "https://shopee.com.br/product/1623315278/58254066291",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/7ptI4PTLY0",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 58254066291,
+    "shop_id_shopee": 1623315278,
+    "degrau_da_palavra_chave": 1,
+    "palavra_chave_que_casou": "B112-ZS",
+    "titulo_na_loja": "Xiaomi S20 Escova Principal D106, B112, E10, E12, E10C, C103, Mijia reposição - B112-ZS"
    },
    "fontes": {
     "f-peca": {
@@ -1771,27 +1798,32 @@
     "declarado_como": "clean every week and replace every 3-6 months"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/br-11134207-820me-mpb7z09urksmf3",
+    "largura": 300,
+    "altura": 300,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Xiaomi S20 Filtro Hepa D106, B112, E10, E12, E10C, C103, Mijia 3C Plus, Mijia 3C Pro - B112-CH Kit",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/8KpYykTSUc",
+    "url_produto": "https://shopee.com.br/product/1623315278/58212272304",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/7fZrs6Tysz",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 58212272304,
+    "shop_id_shopee": 1623315278,
+    "degrau_da_palavra_chave": 1,
+    "palavra_chave_que_casou": "B112-CH",
+    "titulo_na_loja": "Xiaomi S20 Filtro Hepa D106, B112, E10, E12, E10C, C103, Mijia 3C Plus, Mijia 3C Pro - B112-CH Kit"
    },
    "fontes": {
     "f-peca": {
@@ -1853,27 +1885,32 @@
     "motivo_do_null": "a Xiaomi publica intervalo de troca na FAQ de manutencao POR MODELO, e a FAQ que esta ilha leu (KA-233335) e a do S20. Este registro nao serve o S20, entao emprestar o intervalo dele seria a mesma coisa que preencher a composicao do ERB44 com a do ERB30 — declaracao de vizinho. Fica null ate a FAQ do proprio modelo ser lida"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7qvcr-ljfs2pzs1ah57f",
+    "largura": 800,
+    "altura": 800,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Pano Para Robô Xiaomi Vacuum Mop E10 B112 2uns",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/AAHDA7Zg6p",
+    "url_produto": "https://shopee.com.br/product/408574724/22191836481",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 22191836481,
+    "shop_id_shopee": 408574724,
+    "degrau_da_palavra_chave": 3,
+    "palavra_chave_que_casou": "Xiaomi Xiaomi Robot Vacuum E10 mop",
+    "titulo_na_loja": "Pano Para Robô Xiaomi Vacuum Mop E10 B112 2uns"
    },
    "fontes": {
     "f-peca": {
@@ -1919,12 +1956,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2028,12 +2065,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2134,27 +2171,32 @@
     "motivo_do_null": "a Xiaomi publica intervalo de troca na FAQ de manutencao POR MODELO, e a FAQ que esta ilha leu (KA-233335) e a do S20. Este registro nao serve o S20, entao emprestar o intervalo dele seria a mesma coisa que preencher a composicao do ERB44 com a do ERB30 — declaracao de vizinho. Fica null ate a FAQ do proprio modelo ser lida"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/sg-11134201-825zp-mlm8yyo0qqdrd2",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Escova Lateral Para Robô Xiaomi Vacumm H40 OV51 2uns",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/qjY2z00SM",
+    "url_produto": "https://shopee.com.br/product/408574724/58206583527",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 58206583527,
+    "shop_id_shopee": 408574724,
+    "degrau_da_palavra_chave": 3,
+    "palavra_chave_que_casou": "Xiaomi Xiaomi Robot Vacuum H40 escova lateral",
+    "titulo_na_loja": "Escova Lateral Para Robô Xiaomi Vacumm H40 OV51 2uns"
    },
    "fontes": {
     "f-peca": {
@@ -2207,27 +2249,32 @@
     "motivo_do_null": "a Xiaomi publica intervalo de troca na FAQ de manutencao POR MODELO, e a FAQ que esta ilha leu (KA-233335) e a do S20. Este registro nao serve o S20, entao emprestar o intervalo dele seria a mesma coisa que preencher a composicao do ERB44 com a do ERB30 — declaracao de vizinho. Fica null ate a FAQ do proprio modelo ser lida"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/br-11134207-820lu-mml3jyadetxj2c",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Pano Mop Para Robô Aspirador Xiaomi Robot Vacuum S40C E101 Microfibra",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/3g3jQC2HWa",
+    "url_produto": "https://shopee.com.br/product/1586220862/58258228055",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/7VGRfnUcDy",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 58258228055,
+    "shop_id_shopee": 1586220862,
+    "degrau_da_palavra_chave": 3,
+    "palavra_chave_que_casou": "Xiaomi Xiaomi Robot Vacuum S40C mop",
+    "titulo_na_loja": "Pano Mop Para Robô Aspirador Xiaomi Robot Vacuum S40C E101 Microfibra"
    },
    "fontes": {
     "f-peca": {
@@ -2285,12 +2332,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2350,12 +2397,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2424,12 +2471,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2498,12 +2545,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2572,12 +2619,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2635,27 +2682,32 @@
     "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/sg-11134201-825a7-mt4j2cqubll1af",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Reservatório de Pó Original Wap Para Aspirador Robot W300 - Manutenção e Desempenho Superior! ID56730",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/8fSPNORJSo",
+    "url_produto": "https://shopee.com.br/product/594505542/23998432917",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW",
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 23998432917,
+    "shop_id_shopee": 594505542,
+    "degrau_da_palavra_chave": 3,
+    "palavra_chave_que_casou": "WAP Robô Aspirador de Pó WAP Robot W300 reservatorio",
+    "titulo_na_loja": "Reservatório de Pó Original Wap Para Aspirador Robot W300 - Manutenção e Desempenho Superior! ID56730"
    },
    "fontes": {
     "f-peca": {
@@ -2694,27 +2746,32 @@
     "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lri2d9zirc3xd5",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Reservatório Lixeira Caixa De Poeira Para Robô Wap Wsmart",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/30o2cz012H",
+    "url_produto": "https://shopee.com.br/product/375113150/22691099575",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW",
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 22691099575,
+    "shop_id_shopee": 375113150,
+    "degrau_da_palavra_chave": 3,
+    "palavra_chave_que_casou": "WAP Robô Aspirador de Pó WAP Robot WSMART reservatorio",
+    "titulo_na_loja": "Reservatório Lixeira Caixa De Poeira Para Robô Wap Wsmart"
    },
    "fontes": {
     "f-peca": {
@@ -2801,27 +2858,32 @@
     "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "url": "https://cf.shopee.com.br/file/br-11134207-820m8-mpcfqh3h3zlx95",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "shopee-api",
+    "coletado_em": "2026-09-16",
+    "alt": "Kit Recipiente Completo Original WAP Robot Código FW008543",
+    "motivo_do_null": null
    },
    "afiliado": {
-    "url": "",
-    "url_produto": null,
+    "url": "https://s.shopee.com.br/3g3jQD6PlW",
+    "url_produto": "https://shopee.com.br/product/420532494/58212327318",
     "motivo_sem_url_produto": null,
     "intestavel": false,
-    "degrau": 4,
+    "degrau": 3,
     "conferido_em": "2026-09-16",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW",
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria"
+    "sub_id_1": "robometria",
+    "item_id_shopee": 58212327318,
+    "shop_id_shopee": 420532494,
+    "degrau_da_palavra_chave": 1,
+    "palavra_chave_que_casou": "FW008543",
+    "titulo_na_loja": "Kit Recipiente Completo Original WAP Robot Código FW008543"
    },
    "fontes": {
     "f-peca": {
@@ -2871,12 +2933,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2930,12 +2992,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",
@@ -2990,12 +3052,12 @@
     "fonte": null,
     "coletado_em": null,
     "alt": null,
-    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+    "motivo_do_null": "A escada de palavra-chave da Open API da Shopee foi percorrida inteira em 2026-09-16 e nenhum resultado traz o codigo deste registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6)."
    },
    "afiliado": {
     "url": "",
     "url_produto": null,
-    "motivo_sem_url_produto": null,
+    "motivo_sem_url_produto": "sem ficha: a escada de palavra-chave da API nao casou nenhum resultado com o codigo deste registro (2026-09-16)",
     "intestavel": false,
     "degrau": 4,
     "conferido_em": "2026-09-16",

@@ -2,8 +2,8 @@
  "id": "esquema-banco",
  "ilha": "robometria",
  "bloco": 3,
- "gerado_em": "2026-09-09",
- "versao_esquema": 8,
+ "gerado_em": "2026-09-16",
+ "versao_esquema": 9,
  "descricao": "Modelo normalizado do banco da Robometria: entidades MARCA, MODELO_ROBO, PECA e COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes{}. Este arquivo e o contrato que dados/marcas.json, dados/modelos-robo.json e dados/pecas.json cumprem e que ferramentas/validar-banco.py verifica.",
  "depende_de": [
   "dados/especificacao-calculadoras.md",
@@ -581,7 +581,9 @@
     "coletado_em": "data",
     "alt": "descricao de verdade, nao o nome do produto repetido. E acessibilidade e e leitura de IA"
    },
-   "regra": "url null NAO elimina o registro da vitrine: ele aparece com espaco reservado neutro na paleta da ilha e o nome em destaque."
+   "regra": "url null NAO elimina o registro da vitrine: ele aparece com espaco reservado neutro na paleta da ilha e o nome em destaque.",
+   "regra_de_preenchimento_16_09_2026": "Quando `url` NAO e null, `largura`, `altura`, `fonte`, `coletado_em` e `alt` sao OBRIGATORIOS, e validar-banco.py reprova sem eles. `largura` e `altura` sao MEDIDAS do arquivo (ferramentas/coletar-shopee.py --medir le os primeiros bytes e parseia o cabecalho JPEG/PNG/WebP), nunca digitadas: dimensao digitada e a mesma familia do numero de tela digitado da secao 8, parece conferida e nao e. Quando `url` E null, `motivo_do_null` e obrigatorio — ausencia sem motivo escrito nao se distingue de coleta que ninguem tentou. `fonte` da foto vinda da Open API e a string 'shopee-api'.",
+   "de_onde_a_foto_vem": "A imagem do anuncio ao lado do link do anuncio e exatamente o que o programa de afiliado existe para permitir (25.3 e 25.6). Ate 16/09/2026 nao havia de onde baixar: o egresso desta nuvem barra dominio de fabricante e de varejo. A Open API devolve `imageUrl`, e a CDN `cf.shopee.com.br` responde 200 daqui — medido."
   },
   "afiliado": {
    "descricao": "Campo presente e vazio desde o nascimento do registro (secao 7 do ARQUIPELAGO.md). A FICHA de produto (`url`) e bonus; o PISO e a busca (`url_busca`), e ele nao espera ninguem — secao 25.2.",
@@ -598,7 +600,12 @@
     "motivo_sem_url_busca": "texto|null — obrigatorio quando `url_busca` esta vazia. Enquanto a sessao do painel nao existir, e a mesma frase em todos os itens, e ela e verdadeira",
     "plataforma": "vocabulario plataforma_de_afiliado",
     "coletado_em": "data ou null",
-    "sub_id_1": "sempre 'robometria'"
+    "sub_id_1": "sempre 'robometria'",
+    "item_id_shopee": "int, OPCIONAL — o itemId do anuncio na Shopee, devolvido pela Open API (25.6). Existe so quando a escada de palavra-chave casou. E o que permite reconsultar o mesmo anuncio sem refazer a busca",
+    "shop_id_shopee": "int, OPCIONAL — o shopId do vendedor. Com o itemId ele forma o par que a API de ficha da Shopee aceita, e e por ele que o teste de vida da 25.4-b passa a ser possivel nesta ilha",
+    "degrau_da_palavra_chave": "int 1..4, OPCIONAL — PROCEDENCIA DO CASAMENTO. 1 = o codigo do fabricante sozinho; 2 = marca + codigo; 3 = marca + modelo + tipo de peca; 4 = a chave escrita para a busca do site. Sem este campo ninguem sabe se o casamento veio do codigo exato ou de uma frase folgada, e a diferenca entre os dois e a diferenca entre dado e chute com cara de dado",
+    "palavra_chave_que_casou": "texto, OPCIONAL — a palavra exata que produziu o resultado, para a proxima passada poder repetir a medicao em vez de refazer a escolha",
+    "titulo_na_loja": "texto, OPCIONAL — o titulo do anuncio, gravado para que a ronda consiga conferir o casamento com os olhos sem abrir a Shopee. E o mesmo principio do titulo_na_fonte das fontes: quem confere precisa ver o que foi lido, nao so a conclusao"
    },
    "escada_de_compra": {
     "contrato": "ARQUIPELAGO.md secao 25",
@@ -637,7 +644,8 @@
     "por_que_a_peca_nao_leva_o_codigo": "Porque o codigo de peca e SKU interno de fabricante, nao o nome pelo qual ela e vendida: o vendedor de marketplace anuncia 'escova lateral para robo aspirador', e o PR10124 aparece no maximo no fim do titulo. Palavra-chave com token que o vendedor nao digita traz ZERO resultado — e busca com zero resultado e exatamente o beco sem saida que o piso da 25.2 existe para impedir. E o lado que NAO da para medir daqui: shopee.com.br/search responde 200 e serve casca de JavaScript com ZERO ocorrencia de 'shopee.com.br/' no HTML (remedido em 13/09/2026 as 19h17Z), entao a nuvem nao consegue CONTAR resultado nenhum. Entre uma escolha cujo modo de falhar e 'resultado menos relevante' e outra cujo modo de falhar e 'beco sem saida', com a medicao indisponivel, a secao 8 manda ficar com a que falha conhecido. O estreitamento e melhoria, nao conserto, e ele ja tem data e dono: a Open API da 25.6, cujo primeiro uso escrito no contrato e 'buscar produto por palavra-chave COM ESTOQUE'. No dia em que ela responder, quem estreita a chave consegue provar que ela traz resultado antes de gravar.",
     "por_que_o_termo_de_contexto_existe": "A 25.3 proibe escolher produto so por MARCA, porque marca sem contexto e armadilha — JBL e som e e aquario, Aquario e roteador e e peixe. NESTA ILHA A ARMADILHA TEM UMA SEGUNDA FORMA, e ela e do CODIGO: 'S20' sozinho e um celular Samsung, 'E10' e 'H40' sao codigo de qualquer coisa, e 'W90' e 'W100' nao dizem nada. O codigo de modelo sem contexto e tao armadilha quanto a marca sem contexto, e e por isso que o termo entra nas DUAS entidades. A lista mora AQUI e nao dentro do gerador pelo mesmo motivo que a lista de tipos saiu de dentro da regua da funcao em 13/09/2026: lista dentro da regua envelhece calada, e entidade nova entraria sem termo nenhum com o banco verde. Aqui, entidade sem termo declarado e ERRO."
    },
-   "o_codigo_da_pagina_NAO_mora_aqui": "O sub_id_2 saiu desta forma em 12/09/2026, e a ausencia dele e regra. Ele nomeia a PAGINA que levou o clique — R1, R2, A1, A2 — e o mesmo produto aparece em mais de uma: os 33 modelos traziam 'R2' e as 18 pecas 'R1', entao o artigo A2 publicava a vitrine dele carimbada como se fosse da ferramenta R2, e o A1 as pecas dele como se fossem da R1. No dia do primeiro link de afiliado a medicao diria que os artigos nao vendem nada. Nao existe valor unico certo para escrever no registro: quem sabe qual e a pagina e quem a monta, entao cada gerador (gerar-r1.py, gerar-r2.py, gerar-a1.py, gerar-a2.py) carimba o proprio codigo ao derivar a vitrine. validar-banco.py REPROVA o campo de volta no banco."
+   "o_codigo_da_pagina_NAO_mora_aqui": "O sub_id_2 saiu desta forma em 12/09/2026, e a ausencia dele e regra. Ele nomeia a PAGINA que levou o clique — R1, R2, A1, A2 — e o mesmo produto aparece em mais de uma: os 33 modelos traziam 'R2' e as 18 pecas 'R1', entao o artigo A2 publicava a vitrine dele carimbada como se fosse da ferramenta R2, e o A1 as pecas dele como se fossem da R1. No dia do primeiro link de afiliado a medicao diria que os artigos nao vendem nada. Nao existe valor unico certo para escrever no registro: quem sabe qual e a pagina e quem a monta, entao cada gerador (gerar-r1.py, gerar-r2.py, gerar-a1.py, gerar-a2.py) carimba o proprio codigo ao derivar a vitrine. validar-banco.py REPROVA o campo de volta no banco.",
+   "o_que_entrou_na_versao_9": "Cinco chaves OPCIONAIS da Open API da Shopee (secao 25.6), em 16/09/2026. Opcionais de proposito: item que a escada de palavra-chave percorreu inteira sem casar nao tem nenhuma delas, e isso e medicao honesta, nao registro pela metade. O que NAO mudou: `url_busca` continua sendo o PISO da 25.2 e nao e trocado pela ficha — piso nao se troca por bonus, porque plataforma que concede API tambem revoga API."
   },
   "fonte": {
    "forma": {

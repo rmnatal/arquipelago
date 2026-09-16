@@ -694,6 +694,47 @@ def conferir_lugar_vazio_da_foto(carimbo):
     ok(paineis_medidos > 0, 'a conferencia mediu painel de verdade',
        '%d painel(eis) nas quatro ferramentas' % paineis_medidos)
 
+    # ---------------------------------------------------------------- A FOTO
+    # Acrescentado as 17h de 16/09/2026, quando a Open API da Shopee trouxe as
+    # 27 primeiras fotos desta ilha. A afirmacao NAO conta fotos: contar seria
+    # amarrar a regua a composicao do banco de hoje, que e o erro que cinco
+    # reguas desta ilha ja cometeram. O que ela cobra e que TODA foto servida
+    # seja utilizavel — dimensao declarada (senao a pagina pula), alt de
+    # verdade (acessibilidade e leitura de IA, secao 5) e endereco que existe
+    # no banco (senao a tela publica imagem que ninguem colheu).
+    with open('dados/pecas.json', encoding='utf-8') as f:
+        _banco = [r for r in json.load(f)['registros']]
+    with open('dados/modelos-robo.json', encoding='utf-8') as f:
+        _banco += [r for r in json.load(f)['registros']]
+    urls_do_banco = set(
+        (r.get('imagem') or {}).get('url') for r in _banco
+        if (r.get('imagem') or {}).get('url'))
+
+    fotos_servidas, defeitos = 0, []
+    for caminho in das_ferramentas:
+        corpo_servido, codigo = buscar(DOMINIO + caminho + '?v=' + carimbo)
+        if '200' != codigo:
+            continue
+        for tag in re.findall(r'<img class="rbm-vitrine-img"[^>]*>', corpo_servido):
+            fotos_servidas += 1
+            src = re.search(r'src="([^"]*)"', tag)
+            alt = re.search(r'alt="([^"]*)"', tag)
+            largura = re.search(r'width="(\d+)"', tag)
+            altura = re.search(r'height="(\d+)"', tag)
+            if not (largura and altura and int(largura.group(1)) > 0
+                    and int(altura.group(1)) > 0):
+                defeitos.append('%s: <img> sem dimensao declarada' % caminho)
+            if not (alt and alt.group(1).strip()):
+                defeitos.append('%s: <img> sem alt' % caminho)
+            if 'loading="lazy"' not in tag:
+                defeitos.append('%s: <img> sem loading=lazy' % caminho)
+            if not src or html.unescape(src.group(1)) not in urls_do_banco:
+                defeitos.append('%s: <img> com endereco que nao esta no banco' % caminho)
+
+    ok(not defeitos, 'toda foto servida tem dimensao, alt, lazy e endereco do banco',
+       '%d foto(s) nas quatro ferramentas%s'
+       % (fotos_servidas, '' if not defeitos else ' | ' + defeitos[0]))
+
 
 if __name__ == '__main__':
     sys.exit(main())

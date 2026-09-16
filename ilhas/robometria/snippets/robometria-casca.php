@@ -7,6 +7,12 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.8.0 (16/09/2026) — A FOTO CHEGOU, E O PAINEL DELA E UM SO.
+ * robometria_casca_painel_da_foto() nasce aqui e as quatro ferramentas passam a
+ * chamá-la: com foto sai <img> com width, height, alt e lazy; sem foto, o
+ * espaço reservado que diz "sem foto". Quatro cópias da mesma decisão é como
+ * a ilha perde três — foi assim que R2 e A2 emitiram o aviso sem checar nada.
+ *
  * Versão: 1.7.1 (16/09/2026) — O LUGAR VAZIO DA FOTO DIZ O QUE É.
  * O painel do cartão sem foto era um anel com um quarto faltando — a forma
  * universal do spinner — e lia como site quebrado. Agora ele escreve "sem foto".
@@ -197,7 +203,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.7.1' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.8.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -1196,12 +1202,60 @@ function robometria_casca_artigos_html() {
  * Não vai no wp_head global: quem serve vitrine chama esta função dentro da
  * própria folha, e página sem vitrine não carrega regra que não usa.
  */
+/**
+ * O PAINEL DA FOTO DO CARTAO — uma funcao so, para as quatro ferramentas.
+ *
+ * Nasceu em 16/09/2026 com a Open API da Shopee, e nasceu na CASCA de
+ * proposito: ate aqui as quatro ferramentas escreviam o painel cada uma por
+ * conta propria, e foi assim que a R2 e a A2 passaram meses emitindo o espaco
+ * vazio SEM checar nada. Quatro copias da mesma decisao e como a ilha perde
+ * tres delas — a mesma cicatriz dos tres lugares que declaravam a lista de
+ * tipos da R1.
+ *
+ * COM FOTO: <img> com `loading="lazy"`, `decoding="async"`, `width` e
+ * `height` DECLARADOS (secao 6 — sem eles a pagina pula quando a imagem
+ * carrega) e `alt` descritivo. O painel deixa de ser `aria-hidden`, porque
+ * agora ele carrega conteudo: esconder do leitor de tela uma imagem que tem
+ * descricao seria jogar fora a descricao.
+ *
+ * SEM FOTO: o espaco reservado neutro que a secao 6 manda, `aria-hidden`
+ * porque nao ha o que ler, e a frase "sem foto" vem da folha. Item sem imagem
+ * NAO some da vitrine: perder a recomendacao tecnica certa por falta de foto e
+ * trocar o certo pelo bonito.
+ *
+ * SEM LARGURA OU ALTURA A FOTO NAO ENTRA. O portao do banco ja exige as duas
+ * quando ha url, e aqui a checagem se repete de proposito: as duas metades tem
+ * de discordar para o defeito aparecer, e um <img> sem dimensao no ar custa
+ * salto de layout em toda pagina da ilha.
+ */
+if ( ! function_exists( 'robometria_casca_painel_da_foto' ) ) {
+function robometria_casca_painel_da_foto( $imagem ) {
+	$url     = is_array( $imagem ) && ! empty( $imagem['url'] ) ? $imagem['url'] : '';
+	$largura = is_array( $imagem ) && ! empty( $imagem['largura'] ) ? (int) $imagem['largura'] : 0;
+	$altura  = is_array( $imagem ) && ! empty( $imagem['altura'] ) ? (int) $imagem['altura'] : 0;
+	$alt     = is_array( $imagem ) && ! empty( $imagem['alt'] ) ? $imagem['alt'] : '';
+
+	if ( '' === $url || $largura < 1 || $altura < 1 ) {
+		return '<span class="rbm-vitrine-foto" aria-hidden="true">'
+			. '<span class="rbm-vitrine-vazia"></span></span>';
+	}
+
+	return '<span class="rbm-vitrine-foto">'
+		. '<img class="rbm-vitrine-img" src="' . esc_url( $url ) . '"'
+		. ' width="' . $largura . '" height="' . $altura . '"'
+		. ' alt="' . esc_attr( $alt ) . '"'
+		. ' loading="lazy" decoding="async">'
+		. '</span>';
+}
+}
+
 if ( ! function_exists( 'robometria_casca_css_vitrine' ) ) {
 function robometria_casca_css_vitrine() {
 	return <<<'CSS'
 .rbm-vitrine{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;margin:1rem 0 0;padding:0 0 .6rem;}
 .rbm-vitrine-item{scroll-snap-align:start;flex:0 0 17rem;max-width:100%;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;padding:1rem;display:flex;flex-direction:column;gap:.4rem;margin:0;}
 .rbm-vitrine-foto{display:flex;aspect-ratio:4/3;max-width:100%;background:var(--rbm-piso);border:1px solid var(--rbm-traco);border-radius:2px;align-items:center;justify-content:center;}
+.rbm-vitrine-img{display:block;width:100%;height:100%;object-fit:contain;border-radius:2px;}
 .rbm-vitrine-vazia{display:block;font-family:var(--rbm-texto);font-size:.78rem;color:var(--rbm-legenda);}
 .rbm-vitrine-vazia::after{content:"sem foto";}
 .rbm-vitrine-tipo{font-family:var(--rbm-display);font-weight:600;font-size:1rem;}

@@ -1,5 +1,8 @@
 /**
  * Robometria A1 — Existe filtro universal de robô aspirador?
+ * Versão: 1.4.0 (16/09/2026) — a vitrine mostra a foto, e o painel dela sai da
+ * casca.
+ *
  * Versão: 1.3.1 (16/09/2026) — o comentário do painel vazio passa a dizer o que
  * foi ao ar.
  *
@@ -68,7 +71,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A1_VERSAO', '1.3.1' );
+	define( 'ROBOMETRIA_A1_VERSAO', '1.4.0' );
 	define( 'ROBOMETRIA_A1_SLUG', 'filtro-universal-de-robo-aspirador' );
 	/* O TÍTULO DEIXOU DE AFIRMAR A TESE, e este é o terceiro lugar da mesma
 	   família. A tese deste artigo é uma contagem do banco, e por isso a frase de
@@ -391,10 +394,9 @@ function robometria_a1_vitrine( $f ) {
 		   tem. Item sem imagem NÃO some da vitrine (seção 6), e desde
 		   16/09/2026 o painel ESCREVE "sem foto" em vez de desenhar um anel
 		   aberto, que lia como roda de carregamento travada. */
-		$tem_imagem = ! empty( $i['imagem']['url'] );
-		$html      .= '<span class="rbm-vitrine-foto" aria-hidden="true">'
-			. ( $tem_imagem ? '' : '<span class="rbm-vitrine-vazia"></span>' )
-			. '</span>';
+		/* O painel sai da CASCA desde 16/09/2026 — uma decisao, quatro
+		   ferramentas. Ver robometria_casca_painel_da_foto(). */
+		$html .= robometria_casca_painel_da_foto( isset( $i['imagem'] ) ? $i['imagem'] : null );
 
 		$html .= '<span class="rbm-vitrine-tipo">'
 			. esc_html( robometria_a1_nome_do_tipo( $i['tipo'] ) ) . '</span>';

@@ -104,6 +104,53 @@ CHAVES_AFILIADO = {"url", "url_produto", "motivo_sem_url_produto", "intestavel",
                    "url_busca", "url_busca_produto", "motivo_sem_url_busca",
                    "plataforma", "coletado_em", "sub_id_1"}
 
+# CINCO CHAVES ENTRARAM NA VERSAO 9 DO ESQUEMA, em 16/09/2026, com a Open API da
+# Shopee (secao 25.6). Elas sao OPCIONAIS de proposito: item que a escada de
+# palavra-chave nao casou nao tem nenhuma delas, e isso e medicao honesta, nao
+# registro pela metade. As tres primeiras identificam o anuncio; as duas ultimas
+# sao PROCEDENCIA DO CASAMENTO — em que degrau a palavra-chave casou e qual foi
+# a palavra. Sem elas ninguem sabe se o casamento veio do codigo exato (degrau 1)
+# ou de uma frase folgada (degrau 4), e a diferenca entre os dois e a diferenca
+# entre dado e chute com cara de dado.
+CHAVES_AFILIADO_DA_API = {"item_id_shopee", "shop_id_shopee",
+                          "degrau_da_palavra_chave", "palavra_chave_que_casou",
+                          "titulo_na_loja"}
+
+
+def checar_imagem(r, onde):
+    """A FOTO SO E FOTO QUANDO E CONFERIVEL (secao 6 + 25.6).
+
+    `url` null continua valido e continua na vitrine — a secao 6 e clara que
+    perder a recomendacao tecnica certa por falta de foto e trocar o certo pelo
+    bonito. O que esta regra cobra e o outro lado: quando HA url, os campos que
+    a tornam usavel tem de existir.
+
+    `largura` e `altura` sao de TELA: sem elas no HTML a pagina pula quando a
+    foto carrega. E elas sao MEDIDAS do arquivo (coletar-shopee.py --medir), e
+    nunca digitadas — dimensao digitada e a mesma familia do numero de tela
+    digitado da secao 8: parece conferida.
+    """
+    imagem = r.get("imagem") or {}
+    if set(imagem) < CHAVES_IMAGEM:
+        erro("%s: imagem{} incompleta — falta %s"
+             % (onde, sorted(CHAVES_IMAGEM - set(imagem))))
+        return
+    if not imagem.get("url"):
+        if not imagem.get("motivo_do_null"):
+            erro("%s: imagem sem url e sem motivo_do_null. Ausencia sem motivo "
+                 "escrito nao se distingue de coleta que ninguem tentou" % onde)
+        return
+    for campo in ("largura", "altura", "fonte", "coletado_em", "alt"):
+        if not imagem.get(campo):
+            erro("%s: imagem tem url e nao tem %s" % (onde, campo))
+    if imagem.get("largura") and not isinstance(imagem["largura"], int):
+        erro("%s: imagem.largura nao e numero" % onde)
+    if imagem.get("altura") and not isinstance(imagem["altura"], int):
+        erro("%s: imagem.altura nao e numero" % onde)
+    if imagem.get("alt") and imagem["alt"] == r.get("codigo_fabricante"):
+        erro("%s: o alt da imagem e o codigo repetido. A secao 6 pede descricao "
+             "de verdade: e acessibilidade e e leitura de IA" % onde)
+
 # ---------------------------------------------------- A ESCADA DE COMPRA (25)
 # Seis chaves entraram no campo afiliado na versao 5 do esquema, em 13/09/2026,
 # e elas nao sao enfeite: a 25.2 diz que item publicavel SEM PISO e defeito da
@@ -534,15 +581,16 @@ for r in modelos["registros"]:
     for campo in CAMPOS_MODELO_OBRIGATORIOS:
         checar_campo_de_valor(r, campo, "modelos-robo.json")
 
-    if set(r.get("imagem", {})) < CHAVES_IMAGEM:
-        erro("%s: imagem{} incompleta — falta %s"
-             % (onde, sorted(CHAVES_IMAGEM - set(r.get("imagem", {})))))
+    checar_imagem(r, onde)
     if "sub_id_2" in (r.get("afiliado") or {}):
         erro("%s: afiliado.sub_id_2 no banco. O codigo da pagina de origem e "
              "carimbado por quem monta a pagina (gerar-r1/r2/a1/a2), porque o "
              "mesmo modelo aparece em mais de uma" % onde)
-    elif set(r.get("afiliado", {})) != CHAVES_AFILIADO:
-        erro("%s: afiliado{} fora da forma do esquema" % onde)
+    elif not CHAVES_AFILIADO <= set(r.get("afiliado", {})) <= (
+            CHAVES_AFILIADO | CHAVES_AFILIADO_DA_API):
+        erro("%s: afiliado{} fora da forma do esquema (falta %s; sobra %s)"
+             % (onde, sorted(CHAVES_AFILIADO - set(r.get("afiliado", {}))),
+                sorted(set(r.get("afiliado", {})) - CHAVES_AFILIADO - CHAVES_AFILIADO_DA_API)))
     elif r["afiliado"]["sub_id_1"] != "robometria":
         erro("%s: sub_id_1 tem que ser 'robometria'" % onde)
     checar_escada_de_compra(r, onde, "modelos-robo.json")
@@ -675,14 +723,16 @@ for p in pecas["registros"]:
         elif _dv["origem"] not in NA_TELA:
             erro("%s: origem %r nao existe na escada_de_fontes" % (_od, _dv["origem"]))
 
-    if set(p.get("imagem", {})) < CHAVES_IMAGEM:
-        erro("%s: imagem{} incompleta" % onde)
+    checar_imagem(p, onde)
     if "sub_id_2" in (p.get("afiliado") or {}):
         erro("%s: afiliado.sub_id_2 no banco. O codigo da pagina de origem e "
              "carimbado por quem monta a pagina (gerar-r1/r2/a1/a2), porque a "
              "mesma peca aparece em mais de uma" % onde)
-    elif set(p.get("afiliado", {})) != CHAVES_AFILIADO:
-        erro("%s: afiliado{} fora da forma do esquema" % onde)
+    elif not CHAVES_AFILIADO <= set(p.get("afiliado", {})) <= (
+            CHAVES_AFILIADO | CHAVES_AFILIADO_DA_API):
+        erro("%s: afiliado{} fora da forma do esquema (falta %s; sobra %s)"
+             % (onde, sorted(CHAVES_AFILIADO - set(p.get("afiliado", {}))),
+                sorted(set(p.get("afiliado", {})) - CHAVES_AFILIADO - CHAVES_AFILIADO_DA_API)))
     checar_escada_de_compra(p, onde, "pecas.json")
 
     if not p.get("compatibilidade"):
@@ -811,8 +861,21 @@ for _doc, _arq in ((modelos, "modelos-robo.json"), (pecas, "pecas.json")):
     conferir_contagem(_doc, _arq, "publicavel", len(_p))
     conferir_contagem(_doc, _arq, "esperando_link_de_afiliado",
                       sum(1 for r in _p if not r["afiliado"]["url"]))
+    # `itens_com_ficha` CONTAVA O LINK DE AFILIADO, NAO A FICHA — corrigido em
+    # 16/09/2026, e o defeito so apareceu quando a ficha passou a existir. Ate
+    # hoje `url` e `url_produto` eram ambos vazios nos 73, entao as duas contas
+    # davam zero e ninguem podia ver que o nome dizia uma coisa e a conta,
+    # outra. E a mesma familia do achado 2 da Sentinela de 16/09: dois numeros
+    # certos contando universos diferentes com o mesmo nome. Agora sao duas
+    # chaves, cada uma dizendo o que conta.
     conferir_contagem(_doc, _arq, "itens_com_ficha",
+                      sum(1 for r in _p if r["afiliado"].get("url_produto")))
+    conferir_contagem(_doc, _arq, "itens_com_link_de_afiliado",
                       sum(1 for r in _p if r["afiliado"]["url"]))
+    # E A FOTO TAMBEM NASCE CONTADA. Numero de cabecalho de banco e numero de
+    # tela: contado, nunca digitado.
+    conferir_contagem(_doc, _arq, "itens_com_foto",
+                      sum(1 for r in _p if (r.get("imagem") or {}).get("url")))
     # A CHAVE `itens_sem_piso` MORREU EM 14/09/2026, e o motivo e o proprio despacho
     # do Raphael: ela contava itens sem `url_busca` — o link ENCURTADO — e chamava
     # isso de "sem piso". Depois que a pagina passou a servir a busca CRUA, os 65

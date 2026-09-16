@@ -46,6 +46,28 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DADOS = os.path.join(BASE, "dados")
 
 
+def foto_de(imagem):
+    """A imagem reduzida ao que a TELA usa, e nada alem.
+
+    Quatro campos: `url`, `largura`, `altura` e `alt`. `fonte`, `coletado_em` e
+    `motivo_do_null` ficam no banco — sao procedencia da COLETA, e nao chegam a
+    pixel nenhum. Mandar o bloco inteiro poria motivo de ausencia no HTML
+    servido de toda pagina sem ninguem precisar dele.
+
+    `largura` e `altura` viajam porque sem elas o <img> nao pode declara-las, e
+    sem a declaracao a pagina PULA quando a foto carrega (secao 6).
+    """
+    imagem = imagem or {}
+    if not imagem.get("url"):
+        return None
+    return {
+        "url": imagem["url"],
+        "largura": imagem.get("largura"),
+        "altura": imagem.get("altura"),
+        "alt": imagem.get("alt"),
+    }
+
+
 def _carregar_referencia():
     """Importa ferramentas/cobertura-r1.py como modulo (o hifen impede o import
     normal). A referencia e uma so: se ela mudar, este gerador muda junto."""
@@ -194,6 +216,12 @@ def fato_do_item(item, modelo_id):
             if vida.get("valor") is not None else None
         ),
         "tem_imagem": bool(imagem.get("url")),
+        # A FOTO VIAJA COMO FATO, reduzida ao que a tela usa (secao 6 e 25.6).
+        # `tem_imagem` continua existindo porque ele e a pergunta que o snippet
+        # faz; `imagem` e a resposta quando ha uma. Mandar o bloco inteiro do
+        # banco poria `motivo_do_null` e `fonte` no HTML servido sem ninguem
+        # precisar deles.
+        "imagem": foto_de(imagem),
         "esperando_link": not (peca.get("afiliado", {}) or {}).get("url"),
         # O BLOCO DE COMPRA VIAJA COMO FATO, e nao como decisao do PHP (secao 7
         # do ARQUIPELAGO.md, cicatriz de 10/09/2026). Enquanto a url for vazia,

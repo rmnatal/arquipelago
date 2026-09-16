@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/cobertura-r1.py",
-  "gerado_em": "2026-09-13",
+  "gerado_em": "2026-09-16",
   "o_que_e": "Varredura da faixa de entrada da R1 de ponta a ponta, exigida pela secao 14.3 do ARQUIPELAGO.md — o mesmo que cobertura_de_faixa_r2 faz para a R2. A entrada da R1 e o par (modelo publicavel, tipo de peca consultavel), entao a varredura passa por todas as celulas e registra, celula a celula, se a ferramenta tem o que responder. O criterio da R1 NAO e o de 3 itens da secao 9: ali a faixa produz uma lista de produtos concorrentes, aqui a resposta certa costuma ser UMA peca — a que o fabricante declarou. Exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: a celula responde ou nao responde, e celula que nao responde e a lista de compras.",
   "criterio": {
     "declarada": "existe peca com selo declarada_fabricante para o par (modelo, tipo)",

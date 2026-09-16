@@ -869,22 +869,62 @@ foreach ( array( 'r1', 'r2', 'a1', 'a2' ) as $ferramenta ) {
 	   nao muda uma pagina, e conta-lo daria falha onde nao ha defeito — o mesmo
 	   engano de contar `&#038;` na pagina inteira em vez de dentro do
 	   <script> (secao 8 do ARQUIPELAGO.md). */
-	preg_match_all( '#[^\n]*<span class="rbm-vitrine-vazia"[^\n]*#', $fonte_php, $mf );
-	foreach ( $mf[0] as $linha_php ) {
-		$emissoes++;
-		if ( false === strpos( $linha_php, 'tem_imagem' ) ) {
-			$sem_checagem[] = $ferramenta;
-		}
+	if ( preg_match( '#<span class="rbm-vitrine-vazia"#', $fonte_php ) ) {
+		$sem_checagem[] = $ferramenta . ' (emite o painel por conta propria)';
 	}
+	/* A CHAMADA, e nao a mencao: o comentario logo acima da linha cita a
+	   funcao pelo nome, e conta-lo daria dois onde ha uma. */
+	if ( substr_count( $fonte_php, '$html .= robometria_casca_painel_da_foto(' ) !== 1 ) {
+		$sem_checagem[] = $ferramenta . ' (nao chama o painel da casca exatamente uma vez)';
+		continue;
+	}
+	$emissoes++;
 }
-/* CONTRA O PORTAO INERTE: quatro ferramentas, quatro emissoes. Zero passaria
+/* CONTRA O PORTAO INERTE: quatro ferramentas, quatro chamadas. Zero passaria
    varrendo o vazio, e e justamente assim que uma trava morre sem aviso. */
-rbm_ok( 4 === $emissoes, 'as quatro ferramentas emitem o painel vazio',
-	$emissoes . ' emissao(oes)' );
+rbm_ok( 4 === $emissoes, 'as quatro ferramentas montam o painel pela casca',
+	$emissoes . ' chamada(s)' );
 rbm_ok( empty( $sem_checagem ),
-	'as quatro ferramentas so emitem o painel vazio quando o item nao tem foto',
-	empty( $sem_checagem ) ? 'r1, r2, a1 e a2 checam tem_imagem'
-		: 'emite sem checar: ' . implode( ', ', array_unique( $sem_checagem ) ) );
+	'nenhuma ferramenta escreve o painel da foto por conta propria',
+	empty( $sem_checagem ) ? 'r1, r2, a1 e a2 chamam robometria_casca_painel_da_foto()'
+		: implode( ' | ', array_unique( $sem_checagem ) ) );
+
+/* E A FUNCAO DA CASCA DECIDE PELAS DUAS DIRECOES. Foi a emissao incondicional
+   da R2 e da A2 que este bloco nasceu para matar; a mesma armadilha, agora numa
+   funcao so, custaria as quatro paginas de uma vez. */
+$com_foto = robometria_casca_painel_da_foto( array(
+	'url' => 'https://cf.shopee.com.br/file/exemplo', 'largura' => 800,
+	'altura' => 600, 'alt' => 'Uma peca fotografada' ) );
+$sem_foto_nenhuma = robometria_casca_painel_da_foto( null );
+$sem_dimensao = robometria_casca_painel_da_foto( array(
+	'url' => 'https://cf.shopee.com.br/file/exemplo', 'largura' => null,
+	'altura' => null, 'alt' => 'Uma peca fotografada' ) );
+
+rbm_ok( false !== strpos( $com_foto, '<img class="rbm-vitrine-img"' )
+	&& false === strpos( $com_foto, 'rbm-vitrine-vazia' ),
+	'com foto: sai a <img> e NAO sai o aviso' );
+rbm_ok( false !== strpos( $com_foto, 'width="800"' )
+	&& false !== strpos( $com_foto, 'height="600"' ),
+	'com foto: largura e altura DECLARADAS, para a pagina nao pular' );
+rbm_ok( false !== strpos( $com_foto, 'loading="lazy"' )
+	&& false !== strpos( $com_foto, 'alt="Uma peca fotografada"' ),
+	'com foto: lazy e alt descritivo (secao 6)' );
+rbm_ok( false === strpos( $com_foto, 'aria-hidden' ),
+	'com foto: o painel NAO e escondido do leitor de tela — ele tem descricao' );
+rbm_ok( false !== strpos( $sem_foto_nenhuma, 'rbm-vitrine-vazia' )
+	&& false === strpos( $sem_foto_nenhuma, '<img' ),
+	'sem foto: sai o aviso e NAO sai <img>' );
+rbm_ok( false !== strpos( $sem_foto_nenhuma, 'aria-hidden' ),
+	'sem foto: o painel e escondido do leitor de tela, porque nao ha o que ler' );
+/* SEM DIMENSAO A FOTO NAO ENTRA, e esta e a direcao que so existe porque o
+   portao do banco pode um dia ser afrouxado. Duas metades que discordam sao o
+   unico jeito de o defeito aparecer. */
+rbm_ok( false === strpos( $sem_dimensao, '<img' )
+	&& false !== strpos( $sem_dimensao, 'rbm-vitrine-vazia' ),
+	'url sem largura/altura NAO vira <img>: salto de layout e pior que sem foto' );
+
+rbm_ok( false !== strpos( $css_vitrine, '.rbm-vitrine-img{' ),
+	'a folha da vitrine declara a regra da propria <img>' );
 
 echo "\n";
 if ( $falhas ) {
