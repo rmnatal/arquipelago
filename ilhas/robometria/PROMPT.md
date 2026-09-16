@@ -30,6 +30,31 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 ---
 
+## DESPACHO DO RAPHAEL — 16/09/2026 — o espaco reservado da foto esta desenhado como uma roda de carregamento
+
+O Raphael olhou um cartao da vitrine e perguntou se a ilha vai ao ar sem foto. A resposta de regra e sim, e esta certa (secao 6 e 25.3 do ARQUIPELAGO.md): a foto legitima sai do `image_link` do feed da Shopee, peca fora do feed nao tem foto, e perder a recomendacao tecnica certa por falta de foto seria trocar o certo pelo bonito. **O problema nao e a ausencia da foto — e o desenho do lugar vazio.**
+
+O que esta no ar hoje, em `robometria-casca.php`:
+
+    .rbm-vitrine-vazia{display:block;width:2.4rem;height:2.4rem;border:2px solid var(--rbm-traco);border-radius:50%;border-right-color:transparent;}
+
+Isso e um anel com um quarto faltando, centralizado num painel cinza. E exatamente a forma universal de um **spinner de carregamento**. Quem chega na pagina nao le "esta peca nao tem foto"; le "a foto esta carregando" — e, como ela nunca carrega, le "este site esta quebrado". Numa ilha cujo argumento inteiro e procedencia, parecer quebrada custa mais do que aparentar simplicidade. O proprio comentario do `robometria-r1.php` promete outra coisa — "o desenho e o mesmo encaixe da marca, em traco" — e o que foi para o ar nao e isso.
+
+**EDICAO 1 — trocar a regra de CSS.** Em `snippets/robometria-casca.php`, substitua aquela linha unica por estas duas:
+
+    .rbm-vitrine-vazia{display:block;font-family:var(--rbm-texto);font-size:.78rem;color:var(--rbm-legenda);}
+    .rbm-vitrine-vazia::after{content:"sem foto";}
+
+O painel continua sendo o espaco reservado neutro que a secao 6 manda; o que muda e que ele passa a **dizer** o que e, em vez de imitar um carregamento que nunca termina. A classe so e emitida quando nao ha imagem, entao a frase nunca aparece em cartao com foto. Uma regra so conserta as quatro ferramentas (R1, R2, A1 e A2), sem tocar no HTML de nenhuma.
+
+**EDICAO 2 — o defeito que so aparece quando a foto chegar.** `robometria-r1.php` (linha ~983) e `robometria-a1.php` (linha ~391) so emitem `rbm-vitrine-vazia` quando `tem_imagem` e falso, que e o certo. Mas `robometria-r2.php` (linha ~938) e `robometria-a2.php` (linha ~422) emitem **sempre**, sem checar nada:
+
+    $html .= '<span class="rbm-vitrine-foto" aria-hidden="true"><span class="rbm-vitrine-vazia"></span></span>';
+
+Hoje isso nao aparece porque nenhum item tem foto. No dia em que o primeiro `image_link` do feed entrar no banco, a R2 e a A2 vao escrever "sem foto" por cima de um cartao que tem foto. Ponha nas duas a mesma checagem que a R1 e a A1 ja fazem, lendo o campo de imagem do item da mesma forma que elas leem.
+
+**COMO SE SABE QUE FICOU PRONTO:** no HTML servido de uma pagina de cada ferramenta, o painel de cartao sem foto traz a palavra "sem foto" e nenhum elemento com `border-radius:50%` dentro de `.rbm-vitrine-foto`; e as quatro ferramentas so emitem `rbm-vitrine-vazia` quando o item nao tem imagem. Suba a `revisao` do `manifest.json`, grave o `sha256` novo e acione o Sync como manda a secao 3 — esta correcao fura a fila pela secao 18.
+
 ## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz
 
 ~~**Reescrever a home e o header pelo molde FERRAMENTA e pela voz do `VOZ.md`.**~~
