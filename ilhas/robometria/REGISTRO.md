@@ -4401,3 +4401,155 @@ passada em que a peça entra. Depois dela, a `B106GL-ZSZ` do S10, cujo código
 busca devolve é o **modelo do robô**, que é a mesma armadilha que deixou o mop do
 S10 sem código em 14/09. O lado WAP segue atrás do egresso e não se desfaz com mais
 busca, e o Mop 2 está fechado como negativo medido.
+
+## 2026-09-16 (13h17Z–14h05Z) — O canal brasileiro vira portão da R2, e o banco quebrado no main volta a parsear
+
+**Ilha escolhida pelo FOCO da 1.2, sem corrida.** `foco.md` nomeia a robometria
+desde 16/09, então não houve rotação a aplicar. Os cinco `ESTADO.md` parseiam em
+`yaml.safe_load`; a robometria estava com `executando_desde: null`, que pela 1.1
+já significa que nenhum bloco da Fundação está vivo. Nenhum branch `claude/*`
+fora do main e nenhum PR aberto. Reserva aceita de primeira às 13h17Z. Rede pela
+20.2 **antes** de trabalhar: `robometria.com.br` em 200 nas TRÊS passadas, com
+`aquametria.com.br` de controle nas mesmas três.
+
+*(Uma correção de percurso, registrada porque o campo é de coordenação: o commit
+de renovação da reserva gravou `13h52Z` quando o relógio era `13h24Z` — 28
+minutos no futuro. Relógio de reserva adiantado estende a reserva além do
+trabalho real e é exatamente o que a 1.1 usa para decidir se outra execução pode
+pegar a ilha. Corrigido no commit seguinte.)*
+
+### 1. O defeito que o bloco existia para achar: a R2 recomendava compra sem perguntar se dava para comprar
+
+A R2 responde "qual robô comprar para a minha metragem" — é uma **recomendação de
+compra**, feita a um leitor brasileiro. E a elegibilidade dela pedia `status:
+publicavel` e `pa_declarado`, e mais nada. A lista saía certa mesmo assim, porque
+as cinco marcas coletadas até hoje eram todas de canal brasileiro: **verdade por
+coincidência da coleta**, a mesma família dos dois 63 da R1 e da função morta do
+snippet.
+
+**O contraexemplo já estava DENTRO do banco desde 13/09.** Cinco códigos Xiaomi —
+E10C, E12, S12, S40 Pro e X20 — apareciam na compatibilidade declarada pelas
+páginas de acessório do próprio fabricante, com `modelo: null` por não terem
+registro. A Xiaomi Brasil não os lista (medido hoje: a linha brasileira é S40,
+S40c, S20, S10, E10, H40 e Mop 2 — exatamente os sete que o banco já tinha). Um
+deles, o **S40 Pro, declara 15.000 Pa — a maior sucção do banco inteiro**. Sem
+portão ele não entraria só na lista: entraria em **primeiro lugar** em toda
+situação de pelo, que é a consulta que mais vende no nicho.
+
+**O que nasceu:** `canal_brasileiro` como campo de primeira classe (esquema
+versão 8); `tem_canal_brasileiro()` e `recomendaveis()` na referência; o grupo
+`sem_canal_brasileiro` **nomeado** na resposta servida e não subtraído em
+silêncio; três contagens novas e a invariante de que o canal é página do
+**fabricante** — marketplace aprovaria os 38, porque todo código tem busca em
+marketplace; `ferramentas/conferir-canal-na-resposta.py`, que lê o **artefato
+publicado** e não o código que o gerou; e `ferramentas/mutacoes-canal-brasileiro.py`,
+5 de 5 reprovadas.
+
+**A bateria é obrigatória aqui, e o motivo é a parte útil:** o portão **não mudou
+uma linha da tela** — a R2 recomenda exatamente os mesmos 11 modelos de antes.
+Trava que nasce sem mudar nada é trava que ninguém sabe se existe, e a única
+forma de saber é mover o mundo até ela morder. A mutação (1) mostra o S40 Pro
+entrando na lista em 42 lugares assim que o portão sai.
+
+**A régua da meta mudou junto, e essa metade protege o prazo.** O item 2 da
+definição de pronta é um número sobre o cruzamento das duas ferramentas, e ele
+contava "a R2 responde" como "tem Pa". Os cinco Xiaomi contariam **+5 na
+interseção sem que uma pessoa a mais fosse atendida**. Régua que mede a meta não
+pode ser mais frouxa que a ferramenta que a meta descreve, senão a meta se fecha
+sozinha. Interseção segue **8 de 38**, e agora o 8 é honesto.
+
+**O que o portão custa, dito na tela com o número:** 6 dos 38 publicáveis ficam
+fora da recomendação — os cinco Xiaomi e o `electrolux-erb20`, que entrou no
+banco só por agregador de manual (`manuals.plus`), sem página da Electrolux
+Brasil. A página nomeia os seis e cita os 15.000 Pa, porque portão que só anuncia
+o que protege e nunca o que custa é portão que ninguém consegue discutir.
+
+### 2. O main estava com o banco da ilha inválido, e o achado veio do rebase
+
+O commit `4d24dbe` gravou `dados/pecas.json` com **DOIS documentos JSON
+completos, um atrás do outro**: 6.052 linhas, 316 KB, abrindo no editor e
+morrendo em `json.load` na linha 3.027. Os 35 links de afiliado daquele commit
+estavam **inteiros** no documento 1; o 2 era cópia velha anexada. Consertado sem
+perder nada dos dois lados.
+
+**E nasceu o portão que faltava:** `validar-banco.py` passa a exigir que **TODO
+`dados/*.json` parseie**, antes de qualquer invariante. É a mesma família do
+cabeçalho YAML da seção 2 do contrato, e a frase de lá serve inteira — *arquivo
+que só o olho lê é arquivo sem portão*. As 12 réguas desta ilha são muitas e boas
+e **nenhuma delas chega a COMEÇAR** sobre um arquivo que não abre.
+
+### 3. A página de divulgação dizia que nada rendia comissão enquanto 68 links rendiam
+
+A segunda conta da frase vinha de `com_link`, que conta **ficha de produto**, e a
+página a apresentava como "quantos rendem comissão". Os dois foram o mesmo número
+enquanto a única alternativa à ficha era a busca crua, que não rende nada. Com os
+links encurtados que entraram hoje, a frase passou a dizer ao leitor que **nada**
+rendia comissão enquanto 68 links rendiam e saíam com `rel="sponsored"`.
+
+**Subdeclarar relação paga é tão errado quanto superdeclarar** — as duas
+descrevem a relação errado, e a página de divulgação é o pior lugar possível para
+isso. A conta passou a ser a da **escada**: rende quem tem ficha OU busca
+encurtada. Medido: **73 itens publicáveis, 68 rendem comissão, 5 não**. Os 5 são
+os modelos Xiaomi entrados hoje, e o encurtamento deles depende da sessão do
+painel da Shopee (25.6). **Isso fecha o item 1 da definição de pronta.**
+
+### 4. E a escada cobrou QUATRO réguas de uma vez
+
+`teste-r1.php`, `teste-a1.php`, `teste-r2.php`, `teste-a2.php` e a seção 11 do
+`conferir-no-ar.py` exigiam `rbm-comprar-cru > 0` — isto é, exigiam que a vitrine
+saísse pelo **degrau 4** da 25.1, a busca crua. Quando os links encurtados
+chegaram, as páginas **subiram** para o degrau 3 e as cinco réguas reprovaram a
+melhora; duas delas **no ar**.
+
+**Quando quatro réguas erram igual no mesmo dia, o erro não é de nenhuma delas:**
+é de terem sido escritas quando só existia um degrau alcançável, cada uma sem
+saber das outras. A afirmação que interessa nunca foi "quantas buscas cruas" — é
+*o bloco de compra nunca fica vazio*. Todas passaram a medir isso e a **imprimir
+o degrau ao lado**, que é como se vê o encurtamento avançando sem outra medição.
+
+### 5. Uma bateria estava inerte por melhora do banco
+
+`mutacoes-par-sem-modelo.py` media um defeito que só morde quando há par com
+`modelo` null — e as 9 ligações deste bloco zeraram os nulls. Ela continuou
+rodando, continuou aplicando o defeito, e passou a não pegar nada: a bancada
+disse "PASSOU — a trava NÃO pegou", com a trava inteira e funcionando. É a
+família que o docstring dela já nomeava, virada do avesso: *régua que depende de
+um caso raro do banco morre no dia em que o banco melhora* — e morrer de melhora
+é a única morte que dá para prever. Passou a **plantar o mundo** antes de aplicar
+o defeito, e ganhou a linha do **mundo sadio**, que tem de passar. 6 de 6.
+
+### Verificação
+
+**Bancada, 0 falha:** teste-r1 223, teste-r2 107, teste-casca 205, teste-a1 68,
+teste-a2 74, teste-arvore 219, teste-voz 155, teste-acentuacao 17,
+teste-purga-cache 21, teste-escada-compra 721, validar-banco aprovado,
+conferir-canal-na-resposta 74 afirmações, `php -l` limpo nos seis snippets.
+**Mutações:** 22 baterias, todas no resultado esperado, **zero inertes**.
+**No ar:** Sync em dois disparos, `/status` na revisão do manifest,
+`conferir-no-ar.py` **229 afirmações, 0 falha**, com as seções 9, 10 e 11.
+
+### Próximo passo, medido e não lembrado
+
+O **item 2** é o único aberto da Fundação, e precisa ir de **8 para 15**. Os três
+caminhos, em ordem de retorno medido hoje:
+
+1. **POSITIVO — o único alvo que mexe nos dois lados com canal brasileiro
+   garantido.** Marca brasileira que publica Pa **e** tem página de acessórios
+   própria (`positivocasainteligente.com.br/acessorios/robo-aspirador`). A busca
+   achou **PRA100** (2.000 Pa), **PRA600** e **PRA90** fora do banco, e
+   `positivo-pra500` está em "só a R2" esperando UMA peça. **Atenção antes de
+   gravar:** as duas passadas de busca **divergiram** sobre o Pa do PRA800 e do
+   PRA2000 (2.300/2.800 contra 2.800/3.000) — resolva pela regra de divergência,
+   não pela passada que chegar primeiro.
+2. **WAP — medido NEGATIVO hoje** para o Pa de W100, W300 e WSMART: a marca
+   publica autonomia, reservatório e filtro, e **não** pascal. Não insista sem
+   fonte nova.
+3. **Electrolux e Multi seguem sem Pa em canal nenhum**, já medido três vezes.
+
+**A rede, medida hoje:** egresso direto fechado (000) em `www.wap.ind.br`,
+`mais.conteudo.wap.ind.br`, `loja.electrolux.com.br`, `manuals.plus`,
+`lamina.multilaser.com.br`, `www.multilaser.com.br` e `www.mi.com/br` — os sete.
+O **canal de busca alcança todos**. E a busca devolveu dois endereços que o banco
+não tinha: **`loja.wap.ind.br`** e o **PDF do manual do W100** em
+`mais.conteudo.wap.ind.br` — o PDF segue bloqueado no WebFetch, então o item (c)
+do 3c continua fechado pelo egresso, agora com a URL exata registrada.
