@@ -60,6 +60,20 @@ Quando `foco.md` na raiz do repositório nomeia uma ilha, a Fundação trabalha 
 **A ÚNICA coisa que fura o foco** é despacho marcado **ALTO** em ilha que está no ar e quebrada — página servindo erro, ferramenta devolvendo número errado, site fora do ar. Nesse caso a seção 18 vence, você conserta e volta ao foco na execução seguinte. Despacho NORMAL de ilha fora do foco **espera**, por mais antigo que seja.
 
 **O que isto custa, escrito para ninguém se assustar depois:** as ilhas fora do foco param de receber bloco. Defeito NORMAL nelas acumula. A Sentinela continua rondando todas e continua escrevendo despacho — o despacho fica esperando, não some. Foi uma escolha do Raphael, com o custo na mesa: com 20 execuções por semana, cinco ilhas andando devagar valem menos que uma ilha terminada.
+**O FOCO VALE PARA O ARQUIPÉLAGO INTEIRO, NÃO SÓ PARA A FUNDAÇÃO (16/09/2026).** Esta seção mora na seção 1 por acidente de lugar, não de alcance. Enquanto `foco.md` nomear uma ilha:
+
+- **Leitura semanal (Sentinela estratégica):** trabalha **só na ilha em foco**. Toda a leitura — indexação, vigilância de loja, lacuna de conteúdo, tráfego, posição — é dela e de mais nenhuma. E o teto semanal de geração de link de afiliado vai **inteiro** para a ilha em foco: é a camada que enche o cano de links, e com uma ilha só o cano dela enche em uma fração do tempo.
+- **Ronda diária:** faz a **ronda completa só na ilha em foco**. Nas outras ilhas que estão no ar, ela faz apenas o **CHECK DE VIDA**, descrito abaixo, e nada além disso.
+
+**CHECK DE VIDA — o mínimo que impede o arquipélago de ficar cego (16/09/2026).** Ilha fora do foco não é ilha abandonada. Em cada ronda, para cada ilha com `estado: viva` ou com páginas no ar que NÃO esteja em foco, a ronda diária mede três coisas e só três:
+
+1. A home responde **200**.
+2. `/status` responde 200 e a revisão bate com a do `manifest.json`.
+3. O console da home não tem erro de JavaScript.
+
+Passou nas três, escreve uma linha no relatório e segue. **Falhou em qualquer uma, isso é despacho ALTO** — e despacho ALTO é justamente o que fura o foco pela regra acima, então a Fundação conserta na execução seguinte e volta.
+
+**Por que o check de vida existe, e por que ele é curto:** sem ele, a exceção do despacho ALTO seria letra morta — ninguém estaria olhando para descobrir que a ilha caiu. Mas ele é deliberadamente raso: três medições que custam segundos, sem executar ferramenta, sem varrer página, sem teste de vida de link. Ilha fora do foco recebe vigilância de queda, não vigilância de qualidade. Defeito de qualidade nela acumula até ela voltar ao foco, e isso é a decisão, não um esquecimento.
 
 ### 1.1 A RESERVA ENVELHECE ENQUANTO A EXECUÇÃO ESTÁ VIVA — quem decide é o último commit da ilha (12/09/2026)
 
