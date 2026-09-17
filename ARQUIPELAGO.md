@@ -775,6 +775,20 @@ Abrir a URL do produto e ler o texto servido:
 
 **A ronda diária confere os links dos itens publicados** e trata link morto como defeito da 19.1. Conferir é abrir a página do produto — **nunca clicar no próprio link de afiliado**, que suja a métrica de cliques e em alguns programas é infração.
 
+**O MODO CERTO DE FAZER ESSE TESTE NA SHOPEE, decidido pelo Raphael em 17/09/2026.** Ler o texto da página renderizada **não funciona** e isso foi medido duas vezes: da nuvem, `shopee.com.br` devolvia 0 bytes; do navegador do Raphael, a Shopee redireciona para `shopee.com.br/verify/captcha?...&scene=crawler_item` depois de poucos segundos, e a Sentinela é proibida de resolver CAPTCHA. O caminho que funciona é a própria API de ficha da Shopee:
+
+```
+https://shopee.com.br/api/v4/pdp/get_pc?shop_id=<shop_id>&item_id=<item_id>&detail_level=0
+```
+
+Ela devolve `data.item.title` e `data.item.item_status`. Os dois ids saem de `.../product/<shop_id>/<item_id>` ou do sufixo `i.<shop_id>.<item_id>` das URLs de slug. **Não gasta clique de afiliado, não depende de ler página renderizada e não esbarra no anti-robô** — desde que chamada do lugar certo.
+
+**E O LUGAR CERTO É O NAVEGADOR, NÃO A NUVEM. Medido em 17/09/2026, depois de o domínio já estar liberado na política de rede:** chamada direta da nuvem devolve **HTTP 403 do próprio servidor da Shopee**, com corpo `{"is_login":false,"error":90309999,"redirect_to_error_page":true}` — e continua 403 com User-Agent de navegador, `Referer` da ficha e `X-API-SOURCE: pc`. Não é a lista de domínios: é o anti-robô da Shopee, que exige contexto de sessão de navegador. **Então o teste de vida da Shopee é `fetch` de dentro de uma aba já no domínio, na ronda da Sentinela, e não tarefa de nuvem.** Quem escrever bloco de nuvem para isso vai perder a execução descobrindo de novo o que está escrito aqui.
+
+**A medição que validou o método** (feita na clubedomosaico porque era onde havia link para testar): 10 de 10 itens vivos, 0 mortos, 0 esgotados.
+
+**ISTO NÃO REVOGA A 25.2.** O teste diz se um link morreu; não muda qual link a página serve. O piso continua sendo a busca.
+
 ### 25.4-b SEM `url_produto` NÃO EXISTE TESTE DE VIDA
 
 Buraco encontrado em 13/09/2026, poucos minutos depois de a 25.4 ser escrita. **O banco guardava só o link de afiliado encurtado.** Mas a 25.4 manda testar abrindo a página do produto e proíbe clicar no próprio link de afiliado — e de um `s.shopee.com.br/XXXX` não se chega à página do produto sem clicar. **A regra era impossível de cumprir no dia em que nasceu.**
