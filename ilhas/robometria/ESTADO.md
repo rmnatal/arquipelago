@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-17T10:38Z
-executando_desde: null
+executando_desde: 2026-09-17T13:16Z
 bloco_atual: |
   A PROPOSTA 2 DA LEITURA SEMANAL DE 16/09, INTEIRA E CONFERIDA NO AR (casca 1.10.0, manifest revisao 59). ZERO URL nova, ZERO URL mudada de endereco, ZERO nome de pagina mudado.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. executando_desde estava null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo, e o ultimo commit na pasta era de 20h22Z de ontem. Nenhum branch claude fora do main e nenhum PR aberto. Reserva aceita de primeira as 10h16Z e RENOVADA as 10h28Z pela 1.1. Rede pela 20.2 antes de trabalhar: home 200 e /status na revisao 58, igual a do manifest, em TRES passadas.
