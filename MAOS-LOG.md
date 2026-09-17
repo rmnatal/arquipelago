@@ -651,3 +651,115 @@ Nenhum. Push aceito na primeira tentativa, sem rebase e sem force. Nenhuma ilha 
 `executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync nao foi acionado, nada foi
 publicado, nenhuma conta foi criada e nenhum arquivo alem dos quatro nomeados pela instrucao e deste log
 foi tocado.
+
+---
+
+## 17/09/2026 — disparo das 23h13 UTC — insercao do despacho do Raphael de 17/09 na Robometria (a rede abriu para os fabricantes)
+
+Tarefa unica: um arquivo, uma insercao literal. `ilhas/robometria/PROMPT.md`, bloco novo imediatamente antes
+do despacho do Raphael de 16/09 sobre a API da Shopee. O `REGISTRO.md` nao foi tocado. Nenhum outro arquivo
+alem deste log.
+
+### A ancora da instrucao NAO existia com o texto que a instrucao deu — e o que foi feito
+
+A instrucao mandou localizar a linha exata:
+
+```
+## DESPACHO DO RAPHAEL — 16/09/2026 — A API DA SHOPEE FOI LIBERADA, E ELA FECHA QUATRO BURACOS DESTA ILHA DE UMA VEZ
+```
+
+Essa linha nao existe mais no `main`. `grep` no arquivo devolveu zero ocorrencia. O que existe, e e a MESMA
+secao, e:
+
+```
+## DESPACHO DO RAPHAEL — 16/09/2026 — a API da Shopee ~~fecha quatro buracos desta ilha~~ — **CUMPRIDO E CONFERIDO NO AR EM 16/09/2026, 17h05Z**
+```
+
+A confirmacao nao foi por semelhanca, foi pelo historico: `git log -S` sobre o texto antigo mostra que a linha
+nasceu em `8769bbb` com o titulo que a instrucao cita e foi reescrita em `aae66e5`
+("robometria: fecha os dois despachos do Raphael de 16/09 e sobe as regras ao contrato"), que a marcou como
+cumprida e baixou a caixa alta. Mesma data, mesmo assunto, mesma secao — so o titulo mudou depois que o
+despacho foi fechado. A insercao foi feita ali, com a ancora conferida uma unica ocorrencia ANTES de gravar e
+o programa abortando se fosse diferente de 1.
+
+### Passo 1 — ponto de partida
+
+```
+$ git fetch origin main && git checkout -B trabalho origin/main
+00309c8 robometria: fecha a execucao das 19h16Z — e uma data de regua que estava verde por coincidencia da coleta
+```
+
+### Passo 2 — `git status --porcelain` e `git diff --stat` antes do commit
+
+```
+$ git status --porcelain
+ M ilhas/robometria/PROMPT.md
+
+$ git diff --stat
+ ilhas/robometria/PROMPT.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+$ git diff --numstat
+20	0	ilhas/robometria/PROMPT.md
+```
+
+20 insercoes, **0 remocoes**. Nada foi apagado, nada reformatado.
+
+### Passo 3 — hash do commit que foi ao `main`
+
+```
+2ae99089d120cd3677f2e0d8402266e5f93e0a8b
+robometria: a rede abriu para os cinco fabricantes, e dois dos enderecos registrados nunca existiram
+```
+
+### Passo 4 — push e confirmacao em `origin/main`
+
+```
+$ git push origin HEAD:main
+   00309c8..2ae9908  HEAD -> main
+
+$ git fetch origin main && git log -1 --format='%H %s' origin/main
+2ae99089d120cd3677f2e0d8402266e5f93e0a8b robometria: a rede abriu para os cinco fabricantes, e dois dos enderecos registrados nunca existiram
+```
+
+Push aceito na primeira tentativa. Sem rebase, sem force, sem PR.
+
+### Passo 5 — contagem conferida RELENDO o arquivo depois de gravar
+
+```
+$ grep -c '' ilhas/robometria/PROMPT.md
+891
+$ git show 00309c8:ilhas/robometria/PROMPT.md | grep -c ''
+871
+$ git show 00309c8:ilhas/robometria/PROMPT.md | grep -c '^## DESPACHO'
+9
+$ grep -c '^## DESPACHO' ilhas/robometria/PROMPT.md
+10
+$ grep -n '^## DESPACHO' ilhas/robometria/PROMPT.md | head -3
+33:## DESPACHO DA SENTINELA — 16/09/2026 (leitura semanal, 19h40Z) — a primeira medição com sinal, e o alvo é um só
+100:## DESPACHO DO RAPHAEL — 17/09/2026 — A REDE ABRIU PARA OS FABRICANTES, E DOIS DOS CINCO ENDERECOS NUNCA EXISTIRAM
+120:## DESPACHO DO RAPHAEL — 16/09/2026 — a API da Shopee ~~fecha quatro buracos desta ilha~~ — **CUMPRIDO E CONFERIDO NO AR EM 16/09/2026, 17h05Z**
+$ grep -c '^## DESPACHO DO RAPHAEL — 17/09/2026 — A REDE ABRIU PARA OS FABRICANTES' ilhas/robometria/PROMPT.md
+1
+```
+
+O arquivo foi de **871 para 891 linhas** (20 a mais, exatamente o tamanho do bloco mais a linha em branco que
+o separa da ancora) e de **9 para 10** secoes `## DESPACHO`. O bloco novo comeca na linha 100 e a ancora, que
+estava na 100, passou para a 120 — intacta, com uma unica linha em branco entre o fim do bloco e ela. O bloco
+aparece uma unica vez. A linha 99 ja era em branco antes da insercao, entao a separacao de cima tambem ficou
+correta sem acrescentar nada.
+
+O bloco foi gravado por arquivo, com heredoc de delimitador entre aspas, para as tres crases da tabela de
+dominios e as crases simples dos hostnames passarem sem interpretacao do shell. A mensagem de commit foi
+passada com `-F -`, nunca com `-m`, pelo mesmo motivo. O texto entrou byte a byte como veio, sem acento
+acrescentado, sem hostname corrigido, sem uma linha a mais.
+
+### Passos que falharam
+
+Nenhum passo de git falhou. A unica divergencia do disparo esta registrada na secao "A ancora da instrucao
+NAO existia" acima: o titulo da linha-ancora mudou no `main` desde que a instrucao foi escrita, e a insercao
+foi feita na secao correspondente, identificada pelo historico do arquivo e nao por palpite.
+
+Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync
+nao foi acionado, nada foi publicado, nenhuma conta foi criada, o `REGISTRO.md` nao foi tocado e nenhum
+arquivo alem de `ilhas/robometria/PROMPT.md` e deste log foi alterado.
