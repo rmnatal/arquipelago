@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-r2.py",
-  "banco_gerado_em": "2026-09-16",
+  "banco_gerado_em": "2026-09-17",
   "o_que_e": "Combustivel da ferramenta R2 no site: as 9 situacoes de piso x pelo com os limiares de Pa que cada fonte brasileira declara para elas, a classificacao dos modelos do banco em cada situacao, e os numeros de cada modelo de referencia. Sem prosa: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a implementacao de referencia por ferramentas/teste-r2.php.",
   "entrada": {
     "area_minima": 10,
@@ -764,7 +764,7 @@
         "xiaomi-s40"
       ],
       "no_limiar": [],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     },
@@ -779,7 +779,7 @@
         "xiaomi-e10",
         "xiaomi-s10"
       ],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     },
@@ -794,7 +794,7 @@
         "xiaomi-e10",
         "xiaomi-s10"
       ],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     },
@@ -809,7 +809,7 @@
         "xiaomi-e10",
         "xiaomi-s10"
       ],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     },
@@ -824,7 +824,7 @@
         "xiaomi-e10",
         "xiaomi-s10"
       ],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     },
@@ -839,7 +839,7 @@
         "xiaomi-e10",
         "xiaomi-s10"
       ],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     },
@@ -854,7 +854,7 @@
         "xiaomi-e10",
         "xiaomi-s10"
       ],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     },
@@ -869,7 +869,7 @@
         "xiaomi-e10",
         "xiaomi-s10"
       ],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     },
@@ -884,7 +884,7 @@
         "xiaomi-e10",
         "xiaomi-s10"
       ],
-      "nao_atendem": 5,
+      "nao_atendem": 6,
       "sem_pa_declarado": 21,
       "sem_canal_brasileiro": 6
     }
@@ -1838,7 +1838,7 @@
     },
     "funil": {
       "sem_pa": 21,
-      "publicaveis": 38,
+      "publicaveis": 39,
       "marcas_mudas": [
         "Electrolux",
         "Multi (ex-Multilaser)"
@@ -1867,7 +1867,7 @@
     }
   },
   "resumo": {
-    "modelos_publicaveis": 38,
+    "modelos_publicaveis": 39,
     "modelos_na_tela": 11,
     "modelos_esperando_link": 3,
     "modelos_com_link": 8,

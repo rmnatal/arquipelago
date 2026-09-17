@@ -24,7 +24,7 @@
     },
     "dados/a1-fatos.json": {
      "data": "2026-09-17",
-     "como": "commit"
+     "como": "nao commitado"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-09-17",
@@ -39,6 +39,7 @@
    "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-11 (00h07Z) — Bloco 5: o ARTIGO-ANCORA da R2, e o acento que faltava no A1\" — snippet robometria-a2.php v1.0.0, manifest revisao 13 conferida no /status",
    "modificada_em": "2026-09-17",
    "modificada_por": [
+    "dados/a2-fatos.json",
     "snippets/robometria-casca.php"
    ],
    "arquivos": {
@@ -47,8 +48,8 @@
      "como": "commit"
     },
     "dados/a2-fatos.json": {
-     "data": "2026-09-16",
-     "como": "commit"
+     "data": "2026-09-17",
+     "como": "nao commitado"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-09-17",

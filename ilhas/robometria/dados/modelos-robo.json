@@ -3,17 +3,17 @@
  "ilha": "robometria",
  "entidade": "modelo-robo",
  "esquema": "dados/esquema-banco.json",
- "gerado_em": "2026-09-16",
+ "gerado_em": "2026-09-17",
  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Bloco 3c (09/09/2026): 7 modelos novos e 4 atualizados, todos por busca restrita ao dominio oficial da marca — o egresso continua fechado para leitura direta. SEGUNDA LEVA DO BLOCO 3c (09/09/2026): coleta dirigida ao campo pa_declarado fora da Electrolux, por busca restrita a mi.com, wap.ind.br, positivocasainteligente.com.br e loja.meupositivo.com.br. Toda leitura direta continua devolvendo EGRESS_BLOCKED — inclusive os PDFs de manual da WAP (mais.conteudo.wap.ind.br) e o guia rapido da Positivo (static.positivocasainteligente.com.br), que ficaram registrados em fontes{} como alvo da releitura de nivel 2. QUINTA LEVA DO BLOCO 3c (13/09/2026, 13h): a WAP sai de 3 para 8 modelos — W90, W100, W100C, W300 e WSMART —, e o gargalo que o PROMPT.md nomeava ('a loja da WAP publica pagina de peca POR MODELO e NENHUM desses modelos esta no banco') deixa de existir do lado do modelo. Coleta por busca restrita a loja.wap.ind.br e a wap.ind.br, com DUAS passadas independentes por campo, nenhuma delas carregando o valor na consulta; o egresso direto segue fechado por politica (000 em loja.wap.ind.br e www.wap.ind.br, com robometria.com.br em 200 na mesma passada). Nenhum dos cinco declara Pa: a WAP publica Pa no W400 e nivel de succao no resto, entao esta leva NAO mexe na R2 e nao muda faixa nenhuma de cobertura_de_faixa_r2 — ela abre o lado do modelo para a coleta de PECA. DOIS NUMEROS FORAM RECUSADOS e a recusa esta escrita dentro dos registros (recarga e bateria do W90, vindas de artigo de familia que mistura o W90 com o W90 Perola; bateria e voltagem do W100, cuja frase a segunda passada negou na propria pagina do produto). E O DEGRAU DAS LOJAS OFICIAIS FOI CORRIGIDO: loja.wap.ind.br e loja.meupositivo.com.br estavam no nivel 3 (pagina do fabricante) enquanto loja.electrolux.com.br estava no 4 (loja oficial da marca) desde 09/09 — a mesma especie de fonte em dois degraus. Os quatro registros afetados desceram para 4, que e a direcao barata da assimetria de custo da secao 10 do ARQUIPELAGO.md.",
  "contagem": {
-  "total": 43,
-  "publicavel": 38,
+  "total": 44,
+  "publicavel": 39,
   "nao_publicavel": 1,
   "excluido_do_banco": 4,
-  "esperando_link_de_afiliado": 23,
-  "com_pa_declarado": 16,
-  "com_canal_brasileiro": 32,
-  "recomendaveis_pela_r2": 11,
+  "esperando_link_de_afiliado": 24,
+  "com_pa_declarado": 17,
+  "com_canal_brasileiro": 33,
+  "recomendaveis_pela_r2": 12,
   "sem_canal_brasileiro": 6,
   "com_par_minutos_m2_declarado": 5,
   "marcas_que_declaram_pa": [
@@ -27,7 +27,7 @@
   ],
   "itens_com_ficha": 15,
   "itens_sem_saida_de_compra": 0,
-  "itens_com_piso_nao_rastreavel": 0,
+  "itens_com_piso_nao_rastreavel": 1,
   "links_sem_degrau": 0,
   "itens_com_link_de_afiliado": 15,
   "itens_com_foto": 15
@@ -5050,6 +5050,119 @@
    "status": "publicavel",
    "observacao": "Entrou porque a escova lateral B106GL-BX ja declarava o codigo X20. ATENCAO AO SUFIXO, e a coleta mediu isso: a mesma familia tem X20 Pro (7.000 Pa) e X20 Max (8.000 Pa), tres sucoes diferentes sob um nome parecido. Este registro e o X20 e nada mais — foi 'X20' o que a pagina de acessorio declarou, e alargar para a familia inteira seria a heranca de compatibilidade que o principio do esquema proibe.",
    "verificado_em": "2026-09-16"
+  },
+  {
+   "id": "xiaomi-mop-2-lite",
+   "marca": "xiaomi",
+   "linha": null,
+   "codigo_fabricante": "Mop 2 Lite",
+   "canal_brasileiro": {
+    "valor": "https://www.mi.com/br/product/mi-robot-vacuum-mop-2-lite/",
+    "unidade": null,
+    "fonte": "f-specs",
+    "declarado_como": "Mi Robot Vacuum-Mop 2 Lite - Xiaomi Brasil"
+   },
+   "nome_comercial": "Mi Robot Vacuum-Mop 2 Lite",
+   "categoria": "robo",
+   "variantes_de_hardware": [],
+   "pa_declarado": {
+    "valor": 2200,
+    "unidade": "Pa",
+    "fonte": "f-specs",
+    "declarado_como": "succao de 2.200 Pa"
+   },
+   "potencia_w_declarada": {
+    "valor": null,
+    "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo nesta execucao e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 2026-09-17)"
+   },
+   "autonomia_min_declarada": {
+    "valor": null,
+    "unidade": "min",
+    "motivo_do_null": "DUAS passadas limpas devolveram o MESMO texto — \"cerca de 90 minutos usando o modo padrao\" — e NENHUMA das duas disse QUAL pagina da Xiaomi o declara: os resultados misturam o artigo KA-11405 e o KA-124200, e uma terceira passada sobre o KA-124200 nao devolveu a frase. Nesta ilha a atribuicao de um numero e lida do DEGRAU, com endereco e data, nunca de 'o fabricante' em geral — entao o numero nao entra. Ele volta no dia em que uma passada disser o endereco, ou com o egresso aberto"
+   },
+   "cobertura_m2_declarada": {
+    "valor": null,
+    "unidade": "m2",
+    "motivo_do_null": "a Xiaomi NAO declara area coberta por carga para este modelo em nenhuma das passadas desta coleta, e o mesmo ja foi medido nos outros seis modelos Xiaomi do banco. Este null e RESPOSTA, nao lacuna"
+   },
+   "recarga_min_declarada": {
+    "valor": null,
+    "motivo_do_null": "UMA passada devolveu \"cerca de 4 horas\" e a segunda nao devolveu o campo. Um numero de tela desta ilha precisa de duas passadas limpas, e este tem uma"
+   },
+   "retoma_apos_recarga": {
+    "valor": null,
+    "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo nesta execucao e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 2026-09-17)"
+   },
+   "bateria_mah": {
+    "valor": null,
+    "unidade": "mAh",
+    "motivo_do_null": "UMA passada devolveu DOIS numeros na mesma frase — \"2500 mAh (rated capacity) / 2600 mAh (nominal capacity)\" — e a segunda nao devolveu o campo. Escolher entre os dois seria escolher por quem le"
+   },
+   "voltagem": {
+    "valor": null,
+    "unidade": "V",
+    "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo nesta execucao e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 2026-09-17)"
+   },
+   "base_autoesvaziamento": {
+    "valor": null,
+    "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo nesta execucao e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 2026-09-17)"
+   },
+   "navegacao": {
+    "valor": "giroscopio",
+    "unidade": null,
+    "fonte": "f-specs",
+    "declarado_como": "navegacao por giroscopio e assistida visualmente, com 25 sensores de alta precisao"
+   },
+   "reservatorio_po_ml": {
+    "valor": 450,
+    "unidade": "ml",
+    "fonte": "f-specs",
+    "declarado_como": "compartimento de po de 450 mL"
+   },
+   "reservatorio_agua_ml": {
+    "valor": 270,
+    "unidade": "ml",
+    "fonte": "f-specs",
+    "declarado_como": "tanque de agua de 270 mL com controle eletronico"
+   },
+   "divergencias": [],
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o registro nasceu nesta execucao e a coleta da Shopee nao rodou sobre ele. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-17",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20Mop%202%20Lite%20robo%20aspirador",
+    "motivo_sem_url_busca": "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar --encurtar com a credencial da Open API no ambiente.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-specs": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Brasil",
+     "titulo_na_fonte": "Mi Robot Vacuum-Mop 2 Lite - Xiaomi Brasil",
+     "url": "https://www.mi.com/br/product/mi-robot-vacuum-mop-2-lite/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, TRES passadas independentes nesta execucao, com o mesmo numero de succao nas tres. O egresso direto esta fechado: WebFetch de www.mi.com devolveu EGRESS_BLOCKED nesta execucao, com robometria.com.br em 200 na mesma janela. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-17"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "MODELO NOVO COM OS TRES CAMPOS que o item 2 da DEFINICAO DE PRONTA conta — Pa declarado, canal brasileiro e peca declarada pelo fabricante —, que e o unico caminho que a execucao das 13h16Z de 17/09 deixou escrito para mover a intersecao alem de 11. Com 2.200 Pa ele passa a ser o modelo de MENOR succao do banco inteiro, abaixo do Mop 2 (2.700) e do PRA800 (2.800): fica abaixo dos dois limiares editoriais de pet (3.000 no Mundo Conectado, 4.000 no Canaltech) e da a R2 um terceiro caso concreto de recusa por faixa, agora com o piso da escala.",
+   "verificado_em": "2026-09-17"
   }
  ]
 }

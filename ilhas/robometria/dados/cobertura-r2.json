@@ -3,10 +3,10 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/cobertura-r2.py",
-  "banco_gerado_em": "2026-09-16",
+  "banco_gerado_em": "2026-09-17",
   "o_que_e": "Varredura da entrada da R2 de ponta a ponta, exigida pela secao 14.3 do ARQUIPELAGO.md: as 9 situacoes de piso x pelo, e a metragem de 10 a 400 m2 contra cada modelo de referencia. O criterio nao e numero redondo de itens — e que nenhuma situacao que a ferramenta consegue produzir saia com menos de 3 elegiveis.",
   "nota_sobre_a_medicao_anterior": "cobertura_de_faixa_r2, dentro de dados/modelos-robo.json, mediu a mesma faixa em 09/09/2026 e chegou a numeros MAIORES nas situacoes de pet. A diferenca nao e erro de nenhum dos dois: aquela varredura tratou o limiar da Canaltech como >=, e esta trata como >, porque a fonte escreve 'acima de 4.000 Pa' e um modelo de exatamente 4.000 Pa nao esta acima de 4.000. Os modelos que ficam no valor exato nao somem — vao para um grupo proprio, rotulado. Esta varredura passa a ser a que a ferramenta consulta.",
-  "medido_em": "2026-09-16",
+  "medido_em": "2026-09-17",
   "entrada": {
     "area_m2": {
       "minimo": 10,
@@ -416,14 +416,14 @@
     "leitura": "TEMPO REAL ATE TERMINAR = ciclos x autonomia + (ciclos-1) x recarga precisa de TRES numeros declarados, e nenhum modelo do banco tem os tres. Quem declara cobertura por carga (Electrolux) nao declara recarga; quem declara recarga (Xiaomi S20, Positivo PRA2000) nao declara cobertura. A R2 publica os ciclos e o tempo de limpeza somado, e diz que o total depende de um numero que o fabricante nao publica. Coletar recarga_min_declarada dos modelos Electrolux que ja declaram cobertura e o trabalho de MENOR custo e MAIOR retorno que esta varredura encontrou."
   },
   "contagem": {
-    "modelos_publicaveis": 38,
-    "com_pa_declarado": 16,
+    "modelos_publicaveis": 39,
+    "com_pa_declarado": 17,
     "sem_pa_declarado": 22,
     "modelos_de_referencia": 5,
     "situacoes": 9,
     "situacoes_com_fonte_direta": 8,
     "situacoes_por_ponte": 1,
     "situacoes_no_portao": 9,
-    "modelos_esperando_link": 23
+    "modelos_esperando_link": 24
   }
 }

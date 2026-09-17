@@ -79,9 +79,19 @@ MUTACOES = [
     (
         'um numero dentro de uma description',
         'numero digitado em texto que ninguem rele passa a mentir em silencio quando o banco cresce',
+        # REAPONTADA EM 17/09/2026, 16h16Z, POR ESTAR INERTE. O alvo antigo era a
+        # description da pagina da R2, e a proposta 2 das 10h32Z a reescreveu em
+        # MOLDE para a promessa numerica do titulo — o alvo passou a ter ZERO
+        # ocorrencia e a mutacao parou de editar coisa alguma. O portao (teste-casca,
+        # "nenhuma cabeca carrega numero DIGITADO") continuava inteiro; quem tinha
+        # morrido era a prova de que ele morde. Agora o alvo e a pagina de
+        # divulgacao, que NAO declara `numeros` e por isso nao vira molde no dia em
+        # que outra pagina ganhar promessa. E o numero plantado e derivado de
+        # proposito (73 = itens que rendem comissao hoje): digito que bate com o
+        # banco de hoje e exatamente o que mente em silencio amanha.
         troca(CASCA,
-              "'descricao' => 'Quanta sucção o seu robô precisa para piso liso, tapete ou pelo de cachorro, e quantos ciclos a metragem da sua casa exige.',",
-              "'descricao' => 'Quanta sucção o seu robô precisa: 28 modelos medidos para piso liso, tapete ou pelo de cachorro, com os ciclos da sua casa.',"),
+              "'descricao' => 'Ganhamos comissão quando você compra pelos nossos links, e isso nunca muda a ordem da lista. Veja como a recomendação é montada.',",
+              "'descricao' => 'Ganhamos comissão em 73 dos nossos links, e isso nunca muda a ordem da lista. Veja como a recomendação é montada.',"),
     ),
     (
         'uma description longa demais',
@@ -159,9 +169,14 @@ MUTACOES = [
     (
         'description generica de reserva para pagina desconhecida',
         'a saida tentadora para o portao acima publicaria a MESMA description em endereco diferente',
+        # REAPONTADA EM 17/09/2026, 16h16Z, POR ESTAR INERTE. A guarda mudou de
+        # forma quando a cabeca passou a ser RESOLVIDA (proposta 2, 10h32Z): era
+        # `! isset( $cabeca[ $slug ] )` e virou `empty( $c['descricao'] )`. O alvo
+        # antigo ficou com zero ocorrencia e a mutacao parou de plantar a saida
+        # tentadora — a trava seguia de pe e ninguem mais a via reprovando.
         troca(CASCA,
-              "\tif ( '' === $slug || ! isset( $cabeca[ $slug ] ) ) {\n\t\treturn;\n\t}",
-              "\tif ( '' === $slug || ! isset( $cabeca[ $slug ] ) ) {\n\t\techo '<meta name=\"description\" content=\"Robometria: compatibilidade de peças de robô aspirador.\">' . \"\\n\";\n\t\treturn;\n\t}"),
+              "\t$c = robometria_casca_cabeca_resolvida( $slug );\n\tif ( empty( $c['descricao'] ) ) {\n\t\treturn;\n\t}",
+              "\t$c = robometria_casca_cabeca_resolvida( $slug );\n\tif ( empty( $c['descricao'] ) ) {\n\t\techo '<meta name=\"description\" content=\"Robometria: compatibilidade de peças de robô aspirador.\">' . \"\\n\";\n\t\treturn;\n\t}"),
     ),
     (
         'a folha do formulario volta a ser copiada na R1',

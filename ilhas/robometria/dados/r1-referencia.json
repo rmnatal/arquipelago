@@ -853,6 +853,46 @@
         "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
       }
     },
+    "xiaomi-mop-2-lite": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-filtro-mop-2-lite",
+          "frase": "A Xiaomi Global (suporte) declara o filtro \"filter\" compativel com Mi Robot Vacuum-Mop 2 Lite (fabricante-via-busca, verificado em 17/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-escova-lateral-mop-2-lite",
+          "frase": "A Xiaomi Global (suporte) declara a escova lateral \"side brush\" compativel com Mi Robot Vacuum-Mop 2 Lite (fabricante-via-busca, verificado em 17/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-escova-principal-mop-2-lite",
+          "frase": "Escova principal: \"brush\", que a Xiaomi Global (suporte) declara compativel com Mi Robot Vacuum-Mop 2 Lite (fabricante-via-busca, verificado em 17/09/2026). Quem chama esta peca de escova principal e a Robometria, pelo contraste do catalogo do proprio fabricante: o titulo dela nao nomeia a funcao. Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-mop-mop-2-lite",
+          "frase": "A Xiaomi Global (suporte) declara o mop \"mop\" compativel com Mi Robot Vacuum-Mop 2 Lite (fabricante-via-busca, verificado em 17/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "reservatorio",
+          "peca": "xiaomi-reservatorio-mop-2-lite",
+          "frase": "A Xiaomi Global (suporte) declara o reservatorio \"two-in-one water tank\" compativel com Mi Robot Vacuum-Mop 2 Lite (fabricante-via-busca, verificado em 17/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
     "xiaomi-s10": {
       "aviso_de_variante": null,
       "fabricante": [

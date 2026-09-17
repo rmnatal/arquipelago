@@ -243,7 +243,14 @@ MUTACOES = [
             # mutacao PAROU, que e o desenho do troca_n. Numero que subisse
             # sozinho deixaria a mutacao editar um numero de linhas que ninguem
             # previu — e mutacao que nao esvazia o tipo nao testa a 16.5.
-            troca_n(PECAS, '"tipo": "reservatorio",', '"tipo": "filtro",', 3),
+            # 17/09/2026: 3 -> 5. O `water tank` do Mi Robot Vacuum-Mop 2 entrou
+            # as 13h16Z e o `two-in-one water tank` do Mop 2 Lite as 16h16Z, e a
+            # PARADA DE 13h16Z NAO FOI VISTA: o registro daquela execucao fechou
+            # dizendo "as 25 baterias, todas com o resultado esperado e ZERO
+            # inertes", e esta ja estava parada quando ele foi escrito. O desenho
+            # do troca_n funcionou — quem nao funcionou foi ler so a ultima linha
+            # da saida. Quem acrescentar peca de reservatorio sobe este numero.
+            troca_n(PECAS, '"tipo": "reservatorio",', '"tipo": "filtro",', 5),
             # a categoria proibida, declarada no codigo
             troca(CASCA,
                   "\t\t'baterias'              => array( 'pecas',   'Baterias' ),",
