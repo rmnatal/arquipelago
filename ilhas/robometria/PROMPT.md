@@ -97,6 +97,26 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 **O QUE A SENTINELA NÃO PÔDE FAZER NESTA EXECUÇÃO, dito para ninguém descobrir depois:** o teto semanal de geração de link de afiliado **não foi gasto**. O canal das MÃOS foi recusado pelo classificador de aprovação do ambiente no começo da execução, e pela 27.2 o banco só muda pelas MÃOS — gerar link que não pode ser gravado seria fabricar dado órfão. O alvo do teto da semana que vem, já escolhido e nomeado: os 46 registros em degrau 4, pelo **degrau 2 da 25.1** (catálogo `/p/MLB…` do Mercado Livre), que é o cavalo de batalha desta cauda longa pela 25.3 — e que precisa do clique do Raphael, pelo reCAPTCHA da 25.6.
 
+## DESPACHO DO RAPHAEL — 17/09/2026 — A REDE ABRIU PARA OS FABRICANTES, E DOIS DOS CINCO ENDERECOS NUNCA EXISTIRAM
+
+A execucao das 10h16Z de 17/09 registrou o item 2 da DEFINICAO DE PRONTA como **bloqueado por rede**, listando cinco dominios de fabricante que devolveram 403 do proxy de egresso. O Raphael acrescentou os cinco a lista de dominios permitidos da conta. **Medido da nuvem as 12h35Z de 17/09, um por um:**
+
+```
+www.electrolux.com.br            301  aberto
+www.multilaser.com.br            200  aberto
+mais.conteudo.wap.ind.br         200  aberto
+www.mi.com                       301  aberto
+www.positivotecnologia.com.br    200  aberto
+```
+
+**OS CINCO CAMINHOS ESTAO ABERTOS. O ITEM 2 DEIXA DE SER "BLOQUEADO POR REDE" E VOLTA A SER TRABALHO DA FUNDACAO.**
+
+**DOIS DOS CINCO NOMES ESTAVAM ERRADOS, E O ERRO NAO ERA DE REDE.** A lista registrada trazia `www.mi.com.br` e `loja.positivotecnologia.com.br`. **Esses dois hostnames nao existem** — nao resolvem em DNS, nunca resolveram, e nenhuma lista de permissao faria diferenca. Os enderecos certos, conferidos no DNS antes de serem liberados, sao **`www.mi.com`** (a Xiaomi Brasil mora em `mi.com/br/`, nao em `mi.com.br`) e **`www.positivotecnologia.com.br`** (sem o `loja.`). Use esses dois daqui em diante e nao volte aos antigos.
+
+**A LICAO DE PROCESSO, E ELA VALE PARA TODA ILHA (secao 20.2).** Um `403` do proxy e um host que nao existe produzem o mesmo sintoma para quem so olha `curl`: falha. Mas sao coisas opostas — o primeiro e um pedido de liberacao ao Raphael, o segundo e um endereco errado que so quem escreveu pode consertar. **Antes de declarar "bloqueado por rede", confira se o host resolve** (`getent hosts <host>`, ou qualquer consulta de DNS). Host que nao resolve nunca entra numa lista de "bloqueado": entra como **endereco errado**, e o conserto e trocar o nome, nao pedir permissao. Declarar bloqueio em endereco inexistente faz o placar mentir na direcao mais cara de todas — sugere que o trabalho esta parado esperando outra pessoa, quando esta parado esperando uma correcao de digitacao.
+
+**O QUE FAZER AGORA, e e o caminho unico ate os 15 da emenda do funil:** colete `pa_declarado` e `canal_brasileiro` nos cinco fabricantes, fora da Xiaomi, que ja foi. A API da Shopee **nao serve para isto** e isso ja foi medido: ela traz foto, ficha e link, e nao traz nenhum dos dois campos. Vale a regra de sempre — dado com procedencia por campo, escada de fontes respeitada, e o que nao for encontrado fica `null` com o motivo escrito, nunca chutado por vizinhanca.
+
 ## DESPACHO DO RAPHAEL — 16/09/2026 — a API da Shopee ~~fecha quatro buracos desta ilha~~ — **CUMPRIDO E CONFERIDO NO AR EM 16/09/2026, 17h05Z**
 
 Os quatro itens saíram inteiros, pela seção 18. Esquema na versão 9, casca 1.8.0, R1 1.10.0, R2 1.8.0, A1 1.4.0, A2 1.4.0, manifest na revisão 54.
