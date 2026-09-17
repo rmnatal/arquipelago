@@ -4860,3 +4860,112 @@ escrito la para a comparacao ser legivel.
   move o item 2 alem de 11 — e o canal que funciona para isso e a busca restrita
   ao dominio do fabricante, medido hoje. O `positivo-pra500` e o `wap-w400`
   continuam no vazio por recusa de fabricante, com a causa escrita no banco.
+
+## 2026-09-17, 16h16Z — Bloco 3c: a leva do Mi Robot Vacuum-Mop 2 Lite, e o caminho escrito as 13h16Z funcionou de primeira
+
+- **O bloco.** Um MODELO novo com os TRES campos que o item 2 da DEFINICAO DE
+  PRONTA conta — **Mi Robot Vacuum-Mop 2 Lite**, com Pa declarado (2.200), canal
+  brasileiro (`mi.com/br`) e cinco pecas declaradas pelo fabricante: filtro,
+  escova lateral, escova principal, mop e reservatorio, todas do artigo de
+  suporte **KA-11405** da propria Xiaomi. A **intersecao das duas ferramentas vai
+  de 9 para 10 e o TETO de 11 para 12**. Banco de 43 para 44 modelos e de 43 para
+  48 pecas, 81 pares declarados. ZERO URL nova, ZERO URL mudada de endereco: nao
+  gasta leva do teto da 21.4.
+- **A ESCOLHA DA ILHA: pelo foco da 1.2, sem corrida.** `foco.md` nomeia a
+  robometria desde 16/09. `executando_desde` estava `null`, que pela 1.1 ja
+  significa que nenhum bloco da Fundacao esta vivo. Nenhum branch `claude/*` com
+  commit proprio fora do `main` e nenhum PR aberto. Reserva aceita de primeira as
+  16h16Z. Nenhum despacho deste `PROMPT.md` tem item acionavel pela Fundacao: o
+  que sobra nas propostas 1 e 3 e verificacao da leitura semanal. Rede pela 20.2
+  antes de trabalhar: home 200 e `/status` na revisao 61, igual a do manifest, em
+  TRES passadas.
+- **MODELO NOVO SOBE A INTERSECAO E O TETO NO MESMO MOVIMENTO, e e por isso que
+  ele era o caminho.** Peca nova so tira modelo do vazio da R1, e por isso nunca
+  passa do teto; modelo com os tres campos entra dos dois lados da conta de uma
+  vez. A execucao das 13h16Z deixou isso escrito como proximo passo desbloqueado
+  e a primeira tentativa fechou — nao foi tentativa e erro, foi a aritmetica do
+  banco indicando onde cavar.
+- **O canal foi a BUSCA, de novo, e o egresso foi remedido nesta execucao:**
+  `WebFetch` de `www.mi.com` devolveu `EGRESS_BLOCKED`, com robometria.com.br em
+  200 na mesma janela, e a busca restrita ao dominio devolveu a pagina brasileira
+  do modelo e o artigo de suporte. Tres passadas independentes trouxeram o MESMO
+  numero de succao e a MESMA lista de consumiveis.
+- **A ESCOVA PRINCIPAL NASCEU POR CONTRASTE NO CATALOGO (26.1, origem 2), e e a
+  primeira desta ilha em que o contraste vem publicado DUAS vezes no mesmo
+  modelo:** `brush` ao lado de `side brush` na lista de consumiveis do KA-11405,
+  e o par repetido no conteudo da caixa da pagina de especificacoes ("Brush,
+  Brush Cover, Side Brush"). **A recusa que anda junto:** o `main brush` do
+  KA-11406 e de OUTRO modelo e NAO foi emprestado — contraste emprestado de outro
+  modelo e heranca, e aqui o proprio artigo diz o contrario com todas as letras:
+  "they are not compatible with other Mi Robot Vacuum consumables". Lido no ar,
+  e nao no log do Sync: *"Quem chama esta peca de escova principal e a
+  Robometria, pelo contraste do catalogo do proprio fabricante: o titulo dela nao
+  nomeia a funcao"* — a atribuicao da 26.3 saindo certa sozinha.
+- **TRES MUTACOES ESTAVAM INERTES NO `main` E NINGUEM TINHA VISTO — e este e o
+  achado que vale mais que a leva.** `mutacoes-arvore.py`: o `troca_n` do
+  reservatorio declarava 3 ocorrencias e o banco tinha 4 desde a leva das 13h16Z,
+  entao a mutacao PAROU (que e o desenho do `troca_n`) — so que **a parada nao foi
+  lida**, e o registro daquela execucao fechou dizendo "as 25 baterias, todas com
+  o resultado esperado e ZERO inertes". `mutacoes-cabeca-e-voz.py`: DUAS mutacoes
+  com alvo de **zero ocorrencia** desde a proposta 2 das 10h32Z, que reescreveu a
+  description da R2 em molde e trocou a forma da guarda do emissor.
+  **Nos tres casos o portao estava inteiro; o que morreu foi a PROVA de que ele
+  morde** — que e precisamente o que a bateria existe para impedir, e a mesma
+  familia do "numero de tela digitado" que esta ilha ja pagou duas vezes.
+  As tres foram reapontadas, com o motivo escrito dentro do proprio arquivo, e as
+  25 baterias voltam a 100% com zero inertes.
+- **E A CAUSA DE NINGUEM TER VISTO E DE METODO, nao de desatencao:** a linha de
+  resumo dessas baterias diz "18 de 19 reprovadas" e o `ERRO` fica no meio da
+  saida. **Quem le so a ultima linha nao ve mutacao inerte.** A varredura desta
+  execucao passou a procurar `ERRO` e `PASSARAM` na saida INTEIRA das 25, e e
+  assim que a proxima deve medir.
+- **DIVIDA NOMEADA, e ja foi medida de dois jeitos diferentes:**
+  `vida_util_declarada` guarda UM numero e as duas coletas Xiaomi desta ilha
+  declararam **intervalo** — o Mop 2 em horas de uso ("150 hours"), o Mop 2 Lite
+  em faixa de meses ("3-6 months", "6-12 months"). Os cinco registros entraram com
+  `valor: null` e a citacao literal no `motivo_do_null`, que vai para a tela com
+  as palavras do fabricante. Escolher uma ponta da faixa seria escolher por quem
+  le. O campo nao comporta faixa, e quem for mexer no esquema decide isso com os
+  dois casos na mesa, nao com um.
+- **O QUE A VARREDURA MEDIU E NAO ENTROU, dito para ninguem reprocurar:** (i) o
+  **Mi Robot Vacuum-Mop** (original) tem pagina em `mi.com/br` e artigo de suporte
+  proprio (KA-07584), mas o Pa voltou em UMA passada e **qualificado por
+  variante** — "2500 Pa suction (for the Visual Navigation Version)" —, e a
+  segunda nao o devolveu; numero de variante lido como numero do modelo e a
+  familia do erro do S20, entao ele fica fora ate uma segunda passada limpa dizer
+  o numero sem a qualificacao. (ii) **X10, X20 e E5 nao foram confirmados em
+  `mi.com/br`** em duas passadas: a lista de robo aspirador do canal brasileiro
+  devolve E10, S10, S20, S40, S40C, H40, Mop 2, Mop 2 Lite e Mop, e mais nada.
+  **O canal brasileiro da Xiaomi esta varrido inteiro**, o que muda a proxima
+  busca de lugar.
+- **Tres numeros do modelo ficaram `null` com a causa escrita, e as causas nao sao
+  a mesma:** a autonomia porque DUAS passadas devolveram o mesmo texto e **nenhuma
+  disse qual pagina o declara** (os resultados misturam KA-11405 e KA-124200, e a
+  terceira passada sobre o KA-124200 nao devolveu a frase) — nesta ilha a
+  atribuicao e lida do DEGRAU, com endereco e data, nunca de "o fabricante" em
+  geral; a recarga porque so uma passada devolveu "cerca de 4 horas"; a bateria
+  porque a unica passada devolveu **dois** numeros na mesma frase (2500 rated /
+  2600 nominal) e escolher entre eles seria escolher por quem le.
+- **BANCADA, 0 falha:** casca 251, r1 227, a1 74, r2 107, a2 80, acentuacao 17,
+  arvore 219, voz 164, escada-compra 801, `validar-banco` aprovado. As contagens
+  dos dois arquivos de banco foram reescritas a partir do que o validador CONTA no
+  arquivo, nunca digitadas.
+- **NO AR:** Sync as 16h32Z, `/status` na **revisao 62** igual a do manifest.
+  `conferir-no-ar.py` 264 afirmacoes, `conferir-kits-no-ar.py` 165,
+  `conferir-reservatorio-no-ar.py` 50, `conferir-atribuicao-no-ar.py` 51 e
+  `conferir-canal-na-resposta.py` — todos 0 falha. E a consulta que o bloco existe
+  para responder foi aberta na tela: **Mop 2 Lite + escova principal** devolve as
+  quatro pecas com a frase de cada tipo e a atribuicao do contraste no lugar
+  certo.
+- **A memoria da ilha NAO foi atualizada nesta execucao: o ambiente desta nuvem
+  nao tem a pasta `/areas/`** montada, entao `projeto-robometria.md` nao existe
+  para escrever. Fica dito em vez de descoberto depois — e o `PROMPT.md` desta
+  ilha ja previa o caso ("Sem memoria, nao pare: o estado esta em `ESTADO.md`,
+  `REGISTRO.md` e `README.md`"), que e onde este resumo esta.
+- **Proximo passo desbloqueado: MODELO novo com os tres campos em OUTRA MARCA.**
+  O caminho continua sendo o mesmo e o teto so sobe assim, mas a Xiaomi acabou de
+  ser varrida inteira pelo canal brasileiro — o proximo alvo e Electrolux, Multi,
+  Positivo ou WAP declarando Pa, ou um canal da Xiaomi que esta varredura nao
+  alcancou. Vale lembrar o que ja esta medido: Electrolux e Multi nao declaram Pa
+  em canal nenhum, e sete dos oito modelos WAP tambem nao — entao o alvo mais
+  provavel e a Positivo, que declara Pa nos tres modelos que tem no banco.
