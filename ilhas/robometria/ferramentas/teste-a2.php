@@ -381,6 +381,20 @@ $m['resumo']['pares_declarados']    = 41;
    lista velha — nao prova nada: o numero antigo sobreviveria na tela por ser
    verdadeiro sobre a lista, e o teste acusaria o codigo de um defeito que e do
    proprio teste. Foi o que aconteceu na primeira rodada desta secao. */
+/* E A LISTA DE MARCAS MUDA JUNTO, PELO MESMO MOTIVO — descoberto em 17/09/2026,
+   quando a Roborock entrou e virou a SEXTA marca do banco. A abertura imprime
+   "as outras N marcas do banco nao publicam esse numero", e N sai do tamanho de
+   `marcas_que_nao_declaram`, que esta mutacao nao tocava. Com seis marcas esse N
+   passou a ser 5 — exatamente o valor real de `com_cobertura` —, e a sonda abaixo
+   acusou como "numero digitado" um numero que a pagina DERIVOU de outro campo, no
+   mesmo dia em que o campo mudou de valor por outro motivo. Colisao por
+   coincidencia numa mutacao que deixa um campo parado e a mesma armadilha que o
+   comentario acima ja nomeia para os pares: quem mede tem de mover TUDO que a
+   abertura imprime, senao o numero verdadeiro sobrevive por ser verdadeiro. */
+$m['resumo']['marcas']          = 8;
+$m['marcas_que_nao_declaram']   = array( 'Marca Plantada 1', 'Marca Plantada 2',
+	'Marca Plantada 3', 'Marca Plantada 4', 'Marca Plantada 5', 'Marca Plantada 6',
+	'Marca Plantada 7' );
 $m['pares'] = array();
 for ( $k = 0; $k < 41; $k++ ) {
 	$m['pares'][] = array(

@@ -537,6 +537,26 @@
         "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
       }
     },
+    "roborock-q8-max": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-q8-max",
+          "frase": "A Roborock US (loja oficial) declara o mop \"Mop Cloth\" compativel com Q8 Max Series (fabricante-via-busca, verificado em 17/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
     "wap-w100": {
       "aviso_de_variante": null,
       "fabricante": [

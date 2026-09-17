@@ -150,6 +150,52 @@ def _canal_digitado_diferente_da_fonte(base):
         f.write('\n')
 
 
+def _trocar_endereco(base, ident, endereco):
+    """Troca o endereco do canal E o da fonte que ele cita, no mesmo movimento.
+    Trocar so um dos dois faria a mutacao reprovar pela trava do 'endereco
+    digitado diferente do derivado' — reprovaria, sim, e pela regra ERRADA, que
+    e a forma mais silenciosa de uma bateria mentir que cobre uma trava."""
+    caminho = os.path.join(base, 'dados/modelos-robo.json')
+    with open(caminho, encoding='utf-8') as f:
+        banco = json.load(f)
+    for r in banco['registros']:
+        if r['id'] == ident:
+            fonte = r['canal_brasileiro']['fonte']
+            r['canal_brasileiro']['valor'] = endereco
+            r['fontes'][fonte]['url'] = endereco
+            break
+    else:
+        raise AssertionError('%s sumiu — a mutacao seria inerte' % ident)
+    with open(caminho, 'w', encoding='utf-8') as f:
+        json.dump(banco, f, ensure_ascii=False, indent=1)
+        f.write('\n')
+
+
+def _canal_sem_marca_de_brasil(base):
+    """A TRAVA QUE FOI AFROUXADA EM 17/09/2026 TEM DE CONTINUAR MORDENDO. Naquele
+    dia a Roborock entrou no banco e mostrou que a regua so conhecia duas formas
+    de um endereco dizer Brasil — `.br` no dominio e `/br/` no caminho —, e que
+    `https://br.roborock.com/...` nao tem nenhuma das duas: tem o SUBDOMINIO. A
+    regua passou a aceitar tambem o rotulo `br.` na frente do host, e afrouxar
+    trava sem plantar o mundo em que ela morde e como nao ter trava. Aqui o
+    endereco do canal vira o global da mesma marca, que nao diz Brasil de forma
+    nenhuma, e o portao tem de reprovar."""
+    _trocar_endereco(base, 'roborock-q8-max',
+                     'https://global.roborock.com/pages/q8-max-plus')
+
+
+def _canal_com_br_no_meio_do_host(base):
+    """E A OUTRA METADE DO MESMO AFROUXAMENTO, que e a que quase ninguem escreve:
+    a regua nova NAO pode ter virado 'contem br em algum lugar'. Um host como
+    `cbr.roborock.com` carrega as letras `br.` dentro de si e nao e canal
+    brasileiro de coisa nenhuma — ele so passaria se a checagem fosse por
+    substring em vez de por ROTULO. Esta mutacao existe para provar que a
+    checagem e pelo rotulo, e ela e a unica desta bateria que reprovaria a
+    versao mais obvia do conserto."""
+    _trocar_endereco(base, 'roborock-q8-max',
+                     'https://cbr.roborock.com/pages/q8-max-plus')
+
+
 def _cruzamento_volta_a_contar_so_o_pa(base):
     """A REGUA DA META. O item 2 da definicao de pronta desta ilha e um numero
     sobre o cruzamento das duas ferramentas. Se ele voltar a contar Pa sozinho,
@@ -181,6 +227,18 @@ MUTACOES = [
         'o canal brasileiro e digitado diferente da fonte que ele cita',
         'endereco digitado ao lado de endereco derivado — os dois divergem sem ninguem ver',
         _canal_digitado_diferente_da_fonte,
+        ('banco',),
+    ),
+    (
+        'o canal passa a apontar para o endereco GLOBAL da mesma marca',
+        'a marca de Brasil some do endereco inteiro e o portao tem de reprovar — a trava afrouxada em 17/09 continua mordendo',
+        _canal_sem_marca_de_brasil,
+        ('banco',),
+    ),
+    (
+        'o host carrega as letras "br." no meio e nao no rotulo da frente',
+        'cbr.roborock.com so passaria se o conserto de 17/09 fosse por substring; ele e por ROTULO, e esta e a mutacao que separa os dois',
+        _canal_com_br_no_meio_do_host,
         ('banco',),
     ),
     (

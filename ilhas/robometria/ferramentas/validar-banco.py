@@ -835,9 +835,19 @@ for _r in modelos["registros"]:
         erro("%s: canal_brasileiro aponta para marketplace (%s). O campo e para pagina "
              "do FABRICANTE: marketplace existe para todo codigo e aprovaria tudo"
              % (_onde, _cb["valor"]))
-    if ".br" not in _u and "/br/" not in _u:
+    # A TERCEIRA FORMA DE UM ENDERECO DIZER "BRASIL" E O SUBDOMINIO, e ate 17/09/2026
+    # esta regua nao a conhecia: ela procurava `.br` no dominio ou `/br/` no caminho, e
+    # `https://br.roborock.com/...` nao tem nenhum dos dois — tem `//br.`. O portao
+    # reprovava o canal brasileiro OFICIAL de uma marca inteira por causa da forma do
+    # endereco, nao da natureza dele, e isso e falso negativo do tipo mais caro: ele
+    # nao aparece como erro, aparece como "essa marca nao tem canal brasileiro".
+    # Medido quando a Roborock entrou no banco. O que a regua continua exigindo e o
+    # mesmo: marca de Brasil no ENDERECO, e a lista de marketplace acima segue valendo
+    # inteira antes desta linha.
+    _host = _u.split("//", 1)[-1].split("/", 1)[0]
+    if ".br" not in _u and "/br/" not in _u and not _host.startswith("br."):
         erro("%s: canal_brasileiro %r nao tem marca de canal brasileiro nem no dominio "
-             "nem no caminho" % (_onde, _cb["valor"]))
+             "nem no subdominio nem no caminho" % (_onde, _cb["valor"]))
 conferir_contagem(pecas, "pecas.json", "total", len(pecas["registros"]))
 
 # `publicavel` E `esperando_link_de_afiliado` ERAM CONFERIDOS SO EM UM DOS DOIS BANCOS,

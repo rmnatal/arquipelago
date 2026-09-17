@@ -756,6 +756,7 @@
   "classificacao": {
     "liso|nao": {
       "elegiveis": [
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20",
         "xiaomi-e10",
@@ -770,6 +771,7 @@
     },
     "liso|curto": {
       "elegiveis": [
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20",
         "xiaomi-h40",
@@ -785,6 +787,7 @@
     },
     "liso|longo": {
       "elegiveis": [
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20",
         "xiaomi-h40",
@@ -800,6 +803,7 @@
     },
     "tapete-fino|nao": {
       "elegiveis": [
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20",
         "xiaomi-h40",
@@ -815,6 +819,7 @@
     },
     "tapete-fino|curto": {
       "elegiveis": [
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20",
         "xiaomi-h40",
@@ -830,6 +835,7 @@
     },
     "tapete-fino|longo": {
       "elegiveis": [
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20",
         "xiaomi-h40",
@@ -847,6 +853,7 @@
       "elegiveis": [
         "xiaomi-h40",
         "xiaomi-s40",
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20"
       ],
@@ -862,6 +869,7 @@
       "elegiveis": [
         "xiaomi-h40",
         "xiaomi-s40",
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20"
       ],
@@ -877,6 +885,7 @@
       "elegiveis": [
         "xiaomi-h40",
         "xiaomi-s40",
+        "roborock-q8-max",
         "xiaomi-s40c",
         "xiaomi-s20"
       ],
@@ -1080,6 +1089,41 @@
         "url_busca": "https://s.shopee.com.br/9Ki5rCMl82",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB80%20robo%20aspirador",
         "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      }
+    },
+    {
+      "id": "roborock-q8-max",
+      "marca": "roborock",
+      "rotulo": "Roborock Q8 Max",
+      "codigo": "Q8 Max",
+      "linha": "Q",
+      "pa": 5500,
+      "cobertura_m2": null,
+      "autonomia_min": 240,
+      "recarga_min": null,
+      "retoma_apos_recarga": null,
+      "fonte": "f-br",
+      "procedencia": {
+        "fonte": "f-br",
+        "origem": "fabricante-via-busca",
+        "nivel": 3,
+        "rotulo": "página do fabricante",
+        "ressalva": "a confirmar no manual",
+        "quem_declara": "pelo fabricante",
+        "publicador": "Roborock Brasil",
+        "url": "https://br.roborock.com/pages/q8-max-plus",
+        "verificado_em": "2026-09-17"
+      },
+      "tem_imagem": false,
+      "imagem": null,
+      "esperando_link": true,
+      "afiliado": {
+        "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20Q8%20Max%20robo%20aspirador",
+        "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
       }
@@ -1321,7 +1365,7 @@
     {
       "area": 40,
       "situacao": "liso|nao",
-      "elegiveis": 6,
+      "elegiveis": 7,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1329,7 +1373,7 @@
     {
       "area": 40,
       "situacao": "liso|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1337,7 +1381,7 @@
     {
       "area": 40,
       "situacao": "liso|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1345,7 +1389,7 @@
     {
       "area": 40,
       "situacao": "tapete-fino|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1353,7 +1397,7 @@
     {
       "area": 40,
       "situacao": "tapete-fino|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1361,7 +1405,7 @@
     {
       "area": 40,
       "situacao": "tapete-fino|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1369,7 +1413,7 @@
     {
       "area": 40,
       "situacao": "carpete|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1377,7 +1421,7 @@
     {
       "area": 40,
       "situacao": "carpete|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1385,7 +1429,7 @@
     {
       "area": 40,
       "situacao": "carpete|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1393,7 +1437,7 @@
     {
       "area": 60,
       "situacao": "liso|nao",
-      "elegiveis": 6,
+      "elegiveis": 7,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1401,7 +1445,7 @@
     {
       "area": 60,
       "situacao": "liso|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1409,7 +1453,7 @@
     {
       "area": 60,
       "situacao": "liso|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1417,7 +1461,7 @@
     {
       "area": 60,
       "situacao": "tapete-fino|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1425,7 +1469,7 @@
     {
       "area": 60,
       "situacao": "tapete-fino|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1433,7 +1477,7 @@
     {
       "area": 60,
       "situacao": "tapete-fino|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1441,7 +1485,7 @@
     {
       "area": 60,
       "situacao": "carpete|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1449,7 +1493,7 @@
     {
       "area": 60,
       "situacao": "carpete|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1457,7 +1501,7 @@
     {
       "area": 60,
       "situacao": "carpete|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1465,7 +1509,7 @@
     {
       "area": 80,
       "situacao": "liso|nao",
-      "elegiveis": 6,
+      "elegiveis": 7,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1473,7 +1517,7 @@
     {
       "area": 80,
       "situacao": "liso|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1481,7 +1525,7 @@
     {
       "area": 80,
       "situacao": "liso|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1489,7 +1533,7 @@
     {
       "area": 80,
       "situacao": "tapete-fino|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1497,7 +1541,7 @@
     {
       "area": 80,
       "situacao": "tapete-fino|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1505,7 +1549,7 @@
     {
       "area": 80,
       "situacao": "tapete-fino|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1513,7 +1557,7 @@
     {
       "area": 80,
       "situacao": "carpete|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1521,7 +1565,7 @@
     {
       "area": 80,
       "situacao": "carpete|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1529,7 +1573,7 @@
     {
       "area": 80,
       "situacao": "carpete|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1537,7 +1581,7 @@
     {
       "area": 100,
       "situacao": "liso|nao",
-      "elegiveis": 6,
+      "elegiveis": 7,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1545,7 +1589,7 @@
     {
       "area": 100,
       "situacao": "liso|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1553,7 +1597,7 @@
     {
       "area": 100,
       "situacao": "liso|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1561,7 +1605,7 @@
     {
       "area": 100,
       "situacao": "tapete-fino|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1569,7 +1613,7 @@
     {
       "area": 100,
       "situacao": "tapete-fino|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1577,7 +1621,7 @@
     {
       "area": 100,
       "situacao": "tapete-fino|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1585,7 +1629,7 @@
     {
       "area": 100,
       "situacao": "carpete|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1593,7 +1637,7 @@
     {
       "area": 100,
       "situacao": "carpete|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1601,7 +1645,7 @@
     {
       "area": 100,
       "situacao": "carpete|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1609,7 +1653,7 @@
     {
       "area": 120,
       "situacao": "liso|nao",
-      "elegiveis": 6,
+      "elegiveis": 7,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1617,7 +1661,7 @@
     {
       "area": 120,
       "situacao": "liso|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1625,7 +1669,7 @@
     {
       "area": 120,
       "situacao": "liso|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1633,7 +1677,7 @@
     {
       "area": 120,
       "situacao": "tapete-fino|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1641,7 +1685,7 @@
     {
       "area": 120,
       "situacao": "tapete-fino|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1649,7 +1693,7 @@
     {
       "area": 120,
       "situacao": "tapete-fino|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1657,7 +1701,7 @@
     {
       "area": 120,
       "situacao": "carpete|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1665,7 +1709,7 @@
     {
       "area": 120,
       "situacao": "carpete|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1673,7 +1717,7 @@
     {
       "area": 120,
       "situacao": "carpete|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1681,7 +1725,7 @@
     {
       "area": 150,
       "situacao": "liso|nao",
-      "elegiveis": 6,
+      "elegiveis": 7,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1689,7 +1733,7 @@
     {
       "area": 150,
       "situacao": "liso|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1697,7 +1741,7 @@
     {
       "area": 150,
       "situacao": "liso|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1705,7 +1749,7 @@
     {
       "area": 150,
       "situacao": "tapete-fino|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1713,7 +1757,7 @@
     {
       "area": 150,
       "situacao": "tapete-fino|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1721,7 +1765,7 @@
     {
       "area": 150,
       "situacao": "tapete-fino|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1729,7 +1773,7 @@
     {
       "area": 150,
       "situacao": "carpete|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1737,7 +1781,7 @@
     {
       "area": 150,
       "situacao": "carpete|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1745,7 +1789,7 @@
     {
       "area": 150,
       "situacao": "carpete|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 1,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 100
@@ -1753,7 +1797,7 @@
     {
       "area": 200,
       "situacao": "liso|nao",
-      "elegiveis": 6,
+      "elegiveis": 7,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1761,7 +1805,7 @@
     {
       "area": 200,
       "situacao": "liso|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1769,7 +1813,7 @@
     {
       "area": 200,
       "situacao": "liso|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1777,7 +1821,7 @@
     {
       "area": 200,
       "situacao": "tapete-fino|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1785,7 +1829,7 @@
     {
       "area": 200,
       "situacao": "tapete-fino|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1793,7 +1837,7 @@
     {
       "area": 200,
       "situacao": "tapete-fino|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1801,7 +1845,7 @@
     {
       "area": 200,
       "situacao": "carpete|nao",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1809,7 +1853,7 @@
     {
       "area": 200,
       "situacao": "carpete|curto",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1817,7 +1861,7 @@
     {
       "area": 200,
       "situacao": "carpete|longo",
-      "elegiveis": 4,
+      "elegiveis": 5,
       "ciclos": 2,
       "multiciclo_valido": true,
       "tempo_de_limpeza_min": 200
@@ -1825,10 +1869,11 @@
   ],
   "contexto": {
     "conversao": {
-      "marcas_publicaveis": 5,
+      "marcas_publicaveis": 6,
       "marcas_sem_cobertura": [
         "Multi (ex-Multilaser)",
         "Positivo Casa Inteligente",
+        "Roborock",
         "WAP",
         "Xiaomi"
       ],
@@ -1838,7 +1883,7 @@
     },
     "funil": {
       "sem_pa": 21,
-      "publicaveis": 39,
+      "publicaveis": 40,
       "marcas_mudas": [
         "Electrolux",
         "Multi (ex-Multilaser)"
@@ -1867,15 +1912,15 @@
     }
   },
   "resumo": {
-    "modelos_publicaveis": 39,
-    "modelos_na_tela": 11,
-    "modelos_esperando_link": 3,
+    "modelos_publicaveis": 40,
+    "modelos_na_tela": 12,
+    "modelos_esperando_link": 4,
     "modelos_com_link": 8,
     "modelos_de_referencia": 5,
     "situacoes": 9,
     "situacoes_por_ponte": 1,
     "situacoes_no_portao": 9,
     "linhas_de_exemplo": 63,
-    "marcas": 5
+    "marcas": 6
   }
 }

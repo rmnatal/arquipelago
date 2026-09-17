@@ -33,6 +33,7 @@ Os nomes dos níveis são os do `VOZ.md`: quem chega aqui diz peça, sucção, m
 | `/modelos/electrolux/` | `/modelos/` | ficha por modelo da marca |
 | `/modelos/multi/` | `/modelos/` | idem |
 | `/modelos/positivo/` | `/modelos/` | idem |
+| `/modelos/roborock/` | `/modelos/` | idem |
 | `/modelos/xiaomi/` | `/modelos/` | idem |
 | `/modelos/wap/` | `/modelos/` | idem |
 | `/guias/pecas/` | `/guias/` | os textos sobre peça e compatibilidade |

@@ -6,18 +6,19 @@
  "gerado_em": "2026-09-17",
  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Bloco 3c (09/09/2026): 7 modelos novos e 4 atualizados, todos por busca restrita ao dominio oficial da marca — o egresso continua fechado para leitura direta. SEGUNDA LEVA DO BLOCO 3c (09/09/2026): coleta dirigida ao campo pa_declarado fora da Electrolux, por busca restrita a mi.com, wap.ind.br, positivocasainteligente.com.br e loja.meupositivo.com.br. Toda leitura direta continua devolvendo EGRESS_BLOCKED — inclusive os PDFs de manual da WAP (mais.conteudo.wap.ind.br) e o guia rapido da Positivo (static.positivocasainteligente.com.br), que ficaram registrados em fontes{} como alvo da releitura de nivel 2. QUINTA LEVA DO BLOCO 3c (13/09/2026, 13h): a WAP sai de 3 para 8 modelos — W90, W100, W100C, W300 e WSMART —, e o gargalo que o PROMPT.md nomeava ('a loja da WAP publica pagina de peca POR MODELO e NENHUM desses modelos esta no banco') deixa de existir do lado do modelo. Coleta por busca restrita a loja.wap.ind.br e a wap.ind.br, com DUAS passadas independentes por campo, nenhuma delas carregando o valor na consulta; o egresso direto segue fechado por politica (000 em loja.wap.ind.br e www.wap.ind.br, com robometria.com.br em 200 na mesma passada). Nenhum dos cinco declara Pa: a WAP publica Pa no W400 e nivel de succao no resto, entao esta leva NAO mexe na R2 e nao muda faixa nenhuma de cobertura_de_faixa_r2 — ela abre o lado do modelo para a coleta de PECA. DOIS NUMEROS FORAM RECUSADOS e a recusa esta escrita dentro dos registros (recarga e bateria do W90, vindas de artigo de familia que mistura o W90 com o W90 Perola; bateria e voltagem do W100, cuja frase a segunda passada negou na propria pagina do produto). E O DEGRAU DAS LOJAS OFICIAIS FOI CORRIGIDO: loja.wap.ind.br e loja.meupositivo.com.br estavam no nivel 3 (pagina do fabricante) enquanto loja.electrolux.com.br estava no 4 (loja oficial da marca) desde 09/09 — a mesma especie de fonte em dois degraus. Os quatro registros afetados desceram para 4, que e a direcao barata da assimetria de custo da secao 10 do ARQUIPELAGO.md.",
  "contagem": {
-  "total": 44,
-  "publicavel": 39,
+  "total": 45,
+  "publicavel": 40,
   "nao_publicavel": 1,
   "excluido_do_banco": 4,
-  "esperando_link_de_afiliado": 24,
-  "com_pa_declarado": 17,
-  "com_canal_brasileiro": 33,
-  "recomendaveis_pela_r2": 12,
+  "esperando_link_de_afiliado": 25,
+  "com_pa_declarado": 18,
+  "com_canal_brasileiro": 34,
+  "recomendaveis_pela_r2": 13,
   "sem_canal_brasileiro": 6,
   "com_par_minutos_m2_declarado": 5,
   "marcas_que_declaram_pa": [
    "positivo",
+   "roborock",
    "wap",
    "xiaomi"
   ],
@@ -27,7 +28,7 @@
   ],
   "itens_com_ficha": 15,
   "itens_sem_saida_de_compra": 0,
-  "itens_com_piso_nao_rastreavel": 1,
+  "itens_com_piso_nao_rastreavel": 2,
   "links_sem_degrau": 0,
   "itens_com_link_de_afiliado": 15,
   "itens_com_foto": 15
@@ -117,9 +118,9 @@
  },
  "lista_de_compras": [
   {
-   "codigo": "qualquer modelo NAO-Xiaomi com Pa declarado acima de 3.000",
-   "marca": "positivo, wap, irobot, e o que aparecer",
-   "por_que": "URGENCIA NUMERO 1 DO CATALOGO, medida na varredura desta execucao (cobertura_de_faixa_r2). Duas coisas de uma vez: acima de 6.000 Pa so ha 2 elegiveis (faixa DESCOBERTA pelo portao de 3 itens da secao 9), e toda faixa acima de 3.000 Pa e 100% Xiaomi. Uma ilha que se vende como comparador cross-marca nao pode ter a faixa que mais vende — casa com pet — ocupada por uma marca so. Nao se resolve afrouxando elegibilidade: resolve-se achando Pa de outra marca nessa faixa"
+   "codigo": "mais um modelo NAO-Xiaomi com Pa declarado acima de 3.000",
+   "marca": "roborock, positivo, wap, irobot, e o que aparecer",
+   "por_que": "ANDOU EM 17/09/2026, PELA PRIMEIRA VEZ DESDE QUE FOI ESCRITA, E NAO ESTA FECHADA. O texto anterior dizia, com o numero medido, que 'toda faixa acima de 3.000 Pa e 100% Xiaomi' — e uma ilha que se vende como comparador cross-marca nao pode ter a faixa que mais vende, casa com pet, ocupada por uma marca so. O Roborock Q8 Max (5.500 Pa, canal brasileiro em br.roborock.com) quebrou o 100%: entre os modelos RECOMENDAVEIS, a faixa acima de 3.000 Pa passou de 5 modelos de uma marca para 6 modelos de DUAS. Continua sendo urgencia porque 1 de 6 nao e comparacao, e um contraexemplo: o leitor que pergunta 'quantos Pa para pelo de cachorro' ainda recebe uma lista que e Xiaomi em cinco dos seis nomes. A porta que funcionou esta escrita e e reproduzivel: marca com canal brasileiro proprio que declare Pa em NUMERO na pagina do modelo. Electrolux e Multi ja foram medidas e nao declaram em canal nenhum; a WAP declara em um dos oito; o canal brasileiro da Xiaomi foi varrido inteiro. A Roborock ainda tem modelos no canal brasileiro que NAO estao no banco (Q5, Q7, Qrevo, S8, Saros, F25 apareceram na varredura) — a proxima leva nao precisa de marca nova, precisa de mais um modelo DESTA."
   },
   {
    "codigo": "qualquer modelo com par (minutos, m2) declarado",
@@ -5162,6 +5163,119 @@
    },
    "status": "publicavel",
    "observacao": "MODELO NOVO COM OS TRES CAMPOS que o item 2 da DEFINICAO DE PRONTA conta — Pa declarado, canal brasileiro e peca declarada pelo fabricante —, que e o unico caminho que a execucao das 13h16Z de 17/09 deixou escrito para mover a intersecao alem de 11. Com 2.200 Pa ele passa a ser o modelo de MENOR succao do banco inteiro, abaixo do Mop 2 (2.700) e do PRA800 (2.800): fica abaixo dos dois limiares editoriais de pet (3.000 no Mundo Conectado, 4.000 no Canaltech) e da a R2 um terceiro caso concreto de recusa por faixa, agora com o piso da escala.",
+   "verificado_em": "2026-09-17"
+  },
+  {
+   "id": "roborock-q8-max",
+   "marca": "roborock",
+   "linha": "Q",
+   "codigo_fabricante": "Q8 Max",
+   "canal_brasileiro": {
+    "valor": "https://br.roborock.com/pages/q8-max-plus",
+    "unidade": null,
+    "fonte": "f-br",
+    "declarado_como": "Roborock Q8 Max | Site Oficial da Roborock Brasil"
+   },
+   "nome_comercial": "Roborock Q8 Max",
+   "categoria": "robo",
+   "variantes_de_hardware": [],
+   "pa_declarado": {
+    "valor": 5500,
+    "unidade": "Pa",
+    "fonte": "f-br",
+    "declarado_como": "a potencia de succao HyperForce foi atualizada para 5.500 Pa"
+   },
+   "potencia_w_declarada": {
+    "valor": null,
+    "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina esta bloqueada pelo egresso (000 em duas passadas em 2026-09-17)"
+   },
+   "autonomia_min_declarada": {
+    "valor": 240,
+    "unidade": "min",
+    "fonte": "f-br",
+    "declarado_como": "pode limpar continuamente por ate 4 horas"
+   },
+   "cobertura_m2_declarada": {
+    "valor": null,
+    "unidade": "m2",
+    "motivo_do_null": "a Roborock NAO declara area coberta por carga para este modelo em nenhuma das passadas desta coleta. E a SEXTA marca medida com o mesmo resultado: so a Electrolux declara m2 por carga, e este null e RESPOSTA, nao lacuna"
+   },
+   "recarga_min_declarada": {
+    "valor": null,
+    "motivo_do_null": "nao declarado na fonte coletada: nenhuma das duas passadas devolveu tempo de recarga para este modelo"
+   },
+   "retoma_apos_recarga": {
+    "valor": null,
+    "motivo_do_null": "nao declarado na fonte coletada: nenhuma das duas passadas devolveu este campo"
+   },
+   "bateria_mah": {
+    "valor": 5200,
+    "unidade": "mAh",
+    "fonte": "f-br",
+    "declarado_como": "equipado com uma potente bateria de 5.200 mAh"
+   },
+   "voltagem": {
+    "valor": null,
+    "unidade": "V",
+    "motivo_do_null": "nao declarado na fonte coletada: a pagina brasileira do modelo nao traz a tensao de alimentacao em nenhuma das duas passadas"
+   },
+   "base_autoesvaziamento": {
+    "valor": null,
+    "motivo_do_null": "NAO E LACUNA DE COLETA, E AMBIGUIDADE DA FONTE, e por isso fica null: o endereco brasileiro deste modelo tem o sufixo 'q8-max-plus' e a pagina cobre a familia inteira, em que o 'Q8 Max+' e justamente a versao COM base de autoesvaziamento e o 'Q8 Max' e a versao sem. Atribuir ao Q8 Max o que a pagina declara do Q8 Max+ e ler variante como modelo, que e a familia do erro do S20 que esta ilha ja pagou. O campo volta a ter valor no dia em que uma passada separar os dois pelo nome"
+   },
+   "navegacao": {
+    "valor": "laser",
+    "unidade": null,
+    "fonte": "f-br",
+    "declarado_como": "navegacao PreciSense LiDAR, que cria mapas detalhados e precisos"
+   },
+   "reservatorio_po_ml": {
+    "valor": null,
+    "motivo_do_null": "O UNICO numero de reservatorio que as passadas devolveram foi 'saco de po de 2,5 L com classificacao E12', e ele e do SACO DA BASE, nao do compartimento do robo — gravar 2500 ml aqui seria dizer ao leitor que o robo carrega dez vezes o que carrega. Sao duas pecas diferentes e o campo e do robo",
+    "unidade": "ml"
+   },
+   "reservatorio_agua_ml": {
+    "valor": null,
+    "motivo_do_null": "nao declarado na fonte coletada: as passadas devolveram os 30 niveis de vazao de agua e nunca a capacidade do tanque",
+    "unidade": "ml"
+   },
+   "divergencias": [],
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o registro nasceu nesta execucao e a coleta da Shopee nao rodou sobre ele. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-17",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Q8%20Max%20robo%20aspirador",
+    "motivo_sem_url_busca": "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar --encurtar com a credencial da Open API no ambiente.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-br": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Roborock Brasil",
+     "titulo_na_fonte": "Roborock Q8 Max | Site Oficial da Roborock Brasil",
+     "url": "https://br.roborock.com/pages/q8-max-plus",
+     "canal_de_coleta": "busca web restrita ao dominio br.roborock.com, DUAS passadas independentes nesta execucao, com o MESMO numero de succao, a MESMA bateria, a MESMA autonomia e a MESMA navegacao nas duas. O egresso direto esta fechado: curl a https://br.roborock.com/ e a https://br.roborock.com/pages/q8-max-plus devolveu 000 em DUAS passadas cada, com robometria.com.br em 200 na mesma janela. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-17"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "MODELO NOVO COM OS TRES CAMPOS que o item 2 da DEFINICAO DE PRONTA conta — Pa declarado, canal brasileiro e peca declarada pelo fabricante —, e o primeiro deles que vem de FORA da Xiaomi desde que o canal brasileiro dela foi varrido inteiro em 17/09. Com 5.500 Pa ele e o PRIMEIRO modelo nao-Xiaomi do banco acima de 3.000 Pa: ate hoje a faixa que a R2 mais recomenda — casa com pelo de animal — era 100% de uma marca so, que era a urgencia numero 1 escrita na lista_de_compras. A base de autoesvaziamento ficou null de proposito: a pagina brasileira cobre Q8 Max e Q8 Max+ no mesmo endereco e e o '+' que tem a base.",
    "verificado_em": "2026-09-17"
   }
  ]

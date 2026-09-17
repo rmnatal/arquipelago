@@ -7,6 +7,13 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.10.1 (17/09/2026) — A SEXTA MARCA ENTROU NO BANCO E A ÁRVORE
+ * NÃO SABIA. `robometria_casca_categorias()` é digitada e a lista de marcas
+ * com modelo publicável é contada do banco; a Roborock entrou e as duas
+ * divergiram no mesmo minuto. Quem avisou foi a régua do teste-arvore.php,
+ * que existe exatamente para isso — lista digitada ao lado de lista contada
+ * é a cicatriz do número de tela desta ilha. Nenhuma URL nasceu: categoria
+ * não é endereço publicado enquanto o portão de malha do ARVORE.md segurar.
  * Versão: 1.10.0 (17/09/2026) — O TÍTULO PASSOU A PROMETER O NÚMERO, E ELE É
  * DERIVADO. Proposta 2 da leitura semanal de 16/09: três páginas na primeira
  * página do Google (9,2 · 6,8 · 7,0) e CTR zero, e nenhum dos três títulos
@@ -218,7 +225,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.10.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.10.1' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -1891,6 +1898,14 @@ function robometria_casca_categorias() {
 		'electrolux'            => array( 'modelos', 'Electrolux' ),
 		'multi'                 => array( 'modelos', 'Multi' ),
 		'positivo'              => array( 'modelos', 'Positivo' ),
+		/* Roborock entrou em 17/09/2026, com a sexta marca do banco. A trava do
+		   teste-arvore.php — "as categorias de /modelos/ sao as marcas com modelo
+		   publicavel" — reprovou no mesmo minuto em que o modelo foi gravado, que
+		   e o comportamento desejado: esta lista e digitada e a do banco e contada,
+		   e a unica coisa que impede as duas de divergirem caladas e a regua que
+		   as compara. Categoria nao e URL: nenhuma delas esta publicada ainda,
+		   pelo portao de malha descrito no ARVORE.md. */
+		'roborock'              => array( 'modelos', 'Roborock' ),
 		'xiaomi'                => array( 'modelos', 'Xiaomi' ),
 		'wap'                   => array( 'modelos', 'WAP' ),
 		'guias-pecas'           => array( 'guias',   'Peças' ),

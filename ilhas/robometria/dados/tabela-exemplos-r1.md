@@ -33,6 +33,7 @@ linhas em HTML, sem depender de script.
 | WAP WSMART | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
 | WAP WSMART | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
 | WAP WSMART | reservatorio | FW008024 | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| Roborock Q8 Max | mop | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 17/09/2026 |
 | Xiaomi Mop 2 Lite | filtro | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 17/09/2026 |
 | Xiaomi Mop 2 Lite | escova lateral | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 17/09/2026 |
 | Xiaomi Mop 2 Lite | escova principal | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 17/09/2026 |
@@ -110,4 +111,4 @@ linhas em HTML, sem depender de script.
 | Xiaomi S40C | mop | E101-TB | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
 | Xiaomi X20 | escova lateral | B106GL-BX | declarada_fabricante | fabricante-via-busca · 14/09/2026 |
 
-Linhas: **97** — o minimo da secao 1.7 da especificacao e 8.
+Linhas: **98** — o minimo da secao 1.7 da especificacao e 8.

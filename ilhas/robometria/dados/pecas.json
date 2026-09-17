@@ -7,15 +7,15 @@
  "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. LEVA DE 13/09/2026: 8 pecas da XIAOMI COM CODIGO, e a coleta so aconteceu porque o dominio testado ate entao estava errado. O PROMPT.md e o ESTADO.md mandavam testar mi.com.br e xiaomi.com.br; o banco desta ilha sempre citou www.mi.com/br. O egresso direto segue fechado por politica nos tres (000, 403 ao CONNECT, duas passadas), mas a BUSCA alcanca mi.com — e nunca tinha sido testada nele. A REGUA DE COMPATIBILIDADE DESTA LEVA, escrita antes de gravar: a Xiaomi declara compatibilidade no TITULO PUBLICADO da peca ('Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush'), e o codigo mora na subpagina /specs/ como 'Product model'. Um par entra quando o modelo e nomeado num titulo que aparece na pagina de acessorio daquele modelo ou numa pagina de peca dedicada; titulo de listagem que nomeia modelo que a especificacao da peca nao repete vai para divergencias e e resolvido pelo MAIS ESTREITO (secao 10 do ARQUIPELAGO.md). LEVA DE 13/09/2026 (segunda do dia): 4 pecas da WAP, as primeiras da marca — 2 do W300 e 2 do WSMART. TODAS com codigo_fabricante null: ver lista_de_compras. A REGRA QUE ESTA LEVA ESCREVEU, e ela subiu para a secao 26 do ARQUIPELAGO.md: a FUNCAO da peca nao se le do nome do produto. O fabricante batiza pela POSICAO (Direita, Esquerda, Central, Frontal, Rotativa) e este banco classifica pela FUNCAO (escova lateral, escova principal). A WAP desmente a si mesma no proprio canal — 'escovas giratorias direita e esquerda' e o par LATERAL do W300, e 'Escova Principal (Escova giratoria)' e a PRINCIPAL do W90 —, entao toda escova passa a carregar funcao{} dizendo onde a funcao foi declarada: no titulo, no contraste do catalogo daquele modelo, ou no canal de manutencao. Sem nenhum dos tres o registro nao nasce, e foi por isso que a escova do W90 ficou de fora. LEVA DE 14/09/2026 (19h17Z): a familia B106GL do Xiaomi S10. O registro B106GL-BX, que estava no banco desde 13/09 com compatibilidade so do S20, foi ALARGADO — nao duplicado — porque a propria Xiaomi publica o mesmo codigo sob titulo que nomeia S10, E10, S12, E12 e X20. Nasceram B106GL-ZX (escova principal), B106GL-LW (filtro) e o mop do S10 sem codigo, com a causa medida. Canal: busca web restrita a mi.com; o egresso direto e o WebFetch seguem devolvendo EGRESS_BLOCKED, remedido nesta execucao, e por isso as fontes sao de nivel 3.",
  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
  "contagem": {
-  "total": 48,
-  "publicavel": 45,
+  "total": 49,
+  "publicavel": 46,
   "excluido_do_banco": 3,
   "nao_publicavel": 0,
-  "pares_peca_x_modelo_declarados": 81,
-  "esperando_link_de_afiliado": 33,
+  "pares_peca_x_modelo_declarados": 82,
+  "esperando_link_de_afiliado": 34,
   "itens_com_ficha": 12,
   "itens_sem_saida_de_compra": 0,
-  "itens_com_piso_nao_rastreavel": 10,
+  "itens_com_piso_nao_rastreavel": 11,
   "links_sem_degrau": 0,
   "itens_com_link_de_afiliado": 12,
   "itens_com_foto": 12
@@ -3711,6 +3711,66 @@
    },
    "status": "publicavel",
    "observacao": "O titulo nomeia o que a peca E ('water tank'), entao o tipo sai do titulo. O 'two-in-one' e do fabricante e esta transcrito no nome: o conteudo da caixa da pagina de especificacoes descreve 'Water Tank (with pre-installed Mop pad)', que e o que torna o tanque dois em um. E a SEXTA peca de tipo reservatorio do banco e a segunda que nao e da WAP. a lista de consumiveis do artigo de suporte DESTE modelo: \"The consumables of Mi Robot Vacuum-Mop 2 Lite include: brush, mop, side brush, filter, two-in-one water tank, etc., and they are not compatible with other Mi Robot Vacuum consumables\".",
+   "verificado_em": "2026-09-17"
+  },
+  {
+   "id": "roborock-mop-q8-max",
+   "marca": "roborock",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "MEDIDO nesta coleta: a Roborock identifica o consumivel pelo TITULO do produto na propria loja oficial e a lista de resultados nunca devolveu um codigo de referencia para ele. O titulo e o que a marca publica e e o que a frase da R1 cita; inventar um codigo a partir do de outro modelo seria heranca",
+   "tipo": "mop",
+   "nome_na_fonte": "Mop Cloth",
+   "compatibilidade": [
+    {
+     "modelo": "roborock-q8-max",
+     "codigo_declarado": "Q8 Max Series",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-loja"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "nao declarada na fonte coletada: o titulo do produto declara COM QUAIS modelos o pano serve e nunca de quanto em quanto tempo troca-lo"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o registro nasceu nesta execucao e a coleta da Shopee nao rodou sobre ele. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-17",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+    "motivo_sem_url_busca": "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar --encurtar com a credencial da Open API no ambiente.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-loja": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Roborock US (loja oficial)",
+     "titulo_na_fonte": "Mop Cloth*2 for Q8 Max Series, Q5 Pro Series, Q7 Series, Q7 Max Series, S6 Series, S5 Series and E Series",
+     "url": "https://us.roborock.com/products/mop-cloth-2pcs-for-roborock-q7-series-s6-series-s5-series-e-series",
+     "canal_de_coleta": "busca web restrita ao dominio us.roborock.com. O titulo do produto veio na LISTA DE RESULTADOS (que e o titulo indexado da pagina, nao a prosa do resumidor) em TRES passadas independentes, e a TERCEIRA delas nao tinha 'Q8' na consulta — o que separa declaracao do fabricante de eco da pergunta, que e a armadilha desta ilha quando o canal e busca. Egresso direto fechado",
+     "verificado_em": "2026-09-17"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "O TITULO NOMEIA O QUE A PECA E ('Mop Cloth'), entao o tipo sai do titulo e nao de vizinhanca. A COMPATIBILIDADE E DECLARADA NO NIVEL DA SERIE — o titulo diz 'Q8 Max Series', que e a familia a que este modelo pertence e que inclui o Q8 Max e o Q8 Max+. Isso NAO e heranca de modelo irmao: a marca nomeia a serie DESTE modelo, nao a de outro. Foi a UNICA peca desta leva que passou no criterio de duas passadas limpas, e as outras duas ficaram de fora com o motivo escrito no REGISTRO.md: o 'Washable Filter*2' so nomeou o Q8 Max na PROSA do resumidor e a passada cuja consulta nao dizia 'Q8' devolveu um titulo so com modelos Q7; e o 'Side Brush*2' nomeou 'Q8 Max' numa passada e so 'Q8 Max+' na outra — variante lida como modelo e exatamente o erro que este banco ja pagou.",
    "verificado_em": "2026-09-17"
   }
  ],

@@ -11,7 +11,7 @@
     "dados/modelos-robo.json",
     "dados/constantes.json"
   ],
-  "total_de_fontes": 126,
+  "total_de_fontes": 128,
   "niveis": [
     {
       "nivel": 1,
@@ -28,7 +28,7 @@
     {
       "nivel": 3,
       "origem": "fabricante-via-busca",
-      "fontes_no_banco": 80,
+      "fontes_no_banco": 82,
       "existe_hoje": true
     },
     {
@@ -57,25 +57,25 @@
     }
   ],
   "medicao": {
-    "marcas": 5,
-    "modelos_publicaveis": 39,
-    "pecas_publicaveis": 45,
-    "pares_declarados": 80,
-    "itens_publicaveis": 84,
-    "esperando_link": 57,
+    "marcas": 6,
+    "modelos_publicaveis": 40,
+    "pecas_publicaveis": 46,
+    "pares_declarados": 81,
+    "itens_publicaveis": 86,
+    "esperando_link": 59,
     "rendem_comissao": 73,
-    "nao_rendem_comissao": 11,
+    "nao_rendem_comissao": 13,
     "pecas_que_atravessam_marca": 0,
-    "modelos_recomendaveis": 33,
-    "modelos_recomendaveis_com_pa": 12,
+    "modelos_recomendaveis": 34,
+    "modelos_recomendaveis_com_pa": 13,
     "pa_minimo": 1400,
     "pa_maximo": 10000,
     "marcas_que_declaram_m2": 1,
-    "r1_responde": 32,
+    "r1_responde": 33,
     "r1_vazia": 7,
-    "celulas": 234,
-    "celulas_sem_resposta": 147,
-    "as_duas": 10,
+    "celulas": 240,
+    "celulas_sem_resposta": 152,
+    "as_duas": 11,
     "medido_em": "2026-09-17"
   },
   "reguas_da_medicao": {

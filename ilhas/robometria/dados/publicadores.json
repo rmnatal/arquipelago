@@ -3,7 +3,7 @@
  "ilha": "robometria",
  "entidade": "publicador",
  "esquema": "dados/esquema-banco.json",
- "gerado_em": "2026-09-14",
+ "gerado_em": "2026-09-17",
  "nota_de_procedencia": "Nasceu em 14/09/2026 para pagar a divida (c) do bloco das 11h44Z: o artigo antes do publicador era DIGITADO nas frases publicadas ('A %s declara'), e funcionava porque todo publicador que chegava aquelas frases e feminino singular. Verdadeiro por acidente do banco. Aqui o artigo e DECLARADO ao lado do nome, com o motivo escrito, e quem monta frase le daqui — nunca adivinha do nome. O `nome` de cada registro e a string EXATA que ja viaja no banco (fontes[].publicador em pecas.json e modelos-robo.json, registros[].nome em marcas.json, e os limiares da R2), porque e ela que vai a tela: chave que nao bate letra por letra com o texto publicado nao e chave, e um segundo mapa de nomes — a cicatriz da casca 1.2.0. Nenhum artigo foi colhido de fonte externa: e decisao de lingua da ilha, e por isso cada registro carrega `motivo`, que e a frase que sustenta a escolha.",
  "nota_do_alcance": "A lista cobre TODO publicador que existe no banco hoje, inclusive os que ainda nao chegam a nenhuma frase com artigo (as tabelas da R2 e da A2 imprimem o nome em celula, sem oracao ao redor). Cobrir so quem hoje precisa seria escrever regua para o mundo de hoje: o dia em que uma frase nova citar um desses nomes, ela ja tem de onde ler. ferramentas/validar-banco.py cobra as duas direcoes — publicador usado sem registro aqui e ERRO, registro aqui sem uso no banco e AVISO.",
  "registros": [
@@ -114,6 +114,24 @@
    "nome": "Positivo Casa Inteligente (loja oficial)",
    "artigo": "a",
    "motivo": "mesmo nucleo da marca; o parenteses qualifica o canal."
+  },
+  {
+   "id": "roborock",
+   "nome": "Roborock",
+   "artigo": "a",
+   "motivo": "'a Roborock' — nome de empresa, feminino singular no uso corrente, como 'a Xiaomi' e 'a Multi'."
+  },
+  {
+   "id": "roborock-brasil",
+   "nome": "Roborock Brasil",
+   "artigo": "a",
+   "motivo": "'a Roborock' — nome de empresa, feminino singular no uso corrente, como 'a Xiaomi'; 'Brasil' nomeia o canal brasileiro dela e nao muda o artigo."
+  },
+  {
+   "id": "roborock-loja-eua",
+   "nome": "Roborock US (loja oficial)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz que a leitura saiu da loja oficial do proprio fabricante, e 'US' diz qual delas — a compatibilidade e declarada la, o preco e a compra nao."
   },
   {
    "id": "wap",

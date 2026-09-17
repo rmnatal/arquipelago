@@ -78,6 +78,13 @@ TOKEN_DA_MARCA = {
     "electrolux": "Electrolux",
     "xiaomi": "Xiaomi",
     "positivo": "Positivo",
+    # Marca que entrou em 17/09/2026 e o unico token desta tabela que NAO precisou
+    # de decisao: "Roborock" nao e palavra do portugues, nao e prefixo, nao e sigla
+    # de outra coisa e e exatamente como o vendedor de marketplace escreve o nome no
+    # titulo. As outras cinco linhas estao aqui porque o nome de tela, o id ou a
+    # sigla falhariam; esta esta aqui porque a regua exige token conferido a mao para
+    # marca nova — e a exigencia continua certa mesmo quando a resposta e obvia.
+    "roborock": "Roborock",
     "wap": "WAP",
 }
 
