@@ -763,3 +763,117 @@ foi feita na secao correspondente, identificada pelo historico do arquivo e nao 
 Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync
 nao foi acionado, nada foi publicado, nenhuma conta foi criada, o `REGISTRO.md` nao foi tocado e nenhum
 arquivo alem de `ilhas/robometria/PROMPT.md` e deste log foi alterado.
+
+---
+
+## DISPARO DE 17/09/2026, 23h39Z — o teste de vida da Shopee vira teste de navegador, e o item 3 da robometria passa a contar defeito
+
+Instrucao: DOIS arquivos, TRES edicoes literais, UM commit so.
+
+- `ARQUIPELAGO.md` — insercao de um bloco novo logo depois da linha da ronda diaria, dentro da 25.4.
+- `ilhas/robometria/PROMPT.md` — EDICAO A: troca do item 3 da DEFINICAO DE PRONTA por duas linhas.
+- `ilhas/robometria/PROMPT.md` — EDICAO B: troca do marcador dos "65 de 65 saem por link que NAO rastreia",
+  no despacho de 14/09, por uma linha com o texto original riscado mais o texto novo.
+
+As tres ancoras foram encontradas no `main` byte a byte como vieram na instrucao, cada uma uma unica vez.
+Nenhuma divergencia. Nada foi reformatado, nada foi "melhorado", nenhuma linha foi acrescentada alem das
+que a instrucao trouxe.
+
+### Passo 1 — partida do main real
+
+```
+$ git fetch origin main && git checkout -B trabalho origin/main
+Switched to a new branch 'trabalho'
+$ git log -1 --oneline
+1b7a455 maos-log: secao do disparo de 17/09 23h13Z — insercao do despacho de 17/09 na robometria
+```
+
+### Passo 3 — commit
+
+Hash que foi ao `main`: **`347010eed005ad02a29f4fbe3d3b41eb8f359606`** (`347010e`).
+
+Mensagem, exatamente a que a instrucao deu:
+
+```
+contrato: o teste de vida da Shopee e de navegador, nao de nuvem — e o item 3 da robometria passa a contar defeito, nao vigilancia
+```
+
+### Passo 4 — push
+
+```
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   1b7a455..347010e  HEAD -> main
+```
+
+Aceito de primeira. Nenhuma recusa, nenhum rebase, nenhum force push, nenhum PR.
+
+### Passo 5 — confirmacao em origin/main
+
+```
+$ git fetch origin main && git log -1 origin/main --format='%H %s'
+347010eed005ad02a29f4fbe3d3b41eb8f359606 contrato: o teste de vida da Shopee e de navegador, nao de nuvem — e o item 3 da robometria passa a contar defeito, nao vigilancia
+```
+
+### Estado da arvore e diff do commit
+
+```
+$ git status --porcelain
+(vazio — arvore limpa)
+$ git diff --stat HEAD~1 HEAD
+ ARQUIPELAGO.md             | 14 ++++++++++++++
+ ilhas/robometria/PROMPT.md |  5 +++--
+ 2 files changed, 17 insertions(+), 2 deletions(-)
+```
+
+Sao 14 insercoes e 0 remocoes no `ARQUIPELAGO.md`, e 3 insercoes com 2 remocoes no
+`ilhas/robometria/PROMPT.md` — as duas trocas literais.
+
+### Contagem conferida RELENDO os arquivos depois de gravar
+
+```
+$ grep -c '' ARQUIPELAGO.md
+890
+$ git show 1b7a455:ARQUIPELAGO.md | grep -c ''
+876
+$ grep -c '' ilhas/robometria/PROMPT.md
+892
+$ git show 1b7a455:ilhas/robometria/PROMPT.md | grep -c ''
+891
+$ grep -c 'O MODO CERTO DE FAZER ESSE TESTE NA SHOPEE' ARQUIPELAGO.md
+1
+$ grep -n 'O MODO CERTO DE FAZER ESSE TESTE NA SHOPEE' ARQUIPELAGO.md | cut -d: -f1
+778
+$ grep -c 'O QUE CONTA E O QUE NÃO CONTA, corrigido em 17/09/2026' ilhas/robometria/PROMPT.md
+1
+$ grep -c 'ESTA DÍVIDA MORREU EM 16/09/2026' ilhas/robometria/PROMPT.md
+1
+$ grep -c 'Nenhum item pendente nos despachos' ilhas/robometria/PROMPT.md
+0
+```
+
+O `ARQUIPELAGO.md` foi de **876 para 890 linhas** (14 a mais, exatamente o tamanho do bloco mais a linha em
+branco que o separa da ancora). O bloco novo comeca na linha 778; a ancora da 25.4 ficou na 776, intacta, com
+uma unica linha em branco entre ela e o bloco. A linha 791 (a que ja era em branco antes da insercao, entre a
+ancora e o `### 25.4-b`) serviu de separacao de baixo, entao nenhuma linha em branco extra foi criada. O bloco
+aparece uma unica vez.
+
+O `ilhas/robometria/PROMPT.md` foi de **891 para 892 linhas** (+1 liquido: a EDICAO A trocou 1 linha por 2 e a
+EDICAO B trocou 1 linha por 1). Os dois textos novos aparecem uma vez cada. A regua antiga do item 3 —
+"Nenhum item pendente nos despachos" — nao existe mais no arquivo: zero ocorrencias, que e a prova de que a
+troca foi feita e nao duplicada.
+
+Os textos foram gravados por arquivo, com os acentos escritos como escapes `\u` num script Python, para que
+nem o shell nem nenhuma etapa intermediaria tocasse em cedilha, til ou travessao. As tres crases do bloco da
+API da Shopee e as chaves do corpo JSON do erro 403 passaram inteiras. A mensagem de commit foi passada com
+`-F -`, nunca com `-m`, pelo mesmo motivo — ela tem um travessao.
+
+### Passos que falharam
+
+Nenhum. As tres ancoras existiam, as tres edicoes entraram, o commit foi aceito no `main` de primeira e a
+confirmacao em `origin/main` mostra o hash certo.
+
+Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync
+nao foi acionado, nada foi publicado, nenhuma conta foi criada, o `REGISTRO.md` nao foi tocado, o
+`ARQUIPELAGO.md` nao foi lido para decidir nada — so para achar a ancora — e nenhum arquivo alem dos dois que
+a instrucao nomeou e deste log foi alterado.
