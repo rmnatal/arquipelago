@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-17T16:16Z
-executando_desde: null
+executando_desde: 2026-09-17T19:16Z
 bloco_atual: |
   BLOCO 3c — A LEVA DO MI ROBOT VACUUM-MOP 2 LITE: MODELO NOVO COM OS TRES CAMPOS, e a INTERSECAO VAI DE 9 PARA 10 com o TETO de 11 para 12. Modelo com Pa declarado (2.200), canal brasileiro (mi.com/br) e cinco pecas do artigo de suporte KA-11405 — filtro, escova lateral, escova principal, mop e reservatorio. Banco de 43 para 44 modelos e de 43 para 48 pecas, 81 pares, 39 modelos e 45 pecas publicaveis. ZERO URL nova, ZERO URL mudada de endereco, ZERO leva do teto da 21.4 gasta. Manifest na revisao 62, casca 1.10.0.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. executando_desde estava null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo. Nenhum branch claude fora do main com commit proprio e nenhum PR aberto. Reserva aceita de primeira as 16h16Z. Nenhum despacho deste PROMPT.md tem item acionavel pela Fundacao. Rede pela 20.2 antes de trabalhar: home 200 e /status na revisao 61, igual a do manifest, em TRES passadas.
