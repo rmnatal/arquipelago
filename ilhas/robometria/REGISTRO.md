@@ -4773,3 +4773,90 @@ so a API da Shopee, que nao toca nos dois campos da intersecao. **A proxima
 leitura semanal e quem fecha a proposta 2**, registrando impressoes e CTR das
 tres linhas em `dados/posicoes.md`; o de-para dos titulos velhos e novos ja esta
 escrito la para a comparacao ser legivel.
+
+## 2026-09-17 — Bloco 3c: a leva do Mi Robot Vacuum-Mop 2, e o teto da meta do item 2 e 11, nao 15
+
+- **O bloco.** Cinco pecas novas do Mi Robot Vacuum-Mop 2 — filtro, escova
+  lateral, escova principal, reservatorio e mop —, todas do artigo de suporte
+  KA-11406 da propria Xiaomi. O modelo sai do vazio da R1 e a **intersecao das
+  duas ferramentas vai de 8 para 9** (item 2 da DEFINICAO DE PRONTA). Banco de
+  38 para 43 pecas, 40 publicaveis, 76 pares declarados. ZERO URL nova, ZERO
+  URL mudada de endereco: nao gasta leva do teto da 21.4.
+- **A ESCOLHA DA ILHA: pelo foco da 1.2, sem corrida.** `foco.md` nomeia a
+  robometria desde 16/09. `executando_desde` estava `null`, que pela 1.1 ja
+  significa que nenhum bloco da Fundacao esta vivo, e o ultimo commit na pasta
+  era das 10h34Z. Nenhum branch `claude/*` fora do `main` e nenhum PR aberto.
+  Reserva aceita de primeira as 13h16Z. Nenhum despacho deste `PROMPT.md` tem
+  item acionavel pela Fundacao: o da Sentinela de 16/09 foi reescrito pela 18.3
+  as 10h35Z e o que sobra nas propostas 1 e 3 e verificacao da leitura semanal.
+  Rede da ilha pela 20.2 antes de trabalhar: home 200 e `/status` na revisao 59,
+  igual a do manifest, em TRES passadas.
+- **O QUE DESTRAVOU O BLOCO FOI SEPARAR OS DOIS CANAIS DE REDE OUTRA VEZ, e a
+  execucao anterior tinha declarado este item BLOQUEADO POR REDE.** Ela mediu, as
+  10h32Z, `403` do proxy de egresso nas cinco portas de fabricante e concluiu
+  que "nenhuma execucao da Fundacao move este numero de 8". A medicao dela estava
+  certa e a conclusao era larga demais: o egresso direto esta fechado (remedido
+  hoje, `000` com `connect_rejected` em `www.mi.com`, `mi.com`,
+  `loja.positivotecnologia.com.br`, `www.positivotecnologia.com.br`,
+  `loja.wap.ind.br` e `www.wap.ind.br`, duas passadas cada, com
+  robometria.com.br em 200 na mesma janela; `WebFetch` de `www.mi.com` devolveu
+  `EGRESS_BLOCKED`) — **e a BUSCA alcanca os mesmos fabricantes**, que e a
+  descoberta de 12/09 escrita em "Especifico desta ilha". Egresso fechado nao e
+  coleta bloqueada, e foi assim que as levas Xiaomi de 13 e 14/09 entraram.
+- **A funcao das duas escovas veio do canal de manutencao, origem 3 da 26.1.**
+  A Xiaomi escreve "The filter and side brush are recommended to be replaced
+  after 150 hours of use" e "the main brush is recommended to be replaced after
+  300 hours of use" no artigo DESTE modelo. A tela atribui certo sozinha, e isso
+  foi lido no ar: "Quem chama esta peca de escova lateral e o proprio fabricante,
+  no canal de manutencao dele: o titulo da peca nao nomeia a funcao."
+- **A RECUSA DO BLOCO, e ela esta gravada no proprio registro da escova
+  principal:** o artigo nomeia `roller brush` na lista de acessorios e
+  `main brush` na frase de manutencao. O banco grava o que o canal de manutencao
+  nomeia e **nao afirma que os dois sao o mesmo item** — a Xiaomi nao diz que
+  sao, e juntar os dois seria contraste inventado por quem grava, que e
+  exatamente o que a 26.1 proibe. E o inverso barato do erro do S20, que leu
+  catalogo de variantes como kit.
+- **A VIDA UTIL DECLARADA VEIO EM HORAS DE USO E O CAMPO E EM MESES**, entao o
+  valor ficou `null` com a citacao literal no `motivo_do_null`, que e dado
+  publicavel pela regra que ja valia. Converter hora de uso em mes exigiria saber
+  quantas horas por semana a casa de quem le roda o robo — numero que so o leitor
+  tem, e cravar um mes seria publicar o habito medio com cara de declaracao do
+  fabricante.
+- **O ACHADO QUE VALE MAIS QUE O BLOCO, e ele e aritmetica do banco de hoje: a
+  meta de 15 do item 2 NAO E ALCANCAVEL POR COLETA DE PECA, e o teto de hoje e
+  11.** A intersecao conta modelo atendido pelas DUAS ferramentas, e a R2 so
+  responde com `pa_declarado` E `canal_brasileiro`. Sao **11** modelos com os
+  dois campos, em 38 publicaveis — logo a intersecao nao passa de 11, por mais
+  peca que entre. Dos 11, 9 ja estao atendidos; os 2 que faltam sao
+  `positivo-pra500` e `wap-w400`, e **os dois foram medidos hoje como recusa de
+  fabricante, nao como coleta pendente** (ver `lista_de_compras`). O caminho para
+  15 e MODELO novo com Pa declarado, canal brasileiro e peca declarada — nunca
+  peca nova. Enquanto o item 2 falar so de peca, ele pede uma coisa que o banco
+  nao pode dar.
+- **A RECUSA DA POSITIVO, medida em duas passadas:** as paginas de acessorio da
+  marca sao de duas familias (`1119086x`, "Wi-Fi Laser", e `112065xx`, "laser
+  PRA800 e autolimpante PRA2000", ja no banco) e NENHUMA nomeia o PRA500, que e
+  o "Wi-Fi+". O resumo da busca ofereceu "acessorios para a LINHA Smart Robo
+  Aspirador" e a generalizacao foi recusada: linha nao e modelo.
+- **BANCADA, 0 falha:** casca 251, r1 227, a1 74, r2 107, a2 80, acentuacao 17,
+  arvore 219, voz 164, escada-compra 736, validar-banco aprovado. MUTACOES: as 25
+  baterias da ilha, todas com o resultado esperado e nenhuma inerte —
+  artigo-do-publicador 17, procedencia 17, reservatorio 10, atribuicao-do-cartao
+  10, divergencia 9, ga4 9, funcao-da-escova 7, lugar-vazio-da-foto 7, entre as
+  demais. A primeira rodada de `teste-a1.php` REPROVOU 1 de 74 e a causa e regra,
+  nao defeito: `dateModified` sai do commit mais recente dos arquivos da pagina,
+  entao ele so pode ser medido DEPOIS do commit da leva — quatro mutacoes de
+  `mutacoes-artigo-do-publicador.py` cairam junto, todas por "mundo sadio
+  reprova", e voltaram sozinhas com a data remedida.
+- **NO AR:** Sync as 13h26Z, `/status` na revisao 60 igual a do manifest (61 com
+  a lista de compras). `conferir-no-ar.py` 264 afirmacoes 0 falha,
+  `conferir-kits-no-ar.py` 165 e `conferir-reservatorio-no-ar.py` 50. E a
+  consulta que o bloco existe para responder foi aberta na tela: Mop 2 +
+  reservatorio devolve `A Xiaomi Global (suporte) declara o reservatorio "water
+  tank" compativel com Mi Robot Vacuum-Mop 2`, com a porta de compra do piso e
+  zero ocorrencia de "em breve".
+- **Proximo passo desbloqueado: MODELO novo com os tres campos** (Pa declarado,
+  canal brasileiro e peca declarada pelo fabricante), que e a unica coisa que
+  move o item 2 alem de 11 — e o canal que funciona para isso e a busca restrita
+  ao dominio do fabricante, medido hoje. O `positivo-pra500` e o `wap-w400`
+  continuam no vazio por recusa de fabricante, com a causa escrita no banco.
