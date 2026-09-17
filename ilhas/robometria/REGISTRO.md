@@ -4969,3 +4969,134 @@ escrito la para a comparacao ser legivel.
   alcancou. Vale lembrar o que ja esta medido: Electrolux e Multi nao declaram Pa
   em canal nenhum, e sete dos oito modelos WAP tambem nao — entao o alvo mais
   provavel e a Positivo, que declara Pa nos tres modelos que tem no banco.
+
+## 2026-09-17, 19h16Z — Bloco 3c: a leva do Roborock Q8 Max, a SEXTA marca, e a faixa alta de Pa deixa de ser de uma marca so
+
+- **A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA.** `foco.md` nomeia
+  robometria desde 16/09. `executando_desde` estava `null`, que pela 1.1 ja
+  significa que nenhum bloco da Fundacao esta vivo, e o ultimo commit na pasta
+  da ilha era de 16h36Z — 40 minutos antes, sem reserva vencida para o git
+  desempatar. Nenhum branch `claude/*` fora do `main` com commit proprio e
+  nenhum PR aberto. Reserva aceita de primeira as 19h16Z. Nenhum despacho do
+  `PROMPT.md` tem item acionavel pela Fundacao: as propostas 1 e 3 da leitura
+  semanal pedem, com todas as letras, que a leitura SEGUINTE meca. **Rede pela
+  20.2 antes de trabalhar:** home em 200 e `/status` na revisao 62, igual a do
+  manifest, em TRES passadas.
+- **O QUE ENTROU: o Roborock Q8 Max, modelo novo com os TRES campos** que o item
+  2 da DEFINICAO DE PRONTA conta — **Pa declarado (5.500)**, **canal brasileiro**
+  (`br.roborock.com/pages/q8-max-plus`) e **peca declarada pelo fabricante** (o
+  pano, cujo titulo na loja oficial nomeia a "Q8 Max Series"). **INTERSECAO 10 ->
+  11, TETO 12 -> 13.** Banco de 44 para 45 modelos e de 48 para 49 pecas, 82
+  pares, 40 modelos e 46 pecas publicaveis, **6 marcas**. ZERO URL nova, ZERO URL
+  mudada de endereco, ZERO leva do teto da 21.4 gasta.
+- **E O PRIMEIRO MODELO NAO-XIAOMI DO BANCO ACIMA DE 3.000 Pa, que era a urgencia
+  numero 1 da `lista_de_compras` desde 13/09.** Entre os modelos RECOMENDAVEIS, a
+  faixa acima de 3.000 Pa passou de **5 modelos de UMA marca para 6 de DUAS**, e o
+  cartao do Roborock e o **primeiro** da vitrine servida na situacao de pelo —
+  lido no HTML no ar, nao no log do Sync. A urgencia **nao esta fechada**: 1 de 6
+  nao e comparacao, e um contraexemplo. Mas a porta que funcionou esta escrita e
+  e reproduzivel, e ela **nao pede marca nova**: a Roborock tem Q5, Q7, Qrevo, S8,
+  Saros e F25 no mesmo canal brasileiro, nenhum deles no banco.
+- **A POSITIVO, QUE O REGISTRO DAS 16h16Z APONTAVA COMO ALVO MAIS PROVAVEL, ESTA
+  FECHADA** — e dizer isso vale mais que ter acertado o alvo. O canal dela publica
+  **tres** robos (PRA2000, PRA800 e o Wi-Fi+/PRA500) e os tres ja estao no banco.
+  A varredura gastou duas passadas para saber, e o proximo que ler este arquivo
+  nao gasta nenhuma.
+- **A REGUA DO CANAL BRASILEIRO TINHA UM FALSO NEGATIVO, E ELE ERA DE FORMA E NAO
+  DE NATUREZA.** `validar-banco.py` so conhecia duas maneiras de um endereco dizer
+  Brasil — `.br` no dominio e `/br/` no caminho — e **`br.roborock.com` nao tem
+  nenhuma das duas: tem o SUBDOMINIO**. Do jeito que estava, o portao reprovaria o
+  canal brasileiro OFICIAL de uma marca inteira, e o custo desse tipo de erro e
+  que ele **nao aparece como erro**: aparece como "essa marca nao tem canal
+  brasileiro", que e uma frase que ninguem vai conferir. A regua passou a aceitar
+  tambem o **rotulo** `br.` na frente do host, e a lista de marketplace continua
+  valendo inteira antes dela.
+- **AFROUXAR TRAVA SEM PLANTAR O MUNDO EM QUE ELA MORDE E O MESMO QUE NAO TER
+  TRAVA**, entao `mutacoes-canal-brasileiro.py` foi de 5 para **7 mutacoes**, as
+  duas novas sobre o endereco: o canal virando o **global** da mesma marca (some a
+  marca de Brasil, tem de reprovar) e um host que carrega as letras `br.` **no
+  meio** (`cbr.roborock.com`). **A segunda e a que importa:** ela e a unica desta
+  bateria que reprovaria a versao mais obvia do conserto, a checagem por
+  substring. As duas trocam o endereco do canal **e** o da fonte que ele cita no
+  mesmo movimento — trocar so um faria a mutacao reprovar pela regra ERRADA, que e
+  a forma mais silenciosa de uma bateria mentir que cobre uma trava.
+- **TRES REGUAS MORDERAM NO MINUTO DA GRAVACAO E AS TRES ESTAVAM CERTAS.**
+  `teste-arvore.php`: a lista de categorias de `/modelos/` e **digitada** na casca
+  e a de marcas e **contada** do banco, e a marca nova as separou (casca 1.10.1;
+  **nenhuma URL nasceu** — categoria nao e endereco publicado enquanto o portao de
+  malha do `ARVORE.md` segurar). `teste-escada-compra.py`: marca nova so entra com
+  token de busca conferido a mao, e "Roborock" e o unico token daquela tabela que
+  nao precisou de decisao. E `conferir-no-ar.py` reprovou o cartao do Roborock por
+  um literal que nunca deveria ter sido literal.
+- **O ACHADO DO BLOCO E UMA DATA QUE ESTAVA VERDE POR COINCIDENCIA DA COLETA.**
+  `conferir-no-ar.py` exigia, dentro de TODO cartao da R2, a frase *"Como sabemos
+  — pagina do fabricante, verificado em 09/09/2026"*. Ela passou seis dias verde
+  **nao porque a pagina garantisse aquela data**, e sim porque os cinco modelos
+  servidos tinham sido coletados no mesmo dia: **cada cartao carrega o
+  `verificado_em` da fonte DELE**. No dia em que entrou um modelo coletado em
+  outra data, a regua acusou defeito num cartao que estava **certo**. O cabecalho
+  daquele arquivo esta certo e continua valendo — o literal e digitado de proposito,
+  para que mudar o texto no repositorio quebre a conferencia —, e o que estava
+  errado era a **granularidade**: o que e fixo na linha e a FRASE, a data e por
+  cartao. Passou a exigir a frase **mais** uma data no formato da tela, sem ler
+  nada do banco.
+- **`ferramentas/mutacoes-data-da-procedencia.py` nasceu junto, 5 de 5**, e a
+  quinta e a que importa: **DOIS cartoes com datas DIFERENTES tem de PASSAR**, que
+  e exatamente o mundo que a constante antiga reprovava e o unico da lista que o
+  banco de hoje produz de verdade. As outras quatro reprovam: sem linha, com a
+  frase e sem data, com a data no formato do JSON (`aaaa-mm-dd`) e com a frase
+  trocada.
+- **A MESMA FAMILIA APARECEU NO `teste-a2.php`, E A LICAO JA ESTAVA ESCRITA DENTRO
+  DO PROPRIO ARQUIVO.** A mutacao F troca os totais do banco e exige que os numeros
+  de hoje sumam da tela. Com seis marcas, a abertura passou a dizer "as outras **5**
+  marcas do banco nao publicam esse numero" — e 5 e o valor real de
+  `com_cobertura`. A sonda acusou como "numero digitado" um numero que a pagina
+  **derivou** de outro campo. A mutacao passou a mover tambem a lista de marcas, e
+  o comentario que ja estava ali, sobre os pares, dizia a mesma coisa com outras
+  palavras: **quem mede tem de mover TUDO que a abertura imprime**, senao o numero
+  verdadeiro sobrevive por ser verdadeiro.
+- **O QUE A VARREDURA MEDIU E NAO ENTROU, dito para ninguem reprocurar:** (i) o
+  **`Washable Filter*2`**, cujo titulo nomeia o Q8 Max ao lado de Q5 Pro, Q7 e Q7
+  Max, so veio na **prosa do resumidor** — e a passada cuja consulta **nao** dizia
+  "Q8" devolveu um titulo so com modelos Q7. Eco da pergunta lido como declaracao
+  do fabricante e a armadilha desta ilha quando o canal e busca, e o filtro so
+  entra quando um titulo com "Q8 Max" vier na LISTA DE RESULTADOS de uma passada
+  que nao o pediu. (ii) o **`Side Brush*2`** nomeou "Q8 Max" numa passada e so
+  "Q8 Max+" na outra — **variante lida como modelo e a familia do erro do S20**.
+- **CINCO CAMPOS DO MODELO FICARAM `null` COM A CAUSA ESCRITA, e uma das causas e
+  de outra natureza:** `base_autoesvaziamento` nao e lacuna de coleta, e
+  **ambiguidade da fonte** — o endereco brasileiro tem o sufixo `q8-max-plus` e a
+  pagina cobre a familia inteira, em que o "Q8 Max+" e justamente a versao COM a
+  base. E `reservatorio_po_ml` ficou `null` porque o unico numero que as passadas
+  devolveram foi **"saco de po de 2,5 L"**, que e o saco da BASE e nao o
+  compartimento do robo: gravar 2500 ml ali diria ao leitor que o aparelho carrega
+  dez vezes o que carrega.
+- **BANCADA, 0 falha:** casca 251, r1 227, a1 74, r2 107, a2 80, acentuacao 17,
+  arvore 219, voz 164, purga-cache 21, escada-compra 822, `validar-banco`
+  aprovado. **As 26 baterias de mutacao com ZERO inertes**, procurando `ERRO` na
+  saida INTEIRA de cada uma, que e como a execucao das 16h16Z deixou escrito que
+  se mede.
+- **NO AR:** Sync as 19h31Z, `/status` na **revisao 64** igual a do manifest.
+  `conferir-no-ar.py` **264** afirmacoes, `conferir-kits-no-ar.py` 165,
+  `conferir-reservatorio-no-ar.py` 50, `conferir-atribuicao-no-ar.py` 51 e
+  `conferir-canal-na-resposta.py` — todos 0 falha. E a consulta que o bloco existe
+  para responder foi aberta na tela: a vitrine de **pelo de cachorro** serve o
+  Roborock Q8 Max em **primeiro lugar**, com a procedencia e a data dele, e a R1
+  do **Q8 Max** devolve o pano com a declaracao "Q8 Max Series" e a atribuicao a
+  loja oficial do fabricante.
+- **A memoria da ilha NAO foi atualizada nesta execucao: o ambiente desta nuvem
+  nao tem a pasta `/areas/` montada**, entao `projeto-robometria.md` nao existe
+  para escrever. Fica dito em vez de descoberto depois — e o `PROMPT.md` desta
+  ilha ja previa o caso ("Sem memoria, nao pare: o estado esta em `ESTADO.md`,
+  `REGISTRO.md` e `README.md`"), que e onde este resumo esta.
+- **Proximo passo desbloqueado: MAIS UM MODELO DA ROBOROCK, nao uma marca nova.**
+  O teto e 13 e a meta e 15, entao faltam **dois** modelos com os tres campos. A
+  Roborock e a unica marca do banco com modelos conhecidos no canal brasileiro e
+  ainda fora do banco (Q5, Q7, Qrevo, S8, Saros, F25 apareceram na varredura), e a
+  porta dela ja esta aberta: marca gravada, publicadores declarados, token de busca
+  conferido e a regua do subdominio consertada. O que falta em cada modelo e o de
+  sempre — Pa em duas passadas limpas e um titulo de acessorio que nomeie o modelo
+  na LISTA de resultados. Vale lembrar o que ja esta medido e nao precisa ser
+  reprocurado: Electrolux e Multi nao declaram Pa em canal nenhum, sete dos oito
+  modelos WAP tambem nao, a Positivo tem os tres robos dela no banco e o canal
+  brasileiro da Xiaomi foi varrido inteiro.

@@ -170,7 +170,19 @@ def _impressao_do_leitor(corpo, chave):
 # repositorio, esta lista TEM que ser reescrita a mao — e e exatamente esse
 # atrito que faz dela uma medicao.
 R2_CAMINHO = '/quantos-pa-o-robo-aspirador-precisa/'
-R2_PROCEDENCIA = 'Como sabemos — página do fabricante, verificado em 09/09/2026'
+# A DATA SAIU DESTA CONSTANTE EM 17/09/2026, E A REGRA DO CABECALHO ACIMA CONTINUA
+# VALENDO INTEIRA. Ela dizia, literalmente, "verificado em 09/09/2026" — e passou
+# seis dias verde porque os cinco cartoes serviam a mesma data, o que nunca foi uma
+# propriedade da pagina: era VERDADE POR COINCIDENCIA DA COLETA, a mesma frase que
+# esta ilha usou para descrever o portao do canal brasileiro antes de ele existir.
+# Cada cartao carrega o `verificado_em` da FONTE dele, e no dia em que entrou um
+# modelo coletado em outra data (o Roborock Q8 Max, 17/09) a regua acusou defeito
+# num cartao que estava certo. O que e fixo na linha e a FRASE; a data e por cartao.
+# Entao o literal digitado continua digitado — nao se le nada do banco aqui —, e o
+# que mudou e a granularidade: exige-se a frase E uma data no formato da tela.
+R2_PROCEDENCIA = 'Como sabemos — página do fabricante, verificado em '
+R2_PROCEDENCIA_DATA = re.compile(
+    re.escape(R2_PROCEDENCIA) + r'[0-3][0-9]/[01][0-9]/20[0-9][0-9]')
 R2_RESSALVA = '<span class="rbm-tag">a confirmar no manual</span>'
 R2_ATRIBUICAO = 'Pa declarados pelo fabricante'
 
@@ -258,7 +270,7 @@ def conferir_procedencia_da_r2(carimbo):
     if not ok(len(cartoes) >= 3, 'a vitrine serve o portao de 3 itens', '%d cartoes' % len(cartoes)):
         return
 
-    sem_linha = [i for i, c in enumerate(cartoes) if R2_PROCEDENCIA not in c]
+    sem_linha = [i for i, c in enumerate(cartoes) if not R2_PROCEDENCIA_DATA.search(c)]
     ok(not sem_linha, 'todo cartao diz de onde veio o Pa, com a data',
        'todos os %d' % len(cartoes) if not sem_linha else 'cartao(oes) %s' % sem_linha)
 
@@ -316,7 +328,8 @@ def conferir_secao_do_limiar(carimbo):
     ok(not sem_frase, 'a frase atribui o Pa ao degrau E nomeia quem publica o limiar',
        'todos os %d' % len(itens) if not sem_frase else 'item(ns) %s' % sem_frase)
 
-    sem_linha = [i for i, c in enumerate(itens) if R2_PROCEDENCIA not in html.unescape(c)]
+    sem_linha = [i for i, c in enumerate(itens)
+                 if not R2_PROCEDENCIA_DATA.search(html.unescape(c))]
     ok(not sem_linha, 'todo item diz de onde veio o Pa, com a data',
        'todos os %d' % len(itens) if not sem_linha else 'item(ns) %s' % sem_linha)
 
