@@ -4658,3 +4658,118 @@ E **duas mutações da `mutacoes-escada` tinham ficado inertes de melhora:** `m1
 **E A REGRA QUE ESTA EXECUÇÃO VIOLOU NO PRÓPRIO DIA EM QUE ELA FOI ESCRITA:** o registro anterior fecha dizendo *"mensagem de commit longa passa a ir por arquivo (`-F`), nunca por `-m`"*. O commit `433c11c` foi por `-m` e o bash comeu os dois trechos entre crases da mensagem. O conteúdo está certo e legível, a mensagem está furada, e não há conserto sem reescrever histórico já empurrado. **Segunda vez em dois dias; os commits seguintes desta execução foram por `-F`.**
 
 **O PRÓXIMO PASSO, MEDIDO E NÃO LEMBRADO:** o **item 2 da DEFINIÇÃO DE PRONTA continua sem andar**, e nada nesta execução o toca — a interseção das duas ferramentas conta `pa_declarado` **e** `canal_brasileiro`, e segue **8 de 38**. Os três caminhos são os mesmos do bloco anterior, e o primeiro continua sendo o único que mexe nos dois lados: **(1) POSITIVO** — `positivo-pra500` está em "só a R2" esperando UMA peça, e as duas passadas de busca divergiram sobre o Pa do PRA800 e do PRA2000, então a coleta tem de resolver pela regra de divergência antes de gravar; **(2) WAP**, medida NEGATIVA para Pa; **(3) Electrolux e Multi**, sem Pa em canal nenhum, já medido três vezes. **E o alvo que o bloco anterior abriu continua aberto:** com `item_id_shopee` e `shop_id_shopee` no banco, o teste de vida da 25.4-b passou a ser possível nesta ilha e ainda não foi escrito — 27 links têm ficha.
+
+## 2026-09-17, 10h38Z — Proposta 2 da leitura semanal: o titulo passou a prometer o numero, e ele e derivado
+
+**A escolha da ilha: pelo foco da 1.2, sem corrida.** `foco.md` nomeia
+robometria desde 16/09, entao nao houve rotacao a aplicar nem comparacao de
+`ultima_execucao`. `executando_desde` estava `null`, que pela 1.1 ja significa
+que nenhum bloco da Fundacao esta vivo; o ultimo commit na pasta era de 20h22Z
+de ontem. Nenhum branch `claude/*` fora do `main`, nenhum PR aberto. Reserva
+aceita de primeira as 10h16Z (commit `d581254`) e renovada as 10h28Z. Rede pela
+20.2 antes de trabalhar: home 200 e `/status` na revisao 58, igual a do
+manifest, em tres passadas.
+
+**O que foi executado, e por que este e o bloco desta execucao.** A leitura
+semanal de 16/09 e o despacho aberto no topo do `PROMPT.md`, e despacho fura a
+fila (18). Dos seus quatro itens, tres nao sao da Fundacao por ordem do proprio
+despacho — a correcao 1 ja estava cumprida, a proposta 1 diz com todas as letras
+que *"o valor desta proposta e ela NAO virar bloco"*, e a proposta 3 pede
+"registro e vigilancia". Sobrou a **proposta 2**, e ela saiu inteira.
+
+**O QUE MUDOU NA TELA.** Os tres titulos e as tres metas da banda 4 a 10 passaram
+a citar numero derivado do banco, com a fonte:
+
+| pagina | `<title>` no ar |
+|---|---|
+| `/filtro-universal-de-robo-aspirador/` | `Existe filtro universal de robô aspirador? – 0 das 35 peças` |
+| `/quantos-pa-o-robo-aspirador-precisa/` | `Quantos Pa o seu robô aspirador precisa – de 1.400 a 10.000 Pa` |
+| `/quantos-m2-o-robo-aspirador-limpa-por-carga/` | `Quantos m² um robô aspirador limpa por carga – 1 de 5 marcas` |
+
+Zero URL nova, zero URL mudada de endereco, zero nome de pagina mudado.
+
+**A REGRA QUE FOI INVERTIDA, E POR QUE ISSO NAO E AFROUXAR.** A casca dizia desde
+11/09, com todas as letras, "nenhuma descricao carrega numero", e a bancada
+reprovava digito ali dentro. O que a regra proibe e numero **digitado**, e o
+motivo esta escrito nela mesma: "uma metade que nao fala com o banco". Numero que
+chega por `casca-fatos.json` — derivado do banco commitado — fala com o banco por
+construcao, e o motivo da proibicao nao o alcanca. Molde com digito continua
+reprovando. E o portao ganhou a **direcao que faltava**: cabeca que declara
+`numeros` e NAO serve digito no ar tambem reprova, porque a promessa sumindo em
+silencio e o defeito simetrico.
+
+**A MARCA CEDEU O LUGAR, NAO O NOME.** O `<title>` tem teto de 65 e
+` – Robometria` come 13. O nome canonico da pagina continua um so, nas cinco
+superficies (H1, og:title, trilha, cartao, primeira metade do titulo) — o que sai
+e o carimbo da marca, e so nestas tres paginas. A ilha tem **0 clique organico
+medido**: ninguem a procura pelo nome, e 13 caracteres de marca valem menos que
+"de 1.400 a 10.000 Pa" numa linha de resultado que hoje nao e clicada.
+
+**O NUMERO DO Pa QUASE SAIU ERRADO, E O QUASE E O ACHADO DO BLOCO.** A faixa e
+contada sobre os modelos **recomendaveis** (publicavel COM canal brasileiro), nao
+sobre os publicaveis. Sobre publicaveis o teto seria **15.000 Pa**, de um Xiaomi
+que a Xiaomi Brasil nao vende e que o portao da R2 nunca sugere: o titulo
+prometeria na SERP uma succao que a ferramenta se recusa a recomendar. E a mesma
+familia que a 25.7 ja nomeou — regua que mede um universo enquanto a tela serve
+outro — e desta vez ela apareceu do lado da promessa, nao do lado do dado.
+
+**UM PORTAO MORTO, ACHADO DE QUEBRA.** A proibicao de digito lia
+`$c['descricao'] . ' ' . $c['titulo']`, e `titulo` **saiu do mapa das cabecas na
+casca 1.4.0**. Essa metade do portao vinha medindo string vazia havia seis dias,
+verde, sem ninguem ter como notar. E a bancada passou a medir a frase
+**resolvida** em vez do molde: "de %1$s a %2$s Pa" tem 17 caracteres e o que o
+Google corta tem 20 — medir o molde e medir o que ninguem le.
+
+**AS TRAVAS SILENCIOSAS, CONTADAS EM VEZ DE CONFIADAS.** Tres coisas fazem a
+promessa sumir sem sintoma: banco fora do ar, chave ausente da medicao, titulo
+estourando 65. Nos tres a pagina volta a ser valida com a marca — e trava
+silenciosa sem quem a conte foi exatamente como o caminho "derivado" de
+`robometria_casca_numeros()` ficou dois dias sendo decoracao nesta ilha. Por isso
+`ferramentas/mutacoes-promessa-do-titulo.py` nasceu no mesmo commit: **6 de 6**,
+nenhuma inerte, e o MUNDO SADIO passa. A quinta e a que nenhuma regua da casca
+pegaria sozinha (o Pa voltando a ser contado sobre publicavel) e quem a pega e a
+secao 8 do `teste-casca.php`, que agora reconta os cinco numeros nos registros.
+
+**ITEM 2 DA DEFINICAO DE PRONTA: BLOQUEADO POR REDE, MEDIDO HOJE E NAO LEMBRADO.**
+Depois de fechar o despacho sobrou folego (18.2), e o proximo da fila e o item 2
+(a emenda do funil, 8 de 38 pelas duas ferramentas). As duas unicas portas que o
+`PROMPT.md` nomeia para mexer nesse numero exigem sair para o fabricante, e as
+cinco devolveram **403 do proxy de egresso na mesma passada** —
+`mais.conteudo.wap.ind.br`, `www.electrolux.com.br`, `www.mi.com.br`,
+`loja.positivotecnologia.com.br`, `www.multilaser.com.br`. `connect_rejected`,
+*policy denial*, nao intermitencia, e pela 20.2 foi conferido no status do proxy
+em vez de suposto. A API da Shopee, que esta nuvem alcanca, **ja foi medida e nao
+serve**: traz foto, ficha e link, e nao traz `pa_declarado` nem
+`canal_brasileiro`. Destrava com uma linha de configuracao do Raphael (20.1 e
+20.3), nao com bloco — e o placar deve dizer **bloqueado por rede**, nunca
+"faltando", porque "faltando" sugere trabalho que existe.
+
+**PLACAR DOS CINCO ITENS DA DEFINICAO DE PRONTA (prazo 23/09):**
+
+1. Porta de compra em todo item publicavel — **feito** (73 publicaveis, 73 rendem
+   comissao, zero "em breve" no ar).
+2. Emenda do funil, 15 modelos pelas duas ferramentas — **bloqueado por rede**,
+   8 de 38 hoje. Nao e da Fundacao enquanto os cinco dominios estiverem fora da
+   lista de permitidos.
+3. [RAPHAEL] Zero defeito aberto de ronda — **esperando o Raphael**. O que sobra
+   nos despachos deste arquivo se declara dele: o encurtamento na Shopee, as duas
+   linhas do despacho de 14/09, e agora as propostas 1 e 3 de 16/09, que pedem a
+   leitura semanal seguinte.
+4. Sitemap aceito no Search Console — **feito** (processado, 9 paginas).
+5. Toda pagina com description e `og:` — **feito** (9 de 9, reconferido no ar
+   nesta execucao pelo `conferir-no-ar.py`).
+
+**Bancada, 0 falha:** casca 251 (era 219), voz 164 (era 155), r1 227, r2 107, a1
+74, a2 80, arvore 219, acentuacao 17, escada-compra 681, validar-banco aprovado.
+**Mutacoes:** promessa-do-titulo 6 de 6. **No ar:** `conferir-no-ar.py` com a
+forma da promessa por pagina, **264 afirmacoes e 0 falha**, revisao 59.
+
+**Proximo passo desbloqueado:** nao ha bloco da Fundacao que ande o item 2
+enquanto a rede estiver como esta. O que existe para a proxima execucao, em
+ordem: (a) se o Raphael liberar os cinco dominios, a coleta de `pa_declarado` e
+`canal_brasileiro` fora da Xiaomi, que e o unico caminho medido ate os 15; (b) se
+nao liberar, a fila normal do 3c pela porta que esta nuvem alcanca — e ela hoje e
+so a API da Shopee, que nao toca nos dois campos da intersecao. **A proxima
+leitura semanal e quem fecha a proposta 2**, registrando impressoes e CTR das
+tres linhas em `dados/posicoes.md`; o de-para dos titulos velhos e novos ja esta
+escrito la para a comparacao ser legivel.

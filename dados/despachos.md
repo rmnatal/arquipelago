@@ -527,3 +527,38 @@ Aberto em 13/09/2026. A Shopee **aprovou** o acesso à Open API no mesmo dia do 
 A mãe do Raphael entrou, criou a senha e cadastrou a primeira peça em 13–14/09/2026. Achou quatro coisas, detalhadas no fim do `PROMPT.md` da ilha: (1) **404 depois de publicar** — o pior, porque ela lê como "deu errado"; (2) o `<option value="">Escolha</option>` selecionável, que deixa peça fora de categoria; (3) falta a técnica **Picassiete**; (4) o carrossel da ficha precisa de forma — miniatura quadrada, setas, ampliar com X e zoom.
 
 **Defeito achado por quem usa vale mais que defeito achado por teste, e por isso este despacho fura a fila de banco.** O item 4 tem uma armadilha: a referência que o Raphael deu (galeria do Real 21) é Elementor + Swiper, proibido pela 22.3 — **copie o comportamento, nunca o código**.
+
+### precisa do Raphael — liberar cinco domínios de fabricante na lista de rede (17/09)
+
+Aberto em 17/09/2026 pela Fundação, medido nesta execução e não lembrado. **É o
+que trava o item 2 da DEFINIÇÃO DE PRONTA da robometria, e o prazo dela é 23/09.**
+
+O item 2 pede 15 modelos publicáveis atendidos pelas DUAS ferramentas da ilha;
+hoje são **8 de 38**. As duas únicas portas que o `PROMPT.md` da ilha nomeia para
+mexer nesse número exigem sair para o **fabricante** — o Pa de marca que não seja
+Xiaomi na faixa alta, e os manuais em PDF da WAP que dariam código e função de
+peça. As cinco saíram **403 do proxy de egresso na mesma passada**:
+
+    mais.conteudo.wap.ind.br
+    www.electrolux.com.br
+    www.mi.com.br
+    loja.positivotecnologia.com.br
+    www.multilaser.com.br
+
+`connect_rejected`, *gateway answered 403 to CONNECT (policy denial)* — não é
+intermitência, e foi conferido no status do proxy em vez de suposto, como a 20.2
+manda. A lista de "Domínios permitidos" do ambiente de nuvem tem os domínios das
+**ilhas** e mais nada.
+
+**A API da Shopee não resolve, e isso já está medido:** ela traz foto, ficha e
+link, e não traz `pa_declarado` nem `canal_brasileiro` — que são exatamente os
+dois campos que a interseção conta.
+
+**O passo é dele, e é uma linha:** `claude.ai/code` → seletor de ambiente → Nuvem
+→ engrenagem → Domínios permitidos, e acrescentar os cinco. Pela **20.3**, quem
+escreve a regra que exige a fonte é quem confere se a fonte está liberada — e a
+regra que exige estas cinco fontes está escrita na definição de pronta da ilha.
+
+**Enquanto isso não acontecer, nenhuma execução da Fundação move o item 2**, e o
+placar tem de dizer **bloqueado por rede**, nunca "faltando": "faltando" sugere
+trabalho que existe e faz o prazo parecer recuperável por esforço.
