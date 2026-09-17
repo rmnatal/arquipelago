@@ -7,6 +7,15 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.10.0 (17/09/2026) — O TÍTULO PASSOU A PROMETER O NÚMERO, E ELE É
+ * DERIVADO. Proposta 2 da leitura semanal de 16/09: três páginas na primeira
+ * página do Google (9,2 · 6,8 · 7,0) e CTR zero, e nenhum dos três títulos
+ * entregava a prova de que a resposta é numérica e é nossa. A cabeça de página
+ * ganhou `numeros`, `promessa` e `descricao_sem_banco`; a promessa ocupa o
+ * lugar da MARCA no <title> e só entra se couber no teto de 65 e se o banco
+ * tiver chegado. A regra "nenhuma descrição carrega número" não foi afrouxada:
+ * ela proíbe número DIGITADO, e o que passa por casca-fatos.json fala com o
+ * banco por construção. O molde com dígito continua reprovando na bancada.
  * Versão: 1.9.0 (16/09/2026) — AS DUAS DATAS DO ARTIGO SAEM DE UMA FONTE SÓ.
  * robometria_casca_datas_da_pagina() nasce aqui e o A1 e o A2 passam a
  * chamá-la. Item 4 do despacho da Sentinela de 16/09: as duas páginas
@@ -209,7 +218,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.9.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.10.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -736,14 +745,54 @@ add_action( 'wp_head', function () {
  *      existe filtro universal" no H1 e "Existe filtro universal?" no cartão.
  *      Agora o og:title é o NOME da página (robometria_casca_nome_da_pagina) e
  *      a marca entra no <title>, que a casca também passou a escrever.
- *   3. NENHUMA DESCRIÇÃO CARREGA NÚMERO, e isso é regra, não estilo. Descrição
- *      é texto digitado que ninguém relê, e a cicatriz de 11/09/2026 (seção 8 do
- *      contrato, o cartão que dizia "0" depois de a categoria ganhar cinco
- *      produtos) é exatamente sobre número digitado numa metade que não fala com
- *      o banco. Aqui é pior que num cartão: o banco cresce, a descrição
- *      continua no ar mentindo, e ela nem aparece na tela para alguém
- *      estranhar. Número mora na camada de prova (seção 15.2): tabela,
- *      resultado, JSON-LD. O teste de bancada reprova dígito aqui dentro.
+ *   3. NENHUMA DESCRIÇÃO CARREGA NÚMERO ~~DIGITADO~~, e isso é regra, não
+ *      estilo. Descrição é texto digitado que ninguém relê, e a cicatriz de
+ *      11/09/2026 (seção 8 do contrato, o cartão que dizia "0" depois de a
+ *      categoria ganhar cinco produtos) é exatamente sobre número digitado numa
+ *      metade que não fala com o banco. Aqui é pior que num cartão: o banco
+ *      cresce, a descrição continua no ar mentindo, e ela nem aparece na tela
+ *      para alguém estranhar. O teste de bancada reprova dígito aqui dentro.
+ *
+ * ---------------------------------------------------------------------------
+ * A EMENDA DE 17/09/2026 — A CABEÇA PASSA A PROMETER NÚMERO, E ELE É DERIVADO
+ * ---------------------------------------------------------------------------
+ *
+ * A leitura semanal de 16/09/2026 mediu a primeira coisa que esta ilha tinha
+ * para medir: TRÊS páginas na primeira página do Google (posições 9,2 · 6,8 ·
+ * 7,0) e CTR ZERO. Pela banda 4 a 10 da seção 12.1 do contrato, o trabalho aí é
+ * de CTR e não de conteúdo, e a alavanca vem nomeada com todas as letras:
+ * "título que promete o número, meta que promete a faixa e a fonte". Os três
+ * títulos faziam a pergunta e nenhum entregava a prova de que a resposta é
+ * numérica e é nossa.
+ *
+ * A REGRA 3 ACIMA NÃO FOI AFROUXADA — ela foi lida até o fim. O que ela proíbe é
+ * número DIGITADO, e o motivo está escrito nela mesma: "uma metade que não fala
+ * com o banco". Um número que chega aqui por `casca-fatos.json`, derivado do
+ * banco commitado por `ferramentas/gerar-casca-fatos.py`, fala com o banco por
+ * construção — o motivo da proibição não o alcança. Dígito digitado dentro do
+ * molde continua reprovando na bancada, e agora ela cobra também o contrário:
+ * cabeça que declara `numeros` e NÃO serve dígito no ar é defeito, porque é a
+ * promessa desaparecendo em silêncio.
+ *
+ * Então cada cabeça pode trazer, além da `descricao`:
+ *
+ *   `numeros`              as chaves de `robometria_casca_numeros()` que
+ *                          preenchem os `%1$s` da descrição, na ordem.
+ *   `descricao_sem_banco`  a mesma frase SEM número, para o estado degradado.
+ *                          Sem ela, a página sem banco publicaria o molde cru,
+ *                          com "%1$s" dentro, no resultado da busca — que é o
+ *                          único jeito de este bloco piorar o que veio
+ *                          consertar. Ela é obrigatória na bancada para toda
+ *                          cabeça com `numeros`.
+ *   `promessa`             o molde do pedaço numérico do <title>, que ocupa o
+ *                          lugar da marca (ver robometria_casca_titulo_do_documento).
+ *   `promessa_numeros`     as chaves que o preenchem.
+ *
+ * E A VOZ: o `VOZ.md` manda o número morar na camada de prova, "nunca na voz".
+ * O resultado da busca não é a voz da página — é a linha do resultado, e a
+ * seção 12.1 do contrato é quem manda nela, com a frase citada acima. As duas
+ * regras não se contradizem: falam de superfícies diferentes. Quem lê a página
+ * continua encontrando o número na tabela e no "como sabemos", e não na abertura.
  *
  * O mapa passa pelo filtro 'robometria_cabecas' para página nova poder trazer a
  * dela de dentro do próprio snippet, como já acontece com ferramenta e artigo.
@@ -778,23 +827,130 @@ function robometria_casca_cabecas() {
 			'tipo'      => 'website',
 			'descricao' => 'Escolha a marca e o modelo e veja o filtro, a escova, o mop e a bateria que o fabricante declarou para o seu robô, com código e data.',
 		),
+		/* AS TRÊS COM PROMESSA NUMÉRICA são exatamente as três que a leitura
+		   semanal de 16/09/2026 mediu na primeira página com CTR zero. Nenhuma
+		   outra ganhou promessa, e isso é escolha: cabeça sem impressão medida
+		   não tem por que trocar a marca por um número — trocar tudo de uma vez
+		   torna a próxima leitura ilegível, porque nada fica como estava para
+		   comparar. */
 		'quantos-pa-o-robo-aspirador-precisa' => array(
-			'tipo'      => 'website',
-			'descricao' => 'Quanta sucção o seu robô precisa para piso liso, tapete ou pelo de cachorro, e quantos ciclos a metragem da sua casa exige.',
+			'tipo'                => 'website',
+			/* A FAIXA É A DOS MODELOS RECOMENDÁVEIS, não a dos publicáveis, e a
+			   diferença é o motivo de o número vir do gerador e não daqui: sobre
+			   publicáveis o teto seria 15.000 Pa, de um Xiaomi sem canal
+			   brasileiro que o portão da R2 nunca sugere. O título prometeria
+			   uma faixa que a página não entrega. */
+			'descricao'           => 'Veja quanta sucção piso liso, tapete e pelo de cachorro pedem: o fabricante declara de %1$s a %2$s Pa nos %3$s modelos que você compra no Brasil.',
+			'numeros'             => array( 'pa_minimo', 'pa_maximo', 'modelos_recomendaveis_com_pa' ),
+			'descricao_sem_banco' => 'Veja quanta sucção o seu robô precisa para piso liso, tapete ou pelo de cachorro, e quantos ciclos a metragem da sua casa exige.',
+			'promessa'            => 'de %1$s a %2$s Pa',
+			'promessa_numeros'    => array( 'pa_minimo', 'pa_maximo' ),
 		),
 		'filtro-universal-de-robo-aspirador' => array(
-			'tipo'      => 'article',
-			'descricao' => 'Conferimos peça por peça quantas servem em mais de uma marca, e o que fazer quando o filtro barato do anúncio promete servir em tudo.',
+			'tipo'                => 'article',
+			'descricao'           => 'Conferimos peça por peça: %1$s das %2$s peças servem em mais de uma marca, pelo que o fabricante declara. Veja o que o anúncio de filtro universal esconde.',
+			'numeros'             => array( 'pecas_que_atravessam_marca', 'pecas_publicaveis' ),
+			'descricao_sem_banco' => 'Conferimos peça por peça quantas servem em mais de uma marca, e o que fazer quando o filtro barato do anúncio promete servir em tudo.',
+			'promessa'            => '%1$s das %2$s peças',
+			'promessa_numeros'    => array( 'pecas_que_atravessam_marca', 'pecas_publicaveis' ),
 		),
 		'quantos-m2-o-robo-aspirador-limpa-por-carga' => array(
-			'tipo'      => 'article',
-			'descricao' => 'De onde vem o número de metros quadrados por carga que os sites publicam, quais marcas declaram, e o que fazer quando a sua não declara.',
+			'tipo'                => 'article',
+			'descricao'           => 'Veja quais marcas declaram quantos m² o robô limpa por carga — hoje são %1$s de %2$s no banco — e o que fazer quando a sua não declara.',
+			'numeros'             => array( 'marcas_que_declaram_m2', 'marcas' ),
+			'descricao_sem_banco' => 'Veja de onde vem o número de metros quadrados por carga que os sites publicam, quais marcas declaram, e o que fazer quando a sua não declara.',
+			'promessa'            => '%1$s de %2$s marcas',
+			'promessa_numeros'    => array( 'marcas_que_declaram_m2', 'marcas' ),
 		),
 	);
 
 	$mapa = apply_filters( 'robometria_cabecas', $mapa );
 
 	return is_array( $mapa ) ? $mapa : array();
+}
+}
+
+/**
+ * PREENCHE UM MOLDE COM NÚMEROS DO BANCO — ou devolve '' e não publica nada.
+ *
+ * FALHA FECHADA, de propósito, e é a mesma decisão de
+ * robometria_casca_fonte_publicada(): chave que não chegou, ou que chegou sem
+ * ser número, faz o molde inteiro ser recusado. A alternativa — preencher o que
+ * dá e deixar o resto — publicaria "de 1.400 a  Pa" no resultado da busca, que
+ * é pior do que a frase antiga sem número nenhum.
+ *
+ * O número sai formatado pelo mesmo number_format_i18n() que a tabela da
+ * metodologia usa, para "10.000" no título e "10.000" na tabela serem o mesmo
+ * número escrito do mesmo jeito.
+ */
+if ( ! function_exists( 'robometria_casca_preencher_molde' ) ) {
+function robometria_casca_preencher_molde( $molde, $chaves ) {
+	$molde  = (string) $molde;
+	$chaves = (array) $chaves;
+
+	if ( '' === $molde || empty( $chaves ) ) {
+		return '';
+	}
+
+	$n = robometria_casca_numeros();
+
+	$valores = array();
+	foreach ( $chaves as $chave ) {
+		if ( ! isset( $n[ $chave ] ) || ! is_numeric( $n[ $chave ] ) ) {
+			return '';
+		}
+		$valores[] = number_format_i18n( (float) $n[ $chave ] );
+	}
+
+	return vsprintf( $molde, $valores );
+}
+}
+
+/**
+ * A CABEÇA COMO ELA VAI PARA O AR: a descrição já com os números, ou a frase
+ * sem número quando a medição não chegou ao site.
+ *
+ * Quem chama recebe sempre uma frase publicável — nunca o molde cru. É aqui que
+ * mora a única coisa que este mecanismo não pode fazer de jeito nenhum: servir
+ * "%1$s" dentro de uma <meta name="description">.
+ */
+if ( ! function_exists( 'robometria_casca_cabeca_resolvida' ) ) {
+function robometria_casca_cabeca_resolvida( $slug ) {
+	$cabecas = robometria_casca_cabecas();
+	if ( ! isset( $cabecas[ $slug ] ) ) {
+		return array();
+	}
+
+	$c = $cabecas[ $slug ];
+
+	if ( empty( $c['numeros'] ) ) {
+		return $c;
+	}
+
+	$preenchida = robometria_casca_preencher_molde( $c['descricao'], $c['numeros'] );
+	$c['descricao'] = ( '' !== $preenchida )
+		? $preenchida
+		: (string) ( isset( $c['descricao_sem_banco'] ) ? $c['descricao_sem_banco'] : '' );
+
+	return $c;
+}
+}
+
+/**
+ * O PEDAÇO NUMÉRICO DO <title>, ou '' quando não há promessa ou o banco não
+ * chegou. Quem decide se ele cabe é robometria_casca_titulo_do_documento().
+ */
+if ( ! function_exists( 'robometria_casca_promessa_do_titulo' ) ) {
+function robometria_casca_promessa_do_titulo( $slug ) {
+	$cabecas = robometria_casca_cabecas();
+	if ( ! isset( $cabecas[ $slug ]['promessa'], $cabecas[ $slug ]['promessa_numeros'] ) ) {
+		return '';
+	}
+
+	return robometria_casca_preencher_molde(
+		$cabecas[ $slug ]['promessa'],
+		$cabecas[ $slug ]['promessa_numeros']
+	);
 }
 }
 
@@ -829,17 +985,23 @@ function robometria_casca_slug_atual() {
 }
 
 add_action( 'wp_head', function () {
-	$slug   = robometria_casca_slug_atual();
-	$cabeca = robometria_casca_cabecas();
+	$slug = robometria_casca_slug_atual();
 
 	/* Página que a casca não conhece sai SEM description. Inventar uma frase
 	   genérica para caber em qualquer página seria publicar a mesma descrição em
 	   endereços diferentes, que é o defeito que a tag existe para não ter. */
-	if ( '' === $slug || ! isset( $cabeca[ $slug ] ) ) {
+	if ( '' === $slug ) {
 		return;
 	}
 
-	$c   = $cabeca[ $slug ];
+	/* RESOLVIDA, nunca o molde: as três cabeças com promessa numérica trazem
+	   `%1$s` dentro, e servir isso no resultado da busca seria o único jeito de
+	   o bloco de 17/09/2026 piorar o que veio consertar. */
+	$c = robometria_casca_cabeca_resolvida( $slug );
+	if ( empty( $c['descricao'] ) ) {
+		return;
+	}
+
 	$url = ( 'inicio' === $slug ) ? home_url( '/' ) : robometria_casca_url_se_existir( $slug );
 	if ( '' === $url ) {
 		$url = home_url( '/' . $slug . '/' );
@@ -1854,11 +2016,42 @@ if ( ! defined( 'ROBOMETRIA_TITULO_TETO' ) ) {
 	define( 'ROBOMETRIA_TITULO_TETO', 65 );
 }
 
+/**
+ * A PROMESSA OCUPA O LUGAR DA MARCA, e só nas páginas que declararam uma
+ * (17/09/2026).
+ *
+ * O nome da página não é tocado: ele continua sendo um só, nas cinco
+ * superfícies em que aparece (H1, og:title, trilha, cartão, e a primeira metade
+ * daqui). O que cede o lugar é a MARCA — que não é nome de página nenhum, é um
+ * carimbo de 13 caracteres, e a ilha tem 0 clique orgânico medido, ou seja
+ * ninguém a procura pelo nome. Trocar esse carimbo por "de 1.400 a 10.000 Pa"
+ * num título que hoje está na posição 6,8 e não é clicado é a alavanca que a
+ * seção 12.1 do contrato nomeia para a banda 4 a 10.
+ *
+ * TRÊS TRAVAS, porque promessa que estoura o teto é pior que promessa nenhuma:
+ *
+ *   1. Só entra se o título INTEIRO couber no teto de 65. O banco cresce e o
+ *      número cresce com ele; no dia em que não couber, o título volta a ser o
+ *      nome mais a marca sozinho, que é sempre válido.
+ *   2. Só entra se o banco chegou ao site. Sem medição não há promessa, e a
+ *      marca fica onde estava.
+ *   3. A bancada reprova a página que DECLARA promessa e serve título sem
+ *      dígito — porque as travas 1 e 2 são silenciosas por desenho, e trava
+ *      silenciosa sem quem a conte é como a promessa some sem ninguém ver.
+ */
 if ( ! function_exists( 'robometria_casca_titulo_do_documento' ) ) {
 function robometria_casca_titulo_do_documento( $slug ) {
 	$nome = robometria_casca_nome_da_pagina( $slug );
 	if ( '' === $nome ) {
 		return '';
+	}
+
+	$promessa = robometria_casca_promessa_do_titulo( $slug );
+	if ( '' !== $promessa ) {
+		$com_promessa = $nome . ROBOMETRIA_TITULO_SEPARADOR . $promessa;
+		if ( mb_strlen( $com_promessa, 'UTF-8' ) <= ROBOMETRIA_TITULO_TETO ) {
+			return $com_promessa;
+		}
 	}
 
 	return $nome . ROBOMETRIA_TITULO_SEPARADOR . ROBOMETRIA_MARCA;
@@ -1872,14 +2065,20 @@ add_filter( 'document_title_parts', function ( $partes ) {
 		return $partes;
 	}
 
-	/* Duas partes, e só duas: o nome da página e a marca. O núcleo as junta com
-	   o separador logo abaixo, e o resultado é exatamente a string que
-	   robometria_casca_titulo_do_documento() devolve — que é a que a bancada
-	   mede. Na home isso troca as partes que o WordPress usaria (nome do site
-	   mais a descrição curta do wp-admin), que é o campo que não mora aqui. */
+	/* Duas partes, e só duas: o nome da página e o que vem depois do travessão —
+	   a promessa numérica quando a página tem uma e ela cabe, a marca quando
+	   não. Quem decide é robometria_casca_titulo_do_documento(), uma vez, e
+	   aqui as partes são DERIVADAS daquela decisão em vez de repeti-la: repetir
+	   a regra nos dois lugares é como o <title> e o og:title ficaram com dois
+	   nomes em 11/09. Na home isso troca as partes que o WordPress usaria (nome
+	   do site mais a descrição curta do wp-admin), que é o campo que não mora
+	   aqui. */
 	unset( $partes );
 
-	return array( 'title' => robometria_casca_nome_da_pagina( $slug ), 'site' => ROBOMETRIA_MARCA );
+	$nome  = robometria_casca_nome_da_pagina( $slug );
+	$cauda = substr( $titulo, strlen( $nome . ROBOMETRIA_TITULO_SEPARADOR ) );
+
+	return array( 'title' => $nome, 'site' => $cauda );
 }, 10 );
 
 add_filter( 'document_title_separator', function ( $sep ) {

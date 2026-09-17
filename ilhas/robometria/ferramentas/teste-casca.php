@@ -248,6 +248,46 @@ foreach ( array_merge( array_values( $pub_modelos ), array_values( $pub_pecas ) 
 }
 $itens = count( $pub_modelos ) + count( $pub_pecas );
 
+/* OS CINCO NUMEROS QUE O <title> E A DESCRIPTION PROMETEM (17/09/2026).
+ *
+ * Recontados AQUI, nos registros, pelo mesmo motivo do bloco acima: o gerador
+ * que os deriva e a casca que os publica nao podem ser as duas metades da
+ * comparacao. E o Pa e o que precisa disto de verdade — a faixa publicada tem
+ * de ser a dos modelos RECOMENDAVEIS (publicavel COM canal brasileiro), que e o
+ * universo que a R2 sugere. Contada sobre publicavel ela daria 10.000 -> 15.000,
+ * de um Xiaomi que a Xiaomi Brasil nao vende: o titulo prometeria na SERP uma
+ * sucção que a ferramenta, pelo portao do canal brasileiro, nunca recomenda.
+ * Promessa que a pagina nao cumpre e CTR comprado a credito, e o credito se
+ * paga em pogo-stick. */
+$rbm_valor = function ( $campo ) {
+	return ( is_array( $campo ) && array_key_exists( 'valor', $campo ) ) ? $campo['valor'] : $campo;
+};
+
+$atravessam = 0;
+foreach ( $pub_pecas as $p ) {
+	$marcas_da_peca = array();
+	foreach ( (array) $p['compatibilidade'] as $c ) {
+		if ( 'declarada_fabricante' === $c['selo'] && isset( $pub_modelos[ $c['modelo'] ] ) ) {
+			$marcas_da_peca[ $pub_modelos[ $c['modelo'] ]['marca'] ] = true;
+		}
+	}
+	if ( count( $marcas_da_peca ) > 1 ) { $atravessam++; }
+}
+
+$recomendaveis = array();
+$pas           = array();
+$marcas_m2     = array();
+foreach ( $pub_modelos as $r ) {
+	if ( null !== $rbm_valor( isset( $r['canal_brasileiro'] ) ? $r['canal_brasileiro'] : null ) ) {
+		$recomendaveis[] = $r;
+		$pa = $rbm_valor( isset( $r['pa_declarado'] ) ? $r['pa_declarado'] : null );
+		if ( is_int( $pa ) ) { $pas[] = $pa; }
+	}
+	if ( null !== $rbm_valor( isset( $r['cobertura_m2_declarada'] ) ? $r['cobertura_m2_declarada'] : null ) ) {
+		$marcas_m2[ $r['marca'] ] = true;
+	}
+}
+
 $esperado = array(
 	'marcas'               => count( $marcas_vistas ),
 	'modelos_publicaveis'  => count( $pub_modelos ),
@@ -263,6 +303,13 @@ $esperado = array(
 	   conta deles e feita AQUI, do banco, nao lida da casca. */
 	'itens_publicaveis'    => $itens,
 	'com_link'             => $itens - $sem_link,
+	/* E os cinco da promessa numerica da cabeca de pagina. */
+	'pecas_que_atravessam_marca'   => $atravessam,
+	'modelos_recomendaveis'        => count( $recomendaveis ),
+	'modelos_recomendaveis_com_pa' => count( $pas ),
+	'pa_minimo'                    => empty( $pas ) ? null : min( $pas ),
+	'pa_maximo'                    => empty( $pas ) ? null : max( $pas ),
+	'marcas_que_declaram_m2'       => count( $marcas_m2 ),
 );
 
 /* A conferencia so vale se a medicao chegou: sem ela a casca devolve array()
@@ -411,24 +458,59 @@ $sem_pagina = array_values( array_diff( array_keys( $cabecas ), $publicadas ) );
 rbm_ok( empty( $sem_cabeca ), 'toda pagina publicada tem cabeca declarada', empty( $sem_cabeca ) ? count( $publicadas ) . ' paginas' : implode( ' ', $sem_cabeca ) );
 rbm_ok( empty( $sem_pagina ), 'nenhuma cabeca sobrando, sem pagina correspondente', empty( $sem_pagina ) ? 'ok' : implode( ' ', $sem_pagina ) );
 
+/* A REGUA MEDE A FRASE QUE VAI PARA O AR, NAO O MOLDE (17/09/2026).
+ *
+ * Com a promessa numerica, tres cabecas passaram a ser MOLDE — "de %1$s a %2$s
+ * Pa" tem 17 caracteres e a frase servida tem 20. Medir o molde e medir o que
+ * ninguem le: a description que o Google corta e a resolvida. E os DOIS estados
+ * sao medidos, porque os dois vao para o ar: com banco e sem banco.
+ *
+ * `resolvidas` e o que a casca serviria hoje; `sem_banco` e o que ela serve
+ * quando a medicao nao chegou. Os dois passam pelo mesmo teto. */
+$resolvidas = array();
+$sem_banco  = array();
+foreach ( $cabecas as $slug => $c ) {
+	$r = robometria_casca_cabeca_resolvida( $slug );
+	$resolvidas[ $slug ] = isset( $r['descricao'] ) ? (string) $r['descricao'] : '';
+	$sem_banco[ $slug ]  = isset( $c['descricao_sem_banco'] )
+		? (string) $c['descricao_sem_banco']
+		: (string) $c['descricao'];
+}
+
 /* Tamanho: abaixo de 110 o Google completa com texto da pagina, acima de 160 ele
    corta no meio da frase. Os dois casos devolvem ao visitante um trecho que
    ninguem escreveu. */
-$curtas = array();
-$longas = array();
-foreach ( $cabecas as $slug => $c ) {
-	$n = mb_strlen( $c['descricao'], 'UTF-8' );
-	if ( $n < 110 ) { $curtas[] = $slug . '(' . $n . ')'; }
-	if ( $n > 160 ) { $longas[] = $slug . '(' . $n . ')'; }
+foreach ( array( 'com banco' => $resolvidas, 'sem banco' => $sem_banco ) as $estado => $conjunto ) {
+	$curtas = array();
+	$longas = array();
+	foreach ( $conjunto as $slug => $texto ) {
+		$n = mb_strlen( $texto, 'UTF-8' );
+		if ( $n < 110 ) { $curtas[] = $slug . '(' . $n . ')'; }
+		if ( $n > 160 ) { $longas[] = $slug . '(' . $n . ')'; }
+	}
+	rbm_ok( empty( $curtas ), "[$estado] nenhuma description com menos de 110 caracteres", empty( $curtas ) ? 'ok' : implode( ' ', $curtas ) );
+	rbm_ok( empty( $longas ), "[$estado] nenhuma description com mais de 160 caracteres", empty( $longas ) ? 'ok' : implode( ' ', $longas ) );
 }
-rbm_ok( empty( $curtas ), 'nenhuma description com menos de 110 caracteres', empty( $curtas ) ? 'ok' : implode( ' ', $curtas ) );
-rbm_ok( empty( $longas ), 'nenhuma description com mais de 160 caracteres', empty( $longas ) ? 'ok' : implode( ' ', $longas ) );
+
+/* NENHUM MOLDE CRU CHEGA AO AR. E o unico jeito de este mecanismo piorar o que
+   veio consertar: servir "%1$s" dentro da meta description. */
+$com_molde = array();
+foreach ( $resolvidas as $slug => $texto ) {
+	if ( false !== strpos( $texto, '%' ) ) { $com_molde[] = $slug; }
+}
+foreach ( $sem_banco as $slug => $texto ) {
+	if ( false !== strpos( $texto, '%' ) ) { $com_molde[] = $slug . '(sem banco)'; }
+}
+rbm_ok( empty( $com_molde ), 'nenhuma description servida carrega o molde cru', empty( $com_molde ) ? 'ok' : implode( ' ', $com_molde ) );
 
 /* Texto repetido em endereco diferente e o defeito que a tag existe para nao
-   ter: o Google escolhe uma das paginas e descarta a outra. */
-$textos = array();
-foreach ( $cabecas as $c ) { $textos[] = $c['descricao']; }
-rbm_ok( count( array_unique( $textos ) ) === count( $textos ), 'as descriptions sao todas diferentes entre si', count( array_unique( $textos ) ) . ' de ' . count( $textos ) );
+   ter: o Google escolhe uma das paginas e descarta a outra. E vale nos dois
+   estados: duas paginas que caem juntas para a frase sem banco se anulariam
+   exatamente no dia em que o site ja esta degradado. */
+foreach ( array( 'com banco' => $resolvidas, 'sem banco' => $sem_banco ) as $estado => $conjunto ) {
+	$textos = array_values( $conjunto );
+	rbm_ok( count( array_unique( $textos ) ) === count( $textos ), "[$estado] as descriptions sao todas diferentes entre si", count( array_unique( $textos ) ) . ' de ' . count( $textos ) );
+}
 
 /* O NOME DA PAGINA SAIU DAQUI e passou a ser um so (casca 1.4.0): o mapa das
    cabecas nao carrega mais titulo, porque um segundo nome digitado ao lado do
@@ -440,29 +522,78 @@ $nomes = array_values( robometria_casca_nomes_das_paginas() );
 rbm_ok( count( array_unique( $nomes ) ) === count( $nomes ), 'os nomes de pagina sao todos diferentes entre si', count( array_unique( $nomes ) ) . ' de ' . count( $nomes ) );
 rbm_ok( count( $nomes ) === count( $cabecas ), 'toda pagina nomeada tem cabeca, e toda cabeca tem pagina nomeada', count( $nomes ) . ' nomes / ' . count( $cabecas ) . ' cabecas' );
 
-/* NENHUM DIGITO. Description e texto digitado que ninguem relê: um numero aqui
-   dentro passa a mentir em silencio no dia em que o banco crescer, e nem na tela
-   ele aparece para alguem estranhar. Numero mora na camada de prova (secao 15.2
-   do contrato): tabela, resultado, JSON-LD. */
+/* NENHUM DIGITO DIGITADO — e o portao ganhou a segunda direcao (17/09/2026).
+ *
+ * A regra nunca foi "description sem numero": foi "sem numero DIGITADO", porque
+ * o que mente em silencio e a metade que nao fala com o banco. O molde continua
+ * proibido de carregar digito, a frase sem banco tambem, e a `promessa`
+ * idem — os tres sao texto que alguem escreveu a mao.
+ *
+ * E A DIRECAO QUE FALTAVA: cabeca que DECLARA `numeros` tem de servir digito na
+ * frase resolvida. Sem isto, as travas silenciosas do titulo (banco ausente,
+ * teto estourado) apagariam a promessa sem ninguem ver — que e o mesmo defeito
+ * do caminho "derivado" que nunca rodava, so que do lado de ca.
+ *
+ * O `titulo` saiu da conta porque ele SAIU DO MAPA na casca 1.4.0: a expressao
+ * lia $c['titulo'], que nao existe em cabeca nenhuma desde entao, e essa metade
+ * do portao vinha medindo string vazia ha seis dias. */
 $com_numero = array();
 foreach ( $cabecas as $slug => $c ) {
-	if ( preg_match( '/\d/u', $c['descricao'] . ' ' . $c['titulo'] ) ) { $com_numero[] = $slug; }
+	$digitado = (string) $c['descricao']
+		. ' ' . (string) ( isset( $c['descricao_sem_banco'] ) ? $c['descricao_sem_banco'] : '' )
+		. ' ' . (string) ( isset( $c['promessa'] ) ? $c['promessa'] : '' );
+	/* Os indices do molde ("%1$s") sao digito e nao sao numero: fora da conta. */
+	$digitado = preg_replace( '/%\d+\$s/u', ' ', $digitado );
+	if ( preg_match( '/\d/u', $digitado ) ) { $com_numero[] = $slug; }
 }
-rbm_ok( empty( $com_numero ), 'nenhuma cabeca carrega numero (numero mora na camada de prova)', empty( $com_numero ) ? 'ok' : implode( ' ', $com_numero ) );
+rbm_ok( empty( $com_numero ), 'nenhuma cabeca carrega numero DIGITADO', empty( $com_numero ) ? 'ok' : implode( ' ', $com_numero ) );
+
+/* O CONTRATO DA CABECA COM NUMERO, item por item. Chave que nao existe na
+   medicao e molde com mais buracos que chaves nao reprovam em lugar nenhum
+   depois — eles simplesmente fazem a frase cair para o estado sem banco, em
+   silencio, no ar. */
+$com_numeros = array();
+foreach ( $cabecas as $slug => $c ) {
+	if ( ! empty( $c['numeros'] ) ) { $com_numeros[ $slug ] = $c; }
+}
+rbm_ok( count( $com_numeros ) >= 3, 'as tres paginas da proposta 2 declaram numeros', count( $com_numeros ) . ' cabecas com numeros' );
+
+$medicao = robometria_casca_numeros();
+foreach ( $com_numeros as $slug => $c ) {
+	rbm_ok( isset( $c['descricao_sem_banco'] ) && '' !== $c['descricao_sem_banco'],
+		"[$slug] cabeca com numeros tem a frase sem banco" );
+
+	$faltando = array();
+	foreach ( array_merge( (array) $c['numeros'], (array) ( isset( $c['promessa_numeros'] ) ? $c['promessa_numeros'] : array() ) ) as $chave ) {
+		if ( ! isset( $medicao[ $chave ] ) || ! is_numeric( $medicao[ $chave ] ) ) { $faltando[] = $chave; }
+	}
+	rbm_ok( empty( $faltando ), "[$slug] toda chave declarada existe na medicao", empty( $faltando ) ? implode( ' ', (array) $c['numeros'] ) : 'faltam: ' . implode( ' ', $faltando ) );
+
+	$buracos = preg_match_all( '/%\d+\$s/u', (string) $c['descricao'] );
+	rbm_ok( $buracos === count( (array) $c['numeros'] ), "[$slug] o molde tem um buraco por chave", $buracos . ' buracos / ' . count( (array) $c['numeros'] ) . ' chaves' );
+
+	rbm_ok( preg_match( '/\d/u', $resolvidas[ $slug ] ) > 0,
+		"[$slug] a description servida traz o numero", $resolvidas[ $slug ] );
+
+	/* O TITULO: a promessa entra, cabe no teto, e traz digito. */
+	$titulo = robometria_casca_titulo_do_documento( $slug );
+	rbm_ok( preg_match( '/\d/u', $titulo ) > 0, "[$slug] o <title> promete o numero", $titulo );
+	rbm_ok( mb_strlen( $titulo, 'UTF-8' ) <= 65, "[$slug] o <title> com promessa cabe em 65", mb_strlen( $titulo, 'UTF-8' ) . ' caracteres' );
+	rbm_ok( false === strpos( $titulo, ' – Robometria' ), "[$slug] a promessa ocupou o lugar da marca", $titulo );
+}
 
 /* E o que sai no HTML servido, que e a unica coisa que a Sentinela consegue
    medir no ar. Cada pagina da casca renderizada com o slug dela. */
 foreach ( $paginas as $tag ) {
 	$slug = robometria_teste_slug_do_alvo( $tag );
 	$html = $html_por_pagina[ $tag ];
-	$c    = isset( $cabecas[ $slug ] ) ? $cabecas[ $slug ] : null;
 
 	$n_desc = substr_count( $html, '<meta name="description"' );
 	rbm_ok( 1 === $n_desc, "[$slug] exatamente uma <meta name=description>", "achadas: $n_desc" );
 
-	$esperada = ( null === $c ) ? '' : htmlspecialchars( $c['descricao'], ENT_QUOTES );
+	$esperada = isset( $resolvidas[ $slug ] ) ? htmlspecialchars( $resolvidas[ $slug ], ENT_QUOTES ) : '';
 	rbm_ok( '' !== $esperada && false !== strpos( $html, '<meta name="description" content="' . $esperada . '">' ),
-		"[$slug] o texto servido e o da cabeca declarada" );
+		"[$slug] o texto servido e o da cabeca resolvida" );
 
 	foreach ( array( 'og:type', 'og:title', 'og:description', 'og:url', 'og:site_name' ) as $prop ) {
 		rbm_ok( false !== strpos( $html, '<meta property="' . $prop . '"' ), "[$slug] $prop presente" );

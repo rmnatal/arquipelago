@@ -135,6 +135,60 @@ def medir_o_banco():
 
     com_comissao = sum(1 for r in itens if rende(r))
 
+    # OS TRES NUMEROS QUE O <title> E A DESCRIPTION PASSARAM A PROMETER
+    # (17/09/2026, proposta 2 da leitura semanal de 16/09).
+    #
+    # Ate aqui a casca tinha uma regra escrita com todas as letras: NENHUMA
+    # cabeca de pagina carrega numero, porque numero digitado numa metade que
+    # nao fala com o banco passa a mentir em silencio. A regra continua — o que
+    # mudou e que agora existe um caminho DERIVADO ate a cabeca, e o motivo da
+    # proibicao (ser digitado) deixa de valer para quem passa por ele.
+    #
+    # A REGUA DE CADA UM, e a do Pa e a que importa:
+    #
+    #   pecas_que_atravessam_marca  peca publicavel declarada pelo fabricante
+    #                               para modelos publicaveis de MAIS DE UMA
+    #                               marca. E a tese do artigo A1 contada no
+    #                               banco, e nao a contagem de `compatibilidade`
+    #                               crua: par que aponta para modelo excluido
+    #                               nao chega a tela nenhuma.
+    #   pa_minimo / pa_maximo       faixa de pa_declarado entre os modelos
+    #                               RECOMENDAVEIS — publicavel COM canal
+    #                               brasileiro —, que e o universo que a R2
+    #                               recomenda. Contar sobre `publicaveis` daria
+    #                               15.000 Pa, que e um Xiaomi que a Xiaomi
+    #                               Brasil nao vende: o titulo prometeria ao
+    #                               leitor uma faixa que a ferramenta, pelo
+    #                               portao do canal brasileiro, nunca sugere.
+    #                               Titulo que promete o que a pagina nao
+    #                               entrega e a definicao de CTR comprado a
+    #                               credito.
+    #   marcas_que_declaram_m2      marcas distintas com ao menos um modelo
+    #                               publicavel que declara cobertura_m2. E a
+    #                               tese do artigo A2.
+    def valor(campo):
+        return campo.get('valor') if isinstance(campo, dict) else campo
+
+    marca_do_modelo = {r['id']: r.get('marca') for r in modelos_pub}
+    atravessam = 0
+    for peca in pecas_pub:
+        marcas_da_peca = {
+            marca_do_modelo[c['modelo']]
+            for c in (peca.get('compatibilidade') or [])
+            if c.get('selo') == 'declarada_fabricante' and c.get('modelo') in ids_pub
+        }
+        if len(marcas_da_peca) > 1:
+            atravessam += 1
+
+    recomendaveis = [r for r in modelos_pub if valor(r.get('canal_brasileiro')) is not None]
+    pas = [valor(r.get('pa_declarado')) for r in recomendaveis]
+    pas = [p for p in pas if isinstance(p, int)]
+
+    marcas_m2 = {
+        r.get('marca') for r in modelos_pub
+        if r.get('marca') and valor(r.get('cobertura_m2_declarada')) is not None
+    }
+
     return {
         'marcas': len({r['marca'] for r in itens if r.get('marca')}),
         'modelos_publicaveis': len(modelos_pub),
@@ -144,6 +198,12 @@ def medir_o_banco():
         'esperando_link': esperando,
         'rendem_comissao': com_comissao,
         'nao_rendem_comissao': len(itens) - com_comissao,
+        'pecas_que_atravessam_marca': atravessam,
+        'modelos_recomendaveis': len(recomendaveis),
+        'modelos_recomendaveis_com_pa': len(pas),
+        'pa_minimo': min(pas) if pas else None,
+        'pa_maximo': max(pas) if pas else None,
+        'marcas_que_declaram_m2': len(marcas_m2),
     }
 
 
@@ -303,6 +363,28 @@ def main():
             'celulas': 'cobertura-r1.json, celulas_total (modelo x tipo de peca)',
             'celulas_sem_resposta': 'cobertura-r1.json, celulas.vazia',
             'as_duas': 'cobertura-r1.json, cruzamento_com_a_r2.contagem.as_duas',
+            'pecas_que_atravessam_marca': (
+                'peca publicavel declarada pelo fabricante para modelos publicaveis de mais '
+                'de uma marca. E a tese do artigo A1 contada no banco'
+            ),
+            'modelos_recomendaveis': (
+                'modelo publicavel COM canal_brasileiro — o universo que a R2 recomenda, '
+                'e nao o universo que a R1 responde'
+            ),
+            'modelos_recomendaveis_com_pa': 'modelo recomendavel com pa_declarado preenchido',
+            'pa_minimo': (
+                'menor pa_declarado entre os modelos RECOMENDAVEIS. Contado sobre '
+                'recomendavel e nao sobre publicavel de proposito: a faixa que o titulo '
+                'promete tem de ser a faixa que a ferramenta entrega'
+            ),
+            'pa_maximo': (
+                'maior pa_declarado entre os modelos RECOMENDAVEIS. Sobre publicavel daria '
+                '15.000 Pa, de um Xiaomi sem canal brasileiro que a R2 nunca sugere'
+            ),
+            'marcas_que_declaram_m2': (
+                'marcas distintas com ao menos um modelo publicavel declarando '
+                'cobertura_m2_declarada. E a tese do artigo A2'
+            ),
             'medido_em': 'a data desta varredura, nunca a data em que o banco foi colhido',
         },
     }

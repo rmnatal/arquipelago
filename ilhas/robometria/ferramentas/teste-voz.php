@@ -290,8 +290,21 @@ foreach ( $alvo_do_slug as $slug => $alvo ) {
 		voz_ok( '' === $m['degrau'], 'a home nao tem trilha (16.3)', $m['degrau'] );
 	}
 
-	/* 2. O <title>: o nome mais a marca, dentro do teto. */
-	voz_ok( $m['titulo'] === $nome . ' – Robometria', 'o <title> e o nome mais a marca', $m['titulo'] );
+	/* 2. O <title>: o nome, o travessao, e depois OU a marca OU a promessa
+	   numerica (casca 1.10.0, proposta 2 da leitura semanal de 16/09).
+
+	   A REGUA CONTINUA SENDO DESTE ARQUIVO. Ela nao pergunta a casca quem tem
+	   promessa — perguntar seria chamar quem produziu o dado para conferir o
+	   dado. Ela afirma a FORMA, que vale para as duas familias: a primeira
+	   metade e o nome canonico, sempre; a segunda e a marca OU tem digito.
+	   Cauda digitada, sem numero e diferente da marca, e um segundo nome de
+	   pagina entrando pela porta dos fundos — que e o defeito (1) do cabecalho
+	   deste arquivo — e reprova aqui. */
+	$prefixo = $nome . ' – ';
+	voz_ok( 0 === strpos( $m['titulo'], $prefixo ), 'o <title> comeca pelo nome canonico', $m['titulo'] );
+	$cauda = substr( $m['titulo'], strlen( $prefixo ) );
+	voz_ok( 'Robometria' === $cauda || preg_match( '/\d/u', $cauda ),
+		'a cauda do <title> e a marca ou uma promessa com numero', $cauda );
 	voz_ok( mb_strlen( $m['titulo'] ) <= 65, 'o <title> cabe em 65 caracteres', mb_strlen( $m['titulo'] ) . ' caracteres' );
 	voz_ok( mb_strlen( $nome ) <= $teto_nome, 'o nome cabe no teto do <title>', mb_strlen( $nome ) . ' de ' . $teto_nome );
 

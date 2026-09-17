@@ -19,7 +19,13 @@ de uma segunda testemunha.
 
 O que ele mede, no HTML que o servidor devolve:
   1. HTTP 200 nas nove;
-  2. o <title> e o nome da pagina mais " – Robometria", e cabe em 65 caracteres;
+  2. o <title> e o nome da pagina mais a cauda, e cabe em 65 caracteres. A
+     cauda e " – Robometria" nas seis paginas sem promessa numerica e, nas tres
+     que a leitura semanal de 16/09 mediu na primeira pagina com CTR zero, a
+     PROMESSA: um numero derivado do banco no lugar da marca (casca 1.10.0).
+     A FORMA da promessa esta escrita aqui, o VALOR nao — este arquivo exige
+     "de <n> a <n> Pa" e recusa "de 1.400 a 10.000 Pa", porque conferir o valor
+     contra o mesmo banco que o produziu seria as duas metades errando juntas;
   3. o og:title e o MESMO nome (era aqui que seis paginas divergiam);
   4. o H1 e o MESMO nome;
   5. nenhuma das nove serve o estado degradado (classe rbm-sem-banco);
@@ -58,6 +64,15 @@ PAGINAS = [
 
 MARCA = ' – Robometria'
 TETO = 65
+
+# A CAUDA ESPERADA DO <title>, por pagina: a FORMA da promessa, nunca o valor.
+# Pagina que nao esta aqui tem de servir a marca — e isso e afirmado adiante,
+# para promessa nova nascer visivel em vez de nascer calada.
+CAUDA_PROMETIDA = {
+    '/quantos-pa-o-robo-aspirador-precisa/':         r'de [\d.]+ a [\d.]+ Pa',
+    '/filtro-universal-de-robo-aspirador/':          r'[\d.]+ das [\d.]+ peças',
+    '/quantos-m2-o-robo-aspirador-limpa-por-carga/': r'[\d.]+ de [\d.]+ marcas',
+}
 
 falhas = 0
 feitos = 0
@@ -413,7 +428,13 @@ def main():
             continue
 
         titulo = texto_da_tag(corpo, r'<title>(.*?)</title>')
-        ok(titulo == nome + MARCA, 'o <title> e o nome mais a marca', titulo)
+        forma = CAUDA_PROMETIDA.get(caminho)
+        if forma is None:
+            ok(titulo == nome + MARCA, 'o <title> e o nome mais a marca', titulo)
+        else:
+            esperado = re.compile('^' + re.escape(nome + ' – ') + forma + '$')
+            ok(bool(esperado.match(titulo)),
+               'o <title> e o nome mais a promessa numerica', titulo)
         ok(len(titulo) <= TETO, 'o <title> cabe em %d caracteres' % TETO, '%d' % len(titulo))
 
         m = re.search(r'<meta property="og:title" content="([^"]*)"', corpo, re.I)
