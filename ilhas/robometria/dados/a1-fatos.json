@@ -2,17 +2,17 @@
   "id": "a1-fatos",
   "ilha": "robometria",
   "artigo": "A1",
-  "gerado_em": "2026-09-16",
+  "gerado_em": "2026-09-17",
   "nota": "Fatos do artigo-ancora A1, derivados do banco commitado por ferramentas/gerar-a1.py. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a1.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
   "resumo": {
     "marcas": 5,
     "modelos_publicaveis": 38,
-    "pecas_publicaveis": 35,
-    "pares_declarados": 71,
+    "pecas_publicaveis": 40,
+    "pares_declarados": 76,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 228,
-    "celulas_sem_resposta": 151,
-    "pecas_esperando_link": 23
+    "celulas_sem_resposta": 146,
+    "pecas_esperando_link": 28
   },
   "maior_alcance": {
     "peca": "xiaomi-b106gl-bx",
@@ -897,6 +897,102 @@
       "atravessa_marca": false
     },
     {
+      "peca": "xiaomi-escova-lateral-mop-2",
+      "tipo": "escova lateral",
+      "marca": "xiaomi",
+      "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"side brush\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "side brush",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "Mi Robot Vacuum-Mop 2"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "xiaomi"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "xiaomi-escova-principal-mop-2",
+      "tipo": "escova principal",
+      "marca": "xiaomi",
+      "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"main brush\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "main brush",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "Mi Robot Vacuum-Mop 2"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "xiaomi"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "xiaomi-filtro-mop-2",
+      "tipo": "filtro",
+      "marca": "xiaomi",
+      "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"filter element\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "filter element",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "Mi Robot Vacuum-Mop 2"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "xiaomi"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "xiaomi-mop-mop-2",
+      "tipo": "mop",
+      "marca": "xiaomi",
+      "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"mop pad\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "mop pad",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "Mi Robot Vacuum-Mop 2"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "xiaomi"
+      ],
+      "atravessa_marca": false
+    },
+    {
       "peca": "xiaomi-mop-s10",
       "tipo": "mop",
       "marca": "xiaomi",
@@ -919,6 +1015,30 @@
         "xiaomi"
       ],
       "atravessa_marca": false
+    },
+    {
+      "peca": "xiaomi-reservatorio-mop-2",
+      "tipo": "reservatorio",
+      "marca": "xiaomi",
+      "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"water tank\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "water tank",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "Mi Robot Vacuum-Mop 2"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "xiaomi"
+      ],
+      "atravessa_marca": false
     }
   ],
   "dispersao": [
@@ -931,8 +1051,8 @@
         "com_de": "da",
         "numero": "singular"
       },
-      "pecas": 11,
-      "conjuntos_distintos": 9,
+      "pecas": 16,
+      "conjuntos_distintos": 10,
       "nenhuma_repete": false
     },
     {
@@ -992,31 +1112,31 @@
     {
       "tipo": "escova lateral",
       "nome": "escova lateral",
-      "modelos_com_declaracao": 25,
+      "modelos_com_declaracao": 26,
       "modelos_publicaveis": 38
     },
     {
       "tipo": "mop",
       "nome": "mop",
-      "modelos_com_declaracao": 18,
+      "modelos_com_declaracao": 19,
       "modelos_publicaveis": 38
     },
     {
       "tipo": "filtro",
       "nome": "filtro",
-      "modelos_com_declaracao": 15,
+      "modelos_com_declaracao": 16,
       "modelos_publicaveis": 38
     },
     {
       "tipo": "escova principal",
       "nome": "escova principal",
-      "modelos_com_declaracao": 14,
+      "modelos_com_declaracao": 15,
       "modelos_publicaveis": 38
     },
     {
       "tipo": "reservatorio",
       "nome": "reservatorio",
-      "modelos_com_declaracao": 4,
+      "modelos_com_declaracao": 5,
       "modelos_publicaveis": 38
     },
     {
@@ -1178,15 +1298,15 @@
   "perguntas": [
     {
       "pergunta": "Existe filtro universal para robô aspirador?",
-      "resposta": "Não. Nas 35 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 6 códigos de modelo, todos da mesma marca."
+      "resposta": "Não. Nas 40 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 6 códigos de modelo, todos da mesma marca."
     },
     {
       "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
-      "resposta": "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as 11 peças da Xiaomi no banco formam 9 conjuntos de modelos diferentes. Compatibilidade é declarada por código de peça, uma a uma, e não se herda de uma peça para a seguinte."
+      "resposta": "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as 16 peças da Xiaomi no banco formam 10 conjuntos de modelos diferentes. Compatibilidade é declarada por código de peça, uma a uma, e não se herda de uma peça para a seguinte."
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 71 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 76 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }

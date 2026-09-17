@@ -815,7 +815,33 @@
     },
     "xiaomi-mop-2": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-filtro-mop-2",
+          "frase": "A Xiaomi Global (suporte) declara o filtro \"filter element\" compativel com Mi Robot Vacuum-Mop 2 (fabricante-via-busca, verificado em 17/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-escova-lateral-mop-2",
+          "frase": "Escova lateral: \"side brush\", que a Xiaomi Global (suporte) declara compativel com Mi Robot Vacuum-Mop 2 (fabricante-via-busca, verificado em 17/09/2026). Quem chama esta peca de escova lateral e o proprio fabricante, no canal de manutencao dele: o titulo da peca nao nomeia a funcao. Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-escova-principal-mop-2",
+          "frase": "Escova principal: \"main brush\", que a Xiaomi Global (suporte) declara compativel com Mi Robot Vacuum-Mop 2 (fabricante-via-busca, verificado em 17/09/2026). Quem chama esta peca de escova principal e o proprio fabricante, no canal de manutencao dele: o titulo da peca nao nomeia a funcao. Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "reservatorio",
+          "peca": "xiaomi-reservatorio-mop-2",
+          "frase": "A Xiaomi Global (suporte) declara o reservatorio \"water tank\" compativel com Mi Robot Vacuum-Mop 2 (fabricante-via-busca, verificado em 17/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-mop-mop-2",
+          "frase": "A Xiaomi Global (suporte) declara o mop \"mop pad\" compativel com Mi Robot Vacuum-Mop 2 (fabricante-via-busca, verificado em 17/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": [],
       "recusa_por_tipo": {

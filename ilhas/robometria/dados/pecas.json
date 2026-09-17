@@ -3,19 +3,19 @@
  "ilha": "robometria",
  "entidade": "peca",
  "esquema": "dados/esquema-banco.json",
- "gerado_em": "2026-09-16",
+ "gerado_em": "2026-09-17",
  "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. LEVA DE 13/09/2026: 8 pecas da XIAOMI COM CODIGO, e a coleta so aconteceu porque o dominio testado ate entao estava errado. O PROMPT.md e o ESTADO.md mandavam testar mi.com.br e xiaomi.com.br; o banco desta ilha sempre citou www.mi.com/br. O egresso direto segue fechado por politica nos tres (000, 403 ao CONNECT, duas passadas), mas a BUSCA alcanca mi.com — e nunca tinha sido testada nele. A REGUA DE COMPATIBILIDADE DESTA LEVA, escrita antes de gravar: a Xiaomi declara compatibilidade no TITULO PUBLICADO da peca ('Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush'), e o codigo mora na subpagina /specs/ como 'Product model'. Um par entra quando o modelo e nomeado num titulo que aparece na pagina de acessorio daquele modelo ou numa pagina de peca dedicada; titulo de listagem que nomeia modelo que a especificacao da peca nao repete vai para divergencias e e resolvido pelo MAIS ESTREITO (secao 10 do ARQUIPELAGO.md). LEVA DE 13/09/2026 (segunda do dia): 4 pecas da WAP, as primeiras da marca — 2 do W300 e 2 do WSMART. TODAS com codigo_fabricante null: ver lista_de_compras. A REGRA QUE ESTA LEVA ESCREVEU, e ela subiu para a secao 26 do ARQUIPELAGO.md: a FUNCAO da peca nao se le do nome do produto. O fabricante batiza pela POSICAO (Direita, Esquerda, Central, Frontal, Rotativa) e este banco classifica pela FUNCAO (escova lateral, escova principal). A WAP desmente a si mesma no proprio canal — 'escovas giratorias direita e esquerda' e o par LATERAL do W300, e 'Escova Principal (Escova giratoria)' e a PRINCIPAL do W90 —, entao toda escova passa a carregar funcao{} dizendo onde a funcao foi declarada: no titulo, no contraste do catalogo daquele modelo, ou no canal de manutencao. Sem nenhum dos tres o registro nao nasce, e foi por isso que a escova do W90 ficou de fora. LEVA DE 14/09/2026 (19h17Z): a familia B106GL do Xiaomi S10. O registro B106GL-BX, que estava no banco desde 13/09 com compatibilidade so do S20, foi ALARGADO — nao duplicado — porque a propria Xiaomi publica o mesmo codigo sob titulo que nomeia S10, E10, S12, E12 e X20. Nasceram B106GL-ZX (escova principal), B106GL-LW (filtro) e o mop do S10 sem codigo, com a causa medida. Canal: busca web restrita a mi.com; o egresso direto e o WebFetch seguem devolvendo EGRESS_BLOCKED, remedido nesta execucao, e por isso as fontes sao de nivel 3.",
  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
  "contagem": {
-  "total": 38,
-  "publicavel": 35,
+  "total": 43,
+  "publicavel": 40,
   "excluido_do_banco": 3,
   "nao_publicavel": 0,
-  "pares_peca_x_modelo_declarados": 71,
-  "esperando_link_de_afiliado": 23,
+  "pares_peca_x_modelo_declarados": 76,
+  "esperando_link_de_afiliado": 28,
   "itens_com_ficha": 12,
   "itens_sem_saida_de_compra": 0,
-  "itens_com_piso_nao_rastreavel": 0,
+  "itens_com_piso_nao_rastreavel": 5,
   "links_sem_degrau": 0,
   "itens_com_link_de_afiliado": 12,
   "itens_com_foto": 12
@@ -3082,6 +3082,316 @@
    "status": "publicavel",
    "observacao": "Pacote: 2 mops, como a especificacao declara.",
    "verificado_em": "2026-09-14"
+  },
+  {
+   "id": "xiaomi-filtro-mop-2",
+   "marca": "xiaomi",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "MEDIDO nesta coleta, em TRES passadas: a Xiaomi nao publica pagina de acessorio para o Mi Robot Vacuum-Mop 2 em canal nenhum que a busca alcance — existe pagina de acessorio com codigo para o S20 e para o X10+, e NAO para este modelo. O unico canal do fabricante que nomeia as pecas deste modelo e o artigo de suporte KA-11406, que as identifica pela FUNCAO e nunca por codigo. Sem pagina de acessorio nao ha 'Product model' para ler, e inventar um codigo de peca a partir do codigo de outro modelo seria heranca. O registro e identificado pelo nome_na_fonte, que e o que a frase da R1 cita",
+   "tipo": "filtro",
+   "nome_na_fonte": "filter element",
+   "compatibilidade": [
+    {
+     "modelo": "xiaomi-mop-2",
+     "codigo_declarado": "Mi Robot Vacuum-Mop 2",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-faq"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a Xiaomi declara o intervalo deste modelo em HORAS DE USO e nao em meses: \"The filter and side brush are recommended to be replaced after 150 hours of use\" (KA-11406, verificado em 2026-09-17). Converter hora de uso em mes exigiria saber quantas horas por semana a casa de quem le roda o robo — numero que so o leitor tem. O intervalo declarado esta escrito aqui e vai para a tela com as palavras do fabricante"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: a peca nasceu nesta execucao e a coleta da Shopee nao rodou sobre ela. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-17",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+    "motivo_sem_url_busca": "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar --encurtar com a credencial da Open API no ambiente.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-faq": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Global (suporte)",
+     "titulo_na_fonte": "Mi Robot Vacuum-Mop 2 FAQ",
+     "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, TRES passadas independentes nesta execucao, com o mesmo texto nas tres. O egresso direto esta fechado: curl a www.mi.com e a mi.com devolveu 000 (connect_rejected, politica de egresso) em duas passadas cada, e o WebFetch de www.mi.com devolveu EGRESS_BLOCKED, com robometria.com.br em 200 na mesma janela. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-17"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "PRIMEIRA peca do Mi Robot Vacuum-Mop 2 no banco. O titulo nomeia o que a peca E ('filter element'), entao o tipo sai do titulo e nao de contraste. a lista de acessorios do artigo de suporte DESTE modelo: \"The accessories of Mi Robot Vacuum-Mop 2 include: roller brush, mop, side brush, filter element, mop pad, water tank, etc., all of which can be purchased from Xiaomi sales channels\". O artigo tem numero proprio (KA-11406) e a Xiaomi publica artigo SEPARADO para Mop 2 Lite (KA-11405), Mop 2 Ultra (KA-08460) e Mop 2C (KA-07839): a compatibilidade fica no Mop 2 e em mais nenhum, porque e o unico modelo que este artigo cobre.",
+   "verificado_em": "2026-09-17"
+  },
+  {
+   "id": "xiaomi-escova-lateral-mop-2",
+   "marca": "xiaomi",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "MEDIDO nesta coleta, em TRES passadas: a Xiaomi nao publica pagina de acessorio para o Mi Robot Vacuum-Mop 2 em canal nenhum que a busca alcance — existe pagina de acessorio com codigo para o S20 e para o X10+, e NAO para este modelo. O unico canal do fabricante que nomeia as pecas deste modelo e o artigo de suporte KA-11406, que as identifica pela FUNCAO e nunca por codigo. Sem pagina de acessorio nao ha 'Product model' para ler, e inventar um codigo de peca a partir do codigo de outro modelo seria heranca. O registro e identificado pelo nome_na_fonte, que e o que a frase da R1 cita",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "side brush",
+   "funcao": {
+    "declarada_por": "canal-de-manutencao",
+    "fonte": "f-faq",
+    "declarado_como": "o canal de manutencao do PROPRIO modelo escreve a funcao: \"The filter and side brush are recommended to be replaced after 150 hours of use\", e a lista de acessorios do mesmo artigo repete \"side brush\". A palavra do eixo (lateral / side) foi escrita pela Xiaomi para ESTE modelo — nao foi lida de nome comercial nem herdada de outro modelo"
+   },
+   "compatibilidade": [
+    {
+     "modelo": "xiaomi-mop-2",
+     "codigo_declarado": "Mi Robot Vacuum-Mop 2",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-faq"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a Xiaomi declara o intervalo deste modelo em HORAS DE USO e nao em meses: \"The filter and side brush are recommended to be replaced after 150 hours of use\" (KA-11406, verificado em 2026-09-17). Converter hora de uso em mes exigiria saber quantas horas por semana a casa de quem le roda o robo — numero que so o leitor tem. O intervalo declarado esta escrito aqui e vai para a tela com as palavras do fabricante"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: a peca nasceu nesta execucao e a coleta da Shopee nao rodou sobre ela. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-17",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+    "motivo_sem_url_busca": "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar --encurtar com a credencial da Open API no ambiente.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-faq": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Global (suporte)",
+     "titulo_na_fonte": "Mi Robot Vacuum-Mop 2 FAQ",
+     "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, TRES passadas independentes nesta execucao, com o mesmo texto nas tres. O egresso direto esta fechado: curl a www.mi.com e a mi.com devolveu 000 (connect_rejected, politica de egresso) em duas passadas cada, e o WebFetch de www.mi.com devolveu EGRESS_BLOCKED, com robometria.com.br em 200 na mesma janela. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-17"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "Escova nomeada pela POSICAO no canal de manutencao do fabricante, que e a origem 3 da secao 26.1 do ARQUIPELAGO.md. a lista de acessorios do artigo de suporte DESTE modelo: \"The accessories of Mi Robot Vacuum-Mop 2 include: roller brush, mop, side brush, filter element, mop pad, water tank, etc., all of which can be purchased from Xiaomi sales channels\".",
+   "verificado_em": "2026-09-17"
+  },
+  {
+   "id": "xiaomi-escova-principal-mop-2",
+   "marca": "xiaomi",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "MEDIDO nesta coleta, em TRES passadas: a Xiaomi nao publica pagina de acessorio para o Mi Robot Vacuum-Mop 2 em canal nenhum que a busca alcance — existe pagina de acessorio com codigo para o S20 e para o X10+, e NAO para este modelo. O unico canal do fabricante que nomeia as pecas deste modelo e o artigo de suporte KA-11406, que as identifica pela FUNCAO e nunca por codigo. Sem pagina de acessorio nao ha 'Product model' para ler, e inventar um codigo de peca a partir do codigo de outro modelo seria heranca. O registro e identificado pelo nome_na_fonte, que e o que a frase da R1 cita",
+   "tipo": "escova principal",
+   "nome_na_fonte": "main brush",
+   "funcao": {
+    "declarada_por": "canal-de-manutencao",
+    "fonte": "f-faq",
+    "declarado_como": "o canal de manutencao do PROPRIO modelo escreve a funcao: \"the main brush is recommended to be replaced after 300 hours of use\". O REGISTRO GRAVA O QUE ESSE CANAL NOMEIA, \"main brush\", e NAO afirma que ela e a \"roller brush\" da lista de acessorios do mesmo artigo: as duas palavras aparecem no mesmo documento e a Xiaomi em nenhum momento diz que sao o mesmo item. Dizer que sao seria contraste inventado por mim, nao declarado por ela"
+   },
+   "compatibilidade": [
+    {
+     "modelo": "xiaomi-mop-2",
+     "codigo_declarado": "Mi Robot Vacuum-Mop 2",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-faq"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a Xiaomi declara o intervalo deste modelo em HORAS DE USO e nao em meses: \"the main brush is recommended to be replaced after 300 hours of use\" (KA-11406, verificado em 2026-09-17). Mesma razao do filtro: hora de uso nao vira mes sem o habito de quem le"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: a peca nasceu nesta execucao e a coleta da Shopee nao rodou sobre ela. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-17",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+    "motivo_sem_url_busca": "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar --encurtar com a credencial da Open API no ambiente.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-faq": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Global (suporte)",
+     "titulo_na_fonte": "Mi Robot Vacuum-Mop 2 FAQ",
+     "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, TRES passadas independentes nesta execucao, com o mesmo texto nas tres. O egresso direto esta fechado: curl a www.mi.com e a mi.com devolveu 000 (connect_rejected, politica de egresso) em duas passadas cada, e o WebFetch de www.mi.com devolveu EGRESS_BLOCKED, com robometria.com.br em 200 na mesma janela. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-17"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "A DECISAO DIFICIL DESTA LEVA ESTA EM funcao.declarado_como, e ela e uma RECUSA: o artigo nomeia 'roller brush' na lista de acessorios e 'main brush' na frase de manutencao, e o banco nao junta as duas. a lista de acessorios do artigo de suporte DESTE modelo: \"The accessories of Mi Robot Vacuum-Mop 2 include: roller brush, mop, side brush, filter element, mop pad, water tank, etc., all of which can be purchased from Xiaomi sales channels\".",
+   "verificado_em": "2026-09-17"
+  },
+  {
+   "id": "xiaomi-reservatorio-mop-2",
+   "marca": "xiaomi",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "MEDIDO nesta coleta, em TRES passadas: a Xiaomi nao publica pagina de acessorio para o Mi Robot Vacuum-Mop 2 em canal nenhum que a busca alcance — existe pagina de acessorio com codigo para o S20 e para o X10+, e NAO para este modelo. O unico canal do fabricante que nomeia as pecas deste modelo e o artigo de suporte KA-11406, que as identifica pela FUNCAO e nunca por codigo. Sem pagina de acessorio nao ha 'Product model' para ler, e inventar um codigo de peca a partir do codigo de outro modelo seria heranca. O registro e identificado pelo nome_na_fonte, que e o que a frase da R1 cita",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "water tank",
+   "compatibilidade": [
+    {
+     "modelo": "xiaomi-mop-2",
+     "codigo_declarado": "Mi Robot Vacuum-Mop 2",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-faq"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "o artigo de suporte deste modelo declara intervalo de troca para filtro, escova lateral e escova principal, e NAO declara para este item. O banco nao empresta o intervalo de uma peca para outra"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: a peca nasceu nesta execucao e a coleta da Shopee nao rodou sobre ela. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-17",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20reservatorio%20robo%20aspirador",
+    "motivo_sem_url_busca": "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar --encurtar com a credencial da Open API no ambiente.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-faq": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Global (suporte)",
+     "titulo_na_fonte": "Mi Robot Vacuum-Mop 2 FAQ",
+     "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, TRES passadas independentes nesta execucao, com o mesmo texto nas tres. O egresso direto esta fechado: curl a www.mi.com e a mi.com devolveu 000 (connect_rejected, politica de egresso) em duas passadas cada, e o WebFetch de www.mi.com devolveu EGRESS_BLOCKED, com robometria.com.br em 200 na mesma janela. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-17"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "O titulo nomeia o que a peca E ('water tank'), entao o tipo sai do titulo. a lista de acessorios do artigo de suporte DESTE modelo: \"The accessories of Mi Robot Vacuum-Mop 2 include: roller brush, mop, side brush, filter element, mop pad, water tank, etc., all of which can be purchased from Xiaomi sales channels\". E a QUARTA peca de tipo reservatorio do banco e a primeira que nao e da WAP: o tipo deixa de ser de marca unica, o que importa para a R1 porque coluna de seletor com uma marca so responde a uma marca so.",
+   "verificado_em": "2026-09-17"
+  },
+  {
+   "id": "xiaomi-mop-mop-2",
+   "marca": "xiaomi",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "MEDIDO nesta coleta, em TRES passadas: a Xiaomi nao publica pagina de acessorio para o Mi Robot Vacuum-Mop 2 em canal nenhum que a busca alcance — existe pagina de acessorio com codigo para o S20 e para o X10+, e NAO para este modelo. O unico canal do fabricante que nomeia as pecas deste modelo e o artigo de suporte KA-11406, que as identifica pela FUNCAO e nunca por codigo. Sem pagina de acessorio nao ha 'Product model' para ler, e inventar um codigo de peca a partir do codigo de outro modelo seria heranca. O registro e identificado pelo nome_na_fonte, que e o que a frase da R1 cita",
+   "tipo": "mop",
+   "nome_na_fonte": "mop pad",
+   "compatibilidade": [
+    {
+     "modelo": "xiaomi-mop-2",
+     "codigo_declarado": "Mi Robot Vacuum-Mop 2",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-faq"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "o artigo de suporte deste modelo declara intervalo de troca para filtro, escova lateral e escova principal, e NAO declara para este item. O banco nao empresta o intervalo de uma peca para outra"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: a peca nasceu nesta execucao e a coleta da Shopee nao rodou sobre ela. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-17",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+    "motivo_sem_url_busca": "sem link curto: a medicao de palavra-chave (dados/palavras-chave-medidas.json) nao cobre este registro. Rode ferramentas/medir-palavras-chave.py --gravar --encurtar com a credencial da Open API no ambiente.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-faq": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Global (suporte)",
+     "titulo_na_fonte": "Mi Robot Vacuum-Mop 2 FAQ",
+     "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, TRES passadas independentes nesta execucao, com o mesmo texto nas tres. O egresso direto esta fechado: curl a www.mi.com e a mi.com devolveu 000 (connect_rejected, politica de egresso) em duas passadas cada, e o WebFetch de www.mi.com devolveu EGRESS_BLOCKED, com robometria.com.br em 200 na mesma janela. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-17"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "A LISTA DO FABRICANTE NOMEIA DOIS ITENS QUE CAEM NO MESMO TIPO DO VOCABULARIO, 'mop' e 'mop pad', e este registro cobre SO o segundo, que e o consumivel que se troca. Nao esta escrito aqui que os dois sao o mesmo item nem que sao dois: a Xiaomi nao diz, e esta ilha nao decide por semelhanca de nome. a lista de acessorios do artigo de suporte DESTE modelo: \"The accessories of Mi Robot Vacuum-Mop 2 include: roller brush, mop, side brush, filter element, mop pad, water tank, etc., all of which can be purchased from Xiaomi sales channels\".",
+   "verificado_em": "2026-09-17"
   }
  ],
  "ordem_da_lista_de_compras": "Reordenada em 13/09/2026 pela varredura da entrada da R1 (dados/cobertura-r1.json), nao por impressao. O criterio e o da secao 14.3 do ARQUIPELAGO.md aplicado a R1: vale mais a peca que tira um MODELO do vazio do que a peca que acrescenta um par a um modelo que ja respondia. A leva da Xiaomi tirou quatro modelos do vazio de uma vez (E10, H40, S40 e S40C) e deu codigo ao quinto (S20), entao a entrada vazia caiu de 12 para 8 e as celulas vazias de 120 para 112. O que sobrou na emenda com a R2 e a WAP inteira, e por isso ela subiu para o topo — com o alvo trocado: o gargalo la nao e peca, e MODELO. ATUALIZADA em 13/09/2026 pelo bloco do reservatorio: o alvo mais barato da lista saiu dela. O recipiente de po do W300 e o do WSMART estavam nomeados aqui com a pagina JA LOCALIZADA — custo de uma passada limpa, nao de uma varredura — e eram o unico alvo que devolvia um TIPO INTEIRO ao seletor da R1 em vez de um par a um modelo que ja respondia. Foi o que aconteceu: reservatorio saiu de 0 para 2 pecas e o seletor, que e gerado da varredura, voltou a oferecer o tipo sem uma linha de codigo mudar. Nenhum modelo saiu do vazio, e nao era para sair — W300 e WSMART ja respondiam. O topo da lista continua sendo a WAP, e o gargalo la segue sendo MODELO."

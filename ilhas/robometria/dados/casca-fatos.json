@@ -11,7 +11,7 @@
     "dados/modelos-robo.json",
     "dados/constantes.json"
   ],
-  "total_de_fontes": 115,
+  "total_de_fontes": 120,
   "niveis": [
     {
       "nivel": 1,
@@ -28,7 +28,7 @@
     {
       "nivel": 3,
       "origem": "fabricante-via-busca",
-      "fontes_no_banco": 69,
+      "fontes_no_banco": 74,
       "existe_hoje": true
     },
     {
@@ -59,23 +59,23 @@
   "medicao": {
     "marcas": 5,
     "modelos_publicaveis": 38,
-    "pecas_publicaveis": 35,
-    "pares_declarados": 70,
-    "itens_publicaveis": 73,
-    "esperando_link": 46,
+    "pecas_publicaveis": 40,
+    "pares_declarados": 75,
+    "itens_publicaveis": 78,
+    "esperando_link": 51,
     "rendem_comissao": 73,
-    "nao_rendem_comissao": 0,
+    "nao_rendem_comissao": 5,
     "pecas_que_atravessam_marca": 0,
     "modelos_recomendaveis": 32,
     "modelos_recomendaveis_com_pa": 11,
     "pa_minimo": 1400,
     "pa_maximo": 10000,
     "marcas_que_declaram_m2": 1,
-    "r1_responde": 30,
-    "r1_vazia": 8,
+    "r1_responde": 31,
+    "r1_vazia": 7,
     "celulas": 228,
-    "celulas_sem_resposta": 151,
-    "as_duas": 8,
+    "celulas_sem_resposta": 146,
+    "as_duas": 9,
     "medido_em": "2026-09-17"
   },
   "reguas_da_medicao": {
