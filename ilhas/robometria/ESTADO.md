@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-17T13:47Z
-executando_desde: null
+executando_desde: 2026-09-17T16:16Z
 bloco_atual: |
   BLOCO 3c — A LEVA DO MI ROBOT VACUUM-MOP 2, e o achado e maior que a leva: a meta de 15 do item 2 tem TETO 11 e nao se alcanca com peca. Cinco pecas novas (filtro, escova lateral, escova principal, reservatorio e mop), o modelo sai do vazio da R1 e a INTERSECAO VAI DE 8 PARA 9. Banco de 38 para 43 pecas, 40 publicaveis, 76 pares. ZERO URL nova, ZERO URL mudada de endereco, ZERO leva do teto da 21.4 gasta. Manifest na revisao 61, casca 1.10.0.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. executando_desde estava null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo, e o ultimo commit na pasta era das 10h34Z. Nenhum branch claude fora do main e nenhum PR aberto. Reserva aceita de primeira as 13h16Z. Nenhum despacho deste PROMPT.md tem item acionavel pela Fundacao. Rede pela 20.2 antes de trabalhar: home 200 e /status na revisao 59, igual a do manifest, em TRES passadas.
