@@ -877,3 +877,118 @@ Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco 
 nao foi acionado, nada foi publicado, nenhuma conta foi criada, o `REGISTRO.md` nao foi tocado, o
 `ARQUIPELAGO.md` nao foi lido para decidir nada — so para achar a ancora — e nenhum arquivo alem dos dois que
 a instrucao nomeou e deste log foi alterado.
+
+---
+
+## DISPARO DE 18/09/2026, 01h31Z — a primeira medicao de volume absoluto (arquivo novo na Bussola) e as duas insercoes que ela obriga
+
+Um arquivo novo e duas insercoes literais, num commit so, como a instrucao pediu. Nenhum arquivo alem dos tres
+que a instrucao nomeou (mais este log) foi tocado.
+
+### Passo 1 — ponto de partida
+
+Parti do `main` real, nao da branch da sessao:
+
+```
+$ git fetch origin main && git checkout -B trabalho origin/main
+ + e7b1889...dbde3d3 main       -> origin/main  (forced update)
+Switched to a new branch 'trabalho'
+```
+
+O `origin/main` de partida era `dbde3d3` (`maos-log: secao do disparo de 17/09 23h39Z`). Vale o registro de que
+o fetch veio com **forced update**: o `main` remoto tinha sido reescrito desde o clone desta maquina
+(`e7b1889` -> `dbde3d3`). Nada foi forcado por mim — quem forcou foi um disparo anterior; eu so peguei o estado
+novo.
+
+### Passo 2 — as ancoras, conferidas antes de escrever
+
+As duas ancoras literais existiam e eram **unicas**, cada uma uma unica vez no seu arquivo:
+
+```
+$ grep -c '^## 3.1 Nota que não foi medida não vira índice' bussola/BUSSOLA.md
+1
+$ grep -n 'DESPACHO DO RAPHAEL — 17/09/2026 — A REDE ABRIU' ilhas/robometria/PROMPT.md
+100:## DESPACHO DO RAPHAEL — 17/09/2026 — A REDE ABRIU PARA OS FABRICANTES, E DOIS DOS CINCO ENDERECOS NUNCA EXISTIRAM
+```
+
+Nos dois casos a linha imediatamente anterior a ancora ja era uma linha em branco, entao ela serviu de separacao
+de cima e eu acrescentei so a de baixo. Nenhuma linha em branco extra foi criada.
+
+### Passo 3 — `git status --porcelain` e `git diff --stat`
+
+```
+$ git status --porcelain
+M  bussola/BUSSOLA.md
+A  bussola/medicoes/volume-absoluto-2026-09-18.md
+M  ilhas/robometria/PROMPT.md
+```
+
+```
+$ git diff --cached --stat
+ bussola/BUSSOLA.md                             | 10 ++++
+ bussola/medicoes/volume-absoluto-2026-09-18.md | 79 ++++++++++++++++++++++++++
+ ilhas/robometria/PROMPT.md                     | 13 +++++
+ 3 files changed, 102 insertions(+)
+```
+
+**102 insercoes, zero remocoes.** Nenhuma linha existente foi apagada ou reescrita em nenhum dos dois arquivos
+editados — as duas edicoes sao insercao pura.
+
+### Passo 4 — o commit que foi ao `main`
+
+```
+ab8f69fce324a474ef9c2450054b9ffc4aca4f65
+bussola: a primeira medicao de volume absoluto do Arquipelago, e o piso que faltava na regua
+```
+
+```
+$ git push origin HEAD:main
+   dbde3d3..ab8f69f  HEAD -> main
+```
+
+Aceito de primeira, sem rebase e sem force. Confirmado no remoto, nao no que eu acho que empurrei:
+
+```
+$ git fetch origin main && git log -1 origin/main
+ab8f69fce324a474ef9c2450054b9ffc4aca4f65
+bussola: a primeira medicao de volume absoluto do Arquipelago, e o piso que faltava na regua
+2026-09-18 01:31:35 +0000
+$ git diff --stat HEAD origin/main
+(vazio — a arvore local e a do origin/main sao identicas)
+```
+
+### Passo 5 — a contagem, conferida relendo os arquivos DEPOIS de gravar
+
+```
+$ wc -l bussola/BUSSOLA.md ilhas/robometria/PROMPT.md bussola/medicoes/volume-absoluto-2026-09-18.md
+   118 bussola/BUSSOLA.md
+   905 ilhas/robometria/PROMPT.md
+    79 bussola/medicoes/volume-absoluto-2026-09-18.md
+```
+
+- **`bussola/medicoes/volume-absoluto-2026-09-18.md`** — arquivo NOVO, e a pasta `bussola/medicoes/` tambem nao
+  existia (`ls: cannot access 'bussola/medicoes': No such file or directory` antes do `mkdir -p`). **79 linhas**,
+  com o cabecalho YAML em `publicar: false`.
+- **`bussola/BUSSOLA.md`** — de **108 para 118 linhas** (+10: as 9 linhas do bloco mais a linha em branco que o
+  separa da ancora). O bloco novo comeca na linha 55; a ancora `## 3.1 Nota que não foi medida não vira índice`
+  desceu para a linha 65, intacta. `grep -c '3.0-b PISO DE DEMANDA'` devolve **1** — o bloco aparece uma unica vez.
+- **`ilhas/robometria/PROMPT.md`** — de **892 para 905 linhas** (+13: as 12 linhas do bloco mais a linha em
+  branco). O despacho novo de 18/09 comeca na linha 100 e o despacho de 17/09 que era a ancora desceu para a
+  linha 113, intacto. `grep -c '18/09/2026 — A ILHA TERMINA'` devolve **1**.
+
+Os tres textos foram gravados por heredoc com delimitador entre aspas simples e as duas insercoes foram feitas
+por um script Python que le e escreve em UTF-8 explicito, para que nem o shell nem nenhuma etapa intermediaria
+tocasse em cedilha, til, travessao (`—`), traco de faixa (`–`), sinal de multiplicacao (`×`) ou no travessao
+solto que marca "abaixo do limiar" nos blocos de codigo. As ancoras foram casadas por igualdade de linha
+inteira, com os acentos escritos como escapes `\u` dentro do script, e o script aborta se a ancora aparecer
+zero ou mais de uma vez. A mensagem de commit foi passada por `-F -`, nunca por `-m`, pelo mesmo motivo.
+
+### Passos que falharam
+
+Nenhum. A pasta foi criada, as duas ancoras existiam e eram unicas, as tres gravacoes entraram, o commit foi
+aceito no `main` de primeira e a confirmacao em `origin/main` mostra o hash certo.
+
+Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync
+nao foi acionado, nada foi publicado (o arquivo novo nasceu com `publicar: false`, como a instrucao mandou),
+nenhuma conta foi criada, o `REGISTRO.md` nao foi tocado, o `ARQUIPELAGO.md` nao foi lido nem aberto, e nenhum
+arquivo alem dos tres que a instrucao nomeou e deste log foi alterado.
