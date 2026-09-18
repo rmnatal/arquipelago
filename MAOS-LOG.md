@@ -992,3 +992,94 @@ Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco 
 nao foi acionado, nada foi publicado (o arquivo novo nasceu com `publicar: false`, como a instrucao mandou),
 nenhuma conta foi criada, o `REGISTRO.md` nao foi tocado, o `ARQUIPELAGO.md` nao foi lido nem aberto, e nenhum
 arquivo alem dos tres que a instrucao nomeou e deste log foi alterado.
+
+---
+
+## DISPARO DE 18/09/2026, 13h02Z — a segunda ordem do dia da robometria (fotos + decisao de outubro) inserida antes do despacho de congelamento
+
+Uma insercao literal num arquivo so, como a instrucao pediu. Nenhum arquivo alem do que a instrucao nomeou
+(`ilhas/robometria/PROMPT.md`) e deste log foi tocado.
+
+### Passo 1 — ponto de partida
+
+Parti do `main` real, nao da branch da sessao:
+
+```
+$ git fetch origin main && git checkout -B trabalho origin/main
+ + e7b1889...af70d53 main       -> origin/main  (forced update)
+Switched to a new branch 'trabalho'
+```
+
+O `origin/main` de partida era `af70d53` (`robometria: fecho da execucao de 18/09 10h32Z — item 2 da DEFINICAO DE
+PRONTA marcado FECHADO`). O fetch veio de novo com **forced update**: o `main` remoto foi reescrito desde o clone
+desta maquina (`e7b1889` -> `af70d53`). Nada foi forcado por mim.
+
+### Passo 2 — a ancora, conferida antes de escrever
+
+A ancora literal existia e era **unica** no arquivo:
+
+```
+$ grep -n 'DESPACHO DO RAPHAEL — 18/09/2026 — A ILHA TERMINA' ilhas/robometria/PROMPT.md
+100:## DESPACHO DO RAPHAEL — 18/09/2026 — A ILHA TERMINA, MAS MUDA DE ESTADO: DE APOSTA PARA EXPERIMENTO MEDIDO
+```
+
+A linha 99, imediatamente anterior a ancora, ja era uma linha em branco: ela serviu de separacao de cima, e eu
+acrescentei a de baixo (a linha em branco entre o fim do bloco e a ancora, como a instrucao mandou). Nenhuma
+linha em branco extra foi criada, nada foi apagado.
+
+### Passo 3 — `git status --porcelain` e `git diff --stat`
+
+```
+$ git status --porcelain
+ M ilhas/robometria/PROMPT.md
+```
+
+```
+$ git diff --stat
+ ilhas/robometria/PROMPT.md | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+```
+
+31 linhas inseridas: as 30 linhas do bloco mais a linha em branco de separacao. Zero remocoes.
+
+### Passo 4 — o commit que foi ao `main`
+
+```
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   af70d53..0db853e  HEAD -> main
+```
+
+```
+$ git fetch origin main && git log -1 origin/main --format="%H%n%s"
+0db853eb9c369c5f9441913b2277438fa871e5d4
+robometria: segunda passada de fotos sobre os 76 sem imagem, e a decisao de outubro pre-registrada
+```
+
+Hash no `main`: **`0db853eb9c369c5f9441913b2277438fa871e5d4`**. Push aceito de primeira, sem rebase, sem force,
+sem PR.
+
+### Passo 5 — contagem conferida relendo o arquivo DEPOIS de gravar
+
+```
+$ grep -c "" ilhas/robometria/PROMPT.md
+941
+```
+
+O arquivo tinha 910 linhas antes e tem 941 depois: +31, o mesmo numero do `diff --stat`. O bloco novo comeca na
+linha 100 e a ancora, que era a linha 100, passou a ser a linha 131.
+
+```
+$ grep -n '^## DESPACHO DO RAPHAEL — 18/09/2026' ilhas/robometria/PROMPT.md
+100:## DESPACHO DO RAPHAEL — 18/09/2026 (segunda ordem do dia) — TERMINAR AS FOTOS, E DEIXAR A DECISAO DE OUTUBRO PRE-REGISTRADA
+131:## DESPACHO DO RAPHAEL — 18/09/2026 — A ILHA TERMINA, MAS MUDA DE ESTADO: DE APOSTA PARA EXPERIMENTO MEDIDO
+```
+
+Nenhum passo falhou; nao ha mensagem de erro para registrar.
+
+### O que NAO foi feito
+
+Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync nao
+foi acionado, nada foi publicado, nenhuma conta foi criada, nenhuma coleta de imagem foi rodada (o bloco inserido
+e uma ordem para a ilha, nao para as maos), o `ARQUIPELAGO.md` nao foi lido nem aberto, e nenhum arquivo alem do
+que a instrucao nomeou e deste log foi alterado. O log foi num commit proprio, logo apos o commit do trabalho.
