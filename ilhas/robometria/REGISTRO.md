@@ -5492,3 +5492,156 @@ escrito la para a comparacao ser legivel.
   os itens 1 e 4 do despacho da Sentinela, e os dois sao trabalho de
   NAVEGADOR** — a proxima ronda os fecha, ou eles esperam uma regua de nuvem
   para a busca do site que hoje nao existe.
+
+## 2026-09-18 19h38Z — A bancada virou UM comando, e a primeira passada dela achou a ilha vermelha
+
+**Bloco de CORRECAO, pela 18.2** — nao consome a vez de um bloco de construcao,
+e continua nao havendo bloco de construcao elegivel: o despacho do Raphael de
+18/09 pos esta ilha em experimento medido ate outubro. Casca 1.11.0, R1 1.11.0,
+R2 1.9.0 (nenhuma constante mudou — o que mudou foi o cabecalho delas), manifest
+**revisao 68**, `/status` em 68. **ZERO URL nova, ZERO URL mudada de endereco,
+ZERO palavra de pagina alterada.**
+
+**A ESCOLHA DA ILHA: pelo foco da 1.2, sem corrida.** `foco.md` nomeia
+robometria desde 16/09. `executando_desde` estava `null`, que pela 1.1 ja
+significa que nenhum bloco da Fundacao esta vivo; o ultimo commit da pasta era
+de 16h39Z, duas horas e meia atras. Reserva aceita de primeira as **19h18Z**.
+Zero branch `claude/*` divergente e zero PR aberto. **Rede pela 20.2 antes de
+trabalhar:** home 200 em TRES passadas e `/status` na revisao 67, igual a do
+manifest.
+
+### O defeito, e ele estava no repositorio desde as 16h39Z
+
+`php ferramentas/teste-casca.php .` reprovava **3 de 251 verificacoes**. Os tres
+snippets tocados pela execucao das 16h16Z subiram a **constante** de versao e
+nao ganharam a entrada de cabecalho correspondente:
+
+| arquivo | cabecalho | constante |
+|---|---|---|
+| `robometria-casca.php` | 1.10.1 | **1.11.0** |
+| `robometria-r1.php` | 1.10.0 | **1.11.0** |
+| `robometria-r2.php` | 1.8.0 | **1.9.0** |
+
+**Nada disso mudava comportamento no ar.** O que estava errado era o changelog —
+que e a primeira coisa que alguem le nesses arquivos, e o unico lugar onde fica
+escrito por que a versao subiu. As tres entradas foram escritas com o que a
+execucao anterior **de fato** mudou, lido do `git show` do commit dela e nao de
+memoria.
+
+### E o defeito maior e de metodo: a regua nao tinha falhado, ela nao tinha RODADO
+
+A secao 16 do `teste-casca.php` nasceu em **14/09/2026**, depois de a mesma
+drenagem acontecer em DOIS arquivos. Hoje ela pegou **TRES de uma vez**, quatro
+dias depois. A regua funciona; o que falhou foi o que a chama.
+
+Cada execucao desta ilha **enumera de cabeca** quais bancadas rodar e escreve a
+lista no `ESTADO.md` como prova de que verificou. **Lista escrita de cabeca
+esquece** — e aqui o esquecimento tem um agravante que o torna invisivel: o
+verde das outras dez bancadas ocupa o espaco do que faltou, entao o relatorio da
+execucao parece mais completo justamente quando e menos. E a mesma familia do
+`robometria_casca_categorias()` (lista digitada ao lado de lista contada) e do
+painel da foto da 25.7 (duas metades contando a mesma coisa sem nunca se
+falarem), um andar acima: aqui o que diverge e a lista de reguas contra a pasta
+que as guarda.
+
+### `ferramentas/bancada.py` — e o que ele deliberadamente NAO tem e uma lista
+
+Ele varre `ferramentas/` e classifica pela **convencao de nome** desta pasta:
+`teste-*.php`, `teste-*.py`, `mutacoes-*.py` e `validar-*.py` rodam sem rede;
+`conferir-*.py` abrem o site e so entram com `--no-ar`; `*.mjs` e navegador e
+fica fora. **Portao novo entra na bancada no dia em que e escrito**, sem que
+ninguem se lembre dele, e arquivo que nao casa com convencao nenhuma e
+**DENUNCIADO** em vez de ignorado — regua que ninguem roda e regua que nao
+existe. Medido hoje: **38 portoes sem rede, 6 no ar, ZERO sem convencao.**
+
+**Ele cobra as DUAS metades do veredito**, o codigo de saida E a palavra
+impressa. Portao que imprime `REPROVADO` saindo com 0 — ou `APROVADO` saindo com
+1 — e nomeado **INERTE**, porque portao que so um dos dois lados enxerga mente
+para quem le a ultima linha.
+
+**E a regua desse julgamento tem regua propria, que roda SEMPRE, como portao
+zero**: 21 afirmacoes sobre as linhas **reais** desta pasta, uma de cada portao.
+Ela nasceu medindo, e o motivo esta escrito no proprio arquivo: a **primeira**
+versao deste script denunciou **tres portoes sadios** como inertes, porque a
+expressao vermelha casava com `0 falha(s).` — que e a frase de **aprovacao** mais
+comum desta ilha. Defeito de um minuto, licao de sempre: regua escrita de cabeca
+sobre texto que existe se mede contra o texto que existe.
+
+### A prova de ponta a ponta, porque verde nao prova portao
+
+Quebrando **de proposito** o cabecalho da R2 (1.9.0 de volta para 1.8.0), a
+passada devolveu **saida 1 e TRES portoes vermelhos**: `teste-casca.php` pelo
+motivo direto, mais `mutacoes-lugar-vazio-da-foto.py` e
+`mutacoes-promessa-do-titulo.py`, cujas afirmacoes de **mundo sadio** leem o
+arquivo. Restaurado, **38 de 38 verdes e saida 0**. E depois do Sync, com o site
+no ar: **44 portoes, 0 falha**, os seis `conferir-*` inclusos, na revisao 68.
+
+### O despacho da purga de cache estava aberto descrevendo ERRADO esta ilha
+
+`dados/despachos.md` afirmava que a robometria "publicou a mesma funcao sem a
+linha e sem portao nenhum". **O git deu a data:** a guarda do caminho vazio e os
+dois portoes entraram em `fa7de02`, **16/09/2026 as 19h43Z**, dois dias antes de
+o despacho ser escrito — a aquametria **portou a funcao daqui** e escreveu para
+si o portao que aqui ja existia. Medido hoje na ilha reservada:
+`teste-purga-cache.php` **21 afirmacoes, 0 falha**; `mutacoes-purga-cache.py`
+**8 baterias, ZERO inertes**. A metade da clubedomosaico **continua aberta** e
+foi reconferida por leitura do arquivo: `cdm_casca_esvaziar_pasta()` comeca
+direto no `realpath( $raiz )`, sem a recusa do vazio, e a pasta de ferramentas
+dela nao tem nenhum arquivo de purga. A secao 3 proibe editar ilha que nao se
+reservou, entao o conserto segue sendo de quem reservar a clubedomosaico.
+
+**A licao que sobra para o formato do despacho:** despacho que **afirma** o
+estado de uma ilha que quem o escreve nao reservou esta afirmando sobre um
+arquivo que ele nao pode nem abrir de vespera para conferir. O que ele pode
+dizer com seguranca e o que mediu na propria ilha; o resto vira **pergunta** —
+"confira se a sua tambem tem" — em vez de afirmacao. Aqui custou uma execucao
+conferindo o que ja estava consertado; num despacho ALTA custaria uma execucao
+consertando.
+
+### Itens 1 e 4 do despacho da Sentinela: continuam abertos, e o bloqueio agora esta medido em QUATRO canais
+
+Registrada a tentativa pela 18.4, sem herdar nada da execucao anterior:
+
+| canal | medido em 18/09 19h22Z |
+|---|---|
+| `api/v4/search/search_items` | **HTTP 403** |
+| `api/v4/pdp/get_pc` | **HTTP 403** (o teste de vida da 25.4) |
+| `shopee.com.br/search?keyword=` | **200 e inutil**: `roborock` e `xiaomi` devolvem **156.338 bytes identicos byte a byte** (`cmp`) |
+| Open API de afiliados (25.6) | **indisponivel nesta rodada**: `SHOPEE_APP_ID` e `SHOPEE_SECRET` nao estavam no ambiente |
+
+O quarto e informacao nova e vale para quem for fechar os dois itens: **nem a
+regua otimista existia hoje**. Por isso **nenhuma palavra-chave foi trocada nem
+gravada** — trocar chave sem chamar a busca antes e exatamente o que
+`medir-palavras-chave.py` nasceu para impedir, e seria verde sobre defeito vivo
+(18.4).
+
+### Uma frase falsa desfeita no `PROMPT.md`
+
+"Nao ha bloco de prospeccao na fila desta ilha", escrito em 17/09 sob a Proposta
+1 da leitura semanal, **e falso**: o **bloco 6 — LISTA DE PROSPECCAO DO WIDGET**
+esta na FILA DE BLOCOS deste arquivo desde que ela foi escrita, e o motivo do
+adiamento registrado em 09/09 ("so DOIS modelos tem `pa_declarado`") **deixou de
+valer** quando a intersecao fechou em 15. **O bloco 6 nao foi aberto**, e o
+motivo tambem esta escrito: o despacho do Raphael de 18/09 e mais novo que
+aquela leitura semanal e diz que **a peca nao precisa ranquear, so estar
+alcancavel de dentro da R2** — entao prospectar para fazer a R1 ser rastreada
+persegue uma pagina que a medicao mais nova diz nao precisar de trafego direto.
+O que backlink de loja ainda faz e dar ao **dominio** o sinal externo da 14.7, e
+abrir esse bloco numa ilha em experimento medido e decisao do Raphael, nao da
+Fundacao.
+
+### O PLACAR DOS CINCO ITENS DA DEFINICAO DE PRONTA (prazo 23/09)
+
+| # | item | estado |
+|---|---|---|
+| 1 | Porta de compra em todo item publicavel | **feito** — 0 "em breve", 0 item sem saida, 95 publicaveis rendendo comissao |
+| 2 | Emenda do funil | **feito** — intersecao 15 de 45, teto 17, medida em `dados/cobertura-r1.json` |
+| 3 | Zero defeito aberto de ronda | **esperando o Raphael / a ronda no navegador** — itens 1 e 4 do despacho de 18/09, cuja regua e a busca do SITE e nao existe na nuvem (quatro canais medidos hoje) |
+| 4 | Sitemap aceito no Search Console | **feito** — processado, 9 paginas |
+| 5 | Meta description e `og:` em toda pagina | **feito** — 9 de 9 medidas no ar |
+
+**Proximo passo desbloqueado:** nenhum bloco de construcao — a ilha esta em
+experimento medido ate outubro pelo despacho do Raphael de 18/09, e o criterio
+pre-registrado da decisao mora no `PROMPT.md`. O que a proxima execucao **deve**
+fazer antes de qualquer outra coisa e `python3 ferramentas/bancada.py`, e escrever
+o numero dele em vez de uma lista de nomes.

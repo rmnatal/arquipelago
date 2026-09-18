@@ -28,6 +28,21 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 ## Memória a carregar
 `/areas/projeto-robometria.md`, `/areas/fabrica-de-sites.md`, `/areas/playbook-nascimento-projeto.md` (fase 4b), `/areas/arquipelago-bussola.md` (rodada 003, que aprovou este nicho), `/topics/dev-conventions.md`. Sem memória, **não pare**: o estado está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta.
 
+
+## A BANCADA DESTA ILHA É UM COMANDO SÓ, E ELA DESCOBRE OS PORTÕES (18/09/2026)
+
+```
+python3 ferramentas/bancada.py            # 38 portões, sem rede
+python3 ferramentas/bancada.py --no-ar    # 44: inclui os conferir-*, que abrem o site
+python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
+```
+
+**Não enumere bancada de cabeça neste arquivo nem no `REGISTRO.md`.** `bancada.py` **não tem lista**: varre `ferramentas/` e classifica pela convenção de nome (`teste-*`, `mutacoes-*`, `validar-*` sem rede; `conferir-*` só com `--no-ar`), então portão novo entra no dia em que é escrito e arquivo que não casa com convenção nenhuma é **denunciado** em vez de ignorado.
+
+**Por que ele nasceu, e a causa é a que esta ilha mais paga:** às 19h25Z de 18/09 a seção 16 do `teste-casca.php` reprovava 3 de 251 — os três snippets tocados às 16h16Z subiram a CONSTANTE de versão sem ganhar a entrada de cabeçalho. **A régua existia desde 14/09 e não tinha falhado: não tinha rodado.** Lista de bancadas escrita de cabeça esquece, e o que ela esquece não aparece em lugar nenhum, porque o verde das outras ocupa o espaço do que faltou. Mesma família do `robometria_casca_categorias()` — lista digitada ao lado de lista contada —, um andar acima.
+
+**Ele cobra as DUAS metades do veredito**, código de saída e palavra impressa: portão que imprime REPROVADO saindo com 0 é nomeado **INERTE**. E a régua desse julgamento tem régua própria, que roda **sempre**, como portão zero (21 afirmações sobre as linhas reais desta pasta) — ela nasceu medindo porque a primeira versão denunciou três portões sadios, lendo `0 falha(s).` como reprovação.
+
 ---
 
 ## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — ~~quatro defeitos~~ — **REESCRITO PELA 18.3 EM 18/09/2026, 16h40Z, DEIXANDO SÓ O QUE FALTA**
@@ -79,6 +94,16 @@ Mesma passada de 18/09, mesma API. Primeiro resultado de cada busca, medido:
 | 6 chaves de modelo Roborock | 5 abrem em Xiaomi | 6 de 6 com a marca no topo |
 | 25 chaves Roborock + Xiaomi do banco | não medidas todas | **25 de 25 com a marca no topo** |
 
+**TENTATIVA EM 18/09/2026, 19h22Z (18.4), PELA EXECUÇÃO SEGUINTE — os dois itens continuam abertos, e agora o bloqueio está medido nos TRÊS canais, não em dois.** A execução das 16h16Z mediu o `search_items`; esta remediu os três, sem herdar nada:
+
+| canal | medido hoje |
+|---|---|
+| `shopee.com.br/api/v4/search/search_items` | **HTTP 403** |
+| `shopee.com.br/api/v4/pdp/get_pc` | **HTTP 403** (o mesmo teste de vida da 25.4) |
+| `shopee.com.br/search?keyword=…` (página) | **HTTP 200 e inútil**: as respostas de `roborock` e de `xiaomi` têm **156.338 bytes cada e são idênticas byte a byte** (`cmp`), casca de JavaScript sem um resultado dentro |
+
+**E um quarto canal caiu nesta execução, o que é informação nova:** `SHOPEE_APP_ID` e `SHOPEE_SECRET` **não estavam no ambiente** desta rodada, e esta sessão não teve canal de memória para carregá-los. Ou seja, nem a régua otimista da Open API — a que mediu as 25 chaves em 18/09 — estava disponível. **Sem ela não se mede palavra-chave nenhuma daqui**, e por isso esta execução não trocou nem gravou chave: trocar chave sem chamar a busca antes é exatamente o que `medir-palavras-chave.py` nasceu para impedir. Quem for fechar os dois itens confere primeiro se as duas variáveis estão no ambiente.
+
 **A conclusão que sai da tabela, e ela é de método:** as duas réguas discordam **no sentido que engana** — a que a máquina alcança é a otimista. `dados/palavras-chave-medidas.json` já carrega essa advertência no campo `nota_de_universo` desde 16/09; o item 4 é a primeira vez que ela custa um defeito real no ar. **Régua que só enxerga o lado que paga não serve para decidir o que o leitor vê.**
 
 ### O TESTE DE VIDA DESTA RONDA (25.4 e 25.4-b), EM NÚMERO
@@ -94,6 +119,7 @@ Mesma passada de 18/09, mesma API. Primeiro resultado de cada busca, medido:
 >
 > - **Correção 1 — CUMPRIDA.** O cabeçalho do `ESTADO.md` no `main` traz `primeira_indexacao: 2026-09-11`, e a conta do piso (02/10/2026) sai do campo sem recalcular de cabeça.
 > - **Proposta 1 — NADA A FAZER AQUI, por ordem do próprio despacho:** *"o valor desta proposta é ela NÃO virar bloco"*. A alavanca que ele deixa para a Fundação é prospecção de widget em loja, e **não há bloco de prospecção na fila desta ilha**. Pronto quando a URL Inspection disser que a R1 está no Google — relógio do Google, não nosso.
+>   **DUAS CORREÇÕES MEDIDAS EM 18/09/2026, 19h35Z, e elas puxam para lados opostos — por isso ficam as duas escritas.** (i) *"Não há bloco de prospecção na fila desta ilha"* **é falso**: o bloco **6. LISTA DE PROSPECÇÃO DO WIDGET** está na FILA DE BLOCOS deste arquivo desde que ela foi escrita, e o `REGISTRO.md` de 09/09 registra por que ele foi adiado — *"só DOIS modelos têm `pa_declarado`, então a lista de recomendados da R2 sairia praticamente vazia"* —, motivo que **deixou de valer** (a interseção fechou em 15). (ii) E o despacho do Raphael de 18/09, que é mais novo que esta leitura semanal, **reenquadra o alvo**: a R1 mede-se contra consultas de peça que o Planejador diz estarem abaixo do limiar, e a ordem escrita é *"a peça não precisa ranquear; precisa estar ALCANÇÁVEL de dentro da R2"*. **Logo: prospectar para fazer a R1 ser rastreada persegue uma página que a medição mais nova diz não precisar de tráfego direto** — o que backlink de loja ainda faz, e que continua valendo, é dar ao DOMÍNIO inteiro o sinal externo da 14.7, R2 incluída. **Esta execução não abriu o bloco 6**, porque abri-lo é decidir gastar execução numa ilha que o mesmo despacho pôs em experimento medido até outubro, e isso é decisão do Raphael e não da Fundação. O que ela devia era desfazer a frase falsa, para a próxima não decidir a partir dela.
 > - **Proposta 2 — CUMPRIDA E CONFERIDA NO AR EM 17/09/2026, 10h32Z.** Os três títulos e as três metas passaram a citar número derivado do banco, com a fonte. Detalhe abaixo, na própria proposta.
 > - **Proposta 3 — NADA A CONSTRUIR AGORA, por ordem do próprio despacho:** ela pede *"registro e vigilância"*. Pronto quando a leitura seguinte disser se apareceram mais consultas no formato de superfície generativa; só com duas ou mais a Fundação recebe bloco.
 
