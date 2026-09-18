@@ -1771,3 +1771,106 @@ commit proprio, logo a seguir, porque o hash so existe depois do commit; o hash 
 O terceiro push, deste fecho, e o unico que ainda nao aparece acima. Se ele tambem tiver sido recusado por
 nao-fast-forward, foi resolvido com `fetch` + `rebase`, nunca com force — e o proprio `git log` do `main` mostra
 em que ordem tudo entrou.
+
+## Disparo de 18/09/2026, 17h19Z — secao 28 do `ARQUIPELAGO.md`: separacao de projetos, e a trava que faz as MAOS recusarem assunto de fora
+
+Instrucao recebida: acrescentar ao `ARQUIPELAGO.md` uma secao NOVA, numerada na sequencia (a ultima era a 27,
+entao a 28), sem reescrever nenhuma secao existente e sem tocar em nenhum outro arquivo alem deste e do
+`MAOS-LOG.md`. Assunto: a separacao de projetos decidida pelo Raphael hoje, depois de dois disparos errados
+que mandaram assunto da Real 21 para este repositorio (`578a565`, removido em `5dff206`).
+
+### Passo 1 — partida do `main` real
+
+```
+$ git fetch origin main && git checkout -B trabalho origin/main
+From https://github.com/rmnatal/arquipelago
+ * branch            main       -> FETCH_HEAD
+ + e7b1889...4d1d2e1 main       -> origin/main  (forced update)
+Switched to a new branch 'trabalho'
+branch 'trabalho' set up to track 'origin/main'.
+```
+
+Base: `4d1d2e1`. A branch da sessao (`claude/lucid-carson-yfjak6`) nao foi usada para nada.
+
+### Passo 2 — contagem ANTES
+
+```
+$ git show 4d1d2e1:ARQUIPELAGO.md | grep -cE "^## [0-9]+"
+28
+$ git show 4d1d2e1:ARQUIPELAGO.md | wc -l
+933
+```
+
+28 secoes numeradas (0 a 27), 933 linhas. Confirma que a ultima secao era a 27 e que o numero seguinte e o 28.
+
+### Passo 3 — `git status --porcelain` e `git diff --stat` antes do commit
+
+```
+$ git status --porcelain
+ M ARQUIPELAGO.md
+
+$ git diff --stat
+ ARQUIPELAGO.md | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+```
+
+14 insercoes, ZERO remocoes — a secao entrou por acrescimo no fim do arquivo, que e o unico jeito de nao
+reescrever secao anterior.
+
+### Passo 4 — commit e push
+
+```
+$ git commit -F - (mensagem dada na instrucao)
+47a459e contrato: separacao de projetos — o Arquipelago so recebe o que foi deliberadamente enderecado a ele, e as MAOS recusam assunto de outro projeto
+
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   4d1d2e1..47a459e  HEAD -> main
+```
+
+Push aceito de primeira. Nenhum rebase foi preciso, nenhum force push foi dado.
+
+### Passo 5 — releitura DEPOIS do push, no `main` de verdade
+
+```
+$ git fetch origin main && git log -1 origin/main --format='%H%n%s'
+47a459e0fbd8dfd87715b7e226ffcaa9fa7fa165
+contrato: separacao de projetos — o Arquipelago so recebe o que foi deliberadamente enderecado a ele, e as MAOS recusam assunto de outro projeto
+
+$ git clone --depth 1 --branch main https://github.com/rmnatal/arquipelago /tmp/verif
+$ grep -cE "^## [0-9]+" /tmp/verif/ARQUIPELAGO.md
+29
+$ grep -nE "^## 28" /tmp/verif/ARQUIPELAGO.md
+935:## 28. SEPARAÇÃO DE PROJETOS — o Arquipélago só recebe o que foi deliberadamente endereçado a ele (18/09/2026)
+```
+
+Clone novo do `main`, nao o meu diretorio de trabalho: a secao 28 esta la, na linha 935.
+
+### Passo 6 — prova de que NENHUMA secao anterior foi alterada
+
+```
+$ git show origin/main:ARQUIPELAGO.md | wc -l
+947
+$ diff <(git show 4d1d2e1:ARQUIPELAGO.md) <(git show origin/main:ARQUIPELAGO.md | head -933)
+(sem saida — identico)
+```
+
+**Contagem de secoes numeradas: 28 antes, 29 depois.** As 933 primeiras linhas do arquivo no `main` sao byte a
+byte iguais as 933 linhas de antes; tudo que mudou esta da linha 934 em diante (a linha em branco de separacao e
+as 13 linhas da secao nova). Linhas: 933 -> 947, +14, -0.
+
+### Passo 7 — o que a secao 28 diz, em uma linha cada
+
+- Abertura: a separacao de projetos e decisao do Raphael (chega a servidor separado para os sites) e vale por dentro do repositorio tambem.
+- 28.1 A REGRA: o que envolve o Arquipelago nasce deliberadamente dentro do Arquipelago; assunto de outro projeto so entra se ele mandar explicitamente, nomeando o arquivo — mencionar nao e mandar.
+- 28.2 A TRAVA NAS MAOS: as MAOS recusam instrucao cujo assunto nao seja do Arquipelago, sem pedir confirmacao, e na recusa NAO escrevem no `MAOS-LOG.md` (nao houve trabalho no repositorio).
+- 28.3 COMO RECONHECER: o teste e o assunto, nao quem mandou — prospeccao de imprensa, lead, imovel, corretor, CRM, cliente de agencia nao sao daqui.
+- 28.4 O QUE NAO E CONTAMINACAO: citacao de licao aprendida em outro projeto fica, porque e a memoria do erro que pagou a regra; confirmado pelo Raphael em 18/09/2026.
+- 28.5 O QUE ACONTECEU: os dois disparos de 18/09/2026 com assunto da Real 21, `578a565` criado e removido em `5dff206`, a causa no enderecamento e nao na execucao, e o registro de que o executor se recusou por conta propria a escrever e-mail e telefone de uma jornalista em repositorio publico.
+
+### Arquivos tocados neste disparo
+
+`ARQUIPELAGO.md` (secao 28, 14 insercoes, 0 remocoes) e este `MAOS-LOG.md`. Nenhum outro. Nenhuma ilha foi
+reservada, nenhum bloco de fila foi executado, nenhum cabecalho de estado foi tocado, nada foi publicado.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `47a459e` so existiu depois do commit do trabalho.
