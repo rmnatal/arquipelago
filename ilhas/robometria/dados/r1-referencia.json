@@ -557,6 +557,106 @@
         "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
       }
     },
+    "roborock-qrevo-curv": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-qrevo-curv",
+          "frase": "A Roborock US (loja oficial) declara o mop \"Mop Cloth\" compativel com Qrevo Curv Series (fabricante-via-busca, verificado em 18/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
+    "roborock-qrevo-master": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-qrevo-master",
+          "frase": "A Roborock US (loja oficial) declara o mop \"Mop Cloth\" compativel com Qrevo Master (fabricante-via-busca, verificado em 18/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
+    "roborock-s8-maxv-ultra": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-s8-maxv-ultra",
+          "frase": "A Roborock US (loja oficial) declara o mop \"Edgewise Mop Cloth\" compativel com S8 MaxV Ultra (fabricante-via-busca, verificado em 18/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
+    "roborock-saros-10r": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-saros-10r-z70",
+          "frase": "A Roborock US (loja oficial) declara o mop \"Mop Cloth\" compativel com Saros Z70 e Saros 10R (fabricante-via-busca, verificado em 18/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
+    "roborock-saros-z70": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-saros-10r-z70",
+          "frase": "A Roborock US (loja oficial) declara o mop \"Mop Cloth\" compativel com Saros Z70 e Saros 10R (fabricante-via-busca, verificado em 18/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor.",
+        "reservatorio": "Nao localizamos declaracao do fabricante de reservatorio para este modelo; nao vamos supor."
+      }
+    },
     "wap-w100": {
       "aviso_de_variante": null,
       "fabricante": [

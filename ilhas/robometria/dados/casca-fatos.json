@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-casca-fatos.py",
-  "gerado_em": "2026-09-17",
+  "gerado_em": "2026-09-18",
   "o_que_e": "Fatos que a casca publica sobre o proprio banco. Hoje: a coluna \"Temos hoje\" da escada de fontes, na pagina de metodologia. Contagem so de registro publicavel.",
   "por_que_derivado": "Ate 11/09/2026 a coluna estava digitada dentro do snippet e contradizia o banco: ela dizia que a ilha nao tinha nenhuma fonte de nivel 2 enquanto quatro fontes se declaravam nivel 2. Afirmacao da pagina sobre o banco se conta no banco.",
   "onde_foi_contado": [
@@ -11,7 +11,7 @@
     "dados/modelos-robo.json",
     "dados/constantes.json"
   ],
-  "total_de_fontes": 128,
+  "total_de_fontes": 137,
   "niveis": [
     {
       "nivel": 1,
@@ -28,7 +28,7 @@
     {
       "nivel": 3,
       "origem": "fabricante-via-busca",
-      "fontes_no_banco": 82,
+      "fontes_no_banco": 91,
       "existe_hoje": true
     },
     {
@@ -58,25 +58,25 @@
   ],
   "medicao": {
     "marcas": 6,
-    "modelos_publicaveis": 40,
-    "pecas_publicaveis": 46,
-    "pares_declarados": 81,
-    "itens_publicaveis": 86,
-    "esperando_link": 59,
+    "modelos_publicaveis": 45,
+    "pecas_publicaveis": 50,
+    "pares_declarados": 86,
+    "itens_publicaveis": 95,
+    "esperando_link": 68,
     "rendem_comissao": 73,
-    "nao_rendem_comissao": 13,
+    "nao_rendem_comissao": 22,
     "pecas_que_atravessam_marca": 0,
-    "modelos_recomendaveis": 34,
-    "modelos_recomendaveis_com_pa": 13,
+    "modelos_recomendaveis": 39,
+    "modelos_recomendaveis_com_pa": 17,
     "pa_minimo": 1400,
-    "pa_maximo": 10000,
+    "pa_maximo": 22000,
     "marcas_que_declaram_m2": 1,
-    "r1_responde": 33,
+    "r1_responde": 38,
     "r1_vazia": 7,
-    "celulas": 240,
-    "celulas_sem_resposta": 152,
-    "as_duas": 11,
-    "medido_em": "2026-09-17"
+    "celulas": 270,
+    "celulas_sem_resposta": 177,
+    "as_duas": 15,
+    "medido_em": "2026-09-18"
   },
   "reguas_da_medicao": {
     "marcas": "marcas distintas em registro publicavel de modelo ou peca",

@@ -239,6 +239,46 @@
       "so_kit": false
     },
     {
+      "id": "roborock-qrevo-curv",
+      "marca": "roborock",
+      "codigo": "Qrevo Curv Series",
+      "linha": "Qrevo",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "roborock-qrevo-master",
+      "marca": "roborock",
+      "codigo": "Qrevo Master",
+      "linha": "Qrevo",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "roborock-s8-maxv-ultra",
+      "marca": "roborock",
+      "codigo": "S8 MaxV Ultra",
+      "linha": "S",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "roborock-saros-10r",
+      "marca": "roborock",
+      "codigo": "Saros 10R",
+      "linha": "Saros",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "roborock-saros-z70",
+      "marca": "roborock",
+      "codigo": "Saros Z70",
+      "linha": "Saros",
+      "responde": true,
+      "so_kit": false
+    },
+    {
       "id": "wap-w100",
       "marca": "wap",
       "codigo": "W100",
@@ -2751,6 +2791,228 @@
       "terceiro": [],
       "kits_sem_composicao": []
     },
+    "roborock-qrevo-curv": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-qrevo-curv",
+          "codigo": null,
+          "nome_na_fonte": "Mop Cloth",
+          "tipo_da_peca": "mop",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Roborock US (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-qrevo-curv-and-qrevo-edge",
+          "verificado_em": "2026-09-18",
+          "declarados": [
+            "Qrevo Curv Series"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "imagem": null,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "roborock-qrevo-master": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-qrevo-master",
+          "codigo": null,
+          "nome_na_fonte": "Mop Cloth",
+          "tipo_da_peca": "mop",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Roborock US (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-q-revo",
+          "verificado_em": "2026-09-18",
+          "declarados": [
+            "Qrevo Master"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "imagem": null,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "roborock-s8-maxv-ultra": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-s8-maxv-ultra",
+          "codigo": null,
+          "nome_na_fonte": "Edgewise Mop Cloth",
+          "tipo_da_peca": "mop",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Roborock US (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://us.roborock.com/products/roborock-edgewise-mop-cloth-2pcs-for-s8-maxv-ultra-s8-max-ultra",
+          "verificado_em": "2026-09-18",
+          "declarados": [
+            "S8 MaxV Ultra"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "imagem": null,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "roborock-saros-10r": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-saros-10r-z70",
+          "codigo": null,
+          "nome_na_fonte": "Mop Cloth",
+          "tipo_da_peca": "mop",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Roborock US (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-saros-10r-and-saros-z70",
+          "verificado_em": "2026-09-18",
+          "declarados": [
+            "Saros Z70",
+            "Saros 10R"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "imagem": null,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "roborock-saros-z70": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "roborock-mop-saros-10r-z70",
+          "codigo": null,
+          "nome_na_fonte": "Mop Cloth",
+          "tipo_da_peca": "mop",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Roborock US (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-saros-10r-and-saros-z70",
+          "verificado_em": "2026-09-18",
+          "declarados": [
+            "Saros Z70",
+            "Saros 10R"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "imagem": null,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
     "wap-w100": {
       "aviso_de_variante": null,
       "fabricante": [
@@ -4841,7 +5103,7 @@
           "H40",
           "S40"
         ],
-        "titulo_na_fonte": "Xiaomi Robot Vacuum S40C/H40/S40 Mop Pad (titulo da LISTAGEM de acessorios; a pagina de especificacao do mesmo endereco se chama apenas 'Xiaomi Robot Vacuum S40C Mop Pad')",
+        "titulo_na_fonte": "Xiaomi Robot Vacuum S40C/H40/S40 Mop Pad (título da LISTAGEM de acessorios; a página de especificacao do mesmo endereço se chama apenas 'Xiaomi Robot Vacuum S40C Mop Pad')",
         "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/",
         "verificado_em": "2026-09-13"
       }
@@ -4858,7 +5120,7 @@
           "S40",
           "S40 Pro"
         ],
-        "titulo_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush (a lista de modelos compativeis no corpo da mesma pagina acrescenta o Robot Vacuum 5 e o 5 Pro, que o TITULO nao traz)",
+        "titulo_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush (a lista de modelos compativeis no corpo da mesma página acrescenta o Robot Vacuum 5 e o 5 Pro, que o TITULO não traz)",
         "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
         "verificado_em": "2026-09-13"
       }
@@ -5412,6 +5674,19 @@
       "verificado_em": "2026-09-13"
     },
     {
+      "modelo": "roborock-qrevo-curv",
+      "modelo_rotulo": "Roborock Qrevo Curv Series",
+      "tipo": "mop",
+      "peca": "roborock-mop-qrevo-curv",
+      "codigo": null,
+      "nome_na_fonte": "Mop Cloth",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-qrevo-curv-and-qrevo-edge",
+      "verificado_em": "2026-09-18"
+    },
+    {
       "modelo": "electrolux-erb62",
       "modelo_rotulo": "Electrolux ERB62",
       "tipo": "filtro",
@@ -5553,6 +5828,19 @@
       "origem": "fabricante-via-busca",
       "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
       "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "roborock-qrevo-master",
+      "modelo_rotulo": "Roborock Qrevo Master",
+      "tipo": "mop",
+      "peca": "roborock-mop-qrevo-master",
+      "codigo": null,
+      "nome_na_fonte": "Mop Cloth",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-q-revo",
+      "verificado_em": "2026-09-18"
     },
     {
       "modelo": "wap-w100",
@@ -5698,6 +5986,19 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "roborock-s8-maxv-ultra",
+      "modelo_rotulo": "Roborock S8 MaxV Ultra",
+      "tipo": "mop",
+      "peca": "roborock-mop-s8-maxv-ultra",
+      "codigo": null,
+      "nome_na_fonte": "Edgewise Mop Cloth",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://us.roborock.com/products/roborock-edgewise-mop-cloth-2pcs-for-s8-maxv-ultra-s8-max-ultra",
+      "verificado_em": "2026-09-18"
+    },
+    {
       "modelo": "wap-w90",
       "modelo_rotulo": "WAP W90",
       "tipo": "reservatorio",
@@ -5802,6 +6103,19 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "roborock-saros-10r",
+      "modelo_rotulo": "Roborock Saros 10R",
+      "tipo": "mop",
+      "peca": "roborock-mop-saros-10r-z70",
+      "codigo": null,
+      "nome_na_fonte": "Mop Cloth",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-saros-10r-and-saros-z70",
+      "verificado_em": "2026-09-18"
+    },
+    {
       "modelo": "electrolux-erb11",
       "modelo_rotulo": "Electrolux ERB11",
       "tipo": "filtro",
@@ -5878,6 +6192,19 @@
       "origem": "fabricante-via-busca",
       "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
       "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "roborock-saros-z70",
+      "modelo_rotulo": "Roborock Saros Z70",
+      "tipo": "mop",
+      "peca": "roborock-mop-saros-10r-z70",
+      "codigo": null,
+      "nome_na_fonte": "Mop Cloth",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-saros-10r-and-saros-z70",
+      "verificado_em": "2026-09-18"
     },
     {
       "modelo": "electrolux-erb20",
@@ -6150,23 +6477,23 @@
     "wap-w400"
   ],
   "resumo": {
-    "linhas_da_tabela": 98,
-    "celulas_respondidas": 88,
-    "pares_na_tabela": 81,
+    "linhas_da_tabela": 103,
+    "celulas_respondidas": 93,
+    "pares_na_tabela": 86,
     "linhas_de_segunda_peca": 10,
-    "modelos_publicaveis": 40,
-    "modelos_que_respondem": 33,
+    "modelos_publicaveis": 45,
+    "modelos_que_respondem": 38,
     "modelos_com_entrada_vazia": 7,
-    "celulas": 240,
-    "celulas_sem_resposta": 152,
-    "pares_declarados": 81,
-    "pares_declarados_no_banco": 82,
+    "celulas": 270,
+    "celulas_sem_resposta": 177,
+    "pares_declarados": 86,
+    "pares_declarados_no_banco": 87,
     "pares_para_modelo_nao_publicavel": 1,
-    "pecas_publicaveis": 46,
+    "pecas_publicaveis": 50,
     "marcas": 6,
-    "as_duas_ferramentas": 11,
-    "pecas_recomendadas": 46,
-    "pecas_esperando_link": 34,
+    "as_duas_ferramentas": 15,
+    "pecas_recomendadas": 50,
+    "pecas_esperando_link": 38,
     "pecas_com_link": 12
   }
 }

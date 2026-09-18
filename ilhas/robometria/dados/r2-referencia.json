@@ -189,6 +189,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "liso|nao@200": [
@@ -242,6 +274,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "liso|nao@400": [
@@ -295,6 +359,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "liso|curto@10": [
@@ -334,6 +430,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "liso|curto@200": [
@@ -373,6 +501,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "liso|curto@400": [
@@ -412,6 +572,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "liso|longo@10": [
@@ -451,6 +643,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "liso|longo@200": [
@@ -490,6 +714,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "liso|longo@400": [
@@ -529,6 +785,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|nao@10": [
@@ -568,6 +856,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|nao@200": [
@@ -607,6 +927,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|nao@400": [
@@ -646,6 +998,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|curto@10": [
@@ -685,6 +1069,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|curto@200": [
@@ -724,6 +1140,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|curto@400": [
@@ -763,6 +1211,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|longo@10": [
@@ -802,6 +1282,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|longo@200": [
@@ -841,6 +1353,38 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "tapete-fino|longo@400": [
@@ -880,9 +1424,55 @@
           "acima_do_teto_de_utilidade"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       }
     ],
     "carpete|nao@10": [
+      {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
       {
         "modelo": "xiaomi-h40",
         "ressalvas": [
@@ -896,6 +1486,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -921,6 +1525,20 @@
     ],
     "carpete|nao@200": [
       {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
         "modelo": "xiaomi-h40",
         "ressalvas": [
           "cobertura_nao_declarada"
@@ -933,6 +1551,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -958,6 +1590,20 @@
     ],
     "carpete|nao@400": [
       {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
         "modelo": "xiaomi-h40",
         "ressalvas": [
           "cobertura_nao_declarada"
@@ -970,6 +1616,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -995,6 +1655,20 @@
     ],
     "carpete|curto@10": [
       {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
         "modelo": "xiaomi-h40",
         "ressalvas": [
           "cobertura_nao_declarada"
@@ -1007,6 +1681,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -1032,6 +1720,20 @@
     ],
     "carpete|curto@200": [
       {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
         "modelo": "xiaomi-h40",
         "ressalvas": [
           "cobertura_nao_declarada"
@@ -1044,6 +1746,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -1069,6 +1785,20 @@
     ],
     "carpete|curto@400": [
       {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
         "modelo": "xiaomi-h40",
         "ressalvas": [
           "cobertura_nao_declarada"
@@ -1081,6 +1811,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -1106,6 +1850,20 @@
     ],
     "carpete|longo@10": [
       {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
         "modelo": "xiaomi-h40",
         "ressalvas": [
           "cobertura_nao_declarada"
@@ -1118,6 +1876,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -1143,6 +1915,20 @@
     ],
     "carpete|longo@200": [
       {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
         "modelo": "xiaomi-h40",
         "ressalvas": [
           "cobertura_nao_declarada"
@@ -1155,6 +1941,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -1180,6 +1980,20 @@
     ],
     "carpete|longo@400": [
       {
+        "modelo": "roborock-saros-z70",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Saros Z70: 22.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-curv",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Curv Series: 18.500 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
         "modelo": "xiaomi-h40",
         "ressalvas": [
           "cobertura_nao_declarada"
@@ -1192,6 +2006,20 @@
           "cobertura_nao_declarada"
         ],
         "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-qrevo-master",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock Qrevo Master: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "roborock-s8-maxv-ultra",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Roborock S8 MaxV Ultra: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
       },
       {
         "modelo": "roborock-q8-max",
@@ -2830,7 +3658,7 @@
   },
   "contexto": {
     "conversao": "Esta ferramenta nao converte minutos em metros quadrados. Das 6 marcas publicaveis do banco, 5 nao declaram area coberta por carga em canal nenhum (Multi (ex-Multilaser), Positivo Casa Inteligente, Roborock, WAP, Xiaomi) — declaram minutos, e algumas nem isso. Entre os pares declarados a taxa vai de 1,35 a 1,66 m2 por minuto — 23% de diferenca dentro do MESMO fabricante. Uma taxa geral de m2 por minuto nao existe publicada, e inventa-la seria dar ao leitor um numero que nenhum fabricante sustenta.",
-    "funil": "21 dos 40 modelos publicaveis do banco nao entram em lista nenhuma desta ferramenta: Electrolux, Multi (ex-Multilaser) nao declaram succao em pascal em modelo nenhum; WAP declara em parte da linha e cala no resto. Sao, em boa parte, exatamente os modelos que a outra ferramenta desta ilha responde melhor — quem publica codigo de peca costuma nao publicar pascal, e vice-versa. Outros 6 ficam de fora por um motivo diferente: o fabricante nao os publica em canal brasileiro (Electrolux ERB20, Xiaomi E10C, Xiaomi E12, Xiaomi S12, Xiaomi S40 Pro, Xiaomi X20). Esta ferramenta recomenda o que voce consegue comprar aqui, entao eles nao entram — mas continuam no banco e a ferramenta de pecas segue respondendo por eles, porque compatibilidade declarada pelo fabricante vale onde o aparelho estiver. Vale dizer qual o custo disso, para o numero nao parecer conveniente: 5 deles declaram succao, e o Xiaomi S40 Pro declara 15.000 Pa — a maior deste banco. Ele nao esta na lista acima por escolha desta pagina, nao por falta de dado.",
+    "funil": "22 dos 45 modelos publicaveis do banco nao entram em lista nenhuma desta ferramenta: Electrolux, Multi (ex-Multilaser) nao declaram succao em pascal em modelo nenhum; Roborock, WAP declara em parte da linha e cala no resto. Sao, em boa parte, exatamente os modelos que a outra ferramenta desta ilha responde melhor — quem publica codigo de peca costuma nao publicar pascal, e vice-versa. Outros 6 ficam de fora por um motivo diferente: o fabricante nao os publica em canal brasileiro (Electrolux ERB20, Xiaomi E10C, Xiaomi E12, Xiaomi S12, Xiaomi S40 Pro, Xiaomi X20). Esta ferramenta recomenda o que voce consegue comprar aqui, entao eles nao entram — mas continuam no banco e a ferramenta de pecas segue respondendo por eles, porque compatibilidade declarada pelo fabricante vale onde o aparelho estiver. Vale dizer qual o custo disso, para o numero nao parecer conveniente: 5 deles declaram succao, e o Xiaomi S40 Pro declara 15.000 Pa — a maior deste banco. Ele nao esta na lista acima por escolha desta pagina, nao por falta de dado.",
     "classe_de_fonte": "Os limiares de Pa desta pagina NAO sao especificacao de fabricante: sao recomendacao publicada por veiculo brasileiro, e cada uma sai com o nome de quem a recomenda. O Pa de cada robo, esse sim, e declarado pelo fabricante."
   }
 }

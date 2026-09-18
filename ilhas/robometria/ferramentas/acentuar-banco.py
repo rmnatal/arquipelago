@@ -100,7 +100,20 @@ MAPA = {
     'Versao': 'Versão',
 }
 
-ARQUIVOS = ('dados/pecas.json', 'dados/modelos-robo.json', 'dados/marcas.json')
+# `publicadores.json` ENTROU EM 18/09/2026, e a entrada conserta um defeito latente.
+# `publicador`, dentro de `fontes`, e CHAVE DE JUNCAO com o `nome` deste arquivo, e nao
+# so texto de tela: `validar-banco.py` cobra que todo publicador citado pelo banco tenha
+# registro declarado, com artigo, para a frase nao sair com a concordancia adivinhada.
+# Enquanto este arquivo ficou de fora da lista, uma passada deste programa acentuava UM
+# LADO da juncao e o outro nao — 'Electrolux (pagina institucional do produto)' virava
+# 'Electrolux (pagina institucional do produto)' com acento no banco e continuava sem
+# acento aqui, e o banco inteiro passava a REPROVAR. O defeito era latente porque so
+# dispara na passada seguinte a alguem escrever 'pagina' numa fonte nova; medido em
+# 18/09/2026 rodando este programa sobre o `main` intocado.
+# A licao, e ela nao e so desta ilha: quem reescreve string tem de saber quais strings
+# sao CHAVE. Chave se move nos dois lados no mesmo commit, ou nao se move.
+ARQUIVOS = ('dados/pecas.json', 'dados/modelos-robo.json', 'dados/marcas.json',
+            'dados/publicadores.json')
 
 # A indentacao dos tres arquivos, conferida por ida-e-volta: reescrever o banco
 # sem nenhuma troca devolve byte a byte o mesmo arquivo. E o que faz o diff

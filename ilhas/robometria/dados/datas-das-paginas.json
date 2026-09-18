@@ -3,7 +3,7 @@
  "ilha": "robometria",
  "entidade": "medicao",
  "gerado_por": "ferramentas/gerar-datas-das-paginas.py",
- "gerado_em": "2026-09-17",
+ "gerado_em": "2026-09-18",
  "o_que_e": "A data de publicacao e a data da ultima modificacao de cada pagina que publica as duas no JSON-LD. `modificada_em` e MEDIDA do git, sobre os arquivos que compoem a pagina; `publicada_em` e DECLARADA, com a entrada do REGISTRO.md que a sustenta, porque o historico do main foi reescrito e o git diz que todos os arquivos nasceram em 15/09/2026.",
  "por_que_nao_sai_de_gerado_em": "`gerado_em` de a1-fatos.json e a2-fatos.json significa a data em que os FATOS foram gerados. Carimbar ali a data da pagina seria mentir sobre a geracao dos fatos para acertar outra coisa — e a revisao 52, que foi o que deixou o campo atrasado, nao regerou fato nenhum: mexeu na casca.",
  "registros": [
@@ -12,10 +12,9 @@
    "titulo": "Existe filtro universal de robo aspirador?",
    "publicada_em": "2026-09-10",
    "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-10 21h15Z — Bloco 5: o ARTIGO-ANCORA da R1 existe, e a malha da ilha fechou\" — snippet robometria-a1.php v1.0.0, manifest revisao 12 conferida no /status",
-   "modificada_em": "2026-09-17",
+   "modificada_em": "2026-09-18",
    "modificada_por": [
-    "dados/a1-fatos.json",
-    "snippets/robometria-casca.php"
+    "dados/a1-fatos.json"
    ],
    "arquivos": {
     "snippets/robometria-a1.php": {
@@ -23,7 +22,7 @@
      "como": "commit"
     },
     "dados/a1-fatos.json": {
-     "data": "2026-09-17",
+     "data": "2026-09-18",
      "como": "nao commitado"
     },
     "snippets/robometria-casca.php": {
@@ -37,10 +36,9 @@
    "titulo": "Quantos m2 o robo aspirador limpa por carga?",
    "publicada_em": "2026-09-11",
    "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-11 (00h07Z) — Bloco 5: o ARTIGO-ANCORA da R2, e o acento que faltava no A1\" — snippet robometria-a2.php v1.0.0, manifest revisao 13 conferida no /status",
-   "modificada_em": "2026-09-17",
+   "modificada_em": "2026-09-18",
    "modificada_por": [
-    "dados/a2-fatos.json",
-    "snippets/robometria-casca.php"
+    "dados/a2-fatos.json"
    ],
    "arquivos": {
     "snippets/robometria-a2.php": {
@@ -48,7 +46,7 @@
      "como": "commit"
     },
     "dados/a2-fatos.json": {
-     "data": "2026-09-17",
+     "data": "2026-09-18",
      "como": "nao commitado"
     },
     "snippets/robometria-casca.php": {

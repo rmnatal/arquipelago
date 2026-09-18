@@ -6,13 +6,13 @@
   "nota": "Fatos do artigo-ancora A1, derivados do banco commitado por ferramentas/gerar-a1.py. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a1.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
   "resumo": {
     "marcas": 6,
-    "modelos_publicaveis": 40,
-    "pecas_publicaveis": 46,
-    "pares_declarados": 82,
+    "modelos_publicaveis": 45,
+    "pecas_publicaveis": 50,
+    "pares_declarados": 87,
     "pecas_que_atravessam_marca": 0,
-    "celulas_total": 240,
-    "celulas_sem_resposta": 152,
-    "pecas_esperando_link": 34
+    "celulas_total": 270,
+    "celulas_sem_resposta": 177,
+    "pecas_esperando_link": 38
   },
   "maior_alcance": {
     "peca": "xiaomi-b106gl-bx",
@@ -415,6 +415,31 @@
       "atravessa_marca": false
     },
     {
+      "peca": "roborock-mop-saros-10r-z70",
+      "tipo": "mop",
+      "marca": "roborock",
+      "publicador": "Roborock",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"Mop Cloth\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Mop Cloth",
+      "codigos_declarados": 2,
+      "codigos_na_fonte": [
+        "Saros Z70",
+        "Saros 10R"
+      ],
+      "modelos_publicaveis": 2,
+      "marcas_atendidas": [
+        "roborock"
+      ],
+      "atravessa_marca": false
+    },
+    {
       "peca": "wap-fw008543",
       "tipo": "reservatorio",
       "marca": "wap",
@@ -673,6 +698,78 @@
       "codigos_declarados": 1,
       "codigos_na_fonte": [
         "Q8 Max Series"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "roborock"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "roborock-mop-qrevo-curv",
+      "tipo": "mop",
+      "marca": "roborock",
+      "publicador": "Roborock",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"Mop Cloth\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Mop Cloth",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "Qrevo Curv Series"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "roborock"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "roborock-mop-qrevo-master",
+      "tipo": "mop",
+      "marca": "roborock",
+      "publicador": "Roborock",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"Mop Cloth\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Mop Cloth",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "Qrevo Master"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "roborock"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "roborock-mop-s8-maxv-ultra",
+      "tipo": "mop",
+      "marca": "roborock",
+      "publicador": "Roborock",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "\"Edgewise Mop Cloth\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Edgewise Mop Cloth",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "S8 MaxV Ultra"
       ],
       "modelos_publicaveis": 1,
       "marcas_atendidas": [
@@ -1239,6 +1336,19 @@
       "nenhuma_repete": false
     },
     {
+      "marca": "roborock",
+      "publicador": "Roborock",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "pecas": 5,
+      "conjuntos_distintos": 5,
+      "nenhuma_repete": true
+    },
+    {
       "marca": "positivo",
       "publicador": "Positivo Casa Inteligente",
       "gramatica_do_publicador": {
@@ -1250,19 +1360,6 @@
       "pecas": 3,
       "conjuntos_distintos": 1,
       "nenhuma_repete": false
-    },
-    {
-      "marca": "roborock",
-      "publicador": "Roborock",
-      "gramatica_do_publicador": {
-        "artigo": "a",
-        "maiuscula": "A",
-        "com_de": "da",
-        "numero": "singular"
-      },
-      "pecas": 1,
-      "conjuntos_distintos": 1,
-      "nenhuma_repete": false
     }
   ],
   "cobertura_por_tipo": [
@@ -1270,37 +1367,37 @@
       "tipo": "escova lateral",
       "nome": "escova lateral",
       "modelos_com_declaracao": 27,
-      "modelos_publicaveis": 40
+      "modelos_publicaveis": 45
     },
     {
       "tipo": "mop",
       "nome": "mop",
-      "modelos_com_declaracao": 21,
-      "modelos_publicaveis": 40
+      "modelos_com_declaracao": 26,
+      "modelos_publicaveis": 45
     },
     {
       "tipo": "filtro",
       "nome": "filtro",
       "modelos_com_declaracao": 17,
-      "modelos_publicaveis": 40
+      "modelos_publicaveis": 45
     },
     {
       "tipo": "escova principal",
       "nome": "escova principal",
       "modelos_com_declaracao": 16,
-      "modelos_publicaveis": 40
+      "modelos_publicaveis": 45
     },
     {
       "tipo": "reservatorio",
       "nome": "reservatorio",
       "modelos_com_declaracao": 6,
-      "modelos_publicaveis": 40
+      "modelos_publicaveis": 45
     },
     {
       "tipo": "bateria",
       "nome": "bateria",
       "modelos_com_declaracao": 1,
-      "modelos_publicaveis": 40
+      "modelos_publicaveis": 45
     }
   ],
   "vitrine": [
@@ -1455,7 +1552,7 @@
   "perguntas": [
     {
       "pergunta": "Existe filtro universal para robô aspirador?",
-      "resposta": "Não. Nas 46 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 6 códigos de modelo, todos da mesma marca."
+      "resposta": "Não. Nas 50 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 6 códigos de modelo, todos da mesma marca."
     },
     {
       "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
@@ -1463,7 +1560,7 @@
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 82 pares peça × modelo em 6 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 87 pares peça × modelo em 6 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }
