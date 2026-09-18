@@ -1737,3 +1737,37 @@ desfazer, estava errada — o disparo errado commitou enquanto eu conferia, e o 
 foi descartado sem nunca chegar ao `main`; **(2)** os dois pushes foram recusados por nao-fast-forward
 (`Updates were rejected because the remote contains work that you do not have locally`), resolvidos com `fetch` +
 `rebase`, nunca com force.
+
+### Fecho do disparo das 17h11Z — hash e `main` DEPOIS
+
+```
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   a365e85..17c3568  HEAD -> main
+
+$ git fetch origin main && git log -1 origin/main
+commit 17c3568793d664932ef4f808e3a66cb4faf48464
+Author: Claude <noreply@anthropic.com>
+Date:   Fri Sep 18 17:13:42 2026 +0000
+
+    maos-log: disparo de 18/09 17h11Z — cancelamento do disparo errado de prospeccao, o revert de 578a565 e as tres corridas de push
+
+$ git log --oneline -5 origin/main
+17c3568 maos-log: disparo de 18/09 17h11Z — cancelamento do disparo errado de prospeccao, o revert de 578a565 e as tres corridas de push
+a365e85 maos-log: disparo de 18/09 17h10Z — reversao de 578a565, registro da prospeccao da Real 21 removido do main (commit 5dff206)
+5dff206 reverte 578a565: registro da prospeccao de imprensa da Real 21 foi criado aqui por erro de enderecamento — assunto nao pertence a este repositorio
+b5d83dd maos-log: disparo de 18/09 17h06Z — registro da prospeccao de imprensa criado, commit 578a565
+578a565 prospeccao: registro de imprensa — Gazeta enviada (WhatsApp, envio manual do Raphael) e Circe Bonatelli/Estadao respondeu
+
+$ git ls-tree -r --name-only origin/main | grep -i prospec
+(sem saida: confirmado no main de verdade, nao no meu clone)
+```
+
+O commit da secao acima e **`17c3568`**, e ele esta no topo do `origin/main` — push que aparece no `origin/main`,
+como tem que ser. Arquivo alterado: **apenas `MAOS-LOG.md`**, 167 insercoes, zero remocoes. Este fecho vai num
+commit proprio, logo a seguir, porque o hash so existe depois do commit; o hash deste fecho fica visivel no
+`git log` do `main` e na secao do proximo disparo, se houver.
+
+O terceiro push, deste fecho, e o unico que ainda nao aparece acima. Se ele tambem tiver sido recusado por
+nao-fast-forward, foi resolvido com `fetch` + `rebase`, nunca com force — e o proprio `git log` do `main` mostra
+em que ordem tudo entrou.
