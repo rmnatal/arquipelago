@@ -1,5 +1,14 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.11.0 (18/09/2026) — A FRASE DE AUSÊNCIA PAROU DE NEGAR O BOTÃO QUE
+ * ESTA PÁGINA SERVE. A contagem de "sem link de loja" olhava `afiliado.url` (a
+ * ficha) e chamava de ausência todo item cuja porta era a busca — e a busca é o
+ * PISO da 25.2, que estava lá, com link de afiliado vivo dois centímetros
+ * abaixo da frase. Quem decide agora é `robometria_casca_degrau_da_porta()`, a
+ * mesma função que monta o botão, e a tela passou a separar dois fatos
+ * diferentes: item SEM porta e item cuja porta abre a BUSCA da loja em vez da
+ * ficha do produto. Item 3 do despacho da Sentinela de 18/09/2026.
+ *
  * Versão: 1.10.0 (16/09/2026) — a vitrine mostra a foto, e o painel dela sai da
  * casca. A imagem vem da Open API da Shopee (seção 25.6), com dimensão MEDIDA
  * do arquivo.

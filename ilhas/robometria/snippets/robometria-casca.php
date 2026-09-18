@@ -7,6 +7,15 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.11.0 (18/09/2026) — UMA FUNÇÃO SÓ DECIDE O DEGRAU DA PORTA DE
+ * COMPRA. Nasce `robometria_casca_degrau_da_porta()`, que devolve 'ficha',
+ * 'busca', 'busca_crua' ou 'sem_saida', e a R1 e a R2 pararam de contar
+ * `afiliado.url` cada uma por conta própria. Item 3 do despacho da Sentinela
+ * de 18/09/2026: em 66 dos 95 publicáveis a página negava um botão que ela
+ * mesma servia, porque a frase contava a FICHA e o botão vinha do piso da
+ * 25.2, que é a BUSCA. Duas metades contando a mesma coisa sem nunca se
+ * falarem — a família que a 25.7 nomeia no painel da foto. A explicação
+ * inteira mora no comentário da própria função.
  * Versão: 1.10.1 (17/09/2026) — A SEXTA MARCA ENTROU NO BANCO E A ÁRVORE
  * NÃO SABIA. `robometria_casca_categorias()` é digitada e a lista de marcas
  * com modelo publicável é contada do banco; a Roborock entrou e as duas

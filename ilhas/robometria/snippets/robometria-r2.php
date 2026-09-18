@@ -1,5 +1,13 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.9.0 (18/09/2026) — A MESMA CORREÇÃO DA R1, E AQUI ELA ERA MAIOR: a
+ * frase dizia "6 destes modelos ainda não têm link de loja" numa tela que servia
+ * NOVE botões de compra. A conta passou a sair de
+ * `robometria_casca_degrau_da_porta()`, a mesma função que monta o botão, e
+ * separa item sem porta de item que abre a busca da loja. Item 3 do despacho da
+ * Sentinela de 18/09/2026, medido no HTML servido de
+ * `?piso=tapete&pelo=sim&m2=80`.
+ *
  * Versão: 1.8.0 (16/09/2026) — a vitrine mostra a foto, e o painel dela sai da
  * casca.
  *
