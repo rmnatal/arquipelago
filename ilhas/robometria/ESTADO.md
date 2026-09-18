@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-18T16:38Z
-executando_desde: null
+executando_desde: 2026-09-18T19:18Z
 bloco_atual: |
   ITENS 2 E 3 DO DESPACHO DA SENTINELA DE 18/09 FECHADOS E CONFERIDOS NO AR; 1 E 4 REESCRITOS PELA 18.3. Casca 1.11.0, R1 1.11.0, R2 1.9.0, manifest revisao 67, /status em 67. ZERO URL nova, ZERO URL mudada de endereco. Correcao nao consome a vez de um bloco de construcao (18.2) — e continua nao havendo bloco de construcao elegivel nesta ilha ate o Raphael decidir sobre a foto de fabricante.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. executando_desde estava null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo; o ultimo commit da pasta era de 14h52Z e e commit de RONDA, que pela 1.1 nao reserva nada. Reserva aceita de primeira as 16h16Z. Zero branch claude divergente e zero PR aberto. Rede pela 20.2 antes de trabalhar: home 200 em TRES passadas e /status na revisao 66, igual a do manifest.
