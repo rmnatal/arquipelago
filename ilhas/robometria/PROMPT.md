@@ -30,6 +30,84 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 ---
 
+## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — quatro defeitos, os quatro na lista fechada 19.2, e os quatro na porta de compra
+
+**Zero conserto de 19.1 nesta ronda.** Tudo o que a lista mecânica cobre passou, medido no ar: as 9 URLs do sitemap em 200; `/status` na revisão 66, igual à do `manifest.json`; zero `&#038;` dentro dos blocos de `<script>` nas 9; JSON-LD, favicon próprio, `aria-expanded` e `aria-controls` nas 9; trilha e `BreadcrumbList` nas 8 que não são a home e ausentes na home; zero página órfã (a de menos entrada tem 4 links internos, mínimo da 16.4f é 2); zero link interno quebrado; zero `noindex`; 8 imagens servidas, todas com `alt` e com `width`/`height`; `dateModified` dos dois artigos servindo **2026-09-18** (o item 4 do despacho de 16/09 está cumprido); nenhuma palavra da lista "Proibidas" do `VOZ.md` em `<title>` nem no primeiro parágrafo das 9; console sem uma mensagem na R1; cache do hospedeiro entregando o conteúdo de hoje no endereço canônico (o marcador do bloco de 18/09, o título de loja "Filtro Para Robô Aspirador Multilaser Ho041", aparece no canônico e na quebra de cache).
+
+**Os quatro defeitos abaixo são todos da lista fechada 19.2** — código de snippet, dado do banco e escolha de palavra-chave. A Sentinela não conserta nenhum.
+
+### 1. O PRIMEIRO ITEM RECOMENDADO DA R2 LEVA A UMA BUSCA COM ZERO RESULTADO
+
+Medido em 18/09/2026 pela API de busca da Shopee (`api/v4/search/search_items`), do navegador, sem gastar clique de afiliado.
+
+Entrada real: `https://robometria.com.br/quantos-pa-o-robo-aspirador-precisa/?piso=tapete&pelo=sim&m2=80`. O **primeiro** cartão do bloco de compra é o `roborock-q8-max`, e o botão dele aponta para `https://shopee.com.br/search?keyword=Roborock%20Q8%20Max%20robo%20aspirador`. Essa palavra-chave devolve **n=0 resultados** na Shopee. É beco sem saída, e está no espaço mais caro da página — exatamente o que a regra RECEITA da seção 12 manda registrar.
+
+As outras cinco palavras-chave Roborock testadas na mesma passada respondem (Qrevo Master 118, Qrevo Curv 168, S8 MaxV Ultra 300, Saros Z70 300, Saros 10R 300, "Roborock mop robo aspirador" 300).
+
+**Pronto quando:** a entrada `piso=tapete&pelo=sim&m2=80` da R2, lida no HTML servido, não tiver nenhum botão de compra apontando para palavra-chave que a API de busca da Shopee devolva com zero resultado — e a palavra-chave nova estiver gravada no banco com a data da medição.
+
+### 2. 22 DOS 95 ITENS PUBLICÁVEIS PERDERAM O PISO RASTREÁVEL DA 25.2 — ERAM ZERO EM 16/09
+
+Contado no `main` de hoje, nos dois bancos, sobre os registros publicáveis (50 peças + 45 modelos = 95).
+
+- Itens sem saída de compra: **ZERO**. A 25.2 continua de pé no sentido de que ninguém fica sem porta.
+- Itens com `afiliado.url_busca` **vazio**: **22**. Eles saem pela **URL crua de busca** (`afiliado.url_busca_produto`), que não é link de afiliado: no HTML servido o botão vem com `class="rbm-comprar rbm-comprar-busca rbm-comprar-cru"` e `rel="nofollow noopener"`, **sem `sponsored`**, sem sub-id e sem comissão. O próprio cabeçalho dos bancos já nomeia isso em `itens_com_piso_nao_rastreavel: 15` (peças) e `7` (modelos), e ninguém lê esse campo.
+- Os 22, nomeados: `xiaomi-filtro-mop-2`, `xiaomi-escova-lateral-mop-2`, `xiaomi-escova-principal-mop-2`, `xiaomi-reservatorio-mop-2`, `xiaomi-mop-mop-2`, `xiaomi-filtro-mop-2-lite`, `xiaomi-escova-lateral-mop-2-lite`, `xiaomi-escova-principal-mop-2-lite`, `xiaomi-mop-mop-2-lite`, `xiaomi-reservatorio-mop-2-lite`, `roborock-mop-q8-max`, `roborock-mop-qrevo-master`, `roborock-mop-qrevo-curv`, `roborock-mop-saros-10r-z70`, `roborock-mop-s8-maxv-ultra`, `xiaomi-mop-2-lite`, `roborock-q8-max`, `roborock-qrevo-master`, `roborock-s8-maxv-ultra`, `roborock-qrevo-curv`, `roborock-saros-z70`, `roborock-saros-10r`.
+- Os 22 trazem `motivo_sem_url_busca` escrito, e o motivo é sempre o mesmo: a medição de palavra-chave de `dados/palavras-chave-medidas.json` não cobre o registro, e `ferramentas/medir-palavras-chave.py --gravar --encurtar` precisa da credencial da Open API no ambiente.
+- **O custo medido na tela:** na entrada `piso=tapete&pelo=sim&m2=80` da R2, **5 dos 9 botões são crus**, e os quatro primeiros lugares da lista são Roborock cru enquanto há equivalentes com link encurtado mais abaixo.
+- Isto é regressão de crescimento, não de código: em 16/09 o banco tinha 73 publicáveis e **zero** sem piso rastreável; hoje tem 95 e 22 sem. Cada leva nova de registro entra sem piso encurtado.
+
+**Pronto quando:** a contagem de `afiliado.url_busca` vazio nos dois bancos do `main` for **zero** sobre os publicáveis, e `itens_com_piso_nao_rastreavel` for `0` nos dois cabeçalhos — e quando houver, no gerador do banco, uma trava que reprove registro publicável novo sem `url_busca` encurtada, para a conta não voltar a subir sozinha na leva seguinte.
+
+### 3. AS DUAS FERRAMENTAS DIZEM AO LEITOR QUE NÃO HÁ LINK DE LOJA ENQUANTO SERVEM O BOTÃO DE COMPRA — E ISSO É A FAMÍLIA QUE A SEÇÃO 7 PROÍBE
+
+Medido no HTML servido, em duas entradas reais:
+
+- `/qual-peca-serve-no-meu-robo-aspirador/?modelo=electrolux-erb60&peca=filtro` imprime *"Nenhuma destas 2 peças tem link de loja ainda, e o cartão diz isso em vez de fazer o bloco sumir"* — **e os dois cartões logo abaixo servem "Ver ofertas na Shopee" apontando para `https://s.shopee.com.br/5AsWtVLtoR` e `https://s.shopee.com.br/20vV7gG52P`, os dois com `rel="sponsored nofollow noopener"`.** As duas peças TÊM link de loja, e é link de afiliado vivo.
+- `/quantos-pa-o-robo-aspirador-precisa/?piso=tapete&pelo=sim&m2=80` imprime *"6 destes modelos ainda não têm link de loja"* e serve nove botões de compra.
+
+**A causa, lida no código-fonte do repositório e não no HTML servido:** em `ilhas/robometria/snippets/robometria-r1.php`, linhas 934 a 939, `$sem_link` é contado assim:
+
+    $sem_link = 0;
+    foreach ( $por_peca as $i ) {
+        if ( empty( $i['afiliado']['url'] ) ) {
+            $sem_link++;
+        }
+    }
+
+Ou seja, ele mede a **ficha** (`afiliado.url`) e ignora o **piso** (`afiliado.url_busca`), que desde a 25.2 **é** a porta de compra e é o que o botão serve. O texto montado com esse contador está nas linhas 956 a 975 do mesmo arquivo, e o equivalente está em `snippets/robometria-r2.php`. Não mexemos em nenhum dos dois: é código de snippet, 19.2, sem exceção.
+
+**O alcance:** **66 dos 95 itens publicáveis** têm `afiliado.url` vazio. Toda tela de resultado que mostre um deles imprime a frase falsa. É a mesma família do *"link de loja em breve"* que a seção 7 proíbe com todas as letras, e é pior, porque aqui a página nega a existência de um botão que ela mesma está mostrando.
+
+**Pronto quando:** nas duas entradas citadas acima, lidas no HTML servido, não houver nenhuma frase que negue link de loja para um item cujo cartão serve botão de compra — e quando a bancada tiver uma afirmação que reprove essa combinação (item com botão servido e frase de ausência na mesma resposta), para o defeito não voltar calado.
+
+### 4. A BUSCA ABRE NO CONCORRENTE: EM 5 DAS 6 PALAVRAS-CHAVE ROBOROCK, O PRIMEIRO RESULTADO É UM XIAOMI
+
+Mesma passada de 18/09, mesma API. Primeiro resultado de cada busca, medido:
+
+| palavra-chave | resultados | primeiro resultado |
+|---|---|---|
+| Roborock Q8 Max robo aspirador | **0** | — |
+| Roborock Qrevo Master robo aspirador | 118 | Robô Aspirador Xiaomi S40c |
+| Roborock S8 MaxV Ultra robo aspirador | 300 | Robô Aspirador Xiaomi S40c |
+| Roborock Qrevo Curv Series robo aspirador | 168 | Robô Xiaomi S40 PRO |
+| Roborock Saros Z70 robo aspirador | 300 | Robô Aspirador Xiaomi S40c |
+| Roborock Saros 10R robo aspirador | 300 | Robô Xiaomi S40 PRO |
+| Roborock mop robo aspirador | 300 | Robô Xiaomi S40 PRO |
+| Xiaomi Mop 2 Lite robo aspirador | 300 | Robô Xiaomi S40 PRO |
+| Xiaomi reservatorio robo aspirador | 57 | Robô Aspirador Xiaomi S40c (robô inteiro, não reservatório) |
+
+É a mesma família do item 3 do despacho de 16/09, agora na marca nova. O piso da 25.2 está de pé e o topo dele manda o leitor para outro produto — e, nas linhas Roborock, para outra marca.
+
+**Pronto quando:** em cada palavra-chave de modelo Roborock e de peça Xiaomi do banco, o primeiro resultado da busca contiver a marca do registro; ou, quando não contiver, a palavra-chave estiver trocada e a nova medição gravada no banco com a data.
+
+### O TESTE DE VIDA DESTA RONDA (25.4 e 25.4-b), EM NÚMERO
+
+- **29 de 29** itens publicáveis com `afiliado.url_produto` foram testados pela API de ficha da Shopee (`api/v4/pdp/get_pc`), do navegador, sem clicar em nenhum link de afiliado: **29 `item_status: normal`, 0 mortos, 0 esgotados.**
+- **13 palavras-chave de busca** testadas pela API de busca: **1 com zero resultado** (a do item 1), 12 com resultado.
+- **Itens `intestavel: true`: ZERO.** Itens sem `url_produto`: **66**, e os 66 têm `motivo_sem_url_produto` escrito — medição honesta pela 25.7, não defeito.
+- Os quatro links mortos do despacho de 16/09 (`wap-escova-direita-w300`, `wap-escova-esquerda-w300`, `wap-escova-frontal-wsmart`, `positivo-11206519`) foram **reconferidos e estão vivos**: as buscas devolvem 105, 102, 111 e 300 resultados.
+
 ## DESPACHO DA SENTINELA — 16/09/2026 (leitura semanal, 19h40Z) — a primeira medição com sinal, e o alvo é um só
 
 > **REESCRITO PELA 18.3 EM 17/09/2026, 10h35Z, DEIXANDO SÓ O QUE FALTA.** A correção 1 e a **proposta 2** saíram e estão conferidas no ar; o que sobra nas propostas 1 e 3 **não é da Fundação e nenhum bloco a fecha** — as duas pedem, com todas as letras, que a leitura semanal SEGUINTE meça. Elas ficam aqui porque despacho só morre verificado (18.4), e a verificação delas é da Sentinela, não desta camada.

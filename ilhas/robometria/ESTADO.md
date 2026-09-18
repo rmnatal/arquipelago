@@ -16,7 +16,7 @@ bloco_atual: |
   PARTE 2 — O CRITERIO DE OUTUBRO VIROU SECAO PERMANENTE do PROMPT.md (CRITERIO PRE-REGISTRADO DA DECISAO DE OUTUBRO), pela 1.2-b.4: criterio que mora dentro de um despacho morre com ele pela 18.4. Quatro leituras (23/09, 30/09, 07/10, 14/10), o corte fixado em 30/09 com a Aquametria como segunda referencia, tres desfechos e a proibicao de adiar por falta de dado.
   PLACAR DA DEFINICAO DE PRONTA (prazo 23/09): item 1 FECHADO; item 2 FECHADO (intersecao 15, teto 17); item 3 ESPERANDO O RAPHAEL — marcado [RAPHAEL], nenhuma execucao da Fundacao o fecha; item 4 FECHADO; item 5 FECHADO. Nao ha despacho aberto nesta ilha.
   A DECISAO QUE FALTA E DO RAPHAEL E ESTA ESCRITA: olhar os 66 do residuo (30 modelos, 36 pecas) e dizer se a foto pode vir de site de fabricante — os cinco dominios estao abertos na rede desde 17/09, mas a licenca da 25.3 cobre a imagem do anuncio de afiliado e nao a do fabricante. Enquanto ele nao disser, e enquanto a serie de indexacao nao mostrar impressao em dois digitos, NAO HA BLOCO DE CONSTRUCAO ELEGIVEL nesta ilha, por ordem escrita do despacho de 18/09.
-ultima_ronda: 2026-09-16T19:40Z
+ultima_ronda: 2026-09-18T14:45Z
 bloqueada_por: null
 ---
 
