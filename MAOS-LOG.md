@@ -1302,3 +1302,76 @@ conserto — o defeito 3 aponta `snippets/robometria-r1.php` linhas 934-939 e o 
 19.2. Nada publicado, `publicar: true` nao mexido, Sync nao acionado, site nao verificado, nenhuma conta
 criada. O `ARQUIPELAGO.md` nao foi aberto. Nenhum arquivo alem dos quatro nomeados e deste log foi alterado.
 O log vai num commit proprio, logo apos o commit do trabalho, porque o hash so existe depois do commit.
+
+---
+
+## Disparo de 18/09/2026, 15h26Z — duas insercoes literais no `ARQUIPELAGO.md` (25.2-b e a segunda fonte de imagem)
+
+Instrucao recebida no disparo: duas insercoes literais no `ARQUIPELAGO.md` da raiz, num commit so, sem tocar em
+nenhum outro arquivo. Bloco 1 imediatamente depois da linha `**O que isso custa, dito sem maquiar:** ...` no fim da
+25.2; bloco 2 imediatamente depois da linha `**A foto do produto sai do feed** (image_link), ...` na 25.3. Ambos com
+uma linha em branco antes e depois. Nada mais foi pedido e nada mais foi feito.
+
+Hash do commit que foi ao `main`: **`00bc2ef6582c91ad5bcd3b5975655dd43ce2bb95`**
+
+```
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   e46dfe6..00bc2ef  HEAD -> main
+
+$ git fetch origin main && git log -1 origin/main --format='%H %s'
+00bc2ef6582c91ad5bcd3b5975655dd43ce2bb95 contrato: link sem comissao deixa de ser padrao e nunca fica acima de link que rende, e a imagem do fabricante vira segunda fonte
+```
+
+```
+$ git status --porcelain
+(vazio — arvore limpa depois do commit)
+```
+
+```
+$ git diff --stat HEAD~1 HEAD
+ ARQUIPELAGO.md | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+$ git diff --numstat HEAD~1 HEAD
+27	0	ARQUIPELAGO.md
+```
+
+### Contagem, conferida relendo o arquivo DEPOIS de gravar
+
+```
+$ wc -l ARQUIPELAGO.md
+933 ARQUIPELAGO.md
+
+$ grep -n "^\*\*25\.2-b" ARQUIPELAGO.md
+765:**25.2-b — O LINK QUE NÃO RENDE COMISSÃO DEIXOU DE SER ACEITÁVEL COMO PADRÃO (18/09/2026). Vale para TODAS as ilhas.**
+
+$ grep -n "^\*\*A SEGUNDA FONTE DE IMAGEM" ARQUIPELAGO.md
+798:**A SEGUNDA FONTE DE IMAGEM — AUTORIZADA PELO RAPHAEL EM 18/09/2026, e vale para TODAS as ilhas.** ...
+
+$ grep -n "### 25.3\|### 25.4 " ARQUIPELAGO.md
+779:### 25.3 Os dois feeds da Shopee, e o que cada um é
+811:### 25.4 O teste de vida, que agora existe
+```
+
+O arquivo saiu de **906** para **933** linhas: **+27**, exatamente o que o `--numstat` diz. O saldo bate linha a
+linha: bloco 1 sao 13 linhas mais a linha em branco que o separa da ancora (14), bloco 2 sao 12 linhas mais a sua
+linha em branco (13); 14 + 13 = 27. Nenhuma linha removida, nenhuma linha existente alterada — o diff e `27 0`.
+
+O bloco 1 ficou na 765, logo apos a ancora da 25.2 (linha 763) e antes do cabecalho `### 25.3` (linha 779), com uma
+linha em branco de cada lado. O bloco 2 ficou na 798, logo apos a ancora da 25.3 (linha 796) e antes do cabecalho
+`### 25.4` (linha 811), tambem com uma linha em branco de cada lado. A ancora de cada insercao aparecia **uma unica
+vez** no arquivo — conferido antes de gravar — entao nao houve risco de inserir no lugar errado.
+
+Nenhum passo falhou; nao ha mensagem de erro para registrar. O push foi aceito de primeira, sem rebase e sem
+retentativa, e o `git log -1 origin/main` acima mostra o commit das MAOS no topo do `main`.
+
+### O que NAO foi feito
+
+Nenhum arquivo alem do `ARQUIPELAGO.md` e deste log foi tocado. O texto entrou byte a byte como veio na instrucao:
+nada reformatado, nada "melhorado", nenhuma linha acrescentada por conta propria. Nenhuma ilha reservada, nenhum
+`executando_desde` escrito, nenhum cabecalho de estado tocado. Nenhum bloco de fila executado. Nada publicado,
+`publicar: true` nao mexido, Sync nao acionado, site nao verificado, nenhuma conta criada. O `ARQUIPELAGO.md` foi
+aberto apenas para localizar as duas ancoras nomeadas pela instrucao, nunca para decidir o que fazer. O log vai num
+commit proprio, logo apos o commit do trabalho, porque o hash so existe depois do commit — e porque a instrucao
+mandou um commit so para o trabalho.
