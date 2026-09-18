@@ -1476,3 +1476,97 @@ nenhum `executando_desde` escrito, nenhum cabecalho de estado tocado, nenhum blo
 publicado, `publicar: true` nao mexido, Sync nao acionado, site nao verificado, nenhuma conta criada. O
 `ARQUIPELAGO.md` nao foi aberto para decidir nada. O log vai em commit proprio, logo apos o commit do trabalho,
 porque o hash so existe depois do commit.
+
+---
+
+## 18/09/2026 — disparo das 17h10 UTC — REVERSAO: o registro da prospeccao de imprensa da Real 21 sai do `main` deste repositorio
+
+O disparo anterior (17h06Z, secao acima) criou `claude/prospeccao/registro.md` aqui por **erro de enderecamento de
+quem disparou**: o assunto e da Real 21 e nao pertence ao `rmnatal/arquipelago`. Este disparo desfaz isso no estado
+atual do `main`, sem reescrever historico.
+
+### Passo 2 — estado antes de mexer
+
+```
+$ git log --oneline -3 origin/main
+b5d83dd maos-log: disparo de 18/09 17h06Z — registro da prospeccao de imprensa criado, commit 578a565
+578a565 prospeccao: registro de imprensa — Gazeta enviada (WhatsApp, envio manual do Raphael) e Circe Bonatelli/Estadao respondeu
+e45e016 robometria: fecho da execucao de 18/09 16h16Z — itens 2 e 3 conferidos no ar na revisao 67, e o despacho reescrito pela 18.3
+
+$ git ls-files | grep -i prospec
+claude/prospeccao/registro.md
+```
+
+### Passo 4 — o que o commit errado trouxe
+
+```
+$ git show --stat 578a565
+commit 578a565c129ceddb094dfcef8682366f18e7dd01
+Author: Claude <noreply@anthropic.com>
+Date:   Fri Sep 18 17:06:36 2026 +0000
+
+    prospeccao: registro de imprensa — Gazeta enviada (WhatsApp, envio manual do Raphael) e Circe Bonatelli/Estadao respondeu
+
+ claude/prospeccao/registro.md | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+```
+
+Um arquivo so. Nenhum outro arquivo de assunto Real 21 foi criado por aquele commit, e nao sobrou nada sob
+`claude/` alem dele (`git ls-files claude/` devolvia exatamente `claude/prospeccao/registro.md`). Com o `git rm`, a
+pasta `claude/prospeccao/` — e a `claude/` inteira — desapareceu sozinha: nao foi criado `.gitkeep`, nem README, nem
+nada no lugar.
+
+### `git status --porcelain` antes do commit
+
+```
+D  claude/prospeccao/registro.md
+```
+
+### `git diff --stat` da reversao
+
+```
+ claude/prospeccao/registro.md | 30 ------------------------------
+ 1 file changed, 30 deletions(-)
+```
+
+### Hash do commit de reversao que foi ao `main`
+
+```
+5dff20646cc79d84279dee0e508691c1e671f10c
+
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   b5d83dd..5dff206  HEAD -> main
+```
+
+Push aceito de primeira: sem rebase, sem retentativa e **sem force push**. O historico nao foi reescrito — os
+commits `578a565` e `b5d83dd` continuam existindo e alcancaveis; o que saiu foi o arquivo do estado atual do `main`.
+
+### Passo 7 — prova relida do remoto, nao do local
+
+```
+$ git fetch origin main && git ls-tree -r origin/main --name-only | grep -i prospec
+(nenhuma linha; grep saiu com codigo 1 = nada encontrado)
+
+$ git log -1 origin/main --format='%H %s'
+5dff20646cc79d84279dee0e508691c1e671f10c reverte 578a565: registro da prospeccao de imprensa da Real 21 foi criado aqui por erro de enderecamento — assunto nao pertence a este repositorio
+```
+
+Zero arquivos com `prospec` no nome no `main`. Contagem do que mudou, conferida relendo do remoto e nao pelo que se
+acha que foi escrito: **1 arquivo removido, 30 linhas deletadas, 0 arquivos criados**.
+
+### A causa, sem rodeio
+
+Foram **dois disparos errados seguidos para este repositorio no mesmo dia, ambos de assunto Real 21, e a causa foi
+de quem disparou, nao da execucao** — as maos fizeram ao pe da letra o que veio, em endereco errado. O rastro dos
+dois esta no `main`: `578a565` (17h06Z, o arquivo) e `b5d83dd` (17h07Z, a secao de log obrigatoria daquele disparo).
+
+### O que NAO foi feito
+
+Nenhum passo falhou; nao ha mensagem de erro para registrar. As secoes anteriores deste log **nao foram apagadas,
+editadas nem resumidas** — inclusive as dos disparos errados: o rastro do erro fica, e o arquivo segue append-only.
+Nada de `rebase -i`, `filter-branch` ou force push. Nenhum arquivo alem do `claude/prospeccao/registro.md` (removido)
+e deste log foi tocado. Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabecalho de estado
+tocado, nenhum bloco de fila executado. Nada publicado, `publicar: true` nao mexido, Sync nao acionado, site nao
+verificado, nenhuma conta criada. O `ARQUIPELAGO.md` nao foi aberto para decidir nada. O log vai em commit proprio,
+logo apos o commit da reversao, porque o hash so existe depois do commit.
