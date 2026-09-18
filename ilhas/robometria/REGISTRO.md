@@ -5364,3 +5364,131 @@ escrito la para a comparacao ser legivel.
   66 do residuo e dizer se a foto pode vir de site de fabricante. Enquanto ele
   nao disser, **nao ha bloco de construcao elegivel nesta ilha** — e isso e
   informacao, nao fracasso.
+
+## 2026-09-18 (16h16Z) — Itens 2 e 3 do despacho da Sentinela de 18/09 fechados; 1 e 4 reescritos pela 18.3
+
+- **A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA.** `foco.md` nomeia a
+  robometria desde 16/09. Os cinco `ESTADO.md` parseiam em `yaml.safe_load`;
+  o desta ilha estava com `executando_desde: null`, que pela 1.1 ja significa
+  que nenhum bloco da Fundacao esta vivo — nao houve reserva vencida para o
+  git desempatar. O ultimo commit da pasta era de 14h52Z, mais de 40 minutos
+  atras, e e commit de ronda da Sentinela, que pela 1.1 nao reserva nada.
+  Reserva aceita de primeira as 16h16Z. **Zero branch `claude/*` divergente e
+  zero PR aberto** — `origin/claude/eloquent-brown-paehcj` estava no mesmo
+  commit do `main`.
+- **REDE PELA 20.2, ANTES DE TRABALHAR:** TRES passadas, home em 200 nas tres
+  e `/status` na revisao 66, igual a do manifest.
+- **O QUE O ESTADO ANTERIOR DIZIA E POR QUE ISSO NAO IMPEDIU O BLOCO:** o
+  fecho de 13h45Z escreveu que **nao ha bloco de construcao elegivel** nesta
+  ilha ate o Raphael decidir sobre a foto de fabricante. Continua verdade — e
+  nao alcanca esta execucao, porque **correcao nao e bloco de construcao e nao
+  consome a vez de um** (18.2), e a ronda das 14h45Z abriu despacho novo com
+  quatro defeitos, os quatro na porta de compra.
+
+### ITEM 2 — O PISO DOS 95 VOLTOU A RENDER COMISSAO, E A PORTA POR ONDE ELE VAZOU FOI FECHADA
+
+- **22 dos 95 publicaveis** saiam pela URL crua de busca — clique que funciona
+  e **nao paga nada**, sem `sponsored` e sem sub-id. Os 22 ganharam
+  `url_busca` encurtada pela Open API (25.6): **15 pecas e 7 modelos**, 73
+  reaproveitados do banco sem gastar chamada. `itens_com_piso_nao_rastreavel`
+  e **0** nos dois cabecalhos, e `casca-fatos` passou a dizer
+  `rendem_comissao 95`.
+- **A TRAVA, QUE ERA A OUTRA METADE DO "PRONTO QUANDO", E O ACHADO ESTA NELA:**
+  a regra de piso que ja existia cobrava `url_busca` **ou** um
+  `motivo_sem_url_busca` escrito — e **quem escreve o motivo e o gerador,
+  sozinho**. A segunda condicao aprovava sempre. Foi por ai que a conta foi de
+  0 (em 16/09) para 22 (em 18/09) com todos os portoes verdes: ninguem quebrou
+  nada, a ilha cresceu mais rapido que os proprios acabamentos.
+- A 25.2-b nomeia a distincao que faltava — **ausente e diferente de
+  tentado-e-falhou** — e a prova da TENTATIVA ja existia:
+  `dados/palavras-chave-medidas.json`, que e o registro do que a API respondeu
+  por registro, com data. O validador passou a ler esse arquivo. **Campo novo
+  seria mais uma coisa que o gerador poderia preencher sozinho**, que e
+  exatamente o defeito que se estava consertando.
+- **AS DUAS DIRECOES SAO MEDIDAS**, e a segunda nao e enfeite: `m23` tira o
+  registro da medicao e o validador reprova; `m24` deixa o registro na medicao
+  **sem** link curto e o validador tem de **PASSAR**. Trava que reprovasse o
+  m24 empurraria a ilha a esconder peca que nao da comissao — o oposto do que
+  a 25.2-b decidiu com todas as letras.
+
+### ITEM 3 — A PAGINA NEGAVA O BOTAO QUE ELA MESMA ESTAVA SERVINDO
+
+- A R1 imprimia *"Nenhuma destas 2 pecas tem link de loja ainda"* e servia,
+  dois centimetros abaixo, dois botoes de afiliado **vivos**; a R2 dizia *"6
+  destes modelos ainda nao tem link de loja"* e servia **nove** botoes. Em
+  **66 dos 95** publicaveis a frase era falsa.
+- **A CAUSA NAO ERA O TEXTO:** as duas ferramentas contavam `afiliado.url` (a
+  FICHA) enquanto o botao vinha da escada da 25.2, cujo piso e a BUSCA. Duas
+  metades contando a mesma coisa sem nunca se falarem — a mesma familia que a
+  25.7 nomeia no painel da foto, e a licao e a mesma: **uma funcao, e todo
+  mundo pergunta a ela**. Nasceu `robometria_casca_degrau_da_porta()`, que
+  devolve `ficha | busca | busca_crua | sem_saida`, e a propria
+  `porta_de_compra` passou a ter os ramos na mesma ordem dela.
+- **A FRASE FALSA DEU LUGAR A UMA VERDADEIRA, nao ao silencio:** as telas
+  dizem agora quantos itens **abrem a busca da loja em vez da ficha**. E
+  informacao de compra — quem vai clicar sabe onde cai — e e o contrario de
+  uma promessa, que e o que a secao 7 proibe. A frase de ausencia continua
+  existindo para o caso em que ela e verdade (item sem porta nenhuma), que o
+  banco nao produz e a regua trata assim mesmo.
+- **E A BANCADA COBRAVA A FRASE FALSA. Este e o pior pedaco do achado:** a
+  afirmacao *"a pagina publica quantas pecas estao esperando link de loja"*
+  **exigia** que o numero errado aparecesse na tela. Regua que cobra o sintoma
+  sustenta o defeito, e esta ficou dois dias sustentando este. A afirmacao nova
+  le o **HTML servido** e reprova a combinacao que o despacho nomeou — botao de
+  compra presente e frase de ausencia na mesma resposta — e vem com a direcao
+  contraria junto, para nao virar verde barato: **sem porta de compra, a pagina
+  TEM de dizer**.
+
+### ITENS 1 E 4 — REESCRITOS PELA 18.3, E O MOTIVO E DE REGUA, NAO DE FOLEGO
+
+- Os dois foram medidos na **busca do site**, no navegador. Da nuvem,
+  `shopee.com.br/api/v4/search/search_items` devolve **HTTP 403**, corpo
+  `{"is_login":false,"error":90309999,...}` — **remedido hoje as 16h20Z**, e e
+  o que a 25.4 ja mandava nao redescobrir.
+- **A METADE MEDIDA HOJE E PIOR QUE "NAO DEU":** com a regua que a nuvem TEM,
+  as **25** chaves Roborock e Xiaomi do banco trazem a marca no topo, e a chave
+  do item 1 — `Roborock Q8 Max robo aspirador` — devolve **resultado**, nao
+  zero. **A escada de palavra-chave desta ilha nao enxerga nenhum dos dois
+  defeitos.** Passar os dois pela ferramenta de hoje devolveria verde sobre
+  defeito vivo — pior que deixa-los abertos, porque pareceria conferido (18.4).
+  A tabela das duas reguas lado a lado ficou no `PROMPT.md`.
+- **A LICAO DE METODO, e ela vale para o arquipelago:** as duas reguas
+  discordam **no sentido que engana** — a que a maquina alcanca e a otimista,
+  porque mede o catalogo que paga comissao e nao o que o leitor ve. A
+  advertencia ja estava escrita em `nota_de_universo` desde 16/09; hoje foi a
+  primeira vez que ela custou um defeito real no ar.
+
+### O FECHO, NO AR
+
+- **Sync as 16h35Z, `/status` na revisao 67**, igual a do manifest. O primeiro
+  disparo, as 16h30Z, ainda leu a revisao 66 no `raw.githubusercontent.com`: a
+  revisao nova levou **cerca de cinco minutos** para o site enxergar, mesmo com
+  o `?v=time()` que o proprio Sync ja manda. Fica registrado porque a leitura
+  ingenua desse intervalo e concluir que o desembarque falhou, e a ferramenta
+  certa e repetir, nao reescrever nada.
+- **A CONFERENCIA DO ITEM 3 FOI FEITA NAS DUAS ENTRADAS QUE O DESPACHO CITOU,
+  antes e depois**, e a de antes reproduziu os dois defeitos exatamente como a
+  ronda os mediu (2 botoes com "Nenhuma destas 2 pecas tem link de loja"; 9
+  botoes com "nao tem link de loja", 5 deles crus). Depois: **0 frase de
+  negacao, 0 botao cru, 9 `sponsored`** na entrada da R2, e a frase servida
+  passou a ser *"6 destes modelos abrem a busca da loja, ja filtrada, em vez da
+  ficha de um produto"*.
+- A conferencia virou ferramenta permanente —
+  `ferramentas/conferir-frase-de-compra-no-ar.py` — para a ronda seguinte
+  reconferir sem reescrever a regua (19.4c).
+- **NO AR, 0 falha:** `conferir-no-ar` 264 afirmacoes, `conferir-kits-no-ar`
+  165, `conferir-reservatorio-no-ar` 50, `conferir-atribuicao-no-ar` 51,
+  `conferir-canal-na-resposta` sem modelo sem canal, e
+  `conferir-frase-de-compra-no-ar` 4.
+- **A memoria da ilha NAO foi atualizada: esta nuvem nao tem `/areas/`
+  montada**, entao `projeto-robometria.md` nao existe para escrever. Igual as
+  duas execucoes anteriores, e dito em vez de descoberto depois — o resumo
+  esta aqui, que e onde o proprio `PROMPT.md` manda procurar quando nao ha
+  memoria.
+- **PROXIMO PASSO DESBLOQUEADO: NENHUM DE CONSTRUCAO, e continua sendo o
+  resultado certo.** O despacho de 18/09 do Raphael fecha a porta com todas as
+  letras enquanto a serie de indexacao nao mostrar impressao em dois digitos e
+  enquanto ele nao decidir sobre a foto de fabricante. **O que ficou aberto sao
+  os itens 1 e 4 do despacho da Sentinela, e os dois sao trabalho de
+  NAVEGADOR** — a proxima ronda os fecha, ou eles esperam uma regua de nuvem
+  para a busca do site que hoje nao existe.

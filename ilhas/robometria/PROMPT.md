@@ -30,11 +30,15 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 ---
 
-## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — quatro defeitos, os quatro na lista fechada 19.2, e os quatro na porta de compra
+## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — ~~quatro defeitos~~ — **REESCRITO PELA 18.3 EM 18/09/2026, 16h40Z, DEIXANDO SÓ O QUE FALTA**
 
-**Zero conserto de 19.1 nesta ronda.** Tudo o que a lista mecânica cobre passou, medido no ar: as 9 URLs do sitemap em 200; `/status` na revisão 66, igual à do `manifest.json`; zero `&#038;` dentro dos blocos de `<script>` nas 9; JSON-LD, favicon próprio, `aria-expanded` e `aria-controls` nas 9; trilha e `BreadcrumbList` nas 8 que não são a home e ausentes na home; zero página órfã (a de menos entrada tem 4 links internos, mínimo da 16.4f é 2); zero link interno quebrado; zero `noindex`; 8 imagens servidas, todas com `alt` e com `width`/`height`; `dateModified` dos dois artigos servindo **2026-09-18** (o item 4 do despacho de 16/09 está cumprido); nenhuma palavra da lista "Proibidas" do `VOZ.md` em `<title>` nem no primeiro parágrafo das 9; console sem uma mensagem na R1; cache do hospedeiro entregando o conteúdo de hoje no endereço canônico (o marcador do bloco de 18/09, o título de loja "Filtro Para Robô Aspirador Multilaser Ho041", aparece no canônico e na quebra de cache).
-
-**Os quatro defeitos abaixo são todos da lista fechada 19.2** — código de snippet, dado do banco e escolha de palavra-chave. A Sentinela não conserta nenhum.
+> **ITEM 2 — CUMPRIDO E CONFERIDO.** Os 22 publicáveis sem piso rastreável ganharam `url_busca` encurtada pela Open API (25.6) e `itens_com_piso_nao_rastreavel` voltou a **0** nos dois cabeçalhos, sobre os 95 publicáveis. A segunda metade do "pronto quando" — a trava no gerador — também saiu: o validador passa a exigir que o **encurtamento tenha sido TENTADO** (25.2-b), com a prova em `dados/palavras-chave-medidas.json`, e duas mutações novas em `mutacoes-escada.py` provam as duas direções (nunca tentado reprova; tentado-e-a-API-não-serviu passa, que é o caso legítimo).
+>
+> **ITEM 3 — CUMPRIDO E CONFERIDO NO AR.** A frase falsa morreu na causa e não no texto: `robometria_casca_degrau_da_porta()` passou a ser o único lugar que decide o degrau, e as contagens da R1 e da R2 perguntam a ela em vez de olharem `afiliado.url` por conta própria. A bancada ganhou a afirmação que o próprio item pediu — botão de compra servido e frase de ausência na mesma resposta reprova — e a direção contrária, para não virar verde barato.
+>
+> **ITENS 1 E 4 FICAM, E O MOTIVO NÃO É FALTA DE FÔLEGO: É QUE A RÉGUA DELES NÃO EXISTE NESTA CAMADA.** Os dois foram medidos na **busca do site**, no navegador do Raphael. A Fundação roda na nuvem, e de lá `shopee.com.br/api/v4/search/search_items` devolve **HTTP 403**, corpo `{"is_login":false,"error":90309999,...}` — **remedido em 18/09/2026 às 16h20Z**, e é exatamente o que a 25.4 já mandava não redescobrir.
+>
+> **E A METADE QUE FOI MEDIDA HOJE É PIOR DO QUE "NÃO DEU":** com a régua que a nuvem TEM (a Open API de ofertas), as **25** palavras-chave Roborock e Xiaomi do banco trazem a marca no topo, e a chave do item 1 — `Roborock Q8 Max robo aspirador` — devolve **resultado**, não zero. Ou seja, **a escada de palavra-chave desta ilha não enxerga nenhum dos dois defeitos**: ela mede o catálogo que paga comissão, e o leitor vê a busca do site. Passar os dois itens pela ferramenta de hoje devolveria verde sobre um defeito vivo — pior que deixá-los abertos, porque pareceria conferido. **Quem fecha os dois é a ronda seguinte, no navegador**, ou a Fundação no dia em que existir uma régua de nuvem para a busca do site; e o que ela decidir sobre a chave tem de ser gravado no banco com a data da medição, como os dois "pronto quando" abaixo já exigem.
 
 ### 1. O PRIMEIRO ITEM RECOMENDADO DA R2 LEVA A UMA BUSCA COM ZERO RESULTADO
 
@@ -45,41 +49,6 @@ Entrada real: `https://robometria.com.br/quantos-pa-o-robo-aspirador-precisa/?pi
 As outras cinco palavras-chave Roborock testadas na mesma passada respondem (Qrevo Master 118, Qrevo Curv 168, S8 MaxV Ultra 300, Saros Z70 300, Saros 10R 300, "Roborock mop robo aspirador" 300).
 
 **Pronto quando:** a entrada `piso=tapete&pelo=sim&m2=80` da R2, lida no HTML servido, não tiver nenhum botão de compra apontando para palavra-chave que a API de busca da Shopee devolva com zero resultado — e a palavra-chave nova estiver gravada no banco com a data da medição.
-
-### 2. 22 DOS 95 ITENS PUBLICÁVEIS PERDERAM O PISO RASTREÁVEL DA 25.2 — ERAM ZERO EM 16/09
-
-Contado no `main` de hoje, nos dois bancos, sobre os registros publicáveis (50 peças + 45 modelos = 95).
-
-- Itens sem saída de compra: **ZERO**. A 25.2 continua de pé no sentido de que ninguém fica sem porta.
-- Itens com `afiliado.url_busca` **vazio**: **22**. Eles saem pela **URL crua de busca** (`afiliado.url_busca_produto`), que não é link de afiliado: no HTML servido o botão vem com `class="rbm-comprar rbm-comprar-busca rbm-comprar-cru"` e `rel="nofollow noopener"`, **sem `sponsored`**, sem sub-id e sem comissão. O próprio cabeçalho dos bancos já nomeia isso em `itens_com_piso_nao_rastreavel: 15` (peças) e `7` (modelos), e ninguém lê esse campo.
-- Os 22, nomeados: `xiaomi-filtro-mop-2`, `xiaomi-escova-lateral-mop-2`, `xiaomi-escova-principal-mop-2`, `xiaomi-reservatorio-mop-2`, `xiaomi-mop-mop-2`, `xiaomi-filtro-mop-2-lite`, `xiaomi-escova-lateral-mop-2-lite`, `xiaomi-escova-principal-mop-2-lite`, `xiaomi-mop-mop-2-lite`, `xiaomi-reservatorio-mop-2-lite`, `roborock-mop-q8-max`, `roborock-mop-qrevo-master`, `roborock-mop-qrevo-curv`, `roborock-mop-saros-10r-z70`, `roborock-mop-s8-maxv-ultra`, `xiaomi-mop-2-lite`, `roborock-q8-max`, `roborock-qrevo-master`, `roborock-s8-maxv-ultra`, `roborock-qrevo-curv`, `roborock-saros-z70`, `roborock-saros-10r`.
-- Os 22 trazem `motivo_sem_url_busca` escrito, e o motivo é sempre o mesmo: a medição de palavra-chave de `dados/palavras-chave-medidas.json` não cobre o registro, e `ferramentas/medir-palavras-chave.py --gravar --encurtar` precisa da credencial da Open API no ambiente.
-- **O custo medido na tela:** na entrada `piso=tapete&pelo=sim&m2=80` da R2, **5 dos 9 botões são crus**, e os quatro primeiros lugares da lista são Roborock cru enquanto há equivalentes com link encurtado mais abaixo.
-- Isto é regressão de crescimento, não de código: em 16/09 o banco tinha 73 publicáveis e **zero** sem piso rastreável; hoje tem 95 e 22 sem. Cada leva nova de registro entra sem piso encurtado.
-
-**Pronto quando:** a contagem de `afiliado.url_busca` vazio nos dois bancos do `main` for **zero** sobre os publicáveis, e `itens_com_piso_nao_rastreavel` for `0` nos dois cabeçalhos — e quando houver, no gerador do banco, uma trava que reprove registro publicável novo sem `url_busca` encurtada, para a conta não voltar a subir sozinha na leva seguinte.
-
-### 3. AS DUAS FERRAMENTAS DIZEM AO LEITOR QUE NÃO HÁ LINK DE LOJA ENQUANTO SERVEM O BOTÃO DE COMPRA — E ISSO É A FAMÍLIA QUE A SEÇÃO 7 PROÍBE
-
-Medido no HTML servido, em duas entradas reais:
-
-- `/qual-peca-serve-no-meu-robo-aspirador/?modelo=electrolux-erb60&peca=filtro` imprime *"Nenhuma destas 2 peças tem link de loja ainda, e o cartão diz isso em vez de fazer o bloco sumir"* — **e os dois cartões logo abaixo servem "Ver ofertas na Shopee" apontando para `https://s.shopee.com.br/5AsWtVLtoR` e `https://s.shopee.com.br/20vV7gG52P`, os dois com `rel="sponsored nofollow noopener"`.** As duas peças TÊM link de loja, e é link de afiliado vivo.
-- `/quantos-pa-o-robo-aspirador-precisa/?piso=tapete&pelo=sim&m2=80` imprime *"6 destes modelos ainda não têm link de loja"* e serve nove botões de compra.
-
-**A causa, lida no código-fonte do repositório e não no HTML servido:** em `ilhas/robometria/snippets/robometria-r1.php`, linhas 934 a 939, `$sem_link` é contado assim:
-
-    $sem_link = 0;
-    foreach ( $por_peca as $i ) {
-        if ( empty( $i['afiliado']['url'] ) ) {
-            $sem_link++;
-        }
-    }
-
-Ou seja, ele mede a **ficha** (`afiliado.url`) e ignora o **piso** (`afiliado.url_busca`), que desde a 25.2 **é** a porta de compra e é o que o botão serve. O texto montado com esse contador está nas linhas 956 a 975 do mesmo arquivo, e o equivalente está em `snippets/robometria-r2.php`. Não mexemos em nenhum dos dois: é código de snippet, 19.2, sem exceção.
-
-**O alcance:** **66 dos 95 itens publicáveis** têm `afiliado.url` vazio. Toda tela de resultado que mostre um deles imprime a frase falsa. É a mesma família do *"link de loja em breve"* que a seção 7 proíbe com todas as letras, e é pior, porque aqui a página nega a existência de um botão que ela mesma está mostrando.
-
-**Pronto quando:** nas duas entradas citadas acima, lidas no HTML servido, não houver nenhuma frase que negue link de loja para um item cujo cartão serve botão de compra — e quando a bancada tiver uma afirmação que reprove essa combinação (item com botão servido e frase de ausência na mesma resposta), para o defeito não voltar calado.
 
 ### 4. A BUSCA ABRE NO CONCORRENTE: EM 5 DAS 6 PALAVRAS-CHAVE ROBOROCK, O PRIMEIRO RESULTADO É UM XIAOMI
 
@@ -100,6 +69,17 @@ Mesma passada de 18/09, mesma API. Primeiro resultado de cada busca, medido:
 É a mesma família do item 3 do despacho de 16/09, agora na marca nova. O piso da 25.2 está de pé e o topo dele manda o leitor para outro produto — e, nas linhas Roborock, para outra marca.
 
 **Pronto quando:** em cada palavra-chave de modelo Roborock e de peça Xiaomi do banco, o primeiro resultado da busca contiver a marca do registro; ou, quando não contiver, a palavra-chave estiver trocada e a nova medição gravada no banco com a data.
+
+
+### O QUE A EXECUÇÃO DE 18/09 (16h16Z) MEDIU SOBRE OS ITENS 1 E 4, para a próxima ronda não recomeçar do zero
+
+| o que | régua da Sentinela (busca do site, navegador) | régua da Fundação (Open API de ofertas, nuvem) |
+|---|---|---|
+| `Roborock Q8 Max robo aspirador` | **0 resultados** | 5 resultados, topo com a marca |
+| 6 chaves de modelo Roborock | 5 abrem em Xiaomi | 6 de 6 com a marca no topo |
+| 25 chaves Roborock + Xiaomi do banco | não medidas todas | **25 de 25 com a marca no topo** |
+
+**A conclusão que sai da tabela, e ela é de método:** as duas réguas discordam **no sentido que engana** — a que a máquina alcança é a otimista. `dados/palavras-chave-medidas.json` já carrega essa advertência no campo `nota_de_universo` desde 16/09; o item 4 é a primeira vez que ela custa um defeito real no ar. **Régua que só enxerga o lado que paga não serve para decidir o que o leitor vê.**
 
 ### O TESTE DE VIDA DESTA RONDA (25.4 e 25.4-b), EM NÚMERO
 
