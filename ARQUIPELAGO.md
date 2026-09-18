@@ -762,6 +762,20 @@ Portanto:
 
 **O que isso custa, dito sem maquiar:** busca converte menos que ficha. Estamos trocando alguns pontos de conversão por uma máquina que não para e não acumula dívida na mesa de ninguém. Foi escolha consciente do dono.
 
+**25.2-b — O LINK QUE NÃO RENDE COMISSÃO DEIXOU DE SER ACEITÁVEL COMO PADRÃO (18/09/2026). Vale para TODAS as ilhas.**
+
+A regra acima nasceu em 13/09, quando encurtar link exigia o Raphael abrir o painel e clicar "Gerar", um por um. **Naquele mundo a escolha real era link cru ou botão nenhum, e link cru ganhava.** Esse mundo acabou em 16/09, quando a Open API de Afiliados entrou (seção 25.6): encurtar virou uma chamada de rede. Na pergunta do próprio Raphael, em 18/09: *"não entendi qual o sentido de ter link onde eu não vou ganhar nada"*. **Não tem — e a partir daqui só existe onde é inevitável.**
+
+**A TRAVA, no gerador do banco de toda ilha.** Registro publicável **não entra sem que o encurtamento tenha sido TENTADO** pela API do programa daquela ilha. Não é "tentar quando sobrar tempo": é passo do nascimento do registro, como `url_busca` já é. O validador do banco reprova registro publicável cujo campo de tentativa esteja ausente — **ausente é diferente de tentado-e-falhou**, e essa distinção é a regra inteira.
+
+**O QUE MOTIVOU, medido na Robometria em 18/09 e válido como aviso para toda ilha:** em 16/09 o banco tinha 73 publicáveis e **zero** sem piso rastreável; em 18/09 tinha 95 e **22 sem**. Ninguém quebrou nada — **a ilha cresceu mais rápido que os próprios acabamentos**, e cada leva nova entrou pela porta de trás. Isso não é defeito de código, é defeito de portão, e portão que não existe deixa passar sempre.
+
+**O CASO EM QUE O LINK CRU CONTINUA LEGÍTIMO, e é um só:** a API não devolve anúncio para aquele item. Aí não existe link rastreável possível, e a escolha passa a ser publicar sem render ou não publicar. **Publique.** A ferramenta de compatibilidade responde "qual peça serve no seu aparelho" — omitir a peça que não dá comissão faz a ferramenta **mentir**, e a credibilidade é o ativo inteiro da ilha, não a comissão daquele item.
+
+**MAS A ORDENAÇÃO PASSA A SER REGRA, E ESTE É O CONSERTO QUE MAIS VALE DINHEIRO.** Item que não rende comissão **nunca aparece acima de item que rende**, quando os dois respondem à mesma pergunta. Medido na Robometria em 18/09: numa entrada real da R2, **5 dos 9 botões eram crus e os quatro primeiros lugares eram crus**, com equivalentes rastreáveis mais abaixo. O leitor via o mesmo produto; a ilha entregava a venda de graça. Empate de mérito técnico desempata por rastreabilidade, sempre, e isso vale para vitrine, carrossel e qualquer lista ordenada de qualquer ilha.
+
+**O que NÃO muda:** o piso continua sendo a busca, e item nenhum fica sem porta de compra. A 25.2 continua inteira. O que 25.2-b acrescenta é que o piso deixou de ser destino e voltou a ser piso.
+
 ### 25.3 Os dois feeds da Shopee, e o que cada um é
 
 Em *Criativo → Feed de produto* do painel de afiliado. Atualizam sozinhos todo dia. O download exige a sessão logada do Raphael — a nuvem recebe 401 e a extensão do navegador bloqueia o redirecionamento, medido em 13/09. **Baixar o feed é passo dele.**
@@ -780,6 +794,19 @@ Em *Criativo → Feed de produto* do painel de afiliado. Atualizam sozinhos todo
 **Nunca filtre o feed só por marca.** Marca sem contexto é armadilha: JBL é som e é aquário; Aquário é roteador e é peixe; Betta é peixe e é móvel. Exija palavra de contexto no título **ou** categoria compatível, e **confira uma amostra com os olhos antes de gravar** — um recorte errado no repositório é pior que recorte nenhum, porque parece dado.
 
 **A foto do produto sai do feed** (`image_link`), e é a fonte legítima: a imagem do anúncio ao lado do link do anúncio é exatamente o que o feed existe para permitir. Produto fora do feed fica sem foto e aparece com espaço reservado neutro, pela regra da seção 6.
+
+**A SEGUNDA FONTE DE IMAGEM — AUTORIZADA PELO RAPHAEL EM 18/09/2026, e vale para TODAS as ilhas.** Medido na Robometria no mesmo dia: a segunda passada da API sobre 68 registros sem foto casou **2**. O catálogo de afiliado simplesmente não anuncia peça de reposição de marca pequena, e a ilha ficou em 29 de 103 com foto. Por isso a foto passa a ter **duas** fontes possíveis, nesta ordem e nunca invertida:
+
+1. **A imagem do anúncio** (API ou feed do programa de afiliado). **Sempre preferida quando existir**, porque vem licenciada pelo programa para exatamente este uso.
+2. **A imagem do próprio fabricante daquela peça exata**, colhida da página do fabricante. Autorização textual do Raphael: *"pode usar imagem do fabricante, sem problemas."*
+
+**As três amarras da segunda fonte, e elas não são formalidade:**
+
+- **Só a foto do FABRICANTE, da PEÇA EXATA.** Nunca banco de imagem, nunca foto de varejista, nunca foto de peça parecida. Foto errada num registro de peça é pior que nenhuma foto: a ilha inteira se vende por procedência.
+- **`imagem.fonte` grava a URL de origem**, sempre. É o que permite remover em um comando se algum fabricante um dia pedir — e sem isso a remoção viraria garimpo manual em banco inteiro.
+- **A preferência nunca inverte.** Registro que já tem imagem do anúncio não é sobrescrito por imagem de fabricante; a segunda fonte só preenche vazio.
+
+Registro sem nenhuma das duas continua aparecendo com o espaço reservado neutro da seção 6 — **foto continua sendo ganho, nunca requisito**, e nenhuma delas entra na definição de pronta de ilha nenhuma.
 
 ### 25.4 O teste de vida, que agora existe
 
