@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-17T19:16Z
-executando_desde: null
+executando_desde: 2026-09-18T10:16Z
 bloco_atual: |
   BLOCO 3c — A LEVA DO ROBOROCK Q8 MAX: A SEXTA MARCA ENTRA E A FAIXA ALTA DE Pa DEIXA DE SER DE UMA MARCA SO. Modelo novo com os TRES campos que a intersecao conta — Pa declarado (5.500), canal brasileiro (br.roborock.com/pages/q8-max-plus) e peca declarada pelo fabricante (o pano, cujo titulo na loja oficial nomeia a 'Q8 Max Series'). INTERSECAO 10 -> 11, TETO 12 -> 13. Banco de 44 para 45 modelos e de 48 para 49 pecas, 82 pares, 40 modelos e 46 pecas publicaveis. ZERO URL nova, ZERO URL mudada de endereco, ZERO leva do teto da 21.4 gasta. Manifest na revisao 64, casca 1.10.1.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. executando_desde estava null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo, e o ultimo commit na pasta da ilha era de 16h36Z, 40 minutos antes. Nenhum branch claude fora do main com commit proprio e nenhum PR aberto. Reserva aceita de primeira as 19h16Z. Nenhum despacho deste PROMPT.md tem item acionavel pela Fundacao. Rede pela 20.2 antes de trabalhar: home 200 e /status na revisao 62, igual a do manifest, em TRES passadas.
