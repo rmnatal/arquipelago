@@ -5231,3 +5231,136 @@ escrito la para a comparacao ser legivel.
   de indexacao mostre impressao em dois digitos**. Se uma execucao futura propuser
   "mais paginas de peca para crescer", a resposta ja esta medida em
   `bussola/medicoes/volume-absoluto-2026-09-18.md`: nao tem quem procure.
+
+## 2026-09-18, 13h18Z — A segunda passada de fotos entrega 2 de 68, e a palavra que nao identifica a peca deixa de casar
+
+- **A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA.** `foco.md` nomeia
+  robometria desde 16/09. `executando_desde` estava `null`, que pela 1.1 ja
+  significa que nenhum bloco da Fundacao esta vivo. Reserva aceita de primeira
+  as 13h18Z. **Rede pela 20.2 antes de trabalhar:** home em 200 e `/status` na
+  revisao 65, igual a do manifest.
+- **NENHUM BRANCH E NENHUM PR PARA MERGEAR, E ISSO PRECISA DE UMA LINHA porque o
+  `git ls-remote` assusta.** O remoto tem **84 branches `claude/*`** e todas
+  aparecem "a frente do main". **Nenhuma delas tem base comum com o `main`**
+  (`git merge-base` devolve vazio nas quatro conferidas): o `main` foi
+  reconstruido em algum momento e hoje tem raiz propria, com 50 commits a partir
+  de 16/09. Sao historias sem parentesco, nao trabalho pendente — **mergear
+  qualquer uma seria juntar dois repositorios**. Zero PR aberto, conferido pela
+  API. Fica escrito para a proxima execucao nao repetir a leitura.
+- **O DESPACHO DO RAPHAEL DE 18/09 (segunda ordem do dia) SAIU INTEIRO, pela
+  18.2.** Ele estava aberto e nao executado: o commit `0db853e` das 12h12Z so o
+  ESCREVEU no `PROMPT.md`.
+- **PARTE 1 — 2 DE 68, E O ALVO REAL NAO ERA 76.** O despacho fala em "76
+  registros sem imagem"; **8 deles tem `status: excluido_do_banco` (7) ou
+  `nao_publicavel` (1)** e nenhuma tela do site os renderiza. O alvo honesto e
+  **68**, e a diferenca esta escrita em vez de escondida na conta. Casaram
+  **2**, os dois no degrau 4: `multi-pr10205` e `wap-escova-central-wsmart`.
+  **Banco de 27 para 29 fotos.** A ferramenta ganhou `--sem-foto`: repetir a
+  escada sobre quem ja tem foto gasta chamada e, pior, troca por outro anuncio
+  uma foto ja conferida com os olhos — conferencia velha aplicada a dado novo.
+- **O ACHADO DO BLOCO: UM CASAMENTO ERRADO PASSOU PELA REGUA E FOI PEGO PELO
+  OLHO (25.3).** `positivo-11206519` e a escova **PRINCIPAL** — o rolo — e casou
+  com *"Escova E Filtro Hepa Para Robo Aspirador Positivo Pra800"*: o codigo
+  PRA800 no titulo e `escova` na cabeca dele, e as duas metades da regra
+  passavam. **A foto do anuncio, baixada e aberta, traz um filtro e uma escova
+  LATERAL de tres bracos, e nenhum rolo.** O banco tem `positivo-11206518`
+  (escova lateral) para o MESMO modelo: o titulo descrevia a irma.
+- **A CAUSA ESTAVA ESCRITA COMO VERDADE DOIS DIAS ANTES.**
+  `palavras_estritas_do_tipo` nasceu em 16/09 dentro de
+  `medir-palavras-chave.py` dizendo que o substantivo pelado basta *"para a
+  coleta: la o codigo do registro ou do modelo ja amarrou o anuncio"*. **A
+  frase junta dois casos opostos.** Quando amarra o codigo da PECA, ele
+  identifica a peca. Quando amarra o codigo do MODELO, o anuncio esta preso ao
+  **aparelho** — e o aparelho tem escova lateral E escova principal. Ali
+  `escova` nao confirma nada: escolhe por sorteio. E a mesma familia da regra
+  dos dois registros no mesmo anuncio, ja desta ilha: **casamento que nao
+  identifica UM registro nao identifica nenhum.** A diferenca e onde mora a
+  ambiguidade — la no anuncio, aqui na palavra.
+- **O CONSERTO, e ele tirou uma regra de duas casas.** `substantivo_do_tipo` e
+  `palavras_estritas_do_tipo` desceram para `coletar-shopee.py`, que e a camada
+  de baixo e a dona da lista que elas aparam; `medir-palavras-chave.py` passou a
+  **chamar** em vez de ter copia. O caminho do modelo compativel em `casa_peca`
+  usa a lista aparada; o caminho do codigo da propria peca continua com a lista
+  folgada, porque ali o codigo ja identificou.
+- **A TRAVA NASCEU COM BATERIA E A BATERIA MORDE.**
+  `ferramentas/mutacoes-qual-escova.py`, **7 de 7**, com os registros de verdade
+  do banco e nao com um mundo inventado. **Com a trava desligada a bateria cai
+  para 4 de 7** — tres mutacoes vivas, medidas e nao supostas. A setima existe
+  para o outro lado: tipo de UMA palavra (`filtro`) **nao** e aparado, senao
+  toda peca de tipo simples perderia a foto e a trava estaria reprovando o mundo
+  sadio.
+- **O APERTO NAO CUSTOU NENHUMA FOTO JA CONFERIDA.** Os **27** registros que ja
+  tinham foto foram repassados pela regua nova, titulo por titulo: **0
+  reprovado**. O aperto so barrou o que ia entrar errado hoje.
+- **A COLETA PASSOU A RECONTAR O QUE ELA MOVE.** O `validar-banco.py` reprovou o
+  banco logo depois da gravacao, com quatro contagens de cabecalho defasadas —
+  portao mordendo depois, que e melhor que portao nenhum e pior que o banco
+  nunca chegar a existir errado. `gravar()` ganhou `recontar()`, com as
+  definicoes do proprio validador, e o validador continua conferindo: duas
+  contas que se conferem sao trava; uma conta que confia em si mesma e numero
+  digitado com mais passos.
+- **O RESIDUO TEM NOME, NUMERO E CAUSA — `dados/residuo-de-fotos-2026-09-18.md`.**
+  **63** "a Shopee anuncia e nenhum titulo nomeia este registro", **2**
+  "casamento ambiguo" (a escova direita e a esquerda do W300, vendidas no mesmo
+  anuncio de par), **1** "sem anuncio na Shopee". Ate hoje as tres causas
+  desciam ao banco com a **mesma frase**, e a frase dizia a segunda — registro
+  sem anuncio nenhum ficava gravado como se o portao o tivesse barrado, o que
+  manda a proxima passada procurar chave melhor para um produto que a Shopee nao
+  vende. Agora cada uma desce com a sua, e com o numero de resultados vistos ao
+  lado, que e a prova e nao o adjetivo.
+- **E A CAUSA 1 NAO E FALHA DE COLETA: E MEDICAO DE MERCADO.** Conferido de olho
+  em tres buscas. `Roborock Q8 Max` devolve 10 resultados e **os 10 sao peca** —
+  escova, filtro, saco de po, roda; `ERB10` devolve 10 e os 10 sao carregador,
+  filtro, pano, bocal, carcaca; `Xiaomi S10` devolve capa de tablet e panos de
+  "S10+", que e outro aparelho. **A Shopee Brasil quase nao anuncia o ROBO, so
+  as pecas dele** — e as pecas ela anuncia como **kit misto generico por
+  modelo** ("Acessorios Escova Principal Lateral Filtro Pecas Reposicao"), que
+  nomeia o modelo e nao identifica registro nenhum. **O catalogo nao tem a
+  granularidade que esta ilha oferece.**
+- **E ISSO E A MEDICAO DE VOLUME DE 18/09 VISTA DO LADO DA OFERTA.** A Bussola
+  mediu que as consultas de peca deste nicho estao abaixo do limiar do Google;
+  esta passada mediu que o catalogo de reposicao brasileiro tambem nao e
+  granular por peca. **Demanda e oferta apontando para o mesmo lugar, por dois
+  caminhos independentes.** Entrou no criterio de outubro como segundo sinal.
+- **A PORTA NOVA CONTINUA FECHADA, COMO O DESPACHO MANDOU.** Nenhuma imagem de
+  site de fabricante foi colhida, embora os cinco dominios estejam abertos desde
+  17/09. O numero que a decisao pede esta escrito: **66 de residuo, 30 modelos e
+  36 pecas** — e modelo e justamente o que pagina de fabricante tem foto.
+  "Escreva o numero e pare" foi cumprido ao pe da letra.
+- **PARTE 2 — O CRITERIO DE OUTUBRO SAIU DE DENTRO DO DESPACHO E VIROU SECAO.**
+  `## CRITERIO PRE-REGISTRADO DA DECISAO DE OUTUBRO` e permanente no
+  `PROMPT.md`, pela 1.2-b.4. O motivo e a 18.4: **despacho morre quando e
+  verificado, e criterio que mora dentro de um despacho morre junto com ele** —
+  a decisao de outubro chegaria sem regra, que e exatamente o que o
+  pre-registro existe para impedir.
+- **BANCADA, 0 falha:** casca 251, r1 227, a1 74, r2 107, a2 80, acentuacao 17,
+  arvore 219, voz 164, purga-cache 21, escada-compra 916, `validar-banco`
+  APROVADO, e as **27 baterias de mutacao** (a nova inclusa) sem nenhum `ERRO` e
+  todas com saida 0, procurando na saida INTEIRA de cada uma.
+- **NO AR:** Sync as 13h42Z, `/status` na **revisao 66**, igual a do manifest.
+  `conferir-no-ar.py` **264** afirmacoes, `conferir-kits-no-ar.py` 165,
+  `conferir-reservatorio-no-ar.py` 50, `conferir-atribuicao-no-ar.py` 51 e
+  `conferir-canal-na-resposta.py` — todos 0 falha. **E as duas fotos novas foram
+  lidas no HTML servido, nao no log do Sync (18.4):**
+  `/qual-peca-serve-no-meu-robo-aspirador/?modelo=multi-ho041&peca=filtro` serve
+  `<img class="rbm-vitrine-img" ... width="1024" height="1024" alt="Filtro Para
+  Robô Aspirador Multilaser Ho041" loading="lazy">`, e a do `wap-wsmart` serve o
+  rolo com 800x800.
+- **A CREDENCIAL DA SHOPEE NAO TOCOU O DISCO.** Lida do documento privado do
+  Drive pelo conector (25.6) e passada so como variavel de ambiente do processo.
+  `git grep` pelo AppID e pela chave na arvore inteira antes do push: **0
+  arquivo**.
+- **A memoria da ilha NAO foi atualizada: esta nuvem nao tem `/areas/` montada**,
+  entao `projeto-robometria.md` nao existe para escrever. Igual a execucao
+  anterior, e dito em vez de descoberto depois — o resumo esta aqui, que e onde
+  o proprio `PROMPT.md` manda procurar quando nao ha memoria.
+- **PROXIMO PASSO DESBLOQUEADO: NENHUM, E ISSO E O RESULTADO CERTO.** Os itens 1,
+  2, 4 e 5 da DEFINICAO DE PRONTA estao fechados; **o unico que sobra e o item
+  3, marcado [RAPHAEL]**, e nenhuma execucao da Fundacao o fecha — o placar diz
+  **esperando o Raphael**, nunca "faltando". Nao ha despacho aberto nesta ilha.
+  O despacho de 18/09 fecha a porta do resto com todas as letras: **depois de
+  pronta a ilha nao recebe investimento novo** sem que a serie mostre impressao
+  em dois digitos. **A DECISAO QUE FALTA E DO RAPHAEL E ESTA ESCRITA:** olhar os
+  66 do residuo e dizer se a foto pode vir de site de fabricante. Enquanto ele
+  nao disser, **nao ha bloco de construcao elegivel nesta ilha** — e isso e
+  informacao, nao fracasso.

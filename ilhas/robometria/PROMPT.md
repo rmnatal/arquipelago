@@ -97,7 +97,18 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 **O QUE A SENTINELA NÃO PÔDE FAZER NESTA EXECUÇÃO, dito para ninguém descobrir depois:** o teto semanal de geração de link de afiliado **não foi gasto**. O canal das MÃOS foi recusado pelo classificador de aprovação do ambiente no começo da execução, e pela 27.2 o banco só muda pelas MÃOS — gerar link que não pode ser gravado seria fabricar dado órfão. O alvo do teto da semana que vem, já escolhido e nomeado: os 46 registros em degrau 4, pelo **degrau 2 da 25.1** (catálogo `/p/MLB…` do Mercado Livre), que é o cavalo de batalha desta cauda longa pela 25.3 — e que precisa do clique do Raphael, pelo reCAPTCHA da 25.6.
 
-## DESPACHO DO RAPHAEL — 18/09/2026 (segunda ordem do dia) — TERMINAR AS FOTOS, E DEIXAR A DECISAO DE OUTUBRO PRE-REGISTRADA
+## DESPACHO DO RAPHAEL — 18/09/2026 (segunda ordem do dia) — ~~TERMINAR AS FOTOS, E DEIXAR A DECISAO DE OUTUBRO PRE-REGISTRADA~~ — **CUMPRIDO E CONFERIDO NO AR EM 18/09/2026, 13h45Z**
+
+**AS DUAS PARTES SAIRAM NA MESMA EXECUCAO, pela 18.2.** Casca sem mudanca, manifest na **revisao 66**, `/status` em 66.
+
+**PARTE 1 — A COBERTURA MAXIMA QUE O CRITERIO PERMITE E 29 DE 103, E O RESIDUO TEM NOME, NUMERO E CAUSA.** A escada da Open API rodou sobre os **68 publicaveis sem `imagem.url`** — os outros 8 dos "76" do despacho tem `status: excluido_do_banco` ou `nao_publicavel` e nenhuma tela os renderiza, o que esta escrito em vez de escondido na conta. **Casaram 2**, os dois no degrau 4: `multi-pr10205` (filtro, "Filtro Para Robô Aspirador Multilaser Ho041") e `wap-escova-central-wsmart` ("Escova Central Aspirador Robô Wap Robot WSMART Original"). **O banco foi de 27 para 29 fotos.** As duas imagens foram abertas com os olhos antes de gravar (25.3) e as duas estao **servidas no ar**, com dimensao declarada e `alt` de verdade, em `/qual-peca-serve-no-meu-robo-aspirador/?modelo=multi-ho041&peca=filtro` e `...?modelo=wap-wsmart&peca=escova%20principal`. **A lista completa do residuo, por causa, esta em `dados/residuo-de-fotos-2026-09-18.md`** — 63 "a Shopee anuncia e nenhum titulo nomeia este registro", 2 "casamento ambiguo", 1 "sem anuncio na Shopee".
+
+**O PORTAO NAO FOI AFROUXADO — FOI APERTADO, E POR MEDICAO.** O despacho mandou nao baixar o criterio para bater 100%, e o que aconteceu foi o contrario do temido: **um casamento errado passou pela regua e foi pego pelo olho.** `positivo-11206519` e a escova **PRINCIPAL** (o rolo) e casou com *"Escova E Filtro Hepa Para Robo Aspirador Positivo Pra800"* — o codigo PRA800 no titulo e `escova` na cabeca dele. **A foto do anuncio traz um filtro e uma escova LATERAL de tres bracos, e nenhum rolo.** A causa e uma frase escrita como verdade dois dias antes, em `palavras_estritas_do_tipo`: o substantivo pelado basta *"para a coleta, porque la o codigo do registro ou do modelo ja amarrou o anuncio"*. A primeira metade e verdadeira e a segunda e falsa — **quando quem amarra e o codigo do MODELO, o anuncio esta preso ao APARELHO, e o aparelho tem escova lateral E escova principal, as duas no banco.** A regra desceu para `coletar-shopee.py` e passou a valer nesse caminho; `ferramentas/mutacoes-qual-escova.py` nasceu com **7 de 7**, e com a trava desligada a bateria cai para 4 de 7, o que e a prova de que tres mutacoes estao vivas. **Os 27 registros que ja tinham foto foram reconferidos contra a regua nova: 0 reprovado**, entao o aperto nao custou nenhuma foto ja conferida.
+
+**A PORTA NOVA CONTINUA FECHADA, COMO O DESPACHO MANDOU.** Nenhuma imagem foi colhida de site de fabricante. O numero que a decisao pede esta escrito: **66 de residuo, 30 modelos e 36 pecas.**
+
+**PARTE 2 — CUMPRIDA: o criterio saiu de dentro deste despacho e virou secao permanente**, logo abaixo ("CRITERIO PRE-REGISTRADO DA DECISAO DE OUTUBRO"). O motivo e a 18.4: despacho morre quando e verificado, e criterio que mora dentro de um despacho morre junto com ele. Pela 1.2-b.4 o criterio tem de morar no `PROMPT.md` da ilha, e agora mora.
+
 
 **ISTO NAO E EXPANSAO E NAO ESBARRA NO DESPACHO DE CONGELAMENTO ABAIXO.** E o despacho da API da Shopee de 16/09 terminando de sair: a coleta rodou uma vez, sobre o banco daquele dia, e o banco cresceu 30 registros depois dela. Terminar coleta comecada nao e investimento novo.
 
@@ -125,6 +136,34 @@ O destino desta ilha depende da serie de impressoes, e a serie so ganha corpo em
 - **Os tres desfechos possiveis, e nenhum outro:** (a) **a ilha volta a receber investimento** — malha cresce, leva nova de modelos, bloco de conteudo; (b) **a ilha fica em manutencao** — Sentinela continua, Fundacao nao investe, e o assunto so volta se a serie mudar; (c) **a ilha e arquivada** — o site fica no ar, a ronda para, e o aprendizado vai inteiro para a `BUSSOLA.md`.
 - **O QUE NAO PODE ACONTECER, e esta linha existe para impedir:** a decisao ser adiada por falta de dado. Se em 14/10 a serie ainda estiver fina, isso **e** o resultado — nicho que em cinco semanas de indexacao nao produziu impressao mensuravel ja respondeu. Adiar por mais um mes e o jeito educado de nunca decidir.
 - **O contexto que a decisao nao pode ignorar:** `bussola/medicoes/volume-absoluto-2026-09-18.md` mediu que as consultas de peca desta ilha estao abaixo do limiar do Google, e que o volume do nicho esta na metade de dimensionamento (R2). Uma serie fraca em outubro **confirma** essa medicao; uma serie forte a contradiz e vale um registro proprio, porque significaria que o Planejador nao enxerga a cauda que a ilha atende — e isso mudaria a regua da Bussola inteira.
+
+**A LEITURA SEMANAL DE 23/09 JA DEVE ABRIR A SERIE COM ESTE ENQUADRAMENTO**, dizendo em qual dos quatro pontos ela esta e o que falta para o corte de 30/09.
+
+## CRITERIO PRE-REGISTRADO DA DECISAO DE OUTUBRO — escrito em 18/09/2026, ANTES do dado
+
+**ESTA SECAO NAO MORRE COM DESPACHO NENHUM.** Ela nasceu dentro do despacho de 18/09 e foi levantada para fora dele na mesma execucao que o cumpriu, porque a 18.4 manda apagar despacho verificado e a 1.2-b.4 manda o criterio morar no `PROMPT.md` da ilha. Criterio que mora dentro de um despacho morre junto com ele — e ai a decisao de outubro chegaria sem regra, que e exatamente o que este texto existe para impedir.
+
+**POR QUE ELE ESTA ESCRITO HOJE, com 11 impressoes na mesa:** *criterio escrito depois do dado e criterio dobrado para caber no dado que veio.* Esta secao nao pede medicao nenhuma hoje. Ela pede que a regra exista antes de haver o que ela julgue.
+
+**QUEM MEDE:** a leitura semanal da Sentinela, as quartas. As leituras que contam sao **23/09, 30/09, 07/10 e 14/10** — quatro pontos, e nenhum a mais.
+
+**O QUE SE MEDE:** impressoes em 28 dias e cliques, da Search Console, na serie de `dados/indexacao.md`; e a tabela de posicoes em `dados/posicoes.md`.
+
+**A LEITURA DE 30/09 FIXA O NUMERO DE CORTE**, e o fixa com DUAS referencias na mesa: a propria serie da Robometria e a serie da Aquametria no mesmo periodo de vida da ilha. Fixar corte hoje, com 11 impressoes, seria inventar.
+
+**OS TRES DESFECHOS POSSIVEIS, e nenhum outro:**
+
+| desfecho | o que acontece |
+|---|---|
+| **(a) volta ao investimento** | malha cresce, leva nova de modelos, bloco de conteudo |
+| **(b) manutencao** | Sentinela continua, Fundacao nao investe, e o assunto so volta se a serie mudar |
+| **(c) arquivada** | o site fica no ar, a ronda para, e o aprendizado vai inteiro para a `BUSSOLA.md` |
+
+**O QUE NAO PODE ACONTECER, e esta linha existe para impedir:** a decisao ser adiada por falta de dado. Se em 14/10 a serie ainda estiver fina, isso **e** o resultado — nicho que em cinco semanas de indexacao nao produziu impressao mensuravel ja respondeu. **Adiar por mais um mes e o jeito educado de nunca decidir.**
+
+**O CONTEXTO QUE A DECISAO NAO PODE IGNORAR:** `bussola/medicoes/volume-absoluto-2026-09-18.md` mediu que as consultas de peca desta ilha estao abaixo do limiar do Google, e que o volume do nicho esta na metade de dimensionamento (R2). Uma serie fraca em outubro **confirma** essa medicao; uma serie forte a contradiz e vale um registro proprio, porque significaria que o Planejador nao enxerga a cauda que a ilha atende — e isso mudaria a regua da Bussola inteira.
+
+**UM SEGUNDO SINAL, MEDIDO EM 18/09 E QUE NAO EXISTIA QUANDO O CRITERIO FOI ENCOMENDADO:** a segunda passada de fotos mediu que **o catalogo da Shopee Brasil nao tem a granularidade que esta ilha oferece** — anuncio de reposicao aqui e kit misto generico por modelo, nao peca por codigo, e o robo em si quase nao e anunciado (`dados/residuo-de-fotos-2026-09-18.md`). **Isso e a mesma medicao do volume, vista do lado da oferta em vez do lado da demanda**, e as duas apontam para o mesmo lugar. Quem for decidir em outubro le as duas juntas; se a serie de impressoes vier forte APESAR das duas, o achado e maior que a ilha e vale registro proprio na `BUSSOLA.md`.
 
 **A LEITURA SEMANAL DE 23/09 JA DEVE ABRIR A SERIE COM ESTE ENQUADRAMENTO**, dizendo em qual dos quatro pontos ela esta e o que falta para o corte de 30/09.
 
