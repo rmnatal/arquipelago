@@ -5100,3 +5100,134 @@ escrito la para a comparacao ser legivel.
   reprocurado: Electrolux e Multi nao declaram Pa em canal nenhum, sete dos oito
   modelos WAP tambem nao, a Positivo tem os tres robos dela no banco e o canal
   brasileiro da Xiaomi foi varrido inteiro.
+
+## 2026-09-18, 10h32Z — A leva Roborock que fecha a meta de 15 do item 2, e um defeito latente que a bancada pegou sozinha
+
+- **A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA.** `foco.md` nomeia
+  robometria desde 16/09. `executando_desde` estava `null`, que pela 1.1 ja
+  significa que nenhum bloco da Fundacao esta vivo — sem reserva vencida, o git
+  nao precisa desempatar. Nenhum branch `claude/*` fora do `main` com commit
+  proprio e nenhum PR aberto. Reserva aceita de primeira as 10h16Z. **Rede pela
+  20.2 antes de trabalhar:** home em 200 e `/status` na revisao 64, igual a do
+  manifest, em TRES passadas.
+- **O QUE ENTROU: QUATRO modelos Roborock com os TRES campos** que o item 2 da
+  DEFINICAO DE PRONTA conta — Pa declarado, canal brasileiro e peca declarada
+  pelo fabricante. **Qrevo Master (10.000 Pa)**, **S8 MaxV Ultra (10.000)**,
+  **Qrevo Curv Series (18.500)** e **Saros Z70 (22.000)**. **INTERSECAO 11 ->
+  15, TETO 13 -> 17.** Banco de 45 para 50 modelos e de 49 para 53 pecas, 87
+  pares, 45 modelos e 50 pecas publicaveis. ZERO URL nova, ZERO URL mudada de
+  endereco, ZERO leva do teto da 21.4 gasta.
+- **A META DO ITEM 2 ESTA ATINGIDA, E NAO FOI ARREDONDADA PARA CHEGAR LA.** A
+  regua continua exigindo `pa_declarado` **E** `canal_brasileiro` na R2 — a
+  mesma que em 16/09 foi deliberadamente apertada para nao deixar a meta se
+  fechar sozinha com modelo global. Os 15 sao `positivo-pra2000`,
+  `positivo-pra800`, `roborock-q8-max`, `roborock-qrevo-curv`,
+  `roborock-qrevo-master`, `roborock-s8-maxv-ultra`, `roborock-saros-z70` e os
+  oito Xiaomi.
+- **A PORTA FOI A QUE O REGISTRO DE 17/09 DEIXOU ESCRITA, e ela nao pedia marca
+  nova.** "Mais um modelo da Roborock, nao uma marca nova" estava escrito ali, e
+  funcionou. **O canal brasileiro da marca esta agora VARRIDO INTEIRO:** ele
+  publica **seis** robos — Q8 Max, Qrevo Master, Qrevo Curv Series, S8 MaxV
+  Ultra, Saros 10R e Saros Z70 — e os seis estao no banco. **O `Q7 Max`, que o
+  registro anterior apontava como alvo provavel, NAO EXISTE nesse canal**: a
+  varredura gastou passadas para saber, e quem ler isto nao gasta nenhuma. O
+  `F25 Combo Series` existe e e aspirador umido-seco, nao robo.
+- **O EGRESSO DIRETO CONTINUA FECHADO E ISSO NAO E BLOQUEIO.** `curl` a
+  `br.roborock.com` e a `us.roborock.com` devolveu **000 com `connect_rejected`
+  (policy denial)**, com `robometria.com.br` em 200 na mesma janela. O canal que
+  funcionou foi o mesmo de 17/09 — a **BUSCA restrita ao dominio do fabricante**
+  —, e e a segunda vez seguida que ele entrega uma leva inteira. A regra de
+  13h16Z de 17/09 continua valendo: **antes de escrever "bloqueado por rede",
+  meca OS DOIS canais**.
+- **O SAROS 10R ENTROU SEM Pa, E O `null` E RESPOSTA E NAO LACUNA.** TRES
+  passadas independentes, **uma delas pedindo o valor em Pa com todas as
+  letras**, devolveram sempre a mesma frase sem numero: "desempenho de limpeza
+  incomparavel com a potencia de succao lider do setor". Como as **outras cinco**
+  paginas da mesma marca declaram o numero, isto e escolha editorial do
+  fabricante NESTE modelo. Sem Pa ele nao e recomendavel pela R2, entao nao conta
+  na intersecao nem no teto — entra porque a **R1 responde por ele**. **Nao
+  confundir com o "Saros 10"**, que e outro aparelho, tem pecas proprias no
+  catalogo da marca e **nao** esta neste banco.
+- **O S8 MaxV ULTRA QUASE NAO ENTROU, E O MOTIVO E A SECAO 26.** A unica peca
+  que o nomeava em titulo indexado era o **`Cleaning Brush*2pcs`**, que nao e
+  nenhum dos **sete** tipos desta ilha: "Cleaning Brush" nao diz nem posicao nem
+  funcao, e forcar "escova principal" ou "escova lateral" nele seria **ler funcao
+  do NOME**, que e exatamente o que a 26 proibe. Foi tentador — era o 15o par, a
+  meta inteira dependia dele. O que o fez entrar honestamente foi o **`Edgewise
+  Mop Cloth*2pcs for S8 MaxV Ultra, S8 Max Ultra`**, que veio na LISTA DE
+  RESULTADOS de uma passada cuja consulta **nao nomeava modelo nenhum**.
+  "Edgewise" qualifica o pano, nao o tipo: o titulo diz "Mop Cloth".
+- **O QREVO CURV FOI GRAVADO COMO SERIE DE PROPOSITO.** O canal brasileiro
+  publica a pagina como "Qrevo Curv Series" e os 18.500 Pa sao declarados **a
+  serie**, nao a uma variante; gravar "Qrevo Curv" seco seria estreitar o que a
+  fonte declara largo. E a propria marca **separa** a Curv da CurvX no catalogo
+  de pecas — ha um pano para "Qrevo Curv Series and Qrevo Edge Series" e **outro**
+  para "Qrevo CurvX, Qrevo EdgeT" —, o que e a prova de que esta serie nao engole
+  a CurvX em silencio. Mesma forma do Q8 Max, cuja peca declara "Q8 Max Series".
+  **Ressalva de forma, dita em vez de escondida:** as duas passadas devolveram
+  este numero **em ingles** no dominio brasileiro; a pagina .br serve o texto
+  global nesse trecho, e o numero e o mesmo nas duas.
+- **A PRIMEIRA PASSADA DO QREVO MASTER VALE MAIS QUE UMA PASSADA NEUTRA.** A
+  consulta dizia "7000 Pa" e a fonte **devolveu 10.000, corrigindo o numero da
+  pergunta**. Isso e o oposto de eco, e e a prova mais forte que este canal
+  consegue dar. A segunda passada, sem numero nenhum na consulta, devolveu
+  10.000 de novo.
+- **O ACHADO DO BLOCO E UM DEFEITO LATENTE PRE-EXISTENTE, E QUEM O PEGOU FOI A
+  BANCADA.** `acentuar-banco.py` acentuava **UM LADO de uma chave de juncao**:
+  `publicador`, dentro de `fontes`, casa com o `nome` de `publicadores.json`, e
+  esse arquivo estava **fora** da lista `ARQUIVOS` do programa. Bastava uma
+  passada para "Electrolux (pagina institucional do produto)" ganhar acento no
+  banco e continuar sem acento do outro lado — e `validar-banco.py` passava a
+  **REPROVAR o banco inteiro**, por um publicador citado sem registro declarado.
+- **A PROVA DE QUE O DEFEITO NAO VEIO DESTA LEVA:** o programa foi rodado sobre
+  o `main` **intocado**, em worktree separada, e produziu exatamente a mesma
+  reprovacao. Ele estava armado desde antes desta execucao e disparava na
+  primeira vez que alguem rodasse o restaurador de acentos.
+- **QUEM ACUSOU FORAM `mutacoes-escada.py` E `mutacoes-artigo-do-publicador.py`,
+  AS DUAS REPROVANDO O MUNDO SADIO.** Nao foi o validador direto — esse aprovava,
+  porque o defeito so aparece **depois** de uma passada do acentuador. Foram as
+  duas mutacoes que **tem de PASSAR** (`m16_mundo_do_link_intacto` e "o mundo
+  intacto") que ficaram vermelhas. **Mutacao que exige o mundo sadio passando e
+  a unica que pega defeito de ferramenta**, e as duas ja estavam escritas: o
+  custo de ter mundo sadio na bateria se pagou hoje, num defeito que nenhuma
+  trava de conteudo procuraria.
+- **O CONSERTO, E A LICAO QUE NAO E SO DESTA ILHA:** `dados/publicadores.json`
+  entrou na lista do programa, com o porque escrito no proprio arquivo, e os dois
+  lados da juncao passaram a andar juntos — o publicador ficou "Electrolux
+  (**pagina** institucional do produto)" acentuado nos dois. **Quem reescreve
+  string tem de saber quais strings sao CHAVE. Chave se move nos dois lados no
+  mesmo commit, ou nao se move.**
+- **BANCADA, 0 falha:** casca 251, r1 227, a1 74, r2 107, a2 80, acentuacao 17,
+  arvore 219, voz 164, purga-cache 21, escada-compra 916, `validar-banco`
+  aprovado, e as **26 baterias de mutacao sem nenhum `ERRO`**, procurando na
+  saida INTEIRA de cada uma.
+- **NO AR:** Sync as 10h32Z, `/status` na **revisao 65** igual a do manifest.
+  `conferir-no-ar.py` **264** afirmacoes, `conferir-kits-no-ar.py` 165,
+  `conferir-reservatorio-no-ar.py` 50, `conferir-atribuicao-no-ar.py` 51 e
+  `conferir-canal-na-resposta.py` — todos 0 falha. E a consulta que o bloco
+  existe para responder foi lida no HTML servido: a R1 do **S8 MaxV Ultra**
+  devolve o pano com a fonte da loja oficial e a data de hoje, o seletor lista
+  os seis Roborock, e a vitrine de pelo serve o **Saros Z70 com 22.000 Pa** e a
+  ressalva do limite pratico junto.
+- **E O `<title>` DERIVADO SE REESCREVEU SOZINHO**, que e a prova de que a
+  Proposta 2 de 17/09 nao era decorativa: ele foi de "de 1.400 a 10.000 Pa" para
+  **"de 1.400 a 22.000 Pa"**, e a meta de "11 modelos" para **"17 modelos"**,
+  sem uma linha de codigo tocada. Numero que sai do banco envelhece junto com o
+  banco; numero digitado envelhece calado.
+- **A memoria da ilha NAO foi atualizada nesta execucao: o ambiente desta nuvem
+  nao tem a pasta `/areas/` montada**, entao `projeto-robometria.md` nao existe
+  para escrever. Fica dito em vez de descoberto depois — e o `PROMPT.md` desta
+  ilha ja previa o caso ("Sem memoria, nao pare: o estado esta em `ESTADO.md`,
+  `REGISTRO.md` e `README.md`"), que e onde este resumo esta.
+- **Proximo passo desbloqueado: NENHUM BLOCO DE EXPANSAO, E ISSO E ORDEM
+  ESCRITA.** Com o item 2 fechado, os itens 1, 2, 4 e 5 da DEFINICAO DE PRONTA
+  estao fechados e **o unico que sobra e o item 3, marcado [RAPHAEL]** — nenhuma
+  execucao da Fundacao consegue fecha-lo, e o placar deve dizer "esperando o
+  Raphael", nunca "faltando". **A Fundacao NAO declara a ilha PRONTA sozinha**:
+  a DEFINICAO manda declarar quando os CINCO estiverem fechados, e o quinto nao
+  e dela. E o despacho do Raphael de 18/09 fecha a porta do resto com todas as
+  letras: **depois de pronta a ilha nao recebe investimento novo**, nada de
+  expansao de malha, leva nova de modelos ou bloco de conteudo **sem que a serie
+  de indexacao mostre impressao em dois digitos**. Se uma execucao futura propuser
+  "mais paginas de peca para crescer", a resposta ja esta medida em
+  `bussola/medicoes/volume-absoluto-2026-09-18.md`: nao tem quem procure.
