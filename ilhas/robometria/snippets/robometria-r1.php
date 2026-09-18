@@ -162,7 +162,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.10.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.11.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -928,16 +928,35 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		$por_peca[ $i['peca'] ]['tipos'][] = $i['tipo'];
 	}
 
-	/* Quantas destas peças ainda não têm link de loja. Contado no que está na
-	   tela agora, não no banco inteiro: a frase fala do que o visitante está
-	   vendo. */
-	$sem_link = 0;
-	foreach ( $por_peca as $i ) {
-		if ( empty( $i['afiliado']['url'] ) ) {
-			$sem_link++;
+	/* O QUE ESTAS PEÇAS TÊM DE PORTA DE COMPRA. Contado no que está na tela
+	   agora, não no banco inteiro: a frase fala do que o visitante está vendo.
+
+	   ATÉ 18/09/2026 ESTA CONTA OLHAVA `afiliado.url` — a FICHA — e chamava de
+	   "sem link de loja" todo item que não tivesse ficha. Só que o botão vem da
+	   escada da 25.2, cujo piso é a BUSCA, e a busca estava lá: em 66 dos 95
+	   itens publicáveis a página negava um botão que ela mesma servia logo
+	   abaixo, com link de afiliado vivo. Item 3 do despacho da Sentinela de
+	   18/09/2026, medido no HTML servido em duas entradas reais.
+
+	   Agora quem decide é a MESMA função que monta o botão. São duas contas
+	   diferentes porque são dois fatos diferentes, e misturá-los foi o defeito:
+	   `$sem_porta` é ausência de botão (defeito da 25.2, que o banco não produz)
+	   e `$so_busca` é botão que abre a busca da loja em vez da ficha do produto
+	   — que não é ausência nenhuma, e o leitor merece saber qual dos dois é. */
+	$total_pecas = count( $por_peca );
+	$sabe_a_porta = function_exists( 'robometria_casca_degrau_da_porta' );
+	$sem_porta    = 0;
+	$so_busca     = 0;
+	if ( $sabe_a_porta ) {
+		foreach ( $por_peca as $i ) {
+			$degrau = robometria_casca_degrau_da_porta( $i );
+			if ( 'sem_saida' === $degrau ) {
+				$sem_porta++;
+			} elseif ( 'ficha' !== $degrau ) {
+				$so_busca++;
+			}
 		}
 	}
-	$total_pecas = count( $por_peca );
 
 	$html  = '<div class="rbm-secao rbm-compra"><h3>Onde comprar estas peças</h3>';
 
@@ -953,24 +972,43 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
 			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
 
-	if ( $sem_link > 0 ) {
+	if ( $sem_porta > 0 ) {
 		/* Três moldes, porque "3 destas 3 peças" é o tipo de frase que só nasce
 		   de contador solto e denuncia texto montado por máquina. */
-		if ( $sem_link === $total_pecas ) {
+		if ( $sem_porta === $total_pecas ) {
 			$quantas = sprintf(
 				1 === $total_pecas
 					? 'Esta peça ainda não tem link de loja'
 					: 'Nenhuma destas %d peças tem link de loja ainda',
 				$total_pecas
 			);
-		} elseif ( 1 === $sem_link ) {
+		} elseif ( 1 === $sem_porta ) {
 			$quantas = sprintf( 'Uma destas %d peças ainda não tem link de loja', $total_pecas );
 		} else {
-			$quantas = sprintf( '%d destas %d peças ainda não têm link de loja', $sem_link, $total_pecas );
+			$quantas = sprintf( '%d destas %d peças ainda não têm link de loja', $sem_porta, $total_pecas );
 		}
 
 		$html .= '<p class="rbm-nota">' . esc_html( $quantas )
 			. esc_html( ', e o cartão diz isso em vez de fazer o bloco sumir. Enquanto o link não existe, o endereço da declaração continua aqui — embaixo de cada cartão, como "fonte", para você conferir.' )
+			. '</p>';
+	}
+
+	/* A FRASE QUE SUBSTITUI A FALSA, e ela diz o que é verdade: o botão existe e
+	   abre a BUSCA da loja, não a ficha daquela peça. É informação de compra —
+	   quem vai clicar sabe se cai numa página de produto ou numa vitrine filtrada
+	   — e é o contrário de uma promessa, que é o que a seção 7 proíbe. */
+	if ( $so_busca > 0 ) {
+		if ( $so_busca === $total_pecas ) {
+			$busca_frase = ( 1 === $total_pecas )
+				? 'O botão desta peça abre a busca da loja, já filtrada, e não a ficha de um produto'
+				: sprintf( 'Os botões destas %d peças abrem a busca da loja, já filtrada, e não a ficha de um produto', $total_pecas );
+		} elseif ( 1 === $so_busca ) {
+			$busca_frase = sprintf( 'Uma destas %d peças abre a busca da loja, já filtrada, em vez da ficha de um produto', $total_pecas );
+		} else {
+			$busca_frase = sprintf( '%d destas %d peças abrem a busca da loja, já filtrada, em vez da ficha de um produto', $so_busca, $total_pecas );
+		}
+		$html .= '<p class="rbm-nota">' . esc_html( $busca_frase )
+			. esc_html( '. A busca não esgota e não sai do ar, e é por isso que ela é o piso: preferimos a vitrine certa a um link de produto que morre em doze horas.' )
 			. '</p>';
 	}
 

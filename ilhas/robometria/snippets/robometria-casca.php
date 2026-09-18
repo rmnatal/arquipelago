@@ -225,7 +225,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.10.1' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.11.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -1533,6 +1533,59 @@ function robometria_casca_rotulo_da_loja( $programa ) {
  * cada item está escrita no banco desde 13/09; o que depende da sessão do painel
  * da Shopee é só o ENCURTAMENTO (25.6). A escada abaixo desce até ela.
  */
+/**
+ * QUAL DEGRAU O BOTÃO DESTE ITEM VAI SERVIR — e esta é a ÚNICA função que decide.
+ *
+ * ---------------------------------------------------------------------------
+ * 18/09/2026 — NASCEU FECHANDO O ITEM 3 DO DESPACHO DA SENTINELA DAQUELE DIA
+ * ---------------------------------------------------------------------------
+ * A R1 e a R2 contavam "quantos ainda não têm link de loja" cada uma por conta
+ * própria, e as duas contavam olhando `afiliado.url` — a FICHA. Só que desde a
+ * 25.2 a porta de compra é o PISO (`url_busca`), e o botão vinha da escada logo
+ * abaixo. Resultado medido no HTML servido em 18/09: a R1 imprimia "Nenhuma
+ * destas 2 peças tem link de loja ainda" e servia, dois centímetros abaixo, dois
+ * botões "Ver ofertas na Shopee" com link de afiliado vivo; a R2 dizia "6 destes
+ * modelos ainda não têm link de loja" e servia nove botões. Em 66 dos 95 itens
+ * publicáveis a frase era falsa — a página negando um botão que ela mesma estava
+ * mostrando, que é pior do que a promessa "link de loja em breve" que a seção 7
+ * já proíbe.
+ *
+ * A causa não era o texto: eram DUAS METADES CONTANDO A MESMA COISA SEM NUNCA SE
+ * FALAREM, a mesma família que a 25.7 nomeia no painel da foto. O conserto é o
+ * mesmo: uma função decide o degrau, e todo mundo — o botão e as frases — pergunta
+ * a ela. Quem mudar a escada muda um lugar só, e nenhuma frase fica para trás.
+ *
+ * Devolve: 'ficha' | 'busca' | 'busca_crua' | 'sem_saida'.
+ */
+if ( ! function_exists( 'robometria_casca_degrau_da_porta' ) ) {
+function robometria_casca_degrau_da_porta( $item ) {
+	$a = isset( $item['afiliado'] ) ? $item['afiliado'] : array();
+	if ( '' !== ( isset( $a['url'] ) ? trim( (string) $a['url'] ) : '' ) ) {
+		return 'ficha';
+	}
+	if ( '' !== ( isset( $a['url_busca'] ) ? trim( (string) $a['url_busca'] ) : '' ) ) {
+		return 'busca';
+	}
+	if ( '' !== ( isset( $a['url_busca_cru'] ) ? trim( (string) $a['url_busca_cru'] ) : '' ) ) {
+		return 'busca_crua';
+	}
+	return 'sem_saida';
+}
+}
+
+/**
+ * O ITEM SERVE BOTÃO DE COMPRA? Uma linha, e ela é a que as frases têm de usar.
+ *
+ * Existe separada do degrau porque a pergunta das frases não é "qual degrau" e sim
+ * "há ou não há porta" — e escrever essa comparação em cada chamador seria recriar,
+ * em cada tela, a divergência que o item 3 do despacho de 18/09/2026 mediu.
+ */
+if ( ! function_exists( 'robometria_casca_tem_porta_de_compra' ) ) {
+function robometria_casca_tem_porta_de_compra( $item ) {
+	return 'sem_saida' !== robometria_casca_degrau_da_porta( $item );
+}
+}
+
 if ( ! function_exists( 'robometria_casca_porta_de_compra' ) ) {
 function robometria_casca_porta_de_compra( $item ) {
 	$a     = isset( $item['afiliado'] ) ? $item['afiliado'] : array();
@@ -1540,7 +1593,9 @@ function robometria_casca_porta_de_compra( $item ) {
 	$busca = isset( $a['url_busca'] ) ? trim( (string) $a['url_busca'] ) : '';
 	$cru   = isset( $a['url_busca_cru'] ) ? trim( (string) $a['url_busca_cru'] ) : '';
 
-	/* A ESCADA DA 25.1 DESCE AQUI, e para no PRIMEIRO degrau que servir. */
+	/* A ESCADA DA 25.1 DESCE AQUI, e para no PRIMEIRO degrau que servir. O degrau
+	   é decidido por `robometria_casca_degrau_da_porta()` e os ramos abaixo estão
+	   na MESMA ordem, de propósito: quem mudar um muda o outro na mesma tela. */
 	if ( '' !== $ficha ) {
 		return robometria_casca_botao_de_compra( $ficha, 'Ver ' . robometria_casca_rotulo_da_loja(
 			isset( $a['programa'] ) ? $a['programa'] : null ), true, '' );

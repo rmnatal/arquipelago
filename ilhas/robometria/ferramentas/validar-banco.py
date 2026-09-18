@@ -189,6 +189,41 @@ for _d in ESCADA.get("degraus", []):
 # As duas entidades que geram busca. A lista mora aqui porque quem confere escreve a
 # propria regua; o que ela cobra e que o ESQUEMA declare termo para cada uma, e nao
 # o contrario.
+# ------------------------------------------ A TRAVA DA 25.2-b: TENTADO != AUSENTE
+#
+# NASCEU EM 18/09/2026, fechando o item 2 do despacho da Sentinela do mesmo dia. A
+# regra de piso que ja existia aqui cobrava DUAS coisas: `url_busca` encurtada, ou
+# um `motivo_sem_url_busca` escrito. E o gerador do banco PREENCHE o motivo sozinho
+# quando o link falta — entao a segunda condicao aprovava sempre, e a porta ficou
+# escancarada: em 16/09 o banco tinha 73 publicaveis e ZERO sem piso rastreavel; em
+# 18/09 tinha 95 e 22 sem, sem ninguem quebrar nada. Cada leva nova entrou por essa
+# porta, e a conta subiu sozinha com o banco verde.
+#
+# A 25.2-b nomeia a distincao que faltava: **ausente e diferente de tentado-e-
+# falhou**. Motivo auto-preenchido diz "nao tem link"; nao diz "a API foi chamada e
+# nao devolveu nada". A prova da TENTATIVA mora em `dados/palavras-chave-medidas.json`,
+# que e o registro do que a Open API respondeu, por registro, com a data — e por isso
+# a trava le esse arquivo em vez de inventar campo novo: campo novo seria mais uma
+# coisa que o gerador poderia preencher sozinho.
+#
+# O que ela cobra, e so isso: registro publicavel SEM `url_busca` que NAO aparece na
+# medicao nunca foi tentado. Registro que aparece na medicao e continua sem link foi
+# tentado e a API nao serviu — isso e medicao honesta e passa com aviso, que e
+# exatamente o caso legitimo que a 25.2-b preserva ("a API nao devolve anuncio para
+# aquele item: publique").
+MEDICAO_DE_PALAVRAS = "palavras-chave-medidas.json"
+try:
+    _medicao = carregar(MEDICAO_DE_PALAVRAS)
+    TENTOU_ENCURTAR = {r.get("id") for r in _medicao.get("registros", [])}
+    DATA_DA_MEDICAO = _medicao.get("gerado_em")
+except FileNotFoundError:
+    TENTOU_ENCURTAR = set()
+    DATA_DA_MEDICAO = None
+    erro("dados/%s nao existe. Sem ela nenhum registro consegue provar que o "
+         "encurtamento foi TENTADO, e a trava da 25.2-b aprovaria tudo ou reprovaria "
+         "tudo — as duas erradas. Rode ferramentas/medir-palavras-chave.py "
+         "--gravar --encurtar" % MEDICAO_DE_PALAVRAS)
+
 ENTIDADE_DO_ARQUIVO = {"modelos-robo.json": "modelo_robo", "pecas.json": "peca"}
 for _arq, _ent in ENTIDADE_DO_ARQUIVO.items():
     if not (TERMOS_DE_CONTEXTO.get(_ent) or "").strip():
@@ -492,6 +527,21 @@ def checar_escada_de_compra(reg, onde, arquivo):
     if tem_busca_encurtada and motivo_busca:
         erro("%s: tem url_busca E motivo_sem_url_busca. O motivo explica uma ausencia "
              "que nao existe mais" % onde)
+    # A TRAVA DA 25.2-b. O motivo escrito acima nao prova tentativa nenhuma: quem o
+    # escreve e o gerador, sozinho. Quem prova e a medicao.
+    if publicavel and not tem_busca_encurtada:
+        if reg.get("id") not in TENTOU_ENCURTAR:
+            erro("%s: publicavel sem afiliado.url_busca e SEM tentativa de "
+                 "encurtamento registrada em dados/%s. A 25.2-b e explicita: registro "
+                 "publicavel nao entra sem que o encurtamento tenha sido TENTADO pela "
+                 "API do programa, e ausente e diferente de tentado-e-falhou. Link cru "
+                 "nao rende comissao e so e legitimo quando a API nao devolveu anuncio "
+                 "— e isso se prova chamando. Rode ferramentas/medir-palavras-chave.py "
+                 "--gravar --encurtar" % (onde, MEDICAO_DE_PALAVRAS))
+        else:
+            aviso("%s: publicavel com piso CRU (sem url_busca), tentado em %s e a API "
+                  "nao serviu. E o unico caso que a 25.2-b aceita, e ele nao rende "
+                  "comissao" % (onde, DATA_DA_MEDICAO))
 
     tem_ficha = bool(a.get("url"))
     degrau = a.get("degrau")

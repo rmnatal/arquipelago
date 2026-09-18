@@ -138,7 +138,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.8.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.9.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -898,13 +898,29 @@ function robometria_r2_vitrine( $itens, $s ) {
 		return '';
 	}
 
-	$sem_link = 0;
-	foreach ( $itens as $i ) {
-		if ( empty( $i['modelo']['afiliado']['url'] ) ) {
-			$sem_link++;
+	/* O QUE ESTES MODELOS TÊM DE PORTA DE COMPRA, e quem decide é a MESMA função
+	   que monta o botão.
+
+	   ATÉ 18/09/2026 A CONTA OLHAVA `afiliado.url` — a FICHA — e a frase dizia
+	   "6 destes modelos ainda não têm link de loja" numa tela que servia NOVE
+	   botões de compra. Item 3 do despacho da Sentinela de 18/09/2026, medido no
+	   HTML servido de `?piso=tapete&pelo=sim&m2=80`. A causa está escrita por
+	   inteiro em `robometria_casca_degrau_da_porta()`: duas metades contando a
+	   mesma coisa sem nunca se falarem. */
+	$total        = count( $itens );
+	$sabe_a_porta = function_exists( 'robometria_casca_degrau_da_porta' );
+	$sem_porta    = 0;
+	$so_busca     = 0;
+	if ( $sabe_a_porta ) {
+		foreach ( $itens as $i ) {
+			$degrau = robometria_casca_degrau_da_porta( $i['modelo'] );
+			if ( 'sem_saida' === $degrau ) {
+				$sem_porta++;
+			} elseif ( 'ficha' !== $degrau ) {
+				$so_busca++;
+			}
 		}
 	}
-	$total = count( $itens );
 
 	$html = '<div class="rbm-secao rbm-compra"><h3>Onde comprar estes robôs</h3>';
 
@@ -915,22 +931,40 @@ function robometria_r2_vitrine( $itens, $s ) {
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
 			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
 
-	if ( $sem_link > 0 ) {
+	if ( $sem_porta > 0 ) {
 		/* Três moldes, porque "3 destes 3 modelos" é o tipo de frase que só nasce
 		   de contador solto e denuncia texto montado por máquina. */
-		if ( $sem_link === $total ) {
+		if ( $sem_porta === $total ) {
 			$quantas = ( 1 === $total )
 				? 'Este modelo ainda não tem link de loja'
 				: 'Nenhum destes modelos tem link de loja ainda';
 		} else {
 			$quantas = sprintf(
-				( 1 === $sem_link ) ? 'Um destes modelos ainda não tem link de loja'
+				( 1 === $sem_porta ) ? 'Um destes modelos ainda não tem link de loja'
 					: '%s destes modelos ainda não têm link de loja',
-				robometria_r2_n( $sem_link )
+				robometria_r2_n( $sem_porta )
 			);
 		}
 		$html .= '<p class="rbm-nota">' . esc_html( $quantas )
 			. '. O lugar fica reservado assim mesmo: esconder o bloco enquanto o link não chega devolveria ao link de procedência o papel de única porta clicável da página, e é justamente esse o defeito que não repetimos.</p>';
+	}
+
+	/* A FRASE VERDADEIRA NO LUGAR DA FALSA: o botão existe e abre a BUSCA da loja,
+	   não a ficha daquele robô. Quem vai clicar sabe onde cai. */
+	if ( $so_busca > 0 ) {
+		if ( $so_busca === $total ) {
+			$busca_frase = ( 1 === $total )
+				? 'O botão deste modelo abre a busca da loja, já filtrada, e não a ficha de um produto'
+				: 'Os botões destes modelos abrem a busca da loja, já filtrada, e não a ficha de um produto';
+		} else {
+			$busca_frase = sprintf(
+				( 1 === $so_busca ) ? 'Um destes modelos abre a busca da loja, já filtrada, em vez da ficha de um produto'
+					: '%s destes modelos abrem a busca da loja, já filtrada, em vez da ficha de um produto',
+				robometria_r2_n( $so_busca )
+			);
+		}
+		$html .= '<p class="rbm-nota">' . esc_html( $busca_frase )
+			. '. A busca não esgota e não sai do ar, e é por isso que ela é o piso: preferimos a vitrine certa a um link de produto que morre em doze horas.</p>';
 	}
 
 	$html .= '<ul class="rbm-vitrine">';

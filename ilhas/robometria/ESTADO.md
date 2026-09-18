@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-18T13:45Z
-executando_desde: 2026-09-18T16:16Z
+executando_desde: 2026-09-18T16:35Z
 bloco_atual: |
   DESPACHO DO RAPHAEL DE 18/09 (segunda ordem do dia) FECHADO INTEIRO, pela 18.2 — as duas partes na mesma execucao. Manifest na revisao 66, /status em 66, casca sem mudanca. ZERO URL nova, ZERO URL mudada de endereco.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. executando_desde estava null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo. Reserva aceita de primeira as 13h18Z. Rede pela 20.2 antes de trabalhar: home 200 e /status na revisao 65, igual a do manifest. As 84 branches claude/* do remoto NAO tem base comum com o main (git merge-base vazio) — sao de uma historia anterior a reconstrucao do main, nao trabalho pendente; zero PR aberto.

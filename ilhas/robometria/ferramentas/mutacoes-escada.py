@@ -419,6 +419,53 @@ def m22_chave_estreitada_sem_medicao(base):
     _gravar_json(base, PECAS, d)
 
 
+def _leva_nova_sem_encurtar(base, tirar_da_medicao):
+    """O MUNDO QUE ABRIU O BURACO DO ITEM 2, fabricado em vez de esperado.
+
+    Uma leva nova chega ao banco, o gerador roda e preenche o `motivo_sem_url_busca`
+    sozinho, e ninguem chamou a API para encurtar nada. Era assim que os 22 de 18/09
+    entraram: entre 16/09 e 18/09 o banco foi de 73 publicaveis para 95 e a conta de
+    piso cru foi de 0 para 22, com todos os portoes verdes.
+
+    `tirar_da_medicao` e a diferenca inteira da 25.2-b. Com True o registro some da
+    medicao: ninguem TENTOU, e a trava nova tem de reprovar. Com False ele fica na
+    medicao sem link curto: a API foi chamada e nao serviu, que e o unico caso que a
+    25.2-b aceita — e ai o validador tem de PASSAR, com aviso.
+    """
+    d = _ler_json(base, MODELOS)
+    a = _registro(d, ALVO_MODELO)['afiliado']
+    a['url_busca'] = ''
+    a['motivo_sem_url_busca'] = ('sem link curto: a medicao de palavra-chave '
+                                 '(dados/palavras-chave-medidas.json) nao cobre este '
+                                 'registro')
+    _refazer_contagem(d)
+    _gravar_json(base, MODELOS, d)
+    if tirar_da_medicao:
+        m = _ler_json(base, MEDICAO)
+        antes = len(m['registros'])
+        m['registros'] = [r for r in m['registros'] if r['id'] != ALVO_MODELO]
+        if len(m['registros']) == antes:
+            raise AssertionError('%s ja nao estava na medicao — inerte' % ALVO_MODELO)
+        _gravar_json(base, MEDICAO, m)
+
+
+def m23_leva_nova_nunca_tentou_encurtar(base):
+    """A TRAVA DA 25.2-b, na direcao que custa dinheiro. O registro publicavel fica
+    com piso CRU, motivo escrito pelo gerador, e nenhuma tentativa de encurtamento
+    registrada. O motivo auto-preenchido era a porta: ele diz "nao tem link" e nunca
+    disse "a API foi chamada e nao devolveu nada"."""
+    _leva_nova_sem_encurtar(base, tirar_da_medicao=True)
+
+
+def m24_tentou_e_a_api_nao_serviu(base):
+    """A OUTRA DIRECAO, e ela e metade da regra: o mesmo piso cru, com a tentativa
+    registrada. A 25.2-b diz, com todas as letras, que neste caso se PUBLICA — omitir
+    a peca que nao da comissao faz a ferramenta de compatibilidade mentir. Trava que
+    reprovasse este mundo empurraria a ilha a esconder peca por dinheiro, que e o
+    oposto do que a secao decidiu."""
+    _leva_nova_sem_encurtar(base, tirar_da_medicao=False)
+
+
 # ------------------- AS QUATRO DO DESPACHO DO RAPHAEL DE 14/09/2026 (itens 2 e 3)
 def m17_piso_sem_degrau(base):
     """O ESTADO EM QUE A ILHA INTEIRA ESTAVA ATE HOJE, e e por isso que ele vale como
@@ -532,6 +579,12 @@ MUTACOES = [
     ('MUNDO NOVO: primeiro link da ilha, intestavel, e o campo diz que nao',
      'a impossibilidade de conferir da 25.4-b ficaria escondida, que e o que o item 3 proibe',
      m20_intestavel_mente, 'validar', 'intestavel'),
+    ('MUNDO NOVO: leva nova entra sem NUNCA ter tentado encurtar',
+     'o motivo auto-preenchido era a porta por onde 22 registros entraram em dois dias',
+     m23_leva_nova_nunca_tentou_encurtar, 'validar', 'TENTADO'),
+    ('MUNDO NOVO: tentou encurtar e a API nao serviu — esta TEM de passar',
+     'a 25.2-b manda PUBLICAR o item sem comissao: esconder peca por dinheiro e mentir',
+     m24_tentou_e_a_api_nao_serviu, None, None),
 
     # AS MESMAS TRES MUTACOES, CONTRA O OUTRO PORTAO — e isto nao e repeticao.
     # teste-escada-compra.py escreve a propria regua e nao le o esquema; o validador

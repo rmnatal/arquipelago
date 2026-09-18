@@ -3,7 +3,7 @@
  "ilha": "robometria",
  "entidade": "MEDICAO",
  "publicar": false,
- "gerado_em": "2026-09-16",
+ "gerado_em": "2026-09-18",
  "gerado_por": "ferramentas/medir-palavras-chave.py",
  "fonte_da_medicao": "Open API de Afiliados da Shopee (productOfferV2), secao 25.6 do ARQUIPELAGO.md",
  "nota_de_universo": "A API de afiliado e o catalogo de OFERTAS do programa, e nao a busca do site que o leitor ve. As duas discordam e a discordancia foi medida em 16/09/2026: `WAP escova lateral robo aspirador` devolve zero na busca do site (medida pela Sentinela no Chrome do Raphael) e dez aqui. A busca do site NAO e mensuravel desta nuvem — `/api/v4/search/search_items` devolve `error 90309999, redirect_to_error_page` e a pagina de busca serve casca de JavaScript identica byte a byte para palavras diferentes. Entao esta medicao prova o que prova: que a chave existe no catalogo que PAGA comissao. Chave com zero AQUI e pior que chave com zero la.",
@@ -30,12 +30,12 @@
   }
  ],
  "contagem": {
-  "palavras_chave_distintas_de_peca": 20,
-  "com_resultado": 20,
-  "com_a_peca_no_topo": 7,
-  "criterio_literal_do_despacho": 16,
-  "registros_de_peca": 35,
-  "registros_medidos": 73
+  "palavras_chave_distintas_de_peca": 22,
+  "com_resultado": 22,
+  "com_a_peca_no_topo": 8,
+  "criterio_literal_do_despacho": 19,
+  "registros_de_peca": 50,
+  "registros_medidos": 95
  },
  "registros": [
   {
@@ -440,40 +440,40 @@
      "degrau": 4,
      "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
      "chave": "Electrolux ERB60 escova robo aspirador",
-     "resultados": 0,
-     "titulo_do_topo": null,
+     "resultados": 5,
+     "titulo_do_topo": "MOTOR ESCOVA GIRATORIA PARA ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30257901",
      "topo_e_a_peca": false,
-     "por_que": "a busca devolveu zero resultado",
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
     },
     {
      "degrau": 4,
      "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
      "chave": "Electrolux ERB61 escova robo aspirador",
-     "resultados": 0,
-     "titulo_do_topo": null,
+     "resultados": 5,
+     "titulo_do_topo": "ESCOVA LATERAL DIREITA DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
      "topo_e_a_peca": false,
-     "por_que": "a busca devolveu zero resultado",
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
     },
     {
      "degrau": 4,
      "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
      "chave": "Electrolux ERB62 escova robo aspirador",
-     "resultados": 0,
-     "titulo_do_topo": null,
+     "resultados": 5,
+     "titulo_do_topo": "ESCOVA LATERAL DIREITA DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
      "topo_e_a_peca": false,
-     "por_que": "a busca devolveu zero resultado",
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
     },
     {
      "degrau": 4,
      "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
      "chave": "Electrolux ERB80 escova robo aspirador",
-     "resultados": 0,
-     "titulo_do_topo": null,
+     "resultados": 5,
+     "titulo_do_topo": "ESCOVA LATERAL DIREITA DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
      "topo_e_a_peca": false,
-     "por_que": "a busca devolveu zero resultado",
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
     },
     {
@@ -564,7 +564,7 @@
     "composicao": "marca + tipo + contexto",
     "chave": "Positivo escova lateral robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra2000 Smart",
+    "titulo_do_topo": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra800 Smart",
     "topo_e_a_peca": true,
     "por_que": "a marca e o tipo estao no topo",
     "criterio_literal_do_despacho": true,
@@ -578,7 +578,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "Positivo escova lateral robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra2000 Smart",
+     "titulo_do_topo": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra800 Smart",
      "topo_e_a_peca": true,
      "por_que": "a marca e o tipo estao no topo",
      "criterio_literal_do_despacho": true,
@@ -779,7 +779,7 @@
     "composicao": "marca + tipo + contexto",
     "chave": "Xiaomi escova principal robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
     "criterio_literal_do_despacho": true,
@@ -793,7 +793,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "Xiaomi escova principal robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": true,
@@ -812,7 +812,7 @@
     "composicao": "marca + tipo + contexto",
     "chave": "Xiaomi filtro robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Acessórios de Reposição para Robô Aspirador Xiaomi S10+: Pincéis, Filtro HEPA e Panos de Limpeza",
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
     "criterio_literal_do_despacho": true,
@@ -826,7 +826,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "Xiaomi filtro robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Acessórios de Reposição para Robô Aspirador Xiaomi S10+: Pincéis, Filtro HEPA e Panos de Limpeza",
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": true,
@@ -911,116 +911,26 @@
     "composicao": "marca + tipo + contexto",
     "chave": "Xiaomi escova lateral robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
-    "criterio_literal_do_despacho": false,
+    "criterio_literal_do_despacho": true,
     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
     "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx"
    },
-   "parou_por": "nenhum degrau passa em criterio nenhum; ficou o primeiro com resultado",
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + tipo + contexto",
      "chave": "Xiaomi escova lateral robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false,
+     "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx"
-    },
-    {
-     "degrau": 2,
-     "composicao": "marca + batismo do fabricante + contexto",
-     "chave": "Xiaomi Robot Vacuum S20 Side Brush robo aspirador",
-     "resultados": 0,
-     "titulo_do_topo": null,
-     "topo_e_a_peca": false,
-     "por_que": "a busca devolveu zero resultado",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 3,
-     "composicao": "marca + codigo da peca + substantivo do tipo + contexto",
-     "chave": "Xiaomi B106GL-BX escova robo aspirador",
-     "resultados": 0,
-     "titulo_do_topo": null,
-     "topo_e_a_peca": false,
-     "por_que": "a busca devolveu zero resultado",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi S20 escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": " Para o robô aspirador de pó Xiaomi S20 / D106, peças de reposição como escova de rolo, escova de borda, filtro e pano",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi S10 escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi E10 escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": " Peças compatíveis com o robô aspirador Xiaomi E10 E10C E12 B112/Mijia 3C Plus C103: escova principal, escovas laterais,",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi S12 escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": "Escova Central de Reposição para Robô Aspirador Compatível com S40C S10 S12",
-     "topo_e_a_peca": false,
-     "por_que": "a marca nao aparece no titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi E12 escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": " Peças compatíveis com o robô aspirador Xiaomi E10 E10C E12 B112/Mijia 3C Plus C103: escova principal, escovas laterais,",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi X20 escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": "Kit de Peças de Reposição para Robô Aspirador Compatível com Xiaomi X20+ X20 Plus: escovas principais e laterais, filtro",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 5,
-     "composicao": "marca + contexto",
-     "chave": "Xiaomi robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": "Kit com 2 Sacos de Pó para aspirador Robo Xiaomi X20",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false
     }
    ]
   },
@@ -1034,86 +944,26 @@
     "composicao": "marca + tipo + contexto",
     "chave": "Xiaomi escova lateral robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
-    "criterio_literal_do_despacho": false,
+    "criterio_literal_do_despacho": true,
     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
     "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx"
    },
-   "parou_por": "nenhum degrau passa em criterio nenhum; ficou o primeiro com resultado",
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + tipo + contexto",
      "chave": "Xiaomi escova lateral robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false,
+     "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx"
-    },
-    {
-     "degrau": 2,
-     "composicao": "marca + batismo do fabricante + contexto",
-     "chave": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush robo aspirador",
-     "resultados": 0,
-     "titulo_do_topo": null,
-     "topo_e_a_peca": false,
-     "por_que": "a busca devolveu zero resultado",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 3,
-     "composicao": "marca + codigo da peca + substantivo do tipo + contexto",
-     "chave": "Xiaomi OV81GL-BS escova robo aspirador",
-     "resultados": 0,
-     "titulo_do_topo": null,
-     "topo_e_a_peca": false,
-     "por_que": "a busca devolveu zero resultado",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi H40 escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": "Kit 2 Escovas Laterais para Robô Aspirador Compatível com S40 H40 S40 Pro 5 5 Pro",
-     "topo_e_a_peca": false,
-     "por_que": "a marca nao aparece no titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi S40 escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": " Kit de peças de reposição para Robô Aspirador XIAOMI S40: escova principal, escovas laterais, filtros e acessórios de",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 4,
-     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
-     "chave": "Xiaomi S40 Pro escova robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": "Kit 2 Escovas Laterais para Robô Aspirador Compatível com S40 H40 S40 Pro 5 5 Pro",
-     "topo_e_a_peca": false,
-     "por_que": "a marca nao aparece no titulo",
-     "criterio_literal_do_despacho": false
-    },
-    {
-     "degrau": 5,
-     "composicao": "marca + contexto",
-     "chave": "Xiaomi robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": "Kit com 2 Sacos de Pó para aspirador Robo Xiaomi X20",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
-     "criterio_literal_do_despacho": false
     }
    ]
   },
@@ -1160,7 +1010,7 @@
     "composicao": "marca + tipo + contexto",
     "chave": "Xiaomi escova principal robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
     "criterio_literal_do_despacho": true,
@@ -1174,7 +1024,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "Xiaomi escova principal robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": true,
@@ -1207,7 +1057,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "WAP escova lateral robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "KIT 2 Escovas Laterais 1 Filtro e 1 Pano Mop V2 Originais para Robô Aspirador Wap W310",
+     "titulo_do_topo": "KIT 4 Escovas Laterais Originais p/ Robô Aspirador WAP W310",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
@@ -1235,7 +1085,7 @@
     "degrau": 2,
     "composicao": "marca + batismo do fabricante + contexto",
     "chave": "WAP Escova Esquerda robo aspirador",
-    "resultados": 10,
+    "resultados": 5,
     "titulo_do_topo": "Motor da Escova Esquerda Para Robô Mondial RB01 Multilaser HO041 Wap W100",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
@@ -1250,7 +1100,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "WAP escova lateral robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "KIT 2 Escovas Laterais 1 Filtro e 1 Pano Mop V2 Originais para Robô Aspirador Wap W310",
+     "titulo_do_topo": "KIT 4 Escovas Laterais Originais p/ Robô Aspirador WAP W310",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
@@ -1259,7 +1109,7 @@
      "degrau": 2,
      "composicao": "marca + batismo do fabricante + contexto",
      "chave": "WAP Escova Esquerda robo aspirador",
-     "resultados": 10,
+     "resultados": 5,
      "titulo_do_topo": "Motor da Escova Esquerda Para Robô Mondial RB01 Multilaser HO041 Wap W100",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
@@ -1336,7 +1186,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "WAP escova lateral robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "KIT 2 Escovas Laterais 1 Filtro e 1 Pano Mop V2 Originais para Robô Aspirador Wap W310",
+     "titulo_do_topo": "KIT 4 Escovas Laterais Originais p/ Robô Aspirador WAP W310",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
@@ -1365,23 +1215,23 @@
     "composicao": "marca + tipo + contexto",
     "chave": "WAP reservatorio robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
-    "topo_e_a_peca": true,
-    "por_que": "a marca e o tipo estao no topo",
+    "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
     "criterio_literal_do_despacho": true,
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
    },
-   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + tipo + contexto",
      "chave": "WAP reservatorio robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
-     "topo_e_a_peca": true,
-     "por_que": "a marca e o tipo estao no topo",
+     "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/9AOferfjPW"
@@ -1398,23 +1248,23 @@
     "composicao": "marca + tipo + contexto",
     "chave": "WAP reservatorio robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
-    "topo_e_a_peca": true,
-    "por_que": "a marca e o tipo estao no topo",
+    "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
     "criterio_literal_do_despacho": true,
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
    },
-   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + tipo + contexto",
      "chave": "WAP reservatorio robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
-     "topo_e_a_peca": true,
-     "por_que": "a marca e o tipo estao no topo",
+     "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/9AOferfjPW"
@@ -1431,23 +1281,23 @@
     "composicao": "marca + tipo + contexto",
     "chave": "WAP reservatorio robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
-    "topo_e_a_peca": true,
-    "por_que": "a marca e o tipo estao no topo",
+    "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
     "criterio_literal_do_despacho": true,
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
    },
-   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + tipo + contexto",
      "chave": "WAP reservatorio robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
-     "topo_e_a_peca": true,
-     "por_que": "a marca e o tipo estao no topo",
+     "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/9AOferfjPW"
@@ -1464,7 +1314,7 @@
     "composicao": "marca + tipo + contexto",
     "chave": "Xiaomi escova principal robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
     "criterio_literal_do_despacho": true,
@@ -1478,7 +1328,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "Xiaomi escova principal robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Kit de Reposição para Xiaomi S10+ Robô Aspirador: Escova Principal, Escovas Laterais, Filtro HEPA e Panos de Mop",
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": true,
@@ -1497,7 +1347,7 @@
     "composicao": "marca + tipo + contexto",
     "chave": "Xiaomi filtro robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Acessórios de Reposição para Robô Aspirador Xiaomi S10+: Pincéis, Filtro HEPA e Panos de Limpeza",
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
     "criterio_literal_do_despacho": true,
@@ -1511,7 +1361,7 @@
      "composicao": "marca + tipo + contexto",
      "chave": "Xiaomi filtro robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Acessórios de Reposição para Robô Aspirador Xiaomi S10+: Pincéis, Filtro HEPA e Panos de Limpeza",
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": true,
@@ -1550,6 +1400,501 @@
      "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/7VGRfnUcDy"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-filtro-mop-2",
+   "marca": "xiaomi",
+   "tipo": "filtro",
+   "nome_na_fonte": "filter element",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/6fhOAYMnZP"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/6fhOAYMnZP"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-escova-lateral-mop-2",
+   "marca": "xiaomi",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "side brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova lateral robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/4fwJmsUH8M"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova lateral robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/4fwJmsUH8M"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-escova-principal-mop-2",
+   "marca": "xiaomi",
+   "tipo": "escova principal",
+   "nome_na_fonte": "main brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova principal robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9fKzk4BRnW"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova principal robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/9fKzk4BRnW"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-reservatorio-mop-2",
+   "marca": "xiaomi",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "water tank",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi reservatorio robo aspirador",
+    "resultados": 5,
+    "titulo_do_topo": " Tanque de Coleta de Pó 2 em 1 & Reservatório de Água para Xiaomi Mi Robot Vacuum S10/Mop 3C",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20reservatorio%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/8AWBxJLQ3K"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi reservatorio robo aspirador",
+     "resultados": 5,
+     "titulo_do_topo": " Tanque de Coleta de Pó 2 em 1 & Reservatório de Água para Xiaomi Mi Robot Vacuum S10/Mop 3C",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20reservatorio%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/8AWBxJLQ3K"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-mop-mop-2",
+   "marca": "xiaomi",
+   "tipo": "mop",
+   "nome_na_fonte": "mop pad",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1LfroklVCU"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/1LfroklVCU"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-filtro-mop-2-lite",
+   "marca": "xiaomi",
+   "tipo": "filtro",
+   "nome_na_fonte": "filter",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/W6kpDt4hr"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/W6kpDt4hr"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-escova-lateral-mop-2-lite",
+   "marca": "xiaomi",
+   "tipo": "escova lateral",
+   "nome_na_fonte": "side brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova lateral robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1131Q8vVAH"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova lateral robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/1131Q8vVAH"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-escova-principal-mop-2-lite",
+   "marca": "xiaomi",
+   "tipo": "escova principal",
+   "nome_na_fonte": "brush",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi escova principal robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/8Kpc9cTeYK"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi escova principal robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/8Kpc9cTeYK"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-mop-mop-2-lite",
+   "marca": "xiaomi",
+   "tipo": "mop",
+   "nome_na_fonte": "mop",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+    "topo_e_a_peca": false,
+    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/2LYP0aqQTg"
+   },
+   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit 2 Panos Mop Robô Aspirador Xiaomi S10+ S20+ X10+ X20+",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/2LYP0aqQTg"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-reservatorio-mop-2-lite",
+   "marca": "xiaomi",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "two-in-one water tank",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Xiaomi reservatorio robo aspirador",
+    "resultados": 5,
+    "titulo_do_topo": " Tanque de Coleta de Pó 2 em 1 & Reservatório de Água para Xiaomi Mi Robot Vacuum S10/Mop 3C",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20reservatorio%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9pePwNSCke"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Xiaomi reservatorio robo aspirador",
+     "resultados": 5,
+     "titulo_do_topo": " Tanque de Coleta de Pó 2 em 1 & Reservatório de Água para Xiaomi Mi Robot Vacuum S10/Mop 3C",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20reservatorio%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/9pePwNSCke"
+    }
+   ]
+  },
+  {
+   "id": "roborock-mop-q8-max",
+   "marca": "roborock",
+   "tipo": "mop",
+   "nome_na_fonte": "Mop Cloth",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Roborock mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/5VVQmPiq8g"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Roborock mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/5VVQmPiq8g"
+    }
+   ]
+  },
+  {
+   "id": "roborock-mop-qrevo-master",
+   "marca": "roborock",
+   "tipo": "mop",
+   "nome_na_fonte": "Mop Cloth",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Roborock mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7AdelTgtTM"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Roborock mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7AdelTgtTM"
+    }
+   ]
+  },
+  {
+   "id": "roborock-mop-qrevo-curv",
+   "marca": "roborock",
+   "tipo": "mop",
+   "nome_na_fonte": "Mop Cloth",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Roborock mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/5VVQmPnAas"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Roborock mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/5VVQmPnAas"
+    }
+   ]
+  },
+  {
+   "id": "roborock-mop-saros-10r-z70",
+   "marca": "roborock",
+   "tipo": "mop",
+   "nome_na_fonte": "Mop Cloth",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Roborock mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7VGVA5fYY7"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Roborock mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/7VGVA5fYY7"
+    }
+   ]
+  },
+  {
+   "id": "roborock-mop-s8-maxv-ultra",
+   "marca": "roborock",
+   "tipo": "mop",
+   "nome_na_fonte": "Edgewise Mop Cloth",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Roborock mop robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/20vYbz4tU7"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Roborock mop robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": " Mop Pad para Ecovacs Xiaomi Roborock Dreame X10 X20 L10s Robô Aspirador",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/20vYbz4tU7"
     }
    ]
   },
@@ -1682,7 +2027,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Multilaser HO243 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "KIT 3 Filtros Hepa para Robô Aspirador Multilaser Hydra Ho243 E Ho402",
+    "titulo_do_topo": "Filtro Hepa Para Robô Aspirador Compatível com Multilaser Hydra Ho243 e Ho402",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -1696,7 +2041,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Multilaser HO243 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "KIT 3 Filtros Hepa para Robô Aspirador Multilaser Hydra Ho243 E Ho402"
+     "titulo_do_topo": "Filtro Hepa Para Robô Aspirador Compatível com Multilaser Hydra Ho243 e Ho402"
     }
    ]
   },
@@ -1878,7 +2223,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Positivo PRA800 robo aspirador",
     "resultados": 8,
-    "titulo_do_topo": "Filtro Hepa compatível para Robô Aspirador Positivo Smart Wi Fi Pra800",
+    "titulo_do_topo": "Escova E Filtro Hepa Para Robô Aspirador Positivo Pra800",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -1892,7 +2237,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Positivo PRA800 robo aspirador",
      "resultados": 8,
-     "titulo_do_topo": "Filtro Hepa compatível para Robô Aspirador Positivo Smart Wi Fi Pra800"
+     "titulo_do_topo": "Escova E Filtro Hepa Para Robô Aspirador Positivo Pra800"
     }
    ]
   },
@@ -1905,7 +2250,7 @@
     "degrau": 1,
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Electrolux ERB60 robo aspirador",
-    "resultados": 8,
+    "resultados": 10,
     "titulo_do_topo": "Bateria Li-ion P/ Aspirador Robô Electrolux Erb60",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
@@ -1919,7 +2264,7 @@
      "degrau": 1,
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Electrolux ERB60 robo aspirador",
-     "resultados": 8,
+     "resultados": 10,
      "titulo_do_topo": "Bateria Li-ion P/ Aspirador Robô Electrolux Erb60"
     }
    ]
@@ -1933,7 +2278,7 @@
     "degrau": 1,
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Electrolux ERB61 robo aspirador",
-    "resultados": 1,
+    "resultados": 6,
     "titulo_do_topo": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Cinza (ERB61)",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
@@ -1947,7 +2292,7 @@
      "degrau": 1,
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Electrolux ERB61 robo aspirador",
-     "resultados": 1,
+     "resultados": 6,
      "titulo_do_topo": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Cinza (ERB61)"
     }
    ]
@@ -1961,7 +2306,7 @@
     "degrau": 1,
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Electrolux ERB62 robo aspirador",
-    "resultados": 1,
+    "resultados": 6,
     "titulo_do_topo": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Branco (ERB62)",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
@@ -1975,7 +2320,7 @@
      "degrau": 1,
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Electrolux ERB62 robo aspirador",
-     "resultados": 1,
+     "resultados": 6,
      "titulo_do_topo": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Branco (ERB62)"
     }
    ]
@@ -1989,7 +2334,7 @@
     "degrau": 1,
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Electrolux ERB80 robo aspirador",
-    "resultados": 5,
+    "resultados": 10,
     "titulo_do_topo": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
@@ -2003,7 +2348,7 @@
      "degrau": 1,
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Electrolux ERB80 robo aspirador",
-     "resultados": 5,
+     "resultados": 10,
      "titulo_do_topo": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original"
     }
    ]
@@ -2158,7 +2503,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Xiaomi S40 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Kit de peças de reposição para Robô Aspirador XIAOMI S40: escova principal, escovas laterais, filtros e acessórios de",
+    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2172,7 +2517,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Xiaomi S40 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Kit de peças de reposição para Robô Aspirador XIAOMI S40: escova principal, escovas laterais, filtros e acessórios de"
+     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza"
     }
    ]
   },
@@ -2298,7 +2643,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "WAP W1000 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real GYRO, Base de Carregamento, Compatível com Alexa e Google Wap",
+    "titulo_do_topo": "WAP Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2312,7 +2657,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "WAP W1000 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real GYRO, Base de Carregamento, Compatível com Alexa e Google Wap"
+     "titulo_do_topo": "WAP Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real"
     }
    ]
   },
@@ -2354,7 +2699,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "WAP W300 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Carcaça Inferior Aspirador Robô Wap Robot W300 Original",
+    "titulo_do_topo": "Acabamento da Parte Superior Aspirador Robô Wap Robot W300 Original",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2368,7 +2713,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "WAP W300 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Carcaça Inferior Aspirador Robô Wap Robot W300 Original"
+     "titulo_do_topo": "Acabamento da Parte Superior Aspirador Robô Wap Robot W300 Original"
     }
    ]
   },
@@ -2382,7 +2727,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "WAP W90 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Escova Frontal De Limpeza Para Aspirador Robô Wap W90 Reposição",
+    "titulo_do_topo": "Fonte carregador 5v 1200ma Compatível Aspirador Robô Wap W90 Bi-volt",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2396,7 +2741,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "WAP W90 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Escova Frontal De Limpeza Para Aspirador Robô Wap W90 Reposição"
+     "titulo_do_topo": "Fonte carregador 5v 1200ma Compatível Aspirador Robô Wap W90 Bi-volt"
     }
    ]
   },
@@ -2410,7 +2755,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "WAP W100 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Kit 2 Roda Frontal Dianteira Giratória Robô Aspirador Multilaser Mondial Wap W100-100C ObaBox-Duste Roldana",
+    "titulo_do_topo": "APZ 2x Para Multilaser HO041 WAP Robot W100 Robô Aspirador De Peças Mop Pano",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2424,7 +2769,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "WAP W100 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Kit 2 Roda Frontal Dianteira Giratória Robô Aspirador Multilaser Mondial Wap W100-100C ObaBox-Duste Roldana"
+     "titulo_do_topo": "APZ 2x Para Multilaser HO041 WAP Robot W100 Robô Aspirador De Peças Mop Pano"
     }
    ]
   },
@@ -2606,7 +2951,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Xiaomi X20 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Kit com 2 Sacos de Pó para aspirador Robo Xiaomi X20",
+    "titulo_do_topo": "Peças De Reposição De Escova De Rolo De Corte 2026 Compatíveis Com Aspirador De Pó Robô Xiaomi X20 Max/X20 Pro/M30/M30s/",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2620,7 +2965,210 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Xiaomi X20 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Kit com 2 Sacos de Pó para aspirador Robo Xiaomi X20"
+     "titulo_do_topo": "Peças De Reposição De Escova De Rolo De Corte 2026 Compatíveis Com Aspirador De Pó Robô Xiaomi X20 Max/X20 Pro/M30/M30s/"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-mop-2-lite",
+   "marca": "xiaomi",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Xiaomi Mop 2 Lite robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Caixa De Poeira Para XiaoMi Mi Robô Aspirador Mop 2 Lite Pro Acessórios Peças",
+    "topo_e_a_peca": null,
+    "por_que": "o codigo do modelo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20Mop%202%20Lite%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7Kx4xoSJyA"
+   },
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + codigo do modelo + contexto",
+     "chave": "Xiaomi Mop 2 Lite robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Caixa De Poeira Para XiaoMi Mi Robô Aspirador Mop 2 Lite Pro Acessórios Peças"
+    }
+   ]
+  },
+  {
+   "id": "roborock-q8-max",
+   "marca": "roborock",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock Q8 Max robo aspirador",
+    "resultados": 5,
+    "titulo_do_topo": "Escova de Reposição com Duplo Rolo para Roborock S8 Pro Ultra/S8+/S8, Robô Aspirador Q5 Pro+/Q8 Max+",
+    "topo_e_a_peca": null,
+    "por_que": "o codigo do modelo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Q8%20Max%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7ptLYjUgCM"
+   },
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + codigo do modelo + contexto",
+     "chave": "Roborock Q8 Max robo aspirador",
+     "resultados": 5,
+     "titulo_do_topo": "Escova de Reposição com Duplo Rolo para Roborock S8 Pro Ultra/S8+/S8, Robô Aspirador Q5 Pro+/Q8 Max+"
+    }
+   ]
+  },
+  {
+   "id": "roborock-qrevo-master",
+   "marca": "roborock",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock Qrevo Master robo aspirador",
+    "resultados": 6,
+    "titulo_do_topo": "Kit de Saco de Pó Compatível com Roborock Qrevo Curv, Master, P20 Pro, S MaxV, Peças de Reposição para Robô Aspirador",
+    "topo_e_a_peca": null,
+    "por_que": "o codigo do modelo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Qrevo%20Master%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/6Al7ZffYsy"
+   },
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + codigo do modelo + contexto",
+     "chave": "Roborock Qrevo Master robo aspirador",
+     "resultados": 6,
+     "titulo_do_topo": "Kit de Saco de Pó Compatível com Roborock Qrevo Curv, Master, P20 Pro, S MaxV, Peças de Reposição para Robô Aspirador"
+    }
+   ]
+  },
+  {
+   "id": "roborock-s8-maxv-ultra",
+   "marca": "roborock",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock S8 MaxV Ultra robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Para Roborock G20S / S8 Max Ultra / S8 MaxV Ultra Aspirador Robô Acessórios de Reposição Escovas Laterais Almofadas de",
+    "topo_e_a_peca": null,
+    "por_que": "o codigo do modelo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20S8%20MaxV%20Ultra%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7AdelVbkvS"
+   },
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + codigo do modelo + contexto",
+     "chave": "Roborock S8 MaxV Ultra robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Para Roborock G20S / S8 Max Ultra / S8 MaxV Ultra Aspirador Robô Acessórios de Reposição Escovas Laterais Almofadas de"
+    }
+   ]
+  },
+  {
+   "id": "roborock-qrevo-curv",
+   "marca": "roborock",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 2,
+    "composicao": "marca + cabeca da linha comercial + contexto",
+    "chave": "Roborock Qrevo robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Kit de Saco de Pó Compatível com Roborock Qrevo Curv, Master, P20 Pro, S MaxV, Peças de Reposição para Robô Aspirador",
+    "topo_e_a_peca": null,
+    "por_que": "o codigo devolveu zero: quem vende chama pela linha",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Qrevo%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/7AdelVkPtu"
+   },
+   "parou_por": "entidade MODELO_ROBO: o codigo devolveu zero e a linha comercial respondeu",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + codigo do modelo + contexto",
+     "chave": "Roborock Qrevo Curv Series robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + cabeca da linha comercial + contexto",
+     "chave": "Roborock Qrevo robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit de Saco de Pó Compatível com Roborock Qrevo Curv, Master, P20 Pro, S MaxV, Peças de Reposição para Robô Aspirador"
+    }
+   ]
+  },
+  {
+   "id": "roborock-saros-z70",
+   "marca": "roborock",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock Saros Z70 robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "For Roborock Saros Z70 Robô Aspirador De Pó Novo Original Escova De Corte De Cabelo Anti Emaranhado Rolo Principal",
+    "topo_e_a_peca": null,
+    "por_que": "o codigo do modelo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Saros%20Z70%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9V1ZXnfvwe"
+   },
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + codigo do modelo + contexto",
+     "chave": "Roborock Saros Z70 robo aspirador",
+     "resultados": 1,
+     "titulo_do_topo": "For Roborock Saros Z70 Robô Aspirador De Pó Novo Original Escova De Corte De Cabelo Anti Emaranhado Rolo Principal"
+    }
+   ]
+  },
+  {
+   "id": "roborock-saros-10r",
+   "marca": "roborock",
+   "tipo": null,
+   "nome_na_fonte": null,
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock Saros 10R robo aspirador",
+    "resultados": 5,
+    "titulo_do_topo": "Para Roborock G20S Ultra/Saros 10R /Qrevo CurvX /Qrevo EdgeT/S9 MaxV Slim Acessórios para Aspirador Robô: Pano de Mop,",
+    "topo_e_a_peca": null,
+    "por_que": "o codigo do modelo E o nome comercial",
+    "criterio_literal_do_despacho": null,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Saros%2010R%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/5AsaNpwV1n"
+   },
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + codigo do modelo + contexto",
+     "chave": "Roborock Saros 10R robo aspirador",
+     "resultados": 5,
+     "titulo_do_topo": "Para Roborock G20S Ultra/Saros 10R /Qrevo CurvX /Qrevo EdgeT/S9 MaxV Slim Acessórios para Aspirador Robô: Pano de Mop,"
     }
    ]
   }

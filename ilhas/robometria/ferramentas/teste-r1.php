@@ -778,9 +778,61 @@ $cru_com_sponsored = preg_match_all(
 rbm_ok( 0 === $cru_com_sponsored,
 	'a busca crua nao se declara patrocinada: ninguem paga por aquele clique',
 	$cru_com_sponsored . ' carimbada(s) por engano' );
-rbm_ok( $esperando_ancora === 0 || false !== strpos( $cabeca_compra, (string) $esperando_ancora ),
-	'a pagina publica quantas pecas estao esperando link de loja',
-	$esperando_ancora . ' esperando' );
+/* A REGUA QUE COBRAVA A FRASE FALSA, CONSERTADA EM 18/09/2026 (item 3 do despacho
+   da Sentinela). Ela exigia que o numero de pecas SEM FICHA aparecesse na cabeca do
+   bloco de compra — e a cabeca dizia "Nenhuma destas 2 pecas tem link de loja ainda"
+   sobre duas pecas cujos cartoes serviam botao de afiliado vivo. A bancada nao
+   apenas deixou passar a frase falsa: ela a EXIGIA. Regua que cobra o sintoma
+   sustenta o defeito, e esta ficou dois dias sustentando este.
+
+   O que se cobra agora e o fato que o leitor pode conferir no mesmo HTML: quantas
+   pecas saem pela BUSCA em vez da ficha. Continua sendo numero na tela conferido
+   contra o banco — o que mudou foi qual numero a tela tem o direito de dizer. */
+$so_busca_ancora_ids  = array();
+$sem_porta_ancora_ids = array();
+foreach ( $dados['respostas'][ $ancora ]['fabricante'] as $i ) {
+	$a         = isset( $i['afiliado'] ) ? $i['afiliado'] : array();
+	$tem_ficha = '' !== trim( (string) ( isset( $a['url'] ) ? $a['url'] : '' ) );
+	$tem_busca = '' !== trim( (string) ( isset( $a['url_busca'] ) ? $a['url_busca'] : '' ) )
+		|| '' !== trim( (string) ( isset( $a['url_busca_cru'] ) ? $a['url_busca_cru'] : '' ) );
+	if ( $tem_ficha ) { continue; }
+	if ( $tem_busca ) {
+		$so_busca_ancora_ids[ $i['peca'] ] = true;
+	} else {
+		$sem_porta_ancora_ids[ $i['peca'] ] = true;
+	}
+}
+/* Contado por PECA e nao por par peca-x-tipo, como a vitrine agrupa: contar o par
+   daria numero maior que o de cartoes na tela, e a frase fala dos cartoes. */
+$so_busca_ancora  = count( $so_busca_ancora_ids );
+$sem_porta_ancora = count( $sem_porta_ancora_ids );
+rbm_ok( $so_busca_ancora === 0 || false !== strpos( $cabeca_compra, (string) $so_busca_ancora ),
+	'a pagina publica quantas pecas saem pela busca em vez da ficha',
+	$so_busca_ancora . ' pela busca' );
+
+/* A AFIRMACAO QUE O ITEM 3 DO DESPACHO PEDIU COM ESTAS PALAVRAS: *"reprove essa
+   combinacao — item com botao servido e frase de ausencia na mesma resposta"*.
+
+   Ela nao olha contador nenhum: olha o HTML SERVIDO. Se ha `rbm-comprar` na
+   vitrine, nenhuma frase do bloco pode negar link de loja. E a unica forma da regua
+   que sobrevive a alguem reescrever o contador amanha, porque mede o que o leitor
+   le, e nao o que o codigo achava que estava escrevendo. */
+$nega_link_de_loja = preg_match(
+	'#(nao (tem|têm|tem) link de loja|não (tem|têm) link de loja|Nenhuma? [^<.]{0,40} link de loja|link de loja em breve)#iu',
+	$cabeca_compra );
+$serve_botao = substr_count( $vitrine, 'rbm-comprar' ) > 0;
+rbm_ok( ! ( $serve_botao && $nega_link_de_loja ),
+	'nenhuma frase nega link de loja numa resposta que serve botao de compra (item 3, 18/09)',
+	( $serve_botao ? 'serve botao' : 'sem botao' ) . ', '
+		. ( $nega_link_de_loja ? 'E NEGA link de loja' : 'nao nega' ) );
+
+/* A OUTRA DIRECAO, para a afirmacao acima nao virar verde barato: quando NAO ha
+   porta nenhuma, a frase de ausencia TEM de aparecer. Regua que so proibe a frase
+   seria satisfeita por uma pagina que cala sobre um item sem saida de compra — e
+   calar e o que a 25.2 e a secao 7 proibiram juntas. */
+rbm_ok( $sem_porta_ancora === 0 || 1 === $nega_link_de_loja,
+	'quando existe peca sem porta de compra, a pagina DIZ isso',
+	$sem_porta_ancora . ' sem porta' );
 
 $esperando_banco = 0;
 foreach ( $pecas_b['registros'] as $p ) {
