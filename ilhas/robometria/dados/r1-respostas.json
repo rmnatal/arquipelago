@@ -2169,11 +2169,16 @@
           "divergencia": true,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-81z1k-mh5kewd6k8w44b",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Filtro Para Robô Aspirador Multilaser Ho041"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/8plsYBpBvt",
             "url_busca": "https://s.shopee.com.br/W6hKvLn54",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
             "programa": "shopee",
@@ -3288,11 +3293,16 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
-          "esperando_link": true,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-m3di61sattmgbb",
+            "largura": 800,
+            "altura": 800,
+            "alt": "Escova Central Aspirador Robô Wap Robot WSMART Original"
+          },
+          "esperando_link": false,
           "afiliado": {
-            "url": "",
+            "url": "https://s.shopee.com.br/2qUfPDSUNA",
             "url_busca": "https://s.shopee.com.br/3B7T25V1ou",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Escova%20Central%20robo%20aspirador",
             "programa": "shopee",
@@ -6493,7 +6503,7 @@
     "marcas": 6,
     "as_duas_ferramentas": 15,
     "pecas_recomendadas": 50,
-    "pecas_esperando_link": 38,
-    "pecas_com_link": 12
+    "pecas_esperando_link": 36,
+    "pecas_com_link": 14
   }
 }

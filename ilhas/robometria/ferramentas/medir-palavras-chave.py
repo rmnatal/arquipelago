@@ -183,29 +183,24 @@ def batismo_do_fabricante(registro, nome_de_busca):
 
 
 def substantivo_do_tipo(tipo):
-    """A primeira palavra do tipo. `escova principal` -> `escova`. E o que sobra
-    do tipo quando o qualificador dele e vocabulario da ilha e nao do vendedor."""
-    return (tipo or '').strip().split(' ')[0]
+    """Delega para a coleta. A funcao morava aqui e desceu para
+    `coletar-shopee.py` em 18/09/2026, junto com `palavras_estritas_do_tipo`."""
+    return COLETA.substantivo_do_tipo(tipo)
 
 
 def palavras_estritas_do_tipo(tipo):
     """A lista da coleta MENOS o substantivo pelado, quando o tipo tem
-    qualificador.
+    qualificador. **A REGRA MORA NA COLETA DESDE 18/09/2026** e aqui so se
+    chama, porque as duas camadas passaram a precisar da mesma aparagem: la ela
+    guarda o caminho do modelo compativel, aqui ela guarda a medicao da chave.
 
-    `PALAVRAS_DO_TIPO['escova lateral']` termina em `'escova'`, e essa ultima
-    palavra existe la para a coleta: la o codigo do registro ou do modelo ja
-    amarrou o anuncio, e `escova` so confirma que o objeto e uma escova. AQUI
-    ela derruba a medicao inteira — a secao 26 diz que `lateral` e `principal`
-    sao FUNCOES OPOSTAS, e aprovar uma busca de escova principal porque o topo
-    e uma escova frontal (que e lateral) e publicar a troca de peca como
-    acerto. Medido: com o substantivo pelado, `wap-escova-central-wsmart`
-    "passava" com uma escova frontal no topo.
+    O texto que justificava a aparagem continua valendo inteiro: a secao 26 diz
+    que `lateral` e `principal` sao FUNCOES OPOSTAS, e aprovar uma busca de
+    escova principal porque o topo e uma escova frontal (que e lateral) e
+    publicar a troca de peca como acerto. Medido: com o substantivo pelado,
+    `wap-escova-central-wsmart` "passava" com uma escova frontal no topo.
     """
-    palavras = COLETA.palavras_do_tipo(tipo)
-    if len((tipo or '').strip().split(' ')) > 1:
-        raiz = COLETA.sem_acento(substantivo_do_tipo(tipo))
-        palavras = [p for p in palavras if p != raiz]
-    return palavras
+    return COLETA.palavras_estritas_do_tipo(tipo)
 
 
 def escada_da_busca(peca, marcas, modelos, contexto):

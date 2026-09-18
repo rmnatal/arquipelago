@@ -332,6 +332,31 @@ def abre_com_o_tipo(titulo, tipo, alvos=None):
     return False
 
 
+def substantivo_do_tipo(tipo):
+    """A primeira palavra do tipo. `escova principal` -> `escova`. E o que sobra
+    do tipo quando o qualificador dele e vocabulario da ilha e nao do vendedor."""
+    return (tipo or '').strip().split(' ')[0]
+
+
+def palavras_estritas_do_tipo(tipo):
+    """A lista de `PALAVRAS_DO_TIPO` MENOS o substantivo pelado, quando o tipo
+    tem qualificador.
+
+    `PALAVRAS_DO_TIPO['escova lateral']` termina em `'escova'` — e `escova`
+    sozinha nao diz QUAL escova. A secao 26 chama `lateral` e `principal` de
+    funcoes OPOSTAS, e todo modelo do banco tem as duas.
+
+    Esta funcao morava em `medir-palavras-chave.py` desde 16/09/2026 e desceu
+    para ca em 18/09/2026, quando a coleta precisou dela — a regra e uma so e
+    passou a morar na camada de baixo, com a lista que ela apara.
+    """
+    palavras = palavras_do_tipo(tipo)
+    if len((tipo or '').strip().split(' ')) > 1:
+        raiz = sem_acento(substantivo_do_tipo(tipo))
+        palavras = [p for p in palavras if p != raiz]
+    return palavras
+
+
 def casa_peca(oferta, peca, modelos):
     titulo = oferta.get('titulo') or ''
     if troca_o_objeto(titulo):
@@ -341,7 +366,24 @@ def casa_peca(oferta, peca, modelos):
     if token_no_titulo(codigo, titulo) and not variante_depois_do_codigo(codigo, titulo):
         return 'codigo da peca'
 
-    if not abre_com_o_tipo(titulo, peca.get('tipo') or ''):
+    # O SUBSTANTIVO PELADO NAO SERVE NO CAMINHO DO MODELO COMPATIVEL, e ate
+    # 18/09/2026 servia. O comentario de `palavras_estritas_do_tipo` dizia que
+    # `escova` sozinha basta "para a coleta", porque la "o codigo do registro ou
+    # do modelo ja amarrou o anuncio". A primeira metade e verdadeira; a segunda
+    # e falsa, e foi medida: quando quem amarra e o codigo do MODELO, o anuncio
+    # esta preso ao APARELHO, e o aparelho tem escova lateral E escova principal.
+    #
+    # Medido na segunda passada de fotos de 18/09/2026: `positivo-11206519`
+    # (escova PRINCIPAL, o rolo) casou com *"Escova E Filtro Hepa Para Robo
+    # Aspirador Positivo Pra800"* — o codigo PRA800 no titulo e `escova` na
+    # cabeca. A foto do anuncio, aberta com os olhos pela 25.3, traz um filtro e
+    # uma escova LATERAL de tres bracos, e nenhum rolo. O banco tem
+    # `positivo-11206518` (escova lateral) para o MESMO modelo, entao o titulo
+    # descreve a irma e nao este registro. E a mesma familia da regra dos dois
+    # registros no mesmo anuncio: casamento que nao identifica UM registro nao
+    # identifica nenhum — aqui o que nao identifica e a palavra, nao o anuncio.
+    if not abre_com_o_tipo(titulo, peca.get('tipo') or '',
+                           palavras_estritas_do_tipo(peca.get('tipo') or '')):
         return None
     for c in (peca.get('compatibilidade') or []):
         m = modelos.get(c.get('modelo')) or {}
@@ -505,6 +547,13 @@ def main():
     p.add_argument('--gravar', action='store_true')
     p.add_argument('--so', default=None, help='um id so, para conferir com os olhos')
     p.add_argument('--limite', type=int, default=0)
+    # SEGUNDA PASSADA (18/09/2026). A primeira coleta rodou sobre o banco de
+    # 16/09 e o banco cresceu 30 registros depois dela. Repetir a escada inteira
+    # sobre quem JA tem foto gasta chamada e, pior, troca por outro anuncio uma
+    # foto que ja foi conferida com os olhos pela 25.3 — conferencia velha
+    # aplicada a dado novo. Entao a passada de cobertura pede so quem falta.
+    p.add_argument('--sem-foto', action='store_true', dest='sem_foto',
+                   help='so os registros publicaveis sem `imagem.url`')
     p.add_argument('--saida', default='/tmp/coleta-shopee.json')
     # APLICAR A PROPOSTA JA CONFERIDA, sem repetir a coleta. A 25.3 manda olhar
     # a amostra antes de gravar; se gravar refizesse as chamadas, o que entra no
@@ -544,6 +593,8 @@ def main():
     for r in modelos_doc['registros']:
         if r.get('status') == 'publicavel':
             alvos.append(('modelo', r))
+    if args.sem_foto:
+        alvos = [a for a in alvos if not (a[1].get('imagem') or {}).get('url')]
     if args.so:
         alvos = [a for a in alvos if a[1]['id'] == args.so]
     if args.limite:
@@ -569,9 +620,27 @@ def main():
                 'tentativas': tentativas}
 
         if not oferta:
-            item['casou'] = False
-            item['motivo'] = ('a escada inteira foi percorrida e nenhum resultado traz '
-                              'o codigo do registro com o tipo certo')
+            # A CAUSA DO RESIDUO TEM DE SER SEPARAVEL, e ate 18/09/2026 nao era.
+            # Um motivo unico para toda falha junta duas coisas opostas: "a
+            # Shopee nao anuncia isto" (nao ha o que colher, e coleta nenhuma
+            # muda) e "a Shopee anuncia e nenhum titulo nomeia o registro" (ha
+            # o que colher e o portao barrou, e a porta e outra fonte ou outra
+            # chave). Quem le um motivo so nao consegue decidir o passo
+            # seguinte — que e justamente o que esta passada existe para
+            # entregar. O numero de resultados vistos fica escrito ao lado,
+            # porque e a prova, e nao o adjetivo.
+            vistos = sum(t['resultados'] for t in tentativas)
+            if vistos == 0:
+                item['causa'] = 'sem anuncio na shopee'
+                item['motivo'] = ('a escada inteira foi percorrida e a Open API devolveu '
+                                  'ZERO resultado em todos os degraus: nao ha anuncio a '
+                                  'casar, e nao e o portao que barra')
+            else:
+                item['causa'] = 'titulo nao nomeia o registro'
+                item['motivo'] = ('a escada inteira foi percorrida, a Open API devolveu %d '
+                                  'resultado(s) e nenhum traz o codigo do registro com o '
+                                  'tipo certo' % vistos)
+            item['resultados_vistos'] = vistos
             proposta.append(item)
             sys.stderr.write('  -- %-42s sem casamento\n' % registro['id'])
             continue
@@ -614,6 +683,7 @@ def main():
             nomes = ', '.join(d['id'] for d in disputantes)
             for d in disputantes:
                 d['casou'] = False
+                d['causa'] = 'casamento ambiguo'
                 d['motivo'] = ('%d registros do banco casaram com o MESMO anuncio '
                                '(%s): %s. Casamento que nao identifica um registro '
                                'so nao identifica nenhum.'
@@ -633,6 +703,21 @@ def main():
         por_degrau[i['degrau_da_palavra_chave']] = por_degrau.get(i['degrau_da_palavra_chave'], 0) + 1
     sys.stderr.write('degraus: %s\n' % ', '.join('%d -> %d' % (d, n)
                                                  for d, n in sorted(por_degrau.items())))
+
+    # O RESIDUO AGRUPADO POR CAUSA, impresso pela propria passada. A cobertura
+    # maxima que o criterio permite e metade do entregavel; a outra metade e
+    # esta lista, e ela so serve se disser por que cada um ficou de fora.
+    residuo = {}
+    for i in proposta:
+        if not i.get('casou'):
+            residuo.setdefault(i.get('causa') or 'nao casou', []).append(i['id'])
+    if residuo:
+        sys.stderr.write('\nRESIDUO POR CAUSA (%d registro(s)):\n'
+                         % sum(len(v) for v in residuo.values()))
+        for causa in sorted(residuo, key=lambda c: -len(residuo[c])):
+            sys.stderr.write('  %-32s %3d\n' % (causa, len(residuo[causa])))
+            for ident in sorted(residuo[causa]):
+                sys.stderr.write('      %s\n' % ident)
 
     with open(args.saida, 'w', encoding='utf-8') as f:
         json.dump({'gerado_em': hoje, 'sub_id_1': SUB_ID, 'itens': proposta},
@@ -663,19 +748,28 @@ def gravar(proposta, pecas_doc, modelos_doc, hoje):
                 continue
             a = r.setdefault('afiliado', {})
             if not i.get('casou'):
+                # O MOTIVO QUE VAI AO BANCO E O DA PROPOSTA, NAO UM TEXTO FIXO
+                # (18/09/2026). Ate hoje as tres causas — sem anuncio, titulo
+                # que nao nomeia, casamento ambiguo — desciam ao banco com a
+                # mesma frase, e a frase dizia a segunda. Registro sem anuncio
+                # nenhum ficava gravado como se o portao o tivesse barrado, o
+                # que manda a proxima passada procurar chave melhor para um
+                # produto que a Shopee nao vende.
+                porque = i.get('motivo') or (
+                    'a escada de palavra-chave da Open API da Shopee foi percorrida '
+                    'inteira e nenhum resultado traz o codigo deste registro com o '
+                    'tipo certo')
                 r['imagem'] = {
                     'url': None, 'largura': None, 'altura': None, 'fonte': None,
                     'coletado_em': None, 'alt': None,
                     'motivo_do_null': (
-                        'A escada de palavra-chave da Open API da Shopee foi percorrida '
-                        'inteira em %s e nenhum resultado traz o codigo deste registro '
-                        'com o tipo certo. Casamento errado no banco e pior que '
-                        'casamento nenhum, porque parece dado. O registro NAO some da '
-                        'vitrine: aparece com espaco reservado neutro (secao 6).' % hoje),
+                        'Coleta de %s — causa: %s. %s. Casamento errado no banco e pior '
+                        'que casamento nenhum, porque parece dado. O registro NAO some '
+                        'da vitrine: aparece com espaco reservado neutro (secao 6).'
+                        % (hoje, i.get('causa') or 'nao casou', porque)),
                 }
                 a['motivo_sem_url_produto'] = (
-                    'sem ficha: a escada de palavra-chave da API nao casou nenhum '
-                    'resultado com o codigo deste registro (%s)' % hoje)
+                    'sem ficha (%s): %s (%s)' % (i.get('causa') or 'nao casou', porque, hoje))
                 trocas += 1
                 continue
 
@@ -701,12 +795,47 @@ def gravar(proposta, pecas_doc, modelos_doc, hoje):
                 a['degrau'] = 3   # anuncio de vendedor na Shopee (25.1)
             trocas += 1
 
+    recontar(pecas_doc)
+    recontar(modelos_doc)
+
     for caminho, doc in (('dados/pecas.json', pecas_doc),
                          ('dados/modelos-robo.json', modelos_doc)):
         with open(os.path.join(RAIZ, caminho), 'w', encoding='utf-8') as f:
             json.dump(doc, f, ensure_ascii=False, indent=1)
             f.write('\n')
     sys.stderr.write('gravado: %d registro(s) tocado(s)\n' % trocas)
+
+
+def recontar(doc):
+    """As quatro contagens do cabecalho que ESTA ferramenta move.
+
+    "Numero de cabecalho de banco e numero de tela: contado, nunca digitado" —
+    e ate 18/09/2026 a coleta era o unico jeito de mover esses quatro numeros
+    sem reescrever nenhum deles. Quem pegava era o `validar-banco.py`, no passo
+    seguinte, e o conserto era a mao. Portao que morde depois e melhor que
+    portao nenhum, mas contagem que a propria escrita atualiza e melhor que os
+    dois: o banco nunca chega a existir errado.
+
+    As definicoes sao as do `validar-banco.py`, palavra por palavra, e e de
+    proposito que ele continue conferindo — duas contas que se conferem sao uma
+    trava; uma conta que confia em si mesma e um numero digitado com mais
+    passos.
+    """
+    pub = [r for r in doc['registros'] if r.get('status') == 'publicavel']
+    c = doc.get('contagem')
+    if not c:
+        return
+    for chave, valor in (
+            ('esperando_link_de_afiliado',
+             sum(1 for r in pub if not (r.get('afiliado') or {}).get('url'))),
+            ('itens_com_ficha',
+             sum(1 for r in pub if (r.get('afiliado') or {}).get('url_produto'))),
+            ('itens_com_link_de_afiliado',
+             sum(1 for r in pub if (r.get('afiliado') or {}).get('url'))),
+            ('itens_com_foto',
+             sum(1 for r in pub if (r.get('imagem') or {}).get('url')))):
+        if chave in c:
+            c[chave] = valor
 
 
 if __name__ == '__main__':
