@@ -52,6 +52,16 @@ Notas de 0 a 5. A mudança em relação à v2: **S se divide em duas**.
   do Raphael: lucrativo mas impossível de ranquear não serve; fácil mas sem dinheiro também não.
 - Desqualifica: V < 2, S_par ≤ 1, cobertura de afiliado < 7/10.
 
+## 3.0-b PISO DE DEMANDA ABSOLUTA — a lacuna que custou uma ilha (18/09/2026)
+
+Toda a régua acima é **relativa**. `S_par` e `S_com` medem quem ocupa a SERP; `P` mede se a pergunta é natural; `D` ordena nichos entre si por proxies gratuitos; `M` é ticket × comissão. **Nenhum componente diz quantas pessoas procuram.** Na frase do Raphael, em 18/09/2026: *"ranquear em primeiro para um termo que tem 10 buscas por mês não adianta nada"*.
+
+**A REGRA NOVA, e o que ela mede não é o que parece.** O piso **não** é o volume do termo-cabeça do nicho. É este: **as consultas que as FERRAMENTAS da ilha respondem precisam ter volume próprio.** Um nicho pode ter milhares de buscas na cabeça comercial e zero na metade que a ilha vai construir — e é exatamente isso que aconteceu com a Robometria, medido em `bussola/medicoes/volume-absoluto-2026-09-18.md`: `filtro para aquario` tem 1 mil–10 mil buscas/mês e `filtro robô aspirador` está abaixo do limiar, no mesmo dia e na mesma ferramenta.
+
+**Como medir, antes de a ilha nascer:** monte uma amostra de pelo menos 40 consultas do corpus paramétrico do nicho — **incluindo os termos mais genéricos possíveis da metade que a ilha vai atender** — e rode no Google Keyword Planner (Brasil, últimos 12 meses). Registre a medição em `bussola/medicoes/` com data, ferramenta, recorte e ressalvas. **Nicho em que a maioria das consultas paramétricas volta `—` não vira ilha**, por melhor que seja o índice: índice alto em corpus vazio é ilha perfeita num deserto.
+
+**A escala ainda é magra e isto está dito de propósito:** hoje existem dois pontos de calibração — Aquametria 51% e Robometria 18% de consultas com volume mensurável. **Dois pontos não definem um corte numérico**, e por isso esta seção não fixa um percentual mínimo ainda. Fixa o PROCEDIMENTO e a obrigação de registrar. O corte se escreve quando houver a terceira ilha medida do mesmo jeito — e quem escrever o corte com dois pontos estará fazendo exatamente o que a 3.1 abaixo proíbe.
+
 ## 3.1 Nota que não foi medida não vira índice
 
 Três regras que nasceram da autocrítica da própria rodada 004, e valem da 005 em diante.

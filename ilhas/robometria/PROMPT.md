@@ -97,6 +97,19 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 **O QUE A SENTINELA NÃO PÔDE FAZER NESTA EXECUÇÃO, dito para ninguém descobrir depois:** o teto semanal de geração de link de afiliado **não foi gasto**. O canal das MÃOS foi recusado pelo classificador de aprovação do ambiente no começo da execução, e pela 27.2 o banco só muda pelas MÃOS — gerar link que não pode ser gravado seria fabricar dado órfão. O alvo do teto da semana que vem, já escolhido e nomeado: os 46 registros em degrau 4, pelo **degrau 2 da 25.1** (catálogo `/p/MLB…` do Mercado Livre), que é o cavalo de batalha desta cauda longa pela 25.3 — e que precisa do clique do Raphael, pelo reCAPTCHA da 25.6.
 
+## DESPACHO DO RAPHAEL — 18/09/2026 — A ILHA TERMINA, MAS MUDA DE ESTADO: DE APOSTA PARA EXPERIMENTO MEDIDO
+
+Em 18/09/2026 o volume de busca do corpus desta ilha foi medido pela primeira vez, no Google Keyword Planner. O levantamento inteiro, com metodo e ressalvas, esta em `bussola/medicoes/volume-absoluto-2026-09-18.md`. O resultado, em uma linha: **de 49 consultas, 9 tem volume — e NENHUMA delas e de peca ou compatibilidade.** As consultas mais amplas possiveis do assunto desta ilha (`filtro robô aspirador`, `escova lateral robô aspirador`, `peças robô aspirador`) estao **abaixo do limiar de relatorio do Google**. Na mesma ferramenta e no mesmo dia, `filtro para aquario` deu 1 mil–10 mil.
+
+**ISTO EXPLICA A SEARCH CONSOLE, e nao contradiz nada.** 11 impressoes em 28 dias com tres paginas na primeira pagina do Google nao era um mistério: e primeira pagina de um assunto que quase ninguem procura. A ilha nao errou a execucao — o nicho nao tem gente na metade que ela construiu.
+
+**DECISAO DO RAPHAEL, TOMADA COM O NUMERO NA MESA:**
+
+1. **A ilha TERMINA.** Faltam quatro dias e um item; parar agora desperdicaria o que ja esta pago. A DEFINICAO DE PRONTA continua valendo inteira e o prazo de 23/09 continua de pe.
+2. **Depois de pronta, ela NAO recebe investimento novo.** Deixa de ser candidata a bloco de crescimento e vira **experimento medido**: a serie de indexacao e posicao continua rodando, e **outubro decide**. Nenhuma execucao da Fundacao deve propor expansao de malha, leva nova de modelos ou bloco de conteudo nesta ilha sem que a serie mostre impressao em dois digitos.
+3. **A metade que interessa e a R2, nao a R1.** O trafego que existe esta em dimensionamento — `robô aspirador que passa pano` (1 mil–10 mil), `qual robô aspirador comprar` (100–1 mil), `robô aspirador com mop` (100–1 mil) — e sao as paginas da R2 que ja ranqueiam. **A peca nao precisa ranquear; precisa estar ALCANCAVEL de dentro da R2.** Isso nao diminui o item 2 da DEFINICAO DE PRONTA — aumenta: a emenda do funil deixa de ser "juntar duas metades" e passa a ser o unico jeito de monetizar o unico trafego que a ilha tem.
+4. **Nada disto se resolve com mais esforco na R1.** Se alguma execucao futura propuser "mais paginas de peca para crescer", esta linha e a resposta: foi medido, e nao tem quem procure.
+
 ## DESPACHO DO RAPHAEL — 17/09/2026 — A REDE ABRIU PARA OS FABRICANTES, E DOIS DOS CINCO ENDERECOS NUNCA EXISTIRAM
 
 A execucao das 10h16Z de 17/09 registrou o item 2 da DEFINICAO DE PRONTA como **bloqueado por rede**, listando cinco dominios de fabricante que devolveram 403 do proxy de egresso. O Raphael acrescentou os cinco a lista de dominios permitidos da conta. **Medido da nuvem as 12h35Z de 17/09, um por um:**
