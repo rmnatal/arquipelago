@@ -1182,3 +1182,123 @@ explicitamente. Nenhum bloco de fila foi executado, o Sync nao foi acionado, nad
 verificado, nenhuma conta foi criada. O `ARQUIPELAGO.md` foi aberto so para achar a linha ancora e conferir a
 insercao, nunca para decidir o que fazer. Nenhum arquivo alem dos quatro que a instrucao nomeou e deste log foi
 alterado. O log vai num commit proprio, logo apos o commit do trabalho.
+
+---
+
+## DISPARO DE 18/09/2026, 14h52Z — ronda da Sentinela de 18/09 na robometria: quatro arquivos, um commit so
+
+Instrucao recebida: SENTINELA, ronda diaria de 18/09/2026 14h45Z, ilha robometria. Quatro arquivos, nenhum
+deles snippet, nenhum codigo, num commit so. Partiu do `main` real (`9d3a360`), nao da branch da sessao.
+
+### Passo 2 — a mudanca aplicada, byte a byte
+
+1. `ilhas/robometria/ESTADO.md` — a linha `ultima_ronda: 2026-09-16T19:40Z` trocada por
+   `ultima_ronda: 2026-09-18T14:45Z`. Uma ocorrencia, conferida antes de trocar. Nada mais no arquivo.
+2. `ilhas/robometria/PROMPT.md` — o bloco `## DESPACHO DA SENTINELA — 18/09/2026 (ronda diaria, 14h45Z)`
+   inserido inteiro imediatamente ANTES da linha 33, que comecava com
+   `## DESPACHO DA SENTINELA — 16/09/2026 (leitura semanal, 19h40Z)`. Nada apagado.
+3. `ilhas/robometria/dados/consertos.md` — a linha `| 2026-09-18 | — | ... | — |` acrescentada
+   imediatamente depois da linha 9, que comeca com `| 2026-09-16 | — |`. Nada mais no arquivo.
+4. `dados/PAINEL.md` (raiz) — conteudo apagado inteiro e regravado com o texto da instrucao, do comeco ao fim.
+
+Todos os quatro trechos-ancora foram achados exatamente como a instrucao escreveu. Nenhum reformatado,
+nenhuma linha acrescentada alem do que a instrucao trouxe.
+
+### Passo 3 e 4 — commit e push
+
+```
+$ git status --porcelain
+ M dados/PAINEL.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+```
+
+```
+$ git diff --stat
+ dados/PAINEL.md                     | 41 ++++++++++---------
+ ilhas/robometria/ESTADO.md          |  2 +-
+ ilhas/robometria/PROMPT.md          | 78 +++++++++++++++++++++++++++++++++++++
+ ilhas/robometria/dados/consertos.md |  1 +
+ 4 files changed, 100 insertions(+), 22 deletions(-)
+```
+
+```
+$ git show --numstat --format='' HEAD
+20	21	dados/PAINEL.md
+1	1	ilhas/robometria/ESTADO.md
+78	0	ilhas/robometria/PROMPT.md
+1	0	ilhas/robometria/dados/consertos.md
+```
+
+Mensagem de commit, a da instrucao, sem uma palavra a mais:
+`ronda da sentinela 18/09 na robometria: despacho de 4 defeitos, ultima_ronda e painel`
+
+```
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   9d3a360..8795ef2  HEAD -> main
+```
+
+Push aceito de primeira, sem rebase, sem force, sem PR.
+
+### Passo 5 — confirmado no `origin/main`
+
+```
+$ git fetch origin main && git log -1 origin/main --format="%H%n%s"
+8795ef2c66f50237568588dad2a641a5b23f0102
+ronda da sentinela 18/09 na robometria: despacho de 4 defeitos, ultima_ronda e painel
+```
+
+Hash no `main`: **`8795ef2c66f50237568588dad2a641a5b23f0102`**. Arquivos alterados: os quatro acima, e so eles.
+
+### Passo 6 — contagem conferida relendo os arquivos DEPOIS de gravar
+
+Contagem de linhas de cada arquivo, antes (em `9d3a360`) e depois:
+
+```
+ilhas/robometria/ESTADO.md            antes=501   depois=501    (1 linha trocada, 0 de saldo)
+ilhas/robometria/PROMPT.md            antes=980   depois=1058   (+78)
+ilhas/robometria/dados/consertos.md   antes=13    depois=14     (+1)
+dados/PAINEL.md                       antes=54    depois=53     (-1: 20 gravadas, 21 apagadas)
+```
+
+Os saldos batem com o `--numstat` linha a linha. As 78 do `PROMPT.md` sao as 77 do bloco da instrucao mais a
+linha em branco que o separa da ancora.
+
+Releitura dos quatro arquivos ja gravados:
+
+```
+$ grep -n "^ultima_ronda:" ilhas/robometria/ESTADO.md
+19:ultima_ronda: 2026-09-18T14:45Z
+
+$ grep -n "^## DESPACHO DA SENTINELA" ilhas/robometria/PROMPT.md | head -3
+33:## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — quatro defeitos...
+111:## DESPACHO DA SENTINELA — 16/09/2026 (leitura semanal, 19h40Z) — a primeira medição com sinal...
+363:## DESPACHO DA SENTINELA — 16/09/2026 (ronda diária, 14h50Z) — ~~quatro itens~~ — CUMPRIDO...
+
+$ grep -c "^| 2026-09-18 | — |" ilhas/robometria/dados/consertos.md
+1
+
+$ sed -n "5p" dados/PAINEL.md
+**Escrito em:** 18/09/2026 14h45Z, pela ronda diária da **robometria**.
+
+$ grep -c "18/09/2026 (0 dia)" dados/PAINEL.md
+4
+```
+
+O despacho novo e o PRIMEIRO do `PROMPT.md` (linha 33), como a instrucao mandou; o de 16/09 da leitura semanal
+desceu intacto para a 111 e o de 16/09 da ronda diaria, ja CUMPRIDO, para a 363 — nenhum dos dois tocado. A
+linha de 18/09 do `consertos.md` existe uma unica vez. O `PAINEL.md` traz as quatro linhas de despacho aberto
+com `18/09/2026 (0 dia)`.
+
+Nenhum passo falhou; nao ha mensagem de erro para registrar.
+
+### O que NAO foi feito
+
+Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabecalho de estado tocado alem da unica
+linha `ultima_ronda` que a instrucao nomeou. Nenhum bloco de fila executado. Nenhum snippet aberto para
+conserto — o defeito 3 aponta `snippets/robometria-r1.php` linhas 934-939 e o arquivo NAO foi tocado, porque e
+19.2. Nada publicado, `publicar: true` nao mexido, Sync nao acionado, site nao verificado, nenhuma conta
+criada. O `ARQUIPELAGO.md` nao foi aberto. Nenhum arquivo alem dos quatro nomeados e deste log foi alterado.
+O log vai num commit proprio, logo apos o commit do trabalho, porque o hash so existe depois do commit.
