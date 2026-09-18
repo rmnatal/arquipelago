@@ -1083,3 +1083,102 @@ Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco 
 foi acionado, nada foi publicado, nenhuma conta foi criada, nenhuma coleta de imagem foi rodada (o bloco inserido
 e uma ordem para a ilha, nao para as maos), o `ARQUIPELAGO.md` nao foi lido nem aberto, e nenhum arquivo alem do
 que a instrucao nomeou e deste log foi alterado. O log foi num commit proprio, logo apos o commit do trabalho.
+
+## DISPARO DE 18/09/2026, 12h41Z — quatro edicoes literais em quatro arquivos, um commit so: dois cabecalhos de estado limpos, duas linhas de rede abertas e a secao 1.2-b inserida no contrato
+
+Instrucao do disparo: quatro edicoes literais, um commit unico. EDICAO 1 em `ilhas/ohmetria/ESTADO.md`
+(`executando_desde` para `null` com o comentario de reserva orfa limpa, e a linha `rede:` trocada de bloqueada
+em 2026-09-15 para aberta em 2026-09-18). EDICAO 2 em `ilhas/jornadafly/ESTADO.md` (so a linha `rede:`).
+EDICAO 3 em `ilhas/clubedomosaico/ESTADO.md` (so o `executando_desde`). EDICAO 4 em `ARQUIPELAGO.md` (bloco da
+secao 1.2-b inserido imediatamente antes da linha da secao 1.1, com uma linha em branco antes e depois). As duas
+primeiras mexem em cabecalho de estado, e a instrucao mandou explicitamente.
+
+Partida do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de
+`7b81221` (`maos-log: secao do disparo de 18/09 13h02Z`).
+
+### Passo 2 — `git status --porcelain` e `git diff --stat` ANTES do commit
+
+```
+$ git status --porcelain
+ M ARQUIPELAGO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/jornadafly/ESTADO.md
+ M ilhas/ohmetria/ESTADO.md
+```
+
+```
+$ git diff --stat
+ ARQUIPELAGO.md                 | 16 ++++++++++++++++
+ ilhas/clubedomosaico/ESTADO.md |  2 +-
+ ilhas/jornadafly/ESTADO.md     |  2 +-
+ ilhas/ohmetria/ESTADO.md       |  4 ++--
+ 4 files changed, 20 insertions(+), 4 deletions(-)
+```
+
+Depois do commit a arvore ficou limpa — `git status --porcelain` e `git diff --stat` voltaram VAZIOS os dois,
+e por isso o que esta gravado acima e a captura de antes do commit, com o `--stat` do proprio commit repetido
+abaixo.
+
+### Passo 3 e 4 — commit e push
+
+```
+$ git show --stat --format= ee530f2
+ ARQUIPELAGO.md                 | 16 ++++++++++++++++
+ ilhas/clubedomosaico/ESTADO.md |  2 +-
+ ilhas/jornadafly/ESTADO.md     |  2 +-
+ ilhas/ohmetria/ESTADO.md       |  4 ++--
+ 4 files changed, 20 insertions(+), 4 deletions(-)
+```
+
+```
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   7b81221..ee530f2  HEAD -> main
+```
+
+```
+$ git fetch origin main && git log -1 origin/main --format="%H%n%s"
+ee530f2d243bd59d25d7e0864e3240bac1001b97
+contrato: fora do foco e modo de medicao, a ordem do foco sai da medicao, e reserva orfa vira lixo que a proxima execucao limpa
+```
+
+Hash no `main`: **`ee530f2d243bd59d25d7e0864e3240bac1001b97`**. Push aceito de primeira, sem rebase, sem force,
+sem PR.
+
+### Passo 5 — contagem conferida relendo os arquivos DEPOIS de gravar
+
+```
+$ grep -c "" ARQUIPELAGO.md   # antes: 890
+906
+```
+
+O `ARQUIPELAGO.md` tinha 890 linhas antes e tem 906 depois: +16, o mesmo numero do `diff --stat`. Sao as 15
+linhas do bloco mais a linha em branco que o separa da ancora; a linha em branco de cima ja existia.
+
+```
+$ grep -n '^### 1\.2-b FORA DO FOCO\|^### 1\.1 A RESERVA' ARQUIPELAGO.md
+71:### 1.2-b FORA DO FOCO NÃO É PARADA: É MODO DE MEDIÇÃO — e a ordem do foco sai da medição (18/09/2026)
+87:### 1.1 A RESERVA ENVELHECE ENQUANTO A EXECUÇÃO ESTÁ VIVA — quem decide é o último commit da ilha (12/09/2026)
+```
+
+A ancora, que era a linha 71, passou a ser a 87, e o bloco novo ocupa da 71 a 85 com a 86 em branco. Os tres
+cabecalhos de ESTADO.md foram relidos com `yaml.safe_load` depois de gravados e os tres parseiam:
+
+```
+ilhas/ohmetria/ESTADO.md        executando_desde=None   rede='aberta em 2026-09-18'
+ilhas/jornadafly/ESTADO.md      executando_desde=None   rede='aberta em 2026-09-18'
+ilhas/clubedomosaico/ESTADO.md  executando_desde=None   rede=None (esta ilha nao tem campo rede)
+```
+
+Uma linha trocada em cada um dos tres, mais a segunda linha trocada na ohmetria: 4 linhas de cabecalho ao todo,
+que sao as 4 substituicoes contadas no `--stat` (2+2 na ohmetria, 1+1 na jornadafly, 1+1 na clubedomosaico).
+
+Nenhum passo falhou; nao ha mensagem de erro para registrar.
+
+### O que NAO foi feito
+
+Nenhuma ilha foi reservada — os dois `executando_desde` foram LIMPOS, nao escritos, e a instrucao mandou
+explicitamente. Nenhum bloco de fila foi executado, o Sync nao foi acionado, nada foi publicado, nenhum site foi
+verificado, nenhuma conta foi criada. O `ARQUIPELAGO.md` foi aberto so para achar a linha ancora e conferir a
+insercao, nunca para decidir o que fazer. Nenhum arquivo alem dos quatro que a instrucao nomeou e deste log foi
+alterado. O log vai num commit proprio, logo apos o commit do trabalho.
