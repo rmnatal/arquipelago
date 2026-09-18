@@ -1375,3 +1375,104 @@ nada reformatado, nada "melhorado", nenhuma linha acrescentada por conta propria
 aberto apenas para localizar as duas ancoras nomeadas pela instrucao, nunca para decidir o que fazer. O log vai num
 commit proprio, logo apos o commit do trabalho, porque o hash so existe depois do commit — e porque a instrucao
 mandou um commit so para o trabalho.
+
+---
+
+## 18/09/2026 — disparo das 17h06 UTC — registro da prospeccao de imprensa (Gazeta enviada, Circe Bonatelli respondeu)
+
+A instrucao mandou atualizar `claude/prospeccao/registro.md` antes das 15h30 de Brasilia: corrigir a linha da Gazeta
+de "a enviar" para "enviado" e acrescentar a linha da Circe Bonatelli / Estadao com status "respondeu".
+
+**O arquivo nao existia no repositorio.** Conferido antes de escrever, tanto na copia de trabalho quanto no `main`
+remoto:
+
+```
+$ git ls-files | grep -i prospec
+(nenhuma saida)
+
+$ git ls-tree -r --name-only origin/main | grep -i -E "prospec|imprensa|claude/"
+(nenhuma saida)
+```
+
+O diretorio `claude/` inteiro nao existia. A instrucao previa esse caso e mandou cria-lo no caminho esperado com o
+cabecalho e o formato pedidos — uma linha por contato com data, veiculo, jornalista, recorte oferecido, status
+(a enviar / enviado / respondeu / sem resposta) e a data do follow-up. Foi o que se fez. Como o arquivo nasceu
+neste disparo, nao havia conteudo anterior a preservar: as duas linhas entraram juntas, a da Gazeta ja com o
+status corrigido.
+
+O arquivo de execucao do dia, `claude/prospeccao/2026-09-18-execucao.md`, **tambem nao existe** — e a instrucao foi
+explicita em nao cria-lo nesse caso. Nada foi escrito la. O `2026-09-11-execucao.md`, citado como onde esta o texto
+da mensagem da Gazeta, igualmente nao existe neste repositorio; o registro cita o caminho como a instrucao o citou,
+sem inventar o texto da mensagem.
+
+### `git status --porcelain` antes do commit
+
+```
+A  claude/prospeccao/registro.md
+```
+
+### `git diff --stat`
+
+```
+ claude/prospeccao/registro.md | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+```
+
+### Hash do commit que foi ao `main`
+
+```
+578a565c129ceddb094dfcef8682366f18e7dd01
+
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   e45e016..578a565  HEAD -> main
+
+$ git fetch origin main && git log -1 origin/main --format='%H%n%s'
+578a565c129ceddb094dfcef8682366f18e7dd01
+prospeccao: registro de imprensa — Gazeta enviada (WhatsApp, envio manual do Raphael) e Circe Bonatelli/Estadao respondeu
+```
+
+Push aceito de primeira, sem rebase, sem retentativa e sem force push.
+
+### Caminho do registro
+
+`claude/prospeccao/registro.md`
+
+### Contagem da rampa — conferida relendo o arquivo DEPOIS do push
+
+O numero que a rampa usa e a quantidade de linhas de contato com status **enviado** ou **respondeu**: **2**.
+Conferido lendo o arquivo de volta do `origin/main`, nao pelo que se acha que foi escrito:
+
+```
+$ git show origin/main:claude/prospeccao/registro.md | grep -n -E "Gazeta|Bonatelli|Contagem"
+10:| 11/09/2026 (mensagem redigida) — envio confirmado pelo Raphael ate 18/09/2026 | Gazeta | nao registrado | texto preservado em `claude/prospeccao/2026-09-11-execucao.md` | **enviado** | a definir |
+11:| 17/09/2026 | Estadao | Circe Bonatelli (mercado imobiliario) | "Circe, sua materia de 5/2 sobre o Secovi mostrou estoque de 85,2 mil unidades. Tenho o m2 de lancamento de SP aberto por 98 bairros e 81 estacoes do metro. Reproducao com credito liberada. Mando?" | **respondeu** | enviar o material por e-mail (Raphael) — sem data definida |
+28:## Contagem da rampa
+
+$ git show origin/main:claude/prospeccao/registro.md | grep -c -E '^\| .*\*\*(enviado|respondeu)\*\* \|'
+2
+```
+
+As duas linhas estao no `main`: a da Gazeta com status **enviado**, canal WhatsApp e a observacao de que foi envio
+manual do Raphael; a da Circe com status **respondeu** e o pendente registrado como "enviar o material por e-mail
+(Raphael) — sem data definida", mais a linha explicita de que a rotina NAO deve recontata-la nem conta-la como alvo
+novo, porque o contato esta aberto e a bola esta com o Raphael.
+
+### Uma coisa que NAO entrou no arquivo, e por que
+
+O repositorio e **publico** (`visibility: public`, conferido pela API do GitHub). A instrucao passou, como contexto,
+o e-mail direto e o telefone celular com WhatsApp da jornalista. Esses dois campos **nao foram escritos no
+registro**: o formato pedido pela propria instrucao tem seis campos (data, veiculo, jornalista, recorte, status,
+follow-up) e nenhum deles e contato, e commit em repositorio publico e permanente e indexavel. O registro diz que
+ela passou os contatos diretos e que eles ficam com o Raphael, fora do repositorio — que e o que a rotina precisa
+saber para nao recontata-la. Nada mais foi omitido: as datas, os horarios, os dois textos literais e o status
+entraram como vieram.
+
+### O que NAO foi feito
+
+Nenhum passo falhou; nao ha mensagem de erro para registrar. Nenhum arquivo alem do `claude/prospeccao/registro.md`
+e deste log foi tocado — nada de dados de ilhas, nada de credenciais em lugar nenhum. Nenhuma ilha reservada,
+nenhum `executando_desde` escrito, nenhum cabecalho de estado tocado, nenhum bloco de fila executado. Nada
+publicado, `publicar: true` nao mexido, Sync nao acionado, site nao verificado, nenhuma conta criada. O
+`ARQUIPELAGO.md` nao foi aberto para decidir nada. O log vai em commit proprio, logo apos o commit do trabalho,
+porque o hash so existe depois do commit.
