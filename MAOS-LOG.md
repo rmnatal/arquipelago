@@ -1570,3 +1570,170 @@ e deste log foi tocado. Nenhuma ilha reservada, nenhum `executando_desde` escrit
 tocado, nenhum bloco de fila executado. Nada publicado, `publicar: true` nao mexido, Sync nao acionado, site nao
 verificado, nenhuma conta criada. O `ARQUIPELAGO.md` nao foi aberto para decidir nada. O log vai em commit proprio,
 logo apos o commit da reversao, porque o hash so existe depois do commit.
+
+## Disparo de 18/09/2026, 17h11Z — CANCELAMENTO do disparo das 17h06Z: `claude/prospeccao/registro.md` era erro de enderecamento e saiu do `main` por revert
+
+Este disparo nao veio pedir trabalho novo. Veio **cancelar e corrigir** o disparo imediatamente anterior — o das
+17h06Z, cuja secao esta logo acima, na linha 1381 deste arquivo. Quem disparou avisou, com todas as letras, que
+aquilo foi **erro de enderecamento**: o assunto e a prospeccao de imprensa da **REAL 21**, que nao vive neste
+repositorio. Nada daquele disparo pertence ao `rmnatal/arquipelago`.
+
+E o **segundo erro de enderecamento registrado**. A secao do disparo errado fica onde esta, intacta: o log e
+append-only e eu nao apago, reescrevo nem resumo secao de disparo anterior, nem a de um disparo que nao devia ter
+acontecido. Esta secao aqui e que conta o outro lado.
+
+### O que eu vi primeiro, e por que a resposta mudou no meio
+
+A instrucao previa dois casos: ou o disparo errado nao tinha commitado nada (caso 2, so logar), ou tinha criado
+arquivo e era preciso desfazer (caso 3, revert). **Os dois foram verdade, em sequencia**, porque o disparo errado
+ainda estava rodando enquanto eu conferia. O rastro honesto e este:
+
+**Primeira leitura, 17h06Z** — o `main` estava em `e45e016` e nao havia rastro nenhum de prospeccao. Procurei por
+quatro caminhos, e os quatro deram vazio:
+
+```
+$ git fetch origin main && git log --oneline -5 origin/main
+e45e016 robometria: fecho da execucao de 18/09 16h16Z — itens 2 e 3 conferidos no ar na revisao 67, e o despacho reescrito pela 18.3
+c925c23 robometria 18/09: itens 2 e 3 do despacho da Sentinela fechados — o piso passa a render comissao nos 95, e a pagina para de negar o botao que ela mesma serve
+b817e3a reserva: robometria as 16h16Z de 18/09 pela Fundacao (foco da 1.2)
+032950e maos-log: disparo de 18/09 15h26Z — duas insercoes no ARQUIPELAGO.md, commit 00bc2ef
+00bc2ef contrato: link sem comissao deixa de ser padrao e nunca fica acima de link que rende, e a imagem do fabricante vira segunda fonte
+
+$ git ls-files | grep -i prospec
+(sem saida)
+
+$ git log --all --oneline --diff-filter=A -- '*prospec*'
+(sem saida)
+
+$ git log --all --oneline --grep=prospec -i
+(sem saida)
+
+$ for r in $(git rev-list --all --max-count=200); do git ls-tree -r --name-only $r | grep -qi prospec && echo "ACHOU em $r"; done
+(sem saida)
+```
+
+Cheguei a escrever a secao deste log concluindo **caso 2** — "nao chegou a commitar nada, nao ha o que desfazer" — e
+commitei localmente (`4d33de9`, nunca empurrado). **Essa conclusao estava errada por alguns minutos de diferenca.**
+
+**Segunda leitura, no push** — o `git push origin HEAD:main` foi recusado por nao-fast-forward, e o `fetch` mostrou
+que o disparo errado tinha acabado de chegar:
+
+```
+$ git fetch origin main
+   e45e016..b5d83dd  main       -> origin/main
+
+$ git log --oneline -3 origin/main
+b5d83dd maos-log: disparo de 18/09 17h06Z — registro da prospeccao de imprensa criado, commit 578a565
+578a565 prospeccao: registro de imprensa — Gazeta enviada (WhatsApp, envio manual do Raphael) e Circe Bonatelli/Estadao respondeu
+e45e016 robometria: fecho da execucao de 18/09 16h16Z — itens 2 e 3 conferidos no ar na revisao 67, e o despacho reescrito pela 18.3
+
+$ git show --stat 578a565
+ claude/prospeccao/registro.md | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+```
+
+Joguei fora o commit local que dizia "nada a desfazer" — ele nunca tinha ido ao `main`, e mentir no log e pior do
+que nao logar — e passei ao **caso 3**.
+
+### O que foi desfeito
+
+O commit a desfazer era **`578a565`**, o unico que criou arquivo: `claude/prospeccao/registro.md`, 30 linhas
+inseridas. Rodei `git revert --no-edit 578a565`, que aplicou limpo e produziu o revert `d1f7755` local — 1 arquivo,
+30 remocoes, `delete mode 100644 claude/prospeccao/registro.md`.
+
+O commit `b5d83dd`, do mesmo disparo errado, **nao foi revertido de proposito**: ele nao cria arquivo de
+prospeccao, ele so acrescenta a secao daquele disparo a este `MAOS-LOG.md`. Reverte-lo apagaria uma secao de log —
+exatamente o que o append-only proibe. Registro de disparo errado fica; arquivo errado sai.
+
+No push do revert houve **nova corrida**: recusado de novo, e o `fetch` mostrou que o `main` ja tinha um revert
+equivalente, `5dff206`, empurrado de outro lado com a mesma mensagem de motivo e o mesmo efeito (as mesmas 30
+remocoes do mesmo arquivo). O `git rebase origin/main` respondeu `warning: skipped previously applied commit
+d1f7755` — isto e, o meu revert virou no-op porque o trabalho ja estava feito. **Nao forcei push em momento
+nenhum**, e nao empurrei um segundo revert do mesmo arquivo so para ter o meu la.
+
+Esse outro lado tambem deixou a sua propria secao neste log, a de "17h10 UTC — REVERSAO", na linha 1482. Ela fica
+onde esta, intacta, pelo mesmo motivo que a do disparo errado fica: append-only. As duas secoes contam o mesmo
+revert de angulos diferentes, e isso e melhor do que uma so.
+
+### Conferencia de que o repositorio voltou ao estado anterior
+
+```
+$ git ls-tree -r --name-only origin/main | grep -i prospec
+(sem saida: o main nao tem mais nenhum arquivo de prospeccao)
+
+$ ls claude/prospeccao
+ls: cannot access 'claude/prospeccao': No such file or directory
+
+$ git diff --stat e45e016 origin/main -- . ':!MAOS-LOG.md'
+(sem saida: fora do MAOS-LOG.md, a arvore do main e identica a de e45e016 — o estado anterior ao disparo errado)
+```
+
+O unico arquivo que mudou entre `e45e016` e o `main` de agora e o proprio `MAOS-LOG.md`, que so cresce. O historico
+esta preservado: `578a565` continua existindo, desfeito por revert e nao apagado.
+
+### `git status --porcelain` e `git diff --stat` deste disparo
+
+Antes de editar, com `trabalho` alinhada ao `origin/main` (`git rev-list --left-right --count origin/main...HEAD`
+respondeu `0	0`):
+
+```
+$ git status --porcelain
+(vazio: arvore limpa, identica ao origin/main)
+```
+
+Depois de acrescentar esta secao, que e a unica alteracao que este disparo leva ao `main`:
+
+```
+$ git status --porcelain
+ M MAOS-LOG.md
+
+$ git diff --stat
+ MAOS-LOG.md | 167 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+$ git diff --numstat
+167	0	MAOS-LOG.md
+```
+
+Um unico arquivo tocado, `MAOS-LOG.md`, so insercao, zero remocao.
+
+### Contagem, conferida relendo o arquivo DEPOIS de gravar
+
+```
+$ wc -l MAOS-LOG.md
+1739 MAOS-LOG.md
+
+$ grep -c '^## ' MAOS-LOG.md
+26
+
+$ grep -n '^## Disparo de 18/09/2026, 17h11Z' MAOS-LOG.md
+1574:## Disparo de 18/09/2026, 17h11Z — CANCELAMENTO do disparo das 17h06Z: `claude/prospeccao/registro.md` era erro de enderecamento e saiu do `main` por revert
+```
+
+O arquivo saiu de **1572** para **1739** linhas: **+167**, exatamente o que o `--numstat` acima diz. As 1572
+primeiras linhas estao intactas, byte a byte: o diff e `167 0`, zero remocao. A secao do disparo errado, que
+comeca na linha 1381, continua la inteira.
+
+### Commit e `main` DEPOIS
+
+O hash deste commit e o `git log --oneline -5 origin/main` de depois so existem depois que este commit existir, e
+o log e append-only — nao volto para reescrever esta secao. Ambos entram no **Fecho** logo abaixo, acrescentado
+pelo commit seguinte deste mesmo disparo, junto com a confirmacao de que o commit chegou mesmo ao `origin/main`.
+
+Arquivos alterados por este disparo no `main`: **apenas `MAOS-LOG.md`**. O revert do arquivo de prospeccao foi
+feito, mas quem chegou primeiro ao `main` com ele foi `5dff206`, de outro lado.
+
+### O que NAO foi feito
+
+Nenhum arquivo de prospeccao foi criado, aqui nem em lugar nenhum deste repositorio — `claude/prospeccao/registro.md`
+nao existe mais no `main` e nao sera recriado em hipotese nenhuma. Nenhuma secao anterior deste log foi apagada,
+reescrita ou resumida. **Nenhum force push**, em nenhuma das duas corridas de push. Nenhuma ilha reservada, nenhum
+`executando_desde` escrito, nenhum cabecalho de estado tocado. Nenhum bloco de fila de ilha nenhuma executado. Nada
+publicado, `publicar: true` nao mexido, Sync nao acionado, site nao verificado, nenhuma conta criada. O
+`ARQUIPELAGO.md` nao foi aberto: a decisao ja vinha na mensagem do disparo, e as MAOS nao decidem.
+
+Nenhum passo falhou de forma irrecuperavel, mas dois passos deram errado no caminho e estao registrados acima
+porque disparo com tropeco e o que mais precisa de rastro: **(1)** a primeira conclusao, de que nao havia nada a
+desfazer, estava errada — o disparo errado commitou enquanto eu conferia, e o commit local `4d33de9` que dizia isso
+foi descartado sem nunca chegar ao `main`; **(2)** os dois pushes foram recusados por nao-fast-forward
+(`Updates were rejected because the remote contains work that you do not have locally`), resolvidos com `fetch` +
+`rebase`, nunca com force.
