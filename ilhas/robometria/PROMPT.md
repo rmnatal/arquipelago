@@ -97,6 +97,37 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 **O QUE A SENTINELA NÃO PÔDE FAZER NESTA EXECUÇÃO, dito para ninguém descobrir depois:** o teto semanal de geração de link de afiliado **não foi gasto**. O canal das MÃOS foi recusado pelo classificador de aprovação do ambiente no começo da execução, e pela 27.2 o banco só muda pelas MÃOS — gerar link que não pode ser gravado seria fabricar dado órfão. O alvo do teto da semana que vem, já escolhido e nomeado: os 46 registros em degrau 4, pelo **degrau 2 da 25.1** (catálogo `/p/MLB…` do Mercado Livre), que é o cavalo de batalha desta cauda longa pela 25.3 — e que precisa do clique do Raphael, pelo reCAPTCHA da 25.6.
 
+## DESPACHO DO RAPHAEL — 18/09/2026 (segunda ordem do dia) — TERMINAR AS FOTOS, E DEIXAR A DECISAO DE OUTUBRO PRE-REGISTRADA
+
+**ISTO NAO E EXPANSAO E NAO ESBARRA NO DESPACHO DE CONGELAMENTO ABAIXO.** E o despacho da API da Shopee de 16/09 terminando de sair: a coleta rodou uma vez, sobre o banco daquele dia, e o banco cresceu 30 registros depois dela. Terminar coleta comecada nao e investimento novo.
+
+### PARTE 1 — SEGUNDA PASSADA DE COLETA DE IMAGEM
+
+Estado medido no `main` em 18/09/2026, 12h10Z: **103 registros, 27 com foto (26%), 76 sem.** O Raphael pediu, com estas palavras, "preciso de todos com imagens".
+
+**O QUE FAZER:** rode `ferramentas/shopee-api.py` sobre **todos os 76 registros sem `imagem.url`**, nos dois bancos, usando a escada de palavra-chave que o adendo de 16/09 fixou — codigo sozinho, marca + codigo, marca + modelo + tipo de peca, e por ultimo a chave de `url_busca_produto`. Grave `imagem`, `afiliado.url_produto` e o link com sub-id quando vierem. Registre em qual degrau cada item casou.
+
+**O PORTAO QUE NAO SE AFROUXA, e ele vale mais que a meta de cobertura:** se o titulo que voltou nao contiver o codigo da peca ou o nome do modelo, **o registro fica sem foto**, com o motivo escrito. **Foto errada num registro de peca e pior que nenhuma foto** — a ilha inteira se vende por procedencia, e um filtro ilustrado com a foto do filtro errado destroi exatamente isso. Nao baixe o criterio para bater 100%.
+
+**E POR ISSO O ALVO AQUI E HONESTO, NAO REDONDO.** Pode ser que 100% seja inalcancavel pela API: peca de reposicao de marca pequena simplesmente nao esta anunciada na Shopee. **O entregavel desta passada e a cobertura maxima que o criterio permite, MAIS a lista do residuo com o motivo de cada um**, agrupada por causa (sem anuncio na Shopee, titulo nao nomeia o modelo, casamento ambiguo). Essa lista e o que permite decidir o passo seguinte.
+
+**UMA PORTA NOVA QUE EXISTE AGORA E QUE VOCE NAO DEVE ABRIR SOZINHA:** desde 17/09 os cinco dominios de fabricante estao liberados na rede, e paginas de fabricante tem foto de produto. **NAO colete imagem de site de fabricante nesta execucao.** A licenca e diferente: a secao 25.3 chama a imagem do feed/API de "fonte legitima" porque **a imagem do anuncio ao lado do link do anuncio e exatamente o que o programa de afiliado existe para permitir** — e isso nao se estende ao site do fabricante. Isso e decisao do Raphael, e ele decide depois de ver o tamanho do residuo. Escreva o numero e pare.
+
+### PARTE 2 — A DECISAO DE OUTUBRO, ESCRITA ANTES DO DADO
+
+O destino desta ilha depende da serie de impressoes, e a serie so ganha corpo em outubro. **O criterio tem de ser escrito AGORA, antes dos numeros chegarem** — criterio escrito depois do dado e criterio dobrado para caber no dado que veio. Esta parte nao pede medicao nenhuma hoje: pede que a regra exista.
+
+**A ESTRUTURA DA DECISAO, fixa desde ja:**
+
+- **Quem mede:** a leitura semanal da Sentinela, as quartas. As leituras que contam sao **23/09, 30/09, 07/10 e 14/10** — quatro pontos.
+- **O que se mede:** impressoes em 28 dias e cliques, da Search Console, na serie de `dados/indexacao.md`; e a tabela de posicoes em `dados/posicoes.md`.
+- **A leitura de 30/09 fixa o numero de corte**, e o fixa com DUAS referencias na mesa: a propria serie da Robometria e a serie da Aquametria no mesmo periodo de vida da ilha. Fixar corte hoje, com 11 impressoes, seria inventar.
+- **Os tres desfechos possiveis, e nenhum outro:** (a) **a ilha volta a receber investimento** — malha cresce, leva nova de modelos, bloco de conteudo; (b) **a ilha fica em manutencao** — Sentinela continua, Fundacao nao investe, e o assunto so volta se a serie mudar; (c) **a ilha e arquivada** — o site fica no ar, a ronda para, e o aprendizado vai inteiro para a `BUSSOLA.md`.
+- **O QUE NAO PODE ACONTECER, e esta linha existe para impedir:** a decisao ser adiada por falta de dado. Se em 14/10 a serie ainda estiver fina, isso **e** o resultado — nicho que em cinco semanas de indexacao nao produziu impressao mensuravel ja respondeu. Adiar por mais um mes e o jeito educado de nunca decidir.
+- **O contexto que a decisao nao pode ignorar:** `bussola/medicoes/volume-absoluto-2026-09-18.md` mediu que as consultas de peca desta ilha estao abaixo do limiar do Google, e que o volume do nicho esta na metade de dimensionamento (R2). Uma serie fraca em outubro **confirma** essa medicao; uma serie forte a contradiz e vale um registro proprio, porque significaria que o Planejador nao enxerga a cauda que a ilha atende — e isso mudaria a regua da Bussola inteira.
+
+**A LEITURA SEMANAL DE 23/09 JA DEVE ABRIR A SERIE COM ESTE ENQUADRAMENTO**, dizendo em qual dos quatro pontos ela esta e o que falta para o corte de 30/09.
+
 ## DESPACHO DO RAPHAEL — 18/09/2026 — A ILHA TERMINA, MAS MUDA DE ESTADO: DE APOSTA PARA EXPERIMENTO MEDIDO
 
 Em 18/09/2026 o volume de busca do corpus desta ilha foi medido pela primeira vez, no Google Keyword Planner. O levantamento inteiro, com metodo e ressalvas, esta em `bussola/medicoes/volume-absoluto-2026-09-18.md`. O resultado, em uma linha: **de 49 consultas, 9 tem volume — e NENHUMA delas e de peca ou compatibilidade.** As consultas mais amplas possiveis do assunto desta ilha (`filtro robô aspirador`, `escova lateral robô aspirador`, `peças robô aspirador`) estao **abaixo do limiar de relatorio do Google**. Na mesma ferramenta e no mesmo dia, `filtro para aquario` deu 1 mil–10 mil.
