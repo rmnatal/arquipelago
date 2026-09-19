@@ -45,6 +45,27 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DO RAPHAEL — 19/09/2026, 11h04 (horário de Brasília) — ABRIR A PORTA DO FABRICANTE: FOTO PARA OS 66 SEM IMAGEM
+
+**A porta que o despacho de 18/09 mandou manter fechada está aberta agora, por decisão do Raphael.** Aquele despacho terminou dizendo *"NÃO colete imagem de site de fabricante — o Raphael decide depois de ver o tamanho do resíduo"*. Ele viu: **66 publicáveis sem foto, 36 peças e 30 modelos**, e decidiu, com estas palavras: *"pode usar imagem do fabricante, sem problemas."* A regra permanente já está no contrato, na **seção 25.3** (segunda fonte de imagem), desde o commit `00bc2ef`. Este despacho é a ordem de executá-la. Sem ele a autorização ficava no contrato e a Fundação nunca a executava, e foi exatamente isso que deixou o banco parado em 29 de 103.
+
+**O resíduo, medido no `main` em 19/09 (publicáveis sem `imagem.url`):**
+- peças: xiaomi 16 · multi 5 · electrolux 5 · roborock 5 · wap 3 · positivo 2
+- modelos: xiaomi 10 · roborock 6 · multi 6 · electrolux 4 · wap 2 · positivo 2
+
+**O QUE FAZER:** para cada um dos 66, procure na página do FABRICANTE a foto daquela peça ou daquele modelo EXATO. Os domínios que estão abertos na rede desde 17/09: `www.electrolux.com.br`, `www.multilaser.com.br`, `mais.conteudo.wap.ind.br`, `www.mi.com`, `www.positivotecnologia.com.br`. Sirva a imagem pelo mesmo caminho que as fotos da Shopee já usam no ar, sem inventar um canal novo.
+
+**OS TRÊS PORTÕES DA 25.3, e nenhum afrouxa para bater meta:**
+1. **Só a foto do FABRICANTE, da PEÇA EXATA.** Nunca banco de imagem, nunca foto de varejista, nunca foto de peça parecida. O código da peça ou o nome do modelo tem que estar na página de onde a foto sai. Se não estiver, o registro fica sem foto e o motivo fica escrito. Abra cada imagem com os olhos antes de gravar, como a execução de 18/09 fez e pegou um casamento errado (`positivo-11206519`).
+2. **`imagem.fonte` grava a URL da página de origem**, sempre, para que qualquer foto possa ser removida em um comando se um fabricante pedir.
+3. **A preferência nunca inverte.** Registro que já tem foto da Shopee não é tocado. A foto do fabricante só preenche vazio.
+
+**ROBOROCK (11 registros):** nenhum domínio da Roborock está na lista aberta. Se a página não abrir, NÃO contorne, NÃO use espelho, NÃO use varejista. Registre os 11 como `bloqueado por rede`, escreva o domínio exato que foi tentado, e pare nessa marca. Antes de declarar bloqueio, confira o DNS: um host que não existe e um 403 do proxy parecem iguais para o `curl` (lição de 17/09, quando dois dos cinco endereços "bloqueados" nunca existiram). O Raphael acrescenta o domínio na rede se for o caso.
+
+**O ENTREGÁVEL:** a cobertura máxima que os portões permitem, MAIS a lista do resíduo com o motivo de cada um, agrupada por causa (fabricante não tem a foto da peça exata · página não nomeia o código · bloqueado por rede). Escreva no fecho o número antes e depois (hoje: 29 de 103).
+
+**Isto não é expansão da ilha:** é terminar a coleta de imagem começada em 16/09 com a segunda fonte que o contrato já prevê. Não abre ferramenta nova, página nova nem categoria nova.
+
 ## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — ~~quatro defeitos~~ — **REESCRITO PELA 18.3 EM 18/09/2026, 16h40Z, DEIXANDO SÓ O QUE FALTA**
 
 > **ITEM 2 — CUMPRIDO E CONFERIDO.** Os 22 publicáveis sem piso rastreável ganharam `url_busca` encurtada pela Open API (25.6) e `itens_com_piso_nao_rastreavel` voltou a **0** nos dois cabeçalhos, sobre os 95 publicáveis. A segunda metade do "pronto quando" — a trava no gerador — também saiu: o validador passa a exigir que o **encurtamento tenha sido TENTADO** (25.2-b), com a prova em `dados/palavras-chave-medidas.json`, e duas mutações novas em `mutacoes-escada.py` provam as duas direções (nunca tentado reprova; tentado-e-a-API-não-serviu passa, que é o caso legítimo).
