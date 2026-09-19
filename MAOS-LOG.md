@@ -1874,3 +1874,115 @@ as 13 linhas da secao nova). Linhas: 933 -> 947, +14, -0.
 reservada, nenhum bloco de fila foi executado, nenhum cabecalho de estado foi tocado, nada foi publicado.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `47a459e` so existiu depois do commit do trabalho.
+
+---
+
+## Disparo de 19/09/2026, 11h06 (horario de Brasilia) — 14h06 UTC — despacho do Raphael de 19/09 na ilha Robometria
+
+**Assunto:** Arquipelago, ilha Robometria (`ilhas/robometria/PROMPT.md`). Passou na checagem de assunto antes do
+`git fetch`: e ilha do Arquipelago, e a instrucao nomeou o arquivo. Nenhum dado pessoal de terceiro no bloco —
+so dominios de fabricante, que sao endereco publico de empresa.
+
+**O que foi pedido:** inserir um bloco de despacho, byte a byte, imediatamente ANTES da primeira linha do arquivo
+que comeca com `## DESPACHO` (a linha do despacho da Sentinela de 18/09), com uma linha em branco entre o fim do
+bloco e essa linha, sem alterar nenhuma outra linha.
+
+### Passo 1 — partida do `main` real
+
+```
+$ git fetch origin main && git checkout -B trabalho origin/main
+ + e7b1889...00ee472 main -> origin/main  (forced update)
+$ git log -1 --oneline
+00ee472 robometria: fecho da execucao de 18/09 19h18Z — a bancada virou um comando, tres cabecalhos de versao consertados e a revisao 68 conferida no ar
+```
+
+### Passo 2 — ponto de insercao, localizado e nao chutado
+
+```
+$ grep -n "^## DESPACHO" ilhas/robometria/PROMPT.md | head -1
+48:## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — ~~quatro defeitos~~ — **REESCRITO PELA 18.3 ...
+```
+
+O bloco entrou na linha 48, empurrando esse despacho para a linha 69.
+
+### Passo 3 — estado da arvore e tamanho da mudanca
+
+```
+$ git status --porcelain      (antes do commit)
+ M ilhas/robometria/PROMPT.md
+
+$ git status --porcelain      (depois do commit)
+(sem saida — limpo)
+
+$ git diff --stat HEAD~1 HEAD
+ ilhas/robometria/PROMPT.md | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+$ git diff --numstat HEAD~1 HEAD
+21	0	ilhas/robometria/PROMPT.md
+```
+
+Um arquivo, 21 insercoes, 0 remocoes: as 20 linhas do bloco mais a linha em branco de separacao.
+
+### Passo 4 — commit que foi ao `main`
+
+```
+$ git push origin HEAD:main
+   00ee472..68f8965  HEAD -> main
+
+$ git fetch origin main && git log -1 origin/main --format='%H%n%s%n%ci'
+68f89657ed781a00007444503d651c548de7dd64
+robometria: despacho do Raphael de 19/09 — colher a foto do fabricante para os 66 publicaveis sem imagem
+2026-09-19 14:05:57 +0000
+```
+
+Push direto no `main`, aceito de primeira, sem rebase e sem force. Nenhum PR foi aberto.
+
+### Passo 5 — releitura DEPOIS de gravar, em clone novo do `main`
+
+```
+$ git clone --depth 1 --branch main https://github.com/rmnatal/arquipelago /tmp/verif
+$ wc -l < /tmp/verif/ilhas/robometria/PROMPT.md
+1085
+$ grep -n "^## DESPACHO" /tmp/verif/ilhas/robometria/PROMPT.md | head -3
+48:## DESPACHO DO RAPHAEL — 19/09/2026, 11h04 (horário de Brasília) — ABRIR A PORTA DO FABRICANTE: FOTO PARA OS 66 SEM IMAGEM
+69:## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — ~~quatro defeitos~~ — **REESCRITO PELA 18.3 ...
+137:## DESPACHO DA SENTINELA — 16/09/2026 (leitura semanal, 19h40Z) — a primeira medição com sinal, e o alvo é um só
+
+$ sed -n '66,70p' /tmp/verif/ilhas/robometria/PROMPT.md
+(linha 66) [vazia]
+(linha 67) **Isto não é expansão da ilha:** é terminar a coleta de imagem começada em 16/09 com a segunda fonte ...
+(linha 68) [vazia]
+(linha 69) ## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — ...
+(linha 70) [vazia]
+```
+
+Clone novo, nao o meu diretorio de trabalho: o bloco novo abre na linha 48, fecha na linha 67, e a linha 68 em
+branco e o unico separador entre ele e o despacho da Sentinela de 18/09, que agora abre na linha 69. Era
+exatamente isso que a instrucao pediu.
+
+### Passo 6 — prova de que NENHUMA outra linha mudou
+
+```
+$ diff <(git show HEAD~1:ilhas/robometria/PROMPT.md | head -47) \
+       <(git show origin/main:ilhas/robometria/PROMPT.md | head -47)
+(sem saida — identico)
+
+$ diff <(git show HEAD~1:ilhas/robometria/PROMPT.md | sed -n '48,1064p') \
+       <(git show origin/main:ilhas/robometria/PROMPT.md | sed -n '69,1085p')
+(sem saida — identico)
+```
+
+As 47 linhas antes do ponto de insercao e as 1017 linhas depois dele sao byte a byte as mesmas de antes. Tudo
+que mudou esta entre as linhas 48 e 68.
+
+**Contagem de linhas do `PROMPT.md`: 1064 antes, 1085 depois, +21, -0.** Contagem de despachos (`^## DESPACHO`):
+13 antes, 14 depois. Numeros conferidos relendo o arquivo no clone novo, depois de gravar.
+
+### Arquivos tocados neste disparo
+
+`ilhas/robometria/PROMPT.md` (21 insercoes, 0 remocoes) e este `MAOS-LOG.md`. Nenhum outro. Nenhuma ilha foi
+reservada, nenhum `executando_desde` foi escrito, nenhum cabecalho de estado foi tocado, nenhum bloco de fila
+foi executado, nada foi publicado e nenhum Sync foi acionado.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `68f8965` so existiu depois do commit do trabalho.
