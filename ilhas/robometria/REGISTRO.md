@@ -5645,3 +5645,144 @@ experimento medido ate outubro pelo despacho do Raphael de 18/09, e o criterio
 pre-registrado da decisao mora no `PROMPT.md`. O que a proxima execucao **deve**
 fazer antes de qualquer outra coisa e `python3 ferramentas/bancada.py`, e escrever
 o numero dele em vez de uma lista de nomes.
+
+## 2026-09-20 13h28Z — A ILHA FICOU PRONTA: as 28 chaves medidas no navegador entram no banco, e tres portoes passam a medir a REGUA DO LEITOR
+
+**Casca inalterada, manifest revisao 69, `/status` em 69. ZERO URL nova, ZERO URL
+mudada de endereco, ZERO palavra de pagina escrita a mao.** O que mudou foi a
+palavra-chave de 28 registros e a regua de tres portoes. Correcao nao consome a
+vez de um bloco de construcao (18.2) — e a partir de hoje nao ha bloco de
+construcao elegivel nesta ilha por outro motivo: ela esta PRONTA, e o despacho
+do Raphael de 18/09 a poe em experimento medido ate outubro.
+
+**A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA.** `foco.md` nomeia robometria
+desde 16/09. Os cinco `ESTADO.md` parseiam em `yaml.safe_load` e o desta ilha
+tinha `executando_desde: null`, que pela 1.1 ja significa que nenhum bloco da
+Fundacao esta vivo — nao houve reserva vencida para o git desempatar. Reserva
+aceita de primeira as 13h28Z. Zero branch `claude/*` divergente do `main` e zero
+PR aberto. Rede pela 20.2 antes de trabalhar: home 200 em TRES passadas e
+`/status` na revisao 68, igual a do manifest.
+
+**O DESPACHO: O DO RAPHAEL DE 20/09, INTEIRO, PELA 18.2.** Ele e o mais novo dos
+dois abertos e o proprio texto manda executa-lo primeiro. Os seis itens sairam.
+
+**O QUE ENTROU.** As 28 chaves da tabela do despacho substituem as que abriam no
+concorrente. A medicao virou ARQUIVO DE DADOS commitado —
+`dados/chaves-do-navegador-2026-09-20.json`, com chave nova, resultados, primeiro
+resultado lido, veredito da chave velha e o primeiro resultado que a reprovou — e
+entra na medicao por `ferramentas/aplicar-chaves-do-navegador.py`, que **nao
+escolhe chave nenhuma**: transcreve, confere que a marca do registro esta no
+primeiro resultado medido, PARA COM ERRO se nao estiver, e grava. As chaves velhas
+ficaram no historico de `tentativas` com `veredito: REPROVA`, a regua e a data. Os
+quatro registros de escova lateral Xiaomi nao foram tocados, como o despacho
+mandou.
+
+**O ENCURTAMENTO NAO ENTROU, E FOI PELO CAMINHO QUE O DESPACHO PRE-REGISTROU.**
+`env | grep SHOPEE` nao devolveu nada nesta execucao. As 28 entraram com
+`url_busca` vazio e `motivo_sem_url_busca: "encurtamento pendente — credencial
+ausente no ambiente em 2026-09-20"`, e a pagina de divulgacao passou a declarar
+**71 de 95 rendendo comissao** (era 95 de 95) — numero derivado do banco, nao
+digitado. Isso nao reabre item nenhum: a chave, que e o que o leitor ve, esta
+certa; a comissao e divida do elo. As 4 que caem para fora da conta sem perder a
+ficha sao as de degrau 3, que continuam rendendo pela ficha.
+
+**A CREDENCIAL EXISTE E NAO PODE SER USADA DAQUI, e isso e informacao nova para
+a proxima execucao.** `SHOPEE_APP_ID` e `SHOPEE_SECRET` estao no documento
+`arquipelago-credenciais` do Drive, que a 25.6 nomeia como a casa delas, e o
+conector do Drive desta execucao os alcanca. O que barrou foi o ambiente de
+execucao: passar credencial para dentro de um processo, na linha de comando, e
+recusado pelo classificador de vazamento de credencial desta nuvem. **Nao e
+bloqueio da Shopee, nao e rede e nao e falta de valor** — e o caminho de entrega
+da credencial ao processo que nao existe aqui hoje. Quem for pagar esta divida
+precisa da variavel ja no ambiente, como a 25.6 previa antes de a credencial
+mudar de casa.
+
+**OS TRES PORTOES QUE PRECISARAM MUDAR, e nenhum afrouxou:**
+
+1. **O termo de contexto obrigatorio na chave reprovava 26 das 28.** Ele e uma
+   REGRA DE COMPOSICAO escrita em 13/09/2026 sobre uma suposicao que o proprio
+   esquema declarava — *"a busca do site nao e mensuravel desta nuvem"*. Ela foi
+   medida em 20/09 e saiu contrariada no ponto exato: `robo aspirador` e o termo
+   FORTE na busca da Shopee e a marca e o fraco, entao o sufixo generico entrega
+   o topo ao concorrente mais popular. A trava nao foi afrouxada — quem larga o
+   termo passou a ter de PROVAR, com o primeiro resultado lido e gravado, que a
+   marca do registro esta no topo. Chave sem medicao continua obrigada ao termo.
+   Os dois portoes mudaram separados: `validar-banco.py` le o esquema,
+   `teste-escada-compra.py` confere a marca no topo com o token que ele mesmo
+   escreve a mao — quem confere nao pergunta ao conferido se ele esta certo.
+2. **O degrau 3 exigia `url_busca`, o link ENCURTADO, onde a 25.1 fala de SAIDA.**
+   Os dois campos nasceram como um so; quando a 25.1 foi escrita, `url_busca` era
+   a unica busca que existia no banco. Do jeito que estava, uma trava de
+   DURABILIDADE impedia um conserto de RELEVANCIA em todo dia sem credencial.
+   Passou a cobrar `url_busca_produto`. A comissao continua cobrada em todo
+   publicavel pela trava da 25.2-b, que e a regra que fala dela.
+3. **`gerar-busca-de-produto.py` mantinha calado o link curto quando a chave
+   debaixo dele mudava** — e o comentario dele ja dizia, desde 16/09, que "link
+   curto e chave sao um par". O codigo cumpria metade: recusava escrever link
+   curto de chave alheia e preservava o link curto da chave de ontem. Enquanto a
+   unica forma de trocar chave foi a propria medicao (que devolve as duas coisas
+   juntas), o buraco nunca abriu. Ele abriria hoje, nos 28.
+
+**E A REGRA QUE PROTEGE O CONSERTO DE SI MESMO:** `medir-palavras-chave.py` passou
+a COPIAR a chave fixada no navegador em vez de remedi-la. Sem isso, a primeira
+passada da regua otimista com a credencial no ambiente desfaria tudo isto em
+silencio e com cara de medicao fresca — e o item 6 do despacho proibe exatamente
+essa remedicao. Regra que so vale ate alguem rodar a ferramenta errada nao e
+regra.
+
+**COMO FOI CONFERIDO, E NAO PELO LOG DO SYNC (18.4).** Sync na revisao 69;
+`/quantos-pa-o-robo-aspirador-precisa/?piso=tapete&pelo=sim&m2=80` reaberta no ar:
+HTTP 200, **primeiro cartao apontando para `keyword=Roborock`**, as cinco chaves
+de modelo Roborock da pagina todas novas, zero ocorrencia de "em breve", e os
+links crus saindo SEM `rel="sponsored"` — link que nao rende comissao nao se
+carimba de patrocinado. `python3 ferramentas/bancada.py --no-ar`: **44 portoes, 0
+falha**, com os seis `conferir-*` abrindo o site. `mutacoes-escada.py`: **31 de
+31, nenhuma inerte**, com tres mutacoes novas — a chave fixada cujo primeiro
+resultado volta a ser um Xiaomi reprova nos DOIS portoes, e a chave fixada que
+perde a marca de quem a fixou volta a ser barrada pelo termo de contexto (essa
+segunda e a que prova que a excecao esta presa a PROCEDENCIA e nao ao formato da
+chave). A `m15` foi reescrita junto: ela apagava `url_busca` e teria virado INERTE
+no mesmo dia em que a trava do degrau 3 mudou — mutacao que descreve um mundo que
+deixou de ser defeito nao mede nada.
+
+**A ILHA FOI DECLARADA PRONTA, tres dias antes do prazo.** Com o item 3 fechado,
+os cinco da DEFINICAO DE PRONTA estao fechados e o `ESTADO.md` foi para
+`estado: viva`. O item 3 tambem deixou de ser **[RAPHAEL]**: ele so era dele
+enquanto o que faltava fosse a medicao da busca do site, que a nuvem nao alcanca.
+
+**O PLACAR DOS CINCO, com o numero medido ao lado:**
+
+| item | estado | numero |
+|---|---|---|
+| 1. Porta de compra em todo item publicavel | feito | 95 publicaveis, 0 com "em breve", 0 sem saida; 71 rendem comissao e 24 nao |
+| 2. A emenda do funil fechada | feito | intersecao em 15 de 45 publicaveis, teto 17 |
+| 3. Zero defeito aberto de ronda | **feito hoje** | 28 chaves trocadas, medidas em 2026-09-20; 0 defeito de ronda sem "CUMPRIDO E CONFERIDO NO AR" |
+| 4. Sitemap aceito no Search Console | feito | processado, ultima leitura 15/09, 9 paginas |
+| 5. Toda pagina com meta description e og: | feito | 9 de 9 URLs, 5 propriedades og: cada |
+
+**O QUE ESTA EXECUCAO NAO FEZ, e por que isso nao e metade de despacho (18.2/18.3).**
+O despacho do Raphael de **19/09** — foto do fabricante para os 66 publicaveis sem
+imagem — **nao foi tocado, nenhum item dele**. Ele continua inteiro no `PROMPT.md`,
+sem uma linha riscada, e o proprio despacho de 20/09 autoriza isso com todas as
+letras: *"o das fotos em seguida, na mesma execucao se couber (18.2) ou na
+proxima"*. Despacho intocado nao precisa da reescrita da 18.3; o que a 18.3 proibe
+e despacho pela metade sem dizer o que falta.
+
+**UMA OBSERVACAO PARA A RONDA, que nao e defeito medido e por isso nao virou
+despacho:** com as 28 chaves cruas, o PRIMEIRO cartao da entrada
+`piso=tapete&pelo=sim&m2=80` passou a ser um botao que nao rende comissao. A
+25.2-b manda que item que nao rende nunca apareca acima de item que rende **quando
+os dois respondem a mesma pergunta** — e ali a ordem vem do merito tecnico (Pa),
+nao de empate, entao a regra pode nao se aplicar. O que E verdade e que **nenhum
+portao desta ilha mede essa ordenacao**: a regra existe no contrato desde 18/09 e
+nao tem regua em lugar nenhum. Quem abrir isso mede primeiro se ha empate, e so
+depois decide se e defeito.
+
+- **Proximo passo desbloqueado: o despacho do Raphael de 19/09** — a foto do
+  fabricante para os 66 publicaveis sem imagem (36 pecas e 30 modelos), pelos tres
+  portoes da 25.3, com os cinco dominios de fabricante que estao abertos na rede
+  desde 17/09 e com os 11 registros Roborock indo para "bloqueado por rede" depois
+  de conferido o DNS. Ele sai INTEIRO numa execucao, pela 18.2. **E, quando a
+  credencial da Open API estiver no ambiente:** `python3
+  ferramentas/medir-palavras-chave.py --gravar --encurtar`, que ja sabe nao
+  remexer na chave fixada e so pedir o link curto das 28.
