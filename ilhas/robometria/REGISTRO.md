@@ -5786,3 +5786,123 @@ depois decide se e defeito.
   credencial da Open API estiver no ambiente:** `python3
   ferramentas/medir-palavras-chave.py --gravar --encurtar`, que ja sabe nao
   remexer na chave fixada e so pedir o link curto das 28.
+
+## 2026-09-20, 14h26Z — Despacho de 19/09 (foto do fabricante): medido ate o fim e REESCRITO pela 18.3 — o que falta e uma linha de dominios
+
+**O PLACAR DOS CINCO ITENS DA DEFINICAO DE PRONTA, remedido hoje e sem
+mudanca:** (1) porta de compra em todo publicavel — **feito**, 95 publicaveis,
+0 com "em breve", 71 rendendo comissao; (2) emenda do funil — **feito**,
+intersecao em 15 de 45; (3) zero defeito aberto de ronda — **feito**, as 28
+chaves trocadas em 20/09 e nenhum defeito de ronda sem "CUMPRIDO E CONFERIDO
+NO AR"; (4) sitemap aceito no Search Console — **feito**, 9 paginas; (5) toda
+pagina com `meta description` e `og:` — **feito**, 9 de 9. **Nenhum item
+reaberto por esta execucao**, e a 25.3 diz com todas as letras que foto e
+ganho e nunca requisito.
+
+**A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA.** `foco.md` nomeia
+robometria desde 16/09. Os seis `ESTADO.md` parseiam com `yaml.safe_load` e
+nenhum tinha reserva orfa (a limpeza da 1.2-b.5 nao teve o que limpar). O
+desta ilha estava com `executando_desde: null`, que pela 1.1 ja significa que
+nenhum bloco da Fundacao esta vivo — o git so desempata reserva VENCIDA.
+Reserva aceita de primeira as 14h26Z. Zero branch `claude/*` divergente do
+`main` e zero PR aberto. Rede pela 20.2 antes de trabalhar: home em **200 em
+tres passadas**.
+
+**O DESPACHO NAO PODE ANDAR, E AGORA ISSO ESTA MEDIDO EM VEZ DE SUPOSTO.** As
+**14 portas de fabricante** que os 66 registros usam devolvem `000`, e o
+verbose mostra `CONNECT tunnel failed, response 403` — negativa de politica do
+proxy de egresso. **Os 14 resolvem em DNS**, um a um, entao pela licao de
+17/09 (secao 20.2) isto e pedido de liberacao, nunca endereco errado. Controle
+na mesma passada, nas mesmas condicoes: `robometria.com.br` e `shopee.com.br`
+em **200**. Nao e o tunel, e a lista.
+
+**E A METADE QUE NINGUEM TINHA MEDIDO E PIOR DO QUE "FECHOU DE NOVO":** dos
+cinco hosts que o despacho de 17/09 registra como abertos, **so dois**
+(`www.mi.com` e `www.multilaser.com.br`) sao usados por alguma porta dos 66.
+**32 dos 66 registros nao tem NENHUMA porta naquela lista** — para eles a
+lista daquele dia, mesmo intacta, nunca teria bastado. Pagina de produto nao
+mora no `www` institucional da marca: mora em `loja.`, `suporte.`, `blog.`,
+`lamina.`. O despacho pedia uma coleta que a rede daquele dia so deixaria
+fazer pela metade, e ninguem sabia porque ninguem tinha comparado a lista com
+o banco.
+
+**OS DOIS CANAIS DESTA NUVEM NAO SAO O MESMO CANAL, e isso explica a ilha
+inteira.** A **busca web restrita a dominio** funciona (a consulta por
+`PR10124` em `multilaser.com.br` devolveu a pagina certa da peca); o
+**egresso HTTP** nao, nem por `curl` nem por WebFetch, que devolve o mesmo
+`EGRESS_BLOCKED`. Foi por isso que o banco pode ser construido de pagina de
+fabricante desde 09/09 e a FOTO nunca pode: dado se colhe do texto que a busca
+devolve, foto exige abrir o arquivo — e a 25.3 manda abrir cada imagem com os
+olhos antes de gravar.
+
+**A REGUA QUE NASCEU, e ela e producao e nao portao:**
+`ferramentas/medir-portas-do-fabricante.py` (prefixo `medir-`, fora da
+bancada). Ela nao inventa porta por busca: **le a porta de cada registro em
+`fontes{}.url` e `canal_brasileiro.valor`**, que sao as paginas de onde o dado
+daquele registro ja foi lido uma vez; classifica cada porta contra
+`dados/marcas.json`, que e onde a ilha declara o endereco de cada fabricante;
+e mede DNS e HTTP separados, host a host. **Host de marca nao declarado nao e
+aprovado por parecer**: sai como `nao_declarado`. Saida em
+`dados/portas-do-fabricante-2026-09-20.md`, nenhum numero digitado.
+
+**O QUE ELA PEGOU ALEM DO BLOQUEIO, e os dois casos provam que o portao nao e
+decorativo:** `electrolux-erb20` tem como unica porta `manuals.plus`, que e
+agregador — para ele o conserto **nao e rede**, e uma pagina da Electrolux que
+o banco ainda nao tem; e `positivo-11206540` tem como unica porta
+`loja.meupositivo.com.br`, que **nao esta declarado no `sameAs` da marca
+`positivo`**. Parece loja da mesma empresa, e "parece" nao e procedencia nesta
+ilha: fica como decisao escrita, nunca como fabricante por vizinhanca.
+
+**O QUE FOI GRAVADO NO BANCO:** os **66** `imagem.motivo_do_null` passaram a
+registrar a tentativa de hoje, com o host e a data, sem apagar a causa de
+18/09 (o marcador ` || Segunda fonte (25.3), ` existe para a proxima passada
+substituir a de hoje em vez de empilhar). **A preferencia nunca inverteu:** os
+14 registros de pecas que ja tinham foto sairam byte a byte iguais, conferido
+com o banco de antes na mao.
+
+**ZERO URL NOVA, ZERO URL MUDADA, ZERO PALAVRA DE PAGINA ESCRITA — e isso foi
+PROVADO, nao afirmado:** `motivo_do_null` e procedencia de coleta e nao chega
+ao HTML, entao os quatro geradores (`gerar-r1`, `gerar-r2`, `gerar-a1`,
+`gerar-a2`) foram re-rodados sobre o banco novo e os **seis snippets sairam
+com o mesmo md5**. Por isso **nao houve Sync e nao houve revisao nova**: nao
+havia o que publicar, e acionar o Sync so para ver numero subir seria o
+contrario da secao 4.
+
+**PORTOES:** `validar-banco.py` APROVADO, nenhuma invariante violada.
+`python3 ferramentas/bancada.py`: **38 portoes, 0 falha**, e a ferramenta nova
+entrou classificada como producao — nao apareceu na linha de denuncia "SEM
+CONVENCAO".
+
+**O DESPACHO FOI REESCRITO PELA 18.3 E NAO APAGADO (18.4):** ele nao foi
+verificado no ar, entao nao morre. A reescrita deixa **so o que falta**, e o
+que falta e do Raphael: **11 hosts** a acrescentar na lista de dominios
+permitidos do ambiente (`loja.electrolux.com.br` 8 · `br.roborock.com` 6 ·
+`us.roborock.com` 5 · `loja.wap.ind.br` 4 · `www.multilaserempresas.com.br` 4
+· `www.positivocasainteligente.com.br` 3 · `loja.meupositivo.com.br` 2 ·
+`suporte.multilaser.com.br` 2 · `blog.wap.ind.br` 1 ·
+`content.electrolux.com.br` 1 · `lamina.multilaser.com.br` 1), mais os **dois
+de 17/09 que voltaram a fechar e sao usados de verdade** (`www.mi.com`, 26
+registros, e `www.multilaser.com.br`, 6). `manuals.plus` fica **fora do pedido
+de proposito**: e terceiro, a 25.3 proibe a foto que viria de la, e pedir
+liberacao de endereco que a regra nao deixa usar e gastar a atencao do Raphael
+no lugar errado. O texto original do despacho ficou preservado inteiro, em
+citacao, logo abaixo.
+
+**POR QUE ESTA EXECUCAO NAO SEGUIU PARA UM BLOCO DA FILA, e a 18.2 permitiria:**
+a ilha foi declarada **PRONTA** em 20/09 e entrou no regime do **CRITERIO
+PRE-REGISTRADO DA DECISAO DE OUTUBRO**, que diz com todas as letras que malha
+nova, leva nova de modelos e bloco de conteudo sao o desfecho **(a)**, e que
+esse desfecho so pode ser escolhido depois das leituras de 23/09, 30/09, 07/10
+e 14/10. Construir pagina hoje seria tomar em silencio a decisao que aquela
+secao existe para fazer alguem tomar com o numero na mesa. O que sobrava no
+3c — codigo e funcao das escovas WAP e Xiaomi — depende dos manuais em PDF dos
+mesmos hosts que estao fechados.
+
+- **Proximo passo desbloqueado: nenhum da Fundacao ate o Raphael abrir os 13
+  hosts.** No dia em que abrir, o caminho e mecanico e nao tem busca a refazer:
+  `python3 ferramentas/medir-portas-do-fabricante.py` reimprime o placar com a
+  coluna "PODE ANDAR" por registro e a URL exata da pagina a abrir. O placar a
+  atualizar continua sendo **29 de 103**. Antes disso, quem trabalha esta ilha e
+  a **leitura semanal de 23/09**, que pela secao do criterio ja deve abrir a
+  serie dizendo em qual dos quatro pontos ela esta e o que falta para o corte de
+  30/09.

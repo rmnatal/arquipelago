@@ -105,26 +105,64 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 **Placar obrigatório no fecho:** os cinco itens da DEFINIÇÃO DE PRONTA, e ao lado do item 3 a lista das chaves trocadas com a data.
 
-## DESPACHO DO RAPHAEL — 19/09/2026, 11h04 (horário de Brasília) — ABRIR A PORTA DO FABRICANTE: FOTO PARA OS 66 SEM IMAGEM
+## DESPACHO DO RAPHAEL — 19/09/2026, 11h04 (horário de Brasília) — ABRIR A PORTA DO FABRICANTE: FOTO PARA OS 66 SEM IMAGEM — **REESCRITO PELA 18.3 EM 20/09/2026, 14h55Z: SÓ O QUE FALTA, E O QUE FALTA É UMA LINHA DE DOMÍNIOS**
 
-**A porta que o despacho de 18/09 mandou manter fechada está aberta agora, por decisão do Raphael.** Aquele despacho terminou dizendo *"NÃO colete imagem de site de fabricante — o Raphael decide depois de ver o tamanho do resíduo"*. Ele viu: **66 publicáveis sem foto, 36 peças e 30 modelos**, e decidiu, com estas palavras: *"pode usar imagem do fabricante, sem problemas."* A regra permanente já está no contrato, na **seção 25.3** (segunda fonte de imagem), desde o commit `00bc2ef`. Este despacho é a ordem de executá-la. Sem ele a autorização ficava no contrato e a Fundação nunca a executava, e foi exatamente isso que deixou o banco parado em 29 de 103.
+> **O QUE FOI MEDIDO EM 20/09/2026, E POR QUE O DESPACHO NÃO PÔDE ANDAR.** As 14 portas de fabricante que os 66 registros usam **estão fechadas para esta nuvem**: `curl` devolve `000`, e o verbose mostra `CONNECT tunnel failed, response 403` — negativa de política do proxy de egresso, não do fabricante. **Os 14 hosts resolvem em DNS**, um a um, então pela lição de 17/09 (seção 20.2) isto é pedido de liberação e não erro de digitação. Controle na mesma passada: `robometria.com.br` e `shopee.com.br` responderam **200** nas mesmas condições — não é o túnel, é a lista.
+>
+> **E A METADE QUE NINGUÉM TINHA MEDIDO É PIOR DO QUE "FECHOU DE NOVO":** dos cinco hosts que o despacho de 17/09 registra como abertos, **só dois** (`www.mi.com` e `www.multilaser.com.br`) são usados por alguma porta dos 66. **32 dos 66 registros não têm NENHUMA porta naquela lista** — para eles, a lista de 17/09, mesmo intacta, nunca teria bastado. Página de produto não mora no `www` institucional da marca: mora em `loja.`, `suporte.`, `blog.`, `lamina.`. O despacho pedia uma coleta que a rede daquele dia só deixaria fazer pela metade, e ninguém sabia porque ninguém tinha comparado a lista com o banco.
+>
+> **OS DOIS CANAIS DESTA NUVEM NÃO SÃO O MESMO CANAL, E É ISSO QUE EXPLICA A ILHA INTEIRA.** Medido nesta execução: a **busca web restrita a domínio** funciona (a consulta por `PR10124` em `multilaser.com.br` devolveu a página certa da peça, com título e URL); o **egresso HTTP** não, nem por `curl` nem por WebFetch, que devolve o mesmo `EGRESS_BLOCKED`. Foi por isso que o banco desta ilha pôde ser construído de página de fabricante desde 09/09 e a FOTO nunca pôde: **dado se colhe do texto que a busca devolve; foto exige abrir o arquivo.** E a 25.3 manda abrir cada imagem **com os olhos** antes de gravar — gravar uma URL de imagem que ninguém abriu seria exatamente o "parece dado" que esta ilha existe para não fazer. **Não é falta de fôlego nem de engenhosidade: é um canal que não existe aqui hoje.**
+>
+> Tudo isto está medido registro a registro em **`dados/portas-do-fabricante-2026-09-20.md`**, gerado por `ferramentas/medir-portas-do-fabricante.py` — nenhum número digitado. Os 66 `imagem.motivo_do_null` passaram a registrar a tentativa de hoje, com o host e a data, para a próxima execução não redescobrir. **Nenhuma URL mudou e nenhuma palavra de página foi escrita:** os quatro geradores foram re-rodados e os seis snippets saíram byte a byte iguais, porque `motivo_do_null` é procedência de coleta e não chega ao HTML.
 
-**O resíduo, medido no `main` em 19/09 (publicáveis sem `imagem.url`):**
-- peças: xiaomi 16 · multi 5 · electrolux 5 · roborock 5 · wap 3 · positivo 2
-- modelos: xiaomi 10 · roborock 6 · multi 6 · electrolux 4 · wap 2 · positivo 2
+**O QUE FALTA, E É A ÚNICA COISA QUE FALTA — e é do Raphael, não da Fundação.** Acrescentar estes **11 hosts** à lista "Domínios permitidos" do ambiente de nuvem (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem). A coluna é quantos dos 66 registros dependem de cada um:
 
-**O QUE FAZER:** para cada um dos 66, procure na página do FABRICANTE a foto daquela peça ou daquele modelo EXATO. Os domínios que estão abertos na rede desde 17/09: `www.electrolux.com.br`, `www.multilaser.com.br`, `mais.conteudo.wap.ind.br`, `www.mi.com`, `www.positivotecnologia.com.br`. Sirva a imagem pelo mesmo caminho que as fotos da Shopee já usam no ar, sem inventar um canal novo.
+| host | registros |
+|---|---|
+| `loja.electrolux.com.br` | 8 |
+| `br.roborock.com` | 6 |
+| `us.roborock.com` | 5 |
+| `loja.wap.ind.br` | 4 |
+| `www.multilaserempresas.com.br` | 4 |
+| `www.positivocasainteligente.com.br` | 3 |
+| `loja.meupositivo.com.br` | 2 |
+| `suporte.multilaser.com.br` | 2 |
+| `blog.wap.ind.br` | 1 |
+| `content.electrolux.com.br` | 1 |
+| `lamina.multilaser.com.br` | 1 |
 
-**OS TRÊS PORTÕES DA 25.3, e nenhum afrouxa para bater meta:**
-1. **Só a foto do FABRICANTE, da PEÇA EXATA.** Nunca banco de imagem, nunca foto de varejista, nunca foto de peça parecida. O código da peça ou o nome do modelo tem que estar na página de onde a foto sai. Se não estiver, o registro fica sem foto e o motivo fica escrito. Abra cada imagem com os olhos antes de gravar, como a execução de 18/09 fez e pegou um casamento errado (`positivo-11206519`).
-2. **`imagem.fonte` grava a URL da página de origem**, sempre, para que qualquer foto possa ser removida em um comando se um fabricante pedir.
-3. **A preferência nunca inverte.** Registro que já tem foto da Shopee não é tocado. A foto do fabricante só preenche vazio.
+Mais os dois da lista de 17/09 que **voltaram a fechar** e são usados de verdade: **`www.mi.com` (26 registros, a maior fatia de longe) e `www.multilaser.com.br` (6)**. Os outros três de 17/09 — `www.electrolux.com.br`, `mais.conteudo.wap.ind.br`, `www.positivotecnologia.com.br` — **não são usados por porta nenhuma dos 66** e podem ficar como estão.
 
-**ROBOROCK (11 registros):** nenhum domínio da Roborock está na lista aberta. Se a página não abrir, NÃO contorne, NÃO use espelho, NÃO use varejista. Registre os 11 como `bloqueado por rede`, escreva o domínio exato que foi tentado, e pare nessa marca. Antes de declarar bloqueio, confira o DNS: um host que não existe e um 403 do proxy parecem iguais para o `curl` (lição de 17/09, quando dois dos cinco endereços "bloqueados" nunca existiram). O Raphael acrescenta o domínio na rede se for o caso.
+**`manuals.plus` fica FORA do pedido, de propósito.** É agregador de manual, terceiro, e a 25.3 proíbe a foto que viria de lá. Abrir esse host não move o despacho um registro — e é por isso que `electrolux-erb20` está marcado no relatório como **sem porta legítima**, não como bloqueado: para ele o conserto não é rede, é uma página da Electrolux que o banco ainda não tem.
 
-**O ENTREGÁVEL:** a cobertura máxima que os portões permitem, MAIS a lista do resíduo com o motivo de cada um, agrupada por causa (fabricante não tem a foto da peça exata · página não nomeia o código · bloqueado por rede). Escreva no fecho o número antes e depois (hoje: 29 de 103).
+**UM CASO PARA DECIDIR, e a Fundação não decidiu sozinha de propósito:** `positivo-11206540` (mop) tem como única porta `loja.meupositivo.com.br`, que **não está declarado em `dados/marcas.json`** como endereço da Positivo. Parece ser loja da mesma empresa, e "parece" não é procedência nesta ilha. Quem confirmar acrescenta o host ao `sameAs` da marca `positivo`; até lá ele sai do relatório como `porta não declarada`, nunca como fabricante.
 
-**Isto não é expansão da ilha:** é terminar a coleta de imagem começada em 16/09 com a segunda fonte que o contrato já prevê. Não abre ferramenta nova, página nova nem categoria nova.
+**QUANDO A REDE ABRIR, o caminho está pronto e é mecânico:** `python3 ferramentas/medir-portas-do-fabricante.py` reimprime o placar com os hosts abertos e a coluna "PODE ANDAR" por registro, com a URL exata da página a abrir. Não há busca a refazer — as portas saem de `fontes{}.url` e `canal_brasileiro.valor`, que são as páginas de onde o dado daquele registro já foi lido uma vez.
+
+**OS TRÊS PORTÕES DA 25.3 CONTINUAM INTEIROS, e nenhum afrouxa para bater meta:** (1) só a foto do **fabricante**, da **peça exata**, com o código ou o nome do modelo na página de onde ela sai, e **aberta com os olhos antes de gravar**; (2) `imagem.fonte` grava a URL de origem, sempre; (3) a preferência nunca inverte — registro com foto de anúncio não é tocado. O placar a atualizar no fecho continua sendo **29 de 103**.
+
+**Isto não é expansão da ilha:** é terminar a coleta de imagem começada em 16/09 com a segunda fonte que o contrato já prevê. Não abre página nova nem categoria nova. *(A régua `medir-portas-do-fabricante.py` entrou em 20/09 porque o despacho exige "escreva o domínio exato que foi tentado" e isso é medição, não construção — e ela é `medir-`, produção, fora da bancada.)*
+
+## ~~DESPACHO DO RAPHAEL — 19/09/2026, 11h04~~ — o texto original, preservado
+>
+> **A porta que o despacho de 18/09 mandou manter fechada está aberta agora, por decisão do Raphael.** Aquele despacho terminou dizendo *"NÃO colete imagem de site de fabricante — o Raphael decide depois de ver o tamanho do resíduo"*. Ele viu: **66 publicáveis sem foto, 36 peças e 30 modelos**, e decidiu, com estas palavras: *"pode usar imagem do fabricante, sem problemas."* A regra permanente já está no contrato, na **seção 25.3** (segunda fonte de imagem), desde o commit `00bc2ef`. Este despacho é a ordem de executá-la. Sem ele a autorização ficava no contrato e a Fundação nunca a executava, e foi exatamente isso que deixou o banco parado em 29 de 103.
+>
+> **O resíduo, medido no `main` em 19/09 (publicáveis sem `imagem.url`):**
+> - peças: xiaomi 16 · multi 5 · electrolux 5 · roborock 5 · wap 3 · positivo 2
+> - modelos: xiaomi 10 · roborock 6 · multi 6 · electrolux 4 · wap 2 · positivo 2
+>
+> **O QUE FAZER:** para cada um dos 66, procure na página do FABRICANTE a foto daquela peça ou daquele modelo EXATO. Os domínios que estão abertos na rede desde 17/09: `www.electrolux.com.br`, `www.multilaser.com.br`, `mais.conteudo.wap.ind.br`, `www.mi.com`, `www.positivotecnologia.com.br`. Sirva a imagem pelo mesmo caminho que as fotos da Shopee já usam no ar, sem inventar um canal novo.
+>
+> **OS TRÊS PORTÕES DA 25.3, e nenhum afrouxa para bater meta:**
+> 1. **Só a foto do FABRICANTE, da PEÇA EXATA.** Nunca banco de imagem, nunca foto de varejista, nunca foto de peça parecida. O código da peça ou o nome do modelo tem que estar na página de onde a foto sai. Se não estiver, o registro fica sem foto e o motivo fica escrito. Abra cada imagem com os olhos antes de gravar, como a execução de 18/09 fez e pegou um casamento errado (`positivo-11206519`).
+> 2. **`imagem.fonte` grava a URL da página de origem**, sempre, para que qualquer foto possa ser removida em um comando se um fabricante pedir.
+> 3. **A preferência nunca inverte.** Registro que já tem foto da Shopee não é tocado. A foto do fabricante só preenche vazio.
+>
+> **ROBOROCK (11 registros):** nenhum domínio da Roborock está na lista aberta. Se a página não abrir, NÃO contorne, NÃO use espelho, NÃO use varejista. Registre os 11 como `bloqueado por rede`, escreva o domínio exato que foi tentado, e pare nessa marca. Antes de declarar bloqueio, confira o DNS: um host que não existe e um 403 do proxy parecem iguais para o `curl` (lição de 17/09, quando dois dos cinco endereços "bloqueados" nunca existiram). O Raphael acrescenta o domínio na rede se for o caso.
+>
+> **O ENTREGÁVEL:** a cobertura máxima que os portões permitem, MAIS a lista do resíduo com o motivo de cada um, agrupada por causa (fabricante não tem a foto da peça exata · página não nomeia o código · bloqueado por rede). Escreva no fecho o número antes e depois (hoje: 29 de 103).
+>
+> **Isto não é expansão da ilha:** é terminar a coleta de imagem começada em 16/09 com a segunda fonte que o contrato já prevê. Não abre ferramenta nova, página nova nem categoria nova.
 
 ## DESPACHO DA SENTINELA — 18/09/2026 (ronda diária, 14h45Z) — ~~quatro defeitos~~ — **REESCRITO PELA 18.3 EM 18/09/2026, 16h40Z, DEIXANDO SÓ O QUE FALTA**
 

@@ -5,19 +5,18 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
-ultima_execucao: 2026-09-20T13:50Z
-executando_desde: 2026-09-20T14:26Z
+ultima_execucao: 2026-09-20T15:02Z
+executando_desde: null
 bloco_atual: |
-  A ILHA FICOU PRONTA — os cinco itens da DEFINICAO DE PRONTA fechados em 20/09/2026, tres dias antes do prazo de 23/09. O que fechou foi o item 3 (zero defeito aberto de ronda): as 28 chaves que abriam no concorrente foram trocadas pelas que o Raphael mediu no navegador. Casca inalterada, manifest revisao 69, /status em 69. ZERO URL nova, ZERO URL mudada de endereco, ZERO palavra de pagina escrita a mao.
-  A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. Os cinco ESTADO.md parseiam e o desta ilha tinha executando_desde null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo. Reserva aceita de primeira as 13h28Z. Zero branch claude divergente e zero PR aberto. Rede pela 20.2 antes de trabalhar: home 200 em TRES passadas e /status na revisao 68, igual a do manifest.
-  O DESPACHO: O DO RAPHAEL DE 20/09, INTEIRO PELA 18.2. A tabela dele virou ARQUIVO DE DADOS commitado (dados/chaves-do-navegador-2026-09-20.json) e entra na medicao por ferramentas/aplicar-chaves-do-navegador.py, que NAO escolhe chave nenhuma: transcreve, confere que a marca do registro esta no primeiro resultado medido, PARA COM ERRO se nao estiver, e grava. As chaves velhas ficaram no historico de tentativas com veredito REPROVA, a regua e a data. Os quatro de escova lateral Xiaomi nao foram tocados.
-  O ENCURTAMENTO NAO ENTROU, PELO CAMINHO QUE O PROPRIO DESPACHO PRE-REGISTROU: SHOPEE_APP_ID e SHOPEE_SECRET nao estavam no ambiente, entao as 28 entraram com url_busca vazio e o motivo escrito. A pagina de divulgacao passou a declarar 71 de 95 rendendo comissao (era 95 de 95), numero derivado do banco. Isso NAO reabre item nenhum: a chave, que e o que o leitor ve, esta certa; a comissao e divida do elo.
-  A CREDENCIAL EXISTE E NAO PODE SER USADA DAQUI, e e informacao nova. Ela esta no documento arquipelago-credenciais do Drive, que a 25.6 nomeia como a casa dela, e o conector do Drive desta execucao a alcanca. O que barrou foi o AMBIENTE: passar credencial para dentro de um processo pela linha de comando e recusado pelo classificador de vazamento desta nuvem. Nao e bloqueio da Shopee, nao e rede e nao e falta de valor — e um caminho de entrega que nao existe aqui hoje. Quem for pagar a divida precisa da variavel JA no ambiente.
-  OS TRES PORTOES QUE PRECISARAM MUDAR, E NENHUM AFROUXOU. (1) O termo de contexto obrigatorio na chave reprovava 26 das 28: ele e REGRA DE COMPOSICAO escrita em 13/09 sobre uma suposicao que o proprio esquema declarava, a de que a busca do site nao era mensuravel — medida em 20/09, ela saiu contrariada, porque 'robo aspirador' e o termo FORTE na busca da Shopee e a marca e o fraco. Quem larga o termo passou a ter de PROVAR, com o primeiro resultado lido e gravado, que a marca do registro esta no topo; chave sem medicao continua obrigada ao termo. (2) O degrau 3 exigia o link ENCURTADO onde a 25.1 fala de SAIDA, e passou a cobrar o piso — a comissao continua cobrada em todo publicavel pela 25.2-b. (3) gerar-busca-de-produto.py mantinha calado o link curto quando a chave debaixo dele mudava, e o comentario dele ja dizia desde 16/09 que 'link curto e chave sao um par'.
-  E A REGRA QUE PROTEGE O CONSERTO DE SI MESMO: medir-palavras-chave.py passou a COPIAR a chave fixada no navegador em vez de remedi-la. Sem isso, a primeira passada da regua otimista com a credencial no ambiente desfaria tudo em silencio e com cara de medicao fresca — e o item 6 do despacho proibe essa remedicao com todas as letras.
-  CONFERIDO NO AR E NAO PELO LOG DO SYNC (18.4): /quantos-pa-o-robo-aspirador-precisa/?piso=tapete&pelo=sim&m2=80 em 200, PRIMEIRO cartao apontando para keyword=Roborock, as cinco chaves de modelo Roborock da pagina todas novas, zero 'em breve', e os links crus saindo SEM rel sponsored. bancada.py --no-ar: 44 portoes, 0 falha. mutacoes-escada: 31 de 31, nenhuma inerte, com tres novas — a chave fixada que volta a abrir num Xiaomi reprova nos DOIS portoes, e a que perde a marca de quem a fixou volta a ser barrada pelo contexto, que e a direcao que prova que a excecao esta presa a PROCEDENCIA e nao ao formato.
-  O QUE CONTINUA ABERTO E NAO ERA CRITERIO DE PRONTA: o despacho do Raphael de 19/09 (foto do fabricante para os 66 sem imagem), INTOCADO e inteiro no PROMPT.md — a 25.3 diz que foto e ganho e nunca requisito, e o despacho de 20/09 autoriza por escrito deixa-lo para a proxima execucao; e o encurtamento das 28, que espera a credencial no ambiente.
-  UMA OBSERVACAO PARA A RONDA, que nao e defeito medido: com as 28 chaves cruas, o PRIMEIRO cartao daquela entrada da R2 passou a ser um botao que nao rende comissao. A 25.2-b so proibe isso em EMPATE de merito tecnico, e ali a ordem vem do Pa. O que E verdade e que nenhum portao desta ilha mede essa ordenacao: a regra existe no contrato desde 18/09 e nao tem regua em lugar nenhum. Quem abrir isso mede primeiro se ha empate.
+  O DESPACHO DE 19/09 (FOTO DO FABRICANTE) FOI MEDIDO ATE O FIM E REESCRITO PELA 18.3: o que falta nao e trabalho da Fundacao, e uma linha de dominios permitidos do ambiente. As 14 portas de fabricante que os 66 publicaveis sem foto usam devolvem 000 com 'CONNECT tunnel failed, response 403' — negativa de politica do proxy —, e as 14 RESOLVEM em DNS, entao pela 20.2 isto e pedido de liberacao e nunca endereco errado. Controle na mesma passada: robometria.com.br e shopee.com.br em 200.
+  A METADE QUE NINGUEM TINHA MEDIDO: dos cinco hosts que o despacho de 17/09 dava como abertos, so DOIS sao usados por alguma porta dos 66, e 32 dos 66 registros nao tem NENHUMA porta naquela lista. Pagina de produto nao mora no www institucional da marca: mora em loja., suporte., blog., lamina. A lista de 17/09, mesmo intacta, nunca teria bastado para metade do despacho.
+  OS DOIS CANAIS DESTA NUVEM NAO SAO O MESMO: a busca web restrita a dominio FUNCIONA (PR10124 em multilaser.com.br devolveu a pagina certa da peca) e o egresso HTTP NAO, nem por curl nem por WebFetch. E por isso que o banco pode ser construido de pagina de fabricante desde 09/09 e a foto nunca pode — dado se colhe do texto da busca, foto exige abrir o arquivo, e a 25.3 manda abrir cada imagem com os olhos antes de gravar.
+  A REGUA QUE NASCEU: ferramentas/medir-portas-do-fabricante.py, prefixo medir-, producao e fora da bancada. Ela NAO inventa porta por busca — le a porta de cada registro em fontes{}.url e canal_brasileiro.valor, classifica contra dados/marcas.json e mede DNS e HTTP separados. Host de marca nao declarado sai como nao_declarado, nunca aprovado por parecer. Saida em dados/portas-do-fabricante-2026-09-20.md, nenhum numero digitado.
+  O QUE ELA PEGOU ALEM DO BLOQUEIO: electrolux-erb20 so tem porta de terceiro (manuals.plus), entao o conserto dele NAO e rede; e positivo-11206540 so tem loja.meupositivo.com.br, que nao esta no sameAs da marca positivo — parece a mesma empresa, e 'parece' nao e procedencia nesta ilha.
+  GRAVADO NO BANCO: os 66 imagem.motivo_do_null registram a tentativa de hoje com host e data, sem apagar a causa de 18/09. A preferencia nunca inverteu — os 14 registros que ja tinham foto sairam byte a byte iguais. ZERO URL nova, ZERO URL mudada, ZERO palavra de pagina escrita, e isso foi PROVADO: os quatro geradores foram re-rodados e os seis snippets sairam com o mesmo md5, porque motivo_do_null nao chega ao HTML. Por isso NAO houve Sync e NAO houve revisao nova — nao havia o que publicar.
+  PORTOES: validar-banco.py APROVADO e bancada.py em 38 portoes, 0 falha, com a ferramenta nova classificada como producao e fora da linha de denuncia.
+  O QUE FALTA, E E DO RAPHAEL: 11 hosts a abrir (loja.electrolux.com.br 8, br.roborock.com 6, us.roborock.com 5, loja.wap.ind.br 4, www.multilaserempresas.com.br 4, www.positivocasainteligente.com.br 3, loja.meupositivo.com.br 2, suporte.multilaser.com.br 2, blog.wap.ind.br 1, content.electrolux.com.br 1, lamina.multilaser.com.br 1) mais os dois de 17/09 que voltaram a fechar e sao usados (www.mi.com com 26 registros e www.multilaser.com.br com 6). manuals.plus fica fora do pedido de proposito: e terceiro e a 25.3 proibe a foto que viria de la.
+  NAO SEGUI PARA BLOCO DA FILA, e a 18.2 permitiria: a ilha esta PRONTA e no regime do CRITERIO PRE-REGISTRADO DA DECISAO DE OUTUBRO, que poe malha nova e bloco de conteudo no desfecho (a), escolhivel so depois das leituras de 23/09, 30/09, 07/10 e 14/10. Construir pagina hoje seria tomar em silencio a decisao que aquela secao existe para alguem tomar com o numero na mesa.
 ultima_ronda: 2026-09-18T14:45Z
 bloqueada_por: null
 ---
@@ -26,6 +25,27 @@ bloqueada_por: null
 # Estado da ilha Robometria
 
 Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
+
+## 20/09/2026, 14h26Z — O despacho da foto do fabricante virou um pedido de 13 domínios
+
+**A ilha continua PRONTA e nada foi reaberto.** Esta execução não construiu
+página: mediu por que o despacho de 19/09 não anda e deixou o caminho pronto
+para o dia em que andar.
+
+- **As 14 portas de fabricante dos 66 publicáveis sem foto estão fechadas para
+  esta nuvem** — `000` com `CONNECT tunnel failed, response 403`, que é negativa
+  de política do proxy de egresso. **As 14 resolvem em DNS**, então pela 20.2
+  isto é pedido de liberação, nunca endereço errado. Controle na mesma passada:
+  `robometria.com.br` e `shopee.com.br` em **200**.
+- **Dos cinco hosts que o despacho de 17/09 dava como abertos, só dois são
+  usados por alguma porta dos 66**, e **32 dos 66 registros não têm nenhuma
+  porta naquela lista**. Página de produto mora em `loja.`, `suporte.`,
+  `blog.`, `lamina.`, não no `www` institucional.
+- **Isto NÃO é `bloqueada_por`.** O campo continua `null`, porque a ilha inteira
+  não depende disso: o que depende é um despacho, e ele está reescrito pela 18.3
+  dizendo exatamente o que falta. Foto é ganho e nunca requisito (25.3).
+- A medição registro a registro está em `dados/portas-do-fabricante-2026-09-20.md`
+  e se refaz sozinha com `python3 ferramentas/medir-portas-do-fabricante.py`.
 
 ## 11/09/2026, 13h17Z — Bloco de dados: as duas dívidas nomeadas, fechadas
 
