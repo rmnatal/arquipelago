@@ -5898,6 +5898,19 @@ secao existe para fazer alguem tomar com o numero na mesa. O que sobrava no
 3c — codigo e funcao das escovas WAP e Xiaomi — depende dos manuais em PDF dos
 mesmos hosts que estao fechados.
 
+**O MANIFEST SUBIU PARA 70 E O SYNC FOI ACIONADO, e a razao e so uma:** os dois
+arquivos de banco sao `publicar: false`, mas o manifest guarda o sha256 deles, e
+sha esquecido e exatamente o defeito da secao 4 que `atualizar-manifest.py`
+existe para impedir. `2 item(ns) com sha novo, 0 versao(oes) reespelhada(s)`.
+Os **seis** arquivos `publicar: true` sairam com o sha inalterado — a prova, do
+lado do manifest, do que os md5 dos snippets ja diziam.
+
+**CONFERIDO NO AR DEPOIS DO SYNC (18.4), e nao pelo log do Sync:** `/status`
+responde **revisao 70**, igual a do manifest. Home, R1 e
+`/quantos-pa-o-robo-aspirador-precisa/?piso=tapete&pelo=sim&m2=80` em **200**,
+zero ocorrencia de "em breve" e zero `rbm-sem-banco`.
+`python3 ferramentas/conferir-no-ar.py`: **264 afirmacoes no ar, 0 falha**.
+
 - **Proximo passo desbloqueado: nenhum da Fundacao ate o Raphael abrir os 13
   hosts.** No dia em que abrir, o caminho e mecanico e nao tem busca a refazer:
   `python3 ferramentas/medir-portas-do-fabricante.py` reimprime o placar com a

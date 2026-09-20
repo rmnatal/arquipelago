@@ -133,6 +133,14 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 Mais os dois da lista de 17/09 que **voltaram a fechar** e são usados de verdade: **`www.mi.com` (26 registros, a maior fatia de longe) e `www.multilaser.com.br` (6)**. Os outros três de 17/09 — `www.electrolux.com.br`, `mais.conteudo.wap.ind.br`, `www.positivotecnologia.com.br` — **não são usados por porta nenhuma dos 66** e podem ficar como estão.
 
+**A LINHA PRONTA PARA COLAR, se for mais rápido do que 13 campos** — oito curingas cobrem os 13 hosts e qualquer subdomínio que a próxima leva encontrar, e são todos domínio do próprio fabricante:
+
+```
+*.electrolux.com.br, *.multilaser.com.br, *.multilaserempresas.com.br, *.roborock.com, *.wap.ind.br, *.mi.com, *.positivocasainteligente.com.br, *.meupositivo.com.br
+```
+
+*(São oito entradas porque Multi e Positivo têm dois domínios raiz cada. A lista exata dos 13 hosts, acima, continua valendo para quem preferir abrir só o necessário.)*
+
 **`manuals.plus` fica FORA do pedido, de propósito.** É agregador de manual, terceiro, e a 25.3 proíbe a foto que viria de lá. Abrir esse host não move o despacho um registro — e é por isso que `electrolux-erb20` está marcado no relatório como **sem porta legítima**, não como bloqueado: para ele o conserto não é rede, é uma página da Electrolux que o banco ainda não tem.
 
 **UM CASO PARA DECIDIR, e a Fundação não decidiu sozinha de propósito:** `positivo-11206540` (mop) tem como única porta `loja.meupositivo.com.br`, que **não está declarado em `dados/marcas.json`** como endereço da Positivo. Parece ser loja da mesma empresa, e "parece" não é procedência nesta ilha. Quem confirmar acrescenta o host ao `sameAs` da marca `positivo`; até lá ele sai do relatório como `porta não declarada`, nunca como fabricante.
