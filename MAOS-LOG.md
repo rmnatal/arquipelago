@@ -1986,3 +1986,55 @@ reservada, nenhum `executando_desde` foi escrito, nenhum cabecalho de estado foi
 foi executado, nada foi publicado e nenhum Sync foi acionado.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `68f8965` so existiu depois do commit do trabalho.
+
+---
+
+## Disparo de 20/09/2026, 10h18 (horario de Brasilia) — 13h18Z
+
+**Assunto da instrucao:** Arquipelago, ilha Robometria. Passou na trava de assunto — ilha do Arquipelago,
+arquivo dentro de `ilhas/robometria/`. Executado.
+
+**O que a instrucao mandou:** inserir um bloco novo em `ilhas/robometria/PROMPT.md`, imediatamente ANTES da
+linha que comeca com `## DESPACHO DO RAPHAEL — 19/09/2026, 11h04`, verbatim, seguido de uma linha em branco,
+sem alterar nenhuma outra linha do arquivo.
+
+**O que foi feito:** `git fetch origin main && git checkout -B trabalho origin/main` (partiu de `af5a137`).
+A linha alvo estava na linha 48 do arquivo. O bloco (37 linhas) mais a linha em branco foram inseridos ali,
+de modo que o novo despacho de 20/09 comeca na **linha 48** e o despacho de 19/09 passou da linha 48 para a
+**linha 86**. Nenhuma outra linha do arquivo foi tocada — o `git diff --stat` mostra 38 insercoes e 0 remocoes.
+
+`git status --porcelain` depois do commit (vazio = arvore limpa):
+
+```
+```
+
+`git diff --stat HEAD~1 HEAD`:
+
+```
+ ilhas/robometria/PROMPT.md | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+```
+
+**Commit que foi ao `main`:**
+
+```
+15d39684574ac89fd29fb1b7ee8c5d9b240bcbd1
+robometria: despacho de 20/09 — itens 1 e 4 da Sentinela medidos no navegador, chaves novas
+```
+
+**Push:** `git push origin HEAD:main` aceito de primeira, `af5a137..15d3968`. Sem rebase, sem force push,
+sem PR. Confirmado com `git fetch origin main && git log -1 origin/main`, que mostra o hash acima.
+
+**Contagem, conferida relendo `ilhas/robometria/PROMPT.md` DEPOIS de gravar:** o arquivo foi de 1085 para
+1123 linhas (+38). `grep -n "^## DESPACHO DO RAPHAEL"` devolve o titulo de 20/09 na linha 48 e o de 19/09 na
+linha 86 — 38 linhas de distancia, que e exatamente o bloco mais a linha em branco.
+
+**Erros:** nenhum. Nenhum passo falhou.
+
+**Limites respeitados:** foram alterados apenas `ilhas/robometria/PROMPT.md` e este `MAOS-LOG.md`. Nenhuma ilha
+foi reservada, nenhum `executando_desde` foi escrito, nenhum cabecalho de estado foi tocado, nenhum bloco de
+fila foi executado, nada foi publicado, nenhum Sync foi acionado e nenhum `ARQUIPELAGO.md` foi lido para
+decidir o que fazer. As tarefas que o bloco descreve (trocar chaves, encurtar, gravar medicao, bancada, Sync)
+sao para a Fundacao executar — as maos apenas gravaram o texto do despacho.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `15d3968` so existiu depois do commit do trabalho.
