@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-20T13:50Z
-executando_desde: null
+executando_desde: 2026-09-20T14:26Z
 bloco_atual: |
   A ILHA FICOU PRONTA — os cinco itens da DEFINICAO DE PRONTA fechados em 20/09/2026, tres dias antes do prazo de 23/09. O que fechou foi o item 3 (zero defeito aberto de ronda): as 28 chaves que abriam no concorrente foram trocadas pelas que o Raphael mediu no navegador. Casca inalterada, manifest revisao 69, /status em 69. ZERO URL nova, ZERO URL mudada de endereco, ZERO palavra de pagina escrita a mao.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. Os cinco ESTADO.md parseiam e o desta ilha tinha executando_desde null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo. Reserva aceita de primeira as 13h28Z. Zero branch claude divergente e zero PR aberto. Rede pela 20.2 antes de trabalhar: home 200 em TRES passadas e /status na revisao 68, igual a do manifest.
