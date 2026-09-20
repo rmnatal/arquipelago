@@ -365,9 +365,18 @@ def m14_ficha_sem_url_produto(base):
 def m15_degrau_3_sem_busca(base):
     """PRODUZ O MUNDO: anuncio de vendedor comum, o degrau que quebrou quatro links
     em doze horas, sem o piso embaixo. E o beco sem saida que a 25.1 proibe com
-    todas as letras neste degrau especifico."""
-    _dar_ficha(base, MODELOS, ALVO_MODELO, degrau=3, url_busca='',
-               motivo_sem_url_busca='mundo de bancada')
+    todas as letras neste degrau especifico.
+
+    O QUE ELA APAGA MUDOU EM 20/09/2026, e a mutacao mudou junto. Ate aquele dia
+    ela apagava o link ENCURTADO (`url_busca`) porque era isso que a trava cobrava;
+    a trava passou a cobrar a BUSCA (`url_busca_produto`), que e a saida de verdade
+    — o encurtado e comissao, e quem cobra comissao e a 25.2-b, em todo publicavel.
+    Se esta mutacao tivesse ficado como estava, ela viraria INERTE no mesmo dia em
+    que a trava mudou: continuaria produzindo um mundo que, a partir de agora, e
+    legitimo (degrau 3 com piso cru e comissao pendente), e a bancada passaria a
+    medir uma ausencia que nao e mais defeito.
+    """
+    _dar_ficha(base, MODELOS, ALVO_MODELO, degrau=3, url_busca_produto='')
 
 
 def m16_mundo_do_link_intacto(base):
@@ -464,6 +473,56 @@ def m24_tentou_e_a_api_nao_serviu(base):
     reprovasse este mundo empurraria a ilha a esconder peca por dinheiro, que e o
     oposto do que a secao decidiu."""
     _leva_nova_sem_encurtar(base, tirar_da_medicao=False)
+
+
+# --------------- AS DUAS DA CHAVE FIXADA NO NAVEGADOR (despacho do Raphael 20/09)
+FIXADA = 'roborock-mop-q8-max'
+
+
+def _chave_fixada(base):
+    """O registro cuja chave veio da busca do SITE, e nao da Open API.
+
+    `Roborock mop` larga o termo de contexto de proposito: foi medido em
+    20/09/2026 que `robo aspirador` e o termo FORTE na busca da Shopee e que a
+    marca e o fraco, entao o sufixo generico entrega o topo ao concorrente mais
+    popular. A excecao que deixa a chave passar sem o termo pende de UMA prova, e
+    e essa prova que as duas mutacoes abaixo atacam, uma de cada lado.
+    """
+    d = _ler_json(base, MEDICAO)
+    e = _medida(d, FIXADA)
+    if not e.get('fixada_no_navegador'):
+        raise AssertionError('%s nao esta fixada no navegador — a mutacao seria '
+                             'inerte' % FIXADA)
+    return d, e
+
+
+def m25_fixada_sem_a_marca_no_topo(base):
+    """A chave fixada continua largando o termo de contexto, e o primeiro resultado
+    MEDIDO deixa de trazer a marca do registro.
+
+    E o defeito do item 4 do despacho da Sentinela de 18/09 voltando pela porta do
+    conserto: a busca abrindo no concorrente, so que agora com data de medicao e
+    com cara de conferida — que e a pior forma dele. A excecao do navegador nao e
+    um perdao: ela troca a REGRA DE COMPOSICAO por uma MEDICAO, e medicao que nao
+    mostra a marca no topo nao paga o que a regra cobrava.
+    """
+    d, e = _chave_fixada(base)
+    e['titulo_do_topo'] = 'Robô Aspirador Xiaomi S40c'
+    e['marca_no_topo'] = False
+    _gravar_json(base, MEDICAO, d)
+
+
+def m26_fixada_perde_a_marca_de_fixada(base):
+    """A MESMA chave, sem o campo que diz de onde ela veio.
+
+    Prova que a excecao esta presa a PROCEDENCIA e nao ao formato da chave: sem
+    `fixada_no_navegador` a mesma string volta a ser uma chave que alguem
+    estreitou no olho, e a trava do termo de contexto morde de novo. Sem esta
+    direcao, a excecao seria uma porta aberta para qualquer chave curta.
+    """
+    d, e = _chave_fixada(base)
+    del e['fixada_no_navegador']
+    _gravar_json(base, MEDICAO, d)
 
 
 # ------------------- AS QUATRO DO DESPACHO DO RAPHAEL DE 14/09/2026 (itens 2 e 3)
@@ -585,6 +644,15 @@ MUTACOES = [
     ('MUNDO NOVO: tentou encurtar e a API nao serviu — esta TEM de passar',
      'a 25.2-b manda PUBLICAR o item sem comissao: esconder peca por dinheiro e mentir',
      m24_tentou_e_a_api_nao_serviu, None, None),
+    ('a chave fixada no navegador larga o contexto E abre no concorrente',
+     'a excecao troca a regra pela medicao; medicao sem a marca no topo nao a paga',
+     m25_fixada_sem_a_marca_no_topo, 'validar', 'marca no topo'),
+    ('a chave fixada no navegador perde a marca de quem a fixou',
+     'a excecao esta presa a PROCEDENCIA, nao ao formato da chave',
+     m26_fixada_perde_a_marca_de_fixada, 'validar', 'termo de contexto'),
+    ('a chave fixada abre no concorrente — contra o portao da escada',
+     'a segunda testemunha confere a marca no topo com o token que ela mesma escreveu',
+     m25_fixada_sem_a_marca_no_topo, 'escada', 'nao traz a marca'),
 
     # AS MESMAS TRES MUTACOES, CONTRA O OUTRO PORTAO — e isto nao e repeticao.
     # teste-escada-compra.py escreve a propria regua e nao le o esquema; o validador

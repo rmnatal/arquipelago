@@ -216,8 +216,22 @@ try:
     _medicao = carregar(MEDICAO_DE_PALAVRAS)
     TENTOU_ENCURTAR = {r.get("id") for r in _medicao.get("registros", [])}
     DATA_DA_MEDICAO = _medicao.get("gerado_em")
+    # A CHAVE MEDIDA NA BUSCA DO SITE, quando existir. So ela pode largar o termo
+    # de contexto (ver a invariante do piso, abaixo), e por isso o que entra aqui
+    # e a chave INTEIRA e o veredito da marca no topo — nunca so o id. Guardar o
+    # id bastaria para dizer "este registro foi medido um dia", e a excecao nao e
+    # sobre o registro: e sobre a CHAVE que esta escrita nele agora.
+    FIXADA_NO_NAVEGADOR = {}
+    MEDIDA_POR_ID = {_r.get("id"): (_r.get("escolhido") or {})
+                     for _r in _medicao.get("registros", [])}
+    for _r in _medicao.get("registros", []):
+        _e = _r.get("escolhido") or {}
+        if _e.get("fixada_no_navegador") and _e.get("chave"):
+            FIXADA_NO_NAVEGADOR[_r.get("id")] = _e
 except FileNotFoundError:
     TENTOU_ENCURTAR = set()
+    FIXADA_NO_NAVEGADOR = {}
+    MEDIDA_POR_ID = {}
     DATA_DA_MEDICAO = None
     erro("dados/%s nao existe. Sem ela nenhum registro consegue provar que o "
          "encurtamento foi TENTADO, e a trava da 25.2-b aprovaria tudo ou reprovaria "
@@ -510,10 +524,33 @@ def checar_escada_de_compra(reg, onde, arquivo):
                 erro("%s: a busca %r nao carrega o nome_de_busca da marca (%r)"
                      % (onde, legivel, marca))
             if termo and termo.lower() not in legivel.lower():
-                erro("%s: a busca %r nao carrega o termo de contexto %r. Marca sem "
-                     "contexto e armadilha (25.3), e nesta ilha o codigo sem contexto "
-                     "tambem e: 'S20' sozinho e um celular de outra marca"
-                     % (onde, legivel, termo))
+                # A EXCECAO, E ELA NAO E UM PERDAO: E OUTRA REGUA, MAIS CARA DE
+                # OBTER. O termo de contexto e uma REGRA DE COMPOSICAO — escrita em
+                # 13/09/2026 sem medicao, porque a busca do site nao era mensuravel
+                # desta nuvem — e o que ela tenta impedir e que a chave traga outra
+                # coisa que nao o produto. Em 20/09/2026 a busca do site foi medida
+                # no navegador do Raphael e disse o contrario do que a regra supoe:
+                # `robo aspirador` e o termo FORTE na busca da Shopee e a marca e o
+                # fraco, entao o sufixo generico empurra o topo para o concorrente
+                # mais popular — foi assim que 5 das 6 chaves de modelo Roborock
+                # abriram num Xiaomi. Quem larga o termo, entao, tem de provar o que
+                # a regra so presumia: que o primeiro resultado traz a marca do
+                # registro. A prova e a medicao do NAVEGADOR, e nao a da Open API de
+                # ofertas — essa mede o catalogo que paga comissao, e em 18/09 deu
+                # como boas as 25 chaves que o navegador reprovou.
+                medida = FIXADA_NO_NAVEGADOR.get(reg.get("id")) or {}
+                if medida.get("chave") != legivel:
+                    erro("%s: a busca %r nao carrega o termo de contexto %r e NAO e a "
+                         "chave fixada no navegador (%r). Marca sem contexto e "
+                         "armadilha (25.3), e nesta ilha o codigo sem contexto tambem "
+                         "e: 'S20' sozinho e um celular de outra marca"
+                         % (onde, legivel, termo, medida.get("chave")))
+                elif not medida.get("marca_no_topo"):
+                    erro("%s: a busca %r larga o termo de contexto %r com medicao do "
+                         "navegador que NAO poe a marca no topo (primeiro resultado "
+                         "medido: %r). Largar o termo so se paga quando a medicao "
+                         "mostra o contrario do que a regra presume"
+                         % (onde, legivel, termo, medida.get("titulo_do_topo")))
     elif busca:
         erro("%s: registro %r com url_busca_produto escrita. Registro sem pagina nao "
              "tem piso a cumprir, e a busca diria 'robo aspirador' sobre um aparelho "
@@ -539,9 +576,18 @@ def checar_escada_de_compra(reg, onde, arquivo):
                  "— e isso se prova chamando. Rode ferramentas/medir-palavras-chave.py "
                  "--gravar --encurtar" % (onde, MEDICAO_DE_PALAVRAS))
         else:
-            aviso("%s: publicavel com piso CRU (sem url_busca), tentado em %s e a API "
-                  "nao serviu. E o unico caso que a 25.2-b aceita, e ele nao rende "
-                  "comissao" % (onde, DATA_DA_MEDICAO))
+            # O AVISO DIZ O MOTIVO QUE A MEDICAO ESCREVEU, quando ela escreveu um.
+            # A frase fixa "tentado em <data> e a API nao serviu" descreve UM dos
+            # casos legitimos da 25.2-b, e desde 20/09/2026 existe outro: a chave
+            # foi trocada por medicao do navegador e a credencial da Open API nao
+            # estava no ambiente para reencurtar. Os dois sao piso cru; sao dividas
+            # diferentes, e quem le o aviso precisa saber qual das duas esta olhando
+            # — uma se paga chamando a API de novo, a outra se paga com a credencial.
+            medida = MEDIDA_POR_ID.get(reg.get("id")) or {}
+            porque = (medida.get("motivo_sem_url_busca")
+                      or "tentado em %s e a API nao serviu" % DATA_DA_MEDICAO)
+            aviso("%s: publicavel com piso CRU (sem url_busca): %s. E o unico caso que "
+                  "a 25.2-b aceita, e ele nao rende comissao" % (onde, porque))
 
     tem_ficha = bool(a.get("url"))
     degrau = a.get("degrau")
@@ -556,9 +602,23 @@ def checar_escada_de_compra(reg, onde, arquivo):
                  "URL crua a ronda nao consegue abrir a pagina para ler 'O produto nao "
                  "existe' — e item que ninguem consegue conferir e defeito da 19.1 com "
                  "outro nome (25.4-b)" % onde)
-        if degrau == 3 and not tem_busca_encurtada:
-            erro("%s: degrau 3 (anuncio de vendedor) sem url_busca. A 25.1 exige a busca "
-                 "justamente neste degrau, que e o que apodrece" % onde)
+        if degrau == 3 and not busca:
+            # O QUE A 25.1 EXIGE AQUI E SAIDA, E SAIDA E O PISO.
+            #
+            # Esta linha cobrava `url_busca` — o link ENCURTADO — e com isso media
+            # comissao onde a 25.1 fala de beco sem saida. Os dois campos nasceram
+            # como um so: quando a 25.1 foi escrita, em 13/09/2026, `url_busca` era
+            # a unica busca que existia no banco. Cobrar o encurtado neste ponto
+            # torna impossivel trocar a palavra-chave de um registro de degrau 3
+            # em qualquer dia em que a credencial da Open API nao esteja no
+            # ambiente — ou seja, faz uma trava de DURABILIDADE bloquear um
+            # conserto de RELEVANCIA, que e outro assunto. A comissao continua
+            # cobrada logo acima, em todo publicavel, pela trava da 25.2-b, que e a
+            # regra que de fato fala dela. Ver
+            # esquema-banco.json > escada_de_compra >
+            # por_que_o_degrau_3_exige_a_BUSCA_e_nao_o_link_curto.
+            erro("%s: degrau 3 (anuncio de vendedor) sem url_busca_produto. A 25.1 "
+                 "exige a busca justamente neste degrau, que e o que apodrece" % onde)
     else:
         # A REGUA DESTE RAMO FOI INVERTIDA EM 14/09/2026, pelo item 2 do despacho do
         # Raphael. Ela dizia "degrau sem ficha e degrau que nao parou em lugar nenhum"

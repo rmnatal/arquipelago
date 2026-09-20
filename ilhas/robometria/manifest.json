@@ -4,8 +4,8 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 68,
-  "atualizado_em": "2026-09-18",
+  "revisao": 69,
+  "atualizado_em": "2026-09-20",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -116,7 +116,7 @@
       "verificado_em": "2026-09-09",
       "registros": 4,
       "publicar": false,
-      "sha256": "38eec39f92aefe3bb655622e24f34cc65c94baab5931495b6fbc58bfcc769395",
+      "sha256": "fb5d1a01470f370eb07de71cd2696b45fff86f3ac1641b73f44bd0f4f13fe8ed",
       "descricao": "Contrato do banco da Robometria, versao 3 do esquema (elevada na segunda leva do Bloco 3c). A versao 3 acrescenta divergencias[] e resolucao tambem em MODELO_ROBO — ate entao so PECA divergia, e o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — e escreve a regra da FAIXA DECLARADA: faixa e tolerancia resolvem para o lado em que errar doi menos, nunca para o meio, com a faixa inteira preservada em declarado_como. Pa e autonomia resolvem para baixo; tempo de recarga resolve para cima."
     },
     {
@@ -152,7 +152,7 @@
       "verificado_em": "2026-09-09",
       "registros": 33,
       "publicar": false,
-      "sha256": "1331b536d8b3274e0db87e321b30320d7fa28432e6da57314c73817b326a1523",
+      "sha256": "406be18df4d225ce0c2c9305d9b2467ecfd6da8cb4199e0a38df69e8c3aed86f",
       "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
     },
     {
@@ -164,7 +164,7 @@
       "verificado_em": "2026-09-09",
       "registros": 18,
       "publicar": false,
-      "sha256": "393ea2f0855b0af38189efd105aae31cdb62efd0fdb9f56598d318b64127a3d8",
+      "sha256": "f11ce3dd548cef2dcf2be6312dd1a1f9a3739d62df137e8c8b2f0fbfb83f77e5",
       "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
     },
     {
@@ -200,7 +200,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": true,
-      "sha256": "b6bd351518a0576e866e4c06938b2c24e0a051a9d5fcb5885d4006a614805e3e",
+      "sha256": "6ff486da5db14d6d430dab9e24937a3365844b5ada5cd3c76686e24c1d4a6fd1",
       "descricao": "O COMBUSTIVEL DA FERRAMENTA R1 NO SITE, e o primeiro item de dados desta ilha com publicar=true: o Sync o grava na option robometria_dados_r1-respostas e o snippet robometria-r1.php monta a pagina a partir dele. Para cada um dos 28 modelos publicaveis, os FATOS de cada peca que o fabricante declarou compativel — tipo respondido, codigo, publicador, conjunto declarado, endereco, data, se vem dentro de kit, se existe a peca avulsa, se ha divergencia registrada e se ainda espera link de afiliado. Traz tambem o seletor gerado da varredura (os 5 tipos que o banco consegue responder, sem 'reservatorio', que tem zero pecas), o modelo-ancora escolhido por regra, as 45 linhas da tabela de exemplos na ordem cross-marca da referencia, as duas divergencias com as duas declaracoes e as duas datas, a lista dos 12 modelos de entrada vazia e a tabela de rotulos da escada de fontes. SEM PROSA de proposito: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a referencia por ferramentas/teste-r1.php."
     },
     {
@@ -258,7 +258,7 @@
       "verificado_em": "2026-09-10",
       "registros": 9,
       "publicar": true,
-      "sha256": "4bc01d557a1620ba2ce0e1ac95cf281fa651c6455a0707ee2f7276ef9443669a"
+      "sha256": "7cb23a5207d89f8c7229cf18e0892c40898d0d5610ef4382f2363b72a9192eb0"
     },
     {
       "id": "r2-referencia",
@@ -304,7 +304,7 @@
       "verificado_em": "2026-09-11",
       "registros": 7,
       "descricao": "Fatos que a casca publica sobre o proprio banco, derivados por ferramentas/gerar-casca-fatos.py. Desde 11/09/2026 traz duas coisas: a coluna 'Temos hoje' da escada de fontes, e a MEDICAO da secao 4 da metodologia — os onze numeros que a ilha afirma sobre si mesma, com a regua de cada um escrita no proprio arquivo, em reguas_da_medicao. Contagem so de registro publicavel: a coluna fala do que a ilha PUBLICA, nao do que ela guarda, e e por isso que 'pares peca x modelo' conta 32 (as duas pontas publicaveis) onde o cabecalho de pecas.json conta 33 (tudo que o arquivo declara). O gerador RECUSA gravar quando cobertura-r1.json nao bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de hoje.",
-      "sha256": "4cc7b84417af4a18cf0f7b1c1aa82a3fe6144481775667bc52450619d9392cae"
+      "sha256": "183b384752999cba481d88e6a52d0f420bbc5bab97303c4268020cc728603ce3"
     },
     {
       "id": "acentuacao-restaurada",

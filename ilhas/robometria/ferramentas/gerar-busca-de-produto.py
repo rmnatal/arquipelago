@@ -277,7 +277,33 @@ def main():
                 # e mandar o leitor para a busca de ontem com o carimbo de hoje.
                 if medida and medida.get("url_busca") and medida.get("url_busca_produto") == nova_busca:
                     afil["url_busca"] = medida["url_busca"]
+                elif afil.get("url_busca") and afil.get("url_busca_produto") != nova_busca:
+                    # A CHAVE MUDOU E O LINK CURTO NAO ACOMPANHOU: ELE CAI.
+                    #
+                    # O paragrafo acima dizia, desde 16/09/2026, que "link curto e
+                    # chave sao um par, e trocar um sem o outro e mandar o leitor
+                    # para a busca de ontem com o carimbo de hoje" — e o codigo so
+                    # cumpria METADE disso: recusava escrever link curto de chave
+                    # alheia, e MANTINHA calado o link curto que ja estava no
+                    # registro quando a chave debaixo dele mudava. Enquanto a unica
+                    # forma de trocar chave foi a propria medicao (que devolve as
+                    # duas coisas juntas), o buraco nunca abriu. Ele abriu em
+                    # 20/09/2026, quando o despacho do Raphael trocou 28 chaves
+                    # medidas NO NAVEGADOR sem que a Open API estivesse ao alcance
+                    # para reencurtar: os 28 registros teriam servido o botao de
+                    # ontem sobre a palavra de hoje, que e exatamente o defeito que
+                    # o despacho mandou consertar.
+                    afil["url_busca"] = ""
                 novo_motivo = None if afil.get("url_busca") else MOTIVO_SEM_URL_BUSCA
+                # O MOTIVO SAI DA MEDICAO QUANDO A MEDICAO O ESCREVEU. O texto
+                # padrao deste arquivo diz "a medicao nao cobre este registro", e
+                # isso seria FALSO num registro que a medicao cobre e que so nao
+                # tem link curto porque a credencial da Open API faltou no ambiente
+                # do dia. Motivo errado e pior que motivo generico: a proxima
+                # execucao le "rode a ferramenta" e a ferramenta nao e o conserto.
+                if novo_motivo and medida and medida.get("motivo_sem_url_busca") \
+                        and medida.get("url_busca_produto") == nova_busca:
+                    novo_motivo = medida["motivo_sem_url_busca"]
 
             antes = (afil.get("url_busca_produto"), afil.get("motivo_sem_url_busca"),
                      reg.get("afiliado"))

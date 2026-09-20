@@ -1,0 +1,153 @@
+{
+ "id": "chaves-do-navegador-2026-09-20",
+ "ilha": "robometria",
+ "entidade": "MEDICAO",
+ "publicar": false,
+ "medido_em": "2026-09-20",
+ "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
+ "fonte_da_medicao": "Despacho do Raphael de 20/09/2026, 10h30 (horario de Brasilia), no PROMPT.md desta ilha. A medicao foi feita entre 10h15 e 10h35 (Brasilia) pela API de busca do SITE da Shopee (shopee.com.br/api/v4/search/search_items?by=relevancy&limit=5&...&version=2), de dentro de uma aba no dominio, em lotes de 5 com ~2,5 s entre chamadas e recarga da home entre lotes. Nome do item lido em item_card_displayed_asset.name. Nenhum clique de afiliado gasto.",
+ "por_que_esta_regua_e_nao_a_da_nuvem": "A Open API de Afiliados, que e a unica que a Fundacao alcanca desta nuvem, mede o catalogo de OFERTAS que paga comissao — nao a busca que o leitor ve. As duas discordam no sentido que engana: em 18/09 a Open API deu as 25 chaves Roborock e Xiaomi como boas, com a marca no topo, enquanto a busca do site abria em Xiaomi em 5 das 6 chaves Roborock. A regua do leitor manda (25.4, nota_de_universo de palavras-chave-medidas.json), e o despacho de 20/09 proibe com todas as letras remedir estas chaves pela Open API para decidir qualquer coisa.",
+ "regra_que_saiu_da_medicao": "O sufixo `robo aspirador` na chave e o que entrega o topo ao concorrente. A busca do site trata `robo aspirador` como o termo forte e `Roborock`/`Xiaomi` como o fraco, e o topo vira Xiaomi (ou robo de piscina) por popularidade. CHAVE = marca + tipo de peca, ou marca + modelo, SEM o sufixo generico. Isto e o oposto do que a Open API de ofertas sugere.",
+ "limite_medido_da_fonte": "A Shopee derrubou a aba em captcha na 7a e na 6a chamada seguidas. Cinco por lote e o teto seguro, com recarga da home entre lotes.",
+ "grupos": [
+  {
+   "chave_nova": "Roborock",
+   "marca": "roborock",
+   "resultados": 61,
+   "primeiro_resultado": "Aspirador Pó Inteligente Roborock Q7 L5",
+   "outros_resultados_lidos": ["Robo Aspirador Roborock Qr598", "Robô Aspirador Roborock Q7 L5+"],
+   "chave_velha": "Roborock Q8 Max robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robô Aspirador Robot Vacuum 6 Max (Xiaomi)",
+   "por_que": "os tres primeiros resultados sao robos Roborock",
+   "nota": "A Shopee Brasil NAO vende o Roborock Q8 Max. Quatro chaves foram tentadas em 20/09 — `Roborock Q8 Max robo aspirador`, `Roborock Q8 Max`, `Roborock Q8 Max+` e `Roborock Q8` — e nenhuma devolve o modelo: o que aparece e Q7 L5, Qr598, Q10 e um Xiaomi. Por isso a chave deste registro e de MARCA e nao de modelo: o leitor que clica no Q8 Max cai na vitrine Roborock da Shopee, nao num beco. O `0 resultados` medido em 18/09 para a chave velha NAO se reproduziu em 20/09 (a mesma chave devolveu total_count 5.684); nao importa para o veredito, porque a regua que fecha o item e `o primeiro resultado traz a marca`, e essa foi medida.",
+   "registros": ["roborock-q8-max"]
+  },
+  {
+   "chave_nova": "Roborock Qrevo Master",
+   "marca": "roborock",
+   "resultados": 4007,
+   "primeiro_resultado": "Para Roborock G20S Ultra/Saros 10R/Qrevo CurvX... Acessórios",
+   "chave_velha": "Roborock Qrevo Master robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robô Aspirador Xiaomi S40c (medido em 18/09)",
+   "por_que": "o primeiro resultado traz a marca Roborock",
+   "registros": ["roborock-qrevo-master"]
+  },
+  {
+   "chave_nova": "Roborock S8 MaxV",
+   "marca": "roborock",
+   "resultados": 5756,
+   "primeiro_resultado": "Para Roborock G20S Ultra/Saros 10R... Acessórios",
+   "outros_resultados_lidos": ["Solução Original... Roborock 1L Para S8 Maxv Ultra"],
+   "chave_velha": "Roborock S8 MaxV Ultra robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robô Aspirador Xiaomi S40c (medido em 18/09); sem o sufixo, `Robot Vacuum 6 Max` (Xiaomi) — tambem reprova",
+   "por_que": "o primeiro resultado traz a marca Roborock e o 3o nomeia o S8 MaxV Ultra",
+   "registros": ["roborock-s8-maxv-ultra"]
+  },
+  {
+   "chave_nova": "Roborock Qrevo Curv",
+   "marca": "roborock",
+   "resultados": 38,
+   "primeiro_resultado": "Robo Aspirador Roborock Qr598",
+   "outros_resultados_lidos": ["Roborock Qrevo S QR598"],
+   "chave_velha": "Roborock Qrevo robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robô Xiaomi S40 PRO (medido em 18/09)",
+   "por_que": "o primeiro resultado traz a marca Roborock",
+   "registros": ["roborock-qrevo-curv"]
+  },
+  {
+   "chave_nova": "Roborock Saros Z70",
+   "marca": "roborock",
+   "resultados": 3727,
+   "primeiro_resultado": "Para Roborock G20S Ultra/Saros 10R... Acessórios",
+   "outros_resultados_lidos": ["Aspirador Inteligente Roborock Saros Z70 22.000PA"],
+   "chave_velha": "Roborock Saros Z70 robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robô Aspirador Xiaomi S40c (medido em 18/09)",
+   "por_que": "o primeiro resultado traz a marca Roborock e o 3o e o modelo exato",
+   "registros": ["roborock-saros-z70"]
+  },
+  {
+   "chave_nova": "Roborock Saros 10R",
+   "marca": "roborock",
+   "resultados": 3979,
+   "primeiro_resultado": "Para Roborock G20S Ultra/Saros 10R... Acessórios",
+   "chave_velha": "Roborock Saros 10R robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robô Xiaomi S40 PRO (medido em 18/09)",
+   "por_que": "o primeiro resultado traz a marca Roborock e nomeia o Saros 10R",
+   "registros": ["roborock-saros-10r"]
+  },
+  {
+   "chave_nova": "Roborock mop",
+   "marca": "roborock",
+   "resultados": 85,
+   "primeiro_resultado": "Roborock QR 798 / QR 598 Robô Vácuo Principal Escova Lateral Mop Pano Filtro",
+   "chave_velha": "Roborock mop robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robô Xiaomi S40 PRO (medido em 18/09)",
+   "por_que": "o primeiro resultado traz a marca Roborock e e peca de reposicao, nao robo inteiro",
+   "registros": ["roborock-mop-q8-max", "roborock-mop-qrevo-master", "roborock-mop-qrevo-curv", "roborock-mop-saros-10r-z70", "roborock-mop-s8-maxv-ultra"]
+  },
+  {
+   "chave_nova": "escova principal Xiaomi",
+   "marca": "xiaomi",
+   "resultados": 58,
+   "primeiro_resultado": "Escova Principal Xiaomi S20 E10 E12 E10C C103 D106 B112 Mijia Reposição",
+   "outros_resultados_lidos": ["o 3o resultado nomeia o codigo B112-ZS"],
+   "chave_velha": "Xiaomi escova principal robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Filtro HEPA escova com rolo para Roborock A30... (Roborock)",
+   "por_que": "o primeiro resultado e escova principal Xiaomi, e o 3o traz o codigo do registro",
+   "registros": ["xiaomi-b112-zs", "xiaomi-escova-principal-h40-s40", "xiaomi-b106gl-zx", "xiaomi-escova-principal-mop-2", "xiaomi-escova-principal-mop-2-lite"]
+  },
+  {
+   "chave_nova": "filtro HEPA Xiaomi",
+   "marca": "xiaomi",
+   "resultados": 113,
+   "primeiro_resultado": "Para Xiaomi Robô Vácuo S10, S12 B106GL Peças De Reposição... Filtro Hepa",
+   "chave_velha": "Xiaomi filtro robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Filtro HEPA escova com rolo para Roborock A30... (Roborock)",
+   "por_que": "o primeiro resultado e filtro Xiaomi e nomeia o codigo B106GL",
+   "registros": ["xiaomi-b112-ch", "xiaomi-b106gl-lw", "xiaomi-filtro-mop-2", "xiaomi-filtro-mop-2-lite"]
+  },
+  {
+   "chave_nova": "pano mop Xiaomi robo aspirador",
+   "marca": "xiaomi",
+   "resultados": 230,
+   "primeiro_resultado": "Compatível com o Xiaomi Mijia 5C OV42CN Robô Aspirador, Suporte para Pano de Mop",
+   "chave_velha": "Xiaomi mop robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robo Aspirador Piscina Automático (robo de piscina, sem marca)",
+   "por_que": "o primeiro resultado e pano de mop Xiaomi, nao robo de piscina",
+   "nota": "E a unica chave nova que MANTEM o termo de contexto `robo aspirador`: foi assim que ela foi medida no navegador, e chave se grava como foi medida.",
+   "registros": ["xiaomi-b112-tb", "xiaomi-d106-tb", "xiaomi-e101-tb", "xiaomi-mop-s10", "xiaomi-mop-mop-2", "xiaomi-mop-mop-2-lite"]
+  },
+  {
+   "chave_nova": "reservatorio Xiaomi Mop 2",
+   "marca": "xiaomi",
+   "resultados": 4450,
+   "primeiro_resultado": "Para Compatível com Xiaomi Mi Robot Vacuum Mop 2C XMSTJQR2C... Tanque Água",
+   "chave_velha": "Xiaomi reservatorio robo aspirador",
+   "veredito_da_velha": "REPROVA",
+   "primeiro_resultado_da_velha": "Robô Aspirador Xiaomi S40c (robo inteiro, nao reservatorio; medido em 18/09)",
+   "por_que": "o primeiro resultado e o tanque de agua Xiaomi da familia Mop 2, que e a peca dos dois registros",
+   "registros": ["xiaomi-reservatorio-mop-2", "xiaomi-reservatorio-mop-2-lite"]
+  }
+ ],
+ "aprovadas_sem_troca": [
+  {
+   "chave": "Xiaomi escova lateral robo aspirador",
+   "marca": "xiaomi",
+   "resultados": 378,
+   "primeiro_resultado": "Kit 2 Escova Lateral Compatível Robô Aspirador Xiaomi S40/S40 PRO",
+   "veredito": "APROVA",
+   "por_que": "o primeiro resultado ja e a peca do registro, com a marca. O despacho de 20/09 manda NAO mexer",
+   "registros": ["xiaomi-b106gl-bx", "xiaomi-ov81gl-bs", "xiaomi-escova-lateral-mop-2", "xiaomi-escova-lateral-mop-2-lite"]
+  }
+ ]
+}

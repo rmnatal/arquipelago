@@ -488,16 +488,47 @@ def main():
     alvo = [r for r in pecas if r.get('status') == 'publicavel'
             and (not args.so or r['id'] in args.so)]
 
+    # ---------------------------------- A CHAVE FIXADA NO NAVEGADOR NAO SE REMEDE
+    #
+    # As duas reguas desta ilha discordam NO SENTIDO QUE ENGANA, e isso esta
+    # medido: em 18/09/2026 esta ferramenta deu como boas as 25 chaves Roborock e
+    # Xiaomi do banco — `com a marca no topo`, 25 de 25 — enquanto a busca do SITE,
+    # medida no navegador, abria num Xiaomi em 5 das 6 chaves de modelo Roborock.
+    # Ela mede o catalogo de OFERTAS que paga comissao; o leitor ve outra coisa.
+    #
+    # Entao a chave que o navegador fixou (`aplicar-chaves-do-navegador.py`) e
+    # COPIADA daqui em vez de remedida. Sem isto, a primeira passada desta
+    # ferramenta com a credencial no ambiente desfaria, em silencio e com cara de
+    # medicao fresca, o conserto de 20/09 — e o despacho que o mandou fazer proibe
+    # justamente isso com todas as letras: *"NAO remeca as chaves pela Open API de
+    # ofertas para decidir nada"*. Regra que so vale ate alguem rodar a ferramenta
+    # errada nao e regra.
+    try:
+        anterior_doc = carregar(SAIDA)
+    except FileNotFoundError:
+        anterior_doc = {}
+    anterior = {r['id']: r for r in anterior_doc.get('registros', [])}
+    fixadas = {i: r for i, r in anterior.items()
+               if ((r.get('escolhido') or {}).get('fixada_no_navegador'))}
+
     cache = {}
     medidas = []
     for peca in alvo:
+        if peca['id'] in fixadas:
+            medidas.append(fixadas[peca['id']])
+            continue
         medidas.append(medir(peca, marcas, modelos, contexto, cache))
+    if fixadas:
+        print('%d chave(s) fixada(s) no navegador: copiadas, nao remedidas '
+              '(despacho do Raphael de 20/09/2026)' % len(fixadas))
 
     print('%-46s %4s %3s %-4s %-4s %s' % ('REGISTRO','DEG','N','ITEM3','25.7','TOPO'))
     for m in medidas:
         e = m['escolhido']
-        print('%-46s %4d %3d %-4s %-4s %s' % (
-            m['id'][:46], e['degrau'], e['resultados'],
+        print('%-46s %4s %3d %-4s %-4s %s' % (
+            m['id'][:46],
+            'nav' if e.get('fixada_no_navegador') else e['degrau'],
+            e['resultados'] or 0,
             'sim' if e['criterio_literal_do_despacho'] else 'NAO',
             'sim' if e['topo_e_a_peca'] else 'nao',
             (e['titulo_do_topo'] or '(zero resultado)')[:58]))
@@ -522,7 +553,15 @@ def main():
         1 for m in medidas if m['escolhido']['topo_e_a_peca']))
 
     if args.encurtar:
+        # O ENCURTAMENTO ALCANCA A CHAVE FIXADA, e tem de alcancar: ele nao DECIDE
+        # chave nenhuma, so pede o link de afiliado da chave que ja esta escolhida.
+        # E exatamente a divida que o despacho de 20/09 deixou aberta quando a
+        # credencial faltou no ambiente daquele dia.
         encurtar_as_buscas(medidas, pecas, escada['base_da_busca'], 'robometria')
+        for m in medidas:
+            e = m.get('escolhido') or {}
+            if e.get('fixada_no_navegador') and e.get('url_busca'):
+                e['motivo_sem_url_busca'] = None
         no_banco = {r['id']: r for r in pecas}
         no_banco.update({r['id']: r for r in
                          carregar('dados/modelos-robo.json')['registros']})
@@ -555,6 +594,8 @@ def main():
                 'Entao esta medicao prova o que prova: que a chave existe no catalogo que '
                 'PAGA comissao. Chave com zero AQUI e pior que chave com zero la.'),
             'escada': [
+                {'degrau': 0,
+                 'composicao': 'fora da escada: chave medida na busca do SITE, no navegador'},
                 {'degrau': 1, 'composicao': 'marca + tipo + contexto'},
                 {'degrau': 2, 'composicao': 'marca + batismo do fabricante + contexto'},
                 {'degrau': 3, 'composicao': 'marca + codigo da peca + substantivo do tipo + contexto'},
@@ -574,9 +615,19 @@ def main():
                 'com_resultado': len(vivas),
                 'com_a_peca_no_topo': len(com_peca),
                 'criterio_literal_do_despacho': len(literal),
+                'com_a_marca_no_topo': sum(
+                    1 for e in {m['escolhido']['chave']: m['escolhido']
+                                for m in medidas if m.get('tipo')}.values()
+                    if e.get('marca_no_topo')),
                 'registros_de_peca': len([m for m in medidas if m.get('tipo')]),
                 'registros_medidos': len(medidas),
+                'chaves_fixadas_no_navegador': sum(
+                    1 for m in medidas
+                    if (m.get('escolhido') or {}).get('fixada_no_navegador')),
             },
+            'fontes_da_medicao': sorted(set(
+                (anterior_doc.get('fontes_da_medicao') or []))),
+            'atualizado_em': anterior_doc.get('atualizado_em'),
             'registros': medidas,
             'nota_das_contagens': (
                 'As contagens acima sao de PECA. Registros de MODELO_ROBO entram na '

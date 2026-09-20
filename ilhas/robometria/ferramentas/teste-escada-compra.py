@@ -118,7 +118,15 @@ ANCORAS = {
     # entrou nela.
     "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62":
         "Electrolux filtro robo aspirador",
-    "xiaomi-b112-tb": "Xiaomi mop robo aspirador",
+    # ANCORA QUE MUDOU DE CHAVE EM 20/09/2026, pelo despacho do Raphael, e a
+    # borda dela agora e outra: esta e a UNICA das chaves novas daquele dia que
+    # MANTEVE o termo de contexto. `Xiaomi mop robo aspirador` abria num ROBO DE
+    # PISCINA sem marca — o termo generico ganhando da marca, que e a medicao
+    # inteira daquele despacho —, e `pano mop Xiaomi robo aspirador` abre no
+    # suporte de pano de mop da Xiaomi. Ela fica aqui porque prova que a excecao
+    # do navegador NAO e "largar o contexto": e gravar a chave COMO FOI MEDIDA,
+    # com contexto quando a medida tinha contexto.
+    "xiaomi-b112-tb": "pano mop Xiaomi robo aspirador",
     "multi-pr10127": "Multilaser bateria robo aspirador",
     "electrolux-kpcel01": "Electrolux kit robo aspirador",
 }
@@ -218,15 +226,57 @@ for rel, doc in bancos.items():
         chaves += 1
 
         token = TOKEN_DA_MARCA.get(reg["marca"], "")
-        ok(token and chave.startswith(token + " "),
-           "%s: a busca %r nao ABRE pelo token da marca %r. A marca e o filtro mais "
-           "forte e vem primeiro, como digita quem compra" % (onde, chave, token))
-        ok(chave.endswith(" " + CONTEXTO),
-           "%s: a busca %r nao termina no termo de contexto %r. Sem ele, 'S20' e um "
-           "celular e 'Positivo' e um adjetivo (25.3)" % (onde, chave, CONTEXTO))
-        ok(len(chave.split()) >= 3,
-           "%s: a busca %r tem menos de tres palavras, entao nao tem o que distingue "
-           "este item dos irmaos da mesma marca" % (onde, chave))
+
+        # ------------------------------------ A CHAVE MEDIDA NA BUSCA DO SITE
+        #
+        # As tres regras de FORMA abaixo — abre pela marca, termina no contexto,
+        # tem tres palavras — descrevem como se COMPOE uma chave que ninguem
+        # mediu. Elas foram escritas em 13/09/2026 sobre uma suposicao declarada
+        # no proprio esquema: a de que a busca do site nao era mensuravel desta
+        # nuvem. Em 20/09/2026 ela foi medida no navegador do Raphael, e as tres
+        # sairam contrariadas no ponto que importa: na busca da Shopee o termo
+        # generico `robo aspirador` e MAIS FORTE que a marca, entao a chave bem
+        # composta entrega o topo ao concorrente mais popular. Cinco das seis
+        # chaves de modelo Roborock abriam num Xiaomi, com o botao de compra em
+        # cima.
+        #
+        # Entao a excecao existe, e ela e mais dura que a regra que substitui:
+        # passa a chave que a medicao do NAVEGADOR fixou, e so se a medicao
+        # provar, com o primeiro resultado LIDO, que a marca do registro esta no
+        # topo. E esta regua confere isso COM O PROPRIO TOKEN escrito a mao la em
+        # cima, nunca com o campo `marca_no_topo` que o gravador escreveu: e a
+        # terceira conta da secao 8: quem confere nao pergunta ao conferido se
+        # ele esta certo.
+        medida = MEDIDAS.get(reg["id"]) or {}
+        fixada = (medida.get("fixada_no_navegador") and medida.get("chave") == chave)
+        if fixada:
+            ok((medida.get("resultados") or 0) > 0,
+               "%s: a chave %r foi fixada no navegador com %r resultado(s). Chave "
+               "medida em zero e beco sem saida com procedencia"
+               % (onde, chave, medida.get("resultados")))
+            ok(token and token.lower() in chave.lower(),
+               "%s: a chave %r foi fixada no navegador e nao carrega o token da "
+               "marca %r em lugar nenhum. A excecao do navegador solta a ORDEM das "
+               "palavras, nunca a marca" % (onde, chave, token))
+            topo = medida.get("titulo_do_topo") or ""
+            ok(token and token.lower() in topo.lower(),
+               "%s: a chave %r foi fixada no navegador e o primeiro resultado medido "
+               "(%r) nao traz a marca %r. E exatamente o defeito que o despacho de "
+               "20/09 mandou consertar, com data nova e cara de conferido"
+               % (onde, chave, topo, token))
+        else:
+            ok(token and chave.startswith(token + " "),
+               "%s: a busca %r nao ABRE pelo token da marca %r, e esta chave NAO e a "
+               "que a medicao do navegador fixou (%r). A marca e o filtro mais forte "
+               "e vem primeiro, como digita quem compra"
+               % (onde, chave, token, medida.get("chave")))
+            ok(chave.endswith(" " + CONTEXTO),
+               "%s: a busca %r nao termina no termo de contexto %r. Sem ele, 'S20' e "
+               "um celular e 'Positivo' e um adjetivo (25.3)"
+               % (onde, chave, CONTEXTO))
+            ok(len(chave.split()) >= 3,
+               "%s: a busca %r tem menos de tres palavras, entao nao tem o que "
+               "distingue este item dos irmaos da mesma marca" % (onde, chave))
         ok("(" not in chave and ")" not in chave,
            "%s: a busca %r leva parentese. E o `nome` de tela vazando para dentro da "
            "consulta — 'Multi (ex-Multilaser)' e o caso que criou o nome_de_busca"

@@ -59,7 +59,12 @@ PASTA = os.path.join(RAIZ, 'ferramentas')
 # Ferramentas de PRODUCAO: geram, coletam ou publicam. Nao sao portao e nao
 # entram na bancada. A lista e curta de proposito e cada nome esta aqui porque
 # NAO afirma nada — quem afirma tem nome de portao.
-NAO_E_PORTAO = re.compile(r'^(gerar|coletar|medir|acentuar|atualizar|cobertura|publicadores|render|varrer|bancada)[-.]')
+NAO_E_PORTAO = re.compile(r'^(gerar|coletar|medir|aplicar|acentuar|atualizar|cobertura|publicadores|render|varrer|bancada)[-.]')
+# `aplicar-` entrou em 20/09/2026 com `aplicar-chaves-do-navegador.py`: e
+# ferramenta de PRODUCAO, que transcreve para dentro da medicao uma tabela
+# que foi medida fora desta nuvem. Ela nao afirma nada sobre a ilha, entao
+# nao e portao — e sem o prefixo declarado ela ficava na lista de denuncia,
+# que e onde mora o arquivo que ninguem sabe se deveria estar rodando.
 
 # A regua do veredito impresso. A VERMELHA nunca casa com uma CONTAGEM ZERO:
 # "0 falha(s)." e a frase de aprovacao mais comum desta pasta, e a primeira
