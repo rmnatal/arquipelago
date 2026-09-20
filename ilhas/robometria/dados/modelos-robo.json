@@ -12,9 +12,9 @@
   "excluido_do_banco": 4,
   "esperando_link_de_afiliado": 30,
   "com_pa_declarado": 22,
-  "com_canal_brasileiro": 39,
-  "recomendaveis_pela_r2": 17,
-  "sem_canal_brasileiro": 6,
+  "com_canal_brasileiro": 33,
+  "recomendaveis_pela_r2": 13,
+  "sem_canal_brasileiro": 12,
   "com_par_minutos_m2_declarado": 5,
   "marcas_que_declaram_pa": [
    "positivo",
@@ -416,10 +416,13 @@
    "linha": "Duster",
    "codigo_fabricante": "HO407",
    "canal_brasileiro": {
-    "valor": "https://www.multilaser.com.br/aspirador-robo-3-em-1-varre-aspira-e-passa-pano-duster-multi-ho407out/p",
+    "valor": null,
     "unidade": null,
-    "fonte": "f-duster",
-    "declarado_como": "Aspirador Robô 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]"
+    "motivo_do_null": "a pagina do fabricante que provava o canal brasileiro deste codigo saiu do ar. Medido em 2026-09-20: https://www.multilaser.com.br/aspirador-robo-3-em-1-varre-aspira-e-passa-pano-duster-multi-ho407out/p devolveu 404 e, numa segunda tentativa, 404; e o codigo 'HO407' nao aparece em nenhum endereco do sitemap de www.multilaser.com.br. As duas provas juntas separam mudanca de endereco (que continua no sitemap) de fim de linha no canal brasileiro (que some dele) — e o sitemap daquele host publica 1196 enderecos hoje, entao a ausencia foi medida contra um sitemap que existe. O registro continua no banco porque a COMPATIBILIDADE declarada pelo fabricante vale para quem ja tem o aparelho; a recomendacao de compra da R2 nao o alcanca mais, porque recomendar o que o fabricante nao publica mais aqui e um beco.",
+    "valor_anterior": "https://www.multilaser.com.br/aspirador-robo-3-em-1-varre-aspira-e-passa-pano-duster-multi-ho407out/p",
+    "declarado_como_anterior": "Aspirador Robô 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]",
+    "fonte_anterior": "f-duster",
+    "aferido_em": "2026-09-20"
    },
    "nome_comercial": "Aspirador Robô Duster 3 em 1",
    "categoria": "robo",
@@ -1709,10 +1712,13 @@
    "linha": null,
    "codigo_fabricante": "HO012",
    "canal_brasileiro": {
-    "valor": "https://www.multilaser.com.br/aspirador-de-po-vertical-2-em-1-700w-multilaser-220v-ho012/p",
+    "valor": null,
     "unidade": null,
-    "fonte": "f-produto",
-    "declarado_como": "Aspirador de Pó Vertical e de Mão Multilaser 220V 700W Branco/Laranja - HO012"
+    "motivo_do_null": "a pagina do fabricante que provava o canal brasileiro deste codigo saiu do ar. Medido em 2026-09-20: https://www.multilaser.com.br/aspirador-de-po-vertical-2-em-1-700w-multilaser-220v-ho012/p devolveu 404 e, numa segunda tentativa, 404; e o codigo 'HO012' nao aparece em nenhum endereco do sitemap de www.multilaser.com.br. As duas provas juntas separam mudanca de endereco (que continua no sitemap) de fim de linha no canal brasileiro (que some dele) — e o sitemap daquele host publica 1207 enderecos hoje, entao a ausencia foi medida contra um sitemap que existe. O registro continua no banco porque a COMPATIBILIDADE declarada pelo fabricante vale para quem ja tem o aparelho; a recomendacao de compra da R2 nao o alcanca mais, porque recomendar o que o fabricante nao publica mais aqui e um beco.",
+    "valor_anterior": "https://www.multilaser.com.br/aspirador-de-po-vertical-2-em-1-700w-multilaser-220v-ho012/p",
+    "declarado_como_anterior": "Aspirador de Pó Vertical e de Mão Multilaser 220V 700W Branco/Laranja - HO012",
+    "fonte_anterior": "f-produto",
+    "aferido_em": "2026-09-20"
    },
    "nome_comercial": "Aspirador de Pó Vertical e de Mão 2 em 1 (220 V, 700 W)",
    "categoria": "aspirador_comum",
@@ -5171,10 +5177,13 @@
    "linha": "Q",
    "codigo_fabricante": "Q8 Max",
    "canal_brasileiro": {
-    "valor": "https://br.roborock.com/pages/q8-max-plus",
+    "valor": null,
     "unidade": null,
-    "fonte": "f-br",
-    "declarado_como": "Roborock Q8 Max | Site Oficial da Roborock Brasil"
+    "motivo_do_null": "a pagina do fabricante que provava o canal brasileiro deste codigo saiu do ar. Medido em 2026-09-20: https://br.roborock.com/pages/q8-max-plus devolveu 404 e, numa segunda tentativa, 404; e o codigo 'Q8 Max' nao aparece em nenhum endereco do sitemap de br.roborock.com. As duas provas juntas separam mudanca de endereco (que continua no sitemap) de fim de linha no canal brasileiro (que some dele) — e o sitemap daquele host publica 21 enderecos hoje, entao a ausencia foi medida contra um sitemap que existe. O registro continua no banco porque a COMPATIBILIDADE declarada pelo fabricante vale para quem ja tem o aparelho; a recomendacao de compra da R2 nao o alcanca mais, porque recomendar o que o fabricante nao publica mais aqui e um beco.",
+    "valor_anterior": "https://br.roborock.com/pages/q8-max-plus",
+    "declarado_como_anterior": "Roborock Q8 Max | Site Oficial da Roborock Brasil",
+    "fonte_anterior": "f-br",
+    "aferido_em": "2026-09-20"
    },
    "nome_comercial": "Roborock Q8 Max",
    "categoria": "robo",
@@ -5284,10 +5293,13 @@
    "linha": "Qrevo",
    "codigo_fabricante": "Qrevo Master",
    "canal_brasileiro": {
-    "valor": "https://br.roborock.com/pages/roborock-qrevo-master",
+    "valor": null,
     "unidade": null,
-    "fonte": "f-br",
-    "declarado_como": "Roborock Qrevo Master | Site Oficial da Roborock Brasil"
+    "motivo_do_null": "a pagina do fabricante que provava o canal brasileiro deste codigo saiu do ar. Medido em 2026-09-20: https://br.roborock.com/pages/roborock-qrevo-master devolveu 404 e, numa segunda tentativa, 404; e o codigo 'Qrevo Master' nao aparece em nenhum endereco do sitemap de br.roborock.com. As duas provas juntas separam mudanca de endereco (que continua no sitemap) de fim de linha no canal brasileiro (que some dele) — e o sitemap daquele host publica 21 enderecos hoje, entao a ausencia foi medida contra um sitemap que existe. O registro continua no banco porque a COMPATIBILIDADE declarada pelo fabricante vale para quem ja tem o aparelho; a recomendacao de compra da R2 nao o alcanca mais, porque recomendar o que o fabricante nao publica mais aqui e um beco.",
+    "valor_anterior": "https://br.roborock.com/pages/roborock-qrevo-master",
+    "declarado_como_anterior": "Roborock Qrevo Master | Site Oficial da Roborock Brasil",
+    "fonte_anterior": "f-br",
+    "aferido_em": "2026-09-20"
    },
    "nome_comercial": "Roborock Qrevo Master",
    "categoria": "robo",
@@ -5395,10 +5407,13 @@
    "linha": "S",
    "codigo_fabricante": "S8 MaxV Ultra",
    "canal_brasileiro": {
-    "valor": "https://br.roborock.com/pages/s8-maxv-ultra",
+    "valor": null,
     "unidade": null,
-    "fonte": "f-br",
-    "declarado_como": "Roborock S8 Maxv Ultra | Site Oficial da Roborock Brasil"
+    "motivo_do_null": "a pagina do fabricante que provava o canal brasileiro deste codigo saiu do ar. Medido em 2026-09-20: https://br.roborock.com/pages/s8-maxv-ultra devolveu 404 e, numa segunda tentativa, 404; e o codigo 'S8 MaxV Ultra' nao aparece em nenhum endereco do sitemap de br.roborock.com. As duas provas juntas separam mudanca de endereco (que continua no sitemap) de fim de linha no canal brasileiro (que some dele) — e o sitemap daquele host publica 21 enderecos hoje, entao a ausencia foi medida contra um sitemap que existe. O registro continua no banco porque a COMPATIBILIDADE declarada pelo fabricante vale para quem ja tem o aparelho; a recomendacao de compra da R2 nao o alcanca mais, porque recomendar o que o fabricante nao publica mais aqui e um beco.",
+    "valor_anterior": "https://br.roborock.com/pages/s8-maxv-ultra",
+    "declarado_como_anterior": "Roborock S8 Maxv Ultra | Site Oficial da Roborock Brasil",
+    "fonte_anterior": "f-br",
+    "aferido_em": "2026-09-20"
    },
    "nome_comercial": "Roborock S8 MaxV Ultra",
    "categoria": "robo",
@@ -5504,10 +5519,13 @@
    "linha": "Qrevo",
    "codigo_fabricante": "Qrevo Curv Series",
    "canal_brasileiro": {
-    "valor": "https://br.roborock.com/pages/roborock-qrevo-curv-series",
+    "valor": null,
     "unidade": null,
-    "fonte": "f-br",
-    "declarado_como": "Roborock Qrevo Curv Series | Site Oficial da Roborock Brasil"
+    "motivo_do_null": "a pagina do fabricante que provava o canal brasileiro deste codigo saiu do ar. Medido em 2026-09-20: https://br.roborock.com/pages/roborock-qrevo-curv-series devolveu 404 e, numa segunda tentativa, 404; e o codigo 'Qrevo Curv Series' nao aparece em nenhum endereco do sitemap de br.roborock.com. As duas provas juntas separam mudanca de endereco (que continua no sitemap) de fim de linha no canal brasileiro (que some dele) — e o sitemap daquele host publica 21 enderecos hoje, entao a ausencia foi medida contra um sitemap que existe. O registro continua no banco porque a COMPATIBILIDADE declarada pelo fabricante vale para quem ja tem o aparelho; a recomendacao de compra da R2 nao o alcanca mais, porque recomendar o que o fabricante nao publica mais aqui e um beco.",
+    "valor_anterior": "https://br.roborock.com/pages/roborock-qrevo-curv-series",
+    "declarado_como_anterior": "Roborock Qrevo Curv Series | Site Oficial da Roborock Brasil",
+    "fonte_anterior": "f-br",
+    "aferido_em": "2026-09-20"
    },
    "nome_comercial": "Roborock Qrevo Curv Series",
    "categoria": "robo",
@@ -5722,10 +5740,13 @@
    "linha": "Saros",
    "codigo_fabricante": "Saros 10R",
    "canal_brasileiro": {
-    "valor": "https://br.roborock.com/pages/roborock-saros-10r",
+    "valor": null,
     "unidade": null,
-    "fonte": "f-br",
-    "declarado_como": "Roborock Saros 10R | Site Oficial da Roborock Brasil"
+    "motivo_do_null": "a pagina do fabricante que provava o canal brasileiro deste codigo saiu do ar. Medido em 2026-09-20: https://br.roborock.com/pages/roborock-saros-10r devolveu 404 e, numa segunda tentativa, 404; e o codigo 'Saros 10R' nao aparece em nenhum endereco do sitemap de br.roborock.com. As duas provas juntas separam mudanca de endereco (que continua no sitemap) de fim de linha no canal brasileiro (que some dele) — e o sitemap daquele host publica 21 enderecos hoje, entao a ausencia foi medida contra um sitemap que existe. O registro continua no banco porque a COMPATIBILIDADE declarada pelo fabricante vale para quem ja tem o aparelho; a recomendacao de compra da R2 nao o alcanca mais, porque recomendar o que o fabricante nao publica mais aqui e um beco.",
+    "valor_anterior": "https://br.roborock.com/pages/roborock-saros-10r",
+    "declarado_como_anterior": "Roborock Saros 10R | Site Oficial da Roborock Brasil",
+    "fonte_anterior": "f-br",
+    "aferido_em": "2026-09-20"
    },
    "nome_comercial": "Roborock Saros 10R",
    "categoria": "robo",

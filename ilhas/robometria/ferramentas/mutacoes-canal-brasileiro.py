@@ -33,6 +33,7 @@ terceira conta, que le o artefato publicado, discorda.
 
 import json
 import os
+import urllib.parse
 import shutil
 import subprocess
 import sys
@@ -150,6 +151,41 @@ def _canal_digitado_diferente_da_fonte(base):
         f.write('\n')
 
 
+def _um_canal_com_br_no_rotulo(base):
+    """QUAL registro usar nas duas mutacoes do rotulo `br.` — CONTADO, nao digitado.
+
+    Ate 20/09/2026 as duas mutacoes abaixo nomeavam `roborock-q8-max` em letra de
+    forma. Naquele dia a Roborock Brasil tirou do ar a pagina daquele modelo, o
+    portao novo `medir-canal-brasileiro-no-ar.py` anulou o canal — que e o que ele
+    existe para fazer — e esta bateria QUEBROU com `KeyError: 'fonte'`, levando a
+    bancada inteira junto. Id digitado dentro de uma bateria e uma segunda lista,
+    paralela ao banco, que ninguem atualiza quando o banco muda: o mesmo defeito
+    que esta ilha ja nomeou no `robometria_casca_categorias()`.
+
+    Entao o alvo passa a ser MEDIDO: o primeiro publicavel cujo canal esteja num
+    host com o rotulo `br.` na frente — que e exatamente o mundo que as duas
+    mutacoes existem para exercitar — e que cite a fonte de onde o endereco saiu.
+    Sem nenhum, a bateria para com AssertionError, que e como uma mutacao diz que
+    ficaria INERTE em vez de passar de verde sem medir nada.
+    """
+    caminho = os.path.join(base, 'dados/modelos-robo.json')
+    with open(caminho, encoding='utf-8') as f:
+        banco = json.load(f)
+    for r in banco['registros']:
+        if r.get('status') != 'publicavel':
+            continue
+        canal = r.get('canal_brasileiro') or {}
+        valor, fonte = canal.get('valor'), canal.get('fonte')
+        if not valor or not fonte or fonte not in (r.get('fontes') or {}):
+            continue
+        host = urllib.parse.urlparse(valor).netloc.lower()
+        if host.split('.')[0] == 'br':
+            return r['id'], host
+    raise AssertionError(
+        'nenhum publicavel tem canal brasileiro em host com o rotulo `br.` — as duas '
+        'mutacoes do rotulo ficariam INERTES, entao a bateria para em vez de passar')
+
+
 def _trocar_endereco(base, ident, endereco):
     """Troca o endereco do canal E o da fonte que ele cita, no mesmo movimento.
     Trocar so um dos dois faria a mutacao reprovar pela trava do 'endereco
@@ -180,8 +216,9 @@ def _canal_sem_marca_de_brasil(base):
     trava sem plantar o mundo em que ela morde e como nao ter trava. Aqui o
     endereco do canal vira o global da mesma marca, que nao diz Brasil de forma
     nenhuma, e o portao tem de reprovar."""
-    _trocar_endereco(base, 'roborock-q8-max',
-                     'https://global.roborock.com/pages/q8-max-plus')
+    ident, host = _um_canal_com_br_no_rotulo(base)
+    _trocar_endereco(base, ident, 'https://global.%s/pagina-do-modelo'
+                     % host.split('.', 1)[1])
 
 
 def _canal_com_br_no_meio_do_host(base):
@@ -192,8 +229,8 @@ def _canal_com_br_no_meio_do_host(base):
     substring em vez de por ROTULO. Esta mutacao existe para provar que a
     checagem e pelo rotulo, e ela e a unica desta bateria que reprovaria a
     versao mais obvia do conserto."""
-    _trocar_endereco(base, 'roborock-q8-max',
-                     'https://cbr.roborock.com/pages/q8-max-plus')
+    ident, host = _um_canal_com_br_no_rotulo(base)
+    _trocar_endereco(base, ident, 'https://c%s/pagina-do-modelo' % host)
 
 
 def _cruzamento_volta_a_contar_so_o_pa(base):
