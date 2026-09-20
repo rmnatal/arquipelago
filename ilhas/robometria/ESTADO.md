@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-20T15:02Z
-executando_desde: null
+executando_desde: 2026-09-20T15:01Z
 bloco_atual: |
   O DESPACHO DE 19/09 (FOTO DO FABRICANTE) FOI MEDIDO ATE O FIM E REESCRITO PELA 18.3: o que falta nao e trabalho da Fundacao, e uma linha de dominios permitidos do ambiente. As 14 portas de fabricante que os 66 publicaveis sem foto usam devolvem 000 com 'CONNECT tunnel failed, response 403' — negativa de politica do proxy —, e as 14 RESOLVEM em DNS, entao pela 20.2 isto e pedido de liberacao e nunca endereco errado. Controle na mesma passada: robometria.com.br e shopee.com.br em 200.
   A METADE QUE NINGUEM TINHA MEDIDO: dos cinco hosts que o despacho de 17/09 dava como abertos, so DOIS sao usados por alguma porta dos 66, e 32 dos 66 registros nao tem NENHUMA porta naquela lista. Pagina de produto nao mora no www institucional da marca: mora em loja., suporte., blog., lamina. A lista de 17/09, mesmo intacta, nunca teria bastado para metade do despacho.
