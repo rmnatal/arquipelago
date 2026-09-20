@@ -5,19 +5,17 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
-ultima_execucao: 2026-09-20T15:02Z
-executando_desde: 2026-09-20T15:01Z
+ultima_execucao: 2026-09-20T15:52Z
+executando_desde: null
 bloco_atual: |
-  O DESPACHO DE 19/09 (FOTO DO FABRICANTE) FOI MEDIDO ATE O FIM E REESCRITO PELA 18.3: o que falta nao e trabalho da Fundacao, e uma linha de dominios permitidos do ambiente. As 14 portas de fabricante que os 66 publicaveis sem foto usam devolvem 000 com 'CONNECT tunnel failed, response 403' — negativa de politica do proxy —, e as 14 RESOLVEM em DNS, entao pela 20.2 isto e pedido de liberacao e nunca endereco errado. Controle na mesma passada: robometria.com.br e shopee.com.br em 200.
-  A METADE QUE NINGUEM TINHA MEDIDO: dos cinco hosts que o despacho de 17/09 dava como abertos, so DOIS sao usados por alguma porta dos 66, e 32 dos 66 registros nao tem NENHUMA porta naquela lista. Pagina de produto nao mora no www institucional da marca: mora em loja., suporte., blog., lamina. A lista de 17/09, mesmo intacta, nunca teria bastado para metade do despacho.
-  OS DOIS CANAIS DESTA NUVEM NAO SAO O MESMO: a busca web restrita a dominio FUNCIONA (PR10124 em multilaser.com.br devolveu a pagina certa da peca) e o egresso HTTP NAO, nem por curl nem por WebFetch. E por isso que o banco pode ser construido de pagina de fabricante desde 09/09 e a foto nunca pode — dado se colhe do texto da busca, foto exige abrir o arquivo, e a 25.3 manda abrir cada imagem com os olhos antes de gravar.
-  A REGUA QUE NASCEU: ferramentas/medir-portas-do-fabricante.py, prefixo medir-, producao e fora da bancada. Ela NAO inventa porta por busca — le a porta de cada registro em fontes{}.url e canal_brasileiro.valor, classifica contra dados/marcas.json e mede DNS e HTTP separados. Host de marca nao declarado sai como nao_declarado, nunca aprovado por parecer. Saida em dados/portas-do-fabricante-2026-09-20.md, nenhum numero digitado.
-  O QUE ELA PEGOU ALEM DO BLOQUEIO: electrolux-erb20 so tem porta de terceiro (manuals.plus), entao o conserto dele NAO e rede; e positivo-11206540 so tem loja.meupositivo.com.br, que nao esta no sameAs da marca positivo — parece a mesma empresa, e 'parece' nao e procedencia nesta ilha.
-  GRAVADO NO BANCO: os 66 imagem.motivo_do_null registram a tentativa de hoje com host e data, sem apagar a causa de 18/09. A preferencia nunca inverteu — os 14 registros que ja tinham foto sairam byte a byte iguais. ZERO URL nova, ZERO URL mudada, ZERO palavra de pagina escrita, e isso foi PROVADO: os quatro geradores foram re-rodados e os seis snippets sairam com o mesmo md5, porque motivo_do_null nao chega ao HTML. Por isso NAO houve Sync e NAO houve revisao nova — nao havia o que publicar.
-  MANIFEST EM 70 E SYNC ACIONADO, por um motivo so: os dois arquivos de banco sao publicar: false, mas o manifest guarda o sha256 deles, e sha esquecido e o defeito da secao 4. Os seis arquivos publicar: true sairam com o sha inalterado. Conferido no ar DEPOIS do Sync (18.4): /status em revisao 70, igual a do manifest; home, R1 e a R2 com piso=tapete&pelo=sim&m2=80 em 200; zero 'em breve' e zero rbm-sem-banco; conferir-no-ar.py em 264 afirmacoes, 0 falha.
-  PORTOES: validar-banco.py APROVADO e bancada.py em 38 portoes, 0 falha, com a ferramenta nova classificada como producao e fora da linha de denuncia.
-  O QUE FALTA, E E DO RAPHAEL: 11 hosts a abrir (loja.electrolux.com.br 8, br.roborock.com 6, us.roborock.com 5, loja.wap.ind.br 4, www.multilaserempresas.com.br 4, www.positivocasainteligente.com.br 3, loja.meupositivo.com.br 2, suporte.multilaser.com.br 2, blog.wap.ind.br 1, content.electrolux.com.br 1, lamina.multilaser.com.br 1) mais os dois de 17/09 que voltaram a fechar e sao usados (www.mi.com com 26 registros e www.multilaser.com.br com 6). manuals.plus fica fora do pedido de proposito: e terceiro e a 25.3 proibe a foto que viria de la.
-  NAO SEGUI PARA BLOCO DA FILA, e a 18.2 permitiria: a ilha esta PRONTA e no regime do CRITERIO PRE-REGISTRADO DA DECISAO DE OUTUBRO, que poe malha nova e bloco de conteudo no desfecho (a), escolhivel so depois das leituras de 23/09, 30/09, 07/10 e 14/10. Construir pagina hoje seria tomar em silencio a decisao que aquela secao existe para alguem tomar com o numero na mesa.
+  A DIVIDA DO ELO MORREU: 95 DE 95 PUBLICAVEIS RENDEM COMISSAO, conferido no ar. A credencial da Open API estava no ambiente desta execucao (SHOPEE_APP_ID e SHOPEE_SECRET, conferidos antes de qualquer chamada), entao medir-palavras-chave.py --gravar --encurtar gerou 28 links novos (22 de peca, 6 de modelo) reaproveitando os 67 que ja estavam certos, sem remexer em chave nenhuma, e gerar-busca-de-produto.py --gravar levou os 28 ao banco. 'Saida crua, sem rastreio' foi de 24 para 0, e a pagina /divulgacao-de-afiliados/ passou a declarar no ar que todos os 95 rendem comissao — numero derivado do banco, nunca digitado.
+  A DIVIDA DUROU UMA EXECUCAO SO porque o despacho de 20/09 pre-registrou o caminho de saida em vez de registrar so o bloqueio. Bloqueio com caminho escrito se paga sozinho no dia em que o mundo muda; bloqueio sem caminho espera alguem lembrar.
+  SETE CANAIS BRASILEIROS ESTAVAM 404 E ERAM SERVIDOS NO AR COMO PROVA. Achado ao tentar colher a foto: cinco das seis paginas da Roborock Brasil gravadas em canal_brasileiro devolvem 404, e as cinco saiam dentro da R2 como prova de canal brasileiro — o leitor clicava numa prova que nao existia mais. O campo tinha data de coleta e nenhuma de reconferencia.
+  O PORTAO NOVO: ferramentas/medir-canal-brasileiro-no-ar.py mede os 44 canais e exige DUAS provas que discordam por motivos diferentes antes de anular — 4xx em duas tentativas separadas E o codigo ausente do sitemap do proprio host, porque pagina que mudou de lugar continua no sitemap e produto que saiu de linha some dele. Host sem sitemap legivel sai como 'incerta (sitemap ilegivel)' e NAO anula nada: segunda prova vazia nao e segunda prova, e a primeira versao desta regua anulou tres canais da Multi assim antes de ser consertada. Resultado: 7 anulados (5 Roborock, 2 Multi), 4 incertos intocados, 33 vivos. modelos_recomendaveis 39 -> 33, recomendaveis_pela_r2 17 -> 13. A URL morta vira valor_anterior em vez de ser apagada.
+  A FOTO DO FABRICANTE ANDOU E PAROU UM PASSO ADIANTE. A lista de dominios de 20/09 foi atendida: 12 dos 14 hosts de PAGINA responderam, e 37 dos 66 registros ganharam candidato com o NOME PROVADO na pagina do fabricante (nas lojas VTEX o catalogo publico devolve productReference, que E o codigo — a amarra da 25.3 virou igualdade de campo). Parou porque a pagina e a FOTO nao moram no mesmo host: 36 dos 37 candidatos tem o arquivo em CDN de imagem fechado (vteximg, vtexassets, cdn.shopify, appmifile), todos resolvendo em DNS. O 37o abre e foi REPROVADO pelo olho — banner de lancamento com 'LANCAMENTO' em selo azul, nao foto de produto — e a reprovacao ficou escrita com data em REPROVADAS_PELO_OLHO, para ninguem reabrir o mesmo arquivo amanha. Placar do despacho continua 29 de 103.
+  O QUE FALTA E DO RAPHAEL E E UMA LINHA: *.vteximg.com.br, *.vtexassets.com, cdn.shopify.com, *.appmifile.com. Com isso, coletar-foto-do-fabricante.py reimprime os 37 com a URL exata da foto e o que sobra e o olho, um a um.
+  PORTOES: bancada em 38 sem rede e 44 com --no-ar, 0 falha; validar-banco.py APROVADO; conferir-no-ar.py em 264 afirmacoes e 0 falha. Sync acionado e conferido DEPOIS (18.4): /status em revisao 72, igual a do manifest, e os cinco links mortos da Roborock nao saem mais de pagina nenhuma.
+  NAO SEGUI PARA BLOCO DA FILA, e pelo mesmo motivo da execucao anterior: a ilha esta PRONTA e no regime do CRITERIO PRE-REGISTRADO DA DECISAO DE OUTUBRO, que poe malha nova e bloco de conteudo no desfecho (a), escolhivel so depois das leituras de 23/09, 30/09, 07/10 e 14/10. As duas coisas feitas hoje sao correcao e divida, nao construcao — e a 18.5 manda verificacao antes de construcao, sempre.
 ultima_ronda: 2026-09-18T14:45Z
 bloqueada_por: null
 ---
@@ -26,6 +24,30 @@ bloqueada_por: null
 # Estado da ilha Robometria
 
 Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
+
+
+## 20/09/2026, 15h52Z — A dívida do elo morreu, e um portão descobriu que a prova do canal apodrece
+
+**A ilha continua PRONTA e nada foi reaberto.** Esta execução não construiu
+página: pagou uma dívida que esperava o ambiente e consertou um defeito que
+estava no ar sem ninguém ver.
+
+- **95 de 95 publicáveis rendem comissão** (era 71 de 95), conferido em
+  `/divulgacao-de-afiliados/` no ar. A credencial da Open API estava no ambiente,
+  então o encurtamento das 28 chaves saiu — 22 de peça e 6 de modelo, com os 67
+  links que já estavam certos reaproveitados e nenhuma chave remexida.
+- **Sete `canal_brasileiro` apontavam para páginas 404 que a R2 servia como
+  PROVA.** Cinco da Roborock Brasil, duas da Multi. O campo guardava a data da
+  coleta e nenhuma da reconferência, e por isso envelheceu em silêncio.
+  `ferramentas/medir-canal-brasileiro-no-ar.py` passa a medir os 44, com duas
+  provas exigidas e a terceira regra que impede a régua de medir a própria
+  ignorância. `modelos_recomendaveis` 39 → 33.
+- **A foto do fabricante andou um passo e parou no seguinte.** Os hosts de
+  PÁGINA abriram e 37 dos 66 ganharam candidato com o nome provado; os hosts de
+  IMAGEM (que são outros) continuam fechados. Placar do despacho: 29 de 103.
+- **Isto NÃO é `bloqueada_por`.** O campo continua `null`: o que depende de uma
+  linha de domínios é um despacho, não a ilha, e ele está reescrito pela 18.3
+  dizendo exatamente o que falta. Foto é ganho e nunca requisito (25.3).
 
 ## 20/09/2026, 14h26Z — O despacho da foto do fabricante virou um pedido de 13 domínios
 

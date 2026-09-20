@@ -5919,3 +5919,125 @@ zero ocorrencia de "em breve" e zero `rbm-sem-banco`.
   a **leitura semanal de 23/09**, que pela secao do criterio ja deve abrir a
   serie dizendo em qual dos quatro pontos ela esta e o que falta para o corte de
   30/09.
+
+## 2026-09-20, 15h01Z–15h52Z — A DÍVIDA DO ELO MORREU (95 de 95 rendem comissão) E UM PORTÃO DESCOBRIU QUE A PROVA DO CANAL APODRECE
+
+**O que esta execução foi ver, e o que encontrou no primeiro minuto.** A ilha
+está PRONTA desde 13h45Z de hoje e no regime do CRITÉRIO PRÉ-REGISTRADO DA
+DECISÃO DE OUTUBRO, que proíbe malha nova até as leituras de 23/09, 30/09, 07/10
+e 14/10. A execução anterior fechou às 15h02Z dizendo que o despacho da foto não
+podia andar — rede fechada — e que o encurtamento das 28 chaves esperava a
+credencial. **As duas coisas eram verdade às 14h26Z e as duas deixaram de ser
+antes das 15h01Z.** A seção 20.2 manda retestar bloqueio herdado antes de
+respeitá-lo, e é só por isso que esta execução teve trabalho: dois `curl` e um
+`env | grep SHOPEE` transformaram "nada a fazer" em duas entregas.
+
+### 1. O ENCURTAMENTO DAS 28 CHAVES SAIU, E A PÁGINA DE DIVULGAÇÃO VOLTOU A DIZER 95
+
+`SHOPEE_APP_ID` e `SHOPEE_SECRET` **estavam** no ambiente — conferidos antes de
+qualquer chamada, como o despacho de 20/09 mandou. `medir-palavras-chave.py
+--gravar --encurtar` gerou **28 links novos** (22 de peça, 6 de modelo) e
+**reaproveitou 67** que já estavam certos; a régua só pede link para a chave
+FIXADA e não decide chave nenhuma, então nenhuma das 28 chaves medidas no
+navegador em 20/09 foi remexida. `gerar-busca-de-produto.py --gravar` levou os 28
+ao banco: **"saída crua, sem rastreio" foi de 24 para 0 em 95 publicáveis**, e
+`casca-fatos.json` passou a derivar `rendem_comissao: 95`. Conferido **no ar**
+(18.4), não no log do Sync: `/divulgacao-de-afiliados/` serve *"todos os 95 itens
+do banco têm saída de compra... Todos eles saem por link de afiliado"*.
+
+**A lição, e ela não é sobre a Shopee.** A dívida durou **uma** execução porque o
+despacho de 20/09 pré-registrou o caminho de saída — *"confira primeiro se as duas
+variáveis estão no ambiente"* — em vez de registrar só o bloqueio. **Bloqueio com
+caminho escrito se paga sozinho no dia em que o mundo muda; bloqueio sem caminho
+espera alguém lembrar.** É a mesma família do critério pré-registrado da 1.2-b.4,
+aplicada a um impedimento em vez de a uma decisão.
+
+### 2. SETE `canal_brasileiro` ESTAVAM 404 E ERAM SERVIDOS NO AR COMO PROVA
+
+Achado de raspão, tentando colher a foto: **cinco das seis páginas da Roborock
+Brasil gravadas no banco devolvem 404**, e as cinco saíam dentro da R2 como prova
+de canal brasileiro. **O leitor clicava numa prova que não existia mais.** A causa
+é estrutural e vale para toda ilha: `canal_brasileiro` é uma afirmação sobre o
+mundo de fora, tinha data de **coleta** e nenhuma de **reconferência**, então
+envelheceu em silêncio. É o *"o site fica para trás em silêncio"* da seção 4 um
+andar acima — ali envelhece o resumo do estado, aqui envelhece a **evidência que
+um portão usa para decidir**.
+
+`ferramentas/medir-canal-brasileiro-no-ar.py` nasceu medindo os 44 canais do banco
+e **exige duas provas que discordam por motivos diferentes** antes de anular:
+4xx em **duas** tentativas separadas (falha isolada é o túnel, nunca veredito) **e**
+o código ausente do sitemap do próprio host (página que mudou de lugar continua no
+sitemap; produto que saiu de linha some dele).
+
+**E a terceira regra nasceu de um erro cometido na mesma hora, que é a parte que
+vale para as outras ilhas.** A primeira versão anulou **três canais da Multi**
+porque `suporte.multilaser.com.br` não serve sitemap legível — e host sem sitemap
+devolve "não está no sitemap" para **tudo**, inclusive para a página que está lá.
+A régua estava medindo a própria ignorância e chamando de veredito. Sitemap com
+zero endereços passou a sair como `incerta (sitemap ilegível)` e não anula nada:
+**segunda prova vazia não é segunda prova.**
+
+Resultado: **7 anulados** (5 Roborock, 2 Multi), **4 incertos intocados**, 33
+vivos. `modelos_recomendaveis` 39 → 33 e `recomendaveis_pela_r2` 17 → 13. A URL
+morta **não é apagada** — vira `valor_anterior` ao lado do motivo, porque quem for
+reabrir a decisão precisa saber qual página existia e o que ela declarava.
+
+**A bancada cobrou o preço na hora, e ensinou de graça.**
+`mutacoes-canal-brasileiro.py` trazia `roborock-q8-max` **digitado** como alvo de
+duas mutações e quebrou a bancada inteira com `KeyError` no minuto em que o portão
+novo anulou aquele canal — que é exatamente o que ele existe para fazer. **Id
+digitado dentro de uma bateria é uma segunda lista, paralela ao banco, que ninguém
+atualiza quando o banco muda** (o mesmo defeito que esta ilha já nomeou no
+`robometria_casca_categorias()`). O alvo passou a ser medido — o primeiro
+publicável com o rótulo `br.` no host — e a bateria para com `AssertionError` se
+não houver nenhum, que é como uma mutação diz que ficaria INERTE em vez de passar
+de verde sem medir nada.
+
+**E a indentação do banco voltou a ser medida do arquivo.** Adivinhar `indent=2`
+onde havia 1 produziu um diff de **11 mil linhas para sete campos anulados** —
+escondendo exatamente as linhas que a execução mudou. A lição já estava escrita em
+`gerar-busca-de-produto.py`; foi reaprendida por não ter sido lida.
+
+### 3. A FOTO DO FABRICANTE ANDOU UM PASSO E PAROU NO SEGUINTE
+
+A lista de domínios que o despacho de 20/09 pediu **foi atendida e funcionou**: 12
+dos 14 hosts de PÁGINA responderam. `ferramentas/coletar-foto-do-fabricante.py`
+nasceu com três estratégias — catálogo público VTEX, produto `.json` do Shopify, e
+og:image/JSON-LD como a mais fraca das três, que **se declara assim** no relatório
+— e trouxe **37 dos 66 com o nome PROVADO na página**. Nas lojas VTEX a prova é a
+mais forte que existe: `productReference` **é** o código do fabricante, então a
+amarra da 25.3 deixou de ser leitura de texto e virou igualdade de campo.
+
+**Parou por uma coisa que ninguém tinha medido: a página e a FOTO não moram no
+mesmo host.** VTEX serve o HTML em `loja.marca.com.br` e o arquivo em
+`marca.vteximg.com.br`; a Roborock em `cdn.shopify.com`; a Xiaomi em
+`i0N.appmifile.com`. **36 dos 37 candidatos têm o arquivo em host fechado**, todos
+resolvendo em DNS — pedido de liberação, nunca endereço errado (20.2).
+
+**O 37º abriu, chegou ao olho e foi REPROVADO.** `wap-wsmart`: banner de
+lançamento do blog da WAP, 1516x907, com "LANÇAMENTO" em selo azul e o nome em
+letra de cartaz ocupando metade do quadro. Procedência passa; **foto de produto,
+não**. E a reprovação **ficou escrita com data**, em `REPROVADAS_PELO_OLHO` dentro
+da ferramenta — até hoje o olho aprovava virando campo no banco e **reprovava
+virando nada**, então a execução seguinte reabria o mesmo arquivo para chegar à
+mesma conclusão. **Placar do despacho: continua 29 de 103.**
+
+**Os 29 sem candidato têm causa medida**, e a maior delas é honesta: 10 são as
+páginas de FAQ da Xiaomi, que servem a foto de cada acessório por JavaScript e no
+HTML cru trazem **uma imagem só, de página** — a mesma para filtro, escova, mop e
+reservatório. Gravá-la para quatro peças diferentes seria o casamento errado que a
+25.3 existe para impedir.
+
+### O FECHO, EM NÚMERO
+
+Bancada em **38 portões sem rede e 44 com `--no-ar`, 0 falha**; `validar-banco.py`
+APROVADO; `conferir-no-ar.py` em **264 afirmações, 0 falha**. Sync acionado e
+conferido **depois** (18.4): `/status` em **revisão 72**, igual à do manifest, e os
+cinco links mortos da Roborock não saem mais de página nenhuma.
+
+**O próximo passo desbloqueado, e é do Raphael, não da Fundação:** uma linha de
+domínios — `*.vteximg.com.br, *.vtexassets.com, cdn.shopify.com, *.appmifile.com`.
+Com ela, `coletar-foto-do-fabricante.py` reimprime os 37 com a URL exata da foto de
+cada registro e o que sobra é o olho, um a um. **Não segui para bloco da fila**, e
+a 18.2 permitiria: a ilha está PRONTA e no regime do critério pré-registrado, e as
+duas coisas feitas hoje são correção e dívida, não construção.

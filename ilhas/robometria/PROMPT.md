@@ -105,52 +105,80 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 **Placar obrigatório no fecho:** os cinco itens da DEFINIÇÃO DE PRONTA, e ao lado do item 3 a lista das chaves trocadas com a data.
 
-## DESPACHO DO RAPHAEL — 19/09/2026, 11h04 (horário de Brasília) — ABRIR A PORTA DO FABRICANTE: FOTO PARA OS 66 SEM IMAGEM — **REESCRITO PELA 18.3 EM 20/09/2026, 14h55Z: SÓ O QUE FALTA, E O QUE FALTA É UMA LINHA DE DOMÍNIOS**
+## DESPACHO DO RAPHAEL — 19/09/2026, 11h04 (horário de Brasília) — ABRIR A PORTA DO FABRICANTE: FOTO PARA OS 66 SEM IMAGEM — **REESCRITO PELA 18.3 EM 20/09/2026, 15h45Z: A PORTA ABRIU, O DESPACHO ANDOU ATÉ O PASSO SEGUINTE, E PAROU LÁ**
 
-> **O QUE FOI MEDIDO EM 20/09/2026, E POR QUE O DESPACHO NÃO PÔDE ANDAR.** As 14 portas de fabricante que os 66 registros usam **estão fechadas para esta nuvem**: `curl` devolve `000`, e o verbose mostra `CONNECT tunnel failed, response 403` — negativa de política do proxy de egresso, não do fabricante. **Os 14 hosts resolvem em DNS**, um a um, então pela lição de 17/09 (seção 20.2) isto é pedido de liberação e não erro de digitação. Controle na mesma passada: `robometria.com.br` e `shopee.com.br` responderam **200** nas mesmas condições — não é o túnel, é a lista.
+> **A LISTA DE DOMÍNIOS DE 20/09 FOI ATENDIDA E FUNCIONOU.** Nesta execução, 12 dos 14
+> hosts de PÁGINA que os 66 registros usam responderam: `loja.electrolux.com.br`,
+> `br.roborock.com`, `us.roborock.com`, `www.multilaser.com.br`, `loja.wap.ind.br`,
+> `www.mi.com`, `www.positivocasainteligente.com.br`, `loja.meupositivo.com.br`,
+> `suporte.multilaser.com.br`, `blog.wap.ind.br` e mais dois. Sobraram fechados
+> `www.multilaserempresas.com.br` (4 registros) e `manuals.plus` (3, e este fica fora
+> de propósito: é terceiro, e a 25.3 proíbe a foto que viria de lá).
 >
-> **E A METADE QUE NINGUÉM TINHA MEDIDO É PIOR DO QUE "FECHOU DE NOVO":** dos cinco hosts que o despacho de 17/09 registra como abertos, **só dois** (`www.mi.com` e `www.multilaser.com.br`) são usados por alguma porta dos 66. **32 dos 66 registros não têm NENHUMA porta naquela lista** — para eles, a lista de 17/09, mesmo intacta, nunca teria bastado. Página de produto não mora no `www` institucional da marca: mora em `loja.`, `suporte.`, `blog.`, `lamina.`. O despacho pedia uma coleta que a rede daquele dia só deixaria fazer pela metade, e ninguém sabia porque ninguém tinha comparado a lista com o banco.
+> **E A COLHEITA ANDOU: 37 dos 66 ganharam candidato com o NOME PROVADO na página do
+> fabricante.** A prova não é leitura de texto solta: nas lojas VTEX o catálogo público
+> devolve `productReference`, que **é** o código do fabricante, então a amarra da 25.3
+> virou igualdade de campo. Onde o registro não tem código — as peças da WAP e da
+> Roborock não têm —, a prova é o par nome-do-modelo + tipo-da-peça aparecendo os dois
+> na página, com o trecho de cada um impresso ao lado para o olho conferir.
 >
-> **OS DOIS CANAIS DESTA NUVEM NÃO SÃO O MESMO CANAL, E É ISSO QUE EXPLICA A ILHA INTEIRA.** Medido nesta execução: a **busca web restrita a domínio** funciona (a consulta por `PR10124` em `multilaser.com.br` devolveu a página certa da peça, com título e URL); o **egresso HTTP** não, nem por `curl` nem por WebFetch, que devolve o mesmo `EGRESS_BLOCKED`. Foi por isso que o banco desta ilha pôde ser construído de página de fabricante desde 09/09 e a FOTO nunca pôde: **dado se colhe do texto que a busca devolve; foto exige abrir o arquivo.** E a 25.3 manda abrir cada imagem **com os olhos** antes de gravar — gravar uma URL de imagem que ninguém abriu seria exatamente o "parece dado" que esta ilha existe para não fazer. **Não é falta de fôlego nem de engenhosidade: é um canal que não existe aqui hoje.**
+> **ONDE ELE PAROU, E É UMA COISA QUE NINGUÉM TINHA MEDIDO: A PÁGINA E A FOTO NÃO MORAM
+> NO MESMO HOST.** Loja VTEX serve o HTML em `loja.marca.com.br` e o ARQUIVO da imagem
+> em `marca.vteximg.com.br`; a Roborock serve em `cdn.shopify.com`; a Xiaomi em
+> `i0N.appmifile.com`. **Liberar o domínio da página não libera a foto** — e a 25.3
+> manda abrir cada imagem **com os olhos** antes de gravar. Dos 37 candidatos, **36 têm
+> o arquivo em host de imagem fechado** (`000`, todos resolvendo em DNS). O 37º abre, e
+> foi o único que chegou ao olho.
 >
-> Tudo isto está medido registro a registro em **`dados/portas-do-fabricante-2026-09-20.md`**, gerado por `ferramentas/medir-portas-do-fabricante.py` — nenhum número digitado. Os 66 `imagem.motivo_do_null` passaram a registrar a tentativa de hoje, com o host e a data, para a próxima execução não redescobrir. **Nenhuma URL mudou e nenhuma palavra de página foi escrita:** os quatro geradores foram re-rodados e os seis snippets saíram byte a byte iguais, porque `motivo_do_null` é procedência de coleta e não chega ao HTML.
+> **O ÚNICO QUE CHEGOU AO OLHO FOI REPROVADO, e a reprovação ficou escrita.**
+> `wap-wsmart`: a imagem é o banner de lançamento do blog da WAP, 1516x907, com
+> "LANÇAMENTO" num selo azul e o nome do produto em letra de cartaz ocupando metade do
+> quadro. Procedência passa — é do fabricante e nomeia o WSMART —, mas **não é foto de
+> produto**: no espaço quadrado do cartão ela entra como peça de campanha de 2020, com
+> texto promocional que a ilha não escreveu e não pode datar. Espaço reservado neutro é
+> melhor que cartaz velho, e foto é ganho e nunca requisito (25.3). O motivo mora em
+> `REPROVADAS_PELO_OLHO`, dentro de `ferramentas/coletar-foto-do-fabricante.py`, com a
+> data — para a próxima execução não reabrir o mesmo arquivo e chegar à mesma conclusão.
+>
+> **O placar do despacho, então, continua 29 de 103.** Tudo está medido registro a
+> registro em **`dados/fotos-do-fabricante-2026-09-20.md`** e candidato a candidato em
+> **`dados/candidatos-de-foto-2026-09-20.json`**, gerados por
+> `ferramentas/coletar-foto-do-fabricante.py` — nenhum número digitado.
 
-**O QUE FALTA, E É A ÚNICA COISA QUE FALTA — e é do Raphael, não da Fundação.** Acrescentar estes **11 hosts** à lista "Domínios permitidos" do ambiente de nuvem (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem). A coluna é quantos dos 66 registros dependem de cada um:
+**O QUE FALTA, E É A ÚNICA COISA QUE FALTA — e é do Raphael, não da Fundação.** Acrescentar os **hosts de IMAGEM** à lista "Domínios permitidos" do ambiente de nuvem (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem). A coluna é quantos dos 37 candidatos dependem de cada um:
 
-| host | registros |
-|---|---|
-| `loja.electrolux.com.br` | 8 |
-| `br.roborock.com` | 6 |
-| `us.roborock.com` | 5 |
-| `loja.wap.ind.br` | 4 |
-| `www.multilaserempresas.com.br` | 4 |
-| `www.positivocasainteligente.com.br` | 3 |
-| `loja.meupositivo.com.br` | 2 |
-| `suporte.multilaser.com.br` | 2 |
-| `blog.wap.ind.br` | 1 |
-| `content.electrolux.com.br` | 1 |
-| `lamina.multilaser.com.br` | 1 |
+| host da imagem | registros | de quem é |
+|---|---|---|
+| `i02.appmifile.com` | 9 | CDN de imagem da Xiaomi |
+| `electrolux.vteximg.com.br` | 8 | CDN da loja da Electrolux |
+| `cdn.shopify.com` | 5 | CDN da loja da Roborock |
+| `lojawap.vteximg.com.br` | 4 | CDN da loja da WAP |
+| `i01.appmifile.com` | 4 | CDN de imagem da Xiaomi |
+| `positivocasainteligente.vteximg.com.br` | 3 | CDN da loja da Positivo |
+| `i05.appmifile.com` | 2 | CDN de imagem da Xiaomi |
+| `lojamultilaser.vteximg.com.br` | 1 | CDN da loja da Multi |
 
-Mais os dois da lista de 17/09 que **voltaram a fechar** e são usados de verdade: **`www.mi.com` (26 registros, a maior fatia de longe) e `www.multilaser.com.br` (6)**. Os outros três de 17/09 — `www.electrolux.com.br`, `mais.conteudo.wap.ind.br`, `www.positivotecnologia.com.br` — **não são usados por porta nenhuma dos 66** e podem ficar como estão.
-
-**A LINHA PRONTA PARA COLAR, se for mais rápido do que 13 campos** — oito curingas cobrem os 13 hosts e qualquer subdomínio que a próxima leva encontrar, e são todos domínio do próprio fabricante:
+**A LINHA PRONTA PARA COLAR** — quatro curingas cobrem os oito hosts e qualquer CDN irmão que a próxima leva encontrar:
 
 ```
-*.electrolux.com.br, *.multilaser.com.br, *.multilaserempresas.com.br, *.roborock.com, *.wap.ind.br, *.mi.com, *.positivocasainteligente.com.br, *.meupositivo.com.br
+*.vteximg.com.br, *.vtexassets.com, cdn.shopify.com, *.appmifile.com
 ```
 
-*(São oito entradas porque Multi e Positivo têm dois domínios raiz cada. A lista exata dos 13 hosts, acima, continua valendo para quem preferir abrir só o necessário.)*
+*(`*.vtexassets.com` entra junto porque é o outro nome do mesmo CDN da VTEX: o HTML das lojas serve os dois, e qual dos dois sai depende de qual API respondeu. Abrir só um deixaria metade dos registros de loja VTEX presa pelo mesmo motivo de hoje.)*
 
-**`manuals.plus` fica FORA do pedido, de propósito.** É agregador de manual, terceiro, e a 25.3 proíbe a foto que viria de lá. Abrir esse host não move o despacho um registro — e é por isso que `electrolux-erb20` está marcado no relatório como **sem porta legítima**, não como bloqueado: para ele o conserto não é rede, é uma página da Electrolux que o banco ainda não tem.
+**QUANDO ISSO ABRIR, o caminho está pronto e é mecânico:** `python3 ferramentas/coletar-foto-do-fabricante.py` reimprime os candidatos com a URL exata da foto de cada registro, e `--relatorio` reimprime o placar. **Não há busca a refazer e não há página a reabrir** — as portas saem de `fontes{}.url` e `canal_brasileiro.valor`, que são as páginas de onde o dado daquele registro já foi lido uma vez. O que falta depois disso é o olho, um a um, que não se automatiza.
 
-**UM CASO PARA DECIDIR, e a Fundação não decidiu sozinha de propósito:** `positivo-11206540` (mop) tem como única porta `loja.meupositivo.com.br`, que **não está declarado em `dados/marcas.json`** como endereço da Positivo. Parece ser loja da mesma empresa, e "parece" não é procedência nesta ilha. Quem confirmar acrescenta o host ao `sameAs` da marca `positivo`; até lá ele sai do relatório como `porta não declarada`, nunca como fabricante.
+**OS 29 SEM CANDIDATO, por causa medida** (a lista inteira está no relatório):
 
-**QUANDO A REDE ABRIR, o caminho está pronto e é mecânico:** `python3 ferramentas/medir-portas-do-fabricante.py` reimprime o placar com os hosts abertos e a coluna "PODE ANDAR" por registro, com a URL exata da página a abrir. Não há busca a refazer — as portas saem de `fontes{}.url` e `canal_brasileiro.valor`, que são as páginas de onde o dado daquele registro já foi lido uma vez.
+- **10 são as páginas de FAQ da Xiaomi** (`KA-11405`, `KA-11406`): a página abre, nomeia o modelo, e **serve a foto de cada acessório por JavaScript** — o HTML cru traz uma imagem só, de página, que é a mesma para filtro, escova, mop e reservatório. Gravar essa imagem para quatro peças diferentes seria exatamente o casamento errado que a 25.3 existe para impedir.
+- **6 são os modelos da Roborock** cujas páginas de `br.roborock.com` **saíram do ar** — e isso deixou de ser assunto de foto: virou defeito de canal brasileiro, consertado nesta mesma execução (ver o portão novo, abaixo).
+- **Os demais** são páginas de loja que devolveram 404 ou catálogo vazio (produto saiu de linha), e `multi-ho041`/`multi-ho243`, cujo host de suporte oscila entre 301 e 000.
 
-**OS TRÊS PORTÕES DA 25.3 CONTINUAM INTEIROS, e nenhum afrouxa para bater meta:** (1) só a foto do **fabricante**, da **peça exata**, com o código ou o nome do modelo na página de onde ela sai, e **aberta com os olhos antes de gravar**; (2) `imagem.fonte` grava a URL de origem, sempre; (3) a preferência nunca inverte — registro com foto de anúncio não é tocado. O placar a atualizar no fecho continua sendo **29 de 103**.
+**UM CASO PARA DECIDIR, e continua sem decisão de propósito:** `positivo-11206540` (mop) tem como única porta `loja.meupositivo.com.br`, que **não está declarado em `dados/marcas.json`** como endereço da Positivo. O host **responde 200** agora — o que falta não é rede, é procedência. Quem confirmar acrescenta o host ao `sameAs` da marca `positivo`; até lá ele sai do relatório como `porta não declarada`, nunca como fabricante.
 
-**Isto não é expansão da ilha:** é terminar a coleta de imagem começada em 16/09 com a segunda fonte que o contrato já prevê. Não abre página nova nem categoria nova. *(A régua `medir-portas-do-fabricante.py` entrou em 20/09 porque o despacho exige "escreva o domínio exato que foi tentado" e isso é medição, não construção — e ela é `medir-`, produção, fora da bancada.)*
+**OS TRÊS PORTÕES DA 25.3 CONTINUAM INTEIROS, e nenhum afrouxou:** (1) só a foto do **fabricante**, da **peça exata**, com o código ou o nome do modelo na página de onde ela sai, e **aberta com os olhos antes de gravar**; (2) `imagem.fonte` grava a URL de origem, sempre; (3) a preferência nunca inverte — registro com foto de anúncio não é tocado. **O placar a atualizar no fecho continua sendo 29 de 103.**
 
+**Isto não é expansão da ilha:** é terminar a coleta de imagem começada em 16/09 com a segunda fonte que o contrato já prevê. Não abre página nova nem categoria nova.
 ## ~~DESPACHO DO RAPHAEL — 19/09/2026, 11h04~~ — o texto original, preservado
 >
 > **A porta que o despacho de 18/09 mandou manter fechada está aberta agora, por decisão do Raphael.** Aquele despacho terminou dizendo *"NÃO colete imagem de site de fabricante — o Raphael decide depois de ver o tamanho do resíduo"*. Ele viu: **66 publicáveis sem foto, 36 peças e 30 modelos**, e decidiu, com estas palavras: *"pode usar imagem do fabricante, sem problemas."* A regra permanente já está no contrato, na **seção 25.3** (segunda fonte de imagem), desde o commit `00bc2ef`. Este despacho é a ordem de executá-la. Sem ele a autorização ficava no contrato e a Fundação nunca a executava, e foi exatamente isso que deixou o banco parado em 29 de 103.
@@ -686,7 +714,7 @@ Fechado pela execução das 15h17Z, item por item, e o que ele achou pelo caminh
 
 | item | estado | número medido |
 |---|---|---|
-| 1. Porta de compra em todo item publicável | **feito** (16/09, remedido hoje) | 95 publicáveis, 0 com "em breve", 0 sem saída; **71 rendem comissão e 24 não** |
+| 1. Porta de compra em todo item publicável | **feito** (16/09, remedido em 20/09 15h30Z) | 95 publicáveis, 0 com "em breve", 0 sem saída; **95 rendem comissão e 0 não** — a dívida do elo foi paga em 20/09, ver abaixo |
 | 2. A emenda do funil fechada | **feito** (18/09) | interseção em **15** de 45 publicáveis, teto 17 |
 | 3. Zero defeito aberto de ronda | **feito** (20/09) | as 28 chaves trocadas e medidas em 2026-09-20; 0 defeito de ronda sem "CUMPRIDO E CONFERIDO NO AR" |
 | 4. Sitemap aceito no Search Console | **feito** (16/09) | processado, última leitura 15/09, 9 páginas |
@@ -694,11 +722,32 @@ Fechado pela execução das 15h17Z, item por item, e o que ele achou pelo caminh
 
 **`estado: viva` no `ESTADO.md`**, como esta seção manda. **E o que "pronta" continua não significando** está escrito três parágrafos abaixo, sem uma vírgula mudada: pronta é a ilha completa e capaz de faturar, não a ilha faturando.
 
-**O QUE CONTINUA ABERTO E NÃO ERA CRITÉRIO DE PRONTA, para o placar da próxima execução não nascer confuso:** (a) o **despacho do Raphael de 19/09**, a foto do fabricante para os 66 publicáveis sem imagem — a 25.3 diz que foto é ganho e nunca requisito; (b) o **encurtamento das 28 chaves novas**, que espera a credencial da Open API no ambiente e é dívida do elo, não da página. Nenhum dos dois reabre item nenhum desta lista.
+**O QUE CONTINUA ABERTO E NÃO ERA CRITÉRIO DE PRONTA, para o placar da próxima execução não nascer confuso:** o **despacho do Raphael de 19/09**, a foto do fabricante para os 66 publicáveis sem imagem — a 25.3 diz que foto é ganho e nunca requisito. Ele não reabre item nenhum desta lista.
+
+**A DÍVIDA DO ELO MORREU EM 20/09/2026, 15h30Z.** O item (b) desta linha era *"o encurtamento das 28 chaves novas, que espera a credencial da Open API no ambiente"*. A credencial **estava no ambiente** desta execução — `SHOPEE_APP_ID` e `SHOPEE_SECRET`, conferidos antes de qualquer chamada — e `medir-palavras-chave.py --gravar --encurtar` gerou **28 links novos** (22 de peça, 6 de modelo) reaproveitando os 67 que já estavam certos, sem remexer em chave nenhuma. `gerar-busca-de-produto.py --gravar` levou os 28 ao banco. **"Saída crua, sem rastreio" foi de 24 para 0 em 95 publicáveis**, e a página de divulgação, que deriva o número do banco e não o digita, passou a declarar no ar que **todos os 95 rendem comissão** (conferido em `/divulgacao-de-afiliados/`, revisão 71). **A lição, e ela não é sobre a Shopee:** a dívida durou exatamente uma execução porque o despacho de 20/09 pré-registrou o caminho de saída — *"confira primeiro se as duas variáveis estão no ambiente"* — em vez de registrar só o bloqueio. Bloqueio com caminho escrito se paga sozinho no dia em que o mundo muda; bloqueio sem caminho espera alguém lembrar.
 
 **O QUE "PRONTA" NÃO SIGNIFICA, escrito para ninguém se iludir com o prazo:** pronta é a ilha completa e capaz de faturar — não é a ilha faturando. Indexação e posição são relógio do Google, não nosso: dias para indexar, semanas para posicionar. Cumprir os cinco itens até 23/09 é a nossa parte, e é a única parte que depende de nós.
 
 **Em toda execução, o relatório final abre com o placar dos cinco itens**, cada um com feito ou faltando e o número medido ao lado. Sem placar, a execução não fechou.
+
+## O CANAL BRASILEIRO APODRECE, E DESDE 20/09/2026 HÁ PORTÃO QUE MEDE ISSO
+
+`canal_brasileiro` é uma **afirmação sobre o mundo de fora** — a URL de uma página do fabricante que publica aquele código —, e o mundo de fora a desmente sem avisar ninguém. O campo tinha data de quando foi colhido e **nenhuma de quando foi reconferido**, então envelheceu em silêncio: em 20/09/2026, ao tentar colher a foto do fabricante, **cinco das seis páginas da Roborock Brasil gravadas no banco devolveram 404 — e as cinco estavam SERVIDAS NO AR, dentro da R2, como prova de canal brasileiro.** O leitor clicava numa prova que não existia mais.
+
+É a mesma família do *"o site fica para trás em silêncio"* da seção 4 do `ARQUIPELAGO.md`, um andar acima: ali o que envelhece é o resumo do estado; aqui é a **evidência que um portão usa para decidir**.
+
+`ferramentas/medir-canal-brasileiro-no-ar.py` mede os canais do banco inteiro e **exige DUAS provas que discordam por motivos diferentes** antes de anular um:
+
+1. **A URL responde 4xx em duas tentativas separadas.** Falha isolada é o túnel, nunca veredito (20.2). `000` ou 5xx saem como `incerta` e **não anulam nada**: não saber é diferente de saber que morreu.
+2. **O código não aparece em nenhum endereço do sitemap do próprio host.** É a pergunta que separa as duas causas: página que **mudou de lugar** continua no sitemap com outro caminho; produto que **saiu de linha** some dele inteiro.
+
+**E há uma terceira regra, que nasceu de um erro cometido na mesma hora:** host que não serve sitemap legível devolve "não está no sitemap" para **tudo**, inclusive para a página que está lá. A primeira versão desta régua anulou três canais da Multi assim. Sitemap com zero endereços passou a sair como `incerta (sitemap ilegível)` e não anula nada — **segunda prova vazia não é segunda prova**, e medir a própria ignorância e chamar de veredito é o defeito que esta ilha mais paga, com outra roupa.
+
+**O resultado da primeira passada:** 44 canais medidos, **7 anulados** (5 Roborock, 2 Multi), 4 incertos intocados, 33 vivos. `modelos_recomendaveis` foi de **39 para 33** e `recomendaveis_pela_r2` de **17 para 13**. A URL morta **não é apagada**: vira `valor_anterior` ao lado do motivo, porque quem for reabrir a decisão precisa saber qual página existia e o que ela declarava. Apagar a evidência é como nunca tê-la colhido.
+
+**A régua reconta as três contagens do portão**, e isso não é zelo: `validar-banco.py` reprova quando elas divergem do arquivo, de propósito — contagem que não bate com o arquivo é pior que contagem nenhuma.
+
+**E a bancada ensinou junto, pelo caminho mais caro:** `mutacoes-canal-brasileiro.py` trazia `roborock-q8-max` **digitado** como alvo de duas mutações, e quebrou a bancada inteira com `KeyError` no minuto em que o portão novo anulou aquele canal — que é exatamente o que ele existe para fazer. **Id digitado dentro de uma bateria é uma segunda lista, paralela ao banco, que ninguém atualiza quando o banco muda.** O alvo passou a ser medido (o primeiro publicável com o rótulo `br.` no host) e a bateria para com `AssertionError` se não houver nenhum, que é como uma mutação diz que ficaria INERTE em vez de passar de verde sem medir nada.
 
 ## O PORTÃO DO CANAL BRASILEIRO — nasceu em 16/09/2026, e ele decide o que a R2 recomenda
 
