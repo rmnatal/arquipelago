@@ -3,7 +3,7 @@
  "ilha": "robometria",
  "entidade": "MEDICAO",
  "publicar": false,
- "gerado_em": "2026-09-18",
+ "gerado_em": "2026-09-20",
  "gerado_por": "ferramentas/medir-palavras-chave.py",
  "fonte_da_medicao": "Open API de Afiliados da Shopee (productOfferV2), secao 25.6 do ARQUIPELAGO.md",
  "nota_de_universo": "A API de afiliado e o catalogo de OFERTAS do programa, e nao a busca do site que o leitor ve. As duas discordam e a discordancia foi medida em 16/09/2026: `WAP escova lateral robo aspirador` devolve zero na busca do site (medida pela Sentinela no Chrome do Raphael) e dez aqui. A busca do site NAO e mensuravel desta nuvem — `/api/v4/search/search_items` devolve `error 90309999, redirect_to_error_page` e a pagina de busca serve casca de JavaScript identica byte a byte para palavras diferentes. Entao esta medicao prova o que prova: que a chave existe no catalogo que PAGA comissao. Chave com zero AQUI e pior que chave com zero la.",
@@ -36,13 +36,17 @@
  "contagem": {
   "palavras_chave_distintas_de_peca": 22,
   "com_resultado": 22,
-  "com_a_peca_no_topo": 6,
-  "com_a_marca_no_topo": 6,
+  "com_a_peca_no_topo": 7,
   "criterio_literal_do_despacho": 14,
+  "com_a_marca_no_topo": 6,
   "registros_de_peca": 50,
   "registros_medidos": 95,
-  "chaves_fixadas_no_navegador": 32
+  "chaves_fixadas_no_navegador": 26
  },
+ "fontes_da_medicao": [
+  "chaves-do-navegador-2026-09-20"
+ ],
+ "atualizado_em": "2026-09-20",
  "registros": [
   {
    "id": "multi-pr10124",
@@ -447,7 +451,7 @@
      "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
      "chave": "Electrolux ERB60 escova robo aspirador",
      "resultados": 5,
-     "titulo_do_topo": "MOTOR ESCOVA GIRATORIA PARA ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30257901",
+     "titulo_do_topo": "ESCOVA LATERAL DIREITA DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
@@ -457,7 +461,7 @@
      "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
      "chave": "Electrolux ERB61 escova robo aspirador",
      "resultados": 5,
-     "titulo_do_topo": "ESCOVA LATERAL DIREITA DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
+     "titulo_do_topo": "KIT 2 ESCOVA LATERAIS DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
@@ -467,7 +471,7 @@
      "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
      "chave": "Electrolux ERB62 escova robo aspirador",
      "resultados": 5,
-     "titulo_do_topo": "ESCOVA LATERAL DIREITA DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
+     "titulo_do_topo": "KIT 2 ESCOVA LATERAIS DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
@@ -477,7 +481,7 @@
      "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
      "chave": "Electrolux ERB80 escova robo aspirador",
      "resultados": 5,
-     "titulo_do_topo": "ESCOVA LATERAL DIREITA DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
+     "titulo_do_topo": "KIT 2 ESCOVA LATERAIS DO ASPIRADOR DE PÓ ROBO ELECTROLUX ERB60 ERB61 ERB62 ERB80 ORIGINAL - A30283301 ",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
      "criterio_literal_do_despacho": false
@@ -791,11 +795,11 @@
     "por_que": "o primeiro resultado e escova principal Xiaomi, e o 3o traz o codigo do registro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/6AlAgfpwnh",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -845,11 +849,11 @@
     "por_que": "o primeiro resultado e filtro Xiaomi e nomeia o codigo B106GL",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=filtro%20HEPA%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/1AXLLDM3d",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -899,11 +903,11 @@
     "por_que": "o primeiro resultado e pano de mop Xiaomi, nao robo de piscina",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/2LYS7d8wJo",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20",
+    "motivo_sem_url_busca": null,
     "nota": "E a unica chave nova que MANTEM o termo de contexto `robo aspirador`: foi assim que ela foi medida no navegador, e chave se grava como foi medida."
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
@@ -954,11 +958,11 @@
     "por_que": "o primeiro resultado e pano de mop Xiaomi, nao robo de piscina",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/8fSVfGklDW",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20",
+    "motivo_sem_url_busca": null,
     "nota": "E a unica chave nova que MANTEM o termo de contexto `robo aspirador`: foi assim que ela foi medida no navegador, e chave se grava como foi medida."
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
@@ -1012,7 +1016,8 @@
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "marca_no_topo": true
+    "marca_no_topo": true,
+    "motivo_sem_url_busca": null
    },
    "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
@@ -1049,7 +1054,8 @@
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "marca_no_topo": true
+    "marca_no_topo": true,
+    "motivo_sem_url_busca": null
    },
    "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
@@ -1083,11 +1089,11 @@
     "por_que": "o primeiro resultado e pano de mop Xiaomi, nao robo de piscina",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/3LQzJT9bKo",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20",
+    "motivo_sem_url_busca": null,
     "nota": "E a unica chave nova que MANTEM o termo de contexto `robo aspirador`: foi assim que ela foi medida no navegador, e chave se grava como foi medida."
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
@@ -1138,11 +1144,11 @@
     "por_que": "o primeiro resultado e escova principal Xiaomi, e o 3o traz o codigo do registro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/1VzL86GNHy",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -1228,7 +1234,7 @@
     "degrau": 2,
     "composicao": "marca + batismo do fabricante + contexto",
     "chave": "WAP Escova Esquerda robo aspirador",
-    "resultados": 5,
+    "resultados": 10,
     "titulo_do_topo": "Motor da Escova Esquerda Para Robô Mondial RB01 Multilaser HO041 Wap W100",
     "topo_e_a_peca": false,
     "por_que": "o tipo da peca nao e a cabeca do titulo",
@@ -1252,7 +1258,7 @@
      "degrau": 2,
      "composicao": "marca + batismo do fabricante + contexto",
      "chave": "WAP Escova Esquerda robo aspirador",
-     "resultados": 5,
+     "resultados": 10,
      "titulo_do_topo": "Motor da Escova Esquerda Para Robô Mondial RB01 Multilaser HO041 Wap W100",
      "topo_e_a_peca": false,
      "por_que": "o tipo da peca nao e a cabeca do titulo",
@@ -1358,23 +1364,23 @@
     "composicao": "marca + tipo + contexto",
     "chave": "WAP reservatorio robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
-    "topo_e_a_peca": false,
-    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
     "criterio_literal_do_despacho": true,
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
    },
-   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + tipo + contexto",
      "chave": "WAP reservatorio robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
      "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/9AOferfjPW"
@@ -1391,23 +1397,23 @@
     "composicao": "marca + tipo + contexto",
     "chave": "WAP reservatorio robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
-    "topo_e_a_peca": false,
-    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
     "criterio_literal_do_despacho": true,
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
    },
-   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + tipo + contexto",
      "chave": "WAP reservatorio robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
      "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/9AOferfjPW"
@@ -1424,23 +1430,23 @@
     "composicao": "marca + tipo + contexto",
     "chave": "WAP reservatorio robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
-    "topo_e_a_peca": false,
-    "por_que": "o tipo da peca nao e a cabeca do titulo",
+    "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
     "criterio_literal_do_despacho": true,
     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
     "url_busca": "https://s.shopee.com.br/9AOferfjPW"
    },
-   "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + tipo + contexto",
      "chave": "WAP reservatorio robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Kit Filtro Pinos e Lâmina Peças do Reservatório de Pó Robô Aspirador WAP W90, W95, W96 E W100",
-     "topo_e_a_peca": false,
-     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "titulo_do_topo": "Recipiente Reservatório Compatível com Robô Aspirador WAP W90 W95 W96 W100 W100C FW007703",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
      "criterio_literal_do_despacho": true,
      "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
      "url_busca": "https://s.shopee.com.br/9AOferfjPW"
@@ -1463,11 +1469,11 @@
     "por_que": "o primeiro resultado e escova principal Xiaomi, e o 3o traz o codigo do registro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/80Cos2rptD",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -1517,11 +1523,11 @@
     "por_que": "o primeiro resultado e filtro Xiaomi e nomeia o codigo B106GL",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=filtro%20HEPA%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/2BF1vKE2k1",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -1571,11 +1577,11 @@
     "por_que": "o primeiro resultado e pano de mop Xiaomi, nao robo de piscina",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/2qUiiYFu9G",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20",
+    "motivo_sem_url_busca": null,
     "nota": "E a unica chave nova que MANTEM o termo de contexto `robo aspirador`: foi assim que ela foi medida no navegador, e chave se grava como foi medida."
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
@@ -1626,11 +1632,11 @@
     "por_que": "o primeiro resultado e filtro Xiaomi e nomeia o codigo B106GL",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=filtro%20HEPA%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/1VzL86KqJj",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -1683,7 +1689,8 @@
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "marca_no_topo": true
+    "marca_no_topo": true,
+    "motivo_sem_url_busca": null
    },
    "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
@@ -1717,11 +1724,11 @@
     "por_que": "o primeiro resultado e escova principal Xiaomi, e o 3o traz o codigo do registro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/2VrsJwLZav",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -1771,11 +1778,11 @@
     "por_que": "o primeiro resultado e o tanque de agua Xiaomi da familia Mop 2, que e a peca dos dois registros",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=reservatorio%20Xiaomi%20Mop%202",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/50ZDIXBv0n",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -1825,11 +1832,11 @@
     "por_que": "o primeiro resultado e pano de mop Xiaomi, nao robo de piscina",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/2BF1vKMhlW",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20",
+    "motivo_sem_url_busca": null,
     "nota": "E a unica chave nova que MANTEM o termo de contexto `robo aspirador`: foi assim que ela foi medida no navegador, e chave se grava como foi medida."
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
@@ -1880,11 +1887,11 @@
     "por_que": "o primeiro resultado e filtro Xiaomi e nomeia o codigo B106GL",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=filtro%20HEPA%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/4fwMtvHeiM",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -1937,7 +1944,8 @@
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "marca_no_topo": true
+    "marca_no_topo": true,
+    "motivo_sem_url_busca": null
    },
    "parou_por": "nenhum degrau passa na regua dura; ficou o primeiro que passa no criterio do item 3 do despacho",
    "tentativas": [
@@ -1971,11 +1979,11 @@
     "por_que": "o primeiro resultado e escova principal Xiaomi, e o 3o traz o codigo do registro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/8AWF4M4Kcd",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -2025,11 +2033,11 @@
     "por_que": "o primeiro resultado e pano de mop Xiaomi, nao robo de piscina",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/9V1cenzFvm",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20",
+    "motivo_sem_url_busca": null,
     "nota": "E a unica chave nova que MANTEM o termo de contexto `robo aspirador`: foi assim que ela foi medida no navegador, e chave se grava como foi medida."
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
@@ -2080,11 +2088,11 @@
     "por_que": "o primeiro resultado e o tanque de agua Xiaomi da familia Mop 2, que e a peca dos dois registros",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=reservatorio%20Xiaomi%20Mop%202",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/6VO15IF0W5",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -2134,11 +2142,11 @@
     "por_que": "o primeiro resultado traz a marca Roborock e e peca de reposicao, nao robo inteiro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/4fwMtvLuz4",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -2188,11 +2196,11 @@
     "por_que": "o primeiro resultado traz a marca Roborock e e peca de reposicao, nao robo inteiro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/qjeKsaeIc",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -2242,11 +2250,11 @@
     "por_que": "o primeiro resultado traz a marca Roborock e e peca de reposicao, nao robo inteiro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/8KpfGfCQaC",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -2296,11 +2304,11 @@
     "por_que": "o primeiro resultado traz a marca Roborock e e peca de reposicao, nao robo inteiro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/60RkUNLF3G",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -2350,11 +2358,11 @@
     "por_que": "o primeiro resultado traz a marca Roborock e e peca de reposicao, nao robo inteiro",
     "criterio_literal_do_despacho": null,
     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20mop",
-    "url_busca": "",
+    "url_busca": "https://s.shopee.com.br/AUu9qe4FSu",
     "fixada_no_navegador": true,
     "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
     "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "motivo_sem_url_busca": null
    },
    "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
    "tentativas": [
@@ -2398,7 +2406,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Multilaser HO041 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Roda Completa L Aspirador Robô Multilaser Ho041",
+    "titulo_do_topo": "Roda Completa R Aspirador Robô Multilaser Ho041",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2412,7 +2420,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Multilaser HO041 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Roda Completa L Aspirador Robô Multilaser Ho041"
+     "titulo_do_topo": "Roda Completa R Aspirador Robô Multilaser Ho041"
     }
    ]
   },
@@ -2601,7 +2609,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Electrolux ERB10 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Filtro Hepa P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20",
+    "titulo_do_topo": "Bocal Entrada de Ar P/ Aspirador Robô Electrolux Erb10, Erb11, Erb20 e Erb30",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2615,7 +2623,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Electrolux ERB10 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Filtro Hepa P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20"
+     "titulo_do_topo": "Bocal Entrada de Ar P/ Aspirador Robô Electrolux Erb10, Erb11, Erb20 e Erb30"
     }
    ]
   },
@@ -2629,7 +2637,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Electrolux ERB11 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Filtro Hepa P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20",
+    "titulo_do_topo": "Bocal Entrada de Ar P/ Aspirador Robô Electrolux Erb10, Erb11, Erb20 e Erb30",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2643,7 +2651,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Electrolux ERB11 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Filtro Hepa P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20"
+     "titulo_do_topo": "Bocal Entrada de Ar P/ Aspirador Robô Electrolux Erb10, Erb11, Erb20 e Erb30"
     }
    ]
   },
@@ -2909,7 +2917,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Positivo PRA500 robo aspirador",
     "resultados": 9,
-    "titulo_do_topo": "Par Escovas Lateral Para Smart Robô Aspirador Wi-FI+ Positivo Casa Inteligente PRA100 e PRA500",
+    "titulo_do_topo": "Par Escovas e Filtro Hepa Para Smart Robô Aspirador Wi-Fi+ Positivo Casa Inteligente PRA100 e PRA500",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -2923,7 +2931,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Positivo PRA500 robo aspirador",
      "resultados": 9,
-     "titulo_do_topo": "Par Escovas Lateral Para Smart Robô Aspirador Wi-FI+ Positivo Casa Inteligente PRA100 e PRA500"
+     "titulo_do_topo": "Par Escovas e Filtro Hepa Para Smart Robô Aspirador Wi-Fi+ Positivo Casa Inteligente PRA100 e PRA500"
     }
    ]
   },
@@ -2993,7 +3001,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "Xiaomi S40 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza",
+    "titulo_do_topo": " Kit de peças de reposição para Robô Aspirador XIAOMI S40: escova principal, escovas laterais, filtros e acessórios de",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -3007,7 +3015,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Xiaomi S40 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": " Acessórios para Robô de Limpeza de Piso Xiaomi S40 - Escova Principal, Escova Lateral, Filtro HEPA, Pano de Limpeza"
+     "titulo_do_topo": " Kit de peças de reposição para Robô Aspirador XIAOMI S40: escova principal, escovas laterais, filtros e acessórios de"
     }
    ]
   },
@@ -3133,7 +3141,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "WAP W1000 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "WAP Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real",
+    "titulo_do_topo": "Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real GYRO, Base de Carregamento, Compatível com Alexa e Google Wap",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -3147,7 +3155,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "WAP W1000 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "WAP Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real"
+     "titulo_do_topo": "Robô Aspirador de Pó ROBOT W1000 Mapeamento de Tempo Real GYRO, Base de Carregamento, Compatível com Alexa e Google Wap"
     }
    ]
   },
@@ -3189,7 +3197,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "WAP W300 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Acabamento da Parte Superior Aspirador Robô Wap Robot W300 Original",
+    "titulo_do_topo": "Carcaça Inferior Aspirador Robô Wap Robot W300 Original",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -3203,7 +3211,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "WAP W300 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Acabamento da Parte Superior Aspirador Robô Wap Robot W300 Original"
+     "titulo_do_topo": "Carcaça Inferior Aspirador Robô Wap Robot W300 Original"
     }
    ]
   },
@@ -3217,7 +3225,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "WAP W90 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "Fonte carregador 5v 1200ma Compatível Aspirador Robô Wap W90 Bi-volt",
+    "titulo_do_topo": "Escova Frontal De Limpeza Para Aspirador Robô Wap W90 Reposição",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -3231,7 +3239,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "WAP W90 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Fonte carregador 5v 1200ma Compatível Aspirador Robô Wap W90 Bi-volt"
+     "titulo_do_topo": "Escova Frontal De Limpeza Para Aspirador Robô Wap W90 Reposição"
     }
    ]
   },
@@ -3245,7 +3253,7 @@
     "composicao": "marca + codigo do modelo + contexto",
     "chave": "WAP W100 robo aspirador",
     "resultados": 10,
-    "titulo_do_topo": "APZ 2x Para Multilaser HO041 WAP Robot W100 Robô Aspirador De Peças Mop Pano",
+    "titulo_do_topo": "Kit 2 Roda Frontal Dianteira Giratória Robô Aspirador Multilaser Mondial Wap W100-100C ObaBox-Duste Roldana",
     "topo_e_a_peca": null,
     "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
@@ -3259,7 +3267,7 @@
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "WAP W100 robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "APZ 2x Para Multilaser HO041 WAP Robot W100 Robô Aspirador De Peças Mop Pano"
+     "titulo_do_topo": "Kit 2 Roda Frontal Dianteira Giratória Robô Aspirador Multilaser Mondial Wap W100-100C ObaBox-Duste Roldana"
     }
    ]
   },
@@ -3493,47 +3501,25 @@
    "tipo": null,
    "nome_na_fonte": null,
    "escolhido": {
-    "degrau": 0,
-    "composicao": "medida no navegador — chaves-do-navegador-2026-09-20",
-    "chave": "Roborock",
-    "resultados": 61,
-    "titulo_do_topo": "Aspirador Pó Inteligente Roborock Q7 L5",
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock Q8 Max robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "HZY Capa De Escova Principal Original Para Roborock S8/S8 + PLUS Pro Ultra/G20/Q8 Max/Q5 Robô Aspirador De Pó Acessórios",
     "topo_e_a_peca": null,
-    "marca_no_topo": true,
-    "por_que": "os tres primeiros resultados sao robos Roborock",
+    "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
-    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock",
-    "url_busca": "",
-    "fixada_no_navegador": true,
-    "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-    "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20",
-    "nota": "A Shopee Brasil NAO vende o Roborock Q8 Max. Quatro chaves foram tentadas em 20/09 — `Roborock Q8 Max robo aspirador`, `Roborock Q8 Max`, `Roborock Q8 Max+` e `Roborock Q8` — e nenhuma devolve o modelo: o que aparece e Q7 L5, Qr598, Q10 e um Xiaomi. Por isso a chave deste registro e de MARCA e nao de modelo: o leitor que clica no Q8 Max cai na vitrine Roborock da Shopee, nao num beco. O `0 resultados` medido em 18/09 para a chave velha NAO se reproduziu em 20/09 (a mesma chave devolveu total_count 5.684); nao importa para o veredito, porque a regua que fecha o item e `o primeiro resultado traz a marca`, e essa foi medida."
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Q8%20Max%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1134XDHbka"
    },
-   "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Roborock Q8 Max robo aspirador",
-     "resultados": 5,
-     "titulo_do_topo": "Escova de Reposição com Duplo Rolo para Roborock S8 Pro Ultra/S8+/S8, Robô Aspirador Q5 Pro+/Q8 Max+"
-    },
-    {
-     "degrau": 1,
-     "composicao": "marca + codigo do modelo + contexto",
-     "chave": "Roborock Q8 Max robo aspirador",
-     "resultados": 5,
-     "titulo_do_topo": "Escova de Reposição com Duplo Rolo para Roborock S8 Pro Ultra/S8+/S8, Robô Aspirador Q5 Pro+/Q8 Max+",
-     "topo_e_a_peca": null,
-     "por_que": "o codigo do modelo E o nome comercial",
-     "criterio_literal_do_despacho": null,
-     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Q8%20Max%20robo%20aspirador",
-     "url_busca": "https://s.shopee.com.br/7ptLYjUgCM",
-     "veredito": "REPROVA",
-     "regua_do_veredito": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-     "veredito_em": "2026-09-20",
-     "primeiro_resultado_no_veredito": "Robô Aspirador Robot Vacuum 6 Max (Xiaomi)"
+     "resultados": 1,
+     "titulo_do_topo": "HZY Capa De Escova Principal Original Para Roborock S8/S8 + PLUS Pro Ultra/G20/Q8 Max/Q5 Robô Aspirador De Pó Acessórios"
     }
    ]
   },
@@ -3543,46 +3529,25 @@
    "tipo": null,
    "nome_na_fonte": null,
    "escolhido": {
-    "degrau": 0,
-    "composicao": "medida no navegador — chaves-do-navegador-2026-09-20",
-    "chave": "Roborock Qrevo Master",
-    "resultados": 4007,
-    "titulo_do_topo": "Para Roborock G20S Ultra/Saros 10R/Qrevo CurvX... Acessórios",
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock Qrevo Master robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Saco de pó de reposição para aspirador de pó robô Roborock / Qrevo Curv / Master / P20 Pro / S / Pro / MaxV / 10 peças",
     "topo_e_a_peca": null,
-    "marca_no_topo": true,
-    "por_que": "o primeiro resultado traz a marca Roborock",
+    "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
-    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Qrevo%20Master",
-    "url_busca": "",
-    "fixada_no_navegador": true,
-    "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-    "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Qrevo%20Master%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/1qcBWkIu5a"
    },
-   "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Roborock Qrevo Master robo aspirador",
-     "resultados": 6,
-     "titulo_do_topo": "Kit de Saco de Pó Compatível com Roborock Qrevo Curv, Master, P20 Pro, S MaxV, Peças de Reposição para Robô Aspirador"
-    },
-    {
-     "degrau": 1,
-     "composicao": "marca + codigo do modelo + contexto",
-     "chave": "Roborock Qrevo Master robo aspirador",
-     "resultados": 6,
-     "titulo_do_topo": "Kit de Saco de Pó Compatível com Roborock Qrevo Curv, Master, P20 Pro, S MaxV, Peças de Reposição para Robô Aspirador",
-     "topo_e_a_peca": null,
-     "por_que": "o codigo do modelo E o nome comercial",
-     "criterio_literal_do_despacho": null,
-     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Qrevo%20Master%20robo%20aspirador",
-     "url_busca": "https://s.shopee.com.br/6Al7ZffYsy",
-     "veredito": "REPROVA",
-     "regua_do_veredito": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-     "veredito_em": "2026-09-20",
-     "primeiro_resultado_no_veredito": "Robô Aspirador Xiaomi S40c (medido em 18/09)"
+     "resultados": 10,
+     "titulo_do_topo": " Saco de pó de reposição para aspirador de pó robô Roborock / Qrevo Curv / Master / P20 Pro / S / Pro / MaxV / 10 peças"
     }
    ]
   },
@@ -3592,23 +3557,18 @@
    "tipo": null,
    "nome_na_fonte": null,
    "escolhido": {
-    "degrau": 0,
-    "composicao": "medida no navegador — chaves-do-navegador-2026-09-20",
-    "chave": "Roborock S8 MaxV",
-    "resultados": 5756,
-    "titulo_do_topo": "Para Roborock G20S Ultra/Saros 10R... Acessórios",
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock S8 MaxV Ultra robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Para Roborock G20S / S8 Max Ultra / S8 MaxV Ultra Aspirador Robô Acessórios de Reposição Escovas Laterais Almofadas de",
     "topo_e_a_peca": null,
-    "marca_no_topo": true,
-    "por_que": "o primeiro resultado traz a marca Roborock e o 3o nomeia o S8 MaxV Ultra",
+    "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
-    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20S8%20MaxV",
-    "url_busca": "",
-    "fixada_no_navegador": true,
-    "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-    "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20S8%20MaxV%20Ultra%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/9AOmGDvBDS"
    },
-   "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
    "tentativas": [
     {
      "degrau": 1,
@@ -3616,22 +3576,6 @@
      "chave": "Roborock S8 MaxV Ultra robo aspirador",
      "resultados": 10,
      "titulo_do_topo": "Para Roborock G20S / S8 Max Ultra / S8 MaxV Ultra Aspirador Robô Acessórios de Reposição Escovas Laterais Almofadas de"
-    },
-    {
-     "degrau": 1,
-     "composicao": "marca + codigo do modelo + contexto",
-     "chave": "Roborock S8 MaxV Ultra robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": "Para Roborock G20S / S8 Max Ultra / S8 MaxV Ultra Aspirador Robô Acessórios de Reposição Escovas Laterais Almofadas de",
-     "topo_e_a_peca": null,
-     "por_que": "o codigo do modelo E o nome comercial",
-     "criterio_literal_do_despacho": null,
-     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20S8%20MaxV%20Ultra%20robo%20aspirador",
-     "url_busca": "https://s.shopee.com.br/7AdelVbkvS",
-     "veredito": "REPROVA",
-     "regua_do_veredito": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-     "veredito_em": "2026-09-20",
-     "primeiro_resultado_no_veredito": "Robô Aspirador Xiaomi S40c (medido em 18/09); sem o sufixo, `Robot Vacuum 6 Max` (Xiaomi) — tambem reprova"
     }
    ]
   },
@@ -3641,23 +3585,18 @@
    "tipo": null,
    "nome_na_fonte": null,
    "escolhido": {
-    "degrau": 0,
-    "composicao": "medida no navegador — chaves-do-navegador-2026-09-20",
-    "chave": "Roborock Qrevo Curv",
-    "resultados": 38,
-    "titulo_do_topo": "Robo Aspirador Roborock Qr598",
+    "degrau": 2,
+    "composicao": "marca + cabeca da linha comercial + contexto",
+    "chave": "Roborock Qrevo robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": " Saco de pó de reposição para aspirador de pó robô Roborock / Qrevo Curv / Master / P20 Pro / S / Pro / MaxV / 10 peças",
     "topo_e_a_peca": null,
-    "marca_no_topo": true,
-    "por_que": "o primeiro resultado traz a marca Roborock",
+    "por_que": "o codigo devolveu zero: quem vende chama pela linha",
     "criterio_literal_do_despacho": null,
-    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Qrevo%20Curv",
-    "url_busca": "",
-    "fixada_no_navegador": true,
-    "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-    "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Qrevo%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/6fhRHd9Een"
    },
-   "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
+   "parou_por": "entidade MODELO_ROBO: o codigo devolveu zero e a linha comercial respondeu",
    "tentativas": [
     {
      "degrau": 1,
@@ -3671,23 +3610,7 @@
      "composicao": "marca + cabeca da linha comercial + contexto",
      "chave": "Roborock Qrevo robo aspirador",
      "resultados": 10,
-     "titulo_do_topo": "Kit de Saco de Pó Compatível com Roborock Qrevo Curv, Master, P20 Pro, S MaxV, Peças de Reposição para Robô Aspirador"
-    },
-    {
-     "degrau": 2,
-     "composicao": "marca + cabeca da linha comercial + contexto",
-     "chave": "Roborock Qrevo robo aspirador",
-     "resultados": 10,
-     "titulo_do_topo": "Kit de Saco de Pó Compatível com Roborock Qrevo Curv, Master, P20 Pro, S MaxV, Peças de Reposição para Robô Aspirador",
-     "topo_e_a_peca": null,
-     "por_que": "o codigo devolveu zero: quem vende chama pela linha",
-     "criterio_literal_do_despacho": null,
-     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Qrevo%20robo%20aspirador",
-     "url_busca": "https://s.shopee.com.br/7AdelVkPtu",
-     "veredito": "REPROVA",
-     "regua_do_veredito": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-     "veredito_em": "2026-09-20",
-     "primeiro_resultado_no_veredito": "Robô Xiaomi S40 PRO (medido em 18/09)"
+     "titulo_do_topo": " Saco de pó de reposição para aspirador de pó robô Roborock / Qrevo Curv / Master / P20 Pro / S / Pro / MaxV / 10 peças"
     }
    ]
   },
@@ -3697,23 +3620,18 @@
    "tipo": null,
    "nome_na_fonte": null,
    "escolhido": {
-    "degrau": 0,
-    "composicao": "medida no navegador — chaves-do-navegador-2026-09-20",
-    "chave": "Roborock Saros Z70",
-    "resultados": 3727,
-    "titulo_do_topo": "Para Roborock G20S Ultra/Saros 10R... Acessórios",
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock Saros Z70 robo aspirador",
+    "resultados": 1,
+    "titulo_do_topo": "For Roborock Saros Z70 Robô Aspirador De Pó Novo Original Escova De Corte De Cabelo Anti Emaranhado Rolo Principal",
     "topo_e_a_peca": null,
-    "marca_no_topo": true,
-    "por_que": "o primeiro resultado traz a marca Roborock e o 3o e o modelo exato",
+    "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
-    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Saros%20Z70",
-    "url_busca": "",
-    "fixada_no_navegador": true,
-    "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-    "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Saros%20Z70%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/3qNFuQOLs1"
    },
-   "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
    "tentativas": [
     {
      "degrau": 1,
@@ -3721,22 +3639,6 @@
      "chave": "Roborock Saros Z70 robo aspirador",
      "resultados": 1,
      "titulo_do_topo": "For Roborock Saros Z70 Robô Aspirador De Pó Novo Original Escova De Corte De Cabelo Anti Emaranhado Rolo Principal"
-    },
-    {
-     "degrau": 1,
-     "composicao": "marca + codigo do modelo + contexto",
-     "chave": "Roborock Saros Z70 robo aspirador",
-     "resultados": 1,
-     "titulo_do_topo": "For Roborock Saros Z70 Robô Aspirador De Pó Novo Original Escova De Corte De Cabelo Anti Emaranhado Rolo Principal",
-     "topo_e_a_peca": null,
-     "por_que": "o codigo do modelo E o nome comercial",
-     "criterio_literal_do_despacho": null,
-     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Saros%20Z70%20robo%20aspirador",
-     "url_busca": "https://s.shopee.com.br/9V1ZXnfvwe",
-     "veredito": "REPROVA",
-     "regua_do_veredito": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-     "veredito_em": "2026-09-20",
-     "primeiro_resultado_no_veredito": "Robô Aspirador Xiaomi S40c (medido em 18/09)"
     }
    ]
   },
@@ -3746,53 +3648,28 @@
    "tipo": null,
    "nome_na_fonte": null,
    "escolhido": {
-    "degrau": 0,
-    "composicao": "medida no navegador — chaves-do-navegador-2026-09-20",
-    "chave": "Roborock Saros 10R",
-    "resultados": 3979,
-    "titulo_do_topo": "Para Roborock G20S Ultra/Saros 10R... Acessórios",
+    "degrau": 1,
+    "composicao": "marca + codigo do modelo + contexto",
+    "chave": "Roborock Saros 10R robo aspirador",
+    "resultados": 6,
+    "titulo_do_topo": "Kit de Acessórios de Reposição para Aspirador Robô Roborock Saros 10R / G20s Ultra",
     "topo_e_a_peca": null,
-    "marca_no_topo": true,
-    "por_que": "o primeiro resultado traz a marca Roborock e nomeia o Saros 10R",
+    "por_que": "o codigo do modelo E o nome comercial",
     "criterio_literal_do_despacho": null,
-    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Saros%2010R",
-    "url_busca": "",
-    "fixada_no_navegador": true,
-    "regua": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-    "medido_em": "2026-09-20",
-    "motivo_sem_url_busca": "encurtamento pendente — credencial ausente no ambiente em 2026-09-20"
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Saros%2010R%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/6L4at1JN5C"
    },
-   "parou_por": "chave fixada no navegador pelo despacho do Raphael de 2026-09-20; a escada da Open API nao decide esta chave",
+   "parou_por": "entidade MODELO_ROBO: o codigo bastou",
    "tentativas": [
     {
      "degrau": 1,
      "composicao": "marca + codigo do modelo + contexto",
      "chave": "Roborock Saros 10R robo aspirador",
-     "resultados": 5,
-     "titulo_do_topo": "Para Roborock G20S Ultra/Saros 10R /Qrevo CurvX /Qrevo EdgeT/S9 MaxV Slim Acessórios para Aspirador Robô: Pano de Mop,"
-    },
-    {
-     "degrau": 1,
-     "composicao": "marca + codigo do modelo + contexto",
-     "chave": "Roborock Saros 10R robo aspirador",
-     "resultados": 5,
-     "titulo_do_topo": "Para Roborock G20S Ultra/Saros 10R /Qrevo CurvX /Qrevo EdgeT/S9 MaxV Slim Acessórios para Aspirador Robô: Pano de Mop,",
-     "topo_e_a_peca": null,
-     "por_que": "o codigo do modelo E o nome comercial",
-     "criterio_literal_do_despacho": null,
-     "url_busca_produto": "https://shopee.com.br/search?keyword=Roborock%20Saros%2010R%20robo%20aspirador",
-     "url_busca": "https://s.shopee.com.br/5AsaNpwV1n",
-     "veredito": "REPROVA",
-     "regua_do_veredito": "busca do site (navegador do Raphael, api/v4/search/search_items)",
-     "veredito_em": "2026-09-20",
-     "primeiro_resultado_no_veredito": "Robô Xiaomi S40 PRO (medido em 18/09)"
+     "resultados": 6,
+     "titulo_do_topo": "Kit de Acessórios de Reposição para Aspirador Robô Roborock Saros 10R / G20s Ultra"
     }
    ]
   }
  ],
- "nota_das_contagens": "As contagens acima sao de PECA. Registros de MODELO_ROBO entram na lista com `topo_e_a_peca` nulo de proposito: a pergunta do item 3 do despacho e sobre peca, e modelo nao desce escada (ver medir_modelos).",
- "fontes_da_medicao": [
-  "chaves-do-navegador-2026-09-20"
- ],
- "atualizado_em": "2026-09-20"
+ "nota_das_contagens": "As contagens acima sao de PECA. Registros de MODELO_ROBO entram na lista com `topo_e_a_peca` nulo de proposito: a pergunta do item 3 do despacho e sobre peca, e modelo nao desce escada (ver medir_modelos)."
 }

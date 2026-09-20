@@ -1,0 +1,1746 @@
+{
+ "gerado_em": "2026-09-20",
+ "alvo": 66,
+ "registros": [
+  {
+   "id": "multi-pr10124",
+   "marca": "multi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "PR10124",
+   "tipo": "escova lateral",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Escova Lateral para Aspirador Robô Mars, Moon e Duster - PR10124",
+    "referencia_na_pagina": "PR10124",
+    "skus": [
+     "10858"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+      "alt": null
+     },
+     {
+      "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200173/10858_01.jpg?v=638533810082070000",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "PR10124 == PR10124"
+   }
+  },
+  {
+   "id": "multi-pr10343",
+   "marca": "multi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "PR10343",
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "aviso": "catalogo VTEX nao serviu: catalogo devolveu lista vazia",
+    "porta": "https://www.multilaser.com.br/filtro-para-aspirador-robo-ob010-pr10343/p",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "multi-pr10342",
+   "marca": "multi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "PR10342",
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "aviso": "catalogo VTEX nao serviu: catalogo devolveu lista vazia",
+    "porta": "https://www.multilaser.com.br/pano-para-aspirador-robo-ob010/p",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "multi-pr10127",
+   "marca": "multi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "PR10127",
+   "tipo": "bateria",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "aviso": "catalogo VTEX nao serviu: catalogo devolveu lista vazia",
+    "porta": "https://www.multilaser.com.br/bateria-p-aspirador-robo-ho041-versao-a-pr10127/p",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "multi-pr8116",
+   "marca": "multi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "PR8116",
+   "tipo": "bateria",
+   "portas": [
+    "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/"
+   ],
+   "colheita": null,
+   "motivo": "sem porta de fabricante aberta"
+  },
+  {
+   "id": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+   "marca": "electrolux",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
+    "referencia_na_pagina": "41054242",
+    "skus": [
+     "310131290"
+    ],
+    "fotos": [
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+      "alt": "Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286952/Cybertron_Sponge_Filter_Specs_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926930000",
+      "alt": "Cybertron_Sponge_Filter_Specs_ERB44-60-61-62_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286953/Cybertron_Hepa_Filter_Specs_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366927100000",
+      "alt": "Cybertron_Hepa_Filter_Specs_ERB44-60-61-62_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286954/7909569505588_4-1000x1000.jpg?v=638993366927400000",
+      "alt": "7909569505588_4-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286955/Cybertron_HepaSponge_Filters_Installed_ERB44_Electrolux-1000x1000.jpg?v=638993366927570000",
+      "alt": "Cybertron_HepaSponge_Filters_Installed_ERB44_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286956/Cybertron_HepaSponge_Filters_Installed_ERB60-61-62_Electrolux-1000x1000.jpg?v=638993366927700000",
+      "alt": "Cybertron_HepaSponge_Filters_Installed_ERB60-61-62_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286957/7909569505588_7-1000x1000.jpg?v=638993366927700000",
+      "alt": "7909569505588_7-1000x1000"
+     }
+    ],
+    "porta": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+    "veredito_nome": "tokens",
+    "prova_nome": "filtro -> ...Filtro HEPA com Espuma Electrolux para Robôs A... | hepa -> ...Filtro HEPA com Espuma Electrolux para Robôs Aspira... | espuma -> ...Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44... | erb44 -> ...spuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62 41054242 <p style... | erb60 -> ...lectrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62 41054242 <p style=\"text-... | erb61 -> ...ux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62 41054242 <p style=\"text-align:j... | erb62 -> ...Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62 41054242 <p style=\"text-align:justify\">..."
+   }
+  },
+  {
+   "id": "electrolux-kit-performance-erb60-erb61-erb62",
+   "marca": "electrolux",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "kit",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
+    "referencia_na_pagina": "41054539",
+    "skus": [
+     "310131375"
+    ],
+    "fotos": [
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+      "alt": "Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286992/Cybertron_Side_Brush_Right_Specs_Electrolux-1000x1000.jpg?v=638995955286800000",
+      "alt": "Cybertron_Side_Brush_Right_Specs_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286993/Cybertron_Hepa_Filter_ERB60-61-62_Specs_Electrolux-1000x1000.jpg?v=638995955288070000",
+      "alt": "Cybertron_Hepa_Filter_ERB60-61-62_Specs_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286994/7909569509623_4-1000x1000.jpg?v=638995955288370000",
+      "alt": "7909569509623_4-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286995/Cybertron_Mop_Pad_Specs_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955288700000",
+      "alt": "Cybertron_Mop_Pad_Specs_ERB60-61-62_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286996/Cybertron_Sponge_Filter_ERB60-61-62_Specs_Electrolux-1000x1000.jpg?v=638995955289300000",
+      "alt": "Cybertron_Sponge_Filter_ERB60-61-62_Specs_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286997/Cybertron_Kit_Performance_Perspective_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955290100000",
+      "alt": "Cybertron_Kit_Performance_Perspective_ERB60-61-62_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286998/7909569509623_8-1000x1000.jpg?v=638995955290230000",
+      "alt": "7909569509623_8-1000x1000"
+     }
+    ],
+    "porta": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+    "veredito_nome": "tokens",
+    "prova_nome": "kit -> ...Kit Performance Electrolux para Robôs Aspir... | performance -> ...Kit Performance Electrolux para Robôs Aspiradores ERB60... | erb60 -> ...mance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62 41054539 <p style=\"text-... | erb61 -> ...lectrolux para Robôs Aspiradores ERB60, ERB61 e ERB62 41054539 <p style=\"text-align:j... | erb62 -> ...x para Robôs Aspiradores ERB60, ERB61 e ERB62 41054539 <p style=\"text-align:justify\">..."
+   }
+  },
+  {
+   "id": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+   "marca": "electrolux",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova principal",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+    "referencia_na_pagina": "41054156",
+    "skus": [
+     "310131283"
+    ],
+    "fotos": [
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+      "alt": "Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286241/Cybertron_Roller_Brush_Specs_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794089430000",
+      "alt": "Cybertron_Roller_Brush_Specs_ERB60-61-62-80_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286242/Cybertron_Roller_Brush_Perspective_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794089600000",
+      "alt": "Cybertron_Roller_Brush_Perspective_ERB60-61-62-80_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286243/7909569504673_4-1000x1000.jpg?v=638990794089900000",
+      "alt": "7909569504673_4-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286244/7909569504673_5-1000x1000.jpg?v=638990794090070000",
+      "alt": "7909569504673_5-1000x1000"
+     }
+    ],
+    "porta": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+    "veredito_nome": "tokens",
+    "prova_nome": "escova -> ...Escova Rotativa Central Electrolux para Robôs... | rotativa -> ...Escova Rotativa Central Electrolux para Robôs Aspirador... | central -> ...Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60... | erb60 -> ...ntral Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80 41054156 <p style... | erb61 -> ...lectrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80 41054156 <p style=\"text-... | erb62 -> ...ux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80 41054156 <p style=\"text-align:j... | erb80 -> ...Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80 41054156 <p style=\"text-align:justify\">..."
+   }
+  },
+  {
+   "id": "electrolux-kit-performance-erb44",
+   "marca": "electrolux",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "kit",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Kit Performance Electrolux para Robô Aspirador ERB44",
+    "referencia_na_pagina": "41054538",
+    "skus": [
+     "310131374"
+    ],
+    "fotos": [
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/287006/Cybertron_Kit_Performance_FrontView_ERB44_Electrolux-1000x1000.jpg?v=638996098971830000",
+      "alt": "Cybertron_Kit_Performance_FrontView_ERB44_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/287007/Cybertron_Side_Brush_Right_Specs_Electrolux-1000x1000.jpg?v=638996098972300000",
+      "alt": "Cybertron_Side_Brush_Right_Specs_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/287008/Cybertron_Hepa_Filter_Specs_ERB44_Electrolux-1000x1000.jpg?v=638996098972430000",
+      "alt": "Cybertron_Hepa_Filter_Specs_ERB44_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/287009/7909569509616_4-1000x1000.jpg?v=638996098972770000",
+      "alt": "7909569509616_4-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/287010/Cybertron_Sponge_Filter_ERB44_Specs_Electrolux-1000x1000.jpg?v=638996098972900000",
+      "alt": "Cybertron_Sponge_Filter_ERB44_Specs_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/287011/Cybertron_Kit_Performance_Perspective_ERB44_Electrolux-1000x1000.jpg?v=638996098973230000",
+      "alt": "Cybertron_Kit_Performance_Perspective_ERB44_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/287012/7909569509616_7-1000x1000.jpg?v=638996098973230000",
+      "alt": "7909569509616_7-1000x1000"
+     }
+    ],
+    "porta": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+    "veredito_nome": "tokens",
+    "prova_nome": "kit -> ...Kit Performance Electrolux para Robô Aspira... | performance -> ...Kit Performance Electrolux para Robô Aspirador ERB44 41... | erb44 -> ...formance Electrolux para Robô Aspirador ERB44 41054538 <p style=\"text-align:justify\">..."
+   }
+  },
+  {
+   "id": "positivo-11206519",
+   "marca": "positivo",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "11206519",
+   "tipo": "escova principal",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Escova Central para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente - Compacta e Leve",
+    "referencia_na_pagina": "11206519",
+    "skus": [
+     "44032"
+    ],
+    "fotos": [
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/158004/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000---01.jpg?v=638599427963500000",
+      "alt": "ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000---01"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/158005/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000-02.jpg?v=638947635603970000",
+      "alt": "ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000-02"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/158006/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000-03.jpg?v=638947635603970000",
+      "alt": "ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000-03"
+     }
+    ],
+    "porta": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "11206519 == 11206519"
+   }
+  },
+  {
+   "id": "positivo-11206540",
+   "marca": "positivo",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "11206540",
+   "tipo": "mop",
+   "portas": [
+    "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p"
+   ],
+   "colheita": null,
+   "motivo": "sem porta de fabricante aberta"
+  },
+  {
+   "id": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+   "marca": "electrolux",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+    "referencia_na_pagina": "41054227",
+    "skus": [
+     "310131287"
+    ],
+    "fotos": [
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000",
+      "alt": "Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286237/Cybertron_Mop_Pad_Specs_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709371170000",
+      "alt": "Cybertron_Mop_Pad_Specs_ERB60-61-62-80_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286238/Cybertron_Mop_Pad_Perspective_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709371330000",
+      "alt": "Cybertron_Mop_Pad_Perspective_ERB60-61-62-80_Electrolux-1000x1000"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/286239/7909569505434_4-1000x1000.jpg?v=638990709371630000",
+      "alt": "7909569505434_4-1000x1000"
+     }
+    ],
+    "porta": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+    "veredito_nome": "tokens",
+    "prova_nome": "pano -> ...Pano de Microfibra Electrolux para Robôs Asp... | microfibra -> ...Pano de Microfibra Electrolux para Robôs Aspiradores ERB60... | erb60 -> ...fibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80 41054227 <p style... | erb61 -> ...lectrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80 41054227 <p style=\"text-... | erb62 -> ...ux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80 41054227 <p style=\"text-align:j... | erb80 -> ...Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80 41054227 <p style=\"text-align:justify\">..."
+   }
+  },
+  {
+   "id": "xiaomi-d106-tb",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "D106-TB",
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "https://i02.appmifile.com/884_operatorx_operatorx_opx/08/07/2025/541377074c7009cc069a3376562aedef.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "t specifications Name Xiaomi Robot Vacuum S20 Mop Pad Model D106-TB Quantity 2 Package contents Mop pad x2 Xiaomi Robot Vacuum"
+   }
+  },
+  {
+   "id": "xiaomi-b106gl-bx",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "B106GL-BX",
+   "tipo": "escova lateral",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "https://i02.appmifile.com/884_operatorx_operatorx_opx/08/07/2025/541377074c7009cc069a3376562aedef.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "s Name Xiaomi Robot Vacuum S10/E10/X20/S20 Side Brush Model B106GL-BX Quantity 2 Package contents Side brush x2 Xiaomi Robot Vacu"
+   }
+  },
+  {
+   "id": "xiaomi-escova-principal-h40-s40",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova principal",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i02.appmifile.com/50_operatorx_operatorx_opx/06/02/2026/a588bf783c82f299d98415910127d87d.png",
+      "alt": null
+     },
+     {
+      "url": "https://i02.appmifile.com/50_operatorx_operatorx_opx/06/02/2026/a588bf783c82f299d98415910127d87d.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"escova\""
+   }
+  },
+  {
+   "id": "wap-escova-direita-w300",
+   "marca": "wap",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova lateral",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Escova Direita Para Robô Aspirador de Pó Robot W300",
+    "referencia_na_pagina": "FW006267",
+    "skus": [
+     "368"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/158329/escova-direita-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425033056500000",
+      "alt": "Escova-Direita-Para-Robo-Aspirador-de-Po-WAP-Robot-W300"
+     }
+    ],
+    "porta": "https://loja.wap.ind.br/escova-direita-para-robo-aspirador-de-po-wap-robot-w300/p",
+    "veredito_nome": "tokens",
+    "prova_nome": "escova -> ...Escova Direita Para Robô Aspirador de Pó Robot... | direita -> ...Escova Direita Para Robô Aspirador de Pó Robot W300 FW... | w300 -> ...Direita Para Robô Aspirador de Pó Robot W300 FW006267 Produtos compatíveis:..."
+   }
+  },
+  {
+   "id": "wap-escova-esquerda-w300",
+   "marca": "wap",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova lateral",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Escova Esquerda Para Robô Aspirador de Pó WAP Robot W300",
+    "referencia_na_pagina": "FW006269",
+    "skus": [
+     "369"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/158330/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425034313300000",
+      "alt": "Escova-Esquerda-Para-Robo-Aspirador-de-Po-WAP-Robot-W300"
+     }
+    ],
+    "porta": "https://loja.wap.ind.br/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300/p",
+    "veredito_nome": "tokens",
+    "prova_nome": "escova -> ...Escova Esquerda Para Robô Aspirador de Pó WAP... | esquerda -> ...Escova Esquerda Para Robô Aspirador de Pó WAP Robot W30... | w300 -> ...rda Para Robô Aspirador de Pó WAP Robot W300 FW006269 Produtos compatíveis:..."
+   }
+  },
+  {
+   "id": "wap-escova-frontal-wsmart",
+   "marca": "wap",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova lateral",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
+    "referencia_na_pagina": "FW008025",
+    "skus": [
+     "381"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/158342/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart.png?v=637425466210430000",
+      "alt": "Escova-Frontal-Para-Robo-Aspirador-de-Po-WAP-Robot-WSmart"
+     }
+    ],
+    "porta": "https://loja.wap.ind.br/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+    "veredito_nome": "tokens",
+    "prova_nome": "escova -> ...Escova Frontal Para Robô Aspirador de Pó WAP R... | frontal -> ...Escova Frontal Para Robô Aspirador de Pó WAP Robot WSm... | wsmart -> ...tal Para Robô Aspirador de Pó WAP Robot WSmart FW008025 Produtos compatíveis:..."
+   }
+  },
+  {
+   "id": "xiaomi-b106gl-zx",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "B106GL-ZX",
+   "tipo": "escova principal",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png",
+      "alt": null
+     },
+     {
+      "url": "https://i02.appmifile.com/618_item_sg/22/08/2025/a969723c5a249b3ec041244dafd63f25.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "mi Robot Vacuum S10 Main Brush Product specifications Model B106GL-ZX Package contents Main brush x1 Cleaning tool x1 Xiaomi Robo"
+   }
+  },
+  {
+   "id": "xiaomi-b106gl-lw",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "B106GL-LW",
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png",
+      "alt": null
+     },
+     {
+      "url": "https://i02.appmifile.com/278_item_sg/11/06/2026/e9006ae210d991725015dc6b494d8595.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum S10 Filter Product specifications Model B106GL-LW Package contents Dustbin filters x2"
+   }
+  },
+  {
+   "id": "xiaomi-mop-s10",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png",
+      "alt": null
+     },
+     {
+      "url": "https://i02.appmifile.com/618_item_sg/22/08/2025/a969723c5a249b3ec041244dafd63f25.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+    "veredito_nome": "tokens",
+    "prova_nome": "mop -> ...Review Buy Now Xiaomi Robot Vacuum S10 Mop Pad Product specifications Model B106GL... | s10 -> ...Xiaomi Robot Vacuum S10 Accessories Specs | Xiaomi SG - Xiaomi..."
+   }
+  },
+  {
+   "id": "xiaomi-filtro-mop-2",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11406/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"filtro\""
+   }
+  },
+  {
+   "id": "xiaomi-escova-lateral-mop-2",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova lateral",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11406/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"escova\""
+   }
+  },
+  {
+   "id": "xiaomi-escova-principal-mop-2",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova principal",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11406/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"escova\""
+   }
+  },
+  {
+   "id": "xiaomi-reservatorio-mop-2",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "reservatorio",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11406/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"reservatorio\""
+   }
+  },
+  {
+   "id": "xiaomi-mop-mop-2",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11406/",
+    "veredito_nome": "tokens",
+    "prova_nome": "mop -> ...Mi Robot Vacuum-Mop 2 FAQ JavaScript is not available. We’v... | mop -> ...Mi Robot Vacuum-Mop 2 FAQ JavaScript is not available. We’v..."
+   }
+  },
+  {
+   "id": "xiaomi-filtro-mop-2-lite",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11405/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"filtro\""
+   }
+  },
+  {
+   "id": "xiaomi-escova-lateral-mop-2-lite",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova lateral",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11405/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"escova\""
+   }
+  },
+  {
+   "id": "xiaomi-escova-principal-mop-2-lite",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "escova principal",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11405/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"escova\""
+   }
+  },
+  {
+   "id": "xiaomi-mop-mop-2-lite",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11405/",
+    "veredito_nome": "tokens",
+    "prova_nome": "mop -> ...Mi Robot Vacuum-Mop 2 Lite FAQ JavaScript is not available.... | mop -> ...Mi Robot Vacuum-Mop 2 Lite FAQ JavaScript is not available.... | lite -> ...Mi Robot Vacuum-Mop 2 Lite FAQ JavaScript is not available. We’ve..."
+   }
+  },
+  {
+   "id": "xiaomi-reservatorio-mop-2-lite",
+   "marca": "xiaomi",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "reservatorio",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "porta": "https://www.mi.com/global/support/faq/details/KA-11405/",
+    "veredito_nome": "NAO",
+    "prova_nome": "faltou a palavra \"reservatorio\""
+   }
+  },
+  {
+   "id": "roborock-mop-q8-max",
+   "marca": "roborock",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "shopify",
+    "nome_na_pagina": "Mop Cloth*2 for Q8 Max Series, Q5 Pro Series, Q7 Series, Q7 Max Series, S6 Series, S5 Series and E Series-Point Program",
+    "referencia_na_pagina": "RR-MC-01",
+    "fotos": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/062ec9c82657b2be82b68364b1fc1900_3d93e94d-6075-44a9-8ce6-fc074f589202.jpg?v=1725035616",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/10_1_fbc3e454-ffcc-495c-85ce-d4dc2de157ea.jpg?v=1725035616",
+      "largura": 1000,
+      "altura": 1000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/10_3_40c20d67-2c3b-428a-b89d-0d20f4c1a1ad.jpg?v=1725035616",
+      "largura": 1474,
+      "altura": 1419,
+      "alt": null
+     }
+    ],
+    "porta": "https://us.roborock.com/products/mop-cloth-2pcs-for-roborock-q7-series-s6-series-s5-series-e-series",
+    "veredito_nome": "tokens",
+    "prova_nome": "mop -> ...Mop Cloth*2 for Q8 Max Series, Q5 Pro Serie... | max -> ...Mop Cloth*2 for Q8 Max Series, Q5 Pro Series, Q7 Series, Q7 Ma..."
+   }
+  },
+  {
+   "id": "roborock-mop-qrevo-master",
+   "marca": "roborock",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "shopify",
+    "nome_na_pagina": "Roborock Mop Cloth*4pcs for Qrevo S5V, Qrevo, Qrevo Pro, Qrevo S, Qrevo Master, Qrevo MaxV, Qrevo Plus, Qrevo Slim, Qrevo CurvX",
+    "referencia_na_pagina": "RR-TB2-QRevo-04",
+    "fotos": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/4_q_-revo_2.jpg?v=1757929885",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/3_ca6a078c-561e-4719-80a1-e00ad3be4ade.png?v=1757937203",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_c56957ea-818e-49f0-a32d-eb64cc5f7a5e.png?v=1757937203",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/10_20deb912-1b15-46f8-a855-4f46c4f7d2d1.png?v=1757937203",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/11_fda69b96-ae6b-4907-a2c4-b292f8773115.png?v=1757937203",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     }
+    ],
+    "porta": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-q-revo",
+    "veredito_nome": "tokens",
+    "prova_nome": "mop -> ...Roborock Mop Cloth*4pcs for Qrevo S5V, Qrevo, Qrevo... | qrevo -> ...Roborock Mop Cloth*4pcs for Qrevo S5V, Qrevo, Qrevo Pro, Qrevo S, Qrevo Master, Qrev... | master -> ...o S5V, Qrevo, Qrevo Pro, Qrevo S, Qrevo Master, Qrevo MaxV, Qrevo Plus, Qrevo Slim, Qr..."
+   }
+  },
+  {
+   "id": "roborock-mop-qrevo-curv",
+   "marca": "roborock",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "shopify",
+    "nome_na_pagina": "Roborock Mop Cloth*4pcs for Qrevo Curv Series and Qrevo Edge Series (Not compatible with CurvX)",
+    "referencia_na_pagina": "RR-TB2-QrevoCurv-04",
+    "fotos": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/1_3183c8ba-4be6-4a98-988c-ea1f947939e3.jpg?v=1735031940",
+      "largura": 1600,
+      "altura": 1600,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/6_1c08928c-be5b-4acd-9a3f-d13fbaf0d384.jpg?v=1735031940",
+      "largura": 1600,
+      "altura": 1600,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_f9c80e1f-11ab-4b4c-b733-b38591401c38.jpg?v=1735031940",
+      "largura": 1600,
+      "altura": 1600,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/5_6b7689d9-8193-46e0-bc4d-a37e80da6ea2.jpg?v=1735031940",
+      "largura": 1600,
+      "altura": 1600,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/4_d1ce7a00-fc71-4ada-836a-c19fd7d853d7.jpg?v=1735031940",
+      "largura": 1600,
+      "altura": 1600,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/3_2df9383d-cfe1-4aff-a010-e40070fa212a.jpg?v=1735031940",
+      "largura": 1600,
+      "altura": 1600,
+      "alt": null
+     }
+    ],
+    "porta": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-qrevo-curv-and-qrevo-edge",
+    "veredito_nome": "tokens",
+    "prova_nome": "mop -> ...Roborock Mop Cloth*4pcs for Qrevo Curv Series and Qr... | qrevo -> ...Roborock Mop Cloth*4pcs for Qrevo Curv Series and Qrevo Edge Series (Not... | curv -> ...Roborock Mop Cloth*4pcs for Qrevo Curv Series and Qrevo Edge Series (Not compa..."
+   }
+  },
+  {
+   "id": "roborock-mop-saros-10r-z70",
+   "marca": "roborock",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "shopify",
+    "nome_na_pagina": "Roborock Mop Cloth*4pcs for Saros 10R and Saros Z70",
+    "referencia_na_pagina": "RR-KJTB4-Saros10R-M04",
+    "fotos": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_Saros-10R-1.jpg?v=1757937015",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/Saros10R_2.jpg?v=1757937015",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/Saros10R_208e23cd-3f67-4e83-8614-50a866fd2324.jpg?v=1757937015",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     }
+    ],
+    "porta": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-saros-10r-and-saros-z70",
+    "veredito_nome": "tokens",
+    "prova_nome": "mop -> ...Roborock Mop Cloth*4pcs for Saros 10R and Saros Z70... | saros -> ...Roborock Mop Cloth*4pcs for Saros 10R and Saros Z70 <p><span>Buy</span><s... | 10r -> ...Roborock Mop Cloth*4pcs for Saros 10R and Saros Z70 <p><span>Buy</span><span>... | z70 -> ...Mop Cloth*4pcs for Saros 10R and Saros Z70 <p><span>Buy</span><span> Roborock Mop..."
+   }
+  },
+  {
+   "id": "roborock-mop-s8-maxv-ultra",
+   "marca": "roborock",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": null,
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "shopify",
+    "nome_na_pagina": "Roborock Edgewise Mop Cloth*2pcs for S8 MaxV Ultra, S8 Max Ultra",
+    "referencia_na_pagina": "RR-TB2-S8MaxVUltra-P02",
+    "fotos": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/Roborock_2_S8_MaxV_Ultra_S8_Max_Ultra.jpg?v=1757930347",
+      "largura": 2000,
+      "altura": 2000,
+      "alt": null
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/4_8cfc58c6-b957-4958-8235-63f21764c6c8.jpg?v=1757930347",
+      "largura": 1600,
+      "altura": 1600,
+      "alt": null
+     }
+    ],
+    "porta": "https://us.roborock.com/products/roborock-edgewise-mop-cloth-2pcs-for-s8-maxv-ultra-s8-max-ultra",
+    "veredito_nome": "tokens",
+    "prova_nome": "mop -> ...Roborock Edgewise Mop Cloth*2pcs for S8 MaxV Ultra, S8 Max Ul... | maxv -> ...Roborock Edgewise Mop Cloth*2pcs for S8 MaxV Ultra, S8 Max Ultra <span data-mce-frag... | ultra -> ...ock Edgewise Mop Cloth*2pcs for S8 MaxV Ultra, S8 Max Ultra <span data-mce-fragment=\"..."
+   }
+  },
+  {
+   "id": "multi-ho041",
+   "marca": "multi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "HO041",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "falha": "pagina devolveu 000",
+    "porta": "https://suporte.multilaser.com.br/produtos/aspirador-robo-mars-bivolt-ho041/duvidas-frequentes",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "multi-ho400",
+   "marca": "multi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "HO400",
+   "tipo": "robo",
+   "portas": [
+    "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/aspirador-de-po-robo-mars-varre--aspira-e-passa-pano-bivolt-e-bateria-recarregavel-multi-home--ho400/HO400/"
+   ],
+   "colheita": null,
+   "motivo": "sem porta de fabricante aberta"
+  },
+  {
+   "id": "multi-ho407",
+   "marca": "multi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "HO407",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "falha": "pagina devolveu 404",
+    "aviso": "catalogo VTEX nao serviu: catalogo devolveu lista vazia",
+    "porta": "https://www.multilaser.com.br/aspirador-robo-3-em-1-varre-aspira-e-passa-pano-duster-multi-ho407out/p",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "multi-ob010",
+   "marca": "multi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "OB010",
+   "tipo": "robo",
+   "portas": [
+    "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/aspirador-robo-3-em-1-varre--aspira-e-passa-pano-obaduster-obabox--ob010/OB010/"
+   ],
+   "colheita": null,
+   "motivo": "sem porta de fabricante aberta"
+  },
+  {
+   "id": "multi-ho243",
+   "marca": "multi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "HO243",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "falha": "pagina devolveu 000",
+    "porta": "https://suporte.multilaser.com.br/produtos/aspirador-robo-acqua-solution-ho243/duvidas-frequentes",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "multi-ho411",
+   "marca": "multi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "HO411",
+   "tipo": "robo",
+   "portas": [
+    "https://lamina.multilaser.com.br/ho411.pdf"
+   ],
+   "colheita": null,
+   "motivo": "sem porta de fabricante aberta"
+  },
+  {
+   "id": "electrolux-erb10",
+   "marca": "electrolux",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "ERB10",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Robô Aspirador de Pó Electrolux 3 em 1 com Sensor Antiqueda até 2h20 min Preto (ERB10)",
+    "referencia_na_pagina": "ERB10",
+    "skus": [
+     "310118832"
+    ],
+    "fotos": [
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218331/Robot-Vacuum-ERB10-Perspective-Electrolux-1000x1000-principal.jpg?v=638703122955570000",
+      "alt": "Robot-Vacuum-ERB10-Perspective-Electrolux-1000x1000-principal"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218333/Robot-Vacuum-ERB10-Specs-Electrolux-1000x1000-medidas.jpg?v=638703122955570000",
+      "alt": "Robot-Vacuum-ERB10-Specs-Electrolux-1000x1000-medidas"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218334/Robot-Vacuum-ERB10-FrontView-Electrolux-1000x1000-detalhe1.jpg?v=638703122955570000",
+      "alt": "Robot-Vacuum-ERB10-FrontView-Electrolux-1000x1000-detalhe1"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218339/Robot-Vacuum-ERB10-BackView-Electrolux-1000x1000-detalhe2.jpg?v=638703122955700000",
+      "alt": "Robot-Vacuum-ERB10-BackView-Electrolux-1000x1000-detalhe2"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218340/Robot-Vacuum-ERB10-CleaningSystem-Electrolux-1000x1000-detalhe3.jpg?v=638703122955700000",
+      "alt": "Robot-Vacuum-ERB10-CleaningSystem-Electrolux-1000x1000-detalhe3"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218341/Robot-Vacuum-ERB10-SideBrushes-Electrolux-1000x1000-detalhe4.jpg?v=638703122955700000",
+      "alt": "Robot-Vacuum-ERB10-SideBrushes-Electrolux-1000x1000-detalhe4"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218342/Robot-Vacuum-ERB10-Battery-Electrolux-1000x1000-detalhe5.jpg?v=638703122955700000",
+      "alt": "Robot-Vacuum-ERB10-Battery-Electrolux-1000x1000-detalhe5"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218343/Robot-Vacuum-ERB10-DustBin-Electrolux-1000x1000-detalhe6.jpg?v=638703122955700000",
+      "alt": "Robot-Vacuum-ERB10-DustBin-Electrolux-1000x1000-detalhe6"
+     }
+    ],
+    "porta": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-speed-experience-com-autonomous-technology-erb10/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "ERB10 == ERB10"
+   }
+  },
+  {
+   "id": "electrolux-erb11",
+   "marca": "electrolux",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "ERB11",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Robô Aspirador de Pó Electrolux 3 em 1 com Sensor Antiqueda até 2h20 min Branco (ERB11)",
+    "referencia_na_pagina": "ERB11",
+    "skus": [
+     "310120387"
+    ],
+    "fotos": [
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/223967/Robot-Vacuum-ERB11-Perspective-Electrolux-600x600-1.jpg?v=638703124416570000",
+      "alt": "Robot-Vacuum-ERB11-Perspective-Electrolux-600x600-1"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/223968/Robot-Vacuum-ERB11-Specs-Electrolux-600x600-2.jpg?v=638703124416700000",
+      "alt": "Robot-Vacuum-ERB11-Specs-Electrolux-600x600-2"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/223969/Robot-Vacuum-ERB11-FrontView-Electrolux-600x600-3.jpg?v=638703124416700000",
+      "alt": "Robot-Vacuum-ERB11-FrontView-Electrolux-600x600-3"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/223970/Robot-Vacuum-ERB11-Accessories-Electrolux-1000x1000-4.jpg?v=638703124416870000",
+      "alt": "Robot-Vacuum-ERB11-Accessories-Electrolux-1000x1000-4"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/223971/Robot-Vacuum-ERB11-BackView-Electrolux-600x600-5.jpg?v=638703124417030000",
+      "alt": "Robot-Vacuum-ERB11-BackView-Electrolux-600x600-5"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/223972/Robot-Vacuum-ERB11-SideBrushes-Electrolux-600x600-6.jpg?v=638703124417030000",
+      "alt": "Robot-Vacuum-ERB11-SideBrushes-Electrolux-600x600-6"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/223973/Robot-Vacuum-ERB11-CleaningSystem-Electrolux-600x600-7.jpg?v=638703124417200000",
+      "alt": "Robot-Vacuum-ERB11-CleaningSystem-Electrolux-600x600-7"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/223974/Robot-Vacuum-ERB11-Battery-Electrolux-600x600-8.jpg?v=638703124417330000",
+      "alt": "Robot-Vacuum-ERB11-Battery-Electrolux-600x600-8"
+     }
+    ],
+    "porta": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-speed-experience-com-autonomous-technology-erb11/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "ERB11 == ERB11"
+   }
+  },
+  {
+   "id": "electrolux-erb20",
+   "marca": "electrolux",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "ERB20",
+   "tipo": "robo",
+   "portas": [
+    "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78"
+   ],
+   "colheita": null,
+   "motivo": "sem porta de fabricante aberta"
+  },
+  {
+   "id": "xiaomi-s20",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "S20",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i02.appmifile.com/584_operatorx_operatorx_opx/14/06/2024/dd1fda3e2e1750fcf21bc7fa9809c1df.png",
+      "alt": null
+     },
+     {
+      "url": "https://i02.appmifile.com/584_operatorx_operatorx_opx/14/06/2024/dd1fda3e2e1750fcf21bc7fa9809c1df.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s20/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum S20 Especificações - Xiaomi Brasil Xiaomi Robot Vacuum S20 Intr"
+   }
+  },
+  {
+   "id": "electrolux-erb30",
+   "marca": "electrolux",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "ERB30",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Robô Aspirador de Pó Electrolux Home-E Power Experience com Autonomous Technology (ERB30)",
+    "referencia_na_pagina": "ERB30",
+    "skus": [
+     "310119033"
+    ],
+    "fotos": [
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218166/Robot-Vacuum-ERB30-Perspective-Electrolux-1000x1000-principal.jpg?v=638703122771470000",
+      "alt": "Robot-Vacuum-ERB30-Perspective-Electrolux-1000x1000-principal"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218167/Robot-Vacuum-ERB30-Specs-Electrolux-1000x1000-medidas.jpg?v=638703122771470000",
+      "alt": "Robot-Vacuum-ERB30-Specs-Electrolux-1000x1000-medidas"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218168/Robot-Vacuum-ERB30-FrontView-Electrolux-1000x1000-detalhe1.jpg?v=638703122771470000",
+      "alt": "Robot-Vacuum-ERB30-FrontView-Electrolux-1000x1000-detalhe1"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218169/Robot-Vacuum-ERB30-RemoteControl-Info-Electrolux-1000x1000-detalhe4.jpg?v=638703122771470000",
+      "alt": "Robot-Vacuum-ERB30-RemoteControl-Info-Electrolux-1000x1000-detalhe4"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218170/Robot-Vacuum-ERB30-BackView-Electrolux-1000x1000-detalhe5.jpg?v=638703122771470000",
+      "alt": "Robot-Vacuum-ERB30-BackView-Electrolux-1000x1000-detalhe5"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218171/Robot-Vacuum-ERB30-CleaningSystem-Electrolux-1000x1000-detalhe6.jpg?v=638703122771470000",
+      "alt": "Robot-Vacuum-ERB30-CleaningSystem-Electrolux-1000x1000-detalhe6"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218172/Robot-Vacuum-ERB30-SideBrushes-Electrolux-1000x1000-detalhe7.jpg?v=638703122771630000",
+      "alt": "Robot-Vacuum-ERB30-SideBrushes-Electrolux-1000x1000-detalhe7"
+     },
+     {
+      "url": "https://electrolux.vteximg.com.br/arquivos/ids/218176/Robot-Vacuum-ERB30-Accessories-Electrolux-1000x1000-detalhe11.jpg?v=638703122771630000",
+      "alt": "Robot-Vacuum-ERB30-Accessories-Electrolux-1000x1000-detalhe11"
+     }
+    ],
+    "porta": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-power-experience-com-autonomous-technology--erb30-/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "ERB30 == ERB30"
+   }
+  },
+  {
+   "id": "positivo-pra2000",
+   "marca": "positivo",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "PRA2000",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente - Aspira/Passa Pano/Volta à base - Mapeamento",
+    "referencia_na_pagina": "11206197",
+    "skus": [
+     "44046"
+    ],
+    "fotos": [
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159087/01_ASPIRADOR_PRA2000.jpg?v=639101416642970000",
+      "alt": "01_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159127/02_ASPIRADOR_PRA2000.jpg?v=639111010070370000",
+      "alt": "02_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159128/03_ASPIRADOR_PRA2000.jpg?v=639111010070500000",
+      "alt": "03_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159129/04_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "04_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159130/05_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "05_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159131/06_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "06_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159132/07_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "07_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159133/08_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "08_ASPIRADOR_PRA2000"
+     }
+    ],
+    "porta": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-autolimpante-pra2000-positivo-casa-inteligente-11206197/p",
+    "veredito_nome": "texto",
+    "prova_nome": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente - Aspira/Passa Pano/Volta à base"
+   }
+  },
+  {
+   "id": "positivo-pra500",
+   "marca": "positivo",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "PRA500",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa",
+    "referencia_na_pagina": "11177800",
+    "skus": [
+     "41748"
+    ],
+    "fotos": [
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/156577/Smart-Robo-Plus-Ang.jpg?v=637940196761330000",
+      "alt": "aspiradorrobo"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/156584/Smart-Robo-Plus_-Superior.jpg?v=638755873814230000",
+      "alt": "aspiradorrobo"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/156585/Smart-Robo-Plus--Frente-e-Verso.jpg?v=638755873814230000",
+      "alt": "aspiradorrobo"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/156586/Smart-Robo-Plus_-Lateral.jpg?v=638755873814400000",
+      "alt": "aspiradorrobo"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/156587/Smart-Robo-Plus_Acessorios.jpg?v=638755873814400000",
+      "alt": "aspiradorrobo"
+     }
+    ],
+    "porta": "https://www.positivocasainteligente.com.br/exclusivo-smart-robo-aspirador-wi-fi-plus/p",
+    "veredito_nome": "texto",
+    "prova_nome": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Ret"
+   }
+  },
+  {
+   "id": "xiaomi-s10",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "S10",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677487225.40455674.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s10/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum S10 Especificações - Xiaomi Brasil Xiaomi Robot Vacuum S10 Intr"
+   }
+  },
+  {
+   "id": "xiaomi-e10",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "E10",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677576726.00766138.png",
+      "alt": null
+     },
+     {
+      "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677576726.00766138.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/br/product/xiaomi-robot-vacuum-e10/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum E10 Especificações - Xiaomi Brasil Xiaomi Robot Vacuum E10 Intr"
+   }
+  },
+  {
+   "id": "xiaomi-mop-2",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "Mop 2",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666842634.01573696.png",
+      "alt": null
+     },
+     {
+      "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666842634.01573696.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/br/product/mi-robot-vacuum-mop-2/",
+    "veredito_nome": "texto",
+    "prova_nome": "Mi Robot Vacuum-Mop 2 - Xiaomi Brasil Mi Robot Vacuum-Mop 2 Nu kopen Especificações Mi Robot Vacuum-Mop 2 Seu especiali"
+   }
+  },
+  {
+   "id": "wap-w300",
+   "marca": "wap",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "W300",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Robô Aspirador de Pó WAP Robot W300",
+    "referencia_na_pagina": "FW006247",
+    "skus": [
+     "11"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/176674/robo-aspirador-de-po-wap-robot-w300.png?v=638794554372870000",
+      "alt": "robo-aspirador-de-po-wap-robot-w300"
+     },
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/176675/robo-aspirador-de-po-wap-robot-w300-10.png?v=638794554373330000",
+      "alt": "robo-aspirador-de-po-wap-robot-w300-10"
+     },
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/176676/robo-aspirador-de-po-wap-robot-w300-06.png?v=638794554373330000",
+      "alt": "robo-aspirador-de-po-wap-robot-w300-06"
+     },
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/176677/robo-aspirador-de-po-wap-robot-w300-03.png?v=638794554373330000",
+      "alt": "robo-aspirador-de-po-wap-robot-w300-03"
+     },
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/176678/robo-aspirador-de-po-wap-robot-w300-04.png?v=638794554373630000",
+      "alt": "robo-aspirador-de-po-wap-robot-w300-04"
+     },
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/176679/robo-aspirador-de-po-wap-robot-w300-07.png?v=638794554373630000",
+      "alt": "robo-aspirador-de-po-wap-robot-w300-07"
+     },
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/176680/robo-aspirador-de-po-wap-robot-w300-05.png?v=638794554373630000",
+      "alt": "robo-aspirador-de-po-wap-robot-w300-05"
+     },
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/176681/robo-aspirador-de-po-wap-robot-w300-02.png?v=638794554373800000",
+      "alt": "robo-aspirador-de-po-wap-robot-w300-02"
+     }
+    ],
+    "porta": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w300/p",
+    "veredito_nome": "texto",
+    "prova_nome": "Robô Aspirador de Pó WAP Robot W300 FW006247 Prático e eficiente, o robô aspirador WAP Robot W3"
+   }
+  },
+  {
+   "id": "wap-wsmart",
+   "marca": "wap",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "WSMART",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "https://blog.wap.ind.br/wp-content/uploads/2020/08/Wsmart-1.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://blog.wap.ind.br/lancamento-robo-aspirador-wap-robot-wsmart/",
+    "veredito_nome": "texto",
+    "prova_nome": "Lançamento Robô Aspirador WAP ROBOT WSMART - WAP Blog - Novidades e dicas em cuidados com a família LO"
+   }
+  },
+  {
+   "id": "xiaomi-e10c",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "E10C",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i02.appmifile.com/271_operatorx_operatorx_opx/04/09/2023/59f973327a3440b9f939a414c88c3c64.png",
+      "alt": null
+     },
+     {
+      "url": "https://i02.appmifile.com/271_operatorx_operatorx_opx/04/09/2023/59f973327a3440b9f939a414c88c3c64.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/global/product/xiaomi-robot-vacuum-e10c/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum E10C Specs Xiaomi Robot Vacuum E10C Specs Overview Specs Product specifications Name Robotic Va"
+   }
+  },
+  {
+   "id": "xiaomi-e12",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "E12",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i05.appmifile.com/783_item_es/11/05/2023/5c6ee8ece6e0056ed25dfa1b886dd20e.png",
+      "alt": null
+     },
+     {
+      "url": "https://i05.appmifile.com/783_item_es/11/05/2023/5c6ee8ece6e0056ed25dfa1b886dd20e.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/es/product/xiaomi-robot-vacuum-e12/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum E12 Especificaciones, Características | Xiaomi España Xiaomi Ro"
+   }
+  },
+  {
+   "id": "xiaomi-s12",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "S12",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i05.appmifile.com/173_item_es/11/05/2023/385ba85dd65f7d80df868ecc051cf7e6.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/es/product/xiaomi-robot-vacuum-s12/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum S12 Especificaciones, Características | Xiaomi España Xiaomi Ro"
+   }
+  },
+  {
+   "id": "xiaomi-s40-pro",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "S40 Pro",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i02.appmifile.com/369_operatorx_operatorx_opx/14/08/2025/f755059f82fc027af89f4911b3ed6b08.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40-pro/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum S40 Pro Specs Xiaomi Robot Vacuum S40 Pro Specs Overview Specs Specifications Product name Robot Vacu"
+   }
+  },
+  {
+   "id": "xiaomi-x20",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "X20",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i02.appmifile.com/558_operatorx_operatorx_opx/09/01/2024/8831075b8ffaff3a137e640258d36f39.jpg",
+      "alt": null
+     },
+     {
+      "url": "https://i02.appmifile.com/558_operatorx_operatorx_opx/09/01/2024/8831075b8ffaff3a137e640258d36f39.jpg",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/global/product/xiaomi-robot-vacuum-x20/specs/",
+    "veredito_nome": "texto",
+    "prova_nome": "Xiaomi Robot Vacuum X20 Specs Xiaomi Robot Vacuum X20 Specs Overview Specs Product Specifications Product Name Ro"
+   }
+  },
+  {
+   "id": "xiaomi-mop-2-lite",
+   "marca": "xiaomi",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "Mop 2 Lite",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "//i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666876968.82583141.png",
+      "alt": null
+     },
+     {
+      "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666876968.82583141.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://www.mi.com/br/product/mi-robot-vacuum-mop-2-lite/",
+    "veredito_nome": "texto",
+    "prova_nome": "Mi Robot Vacuum-Mop 2 Lite - Xiaomi Brasil Mi Robot Vacuum-Mop 2 Lite Nu kopen Especificações Aspirador e esfregão robô 2 Lite da"
+   }
+  },
+  {
+   "id": "roborock-q8-max",
+   "marca": "roborock",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "Q8 Max",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "falha": "pagina devolveu 404",
+    "aviso": "produto .json nao serviu: produto .json devolveu 404",
+    "porta": "https://br.roborock.com/pages/q8-max-plus",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "roborock-qrevo-master",
+   "marca": "roborock",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "Qrevo Master",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "falha": "pagina devolveu 404",
+    "aviso": "produto .json nao serviu: produto .json devolveu 404",
+    "porta": "https://br.roborock.com/pages/roborock-qrevo-master",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "roborock-s8-maxv-ultra",
+   "marca": "roborock",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "S8 MaxV Ultra",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "falha": "pagina devolveu 404",
+    "aviso": "produto .json nao serviu: produto .json devolveu 404",
+    "porta": "https://br.roborock.com/pages/s8-maxv-ultra",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "roborock-qrevo-curv",
+   "marca": "roborock",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "Qrevo Curv Series",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "falha": "pagina devolveu 404",
+    "aviso": "produto .json nao serviu: produto .json devolveu 404",
+    "porta": "https://br.roborock.com/pages/roborock-qrevo-curv-series",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "roborock-saros-z70",
+   "marca": "roborock",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "Saros Z70",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [],
+    "aviso": "produto .json nao serviu: produto .json devolveu 404",
+    "porta": "https://br.roborock.com/pages/roborock-saros-z70",
+    "veredito_nome": "texto",
+    "prova_nome": "Saros Z70 - Grasp the Future with Intelligence. | Site Oficial da Rob"
+   }
+  },
+  {
+   "id": "roborock-saros-10r",
+   "marca": "roborock",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "Saros 10R",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "falha": "pagina devolveu 404",
+    "aviso": "produto .json nao serviu: produto .json devolveu 404",
+    "porta": "https://br.roborock.com/pages/roborock-saros-10r",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  }
+ ]
+}

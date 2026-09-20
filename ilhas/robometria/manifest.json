@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 70,
+  "revisao": 71,
   "atualizado_em": "2026-09-20",
   "estado": "nascendo",
   "desembarque": {
@@ -152,7 +152,7 @@
       "verificado_em": "2026-09-09",
       "registros": 33,
       "publicar": false,
-      "sha256": "30cf0d2a20ee68676fc8c9296c4bd8fd704ff8aeb88f333a8c6c06898022a61a",
+      "sha256": "773a1c34f40cb68025d84a6f4d4c8cb6c251ece26eed21319368f38c20b68925",
       "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
     },
     {
@@ -164,7 +164,7 @@
       "verificado_em": "2026-09-09",
       "registros": 18,
       "publicar": false,
-      "sha256": "800ccaea61aeaab497771678e87f91e0e34436e09bbb2c98dc71f777995b0ef1",
+      "sha256": "a2ba057cfef02eb4ae2b96e1f9b4b2a8b1b558f62f6a5bdbb1f2e321355e6eb5",
       "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
     },
     {
@@ -200,7 +200,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": true,
-      "sha256": "6ff486da5db14d6d430dab9e24937a3365844b5ada5cd3c76686e24c1d4a6fd1",
+      "sha256": "a373d7eb298624627d5a6bf21044366c9dbff1dd340dc3a89659c3359ba31d25",
       "descricao": "O COMBUSTIVEL DA FERRAMENTA R1 NO SITE, e o primeiro item de dados desta ilha com publicar=true: o Sync o grava na option robometria_dados_r1-respostas e o snippet robometria-r1.php monta a pagina a partir dele. Para cada um dos 28 modelos publicaveis, os FATOS de cada peca que o fabricante declarou compativel — tipo respondido, codigo, publicador, conjunto declarado, endereco, data, se vem dentro de kit, se existe a peca avulsa, se ha divergencia registrada e se ainda espera link de afiliado. Traz tambem o seletor gerado da varredura (os 5 tipos que o banco consegue responder, sem 'reservatorio', que tem zero pecas), o modelo-ancora escolhido por regra, as 45 linhas da tabela de exemplos na ordem cross-marca da referencia, as duas divergencias com as duas declaracoes e as duas datas, a lista dos 12 modelos de entrada vazia e a tabela de rotulos da escada de fontes. SEM PROSA de proposito: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a referencia por ferramentas/teste-r1.php."
     },
     {
@@ -258,7 +258,7 @@
       "verificado_em": "2026-09-10",
       "registros": 9,
       "publicar": true,
-      "sha256": "7cb23a5207d89f8c7229cf18e0892c40898d0d5610ef4382f2363b72a9192eb0"
+      "sha256": "978ae9d108fe4271d4f1250f4dee464f3da4325990a9481fe0a1fb5ae5553a96"
     },
     {
       "id": "r2-referencia",
@@ -291,7 +291,7 @@
       "verificado_em": "2026-09-16",
       "registros": 2,
       "publicar": true,
-      "sha256": "05a40992d127a73af64febcc968b767848b01434402f920e5fc70b846c9c954f",
+      "sha256": "d8a29a49829521e4fc95b7c271648f20352d7e38d613c177611361c7ce780f65",
       "descricao": "AS DUAS DATAS DO JSON-LD DOS ARTIGOS, com uma fonte so. O Sync o grava na option robometria_dados_datas-das-paginas e robometria_casca_datas_da_pagina() na casca o le — uma funcao, chamada pelas duas paginas, pelo mesmo motivo que o painel da foto virou uma so em 16/09 (25.7). Ate este arquivo existir, `datePublished` era digitado dentro do snippet do A1 e ausente no A2, e `dateModified` saia de `gerado_em` dos fatos, que mede a geracao dos FATOS e nao a mudanca da PAGINA: em 16/09 as duas paginas mudaram na revisao 52 sem regerar fato nenhum, e o JSON-LD servido continuou dizendo 13/09. A revisao do manifest tambem nao serve: ela e da ilha inteira e faria a data do artigo do filtro andar porque a R2 ganhou uma linha."
     },
     {
@@ -304,7 +304,7 @@
       "verificado_em": "2026-09-11",
       "registros": 7,
       "descricao": "Fatos que a casca publica sobre o proprio banco, derivados por ferramentas/gerar-casca-fatos.py. Desde 11/09/2026 traz duas coisas: a coluna 'Temos hoje' da escada de fontes, e a MEDICAO da secao 4 da metodologia — os onze numeros que a ilha afirma sobre si mesma, com a regua de cada um escrita no proprio arquivo, em reguas_da_medicao. Contagem so de registro publicavel: a coluna fala do que a ilha PUBLICA, nao do que ela guarda, e e por isso que 'pares peca x modelo' conta 32 (as duas pontas publicaveis) onde o cabecalho de pecas.json conta 33 (tudo que o arquivo declara). O gerador RECUSA gravar quando cobertura-r1.json nao bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de hoje.",
-      "sha256": "183b384752999cba481d88e6a52d0f420bbc5bab97303c4268020cc728603ce3"
+      "sha256": "f1b1945125f27c2c3bf2cf3816074e8462bb31063d9295b988111ece3141af44"
     },
     {
       "id": "acentuacao-restaurada",
