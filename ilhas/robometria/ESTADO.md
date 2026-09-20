@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-18T19:38Z
-executando_desde: null
+executando_desde: 2026-09-20T13:28Z
 bloco_atual: |
   A BANCADA VIROU UM COMANDO E DESCOBRE OS PORTOES SOZINHA — e a primeira passada dela achou a ilha VERMELHA. Casca 1.11.0, R1 1.11.0, R2 1.9.0 (nenhuma constante mudou; o que mudou foi o cabecalho delas), manifest revisao 68, /status em 68. ZERO URL nova, ZERO URL mudada de endereco, ZERO palavra de pagina alterada. Correcao nao consome a vez de um bloco de construcao (18.2), e continua nao havendo bloco de construcao elegivel: o despacho do Raphael de 18/09 pos esta ilha em experimento medido ate outubro.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. executando_desde estava null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo; o ultimo commit da pasta era de 16h39Z, duas horas e meia atras. Reserva aceita de primeira as 19h18Z. Zero branch claude divergente e zero PR aberto. Rede pela 20.2 antes de trabalhar: home 200 em TRES passadas e /status na revisao 67, igual a do manifest.
