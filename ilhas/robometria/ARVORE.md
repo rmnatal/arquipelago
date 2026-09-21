@@ -43,6 +43,8 @@ Os nomes dos níveis são os do `VOZ.md`: quem chega aqui diz peça, sucção, m
 
 **O que segura a categoria agora não é dado, é o portão de malha.** Categoria nova é **URL nova**, e esta ilha não publica leva de malha (bloco 5b) enquanto o sitemap não for reenviado no Search Console — a metade humana do despacho da Sentinela de 10/09, que é do Raphael. A rampa da seção 14 é inexecutável sem medição, e abrir uma categoria sem saber se o que já está no ar indexa gastaria orçamento de rastreamento às cegas (14.1). **No dia em que o sitemap for reenviado, esta linha nasce sem esperar dado nenhum** — e quem a abrir confere antes se ainda são três, porque contagem escrita em prosa é a coisa que este parágrafo já errou duas vezes.
 
+> **ESSE DIA CHEGOU EM 16/09/2026 E ESTE ARQUIVO NÃO SOUBE — corrigido em 21/09/2026.** O parágrafo acima, e o "NÃO FEITO" da seção 4 abaixo, dizem que a leva de malha espera o **reenvio do sitemap**. O item 4 da DEFINIÇÃO DE PRONTA do `PROMPT.md` registra o sitemap **aceito e processado** desde 16/09, com última leitura em 15/09 e as 9 páginas lidas, e a leitura semanal de 16/09 mediu **6 indexadas de 9, 11 impressões e posição média 7,9** — ou seja, a medição que a rampa da seção 14 pedia EXISTE. O bloqueio que estes dois parágrafos descrevem morreu há cinco dias e continuou escrito, que é o defeito da seção 4 do `ARQUIPELAGO.md` — resumo velho lido como fato — dentro do documento que decide a próxima leva. **O que segura a primeira categoria hoje é o dado**, medido logo abaixo na seção 5, e não o Search Console.
+
 **Nível 3 — a pergunta ou a ficha**, com as palavras que a pessoa digita.
 
 Sem quarto nível.
@@ -91,7 +93,7 @@ Sem quarto nível.
 - **Frase que linka a mãe** (16.4b) nas duas ferramentas, com a contagem **contada**.
 - **O par ferramenta ↔ guia** (16.4d) fechado nos dois sentidos — faltava um lado, ver abaixo.
 
-**NÃO FEITO, e por quê:** as quatro páginas de nível 1 e as quatorze de nível 2 são dezoito URLs novas, e esta ilha não publica leva de malha enquanto o sitemap não for reenviado no Search Console (metade humana do despacho da Sentinela de 10/09; a rampa da seção 14 é inexecutável sem medição). Trocar o pai e o slug das páginas existentes espera o mesmo destravamento, e leva 301 quando acontecer.
+**NÃO FEITO, e por quê:** as quatro páginas de nível 1 e as quatorze de nível 2 são dezoito URLs novas, e esta ilha não publica leva de malha enquanto o sitemap não for reenviado no Search Console (metade humana do despacho da Sentinela de 10/09; a rampa da seção 14 é inexecutável sem medição). Trocar o pai e o slug das páginas existentes espera o mesmo destravamento, e leva 301 quando acontecer. *(O motivo desta frase VENCEU em 16/09/2026 — ver o quadro da seção 1. Ela fica como registro do que o bloco de 11/09 decidiu, e não vale mais como trava. **O que não venceu é a segunda metade:** trocar o pai e o slug das duas ferramentas continua proibido pela 12.1 enquanto elas tiverem impressão registrada, e as duas têm — `quantos-pa` em 6,8 e `quantos-m2` em 7,0, medidas em 16/09. As seções nascem, elas ficam onde estão, e a mãe passa a apontar para elas.)*
 
 **Quatro coisas que quem vier depois precisa saber:**
 
@@ -111,6 +113,22 @@ Sem quarto nível.
 Primeiro a mãe e as **3 primeiras filhas de maior intenção de compra**, depois as irmãs, depois a próxima categoria. Nunca uma filha de cada categoria espalhada.
 
 1. `/pecas/` + `/pecas/filtros/` com as 3 primeiras filhas — é o cluster de maior intenção de compra da ilha ("filtro para robô X" termina numa peça que se compra), e é onde o banco tem mais pares declarados.
+
+   > **A PRIMEIRA LEVA ESTEVE TRAVADA POR DADO, E NÃO POR PORTÃO, ATÉ 21/09/2026 — e quem mediu isso foi a execução que a destravou.** O parágrafo acima foi escrito em 11/09 e diz "as 3 primeiras filhas" sem nunca ter contado se o banco as sustenta. Contado em 21/09, antes da leva do dia: a 16.5 exige **3 filhas com dado real** e o portão de dado da seção 13 exige **3 itens de banco reais por página**, e o banco tinha filtro de **três** marcas — Xiaomi (4 filtros), Electrolux (1 filtro avulso mais 5 Kits Performance, e os cinco declaram `filtro` na composição) e Multi (2). **Só duas passavam**, e categoria com duas filhas não nasce. Nenhum portão dizia isso: a 16.5 é regra de documento, e nenhuma régua desta ilha conta filha de categoria que ainda não existe.
+   >
+   > **A leva de 21/09 levantou a terceira**, e ela veio da única marca cujo catálogo de filtro estava inteiro fora do banco: a **WAP**, com três filtros lidos direto na API de catálogo da loja oficial (`FW006270` HEPA e `FW006271` grade, os dois do W300; `FW007700` de entrada, do W100). O tipo `filtro` foi de 7 para 11 registros e de 3 para 5 marcas — a Positivo entrou junto, com o filtro do PRA800/PRA2000, e ainda não é filha porque tem um só.
+   >
+   > **As três filhas que a leva autoriza, com o número de cada uma medido no `main` de 21/09/2026:**
+   >
+   > | filha | itens de banco | modelos que ela responde |
+   > |---|---|---|
+   > | `/pecas/filtros/xiaomi/` | 4 filtros | E10, E10C, S10, S20, Mop 2, Mop 2 Lite |
+   > | `/pecas/filtros/wap/` | 3 filtros | W300 (dois filtros declarados, HEPA e grade) e W100 |
+   > | `/pecas/filtros/electrolux/` | 1 filtro avulso + 5 kits que declaram filtro | ERB10, ERB11, ERB20, ERB30, ERB44, ERB60, ERB61, ERB62, ERB80 |
+   >
+   > **Multi (2 filtros) e Positivo (1) entram como cartão sem link e "em breve"**, que é o que a 16.5 manda — e sem contagem de banco no cartão, porque contagem ali vira promessa datada.
+   >
+   > **Quem abrir esta leva RECONTA antes**, com `python3 ferramentas/cobertura-r1.py` e o banco na mão: esta tabela é o estado de 21/09, e a seção 3 deste arquivo já errou duas vezes exatamente por publicar contagem em prosa. E confere também o que a leva NÃO mediu: a classificação de SERP da 14.9 para as três consultas-alvo, que não foi feita nesta execução e é pré-requisito escrito para a página nascer.
 2. `/succao/` + `/succao/pisos-e-pelo/` — a segunda ferramenta ganha a mãe própria e `/ferramentas/` é retirada com 301.
 3. `/guias/` + `/guias/pecas/`, com os temas da `pauta.md` (seção 17) que apontam para a ferramenta de peças.
 4. `/modelos/<marca>/` — por último, e só depois de o cluster de peças estar indexado: ficha de modelo compete com o fabricante e com o marketplace (14.2, item 4), então ela só nasce onde carrega um número que eles não dão.

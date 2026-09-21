@@ -1010,6 +1010,10 @@ qualquer página nova:
 
 **5b. MALHA DE PÁGINAS.** Camadas: (1) ficha de peça; (2) ficha de modelo de robô; (3) página de parâmetro ("robô para 80 m²", "robô acima de 4.000 Pa"); (4) cruzamentos (modelo × peça, marca × tipo de peça, parâmetro × modelo).
 
+> **O PORTÃO DE DADO DA PRIMEIRA CATEGORIA FECHOU EM 21/09/2026 — e até esse dia ninguém tinha contado.** A ordem de levas do `ARVORE.md` (seção 5) manda abrir `/pecas/` + `/pecas/filtros/` **com as 3 primeiras filhas**, e a 16.5 só deixa a categoria nascer com três filhas de dado real. Contado no `main` antes da leva do dia: o banco tinha filtro de três marcas e **só duas passavam** no portão de dado da seção 13 — Xiaomi (4 filtros) e Electrolux (1 avulso + 5 Kits Performance que declaram `filtro` na composição); a Multi tinha 2. **A leva dos quatro filtros levantou a terceira** (WAP, com 3), e a tabela das três, com os modelos que cada uma responde, está no `ARVORE.md` seção 5.
+>
+> **O que ainda falta antes da primeira página, e não é dado:** a **classificação de SERP da 14.9** para as três consultas-alvo — pré-requisito escrito, não feito nesta execução — e a decisão de hierarquia no WordPress, porque `robometria_casca_garantir_paginas()` cria página por slug plano e `/pecas/filtros/` precisa de `post_parent` (16.2). O reenvio do sitemap, que este arquivo e o `ARVORE.md` citavam como trava, **morreu em 16/09**: o item 4 da DEFINIÇÃO DE PRONTA registra o sitemap processado e a leitura semanal do mesmo dia mediu 6 indexadas de 9.
+
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de robô aspirador e assistência técnica com site próprio, `publicar: false`. É a **única** alavanca de link do projeto.
 
 ## Específico desta ilha

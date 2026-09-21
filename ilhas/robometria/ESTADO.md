@@ -5,16 +5,20 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
-ultima_execucao: 2026-09-21T13:45Z
-executando_desde: 2026-09-21T16:43Z   # reserva renovada pela 1.1: o bloco passou de 40 minutos
+ultima_execucao: 2026-09-21T17:10Z
+executando_desde: null
 bloco_atual: |
-  A TELA DIZIA 15 E O BANCO MEDIA 11 — o derivado commitado ganhou portao, e a bancada foi de 38 para 40 (46 com o site). ZERO URL nova, ZERO palavra escrita a mao em pagina nenhuma: o unico numero que mudou na tela mudou porque a varredura o recontou.
-  O DEFEITO, MEDIDO NO AR AS 13h20Z ANTES DE QUALQUER CONSERTO: '/ferramentas/' servia 'So 15 dos 45 modelos do banco sao atendidos pelas duas ferramentas ao mesmo tempo'. A varredura de hoje mede 11. Estava assim desde 20/09 as 15h39Z, quando o portao do canal brasileiro anulou 7 canais e tirou quatro Roborock da interseccao — com as 38 passadas da bancada verdes o dia inteiro. Quem nomeou o numero foi o Pente Fino de 21/09; o que ele nao tinha medido e que a frase ja estava servida.
-  A CAUSA E QUE O DERIVADO SO PODIA SER CONFERIDO SOBRESCREVENDO-O. O dicionario que cada gerador grava morava dentro do main(), atras do --gravar: perguntar 'o arquivo de ontem ainda vale?' exigia destruir a resposta para ve-la, e por isso ninguem perguntava. A corrente inteira herdou o numero podre — cobertura-r1.json, depois casca-fatos.json que o le, depois a option, depois a tela.
-  O CONSERTO TEM DUAS METADES. Os geradores foram partidos (documento() na R1, fatos_do_banco() no casca-fatos, os montar() da R1 e da R2 que ja eram), e nasceu ferramentas/validar-derivados.py: reconstroi 7 derivados em MEMORIA e compara com o disco, sem escrever nada. Declara 4 que nao alcanca, com o motivo ao lado — divida escrita, nao isencao — e REPROVA quando aparece derivado novo que nao esta em nenhuma das duas listas, que e a regra que impede o proprio portao de envelhecer calado.
-  A BATERIA PEGOU UM DEFEITO NO PORTAO ANTES DE ELE SER COMMITADO: com o cobertura-r1 adulterado, o gerador do casca-fatos recusava contar e o portao morria de traceback — codigo 1 SEM a palavra REPROVADO, que e INERTE ao contrario. Recusa virou veredito e o main ficou blindado. E o casca-fatos nao e julgado enquanto o cobertura-r1 estiver reprovado: ele le o arquivo podre e reproduz a podridao, entao dizer 'ok' ali seria medir a propria ignorancia e chamar de veredito.
-  NO AR: manifest na revisao 74, /status em 74, e o endereco CANONICO de /ferramentas/ conferido servindo 11 de 45 em TRES passadas — nao a quebra de cache. A purga do hospedeiro levou alguns minutos, dentro da janela conhecida da secao 10 do conferir-no-ar.py.
-  O QUE NAO FOI DECIDIDO, DE PROPOSITO: o estado viva nao foi tocado, o item 2 da DEFINICAO DE PRONTA nao foi reaberto e a meta de 15 nao foi remedida contra o teto de 13. As tres saidas da remedicao do Pente Fino seguem de pe, agora com o numero honesto dos dois lados. Isso e do Raphael.
+  A LEVA DOS QUATRO FILTROS — o tipo filtro vai de 7 para 11 e de 3 para 5 marcas, e a WAP vira a terceira marca com filtro declarado. ZERO URL nova, ZERO leva do teto da 21.4 gasta: banco de 53 para 57 pecas, 87 para 92 pares, fotos de 59 para 63 de 107.
+  POR QUE FILTRO, E A RESPOSTA VEIO DE CONTAR E NAO DA FILA. O proximo bloco e o 5b (malha), e a ordem de levas do ARVORE.md manda abrir /pecas/filtros/ com TRES filhas. Contado antes de escrever qualquer pagina: so DUAS marcas passavam no portao de dado da secao 13 (Xiaomi com 4 filtros; Electrolux com 1 avulso mais 5 kits que declaram filtro). Categoria com duas filhas nao nasce pela 16.5, e nenhum portao desta ilha media isso. A leva levantou a terceira — WAP, com tres filtros que nunca tinham entrado — e a categoria deixou de estar travada por DADO. A tabela das tres filhas esta no ARVORE.md, secao 5, com a ordem de RECONTAR antes de abrir.
+  A ESCOLHA DA ILHA - pelo foco da 1.2, sem corrida. Os cinco ESTADO.md parseiam e o desta ilha tinha executando_desde null, com o ultimo commit da pasta duas horas e meia atras. Reserva aceita de primeira as 16h16Z e renovada as 16h43Z pela 1.1. Nenhum PR aberto, nenhum branch claude com commit proprio. Rede pela 20.2: home 200 e /status na revisao 74, igual a do manifest, em TRES passadas.
+  O EGRESSO DO FABRICANTE ABRIU E A LEITURA FOI DIRETA. Os quatro registros saem da API de catalogo das lojas oficiais (loja.wap.ind.br e loja.meupositivo.com.br), com titulo, codigo, EAN e o campo proprio de Compatibilidade lidos no mesmo documento - em 13/09 este mesmo host devolvia EGRESS_BLOCKED. O nivel continua 4 de proposito: o que mudou foi o CANAL, nao a especie da fonte.
+  TRES PORTOES CONSERTADOS, TODOS PEGOS PELA PROPRIA LEVA. (1) medir-palavras-chave.py parava a escada no primeiro degrau que passasse na regua FROUXA, e sem o conserto o botao de compra dos tres filtros WAP abriria num kit de outra marca; depois, 4 de 4 com a peca no topo. (2) O mesmo arquivo, com --so, GRAVAVA o arquivo inteiro com o pedaco medido: a primeira passada derrubou a medicao de 95 registros para 4 e levou junto as 26 chaves fixadas no navegador, e o gerador seguinte reescreveu 34 chaves do banco. Restaurado do git; agora --so grava DENTRO do arquivo. (3) recontar() do coletar-shopee.py so movia quatro contagens e leva que ACRESCENTA registro mexe em outras seis, corrigidas a mao ate hoje.
+  UM DEFEITO QUE JA ESTAVA NO AR CAIU JUNTO - a cauda da divergencia da R1 dizia 'as dois declaracoes'. Palavra feminina contada com numeral masculino; invisivel por dias porque so um/uma e dois/duas flexionam, e o filtro da Positivo e o primeiro registro desta ilha com UM canal divergente. R1 1.11.1, snippet e referencia em Python na mesma passada, com mutacao provando que a trava morde. Medido no ar em tres passadas.
+  DUAS CORRECOES DE DOCUMENTO, as duas resumo velho lido como fato. O ARVORE.md dizia em dois lugares que a malha espera o reenvio do sitemap, bloqueio que morreu em 16/09. E o marcas.json da Positivo nao declarava a loja oficial que quatro registros ja citavam como fonte, o que fazia a coleta de foto devolver 'sem porta de fabricante aberta' com o host em 200.
+  O QUE A LEVA NAO MEXEU: a intersecao das duas ferramentas continua em 11 de 45 com teto 13, entao o item 2 da DEFINICAO DE PRONTA segue como estava e a decisao das tres saidas continua do Raphael. Na R1 as celulas respondidas foram de 93 para 97 de 270.
+  BANCADA 40 portoes 0 falha sem rede e 46 portoes 0 falha com o site. Manifest de 74 a 77 em duas passadas de Sync, /status na 77.
+ultima_ronda: 2026-09-18T14:52Z
+bloqueada_por: null
 ---
 
 
@@ -22,6 +26,32 @@ bloco_atual: |
 
 Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 
+
+## 21/09/2026, 17h10Z — A leva dos quatro filtros, e a categoria da malha deixa de estar travada por dado
+
+**A ilha continua PRONTA e nada foi reaberto.** Esta execucao nao construiu
+pagina: levantou o dado que a primeira leva de malha exigia e consertou tres
+portoes e um defeito que ja estava no ar.
+
+- **Quatro filtros entram** — tres da WAP (`FW006270` HEPA e `FW006271` grade,
+  os dois do W300; `FW007700` de entrada, do W100) e um da Positivo
+  (`11206516`, do PRA800 e do PRA2000). Tipo filtro de **7 para 11**, marcas com
+  filtro de **3 para 5**, banco de 53 para 57 pecas e 87 para 92 pares.
+- **O bloco foi escolhido por contagem, nao pela fila.** A ordem de levas do
+  `ARVORE.md` manda abrir `/pecas/filtros/` com TRES filhas; o banco sustentava
+  **duas**. A WAP era a marca cujo catalogo de filtro estava inteiro fora do
+  banco, e com ela as tres filhas existem: Xiaomi (4 filtros, 6 modelos), WAP
+  (3, 2) e Electrolux (1 avulso + 5 kits, 9 modelos).
+- **Tres portoes consertados, todos pegos pela propria leva.** A escada de
+  palavra-chave parava no degrau frouxo e mandaria o botao de compra dos tres
+  filtros WAP para um kit de outra marca; `--so` gravava o arquivo de medicao
+  inteiro com o pedaco medido e apagou 95 registros (incluindo as 26 chaves
+  fixadas no navegador) antes de ser restaurado do git; e `recontar()` nao
+  cobria as seis contagens que uma leva de registro novo move.
+- **A R1 servia "as dois declaracoes"** na cauda da divergencia. Palavra
+  feminina com numeral masculino, invisivel ate existir um registro com UM canal
+  divergente. R1 1.11.1, conferida no ar em tres passadas.
+- **`piso: abaixo` e o teto da 21.4 intocado:** zero URL nova nesta execucao.
 
 ## 21/09/2026, 13h45Z — A tela dizia 15, o banco media 11, e o derivado ganhou portao
 

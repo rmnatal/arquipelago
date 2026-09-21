@@ -6322,3 +6322,165 @@ da Fundação pode estar no ar. **O relato íntegro é este, aqui.**
   partir o dicionario de `cobertura-r2.py` como o da R1 foi partido, para
   `dados/cobertura-r2.json` entrar na cobertura do portao. E a decisao de
   outubro continua com o criterio pre-registrado, sem tocar na fila.
+
+## 2026-09-21 (16h16Z–17h10Z) — A leva dos quatro filtros: a WAP vira a terceira marca, e a categoria que a malha pedia para de estar travada por dado
+
+- **O BLOCO.** Bloco 3c. Quatro pecas de tipo **filtro** entram no banco: tres da
+  **WAP** (`FW006270`, o HEPA do W300; `FW006271`, a grade do mesmo W300;
+  `FW007700`, o de entrada do W100) e uma da **Positivo** (`11206516`, do PRA800
+  e do PRA2000). O tipo filtro vai de **7 para 11** registros e de **3 para 5
+  marcas**. Banco de 53 para 57 pecas (50 para 54 publicaveis), 87 para 92 pares
+  declarados. ZERO URL nova, ZERO leva do teto da 21.4 gasta.
+- **A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA.** `foco.md` nomeia a
+  robometria desde 16/09. Os cinco `ESTADO.md` parseiam em `yaml.safe_load` e o
+  desta ilha estava com `executando_desde: null`, que pela 1.1 ja significa que
+  nenhum bloco da Fundacao esta vivo — o ultimo commit da pasta era de 13h45Z,
+  duas horas e meia antes. Reserva aceita de primeira as 16h16Z, renovada as
+  16h43Z pela 1.1 quando o bloco passou de 40 minutos. Nenhum PR aberto e nenhum
+  branch `claude/*` com commit proprio fora do `main`. Nenhum despacho deste
+  `PROMPT.md` tem item acionavel pela Fundacao: o que sobra nas propostas 1 e 3
+  da leitura semanal e verificacao da Sentinela. Rede pela 20.2 antes de
+  trabalhar: home em 200 e `/status` na revisao 74, igual a do manifest, em TRES
+  passadas.
+- **POR QUE FILTRO, E A RESPOSTA NAO VEIO DA FILA: VEIO DE CONTAR.** O proximo
+  bloco da fila e o **5b (malha de paginas)**, e a ordem de levas do `ARVORE.md`
+  manda comecar por `/pecas/` + `/pecas/filtros/` **com as 3 primeiras filhas**.
+  Contado antes de escrever qualquer pagina: a 16.5 exige tres filhas com dado
+  real e o portao de dado da secao 13 exige tres itens de banco por pagina — e o
+  banco tinha filtro de tres marcas, das quais so **duas** passavam (Xiaomi, com
+  4; Electrolux, com 1 avulso mais 5 Kits Performance que declaram `filtro` na
+  composicao). A Multi tinha 2. **Categoria com duas filhas nao nasce**, e nenhum
+  portao desta ilha dizia isso: a 16.5 e regra de documento, e nenhuma regua
+  conta filha de categoria que ainda nao existe. Entao o bloco do dia deixou de
+  ser "escrever a pagina" e passou a ser "levantar a terceira filha", que e
+  exatamente o que a 14.3 chama de **faixa descoberta — a unica urgencia de
+  catalogo**.
+- **A TERCEIRA FILHA VEIO DA MARCA CUJO CATALOGO DE FILTRO ESTAVA INTEIRO FORA DO
+  BANCO.** A loja oficial da WAP publica tres filtros de robo, todos com o modelo
+  no titulo e um campo proprio de **Compatibilidade** na ficha — e nenhum estava
+  no banco. Com eles, as tres filhas que a leva autoriza, medidas no `main` de
+  hoje: **Xiaomi** (4 filtros, 6 modelos), **WAP** (3 filtros, 2 modelos) e
+  **Electrolux** (1 filtro avulso + 5 kits, 9 modelos). Multi (2) e Positivo (1)
+  entram como cartao sem link, pela 16.5. A tabela inteira esta no `ARVORE.md`,
+  secao 5, com a ordem de quem a abrir **RECONTAR** antes.
+- **O EGRESSO ABRIU, E A LEITURA DESTA LEVA FOI DIRETA.** Em 13/09 as quatro
+  primeiras pecas da WAP entraram por BUSCA, com `loja.wap.ind.br` devolvendo
+  `EGRESS_BLOCKED`; hoje os dois hosts responderam 200 e os quatro registros
+  saem da **API de catalogo da propria loja**
+  (`/api/catalog_system/pub/products/search`), com o titulo, o codigo, o EAN e o
+  campo de compatibilidade lidos no mesmo documento. **O nivel continua 4** e isso
+  e deliberado: o que mudou foi o CANAL, nao a especie da fonte — loja oficial da
+  marca e o degrau 4 da escada, lida direto ou nao. Nivel 2 continua exigindo
+  manual ou lamina do fabricante, e a ilha continua sem nenhum.
+- **A DIVERGENCIA DA POSITIVO E DE UMA PAGINA CONSIGO MESMA, e o banco ja tinha
+  suspeitado dela ha doze dias.** O titulo do filtro diz **PRA8000**/PRA2000; o
+  corpo da mesma pagina ("Descricao completa") e o proprio endereco dizem
+  **PRA800**. Tres medicoes de hoje decidem: (1) a busca do catalogo da loja nao
+  devolve nenhum ROBO chamado PRA8000 — o unico da familia e "Smart Robo
+  Aspirador Wi-Fi Laser PRA800", referencia 11206173; (2) as cinco pecas irmas da
+  familia escrevem PRA800 no titulo; (3) o nome do ARQUIVO da foto que o
+  fabricante serve diz `PRA800-E-2000`. O registro entra com
+  `{PRA800, PRA2000}`, a divergencia publicada com a data e a `resolucao`
+  escrita. **E o `marcas.json` ja dizia, em 09/09: "um 'PRA8000' que nao existe em
+  canal nenhum — quase certamente erro de transcricao".** Esta e a medicao que
+  tira o "quase", e ela veio da propria loja.
+- **TRES PORTOES CONSERTADOS NO CAMINHO, E OS TRES FORAM PEGOS PELA PROPRIA LEVA
+  — nenhum foi procurado.**
+  1. **`medir-palavras-chave.py` parava a escada no primeiro degrau que passasse
+     na regua FROUXA**, e o degrau 1 e a chave no vocabulario da ILHA, que a
+     secao 26 diz que o vendedor nao digita. Medido degrau a degrau nos tres
+     filtros da WAP: `WAP filtro robo aspirador` (d1) traz no topo um **kit de
+     outra marca** ("Kit APZ ... Para Mondial, Multilaser WAP100, etc."), que
+     passa na frouxa e reprova na dura; `WAP Filtro HEPA robo aspirador` (d2) e
+     `WAP FW006270 filtro robo aspirador` (d3) trazem o filtro certo. Sem o
+     conserto, o botao de compra dos tres abriria no concorrente — o defeito 4 da
+     ronda de 18/09 com outra roupa. **Depois: 4 de 4 com a peca no topo.**
+     O `break` saiu e a linha de preferencia ganhou fronteira: a regua frouxa so
+     ganha da dura quando a dura passou no **degrau 5**, o piso largo, que a
+     propria escada declara que "nao traz a peca no topo" — que e o caso de
+     ACASO que criou a linha em 18/09, e continua coberto.
+  2. **`medir-palavras-chave.py --so` GRAVAVA o arquivo inteiro com o pedaco
+     medido.** A primeira passada desta execucao derrubou
+     `dados/palavras-chave-medidas.json` de **95 registros para 4** e levou junto
+     as **26 chaves fixadas no navegador** — o conserto de 20/09 que o proprio
+     arquivo protege com tres paragrafos. Na passada seguinte o
+     `gerar-busca-de-produto.py` reescreveu **34 chaves** do banco pela composicao
+     padrao e 30 registros perderam o link curto, porque para ele registro fora da
+     medicao e registro nunca medido. Restaurado do git e consertado: `--so`
+     grava o pedaco **DENTRO** do arquivo, e as contagens do cabecalho passaram a
+     ser as do ARQUIVO e nao as da passada.
+  3. **`recontar()` do `coletar-shopee.py` so movia as quatro contagens que a
+     COLETA muda.** Leva que ACRESCENTA registro mexe em outras seis (total,
+     publicavel, os dois status, os pares e as duas de divida), e elas vinham
+     sendo corrigidas **a mao** depois de o validador reprovar — logo depois de a
+     ilha ter escrito que numero de cabecalho nao se digita. As seis entraram na
+     funcao, com a definicao do validador palavra por palavra.
+- **E A LEVA REVELOU UM DEFEITO QUE JA ESTAVA NO AR — a cauda da divergencia
+  dizia "as dois declaracoes" (R1 1.11.1).** A frase conta `declaracoes`, palavra
+  feminina, e o numeral saia da tabela masculina. Ficou invisivel por dias porque
+  **so um/uma e dois/duas flexionam**: toda divergencia com tres ou mais canais
+  saia certa, e o `positivo-11206516` e o **primeiro registro desta ilha com UM
+  canal divergente**. Consertado no snippet E na referencia em Python na mesma
+  passada (o `teste-r1.php` compara as duas frase a frase), com a afirmacao nova
+  cobrando a concordancia em toda divergencia do banco **e num mundo PRODUZIDO de
+  um canal so** — a unica borda em que a frase pode errar o genero — e com a
+  mutacao que devolve o masculino em `mutacoes-divergencia.py` (10 de 10).
+  **Medido no ar**: `/qual-peca-serve-no-meu-robo-aspirador/?modelo=positivo-pra800`
+  serve "as duas declaracoes" em tres passadas.
+- **DUAS CORRECOES DE DOCUMENTO, e as duas eram resumo velho lido como fato
+  (secao 4).** (i) O `ARVORE.md` dizia, em dois lugares, que a leva de malha
+  espera o **reenvio do sitemap no Search Console** — bloqueio que morreu em
+  16/09, quando o item 4 da DEFINICAO DE PRONTA registrou o sitemap processado e
+  a leitura semanal mediu 6 indexadas de 9 com posicao media 7,9. Cinco dias de
+  trava vencida dentro do documento que decide a proxima leva. O que NAO venceu
+  ficou escrito junto: trocar o pai e o slug das duas ferramentas continua
+  proibido pela 12.1, porque as duas tem impressao registrada. (ii) O
+  `marcas.json` da Positivo nao declarava a loja oficial
+  (`loja.meupositivo.com.br`) enquanto quatro registros de peca ja a citavam como
+  fonte — e a consequencia era medida e silenciosa: o `medir-portas-do-fabricante.py`
+  classifica porta pelo que a marca declara, entao a coleta de foto devolvia
+  "sem porta de fabricante aberta" para esses registros com o host respondendo
+  200. Declarada, o filtro da Positivo ganhou candidato na hora.
+- **AS QUATRO FOTOS SAO DO FABRICANTE, E PASSARAM PELO PORTAO INTEIRO DA 25.3.**
+  Colheita por `coletar-foto-do-fabricante.py`, olho arquivo a arquivo (os quatro
+  sha256 sao distintos entre si, conferido antes de olhar), veredito escrito em
+  `dados/olho-nas-fotos-filtros-2026-09-21.json` e em
+  `dados/olho-nas-fotos-filtros-positivo-2026-09-21.json`, e gravacao por
+  `aplicar-fotos-do-fabricante.py`, que confere a URL dos dois lados, le
+  1000x1000 do arquivo e grava a PAGINA em `imagem.fonte`. Fotos no banco: **59
+  para 63** de 107.
+- **O QUE A LEVA NAO MEXEU, dito para ninguem somar errado:** a intersecao das
+  duas ferramentas continua em **11 de 45**, com teto 13 — os quatro filtros sao
+  de modelos que ja estavam dentro ou que nao tem Pa declarado —, entao o item 2
+  da DEFINICAO DE PRONTA segue exatamente como estava e a decisao das tres saidas
+  continua do Raphael. O que mudou na R1 foram as celulas: **93 para 97**
+  respondidas de 270, com `positivo-pra800`, `positivo-pra2000`, `wap-w100` e
+  `wap-w300` saindo do vazio de filtro.
+- **O QUE FOI MEDIDO E NAO ENTROU, para ninguem reprocurar.** A loja da WAP
+  publica, alem dos tres filtros, pecas que o banco ainda nao tem e que nomeiam o
+  modelo no titulo: `FW009132` (escova rotativa do W90), `FW007845` (refil de mop
+  do W100 e do W90), `FW008002` (refil de mop do WSMART), `FW006273` (recipiente
+  de po do W300) e `FW008029` (suporte da escova do WSMART, tipo que o vocabulario
+  nao tem). A da Positivo publica `11206541` e `11206542` (tanques do PRA800 e do
+  PRA800/PRA2000, tipo reservatorio) e `11207063` (saco de po do PRA2000, tipo que
+  o vocabulario nao tem). E ha um segundo filtro da Positivo, `11190864`, que NAO
+  entrou porque o titulo diz so "Smart Robo Aspirador Wi-Fi Laser", sem codigo de
+  modelo — casar isso com um modelo do banco seria inferir compatibilidade, que a
+  regra do esquema proibe com todas as letras.
+- **BANCADA E DESEMBARQUE.** Sem rede: **40 portoes, 0 falha**. Com o site:
+  **46 portoes, 0 falha**, e os seis que abrem o ar, um a um: `conferir-no-ar`
+  264 afirmacoes, `conferir-kits-no-ar` 165, `conferir-reservatorio-no-ar` 50,
+  `conferir-atribuicao-no-ar` 51, `conferir-canal-na-resposta` sem nenhum modelo
+  sem canal na resposta servida e `conferir-frase-de-compra-no-ar` sem nenhuma
+  entrada negando link com botao servido — todos 0 falha. Banco aprovado, 7 derivados reconstruidos em memoria e
+  identicos ao commitado. Manifest de 74 a **77** em tres passadas (75 a leva, 76
+  e 77 o conserto da R1), Sync acionado nas duas e `/status` na **77**, igual a do
+  manifest.
+- **PROXIMO PASSO DESBLOQUEADO: a primeira leva de malha (5b), com as tres filhas
+  agora medidas.** Falta, antes de escrever a primeira pagina, a **classificacao
+  de SERP da 14.9** para as tres consultas-alvo — ela nao foi feita nesta
+  execucao e e pre-requisito escrito. E fica nomeada uma divida que esta leva
+  criou ao consertar a escada: as chaves dos **69 registros nao fixados no
+  navegador** foram escolhidas pela regra velha e podem ter parado no degrau
+  frouxo. Remedi-las e um bloco proprio, com verificacao no ar — e as 26 fixadas
+  no navegador continuam intocaveis pelo despacho de 20/09.
