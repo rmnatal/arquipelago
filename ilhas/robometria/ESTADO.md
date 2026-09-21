@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-21T13:45Z
-executando_desde: null
+executando_desde: 2026-09-21T16:16Z
 bloco_atual: |
   A TELA DIZIA 15 E O BANCO MEDIA 11 — o derivado commitado ganhou portao, e a bancada foi de 38 para 40 (46 com o site). ZERO URL nova, ZERO palavra escrita a mao em pagina nenhuma: o unico numero que mudou na tela mudou porque a varredura o recontou.
   O DEFEITO, MEDIDO NO AR AS 13h20Z ANTES DE QUALQUER CONSERTO: '/ferramentas/' servia 'So 15 dos 45 modelos do banco sao atendidos pelas duas ferramentas ao mesmo tempo'. A varredura de hoje mede 11. Estava assim desde 20/09 as 15h39Z, quando o portao do canal brasileiro anulou 7 canais e tirou quatro Roborock da interseccao — com as 38 passadas da bancada verdes o dia inteiro. Quem nomeou o numero foi o Pente Fino de 21/09; o que ele nao tinha medido e que a frase ja estava servida.
