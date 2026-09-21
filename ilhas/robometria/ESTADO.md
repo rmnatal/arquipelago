@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-21T10:45Z
-executando_desde: null
+executando_desde: 2026-09-21T13:20Z
 bloco_atual: |
   A PORTA DA FOTO ABRIU E O DESPACHO DE 19/09 SAIU INTEIRO: 29 de 103 foi para 59 de 103. Os oito hosts de IMAGEM que o despacho pedia responderam na primeira medicao desta execucao — antes eram 000 em todos —, a colheita reimprimiu 37 candidatos e o olho abriu os 36 elegiveis um a um, como a 25.3 manda. 30 aprovados, 6 reprovados com o motivo escrito e datado. Presos em host de imagem fechado: 0.
   AS 6 REPROVAS SAO O ACHADO, NAO A SOBRA. Antes do olho, os 36 arquivos foram agrupados por sha256: as paginas '.../accessories/specs/' da Xiaomi servem UMA imagem so para a pagina inteira, e o mesmo arquivo chegava a escova principal, filtro, mop e escova lateral — o casamento errado que a 25.3 existe para impedir, e a mesma causa dos 10 registros de FAQ medidos em 20/09, um andar adiante. O sexto e positivo-pra2000: composicao de varejo com a CAIXA e texto promocional que a ilha nao escreveu e nao pode datar, mesma familia do wap-wsmart. O irmao positivo-pra500 passou, e a diferenca e essa.
