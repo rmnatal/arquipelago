@@ -825,7 +825,36 @@ def recontar(doc):
     c = doc.get('contagem')
     if not c:
         return
+
+    def _af(r, campo):
+        return (r.get('afiliado') or {}).get(campo)
+
     for chave, valor in (
+            # AS SEIS PRIMEIRAS ENTRARAM EM 21/09/2026, NA LEVA DOS QUATRO FILTROS.
+            # Ate entao esta funcao so movia as quatro contagens que a COLETA muda,
+            # e a leva que ACRESCENTA registro mexe em outras seis — total,
+            # publicavel, os dois status e, so em pecas.json, os pares. O efeito
+            # era sempre o mesmo e sempre a mao: o `validar-banco.py` REPROVAVA a
+            # leva pelo cabecalho, e quem estivesse gravando corrigia os numeros a
+            # mao logo depois de ter acabado de escrever que numero de cabecalho
+            # nao se digita. A definicao de cada uma e a do validador, palavra por
+            # palavra, e e de proposito que ele continue conferindo.
+            ('total', len(doc['registros'])),
+            ('publicavel', len(pub)),
+            ('nao_publicavel',
+             sum(1 for r in doc['registros'] if r.get('status') == 'nao_publicavel')),
+            ('excluido_do_banco',
+             sum(1 for r in doc['registros'] if r.get('status') == 'excluido_do_banco')),
+            ('pares_peca_x_modelo_declarados',
+             sum(len(r.get('compatibilidade') or []) for r in pub)),
+            ('itens_sem_saida_de_compra',
+             sum(1 for r in pub if not (_af(r, 'url') or _af(r, 'url_busca')
+                                        or _af(r, 'url_busca_produto')))),
+            ('itens_com_piso_nao_rastreavel',
+             sum(1 for r in pub if not _af(r, 'url') and not _af(r, 'url_busca')
+                 and _af(r, 'url_busca_produto'))),
+            ('links_sem_degrau',
+             sum(1 for r in pub if _af(r, 'url') and _af(r, 'degrau') is None)),
             ('esperando_link_de_afiliado',
              sum(1 for r in pub if not (r.get('afiliado') or {}).get('url'))),
             ('itens_com_ficha',

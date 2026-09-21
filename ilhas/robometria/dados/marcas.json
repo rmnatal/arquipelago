@@ -1,90 +1,91 @@
 {
-  "id": "marcas",
-  "ilha": "robometria",
-  "entidade": "marca",
-  "esquema": "dados/esquema-banco.json",
-  "gerado_em": "2026-09-17",
-  "nota_de_procedencia": "Coleta de 09/09/2026 por busca web restrita ao dominio de cada fabricante. O egresso HTTP direto desta nuvem esta fechado para multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com e manuals.plus (EGRESS_BLOCKED, medido nesta execucao). sameAs[] alimenta o JSON-LD Organization. Bloco 3c (09/09/2026): canal_de_pecas de electrolux, positivo e xiaomi encontrado por busca restrita ao dominio. Continua sem leitura direta — o egresso segue fechado. Segunda leva do Bloco 3c (09/09/2026): entrou a marca WAP, colhida por busca restrita a wap.ind.br. A leitura direta de loja.wap.ind.br e de mais.conteudo.wap.ind.br (manuais em PDF) devolveu EGRESS_BLOCKED, somando-se aos dominios ja medidos.",
-  "registros": [
-    {
-      "id": "multi",
-      "nome": "Multi (ex-Multilaser)",
-      "nome_de_busca": "Multilaser",
-      "site_oficial": "https://www.multilaser.com.br/",
-      "canal_de_pecas": "https://www.multilaser.com.br/multilaser/pecas-de-reposicao/eletroportateis/acessorios-p--aspirador-robo-po",
-      "sameAs": [
-        "https://www.multilaser.com.br/",
-        "https://www.multilaserempresas.com.br/",
-        "https://suporte.multilaser.com.br/"
-      ],
-      "observacao": "E a marca mais importante desta ilha porque e a unica da coleta que publica pagina de PECA com codigo proprio e lista de modelos compativeis — que e exatamente o dado que a R1 vende. Tem TRES canais proprios (varejo, empresas e suporte) e eles ja divergiram entre si sobre compatibilidade nesta coleta: por isso o campo 'canal' existe em divergencias[]. A linha ObaDuster/Obabox (OB010) e vendida dentro do mesmo canal e nao foi separada como marca propria.",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "id": "electrolux",
-      "nome": "Electrolux",
-      "nome_de_busca": "Electrolux",
-      "site_oficial": "https://loja.electrolux.com.br/",
-      "canal_de_pecas": "https://loja.electrolux.com.br/pecas-e-acessorios/pecas-para-aspirador-de-po",
-      "sameAs": [
-        "https://loja.electrolux.com.br/"
-      ],
-      "observacao": "Unica marca da coleta que declara COBERTURA EM M2 POR CARGA (162 m2 no ERB44). Esse par (minutos, m2) e a base do exemplo trabalhado da R2 e, hoje, o unico par declarado que o banco tem. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "id": "xiaomi",
-      "nome": "Xiaomi",
-      "nome_de_busca": "Xiaomi",
-      "site_oficial": "https://www.mi.com/br/",
-      "canal_de_pecas": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-      "sameAs": [
-        "https://www.mi.com/br/"
-      ],
-      "observacao": "Publica ficha de especificacao completa e limpa (Pa, mAh, minutos, recarga) e NAO declara cobertura em m2. Esse silencio e o achado: a conversao minutos -> m2 nao existe em fonte nenhuma, e e o vacuo que a R2 ocupa. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "id": "positivo",
-      "nome": "Positivo Casa Inteligente",
-      "nome_de_busca": "Positivo",
-      "site_oficial": "https://www.positivocasainteligente.com.br/",
-      "canal_de_pecas": "https://www.positivocasainteligente.com.br/acessorios/robo-aspirador",
-      "sameAs": [
-        "https://www.positivocasainteligente.com.br/"
-      ],
-      "observacao": "Linha em canal oficial: PRA500, PRA800, PRA1000 e PRA2000. O corpus do Bloco 1 registrou um 'PRA8000' que nao existe em canal nenhum — quase certamente erro de transcricao de PRA800. Nenhum dado tecnico foi herdado do nome errado. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "id": "wap",
-      "nome": "WAP",
-      "nome_de_busca": "WAP",
-      "site_oficial": "https://www.wap.ind.br/",
-      "canal_de_pecas": "https://loja.wap.ind.br/acessorios/para-aspiradores",
-      "sameAs": [
-        "https://www.wap.ind.br/",
-        "https://loja.wap.ind.br/",
-        "https://ajuda.wap.ind.br/",
-        "https://blog.wap.ind.br/"
-      ],
-      "observacao": "Quinta marca do banco, aberta na segunda leva do Bloco 3c. E a UNICA marca da coleta que publica o manual de instrucoes em PDF num endereco proprio e estavel (mais.conteudo.wap.ind.br, um PDF por modelo, com revisao e data no nome do arquivo; o WSMART e a excecao — esse mora no blog da marca). Isso a torna a candidata mais provavel a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir: hoje o dominio dos manuais devolve 000. Declara Pa em UM dos oito modelos do banco (W400) e NAO declara cobertura em m2 em nenhum, o que reforca o achado da Xiaomi. canal_de_pecas PREENCHIDO em 13/09/2026, e a frase que estava aqui antes ('a busca restrita ao dominio nao devolveu pagina de peca de reposicao com codigo') estava errada pela metade: a loja publica pagina de peca POR MODELO e ela TEM codigo de referencia WAP na ficha. MEDIDO NA SEGUNDA LEVA DE 13/09, e corrige a frase anterior pela metade: a ficha TEM codigo, e a BUSCA nao o alcanca — ela devolve a pagina e o titulo, nunca o campo. As quatro primeiras pecas WAP entraram pelo titulo, com codigo null. E a WAP e a marca que provou a regra da secao 26 do ARQUIPELAGO.md: 'giratoria' nomeia o par LATERAL no conteudo declarado do W300 e a PRINCIPAL no artigo de limpeza do W90, no mesmo canal. O blog (blog.wap.ind.br) e a descoberta de processo desta leva: e nele que a marca nomeia a FUNCAO das pecas, por modelo, coisa que a loja nunca faz.",
-      "verificado_em": "2026-09-13"
-    },
-    {
-      "id": "roborock",
-      "nome": "Roborock",
-      "nome_de_busca": "Roborock",
-      "site_oficial": "https://br.roborock.com/",
-      "canal_de_pecas": "https://us.roborock.com/collections/accessories",
-      "sameAs": [
-        "https://br.roborock.com/",
-        "https://us.roborock.com/",
-        "https://support.roborock.com/"
-      ],
-      "observacao": "SEXTA marca do banco, aberta em 17/09/2026 para tirar a faixa alta de Pa das maos de uma marca so. Ate hoje TODO modelo do banco acima de 3.000 Pa era Xiaomi, e uma ilha que se vende como comparador cross-marca nao pode ter a faixa que mais vende — casa com pet — ocupada por um fabricante unico; era a urgencia numero 1 da lista_de_compras desde 13/09. A Roborock declara Pa em NUMERO no proprio canal brasileiro (br.roborock.com), coisa que Electrolux e Multi nao fazem em canal nenhum e que a WAP so faz em um dos oito modelos. canal_de_pecas aponta para a LOJA AMERICANA do fabricante de proposito e com o custo dito: o canal brasileiro nao devolveu pagina de acessorio em duas passadas, e a loja dos EUA e do PROPRIO fabricante e declara compatibilidade no TITULO do produto, modelo a modelo. O endereco do subdominio desta marca tambem foi o que mostrou um falso negativo na regua: 'br.roborock.com' nao tem '.br' nem '/br/', e ate hoje o portao do canal brasileiro em validar-banco.py so conhecia essas duas formas.",
-      "verificado_em": "2026-09-17"
-    }
-  ],
-  "nota_do_nome_de_busca": "nome_de_busca nasceu em 13/09/2026 com a escada de compra da secao 25. Ele NAO e o nome de tela e NAO e o id: e o token que entra na palavra-chave da busca de afiliado. Tres das cinco escolhas tem motivo escrito, porque nenhuma delas e a obvia. (1) multi -> 'Multilaser', e nao 'Multi': 'multi' e prefixo do portugues e traz qualquer coisa, o proprio dominio do fabricante ainda e multilaser.com.br e e assim que a peca de reposicao dele e anunciada; e o campo `nome` nao serve porque levaria '(ex-Multilaser)' com parenteses para dentro da consulta. (2) positivo -> 'Positivo', e nao 'Positivo Casa Inteligente': tres tokens onde um basta, e o termo de contexto da escada ja desfaz a ambiguidade da palavra comum. (3) wap -> 'WAP', que e sigla de outra coisa em ingles e so sobrevive acompanhada do termo de contexto — mais uma razao para o contexto ser obrigatorio nas duas entidades."
+ "id": "marcas",
+ "ilha": "robometria",
+ "entidade": "marca",
+ "esquema": "dados/esquema-banco.json",
+ "gerado_em": "2026-09-17",
+ "nota_de_procedencia": "Coleta de 09/09/2026 por busca web restrita ao dominio de cada fabricante. O egresso HTTP direto desta nuvem esta fechado para multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com e manuals.plus (EGRESS_BLOCKED, medido nesta execucao). sameAs[] alimenta o JSON-LD Organization. Bloco 3c (09/09/2026): canal_de_pecas de electrolux, positivo e xiaomi encontrado por busca restrita ao dominio. Continua sem leitura direta — o egresso segue fechado. Segunda leva do Bloco 3c (09/09/2026): entrou a marca WAP, colhida por busca restrita a wap.ind.br. A leitura direta de loja.wap.ind.br e de mais.conteudo.wap.ind.br (manuais em PDF) devolveu EGRESS_BLOCKED, somando-se aos dominios ja medidos.",
+ "registros": [
+  {
+   "id": "multi",
+   "nome": "Multi (ex-Multilaser)",
+   "nome_de_busca": "Multilaser",
+   "site_oficial": "https://www.multilaser.com.br/",
+   "canal_de_pecas": "https://www.multilaser.com.br/multilaser/pecas-de-reposicao/eletroportateis/acessorios-p--aspirador-robo-po",
+   "sameAs": [
+    "https://www.multilaser.com.br/",
+    "https://www.multilaserempresas.com.br/",
+    "https://suporte.multilaser.com.br/"
+   ],
+   "observacao": "E a marca mais importante desta ilha porque e a unica da coleta que publica pagina de PECA com codigo proprio e lista de modelos compativeis — que e exatamente o dado que a R1 vende. Tem TRES canais proprios (varejo, empresas e suporte) e eles ja divergiram entre si sobre compatibilidade nesta coleta: por isso o campo 'canal' existe em divergencias[]. A linha ObaDuster/Obabox (OB010) e vendida dentro do mesmo canal e nao foi separada como marca propria.",
+   "verificado_em": "2026-09-09"
+  },
+  {
+   "id": "electrolux",
+   "nome": "Electrolux",
+   "nome_de_busca": "Electrolux",
+   "site_oficial": "https://loja.electrolux.com.br/",
+   "canal_de_pecas": "https://loja.electrolux.com.br/pecas-e-acessorios/pecas-para-aspirador-de-po",
+   "sameAs": [
+    "https://loja.electrolux.com.br/"
+   ],
+   "observacao": "Unica marca da coleta que declara COBERTURA EM M2 POR CARGA (162 m2 no ERB44). Esse par (minutos, m2) e a base do exemplo trabalhado da R2 e, hoje, o unico par declarado que o banco tem. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
+   "verificado_em": "2026-09-09"
+  },
+  {
+   "id": "xiaomi",
+   "nome": "Xiaomi",
+   "nome_de_busca": "Xiaomi",
+   "site_oficial": "https://www.mi.com/br/",
+   "canal_de_pecas": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+   "sameAs": [
+    "https://www.mi.com/br/"
+   ],
+   "observacao": "Publica ficha de especificacao completa e limpa (Pa, mAh, minutos, recarga) e NAO declara cobertura em m2. Esse silencio e o achado: a conversao minutos -> m2 nao existe em fonte nenhuma, e e o vacuo que a R2 ocupa. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
+   "verificado_em": "2026-09-09"
+  },
+  {
+   "id": "positivo",
+   "nome": "Positivo Casa Inteligente",
+   "nome_de_busca": "Positivo",
+   "site_oficial": "https://www.positivocasainteligente.com.br/",
+   "canal_de_pecas": "https://www.positivocasainteligente.com.br/acessorios/robo-aspirador",
+   "sameAs": [
+    "https://www.positivocasainteligente.com.br/",
+    "https://loja.meupositivo.com.br/"
+   ],
+   "observacao": "Linha em canal oficial: PRA500, PRA800, PRA1000 e PRA2000. O corpus do Bloco 1 registrou um 'PRA8000' que nao existe em canal nenhum — quase certamente erro de transcricao de PRA800. Nenhum dado tecnico foi herdado do nome errado. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null. | LOJA OFICIAL DECLARADA EM 21/09/2026, e ela ja estava no banco havia doze dias: quatro registros de peca desta marca citam loja.meupositivo.com.br em fontes{} como varejo-oficial-da-marca, e o host NAO estava aqui. A consequencia era medida e silenciosa — medir-portas-do-fabricante.py classifica porta pelo que a marca declara, entao a porta desses registros saia como 'nao_declarado' e a coleta de foto os devolvia com 'sem porta de fabricante aberta' mesmo com o host respondendo 200. A WAP ja declarava a loja dela (loja.wap.ind.br) desde 13/09: eram duas marcas da mesma especie em dois estados. E o 'PRA8000 que nao existe em canal nenhum' escrito aqui em 09/09 como 'quase certamente erro de transcricao' deixou de ser quase: em 21/09 a loja publica um filtro (referencia 11206516) cujo TITULO diz PRA8000 e cujo corpo e cujo endereco dizem PRA800, e a busca do catalogo nao devolve nenhum robo com esse nome.",
+   "verificado_em": "2026-09-21"
+  },
+  {
+   "id": "wap",
+   "nome": "WAP",
+   "nome_de_busca": "WAP",
+   "site_oficial": "https://www.wap.ind.br/",
+   "canal_de_pecas": "https://loja.wap.ind.br/acessorios/para-aspiradores",
+   "sameAs": [
+    "https://www.wap.ind.br/",
+    "https://loja.wap.ind.br/",
+    "https://ajuda.wap.ind.br/",
+    "https://blog.wap.ind.br/"
+   ],
+   "observacao": "Quinta marca do banco, aberta na segunda leva do Bloco 3c. E a UNICA marca da coleta que publica o manual de instrucoes em PDF num endereco proprio e estavel (mais.conteudo.wap.ind.br, um PDF por modelo, com revisao e data no nome do arquivo; o WSMART e a excecao — esse mora no blog da marca). Isso a torna a candidata mais provavel a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir: hoje o dominio dos manuais devolve 000. Declara Pa em UM dos oito modelos do banco (W400) e NAO declara cobertura em m2 em nenhum, o que reforca o achado da Xiaomi. canal_de_pecas PREENCHIDO em 13/09/2026, e a frase que estava aqui antes ('a busca restrita ao dominio nao devolveu pagina de peca de reposicao com codigo') estava errada pela metade: a loja publica pagina de peca POR MODELO e ela TEM codigo de referencia WAP na ficha. MEDIDO NA SEGUNDA LEVA DE 13/09, e corrige a frase anterior pela metade: a ficha TEM codigo, e a BUSCA nao o alcanca — ela devolve a pagina e o titulo, nunca o campo. As quatro primeiras pecas WAP entraram pelo titulo, com codigo null. E a WAP e a marca que provou a regra da secao 26 do ARQUIPELAGO.md: 'giratoria' nomeia o par LATERAL no conteudo declarado do W300 e a PRINCIPAL no artigo de limpeza do W90, no mesmo canal. O blog (blog.wap.ind.br) e a descoberta de processo desta leva: e nele que a marca nomeia a FUNCAO das pecas, por modelo, coisa que a loja nunca faz.",
+   "verificado_em": "2026-09-13"
+  },
+  {
+   "id": "roborock",
+   "nome": "Roborock",
+   "nome_de_busca": "Roborock",
+   "site_oficial": "https://br.roborock.com/",
+   "canal_de_pecas": "https://us.roborock.com/collections/accessories",
+   "sameAs": [
+    "https://br.roborock.com/",
+    "https://us.roborock.com/",
+    "https://support.roborock.com/"
+   ],
+   "observacao": "SEXTA marca do banco, aberta em 17/09/2026 para tirar a faixa alta de Pa das maos de uma marca so. Ate hoje TODO modelo do banco acima de 3.000 Pa era Xiaomi, e uma ilha que se vende como comparador cross-marca nao pode ter a faixa que mais vende — casa com pet — ocupada por um fabricante unico; era a urgencia numero 1 da lista_de_compras desde 13/09. A Roborock declara Pa em NUMERO no proprio canal brasileiro (br.roborock.com), coisa que Electrolux e Multi nao fazem em canal nenhum e que a WAP so faz em um dos oito modelos. canal_de_pecas aponta para a LOJA AMERICANA do fabricante de proposito e com o custo dito: o canal brasileiro nao devolveu pagina de acessorio em duas passadas, e a loja dos EUA e do PROPRIO fabricante e declara compatibilidade no TITULO do produto, modelo a modelo. O endereco do subdominio desta marca tambem foi o que mostrou um falso negativo na regua: 'br.roborock.com' nao tem '.br' nem '/br/', e ate hoje o portao do canal brasileiro em validar-banco.py so conhecia essas duas formas.",
+   "verificado_em": "2026-09-17"
+  }
+ ],
+ "nota_do_nome_de_busca": "nome_de_busca nasceu em 13/09/2026 com a escada de compra da secao 25. Ele NAO e o nome de tela e NAO e o id: e o token que entra na palavra-chave da busca de afiliado. Tres das cinco escolhas tem motivo escrito, porque nenhuma delas e a obvia. (1) multi -> 'Multilaser', e nao 'Multi': 'multi' e prefixo do portugues e traz qualquer coisa, o proprio dominio do fabricante ainda e multilaser.com.br e e assim que a peca de reposicao dele e anunciada; e o campo `nome` nao serve porque levaria '(ex-Multilaser)' com parenteses para dentro da consulta. (2) positivo -> 'Positivo', e nao 'Positivo Casa Inteligente': tres tokens onde um basta, e o termo de contexto da escada ja desfaz a ambiguidade da palavra comum. (3) wap -> 'WAP', que e sigla de outra coisa em ingles e so sobrevive acompanhada do termo de contexto — mais uma razao para o contexto ser obrigatorio nas duas entidades."
 }

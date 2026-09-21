@@ -1,0 +1,182 @@
+{
+ "gerado_em": "2026-09-21",
+ "alvo": 7,
+ "registros": [
+  {
+   "id": "positivo-11206540",
+   "marca": "positivo",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "11206540",
+   "tipo": "mop",
+   "portas": [
+    "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p"
+   ],
+   "colheita": null,
+   "motivo": "sem porta de fabricante aberta"
+  },
+  {
+   "id": "wap-fw006270",
+   "marca": "wap",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "FW006270",
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Filtro HEPA Para Robô Aspirador de Pó WAP Robot W300",
+    "referencia_na_pagina": "FW006270",
+    "skus": [
+     "373"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/158334/filtro-hepa-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425048284030000",
+      "alt": "Filtro-HEPA-Para-Robo-Aspirador-de-Po-WAP-Robot-W300"
+     }
+    ],
+    "porta": "https://loja.wap.ind.br/filtro-hepa-para-robo-aspirador-de-po-wap-robot-w300/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "FW006270 == FW006270"
+   }
+  },
+  {
+   "id": "wap-fw006271",
+   "marca": "wap",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "FW006271",
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Filtro Grade Para Robô Aspirador de Pó WAP Robot W300",
+    "referencia_na_pagina": "FW006271",
+    "skus": [
+     "372"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/158333/filtro-grade-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425046840300000",
+      "alt": "Filtro-Grade-Para-Robo-Aspirador-de-Po-WAP-Robot-W300"
+     }
+    ],
+    "porta": "https://loja.wap.ind.br/filtro-grade-para-robo-aspirador-de-po-wap-robot-w300/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "FW006271 == FW006271"
+   }
+  },
+  {
+   "id": "wap-fw007700",
+   "marca": "wap",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "FW007700",
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Filtro de Entrada Para Robô Aspirador de Pó WAP Robot W100",
+    "referencia_na_pagina": "FW007700",
+    "skus": [
+     "371"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojawap.vteximg.com.br/arquivos/ids/158332/filtro-de-entrada-para-robo-aspirador-de-po-wap-robot-w100.png?v=637425044424830000",
+      "alt": "Filtro-de-Entrada-Para-Robo-Aspirador-de-Po-WAP-Robot-W100"
+     }
+    ],
+    "porta": "https://loja.wap.ind.br/filtro-de-entrada-para-robo-aspirador-de-po-wap-robot-w100/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "FW007700 == FW007700"
+   }
+  },
+  {
+   "id": "positivo-11206516",
+   "marca": "positivo",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "11206516",
+   "tipo": "filtro",
+   "portas": [
+    "https://loja.meupositivo.com.br/filtro-hepa-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206516/p"
+   ],
+   "colheita": null,
+   "motivo": "sem porta de fabricante aberta"
+  },
+  {
+   "id": "positivo-pra2000",
+   "marca": "positivo",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "PRA2000",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente - Aspira/Passa Pano/Volta à base - Mapeamento",
+    "referencia_na_pagina": "11206197",
+    "skus": [
+     "44046"
+    ],
+    "fotos": [
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159087/01_ASPIRADOR_PRA2000.jpg?v=639101416642970000",
+      "alt": "01_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159127/02_ASPIRADOR_PRA2000.jpg?v=639111010070370000",
+      "alt": "02_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159128/03_ASPIRADOR_PRA2000.jpg?v=639111010070500000",
+      "alt": "03_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159129/04_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "04_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159130/05_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "05_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159131/06_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "06_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159132/07_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "07_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159133/08_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "08_ASPIRADOR_PRA2000"
+     }
+    ],
+    "porta": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-autolimpante-pra2000-positivo-casa-inteligente-11206197/p",
+    "veredito_nome": "texto",
+    "prova_nome": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente - Aspira/Passa Pano/Volta à base"
+   }
+  },
+  {
+   "id": "wap-wsmart",
+   "marca": "wap",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "WSMART",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "https://blog.wap.ind.br/wp-content/uploads/2020/08/Wsmart-1.png",
+      "alt": null
+     }
+    ],
+    "porta": "https://blog.wap.ind.br/lancamento-robo-aspirador-wap-robot-wsmart/",
+    "veredito_nome": "texto",
+    "prova_nome": "Lançamento Robô Aspirador WAP ROBOT WSMART - WAP Blog - Novidades e dicas em cuidados com a família LO"
+   }
+  }
+ ]
+}

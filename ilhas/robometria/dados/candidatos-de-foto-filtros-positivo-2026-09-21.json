@@ -1,0 +1,123 @@
+{
+ "gerado_em": "2026-09-21",
+ "alvo": 3,
+ "registros": [
+  {
+   "id": "positivo-11206540",
+   "marca": "positivo",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "11206540",
+   "tipo": "mop",
+   "colheita": {
+    "estrategia": "html",
+    "nome_na_pagina": null,
+    "referencia_na_pagina": null,
+    "fotos": [
+     {
+      "url": "https://lojapositivo.vtexassets.com/arquivos/ids/168084/MOP-ROBO-ASPIRADOR-PRA800-E-2000_01.jpg?v=638599535220830000",
+      "alt": null
+     },
+     {
+      "url": "https://lojapositivo.vtexassets.com/arquivos/ids/168085/MOP-ROBO-ASPIRADOR-PRA800-E-2000_02.jpg?v=638762026126600000",
+      "alt": null
+     },
+     {
+      "url": "https://lojapositivo.vtexassets.com/arquivos/ids/168086/MOP-ROBO-ASPIRADOR-PRA800-E-2000_03.jpg?v=638762026126770000",
+      "alt": null
+     }
+    ],
+    "aviso": "catalogo VTEX nao serviu: catalogo devolveu 000",
+    "porta": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
+    "veredito_nome": "NAO",
+    "prova_nome": ""
+   }
+  },
+  {
+   "id": "positivo-11206516",
+   "marca": "positivo",
+   "arquivo": "dados/pecas.json",
+   "entidade": "peca",
+   "codigo": "11206516",
+   "tipo": "filtro",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente - Compacto e Leve",
+    "referencia_na_pagina": "11206516",
+    "skus": [
+     "44052"
+    ],
+    "fotos": [
+     {
+      "url": "https://lojapositivo.vteximg.com.br/arquivos/ids/168087/FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_01.jpg?v=638599538333570000",
+      "alt": "FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_01"
+     },
+     {
+      "url": "https://lojapositivo.vteximg.com.br/arquivos/ids/168088/FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_02.jpg?v=638762028870770000",
+      "alt": "FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_02"
+     },
+     {
+      "url": "https://lojapositivo.vteximg.com.br/arquivos/ids/168089/FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_03.jpg?v=638762028870770000",
+      "alt": "FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_03"
+     }
+    ],
+    "porta": "https://loja.meupositivo.com.br/filtro-hepa-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206516/p",
+    "veredito_nome": "referencia",
+    "prova_nome": "11206516 == 11206516"
+   }
+  },
+  {
+   "id": "positivo-pra2000",
+   "marca": "positivo",
+   "arquivo": "dados/modelos-robo.json",
+   "entidade": "modelo-robo",
+   "codigo": "PRA2000",
+   "tipo": "robo",
+   "colheita": {
+    "estrategia": "vtex",
+    "nome_na_pagina": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente - Aspira/Passa Pano/Volta à base - Mapeamento",
+    "referencia_na_pagina": "11206197",
+    "skus": [
+     "44046"
+    ],
+    "fotos": [
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159087/01_ASPIRADOR_PRA2000.jpg?v=639101416642970000",
+      "alt": "01_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159127/02_ASPIRADOR_PRA2000.jpg?v=639111010070370000",
+      "alt": "02_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159128/03_ASPIRADOR_PRA2000.jpg?v=639111010070500000",
+      "alt": "03_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159129/04_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "04_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159130/05_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "05_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159131/06_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "06_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159132/07_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "07_ASPIRADOR_PRA2000"
+     },
+     {
+      "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159133/08_ASPIRADOR_PRA2000.jpg?v=639111010070670000",
+      "alt": "08_ASPIRADOR_PRA2000"
+     }
+    ],
+    "porta": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-autolimpante-pra2000-positivo-casa-inteligente-11206197/p",
+    "veredito_nome": "texto",
+    "prova_nome": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente - Aspira/Passa Pano/Volta à base"
+   }
+  }
+ ]
+}

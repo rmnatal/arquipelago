@@ -7,12 +7,12 @@
   "resumo": {
     "marcas": 6,
     "modelos_publicaveis": 45,
-    "pecas_publicaveis": 50,
-    "pares_declarados": 87,
+    "pecas_publicaveis": 54,
+    "pares_declarados": 92,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 270,
-    "celulas_sem_resposta": 177,
-    "pecas_esperando_link": 36
+    "celulas_sem_resposta": 173,
+    "pecas_esperando_link": 40
   },
   "maior_alcance": {
     "peca": "xiaomi-b106gl-bx",
@@ -336,6 +336,31 @@
       "modelos_publicaveis": 3,
       "marcas_atendidas": [
         "xiaomi"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "positivo-11206516",
+      "tipo": "filtro",
+      "marca": "positivo",
+      "publicador": "Positivo Casa Inteligente",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "11206516",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente",
+      "codigos_declarados": 2,
+      "codigos_na_fonte": [
+        "PRA800",
+        "PRA2000"
+      ],
+      "modelos_publicaveis": 2,
+      "marcas_atendidas": [
+        "positivo"
       ],
       "atravessa_marca": false
     },
@@ -874,6 +899,78 @@
       "atravessa_marca": false
     },
     {
+      "peca": "wap-fw006270",
+      "tipo": "filtro",
+      "marca": "wap",
+      "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "FW006270",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Filtro HEPA Para Robô Aspirador de Pó WAP Robot W300",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "WAP Robot W300"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "wap-fw006271",
+      "tipo": "filtro",
+      "marca": "wap",
+      "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "FW006271",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Filtro Grade Para Robô Aspirador de Pó WAP Robot W300",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "WAP Robot W300"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "wap-fw007700",
+      "tipo": "filtro",
+      "marca": "wap",
+      "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "FW007700",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Filtro de Entrada Para Robô Aspirador de Pó WAP Robot W100",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "WAP Robot W100"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
       "peca": "wap-fw008024",
       "tipo": "reservatorio",
       "marca": "wap",
@@ -1297,6 +1394,19 @@
       "nenhuma_repete": false
     },
     {
+      "marca": "wap",
+      "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "pecas": 10,
+      "conjuntos_distintos": 6,
+      "nenhuma_repete": false
+    },
+    {
       "marca": "electrolux",
       "publicador": "Electrolux",
       "gramatica_do_publicador": {
@@ -1307,19 +1417,6 @@
       },
       "pecas": 8,
       "conjuntos_distintos": 7,
-      "nenhuma_repete": false
-    },
-    {
-      "marca": "wap",
-      "publicador": "WAP",
-      "gramatica_do_publicador": {
-        "artigo": "a",
-        "maiuscula": "A",
-        "com_de": "da",
-        "numero": "singular"
-      },
-      "pecas": 7,
-      "conjuntos_distintos": 4,
       "nenhuma_repete": false
     },
     {
@@ -1357,7 +1454,7 @@
         "com_de": "da",
         "numero": "singular"
       },
-      "pecas": 3,
+      "pecas": 4,
       "conjuntos_distintos": 1,
       "nenhuma_repete": false
     }
@@ -1378,7 +1475,7 @@
     {
       "tipo": "filtro",
       "nome": "filtro",
-      "modelos_com_declaracao": 17,
+      "modelos_com_declaracao": 21,
       "modelos_publicaveis": 45
     },
     {
@@ -1567,7 +1664,7 @@
   "perguntas": [
     {
       "pergunta": "Existe filtro universal para robô aspirador?",
-      "resposta": "Não. Nas 50 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 6 códigos de modelo, todos da mesma marca."
+      "resposta": "Não. Nas 54 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 6 códigos de modelo, todos da mesma marca."
     },
     {
       "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
@@ -1575,7 +1672,7 @@
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 87 pares peça × modelo em 6 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 92 pares peça × modelo em 6 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }

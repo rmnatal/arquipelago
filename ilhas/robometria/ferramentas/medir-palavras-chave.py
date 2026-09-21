@@ -110,6 +110,11 @@ RAIZ_REPO = os.path.dirname(os.path.dirname(RAIZ_ILHA))
 
 SAIDA = 'dados/palavras-chave-medidas.json'
 QUANTOS = 10
+# O ultimo degrau da escada, o `marca + contexto`. Ele tem nome porque a regra
+# de preferencia precisa nomea-lo: e o unico degrau que a propria escada declara
+# nao servir para trazer a peca no topo, e por isso o unico que perde para um
+# criterio mais fraco vindo de um degrau mais estreito.
+DEGRAU_DO_PISO_LARGO = 5
 
 
 def _modulo(caminho, nome):
@@ -326,7 +331,29 @@ def medir(peca, marcas, modelos, contexto, cache):
         # acaso o topo do degrau 5 naquele minuto era uma escova frontal. Chave
         # que so serve enquanto o topo de hoje nao mudar nao e chave: e sorte
         # gravada no banco com data.
-        if escolhido or primeiro_literal:
+        #
+        # O `or primeiro_literal` SAIU EM 21/09/2026, E A MEDICAO QUE O DERRUBOU
+        # ESTA NA LEVA DOS TRES FILTROS DA WAP. Com ele, a escada PARAVA no
+        # degrau 1 sempre que a regua frouxa passasse — e o degrau 1 e a chave no
+        # vocabulario da ILHA, que e justamente a que a secao 26 diz que o
+        # vendedor nao digita. Medido nos tres registros novos, degrau a degrau:
+        # `WAP filtro robo aspirador` (d1) devolve no topo *"Kit APZ Aspirador De
+        # Robo Filtro De Escova Para Mondial, Multilaser WAP100, etc."* — passa na
+        # frouxa (tem `wap` e tem `filtro` no titulo) e reprova na dura; enquanto
+        # `WAP Filtro HEPA robo aspirador` (d2) devolve *"Filtro Hepa para Robo
+        # Aspirador Wap W310"* e `WAP FW006270 filtro robo aspirador` (d3)
+        # devolve *"Filtro Hepa Para Wap Robot W300 - FW006270"*, os dois na
+        # regua DURA. A parada no d1 jogava fora um degrau melhor que ja estava
+        # medido, e mandava o botao de compra desta ilha abrir num kit de OUTRA
+        # marca — que e o defeito 4 da ronda de 18/09 com outra roupa.
+        #
+        # O QUE ISTO NAO DESFAZ: a trava que o comentario acima descreve. O caso
+        # `wap-escova-direita-w300` — literal no d2, dura por ACASO no d5 —
+        # continua resolvido, e nao era o `break` que o resolvia: quem o resolve e
+        # a linha de preferencia logo abaixo, que devolve o degrau MAIS ESPECIFICO
+        # quando os dois criterios apontam para degraus diferentes. O `break` era
+        # redundante com ela para aquele caso e destrutivo para este.
+        if escolhido:
             break
     # A ORDEM DE PREFERENCIA, e ela e o coracao desta ferramenta. A regua dura
     # da 25.7 (o tipo e a CABECA do titulo) e a regua do item 3 do despacho (o
@@ -339,7 +366,25 @@ def medir(peca, marcas, modelos, contexto, cache):
     # ver. Entao a escada tenta a dura, aceita a do despacho, e so cai no
     # "tem resultado" quando nenhuma das duas aparece em degrau nenhum.
     final = escolhido or primeiro_literal or primeiro_com_resultado or tentativas[-1]
-    if escolhido and primeiro_literal and primeiro_literal['degrau'] < escolhido['degrau']:
+    # A PREFERENCIA PELO DEGRAU MAIS ESPECIFICO VALE CONTRA O PISO LARGO, E SO
+    # CONTRA ELE (corrigido em 21/09/2026, na mesma leva que derrubou o `break`).
+    #
+    # Escrita sem essa fronteira, ela dizia "chave mais especifica ganha sempre" e
+    # devolvia, nos tres filtros da WAP, o degrau 1 — que passa na regua FROUXA
+    # com um kit de outra marca no topo — por cima do degrau 2 e do 3, que passam
+    # na regua DURA com o filtro exato do registro no topo. Preferir a chave mais
+    # estreita que NAO mostra a peca a uma chave um pouco mais larga que MOSTRA e
+    # inverter a pergunta que a 25.7 faz: quem escolhe uma busca escolhe uma
+    # vitrine, e vitrine e o que esta na frente dela.
+    #
+    # O caso que criou esta linha continua coberto, porque ele era sobre o degrau
+    # 5: `wap-escova-direita-w300` passava na frouxa no d2 e na dura no d5 por
+    # ACASO — o d5 e o piso largo (`marca + contexto`), e a propria escada declara
+    # que ele "nao traz a peca no topo". Passar la e sorte do minuto, nao regua,
+    # e por isso e o unico degrau que perde para um criterio mais fraco.
+    if (escolhido and primeiro_literal
+            and escolhido['degrau'] == DEGRAU_DO_PISO_LARGO
+            and primeiro_literal['degrau'] < escolhido['degrau']):
         final = primeiro_literal
     return {
         'id': peca['id'],
@@ -574,6 +619,42 @@ def main():
             escada['base_da_busca'], 'robometria', no_banco)
 
     if args.gravar:
+        # ---------------------------------------------------------------
+        # `--so` MEDE UM PEDACO E GRAVA O ARQUIVO INTEIRO (21/09/2026).
+        #
+        # Ate hoje a gravacao escrevia `medidas` — a lista do que ESTA passada
+        # mediu — por cima do arquivo. Com `--so`, isso apagava a medicao de
+        # todos os outros registros, e o estrago nao era teorico nem silencioso
+        # por muito tempo: medindo os quatro filtros desta leva com
+        # `--so`, o arquivo caiu de 95 registros para 4 e levou junto as 26
+        # CHAVES FIXADAS NO NAVEGADOR — exatamente o conserto de 20/09 que o
+        # bloco acima protege com tres paragrafos. Na passada seguinte
+        # `gerar-busca-de-produto.py` reescreveu 34 chaves do banco pela
+        # composicao padrao e 30 registros perderam o link curto, porque para
+        # ele um registro fora da medicao e um registro nunca medido.
+        #
+        # A regra: quem mede um PEDACO grava o pedaco DENTRO do arquivo, nunca
+        # no lugar dele. Sem `--so` nada muda — a lista medida e o arquivo.
+        if args.so:
+            por_id = {m['id']: m for m in medidas}
+            gravados = [por_id.pop(r['id'], r)
+                        for r in (anterior_doc.get('registros') or [])]
+            gravados += [m for m in medidas if m['id'] in por_id]
+        else:
+            gravados = medidas
+
+        # AS CONTAGENS SAO DO ARQUIVO, NAO DA PASSADA. A tela acima conta o que
+        # esta execucao mediu; o cabecalho conta o que fica gravado, que e a
+        # invariante que o validar-banco.py cobra dos dois arquivos de banco e
+        # que aqui nao existia por nao haver, ate hoje, diferenca entre as duas.
+        chaves_g = {}
+        for m in gravados:
+            chaves_g.setdefault(m['escolhido']['chave'], []).append(m)
+        vivas_g = [k for k, v in chaves_g.items() if v[0]['escolhido']['resultados'] > 0]
+        com_peca_g = [k for k, v in chaves_g.items() if v[0]['escolhido']['topo_e_a_peca']]
+        literal_g = [k for k, v in chaves_g.items()
+                     if v[0]['escolhido']['criterio_literal_do_despacho']]
+
         doc = {
             'id': 'palavras-chave-medidas',
             'ilha': 'robometria',
@@ -611,24 +692,25 @@ def main():
             # propria ferramenta imprimia 35. Errar do mesmo jeito no mesmo dia
             # em que se conserta o erro e o motivo de ele estar escrito aqui.
             'contagem': {
-                'palavras_chave_distintas_de_peca': len(chaves),
-                'com_resultado': len(vivas),
-                'com_a_peca_no_topo': len(com_peca),
-                'criterio_literal_do_despacho': len(literal),
+                'palavras_chave_distintas_de_peca': len(chaves_g),
+                'com_resultado': len(vivas_g),
+                'com_a_peca_no_topo': len(com_peca_g),
+                'criterio_literal_do_despacho': len(literal_g),
                 'com_a_marca_no_topo': sum(
                     1 for e in {m['escolhido']['chave']: m['escolhido']
-                                for m in medidas if m.get('tipo')}.values()
+                                for m in gravados if m.get('tipo')}.values()
                     if e.get('marca_no_topo')),
-                'registros_de_peca': len([m for m in medidas if m.get('tipo')]),
-                'registros_medidos': len(medidas),
+                'registros_de_peca': len([m for m in gravados if m.get('tipo')]),
+                'registros_medidos': len(gravados),
+                'medidos_nesta_passada': len(medidas),
                 'chaves_fixadas_no_navegador': sum(
-                    1 for m in medidas
+                    1 for m in gravados
                     if (m.get('escolhido') or {}).get('fixada_no_navegador')),
             },
             'fontes_da_medicao': sorted(set(
                 (anterior_doc.get('fontes_da_medicao') or []))),
             'atualizado_em': anterior_doc.get('atualizado_em'),
-            'registros': medidas,
+            'registros': gravados,
             'nota_das_contagens': (
                 'As contagens acima sao de PECA. Registros de MODELO_ROBO entram na '
                 'lista com `topo_e_a_peca` nulo de proposito: a pergunta do item 3 do '

@@ -1,0 +1,13 @@
+{
+ "olhado_em": "2026-09-21",
+ "fonte_dos_candidatos": "dados/candidatos-de-foto-filtros-positivo-2026-09-21.json",
+ "como_o_olho_olhou": "Os quatro candidatos desta leva foram BAIXADOS e ABERTOS um a um, como manda a 25.3, antes de qualquer gravacao — e antes mesmo de os registros existirem no banco, porque a decisao de entrar com foto e parte da coleta e nao um retrofit. Os quatro arquivos foram agrupados por sha256 primeiro: os quatro hashes sao DISTINTOS entre si, entao nao ha o caso de um arquivo so servindo registros de tipos diferentes, que e o casamento errado que derrubou cinco Xiaomi em 21/09 de manha. O que o olho procurou em cada um: a peca sozinha no quadro, sem a caixa, sem texto promocional e sem o aparelho inteiro — e que a peca fosse do TIPO do registro (um filtro, nao um mop nem uma tampa de filtro).",
+ "vereditos": [
+  {
+   "id": "positivo-11206516",
+   "url": "https://lojapositivo.vteximg.com.br/arquivos/ids/168087/FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_01.jpg?v=638599538333570000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Filtro retangular branco sozinho sobre fundo branco, levemente de lado: moldura de manta e o meio com dezenas de pregas finas verticais. E um filtro de painel, do tipo do registro, sem caixa e sem o aparelho. O nome do arquivo na loja diz PRA800 E 2000 — a mesma grafia do corpo da pagina e do endereco, e nao a do titulo, o que e a terceira testemunha da resolucao escrita no registro."
+  }
+ ]
+}

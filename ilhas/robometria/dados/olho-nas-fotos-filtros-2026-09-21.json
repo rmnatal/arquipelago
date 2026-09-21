@@ -1,0 +1,25 @@
+{
+ "olhado_em": "2026-09-21",
+ "fonte_dos_candidatos": "dados/candidatos-de-foto-filtros-2026-09-21.json",
+ "como_o_olho_olhou": "Os quatro candidatos desta leva foram BAIXADOS e ABERTOS um a um, como manda a 25.3, antes de qualquer gravacao — e antes mesmo de os registros existirem no banco, porque a decisao de entrar com foto e parte da coleta e nao um retrofit. Os quatro arquivos foram agrupados por sha256 primeiro: os quatro hashes sao DISTINTOS entre si, entao nao ha o caso de um arquivo so servindo registros de tipos diferentes, que e o casamento errado que derrubou cinco Xiaomi em 21/09 de manha. O que o olho procurou em cada um: a peca sozinha no quadro, sem a caixa, sem texto promocional e sem o aparelho inteiro — e que a peca fosse do TIPO do registro (um filtro, nao um mop nem uma tampa de filtro).",
+ "vereditos": [
+  {
+   "id": "wap-fw006270",
+   "url": "https://lojawap.vteximg.com.br/arquivos/ids/158334/filtro-hepa-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425048284030000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Elemento de filtro retangular sozinho sobre fundo branco liso, em perspectiva: moldura de manta branca e o meio pregueado em creme, com as dobras visiveis uma a uma. E um filtro de painel, do tipo do registro, sem caixa, sem embalagem e sem o aparelho. Nada de texto no quadro."
+  },
+  {
+   "id": "wap-fw006271",
+   "url": "https://lojawap.vteximg.com.br/arquivos/ids/158333/filtro-grade-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425046840300000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Peca em V aberto sobre fundo branco: armacao plastica cinza-clara com cinco janelas retangulares cobertas por tela branca e uma borda preta de vedacao. E a GRADE filtrante, que e exatamente o que o registro diz ser, e NAO o elemento HEPA do irmao — as duas fotos mostram objetos diferentes, o que e a prova de que o par nao e o mesmo arquivo com dois nomes."
+  },
+  {
+   "id": "wap-fw007700",
+   "url": "https://lojawap.vteximg.com.br/arquivos/ids/158332/filtro-de-entrada-para-robo-aspirador-de-po-wap-robot-w100.png?v=637425044424830000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Peca em meia-lua sobre fundo branco: armacao plastica translucida com nervuras e manta filtrante branca presa nela, com um recorte alongado no centro. E a peca de filtragem da entrada do reservatorio, sozinha no quadro, sem caixa e sem o robo."
+  }
+ ]
+}

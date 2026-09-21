@@ -3,7 +3,7 @@
  "ilha": "robometria",
  "entidade": "MEDICAO",
  "publicar": false,
- "gerado_em": "2026-09-20",
+ "gerado_em": "2026-09-21",
  "gerado_por": "ferramentas/medir-palavras-chave.py",
  "fonte_da_medicao": "Open API de Afiliados da Shopee (productOfferV2), secao 25.6 do ARQUIPELAGO.md",
  "nota_de_universo": "A API de afiliado e o catalogo de OFERTAS do programa, e nao a busca do site que o leitor ve. As duas discordam e a discordancia foi medida em 16/09/2026: `WAP escova lateral robo aspirador` devolve zero na busca do site (medida pela Sentinela no Chrome do Raphael) e dez aqui. A busca do site NAO e mensuravel desta nuvem — `/api/v4/search/search_items` devolve `error 90309999, redirect_to_error_page` e a pagina de busca serve casca de JavaScript identica byte a byte para palavras diferentes. Entao esta medicao prova o que prova: que a chave existe no catalogo que PAGA comissao. Chave com zero AQUI e pior que chave com zero la.",
@@ -34,13 +34,14 @@
   }
  ],
  "contagem": {
-  "palavras_chave_distintas_de_peca": 22,
-  "com_resultado": 22,
-  "com_a_peca_no_topo": 7,
-  "criterio_literal_do_despacho": 14,
+  "palavras_chave_distintas_de_peca": 71,
+  "com_resultado": 71,
+  "com_a_peca_no_topo": 11,
+  "criterio_literal_do_despacho": 18,
   "com_a_marca_no_topo": 6,
-  "registros_de_peca": 50,
-  "registros_medidos": 95,
+  "registros_de_peca": 54,
+  "registros_medidos": 99,
+  "medidos_nesta_passada": 4,
   "chaves_fixadas_no_navegador": 26
  },
  "fontes_da_medicao": [
@@ -3667,6 +3668,188 @@
      "chave": "Roborock Saros 10R robo aspirador",
      "resultados": 6,
      "titulo_do_topo": "Kit de Acessórios de Reposição para Aspirador Robô Roborock Saros 10R / G20s Ultra"
+    }
+   ]
+  },
+  {
+   "id": "wap-fw006270",
+   "marca": "wap",
+   "tipo": "filtro",
+   "nome_na_fonte": "Filtro HEPA Para Robô Aspirador de Pó WAP Robot W300",
+   "escolhido": {
+    "degrau": 2,
+    "composicao": "marca + batismo do fabricante + contexto",
+    "chave": "WAP Filtro HEPA robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro Hepa para Robo Aspirador Wap W310",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Filtro%20HEPA%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/2gBKCsMlNH"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit APZ Aspirador De Robô Filtro De Escova Para Mondial , Multilaser WAP100 , etc .",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "WAP Filtro HEPA robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Filtro Hepa para Robo Aspirador Wap W310",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Filtro%20HEPA%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/2gBKCsMlNH"
+    }
+   ]
+  },
+  {
+   "id": "wap-fw006271",
+   "marca": "wap",
+   "tipo": "filtro",
+   "nome_na_fonte": "Filtro Grade Para Robô Aspirador de Pó WAP Robot W300",
+   "escolhido": {
+    "degrau": 4,
+    "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+    "chave": "WAP W300 filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro Hepa Compatível para Robô Aspirador Wap W300 E Midea Vra81b Vrb81b",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W300%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/W6pctUo1C"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit APZ Aspirador De Robô Filtro De Escova Para Mondial , Multilaser WAP100 , etc .",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "WAP Filtro Grade robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 3,
+     "composicao": "marca + codigo da peca + substantivo do tipo + contexto",
+     "chave": "WAP FW006271 filtro robo aspirador",
+     "resultados": 0,
+     "titulo_do_topo": null,
+     "topo_e_a_peca": false,
+     "por_que": "a busca devolveu zero resultado",
+     "criterio_literal_do_despacho": false
+    },
+    {
+     "degrau": 4,
+     "composicao": "marca + codigo do modelo compativel + substantivo do tipo + contexto",
+     "chave": "WAP W300 filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Filtro Hepa Compatível para Robô Aspirador Wap W300 E Midea Vra81b Vrb81b",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W300%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/W6pctUo1C"
+    }
+   ]
+  },
+  {
+   "id": "wap-fw007700",
+   "marca": "wap",
+   "tipo": "filtro",
+   "nome_na_fonte": "Filtro de Entrada Para Robô Aspirador de Pó WAP Robot W100",
+   "escolhido": {
+    "degrau": 2,
+    "composicao": "marca + batismo do fabricante + contexto",
+    "chave": "WAP Filtro de Entrada robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro de Entrada para Robô Aspirador Wap FW007700 (Original)",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Filtro%20de%20Entrada%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/3B7annKirm"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "WAP filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Kit APZ Aspirador De Robô Filtro De Escova Para Mondial , Multilaser WAP100 , etc .",
+     "topo_e_a_peca": false,
+     "por_que": "o tipo da peca nao e a cabeca do titulo",
+     "criterio_literal_do_despacho": true
+    },
+    {
+     "degrau": 2,
+     "composicao": "marca + batismo do fabricante + contexto",
+     "chave": "WAP Filtro de Entrada robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Filtro de Entrada para Robô Aspirador Wap FW007700 (Original)",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20Filtro%20de%20Entrada%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/3B7annKirm"
+    }
+   ]
+  },
+  {
+   "id": "positivo-11206516",
+   "marca": "positivo",
+   "tipo": "filtro",
+   "nome_na_fonte": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente",
+   "escolhido": {
+    "degrau": 1,
+    "composicao": "marca + tipo + contexto",
+    "chave": "Positivo filtro robo aspirador",
+    "resultados": 10,
+    "titulo_do_topo": "Filtro Hepa compatível para Robo Aspirador Positivo Smart Wi Fi Pra2000",
+    "topo_e_a_peca": true,
+    "por_que": "a marca e o tipo estao no topo",
+    "criterio_literal_do_despacho": true,
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20filtro%20robo%20aspirador",
+    "url_busca": "https://s.shopee.com.br/3g3rOiNHrd"
+   },
+   "parou_por": "o topo e a peca pela regua dura da 25.7",
+   "tentativas": [
+    {
+     "degrau": 1,
+     "composicao": "marca + tipo + contexto",
+     "chave": "Positivo filtro robo aspirador",
+     "resultados": 10,
+     "titulo_do_topo": "Filtro Hepa compatível para Robo Aspirador Positivo Smart Wi Fi Pra2000",
+     "topo_e_a_peca": true,
+     "por_que": "a marca e o tipo estao no topo",
+     "criterio_literal_do_despacho": true,
+     "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20filtro%20robo%20aspirador",
+     "url_busca": "https://s.shopee.com.br/3g3rOiNHrd"
     }
    ]
   }

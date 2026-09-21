@@ -2755,6 +2755,49 @@
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "positivo-11206516",
+          "codigo": "11206516",
+          "nome_na_fonte": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente",
+          "tipo_da_peca": "filtro",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.meupositivo.com.br/filtro-hepa-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206516/p",
+          "verificado_em": "2026-09-21",
+          "declarados": [
+            "PRA800",
+            "PRA2000"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojapositivo.vteximg.com.br/arquivos/ids/168087/FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_01.jpg?v=638599538333570000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Positivo (codigo 11206516)"
+          },
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/3g3rOiNHrd",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20filtro%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -2888,6 +2931,49 @@
             "url": "",
             "url_busca": "https://s.shopee.com.br/4Vcq6HORAN",
             "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20mop%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "positivo-11206516",
+          "codigo": "11206516",
+          "nome_na_fonte": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente",
+          "tipo_da_peca": "filtro",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.meupositivo.com.br/filtro-hepa-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206516/p",
+          "verificado_em": "2026-09-21",
+          "declarados": [
+            "PRA800",
+            "PRA2000"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojapositivo.vteximg.com.br/arquivos/ids/168087/FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_01.jpg?v=638599538333570000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Positivo (codigo 11206516)"
+          },
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/3g3rOiNHrd",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20filtro%20robo%20aspirador",
             "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
@@ -3238,6 +3324,48 @@
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "wap-fw007700",
+          "codigo": "FW007700",
+          "nome_na_fonte": "Filtro de Entrada Para Robô Aspirador de Pó WAP Robot W100",
+          "tipo_da_peca": "filtro",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/filtro-de-entrada-para-robo-aspirador-de-po-wap-robot-w100/p",
+          "verificado_em": "2026-09-21",
+          "declarados": [
+            "WAP Robot W100"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojawap.vteximg.com.br/arquivos/ids/158332/filtro-de-entrada-para-robo-aspirador-de-po-wap-robot-w100.png?v=637425044424830000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Wap (codigo FW007700)"
+          },
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/3B7annKirm",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Filtro%20de%20Entrada%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -3379,6 +3507,90 @@
             "url": "https://s.shopee.com.br/8fSPNORJSo",
             "url_busca": "https://s.shopee.com.br/9AOferfjPW",
             "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "wap-fw006270",
+          "codigo": "FW006270",
+          "nome_na_fonte": "Filtro HEPA Para Robô Aspirador de Pó WAP Robot W300",
+          "tipo_da_peca": "filtro",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/filtro-hepa-para-robo-aspirador-de-po-wap-robot-w300/p",
+          "verificado_em": "2026-09-21",
+          "declarados": [
+            "WAP Robot W300"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojawap.vteximg.com.br/arquivos/ids/158334/filtro-hepa-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425048284030000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Wap (codigo FW006270)"
+          },
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/2gBKCsMlNH",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Filtro%20HEPA%20robo%20aspirador",
+            "programa": "shopee",
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "wap-fw006271",
+          "codigo": "FW006271",
+          "nome_na_fonte": "Filtro Grade Para Robô Aspirador de Pó WAP Robot W300",
+          "tipo_da_peca": "filtro",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/filtro-grade-para-robo-aspirador-de-po-wap-robot-w300/p",
+          "verificado_em": "2026-09-21",
+          "declarados": [
+            "WAP Robot W300"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojawap.vteximg.com.br/arquivos/ids/158333/filtro-grade-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425046840300000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Wap (codigo FW006271)"
+          },
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "https://s.shopee.com.br/W6pctUo1C",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20W300%20filtro%20robo%20aspirador",
             "programa": "shopee",
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
@@ -5233,6 +5445,20 @@
         "verificado_em": "2026-09-09"
       }
     ],
+    "positivo-11206516": [
+      {
+        "canal": "título publicado na loja oficial da marca",
+        "origem": "varejo-oficial-da-marca",
+        "fala_pela_marca": true,
+        "conjunto": [
+          "PRA8000",
+          "PRA2000"
+        ],
+        "titulo_na_fonte": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente - Compacto e Leve",
+        "url": "https://loja.meupositivo.com.br/filtro-hepa-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206516/p",
+        "verificado_em": "2026-09-21"
+      }
+    ],
     "wap-fw008543": [
       {
         "canal": "americanas.com.br (marketplace)",
@@ -5471,6 +5697,58 @@
       "verificado_em": "2026-09-12"
     },
     {
+      "modelo": "positivo-pra2000",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
+      "tipo": "escova lateral",
+      "peca": "positivo-11206518",
+      "codigo": "11206518",
+      "nome_na_fonte": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra2000",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
+      "tipo": "escova principal",
+      "peca": "positivo-11206519",
+      "codigo": "11206519",
+      "nome_na_fonte": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra2000",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
+      "tipo": "mop",
+      "peca": "positivo-11206540",
+      "codigo": "11206540",
+      "nome_na_fonte": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra2000",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
+      "tipo": "filtro",
+      "peca": "positivo-11206516",
+      "codigo": "11206516",
+      "nome_na_fonte": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.meupositivo.com.br/filtro-hepa-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206516/p",
+      "verificado_em": "2026-09-21"
+    },
+    {
       "modelo": "multi-ho041",
       "modelo_rotulo": "Multi (ex-Multilaser) HO041",
       "tipo": "escova lateral",
@@ -5523,82 +5801,69 @@
       "verificado_em": "2026-09-09"
     },
     {
-      "modelo": "positivo-pra2000",
-      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
+      "modelo": "wap-w300",
+      "modelo_rotulo": "WAP W300",
       "tipo": "escova lateral",
-      "peca": "positivo-11206518",
-      "codigo": "11206518",
-      "nome_na_fonte": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "positivo-pra2000",
-      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
-      "tipo": "escova principal",
-      "peca": "positivo-11206519",
-      "codigo": "11206519",
-      "nome_na_fonte": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "positivo-pra2000",
-      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
-      "tipo": "mop",
-      "peca": "positivo-11206540",
-      "codigo": "11206540",
-      "nome_na_fonte": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "wap-wsmart",
-      "modelo_rotulo": "WAP WSMART",
-      "tipo": "escova principal",
-      "peca": "wap-escova-central-wsmart",
+      "peca": "wap-escova-direita-w300",
       "codigo": null,
-      "nome_na_fonte": "Escova Central Para Robô Aspirador de Pó WAP Robot WSMART",
+      "nome_na_fonte": "Escova Direita Para Robô Aspirador de Pó Robot W300",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.wap.ind.br/escova-central-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+      "url": "https://loja.wap.ind.br/escova-direita-para-robo-aspirador-de-po-wap-robot-w300/p",
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "wap-wsmart",
-      "modelo_rotulo": "WAP WSMART",
+      "modelo": "wap-w300",
+      "modelo_rotulo": "WAP W300",
       "tipo": "escova lateral",
-      "peca": "wap-escova-frontal-wsmart",
+      "peca": "wap-escova-esquerda-w300",
       "codigo": null,
-      "nome_na_fonte": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
+      "nome_na_fonte": "Escova Esquerda Para Robô Aspirador WAP Robot W300",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.wap.ind.br/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+      "url": "https://loja.wap.ind.br/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300/p",
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "wap-wsmart",
-      "modelo_rotulo": "WAP WSMART",
+      "modelo": "wap-w300",
+      "modelo_rotulo": "WAP W300",
       "tipo": "reservatorio",
-      "peca": "wap-fw008024",
-      "codigo": "FW008024",
-      "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
+      "peca": "wap-recipiente-de-po-w300",
+      "codigo": null,
+      "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+      "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-w300/p",
       "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "wap-w300",
+      "modelo_rotulo": "WAP W300",
+      "tipo": "filtro",
+      "peca": "wap-fw006270",
+      "codigo": "FW006270",
+      "nome_na_fonte": "Filtro HEPA Para Robô Aspirador de Pó WAP Robot W300",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/filtro-hepa-para-robo-aspirador-de-po-wap-robot-w300/p",
+      "verificado_em": "2026-09-21"
+    },
+    {
+      "modelo": "wap-w300",
+      "modelo_rotulo": "WAP W300",
+      "tipo": "filtro",
+      "peca": "wap-fw006271",
+      "codigo": "FW006271",
+      "nome_na_fonte": "Filtro Grade Para Robô Aspirador de Pó WAP Robot W300",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/filtro-grade-para-robo-aspirador-de-po-wap-robot-w300/p",
+      "verificado_em": "2026-09-21"
     },
     {
       "modelo": "roborock-q8-max",
@@ -5757,45 +6022,6 @@
       "verificado_em": "2026-09-12"
     },
     {
-      "modelo": "multi-ob010",
-      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
-      "tipo": "escova lateral",
-      "peca": "multi-pr10124",
-      "codigo": "PR10124",
-      "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "multi-ob010",
-      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
-      "tipo": "filtro",
-      "peca": "multi-pr10343",
-      "codigo": "PR10343",
-      "nome_na_fonte": "Filtro para Aspirador Robô OB010",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-ob010-pr10343/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "multi-ob010",
-      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
-      "tipo": "mop",
-      "peca": "multi-pr10342",
-      "codigo": "PR10342",
-      "nome_na_fonte": "Pano para Aspirador Robô p/ OB010",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.multilaser.com.br/pano-para-aspirador-robo-ob010/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
       "modelo": "positivo-pra800",
       "modelo_rotulo": "Positivo Casa Inteligente PRA800",
       "tipo": "escova lateral",
@@ -5835,42 +6061,94 @@
       "verificado_em": "2026-09-09"
     },
     {
-      "modelo": "wap-w300",
-      "modelo_rotulo": "WAP W300",
+      "modelo": "positivo-pra800",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA800",
+      "tipo": "filtro",
+      "peca": "positivo-11206516",
+      "codigo": "11206516",
+      "nome_na_fonte": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.meupositivo.com.br/filtro-hepa-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206516/p",
+      "verificado_em": "2026-09-21"
+    },
+    {
+      "modelo": "multi-ob010",
+      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
       "tipo": "escova lateral",
-      "peca": "wap-escova-direita-w300",
+      "peca": "multi-pr10124",
+      "codigo": "PR10124",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ob010",
+      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
+      "tipo": "filtro",
+      "peca": "multi-pr10343",
+      "codigo": "PR10343",
+      "nome_na_fonte": "Filtro para Aspirador Robô OB010",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-ob010-pr10343/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ob010",
+      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
+      "tipo": "mop",
+      "peca": "multi-pr10342",
+      "codigo": "PR10342",
+      "nome_na_fonte": "Pano para Aspirador Robô p/ OB010",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/pano-para-aspirador-robo-ob010/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "wap-wsmart",
+      "modelo_rotulo": "WAP WSMART",
+      "tipo": "escova principal",
+      "peca": "wap-escova-central-wsmart",
       "codigo": null,
-      "nome_na_fonte": "Escova Direita Para Robô Aspirador de Pó Robot W300",
+      "nome_na_fonte": "Escova Central Para Robô Aspirador de Pó WAP Robot WSMART",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.wap.ind.br/escova-direita-para-robo-aspirador-de-po-wap-robot-w300/p",
+      "url": "https://loja.wap.ind.br/escova-central-para-robo-aspirador-de-po-wap-robot-wsmart/p",
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "wap-w300",
-      "modelo_rotulo": "WAP W300",
+      "modelo": "wap-wsmart",
+      "modelo_rotulo": "WAP WSMART",
       "tipo": "escova lateral",
-      "peca": "wap-escova-esquerda-w300",
+      "peca": "wap-escova-frontal-wsmart",
       "codigo": null,
-      "nome_na_fonte": "Escova Esquerda Para Robô Aspirador WAP Robot W300",
+      "nome_na_fonte": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.wap.ind.br/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300/p",
+      "url": "https://loja.wap.ind.br/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart/p",
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "wap-w300",
-      "modelo_rotulo": "WAP W300",
+      "modelo": "wap-wsmart",
+      "modelo_rotulo": "WAP WSMART",
       "tipo": "reservatorio",
-      "peca": "wap-recipiente-de-po-w300",
-      "codigo": null,
-      "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
+      "peca": "wap-fw008024",
+      "codigo": "FW008024",
+      "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-w300/p",
+      "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-wsmart/p",
       "verificado_em": "2026-09-13"
     },
     {
@@ -6017,6 +6295,32 @@
       "verificado_em": "2026-09-14"
     },
     {
+      "modelo": "wap-w100",
+      "modelo_rotulo": "WAP W100",
+      "tipo": "reservatorio",
+      "peca": "wap-fw008543",
+      "codigo": "FW008543",
+      "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/kit-recipiente-de-po-para-robos-aspiradores-de-po-wap-robot-w100-e-wap-robot-w90/p",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "wap-w100",
+      "modelo_rotulo": "WAP W100",
+      "tipo": "filtro",
+      "peca": "wap-fw007700",
+      "codigo": "FW007700",
+      "nome_na_fonte": "Filtro de Entrada Para Robô Aspirador de Pó WAP Robot W100",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/filtro-de-entrada-para-robo-aspirador-de-po-wap-robot-w100/p",
+      "verificado_em": "2026-09-21"
+    },
+    {
       "modelo": "multi-ho400",
       "modelo_rotulo": "Multi (ex-Multilaser) HO400",
       "tipo": "escova lateral",
@@ -6041,19 +6345,6 @@
       "origem": "fabricante-via-busca",
       "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-q-revo",
       "verificado_em": "2026-09-18"
-    },
-    {
-      "modelo": "wap-w100",
-      "modelo_rotulo": "WAP W100",
-      "tipo": "reservatorio",
-      "peca": "wap-fw008543",
-      "codigo": "FW008543",
-      "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
-      "dentro_de_kit": false,
-      "divergencia": true,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.wap.ind.br/kit-recipiente-de-po-para-robos-aspiradores-de-po-wap-robot-w100-e-wap-robot-w90/p",
-      "verificado_em": "2026-09-13"
     },
     {
       "modelo": "electrolux-erb80",
@@ -6677,23 +6968,23 @@
     "wap-w400"
   ],
   "resumo": {
-    "linhas_da_tabela": 103,
-    "celulas_respondidas": 93,
-    "pares_na_tabela": 86,
-    "linhas_de_segunda_peca": 10,
+    "linhas_da_tabela": 108,
+    "celulas_respondidas": 97,
+    "pares_na_tabela": 91,
+    "linhas_de_segunda_peca": 11,
     "modelos_publicaveis": 45,
     "modelos_que_respondem": 38,
     "modelos_com_entrada_vazia": 7,
     "celulas": 270,
-    "celulas_sem_resposta": 177,
-    "pares_declarados": 86,
-    "pares_declarados_no_banco": 87,
+    "celulas_sem_resposta": 173,
+    "pares_declarados": 91,
+    "pares_declarados_no_banco": 92,
     "pares_para_modelo_nao_publicavel": 1,
-    "pecas_publicaveis": 50,
+    "pecas_publicaveis": 54,
     "marcas": 6,
     "as_duas_ferramentas": 11,
-    "pecas_recomendadas": 50,
-    "pecas_esperando_link": 36,
+    "pecas_recomendadas": 54,
+    "pecas_esperando_link": 40,
     "pecas_com_link": 14
   }
 }

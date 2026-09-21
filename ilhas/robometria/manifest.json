@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 74,
+  "revisao": 75,
   "atualizado_em": "2026-09-21",
   "estado": "nascendo",
   "desembarque": {
@@ -128,7 +128,7 @@
       "verificado_em": "2026-09-09",
       "registros": 5,
       "publicar": false,
-      "sha256": "ddc8aa231cf445b22cd1b6ffbfbad940bbf4c67493093742dbd414e024d995f6",
+      "sha256": "9fade29bffc2e0de37bf3a32a064eca64c50df91f0c0605a6fbbff9ad2ad18fe",
       "descricao": "Cinco marcas com site oficial, canal de pecas e sameAs[] para o JSON-LD Organization: Multi (ex-Multilaser), Electrolux, Xiaomi, Positivo Casa Inteligente e WAP. A WAP entrou na segunda leva do Bloco 3c e e a unica da coleta que publica manual em PDF por modelo em endereco proprio e estavel — e portanto a candidata a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir."
     },
     {
@@ -164,7 +164,7 @@
       "verificado_em": "2026-09-09",
       "registros": 18,
       "publicar": false,
-      "sha256": "987cbcc565671ec855b3788c1c134dd9d5d133f4abdae0f21ffe1090a9d22afb",
+      "sha256": "7b5e4f1b91df5860937c8730ad896bd87425e5cf12ecf17231c43e7b1fdb66d3",
       "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
     },
     {
@@ -176,7 +176,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": false,
-      "sha256": "242fbf8e71f32440a4a8d542f2199de275fa14a42e0675d639268ec4fce6de49",
+      "sha256": "26d09c412618075d969d6d7d129d6c13cc2e73b9714c485a55797e7fda337d38",
       "descricao": "Varredura da entrada da R1 de ponta a ponta (secao 14.3 do ARQUIPELAGO.md), o equivalente para a R1 do que cobertura_de_faixa_r2 e para a R2. Mede as 168 celulas (28 modelos publicaveis x 6 tipos consultaveis) em tres estados: declarada, kit_sem_composicao e vazia. Resultado: a R1 responde em 15 dos 28 modelos e sai VAZIA em 12; 116 das 168 celulas nao tem o que responder; o tipo 'reservatorio' tem zero pecas no banco inteiro. O achado que so aparece no cruzamento com a R2: apenas 3 dos 28 modelos sao atendidos pelas DUAS ferramentas — Electrolux e Multi publicam peca e nao publicam Pa, Xiaomi e WAP publicam Pa e nao publicam peca com codigo. A cobertura das duas ferramentas da ilha e quase disjunta, e isso parte o funil na emenda entre elas."
     },
     {
@@ -188,7 +188,7 @@
       "verificado_em": "2026-09-10",
       "registros": 45,
       "publicar": false,
-      "sha256": "425ae2cbbf813c2ca2915e1004ebc90967e4bd8586b5308a0ade7486784d188a",
+      "sha256": "ebfe08f749848266216afff1e5e1858236b8791b088bdf4413e74602d0eb4a63",
       "descricao": "Tabela de exemplos pre-renderizada da R1, exigida pela secao 5 do ARQUIPELAGO.md e pela secao 1.7 da especificacao — 45 linhas, contra um minimo de 8. GERADA por ferramentas/cobertura-r1.py --gravar e nunca editada a mao: cada linha carrega o codigo, o selo e a data que o banco tem, entao ela nao pode discordar do banco em silencio. A ordem alterna marcas de proposito, porque em ordem alfabetica as nove primeiras linhas seriam todas Electrolux e a promessa desta ilha e comparacao cross-marca. publicar=false porque ela nao e pagina: e a fonte que o snippet da R1 serve em HTML quando o Bloco 4 for escrito."
     },
     {
@@ -200,7 +200,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": true,
-      "sha256": "0941b6987fcde5897ba0ff9187d8388031028f932742ef71402bfdf9a7694c5c",
+      "sha256": "cc605e3772fc647b9c17f5686f5a3fd321b8a41d05baf00de7c09e346d5c7dca",
       "descricao": "O COMBUSTIVEL DA FERRAMENTA R1 NO SITE, e o primeiro item de dados desta ilha com publicar=true: o Sync o grava na option robometria_dados_r1-respostas e o snippet robometria-r1.php monta a pagina a partir dele. Para cada um dos 28 modelos publicaveis, os FATOS de cada peca que o fabricante declarou compativel — tipo respondido, codigo, publicador, conjunto declarado, endereco, data, se vem dentro de kit, se existe a peca avulsa, se ha divergencia registrada e se ainda espera link de afiliado. Traz tambem o seletor gerado da varredura (os 5 tipos que o banco consegue responder, sem 'reservatorio', que tem zero pecas), o modelo-ancora escolhido por regra, as 45 linhas da tabela de exemplos na ordem cross-marca da referencia, as duas divergencias com as duas declaracoes e as duas datas, a lista dos 12 modelos de entrada vazia e a tabela de rotulos da escada de fontes. SEM PROSA de proposito: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a referencia por ferramentas/teste-r1.php."
     },
     {
@@ -212,7 +212,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": false,
-      "sha256": "c04ecbaa0917af3dc4d5aeb3c2a83b81dec5a5d5446cc06deffbb86c0c453bba",
+      "sha256": "14dd1d553eebefb63b0e00dc4599916aed06e256d811008f89e06bc1d78cc013",
       "descricao": "GABARITO da R1: a resposta de cada modelo ja em frase, escrita pela implementacao de REFERENCIA. Nunca vai para o site (publicar=false) — existe para ferramentas/teste-r1.php provar, frase a frase e ignorando acento, que o PHP do snippet diz a MESMA coisa que a referencia, que e o que a especificacao exige. Sao 188 frases comparadas a cada rodada do teste: se alguem mexer no molde de um lado so, o teste reprova em vez de o site publicar duas versoes da mesma afirmacao."
     },
     {
@@ -224,7 +224,7 @@
       "verificado_em": "2026-09-10",
       "registros": 16,
       "publicar": true,
-      "sha256": "3f42b10a9332a5e7ca8504e61fcd95a2b454a2f1fb592119aa27214814725039",
+      "sha256": "313efb0b9557a7fadea09aef52539a0144ec0fcf408fd85c28b0167f54efa09c",
       "descricao": "O COMBUSTIVEL DO ARTIGO-ANCORA A1: o Sync o grava na option robometria_dados_a1-fatos e o snippet robometria-a1.php escreve as frases a partir dele. Tres medicoes separadas de proposito. (1) ALCANCE: quantos codigos de modelo cada uma das 16 pecas publicaveis tem declarados, com os codigos como a fonte os escreve. (2) TRAVESSIA DE MARCA: quantas pecas sao declaradas para modelos de mais de uma marca — hoje zero, e e essa a tese do artigo. (3) DISPERSAO DENTRO DA MARCA: quantos conjuntos DISTINTOS de modelos as pecas de cada fabricante formam; quando o numero iguala o de pecas, nenhuma repete a lista de outra. Traz ainda a cobertura por tipo vinda da varredura da R1, a vitrine de 4 itens (ordenada por alcance declarado, com kit de composicao nao transcrita FORA, porque oferecer a compra de um produto cuja composicao a pagina diz nao saber e o defeito da secao 7) e as tres perguntas do FAQPage, derivadas dos mesmos numeros."
     },
     {
@@ -304,7 +304,7 @@
       "verificado_em": "2026-09-11",
       "registros": 7,
       "descricao": "Fatos que a casca publica sobre o proprio banco, derivados por ferramentas/gerar-casca-fatos.py. Desde 11/09/2026 traz duas coisas: a coluna 'Temos hoje' da escada de fontes, e a MEDICAO da secao 4 da metodologia — os onze numeros que a ilha afirma sobre si mesma, com a regua de cada um escrita no proprio arquivo, em reguas_da_medicao. Contagem so de registro publicavel: a coluna fala do que a ilha PUBLICA, nao do que ela guarda, e e por isso que 'pares peca x modelo' conta 32 (as duas pontas publicaveis) onde o cabecalho de pecas.json conta 33 (tudo que o arquivo declara). O gerador RECUSA gravar quando cobertura-r1.json nao bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de hoje.",
-      "sha256": "5d352d0336f1061157f44fbdc72c728051dc554dc1454ef754eb9226bb10e30d"
+      "sha256": "e7bb3922928ca32b6e1da2290f7517dc2e12027449867250e77f82fe8d0725c8"
     },
     {
       "id": "acentuacao-restaurada",

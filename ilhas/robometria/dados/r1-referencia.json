@@ -480,6 +480,11 @@
           "tipo": "mop",
           "peca": "positivo-11206540",
           "frase": "A Positivo Casa Inteligente (loja oficial) declara o mop 11206540 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "positivo-11206516",
+          "frase": "A Positivo Casa Inteligente (loja oficial) declara o filtro 11206516 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 21/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
         }
       ],
       "terceiro": [],
@@ -524,6 +529,11 @@
           "tipo": "mop",
           "peca": "positivo-11206540",
           "frase": "A Positivo Casa Inteligente (loja oficial) declara o mop 11206540 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "positivo-11206516",
+          "frase": "A Positivo Casa Inteligente (loja oficial) declara o filtro 11206516 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 21/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
         }
       ],
       "terceiro": [],
@@ -664,6 +674,11 @@
           "tipo": "reservatorio",
           "peca": "wap-fw008543",
           "frase": "A WAP (loja oficial) declara o reservatorio FW008543 compativel com WAP Robot W100 e WAP Robot W90 (varejo-oficial-da-marca, verificado em 13/09/2026). Tres canais de fora do fabricante declaram para esta peca um alcance que o fabricante nao declara: quem decide aqui e o fabricante, e as quatro declaracoes estao publicadas com o nome de cada canal e a sua data."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "wap-fw007700",
+          "frase": "A WAP (loja oficial) declara o filtro FW007700 compativel com WAP Robot W100 (varejo-oficial-da-marca, verificado em 21/09/2026)."
         }
       ],
       "terceiro": [],
@@ -722,6 +737,16 @@
           "tipo": "reservatorio",
           "peca": "wap-recipiente-de-po-w300",
           "frase": "A WAP (loja oficial) declara o reservatorio \"Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300\" compativel com W300 (varejo-oficial-da-marca, verificado em 13/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "wap-fw006270",
+          "frase": "A WAP (loja oficial) declara o filtro FW006270 compativel com WAP Robot W300 (varejo-oficial-da-marca, verificado em 21/09/2026)."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "wap-fw006271",
+          "frase": "A WAP (loja oficial) declara o filtro FW006271 compativel com WAP Robot W300 (varejo-oficial-da-marca, verificado em 21/09/2026)."
         }
       ],
       "terceiro": [],

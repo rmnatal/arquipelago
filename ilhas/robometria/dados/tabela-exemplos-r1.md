@@ -23,16 +23,19 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB60 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB60 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB60 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
+| Positivo Casa Inteligente PRA2000 | escova lateral | 11206518 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Positivo Casa Inteligente PRA2000 | escova principal | 11206519 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Positivo Casa Inteligente PRA2000 | mop | 11206540 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Positivo Casa Inteligente PRA2000 | filtro | 11206516 | declarada_fabricante (divergencia registrada) | varejo-oficial-da-marca · 21/09/2026 |
 | Multi (ex-Multilaser) HO041 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Multi (ex-Multilaser) HO041 | filtro | PR10205 | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 09/09/2026 |
 | Multi (ex-Multilaser) HO041 | bateria | PR10127 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Multi (ex-Multilaser) HO041 | bateria | PR8116 | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 09/09/2026 |
-| Positivo Casa Inteligente PRA2000 | escova lateral | 11206518 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
-| Positivo Casa Inteligente PRA2000 | escova principal | 11206519 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
-| Positivo Casa Inteligente PRA2000 | mop | 11206540 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
-| WAP WSMART | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
-| WAP WSMART | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
-| WAP WSMART | reservatorio | FW008024 | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| WAP W300 | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| WAP W300 | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| WAP W300 | reservatorio | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| WAP W300 | filtro | FW006270 | declarada_fabricante | varejo-oficial-da-marca · 21/09/2026 |
+| WAP W300 | filtro | FW006271 | declarada_fabricante | varejo-oficial-da-marca · 21/09/2026 |
 | Roborock Q8 Max | mop | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 17/09/2026 |
 | Xiaomi Mop 2 Lite | filtro | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 17/09/2026 |
 | Xiaomi Mop 2 Lite | escova lateral | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 17/09/2026 |
@@ -45,15 +48,16 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB61 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB61 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB61 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
-| Multi (ex-Multilaser) OB010 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
-| Multi (ex-Multilaser) OB010 | filtro | PR10343 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
-| Multi (ex-Multilaser) OB010 | mop | PR10342 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Positivo Casa Inteligente PRA800 | escova lateral | 11206518 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Positivo Casa Inteligente PRA800 | escova principal | 11206519 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Positivo Casa Inteligente PRA800 | mop | 11206540 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
-| WAP W300 | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
-| WAP W300 | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
-| WAP W300 | reservatorio | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| Positivo Casa Inteligente PRA800 | filtro | 11206516 | declarada_fabricante (divergencia registrada) | varejo-oficial-da-marca · 21/09/2026 |
+| Multi (ex-Multilaser) OB010 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
+| Multi (ex-Multilaser) OB010 | filtro | PR10343 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
+| Multi (ex-Multilaser) OB010 | mop | PR10342 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
+| WAP WSMART | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| WAP WSMART | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| WAP WSMART | reservatorio | FW008024 | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
 | Roborock Qrevo Curv Series | mop | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 18/09/2026 |
 | Electrolux ERB62 | filtro | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
@@ -65,9 +69,10 @@ linhas em HTML, sem depender de script.
 | Xiaomi E10 | filtro | B112-CH | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
 | Xiaomi E10 | mop | B112-TB | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
 | Xiaomi E10 | escova lateral | B106GL-BX | declarada_fabricante | fabricante-via-busca · 14/09/2026 |
+| WAP W100 | reservatorio | FW008543 | declarada_fabricante (divergencia registrada) | varejo-oficial-da-marca · 13/09/2026 |
+| WAP W100 | filtro | FW007700 | declarada_fabricante | varejo-oficial-da-marca · 21/09/2026 |
 | Multi (ex-Multilaser) HO400 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Roborock Qrevo Master | mop | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 18/09/2026 |
-| WAP W100 | reservatorio | FW008543 | declarada_fabricante (divergencia registrada) | varejo-oficial-da-marca · 13/09/2026 |
 | Electrolux ERB80 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB80 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB80 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
@@ -116,4 +121,4 @@ linhas em HTML, sem depender de script.
 | Xiaomi S40C | mop | E101-TB | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
 | Xiaomi X20 | escova lateral | B106GL-BX | declarada_fabricante | fabricante-via-busca · 14/09/2026 |
 
-Linhas: **103** — o minimo da secao 1.7 da especificacao e 8.
+Linhas: **108** — o minimo da secao 1.7 da especificacao e 8.
