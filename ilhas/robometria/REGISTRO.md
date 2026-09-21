@@ -6249,3 +6249,76 @@ da Fundação pode estar no ar. **O relato íntegro é este, aqui.**
   falta procedência, não acesso. **Quem trabalha esta ilha em seguida é a leitura
   semanal de 23/09**, que pelo critério pré-registrado já deve abrir a série
   dizendo em qual dos quatro pontos ela está.
+
+## 2026-09-21 (13h20Z–13h45Z) — A tela dizia 15 e o banco media 11: o derivado commitado ganha portao
+
+- **A ESCOLHA DA ILHA: PELO FOCO, SEM CORRIDA.** `foco.md` nomeia a robometria
+  desde 16/09, entao a rotacao da secao 1 esta suspensa pela 1.2 e nao houve o
+  que escolher. Os cinco `ESTADO.md` do `main` real parseiam em `yaml.safe_load`
+  e os cinco tinham `executando_desde: null`, que pela 1.1 ja significa que
+  nenhum bloco da Fundacao esta vivo — nao houve reserva vencida para o git
+  desempatar. Reserva aceita de primeira as **13h20Z**. Nenhum PR aberto; as
+  branches `claude/*` do repositorio sao de execucoes ja mescladas.
+- **REDE PELA 20.2, RETESTADA E NAO HERDADA:** tres passadas, `robometria.com.br`
+  em **200** nas tres e `/status` na revisao **73**, igual a do manifest.
+- **O DEFEITO, MEDIDO NO AR ANTES DE QUALQUER CONSERTO (13h20Z):**
+  `/ferramentas/` servia *"So **15** dos 45 modelos do banco sao atendidos pelas
+  duas ferramentas ao mesmo tempo"*. `python3 ferramentas/cobertura-r1.py` mede
+  **11**. A frase estava assim desde **20/09 as 15h39Z**, quando o portao do
+  canal brasileiro anulou 7 canais e tirou quatro Roborock da interseccao. O
+  Pente Fino de 21/09 nomeou o numero errado no arquivo; o que ele nao mediu e
+  que a frase ja estava **servida**.
+- **A CORRENTE INTEIRA HERDOU O NUMERO PODRE:** `cobertura-r1.json` (gravado em
+  18/09) -> `casca-fatos.json`, que o LE -> option `robometria_dados_casca-fatos`
+  -> HTML de `/ferramentas/`. E **nenhum dos 38 portoes** via nada: a bancada
+  classifica `cobertura-` como ferramenta de producao, que "nao afirma nada",
+  enquanto o arquivo que ela grava era a unica afirmacao da ilha sobre a emenda
+  do funil.
+- **A CAUSA, e ela e de metodo:** o derivado so podia ser conferido
+  **sobrescrevendo-o**. O dicionario que cada gerador grava morava dentro do
+  `main()`, atras do `--gravar`, entao perguntar *"o arquivo de ontem ainda
+  vale?"* exigia destruir a resposta para ve-la. Mesma familia do numero de tela
+  digitado da secao 8 do `ARQUIPELAGO.md`, um andar acima: ali o que parece
+  medido e o numero; aqui e a **frescura** dele.
+- **CONSERTO, PRIMEIRA METADE — os geradores foram partidos.**
+  `cobertura-r1.documento()` e `gerar-casca-fatos.fatos_do_banco()` sairam de
+  dentro do `main()` e viraram funcao pura; as duas recusas do casca-fatos
+  viraram excecao em vez de codigo de saida que so o terminal ve. Os `montar()`
+  da R1 e da R2 ja eram puros e entraram de graca.
+- **CONSERTO, SEGUNDA METADE — `ferramentas/validar-derivados.py` (NOVO).**
+  Reconstroi **7** derivados em memoria e compara com o disco, sem escrever
+  nada: `cobertura-r1.json`, `tabela-exemplos-r1.md`, `r1-respostas.json`,
+  `r1-referencia.json`, `r2-respostas.json`, `r2-referencia.json` e
+  `casca-fatos.json`. Declara **4** que nao alcanca com o motivo escrito
+  (`palavras-chave-medidas` e medicao do mundo de fora; `acentuacao-restaurada`
+  e registro historico; `datas-das-paginas` deriva do historico do git e mudaria
+  a cada commit; `cobertura-r2.json` ainda tem o dicionario dentro do `main()` —
+  **divida escrita, nao isencao**). E **REPROVA** quando varre `dados/*.json` e
+  acha `gerado_por` que nao esta em nenhuma das duas listas: derivado novo nasce
+  coberto ou nasce denunciado, nunca calado.
+- **`ferramentas/mutacoes-derivados.py` (NOVO): 6 mutacoes, 6 no veredito
+  esperado.** Entre elas o defeito de 20/09 refeito byte a byte, a ponta que
+  chega a tela (`casca-fatos` envelhecido sozinho), o derivado nao declarado, e
+  **o mundo sadio, que TEM que passar** — sem ele, um portao que reprovasse tudo
+  passaria nesta bateria com nota maxima.
+- **A BATERIA PEGOU UM DEFEITO NO PROPRIO PORTAO, antes do commit:** com o
+  `cobertura-r1.json` adulterado, o gerador do casca-fatos **recusava contar** e
+  o portao morria de traceback — codigo 1 **sem** a palavra REPROVADO, que e
+  INERTE ao contrario. Recusa virou veredito, o `main` ficou blindado, e o
+  `casca-fatos` deixou de ser julgado enquanto o `cobertura-r1` estiver
+  reprovado: ele le o arquivo podre e reproduz a podridao, entao dizer "ok" ali
+  seria medir a propria ignorancia e chamar de veredito.
+- **NO AR (18.4), e no CANONICO, nao na quebra de cache:** manifest na revisao
+  **74**, `/status` em **74**, e `/ferramentas/` servindo **11 de 45** em TRES
+  passadas as 13h44Z. A purga do hospedeiro levou alguns minutos — dentro da
+  janela conhecida que a secao 10 do `conferir-no-ar.py` ja descrevia, e por
+  isso ela nao virou diagnostico novo.
+- **BANCADA: 40 portoes sem rede (eram 38) e 46 com o site (eram 44), 0 falha.**
+- **O QUE NAO FOI DECIDIDO, DE PROPOSITO:** `estado: viva` intocado, item 2 da
+  DEFINICAO DE PRONTA nao reaberto, meta de 15 nao remedida contra o teto de 13.
+  As tres saidas da remedicao do Pente Fino seguem de pe — agora com o numero
+  honesto **nos dois lados**, no arquivo e na tela. **Isso e decisao do Raphael.**
+- **Proximo passo desbloqueado:** a divida escrita em `NAO_RECONSTRUIVEIS` —
+  partir o dicionario de `cobertura-r2.py` como o da R1 foi partido, para
+  `dados/cobertura-r2.json` entrar na cobertura do portao. E a decisao de
+  outubro continua com o criterio pre-registrado, sem tocar na fila.

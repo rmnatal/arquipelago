@@ -5,22 +5,16 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
-ultima_execucao: 2026-09-21T10:45Z
-executando_desde: 2026-09-21T13:20Z
+ultima_execucao: 2026-09-21T13:45Z
+executando_desde: null
 bloco_atual: |
-  A PORTA DA FOTO ABRIU E O DESPACHO DE 19/09 SAIU INTEIRO: 29 de 103 foi para 59 de 103. Os oito hosts de IMAGEM que o despacho pedia responderam na primeira medicao desta execucao — antes eram 000 em todos —, a colheita reimprimiu 37 candidatos e o olho abriu os 36 elegiveis um a um, como a 25.3 manda. 30 aprovados, 6 reprovados com o motivo escrito e datado. Presos em host de imagem fechado: 0.
-  AS 6 REPROVAS SAO O ACHADO, NAO A SOBRA. Antes do olho, os 36 arquivos foram agrupados por sha256: as paginas '.../accessories/specs/' da Xiaomi servem UMA imagem so para a pagina inteira, e o mesmo arquivo chegava a escova principal, filtro, mop e escova lateral — o casamento errado que a 25.3 existe para impedir, e a mesma causa dos 10 registros de FAQ medidos em 20/09, um andar adiante. O sexto e positivo-pra2000: composicao de varejo com a CAIXA e texto promocional que a ilha nao escreveu e nao pode datar, mesma familia do wap-wsmart. O irmao positivo-pra500 passou, e a diferenca e essa.
-  A LINHA QUE SEPARA DUPLICATA BOA DE RUIM, e ela fica escrita para a proxima leva: reprova quando o mesmo arquivo CRUZA TIPO; aprova quando o fabricante reusa a foto entre SKUs irmaos do MESMO tipo, cada um na sua propria pagina (escova direita/esquerda da WAP, kit/kit da Electrolux).
-  FERRAMENTA NOVA: aplicar-fotos-do-fabricante.py, prometida no docstring do coletor desde 20/09 e que nunca existia. Cobra os tres portoes da 25.3 um a um, le largura e altura DO ARQUIVO, nunca toca registro que ja tem foto, e grava em imagem.fonte a URL da PAGINA. A entrada e um arquivo de veredito do olho, datado, com a URL ao lado do id — e o coletor passou a ler esses arquivos sozinho, entao reprova de ontem e honrada amanha sem ninguem lembrar de copiar texto para dentro do codigo.
-  A TRAVA DE URL PEGOU ALGO NO PRIMEIRO DIA. Duas colheitas rodaram ao mesmo tempo por descuido desta execucao e escreveram no mesmo arquivo de candidatos, que nao tem trava; o olho viu uma passada e o disco tinha a outra. Quatro registros divergiram e a ferramenta PAROU em vez de gravar. A colheita foi refeita UMA vez, limpa, e os 36 vereditos reconferidos: 34 bateram na URL exata e 2 diferiam so no nome do CDN. Os 2 foram REABERTOS no arquivo canonico antes de o veredito ser mantido.
-  TRES CONSERTOS QUE O CAMINHO EXIGIU: a data da colheita era digitada e passou a sair do relogio; imagem.url receberia a URL relativa ao protocolo da Xiaomi, que quebra em tudo que nao e navegador e fez 13 candidatos parecerem bloqueados por rede sem estar; e a contagem itens_com_foto nao era recontada pela escrita — o aplicador passou a reusar o recontar do coletor da Shopee.
-  O PEDIDO DE REDE DO DESPACHO MORREU INTEIRO, e um item por outro motivo: www.multilaserempresas.com.br responde daqui agora, e as tres paginas de produto dele devolvem 404 elas mesmas — produto fora de linha, nao rede. manuals.plus segue 000 e continua fora do pedido de proposito, porque e terceiro e a 25.3 proibe a foto que viria de la.
-  ACHADO PARA A SENTINELA, escrito e nao agido: a foto oficial do xiaomi-x20 mostra o aparelho dentro de uma BASE, e base_autoesvaziamento desse registro esta null no banco com o motivo 'leitura da pagina bloqueada pelo egresso'. A porta que estava fechada abriu hoje. A foto nao e o campo e nao preencheu campo nenhum.
-  O QUE ESTA EXECUCAO NAO FEZ, DE PROPOSITO: nao rodou cobertura-r1.py --gravar. O Pente Fino de 21/09 mediu a intersecao em 11 contra os 15 que dados/cobertura-r1.json ainda afirma, e escreveu que gravar 11 por cima de 15 reabre o item 2 e desfaz a PRONTA — decisao do Raphael entre tres desfechos, nao da Fundacao. Fica sinalizado, nao resolvido.
-  PORTOES: validar-banco.py APROVADO; bancada.py 38 sem rede e 44 com --no-ar, 0 falha; a ferramenta nova entrou classificada como producao, sem denuncia de convencao. Sync acionado e conferido DEPOIS (18.4): /status em revisao 73, igual a do manifest, e as fotos do fabricante saem no ar em /qual-peca-serve-no-meu-robo-aspirador/?modelo=electrolux-erb60 (quatro da Electrolux) e em /quantos-pa-o-robo-aspirador-precisa/ (o xiaomi-s20 de appmifile).
-  NAO SEGUI PARA BLOCO DA FILA, pelo mesmo motivo das duas execucoes anteriores: a ilha esta PRONTA e no regime do CRITERIO PRE-REGISTRADO DA DECISAO DE OUTUBRO, que poe malha nova e bloco de conteudo no desfecho (a), escolhivel so depois das leituras de 23/09, 30/09, 07/10 e 14/10. O que foi feito hoje e despacho, e a 18.5 manda verificacao antes de construcao.
-ultima_ronda: 2026-09-18T14:45Z
-bloqueada_por: null
+  A TELA DIZIA 15 E O BANCO MEDIA 11 — o derivado commitado ganhou portao, e a bancada foi de 38 para 40 (46 com o site). ZERO URL nova, ZERO palavra escrita a mao em pagina nenhuma: o unico numero que mudou na tela mudou porque a varredura o recontou.
+  O DEFEITO, MEDIDO NO AR AS 13h20Z ANTES DE QUALQUER CONSERTO: '/ferramentas/' servia 'So 15 dos 45 modelos do banco sao atendidos pelas duas ferramentas ao mesmo tempo'. A varredura de hoje mede 11. Estava assim desde 20/09 as 15h39Z, quando o portao do canal brasileiro anulou 7 canais e tirou quatro Roborock da interseccao — com as 38 passadas da bancada verdes o dia inteiro. Quem nomeou o numero foi o Pente Fino de 21/09; o que ele nao tinha medido e que a frase ja estava servida.
+  A CAUSA E QUE O DERIVADO SO PODIA SER CONFERIDO SOBRESCREVENDO-O. O dicionario que cada gerador grava morava dentro do main(), atras do --gravar: perguntar 'o arquivo de ontem ainda vale?' exigia destruir a resposta para ve-la, e por isso ninguem perguntava. A corrente inteira herdou o numero podre — cobertura-r1.json, depois casca-fatos.json que o le, depois a option, depois a tela.
+  O CONSERTO TEM DUAS METADES. Os geradores foram partidos (documento() na R1, fatos_do_banco() no casca-fatos, os montar() da R1 e da R2 que ja eram), e nasceu ferramentas/validar-derivados.py: reconstroi 7 derivados em MEMORIA e compara com o disco, sem escrever nada. Declara 4 que nao alcanca, com o motivo ao lado — divida escrita, nao isencao — e REPROVA quando aparece derivado novo que nao esta em nenhuma das duas listas, que e a regra que impede o proprio portao de envelhecer calado.
+  A BATERIA PEGOU UM DEFEITO NO PORTAO ANTES DE ELE SER COMMITADO: com o cobertura-r1 adulterado, o gerador do casca-fatos recusava contar e o portao morria de traceback — codigo 1 SEM a palavra REPROVADO, que e INERTE ao contrario. Recusa virou veredito e o main ficou blindado. E o casca-fatos nao e julgado enquanto o cobertura-r1 estiver reprovado: ele le o arquivo podre e reproduz a podridao, entao dizer 'ok' ali seria medir a propria ignorancia e chamar de veredito.
+  NO AR: manifest na revisao 74, /status em 74, e o endereco CANONICO de /ferramentas/ conferido servindo 11 de 45 em TRES passadas — nao a quebra de cache. A purga do hospedeiro levou alguns minutos, dentro da janela conhecida da secao 10 do conferir-no-ar.py.
+  O QUE NAO FOI DECIDIDO, DE PROPOSITO: o estado viva nao foi tocado, o item 2 da DEFINICAO DE PRONTA nao foi reaberto e a meta de 15 nao foi remedida contra o teto de 13. As tres saidas da remedicao do Pente Fino seguem de pe, agora com o numero honesto dos dois lados. Isso e do Raphael.
 ---
 
 
@@ -28,6 +22,29 @@ bloqueada_por: null
 
 Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 
+
+## 21/09/2026, 13h45Z — A tela dizia 15, o banco media 11, e o derivado ganhou portao
+
+**A ilha continua PRONTA e nada foi reaberto.** Esta execucao nao construiu
+pagina: consertou um numero falso que estava no ar e fechou o buraco de portao
+que o deixou envelhecer calado.
+
+- **`/ferramentas/` servia "So 15 dos 45 modelos ... atendidos pelas duas
+  ferramentas"** desde 20/09 as 15h39Z. A varredura mede **11**. Medido no ar as
+  13h20Z, antes de qualquer conserto, e conferido no **canonico** as 13h44Z
+  servindo 11 em tres passadas.
+- **Nenhum dos 38 portoes via isso.** `cobertura-r1.py` e ferramenta de producao
+  pela classificacao da bancada, e ferramenta de producao "nao afirma nada" —
+  enquanto o arquivo que ela grava era a unica afirmacao da ilha sobre a emenda
+  do funil.
+- **`ferramentas/validar-derivados.py` (novo):** reconstroi 7 derivados em
+  memoria e compara com o disco. 4 declarados fora do alcance com o motivo
+  escrito; derivado novo que ninguem declarou **reprova**.
+- **`ferramentas/mutacoes-derivados.py` (novo):** 6 mutacoes, entre elas o
+  defeito real de 20/09 refeito e o mundo sadio que TEM que passar. Ela pegou um
+  traceback do proprio portao antes do commit.
+- **A decisao das tres saidas continua do Raphael.** `estado: viva` intocado,
+  item 2 nao reaberto, meta de 15 nao remedida contra o teto de 13.
 
 ## 20/09/2026, 15h52Z — A dívida do elo morreu, e um portão descobriu que a prova do canal apodrece
 

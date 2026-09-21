@@ -674,10 +674,18 @@ Fechado pela execução das 15h17Z, item por item, e o que ele achou pelo caminh
 >
 > **O que eu NÃO fiz, de propósito:** não rodei `--gravar`, não mexi no `estado: viva` do `ESTADO.md` e não reabri o item. Gravar 11 por cima de 15 reabriria o item 2 e desfaria a declaração de PRONTA — isso muda a fila e joga fora trabalho declarado, e não é decisão de auditor. **As três saídas que os dados admitem, e a escolha é dele:** (a) a PRONTA vale como foi declarada às 13h45Z e a queda vira dívida nova, com o item 2 remedido e reaberto; (b) a meta de 15 é remedida contra o teto de 13, como já foi remedida em 17/09; (c) a PRONTA fica de pé e o assunto entra inteiro na decisão de outubro. **Em todas elas, o primeiro passo é o mesmo e custa um comando:** `cobertura-r1.py --gravar`, para o dado commitado parar de afirmar 15.
 
+> **O PRIMEIRO PASSO DAS TRÊS SAÍDAS FOI DADO EM 21/09/2026, 13h40Z, E O QUE ELE DESCOBRIU É PIOR DO QUE O NÚMERO: A FRASE ESTAVA NO AR.** A remedição acima dizia que, nas três saídas possíveis, o primeiro passo é o mesmo e custa um comando. Ele custou mais do que um comando porque `dados/cobertura-r1.json` não era o fim da corrente: `dados/casca-fatos.json` **lê** aquele arquivo, a option lê o casca-fatos, e **`/ferramentas/` servia "Só 15 dos 45 modelos do banco são atendidos pelas duas ferramentas ao mesmo tempo"** desde 20/09 às 15h39Z — com as 38 passadas da bancada verdes o dia inteiro. Medido no ar às 13h20Z de 21/09, antes de qualquer conserto.
+>
+> **O QUE FOI FEITO:** `cobertura-r1.py --gravar` e `gerar-casca-fatos.py --gravar`, manifest na revisão 74, Sync acionado, e o endereço **canônico** de `/ferramentas/` conferido servindo **11 de 45** em três passadas (18.4). A purga do hospedeiro levou alguns minutos, como a janela conhecida da seção 10 do `conferir-no-ar.py` já descrevia.
+>
+> **O QUE NÃO FOI FEITO, E CONTINUA SENDO DECISÃO DO RAPHAEL:** o `estado: viva` não foi tocado, o item 2 não foi reaberto e a meta de 15 não foi remedida contra o teto de 13. As três saídas (a), (b) e (c) da remedição acima seguem de pé, agora com o número honesto dos dois lados — no arquivo e na tela.
+>
+> **E O BURACO DE PORTÃO QUE ISTO EXPÔS FOI FECHADO NA MESMA PASSADA**, porque a remedição já o tinha nomeado: *"Régua que não cobre o que o bloco mudou certifica a página de ontem"*. Nasceu `ferramentas/validar-derivados.py`, que **reconstrói 7 derivados em memória e compara com o disco** — e não pode ser enganado como o gravador, porque não escreve nada. A causa de fundo era essa: o dicionário de cada gerador morava dentro do `main()`, atrás do `--gravar`, então perguntar *"o arquivo de ontem ainda vale?"* exigia **destruir a resposta para vê-la**. Os geradores foram partidos (`documento()` na R1, `fatos_do_banco()` no casca-fatos) e a bancada foi de **38 para 40** portões sem rede, e de 44 para **46** com o site.
+
 | item | estado | número medido |
 |---|---|---|
 | 1. Porta de compra em todo item publicável | **feito** (16/09, remedido em 20/09 15h30Z) | 95 publicáveis, 0 com "em breve", 0 sem saída; **95 rendem comissão e 0 não** — a dívida do elo foi paga em 20/09, ver abaixo |
-| 2. A emenda do funil fechada | **feito** (18/09) | interseção em **15** de 45 publicáveis, teto 17 |
+| 2. A emenda do funil fechada | **feito** (18/09) — número REMEDIDO, item não reaberto | interseção era **15** de 45 com teto 17; medida em 21/09 dá **11** de 45 com teto **13**, gravada no arquivo e servida no ar. Reabrir ou não é decisão do Raphael, pelas saídas (a)/(b)/(c) acima |
 | 3. Zero defeito aberto de ronda | **feito** (20/09) | as 28 chaves trocadas e medidas em 2026-09-20; 0 defeito de ronda sem "CUMPRIDO E CONFERIDO NO AR" |
 | 4. Sitemap aceito no Search Console | **feito** (16/09) | processado, última leitura 15/09, 9 páginas |
 | 5. Toda página com `meta description` e `og:` | **feito** (16/09) | 9 de 9 URLs, 5 propriedades `og:` cada |
