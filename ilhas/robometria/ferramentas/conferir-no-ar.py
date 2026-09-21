@@ -41,6 +41,7 @@ O que ele mede, no HTML que o servidor devolve:
 
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -61,6 +62,31 @@ PAGINAS = [
     ('/filtro-universal-de-robo-aspirador/',          'Existe filtro universal de robô aspirador?'),
     ('/quantos-m2-o-robo-aspirador-limpa-por-carga/', 'Quantos m² um robô aspirador limpa por carga'),
 ]
+
+def paginas_da_malha():
+    """As paginas de malha, LIDAS do registro do snippet que as publica.
+
+    A lista acima e digitada e foi assim que esta ilha comecou; o registro da
+    malha nao pode ser copiado para ca, porque quem decide o que esta publicado
+    e ele — e lista digitada ao lado de lista contada diverge calada (a cicatriz
+    do nome da pagina, da lista de categorias e das tres contagens da R1). O
+    render da bancada imprime o registro em JSON para quem mede de fora do PHP.
+
+    FALHA ALTO: sem o registro, esta conferencia estaria medindo menos paginas
+    do que o site serve, e o verde dela seria sobre a metade que ela conhece.
+    """
+    saida = subprocess.run(
+        ['php', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'render-para-teste.php'),
+         '.', '--registro-da-malha'],
+        capture_output=True, text=True)
+    if saida.returncode != 0 or not saida.stdout.strip():
+        raise SystemExit('ERRO: nao consegui ler o registro da malha do snippet '
+                         '(php render-para-teste.php . --registro-da-malha): %s'
+                         % saida.stderr.strip()[:300])
+    return [(p['caminho'], p['titulo']) for p in json.loads(saida.stdout)]
+
+
+PAGINAS += paginas_da_malha()
 
 MARCA = ' – Robometria'
 TETO = 65
@@ -578,9 +604,32 @@ def conferir_piso_no_ar():
         corpo, _c = buscar(DOMINIO + caminho)
         m = re.search(r'<main[^>]*>(.*?)</main>', corpo, re.S | re.I)
         miolo = m.group(1) if m else ''
-        ok('em breve' not in miolo,
-           '%s: sem a frase proibida pela secao 7' % (caminho or '/'),
-           'ausente' if 'em breve' not in miolo else 'AINDA NO AR')
+        # A REGUA MEDIA A PALAVRA E NAO A COISA, e em 21/09/2026 ela reprovou
+        # duas paginas CERTAS por isso.
+        #
+        # O que a secao 7 proibe, com todas as letras, e "link de loja em breve":
+        # uma PROMESSA no lugar de uma saida de compra que nao existe — "item que
+        # chegaria a ela e defeito da 19.1, nao e estado aceitavel de pagina no
+        # ar". E o que a 16.5 MANDA, com as mesmas letras, e que o cartao de uma
+        # categoria ainda nao publicada "nao e link e diz 'em breve', sem contagem
+        # de banco".
+        #
+        # Sao duas frases iguais em dois lugares diferentes: uma promete um LINK
+        # DE COMPRA que a ilha nao tem, a outra avisa que uma PAGINA ainda nao
+        # nasceu. Medir a palavra solta no miolo inteiro confundia as duas e
+        # fazia a primeira leva de malha reprovar por obedecer ao contrato.
+        #
+        # Entao a regua passou a medir onde a proibicao vale — o bloco de compra
+        # e a vitrine — e a frase inteira em qualquer lugar. Isto NAO e afrouxar:
+        # a proibicao da secao 7 continua cobrada byte a byte onde ela existe, e
+        # o que saiu de cobranca e o que o contrato manda publicar.
+        vitrine = ' '.join(re.findall(
+            r'<(?:li|div|span|p)[^>]*class="[^"]*(?:rbm-vitrine|rbm-comprar|rbm-compra)[^"]*"[^>]*>.*?'
+            r'</(?:li|div|span|p)>', miolo, re.S | re.I))
+        proibida = ('link de loja em breve' in miolo.lower()) or ('em breve' in vitrine.lower())
+        ok(not proibida,
+           '%s: sem a frase proibida pela secao 7 (promessa no lugar da compra)' % (caminho or '/'),
+           'ausente' if not proibida else 'AINDA NO AR')
         ok('rbm-sem-saida' not in miolo,
            '%s: nenhum item sem saida de compra' % (caminho or '/'))
         if caminho in com_vitrine:
@@ -820,8 +869,14 @@ def conferir_datas_no_ar(carimbo):
     """
     print('\n13. AS DUAS DATAS DO JSON-LD (item 4 do despacho da Sentinela)')
     doc = json.load(open('dados/datas-das-paginas.json', encoding='utf-8'))
+    # O SLUG DE UMA PAGINA DE MALHA NAO E O ENDERECO DELA: o slug e a chave
+    # (pecas-filtros-xiaomi) e o endereco tem tres niveis
+    # (/pecas/filtros/xiaomi/). Montar a URL a partir do slug aqui media um 404
+    # e reprovava a pagina certa.
+    caminho_da_malha = {p[0].strip('/').replace('/', '-'): p[0]
+                        for p in paginas_da_malha()}
     for registro in doc['registros']:
-        caminho = '/%s/' % registro['slug']
+        caminho = caminho_da_malha.get(registro['slug'], '/%s/' % registro['slug'])
         corpo, codigo = buscar(DOMINIO + caminho + '?v=' + carimbo)
         if not ok('200' == codigo, '%s: HTTP 200' % caminho, codigo):
             continue
@@ -835,9 +890,14 @@ def conferir_datas_no_ar(carimbo):
                 continue
             for no in (grafo.get('@graph') if isinstance(grafo, dict)
                        and grafo.get('@graph') else [grafo]):
-                if isinstance(no, dict) and no.get('@type') == 'Article':
+                # ARTICLE OU COLLECTIONPAGE: as duas datas nao sao do artigo, sao
+                # da PAGINA, e desde 21/09/2026 ha paginas desta ilha que nao sao
+                # artigo nenhum. Exigir 'Article' aqui era exigir que toda pagina
+                # datada fosse um texto — e reprovaria a malha por servir o
+                # schema certo.
+                if isinstance(no, dict) and no.get('@type') in ('Article', 'CollectionPage'):
                     artigo = no
-        if not ok(bool(artigo), '%s: o no Article do JSON-LD foi encontrado' % caminho):
+        if not ok(bool(artigo), '%s: o no com as datas do JSON-LD foi encontrado' % caminho):
             continue
         ok(artigo.get('datePublished') == registro['publicada_em'],
            '%s: datePublished servido e o da fonte unica' % caminho,

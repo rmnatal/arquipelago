@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 80,
+  "revisao": 81,
   "atualizado_em": "2026-09-21",
   "estado": "nascendo",
   "desembarque": {
@@ -302,7 +302,7 @@
       "verificado_em": "2026-09-16",
       "registros": 2,
       "publicar": true,
-      "sha256": "ed84cccad7f244b69dc5626797b16d675e10d331aa6796a87fbb7d80bb4c7b3c",
+      "sha256": "9ea7934f38fbfbf86bb53600110fe3ddd59a0a6f609d80dd6607c99b29be3e20",
       "descricao": "AS DUAS DATAS DO JSON-LD DOS ARTIGOS, com uma fonte so. O Sync o grava na option robometria_dados_datas-das-paginas e robometria_casca_datas_da_pagina() na casca o le — uma funcao, chamada pelas duas paginas, pelo mesmo motivo que o painel da foto virou uma so em 16/09 (25.7). Ate este arquivo existir, `datePublished` era digitado dentro do snippet do A1 e ausente no A2, e `dateModified` saia de `gerado_em` dos fatos, que mede a geracao dos FATOS e nao a mudanca da PAGINA: em 16/09 as duas paginas mudaram na revisao 52 sem regerar fato nenhum, e o JSON-LD servido continuou dizendo 13/09. A revisao do manifest tambem nao serve: ela e da ilha inteira e faria a data do artigo do filtro andar porque a R2 ganhou uma linha."
     },
     {

@@ -3,20 +3,21 @@ ilha: robometria
 estado: viva              # PRONTA em 20/09/2026, 13h45Z: os cinco itens da DEFINICAO DE PRONTA fechados, tres dias antes do prazo de 23/09
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 9
+urls_publicadas: 14
 primeira_indexacao: 2026-09-11
-ultima_execucao: 2026-09-21T17:10Z
-executando_desde: 2026-09-21T19:54Z
+ultima_execucao: 2026-09-21T20:09Z
+executando_desde: null
 bloco_atual: |
-  A LEVA DOS QUATRO FILTROS — o tipo filtro vai de 7 para 11 e de 3 para 5 marcas, e a WAP vira a terceira marca com filtro declarado. ZERO URL nova, ZERO leva do teto da 21.4 gasta: banco de 53 para 57 pecas, 87 para 92 pares, fotos de 59 para 63 de 107.
-  POR QUE FILTRO, E A RESPOSTA VEIO DE CONTAR E NAO DA FILA. O proximo bloco e o 5b (malha), e a ordem de levas do ARVORE.md manda abrir /pecas/filtros/ com TRES filhas. Contado antes de escrever qualquer pagina: so DUAS marcas passavam no portao de dado da secao 13 (Xiaomi com 4 filtros; Electrolux com 1 avulso mais 5 kits que declaram filtro). Categoria com duas filhas nao nasce pela 16.5, e nenhum portao desta ilha media isso. A leva levantou a terceira — WAP, com tres filtros que nunca tinham entrado — e a categoria deixou de estar travada por DADO. A tabela das tres filhas esta no ARVORE.md, secao 5, com a ordem de RECONTAR antes de abrir.
-  A ESCOLHA DA ILHA - pelo foco da 1.2, sem corrida. Os cinco ESTADO.md parseiam e o desta ilha tinha executando_desde null, com o ultimo commit da pasta duas horas e meia atras. Reserva aceita de primeira as 16h16Z e renovada as 16h43Z pela 1.1. Nenhum PR aberto, nenhum branch claude com commit proprio. Rede pela 20.2: home 200 e /status na revisao 74, igual a do manifest, em TRES passadas.
-  O EGRESSO DO FABRICANTE ABRIU E A LEITURA FOI DIRETA. Os quatro registros saem da API de catalogo das lojas oficiais (loja.wap.ind.br e loja.meupositivo.com.br), com titulo, codigo, EAN e o campo proprio de Compatibilidade lidos no mesmo documento - em 13/09 este mesmo host devolvia EGRESS_BLOCKED. O nivel continua 4 de proposito: o que mudou foi o CANAL, nao a especie da fonte.
-  TRES PORTOES CONSERTADOS, TODOS PEGOS PELA PROPRIA LEVA. (1) medir-palavras-chave.py parava a escada no primeiro degrau que passasse na regua FROUXA, e sem o conserto o botao de compra dos tres filtros WAP abriria num kit de outra marca; depois, 4 de 4 com a peca no topo. (2) O mesmo arquivo, com --so, GRAVAVA o arquivo inteiro com o pedaco medido: a primeira passada derrubou a medicao de 95 registros para 4 e levou junto as 26 chaves fixadas no navegador, e o gerador seguinte reescreveu 34 chaves do banco. Restaurado do git; agora --so grava DENTRO do arquivo. (3) recontar() do coletar-shopee.py so movia quatro contagens e leva que ACRESCENTA registro mexe em outras seis, corrigidas a mao ate hoje.
-  UM DEFEITO QUE JA ESTAVA NO AR CAIU JUNTO - a cauda da divergencia da R1 dizia 'as dois declaracoes'. Palavra feminina contada com numeral masculino; invisivel por dias porque so um/uma e dois/duas flexionam, e o filtro da Positivo e o primeiro registro desta ilha com UM canal divergente. R1 1.11.1, snippet e referencia em Python na mesma passada, com mutacao provando que a trava morde. Medido no ar em tres passadas.
-  DUAS CORRECOES DE DOCUMENTO, as duas resumo velho lido como fato. O ARVORE.md dizia em dois lugares que a malha espera o reenvio do sitemap, bloqueio que morreu em 16/09. E o marcas.json da Positivo nao declarava a loja oficial que quatro registros ja citavam como fonte, o que fazia a coleta de foto devolver 'sem porta de fabricante aberta' com o host em 200.
-  O QUE A LEVA NAO MEXEU: a intersecao das duas ferramentas continua em 11 de 45 com teto 13, entao o item 2 da DEFINICAO DE PRONTA segue como estava e a decisao das tres saidas continua do Raphael. Na R1 as celulas respondidas foram de 93 para 97 de 270.
-  BANCADA 40 portoes 0 falha sem rede e 46 portoes 0 falha com o site. Manifest de 74 a 77 em duas passadas de Sync, /status na 77.
+  BLOCO 5b — A PRIMEIRA LEVA DE MALHA ESTA NO AR: /pecas/, /pecas/filtros/ e as tres filhas de marca (xiaomi, wap, electrolux). CINCO URLs novas (de 9 para 14 no sitemap), 5 de 10 do teto da 21.4 gastas, 1 leva de 3 na semana. Snippet robometria-malha.php v1.0.0 (#11 criado), casca 1.12.0, manifest 80 e /status em 80.
+  SAO AS PRIMEIRAS PAGINAS DESTA ILHA COM PAI DE VERDADE (post_parent, 16.2): as nove antigas moram na raiz. Quem cria e o snippet da malha, na ordem da arvore, e a identidade canonica e o meta _robometria_id com a CHAVE (pecas-filtros-xiaomi), nunca o post_name — que e so o ultimo degrau e colidiria com /modelos/xiaomi/.
+  O PORTAO DE DADO FOI RECONTADO ANTES DE ESCREVER PAGINA, e o numero mudou: contando os KITS que declaram filtro na composicao, a categoria tem 16 itens em 5 marcas (11 avulsos + 5 kits) e a Electrolux tem 6. Kit nao e filtro e nenhuma frase o chama assim; e "nao vende avulso" e calculado por MODELO — em 5 dos 9 Electrolux o filtro so existe dentro do Kit Performance.
+  A CLASSIFICACAO DE SERP DA 14.9, que era pre-requisito escrito e nao feito, esta em dados/serp-malha-pecas-2026-09-21.md: nas cinco consultas o top 10 responde pelo APARELHO e a pergunta da PECA nao tem resposta publicada (no ERB60, 10 de 10). O arquivo tambem escreve o que a medicao NAO autoriza.
+  NENHUM NUMERO NASCE NO PHP: dados/malha-pecas.json e derivado do banco por gerar-malha-pecas.py, e teste-malha.php (146 afirmacoes) compara frase a frase, sem acento, as duas implementacoes. Os tres numeros de /pecas/ sao os da casca — recontar criaria a segunda copia de pares_declarados que a R1 1.8.0 mediu no ar.
+  QUATRO REGUAS FORAM VISTAS REPROVANDO PAGINA CERTA E FORAM CONSERTADAS: a URL montada a partir do slug (com tres niveis o slug nao e o endereco), a lista digitada de filhas do cluster, o no Article exigido para achar as duas datas do JSON-LD, e a regua do "em breve" — esta ultima subiu para o contrato, na 16.5: a secao 7 proibe "link de loja em breve" (promessa no lugar da compra) e a 16.5 MANDA "em breve" no cartao de categoria nao publicada.
+  TRES LISTAS DIGITADAS VIRARAM DERIVADAS na mesma leva (alvos do teste-arvore, alvos do teste-voz, paginas do conferir-no-ar), e o teto de irmas da casca ganhou nome porque mutacao precisa de alvo unico.
+  O QUE A LEVA NAO FEZ: o menu continua apontando "Pecas" para a FERRAMENTA e /ferramentas/ continua de pe — o ARVORE.md condiciona as duas trocas a /succao/ tambem existir, e ela nasce na leva 2.
+  A PROXIMA LEVA JA ESTA MEDIDA E NAO E DE FILTRO: /pecas/escovas-laterais/ (13 itens, 5 marcas) e /pecas/mops/ (19, 5) tambem passam no portao hoje; nao nasceram por causa da ordem de levas e do teto, nao por falta de dado.
+  BANCADA 41 portoes 0 falha sem rede e conferir-no-ar.py com 389 afirmacoes 0 falha.
 ultima_ronda: 2026-09-18T14:52Z
 bloqueada_por: null
 ---
@@ -26,6 +27,30 @@ bloqueada_por: null
 
 Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 
+
+## 21/09/2026, 20h20Z — A primeira leva de malha: a árvore desta ilha passa a ter três níveis de verdade
+
+**Cinco URLs novas, todas conferidas no ar** — `/pecas/`, `/pecas/filtros/`,
+`/pecas/filtros/xiaomi/`, `/pecas/filtros/wap/` e `/pecas/filtros/electrolux/`.
+O sitemap foi de 9 para **14** páginas. Snippet `robometria-malha.php` v1.0.0,
+casca 1.12.0, manifest na revisão **80** e `/status` em 80.
+
+- **São as primeiras páginas desta ilha com pai de verdade** (`post_parent`,
+  16.2). As nove antigas moram todas na raiz. A identidade canônica de cada uma
+  é a **chave** no meta `_robometria_id`, nunca o `post_name`.
+- **O portão de dado foi recontado antes de escrever página**, e o número mudou:
+  contando os **kits** que declaram filtro na composição, são **16 itens em 5
+  marcas** — e a Electrolux tem 6, não "1 + 5". Kit não é filtro e nenhuma frase
+  o chama assim.
+- **A classificação de SERP da 14.9 foi feita** e está em
+  `dados/serp-malha-pecas-2026-09-21.md`. Nas cinco consultas o top 10 responde
+  pelo **aparelho**; no filtro do ERB60 são **10 de 10**.
+- **Quatro réguas reprovaram página certa e foram consertadas no lugar certo** —
+  e uma delas subiu para o contrato: a distinção entre o *"link de loja em
+  breve"* que a seção 7 proíbe e o *"em breve"* que a **16.5 manda** no cartão
+  de categoria ainda não publicada.
+- **`piso: abaixo` e 5 de 10 URLs do teto da 21.4** gastas nesta leva, 1 leva de
+  3 na semana.
 
 ## 21/09/2026, 17h10Z — A leva dos quatro filtros, e a categoria da malha deixa de estar travada por dado
 

@@ -554,6 +554,10 @@ Decisão do Raphael em 11/09/2026: toda ilha nasce com hierarquia visível na UR
 
 16.5 **Categoria só nasce com filhas.** Página de nível 2 é publicada quando tem pelo menos 3 filhas com dado real (portão da seção 13); até lá o cartão na mãe não é link e diz "em breve", sem contagem de banco. Categoria vazia indexada é página fina que derruba o resto.
 
+> **"EM BREVE" DE CATEGORIA NÃO É A FRASE PROIBIDA PELA SEÇÃO 7 — e uma régua de ilha já reprovou página certa por confundir as duas (Robometria, 21/09/2026).** A seção 7 proíbe **"link de loja em breve"**: uma promessa no lugar de uma saída de compra que não existe, e ela é proibida porque "item que chegaria a ela é defeito da 19.1, não é estado aceitável de página no ar". O que a 16.5 manda escrever é outra coisa: um aviso de que uma **página** ainda não nasceu, num cartão que **não é link**. As duas frases se parecem e vivem em lugares diferentes — uma no bloco de compra, a outra na listagem de filhas da mãe.
+>
+> **A régua que mede isso mede o LUGAR, nunca a palavra solta.** Na primeira leva de malha da Robometria, a conferência no ar procurava a expressão "em breve" no miolo inteiro da página e reprovou `/pecas/` e `/pecas/filtros/` — as duas servindo exatamente o cartão que esta seção exige. Quem escrever régua para isto cobra: a frase inteira ("link de loja em breve") em qualquer lugar, e "em breve" **dentro do bloco de compra ou da vitrine**. Fora dali, é o contrato sendo cumprido.
+
 16.6 **Ordem das levas (seção 9) dentro da árvore:** primeiro a mãe e suas 3 primeiras filhas de maior intenção de compra, depois as irmãs, depois a próxima categoria. Nunca uma filha de cada categoria espalhada — cluster ralo não passa autoridade.
 
 16.7 **Entre ilhas não há link** (decisão de 09/09/2026): cada ilha é um silo próprio; a autoridade cresce dentro do domínio.

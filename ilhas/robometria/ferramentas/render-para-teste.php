@@ -409,6 +409,31 @@ function robometria_teste_pagina($tag, $titulo = 'Robometria — teste', $slug =
 
 if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	$alvo = isset($argv[2]) ? $argv[2] : 'robometria_home';
+
+	/* O REGISTRO DA MALHA EM JSON, para quem mede do lado de fora do PHP.
+	 *
+	 *   php ferramentas/render-para-teste.php . --registro-da-malha
+	 *
+	 * Existe porque a conferencia no ar e em Python e o registro das paginas de
+	 * malha mora no snippet PHP — e a alternativa seria uma segunda lista de
+	 * caminho e titulo digitada la, que e a familia de defeito que esta leva
+	 * desfez em tres lugares (os alvos das duas bancadas e o teto de irmas).
+	 * Aqui nada e digitado: o que sai e o mesmo array que cria as paginas. */
+	if ('--registro-da-malha' === $alvo) {
+		robometria_teste_carregar_options($argv[1]);
+		robometria_teste_carregar($argv[1]);
+		$saida = array();
+		foreach (robometria_malha_paginas() as $chave => $def) {
+			$saida[] = array(
+				'chave'   => $chave,
+				'caminho' => '/' . $def['caminho'] . '/',
+				'titulo'  => $def['titulo'],
+			);
+		}
+		echo json_encode($saida, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
+		exit(0);
+	}
+
 	/* O que o Sync gravou nas options (ver robometria_teste_carregar_options). */
 	robometria_teste_carregar_options($argv[1]);
 

@@ -6484,3 +6484,116 @@ da Fundação pode estar no ar. **O relato íntegro é este, aqui.**
   navegador** foram escolhidas pela regra velha e podem ter parado no degrau
   frouxo. Remedi-las e um bloco proprio, com verificacao no ar — e as 26 fixadas
   no navegador continuam intocaveis pelo despacho de 20/09.
+
+## 2026-09-21 (19h16Z–20h20Z) — Bloco 5b: a primeira leva de malha, e a arvore desta ilha passa a ter tres niveis de verdade
+
+**CINCO URLs NOVAS, TODAS CONFERIDAS NO AR.** `/pecas/`, `/pecas/filtros/` e as
+tres filhas de marca — `xiaomi`, `wap` e `electrolux`. Snippet
+`robometria-malha.php` v1.0.0 (criado como #11 no Code Snippets), casca 1.12.0,
+manifest na revisao **80** e `/status` em 80. As cinco respondem 200, entraram
+no `wp-sitemap-posts-page-1.xml` (de 9 para **14** URLs) e o `conferir-no-ar.py`
+fecha em **389 afirmacoes, 0 falha**.
+
+**SAO AS PRIMEIRAS PAGINAS DESTA ILHA COM PAI DE VERDADE.** As nove antigas
+moram todas na raiz; a 16.2 exige que nivel 1 e nivel 2 sejam pagina-mae
+(`post_parent`), e `robometria_casca_garantir_paginas()` so sabe criar pagina de
+slug plano. Quem cria as da malha e o snippet dela, **na ordem da arvore** — mae
+antes de filha, porque o `post_parent` precisa do id da mae —, e a identidade
+canonica de cada uma e o meta `_robometria_id` com a **chave**
+(`pecas-filtros-xiaomi`), nunca o `post_name`, que e so o ultimo degrau
+(`xiaomi`) e colidiria com `/modelos/xiaomi/` no dia em que ela nascer.
+
+**A CASCA NAO GANHOU UM SEGUNDO MAPA DA ARVORE.** Ela ganhou
+`robometria_casca_malha()`, um registro filtrado que o snippet preenche, e
+`lugar()`, `irmas()`, `titulo_da_pagina()` e `nomes_das_paginas()` passaram a
+perguntar a ele. Mapa digitado ao lado de mapa digitado e a familia de defeito
+mais cara desta ilha — o nome da pagina em 11/09, a lista de categorias em
+17/09, as tres contagens da R1 em 14/09.
+
+**O PORTAO DE DADO FOI RECONTADO ANTES DE ESCREVER PAGINA NENHUMA, e a
+recontagem mudou o numero que o `ARVORE.md` trazia.** Contando tambem os **kits**
+que declaram filtro na composicao — que e o que o leitor de fato compra para
+trocar o filtro do ERB80 —, a categoria tem **16 itens em 5 marcas** (11 filtros
+avulsos + 5 kits), e a Electrolux tem **6** itens, nao "1 avulso + 5 kits" como
+duas contas separadas. **Kit nao e filtro e nenhuma frase o chama assim:** onde
+ha kit, o sujeito e "itens que entregam filtro" e a composicao sai escrita.
+
+**E "NAO VENDE AVULSO" E CALCULADO POR MODELO, NUNCA POR ITEM.** Em 5 dos 9
+modelos Electrolux o filtro so existe dentro do Kit Performance, e a pagina diz
+isso com o nome do publicador. E a mesma cicatriz que a R1 registrou em
+12/09/2026, quando a tela afirmava e negava o mesmo fato em duas frases
+seguidas: afirmacao sobre o CATALOGO de um modelo so vale quando nenhuma peca
+avulsa daquele tipo responde por ele.
+
+**A CLASSIFICACAO DE SERP DA 14.9 — pre-requisito escrito e nao feito ate hoje —
+esta medida em `dados/serp-malha-pecas-2026-09-21.md`**, consulta a consulta,
+ANTES de qualquer pagina. Nas cinco o top 10 responde pelo **aparelho** e a
+pergunta da **peca** nao tem resposta publicada; no `filtro do ERB60` sao **10 de
+10** resultados da ficha de venda do robo. O arquivo tambem escreve o que a
+medicao **nao** autoriza: a familia "melhor robo aspirador" segue fora da fila
+desta ilha.
+
+**NENHUM NUMERO E NENHUMA FRASE NASCEM NO PHP.** Os dois vem de
+`dados/malha-pecas.json`, derivado do banco por
+`ferramentas/gerar-malha-pecas.py`, que e a implementacao de REFERENCIA desta
+camada; `ferramentas/teste-malha.php` compara frase a frase, sem acento, o que o
+PHP escreve com o que a referencia escreveu (146 afirmacoes). **Os tres numeros
+de `/pecas/` sao os da CASCA** (`casca-fatos.json`): reconta-los aqui criaria a
+segunda copia de `pares_declarados` que a R1 1.8.0 mediu no ar com dois valores
+diferentes e o mesmo nome.
+
+**A GRAMATICA DO TIPO VIAJA COMO FATO**, e nao como tabela dentro do snippet:
+"a escova lateral avulsa" e "o filtro avulso" flexionam, e a cauda da divergencia
+desta mesma ilha serviu "as dois declaracoes" no ar hoje de manha por nao
+flexionar. O gerador le a tabela da referencia (`GENERO_DO_TIPO`) e manda as
+palavras ja escolhidas.
+
+**TRES LISTAS DIGITADAS VIRARAM DERIVADAS NA MESMA LEVA, e as tres eram a mesma
+familia:** os alvos do `teste-arvore.php` (eram nove tags a mao — pagina nova
+nascia fora de toda regua), os alvos do `teste-voz.php` (idem), e a lista de
+paginas do `conferir-no-ar.py`, que agora le o registro da malha do proprio
+snippet por `php render-para-teste.php . --registro-da-malha`. O teto de irmas da
+casca ganhou nome (`robometria_casca_teto_de_irmas`) porque a mutacao que o vira
+do avesso precisa de alvo unico, e ele tinha virado literal repetido.
+
+**QUATRO REGUAS FORAM VISTAS REPROVANDO PAGINA CERTA, E AS QUATRO FORAM
+CONSERTADAS NO LUGAR CERTO:**
+1. `teste-arvore.php` montava a URL a partir do SLUG; com tres niveis, o slug
+   nao e o endereco, e ele reprovava a trilha correta.
+2. A lista de filhas do cluster era digitada, e cobrava das tres filhas novas
+   **nao** ter "Veja tambem" — o contrario do 16.4(c).
+3. O `conferir-no-ar.py` exigia o no `Article` no JSON-LD para achar as duas
+   datas. As datas sao da PAGINA, nao do artigo, e desde hoje ha pagina desta
+   ilha que nao e artigo nenhum: passou a aceitar `CollectionPage`.
+4. **A regua do "em breve" media a PALAVRA e nao a COISA** — e esta subiu para o
+   contrato. A secao 7 proibe *"link de loja em breve"*, uma promessa no lugar
+   de uma saida de compra; a **16.5 MANDA** que o cartao de categoria nao
+   publicada diga *"em breve"*, sem contagem. A conferencia procurava a
+   expressao no miolo inteiro e reprovou `/pecas/` e `/pecas/filtros/` por
+   obedecerem ao contrato. Agora ela cobra a frase inteira em qualquer lugar e
+   "em breve" **dentro do bloco de compra**, e a distincao esta escrita na
+   **16.5 do `ARQUIPELAGO.md`**, uma vez, para toda ilha que construir malha.
+
+**O QUE A LEVA NAO FEZ, dito para ninguem somar errado:** o menu continua
+apontando "Pecas" para a FERRAMENTA. O `ARVORE.md` condiciona a troca do rotulo
+a `/pecas/` **e** `/succao/` existirem, e `/succao/` nasce na leva 2 — trocar
+metade do menu agora deixaria dois rotulos irmaos apontando para naturezas
+diferentes. `/ferramentas/` tambem continua de pe, pelo mesmo motivo: ela so e
+retirada com 301 quando as duas secoes existirem.
+
+**A PROXIMA LEVA JA ESTA MEDIDA, e ela nao e de filtro:**
+`/pecas/escovas-laterais/` (13 itens, 5 marcas) e `/pecas/mops/` (19 itens, 5
+marcas) **tambem passam no portao hoje**. Nao nasceram porque a ordem de levas
+do `ARVORE.md` manda uma categoria por vez e o teto da 21.4 sao 10 URLs por leva
+— nao por falta de dado. Cada uma custa uma entrada no registro do snippet mais
+a classificacao de SERP das consultas novas. `/pecas/escovas-principais/` (so
+uma marca com 3 itens) e `/pecas/baterias/` (1 marca) seguem travadas por dado,
+e isso e a 16.5 funcionando.
+
+**BANCADA:** 41 portoes sem rede, 0 falha (o `teste-malha.php` entrou como o
+41o). No ar: `conferir-no-ar.py` com 389 afirmacoes e 0 falha. `piso: abaixo` e
+**5 de 10 URLs** do teto da 21.4 gastas nesta leva, 1 leva de 3 na semana.
+
+- **Proximo passo: a leva 2 da malha** — `/pecas/escovas-laterais/` com as tres
+  primeiras filhas, com RECONTAGEM e classificacao de SERP proprias antes de
+  escrever pagina, exatamente como esta leva fez.
