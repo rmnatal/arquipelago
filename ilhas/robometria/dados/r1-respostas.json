@@ -1056,8 +1056,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1093,8 +1098,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/287006/Cybertron_Kit_Performance_FrontView_ERB44_Electrolux-1000x1000.jpg?v=638996098971830000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1130,8 +1140,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/287006/Cybertron_Kit_Performance_FrontView_ERB44_Electrolux-1000x1000.jpg?v=638996098971830000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1177,8 +1192,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1216,8 +1236,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1255,8 +1280,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1294,8 +1324,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1334,8 +1369,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova principal Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1374,8 +1414,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: mop Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1421,8 +1466,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1460,8 +1510,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1499,8 +1554,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1538,8 +1598,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1578,8 +1643,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova principal Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1618,8 +1688,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: mop Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1665,8 +1740,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: filtro Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1704,8 +1784,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1743,8 +1828,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1782,8 +1872,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: kit Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1822,8 +1917,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova principal Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1862,8 +1962,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: mop Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -1909,8 +2014,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova principal Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2075,8 +2185,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: mop Electrolux"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2132,8 +2247,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova lateral Multi (codigo PR10124)"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2302,8 +2422,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova lateral Multi (codigo PR10124)"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2350,8 +2475,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova lateral Multi (codigo PR10124)"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2404,8 +2534,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova lateral Multi (codigo PR10124)"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2566,8 +2701,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/158004/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000---01.jpg?v=638599427963500000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova principal Positivo (codigo 11206519)"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2698,8 +2838,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/158004/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000---01.jpg?v=638599427963500000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova principal Positivo (codigo 11206519)"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2780,8 +2925,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/062ec9c82657b2be82b68364b1fc1900_3d93e94d-6075-44a9-8ce6-fc074f589202.jpg?v=1725035616",
+            "largura": 2000,
+            "altura": 2000,
+            "alt": "Foto do fabricante: mop Roborock"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2824,8 +2974,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/1_3183c8ba-4be6-4a98-988c-ea1f947939e3.jpg?v=1735031940",
+            "largura": 1600,
+            "altura": 1600,
+            "alt": "Foto do fabricante: mop Roborock"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2868,8 +3023,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/4_q_-revo_2.jpg?v=1757929885",
+            "largura": 2000,
+            "altura": 2000,
+            "alt": "Foto do fabricante: mop Roborock"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2912,8 +3072,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/Roborock_2_S8_MaxV_Ultra_S8_Max_Ultra.jpg?v=1757930347",
+            "largura": 2000,
+            "altura": 2000,
+            "alt": "Foto do fabricante: mop Roborock"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -2957,8 +3122,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_Saros-10R-1.jpg?v=1757937015",
+            "largura": 2000,
+            "altura": 2000,
+            "alt": "Foto do fabricante: mop Roborock"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3002,8 +3172,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_Saros-10R-1.jpg?v=1757937015",
+            "largura": 2000,
+            "altura": 2000,
+            "alt": "Foto do fabricante: mop Roborock"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3108,8 +3283,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojawap.vteximg.com.br/arquivos/ids/158329/escova-direita-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425033056500000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova lateral Wap"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3145,8 +3325,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojawap.vteximg.com.br/arquivos/ids/158330/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425034313300000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova lateral Wap"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -3335,8 +3520,13 @@
           "divergencia": false,
           "variante_do_par": null,
           "vida_util": null,
-          "tem_imagem": false,
-          "imagem": null,
+          "tem_imagem": true,
+          "imagem": {
+            "url": "https://lojawap.vteximg.com.br/arquivos/ids/158342/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart.png?v=637425466210430000",
+            "largura": 1000,
+            "altura": 1000,
+            "alt": "Foto do fabricante: escova lateral Wap"
+          },
           "esperando_link": true,
           "afiliado": {
             "url": "",

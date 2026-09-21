@@ -31,7 +31,7 @@
   "itens_com_piso_nao_rastreavel": 0,
   "links_sem_degrau": 0,
   "itens_com_link_de_afiliado": 15,
-  "itens_com_foto": 15
+  "itens_com_foto": 30
  },
  "cobertura_de_faixa_r2": {
   "o_que_e": "Medicao exigida pela secao 14.3 do ARQUIPELAGO.md: varredura da faixa de entrada da R2 de ponta a ponta, contando quantos modelos do banco passam na elegibilidade de cada faixa. O criterio NAO e numero redondo de itens — e que nenhuma faixa que a ferramenta consegue produzir saia com menos de 3 elegiveis.",
@@ -1107,13 +1107,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.electrolux.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://electrolux.vteximg.com.br/arquivos/ids/218331/Robot-Vacuum-ERB10-Perspective-Electrolux-1000x1000-principal.jpg?v=638703122955570000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-speed-experience-com-autonomous-technology-erb10/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Electrolux (codigo ERB10)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -1223,13 +1223,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.electrolux.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://electrolux.vteximg.com.br/arquivos/ids/223967/Robot-Vacuum-ERB11-Perspective-Electrolux-600x600-1.jpg?v=638703124416570000",
+    "largura": 600,
+    "altura": 600,
+    "fonte": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-speed-experience-com-autonomous-technology-erb11/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Electrolux (codigo ERB11)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -1449,13 +1449,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i02.appmifile.com/584_operatorx_operatorx_opx/14/06/2024/dd1fda3e2e1750fcf21bc7fa9809c1df.png",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s20/specs/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo S20)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -2565,13 +2565,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 30 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.electrolux.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://electrolux.vteximg.com.br/arquivos/ids/218166/Robot-Vacuum-ERB30-Perspective-Electrolux-1000x1000-principal.jpg?v=638703122771470000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-power-experience-com-autonomous-technology--erb30-/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Electrolux (codigo ERB30)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -2836,13 +2836,13 @@
     }
    ],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 33 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.positivocasainteligente.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/156577/Smart-Robo-Plus-Ang.jpg?v=637940196761330000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://www.positivocasainteligente.com.br/exclusivo-smart-robo-aspirador-wi-fi-plus/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Positivo (codigo PRA500)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -2952,13 +2952,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677487225.40455674.png",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s10/specs/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo S10)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -3060,13 +3060,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677576726.00766138.png",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://www.mi.com/br/product/xiaomi-robot-vacuum-e10/specs/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo E10)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -3521,13 +3521,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666842634.01573696.png",
+    "largura": 800,
+    "altura": 800,
+    "fonte": "https://www.mi.com/br/product/mi-robot-vacuum-mop-2/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo Mop 2)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -3975,13 +3975,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.wap.ind.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://lojawap.vteximg.com.br/arquivos/ids/176674/robo-aspirador-de-po-wap-robot-w300.png?v=638794554372870000",
+    "largura": 1500,
+    "altura": 1500,
+    "fonte": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w300/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Wap (codigo W300)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -4573,13 +4573,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 35 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i02.appmifile.com/271_operatorx_operatorx_opx/04/09/2023/59f973327a3440b9f939a414c88c3c64.png",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://www.mi.com/global/product/xiaomi-robot-vacuum-e10c/specs/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo E10C)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -4685,13 +4685,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i05.appmifile.com/783_item_es/11/05/2023/5c6ee8ece6e0056ed25dfa1b886dd20e.png",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://www.mi.com/es/product/xiaomi-robot-vacuum-e12/specs/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo E12)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -4795,13 +4795,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i05.appmifile.com/173_item_es/11/05/2023/385ba85dd65f7d80df868ecc051cf7e6.png",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://www.mi.com/es/product/xiaomi-robot-vacuum-s12/specs/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo S12)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -4909,13 +4909,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i02.appmifile.com/369_operatorx_operatorx_opx/14/08/2025/f755059f82fc027af89f4911b3ed6b08.png",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40-pro/specs/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo S40 Pro)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -5021,13 +5021,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 40 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i02.appmifile.com/558_operatorx_operatorx_opx/09/01/2024/8831075b8ffaff3a137e640258d36f39.jpg",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://www.mi.com/global/product/xiaomi-robot-vacuum-x20/specs/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo X20)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -5134,13 +5134,13 @@
    },
    "divergencias": [],
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 36 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.mi.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666876968.82583141.png",
+    "largura": 800,
+    "altura": 800,
+    "fonte": "https://www.mi.com/br/product/mi-robot-vacuum-mop-2-lite/",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: robo Xiaomi (codigo Mop 2 Lite)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",

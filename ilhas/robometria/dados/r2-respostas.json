@@ -1151,8 +1151,13 @@
         "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-e10/specs/",
         "verificado_em": "2026-09-09"
       },
-      "tem_imagem": false,
-      "imagem": null,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677576726.00766138.png",
+        "largura": 1600,
+        "altura": 1600,
+        "alt": "Foto do fabricante: robo Xiaomi (codigo E10)"
+      },
       "esperando_link": true,
       "afiliado": {
         "url": "",
@@ -1226,8 +1231,13 @@
         "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s10/specs/",
         "verificado_em": "2026-09-09"
       },
-      "tem_imagem": false,
-      "imagem": null,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677487225.40455674.png",
+        "largura": 1600,
+        "altura": 1600,
+        "alt": "Foto do fabricante: robo Xiaomi (codigo S10)"
+      },
       "esperando_link": true,
       "afiliado": {
         "url": "",
@@ -1261,8 +1271,13 @@
         "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s20/specs/",
         "verificado_em": "2026-09-09"
       },
-      "tem_imagem": false,
-      "imagem": null,
+      "tem_imagem": true,
+      "imagem": {
+        "url": "https://i02.appmifile.com/584_operatorx_operatorx_opx/14/06/2024/dd1fda3e2e1750fcf21bc7fa9809c1df.png",
+        "largura": 1600,
+        "altura": 1600,
+        "alt": "Foto do fabricante: robo Xiaomi (codigo S20)"
+      },
       "esperando_link": true,
       "afiliado": {
         "url": "",

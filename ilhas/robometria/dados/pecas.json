@@ -18,7 +18,7 @@
   "itens_com_piso_nao_rastreavel": 0,
   "links_sem_degrau": 0,
   "itens_com_link_de_afiliado": 14,
-  "itens_com_foto": 14
+  "itens_com_foto": 29
  },
  "lista_de_compras": [
   {
@@ -108,13 +108,13 @@
     "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 7 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.multilaser.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: escova lateral Multi (codigo PR10124)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -793,13 +793,13 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 10 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.electrolux.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: filtro Electrolux",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -884,13 +884,13 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 10 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.electrolux.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: kit Electrolux",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -970,13 +970,13 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 1 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.electrolux.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: escova principal Electrolux",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -1047,13 +1047,13 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 10 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.electrolux.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://electrolux.vteximg.com.br/arquivos/ids/287006/Cybertron_Kit_Performance_FrontView_ERB44_Electrolux-1000x1000.jpg?v=638996098971830000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: kit Electrolux",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -1276,13 +1276,13 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 4 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): www.positivocasainteligente.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/158004/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000---01.jpg?v=638599427963500000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: escova principal Positivo (codigo 11206519)",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -1613,13 +1613,13 @@
     "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 10 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): content.electrolux.com.br, loja.electrolux.com.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: mop Electrolux",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -2406,13 +2406,13 @@
     "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: casamento ambiguo. 2 registros do banco casaram com o MESMO anuncio (23599549915): wap-escova-direita-w300, wap-escova-esquerda-w300. Casamento que nao identifica um registro so nao identifica nenhum.. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.wap.ind.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://lojawap.vteximg.com.br/arquivos/ids/158329/escova-direita-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425033056500000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.wap.ind.br/escova-direita-para-robo-aspirador-de-po-wap-robot-w300/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: escova lateral Wap",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -2480,13 +2480,13 @@
     "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: casamento ambiguo. 2 registros do banco casaram com o MESMO anuncio (23599549915): wap-escova-direita-w300, wap-escova-esquerda-w300. Casamento que nao identifica um registro so nao identifica nenhum.. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.wap.ind.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://lojawap.vteximg.com.br/arquivos/ids/158330/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425034313300000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.wap.ind.br/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: escova lateral Wap",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -2633,13 +2633,13 @@
     "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 10 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): loja.wap.ind.br. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://lojawap.vteximg.com.br/arquivos/ids/158342/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart.png?v=637425466210430000",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "https://loja.wap.ind.br/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: escova lateral Wap",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -3746,13 +3746,13 @@
     "motivo_do_null": "nao declarada na fonte coletada: o titulo do produto declara COM QUAIS modelos o pano serve e nunca de quanto em quanto tempo troca-lo"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 10 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): us.roborock.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/062ec9c82657b2be82b68364b1fc1900_3d93e94d-6075-44a9-8ce6-fc074f589202.jpg?v=1725035616",
+    "largura": 2000,
+    "altura": 2000,
+    "fonte": "https://us.roborock.com/products/mop-cloth-2pcs-for-roborock-q7-series-s6-series-s5-series-e-series",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: mop Roborock",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -3806,13 +3806,13 @@
     "unidade": "meses"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 12 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): us.roborock.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/4_q_-revo_2.jpg?v=1757929885",
+    "largura": 2000,
+    "altura": 2000,
+    "fonte": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-q-revo",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: mop Roborock",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -3866,13 +3866,13 @@
     "unidade": "meses"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 10 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): us.roborock.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/1_3183c8ba-4be6-4a98-988c-ea1f947939e3.jpg?v=1735031940",
+    "largura": 1600,
+    "altura": 1600,
+    "fonte": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-qrevo-curv-and-qrevo-edge",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: mop Roborock",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -3933,13 +3933,13 @@
     "unidade": "meses"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 14 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): us.roborock.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_Saros-10R-1.jpg?v=1757937015",
+    "largura": 2000,
+    "altura": 2000,
+    "fonte": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-saros-10r-and-saros-z70",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: mop Roborock",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",
@@ -3993,13 +3993,13 @@
     "unidade": "meses"
    },
    "imagem": {
-    "url": null,
-    "largura": null,
-    "altura": null,
-    "fonte": null,
-    "coletado_em": null,
-    "alt": null,
-    "motivo_do_null": "Coleta de 2026-09-18 — causa: titulo nao nomeia o registro. a escada inteira foi percorrida, a Open API devolveu 13 resultado(s) e nenhum traz o codigo do registro com o tipo certo. Casamento errado no banco e pior que casamento nenhum, porque parece dado. O registro NAO some da vitrine: aparece com espaco reservado neutro (secao 6). || Segunda fonte (25.3), 2026-09-20: bloqueado por rede. Host(es) tentado(s): us.roborock.com. DNS resolve em todos; o que barra e a lista de dominios permitidos do ambiente, nao o endereco."
+    "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/Roborock_2_S8_MaxV_Ultra_S8_Max_Ultra.jpg?v=1757930347",
+    "largura": 2000,
+    "altura": 2000,
+    "fonte": "https://us.roborock.com/products/roborock-edgewise-mop-cloth-2pcs-for-s8-maxv-ultra-s8-max-ultra",
+    "coletado_em": "2026-09-21",
+    "alt": "Foto do fabricante: mop Roborock",
+    "motivo_do_null": null
    },
    "afiliado": {
     "url": "",

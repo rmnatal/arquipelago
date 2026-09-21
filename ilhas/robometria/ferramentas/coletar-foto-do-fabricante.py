@@ -52,7 +52,12 @@ import sys
 from urllib.parse import urlparse, unquote
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SAIDA_PADRAO = 'dados/candidatos-de-foto-2026-09-20.json'
+# A data da colheita NAO se digita: colheita e medicao, e medicao carrega o dia
+# em que foi feita. Ate 21/09/2026 este nome e o `gerado_em` estavam fixos em
+# '2026-09-20' — entao a passada de hoje sobrescreveria a de ontem carimbada com
+# a data de ontem, e o relatorio diria 20/09 sobre numero colhido em 21/09.
+HOJE = __import__('datetime').date.today().isoformat()
+SAIDA_PADRAO = 'dados/candidatos-de-foto-%s.json' % HOJE
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
 
 # Hosts cujo HTML nao carrega a foto porque a loja e VTEX. Nao e lista de
@@ -336,7 +341,7 @@ def relatorio(caminho_json, caminho_md):
             preso.append((r, u, host))
 
     L = []
-    L.append('# A FOTO DO FABRICANTE — colheita de 2026-09-20')
+    L.append('# A FOTO DO FABRICANTE — colheita de %s' % dados.get('gerado_em', '?'))
     L.append('')
     L.append('Gerada por `ferramentas/coletar-foto-do-fabricante.py --relatorio`, para o')
     L.append('**despacho do Raphael de 19/09/2026**. **Nenhum numero foi digitado:** os')
@@ -472,7 +477,7 @@ def main(argv):
 
     caminho = os.path.join(RAIZ, args.saida)
     with open(caminho, 'w', encoding='utf-8') as fp:
-        json.dump({'gerado_em': '2026-09-20', 'alvo': len(saida), 'registros': saida},
+        json.dump({'gerado_em': HOJE, 'alvo': len(saida), 'registros': saida},
                   fp, ensure_ascii=False, indent=1)
         fp.write('\n')
     com = sum(1 for r in saida if r.get('colheita') and r['colheita'].get('fotos')

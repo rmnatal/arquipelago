@@ -1,0 +1,223 @@
+{
+ "olhado_em": "2026-09-21",
+ "fonte_dos_candidatos": "dados/candidatos-de-foto-2026-09-21.json",
+ "como_o_olho_olhou": "Os 36 candidatos que o relatorio de 21/09 poe em \"pode gravar hoje\" foram BAIXADOS e ABERTOS um a um, como manda a 25.3. Antes do olho, os 36 arquivos foram agrupados por hash sha256: arquivo identico servido para registros de TIPOS diferentes e o casamento errado que a regra existe para impedir, e foi assim que os cinco da Xiaomi cairam. A linha que separou duplicata boa de duplicata ruim: reprova quando o mesmo arquivo cruza TIPO (mop no cartao de filtro); aprova quando o fabricante reusa a foto entre SKUs irmaos do MESMO tipo, cada um na sua propria pagina (escova direita/esquerda da WAP, kit/kit da Electrolux). NOTA DE 21/09, e ela e parte do metodo: a primeira colheita desta execucao rodou DUAS VEZES ao mesmo tempo por descuido, e as duas escreveram no mesmo arquivo de candidatos, que nao tem trava. A colheita foi refeita UMA vez, limpa, e os 36 vereditos foram reconferidos contra ela: 34 bateram na URL exata e 2 diferiam so no nome do CDN (a variante `_1200x1200` de us.roborock.com contra o original de cdn.shopify.com). Os 2 foram reabertos no arquivo canonico antes de o veredito ser mantido.",
+ "vereditos": [
+  {
+   "id": "multi-pr10124",
+   "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Escova lateral preta de seis bracos, vista de cima, sobre fundo branco liso. Sem texto, sem selo, sem embalagem. Tipo do registro (escova lateral) bate com o que se ve."
+  },
+  {
+   "id": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+   "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Duas pecas empilhadas sobre fundo branco: o filtro HEPA plissado branco em cima e a espuma cinza-escura embaixo. O registro E o par \"filtro HEPA + espuma\", entao as duas pecas na foto sao o produto, nao uma montagem de itens diferentes."
+  },
+  {
+   "id": "electrolux-kit-performance-erb60-erb61-erb62",
+   "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Kit sobre fundo branco: pano de mop azul, filtro HEPA, espuma e DUAS escovas laterais. O registro e do tipo kit e a foto mostra a composicao do kit — as pecas multiplas aqui sao o produto, nao ruido."
+  },
+  {
+   "id": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+   "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Escova rotativa central (rolo) preta, de lado, fundo branco. Tipo escova principal bate."
+  },
+  {
+   "id": "electrolux-kit-performance-erb44",
+   "url": "https://electrolux.vteximg.com.br/arquivos/ids/287006/Cybertron_Kit_Performance_FrontView_ERB44_Electrolux-1000x1000.jpg?v=638996098971830000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Mesmo arquivo do kit ERB60/61/62 (hash identico, medido em 21/09/2026), servido pela pagina PROPRIA do kit ERB44 (SKU 41054538, outra da 41054539). A Electrolux reusa uma foto entre dois kits irmaos do MESMO tipo. Aprovado porque a duplicata nao cruza tipo: o leitor ve um kit no cartao de um kit. Fosse mop no cartao de filtro, reprovava."
+  },
+  {
+   "id": "positivo-11206519",
+   "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/158004/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000---01.jpg?v=638599427963500000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Escova principal (rolo) preta de cerdas, fundo branco. E o registro que quase entrou errado em 18/09; desta vez a pagina nomeia o codigo 11206519 e a peca na foto e o rolo."
+  },
+  {
+   "id": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+   "url": "https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Pano de microfibra azul em meia-lua, fundo branco. Tipo mop bate."
+  },
+  {
+   "id": "xiaomi-d106-tb",
+   "url": "https://i02.appmifile.com/884_operatorx_operatorx_opx/08/07/2025/541377074c7009cc069a3376562aedef.png",
+   "veredito": "REPROVA",
+   "o_que_o_olho_viu": "REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-b106gl-bx (escova lateral). Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria uma montagem com escova principal, escova lateral, filtro e tampa no cartao de um MOP. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA."
+  },
+  {
+   "id": "xiaomi-b106gl-bx",
+   "url": "https://i02.appmifile.com/884_operatorx_operatorx_opx/08/07/2025/541377074c7009cc069a3376562aedef.png",
+   "veredito": "REPROVA",
+   "o_que_o_olho_viu": "REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-d106-tb (mop). Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria um pano de mop ocupando o maior pedaco do quadro no cartao de uma ESCOVA LATERAL. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA."
+  },
+  {
+   "id": "wap-escova-direita-w300",
+   "url": "https://lojawap.vteximg.com.br/arquivos/ids/158329/escova-direita-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425033056500000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Escova lateral de tres bracos, cubo preto e cerdas claras, fundo branco. A WAP serve o MESMO arquivo na pagina da escova direita e na da esquerda (paginas distintas, codigos FW006267 e FW006269). Aprovado: a duplicata e entre pecas ESPELHADAS do mesmo tipo e do mesmo modelo, entao o cartao mostra uma escova lateral de W300, que e o que ele promete."
+  },
+  {
+   "id": "wap-escova-esquerda-w300",
+   "url": "https://lojawap.vteximg.com.br/arquivos/ids/158330/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425034313300000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Mesmo arquivo do 09, servido pela pagina propria da escova esquerda (FW006269). Mesma razao: espelho do mesmo tipo, nao cruzamento de tipo."
+  },
+  {
+   "id": "wap-escova-frontal-wsmart",
+   "url": "https://lojawap.vteximg.com.br/arquivos/ids/158342/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart.png?v=637425466210430000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Escova de tres bracos do WSmart, cubo preto, cerdas cinza, fundo branco. Arquivo distinto do par W300. Nao confundir com o registro wap-wsmart (o ROBO), que segue reprovado desde 20/09 por ser banner de lancamento."
+  },
+  {
+   "id": "xiaomi-b106gl-zx",
+   "url": "//i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png",
+   "veredito": "REPROVA",
+   "o_que_o_olho_viu": "REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-b106gl-lw, xiaomi-mop-s10. Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria uma ESCOVA LATERAL branca de tres bracos no cartao de uma ESCOVA PRINCIPAL. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA."
+  },
+  {
+   "id": "xiaomi-b106gl-lw",
+   "url": "//i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png",
+   "veredito": "REPROVA",
+   "o_que_o_olho_viu": "REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-b106gl-zx, xiaomi-mop-s10. Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria uma ESCOVA LATERAL branca de tres bracos no cartao de um FILTRO. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA."
+  },
+  {
+   "id": "xiaomi-mop-s10",
+   "url": "//i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png",
+   "veredito": "REPROVA",
+   "o_que_o_olho_viu": "REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-b106gl-zx, xiaomi-b106gl-lw. Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria uma ESCOVA LATERAL branca de tres bracos no cartao de um MOP. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA."
+  },
+  {
+   "id": "roborock-mop-q8-max",
+   "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/062ec9c82657b2be82b68364b1fc1900_3d93e94d-6075-44a9-8ce6-fc074f589202.jpg?v=1725035616",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Dois panos de mop em meia-lua, cinza, fundo branco. Tipo mop bate."
+  },
+  {
+   "id": "roborock-mop-qrevo-master",
+   "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/4_q_-revo_2.jpg?v=1757929885",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Quatro panos de mop REDONDOS empilhados, fundo branco — e o formato certo: o Qrevo Master usa mop giratorio duplo, nao pano em meia-lua. A URL deste veredito foi TROCADA pela canonica da colheita limpa de 21/09: o olho abrira https://us.roborock.com/cdn/shop/files/4_q_-revo_2_1200x1200.jpg?v=1757929885, que e a variante redimensionada `_1200x1200` que a Shopify serve sob o nome da loja (us.roborock.com), e a colheita entrega o arquivo original sob o nome do CDN (cdn.shopify.com) — mesmo nome de arquivo e mesmo `?v=`. O arquivo original foi BAIXADO E ABERTO de novo antes desta troca, e mostra a mesma peca; a URL nao foi trocada no escuro para fazer a trava passar, que seria o oposto do que ela faz."
+  },
+  {
+   "id": "roborock-mop-qrevo-curv",
+   "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/1_3183c8ba-4be6-4a98-988c-ea1f947939e3.jpg?v=1735031940",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Quatro panos de mop redondos com furo central, em grade 2x2, fundo branco. A URL deste veredito foi TROCADA pela canonica da colheita limpa de 21/09: o olho abrira https://us.roborock.com/cdn/shop/files/1_3183c8ba-4be6-4a98-988c-ea1f947939e3_1200x1200.jpg?v=1735031940, que e a variante redimensionada `_1200x1200` que a Shopify serve sob o nome da loja (us.roborock.com), e a colheita entrega o arquivo original sob o nome do CDN (cdn.shopify.com) — mesmo nome de arquivo e mesmo `?v=`. O arquivo original foi BAIXADO E ABERTO de novo antes desta troca, e mostra a mesma peca; a URL nao foi trocada no escuro para fazer a trava passar, que seria o oposto do que ela faz."
+  },
+  {
+   "id": "roborock-mop-saros-10r-z70",
+   "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_Saros-10R-1.jpg?v=1757937015",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Quatro panos de mop redondos com furo central, arquivo distinto do 17, fundo branco."
+  },
+  {
+   "id": "roborock-mop-s8-maxv-ultra",
+   "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/Roborock_2_S8_MaxV_Ultra_S8_Max_Ultra.jpg?v=1757930347",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Dois panos de mop redondos com parafuso central, fundo branco."
+  },
+  {
+   "id": "electrolux-erb10",
+   "url": "https://electrolux.vteximg.com.br/arquivos/ids/218331/Robot-Vacuum-ERB10-Perspective-Electrolux-1000x1000-principal.jpg?v=638703122955570000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo aspirador Electrolux preto, tres quartos, fundo branco, com a marca e o botao visiveis e as escovas laterais aparecendo. Sem texto de campanha."
+  },
+  {
+   "id": "electrolux-erb11",
+   "url": "https://electrolux.vteximg.com.br/arquivos/ids/223967/Robot-Vacuum-ERB11-Perspective-Electrolux-600x600-1.jpg?v=638703124416570000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Electrolux branco/bege, tres quartos, fundo branco. 600x600, menor que os irmaos, e ainda assim foto de produto limpa."
+  },
+  {
+   "id": "xiaomi-s20",
+   "url": "//i02.appmifile.com/584_operatorx_operatorx_opx/14/06/2024/dd1fda3e2e1750fcf21bc7fa9809c1df.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi branco com torre de lidar, tres quartos, fundo branco. Sem texto."
+  },
+  {
+   "id": "electrolux-erb30",
+   "url": "https://electrolux.vteximg.com.br/arquivos/ids/218166/Robot-Vacuum-ERB30-Perspective-Electrolux-1000x1000-principal.jpg?v=638703122771470000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Electrolux cinza-escuro, tres quartos, fundo branco, com \"SMART SENSOR\" gravado no proprio corpo do aparelho — texto do produto, nao sobreposicao de campanha."
+  },
+  {
+   "id": "positivo-pra2000",
+   "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/159087/01_ASPIRADOR_PRA2000.jpg?v=639101416642970000",
+   "veredito": "REPROVA",
+   "o_que_o_olho_viu": "REPROVA: nao e foto de produto, e composicao de varejo. O quadro traz o robo e a base a esquerda, a CAIXA de varejo a direita com texto promocional impresso (\"3 em 1\", \"Limpeza autonoma do reservatorio...\", lista de beneficios) e um celular com a tela do app embaixo. Mesma familia do wap-wsmart, reprovado em 20/09: texto promocional que a ilha nao escreveu e nao pode datar, dentro da imagem. No espaco quadrado do cartao o robo fica com menos de um terco do quadro e o resto e propaganda ilegivel. Espaco reservado neutro e melhor. O irmao positivo-pra500 passou, e a diferenca e exatamente esta: la o quadro tem so o aparelho."
+  },
+  {
+   "id": "positivo-pra500",
+   "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/156577/Smart-Robo-Plus-Ang.jpg?v=637940196761330000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Positivo branco, tres quartos, fundo branco, so o aparelho. Sem caixa e sem app."
+  },
+  {
+   "id": "xiaomi-s10",
+   "url": "//i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677487225.40455674.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi branco visto de cima, fundo branco, torre de lidar centrada. Sem texto."
+  },
+  {
+   "id": "xiaomi-e10",
+   "url": "//i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677576726.00766138.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi branco visto de cima, sem torre (modelo E10), fundo branco."
+  },
+  {
+   "id": "xiaomi-mop-2",
+   "url": "//i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666842634.01573696.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi branco tres quartos com escova lateral aparecendo, fundo branco."
+  },
+  {
+   "id": "wap-w300",
+   "url": "https://lojawap.vteximg.com.br/arquivos/ids/176674/robo-aspirador-de-po-wap-robot-w300.png?v=638794554372870000",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo WAP W300 vermelho e preto, de cima, com o controle remoto ao lado. O nome \"ROBO ASPIRADOR WAP ROBOT W300\" esta gravado na propria tampa do aparelho — texto do produto. O controle e acessorio que acompanha, nao peca de campanha."
+  },
+  {
+   "id": "xiaomi-e10c",
+   "url": "//i02.appmifile.com/271_operatorx_operatorx_opx/04/09/2023/59f973327a3440b9f939a414c88c3c64.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi preto visto de cima, fundo branco, uma escova lateral assomando."
+  },
+  {
+   "id": "xiaomi-e12",
+   "url": "//i05.appmifile.com/783_item_es/11/05/2023/5c6ee8ece6e0056ed25dfa1b886dd20e.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi branco com faixa preta, tres quartos, fundo branco."
+  },
+  {
+   "id": "xiaomi-s12",
+   "url": "//i05.appmifile.com/173_item_es/11/05/2023/385ba85dd65f7d80df868ecc051cf7e6.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi branco com torre de lidar, tres quartos, fundo branco."
+  },
+  {
+   "id": "xiaomi-s40-pro",
+   "url": "//i02.appmifile.com/369_operatorx_operatorx_opx/14/08/2025/f755059f82fc027af89f4911b3ed6b08.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi branco com torre de lidar e DOIS mops redondos visiveis embaixo, tres quartos, fundo branco."
+  },
+  {
+   "id": "xiaomi-x20",
+   "url": "//i02.appmifile.com/558_operatorx_operatorx_opx/09/01/2024/8831075b8ffaff3a137e640258d36f39.jpg",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi X20 acoplado a uma BASE branca, de frente, fundo branco — foto oficial da pagina do proprio X20. ACHADO PARA A SENTINELA, e nao motivo para reprovar a foto: o campo base_autoesvaziamento deste registro esta null no banco, com o motivo \"leitura direta da pagina bloqueada pelo egresso\", e a foto oficial do fabricante mostra o aparelho dentro de uma base. A foto nao e o campo e nao preenche campo nenhum; fica escrito aqui porque a porta que estava fechada abriu hoje."
+  },
+  {
+   "id": "xiaomi-mop-2-lite",
+   "url": "//i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666876968.82583141.png",
+   "veredito": "APROVA",
+   "o_que_o_olho_viu": "Robo Xiaomi branco visto de cima, marca MI, fundo branco."
+  }
+ ]
+}

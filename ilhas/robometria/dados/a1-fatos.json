@@ -1462,8 +1462,13 @@
       ],
       "codigos_declarados": 5,
       "tipos_do_kit": [],
-      "imagem": null,
-      "tem_imagem": false,
+      "imagem": {
+        "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: escova lateral Multi (codigo PR10124)"
+      },
+      "tem_imagem": true,
       "afiliado": {
         "url": "",
         "url_busca": "https://s.shopee.com.br/1AQk0Nh5x",
@@ -1498,8 +1503,13 @@
       ],
       "codigos_declarados": 4,
       "tipos_do_kit": [],
-      "imagem": null,
-      "tem_imagem": false,
+      "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: escova principal Electrolux"
+      },
+      "tem_imagem": true,
       "afiliado": {
         "url": "",
         "url_busca": "https://s.shopee.com.br/8V8zNt6OWJ",
@@ -1534,8 +1544,13 @@
       ],
       "codigos_declarados": 4,
       "tipos_do_kit": [],
-      "imagem": null,
-      "tem_imagem": false,
+      "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: filtro Electrolux"
+      },
+      "tem_imagem": true,
       "afiliado": {
         "url": "",
         "url_busca": "https://s.shopee.com.br/5AsWtVLtoR",
