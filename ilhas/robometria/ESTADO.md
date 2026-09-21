@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-20T15:52Z
-executando_desde: null
+executando_desde: 2026-09-21T10:16Z
 bloco_atual: |
   A DIVIDA DO ELO MORREU: 95 DE 95 PUBLICAVEIS RENDEM COMISSAO, conferido no ar. A credencial da Open API estava no ambiente desta execucao (SHOPEE_APP_ID e SHOPEE_SECRET, conferidos antes de qualquer chamada), entao medir-palavras-chave.py --gravar --encurtar gerou 28 links novos (22 de peca, 6 de modelo) reaproveitando os 67 que ja estavam certos, sem remexer em chave nenhuma, e gerar-busca-de-produto.py --gravar levou os 28 ao banco. 'Saida crua, sem rastreio' foi de 24 para 0, e a pagina /divulgacao-de-afiliados/ passou a declarar no ar que todos os 95 rendem comissao — numero derivado do banco, nunca digitado.
   A DIVIDA DUROU UMA EXECUCAO SO porque o despacho de 20/09 pre-registrou o caminho de saida em vez de registrar so o bloqueio. Bloqueio com caminho escrito se paga sozinho no dia em que o mundo muda; bloqueio sem caminho espera alguem lembrar.
