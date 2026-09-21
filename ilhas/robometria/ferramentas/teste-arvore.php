@@ -247,9 +247,13 @@ arv_ok( $cat_modelos === $esperadas, 'as categorias de /modelos/ sao as marcas c
  * 2. As nove paginas, cada uma no proprio processo.
  * ------------------------------------------------------------------------- */
 
-$alvos = array( 'robometria_home', 'robometria_ferramentas', 'robometria_metodologia',
-	'robometria_sobre', 'robometria_afiliados', 'robometria_r1', 'robometria_r2',
-	'robometria_a1', 'robometria_a2' );
+/* A LISTA E DERIVADA, e essa mudanca e de 21/09/2026. Ela era digitada — nove
+   tags — e pagina nova nascia FORA de toda regua desta bancada ate alguem
+   lembrar de acrescenta-la aqui. E a mesma cicatriz do bancada.py ("a regua
+   existia desde 14/09 e nao tinha falhado: nao tinha rodado"), um andar acima:
+   aqui a regua roda e simplesmente nao olha a pagina nova. A malha de pecas
+   entrou com cinco paginas e entrou por esta linha, sem editar lista nenhuma. */
+$alvos = robometria_teste_alvos_do_site();
 
 $html = array();
 $slug_do_alvo = array();
@@ -288,7 +292,15 @@ arv_ok( 0 === preg_match_all( '#class="rbm-trilha"#', $html['robometria_home'] )
 $urls = array( 'robometria_home' => 'https://robometria.com.br/' );
 foreach ( $alvos as $alvo ) {
 	if ( 'robometria_home' === $alvo ) { continue; }
-	$urls[ $alvo ] = 'https://robometria.com.br/' . $slug_do_alvo[ $alvo ] . '/';
+	/* O ENDERECO E O CAMINHO, nao o slug. Enquanto toda pagina desta ilha morava
+	   na raiz os dois eram a mesma coisa; a malha de pecas tem tres niveis
+	   (/pecas/filtros/xiaomi/), e montar a URL a partir do slug faria esta
+	   bancada comparar a trilha com um endereco que o site nunca serve — e
+	   reprovar a pagina certa. O mapa __paginas ja guarda o caminho. */
+	$caminho = isset( $GLOBALS['__paginas'][ $slug_do_alvo[ $alvo ] ] )
+		? $GLOBALS['__paginas'][ $slug_do_alvo[ $alvo ] ]
+		: $slug_do_alvo[ $alvo ];
+	$urls[ $alvo ] = 'https://robometria.com.br/' . $caminho . '/';
 }
 $urls_validas = array_values( $urls );
 
@@ -350,20 +362,42 @@ foreach ( $alvos as $alvo ) {
 		continue;
 	}
 
-	/* Mae de hoje: `/ferramentas/` ou `/guias/ (nao existe)`. Categoria: sai do
-	   destino quando ele tem dois niveis. */
-	preg_match( '#`/([a-z0-9-]+)/`#', $linha['mae'], $mm );
-	$mae_slug   = isset( $mm[1] ) ? $mm[1] : '';
+	/* Mae de hoje: `/ferramentas/`, `/guias/ (nao existe)` ou um CAMINHO de dois
+	   niveis (`/pecas/filtros/`), que e o caso da malha desde 21/09/2026.
+	   Caminho de malha vira chave (pecas/filtros -> pecas-filtros) e a LINHAGEM
+	   INTEIRA vira degrau, um por ancestral — nenhum degrau sai de uma tabela
+	   paralela. */
+	$malha      = robometria_casca_malha();
 	$mae_existe = ( false === strpos( $linha['mae'], 'não existe' ) );
 	$esperados  = array( 'Início' );
-	$esperados[] = $mae_existe
-		? robometria_casca_titulo_da_pagina( $mae_slug )
-		: ( isset( $rotulo_da_secao[ $mae_slug ] ) ? $rotulo_da_secao[ $mae_slug ] : $mae_slug );
+	$pela_malha = false;
 
-	if ( preg_match( '#`/([a-z0-9-]+)/([a-z0-9-]+)/`#', $linha['destino'], $md ) ) {
-		$chave = $md[1] . '-' . $md[2];
-		$cats  = robometria_casca_categorias();
-		$esperados[] = isset( $cats[ $chave ] ) ? $cats[ $chave ][1] : $md[2];
+	if ( preg_match( '#`/([a-z0-9-]+(?:/[a-z0-9-]+)*)/`#', $linha['mae'], $mm ) ) {
+		$chave_mae = str_replace( '/', '-', $mm[1] );
+		if ( isset( $malha[ $chave_mae ] ) ) {
+			$pela_malha = true;
+			$linhagem   = array();
+			$sobe       = $chave_mae;
+			while ( '' !== $sobe && isset( $malha[ $sobe ] ) ) {
+				array_unshift( $linhagem, $malha[ $sobe ]['titulo'] );
+				$sobe = isset( $malha[ $sobe ]['mae'] ) ? $malha[ $sobe ]['mae'] : '';
+			}
+			$esperados = array_merge( $esperados, $linhagem );
+		}
+	}
+
+	if ( ! $pela_malha ) {
+		preg_match( '#`/([a-z0-9-]+)/`#', $linha['mae'], $mm1 );
+		$mae_slug    = isset( $mm1[1] ) ? $mm1[1] : '';
+		$esperados[] = $mae_existe
+			? robometria_casca_titulo_da_pagina( $mae_slug )
+			: ( isset( $rotulo_da_secao[ $mae_slug ] ) ? $rotulo_da_secao[ $mae_slug ] : $mae_slug );
+
+		if ( preg_match( '#`/([a-z0-9-]+)/([a-z0-9-]+)/`#', $linha['destino'], $md ) ) {
+			$chave = $md[1] . '-' . $md[2];
+			$cats  = robometria_casca_categorias();
+			$esperados[] = isset( $cats[ $chave ] ) ? $cats[ $chave ][1] : $md[2];
+		}
 	}
 	preg_match( '#<h1[^>]*>(.*?)</h1>#is', $html[ $alvo ], $mh );
 	$esperados[] = html_entity_decode( trim( $mh[1] ), ENT_QUOTES, 'UTF-8' );
@@ -428,7 +462,18 @@ foreach ( $alvos as $alvo ) {
  * ------------------------------------------------------------------------- */
 
 echo "\n7. Veja tambem: irmas derivadas e frase da mae\n";
-$filhas = array( 'robometria_r1', 'robometria_r2', 'robometria_a1', 'robometria_a2' );
+/* QUEM E FILHA SAI DO DOCUMENTO, e nao de uma lista digitada aqui (21/09/2026).
+   Eram quatro tags escritas a mao, e a leva de malha acrescentou tres filhas que
+   esta bancada passou a cobrar de NAO ter cluster — exatamente ao contrario do
+   que o 16.4(c) manda. O ARVORE.md ja diz o papel de cada pagina; ler dali e o
+   mesmo principio que a lista de alvos passou a seguir na mesma leva. */
+$filhas = array();
+foreach ( $alvos as $alvo ) {
+	$slug = $slug_do_alvo[ $alvo ];
+	if ( isset( $doc_paginas[ $slug ] ) && 'filha' === $doc_paginas[ $slug ]['papel'] ) {
+		$filhas[] = $alvo;
+	}
+}
 $sem_cluster = array_diff( $alvos, $filhas );
 
 foreach ( $sem_cluster as $alvo ) {
@@ -436,8 +481,30 @@ foreach ( $sem_cluster as $alvo ) {
 		"[$alvo] pagina fora da arvore nao tem Veja tambem" );
 }
 
+/* QUANTAS IRMAS PUBLICADAS CADA FILHA TEM, contadas no DOCUMENTO: outra pagina
+   medida, com a mesma mae. E a unica conta que decide se o bloco DEVE existir —
+   16.4(c) pede de 2 a 4 irmas, e filha unica nao tem nenhuma. Exigir o bloco de
+   quem nao tem irma e exigir um link para uma pagina que nao existe, que e o
+   contrario do que o cluster serve. A /pecas/filtros/ e esse caso hoje: ela e a
+   primeira categoria da secao, e a segunda nasce na proxima leva. */
+$irmas_no_documento = array();
+foreach ( $filhas as $alvo ) {
+	$minha = $doc_paginas[ $slug_do_alvo[ $alvo ] ]['mae'];
+	$n     = 0;
+	foreach ( $filhas as $outro ) {
+		if ( $outro === $alvo ) { continue; }
+		if ( $doc_paginas[ $slug_do_alvo[ $outro ] ]['mae'] === $minha ) { $n++; }
+	}
+	$irmas_no_documento[ $alvo ] = $n;
+}
+
 foreach ( $filhas as $alvo ) {
 	$pagina = $html[ $alvo ];
+	if ( 0 === $irmas_no_documento[ $alvo ] ) {
+		arv_ok( false === strpos( $pagina, 'class="rbm-veja"' ),
+			"[$alvo] filha sem irma publicada NAO serve Veja tambem" );
+		continue;
+	}
 	if ( ! preg_match( '#<nav class="rbm-veja".*?</nav>#is', $pagina, $mv ) ) {
 		arv_ok( false, "[$alvo] bloco Veja tambem presente" );
 		continue;

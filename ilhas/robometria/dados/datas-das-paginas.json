@@ -14,7 +14,8 @@
    "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-10 21h15Z — Bloco 5: o ARTIGO-ANCORA da R1 existe, e a malha da ilha fechou\" — snippet robometria-a1.php v1.0.0, manifest revisao 12 conferida no /status",
    "modificada_em": "2026-09-21",
    "modificada_por": [
-    "dados/a1-fatos.json"
+    "dados/a1-fatos.json",
+    "snippets/robometria-casca.php"
    ],
    "arquivos": {
     "snippets/robometria-a1.php": {
@@ -26,8 +27,8 @@
      "como": "commit"
     },
     "snippets/robometria-casca.php": {
-     "data": "2026-09-18",
-     "como": "commit"
+     "data": "2026-09-21",
+     "como": "nao commitado"
     }
    }
   },
@@ -36,10 +37,8 @@
    "titulo": "Quantos m2 o robo aspirador limpa por carga?",
    "publicada_em": "2026-09-11",
    "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-11 (00h07Z) — Bloco 5: o ARTIGO-ANCORA da R2, e o acento que faltava no A1\" — snippet robometria-a2.php v1.0.0, manifest revisao 13 conferida no /status",
-   "modificada_em": "2026-09-18",
+   "modificada_em": "2026-09-21",
    "modificada_por": [
-    "dados/a2-fatos.json",
-    "snippets/robometria-a2.php",
     "snippets/robometria-casca.php"
    ],
    "arquivos": {
@@ -52,8 +51,138 @@
      "como": "commit"
     },
     "snippets/robometria-casca.php": {
-     "data": "2026-09-18",
-     "como": "commit"
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    }
+   }
+  },
+  {
+   "slug": "pecas",
+   "titulo": "Pecas de reposicao de robo aspirador",
+   "publicada_em": "2026-09-21",
+   "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-21 — Bloco 5b: a primeira leva de malha, /pecas/ e /pecas/filtros/ com as tres filhas\" — snippet robometria-malha.php v1.0.0, revisao do manifest conferida no /status",
+   "modificada_em": "2026-09-21",
+   "modificada_por": [
+    "dados/malha-pecas.json",
+    "snippets/robometria-casca.php",
+    "snippets/robometria-malha.php"
+   ],
+   "arquivos": {
+    "snippets/robometria-malha.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "dados/malha-pecas.json": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "snippets/robometria-casca.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    }
+   }
+  },
+  {
+   "slug": "pecas-filtros",
+   "titulo": "Filtro de robo aspirador: qual serve no seu",
+   "publicada_em": "2026-09-21",
+   "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-21 — Bloco 5b: a primeira leva de malha, /pecas/ e /pecas/filtros/ com as tres filhas\" — snippet robometria-malha.php v1.0.0, revisao do manifest conferida no /status",
+   "modificada_em": "2026-09-21",
+   "modificada_por": [
+    "dados/malha-pecas.json",
+    "snippets/robometria-casca.php",
+    "snippets/robometria-malha.php"
+   ],
+   "arquivos": {
+    "snippets/robometria-malha.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "dados/malha-pecas.json": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "snippets/robometria-casca.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    }
+   }
+  },
+  {
+   "slug": "pecas-filtros-xiaomi",
+   "titulo": "Filtro de robo aspirador Xiaomi",
+   "publicada_em": "2026-09-21",
+   "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-21 — Bloco 5b: a primeira leva de malha, /pecas/ e /pecas/filtros/ com as tres filhas\" — snippet robometria-malha.php v1.0.0, revisao do manifest conferida no /status",
+   "modificada_em": "2026-09-21",
+   "modificada_por": [
+    "dados/malha-pecas.json",
+    "snippets/robometria-casca.php",
+    "snippets/robometria-malha.php"
+   ],
+   "arquivos": {
+    "snippets/robometria-malha.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "dados/malha-pecas.json": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "snippets/robometria-casca.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    }
+   }
+  },
+  {
+   "slug": "pecas-filtros-wap",
+   "titulo": "Filtro de robo aspirador WAP",
+   "publicada_em": "2026-09-21",
+   "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-21 — Bloco 5b: a primeira leva de malha, /pecas/ e /pecas/filtros/ com as tres filhas\" — snippet robometria-malha.php v1.0.0, revisao do manifest conferida no /status",
+   "modificada_em": "2026-09-21",
+   "modificada_por": [
+    "dados/malha-pecas.json",
+    "snippets/robometria-casca.php",
+    "snippets/robometria-malha.php"
+   ],
+   "arquivos": {
+    "snippets/robometria-malha.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "dados/malha-pecas.json": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "snippets/robometria-casca.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    }
+   }
+  },
+  {
+   "slug": "pecas-filtros-electrolux",
+   "titulo": "Filtro de robo aspirador Electrolux",
+   "publicada_em": "2026-09-21",
+   "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-21 — Bloco 5b: a primeira leva de malha, /pecas/ e /pecas/filtros/ com as tres filhas\" — snippet robometria-malha.php v1.0.0, revisao do manifest conferida no /status",
+   "modificada_em": "2026-09-21",
+   "modificada_por": [
+    "dados/malha-pecas.json",
+    "snippets/robometria-casca.php",
+    "snippets/robometria-malha.php"
+   ],
+   "arquivos": {
+    "snippets/robometria-malha.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "dados/malha-pecas.json": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
+    },
+    "snippets/robometria-casca.php": {
+     "data": "2026-09-21",
+     "como": "nao commitado"
     }
    }
   }

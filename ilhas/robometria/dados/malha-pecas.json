@@ -1,0 +1,4117 @@
+{
+ "id": "malha-pecas",
+ "ilha": "robometria",
+ "entidade": "malha",
+ "esquema": 1,
+ "gerado_em": "2026-09-17",
+ "nota_de_procedencia": "Todo numero deste arquivo e contado de dados/pecas.json e dados/modelos-robo.json pelo ferramentas/gerar-malha-pecas.py. Nada aqui e digitado.",
+ "secao": {
+  "slug": "pecas",
+  "caminho": "pecas",
+  "chaves_da_resposta": [
+   "pecas_publicaveis",
+   "marcas",
+   "pares_declarados"
+  ],
+  "tipos": [
+   {
+    "tipo": "filtro",
+    "categoria": "pecas-filtros",
+    "rotulo": "Filtros",
+    "rotulo_singular": "filtro",
+    "itens_no_banco": 16,
+    "marcas_no_banco": 5
+   },
+   {
+    "tipo": "escova lateral",
+    "categoria": "pecas-escovas-laterais",
+    "rotulo": "Escovas laterais",
+    "rotulo_singular": "escova lateral",
+    "itens_no_banco": 13,
+    "marcas_no_banco": 5
+   },
+   {
+    "tipo": "escova principal",
+    "categoria": "pecas-escovas-principais",
+    "rotulo": "Escovas principais",
+    "rotulo_singular": "escova principal",
+    "itens_no_banco": 8,
+    "marcas_no_banco": 4
+   },
+   {
+    "tipo": "mop",
+    "categoria": "pecas-mops",
+    "rotulo": "Mops",
+    "rotulo_singular": "mop",
+    "itens_no_banco": 19,
+    "marcas_no_banco": 5
+   },
+   {
+    "tipo": "bateria",
+    "categoria": "pecas-baterias",
+    "rotulo": "Baterias",
+    "rotulo_singular": "bateria",
+    "itens_no_banco": 2,
+    "marcas_no_banco": 1
+   }
+  ],
+  "frases": {
+   "resposta": "O banco tem 54 pecas publicaveis de 6 marcas e 91 pares peca x modelo, todos declarados pelo fabricante.",
+   "tipos": "Sao 5 tipos de peca no banco: filtro, escova lateral, escova principal, mop e bateria."
+  }
+ },
+ "categorias": [
+  {
+   "slug": "pecas-filtros",
+   "caminho": "pecas/filtros",
+   "tipo": "filtro",
+   "rotulo": "Filtros",
+   "plural": "filtros",
+   "singular": "filtro",
+   "gramatica": {
+    "artigo": "o",
+    "avulso": "avulso",
+    "avulsos": "avulsos",
+    "sujeito_plural": "Eles",
+    "sujeito_singular": "Ele",
+    "nenhum": "Nenhum",
+    "deles": "deles",
+    "desses": "desses",
+    "declarado": "declarado",
+    "juntos": "Juntos",
+    "eles": "eles",
+    "outros": "outros"
+   },
+   "itens_avulsos": 11,
+   "itens_em_kit": 5,
+   "itens_no_banco": 16,
+   "marcas_no_banco": 5,
+   "modelos_cobertos": 21,
+   "itens_que_atravessam_marca": 0,
+   "filhas": [
+    {
+     "slug": "pecas-filtros-electrolux",
+     "caminho": "pecas/filtros/electrolux",
+     "marca": "electrolux",
+     "marca_rotulo": "Electrolux",
+     "tipo": "filtro",
+     "itens_no_banco": 6,
+     "itens_avulsos": 1,
+     "itens_em_kit": 5,
+     "modelos_cobertos": 9,
+     "modelos": [
+      {
+       "id": "electrolux-erb10",
+       "rotulo": "Electrolux ERB10",
+       "rotulo_curto": "ERB10"
+      },
+      {
+       "id": "electrolux-erb11",
+       "rotulo": "Electrolux ERB11",
+       "rotulo_curto": "ERB11"
+      },
+      {
+       "id": "electrolux-erb20",
+       "rotulo": "Electrolux ERB20",
+       "rotulo_curto": "ERB20"
+      },
+      {
+       "id": "electrolux-erb44",
+       "rotulo": "Electrolux ERB44",
+       "rotulo_curto": "ERB44"
+      },
+      {
+       "id": "electrolux-erb60",
+       "rotulo": "Electrolux ERB60",
+       "rotulo_curto": "ERB60"
+      },
+      {
+       "id": "electrolux-erb61",
+       "rotulo": "Electrolux ERB61",
+       "rotulo_curto": "ERB61"
+      },
+      {
+       "id": "electrolux-erb62",
+       "rotulo": "Electrolux ERB62",
+       "rotulo_curto": "ERB62"
+      },
+      {
+       "id": "electrolux-erb30",
+       "rotulo": "Electrolux ERB30",
+       "rotulo_curto": "ERB30"
+      },
+      {
+       "id": "electrolux-erb80",
+       "rotulo": "Electrolux ERB80",
+       "rotulo_curto": "ERB80"
+      }
+     ],
+     "modelos_so_por_kit": [
+      {
+       "id": "electrolux-erb10",
+       "rotulo": "Electrolux ERB10",
+       "rotulo_curto": "ERB10"
+      },
+      {
+       "id": "electrolux-erb11",
+       "rotulo": "Electrolux ERB11",
+       "rotulo_curto": "ERB11"
+      },
+      {
+       "id": "electrolux-erb20",
+       "rotulo": "Electrolux ERB20",
+       "rotulo_curto": "ERB20"
+      },
+      {
+       "id": "electrolux-erb30",
+       "rotulo": "Electrolux ERB30",
+       "rotulo_curto": "ERB30"
+      },
+      {
+       "id": "electrolux-erb80",
+       "rotulo": "Electrolux ERB80",
+       "rotulo_curto": "ERB80"
+      }
+     ],
+     "modelos_publicaveis_da_marca": 9,
+     "modelos_sem_a_peca": [],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Electrolux (loja oficial)",
+     "gramatica_do_publicador": "a Electrolux (loja oficial)",
+     "itens": [
+      {
+       "peca": "electrolux-kpcel01",
+       "marca": "electrolux",
+       "codigo": "KPCEL01",
+       "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb10",
+         "rotulo": "Electrolux ERB10",
+         "rotulo_curto": "ERB10"
+        },
+        {
+         "id": "electrolux-erb11",
+         "rotulo": "Electrolux ERB11",
+         "rotulo_curto": "ERB11"
+        },
+        {
+         "id": "electrolux-erb20",
+         "rotulo": "Electrolux ERB20",
+         "rotulo_curto": "ERB20"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb10",
+         "rotulo": "Electrolux ERB10",
+         "rotulo_curto": "ERB10"
+        },
+        {
+         "id": "electrolux-erb11",
+         "rotulo": "Electrolux ERB11",
+         "rotulo_curto": "ERB11"
+        },
+        {
+         "id": "electrolux-erb20",
+         "rotulo": "Electrolux ERB20",
+         "rotulo_curto": "ERB20"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": {
+        "valor": 6,
+        "unidade": "meses"
+       },
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/gQ7qXmH0Z",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "electrolux-erb44",
+         "rotulo": "Electrolux ERB44",
+         "rotulo_curto": "ERB44"
+        },
+        {
+         "id": "electrolux-erb60",
+         "rotulo": "Electrolux ERB60",
+         "rotulo_curto": "ERB60"
+        },
+        {
+         "id": "electrolux-erb61",
+         "rotulo": "Electrolux ERB61",
+         "rotulo_curto": "ERB61"
+        },
+        {
+         "id": "electrolux-erb62",
+         "rotulo": "Electrolux ERB62",
+         "rotulo_curto": "ERB62"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/286951/Cybertron_HepaSponge_Filters_FrontView_ERB44-60-61-62_Electrolux-1000x1000.jpg?v=638993366926770000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: filtro Electrolux"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/5AsWtVLtoR",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb60",
+         "rotulo": "Electrolux ERB60",
+         "rotulo_curto": "ERB60"
+        },
+        {
+         "id": "electrolux-erb61",
+         "rotulo": "Electrolux ERB61",
+         "rotulo_curto": "ERB61"
+        },
+        {
+         "id": "electrolux-erb62",
+         "rotulo": "Electrolux ERB62",
+         "rotulo_curto": "ERB62"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: kit Electrolux"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb44",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb44",
+         "rotulo": "Electrolux ERB44",
+         "rotulo_curto": "ERB44"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/287006/Cybertron_Kit_Performance_FrontView_ERB44_Electrolux-1000x1000.jpg?v=638996098971830000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: kit Electrolux"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb30",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb30",
+         "rotulo": "Electrolux ERB30",
+         "rotulo_curto": "ERB30"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb30",
+         "rotulo": "Electrolux ERB30",
+         "rotulo_curto": "ERB30"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-7rdyf-m1efq6hxdbpz33",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance Filtros + Escovas P/ Aspirador Robô Electrolux Erb30 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/1VzEq5R1rp",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb80",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb80",
+         "rotulo": "Electrolux ERB80",
+         "rotulo_curto": "ERB80"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb80",
+         "rotulo": "Electrolux ERB80",
+         "rotulo_curto": "ERB80"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-8262t-mkjtqstanrb7e2",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/LnHS2buo3",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 6 itens Electrolux que entregam filtro: 1 filtro avulso e 5 kits que declaram filtro na composicao.",
+      "serve": "Eles servem em todos os 9 modelos Electrolux que a gente acompanha.",
+      "residuo": "",
+      "kit": "Em 5 desses modelos o filtro so vem dentro do kit: a Electrolux (loja oficial) nao vende o filtro avulso para eles.",
+      "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "9 de 9 modelos Electrolux do banco tem filtro declarado pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-filtros-xiaomi",
+     "caminho": "pecas/filtros/xiaomi",
+     "marca": "xiaomi",
+     "marca_rotulo": "Xiaomi",
+     "tipo": "filtro",
+     "itens_no_banco": 4,
+     "itens_avulsos": 4,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 6,
+     "modelos": [
+      {
+       "id": "xiaomi-e10",
+       "rotulo": "Xiaomi E10",
+       "rotulo_curto": "E10"
+      },
+      {
+       "id": "xiaomi-e10c",
+       "rotulo": "Xiaomi E10C",
+       "rotulo_curto": "E10C"
+      },
+      {
+       "id": "xiaomi-s20",
+       "rotulo": "Xiaomi S20",
+       "rotulo_curto": "S20"
+      },
+      {
+       "id": "xiaomi-s10",
+       "rotulo": "Xiaomi S10",
+       "rotulo_curto": "S10"
+      },
+      {
+       "id": "xiaomi-mop-2",
+       "rotulo": "Xiaomi Mop 2",
+       "rotulo_curto": "Mop 2"
+      },
+      {
+       "id": "xiaomi-mop-2-lite",
+       "rotulo": "Xiaomi Mop 2 Lite",
+       "rotulo_curto": "Mop 2 Lite"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 13,
+     "modelos_sem_a_peca": [
+      {
+       "id": "xiaomi-s40",
+       "rotulo": "Xiaomi S40",
+       "rotulo_curto": "S40"
+      },
+      {
+       "id": "xiaomi-s40c",
+       "rotulo": "Xiaomi S40C",
+       "rotulo_curto": "S40C"
+      },
+      {
+       "id": "xiaomi-h40",
+       "rotulo": "Xiaomi H40",
+       "rotulo_curto": "H40"
+      },
+      {
+       "id": "xiaomi-e12",
+       "rotulo": "Xiaomi E12",
+       "rotulo_curto": "E12"
+      },
+      {
+       "id": "xiaomi-s12",
+       "rotulo": "Xiaomi S12",
+       "rotulo_curto": "S12"
+      },
+      {
+       "id": "xiaomi-s40-pro",
+       "rotulo": "Xiaomi S40 Pro",
+       "rotulo_curto": "S40 Pro"
+      },
+      {
+       "id": "xiaomi-x20",
+       "rotulo": "Xiaomi X20",
+       "rotulo_curto": "X20"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Xiaomi",
+     "gramatica_do_publicador": "a Xiaomi",
+     "itens": [
+      {
+       "peca": "xiaomi-b112-ch",
+       "marca": "xiaomi",
+       "codigo": "B112-CH",
+       "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-e10",
+         "rotulo": "Xiaomi E10",
+         "rotulo_curto": "E10"
+        },
+        {
+         "id": "xiaomi-e10c",
+         "rotulo": "Xiaomi E10C",
+         "rotulo_curto": "E10C"
+        },
+        {
+         "id": "xiaomi-s20",
+         "rotulo": "Xiaomi S20",
+         "rotulo_curto": "S20"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+       "verificado_em": "2026-09-13",
+       "vida_util": {
+        "valor": "3 a 6",
+        "unidade": "meses"
+       },
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-820me-mpb7z09urksmf3",
+        "largura": 300,
+        "altura": 300,
+        "alt": "Xiaomi S20 Filtro Hepa D106, B112, E10, E12, E10C, C103, Mijia 3C Plus, Mijia 3C Pro - B112-CH Kit"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/8KpYykTSUc",
+        "url_busca": "https://s.shopee.com.br/1AXLLDM3d",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=filtro%20HEPA%20Xiaomi",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": true
+      },
+      {
+       "peca": "xiaomi-b106gl-lw",
+       "marca": "xiaomi",
+       "codigo": "B106GL-LW",
+       "nome_na_fonte": "Xiaomi Robot Vacuum S10 Filter",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-s10",
+         "rotulo": "Xiaomi S10",
+         "rotulo_curto": "S10"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Singapore",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+       "verificado_em": "2026-09-14",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/2BF1vKE2k1",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=filtro%20HEPA%20Xiaomi",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-filtro-mop-2",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "filter element",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-mop-2",
+         "rotulo": "Xiaomi Mop 2",
+         "rotulo_curto": "Mop 2"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global (suporte)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/1VzL86KqJj",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=filtro%20HEPA%20Xiaomi",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-filtro-mop-2-lite",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "filter",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-mop-2-lite",
+         "rotulo": "Xiaomi Mop 2 Lite",
+         "rotulo_curto": "Mop 2 Lite"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global (suporte)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/support/faq/details/KA-11405/",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/4fwMtvHeiM",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=filtro%20HEPA%20Xiaomi",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 4 filtros Xiaomi no banco.",
+      "serve": "Eles servem em 6 dos 13 modelos Xiaomi que a gente acompanha.",
+      "residuo": "Nos outros 7 modelos nao localizamos declaracao do fabricante de filtro; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "6 de 13 modelos Xiaomi do banco tem filtro declarado pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-filtros-wap",
+     "caminho": "pecas/filtros/wap",
+     "marca": "wap",
+     "marca_rotulo": "WAP",
+     "tipo": "filtro",
+     "itens_no_banco": 3,
+     "itens_avulsos": 3,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 2,
+     "modelos": [
+      {
+       "id": "wap-w300",
+       "rotulo": "WAP W300",
+       "rotulo_curto": "W300"
+      },
+      {
+       "id": "wap-w100",
+       "rotulo": "WAP W100",
+       "rotulo_curto": "W100"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 8,
+     "modelos_sem_a_peca": [
+      {
+       "id": "wap-w400",
+       "rotulo": "WAP W400",
+       "rotulo_curto": "W400"
+      },
+      {
+       "id": "wap-w1000",
+       "rotulo": "WAP W1000",
+       "rotulo_curto": "W1000"
+      },
+      {
+       "id": "wap-w310",
+       "rotulo": "WAP W310",
+       "rotulo_curto": "W310"
+      },
+      {
+       "id": "wap-w90",
+       "rotulo": "WAP W90",
+       "rotulo_curto": "W90"
+      },
+      {
+       "id": "wap-w100c",
+       "rotulo": "WAP W100C",
+       "rotulo_curto": "W100C"
+      },
+      {
+       "id": "wap-wsmart",
+       "rotulo": "WAP WSMART",
+       "rotulo_curto": "WSMART"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "WAP (loja oficial)",
+     "gramatica_do_publicador": "a WAP (loja oficial)",
+     "itens": [
+      {
+       "peca": "wap-fw006270",
+       "marca": "wap",
+       "codigo": "FW006270",
+       "nome_na_fonte": "Filtro HEPA Para Robô Aspirador de Pó WAP Robot W300",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "wap-w300",
+         "rotulo": "WAP W300",
+         "rotulo_curto": "W300"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "WAP (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.wap.ind.br/filtro-hepa-para-robo-aspirador-de-po-wap-robot-w300/p",
+       "verificado_em": "2026-09-21",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://lojawap.vteximg.com.br/arquivos/ids/158334/filtro-hepa-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425048284030000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: filtro Wap (codigo FW006270)"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/2gBKCsMlNH",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Filtro%20HEPA%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "wap-fw006271",
+       "marca": "wap",
+       "codigo": "FW006271",
+       "nome_na_fonte": "Filtro Grade Para Robô Aspirador de Pó WAP Robot W300",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "wap-w300",
+         "rotulo": "WAP W300",
+         "rotulo_curto": "W300"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "WAP (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.wap.ind.br/filtro-grade-para-robo-aspirador-de-po-wap-robot-w300/p",
+       "verificado_em": "2026-09-21",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://lojawap.vteximg.com.br/arquivos/ids/158333/filtro-grade-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425046840300000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: filtro Wap (codigo FW006271)"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/W6pctUo1C",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20W300%20filtro%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "wap-fw007700",
+       "marca": "wap",
+       "codigo": "FW007700",
+       "nome_na_fonte": "Filtro de Entrada Para Robô Aspirador de Pó WAP Robot W100",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "wap-w100",
+         "rotulo": "WAP W100",
+         "rotulo_curto": "W100"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "WAP (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.wap.ind.br/filtro-de-entrada-para-robo-aspirador-de-po-wap-robot-w100/p",
+       "verificado_em": "2026-09-21",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://lojawap.vteximg.com.br/arquivos/ids/158332/filtro-de-entrada-para-robo-aspirador-de-po-wap-robot-w100.png?v=637425044424830000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: filtro Wap (codigo FW007700)"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/3B7annKirm",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Filtro%20de%20Entrada%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 3 filtros WAP no banco.",
+      "serve": "Eles servem em 2 dos 8 modelos WAP que a gente acompanha.",
+      "residuo": "Nos outros 6 modelos nao localizamos declaracao do fabricante de filtro; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "2 de 8 modelos WAP do banco tem filtro declarado pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-filtros-multi",
+     "caminho": "pecas/filtros/multi",
+     "marca": "multi",
+     "marca_rotulo": "Multi (ex-Multilaser)",
+     "tipo": "filtro",
+     "itens_no_banco": 2,
+     "itens_avulsos": 2,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 2,
+     "modelos": [
+      {
+       "id": "multi-ho041",
+       "rotulo": "Multi (ex-Multilaser) HO041",
+       "rotulo_curto": "HO041"
+      },
+      {
+       "id": "multi-ob010",
+       "rotulo": "Multi (ex-Multilaser) OB010",
+       "rotulo_curto": "OB010"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 6,
+     "modelos_sem_a_peca": [
+      {
+       "id": "multi-ho400",
+       "rotulo": "Multi (ex-Multilaser) HO400",
+       "rotulo_curto": "HO400"
+      },
+      {
+       "id": "multi-ho407",
+       "rotulo": "Multi (ex-Multilaser) HO407",
+       "rotulo_curto": "HO407"
+      },
+      {
+       "id": "multi-ho243",
+       "rotulo": "Multi (ex-Multilaser) HO243",
+       "rotulo_curto": "HO243"
+      },
+      {
+       "id": "multi-ho411",
+       "rotulo": "Multi (ex-Multilaser) HO411",
+       "rotulo_curto": "HO411"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Multi (multilaser.com.br, canal varejo)",
+     "gramatica_do_publicador": "a Multi (multilaser.com.br, canal varejo)",
+     "itens": [
+      {
+       "peca": "multi-pr10205",
+       "marca": "multi",
+       "codigo": "PR10205",
+       "nome_na_fonte": "Filtro para Aspirador Robô Mars, Moon e Duster",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "multi-ho041",
+         "rotulo": "Multi (ex-Multilaser) HO041",
+         "rotulo_curto": "HO041"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Multi (multilaser.com.br, canal varejo)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-mars-moon-duster-pr10205/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-81z1k-mh5kewd6k8w44b",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Filtro Para Robô Aspirador Multilaser Ho041"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/8plsYBpBvt",
+        "url_busca": "https://s.shopee.com.br/W6hKvLn54",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": true
+      },
+      {
+       "peca": "multi-pr10343",
+       "marca": "multi",
+       "codigo": "PR10343",
+       "nome_na_fonte": "Filtro para Aspirador Robô OB010",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "multi-ob010",
+         "rotulo": "Multi (ex-Multilaser) OB010",
+         "rotulo_curto": "OB010"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Multi (multilaser.com.br)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-ob010-pr10343/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/W6hKvLn54",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20filtro%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 2 filtros Multi (ex-Multilaser) no banco.",
+      "serve": "Eles servem em 2 dos 6 modelos Multi (ex-Multilaser) que a gente acompanha.",
+      "residuo": "Nos outros 4 modelos nao localizamos declaracao do fabricante de filtro; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "2 de 6 modelos Multi (ex-Multilaser) do banco tem filtro declarado pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-filtros-positivo",
+     "caminho": "pecas/filtros/positivo",
+     "marca": "positivo",
+     "marca_rotulo": "Positivo Casa Inteligente",
+     "tipo": "filtro",
+     "itens_no_banco": 1,
+     "itens_avulsos": 1,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 2,
+     "modelos": [
+      {
+       "id": "positivo-pra800",
+       "rotulo": "Positivo Casa Inteligente PRA800",
+       "rotulo_curto": "PRA800"
+      },
+      {
+       "id": "positivo-pra2000",
+       "rotulo": "Positivo Casa Inteligente PRA2000",
+       "rotulo_curto": "PRA2000"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 3,
+     "modelos_sem_a_peca": [
+      {
+       "id": "positivo-pra500",
+       "rotulo": "Positivo Casa Inteligente PRA500",
+       "rotulo_curto": "PRA500"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Positivo Casa Inteligente (loja oficial)",
+     "gramatica_do_publicador": "a Positivo Casa Inteligente (loja oficial)",
+     "itens": [
+      {
+       "peca": "positivo-11206516",
+       "marca": "positivo",
+       "codigo": "11206516",
+       "nome_na_fonte": "Filtro HEPA para Smart Robô Aspirador Laser PRA8000/PRA2000 Positivo Casa Inteligente",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "positivo-pra800",
+         "rotulo": "Positivo Casa Inteligente PRA800",
+         "rotulo_curto": "PRA800"
+        },
+        {
+         "id": "positivo-pra2000",
+         "rotulo": "Positivo Casa Inteligente PRA2000",
+         "rotulo_curto": "PRA2000"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Positivo Casa Inteligente (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.meupositivo.com.br/filtro-hepa-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206516/p",
+       "verificado_em": "2026-09-21",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://lojapositivo.vteximg.com.br/arquivos/ids/168087/FILTRO-HEPA-ROBO-ASPIRADOR-PRA800-E-2000_01.jpg?v=638599538333570000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: filtro Positivo (codigo 11206516)"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/3g3rOiNHrd",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20filtro%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": true
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "E 1 filtro Positivo Casa Inteligente no banco.",
+      "serve": "Ele serve em 2 dos 3 modelos Positivo Casa Inteligente que a gente acompanha.",
+      "residuo": "No outro modelo nao localizamos declaracao do fabricante de filtro; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "2 de 3 modelos Positivo Casa Inteligente do banco tem filtro declarado pelo fabricante."
+     }
+    }
+   ],
+   "publicada": false,
+   "frases": {
+    "quantos": "Sao 16 itens de reposicao que entregam filtro em 5 marcas: 11 filtros avulsos e 5 kits que declaram filtro na composicao.",
+    "serve": "Juntos, eles servem em 21 modelos de robo.",
+    "marca_cruzada": "Nenhum deles serve em mais de uma marca: filtro de robo aspirador nao e universal, e o encaixe e por modelo."
+   }
+  },
+  {
+   "slug": "pecas-escovas-laterais",
+   "caminho": "pecas/escovas-laterais",
+   "tipo": "escova lateral",
+   "rotulo": "Escovas laterais",
+   "plural": "escovas laterais",
+   "singular": "escova lateral",
+   "gramatica": {
+    "artigo": "a",
+    "avulso": "avulsa",
+    "avulsos": "avulsas",
+    "sujeito_plural": "Elas",
+    "sujeito_singular": "Ela",
+    "nenhum": "Nenhuma",
+    "deles": "delas",
+    "desses": "dessas",
+    "declarado": "declarada",
+    "juntos": "Juntas",
+    "eles": "elas",
+    "outros": "outras"
+   },
+   "itens_avulsos": 9,
+   "itens_em_kit": 4,
+   "itens_no_banco": 13,
+   "marcas_no_banco": 5,
+   "modelos_cobertos": 27,
+   "itens_que_atravessam_marca": 0,
+   "filhas": [
+    {
+     "slug": "pecas-escovas-laterais-electrolux",
+     "caminho": "pecas/escovas-laterais/electrolux",
+     "marca": "electrolux",
+     "marca_rotulo": "Electrolux",
+     "tipo": "escova lateral",
+     "itens_no_banco": 4,
+     "itens_avulsos": 0,
+     "itens_em_kit": 4,
+     "modelos_cobertos": 8,
+     "modelos": [
+      {
+       "id": "electrolux-erb10",
+       "rotulo": "Electrolux ERB10",
+       "rotulo_curto": "ERB10"
+      },
+      {
+       "id": "electrolux-erb11",
+       "rotulo": "Electrolux ERB11",
+       "rotulo_curto": "ERB11"
+      },
+      {
+       "id": "electrolux-erb20",
+       "rotulo": "Electrolux ERB20",
+       "rotulo_curto": "ERB20"
+      },
+      {
+       "id": "electrolux-erb60",
+       "rotulo": "Electrolux ERB60",
+       "rotulo_curto": "ERB60"
+      },
+      {
+       "id": "electrolux-erb61",
+       "rotulo": "Electrolux ERB61",
+       "rotulo_curto": "ERB61"
+      },
+      {
+       "id": "electrolux-erb62",
+       "rotulo": "Electrolux ERB62",
+       "rotulo_curto": "ERB62"
+      },
+      {
+       "id": "electrolux-erb30",
+       "rotulo": "Electrolux ERB30",
+       "rotulo_curto": "ERB30"
+      },
+      {
+       "id": "electrolux-erb80",
+       "rotulo": "Electrolux ERB80",
+       "rotulo_curto": "ERB80"
+      }
+     ],
+     "modelos_so_por_kit": [
+      {
+       "id": "electrolux-erb10",
+       "rotulo": "Electrolux ERB10",
+       "rotulo_curto": "ERB10"
+      },
+      {
+       "id": "electrolux-erb11",
+       "rotulo": "Electrolux ERB11",
+       "rotulo_curto": "ERB11"
+      },
+      {
+       "id": "electrolux-erb20",
+       "rotulo": "Electrolux ERB20",
+       "rotulo_curto": "ERB20"
+      },
+      {
+       "id": "electrolux-erb60",
+       "rotulo": "Electrolux ERB60",
+       "rotulo_curto": "ERB60"
+      },
+      {
+       "id": "electrolux-erb61",
+       "rotulo": "Electrolux ERB61",
+       "rotulo_curto": "ERB61"
+      },
+      {
+       "id": "electrolux-erb62",
+       "rotulo": "Electrolux ERB62",
+       "rotulo_curto": "ERB62"
+      },
+      {
+       "id": "electrolux-erb30",
+       "rotulo": "Electrolux ERB30",
+       "rotulo_curto": "ERB30"
+      },
+      {
+       "id": "electrolux-erb80",
+       "rotulo": "Electrolux ERB80",
+       "rotulo_curto": "ERB80"
+      }
+     ],
+     "modelos_publicaveis_da_marca": 9,
+     "modelos_sem_a_peca": [
+      {
+       "id": "electrolux-erb44",
+       "rotulo": "Electrolux ERB44",
+       "rotulo_curto": "ERB44"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Electrolux (loja oficial)",
+     "gramatica_do_publicador": "a Electrolux (loja oficial)",
+     "itens": [
+      {
+       "peca": "electrolux-kpcel01",
+       "marca": "electrolux",
+       "codigo": "KPCEL01",
+       "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb10",
+         "rotulo": "Electrolux ERB10",
+         "rotulo_curto": "ERB10"
+        },
+        {
+         "id": "electrolux-erb11",
+         "rotulo": "Electrolux ERB11",
+         "rotulo_curto": "ERB11"
+        },
+        {
+         "id": "electrolux-erb20",
+         "rotulo": "Electrolux ERB20",
+         "rotulo_curto": "ERB20"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb10",
+         "rotulo": "Electrolux ERB10",
+         "rotulo_curto": "ERB10"
+        },
+        {
+         "id": "electrolux-erb11",
+         "rotulo": "Electrolux ERB11",
+         "rotulo_curto": "ERB11"
+        },
+        {
+         "id": "electrolux-erb20",
+         "rotulo": "Electrolux ERB20",
+         "rotulo_curto": "ERB20"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": {
+        "valor": 6,
+        "unidade": "meses"
+       },
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/gQ7qXmH0Z",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb60",
+         "rotulo": "Electrolux ERB60",
+         "rotulo_curto": "ERB60"
+        },
+        {
+         "id": "electrolux-erb61",
+         "rotulo": "Electrolux ERB61",
+         "rotulo_curto": "ERB61"
+        },
+        {
+         "id": "electrolux-erb62",
+         "rotulo": "Electrolux ERB62",
+         "rotulo_curto": "ERB62"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb60",
+         "rotulo": "Electrolux ERB60",
+         "rotulo_curto": "ERB60"
+        },
+        {
+         "id": "electrolux-erb61",
+         "rotulo": "Electrolux ERB61",
+         "rotulo_curto": "ERB61"
+        },
+        {
+         "id": "electrolux-erb62",
+         "rotulo": "Electrolux ERB62",
+         "rotulo_curto": "ERB62"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: kit Electrolux"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb30",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb30",
+         "rotulo": "Electrolux ERB30",
+         "rotulo_curto": "ERB30"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb30",
+         "rotulo": "Electrolux ERB30",
+         "rotulo_curto": "ERB30"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-7rdyf-m1efq6hxdbpz33",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance Filtros + Escovas P/ Aspirador Robô Electrolux Erb30 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/1VzEq5R1rp",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb80",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb80",
+         "rotulo": "Electrolux ERB80",
+         "rotulo_curto": "ERB80"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb80",
+         "rotulo": "Electrolux ERB80",
+         "rotulo_curto": "ERB80"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-8262t-mkjtqstanrb7e2",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/LnHS2buo3",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 4 itens Electrolux que entregam escova lateral: 0 escovas laterais avulsas e 4 kits que declaram escova lateral na composicao.",
+      "serve": "Eles servem em 8 dos 9 modelos Electrolux que a gente acompanha.",
+      "residuo": "No outro modelo nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+      "kit": "Em 8 desses modelos o escova lateral so vem dentro do kit: a Electrolux (loja oficial) nao vende o escova lateral avulso para eles.",
+      "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "8 de 9 modelos Electrolux do banco tem escova lateral declarada pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-escovas-laterais-xiaomi",
+     "caminho": "pecas/escovas-laterais/xiaomi",
+     "marca": "xiaomi",
+     "marca_rotulo": "Xiaomi",
+     "tipo": "escova lateral",
+     "itens_no_banco": 4,
+     "itens_avulsos": 4,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 11,
+     "modelos": [
+      {
+       "id": "xiaomi-s20",
+       "rotulo": "Xiaomi S20",
+       "rotulo_curto": "S20"
+      },
+      {
+       "id": "xiaomi-s10",
+       "rotulo": "Xiaomi S10",
+       "rotulo_curto": "S10"
+      },
+      {
+       "id": "xiaomi-e10",
+       "rotulo": "Xiaomi E10",
+       "rotulo_curto": "E10"
+      },
+      {
+       "id": "xiaomi-s12",
+       "rotulo": "Xiaomi S12",
+       "rotulo_curto": "S12"
+      },
+      {
+       "id": "xiaomi-e12",
+       "rotulo": "Xiaomi E12",
+       "rotulo_curto": "E12"
+      },
+      {
+       "id": "xiaomi-x20",
+       "rotulo": "Xiaomi X20",
+       "rotulo_curto": "X20"
+      },
+      {
+       "id": "xiaomi-h40",
+       "rotulo": "Xiaomi H40",
+       "rotulo_curto": "H40"
+      },
+      {
+       "id": "xiaomi-s40",
+       "rotulo": "Xiaomi S40",
+       "rotulo_curto": "S40"
+      },
+      {
+       "id": "xiaomi-s40-pro",
+       "rotulo": "Xiaomi S40 Pro",
+       "rotulo_curto": "S40 Pro"
+      },
+      {
+       "id": "xiaomi-mop-2",
+       "rotulo": "Xiaomi Mop 2",
+       "rotulo_curto": "Mop 2"
+      },
+      {
+       "id": "xiaomi-mop-2-lite",
+       "rotulo": "Xiaomi Mop 2 Lite",
+       "rotulo_curto": "Mop 2 Lite"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 13,
+     "modelos_sem_a_peca": [
+      {
+       "id": "xiaomi-s40c",
+       "rotulo": "Xiaomi S40C",
+       "rotulo_curto": "S40C"
+      },
+      {
+       "id": "xiaomi-e10c",
+       "rotulo": "Xiaomi E10C",
+       "rotulo_curto": "E10C"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Xiaomi Global",
+     "gramatica_do_publicador": "a Xiaomi Global",
+     "itens": [
+      {
+       "peca": "xiaomi-b106gl-bx",
+       "marca": "xiaomi",
+       "codigo": "B106GL-BX",
+       "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-s20",
+         "rotulo": "Xiaomi S20",
+         "rotulo_curto": "S20"
+        },
+        {
+         "id": "xiaomi-s10",
+         "rotulo": "Xiaomi S10",
+         "rotulo_curto": "S10"
+        },
+        {
+         "id": "xiaomi-e10",
+         "rotulo": "Xiaomi E10",
+         "rotulo_curto": "E10"
+        },
+        {
+         "id": "xiaomi-s12",
+         "rotulo": "Xiaomi S12",
+         "rotulo_curto": "S12"
+        },
+        {
+         "id": "xiaomi-e12",
+         "rotulo": "Xiaomi E12",
+         "rotulo_curto": "E12"
+        },
+        {
+         "id": "xiaomi-x20",
+         "rotulo": "Xiaomi X20",
+         "rotulo_curto": "X20"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+       "verificado_em": "2026-09-13",
+       "vida_util": {
+        "valor": "3 a 6",
+        "unidade": "meses"
+       },
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-ov81gl-bs",
+       "marca": "xiaomi",
+       "codigo": "OV81GL-BS",
+       "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-h40",
+         "rotulo": "Xiaomi H40",
+         "rotulo_curto": "H40"
+        },
+        {
+         "id": "xiaomi-s40",
+         "rotulo": "Xiaomi S40",
+         "rotulo_curto": "S40"
+        },
+        {
+         "id": "xiaomi-s40-pro",
+         "rotulo": "Xiaomi S40 Pro",
+         "rotulo_curto": "S40 Pro"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+       "verificado_em": "2026-09-13",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-825zp-mlm8yyo0qqdrd2",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Escova Lateral Para Robô Xiaomi Vacumm H40 OV51 2uns"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/qjY2z00SM",
+        "url_busca": "https://s.shopee.com.br/7Kx1TUVFYx",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": true
+      },
+      {
+       "peca": "xiaomi-escova-lateral-mop-2",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "side brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-mop-2",
+         "rotulo": "Xiaomi Mop 2",
+         "rotulo_curto": "Mop 2"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global (suporte)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/4fwJmsUH8M",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-escova-lateral-mop-2-lite",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "side brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-mop-2-lite",
+         "rotulo": "Xiaomi Mop 2 Lite",
+         "rotulo_curto": "Mop 2 Lite"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global (suporte)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/support/faq/details/KA-11405/",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/1131Q8vVAH",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 4 escovas laterais Xiaomi no banco.",
+      "serve": "Elas servem em 11 dos 13 modelos Xiaomi que a gente acompanha.",
+      "residuo": "Nos outros 2 modelos nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "11 de 13 modelos Xiaomi do banco tem escova lateral declarada pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-escovas-laterais-wap",
+     "caminho": "pecas/escovas-laterais/wap",
+     "marca": "wap",
+     "marca_rotulo": "WAP",
+     "tipo": "escova lateral",
+     "itens_no_banco": 3,
+     "itens_avulsos": 3,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 2,
+     "modelos": [
+      {
+       "id": "wap-w300",
+       "rotulo": "WAP W300",
+       "rotulo_curto": "W300"
+      },
+      {
+       "id": "wap-wsmart",
+       "rotulo": "WAP WSMART",
+       "rotulo_curto": "WSMART"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 8,
+     "modelos_sem_a_peca": [
+      {
+       "id": "wap-w400",
+       "rotulo": "WAP W400",
+       "rotulo_curto": "W400"
+      },
+      {
+       "id": "wap-w1000",
+       "rotulo": "WAP W1000",
+       "rotulo_curto": "W1000"
+      },
+      {
+       "id": "wap-w310",
+       "rotulo": "WAP W310",
+       "rotulo_curto": "W310"
+      },
+      {
+       "id": "wap-w90",
+       "rotulo": "WAP W90",
+       "rotulo_curto": "W90"
+      },
+      {
+       "id": "wap-w100",
+       "rotulo": "WAP W100",
+       "rotulo_curto": "W100"
+      },
+      {
+       "id": "wap-w100c",
+       "rotulo": "WAP W100C",
+       "rotulo_curto": "W100C"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "WAP (loja oficial)",
+     "gramatica_do_publicador": "a WAP (loja oficial)",
+     "itens": [
+      {
+       "peca": "wap-escova-direita-w300",
+       "marca": "wap",
+       "codigo": null,
+       "nome_na_fonte": "Escova Direita Para Robô Aspirador de Pó Robot W300",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "wap-w300",
+         "rotulo": "WAP W300",
+         "rotulo_curto": "W300"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "WAP (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.wap.ind.br/escova-direita-para-robo-aspirador-de-po-wap-robot-w300/p",
+       "verificado_em": "2026-09-13",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://lojawap.vteximg.com.br/arquivos/ids/158329/escova-direita-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425033056500000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: escova lateral Wap"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/AUu3lZ3FS8",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Escova%20Direita%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "wap-escova-esquerda-w300",
+       "marca": "wap",
+       "codigo": null,
+       "nome_na_fonte": "Escova Esquerda Para Robô Aspirador WAP Robot W300",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "wap-w300",
+         "rotulo": "WAP W300",
+         "rotulo_curto": "W300"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "WAP (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.wap.ind.br/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300/p",
+       "verificado_em": "2026-09-13",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://lojawap.vteximg.com.br/arquivos/ids/158330/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425034313300000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: escova lateral Wap"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/5foo0gLNFL",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Escova%20Esquerda%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "wap-escova-frontal-wsmart",
+       "marca": "wap",
+       "codigo": null,
+       "nome_na_fonte": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "wap-wsmart",
+         "rotulo": "WAP WSMART",
+         "rotulo_curto": "WSMART"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "WAP (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.wap.ind.br/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+       "verificado_em": "2026-09-13",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://lojawap.vteximg.com.br/arquivos/ids/158342/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart.png?v=637425466210430000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: escova lateral Wap"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/9peMyLA7KC",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Escova%20Frontal%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 3 escovas laterais WAP no banco.",
+      "serve": "Elas servem em 2 dos 8 modelos WAP que a gente acompanha.",
+      "residuo": "Nos outros 6 modelos nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "2 de 8 modelos WAP do banco tem escova lateral declarada pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-escovas-laterais-multi",
+     "caminho": "pecas/escovas-laterais/multi",
+     "marca": "multi",
+     "marca_rotulo": "Multi (ex-Multilaser)",
+     "tipo": "escova lateral",
+     "itens_no_banco": 1,
+     "itens_avulsos": 1,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 4,
+     "modelos": [
+      {
+       "id": "multi-ho041",
+       "rotulo": "Multi (ex-Multilaser) HO041",
+       "rotulo_curto": "HO041"
+      },
+      {
+       "id": "multi-ho400",
+       "rotulo": "Multi (ex-Multilaser) HO400",
+       "rotulo_curto": "HO400"
+      },
+      {
+       "id": "multi-ho407",
+       "rotulo": "Multi (ex-Multilaser) HO407",
+       "rotulo_curto": "HO407"
+      },
+      {
+       "id": "multi-ob010",
+       "rotulo": "Multi (ex-Multilaser) OB010",
+       "rotulo_curto": "OB010"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 6,
+     "modelos_sem_a_peca": [
+      {
+       "id": "multi-ho243",
+       "rotulo": "Multi (ex-Multilaser) HO243",
+       "rotulo_curto": "HO243"
+      },
+      {
+       "id": "multi-ho411",
+       "rotulo": "Multi (ex-Multilaser) HO411",
+       "rotulo_curto": "HO411"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Multi (multilaser.com.br)",
+     "gramatica_do_publicador": "a Multi (multilaser.com.br)",
+     "itens": [
+      {
+       "peca": "multi-pr10124",
+       "marca": "multi",
+       "codigo": "PR10124",
+       "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "multi-ho041",
+         "rotulo": "Multi (ex-Multilaser) HO041",
+         "rotulo_curto": "HO041"
+        },
+        {
+         "id": "multi-ho400",
+         "rotulo": "Multi (ex-Multilaser) HO400",
+         "rotulo_curto": "HO400"
+        },
+        {
+         "id": "multi-ho407",
+         "rotulo": "Multi (ex-Multilaser) HO407",
+         "rotulo_curto": "HO407"
+        },
+        {
+         "id": "multi-ob010",
+         "rotulo": "Multi (ex-Multilaser) OB010",
+         "rotulo_curto": "OB010"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Multi (multilaser.com.br)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: escova lateral Multi (codigo PR10124)"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/1AQk0Nh5x",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "E 1 escova lateral Multi (ex-Multilaser) no banco.",
+      "serve": "Ela serve em 4 dos 6 modelos Multi (ex-Multilaser) que a gente acompanha.",
+      "residuo": "Nos outros 2 modelos nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "4 de 6 modelos Multi (ex-Multilaser) do banco tem escova lateral declarada pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-escovas-laterais-positivo",
+     "caminho": "pecas/escovas-laterais/positivo",
+     "marca": "positivo",
+     "marca_rotulo": "Positivo Casa Inteligente",
+     "tipo": "escova lateral",
+     "itens_no_banco": 1,
+     "itens_avulsos": 1,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 2,
+     "modelos": [
+      {
+       "id": "positivo-pra800",
+       "rotulo": "Positivo Casa Inteligente PRA800",
+       "rotulo_curto": "PRA800"
+      },
+      {
+       "id": "positivo-pra2000",
+       "rotulo": "Positivo Casa Inteligente PRA2000",
+       "rotulo_curto": "PRA2000"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 3,
+     "modelos_sem_a_peca": [
+      {
+       "id": "positivo-pra500",
+       "rotulo": "Positivo Casa Inteligente PRA500",
+       "rotulo_curto": "PRA500"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Positivo Casa Inteligente (loja oficial)",
+     "gramatica_do_publicador": "a Positivo Casa Inteligente (loja oficial)",
+     "itens": [
+      {
+       "peca": "positivo-11206518",
+       "marca": "positivo",
+       "codigo": "11206518",
+       "nome_na_fonte": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "positivo-pra800",
+         "rotulo": "Positivo Casa Inteligente PRA800",
+         "rotulo_curto": "PRA800"
+        },
+        {
+         "id": "positivo-pra2000",
+         "rotulo": "Positivo Casa Inteligente PRA2000",
+         "rotulo_curto": "PRA2000"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Positivo Casa Inteligente (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-820lt-mnhki751h79ccb",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Escova Lateral Para Robô Aspirador Compatível com Positivo Wi Fi Pra800 Smart"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/9V1WMnE6WW",
+        "url_busca": "https://s.shopee.com.br/4AzzhfPhqH",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20escova%20lateral%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "E 1 escova lateral Positivo Casa Inteligente no banco.",
+      "serve": "Ela serve em 2 dos 3 modelos Positivo Casa Inteligente que a gente acompanha.",
+      "residuo": "No outro modelo nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "2 de 3 modelos Positivo Casa Inteligente do banco tem escova lateral declarada pelo fabricante."
+     }
+    }
+   ],
+   "publicada": false,
+   "frases": {
+    "quantos": "Sao 13 itens de reposicao que entregam escova lateral em 5 marcas: 9 escovas laterais avulsas e 4 kits que declaram escova lateral na composicao.",
+    "serve": "Juntos, eles servem em 27 modelos de robo.",
+    "marca_cruzada": "Nenhuma delas serve em mais de uma marca: escova lateral de robo aspirador nao e universal, e o encaixe e por modelo."
+   }
+  },
+  {
+   "slug": "pecas-escovas-principais",
+   "caminho": "pecas/escovas-principais",
+   "tipo": "escova principal",
+   "rotulo": "Escovas principais",
+   "plural": "escovas principais",
+   "singular": "escova principal",
+   "gramatica": {
+    "artigo": "a",
+    "avulso": "avulsa",
+    "avulsos": "avulsas",
+    "sujeito_plural": "Elas",
+    "sujeito_singular": "Ela",
+    "nenhum": "Nenhuma",
+    "deles": "delas",
+    "desses": "dessas",
+    "declarado": "declarada",
+    "juntos": "Juntas",
+    "eles": "elas",
+    "outros": "outras"
+   },
+   "itens_avulsos": 8,
+   "itens_em_kit": 0,
+   "itens_no_banco": 8,
+   "marcas_no_banco": 4,
+   "modelos_cobertos": 16,
+   "itens_que_atravessam_marca": 0,
+   "filhas": [
+    {
+     "slug": "pecas-escovas-principais-xiaomi",
+     "caminho": "pecas/escovas-principais/xiaomi",
+     "marca": "xiaomi",
+     "marca_rotulo": "Xiaomi",
+     "tipo": "escova principal",
+     "itens_no_banco": 5,
+     "itens_avulsos": 5,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 9,
+     "modelos": [
+      {
+       "id": "xiaomi-e10",
+       "rotulo": "Xiaomi E10",
+       "rotulo_curto": "E10"
+      },
+      {
+       "id": "xiaomi-e12",
+       "rotulo": "Xiaomi E12",
+       "rotulo_curto": "E12"
+      },
+      {
+       "id": "xiaomi-e10c",
+       "rotulo": "Xiaomi E10C",
+       "rotulo_curto": "E10C"
+      },
+      {
+       "id": "xiaomi-s20",
+       "rotulo": "Xiaomi S20",
+       "rotulo_curto": "S20"
+      },
+      {
+       "id": "xiaomi-h40",
+       "rotulo": "Xiaomi H40",
+       "rotulo_curto": "H40"
+      },
+      {
+       "id": "xiaomi-s40",
+       "rotulo": "Xiaomi S40",
+       "rotulo_curto": "S40"
+      },
+      {
+       "id": "xiaomi-s10",
+       "rotulo": "Xiaomi S10",
+       "rotulo_curto": "S10"
+      },
+      {
+       "id": "xiaomi-mop-2",
+       "rotulo": "Xiaomi Mop 2",
+       "rotulo_curto": "Mop 2"
+      },
+      {
+       "id": "xiaomi-mop-2-lite",
+       "rotulo": "Xiaomi Mop 2 Lite",
+       "rotulo_curto": "Mop 2 Lite"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 13,
+     "modelos_sem_a_peca": [
+      {
+       "id": "xiaomi-s40c",
+       "rotulo": "Xiaomi S40C",
+       "rotulo_curto": "S40C"
+      },
+      {
+       "id": "xiaomi-s12",
+       "rotulo": "Xiaomi S12",
+       "rotulo_curto": "S12"
+      },
+      {
+       "id": "xiaomi-s40-pro",
+       "rotulo": "Xiaomi S40 Pro",
+       "rotulo_curto": "S40 Pro"
+      },
+      {
+       "id": "xiaomi-x20",
+       "rotulo": "Xiaomi X20",
+       "rotulo_curto": "X20"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Xiaomi",
+     "gramatica_do_publicador": "a Xiaomi",
+     "itens": [
+      {
+       "peca": "xiaomi-b112-zs",
+       "marca": "xiaomi",
+       "codigo": "B112-ZS",
+       "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-e10",
+         "rotulo": "Xiaomi E10",
+         "rotulo_curto": "E10"
+        },
+        {
+         "id": "xiaomi-e12",
+         "rotulo": "Xiaomi E12",
+         "rotulo_curto": "E12"
+        },
+        {
+         "id": "xiaomi-e10c",
+         "rotulo": "Xiaomi E10C",
+         "rotulo_curto": "E10C"
+        },
+        {
+         "id": "xiaomi-s20",
+         "rotulo": "Xiaomi S20",
+         "rotulo_curto": "S20"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+       "verificado_em": "2026-09-13",
+       "vida_util": {
+        "valor": "6 a 12",
+        "unidade": "meses"
+       },
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-820l9-mnuead36s3r830",
+        "largura": 700,
+        "altura": 700,
+        "alt": "Xiaomi S20 Escova Principal D106, B112, E10, E12, E10C, C103, Mijia reposição - B112-ZS"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/9AOfyHHLk5",
+        "url_busca": "https://s.shopee.com.br/6AlAgfpwnh",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-escova-principal-h40-s40",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-h40",
+         "rotulo": "Xiaomi H40",
+         "rotulo_curto": "H40"
+        },
+        {
+         "id": "xiaomi-s40",
+         "rotulo": "Xiaomi S40",
+         "rotulo_curto": "S40"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+       "verificado_em": "2026-09-13",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/1VzL86GNHy",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-b106gl-zx",
+       "marca": "xiaomi",
+       "codigo": "B106GL-ZX",
+       "nome_na_fonte": "Xiaomi Robot Vacuum S10 Main Brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-s10",
+         "rotulo": "Xiaomi S10",
+         "rotulo_curto": "S10"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Singapore",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+       "verificado_em": "2026-09-14",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/80Cos2rptD",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-escova-principal-mop-2",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "main brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-mop-2",
+         "rotulo": "Xiaomi Mop 2",
+         "rotulo_curto": "Mop 2"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global (suporte)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/2VrsJwLZav",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-escova-principal-mop-2-lite",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "brush",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-mop-2-lite",
+         "rotulo": "Xiaomi Mop 2 Lite",
+         "rotulo_curto": "Mop 2 Lite"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global (suporte)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/support/faq/details/KA-11405/",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/8AWF4M4Kcd",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=escova%20principal%20Xiaomi",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 5 escovas principais Xiaomi no banco.",
+      "serve": "Elas servem em 9 dos 13 modelos Xiaomi que a gente acompanha.",
+      "residuo": "Nos outros 4 modelos nao localizamos declaracao do fabricante de escova principal; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas escovas principais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "9 de 13 modelos Xiaomi do banco tem escova principal declarada pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-escovas-principais-electrolux",
+     "caminho": "pecas/escovas-principais/electrolux",
+     "marca": "electrolux",
+     "marca_rotulo": "Electrolux",
+     "tipo": "escova principal",
+     "itens_no_banco": 1,
+     "itens_avulsos": 1,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 4,
+     "modelos": [
+      {
+       "id": "electrolux-erb60",
+       "rotulo": "Electrolux ERB60",
+       "rotulo_curto": "ERB60"
+      },
+      {
+       "id": "electrolux-erb61",
+       "rotulo": "Electrolux ERB61",
+       "rotulo_curto": "ERB61"
+      },
+      {
+       "id": "electrolux-erb62",
+       "rotulo": "Electrolux ERB62",
+       "rotulo_curto": "ERB62"
+      },
+      {
+       "id": "electrolux-erb80",
+       "rotulo": "Electrolux ERB80",
+       "rotulo_curto": "ERB80"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 9,
+     "modelos_sem_a_peca": [
+      {
+       "id": "electrolux-erb44",
+       "rotulo": "Electrolux ERB44",
+       "rotulo_curto": "ERB44"
+      },
+      {
+       "id": "electrolux-erb10",
+       "rotulo": "Electrolux ERB10",
+       "rotulo_curto": "ERB10"
+      },
+      {
+       "id": "electrolux-erb11",
+       "rotulo": "Electrolux ERB11",
+       "rotulo_curto": "ERB11"
+      },
+      {
+       "id": "electrolux-erb20",
+       "rotulo": "Electrolux ERB20",
+       "rotulo_curto": "ERB20"
+      },
+      {
+       "id": "electrolux-erb30",
+       "rotulo": "Electrolux ERB30",
+       "rotulo_curto": "ERB30"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Electrolux (loja oficial)",
+     "gramatica_do_publicador": "a Electrolux (loja oficial)",
+     "itens": [
+      {
+       "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "electrolux-erb60",
+         "rotulo": "Electrolux ERB60",
+         "rotulo_curto": "ERB60"
+        },
+        {
+         "id": "electrolux-erb61",
+         "rotulo": "Electrolux ERB61",
+         "rotulo_curto": "ERB61"
+        },
+        {
+         "id": "electrolux-erb62",
+         "rotulo": "Electrolux ERB62",
+         "rotulo_curto": "ERB62"
+        },
+        {
+         "id": "electrolux-erb80",
+         "rotulo": "Electrolux ERB80",
+         "rotulo_curto": "ERB80"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/286240/Cybertron_Roller_Brush_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990794088630000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: escova principal Electrolux"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/8V8zNt6OWJ",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20Escova%20Rotativa%20Central%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "E 1 escova principal Electrolux no banco.",
+      "serve": "Ela serve em 4 dos 9 modelos Electrolux que a gente acompanha.",
+      "residuo": "Nos outros 5 modelos nao localizamos declaracao do fabricante de escova principal; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas escovas principais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "4 de 9 modelos Electrolux do banco tem escova principal declarada pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-escovas-principais-positivo",
+     "caminho": "pecas/escovas-principais/positivo",
+     "marca": "positivo",
+     "marca_rotulo": "Positivo Casa Inteligente",
+     "tipo": "escova principal",
+     "itens_no_banco": 1,
+     "itens_avulsos": 1,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 2,
+     "modelos": [
+      {
+       "id": "positivo-pra800",
+       "rotulo": "Positivo Casa Inteligente PRA800",
+       "rotulo_curto": "PRA800"
+      },
+      {
+       "id": "positivo-pra2000",
+       "rotulo": "Positivo Casa Inteligente PRA2000",
+       "rotulo_curto": "PRA2000"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 3,
+     "modelos_sem_a_peca": [
+      {
+       "id": "positivo-pra500",
+       "rotulo": "Positivo Casa Inteligente PRA500",
+       "rotulo_curto": "PRA500"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Positivo Casa Inteligente (loja oficial)",
+     "gramatica_do_publicador": "a Positivo Casa Inteligente (loja oficial)",
+     "itens": [
+      {
+       "peca": "positivo-11206519",
+       "marca": "positivo",
+       "codigo": "11206519",
+       "nome_na_fonte": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "positivo-pra800",
+         "rotulo": "Positivo Casa Inteligente PRA800",
+         "rotulo_curto": "PRA800"
+        },
+        {
+         "id": "positivo-pra2000",
+         "rotulo": "Positivo Casa Inteligente PRA2000",
+         "rotulo_curto": "PRA2000"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Positivo Casa Inteligente (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://positivocasainteligente.vteximg.com.br/arquivos/ids/158004/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000---01.jpg?v=638599427963500000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: escova principal Positivo (codigo 11206519)"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/6Al4bbFHHf",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20PRA800%20escova%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "E 1 escova principal Positivo Casa Inteligente no banco.",
+      "serve": "Ela serve em 2 dos 3 modelos Positivo Casa Inteligente que a gente acompanha.",
+      "residuo": "No outro modelo nao localizamos declaracao do fabricante de escova principal; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas escovas principais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "2 de 3 modelos Positivo Casa Inteligente do banco tem escova principal declarada pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-escovas-principais-wap",
+     "caminho": "pecas/escovas-principais/wap",
+     "marca": "wap",
+     "marca_rotulo": "WAP",
+     "tipo": "escova principal",
+     "itens_no_banco": 1,
+     "itens_avulsos": 1,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 1,
+     "modelos": [
+      {
+       "id": "wap-wsmart",
+       "rotulo": "WAP WSMART",
+       "rotulo_curto": "WSMART"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 8,
+     "modelos_sem_a_peca": [
+      {
+       "id": "wap-w400",
+       "rotulo": "WAP W400",
+       "rotulo_curto": "W400"
+      },
+      {
+       "id": "wap-w1000",
+       "rotulo": "WAP W1000",
+       "rotulo_curto": "W1000"
+      },
+      {
+       "id": "wap-w310",
+       "rotulo": "WAP W310",
+       "rotulo_curto": "W310"
+      },
+      {
+       "id": "wap-w300",
+       "rotulo": "WAP W300",
+       "rotulo_curto": "W300"
+      },
+      {
+       "id": "wap-w90",
+       "rotulo": "WAP W90",
+       "rotulo_curto": "W90"
+      },
+      {
+       "id": "wap-w100",
+       "rotulo": "WAP W100",
+       "rotulo_curto": "W100"
+      },
+      {
+       "id": "wap-w100c",
+       "rotulo": "WAP W100C",
+       "rotulo_curto": "W100C"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "WAP (loja oficial)",
+     "gramatica_do_publicador": "a WAP (loja oficial)",
+     "itens": [
+      {
+       "peca": "wap-escova-central-wsmart",
+       "marca": "wap",
+       "codigo": null,
+       "nome_na_fonte": "Escova Central Para Robô Aspirador de Pó WAP Robot WSMART",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "wap-wsmart",
+         "rotulo": "WAP WSMART",
+         "rotulo_curto": "WSMART"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "WAP (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.wap.ind.br/escova-central-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+       "verificado_em": "2026-09-13",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-m3di61sattmgbb",
+        "largura": 800,
+        "altura": 800,
+        "alt": "Escova Central Aspirador Robô Wap Robot WSMART Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/2qUfPDSUNA",
+        "url_busca": "https://s.shopee.com.br/3B7T25V1ou",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=WAP%20Escova%20Central%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "E 1 escova principal WAP no banco.",
+      "serve": "Ela serve em 1 dos 8 modelos WAP que a gente acompanha.",
+      "residuo": "Nos outros 7 modelos nao localizamos declaracao do fabricante de escova principal; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas escovas principais serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "1 de 8 modelos WAP do banco tem escova principal declarada pelo fabricante."
+     }
+    }
+   ],
+   "publicada": false,
+   "frases": {
+    "quantos": "Sao 8 escovas principais de 4 marcas no banco.",
+    "serve": "Juntas, elas servem em 16 modelos de robo.",
+    "marca_cruzada": "Nenhuma delas serve em mais de uma marca: escova principal de robo aspirador nao e universal, e o encaixe e por modelo."
+   }
+  },
+  {
+   "slug": "pecas-mops",
+   "caminho": "pecas/mops",
+   "tipo": "mop",
+   "rotulo": "Mops",
+   "plural": "mops",
+   "singular": "mop",
+   "gramatica": {
+    "artigo": "o",
+    "avulso": "avulso",
+    "avulsos": "avulsos",
+    "sujeito_plural": "Eles",
+    "sujeito_singular": "Ele",
+    "nenhum": "Nenhum",
+    "deles": "deles",
+    "desses": "desses",
+    "declarado": "declarado",
+    "juntos": "Juntos",
+    "eles": "eles",
+    "outros": "outros"
+   },
+   "itens_avulsos": 14,
+   "itens_em_kit": 5,
+   "itens_no_banco": 19,
+   "marcas_no_banco": 5,
+   "modelos_cobertos": 26,
+   "itens_que_atravessam_marca": 0,
+   "filhas": [
+    {
+     "slug": "pecas-mops-electrolux",
+     "caminho": "pecas/mops/electrolux",
+     "marca": "electrolux",
+     "marca_rotulo": "Electrolux",
+     "tipo": "mop",
+     "itens_no_banco": 6,
+     "itens_avulsos": 1,
+     "itens_em_kit": 5,
+     "modelos_cobertos": 9,
+     "modelos": [
+      {
+       "id": "electrolux-erb10",
+       "rotulo": "Electrolux ERB10",
+       "rotulo_curto": "ERB10"
+      },
+      {
+       "id": "electrolux-erb11",
+       "rotulo": "Electrolux ERB11",
+       "rotulo_curto": "ERB11"
+      },
+      {
+       "id": "electrolux-erb20",
+       "rotulo": "Electrolux ERB20",
+       "rotulo_curto": "ERB20"
+      },
+      {
+       "id": "electrolux-erb60",
+       "rotulo": "Electrolux ERB60",
+       "rotulo_curto": "ERB60"
+      },
+      {
+       "id": "electrolux-erb61",
+       "rotulo": "Electrolux ERB61",
+       "rotulo_curto": "ERB61"
+      },
+      {
+       "id": "electrolux-erb62",
+       "rotulo": "Electrolux ERB62",
+       "rotulo_curto": "ERB62"
+      },
+      {
+       "id": "electrolux-erb44",
+       "rotulo": "Electrolux ERB44",
+       "rotulo_curto": "ERB44"
+      },
+      {
+       "id": "electrolux-erb30",
+       "rotulo": "Electrolux ERB30",
+       "rotulo_curto": "ERB30"
+      },
+      {
+       "id": "electrolux-erb80",
+       "rotulo": "Electrolux ERB80",
+       "rotulo_curto": "ERB80"
+      }
+     ],
+     "modelos_so_por_kit": [
+      {
+       "id": "electrolux-erb10",
+       "rotulo": "Electrolux ERB10",
+       "rotulo_curto": "ERB10"
+      },
+      {
+       "id": "electrolux-erb11",
+       "rotulo": "Electrolux ERB11",
+       "rotulo_curto": "ERB11"
+      },
+      {
+       "id": "electrolux-erb20",
+       "rotulo": "Electrolux ERB20",
+       "rotulo_curto": "ERB20"
+      },
+      {
+       "id": "electrolux-erb44",
+       "rotulo": "Electrolux ERB44",
+       "rotulo_curto": "ERB44"
+      },
+      {
+       "id": "electrolux-erb30",
+       "rotulo": "Electrolux ERB30",
+       "rotulo_curto": "ERB30"
+      }
+     ],
+     "modelos_publicaveis_da_marca": 9,
+     "modelos_sem_a_peca": [],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Electrolux (loja oficial)",
+     "gramatica_do_publicador": "a Electrolux (loja oficial)",
+     "itens": [
+      {
+       "peca": "electrolux-kpcel01",
+       "marca": "electrolux",
+       "codigo": "KPCEL01",
+       "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb10",
+         "rotulo": "Electrolux ERB10",
+         "rotulo_curto": "ERB10"
+        },
+        {
+         "id": "electrolux-erb11",
+         "rotulo": "Electrolux ERB11",
+         "rotulo_curto": "ERB11"
+        },
+        {
+         "id": "electrolux-erb20",
+         "rotulo": "Electrolux ERB20",
+         "rotulo_curto": "ERB20"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb10",
+         "rotulo": "Electrolux ERB10",
+         "rotulo_curto": "ERB10"
+        },
+        {
+         "id": "electrolux-erb11",
+         "rotulo": "Electrolux ERB11",
+         "rotulo_curto": "ERB11"
+        },
+        {
+         "id": "electrolux-erb20",
+         "rotulo": "Electrolux ERB20",
+         "rotulo_curto": "ERB20"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": {
+        "valor": 6,
+        "unidade": "meses"
+       },
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-7rd6t-lub11r827zt54b",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb10, Erb11 e Erb20 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/gQ7qXmH0Z",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb60",
+         "rotulo": "Electrolux ERB60",
+         "rotulo_curto": "ERB60"
+        },
+        {
+         "id": "electrolux-erb61",
+         "rotulo": "Electrolux ERB61",
+         "rotulo_curto": "ERB61"
+        },
+        {
+         "id": "electrolux-erb62",
+         "rotulo": "Electrolux ERB62",
+         "rotulo_curto": "ERB62"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/286991/Cybertron_Kit_Performance_FrontView_ERB60-61-62_Electrolux-1000x1000.jpg?v=638995955285100000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: kit Electrolux"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb44",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb44",
+         "rotulo": "Electrolux ERB44",
+         "rotulo_curto": "ERB44"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb44",
+         "rotulo": "Electrolux ERB44",
+         "rotulo_curto": "ERB44"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/287006/Cybertron_Kit_Performance_FrontView_ERB44_Electrolux-1000x1000.jpg?v=638996098971830000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: kit Electrolux"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb30",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb30",
+         "rotulo": "Electrolux ERB30",
+         "rotulo_curto": "ERB30"
+        }
+       ],
+       "modelos_so_por_kit": [
+        {
+         "id": "electrolux-erb30",
+         "rotulo": "Electrolux ERB30",
+         "rotulo_curto": "ERB30"
+        }
+       ],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-7rdyf-m1efq6hxdbpz33",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance Filtros + Escovas P/ Aspirador Robô Electrolux Erb30 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/1VzEq5R1rp",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-kit-performance-erb80",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+       "entrega": "kit",
+       "dentro_de_kit": true,
+       "modelos": [
+        {
+         "id": "electrolux-erb80",
+         "rotulo": "Electrolux ERB80",
+         "rotulo_curto": "ERB80"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-8262t-mkjtqstanrb7e2",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Kit Performance P/ Aspirador Robô Electrolux Erb80 Original"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/LnHS2buo3",
+        "url_busca": "https://s.shopee.com.br/20vV7gG52P",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20kit%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+       "marca": "electrolux",
+       "codigo": null,
+       "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "electrolux-erb60",
+         "rotulo": "Electrolux ERB60",
+         "rotulo_curto": "ERB60"
+        },
+        {
+         "id": "electrolux-erb61",
+         "rotulo": "Electrolux ERB61",
+         "rotulo_curto": "ERB61"
+        },
+        {
+         "id": "electrolux-erb62",
+         "rotulo": "Electrolux ERB62",
+         "rotulo_curto": "ERB62"
+        },
+        {
+         "id": "electrolux-erb80",
+         "rotulo": "Electrolux ERB80",
+         "rotulo_curto": "ERB80"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Electrolux (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+       "verificado_em": "2026-09-12",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000",
+        "largura": 1000,
+        "altura": 1000,
+        "alt": "Foto do fabricante: mop Electrolux"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/5LBx5ocrcV",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 6 itens Electrolux que entregam mop: 1 mop avulso e 5 kits que declaram mop na composicao.",
+      "serve": "Eles servem em todos os 9 modelos Electrolux que a gente acompanha.",
+      "residuo": "",
+      "kit": "Em 5 desses modelos o mop so vem dentro do kit: a Electrolux (loja oficial) nao vende o mop avulso para eles.",
+      "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "9 de 9 modelos Electrolux do banco tem mop declarado pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-mops-xiaomi",
+     "caminho": "pecas/mops/xiaomi",
+     "marca": "xiaomi",
+     "marca_rotulo": "Xiaomi",
+     "tipo": "mop",
+     "itens_no_banco": 6,
+     "itens_avulsos": 6,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 8,
+     "modelos": [
+      {
+       "id": "xiaomi-e10",
+       "rotulo": "Xiaomi E10",
+       "rotulo_curto": "E10"
+      },
+      {
+       "id": "xiaomi-e12",
+       "rotulo": "Xiaomi E12",
+       "rotulo_curto": "E12"
+      },
+      {
+       "id": "xiaomi-e10c",
+       "rotulo": "Xiaomi E10C",
+       "rotulo_curto": "E10C"
+      },
+      {
+       "id": "xiaomi-s20",
+       "rotulo": "Xiaomi S20",
+       "rotulo_curto": "S20"
+      },
+      {
+       "id": "xiaomi-s40c",
+       "rotulo": "Xiaomi S40C",
+       "rotulo_curto": "S40C"
+      },
+      {
+       "id": "xiaomi-s10",
+       "rotulo": "Xiaomi S10",
+       "rotulo_curto": "S10"
+      },
+      {
+       "id": "xiaomi-mop-2",
+       "rotulo": "Xiaomi Mop 2",
+       "rotulo_curto": "Mop 2"
+      },
+      {
+       "id": "xiaomi-mop-2-lite",
+       "rotulo": "Xiaomi Mop 2 Lite",
+       "rotulo_curto": "Mop 2 Lite"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 13,
+     "modelos_sem_a_peca": [
+      {
+       "id": "xiaomi-s40",
+       "rotulo": "Xiaomi S40",
+       "rotulo_curto": "S40"
+      },
+      {
+       "id": "xiaomi-h40",
+       "rotulo": "Xiaomi H40",
+       "rotulo_curto": "H40"
+      },
+      {
+       "id": "xiaomi-s12",
+       "rotulo": "Xiaomi S12",
+       "rotulo_curto": "S12"
+      },
+      {
+       "id": "xiaomi-s40-pro",
+       "rotulo": "Xiaomi S40 Pro",
+       "rotulo_curto": "S40 Pro"
+      },
+      {
+       "id": "xiaomi-x20",
+       "rotulo": "Xiaomi X20",
+       "rotulo_curto": "X20"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Xiaomi",
+     "gramatica_do_publicador": "a Xiaomi",
+     "itens": [
+      {
+       "peca": "xiaomi-b112-tb",
+       "marca": "xiaomi",
+       "codigo": "B112-TB",
+       "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-e10",
+         "rotulo": "Xiaomi E10",
+         "rotulo_curto": "E10"
+        },
+        {
+         "id": "xiaomi-e12",
+         "rotulo": "Xiaomi E12",
+         "rotulo_curto": "E12"
+        },
+        {
+         "id": "xiaomi-e10c",
+         "rotulo": "Xiaomi E10C",
+         "rotulo_curto": "E10C"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
+       "verificado_em": "2026-09-13",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-7qvcr-ljfs2pzs1ah57f",
+        "largura": 800,
+        "altura": 800,
+        "alt": "Pano Para Robô Xiaomi Vacuum Mop E10 B112 2uns"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/AAHDA7Zg6p",
+        "url_busca": "https://s.shopee.com.br/2LYS7d8wJo",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-d106-tb",
+       "marca": "xiaomi",
+       "codigo": "D106-TB",
+       "nome_na_fonte": "Xiaomi Robot Vacuum S20 Mop Pad",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-s20",
+         "rotulo": "Xiaomi S20",
+         "rotulo_curto": "S20"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+       "verificado_em": "2026-09-13",
+       "vida_util": {
+        "valor": "3",
+        "unidade": "meses"
+       },
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/8fSVfGklDW",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-e101-tb",
+       "marca": "xiaomi",
+       "codigo": "E101-TB",
+       "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-s40c",
+         "rotulo": "Xiaomi S40C",
+         "rotulo_curto": "S40C"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/specs/",
+       "verificado_em": "2026-09-13",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-820lu-mml3jyadetxj2c",
+        "largura": 1024,
+        "altura": 1024,
+        "alt": "Pano Mop Para Robô Aspirador Xiaomi Robot Vacuum S40C E101 Microfibra"
+       },
+       "afiliado": {
+        "url": "https://s.shopee.com.br/3g3jQC2HWa",
+        "url_busca": "https://s.shopee.com.br/3LQzJT9bKo",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": true
+      },
+      {
+       "peca": "xiaomi-mop-s10",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "Xiaomi Robot Vacuum S10 Mop Pad",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-s10",
+         "rotulo": "Xiaomi S10",
+         "rotulo_curto": "S10"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Singapore",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+       "verificado_em": "2026-09-14",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/2qUiiYFu9G",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-mop-mop-2",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "mop pad",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-mop-2",
+         "rotulo": "Xiaomi Mop 2",
+         "rotulo_curto": "Mop 2"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global (suporte)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/support/faq/details/KA-11406/",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/2BF1vKMhlW",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "xiaomi-mop-mop-2-lite",
+       "marca": "xiaomi",
+       "codigo": null,
+       "nome_na_fonte": "mop",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "xiaomi-mop-2-lite",
+         "rotulo": "Xiaomi Mop 2 Lite",
+         "rotulo_curto": "Mop 2 Lite"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Xiaomi Global (suporte)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.mi.com/global/support/faq/details/KA-11405/",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/9V1cenzFvm",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=pano%20mop%20Xiaomi%20robo%20aspirador",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 6 mops Xiaomi no banco.",
+      "serve": "Eles servem em 8 dos 13 modelos Xiaomi que a gente acompanha.",
+      "residuo": "Nos outros 5 modelos nao localizamos declaracao do fabricante de mop; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "8 de 13 modelos Xiaomi do banco tem mop declarado pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-mops-roborock",
+     "caminho": "pecas/mops/roborock",
+     "marca": "roborock",
+     "marca_rotulo": "Roborock",
+     "tipo": "mop",
+     "itens_no_banco": 5,
+     "itens_avulsos": 5,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 6,
+     "modelos": [
+      {
+       "id": "roborock-q8-max",
+       "rotulo": "Roborock Q8 Max",
+       "rotulo_curto": "Q8 Max"
+      },
+      {
+       "id": "roborock-qrevo-master",
+       "rotulo": "Roborock Qrevo Master",
+       "rotulo_curto": "Qrevo Master"
+      },
+      {
+       "id": "roborock-qrevo-curv",
+       "rotulo": "Roborock Qrevo Curv Series",
+       "rotulo_curto": "Qrevo Curv Series"
+      },
+      {
+       "id": "roborock-saros-z70",
+       "rotulo": "Roborock Saros Z70",
+       "rotulo_curto": "Saros Z70"
+      },
+      {
+       "id": "roborock-saros-10r",
+       "rotulo": "Roborock Saros 10R",
+       "rotulo_curto": "Saros 10R"
+      },
+      {
+       "id": "roborock-s8-maxv-ultra",
+       "rotulo": "Roborock S8 MaxV Ultra",
+       "rotulo_curto": "S8 MaxV Ultra"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 6,
+     "modelos_sem_a_peca": [],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Roborock US (loja oficial)",
+     "gramatica_do_publicador": "a Roborock US (loja oficial)",
+     "itens": [
+      {
+       "peca": "roborock-mop-q8-max",
+       "marca": "roborock",
+       "codigo": null,
+       "nome_na_fonte": "Mop Cloth",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "roborock-q8-max",
+         "rotulo": "Roborock Q8 Max",
+         "rotulo_curto": "Q8 Max"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Roborock US (loja oficial)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://us.roborock.com/products/mop-cloth-2pcs-for-roborock-q7-series-s6-series-s5-series-e-series",
+       "verificado_em": "2026-09-17",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/062ec9c82657b2be82b68364b1fc1900_3d93e94d-6075-44a9-8ce6-fc074f589202.jpg?v=1725035616",
+        "largura": 2000,
+        "altura": 2000,
+        "alt": "Foto do fabricante: mop Roborock"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/4fwMtvLuz4",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "roborock-mop-qrevo-master",
+       "marca": "roborock",
+       "codigo": null,
+       "nome_na_fonte": "Mop Cloth",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "roborock-qrevo-master",
+         "rotulo": "Roborock Qrevo Master",
+         "rotulo_curto": "Qrevo Master"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Roborock US (loja oficial)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-q-revo",
+       "verificado_em": "2026-09-18",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/4_q_-revo_2.jpg?v=1757929885",
+        "largura": 2000,
+        "altura": 2000,
+        "alt": "Foto do fabricante: mop Roborock"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/qjeKsaeIc",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "roborock-mop-qrevo-curv",
+       "marca": "roborock",
+       "codigo": null,
+       "nome_na_fonte": "Mop Cloth",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "roborock-qrevo-curv",
+         "rotulo": "Roborock Qrevo Curv Series",
+         "rotulo_curto": "Qrevo Curv Series"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Roborock US (loja oficial)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-qrevo-curv-and-qrevo-edge",
+       "verificado_em": "2026-09-18",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/1_3183c8ba-4be6-4a98-988c-ea1f947939e3.jpg?v=1735031940",
+        "largura": 1600,
+        "altura": 1600,
+        "alt": "Foto do fabricante: mop Roborock"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/8KpfGfCQaC",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "roborock-mop-saros-10r-z70",
+       "marca": "roborock",
+       "codigo": null,
+       "nome_na_fonte": "Mop Cloth",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "roborock-saros-z70",
+         "rotulo": "Roborock Saros Z70",
+         "rotulo_curto": "Saros Z70"
+        },
+        {
+         "id": "roborock-saros-10r",
+         "rotulo": "Roborock Saros 10R",
+         "rotulo_curto": "Saros 10R"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Roborock US (loja oficial)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://us.roborock.com/products/roborock-mop-cloth-4pcs-for-saros-10r-and-saros-z70",
+       "verificado_em": "2026-09-18",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_Saros-10R-1.jpg?v=1757937015",
+        "largura": 2000,
+        "altura": 2000,
+        "alt": "Foto do fabricante: mop Roborock"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/60RkUNLF3G",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "roborock-mop-s8-maxv-ultra",
+       "marca": "roborock",
+       "codigo": null,
+       "nome_na_fonte": "Edgewise Mop Cloth",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "roborock-s8-maxv-ultra",
+         "rotulo": "Roborock S8 MaxV Ultra",
+         "rotulo_curto": "S8 MaxV Ultra"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Roborock US (loja oficial)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://us.roborock.com/products/roborock-edgewise-mop-cloth-2pcs-for-s8-maxv-ultra-s8-max-ultra",
+       "verificado_em": "2026-09-18",
+       "vida_util": null,
+       "imagem": {
+        "url": "https://cdn.shopify.com/s/files/1/0082/3666/2902/files/Roborock_2_S8_MaxV_Ultra_S8_Max_Ultra.jpg?v=1757930347",
+        "largura": 2000,
+        "altura": 2000,
+        "alt": "Foto do fabricante: mop Roborock"
+       },
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/AUu9qe4FSu",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Roborock%20mop",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 5 mops Roborock no banco.",
+      "serve": "Eles servem em todos os 6 modelos Roborock que a gente acompanha.",
+      "residuo": "",
+      "kit": "",
+      "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "6 de 6 modelos Roborock do banco tem mop declarado pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-mops-multi",
+     "caminho": "pecas/mops/multi",
+     "marca": "multi",
+     "marca_rotulo": "Multi (ex-Multilaser)",
+     "tipo": "mop",
+     "itens_no_banco": 1,
+     "itens_avulsos": 1,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 1,
+     "modelos": [
+      {
+       "id": "multi-ob010",
+       "rotulo": "Multi (ex-Multilaser) OB010",
+       "rotulo_curto": "OB010"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 6,
+     "modelos_sem_a_peca": [
+      {
+       "id": "multi-ho041",
+       "rotulo": "Multi (ex-Multilaser) HO041",
+       "rotulo_curto": "HO041"
+      },
+      {
+       "id": "multi-ho400",
+       "rotulo": "Multi (ex-Multilaser) HO400",
+       "rotulo_curto": "HO400"
+      },
+      {
+       "id": "multi-ho407",
+       "rotulo": "Multi (ex-Multilaser) HO407",
+       "rotulo_curto": "HO407"
+      },
+      {
+       "id": "multi-ho243",
+       "rotulo": "Multi (ex-Multilaser) HO243",
+       "rotulo_curto": "HO243"
+      },
+      {
+       "id": "multi-ho411",
+       "rotulo": "Multi (ex-Multilaser) HO411",
+       "rotulo_curto": "HO411"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Multi (multilaser.com.br)",
+     "gramatica_do_publicador": "a Multi (multilaser.com.br)",
+     "itens": [
+      {
+       "peca": "multi-pr10342",
+       "marca": "multi",
+       "codigo": "PR10342",
+       "nome_na_fonte": "Pano para Aspirador Robô p/ OB010",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "multi-ob010",
+         "rotulo": "Multi (ex-Multilaser) OB010",
+         "rotulo_curto": "OB010"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Multi (multilaser.com.br)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.multilaser.com.br/pano-para-aspirador-robo-ob010/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/LnH8cMQQ3",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20mop%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "E 1 mop Multi (ex-Multilaser) no banco.",
+      "serve": "Ele serve em 1 dos 6 modelos Multi (ex-Multilaser) que a gente acompanha.",
+      "residuo": "Nos outros 5 modelos nao localizamos declaracao do fabricante de mop; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "1 de 6 modelos Multi (ex-Multilaser) do banco tem mop declarado pelo fabricante."
+     }
+    },
+    {
+     "slug": "pecas-mops-positivo",
+     "caminho": "pecas/mops/positivo",
+     "marca": "positivo",
+     "marca_rotulo": "Positivo Casa Inteligente",
+     "tipo": "mop",
+     "itens_no_banco": 1,
+     "itens_avulsos": 1,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 2,
+     "modelos": [
+      {
+       "id": "positivo-pra800",
+       "rotulo": "Positivo Casa Inteligente PRA800",
+       "rotulo_curto": "PRA800"
+      },
+      {
+       "id": "positivo-pra2000",
+       "rotulo": "Positivo Casa Inteligente PRA2000",
+       "rotulo_curto": "PRA2000"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 3,
+     "modelos_sem_a_peca": [
+      {
+       "id": "positivo-pra500",
+       "rotulo": "Positivo Casa Inteligente PRA500",
+       "rotulo_curto": "PRA500"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Positivo Casa Inteligente (loja oficial)",
+     "gramatica_do_publicador": "a Positivo Casa Inteligente (loja oficial)",
+     "itens": [
+      {
+       "peca": "positivo-11206540",
+       "marca": "positivo",
+       "codigo": "11206540",
+       "nome_na_fonte": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "positivo-pra800",
+         "rotulo": "Positivo Casa Inteligente PRA800",
+         "rotulo_curto": "PRA800"
+        },
+        {
+         "id": "positivo-pra2000",
+         "rotulo": "Positivo Casa Inteligente PRA2000",
+         "rotulo_curto": "PRA2000"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Positivo Casa Inteligente (loja oficial)",
+       "origem": "varejo-oficial-da-marca",
+       "nivel_da_fonte": 4,
+       "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/4Vcq6HORAN",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Positivo%20mop%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "E 1 mop Positivo Casa Inteligente no banco.",
+      "serve": "Ele serve em 2 dos 3 modelos Positivo Casa Inteligente que a gente acompanha.",
+      "residuo": "No outro modelo nao localizamos declaracao do fabricante de mop; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "2 de 3 modelos Positivo Casa Inteligente do banco tem mop declarado pelo fabricante."
+     }
+    }
+   ],
+   "publicada": false,
+   "frases": {
+    "quantos": "Sao 19 itens de reposicao que entregam mop em 5 marcas: 14 mops avulsos e 5 kits que declaram mop na composicao.",
+    "serve": "Juntos, eles servem em 26 modelos de robo.",
+    "marca_cruzada": "Nenhum deles serve em mais de uma marca: mop de robo aspirador nao e universal, e o encaixe e por modelo."
+   }
+  },
+  {
+   "slug": "pecas-baterias",
+   "caminho": "pecas/baterias",
+   "tipo": "bateria",
+   "rotulo": "Baterias",
+   "plural": "baterias",
+   "singular": "bateria",
+   "gramatica": {
+    "artigo": "a",
+    "avulso": "avulsa",
+    "avulsos": "avulsas",
+    "sujeito_plural": "Elas",
+    "sujeito_singular": "Ela",
+    "nenhum": "Nenhuma",
+    "deles": "delas",
+    "desses": "dessas",
+    "declarado": "declarada",
+    "juntos": "Juntas",
+    "eles": "elas",
+    "outros": "outras"
+   },
+   "itens_avulsos": 2,
+   "itens_em_kit": 0,
+   "itens_no_banco": 2,
+   "marcas_no_banco": 1,
+   "modelos_cobertos": 1,
+   "itens_que_atravessam_marca": 0,
+   "filhas": [
+    {
+     "slug": "pecas-baterias-multi",
+     "caminho": "pecas/baterias/multi",
+     "marca": "multi",
+     "marca_rotulo": "Multi (ex-Multilaser)",
+     "tipo": "bateria",
+     "itens_no_banco": 2,
+     "itens_avulsos": 2,
+     "itens_em_kit": 0,
+     "modelos_cobertos": 1,
+     "modelos": [
+      {
+       "id": "multi-ho041",
+       "rotulo": "Multi (ex-Multilaser) HO041",
+       "rotulo_curto": "HO041"
+      }
+     ],
+     "modelos_so_por_kit": [],
+     "modelos_publicaveis_da_marca": 6,
+     "modelos_sem_a_peca": [
+      {
+       "id": "multi-ho400",
+       "rotulo": "Multi (ex-Multilaser) HO400",
+       "rotulo_curto": "HO400"
+      },
+      {
+       "id": "multi-ho407",
+       "rotulo": "Multi (ex-Multilaser) HO407",
+       "rotulo_curto": "HO407"
+      },
+      {
+       "id": "multi-ob010",
+       "rotulo": "Multi (ex-Multilaser) OB010",
+       "rotulo_curto": "OB010"
+      },
+      {
+       "id": "multi-ho243",
+       "rotulo": "Multi (ex-Multilaser) HO243",
+       "rotulo_curto": "HO243"
+      },
+      {
+       "id": "multi-ho411",
+       "rotulo": "Multi (ex-Multilaser) HO411",
+       "rotulo_curto": "HO411"
+      }
+     ],
+     "itens_que_atravessam_marca": 0,
+     "publicador": "Multi (multilaser.com.br)",
+     "gramatica_do_publicador": "a Multi (multilaser.com.br)",
+     "itens": [
+      {
+       "peca": "multi-pr10127",
+       "marca": "multi",
+       "codigo": "PR10127",
+       "nome_na_fonte": "Bateria p/ Aspirador Robô Ho041 Versão A",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "multi-ho041",
+         "rotulo": "Multi (ex-Multilaser) HO041",
+         "rotulo_curto": "HO041"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Multi (multilaser.com.br)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.multilaser.com.br/bateria-p-aspirador-robo-ho041-versao-a-pr10127/p",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/2BEvJzFRhQ",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20bateria%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": false
+      },
+      {
+       "peca": "multi-pr8116",
+       "marca": "multi",
+       "codigo": "PR8116",
+       "nome_na_fonte": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi",
+       "entrega": "avulso",
+       "dentro_de_kit": false,
+       "modelos": [
+        {
+         "id": "multi-ho041",
+         "rotulo": "Multi (ex-Multilaser) HO041",
+         "rotulo_curto": "HO041"
+        }
+       ],
+       "modelos_so_por_kit": [],
+       "publicador": "Multi (multilaserempresas.com.br)",
+       "origem": "fabricante-via-busca",
+       "nivel_da_fonte": 3,
+       "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+       "verificado_em": "2026-09-09",
+       "vida_util": null,
+       "imagem": null,
+       "afiliado": {
+        "url": "",
+        "url_busca": "https://s.shopee.com.br/2BEvJzFRhQ",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20bateria%20robo%20aspirador",
+        "programa": "shopee",
+        "sub_id_1": "robometria",
+        "sub_id_2": "M-PECAS"
+       },
+       "divergencia": true
+      }
+     ],
+     "publicada": false,
+     "frases": {
+      "quantos": "Sao 2 baterias Multi (ex-Multilaser) no banco.",
+      "serve": "Elas servem em 1 dos 6 modelos Multi (ex-Multilaser) que a gente acompanha.",
+      "residuo": "Nos outros 5 modelos nao localizamos declaracao do fabricante de bateria; nao vamos supor.",
+      "kit": "",
+      "marca_cruzada": "Nenhuma dessas baterias serve em robo de outra marca, pelo que o fabricante declara.",
+      "cobertura": "1 de 6 modelos Multi (ex-Multilaser) do banco tem bateria declarada pelo fabricante."
+     }
+    }
+   ],
+   "publicada": false,
+   "frases": {
+    "quantos": "Sao 2 baterias de 1 marca no banco.",
+    "serve": "Juntas, elas servem em 1 modelo de robo.",
+    "marca_cruzada": "Nenhuma delas serve em mais de uma marca: bateria de robo aspirador nao e universal, e o encaixe e por modelo."
+   }
+  }
+ ]
+}

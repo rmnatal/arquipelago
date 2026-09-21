@@ -451,6 +451,11 @@ $cabecas = robometria_casca_cabecas();
 $publicadas = array_keys( robometria_casca_definicao_paginas() );
 foreach ( robometria_casca_ferramentas() as $f ) { $publicadas[] = $f['slug']; }
 foreach ( robometria_casca_artigos() as $a )     { $publicadas[] = $a['slug']; }
+/* E as paginas de malha (21/09/2026): elas sao publicadas por outro snippet,
+   porque precisam de pai, mas sao paginas desta ilha como as outras — e cabeca
+   e o que o Google le. Sem esta linha, as cinco entrariam como "cabeca
+   sobrando", que e a regua acusando de sobra o que ela nao sabe existir. */
+foreach ( array_keys( robometria_casca_malha() ) as $chave ) { $publicadas[] = $chave; }
 $publicadas = array_values( array_unique( $publicadas ) );
 
 $sem_cabeca = array_values( array_diff( $publicadas, array_keys( $cabecas ) ) );

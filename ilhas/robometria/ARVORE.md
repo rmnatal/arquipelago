@@ -14,7 +14,7 @@ Os nomes dos níveis são os do `VOZ.md`: quem chega aqui diz peça, sucção, m
 
 | slug | o que mora ali | existe hoje |
 |---|---|---|
-| `/pecas/` | a peça que serve: a ferramenta de compatibilidade e as categorias por tipo de peça | não |
+| `/pecas/` | a peça que serve: a ferramenta de compatibilidade e as categorias por tipo de peça | **sim, desde 21/09/2026** |
 | `/succao/` | quanta sucção e quanto tempo: a ferramenta de dimensionamento e os cruzamentos de piso, pelo e metragem | não |
 | `/modelos/` | a ficha de cada robô, por marca — o que o fabricante declarou dele | não |
 | `/guias/` | os textos que explicam o porquê do número | não |
@@ -23,7 +23,7 @@ Os nomes dos níveis são os do `VOZ.md`: quem chega aqui diz peça, sucção, m
 
 | nível 2 | mãe | filhas previstas |
 |---|---|---|
-| `/pecas/filtros/` | `/pecas/` | filtro por modelo e por marca |
+| `/pecas/filtros/` | `/pecas/` | filtro por modelo e por marca — **no ar desde 21/09/2026, com Xiaomi, WAP e Electrolux** |
 | `/pecas/escovas-laterais/` | `/pecas/` | escova lateral por modelo |
 | `/pecas/escovas-principais/` | `/pecas/` | escova rotativa central por modelo |
 | `/pecas/mops/` | `/pecas/` | pano e suporte por modelo |
@@ -80,6 +80,15 @@ Sem quarto nível.
 | `quantos-pa-o-robo-aspirador-precisa` | filha | `/ferramentas/` | `/succao/` | a outra ferramenta |
 | `filtro-universal-de-robo-aspirador` | filha | `/guias/` (não existe) | `/guias/pecas/` | o outro guia |
 | `quantos-m2-o-robo-aspirador-limpa-por-carga` | filha | `/guias/` (não existe) | `/guias/succao/` | o outro guia |
+| `pecas` | seção | — | — | — |
+| `pecas-filtros` | filha | `/pecas/` | `/pecas/` | as outras categorias de peça, quando nascerem |
+| `pecas-filtros-xiaomi` | filha | `/pecas/filtros/` | `/pecas/filtros/` | WAP e Electrolux |
+| `pecas-filtros-wap` | filha | `/pecas/filtros/` | `/pecas/filtros/` | Xiaomi e Electrolux |
+| `pecas-filtros-electrolux` | filha | `/pecas/filtros/` | `/pecas/filtros/` | Xiaomi e WAP |
+
+> **AS CINCO ÚLTIMAS LINHAS NASCERAM EM 21/09/2026, NA PRIMEIRA LEVA DE MALHA (bloco 5b).** São as primeiras páginas desta ilha com pai de verdade no WordPress (`post_parent`, 16.2) — as nove de cima moram todas na raiz. A chave de cada uma é o caminho sem barra (`pecas-filtros-xiaomi`), e é ela que vai no meta `_robometria_id`; o `post_name` é só o último degrau. Quem publica é `snippets/robometria-malha.php`, e a casca aprendeu a árvore delas por um registro filtrado (`robometria_casca_malha()`), não por um segundo mapa digitado.
+>
+> **A mãe das três filhas é `/pecas/filtros/`, que é uma CATEGORIA e não uma seção** — por isso a coluna "mãe de hoje" delas tem dois níveis, o que nenhuma linha acima tinha. `ferramentas/teste-arvore.php` aprendeu a ler caminho de dois níveis na mesma leva; antes ele só casava `/slug/`.
 
 ---
 
@@ -112,7 +121,13 @@ Sem quarto nível.
 
 Primeiro a mãe e as **3 primeiras filhas de maior intenção de compra**, depois as irmãs, depois a próxima categoria. Nunca uma filha de cada categoria espalhada.
 
-1. `/pecas/` + `/pecas/filtros/` com as 3 primeiras filhas — é o cluster de maior intenção de compra da ilha ("filtro para robô X" termina numa peça que se compra), e é onde o banco tem mais pares declarados.
+1. ~~`/pecas/` + `/pecas/filtros/` com as 3 primeiras filhas~~ — **CUMPRIDA E CONFERIDA NO AR EM 21/09/2026.** É o cluster de maior intenção de compra da ilha ("filtro para robô X" termina numa peça que se compra), e é onde o banco tem mais pares declarados.
+
+   > **A LEVA SAIU COM CINCO URLs e o RECONTAR desta seção foi feito antes de escrever qualquer página.** A tabela das três filhas abaixo era o estado de 21/09 de manhã e **mudou na recontagem**: contando também os KITS que declaram filtro na composição — que é o que o leitor de fato compra para trocar o filtro do ERB80 —, a categoria tem **16 itens em 5 marcas**, não 11, e a Electrolux tem **6** (1 avulso + 5 kits) e não "1 + 5". Os números que estão no ar saem de `dados/malha-pecas.json`, derivado do banco; os da tabela abaixo ficam como registro do que a leva de 21/09 de manhã mediu.
+   >
+   > **O que a leva mediu e este arquivo não sabia: a categoria de filtros não é a única que passa no portão hoje.** `/pecas/escovas-laterais/` (13 itens, 5 marcas) e `/pecas/mops/` (19 itens, 5 marcas) também têm três ou mais marcas com três ou mais itens. Elas não nasceram porque a ordem de levas manda **uma categoria por vez** e porque o teto da 21.4 são 10 URLs por leva — não porque falte dado. A próxima leva desta ilha é `/pecas/escovas-laterais/`, e ela custa uma entrada no registro do `snippets/robometria-malha.php` mais a classificação de SERP da 14.9 das consultas novas.
+   >
+   > **`/pecas/escovas-principais/` (4 marcas, só uma com 3 itens) e `/pecas/baterias/` (1 marca, 2 itens) seguem travadas por DADO**, e é o portão da 16.5 funcionando.
 
    > **A PRIMEIRA LEVA ESTEVE TRAVADA POR DADO, E NÃO POR PORTÃO, ATÉ 21/09/2026 — e quem mediu isso foi a execução que a destravou.** O parágrafo acima foi escrito em 11/09 e diz "as 3 primeiras filhas" sem nunca ter contado se o banco as sustenta. Contado em 21/09, antes da leva do dia: a 16.5 exige **3 filhas com dado real** e o portão de dado da seção 13 exige **3 itens de banco reais por página**, e o banco tinha filtro de **três** marcas — Xiaomi (4 filtros), Electrolux (1 filtro avulso mais 5 Kits Performance, e os cinco declaram `filtro` na composição) e Multi (2). **Só duas passavam**, e categoria com duas filhas não nasce. Nenhum portão dizia isso: a 16.5 é regra de documento, e nenhuma régua desta ilha conta filha de categoria que ainda não existe.
    >

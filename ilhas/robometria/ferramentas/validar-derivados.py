@@ -191,6 +191,20 @@ def reconstruir():
                   sem_as_datas_da_varredura(ler_json('dados/casca-fatos.json')),
                   diferencas, 'dados/cobertura-r1.json'))
 
+    # A MALHA DE PECAS (21/09/2026). Ela depende do casca-fatos.json DO DISCO —
+    # os tres numeros da frase de /pecas/ sao lidos de la, em vez de recontados,
+    # justamente para nao existir uma segunda copia de `pares_declarados`. A
+    # dependencia e declarada pelo mesmo motivo da linha de cima: reconstruir a
+    # partir de um arquivo podre reproduz a podridao e o resultado bate.
+    malha = carregar_modulo('gerar-malha-pecas.py', 'gerar_malha_pecas')
+    fatos_malha = malha.montar()
+    itens.append(('dados/malha-pecas.json', fatos_malha,
+                  ler_json('dados/malha-pecas.json'), diferencas,
+                  'dados/casca-fatos.json'))
+    itens.append(('dados/malha-pecas-referencia.json', malha.referencia(fatos_malha),
+                  ler_json('dados/malha-pecas-referencia.json'), diferencas,
+                  'dados/casca-fatos.json'))
+
     return itens
 
 

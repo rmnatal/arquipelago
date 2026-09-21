@@ -101,6 +101,31 @@ PAGINAS = {
 }
 
 
+MALHA = 'snippets/robometria-malha.php'
+FATOS_MALHA = 'dados/malha-pecas.json'
+FONTE_MALHA = (
+    'REGISTRO.md, entrada "2026-09-21 — Bloco 5b: a primeira leva de malha, '
+    '/pecas/ e /pecas/filtros/ com as tres filhas" — snippet '
+    'robometria-malha.php v1.0.0, revisao do manifest conferida no /status')
+
+# AS CINCO PAGINAS DA MALHA. O conjunto de arquivos de cada uma e o mesmo, e
+# isso e correto e nao preguica: as cinco sao montadas pelo mesmo snippet, com
+# os mesmos fatos, dentro da mesma casca. Mudar qualquer um dos tres muda o HTML
+# servido das cinco.
+for _slug, _titulo in (
+        ('pecas', 'Pecas de reposicao de robo aspirador'),
+        ('pecas-filtros', 'Filtro de robo aspirador: qual serve no seu'),
+        ('pecas-filtros-xiaomi', 'Filtro de robo aspirador Xiaomi'),
+        ('pecas-filtros-wap', 'Filtro de robo aspirador WAP'),
+        ('pecas-filtros-electrolux', 'Filtro de robo aspirador Electrolux')):
+    PAGINAS[_slug] = {
+        'titulo': _titulo,
+        'publicada_em': '2026-09-21',
+        'fonte_da_publicacao': FONTE_MALHA,
+        'arquivos': [MALHA, FATOS_MALHA, CASCA],
+    }
+
+
 def _git(args):
     saida = subprocess.run(['git'] + args, capture_output=True, text=True,
                            cwd=RAIZ_REPO)

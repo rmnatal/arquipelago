@@ -92,10 +92,18 @@ function get_post_field($campo,$id=0){ return isset($GLOBALS['__slug_atual']) ? 
 /* Paginas que "existem" no site de teste: mapa slug => true em __paginas.
    Vazio por padrao, entao quem nao mexe nele ve a casca servir <span> em vez de
    <a> — que e o comportamento certo quando a pagina nao existe. */
+/* O VALOR DO MAPA __paginas E O CAMINHO PUBLICADO, nao so um "true".
+   Ate 21/09/2026 ele era slug=>true e get_permalink() montava /slug/ — o que
+   estava certo enquanto toda pagina desta ilha morava na raiz. A malha de pecas
+   tem tres niveis (/pecas/filtros/xiaomi/), e um mapa que so guarda "existe"
+   faria a bancada medir uma trilha com o endereco errado e dar verde. */
 function get_posts($a=array()){
 	$mapa = isset($GLOBALS['__paginas']) ? $GLOBALS['__paginas'] : array();
 	$chave = isset($a['meta_value']) ? $a['meta_value'] : '';
-	if ('' !== $chave && isset($mapa[$chave])) { return array((object) array('ID'=>1,'post_name'=>$chave)); }
+	if ('' !== $chave && isset($mapa[$chave])) {
+		$caminho = is_string($mapa[$chave]) ? $mapa[$chave] : $chave;
+		return array((object) array('ID'=>1,'post_name'=>$caminho));
+	}
 	return array();
 }
 function get_permalink($p=null){
@@ -183,6 +191,13 @@ function robometria_teste_slug_do_alvo($alvo) {
 		$constante = 'ROBOMETRIA_' . $codigo . '_SLUG';
 		if (defined($constante)) { $mapa['robometria_' . strtolower($codigo)] = constant($constante); }
 	}
+	/* A malha: a CHAVE da pagina e o slug canonico (_robometria_id), e a tag sai
+	   dela por regra — nada digitado duas vezes. */
+	if (function_exists('robometria_casca_malha') && function_exists('robometria_malha_tag_da_chave')) {
+		foreach (array_keys(robometria_casca_malha()) as $chave) {
+			$mapa[robometria_malha_tag_da_chave($chave)] = $chave;
+		}
+	}
 	return isset($mapa[$alvo]) ? $mapa[$alvo] : '';
 }
 
@@ -199,13 +214,40 @@ function robometria_teste_paginas_do_site() {
 	$mapa = array();
 	foreach (array_keys(robometria_casca_definicao_paginas()) as $slug) {
 		if ('inicio' === $slug) { continue; }
-		$mapa[$slug] = true;
+		$mapa[$slug] = $slug;
 	}
 	foreach (array('R1','R2','A1','A2') as $codigo) {
 		$constante = 'ROBOMETRIA_' . $codigo . '_SLUG';
-		if (defined($constante)) { $mapa[constant($constante)] = true; }
+		if (defined($constante)) { $mapa[constant($constante)] = constant($constante); }
+	}
+	/* AS PAGINAS DE MALHA, pelo CAMINHO delas — derivadas do registro, entao
+	   categoria nova entra na bancada no dia em que for publicada. */
+	if (function_exists('robometria_casca_malha')) {
+		foreach (robometria_casca_malha() as $chave => $def) {
+			$mapa[$chave] = isset($def['caminho']) ? $def['caminho'] : $chave;
+		}
 	}
 	return $mapa;
+}
+
+/** TODO alvo de shortcode do site, derivado — nunca uma lista digitada.
+ *  As bancadas montavam uma lista de nove tags a mao; pagina nova nascia fora
+ *  de toda regua ate alguem lembrar de acrescenta-la, que e a mesma cicatriz do
+ *  bancada.py (regua que existe e nao roda nao falha). */
+function robometria_teste_alvos_do_site() {
+	$alvos = array('robometria_home', 'robometria_ferramentas', 'robometria_metodologia',
+		'robometria_sobre', 'robometria_afiliados');
+	foreach (array('r1','r2','a1','a2') as $codigo) {
+		if (defined('ROBOMETRIA_' . strtoupper($codigo) . '_SLUG')) {
+			$alvos[] = 'robometria_' . $codigo;
+		}
+	}
+	if (function_exists('robometria_casca_malha') && function_exists('robometria_malha_tag_da_chave')) {
+		foreach (array_keys(robometria_casca_malha()) as $chave) {
+			$alvos[] = robometria_malha_tag_da_chave($chave);
+		}
+	}
+	return $alvos;
 }
 
 /**
@@ -232,6 +274,10 @@ function robometria_teste_titulo_do_alvo($alvo) {
 			return constant($c_titulo);
 		}
 	}
+	/* A malha: o titulo sai do registro, que e a mesma fonte que o Sync grava no
+	   post_title. Nada digitado duas vezes. */
+	$malha = function_exists('robometria_casca_malha') ? robometria_casca_malha() : array();
+	if (isset($malha[$slug]['titulo'])) { return $malha[$slug]['titulo']; }
 	return '';
 }
 
@@ -296,9 +342,7 @@ function robometria_teste_titulo_do_documento() {
 
 /** O post_title da pagina de um slug — a mesma via de robometria_teste_titulo_do_alvo. */
 function robometria_teste_titulo_do_alvo_por_slug($slug) {
-	foreach (array('robometria_home','robometria_ferramentas','robometria_metodologia',
-		'robometria_sobre','robometria_afiliados','robometria_r1','robometria_r2',
-		'robometria_a1','robometria_a2') as $alvo) {
+	foreach (robometria_teste_alvos_do_site() as $alvo) {
 		if (robometria_teste_slug_do_alvo($alvo) === $slug) { return robometria_teste_titulo_do_alvo($alvo); }
 	}
 	return '';

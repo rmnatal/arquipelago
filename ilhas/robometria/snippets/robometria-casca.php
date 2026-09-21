@@ -7,6 +7,16 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.12.0 (21/09/2026) — A ÁRVORE PASSA A TER TRÊS NÍVEIS DE VERDADE.
+ * A malha de peças (bloco 5b) nasceu com páginas-mãe no WordPress, e a casca
+ * precisava saber quem é mãe de quem para a trilha, o BreadcrumbList, as irmãs
+ * e o nome de cada página saírem certos. Nasce `robometria_casca_malha()`: um
+ * REGISTRO filtrado, preenchido pelo snippet que publica as páginas, e
+ * consultado por `lugar()`, `irmas()`, `titulo_da_pagina()` e
+ * `nomes_das_paginas()`. A casca não ganhou um segundo mapa da árvore — ela
+ * ganhou uma porta para o mapa de quem cria as páginas, que é o mesmo
+ * princípio do catálogo de ferramentas e do de artigos. A home passou a linkar
+ * a seção de peças, porque nível 1 sem link da home é página órfã pelo 16.4(f).
  * Versão: 1.11.0 (18/09/2026) — UMA FUNÇÃO SÓ DECIDE O DEGRAU DA PORTA DE
  * COMPRA. Nasce `robometria_casca_degrau_da_porta()`, que devolve 'ficha',
  * 'busca', 'busca_crua' ou 'sem_saida', e a R1 e a R2 pararam de contar
@@ -234,7 +244,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.11.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.12.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -1909,11 +1919,15 @@ function robometria_casca_atalhos_html() {
  *
  * CINCO DECISÕES, e nenhuma é enfeite:
  *
- *   1. NADA AQUI CRIA URL. As dezoito páginas de nível 1 e 2 da árvore esperam o
- *      sitemap ser reenviado no Search Console (metade humana do despacho da
- *      Sentinela de 10/09): sem medição não há rampa, e sem rampa página nova é
- *      página no escuro. Trilha e cluster cabem antes porque só usam endereço
- *      que já existe.
+ *   1. NADA AQUI CRIA URL, E ISSO NÃO MUDOU — mudou o motivo, e o velho estava
+ *      escrito aqui cinco dias depois de morrer. Esta decisão dizia que as
+ *      dezoito páginas de nível 1 e 2 "esperam o sitemap ser reenviado no
+ *      Search Console"; o sitemap está aceito e processado desde 16/09/2026 e
+ *      a leitura semanal do mesmo dia mediu 6 indexadas de 9. Quem cria página
+ *      de malha é o snippet que a publica (`robometria-malha.php`, 21/09/2026),
+ *      porque nível 1 e nível 2 precisam de `post_parent` e esta função cria
+ *      página de slug plano. A casca continua sem criar URL de árvore: ela
+ *      empresta a trilha e o cluster, que só usam endereço que já existe.
  *   2. A MÃE DE TRANSIÇÃO DAS DUAS FERRAMENTAS É `/ferramentas/`, QUE EXISTE.
  *      O destino delas é `/pecas/` e `/succao/`, e a alternativa seria publicar
  *      hoje um degrau em texto apontando para o vazio. Mãe com endereço de
@@ -1935,6 +1949,26 @@ function robometria_casca_atalhos_html() {
  *      e o portão cobra a ausência dela, para ninguém fechar isso com um
  *      endereço inventado.
  * ------------------------------------------------------------------------- */
+
+/**
+ * O REGISTRO DAS PÁGINAS DE MALHA — vazio aqui, preenchido por quem as publica.
+ *
+ * Mesma decisão do catálogo de artigos: a casca nunca precisa saber quantas
+ * páginas de árvore a ilha tem, e quem as cria no WordPress é quem diz onde
+ * elas moram. Cada entrada traz `papel` ('secao' | 'categoria' | 'filha'),
+ * `mae` (a CHAVE da mãe, '' para nível 1) e `titulo`.
+ *
+ * Sem isto a casca teria um segundo mapa da árvore digitado ao lado do
+ * primeiro — que é, nesta ilha, a família de defeito mais cara que existe: o
+ * nome da página em 11/09, a lista de categorias em 17/09, as três contagens da
+ * R1 em 14/09. Lista digitada ao lado de lista contada diverge calada.
+ */
+if ( ! function_exists( 'robometria_casca_malha' ) ) {
+function robometria_casca_malha() {
+	$mapa = apply_filters( 'robometria_malha', array() );
+	return is_array( $mapa ) ? $mapa : array();
+}
+}
 
 /* NÍVEL 1. O slug é o do ARVORE.md; o rótulo é o nome que a pessoa usa. */
 if ( ! function_exists( 'robometria_casca_secoes' ) ) {
@@ -1992,7 +2026,14 @@ function robometria_casca_paginas_de_raiz() {
 if ( ! function_exists( 'robometria_casca_titulo_da_pagina' ) ) {
 function robometria_casca_titulo_da_pagina( $slug ) {
 	$def = robometria_casca_definicao_paginas();
-	return isset( $def[ $slug ]['titulo'] ) ? $def[ $slug ]['titulo'] : '';
+	if ( isset( $def[ $slug ]['titulo'] ) ) {
+		return $def[ $slug ]['titulo'];
+	}
+	/* As páginas de malha são da casca tanto quanto as cinco de cima: elas só
+	   nascem noutro arquivo porque precisam de pai. O título delas tem de ser
+	   alcançável por aqui, senão a trilha de uma filha nomeia a mãe com o slug. */
+	$malha = robometria_casca_malha();
+	return isset( $malha[ $slug ]['titulo'] ) ? $malha[ $slug ]['titulo'] : '';
 }
 }
 
@@ -2056,6 +2097,11 @@ function robometria_casca_nomes_das_paginas() {
 			if ( isset( $item['slug'], $item['titulo'] ) ) {
 				$nomes[ $item['slug'] ] = (string) $item['titulo'];
 			}
+		}
+	}
+	foreach ( robometria_casca_malha() as $chave => $def ) {
+		if ( isset( $def['titulo'] ) ) {
+			$nomes[ $chave ] = (string) $def['titulo'];
 		}
 	}
 
@@ -2212,6 +2258,47 @@ function robometria_casca_lugar( $slug ) {
 		);
 	}
 
+	/* AS PÁGINAS DE MALHA (bloco 5b). Vêm antes das ferramentas porque a árvore
+	   é delas: a seção é um degrau só, e categoria e filha remontam a linhagem
+	   subindo pelas MÃES do registro, nunca por um mapa próprio daqui. */
+	$malha = robometria_casca_malha();
+	if ( isset( $malha[ $slug ] ) ) {
+		$def = $malha[ $slug ];
+
+		if ( 'secao' === $def['papel'] ) {
+			return array(
+				'papel'  => 'secao',
+				'nivel1' => array( '', '' ),
+				'nivel2' => array(),
+				'rotulo' => $def['titulo'],
+				'irmas'  => array(),
+			);
+		}
+
+		/* A linhagem: sobe pela mãe até a seção. Dois degraus no máximo, porque
+		   a 16.1 não tem quarto nível — e uma cadeia mais longa que isso é
+		   defeito de registro, não uma trilha para publicar. */
+		$mae = isset( $malha[ $def['mae'] ] ) ? $def['mae'] : '';
+		$avo = ( '' !== $mae && ! empty( $malha[ $mae ]['mae'] ) && isset( $malha[ $malha[ $mae ]['mae'] ] ) )
+			? $malha[ $mae ]['mae'] : '';
+
+		if ( '' === $avo ) {
+			$nivel1 = ( '' === $mae ) ? array( '', '' ) : array( $mae, $malha[ $mae ]['titulo'] );
+			$nivel2 = array();
+		} else {
+			$nivel1 = array( $avo, $malha[ $avo ]['titulo'] );
+			$nivel2 = array( $mae, $malha[ $mae ]['titulo'] );
+		}
+
+		return array(
+			'papel'  => 'filha',
+			'nivel1' => $nivel1,
+			'nivel2' => $nivel2,
+			'rotulo' => $def['titulo'],
+			'irmas'  => robometria_casca_irmas( $slug ),
+		);
+	}
+
 	/* O hub: mãe de transição das ferramentas, e por isso um degrau só. */
 	if ( robometria_casca_mae_das_ferramentas() === $slug ) {
 		return array(
@@ -2273,9 +2360,41 @@ function robometria_casca_lugar( $slug ) {
  * esconde, e irmã que o hub esconde seria a única porta para uma página que a
  * ilha decidiu não oferecer ainda.
  */
+/* O TETO DE IRMAS DO 16.4(c), NUM LUGAR SO.
+   Ele estava escrito duas vezes desde que a malha ganhou o proprio ramo em
+   `irmas()` — e regra repetida e regra que alguem ajusta num lado. Aqui ela tem
+   nome, e a mutacao que a vira do avesso (ferramentas/mutacoes-arvore.py) tem um
+   alvo unico para morder. */
+if ( ! function_exists( 'robometria_casca_teto_de_irmas' ) ) {
+function robometria_casca_teto_de_irmas() {
+	return 4;
+}
+}
+
 if ( ! function_exists( 'robometria_casca_irmas' ) ) {
 function robometria_casca_irmas( $slug ) {
 	$slug = sanitize_title( (string) $slug );
+
+	/* MALHA: irmã é quem tem a MESMA MÃE e está publicada. Página que não
+	   existe não entra — irmã é link, e link morto não é cluster. */
+	$malha = robometria_casca_malha();
+	if ( isset( $malha[ $slug ] ) ) {
+		$minha = isset( $malha[ $slug ]['mae'] ) ? $malha[ $slug ]['mae'] : '';
+		if ( '' === $minha ) {
+			return array();
+		}
+		$irmas = array();
+		foreach ( $malha as $chave => $def ) {
+			if ( $chave === $slug || empty( $def['mae'] ) || $def['mae'] !== $minha ) {
+				continue;
+			}
+			if ( '' === robometria_casca_url_se_existir( $chave ) ) {
+				continue;
+			}
+			$irmas[] = array( 'slug' => $chave, 'rotulo' => $def['titulo'] );
+		}
+		return array_slice( $irmas, 0, robometria_casca_teto_de_irmas() );
+	}
 
 	$sou_ferramenta = false;
 	foreach ( robometria_casca_ferramentas() as $f ) {
@@ -2299,7 +2418,7 @@ function robometria_casca_irmas( $slug ) {
 			}
 			$irmas[] = array( 'slug' => $f['slug'], 'rotulo' => $f['titulo'] );
 		}
-		return array_slice( $irmas, 0, 4 );
+		return array_slice( $irmas, 0, robometria_casca_teto_de_irmas() );
 	}
 
 	$artigos    = robometria_casca_artigos();
@@ -2333,7 +2452,7 @@ function robometria_casca_irmas( $slug ) {
 		}
 	}
 
-	return array_slice( array_merge( $perto, $longe ), 0, 4 );
+	return array_slice( array_merge( $perto, $longe ), 0, robometria_casca_teto_de_irmas() );
 }
 }
 
@@ -2672,6 +2791,21 @@ add_shortcode( 'robometria_home', function () {
 	$html .= robometria_casca_cards_html();
 	$html .= '<p>' . robometria_casca_link_html( 'ferramentas', 'Ver as duas lado a lado' ) . '</p>';
 	$html .= '</div>';
+
+	/* A SEÇÃO DE PEÇAS, quando ela existe. Página de nível 1 precisa de link da
+	   home: o 16.4(f) exige dois links internos para toda URL do sitemap, um
+	   deles da mãe, e a mãe de um nível 1 é a home. Sem esta chamada, /pecas/
+	   nasceria alcançável só pela trilha das próprias filhas. */
+	$url_pecas = robometria_casca_url_se_existir( 'pecas' );
+	if ( '' !== $url_pecas ) {
+		$html .= '<div class="rbm-secao">';
+		$html .= '<h2>Procurando uma peça específica?</h2>';
+		$html .= '<p>A estante de <a href="' . esc_url( $url_pecas ) . '">'
+			. esc_html( robometria_casca_nome_da_pagina( 'pecas' ) ) . '</a> separa o que a gente '
+			. 'já conferiu por tipo de peça e por marca — com o código do fabricante, a lista de '
+			. 'modelos e a data da declaração.</p>';
+		$html .= '</div>';
+	}
 
 	$artigos = robometria_casca_artigos_html();
 	if ( '' !== $artigos ) {

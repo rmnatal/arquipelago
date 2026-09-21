@@ -1,0 +1,198 @@
+{
+ "secao": {
+  "slug": "pecas",
+  "frases": {
+   "resposta": "O banco tem 54 pecas publicaveis de 6 marcas e 91 pares peca x modelo, todos declarados pelo fabricante.",
+   "tipos": "Sao 5 tipos de peca no banco: filtro, escova lateral, escova principal, mop e bateria."
+  }
+ },
+ "categorias": {
+  "pecas-filtros": {
+   "quantos": "Sao 16 itens de reposicao que entregam filtro em 5 marcas: 11 filtros avulsos e 5 kits que declaram filtro na composicao.",
+   "serve": "Juntos, eles servem em 21 modelos de robo.",
+   "marca_cruzada": "Nenhum deles serve em mais de uma marca: filtro de robo aspirador nao e universal, e o encaixe e por modelo."
+  },
+  "pecas-escovas-laterais": {
+   "quantos": "Sao 13 itens de reposicao que entregam escova lateral em 5 marcas: 9 escovas laterais avulsas e 4 kits que declaram escova lateral na composicao.",
+   "serve": "Juntos, eles servem em 27 modelos de robo.",
+   "marca_cruzada": "Nenhuma delas serve em mais de uma marca: escova lateral de robo aspirador nao e universal, e o encaixe e por modelo."
+  },
+  "pecas-escovas-principais": {
+   "quantos": "Sao 8 escovas principais de 4 marcas no banco.",
+   "serve": "Juntas, elas servem em 16 modelos de robo.",
+   "marca_cruzada": "Nenhuma delas serve em mais de uma marca: escova principal de robo aspirador nao e universal, e o encaixe e por modelo."
+  },
+  "pecas-mops": {
+   "quantos": "Sao 19 itens de reposicao que entregam mop em 5 marcas: 14 mops avulsos e 5 kits que declaram mop na composicao.",
+   "serve": "Juntos, eles servem em 26 modelos de robo.",
+   "marca_cruzada": "Nenhum deles serve em mais de uma marca: mop de robo aspirador nao e universal, e o encaixe e por modelo."
+  },
+  "pecas-baterias": {
+   "quantos": "Sao 2 baterias de 1 marca no banco.",
+   "serve": "Juntas, elas servem em 1 modelo de robo.",
+   "marca_cruzada": "Nenhuma delas serve em mais de uma marca: bateria de robo aspirador nao e universal, e o encaixe e por modelo."
+  }
+ },
+ "filhas": {
+  "pecas-filtros-electrolux": {
+   "quantos": "Sao 6 itens Electrolux que entregam filtro: 1 filtro avulso e 5 kits que declaram filtro na composicao.",
+   "serve": "Eles servem em todos os 9 modelos Electrolux que a gente acompanha.",
+   "residuo": "",
+   "kit": "Em 5 desses modelos o filtro so vem dentro do kit: a Electrolux (loja oficial) nao vende o filtro avulso para eles.",
+   "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "9 de 9 modelos Electrolux do banco tem filtro declarado pelo fabricante."
+  },
+  "pecas-filtros-xiaomi": {
+   "quantos": "Sao 4 filtros Xiaomi no banco.",
+   "serve": "Eles servem em 6 dos 13 modelos Xiaomi que a gente acompanha.",
+   "residuo": "Nos outros 7 modelos nao localizamos declaracao do fabricante de filtro; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "6 de 13 modelos Xiaomi do banco tem filtro declarado pelo fabricante."
+  },
+  "pecas-filtros-wap": {
+   "quantos": "Sao 3 filtros WAP no banco.",
+   "serve": "Eles servem em 2 dos 8 modelos WAP que a gente acompanha.",
+   "residuo": "Nos outros 6 modelos nao localizamos declaracao do fabricante de filtro; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "2 de 8 modelos WAP do banco tem filtro declarado pelo fabricante."
+  },
+  "pecas-filtros-multi": {
+   "quantos": "Sao 2 filtros Multi (ex-Multilaser) no banco.",
+   "serve": "Eles servem em 2 dos 6 modelos Multi (ex-Multilaser) que a gente acompanha.",
+   "residuo": "Nos outros 4 modelos nao localizamos declaracao do fabricante de filtro; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "2 de 6 modelos Multi (ex-Multilaser) do banco tem filtro declarado pelo fabricante."
+  },
+  "pecas-filtros-positivo": {
+   "quantos": "E 1 filtro Positivo Casa Inteligente no banco.",
+   "serve": "Ele serve em 2 dos 3 modelos Positivo Casa Inteligente que a gente acompanha.",
+   "residuo": "No outro modelo nao localizamos declaracao do fabricante de filtro; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhum desses filtros serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "2 de 3 modelos Positivo Casa Inteligente do banco tem filtro declarado pelo fabricante."
+  },
+  "pecas-escovas-laterais-electrolux": {
+   "quantos": "Sao 4 itens Electrolux que entregam escova lateral: 0 escovas laterais avulsas e 4 kits que declaram escova lateral na composicao.",
+   "serve": "Eles servem em 8 dos 9 modelos Electrolux que a gente acompanha.",
+   "residuo": "No outro modelo nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+   "kit": "Em 8 desses modelos o escova lateral so vem dentro do kit: a Electrolux (loja oficial) nao vende o escova lateral avulso para eles.",
+   "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "8 de 9 modelos Electrolux do banco tem escova lateral declarada pelo fabricante."
+  },
+  "pecas-escovas-laterais-xiaomi": {
+   "quantos": "Sao 4 escovas laterais Xiaomi no banco.",
+   "serve": "Elas servem em 11 dos 13 modelos Xiaomi que a gente acompanha.",
+   "residuo": "Nos outros 2 modelos nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "11 de 13 modelos Xiaomi do banco tem escova lateral declarada pelo fabricante."
+  },
+  "pecas-escovas-laterais-wap": {
+   "quantos": "Sao 3 escovas laterais WAP no banco.",
+   "serve": "Elas servem em 2 dos 8 modelos WAP que a gente acompanha.",
+   "residuo": "Nos outros 6 modelos nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "2 de 8 modelos WAP do banco tem escova lateral declarada pelo fabricante."
+  },
+  "pecas-escovas-laterais-multi": {
+   "quantos": "E 1 escova lateral Multi (ex-Multilaser) no banco.",
+   "serve": "Ela serve em 4 dos 6 modelos Multi (ex-Multilaser) que a gente acompanha.",
+   "residuo": "Nos outros 2 modelos nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "4 de 6 modelos Multi (ex-Multilaser) do banco tem escova lateral declarada pelo fabricante."
+  },
+  "pecas-escovas-laterais-positivo": {
+   "quantos": "E 1 escova lateral Positivo Casa Inteligente no banco.",
+   "serve": "Ela serve em 2 dos 3 modelos Positivo Casa Inteligente que a gente acompanha.",
+   "residuo": "No outro modelo nao localizamos declaracao do fabricante de escova lateral; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas escovas laterais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "2 de 3 modelos Positivo Casa Inteligente do banco tem escova lateral declarada pelo fabricante."
+  },
+  "pecas-escovas-principais-xiaomi": {
+   "quantos": "Sao 5 escovas principais Xiaomi no banco.",
+   "serve": "Elas servem em 9 dos 13 modelos Xiaomi que a gente acompanha.",
+   "residuo": "Nos outros 4 modelos nao localizamos declaracao do fabricante de escova principal; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas escovas principais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "9 de 13 modelos Xiaomi do banco tem escova principal declarada pelo fabricante."
+  },
+  "pecas-escovas-principais-electrolux": {
+   "quantos": "E 1 escova principal Electrolux no banco.",
+   "serve": "Ela serve em 4 dos 9 modelos Electrolux que a gente acompanha.",
+   "residuo": "Nos outros 5 modelos nao localizamos declaracao do fabricante de escova principal; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas escovas principais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "4 de 9 modelos Electrolux do banco tem escova principal declarada pelo fabricante."
+  },
+  "pecas-escovas-principais-positivo": {
+   "quantos": "E 1 escova principal Positivo Casa Inteligente no banco.",
+   "serve": "Ela serve em 2 dos 3 modelos Positivo Casa Inteligente que a gente acompanha.",
+   "residuo": "No outro modelo nao localizamos declaracao do fabricante de escova principal; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas escovas principais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "2 de 3 modelos Positivo Casa Inteligente do banco tem escova principal declarada pelo fabricante."
+  },
+  "pecas-escovas-principais-wap": {
+   "quantos": "E 1 escova principal WAP no banco.",
+   "serve": "Ela serve em 1 dos 8 modelos WAP que a gente acompanha.",
+   "residuo": "Nos outros 7 modelos nao localizamos declaracao do fabricante de escova principal; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas escovas principais serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "1 de 8 modelos WAP do banco tem escova principal declarada pelo fabricante."
+  },
+  "pecas-mops-electrolux": {
+   "quantos": "Sao 6 itens Electrolux que entregam mop: 1 mop avulso e 5 kits que declaram mop na composicao.",
+   "serve": "Eles servem em todos os 9 modelos Electrolux que a gente acompanha.",
+   "residuo": "",
+   "kit": "Em 5 desses modelos o mop so vem dentro do kit: a Electrolux (loja oficial) nao vende o mop avulso para eles.",
+   "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "9 de 9 modelos Electrolux do banco tem mop declarado pelo fabricante."
+  },
+  "pecas-mops-xiaomi": {
+   "quantos": "Sao 6 mops Xiaomi no banco.",
+   "serve": "Eles servem em 8 dos 13 modelos Xiaomi que a gente acompanha.",
+   "residuo": "Nos outros 5 modelos nao localizamos declaracao do fabricante de mop; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "8 de 13 modelos Xiaomi do banco tem mop declarado pelo fabricante."
+  },
+  "pecas-mops-roborock": {
+   "quantos": "Sao 5 mops Roborock no banco.",
+   "serve": "Eles servem em todos os 6 modelos Roborock que a gente acompanha.",
+   "residuo": "",
+   "kit": "",
+   "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "6 de 6 modelos Roborock do banco tem mop declarado pelo fabricante."
+  },
+  "pecas-mops-multi": {
+   "quantos": "E 1 mop Multi (ex-Multilaser) no banco.",
+   "serve": "Ele serve em 1 dos 6 modelos Multi (ex-Multilaser) que a gente acompanha.",
+   "residuo": "Nos outros 5 modelos nao localizamos declaracao do fabricante de mop; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "1 de 6 modelos Multi (ex-Multilaser) do banco tem mop declarado pelo fabricante."
+  },
+  "pecas-mops-positivo": {
+   "quantos": "E 1 mop Positivo Casa Inteligente no banco.",
+   "serve": "Ele serve em 2 dos 3 modelos Positivo Casa Inteligente que a gente acompanha.",
+   "residuo": "No outro modelo nao localizamos declaracao do fabricante de mop; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhum desses mops serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "2 de 3 modelos Positivo Casa Inteligente do banco tem mop declarado pelo fabricante."
+  },
+  "pecas-baterias-multi": {
+   "quantos": "Sao 2 baterias Multi (ex-Multilaser) no banco.",
+   "serve": "Elas servem em 1 dos 6 modelos Multi (ex-Multilaser) que a gente acompanha.",
+   "residuo": "Nos outros 5 modelos nao localizamos declaracao do fabricante de bateria; nao vamos supor.",
+   "kit": "",
+   "marca_cruzada": "Nenhuma dessas baterias serve em robo de outra marca, pelo que o fabricante declara.",
+   "cobertura": "1 de 6 modelos Multi (ex-Multilaser) do banco tem bateria declarada pelo fabricante."
+  }
+ }
+}

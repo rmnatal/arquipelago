@@ -182,9 +182,13 @@ MUTACOES = [
     (
         'o teto de irmas vira quarenta',
         'so a borda FABRICADA pega esta: com duas ferramentas no ar, nada muda na tela',
+        # O ALVO MUDOU EM 21/09/2026: o teto era um literal repetido em dois
+        # ramos de irmas() desde que a malha ganhou o dela, e mutacao precisa de
+        # alvo UNICO. A casca passou a ter a regra com nome
+        # (robometria_casca_teto_de_irmas), que e o alvo daqui.
         troca(CASCA,
-              "\t\treturn array_slice( $irmas, 0, 4 );",
-              "\t\treturn array_slice( $irmas, 0, 40 );"),
+              "\treturn 4;\n}\n}",
+              "\treturn 40;\n}\n}"),
     ),
     (
         'a pagina vira irma dela mesma',

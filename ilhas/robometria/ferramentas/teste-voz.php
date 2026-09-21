@@ -185,9 +185,10 @@ foreach ( $proibidas as $p ) { echo "  · $p\n"; }
 $nomes = robometria_casca_nomes_das_paginas();
 
 $alvo_do_slug = array();
-foreach ( array( 'robometria_home', 'robometria_ferramentas', 'robometria_metodologia',
-	'robometria_sobre', 'robometria_afiliados', 'robometria_r1', 'robometria_r2',
-	'robometria_a1', 'robometria_a2' ) as $alvo ) {
+/* A LISTA E DERIVADA (21/09/2026), e era digitada: pagina nova ficava fora do
+   portao da voz ate alguem lembrar dela — e o portao seguinte, "toda pagina
+   nomeada e medida", acusava a falta sem que ninguem soubesse de onde vinha. */
+foreach ( robometria_teste_alvos_do_site() as $alvo ) {
 	$slug = robometria_teste_slug_do_alvo( $alvo );
 	$alvo_do_slug[ $slug ] = $alvo;
 }
