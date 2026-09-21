@@ -1005,20 +1005,25 @@ def relatorio(v):
         print("")
 
 
-def main():
-    v = varrer()
-    relatorio(v)
-    linhas = tabela_de_exemplos(v)
+def documento(v):
+    """O conteudo de dados/cobertura-r1.json, montado a partir da varredura.
 
-    if "--gravar" not in sys.argv:
-        print("  (rode com --gravar para escrever dados/cobertura-r1.json e "
-              "dados/tabela-exemplos-r1.md)")
-        return 0
+    NASCEU COMO FUNCAO EM 21/09/2026, e o motivo e um defeito que ficou no ar.
+    Este dicionario morava dentro do main(), atras do portao do --gravar, entao
+    a UNICA forma de saber o que ele diria hoje era GRAVAR por cima do arquivo
+    de ontem. Enquanto foi assim, nenhum portao podia perguntar "o arquivo
+    commitado ainda bate com o banco?" sem antes destruir a resposta — e o
+    arquivo afirmou 15 por um dia inteiro enquanto a varredura media 11, com a
+    frase de 15 servida em /ferramentas/. Afirmacao derivada que so pode ser
+    conferida sobrescrevendo-a nao tem portao: tem gravador.
 
+    Quem le isto e ferramentas/validar-cobertura-r1.py, que monta o mesmo
+    dicionario e compara com o disco sem escrever nada.
+    """
     total_modelos = len(v["publicaveis"])
     respondem = sum(1 for l in v["por_modelo"] if l["resultado"] == "responde")
 
-    doc = {
+    return {
         "id": "cobertura-r1",
         "ilha": "robometria",
         "entidade": "medicao",
@@ -1063,6 +1068,19 @@ def main():
         "pecas_publicaveis_que_nao_alcancam_resposta": v["pecas_sem_alcance"],
         "por_modelo": v["por_modelo"],
     }
+
+
+def main():
+    v = varrer()
+    relatorio(v)
+    linhas = tabela_de_exemplos(v)
+
+    if "--gravar" not in sys.argv:
+        print("  (rode com --gravar para escrever dados/cobertura-r1.json e "
+              "dados/tabela-exemplos-r1.md)")
+        return 0
+
+    doc = documento(v)
 
     caminho_json = os.path.join(DADOS, "cobertura-r1.json")
     with open(caminho_json, "w", encoding="utf-8") as fh:

@@ -250,9 +250,23 @@ def cobertura_da_r1(medido):
     return numeros, recusas
 
 
-def main():
-    gravar = '--gravar' in sys.argv
+class Recusa(Exception):
+    """A contagem nao pode ser feita: o banco contradiz a escada, ou a cobertura
+    da R1 no disco nao bate com o banco. Era `return 2` dentro do main; virou
+    excecao em 21/09/2026 para que o portao (validar-casca-fatos.py) receba a
+    recusa em vez de um codigo de saida que so o terminal ve."""
 
+
+def fatos_do_banco():
+    """O conteudo de dados/casca-fatos.json, contado do banco.
+
+    SEPARADO DO main() EM 21/09/2026 pelo mesmo motivo que `documento()` foi
+    separado em cobertura-r1.py, e no mesmo dia: enquanto o dicionario morou
+    atras do --gravar, a unica forma de saber o que ele diria hoje era gravar
+    por cima do arquivo de ontem — e a pagina /ferramentas/ serviu "15 dos 45"
+    por um dia inteiro com a varredura medindo 11, sem nenhum portao capaz de
+    ver a diferenca.
+    """
     with open(ESQUEMA, encoding='utf-8') as f:
         escada = json.load(f)['escada_de_fontes']
 
@@ -302,10 +316,8 @@ def main():
         por_origem[(nivel, origem_do_nivel.get(nivel))] += 1
 
     if fora_do_vocabulario:
-        print('RECUSADO: fonte com nivel e origem que nao batem com a escada.')
-        for linha in fora_do_vocabulario:
-            print('  ' + linha)
-        return 2
+        raise Recusa('fonte com nivel e origem que nao batem com a escada:\n  '
+                     + '\n  '.join(fora_do_vocabulario))
 
     niveis = []
     for degrau in escada['niveis']:
@@ -319,10 +331,8 @@ def main():
     medido = medir_o_banco()
     cobertura, recusas = cobertura_da_r1(medido)
     if recusas:
-        print('RECUSADO: a cobertura da R1 nao bate com o banco de hoje.')
-        for linha in recusas:
-            print('  ' + linha)
-        return 2
+        raise Recusa('a cobertura da R1 nao bate com o banco de hoje:\n  '
+                     + '\n  '.join(recusas))
 
     hoje = datetime.date.today().isoformat()
     medicao = dict(medido)
@@ -388,6 +398,21 @@ def main():
             'medido_em': 'a data desta varredura, nunca a data em que o banco foi colhido',
         },
     }
+
+    return fatos
+
+
+def main():
+    gravar = '--gravar' in sys.argv
+
+    try:
+        fatos = fatos_do_banco()
+    except Recusa as erro:
+        print('RECUSADO: %s' % erro)
+        return 2
+
+    niveis = fatos['niveis']
+    medicao = fatos['medicao']
 
     for n in niveis:
         print('  nivel %d %-24s %3d fonte(s)  existe_hoje=%s'

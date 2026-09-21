@@ -35,10 +35,6 @@
     "as_duas_respondem": [
       "positivo-pra2000",
       "positivo-pra800",
-      "roborock-q8-max",
-      "roborock-qrevo-curv",
-      "roborock-qrevo-master",
-      "roborock-s8-maxv-ultra",
       "roborock-saros-z70",
       "xiaomi-e10",
       "xiaomi-h40",
@@ -67,6 +63,10 @@
       "multi-ho400",
       "multi-ho407",
       "multi-ob010",
+      "roborock-q8-max",
+      "roborock-qrevo-curv",
+      "roborock-qrevo-master",
+      "roborock-s8-maxv-ultra",
       "roborock-saros-10r",
       "wap-w100",
       "wap-w300",
@@ -97,15 +97,15 @@
       "xiaomi"
     ],
     "contagem": {
-      "as_duas": 15,
+      "as_duas": 11,
       "so_a_r2": 2,
-      "so_a_r1": 23,
+      "so_a_r1": 27,
       "nenhuma": 5
     }
   },
   "leitura": [
     "A R1 responde alguma peca em 38 dos 45 modelos publicaveis, e sai VAZIA em 7. Contar os 33 pares declarados do cabecalho escondia isso: par novo num modelo que ja respondia nao tira modelo nenhum do vazio, e so a varredura separa as duas coisas.",
-    "O ACHADO, e ele so aparece cruzando as duas ferramentas: das 45 entradas publicaveis, apenas 15 sao atendidas pelas DUAS. A R2 atende 2 modelos que a R1 nao atende (positivo, wap) e a R1 atende 23 que a R2 nao atende (electrolux, multi, roborock, wap, xiaomi). A cobertura das duas ferramentas da ilha e quase disjunta, e a causa e a mesma nos dois sentidos: Electrolux e Multi publicam peca com compatibilidade declarada e NAO publicam Pa; Xiaomi e WAP publicam Pa e NAO publicam peca com codigo.",
+    "O ACHADO, e ele so aparece cruzando as duas ferramentas: das 45 entradas publicaveis, apenas 11 sao atendidas pelas DUAS. A R2 atende 2 modelos que a R1 nao atende (positivo, wap) e a R1 atende 27 que a R2 nao atende (electrolux, multi, roborock, wap, xiaomi). A cobertura das duas ferramentas da ilha e quase disjunta, e a causa e a mesma nos dois sentidos: Electrolux e Multi publicam peca com compatibilidade declarada e NAO publicam Pa; Xiaomi e WAP publicam Pa e NAO publicam peca com codigo.",
     "POR QUE ISSO CUSTA DINHEIRO: a ilha ganha a visita pela R2 ('quantos Pa para pelo de cachorro'), que hoje so consegue recomendar Xiaomi na faixa alta. Quem compra volta meses depois procurando o filtro daquele robo — a consulta de maior intencao de compra do nicho, e a razao de a R1 existir — e recebe 'nao localizamos declaracao do fabricante'. As duas ferramentas nao se entregam a visita uma para a outra. O funil esta partido na emenda, e nenhuma das duas medicoes isoladas mostrava a emenda.",
     "O QUE ISSO MUDA NA ORDEM DA FILA: a leva anterior deixou 'pecas da Xiaomi e da WAP com codigo' em ULTIMO lugar entre os alvos de coleta. A varredura diz que ele e o primeiro entre os coletaveis, por dois motivos medidos. Primeiro: e o unico alvo que fecha a emenda pelo lado que da para colher — a lacuna simetrica (Pa da Electrolux e da Multi) ja foi medida como inexistente no mercado, essas marcas nao publicam Pa em canal nenhum, entao insistir nela e trabalho sem fim. Segundo: sao exatamente os 2 modelos que a R2 ja recomenda, ou seja, o retorno chega na visita que a ilha ja sabe atrair, nao numa visita hipotetica.",
     "O QUE A VARREDURA NAO E: ela nao aplica o portao de 3 itens da secao 9. Na R2 a faixa produz uma lista de produtos concorrentes e tres e o minimo honesto; na R1 a resposta certa costuma ser UMA peca, a que o fabricante declarou, e exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: das 270 celulas (modelo x tipo), 177 nao tem o que responder."
