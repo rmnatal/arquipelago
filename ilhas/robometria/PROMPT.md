@@ -370,6 +370,12 @@ O destino desta ilha depende da serie de impressoes, e a serie so ganha corpo em
 
 **A LEITURA SEMANAL DE 23/09 JA DEVE ABRIR A SERIE COM ESTE ENQUADRAMENTO**, dizendo em qual dos quatro pontos ela esta e o que falta para o corte de 30/09.
 
+## DESPACHO DO RAPHAEL — 21/09/2026, 20h46 (horário de Brasília) — A ROBOMETRIA SAI DO FOCO: MODO DE MEDIÇÃO ATÉ OUTUBRO, SEM CONSTRUÇÃO
+
+**Decisão do Raphael em 21/09/2026: o foco passa para a Aquametria** (`foco.md`). Esta ilha entra em **modo de medição** (1.2-b.1) e o despacho de 18/09 logo abaixo volta a valer ao pé da letra: **nenhuma execução da Fundação abre bloco de construção aqui** — nem malha (5b), nem leva de modelos ou peças (3c), nem conteúdo — até a decisão pré-registrada de outubro. O que continua: correção de defeito no ar (18.1), despacho da Sentinela, Sync, e a série de `dados/indexacao.md` e `dados/posicoes.md` pela leitura semanal.
+
+**Por que este despacho existe:** em 21/09, com a ilha já PRONTA, a Fundação executou o bloco 3c (13h16Z, 4 filtros) e o bloco 5b (19h16Z, 5 URLs de malha) sem citar a proibição de 18/09 — a fila e a 1.2 falaram mais alto que o despacho. As 14 URLs ficam como estão (passaram em todos os portões); a proibição é para frente. Regra que saiu daqui, para o contrato: **ilha PRONTA sob critério pré-registrado não recebe bloco de construção mesmo estando em foco** — o Pente Fino deve escrever isso na 1.2-b.4.
+
 ## DESPACHO DO RAPHAEL — 18/09/2026 — A ILHA TERMINA, MAS MUDA DE ESTADO: DE APOSTA PARA EXPERIMENTO MEDIDO
 
 Em 18/09/2026 o volume de busca do corpus desta ilha foi medido pela primeira vez, no Google Keyword Planner. O levantamento inteiro, com metodo e ressalvas, esta em `bussola/medicoes/volume-absoluto-2026-09-18.md`. O resultado, em uma linha: **de 49 consultas, 9 tem volume — e NENHUMA delas e de peca ou compatibilidade.** As consultas mais amplas possiveis do assunto desta ilha (`filtro robô aspirador`, `escova lateral robô aspirador`, `peças robô aspirador`) estao **abaixo do limiar de relatorio do Google**. Na mesma ferramenta e no mesmo dia, `filtro para aquario` deu 1 mil–10 mil.
