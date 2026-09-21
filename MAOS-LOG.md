@@ -2038,3 +2038,60 @@ decidir o que fazer. As tarefas que o bloco descreve (trocar chaves, encurtar, g
 sao para a Fundacao executar — as maos apenas gravaram o texto do despacho.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `15d3968` so existiu depois do commit do trabalho.
+
+---
+
+## Disparo de 21/09/2026, 20h48 (horario de Brasilia) — 23h48Z — troca de foco: Robometria sai, Aquametria entra
+
+**Assunto da instrucao:** Arquipelago (`foco.md` na raiz e `ilhas/robometria/PROMPT.md`). Passou na trava de
+assunto da secao 28: ilha do Arquipelago e arquivo de estado do Arquipelago, nada de outro projeto.
+
+**O que a instrucao mandou, e o que foi feito:** substituir o conteudo INTEIRO de `foco.md` pelo texto dado
+(foco passa de `robometria` para `aquametria`, com `desde`, `decidido_por`, `motivo` e uma linha nova
+`historico`), e inserir em `ilhas/robometria/PROMPT.md`, imediatamente ANTES do titulo
+`## DESPACHO DO RAPHAEL — 18/09/2026 — A ILHA TERMINA, MAS MUDA DE ESTADO...`, o bloco do despacho de
+21/09/2026 20h46 (Robometria em modo de medicao, sem construcao ate outubro), seguido de uma linha em branco.
+Os dois textos entraram verbatim, byte a byte. Nada foi reformatado, nada foi acrescentado.
+
+`git status --porcelain` (depois do commit do trabalho, antes deste fecho):
+
+```
+```
+
+(vazio — arvore limpa)
+
+`git diff --stat HEAD~1 HEAD`:
+
+```
+ foco.md                    | 9 +++++----
+ ilhas/robometria/PROMPT.md | 6 ++++++
+ 2 files changed, 11 insertions(+), 4 deletions(-)
+```
+
+**Commit que foi ao `main`:**
+
+```
+da7bad98f6c96a4b59cffe2d11f2f698aa73c7e7
+foco: robometria sai (pronta, modo de medição), aquametria entra — decisão do Raphael 21/09
+```
+
+**Push:** `git push origin HEAD:main` aceito de primeira, `78fda40..da7bad9`. Sem rebase, sem force push, sem
+PR. Confirmado com `git fetch origin main && git log -1 origin/main`, que devolveu o hash acima.
+
+**Contagem, conferida relendo os arquivos DEPOIS de gravar:**
+
+- `foco.md` foi de 8 para 9 linhas (+1, a linha `historico`). As linhas alteradas sao `ilha:` (robometria →
+  aquametria), `desde:` (2026-09-16 → 2026-09-21), `decidido_por:` e `motivo:`, reescritas.
+- `ilhas/robometria/PROMPT.md` foi de 1262 para 1268 linhas (+6). `grep -n "^## DESPACHO DO RAPHAEL"` devolve
+  o titulo novo de 21/09 na linha 373 e o de 18/09 na linha 379 — 6 linhas de distancia, que e exatamente o
+  bloco (titulo, vazia, paragrafo 1, vazia, paragrafo 2) mais a linha em branco pedida.
+
+**Erros:** nenhum. Nenhum passo falhou.
+
+**Limites respeitados:** foram alterados apenas `foco.md`, `ilhas/robometria/PROMPT.md` e este `MAOS-LOG.md`.
+Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum cabecalho de estado foi tocado,
+nenhum bloco de fila foi executado, nada foi publicado, nenhum Sync foi acionado e o `ARQUIPELAGO.md` nao foi
+lido para decidir o que fazer. A regra que o despacho manda escrever na 1.2-b.4 e trabalho do Pente Fino, nao
+das maos: as maos so gravaram o texto.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `da7bad9` so existiu depois do commit do trabalho.
