@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-21T17:10Z
-executando_desde: null
+executando_desde: 2026-09-21T19:16Z
 bloco_atual: |
   A LEVA DOS QUATRO FILTROS — o tipo filtro vai de 7 para 11 e de 3 para 5 marcas, e a WAP vira a terceira marca com filtro declarado. ZERO URL nova, ZERO leva do teto da 21.4 gasta: banco de 53 para 57 pecas, 87 para 92 pares, fotos de 59 para 63 de 107.
   POR QUE FILTRO, E A RESPOSTA VEIO DE CONTAR E NAO DA FILA. O proximo bloco e o 5b (malha), e a ordem de levas do ARVORE.md manda abrir /pecas/filtros/ com TRES filhas. Contado antes de escrever qualquer pagina: so DUAS marcas passavam no portao de dado da secao 13 (Xiaomi com 4 filtros; Electrolux com 1 avulso mais 5 kits que declaram filtro). Categoria com duas filhas nao nasce pela 16.5, e nenhum portao desta ilha media isso. A leva levantou a terceira — WAP, com tres filtros que nunca tinham entrado — e a categoria deixou de estar travada por DADO. A tabela das tres filhas esta no ARVORE.md, secao 5, com a ordem de RECONTAR antes de abrir.
