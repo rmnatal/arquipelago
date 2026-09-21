@@ -105,80 +105,30 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 **Placar obrigatório no fecho:** os cinco itens da DEFINIÇÃO DE PRONTA, e ao lado do item 3 a lista das chaves trocadas com a data.
 
-## DESPACHO DO RAPHAEL — 19/09/2026, 11h04 (horário de Brasília) — ABRIR A PORTA DO FABRICANTE: FOTO PARA OS 66 SEM IMAGEM — **REESCRITO PELA 18.3 EM 20/09/2026, 15h45Z: A PORTA ABRIU, O DESPACHO ANDOU ATÉ O PASSO SEGUINTE, E PAROU LÁ**
+## ~~DESPACHO DO RAPHAEL — 19/09/2026, 11h04 — ABRIR A PORTA DO FABRICANTE: FOTO PARA OS 66 SEM IMAGEM~~ — **CUMPRIDO E CONFERIDO NO AR EM 21/09/2026, 10h40Z** (manifest revisão 73, `/status` em 73)
 
-> **A LISTA DE DOMÍNIOS DE 20/09 FOI ATENDIDA E FUNCIONOU.** Nesta execução, 12 dos 14
-> hosts de PÁGINA que os 66 registros usam responderam: `loja.electrolux.com.br`,
-> `br.roborock.com`, `us.roborock.com`, `www.multilaser.com.br`, `loja.wap.ind.br`,
-> `www.mi.com`, `www.positivocasainteligente.com.br`, `loja.meupositivo.com.br`,
-> `suporte.multilaser.com.br`, `blog.wap.ind.br` e mais dois. Sobraram fechados
-> `www.multilaserempresas.com.br` (4 registros) e `manuals.plus` (3, e este fica fora
-> de propósito: é terceiro, e a 25.3 proíbe a foto que viria de lá).
+> **A PORTA ABRIU E O DESPACHO SAIU INTEIRO. O placar que ele mandava atualizar foi de 29 de 103 para 59 de 103.**
 >
-> **E A COLHEITA ANDOU: 37 dos 66 ganharam candidato com o NOME PROVADO na página do
-> fabricante.** A prova não é leitura de texto solta: nas lojas VTEX o catálogo público
-> devolve `productReference`, que **é** o código do fabricante, então a amarra da 25.3
-> virou igualdade de campo. Onde o registro não tem código — as peças da WAP e da
-> Roborock não têm —, a prova é o par nome-do-modelo + tipo-da-peça aparecendo os dois
-> na página, com o trecho de cada um impresso ao lado para o olho conferir.
+> **COMO FOI CONFERIDO, e não pelo log do Sync (18.4).** `/qual-peca-serve-no-meu-robo-aspirador/?modelo=electrolux-erb60` reaberta no ar depois do Sync: HTTP 200, **quatro fotos de `electrolux.vteximg.com.br` servidas no cartão** (filtro HEPA+espuma, kit performance, escova rotativa e pano de microfibra dos ERB60/61/62), zero ocorrência de "em breve". `/quantos-pa-o-robo-aspirador-precisa/` serve a foto do `xiaomi-s20` de `i02.appmifile.com`. `python3 ferramentas/bancada.py --no-ar`: **44 portões, 0 falha**.
 >
-> **ONDE ELE PAROU, E É UMA COISA QUE NINGUÉM TINHA MEDIDO: A PÁGINA E A FOTO NÃO MORAM
-> NO MESMO HOST.** Loja VTEX serve o HTML em `loja.marca.com.br` e o ARQUIVO da imagem
-> em `marca.vteximg.com.br`; a Roborock serve em `cdn.shopify.com`; a Xiaomi em
-> `i0N.appmifile.com`. **Liberar o domínio da página não libera a foto** — e a 25.3
-> manda abrir cada imagem **com os olhos** antes de gravar. Dos 37 candidatos, **36 têm
-> o arquivo em host de imagem fechado** (`000`, todos resolvendo em DNS). O 37º abre, e
-> foi o único que chegou ao olho.
+> **O QUE FALTAVA ERA A LINHA DE CONFIGURAÇÃO, E ELA ESTAVA FEITA.** Os oito hosts de IMAGEM que este despacho pedia responderam na primeira medição desta execução, e a foto de 1000x1000 do primeiro candidato baixou inteira — antes eram `000` em todos. Presos em host de imagem fechado: **0**.
 >
-> **O ÚNICO QUE CHEGOU AO OLHO FOI REPROVADO, e a reprovação ficou escrita.**
-> `wap-wsmart`: a imagem é o banner de lançamento do blog da WAP, 1516x907, com
-> "LANÇAMENTO" num selo azul e o nome do produto em letra de cartaz ocupando metade do
-> quadro. Procedência passa — é do fabricante e nomeia o WSMART —, mas **não é foto de
-> produto**: no espaço quadrado do cartão ela entra como peça de campanha de 2020, com
-> texto promocional que a ilha não escreveu e não pode datar. Espaço reservado neutro é
-> melhor que cartaz velho, e foto é ganho e nunca requisito (25.3). O motivo mora em
-> `REPROVADAS_PELO_OLHO`, dentro de `ferramentas/coletar-foto-do-fabricante.py`, com a
-> data — para a próxima execução não reabrir o mesmo arquivo e chegar à mesma conclusão.
+> **O OLHO ABRIU AS 36, UMA A UMA, e reprovou 6 — e as 6 são o achado, não a sobra.** Antes do olho, os 36 arquivos foram agrupados por sha256, porque arquivo idêntico servido para registros de tipos diferentes é o casamento errado que a 25.3 existe para impedir. Caíram cinco da Xiaomi: as páginas `.../accessories/specs/` servem **uma imagem só para a página inteira**, e o mesmo arquivo chegava a `xiaomi-b106gl-zx` (escova principal), `xiaomi-b106gl-lw` (filtro), `xiaomi-mop-s10` (mop), `xiaomi-d106-tb` (mop) e `xiaomi-b106gl-bx` (escova lateral). É a mesma causa dos 10 registros de FAQ que este despacho já tinha medido em 20/09, um andar adiante. O sexto é `positivo-pra2000`: composição de varejo com a CAIXA e texto promocional que a ilha não escreveu e não pode datar — mesma família do `wap-wsmart`, reprovado em 20/09. O irmão `positivo-pra500` passou, e a diferença é exatamente essa: lá o quadro tem só o aparelho.
 >
-> **O placar do despacho, então, continua 29 de 103.** Tudo está medido registro a
-> registro em **`dados/fotos-do-fabricante-2026-09-20.md`** e candidato a candidato em
-> **`dados/candidatos-de-foto-2026-09-20.json`**, gerados por
-> `ferramentas/coletar-foto-do-fabricante.py` — nenhum número digitado.
+> **A LINHA QUE SEPARA DUPLICATA BOA DE DUPLICATA RUIM, escrita aqui porque a próxima leva vai precisar dela:** reprova quando o mesmo arquivo **cruza TIPO** (mop no cartão de filtro); aprova quando o fabricante **reusa a foto entre SKUs irmãos do MESMO tipo**, cada um na sua própria página — escova direita/esquerda da WAP (FW006267 e FW006269), kit/kit da Electrolux (41054538 e 41054539).
+>
+> **A FERRAMENTA QUE FALTAVA NASCEU:** `ferramentas/aplicar-fotos-do-fabricante.py`, prometida no docstring do coletor desde 20/09 e que nunca tinha existido. Ela cobra os três portões da 25.3 um a um, lê largura e altura **do arquivo** com o mesmo leitor de cabeçalho da coleta da Shopee, nunca toca registro que já tem foto, e grava em `imagem.fonte` a URL da PÁGINA de origem. A entrada dela é `dados/olho-nas-fotos-<data>.json`, datado, com a URL ao lado do id — e **o coletor passou a ler esses arquivos sozinho**, então reprova de ontem é honrada amanhã sem ninguém precisar lembrar de copiar texto para dentro do código.
+>
+> **A TRAVA DE URL DESSA FERRAMENTA PEGOU ALGO NO PRIMEIRO DIA EM QUE EXISTIU.** Duas colheitas rodaram ao mesmo tempo por descuido desta execução e escreveram no mesmo `dados/candidatos-de-foto-<data>.json`, que não tem trava. O olho abriu as imagens de uma passada; o arquivo em disco era da outra. **Quatro registros divergiram e a ferramenta PAROU em vez de gravar.** A colheita foi refeita UMA vez, limpa, e os 36 vereditos reconferidos: 34 bateram na URL exata e 2 diferiam só no nome do CDN (a variante `_1200x1200` de `us.roborock.com` contra o original de `cdn.shopify.com`, mesmo nome de arquivo e mesmo `?v=`). **Os 2 foram reabertos no arquivo canônico antes de o veredito ser mantido** — trocar a URL no escuro para a trava passar seria o oposto do que ela faz.
+>
+> **TRÊS CONSERTOS QUE O CAMINHO EXIGIU, e os três são portão:** (1) a data da colheita era **digitada** — `'2026-09-20'` fixo no nome do arquivo e no `gerado_em` —, então a passada de hoje carimbaria o número de hoje com a data de ontem; passou a sair do relógio. (2) `imagem.url` receberia a URL **relativa ao protocolo** da Xiaomi (`//i02.appmifile.com/...`), que funciona no navegador e quebra em tudo que não é navegador — foi o que fez 13 candidatos parecerem bloqueados por rede quando não estavam; a URL que entra no banco é sempre absoluta. (3) a contagem `itens_com_foto` do cabeçalho não era recontada pela escrita e o `validar-banco.py` reprovou; o aplicador passou a reusar o `recontar` do coletor da Shopee, para a definição do que conta morar num lugar só.
+>
+> **O PEDIDO DE REDE DESTE DESPACHO ESTÁ TODO MORTO, e um item dele morreu por outro motivo.** `www.multilaserempresas.com.br` — que o despacho de 20/09 listava como host de PÁGINA fechado, com 4 registros — **responde daqui agora**, e as três páginas de produto daquele host devolvem **404 elas mesmas**: o produto saiu de linha. Não é rede e não há o que pedir. `manuals.plus` segue `000` e continua **fora do pedido de propósito**: é terceiro, e a 25.3 proíbe a foto que viria de lá.
+>
+> **O QUE SOBRA NÃO É DESTE DESPACHO E NÃO É TRABALHO PENDENTE DA FUNDAÇÃO:** 44 dos 103 registros seguem sem foto, e a causa de cada um está medida registro a registro em **`dados/fotos-do-fabricante-2026-09-21.md`**, com os vereditos do olho em **`dados/olho-nas-fotos-2026-09-21.json`** e os candidatos em **`dados/candidatos-de-foto-2026-09-21.json`** — nenhum número digitado. Dos que têm candidato, **0 estão presos em rede**. A 25.3 é explícita: foto é ganho, nunca requisito, e não entra na definição de pronta de ilha nenhuma.
+>
+> **UM CASO CONTINUA SEM DECISÃO, DE PROPÓSITO, e é do Raphael:** `positivo-11206540` (mop) tem como única porta `loja.meupositivo.com.br`, que **responde 200** — o que falta não é rede, é procedência: o host **não está declarado em `dados/marcas.json`** como endereço da Positivo. Quem confirmar acrescenta o host ao `sameAs` da marca `positivo`; até lá ele sai do relatório como `porta não declarada`, nunca como fabricante.
 
-**O QUE FALTA, E É A ÚNICA COISA QUE FALTA — e é do Raphael, não da Fundação.** Acrescentar os **hosts de IMAGEM** à lista "Domínios permitidos" do ambiente de nuvem (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem). A coluna é quantos dos 37 candidatos dependem de cada um:
-
-| host da imagem | registros | de quem é |
-|---|---|---|
-| `i02.appmifile.com` | 9 | CDN de imagem da Xiaomi |
-| `electrolux.vteximg.com.br` | 8 | CDN da loja da Electrolux |
-| `cdn.shopify.com` | 5 | CDN da loja da Roborock |
-| `lojawap.vteximg.com.br` | 4 | CDN da loja da WAP |
-| `i01.appmifile.com` | 4 | CDN de imagem da Xiaomi |
-| `positivocasainteligente.vteximg.com.br` | 3 | CDN da loja da Positivo |
-| `i05.appmifile.com` | 2 | CDN de imagem da Xiaomi |
-| `lojamultilaser.vteximg.com.br` | 1 | CDN da loja da Multi |
-
-**A LINHA PRONTA PARA COLAR** — quatro curingas cobrem os oito hosts e qualquer CDN irmão que a próxima leva encontrar:
-
-```
-*.vteximg.com.br, *.vtexassets.com, cdn.shopify.com, *.appmifile.com
-```
-
-*(`*.vtexassets.com` entra junto porque é o outro nome do mesmo CDN da VTEX: o HTML das lojas serve os dois, e qual dos dois sai depende de qual API respondeu. Abrir só um deixaria metade dos registros de loja VTEX presa pelo mesmo motivo de hoje.)*
-
-**QUANDO ISSO ABRIR, o caminho está pronto e é mecânico:** `python3 ferramentas/coletar-foto-do-fabricante.py` reimprime os candidatos com a URL exata da foto de cada registro, e `--relatorio` reimprime o placar. **Não há busca a refazer e não há página a reabrir** — as portas saem de `fontes{}.url` e `canal_brasileiro.valor`, que são as páginas de onde o dado daquele registro já foi lido uma vez. O que falta depois disso é o olho, um a um, que não se automatiza.
-
-**OS 29 SEM CANDIDATO, por causa medida** (a lista inteira está no relatório):
-
-- **10 são as páginas de FAQ da Xiaomi** (`KA-11405`, `KA-11406`): a página abre, nomeia o modelo, e **serve a foto de cada acessório por JavaScript** — o HTML cru traz uma imagem só, de página, que é a mesma para filtro, escova, mop e reservatório. Gravar essa imagem para quatro peças diferentes seria exatamente o casamento errado que a 25.3 existe para impedir.
-- **6 são os modelos da Roborock** cujas páginas de `br.roborock.com` **saíram do ar** — e isso deixou de ser assunto de foto: virou defeito de canal brasileiro, consertado nesta mesma execução (ver o portão novo, abaixo).
-- **Os demais** são páginas de loja que devolveram 404 ou catálogo vazio (produto saiu de linha), e `multi-ho041`/`multi-ho243`, cujo host de suporte oscila entre 301 e 000.
-
-**UM CASO PARA DECIDIR, e continua sem decisão de propósito:** `positivo-11206540` (mop) tem como única porta `loja.meupositivo.com.br`, que **não está declarado em `dados/marcas.json`** como endereço da Positivo. O host **responde 200** agora — o que falta não é rede, é procedência. Quem confirmar acrescenta o host ao `sameAs` da marca `positivo`; até lá ele sai do relatório como `porta não declarada`, nunca como fabricante.
-
-**OS TRÊS PORTÕES DA 25.3 CONTINUAM INTEIROS, e nenhum afrouxou:** (1) só a foto do **fabricante**, da **peça exata**, com o código ou o nome do modelo na página de onde ela sai, e **aberta com os olhos antes de gravar**; (2) `imagem.fonte` grava a URL de origem, sempre; (3) a preferência nunca inverte — registro com foto de anúncio não é tocado. **O placar a atualizar no fecho continua sendo 29 de 103.**
-
-**Isto não é expansão da ilha:** é terminar a coleta de imagem começada em 16/09 com a segunda fonte que o contrato já prevê. Não abre página nova nem categoria nova.
 ## ~~DESPACHO DO RAPHAEL — 19/09/2026, 11h04~~ — o texto original, preservado
 >
 > **A porta que o despacho de 18/09 mandou manter fechada está aberta agora, por decisão do Raphael.** Aquele despacho terminou dizendo *"NÃO colete imagem de site de fabricante — o Raphael decide depois de ver o tamanho do resíduo"*. Ele viu: **66 publicáveis sem foto, 36 peças e 30 modelos**, e decidiu, com estas palavras: *"pode usar imagem do fabricante, sem problemas."* A regra permanente já está no contrato, na **seção 25.3** (segunda fonte de imagem), desde o commit `00bc2ef`. Este despacho é a ordem de executá-la. Sem ele a autorização ficava no contrato e a Fundação nunca a executava, e foi exatamente isso que deixou o banco parado em 29 de 103.

@@ -98,6 +98,36 @@ REPROVADAS_PELO_OLHO = {
         'neutro e melhor que cartaz velho.'),
 }
 
+# E DESDE 21/09/2026 ELE NAO E MAIS DIGITADO A MAO. O olho de cada execucao grava
+# `dados/olho-nas-fotos-<data>.json` — que e a ENTRADA de
+# `aplicar-fotos-do-fabricante.py` —, e toda reprova que mora la entra aqui
+# sozinha. Antes disso, honrar a reprova de ontem dependia de alguem lembrar de
+# copiar o texto para dentro deste arquivo, e regra que depende de alguem lembrar
+# e a regra que esta ilha mais paga. O dicionario acima continua existindo para o
+# `wap-wsmart`, que foi reprovado em 20/09 antes de haver arquivo de veredito.
+
+def _reprovadas():
+    """As do dicionario acima MAIS as que o olho ja gravou, de todas as datas."""
+    todas = dict(REPROVADAS_PELO_OLHO)
+    pasta = os.path.join(RAIZ, 'dados')
+    if not os.path.isdir(pasta):
+        return todas
+    for nome in sorted(os.listdir(pasta)):
+        if not (nome.startswith('olho-nas-fotos-') and nome.endswith('.json')):
+            continue
+        try:
+            with open(os.path.join(pasta, nome), encoding='utf-8') as fp:
+                doc = json.load(fp)
+        except (ValueError, OSError):
+            continue
+        for v in doc.get('vereditos') or []:
+            if v.get('veredito') == 'APROVA':
+                continue
+            todas[v['id']] = '%s: %s' % (doc.get('olhado_em') or nome,
+                                         v.get('o_que_o_olho_viu') or 'reprovado pelo olho')
+    return todas
+
+
 def _medir():
     """Importa a regua de portas. O nome tem hifen, entao nao ha import direto."""
     caminho = os.path.join(RAIZ, 'ferramentas', 'medir-portas-do-fabricante.py')
@@ -315,6 +345,7 @@ def medir_host_de_imagem(url):
 def relatorio(caminho_json, caminho_md):
     with open(os.path.join(RAIZ, caminho_json), encoding='utf-8') as fp:
         dados = json.load(fp)
+    reprovadas = _reprovadas()
     medidos, hosts = {}, {}
     for r in dados['registros']:
         c = r.get('colheita')
@@ -333,7 +364,7 @@ def relatorio(caminho_json, caminho_md):
             sem.append(r)
             continue
         u, host = medidos[r['id']]
-        if r['id'] in REPROVADAS_PELO_OLHO:
+        if r['id'] in reprovadas:
             olho.append((r, u, host))
         elif (hosts[host][2] or '').startswith('2'):
             pronto.append((r, u, host))
@@ -391,7 +422,7 @@ def relatorio(caminho_json, caminho_md):
         L.append('| registro | foto que foi aberta | por que nao entra |')
         L.append('|---|---|---|')
         for r, u, _h in sorted(olho, key=lambda x: x[0]['id']):
-            L.append('| `%s` | %s | %s |' % (r['id'], u, REPROVADAS_PELO_OLHO[r['id']]))
+            L.append('| `%s` | %s | %s |' % (r['id'], u, reprovadas[r['id']]))
     else:
         L.append('Nenhuma imagem chegou a ser aberta nesta passada.')
     L.append('')

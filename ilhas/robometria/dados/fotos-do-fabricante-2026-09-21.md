@@ -12,9 +12,9 @@ e o estado de cada host de imagem sai de uma consulta de DNS mais um `curl`.
 |---|---|
 | publicaveis sem foto (o alvo do despacho) | **66** |
 | com candidato E com o nome medido na pagina | **37** |
-| ... cujo ARQUIVO da foto abre daqui (pode gravar hoje) | **36** |
+| ... cujo ARQUIVO da foto abre daqui (pode gravar hoje) | **30** |
 | ... cujo arquivo esta em host de imagem fechado | **0** |
-| ... reprovado pelo OLHO, com o motivo escrito | **1** |
+| ... reprovado pelo OLHO, com o motivo escrito | **7** |
 | sem candidato (causa registro a registro, abaixo) | **29** |
 
 ## Os hosts de IMAGEM, um a um
@@ -26,11 +26,10 @@ cobria, porque ninguem tinha tentado baixar o arquivo.
 |---|---|---|---|
 | `i02.appmifile.com` | resolve | 200 | 9 |
 | `electrolux.vteximg.com.br` | resolve | 200 | 8 |
+| `cdn.shopify.com` | resolve | 200 | 5 |
 | `lojawap.vteximg.com.br` | resolve | 200 | 4 |
 | `i01.appmifile.com` | resolve | 200 | 4 |
 | `positivocasainteligente.vteximg.com.br` | resolve | 200 | 3 |
-| `cdn.shopify.com` | resolve | 200 | 3 |
-| `us.roborock.com` | resolve | 200 | 2 |
 | `i05.appmifile.com` | resolve | 200 | 2 |
 | `lojamultilaser.vteximg.com.br` | resolve | 200 | 1 |
 | `blog.wap.ind.br` | resolve | 200 | 1 |
@@ -49,27 +48,21 @@ cobria, porque ninguem tinha tentado baixar o arquivo.
 | `electrolux-pano-microfibra-erb60-erb61-erb62-erb80` | tokens | https://electrolux.vteximg.com.br/arquivos/ids/286236/Cybertron_Mop_Pad_FrontView_ERB60-61-62-80_Electrolux-1000x1000.jpg?v=638990709370700000 |
 | `multi-pr10124` | referencia | https://lojamultilaser.vteximg.com.br/arquivos/ids/1200172/10858_00.jpg?v=638533810079900000 |
 | `positivo-11206519` | referencia | https://positivocasainteligente.vteximg.com.br/arquivos/ids/158004/ESCOVA-CENTRAL-ROBO-ASPIRADOR-PRA800-E-2000---01.jpg?v=638599427963500000 |
-| `positivo-pra2000` | texto | https://positivocasainteligente.vteximg.com.br/arquivos/ids/159087/01_ASPIRADOR_PRA2000.jpg?v=639101416642970000 |
 | `positivo-pra500` | texto | https://positivocasainteligente.vteximg.com.br/arquivos/ids/156577/Smart-Robo-Plus-Ang.jpg?v=637940196761330000 |
 | `roborock-mop-q8-max` | tokens | https://cdn.shopify.com/s/files/1/0082/3666/2902/files/062ec9c82657b2be82b68364b1fc1900_3d93e94d-6075-44a9-8ce6-fc074f589202.jpg?v=1725035616 |
-| `roborock-mop-qrevo-curv` | tokens | https://us.roborock.com/cdn/shop/files/1_3183c8ba-4be6-4a98-988c-ea1f947939e3_1200x1200.jpg?v=1735031940 |
-| `roborock-mop-qrevo-master` | tokens | https://us.roborock.com/cdn/shop/files/4_q_-revo_2_1200x1200.jpg?v=1757929885 |
+| `roborock-mop-qrevo-curv` | tokens | https://cdn.shopify.com/s/files/1/0082/3666/2902/files/1_3183c8ba-4be6-4a98-988c-ea1f947939e3.jpg?v=1735031940 |
+| `roborock-mop-qrevo-master` | tokens | https://cdn.shopify.com/s/files/1/0082/3666/2902/files/4_q_-revo_2.jpg?v=1757929885 |
 | `roborock-mop-s8-maxv-ultra` | tokens | https://cdn.shopify.com/s/files/1/0082/3666/2902/files/Roborock_2_S8_MaxV_Ultra_S8_Max_Ultra.jpg?v=1757930347 |
 | `roborock-mop-saros-10r-z70` | tokens | https://cdn.shopify.com/s/files/1/0082/3666/2902/files/2_Saros-10R-1.jpg?v=1757937015 |
 | `wap-escova-direita-w300` | tokens | https://lojawap.vteximg.com.br/arquivos/ids/158329/escova-direita-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425033056500000 |
 | `wap-escova-esquerda-w300` | tokens | https://lojawap.vteximg.com.br/arquivos/ids/158330/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300.png?v=637425034313300000 |
 | `wap-escova-frontal-wsmart` | tokens | https://lojawap.vteximg.com.br/arquivos/ids/158342/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart.png?v=637425466210430000 |
 | `wap-w300` | texto | https://lojawap.vteximg.com.br/arquivos/ids/176674/robo-aspirador-de-po-wap-robot-w300.png?v=638794554372870000 |
-| `xiaomi-b106gl-bx` | texto | https://i02.appmifile.com/884_operatorx_operatorx_opx/08/07/2025/541377074c7009cc069a3376562aedef.png |
-| `xiaomi-b106gl-lw` | texto | //i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png |
-| `xiaomi-b106gl-zx` | texto | //i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png |
-| `xiaomi-d106-tb` | texto | https://i02.appmifile.com/884_operatorx_operatorx_opx/08/07/2025/541377074c7009cc069a3376562aedef.png |
 | `xiaomi-e10` | texto | //i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677576726.00766138.png |
 | `xiaomi-e10c` | texto | //i02.appmifile.com/271_operatorx_operatorx_opx/04/09/2023/59f973327a3440b9f939a414c88c3c64.png |
 | `xiaomi-e12` | texto | //i05.appmifile.com/783_item_es/11/05/2023/5c6ee8ece6e0056ed25dfa1b886dd20e.png |
 | `xiaomi-mop-2` | texto | //i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666842634.01573696.png |
 | `xiaomi-mop-2-lite` | texto | //i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666876968.82583141.png |
-| `xiaomi-mop-s10` | tokens | //i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png |
 | `xiaomi-s10` | texto | //i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1677487225.40455674.png |
 | `xiaomi-s12` | texto | //i05.appmifile.com/173_item_es/11/05/2023/385ba85dd65f7d80df868ecc051cf7e6.png |
 | `xiaomi-s20` | texto | //i02.appmifile.com/584_operatorx_operatorx_opx/14/06/2024/dd1fda3e2e1750fcf21bc7fa9809c1df.png |
@@ -80,7 +73,13 @@ cobria, porque ninguem tinha tentado baixar o arquivo.
 
 | registro | foto que foi aberta | por que nao entra |
 |---|---|---|
+| `positivo-pra2000` | https://positivocasainteligente.vteximg.com.br/arquivos/ids/159087/01_ASPIRADOR_PRA2000.jpg?v=639101416642970000 | 2026-09-21: REPROVA: nao e foto de produto, e composicao de varejo. O quadro traz o robo e a base a esquerda, a CAIXA de varejo a direita com texto promocional impresso ("3 em 1", "Limpeza autonoma do reservatorio...", lista de beneficios) e um celular com a tela do app embaixo. Mesma familia do wap-wsmart, reprovado em 20/09: texto promocional que a ilha nao escreveu e nao pode datar, dentro da imagem. No espaco quadrado do cartao o robo fica com menos de um terco do quadro e o resto e propaganda ilegivel. Espaco reservado neutro e melhor. O irmao positivo-pra500 passou, e a diferenca e exatamente esta: la o quadro tem so o aparelho. |
 | `wap-wsmart` | https://blog.wap.ind.br/wp-content/uploads/2020/08/Wsmart-1.png | 2026-09-20: a unica imagem que ABRE desta nuvem em toda a colheita, e ela nao serve. E o banner de lancamento do blog da WAP (1516x907), com "LANCAMENTO" num selo azul e o nome do produto em letra de cartaz ocupando metade do quadro. Procedencia passa — e do fabricante e nomeia o WSMART —, mas nao e foto de produto: no espaco quadrado do cartao ela entra como peca de campanha de 2020, com texto promocional que a ilha nao escreveu e nao pode datar. Foto e ganho e nunca requisito (25.3); espaco reservado neutro e melhor que cartaz velho. |
+| `xiaomi-b106gl-bx` | https://i02.appmifile.com/884_operatorx_operatorx_opx/08/07/2025/541377074c7009cc069a3376562aedef.png | 2026-09-21: REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-d106-tb (mop). Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria um pano de mop ocupando o maior pedaco do quadro no cartao de uma ESCOVA LATERAL. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA. |
+| `xiaomi-b106gl-lw` | //i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png | 2026-09-21: REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-b106gl-zx, xiaomi-mop-s10. Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria uma ESCOVA LATERAL branca de tres bracos no cartao de um FILTRO. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA. |
+| `xiaomi-b106gl-zx` | //i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png | 2026-09-21: REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-b106gl-lw, xiaomi-mop-s10. Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria uma ESCOVA LATERAL branca de tres bracos no cartao de uma ESCOVA PRINCIPAL. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA. |
+| `xiaomi-d106-tb` | https://i02.appmifile.com/884_operatorx_operatorx_opx/08/07/2025/541377074c7009cc069a3376562aedef.png | 2026-09-21: REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-b106gl-bx (escova lateral). Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria uma montagem com escova principal, escova lateral, filtro e tampa no cartao de um MOP. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA. |
+| `xiaomi-mop-s10` | //i02.appmifile.com/940_item_sg/01/04/2025/2b65c41b58396061c9f4630ff0c6d85c.png | 2026-09-21: REPROVA: a imagem e a foto de ABERTURA da pagina de acessorios do modelo, e a mesma pagina (www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/) serve UM arquivo so para pecas de tipos diferentes. Medido por hash em 21/09/2026: o arquivo deste candidato e byte a byte identico ao de xiaomi-b106gl-zx, xiaomi-b106gl-lw. Gravar seria o casamento errado que a 25.3 existe para impedir — o leitor veria uma ESCOVA LATERAL branca de tres bracos no cartao de um MOP. E a mesma causa dos 10 registros de FAQ da Xiaomi que o despacho de 19/09 ja tinha medido, um andar adiante: la a pagina era de FAQ, aqui e de acessorios, e nas duas a foto e DA PAGINA e nao DA PECA. |
 
 ## Tem candidato e o arquivo nao abre daqui
 

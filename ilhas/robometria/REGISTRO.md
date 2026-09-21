@@ -6041,3 +6041,211 @@ Com ela, `coletar-foto-do-fabricante.py` reimprime os 37 com a URL exata da foto
 cada registro e o que sobra é o olho, um a um. **Não segui para bloco da fila**, e
 a 18.2 permitiria: a ilha está PRONTA e no regime do critério pré-registrado, e as
 duas coisas feitas hoje são correção e dívida, não construção.
+
+## 2026-09-21, 10h16Z–10h45Z — A PORTA DA FOTO ABRIU, E AS SEIS QUE NÃO ENTRARAM VALEM MAIS QUE AS TRINTA QUE ENTRARAM
+
+**O que esta execução foi ver.** `foco.md` aponta a robometria desde 16/09, então
+não houve escolha de ilha a fazer (1.2). `executando_desde: null` e nenhum commit
+de bloco da Fundação nos 40 minutos anteriores — o último toque na pasta era o
+commit do Pente Fino das 08h24Z, que pela 1.1 não reserva nada. Rede da ilha
+conferida antes de trabalhar (20.2): `https://robometria.com.br/` em **200**.
+Despacho aberto no topo do `PROMPT.md`: o do Raphael de 19/09, a foto do
+fabricante para os 66 publicáveis sem imagem, reescrito pela 18.3 em 20/09
+deixando **uma única coisa**, e ela era do Raphael — acrescentar os hosts de
+IMAGEM à lista de domínios permitidos.
+
+**ELA ESTAVA FEITA, E FOI A PRIMEIRA COISA MEDIDA.** Os oito hosts que o despacho
+listava responderam: `i02.appmifile.com` 404, `electrolux.vteximg.com.br` 400,
+`cdn.shopify.com` 200, `lojawap.vteximg.com.br` 400, `i01.appmifile.com` 403,
+`positivocasainteligente.vteximg.com.br` 400, `i05.appmifile.com` 404,
+`lojamultilaser.vteximg.com.br` 400. **Todos eram `000` em 20/09.** Código HTTP
+de verdade na raiz de um CDN não é a foto abrindo, então a prova foi baixar uma:
+o primeiro candidato do relatório, `lojamultilaser.vteximg.com.br/.../10858_00.jpg`,
+veio em **200, `image/jpeg`, 55.689 bytes, 1000x1000**. A porta abriu.
+
+**O DESPACHO SAIU INTEIRO (18.2) E O PLACAR FOI DE 29 DE 103 PARA 59 DE 103.**
+
+### O olho, que é a parte que não se automatiza
+
+A colheita reimprimiu **37 candidatos** com o nome medido na página, e **0**
+presos em host de imagem fechado. As 36 elegíveis (a 37ª é o `wap-wsmart`, já
+reprovado em 20/09) foram **baixadas e abertas uma a uma**, como a 25.3 manda.
+
+**Antes de olhar, os 36 arquivos foram agrupados por sha256** — e essa foi a
+decisão de método que fez a execução valer. Arquivo idêntico servido para
+registros de **tipos diferentes** é exatamente o casamento errado que a 25.3
+existe para impedir, e o olho sozinho poderia aprovar os dois lados sem nunca
+notar que eram o mesmo arquivo. Quatro grupos apareceram, e **dois eram defeito**:
+
+- **Cinco registros da Xiaomi recebiam o mesmo arquivo de uma página de
+  acessórios.** `www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/`
+  serve **uma imagem só para a página inteira**, e ela chegava a
+  `xiaomi-b106gl-zx` (escova principal), `xiaomi-b106gl-lw` (filtro) e
+  `xiaomi-mop-s10` (mop) — a foto é de uma **escova lateral**. A página do S20
+  fez o mesmo com `xiaomi-d106-tb` (mop) e `xiaomi-b106gl-bx` (escova lateral),
+  servindo uma montagem de cinco peças. **É a mesma causa dos 10 registros de FAQ
+  que este despacho já tinha medido em 20/09, um andar adiante:** lá a página era
+  de FAQ, aqui é de acessórios, e nas duas a foto é **da página** e não **da peça**.
+- **`positivo-pra2000` é composição de varejo, não foto de produto.** O quadro
+  traz o robô e a base à esquerda, a **caixa** à direita com texto promocional
+  impresso ("3 em 1", "Limpeza autônoma do reservatório", lista de benefícios) e
+  um celular com a tela do app embaixo. Mesma família do `wap-wsmart`: texto
+  promocional que a ilha não escreveu e não pode datar, dentro da imagem. **O
+  irmão `positivo-pra500` passou, e a diferença é exatamente essa** — lá o quadro
+  tem só o aparelho.
+
+Os outros dois grupos **passaram**, e a regra que os separou dos dois de cima
+fica escrita para a próxima leva: **reprova quando o mesmo arquivo cruza TIPO;
+aprova quando o fabricante reusa a foto entre SKUs irmãos do MESMO tipo, cada um
+na sua própria página.** A WAP serve o mesmo arquivo na página da escova direita
+(FW006267) e da esquerda (FW006269) do W300; a Electrolux, entre o kit do ERB44
+(41054538) e o dos ERB60/61/62 (41054539). Nos dois casos o leitor vê, no cartão,
+uma peça do tipo que o cartão promete.
+
+**Placar do olho: 30 APROVA, 6 REPROVA**, cada veredito com o que o olho viu
+escrito ao lado, em `dados/olho-nas-fotos-2026-09-21.json`.
+
+### A ferramenta que o coletor prometia desde 20/09 e que não existia
+
+`ferramentas/aplicar-fotos-do-fabricante.py`. O docstring do
+`coletar-foto-do-fabricante.py` dizia, desde 20/09, *"Quem grava e
+`aplicar-fotos-do-fabricante.py`, depois do olho"* — e o arquivo **nunca tinha
+sido escrito**, porque até hoje não havia o que gravar. Ela cobra os três portões
+da 25.3 um a um: só grava registro cujo candidato tem o nome provado na página do
+fabricante; grava em `imagem.fonte` a URL da **página** de origem, nunca a do
+arquivo; e **nunca toca registro que já tem foto** — a preferência não inverte.
+Largura e altura são **lidas do arquivo**, com o mesmo leitor de cabeçalho da
+coleta da Shopee, nunca digitadas.
+
+**A entrada dela é o arquivo de veredito do olho**, e a URL mora nos dois lados de
+propósito: o olho olhou **um** arquivo, e o banco tem de receber **aquele**
+arquivo. Se a loja trocar a foto, a ferramenta para com erro em vez de gravar
+algo que ninguém viu.
+
+**E ESSA TRAVA PEGOU ALGO NO PRIMEIRO DIA EM QUE EXISTIU — e não foi a loja.**
+Duas colheitas rodaram **ao mesmo tempo**, por descuido desta execução: um
+`nohup` que eu tinha dado por morto sobreviveu, e as duas escreveram no mesmo
+`dados/candidatos-de-foto-2026-09-21.json`, que não tem trava. O olho abriu as
+imagens de uma passada; o arquivo em disco era da outra. **Quatro registros
+divergiram** — dois com a foto em outro host e dois que numa passada tinham
+candidato e na outra saíram com `veredito_nome: NAO` — e a ferramenta **recusou
+os quatro**. Sem ela, dois teriam entrado no banco com uma URL que ninguém abriu,
+e dois com procedência que a colheita válida não afirmava.
+
+**O conserto foi refazer a colheita UMA vez, limpa, e reconferir os 36 vereditos
+contra ela:** 34 bateram na URL exata; 2 diferiam só no nome do CDN — a variante
+`_1200x1200` que a Shopify serve sob `us.roborock.com` contra o arquivo original
+sob `cdn.shopify.com`, mesmo nome de arquivo e mesmo `?v=`. **Os 2 foram baixados
+e abertos de novo, no arquivo canônico, antes de o veredito ser mantido.** Trocar
+a URL no escuro para a trava passar seria o oposto do que ela faz, e está dito
+assim dentro do próprio arquivo de veredito.
+
+### Três consertos que o caminho exigiu, e os três são portão
+
+1. **A data da colheita era digitada.** `'2026-09-20'` estava fixo no nome do
+   arquivo de saída e no campo `gerado_em`, então a passada de hoje sobrescreveria
+   a de ontem **carimbada com a data de ontem** — e o relatório diria 20/09 sobre
+   número colhido em 21/09. Passou a sair do relógio.
+2. **`imagem.url` receberia a URL relativa ao protocolo da Xiaomi**
+   (`//i02.appmifile.com/...`). Ela funciona no navegador e quebra em tudo que não
+   é navegador: o `curl` lê a string como **caminho** e devolve `000`, e o
+   `urllib` — que é quem mede largura e altura — levanta erro. **Foi exatamente o
+   que fez 13 candidatos parecerem bloqueados por rede quando não estavam**, e a
+   causa levou três tentativas para aparecer porque `000` em três hosts diferentes
+   é a assinatura de bloqueio da 20.2. A URL que entra no banco é sempre absoluta.
+3. **A contagem `itens_com_foto` do cabeçalho não era recontada pela escrita**, e
+   o `validar-banco.py` reprovou na passada seguinte, com as duas contagens
+   paradas em 15 e 14. O aplicador passou a reusar o `recontar` do coletor da
+   Shopee — a definição do que conta mora num lugar só, e o validador continua
+   conferindo por fora.
+
+### E o coletor deixou de depender de alguém lembrar
+
+`REPROVADAS_PELO_OLHO` era um dicionário **digitado à mão** dentro do
+`coletar-foto-do-fabricante.py`. Honrar a reprova de ontem dependia de alguém
+lembrar de copiar o texto para dentro do código — e regra que depende de alguém
+lembrar é a regra que esta ilha mais paga. O coletor passou a **ler sozinho** todo
+`dados/olho-nas-fotos-*.json` e a puxar de lá as reprovas, com a data e o motivo.
+O relatório de hoje já sai com **7** reprovados pelo olho: os 6 de hoje mais o
+`wap-wsmart` de 20/09, que continua no dicionário porque foi reprovado antes de
+existir arquivo de veredito.
+
+### O pedido de rede deste despacho morreu inteiro
+
+`www.multilaserempresas.com.br` — que o despacho de 20/09 listava como host de
+PÁGINA fechado, com 4 registros presos — **responde daqui agora**. E as três
+páginas de produto daquele host devolvem **404 elas mesmas**, medidas uma a uma:
+o produto saiu de linha. **Não é rede e não há o que pedir ao Raphael.**
+`manuals.plus` segue `000` e continua **fora do pedido de propósito**: é
+terceiro, e a 25.3 proíbe a foto que viria de lá.
+
+*(A régua `medir-portas-do-fabricante.py` chama esse host de "responde 404" porque
+mede a **raiz** dele, e raiz que 404 não significa página de produto fechada. Hoje
+os dois coincidiram — as páginas também dão 404 —, então **não mexi na régua**:
+consertá-la sem um caso em que ela erre seria escrever código contra um defeito
+que ninguém mediu. Fica anotado para a passada que encontrar um host de loja que
+404 na raiz e sirva produto.)*
+
+### Achado para a Sentinela, escrito e não agido
+
+A foto oficial do `xiaomi-x20`, vinda da página do próprio X20 em `www.mi.com`,
+mostra o aparelho **dentro de uma base**. O campo `base_autoesvaziamento` desse
+registro está `null` no banco, com o motivo *"leitura direta da página bloqueada
+pelo egresso"* — e a porta que estava fechada **abriu hoje**. A foto não é o
+campo e **não preencheu campo nenhum**; fica escrito aqui porque quem for colher
+esse valor já sabe que a porta abriu.
+
+### O que esta execução NÃO fez, de propósito
+
+**Não rodei `cobertura-r1.py --gravar`.** O Pente Fino de 21/09 mediu a interseção
+do item 2 em **11** contra os **15** que `dados/cobertura-r1.json` ainda afirma
+como dado commitado, e escreveu, com todas as letras, que gravar 11 por cima de 15
+**reabre o item 2 e desfaz a declaração de PRONTA** — e que a escolha entre os
+três desfechos é do Raphael. Gravar seria tomar essa decisão em silêncio, que é
+justamente o que aquela seção existe para impedir. **Fica sinalizado, não
+resolvido.**
+
+**Não segui para bloco da fila**, pelo mesmo motivo das duas execuções anteriores:
+a ilha está PRONTA e no regime do CRITÉRIO PRÉ-REGISTRADO DA DECISÃO DE OUTUBRO,
+que põe malha nova e bloco de conteúdo no desfecho (a), escolhível só depois das
+leituras de 23/09, 30/09, 07/10 e 14/10. O que foi feito hoje é **despacho**, e a
+18.5 manda verificação antes de construção.
+
+### Portões e desembarque
+
+`validar-banco.py` **APROVADO**, nenhuma invariante violada.
+`python3 ferramentas/bancada.py`: **38 portões, 0 falha**.
+`python3 ferramentas/bancada.py --no-ar`: **44 portões, 0 falha**, com os seis
+`conferir-*` abrindo o site. A ferramenta nova entrou classificada como
+**produção** — não apareceu na linha de denúncia "SEM CONVENÇÃO".
+
+Os quatro geradores foram re-rodados sobre o banco novo e **mudaram**, ao
+contrário da execução de 19/09: as fotos chegam ao HTML. Manifest em **revisão
+73**, 5 itens com sha novo. Sync acionado.
+
+**CONFERIDO NO AR DEPOIS DO SYNC (18.4), e não pelo log do Sync:** `/status`
+responde **revisão 73**, igual à do manifest.
+`/qual-peca-serve-no-meu-robo-aspirador/?modelo=electrolux-erb60` em **200**,
+servindo **quatro fotos de `electrolux.vteximg.com.br`** no cartão — filtro
+HEPA+espuma, kit performance, escova rotativa central e pano de microfibra dos
+ERB60/61/62 — e **zero ocorrência de "em breve"**.
+`/quantos-pa-o-robo-aspirador-precisa/` serve a foto do `xiaomi-s20` de
+`i02.appmifile.com`.
+
+**Uma nota sobre o commit `ef9473d`:** a mensagem dele saiu **mutilada** — os
+identificadores entre crases foram interpretados pelo shell e sumiram do texto.
+Não corrigi por `amend`: a seção 1 do contrato proíbe force push, e outra execução
+da Fundação pode estar no ar. **O relato íntegro é este, aqui.**
+
+- **Próximo passo desbloqueado: nenhum da Fundação nesta frente.** A foto do
+  fabricante está no teto que os portões da 25.3 permitem: dos 44 registros que
+  seguem sem foto, **0 estão presos em rede**, 7 foram reprovados pelo olho com o
+  motivo escrito, e os 29 restantes não têm candidato por causa medida registro a
+  registro em `dados/fotos-do-fabricante-2026-09-21.md`. A 25.3 é explícita — foto
+  é ganho, nunca requisito. **O que espera decisão do Raphael são duas coisas, e
+  nenhuma é rede:** (i) os três desfechos do item 2 apontados pelo Pente Fino, e
+  (ii) `positivo-11206540`, cuja única porta (`loja.meupositivo.com.br`) responde
+  200 mas **não está declarada em `dados/marcas.json`** como endereço da Positivo —
+  falta procedência, não acesso. **Quem trabalha esta ilha em seguida é a leitura
+  semanal de 23/09**, que pelo critério pré-registrado já deve abrir a série
+  dizendo em qual dos quatro pontos ela está.
