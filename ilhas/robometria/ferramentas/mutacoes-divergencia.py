@@ -146,6 +146,17 @@ MUTACOES = [
         False,
     ),
     (
+        'o numeral das DECLARACOES volta ao masculino',
+        'o defeito medido no ar em 21/09/2026: `declaracoes` e feminina e o total '
+        'saia da tabela masculina, entao a pagina servia "as dois declaracoes" '
+        'sempre que houvesse UM canal divergente. Ele ficou invisivel por dias '
+        'porque so um/uma e dois/duas flexionam: com tres canais a frase saia certa',
+        trocar_no_snippet(
+            'robometria_r1_numeral( $n + 1, true )',
+            'robometria_r1_numeral( $n + 1 )'),
+        False,
+    ),
+    (
         'a origem some das divergencias do banco',
         'sem ela o gerador nao tem o que carregar e o snippet volta a adivinhar; a '
         'trava tem de gritar em vez de cair para "nada a cobrar"',

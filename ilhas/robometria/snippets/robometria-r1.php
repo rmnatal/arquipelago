@@ -1,5 +1,14 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.11.1 (21/09/2026) — A CAUDA DA DIVERGÊNCIA CONCORDA EM GÊNERO. Ela
+ * conta `declarações`, que é palavra feminina, e o numeral saía da tabela
+ * masculina: com UM canal divergente a página servia "as dois declarações".
+ * Medido no ar em 21/09, no filtro `positivo-11206516` — o primeiro registro
+ * desta ilha com exatamente um canal divergente. Com dois ou mais ninguém podia
+ * ver, porque do três em diante o numeral não flexiona. A referência em Python
+ * mudou na mesma passada, que é o que o teste-r1.php compara frase a frase, e
+ * `mutacoes-divergencia.py` ganhou a mutação que devolve o masculino.
+ *
  * Versão: 1.11.0 (18/09/2026) — A FRASE DE AUSÊNCIA PAROU DE NEGAR O BOTÃO QUE
  * ESTA PÁGINA SERVE. A contagem de "sem link de loja" olhava `afiliado.url` (a
  * ficha) e chamava de ausência todo item cuja porta era a busca — e a busca é o
@@ -171,7 +180,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.11.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.11.1' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -521,7 +530,15 @@ function robometria_r1_frase_da_divergencia( $peca_id, $lista = null ) {
 	$n     = count( $lista );
 	$lado  = robometria_r1_lado_da_divergencia( $lista );
 	/* +1: a declaração desta página também está publicada e datada. */
-	$total   = robometria_r1_strtolower( robometria_r1_numeral( $n + 1 ) );
+	/* O NUMERO DAS DECLARACOES SAI NO FEMININO, e isto foi medido no ar em
+	   21/09/2026, na leva dos quatro filtros. `declaracoes` e palavra feminina e
+	   o numeral saia da tabela masculina: com UM canal divergente — o primeiro
+	   caso de n=1 que esta ilha publicou, o filtro `positivo-11206516` — a
+	   pagina servia *"as dois declaracoes estao publicadas"*. Com dois ou mais
+	   canais ninguem podia ver, porque a partir do tres o numeral nao flexiona.
+	   E a mesma familia do artigo do publicador, consertado em 14/09/2026: a
+	   frase e montada e por isso a concordancia tambem e trabalho da montagem. */
+	$total   = robometria_r1_strtolower( robometria_r1_numeral( $n + 1, true ) );
 	$canal   = ( 1 === $n ) ? 'canal' : 'canais';
 	$declara = ( 1 === $n ) ? 'declara' : 'declaram';
 
@@ -546,11 +563,23 @@ function robometria_r1_frase_da_divergencia( $peca_id, $lista = null ) {
 
 /**
  * O número da frase sai contado e por extenso; acima de dez, em algarismo.
+ *
+ * `$feminino` existe porque só DOIS números do português flexionam em gênero —
+ * um/uma e dois/duas —, e é exatamente por isso que o defeito de 21/09/2026
+ * ficou invisível: toda frase desta ilha com três ou mais canais saía certa, e
+ * a errada só apareceu no dia em que um registro entrou com UM canal
+ * divergente. Quem chamar esta função para contar substantivo feminino passa
+ * `true`; o padrão continua o masculino, que é o que as outras chamadas usam
+ * ("Um canal", "Dois canais").
  */
 if ( ! function_exists( 'robometria_r1_numeral' ) ) {
-function robometria_r1_numeral( $n ) {
+function robometria_r1_numeral( $n, $feminino = false ) {
 	$mapa = array( 1 => 'Um', 2 => 'Dois', 3 => 'Três', 4 => 'Quatro', 5 => 'Cinco',
 		6 => 'Seis', 7 => 'Sete', 8 => 'Oito', 9 => 'Nove', 10 => 'Dez' );
+	if ( $feminino ) {
+		$mapa[1] = 'Uma';
+		$mapa[2] = 'Duas';
+	}
 	return isset( $mapa[ $n ] ) ? $mapa[ $n ] : (string) $n;
 }
 }

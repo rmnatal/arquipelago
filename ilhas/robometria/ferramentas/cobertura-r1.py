@@ -239,8 +239,18 @@ POR_EXTENSO = {1: "Um", 2: "Dois", 3: "Tres", 4: "Quatro", 5: "Cinco",
                6: "Seis", 7: "Sete", 8: "Oito", 9: "Nove", 10: "Dez"}
 
 
-def numeral(n):
-    """O numero da frase sai CONTADO e por extenso; acima de dez, em algarismo."""
+def numeral(n, feminino=False):
+    """O numero da frase sai CONTADO e por extenso; acima de dez, em algarismo.
+
+    `feminino` existe porque so DOIS numerais do portugues flexionam em genero —
+    um/uma e dois/duas — e por isso o defeito de 21/09/2026 ficou invisivel: a
+    cauda da divergencia conta `declaracoes`, que e feminina, e usava a tabela
+    masculina. Com tres ou mais canais a frase saia certa; com UM canal
+    divergente ela servia "as dois declaracoes", e o primeiro registro com um
+    canal so entrou no banco nesse dia. Muda aqui e no snippet JUNTO: as duas
+    implementacoes sao comparadas frase a frase pelo teste-r1.php."""
+    if feminino and n in (1, 2):
+        return {1: "Uma", 2: "Duas"}[n]
     return POR_EXTENSO.get(n, str(n))
 
 
@@ -267,7 +277,7 @@ def frase_da_divergencia(divergencias):
     n = len(divergencias)
     lado = lado_da_divergencia(divergencias)
     # +1: a declaracao desta pagina tambem esta publicada e datada.
-    total = numeral(n + 1).lower()
+    total = numeral(n + 1, feminino=True).lower()
     canal = "canal" if n == 1 else "canais"
     declara = "declara" if n == 1 else "declaram"
     if lado == "fabricante":

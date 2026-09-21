@@ -1264,6 +1264,22 @@ foreach ( $mapa_div as $pid => $lista ) {
 	rbm_ok( 0 === strpos( $frase, $esperado . ' ' ),
 		'a frase de ' . $pid . ' abre com o numero CONTADO de canais', $esperado . ' (' . $n . ')' );
 
+	/* E O SEGUNDO NUMERO DA MESMA FRASE CONTA DECLARACOES, QUE E PALAVRA
+	   FEMININA (21/09/2026). Ele e o total — os canais divergentes MAIS a
+	   declaracao desta pagina — e saia da tabela masculina: com UM canal
+	   divergente a pagina servia "as dois declaracoes". A regua e escrita aqui,
+	   como manda o cabecalho deste arquivo, e cobre os dois unicos numerais que
+	   flexionam em portugues. */
+	$extenso_f = array( 1 => 'uma', 2 => 'duas', 3 => 'tres', 4 => 'quatro', 5 => 'cinco',
+		6 => 'seis', 7 => 'sete', 8 => 'oito', 9 => 'nove', 10 => 'dez' );
+	$tot = $n + 1;
+	$esperado_f = isset( $extenso_f[ $tot ] ) ? $extenso_f[ $tot ] : (string) $tot;
+	rbm_ok( false !== strpos( $frase, 'as ' . $esperado_f . ' declaracoes' ),
+		'a frase de ' . $pid . ' concorda em genero com "declaracoes"',
+		'as ' . $esperado_f . ' declaracoes (' . $tot . ')' );
+	rbm_ok( false === strpos( $frase, 'as dois declaracoes' ),
+		'e nunca sai "as dois declaracoes": ' . $pid );
+
 	/* E A NATUREZA SO PODE SER DITA QUANDO TODOS OS CANAIS A SUSTENTAM. */
 	if ( 'fabricante' === $lado ) {
 		rbm_ok( false !== strpos( $frase, 'do fabricante declara' ),
@@ -1297,6 +1313,25 @@ $mundos = array(
 foreach ( $mundos as $lado_esperado => $lista ) {
 	rbm_ok( robometria_r1_lado_da_divergencia( $lista ) === $lado_esperado,
 		'o lado ' . $lado_esperado . ' e LIDO do degrau de cada canal, nao do nome dele' );
+}
+
+/* A BORDA DA CONCORDANCIA E PRODUZIDA, NAO ESPERADA DO BANCO. O defeito de
+   21/09/2026 so aparece com UM canal divergente (n=1 -> "as duas"); no dia em
+   que o banco nao tiver nenhum registro assim, a afirmacao do laco acima passa
+   a medir um mundo que nao existe mais. Os tres lados sao exercitados aqui com
+   um canal so, que e o unico numero em que a frase pode errar o genero. */
+$um_canal = array(
+	'fabricante' => array( array( 'canal' => 'canal-a', 'fala_pela_marca' => true,
+		'conjunto' => array( 'X1' ), 'verificado_em' => '2026-09-21' ) ),
+	'terceiro'   => array( array( 'canal' => 'canal-b', 'fala_pela_marca' => false,
+		'conjunto' => array( 'X2' ), 'verificado_em' => '2026-09-21' ) ),
+);
+foreach ( $um_canal as $lado_produzido => $lista_um ) {
+	$frase_um = rbm_sem_acento( robometria_r1_frase_da_divergencia( '__um__', $lista_um ) );
+	rbm_ok( false !== strpos( $frase_um, 'as duas declaracoes' ),
+		'com UM canal divergente (' . $lado_produzido . ') a frase diz "as duas declaracoes"' );
+	rbm_ok( false === strpos( $frase_um, 'as dois declaracoes' ),
+		'e o mundo de um canal so (' . $lado_produzido . ') nunca serve "as dois"' );
 }
 
 /* E O MISTO NAO PODE SAIR COM AS PALAVRAS DE NENHUM DOS DOIS PUROS. Sem esta
