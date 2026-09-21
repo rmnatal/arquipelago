@@ -56,6 +56,9 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   no mundo** e por isso é entrada do leitor.
 
 ## O que está travando
+
+> **A PRIMEIRA LINHA DESTA SEÇÃO JÁ NÃO VALE — ponteiro do Pente Fino em 21/09/2026.** O cabeçalho deste mesmo arquivo registra `rede: aberta em 2026-09-18`, medido às 12h35Z com **HTTP 200 e sem redirecionamento para www**, e o `dados/PAINEL.md` da ronda de 18/09 confirma. A rede **não trava mais o 3b**; o que trava o 3b hoje é o site não existir. O texto de 14/09 fica abaixo, inteiro, porque é o que foi medido naquele dia — mas não é o estado de hoje.
+
 - **A REDE DA ILHA, medida em 14/09/2026 às 15h22Z.** `jornadafly.com.br` e
   `www.jornadafly.com.br` devolvem **000** (o proxy recusa o CONNECT por
   política da organização) enquanto `aquametria.com.br` e `robometria.com.br`

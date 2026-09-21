@@ -60,7 +60,7 @@ A identidade desta ilha **não foi desenhada pela fábrica**. O Raphael trouxe a
 
 ## Tipografia
 
-Três famílias, uma monoespaçada — o teto da seção 15 do `ARQUIPELAGO.md`.
+Três famílias, uma monoespaçada — o teto da seção **22.4** do `ARQUIPELAGO.md`. *(Dizia "seção 15", que é a da voz; o teto de fontes é da 22.4 — "no máximo duas famílias de texto + uma monoespaçada" —, e este mesmo arquivo já a cita certo no parágrafo de carregamento. Corrigido pelo Pente Fino em 21/09/2026.)*
 
 - **Marca e títulos: Montserrat.** É a fonte da arte oficial, informada pelo Raphael em 14/09/2026 — não é escolha da fábrica, é o que está no logo.
   - `JORNADA` e `FLY`: **Montserrat 500/600** (Medium a SemiBold), caixa alta.

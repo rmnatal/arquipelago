@@ -50,7 +50,7 @@ O dossiê desta ilha é `bussola/dossies/som-automotivo/DOSSIE.md`. **Leia-o int
 Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (indexação é a prioridade máxima de ilha nova).
 
 **Regras que já estão valendo e que esta ilha nasce obedecendo, sem repetir a dívida das outras:**
-- **Seção 25.2 — o piso de busca vem antes de qualquer link de produto.** Nenhum item entra no banco sem `afiliado.url_busca_bruta`. A frase "link de loja em breve" está **proibida** (seção 7, corrigida em 14/09).
+- **Seção 25.2 — o piso de busca vem antes de qualquer link de produto.** Nenhum item entra no banco sem `afiliado.url_busca_produto`. *(Dizia `afiliado.url_busca_bruta` até 21/09/2026. **Esse campo não existe no contrato**: a 25.4-b batizou a URL crua da busca de `afiliado.url_busca_produto` em 13/09/2026, e a Aquametria e a Robometria já corrigiram a mesma frase nos próprios `PROMPT.md`, cada uma escrevendo que criar um segundo nome para o mesmo fato é duas metades que nunca se falam. Corrigido pelo Pente Fino em 21/09/2026, antes de esta ilha carregar o banco — o `experiencias.json` da jornadafly já grava `url_busca_produto`, contra a letra desta linha.)* A frase "link de loja em breve" está **proibida** (seção 7, corrigida em 14/09).
 - **Seção 25.4-b** — todo item com link de produto leva também `afiliado.url_produto` (URL crua), senão o teste de vida é impossível.
 - **Amazon está fora de tudo** (seção 7): não é âncora de comissão, não é evidência de cobertura, não é categoria de referência.
 

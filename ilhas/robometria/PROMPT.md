@@ -712,6 +712,18 @@ Fechado pela execução das 15h17Z, item por item, e o que ele achou pelo caminh
 
 ## OS CINCO ITENS ESTÃO FECHADOS — A ILHA FOI DECLARADA PRONTA EM 20/09/2026, 13h45Z, TRÊS DIAS ANTES DO PRAZO
 
+> **REMEDIÇÃO DO PENTE FINO, 21/09/2026 — O ITEM 2 NÃO ESTÁ MAIS EM 15: `cobertura-r1.py` RODADO HOJE DEVOLVE 11. ISTO É REGISTRO DE MEDIÇÃO, NÃO DECISÃO: se ele reabre ou não a PRONTA é do Raphael.**
+>
+> `python3 ferramentas/cobertura-r1.py` no `main` de hoje imprime *"as duas respondem … **11**"* — `positivo-pra2000`, `positivo-pra800`, `roborock-saros-z70` e os oito Xiaomi. A meta do item é **15**, e a linha de base anterior era 8.
+>
+> **A CAUSA ESTÁ NESTE MESMO ARQUIVO, DUAS SEÇÕES ABAIXO, E É DO MESMO DIA.** O portão do canal brasileiro, escrito em 20/09 às 15h39Z, **anulou 7 canais** (5 Roborock, 2 Multi) e levou `recomendaveis_pela_r2` de **17 para 13** — número que o próprio `modelos-robo.json` publica hoje. Quatro dos cinco Roborock anulados eram exatamente quatro dos 15 da interseção (`roborock-q8-max`, `roborock-qrevo-curv`, `roborock-qrevo-master`, `roborock-s8-maxv-ultra`). **15 − 4 = 11.** O teto da meta é `recomendaveis_pela_r2`, então hoje ele é **13**, e a meta de 15 está de novo acima do teto — como esteve até 17/09.
+>
+> **A ORDEM DO RELÓGIO, que é o que faz disto um achado e não uma fofoca:** a ilha foi declarada PRONTA às **13h45Z** e o portão que derrubou o número rodou às **15h39Z do mesmo dia**. O commit de fecho das 15h47Z **remediu o item 1** (95 de 95 rendem comissão) e **não releu o item 2**, que a mesma execução tinha acabado de mover. É o padrão que este auditor existe para caçar, dentro de uma execução só: consertar um ponto e não reler o vizinho.
+>
+> **E O NÚMERO ERRADO ESTÁ COMMITADO COMO DADO, NÃO SÓ COMO PROSA:** `dados/cobertura-r1.json` (gravado em 18/09) ainda afirma *"das 45 entradas publicáveis, apenas **15** são atendidas pelas DUAS"*. **Nenhum portão vê isso:** `bancada.py` classifica `cobertura-` como "ferramenta de PRODUÇÃO … que NÃO afirma nada", e por isso `cobertura-r1.py` não roda em nenhuma das 44 passadas — enquanto o arquivo que ela grava é a única afirmação da ilha sobre a emenda do funil. `validar-banco.py` roda e **APROVA**, porque ele não olha este arquivo. Régua que não cobre o que o bloco mudou certifica a página de ontem (seção 4).
+>
+> **O que eu NÃO fiz, de propósito:** não rodei `--gravar`, não mexi no `estado: viva` do `ESTADO.md` e não reabri o item. Gravar 11 por cima de 15 reabriria o item 2 e desfaria a declaração de PRONTA — isso muda a fila e joga fora trabalho declarado, e não é decisão de auditor. **As três saídas que os dados admitem, e a escolha é dele:** (a) a PRONTA vale como foi declarada às 13h45Z e a queda vira dívida nova, com o item 2 remedido e reaberto; (b) a meta de 15 é remedida contra o teto de 13, como já foi remedida em 17/09; (c) a PRONTA fica de pé e o assunto entra inteiro na decisão de outubro. **Em todas elas, o primeiro passo é o mesmo e custa um comando:** `cobertura-r1.py --gravar`, para o dado commitado parar de afirmar 15.
+
 | item | estado | número medido |
 |---|---|---|
 | 1. Porta de compra em todo item publicável | **feito** (16/09, remedido em 20/09 15h30Z) | 95 publicáveis, 0 com "em breve", 0 sem saída; **95 rendem comissão e 0 não** — a dívida do elo foi paga em 20/09, ver abaixo |

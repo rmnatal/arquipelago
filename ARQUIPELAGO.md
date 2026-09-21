@@ -7,14 +7,16 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 | Papel | Seções |
 |---|---|
 | **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, 26 |
-| **Sentinela — ronda diária** | **1.2**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24 |
+| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24 |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
-| **Sentinela — leitura semanal** | **1.2**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21 |
+| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21 |
 | **Bússola** | 10, 11, 14, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
 | **Pauta das ilhas** | 10, 14, 15, 16, 17, 21 |
 | **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
 
 **Sempre, para todo papel:** seções **1.2** (foco único — enquanto `foco.md` nomear uma ilha, ela manda em quem trabalha em quê), **2** (cabeçalho de estado), **3** (o repositório é o lugar do trabalho), **4** (o site fica para trás em silêncio), **10** (regras que valem sempre) e **18** (correção fura a fila).
+
+*(A **1.2-b** entrou nas duas linhas de Sentinela em 21/09/2026, pelo Pente Fino, pelo mesmo motivo que a 1.2 entrou cinco dias antes: a 1.2-b.1, escrita em 18/09, é quem diz o que a Sentinela faz nas ilhas FORA do foco — e as duas linhas de Sentinela mandavam, ao pé da letra, não ler nem a 1 nem a 1.2-b.)*
 
 *(A 1.2 entrou neste mapa em 16/09/2026, pelo Pente Fino: ela nasceu no mesmo dia declarando, no próprio texto, que vale "para o arquipélago inteiro, não só para a Fundação" e que mora na seção 1 "por acidente de lugar, não de alcance" — e as duas linhas de Sentinela deste mapa mandavam, ao pé da letra, NÃO ler a seção 1. A regra que decide o trabalho das duas era invisível para as duas.)*
 
@@ -67,6 +69,12 @@ Quando `foco.md` na raiz do repositório nomeia uma ilha, a Fundação trabalha 
 
 - **Leitura semanal (Sentinela estratégica):** trabalha **só na ilha em foco**. Toda a leitura — indexação, vigilância de loja, lacuna de conteúdo, tráfego, posição — é dela e de mais nenhuma. E o teto semanal de geração de link de afiliado vai **inteiro** para a ilha em foco: é a camada que enche o cano de links, e com uma ilha só o cano dela enche em uma fração do tempo.
 - **Ronda diária:** trabalha **só na ilha em foco**. Não abre, não mede e não relata nenhuma outra ilha. Decisão do Raphael em 16/09/2026: foco é foco. Vigilância das ilhas fora do foco volta a existir quando o arquipélago tiver muitas ilhas ao mesmo tempo — hoje o custo de olhar quatro ilhas paradas é maior que o risco de uma delas cair sem ninguém ver.
+
+> **PONTEIRO INSERIDO PELO PENTE FINO EM 21/09/2026 — OS DOIS ITENS ACIMA SÃO A PONTA VELHA NA METADE DA MEDIÇÃO, E A 1.2-b (18/09/2026) É A NOVA.** Os dois itens são de 16/09 e dizem, com todas as letras, que **ninguém ronda as ilhas fora do foco** e que a leitura — *"indexação, vigilância de loja, lacuna de conteúdo, tráfego, posição"* — é **só** da ilha em foco. Dois dias depois, a **1.2-b.1** decidiu o contrário para a metade que produz número: *"**Medição**: todas as outras. Na medição a Sentinela continua rodando, a série de `dados/indexacao.md` e `dados/posicoes.md` continua crescendo"*, com a frase do Raphael em 18/09 — *"sempre mensurando os anteriores"* — e com a causa escrita na 1.2-b.2 (cada ilha medida barateia a seguinte). **`dados/indexacao.md` e `dados/posicoes.md` são artefatos da LEITURA SEMANAL** (12.1 e §11, passo 9), então para ela a contradição é direta e a 1.2-b vence por data e por ser decisão nomeada.
+>
+> **E ela não foi obedecida:** a ronda de 18/09 às 14h52Z — duas horas depois de a 1.2-b entrar no `main` — fechou registrando em `dados/PAINEL.md` que *"as outras quatro ilhas não foram olhadas nesta ronda, por força do foco da 1.2"*, e as linhas delas no painel saíram do cabeçalho do `ESTADO.md`, **não medidas no ar**.
+>
+> **O que este ponteiro NÃO decide, porque as duas leituras são defensáveis e a escolha é do Raphael:** se a **ronda diária TÉCNICA** (HTTP 200, `/status`, console, `&#038;`, tom) também volta a rodar nas quatro ilhas fora do foco, ou se o modo de medição da 1.2-b é só a série semanal. A 1.2-b diz "a Sentinela continua rodando" sem separar as duas. Enquanto ele não disser, a leitura semanal mede todas e a ronda técnica segue a letra da 1.2.
 
 ### 1.2-b FORA DO FOCO NÃO É PARADA: É MODO DE MEDIÇÃO — e a ordem do foco sai da medição (18/09/2026)
 
@@ -357,7 +365,7 @@ São duas, separadas por **ritmo**, não por assunto. Não as junte: quando o te
 
 **LEITURA SEMANAL — o negócio.** Indexação em primeiro lugar (`dados/indexacao.md`, série nova); visitas; vendas por Sub_id; Shopee (link morto, comissão melhor, produto novo vendendo); lacuna de produto e de conteúdo; backlink; **interlinkagem entre ilhas**, que só dá para julgar olhando o arquipélago inteiro; marca. Critério único: ROI. Camada sem dado ainda escreve "ainda sem dado" em vez de inventar análise.
 
-**VERIFICAR POR DÍVIDA, NÃO VARRENDO TUDO.** Primeiro o que foi publicado desde a última ronda (código novo é onde mora defeito), depois a ilha de `ultima_ronda` mais antiga. Mesma reserva por commit da seção 1. Com muitas ilhas, varrer tudo todo dia não cabe numa execução — e tentar é como a verificação morre. **ENQUANTO `foco.md` NOMEAR UMA ILHA, esta regra de dívida está SUSPENSA: a ronda diária e a leitura semanal trabalham só na ilha em foco e não abrem nenhuma outra — seção 1.2, 16/09/2026.** *(Ponteiro inserido pelo Pente Fino em 16/09/2026: a 1.2 suspendeu esta regra no dia em que nasceu e não a nomeou, e esta seção é a que as duas Sentinelas leem.)*
+**VERIFICAR POR DÍVIDA, NÃO VARRENDO TUDO.** Primeiro o que foi publicado desde a última ronda (código novo é onde mora defeito), depois a ilha de `ultima_ronda` mais antiga. Mesma reserva por commit da seção 1. Com muitas ilhas, varrer tudo todo dia não cabe numa execução — e tentar é como a verificação morre. **ENQUANTO `foco.md` NOMEAR UMA ILHA, esta regra de dívida está SUSPENSA: a ronda diária e a leitura semanal trabalham só na ilha em foco e não abrem nenhuma outra — seção 1.2, 16/09/2026.** *(Ponteiro inserido pelo Pente Fino em 16/09/2026: a 1.2 suspendeu esta regra no dia em que nasceu e não a nomeou, e esta seção é a que as duas Sentinelas leem.)* **E a 1.2-b (18/09/2026) mudou metade disso de novo, sem tocar aqui nem na 1.2 — ponteiro do Pente Fino em 21/09/2026:** as ilhas fora do foco passaram a estar em **modo de medição**, e a 1.2-b.1 diz com todas as letras que nelas *"a série de `dados/indexacao.md` e `dados/posicoes.md` continua crescendo"*. Para a **leitura semanal**, portanto, a suspensão acima é a ponta velha: ela mede todas as ilhas. Para a **ronda diária técnica**, a 1.2-b não separou as duas Sentinelas e a escolha está registrada como pendente do Raphael no ponteiro da 1.2 — até lá vale a letra desta linha.
 
 **As duas precisam do computador do Raphael ligado**, e a causa é uma só: **o WebFetch exige aprovação humana por URL**, que não existe em rotina agendada, e a Sentinela não tem repositório (rotina com navegador não commita — seção 12.2). *(Esta frase dizia também "a nuvem agendada não alcança os sites: o proxy bloqueia". **Isso é falso desde 10/09/2026** e contradiz as seções 4, 10 e 20.2, que mandam a própria Fundação acionar o Sync e conferir o `/status` por `curl`. Remedido pelo Pente Fino em 16/09/2026: as 9 URLs do sitemap da robometria responderam **200 da nuvem**, numa passada. É o mesmo defeito que a auditoria de 14/09 consertou na seção 10 e que esta cópia manteve de pé.)* Por isso a ronda tem que ser econômica.
 

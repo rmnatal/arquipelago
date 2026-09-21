@@ -430,8 +430,10 @@ explicação**, em frase autossuficiente que sobrevive a ser citada fora de cont
 `FAQPage` onde couber · **procedência na própria frase** · `robots.txt` liberado para
 GPTBot, ClaudeBot, PerplexityBot e Google-Extended · página **Sobre** com método.
 
-**Link de compra (seção 25.2):** **todo item ganha `afiliado.url_busca_bruta` ANTES de
-qualquer outra coisa** — o piso é a busca e o piso não espera ninguém. `url_produto`
+**Link de compra (seção 25.2):** **todo item ganha `afiliado.url_busca_produto` ANTES de
+qualquer outra coisa** *(dizia `url_busca_bruta`, nome que não existe no contrato; a 25.4-b
+batiza a URL crua da busca de `url_busca_produto` desde 13/09/2026 — corrigido pelo Pente
+Fino em 21/09/2026, antes de o banco desta ilha ter um registro sequer)* — o piso é a busca e o piso não espera ninguém. `url_produto`
 (URL crua) é obrigatória em todo item que tenha ficha, senão o teste de vida é impossível
 (25.4-b). Ficha viva vira botão e a busca desce para a linha discreta; ficha morta ou
 inexistente, **a busca sobe e vira o botão**. A frase **"link de loja em breve" é

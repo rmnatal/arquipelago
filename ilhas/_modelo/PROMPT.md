@@ -5,6 +5,9 @@ Modelo de ilha nova. Copie esta pasta para `ilhas/<nome>/`, preencha tudo entre 
 Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras comuns; aqui fica só o que é desta ilha. **Nunca copie regra do `ARQUIPELAGO.md` para cá** — regra comum se corrige em um lugar só.
 
 ## Identidade
+
+> **O DONO DA PALETA É O `DESIGN.md`, NÃO ESTE ARQUIVO (ponteiro do Pente Fino em 21/09/2026).** A seção **22.6** do `ARQUIPELAGO.md` diz, desde 12/09/2026, que *"o `PROMPT.md` **deixa de ser dono da paleta**: onde ele hoje lista cor e fonte, passa a apontar para o `DESIGN.md`"*, e que *"cor, fonte ou medida que não está no `DESIGN.md` é defeito, não identidade"*. As linhas de paleta e tipografia abaixo continuam aqui como **registro do que foi aprovado**; a fonte da verdade é `ilhas/<ilha>/DESIGN.md`, e se as duas discordarem vale o `DESIGN.md`. **Ilha copiada deste molde cria `DESIGN.md` e `VOZ.md` antes do bloco 3b** — pela **15.1**, *"ilha sem `VOZ.md` não recebe bloco novo até ele existir"*, e esta pasta não traz nenhum dos dois. Use os das cinco ilhas vivas como formato.
+
 - Nicho: `<o eixo paramétrico, não a categoria comercial>`
 - Domínio: `<dominio.com.br>`, registrado em `<data>`. Ilha nº `<n>` do Arquipélago.
 - Paleta, 7 valores e nada além: tinta `<#>` · marca `<#>` (**cor de sinal**: um uso por tela) · papel `<#>` · superfície `<#>` · traço `<#>` · legenda `<#>` · alerta `<#>`.

@@ -137,6 +137,12 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 ### prioridade ALTA — as DUAS ilhas nascidas em 14/09 não estão na lista de rede, e a 20.1 manda que estivessem no dia do domínio
 
+> **A METADE QUE DÁ NOME A ESTE DESPACHO ESTÁ CUMPRIDA DESDE 18/09/2026 — registro do Pente Fino em 21/09/2026, sem mover o bloco nem mexer na prioridade.** O "pronto quando" do título — *"`curl` a `https://jornadafly.com.br/` devolver qualquer código HTTP de verdade"* — foi atendido: `ilhas/jornadafly/ESTADO.md` e `ilhas/ohmetria/ESTADO.md` trazem os dois `rede: aberta em 2026-09-18`, medido às 12h35Z com **HTTP 200**, e o `dados/PAINEL.md` da ronda de 18/09 escreve *"o despacho ALTA de 15/09 sobre a lista de domínios está cumprido e saiu deste painel"*. **O título deste bloco, lido hoje, afirma um fato falso.**
+>
+> **O que continua ABERTO neste mesmo bloco, e é o que sobra dele:** `api.bcb.gov.br` (câmbio, e o próprio texto diz que *"nada trava por causa disso"*), `sac.taramps.com.br` e `*.taramps.com.br` (trava a F3 da ohmetria e 8 constantes), e os domínios de operador da jornadafly (`civitatis.com`, `www.angkorenterprise.gov.kh`), que travam o critério de entrada do banco daquela ilha.
+>
+> **Não movi para FECHADOS e não rebaixei a prioridade**, porque o bloco só está cumprido pela metade e reescrever despacho pela 18.3 é da Fundação, não do Pente Fino. **Mas ALTA é a única coisa que fura o foco da 1.2** — e este ALTA não fura, porque a 1.2 só é furada por ilha *no ar e quebrada*, e nenhuma das duas está no ar. É a segunda vez que um ALTA cumprido fica na lista dos abertos (a primeira foi corrigida em 16/09, no bloco de `FECHADOS` logo abaixo).
+
 14/09/2026 — RAPHAEL — Medido às 15h22Z pela execução da Fundação que reservou a **jornadafly**, numa passada só e com controle na mesma passada:
 
 | endereço | código |
