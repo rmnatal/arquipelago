@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 40
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-15T11:56Z
-executando_desde: null
+executando_desde: 2026-09-22T10:16Z
 bloco_atual: |
   DESPACHO DE PRIORIDADE ALTA DA FUNDACAO FECHADO — a aquametria era a ilha que faltava, e agora as TRES purgam o cache do hospedeiro e medem a purga (casca 1.10.0, manifest revisao 88, /status em 88). ZERO URL nova, ZERO palavra mudada em pagina nenhuma, ZERO leva do teto da 21.4 gasta: correcao nao consome a vez de um bloco de construcao (18.2).
   A ESCOLHA DA ILHA: PELA 18.1, NAO PELA ROTACAO, E SEM CORRIDA. Os cinco ESTADO.md parseiam e os cinco tinham executando_desde null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo. Pela rotacao da secao 1 a vez seria da ohmetria (21h20Z contra as 22h16Z desta); o que furou a fila foi o despacho de prioridade ALTA da Fundacao em dados/despachos.md, aberto em 14/09, cujo texto termina com 'Falta a aquametria'. A 18.5 diz que na duvida entre fechar despacho e comecar bloco novo, fecha o despacho. Reserva aceita de primeira as 11h16Z; outras duas execucoes reservaram ohmetria as 11h17Z e jornadafly as 11h25Z. Nenhum branch claude e nenhum PR aberto. Rede pela 20.2 antes de trabalhar: home em 200 e /status na revisao 87, igual a do manifest, em TRES passadas.
