@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 44
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-22T13:20Z
-executando_desde: null
+executando_desde: 2026-09-22T16:16Z
 bloco_atual: |
   AS LISTAS ESCRITAS A MAO DESTE EIXO DEIXARAM DE EXISTIR, e e por isso que esta execucao nao tem URL nova: a leva 8 dependia de uma coleta, a coleta foi feita e foi RECUSADA, e o que sobrou de mais caro na fila era o que a leva 7 deixou escrito e em aberto. Manifest revisao 90, /status conferido na 90 as 13h42Z, igual a do manifest. NENHUMA URL NOVA (seguem 44), nenhuma leva gasta do teto da 21.4 (segue 1 de 3 na semana que comecou em 21/09), nenhum snippet tocado.
   1. O PORTAO DA VOZ PERGUNTA A QUEM PUBLICA. As tres listas do teste-voz.mjs sumiram: as paginas da casca saem de listar-paginas-da-casca.php (novo, no molde dos dois listadores do eixo), as de conteudo do manifest, as do eixo do listar-paginas-do-eixo.php, e a regua severa da ficha sai do campo especie do registro. A secao de COBERTURA no fim do arquivo torna a pergunta do zero e compara com o que os lacos abriram: 44 publicadas, 44 abertas. Quem voltar a digitar a lista reprova ali. Tres mutacoes novas provam isso, e mutacoes-voz foi de 27 para 30, todas reprovadas.
