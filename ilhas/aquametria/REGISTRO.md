@@ -14,6 +14,177 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-22 17h25Z — O CHÃO DECLARADO GANHOU DONO: DOIS DEFEITOS QUE ESTAVAM NO AR SAÍRAM, E O CAMPO QUE OS BARRA NASCEU (esquema de espécies versão 5, peixes 1.12.0, manifest revisão 94, `/status` conferido na 94; NENHUMA URL NOVA — seguem 44 — e NENHUMA leva gasta do teto da 21.4)
+
+**O BLOCO ERA OUTRO QUANDO A EXECUÇÃO COMEÇOU.** A fila apontava o caminho (b) que
+a leva 7 nomeou — *"um campo de ESCOPO no esquema, que deixe a base declarada
+viajar com o arranjo a que ela se refere"* —, e o que justificava o bloco era
+destravar `/peixes/acaras/`. A varredura que o bloco pedia antes de escrever uma
+linha achou outra coisa: **a ficha do apistogramma agassizi estava no ar, desde
+14/09, prometendo ao harém um chão que a fonte declarou para um casal.** A partir
+daí isto deixou de ser construção e virou correção (seção 18 do contrato), e a
+seção 18.5 decide a ordem: ilha com defeito no ar não recebe página nova.
+
+### 1. O defeito, e onde ele estava escrito
+
+A página servia, na primeira frase:
+
+> *"Para um harém de apistogramma agassizi — e harém quer dizer mais fêmeas do que
+> machos, nunca um casal —, o seu aquário precisa de 60 cm de frente por 30 cm de
+> fundo."*
+
+Os 30 cm de fundo são do Seriously Fish, que os declarou **para UM CASAL** (*"base
+de 60 x 30 cm ou mais é aceitável para UM casal, com o grupo exigindo espaço
+maior"*). A base científica, que declara o harém, publica a **frente** de 60 cm e
+não diz uma palavra sobre o fundo.
+
+**A proibição já existia — e não valia nada.** Estava no campo `observacao` do
+próprio registro, em maiúsculas, escrita pela execução que publicou a ficha:
+
+> *"O QUE A FICHA NÃO PODE FAZER, e fica escrito para quem a escrever: prometer que
+> 60 x 30 cm serve ao harém. Serve ao casal por declaração do compêndio; para o
+> harém, os 60 cm de FRENTE são o que a base declara, e o fundo não está declarado
+> para esse arranjo."*
+
+Quem escreveu a frase tinha entendido o problema inteiro. **Prosa não conta e prosa
+não barra página** — é a mesma família do `afiliado.intestavel` (14/09) e do
+`coletas_recusadas` (ontem), e desta vez o custo foi tela: oito dias, uma tabela de
+litros por altura e uma tabela de "quantos cabem no aquário mínimo", as duas
+multiplicando um fundo que é de outros peixes.
+
+### 2. O segundo defeito, que ninguém tinha visto: a base atribuída à fonte errada
+
+Medido com `curl` nas fichas no ar: **quatro** diziam *"Quem declara essa base é o
+FishBase"* — tetra neon, tetra-brilhante, rasbora arlequim e apistogramma agassizi
+— e nas quatro os **dois lados do chão são do Seriously Fish**. A causa é de uma
+linha: a frase perguntava sempre por `comprimento_minimo_aquario_cm` e só caía na
+base quando não havia comprimento declarado, então nomeava o corpo que declarou
+**a frente** enquanto a palavra na tela era **base**.
+
+Atribuir número à fonte errada é o defeito mais caro desta ilha, porque a
+procedência é o que ela vende. A frase passa a perguntar pelo campo que ela vai
+nomear.
+
+### 3. O campo: `chao_declarado_para` (esquema versão 5)
+
+`base_minima_cm` sempre foi um número sobre uma **população**, e o esquema não
+tinha onde dizer qual. O campo tem duas metades:
+
+- **`arranjos`** — termos de vocabulário fechado, **ordenados por população**:
+  `juvenis` < `um-exemplar` < `casal` < `grupo`. Chão declarado para um nível serve
+  a tudo nele ou abaixo (aquário que abriga um grupo abriga um casal; o contrário
+  não vale). `harem` e `cardume` mapeiam os dois em `grupo` — e é exatamente por
+  isso que a base do casal não serve nenhum dos dois.
+- **`frase`** — a cláusula da transcrição da fonte em que o chão foi declarado,
+  copiada ao pé da letra.
+
+**`nao-declarado` é o caso mais comum e não é um buraco:** é a fonte que publica a
+base como o mínimo da espécie sem nomear população (*"base recomendada de 61 x 38
+cm"*). **Foi escolha, e o custo está escrito no esquema:** cobrar população nomeada
+onde a fonte não nomeou tiraria o fundo de doze fichas por causa do silêncio da
+fonte, e silêncio ali quer dizer "este é o aquário mínimo da espécie". Por isso ele
+nunca aparece ao lado de outro termo, e o E22 reprova se a própria cláusula nomear
+alguma população — **o termo permissivo é justamente o que devolve o fundo a uma
+ficha que não pode publicá-lo, e por isso ele é conferido pelo avesso.**
+
+**Preenchido nos 23 registros** com base de dois lados, com a cláusula conferida
+como trecho **literal** da referência antes de gravar. Resultado da varredura: **um
+único** desacordo entre o chão declarado e o arranjo publicado — a agassizii. As
+outras 22 estão cobertas, e seis delas por fonte que nomeia "grupo pequeno" ou
+"cardume" explicitamente.
+
+### 4. As três regras, e onde os dentes ficaram
+
+- **E20** — base de dois lados **exige** o campo, e registro sem base de dois lados
+  não pode tê-lo. `nao-declarado` não se mistura.
+- **E21** — **aviso, não erro.** O dado está certo: a fonte declarou o que
+  declarou. Quem tem de obedecer é a **página**, e por isso os dentes ficaram em
+  `teste-peixes.py`, contra o HTML servido.
+- **E22** — a `frase` tem de ser trecho **literal** da referência que sustenta a
+  base, e os termos têm de estar sustentados por ela, palavra a palavra.
+
+`testar-validador-especies.py` foi de **28 para 36 testes**, 0 falha, com oito
+corrupções novas. Uma delas conserta um teste que tinha envelhecido: o do E19 corrompia
+o banco **preenchendo** a base do disco, e a base entrou hoje de direito — a
+corrupção agora é apagar a superação e deixar o campo preenchido, que é a metade
+que a regra existe para pegar.
+
+### 5. A metade da tela, e a terceira ausência
+
+`aquametria_peixes_fundo()` é agora a **única** leitura do fundo publicável — a
+ficha e o JSON-LD liam `base_largura` cada um por si, e duas leituras do mesmo
+campo são duas respostas no dia em que uma ganhar condição.
+
+E a ausência virou **três estados**, não dois, porque são diferentes para quem lê:
+
+1. ninguém declarou largura (o rodóstomo);
+2. **a largura declarada não é sobre estes peixes** (novo);
+3. a base serve e sai inteira.
+
+O estado 2 **não cala o número**: a página diz a largura, diz **para quem** ela foi
+declarada, diz que as duas tabelas do fundo não saem e por quê, e mantém de pé a
+frente — essa sim declarada para o arranjo publicado. Calar seria repetir, do outro
+lado, o erro de publicar sem escopo.
+
+E a abertura da ficha ganhou o **terceiro ramo** na mesma execução, depois de a
+primeira versão subir e ser lida no ar: ela dizia *"o fundo fica em aberto"* e
+publicava a largura declarada dois parágrafos abaixo — **duas coisas diferentes a
+uma tela de distância**, e a primeira lida como "ninguém sabe". Agora diz *"o fundo
+fica de fora: a largura declarada é para outra quantidade de peixe"*, sem nomear
+corpo nenhum, que é o que a 15.2 pede do primeiro parágrafo.
+
+`teste-peixes.py` foi de **3147 para 3206 afirmações**, com a segunda lista escrita à
+mão do arquivo (`FUNDO_DE_OUTRO_ARRANJO`) posta frente a frente com o banco — pelo
+mesmo motivo da primeira: perguntar ao banco quem está fora de escopo seria medir o
+banco contra ele mesmo. `mutacoes-peixes.py` foi de **90 para 94**, e as quatro novas
+são as quatro portas dos fundos: o portão sumindo, o harém virando casal, a ordem
+dos termos invertendo e a atribuição voltando a perguntar pelo comprimento.
+
+### 6. E o que o bloco tinha ido fazer: `/peixes/acaras/` DESTRAVOU
+
+O acará-disco passou treze dias em **um corpo de fonte só**, e a coleta das 13h20Z de hoje
+foi recusada por escopo. Com o campo, ela entrou **sem uma busca nova**: os 120 × 45 ×
+45 cm e os 255 L do Seriously Fish estão gravados com `arranjos: [juvenis, casal]`,
+o registro foi a **completo**, e a entrada em `coletas_recusadas` ganhou
+`superada_em` e `superada_por` em vez de ser apagada — é a **primeira recusa
+superada** desta ilha, e a série é o que ensina.
+
+**A categoria tem as três fichas do mínimo do 16.5:** acará-bandeira, oscar e disco.
+O catálogo foi de **31 para 32** espécies.
+
+**E a ficha do disco já nasce sabendo o que não pode dizer:** o chão dela é a
+**frente** de 120 cm, que a FishBase declara para grupos de cinco ou mais. O fundo
+sai na tela com o nome da população para quem foi declarado, e as duas tabelas que
+dependem dele não saem.
+
+### 7. O que ficou medido e NÃO consertado (18.3)
+
+- **DEZOITO ferramentas seguem fora do `manifest.json`**, entre elas `teste-voz.mjs`,
+  `teste-arvore.mjs` e `mutacoes-voz.py`. É a quarta lista escrita à mão da mesma
+  família, o aviso sai em toda passada do `atualizar-manifest.py` e vem sendo lido e
+  não atendido — hoje inclusive.
+- **O `convivencia` do oscar continua carregando duas coisas.** A fila supunha que o
+  oscar tinha o mesmo defeito do disco resolvido em prosa; **a medição diz que não**.
+  A base de 150 × 60 cm dele foi declarada para UM adulto e ele publica `solitario`,
+  que o esquema define como "um por aquário" — o chão **cobre** o arranjo, e o campo
+  novo registra isso sem nada a consertar. O que sobra é outra coisa, e fica nomeada:
+  `convivencia: solitario` está dizendo, no oscar, o **escopo do chão** e não a
+  sociabilidade da espécie, e a própria `observacao` diz isso. Trocar o valor tiraria
+  o oscar do portão de página e com ele a categoria inteira, então isto é bloco de
+  esquema, não conserto de passada.
+- **78 itens seguem sem `url_busca` encurtada**, e **zero** sem saída de compra — o
+  piso da 25.2 cobre os 78. Esta execução não tocou em produto nenhum.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**LEVA 8 — `/peixes/acaras/`**, a oitava categoria do eixo: a mãe e as fichas do
+acará-bandeira, do oscar e do acará-disco. Banco fechado em três elegíveis nesta
+execução. Falta, antes de publicar: classificar a SERP das quatro consultas (14.9) e
+escrever a linha mestra da categoria — e a leva 5 deixou a regra de como escrevê-la
+(*"texto de categoria escrito antes da leva é afirmação que ninguém mediu"*). O teto
+da 21.4 segue em **1 de 3** nesta semana.
+
+
 ## 2026-09-14 22h11Z — LEVA 6: A QUINTA CATEGORIA, E A PRIMEIRA EM QUE AS TRÊS FILHAS VIVEM DE TRÊS JEITOS DIFERENTES (peixes 1.10.0, manifest revisão 87, `/status` conferido na 87 em UM disparo; QUATRO URLs novas — `/peixes/ciclideos-anoes/` e as fichas do ramirezi, do apistogramma agassizi e do papilocromis)
 
 **MESMA EXECUÇÃO DAS 21h18Z**, seguindo no **modo mutirão** que esta ilha tem

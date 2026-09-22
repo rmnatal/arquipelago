@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 93,
+  "revisao": 95,
   "atualizado_em": "2026-09-22",
   "estado": "fundacao",
   "desembarque": {
@@ -468,7 +468,7 @@
       "verificado_em": "2026-09-14",
       "registros": 37,
       "publicar": false,
-      "sha256": "e383ad436665d2a795aee95ffa141183f339a4c31855c90fec7a7164cf00ee44",
+      "sha256": "f4912165b3acf7ff9a2d2a7d918a242a0af05cd8441bf5510518ac891d8e5d1b",
       "descricao": "Banco de especies: 37 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 29 dos 37 passam no portao de pagina de especie; os 8 barrados dizem no proprio registro qual campo falta e por que nao foi estimado. Em 13/09/2026 o gurami mel saiu dos barrados (o porte que a FishBase declara segue RECUSADO pela contradicao interna da propria ficha, e quem sustenta o campo e o compendio, com 55 mm SL em duas passadas independentes) e o plati variatus entrou como 37o registro, levando /peixes/vivaparos/ ao minimo do 16.5. Os dois guramis grandes continuam sem convivencia depois de quatro passadas em dois corpos, e a ausencia esta medida, nao presumida. Em 14/09/2026, na leva 5: origem_geografica foi ACENTUADO nos 15 registros que o declaram — o campo vai para a linha 'De onde vem' da tabela de fontes de toda ficha, estava sem UM acento em 15 de 15 e no ar desde 12/09, porque a correcao de acentuacao de 12/09 nomeava so nomes_populares_br. A regra E17 passou a nomear os dois campos, com a lista morando no esquema ao lado da tabela. E a ordem dos nomes populares do xiphophorus-hellerii mudou, para por 'peixe-espada' na frente: o primeiro do campo e o que vai para a tela, e a consulta classificada e 'quantos litros para peixe espada'. Existe para destravar o eixo aberto \"quantos litros para X peixes\" com dado em vez da regra de bolso de 1 cm por litro."
     },
     {
@@ -786,7 +786,7 @@
       "id": "conferir-peixes-no-ar",
       "arquivo": "ferramentas/conferir-peixes-no-ar.py",
       "publicar": false,
-      "sha256": "25f76258f3c0ff67f4e992333a2a2854dd6360d020074806c0bd83186068676c",
+      "sha256": "558e4ffb3c34bf4d28054e1dcb6d54755603f1d097561edb568abffc7a94cf12",
       "descricao": "Confere a leva 1 do eixo /peixes/ no HTML SERVIDO, nao no repositorio: 103 afirmacoes, 0 falha em 12/09/2026. A lista de URLs vem do INDICE do sitemap (os dois provedores, page e post), nunca digitada, e toda requisicao leva ?v=<hora> por causa do cache duplo da secao 4. A aritmetica e a MESMA do teste-peixes.py, importada de la para a conta morar num lugar so; o que muda e o sujeito. Foi ela que achou os DOIS defeitos que a bancada nao podia ver: o degrau de nivel 2 da trilha que nao resolvia (url_se_existir pedia o slug solto e get_page_by_path casa o caminho inteiro) e as TRES FICHAS DUPLICADAS com '-2' que a remontagem publicou e mandou para o sitemap, sem uma linha de erro. Mede ainda que cada degrau do BreadcrumbList responde 200, que a tag do GA4 sobreviveu a troca de versao da casca, e conta as ligacoes internas das 18 paginas para provar que nenhuma das cinco e orfa (16.4f) — descontando menu e trilha, que estao em todas."
     },
     {
@@ -843,7 +843,7 @@
       "arquivo": "ferramentas/conferir-datas-e-voz-no-ar.py",
       "publicar": false,
       "descricao": "Confere NO AR as quatro frentes do despacho da Sentinela de 13/09/2026, e mede o que a bancada NAO PODE medir: o criterio de pronto do item 1 compara o dateModified do JSON-LD com o lastmod que o wp-sitemap declara para a MESMA URL, e sitemap so existe no ar. Mede tambem a editora das onze fichas contra a dos tres artigos (item 2), o par width/height das oito fotos contra o banco (item 3) e a abertura das onze — title, H1 e primeiro paragrafo — pela regra de estrutura da atribuicao (item 4). Lista de URLs vinda do sitemap, nunca digitada; ?v=<hora> em toda requisicao por causa do cache duplo da secao 4.",
-      "sha256": "b2c22fbd8c8a87308c12c6f0a38c6a7dad3489b65970125077f17e6b16509f08"
+      "sha256": "17a9b24fa15a2086d031ae2a575d9ac8cd891567e18a6e930afa29bfe2550537"
     },
     {
       "id": "gerar-busca-de-produto",

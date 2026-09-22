@@ -252,10 +252,21 @@ def main():
         plano = sem_acento(p1)
         ok("%s: a abertura responde com a frente em cm" % nome,
            bool(re.search(r"\d+(,\d+)? cm de frente", plano)), p1[:80])
+        # TRES MUNDOS DESDE 22/09/2026, e nao dois. O terceiro e a ficha cujo
+        # fundo EXISTE no banco e foi declarado para outra populacao: a do
+        # apistogramma agassizi serviu por oito dias, ao harem, os 30 cm que o
+        # compendio declarou para um casal. Ela nao pode dizer BASE, porque nao
+        # e dela, e nao pode dizer que o fundo FICA EM ABERTO, porque ele nao
+        # fica — a pagina publica o numero dois paragrafos abaixo, com o nome de
+        # quem ele dimensiona. Continua valendo EXATAMENTE UM dos tres.
         com_base = " cm de fundo" in plano and "base" in plano
         sem_base = "fica em aberto" in plano and "comprimento" in plano
-        ok("%s: declara a BASE ou o COMPRIMENTO, e exatamente um" % nome,
-           com_base != sem_base, "base=%s comprimento=%s" % (com_base, sem_base))
+        de_outra_conta = ("a largura declarada e para outra quantidade de peixe" in plano
+                          and "comprimento" in plano)
+        quantos = [com_base, sem_base, de_outra_conta].count(True)
+        ok("%s: declara a BASE, o COMPRIMENTO ou o fundo de outra conta, e exatamente um" % nome,
+           quantos == 1, "base=%s comprimento=%s outra-conta=%s"
+           % (com_base, sem_base, de_outra_conta))
 
     # ------------------------------------------------------------------
     # 3. AS OITO FOTOS

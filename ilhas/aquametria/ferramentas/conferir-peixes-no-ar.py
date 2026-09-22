@@ -212,7 +212,28 @@ def main():
         t = TP.texto(c)
         frente = TP.faixa_do_campo(e, "comprimento_minimo_aquario_cm")
         porte = TP.faixa_do_campo(e, "porte_adulto_cm")
-        largura = (e.get("base_minima_cm") or {}).get("largura")
+        # A LARGURA QUE A PAGINA PUBLICA, e nao a que o banco tem (22/09/2026).
+        # `chao_declarado_para` (esquema versao 5) diz para QUAL populacao a base
+        # foi declarada, e a ficha cujo chao foi declarado para outra gente nao
+        # serve o fundo — logo nao serve nenhuma das duas tabelas que dependem
+        # dele. Sem esta linha a regua cobraria no ar, da agassizii, a frase que
+        # a correcao de hoje tirou de la de proposito.
+        chao = (e.get("chao_declarado_para") or {}).get("arranjos") or []
+        niveis = {"juvenis": 0, "um-exemplar": 1, "casal": 2, "grupo": 3}
+        populacao = {"solitario": "um-exemplar", "casal": "casal", "cardume": "grupo",
+                     "grupo": "grupo", "harem": "grupo"}.get(e.get("convivencia"))
+        fundo_de_outro = bool(
+            chao and "nao-declarado" not in chao and populacao
+            and niveis[populacao] > max(niveis[a] for a in chao if a in niveis)
+        )
+        largura = None if fundo_de_outro else (e.get("base_minima_cm") or {}).get("largura")
+        if fundo_de_outro:
+            ok("%s: no ar, nao promete a esta populacao o chao declarado para outra" % slug,
+               "a largura declarada é para outra quantidade de peixe" in t
+               and "em três alturas de aquário" not in t,
+               t[max(0, t.find("cm de frente")):][:140])
+            ok("%s: no ar, publica o fundo dizendo para quem ele foi declarado" % slug,
+               "foi declarada para" in t and "que é outra quantidade de peixe" in t)
 
         ok("%s: a resposta servida traz a frente minima de %s cm" % (slug, TP.numero_br(frente[1])),
            ("%s cm de frente" % TP.numero_br(frente[1])) in t)
