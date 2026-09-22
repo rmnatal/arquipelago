@@ -2095,3 +2095,60 @@ lido para decidir o que fazer. A regra que o despacho manda escrever na 1.2-b.4 
 das maos: as maos so gravaram o texto.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `da7bad9` so existiu depois do commit do trabalho.
+
+---
+
+## 22/09/2026 11:19 (14:19Z) — `ARQUIPELAGO.md`: duas substituicoes no paragrafo do cano de links de afiliado
+
+Assunto: Arquipelago (contrato `ARQUIPELAGO.md`). Passou na checagem de assunto.
+
+Checagem previa exigida pela instrucao — cada trecho antigo tinha que aparecer UMA unica vez:
+
+```
+ocorrencias trecho 1: 1
+ocorrencias trecho 2: 1
+```
+
+Como as duas contagens deram 1, a alteracao foi aplicada.
+
+`git status --porcelain` depois do commit (limpo):
+
+```
+```
+
+`git diff --stat` do commit do trabalho:
+
+```
+ ARQUIPELAGO.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+Commit que foi ao `main`: `1220d90af9f07694748538068b231567b6408e9d`
+
+Confirmacao em `origin/main` depois do push (`git fetch origin main && git log -1 origin/main`):
+
+```
+1220d90af9f07694748538068b231567b6408e9d contrato: o link da Shopee sai pela API na nuvem — o portal de afiliado aberto no navegador deixa de ser pre-requisito de rotina
+```
+
+Contagem do que mudou, conferida relendo o arquivo DEPOIS de gravar: 1 arquivo, 1 linha
+(a linha 257 do `ARQUIPELAGO.md`, que e o paragrafo inteiro), 2 substituicoes de texto.
+Nenhuma outra linha, nenhum outro arquivo.
+
+Releitura do paragrafo depois do push (`sed -n '257p' ARQUIPELAGO.md`), com as duas frases novas no lugar:
+
+```
+- **O CANO DE LINKS DE AFILIADO ENCHE EM PARALELO, SEMPRE — não espere o tráfego chegar.** Na Shopee, desde 16/09/2026, o link sai pela API de afiliado (seção 25.6) na própria coleta, na nuvem, já encurtado e com o sub-id da ilha — sem navegador, sem portal de afiliado aberto e sem teto de calendário. **O portal de afiliado da Shopee aberto no Chrome do Raphael não é mais pré-requisito de nenhuma rotina** (decisão registrada em 22/09/2026). Só onde o gerador exige clique humano — hoje, o Mercado Livre — a geração depende do Raphael e tem teto de calendário (algumas dezenas por semana, no máximo) (**a fila de links pendentes só existe onde o gerador exige clique humano.** Onde a plataforma tem API de afiliado que devolve o link — Shopee desde 16/09/2026, seção 25.6 —, a ilha gera o link na hora da coleta e `dados/links-afiliado-pendentes.md` **não é criado**: fila que ninguém precisa esvaziar é trabalho inventado. Onde não tem API e o gerador tem reCAPTCHA — Mercado Livre —, a fila continua valendo como antes: a Sentinela monta a lista de URLs de produto em `dados/links-afiliado-pendentes.md` da ilha, e quem aperta "Gerar" e cola os links de volta é o Raphael. Ver a regra de etiqueta acima). Isso NÃO consome execução da Fundação: são recursos diferentes, então nunca competem por fila. Um produto que entra no banco hoje sem link só vira receita semanas depois, quando alguém finalmente gerar o link — e quando o tráfego chegar, o catálogo precisa estar pronto, não sendo montado às pressas. Portanto: produto de plataforma com API entra no banco já com o link; produto de plataforma sem API entra com o campo `afiliado.url` presente e vazio, a ilha reporta em todo bloco **quantos itens estão esperando link**, e esse número é trabalho pendente de verdade, não estatística.
+```
+
+Substituicao 1 entrou: o paragrafo agora abre dizendo que na Shopee o link sai pela API na nuvem, sem
+navegador e sem teto de calendario, e que o portal de afiliado aberto no Chrome deixou de ser pre-requisito
+de rotina; o teto de calendario ficou restrito ao gerador que exige clique humano (Mercado Livre).
+Substituicao 2 entrou: o "Portanto" agora separa produto de plataforma com API (entra ja com o link) de
+produto de plataforma sem API (entra com `afiliado.url` presente e vazio). As crases de `afiliado.url`
+foram preservadas.
+
+Nenhum passo falhou. Nenhuma ilha foi reservada, nenhum bloco de fila foi executado, nada foi publicado,
+nenhum Sync foi acionado. Nenhum arquivo alem do `ARQUIPELAGO.md` e deste log foi tocado.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `1220d90` so existiu depois do commit do trabalho.
