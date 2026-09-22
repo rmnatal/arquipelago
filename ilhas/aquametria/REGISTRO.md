@@ -14,6 +14,237 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-22 19h16Z — LEVA 8: A OITAVA CATEGORIA, E A PRIMEIRA EM QUE O CRITÉRIO DA LEVA ANTERIOR FALHARIA (peixes 1.13.0, manifest revisão 99, `/status` conferido na 99; QUATRO URLs novas — `/peixes/acaras/` e as fichas do acará-bandeira, do oscar e do acará-disco; a ilha vai de 44 para 48 URLs)
+
+**O BLOCO ERA O QUE A FILA DIZIA, e pela primeira vez em duas passadas ele saiu
+inteiro sem virar outra coisa.** A execução das 13h20Z de hoje gastou a passada
+numa coleta recusada por escopo; a das 17h25Z virou correção na primeira
+varredura e escreveu o campo que destravou esta. O banco já estava fechado
+quando esta execução abriu: `/peixes/acaras/` tinha as três fichas do mínimo do
+16.5 desde as 17h25Z. O que faltava era o que a própria fila listou — classificar
+a SERP das quatro consultas (14.9) e escrever a linha mestra e o critério da
+categoria.
+
+### 1. O CRITÉRIO DA LEVA ANTERIOR FALHARIA AQUI, E ISSO SE MEDE
+
+A leva 7 fechou comemorando um critério que era **verificável dentro do banco**
+em vez de depender da leitura de quem escreve: separar pelo NOME que a pessoa
+digita, conferindo `nomes_populares_br`. Era um avanço real e continua sendo.
+
+Nesta categoria ele falha, e falha pelo lado caro. Varrendo `nomes_populares_br`
+do banco inteiro, **quatro** registros trazem "acará": o acará-bandeira, o
+acará-disco, o **acará-açu** (que é o oscar) e o **acará-borboleta** — que é o
+`mikrogeophagus-ramirezi`, e que é filha de `/peixes/ciclideos-anoes/` desde a
+leva 6. Um critério de nome **tiraria uma filha da mãe dela**.
+
+**Critério bom não é o que funcionou na última vez: é o que sobrevive à varredura
+desta vez.** São três categorias seguidas em que o critério da anterior não
+serve — a `ciclideos-anoes` separou por prateleira, a `danios-e-rasboras` por
+nome, e esta por porte.
+
+**O que serve aqui é o porte declarado, e ele é número e não leitura:** os três
+desta categoria começam em 13,7 cm de adulto e os três ciclídeos anões terminam
+em 5,6 cm. Entre 5,6 e 13,7 cm **não existe um único Cichlidae neste banco** — o
+corte atravessa um vão vazio de oito centímetros, então não é uma linha escolhida
+para caber no dado. A prateleira brasileira concorda com ele, e é a mesma prova
+que a `ciclideos-anoes` levantou do outro lado.
+
+Com esta leva a família **Cichlidae fica inteira publicada**, repartida em duas
+categorias. É a primeira família do banco em que isso acontece, e é por isso que
+a `barradas` desta categoria nasce **vazia sendo afirmação e não descuido**: os
+seis Cichlidae do banco passam no portão e não existe um sétimo, nem passando nem
+barrado.
+
+### 2. A LINHA MESTRA MUDOU DE COLUNA, E É A PRIMEIRA VEZ NO EIXO
+
+As sete categorias anteriores tinham, todas, faixas térmicas que se cruzavam: a
+temperatura era dado de ficha e nenhuma linha mestra teve o que dizer sobre ela.
+
+Aqui as faixas do **oscar (22 a 25 °C)** e do **acará-disco (26 a 30 °C) não se
+tocam**, e as duas vêm da MESMA base científica — o que torna a comparação
+legítima pela regra que a leva 7 escreveu, porque aqui não há duas réguas, há uma
+só. Um grau de distância entre o teto de um e o piso do outro separa dois peixes
+que a loja põe na mesma prateleira e que a SERP responde na mesma página de
+resultados.
+
+A frase publicada **nomeia os dois peixes e não imprime os dois números**, e as
+duas metades são deliberadas. Nomear, porque a linha mestra é a resposta CITÁVEL
+da página (seção 5) e afirmação citada fora de contexto sem sujeito não afirma
+nada — a primeira escrita dizia "dois deles", que só existe para quem está com a
+tabela na tela. Não imprimir, porque o número vive na tabela, que sai do banco, e
+número digitado em frase é o defeito que esta ilha mais paga.
+
+**E o que a linha mestra não diz é tão deliberado quanto:** nada sobre porte
+comparado. Esta é a categoria de MAIOR distância de porte do eixo — 13,7 a
+45,7 cm — e mesmo assim o número fica fora da frase, porque o acará-disco declara
+SL e os outros dois declaram TL. A regra da leva 7 vale contra a frase mais forte
+que esta página poderia publicar, que é justamente quando ela custa alguma coisa.
+
+### 3. A SERP DAS QUATRO, E UM DEFEITO DE SERP QUE ESTE EIXO NÃO TINHA VISTO
+
+Classificadas nesta execução, pela 14.9, **antes** de uma linha da categoria ser
+escrita. As quatro são **ALVO**, e a leitura inteira está em `dados/indexacao.md`.
+
+Duas coisas ficam ditas porque são novas:
+
+**(a) É a primeira SERP do eixo com fabricante E domínio forte ao mesmo tempo.**
+Aparecem dois fabricantes de ração (Alcon, Grupo Sarlo) e um varejista de pet de
+domínio forte (Petz). A 14.9 só manda a página não nascer quando eles ocupam
+**quase tudo**, e não é o caso — são três posições de nove ou dez, e nenhuma
+responde à pergunta com número atribuído a fonte nomeada. **O que eles ocupam é a
+atenção, não a resposta.** Fica escrito porque a próxima leva de qualquer ilha vai
+encontrar esse caso e a 14.9 não o resolve sozinha.
+
+**(b) O defeito da consulta da categoria não é o número errado: é o SUJEITO
+trocado.** Nas outras sete consultas de categoria o top respondia mal a pergunta
+certa; aqui ele responde a **outra pergunta**. "Acará" é nome de prateleira, não
+de espécie, e a mesma página de resultados mistura acará-bandeira, acará comum
+(*Geophagus brasiliensis*), acará severo, acará do congo e acará-disco, devolvendo
+de 60 a 300 L sem que dê para saber de qual peixe cada número fala. É a
+justificativa mais forte de página de categoria que este eixo já mediu: uma linha
+por espécie, com o arranjo ao lado do espaço.
+
+E a contradição interna mais cara é a do disco: 200 L para três, 250 L para cinco
+ou seis e 300 L para quatro ou cinco. **Três dessas não podem ser verdade juntas**
+— 200 L para três é mais por peixe do que 300 L para cinco.
+
+### 4. O TERCEIRO ESTADO DA AUSÊNCIA DE FUNDO GANHOU O SEGUNDO CASO, E O PRIMEIRO QUE NASCE SABENDO
+
+A 1.12.0, quatro horas antes, escreveu esse ramo **consertando** um defeito que
+esteve oito dias no ar. A ficha do acará-disco **nasce nele**: o chão de
+120 × 45 cm foi declarado para juvenis ou um casal, o registro publica cardume de
+cinco, e a página diz a largura, diz para quem ela foi declarada e não abre as
+duas tabelas que dependem do fundo. Lido no ar, o parágrafo sai inteiro e sem
+buraco.
+
+E os **três escopos de chão vivem na mesma categoria**, o que nenhuma outra tem:
+`nao-declarado` no acará-bandeira, `um-exemplar` no oscar e `juvenis`+`casal` no
+acará-disco. O oscar é também a **primeira ficha do eixo com `convivencia:
+solitario` cujo chão declarado COBRE o arranjo publicado** — o betta também vive
+sozinho, e nele a fonte não diz para quem a base foi dada. Eram dois ramos da
+mesma função com um exemplar só.
+
+**A pergunta aberta do oscar foi respondida e não virou bloco.** A fila dizia que
+quem publicasse a leva 8 decidiria se escreve a ficha dele com a ressalva do
+`convivencia: solitario` na tela. A medição diz que não há o que ressalvar: o chão
+declarado cobre o arranjo, a ficha abre com "e é um por aquário, não dois" — que é
+o que a fonte declara — e a `observacao` do registro continua explicando o resto
+para quem abrir o banco. O que sobra segue sendo bloco de esquema: `convivencia`
+carrega, ali, o ESCOPO do chão e não a sociabilidade da espécie.
+
+### 5. DUAS RÉGUAS CONSERTADAS, E AS DUAS PELO MESMO MOTIVO — ELAS TINHAM PARADO DE MEDIR
+
+**(a) A régua do "cardume" reprovou uma página CERTA.** A afirmação "a palavra
+cardume não aparece no corpo" é da leva 4, escrita quando o betta era o único
+peixe de arranjo fixo da ilha, e procurava a palavra SOLTA no corpo inteiro. Ficou
+verde oito dias porque nenhuma vizinha do betta tinha "cardume" no título.
+
+As três ocorrências no corpo da ficha do oscar eram, **todas**, o título de OUTRA
+página dentro de um link: o degrau da trilha e a frase de mãe apontando para
+`Acarás: quantos litros, do solitário ao cardume`, e o bloco "Veja também"
+apontando para `Quantos litros para um cardume de acará-disco?`. Nenhuma das três
+diz uma palavra sobre o oscar, e apagar a palavra dos títulos seria mentir sobre a
+categoria e sobre o disco, que vive em cardume mesmo.
+
+O conserto é do contrato, e a frase já estava escrita lá para outro caso: **"a
+régua que mede isso mede o LUGAR, nunca a palavra solta"** (16.5). `prosa_propria()`
+tira do corpo exatamente os links cuja âncora é o título de uma página do eixo —
+nada mais —, e a segunda metade impede o afrouxamento de virar buraco: **toda
+ocorrência que sobra no corpo tem de ser, uma a uma, o título de outra página do
+eixo.** Sem ela bastaria envolver a frase num `<a>` para escapar, e é exatamente
+isso que a mutação nova faz.
+
+**(b) O PORTÃO DE VERSÃO DO MANIFEST ESTAVA CEGO, E CEGO EM SILÊNCIO.**
+`versao_do_snippet()` lia `f.read(20000)` — os primeiros 20 000 caracteres do
+arquivo. O docblock de `aquametria-peixes.php` passou dessa marca na 1.12.0, a
+busca deixou de encontrar a constante, devolveu `None`, e a guarda de divergência
+logo abaixo — que **existe** para não deixar a etiqueta envelhecer calada — parou
+de disparar sem dizer nada.
+
+O resultado estava no repositório para quem olhasse: **o manifest anunciava
+`versao: 1.11.0` para um snippet que estava em 1.12.0 desde as 17h25Z de hoje**, e
+teria anunciado 1.11.0 para a 1.13.0. A janela era uma otimização contra um custo
+que não existe — o script já calcula o `sha256` do arquivo inteiro duas linhas
+acima, em toda passada — e comprava um portão que **se apaga sozinho quando o
+arquivo cresce**, que é a única direção em que todo arquivo desta ilha anda.
+
+Consertadas as duas metades: a leitura passou a ser do arquivo inteiro, e
+**ausência de constante deixou de ser caso neutro** — item que declara `versao` no
+manifest e cujo arquivo não define constante nenhuma agora PARA o script, com
+mensagem própria. Era essa metade que teria pegado isto no primeiro dia.
+
+**E o próximo a cair já estava medido:** `aquametria-casca.php` define a constante
+no caractere 17 410, a 2 590 do mesmo penhasco.
+
+### 6. A DÍVIDA DAS DEZOITO FERRAMENTAS FORA DO MANIFEST FOI FECHADA
+
+O `ESTADO.md` da execução anterior a nomeou como item (a) do que ficou medido e
+não consertado: *"DEZOITO ferramentas seguem fora do `manifest.json` … quarta
+lista escrita à mão da mesma família, avisada em toda passada do
+`atualizar-manifest.py`, lida e não atendida, hoje inclusive"*. As dezoito
+entraram, com `publicar: false` e descrição própria — entre elas o `teste-voz.mjs`,
+o `teste-arvore.mjs` e o `mutacoes-voz.py`, que são portões e estavam invisíveis
+para o inventário da ilha.
+
+**Sobraram cinco órfãos, e eles são de outra família:** os três `README.md` de
+`snippets/`, `conteudo/` e `dados/`, e os dois arquivos de série que a Sentinela
+escreve (`dados/consertos.md` e `dados/indexacao.md`). Os dois últimos precisam do
+esquema mais rico da seção `dados` (`formato`, `entidade`, `fonte`), e inventá-lo
+sem decidir de quem é a fonte seria trocar um aviso por um campo errado. Ficam
+nomeados aqui.
+
+### 7. O QUE ESTA LEVA NÃO FEZ, E O QUE ELA DEIXA PARA A PRÓXIMA
+
+**Nenhuma coleta.** É a segunda leva seguida sem coleta nova — e o estoque
+acabou. Varridos o catálogo e as listas declaradas das oito categorias:
+**32 espécies elegíveis, 26 com ficha própria, 6 sem categoria nenhuma** (kinguio,
+botia-palhaço, arco-íris boesemani, peixe-lápis, otocinclo e barbo sumatra).
+**Nenhuma família entre as seis chega a três**, que é o mínimo do 16.5: são 2
+Cyprinidae e mais quatro famílias de um registro cada.
+
+O caminho mais curto continua sendo "barbos" e **custa dois passos**: o barbo
+sumatra é elegível, o barbo rosado está a UM campo (`duas fontes distintas`) e não
+existe um terceiro barbo no banco. O kinguio é Cyprinidae e **não** é barbo —
+contá-lo seria o erro que a `ciclideos-anoes` já registrou, de trazer peixe demais
+pela família. O segundo caminho, `/peixes/plecos-e-limpa-vidros/`, continua com 1
+elegível e a parede dela não mudou.
+
+### 8. E UMA COISA QUE NÃO É DESTA LEVA, MEDIDA AO CONFERIR A SEÇÃO 25 ANTES DE FECHAR
+
+**A Open API da Shopee nunca chegou nesta ilha, e é o maior bloco parado da fila.**
+
+Este arquivo, o `congelamento` do `ESTADO.md`, o item (e) do T3 e o item 5 do
+despacho da Sentinela de 13/09 descrevem, os quatro, o mesmo mundo: *"quem
+encurta é a Sentinela estratégica no navegador do Raphael, em lotes de 5"*.
+**Esse mundo acabou em 16/09/2026.** A seção 25.6 do contrato mediu, com chamada
+real às 16h07Z daquele dia, que o `productOfferV2` devolve numa chamada só o
+`offerLink` **já encurtado**, mais a foto, a ficha canônica e o preço — sem
+navegador, sem portal aberto e sem teto de calendário.
+
+**Esta ilha esteve fora do foco de 16 a 21/09 e herdou a regra sem nunca a
+aplicar.** Não é defeito de ninguém: é exatamente o custo que a 1.2 escreveu na
+mesa quando o foco saiu daqui. Mas fica nomeado agora que o foco voltou.
+
+**O que isso custa, contado:** os 78 itens servem `url_busca` **crua** — link que
+dá saída de compra e **não rende comissão** —, e a **25.2-b** (18/09/2026, vale
+para todas as ilhas) diz com todas as letras que isso *"deixou de ser aceitável
+como padrão"*. A frase que esta ilha vem repetindo em todo fecho, *"o piso da 25.2
+cobre os 78"*, era verdadeira em 13/09 e **a 25.2-b a superou**: o piso deixou de
+ser destino e voltou a ser piso. Continuei reportando o número, como o despacho
+manda, mas com a moldura certa.
+
+O bloco está escrito inteiro no `PROMPT.md` como **T3(f)**, com as três partes na
+ordem e com o que conferir **antes** de coletar: se `open-api.affiliate.shopee.com.br`
+está na lista de domínios permitidos deste ambiente — que é passo do Raphael, e
+**nenhuma rotina consegue mexer nessa lista**. Não toquei em credencial, em conta
+nem em configuração: só li o contrato e escrevi o que ele diz.
+
+**ITENS ESPERANDO LINK DE AFILIADO** (item 5 do despacho da Sentinela de 13/09):
+**78** itens seguem sem `url_busca` encurtada, e **zero** deles está sem saída de
+compra. Esta execução não tocou em produto nenhum.
+
+**VERIFICAÇÃO.** bancada.py --no-ar APROVADO em 35 portoes, 0 falha (regua do veredito 17 afirmacoes, php -l em 11 snippets). teste-peixes 3719/0 (eram 3206); mutacoes-peixes 95 de 95 (eram 94 — a nova e a porta dos fundos da regua estreitada); teste-voz TUDO OK nas 48 paginas (eram 44); mutacoes-voz 30 de 30; teste-arvore 0; validar-especies 39 registros 0 erro (3 avisos: o E15 conhecido do guppy e DOIS E21, que sao a regra funcionando — a agassizii e agora o disco); testar-validador-especies 36 testes 0 falha; teste-escada-compra 644; teste-ga4 760; teste-datas-schema 102; teste-dimensao-imagem 36; teste-purga-cache 21; teste-seo-tecnico 519; teste-apelidos 59; conferir-slugs, conferir-protecao-funcoes, conferir-entidades e conferir-indice-de-levas limpos. NO AR, depois do Sync (revisao 99, conferida no /status): conferir-peixes-no-ar 906/0 (eram 805), conferir-datas-e-voz-no-ar 365/0 (eram 326), conferir-escada-no-ar 107/0, conferir-privacidade-no-ar 21/0, conferir-cache-do-host 51/0. As quatro URLs novas abertas uma a uma: 200 nas quatro, as quatro no wp-sitemap, que fechou em 48 (3 posts + 45 pages). E UMA REGRESSAO MINHA FOI PEGA PELO PORTAO ANTES DO AR: ao refinar a linha mestra para nomear os dois peixes, a primeira escrita citou a fonte na abertura (procedencia nao abre pagina, 15.2) e trocou 'o SEU aquario' por 'o mesmo aquario', perdendo a segunda pessoa. O teste-voz.mjs reprovou as duas na mesma passada.
+
 ## 2026-09-22 17h25Z — O CHÃO DECLARADO GANHOU DONO: DOIS DEFEITOS QUE ESTAVAM NO AR SAÍRAM, E O CAMPO QUE OS BARRA NASCEU (esquema de espécies versão 5, peixes 1.12.0, manifest revisão 94, `/status` conferido na 94; NENHUMA URL NOVA — seguem 44 — e NENHUMA leva gasta do teto da 21.4)
 
 **O BLOCO ERA OUTRO QUANDO A EXECUÇÃO COMEÇOU.** A fila apontava o caminho (b) que
