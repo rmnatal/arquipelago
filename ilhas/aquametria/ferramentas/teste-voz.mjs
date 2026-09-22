@@ -32,9 +32,82 @@
 // Uma página por processo (`render-casca-pagina.php` explica por quê).
 
 import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 
 const RAIZ = process.argv[2] || '.';
-const PAGINAS = ['inicio', 'calculadoras', 'metodologia', 'sobre'];
+
+/* ======================================================================
+ * A LISTA DE PÁGINAS DESTE PORTÃO DEIXOU DE SER DIGITADA (22/09/2026)
+ *
+ * Até esta data as três listas deste arquivo — as quatro páginas da casca, as
+ * páginas de conteudo/ e o eixo /peixes/, mais o conjunto das fichas — eram
+ * ESCRITAS À MÃO, com um comentário pedindo que cada leva se lembrasse de
+ * alimentá-las. A leva 6 (14/09/2026) publicou quatro URLs e lembrou de uma
+ * lista só: as quatro ficaram OITO DIAS no ar sem a régua da voz, e uma delas
+ * servia "o que dobra o AQUÁRIO", falando do mundo em terceira pessoa contra o
+ * VOZ.md. O portão ficou VERDE o tempo todo, medindo 36 das 40 páginas do
+ * site. Verde que não mede é a forma mais cara de verde falso, e o defeito não
+ * foi de quem esqueceu: foi da lista que não avisa quando alguém esquece.
+ *
+ * A saída é a mesma que a leva 7 deu à contagem de categorias do
+ * `teste-peixes.py`: PERGUNTAR A QUEM PUBLICA, em vez de repetir o que ele diz.
+ *   - a casca sabe quais páginas cria  → `listar-paginas-da-casca.php`
+ *     (e desde a 1.7.0 ela já traz o eixo junto, pelo filtro `aquametria_paginas`)
+ *   - o eixo sabe quais páginas registra → `listar-paginas-do-eixo.php`
+ *     (e diz qual delas é ficha de espécie, pelo campo `especie`)
+ *   - o manifest sabe o que o Sync publica de conteudo/ → `manifest.json`
+ *
+ * E ISSO NÃO É O "FILTRO ESPERTO" QUE O COMENTÁRIO ANTIGO RECUSAVA, com razão:
+ * ele recusava adivinhar a lista por PREFIXO DE SLUG, que é uma heurística de
+ * vizinhança — ficha com outro prefixo cairia fora sem uma falha para avisar.
+ * Aqui nada é adivinhado: a lista é a do publicador, e a seção de COBERTURA no
+ * fim deste arquivo torna a pergunta de novo, por conta própria, e reprova se
+ * alguma página que a ilha publica não tiver passado pela régua. Quem um dia
+ * voltar a digitar a lista reprova ali, antes de oito dias de página no ar.
+ *
+ * O que cada leva arriscou na VOZ — a abertura de categoria que nasce dentro de
+ * um mapa de configuração (leva 3), o arranjo social que muda a frase (leva 4),
+ * o ramo do harém (leva 5), a advertência de medida (leva 7) — está escrito no
+ * REGISTRO.md de cada uma. Era o que os comentários desta lista guardavam, e
+ * ali eles não envelhecem calados.
+ * ==================================================================== */
+
+/** Pergunta a quem publica, e RECUSA a resposta vazia.
+
+    Instrumento que pode sair 0 sem ter medido nada não é instrumento — a
+    cicatriz do `conferir-protecao-funcoes.py`, que varria uma lista vazia e
+    saía 0 em silêncio (09/09/2026). */
+function listarPelo(arquivo) {
+  const saida = execFileSync('php', [RAIZ + '/ferramentas/' + arquivo, RAIZ], {
+    encoding: 'utf8', maxBuffer: 32 * 1024 * 1024,
+  });
+  const mapa = JSON.parse(saida);
+  if (!mapa || Object.keys(mapa).length === 0) {
+    console.log(`  FALHA ${arquivo} devolveu zero página — sem lista não há o que medir`);
+    process.exit(1);
+  }
+  return mapa;
+}
+
+function doManifest() {
+  const m = JSON.parse(readFileSync(RAIZ + '/manifest.json', 'utf8'));
+  const slugs = (m.conteudo || []).filter((c) => c.publicar).map((c) => c.slug);
+  if (slugs.length === 0) {
+    console.log('  FALHA o manifest não declarou nenhuma página de conteudo/ para publicar');
+    process.exit(1);
+  }
+  return slugs;
+}
+
+const EIXO         = listarPelo('listar-paginas-do-eixo.php');
+const DA_CASCA     = listarPelo('listar-paginas-da-casca.php');
+const DO_MANIFEST  = doManifest();
+
+/* As páginas da casca são as que ela cria e que NÃO vêm do eixo: o renderizador
+   é outro (render-casca-pagina.php monta a casca inteira; as do eixo e as de
+   conteudo/ saem pelo render-pagina-completa.php). A separação é por origem
+   declarada, não por nome. */
+const PAGINAS = Object.keys(DA_CASCA).filter((slug) => !(slug in EIXO));
 
 /* A régua, escrita aqui. Vem do VOZ.md, seções "Como a gente fala" e
    "Proibidas". Termo em minúsculas; a comparação é sem acento e sem caixa, para
@@ -127,6 +200,12 @@ const CORPO_MINIMO = 1500;   // seção 8 do ARQUIPELAGO.md: página fina é rep
 const MAX_PROVA    = 2;      // blocos `aqm-prova` por página
 
 let falhas = 0;
+/* O QUE A RÉGUA REALMENTE ABRIU. Não é a lista de cima repetida: é preenchido
+   dentro dos laços, página a página, e a seção de COBERTURA no fim compara este
+   conjunto com o que o publicador disser NAQUELE momento, perguntado de novo.
+   É o que faz uma lista digitada de volta aqui reprovar em vez de encolher. */
+const medidas = new Set();
+
 function ok(nome, cond, extra = '') {
   console.log(`  ${cond ? 'ok   ' : 'FALHA'} ${nome}${extra ? ' — ' + extra : ''}`);
   if (!cond) falhas++;
@@ -262,6 +341,7 @@ const renderizadas = {};
 
 for (const slug of PAGINAS) {
   console.log(`\n/${slug === 'inicio' ? '' : slug + '/'}`);
+  medidas.add(slug);
   const html = render(slug);
   renderizadas[slug] = html;
 
@@ -398,7 +478,7 @@ console.log('\nHEADER');
 }
 
 /* ======================================================================
- * AS NOVE PÁGINAS DE conteudo/ — a metade da ilha que este portão não media
+ * AS PÁGINAS DE conteudo/ E DO EIXO — a metade da ilha que este portão não media
  *
  * Até 11/09/2026 este arquivo olhava só as quatro páginas da casca, e o
  * despacho da voz registrava "as de conteudo/ ainda não foram" como pendência
@@ -427,130 +507,25 @@ console.log('\nHEADER');
  * mede a NATUREZA do que está escrito ali.
  * ==================================================================== */
 
-const CONTEUDO = [
-  'calculadora-de-litragem',
-  'calculadora-de-vazao-do-filtro',
-  'calculadora-de-potencia-do-aquecedor',
-  'calculadora-de-midia-filtrante',
-  'calculadora-de-iluminacao',
-  'divulgacao-de-afiliados',
-  /* 13/09/2026 — a página de privacidade. Entra aqui pelo mesmo motivo que a de
-     afiliados: mesma família institucional, mesmo renderizador. Ela é a página
-     desta ilha com o maior risco de escorregar para o vocabulário de dentro da
-     fábrica, porque o assunto dela é técnico e a tentação é falar de "coleta de
-     dados" e "tratamento" em vez de dizer o que o site guarda de você. */
-  'politica-de-privacidade',
-  'quantos-watts-de-aquecedor-para-aquario',
-  'quanta-midia-biologica-o-aquario-precisa',
-  'quantos-lumens-por-litro-aquario-plantado',
-  /* A leva 1 do eixo /peixes/ (T4, 12/09/2026). Estas cinco não vêm de
-     conteudo/ — o corpo delas é shortcode —, mas saem inteiras pelo MESMO
-     renderizador, e a voz vale para toda página da ilha. Ao entrarem aqui, três
-     aberturas reprovaram de uma vez: nenhuma das três falava na segunda pessoa
-     e a da categoria abria com "o banco desta ilha", que é vocabulário de dentro
-     da fábrica. Nenhum olho tinha visto; a régua viu. */
-  'peixes',
-  'tetras',
-  'quantos-litros-para-tetra-neon',
-  'quantos-litros-para-tetra-cardinal',
-  'quantos-litros-para-mato-grosso',
-  /* A leva 2 (12/09/2026): as quatro que fecham a categoria. A do rodóstomo é a
-     primeira ficha da ilha que declara uma AUSÊNCIA de dado no corpo, e por isso
-     a que mais arriscava escorregar para o vocabulário de dentro da fábrica. */
-  'quantos-litros-para-tetra-ember',
-  'quantos-litros-para-tetra-brilhante',
-  'quantos-litros-para-rodostomo',
-  'quantos-litros-para-tetra-negro',
-  /* A leva 3 (12/09/2026): a categoria /peixes/corydoras/ e as quatro fichas
-     dela. A da categoria é a que mais importa aqui: a abertura de categoria
-     deixou de ser texto fixo e passou a vir declarada por categoria, e texto
-     declarado num array de configuração é exatamente onde a voz escapa sem
-     ninguém ler — não passa por revisão de página, passa por revisão de dado. */
-  'corydoras',
-  'quantos-litros-para-coridora-bronze',
-  'quantos-litros-para-coridora-pimenta',
-  'quantos-litros-para-coridora-panda',
-  'quantos-litros-para-coridora-sterbai',
-  /* A leva 4 (14/09/2026): a categoria /peixes/bettas/ e as tres fichas. Aqui a
-     voz corre um risco novo: a ficha de peixe solitario e de casal tem frases
-     que nenhuma das onze anteriores tinha, e as duas nascem DENTRO de um mapa
-     de configuracao — o vocabulario do arranjo —, que e o mesmo lugar onde a
-     abertura de categoria escapou na leva 3. Texto declarado em array nao passa
-     por revisao de pagina; passa por revisao de dado, e quase ninguem o le. */
-  'bettas',
-  'quantos-litros-para-betta',
-  'quantos-litros-para-colisa-anao',
-  'quantos-litros-para-gurami-mel',
-  /* A leva 5 (14/09/2026): a categoria /peixes/vivaparos/ e as tres fichas. O
-     risco novo da voz aqui e o mesmo lugar da leva 4 e um degrau adiante: a
-     abertura do HAREM nasceu dentro do mesmo mapa de configuracao, e ate esta
-     leva o ramo que a serve abria pela traducao do `como_vive()` — que carrega
-     a oracao do temperamento e punha a palavra "fonte" na primeira frase da
-     pagina, contra a 15.2. Nenhuma das 14 fichas no ar caia nesse ramo. */
-  'vivaparos',
-  'quantos-litros-para-platy',
-  'quantos-litros-para-peixe-espada',
-  'quantos-litros-para-plati-variatus',
-  /* A leva 6 (14/09/2026): a categoria /peixes/ciclideos-anoes/ e as tres
-     fichas. ELAS ESTAVAM NO AR DESDE 14/09/2026 E NAO ESTAVAM AQUI — achado em
-     22/09/2026, pela leva 7, ao conferir que as paginas novas eram medidas por
-     este portao. A lista e escrita a mao de proposito (o comentario do
-     FICHAS_PEIXE abaixo explica por que), e o preco dessa escolha e este:
-     quem publica a leva tem de lembrar das DUAS listas, e a leva 6 lembrou de
-     uma so. Oito dias de paginas no ar sem a regua da voz, sem uma falha que
-     avisasse — e o portao continuou verde o tempo todo, que e a forma mais
-     cara de verde falso. */
-  'ciclideos-anoes',
-  'quantos-litros-para-ramirezi',
-  'quantos-litros-para-apistogramma-agassizi',
-  'quantos-litros-para-papilocromis',
-  /* A leva 7 (22/09/2026): a categoria /peixes/danios-e-rasboras/ e as tres
-     fichas. O risco novo da voz aqui nao esta no arranjo, que e cardume nas
-     tres e ja foi exercitado quinze vezes: esta no CRITERIO da categoria, que
-     precisou publicar uma advertencia de MEDIDA — porte declarado em reguas
-     diferentes, umas com a cauda e outras sem — e advertencia de medida e o
-     texto que mais facilmente escorrega para o vocabulario de dentro da
-     fabrica. Ela sai na lingua do leitor, "o corpo sem a cauda", e nao na
-     sigla. */
-  'danios-e-rasboras',
-  'quantos-litros-para-paulistinha',
-  'quantos-litros-para-rasbora-arlequim',
-  'quantos-litros-para-tanictis',
-];
+/* As páginas que saem pelo render-pagina-completa.php, na ordem em que o
+   publicador as declara: primeiro o que o Sync publica de conteudo/ (manifest),
+   depois o eixo /peixes/ inteiro (a seção, as categorias e as fichas). Nenhuma
+   delas é digitada aqui — ver o bloco do alto do arquivo. */
+const CONTEUDO = [...DO_MANIFEST, ...Object.keys(EIXO)];
 
 /* As onze fichas de espécie, separadas do resto do CONTEUDO porque têm duas
    exigências que só elas têm (a abertura pelo número e a distinção
    BASE/COMPRIMENTO). O conjunto está escrito À MÃO, e não filtrado por prefixo
    do slug: a próxima leva vai acrescentar fichas com outro prefixo, e um filtro
    esperto deixaria as novas fora da régua sem uma falha para avisar. */
-const FICHAS_PEIXE = new Set([
-  'quantos-litros-para-tetra-neon',
-  'quantos-litros-para-tetra-cardinal',
-  'quantos-litros-para-mato-grosso',
-  'quantos-litros-para-tetra-ember',
-  'quantos-litros-para-tetra-brilhante',
-  'quantos-litros-para-rodostomo',
-  'quantos-litros-para-tetra-negro',
-  'quantos-litros-para-coridora-bronze',
-  'quantos-litros-para-coridora-pimenta',
-  'quantos-litros-para-coridora-panda',
-  'quantos-litros-para-coridora-sterbai',
-  'quantos-litros-para-betta',
-  'quantos-litros-para-colisa-anao',
-  'quantos-litros-para-gurami-mel',
-  'quantos-litros-para-platy',
-  'quantos-litros-para-peixe-espada',
-  'quantos-litros-para-plati-variatus',
-  /* leva 6 (14/09/2026), acrescentadas em 22/09/2026 — ver a nota da lista de
-     cima: as tres estavam no ar e fora das duas listas. */
-  'quantos-litros-para-ramirezi',
-  'quantos-litros-para-apistogramma-agassizi',
-  'quantos-litros-para-papilocromis',
-  /* leva 7 (22/09/2026) */
-  'quantos-litros-para-paulistinha',
-  'quantos-litros-para-rasbora-arlequim',
-  'quantos-litros-para-tanictis',
-]);
+/* As fichas de espécie, separadas do resto do CONTEUDO porque têm duas
+   exigências que só elas têm (a abertura pelo número e a distinção
+   BASE/COMPRIMENTO). Quem diz qual página é ficha é o registro do eixo, no
+   campo `especie`: ficha é a página que serve UMA espécie do banco. O conjunto
+   escrito à mão que morava aqui deixou três fichas de fora por oito dias. */
+const FICHAS_PEIXE = new Set(
+  Object.keys(EIXO).filter((slug) => EIXO[slug].especie)
+);
 
 /* A lista de MARCAS subiu para o alto do arquivo em 13/09/2026 — ver o bloco
    da régua de atribuição, que passou a usá-la também. */
@@ -576,6 +551,7 @@ const h1Vistos = new Map();
 
 for (const slug of CONTEUDO) {
   console.log(`\n/${slug}/`);
+  medidas.add(slug);
   const html  = renderCompleta(slug);
   const corpo = corpoDe(html);
   ok('o corpo foi encontrado', corpo.length > 0);
@@ -686,6 +662,44 @@ for (const slug of CONTEUDO) {
   const scripts = html.match(/<script[\s\S]*?<\/script>/g) || [];
   ok('zero &#038; dentro de <script>', (scripts.join('').match(/&#038;/g) || []).length === 0);
   ok('o corpo não começa por metadado YAML', !texto(corpo).startsWith('---'));
+}
+
+/* ======================================================================
+ * COBERTURA — nenhuma página que a ilha publica fica fora da régua
+ *
+ * A pergunta é feita DE NOVO, do zero, a quem publica: o publicador é chamado
+ * outra vez aqui embaixo e o resultado é comparado com o conjunto que os laços
+ * de fato abriram. Por isso esta seção não é uma repetição das listas do alto
+ * do arquivo — é o controle delas. Quem trocar a derivação por uma lista
+ * digitada, ou publicar uma leva sem passar por aqui, reprova NESTA linha.
+ * ==================================================================== */
+console.log('\n\nCOBERTURA — o que a ilha publica contra o que esta régua abriu');
+{
+  const eixoAgora    = listarPelo('listar-paginas-do-eixo.php');
+  const cascaAgora   = listarPelo('listar-paginas-da-casca.php');
+  const conteudoAgora = doManifest();
+
+  const publicadas = new Set([...Object.keys(cascaAgora), ...Object.keys(eixoAgora), ...conteudoAgora]);
+  const faltando = [...publicadas].filter((slug) => !medidas.has(slug));
+  const sobrando = [...medidas].filter((slug) => !publicadas.has(slug));
+
+  ok(`a ilha publica ${publicadas.size} páginas`, publicadas.size > 0);
+  ok('toda página publicada passou pela régua da voz', faltando.length === 0, faltando.join(', '));
+  ok('nenhuma página medida aqui deixou de existir no site', sobrando.length === 0, sobrando.join(', '));
+  ok('a régua abriu exatamente o que a ilha publica', medidas.size === publicadas.size,
+    `abertas ${medidas.size}, publicadas ${publicadas.size}`);
+
+  /* A régua da FICHA é mais severa que a das outras páginas, então ficar fora
+     dela é perder exigência sem perder a página. Quem decide é o registro do
+     eixo: nível 3 é ficha de espécie, e ficha é a página que serve UMA espécie. */
+  const nivel3 = Object.keys(eixoAgora).filter((slug) => eixoAgora[slug].nivel === 3);
+  const semEspecie = nivel3.filter((slug) => !eixoAgora[slug].especie);
+  const foraDaRegua = nivel3.filter((slug) => !FICHAS_PEIXE.has(slug));
+  ok('toda página de nível 3 do eixo declara a espécie que serve', semEspecie.length === 0, semEspecie.join(', '));
+  ok('toda ficha de espécie passou pela régua da ficha', foraDaRegua.length === 0, foraDaRegua.join(', '));
+  ok('a régua da ficha não cobra ficha de quem não é',
+    [...FICHAS_PEIXE].every((slug) => nivel3.includes(slug)),
+    [...FICHAS_PEIXE].filter((slug) => !nivel3.includes(slug)).join(', '));
 }
 
 console.log(falhas === 0 ? '\nTUDO OK' : `\n${falhas} FALHA(S)`);

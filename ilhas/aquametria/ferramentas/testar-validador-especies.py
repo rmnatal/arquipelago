@@ -163,6 +163,31 @@ def c_e16_extenso(b):
     pega(b, "corydoras-panda")["cardume_minimo"] = 7
 
 
+# --- E19: a coleta recusada (22/09/2026) -----------------------------------
+# O disco e o unico registro do banco com `coletas_recusadas` hoje, e e nele que
+# estas quatro corrupcoes pegam. A quarta e a que importa: a recusa e o dado
+# dizendo coisas contrarias sobre o mesmo campo, que e o estado em que a proxima
+# execucao grava o numero e ninguem descobre que ele foi recusado antes.
+def c_e19_sem_motivo(b):
+    pega(b, "symphysodon-aequifasciatus")["coletas_recusadas"][0]["motivo"] = ""
+
+
+def c_e19_campo_inventado(b):
+    pega(b, "symphysodon-aequifasciatus")["coletas_recusadas"][0]["campos_pretendidos"] = ["tamanho_do_peixe"]
+
+
+def c_e19_data_no_futuro(b):
+    pega(b, "symphysodon-aequifasciatus")["coletas_recusadas"][0]["em"] = "2099-01-01"
+
+
+def c_e19_campo_recusado_preenchido(b):
+    r = pega(b, "symphysodon-aequifasciatus")
+    r["base_minima_cm"] = {"comprimento": 120, "largura": 45}
+    for f in r["fontes"]:
+        f["campos"].append("base_minima_cm")   # com fonte, para nao cair no E3
+        f["referencia"] += " Base de 120 x 45 cm."
+
+
 TESTES = [
     ("E1", "id que nao corresponde ao nome cientifico", c_e1, "erro"),
     ("E2", "campo obrigatorio faltando sem status parcial", c_e2, "erro"),
@@ -185,6 +210,10 @@ TESTES = [
     ("E16", "numero por extenso na fonte, campo trocado", c_e16_extenso, "erro"),
     ("E18", "teto de faixa sem piso: cardume_recomendado_ate sem cardume_minimo", c_e18_sem_piso, "erro"),
     ("E18", "faixa invertida: teto igual ao piso", c_e18_invertida, "erro"),
+    ("E19", "coleta recusada sem motivo escrito", c_e19_sem_motivo, "erro"),
+    ("E19", "coleta recusada que nomeia campo fora do esquema", c_e19_campo_inventado, "erro"),
+    ("E19", "coleta recusada com data no futuro", c_e19_data_no_futuro, "erro"),
+    ("E19", "campo recusado agora preenchido, sem dizer quem superou", c_e19_campo_recusado_preenchido, "erro"),
     ("E17", "nome de tela sem acento (o nome que vira titulo)", c_e17_acento, "erro"),
     ("E17", "nome de tela sem acento depois do hifen", c_e17_acento_no_meio, "erro"),
     ("E17", "nome de tela sem acento em token separado por espaco", c_e17_acento_token_solto, "erro"),

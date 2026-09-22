@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 89,
+  "revisao": 90,
   "atualizado_em": "2026-09-22",
   "estado": "fundacao",
   "desembarque": {
@@ -456,7 +456,7 @@
       "verificado_em": "2026-09-11",
       "registros": 0,
       "publicar": false,
-      "sha256": "a14ba980ea3f18c9881457592d46881fc750b105591892a7886c6c749fbb0240",
+      "sha256": "623f392bdb0a8aac9166b0de2a45051ace7216a11bbb2dd83b358cb45b1433c8",
       "descricao": "Contrato formal do banco de especies (versao 3): campos, unidades, vocabulario controlado, a escada de 6 niveis de fonte para especie (nao existe fabricante de peixe: existem base cientifica e compendio de aquarismo), a tabela dominio_por_campo — que diz qual escada manda em qual campo, porque FishBase e melhor em biologia e o compendio e melhor em manutencao — e as regras E1 a E16. Tres decisoes valem para sempre: em conflito de campo de BEM-ESTAR o conservador e o MAIOR (o oposto do banco de produtos), volume minimo em litro nunca se grava porque e derivado da base com a altura do usuario, e espelho nao confere espelho (fishbase.se e fishbase.org sao uma fonte so, regra E15). A versao 3 acrescentou as duas regras que este canal de coleta cobrou: a REGRA DA CONGENERE (o resumo de busca oferece o numero da especie irma quando a ficha da alvo nao publica o campo, e numero sem o nome da especie do lado e recusa, nao dado; reproduzir tambem nao e conferir) e o E16, que cobra que todo numero de campo apareca no texto da fonte citada."
     },
     {
@@ -468,7 +468,7 @@
       "verificado_em": "2026-09-14",
       "registros": 37,
       "publicar": false,
-      "sha256": "0bdfa0a78c6d25522d947f393e0612e73e2005ecd6f092855d8a22d6a5f50e9f",
+      "sha256": "180a8c08169e1b294769870202c08f43417edb73624aa8358d642fc3b7ae2efd",
       "descricao": "Banco de especies: 37 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 29 dos 37 passam no portao de pagina de especie; os 8 barrados dizem no proprio registro qual campo falta e por que nao foi estimado. Em 13/09/2026 o gurami mel saiu dos barrados (o porte que a FishBase declara segue RECUSADO pela contradicao interna da propria ficha, e quem sustenta o campo e o compendio, com 55 mm SL em duas passadas independentes) e o plati variatus entrou como 37o registro, levando /peixes/vivaparos/ ao minimo do 16.5. Os dois guramis grandes continuam sem convivencia depois de quatro passadas em dois corpos, e a ausencia esta medida, nao presumida. Em 14/09/2026, na leva 5: origem_geografica foi ACENTUADO nos 15 registros que o declaram — o campo vai para a linha 'De onde vem' da tabela de fontes de toda ficha, estava sem UM acento em 15 de 15 e no ar desde 12/09, porque a correcao de acentuacao de 12/09 nomeava so nomes_populares_br. A regra E17 passou a nomear os dois campos, com a lista morando no esquema ao lado da tabela. E a ordem dos nomes populares do xiphophorus-hellerii mudou, para por 'peixe-espada' na frente: o primeiro do campo e o que vai para a tela, e a consulta classificada e 'quantos litros para peixe espada'. Existe para destravar o eixo aberto \"quantos litros para X peixes\" com dado em vez da regra de bolso de 1 cm por litro."
     },
     {
@@ -626,7 +626,7 @@
       "arquivo": "ferramentas/conferir-entidades.mjs",
       "publicar": false,
       "descricao": "Portão contra corrupção por entidade HTML: proíbe entidade numérica no fonte dos snippets, proíbe entidade dentro de script/style renderizado (menos a cadeia de esc()) e roda node --check em cada bloco de script. Controle negativo reproduz o SyntaxError de 08/09/2026.",
-      "sha256": "95d8b7d4746a785aba4cedbab1e25455a370767963950f7457ef4a89e5e53f7a"
+      "sha256": "f6843ae0bd197fbb773c9f1d538dc943993ff4d6258c62d2f4fdd4cec771fa0c"
     },
     {
       "id": "teste-apelidos",
@@ -640,14 +640,14 @@
       "arquivo": "ferramentas/validar-especies.py",
       "publicar": false,
       "descricao": "Valida o banco de especies contra dados/esquema-especies.json (regras E1 a E16) e imprime quem ja passa no minimo_para_sugerir de cada consumidor (pagina de especie, C8 lotacao, C5 aquecedor), mais a faixa de porte e as frentes minimas cobertas. Aceita um caminho no argv, o que permite roda-lo contra bancos de teste. Rodar antes de todo commit que toque dados/especies-*.json. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "ed78d712cd908700497e4d43447dc71add6222b770675bf897ba6af7d00ccb82"
+      "sha256": "3e3ed81beba42501522d6071201c85d8c74f82cc99c28495308f9d5fecc49907"
     },
     {
       "id": "testar-validador-especies",
       "arquivo": "ferramentas/testar-validador-especies.py",
       "publicar": false,
       "descricao": "Testes NEGATIVOS do validador de especies: corrompe uma copia do banco de proposito, uma corrupcao por regra E1 a E15 e quatro para a E16, e exige que a regra certa reprove com o codigo certo. Existe porque validar-especies.py so prova que o banco de hoje passa — nao prova que a regra pega o defeito que promete pegar, e regra escrita errada aprova tudo em silencio. O banco real nunca e tocado (copias em diretorio temporario) e o teste confere isso no fim. Rodar junto com o validador. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "8cee0365febb3941f0d8781b8d9f124eb246bcf97527f15b1187c22dd054775f"
+      "sha256": "06081b4352a83f124a0d016d5c0c3fd7ffc02edaaa7ac87886c51102bc12dc57"
     },
     {
       "id": "teste-navegador-visibilidade-ia",
@@ -661,7 +661,7 @@
       "arquivo": "ferramentas/conferir-protecao-funcoes.py",
       "publicar": false,
       "descricao": "Confere, SEM reescrever nada, que toda declaracao de funcao no comeco de linha de um snippet vem logo depois do guarda if ( ! function_exists( mesmo-nome ) ) {, pulando docblock e comentario. Existia so o transformador ferramentas/proteger-funcoes.php, que REESCREVE o arquivo e por isso nao serve como verificacao antes do commit; este sai 0 sem problema e 1 com problema, nomeando funcao e linha. Rodar em snippets/*.php antes de marcar qualquer coisa como publicar=true. Nao vai para o WordPress. 09/09/2026, defeito medido e fechado: chamado SEM argumento ele varria uma lista vazia e saia 0 em silencio - verde falso, que e pior que vermelho, porque treina a proxima sessao a confiar num instrumento que nao olhou para nada. Agora, sem argumento, varre os snippets da propria ilha e diz quantos; e se nao achar arquivo nenhum, REPROVA em vez de aprovar. Controle negativo conferido: desprotegendo uma funcao de proposito, ele acusa e sai 1.",
-      "sha256": "a59c753d1c3a3e7703cf08cde211edf88eea5834edd222ee41140fed9907784e"
+      "sha256": "8f1546fbadb856efeb75390bcf24b4c23c7405cf74f2972f934a2f9198e5ad62"
     },
     {
       "id": "teste-navegador-c3-dupla-condicao",
@@ -723,7 +723,7 @@
       "id": "conferir-slugs",
       "arquivo": "ferramentas/conferir-slugs.py",
       "publicar": false,
-      "sha256": "ace3b5e0ebc59267c4fd338722572fe2de34124da7b3aa7815c2330ffce3f36d",
+      "sha256": "1bf165b67951e629e3cc4235ac48ebeb19c37af55f11f68af7e5cbfee16fd6db",
       "descricao": "Confere que todo endereco publicado existe E que e o canonico daquele conteudo, em quatro lugares que precisam concordar: front matter de conteudo/, manifest, constante AQUAMETRIA_C*_SLUG de cada snippet e todo link de raiz escrito em snippet ou conteudo. Nasceu do defeito 2 de 08/09/2026 (o hub publicava /calculadora-de-aquecedor/, que dava 404). Desde 10/09/2026 tambem separa pagina de artigo: artigo e 'post' e mora em /AAAA/MM/DD/<slug>/, entao linka-lo pela raiz nao da 404, da 301 — item 3 do despacho da Sentinela de 10/09. Reprova nos dois sentidos: artigo linkado sem data e pagina linkada com data. Aceita qualquer data bem formada, para nao reprovar sozinho quando nascer o quarto artigo."
     },
     {
@@ -900,6 +900,27 @@
       "publicar": false,
       "descricao": "O 'pronto quando' do despacho de prioridade ALTA da Fundacao de 14/09/2026: poe o endereco CANONICO de cada URL do sitemap contra o MESMO endereco com quebra de cache e reprova quando os dois discordam. A lista de URLs nasce do sitemap, nunca digitada. Compara o que o LEITOR ve (marcacao fora, entidade desfeita, espaco juntado), nao bytes, porque a chave aparece no canonical e em todo link interno. Cabecalho e corpo saem da MESMA requisicao (curl -D -), que e a licao de metodo que custou quatro revisoes na robometria. Afirma tambem que o hospedeiro NOMEIA a camada de cache no cabecalho (x-server-cache / x-proxy-cache): foi procurar a assinatura do Endurance no CORPO que fez o despacho supor que esta ilha talvez nao tivesse cache. Quando ha desacordo, repete dentro de um orcamento declarado (360 s, o dobro dos 166 s medidos na robometria) e IMPRIME o atraso: janela conhecida vira numero, e so o que passa dela reprova. Nao vai para o WordPress.",
       "sha256": "c261af1d23af596f546ab7322876ed7151b6e0c0c9297ccedd517d4dc9ab2446"
+    },
+    {
+      "id": "bancada",
+      "arquivo": "ferramentas/bancada.py",
+      "publicar": false,
+      "sha256": "ba19e26faa9cadeea1b45090f72585a3597e1920192c154c70cbd86ffec707f5",
+      "descricao": "Roda a bancada inteira desta ilha com um comando so e DESCOBRE os portoes varrendo ferramentas/, em vez de os listar. Portado do molde da robometria (18/09/2026) com as convencoes desta ilha, e calibrado contra as linhas que os portoes DAQUI imprimem. Existe porque a lista de reguas a rodar era enumerada de cabeca por cada execucao e escrita no REGISTRO.md como prova: e a terceira lista escrita a mao da mesma familia que a leva 7 achou em 22/09/2026, um andar acima — a lista de quem vigia as outras. Portao sem convencao de nome e DENUNCIADO, e portao cujo texto discorda do codigo de saida e chamado de INERTE. Modos: sem argumento (sem rede), --no-ar, --navegador, --lista, --provar."
+    },
+    {
+      "id": "listar-paginas-da-casca",
+      "arquivo": "ferramentas/listar-paginas-da-casca.php",
+      "publicar": false,
+      "sha256": "2cd164baff43ffc175a2ff34aee08c293a34db274e79b6d708e536a039617c6a",
+      "descricao": "Imprime em JSON TODAS as paginas que a casca cria no WordPress, tiradas de aquametria_casca_definicao_paginas() — que desde a 1.7.0 ja traz junto o que o eixo /peixes/ anuncia pelo filtro aquametria_paginas. Nasceu em 22/09/2026 para o portao da voz parar de ter lista digitada: a leva 6 publicou quatro URLs em 14/09 e nao alimentou a lista do teste-voz.mjs, que ficou oito dias verde medindo 36 das 40 paginas do site."
+    },
+    {
+      "id": "conferir-indice-de-levas",
+      "arquivo": "ferramentas/conferir-indice-de-levas.py",
+      "publicar": false,
+      "sha256": "88b52d193417601f6b049cb6cb5b365a4da717eb9dca1ae0c19f3b856c524ebb",
+      "descricao": "Confere que TODA pagina do eixo /peixes/ aparece na tabela 'Levas publicadas' do dados/indexacao.md, pelo endereco ou pela consulta-alvo que o proprio registro do snippet declara, e que a tabela e UMA so (linha separada do cabecalho por linha em branco vira outra tabela em Markdown, sem cabecalho, e sai da tela como texto solto). Nasceu em 22/09/2026, da mesma familia do portao da voz: a tabela ficou com quatro linhas para seis levas por oito dias, e a leitura semanal leu um eixo de 20 URLs como se fosse de 12."
     }
   ]
 }

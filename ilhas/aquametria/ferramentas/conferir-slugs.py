@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Confere que TODO endereço publicado existe, em quatro lugares que precisam
+"""BANCADA: sem rede — este confere o REPOSITORIO, nao o site.
+
+Confere que TODO endereço publicado existe, em quatro lugares que precisam
 concordar entre si:
 
   1. o slug do front matter de cada arquivo de conteudo/  — a página de verdade;

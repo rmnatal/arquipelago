@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E18 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E19 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -289,6 +289,39 @@ def main():
             erro("E12", rid, "cardume_minimo %s com convivencia '%s'" % (card, conv))
         if conv == "solitario" and preenchido(card):
             erro("E12", rid, "convivencia solitario com cardume_minimo preenchido")
+
+        # E19 - a coleta que foi feita e NAO entrou (esquema de 22/09/2026).
+        # Ate aqui a recusa vivia em prosa, e prosa nao se conta: a execucao
+        # seguinte repete a busca, gasta a passada e chega a mesma recusa — ou,
+        # pior, acha o numero sem achar o motivo pelo qual ele foi recusado e
+        # grava. A regra com dentes e a ultima: campo recusado que hoje esta
+        # PREENCHIDO obriga a entrada a dizer quem o superou e quando.
+        for i, c in enumerate(r.get("coletas_recusadas", []) or []):
+            onde = "coletas_recusadas[%d]" % i
+            for obrig in ("em", "corpo", "metodo", "motivo"):
+                if not str(c.get(obrig) or "").strip():
+                    erro("E19", rid, "%s sem %s" % (onde, obrig))
+            data = str(c.get("em") or "")
+            if data:
+                try:
+                    if date.fromisoformat(data) > hoje:
+                        erro("E19", rid, "%s com data no futuro (%s)" % (onde, data))
+                except ValueError:
+                    erro("E19", rid, "%s com data fora do formato ISO (%s)" % (onde, data))
+            pretendidos = list(c.get("campos_pretendidos") or [])
+            if not pretendidos:
+                erro("E19", rid, "%s sem campos_pretendidos: recusa que nao diz o que "
+                                 "deixou de preencher nao ensina nada" % onde)
+            for campo in pretendidos:
+                if campo not in campos_esq:
+                    erro("E19", rid, "%s pretende '%s', que nao e campo deste esquema"
+                         % (onde, campo))
+                elif preenchido(r.get(campo)) and not (
+                        str(c.get("superada_em") or "").strip()
+                        and str(c.get("superada_por") or "").strip()):
+                    erro("E19", rid, "%s recusou '%s' e o campo esta preenchido, sem "
+                                     "superada_em e superada_por: a recusa e o dado "
+                                     "dizem coisas contrarias" % (onde, campo))
 
         # E18 - o teto da faixa de grupo (esquema versao 4, 14/09/2026)
         #

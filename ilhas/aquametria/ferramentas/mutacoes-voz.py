@@ -291,6 +291,24 @@ MUTACOES = [
               "\t\t\t. ' cm de fundo. O que manda é a BASE do aquário.</p>';"),
     ),
     (
+        'A LISTA DE PAGINAS VOLTA A SER DIGITADA e a ultima leva fica de fora (o defeito de 14 a 22/09)',
+        troca('ferramentas/teste-voz.mjs',
+              'const CONTEUDO = [...DO_MANIFEST, ...Object.keys(EIXO)];',
+              'const CONTEUDO = [...DO_MANIFEST, ...Object.keys(EIXO).slice(0, -4)];'),
+    ),
+    (
+        'a regua severa da FICHA volta a ser conjunto escrito a mao e tres fichas escapam',
+        troca('ferramentas/teste-voz.mjs',
+              'const FICHAS_PEIXE = new Set(\n  Object.keys(EIXO).filter((slug) => EIXO[slug].especie)\n);',
+              "const FICHAS_PEIXE = new Set(\n  Object.keys(EIXO).filter((slug) => EIXO[slug].especie && !slug.includes('coridora'))\n);"),
+    ),
+    (
+        'CONTROLE NEGATIVO: o listador do eixo devolve lista vazia e o portao teria medido nada',
+        troca('ferramentas/listar-paginas-do-eixo.php',
+              "echo json_encode( $saida,",
+              "$saida = array();\necho json_encode( $saida,"),
+    ),
+    (
         'A PORTA DOS FUNDOS DA REGUA: "conforme" volta para a lista literal e reprova pagina certa',
         troca('ferramentas/teste-voz.mjs',
               "const ATRIBUICAO_SE_NOMEIA = ['conforme', 'segundo', 'de acordo com'];",

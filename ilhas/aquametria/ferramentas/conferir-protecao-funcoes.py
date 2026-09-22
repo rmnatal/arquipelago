@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Confere que toda declaracao de funcao no comeco de linha do snippet vem
+"""BANCADA: sem rede — este confere o REPOSITORIO, nao o site.
+
+Confere que toda declaracao de funcao no comeco de linha do snippet vem
 logo depois do guarda if ( ! function_exists( 'mesmo-nome' ) ) {."""
 import glob, io, os, re, sys
 

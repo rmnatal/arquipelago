@@ -2927,7 +2927,25 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "Registro se apoia em UM corpo de fonte so (FishBase), por isso parcial e nao completo: a busca restrita ao Seriously Fish em 09/09/2026 devolveu a ficha, mas nenhum numero dela - so a descricao de peixe arisco que precisa de esconderijo, que nao cabe no vocabulario de comportamento. O porte de 13,7 cm SL e o declarado pela base; o disco de aquario passa disso em altura de corpo, que e outra medida."
+   "observacao": "Registro se apoia em UM corpo de fonte so (FishBase), por isso parcial e nao completo: a busca restrita ao Seriously Fish em 09/09/2026 devolveu a ficha, mas nenhum numero dela - so a descricao de peixe arisco que precisa de esconderijo, que nao cabe no vocabulario de comportamento. O porte de 13,7 cm SL e o declarado pela base; o disco de aquario passa disso em altura de corpo, que e outra medida. EM 22/09/2026 UMA SEGUNDA COLETA FOI FEITA E RECUSADA, e o que ela achou esta em coletas_recusadas: o Seriously Fish declara um aquario de 120 x 45 x 45 cm e 255 L, mas para alguns juvenis ou um casal reprodutor — arranjo diferente do que este registro publica, que e cardume de cinco. Entrar como base_minima_cm faria a ficha publicar como chao do cardume um numero que a fonte deu para o casal.",
+   "coletas_recusadas": [
+    {
+     "em": "2026-09-22",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/symphysodon-aequifasciatus/",
+     "metodo": "busca RESTRITA ao endereco da ficha da especie, cinco formulacoes, em 22/09/2026. A pagina nao foi lida direto: WebFetch devolveu EGRESS_BLOCKED para www.seriouslyfish.com nesta data, reconfirmando o que o banco declara desde 09/09/2026.",
+     "campos_pretendidos": [
+      "base_minima_cm",
+      "altura_minima_cm",
+      "volume_minimo_declarado_L",
+      "alimentacao",
+      "comportamento"
+     ],
+     "o_que_a_fonte_declara": "UMA frase util, repetida igual em tres formulacoes da busca: um casal reprodutor precisa de espaco na horizontal e na vertical, entao um aquario de 48 x 18 x 18 polegadas (120 x 45 x 45 cm), 255 litros, e recomendado PARA ALGUNS JUVENIS OU UM CASAL DE ADULTOS REPRODUTORES. Mais: porte maximo relatado do disco selvagem em torno de 14 cm; peixe timido e assustadico, que precisa de esconderijo; o selvagem come sobretudo zooplancton, insetos e outros invertebrados pequenos.",
+     "motivo": "ESCOPO, e nao falta de numero. O registro declara convivencia cardume com cardume_minimo 5, colhido da FishBase, e a base de 120 x 45 cm desta frase foi declarada para OUTRO arranjo: alguns juvenis ou um casal reprodutor. Gravada em base_minima_cm, ela sairia na ficha como o chao que o cardume de cinco adultos pede, e essa e afirmacao que a fonte nao faz. E a mesma familia da regra que a leva 7 escreveu — numero de medidas diferentes nao se compara —, so que aqui o que difere nao e a regua: e de quem se fala. O esquema nao tem hoje onde carregar o arranjo de uma base declarada, entao o campo fica null. Os outros tres: altura_minima_cm e volume_minimo_declarado_L saem da MESMA frase e carregam o mesmo escopo; alimentacao seria classificacao NOSSA de uma descricao de dieta, e nao palavra da fonte; comportamento (timido, assustadico) nao cabe no vocabulario fechado do esquema, que so aceita pacifico, semi-agressivo, agressivo e territorial.",
+     "o_que_destravaria": "Um segundo corpo que declare campo de manutencao para o ARRANJO que este registro publica (grupo de cinco ou mais), ou um campo de escopo no esquema que deixe a base declarada viajar com o arranjo a que ela se refere. Enquanto nenhum dos dois existir, o registro fica em UM corpo de fonte so e a categoria /peixes/acaras/ nao nasce: ela precisa de tres fichas, e as outras duas (acara-bandeira e oscar) ja passam nos dois portoes."
+    }
+   ]
   },
   {
    "id": "pethia-conchonius",

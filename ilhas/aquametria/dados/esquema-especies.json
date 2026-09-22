@@ -399,6 +399,13 @@
    "campo": "observacao",
    "tipo": "string",
    "obrigatorio": false
+  },
+  {
+   "campo": "coletas_recusadas",
+   "tipo": "lista de objetos {em, corpo, url, metodo, campos_pretendidos[], o_que_a_fonte_declara, motivo, o_que_destravaria, superada_em?, superada_por?}",
+   "obrigatorio": false,
+   "dominio": "metadado",
+   "nota": "A COLETA QUE FOI FEITA E NAO ENTROU, escrita onde se conta (22/09/2026). Ate esta data a coleta recusada vivia em prosa: no `observacao` do registro, no `PROMPT.md` ('falta temperatura_C do cascudo, recusada em duas coletas') ou no `REGISTRO.md` da execucao. Prosa nao se conta e prosa nao avisa — a execucao seguinte repete a mesma busca, gasta a mesma passada e chega a mesma recusa, ou pior: acha o numero, nao acha o motivo da recusa e grava. E a mesma familia do `afiliado.intestavel` do banco de produtos, que nasceu em 14/09/2026 pelo mesmo argumento. Cada entrada diz QUANDO, de QUAL corpo, por QUAL metodo, que campos se pretendia preencher, o que a fonte declara de fato e por que aquilo nao entrou. Quando um corpo novo destravar o campo, a entrada NAO e apagada: ganha superada_em e superada_por, porque a serie e o que ensina."
   }
  ],
  "campos_derivados": {
@@ -527,6 +534,10 @@
   {
    "id": "E18",
    "regra": "cardume_recomendado_ate so existe com cardume_minimo preenchido e tem de ser MAIOR que ele. Teto sem piso nao e faixa, e teto igual ou menor que o piso e faixa invertida — as duas publicariam na ficha uma recomendacao que a fonte nao fez."
+  },
+  {
+   "id": "E19",
+   "regra": "Toda entrada de coletas_recusadas declara em (data ISO, nunca futura), corpo, metodo, motivo e pelo menos um campo em campos_pretendidos, e todo nome ali tem de ser campo deste esquema. E a regra com dentes: CAMPO RECUSADO QUE HOJE ESTA PREENCHIDO obriga a entrada a trazer superada_em e superada_por — sem isso, o registro estaria dizendo duas coisas contrarias sobre o mesmo campo, e a mais nova venceria em silencio. Recusa nao se apaga quando e superada; ela ganha data e nome de quem a superou, porque quem le a serie precisa saber que aquele numero custou duas passadas e veio do segundo corpo, nao do primeiro."
   }
  ],
  "o_que_nao_entra": [
@@ -548,7 +559,8 @@
    "conflitos",
    "verificado_em",
    "status_registro",
-   "observacao"
+   "observacao",
+   "coletas_recusadas"
   ],
   "nota_nome_cientifico": "nome_cientifico e isento porque e a chave do registro e aparece por inteiro na referencia de toda fonte citada; qualquer afirmacao sobre ele (autoria, sinonimia, revisao) e que exige fonte."
  },

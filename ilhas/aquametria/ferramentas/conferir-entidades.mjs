@@ -1,3 +1,5 @@
+// BANCADA: sem rede — este confere o REPOSITORIO, nao o site.
+//
 // Portão contra a corrupção por entidade HTML — o defeito que derrubou as cinco
 // calculadoras em 08/09/2026 e que três execuções seguidas reportaram como
 // resolvido enquanto ele seguia no ar.
