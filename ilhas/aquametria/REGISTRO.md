@@ -8366,3 +8366,230 @@ fonte do `symphysodon-aequifasciatus` (acará-disco), que fecha `/peixes/acaras/
 com o acará-bandeira e o oscar, no mínimo exato do 16.5. Alternativa sem coleta
 nenhuma: `T5` (artigos-âncora) e `T6` (prospecção do widget), que não criam URL
 de malha e não gastam leva do teto.
+
+## 2026-09-22 13h20Z–14h10Z — AS LISTAS ESCRITAS À MÃO DESTE EIXO DEIXAM DE EXISTIR: o portão da voz pergunta a quem publica, a bancada varre a pasta, o índice de levas ganha portão — e a coleta do acará-disco é medida e RECUSADA (manifest revisão 91, nenhuma URL nova, e uma correção na página de privacidade no ar)
+
+**A ESCOLHA DA ILHA: PELO FOCO, NÃO PELA ROTAÇÃO.** O `foco.md` nomeia a
+aquametria desde 21/09/2026, então pela 1.2 não houve escolha a fazer. A ilha
+estava com `executando_desde: null` — que pela 1.1 já significa que nenhum bloco
+da Fundação está vivo —, a execução anterior fechou às 11h18Z, e a reserva foi
+aceita de primeira às 13h20Z. Nenhum branch `claude/*` com commit não mesclado e
+nenhum PR aberto. Nenhum despacho ALTO em ilha no ar e quebrada para furar o
+foco. Rede pela 20.2 antes de trabalhar: home em **200** em três passadas e
+`/status` na revisão **89**, igual à do `manifest.json`.
+
+**POR QUE ESTE BLOCO, E NÃO A LEVA 8.** A leva 7 fechou dizendo que a oitava
+categoria do eixo custa **uma coleta de um campo** — a segunda fonte do
+acará-disco, que fecharia `/peixes/acaras/` com o acará-bandeira e o oscar. A
+coleta foi feita nesta execução, **e foi recusada** (a seção abaixo conta o que
+ela achou e por quê). Sem ela não há leva 8, e o que sobrou de mais caro na fila
+era o que a própria leva 7 deixou escrito e em aberto: **duas listas escritas à
+mão que a leva seguinte tem de lembrar de alimentar, e que não avisam quando
+alguém esquece.** As duas foram fechadas aqui, e uma terceira — a maior — foi
+achada no caminho.
+
+### 1. O PORTÃO DA VOZ DEIXOU DE TER LISTA DIGITADA
+
+O `teste-voz.mjs` media 44 páginas porque alguém escreveu 44 nomes em três
+listas à mão. Foi o que deixou as quatro URLs da leva 6 **oito dias no ar sem a
+régua da voz**, com o portão verde o tempo todo medindo 36 das 40 páginas do
+site. A saída é a mesma que a leva 7 deu à contagem de categorias do
+`teste-peixes.py`: **perguntar a quem publica.**
+
+- **`ferramentas/listar-paginas-da-casca.php`** nasceu, no molde dos dois
+  listadores do eixo: imprime em JSON o que `aquametria_casca_definicao_paginas()`
+  cria no WordPress — as quatro da casca e, desde a 1.7.0, o eixo inteiro que
+  entra pelo filtro `aquametria_paginas`.
+- As três listas do portão sumiram. As páginas da casca são as que a casca
+  declara e **não** estão no registro do eixo; as de `conteudo/` saem do
+  `manifest.json` (o que o Sync publica, com `publicar: true`); as do eixo saem
+  do `listar-paginas-do-eixo.php`; e **a régua severa da ficha** — a que cobra a
+  abertura pelo número e a distinção BASE/COMPRIMENTO — sai do campo `especie`
+  do registro, que é quem sabe qual página serve uma espécie.
+- **E não é o "filtro esperto" que o comentário antigo recusava, com razão.** Ele
+  recusava adivinhar a lista por PREFIXO DE SLUG, que é heurística de vizinhança.
+  Aqui nada é adivinhado: a lista é a do publicador.
+- **A seção de COBERTURA é o que dá dentes.** No fim do arquivo a pergunta é
+  feita de novo, do zero, a quem publica, e comparada com o conjunto que os laços
+  de fato abriram — não com as listas do alto. Quem trocar a derivação por uma
+  lista digitada, ou publicar uma leva sem passar por aqui, **reprova nessa
+  linha**. Medido: 44 páginas publicadas, 44 abertas.
+
+### 2. A BANCADA DESTA ILHA NASCEU, E ELA ACHOU DOIS PORTÕES QUE NINGUÉM RODAVA
+
+A terceira lista escrita à mão é de um andar acima e é a que vigia as outras: **a
+lista de quais réguas rodar**. Cada execução a enumerava de cabeça e a escrevia
+no `REGISTRO.md` como prova. `ferramentas/bancada.py` foi portado do molde da
+robometria (18/09/2026) com as convenções desta ilha — e **calibrado contra as
+linhas que os portões DAQUI imprimem**, não contra as de lá: a régua do veredito
+roda sozinha antes de qualquer portão (17 afirmações) e reprova a bancada inteira
+se ela mesma estiver errada.
+
+Ele varre `ferramentas/` e classifica pelo nome. **Portão novo entra na bancada
+no dia em que é escrito.** Portão sem convenção é DENUNCIADO; portão cujo texto
+discorda do código de saída é INERTE e aparece nomeado no fim.
+
+**O QUE A PRIMEIRA PASSADA ACHOU, e é o motivo de o arquivo existir:**
+`mutacoes-c12-vitrine.py` e `mutacoes-c15-regulagem.py` reprovaram por
+`ERR_MODULE_NOT_FOUND: playwright`. Eles não são bancada de repositório: montam o
+HTML e entregam a um `teste-navegador-*.mjs`, que abre Chromium de verdade — e
+**nenhuma execução desde 14/09/2026 os tinha rodado**, porque a lista escrita de
+cabeça não os incluía. A classificação passou a perguntar ao ARQUIVO quem dirige
+o navegador (quem nomeia um `teste-navegador-` ou importa `playwright`), em vez
+de confiar no prefixo: falha de ambiente lida como defeito da ilha é o que faz a
+próxima execução desconfiar da bancada inteira.
+
+### 3. O ÍNDICE DE LEVAS DO `dados/indexacao.md` GANHOU PORTÃO
+
+Era a segunda lista que a leva 7 nomeou e deixou aberta: a tabela ficou com
+**quatro linhas para seis levas** por oito dias, e ela existe justamente para a
+leitura semanal não precisar abrir código. `ferramentas/conferir-indice-de-levas.py`
+pergunta ao registro do snippet quais páginas o eixo publica e exige que cada uma
+apareça no índice, **pelo endereço ou pela consulta-alvo exata que o próprio
+registro declara**. Ele não julga o texto da linha e não reclassifica SERP: recusa
+o silêncio.
+
+**E a tabela estava partida em TRÊS.** As linhas das levas 5, 6 e 7 estavam
+separadas do cabeçalho por linha em branco — em Markdown isso são três tabelas, e
+as duas de baixo, sem cabeçalho, saem da tela como texto solto. Foi remontada sem
+uma palavra mudada, e as **sete consultas abreviadas por reticências** ("...tetra
+brilhante") passaram a trazer a consulta inteira: a abreviação era do olho, e o
+índice agora tem portão. Controle negativo conferido nas duas metades: apagar a
+linha da leva 7 reprova nomeando as quatro páginas dela; reabrir a linha em
+branco reprova por "2 blocos de tabela".
+
+### 4. A COLETA DO ACARÁ-DISCO FOI FEITA E FOI RECUSADA — por ESCOPO, não por falta de número
+
+O Seriously Fish, colhido por busca **restrita ao endereço da ficha da espécie**
+(o egresso devolveu `EGRESS_BLOCKED` para `www.seriouslyfish.com` também hoje,
+reconferido por WebFetch), declara para o disco **um aquário de 120 × 45 × 45 cm,
+255 L — para alguns juvenis ou um casal reprodutor**. A frase saiu igual em três
+formulações diferentes da busca, então a atribuição está firme.
+
+**E ela não entra.** O registro publica outro arranjo: `convivencia: cardume` com
+`cardume_minimo: 5`, da FishBase. Gravada em `base_minima_cm`, essa base sairia na
+ficha como o chão que o cardume de cinco adultos pede — afirmação que a fonte não
+faz. É a mesma família da regra que a leva 7 escreveu, *número de medidas
+diferentes não se compara*, com uma diferença: **aqui o que muda não é a régua, é
+de quem se fala.** Os outros três campos pretendidos caem junto:
+`altura_minima_cm` e `volume_minimo_declarado_L` saem da MESMA frase e carregam o
+mesmo escopo; `alimentacao` seria classificação NOSSA de uma descrição de dieta,
+não palavra da fonte; e `comportamento` (tímido, assustadiço) não cabe no
+vocabulário fechado do esquema.
+
+**A RECUSA PASSOU A TER ONDE MORAR, e é a lição que sobra.** Até hoje coleta
+recusada vivia em prosa — na `observacao` do registro, no `PROMPT.md` ("falta
+`temperatura_C` do cascudo, recusada em duas coletas"), no `REGISTRO.md` da
+execução. **Prosa não se conta e prosa não avisa:** a execução seguinte repete a
+mesma busca, gasta a mesma passada e chega à mesma recusa — ou, pior, acha o
+número, não acha o motivo da recusa e grava. Nasceu `coletas_recusadas` no esquema
+de espécies (mesmo argumento que fez nascer o `afiliado.intestavel` em 14/09), com
+a regra **E19** e **quatro testes negativos** no `testar-validador-especies.py`,
+que foi de 24 para 28 testes. A regra com dentes é a última: **campo recusado que
+hoje está preenchido obriga a entrada a dizer quem o superou e quando** — sem
+isso, a recusa e o dado diriam coisas contrárias sobre o mesmo campo, e a mais
+nova venceria em silêncio.
+
+**O que destrava `/peixes/acaras/`, então, não é a mesma busca de novo:** ou um
+segundo corpo que declare campo de manutenção para o arranjo que o registro
+publica (grupo de cinco ou mais), ou um campo de ESCOPO no esquema, que deixe a
+base declarada viajar com o arranjo a que ela se refere. O caminho do escopo vale
+por si e é maior do que parece: **o oscar carrega o mesmo problema resolvido em
+prosa desde 09/09/2026** — a base de 150 × 60 cm que o compêndio declara é para UM
+adulto, e isso está na `observacao`, não em campo.
+
+### 5. E A BANCADA NOVA ACHOU UM DEFEITO NO AR NO PRIMEIRO DIA — a página de privacidade
+
+`conferir-privacidade-no-ar.py` existe desde 13/09/2026, estava **VERMELHO**, e
+nenhuma execução o rodava: ele não estava na lista que cada uma escrevia de
+cabeça. A falha: **o site linka `shopee.com.br` desde 14/09/2026** — a busca crua
+que virou o piso da 25.2 — e a página de privacidade listava só
+`s.shopee.com.br`, o link curto do anúncio escolhido. Oito dias com um endereço
+servido fora de uma lista que a própria página promete completa, numa página cuja
+tese é *"o que está afirmado aqui foi medido"*.
+
+Remedido hoje nas **44** URLs do sitemap: quatro endereços que carregam sozinhos
+(`www.googletagmanager.com`, `fonts.googleapis.com` e `fonts.gstatic.com` em 44 de
+44; `down-bs-br.img.susercontent.com` em 4 de 44) e **dois** de clique
+(`s.shopee.com.br` e `shopee.com.br`, os dois em 4 de 44). A tabela saiu de "27 de
+27" para "44 de 44", o parágrafo do quinto endereço virou o dos **dois** com a
+diferença entre eles escrita para quem lê, e a medição de cookie passou a ser a de
+hoje, nas 44, com a primeira declarada pela data. **Manifest revisão 91, Sync às
+14h02Z, e o portão conferido no ar depois: 21 afirmações, 0 falha.**
+
+É o argumento inteiro deste bloco numa página só: **régua que ninguém roda é régua
+que não existe** — e o custo dela não é teórico, é uma página institucional
+incompleta no ar por oito dias.
+
+### O que ficou medido e NÃO foi consertado (18.3)
+
+**Dezoito ferramentas estão fora do `manifest.json`**, entre elas `teste-voz.mjs`,
+`teste-arvore.mjs`, `mutacoes-voz.py` e os renderizadores da bancada. O
+`atualizar-manifest.py` avisa isso em toda passada — "fora do manifest: ..." — e o
+aviso vem sendo lido e não atendido. **É a quarta lista da mesma família**, e com
+a bancada varrendo a pasta ela deixou de decidir o que RODA; continua decidindo o
+que a ilha declara ter. Fica nomeada aqui em vez de virar promessa.
+
+### Verificação
+
+**A BANCADA INTEIRA, num comando só, e é a primeira vez nesta ilha:**
+`python3 ferramentas/bancada.py` → **APROVADO: 29 portões, 0 falha**, com a régua
+do próprio veredito medida antes (17 afirmações) e `php -l` nos 11 snippets da
+pasta. Um a um, do que ela imprimiu:
+
+`teste-peixes.py` **3158 afirmações, 0 falha** · `mutacoes-peixes.py` **90 de 90
+reprovadas** · `teste-voz.mjs` **TUDO OK nas 44 páginas** · `mutacoes-voz.py`
+**30 de 30 reprovadas** (eram 27) · `teste-arvore.mjs` 0 falha ·
+`mutacoes-arvore.py` 14 de 14 · `validar-especies.py` 39 registros, **0 erro**, 1
+aviso conhecido (o E15 do guppy) · `testar-validador-especies.py` **28 testes, 0
+falha** (eram 24) · `teste-escada-compra.py` 644 · `mutacoes-escada.py` 23 de 23 ·
+`teste-ga4.py` 696 · `mutacoes-ga4.py` 13 de 13 · `teste-datas-schema.py` 102 ·
+`mutacoes-datas.py` 12 de 12 · `teste-dimensao-imagem.py` 36 ·
+`mutacoes-dimensao.py` 14 de 14 · `teste-purga-cache.php` 21 ·
+`mutacoes-purga-cache.py` 8 baterias, zero inertes · `mutacoes-privacidade.py` 23 ·
+`teste-apelidos.php` 59 · `teste-seo-tecnico.php` 483 · `teste-atualizador-sync.php`
+9 cenários · `teste-conversor-markdown.php` 18 casos · `teste-escape-shortcode.php`
+todas · `conferir-entidades.mjs`, `conferir-slugs.py`, `conferir-protecao-funcoes.py`
+e `conferir-indice-de-levas.py` limpos · `validar-produtos.py` com o aviso V20
+conhecido.
+
+**Fora da passada, e a bancada imprime os nomes em vez de os esquecer:** seis que
+abrem o site (`--no-ar`) e dezoito que precisam de Chromium (`--navegador`), entre
+eles os dois `mutacoes-*` que esta execução reclassificou.
+
+**NO AR, depois do Sync da revisão 91 às 14h02Z** (`/status` conferido na **91**,
+igual à do `manifest.json`): `conferir-peixes-no-ar.py` **811 afirmações, 0
+falha** · `conferir-escada-no-ar.py` **107, 0 falha** (5 cartões: 1 pela ficha, 4
+pelo piso da 25.2, 0 sem saída) · `conferir-datas-e-voz-no-ar.py` **326, 0 falha**
+· `conferir-privacidade-no-ar.py` **21, 0 falha** — eram 20 com **1 falha** antes
+da correção desta execução · `conferir-cache-do-host.py` **47, 0 falha**, com
+atraso de 0 s até o canônico concordar (orçamento de 360 s) ·
+`conferir-ga4-no-ar.py` limpo, com a nota conhecida do `google-site-kit` nas 44
+páginas.
+
+### Itens esperando link de afiliado (item 5 do despacho da Sentinela de 13/09)
+
+**78 itens seguem sem `url_busca` encurtada** e **zero** deles está sem saída de
+compra: o piso da 25.2 (a busca crua) cobre os 78. Quem encurta é a Sentinela
+estratégica no navegador do Raphael. Este bloco não tocou em produto nenhum.
+
+### Próximo passo desbloqueado
+
+**`/peixes/acaras/` continua fechada, e agora se sabe por quê.** A oitava
+categoria do eixo não custa mais "uma coleta": a coleta foi feita e o que ela
+trouxe não cabe no esquema sem mentir sobre escopo. O que destrava é **um segundo
+corpo que declare manutenção para o arranjo do registro** (grupo de cinco ou
+mais) **ou um campo de ESCOPO no esquema**, que deixe a base declarada viajar com
+o arranjo a que se refere — e esse segundo caminho vale por si, porque o oscar
+carrega o mesmo problema resolvido em prosa desde 09/09/2026. Quem for tentar lê
+`coletas_recusadas` do `symphysodon-aequifasciatus` antes de gastar a passada.
+
+**Sem coleta nenhuma, e sem gastar leva do teto:** `T5` (artigos-âncora) e `T6`
+(prospecção do widget), que é a única alavanca de link do projeto e está parada
+desde que subiu de prioridade.
+
+**Mecânico, curto e já medido:** as **18 ferramentas fora do `manifest.json`**, que
+o `atualizar-manifest.py` nomeia em toda passada. E, no dia em que houver
+`playwright` instalado nesta nuvem, `python3 ferramentas/bancada.py --navegador`:
+são 18 portões que ninguém roda desde 14/09/2026, e dois deles reprovaram hoje só
+por falta do pacote.
