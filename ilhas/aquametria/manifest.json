@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 90,
+  "revisao": 91,
   "atualizado_em": "2026-09-22",
   "estado": "fundacao",
   "desembarque": {
@@ -322,7 +322,7 @@
       ],
       "verificado_em": "2026-09-13",
       "publicar": true,
-      "sha256": "a39f7cabcb0b7bdbfaade6c06863e272ea65a890ca89e8e614e02440e71dc37c",
+      "sha256": "b518f52c99aa80e817da486d53663122238f72afeafeddcf96247444e35b47c9",
       "descricao": "A pagina que faltava desde 12/09/2026, quando a etiqueta do GA4 entrou no ar numa ilha que ja publicava link de afiliado: item (d) da lista de aberto do ESTADO.md. Diz o que o site guarda de quem le (nada: sem cadastro, sem login, sem formulario, sem caixa de comentario, e nenhum cookie vindo do servidor) e, sobretudo, NOMEIA UM A UM os enderecos externos que o navegador de quem le vai buscar — quatro que carregam sozinhos e um que so e contatado no clique —, com em quantas das 27 paginas cada um aparece. Essa lista nao e digitada e conferida a olho: ferramentas/conferir-privacidade-no-ar.py recolhe os enderecos do HTML SERVIDO e cobra as duas direcoes, endereco do ar nomeado na pagina e endereco nomeado existindo no ar."
     }
   ],
@@ -905,7 +905,7 @@
       "id": "bancada",
       "arquivo": "ferramentas/bancada.py",
       "publicar": false,
-      "sha256": "ba19e26faa9cadeea1b45090f72585a3597e1920192c154c70cbd86ffec707f5",
+      "sha256": "0528b4c26ab27880ad53a133f77e324c3dcfcf409ba166cd2cc5c197db6d102a",
       "descricao": "Roda a bancada inteira desta ilha com um comando so e DESCOBRE os portoes varrendo ferramentas/, em vez de os listar. Portado do molde da robometria (18/09/2026) com as convencoes desta ilha, e calibrado contra as linhas que os portoes DAQUI imprimem. Existe porque a lista de reguas a rodar era enumerada de cabeca por cada execucao e escrita no REGISTRO.md como prova: e a terceira lista escrita a mao da mesma familia que a leva 7 achou em 22/09/2026, um andar acima — a lista de quem vigia as outras. Portao sem convencao de nome e DENUNCIADO, e portao cujo texto discorda do codigo de saida e chamado de INERTE. Modos: sem argumento (sem rede), --no-ar, --navegador, --lista, --provar."
     },
     {

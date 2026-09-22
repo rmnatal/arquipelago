@@ -107,7 +107,8 @@ const DO_MANIFEST  = doManifest();
    é outro (render-casca-pagina.php monta a casca inteira; as do eixo e as de
    conteudo/ saem pelo render-pagina-completa.php). A separação é por origem
    declarada, não por nome. */
-const PAGINAS = Object.keys(DA_CASCA).filter((slug) => !(slug in EIXO));
+const SLUGS_DO_EIXO = new Set(Object.keys(EIXO));
+const PAGINAS = Object.keys(DA_CASCA).filter((slug) => !SLUGS_DO_EIXO.has(slug));
 
 /* A régua, escrita aqui. Vem do VOZ.md, seções "Como a gente fala" e
    "Proibidas". Termo em minúsculas; a comparação é sem acento e sem caixa, para

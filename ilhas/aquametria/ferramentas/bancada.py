@@ -46,6 +46,7 @@ AS CONVENCOES, e elas ja eram as desta pasta antes deste arquivo
   teste-*.mjs               -> node ferramentas/<x>.mjs .       (sem rede)
   teste-navegador-*.mjs     -> Chromium real: so com --navegador
   conferir-*                -> ABRE O SITE: so com --no-ar
+  qualquer um que chame um teste-navegador-* -> Chromium: so com --navegador
   gerar-|coletar-|atualizar-|render-|varrer-|listar-|proteger-|aplicar-  -> producao, nao e portao
 
 A EXCECAO DO `conferir-`, E ELA E DECLARADA PELO PROPRIO ARQUIVO. Tres
@@ -55,6 +56,14 @@ repositorio. Quem decide nao e uma lista aqui dentro — e uma linha no cabecalh
 do proprio arquivo, `BANCADA: sem rede`. Sem essa linha, `conferir-` e tratado
 como rede e fica FORA da passada padrao, com o nome impresso. O lado seguro do
 erro e ficar de fora e aparecer, nunca rodar as cegas ou sumir calado.
+
+ANTES DE TUDO, DUAS COISAS QUE NAO SAO ARQUIVO DE PORTAO
+---------------------------------------------------------
+  1. a regua do veredito abaixo, medida contra si mesma;
+  2. `php -l` em TODO snippet da pasta `snippets/` — que tambem era lista
+     digitada, no "php -l nos 11 snippets" de cada REGISTRO.md.
+As duas rodam sempre, e as duas reprovam a bancada inteira: snippet que nem
+analisa faz todo portao medir outra coisa.
 
 O VEREDITO E O CODIGO DE SAIDA, E O TEXTO E CONFERIDO CONTRA ELE
 -----------------------------------------------------------------
@@ -78,6 +87,16 @@ PASTA = os.path.join(RAIZ, 'ferramentas')
 NAO_E_PORTAO = re.compile(
     r'^(gerar|coletar|medir|aplicar|acentuar|atualizar|cobertura|render|varrer|listar|proteger|bancada)[-.]'
 )
+
+# QUEM DIRIGE O NAVEGADOR SE DECLARA PELO QUE CHAMA. Dois `mutacoes-*.py`
+# desta pasta nao sao bancada de repositorio: eles montam o HTML e entregam a
+# um `teste-navegador-*.mjs`, que abre Chromium de verdade. Sem isto eles
+# entravam na passada padrao e reprovavam por FALTA DE PLAYWRIGHT — falha de
+# ambiente lida como defeito da ilha, que e a leitura que faz a proxima
+# execucao desconfiar da bancada inteira. Medido em 22/09/2026, na primeira
+# passada deste arquivo. A pergunta e feita ao ARQUIVO, nao a uma lista aqui:
+# quem nomeia um teste-navegador- ou importa playwright, dirige o navegador.
+MARCA_NAVEGADOR = re.compile(r'teste-navegador-|playwright')
 
 # A DECLARACAO QUE TIRA UM `conferir-` DA LISTA DE REDE. Mora no cabecalho do
 # proprio arquivo, e nao aqui: lista de excecao escrita na bancada e exatamente
@@ -154,13 +173,46 @@ def provar():
     return 0
 
 
-def declara_sem_rede(nome):
-    """A declaracao mora no arquivo, nao numa lista aqui dentro."""
+def texto_do(nome, limite=None):
     try:
         with open(os.path.join(PASTA, nome), encoding='utf-8', errors='replace') as f:
-            return MARCA_SEM_REDE in f.read(4000)
+            return f.read() if limite is None else f.read(limite)
     except OSError:
-        return False
+        return ''
+
+
+def declara_sem_rede(nome):
+    """A declaracao mora no arquivo, nao numa lista aqui dentro."""
+    return MARCA_SEM_REDE in texto_do(nome, 4000)
+
+
+def dirige_navegador(nome):
+    """O arquivo chama um teste de navegador, ou importa o proprio playwright."""
+    return bool(MARCA_NAVEGADOR.search(texto_do(nome)))
+
+
+def lint_dos_snippets():
+    """`php -l` em TODO snippet da pasta, e a pasta e quem diz quais sao.
+
+    Ele entrava na bancada pela memoria de quem escrevia o REGISTRO.md ("php -l
+    nos 11 snippets"), e o numero 11 era digitado: snippet novo nasceria sem
+    lint e sem ninguem notar. Aqui a lista e a pasta, e zero arquivo REPROVA.
+    """
+    import glob
+    arquivos = sorted(glob.glob(os.path.join(RAIZ, 'snippets', '*.php')))
+    if not arquivos:
+        print('FALHA php -l nao achou snippet nenhum — isto e reprovacao, nao aprovacao.')
+        return 1
+    ruins = []
+    for arq in arquivos:
+        r = subprocess.run(['php', '-l', arq], capture_output=True, text=True)
+        if r.returncode != 0:
+            ruins.append((os.path.basename(arq), (r.stdout + r.stderr).strip().splitlines()[0]))
+    for nome, erro in ruins:
+        print('FALHA php -l %s: %s' % (nome, erro))
+    print('%s php -l em %d snippets, %d falha(s).'
+          % ('REPROVADO:' if ruins else 'APROVADO:', len(arquivos), len(ruins)))
+    return 1 if ruins else 0
 
 
 def classificar(nome):
@@ -185,7 +237,8 @@ def classificar(nome):
     if nome.startswith('teste-') and nome.endswith('.mjs'):
         return ['node', os.path.join('ferramentas', nome), '.'], 'sem_rede'
     if nome.startswith(('teste-', 'testar-', 'mutacoes-', 'validar-')) and nome.endswith('.py'):
-        return ['python3', os.path.join('ferramentas', nome)], 'sem_rede'
+        cat = 'navegador' if dirige_navegador(nome) else 'sem_rede'
+        return ['python3', os.path.join('ferramentas', nome)], cat
     if nome.endswith(('.php', '.py', '.mjs')):
         return None, 'sem_convencao'
     return None, 'ignorado'
@@ -237,6 +290,10 @@ def main(argv):
     # mesma armadilha um andar acima.
     if provar() != 0:
         print('\nREPROVADO na propria regua do veredito — nenhum portao foi rodado.')
+        return 1
+    if lint_dos_snippets() != 0:
+        print('\nREPROVADO no php -l — nenhum portao foi rodado, porque snippet que nem '
+              'analisa faz todo portao medir outra coisa.')
         return 1
     print('-' * 70)
 

@@ -3,13 +3,13 @@ id: politica-de-privacidade
 tipo: pagina
 titulo: "O que este site sabe sobre você"
 slug: politica-de-privacidade
-meta_descricao: "Sem cadastro, sem formulário e sem cookie vindo do servidor. Os quatro endereços que o seu navegador procura fora daqui, medidos página por página."
+meta_descricao: "Sem cadastro, sem formulário e sem cookie vindo do servidor. Os seis endereços que o seu navegador procura fora daqui, medidos página por página."
 cluster: institucional
 fontes:
-  - "medição própria de 13/09/2026 nas 27 páginas do sitemap: cabeçalho de resposta de cada uma, e todo endereço externo citado no HTML servido, separado entre o que carrega sozinho e o que só é contatado se você clicar"
+  - "medição própria de 22/09/2026 nas 44 páginas do sitemap: cabeçalho de resposta de cada uma, e todo endereço externo citado no HTML servido, separado entre o que carrega sozinho e o que só é contatado se você clicar. A primeira medição desta página é de 13/09/2026, nas 27 páginas de então"
   - "aquametria-casca.php: a etiqueta de medição do Google entra pelo cabeçalho da própria casca, com o identificador em constante no topo do arquivo"
   - "aquametria-casca.php: toda página nasce com caixa de comentário fechada"
-verificado_em: 2026-09-13
+verificado_em: 2026-09-22
 publicar: true
 ---
 
@@ -19,22 +19,22 @@ Esta página existe porque um site que mede audiência e leva a botão de loja d
 
 ## O que a gente guarda sobre você
 
-Nada que identifique você, e não por delicadeza — não existe onde guardar. A Aquametria não tem banco de usuários, não tem lista de e-mail, não tem carrinho e não recebe formulário. Em 13 de setembro de 2026 as 27 páginas do site foram abertas uma a uma e **nenhuma delas devolveu um cookie sequer vindo do nosso servidor.**
+Nada que identifique você, e não por delicadeza — não existe onde guardar. A Aquametria não tem banco de usuários, não tem lista de e-mail, não tem carrinho e não recebe formulário. Em 22 de setembro de 2026 as 44 páginas do site foram abertas uma a uma e **nenhuma delas devolveu um cookie sequer vindo do nosso servidor.** A primeira medição desta frase é de 13 de setembro de 2026, quando o site tinha 27 páginas, e ela é refeita por inteiro a cada passada de `ferramentas/conferir-privacidade-no-ar.py`.
 
 ## Para onde o seu navegador liga quando abre uma página daqui
 
-Toda página da internet pede pedaços a outros endereços, e quase nenhum site diz quais são os seus. Aqui estão os nossos, contados nas mesmas 27 páginas, no mesmo dia:
+Toda página da internet pede pedaços a outros endereços, e quase nenhum site diz quais são os seus. Aqui estão os nossos, contados em 22 de setembro de 2026, nas 44 páginas que o site tem hoje:
 
 | Endereço | Em quantas páginas | O que ele serve |
 |---|---|---|
-| www.googletagmanager.com | 27 de 27 | a etiqueta de medição de audiência do Google |
-| fonts.googleapis.com | 27 de 27 | a folha das fontes em que este site é escrito |
-| fonts.gstatic.com | 27 de 27 | os arquivos dessas fontes |
-| down-bs-br.img.susercontent.com | 4 de 27 | a foto do próprio anúncio, nas páginas que mostram produto |
+| www.googletagmanager.com | 44 de 44 | a etiqueta de medição de audiência do Google |
+| fonts.googleapis.com | 44 de 44 | a folha das fontes em que este site é escrito |
+| fonts.gstatic.com | 44 de 44 | os arquivos dessas fontes |
+| down-bs-br.img.susercontent.com | 4 de 44 | a foto do próprio anúncio, nas páginas que mostram produto |
 
 São quatro, e os quatro carregam sozinhos assim que a página abre. Ao pedir um arquivo a qualquer um deles, o seu navegador entrega a eles o seu endereço de rede e o tipo de aparelho que você usa — é assim que a web funciona, e vale tanto para a etiqueta de medição quanto para a fonte da letra. Três dos quatro são do Google e um é da Shopee.
 
-**Um quinto endereço aparece no HTML e não é contatado sozinho:** `s.shopee.com.br`, em 4 das 27 páginas. Ele é o destino dos botões de loja, e o seu navegador só fala com ele se você clicar.
+**Outros dois endereços aparecem no HTML e não são contatados sozinhos**, os dois em 4 das 44 páginas, e os dois são destino de botão: `s.shopee.com.br`, que é o link curto de um anúncio escolhido, e `shopee.com.br`, que é a busca da loja pelo nome do produto, oferecida quando não há anúncio escolhido para aquele item. **O seu navegador só fala com qualquer um dos dois se você clicar.** O segundo passou a existir em 14 de setembro de 2026, quando toda recomendação desta ilha ganhou uma saída de compra — e esta página ficou oito dias sem nomeá-lo, o que foi corrigido em 22 de setembro. Quem mede isso é `ferramentas/conferir-privacidade-no-ar.py`, que abre as páginas no ar e reprova endereço servido que a lista acima não traga.
 
 ## Cookie, e por que não tem caixa pedindo para você aceitar
 

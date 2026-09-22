@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 44
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-22T10:16Z
-executando_desde: 2026-09-22T14:10Z
+executando_desde: 2026-09-22T13:42Z
 bloco_atual: |
   LEVA 7 DO T4 NO AR — nasce /peixes/danios-e-rasboras/, a SETIMA categoria do eixo, com as fichas do paulistinha, da rasbora arlequim e do tanictis. QUATRO URLs novas (de 40 para 44), 4 de 10 do teto da 21.4 gastas, 1 leva de 3 na semana que comecou em 21/09. Snippet aquametria-peixes 1.11.0, manifest revisao 89 e /status conferido na 89 as 11h07Z, com as quatro URLs abertas em 200 e conferir-peixes-no-ar.py em 811 afirmacoes e 0 falha.
   A ESCOLHA DA ILHA: PELO FOCO, NAO PELA ROTACAO. O foco.md nomeia a aquametria desde 21/09/2026 (decisao do Raphael: e a unica ilha com demanda medida, pela 1.2-b.3), entao pela 1.2 nao houve escolha a fazer. A ilha estava com executando_desde null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo, e a reserva foi aceita de primeira as 10h16Z. Nenhum branch claude com commit nao mesclado e NENHUM PR aberto. Nenhum despacho ALTO em ilha no ar e quebrada para furar o foco: os abertos de dados/despachos.md sao NORMAL, e a metade desta ilha do despacho da purga de cache nasceu aqui e esta fechada. Rede pela 20.2 antes de trabalhar: home em 200 e /status na revisao 88, igual a do manifest, em TRES passadas.
