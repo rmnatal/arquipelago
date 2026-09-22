@@ -8344,8 +8344,14 @@ conhecido, o E15 do guppy) · `testar-validador-especies.py` 24 testes, 0 falha 
 `conferir-slugs.py` e `conferir-protecao-funcoes.py` limpos · `php -l` nos 11
 snippets.
 
-**No ar:** Sync acionado, `/status` conferido na revisão **89**, igual à do
-manifest, e as quatro URLs novas abertas e lidas.
+**No ar:** Sync acionado às 11h06Z (revisão 89, 20 aplicados), `/status`
+conferido na revisão **89** às 11h07Z, igual à do manifest, e as quatro URLs
+novas em **HTTP 200**. `ferramentas/conferir-peixes-no-ar.py`: **811 afirmações,
+0 falha** — nenhuma página órfã, as quatro novas com **3 links internos** cada.
+Lidas no HTML servido: `CollectionPage+ItemList+BreadcrumbList` na mãe e
+`Article+FAQPage+BreadcrumbList` nas três fichas, `meta description` nas quatro,
+zero `&#038;` dentro de `<script>`, e a ficha do tanictis declarando
+**COMPRIMENTO** e não BASE, que é o que a fonte dela sustenta.
 
 ### Itens esperando link de afiliado (item 5 do despacho da Sentinela de 13/09)
 
