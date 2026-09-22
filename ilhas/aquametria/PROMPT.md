@@ -2,13 +2,6 @@
 
 Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras comuns; aqui fica só o que é desta ilha.
 
-> **ESTA ILHA NÃO ESTÁ EM FOCO — 16/09/2026.** `foco.md` na raiz nomeia a **robometria**, e pela seção **1.2** do
-> `ARQUIPELAGO.md` nenhuma outra ilha recebe bloco da Fundação e nenhuma outra ilha é rondada. **Nada deste arquivo
-> é executado enquanto isso valer**, por mais antigo ou prioritário que um despacho daqui pareça: só fura o foco
-> despacho **ALTO** em ilha que esteja **no ar e quebrada**. Quando `foco.md` disser `ilha: nenhuma`, apague este
-> aviso e este arquivo volta a valer inteiro. *(Inserido pelo Pente Fino em 16/09/2026: a 1.2 nasceu hoje e nenhum
-> `PROMPT.md` de ilha fora do foco a mencionava.)*
-
 ## Identidade
 - Nicho: aquarismo — calculadoras de dimensionamento e banco técnico.
 - Domínio: https://aquametria.com.br (no ar desde 06/09/2026). Primeira ilha do Arquipélago.
@@ -103,7 +96,17 @@ Os cinco itens saíram inteiros numa execução só, como a 18.2 manda. Conferid
 
 ## FILA DE BLOCOS — reordenada em 09/09/2026 pela meta de tráfego
 
-> **MUTIRÃO SUSPENSO EM 16/09/2026 — o "o quanto antes" mudou de ilha.** Este modo foi ligado em 09/09 porque o Raphael queria a aquametria fechada o quanto antes; em 16/09 ele deu a mesma ordem para a **robometria** e ela virou a única ilha em foco (`foco.md`, seção 1.2). Enquanto o foco não voltar para cá, este parágrafo não vale — e quando voltar, releia se o mutirão ainda é o que ele quer, em vez de ligar de novo por inércia.
+> **O FOCO VOLTOU PARA CÁ EM 21/09/2026, E O MUTIRÃO CONTINUA DESLIGADO — releitura feita, não inércia.**
+> O modo foi ligado em 09/09 porque o Raphael queria a ilha fechada o quanto antes; em 16/09 ele deu a mesma
+> ordem para a robometria e esta ilha saiu do foco. Em 21/09 o foco voltou (`foco.md`: a Aquametria é a única
+> ilha com demanda medida, pela 1.2-b.3), e a nota de 16/09 mandava **reler se o mutirão ainda é o que ele
+> quer, em vez de ligar de novo por inércia**. Relido em 22/09/2026, e a resposta é NÃO, por uma razão que
+> mudou desde 09/09: o mutirão existia para esvaziar uma fila de CALCULADORA, material pronto esperando
+> execução. O que a fila tem hoje é malha, e o próprio parágrafo do mutirão sempre excluiu a malha — ela sai
+> em leva de 5 a 10 com medição no meio, que é o que protege a indexação. Ligar o mutirão para uma fila de
+> malha seria ligá-lo para a única coisa que ele nunca cobriu. **Um bloco por execução, como manda a seção 1.**
+> Quem quiser religá-lo precisa de fila de material pronto que não seja URL nova, e aí a nota de 09/09 volta
+> a valer inteira.
 
 **MODO MUTIRÃO, ligado em 09/09/2026 a pedido do Raphael:** ele quer a ilha fechada o quanto antes e tirou a regra de um bloco por execução PARA ESTA ILHA. Entregue quantos blocos couberem na sessão, em sequência, na ordem da fila — **verificando cada um pela seção 8 do `ARQUIPELAGO.md` antes de começar o próximo**, e respeitando integralmente a seção 13. O que **não** entra no mutirão: publicar a malha em massa. A malha continua saindo em leva de 5 a 10 páginas com medição no meio, porque é justamente o que protege a indexação — e indexação é a meta desta ilha.
 
@@ -157,6 +160,17 @@ Portão, rampa e regra da malha estão na seção 9 do `ARQUIPELAGO.md` e **não
   **E a linha mestra da categoria foi reescrita na leva que a publicou**, pelo mesmo motivo da `bettas`: a de 13/09 prometia um número que a página não paga (reprodução) e dizia que manda o macho enquanto o critério dizia que manda a fêmea, as duas na mesma tela. **Texto de categoria escrito antes da leva é afirmação que ninguém mediu** — quem publicar a próxima lê as duas antes de tudo.
   **[CORRIGIDO PELO PENTE FINO EM 21/09/2026 — A FRASE ABAIXO DESCREVE 13/09 E MANDA RECUSAR TRABALHO JÁ FEITO.** `/peixes/ciclideos-anoes/` **está NO AR desde 14/09/2026**, com três fichas (ramirezi, apistogramma agassizi, papilocromis): `REGISTRO.md`, entrada de 2026-09-14 22h11Z, leva 6, manifest revisão 87, `/status` conferido na 87. Quem ler a linha abaixo como estado de hoje ou recusa uma leva que existe, ou republica o que está publicado. **Qual é a próxima leva deste eixo eu NÃO decido** — é banco, é bloco, e a ilha está fora do foco pela 1.2. O texto original segue, sem uma palavra mudada.]**
   **Próxima leva deste eixo: nenhuma está pronta**, e isso é decisão de banco. `/peixes/ciclideos-anoes/` tem 1 elegível e `/peixes/plecos-e-limpa-vidros/` tem 1 — as duas longe do mínimo de três do 16.5. O salto maior disponível é a própria `vivaparos` indo de 3 para 5 fichas, e ele depende do despacho de egresso aberto para o Raphael (molly e guppy).
+
+- **LEVA 6 — ENTREGUE e no ar em 14/09/2026**, quatro URLs: a categoria `/peixes/ciclideos-anoes/` e as fichas do **ramirezi**, do **apistogramma agassizi** e do **papilocromis**. Snippet `aquametria-peixes` **1.10.0**, manifest revisão 87. Fechou a semana da 21.4 em 3 de 3. *(Esta linha foi escrita em 22/09/2026, pela leva 7: a leva 6 registrou-se no `REGISTRO.md` e no `ESTADO.md` e não aqui, e a fila ficou dizendo que a última leva do eixo era a 5.)*
+  **UM DEFEITO DELA ESTEVE NO AR OITO DIAS e saiu na leva 7:** a linha mestra da categoria dizia "o que dobra o **aquário**", falando do mundo em terceira pessoa, e o `VOZ.md` manda falar com quem entrou. Ninguém viu porque **a leva 6 acrescentou as quatro URLs ao `teste-peixes.py` e esqueceu do `teste-voz.mjs`**, que tem lista escrita à mão e não avisa quem falta — o portão ficou verde medindo 36 das 40 páginas do site. É a armadilha do portão que se alimenta à mão, e ela apareceu no mesmo dia em duas listas diferentes: a do `teste-voz.mjs` e a tabela de levas do `dados/indexacao.md`, que estava em 4 linhas para 6 levas.
+
+- **LEVA 7 — ENTREGUE e no ar em 22/09/2026**, quatro URLs: a categoria `/peixes/danios-e-rasboras/` e as fichas do **paulistinha**, da **rasbora arlequim** e do **tanictis**. Snippet `aquametria-peixes` **1.11.0**. Primeira leva da semana que começou em 21/09 (1 de 3 pela 21.4), e a ilha vai de 40 para 44 URLs.
+  **É A PRIMEIRA LEVA DESTE EIXO QUE NÃO CUSTOU UMA COLETA, e é isso que ela ensina.** As seis anteriores começaram todas por banco: colher o cardume da sterbai, o porte do gurami mel, o aquário do apistogramma. Esta não colheu nada — as três espécies passavam nos DOIS portões do esquema desde 11/09/2026, estavam no catálogo, na contagem da seção e na lista de quem divide a mesma água. **O que faltava era o lugar, não o dado:** o `ARVORE.md` fechava o eixo em "Seis, e só estas", e seis levas leram essa linha como o limite do EIXO quando ela era o limite do DOCUMENTO.
+  **O número de categorias deixou de ser digitado.** A afirmação dos cartões no `teste-peixes.py` cobrava `len(cartoes) == 6` com a palavra "seis" no rótulo, e o `ARVORE.md` dizia "Seis, e só estas" na mesma linha; nenhum dos dois derivava do outro, então a sétima categoria **reprovou numa régua sem apontar defeito nenhum**. A régua passa a LER a tabela do `ARVORE.md` (`categorias_do_arvore()`), pelo mesmo desenho do `teste-arvore.mjs` — o documento manda, e categoria que entrar no código sem entrar nele reprova.
+  **A regra que a linha mestra desta categoria escreveu, e vale para toda ficha e toda tabela deste eixo: NÚMERO DE MEDIDAS DIFERENTES NÃO SE COMPARA.** A primeira escrita dizia "o menor destes três é o que pede o maior aquário" — a frase mais forte que a página poderia publicar. Ela não se sustenta: o porte do paulistinha está declarado em **SL** (3,8 cm, o corpo sem a cauda) e o do tanictis em **TL** (4,0 cm, com ela), e na mesma régua os dois podem trocar de lugar. A página publica o que a tabela paga com qualquer medida, e a advertência sai na tela na língua do leitor. É a mesma família da regra da congênere: parece medição e é vizinhança.
+  **Próxima leva deste eixo: NENHUMA categoria oitava é possível hoje, e agora isso está CONTADO em vez de suposto.** Varridos o catálogo embutido e as listas declaradas das sete categorias: 31 espécies elegíveis, 23 com ficha própria, **8 sem categoria nenhuma** — oscar, kinguio, botia-palhaço, arco-íris boesemani, peixe-lápis, otocinclo, acará-bandeira e barbo sumatra. **Nenhuma família entre as oito chega a três**, que é o mínimo do 16.5: são 2 Cichlidae, 2 Cyprinidae e mais cinco famílias de um registro cada. A oitava categoria custa coleta, e não escolha.
+  **O CAMINHO MAIS CURTO PARA ELA É UM CAMPO SÓ, e vale escrever porque é a diferença entre um bloco e três.** Uma categoria de ciclídeo grande — o nome que a loja brasileira usa é "acarás" — tem o acará-bandeira e o oscar já elegíveis, e o **acará-disco** está barrado por UM motivo: `duas fontes distintas`. Uma segunda fonte para o registro do disco fecha a categoria no mínimo exato do 16.5, sem tocar em mais nada. O segundo caminho mais curto é "barbos", e ele não fecha: o barbo sumatra é elegível, o **barbo rosado** está a um campo (a mesma `duas fontes distintas`), e **não existe um terceiro barbo no banco** — dois campos e uma coleta de espécie nova.
+  **`/peixes/plecos-e-limpa-vidros/` continua com 1 elegível** e a parede dela não mudou: falta `temperatura_C` do cascudo, recusada em duas coletas porque nenhum dos dois corpos publica faixa térmica para a espécie e a busca ofereceu sozinha a das congêneres — que é o que esta ilha recusa desde a leva 1.
 
 **T5. ARTIGOS-ÂNCORA** (era o bloco 5). Pareados com cada calculadora, na mesma execução. Toda tabela técnica cita o manual do fabricante e leva data de verificação.
 

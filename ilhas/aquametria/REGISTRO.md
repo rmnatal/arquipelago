@@ -8180,3 +8180,183 @@ A reserva desta correção foi escrita como **11h59Z** quando o relógio marcava
 como ocupada por mais tempo, nunca por menos), mas é número errado num campo que
 decide escolha de ilha. Corrigido no fecho. Carimbo de reserva se lê do relógio,
 não da memória de quem escreve.
+
+## 2026-09-22 10h16Z–11h5xZ — T4 LEVA 7: a SÉTIMA categoria do eixo, e a primeira leva que não custou uma coleta (peixes 1.11.0, manifest revisão 89)
+
+**Quatro URLs novas** — `/peixes/danios-e-rasboras/` e as fichas do **paulistinha**,
+da **rasbora arlequim** e do **tanictis**. A ilha vai de 40 para 44 URLs. Teto da
+21.4 na semana que começou em 21/09: **1 de 3 levas**, 4 de 10 URLs.
+
+### A escolha da ilha: pelo foco, não pela rotação
+
+`foco.md` nomeia a aquametria desde 21/09/2026, então pela **1.2** não houve
+escolha a fazer — a rotação da seção 1 está suspensa. A ilha estava com
+`executando_desde: null`, que pela **1.1** já significa que nenhum bloco da
+Fundação está vivo, e a reserva foi aceita de primeira às 10h16Z. Nenhum PR
+aberto; as 88 branches `claude/*` do repositório não têm commit fora do `main`.
+Nenhum despacho **ALTO** em ilha no ar e quebrada para furar o foco: os abertos
+de `dados/despachos.md` são todos NORMAL, e a metade desta ilha do despacho da
+purga de cache nasceu aqui e está fechada. Rede pela **20.2** antes de trabalhar:
+home em 200 e `/status` na revisão 88, igual à do manifest, em **três passadas**.
+
+### O que esta leva ensina, e é diferente das seis anteriores
+
+**Ela não custou uma coleta.** As levas 1 a 6 começaram todas por banco: o cardume
+da sterbai, o porte do gurami mel, o aquário do apistogramma. As três espécies
+desta passavam nos **dois** portões do esquema desde **11/09/2026** — estavam no
+catálogo, na contagem da seção e na lista de quem divide a mesma água. Não
+faltava dado nenhum.
+
+**O que faltava era o LUGAR.** O `ARVORE.md` fechava o eixo em *"Seis, e só
+estas"*, e seis levas seguidas leram essa linha como o limite do **eixo** quando
+ela era o limite do **documento**. Onze espécies elegíveis ficaram sem página por
+isso; oito continuam, e agora estão contadas.
+
+### O número de categorias deixou de ser digitado
+
+A afirmação dos cartões em `ferramentas/teste-peixes.py` cobrava `len(cartoes) ==
+6`, com a palavra "seis" no rótulo, e o `ARVORE.md` dizia "Seis, e só estas" na
+mesma linha. **Nenhum dos dois era derivado do outro**, então a sétima categoria
+reprovou numa régua **sem apontar defeito nenhum** — o oposto do que um portão
+serve para fazer, e a terceira vez que este eixo registra o mesmo formato de
+defeito (o `registradas == [CATEGORIA]` da leva 2 e a data de SERP digitada da
+leva 4).
+
+Consertado pelo desenho que o `teste-arvore.mjs` já usava: nasceu
+`categorias_do_arvore()`, que **lê a tabela da seção 3 do `ARVORE.md`**. O
+documento manda, e categoria que entrar no código sem entrar nele reprova. Quem
+acrescentar a oitava mexe numa tabela, e só nela.
+
+### A regra que a linha mestra escreveu: número de medidas diferentes não se compara
+
+A primeira escrita da linha mestra dizia **"o MENOR destes três é o que pede o
+MAIOR aquário"** — a frase mais forte que esta página poderia publicar, e a que
+mais se parece com a tese do eixo inteiro. **Ela não se sustenta.** O porte do
+paulistinha está declarado em **SL** (3,8 cm, o corpo sem a cauda) e o do tanictis
+em **TL** (4,0 cm, com ela); convertidos para a mesma régua os dois podem trocar
+de lugar, e a página estaria publicando como medição uma comparação que nenhuma
+das duas fontes fez.
+
+A versão publicada diz o que a tabela paga **com qualquer régua**: os três portes
+cabem num intervalo de pouco mais de um centímetro, a frente mínima vai de 60 a
+90 cm, e a frente **por indivíduo** varia em três vezes (18 cm no paulistinha, 12
+na rasbora arlequim, 6 no tanictis — leitura, nunca multiplicada, pela recusa da
+leva 1). E a advertência de medida sai **na tela**, na língua do leitor: a coluna
+de porte serve para ler cada linha, não para ordenar as linhas entre si.
+
+**É a mesma família da regra da congênere: parece medição e é vizinhança.**
+
+### O critério: a segunda categoria do eixo em que nem a família nem o gênero servem
+
+E ela falha pelo lado **contrário** ao da `ciclideos-anoes`. Lá a família trazia
+peixe demais — Cichlidae carrega o oscar de 45,7 cm. Aqui ela deixa peixe **de
+fora**: o tanictis é a única **Tanichthyidae** do banco, família só dele, e
+filtrar por Danionidae o excluiria de uma página em que o próprio banco já o
+coloca — o segundo nome popular brasileiro dele é `paulistinha-da-montanha`, que
+é o nome do peixe da linha de cima com um sobrenome.
+
+O que serve é o nome que a pessoa digita, e nesta categoria ele é **verificável
+dentro do banco**: os quatro registros declarados são exatamente os que trazem
+`danio`, `rasbora` ou `paulistinha` entre os nomes populares, e nenhum outro
+registro traz. Critério que se confere com uma varredura, não com a leitura de
+quem escreve.
+
+**A rasbora galáxia é declarada e barrada**, e é a barrada mais distante do eixo
+inteiro: faltam-lhe **quatro** campos (frente mínima, convivência, temperatura e
+o segundo corpo de fonte), contra o campo único do molly e do guppy na leva 5.
+Sem declará-la a frase de lista fechada diria que todo danio e toda rasbora do
+banco já tem página.
+
+### A SERP das quatro consultas, classificada em 22/09/2026 (14.9)
+
+**ALVO nas quatro.** Top ocupado por página de produto de loja, blog de loja e de
+pesca, portal genérico de aquarismo e dois Blogspots (2008 e 2010) — nenhuma
+fazenda de domínio forte, nenhum fabricante, nenhum marketplace. Os quatro
+conjuntos se contradizem **dentro da própria página de resultados** e nenhum
+atribui número a fonte nomeada: paulistinha 40/50/60–80 L; rasbora arlequim 80 L
+contra 40 L para dez; tanictis 20/30/50/54/100 L com cardume de 3, 5 e 10.
+
+**O achado é a consulta da categoria**, e é a maior contradição interna que este
+eixo já mediu numa SERP só: o mesmo conjunto de resultados diz que danios "podem
+viver em aquários de apenas 10 litros" **e** que o paulistinha — que é um danio —
+precisa de 40 L. Quatro vezes, sobre o mesmo peixe, na mesma tela. É a
+justificativa de a página de categoria existir em vez de três fichas soltas.
+Tudo em `dados/indexacao.md`.
+
+### Dois defeitos que já estavam no ar saíram junto, e os dois são da mesma família
+
+**(1) A linha mestra de `/peixes/ciclideos-anoes/` falava em terceira pessoa** —
+"o que dobra o **aquário**" —, contra o `VOZ.md`, e estava assim **desde
+14/09/2026**. Ninguém viu porque a leva 6 acrescentou as quatro URLs ao
+`teste-peixes.py` e **esqueceu do `teste-voz.mjs`**, que tem lista escrita à mão e
+não avisa quem falta: o portão ficou **oito dias verde medindo 36 das 40 páginas
+do site**. As duas listas dele ganharam as levas 6 e 7, e ele passou de 36 para
+**44 páginas — o site inteiro, pela primeira vez**. A afirmação da linha mestra
+não mudou; mudou uma palavra, e é a que a régua cobra.
+
+**(2) A tabela de levas de `dados/indexacao.md` estava em 4 linhas para 6 levas.**
+Ela existe para a leitura semanal **não precisar abrir código**, então tabela
+incompleta ali é a leitura semanal lendo um eixo de 12 URLs como se fosse de 20.
+As linhas das levas 5 e 6 foram **copiadas** do registro do snippet e do
+`REGISTRO.md` — é índice, e índice não reclassifica SERP.
+
+**As duas são lista escrita à mão que a leva seguinte tem de lembrar de
+alimentar, e que não avisa quando alguém esquece.** Apareceram no mesmo dia, em
+dois arquivos diferentes, e é o mesmo formato do número digitado que a régua dos
+cartões carregava. A do `teste-peixes.py` foi consertada na raiz (passou a ler o
+documento); as outras duas continuam à mão, e isso fica escrito aqui em vez de
+virar promessa.
+
+### Um nome por página, em toda superfície — e este veio de LER, não de régua
+
+A tabela da categoria dizia **peixe-neve** na mesma linha em que o link dizia
+**tanictis**: dois nomes para um peixe, a uma coluna de distância. Nenhuma das
+réguas pega isso, porque as duas palavras estão certas. O nome de tela é o
+**primeiro** nome popular do banco (`aquametria_peixes_nome`), e quem decidiu o
+vencedor foi a medição de SERP desta execução, não o gosto: a prateleira
+brasileira vende a espécie como **tanictis** (Pró-Aquarista, Kauar, Fazenda
+Submersa, Barretos, Aquarium Crystal). Os quatro nomes continuam no banco — a
+espécie é vendida com os quatro, e é isso que reparte a própria SERP —, e
+**nenhuma fonte foi tocada**: mudou a ORDEM, que é o que decide a tela.
+
+### A categoria OITAVA não é possível hoje, e agora isso está contado
+
+Varridos o catálogo embutido e as listas declaradas das sete categorias:
+**31 elegíveis, 23 com ficha própria, 8 sem categoria nenhuma** — oscar, kinguio,
+botia-palhaço, arco-íris boesemani, peixe-lápis, otocinclo, acará-bandeira e
+barbo sumatra. **Nenhuma família entre as oito chega a três**, que é o mínimo do
+16.5: 2 Cichlidae, 2 Cyprinidae e cinco famílias de um registro cada.
+
+**O caminho mais curto para a oitava é um campo só**, e vale escrever porque é a
+diferença entre um bloco e três: uma categoria de **acarás** tem o acará-bandeira
+e o oscar já elegíveis, e o **acará-disco** está barrado por UM motivo (`duas
+fontes distintas`). O segundo caminho, "barbos", **não fecha**: o sumatra é
+elegível, o barbo rosado está a um campo, e não existe um terceiro barbo no banco.
+
+### Verificação
+
+`teste-peixes.py` **3158 afirmações, 0 falha** · `mutacoes-peixes.py` **90 de 90
+reprovadas, zero inerte** · `teste-voz.mjs` **44 páginas, TUDO OK** ·
+`teste-arvore.mjs` 0 falha · `validar-especies.py` 39 registros, 0 erro (1 aviso
+conhecido, o E15 do guppy) · `testar-validador-especies.py` 24 testes, 0 falha ·
+`teste-escada-compra.py` 644 · `teste-ga4.py` 696 · `teste-datas-schema.py` 102 ·
+`teste-dimensao-imagem.py` 36 · `teste-purga-cache.php` 21 — todos 0 falha ·
+`conferir-slugs.py` e `conferir-protecao-funcoes.py` limpos · `php -l` nos 11
+snippets.
+
+**No ar:** Sync acionado, `/status` conferido na revisão **89**, igual à do
+manifest, e as quatro URLs novas abertas e lidas.
+
+### Itens esperando link de afiliado (item 5 do despacho da Sentinela de 13/09)
+
+**78 itens seguem sem `url_busca` encurtada** e **zero** deles está sem saída de
+compra: o piso da 25.2 (a busca crua) cobre os 78. Quem encurta é a Sentinela
+estratégica no navegador do Raphael. Esta leva não tocou em produto nenhum.
+
+### Próximo passo desbloqueado
+
+A oitava categoria do eixo `/peixes/` custa **uma coleta de um campo**: a segunda
+fonte do `symphysodon-aequifasciatus` (acará-disco), que fecha `/peixes/acaras/`
+com o acará-bandeira e o oscar, no mínimo exato do 16.5. Alternativa sem coleta
+nenhuma: `T5` (artigos-âncora) e `T6` (prospecção do widget), que não criam URL
+de malha e não gastam leva do teto.

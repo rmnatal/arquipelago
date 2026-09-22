@@ -491,6 +491,31 @@ const CONTEUDO = [
   'quantos-litros-para-platy',
   'quantos-litros-para-peixe-espada',
   'quantos-litros-para-plati-variatus',
+  /* A leva 6 (14/09/2026): a categoria /peixes/ciclideos-anoes/ e as tres
+     fichas. ELAS ESTAVAM NO AR DESDE 14/09/2026 E NAO ESTAVAM AQUI — achado em
+     22/09/2026, pela leva 7, ao conferir que as paginas novas eram medidas por
+     este portao. A lista e escrita a mao de proposito (o comentario do
+     FICHAS_PEIXE abaixo explica por que), e o preco dessa escolha e este:
+     quem publica a leva tem de lembrar das DUAS listas, e a leva 6 lembrou de
+     uma so. Oito dias de paginas no ar sem a regua da voz, sem uma falha que
+     avisasse — e o portao continuou verde o tempo todo, que e a forma mais
+     cara de verde falso. */
+  'ciclideos-anoes',
+  'quantos-litros-para-ramirezi',
+  'quantos-litros-para-apistogramma-agassizi',
+  'quantos-litros-para-papilocromis',
+  /* A leva 7 (22/09/2026): a categoria /peixes/danios-e-rasboras/ e as tres
+     fichas. O risco novo da voz aqui nao esta no arranjo, que e cardume nas
+     tres e ja foi exercitado quinze vezes: esta no CRITERIO da categoria, que
+     precisou publicar uma advertencia de MEDIDA — porte declarado em reguas
+     diferentes, umas com a cauda e outras sem — e advertencia de medida e o
+     texto que mais facilmente escorrega para o vocabulario de dentro da
+     fabrica. Ela sai na lingua do leitor, "o corpo sem a cauda", e nao na
+     sigla. */
+  'danios-e-rasboras',
+  'quantos-litros-para-paulistinha',
+  'quantos-litros-para-rasbora-arlequim',
+  'quantos-litros-para-tanictis',
 ];
 
 /* As onze fichas de espécie, separadas do resto do CONTEUDO porque têm duas
@@ -516,6 +541,15 @@ const FICHAS_PEIXE = new Set([
   'quantos-litros-para-platy',
   'quantos-litros-para-peixe-espada',
   'quantos-litros-para-plati-variatus',
+  /* leva 6 (14/09/2026), acrescentadas em 22/09/2026 — ver a nota da lista de
+     cima: as tres estavam no ar e fora das duas listas. */
+  'quantos-litros-para-ramirezi',
+  'quantos-litros-para-apistogramma-agassizi',
+  'quantos-litros-para-papilocromis',
+  /* leva 7 (22/09/2026) */
+  'quantos-litros-para-paulistinha',
+  'quantos-litros-para-rasbora-arlequim',
+  'quantos-litros-para-tanictis',
 ]);
 
 /* A lista de MARCAS subiu para o alto do arquivo em 13/09/2026 — ver o bloco

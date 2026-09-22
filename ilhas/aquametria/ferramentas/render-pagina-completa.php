@@ -133,6 +133,17 @@ $GLOBALS['__paginas'] = array(
 	'quantos-litros-para-ramirezi'              => true,
 	'quantos-litros-para-apistogramma-agassizi' => true,
 	'quantos-litros-para-papilocromis'          => true,
+	/* A leva 7 (22/09/2026): a SETIMA categoria do eixo, inteira. E a primeira
+	   leva que nao custou uma coleta — as tres especies passavam nos dois
+	   portoes desde 11/09/2026 e o que faltava era a categoria existir. Para
+	   esta bancada ela traz um caso novo: `danios-e-rasboras` e a primeira
+	   categoria de nivel 2 cuja lista de especies declarada tem um id BARRADO
+	   pelo portao de catalogo (a rasbora galaxia) sem que a categoria caia
+	   abaixo das tres filhas do 16.5. */
+	'danios-e-rasboras'                         => true,
+	'quantos-litros-para-paulistinha'           => true,
+	'quantos-litros-para-rasbora-arlequim'      => true,
+	'quantos-litros-para-tanictis'              => true,
 );
 
 aquametria_teste_carregar( $raiz );

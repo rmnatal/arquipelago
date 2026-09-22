@@ -88,6 +88,12 @@ FICHAS = {
     "quantos-litros-para-ramirezi": "mikrogeophagus-ramirezi",
     "quantos-litros-para-apistogramma-agassizi": "apistogramma-agassizii",
     "quantos-litros-para-papilocromis": "mikrogeophagus-altispinosus",
+    # leva 7, 22/09/2026 — a categoria danios-e-rasboras inteira, e a PRIMEIRA
+    # leva do eixo que nao custou uma coleta: as tres passavam nos dois portoes
+    # desde 11/09/2026 e nao tinham categoria que as abrigasse.
+    "quantos-litros-para-paulistinha": "danio-rerio",
+    "quantos-litros-para-rasbora-arlequim": "trigonostigma-heteromorpha",
+    "quantos-litros-para-tanictis": "tanichthys-albonubes",
 }
 
 # As especies do catalogo que NAO declaram o fundo do aquario: a fonte publica o
@@ -111,6 +117,13 @@ SEM_FUNDO_DECLARADO = {
     # chao e so a agassizii (60 x 30 cm, compendio).
     "mikrogeophagus-ramirezi",
     "mikrogeophagus-altispinosus",
+    # leva 7, 22/09/2026: UMA das tres filhas dos danios e rasboras entra aqui.
+    # A base cientifica declara "aquario minimo de 60 cm" para o tanictis e nao
+    # diz uma palavra sobre o fundo, e o compendio confirma a temperatura e o
+    # cardume sem tocar na base. As outras duas tem os dois lados: 90 x 30 cm
+    # para o paulistinha e 60 x 30 cm para a rasbora arlequim, as duas pelo
+    # compendio.
+    "tanichthys-albonubes",
 }
 SECAO = "peixes"
 
@@ -256,6 +269,23 @@ CATEGORIAS = {
             "mikrogeophagus-altispinosus",
         ],
     },
+    # leva 7, 22/09/2026. A `barradas` traz a rasbora galaxia, que e a barrada
+    # MAIS DISTANTE do eixo inteiro: faltam-lhe quatro campos, contra o campo
+    # unico do molly e do guppy na leva 5. Ela esta declarada pelo mesmo motivo
+    # daqueles dois — sem ela a frase de lista fechada desta pagina diria que
+    # todo danio e toda rasbora do banco ja tem pagina, e o banco tem o registro
+    # dela desde 09/09/2026.
+    "danios-e-rasboras": {
+        "rotulo": "danios e rasboras",
+        "barradas": [
+            "danio-margaritatus",
+        ],
+        "especies": [
+            "danio-rerio",
+            "trigonostigma-heteromorpha",
+            "tanichthys-albonubes",
+        ],
+    },
 }
 # O SUJEITO DA FRASE DE LISTA FECHADA e A CONSULTA DE CADA CATEGORIA, escritos
 # aqui a mao como tudo o mais deste arquivo. Os dois eram texto DIGITADO dentro
@@ -269,6 +299,7 @@ SINGULAR_DA_CATEGORIA = {
     "bettas": "todo betta e todo gurami",
     "vivaparos": "todo vivíparo",
     "ciclideos-anoes": "todo ciclídeo anão",
+    "danios-e-rasboras": "todo danio e toda rasbora",
 }
 CONSULTA_DA_CATEGORIA = {
     "tetras": "quantos litros para tetras",
@@ -276,6 +307,7 @@ CONSULTA_DA_CATEGORIA = {
     "bettas": "quantos litros para gourami",
     "vivaparos": "quantos litros para peixes vivíparos",
     "ciclideos-anoes": "quantos litros para ciclídeo anão",
+    "danios-e-rasboras": "quantos litros para danios e rasboras",
 }
 
 PAGINAS = [SECAO] + list(CATEGORIAS) + list(FICHAS)
@@ -1453,6 +1485,24 @@ def traducao_do_motivo(codigo):
     return achado.group(1) if achado else ""
 
 
+def categorias_do_arvore():
+    """OS SLUGS DE NIVEL 2 DO EIXO, LIDOS DO ARVORE.md — o documento manda.
+
+    Nasceu na leva 7 (22/09/2026) para matar um numero digitado: a afirmacao dos
+    cartoes de categoria cobrava `== 6`, com a palavra "seis" no rotulo, e o
+    ARVORE.md dizia na mesma linha "Seis, e so estas". Os dois envelheceram
+    juntos no dia em que a setima categoria nasceu, e o teste reprovou uma
+    pagina CERTA — que e o defeito que este arquivo mais registra ter caido.
+
+    Ler do documento faz as duas metades se cobrarem: categoria que entra no
+    codigo e nao entra no ARVORE.md reprova, e vice-versa. E a mesma decisao do
+    `teste-arvore.mjs`, que LE o ARVORE.md em vez de guardar copia dele.
+    """
+    doc = open(os.path.join(RAIZ, "ARVORE.md"), encoding="utf-8").read()
+    secao = doc.split("## 3. `/peixes/`")[1].split("\n## 4.")[0]
+    return [m for m in re.findall(r"^\| `/peixes/([a-z0-9-]+)/`", secao, re.M)]
+
+
 def categorias_declaradas_no_snippet():
     """O que o snippet declara por categoria, via a ferramenta que pergunta ao eixo."""
     return json.loads(subprocess.run(
@@ -1553,7 +1603,17 @@ def medir_secao(banco):
 
     # --- 16.5: categoria sem as filhas nao e link e nao mostra contagem
     cartoes = re.findall(r'<li class="aqm-px-cat">(.*?)</li>', c, re.S)
-    ok("%s: serve seis cartoes de categoria" % slug, len(cartoes) == 6, "%d cartoes" % len(cartoes))
+    # ATE 21/09/2026 esta linha era `len(cartoes) == 6` com a palavra "seis" no
+    # rotulo — um numero DIGITADO, da mesma familia do `registradas ==
+    # [CATEGORIA]` que a leva 2 converteu. Ele reprovaria a setima categoria
+    # sem apontar defeito nenhum, e foi o que fez na leva 7 (22/09/2026). O
+    # mundo agora sai do ARVORE.md, que e o documento que decide quantas
+    # categorias o eixo tem; assim nem o teste nem o snippet inventam o numero,
+    # e acrescentar categoria no codigo sem escreve-la no documento reprova.
+    esperadas = categorias_do_arvore()
+    ok("%s: serve um cartao por categoria do ARVORE.md (%d)" % (slug, len(esperadas)),
+       len(cartoes) == len(esperadas),
+       "%d cartoes no ar, %d no ARVORE.md" % (len(cartoes), len(esperadas)))
     com_link = [x for x in cartoes if "<a href=" in x]
     ok("%s: so as categorias com filhas sao link (%d)" % (slug, len(CATEGORIAS)),
        len(com_link) == len(CATEGORIAS), "%d com link" % len(com_link))

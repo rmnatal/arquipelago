@@ -993,10 +993,10 @@
    "nome_cientifico": "Tanichthys albonubes",
    "sinonimos_cientificos": [],
    "nomes_populares_br": [
+    "tanictis",
     "peixe-neve",
-    "white cloud",
     "paulistinha-da-montanha",
-    "tanictis"
+    "white cloud"
    ],
    "familia": "Tanichthyidae",
    "origem_geografica": "Ásia: China e Vietnã",
@@ -1053,7 +1053,7 @@
       "comprimento_minimo_aquario_cm",
       "convivencia"
      ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha. ORDEM DOS NOMES POPULARES TROCADA EM 22/09/2026, pela leva 7, e nenhum fato declarado mudou: os quatro nomes continuam os mesmos, na mesma lista, e nenhuma fonte foi tocada. O PRIMEIRO da lista e o nome de tela em toda superficie (aquametria_peixes_nome), e com peixe-neve na frente a tabela da categoria dizia peixe-neve na mesma linha em que o link dizia tanictis - dois nomes para um peixe a uma coluna de distancia, que e o defeito que a leva de 11/09 chamou de um nome por pagina em toda superficie. Nenhuma regua pegava, porque as duas palavras estao certas: o achado veio de LER a pagina. Quem decidiu o vencedor foi a medicao de SERP de 22/09/2026 e nao o gosto - a prateleira brasileira vende esta especie como TANICTIS (Pro-Aquarista, Kauar, Fazenda Submersa, Barretos, Aquarium Crystal) -, e e por esse nome que a pagina se chama. Os outros tres ficam porque a especie e vendida com os quatro, e e isso que reparte a propria SERP dela."
     },
     {
      "origem": "compendio-via-busca",

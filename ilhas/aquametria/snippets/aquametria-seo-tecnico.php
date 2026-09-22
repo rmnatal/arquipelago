@@ -282,6 +282,10 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Coridoras: quanto chão o grupo pede',
 			'descricao' => 'Coridora se dimensiona pelo chão, não pelo litro: porte, cardume mínimo e base mínima das quatro espécies, com a fonte de cada linha.',
 		),
+		'danios-e-rasboras' => array(
+			'titulo'    => 'Danios e rasboras: quantos litros o cardume pede',
+			'descricao' => 'Três peixes que não passam de 5 cm e frentes mínimas de 60 e 90 cm: a tabela de porte, cardume e base declarada, com a fonte de cada linha.',
+		),
 		'peixes' => array(
 			'titulo'    => 'Quanto espaço cada peixe pede',
 			'descricao' => 'Quanto espaço cada peixe pede, em centímetros de chão e não em litros: o mínimo declarado por fonte com nome e data, espécie por espécie.',
@@ -326,6 +330,10 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Quantos litros para um grupo de papilocromis?',
 			'descricao' => 'Quantos litros para um grupo de papilocromis? Os 120 cm que a fonte declara para o grupo de 6 a 8, e quantos cabem no aquário que você já tem.',
 		),
+		'quantos-litros-para-paulistinha' => array(
+			'titulo'    => 'Quantos litros para um cardume de paulistinha?',
+			'descricao' => 'Quantos litros para um cardume de paulistinha? Os 90 cm de base que a fonte declara, o outro número do conflito e quantos cabem no seu aquário.',
+		),
 		'quantos-litros-para-peixe-espada' => array(
 			'titulo'    => 'Quantos litros para um peixe-espada?',
 			'descricao' => 'Quantos litros para um peixe-espada? Os 120 × 30 cm de base que a ficha da espécie declara, com nome da fonte e data: o dobro da frente do platy.',
@@ -342,9 +350,17 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Quantos litros para um casal de ramirezi?',
 			'descricao' => 'Quantos litros para um casal de ramirezi? A frente mínima que a fonte declara, a conta pelas duas réguas de lotação e quantos cabem no seu aquário.',
 		),
+		'quantos-litros-para-rasbora-arlequim' => array(
+			'titulo'    => 'Quantos litros para um cardume de rasbora arlequim?',
+			'descricao' => 'Quantos litros para um cardume de rasbora arlequim? A base de 60 cm que a fonte declara, o cardume mínimo dela e quantos cabem no seu aquário.',
+		),
 		'quantos-litros-para-rodostomo' => array(
 			'titulo'    => 'Quantos litros para um cardume de rodóstomo?',
 			'descricao' => 'Quantos litros para um cardume de rodóstomo? A fonte declara 90 cm de comprimento e nenhuma largura — e esta página diz isso em vez de inventar.',
+		),
+		'quantos-litros-para-tanictis' => array(
+			'titulo'    => 'Quantos litros para um cardume de tanictis?',
+			'descricao' => 'Quantos litros para um cardume de tanictis? As duas fontes declaram cardume de 5 e de 10 na mesma frente de 60 cm: a página publica as duas.',
 		),
 		'quantos-litros-para-tetra-brilhante' => array(
 			'titulo'    => 'Quantos litros para um cardume de tetra-brilhante?',

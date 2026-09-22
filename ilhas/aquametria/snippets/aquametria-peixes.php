@@ -1,6 +1,62 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
- * Versão: 1.10.0 (14/09/2026) — LEVA 6: A QUINTA CATEGORIA, E A PRIMEIRA EM QUE
+ * Versão: 1.11.0 (22/09/2026) — LEVA 7: A SÉTIMA CATEGORIA, E A PRIMEIRA LEVA
+ * DESTE EIXO QUE NÃO CUSTOU UMA COLETA. Quatro URLs novas:
+ * /peixes/danios-e-rasboras/ e as fichas do paulistinha, da rasbora arlequim e
+ * do tanictis. A ilha vai de 40 para 44 URLs.
+ *
+ *   O QUE FALTAVA ERA O LUGAR, NÃO O DADO. As três espécies passavam nos DOIS
+ *   portões do esquema desde 11/09/2026 — estavam no catálogo, na contagem da
+ *   seção e na lista de quem divide a mesma água — e não tinham página porque
+ *   nenhuma das seis categorias do ARVORE.md as abrigava, e o documento fechava
+ *   o eixo em "Seis, e só estas". Seis levas seguidas leram essa linha como o
+ *   limite do eixo; ela era o limite do DOCUMENTO. Onze espécies elegíveis
+ *   continuam sem categoria hoje pelo mesmo motivo, e isso está escrito no
+ *   ESTADO.md como dívida nomeada, não como descoberta.
+ *
+ *   A CATEGORIA É A SEGUNDA DO EIXO EM QUE NEM A FAMÍLIA NEM O GÊNERO SERVEM,
+ *   e ela falha pelo lado CONTRÁRIO ao dos ciclídeos anões: lá a família trazia
+ *   peixe demais (Cichlidae carrega o oscar de 45,7 cm), aqui ela deixa peixe
+ *   de FORA — o tanictis é a única Tanichthyidae do banco, família só dele, e
+ *   o segundo nome popular brasileiro dele é `paulistinha-da-montanha`, que é o
+ *   nome do peixe da linha de cima com um sobrenome. O que serve é o nome que a
+ *   pessoa digita, e nesta categoria ele é verificável DENTRO do banco: os
+ *   quatro registros declarados são exatamente os que trazem `danio`, `rasbora`
+ *   ou `paulistinha` entre os nomes populares, e nenhum outro registro traz.
+ *
+ *   A LINHA MESTRA DESVIOU DE UMA ARMADILHA DE MEDIDA QUE AS SEIS ANTERIORES
+ *   NÃO TINHAM, e é a lição desta leva. A primeira escrita dizia "o MENOR
+ *   destes três é o que pede o MAIOR aquário" — a frase mais forte que esta
+ *   página poderia publicar, e ela não se sustenta: o porte do paulistinha está
+ *   declarado em SL (3,8 cm, o corpo sem a cauda) e o do tanictis em TL (4,0 cm,
+ *   com ela). Na mesma régua a ordem entre os dois pode inverter, e a página
+ *   estaria publicando como medição uma comparação que nenhuma das duas fontes
+ *   fez. COMPARAR NÚMERO DE MEDIDAS DIFERENTES É A MESMA FAMÍLIA DA REGRA DA
+ *   CONGÊNERE: parece medição e é vizinhança. A versão publicada diz o que a
+ *   tabela paga com qualquer régua — os três portes cabem num intervalo de
+ *   pouco mais de um centímetro, a frente varia em 30 cm e a frente POR
+ *   INDIVÍDUO varia em três vezes — e a advertência de medida sai na página, na
+ *   língua do leitor, ao lado da coluna de porte.
+ *
+ *   E UM DEFEITO QUE ESTAVA NO AR DESDE 14/09/2026 SAIU JUNTO, achado por esta
+ *   leva ao conferir que as páginas novas eram medidas pelo portão da voz: a
+ *   linha mestra de `/peixes/ciclideos-anoes/` dizia "o que dobra o AQUÁRIO",
+ *   falando do mundo em terceira pessoa, e o VOZ.md manda falar com quem
+ *   entrou. Ninguém viu porque a leva 6 acrescentou as quatro URLs ao
+ *   `teste-peixes.py` e ESQUECEU do `teste-voz.mjs`, que tem lista escrita à
+ *   mão e não avisa quem falta. Oito dias de página no ar com o portão verde.
+ *   As duas listas do portão da voz ganharam as levas 6 e 7 nesta execução, e
+ *   ele passou de 36 para 44 páginas — o site inteiro, pela primeira vez.
+ *
+ *   O NÚMERO DE CATEGORIAS DEIXOU DE SER DIGITADO. A afirmação dos cartões em
+ *   `teste-peixes.py` cobrava `len(cartoes) == 6`, com a palavra "seis" no
+ *   rótulo, e o ARVORE.md dizia "Seis, e só estas" na mesma linha. Nenhum dos
+ *   dois era derivado do outro, então a sétima categoria reprovou numa régua
+ *   SEM APONTAR DEFEITO NENHUM. A régua passa a LER a tabela do ARVORE.md, pelo
+ *   mesmo desenho do `teste-arvore.mjs`: o documento manda, e categoria que
+ *   entrar no código sem entrar nele reprova.
+ *
+ * HISTÓRICO — versão 1.10.0 (14/09/2026) — LEVA 6: A QUINTA CATEGORIA, E A PRIMEIRA EM QUE
  * AS TRÊS FILHAS VIVEM DE TRÊS JEITOS DIFERENTES. Quatro URLs novas:
  * /peixes/ciclideos-anoes/ e as fichas do ramirezi (casal), do apistogramma
  * agassizi (harém) e do papilocromis (grupo de 6 a 8). A ilha vai de 36 para
@@ -425,7 +481,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.10.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.11.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -1129,10 +1185,10 @@ function aquametria_peixes_catalogo() {
 			'cientifico' => 'Tanichthys albonubes',
 			'sinonimos' => array(),
 			'populares' => array(
-				'peixe-neve',
-				'white cloud',
-				'paulistinha-da-montanha',
 				'tanictis',
+				'peixe-neve',
+				'paulistinha-da-montanha',
+				'white cloud',
 			),
 			'familia' => 'Tanichthyidae',
 			'origem' => 'Ásia: China e Vietnã',
@@ -3275,6 +3331,67 @@ function aquametria_peixes_registro() {
 			'serp_em'  => '14/09/2026',
 			'porque'   => 'Medido em 14/09/2026: dos oito primeiros, só DOIS falam da espécie, e os dois são lojas. O resto é página genérica de "quantos peixes cabem" (duas), uma ficha de kinguio fora do assunto, um Blogspot de 2013, um de 2011 e um fórum. Os números são 60 L para um casal, 100 L para um harém e 70 L para um casal — e NINGUÉM publica os 120 cm de frente que o compêndio declara para o grupo de 6 a 8, que é o arranjo que a própria fonte recomenda. É a maior distância do eixo inteiro entre o que a SERP responde e o que a fonte declara, e por isso a página de maior valor desta leva.',
 		),
+
+		/* --- LEVA 7, 22/09/2026: a SÉTIMA categoria do eixo e as três fichas
+		   dela. `/peixes/danios-e-rasboras/` nasce com o mínimo exato do 16.5 e a
+		   ilha vai de 40 para 44 URLs. É a PRIMEIRA leva do eixo que não custou
+		   uma coleta: as três espécies passavam nos dois portões desde
+		   11/09/2026 e estavam no catálogo, na contagem da seção e na lista de
+		   quem divide a mesma água — sem página própria e sem categoria que as
+		   abrigasse, porque o `ARVORE.md` fechava o eixo em seis categorias
+		   "e só estas". O que esta leva construiu foi o lugar, não o dado.
+
+		   E É TAMBÉM A PRIMEIRA EM QUE A CATEGORIA E A LEVA SAEM NA MESMA
+		   EXECUÇÃO. Nas levas 4, 5 e 6 o critério e a linha mestra foram escritos
+		   numa execução e a página nasceu noutra, e a leva 5 deixou disso uma
+		   regra: "texto de categoria escrito antes da leva é afirmação que
+		   ninguém mediu". Aqui não há distância entre os dois — o critério foi
+		   escrito contra a mesma tabela que a página serve, no mesmo commit.
+
+		   AS QUATRO DECLARAM `serp_em` => '22/09/2026': as quatro consultas foram
+		   classificadas nesta execução, pela 14.9, e as 40 páginas no ar
+		   continuam em 12, 13 ou 14/09/2026. --- */
+
+		'danios-e-rasboras' => array(
+			'nivel'    => 2,
+			'pai'      => 'peixes',
+			'titulo'   => 'Danios e rasboras: quantos litros o cardume pede',
+			'conteudo' => '[aquametria_peixes_categoria]',
+			'consulta' => 'quantos litros para danios e rasboras',
+			'serp_em'  => '22/09/2026',
+			'porque'   => 'Medido em 22/09/2026: a consulta da categoria devolve listicles de "peixes para aquário pequeno" e páginas de produto de loja — nenhum domínio forte, nenhum fabricante, nenhum marketplace. E ela se contradiz dentro da própria página de resultados, com a maior distância que este eixo já mediu numa SERP só: um resultado diz que danios "podem viver em aquários de apenas 10 litros" e outro publica 40 L de mínimo para o paulistinha, que é um danio. Quatro vezes, na mesma tela, sem que nenhum dos dois diga de onde tirou o número. ALVO, e a categoria vale mais que a soma das três fichas: é aqui que se vê que três peixes que cabem num intervalo de um centímetro de porte pedem frentes de 60 e 90 cm, e que a frente por indivíduo varia em três vezes entre eles.',
+		),
+		'quantos-litros-para-paulistinha' => array(
+			'nivel'    => 3,
+			'pai'      => 'danios-e-rasboras',
+			'especie'  => 'danio-rerio',
+			'titulo'   => 'Quantos litros para um cardume de paulistinha?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para paulistinha',
+			'serp_em'  => '22/09/2026',
+			'porque'   => 'Medido em 22/09/2026: o top 10 é seis páginas de produto de loja (RSDiscus quatro vezes, Pró-Aquarista duas, Kauar, Aqua Stuchi), um blog de loja (Hiperzoo) e uma ficha de portal de aquarismo. Nenhum domínio forte. Os números da mesma página de resultados são 40 L, 50 L, 60 a 80 L e "pelo menos 80 cm de comprimento" — quatro respostas para uma pergunta só, nenhuma atribuída a fonte nomeada. É ALVO, e esta é a ficha em que o nosso registro pede MAIS espaço que o top inteiro: 90 × 30 cm de base declarados, contra os 40 L que a SERP repete. Número maior com fonte nomeada é o lado difícil de publicar, e é o que a página faz — com o outro número do conflito (60 cm) impresso do lado, com o nome de quem o declarou.',
+		),
+		'quantos-litros-para-rasbora-arlequim' => array(
+			'nivel'    => 3,
+			'pai'      => 'danios-e-rasboras',
+			'especie'  => 'trigonostigma-heteromorpha',
+			'titulo'   => 'Quantos litros para um cardume de rasbora arlequim?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para rasbora arlequim',
+			'serp_em'  => '22/09/2026',
+			'porque'   => 'Medido em 22/09/2026: o top 9 é dois blogs de pesca (Pesca Gerais, Blog do Pescador), três lojas (RSDiscus duas vezes, Pró-Aquarista), duas fichas de portal (MyAquarium), uma página genérica de "quantos peixes cabem" e um site estrangeiro. Nenhum domínio forte. Os dois números que aparecem são 80 L e "40 L para um pequeno grupo de 10", que discordam em duas vezes para o mesmo peixe, e nenhum é atribuído. É ALVO, e aqui a vantagem é a que este eixo mais repete e que o top nunca faz: a base declarada de 60 × 30 cm com o nome de quem a declarou, ao lado do cardume mínimo que a mesma fonte publica.',
+		),
+		'quantos-litros-para-tanictis' => array(
+			'nivel'    => 3,
+			'pai'      => 'danios-e-rasboras',
+			'especie'  => 'tanichthys-albonubes',
+			'titulo'   => 'Quantos litros para um cardume de tanictis?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para tanictis',
+			'serp_em'  => '22/09/2026',
+			'serp_nota' => 'Esta espécie é vendida no Brasil com quatro nomes diferentes — tanictis, peixe-neve, neon chinês e falso neon —, e isso reparte a própria SERP: as duas consultas medidas em 22/09/2026 devolvem conjuntos de lojas quase sem interseção. A ilha publica a página no nome da prateleira, que é "tanictis", e o banco guarda os quatro.',
+			'porque'   => 'Medido em 22/09/2026: o top 9 é sete páginas de produto de loja (Pró-Aquarista, Aquarium Crystal, Barretos, Fazenda Submersa, Kauar, AquaOrinoco, uma portuguesa), um Blogspot de 2010 e duas fichas de portal. Nenhum domínio forte. É a SERP mais contraditória das quatro desta leva: 20 L, 30 L, 50 L para um grupo de 6, 54 L e 100 L para um grupo de 20 — cinco números, nenhum atribuído —, e o cardume mínimo aparece como 3, 5 e 10 na mesma tela. ALVO. É também a ficha em que o nosso banco tem o conflito mais consequente do eixo: as duas fontes declaram 5 e 10 exemplares de cardume mínimo, e com a mesma frente de 60 cm isso é o dobro da densidade dependendo de quem a página citasse. A ficha publica as duas com a atribuição de cada uma.',
+		),
 	);
 }
 }
@@ -3379,7 +3496,15 @@ function aquametria_peixes_categorias() {
 			   aquário dobra: 60 cm de frente para os dois primeiros, 120 para o
 			   terceiro. Nenhuma outra categoria deste eixo tem dois peixes de
 			   porte IDÊNTICO para provar que o porte não é o que decide. */
-			'linha_mestra' => 'Dois destes três têm o mesmo tamanho de corpo e pedem o mesmo aquário; o terceiro tem pouco mais de um centímetro a mais e pede o dobro de frente. O que dobra o aquário não é o peixe: é com quantos ele vive.',
+			/* SEGUNDA PESSOA ACRESCENTADA EM 22/09/2026, pela leva 7, e este é um
+			   defeito que esteve NO AR desde 14/09. A frase dizia "o que dobra o
+			   AQUÁRIO", falando do mundo em terceira pessoa, e o VOZ.md manda falar
+			   com quem entrou. Ninguém viu porque esta página nunca esteve na lista
+			   do `teste-voz.mjs`: a leva 6 acrescentou as quatro URLs ao
+			   `teste-peixes.py` e esqueceu do portão da voz, que é escrito à mão e
+			   não avisa quem falta. Oito dias verdes sem medir. A afirmação não
+			   mudou — mudou uma palavra, e ela é a que a régua cobra. */
+			'linha_mestra' => 'Dois destes três têm o mesmo tamanho de corpo e pedem o mesmo aquário; o terceiro tem pouco mais de um centímetro a mais e pede o dobro de frente. O que dobra o seu aquário não é o peixe: é com quantos ele vive.',
 			/* O CRITÉRIO, e esta é a PRIMEIRA categoria do eixo em que nem a
 			   família nem o gênero servem — nas outras quatro sempre um dos dois
 			   serviu ou foi recusado por um motivo taxonômico. Aqui a família
@@ -3423,6 +3548,64 @@ function aquametria_peixes_categorias() {
 				'mikrogeophagus-ramirezi',
 				'apistogramma-agassizii',
 				'mikrogeophagus-altispinosus',
+			),
+		),
+		'danios-e-rasboras' => array(
+			'rotulo'   => 'Danios e rasboras',
+			'plural'   => 'danios e rasboras',
+			'singular' => 'todo danio e toda rasbora',
+			/* A LINHA MESTRA SAI DA TABELA E DE MAIS NADA, e aqui ela teve de
+			   desviar de uma armadilha de medida que as seis categorias anteriores
+			   não tinham. A primeira escrita dizia "o MENOR destes três é o que
+			   pede o MAIOR aquário", que é a frase mais forte que esta página
+			   poderia publicar — e ela não se sustenta: o porte do paulistinha
+			   está declarado em SL (3,8 cm, o corpo sem a cauda) e o do tanictis
+			   em TL (4,0 cm, com ela). Na mesma régua a ordem entre os dois pode
+			   inverter, e a página estaria apostando numa comparação que nenhuma
+			   das duas fontes fez. A versão abaixo diz o que a tabela paga com
+			   qualquer medida: os três portes cabem num intervalo de pouco mais de
+			   um centímetro, a frente mínima varia em 30 cm, e a frente POR
+			   INDIVÍDUO varia em três vezes. Comparar número de medidas diferentes
+			   é a mesma família da regra da congênere: parece medição e é
+			   vizinhança. */
+			'linha_mestra' => 'Três peixes que não passam de 5 cm, vendidos na mesma prateleira, e a frente mínima de um deles é 30 cm maior que a dos outros dois. O espaço que sobra para cada indivíduo varia em três vezes de uma linha a outra desta tabela — e é isso, não o tamanho do peixe, que decide o seu aquário.',
+			/* O CRITÉRIO, e esta é a SEGUNDA categoria do eixo em que nem a família
+			   nem o gênero servem — a primeira foi a `ciclideos-anoes`. Aqui o
+			   motivo é o oposto do dela: lá a família trazia peixe DEMAIS
+			   (Cichlidae carrega o oscar de 45,7 cm), e aqui ela deixa peixe de
+			   FORA. O tanictis é a única Tanichthyidae do banco, família só dele, e
+			   filtrar por Danionidae o excluiria de uma página em que o próprio
+			   banco já o coloca: o segundo nome popular brasileiro dele é
+			   `paulistinha-da-montanha`, que é o nome do peixe da linha de cima com
+			   um sobrenome. O gênero também não serve: são três gêneros para três
+			   peixes.
+
+			   O QUE SERVE É O NOME QUE A PESSOA DIGITA, e aqui ele é verificável
+			   dentro do próprio banco em vez de depender da leitura de quem
+			   escreve: os quatro registros declarados nesta categoria trazem
+			   `danio`, `rasbora` ou `paulistinha` entre os nomes populares
+			   brasileiros, e nenhum outro registro do banco traz. */
+			'criterio' => 'Os peixes de cardume que a loja brasileira vende como danio, rasbora ou paulistinha. Nem a família nem o gênero servem de critério aqui, e a família falha pelo lado contrário ao dos ciclídeos anões: lá ela trazia peixe demais, aqui ela deixa peixe de fora. O tanictis é a única espécie deste banco na família Tanichthyidae — família só dele — e ficaria fora de uma página em que o segundo nome popular brasileiro dele, paulistinha-da-montanha, é o nome da espécie da linha de cima com um sobrenome. O gênero também não serve: são três gêneros para três peixes. Quem separa é o nome que a pessoa digita, e nesta categoria ele é verificável dentro do banco: os registros declarados aqui são exatamente os que trazem danio, rasbora ou paulistinha entre os nomes populares, e nenhum outro registro do banco traz. Uma advertência de medida fica junto da tabela e não aqui, porque ela muda o que dá para comparar: o porte destes registros não está todo na mesma régua — uns declaram o corpo sem a cauda e outros com ela —, então a coluna de porte serve para ler cada linha e não para ordenar as linhas entre si.',
+			/* A LEVA 7, 22/09/2026: a lista nasce CHEIA, e é a primeira categoria do
+			   eixo em que isso acontece. As seis anteriores foram preparadas numa
+			   execução e publicadas noutra, então a lista nascia vazia e saía do
+			   vazio na leva; aqui o banco já sustentava as três desde 11/09/2026 e
+			   nenhuma coleta foi precisa. O que faltava era a categoria existir.
+
+			   A RASBORA GALÁXIA É DECLARADA AQUI E O PORTÃO A BARRA, e ela é a
+			   barrada mais distante do eixo inteiro: faltam-lhe QUATRO campos
+			   (frente mínima, convivência, temperatura e a segunda fonte), contra o
+			   campo único que faltava ao molly e ao guppy na leva 5. Sem declará-la,
+			   a frase de lista fechada desta página diria que todo danio e toda
+			   rasbora que o banco sustenta já tem página — e o banco tem o registro
+			   dela, com o nome, a família e o porte colhidos em 09/09/2026.
+			   Declarada, ela sai da tabela e entra na lista de fora, com nome e
+			   causa. */
+			'especies' => array(
+				'danio-rerio',
+				'trigonostigma-heteromorpha',
+				'tanichthys-albonubes',
+				'danio-margaritatus',
 			),
 		),
 		'plecos-e-limpa-vidros' => array(
