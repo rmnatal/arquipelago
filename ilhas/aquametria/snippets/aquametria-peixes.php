@@ -4679,6 +4679,16 @@ function aquametria_peixes_ficha_html( $slug ) {
 	if ( $larg ) {
 		$html .= ' por ' . esc_html( aquametria_peixes_num( $larg ) )
 			. ' cm de fundo. O que manda é a BASE do aquário, não o litro.</p>';
+	} elseif ( aquametria_peixes_fundo_de_outro_arranjo( $e ) ) {
+		/* A TERCEIRA ABERTURA (1.12.0). Sem ela a página dizia "o fundo fica em
+		   aberto" e, dois parágrafos abaixo, publicava a largura que a fonte
+		   declarou — duas coisas diferentes a uma tela de distância, e a
+		   primeira lida como "ninguém sabe". As duas ausências são diferentes
+		   para quem lê e por isso têm frases diferentes desde a primeira linha.
+		   A procedência continua fora do primeiro parágrafo (15.2): aqui não se
+		   nomeia corpo nenhum, só se diz que a largura é de outra conta. */
+		$html .= ', e o fundo fica de fora: a largura declarada é para outra '
+			. 'quantidade de peixe. O que manda é o COMPRIMENTO do aquário, não o litro.</p>';
 	} else {
 		$html .= ', e o fundo fica em aberto. O que manda é o COMPRIMENTO do '
 			. 'aquário, não o litro.</p>';

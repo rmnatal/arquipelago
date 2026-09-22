@@ -621,7 +621,17 @@ for (const slug of CONTEUDO) {
      ABERTO e termina em COMPRIMENTO. EXATAMENTE UM dos dois — a reescrita que
      colapsasse os dois casos num só publicaria um fundo que ninguém declarou
      (ou esconderia o que foi declarado), e passaria por qualquer régua que só
-     proibisse palavra. */
+     proibisse palavra.
+
+     E SÃO TRÊS MUNDOS DESDE 22/09/2026, não dois. O terceiro é a ficha cujo
+     fundo EXISTE no banco e foi declarado para outra população: a do
+     apistogramma agassizi serviu por oito dias, ao harém, os 30 cm que o
+     compêndio declarou para um casal. Ela não pode dizer BASE, porque não é
+     dela; e não pode dizer que o fundo FICA EM ABERTO, porque ele não fica —
+     a página publica o número dois parágrafos abaixo, com o nome de quem ele
+     dimensiona. Termina em COMPRIMENTO como a segunda, e a oração que a separa
+     é "a largura declarada é para outra quantidade de peixe". Continua valendo
+     EXATAMENTE UM dos três. */
   if (FICHAS_PEIXE.has(slug)) {
     const plano = semAcento(p1);
     ok('a ficha abre pelo número, com a frente em centímetros',
@@ -629,8 +639,12 @@ for (const slug of CONTEUDO) {
 
     const comBase = / cm de fundo/.test(plano) && /\bbase\b/.test(plano);
     const semBase = /fica em aberto/.test(plano) && /\bcomprimento\b/.test(plano);
-    ok('a ficha declara a BASE ou o COMPRIMENTO, e exatamente um dos dois',
-      comBase !== semBase, `base=${comBase} comprimento=${semBase} — "${p1.slice(0, 110)}"`);
+    const fundoDeOutro = /a largura declarada e para outra quantidade de peixe/.test(plano)
+      && /\bcomprimento\b/.test(plano);
+    const quantos = [comBase, semBase, fundoDeOutro].filter(Boolean).length;
+    ok('a ficha declara a BASE, o COMPRIMENTO ou o fundo de outra conta, e exatamente um dos três',
+      quantos === 1,
+      `base=${comBase} comprimento=${semBase} outra-conta=${fundoDeOutro} — "${p1.slice(0, 110)}"`);
     ok('a ficha não fala de litro como se fosse a medida que manda',
       /nao o litro/.test(plano), p1.slice(-60));
   }

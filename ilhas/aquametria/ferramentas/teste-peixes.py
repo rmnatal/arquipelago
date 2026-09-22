@@ -888,6 +888,13 @@ def medir_ficha(slug, ident, banco):
         ok("%s: a frase mestra diz COMPRIMENTO, e nao promete a base a esta populacao" % slug,
            "O que manda é o COMPRIMENTO do aquário" in t
            and "é a BASE do aquário" not in t)
+        # AS DUAS AUSENCIAS TEM FRASES DIFERENTES DESDE A PRIMEIRA LINHA. Dizer
+        # "o fundo fica em aberto" e publicar a largura dois paragrafos abaixo e
+        # dizer duas coisas diferentes a uma tela de distancia, e a primeira e
+        # lida como "ninguem sabe".
+        ok("%s: a abertura diz que a largura e de outra conta, nao que ninguem declarou" % slug,
+           "a largura declarada é para outra quantidade de peixe" in t
+           and "o fundo fica em aberto" not in t)
         ok("%s: nao serve o fundo na frase de abertura" % slug,
            "cm de fundo. O que manda" not in t)
         ok("%s: publica o fundo que existe dizendo para quem ele foi declarado" % slug,
