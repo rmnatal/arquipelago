@@ -402,6 +402,14 @@ def main():
             "frente_cm": e["comprimento_minimo_aquario_cm"],
             "base_comprimento": base.get("comprimento"),
             "base_largura": base.get("largura"),
+            # PARA QUEM A FONTE DECLAROU A BASE (esquema versao 5, 22/09/2026).
+            # Viaja com os dois lados do chao porque e ele que decide se a ficha
+            # pode servir o FUNDO ao arranjo que ela publica: o compendio declarou
+            # os 60 x 30 cm do apistogramma agassizi para UM CASAL, e a ficha os
+            # prometeu ao harem por oito dias. So os termos vem para o PHP — a
+            # clausula transcrita e prova de banco, conferida pelo E22, e nao tem
+            # o que fazer dentro do snippet.
+            "chao_para": list((e.get("chao_declarado_para") or {}).get("arranjos") or []),
             "temp_min": e["temperatura_C"]["min"],
             "temp_max": e["temperatura_C"]["max"],
             "status": e.get("status_registro") or "",

@@ -181,15 +181,71 @@ def c_e19_data_no_futuro(b):
 
 
 def c_e19_campo_recusado_preenchido(b):
-    r = pega(b, "symphysodon-aequifasciatus")
-    r["base_minima_cm"] = {"comprimento": 120, "largura": 45}
-    for f in r["fontes"]:
-        f["campos"].append("base_minima_cm")   # com fonte, para nao cair no E3
-        f["referencia"] += " Base de 120 x 45 cm."
+    """A base do disco entrou em 22/09/2026, e com ela superada_em/superada_por.
+
+    Ate aquela data a corrupcao era PREENCHER o campo recusado; hoje ele esta
+    preenchido de direito, e o que a regra tem de pegar e a metade que sobrou:
+    recusa e dado dizendo coisas contrarias porque alguem apagou a superacao.
+    """
+    c = pega(b, "symphysodon-aequifasciatus")["coletas_recusadas"][0]
+    c.pop("superada_em", None)
+    c.pop("superada_por", None)
+
+
+# ---- o chao declarado e a populacao para quem ele foi declarado (esquema versao 5)
+def c_e20_sem_chao(b):
+    del pega(b, "apistogramma-agassizii")["chao_declarado_para"]
+
+
+def c_e20_chao_sem_base(b):
+    r = pega(b, "poecilia-reticulata")
+    r["chao_declarado_para"] = {"arranjos": ["grupo"], "frase": "grupo"}
+
+
+def c_e20_mistura_nao_declarado(b):
+    pega(b, "paracheirodon-innesi")["chao_declarado_para"]["arranjos"] = ["nao-declarado", "casal"]
+
+
+def c_e20_arranjo_fora_do_vocabulario(b):
+    pega(b, "corydoras-panda")["chao_declarado_para"]["arranjos"] = ["cardume-grande"]
+
+
+def c_e22_frase_inventada(b):
+    pega(b, "apistogramma-agassizii")["chao_declarado_para"]["frase"] = (
+        "base de 60 x 30 cm aceitavel para o harem")
+
+
+def c_e22_termo_sem_palavra(b):
+    """A clausula do compendio diz UM CASAL; o termo diz grupo."""
+    pega(b, "apistogramma-agassizii")["chao_declarado_para"]["arranjos"] = ["grupo"]
+
+
+def c_e22_nao_declarado_que_nomeia(b):
+    """'nao-declarado' e o termo PERMISSIVO: e o que devolve o fundo a ficha.
+
+    Por isso ele e conferido pelo avesso — a clausula do panda nomeia um grupo
+    pequeno, e dizer que ela nao nomeia ninguem e o palpite mais caro do campo.
+    """
+    pega(b, "corydoras-panda")["chao_declarado_para"]["arranjos"] = ["nao-declarado"]
+
+
+def c_e21_arranjo_acima_do_chao(b):
+    """O chao do gurami-anao foi declarado para UM CASAL; o registro passa a
+    publicar harem, que e varios peixes. E o defeito do apistogramma agassizi,
+    que esteve oito dias no ar."""
+    pega(b, "trichogaster-lalius")["convivencia"] = "harem"
 
 
 TESTES = [
     ("E1", "id que nao corresponde ao nome cientifico", c_e1, "erro"),
+    ("E20", "base dos dois lados sem chao_declarado_para", c_e20_sem_chao, "erro"),
+    ("E20", "chao_declarado_para sem base dos dois lados", c_e20_chao_sem_base, "erro"),
+    ("E20", "'nao-declarado' misturado com outro termo", c_e20_mistura_nao_declarado, "erro"),
+    ("E20", "arranjo fora do vocabulario fechado", c_e20_arranjo_fora_do_vocabulario, "erro"),
+    ("E22", "frase do chao que a fonte nao escreveu", c_e22_frase_inventada, "erro"),
+    ("E22", "termo que a clausula da fonte nao sustenta", c_e22_termo_sem_palavra, "erro"),
+    ("E22", "'nao-declarado' com clausula que nomeia populacao", c_e22_nao_declarado_que_nomeia, "erro"),
+    ("E21", "arranjo publicado acima do chao declarado", c_e21_arranjo_acima_do_chao, "aviso"),
     ("E2", "campo obrigatorio faltando sem status parcial", c_e2, "erro"),
     ("E3", "campo tecnico preenchido sem fonte", c_e3, "erro"),
     ("E4", "fonte com status incoerente com a origem", c_e4, "erro"),

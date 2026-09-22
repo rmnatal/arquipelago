@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 91,
+  "revisao": 92,
   "atualizado_em": "2026-09-22",
   "estado": "fundacao",
   "desembarque": {
@@ -130,7 +130,7 @@
       "ativo": true,
       "versao": "1.11.0",
       "publicar": true,
-      "sha256": "d29d8efe1598bf99d631f290541746807dda7f396850be943f8dd1fcc74f3310",
+      "sha256": "27719ca3c49963e9a5200bdd9d7fdfc2c22b51faefd689b796d2ab61fd5ce14a",
       "descricao": "T4, levas 1 a 5 da malha: VINTE E DUAS URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, QUATRO categorias de nivel 2 (/peixes/tetras/ com 7 fichas, /peixes/corydoras/ com 4, /peixes/bettas/ com 3 e /peixes/vivaparos/ com 3) e as dezessete fichas de especie. v1.8.0 (14/09/2026), LEVA 5: a quarta categoria, e a primeira em que NENHUMA filha tem numero declarado — as tres vivem em harem, que e o unico valor do vocabulario fechado em que a fonte descreve a proporcao entre os sexos e nunca o tamanho do grupo. A leva 4 escreveu os tres mundos da escada de lotacao e publicou dois; o terceiro ficou como ramo de RESGATE e estava errado: abria pela traducao de como_vive(), que carrega a oracao do temperamento, e a primeira frase da ficha citaria quem declarou, contra a 15.2. O ramo virou branch com nome e o resgate deixou de existir — pode_virar_ficha() passa a exigir que o termo esteja no vocabulario fechado, que e o que o cabecalho da 1.7.0 ja afirmava e o codigo nao fazia. DOIS DEFEITOS QUE JA ESTAVAM NO AR sairam junto, os dois de concordancia e os dois medidos no HTML servido: '1 ficaram fora porque o banco os declara agressivos', com um unico peixe agressivo no banco; e 'cabem 1 coridora sterbai ... a diferenca entre os dois e de 4 vezes', em que o verbo estava no plural e o numero saia das CONSTANTES em vez dos dois numeros impressos — ele errava em DEZ das quatorze fichas no ar e erra por SETE vezes no peixe-espada, o maior peixe com ficha da ilha. A linha mestra e o criterio da categoria foram reescritos na leva que os publicou: a versao de 13/09 prometia numero de reproducao que nenhuma fonte declara e dizia que manda o macho enquanto o criterio dizia que manda a femea. A categoria declara as CINCO Poeciliidae e o portao barra duas — o guppy e o molly, os dois viviparos mais vendidos do Brasil, cada um a um campo de entrar —, com nome e causa na pagina. SERP da MAE classificada em 14/09/2026, a unica do eixo em que o top 7 nao fala do assunto; as tres fichas seguem com serp_em 13/09/2026. v1.9.0 (14/09/2026), PREPARACAO DA LEVA 6: a quinta categoria ganha banco, criterio e linha mestra, e NENHUMA URL nasce. Duas especies novas no banco (Apistogramma agassizii e Mikrogeophagus altispinosus) levam /peixes/ciclideos-anoes/ de UM elegivel para TRES, que e o minimo exato do 16.5; o banco vai de 37 para 39 registros e o catalogo de 29 para 31. A categoria continua FORA de aquametria_peixes_registro(), entao nenhuma URL foi criada e nenhuma leva do teto da 21.4 foi gasta — o que muda na tela e a contagem que a secao e as categorias imprimem na hora. E A PRIMEIRA CATEGORIA DO EIXO EM QUE NEM A FAMILIA NEM O GENERO SERVEM de criterio: Cichlidae carrega o oscar, o disco e a bandeira deste mesmo banco, e o genero Mikrogeophagus poe as duas PONTAS da tabela lado a lado. Quem separa e a prateleira brasileira de ciclideo anao, que tem endereco proprio em tres lojas, e o porte declarado explica a prateleira: os tres tem menos de 6 cm e o menor dos outros Cichlidae do banco tem 13,7 cm. A TABELA PROVA A TESE DO EIXO COM DOIS PEIXES DE PORTE IDENTICO, coisa que nenhuma das outras quatro categorias pode fazer: ramirezi e apistogramma agassizi tem os mesmos 4,2 cm SL na mesma base e pedem os mesmos 60 cm; o papilocromis tem 5,6 cm e pede 120 — o que dobra o aquario e o ARRANJO (casal, harem, grupo de 6 a 8), nao o peixe. A LISTA DE ESPECIES DA CATEGORIA CONTINUA VAZIA POR PORTAO: ela e da leva e nao da preparacao (afirmacao 3 do teste-peixes.py), e esta execucao tentou preenche-la e foi reprovada na bancada. SERP das quatro consultas classificada em 14/09/2026, todas ALVO. v1.10.0 (14/09/2026), LEVA 6: a QUINTA categoria do eixo e as tres fichas dela — /peixes/ciclideos-anoes/ com o ramirezi (casal), o apistogramma agassizi (harem) e o papilocromis (grupo de 6 a 8). A ilha vai de 36 para 40 URLs, que e o PISO DA RAMPA da secao 21. E A PRIMEIRA CATEGORIA EM QUE AS TRES FILHAS VIVEM DE TRES JEITOS DIFERENTES: as quatro anteriores tinham no maximo dois arranjos e a vivaparos tinha um so, entao nenhuma pagina desta ilha exercitava os tres ramos da abertura da ficha na MESMA categoria. E A FRENTE MINIMA DO PAPILOCROMIS E A PRIMEIRA DO EIXO QUE E CONDICIONAL: o compendio nao publica 'aquario minimo' solto, publica 'grupo misto de 6 a 8 ou mais DESDE QUE o aquario tenha 120 cm ou mais' — quebrar a frase em dois numeros seria publicar uma frente que a fonte nunca declarou sozinha, que e a familia do BASE contra FRENTE da leva 2. O banco, o criterio, a linha mestra e a SERP vieram da preparacao 1.9.0, na execucao das 21h18Z do mesmo dia; esta versao publica. Nenhuma URL das levas 1 a 5 muda, nenhum endereco se move."
     }
   ],
@@ -456,7 +456,7 @@
       "verificado_em": "2026-09-11",
       "registros": 0,
       "publicar": false,
-      "sha256": "623f392bdb0a8aac9166b0de2a45051ace7216a11bbb2dd83b358cb45b1433c8",
+      "sha256": "14782f7cb9e479e4778da3cdc9dbedf11c3aa15be7d0afb16fc0d0ba00abb6c7",
       "descricao": "Contrato formal do banco de especies (versao 3): campos, unidades, vocabulario controlado, a escada de 6 niveis de fonte para especie (nao existe fabricante de peixe: existem base cientifica e compendio de aquarismo), a tabela dominio_por_campo — que diz qual escada manda em qual campo, porque FishBase e melhor em biologia e o compendio e melhor em manutencao — e as regras E1 a E16. Tres decisoes valem para sempre: em conflito de campo de BEM-ESTAR o conservador e o MAIOR (o oposto do banco de produtos), volume minimo em litro nunca se grava porque e derivado da base com a altura do usuario, e espelho nao confere espelho (fishbase.se e fishbase.org sao uma fonte so, regra E15). A versao 3 acrescentou as duas regras que este canal de coleta cobrou: a REGRA DA CONGENERE (o resumo de busca oferece o numero da especie irma quando a ficha da alvo nao publica o campo, e numero sem o nome da especie do lado e recusa, nao dado; reproduzir tambem nao e conferir) e o E16, que cobra que todo numero de campo apareca no texto da fonte citada."
     },
     {
@@ -468,7 +468,7 @@
       "verificado_em": "2026-09-14",
       "registros": 37,
       "publicar": false,
-      "sha256": "180a8c08169e1b294769870202c08f43417edb73624aa8358d642fc3b7ae2efd",
+      "sha256": "e383ad436665d2a795aee95ffa141183f339a4c31855c90fec7a7164cf00ee44",
       "descricao": "Banco de especies: 37 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 29 dos 37 passam no portao de pagina de especie; os 8 barrados dizem no proprio registro qual campo falta e por que nao foi estimado. Em 13/09/2026 o gurami mel saiu dos barrados (o porte que a FishBase declara segue RECUSADO pela contradicao interna da propria ficha, e quem sustenta o campo e o compendio, com 55 mm SL em duas passadas independentes) e o plati variatus entrou como 37o registro, levando /peixes/vivaparos/ ao minimo do 16.5. Os dois guramis grandes continuam sem convivencia depois de quatro passadas em dois corpos, e a ausencia esta medida, nao presumida. Em 14/09/2026, na leva 5: origem_geografica foi ACENTUADO nos 15 registros que o declaram — o campo vai para a linha 'De onde vem' da tabela de fontes de toda ficha, estava sem UM acento em 15 de 15 e no ar desde 12/09, porque a correcao de acentuacao de 12/09 nomeava so nomes_populares_br. A regra E17 passou a nomear os dois campos, com a lista morando no esquema ao lado da tabela. E a ordem dos nomes populares do xiphophorus-hellerii mudou, para por 'peixe-espada' na frente: o primeiro do campo e o que vai para a tela, e a consulta classificada e 'quantos litros para peixe espada'. Existe para destravar o eixo aberto \"quantos litros para X peixes\" com dado em vez da regra de bolso de 1 cm por litro."
     },
     {
@@ -640,14 +640,14 @@
       "arquivo": "ferramentas/validar-especies.py",
       "publicar": false,
       "descricao": "Valida o banco de especies contra dados/esquema-especies.json (regras E1 a E16) e imprime quem ja passa no minimo_para_sugerir de cada consumidor (pagina de especie, C8 lotacao, C5 aquecedor), mais a faixa de porte e as frentes minimas cobertas. Aceita um caminho no argv, o que permite roda-lo contra bancos de teste. Rodar antes de todo commit que toque dados/especies-*.json. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "3e3ed81beba42501522d6071201c85d8c74f82cc99c28495308f9d5fecc49907"
+      "sha256": "0cb0e9c93a5f17a3dcd0168854dff8754c3f166869cd5d2f5bf18374134cfec3"
     },
     {
       "id": "testar-validador-especies",
       "arquivo": "ferramentas/testar-validador-especies.py",
       "publicar": false,
       "descricao": "Testes NEGATIVOS do validador de especies: corrompe uma copia do banco de proposito, uma corrupcao por regra E1 a E15 e quatro para a E16, e exige que a regra certa reprove com o codigo certo. Existe porque validar-especies.py so prova que o banco de hoje passa — nao prova que a regra pega o defeito que promete pegar, e regra escrita errada aprova tudo em silencio. O banco real nunca e tocado (copias em diretorio temporario) e o teste confere isso no fim. Rodar junto com o validador. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "06081b4352a83f124a0d016d5c0c3fd7ffc02edaaa7ac87886c51102bc12dc57"
+      "sha256": "96fae2e57916f90d84d11765caca61aa595e40e3b026c16854342acde45bb8c6"
     },
     {
       "id": "teste-navegador-visibilidade-ia",
@@ -765,21 +765,21 @@
       "id": "gerar-catalogo-especies",
       "arquivo": "ferramentas/gerar-catalogo-especies.py",
       "publicar": false,
-      "sha256": "7412c4365c07c7d7c063059abe7c9feeb757d548769513ddb3ff97f4c33f699e",
+      "sha256": "8da7a48272614f2ec14a27d99afbf35ac3da65f8ae939a4ee8cc395aafb3b105",
       "descricao": "Gera o catalogo de especies que o snippet das paginas de peixes embute, reescrevendo o trecho entre CATALOGO-INICIO e CATALOGO-FIM. So entra quem passa no portao de pagina do esquema (sete campos e duas fontes de corpos distintos), e a regua esta escrita no script, lida do esquema apenas para conferir que as duas listas dizem a mesma coisa. A FONTE VIAJA COM O NOME DO CORPO, nunca com o codigo de origem: 'FishBase' e 'Seriously Fish', porque procedencia na propria frase e a regra da secao 5 e 'base-cientifica-via-busca' nao e nome de ninguem. O nome sai do prefixo da referencia e, quando ela nao existe — dois registros do banco trazem so valor, origem e url —, do HOST, por um mapa APRENDIDO das fontes do proprio banco. Registro que nao sabe nomear quem declarou o numero e barrado com o motivo na saida. Nenhum campo derivado e gravado (regra E7), e o conflito viaja inteiro, com os dois extremos."
     },
     {
       "id": "teste-peixes",
       "arquivo": "ferramentas/teste-peixes.py",
       "publicar": false,
-      "sha256": "e31cc331a067436ddb38db6109423227ed7faae74403bfc99f892565646c5f02",
+      "sha256": "98b37a5a89de7ba32809f69bb0b906bc45e4f57a7c7a887fa10defddacd7006e",
       "descricao": "O portao da leva 1 do eixo /peixes/: 295 afirmacoes, um processo php por pagina, medidas no CORPO do que a bancada serve. Toda aritmetica e recomputada do dados/especies-agua-doce.json, do zero, e o mapa pagina->especie esta escrito no teste — ler o mapa do snippet seria perguntar ao snippet qual e a resposta certa, e a proxima leva vai copiar este registro. Compara CELULA POR CELULA, e nao 'o numero esta na pagina': duas mutacoes deliberadas passaram na primeira rodada porque o numero errado que elas produziam existia em outra tabela (o 28 de 'cabem 28 neons' foi achado dentro de '20 a 28 C'). Mede tambem o que nao e numero: especie agressiva sem lista de companheiro, categoria de nivel 2 com 3 filhas ou mais no registro (16.5), ancora que nao diz 'saiba mais', ausencia de Product no JSON-LD, resposta de FAQ citando so numero que a pagina serve, trilha de quatro degraus com os tres primeiros linkados, e a colisao de slug entre a secao /peixes/ e a categoria de calculadora."
     },
     {
       "id": "mutacoes-peixes",
       "arquivo": "ferramentas/mutacoes-peixes.py",
       "publicar": false,
-      "sha256": "dc81b8b7c7a57901c0aad3057dd096a5768d83cd36906a9132aca9bda8b02571",
+      "sha256": "534b97a3db40fb7e3272fea27f961333defd7272cea171fa19d150747a2e3851",
       "descricao": "24 mutacoes deliberadas contra o portao do eixo /peixes/, em tres familias: o numero muda (regua de lotacao trocada, extremo errado de conflito declarado, borda da tabela que desaparece); o numero fica e a ESTRUTURA quebra (a especie agressiva ganha lista de companheiro, o derivado per capita volta a ser multiplicado, categoria vazia registrada como pagina, Product no JSON-LD); e a regua perde o chao (o catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta). 24 de 24 reprovadas — duas delas so depois de o portao passar a comparar celula, e nao texto da pagina."
     },
     {

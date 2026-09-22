@@ -147,6 +147,27 @@ def mut_campo(d, ident, campo, valor):
 
 
 MUTACOES = [
+    # ------------------- 0. o chao declarado e a populacao para quem ele vale
+    #
+    # AS QUATRO DESTE GRUPO EXERCITAM UM DEFEITO QUE ESTEVE OITO DIAS NO AR: a
+    # ficha do apistogramma agassizi servia "para um harem ... 60 cm de frente
+    # por 30 cm de fundo", e os 30 cm sao do compendio, que os declarou para UM
+    # CASAL. A proibicao existia — escrita, em maiusculas, no `observacao` do
+    # proprio registro — e prosa nao barra pagina.
+    ("o portao do escopo some — a ficha volta a prometer ao harem o chao do casal",
+     troca(PEIXES, "\tif ( ! aquametria_peixes_chao_serve_o_arranjo( $e ) ) {\n\t\treturn null;\n\t}",
+           "\tif ( false ) {\n\t\treturn null;\n\t}")),
+
+    ("harem vira populacao de CASAL — o portao passa a aprovar o que ele existe para barrar",
+     troca(PEIXES, "'harem'     => 'grupo',", "'harem'     => 'casal',")),
+
+    ("a ordem dos termos inverte — casal passa a cobrir grupo",
+     troca(PEIXES, "\t\t'casal'       => 2,", "\t\t'casal'       => 9,")),
+
+    ("a atribuicao do chao volta a perguntar sempre pelo comprimento — 'essa base e o FishBase' outra vez",
+     troca(PEIXES, "$larg ? 'base_minima_cm' : 'comprimento_minimo_aquario_cm'",
+           "'comprimento_minimo_aquario_cm'")),
+
     # ---------------------------------------------------- 1. o numero muda
     ("o criterio conservador vira 3 L/cm — a regua brasileira do extremo apertado muda de valor",
      troca(PEIXES, "define( 'AQUAMETRIA_PEIXES_LOTACAO_CONSERVADORA', 4.0 )",

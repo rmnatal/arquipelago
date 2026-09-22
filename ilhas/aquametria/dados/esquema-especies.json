@@ -2,8 +2,8 @@
  "id": "esquema-especies",
  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E16 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
  "gerado_em": "2026-09-09",
- "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16",
- "versao_esquema": 4,
+ "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16; revisado na versao 5 (22/09/2026): chao_declarado_para e as regras E20 a E22 — o arranjo para quem a fonte declarou a base",
+ "versao_esquema": 5,
  "depende_de": [
   "dados/esquema-produtos.json",
   "dados/especificacao-calculadoras.md"
@@ -104,6 +104,7 @@
     "cardume_recomendado_ate",
     "comprimento_minimo_aquario_cm",
     "base_minima_cm",
+    "chao_declarado_para",
     "nivel_natacao",
     "comportamento",
     "convivencia",
@@ -273,6 +274,20 @@
    "obrigatorio": false,
    "dominio": "manutencao",
    "nota": "Quando a fonte declara a base inteira. Melhor que so o comprimento, porque area de fundo e o que limita peixe de fundo."
+  },
+  {
+   "campo": "chao_declarado_para",
+   "tipo": "objeto {arranjos[], frase}",
+   "obrigatorio": false,
+   "dominio": "manutencao",
+   "nota": "PARA QUEM A FONTE DECLAROU A BASE (versao 5, 22/09/2026). base_minima_cm e um numero sobre uma POPULACAO, e ate esta data o esquema nao tinha onde dizer qual. O custo estava no ar havia oito dias: a ficha do apistogramma agassizi servia 'para um harem ... o seu aquario precisa de 60 cm de frente por 30 cm de fundo', e os 30 cm de fundo sao do compendio, que os declarou para UM CASAL. A proibicao existia — estava escrita, em maiusculas, no campo observacao daquele mesmo registro ('O QUE A FICHA NAO PODE FAZER: prometer que 60 x 30 cm serve ao harem') — e prosa nao se conta e prosa nao barra pagina. OBRIGATORIO em todo registro cuja base_minima_cm tenha os dois lados (E20), e PROIBIDO nos outros: escopo de um chao que nao existe e afirmacao sobre nada. DUAS METADES. `arranjos` e a lista de termos do vocabulario fechado, ORDENADOS por populacao: juvenis < um-exemplar < casal < grupo. Chao declarado para um nivel serve a tudo que esteja nele ou abaixo — aquario que abriga um grupo abriga um casal, e o contrario nao vale. `frase` e a CLAUSULA da transcricao da fonte em que o chao foi declarado, copiada ao pe da letra: o E22 exige que ela seja trecho literal da referencia de uma fonte que sustente base_minima_cm, e e ela — nao a transcricao inteira — que o validador le para conferir os termos. Sem a clausula a conferencia seria contra o texto todo, e a mesma frase que declara 'base recomendada de 61 x 38 cm' sem populacao nenhuma costuma falar de cardume tres oracoes adiante, por outro motivo. 'nao-declarado' e o caso mais comum e NAO e um buraco: e a fonte que publica a base como o minimo da especie sem nomear populacao ('aquario com base de 60 x 30 cm ou maior'), e ai a base vale para o arranjo que o registro publica, que e como este eixo inteiro sempre a leu. Foi escolha, e o custo esta escrito: cobrar populacao nomeada onde a fonte nao nomeou tiraria o fundo de doze fichas por causa do silencio da fonte, e silencio ali quer dizer 'este e o aquario minimo da especie'. Por isso 'nao-declarado' nunca aparece ao lado de outro termo — ou a fonte nomeou, ou nao nomeou —, e o E22 reprova se a propria clausula nomear alguma. 'juvenis' esta na lista por causa do acara-disco, cuja unica frase util do segundo corpo dimensiona o aquario para juvenis ou um casal reprodutor — populacao que nunca serve o cardume de cinco ADULTOS que o registro publica.",
+   "valores_de_arranjos": [
+    "juvenis",
+    "um-exemplar",
+    "casal",
+    "grupo",
+    "nao-declarado"
+   ]
   },
   {
    "campo": "altura_minima_cm",
@@ -538,6 +553,18 @@
   {
    "id": "E19",
    "regra": "Toda entrada de coletas_recusadas declara em (data ISO, nunca futura), corpo, metodo, motivo e pelo menos um campo em campos_pretendidos, e todo nome ali tem de ser campo deste esquema. E a regra com dentes: CAMPO RECUSADO QUE HOJE ESTA PREENCHIDO obriga a entrada a trazer superada_em e superada_por — sem isso, o registro estaria dizendo duas coisas contrarias sobre o mesmo campo, e a mais nova venceria em silencio. Recusa nao se apaga quando e superada; ela ganha data e nome de quem a superou, porque quem le a serie precisa saber que aquele numero custou duas passadas e veio do segundo corpo, nao do primeiro."
+  },
+  {
+   "id": "E20",
+   "regra": "Todo registro com base_minima_cm de DOIS lados declara chao_declarado_para, objeto com `arranjos` (lista nao vazia de termos do vocabulario fechado: juvenis, um-exemplar, casal, grupo, nao-declarado) e `frase` (nao vazia). Registro sem base de dois lados nao pode ter o campo: escopo de um chao que nao existe e afirmacao sobre nada. 'nao-declarado' nunca aparece ao lado de outro termo."
+  },
+  {
+   "id": "E21",
+   "regra": "AVISO, e nao erro: o arranjo que o registro PUBLICA esta acima do chao que a fonte declarou. Os termos sao ordenados (juvenis < um-exemplar < casal < grupo) e convivencia mapeia para a populacao publicada (solitario = um-exemplar; casal = casal; cardume, grupo e harem = grupo). E aviso porque o DADO esta certo — a fonte declarou o que declarou — e quem tem de obedecer e a PAGINA: a ficha de registro assim publica a frente e NAO publica o fundo, nao abre a tabela de litros por altura nem a de quantos cabem no aquario minimo, e diz na tela para qual populacao aquele fundo foi declarado. Quem executa essa metade e ferramentas/teste-peixes.py, contra o HTML servido."
+  },
+  {
+   "id": "E22",
+   "regra": "A `frase` de chao_declarado_para tem de ser trecho LITERAL da referencia de alguma fonte que sustente base_minima_cm — clausula copiada, nunca reescrita —, e os termos de `arranjos` tem de estar sustentados por ela, por palavra: 'casal' pede casal na clausula; 'grupo' pede grupo, cardume ou 'mantida em numero'; 'um-exemplar' pede sozinho, um exemplar, um adulto, um macho ou um individuo; 'juvenis' pede juven. 'nao-declarado' e o inverso: reprova se a clausula nomear qualquer uma dessas populacoes. Campo e clausula sao duas escritas independentes do mesmo fato, exatamente como no E16 — sem esta regra o termo vira palpite de quem digitou, e o palpite permissivo ('nao-declarado') e justamente o que devolve o fundo a uma ficha que nao pode publica-lo."
   }
  ],
  "o_que_nao_entra": [

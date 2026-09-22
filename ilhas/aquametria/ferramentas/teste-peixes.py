@@ -101,6 +101,20 @@ FICHAS = {
 # cima — se o teste perguntasse ao banco quem tem base nula, ele mediria o banco
 # contra ele mesmo e a afirmacao "a pagina diz COMPRIMENTO quando nao ha fundo"
 # passaria verde com o banco inteiro nulo.
+# AS ESPECIES CUJO FUNDO EXISTE NO BANCO E NAO E DESTA POPULACAO (22/09/2026).
+#
+# Terceiro estado, e ele nasceu de um defeito que esteve OITO DIAS NO AR: a ficha
+# do apistogramma agassizi abria com "para um harem ... 60 cm de frente por 30 cm
+# de fundo", e os 30 cm sao do compendio, que os declarou para UM CASAL. A
+# proibicao ja estava escrita, em maiusculas, no `observacao` daquele registro —
+# e prosa nao barra pagina. Agora o banco carrega `chao_declarado_para` (esquema
+# versao 5) e esta lista e a metade escrita a mao: sem ela, o teste perguntaria ao
+# banco quem esta fora de escopo e mediria o banco contra ele mesmo, que e o
+# mesmo motivo do SEM_FUNDO_DECLARADO logo acima.
+FUNDO_DE_OUTRO_ARRANJO = {
+    "apistogramma-agassizii",
+}
+
 SEM_FUNDO_DECLARADO = {
     "hemigrammus-rhodostomus",
     # leva 5, 14/09/2026: DUAS das tres filhas dos vivaparos entram aqui, e e a
@@ -827,9 +841,26 @@ def medir_ficha(slug, ident, banco):
     # topo deste arquivo. Perguntar ao banco quem tem base nula faria as duas
     # metades errarem juntas: com o banco inteiro nulo a afirmacao passaria.
     sem_fundo = ident in SEM_FUNDO_DECLARADO
+    fundo_de_outro = ident in FUNDO_DE_OUTRO_ARRANJO
     ok("%s: o banco concorda com a lista escrita a mao (fundo declarado: %s)"
        % (slug, "nao" if sem_fundo else "sim"),
        sem_fundo == ((e.get("base_minima_cm") or {}).get("largura") in (None, "")))
+    # A SEGUNDA LISTA E O TERCEIRO ESTADO (22/09/2026). O banco declara para QUEM
+    # a base foi declarada; a lista acima declara quem esta fora de escopo; e esta
+    # afirmacao poe as duas frente a frente. Os termos sao ordenados — juvenis <
+    # um-exemplar < casal < grupo — e harem e cardume sao os dois populacao
+    # `grupo`, que e por que a base do casal nao serve nenhum dos dois.
+    chao = (e.get("chao_declarado_para") or {}).get("arranjos") or []
+    niveis = {"juvenis": 0, "um-exemplar": 1, "casal": 2, "grupo": 3}
+    populacao = {"solitario": "um-exemplar", "casal": "casal",
+                 "cardume": "grupo", "grupo": "grupo", "harem": "grupo"}.get(e.get("convivencia"))
+    fora_pelo_banco = bool(
+        chao and "nao-declarado" not in chao and populacao
+        and niveis[populacao] > max(niveis[a] for a in chao if a in niveis)
+    )
+    ok("%s: o banco concorda com a lista escrita a mao (fundo desta populacao: %s)"
+       % (slug, "nao" if fundo_de_outro else "sim"),
+       fundo_de_outro == fora_pelo_banco, "chao_declarado_para=%s convivencia=%s" % (chao, e.get("convivencia")))
     # A FRASE MUDOU EM 13/09/2026 (item 4 do despacho da Sentinela) e a DISTINCAO
     # NAO: a abertura nao cita mais quem declarou — "a fonte declara a BASE" virou
     # "O que manda é a BASE do aquário" —, porque a 15.2 proibe procedencia no
@@ -849,6 +880,28 @@ def medir_ficha(slug, ident, banco):
            "não sai a tabela de litros por altura" in t)
         ok("%s: a fonte e atribuida ao comprimento, nao a base" % slug,
            "Quem declara esse comprimento é o" in t and "Quem declara essa base é o" not in t)
+    elif fundo_de_outro:
+        # O TERCEIRO RAMO, e ele NAO e o ramo de quem nao tem fundo. Aqui o numero
+        # existe, tem fonte e tem para quem — o que a pagina nao pode e prometer
+        # aquele chao a esta populacao. Calar o numero seria repetir, do outro
+        # lado, o erro de publica-lo sem escopo.
+        ok("%s: a frase mestra diz COMPRIMENTO, e nao promete a base a esta populacao" % slug,
+           "O que manda é o COMPRIMENTO do aquário" in t
+           and "é a BASE do aquário" not in t)
+        ok("%s: nao serve o fundo na frase de abertura" % slug,
+           "cm de fundo. O que manda" not in t)
+        ok("%s: publica o fundo que existe dizendo para quem ele foi declarado" % slug,
+           'class="aqm-px-fundo-de-outro-arranjo"' in c
+           and "foi declarada para" in t
+           and "que é outra quantidade de peixe" in t)
+        ok("%s: diz quais tabelas nao saem por causa disso" % slug,
+           "não sai a tabela de litros por altura" in t)
+        ok("%s: nao serve a tabela do aquario minimo em tres alturas" % slug,
+           "em três alturas de aquário" not in t)
+        ok("%s: nao declara ausencia de fundo que existe" % slug,
+           'class="aqm-px-sem-fundo"' not in c)
+        ok("%s: a fonte e atribuida ao comprimento, que e o que a frase nomeia" % slug,
+           "Quem declara esse comprimento é o" in t and "Quem declara essa base é o" not in t)
     else:
         ok("%s: a frase mestra diz BASE, porque a fonte declarou os dois lados" % slug,
            "O que manda é a BASE do aquário" in t
@@ -856,9 +909,26 @@ def medir_ficha(slug, ident, banco):
            and "o fundo fica em aberto" not in t)
         ok("%s: nao declara ausencia de fundo que nao existe" % slug,
            'class="aqm-px-sem-fundo"' not in c)
+        ok("%s: nao publica o ramo do fundo de outro arranjo" % slug,
+           'class="aqm-px-fundo-de-outro-arranjo"' not in c)
+        # A ATRIBUICAO DO CHAO E DE QUEM DECLAROU O CHAO (22/09/2026). Quatro
+        # fichas serviam "Quem declara essa base é o FishBase" com os dois lados
+        # vindos do Seriously Fish: tetra neon, tetra-brilhante, rasbora arlequim
+        # e apistogramma agassizi. A base cientifica declara a FRENTE e nao fala
+        # de fundo, e a frase perguntava sempre pelo comprimento.
+        corpo_da_base = ""
+        for f in e.get("fontes", []):
+            if "base_minima_cm" in (f.get("campos") or []):
+                ref = f.get("referencia") or ""
+                corpo_da_base = re.split(r"(?:\s+[—–-]\s+|:\s|,\s)", ref, maxsplit=1)[0].strip(" .:,")
+                break
+        if corpo_da_base:
+            ok("%s: atribui a base a quem declarou A BASE (%s)" % (slug, corpo_da_base),
+               ("Quem declara essa base é o %s" % corpo_da_base) in t,
+               t[max(0, t.find("Quem declara essa base")):][:90])
 
     # --- o volume por altura, e o inverso (quantos cabem)
-    largura = (e.get("base_minima_cm") or {}).get("largura")
+    largura = (e.get("base_minima_cm") or {}).get("largura") if not fundo_de_outro else None
     if largura:
         tab = tabela_com(c, "em três alturas de aquário")
         ok("%s: serve a tabela do aquario minimo em tres alturas" % slug, tab is not None)

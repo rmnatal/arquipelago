@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E19 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E22 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -16,6 +16,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 from datetime import date, datetime
 from urllib.parse import urlparse
 
@@ -123,6 +124,58 @@ def valores_numericos(campo, valor):
         return [("%s.%s" % (campo, chave), v) for chave, v in valor.items()
                 if isinstance(v, (int, float)) and not isinstance(v, bool)]
     return []
+
+
+# O CHAO DECLARADO E UMA AFIRMACAO SOBRE UMA POPULACAO (esquema versao 5, 22/09/2026).
+# Os termos sao ordenados: um aquario declarado para um grupo abriga um casal, e o
+# contrario nao vale. `nao-declarado` fica FORA da ordem de proposito — ele nao e um
+# nivel, e a ausencia de nivel: a fonte publicou a base como o minimo da especie sem
+# nomear populacao nenhuma, e ai ela vale para o arranjo que o registro publica.
+NIVEL_DO_CHAO = {"juvenis": 0, "um-exemplar": 1, "casal": 2, "grupo": 3}
+ARRANJOS_DO_CHAO = tuple(NIVEL_DO_CHAO) + ("nao-declarado",)
+
+# Como o arranjo que o registro PUBLICA vira populacao. Harem e cardume caem os dois
+# em `grupo` porque os dois sao varios peixes no mesmo aquario — e e por isso que a
+# base declarada para um casal nao serve nenhum dos dois.
+POPULACAO_PUBLICADA = {
+    "solitario": "um-exemplar",
+    "casal": "casal",
+    "cardume": "grupo",
+    "grupo": "grupo",
+    "harem": "grupo",
+}
+
+# As palavras que sustentam cada termo na clausula da fonte (regra E22). Sao as
+# formas que os dois corpos deste banco usam de fato, nao um dicionario geral.
+PALAVRAS_DO_ARRANJO = {
+    "juvenis": ("juven",),
+    "um-exemplar": ("sozinho", "um exemplar", "um adulto", "um macho", "um individuo"),
+    "casal": ("casal",),
+    "grupo": ("grupo", "cardume", "mantida em numero", "mantido em numero"),
+}
+
+
+def sem_acento(texto):
+    return "".join(c for c in unicodedata.normalize("NFD", str(texto or ""))
+                   if unicodedata.category(c) != "Mn").lower()
+
+
+def chao_serve(arranjos, convivencia):
+    """O chao declarado cobre a populacao que o registro publica?
+
+    `nao-declarado` cobre tudo por decisao escrita no esquema. Fora dele, o chao
+    serve ate o MAIOR nivel que a fonte nomeou.
+    """
+    if "nao-declarado" in arranjos:
+        return True
+    populacao = POPULACAO_PUBLICADA.get(convivencia)
+    if populacao is None:
+        return True
+    niveis = [NIVEL_DO_CHAO[a] for a in arranjos if a in NIVEL_DO_CHAO]
+    if not niveis:
+        return True
+    return NIVEL_DO_CHAO[populacao] <= max(niveis)
+
 
 
 def main():
@@ -372,6 +425,65 @@ def main():
                         if pedaco in ACENTUACAO:
                             erro("E17", rid, "%s '%s' com '%s' sem acento; na tela e '%s'"
                                  % (campo, valor, pedaco, ACENTUACAO[pedaco]))
+
+
+        # E20 / E21 / E22 - o chao declarado e a populacao para quem ele foi declarado
+        #
+        # O DEFEITO QUE FEZ ESTA REGRA NASCER ESTEVE OITO DIAS NO AR: a ficha do
+        # apistogramma agassizi abria com "para um harem ... o seu aquario precisa
+        # de 60 cm de frente por 30 cm de fundo", e os 30 cm de fundo vem do
+        # compendio, que os declarou para UM CASAL. A proibicao ja estava escrita,
+        # em maiusculas, no `observacao` daquele mesmo registro. Prosa nao barra
+        # pagina; regra barra.
+        chao = r.get("chao_declarado_para")
+        base = r.get("base_minima_cm") or {}
+        tem_base_dos_dois_lados = bool(base.get("comprimento") and base.get("largura"))
+        if tem_base_dos_dois_lados and not chao:
+            erro("E20", rid, "base_minima_cm com os dois lados e sem chao_declarado_para: "
+                             "chao sem populacao e numero que a ficha promete a quem quiser")
+        elif chao and not tem_base_dos_dois_lados:
+            erro("E20", rid, "chao_declarado_para sem base_minima_cm dos dois lados: "
+                             "escopo de um chao que nao existe")
+        elif chao:
+            arranjos = list(chao.get("arranjos") or [])
+            frase = str(chao.get("frase") or "").strip()
+            if not arranjos:
+                erro("E20", rid, "chao_declarado_para com arranjos vazio")
+            for a in arranjos:
+                if a not in ARRANJOS_DO_CHAO:
+                    erro("E20", rid, "chao_declarado_para com arranjo '%s' fora do vocabulario" % a)
+            if "nao-declarado" in arranjos and len(arranjos) > 1:
+                erro("E20", rid, "chao_declarado_para mistura 'nao-declarado' com outro termo: "
+                                 "ou a fonte nomeou a populacao, ou nao nomeou")
+            if not frase:
+                erro("E20", rid, "chao_declarado_para sem frase: termo sem a clausula da fonte "
+                                 "e palpite de quem digitou")
+            else:
+                # E22 - a clausula e trecho LITERAL da fonte que sustenta a base
+                refs = [f.get("referencia") or "" for f in r.get("fontes", [])
+                        if "base_minima_cm" in (f.get("campos") or [])]
+                if not any(frase in ref for ref in refs):
+                    erro("E22", rid, "a frase de chao_declarado_para nao e trecho literal de "
+                                     "nenhuma fonte que sustente base_minima_cm")
+                else:
+                    texto = sem_acento(frase)
+                    nomeados = [a for a, palavras in PALAVRAS_DO_ARRANJO.items()
+                                if any(w in texto for w in palavras)]
+                    if "nao-declarado" in arranjos:
+                        if nomeados:
+                            erro("E22", rid, "chao_declarado_para diz 'nao-declarado' e a clausula "
+                                             "nomeia %s" % ", ".join(sorted(nomeados)))
+                    else:
+                        for a in arranjos:
+                            if a in PALAVRAS_DO_ARRANJO and a not in nomeados:
+                                erro("E22", rid, "chao_declarado_para diz '%s' e a clausula da fonte "
+                                                 "nao traz nenhuma palavra que sustente isso" % a)
+            # E21 - aviso: o arranjo publicado esta acima do chao declarado
+            if arranjos and not chao_serve(arranjos, r.get("convivencia")):
+                aviso("E21", rid, "o registro publica convivencia '%s' e o chao foi declarado para "
+                                  "%s: a ficha NAO pode servir o fundo a essa populacao (quem executa "
+                                  "essa metade e ferramentas/teste-peixes.py, contra o HTML servido)"
+                      % (r.get("convivencia"), ", ".join(arranjos)))
 
         # E13 - tolerancia disfarcada de recomendacao
         t = r.get("temperatura_C")

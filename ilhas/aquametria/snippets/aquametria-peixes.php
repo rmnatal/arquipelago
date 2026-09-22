@@ -481,7 +481,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.11.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.12.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -571,6 +571,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 45,
 			'base_comprimento' => 45,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 20,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -597,6 +600,7 @@ function aquametria_peixes_catalogo() {
 						'temperatura_C',
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'cardume_minimo',
 						'convivencia',
 						'comportamento',
@@ -650,6 +654,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => 60,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 20,
 			'temp_max' => 26,
 			'status' => 'completo',
@@ -677,6 +684,7 @@ function aquametria_peixes_catalogo() {
 					'em' => '2026-09-09',
 					'campos' => array(
 						'base_minima_cm',
+						'chao_declarado_para',
 						'nivel_natacao',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: aquario com base de 60 x 30 cm ou maior; agua tipicamente acida, de dureza de carbonatos desprezivel, tingida por substancias humicas.',
@@ -716,6 +724,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => 60,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 23,
 			'temp_max' => 27,
 			'status' => 'conflito',
@@ -743,6 +754,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'cardume_minimo',
 						'convivencia',
 					),
@@ -798,6 +810,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => 60,
 			'base_largura' => 37.5,
+			'chao_para' => array(
+				'grupo',
+			),
 			'temp_min' => 24,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -826,6 +841,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'cardume_minimo',
 						'ph',
 						'comportamento',
@@ -897,6 +913,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 45,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 20,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -962,6 +979,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 45,
 			'base_comprimento' => 45,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'grupo',
+			),
 			'temp_min' => 20,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -988,6 +1008,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'cardume_minimo',
 						'convivencia',
 					),
@@ -1019,6 +1040,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 90,
 			'base_comprimento' => 90,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'grupo',
+			),
 			'temp_min' => 18,
 			'temp_max' => 24,
 			'status' => 'conflito',
@@ -1046,6 +1070,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'comportamento',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie (publicada como Brachydanio rerio): especie ativa, entao mesmo um grupo pequeno precisa de aquario com base minima de 90 x 30 cm; tamanho usual de 40 a 50 mm; e pacifica, rustica e barata.',
@@ -1104,6 +1129,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 80,
 			'base_comprimento' => 80,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 22,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -1132,6 +1160,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'ph',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: aquario com base de 80 x 30 cm ou equivalente e o minimo absoluto a considerar (volume citado de 72 litros); os exemplares de criadouro sao adaptaveis quanto a quimica da agua e ficam bem na faixa de pH 5,0 a 7,5.',
@@ -1201,6 +1230,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 14,
 			'temp_max' => 22,
 			'status' => 'conflito',
@@ -1304,6 +1334,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 27,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -1360,6 +1391,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 90,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 26.5,
 			'temp_max' => 29,
 			'status' => 'conflito',
@@ -1452,6 +1484,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => 60,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'grupo',
+			),
 			'temp_min' => 22,
 			'temp_max' => 25,
 			'status' => 'conflito',
@@ -1481,6 +1516,7 @@ function aquametria_peixes_catalogo() {
 					'em' => '2026-09-09',
 					'campos' => array(
 						'base_minima_cm',
+						'chao_declarado_para',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: base de 60 x 30 cm deve ser a menor a considerar, porque a especie tem de ser mantida em numero; pH 5,0 a 6,0 e dureza de 1 a 5 graus, com a temperatura na parte alta da faixa.',
 				),
@@ -1540,6 +1576,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 18,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -1603,6 +1640,10 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 45,
 			'base_comprimento' => 45,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'um-exemplar',
+				'casal',
+			),
 			'temp_min' => 24,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -1627,6 +1668,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'convivencia',
 						'comportamento',
 						'ph',
@@ -1668,6 +1710,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 24,
 			'temp_max' => 26,
 			'status' => 'completo',
@@ -1724,6 +1767,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 61,
 			'base_comprimento' => 61,
 			'base_largura' => 38,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 18,
 			'temp_max' => 23,
 			'status' => 'conflito',
@@ -1752,6 +1798,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'nivel_natacao',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: base recomendada de 61 x 38 cm (24 x 15 pol).',
@@ -1798,6 +1845,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 45,
 			'base_comprimento' => 45,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'grupo',
+			),
 			'temp_min' => 21,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -1825,6 +1875,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'convivencia',
 						'nivel_natacao',
 					),
@@ -1867,6 +1918,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 80,
 			'base_comprimento' => 80,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 20,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -1893,6 +1947,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'cardume_minimo',
 						'comportamento',
 					),
@@ -1952,6 +2007,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 80,
 			'base_comprimento' => 80,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 25,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -1980,6 +2038,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'cardume_minimo',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: base de 80 x 30 cm ou equivalente para manutencao de longo prazo; areia fina e o substrato ideal, cascalho arredondado serve desde que mantido escrupulosamente limpo; grupo de pelo menos seis da o comportamento e a confianca normais do genero.',
@@ -2051,6 +2110,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 75,
 			'base_comprimento' => 75,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'grupo',
+			),
 			'temp_min' => 20,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -2079,6 +2141,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: um grupo pode ser mantido em aquario padrao de 75 x 30 cm (70 litros); especie ativa, que quer bastante espaco aberto para nadar mais areas de plantio denso e vegetacao flutuante para amenizar a luz.',
 				),
@@ -2133,6 +2196,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 120,
 			'base_comprimento' => 120,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 27,
 			'temp_max' => 30,
 			'status' => 'conflito',
@@ -2161,6 +2227,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'cardume_minimo',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: base de 120 x 30 cm (48 x 12 pol); a especie pede aquario de pelo menos 120 x 30 x 30 cm; deve ser mantida em cardume de ao menos 6 a 8 individuos, de preferencia mais.',
@@ -2225,6 +2292,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => 60,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'casal',
+			),
 			'temp_min' => 25,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -2252,9 +2322,72 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'convivencia',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: um aquario de 60 x 30 x 30 cm (56 litros) e apenas grande o bastante para UM CASAL, desde que montado corretamente; peixe timido, que pede aquario densamente plantado, substrato escuro e vegetacao flutuante; populacoes selvagens vivem em agua mole e acida.',
+				),
+			),
+			'conflitos' => array(),
+		),
+		'symphysodon-aequifasciatus' => array(
+			'id' => 'symphysodon-aequifasciatus',
+			'cientifico' => 'Symphysodon aequifasciatus',
+			'sinonimos' => array(),
+			'populares' => array(
+				'acará-disco',
+				'disco',
+				'disco azul',
+			),
+			'familia' => 'Cichlidae',
+			'origem' => 'América do Sul: baixo Amazonas e afluentes a leste da confluência do Negro com o Solimões',
+			'porte_cm' => 13.7,
+			'porte_medida' => 'SL',
+			'cardume' => 5,
+			'cardume_ate' => null,
+			'convivencia' => 'cardume',
+			'comportamento' => '',
+			'frente_cm' => 120,
+			'base_comprimento' => 120,
+			'base_largura' => 45,
+			'chao_para' => array(
+				'juvenis',
+				'casal',
+			),
+			'temp_min' => 26,
+			'temp_max' => 30,
+			'status' => 'completo',
+			'fontes' => array(
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://fishbase.se/summary/11185',
+					'em' => '2026-09-09',
+					'campos' => array(
+						'familia',
+						'origem_geografica',
+						'porte_adulto_cm',
+						'porte_medida',
+						'porte_sexo',
+						'temperatura_C',
+						'ph',
+						'dureza_dgh',
+						'cardume_minimo',
+						'comprimento_minimo_aquario_cm',
+						'convivencia',
+					),
+					'referencia' => 'FishBase - ficha da especie: max length 13,7 cm SL; 26 a 30 C; pH 5,0 a 8,0; dH 0 a 12; familia Cichlidae; America do Sul, baixo Amazonas; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 120 cm.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/symphysodon-aequifasciatus/',
+					'em' => '2026-09-22',
+					'campos' => array(
+						'base_minima_cm',
+						'chao_declarado_para',
+						'altura_minima_cm',
+						'volume_minimo_declarado_L',
+					),
+					'referencia' => 'Seriously Fish - ficha da especie: um casal reprodutor precisa de espaco na horizontal e na vertical, entao um aquario de 48 x 18 x 18 polegadas (120 x 45 x 45 cm), 255 litros, e recomendado para alguns juvenis ou um casal de adultos reprodutores; porte maximo relatado do disco selvagem em torno de 14 cm; peixe timido e assustadico, que precisa de esconderijo; o selvagem come sobretudo zooplancton, insetos e outros invertebrados pequenos.',
 				),
 			),
 			'conflitos' => array(),
@@ -2279,6 +2412,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 100,
 			'base_comprimento' => 100,
 			'base_largura' => 40,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 24,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -2306,6 +2442,7 @@ function aquametria_peixes_catalogo() {
 					'em' => '2026-09-09',
 					'campos' => array(
 						'base_minima_cm',
+						'chao_declarado_para',
 						'altura_minima_cm',
 						'comportamento',
 						'alimentacao',
@@ -2347,6 +2484,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 120,
 			'base_comprimento' => 120,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
 			'temp_min' => 22,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -2375,6 +2515,7 @@ function aquametria_peixes_catalogo() {
 						'porte_medida',
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'convivencia',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: aquario com base de 120 x 30 cm ou equivalente e o menor a considerar (volume citado de 108 litros); machos ate 14 cm e femeas ate 16 cm TL; havendo machos e femeas juntos, manter varias femeas para cada macho, porque o assedio do macho e implacavel.',
@@ -2404,6 +2545,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 180,
 			'base_comprimento' => 180,
 			'base_largura' => 60,
+			'chao_para' => array(
+				'grupo',
+			),
 			'temp_min' => 25,
 			'temp_max' => 30,
 			'status' => 'conflito',
@@ -2433,6 +2577,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: um aquario com base de 180 x 60 cm ou equivalente e o minimo absoluto para abrigar um grupo (volume citado de 648 litros).',
 				),
@@ -2480,6 +2625,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 150,
 			'base_comprimento' => 150,
 			'base_largura' => 60,
+			'chao_para' => array(
+				'um-exemplar',
+			),
 			'temp_min' => 22,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -2506,6 +2654,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'convivencia',
 						'expectativa_vida_anos',
 					),
@@ -2534,6 +2683,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 100,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 0,
 			'temp_max' => 41,
 			'status' => 'conflito',
@@ -2616,6 +2766,10 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => 60,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'casal',
+				'grupo',
+			),
 			'temp_min' => 22,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -2640,6 +2794,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 						'convivencia',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: um aquario com base de 60 x 30 cm (24 x 12 pol) ou equivalente e suficiente para abrigar um casal ou grupo pequeno.',
@@ -2679,6 +2834,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 15,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -2730,6 +2886,9 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 60,
 			'base_comprimento' => 60,
 			'base_largura' => 30,
+			'chao_para' => array(
+				'casal',
+			),
 			'temp_min' => 26,
 			'temp_max' => 29,
 			'status' => 'completo',
@@ -2759,6 +2918,7 @@ function aquametria_peixes_catalogo() {
 					'campos' => array(
 						'comprimento_minimo_aquario_cm',
 						'base_minima_cm',
+						'chao_declarado_para',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: base de 60 x 30 cm ou mais e aceitavel para UM casal, com o grupo exigindo espaco maior; exemplares nascidos em cativeiro sao a escolha recomendada para o aquario comunitario geral, enquanto os selvagens ficam melhor sozinhos ou com pequenos peixes de companhia como os Nannostomus, e idealmente nao devem ser misturados com outros Apistogramma; desovador de substrato, que deposita os ovos em frestas e cavidades da decoracao; o macho e maior, mais colorido e desenvolve nadadeiras mais extensas que a femea.',
 				),
@@ -2785,6 +2945,7 @@ function aquametria_peixes_catalogo() {
 			'frente_cm' => 120,
 			'base_comprimento' => null,
 			'base_largura' => null,
+			'chao_para' => array(),
 			'temp_min' => 22,
 			'temp_max' => 26,
 			'status' => 'completo',
@@ -2899,19 +3060,6 @@ function aquametria_peixes_barrados() {
 			'familia' => 'Poeciliidae',
 			'faltando' => array(
 				'comprimento_minimo_aquario_cm',
-			),
-		),
-		'symphysodon-aequifasciatus' => array(
-			'id' => 'symphysodon-aequifasciatus',
-			'cientifico' => 'Symphysodon aequifasciatus',
-			'populares' => array(
-				'acará-disco',
-				'disco',
-				'disco azul',
-			),
-			'familia' => 'Cichlidae',
-			'faltando' => array(
-				'duas fontes distintas',
 			),
 		),
 		'trichopodus-leerii' => array(
@@ -3767,6 +3915,150 @@ function aquametria_peixes_frente_por_individuo( $e ) {
 }
 }
 
+/**
+ * O CHÃO DECLARADO É UMA AFIRMAÇÃO SOBRE UMA POPULAÇÃO (1.12.0, 22/09/2026).
+ *
+ * `base_minima_cm` sempre foi um número sobre um punhado de peixes — e até a
+ * versão 5 do esquema não havia onde dizer QUAL punhado. O preço esteve oito
+ * dias no ar: a ficha do apistogramma agassizi abria com "para um harém de
+ * apistogramma agassizi ... o seu aquário precisa de 60 cm de frente por 30 cm
+ * de fundo", e os 30 cm de fundo são do compêndio, que os declarou para UM
+ * CASAL. A proibição existia, escrita em maiúsculas dentro do `observacao`
+ * daquele registro — "O QUE A FICHA NÃO PODE FAZER: prometer que 60 x 30 cm
+ * serve ao harém" —, e prosa não barra página.
+ *
+ * Os termos são ORDENADOS por população, e é essa ordem que decide: aquário
+ * declarado para um grupo abriga um casal, e o contrário não vale.
+ * `nao-declarado` fica FORA da ordem de propósito — não é um nível, é a
+ * ausência de nível: a fonte publicou a base como o mínimo da espécie sem
+ * nomear população nenhuma, e aí ela vale para o arranjo que o registro
+ * publica. É o caso mais comum, e é como este eixo inteiro sempre a leu.
+ */
+if ( ! function_exists( 'aquametria_peixes_nivel_do_chao' ) ) {
+function aquametria_peixes_nivel_do_chao( $termo ) {
+	$niveis = array(
+		'juvenis'     => 0,
+		'um-exemplar' => 1,
+		'casal'       => 2,
+		'grupo'       => 3,
+	);
+	return isset( $niveis[ $termo ] ) ? $niveis[ $termo ] : null;
+}
+}
+
+/**
+ * A população que a FICHA publica. Harém e cardume caem os dois em `grupo`
+ * porque os dois são vários peixes no mesmo aquário — e é exatamente por isso
+ * que uma base declarada para um casal não serve nenhum dos dois.
+ */
+if ( ! function_exists( 'aquametria_peixes_populacao_publicada' ) ) {
+function aquametria_peixes_populacao_publicada( $e ) {
+	$mapa = array(
+		'solitario' => 'um-exemplar',
+		'casal'     => 'casal',
+		'cardume'   => 'grupo',
+		'grupo'     => 'grupo',
+		'harem'     => 'grupo',
+	);
+	$conv = isset( $e['convivencia'] ) ? $e['convivencia'] : '';
+	return isset( $mapa[ $conv ] ) ? $mapa[ $conv ] : null;
+}
+}
+
+/** O chão declarado cobre a população que esta ficha publica? */
+if ( ! function_exists( 'aquametria_peixes_chao_serve_o_arranjo' ) ) {
+function aquametria_peixes_chao_serve_o_arranjo( $e ) {
+	$arranjos = isset( $e['chao_para'] ) ? (array) $e['chao_para'] : array();
+	if ( ! $arranjos || in_array( 'nao-declarado', $arranjos, true ) ) {
+		return true;
+	}
+	$populacao = aquametria_peixes_populacao_publicada( $e );
+	if ( null === $populacao ) {
+		return true;
+	}
+	$teto = null;
+	foreach ( $arranjos as $a ) {
+		$n = aquametria_peixes_nivel_do_chao( $a );
+		if ( null !== $n && ( null === $teto || $n > $teto ) ) {
+			$teto = $n;
+		}
+	}
+	if ( null === $teto ) {
+		return true;
+	}
+	return aquametria_peixes_nivel_do_chao( $populacao ) <= $teto;
+}
+}
+
+/**
+ * O FUNDO QUE ESTA PÁGINA PODE PUBLICAR, e não o fundo que o banco tem.
+ *
+ * UMA régua, UM lugar: a ficha e o JSON-LD liam `base_largura` cada um por si,
+ * e duas leituras do mesmo campo são duas respostas no dia em que uma delas
+ * ganhar condição. Quem não passa aqui não tem fundo na tela, não tem tabela de
+ * litros por altura, não tem a tabela de quantos cabem no aquário mínimo e não
+ * tem litro no schema — porque as quatro coisas saem da multiplicação por um
+ * número que foi declarado para outra gente.
+ */
+if ( ! function_exists( 'aquametria_peixes_fundo' ) ) {
+function aquametria_peixes_fundo( $e ) {
+	if ( empty( $e['base_largura'] ) ) {
+		return null;
+	}
+	if ( ! aquametria_peixes_chao_serve_o_arranjo( $e ) ) {
+		return null;
+	}
+	return (float) $e['base_largura'];
+}
+}
+
+/**
+ * O fundo existe no banco e foi declarado para OUTRA população.
+ *
+ * Serve para a página distinguir as duas ausências, que são diferentes para
+ * quem lê: "ninguém declarou largura" e "a largura declarada não é sobre estes
+ * peixes". A segunda é conteúdo — tem número, tem fonte e tem para quem —, e
+ * calá-la seria repetir, do outro lado, o erro de publicá-la sem escopo.
+ */
+if ( ! function_exists( 'aquametria_peixes_fundo_de_outro_arranjo' ) ) {
+function aquametria_peixes_fundo_de_outro_arranjo( $e ) {
+	if ( empty( $e['base_largura'] ) || aquametria_peixes_chao_serve_o_arranjo( $e ) ) {
+		return null;
+	}
+	$de = array(
+		'juvenis'     => 'juvenis',
+		'um-exemplar' => 'um exemplar adulto',
+		'casal'       => 'um casal',
+		'grupo'       => 'um grupo',
+	);
+	$nomes = array();
+	foreach ( (array) $e['chao_para'] as $a ) {
+		if ( isset( $de[ $a ] ) ) {
+			$nomes[] = $de[ $a ];
+		}
+	}
+	if ( ! $nomes ) {
+		return null;
+	}
+	return array(
+		'largura' => (float) $e['base_largura'],
+		'para'    => aquametria_peixes_lista_em_ou( $nomes ),
+	);
+}
+}
+
+/** "a" · "a ou b" · "a, b ou c" — a mesma juntada que o resto da ficha usa. */
+if ( ! function_exists( 'aquametria_peixes_lista_em_ou' ) ) {
+function aquametria_peixes_lista_em_ou( $itens ) {
+	$itens = array_values( array_filter( (array) $itens ) );
+	if ( count( $itens ) < 2 ) {
+		return isset( $itens[0] ) ? $itens[0] : '';
+	}
+	$ultimo = array_pop( $itens );
+	return implode( ', ', $itens ) . ' ou ' . $ultimo;
+}
+}
+
 /** Volume bruto da lâmina, em litros: a conta de C1, antes de vidro e substrato. */
 if ( ! function_exists( 'aquametria_peixes_volume_bruto' ) ) {
 function aquametria_peixes_volume_bruto( $comprimento_cm, $largura_cm, $altura_cm ) {
@@ -4298,7 +4590,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 	$nome   = aquametria_peixes_nome( $e );
 	$porte  = aquametria_peixes_porte_faixa( $e );
 	$frente = aquametria_peixes_frente_faixa( $e );
-	$larg    = $e['base_largura'] ? (float) $e['base_largura'] : null;
+	$larg    = aquametria_peixes_fundo( $e );
 	$card    = ! empty( $e['cardume'] ) ? (int) $e['cardume'] : null;
 	$arranjo = aquametria_peixes_arranjo( $e );
 
@@ -4423,18 +4715,46 @@ function aquametria_peixes_ficha_html( $slug ) {
 		/* Decisão 7, a outra metade: sem o fundo declarado, as duas tabelas que
 		   dependem dele não saem — e a página DIZ que não saíram e por quê. A
 		   versão anterior deste código simplesmente encolhia, e quem lesse não
-		   tinha como distinguir "a ilha não sabe" de "a ilha esqueceu". */
+		   tinha como distinguir "a ilha não sabe" de "a ilha esqueceu".
+
+		   E DESDE A 1.12.0 SÃO DUAS AUSÊNCIAS, não uma. "Ninguém declarou
+		   largura" e "a largura declarada não é sobre estes peixes" são
+		   diferentes para quem lê, e a segunda tem número, tem fonte e tem para
+		   quem — calá-la seria repetir, do outro lado, o erro de publicá-la sem
+		   escopo. */
+		$outro = aquametria_peixes_fundo_de_outro_arranjo( $e );
+		if ( $outro ) {
+			$html .= '<p class="aqm-px-fundo-de-outro-arranjo"><strong>O fundo deste aquário, esta página não promete a '
+				. esc_html( $arranjo ? $arranjo['este'] : 'este cardume' ) . ' — e o motivo é a própria fonte.</strong> '
+				. 'A largura de ' . esc_html( aquametria_peixes_num( $outro['largura'] ) ) . ' cm que a fonte publica para o '
+				. esc_html( $nome ) . ' foi declarada para ' . esc_html( $outro['para'] ) . ', que é outra quantidade de peixe. '
+				. 'Servir esse número aqui seria dizer, com cara de medida, que aquele chão atende '
+				. esc_html( $arranjo ? $arranjo['este'] : 'este cardume' ) . ' — e a fonte não faz essa afirmação. '
+				. 'Por isso não sai a tabela de litros por altura nem a de quantos cabem no aquário mínimo: as duas partem do fundo. '
+				. 'O que fica de pé é a frente de ' . esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm, essa sim declarada para '
+				. esc_html( $arranjo ? $arranjo['este'] : 'este cardume' ) . ', e a outra metade da resposta logo abaixo: quantos litros '
+				. esc_html( $arranjo ? $arranjo['este'] : 'o cardume' ) . ' pede pelas duas réguas brasileiras de lotação, que partem do comprimento dos peixes e não do chão do aquário.</p>';
+		} else {
 		$html .= '<p class="aqm-px-sem-fundo"><strong>O fundo do aquário, esta página não tem como dizer — e isso é o que a fonte declarou, não um buraco nosso.</strong> '
 			. 'Para o ' . esc_html( $nome ) . ' a fonte publica o comprimento mínimo e para aí: não há largura declarada por ninguém. '
 			. 'Sem os dois lados do chão não existe litro, então aqui não sai a tabela de litros por altura nem a de quantos cabem no aquário mínimo — elas sairiam de um fundo que a gente teria inventado. '
 			. 'O que a página responde com o que está medido é a outra metade, e ela está logo abaixo: quantos litros o ' . esc_html( $arranjo ? $arranjo['coletivo'] : 'cardume' ) . ' pede pelas duas réguas brasileiras de lotação, que partem do comprimento dos peixes e não do chão do aquário.</p>';
+		}
 	}
 
 	/* A camada de prova: fonte pelo nome e data, um parágrafo abaixo (15.2). */
-	$fonte_frente = aquametria_peixes_fonte_do_campo( $e, 'comprimento_minimo_aquario_cm' );
-	if ( ! $fonte_frente ) {
-		$fonte_frente = aquametria_peixes_fonte_do_campo( $e, 'base_minima_cm' );
-	}
+	/* A FRASE PERGUNTA PELO CAMPO QUE ELA VAI NOMEAR (1.12.0, 22/09/2026).
+	   Até aqui ela perguntava SEMPRE pelo comprimento e caía na base só quando
+	   não havia comprimento declarado — e então dizia "quem declara essa BASE é
+	   o <corpo que declarou só o comprimento>". Quatro fichas serviam isso no
+	   ar: tetra neon, tetra-brilhante, rasbora arlequim e apistogramma agassizi
+	   diziam "quem declara essa base é o FishBase", e nas quatro os dois lados
+	   do chão são do Seriously Fish — a base científica declara a frente e não
+	   fala de fundo. Atribuir número à fonte errada é o defeito mais caro desta
+	   ilha, porque a procedência é o que ela vende. O `$substitutos` de
+	   `aquametria_peixes_fonte_do_campo()` continua cobrindo o registro que
+	   declara só um dos dois campos. */
+	$fonte_frente = aquametria_peixes_fonte_do_campo( $e, $larg ? 'base_minima_cm' : 'comprimento_minimo_aquario_cm' );
 	$html .= '<p class="aqm-prova">';
 	if ( $fonte_frente ) {
 		$html .= 'Quem declara ' . ( $larg ? 'essa base' : 'esse comprimento' ) . ' é o '
@@ -5482,7 +5802,7 @@ function aquametria_peixes_jsonld_dados( $slug ) {
 		$porte  = aquametria_peixes_porte_faixa( $e );
 		$frente = aquametria_peixes_frente_faixa( $e );
 		$card    = ! empty( $e['cardume'] ) ? (int) $e['cardume'] : null;
-		$larg    = $e['base_largura'] ? (float) $e['base_largura'] : null;
+		$larg    = aquametria_peixes_fundo( $e );
 		$arranjo = aquametria_peixes_arranjo( $e );
 
 		/* O RABICHO DA RESPOSTA SEGUE O ARRANJO (1.7.0), pelo mesmo motivo do

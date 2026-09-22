@@ -52,6 +52,12 @@
     "comprimento": 45,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "aquario com base de no minimo 45 x 30 cm (18 x 12 pol) ou equivalente"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -88,6 +94,7 @@
       "temperatura_C",
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "cardume_minimo",
       "convivencia",
       "comportamento"
@@ -235,6 +242,12 @@
     "comprimento": 60,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "aquario com base de 60 x 30 cm ou maior"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": "meio",
@@ -272,6 +285,7 @@
      "verificado_em": "2026-09-09",
      "campos": [
       "base_minima_cm",
+      "chao_declarado_para",
       "nivel_natacao"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
@@ -332,6 +346,12 @@
     "comprimento": 60,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "aquario com base de 60 x 30 cm ou maior"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": "meio",
@@ -369,6 +389,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "cardume_minimo",
       "convivencia"
      ],
@@ -449,6 +470,12 @@
     "comprimento": 60,
     "largura": 37.5
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "grupo"
+    ],
+    "frase": "um aquario de 60 x 37,5 x 30 cm (70 litros) abriga confortavelmente um grupo pequeno"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -487,6 +514,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "cardume_minimo",
       "ph",
       "comportamento",
@@ -681,6 +709,12 @@
     "comprimento": 45,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "grupo"
+    ],
+    "frase": "um aquario de 45 x 30 x 30 cm ja atende um grupo pequeno"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -717,6 +751,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "cardume_minimo",
       "convivencia"
      ],
@@ -767,6 +802,12 @@
     "comprimento": 90,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "grupo"
+    ],
+    "frase": "mesmo um grupo pequeno precisa de aquario com base minima de 90 x 30 cm"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -804,6 +845,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "comportamento"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
@@ -887,6 +929,12 @@
     "comprimento": 80,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "aquario com base de 80 x 30 cm ou equivalente e o minimo absoluto a considerar"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -925,6 +973,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "ph"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
@@ -1454,6 +1503,12 @@
     "comprimento": 60,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "grupo"
+    ],
+    "frase": "base de 60 x 30 cm deve ser a menor a considerar, porque a especie tem de ser mantida em numero"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": "meio",
@@ -1492,7 +1547,8 @@
      "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha",
      "verificado_em": "2026-09-09",
      "campos": [
-      "base_minima_cm"
+      "base_minima_cm",
+      "chao_declarado_para"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
     },
@@ -1671,6 +1727,13 @@
     "comprimento": 45,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "um-exemplar",
+     "casal"
+    ],
+    "frase": "aquario com base de 45 x 30 cm ou equivalente ja e grande para um macho sozinho ou um casal"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -1705,6 +1768,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "convivencia",
       "comportamento",
       "ph"
@@ -1852,6 +1916,12 @@
     "comprimento": 61,
     "largura": 38
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "base recomendada de 61 x 38 cm (24 x 15 pol)"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": "fundo",
@@ -1890,6 +1960,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "nivel_natacao"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data. A confirmar na ficha."
@@ -1956,6 +2027,12 @@
     "comprimento": 45,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "grupo"
+    ],
+    "frase": "um aquario de 45 x 30 x 30 cm (42,5 litros) e grande o bastante para um grupo pequeno desta especie"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": "fundo",
@@ -1993,6 +2070,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "convivencia",
       "nivel_natacao"
      ],
@@ -2056,6 +2134,12 @@
     "comprimento": 80,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "base de 80 x 30 cm ou equivalente deve ser a menor a considerar"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -2092,6 +2176,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "cardume_minimo",
       "comportamento"
      ],
@@ -2176,6 +2261,12 @@
     "comprimento": 80,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "base de 80 x 30 cm ou equivalente para manutencao de longo prazo"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": "fundo",
@@ -2214,6 +2305,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "cardume_minimo"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
@@ -2314,6 +2406,12 @@
     "comprimento": 75,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "grupo"
+    ],
+    "frase": "um grupo pode ser mantido em aquario padrao de 75 x 30 cm (70 litros)"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -2351,7 +2449,8 @@
      "verificado_em": "2026-09-09",
      "campos": [
       "comprimento_minimo_aquario_cm",
-      "base_minima_cm"
+      "base_minima_cm",
+      "chao_declarado_para"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
     },
@@ -2422,6 +2521,13 @@
     "comprimento": 60,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "um-exemplar",
+     "casal"
+    ],
+    "frase": "um aquario com base de 60 x 30 cm ou equivalente basta para um exemplar ou um casal reprodutor"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -2456,6 +2562,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
@@ -2502,6 +2609,12 @@
     "comprimento": 120,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "base de 120 x 30 cm (48 x 12 pol)"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -2540,6 +2653,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "cardume_minimo"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data. A confirmar na ficha."
@@ -2625,6 +2739,12 @@
     "comprimento": 60,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "casal"
+    ],
+    "frase": "um aquario de 60 x 30 x 30 cm (56 litros) e apenas grande o bastante para UM CASAL"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -2662,6 +2782,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
@@ -2889,11 +3010,18 @@
    "cardume_recomendado_ate": null,
    "comprimento_minimo_aquario_cm": 120,
    "base_minima_cm": {
-    "comprimento": null,
-    "largura": null
+    "comprimento": 120,
+    "largura": 45
    },
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
+   "chao_declarado_para": {
+    "arranjos": [
+     "juvenis",
+     "casal"
+    ],
+    "frase": "recomendado para alguns juvenis ou um casal de adultos reprodutores"
+   },
+   "altura_minima_cm": 45,
+   "volume_minimo_declarado_L": 255,
    "nivel_natacao": null,
    "comportamento": null,
    "convivencia": "cardume",
@@ -2922,12 +3050,26 @@
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: um casal reprodutor precisa de espaco na horizontal e na vertical, entao um aquario de 48 x 18 x 18 polegadas (120 x 45 x 45 cm), 255 litros, e recomendado para alguns juvenis ou um casal de adultos reprodutores; porte maximo relatado do disco selvagem em torno de 14 cm; peixe timido e assustadico, que precisa de esconderijo; o selvagem come sobretudo zooplancton, insetos e outros invertebrados pequenos.",
+     "url": "https://www.seriouslyfish.com/species/symphysodon-aequifasciatus/",
+     "verificado_em": "2026-09-22",
+     "campos": [
+      "base_minima_cm",
+      "chao_declarado_para",
+      "altura_minima_cm",
+      "volume_minimo_declarado_L"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao endereco da ficha da especie em 22/09/2026, em cinco formulacoes, sem leitura da pagina: o egresso da nuvem devolve EGRESS_BLOCKED para www.seriouslyfish.com, reconfirmado naquela data. A frase voltou igual em tres formulacoes. ESTA COLETA FOI RECUSADA NO DIA EM QUE FOI FEITA e entrou no dia seguinte, sem uma busca nova: o que mudou foi o esquema, que ganhou chao_declarado_para na versao 5 e passou a ter onde dizer PARA QUEM a base foi declarada. Os tres numeros sao de um aquario dimensionado para juvenis ou um casal reprodutor, e o registro publica cardume de cinco adultos — por isso eles NAO sao o chao desta ficha, e a pagina e proibida de os servir como tal (E21). A entrada em coletas_recusadas continua no registro, com superada_em e superada_por, porque a serie e o que ensina."
     }
    ],
    "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Registro se apoia em UM corpo de fonte so (FishBase), por isso parcial e nao completo: a busca restrita ao Seriously Fish em 09/09/2026 devolveu a ficha, mas nenhum numero dela - so a descricao de peixe arisco que precisa de esconderijo, que nao cabe no vocabulario de comportamento. O porte de 13,7 cm SL e o declarado pela base; o disco de aquario passa disso em altura de corpo, que e outra medida. EM 22/09/2026 UMA SEGUNDA COLETA FOI FEITA E RECUSADA, e o que ela achou esta em coletas_recusadas: o Seriously Fish declara um aquario de 120 x 45 x 45 cm e 255 L, mas para alguns juvenis ou um casal reprodutor — arranjo diferente do que este registro publica, que e cardume de cinco. Entrar como base_minima_cm faria a ficha publicar como chao do cardume um numero que a fonte deu para o casal.",
+   "verificado_em": "2026-09-22",
+   "status_registro": "completo",
+   "observacao": "SEGUNDO CORPO DE FONTE CONQUISTADO EM 22/09/2026 SEM UMA COLETA NOVA, e isso e o que este registro ensina. Ele passou treze dias em UM corpo so (FishBase) porque a unica frase util do compendio dimensiona o aquario para outra populacao: 120 x 45 x 45 cm e 255 L para alguns juvenis ou um casal de adultos reprodutores, enquanto este registro publica cardume de cinco. A coleta foi feita em 22/09 as 13h20Z e RECUSADA por escopo; a recusa ficou gravada em coletas_recusadas, e foi ela que nomeou o conserto. Na mesma data o esquema ganhou chao_declarado_para (versao 5): a base declarada passou a viajar com o arranjo a que ela se refere, e os tres campos entraram sem que a ficha ganhe o direito de servi-los ao cardume — quem impede e o E21 e o portao de pagina, nao uma frase de aviso. O QUE ISTO MUDA NA ILHA: o registro fica completo, entra no catalogo e vira elegivel para ficha propria, e com ele /peixes/acaras/ passa a ter as tres fichas do minimo do 16.5 (acara-bandeira, oscar e disco). O QUE ISTO NAO MUDA: o chao que a ficha do disco vai publicar continua sendo so a FRENTE de 120 cm, que a FishBase declara para grupos de cinco ou mais; o fundo fica em aberto na tela, dito com todas as letras e com o nome da populacao para quem ele foi declarado. O porte de 13,7 cm SL e o declarado pela base cientifica; o compendio relata 'em torno de 14 cm' SEM declarar a medida, e numero de medidas diferentes nao se compara (regra da leva 7), entao ele NAO sustenta porte_adulto_cm e nao virou conflito. O disco de aquario passa dos 13,7 cm em altura de corpo, que e outra medida ainda.",
    "coletas_recusadas": [
     {
      "em": "2026-09-22",
@@ -2943,7 +3085,9 @@
      ],
      "o_que_a_fonte_declara": "UMA frase util, repetida igual em tres formulacoes da busca: um casal reprodutor precisa de espaco na horizontal e na vertical, entao um aquario de 48 x 18 x 18 polegadas (120 x 45 x 45 cm), 255 litros, e recomendado PARA ALGUNS JUVENIS OU UM CASAL DE ADULTOS REPRODUTORES. Mais: porte maximo relatado do disco selvagem em torno de 14 cm; peixe timido e assustadico, que precisa de esconderijo; o selvagem come sobretudo zooplancton, insetos e outros invertebrados pequenos.",
      "motivo": "ESCOPO, e nao falta de numero. O registro declara convivencia cardume com cardume_minimo 5, colhido da FishBase, e a base de 120 x 45 cm desta frase foi declarada para OUTRO arranjo: alguns juvenis ou um casal reprodutor. Gravada em base_minima_cm, ela sairia na ficha como o chao que o cardume de cinco adultos pede, e essa e afirmacao que a fonte nao faz. E a mesma familia da regra que a leva 7 escreveu — numero de medidas diferentes nao se compara —, so que aqui o que difere nao e a regua: e de quem se fala. O esquema nao tem hoje onde carregar o arranjo de uma base declarada, entao o campo fica null. Os outros tres: altura_minima_cm e volume_minimo_declarado_L saem da MESMA frase e carregam o mesmo escopo; alimentacao seria classificacao NOSSA de uma descricao de dieta, e nao palavra da fonte; comportamento (timido, assustadico) nao cabe no vocabulario fechado do esquema, que so aceita pacifico, semi-agressivo, agressivo e territorial.",
-     "o_que_destravaria": "Um segundo corpo que declare campo de manutencao para o ARRANJO que este registro publica (grupo de cinco ou mais), ou um campo de escopo no esquema que deixe a base declarada viajar com o arranjo a que ela se refere. Enquanto nenhum dos dois existir, o registro fica em UM corpo de fonte so e a categoria /peixes/acaras/ nao nasce: ela precisa de tres fichas, e as outras duas (acara-bandeira e oscar) ja passam nos dois portoes."
+     "o_que_destravaria": "Um segundo corpo que declare campo de manutencao para o ARRANJO que este registro publica (grupo de cinco ou mais), ou um campo de escopo no esquema que deixe a base declarada viajar com o arranjo a que ela se refere. Enquanto nenhum dos dois existir, o registro fica em UM corpo de fonte so e a categoria /peixes/acaras/ nao nasce: ela precisa de tres fichas, e as outras duas (acara-bandeira e oscar) ja passam nos dois portoes.",
+     "superada_em": "2026-09-22",
+     "superada_por": "chao_declarado_para, campo da versao 5 do esquema, escrito nesta mesma data. A recusa estava certa e continua certa no que ela afirmou: gravar 120 x 45 cm em base_minima_cm SEM dizer para quem faria a ficha publicar como chao do cardume de cinco um numero que a fonte deu para o casal. O que faltava nao era outro numero nem outra busca — era um lugar no esquema para o arranjo viajar junto do chao. Com ele, os tres campos entraram do jeito que a fonte os declarou (base_minima_cm, altura_minima_cm e volume_minimo_declarado_L, com arranjos [juvenis, casal]), e o E21 mais o portao de pagina impedem que a ficha os prometa ao cardume. alimentacao e comportamento SEGUEM RECUSADOS e seguem nulos: aqueles dois nao eram escopo, eram vocabulario, e nada nesta versao os destrava."
     }
    ]
   },
@@ -3058,6 +3202,12 @@
     "comprimento": 100,
     "largura": 40
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "base minima de 100 x 40 x 50 cm"
+   },
    "altura_minima_cm": 50,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -3095,6 +3245,7 @@
      "verificado_em": "2026-09-09",
      "campos": [
       "base_minima_cm",
+      "chao_declarado_para",
       "altura_minima_cm",
       "comportamento",
       "alimentacao"
@@ -3279,6 +3430,12 @@
     "comprimento": 120,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "aquario com base de 120 x 30 cm ou equivalente e o menor a considerar"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -3317,6 +3474,7 @@
       "porte_medida",
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
@@ -3365,6 +3523,12 @@
     "comprimento": 180,
     "largura": 60
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "grupo"
+    ],
+    "frase": "um aquario com base de 180 x 60 cm ou equivalente e o minimo absoluto para abrigar um grupo"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -3403,7 +3567,8 @@
      "verificado_em": "2026-09-09",
      "campos": [
       "comprimento_minimo_aquario_cm",
-      "base_minima_cm"
+      "base_minima_cm",
+      "chao_declarado_para"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
     }
@@ -3474,6 +3639,12 @@
     "comprimento": 150,
     "largura": 60
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "um-exemplar"
+    ],
+    "frase": "um aquario com base de 150 x 60 cm e apenas grande o bastante para abrigar UM adulto"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -3510,6 +3681,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "convivencia",
       "expectativa_vida_anos"
      ],
@@ -3671,6 +3843,13 @@
     "comprimento": 60,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "casal",
+     "grupo"
+    ],
+    "frase": "um aquario com base de 60 x 30 cm (24 x 12 pol) ou equivalente e suficiente para abrigar um casal ou grupo pequeno"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -3705,6 +3884,7 @@
      "campos": [
       "comprimento_minimo_aquario_cm",
       "base_minima_cm",
+      "chao_declarado_para",
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data. A confirmar na ficha."
@@ -3836,6 +4016,12 @@
     "comprimento": 60,
     "largura": 30
    },
+   "chao_declarado_para": {
+    "arranjos": [
+     "casal"
+    ],
+    "frase": "base de 60 x 30 cm ou mais e aceitavel para UM casal"
+   },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
@@ -3874,7 +4060,8 @@
      "verificado_em": "2026-09-14",
      "campos": [
       "comprimento_minimo_aquario_cm",
-      "base_minima_cm"
+      "base_minima_cm",
+      "chao_declarado_para"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 14/09/2026, sem leitura da pagina, pelo mesmo egresso. A confirmar na ficha. A BASE VOLTOU EM UMA PASSADA SO, e o que autoriza grava-la e o outro corpo: a base cientifica declara 60 cm de frente para esta especie, o mesmo numero, colhido em duas passadas independentes desta. Os dois lados do chao (60 x 30) sao deste compendio."
     }
