@@ -94,6 +94,13 @@ FICHAS = {
     "quantos-litros-para-paulistinha": "danio-rerio",
     "quantos-litros-para-rasbora-arlequim": "trigonostigma-heteromorpha",
     "quantos-litros-para-tanictis": "tanichthys-albonubes",
+    # leva 8, 22/09/2026 — a categoria acaras inteira. E a PRIMEIRA leva do eixo
+    # em que as tres filhas tem tres ESCOPOS de chao declarado diferentes: o
+    # bandeira nao-declarado, o oscar um-exemplar e o disco juvenis+casal. Ate
+    # aqui `chao_declarado_para` tinha um mundo real so (a agassizii).
+    "quantos-litros-para-acara-bandeira": "pterophyllum-scalare",
+    "quantos-litros-para-oscar": "astronotus-ocellatus",
+    "quantos-litros-para-acara-disco": "symphysodon-aequifasciatus",
 }
 
 # As especies do catalogo que NAO declaram o fundo do aquario: a fonte publica o
@@ -113,6 +120,13 @@ FICHAS = {
 # mesmo motivo do SEM_FUNDO_DECLARADO logo acima.
 FUNDO_DE_OUTRO_ARRANJO = {
     "apistogramma-agassizii",
+    # leva 8, 22/09/2026: o acara-disco e o SEGUNDO caso, e o primeiro que nasce
+    # ja sabendo. O compendio declara 120 x 45 x 45 cm e 255 L PARA ALGUNS
+    # JUVENIS OU UM CASAL REPRODUTOR, e o registro publica cardume de cinco pela
+    # base cientifica. A agassizii entrou nesta lista por conserto de defeito no
+    # ar; esta entra antes de a pagina existir, que e a diferenca que o campo
+    # `chao_declarado_para` comprou.
+    "symphysodon-aequifasciatus",
 }
 
 SEM_FUNDO_DECLARADO = {
@@ -300,6 +314,21 @@ CATEGORIAS = {
             "tanichthys-albonubes",
         ],
     },
+    # leva 8, 22/09/2026. `barradas` nasce VAZIA e isso e afirmacao, nao
+    # descuido: os SEIS Cichlidae do banco estao repartidos entre esta categoria
+    # e a ciclideos-anoes, os seis passam no portao, e nao existe um setimo
+    # ciclideo no banco — nem passando nem barrado. E a segunda categoria do eixo
+    # a fechar sem ninguem esperando do lado de fora (a primeira foi a
+    # ciclideos-anoes), e a unica em que isso vale para a FAMILIA inteira.
+    "acaras": {
+        "rotulo": "acarás",
+        "barradas": [],
+        "especies": [
+            "pterophyllum-scalare",
+            "astronotus-ocellatus",
+            "symphysodon-aequifasciatus",
+        ],
+    },
 }
 # O SUJEITO DA FRASE DE LISTA FECHADA e A CONSULTA DE CADA CATEGORIA, escritos
 # aqui a mao como tudo o mais deste arquivo. Os dois eram texto DIGITADO dentro
@@ -314,6 +343,7 @@ SINGULAR_DA_CATEGORIA = {
     "vivaparos": "todo vivíparo",
     "ciclideos-anoes": "todo ciclídeo anão",
     "danios-e-rasboras": "todo danio e toda rasbora",
+    "acaras": "todo acará grande",
 }
 CONSULTA_DA_CATEGORIA = {
     "tetras": "quantos litros para tetras",
@@ -322,6 +352,7 @@ CONSULTA_DA_CATEGORIA = {
     "vivaparos": "quantos litros para peixes vivíparos",
     "ciclideos-anoes": "quantos litros para ciclídeo anão",
     "danios-e-rasboras": "quantos litros para danios e rasboras",
+    "acaras": "quantos litros para acará",
 }
 
 PAGINAS = [SECAO] + list(CATEGORIAS) + list(FICHAS)
@@ -532,6 +563,77 @@ def texto(h):
     return re.sub(r"\s+", " ", t).strip()
 
 
+_TITULOS_DO_EIXO = None
+
+
+def titulos_do_eixo():
+    """O TITULO DE CADA PAGINA DO EIXO, perguntado ao registro do snippet.
+
+    Nao e lista escrita aqui a mao, e e a excecao que o cabecalho deste arquivo
+    autoriza: o titulo de uma pagina JA e medido contra o registro em quatro
+    afirmacoes (a ancora da filha, o degrau da trilha, o H1 e o <title>), entao
+    copia-lo para ca seria uma quinta copia do mesmo dado — e ela serviria para
+    RECONHECER uma ancora como nome de outra pagina, nao para medir o nome. Quem
+    sabe os nomes e o registro.
+    """
+    global _TITULOS_DO_EIXO
+    if _TITULOS_DO_EIXO is None:
+        _TITULOS_DO_EIXO = {
+            d["titulo"]
+            for d in json.loads(subprocess.run(
+                ["php", os.path.join(RAIZ, "ferramentas", "listar-paginas-do-eixo.php"), RAIZ],
+                capture_output=True, text=True, check=True).stdout).values()
+        }
+    return _TITULOS_DO_EIXO
+
+
+def prosa_propria(c):
+    """O CORPO SEM OS NOMES DAS OUTRAS PAGINAS — a prosa que ESTA pagina escreve.
+
+    NASCEU NA LEVA 8 (22/09/2026) consertando uma regua que reprovou uma pagina
+    CERTA sem apontar defeito nenhum, que e o defeito que este eixo mais registra
+    ter caido. A afirmacao "a palavra cardume nao aparece no corpo" e da leva 4,
+    escrita quando o betta era o unico peixe de arranjo fixo da ilha, e ela
+    procurava a palavra SOLTA no corpo inteiro. Ficou verde oito dias porque
+    nenhuma vizinha do betta tinha "cardume" no titulo.
+
+    O oscar quebrou isso, e nao por defeito dele: as tres ocorrencias no corpo da
+    ficha eram, todas, o TITULO DE OUTRA PAGINA dentro de um link — o degrau da
+    trilha e a frase de mae apontando para `Acaras: quantos litros, do solitario
+    ao cardume`, e o bloco "Veja tambem" apontando para `Quantos litros para um
+    cardume de acara-disco?`. Nenhuma das tres diz uma palavra sobre o oscar, e
+    apagar a palavra dos titulos seria mentir sobre a categoria e sobre o disco,
+    que vive em cardume mesmo.
+
+    A REGRA E A DO 16.5 DO CONTRATO, escrita la para outra frase e valendo aqui
+    igual: "a regua que mede isso mede o LUGAR, nunca a palavra solta". Entao
+    esta funcao tira do corpo exatamente os links cuja ancora e o titulo de uma
+    pagina do eixo — nada mais. Ancora que NAO e titulo de pagina continua sendo
+    prosa desta pagina, e texto fora de link tambem: quem escrever "quanto maior
+    o cardume" na ficha do oscar continua reprovando.
+    """
+    def apagar(m):
+        return "" if texto(m.group(1)) in titulos_do_eixo() else m.group(0)
+    return re.sub(r"<a\b[^>]*>(.*?)</a>", apagar, c, flags=re.S)
+
+
+def medir_palavra_de_cardume(slug, c, t):
+    """AS DUAS METADES DA REGUA DO "CARDUME", e a segunda e o que a impede de
+    afrouxar: (1) a prosa desta pagina nao diz a palavra; (2) toda ocorrencia que
+    sobra no corpo e, uma a uma, o titulo de outra pagina do eixo dentro de um
+    link. Sem a segunda, bastaria envolver a frase num <a> para escapar."""
+    propria = texto(prosa_propria(c))
+    ok("%s: a palavra cardume nao aparece na prosa da pagina" % slug,
+       "cardume" not in propria.lower(),
+       propria.lower()[max(0, propria.lower().find("cardume") - 60):][:160])
+    com_palavra = [texto(m.group(1)) for m in re.finditer(r"<a\b[^>]*>(.*?)</a>", c, re.S)
+                   if "cardume" in texto(m.group(1)).lower()]
+    intrusas = [x for x in com_palavra if x not in titulos_do_eixo()]
+    ok("%s: se a palavra aparece no corpo, e nome de outra pagina do eixo" % slug,
+       not intrusas and ("cardume" not in t.lower() or bool(com_palavra)),
+       "ancoras com a palavra que nao sao titulo do eixo: %s" % intrusas)
+
+
 def jsonlds(pagina):
     nos = []
     # O atributo nao e opcional no localizador: a trilha da casca imprime o
@@ -724,8 +826,7 @@ def medir_ficha(slug, ident, banco):
            "fonte" not in direta_p1.lower(), direta_p1[:120])
         ok("%s: a escada tem um degrau so (%d) e a pagina diz por que" % (slug, quantos),
            'não existe "e para dez?" a responder' in t)
-        ok("%s: a palavra cardume nao aparece no corpo" % slug,
-           "cardume" not in t.lower(), t.lower()[max(0, t.lower().find("cardume") - 60):][:160])
+        medir_palavra_de_cardume(slug, c, t)
         # E A FICHA DE ARRANJO FIXO NUNCA SUGERE MAIS UM EXEMPLAR. A frase do
         # bloco da especie agressiva dizia "quanto maior o cardume, menos a
         # agressao se concentra num alvo so": conselho certo para peixe de
@@ -794,8 +895,7 @@ def medir_ficha(slug, ident, banco):
         ok("%s: a abertura nao cita quem declarou" % slug,
            "fonte" not in direta_p1.lower(), direta_p1[:140])
         # E NAO CHAMA DE CARDUME, nem de grupo, quem a fonte nao declarou assim.
-        ok("%s: a palavra cardume nao aparece no corpo" % slug,
-           "cardume" not in t.lower(), t.lower()[max(0, t.lower().find("cardume") - 60):][:160])
+        medir_palavra_de_cardume(slug, c, t)
         # A LINHA DA TABELA DE FONTES: aqui ela e "Como vive", e nao um minimo.
         ok("%s: a tabela de fontes chama a linha de 'Como vive'" % slug,
            "Como vive" in t)

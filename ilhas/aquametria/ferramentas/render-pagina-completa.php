@@ -144,6 +144,22 @@ $GLOBALS['__paginas'] = array(
 	'quantos-litros-para-paulistinha'           => true,
 	'quantos-litros-para-rasbora-arlequim'      => true,
 	'quantos-litros-para-tanictis'              => true,
+	/* A leva 8 (22/09/2026): a OITAVA categoria do eixo, inteira. Ela traz para
+	   esta bancada o caso que faltava ao campo `chao_declarado_para`: ate aqui
+	   o unico registro com chao fora de escopo era a agassizii, e ela foi
+	   CONSERTO de defeito no ar. Com o acara-disco a bancada passa a ter tres
+	   escopos vivos na MESMA categoria — `nao-declarado` no acara-bandeira,
+	   `um-exemplar` no oscar e `juvenis`+`casal` no disco —, e o terceiro estado
+	   da ausencia de fundo deixa de ter um exemplar so.
+
+	   E o oscar e a primeira ficha do eixo com `convivencia: solitario` cujo
+	   chao declarado COBRE o arranjo publicado: o betta tambem vive sozinho, e
+	   nele a fonte nao declara para quem a base foi dada. Sao ramos diferentes
+	   da mesma funcao, e ate hoje so um deles tinha pagina. */
+	'acaras'                                    => true,
+	'quantos-litros-para-acara-bandeira'        => true,
+	'quantos-litros-para-oscar'                 => true,
+	'quantos-litros-para-acara-disco'           => true,
 );
 
 aquametria_teste_carregar( $raiz );

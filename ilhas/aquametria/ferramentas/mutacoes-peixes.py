@@ -627,6 +627,19 @@ MUTACOES = [
            "\t\tif ( $arranjo && null !== $arranjo['fixo'] ) {\n\t\t\t$html .= '<p class=\"aqm-px-fora\">O que dá para dizer com o que está medido: a fonte declara '",
            "\t\tif ( false ) {\n\t\t\t$html .= '<p class=\"aqm-px-fora\">O que dá para dizer com o que está medido: a fonte declara '")),
 
+    # LEVA 8, 22/09/2026 — A PORTA DOS FUNDOS DA REGUA QUE ESTA LEVA ESTREITOU.
+    # `prosa_propria()` deixou de medir a palavra "cardume" dentro de link cuja
+    # ancora e o TITULO de outra pagina do eixo, porque as tres ocorrencias no
+    # corpo do oscar eram exatamente isso e a regua reprovava uma pagina certa.
+    # Estreitar regua abre buraco, e o buraco tem nome: bastaria a pagina
+    # escrever a propria prosa dentro de um <a> para escapar. Esta mutacao faz
+    # isso — troca o titulo da mae por uma frase nossa dentro do mesmo link — e
+    # a segunda metade da regua (`intrusas`) existe para pega-la.
+    ("A PROSA SE ESCONDE DENTRO DO LINK: a frase de mae troca o titulo da categoria por texto proprio com a palavra cardume",
+     troca(PEIXES,
+           "\t\t\t. esc_html( $registro[ $pai ]['titulo'] ) . '</a>, onde a mesma conta aparece para todas elas na mesma tabela.</p>';",
+           "\t\t\t. esc_html( 'o cardume desta categoria' ) . '</a>, onde a mesma conta aparece para todas elas na mesma tabela.</p>';")),
+
     ("A LINHA UNICA DO ARRANJO FIXO SE CHAMA MINIMA: o teto que a fonte declara vira piso na tela",
      troca(PEIXES,
            "\t$rotulo_minimo = ( $arranjo && '' !== $arranjo['minimo'] && $card ) ? $arranjo['minimo'] : '';",

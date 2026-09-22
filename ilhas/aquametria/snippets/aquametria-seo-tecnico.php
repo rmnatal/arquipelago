@@ -256,7 +256,7 @@ function aquametria_seo_metas_por_slug() {
 		),
 		'politica-de-privacidade' => array(
 			'titulo'    => 'O que este site sabe sobre você',
-			'descricao' => 'Sem cadastro, sem formulário e sem cookie vindo do servidor. Os quatro endereços que o seu navegador procura fora daqui, medidos página por página.',
+			'descricao' => 'Sem cadastro, sem formulário e sem cookie vindo do servidor. Os seis endereços que o seu navegador procura fora daqui, medidos página por página.',
 		),
 		'quantos-watts-de-aquecedor-para-aquario' => array(
 			'titulo'    => 'Por que o 1 W por litro erra para o mesmo lado',
@@ -269,6 +269,10 @@ function aquametria_seo_metas_por_slug() {
 		'quantos-lumens-por-litro-aquario-plantado' => array(
 			'titulo'    => 'Quantos lúmens por litro o aquário plantado precisa',
 			'descricao' => 'Três fontes brasileiras chamam a mesma faixa de lúmens por litro com o dobro do número. De onde vem a regra e por que o lúmen é a unidade errada.',
+		),
+		'acaras' => array(
+			'titulo'    => 'Acarás: quantos litros, do solitário ao cardume',
+			'descricao' => 'Acará-bandeira, oscar e acará-disco lado a lado: como cada um vive, a frente mínima declarada por fonte com nome e data, e a faixa térmica.',
 		),
 		'bettas' => array(
 			'titulo'    => 'Bettas e gouramis: quantos litros cada um pede',
@@ -289,6 +293,14 @@ function aquametria_seo_metas_por_slug() {
 		'peixes' => array(
 			'titulo'    => 'Quanto espaço cada peixe pede',
 			'descricao' => 'Quanto espaço cada peixe pede, em centímetros de chão e não em litros: o mínimo declarado por fonte com nome e data, espécie por espécie.',
+		),
+		'quantos-litros-para-acara-bandeira' => array(
+			'titulo'    => 'Quantos litros para um grupo de acará-bandeira?',
+			'descricao' => 'Quantos litros para um grupo de acará-bandeira? A base e a altura mínima que a fonte declara, a conta pelas duas réguas de lotação e as irmãs.',
+		),
+		'quantos-litros-para-acara-disco' => array(
+			'titulo'    => 'Quantos litros para um cardume de acará-disco?',
+			'descricao' => 'Quantos litros para um cardume de acará-disco? A frente que a fonte declara para o grupo, o que ela não cobre, e as duas réguas de lotação.',
 		),
 		'quantos-litros-para-apistogramma-agassizi' => array(
 			'titulo'    => 'Quantos litros para apistogramma agassizi?',
@@ -325,6 +337,10 @@ function aquametria_seo_metas_por_slug() {
 		'quantos-litros-para-mato-grosso' => array(
 			'titulo'    => 'Quantos litros para um cardume de mato-grosso?',
 			'descricao' => 'Quantos litros para um cardume de mato-grosso? As duas fontes discordam da frente mínima, e esta página publica as duas com o nome de cada uma.',
+		),
+		'quantos-litros-para-oscar' => array(
+			'titulo'    => 'Quantos litros para um oscar?',
+			'descricao' => 'Quantos litros para um oscar? A base que a fonte declara para um adulto, para quem ela foi declarada, e a conta pelas duas réguas de lotação.',
 		),
 		'quantos-litros-para-papilocromis' => array(
 			'titulo'    => 'Quantos litros para um grupo de papilocromis?',

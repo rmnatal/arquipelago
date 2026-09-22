@@ -45,9 +45,27 @@ def versao_do_snippet(caminho):
 
     Le a constante, nunca o cabecalho em prosa: o docblock e texto e envelhece
     sem que nada quebre, a constante e o que o codigo usa.
+
+    O ARQUIVO INTEIRO, E NAO OS PRIMEIROS 20 000 CARACTERES — medido em
+    22/09/2026 pela leva 8, e a janela foi o defeito. `aquametria-peixes.php`
+    define a constante no caractere 35 245: o docblock dele passou dos 20 KB na
+    versao 1.12.0, a busca deixou de encontrar a constante e devolveu None, e a
+    guarda de divergencia logo abaixo — que EXISTE para nao deixar a etiqueta
+    envelhecer calada — parou de disparar sem dizer nada. Resultado medido: o
+    manifest anunciou `versao: 1.11.0` para um snippet que estava em 1.12.0
+    desde as 17h25Z do mesmo dia, e teria anunciado 1.11.0 para a 1.13.0.
+
+    A JANELA ERA UMA OTIMIZACAO CONTRA UM CUSTO QUE NAO EXISTE: o arquivo maior
+    desta ilha tem 250 KB e o script ja calcula o sha256 dele inteiro, duas
+    linhas acima, em toda passada. Cortar a leitura economizava microssegundos e
+    comprava um portao que apaga a si mesmo quando o arquivo cresce — que e a
+    unica direcao em que todo arquivo desta ilha anda.
+
+    E O PROXIMO A CAIR JA ESTAVA MEDIDO: `aquametria-casca.php` define a
+    constante no caractere 17 410, a 2 590 do mesmo penhasco.
     """
     with io.open(caminho, encoding="utf-8") as f:
-        achado = VERSAO_CONSTANTE.search(f.read(20000))
+        achado = VERSAO_CONSTANTE.search(f.read())
     return achado.group(1) if achado else None
 
 
@@ -98,6 +116,7 @@ def main():
     mudados, ausentes, listados = [], [], set()
     titulos = []
     divergentes = []
+    sem_constante = []
     for secao in SECOES:
         for item in m.get(secao) or []:
             arq = item.get("arquivo")
@@ -123,7 +142,16 @@ def main():
             # esconderia o esquecimento em vez de cobra-lo.
             if secao == "snippets" and arq.endswith(".php"):
                 constante = versao_do_snippet(inteiro)
-                if constante and item.get("versao") and item["versao"] != constante:
+                # A AUSENCIA DA CONSTANTE DEIXOU DE SER SILENCIO (22/09/2026).
+                # O `if constante and ...` sozinho e o que fez a janela de 20 KB
+                # apagar este portao sem uma linha de aviso: item que DECLARA
+                # versao no manifest e cujo arquivo nao declara constante nenhuma
+                # nao e um caso neutro — ou o snippet perdeu a constante, ou quem
+                # a procura parou de achar. Nos dois casos a etiqueta do manifest
+                # ficou sem dono, e sem dono ela envelhece.
+                if item.get("versao") and not constante:
+                    sem_constante.append(arq)
+                elif constante and item.get("versao") and item["versao"] != constante:
                     divergentes.append((arq, item.get("versao"), constante))
 
             # O front matter manda no titulo; o manifest e espelho dele.
@@ -152,6 +180,16 @@ def main():
         print("  AUSENTE no disco, mas listado no manifest: " + arq)
     for arq in orfaos:
         print("  fora do manifest: " + arq)
+
+    if sem_constante:
+        print("")
+        for arq in sem_constante:
+            print("  VERSAO SEM DONO    %-44s o manifest declara versao e o arquivo"
+                  " nao define constante" % arq)
+        print("\n  NADA FOI GRAVADO. Etiqueta sem constante que a sustente e etiqueta")
+        print("  que envelhece calada — foi assim que a janela de 20 000 caracteres")
+        print("  apagou este portao em 22/09/2026 sem ninguem ver.")
+        return 1
 
     if divergentes:
         print("")

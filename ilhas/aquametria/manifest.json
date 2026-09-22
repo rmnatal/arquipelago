@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 95,
+  "revisao": 99,
   "atualizado_em": "2026-09-22",
   "estado": "fundacao",
   "desembarque": {
@@ -54,7 +54,7 @@
       "ativo": true,
       "versao": "1.1.0",
       "publicar": true,
-      "sha256": "af264c5c58af544fb98b90c5e27024077ce415f6fffe32a917b23aae7c01a7a2",
+      "sha256": "9c5e22b952297cbbfef4c313ec2d9ddf38c62b92f73f24812ca13965748d01d5",
       "descricao": "Conserta o item 1 do despacho da Sentinela de 09/09/2026: /category/uncategorized/ respondia 200 e estava no wp-sitemap.xml, gastando o orcamento de rastreamento de um dominio novo com um artefato do CMS enquanto a leva de 6 paginas de 08/09 nao indexava. A causa de raiz e o Sync, que grava artigo sem atribuir categoria e por isso deixa tudo cair na padrao; este snippet conserta pelo lado que se auto-corrige, sem mexer no Sync (que so chega ao site pelo atualizador). Faz cinco coisas: (a) cria a categoria de verdade \"Metodos\" (slug metodos), move para ela todo post que estiver na categoria padrao e passa a categoria padrao a ser ela, para o problema nao voltar pela porta que o criou; (b) tira do wp-sitemap.xml o provedor de autores sempre, e o de taxonomias enquanto nenhuma categoria estiver curada — sitemap e curadoria, nao inventario (secao 14.1 do ARQUIPELAGO.md); (c) manda noindex,follow para arquivo por data, autor, tag, categoria nao curada (a sem categoria inclusive), anexo, busca e 404, pelo filtro wp_robots do proprio nucleo, para nao sair meta robots repetida; (d) desliga a pagina de anexo pelo interruptor do nucleo (wp_attachment_pages_enabled); (e) nao toca em pagina, artigo nem home. A categoria Metodos nasce FORA do sitemap e com noindex de proposito: o item 2 do mesmo despacho congelou pagina nova ate 16/09 e a secao 14.4 exige texto proprio na listagem — quando ela tiver esse texto, basta acrescentar o slug em aquametria_seo_categorias_no_sitemap(). A decisao de indexar mora numa funcao pura (aquametria_seo_deve_noindex), exercitada por ferramentas/teste-seo-tecnico.php em 28 afirmacoes sem subir WordPress. v1.1.0 (10/09/2026): meta description e cartao de compartilhamento nas 13 URLs do sitemap. Item 1 do despacho da Sentinela de 10/09/2026: nenhuma pagina servia <meta name=description> e nenhuma tinha tag og:. O snippet passa a imprimir description, og:title, og:description, og:type, og:locale, og:site_name, og:url e twitter:card, a partir de um mapa GERADO por ferramentas/gerar-metas-descricao.py entre os marcadores METAS-INICIO e METAS-FIM — o texto mora no front matter de cada pagina de conteudo/ e, para as quatro paginas da casca, em dados/metas-seo.json. Slug fora do mapa nao imprime nada: description inventada seria pior que o recorte do Google. Sem og:image de proposito, ate a ilha ter imagem propria hospedada."
     },
     {
@@ -128,10 +128,10 @@
       "arquivo": "snippets/aquametria-peixes.php",
       "escopo": "front-end",
       "ativo": true,
-      "versao": "1.11.0",
+      "versao": "1.13.0",
       "publicar": true,
-      "sha256": "880e3b6c067a2b429b03482a44154ef7f151c8c67e0f17c79a433c9ebec2e4fe",
-      "descricao": "T4, levas 1 a 5 da malha: VINTE E DUAS URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, QUATRO categorias de nivel 2 (/peixes/tetras/ com 7 fichas, /peixes/corydoras/ com 4, /peixes/bettas/ com 3 e /peixes/vivaparos/ com 3) e as dezessete fichas de especie. v1.8.0 (14/09/2026), LEVA 5: a quarta categoria, e a primeira em que NENHUMA filha tem numero declarado — as tres vivem em harem, que e o unico valor do vocabulario fechado em que a fonte descreve a proporcao entre os sexos e nunca o tamanho do grupo. A leva 4 escreveu os tres mundos da escada de lotacao e publicou dois; o terceiro ficou como ramo de RESGATE e estava errado: abria pela traducao de como_vive(), que carrega a oracao do temperamento, e a primeira frase da ficha citaria quem declarou, contra a 15.2. O ramo virou branch com nome e o resgate deixou de existir — pode_virar_ficha() passa a exigir que o termo esteja no vocabulario fechado, que e o que o cabecalho da 1.7.0 ja afirmava e o codigo nao fazia. DOIS DEFEITOS QUE JA ESTAVAM NO AR sairam junto, os dois de concordancia e os dois medidos no HTML servido: '1 ficaram fora porque o banco os declara agressivos', com um unico peixe agressivo no banco; e 'cabem 1 coridora sterbai ... a diferenca entre os dois e de 4 vezes', em que o verbo estava no plural e o numero saia das CONSTANTES em vez dos dois numeros impressos — ele errava em DEZ das quatorze fichas no ar e erra por SETE vezes no peixe-espada, o maior peixe com ficha da ilha. A linha mestra e o criterio da categoria foram reescritos na leva que os publicou: a versao de 13/09 prometia numero de reproducao que nenhuma fonte declara e dizia que manda o macho enquanto o criterio dizia que manda a femea. A categoria declara as CINCO Poeciliidae e o portao barra duas — o guppy e o molly, os dois viviparos mais vendidos do Brasil, cada um a um campo de entrar —, com nome e causa na pagina. SERP da MAE classificada em 14/09/2026, a unica do eixo em que o top 7 nao fala do assunto; as tres fichas seguem com serp_em 13/09/2026. v1.9.0 (14/09/2026), PREPARACAO DA LEVA 6: a quinta categoria ganha banco, criterio e linha mestra, e NENHUMA URL nasce. Duas especies novas no banco (Apistogramma agassizii e Mikrogeophagus altispinosus) levam /peixes/ciclideos-anoes/ de UM elegivel para TRES, que e o minimo exato do 16.5; o banco vai de 37 para 39 registros e o catalogo de 29 para 31. A categoria continua FORA de aquametria_peixes_registro(), entao nenhuma URL foi criada e nenhuma leva do teto da 21.4 foi gasta — o que muda na tela e a contagem que a secao e as categorias imprimem na hora. E A PRIMEIRA CATEGORIA DO EIXO EM QUE NEM A FAMILIA NEM O GENERO SERVEM de criterio: Cichlidae carrega o oscar, o disco e a bandeira deste mesmo banco, e o genero Mikrogeophagus poe as duas PONTAS da tabela lado a lado. Quem separa e a prateleira brasileira de ciclideo anao, que tem endereco proprio em tres lojas, e o porte declarado explica a prateleira: os tres tem menos de 6 cm e o menor dos outros Cichlidae do banco tem 13,7 cm. A TABELA PROVA A TESE DO EIXO COM DOIS PEIXES DE PORTE IDENTICO, coisa que nenhuma das outras quatro categorias pode fazer: ramirezi e apistogramma agassizi tem os mesmos 4,2 cm SL na mesma base e pedem os mesmos 60 cm; o papilocromis tem 5,6 cm e pede 120 — o que dobra o aquario e o ARRANJO (casal, harem, grupo de 6 a 8), nao o peixe. A LISTA DE ESPECIES DA CATEGORIA CONTINUA VAZIA POR PORTAO: ela e da leva e nao da preparacao (afirmacao 3 do teste-peixes.py), e esta execucao tentou preenche-la e foi reprovada na bancada. SERP das quatro consultas classificada em 14/09/2026, todas ALVO. v1.10.0 (14/09/2026), LEVA 6: a QUINTA categoria do eixo e as tres fichas dela — /peixes/ciclideos-anoes/ com o ramirezi (casal), o apistogramma agassizi (harem) e o papilocromis (grupo de 6 a 8). A ilha vai de 36 para 40 URLs, que e o PISO DA RAMPA da secao 21. E A PRIMEIRA CATEGORIA EM QUE AS TRES FILHAS VIVEM DE TRES JEITOS DIFERENTES: as quatro anteriores tinham no maximo dois arranjos e a vivaparos tinha um so, entao nenhuma pagina desta ilha exercitava os tres ramos da abertura da ficha na MESMA categoria. E A FRENTE MINIMA DO PAPILOCROMIS E A PRIMEIRA DO EIXO QUE E CONDICIONAL: o compendio nao publica 'aquario minimo' solto, publica 'grupo misto de 6 a 8 ou mais DESDE QUE o aquario tenha 120 cm ou mais' — quebrar a frase em dois numeros seria publicar uma frente que a fonte nunca declarou sozinha, que e a familia do BASE contra FRENTE da leva 2. O banco, o criterio, a linha mestra e a SERP vieram da preparacao 1.9.0, na execucao das 21h18Z do mesmo dia; esta versao publica. Nenhuma URL das levas 1 a 5 muda, nenhum endereco se move."
+      "sha256": "5070a3804578244cd9a040380eccbc5a1dc97a2f847968f80b4138e838297677",
+      "descricao": "T4, levas 1 a 5 da malha: VINTE E DUAS URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, QUATRO categorias de nivel 2 (/peixes/tetras/ com 7 fichas, /peixes/corydoras/ com 4, /peixes/bettas/ com 3 e /peixes/vivaparos/ com 3) e as dezessete fichas de especie. v1.8.0 (14/09/2026), LEVA 5: a quarta categoria, e a primeira em que NENHUMA filha tem numero declarado — as tres vivem em harem, que e o unico valor do vocabulario fechado em que a fonte descreve a proporcao entre os sexos e nunca o tamanho do grupo. A leva 4 escreveu os tres mundos da escada de lotacao e publicou dois; o terceiro ficou como ramo de RESGATE e estava errado: abria pela traducao de como_vive(), que carrega a oracao do temperamento, e a primeira frase da ficha citaria quem declarou, contra a 15.2. O ramo virou branch com nome e o resgate deixou de existir — pode_virar_ficha() passa a exigir que o termo esteja no vocabulario fechado, que e o que o cabecalho da 1.7.0 ja afirmava e o codigo nao fazia. DOIS DEFEITOS QUE JA ESTAVAM NO AR sairam junto, os dois de concordancia e os dois medidos no HTML servido: '1 ficaram fora porque o banco os declara agressivos', com um unico peixe agressivo no banco; e 'cabem 1 coridora sterbai ... a diferenca entre os dois e de 4 vezes', em que o verbo estava no plural e o numero saia das CONSTANTES em vez dos dois numeros impressos — ele errava em DEZ das quatorze fichas no ar e erra por SETE vezes no peixe-espada, o maior peixe com ficha da ilha. A linha mestra e o criterio da categoria foram reescritos na leva que os publicou: a versao de 13/09 prometia numero de reproducao que nenhuma fonte declara e dizia que manda o macho enquanto o criterio dizia que manda a femea. A categoria declara as CINCO Poeciliidae e o portao barra duas — o guppy e o molly, os dois viviparos mais vendidos do Brasil, cada um a um campo de entrar —, com nome e causa na pagina. SERP da MAE classificada em 14/09/2026, a unica do eixo em que o top 7 nao fala do assunto; as tres fichas seguem com serp_em 13/09/2026. v1.9.0 (14/09/2026), PREPARACAO DA LEVA 6: a quinta categoria ganha banco, criterio e linha mestra, e NENHUMA URL nasce. Duas especies novas no banco (Apistogramma agassizii e Mikrogeophagus altispinosus) levam /peixes/ciclideos-anoes/ de UM elegivel para TRES, que e o minimo exato do 16.5; o banco vai de 37 para 39 registros e o catalogo de 29 para 31. A categoria continua FORA de aquametria_peixes_registro(), entao nenhuma URL foi criada e nenhuma leva do teto da 21.4 foi gasta — o que muda na tela e a contagem que a secao e as categorias imprimem na hora. E A PRIMEIRA CATEGORIA DO EIXO EM QUE NEM A FAMILIA NEM O GENERO SERVEM de criterio: Cichlidae carrega o oscar, o disco e a bandeira deste mesmo banco, e o genero Mikrogeophagus poe as duas PONTAS da tabela lado a lado. Quem separa e a prateleira brasileira de ciclideo anao, que tem endereco proprio em tres lojas, e o porte declarado explica a prateleira: os tres tem menos de 6 cm e o menor dos outros Cichlidae do banco tem 13,7 cm. A TABELA PROVA A TESE DO EIXO COM DOIS PEIXES DE PORTE IDENTICO, coisa que nenhuma das outras quatro categorias pode fazer: ramirezi e apistogramma agassizi tem os mesmos 4,2 cm SL na mesma base e pedem os mesmos 60 cm; o papilocromis tem 5,6 cm e pede 120 — o que dobra o aquario e o ARRANJO (casal, harem, grupo de 6 a 8), nao o peixe. A LISTA DE ESPECIES DA CATEGORIA CONTINUA VAZIA POR PORTAO: ela e da leva e nao da preparacao (afirmacao 3 do teste-peixes.py), e esta execucao tentou preenche-la e foi reprovada na bancada. SERP das quatro consultas classificada em 14/09/2026, todas ALVO. v1.10.0 (14/09/2026), LEVA 6: a QUINTA categoria do eixo e as tres fichas dela — /peixes/ciclideos-anoes/ com o ramirezi (casal), o apistogramma agassizi (harem) e o papilocromis (grupo de 6 a 8). A ilha vai de 36 para 40 URLs, que e o PISO DA RAMPA da secao 21. E A PRIMEIRA CATEGORIA EM QUE AS TRES FILHAS VIVEM DE TRES JEITOS DIFERENTES: as quatro anteriores tinham no maximo dois arranjos e a vivaparos tinha um so, entao nenhuma pagina desta ilha exercitava os tres ramos da abertura da ficha na MESMA categoria. E A FRENTE MINIMA DO PAPILOCROMIS E A PRIMEIRA DO EIXO QUE E CONDICIONAL: o compendio nao publica 'aquario minimo' solto, publica 'grupo misto de 6 a 8 ou mais DESDE QUE o aquario tenha 120 cm ou mais' — quebrar a frase em dois numeros seria publicar uma frente que a fonte nunca declarou sozinha, que e a familia do BASE contra FRENTE da leva 2. O banco, o criterio, a linha mestra e a SERP vieram da preparacao 1.9.0, na execucao das 21h18Z do mesmo dia; esta versao publica. Nenhuma URL das levas 1 a 5 muda, nenhum endereco se move. v1.11.0 (22/09/2026), LEVA 7: a SETIMA categoria do eixo e as tres fichas dela — /peixes/danios-e-rasboras/ com o paulistinha, a rasbora arlequim e o tanictis. A ilha vai de 40 para 44 URLs. Primeira leva do eixo que NAO custou uma coleta: as tres passavam nos dois portoes desde 11/09/2026 e o que faltava era o LUGAR, porque o ARVORE.md fechava o eixo em 'Seis, e so estas' e seis levas leram essa linha como o limite do EIXO quando ela era o limite do DOCUMENTO. v1.12.0 (22/09/2026), O CHAO DECLARADO GANHA DONO, nenhuma URL nova: chao_declarado_para (esquema de especies versao 5) faz a base declarada viajar com o arranjo a que ela se refere, e com ele dois defeitos sairam do ar — a ficha do apistogramma agassizi prometendo ao harem os 30 cm de fundo que o compendio declarou para um CASAL, e quatro fichas atribuindo a base ao corpo de fonte errado. v1.13.0 (22/09/2026), LEVA 8: a OITAVA categoria e as tres fichas dela — /peixes/acaras/ com o acara-bandeira, o oscar e o acara-disco. A ilha vai de 44 para 48 URLs e a familia Cichlidae fica inteira publicada, repartida em duas categorias. E A PRIMEIRA CATEGORIA EM QUE O CRITERIO DA LEVA ANTERIOR FALHARIA: separar pelo NOME que a pessoa digita traria o acara-borboleta, que e o ramirezi e ja e filha de /peixes/ciclideos-anoes/. Quem separa e o PORTE declarado, que e numero — os tres desta categoria comecam em 13,7 cm e os tres ciclideos anoes terminam em 5,6 cm, sem um registro entre os dois. A linha mestra muda de coluna pela primeira vez no eixo: a faixa termica do oscar (22 a 25 C) e a do acara-disco (26 a 30 C) NAO SE TOCAM, as duas pela mesma base cientifica. E a ficha do disco e a primeira do eixo a nascer no TERCEIRO ESTADO da ausencia de fundo. DUAS CORRECOES DE PORTAO SAIRAM JUNTO: a regua do 'cardume' passou a medir o LUGAR e nao a palavra solta (16.5), porque as tres ocorrencias no corpo do oscar eram titulo de OUTRA pagina dentro de um link; e o versao_do_snippet() do atualizar-manifest.py lia so os primeiros 20 000 caracteres, entao o docblock deste arquivo passou dessa marca na 1.12.0 e o portao de versao ficou CEGO em silencio — o manifest anunciou 1.11.0 para um snippet que estava em 1.12.0."
     }
   ],
   "conteudo": [
@@ -484,7 +484,7 @@
       "arquivo": "dados/metas-seo.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "e35ffe1a332db73d7b318438f8fb1218f725c7cdcbd6eb4a6c2a4d2b923f203a",
+      "sha256": "6870a4454de309edb47c98688fe7166602147277439a0e23c92d2d7cd314370f",
       "descricao": "Meta description das QUATRO paginas da casca (inicio, calculadoras, metodologia, sobre), que nascem do snippet e nao tem arquivo em conteudo/. As nove paginas vindas de conteudo/*.md tem a delas no proprio front matter, campo meta_descricao, e nao se repetem aqui: uma pagina, um lugar. Nasce do despacho da Sentinela de 10/09/2026, item 1 — nenhuma das 13 URLs do sitemap servia meta description. Nao vai para o site por si: quem leva o texto ao ar e o mapa gerado dentro de aquametria-seo-tecnico.php."
     }
   ],
@@ -681,7 +681,7 @@
       "id": "atualizar-manifest",
       "arquivo": "ferramentas/atualizar-manifest.py",
       "publicar": false,
-      "sha256": "86bf4ff28208ff11fd5950ca68348b3704c62933e16c5fe3bb836c2e85eefbf0",
+      "sha256": "e2076a6f82de940d5b94e14b5b8ddf28a4f80e6fc75383c11c09861a18fc07ec",
       "descricao": "Recalcula o sha256 de todo item do manifest e sobe a revisao quando algum mudou. Nasceu em 09/09/2026 de um defeito medido, nao de uma ideia: ao rodar pela primeira vez ele achou QUATRO itens com sha vencido no manifest (render-para-teste.php, teste-navegador-c5.mjs, -c12.mjs e -c15.mjs), todos alterados em execucoes anteriores sem que ninguem atualizasse o registro. Nos quatro casos e ferramenta de bancada com publicar=false, entao o site nao quebrou — mas o mesmo esquecimento num item publicavel faz o Sync recusar o arquivo no ar e a revisao do site ficar para tras em silencio, que e o defeito da secao 4 do ARQUIPELAGO.md. Ele tambem lista o que esta na pasta e fora do manifest, e nunca inventa item."
     },
     {
@@ -772,14 +772,14 @@
       "id": "teste-peixes",
       "arquivo": "ferramentas/teste-peixes.py",
       "publicar": false,
-      "sha256": "d4f6973b071ed25e63084000aa384087542efc0d085342fcf8b7011e9bc8acc5",
+      "sha256": "4e930670e8223856197ccb40aeb0298a419ed96bc81bdd2680d029cb86ab4108",
       "descricao": "O portao da leva 1 do eixo /peixes/: 295 afirmacoes, um processo php por pagina, medidas no CORPO do que a bancada serve. Toda aritmetica e recomputada do dados/especies-agua-doce.json, do zero, e o mapa pagina->especie esta escrito no teste — ler o mapa do snippet seria perguntar ao snippet qual e a resposta certa, e a proxima leva vai copiar este registro. Compara CELULA POR CELULA, e nao 'o numero esta na pagina': duas mutacoes deliberadas passaram na primeira rodada porque o numero errado que elas produziam existia em outra tabela (o 28 de 'cabem 28 neons' foi achado dentro de '20 a 28 C'). Mede tambem o que nao e numero: especie agressiva sem lista de companheiro, categoria de nivel 2 com 3 filhas ou mais no registro (16.5), ancora que nao diz 'saiba mais', ausencia de Product no JSON-LD, resposta de FAQ citando so numero que a pagina serve, trilha de quatro degraus com os tres primeiros linkados, e a colisao de slug entre a secao /peixes/ e a categoria de calculadora."
     },
     {
       "id": "mutacoes-peixes",
       "arquivo": "ferramentas/mutacoes-peixes.py",
       "publicar": false,
-      "sha256": "534b97a3db40fb7e3272fea27f961333defd7272cea171fa19d150747a2e3851",
+      "sha256": "06a8007eda3456d370d4c52be08c47398fca750d12b386887e2495e0c9b55581",
       "descricao": "24 mutacoes deliberadas contra o portao do eixo /peixes/, em tres familias: o numero muda (regua de lotacao trocada, extremo errado de conflito declarado, borda da tabela que desaparece); o numero fica e a ESTRUTURA quebra (a especie agressiva ganha lista de companheiro, o derivado per capita volta a ser multiplicado, categoria vazia registrada como pagina, Product no JSON-LD); e a regua perde o chao (o catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta). 24 de 24 reprovadas — duas delas so depois de o portao passar a comparar celula, e nao texto da pagina."
     },
     {
@@ -921,6 +921,132 @@
       "publicar": false,
       "sha256": "88b52d193417601f6b049cb6cb5b365a4da717eb9dca1ae0c19f3b856c524ebb",
       "descricao": "Confere que TODA pagina do eixo /peixes/ aparece na tabela 'Levas publicadas' do dados/indexacao.md, pelo endereco ou pela consulta-alvo que o proprio registro do snippet declara, e que a tabela e UMA so (linha separada do cabecalho por linha em branco vira outra tabela em Markdown, sem cabecalho, e sai da tela como texto solto). Nasceu em 22/09/2026, da mesma familia do portao da voz: a tabela ficou com quatro linhas para seis levas por oito dias, e a leitura semanal leu um eixo de 20 URLs como se fosse de 12."
+    },
+    {
+      "id": "gerar-favicon",
+      "arquivo": "ferramentas/gerar-favicon.php",
+      "publicar": false,
+      "descricao": "Gera o icone do site e grava o bloco de constantes dentro do snippet da casca, entre os marcadores FAVICON-INICIO e FAVICON-FIM. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "2a4f4e80614ba57346f48bb24eb903f12a95ee4bdfd877304e2a6420ed361e81"
+    },
+    {
+      "id": "mutacoes-arvore",
+      "arquivo": "ferramentas/mutacoes-arvore.py",
+      "publicar": false,
+      "descricao": "Quebra o portao da arvore DE PROPOSITO, uma quebra por vez, e exige que teste-arvore.mjs reprove cada uma. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "02b442684c38cc589147b5234a33e5a4edd75266ecaeb454bc3eb1e4035a876e"
+    },
+    {
+      "id": "mutacoes-c12-vitrine",
+      "arquivo": "ferramentas/mutacoes-c12-vitrine.py",
+      "publicar": false,
+      "descricao": "Quebra o portao da vitrine da C12 DE PROPOSITO, uma quebra por vez, e exige que o teste de navegador reprove cada uma. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "9f863e83017173388213acfb81fc706b22c162952c8b7434e8751def423dd7d1"
+    },
+    {
+      "id": "mutacoes-c15-regulagem",
+      "arquivo": "ferramentas/mutacoes-c15-regulagem.py",
+      "publicar": false,
+      "descricao": "Quebra o portao da REGULAGEM da C15 DE PROPOSITO, uma quebra por vez. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "a8c47cc4290b3d7f0637ad4a8635fdc31d5b823c3b1dd43e4d926b4fd95a9e3e"
+    },
+    {
+      "id": "mutacoes-voz",
+      "arquivo": "ferramentas/mutacoes-voz.py",
+      "publicar": false,
+      "descricao": "Quebra o portao da voz DE PROPOSITO, uma quebra por vez, e exige que teste-voz.mjs reprove cada uma. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "2a7abb9050edc8d8609fb1312518d6d9b01367dd9198a130519b3a7522d7915a"
+    },
+    {
+      "id": "proteger-funcoes",
+      "arquivo": "ferramentas/proteger-funcoes.php",
+      "publicar": false,
+      "descricao": "Envolve cada declaracao de funcao de nivel superior de um snippet em if ( ! function_exists() ), que e o que impede a redeclaracao fatal quando dois snippets carregam juntos. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "3467d02a0e76be6dd38a5afa307d9a7fafba2fec81e4dfe44d89e8d3fb043e75"
+    },
+    {
+      "id": "render-casca-pagina",
+      "arquivo": "ferramentas/render-casca-pagina.php",
+      "publicar": false,
+      "descricao": "Monta UMA pagina da casca inteira — cabeca, cabecalho, titulo, corpo e rodape — para medir o que ela serve antes de publicar. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "b783b454afd900632e2383007a978ad7dc147577f8acd056d4664b99153599db"
+    },
+    {
+      "id": "render-casca-para-teste",
+      "arquivo": "ferramentas/render-casca-para-teste.php",
+      "publicar": false,
+      "descricao": "Monta a CASCA numa pagina solta, para testar cabecalho e icone em navegador. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "5691b75f1e12a9ec968fe0a9e5b2a24dc0d44800353638dbed1d50d2893aad69"
+    },
+    {
+      "id": "render-pagina-completa",
+      "arquivo": "ferramentas/render-pagina-completa.php",
+      "publicar": false,
+      "descricao": "Monta QUALQUER pagina no ar — casca, conteudo/ ou eixo /peixes/ — inteira, do jeito que o site a serve, para medir antes de publicar. Carrega o mapa do que 'existe publicado' na bancada, entao toda leva nova mexe aqui. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "e3f178e92261dc5632d3fff9a8f213064a21606e9e457147f864b51ccda482eb"
+    },
+    {
+      "id": "teste-arvore",
+      "arquivo": "ferramentas/teste-arvore.mjs",
+      "publicar": false,
+      "descricao": "O PORTAO DA ARVORE: mede a trilha, o BreadcrumbList e o cluster que as paginas no ar servem (secao 16 do ARQUIPELAGO.md), e LE o ARVORE.md para cobrar que documento e codigo digam a mesma coisa. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "68d84ee939fa2370cc475e9e96eca0c6454ae35a7d4e11a617e735ab9f604a8d"
+    },
+    {
+      "id": "teste-navegador-arvore",
+      "arquivo": "ferramentas/teste-navegador-arvore.mjs",
+      "publicar": false,
+      "descricao": "As paginas da ilha num Chromium de verdade, depois que a arvore chegou nelas. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "02b81f65768424e6af3262adde5c79caf7781b52c91588704d3f098b2fe05719"
+    },
+    {
+      "id": "teste-navegador-c12-vitrine",
+      "arquivo": "ferramentas/teste-navegador-c12-vitrine.mjs",
+      "publicar": false,
+      "descricao": "O portao da vitrine da C12 em Chromium (bloco T8). Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "ce181777edfda31352f7383c8636c573cfeda3273d884b60751117a7e7bfe9e5"
+    },
+    {
+      "id": "teste-navegador-c15-regulagem",
+      "arquivo": "ferramentas/teste-navegador-c15-regulagem.mjs",
+      "publicar": false,
+      "descricao": "O portao da REGULAGEM da C15 em Chromium (bloco T3a). Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "7e01c370c286d7f852f85e8f39a3d41c0663154548d974522a4e9abf029b2419"
+    },
+    {
+      "id": "teste-navegador-casca-paginas",
+      "arquivo": "ferramentas/teste-navegador-casca-paginas.mjs",
+      "publicar": false,
+      "descricao": "As paginas da casca num Chromium de verdade: rolagem horizontal e console limpo, nas larguras que a Sentinela tecnica usa. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "765f9fa6e368cc31dc1fee713ccc77b32e265de57611b8997ce0f560932267cf"
+    },
+    {
+      "id": "teste-navegador-casca",
+      "arquivo": "ferramentas/teste-navegador-casca.mjs",
+      "publicar": false,
+      "descricao": "A casca no navegador: o menu do celular e o icone do site. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "f063212c94a89d55a5030c037229b13e98373f3d39fed339baac348e2db37e42"
+    },
+    {
+      "id": "teste-voz",
+      "arquivo": "ferramentas/teste-voz.mjs",
+      "publicar": false,
+      "descricao": "O PORTAO DA VOZ: mede titulo, primeiro paragrafo, H2 e trilha de TODAS as paginas que o site serve, uma por processo, contra o VOZ.md — inclusive a regra de que procedencia nao abre pagina. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "d413b5a9cc59675e87c71797c6cfc6e7b15a0a579e650ec6230e27a3f4a52968"
+    },
+    {
+      "id": "varrer-c15-banco",
+      "arquivo": "ferramentas/varrer-c15-banco.py",
+      "publicar": false,
+      "descricao": "Regua propria de cobertura da C15, medida no BANCO e nao na tela; a serie mora em dados/cobertura-de-faixa.md. Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "6260d68369444ce93748c9729973179c14fec5d1437c557bae91fa232a2c4473"
+    },
+    {
+      "id": "varrer-cobertura",
+      "arquivo": "ferramentas/varrer-cobertura.mjs",
+      "publicar": false,
+      "descricao": "Varredura de COBERTURA DE FAIXA — a medida que substituiu a meta de '60 produtos' (secao 14.3 do ARQUIPELAGO.md). Nao vai para o WordPress: e ferramenta do repositorio.",
+      "sha256": "aad25a722c5ea00141c5e12443fb785163d10e964c6f94e94ceea21fe35a5045"
     }
   ]
 }

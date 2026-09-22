@@ -18,10 +18,75 @@ A seção 14.9 manda cada página nascer com duas promessas escritas: a consulta
 | **malha 5 — `/peixes/vivaparos/`** | fichas classificadas em **2026-09-13**, mãe em **2026-09-14**, publicada em **2026-09-14** | `/peixes/vivaparos/` + 3 fichas: platy · peixe-espada · plati variatus | "quantos litros para peixes vivíparos" (categoria) · "quantos litros para platy" · "quantos litros para peixe espada" · "quantos litros para plati variatus" | **ALVO nas quatro.** A da mãe é a mais limpa do eixo: nenhuma das sete primeiras respostas fala de vivíparo — a consulta devolve as páginas genéricas de "quantos peixes cabem", com a regra por centímetro em três versões que discordam entre si. A do peixe-espada é a de maior distância entre fonte e mercado: a SERP recomenda 60 L para o peixe que o compêndio declara com 120 cm de frente | a medir |
 | **malha 6 — `/peixes/ciclideos-anoes/`** | classificada e publicada em **2026-09-14** | `/peixes/ciclideos-anoes/` + 3 fichas: ramirezi · apistogramma agassizi · papilocromis | "quantos litros para ciclídeo anão" (categoria) · "quantos litros para ramirezi" · "quantos litros para apistogramma agassizi" · "quantos litros para papilocromis" | **ALVO nas quatro.** Na do apistogramma OITO dos nove primeiros são páginas de produto, que vendem o peixe e não respondem à pergunta. Na do papilocromis, ninguém publica os 120 cm de frente que o compêndio declara para o grupo de 6 a 8, que é o arranjo que a própria fonte recomenda | a medir |
 | **malha 7 — `/peixes/danios-e-rasboras/`** | classificada e publicada em **2026-09-22** | `/peixes/danios-e-rasboras/` + 3 fichas: paulistinha · rasbora arlequim · tanictis | "quantos litros para danios e rasboras" (categoria) · "quantos litros para paulistinha" · "quantos litros para rasbora arlequim" · "quantos litros para tanictis" | **ALVO nas quatro.** Ver a leitura inteira embaixo desta tabela | a medir |
+| **malha 8 — `/peixes/acaras/`** | classificada e publicada em **2026-09-22** | `/peixes/acaras/` + 3 fichas: acará-bandeira · oscar · acará-disco | "quantos litros para acará" (categoria) · "quantos litros para acará bandeira" · "quantos litros para oscar" · "quantos litros para acará disco" | **ALVO nas quatro.** O defeito das quatro SERPs não é o número errado, é o SUJEITO trocado: a consulta da categoria responde por três espécies diferentes na mesma tela sem dizer de qual é cada número. Ver a leitura inteira embaixo desta tabela | a medir |
 
 > **AS LINHAS DAS LEVAS 5 E 6 FORAM ESCRITAS EM 22/09/2026, pela leva 7, e não no dia delas.** As duas levas saíram em 14/09/2026, com a SERP classificada e registrada no `porque` de cada página do snippet — o dado nunca se perdeu —, e esta tabela ficou em quatro linhas por oito dias. Ela existe para a leitura semanal **não precisar abrir código**, então tabela incompleta aqui é a leitura semanal lendo um eixo de 12 URLs como se fosse de 20. O conteúdo destas duas linhas foi copiado do registro do snippet e do `REGISTRO.md`, não remedido: é índice, e o índice não reclassifica SERP. **É a mesma família do que a leva 7 achou no portão da voz no mesmo dia** — lista escrita à mão que a leva seguinte tem de lembrar de alimentar, e que não avisa quando alguém esquece.
 
 > **ESTA TABELA ESTAVA PARTIDA EM TRÊS, E FOI REMONTADA EM 22/09/2026 — nenhuma palavra de linha nenhuma foi mudada, e as sete reticências foram abertas.** As linhas das levas 5, 6 e 7 estavam separadas do cabeçalho por linha em branco: em Markdown isso são três tabelas, e as duas de baixo, sem cabeçalho, saem da tela como texto solto. Quem lê o arquivo renderizado via quatro levas e mais um parágrafo torto. Junto com a remontagem, as sete consultas escritas como `"...tetra brilhante"` passaram a trazer a consulta inteira: a abreviação era do olho, e o índice agora tem portão — `ferramentas/conferir-indice-de-levas.py` cobra que TODA página do eixo `/peixes/` apareça aqui, pelo endereço ou pela consulta-alvo declarada no próprio snippet que a publica. Era a segunda das duas listas escritas à mão que a leva 7 nomeou em 22/09/2026 e deixou em aberto; a primeira, a do portão da voz, foi fechada no mesmo dia.
+
+## A classificação de SERP da leva 8 — `/peixes/acaras/`, medida em 22/09/2026
+
+Quatro consultas, medidas nesta execução pela 14.9, **antes** de a categoria e as
+três fichas serem escritas. O método e o limite dele são os da leva 7, escritos
+logo acima e não repetidos aqui: a classificação sai da ferramenta de busca desta
+nuvem, mede **quem publica** e **que número publica**, e não a ordem exata do top
+10 para um usuário no Brasil.
+
+**Quem ocupa o top das quatro, contado:** blogs e enciclopédias de aquarismo
+(Aquarismo Paulista, Aquaristz, Aquario Vivo, Tô Aquariando, Aquários Sobrinho),
+**dois fabricantes de ração** (Alcon, Grupo Sarlo), uma revista de aquicultura
+(Panorama da Aquicultura), **um varejista de pet de domínio forte** (Petz), sites
+de criador de disco (BeloDisco, peixeacaradisco.com.br), a revista de uma loja
+estrangeira (zooplus.pt), páginas de produto (Pró-Aquarista, Fazenda Submersa),
+um vídeo, um fórum, um Blogspot de 2011, um agregador de perguntas e um
+marketplace estrangeiro. **Nenhuma fazenda de conteúdo ocupando quase tudo** — o
+caso que a 14.9 classifica como ALVO, nas quatro.
+
+**Isto é diferente das sete levas anteriores e fica dito:** é a primeira SERP do
+eixo em que aparecem **fabricante** e **domínio forte** ao mesmo tempo. A 14.9 só
+manda a página não nascer quando eles ocupam **quase tudo**, e não é o caso: são
+três posições de nove ou dez, e nenhuma delas responde à pergunta com número
+atribuído a fonte nomeada. O Alcon e o Sarlo vendem ração e publicam ficha de
+espécie sem dimensionar o aquário em centímetros; a Petz publica um guia de
+cuidados. **O que eles ocupam é a atenção, não a resposta.**
+
+**Os números que eles publicam, e é aqui que a leva se justifica.** Nenhum dos
+quatro conjuntos de resultados atribui um número a fonte nomeada, e os quatro se
+contradizem dentro da própria página de resultados:
+
+| consulta | o que o top publica | a distância entre o maior e o menor |
+|---|---|---|
+| quantos litros para acará bandeira | 200 L para um grupo de 6 · 200 L para 12 exemplares · 150 L para um casal · 60 L num cubo de 40 cm para o casal reprodutor | **contradição aritmética, não de opinião:** os mesmos 200 L para 6 e para 12 |
+| quantos litros para oscar | 100 L (mínimo absoluto) · 150 L · 200 L (ideal para um) · "150 cm e mais de 300 L" para vários | **3 vezes** para um exemplar só |
+| quantos litros para acará disco | 50 L por adulto · 60 L por peixe · 200 L para três · 250 L para 5 a 6 · 300 L para 4 a 5 | **três destas cinco não podem ser verdade juntas:** 200 L para três é mais por peixe do que 300 L para cinco |
+| quantos litros para acará | 60 L · 200 L · 250 L · 300 L, para **três espécies diferentes** na mesma tela | não é distância de número: é **sujeito trocado** |
+
+**A última linha é o achado desta classificação, e ele não tem irmão nas sete
+levas anteriores.** Nas outras consultas de categoria o top respondia mal a
+pergunta certa; aqui ele responde a **outra pergunta**. "Acará" é nome de
+prateleira, não de espécie, e a página de resultados mistura acará-bandeira,
+acará comum (*Geophagus brasiliensis*), acará severo, acará do congo e
+acará-disco, devolvendo litragens de 60 a 300 L sem que dê para saber de qual
+peixe cada número fala. **Quem lê sai com um número e sem saber se ele é o do seu
+peixe** — e é exatamente por isso que a página de categoria vale mais aqui do que
+em qualquer outra do eixo: ela é uma linha por espécie, com o arranjo ao lado do
+espaço.
+
+**O que a ilha publica contra isso, nas quatro páginas:** a base declarada em
+centímetros, com o nome do corpo de fonte e a data ao lado de cada linha, e — na
+página de categoria — a coluna que nenhuma das dez respostas publica: a **faixa
+de temperatura**. O oscar vai de 22 a 25 °C e o acará-disco de 26 a 30 °C, as
+duas faixas pela mesma base científica, **sem um grau de interseção**. Dois
+peixes vendidos na mesma prateleira, respondidos na mesma página de resultados, e
+que não podem dividir o mesmo aquário. Nenhuma conta de litragem responde isso.
+
+**E uma coisa que a ficha do oscar publica e a SERP não:** o compêndio declara
+que uma base de 150 × 60 cm é apenas grande o bastante para **UM adulto**, e o
+top da consulta publica "150 cm de comprimento e mais de 300 L" como o aquário de
+**vários** oscares. É o mesmo número para populações opostas — a mesma família do
+que a leva 7 chamou de "número de medidas diferentes não se compara", com uma
+diferença: aqui a régua é a mesma e o que muda é **de quem se fala**. A ficha
+publica o número com o dono dele.
 
 ## A classificação de SERP da leva 7 — `/peixes/danios-e-rasboras/`, medida em 22/09/2026
 

@@ -1,6 +1,78 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
- * Versão: 1.11.0 (22/09/2026) — LEVA 7: A SÉTIMA CATEGORIA, E A PRIMEIRA LEVA
+ * Versão: 1.13.0 (22/09/2026) — LEVA 8: A OITAVA CATEGORIA, E A PRIMEIRA EM QUE
+ * O CRITÉRIO DA LEVA ANTERIOR FALHARIA. Quatro URLs novas: /peixes/acaras/ e as
+ * fichas do acará-bandeira, do oscar e do acará-disco. A ilha vai de 44 para 48
+ * URLs, e a família Cichlidae fica inteira publicada, repartida em duas
+ * categorias.
+ *
+ *   O NOME NÃO SERVE DE CRITÉRIO AQUI, E ISSO SE MEDE. A leva 7 fechou
+ *   comemorando um critério que era verificável DENTRO do banco: separar pelo
+ *   nome que a pessoa digita, conferindo `nomes_populares_br`. Nesta categoria
+ *   ele falha, e falha pelo lado caro — QUATRO registros do banco trazem
+ *   "acará" entre os nomes populares, e o quarto é o `acará-borboleta`, que é o
+ *   ramirezi e já é filha de `/peixes/ciclideos-anoes/` desde a leva 6. Um
+ *   critério de nome tiraria uma filha da mãe dela. Critério bom não é o que
+ *   funcionou na última vez: é o que sobrevive à varredura desta vez.
+ *
+ *   O QUE SERVE É O PORTE DECLARADO, e ele é número e não leitura: os três
+ *   desta categoria começam em 13,7 cm de adulto e os três ciclídeos anões
+ *   terminam em 5,6 cm. Entre 5,6 e 13,7 cm não existe um único Cichlidae neste
+ *   banco — o corte atravessa um vão vazio de oito centímetros, então não é uma
+ *   linha escolhida para caber no dado.
+ *
+ *   A LINHA MESTRA MUDOU DE COLUNA, e é a primeira vez no eixo. As sete
+ *   categorias anteriores tinham faixas térmicas que se cruzavam, e a
+ *   temperatura era dado de ficha sem nada a dizer na abertura. Aqui as faixas
+ *   do oscar (22 a 25 °C) e do acará-disco (26 a 30 °C) NÃO SE TOCAM, as duas
+ *   pela mesma base científica — então a comparação é legítima pela regra da
+ *   leva 7, porque não há duas réguas, há uma só. Dois peixes que a loja põe na
+ *   mesma prateleira e a SERP responde na mesma página não cabem no mesmo
+ *   aquário, e nenhuma conta de litragem diz isso.
+ *
+ *   E O QUE A LINHA MESTRA NÃO DIZ É DELIBERADO: nada sobre porte comparado.
+ *   Esta é a categoria com a MAIOR distância de porte do eixo (13,7 a 45,7 cm)
+ *   e mesmo assim o número fica fora da frase, porque o acará-disco declara SL
+ *   e os outros dois declaram TL. A regra da leva 7 vale contra a frase mais
+ *   forte que esta página poderia publicar.
+ *
+ *   O TERCEIRO ESTADO DA AUSÊNCIA DE FUNDO GANHA O SEGUNDO CASO, e o primeiro
+ *   que nasce sabendo. A 1.12.0 escreveu esse ramo consertando um defeito que
+ *   esteve oito dias no ar (a ficha do apistogramma agassizi prometendo ao
+ *   harém o chão do casal); a ficha do acará-disco nasce nele — o chão de
+ *   120 × 45 cm foi declarado para juvenis ou um casal, o registro publica
+ *   cardume de cinco, e a página diz a largura, diz para quem ela foi declarada
+ *   e não abre as duas tabelas que dependem do fundo. É a diferença entre uma
+ *   regra escrita por conserto e uma regra que já trabalha.
+ *
+ *   E OS TRÊS ESCOPOS DE CHÃO VIVEM NA MESMA CATEGORIA, o que nenhuma outra
+ *   tem: `nao-declarado` no acará-bandeira, `um-exemplar` no oscar e
+ *   `juvenis`+`casal` no acará-disco. O oscar é também a primeira ficha do eixo
+ *   com `convivencia: solitario` cujo chão declarado COBRE o arranjo publicado
+ *   — o betta também vive sozinho, e nele a fonte não diz para quem a base foi
+ *   dada. Eram dois ramos da mesma função com um exemplar só.
+ *
+ *   UMA RÉGUA REPROVOU UMA PÁGINA CERTA, E O CONSERTO É DO CONTRATO. A
+ *   afirmação "a palavra cardume não aparece no corpo" é da leva 4, escrita
+ *   quando o betta era o único peixe de arranjo fixo da ilha, e procurava a
+ *   palavra SOLTA no corpo inteiro. As três ocorrências no corpo do oscar eram,
+ *   todas, o TÍTULO DE OUTRA PÁGINA dentro de um link — o degrau da trilha, a
+ *   frase de mãe e o bloco "Veja também". Nenhuma delas diz uma palavra sobre o
+ *   oscar, e apagar a palavra dos títulos seria mentir sobre a categoria e
+ *   sobre o disco, que vive em cardume mesmo. A régua passou a medir o LUGAR e
+ *   não a palavra solta, que é o que a 16.5 do ARQUIPELAGO.md manda com todas
+ *   as letras — e a segunda metade dela impede o afrouxamento: toda ocorrência
+ *   que sobra no corpo tem de ser, uma a uma, o título de outra página do eixo.
+ *   Uma mutação nova prova a porta dos fundos.
+ *
+ * HISTÓRICO — versão 1.12.0 (22/09/2026) — O CHÃO DECLARADO GANHA DONO. Nenhuma
+ * URL nova. `chao_declarado_para` (esquema de espécies versão 5) nasceu para a
+ * base declarada viajar com o arranjo a que ela se refere, e com ele dois
+ * defeitos saíram do ar: a ficha do apistogramma agassizi prometendo ao harém
+ * os 30 cm de fundo que o compêndio declarou para um casal, e quatro fichas
+ * atribuindo a base ao corpo de fonte errado.
+ *
+ * HISTÓRICO — versão 1.11.0 (22/09/2026) — LEVA 7: A SÉTIMA CATEGORIA, E A PRIMEIRA LEVA
  * DESTE EIXO QUE NÃO CUSTOU UMA COLETA. Quatro URLs novas:
  * /peixes/danios-e-rasboras/ e as fichas do paulistinha, da rasbora arlequim e
  * do tanictis. A ilha vai de 40 para 44 URLs.
@@ -481,7 +553,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.12.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.13.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -3540,6 +3612,65 @@ function aquametria_peixes_registro() {
 			'serp_nota' => 'Esta espécie é vendida no Brasil com quatro nomes diferentes — tanictis, peixe-neve, neon chinês e falso neon —, e isso reparte a própria SERP: as duas consultas medidas em 22/09/2026 devolvem conjuntos de lojas quase sem interseção. A ilha publica a página no nome da prateleira, que é "tanictis", e o banco guarda os quatro.',
 			'porque'   => 'Medido em 22/09/2026: o top 9 é sete páginas de produto de loja (Pró-Aquarista, Aquarium Crystal, Barretos, Fazenda Submersa, Kauar, AquaOrinoco, uma portuguesa), um Blogspot de 2010 e duas fichas de portal. Nenhum domínio forte. É a SERP mais contraditória das quatro desta leva: 20 L, 30 L, 50 L para um grupo de 6, 54 L e 100 L para um grupo de 20 — cinco números, nenhum atribuído —, e o cardume mínimo aparece como 3, 5 e 10 na mesma tela. ALVO. É também a ficha em que o nosso banco tem o conflito mais consequente do eixo: as duas fontes declaram 5 e 10 exemplares de cardume mínimo, e com a mesma frente de 60 cm isso é o dobro da densidade dependendo de quem a página citasse. A ficha publica as duas com a atribuição de cada uma.',
 		),
+
+		/* --- LEVA 8, 22/09/2026: a OITAVA categoria do eixo e as três fichas
+		   dela. `/peixes/acaras/` nasce com o mínimo exato do 16.5 e a ilha vai
+		   de 44 para 48 URLs. O banco fechou na execução das 17h25Z do MESMO
+		   dia, quando `chao_declarado_para` deu ao acará-disco o segundo corpo
+		   de fonte que ele esperava havia treze dias — sem uma busca nova.
+
+		   É A TERCEIRA CATEGORIA SEGUIDA EM QUE O CRITÉRIO DA ANTERIOR NÃO
+		   SERVE, e a primeira em que falha o critério que a leva 7 tinha
+		   acabado de comemorar por ser verificável dentro do banco. Lá o que
+		   separava era o NOME que a pessoa digita; aqui ele traria o
+		   `mikrogeophagus-ramirezi` para esta página, porque o terceiro nome
+		   popular brasileiro dele é `acará-borboleta` — e ele já é filha de
+		   `/peixes/ciclideos-anoes/`. Quem separa aqui é o PORTE declarado,
+		   que é número e não leitura.
+
+		   AS QUATRO DECLARAM `serp_em` => '22/09/2026': as quatro consultas
+		   foram classificadas nesta execução, pela 14.9, e as 44 páginas no ar
+		   continuam em 12, 13, 14 ou 22/09/2026. --- */
+
+		'acaras' => array(
+			'nivel'    => 2,
+			'pai'      => 'peixes',
+			'titulo'   => 'Acarás: quantos litros, do solitário ao cardume',
+			'conteudo' => '[aquametria_peixes_categoria]',
+			'consulta' => 'quantos litros para acará',
+			'serp_em'  => '22/09/2026',
+			'porque'   => 'Medido em 22/09/2026: o top 10 é três blogs de nicho (Aquarismo Paulista duas vezes, Aquaristz duas), uma revista de aquicultura, dois fabricantes de ração (Grupo Sarlo, Alcon), um site de criador, um blog e um agregador de perguntas. Nenhum marketplace, nenhum domínio forte. O defeito desta SERP não é o número errado, é o SUJEITO trocado: a mesma página de resultados responde por três espécies diferentes — acará-bandeira, acará comum (Geophagus) e acará-disco — e devolve 60 L, 200 L, 250 L e 300 L sem que dê para saber de qual peixe cada número fala. É ALVO do tipo que esta tabela resolve por desenho: uma linha por espécie, com o arranjo ao lado do espaço. E ela publica o que nenhum dos dez publica — que dois destes peixes não cabem na mesma água, porque a faixa declarada do oscar termina a 25 °C e a do acará-disco começa a 26 °C.',
+		),
+		'quantos-litros-para-acara-bandeira' => array(
+			'nivel'    => 3,
+			'pai'      => 'acaras',
+			'especie'  => 'pterophyllum-scalare',
+			'titulo'   => 'Quantos litros para um grupo de acará-bandeira?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para acará bandeira',
+			'serp_em'  => '22/09/2026',
+			'porque'   => 'Medido em 22/09/2026: o top 9 é uma revista de aquicultura, dois fabricantes de ração (Grupo Sarlo, Alcon), três blogs de nicho (Aquarismo Paulista, Aquario Vivo, Tô Aquariando), um Blogspot de 2011, uma página de produto de loja e um fórum. Nenhum domínio forte. Os números se contradizem na mesma tela e a contradição é aritmética, não de opinião: 200 L para um grupo de SEIS e 200 L para DOZE exemplares, 150 L para um casal, e 60 L num cubo de 40 cm para o casal reprodutor. Ninguém publica os 100 cm de frente que o compêndio declara. É ALVO, e esta é a ÚNICA ficha do eixo inteiro em que a fonte declara ALTURA mínima — 50 cm —, que é justamente a medida que a SERP repete sem número: ela diz que o peixe cresce na vertical e que aquário baixo deforma a nadadeira, e nenhuma das nove diz quantos centímetros de coluna isso quer dizer.',
+		),
+		'quantos-litros-para-oscar' => array(
+			'nivel'    => 3,
+			'pai'      => 'acaras',
+			'especie'  => 'astronotus-ocellatus',
+			'titulo'   => 'Quantos litros para um oscar?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para oscar',
+			'serp_em'  => '22/09/2026',
+			'porque'   => 'Medido em 22/09/2026: o top 9 é uma página genérica de "quantos peixes cabem", dois blogs de nicho do mesmo domínio, um vídeo, um fabricante de ração, um blog de varejo de pet, uma enciclopédia de aquarismo, uma página de produto de loja e um marketplace estrangeiro. Um domínio forte só, e ele é de varejo de pet, não de aquarismo. Os números vão de 100 a 300 L sem atribuição — e o que faz desta a ficha de maior valor da leva é uma coincidência que vira contradição quando se lê com atenção: a SERP publica "150 cm de comprimento e mais de 300 L" para VÁRIOS oscares, e o compêndio declara que uma base de 150 × 60 cm é apenas grande o bastante para UM adulto. O mesmo número, para populações opostas. É ALVO, e a página ganha por dizer de quem o número fala.',
+		),
+		'quantos-litros-para-acara-disco' => array(
+			'nivel'    => 3,
+			'pai'      => 'acaras',
+			'especie'  => 'symphysodon-aequifasciatus',
+			'titulo'   => 'Quantos litros para um cardume de acará-disco?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para acará disco',
+			'serp_em'  => '22/09/2026',
+			'porque'   => 'Medido em 22/09/2026: o top 9 é a revista de uma loja estrangeira (zooplus.pt), três páginas do mesmo blog de nicho, duas de uma enciclopédia de aquarismo, dois sites de criador de disco e um site de comunidade. Nenhum domínio forte brasileiro. A SERP é a mais numerosa do eixo e a que mais se contradiz por peixe: 50 L por adulto, 60 L por peixe, 200 L para três, 250 L para cinco ou seis e 300 L para quatro ou cinco — três dessas cinco não podem ser verdade juntas, porque 200 L para três é mais por peixe do que 300 L para cinco. Ninguém publica os 120 cm de frente que a base científica declara para o grupo de cinco ou mais. É ALVO, e é a primeira ficha deste eixo a nascer no TERCEIRO ESTADO da ausência de fundo: o chão de 120 × 45 cm existe, foi declarado para juvenis ou um casal, e a página diz isso em vez de o prometer ao cardume.',
+		),
 	);
 }
 }
@@ -3754,6 +3885,102 @@ function aquametria_peixes_categorias() {
 				'trigonostigma-heteromorpha',
 				'tanichthys-albonubes',
 				'danio-margaritatus',
+			),
+		),
+		'acaras' => array(
+			'rotulo'   => 'Acarás',
+			'plural'   => 'acarás',
+			'singular' => 'todo acará grande',
+			/* A LINHA MESTRA SAI DA TABELA E DE MAIS NADA, e nesta categoria a
+			   coluna que decide não é a do espaço: é a da TEMPERATURA. As sete
+			   categorias anteriores tinham, todas, faixas térmicas que se
+			   cruzavam — a tabela servia a temperatura como dado de ficha, e
+			   nenhuma linha mestra teve o que dizer sobre ela. Aqui as faixas do
+			   oscar (22 a 25 °C) e do acará-disco (26 a 30 °C) NÃO SE TOCAM, e
+			   as duas vêm da MESMA base científica, o que torna a comparação
+			   legítima pela regra da leva 7: aqui não há duas réguas, há uma só.
+			   Um grau de distância entre o teto de um e o piso do outro é o que
+			   separa dois peixes que a loja põe na mesma prateleira e a SERP
+			   responde na mesma página.
+
+			   A FRASE NOMEIA OS DOIS PEIXES E NÃO IMPRIME OS DOIS NÚMEROS, e as
+			   duas metades da escolha são deliberadas. Nomear: a linha mestra é
+			   a resposta CITÁVEL desta página (seção 5), e afirmação citada fora
+			   de contexto sem sujeito não afirma nada — "dois deles" só existe
+			   para quem está com a tabela na tela. Não imprimir: o número vive na
+			   tabela, que sai do banco, e número digitado em frase é o defeito
+			   que esta ilha mais paga. A frase continua verdadeira enquanto a
+			   tabela a pagar, e quem mudar a faixa térmica de um dos dois vê a
+			   contradição na mesma tela em vez de ver dois números concordando
+			   com nada.
+
+			   E A PRIMEIRA TENTATIVA DE NOMEAR OS DOIS QUEBROU DUAS REGRAS DA
+			   VOZ, as duas pegas pelo `teste-voz.mjs` antes do ar: ela dizia "a
+			   faixa de temperatura QUE A FONTE DECLARA para o oscar" — e
+			   procedência não abre página (15.2) —, e trocava "o SEU aquário"
+			   por "o mesmo aquário", perdendo a segunda pessoa que o `VOZ.md`
+			   manda. As duas cabem na mesma correção: o dono do número sai da
+			   frase de abertura e continua ao lado do número, na tabela, que é
+			   onde a camada de prova mora.
+
+			   O QUE ELA NÃO DIZ, E É DELIBERADO: nada sobre o porte comparado.
+			   O acará-bandeira declara 15,0 cm TL, o oscar 45,7 cm TL e o
+			   acará-disco 13,7 cm SL — e comparar o disco com os outros dois
+			   seria comparar o corpo sem a cauda com o corpo com ela, que é
+			   exatamente o que a leva 7 proibiu. A distância de porte desta
+			   categoria é a maior do eixo e mesmo assim ela fica fora da frase,
+			   porque metade dela não está na mesma régua. */
+			'linha_mestra' => 'Três peixes vendidos na mesma prateleira, e dois deles não cabem na mesma água: a faixa de temperatura do oscar termina antes de a do acará-disco começar. Antes de perguntar quantos litros, veja se esses dois podem dividir o seu aquário — porque essa resposta nenhuma conta de litragem dá.',
+			/* O CRITÉRIO, e esta é a TERCEIRA categoria seguida em que o critério
+			   da anterior não serve. Mais: é a primeira em que falha justamente o
+			   critério que a leva 7 tinha acabado de comemorar por ser verificável
+			   dentro do banco em vez de depender da leitura de quem escreve.
+
+			   O NOME NÃO SERVE AQUI, E ISSO SE MEDE: varrendo `nomes_populares_br`
+			   do banco inteiro, QUATRO registros trazem "acará" — o acará-bandeira,
+			   o acará-disco, o acará-açu (que é o oscar) e o `acará-borboleta`, que
+			   é o ramirezi e já é filha de `/peixes/ciclideos-anoes/` desde a leva
+			   6. Um critério de nome puxaria uma filha para fora da mãe dela.
+
+			   A FAMÍLIA TAMBÉM NÃO SERVE, pelo motivo que a própria `ciclideos-anoes`
+			   já tinha escrito de lá para cá: Cichlidae é a família das seis, e as
+			   três de lá têm menos de 6 cm. E o gênero não serve porque são três
+			   gêneros para três peixes.
+
+			   O QUE SERVE É O PORTE DECLARADO, e ele é número: os três desta lista
+			   começam em 13,7 cm de adulto e os três ciclídeos anões terminam em
+			   5,6 cm. Entre 5,6 e 13,7 cm não existe um único Cichlidae neste banco
+			   — o corte não passa por cima de nenhum registro, e não é uma linha
+			   escolhida para caber no dado: é um vão de oito centímetros vazio.
+			   A prateleira brasileira concorda com ele, e é a mesma prova que a
+			   `ciclideos-anoes` levantou ao contrário: as lojas que têm endereço de
+			   ciclídeo anão põem os três de lá lá dentro e nenhuma põe estes três. */
+			'criterio' => 'Os ciclídeos grandes que a loja brasileira vende como acará, e que ela NÃO põe na prateleira de ciclídeo anão. Nem a família, nem o gênero, nem o nome servem de critério aqui, e é a terceira categoria seguida deste eixo em que o critério da anterior falha. A família é a mesma dos ciclídeos anões, que já têm página própria. O gênero são três gêneros para três peixes. E o nome, que foi o que separou os danios e as rasboras, falha pelo lado mais caro: quatro registros deste banco trazem "acará" entre os nomes populares, e o quarto é o acará-borboleta, que é o ramirezi — um critério de nome o tiraria da categoria de que ele é filha. Quem separa é o porte declarado, que é número e não leitura: os três desta tabela começam em 13,7 cm de adulto e os três ciclídeos anões terminam em 5,6 cm, sem um único registro deste banco entre os dois. O que esta tabela publica é o acará cujos campos os dois corpos de fonte sustentam, um por um.',
+			/* A LISTA NASCE CHEIA, como a da leva 7, e pelo mesmo desenho: a
+			   categoria e as três fichas saem na MESMA execução, então o critério
+			   e a linha mestra foram escritos contra a tabela que esta página
+			   serve, e não contra uma tabela que ninguém tinha visto ainda. É a
+			   regra que a leva 5 deixou — texto de categoria escrito antes da leva
+			   é afirmação que ninguém mediu.
+
+			   `barradas` NASCE VAZIA, e é afirmação e não descuido: os seis
+			   Cichlidae do banco estão distribuídos entre esta categoria e a
+			   `ciclideos-anoes`, os seis passam no portão, e não existe um sétimo
+			   ciclídeo no banco — nem passando nem barrado. A frase de lista
+			   fechada desta página é verdadeira sem ressalva.
+
+			   O ACARÁ-DISCO ENTROU HÁ POUCAS HORAS, e isso é o que esta lista tem
+			   de mais frágil e de mais bem documentado: ele passou treze dias em um
+			   corpo de fonte só, e o que o destravou não foi coleta, foi o campo
+			   `chao_declarado_para` da versão 5 do esquema, escrito na execução das
+			   17h25Z de hoje. A recusa que nomeou o conserto continua gravada em
+			   `coletas_recusadas` dentro do registro dele, com `superada_em` e
+			   `superada_por` — é a primeira recusa superada desta ilha e a série é
+			   o que ensina. */
+			'especies' => array(
+				'pterophyllum-scalare',
+				'astronotus-ocellatus',
+				'symphysodon-aequifasciatus',
 			),
 		),
 		'plecos-e-limpa-vidros' => array(

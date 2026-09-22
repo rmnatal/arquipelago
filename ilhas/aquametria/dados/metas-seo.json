@@ -178,6 +178,26 @@
       "titulo": "Quantos litros para um cardume de tanictis?",
       "url": "https://aquametria.com.br/peixes/danios-e-rasboras/quantos-litros-para-tanictis/",
       "meta_descricao": "Quantos litros para um cardume de tanictis? As duas fontes declaram cardume de 5 e de 10 na mesma frente de 60 cm: a página publica as duas."
+    },
+    "acaras": {
+      "titulo": "Acarás: quantos litros, do solitário ao cardume",
+      "url": "https://aquametria.com.br/peixes/acaras/",
+      "meta_descricao": "Acará-bandeira, oscar e acará-disco lado a lado: como cada um vive, a frente mínima declarada por fonte com nome e data, e a faixa térmica."
+    },
+    "quantos-litros-para-acara-bandeira": {
+      "titulo": "Quantos litros para um grupo de acará-bandeira?",
+      "url": "https://aquametria.com.br/peixes/acaras/quantos-litros-para-acara-bandeira/",
+      "meta_descricao": "Quantos litros para um grupo de acará-bandeira? A base e a altura mínima que a fonte declara, a conta pelas duas réguas de lotação e as irmãs."
+    },
+    "quantos-litros-para-oscar": {
+      "titulo": "Quantos litros para um oscar?",
+      "url": "https://aquametria.com.br/peixes/acaras/quantos-litros-para-oscar/",
+      "meta_descricao": "Quantos litros para um oscar? A base que a fonte declara para um adulto, para quem ela foi declarada, e a conta pelas duas réguas de lotação."
+    },
+    "quantos-litros-para-acara-disco": {
+      "titulo": "Quantos litros para um cardume de acará-disco?",
+      "url": "https://aquametria.com.br/peixes/acaras/quantos-litros-para-acara-disco/",
+      "meta_descricao": "Quantos litros para um cardume de acará-disco? A frente que a fonte declara para o grupo, o que ela não cobre, e as duas réguas de lotação."
     }
   }
 }
