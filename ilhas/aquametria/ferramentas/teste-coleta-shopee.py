@@ -153,6 +153,68 @@ CASOS = [
     ('chihiros-wrgb-ii-90', 'Luminaria Chihiros WRGB II Pro 90cm', False),
     ('chihiros-wrgb-ii-90', 'Luminaria Chihiros WRGB II Slim 90cm', False),
 
+    # ---------------------------------------------------------------------
+    # OS SEIS QUE O ENSAIO DE 23/09/2026 ACHOU NO AR. Todos sao titulos REAIS
+    # devolvidos pela API, e todos tinham CASADO antes destas regras existirem.
+    # E a prova de que conferir a amostra com os olhos (25.3) nao e cerimonia:
+    # nenhum deles seria pego por teste escrito de cabeca.
+    # ---------------------------------------------------------------------
+
+    # A VOLTAGEM DO ANUNCIO E MEDIDA. Sete registros Maxxi existem separados
+    # por ela — o M-200 aparece duas vezes, uma por anuncio. Sem le-la, os dois
+    # gemeos casaram com o MESMO anuncio de 110 V.
+    ('maxxi-m-200-anuncio-220v',
+     'Aquecedor Termostato Maxxi M-200 200w Para Aquários 110v', False),
+    ('maxxi-m-200-anuncio-110v',
+     'Aquecedor Termostato Maxxi M-200 200w Para Aquários 110v', True),
+    # O ANUNCIO CALADO SOBRE O DISCRIMINADOR NAO CASA. Os dois M-200 tem a
+    # MESMA potencia e existem separados so pela voltagem: um titulo que diz
+    # "200W" e nao diz volt nenhum nao prova qual dos dois e. Exigir "alguma
+    # medida" aceitava esse anuncio pelo 200 W, que e igual nos gemeos.
+    ('maxxi-m-200-anuncio-220v', 'Maxxi Termostato M-200 200W', False),
+    ('maxxi-m-200-anuncio-220v', 'Maxxi Termostato M-200 200W 220v', True),
+    # E onde o codigo ja e unico no banco, a voltagem nao e cobrada: o M-100
+    # nao tem gemeo, entao o anuncio calado sobre volt continua valendo.
+    ('maxxi-m-100-anuncio-127v', 'Maxxi Termostato M-100 100W', True),
+
+    ('maxxi-m-050-anuncio-220v',
+     'Maxxi Termostato M-050 50W 127V - Termostato para Aquários', False),
+    # 110 e 127 sao a mesma tomada, e o varejo usa os dois nomes.
+    ('maxxi-m-100-anuncio-127v', 'Maxxi Termostato M-100 100W 110v', True),
+    ('sunsun-hw-702a-anuncio-110v',
+     'Filtro Canister Sunsun Hw -702a Aquario 300 Litros 220v', False),
+
+    # A LAMPADA UV DO CANISTER NAO E O CANISTER.
+    ('sunsun-hw-303b',
+     'Lâmpada Filtro Canister Hw 303b / 304b Uv 9w Sunsun Aquario', False),
+
+    # O BALDE E PECA, E A PALAVRA QUE O DENUNCIA VEM NO FIM DO TITULO — fora
+    # dos 40 primeiros caracteres em que o portao olhava.
+    ('atman-at-3338',
+     'Balde Para Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-3338 '
+     'Peça de Reposição', False),
+
+    # E A DENUNCIA TEM DE VALER NO TITULO INTEIRO, nao so na cabeca: aqui a
+    # cabeca e o aparelho, certinha, e o que denuncia vem no fim. Sem esta
+    # afirmacao a regra do titulo inteiro nao e medida por nada.
+    ('atman-at-3338',
+     'Filtro Canister Atman AT-3338 1350l/h Original - Peça de Reposição', False),
+
+    # O REFIL DE UM FILTRO E PECA; o de uma midia e o produto.
+    ('atman-hf-0400', 'Refil Filtro Atman HF-0400', False),
+    ('seachem-matrix-1l', 'Refil Midia Biologica Seachem Matrix 1L', True),
+
+    # ARMADILHA 5: o anuncio nomeia DOIS registros do banco.
+    ('atman-hf-0800', 'Filtro Externo Atman HF-0600 HF-0800', False),
+
+    # MATRIX E MATRIXCARBON SAO PRODUTOS DIFERENTES, e os dois estao no banco:
+    # um e colonia de bacteria, o outro adsorve. O anuncio do carvao casou com
+    # a midia biologica.
+    ('seachem-matrix-1l',
+     'Carvão Ativado Matrix Carbon 1 L Seachem Filtragem Aquário', False),
+    ('seachem-matrixcarbon-250ml',
+     'Carvão Ativado Seachem MatrixCarbon 250ml', True),
+
     # A MARCA E NECESSARIA E NUNCA SUFICIENTE (25.3). Sem ela, "Matrix" sozinho
     # casa com qualquer coisa.
     ('seachem-matrix-1l', 'Matrix 1L midia biologica para aquario', False),
@@ -169,6 +231,19 @@ for ident, titulo, esperado in CASOS:
 # ---------------------------------------------------------------------------
 # O PORTAO DA MEDIDA SAI DO BANCO, e e isso que faz irmao novo liga-lo sozinho
 # ---------------------------------------------------------------------------
+ESPERADO_UNIDADES = {
+    'maxxi-m-200-anuncio-220v': {'v'},     # mesma potencia, so a volt separa
+    'roxin-ht-1300-q3-25w': {'w'},         # mesma linha, so a potencia separa
+    'chihiros-wrgb-ii-pro-60': {'cm', 'w'},
+    'maxxi-m-100-anuncio-127v': set(),     # sem gemeo de mesmo codigo
+    'sunsun-hw-303b': set(),
+}
+for ident, esperado in ESPERADO_UNIDADES.items():
+    reg, irmaos = registro(ident)
+    ok('%s: unidade que discrimina = %s' % (ident, sorted(esperado) or 'nenhuma'),
+       coletor.unidades_discriminantes(reg, irmaos) == esperado,
+       'obtido=%r' % sorted(coletor.unidades_discriminantes(reg, irmaos)))
+
 ESPERADO_GATE = {
     # linha em que varios irmaos dividem o mesmo codigo: so a medida separa
     'roxin-ht-1300-q3-25w': True,

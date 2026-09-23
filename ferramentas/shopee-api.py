@@ -254,7 +254,7 @@ def por_item(item_id, shop_id=None):
     return [_normalizar(n) for n in (oferta.get('nodes') or [])]
 
 
-def encurtar(url, sub_id):
+def encurtar(url, sub_id, sub_id_2=None):
     """O link COM sub-id, que é o único que entra no banco.
 
     Sem sub-id a ilha não consegue separar o que ela rendeu do que veio de
@@ -263,9 +263,17 @@ def encurtar(url, sub_id):
     """
     if not sub_id:
         raise ErroDaShopee('encurtar sem sub-id é o que esta ferramenta existe para impedir')
+    # O SEGUNDO SUB-ID É OPCIONAL E EXISTE PORQUE UMA ILHA JÁ O USAVA. O banco
+    # da Aquametria grava `afiliado.sub_id_2` desde 07/09/2026 com o código da
+    # calculadora que gerou o clique (C3, C5, C12, C15) — é ele que diz, no
+    # painel da Shopee, QUAL ferramenta vende. Sem este parâmetro, todo link
+    # gerado por API nasceria sem essa metade da atribuição, e a ilha perderia
+    # uma medição que já tinha. Quem não passa nada continua com o mesmo
+    # comportamento de antes.
     dados = _chamar({'query': CONSULTA_LINK,
                      'variables': {'entrada': {'originUrl': url,
-                                               'subIds': [sub_id, '', '', '', '']}}})
+                                               'subIds': [sub_id, sub_id_2 or '',
+                                                          '', '', '']}}})
     curto = ((dados.get('generateShortLink') or {}).get('shortLink'))
     if not curto:
         raise ErroDaShopee('generateShortLink não devolveu link para %s' % url)
@@ -310,6 +318,8 @@ def main():
     l = sub.add_parser('link', help='encurtar uma URL com o sub-id da ilha')
     l.add_argument('url')
     l.add_argument('--sub-id', required=True)
+    l.add_argument('--sub-id-2', default=None,
+                   help='segundo sub-id (na Aquametria, o código da calculadora)')
 
     args = p.parse_args()
 
@@ -320,7 +330,9 @@ def main():
             ofertas = por_item(args.item_id, args.shop_id)
         else:
             print(json.dumps({'url': args.url, 'sub_id_1': args.sub_id,
-                              'url_afiliado': encurtar(args.url, args.sub_id)},
+                              'sub_id_2': args.sub_id_2,
+                              'url_afiliado': encurtar(args.url, args.sub_id,
+                                                       args.sub_id_2)},
                              ensure_ascii=False, indent=1))
             return 0
 

@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 10,
+  "versao_esquema": 12,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -280,6 +280,16 @@
           "campo": "medida_como",
           "tipo": "string|null",
           "observacao": "Como a dimensao foi lida, com quem leu. Existe porque 'numero lido' e 'numero plausivel' sao indistinguiveis depois de gravados, e esta ilha publica dimensao de arquivo que a propria nuvem nao alcanca."
+        },
+        {
+          "campo": "alt_origem",
+          "tipo": "string",
+          "vocabulario": [
+            "vista",
+            "banco"
+          ],
+          "valor_quando_ausente": "vista",
+          "observacao": "De onde saiu o texto do alt. 'vista' e alt escrito por quem ABRIU a imagem e descreveu o que ela mostra, que e o que este esquema pede. 'banco' e alt derivado dos campos do proprio registro, escrito por quem NAO viu a foto — a coleta pela Open API (25.6) le os bytes do arquivo e mede a dimensao, mas nao enxerga a imagem, e descrever o que ela mostra seria inventar. Nasceu em 23/09/2026 com as 33 fotos da primeira coleta por API. Campo e nao prosa, pelo mesmo motivo do afiliado.intestavel: divida escrita em observacao nao se conta, e a Sentinela Tecnica, que roda no Chrome e ve a imagem, precisa de uma LISTA do que falta descrever, nao de um texto para ler."
         }
       ],
       "regras_de_tela": [
@@ -498,6 +508,11 @@
         "campo": "motivo",
         "tipo": "string|null",
         "observacao": "Obrigatorio quando plataforma e null: por que este produto nao tem link."
+      },
+      {
+        "campo": "encurtamento_tentado_em",
+        "tipo": "data ISO|null",
+        "observacao": "A data em que a Open API da Shopee foi CHAMADA para este registro (secao 25.6). E a trava que a 25.2-b exige com todas as letras: \"registro publicavel nao entra sem que o encurtamento tenha sido TENTADO\", e \"ausente e diferente de tentado-e-falhou, e essa distincao e a regra inteira\". Um booleano nao serviria: tentativa de um mes atras nao e a mesma coisa que tentativa de hoje, e so a data diz qual das duas e. Escrita por ferramentas/coletar-shopee.py em toda passada, tenha ela casado ficha ou nao — o campo mede a TENTATIVA, nunca o resultado."
       }
     ],
     "regras": [
@@ -506,7 +521,8 @@
       "Produto sem link de ficha APARECE no bloco de produto do mesmo jeito (V16: link de afiliado nao decide quem e sugerido). Esta linha dizia o contrario ate 13/09/2026, e contradizia a V16 escrita no mesmo arquivo. O que produto sem ficha nao pode e ficar SEM PISO: pela 25.2 o piso e a busca, e nada, nunca, fica na fila esperando o Raphael.",
       "Toda pagina que renderiza link de afiliado traz aviso visivel de que a Aquametria pode receber comissao.",
       "Link de afiliado que aponta para OUTRA variante (outra medida, outra potencia) e defeito, nao aproximacao: ou existe o registro daquela variante, ou o produto fica sem link.",
-      "O PISO APARECE NA TELA, SEMPRE (25.2, item 4 do despacho de 14/09/2026). Nenhum produto que chega ao leitor fica sem saida de compra: quando ha ficha (url) ela e o botao e o piso desce para a linha discreta de 'ver todas as ofertas'; quando nao ha, o piso SOBE e vira o botao. A frase 'link de loja em breve' esta proibida pela secao 7 desde 14/09/2026 — item que chegaria a ela e defeito, nao estado aceitavel de pagina no ar. Enquanto url_busca (o piso ENCURTADO, que rende comissao) nao existir, quem vai para a tela e url_busca_produto, a busca CRUA: ela nao rende comissao e tambem nao e link patrocinado, entao o selo do cartao diz o que ela e."
+      "O PISO APARECE NA TELA, SEMPRE (25.2, item 4 do despacho de 14/09/2026). Nenhum produto que chega ao leitor fica sem saida de compra: quando ha ficha (url) ela e o botao e o piso desce para a linha discreta de 'ver todas as ofertas'; quando nao ha, o piso SOBE e vira o botao. A frase 'link de loja em breve' esta proibida pela secao 7 desde 14/09/2026 — item que chegaria a ela e defeito, nao estado aceitavel de pagina no ar. Enquanto url_busca (o piso ENCURTADO, que rende comissao) nao existir, quem vai para a tela e url_busca_produto, a busca CRUA: ela nao rende comissao e tambem nao e link patrocinado, entao o selo do cartao diz o que ela e.",
+      "O PISO ENCURTADO DEIXOU DE DEPENDER DO RAPHAEL EM 23/09/2026. Ate aqui url_busca so podia nascer da sessao logada do painel da Shopee, e por isso os 78 registros serviam a busca CRUA, que da saida de compra e nao rende comissao. A Open API (25.6) encurta por chamada de rede, com o sub-id da ilha, sobre uma URL que ja estava escolhida e conferida: nao ha produto a identificar e nao ha como casar errado. O que a 25.2-b chamou de inaceitavel acabou por ferramenta, nao por decisao nova."
     ],
     "links_sem_produto": "dados/afiliados-sem-produto.json guarda o link gerado que ainda nao tem registro no banco. Fica fora do banco de proposito: link sem ficha verificada nao pode ser sugerido por calculadora.",
     "escada_de_compra": {
@@ -1274,5 +1290,5 @@
       "severidade": "erro"
     }
   ],
-  "atualizado_em": "2026-09-12"
+  "atualizado_em": "2026-09-23"
 }

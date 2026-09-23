@@ -99,7 +99,20 @@ shopee = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(shopee)
 
 SUB_ID = 'aquametria'    # a Shopee recusa sub-id com hifen ou sublinhado (25.7)
-FONTE_DA_IMAGEM = 'shopee-api'
+
+# O SEGUNDO SUB-ID DIZ QUAL CALCULADORA VENDEU, e nao e invencao desta passada:
+# o banco grava `afiliado.sub_id_2` desde 07/09/2026 com exatamente estes
+# valores. Sai da ENTIDADE porque foi assim que os 39 links existentes foram
+# gerados — C3 para filtro, C5 para aquecedor, C12 para midia, C15 para
+# iluminacao. Link novo que nascesse sem ele entraria cego no painel.
+SUB_ID_2_POR_ENTIDADE = {'filtro': 'C3', 'aquecedor': 'C5',
+                         'midia': 'C12', 'iluminacao': 'C15'}
+# O VOCABULARIO E DO ESQUEMA, E ELE NAO ACEITA NOME DE FERRAMENTA. A primeira
+# escrita gravou `fonte: 'shopee-api'` e o validador reprovou 33 registros de
+# uma vez (V19): o campo diz DE ONDE VEIO O ARQUIVO — anuncio, fabricante,
+# varejo ou propria —, e nao qual programa o baixou. A foto da API e a foto do
+# anuncio, entao ela e 'anuncio-shopee', igual as oito que ja estavam no banco.
+FONTE_DA_IMAGEM = 'anuncio-shopee'
 QUANTOS = 10
 PAUSA = 0.35             # a API nao publica limite; folga barata contra 429
 
@@ -116,13 +129,26 @@ NAO_E_O_APARELHO = [
     'reposicao', 'reparo', 'eixo', 'rotator', 'ventosa', 'mangueira',
     'cabo', 'plug', 'tomada', 'bucha', 'parafuso', 'cesto', 'bandeja',
     'boia', 'valvula', 'registro', 'conector', 'abracadeira', 'esponja para',
+    # ACRESCENTADOS PELO ENSAIO DE 23/09/2026, e os tres estavam casando:
+    # "Lampada Filtro Canister Hw 303b/304b Uv 9w" casou com o FILTRO HW-303B;
+    # "Balde Para Filtro Canister Atman AT-3335 ... Peca de Reposicao" casou com
+    # o AT-3338; e "Refil Filtro Atman HF-0400" casou com o proprio HF-0400.
+    # Os tres sao peca do aparelho anunciada com o codigo do aparelho.
+    'lampada', 'balde', 'refil', 'cartucho', 'elemento filtrante',
 ]
 
-# A MIDIA E O CASO EM QUE "REFIL" E LEGITIMO. Seachem Matrix, Eheim Substrat e
-# JBL MicroMec SAO consumiveis: "refil" no titulo de uma midia e o produto, e
-# no titulo de um filtro e uma peca dele. A lista acima nao traz "refil" por
-# isso, e "esponja" so e barrada na forma "esponja para" (esponja DE filtro e
-# midia; esponja PARA o canister X e peca).
+# ESTAS NAO PRECISAM ESTAR NA CABECA DO TITULO. "Peca de Reposicao" costuma vir
+# no FIM, depois da lista de modelos compativeis — foi assim no balde do Atman,
+# em que a palavra caia fora dos 40 primeiros caracteres e o portao nao a via.
+DENUNCIA_PECA_EM_QUALQUER_LUGAR = ['peca de reposicao', 'pecas de reposicao',
+                                   'de reposicao', 'reposicao']
+
+# A MIDIA E O CASO EM QUE "REFIL" E LEGITIMO, e e por isso que a lista acima
+# nao vale para ela. Seachem Matrix, Eheim Substrat e JBL MicroMec SAO
+# consumiveis: "refil" no titulo de uma midia e o PRODUTO, e no titulo de um
+# filtro e uma peca dele. Por isso "refil" pode estar na lista sem tirar a
+# midia — e "esponja" so e barrada na forma "esponja para" (esponja DE filtro
+# e midia; esponja PARA o canister X e peca).
 ENTIDADES_CONSUMIVEIS = {'midia'}
 
 # SUFIXO QUE FAZ OUTRO APARELHO (armadilha 4 da 25.7). Aqui ele e literal: o
@@ -200,6 +226,19 @@ def variante_depois_do_codigo(codigo, titulo, extras=()):
 # A MEDIDA DECLARADA — o coracao do portao desta ilha
 # ---------------------------------------------------------------------------
 
+def normalizar_volt(valor):
+    """110 e 127 sao a mesma tomada, e o varejo brasileiro usa os dois nomes.
+
+    Nao e arredondamento: e o fato de que a rede de 127 V e chamada de 110 V em
+    metade dos anuncios. O banco tem registro gravado como `anuncio-110v` e
+    registro gravado como `anuncio-127v`, e nenhum par do banco precisa que os
+    dois sejam distinguidos — nenhuma linha tem um irmao de 110 E um de 127.
+    Tratar os dois como um so faz o anuncio de "127V" casar com o registro de
+    110 V, que e o certo, sem afrouxar nada contra o de 220 V.
+    """
+    return 110.0 if valor in (110.0, 115.0, 120.0, 127.0) else valor
+
+
 def medidas_do_registro(registro):
     """As medidas que separam este registro dos irmaos da mesma linha.
 
@@ -223,6 +262,28 @@ def medidas_do_registro(registro):
             unidade, valor = 'l', valor / 1000.0
         if (unidade, valor) not in medidas:
             medidas.append((unidade, valor))
+
+    # A VOLTAGEM DO ANUNCIO E MEDIDA, e foi o ensaio de 23/09/2026 que provou.
+    # Sete registros Maxxi deste banco existem SEPARADOS pela voltagem do
+    # anuncio — o M-200 aparece duas vezes, uma para o anuncio de 110 V e outra
+    # para o de 220 V, e o proprio id diz isso (`maxxi-m-200-anuncio-110v`).
+    # Sem ler a voltagem, o portao casou os DOIS gemeos com o MESMO anuncio de
+    # 110 V, e casou o M-050 de 220 V com um anuncio de 127 V. O campo
+    # `afiliado.voltagem_anuncio` ja existia no esquema desde 07/09 guardando
+    # exatamente este numero; ninguem o estava lendo.
+    bruto_volt = (registro.get('afiliado') or {}).get('voltagem_anuncio')
+    candidatos = []
+    if bruto_volt:
+        candidatos.append(str(bruto_volt))
+    candidatos.extend(re.findall(r'(\d{3})\s*v\b', sem_acento(
+        str(registro.get('variante') or ''))))
+    for bruto in candidatos:
+        achado = re.search(r'\d+', str(bruto))
+        if not achado:
+            continue
+        valor = normalizar_volt(float(achado.group()))
+        if ('v', valor) not in medidas:
+            medidas.append(('v', valor))
 
     return medidas
 
@@ -254,8 +315,19 @@ def codigo_base(registro):
         if casado:
             n = float(casado.group(1).replace(',', '.'))
             if casado.group(2) == 'ml':
-                n = n / 1000.0
-            if any(abs(n - v) <= max(0.01 * v, 0.001) for v in valores):
+                candidatos = [n / 1000.0]
+            elif casado.group(2):
+                candidatos = [n]
+            else:
+                # NUMERO PELADO NAO DIZ A UNIDADE, e a medida ja foi guardada
+                # normalizada. "MatrixCarbon 250 mL" chega aqui como o token
+                # `250` enquanto a medida vale 0,25 L, e compara-los cruamente
+                # deixava o `250` de pe dentro do codigo base — o portao passou
+                # a exigir "matrixcarbon 250" no titulo e reprovou o anuncio
+                # certo. Entao o numero pelado e testado tambem como mililitro.
+                candidatos = [n, n / 1000.0]
+            if any(abs(c - v) <= max(0.01 * v, 0.001)
+                   for c in candidatos for v in valores):
                 continue
         guardados.append(t)
     return ' '.join(guardados) or modelo
@@ -286,11 +358,53 @@ def sufixos_irmaos(registro, irmaos):
         if outro.get('id') == registro.get('id'):
             continue
         outra_base = codigo_base(outro)
-        if outra_base != base and outra_base.startswith(base + ' '):
+        if outra_base == base:
+            continue
+        # COM ESPACO: "wrgb ii" -> "wrgb ii pro" da o sufixo "pro".
+        if outra_base.startswith(base + ' '):
             resto = outra_base[len(base) + 1:].split()
             if resto:
                 palavras.add(resto[0])
+        # E COLADO, que o ensaio de 23/09 achou: "matrix" -> "matrixcarbon".
+        # A Seachem vende Matrix (midia biologica) e MatrixCarbon (carvao
+        # ativado), os dois estao neste banco, e o anuncio *"Carvao Ativado
+        # Matrix Carbon 1 L Seachem"* casou com o Matrix. Sao produtos que nem
+        # fazem a mesma coisa — um e colonia de bacteria, o outro adsorve.
+        elif outra_base.startswith(base) and len(outra_base) > len(base):
+            palavras.add(outra_base[len(base):].split()[0])
     return palavras
+
+
+def unidades_discriminantes(registro, irmaos):
+    """As UNIDADES em que este registro difere de um irmao do mesmo codigo.
+
+    `medida_discrimina` responde "a medida importa aqui?"; esta responde "QUAL
+    medida", e a diferenca custou um casamento no ensaio de 23/09/2026. Os dois
+    Maxxi M-200 tem a MESMA potencia (200 W) e existem separados so pela
+    voltagem do anuncio. Exigindo "alguma medida" no titulo, o anuncio *"Maxxi
+    Termostato M-200 200W"* — que nao diz voltagem nenhuma — satisfez o portao
+    pelo 200 W e casou com o registro de 220 V. O 200 W nao separa nada ali:
+    ele e igual nos dois.
+
+    Exigir a unidade que DE FATO separa e o que faz o anuncio calado sobre o
+    discriminador ser recusado, em vez de aceito por um numero que os gemeos
+    dividem.
+    """
+    base = codigo_base(registro)
+    minhas = {}
+    for u, v in medidas_do_registro(registro):
+        minhas.setdefault(u, set()).add(v)
+    unidades = set()
+    for outro in irmaos:
+        if outro.get('id') == registro.get('id') or codigo_base(outro) != base:
+            continue
+        dele = {}
+        for u, v in medidas_do_registro(outro):
+            dele.setdefault(u, set()).add(v)
+        for u, valores in minhas.items():
+            if u in dele and dele[u] != valores:
+                unidades.add(u)
+    return unidades
 
 
 def medida_discrimina(registro, irmaos):
@@ -326,6 +440,30 @@ def medida_discrimina(registro, irmaos):
     return False
 
 
+def medidas_do_titulo(titulo):
+    """Todas as medidas que o titulo declara, normalizadas. Uma leitura so.
+
+    Estava escrita duas vezes, quase igual, em `medida_no_titulo` e em
+    `medida_conflitante` — e acrescentar a voltagem em 23/09/2026 seria
+    acrescenta-la em dois lugares, com a chance de meia regra ficar para tras.
+    """
+    achados = []
+    for bruto, u in re.findall(
+            r'(\d+(?:[.,]\d+)?)\s*(cm|litros|litro|lt|l|ml|watts|watt|w|volts|volt|v)\b',
+            sem_acento(titulo)):
+        n = float(bruto.replace(',', '.'))
+        if u == 'ml':
+            u, n = 'l', n / 1000.0
+        elif u in ('litros', 'litro', 'lt'):
+            u = 'l'
+        elif u in ('watts', 'watt'):
+            u = 'w'
+        elif u in ('volts', 'volt', 'v'):
+            u, n = 'v', normalizar_volt(n)
+        achados.append((u, n))
+    return achados
+
+
 def medida_no_titulo(unidade, valor, titulo):
     """O titulo declara ESTA medida, nesta unidade?
 
@@ -333,17 +471,7 @@ def medida_no_titulo(unidade, valor, titulo):
     com folga de 1%: "1 L" e "1000 ml" sao o mesmo volume escrito de dois
     jeitos, e "23,0 cm" e "23 cm" tambem.
     """
-    t = sem_acento(titulo)
-    achados = []
-    for bruto, u in re.findall(r'(\d+(?:[.,]\d+)?)\s*(cm|litros|litro|lt|l|ml|w|watts|watt)\b', t):
-        n = float(bruto.replace(',', '.'))
-        if u in ('ml',):
-            u, n = 'l', n / 1000.0
-        elif u in ('litros', 'litro', 'lt'):
-            u = 'l'
-        elif u in ('watts', 'watt'):
-            u = 'w'
-        achados.append((u, n))
+    achados = medidas_do_titulo(titulo)
     for u, n in achados:
         if u == unidade and abs(n - valor) <= max(0.01 * valor, 0.001):
             return True
@@ -365,18 +493,7 @@ def medida_conflitante(unidade, declarados, titulo):
     tem varios numeros na mesma unidade — o consumo da bomba e a potencia da
     UV —, e conflito so existe quando o titulo nao bate com NENHUM deles.
     """
-    t = sem_acento(titulo)
-    no_titulo = []
-    for bruto, u in re.findall(r'(\d+(?:[.,]\d+)?)\s*(cm|litros|litro|lt|l|ml|w|watts|watt)\b', t):
-        n = float(bruto.replace(',', '.'))
-        if u in ('ml',):
-            u, n = 'l', n / 1000.0
-        elif u in ('litros', 'litro', 'lt'):
-            u = 'l'
-        elif u in ('watts', 'watt'):
-            u = 'w'
-        if u == unidade:
-            no_titulo.append(n)
+    no_titulo = [n for u, n in medidas_do_titulo(titulo) if u == unidade]
     if not no_titulo:
         return False
     return not any(abs(n - v) <= max(0.01 * v, 0.001)
@@ -392,8 +509,10 @@ def e_peca_e_nao_aparelho(titulo, entidade):
     """
     if entidade in ENTIDADES_CONSUMIVEIS:
         return False
-    cabeca = sem_acento(titulo)[:40]
-    return any(p in cabeca for p in NAO_E_O_APARELHO)
+    inteiro = sem_acento(titulo)
+    if any(p in inteiro for p in DENUNCIA_PECA_EM_QUALQUER_LUGAR):
+        return True
+    return any(p in inteiro[:40] for p in NAO_E_O_APARELHO)
 
 
 def kit_indevido(titulo, registro):
@@ -541,11 +660,56 @@ def casa(oferta, registro, irmaos=()):
         # do vizinho. Ver `medida_discrimina` — a regra nasceu de o portao ter
         # reprovado um casamento certo.
         if medida_discrimina(registro, irmaos):
-            if not any(medida_no_titulo(u, v, titulo) for u, v in medidas):
+            # BASTA UMA das unidades que discriminam, nao todas. Se os irmaos
+            # diferem em comprimento E em potencia, o titulo que declara o
+            # comprimento ja diz qual deles e — cobrar as duas reprovaria o
+            # anuncio certo da Chihiros WRGB II Pro 60, que anuncia o tamanho e
+            # cala o watt. O que barra o valor ERRADO nas outras unidades e o
+            # portao do conflito, logo acima, e ele continua valendo para todas.
+            cobrar = unidades_discriminantes(registro, irmaos)
+            if cobrar:
+                if not any(medida_no_titulo(u, v, titulo)
+                           for u in cobrar for v in (por_unidade.get(u) or [])):
+                    return False, ('o titulo nao declara nenhuma das medidas que separam '
+                                   'este registro do irmao de mesmo codigo (%s)'
+                                   % ', '.join('%s: %s' % (u, ', '.join(
+                                       '%g' % v for v in (por_unidade.get(u) or [])))
+                                       for u in sorted(cobrar)))
+            elif not any(medida_no_titulo(u, v, titulo) for u, v in medidas):
                 return False, ('o titulo nao declara a medida do registro (%s), e nesta linha '
                                'e a medida que separa um irmao do outro — sem ela nao ha como '
                                'provar que e esta variante e nao a vizinha'
                                % ', '.join('%g %s' % (v, u) for u, v in medidas))
+
+    # ARMADILHA 5 DA 25.7, PRIMEIRA METADE: "dois registros no mesmo anuncio —
+    # no maximo um esta certo, e nao ha como dizer qual, entao os dois caem".
+    # O ensaio de 23/09/2026 trouxe tres casos de uma vez: *"Balde Para Filtro
+    # Canister Atman AT-3335 AT-3336 AT-3337 AT-3338"* (quatro modelos),
+    # *"Refil Filtro Atman HF-0600 HF-0800"* (dois) e *"Lampada Filtro Canister
+    # Hw 303b / 304b"* (dois). Casamento que nao identifica UM registro so nao
+    # identifica nenhum.
+    #
+    # E ELA SO CONTA IRMAO DE OUTRA LINHA, que foi a quarta coisa que o portao
+    # pegou em mim: contando todo irmao cujo codigo aparece no titulo, os cinco
+    # Roxin HT-1300 se denunciavam uns aos outros (eles COMPARTILHAM o codigo
+    # base, e quem os separa e a medida, dois portoes acima) e a Chihiros WRGB
+    # II Pro 60 caia por causa da WRGB II 90, cujo codigo `wrgb ii` esta dentro
+    # de `wrgb ii pro` por construcao. Entao nao conta o irmao cujo codigo e
+    # prefixo do meu nem aquele de quem o meu e prefixo — o primeiro caso e a
+    # mesma linha, o segundo ja e do portao do sufixo.
+    outros = []
+    for o in irmaos:
+        if o.get('id') == registro.get('id') or (o.get('marca') or '') != marca:
+            continue
+        ob = codigo_base(o)
+        if not ob or ob == base or ob.startswith(base) or base.startswith(ob):
+            continue
+        if token_no_titulo(ob, titulo):
+            outros.append(o)
+    if outros:
+        return False, ('o titulo nomeia %d registro(s) do banco alem deste (%s) — '
+                       'anuncio que nao identifica um so nao identifica nenhum'
+                       % (len(outros), ', '.join(o['id'] for o in outros[:4])))
 
     return True, None
 
@@ -596,6 +760,54 @@ def dimensao_da_imagem(url):
             return (struct.unpack('<H', dados[26:28])[0] & 0x3FFF,
                     struct.unpack('<H', dados[28:30])[0] & 0x3FFF)
     return None
+
+
+def montar_imagem(registro, img, hoje):
+    """O objeto `imagem` como o esquema o exige, e nao como deu na cabeca.
+
+    Tres datas, e elas sao atos diferentes: `coletado_em` (quando a URL foi
+    colhida), `verificado_em` (quando alguem abriu e viu a imagem carregar) e
+    `medida_em` (quando largura e altura foram lidas). Aqui as tres sao hoje,
+    porque a mesma chamada que colheu a URL baixou os primeiros bytes do
+    arquivo e leu o cabecalho — e isso e, ao mesmo tempo, colher, verificar que
+    carrega e medir.
+
+    E O `verificado_em` NAO E EXAGERO NEM MODESTIA. As oito fotos antigas desta
+    ilha estao com ele `null` e o motivo escrito: a nuvem nao alcanca
+    `down-bs-br.img.susercontent.com`. A API devolve URL em `cf.shopee.com.br`,
+    que a nuvem ALCANCA — foi de la que os bytes vieram. Ler o cabecalho e
+    prova mais dura que olhar a tela: arquivo que nao existisse, ou que nao
+    fosse imagem, nao teria cabecalho para decodificar.
+
+    O `alt`, esse, e o unico campo aqui que NAO foi visto. O esquema pede
+    "descricao real do que aparece na foto, nao repeticao do nome", e quem
+    escreve isto nao viu a foto: descrever o que ela mostra seria inventar. Sai
+    um alt derivado do BANCO, com `alt_origem: 'banco'` dizendo isso em campo e
+    nao em prosa — e e a Sentinela Tecnica, que roda no Chrome e ve a imagem,
+    quem o substitui por um de verdade.
+    """
+    entidade = (registro.get('entidade') or 'produto').replace('iluminacao', 'luminaria')
+    nome = ('%s %s' % (registro.get('marca') or '', registro.get('modelo') or '')).strip()
+    return {
+        'url': img['url'],
+        'largura': img['largura'],
+        'altura': img['altura'],
+        'fonte': FONTE_DA_IMAGEM,
+        'coletado_em': hoje,
+        'verificado_em': hoje,
+        'motivo_sem_verificacao': None,
+        'alt': 'Foto do anuncio: %s %s' % (entidade, nome),
+        'alt_origem': 'banco',
+        'motivo_sem_medida': None,
+        'medida_em': hoje,
+        'medida_como': (
+            'cabecalho do arquivo, lido pela nuvem em %s: os primeiros bytes de '
+            'cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e '
+            'a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth '
+            'de imagem carregada em navegador, e nao e palpite sobre o formato '
+            'que a Shopee costuma servir — a 25.7 proibe o palpite com essas '
+            'palavras, porque dimensao digitada parece conferida.' % hoje),
+    }
 
 
 def carregar(caminho):
@@ -652,7 +864,8 @@ def main():
             linha['piso'] = {'erro': 'o registro nao tem url_busca_produto'}
         else:
             try:
-                linha['piso'] = {'url_busca': shopee.encurtar(crua, SUB_ID)}
+                linha['piso'] = {'url_busca': shopee.encurtar(
+                    crua, SUB_ID, SUB_ID_2_POR_ENTIDADE.get(r.get('entidade')))}
             except shopee.ErroDaShopee as erro:
                 linha['piso'] = {'erro': str(erro)}
             time.sleep(PAUSA)
@@ -693,12 +906,14 @@ def main():
                     aprovados.sort(key=lambda o: float(o.get('nota') or 0), reverse=True)
                     escolhido = aprovados[0]
                     try:
-                        curto = shopee.encurtar(escolhido['url_produto'], SUB_ID)
+                        curto = shopee.encurtar(
+                            escolhido['url_produto'], SUB_ID,
+                            SUB_ID_2_POR_ENTIDADE.get(r.get('entidade')))
                     except shopee.ErroDaShopee as erro:
                         recusas.append('encurtar falhou: %s' % erro)
                         break
                     time.sleep(PAUSA)
-                    linha['degrau_que_casou'] = nome
+                    linha['degrau_que_casou'] = nome   # da ESCADA DE PALAVRA-CHAVE (25.6)
                     linha['ficha'] = {
                         'url': curto,
                         'url_produto': escolhido['url_produto'],
@@ -713,6 +928,7 @@ def main():
                             linha['imagem'] = {'url': escolhido['imagem_url'],
                                                'largura': dim[0], 'altura': dim[1],
                                                'fonte': FONTE_DA_IMAGEM}
+                            linha['imagem']['bytes_lidos'] = True
                         else:
                             linha['imagem'] = {'erro': 'nao foi possivel medir a dimensao'}
                     break
@@ -724,6 +940,29 @@ def main():
         sys.stderr.flush()
 
     sys.stderr.write('\n')
+
+    # ARMADILHA 5 DA 25.7, SEGUNDA METADE: o mesmo anuncio reclamado por dois
+    # registros. A primeira metade olha um registro por vez e nao enxerga isto;
+    # so a passada inteira enxerga. No ensaio de 23/09/2026 os gemeos
+    # `maxxi-m-200-anuncio-110v` e `maxxi-m-200-anuncio-220v` reclamaram o mesmo
+    # anuncio de 110 V, e o mesmo aconteceu com o par do M-300. A leitura da
+    # voltagem ja derruba esses dois casos; esta trava fica de pe atras dela,
+    # porque a proxima duplicata vai vir de um campo que ninguem previu.
+    por_anuncio = {}
+    for l in proposta:
+        if l.get('ficha'):
+            por_anuncio.setdefault(l['ficha']['url_produto'], []).append(l)
+    for url, disputantes in por_anuncio.items():
+        if len(disputantes) > 1:
+            nomes = ', '.join(d['id'] for d in disputantes)
+            for d in disputantes:
+                d['ficha'] = None
+                d['imagem'] = None
+                d['degrau_que_casou'] = None
+                d['motivo_sem_ficha'] = [
+                    'o mesmo anuncio foi reclamado por %d registros (%s): no maximo um '
+                    'esta certo e nao ha como dizer qual, entao os %d caem (25.7)'
+                    % (len(disputantes), nomes, len(disputantes))]
 
     casaram = [l for l in proposta if l.get('ficha')]
     piso_novo = [l for l in proposta if (l.get('piso') or {}).get('url_busca')]
@@ -737,8 +976,15 @@ def main():
         'ficha_casou': len(casaram),
         'ficha_nao_casou': len(proposta) - len(casaram),
         'com_foto_medida': len(com_foto),
-        'por_degrau': {n: len([l for l in casaram if l['degrau_que_casou'] == n])
-                       for n in ('1', '2', '3', '4')},
+        # NAO CONFUNDIR COM O `degrau` DO BANCO: aquele e a escada de
+        # DURABILIDADE da 25.1 (loja oficial, catalogo, anuncio, busca); este e
+        # a escada de PALAVRA-CHAVE da 25.6 (codigo, marca+codigo, ...). Sao
+        # duas escadas com o mesmo nome, e o nome longo aqui existe para a
+        # proxima passada nao as somar.
+        'por_degrau_de_palavra_chave': {
+            n: len([l for l in casaram if l['degrau_que_casou'] == n])
+            for n in ('1', '2', '3', '4')},
+
     }
 
     if args.ensaio:
@@ -776,6 +1022,17 @@ def main():
             af['encurtamento_tentado_em'] = hoje
 
             ficha = l.get('ficha')
+            # A FICHA QUE JA EXISTE NAO E SOBRESCRITA, e o motivo e atribuicao
+            # e nao teimosia. 25 dos 33 casamentos desta passada caem em
+            # registros que JA tem `url` — links feitos a mao em 07 e 09/09/2026,
+            # cada um com o `sub_id_2` da calculadora que o gerou. Trocar por um
+            # link novo apagaria a medicao de QUAL ferramenta vende, que e a
+            # unica coisa que o painel da Shopee sabe dizer sobre o assunto, e
+            # trocaria um link ja conferido por outro sem historia. A foto,
+            # essa, entra do mesmo jeito: ela nao disputa com nada.
+            if ficha and af.get('url'):
+                l['ficha_nao_gravada'] = 'o registro ja tem url; a atribuicao antiga fica'
+                ficha = None
             if ficha:
                 af['plataforma'] = 'shopee'
                 af['url'] = ficha['url']
@@ -783,6 +1040,13 @@ def main():
                 af['anuncio_shopee'] = ficha['anuncio_shopee']
                 af['rel'] = 'sponsored'
                 af['sub_id_1'] = SUB_ID
+                if SUB_ID_2_POR_ENTIDADE.get(r.get('entidade')):
+                    af['sub_id_2'] = SUB_ID_2_POR_ENTIDADE[r['entidade']]
+                # DEGRAU 3, E ELE E DECLARADO E NAO ADIVINHADO. A 25.1 reserva o
+                # degrau 1 para LOJA OFICIAL DO FABRICANTE, e a API nao diz se a
+                # loja e oficial — `shopName` e so um nome. Chamar de 1 o que
+                # pode ser anuncio de vendedor seria mentir sobre durabilidade
+                # no campo que existe justamente para registra-la.
                 af['degrau'] = 3   # anuncio de vendedor comum (25.1)
                 af['verificado_em'] = hoje
                 af['intestavel'] = False
@@ -791,18 +1055,39 @@ def main():
                 mexeu = True
 
             img = l.get('imagem') or {}
-            # A PREFERENCIA NUNCA INVERTE (25.3): registro que ja tem imagem
-            # nao e sobrescrito. A segunda fonte so preenche vazio.
-            if img.get('url') and not r.get('imagem'):
-                r['imagem'] = {'url': img['url'], 'largura': img['largura'],
-                               'altura': img['altura'], 'fonte': img['fonte'],
-                               'alt': 'Foto do anuncio de %s %s'
-                                      % (r.get('marca') or '', r.get('modelo') or '')}
+            # A PREFERENCIA NUNCA INVERTE (25.3): registro que ja tem imagem de
+            # OUTRA procedencia nao e sobrescrito. O que esta ferramenta pode
+            # reescrever e o que ela mesma escreveu — sem isso ela nao consegue
+            # consertar o proprio erro, e foi preciso: a primeira gravacao de
+            # 23/09/2026 saiu com o vocabulario de `fonte` errado e sem as datas
+            # obrigatorias, e a condicao "so preenche vazio" a teria congelado
+            # no banco.
+            # "MINHA" SE RECONHECE PELO QUE ESTA FERRAMENTA ESCREVE, e a
+            # primeira versao disto errou: ela perguntava so pelo `medida_como`,
+            # e as 33 imagens malformadas da gravacao anterior nao tinham
+            # `medida_como` NENHUM — era justamente um dos campos que faltavam.
+            # Uma regra de conserto que depende do campo quebrado nao conserta
+            # nada. Entao ela pergunta tambem pela `fonte` legada, que e a marca
+            # inconfundivel daquela passada.
+            atual = r.get('imagem') or {}
+            minha = (atual.get('fonte') == 'shopee-api'
+                     or str(atual.get('medida_como') or '').startswith('cabecalho do arquivo'))
+            if img.get('url') and (not atual or minha):
+                r['imagem'] = montar_imagem(r, img, hoje)
                 mexeu = True
 
         if mexeu:
             doc['atualizado_em'] = hoje
             gravar_json(caminho, doc)
+
+    # ESTE NUMERO SO EXISTE DEPOIS DA GRAVACAO, e e por isso que ele e
+    # acrescentado aqui em vez de junto com os outros: quem decide nao
+    # sobrescrever e o laco acima, e na primeira escrita o contador ficava no
+    # resumo que e montado ANTES dele — saiu "0" numa passada em que 25 fichas
+    # tinham sido preservadas. Numero de relatorio que e calculado antes do
+    # fato e numero errado com cara de medido.
+    resumo['ficha_nao_gravada_por_ja_ter_url'] = len(
+        [l for l in proposta if l.get('ficha_nao_gravada')])
 
     print(json.dumps(resumo, ensure_ascii=False, indent=1))
     return 0

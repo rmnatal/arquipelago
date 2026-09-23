@@ -87,14 +87,22 @@ MUTACOES = [
      troca(COLETOR, "        if variante_depois_do_codigo(base, titulo, extras):",
            "        if False and variante_depois_do_codigo(base, titulo, extras):")),
 
-    # 7. PORTA DOS FUNDOS DO SUFIXO: a funcao fica de pe e os sufixos do BANCO
+    # 7. PORTA DOS FUNDOS DA MEDIDA: o portao volta a aceitar QUALQUER medida
+    #    em vez da que discrimina. Os gemeos Maxxi M-200 tem a mesma potencia,
+    #    entao o 200 W do titulo satisfaz os dois e o de 220 V casa com um
+    #    anuncio que nao diz voltagem nenhuma.
+    ('qualquer medida volta a satisfazer o portao, nao a que discrimina',
+     troca(COLETOR, "            cobrar = unidades_discriminantes(registro, irmaos)",
+           "            cobrar = set()")),
+
+    # 8. PORTA DOS FUNDOS DO SUFIXO: a funcao fica de pe e os sufixos do BANCO
     #     param de chegar. Sobra a lista estatica, que nao conhece "slim" — e a
     #     WRGB II Slim 90 volta a casar com a WRGB II 90.
     ('os sufixos vindos do banco param de chegar ao portao',
      troca(COLETOR, "        extras = sufixos_irmaos(registro, irmaos)",
            "        extras = ()")),
 
-    # 8. PORTA DOS FUNDOS DO CODIGO: a fronteira de token vira `in`, que e
+    # 9. PORTA DOS FUNDOS DO CODIGO: a fronteira de token vira `in`, que e
     #    como qualquer pessoa escreveria a mesma intencao. Com `in`, "HW-303"
     #    esta dentro de "HW-303B" e o filtro vizinho passa.
     ('a fronteira de token vira substring',
@@ -103,26 +111,67 @@ MUTACOES = [
            "                     sem_acento(titulo)) is not None",
            "    return re.search(padrao, sem_acento(titulo)) is not None")),
 
-    # 9. A PECA VOLTA A PASSAR POR APARELHO (armadilha 1 da 25.7).
+    # 10. A PECA VOLTA A PASSAR POR APARELHO (armadilha 1 da 25.7).
     ('a peca do aparelho volta a passar por aparelho',
      troca(COLETOR, "    if e_peca_e_nao_aparelho(titulo, entidade):",
            "    if False and e_peca_e_nao_aparelho(titulo, entidade):")),
 
-    # 10. O KIT VOLTA A PASSAR (armadilha 2 da 25.7).
+    # 11. O KIT VOLTA A PASSAR (armadilha 2 da 25.7).
     ('o kit indevido volta a passar',
      troca(COLETOR, "    if kit_indevido(titulo, registro):",
            "    if False and kit_indevido(titulo, registro):")),
 
-    # 11. PORTA DOS FUNDOS DO CODIGO BASE: ele volta a comer TODO numero final,
+    # 12. PORTA DOS FUNDOS DO CODIGO BASE: ele volta a comer TODO numero final,
     #     que foi a primeira versao que escrevi. Come o `2213` do Eheim classic,
     #     que e o codigo do filtro e nao o tamanho dele.
     ('o codigo base volta a comer todo numero final',
      troca(COLETOR,
-           "            if any(abs(n - v) <= max(0.01 * v, 0.001) for v in valores):\n"
+           "            if any(abs(c - v) <= max(0.01 * v, 0.001)\n"
+           "                   for c in candidatos for v in valores):\n"
            "                continue",
            "            continue")),
 
-    # 12. PORTA DOS FUNDOS DA MARCA: a `linha` volta a valer como identidade
+    # 13. O NUMERO PELADO DEIXA DE SER TESTADO COMO MILILITRO. O codigo base do
+    #     MatrixCarbon 250 mL volta a carregar o `250`, e o portao passa a
+    #     exigir no titulo um codigo que nenhuma loja escreve.
+    ('o numero pelado deixa de ser testado como mililitro',
+     troca(COLETOR, "                candidatos = [n, n / 1000.0]",
+           "                candidatos = [n]")),
+
+    # 14. A VOLTAGEM DO ANUNCIO DEIXA DE SER MEDIDA. Os sete Maxxi voltam a se
+    #     confundir, e os gemeos do M-200 casam com o mesmo anuncio.
+    # A VOLTAGEM TEM DUAS FONTES — o campo `voltagem_anuncio` e o texto da
+    # `variante` — e cortar so uma nao a desliga: a primeira versao desta
+    # mutacao cortava o campo e SOBREVIVEU, porque "200 W (anuncio 110 V)"
+    # continuava entregando o numero. Mutacao que mede meia regra nao mede
+    # regra nenhuma.
+    ('a voltagem do anuncio deixa de ser medida',
+     troca(COLETOR, "        if ('v', valor) not in medidas:\n"
+                    "            medidas.append(('v', valor))",
+           "        pass")),
+
+    # 15. 110 E 127 VOLTAM A SER TOMADAS DIFERENTES, e o registro de 110 V
+    #     deixa de casar com o anuncio que escreve 127 V.
+    ('110 e 127 voltam a ser tomadas diferentes',
+     troca(COLETOR,
+           "    return 110.0 if valor in (110.0, 115.0, 120.0, 127.0) else valor",
+           "    return valor")),
+
+    # 16. O ANUNCIO VOLTA A PODER NOMEAR DOIS REGISTROS (armadilha 5, primeira
+    #     metade): "Refil Filtro Atman HF-0600 HF-0800" casa com os dois.
+    ('o anuncio volta a poder nomear dois registros do banco',
+     troca(COLETOR, "    if outros:\n        return False,",
+           "    if False:\n        return False,")),
+
+    # 17. A PALAVRA QUE DENUNCIA PECA VOLTA A SER LIDA SO NA CABECA DO TITULO.
+    #     "Peca de Reposicao" vem depois da lista de modelos compativeis.
+    ('a denuncia de peca volta a valer so na cabeca do titulo',
+     troca(COLETOR,
+           "    if any(p in inteiro for p in DENUNCIA_PECA_EM_QUALQUER_LUGAR):\n"
+           "        return True",
+           "    if False:\n        return True")),
+
+    # 18. PORTA DOS FUNDOS DA MARCA: a `linha` volta a valer como identidade
     #     alternativa. "HW" esta no titulo do HW-303, do HW-603B e do HW-702A.
     ('a linha volta a valer como codigo',
      troca(COLETOR, "    base = codigo_base(registro) or linha",
