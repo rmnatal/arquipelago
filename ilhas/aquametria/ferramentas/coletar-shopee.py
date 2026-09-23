@@ -813,6 +813,38 @@ def montar_imagem(registro, img, hoje):
     }
 
 
+def preserva_ficha_existente(af):
+    """A ficha que o banco ja tem sobrevive a esta passada? (id, motivo)
+
+    NASCEU COMO FUNCAO EM 23/09/2026 PORQUE COMO `if` DENTRO DO `main()` ELA
+    ERA INALCANCAVEL POR PORTAO. A decisao que ela toma e a mais cara desta
+    ferramenta — ela escolhe entre manter um link e troca-lo —, e a bancada
+    inteira media o CASAMENTO e nao media isto. A regra ficou onde uma
+    afirmacao consegue chega-la, e `mutacoes-coleta-shopee.py` a quebra nas
+    duas direcoes.
+
+    A REGRA, em uma frase: preserva-se o PAR, nunca o LINK. Com `url` e
+    `url_produto` o registro afirma para onde o link vai e alguem consegue
+    conferir; a atribuicao antiga tem historia e fica. Com `url` e sem
+    `url_produto` o registro nao afirma nada — a 25.4 proibe clicar no proprio
+    link de afiliado, entao de um `s.shopee.com.br/XXXX` ninguem chega a ficha
+    — e o par se reescolhe INTEIRO, os dois campos da mesma oferta.
+
+    A DIRECAO PERIGOSA E A PRIMEIRA, e ela e a que estava escrita ate hoje:
+    perguntar so por `url` protege justamente os registros que precisam do
+    conserto, e os mantem `intestavel: true` para sempre. A segunda direcao e
+    perigosa do outro lado: preservar de menos apaga a atribuicao de um link
+    que estava bom.
+    """
+    if af.get('url') and af.get('url_produto'):
+        return True, ('o registro ja tem o PAR url + url_produto, '
+                      'que e testavel: a atribuicao antiga fica')
+    if af.get('url'):
+        return False, ('o registro tem url e NAO tem url_produto: o par nao e '
+                       'demonstravel, e se reescolhe inteiro (25.4-b.1)')
+    return False, 'o registro nao tem ficha nenhuma para preservar'
+
+
 def carregar(caminho):
     with open(os.path.join(RAIZ, caminho), encoding='utf-8') as f:
         return json.load(f)
@@ -1070,9 +1102,9 @@ def main():
             # os antigos sairam (C3 filtro, C5 aquecedor, C12 midia, C15
             # iluminacao). A calculadora que vende continua nomeada; o que
             # muda e que agora o link tem ficha para a ronda abrir.
-            if ficha and af.get('url') and af.get('url_produto'):
-                l['ficha_nao_gravada'] = ('o registro ja tem o PAR url + url_produto, '
-                                          'que e testavel: a atribuicao antiga fica')
+            preserva, porque = preserva_ficha_existente(af)
+            if ficha and preserva:
+                l['ficha_nao_gravada'] = porque
                 ficha = None
             elif ficha and af.get('url'):
                 l['par_reescolhido'] = af['url']

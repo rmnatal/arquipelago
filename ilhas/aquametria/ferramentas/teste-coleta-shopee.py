@@ -335,6 +335,40 @@ for p in sem_marca:
     ok('%s: e o motivo diz que o REGISTRO nao declara marca' % p.get('id'),
        'nao declara marca' in (motivo or ''), 'motivo=%r' % motivo)
 
+
+# ---------------------------------------------------------------------------
+# A DECISAO DE PRESERVAR OU REESCOLHER A FICHA (25.4-b.1 e 25.4-b.2)
+# ---------------------------------------------------------------------------
+# Item 2 do despacho da Sentinela de 23/09/2026. Ate aquele dia esta decisao era
+# um `if` dentro do `main()` e portao nenhum a alcancava — a bancada media o
+# CASAMENTO e nao media a escolha entre manter um link e troca-lo, que e a mais
+# cara desta ferramenta. As tres afirmacoes abaixo sao os tres mundos que o
+# banco produz, e o do meio e o que estava errado: 39 registros com `url` e sem
+# `url_produto` eram protegidos por uma trava que existia para proteger
+# atribuicao, e ficavam `intestavel: true` para sempre.
+
+preserva, motivo = coletor.preserva_ficha_existente(
+    {'url': 'https://s.shopee.com.br/ABC', 'url_produto': 'https://shopee.com.br/x.i.1.2'})
+ok('par completo: a ficha do banco e PRESERVADA', preserva is True, 'motivo=%r' % motivo)
+ok('  e o motivo fala do PAR, nao do link', 'PAR' in motivo, 'motivo=%r' % motivo)
+
+preserva, motivo = coletor.preserva_ficha_existente({'url': 'https://s.shopee.com.br/ABC'})
+ok('url sem url_produto: a ficha NAO e preservada, o par se reescolhe inteiro',
+   preserva is False, 'motivo=%r' % motivo)
+ok('  e o motivo diz que o par nao e demonstravel',
+   'nao e demonstravel' in motivo or 'nao e\ndemonstravel' in motivo, 'motivo=%r' % motivo)
+
+preserva, motivo = coletor.preserva_ficha_existente({})
+ok('registro sem ficha nenhuma: nao ha o que preservar', preserva is False,
+   'motivo=%r' % motivo)
+
+# A DIRECAO QUE NENHUMA DAS TRES ACIMA PEGA SOZINHA: a funcao nao pode olhar o
+# `url_produto` isolado. Um registro com url_produto e SEM url nao tem ficha de
+# afiliado para preservar — preservar ali seria barrar a gravacao de um link que
+# o banco nunca teve.
+preserva, _ = coletor.preserva_ficha_existente({'url_produto': 'https://shopee.com.br/x.i.1.2'})
+ok('url_produto sozinho nao preserva nada', preserva is False)
+
 print('\n%d afirmacoes, %d falha(s)' % (afirmacoes, len(falhas)))
 if falhas:
     for f in falhas:

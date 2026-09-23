@@ -45,6 +45,25 @@ def troca(arquivo, velho, novo, vezes=1):
 
 
 MUTACOES = [
+    # 0a. A TRAVA DE ATRIBUICAO VOLTA A SER A TRAVA DE CONSERTO. Esta e a
+    #     mutacao que reproduz o mundo de ANTES de 23/09/2026, e ela nao apaga
+    #     nada: so troca a pergunta "o par e demonstravel" pela pergunta "existe
+    #     link". Com ela, os registros `intestavel: true` ficam protegidos para
+    #     sempre e a divida dos 39 e imortal — verde, silenciosa e crescendo.
+    ('a preservacao volta a perguntar pelo LINK e nao pelo PAR (25.4-b.2)',
+     troca(COLETOR,
+           "    if af.get('url') and af.get('url_produto'):\n        return True, ('o registro ja tem o PAR",
+           "    if af.get('url'):\n        return True, ('o registro ja tem o PAR")),
+
+    # 0b. A OUTRA DIRECAO, e ela custa o oposto: preservar de menos joga fora a
+    #     atribuicao de um link que estava bom e conferivel. As duas mutacoes
+    #     existem porque uma afirmacao so, "preserva quando tem par", fica verde
+    #     numa funcao que nunca preserva nada.
+    ('a preservacao para de acontecer e todo link antigo e jogado fora',
+     troca(COLETOR,
+           "    if af.get('url') and af.get('url_produto'):\n        return True,",
+           "    if False:\n        return True,")),
+
     # 1. A MEDIDA DEIXA DE BARRAR O CONFLITO. E o defeito de maior dano do
     #    banco inteiro: o titulo diz 300 W, o registro e de 25 W, e o botao da
     #    C5 abre o aquecedor errado na casa de quem leu.
