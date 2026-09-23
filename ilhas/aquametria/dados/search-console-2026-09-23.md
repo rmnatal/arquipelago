@@ -13,4 +13,4 @@
 
 ### URLs não indexadas (URL Inspection)
 - /peixes/acaras/ — Discovered - currently not indexed
-- /peixes/tetras/ — Discovered - currently not indexed
+- /peixes/tetras/ — URL is unknown to Google
