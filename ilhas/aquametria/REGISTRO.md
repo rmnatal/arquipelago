@@ -204,6 +204,25 @@ régua: faz a régua discordar da tela.
 `teste-escada-compra.py` foi de 644 para **703 afirmações**;
 `mutacoes-escada.py` de 23 para **26, todas reprovadas**.
 
+### 7-c. E O IRMÃO NO AR TINHA O MESMO DEFEITO, COM UM ESTRAGO PIOR
+
+`conferir-escada-no-ar.py` é o irmão de `teste-escada-compra.py` e carregava a
+mesma conflação, palavra por palavra. **Ali ele não reprovou nada — e isso é
+pior.** Depois do Sync da revisão 101 ele imprimiu, aprovando:
+
+> *"19 cartões: 19 pela ficha, 0 pelo piso da 25.2, 0 sem saída"*
+
+**Sete daqueles cartões saem pelo piso.** Como todo piso passou a pagar
+comissão, a régua os contou como ficha e o relatório virou um **número errado
+com cara de medido** — e é esse número que vai para o `REGISTRO.md` de toda
+execução. A régua estava verde e a linha estava mentindo.
+
+Corrigido do mesmo jeito (três conjuntos, `rel` por igualdade), mais uma
+afirmação nova que impede a classe inteira de defeito: **a conta do relatório
+tem de fechar** — cartão servido que não cai em nenhuma categoria agora reprova,
+em vez de sumir da soma. No ar, depois do conserto: **19 cartões, 12 pela ficha,
+7 pelo piso, 0 sem saída**, 130 afirmações (eram 107), 0 falha.
+
 ### 8. O ESQUEMA FOI À VERSÃO 12, COM DOIS CAMPOS
 
 - **`afiliado.encurtamento_tentado_em`** — a trava que a 25.2-b exige com todas

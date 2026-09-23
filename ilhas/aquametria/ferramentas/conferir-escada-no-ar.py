@@ -77,10 +77,23 @@ def preenchido(v):
 def saidas_do_banco():
     """As duas listas de URL que o banco autoriza a aparecer numa pagina.
 
-    Elas nao se misturam de proposito: a FICHA paga comissao e a busca CRUA nao,
-    e e essa diferenca que decide o `rel` e o selo do cartao.
+    TRES listas desde 23/09/2026, e ate aqui eram duas. A versao antiga somava o
+    `url_busca` ENCURTADO ao conjunto das fichas, com o argumento escrito logo
+    acima: *"a FICHA paga comissao e a busca CRUA nao"*. Era verdade por
+    acidente — o unico link que pagava era a ficha. **A Open API (25.6) desfez a
+    coincidencia** no dia em que os 78 pisos foram encurtados: a busca passou a
+    pagar e continuou sendo a busca.
+
+    Aqui o estrago nao foi reprovar cartao certo, e sim pior de um jeito mais
+    silencioso: a linha de relatorio passou a dizer **"19 pela ficha, 0 pelo
+    piso"** quando onze daqueles cartoes saem pelo piso. Numero errado com cara
+    de medido, que e o que esta ilha paga mais caro — e ele vai para o
+    `REGISTRO.md` de toda execucao.
+
+    Sao dois eixos: **o que o link E** (ficha ou busca) e **se ele PAGA**
+    (`sponsored` contra `nofollow`).
     """
-    fichas, pisos = set(), set()
+    fichas, pisos_pagos, pisos_crus = set(), set(), set()
     for caminho in ARQUIVOS:
         with open(os.path.join(RAIZ, caminho), encoding="utf-8") as f:
             for p in json.load(f).get("produtos", []):
@@ -88,10 +101,10 @@ def saidas_do_banco():
                 if preenchido(a.get("url")):
                     fichas.add(a["url"])
                 if preenchido(a.get("url_busca")):
-                    fichas.add(a["url_busca"])
+                    pisos_pagos.add(a["url_busca"])
                 elif preenchido(a.get("url_busca_produto")):
-                    pisos.add(a["url_busca_produto"])
-    return fichas, pisos
+                    pisos_crus.add(a["url_busca_produto"])
+    return fichas, pisos_pagos, pisos_crus
 
 
 def baixar(url):
@@ -111,10 +124,10 @@ def corpo(html):
 
 
 def main():
-    fichas, pisos = saidas_do_banco()
+    fichas, pisos_pagos, pisos_crus = saidas_do_banco()
     versao = datetime.datetime.utcnow().strftime("%H%M")
     print("banco: %d ficha(s) de afiliado e %d busca(s) crua(s) autorizadas na tela"
-          % (len(fichas), len(pisos)))
+          % (len(fichas), len(pisos_pagos) + len(pisos_crus)))
 
     for prefixo, slug in sorted(PAGINAS.items()):
         url = "%s/%s/?v=%s" % (DOMINIO, slug, versao)
@@ -151,23 +164,33 @@ def main():
             rel = rel.group(1) if rel else ""
 
             e_ficha = href in fichas
-            e_piso = href in pisos
-            confere(e_ficha or e_piso,
+            e_piso_pago = href in pisos_pagos
+            e_piso_cru = href in pisos_crus
+            confere(e_ficha or e_piso_pago or e_piso_cru,
                     "%s cartao %d: aponta para %r, que nao e ficha nem piso de item nenhum do banco"
                     % (prefixo, i, href[:90]))
             if e_ficha:
                 pela_ficha += 1
-                confere("sponsored" in rel,
-                        "%s cartao %d: ficha de afiliado sem 'sponsored' (%r)" % (prefixo, i, rel))
-            elif e_piso:
+            elif e_piso_pago or e_piso_cru:
                 pelo_piso += 1
-                confere("nofollow" in rel and "sponsored" not in rel,
-                        "%s cartao %d: busca CRUA marcada como paga (%r)" % (prefixo, i, rel))
+            # O REL SAI DO QUE O LINK PAGA, e a afirmacao e de IGUALDADE: escrita
+            # como dois ramos, ela deixa de medir em silencio o cartao que nao
+            # cai em ramo nenhum.
+            paga = e_ficha or e_piso_pago
+            confere(("sponsored" in rel) == paga,
+                    "%s cartao %d: rel=%r, e este link %s comissao"
+                    % (prefixo, i, rel, "PAGA" if paga else "NAO paga"))
+            confere(("nofollow" in rel) == (not paga),
+                    "%s cartao %d: rel=%r, e este link %s comissao"
+                    % (prefixo, i, rel, "PAGA" if paga else "NAO paga"))
             confere('target="_blank"' in atributos and "noopener" in rel,
                     "%s cartao %d: sem aba nova ou sem noopener" % (prefixo, i))
 
         print("  %d cartao(oes): %d pela ficha, %d pelo piso da 25.2, 0 sem saida"
               % (len(itens), pela_ficha, pelo_piso))
+        confere(pela_ficha + pelo_piso == len(itens),
+                "%s: %d cartoes servidos e so %d classificados — a conta do relatorio "
+                "nao fecha" % (prefixo, len(itens), pela_ficha + pelo_piso))
 
     print("\n%d afirmacao(oes), %d falha(s)" % (afirmacoes[0], len(falhas)))
     return 1 if falhas else 0

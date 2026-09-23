@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 101,
+  "revisao": 102,
   "atualizado_em": "2026-09-23",
   "estado": "fundacao",
   "desembarque": {
@@ -793,7 +793,7 @@
       "id": "conferir-peixes-no-ar",
       "arquivo": "ferramentas/conferir-escada-no-ar.py",
       "publicar": false,
-      "sha256": "a494958a8ce956d617865d90ef1d5c5c0d32196f50729828e52038ef9e76b63a",
+      "sha256": "83b5f12c6202de5cd700d2566213b176f7f4a1c32f5e96e81cdee37411d50850",
       "descricao": "Confere NO AR que nenhum cartao das quatro calculadoras fica sem saida de compra: 200, zero 'link de loja em breve' no corpo, todo cartao e ancora, e o href sai do banco (secao 25.2 e item 4 do despacho de 14/09/2026)."
     },
     {
