@@ -14,6 +14,213 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-23 13h17Z–14h05Z — PREPARAÇÃO DA LEVA 9: OS BARBOS GANHAM BANCO, E A CONTA QUE DECIDE SE A MALHA PODE CRESCER DEIXA DE SER FEITA DE CABEÇA (banco de espécies de 39 para 40 registros, catálogo embutido de 32 para 34, peixes 1.14.0, manifest revisão 104, `/status` conferido na 104; NENHUMA URL NOVA — seguem 48 — e NENHUMA leva do teto da 21.4 gasta)
+
+**O BLOCO ERA O ÚNICO QUE A FILA DESTE EIXO AINDA TINHA, e quem o nomeou foi a
+leva 8 na véspera.** Ela fechou medindo que nenhuma nona categoria era possível e
+escreveu o caminho mais curto com dois passos contados: *"o barbo sumatra é
+elegível, o **barbo rosado** (`pethia-conchonius`) está a UM campo — `duas fontes
+distintas` —, e **não existe um terceiro barbo no banco**"*. Os dois passos
+fecharam nesta execução.
+
+### 1. POR QUE ESTE BLOCO E NÃO OUTRO, com as quatro portas conferidas antes
+
+O foco é esta ilha (`foco.md`, desde 21/09), então não houve escolha de ilha.
+Houve escolha de bloco, e as outras portas da fila estavam fechadas por motivo
+que não é meu para abrir:
+
+- **`/peixes/` (T4):** sem coleta, nenhuma nona categoria — medido pela leva 8 e
+  reconferido aqui **por ferramenta** (adiante).
+- **`/guias/` (T5 e a pauta da seção 17):** o `ARVORE.md` seção 5 diz que é a
+  `pauta.md` que enche as três categorias de guia e que ela *"entra na fila desta
+  ilha antes de qualquer leva de malha nova"* — e a **17.1 dá a pauta à rotina
+  Pauta das ilhas, não à Fundação**: *"a rotina Pauta das ilhas (terças, no
+  computador do Raphael) descobre e ranqueia temas e grava `ilhas/<ilha>/pauta.md`
+  pelas mãos. A Fundação escreve os artigos"*. Não existe `pauta.md` nesta pasta,
+  então não há artigo para escrever. **Isto não é despacho e não é defeito: é uma
+  camada da fila que depende de uma rotina que ainda não rodou nesta ilha.**
+- **`/equipamentos/`:** o `ARVORE.md` seção 7 item 4 a trava até o cluster de
+  aquecimento estar **indexado**.
+- **`/calculadoras/aquecimento-e-luz/`:** exige MOVER duas URLs publicadas, que a
+  12.1 e a seção 6 do `ARVORE.md` proíbem.
+
+Rede conferida antes de trabalhar (20.2): `https://aquametria.com.br/` em **200**
+em duas passadas.
+
+### 2. A COLETA, e ela é de DOIS TIPOS diferentes no mesmo bloco
+
+**`Puntius titteya` (barbo cereja) entrou NOVO, com dois corpos de fonte e ZERO
+conflito** — e o zero é o achado, não a ausência dele. As duas fontes **não se
+cruzam em campo nenhum**: a base científica declara porte, faixa térmica, pH e
+dureza e diz, com todas as letras, que a seção de aquário dela **não** traz número
+de grupo nem tamanho mínimo; o compêndio declara a base (60 × 30 cm) e o grupo (6
+a 10). Registro sem conflito neste banco costuma ser registro com fonte fraca;
+aqui é o contrário, e a transcrição de cada fonte diz por quê.
+
+**`pethia-conchonius` (barbo rosado) saiu de UM corpo de fonte para DOIS**, e com
+isso saiu de `parcial` — que **barra** a ficha pelo `minimo_para_sugerir` — para
+`conflito`, que não barra. Os dois conflitos que nasceram estão declarados:
+
+- **`comprimento_minimo_aquario_cm`: 80 (base científica) contra 100 (compêndio).**
+  As duas fontes medem coisas diferentes com o mesmo número: uma declara só a
+  frente, a outra declara a base inteira. Conservador **100**, pela E9.
+- **`cardume_minimo`: 5 contra 8.** É o **mesmo par de números, nas mesmas duas
+  fontes**, que o barbo sumatra já carrega desde 09/09 — a terceira vez que este
+  banco encontra essa divergência, e a primeira em que ela aparece **duas vezes
+  dentro da mesma categoria**. Conservador **8**.
+
+### 3. O QUE NÃO VIROU CONFLITO, E É A DECISÃO MAIS IMPORTANTE DESTA COLETA
+
+A base científica publica **14,0 cm TL** como máximo do barbo rosado; o compêndio
+publica que *"algumas formas chegam a 90 a 100 mm, mas a maioria está adulta com
+65 a 75 mm"*. É tentador chamar isso de conflito de porte — e seria **errado**,
+porque o compêndio **não diz se mede SL ou TL**, e comparar comprimento sem a
+cauda com comprimento com ela é exatamente o que a leva 7 proibiu (*"número de
+medidas diferentes não se compara"*). Então os dois números convivem no registro
+em lugares diferentes: o campo carrega o 14,0 cm **com a medida dele**, e a
+`observacao` carrega a frase do compêndio e a ordem para a ficha — **publicar o
+número da fonte com a medida E dizer que porte máximo registrado não é porte
+esperado em cativeiro**, senão a C8 dimensiona para um peixe que ninguém tem.
+
+### 4. O QUE A COLETA DESTRAVOU, contado: A NONA CATEGORIA É POSSÍVEL
+
+São **3 barbos elegíveis** — sumatra, rosado e cereja —, o **mínimo exato do
+16.5**, pela terceira leva seguida deste eixo. O que a leva 9 ainda tem de fazer é
+o que as levas 7 e 8 fizeram na mesma execução da leva: `criterio` e
+`linha_mestra` escritos **contra a tabela que a página serve** e a SERP das quatro
+consultas classificada pela 14.9 **antes** de escrever uma linha. **Este bloco não
+escreveu nenhum dos dois de propósito** — a regra que a leva 5 deixou é que texto
+de categoria escrito antes da leva é afirmação que ninguém mediu.
+
+**O critério desta categoria NÃO pode ser a família, e agora isso está contado em
+vez de suposto:** Cyprinidae tem **quatro** elegíveis sem categoria, e o quarto é
+o **kinguio**, que nenhuma loja vende como barbo. É o mesmo erro que a
+`ciclideos-anoes` registrou de trazer peixe demais pela família.
+
+**E a tabela já tem uma linha mestra esperando quem a medir:** as três faixas
+térmicas são 18 a 22 °C (rosado), 20 a 26 °C (sumatra) e 23 a 27 °C (cereja) — **a
+do rosado termina antes de a do cereja começar**, e o sumatra é o único que encosta
+nas duas. Segunda categoria seguida em que a coluna que decide é a temperatura, e
+aqui ela é uma **escada de três degraus** em vez do par que a `acaras` achou. E, ao
+contrário dos acarás, os três portes estão **na mesma régua** (5,0 · 7,0 · 14,0 cm
+TL), então comparar porte aqui é legítimo.
+
+### 5. A QUARTA LISTA ESCRITA À MÃO DESTA FAMÍLIA MORREU — e a nova régua foi conferida contra o passado
+
+As levas 7 e 8 escreveram, cada uma no seu fecho, **a mesma varredura à mão com
+números diferentes**: 31/23/8 na leva 7, 32/26/6 na leva 8. É a conta que decide
+se este eixo pode crescer, e ela era feita de cabeça, sem deixar como refazer.
+Agora é `python3 ferramentas/varrer-categorias-possiveis.py . --gravar`, com série
+em `dados/cobertura-de-categorias.md`.
+
+**A prova de que ela mede o mundo e não a si mesma:** rodada contra o banco do
+commit **anterior** a esta execução, ela devolve **32 elegíveis, 26 com ficha, 6
+sem categoria, Cyprinidae faltando 1** — a conta da leva 8, número por número.
+Rodada contra o banco de hoje: **34 elegíveis, 26 com ficha, 8 sem categoria, e o
+grupo `barbo` alcançando o mínimo do 16.5**.
+
+**Ela CONTA e não decide, e o primeiro dia dela já mostrou por que isso importa.**
+Ela agrupa por família (a conta das duas levas) e por nome popular compartilhado
+(o critério que a `danios-e-rasboras` usou), e chama as duas de **PISTA**. O
+agrupamento por nome devolve `peixe` com três elegíveis — kinguio, arco-íris
+boesemani e peixe-lápis —, que não é prateleira nenhuma. **Uma ferramenta que
+escolhesse o critério estaria inventando a afirmação central da página**, e por
+isso o cabeçalho dela diz, com o nome das oito categorias, que nenhuma usa o
+critério da anterior.
+
+A régua de elegibilidade está escrita **dentro** dela e o esquema é lido só para
+conferir que as duas listas dizem a mesma coisa — a mesma decisão do
+`gerar-catalogo-especies.py`, e pelo mesmo motivo: se ela importasse a lista,
+apagar um campo no esquema faria as duas metades errarem juntas.
+
+### 6. O QUE MUDOU NA TELA SEM NASCER URL NENHUMA
+
+O catálogo que viaja dentro do snippet foi de **32 para 34 espécies** (o banco não
+é lido em tempo de requisição), então a contagem que a seção `/peixes/` publica
+sobre o próprio banco mudou, e os dois barbos passaram a poder aparecer na lista de
+quem divide a mesma água das fichas vizinhas. **Nenhuma URL nova, nenhuma leva
+gasta:** o teto da 21.4 segue em **2 de 3** nesta semana, que zera em 28/09.
+
+### 7. `teste-peixes` FOI DE 3719 PARA 3715 AFIRMAÇÕES, e a causa foi medida em vez de suposta
+
+Régua que mede MENOS depois de uma mudança é exatamente o defeito que esta ilha
+mais paga, então as duas saídas foram diferenciadas linha por linha. As quatro
+afirmações que sumiram são **as quatro que falavam do `pethia-conchonius` como
+BARRADO** — o motivo gravado, a tradução dele para língua de gente, a ordem da
+lista de barrados e o nome científico dele viajando junto. Ele deixou de ser
+barrado porque entrou no catálogo. **Nada parou de ser medido; o sujeito saiu do
+conjunto.**
+
+### VERIFICAÇÃO
+
+**Sem rede, num comando só:** `python3 ferramentas/bancada.py` → **APROVADO: 31
+portões, 0 falha**, com a régua do próprio veredito medida antes (17 afirmações) e
+`php -l` nos 11 snippets. Um a um, do que importa a este bloco:
+`validar-especies` **40 espécies, 0 erro, 3 avisos** — os três conhecidos (o E15 do
+guppy e os dois E21 do disco e do apistogramma), e os três foram medidos **iguais
+no banco do commit anterior**, o que prova que este bloco não acrescentou aviso
+nenhum; `testar-validador-especies` **36 testes, 0 falha**; `teste-peixes`
+**3715/0** (eram 3719 — a causa está na seção 7 acima); `mutacoes-peixes` **95 de
+95 reprovadas**; `teste-escada-compra` **703/0**; `mutacoes-escada` 26 de 26;
+`teste-ga4` **760/0**; `teste-voz` nas 48 páginas; `teste-arvore`,
+`teste-datas-schema` 102/0, `teste-dimensao-imagem` 42/0, `teste-seo-tecnico`
+519/0, `teste-apelidos` 59/0, `teste-coleta-shopee` 153/0, `mutacoes-coleta-shopee`
+18 de 18, `mutacoes-voz` 30 de 30, `conferir-entidades`, `conferir-slugs`,
+`conferir-protecao-funcoes` e `conferir-indice-de-levas` limpos; `validar-produtos`
+com o aviso V20 conhecido.
+
+**NO AR, depois do Sync (revisão 104, conferida no `/status`):**
+`conferir-peixes-no-ar` **904 afirmações, 0 falha** (eram 906);
+`conferir-datas-e-voz-no-ar` **368/0**; `conferir-escada-no-ar` **130/0** — 19
+cartões, 12 pela ficha, 7 pelo piso, 0 sem saída; `conferir-privacidade-no-ar`
+**21/0**; `conferir-cache-do-host` **51/0**, com atraso de 0 s até o canônico
+concordar (orçamento de 360 s); `conferir-ga4-no-ar` limpo, com a nota conhecida do
+`google-site-kit` nas 48 páginas.
+
+**As duas afirmações que o ar perdeu são as mesmas quatro da bancada, vistas de
+fora**, e foram lidas no HTML servido em vez de supostas: o bloco "as espécies que
+o banco tem e esta seção não publica" foi de **7 para 6 nomes**, e o barbo rosado
+saiu dele. Cada barrado vale duas afirmações naquele portão — o nome uma vez só e a
+causa em língua de gente.
+
+**E a contagem nova foi lida na própria página, não no código:** `/peixes/` serve
+*"São 34 espécies de água doce com o mínimo declarado por fonte com nome e data"* e
+*"O banco desta ilha guarda 40 registros de espécie, e 34 deles têm o mínimo
+declarado que as tabelas acima exigem"*.
+
+**O que ficou medido e NÃO foi consertado (18.3):** a dívida das ferramentas fora
+do `manifest.json` **cresceu em dois** com este bloco —
+`ferramentas/varrer-categorias-possiveis.py` e `dados/cobertura-de-categorias.md`,
+os dois nomeados pelo `atualizar-manifest.py` em toda passada. Fica nomeada aqui em
+vez de virar promessa, como o fecho de 22/09 fez. E os **18 portões de Chromium**
+seguem sem rodar nesta nuvem desde 14/09/2026, por falta do pacote `playwright`.
+
+### ITENS ESPERANDO LINK DE AFILIADO (item 5 do despacho da Sentinela de 13/09)
+
+**Este bloco não tocou em produto nenhum.** Seguem os números do fecho anterior:
+zero itens sem `url_busca` encurtada, zero sem saída de compra, 47 de 78 com ficha
+e 41 de 78 com foto.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**A leva 9 pode nascer, e ela é a primeira em duas passadas que não depende de
+coleta:** `/peixes/barbos/` mais as fichas do barbo sumatra, do barbo rosado e do
+barbo cereja — quatro URLs, dentro do teto de 10 por leva, e ela é a **terceira e
+última leva desta semana** pela 21.4. Quem a escrever decide o `criterio` (e o
+kinguio fica fora, contado), escreve a `linha_mestra` contra a tabela e classifica
+a SERP das quatro consultas antes de escrever uma linha.
+
+**Sem coleta e sem gastar leva:** `T6` (prospecção do widget) segue sendo a única
+alavanca de link do projeto e segue parada — e o egresso desta nuvem devolve
+`000` para domínio de loja, medido nesta execução, então uma lista de prospecção
+feita daqui não consegue conferir no ar o site de nenhuma das lojas. Quem a fizer
+declara esse limite em vez de o esconder.
+
+**A camada `/guias/` continua esperando quem ela espera:** a `pauta.md` da seção
+17, que é da rotina Pauta das ilhas e não da Fundação. Enquanto ela não existir,
+as três categorias de guia ficam com uma filha cada — abaixo das três que o 16.5
+exige — e nenhuma leva de guia pode nascer.
+
 ## 2026-09-23 10h17Z–12hZ — T3(f): A OPEN API DA SHOPEE CHEGA À ILHA, E OS 78 ITENS PASSAM A RENDER COMISSÃO (esquema de produtos versão 12, C3 1.7.0, C5 1.7.0, C12 1.5.0, C15 1.6.0, manifest revisão 100; NENHUMA URL NOVA — seguem 48 — e NENHUMA leva gasta do teto da 21.4)
 
 **O BLOCO ERA O MAIOR PARADO DA FILA, e quem o nomeou foi a leva 8 na véspera**,
