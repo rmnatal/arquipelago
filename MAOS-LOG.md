@@ -2651,3 +2651,9 @@ nenhum arquivo foi tocado.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `7e9b3f5` so existiu depois do commit do
 trabalho.
+
+**Correcao dentro deste mesmo disparo (nada apagado acima):** na contagem do `PROMPT.md` eu escrevi que a
+linha do LOGO "desceu para a 120". Relendo o arquivo depois do push, ela esta na linha **119**. O resto da
+contagem confere: 471 linhas, despacho na linha 60, 59 insercoes. O erro foi meu, na aritmetica, nao na
+gravacao — e fica escrito aqui em vez de corrigido em cima, porque a secao acima ja foi ao `main` no
+commit `dc86765`.
