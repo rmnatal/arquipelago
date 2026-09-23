@@ -14,6 +14,215 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-23 19h16Z–20h32Z — LEVA 9: A NONA CATEGORIA, E O CAMPO QUE FAZ A FONTE RECUSAR COMPANHEIRO EM VEZ DE A PROSA PEDIR (peixes 1.15.0, esquema de espécies versão 6, manifest revisão 110, `/status` conferido na 110; QUATRO URLs novas — `/peixes/barbos/` e as fichas do barbo sumatra, do barbo rosado e do barbo cereja; a ilha vai de 48 para 52 URLs)
+
+**A ESCOLHA DA ILHA: FOCO, E A RESERVA PASSOU NA PRIMEIRA.** `foco.md` nomeia a
+aquametria desde 21/09 (1.2), então não houve rotação a aplicar: os cinco
+`ESTADO.md` parseiam em `yaml.safe_load`, o da ilha em foco estava com
+`executando_desde: null` — que pela 1.1 já significa que não há bloco da Fundação
+vivo — e a reserva das 19h16Z entrou no primeiro push. Nenhum branch `claude/*`
+pendente e nenhum PR aberto. **Rede pela 20.2, retestada e não herdada:** três
+passadas, home em 200 nas três e `/status` na revisão **108**, igual à do
+`manifest.json`, nas três.
+
+**O DESPACHO DA SENTINELA DE 23/09 NÃO TINHA ITEM PARA A FUNDAÇÃO**, e isso foi
+conferido antes da fila (18.1): os itens 1 e 2 saíram inteiros na execução das
+16h16Z de hoje e o item 3 é registro para a ronda seguinte — a chave da Shopee que
+caiu no CAPTCHA —, endereçado a quem mede link, não a bloco. **Os dois itens
+cumpridos foram APAGADOS do `PROMPT.md` nesta execução, pela 18.4**: ficaram lá,
+riscados, por uma execução, e o lugar do detalhe é este arquivo.
+
+### 1. O CRITÉRIO É O NOME, E ELE VOLTA CONTADO EM VEZ DE LEMBRADO
+
+A leva 7 separou os danios e as rasboras pelo NOME que a pessoa digita, e fechou
+dizendo que era um critério verificável dentro do banco. A leva 8 teve de
+abandoná-lo: quatro registros trazem "acará" e o quarto já era filha de outra
+categoria. **Aqui ele volta, e volta com a medição ao lado:** `barbo` casa em
+**exatamente três** registros de `nomes_populares_br` no banco de 40 — barbo
+sumatra, barbo rosado e barbo cereja.
+
+**O que ele não suporta é ser encurtado, e a distância é de uma letra.** `barb` —
+a raiz do gênero antigo, que este banco guarda em `sinonimos_cientificos`
+(*Barbus tetrazona*, *Barbus titteya*), e o nome em inglês do cereja — casa em
+**quatro**. O quarto é o `cascudo-barbudo`, que é o `ancistrus-cirrhosus`,
+declarado em `/peixes/plecos-e-limpa-vidros/` e barrado pelo portão por falta de
+`temperatura_C`. Ele não tem nada a ver com esta prateleira, e um critério de
+subcadeia o traria para cá.
+
+**Nem a família nem o gênero servem, e as duas contas estão feitas:** Cyprinidae
+tem **quatro** elegíveis neste banco e o quarto é o kinguio, de 48,0 cm, que
+ninguém vende como barbo — o mesmo erro de trazer peixe demais pela família que a
+`ciclideos-anoes` já registrou; e o gênero são três gêneros para três peixes
+(Puntigrus, Pethia, Puntius).
+
+**AS QUATRO CONTAGENS QUE O CRITÉRIO PUBLICA SÃO RECOMPUTADAS DO BANCO** pelo
+`teste-peixes.py` (item 7 de `medir_categoria_preparada`): os três do nome
+inteiro, os quatro da raiz encurtada, os 40 registros do banco e os quatro
+Cyprinidae elegíveis, com a afirmação de que o registro que a raiz traz a mais
+NÃO está na categoria. Número de banco dentro de frase publicada é o defeito que
+esta ilha mais paga; a régua da raiz é a que guarda o motivo de o critério não
+poder ser encurtado, e no dia em que outro registro trouxer `barb` no nome popular
+a frase é reescrita em vez de envelhecer calada.
+
+### 2. A LINHA MESTRA É DE TEMPERATURA PELA SEGUNDA LEVA SEGUIDA, E NÃO É REPETIÇÃO
+
+Na `acaras` a coluna da temperatura separava **dois** peixes que não se tocavam, e
+o terceiro não tinha nada a ver com a conta. Aqui os **três** formam uma escada:
+18 a 22 °C no rosado, 20 a 26 °C no sumatra, 23 a 27 °C no cereja. Os dois
+extremos não se cruzam em um grau e o do meio alcança os dois — é a primeira
+categoria do eixo em que a coluna **ordena** as três linhas em vez de separar
+duas.
+
+**E o que a linha mestra NÃO diz é a escolha oposta à da `acaras`.** Lá o porte
+ficou fora porque metade dele estava em outra régua (13,7 cm SL contra 45,7 cm
+TL). Aqui os três estão na MESMA régua — 5,0 · 7,0 · 14,0 cm TL — e o maior é
+quase três vezes o menor, então o porte **poderia** entrar na frase. Ficou fora
+por outro motivo: a tabela já o explica sozinha, e **a linha mestra paga o que
+falta na tela do concorrente**. Nenhuma das nove páginas da SERP desta consulta
+publica temperatura como critério de companhia.
+
+### 3. O DEFEITO QUE ESTA LEVA ACHOU ESTAVA NO AR HAVIA NOVE DIAS, E É PIOR QUE O DO CHÃO DECLARADO
+
+A ficha do **papilocromis**, no ar desde 14/09 pela leva 6, servia **treze**
+companheiros de aquário na tabela de "quem divide a mesma faixa de temperatura".
+O compêndio daquele registro diz, com todas as letras, que a espécie *"não é
+recomendado para o aquário comunitário geral, porque exige água de qualidade
+impecável e é mau competidor"*.
+
+**A diferença em relação ao caso do chão declarado, e ela é para pior:** lá a
+proibição morava no `observacao` do registro, escrita por quem colheu. Aqui ela
+morava na **transcrição da fonte que a própria página cita** — o mesmo texto que
+alimenta a tabela "o que as fontes declaram sobre o papilocromis". A página
+contradizia, duas seções abaixo, o corpo que ela nomeia como prova.
+
+**Por que nenhum portão viu:** a tabela tem três filtros — interseção das faixas
+declaradas, o aquário mínimo do companheiro caber na frente desta ficha, e o banco
+não declarar o companheiro **agressivo** — e nenhum dos três alcança uma restrição
+escrita em palavras. E o ramo que existia para isso, o da espécie agressiva, olha
+o `comportamento` do peixe da própria ficha, que no papilocromis é nulo de
+propósito (o compêndio diz "mais agressivos EM ESPAÇO CONFINADO", que é
+temperamento condicionado à manutenção).
+
+**A SEGUNDA OCORRÊNCIA IA NASCER NESTA MESMA LEVA**, e é o que torna o campo
+inevitável em vez de conveniente: a base científica do barbo sumatra manda **não o
+manter com peixe de nadadeira longa**, e este banco **não tem campo para formato
+de nadadeira**. A tabela não tem como peneirar isso — então o honesto é **dizer
+que não peneira**, e não peneirar calado.
+
+**O CAMPO:** `restricoes_de_companhia` (esquema de espécies **versão 6**, regra
+**E23**), com as duas metades do desenho do `chao_declarado_para`: `tipo` de
+vocabulário fechado (`nadadeiras-longas`, `comunitario-geral`), porque a tradução
+para a língua do leitor mora num mapa só do PHP; e `frase`, a cláusula da fonte
+copiada ao pé da letra e conferida como **trecho literal** da referência de uma
+fonte que declare o campo em `campos`. O tipo tem de ser sustentado pela cláusula
+**por palavra** — `nadadeiras-longas` pede "nadadeira", `comunitario-geral` pede
+"comunitario" —, senão qualquer cláusula literal sustentaria qualquer tipo e a
+tela falaria de uma coisa que a fonte nunca disse.
+
+**O QUE A PÁGINA PASSOU A FAZER:** publica a recusa **antes** da tabela, com o
+nome de quem a declarou e a data, e diz o que a tabela **não** peneira. Antes e
+não depois porque a leva 1 já aprendeu, com o mato-grosso, que *"nota não desfaz
+tabela — quem lê vê a lista, não a ressalva"*: restrição que chega depois da lista
+é a mesma nota com outro nome.
+
+**O CAMPO É OPCIONAL E A AUSÊNCIA NÃO É BURACO:** 24 dos 26 registros com ficha
+não têm nenhuma restrição declarada, e restrição que a fonte não declarou não se
+inventa. Lista presente e **vazia** é erro, porque lista vazia afirma que a fonte
+foi lida e não recusou ninguém, e isso se escreve deixando o campo fora.
+
+### 4. O TETO DE BLOCOS DE PROVA DEIXOU DE SER CONSTANTE, E ISSO É O CONTRÁRIO DE AFROUXAR
+
+A ficha tinha **dois** blocos `aqm-prova` — a atribuição da base e a ressalva das
+réguas de lotação — e o teto de dois foi escrito quando dois era tudo o que ela
+podia ter. A recusa com dono é o terceiro, e ela **tem** de ser prova: sem a
+marca, o nome "FishBase" cairia na camada de voz e o portão dos termos proibidos
+reprovaria — corretamente, por um defeito que não existe.
+
+**Subir a constante para três afrouxaria o teto em TODA página.** Ele virou **dois
+mais um por restrição declarada NO BANCO**, nos dois portões — `teste-peixes.py` e
+`teste-voz.mjs`, que passou a ler o banco de espécies para isso. E o número vem do
+**banco**, nunca da página: página que se concede um bloco a mais é justamente o
+que o teto existe para pegar. A outra direção — cada restrição do banco na tela e
+nenhuma inventada — é cobrada pelo `teste-peixes.py`.
+
+### 5. A CLASSIFICAÇÃO DE SERP DAS QUATRO CONSULTAS, ANTES DE UMA LINHA DE PÁGINA (14.9)
+
+Medida nesta execução, **antes** de a categoria e as três fichas serem escritas, e
+escrita inteira em `dados/indexacao.md`. As quatro são **ALVO**. O resumo:
+
+- **`quantos litros para barbo`** (a mãe): top 9 de dois artigos do mesmo blog de
+  nicho, quatro páginas de produto de loja, um portal de bicho de estimação, um
+  blog e uma loja estrangeira. **O defeito é o SUJEITO trocado, o mesmo da leva 8
+  em dose maior:** as nove respostas falam de barbos DIFERENTES — ouro, tinfoil,
+  nigrofasciatus, titéia — e devolvem 30 L, 80 L, 96 L e 300 L sem dizer de qual
+  peixe é cada número. O tinfoil pede dez vezes o do cereja e os dois saem na
+  mesma tela como "barbo".
+- **`quantos litros para barbo sumatra`**: 60 L a 100 L sem atribuição, e o
+  cardume mínimo como 5 e como 8 a 10 na mesma tela — o mesmo par das nossas duas
+  fontes, sem dizer de quem é cada um. Ninguém publica a base de 80 × 30 cm. A
+  prova de que a pergunta existe está no próprio top 9, em forma de fórum.
+- **`quantos litros para barbo rosado`**: de 75 L para quatro exemplares a 150 L,
+  grupo mínimo como 4 e como 6 — **abaixo dos 8 do compêndio**. Ninguém diz que
+  este é o barbo de faixa subtropical nem publica a base de 100 × 30 cm. **É a
+  SERP em que o sujeito troca DENTRO de um resultado:** um dos nove serve o título
+  do barbo rosado num endereço de barbo cereja.
+- **`quantos litros para barbo cereja`**: 30 L a 50 L sem atribuição, duas das
+  nove de outro mercado, e o pior não é o litro — uma das páginas manda manter
+  **"ao menos três indivíduos"**, metade dos 6 a 10 que o compêndio declara.
+
+**Uma coisa que a SERP ensinou e que NÃO virou página:** duas lojas do top
+organizam a prateleira como **"barbos e danios"** no próprio endereço. O varejo
+junta o que este eixo separa em duas categorias, e as duas continuam separadas
+porque o critério de cada uma é verificável no banco e nenhuma espécie cai nas
+duas — nenhum dos três barbos traz `danio`, `rasbora` ou `paulistinha` entre os
+nomes populares. Fica registrado porque a próxima categoria deste eixo vai
+encontrar isso de novo.
+
+### 7. A VERIFICAÇÃO, COM OS NÚMEROS E COM O QUE FICOU DE FORA
+
+**BANCADA SEM REDE, RODADA INTEIRA CONTRA O CÓDIGO QUE FOI PUBLICADO: 33 portões,
+0 falha.** Os números que esta leva moveu: `teste-peixes.py` **4.299** afirmações
+(eram 4.248 antes de as quatro páginas entrarem); `mutacoes-peixes.py` **100 de
+100** reprovadas (eram 95 — as cinco novas são as do campo de recusa);
+`testar-validador-especies.py` **41** testes, com os **cinco do E23** pegando o que
+prometem; `mutacoes-voz.py` 30 de 30; `teste-voz.mjs` varrendo as **52** páginas
+que a ilha publica; `validar-especies.py` 40 registros, 0 erro e os 3 avisos
+conhecidos; `conferir-indice-de-levas.py` TUDO OK com a linha da leva 9 na tabela.
+
+**NO AR, NA REVISÃO 110, e a bancada `--no-ar` rodada SOZINHA** — sem nenhum outro
+`curl` contra o domínio, que é o que a execução anterior deixou anotado depois de
+dois portões caírem por `Connection reset` disputando a rede com ela:
+`conferir-peixes-no-ar.py` **1.012** afirmações, 0 falha (eram 904);
+`conferir-datas-e-voz-no-ar.py` **407**, 0 falha (eram 368);
+`conferir-escada-no-ar.py` 130, 0 falha; `conferir-cache-do-host.py` 55, 0 falha;
+`conferir-site-jsonld-no-ar.py` 16, 0 falha; `conferir-privacidade-no-ar.py` 21,
+0 falha; `conferir-ga4-no-ar.py` medindo as **52** páginas. As quatro URLs novas
+respondem **200** e o `/status` está na **110**, igual à do `manifest.json`.
+
+**O QUE FICOU DE FORA, dito com todas as letras:** a passada `--no-ar` foi
+**interrompida** depois dos sete portões do ar, porque os 33 restantes dela são a
+bateria offline que já havia rodado inteira, minutos antes, contra este mesmo
+código — repeti-la custaria mais meia hora e mediria duas vezes a mesma coisa. E os
+**18 portões de Chromium** (`--navegador`) seguem sem rodar por falta do pacote
+`playwright` neste ambiente, como nas execuções anteriores.
+
+**O SYNC:** disparado com `forcar=1` às 20h23Z, aplicou a revisão 110 com 20 itens
+e 14 aguardando desembarque (os que têm `publicar: false`).
+
+### 8. PRÓXIMA LEVA: NENHUMA DÉCIMA CATEGORIA É POSSÍVEL, E AGORA O EIXO TAMBÉM ESTÁ SEM FICHA ESPERANDO
+
+Varrido por `ferramentas/varrer-categorias-possiveis.py` **depois** da leva: 40
+registros, 34 elegíveis, **29 com ficha própria**, **5 sem categoria nenhuma** —
+kinguio, botia-palhaço, arco-íris boesemani, peixe-lápis e otocinclo. **Nenhuma
+família chega a três** (cinco famílias de um registro cada) e o único agrupamento
+por nome que alcança três é `peixe`, que não é prateleira nenhuma — a própria
+ferramenta o chama de PISTA.
+
+**E a novidade em relação à leva 8: nenhuma categoria no ar tem elegível sem
+ficha.** Os 5 sem ficha são exatamente os 5 sem categoria. O eixo `/peixes/` só
+cresce com **coleta** — e o teto da 21.4 desta semana está **gasto, 3 de 3** (as
+levas 7 e 8 em 22/09 e esta em 23/09).
+
 ## 2026-09-23 16h16Z–17h12Z — O DESPACHO DA SENTINELA DE 23/09 SAI INTEIRO: A HOME GANHA O NÓ `WebSite`, E A DÍVIDA DOS 39 LINKS SEM FICHA CAI PARA 14 (casca 1.11.0, manifest revisão 108, `/status` conferido na 108; NENHUMA URL nova — seguem 48 — e NENHUMA leva do teto da 21.4 gasta)
 
 **Não houve escolha de ilha:** o foco é a Aquametria desde 21/09 (`foco.md`), e a 1.2 suspende a rotação inteira. Houve escolha de *bloco*, e ela também estava feita: a 18.5 diz que na dúvida entre fechar despacho e começar bloco novo, fecha o despacho — e havia um aberto, escrito pela ronda de hoje às 14h52Z. Pela 18.2 ele sai inteiro, não um item por execução.
