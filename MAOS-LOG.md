@@ -2416,3 +2416,67 @@ arquivos nomeados pela instrucao e deste log, nenhum arquivo foi tocado.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `c24de76` so existiu depois do commit do
 trabalho.
+
+## Disparo de 2026-09-23, 17h10 BRT (20h10Z) — leitura semanal da aquametria, quatro arquivos
+
+Assunto conferido antes do `git fetch`: ilha Aquametria, Sentinela, serie de indexacao e de posicao,
+`ESTADO.md` e `PROMPT.md` da ilha. E do Arquipelago — instrucao executada.
+
+Instrucao: quatro arquivos em `ilhas/aquametria/`, aplicados byte a byte, commit unico com a mensagem
+"Sentinela: leitura semanal da aquametria — 2026-09-23". Partida de `origin/main` em `0b3c821`.
+
+O que foi feito, arquivo a arquivo:
+1. `dados/indexacao.md` — inserida UMA linha nova imediatamente depois da unica linha que comeca com
+   `| 2026-09-09 |` (era a linha 7). Nada apagado.
+2. `dados/posicoes.md` — arquivo NOVO, criado com o conteudo literal da instrucao.
+3. `PROMPT.md` — bloco do despacho da leitura semanal inserido imediatamente ANTES da linha
+   `## DESPACHO DA SENTINELA — 2026-09-23 (ronda diaria, medida no Chrome do Raphael)` (era a linha 47),
+   seguido de uma linha em branco. Nada apagado; o despacho da ronda continua inteiro, agora na linha 95.
+4. `ESTADO.md` — a linha que comecava com `ultima_ronda: 2026-09-23T15:00Z` foi encontrada exatamente como
+   a instrucao previa (uma ocorrencia, linha 22) e substituida inteira pela linha nova. Nao houve o caso
+   de "linha diferente por outra execucao".
+
+`git status --porcelain` depois do commit (vazio — arvore limpa):
+
+```
+```
+
+`git diff --stat` do commit (HEAD~1..HEAD):
+
+```
+ ilhas/aquametria/ESTADO.md          |  2 +-
+ ilhas/aquametria/PROMPT.md          | 48 +++++++++++++++++++++++++++++++++++++
+ ilhas/aquametria/dados/indexacao.md |  1 +
+ ilhas/aquametria/dados/posicoes.md  | 19 +++++++++++++++
+ 4 files changed, 69 insertions(+), 1 deletion(-)
+```
+
+Hash do commit que foi ao `main`:
+
+```
+c9a32ad0591603b9ab82f3029c44534811d404c3
+```
+
+Confirmado com `git fetch origin main && git log -1 origin/main`: `origin/main` esta em `c9a32ad`, o
+commit desta execucao. Push direto em `HEAD:main`, aceito de primeira (`0b3c821..c9a32ad`), sem rebase,
+sem force, sem PR.
+
+Contagem conferida RELENDO os arquivos depois de gravar, nao pelo que eu achava ter escrito:
+
+```
+indexacao.md   — 198 linhas no total; 1 linha comecando com "| 2026-09-23 |"
+posicoes.md    — 19 linhas no total; 5 linhas de tabela com "| 2026-09-23 |"
+PROMPT.md      — 340 linhas no total; 2 cabecalhos "## DESPACHO DA SENTINELA — 2026-09-23"
+                 (linha 47 = LEITURA SEMANAL, novo; linha 95 = ronda diaria, preservado)
+ESTADO.md      — 1 linha comecando com "ultima_ronda: 2026-09-23T20:05Z"
+diff do commit — 4 arquivos, 69 insercoes, 1 remocao
+```
+
+Nenhum passo falhou. Nada foi reformatado, nada foi "melhorado", nenhuma linha fora da instrucao foi
+acrescentada. Nenhuma ilha reservada, `executando_desde` nao foi tocado, nenhum bloco de fila executado,
+nada publicado, Sync nao acionado, nenhuma conta criada, `ARQUIPELAGO.md` nao foi lido para decidir nada.
+Nenhuma secao anterior deste log foi apagada, reescrita nem resumida. Alem dos quatro arquivos nomeados
+pela instrucao e deste log, nenhum arquivo foi tocado.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `c9a32ad` so existiu depois do commit do
+trabalho.
