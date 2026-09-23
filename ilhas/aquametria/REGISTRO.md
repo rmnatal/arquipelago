@@ -294,6 +294,33 @@ foto, essa, entra do mesmo jeito: ela não disputa com nada.
 - **A bancada ficou mais lenta**, e não por minha causa: `mutacoes-peixes.py`
   (95 mutações × 3719 afirmações) é o portão longo desta ilha.
 
+### VERIFICAÇÃO
+
+**Sem rede:** `bancada.py` **APROVADO em 31 portões, 0 falha** (régua do veredito
+17 afirmações, `php -l` em 11 snippets). `teste-coleta-shopee` **153/0** (novo);
+`mutacoes-coleta-shopee` **18 de 18** (novo); `teste-escada-compra` **703/0**
+(eram 644); `mutacoes-escada` **26 de 26** (eram 23); `validar-produtos` 78
+produtos, **0 erro**, 8 avisos (eram 9 — a `sunsun-ade-400c` ganhou foto);
+`teste-peixes`, `mutacoes-peixes` 95 de 95, `teste-voz` nas 48 páginas,
+`mutacoes-voz`, `teste-arvore`, `teste-ga4`, `teste-datas-schema`,
+`teste-dimensao-imagem`, `teste-purga-cache`, `teste-seo-tecnico`,
+`teste-apelidos`, `validar-especies`, `conferir-slugs`,
+`conferir-protecao-funcoes`, `conferir-entidades` e `conferir-indice-de-levas`
+todos limpos.
+
+**NO AR, depois do Sync (revisão 103, conferida no `/status`):**
+`conferir-escada-no-ar` **130 afirmações, 0 falha** (eram 107) — 19 cartões, **12
+pela ficha, 7 pelo piso, 0 sem saída de compra**; `conferir-peixes-no-ar`
+**906/0**; `conferir-datas-e-voz-no-ar` **368/0**; `conferir-privacidade-no-ar`
+**21/0** (reprovava com 2 antes do conserto desta execução);
+`conferir-cache-do-host` **51/0**.
+
+**A sequência de revisões desta execução, porque ela conta a história:** 100 (a
+coleta), 101 (as duas réguas separadas), 102 (o irmão no ar), 103 (a página de
+privacidade). As falhas de 101 e 102 foram achadas **pelos próprios portões,
+depois do Sync** — nenhuma delas apareceu antes de o código estar no ar, e é
+exatamente para isso que a seção 8 manda verificar abrindo a URL.
+
 ### ITENS ESPERANDO LINK DE AFILIADO (item 5 do despacho da Sentinela de 13/09)
 
 **ZERO itens sem `url_busca` encurtada** — eram 78 desde 13/09. E **zero** sem
