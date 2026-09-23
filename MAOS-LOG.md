@@ -2152,3 +2152,61 @@ Nenhum passo falhou. Nenhuma ilha foi reservada, nenhum bloco de fila foi execut
 nenhum Sync foi acionado. Nenhum arquivo alem do `ARQUIPELAGO.md` e deste log foi tocado.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `1220d90` so existiu depois do commit do trabalho.
+
+## 23/09/2026 11h54 (14h54Z) — ronda diaria da aquametria de 23/09: despacho, ultima_ronda, consertos e painel
+
+Disparo com instrucao literal da Sentinela: QUATRO alteracoes em QUATRO arquivos, num commit so.
+Assunto conferido antes do `git fetch`: aquametria, Sentinela, painel do Arquipelago — e do Arquipelago, executado.
+Nenhum contato pessoal de terceiro veio na instrucao, entao nada foi omitido por esse motivo.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `9ccbb11`.
+
+1. `ilhas/aquametria/ESTADO.md` — linha 21 (`ultima_ronda:`) substituida inteira, de `2026-09-13T14:47Z` para
+   `2026-09-23T15:00Z` com o comentario novo. Nada mais no arquivo. Validacao pedida pela instrucao:
+   `python3 -c "import io,yaml;yaml.safe_load(...)"` imprimiu `YAML ok`.
+2. `ilhas/aquametria/dados/consertos.md` — uma linha nova acrescentada no fim, depois da linha de `2026-09-13`.
+3. `ilhas/aquametria/PROMPT.md` — bloco novo `## DESPACHO DA SENTINELA — 2026-09-23` inserido imediatamente antes
+   da linha 47 (`## DESPACHO DO RAPHAEL — 11/09/2026`), seguido de linha em branco; e a antiga linha 87
+   (`5. **RECEITA ...**`) substituida pela linha unica de fecho.
+4. `dados/PAINEL.md` — reescrito inteiro, do primeiro ao ultimo caractere.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/aquametria/dados/consertos.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ dados/PAINEL.md                     | 42 +++++++++++++++++--------------
+ ilhas/aquametria/ESTADO.md          |  2 +-
+ ilhas/aquametria/PROMPT.md          | 49 ++++++++++++++++++++++++++++++++++++-
+ ilhas/aquametria/dados/consertos.md |  1 +
+ 4 files changed, 73 insertions(+), 21 deletions(-)
+```
+
+Commit que foi ao `main`: `954c6d3940a7711e7c52c1eeee7242789a637223` (`954c6d3`).
+Push: `git push origin HEAD:main` aceito de primeira, `9ccbb11..954c6d3  HEAD -> main`. Sem rebase, sem force.
+Confirmacao: `git fetch origin main && git log -1 origin/main` devolve `954c6d3 sentinela: ronda diaria da
+aquametria de 23/09 — despacho, ultima_ronda, consertos e painel`. O commit esta em `origin/main`.
+
+Contagem do que mudou, conferida RELENDO os arquivos depois de gravar (nao pelo que foi escrito):
+
+```
+ilhas/aquametria/ESTADO.md            519 linhas; L21 comeca "ultima_ronda: 2026-09-23T15:00Z"
+ilhas/aquametria/PROMPT.md            300 linhas (eram 253: +47 do bloco novo)
+                                      L47  "## DESPACHO DA SENTINELA — 2026-09-23 (ronda diaria, ...)"
+                                      L134 "5. ~~**RECEITA — ...**~~ **FECHADO EM 23/09/2026 ..."
+ilhas/aquametria/dados/consertos.md    10 linhas; ultima e "| 2026-09-23 | — | **Nenhum conserto.** ..."
+dados/PAINEL.md                        57 linhas, 8699 caracteres (reescrita inteira)
+```
+
+Nenhum passo falhou. Sync NAO foi acionado, como a instrucao mandou. Nenhuma ilha reservada, nenhum bloco de fila
+executado, nenhum cabecalho de estado tocado alem da linha `ultima_ronda` que a instrucao nomeou, nada publicado.
+Nenhum arquivo alem dos quatro nomeados e deste log foi tocado.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `954c6d3` so existiu depois do commit do trabalho.
