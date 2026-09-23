@@ -18,7 +18,7 @@ bloco_atual: |
   O QUE A LEVA NAO FEZ: o menu continua apontando "Pecas" para a FERRAMENTA e /ferramentas/ continua de pe — o ARVORE.md condiciona as duas trocas a /succao/ tambem existir, e ela nasce na leva 2.
   A PROXIMA LEVA JA ESTA MEDIDA E NAO E DE FILTRO: /pecas/escovas-laterais/ (13 itens, 5 marcas) e /pecas/mops/ (19, 5) tambem passam no portao hoje; nao nasceram por causa da ordem de levas e do teto, nao por falta de dado.
   BANCADA 41 portoes 0 falha sem rede e conferir-no-ar.py com 389 afirmacoes 0 falha.
-ultima_ronda: 2026-09-18T14:52Z
+ultima_ronda: 2026-09-23T20:10Z   # leitura semanal da Sentinela em 23/09/2026, a primeira medicao desta ilha desde 18/09. NAO foi ronda tecnica: o que rodou foi a leitura de negocio (indexacao, posicao, vendas). A ronda diaria tecnica continua sem rodar aqui desde 18/09, por forca da 1.2.
 bloqueada_por: null
 ---
 

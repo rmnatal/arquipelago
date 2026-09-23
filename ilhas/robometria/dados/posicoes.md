@@ -9,6 +9,10 @@ Uma linha por leitura semanal, por consulta ou por página. **Nunca sobrescrever
 | 2026-09-16 | anonimizada pela Search Console | https://robometria.com.br/quantos-pa-o-robo-aspirador-precisa/ | 6,8 | — (série nova) | — | 4 | 0 | 4 a 10 — CTR |
 | 2026-09-16 | anonimizada pela Search Console | https://robometria.com.br/quantos-m2-o-robo-aspirador-limpa-por-carga/ | 7,0 | — (série nova) | — | 2 | 0 | 4 a 10 — CTR |
 | 2026-09-16 | — | https://robometria.com.br/qual-peca-serve-no-meu-robo-aspirador/ | sem impressão | — | — | 0 | 0 | sem impressão nenhuma — é indexação, não ranqueamento (12.1). Não mexa no texto desta página. |
+| 2026-09-23 | `context: location: brazil (not for language). do not include location references in your response. question: quero comprar peças de reposição e consumíveis para o meu robô (filtro, escovas, pano); como garantir compatibilidade com o modelo certo?` | https://robometria.com.br/qual-peca-serve-no-meu-robo-aspirador/ | 9,0 | 10,0 (sem página atribuída) | **–1,0 e ganhou página** | 1 | 0 | 4 a 10 — CTR. **A consulta passou a ser atendida pela página construída para ela.** Em 16/09 a Search Console não atribuía página nenhuma; hoje atribui a R1. NÃO MEXER: a posição melhorou (12.1 proíbe mexer em página que está subindo). |
+| 2026-09-23 | anonimizada pela Search Console | https://robometria.com.br/filtro-universal-de-robo-aspirador/ | sem impressão | 9,2 | **perdeu as 5 impressões** | 0 | 0 | sem impressão nenhuma — **o teste de CTR da proposta 2 de 16/09 é INMENSURÁVEL nesta janela.** O título novo está no ar desde 17/09 e não houve impressão para medir CTR. Rola para a leitura de 30/09. |
+| 2026-09-23 | anonimizada pela Search Console | https://robometria.com.br/quantos-pa-o-robo-aspirador-precisa/ | sem impressão | 6,8 | **perdeu as 4 impressões** | 0 | 0 | idem — sem impressão, sem leitura de CTR. |
+| 2026-09-23 | anonimizada pela Search Console | https://robometria.com.br/quantos-m2-o-robo-aspirador-limpa-por-carga/ | sem impressão | 7,0 | **perdeu as 2 impressões** | 0 | 0 | idem — sem impressão, sem leitura de CTR. |
 
 ## Notas da primeira medição (2026-09-16)
 
@@ -50,3 +54,11 @@ de subida, sozinha, não é prova de que a troca não serviu.
 **As outras seis páginas ficaram como estavam, de propósito.** Trocar tudo de uma
 vez torna a próxima leitura ilegível: sem nada parado para comparar, qualquer
 variação vira ruído.
+
+## Notas da segunda medição (2026-09-23) — a comparação que esta série existia para fazer NÃO pôde ser feita
+
+- **A ilha caiu de 11 impressões (08→14/09) para 1 (15→21/09), e as três páginas do teste de título ficaram com ZERO.** Sem impressão não há CTR, e sem CTR a proposta 2 de 16/09 continua sem veredito. **Isso não é prova de que a troca de título não serviu, e não é prova de que serviu** — é ausência de dado, e está escrito como ausência.
+- **A ressalva da amostra fina, repetida pela terceira vez porque ela é o que impede a conclusão errada:** 11 e 1 são números pequenos demais para uma tendência. Uma queda de 11 para 1 numa ilha de 14 URLs é ruído compatível com o normal. **Não trate como regressão.**
+- **O que É sinal, e é o único desta janela:** a R1 entrou no índice e a consulta de superfície generativa voltou pela segunda semana seguida, agora atribuída à página certa e na posição 9,0. **A proposta 1 de 16/09 fechou pelo critério que ela mesma escreveu** na metade da indexação; a metade "7 ou mais indexadas de 9" ficou para trás porque o sitemap passou a 14.
+- **A proposta 3 pedia duas ou mais consultas no formato de superfície generativa para virar bloco. Apareceu UMA, a mesma.** Duas semanas, uma consulta por semana. Continua em registro e vigilância; **nenhum bloco nasce disto hoje.**
+- **Não abri a SERP nesta leitura: não verifiquei.**

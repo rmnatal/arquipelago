@@ -45,6 +45,42 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h10Z) — a ilha está em MODO DE MEDIÇÃO e este despacho quase não pede trabalho
+
+**Esta ilha não recebe construção até a decisão pré-registrada de outubro** (despacho do Raphael de 21/09, 1.2-b.1). Portanto: **nenhum item abaixo é bloco de fila.** O que há é o fecho de duas propostas antigas, um defeito de descoberta já remediado pela própria Sentinela, e uma correção de uma linha.
+
+**A DECISÃO DA RAMPA: MANTÉM.** `piso: abaixo` — 14 URLs de 40, primeira indexação 11/09, 21 dias fechando em 02/10. Pela 21.8 a série não autoriza nem proíbe nada.
+
+### ~~PROPOSTA 1 DA LEITURA DE 16/09 — A R1 NÃO ESTÁ NO ÍNDICE~~ — **FECHADA EM 23/09/2026 PELO CRITÉRIO QUE ELA MESMA ESCREVEU**
+
+`/qual-peca-serve-no-meu-robo-aspirador/` **está no Google**. Em 16/09 ela estava "Detectada, mas não indexada", com "Último rastreamento: N/D" e "nenhuma página de referência"; hoje ela não aparece na lista de não indexadas da URL Inspection, **e recebeu a consulta de superfície generativa na posição 9,0 com 1 impressão** — a mesma consulta que em 16/09 chegava sem página atribuída. **A página do dinheiro desta ilha passou a ser a página que atende a pergunta do dinheiro.** A segunda metade do "pronto quando" (7 ou mais indexadas de 9) ficou sem sentido porque o sitemap foi de 9 para 14; o que vale é a primeira metade, e ela está cumprida.
+
+**A alavanca que fez isso NÃO foi a prospecção de widget.** Foi a solicitação manual de indexação das 4 URLs, feita pela leitura semanal de 16/09 pela 14.7. **Quatro pedidas, e a que mais importava entrou.** Fica registrado como método que funcionou, não como coincidência.
+
+### PROPOSTA 3 DA LEITURA DE 16/09 — CONSULTA DE SUPERFÍCIE GENERATIVA: **CONTINUA EM VIGILÂNCIA, NÃO VIRA BLOCO**
+
+O critério escrito era: *"se aparecerem duas ou mais, a Fundação recebe um bloco"*. **Apareceu UMA, e é a mesma do texto idêntico.** Duas semanas seguidas, uma consulta em cada. **Nenhum bloco nasce disto.** A proposta continua aberta e o critério continua o mesmo para a leitura de 30/09.
+
+### PROPOSTA 2 DA LEITURA DE 16/09 — O TESTE DE CTR: **SEM DADO NESTA JANELA, E ISSO NÃO É RESULTADO NEGATIVO**
+
+As três páginas de título trocado em 17/09 tiveram **ZERO impressão** em 15→21/09, contra 5, 4 e 2 na janela anterior. **Sem impressão não existe CTR.** O de-para de títulos continua em `dados/posicoes.md` e a comparação rola inteira para a leitura de 30/09. **Não conclua nada sobre a troca de título, em nenhuma direção.** As outras seis páginas continuam propositalmente paradas, como a proposta mandou, para que a comparação tenha um lado parado.
+
+### 1. CORREÇÃO — `urls_publicadas` E O `/status` NÃO SÃO O PROBLEMA; O QUE ESTAVA VELHO ERA A LEITURA DO SITEMAP PELO GOOGLE, E A SENTINELA JÁ AGIU
+
+**Medido, não suposto:** as 5 URLs da leva de 21/09 voltaram **"URL is unknown to Google"**. No painel de Sitemaps, o `wp-sitemap.xml` estava com **última leitura em 22/09 e 9 páginas encontradas** — enquanto o arquivo no ar serve **14**, conferido da nuvem em três passadas (canônico, com quebra de cache e com User-Agent de Googlebot; 14 nas três). **Nenhum defeito de site:** o sub-sitemap lista as cinco, o cabeçalho traz `cache-control: max-age=21600` e `x-proxy-cache: MISS`.
+
+**O que a Sentinela fez nesta execução, pela 14.7:** reenviou `https://robometria.com.br/wp-sitemap.xml` no Search Console. O painel passou a mostrar **"Enviado: 23 de set. de 2026"**. **Pela regra 2 das quatro da seção 12, a Sentinela NÃO valida a própria ação na mesma execução** — quem confere é a leitura de 30/09.
+
+**Pronto quando:** o painel de Sitemaps da `sc-domain:robometria.com.br` mostrar **14 páginas encontradas**, e a linha de 30/09 em `dados/indexacao.md` registrar as 5 URLs de `/pecas/` fora do estado "URL is unknown to Google".
+
+### 2. CORREÇÃO — A PÁGINA DE AUTOR DO WORDPRESS (conferir, não consertar às cegas)
+
+Em `robometria.com.br` o endereço `/author/robometria_gestor/` responde **404**, então **esta ilha pode não ter o buraco**. Mas ele é real e está medido nas duas irmãs: na aquametria `/author/aquametria_gestor/` responde **200 sem `noindex`**, e na clubedomosaico a mesma página **já está indexada e tomou impressão na posição 1,0 nesta semana**. E `/?s=<termo>` responde **200 sem `noindex`** nas TRÊS ilhas, robometria incluída.
+
+**Pela lição do despacho de 15/09 em `dados/despachos.md`** — *"despacho que afirma o estado de uma ilha que quem o escreve não reservou está afirmando sobre um arquivo que ele não pode abrir"* —, isto entra como **pergunta e não como afirmação**: descubra qual é o slug de autor desta ilha e confira se ele responde 200 sem `noindex`.
+
+**Pronto quando:** existir no `REGISTRO.md` a medição do endereço de autor real desta ilha (o slug, o código HTTP e a presença ou ausência de `noindex`), e, se ele responder 200 sem `noindex`, o conserto junto — no mesmo portão que a aquametria receber.
+
 ## DESPACHO DO RAPHAEL — 20/09/2026, 10h30 (horário de Brasília) — ~~ITENS 1 E 4 DA SENTINELA DE 18/09 MEDIDOS NO NAVEGADOR~~ — **CUMPRIDO E CONFERIDO NO AR EM 20/09/2026, 13h45Z** (manifest revisão 69, `/status` em 69)
 
 > **COMO FOI CONFERIDO, e não pelo log do Sync (18.4).** `/quantos-pa-o-robo-aspirador-precisa/?piso=tapete&pelo=sim&m2=80` foi reaberta no ar depois do Sync: HTTP 200, **o primeiro cartão aponta para `keyword=Roborock`**, e as cinco chaves de modelo Roborock que a página serve são as novas (`Roborock`, `Roborock Qrevo Master`, `Roborock S8 MaxV`, `Roborock Qrevo Curv`, `Roborock Saros Z70`). Zero ocorrência de "em breve" na página. `python3 ferramentas/bancada.py --no-ar`: **44 portões, 0 falha**, com os seis `conferir-*` abrindo o site.
