@@ -2163,7 +2163,8 @@
       "temperatura_C",
       "ph",
       "dureza_dgh",
-      "convivencia"
+      "convivencia",
+      "restricoes_de_companhia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -2219,7 +2220,13 @@
    ],
    "verificado_em": "2026-09-09",
    "status_registro": "conflito",
-   "observacao": "O registro que sustenta pagina de incompatibilidade com fonte, e nao com opiniao de forum: a base cientifica diz para nao manter com peixes de nadadeiras longas e o compendio explica o mecanismo (grupo pequeno vira mordida em vizinho). Isso barra a combinacao com betta e com acara-bandeira, as duas mais vendidas junto no Brasil."
+   "observacao": "O registro que sustenta pagina de incompatibilidade com fonte, e nao com opiniao de forum: a base cientifica diz para nao manter com peixes de nadadeiras longas e o compendio explica o mecanismo (grupo pequeno vira mordida em vizinho). Isso barra a combinacao com betta e com acara-bandeira, as duas mais vendidas junto no Brasil.",
+   "restricoes_de_companhia": [
+    {
+     "tipo": "nadadeiras-longas",
+     "frase": "NAO manter com peixes de nadadeiras longas"
+    }
+   ]
   },
   {
    "id": "corydoras-aeneus",
@@ -4206,7 +4213,8 @@
       "cardume_minimo",
       "cardume_recomendado_ate",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "restricoes_de_companhia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 14/09/2026, sem leitura da pagina. A confirmar na ficha. A FRASE VOLTOU PRATICAMENTE PALAVRA POR PALAVRA EM DUAS PASSADAS INDEPENDENTES, com formulacoes de consulta diferentes e sem nenhum dos tres numeros dentro da pergunta. O NUMERO DO GRUPO E O DO AQUARIO SAO A MESMA FRASE, e e por isso que os tres campos saem desta unica fonte: o compendio nao publica 'aquario minimo' solto, publica 'grupo de 6 a 8 ou mais DESDE QUE o aquario tenha 120 cm ou mais'. Separar os dois numeros seria publicar uma frente minima que a fonte nunca declarou sozinha."
     }
@@ -4214,7 +4222,13 @@
    "conflitos": [],
    "verificado_em": "2026-09-14",
    "status_registro": "completo",
-   "observacao": "TERCEIRO CICLIDEO ANAO ELEGIVEL DA ILHA, e e ele que faz /peixes/ciclideos-anoes/ alcancar o minimo do 16.5: a categoria tinha o ramirezi sozinho e passa a ter tres. E O PRIMEIRO REGISTRO DO BANCO EM QUE A FRENTE MINIMA E CONDICIONAL AO GRUPO, e quem escrever a ficha nao pode quebrar a frase em duas: o compendio declara 'grupo misto de 6 a 8 ou mais DESDE QUE o aquario seja espacoso, de 120 cm de comprimento ou maior'. Os 120 cm nao sao o minimo para um exemplar nem para um casal — sao o chao do arranjo que a fonte recomenda. Publicar '120 cm' sem o 'para o grupo de 6 a 8' seria o mesmo defeito da leva 2 ao trocar BASE por FRENTE: numero certo, escopo errado. E O MAIOR NUMERO DE FRENTE DO EIXO ATE AQUI entre os ciclideos anoes, e ele contradiz a intuicao do comprador — o peixe tem 5,6 cm e pede 120 cm de aquario, enquanto o ramirezi, de 4,2 cm, pede 60. A diferenca nao esta no tamanho do peixe e sim no arranjo: um vive em casal e o outro em grupo gregario. E exatamente a tese da linha mestra do eixo, e esta categoria a paga dentro de um grupo so de peixes. COMPORTAMENTO FICOU NULO, e a frase do compendio explica por que: os machos ficam 'com frequencia mais agressivos' EM ESPACO CONFINADO, que e temperamento condicionado a manutencao e nao um valor do vocabulario fechado. Gravar 'territorial' a partir dai seria transformar uma ressalva em atributo. pH E DUREZA FICARAM NULOS: a base devolveu os dois com um lado so do intervalo (pH a partir de 7,0 e dH a partir de 10), e intervalo sem os dois lados nao e faixa de manutencao — o campo fica vazio em vez de virar um minimo com cara de recomendacao. NOME POPULAR: o varejo brasileiro vende esta especie como PAPILOCROMIS, nome que cinco lojas e portais brasileiros usam (Kauar, Pro-Aquarista, Fazenda Submersa, MyAquarium, Aquarismo Paulista), e nunca como 'ramirezi boliviano' — o que importa porque o registro do M. ramirezi, ja no banco, carrega 'borboleta-boliviana' entre os nomes populares dele. Sao dois peixes diferentes e o comercio brasileiro os separa pelo nome; a ficha tem de separar tambem."
+   "observacao": "TERCEIRO CICLIDEO ANAO ELEGIVEL DA ILHA, e e ele que faz /peixes/ciclideos-anoes/ alcancar o minimo do 16.5: a categoria tinha o ramirezi sozinho e passa a ter tres. E O PRIMEIRO REGISTRO DO BANCO EM QUE A FRENTE MINIMA E CONDICIONAL AO GRUPO, e quem escrever a ficha nao pode quebrar a frase em duas: o compendio declara 'grupo misto de 6 a 8 ou mais DESDE QUE o aquario seja espacoso, de 120 cm de comprimento ou maior'. Os 120 cm nao sao o minimo para um exemplar nem para um casal — sao o chao do arranjo que a fonte recomenda. Publicar '120 cm' sem o 'para o grupo de 6 a 8' seria o mesmo defeito da leva 2 ao trocar BASE por FRENTE: numero certo, escopo errado. E O MAIOR NUMERO DE FRENTE DO EIXO ATE AQUI entre os ciclideos anoes, e ele contradiz a intuicao do comprador — o peixe tem 5,6 cm e pede 120 cm de aquario, enquanto o ramirezi, de 4,2 cm, pede 60. A diferenca nao esta no tamanho do peixe e sim no arranjo: um vive em casal e o outro em grupo gregario. E exatamente a tese da linha mestra do eixo, e esta categoria a paga dentro de um grupo so de peixes. COMPORTAMENTO FICOU NULO, e a frase do compendio explica por que: os machos ficam 'com frequencia mais agressivos' EM ESPACO CONFINADO, que e temperamento condicionado a manutencao e nao um valor do vocabulario fechado. Gravar 'territorial' a partir dai seria transformar uma ressalva em atributo. pH E DUREZA FICARAM NULOS: a base devolveu os dois com um lado so do intervalo (pH a partir de 7,0 e dH a partir de 10), e intervalo sem os dois lados nao e faixa de manutencao — o campo fica vazio em vez de virar um minimo com cara de recomendacao. NOME POPULAR: o varejo brasileiro vende esta especie como PAPILOCROMIS, nome que cinco lojas e portais brasileiros usam (Kauar, Pro-Aquarista, Fazenda Submersa, MyAquarium, Aquarismo Paulista), e nunca como 'ramirezi boliviano' — o que importa porque o registro do M. ramirezi, ja no banco, carrega 'borboleta-boliviana' entre os nomes populares dele. Sao dois peixes diferentes e o comercio brasileiro os separa pelo nome; a ficha tem de separar tambem.",
+   "restricoes_de_companhia": [
+    {
+     "tipo": "comunitario-geral",
+     "frase": "apesar de ser normalmente vendido como tal, nao e recomendado para o aquario comunitario geral, porque exige agua de qualidade impecavel e e mau competidor, o que nao quer dizer que precise ser mantido sozinho"
+    }
+   ]
   },
   {
    "id": "puntius-titteya",

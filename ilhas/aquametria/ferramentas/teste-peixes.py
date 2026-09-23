@@ -42,6 +42,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import unicodedata
 
 RAIZ = sys.argv[1].rstrip("/") if len(sys.argv) > 1 else "."
 BANCO = os.path.join(RAIZ, "dados", "especies-agua-doce.json")
@@ -101,6 +102,13 @@ FICHAS = {
     "quantos-litros-para-acara-bandeira": "pterophyllum-scalare",
     "quantos-litros-para-oscar": "astronotus-ocellatus",
     "quantos-litros-para-acara-disco": "symphysodon-aequifasciatus",
+    # leva 9, 23/09/2026 — a categoria barbos inteira. E a PRIMEIRA leva do eixo
+    # que traz ficha de especie com RESTRICAO DE COMPANHIA declarada pela fonte
+    # (o barbo sumatra, esquema versao 6): a tabela de quem divide a mesma faixa
+    # tem tres filtros e nenhum deles alcanca restricao escrita em palavras.
+    "quantos-litros-para-barbo-sumatra": "puntigrus-tetrazona",
+    "quantos-litros-para-barbo-rosado": "pethia-conchonius",
+    "quantos-litros-para-barbo-cereja": "puntius-titteya",
 }
 
 # As especies do catalogo que NAO declaram o fundo do aquario: a fonte publica o
@@ -329,6 +337,21 @@ CATEGORIAS = {
             "symphysodon-aequifasciatus",
         ],
     },
+    # leva 9, 23/09/2026. `barradas` nasce VAZIA pela terceira vez no eixo, e
+    # aqui por um motivo que as outras duas nao tinham: a categoria nao e uma
+    # familia. Os tres registros que o nome "barbo" alcanca no banco passam nos
+    # dois portoes, entao nao existe barbo esperando do lado de fora — e o
+    # kinguio, que e Cyprinidae como os tres, NAO e barrado: ele passa no portao
+    # e nao e barbo, que e coisa que mora no `criterio` e nao nesta lista.
+    "barbos": {
+        "rotulo": "barbos",
+        "barradas": [],
+        "especies": [
+            "puntigrus-tetrazona",
+            "pethia-conchonius",
+            "puntius-titteya",
+        ],
+    },
 }
 # O SUJEITO DA FRASE DE LISTA FECHADA e A CONSULTA DE CADA CATEGORIA, escritos
 # aqui a mao como tudo o mais deste arquivo. Os dois eram texto DIGITADO dentro
@@ -344,6 +367,7 @@ SINGULAR_DA_CATEGORIA = {
     "ciclideos-anoes": "todo ciclídeo anão",
     "danios-e-rasboras": "todo danio e toda rasbora",
     "acaras": "todo acará grande",
+    "barbos": "todo barbo",
 }
 CONSULTA_DA_CATEGORIA = {
     "tetras": "quantos litros para tetras",
@@ -353,6 +377,7 @@ CONSULTA_DA_CATEGORIA = {
     "ciclideos-anoes": "quantos litros para ciclídeo anão",
     "danios-e-rasboras": "quantos litros para danios e rasboras",
     "acaras": "quantos litros para acará",
+    "barbos": "quantos litros para barbo",
 }
 
 PAGINAS = [SECAO] + list(CATEGORIAS) + list(FICHAS)
@@ -692,6 +717,82 @@ def trilha(pagina):
 # As afirmacoes
 # ---------------------------------------------------------------------------
 
+# O QUE A PAGINA TEM DE DIZER POR TIPO DE RESTRICAO DE COMPANHIA, e esta e a
+# REGUA DESTE ARQUIVO — nunca importada do mapa do PHP que produz a frase. A
+# secao 8 do ARQUIPELAGO.md e explicita: quem confere escreve a propria regua,
+# senao as duas metades erram juntas e ficam verdes. Cada entrada e o que a frase
+# tem de fazer, e nao o texto dela: o pedaco que nomeia a recusa, e o pedaco que
+# diz ao leitor que a tabela abaixo NAO peneira aquilo.
+FRASE_DA_RESTRICAO = {
+    "nadadeiras-longas": ("nadadeira longa", "não está na tabela"),
+    "comunitario-geral": ("aquário comunitário geral", "não tem como ver"),
+}
+
+
+def medir_restricao_de_companhia(slug, e, c, t):
+    """A RECUSA QUE A FONTE DECLAROU EM PALAVRAS, na tela e no lugar certo.
+
+    NASCEU NA LEVA 9 (23/09/2026) consertando um defeito que estava NO AR havia
+    nove dias: a ficha do papilocromis servia TREZE companheiros de aquario
+    enquanto o compendio dela diz, com todas as letras, que a especie "nao e
+    recomendado para o aquario comunitario geral". A frase estava transcrita no
+    proprio registro, tres campos acima — e prosa nao barra pagina.
+
+    A tabela de quem divide a mesma faixa tem tres filtros (intersecao das faixas,
+    o aquario minimo do companheiro caber nesta frente, e o banco nao declarar o
+    companheiro agressivo) e nenhum deles alcanca restricao escrita em palavras.
+
+    AS QUATRO AFIRMACOES, e as duas primeiras sao as duas direcoes:
+      1. tantos blocos de restricao na tela quantas restricoes no banco — zero
+         inclusive, que e o caso de 24 dos 26 registros com ficha;
+      2. cada tipo declarado tem, na tela, o que este arquivo diz que ele tem de
+         ter (mapa acima), e o nome da especie dentro do bloco;
+      3. a recusa vem ANTES da tabela: a leva 1 ja aprendeu, com o mato-grosso,
+         que nota depois da lista e nota que ninguem le;
+      4. a CLAUSULA transcrita NAO vai para a tela. Ela e prova de banco, sem
+         acento e no vocabulario de quem colheu; publicar a transcricao crua e o
+         mesmo defeito do caminho de arquivo na tela que a regua de acento pegou
+         em outra ilha.
+    """
+    declaradas = list(e.get("restricoes_de_companhia") or [])
+    blocos = re.findall(r'<p class="aqm-px-restricao">(.*?)</p>', c, re.S)
+    ok("%s: %d bloco(s) de restricao na tela, um por restricao do banco" % (slug, len(declaradas)),
+       len(blocos) == len(declaradas), "%d na tela, %d no banco" % (len(blocos), len(declaradas)))
+    if not declaradas:
+        return
+
+    nome = e["nomes_populares_br"][0]
+    juntos = texto(" ".join(blocos))
+    for item in declaradas:
+        tipo = item.get("tipo")
+        ok("%s: a restricao '%s' esta no vocabulario que este arquivo conhece" % (slug, tipo),
+           tipo in FRASE_DA_RESTRICAO)
+        for pedaco in FRASE_DA_RESTRICAO.get(tipo, ()):
+            ok("%s: a restricao '%s' diz \"%s\" na tela" % (slug, tipo, pedaco),
+               pedaco in juntos, juntos[:160])
+        # a clausula crua do banco nao vai para a tela
+        frase = str(item.get("frase") or "")
+        ok("%s: a clausula transcrita da fonte NAO aparece no corpo" % slug,
+           frase not in t, frase[:60])
+    ok("%s: o bloco de restricao nomeia a especie" % slug, nome in juntos, juntos[:120])
+
+    # a fonte que declarou a recusa esta nomeada no bloco, e ela e a do banco
+    refs = [f for f in e.get("fontes", [])
+            if "restricoes_de_companhia" in (f.get("campos") or [])]
+    ok("%s: o banco tem fonte que declara restricoes_de_companhia" % slug, len(refs) >= 1)
+    if refs:
+        nome_do_corpo = corpo_da_referencia(refs[0].get("referencia"))
+        ok("%s: o bloco de restricao nomeia quem declarou (%s)" % (slug, nome_do_corpo),
+           bool(nome_do_corpo) and nome_do_corpo in juntos, juntos[-160:])
+
+    # 3. antes da tabela de quem divide a agua
+    i_bloco = c.find('class="aqm-px-restricao"')
+    i_tabela = c.find("Espécies do banco cuja faixa declarada encosta")
+    ok("%s: a recusa vem ANTES da tabela de quem divide a agua" % slug,
+       i_bloco >= 0 and (i_tabela < 0 or i_bloco < i_tabela),
+       "restricao em %d, tabela em %d" % (i_bloco, i_tabela))
+
+
 def medir_ficha(slug, ident, banco):
     e = banco[ident]
     pagina = servir(slug)
@@ -703,8 +804,18 @@ def medir_ficha(slug, ident, banco):
     ok("%s: corpo tem tamanho de pagina" % slug, len(t) >= CORPO_MINIMO, "%d caracteres" % len(t))
     ok("%s: nenhuma entidade &#038; dentro de <script>" % slug,
        all("&#038;" not in b for b in re.findall(r"<script[^>]*>(.*?)</script>", pagina, re.S)))
-    ok("%s: no maximo %d blocos de prova no corpo" % (slug, MAX_PROVA),
-       c.count('class="aqm-prova"') <= MAX_PROVA, "%d blocos" % c.count('class="aqm-prova"'))
+    # O TETO DE PROVA E DERIVADO DO BANCO desde a leva 9 (23/09/2026): dois, mais
+    # um por restricao de companhia declarada para esta especie. O teto de dois
+    # foi escrito quando a ficha so podia ter dois blocos — a atribuicao da base e
+    # a ressalva das reguas de lotacao. A restricao de companhia trouxe o
+    # terceiro, e ele e prova de verdade: sem o nome de quem declarou a recusa a
+    # frase seria opiniao de forum. Aumentar a constante para tres afrouxaria o
+    # teto em TODA pagina; derivar do banco so o afrouxa onde o banco paga.
+    teto_prova = MAX_PROVA + len(e.get("restricoes_de_companhia") or [])
+    ok("%s: no maximo %d blocos de prova no corpo" % (slug, teto_prova),
+       c.count('class="aqm-prova"') <= teto_prova, "%d blocos" % c.count('class="aqm-prova"'))
+
+    medir_restricao_de_companhia(slug, e, c, t)
 
     # --- o nome popular da especie certa, e nunca o de outra ficha
     nome = e["nomes_populares_br"][0]
@@ -2064,6 +2175,21 @@ FAMILIA_DO_CRITERIO = {
 # calada.
 RAZAO_DE_FRENTE_DOS_VIVAPAROS = 2.0
 
+# O QUE O CRITERIO DOS BARBOS AFIRMA SOBRE O BANCO, em numero (leva 9, 23/09/2026).
+# Sao contagens dentro de uma frase publicada, e frase com numero de banco dentro e
+# o defeito que esta ilha mais paga — entao todas sao recomputadas aqui, do banco, e
+# nao lidas do texto. A do "barb" e a que importa mais: ela e a razao de o criterio
+# medir o NOME INTEIRO, e no dia em que outro registro trouxer a raiz no nome
+# popular a frase tem de ser reescrita em vez de envelhecer calada.
+NOME_QUE_DEFINE_OS_BARBOS = "barbo"
+RAIZ_QUE_PEGA_DEMAIS = "barb"
+BARBOS_PELO_NOME = 3
+PELA_RAIZ_ENCURTADA = 4
+REGISTROS_DO_BANCO = 40
+FAMILIA_DOS_BARBOS = "Cyprinidae"
+ELEGIVEIS_DA_FAMILIA_DOS_BARBOS = 4
+PORTE_DO_QUARTO_CYPRINIDAE = 48.0
+
 
 def medir_categoria_preparada(banco):
     """A PRIMEIRA VIDA DE UMA CATEGORIA — declarada, e ainda sem URL.
@@ -2171,6 +2297,46 @@ def medir_categoria_preparada(banco):
            "aqm-px-fora" in c_nascida)
         ok("vivaparos: o criterio NAO escreve a contagem, e remete a ela",
            "contado logo abaixo da tabela" in cats["vivaparos"]["criterio"])
+
+    # 7. AS CONTAGENS QUE O CRITERIO DOS BARBOS PUBLICA, recomputadas do banco. O
+    #    criterio daquela categoria e o NOME — o mesmo da leva 7, que a leva 8 teve
+    #    de abandonar — e ele volta com a medicao dentro da frase: tres registros
+    #    pelo nome inteiro, quatro pela raiz encurtada, num banco de 40. Sem esta
+    #    regua as tres seriam numeros digitados na tela, e a do "barb" e a que
+    #    guarda o motivo de o criterio nao poder ser encurtado.
+    def plano(t):
+        return "".join(ch for ch in unicodedata.normalize("NFD", str(t or ""))
+                       if unicodedata.category(ch) != "Mn").lower()
+
+    pelo_nome = sorted(e["id"] for e in banco.values()
+                       if any(NOME_QUE_DEFINE_OS_BARBOS in plano(n)
+                              for n in e.get("nomes_populares_br", [])))
+    pela_raiz = sorted(e["id"] for e in banco.values()
+                       if any(RAIZ_QUE_PEGA_DEMAIS in plano(n)
+                              for n in e.get("nomes_populares_br", [])))
+    ok("barbos: o nome inteiro '%s' casa em %d registros do banco"
+       % (NOME_QUE_DEFINE_OS_BARBOS, BARBOS_PELO_NOME),
+       len(pelo_nome) == BARBOS_PELO_NOME, ", ".join(pelo_nome))
+    ok("barbos: a raiz encurtada '%s' casa em %d — e e por isso que o criterio nao encurta"
+       % (RAIZ_QUE_PEGA_DEMAIS, PELA_RAIZ_ENCURTADA),
+       len(pela_raiz) == PELA_RAIZ_ENCURTADA, ", ".join(pela_raiz))
+    ok("barbos: os tres do nome inteiro sao a categoria, e o que a raiz traz a mais NAO esta nela",
+       sorted(pelo_nome) == sorted(CATEGORIAS["barbos"]["especies"])
+       and any(i not in pelo_nome for i in pela_raiz),
+       ", ".join(i for i in pela_raiz if i not in pelo_nome))
+    ok("barbos: o banco tem os %d registros que o criterio diz ter" % REGISTROS_DO_BANCO,
+       len(banco) == REGISTROS_DO_BANCO, "%d" % len(banco))
+    da_familia = [e for e in banco.values() if e.get("familia") == FAMILIA_DOS_BARBOS]
+    aptas_familia = [e for e in da_familia if passa_no_portao_de_pagina(e)]
+    ok("barbos: %s tem %d especies elegiveis no banco, como o criterio afirma"
+       % (FAMILIA_DOS_BARBOS, ELEGIVEIS_DA_FAMILIA_DOS_BARBOS),
+       len(aptas_familia) == ELEGIVEIS_DA_FAMILIA_DOS_BARBOS,
+       ", ".join(sorted(e["id"] for e in aptas_familia)))
+    quarta = [e for e in aptas_familia if e["id"] not in CATEGORIAS["barbos"]["especies"]]
+    ok("barbos: a quarta %s elegivel e a de %s cm que o criterio nomeia"
+       % (FAMILIA_DOS_BARBOS, numero_br(PORTE_DO_QUARTO_CYPRINIDAE)),
+       len(quarta) == 1 and float(quarta[0]["porte_adulto_cm"]) == PORTE_DO_QUARTO_CYPRINIDAE,
+       ", ".join("%s (%s cm)" % (e["id"], e["porte_adulto_cm"]) for e in quarta))
 
 
 def main():

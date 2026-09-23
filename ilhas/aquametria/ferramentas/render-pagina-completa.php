@@ -160,6 +160,14 @@ $GLOBALS['__paginas'] = array(
 	'quantos-litros-para-acara-bandeira'        => true,
 	'quantos-litros-para-oscar'                 => true,
 	'quantos-litros-para-acara-disco'           => true,
+	/* A leva 9 (23/09/2026): a NONA categoria do eixo, inteira. Ela traz para
+	   esta bancada o primeiro caso de `comportamento: semi-agressivo` com pagina
+	   propria — o barbo sumatra —, que e o ramo do meio entre o peixe que o
+	   banco declara agressivo (o mato-grosso, desde a leva 1) e o pacifico. */
+	'barbos'                                    => true,
+	'quantos-litros-para-barbo-sumatra'         => true,
+	'quantos-litros-para-barbo-rosado'          => true,
+	'quantos-litros-para-barbo-cereja'          => true,
 );
 
 aquametria_teste_carregar( $raiz );

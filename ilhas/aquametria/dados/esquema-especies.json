@@ -3,7 +3,7 @@
  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E16 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
  "gerado_em": "2026-09-09",
  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16; revisado na versao 5 (22/09/2026): chao_declarado_para e as regras E20 a E22 — o arranjo para quem a fonte declarou a base",
- "versao_esquema": 5,
+ "versao_esquema": 6,
  "depende_de": [
   "dados/esquema-produtos.json",
   "dados/especificacao-calculadoras.md"
@@ -290,6 +290,17 @@
    ]
   },
   {
+   "campo": "restricoes_de_companhia",
+   "tipo": "lista de objetos {tipo, frase}",
+   "obrigatorio": false,
+   "dominio": "manutencao",
+   "nota": "QUEM A FONTE MANDA NAO POR NA MESMA AGUA (versao 6, 23/09/2026). O eixo /peixes/ publica, em toda ficha de especie que o banco nao declara agressiva, uma tabela de 'quem divide a mesma faixa de temperatura' com TRES filtros: intersecao das faixas declaradas, aquario minimo do companheiro caber na frente desta ficha, e o banco nao declarar o companheiro agressivo. NENHUM dos tres alcanca uma restricao que a fonte declarou em palavras, e o custo estava NO AR havia nove dias: a ficha do papilocromis servia treze companheiros enquanto o compendio dela diz, com todas as letras, que a especie 'nao e recomendado para o aquario comunitario geral'. Prosa nao barra pagina — e aqui a prosa estava na propria transcricao da fonte, nao so na observacao, o que torna o caso pior que o do apistogramma que fez nascer o chao_declarado_para: o texto que a pagina CITA contradizia a tabela que a pagina serve. A segunda ocorrencia ia nascer na mesma leva: a base cientifica do barbo sumatra manda NAO o manter com peixe de nadadeira longa, e o banco desta ilha nao tem campo para formato de nadadeira — a tabela nao tem como filtrar isso e por isso tem de DIZER que nao filtra. DUAS METADES, como no chao declarado. `tipo` e termo do vocabulario fechado, porque a traducao para a lingua do leitor mora num mapa so do PHP (nome de campo de banco na tela e vocabulario de dentro da fabrica). `frase` e a clausula copiada AO PE DA LETRA da transcricao de uma fonte que declare este campo em `campos`, conferida como trecho literal pelo E23 — a mesma regra do E22, pelo mesmo motivo: sem a clausula a conferencia seria contra o texto todo. O CAMPO E OPCIONAL E A AUSENCIA NAO E BURACO: restricao que a fonte nao declarou nao se inventa, e o eixo inteiro publicou 26 fichas sem ele porque 24 dos 26 registros nao tem uma. O que o campo NAO e: veredito de convivencia. Ele carrega o que a fonte RECUSOU, nunca o que ela aprovou — este esquema continua recusando compatibilidade como campo, porque ela depende de volume, layout e ordem de introducao.",
+   "valores_de_tipo": [
+    "nadadeiras-longas",
+    "comunitario-geral"
+   ]
+  },
+  {
    "campo": "altura_minima_cm",
    "tipo": "integer",
    "unidade": "cm",
@@ -565,6 +576,10 @@
   {
    "id": "E22",
    "regra": "A `frase` de chao_declarado_para tem de ser trecho LITERAL da referencia de alguma fonte que sustente base_minima_cm — clausula copiada, nunca reescrita —, e os termos de `arranjos` tem de estar sustentados por ela, por palavra: 'casal' pede casal na clausula; 'grupo' pede grupo, cardume ou 'mantida em numero'; 'um-exemplar' pede sozinho, um exemplar, um adulto, um macho ou um individuo; 'juvenis' pede juven. 'nao-declarado' e o inverso: reprova se a clausula nomear qualquer uma dessas populacoes. Campo e clausula sao duas escritas independentes do mesmo fato, exatamente como no E16 — sem esta regra o termo vira palpite de quem digitou, e o palpite permissivo ('nao-declarado') e justamente o que devolve o fundo a uma ficha que nao pode publica-lo."
+  },
+  {
+   "id": "E23",
+   "regra": "Todo item de restricoes_de_companhia tem `tipo` do vocabulario fechado (nadadeiras-longas, comunitario-geral) e `frase` que e trecho LITERAL da referencia de alguma fonte que declare `restricoes_de_companhia` em `campos` — clausula copiada, nunca reescrita. A clausula tem de sustentar o tipo por palavra: 'nadadeiras-longas' pede nadadeira na clausula; 'comunitario-geral' pede comunitario. Campo ausente nao e erro: restricao que a fonte nao declarou nao se inventa. Lista presente e vazia E erro, porque lista vazia afirma que a fonte foi lida e nao declarou nada, e isso se escreve deixando o campo fora."
   }
  ],
  "o_que_nao_entra": [

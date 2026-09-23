@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E22 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E23 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -152,6 +152,19 @@ PALAVRAS_DO_ARRANJO = {
     "um-exemplar": ("sozinho", "um exemplar", "um adulto", "um macho", "um individuo"),
     "casal": ("casal",),
     "grupo": ("grupo", "cardume", "mantida em numero", "mantido em numero"),
+}
+
+# QUEM A FONTE MANDA NAO POR NA MESMA AGUA (regra E23, esquema versao 6,
+# 23/09/2026). O vocabulario e fechado porque a traducao para a lingua do leitor
+# mora num mapa so do PHP; e a palavra ao lado e o que a clausula transcrita tem
+# de trazer para sustentar o termo, pelo mesmo desenho do PALAVRAS_DO_ARRANJO
+# acima. Duas entradas, e as duas nasceram de registro real: o barbo sumatra
+# (nadadeira longa, FishBase) e o papilocromis (aquario comunitario geral,
+# Seriously Fish), este ultimo com a ficha NO AR ha nove dias servindo treze
+# companheiros contra a propria frase que ela cita.
+PALAVRAS_DA_RESTRICAO = {
+    "nadadeiras-longas": ("nadadeira",),
+    "comunitario-geral": ("comunitario",),
 }
 
 
@@ -484,6 +497,40 @@ def main():
                                   "%s: a ficha NAO pode servir o fundo a essa populacao (quem executa "
                                   "essa metade e ferramentas/teste-peixes.py, contra o HTML servido)"
                       % (r.get("convivencia"), ", ".join(arranjos)))
+
+        # E23 - a restricao de companhia que a fonte declarou EM PALAVRAS
+        #
+        # O DEFEITO QUE FEZ ESTA REGRA NASCER ESTAVA NO AR HA NOVE DIAS, e e pior
+        # que o do chao declarado: la a proibicao morava na `observacao` do
+        # registro, aqui ela mora na TRANSCRICAO DA FONTE QUE A PAGINA CITA. A
+        # ficha do papilocromis servia treze companheiros de aquario enquanto a
+        # frase do compendio, copiada tres linhas acima no mesmo registro, diz que
+        # a especie nao e recomendada para o aquario comunitario geral.
+        restr = r.get("restricoes_de_companhia")
+        if restr is not None:
+            if not isinstance(restr, list) or not restr:
+                erro("E23", rid, "restricoes_de_companhia presente e vazia: lista vazia afirma que a "
+                                 "fonte foi lida e nao declarou nada, e isso se escreve deixando o campo fora")
+            else:
+                refs = [f.get("referencia") or "" for f in r.get("fontes", [])
+                        if "restricoes_de_companhia" in (f.get("campos") or [])]
+                for item in restr:
+                    tipo = str((item or {}).get("tipo") or "")
+                    frase = str((item or {}).get("frase") or "").strip()
+                    if tipo not in PALAVRAS_DA_RESTRICAO:
+                        erro("E23", rid, "restricoes_de_companhia com tipo '%s' fora do vocabulario" % tipo)
+                    if not frase:
+                        erro("E23", rid, "restricoes_de_companhia sem frase: tipo sem a clausula da "
+                                         "fonte e palpite de quem digitou")
+                        continue
+                    if not any(frase in ref for ref in refs):
+                        erro("E23", rid, "a frase de restricoes_de_companhia nao e trecho literal de "
+                                         "nenhuma fonte que declare restricoes_de_companhia em campos")
+                    elif tipo in PALAVRAS_DA_RESTRICAO:
+                        texto = sem_acento(frase)
+                        if not any(w in texto for w in PALAVRAS_DA_RESTRICAO[tipo]):
+                            erro("E23", rid, "restricoes_de_companhia diz '%s' e a clausula da fonte "
+                                             "nao traz nenhuma palavra que sustente isso" % tipo)
 
         # E13 - tolerancia disfarcada de recomendacao
         t = r.get("temperatura_C")

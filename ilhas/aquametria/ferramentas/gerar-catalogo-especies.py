@@ -410,6 +410,16 @@ def main():
             # clausula transcrita e prova de banco, conferida pelo E22, e nao tem
             # o que fazer dentro do snippet.
             "chao_para": list((e.get("chao_declarado_para") or {}).get("arranjos") or []),
+            # QUEM A FONTE MANDA NAO POR NA MESMA AGUA (esquema versao 6,
+            # 23/09/2026). So os TERMOS vem para o PHP, como no chao declarado: a
+            # clausula transcrita e prova de banco, conferida pelo E23, e a
+            # traducao para a lingua do leitor mora num mapa so do snippet. Viaja
+            # porque e a tabela de "quem divide a mesma faixa de temperatura" que
+            # precisa dela — os tres filtros dela (temperatura, largura, agressao
+            # declarada) nao alcancam restricao escrita em palavras, e a ficha do
+            # papilocromis passou nove dias no ar servindo treze companheiros
+            # contra a frase que ela propria cita.
+            "restricoes": [x.get("tipo") for x in (e.get("restricoes_de_companhia") or [])],
             "temp_min": e["temperatura_C"]["min"],
             "temp_max": e["temperatura_C"]["max"],
             "status": e.get("status_registro") or "",

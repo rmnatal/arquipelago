@@ -528,6 +528,38 @@ const FICHAS_PEIXE = new Set(
   Object.keys(EIXO).filter((slug) => EIXO[slug].especie)
 );
 
+/* QUANTAS RESTRIÇÕES DE COMPANHIA A FONTE DECLAROU PARA A ESPÉCIE DESTA PÁGINA
+   (leva 9, 23/09/2026, esquema de espécies versão 6).
+
+   Existe por causa do teto de blocos de prova. A ficha tinha DOIS — a atribuição
+   da base e a ressalva das réguas de lotação — e o teto de dois foi escrito
+   quando esses eram todos os que podiam existir. A partir desta leva a ficha de
+   espécie cuja fonte declara uma restrição de companhia publica a recusa ANTES da
+   tabela de quem divide a água, com o nome de quem a declarou, e esse nome é
+   prova: sem a marca ele cairia na camada de voz e o portão dos termos proibidos
+   reprovaria a palavra "FishBase" — corretamente, e por um defeito que não existe.
+
+   O TETO NÃO FOI AUMENTADO PARA TRÊS, porque isso o afrouxaria em toda página: ele
+   passou a ser DOIS MAIS UMA POR RESTRIÇÃO DECLARADA NO BANCO. E o número vem do
+   BANCO, não da página — a página que se conceda um bloco a mais é justamente o
+   que o teto existe para pegar. Quem cobra a outra direção (cada restrição do
+   banco aparecendo na tela, e nenhuma inventada) é o ferramentas/teste-peixes.py. */
+const BANCO_ESPECIES = JSON.parse(
+  readFileSync(RAIZ + '/dados/especies-agua-doce.json', 'utf8')
+).especies.reduce((acc, e) => { acc[e.id] = e; return acc; }, {});
+
+function restricoesDeclaradas(slug) {
+  const ident = EIXO[slug] && EIXO[slug].especie;
+  if (!ident) return 0;
+  const e = BANCO_ESPECIES[ident];
+  if (!e) {
+    console.log(`  FALHA a página /${slug}/ declara a espécie ${ident}, que não está no banco`);
+    falhas++;
+    return 0;
+  }
+  return (e.restricoes_de_companhia || []).length;
+}
+
 /* A lista de MARCAS subiu para o alto do arquivo em 13/09/2026 — ver o bloco
    da régua de atribuição, que passou a usá-la também. */
 const DATA_DE_LEITURA = /\b\d{2}\/\d{2}\/\d{4}\b/;
@@ -658,7 +690,11 @@ for (const slug of CONTEUDO) {
     h2s.filter((t) => COMECO_PROIBIDO.test(semAcento(t))).join(' | '));
 
   /* --- a declaração de prova não vira porta dos fundos --- */
-  ok(`no máximo ${MAX_PROVA} blocos de prova declarados`, blocos.length <= MAX_PROVA, `achei ${blocos.length}`);
+  /* O TETO É DERIVADO DO BANCO desde a leva 9 (23/09/2026): dois, mais um por
+     restrição de companhia declarada para a espécie desta página. Ver o cabeçalho
+     de restricoesDeclaradas(). */
+  const tetoProva = MAX_PROVA + restricoesDeclaradas(slug);
+  ok(`no máximo ${tetoProva} blocos de prova declarados`, blocos.length <= tetoProva, `achei ${blocos.length}`);
   ok('nenhum bloco de prova contém o H1', !blocos.some((b) => /<h1\b/.test(b.html)));
   ok('nenhum bloco de prova contém o primeiro parágrafo',
     p1.length === 0 || !blocos.some((b) => texto(b.html).startsWith(p1.slice(0, 40))));

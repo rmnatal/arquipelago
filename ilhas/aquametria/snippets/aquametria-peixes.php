@@ -1,5 +1,53 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.15.0 (23/09/2026) — LEVA 9: A NONA CATEGORIA DO EIXO, E O PRIMEIRO
+ * CAMPO DE RECUSA DE COMPANHIA. Quatro URLs novas: /peixes/barbos/ e as fichas do
+ * barbo sumatra, do barbo rosado e do barbo cereja. A ilha vai de 48 para 52 URLs,
+ * e é a TERCEIRA e última leva da semana que começou em 21/09 (21.4).
+ *
+ *   O CRITÉRIO É O NOME, E ELE VOLTA CONTADO. Foi o critério da leva 7, a leva 8
+ *   teve de abandoná-lo, e aqui ele sobrevive à varredura com a medição ao lado:
+ *   `barbo` casa em EXATAMENTE três registros de `nomes_populares_br` no banco de
+ *   40. O que ele não suporta é ser encurtado — `barb`, a raiz do gênero antigo que
+ *   este banco guarda nos sinônimos (Barbus tetrazona, Barbus titteya) e o nome em
+ *   inglês do cereja, casa em QUATRO, e o quarto é o `cascudo-barbudo`, que é
+ *   vendido na prateleira dos limpa-vidros e está barrado pelo portão. Uma letra
+ *   separa o critério que serve do que traria peixe de outra prateleira, e as quatro
+ *   contagens que o critério publica — 3 pelo nome, 4 pela raiz, 40 no banco e 4
+ *   Cyprinidae elegíveis — são recomputadas do banco pelo `teste-peixes.py`.
+ *
+ *   A LINHA MESTRA É DE TEMPERATURA PELA SEGUNDA LEVA SEGUIDA, e não é repetição:
+ *   na `acaras` eram DOIS peixes que não se tocavam, com o terceiro fora da conta;
+ *   aqui os três formam uma ESCADA — 18 a 22 °C no rosado, 20 a 26 °C no sumatra,
+ *   23 a 27 °C no cereja —, os extremos não se cruzam em um grau e o do meio
+ *   alcança os dois. É a primeira categoria em que a coluna ORDENA as três linhas.
+ *   E, ao contrário dos acarás, os três portes estão na mesma régua (5,0 · 7,0 ·
+ *   14,0 cm TL), então o porte PODERIA entrar na frase — ficou fora porque a tabela
+ *   já o explica sozinha, e a linha mestra paga o que falta na tela do concorrente.
+ *
+ *   O CAMPO NOVO CONSERTOU UM DEFEITO QUE ESTAVA NO AR HAVIA NOVE DIAS, e ele é da
+ *   família que esta ilha mais paga, com um agravante sobre o caso do chão
+ *   declarado: lá a proibição morava no `observacao` do registro; aqui ela morava na
+ *   TRANSCRIÇÃO DA FONTE QUE A PÁGINA CITA. A ficha do papilocromis servia treze
+ *   companheiros de aquário enquanto a frase do compêndio, copiada no mesmo
+ *   registro, diz que a espécie "não é recomendado para o aquário comunitário
+ *   geral". A tabela de quem divide a mesma faixa tem três filtros — interseção das
+ *   faixas, o aquário mínimo do companheiro caber nesta frente, e o banco não
+ *   declarar o companheiro agressivo — e nenhum deles alcança restrição escrita em
+ *   palavras. Nasce `restricoes_de_companhia` (esquema de espécies versão 6, regra
+ *   E23), com vocabulário fechado e a cláusula da fonte conferida como trecho
+ *   literal, e a página publica a recusa ANTES da tabela, com o nome de quem a
+ *   declarou, dizendo o que a tabela NÃO peneira. A segunda ocorrência ia nascer
+ *   nesta leva: o barbo sumatra, cuja base científica manda não o manter com peixe
+ *   de nadadeira longa — e o banco desta ilha não tem campo para formato de
+ *   nadadeira, então o honesto é dizer que não filtra, e não filtrar calado.
+ *
+ *   E O TETO DE BLOCOS DE PROVA DEIXOU DE SER CONSTANTE: ele era dois, escrito
+ *   quando dois era tudo o que a ficha podia ter. Virou dois MAIS UM POR RESTRIÇÃO
+ *   DECLARADA NO BANCO, nos dois portões (`teste-peixes.py` e `teste-voz.mjs`).
+ *   Subir a constante para três afrouxaria o teto em toda página; derivá-lo do
+ *   banco só o afrouxa onde o banco paga.
+ *
  * Versão: 1.14.0 (23/09/2026) — PREPARAÇÃO DA LEVA 9: OS BARBOS GANHAM BANCO E A
  * NONA CATEGORIA PASSA A SER POSSÍVEL. NENHUMA URL NOVA — seguem 48 — e nenhuma
  * leva do teto da 21.4 gasta. O que muda nesta tela é só a contagem: o catálogo
@@ -586,7 +634,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.14.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.15.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -679,6 +727,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 20,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -762,6 +811,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 20,
 			'temp_max' => 26,
 			'status' => 'completo',
@@ -832,6 +882,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 23,
 			'temp_max' => 27,
 			'status' => 'conflito',
@@ -918,6 +969,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'grupo',
 			),
+			'restricoes' => array(),
 			'temp_min' => 24,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -1019,6 +1071,7 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(),
 			'temp_min' => 20,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -1087,6 +1140,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'grupo',
 			),
+			'restricoes' => array(),
 			'temp_min' => 20,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -1148,6 +1202,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'grupo',
 			),
+			'restricoes' => array(),
 			'temp_min' => 18,
 			'temp_max' => 24,
 			'status' => 'conflito',
@@ -1237,6 +1292,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 22,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -1336,6 +1392,7 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(),
 			'temp_min' => 14,
 			'temp_max' => 22,
 			'status' => 'conflito',
@@ -1440,6 +1497,7 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(),
 			'temp_min' => 27,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -1497,6 +1555,7 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(),
 			'temp_min' => 26.5,
 			'temp_max' => 29,
 			'status' => 'conflito',
@@ -1592,6 +1651,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'grupo',
 			),
+			'restricoes' => array(),
 			'temp_min' => 22,
 			'temp_max' => 25,
 			'status' => 'conflito',
@@ -1682,6 +1742,7 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(),
 			'temp_min' => 18,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -1749,6 +1810,7 @@ function aquametria_peixes_catalogo() {
 				'um-exemplar',
 				'casal',
 			),
+			'restricoes' => array(),
 			'temp_min' => 24,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -1816,6 +1878,7 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(),
 			'temp_min' => 24,
 			'temp_max' => 26,
 			'status' => 'completo',
@@ -1875,6 +1938,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 18,
 			'temp_max' => 23,
 			'status' => 'conflito',
@@ -1953,6 +2017,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'grupo',
 			),
+			'restricoes' => array(),
 			'temp_min' => 21,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -2026,6 +2091,9 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(
+				'nadadeiras-longas',
+			),
 			'temp_min' => 20,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -2042,6 +2110,7 @@ function aquametria_peixes_catalogo() {
 						'ph',
 						'dureza_dgh',
 						'convivencia',
+						'restricoes_de_companhia',
 					),
 					'referencia' => 'FishBase — ficha da especie (barbo-de-sumatra): max 7,0 cm TL; 20 a 26 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, NAO manter com peixes de nadadeiras longas, aquario minimo de 60 cm.',
 				),
@@ -2115,6 +2184,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 25,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -2218,6 +2288,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'grupo',
 			),
+			'restricoes' => array(),
 			'temp_min' => 20,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -2304,6 +2375,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 27,
 			'temp_max' => 30,
 			'status' => 'conflito',
@@ -2400,6 +2472,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'casal',
 			),
+			'restricoes' => array(),
 			'temp_min' => 25,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -2459,6 +2532,7 @@ function aquametria_peixes_catalogo() {
 				'juvenis',
 				'casal',
 			),
+			'restricoes' => array(),
 			'temp_min' => 26,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -2522,6 +2596,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 18,
 			'temp_max' => 22,
 			'status' => 'conflito',
@@ -2621,6 +2696,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 24,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -2693,6 +2769,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 22,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -2754,6 +2831,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'grupo',
 			),
+			'restricoes' => array(),
 			'temp_min' => 25,
 			'temp_max' => 30,
 			'status' => 'conflito',
@@ -2834,6 +2912,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'um-exemplar',
 			),
+			'restricoes' => array(),
 			'temp_min' => 22,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -2890,6 +2969,7 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(),
 			'temp_min' => 0,
 			'temp_max' => 41,
 			'status' => 'conflito',
@@ -2976,6 +3056,7 @@ function aquametria_peixes_catalogo() {
 				'casal',
 				'grupo',
 			),
+			'restricoes' => array(),
 			'temp_min' => 22,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -3041,6 +3122,7 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(),
 			'temp_min' => 15,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -3095,6 +3177,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'casal',
 			),
+			'restricoes' => array(),
 			'temp_min' => 26,
 			'temp_max' => 29,
 			'status' => 'completo',
@@ -3152,6 +3235,9 @@ function aquametria_peixes_catalogo() {
 			'base_comprimento' => null,
 			'base_largura' => null,
 			'chao_para' => array(),
+			'restricoes' => array(
+				'comunitario-geral',
+			),
 			'temp_min' => 22,
 			'temp_max' => 26,
 			'status' => 'completo',
@@ -3179,6 +3265,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_recomendado_ate',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'restricoes_de_companhia',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: ciclideo relativamente gregario, que idealmente se mantem em grupo misto de machos e femeas de 6 a 8 ou mais, desde que o aquario seja espacoso, de 120 cm de comprimento ou maior; em espaco confinado os machos ficam com frequencia mais agressivos na defesa do proprio territorio; apesar de ser normalmente vendido como tal, nao e recomendado para o aquario comunitario geral, porque exige agua de qualidade impecavel e e mau competidor, o que nao quer dizer que precise ser mantido sozinho; desovador de substrato biparental.',
 				),
@@ -3190,7 +3277,6 @@ function aquametria_peixes_catalogo() {
 			'cientifico' => 'Puntius titteya',
 			'sinonimos' => array(
 				'Barbus titteya',
-				'Rohanella titteya',
 			),
 			'populares' => array(
 				'barbo cereja',
@@ -3211,6 +3297,7 @@ function aquametria_peixes_catalogo() {
 			'chao_para' => array(
 				'nao-declarado',
 			),
+			'restricoes' => array(),
 			'temp_min' => 23,
 			'temp_max' => 27,
 			'status' => 'completo',
@@ -3228,7 +3315,7 @@ function aquametria_peixes_catalogo() {
 						'ph',
 						'dureza_dgh',
 					),
-					'referencia' => 'FishBase - ficha da especie (cherry barb): max 5,0 cm TL, comprimento comum 2,5 cm TL; 23 a 27 C; pH 6,0 a 8,0; dH 5 a 19; familia Cyprinidae; Asia: Sri Lanka, das bacias do Kelani ao Nilwala, em riachos muito sombreados de agua rasa e lenta, com substrato de silte e folhas. A secao de aquario NAO declara numero de grupo nem tamanho minimo de aquario.',
+					'referencia' => 'FishBase - ficha da especie (cherry barb), servida tambem pelo endereco de sinonimo Barbus-titteya: max 5,0 cm TL, comprimento comum 2,5 cm TL; 23 a 27 C; pH 6,0 a 8,0; dH 5 a 19; familia Cyprinidae; Asia: Sri Lanka, das bacias do Kelani ao Nilwala, em riachos muito sombreados de agua rasa e lenta, com substrato de silte e folhas. A secao de aquario NAO declara numero de grupo nem tamanho minimo de aquario.',
 				),
 				array(
 					'corpo' => 'Seriously Fish',
@@ -3854,6 +3941,69 @@ function aquametria_peixes_registro() {
 			'serp_em'  => '22/09/2026',
 			'porque'   => 'Medido em 22/09/2026: o top 9 é a revista de uma loja estrangeira (zooplus.pt), três páginas do mesmo blog de nicho, duas de uma enciclopédia de aquarismo, dois sites de criador de disco e um site de comunidade. Nenhum domínio forte brasileiro. A SERP é a mais numerosa do eixo e a que mais se contradiz por peixe: 50 L por adulto, 60 L por peixe, 200 L para três, 250 L para cinco ou seis e 300 L para quatro ou cinco — três dessas cinco não podem ser verdade juntas, porque 200 L para três é mais por peixe do que 300 L para cinco. Ninguém publica os 120 cm de frente que a base científica declara para o grupo de cinco ou mais. É ALVO, e é a primeira ficha deste eixo a nascer no TERCEIRO ESTADO da ausência de fundo: o chão de 120 × 45 cm existe, foi declarado para juvenis ou um casal, e a página diz isso em vez de o prometer ao cardume.',
 		),
+
+		/* --- LEVA 9, 23/09/2026: a NONA categoria do eixo e as três fichas
+		   dela. `/peixes/barbos/` nasce com o mínimo exato do 16.5 e a ilha vai
+		   de 48 para 52 URLs. É a TERCEIRA leva da semana que começou em 21/09
+		   (21.4), e a última que o teto autoriza.
+
+		   O BANCO DELA FICOU PRONTO NA EXECUÇÃO DAS 13h17Z DE HOJE, que colheu o
+		   barbo cereja novo e deu ao barbo rosado o segundo corpo de fonte que o
+		   tirava de `parcial`. Esta execução não colheu nada: escreveu o lugar.
+
+		   O CRITÉRIO É O NOME, que foi o da leva 7 e falhou na leva 8 — e aqui
+		   ele sobrevive à varredura, com a medição ao lado: `barbo` casa em
+		   EXATAMENTE três registros de `nomes_populares_br` no banco de 40, e os
+		   três são estes. O que ele NÃO suporta é ser encurtado: `barb`, que é a
+		   raiz do gênero antigo e o nome em inglês, casa em QUATRO — o quarto é
+		   o `cascudo-barbudo` (`ancistrus-cirrhosus`), declarado em
+		   `/peixes/plecos-e-limpa-vidros/` e barrado pelo portão por falta de
+		   `temperatura_C`. Uma letra separa o critério que serve do que traria
+		   peixe de outra prateleira.
+
+		   AS QUATRO DECLARAM `serp_em` => '23/09/2026': as quatro consultas
+		   foram classificadas nesta execução, pela 14.9, antes de uma linha de
+		   página ser escrita. --- */
+
+		'barbos' => array(
+			'nivel'    => 2,
+			'pai'      => 'peixes',
+			'titulo'   => 'Barbos: quantos litros, e quem divide a água',
+			'conteudo' => '[aquametria_peixes_categoria]',
+			'consulta' => 'quantos litros para barbo',
+			'serp_em'  => '23/09/2026',
+			'porque'   => 'Medido em 23/09/2026: o top 9 é dois artigos do mesmo blog de nicho (Aquarismo Paulista), quatro páginas de produto de loja (Pró-Aquarista duas vezes, Jack Fish, Kauar), um portal de bicho de estimação, um blog de aquarismo e uma página de loja estrangeira. Nenhum marketplace grande, nenhum domínio forte. E o defeito desta SERP é o mesmo da consulta dos acarás, em dose maior: a pergunta é sobre "barbo" e as nove respostas falam de barbos DIFERENTES — barbo ouro, barbo tinfoil, barbo nigrofasciatus, barbo titéia —, devolvendo 30 L, 80 L, 96 L e 300 L sem que dê para saber de qual peixe cada número fala. O tinfoil pede dez vezes o do cereja e os dois saem na mesma tela como "barbo". É ALVO do tipo que esta tabela resolve por desenho: uma linha por espécie, com a faixa de temperatura ao lado do espaço.',
+		),
+		'quantos-litros-para-barbo-sumatra' => array(
+			'nivel'    => 3,
+			'pai'      => 'barbos',
+			'especie'  => 'puntigrus-tetrazona',
+			'titulo'   => 'Quantos litros para um cardume de barbo sumatra?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para barbo sumatra',
+			'serp_em'  => '23/09/2026',
+			'porque'   => 'Medido em 23/09/2026: o top 9 é dois blogs de loja, duas páginas de produto (RS Discus, Aquafam), um blog de nicho, um portal de bicho de estimação, um site de conteúdo genérico, um fórum e uma loja com lote de dez. Nenhum domínio forte. Os números vão de 60 L a 100 L sem atribuição e o cardume mínimo aparece como 5 e como 8 a 10 na mesma tela — o mesmo par que as nossas duas fontes declaram, e nenhuma das nove diz de quem é cada número. Ninguém publica a base de 80 × 30 cm que o compêndio declara. É ALVO, e a prova de que a pergunta existe está no top 9 em forma de fórum: "pode quantos barbo sumatra num aquário de 70 litros".',
+		),
+		'quantos-litros-para-barbo-rosado' => array(
+			'nivel'    => 3,
+			'pai'      => 'barbos',
+			'especie'  => 'pethia-conchonius',
+			'titulo'   => 'Quantos litros para um cardume de barbo rosado?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para barbo rosado',
+			'serp_em'  => '23/09/2026',
+			'porque'   => 'Medido em 23/09/2026: o top 9 é cinco páginas de produto de loja (Fazenda Submersa, Aquarium Crystal, AquaOrinoco e Pró-Aquarista duas vezes), um blog de nicho, um portal de espécies, um WordPress de 2011 e um site de conteúdo. Nenhum domínio forte. Os números vão de 75 L para quatro exemplares a 150 L como mínimo recomendado, passando por 96 L de um 80 × 30 × 40 cm, e o grupo mínimo sai como 4 e como 6 — abaixo dos 8 que o compêndio declara. Duas coisas que nenhuma das nove diz: que este é o barbo de faixa subtropical, e a base de 100 × 30 cm. É ALVO, e é a SERP em que o sujeito troca DENTRO de um resultado: um dos nove serve o título do barbo rosado num endereço de barbo cereja.',
+		),
+		'quantos-litros-para-barbo-cereja' => array(
+			'nivel'    => 3,
+			'pai'      => 'barbos',
+			'especie'  => 'puntius-titteya',
+			'titulo'   => 'Quantos litros para um cardume de barbo cereja?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para barbo cereja',
+			'serp_em'  => '23/09/2026',
+			'porque'   => 'Medido em 23/09/2026: o top 9 é duas páginas de produto de loja brasileira (Pró-Aquarista), duas de loja portuguesa, dois artigos do mesmo blog de pesca, um blog de nicho, um portal de bicho de estimação e duas páginas de um WordPress de 2009. Nenhum domínio forte, e duas das nove são de outro mercado. Os números vão de 30 L a 50 L sem atribuição, e o pior deles não é o litro: uma das páginas manda manter "ao menos três indivíduos", metade dos 6 a 10 que o compêndio declara como compra mínima. Ninguém publica a base de 60 × 30 cm. É ALVO, e esta é a ficha em que as nossas duas fontes NÃO se cruzam em campo nenhum — a base científica declara água e porte e diz, com todas as letras, que a seção de aquário dela não traz grupo nem tamanho de aquário; o compêndio declara a base e o grupo. Zero conflito, e é o único registro dos três barbos assim.',
+		),
 	);
 }
 }
@@ -4164,6 +4314,70 @@ function aquametria_peixes_categorias() {
 				'pterophyllum-scalare',
 				'astronotus-ocellatus',
 				'symphysodon-aequifasciatus',
+			),
+		),
+		'barbos' => array(
+			'rotulo'   => 'Barbos',
+			'plural'   => 'barbos',
+			'singular' => 'todo barbo',
+			/* A LINHA MESTRA SAI DA TABELA E DE MAIS NADA, e é a SEGUNDA leva
+			   seguida em que a coluna que decide é a da temperatura. Não é
+			   repetição da `acaras`: lá eram DOIS peixes que não se tocavam, com
+			   o terceiro sem nada a ver com a conta; aqui os três formam uma
+			   ESCADA — 18 a 22 °C no rosado, 20 a 26 °C no sumatra, 23 a 27 °C no
+			   cereja —, os dois extremos não se cruzam em um grau e o do meio
+			   alcança os dois. É a primeira categoria do eixo em que a coluna
+			   ordena as três linhas em vez de separar duas.
+
+			   A FRASE NOMEIA OS TRÊS E NÃO IMPRIME UM NÚMERO, pela mesma razão da
+			   `acaras`: a linha mestra é a resposta citável desta página (seção 5)
+			   e afirmação sem sujeito não afirma nada, mas número digitado em
+			   frase é o defeito que esta ilha mais paga. Quem mudar a faixa
+			   térmica de um dos três vê a contradição na mesma tela.
+
+			   O QUE ELA NÃO DIZ, E AQUI A ESCOLHA É O CONTRÁRIO DA DA `acaras`:
+			   o porte desta categoria PODERIA entrar na frase, porque os três
+			   estão na mesma régua (5,0 · 7,0 · 14,0 cm TL) e o maior é quase três
+			   vezes o menor — foi a `acaras` que teve de calar o porte, porque lá
+			   metade dele era SL. Ficou fora por outro motivo: o porte já é o que
+			   a tabela explica sozinha, e a temperatura é o que nenhuma das nove
+			   páginas da SERP desta consulta publica. A linha mestra paga o que
+			   falta na tela do concorrente, não o que a nossa tabela repete. */
+			'linha_mestra' => 'Estes três barbos dividem a prateleira da loja e formam uma escada de temperatura: a faixa do barbo rosado termina antes de a do barbo cereja começar, e só o barbo sumatra alcança as duas. Antes de escolher o litro, veja nesta tabela quais destes três podem dividir o seu aquário.',
+			/* O CRITÉRIO É O NOME — o mesmo da leva 7, que a leva 8 teve de
+			   abandonar —, e ele volta MEDIDO em vez de lembrado: `barbo` casa em
+			   exatamente três registros de `nomes_populares_br` no banco de 40, e
+			   os três são os desta tabela.
+
+			   O QUE O CRITÉRIO NÃO SUPORTA É SER ENCURTADO, e uma letra é a
+			   distância: `barb` — a raiz do gênero antigo, que este banco guarda
+			   em `sinonimos_cientificos` (Barbus tetrazona, Barbus titteya), e o
+			   nome em inglês do cereja — casa em QUATRO registros. O quarto é o
+			   `cascudo-barbudo`, que é o `ancistrus-cirrhosus`, declarado em
+			   `/peixes/plecos-e-limpa-vidros/` e barrado pelo portão por falta de
+			   `temperatura_C`. Ele não tem nada a ver com esta prateleira.
+
+			   NEM A FAMÍLIA NEM O GÊNERO SERVEM, e as duas contas estão feitas.
+			   Cyprinidae tem QUATRO elegíveis neste banco e o quarto é o kinguio,
+			   de 48,0 cm, que ninguém vende como barbo — é o mesmo
+			   erro de trazer peixe demais pela família que a `ciclideos-anoes` já
+			   registrou. E o gênero são três gêneros para três peixes: Puntigrus,
+			   Pethia e Puntius, os dois últimos separados por uma revisão recente
+			   que o banco guarda nos sinônimos. */
+			'criterio' => 'Os peixes que a loja brasileira vende como barbo, e o critério aqui é o NOME — o mesmo que separou os danios e as rasboras, e que a categoria dos acarás teve de abandonar. Ele volta medido: "barbo" casa em exatamente três registros dos nomes populares deste banco de 40, e os três estão nesta tabela. O que ele não suporta é ser encurtado — "barb", que é a raiz do gênero antigo e o nome em inglês do cereja, casa em quatro, e o quarto é o cascudo-barbudo, que é vendido na prateleira dos limpa-vidros e está barrado pelo portão por falta de faixa de temperatura. Nem a família nem o gênero servem: Cyprinidae tem quatro espécies elegíveis neste banco e a quarta é o kinguio, de 48 cm, que ninguém vende como barbo; e os três desta tabela estão em três gêneros diferentes. O que esta tabela publica é o barbo cujos campos os dois corpos de fonte sustentam, um por um.',
+			/* A LISTA NASCE CHEIA, como nas levas 7 e 8: a categoria e as três
+			   fichas saem na MESMA execução, então o critério e a linha mestra
+			   foram escritos contra a tabela que esta página serve.
+
+			   `barradas` NASCE VAZIA, e é afirmação e não descuido: os três
+			   registros que o nome "barbo" alcança passam nos dois portões, então
+			   não existe barbo neste banco esperando do lado de fora. O kinguio
+			   NÃO é barrado — ele passa no portão e não é barbo, que é coisa
+			   diferente e mora no `criterio`, não nesta lista. */
+			'especies' => array(
+				'puntigrus-tetrazona',
+				'pethia-conchonius',
+				'puntius-titteya',
 			),
 		),
 		'plecos-e-limpa-vidros' => array(
@@ -4757,6 +4971,85 @@ function aquametria_peixes_degraus_de_cardume( $e ) {
  * a página deve ao leitor o nome de quem ficou de fora e por qual das duas
  * causas (seção 7: causa que o código separa, o texto separa).
  */
+/**
+ * A RESTRIÇÃO DE COMPANHIA QUE A FONTE DECLAROU EM PALAVRAS, na língua de quem lê.
+ *
+ * NASCEU NA LEVA 9 (23/09/2026) consertando um defeito que estava NO AR havia
+ * nove dias, e ele é da família que esta ilha mais paga — prosa não barra página
+ * —, com um agravante sobre o caso do chão declarado: lá a proibição morava no
+ * `observacao` do registro, aqui ela mora na TRANSCRIÇÃO DA FONTE QUE A PÁGINA
+ * CITA. A ficha do papilocromis servia treze companheiros de aquário enquanto a
+ * frase do compêndio, copiada no mesmo registro, diz com todas as letras que a
+ * espécie "não é recomendado para o aquário comunitário geral".
+ *
+ * A tabela de quem divide a mesma faixa tem TRÊS filtros — interseção das faixas
+ * declaradas, o aquário mínimo do companheiro caber nesta frente, e o banco não
+ * declarar o companheiro agressivo — e NENHUM deles alcança uma restrição escrita
+ * em palavras. O conserto não é uma lista menor nem uma lista nenhuma: é a página
+ * publicar a restrição ANTES da tabela e dizer o que a tabela não filtra.
+ *
+ * O VOCABULÁRIO É FECHADO E A TRADUÇÃO MORA AQUI, num mapa só, pelo mesmo motivo
+ * de `aquametria_peixes_motivo_na_tela()`: nome de termo de esquema na tela é
+ * vocabulário de dentro da fábrica. Termo que chegar fora do mapa NÃO vira frase
+ * inventada — a função devolve string vazia e a afirmação do `teste-peixes.py`
+ * cobra a frase, então o silêncio reprova em vez de ir ao ar.
+ */
+if ( ! function_exists( 'aquametria_peixes_restricao_na_tela' ) ) {
+function aquametria_peixes_restricao_na_tela( $tipo, $nome ) {
+	if ( 'nadadeiras-longas' === $tipo ) {
+		return 'Um grupo de peixes fica fora por declaração da fonte, e a tabela abaixo não sabe qual: '
+			. 'ela manda não pôr o ' . $nome . ' junto de peixe de nadadeira longa. '
+			. 'O banco desta ilha não registra o formato da nadadeira de nenhuma espécie, então essa peneira '
+			. 'não está na tabela — a tabela peneira temperatura, largura de aquário e agressão declarada, e mais nada. '
+			. 'Antes de comprar o companheiro, olhe a nadadeira dele.';
+	}
+	if ( 'comunitario-geral' === $tipo ) {
+		return 'A fonte recomenda NÃO pôr o ' . $nome . ' num aquário comunitário geral, e o motivo que ela dá '
+			. 'não é agressão: ele exige água de qualidade impecável e compete mal por comida. '
+			. 'Ela diz, na mesma frase, que isso não quer dizer que ele precise viver sozinho. '
+			. 'A tabela abaixo mede temperatura, e temperatura não tem como ver nem qualidade de água nem disputa por comida.';
+	}
+	return '';
+}
+}
+
+/**
+ * O BLOCO DA RESTRIÇÃO, ou string vazia quando o registro não declara nenhuma.
+ *
+ * Fica ACIMA da tabela de propósito: a leva 1 já aprendeu, com o mato-grosso, que
+ * "nota não desfaz tabela — quem lê vê a lista, não a ressalva". Restrição que
+ * chega depois da lista é a mesma nota com outro nome.
+ *
+ * A ATRIBUIÇÃO SAI DO BANCO, nunca digitada: quem declarou é a fonte que traz
+ * `restricoes_de_companhia` em `campos`, a mesma mecânica das linhas da tabela do
+ * "o que as fontes declaram". Sem a fonte a frase não sai — afirmação de recusa
+ * sem dono é opinião de fórum, que é o que esta ilha existe para não ser.
+ */
+if ( ! function_exists( 'aquametria_peixes_restricoes_html' ) ) {
+function aquametria_peixes_restricoes_html( $e, $nome ) {
+	$tipos = isset( $e['restricoes'] ) ? (array) $e['restricoes'] : array();
+	if ( ! $tipos ) {
+		return '';
+	}
+	$fonte = aquametria_peixes_fonte_do_campo( $e, 'restricoes_de_companhia' );
+	$html  = '';
+	foreach ( $tipos as $tipo ) {
+		$frase = aquametria_peixes_restricao_na_tela( $tipo, $nome );
+		if ( '' === $frase ) {
+			continue;
+		}
+		$html .= '<p class="aqm-px-restricao"><strong>' . esc_html( $frase ) . '</strong>';
+		if ( $fonte ) {
+			$html .= ' <span class="aqm-prova">Quem declara essa recusa é o '
+				. esc_html( $fonte['corpo'] ) . ', na ficha da espécie, colhido em '
+				. esc_html( aquametria_peixes_data_br( $fonte['em'] ) ) . '.</span>';
+		}
+		$html .= '</p>';
+	}
+	return $html;
+}
+}
+
 if ( ! function_exists( 'aquametria_peixes_mesma_agua' ) ) {
 function aquametria_peixes_mesma_agua( $id ) {
 	$catalogo = aquametria_peixes_catalogo();
@@ -5430,6 +5723,12 @@ function aquametria_peixes_ficha_html( $slug ) {
 	if ( 'agressivo' === $e['comportamento'] ) {
 		$total_faixa = count( $vizinhos['dentro'] ) + count( $vizinhos['maior'] ) + count( $vizinhos['agressivos'] );
 		$html .= '<h2>Com quem ' . esc_html( $arranjo ? $arranjo['este'] : 'esse cardume' ) . ' divide o aquário</h2>';
+		/* A RESTRIÇÃO DECLARADA SAI NOS DOIS RAMOS, e aqui ela é acumulativa, não
+		   redundante: este ramo não publica lista porque o banco declara a espécie
+		   agressiva, e a restrição escrita pela fonte é uma SEGUNDA razão, de outra
+		   natureza. Nenhum registro do banco cai nos dois hoje — quem mede este
+		   ramo é a mutação que PRODUZ o mundo, e não a espera. */
+		$html .= aquametria_peixes_restricoes_html( $e, $nome );
 		$html .= '<p>Esta ficha <strong>não publica lista de companheiro</strong>, e a razão está duas tabelas acima: a fonte declara o '
 			. esc_html( $nome ) . ' <strong>agressivo</strong>. '
 			. esc_html( $total_faixa ) . ' das ' . esc_html( count( aquametria_peixes_catalogo() ) )
@@ -5462,6 +5761,10 @@ function aquametria_peixes_ficha_html( $slug ) {
 		}
 	} elseif ( $vizinhos['dentro'] ) {
 		$html .= '<h2>Quem divide a mesma faixa de temperatura</h2>';
+		/* ANTES DA RESSALVA E ANTES DA TABELA. Ver o cabeçalho de
+		   aquametria_peixes_restricoes_html(): o papilocromis serviu treze
+		   companheiros por nove dias contra a frase que a própria ficha cita. */
+		$html .= aquametria_peixes_restricoes_html( $e, $nome );
 		$html .= '<p>Isto não é veredito de convivência, e a diferença importa: o que está medido aqui é a <strong>interseção das faixas de temperatura declaradas</strong>, com dois filtros a mais — o aquário mínimo do companheiro cabe nos '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm desta ficha, e o banco não o declara agressivo. '
 			. 'Quem decide convivência de verdade é o volume, o layout e a ordem em que os peixes entram, e isso nenhuma tabela resolve.</p>';

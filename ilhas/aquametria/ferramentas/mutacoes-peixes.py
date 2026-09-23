@@ -847,6 +847,52 @@ MUTACOES = [
                "\t\t\t\t\t. ', e o folgado põe ' . esc_html( $q['meio'] )"),
      )),
 
+    # --- A RESTRICAO DE COMPANHIA DECLARADA PELA FONTE (leva 9, 23/09/2026,
+    #     esquema de especies versao 6).
+    #
+    #     O defeito que a fez nascer estava NO AR havia nove dias: a ficha do
+    #     papilocromis servia treze companheiros de aquario enquanto a frase do
+    #     compendio, transcrita no proprio registro, diz que a especie nao e
+    #     recomendada para o aquario comunitario geral. E a segunda ocorrencia ia
+    #     nascer nesta leva, no barbo sumatra, cuja base cientifica manda nao o
+    #     manter com peixe de nadadeira longa.
+    #
+    #     SAO CINCO, e cada uma mede um pedaco diferente da regua: a ausencia, a
+    #     porta dos fundos, o dono, o lugar e o CONTEUDO da frase. As quatro
+    #     primeiras quebram o snippet; a quinta troca a frase por uma que diz o
+    #     contrario, e ela existe porque "o bloco esta la" e a afirmacao mais facil
+    #     de escrever e a que menos mede.
+
+    ("A RECUSA DECLARADA SOME DA FICHA: a tabela de quem divide a agua volta a sair sozinha",
+     troca(PEIXES,
+           "\t\t$html .= aquametria_peixes_restricoes_html( $e, $nome );\n\t\t$html .= '<p>Isto não é veredito de convivência",
+           "\t\t$html .= '<p>Isto não é veredito de convivência")),
+
+    ("A PORTA DOS FUNDOS: toda ficha passa a publicar a recusa, inclusive as 24 que nao tem nenhuma no banco",
+     troca(PEIXES,
+           "\t$tipos = isset( $e['restricoes'] ) ? (array) $e['restricoes'] : array();",
+           "\t$tipos = array( 'nadadeiras-longas' );")),
+
+    ("A RECUSA PERDE O DONO: a frase fica e o nome de quem a declarou sai, virando opiniao de forum",
+     troca(PEIXES,
+           "\t\tif ( $fonte ) {\n\t\t\t$html .= ' <span class=\"aqm-prova\">Quem declara essa recusa é o '",
+           "\t\tif ( false ) {\n\t\t\t$html .= ' <span class=\"aqm-prova\">Quem declara essa recusa é o '")),
+
+    ("A RECUSA DESCE PARA DEPOIS DA TABELA: nota depois da lista e nota que ninguem le (a licao do mato-grosso, leva 1)",
+     varias(
+         troca(PEIXES,
+               "\t\t$html .= aquametria_peixes_restricoes_html( $e, $nome );\n\t\t$html .= '<p>Isto não é veredito de convivência",
+               "\t\t$html .= '<p>Isto não é veredito de convivência"),
+         troca(PEIXES,
+               "\t\t$html .= '</tbody></table></div>';\n\n\t\t/* Prestação de contas",
+               "\t\t$html .= '</tbody></table></div>';\n\t\t$html .= aquametria_peixes_restricoes_html( $e, $nome );\n\n\t\t/* Prestação de contas"),
+     )),
+
+    ("A FRASE DIZ O CONTRARIO: a recusa passa a afirmar que a tabela JA peneira a nadadeira longa",
+     troca(PEIXES,
+           "\t\t\t. 'O banco desta ilha não registra o formato da nadadeira de nenhuma espécie, então essa peneira '\n\t\t\t. 'não está na tabela",
+           "\t\t\t. 'O banco desta ilha registra o formato da nadadeira de cada espécie, então essa peneira '\n\t\t\t. 'já está na tabela")),
+
 ]
 
 

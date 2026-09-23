@@ -198,6 +198,26 @@
       "titulo": "Quantos litros para um cardume de acará-disco?",
       "url": "https://aquametria.com.br/peixes/acaras/quantos-litros-para-acara-disco/",
       "meta_descricao": "Quantos litros para um cardume de acará-disco? A frente que a fonte declara para o grupo, o que ela não cobre, e as duas réguas de lotação."
+    },
+    "barbos": {
+      "titulo": "Barbos: quantos litros, e quem divide a água",
+      "url": "https://aquametria.com.br/peixes/barbos/",
+      "meta_descricao": "Barbo sumatra, rosado e cereja lado a lado: a frente mínima declarada por fonte com nome e data, o cardume de cada um e a faixa térmica."
+    },
+    "quantos-litros-para-barbo-sumatra": {
+      "titulo": "Quantos litros para um cardume de barbo sumatra?",
+      "url": "https://aquametria.com.br/peixes/barbos/quantos-litros-para-barbo-sumatra/",
+      "meta_descricao": "Quantos litros para um cardume de barbo sumatra? A base de 80 cm que a fonte declara, as duas réguas de lotação e a recusa que ela escreveu."
+    },
+    "quantos-litros-para-barbo-rosado": {
+      "titulo": "Quantos litros para um cardume de barbo rosado?",
+      "url": "https://aquametria.com.br/peixes/barbos/quantos-litros-para-barbo-rosado/",
+      "meta_descricao": "Quantos litros para um cardume de barbo rosado? As duas frentes que as fontes declaram, a faixa subtropical dele e as réguas de lotação."
+    },
+    "quantos-litros-para-barbo-cereja": {
+      "titulo": "Quantos litros para um cardume de barbo cereja?",
+      "url": "https://aquametria.com.br/peixes/barbos/quantos-litros-para-barbo-cereja/",
+      "meta_descricao": "Quantos litros para um cardume de barbo cereja? A base de 60 cm que a fonte declara, o grupo de 6 a 10 e a conta pelas duas réguas."
     }
   }
 }

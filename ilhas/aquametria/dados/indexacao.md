@@ -20,10 +20,74 @@ A seção 14.9 manda cada página nascer com duas promessas escritas: a consulta
 | **malha 6 — `/peixes/ciclideos-anoes/`** | classificada e publicada em **2026-09-14** | `/peixes/ciclideos-anoes/` + 3 fichas: ramirezi · apistogramma agassizi · papilocromis | "quantos litros para ciclídeo anão" (categoria) · "quantos litros para ramirezi" · "quantos litros para apistogramma agassizi" · "quantos litros para papilocromis" | **ALVO nas quatro.** Na do apistogramma OITO dos nove primeiros são páginas de produto, que vendem o peixe e não respondem à pergunta. Na do papilocromis, ninguém publica os 120 cm de frente que o compêndio declara para o grupo de 6 a 8, que é o arranjo que a própria fonte recomenda | a medir |
 | **malha 7 — `/peixes/danios-e-rasboras/`** | classificada e publicada em **2026-09-22** | `/peixes/danios-e-rasboras/` + 3 fichas: paulistinha · rasbora arlequim · tanictis | "quantos litros para danios e rasboras" (categoria) · "quantos litros para paulistinha" · "quantos litros para rasbora arlequim" · "quantos litros para tanictis" | **ALVO nas quatro.** Ver a leitura inteira embaixo desta tabela | a medir |
 | **malha 8 — `/peixes/acaras/`** | classificada e publicada em **2026-09-22** | `/peixes/acaras/` + 3 fichas: acará-bandeira · oscar · acará-disco | "quantos litros para acará" (categoria) · "quantos litros para acará bandeira" · "quantos litros para oscar" · "quantos litros para acará disco" | **ALVO nas quatro.** O defeito das quatro SERPs não é o número errado, é o SUJEITO trocado: a consulta da categoria responde por três espécies diferentes na mesma tela sem dizer de qual é cada número. Ver a leitura inteira embaixo desta tabela | a medir |
+| **malha 9 — `/peixes/barbos/`** | classificada e publicada em **2026-09-23** | `/peixes/barbos/` + 3 fichas: barbo sumatra · barbo rosado · barbo cereja | "quantos litros para barbo" (categoria) · "quantos litros para barbo sumatra" · "quantos litros para barbo rosado" · "quantos litros para barbo cereja" | **ALVO nas quatro.** O defeito da consulta da categoria é o mesmo SUJEITO TROCADO da leva 8, em dose maior: as nove respostas falam de barbos DIFERENTES — ouro, tinfoil, nigrofasciatus, titéia — e devolvem de 30 L a 300 L sem dizer de qual peixe cada número fala. Nas três fichas ninguém publica a base declarada (80 × 30, 100 × 30 e 60 × 30 cm), e na do cereja uma das páginas manda manter "ao menos três indivíduos", metade do grupo mínimo que o compêndio declara. Ver a leitura inteira embaixo desta tabela | a medir |
 
 > **AS LINHAS DAS LEVAS 5 E 6 FORAM ESCRITAS EM 22/09/2026, pela leva 7, e não no dia delas.** As duas levas saíram em 14/09/2026, com a SERP classificada e registrada no `porque` de cada página do snippet — o dado nunca se perdeu —, e esta tabela ficou em quatro linhas por oito dias. Ela existe para a leitura semanal **não precisar abrir código**, então tabela incompleta aqui é a leitura semanal lendo um eixo de 12 URLs como se fosse de 20. O conteúdo destas duas linhas foi copiado do registro do snippet e do `REGISTRO.md`, não remedido: é índice, e o índice não reclassifica SERP. **É a mesma família do que a leva 7 achou no portão da voz no mesmo dia** — lista escrita à mão que a leva seguinte tem de lembrar de alimentar, e que não avisa quando alguém esquece.
 
 > **ESTA TABELA ESTAVA PARTIDA EM TRÊS, E FOI REMONTADA EM 22/09/2026 — nenhuma palavra de linha nenhuma foi mudada, e as sete reticências foram abertas.** As linhas das levas 5, 6 e 7 estavam separadas do cabeçalho por linha em branco: em Markdown isso são três tabelas, e as duas de baixo, sem cabeçalho, saem da tela como texto solto. Quem lê o arquivo renderizado via quatro levas e mais um parágrafo torto. Junto com a remontagem, as sete consultas escritas como `"...tetra brilhante"` passaram a trazer a consulta inteira: a abreviação era do olho, e o índice agora tem portão — `ferramentas/conferir-indice-de-levas.py` cobra que TODA página do eixo `/peixes/` apareça aqui, pelo endereço ou pela consulta-alvo declarada no próprio snippet que a publica. Era a segunda das duas listas escritas à mão que a leva 7 nomeou em 22/09/2026 e deixou em aberto; a primeira, a do portão da voz, foi fechada no mesmo dia.
+
+## A classificação de SERP da leva 9 — `/peixes/barbos/`, medida em 23/09/2026
+
+Quatro consultas, medidas nesta execução pela 14.9, **antes** de a categoria e as
+três fichas serem escritas. O método e o limite dele são os das levas 7 e 8: busca
+em português, leitura do top 9 ou 10, classificação de quem ocupa e do que eles
+publicam como número — e nenhuma das páginas foi aberta, então o que está medido é
+o que a SERP mostra, que é o que o leitor compara com a nossa.
+
+**`quantos litros para barbo` (a mãe).** Top 9: dois artigos do mesmo blog de
+nicho (Aquarismo Paulista), quatro páginas de produto de loja (Pró-Aquarista duas
+vezes, Jack Fish, Kauar), um portal de bicho de estimação, um blog de aquarismo e
+uma loja estrangeira. Nenhum marketplace grande, nenhum domínio forte. **O defeito
+é o SUJEITO trocado, e é o mesmo da leva 8 em dose maior:** a pergunta é sobre
+"barbo" e as nove respostas falam de barbos DIFERENTES — barbo ouro, barbo
+tinfoil, barbo nigrofasciatus, barbo titéia —, devolvendo 30 L, 80 L, 96 L e 300 L
+sem que dê para saber de qual peixe cada número fala. O tinfoil pede dez vezes o
+do cereja e os dois saem na mesma tela como "barbo". **ALVO** do tipo que esta
+tabela resolve por desenho: uma linha por espécie, com a faixa de temperatura ao
+lado do espaço.
+
+**Uma coisa que a SERP desta categoria ensinou e que não virou página:** duas das
+lojas do top organizam a prateleira como **"barbos e danios"** no próprio endereço
+(`/barbos-e-danios/`, `/barbus-e-danios/`). O varejo junta o que este eixo separa
+em duas categorias — e as duas continuam separadas, porque o critério de cada uma
+é verificável no banco e nenhuma espécie cai nas duas: nenhum dos três barbos traz
+`danio`, `rasbora` ou `paulistinha` entre os nomes populares. Fica registrado
+porque é o tipo de coisa que a próxima categoria deste eixo vai encontrar de novo.
+
+**`quantos litros para barbo sumatra`.** Top 9: dois blogs de loja, duas páginas
+de produto (RS Discus, Aquafam), um blog de nicho, um portal de bicho de
+estimação, um site de conteúdo genérico, um fórum e uma loja com lote de dez.
+Nenhum domínio forte. Os números vão de 60 L a 100 L sem atribuição, e o cardume
+mínimo aparece como 5 e como 8 a 10 **na mesma tela** — que é o mesmo par que as
+nossas duas fontes declaram, com a diferença de que a nossa página diz de quem é
+cada número. Ninguém publica a base de 80 × 30 cm. **ALVO**, e a prova de que a
+pergunta existe está no próprio top 9, em forma de fórum: *"pode quantos barbo
+sumatra num aquário de 70 litros"*.
+
+**`quantos litros para barbo rosado`.** Top 9: cinco páginas de produto de loja
+(Fazenda Submersa, Aquarium Crystal, AquaOrinoco, Pró-Aquarista duas vezes), um
+blog de nicho, um portal de espécies, um WordPress de 2011 e um site de conteúdo.
+Nenhum domínio forte. Os números vão de 75 L para quatro exemplares a 150 L como
+mínimo recomendado, passando por 96 L de um 80 × 30 × 40 cm, e o grupo mínimo sai
+como 4 e como 6 — **abaixo dos 8 que o compêndio declara**. Duas coisas que
+nenhuma das nove diz: que este é o barbo de faixa subtropical, e a base de
+100 × 30 cm. **ALVO**, e é a SERP em que o sujeito troca DENTRO de um resultado:
+um dos nove serve o título do barbo rosado num endereço de barbo cereja.
+
+**`quantos litros para barbo cereja`.** Top 9: duas páginas de produto de loja
+brasileira (Pró-Aquarista), duas de loja portuguesa, dois artigos do mesmo blog de
+pesca, um blog de nicho, um portal de bicho de estimação e duas páginas de um
+WordPress de 2009. Nenhum domínio forte, e duas das nove são de outro mercado. Os
+números vão de 30 L a 50 L sem atribuição, e o pior deles não é o litro: uma das
+páginas manda manter **"ao menos três indivíduos"**, metade dos 6 a 10 que o
+compêndio declara como compra mínima. Ninguém publica a base de 60 × 30 cm.
+**ALVO.**
+
+**O que as quatro têm em comum, e é o que a leva paga:** em nenhuma delas alguém
+publica a **temperatura** como critério de convivência. A tabela desta categoria
+publica as três faixas lado a lado — 18 a 22 °C, 20 a 26 °C e 23 a 27 °C —, e com
+elas a informação que nenhuma das nove tem: o barbo rosado e o barbo cereja não
+dividem a mesma água, e o sumatra é o único que alcança os dois.
 
 ## A classificação de SERP da leva 8 — `/peixes/acaras/`, medida em 22/09/2026
 

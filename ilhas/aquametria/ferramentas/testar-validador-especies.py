@@ -236,6 +236,44 @@ def c_e21_arranjo_acima_do_chao(b):
     pega(b, "trichogaster-lalius")["convivencia"] = "harem"
 
 
+def c_e23_frase_inventada(b):
+    """A clausula da recusa reescrita: a fonte do barbo sumatra escreveu outra coisa."""
+    pega(b, "puntigrus-tetrazona")["restricoes_de_companhia"][0]["frase"] = (
+        "nao manter junto de peixe de nadadeira comprida")
+
+
+def c_e23_tipo_fora_do_vocabulario(b):
+    pega(b, "puntigrus-tetrazona")["restricoes_de_companhia"][0]["tipo"] = "peixe-lento"
+
+
+def c_e23_tipo_sem_palavra(b):
+    """A clausula do papilocromis fala de aquario comunitario; o tipo diz nadadeira.
+
+    E a metade que separa esta regra de "existe uma frase la": sem ela, qualquer
+    clausula literal sustentaria qualquer tipo, e a traducao na tela falaria de uma
+    coisa que a fonte nunca disse.
+    """
+    pega(b, "mikrogeophagus-altispinosus")["restricoes_de_companhia"][0]["tipo"] = "nadadeiras-longas"
+
+
+def c_e23_lista_vazia(b):
+    """Lista vazia afirma "a fonte foi lida e nao recusou ninguem", e isso se
+    escreve deixando o campo fora."""
+    pega(b, "puntius-titteya")["restricoes_de_companhia"] = []
+
+
+def c_e23_sem_fonte_que_declare(b):
+    """A clausula continua literal, e nenhuma fonte declara o campo em `campos`.
+
+    E o caso em que a frase existe e a atribuicao nao: a pagina publicaria a recusa
+    sem dono, que e opiniao de forum com cara de dado.
+    """
+    r = pega(b, "puntigrus-tetrazona")
+    for f in r["fontes"]:
+        if "restricoes_de_companhia" in f.get("campos", []):
+            f["campos"].remove("restricoes_de_companhia")
+
+
 TESTES = [
     ("E1", "id que nao corresponde ao nome cientifico", c_e1, "erro"),
     ("E20", "base dos dois lados sem chao_declarado_para", c_e20_sem_chao, "erro"),
@@ -246,6 +284,11 @@ TESTES = [
     ("E22", "termo que a clausula da fonte nao sustenta", c_e22_termo_sem_palavra, "erro"),
     ("E22", "'nao-declarado' com clausula que nomeia populacao", c_e22_nao_declarado_que_nomeia, "erro"),
     ("E21", "arranjo publicado acima do chao declarado", c_e21_arranjo_acima_do_chao, "aviso"),
+    ("E23", "clausula da recusa que a fonte nao escreveu", c_e23_frase_inventada, "erro"),
+    ("E23", "tipo de restricao fora do vocabulario fechado", c_e23_tipo_fora_do_vocabulario, "erro"),
+    ("E23", "tipo que a clausula da fonte nao sustenta", c_e23_tipo_sem_palavra, "erro"),
+    ("E23", "lista de restricoes presente e vazia", c_e23_lista_vazia, "erro"),
+    ("E23", "recusa sem fonte que a declare em campos", c_e23_sem_fonte_que_declare, "erro"),
     ("E2", "campo obrigatorio faltando sem status parcial", c_e2, "erro"),
     ("E3", "campo tecnico preenchido sem fonte", c_e3, "erro"),
     ("E4", "fonte com status incoerente com a origem", c_e4, "erro"),
