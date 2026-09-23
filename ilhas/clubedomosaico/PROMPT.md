@@ -57,6 +57,65 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h12Z) — a ilha esquecida é a que tem tráfego
+
+**A ilha está FORA DO FOCO** (`foco.md` nomeia a aquametria desde 21/09), então pela 1.2 nada aqui fura a fila: **despacho NORMAL de ilha fora do foco espera.** Este despacho existe porque a 1.2-b.1 manda a medição continuar em todas as ilhas, e porque o que a medição achou muda a conversa sobre a ordem do foco.
+
+**O NÚMERO QUE MANDA NESTE DESPACHO:** em 15→21/09 esta ilha teve **30 impressões**, contra **4** da aquametria (que tem 48 URLs e está em foco) e **1** da robometria. **Três páginas na primeira página do Google** — 7,8 · 9,1 · 7,0 — e **zero clique**. A ilha não recebe execução desde **15/09** e não tem ronda técnica registrada em nenhuma data.
+
+**A DECISÃO DA RAMPA: MANTÉM.** `piso: abaixo` — 17 URLs de 40. Pela 21.8 a série não autoriza nem proíbe.
+
+### 1. `/author/mosaico_gestor/` ESTÁ INDEXADA E TOMOU IMPRESSÃO NA POSIÇÃO 1,0 — E NÃO É PÁGINA DESTA ILHA
+
+Medido hoje: responde **HTTP 200**, **não tem `<meta name="robots">`**, **não tem `rel="canonical"`**, **não está no sitemap** e **nenhuma página da ilha aponta para ela** (conferido na home e em `/materiais/qual-cola-usar-no-mosaico/`: zero ocorrências de `/author/`). Mesmo assim o Google a indexou e a serviu **uma vez, na posição 1,0**, nesta janela.
+
+É página fina, órfã, sem dado e sem porta de compra, competindo por orçamento de rastreamento com **15 páginas não indexadas** desta mesma propriedade. **É o oposto do que a seção 14 manda.**
+
+**A mesma família existe nas irmãs e está medida:** na aquametria `/author/aquametria_gestor/` responde **200 sem `noindex`** (ainda não indexada); na robometria o slug equivalente dá 404. E `/?s=<termo>` responde **200 sem `noindex`** nas **três** ilhas — sem sintoma hoje, porque nenhuma serve caixa de busca, mas é o mesmo buraco.
+
+**Isto é código de snippet (`clubedomosaico-casca.php`) e por isso NÃO foi consertado pela Sentinela** (seção 12, lista fechada: snippet é sempre da Fundação).
+
+**Pronto quando:** `/author/mosaico_gestor/` servir `<meta name="robots" content="noindex, follow">` no HTML servido, as 17 URLs do sitemap continuarem **sem** `noindex` (as duas direções medidas por portão, não por olho), e a leitura semanal seguinte registrar que a linha de `/author/` **saiu** de `dados/posicoes.md`.
+
+### 2. O `sub_id` DA SHOPEE DESTA ILHA ESTÁ DESLOCADO UMA CASA — A ÚNICA VENDA QUE ESTA ILHA GERAR NÃO SABERÁ DE ONDE VEIO
+
+Medido no Relatório de cliques do painel Shopee Afiliados, janela 16→22/09. O único clique desta ilha no período (20/09, 13h23) veio com o `sub_id` gravado assim:
+
+```
+-clubedomosaico-F2--
+```
+
+A Shopee junta os cinco `sub_id` com hífen. Os cinco campos deste clique são, portanto: **`sub_id_1` VAZIO**, `sub_id_2` = `clubedomosaico`, `sub_id_3` = `F2`, 4 e 5 vazios. (Que os campos são cinco e que o hífen é o separador está provado pelos outros cliques da mesma janela: `robometria-r1---` dá `robometria` + `r1`, que é a forma certa, e `robometria----` dá só `robometria`. E a 25.7 mediu que **hífen não é aceito DENTRO de um sub_id** — logo `clubedomosaico-F2` não pode ser um campo só.)
+
+**A seção 7 manda: `Sub_id 1` = nome da ilha, `Sub_id 2` = código da ferramenta.** Aqui está tudo uma casa à direita, com o campo 1 vazio. **Consequência medida: o painel não consegue responder "qual ilha vendeu".** Hoje custa pouco porque o número é 1 clique e 0 pedido; custa tudo no dia em que houver pedido, que é exatamente o dia em que ninguém vai querer descobrir isto.
+
+**Pronto quando:** todo link de afiliado desta ilha for gerado com `sub_id_1 = clubedomosaico` e `sub_id_2 = <código da ferramenta>`, **o banco da ilha for recontado** e o número de registros com `sub_id_1` preenchido for igual ao número de registros com link, e a leitura semanal seguinte encontrar no Relatório de cliques o formato `clubedomosaico-f2---` (campo 1 preenchido) em vez de `-clubedomosaico-F2--`.
+
+### 3. CORREÇÃO DE CABEÇALHO — `urls_publicadas: 13` ESTÁ DEFASADO; O SITEMAP SERVE 17
+
+Contado no ar hoje: `wp-sitemap-posts-page-1.xml` tem **12** URLs e `wp-sitemap-posts-peca-1.xml` tem **5** — total **17**. É a seção 4 em ação: resumo velho lido como fato.
+
+**Pronto quando:** o cabeçalho do `ESTADO.md` trouxer `urls_publicadas: 17`, com a contagem refeita no sitemap no ar e registrada no `REGISTRO.md`.
+
+### AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — na ordem de ROI
+
+**PROPOSTA 1 — `/materiais/qual-cola-usar-no-mosaico/` ESTÁ EM 7,8 COM 17 IMPRESSÕES E CTR ZERO. É A MELHOR LINHA DO ARQUIPÉLAGO INTEIRO.**
+- Consulta nomeada: **`cola para mosaico`**, posição **10,0**. A página inteira está em 7,8 com 17 impressões — mais impressões do que a aquametria e a robometria somadas, quatro vezes.
+- Página: `https://clubedomosaico.com.br/materiais/qual-cola-usar-no-mosaico/`.
+- Banda 4 a 10 pela 12.1: o trabalho é de **CTR, não de conteúdo**. A alavanca que a 12.1 nomeia: **título que promete o número, meta que promete a faixa e a fonte**. O precedente que já rodou está na robometria, proposta 2 de 16/09: o número sai de um arquivo derivado do banco, nunca digitado, e a marca é o que cede lugar no `<title>`.
+- **O que esta proposta NÃO autoriza:** trocar a URL (proibido pela 12.1), reescrever a página, ou mexer em `/como-fazer/o-que-e-mosaico-picassiete/` — deixe uma página parada para a próxima leitura ter com o que comparar.
+- **Pronto quando:** o `<title>` e a `<meta name="description">` servidos citarem um número que a própria página calcula, com a fonte, e a leitura de 30/09 registrar impressões e CTR desta linha para comparar com **7,8 · 17 impressões · CTR 0%**.
+
+**PROPOSTA 2 — A ORDEM DO FOCO MERECE SER REVISTA, E QUEM DECIDE É O RAPHAEL.**
+- A 1.2-b.3 diz, com todas as letras, que **a fila de foco é reordenada por número, não por quem esperou mais**, e que a aquametria entrou em foco por ser a única com demanda medida. **Isso era verdade em 18/09 e hoje há número novo:** a aquametria tem 46 de 48 URLs indexadas e **4 impressões**; a clubedomosaico tem 17 URLs, três páginas na primeira página e **30 impressões**. **Demanda medida por corpus e demanda medida por impressão não são a mesma coisa, e a segunda é mais barata de acreditar.**
+- **Esta proposta NÃO é um pedido para trocar o foco**, e a Sentinela não tem essa autoridade. É o registro de que o critério da própria 1.2-b.3 aponta para cá agora, para o Raphael decidir com o número na mão.
+- **Pronto quando:** o Raphael responder — ou mantendo a aquametria em foco com o motivo escrito em `foco.md`, ou trocando. **Qualquer das duas fecha esta proposta;** o que não pode é ficar sem resposta escrita.
+
+**PROPOSTA 3 — A CAMADA DE VENDA: AINDA SEM DADO, E COM UM BURACO DE ATRIBUIÇÃO.**
+- Shopee, 16→22/09: **1 clique, 0 pedido** — e o clique veio com o `sub_id` deslocado do item 2. Mercado Livre, mesma janela, conta inteira: **1 clique, 0 pedido, R$ 0** (as etiquetas `clubedomosaicof1` e `clubedomosaicof2` existem desde 13/09; o painel só atribui etiqueta quando há venda, então **não dá para dizer que este clique foi desta ilha — não verifiquei**).
+- **Lacuna de produto, link morto, comissão melhor, produto novo vendendo, backlink, marca: ainda sem dado.** Com 30 impressões e 0 clique orgânico, não havia outro número possível, e isso não é fracasso.
+- **Pronto quando:** houver o primeiro clique orgânico saindo de uma das três páginas de primeira página para um link de afiliado — é esse o número que abre a camada de venda desta ilha, e nenhum outro.
+
 ## O LOGO DELE NO CABEÇALHO — CUMPRIDO E CONFERIDO NO AR EM 11/09/2026, 20h35Z
 
 Era o despacho do Raphael de 11/09 (2), de prioridade máxima. **Casca 1.4.0,
