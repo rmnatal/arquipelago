@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 102,
+  "revisao": 103,
   "atualizado_em": "2026-09-23",
   "estado": "fundacao",
   "desembarque": {
@@ -322,7 +322,7 @@
       ],
       "verificado_em": "2026-09-13",
       "publicar": true,
-      "sha256": "b518f52c99aa80e817da486d53663122238f72afeafeddcf96247444e35b47c9",
+      "sha256": "15e4791f204d1c8b2084a7d70702ac95d32d9e302c463baf7887b82b5beb2d9d",
       "descricao": "A pagina que faltava desde 12/09/2026, quando a etiqueta do GA4 entrou no ar numa ilha que ja publicava link de afiliado: item (d) da lista de aberto do ESTADO.md. Diz o que o site guarda de quem le (nada: sem cadastro, sem login, sem formulario, sem caixa de comentario, e nenhum cookie vindo do servidor) e, sobretudo, NOMEIA UM A UM os enderecos externos que o navegador de quem le vai buscar — quatro que carregam sozinhos e um que so e contatado no clique —, com em quantas das 27 paginas cada um aparece. Essa lista nao e digitada e conferida a olho: ferramentas/conferir-privacidade-no-ar.py recolhe os enderecos do HTML SERVIDO e cobra as duas direcoes, endereco do ar nomeado na pagina e endereco nomeado existindo no ar."
     }
   ],

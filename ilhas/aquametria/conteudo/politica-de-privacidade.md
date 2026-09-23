@@ -23,18 +23,21 @@ Nada que identifique você, e não por delicadeza — não existe onde guardar. 
 
 ## Para onde o seu navegador liga quando abre uma página daqui
 
-Toda página da internet pede pedaços a outros endereços, e quase nenhum site diz quais são os seus. Aqui estão os nossos, contados em 22 de setembro de 2026, nas 44 páginas que o site tem hoje:
+Toda página da internet pede pedaços a outros endereços, e quase nenhum site diz quais são os seus. Aqui estão os nossos, contados em 23 de setembro de 2026, nas 48 páginas que o site tem hoje:
 
 | Endereço | Em quantas páginas | O que ele serve |
 |---|---|---|
-| www.googletagmanager.com | 44 de 44 | a etiqueta de medição de audiência do Google |
-| fonts.googleapis.com | 44 de 44 | a folha das fontes em que este site é escrito |
-| fonts.gstatic.com | 44 de 44 | os arquivos dessas fontes |
-| down-bs-br.img.susercontent.com | 4 de 44 | a foto do próprio anúncio, nas páginas que mostram produto |
+| www.googletagmanager.com | 48 de 48 | a etiqueta de medição de audiência do Google |
+| fonts.googleapis.com | 48 de 48 | a folha das fontes em que este site é escrito |
+| fonts.gstatic.com | 48 de 48 | os arquivos dessas fontes |
+| down-bs-br.img.susercontent.com | 5 de 48 | a foto do próprio anúncio, nas páginas que mostram produto |
+| cf.shopee.com.br | 3 de 48 | a foto do anúncio também, pelo endereço que a API de afiliados devolve |
 
-São quatro, e os quatro carregam sozinhos assim que a página abre. Ao pedir um arquivo a qualquer um deles, o seu navegador entrega a eles o seu endereço de rede e o tipo de aparelho que você usa — é assim que a web funciona, e vale tanto para a etiqueta de medição quanto para a fonte da letra. Três dos quatro são do Google e um é da Shopee.
+São cinco, e os cinco carregam sozinhos assim que a página abre. Ao pedir um arquivo a qualquer um deles, o seu navegador entrega a eles o seu endereço de rede e o tipo de aparelho que você usa — é assim que a web funciona, e vale tanto para a etiqueta de medição quanto para a fonte da letra. Três dos cinco são do Google e dois são da Shopee. **Os dois da Shopee servem a mesma coisa — a foto do anúncio — e são dois porque as fotos entraram no site por dois caminhos em datas diferentes:** as mais antigas foram copiadas do painel de afiliados, e as de 23 de setembro de 2026 vieram da interface de programação da Shopee, que devolve o endereço da foto com outro nome de servidor. Nenhuma foto é hospedada aqui.
 
-**Outros dois endereços aparecem no HTML e não são contatados sozinhos**, os dois em 4 das 44 páginas, e os dois são destino de botão: `s.shopee.com.br`, que é o link curto de um anúncio escolhido, e `shopee.com.br`, que é a busca da loja pelo nome do produto, oferecida quando não há anúncio escolhido para aquele item. **O seu navegador só fala com qualquer um dos dois se você clicar.** O segundo passou a existir em 14 de setembro de 2026, quando toda recomendação desta ilha ganhou uma saída de compra — e esta página ficou oito dias sem nomeá-lo, o que foi corrigido em 22 de setembro. Quem mede isso é `ferramentas/conferir-privacidade-no-ar.py`, que abre as páginas no ar e reprova endereço servido que a lista acima não traga.
+**Um sexto endereço aparece no HTML e não é contatado sozinho**, em 5 das 48 páginas, e ele é destino de botão: `s.shopee.com.br`, o link curto que abre ou o anúncio escolhido ou a busca da loja pelo nome do produto. **O seu navegador só fala com ele se você clicar.**
+
+**Em 23 de setembro de 2026 um endereço SAIU desta lista**, e a régua desta página é quem obriga a dizer: até aquele dia havia mais um destino de botão, o da busca da loja escrita por extenso, oferecida quando não havia anúncio escolhido para o item. Naquele dia todas as saídas de compra deste site passaram a ser links curtos, e aquele endereço deixou de ser servido em qualquer página. **A régua cobra as duas direções** — reprova endereço servido que esta lista não traga **e** endereço que esta lista traga e o site não sirva mais —, e por isso ele saiu da tabela em vez de ficar envelhecendo nela. Quem mede é `ferramentas/conferir-privacidade-no-ar.py`, que abre as páginas no ar.
 
 ## Cookie, e por que não tem caixa pedindo para você aceitar
 

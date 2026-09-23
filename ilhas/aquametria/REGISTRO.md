@@ -223,6 +223,35 @@ tem de fechar** — cartão servido que não cai em nenhuma categoria agora repr
 em vez de sumir da soma. No ar, depois do conserto: **19 cartões, 12 pela ficha,
 7 pelo piso, 0 sem saída**, 130 afirmações (eram 107), 0 falha.
 
+### 7-d. E A PÁGINA DE PRIVACIDADE FICOU ERRADA NAS DUAS DIREÇÕES — pego pela régua, no ar, depois do Sync
+
+`conferir-privacidade-no-ar.py` reprovou com **duas** falhas, e as duas são
+consequência direta deste bloco. A régua tem três regras, e o bloco furou duas:
+
+1. **`cf.shopee.com.br` passou a carregar sozinho e a página não o nomeava.**
+   As 9 fotos novas são servidas pelo CDN que a API devolve, que é um endereço
+   diferente do CDN do painel (`down-bs-br.img.susercontent.com`). São **3 das
+   48 páginas** fazendo requisição a um terceiro que o leitor não tinha como
+   saber que existia. Não é detalhe de forma: é a única página do site que
+   promete listar **todos** os endereços que o navegador contata.
+2. **`shopee.com.br`, que a página nomeava, deixou de existir no ar.** Toda
+   busca por extenso virou link curto nesta execução, então a frase que a
+   descrevia envelheceu no mesmo commit que a tornou falsa.
+
+**A segunda falha é a mais interessante, porque ela é a régua funcionando ao
+contrário do costume:** quase todo portão cobra que a página não *esconda* algo;
+este cobra também que a página não *invente* — endereço nomeado que o site não
+serve mais é promessa velha lida como fato. Foi a tentação do conserto, aliás: a
+primeira reescrita explicava o desaparecimento **citando o endereço**, e teria
+reprovado de novo pela mesma regra. O endereço saiu da tabela e o que ficou foi
+a explicação **sem** ele — descrever a ausência não exige repetir o nome.
+
+Números recontados no ar, não estimados: **48 páginas** (a tabela dizia 44),
+`www.googletagmanager.com`, `fonts.googleapis.com` e `fonts.gstatic.com` em 48
+de 48; `down-bs-br.img.susercontent.com` em 5; `cf.shopee.com.br` em 3;
+`s.shopee.com.br` em 5, só como destino de clique. Busca por extenso servida em
+**zero** páginas.
+
 ### 8. O ESQUEMA FOI À VERSÃO 12, COM DOIS CAMPOS
 
 - **`afiliado.encurtamento_tentado_em`** — a trava que a 25.2-b exige com todas
