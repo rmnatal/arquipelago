@@ -45,7 +45,7 @@
         "url_busca": "https://s.shopee.com.br/2gBN1P7EOA",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Pro%20120%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -186,7 +186,7 @@
         "url_busca": "https://s.shopee.com.br/8fSaAR6SNp",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ista%20I-401%2045%20cm%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -282,7 +282,7 @@
         "url_busca": "https://s.shopee.com.br/9peXYaSPgJ",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-200%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -366,7 +366,7 @@
         "url_busca": "https://s.shopee.com.br/AKao9VqydZ",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-300%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -432,7 +432,7 @@
         "url_busca": "https://s.shopee.com.br/30oDQ2etT4",
         "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A301%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -518,7 +518,7 @@
         "url_busca": "https://s.shopee.com.br/1VzPdI6bNq",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-400%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -604,7 +604,7 @@
         "url_busca": "https://s.shopee.com.br/1VzPdISX1X",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20ADE-400c%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -669,7 +669,7 @@
         "url_busca": "https://s.shopee.com.br/gQIdlrZ7j",
         "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A361%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -755,7 +755,7 @@
         "url_busca": "https://s.shopee.com.br/9fL7MJjuLR",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-500%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -820,7 +820,7 @@
         "url_busca": "https://s.shopee.com.br/qjiq5hj9c",
         "motivo": "o anuncio generico da Shopee (Newpet Slim 3 modulos, 30 a 60 cm) e outro produto, de outro revendedor, sem ficha tecnica localizavel. Ficou registrado em dados/afiliados-sem-produto.json, sem virar produto: link sem especificacao verificada nao entra no banco.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Luminaria%20LED%20Aquario%2060%20cm%20full%20spectrum%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -917,7 +917,7 @@
         "url_busca": "https://s.shopee.com.br/2qUnDlnJSb",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-600%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1001,7 +1001,7 @@
         "url_busca": "https://s.shopee.com.br/4Vd1CpyhjG",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-800%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1085,7 +1085,7 @@
         "url_busca": "https://s.shopee.com.br/20vgEFLLsr",
         "observacao": "Titulo e voltagem como o operador transcreveu do painel Shopee Afiliados em 09/09/2026. ATENCAO: o anuncio declara 3.850 lm e a ficha de varejo declara 3.500 lm. O banco publica 3.500 lm, porque anuncio de marketplace (nivel 6) nao sustenta campo tecnico. A divergencia fica aqui de proposito, para a tela poder avisar.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A451M%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1181,7 +1181,7 @@
         "url_busca": "https://s.shopee.com.br/qjiq6qBwD",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-1000%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1247,7 +1247,7 @@
         "url_busca": "https://s.shopee.com.br/2gBN1U5Lee",
         "motivo": "o anuncio disponivel na Shopee em 07/09/2026 e da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm — outro produto. Atribuir aquele link a este registro faria a C15 recomendar 3717 lm e entregar 810 lm.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ista%20IL-401%2060%20cm%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1363,7 +1363,7 @@
         "url_busca": "https://s.shopee.com.br/9fL7MLwEKA",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-1200%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1441,7 +1441,7 @@
         "degrau": 3,
         "url_busca": "https://s.shopee.com.br/20vgEGpoaQ",
         "url_busca_produto": "https://shopee.com.br/search?keyword=WFish%20WF-H600%20WRGB%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23",
@@ -1512,7 +1512,7 @@
         "url_busca": "https://s.shopee.com.br/2qUnDo46UA",
         "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A601%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1580,7 +1580,7 @@
         "url_busca": "https://s.shopee.com.br/7VGcmO8XkO",
         "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A801%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1668,7 +1668,7 @@
         "url_busca": "https://s.shopee.com.br/9KiGxlRxi2",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A901%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1745,7 +1745,7 @@
         "url_busca": "https://s.shopee.com.br/4Vd1Ct6Du4",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Slim%2090%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1830,7 +1830,7 @@
         "url_busca": "https://s.shopee.com.br/9zxxl07Hf1",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Pro%2060%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1929,7 +1929,7 @@
         "url_busca": "https://s.shopee.com.br/AAHNxJX2zj",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Slim%20120%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -2007,7 +2007,7 @@
         "url_busca": "https://s.shopee.com.br/AKao9csTq7",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%2090%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -2119,7 +2119,7 @@
         "url_busca": "https://s.shopee.com.br/7VGcmQTfHE",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Pro%2090%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -2208,7 +2208,7 @@
         "url_busca": "https://s.shopee.com.br/905QZBk1PH",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20120%20luminaria%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"

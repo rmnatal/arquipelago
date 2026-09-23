@@ -113,6 +113,9 @@ SUB_ID_2_POR_ENTIDADE = {'filtro': 'C3', 'aquecedor': 'C5',
 # varejo ou propria —, e nao qual programa o baixou. A foto da API e a foto do
 # anuncio, entao ela e 'anuncio-shopee', igual as oito que ja estavam no banco.
 FONTE_DA_IMAGEM = 'anuncio-shopee'
+# O MARCADOR QUE SEPARA A HISTORIA DA TENTATIVA dentro de
+# `motivo_sem_url_produto`. Ver o bloco que o escreve, na gravacao.
+MARCA_TENTATIVA = ' || ULTIMA TENTATIVA PELA OPEN API em '
 QUANTOS = 10
 PAUSA = 0.35             # a API nao publica limite; folga barata contra 429
 
@@ -1030,9 +1033,49 @@ def main():
             # unica coisa que o painel da Shopee sabe dizer sobre o assunto, e
             # trocaria um link ja conferido por outro sem historia. A foto,
             # essa, entra do mesmo jeito: ela nao disputa com nada.
-            if ficha and af.get('url'):
-                l['ficha_nao_gravada'] = 'o registro ja tem url; a atribuicao antiga fica'
+            #
+            # --------------------------------------------------------------
+            # A CORRECAO DE 23/09/2026 — "JA TEM URL" NAO E A PERGUNTA CERTA
+            # --------------------------------------------------------------
+            # Item 2 do despacho da Sentinela de 23/09/2026: 39 dos 78 itens
+            # tem `url` e NAO tem `url_produto`. A trava acima os protegia — e
+            # protegia exatamente o que nao se pode proteger, porque o
+            # argumento dela ("link ja conferido") e falso nesses 39: eles sao
+            # `intestavel: true`, e a 25.4-b diz com todas as letras que sem
+            # `url_produto` nao existe teste de vida. Nao e um link conferido
+            # que se preserva, e um link cuja saude e desconhecida e
+            # PERMANECERA desconhecida. A trava de atribuicao virou trava de
+            # conserto.
+            #
+            # A PERGUNTA CERTA E SE O PAR E DEMONSTRAVEL, e por isso ela olha o
+            # `url_produto` e nao o `url`. Com os dois campos, o registro diz
+            # "este link de afiliado aponta para esta ficha" e isso se confere;
+            # a atribuicao antiga fica, como ficou nos 8 de hoje de manha. Sem
+            # o segundo campo, o registro nao afirma nada sobre para onde o
+            # link vai, e a unica saida honesta e reescolher o par INTEIRO.
+            #
+            # E O PAR TEM DE TROCAR JUNTO, que e a metade que pode passar
+            # despercebida: gravar o `url_produto` da oferta que a escada
+            # casou ao lado do `url` velho seria afirmar que os dois apontam
+            # para o mesmo produto, e ninguem mediu isso — de um
+            # `s.shopee.com.br/XXXX` nao se chega a ficha sem clicar, e a 25.4
+            # proibe clicar. Seria fabricar a aparencia de um par conferido, que
+            # e pior que o buraco de hoje: o buraco esta escrito, a aparencia
+            # nao. Por isso a troca e dos dois campos no mesmo `if`, e nunca de
+            # um so.
+            #
+            # O QUE SE PERDE NA TROCA, dito sem maquiar: o `sub_id_2` daqueles
+            # links antigos. E perda de zero, e da para provar — o `sub_id_2`
+            # novo sai de SUB_ID_2_POR_ENTIDADE, que e a MESMA tabela de onde
+            # os antigos sairam (C3 filtro, C5 aquecedor, C12 midia, C15
+            # iluminacao). A calculadora que vende continua nomeada; o que
+            # muda e que agora o link tem ficha para a ronda abrir.
+            if ficha and af.get('url') and af.get('url_produto'):
+                l['ficha_nao_gravada'] = ('o registro ja tem o PAR url + url_produto, '
+                                          'que e testavel: a atribuicao antiga fica')
                 ficha = None
+            elif ficha and af.get('url'):
+                l['par_reescolhido'] = af['url']
             if ficha:
                 af['plataforma'] = 'shopee'
                 af['url'] = ficha['url']
@@ -1052,6 +1095,39 @@ def main():
                 af['intestavel'] = False
                 af.pop('motivo_sem_url_produto', None)
                 af.pop('motivo', None)
+                mexeu = True
+
+            # ------------------------------------------------------------------
+            # O QUE NAO CASOU TEM DE DIZER QUE NAO CASOU HOJE — nunca silencio
+            # ------------------------------------------------------------------
+            # Segunda metade do criterio de pronto do item 2 do despacho de
+            # 23/09/2026: "para cada item que a escada percorrer inteira sem
+            # casar existir um campo com o motivo escrito, nunca silencio".
+            #
+            # O campo ja existia e ja estava escrito — e era ai que morava o
+            # defeito. A prosa dos 39 e de 13/09/2026 e diz que a recuperacao
+            # pelo titulo foi "TENTADA E RECUSADA" porque shopee.com.br/search
+            # serve casca de JavaScript. Aquilo era verdade naquele dia e deixou
+            # de ser em 16/09, quando a Open API entrou (25.6): existe caminho, e
+            # o motivo velho manda a proxima execucao nem tentar. Motivo que
+            # envelhece calado e a mesma familia do `bloqueio herdado do
+            # ESTADO.md lido como fato` da secao 20.2.
+            #
+            # A HISTORIA FICA E A TENTATIVA SE REESCREVE, e a divisao e
+            # deliberada: a primeira metade diz POR QUE a url crua se perdeu, e
+            # isso nao muda nunca; a segunda diz o que a ULTIMA passada tentou, e
+            # isso muda a cada passada. Sem o marcador, uma das duas teria de
+            # morrer — ou a prosa cresce sem fim a cada rodada, ou a causa
+            # original e apagada pela tentativa de hoje.
+            if af.get('url') and not af.get('url_produto'):
+                historia = str(af.get('motivo_sem_url_produto') or '').split(MARCA_TENTATIVA)[0]
+                degraus_tentados = ', '.join(nome for nome, _ in escada(r))
+                af['motivo_sem_url_produto'] = (
+                    historia.rstrip() + MARCA_TENTATIVA + hoje + ': a escada de palavra-chave '
+                    'da 25.6 foi percorrida inteira pela Open API (degraus ' + degraus_tentados
+                    + ') e nenhum candidato passou nas travas de casamento da 25.7 mais a da '
+                    'variante desta ilha. As recusas de hoje, na ordem em que sairam: '
+                    + ' | '.join(l.get('motivo_sem_ficha') or ['a escada nao produziu candidato'])[:1200])
                 mexeu = True
 
             img = l.get('imagem') or {}

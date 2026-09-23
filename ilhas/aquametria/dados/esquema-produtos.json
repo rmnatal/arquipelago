@@ -495,9 +495,9 @@
         "observacao": "A URL CRUA da busca, antes de virar link de afiliado (25.4-b). Guarda a PALAVRA-CHAVE escolhida: busca nao esgota, mas muda de nome, e palavra-chave que deixou de trazer resultado e defeito silencioso. Quem a escreve e ferramentas/gerar-busca-de-produto.py, a partir de campos que ja estao no banco — nunca digitada a mao."
       },
       {
-        "campo": "conferido_em",
+        "campo": "piso_conferido_em",
         "tipo": "data ISO|null",
-        "observacao": "A data em que o PISO deste item foi escrito ou reconferido. Nao e verificado_em, que e a data da ficha tecnica: sao duas coisas com vida propria, e o item 2 do despacho do Raphael de 14/09/2026 pede esta. Escrita por ferramentas/gerar-busca-de-produto.py quando ela falta, nunca reescrita a cada passada — gerador que reescreve data a cada rodada nao e idempotente e move o piso de 78 itens sem ninguem decidir."
+        "observacao": "A data em que o PISO deste item (o `url_busca`) foi escrito ou reconferido. CHAMAVA-SE `conferido_em` ATE 23/09/2026, e o nome custou um item de despacho: a ronda da Sentinela daquele dia leu um `afiliado.conferido_em` em 39 registros `intestavel: true` e mandou apaga-lo, com o argumento — correto, para o nome que ele tinha — de que item que nao pode ser conferido nao tem data de conferencia. So que a data nunca foi da FICHA: e do PISO, que e conferivel nos 78 e estava conferido nos 78. Apaga-la teria destruido dado verdadeiro E quebrado a idempotencia do gerador, que a reescreve com a data de HOJE quando ela falta — movendo o piso de 39 itens sem ninguem decidir, que e exatamente o que a afirmacao 3 de ferramentas/teste-escada-compra.py existe para impedir. O despacho deixou a saida escrita: 'se for util guardar a data, ela se chama outra coisa'. Ela e util e agora se chama outra coisa. NAO E `verificado_em`, que e a data da ficha tecnica do produto: tres datas, tres vidas. Escrita por ferramentas/gerar-busca-de-produto.py quando falta, nunca reescrita a cada passada."
       },
       {
         "campo": "motivo_sem_url_busca",

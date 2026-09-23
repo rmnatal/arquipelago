@@ -245,7 +245,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.10.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.11.0' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -1794,6 +1794,75 @@ add_action( 'wp_head', function () {
 }, 22 );
 
 /* ---------------------------------------------------------------------------
+ * 3e-b. O nó `WebSite` da home — item 1 do despacho da Sentinela de 23/09/2026
+ *
+ * A ronda mediu, no HTML servido e com quebra de cache, que
+ * `https://aquametria.com.br/` tinha ZERO ocorrência de `application/ld+json` e
+ * zero de `schema.org`, enquanto as outras 47 URLs tinham. A causa não era a
+ * trilha faltar — a 16.3 manda mesmo não haver breadcrumb na home —, e sim
+ * **não existir nenhum outro tipo de JSON-LD na ilha**: os oito emissores do
+ * repositório são `BreadcrumbList`, `WebApplication`, `Article`, `FAQPage` e
+ * `CollectionPage`, e os cinco dependem de uma página interna. A página mais
+ * linkada da ilha, e a porta dela para superfície generativa (seção 5, que é
+ * regra de primeira classe), era a única sem dado estruturado nenhum.
+ *
+ * SÓ NA HOME, E ISSO É A REGRA E NÃO ECONOMIA. `WebSite` e `Organization` são
+ * os nós de IDENTIDADE do site inteiro; repetidos em 48 páginas eles não
+ * acrescentam informação, e passam a dizer 48 vezes a mesma coisa em lugares
+ * onde o nó da PÁGINA é que deveria falar. O portão mede as duas direções:
+ * sem o nó na home reprova, e com o nó fora da home reprova também.
+ *
+ * SEM `potentialAction`/`SearchAction`, de propósito. Esse nó promete que o
+ * site tem caixa de busca própria e que a URL declarada devolve resultados —
+ * e esta ilha não serve busca nenhuma ao visitante. Declará-lo seria publicar
+ * uma promessa que a página não cumpre, que é a família de defeito que a
+ * seção 8 mais cobra: parece dado.
+ *
+ * A EDITORA É ESCRITA AQUI E NÃO IMPORTADA, pelo mesmo motivo que o
+ * `aquametria-peixes.php` a escreve de novo: o Sync desembarca um snippet sem
+ * o outro, e nó de schema não pode depender de quem chegou primeiro.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_casca_site_jsonld' ) ) {
+function aquametria_casca_site_jsonld() {
+	$editora = array(
+		'@type' => 'Organization',
+		'name'  => 'Aquametria',
+		'url'   => home_url( '/' ),
+	);
+
+	return array(
+		'@context'    => 'https://schema.org',
+		'@type'       => 'WebSite',
+		'name'        => 'Aquametria',
+		'url'         => home_url( '/' ),
+		/* A CURTA, e não a do rodapé: é a mesma frase que o núcleo já usa para
+		   montar o <title> da home, então o nó não inventa uma terceira
+		   descrição da ilha para o robô ler. */
+		'description' => AQUAMETRIA_CASCA_TAGLINE_CURTA,
+		'inLanguage'  => 'pt-BR',
+		'publisher'   => $editora,
+	);
+}
+}
+
+add_action( 'wp_head', function () {
+	/* A MESMA GUARDA DO ÍCONE E DA TAG DO GA4: o bloco de constantes do topo
+	   inteiro está dentro de `if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) )`,
+	   então uma cópia antiga da casca já carregada pula o bloco e
+	   AQUAMETRIA_CASCA_TAGLINE_CURTA nunca nasce. Sem esta linha a home
+	   serviria a constante crua dentro do JSON. */
+	if ( ! defined( 'AQUAMETRIA_CASCA_TAGLINE_CURTA' ) ) {
+		return;
+	}
+	if ( ! is_front_page() ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="aquametria-site-jsonld">' . "\n"
+		. wp_json_encode( aquametria_casca_site_jsonld() ) . "\n" . '</script>' . "\n";
+}, 22 );
+
+/* ---------------------------------------------------------------------------
  * 3f. A tag de medição (GA4)
  *
  * Despacho de 12/09/2026, prioridade alta: sem esta tag a seção 5 do
@@ -1809,7 +1878,7 @@ add_action( 'wp_head', function () {
  *     3  meta descrição e og: (aquametria-seo-tecnico)
  *     5  ícone do site
  *    20  fontes e paleta; JSON-LD das cinco calculadoras e dos três artigos
- *    22  BreadcrumbList
+ *    22  BreadcrumbList (páginas internas) e WebSite (só a home)
  * Então 23 é o mais cedo que sobra depois do último JSON-LD, e não é escolha de
  * gosto: é o único número que cumpre as duas metades do despacho ao mesmo tempo.
  *

@@ -45,7 +45,7 @@
         "url_busca": "https://s.shopee.com.br/6AlFBdCQRd",
         "motivo": "a coleta de links da Shopee em 07/09/2026 cobriu so as potencias de 100, 200 e 300 W da linha. Este modelo entrou no banco em 08/09 e ainda nao teve link coletado. Pela regra V16 ele e sugerido do mesmo jeito, sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%2025%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -158,7 +158,7 @@
         "url_busca": "https://s.shopee.com.br/30oDPog505",
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20Jager%2050%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -259,7 +259,7 @@
         "url_busca": "https://s.shopee.com.br/80CtN0aFEU",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-050%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -337,7 +337,7 @@
         "url_busca": "https://s.shopee.com.br/9V1h9lm8Hu",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%2050%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -457,7 +457,7 @@
         "url_busca": "https://s.shopee.com.br/5AshzoFgvd",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=RS-50%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -521,7 +521,7 @@
         "url_busca": "https://s.shopee.com.br/5q8On2QUQG",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-100%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -612,7 +612,7 @@
         "url_busca": "https://s.shopee.com.br/6AlFBegot9",
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20Jager%20100%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -713,7 +713,7 @@
         "url_busca": "https://s.shopee.com.br/5q8On2qxOD",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-100%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -781,7 +781,7 @@
         "url_busca": "https://s.shopee.com.br/70KMBC42tx",
         "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20100%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -892,7 +892,7 @@
         "url_busca": "https://s.shopee.com.br/6VO5aHRsXp",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-150%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -983,7 +983,7 @@
         "url_busca": "https://s.shopee.com.br/8fSaAGbA1d",
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20Jager%20150%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1111,7 +1111,7 @@
         "url_busca": "https://s.shopee.com.br/5Ashzq1kje",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-150%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1195,7 +1195,7 @@
         "url_busca": "https://s.shopee.com.br/8pm0MaIf1o",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20150%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1330,7 +1330,7 @@
         "url_busca": "https://s.shopee.com.br/6q0vyuhnxE",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Sicce%20Scuba%20Contactless%20150%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1411,7 +1411,7 @@
         "url_busca": "https://s.shopee.com.br/BU22fKS72",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-200%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1524,7 +1524,7 @@
         "url_busca": "https://s.shopee.com.br/6L4fO0EZjX",
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20Jager%20200%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1643,7 +1643,7 @@
         "url_busca": "https://s.shopee.com.br/8pm0MbMelV",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-200%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1715,7 +1715,7 @@
         "url_busca": "https://s.shopee.com.br/6fhVmci2Gb",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-200%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1783,7 +1783,7 @@
         "url_busca": "https://s.shopee.com.br/2gBN1HEvl1",
         "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20200%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1893,7 +1893,7 @@
         "url_busca": "https://s.shopee.com.br/9zxxkl0DEt",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20250%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1976,7 +1976,7 @@
         "url_busca": "https://s.shopee.com.br/8pm0McMFio",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-300%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -2075,7 +2075,7 @@
         "url_busca": "https://s.shopee.com.br/20vgE43rjD",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-300%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -2147,7 +2147,7 @@
         "url_busca": "https://s.shopee.com.br/8AWJZOtepv",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-300%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -2215,7 +2215,7 @@
         "url_busca": "https://s.shopee.com.br/40gkbkQyvR",
         "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20300%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -2337,7 +2337,7 @@
         "degrau": 3,
         "url_busca": "https://s.shopee.com.br/gQIdcvPIM",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Hopar%20J-226%20400%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23",
@@ -2442,7 +2442,7 @@
         "url_busca": "https://s.shopee.com.br/5LC8CCmROM",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Hopar%20J-226%20500%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -2523,7 +2523,7 @@
         "url_busca": "https://s.shopee.com.br/AAHNx5hAfn",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20500%20W%20aquecedor%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"

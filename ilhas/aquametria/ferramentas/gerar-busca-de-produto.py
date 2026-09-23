@@ -4,7 +4,7 @@
 
 Quatro campos, e os quatro sao derivados de coisa que ja esta no banco:
 `afiliado.url_busca_produto` (a busca crua), `afiliado.degrau` (4 para quem so
-tem o piso), `afiliado.conferido_em` (a data em que o piso foi escrito) e
+tem o piso), `afiliado.piso_conferido_em` (a data em que o piso foi escrito) e
 `afiliado.intestavel` (a bandeira da 25.4-b). Os tres ultimos entraram em
 14/09/2026 pelos itens 2 e 3 do despacho do Raphael.
 
@@ -42,7 +42,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ESQUEMA = os.path.join(RAIZ, "dados", "esquema-produtos.json")
 # A data em que o piso de um item foi escrito. E o dia de hoje de verdade, e nao
 # uma constante, porque produto que entrar no banco em dezembro tem piso de
-# dezembro. A idempotencia nao sofre com isso porque conferido_em so e escrito
+# dezembro. A idempotencia nao sofre com isso porque piso_conferido_em so e escrito
 # quando FALTA: rodar de novo amanha nao reescreve data nenhuma.
 HOJE = datetime.date.today().isoformat()
 ARQUIVOS = {
@@ -112,7 +112,7 @@ def main():
             chave = palavra_chave(produto, termo)
             nova = url_da_busca(base, chave)
             antes = (afil.get("url_busca_produto"), afil.get("degrau"),
-                     afil.get("conferido_em"), afil.get("intestavel"))
+                     afil.get("piso_conferido_em"), afil.get("intestavel"))
 
             if afil.get("url_busca_produto") != nova:
                 afil["url_busca_produto"] = nova
@@ -130,8 +130,8 @@ def main():
             # tornaria este gerador nao idempotente, e idempotencia e o que
             # impede o piso de 78 itens de se mover sem ninguem decidir
             # (afirmacao 3 de ferramentas/teste-escada-compra.py).
-            if not preenchido(afil.get("conferido_em")):
-                afil["conferido_em"] = HOJE
+            if not preenchido(afil.get("piso_conferido_em")):
+                afil["piso_conferido_em"] = HOJE
 
             # A BANDEIRA DA 25.4-b, item 3 do mesmo despacho. Link encurtado sem
             # a url crua e link cuja saude ninguem consegue conferir; ate hoje
@@ -142,14 +142,14 @@ def main():
                                       and not preenchido(afil.get("url_produto")))
 
             depois = (afil.get("url_busca_produto"), afil.get("degrau"),
-                      afil.get("conferido_em"), afil.get("intestavel"))
+                      afil.get("piso_conferido_em"), afil.get("intestavel"))
             if antes == depois:
                 igual += 1
                 continue
             mudou += 1
             print("  %-28s piso: %s | degrau %s | conferido %s%s"
                   % (produto.get("id"), chave, afil.get("degrau"),
-                     afil.get("conferido_em"),
+                     afil.get("piso_conferido_em"),
                      " | INTESTAVEL" if afil.get("intestavel") else ""))
 
         if gravando:

@@ -67,7 +67,7 @@
         "url_busca": "https://s.shopee.com.br/2qUnDcMDf0",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20250%20%282213%29%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -151,7 +151,7 @@
         "url_busca": "https://s.shopee.com.br/5foyapOlln",
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-303B%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -244,7 +244,7 @@
         "url_busca": "https://s.shopee.com.br/6AlFBkeSug",
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3338%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -342,7 +342,7 @@
         "url_busca": "https://s.shopee.com.br/8pm0Melm40",
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3338S%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -461,7 +461,7 @@
         "url_busca": "https://s.shopee.com.br/9V1h9swR4z",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Tidal%2055%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -569,7 +569,7 @@
         "degrau": 3,
         "url_busca": "https://s.shopee.com.br/3B7dcFgXp9",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0400%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23",
@@ -691,7 +691,7 @@
         "degrau": 3,
         "url_busca": "https://s.shopee.com.br/80CtN8k8xN",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0600%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23",
@@ -790,7 +790,7 @@
         "degrau": 3,
         "url_busca": "https://s.shopee.com.br/5LC8CFGDzU",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0800%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23",
@@ -899,7 +899,7 @@
         "url_busca": "https://s.shopee.com.br/5LC8CFTQKy",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3336%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -994,7 +994,7 @@
         "degrau": 3,
         "url_busca": "https://s.shopee.com.br/7AdmNceFXw",
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-603B%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23",
@@ -1116,7 +1116,7 @@
         "url_busca": "https://s.shopee.com.br/5VVYOYxnH0",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-302%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
         "encurtamento_tentado_em": "2026-09-23"
@@ -1197,7 +1197,7 @@
         "url_busca": "https://s.shopee.com.br/50ZHneH5eC",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20CT-1000-3%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1277,7 +1277,7 @@
         "url_busca": "https://s.shopee.com.br/6VO5aPOmjB",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40, com 39 vendas registradas no anuncio. voltagem_anuncio e a voltagem DAQUELE anuncio, transcrita do painel, e NAO campo tecnico do produto: anuncio de marketplace nao sustenta numero tecnico. Preco mora em dados/produtos-cotacoes.json.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-702A%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1371,7 +1371,7 @@
         "url_busca": "https://s.shopee.com.br/5AshzxprKX",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-702B%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1480,7 +1480,7 @@
         "url_busca": "https://s.shopee.com.br/9peXYXlDxZ",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20MP-600%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1556,7 +1556,7 @@
         "url_busca": "https://s.shopee.com.br/AUuELm0DTc",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20XBL-600%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1633,7 +1633,7 @@
         "url_busca": "https://s.shopee.com.br/7VGcmGXZCV",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Aquaverso%20APK-600%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1720,7 +1720,7 @@
         "url_busca": "https://s.shopee.com.br/7KxCZxyjma",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20600%20%282217%29%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
@@ -1824,7 +1824,7 @@
         "url_busca": "https://s.shopee.com.br/7ptTAtNESR",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20600%20%282217%29%20filtro%20aquario",
-        "conferido_em": "2026-09-14",
+        "piso_conferido_em": "2026-09-14",
         "intestavel": true,
         "encurtamento_tentado_em": "2026-09-23"
       },
