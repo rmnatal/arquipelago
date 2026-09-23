@@ -2464,6 +2464,107 @@ function aquametria_peixes_catalogo() {
 			),
 			'conflitos' => array(),
 		),
+		'pethia-conchonius' => array(
+			'id' => 'pethia-conchonius',
+			'cientifico' => 'Pethia conchonius',
+			'sinonimos' => array(
+				'Puntius conchonius',
+			),
+			'populares' => array(
+				'barbo rosado',
+				'barbo rosa',
+				'puntius rosado',
+			),
+			'familia' => 'Cyprinidae',
+			'origem' => 'Ásia: Afeganistão, Paquistão, Índia, Nepal e Bangladesh',
+			'porte_cm' => 14,
+			'porte_medida' => 'TL',
+			'cardume' => 8,
+			'cardume_ate' => 10,
+			'convivencia' => 'cardume',
+			'comportamento' => 'pacifico',
+			'frente_cm' => 100,
+			'base_comprimento' => 100,
+			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
+			'temp_min' => 18,
+			'temp_max' => 22,
+			'status' => 'conflito',
+			'fontes' => array(
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.se/summary/4714',
+					'em' => '2026-09-09',
+					'campos' => array(
+						'familia',
+						'origem_geografica',
+						'porte_adulto_cm',
+						'porte_medida',
+						'porte_sexo',
+						'temperatura_C',
+						'ph',
+						'dureza_dgh',
+						'cardume_minimo',
+						'comprimento_minimo_aquario_cm',
+						'convivencia',
+					),
+					'referencia' => 'FishBase - ficha da especie: max length 14,0 cm TL macho/nao-sexado; subtropical, 18 a 22 C; pH 6,0 a 8,0; dH 5 a 19; familia Cyprinidae; Asia: Afeganistao, Paquistao, India, Nepal e Bangladesh, com introducao no mundo todo; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 80 cm.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/pethia-conchonius/',
+					'em' => '2026-09-23',
+					'campos' => array(
+						'comprimento_minimo_aquario_cm',
+						'base_minima_cm',
+						'chao_declarado_para',
+						'cardume_minimo',
+						'cardume_recomendado_ate',
+						'convivencia',
+						'comportamento',
+					),
+					'referencia' => 'Seriously Fish - ficha da especie: dimensoes de base de pelo menos 100 x 30 cm ou equivalente sao necessarias; algumas formas chegam a 90 a 100 mm, mas a maioria esta adulta com 65 a 75 mm; e uma especie de cardume por natureza e o ideal e mante-la em grupo de pelo menos 8 a 10 exemplares - em numero decente o peixe fica menos nervoso, o conjunto fica mais natural e os machos mostram a melhor cor competindo entre si pela atencao das femeas; especie geralmente pacifica e residente ideal do aquario comunitario bem pesquisado, que nao impoe exigencia especial de quimica da agua e pode ser combinada com muitos dos peixes mais populares do hobby - outros pequenos ciprinideos, tetras, viviparos, peixes arco-iris, anabantoideos, cascudos e botias; considerada um dos pequenos ciprinideos mais resistentes do hobby, e excelente escolha para quem esta comecando.',
+				),
+			),
+			'conflitos' => array(
+				array(
+					'campo' => 'comprimento_minimo_aquario_cm',
+					'valores' => array(
+						array(
+							'valor' => 80,
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase, secao de aquario: tamanho minimo de aquario 80 cm',
+						),
+						array(
+							'valor' => 100,
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish: dimensoes de base de pelo menos 100 x 30 cm ou equivalente sao necessarias',
+						),
+					),
+					'razao' => 'Campo de espaco, e as duas fontes medem coisas diferentes com o mesmo numero: a base cientifica declara so a frente e o compendio declara a base inteira, frente e fundo. Os 20 cm de diferenca nao sao divergencia de opiniao sobre o mesmo peixe, sao o que aparece quando alguem declara o fundo junto - e quem declara o fundo declara o maior.',
+					'tratamento' => 'publicar-os-dois',
+				),
+				array(
+					'campo' => 'cardume_minimo',
+					'valores' => array(
+						array(
+							'valor' => 5,
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase, secao de aquario: manter em grupos de 5 ou mais individuos',
+						),
+						array(
+							'valor' => 8,
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish: o ideal e mante-la em grupo de pelo menos 8 a 10 exemplares',
+						),
+					),
+					'razao' => 'Campo de manutencao e de bem-estar: manda o compendio e vence o maior. E o MESMO par de numeros do barbo sumatra (5 da base cientifica contra 8 do compendio), nas mesmas duas fontes - a terceira vez que este banco encontra a divergencia, e a primeira em que ela aparece duas vezes na mesma categoria.',
+					'tratamento' => 'publicar-os-dois',
+				),
+			),
+		),
 		'pterophyllum-scalare' => array(
 			'id' => 'pterophyllum-scalare',
 			'cientifico' => 'Pterophyllum scalare',
@@ -3051,6 +3152,68 @@ function aquametria_peixes_catalogo() {
 			),
 			'conflitos' => array(),
 		),
+		'puntius-titteya' => array(
+			'id' => 'puntius-titteya',
+			'cientifico' => 'Puntius titteya',
+			'sinonimos' => array(
+				'Barbus titteya',
+				'Rohanella titteya',
+			),
+			'populares' => array(
+				'barbo cereja',
+				'barbo-cereja',
+				'cherry barb',
+			),
+			'familia' => 'Cyprinidae',
+			'origem' => 'Ásia: Sri Lanka, das bacias do Kelani ao Nilwala',
+			'porte_cm' => 5,
+			'porte_medida' => 'TL',
+			'cardume' => 6,
+			'cardume_ate' => 10,
+			'convivencia' => 'cardume',
+			'comportamento' => '',
+			'frente_cm' => 60,
+			'base_comprimento' => 60,
+			'base_largura' => 30,
+			'chao_para' => array(
+				'nao-declarado',
+			),
+			'temp_min' => 23,
+			'temp_max' => 27,
+			'status' => 'completo',
+			'fontes' => array(
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.se/summary/6147',
+					'em' => '2026-09-23',
+					'campos' => array(
+						'familia',
+						'origem_geografica',
+						'porte_adulto_cm',
+						'porte_medida',
+						'temperatura_C',
+						'ph',
+						'dureza_dgh',
+					),
+					'referencia' => 'FishBase - ficha da especie (cherry barb): max 5,0 cm TL, comprimento comum 2,5 cm TL; 23 a 27 C; pH 6,0 a 8,0; dH 5 a 19; familia Cyprinidae; Asia: Sri Lanka, das bacias do Kelani ao Nilwala, em riachos muito sombreados de agua rasa e lenta, com substrato de silte e folhas. A secao de aquario NAO declara numero de grupo nem tamanho minimo de aquario.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/puntius-titteya/',
+					'em' => '2026-09-23',
+					'campos' => array(
+						'comprimento_minimo_aquario_cm',
+						'base_minima_cm',
+						'chao_declarado_para',
+						'cardume_minimo',
+						'cardume_recomendado_ate',
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish - ficha da especie: dimensoes de base de pelo menos 60 x 30 cm ou equivalente sao necessarias; e uma especie de cardume por natureza, e pelo menos 6 a 10 exemplares devem ser comprados - manter nesse numero deixa o peixe menos arisco, resulta num conjunto mais natural e faz os machos desenvolverem cor melhor na presenca de rivais da mesma especie; escolha sem ressalva para iniciante, e um dos pequenos ciprinideos mais onipresentes do hobby.',
+				),
+			),
+			'conflitos' => array(),
+		),
 	);
 	return $catalogo;
 	/* CATALOGO-FIM */
@@ -3093,19 +3256,6 @@ function aquametria_peixes_barrados() {
 			'familia' => 'Loricariidae',
 			'faltando' => array(
 				'temperatura_C',
-			),
-		),
-		'pethia-conchonius' => array(
-			'id' => 'pethia-conchonius',
-			'cientifico' => 'Pethia conchonius',
-			'populares' => array(
-				'barbo rosado',
-				'barbo rosa',
-				'puntius rosado',
-			),
-			'familia' => 'Cyprinidae',
-			'faltando' => array(
-				'duas fontes distintas',
 			),
 		),
 		'poecilia-reticulata' => array(

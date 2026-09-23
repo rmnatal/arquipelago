@@ -2,9 +2,9 @@
  "id": "especies-agua-doce",
  "entidade": "especie",
  "esquema": "dados/esquema-especies.json",
- "descricao": "Banco de especies de agua doce da Aquametria. Leva 1 (bloco 4b(c), 09/09/2026): 12 especies. Leva 2 (bloco 4b leva 3, 09/09/2026): mais 13 especies. Leva 3 (T3(a), 09/09/2026): mais 11 especies, fechando 36 registros de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com frente minima declarada de 45 a 180 cm. Existe para destravar o eixo aberto 'quantos litros para X peixes', que a Bussola verificou livre na SERP, com dado atribuido em vez da regra de bolso de 1 cm por litro. Nenhum registro tem link de afiliado: especie nao e produto. Leva 4 (T3d, 11/09/2026): nenhuma especie nova; a leva foi de PROFUNDIDADE, fechando os campos que barravam registros ja existentes no portao de pagina e na C8. Leva 5 (T3d, 14/09/2026): mais 2 especies, os dois ciclideos anoes que faltavam para a categoria /peixes/ciclideos-anoes/ alcancar o minimo de tres do 16.5 — Apistogramma agassizii e Mikrogeophagus altispinosus —, fechando 39 registros.",
+ "descricao": "Banco de especies de agua doce da Aquametria. Leva 1 (bloco 4b(c), 09/09/2026): 12 especies. Leva 2 (bloco 4b leva 3, 09/09/2026): mais 13 especies. Leva 3 (T3(a), 09/09/2026): mais 11 especies, fechando 36 registros de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com frente minima declarada de 45 a 180 cm. Existe para destravar o eixo aberto 'quantos litros para X peixes', que a Bussola verificou livre na SERP, com dado atribuido em vez da regra de bolso de 1 cm por litro. Nenhum registro tem link de afiliado: especie nao e produto. Leva 4 (T3d, 11/09/2026): nenhuma especie nova; a leva foi de PROFUNDIDADE, fechando os campos que barravam registros ja existentes no portao de pagina e na C8. Leva 5 (T3d, 14/09/2026): mais 2 especies, os dois ciclideos anoes que faltavam para a categoria /peixes/ciclideos-anoes/ alcancar o minimo de tres do 16.5 — Apistogramma agassizii e Mikrogeophagus altispinosus —, fechando 39 registros. Leva 6 (preparacao da leva 9 do T4, 23/09/2026): mais 1 especie e 1 registro aprofundado, os dois barbos que faltavam para a nona categoria do eixo /peixes/ alcancar o minimo de tres do 16.5 - Puntius titteya entra novo e Pethia conchonius sai de um corpo de fonte para dois -, fechando 40 registros.",
  "gerado_em": "2026-09-09",
- "bloco": "4b(c) leva 1 + 4b leva 3 + T3(a) leva 3 + T3d leva 4 (profundidade)",
+ "bloco": "4b(c) leva 1 + 4b leva 3 + T3(a) leva 3 + T3d leva 4 (profundidade) + T4 leva 9 (preparacao, coleta dos barbos)",
  "publicar": false,
  "nota_de_procedencia": "Nenhuma pagina foi lida direto: em 09/09/2026 o egresso da nuvem devolveu EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, e em 11/09/2026 isso foi RECONFERIDO nos quatro, por curl e por WebFetch, com o site da propria ilha respondendo 200 na mesma passada - ou seja, e politica de rede, nao a intermitencia de tunel da secao 20 do contrato. Todo numero deste arquivo foi colhido por busca RESTRITA ao dominio da fonte (niveis 3 e 5 da escada), o que garante a atribuicao mas nao substitui a leitura. Reconferir na ficha quando o egresso abrir e uma coleta em aberto.",
  "campos_deliberadamente_vazios": [
@@ -3122,17 +3122,17 @@
     "min": 5,
     "max": 19
    },
-   "cardume_minimo": 5,
-   "cardume_recomendado_ate": null,
-   "comprimento_minimo_aquario_cm": 80,
+   "cardume_minimo": 8,
+   "cardume_recomendado_ate": 10,
+   "comprimento_minimo_aquario_cm": 100,
    "base_minima_cm": {
-    "comprimento": null,
-    "largura": null
+    "comprimento": 100,
+    "largura": 30
    },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
-   "comportamento": null,
+   "comportamento": "pacifico",
    "convivencia": "cardume",
    "alimentacao": null,
    "dificuldade": null,
@@ -3159,12 +3159,78 @@
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: dimensoes de base de pelo menos 100 x 30 cm ou equivalente sao necessarias; algumas formas chegam a 90 a 100 mm, mas a maioria esta adulta com 65 a 75 mm; e uma especie de cardume por natureza e o ideal e mante-la em grupo de pelo menos 8 a 10 exemplares - em numero decente o peixe fica menos nervoso, o conjunto fica mais natural e os machos mostram a melhor cor competindo entre si pela atencao das femeas; especie geralmente pacifica e residente ideal do aquario comunitario bem pesquisado, que nao impoe exigencia especial de quimica da agua e pode ser combinada com muitos dos peixes mais populares do hobby - outros pequenos ciprinideos, tetras, viviparos, peixes arco-iris, anabantoideos, cascudos e botias; considerada um dos pequenos ciprinideos mais resistentes do hobby, e excelente escolha para quem esta comecando.",
+     "url": "https://www.seriouslyfish.com/species/pethia-conchonius/",
+     "verificado_em": "2026-09-23",
+     "campos": [
+      "comprimento_minimo_aquario_cm",
+      "base_minima_cm",
+      "chao_declarado_para",
+      "cardume_minimo",
+      "cardume_recomendado_ate",
+      "convivencia",
+      "comportamento"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 23/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconferido nesta data por curl e por WebFetch. A clausula da base e a do grupo voltaram em DUAS buscas independentes, com o mesmo numero; a linha de temperatura da ficha NAO voltou em nenhuma e por isso nao foi gravada. A confirmar na ficha."
     }
    ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Registro se apoia em UM corpo de fonte so (FishBase). Os 14,0 cm TL sao o maximo registrado pela base, bem acima dos 6 a 8 cm que o exemplar de aquario costuma alcancar - a ficha tem de publicar o numero da fonte E dizer que porte maximo registrado nao e porte esperado em cativeiro, senao a C8 dimensiona para um peixe que ninguem tem. Terceira especie do banco de faixa subtropical (18 a 22 C)."
+   "conflitos": [
+    {
+     "campo": "comprimento_minimo_aquario_cm",
+     "valores": [
+      {
+       "valor": 80,
+       "referencia": "FishBase, secao de aquario: tamanho minimo de aquario 80 cm",
+       "url": "https://www.fishbase.se/summary/4714",
+       "origem": "base-cientifica-via-busca"
+      },
+      {
+       "valor": 100,
+       "referencia": "Seriously Fish: dimensoes de base de pelo menos 100 x 30 cm ou equivalente sao necessarias",
+       "url": "https://www.seriouslyfish.com/species/pethia-conchonius/",
+       "origem": "compendio-via-busca"
+      }
+     ],
+     "razao": "Campo de espaco, e as duas fontes medem coisas diferentes com o mesmo numero: a base cientifica declara so a frente e o compendio declara a base inteira, frente e fundo. Os 20 cm de diferenca nao sao divergencia de opiniao sobre o mesmo peixe, sao o que aparece quando alguem declara o fundo junto - e quem declara o fundo declara o maior.",
+     "tratamento": "publicar-os-dois",
+     "valor_conservador": 100,
+     "derivacao": null
+    },
+    {
+     "campo": "cardume_minimo",
+     "valores": [
+      {
+       "valor": 5,
+       "referencia": "FishBase, secao de aquario: manter em grupos de 5 ou mais individuos",
+       "url": "https://www.fishbase.se/summary/4714",
+       "origem": "base-cientifica-via-busca"
+      },
+      {
+       "valor": 8,
+       "referencia": "Seriously Fish: o ideal e mante-la em grupo de pelo menos 8 a 10 exemplares",
+       "url": "https://www.seriouslyfish.com/species/pethia-conchonius/",
+       "origem": "compendio-via-busca"
+      }
+     ],
+     "razao": "Campo de manutencao e de bem-estar: manda o compendio e vence o maior. E o MESMO par de numeros do barbo sumatra (5 da base cientifica contra 8 do compendio), nas mesmas duas fontes - a terceira vez que este banco encontra a divergencia, e a primeira em que ela aparece duas vezes na mesma categoria.",
+     "tratamento": "publicar-os-dois",
+     "valor_conservador": 8,
+     "derivacao": null
+    }
+   ],
+   "verificado_em": "2026-09-23",
+   "status_registro": "conflito",
+   "observacao": "Registro saiu de UM corpo de fonte para DOIS em 23/09/2026, na preparacao da leva 9, e com isso passou a ser elegivel para pagina: era 'parcial', que barra a ficha pelo minimo_para_sugerir, e agora e 'conflito', que nao barra. Os 14,0 cm TL continuam sendo o MAXIMO registrado pela base cientifica, e o compendio publica 65 a 75 mm como o tamanho da maioria dos adultos, com 90 a 100 mm em algumas formas. OS DOIS NUMEROS NAO ESTAO NA MESMA REGUA e por isso nao viraram conflito: o compendio nao diz se mede SL ou TL, e comparar comprimento sem a cauda com comprimento com ela e o que a leva 7 proibiu. A ficha tem de publicar o numero da fonte COM a medida dele E dizer que porte maximo registrado nao e porte esperado em cativeiro, senao a C8 dimensiona para um peixe que ninguem tem. Terceira especie do banco de faixa subtropical (18 a 22 C).",
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "dimensoes de base de pelo menos 100 x 30 cm ou equivalente sao necessarias"
+   }
   },
   {
    "id": "pterophyllum-scalare",
@@ -4149,6 +4215,99 @@
    "verificado_em": "2026-09-14",
    "status_registro": "completo",
    "observacao": "TERCEIRO CICLIDEO ANAO ELEGIVEL DA ILHA, e e ele que faz /peixes/ciclideos-anoes/ alcancar o minimo do 16.5: a categoria tinha o ramirezi sozinho e passa a ter tres. E O PRIMEIRO REGISTRO DO BANCO EM QUE A FRENTE MINIMA E CONDICIONAL AO GRUPO, e quem escrever a ficha nao pode quebrar a frase em duas: o compendio declara 'grupo misto de 6 a 8 ou mais DESDE QUE o aquario seja espacoso, de 120 cm de comprimento ou maior'. Os 120 cm nao sao o minimo para um exemplar nem para um casal — sao o chao do arranjo que a fonte recomenda. Publicar '120 cm' sem o 'para o grupo de 6 a 8' seria o mesmo defeito da leva 2 ao trocar BASE por FRENTE: numero certo, escopo errado. E O MAIOR NUMERO DE FRENTE DO EIXO ATE AQUI entre os ciclideos anoes, e ele contradiz a intuicao do comprador — o peixe tem 5,6 cm e pede 120 cm de aquario, enquanto o ramirezi, de 4,2 cm, pede 60. A diferenca nao esta no tamanho do peixe e sim no arranjo: um vive em casal e o outro em grupo gregario. E exatamente a tese da linha mestra do eixo, e esta categoria a paga dentro de um grupo so de peixes. COMPORTAMENTO FICOU NULO, e a frase do compendio explica por que: os machos ficam 'com frequencia mais agressivos' EM ESPACO CONFINADO, que e temperamento condicionado a manutencao e nao um valor do vocabulario fechado. Gravar 'territorial' a partir dai seria transformar uma ressalva em atributo. pH E DUREZA FICARAM NULOS: a base devolveu os dois com um lado so do intervalo (pH a partir de 7,0 e dH a partir de 10), e intervalo sem os dois lados nao e faixa de manutencao — o campo fica vazio em vez de virar um minimo com cara de recomendacao. NOME POPULAR: o varejo brasileiro vende esta especie como PAPILOCROMIS, nome que cinco lojas e portais brasileiros usam (Kauar, Pro-Aquarista, Fazenda Submersa, MyAquarium, Aquarismo Paulista), e nunca como 'ramirezi boliviano' — o que importa porque o registro do M. ramirezi, ja no banco, carrega 'borboleta-boliviana' entre os nomes populares dele. Sao dois peixes diferentes e o comercio brasileiro os separa pelo nome; a ficha tem de separar tambem."
+  },
+  {
+   "id": "puntius-titteya",
+   "entidade": "especie",
+   "nome_cientifico": "Puntius titteya",
+   "sinonimos_cientificos": [
+    "Barbus titteya"
+   ],
+   "nomes_populares_br": [
+    "barbo cereja",
+    "barbo-cereja",
+    "cherry barb"
+   ],
+   "familia": "Cyprinidae",
+   "origem_geografica": "Ásia: Sri Lanka, das bacias do Kelani ao Nilwala",
+   "porte_adulto_cm": 5.0,
+   "porte_medida": "TL",
+   "porte_sexo": null,
+   "expectativa_vida_anos": null,
+   "temperatura_C": {
+    "min": 23,
+    "max": 27
+   },
+   "temperatura_e_tolerancia": false,
+   "ph": {
+    "min": 6.0,
+    "max": 8.0
+   },
+   "dureza_dgh": {
+    "min": 5,
+    "max": 19
+   },
+   "cardume_minimo": 6,
+   "cardume_recomendado_ate": 10,
+   "comprimento_minimo_aquario_cm": 60,
+   "base_minima_cm": {
+    "comprimento": 60,
+    "largura": 30
+   },
+   "chao_declarado_para": {
+    "arranjos": [
+     "nao-declarado"
+    ],
+    "frase": "dimensoes de base de pelo menos 60 x 30 cm ou equivalente sao necessarias"
+   },
+   "altura_minima_cm": null,
+   "volume_minimo_declarado_L": null,
+   "nivel_natacao": null,
+   "comportamento": null,
+   "convivencia": "cardume",
+   "alimentacao": null,
+   "dificuldade": null,
+   "exige_aquario_maduro": null,
+   "disponibilidade_br": null,
+   "fontes": [
+    {
+     "origem": "base-cientifica-via-busca",
+     "status": "base-cientifica-via-busca",
+     "referencia": "FishBase - ficha da especie (cherry barb), servida tambem pelo endereco de sinonimo Barbus-titteya: max 5,0 cm TL, comprimento comum 2,5 cm TL; 23 a 27 C; pH 6,0 a 8,0; dH 5 a 19; familia Cyprinidae; Asia: Sri Lanka, das bacias do Kelani ao Nilwala, em riachos muito sombreados de agua rasa e lenta, com substrato de silte e folhas. A secao de aquario NAO declara numero de grupo nem tamanho minimo de aquario.",
+     "url": "https://www.fishbase.se/summary/6147",
+     "verificado_em": "2026-09-23",
+     "campos": [
+      "familia",
+      "origem_geografica",
+      "porte_adulto_cm",
+      "porte_medida",
+      "temperatura_C",
+      "ph",
+      "dureza_dgh"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 23/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org e seriouslyfish.com, reconferido nesta data por curl E por WebFetch. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: dimensoes de base de pelo menos 60 x 30 cm ou equivalente sao necessarias; e uma especie de cardume por natureza, e pelo menos 6 a 10 exemplares devem ser comprados - manter nesse numero deixa o peixe menos arisco, resulta num conjunto mais natural e faz os machos desenvolverem cor melhor na presenca de rivais da mesma especie; escolha sem ressalva para iniciante, e um dos pequenos ciprinideos mais onipresentes do hobby.",
+     "url": "https://www.seriouslyfish.com/species/puntius-titteya/",
+     "verificado_em": "2026-09-23",
+     "campos": [
+      "comprimento_minimo_aquario_cm",
+      "base_minima_cm",
+      "chao_declarado_para",
+      "cardume_minimo",
+      "cardume_recomendado_ate",
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 23/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconferido nesta data por curl e por WebFetch. A clausula da base e a do grupo voltaram em DUAS buscas independentes, com o mesmo numero; a linha de temperatura da ficha NAO voltou em nenhuma e por isso nao foi gravada. A confirmar na ficha."
+    }
+   ],
+   "conflitos": [],
+   "verificado_em": "2026-09-23",
+   "status_registro": "completo",
+   "observacao": "Terceiro barbo elegivel do banco, e o que destrava a nona categoria do eixo /peixes/ pelo minimo exato do 16.5. As duas fontes NAO se cruzam em nenhum campo: a base cientifica declara porte e agua e diz, com todas as letras, que a secao de aquario dela nao traz grupo nem tamanho de aquario; o compendio declara a base e o grupo. Por isso o registro nasce sem um unico conflito, o que nao acontece com os outros dois barbos. O que a ficha NAO pode fazer: publicar os 5,0 cm TL como porte esperado ao lado dos 65 a 75 mm que o compendio publica para o barbo rosado - sao reguas diferentes e especies diferentes."
   }
  ],
  "atualizado_em": "2026-09-13",
