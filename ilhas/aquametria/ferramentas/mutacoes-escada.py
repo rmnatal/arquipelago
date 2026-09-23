@@ -70,6 +70,60 @@ def no_esquema(mudanca):
     return aplicar
 
 
+def troca_em(arquivo, velho, novo, vezes=1):
+    """Troca texto num arquivo e MORRE ALTO se o alvo nao existir.
+
+    Escrito em 23/09/2026, depois de quatro mutacoes deste arquivo passarem
+    verdes sem tocar em nada. Elas usavam `.replace()` cru dentro de um lambda,
+    e `.replace()` de um alvo que sumiu **nao falha: devolve o texto igual**. A
+    coleta pela Open API trocou as URLs cruas do catalogo por links curtos, os
+    alvos literais escritos em 14/09 deixaram de existir, e a lista continuou
+    dizendo "reprovada" para mutacoes que nunca foram aplicadas.
+
+    E a mesma licao que o `mutacoes-coleta-shopee.py` aprendeu no mesmo dia por
+    outro caminho: **mutacao inerte nao prova nada, e a unica defesa e o alvo
+    falhar alto.**
+    """
+    def aplicar(base):
+        caminho = base / arquivo
+        texto = caminho.read_text(encoding='utf-8')
+        if velho not in texto:
+            raise SystemExit(
+                'ALVO SUMIU em %s: %r\nMutacao inerte nao prova nada. '
+                'Atualize a lista junto com o codigo.' % (arquivo, velho[:90]))
+        caminho.write_text(texto.replace(velho, novo, vezes), encoding='utf-8')
+    return aplicar
+
+
+def troca_no_item(arquivo, id_item, velho, novo):
+    """Como `troca_em`, mas SO dentro do bloco daquele item do catalogo.
+
+    Escrito em 23/09/2026 porque a mutacao "o piso some do catalogo" sobreviveu
+    sem que nada estivesse errado: o alvo literal existia, o `.replace(...,1)`
+    pegou a PRIMEIRA ocorrencia, e a primeira ocorrencia era de outro registro
+    que nem aparece na tela medida. Alvo que casa com varios itens nao escolhe:
+    ele sorteia.
+    """
+    def aplicar(base):
+        caminho = base / arquivo
+        texto = caminho.read_text(encoding='utf-8')
+        marca = "'id' => '%s'," % id_item
+        i = texto.find(marca)
+        if i < 0:
+            raise SystemExit('ALVO SUMIU em %s: nao achei o item %r' % (arquivo, id_item))
+        fim = texto.find("'id' => '", i + len(marca))
+        if fim < 0:
+            fim = len(texto)
+        bloco = texto[i:fim]
+        if velho not in bloco:
+            raise SystemExit(
+                'ALVO SUMIU dentro de %s em %s: %r\nMutacao inerte nao prova nada.'
+                % (id_item, arquivo, velho[:90]))
+        caminho.write_text(texto[:i] + bloco.replace(velho, novo, 1) + texto[fim:],
+                           encoding='utf-8')
+    return aplicar
+
+
 def busca_de(chave):
     return 'https://shopee.com.br/search?keyword=' + chave.replace(' ', '%20')
 
@@ -96,8 +150,12 @@ MUTACOES = [
     (BANCO, 'V26', 'a palavra-chave da busca some: o piso que a maquina fabrica sozinha deixa de existir',
      no_produto(MIDIA, SEM_FICHA, lambda a: a.update({'url_busca_produto': None}))),
 
+    # PRODUZ O MUNDO desde 23/09/2026: antes bastava apagar o motivo, porque
+    # nenhum item tinha piso encurtado. Com os 78 encurtados, apagar so o motivo
+    # nao cria divida nenhuma — o item TEM piso — e a mutacao virou inerte.
     (BANCO, 'V26', 'o item fica sem piso e sem dizer o que trava o piso: divida que ninguem consegue contar',
-     no_produto(MIDIA, SEM_FICHA, lambda a: a.update({'motivo_sem_url_busca': None}))),
+     no_produto(MIDIA, SEM_FICHA,
+                lambda a: a.update({'url_busca': None, 'motivo_sem_url_busca': None}))),
 
     (BANCO, 'V27', 'A ARMADILHA DA 25.3: a busca perde o contexto e vira marca pura',
      no_produto(MIDIA, SEM_FICHA, lambda a: a.update({'url_busca_produto': busca_de('JBL')}))),
@@ -119,9 +177,7 @@ MUTACOES = [
                 .update({'nome': 'shopee'}))),
 
     (ESCADA, None, 'O NUMERO DIGITADO: o relatorio passa a jurar que o piso existe',
-     lambda base: (base / BANCO).write_text(
-         (base / BANCO).read_text(encoding='utf-8').replace(
-             'escada["com_piso"], total))', '78, total))'), encoding='utf-8')),
+     troca_em(BANCO, 'escada["com_piso"], total))', '0, total))')),
 
     # ---- A ESCADA DENTRO DO BANCO, nos campos que nasceram em 14/09/2026 ----
 
@@ -153,32 +209,61 @@ MUTACOES = [
     # devolve a frase proibida ao selo do cartao que sai pelo piso, que e o ramo
     # que 39 dos 78 itens percorrem.
     (ESCADA, None, 'A FRASE PROIBIDA VOLTA ao selo do cartao que sai pelo piso',
-     lambda base: (base / 'snippets/aquametria-calculadora-vazao.php').write_text(
-         (base / 'snippets/aquametria-calculadora-vazao.php').read_text(encoding='utf-8').replace(
-             "'selo'     => $paga ? 'busca patrocinada' : 'busca na Shopee, sem comissão',",
-             "'selo'     => 'link de loja em breve',", 1),
-         encoding='utf-8')),
+     troca_em('snippets/aquametria-calculadora-vazao.php',
+              "'selo'     => $paga ? 'busca patrocinada' : 'busca na Shopee, sem comissão',",
+              "'selo'     => 'link de loja em breve',")),
 
     (ESCADA, None, 'A URL INVENTADA: o cartao passa a apontar para um endereco que o banco nao conhece',
-     lambda base: (base / 'snippets/aquametria-calculadora-vazao.php').write_text(
-         (base / 'snippets/aquametria-calculadora-vazao.php').read_text(encoding='utf-8').replace(
-             "'url'      => $p['busca'],",
-             "'url'      => 'https://shopee.com.br/search?keyword=aquario',", 1),
-         encoding='utf-8')),
+     troca_em('snippets/aquametria-calculadora-vazao.php',
+              "'url'      => $p['busca'],",
+              "'url'      => 'https://shopee.com.br/search?keyword=aquario',")),
 
     (ESCADA, None, 'O PISO SOME DO CATALOGO do snippet e o cartao volta a ser <div> sem destino',
-     lambda base: (base / 'snippets/aquametria-calculadora-midia.php').write_text(
-         (base / 'snippets/aquametria-calculadora-midia.php').read_text(encoding='utf-8').replace(
-             "'busca' => 'https://shopee.com.br/search?keyword=JBL",
-             "'busca' => null, 'busca_nao' => 'https://shopee.com.br/search?keyword=JBL", 1),
-         encoding='utf-8')),
+     troca_no_item('snippets/aquametria-calculadora-midia.php', 'jbl-micromec-1l',
+                   "'busca' => 'https://s.shopee.com.br/",
+                   "'busca' => null, 'busca_nao' => 'https://s.shopee.com.br/")),
 
+    # ---- OS DOIS EIXOS, separados em 23/09/2026 quando o piso passou a pagar --
+    # Ate a Open API chegar, "e ficha" e "paga comissao" eram a mesma coisa, e a
+    # regua somava as duas num conjunto so. No dia em que os 78 pisos foram
+    # encurtados ela reprovou sete cartoes certos, exigindo a linha discreta do
+    # piso de cartoes cujo botao JA E o piso. Estas tres mutacoes existem para
+    # os eixos nao voltarem a se colar.
+
+    (ESCADA, None, 'O PISO PAGO VOLTA A CONTAR COMO FICHA, e o cartao que JA E o piso'
+                   ' passa a dever a linha discreta do piso embaixo de si mesmo',
+     troca_em(ESCADA, '                pisos_pagos.add(a["url_busca"])',
+              '                fichas.add(a["url_busca"])')),
+
+    (ESCADA, None, 'O PISO ENCURTADO DEIXA DE EXIGIR sponsored: o link que RENDE comissao'
+                   ' vai para a tela declarado como nao pago',
+     troca_em(ESCADA, '            paga = e_ficha or e_piso_pago',
+              '            paga = e_ficha')),
+
+    (ESCADA, None, 'O PISO PAGO SOME DO BANCO e a tela continua servindo o link encurtado:'
+                   ' href que a regua nao consegue explicar',
+     lambda base: (base / ESCADA).write_text(
+         (base / ESCADA).read_text(encoding='utf-8').replace(
+             '            if preenchido(a.get("url_busca")):\n'
+             '                pisos_pagos.add(a["url_busca"])\n'
+             '            elif preenchido(a.get("url_busca_produto")):',
+             '            if False:\n'
+             '                pass\n'
+             '            elif preenchido(a.get("url_busca_produto")):'), encoding='utf-8')),
+
+    # PRODUZ O MUNDO desde 23/09/2026, e o motivo e bom: depois da coleta pela
+    # Open API **nao existe mais busca CRUA no banco** — os 78 pisos foram
+    # encurtados, e todos pagam. Trocar o rel por 'sponsored' fixo deixou de
+    # mentir sobre coisa alguma, e a mutacao virou inerte sem que nada tivesse
+    # quebrado. Entao ela devolve UM item ao mundo antigo (piso cru, que nao
+    # paga) e SO ENTAO mente sobre ele. E a mesma receita da mutacao 4 do
+    # `mutacoes-dimensao.py`: quando o mundo em que o defeito aparece nao existe
+    # mais no banco, o portao o produz em vez de calar.
     (ESCADA, None, 'A MENTIRA DE MAQUINA: a busca CRUA vai para a tela marcada como patrocinada',
-     lambda base: (base / 'snippets/aquametria-calculadora-aquecedor.php').write_text(
-         (base / 'snippets/aquametria-calculadora-aquecedor.php').read_text(encoding='utf-8').replace(
-             "return $compra['afiliado'] ? 'sponsored noopener' : 'nofollow noopener';",
-             "return 'sponsored noopener';", 1),
-         encoding='utf-8')),
+     [no_produto(MIDIA, SEM_FICHA, lambda a: a.update({'url_busca': None})),
+      'ferramentas/gerar-catalogo-midias.py',
+      troca_em('snippets/aquametria-calculadora-midia.php',
+               "'busca_afiliada' => false,", "'busca_afiliada' => true,")]),
 
     (ESCADA, None, 'o cartao COM ficha perde a linha discreta do piso, e volta a morrer com o anuncio',
      lambda base: (base / 'snippets/aquametria-calculadora-iluminacao.php').write_text(
@@ -217,7 +302,20 @@ def main():
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp) / 'ilha'
             shutil.copytree(RAIZ, base, ignore=shutil.ignore_patterns('node_modules', '.git'))
-            aplicar(base)
+            # A MUTACAO PODE SER UMA RECEITA E NAO UM PASSO SO. Quando o mundo
+            # em que o defeito aparece deixa de existir no banco, produzi-lo
+            # costuma exigir tres atos — mexer no banco, rodar o gerador que
+            # leva o banco para dentro do snippet, e so entao mentir na tela.
+            # Um passo que e string e um script a rodar na propria copia.
+            for passo in (aplicar if isinstance(aplicar, list) else [aplicar]):
+                if isinstance(passo, str):
+                    r = subprocess.run(['python3', passo], cwd=str(base),
+                                       capture_output=True, text=True)
+                    if r.returncode != 0:
+                        raise SystemExit('o passo %s falhou na copia: %s'
+                                         % (passo, (r.stderr or r.stdout)[-400:]))
+                else:
+                    passo(base)
             codigo, saida = rodar(base, portao)
             marca = Path(portao).name
             if codigo == 0:

@@ -115,26 +115,43 @@ def corpo_servido(shortcode):
 def saidas_do_banco():
     """Toda URL de compra que o banco autoriza a aparecer numa pagina.
 
-    Duas listas, e elas nao se misturam: a FICHA paga comissao e a busca CRUA
-    nao. Um href que nao esteja em nenhuma das duas e URL inventada pelo
-    snippet, que e o defeito que esta regua existe para pegar.
+    TRES listas, e ate 23/09/2026 eram duas. A versao antiga somava o
+    `url_busca` ENCURTADO ao conjunto das fichas, com o argumento escrito no
+    proprio docblock: *"a FICHA paga comissao e a busca CRUA nao"*. Naquele
+    mundo isso era verdade por acidente — o unico link que pagava era a ficha,
+    porque encurtar a busca exigia o Raphael abrir o painel, e nenhum registro
+    tinha `url_busca`.
+
+    **A Open API (25.6) desfez a coincidencia no dia em que os 78 pisos foram
+    encurtados**: a busca passou a pagar comissao e continuou sendo a busca. A
+    regua, lida ao pe da letra, passou a exigir "a linha discreta do piso
+    embaixo" de cartoes cujo botao JA E o piso — sete cartoes reprovados, todos
+    certos. E a mesma familia das duas reguas que a leva 8 consertou em 22/09:
+    regra que so funcionava porque duas coisas andavam juntas para de medir no
+    dia em que elas se separam.
+
+    Sao dois eixos independentes, e agora eles se cruzam:
+      - **o que o link E** — ficha de produto ou busca. So a ficha leva a linha
+        discreta do piso embaixo (25.2), porque so ela pode apodrecer.
+      - **se o link PAGA** — `sponsored` contra `nofollow`. Isso decide a
+        marcacao e o selo, e nada mais.
     """
-    fichas, pisos = set(), set()
+    fichas, pisos_pagos, pisos_crus = set(), set(), set()
     for caminho in ARQUIVOS.values():
         for p in carregar(caminho).get("produtos", []):
             a = p.get("afiliado") or {}
             if preenchido(a.get("url")):
                 fichas.add(a["url"])
             if preenchido(a.get("url_busca")):
-                fichas.add(a["url_busca"])
+                pisos_pagos.add(a["url_busca"])
             elif preenchido(a.get("url_busca_produto")):
-                pisos.add(a["url_busca_produto"])
-    return fichas, pisos
+                pisos_crus.add(a["url_busca_produto"])
+    return fichas, pisos_pagos, pisos_crus
 
 
 def mede_o_piso_na_tela():
     print("\n== o piso da 25.2 chega na tela, e nenhuma pagina fica sem saida de compra ==")
-    fichas, pisos = saidas_do_banco()
+    fichas, pisos_pagos, pisos_crus = saidas_do_banco()
 
     for prefixo, (shortcode, _entidade) in sorted(CALCULADORAS.items()):
         corpo, erro = corpo_servido(shortcode)
@@ -168,7 +185,9 @@ def mede_o_piso_na_tela():
             rel = rel.group(1) if rel else ""
 
             e_ficha = href in fichas
-            e_piso = href in pisos
+            e_piso_pago = href in pisos_pagos
+            e_piso_cru = href in pisos_crus
+            e_piso = e_piso_pago or e_piso_cru
             confere(e_ficha or e_piso,
                     "%s cartao %d: aponta para %r, que nao e ficha nem piso de nenhum item do banco"
                     % (prefixo, i, href[:80]))
@@ -176,13 +195,21 @@ def mede_o_piso_na_tela():
             # A marcacao do link tem de dizer o que ele E. `sponsored` e do que
             # paga; a busca crua nao paga, e marca-la como paga seria declarar em
             # formato de maquina o contrario do que a pagina diz em texto.
-            if e_ficha:
-                confere("sponsored" in rel,
-                        "%s cartao %d: ficha de afiliado sem 'sponsored' no rel (%r)"
-                        % (prefixo, i, rel))
-            elif e_piso:
-                confere("nofollow" in rel and "sponsored" not in rel,
-                        "%s cartao %d: busca CRUA marcada como paga (%r)" % (prefixo, i, rel))
+            # A AFIRMACAO E DE IGUALDADE, E ISSO NAO E ESTILO. Escrita como dois
+            # ramos (`if paga: exige sponsored / elif cru: exige nofollow`), ela
+            # deixa de medir o cartao que nao cai em ramo nenhum — e foi assim
+            # que a mutacao "o piso encurtado deixa de exigir sponsored"
+            # sobreviveu em 23/09/2026: tirado o `e_piso_pago` do primeiro ramo,
+            # os cartoes do piso simplesmente pararam de ser conferidos, em
+            # silencio. Com `==`, tirar um termo nao cala a regua: faz a regua
+            # discordar da tela.
+            paga = e_ficha or e_piso_pago
+            confere(("sponsored" in rel) == paga,
+                    "%s cartao %d: rel=%r, e este link %s comissao"
+                    % (prefixo, i, rel, "PAGA" if paga else "NAO paga"))
+            confere(("nofollow" in rel) == (not paga),
+                    "%s cartao %d: rel=%r, e este link %s comissao"
+                    % (prefixo, i, rel, "PAGA" if paga else "NAO paga"))
 
             confere('target="_blank"' in atributos and "noopener" in rel,
                     "%s cartao %d: link de loja sem aba nova ou sem noopener" % (prefixo, i))
@@ -193,9 +220,35 @@ def mede_o_piso_na_tela():
             if e_ficha:
                 confere(piso_do_item is not None,
                         "%s cartao %d: tem ficha e nao carrega o piso embaixo (25.2)" % (prefixo, i))
+                # E O ENDERECO DELA TAMBEM E CONFERIDO. Ate 23/09/2026 a regua
+                # so perguntava se a linha EXISTIA, e nunca para onde ela
+                # levava: uma URL inventada ali passava batida, enquanto a
+                # mesma URL inventada no botao do cartao era pega. Metade do
+                # piso media, metade nao.
+                if piso_do_item is not None:
+                    destino = piso_do_item.group(1).replace("&amp;", "&")
+                    confere(destino in pisos_pagos or destino in pisos_crus,
+                            "%s cartao %d: a linha do piso aponta para %r, que nao e piso "
+                            "de nenhum item do banco" % (prefixo, i, destino[:80]))
             else:
                 confere(piso_do_item is None,
                         "%s cartao %d: ja E o piso e ainda repete a linha do piso" % (prefixo, i))
+
+        # ------------------------------------------------------------------
+        # A TABELA PRE-RENDERIZADA, que e o que chega a quem nao tem JavaScript
+        # (portao 22.8) e ao robo de busca. Ate 23/09/2026 esta regua media SO
+        # os cartoes da vitrine, e a tabela — que sai da MESMA
+        # `aquametria_cN_compra()` — nao era olhada por ninguem. O buraco so
+        # apareceu quando a coleta pela Open API deu ficha aos itens do topo:
+        # a mutacao "A URL INVENTADA" deixou de acertar um cartao e passou a
+        # acertar so a tabela, e a bateria ficou verde com uma URL inventada
+        # servida na pagina. Meia regua nao e regua.
+        # ------------------------------------------------------------------
+        for destino in re.findall(r'<a class="aqm-%s-prod" href="([^"]+)"' % prefixo, corpo):
+            destino = destino.replace("&amp;", "&")
+            confere(destino in fichas or destino in pisos_pagos or destino in pisos_crus,
+                    "%s: a tabela servida aponta para %r, que nao e ficha nem piso de "
+                    "nenhum item do banco" % (prefixo, destino[:80]))
 
 
 def main():

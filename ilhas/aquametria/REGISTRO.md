@@ -14,6 +14,245 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-23 10h17Z–12hZ — T3(f): A OPEN API DA SHOPEE CHEGA À ILHA, E OS 78 ITENS PASSAM A RENDER COMISSÃO (esquema de produtos versão 12, C3 1.7.0, C5 1.7.0, C12 1.5.0, C15 1.6.0, manifest revisão 100; NENHUMA URL NOVA — seguem 48 — e NENHUMA leva gasta do teto da 21.4)
+
+**O BLOCO ERA O MAIOR PARADO DA FILA, e quem o nomeou foi a leva 8 na véspera**,
+ao conferir a seção 25 do contrato antes de fechar. A 25.6 mediu em 16/09, com
+chamada real, que o `productOfferV2` devolve o `offerLink` já encurtado; a
+25.2-b (18/09) declarou que link que não rende comissão *"deixou de ser
+aceitável como padrão"*. **Esta ilha esteve fora do foco de 16 a 21/09 e herdou
+as duas regras sem nunca aplicar nenhuma.** O foco voltou em 21/09 e este é o
+primeiro bloco que paga essa dívida.
+
+### 1. O QUE A LEVA 8 MANDOU CONFERIR ANTES DE COLETAR
+
+`open-api.affiliate.shopee.com.br` **está** na lista de domínios permitidos
+deste ambiente: `200` em quatro passadas. Não virou despacho para o Raphael — a
+25.6 avisa que essa lista é passo dele e que nenhuma rotina a alcança, e por
+isso a conferência vinha antes de qualquer coleta.
+
+A credencial saiu do documento privado `arquipelago-credenciais` do Drive,
+entrou no processo **só como variável de ambiente** e não existe em arquivo, em
+log, em commit nem neste registro. `git diff --cached` varrido por `AppID` e por
+`Senha` antes de cada um dos três pushes: zero ocorrência.
+
+### 2. DUAS CAMADAS DE RISCO MUITO DIFERENTE, E É O QUE A PRÓXIMA ILHA COPIA
+
+**Camada 1 — o piso encurtado.** Não tem casamento nenhum: a busca já estava
+escolhida e conferida desde 13/09 em `url_busca_produto`, e encurtá-la é uma
+chamada de rede sobre uma URL que ninguém precisa identificar. **78 de 78, zero
+falha**, com `sub_id_1=aquametria` e o `sub_id_2` da calculadora. É ela que
+fecha a 25.2-b, e ela vale para os 78 sem exceção e sem julgamento.
+
+**Camada 2 — a ficha e a foto.** Aqui mora o risco, e ela ficou em **33 de 78**,
+com **9 fotos novas**, todas com largura e altura lidas nos **bytes do arquivo**
+(cabeçalho JPEG, PNG ou WebP), nunca supostas. 45 sem ficha é **medição honesta
+e não falha**: casamento errado no banco é pior que casamento nenhum, porque
+parece dado.
+
+**NENHUMA LINHA DE SNIPPET MUDOU**, exatamente como o despacho do Raphael de
+14/09 previu. Os catálogos regerados trazem `busca_afiliada: true`, e a casca
+sozinha vira o `rel` de `nofollow` para `sponsored` e o selo do cartão de
+"busca na Shopee, sem comissão" para "busca patrocinada".
+
+### 3. A ARMADILHA DESTA ILHA NÃO É NENHUMA DAS CINCO DA 25.7
+
+As cinco foram medidas na Robometria, que vende **peça**. Esta ilha vende o
+**aparelho**, e o aparelho vem em linha: o Roxin HT-1300/Q3 existe em 25, 50,
+100, 200 e 300 W. O título do anúncio traz a marca certa, a linha certa e a
+potência **do vizinho**.
+
+Não é hipótese: a ilha já pagou por isso no ar. O `ESTADO.md` registra, em
+07/09, que `ista-i-401-45` entrou porque *"o anúncio da Shopee é da luminária de
+45 cm, não a de 60 do banco — colar o link no registro errado faria a C15
+prometer 3717 lm e entregar 810"*. E o esquema já proibia, **em prosa**, na
+lista `afiliado.regras`. **Prosa não conta e prosa não barra anúncio** — mesma
+família do `afiliado.intestavel` (14/09) e do `chao_declarado_para` (22/09).
+
+**O PORTÃO SAI DO BANCO, NÃO DE LISTA ESCRITA À MÃO**, e são três regras:
+- a medida **conflitante** barra sempre (título que diz 300 W para o registro de
+  25 W não está calado: está dizendo outra coisa);
+- a medida **ausente** barra só onde ela discrimina — onde irmãos dividem o
+  mesmo código base. Onde o código já é único, como no SunSun HW-303B, não: o
+  varejo anuncia canister pela **vazão** e nunca pelo consumo, e cobrar watt ali
+  reprovaria o anúncio certo;
+- e as palavras que, depois do código, nomeiam **outro produto do banco** saem
+  da comparação entre irmãos. A Chihiros tem WRGB II, WRGB II Pro e WRGB II
+  Slim, e a WRGB II 90 e a Pro 90 são **as duas de 90 cm** — ali nem a medida
+  separa, só o sufixo.
+
+Irmão novo entrando no banco liga esses portões sozinho. Lista dentro da régua
+envelhece calada.
+
+### 4. O PORTÃO PEGOU QUATRO DEFEITOS EM MIM ANTES DE QUALQUER COLETA
+
+Os quatro estão comentados no lugar onde mora a regra que os conserta:
+1. **o título achatado**, que tirava a fronteira das palavras: com o título sem
+   espaços, "Roxin" deixa de ter borda e o portão reprovava o anúncio certo
+   dizendo que faltava a marca;
+2. **a medida cobrada de quem não precisa dela** (o canister);
+3. **o código base comendo o `2213`** do Eheim classic 250, que é o código do
+   filtro e não o tamanho dele — uma regra que jogasse fora todo número final
+   comeria justamente o que identifica o produto;
+4. **a `linha` valendo como identidade**: "HW" está no título do HW-303, do
+   HW-603B e do HW-702A. Linha é sobrenome, não identifica produto.
+
+### 5. E AS DOZE MUTAÇÕES PASSARAM VERDES MENTINDO NA PRIMEIRA RODADA
+
+Isto é o achado de método do bloco. A cópia ia para `<tmp>/ilha`, e dali o
+caminho relativo de `coletar-shopee.py` apontava para `/tmp/ferramentas/shopee-api.py`,
+que não existe: **o portão morria de `FileNotFoundError` antes de medir coisa
+alguma**, e o `returncode != 0` era lido como "mutação reprovada". As doze
+saíram verdes sem que uma única regra tivesse sido exercida — o defeito que
+aquele arquivo existe para impedir nos outros.
+
+Pego porque o **controle positivo rodava na árvore real** enquanto as mutações
+rodavam na cópia quebrada. O conserto tem duas partes: a cópia reproduz o layout
+do repositório, e **cada cópia tem de APROVAR antes de ser mutada**. Com isso
+três mutações se revelaram vivas e viraram regra — entre elas a dos sufixos que
+vêm do banco.
+
+### 6. O ENSAIO ACHOU SEIS DEFEITOS QUE NENHUM TESTE ESCRITO DE CABEÇA PEGARIA
+
+É por isso que a 25.3 manda conferir a amostra **com os olhos** antes de gravar,
+e é por isso que `--ensaio` não grava nada. Todos os seis são títulos reais:
+- **a VOLTAGEM do anúncio é medida.** Sete registros Maxxi existem separados por
+  ela — o M-200 aparece duas vezes, uma por anúncio —, e os gêmeos casaram com o
+  **mesmo** anúncio de 110 V. O campo `afiliado.voltagem_anuncio` guardava esse
+  número desde 07/09 e **ninguém o lia**. Agora cada gêmeo casa com o anúncio da
+  sua tomada. 110 e 127 são a mesma tomada, e o varejo usa os dois nomes.
+- **a lâmpada UV do canister** casou com o canister;
+- **o balde de reposição** do Atman casou com o filtro — e a palavra que o
+  denuncia vinha no **fim** do título, fora dos 40 caracteres que o portão olhava;
+- **o refil de um filtro é peça** (o de uma mídia é o produto);
+- **"Carvão Ativado Matrix Carbon" casou com o Seachem Matrix.** São dois
+  produtos do mesmo banco que nem fazem a mesma coisa: um é colônia de bactéria,
+  o outro adsorve;
+- **a medida cobrada passou a ser a que DISCRIMINA**, não qualquer uma: os dois
+  M-200 têm a mesma potência, então o "200W" do título satisfazia os dois.
+
+### 7. E O VALIDADOR PEGOU O ÚLTIMO, QUE TAMBÉM ERA MEU
+
+As 33 imagens nasceram com `fonte: "shopee-api"` — nome de **ferramenta** num
+campo cujo vocabulário diz de onde veio o **arquivo** — e sem as três datas
+obrigatórias. **45 erros de uma vez.** A foto da API é a foto do anúncio, então
+ela é `anuncio-shopee`, igual às oito que já estavam no banco.
+
+O conserto ensinou junto: a primeira regra de reescrita perguntava pelo
+`medida_como` para saber se a imagem era desta ferramenta — e as 33 malformadas
+**não tinham `medida_como` nenhum**, porque era justamente um dos campos que
+faltavam. **Regra de conserto que depende do campo quebrado não conserta nada.**
+
+### 7-b. E O PISO PASSAR A PAGAR QUEBROU UMA RÉGUA QUE MEDIA CERTO — SEIS MUTAÇÕES MORTAS DE UMA VEZ
+
+**Este é o achado mais caro do bloco, e ele não estava em lugar nenhum da
+fila.** `teste-escada-compra.py` reprovou **sete cartões que estavam certos**,
+cobrando *"a linha discreta do piso embaixo"* de cartões cujo botão **já é o
+piso**. A causa está escrita no docblock da própria régua, de 14/09: *"a FICHA
+paga comissão e a busca CRUA não"*. **Era verdade por acidente** — o único link
+que pagava era a ficha, porque encurtar a busca exigia o Raphael abrir o painel.
+A Open API desfez a coincidência: a busca passou a pagar e continuou sendo a
+busca.
+
+São **dois eixos independentes**, e a régua os tratava como um:
+- **o que o link É** — ficha ou busca. Só a ficha leva a linha do piso embaixo,
+  porque só ela pode apodrecer (a cicatriz de 13/09: quatro de nove links do
+  Clube do Mosaico morreram em doze horas).
+- **se o link PAGA** — `sponsored` contra `nofollow`. Decide a marcação e o
+  selo, e nada mais.
+
+É a mesma família das duas réguas que a leva 8 consertou na véspera: **regra que
+só funciona porque duas coisas andam juntas para de medir no dia em que elas se
+separam.**
+
+**E O ESTRAGO ERA MAIOR DO QUE OS SETE CARTÕES.** Rodada `mutacoes-escada.py`,
+**seis das 23 mutações que passavam verdes em 22/09 tinham morrido** — todas
+minhas, e todas pelo mesmo motivo: a coleta apagou do banco o mundo em que elas
+aconteciam. Rodar o arquivo no commit anterior deu 23 de 23, que é como se sabe
+que a dívida é desta execução e não herdada.
+
+- **quatro eram `.replace()` cru dentro de um lambda**, e `.replace()` de alvo
+  que sumiu **não falha: devolve o texto igual**. Os links curtos substituíram
+  as URLs cruas que aqueles alvos citavam literalmente. Agora existe
+  `troca_em()`, que morre alto — a mesma lição que o `mutacoes-coleta-shopee.py`
+  aprendeu no mesmo dia por outro caminho.
+- **uma sorteava o alvo**: `'busca' => 'https://...'` casa com vários itens, e
+  `.replace(..., 1)` pega o primeiro, que era um registro que nem aparece na
+  tela medida. Agora existe `troca_no_item()`, que procura dentro do bloco
+  daquele `id`.
+- **duas precisavam PRODUZIR o mundo**, porque depois da coleta **não existe
+  mais busca crua neste banco**: a mutação devolve um item ao mundo antigo e só
+  então mente sobre ele. É a receita que o `mutacoes-dimensao.py` já usava.
+
+**E DUAS FALHAS DE COBERTURA APARECERAM NO MEIO DISSO, as duas de verdade:**
+1. **A tabela pré-renderizada não era medida.** A régua olhava só os cartões da
+   vitrine, e a tabela — que é o que chega a quem não tem JavaScript (portão
+   22.8) e ao robô de busca — sai da **mesma** `aquametria_cN_compra()` e não
+   era conferida por ninguém. O buraco só apareceu quando a coleta deu ficha aos
+   itens do topo: a mutação da URL inventada deixou de acertar um cartão, passou
+   a acertar só a tabela, e a bateria **ficou verde com uma URL inventada
+   servida na página**.
+2. **A linha discreta do piso tinha o endereço não conferido.** A régua
+   perguntava se ela existia e nunca para onde levava.
+
+**E a afirmação do `rel` virou igualdade em vez de dois ramos.** Escrita como
+`if paga: exige sponsored / elif cru: exige nofollow`, ela **deixa de medir o
+cartão que não cai em ramo nenhum** — foi assim que a mutação "o piso encurtado
+deixa de exigir sponsored" sobreviveu. Com `==`, tirar um termo não cala a
+régua: faz a régua discordar da tela.
+
+`teste-escada-compra.py` foi de 644 para **703 afirmações**;
+`mutacoes-escada.py` de 23 para **26, todas reprovadas**.
+
+### 8. O ESQUEMA FOI À VERSÃO 12, COM DOIS CAMPOS
+
+- **`afiliado.encurtamento_tentado_em`** — a trava que a 25.2-b exige com todas
+  as letras: *"ausente é diferente de tentado-e-falhou, e essa distinção é a
+  regra inteira"*. Data e não booleano: tentativa de um mês atrás não é a mesma
+  coisa que tentativa de hoje. **78 de 78.**
+- **`imagem.alt_origem`** — porque quem lê os bytes do arquivo **não vê a
+  imagem**, e descrever o que ela mostra seria inventar. As 9 fotos novas nascem
+  com `'banco'`, e quem as substitui por `'vista'` é a Sentinela, que roda no
+  Chrome. Campo e não prosa, pelo mesmo motivo do `intestavel`: a Sentinela
+  precisa de uma LISTA do que falta descrever, não de um texto para ler.
+
+`ferramentas/shopee-api.py`, que é da raiz e vale para todas as ilhas, ganhou
+`sub_id_2` **opcional** — sem mudar o comportamento de quem não o passa. Ele
+existe porque esta ilha já gravava esse campo desde 07/09 com o código da
+calculadora, e link novo nascido sem ele entraria cego no painel.
+
+### 9. AS 25 FICHAS QUE JÁ EXISTIAM NÃO FORAM SOBRESCRITAS
+
+25 dos 33 casamentos caem em registros que **já têm `url`** — links feitos à mão
+em 07 e 09/09, cada um com o `sub_id_2` da calculadora que o gerou. Trocá-los
+por link novo apagaria a medição de **qual ferramenta vende**, que é a única
+coisa que o painel da Shopee sabe dizer sobre o assunto, e trocaria um link já
+conferido por outro sem história. Só **8** registros ganharam ficha nova. A
+foto, essa, entra do mesmo jeito: ela não disputa com nada.
+
+### 10. O QUE ESTE BLOCO DEIXA ABERTO, contado e não estimado
+
+- **45 itens sem ficha.** Medição honesta, e o motivo de cada recusa fica
+  escrito na passada.
+- **24 imagens antigas seguem sem largura e altura**, e a causa foi **medida
+  hoje**: `down-bs-br.img.susercontent.com` (o CDN do painel) devolve **403 de
+  proxy** desta nuvem, enquanto `cf.shopee.com.br` (o CDN da API) responde 200.
+  Quem tem foto da API tem dimensão; quem tem foto do painel não tem. Quem mede
+  as 24 é a Sentinela, no Chrome.
+- **Trocar a foto velha sem medida pela foto da API do mesmo anúncio** acabaria
+  com o salto de leiaute nessas 24 — e arriscaria descasar o `alt` que alguém
+  escreveu **vendo** a imagem. São duas opções defensáveis, então é **bloco e
+  não conserto** (19.2).
+- **A bancada ficou mais lenta**, e não por minha causa: `mutacoes-peixes.py`
+  (95 mutações × 3719 afirmações) é o portão longo desta ilha.
+
+### ITENS ESPERANDO LINK DE AFILIADO (item 5 do despacho da Sentinela de 13/09)
+
+**ZERO itens sem `url_busca` encurtada** — eram 78 desde 13/09. E **zero** sem
+saída de compra. **47 de 78 com ficha** (eram 39) e **41 de 78 com foto** (eram
+32). O relatório que este item pede muda de forma a partir de hoje: o número que
+importava era "quantos esperam link", e ninguém mais espera link.
+
 ## 2026-09-22 19h16Z — LEVA 8: A OITAVA CATEGORIA, E A PRIMEIRA EM QUE O CRITÉRIO DA LEVA ANTERIOR FALHARIA (peixes 1.13.0, manifest revisão 99, `/status` conferido na 99; QUATRO URLs novas — `/peixes/acaras/` e as fichas do acará-bandeira, do oscar e do acará-disco; a ilha vai de 44 para 48 URLs)
 
 **O BLOCO ERA O QUE A FILA DIZIA, e pela primeira vez em duas passadas ele saiu
