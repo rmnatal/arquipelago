@@ -1,5 +1,38 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.14.0 (23/09/2026) — PREPARAÇÃO DA LEVA 9: OS BARBOS GANHAM BANCO E A
+ * NONA CATEGORIA PASSA A SER POSSÍVEL. NENHUMA URL NOVA — seguem 48 — e nenhuma
+ * leva do teto da 21.4 gasta. O que muda nesta tela é só a contagem: o catálogo
+ * embutido vai de 32 para 34 espécies, porque `Puntius titteya` (barbo cereja)
+ * entrou no banco e `pethia-conchonius` (barbo rosado) saiu de `parcial` para
+ * `conflito` ao ganhar o segundo corpo de fonte. São 3 barbos elegíveis, o
+ * mínimo exato do 16.5 — os dois passos que a leva 8 nomeou na véspera.
+ *
+ *   A LISTA DE ESPÉCIES DA CATEGORIA CONTINUA SEM EXISTIR, e isso é preparo e
+ *   não esquecimento: `barbos` NÃO foi declarada em aquametria_peixes_categorias()
+ *   nem em aquametria_peixes_registro(). A preparação da leva 6 (v1.9.0) já tinha
+ *   tentado preencher a lista de uma categoria antes da leva e foi REPROVADA na
+ *   bancada; e a regra que a leva 5 deixou diz por quê — texto de categoria
+ *   escrito antes da leva é afirmação contra uma tabela que ninguém viu. O
+ *   `criterio` e a `linha_mestra` desta categoria nascem na execução que publicar
+ *   as quatro URLs, contra a tabela que a página serve, como as levas 7 e 8
+ *   fizeram.
+ *
+ *   O QUE A TABELA DELA JÁ DIZ, para quem escrever a leva: as três faixas
+ *   térmicas são 18 a 22 °C (rosado), 20 a 26 °C (sumatra) e 23 a 27 °C (cereja)
+ *   — a do rosado termina ANTES de a do cereja começar, e o sumatra é o único que
+ *   encosta nas duas. É a segunda categoria seguida em que a coluna que decide é
+ *   a temperatura, e aqui ela é uma escada de três degraus em vez do par que a
+ *   `acaras` achou. E, ao contrário dos acarás, os três portes estão na MESMA
+ *   régua (5,0 · 7,0 · 14,0 cm TL), então comparar porte aqui é legítimo.
+ *
+ *   E O CRITÉRIO NÃO PODE SER A FAMÍLIA, agora contado em vez de suposto:
+ *   Cyprinidae tem QUATRO elegíveis sem categoria, e o quarto é o kinguio, que
+ *   ninguém vende como barbo. Quem conta isso é
+ *   `ferramentas/varrer-categorias-possiveis.py`, que nasceu nesta execução para
+ *   matar a quarta lista escrita à mão desta família — a varredura que as levas 7
+ *   e 8 fizeram de cabeça, cada uma com números diferentes.
+ *
  * Versão: 1.13.0 (22/09/2026) — LEVA 8: A OITAVA CATEGORIA, E A PRIMEIRA EM QUE
  * O CRITÉRIO DA LEVA ANTERIOR FALHARIA. Quatro URLs novas: /peixes/acaras/ e as
  * fichas do acará-bandeira, do oscar e do acará-disco. A ilha vai de 44 para 48
@@ -553,7 +586,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.13.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.14.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
