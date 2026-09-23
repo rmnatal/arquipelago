@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 48
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-22T19:16Z
-executando_desde: null
+executando_desde: 2026-09-23T10:17Z
 bloco_atual: |
   LEVA 8 — A OITAVA CATEGORIA DO EIXO, E A PRIMEIRA EM QUE O CRITERIO DA LEVA ANTERIOR FALHARIA. Quatro URLs novas: /peixes/acaras/ e as fichas do acara-bandeira, do oscar e do acara-disco. A ilha vai de 44 para 48 URLs. Snippet aquametria-peixes 1.13.0, manifest revisao 99, /status conferido na 99. Segunda leva da semana que comecou em 21/09 (2 de 3 pela 21.4). Com ela a familia Cichlidae fica INTEIRA publicada, repartida em duas categorias — a primeira familia do banco em que isso acontece. NENHUMA COLETA: e a segunda leva seguida sem coleta nova, e o estoque acabou.
   1. O CRITERIO DA LEVA ANTERIOR FALHARIA AQUI, E ISSO SE MEDE. A leva 7 fechou comemorando um criterio verificavel DENTRO do banco: separar pelo nome que a pessoa digita, conferindo nomes_populares_br. Aqui ele falha pelo lado caro — QUATRO registros do banco trazem 'acara' entre os nomes populares, e o quarto e o acara-borboleta, que e o mikrogeophagus-ramirezi e ja e filha de /peixes/ciclideos-anoes/ desde a leva 6. Um criterio de nome tiraria uma filha da mae dela. Criterio bom nao e o que funcionou na ultima vez: e o que sobrevive a varredura desta vez, e sao TRES categorias seguidas em que o criterio da anterior nao serve (prateleira na 6, nome na 7, porte na 8).
