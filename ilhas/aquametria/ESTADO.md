@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 48
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-23T17:10Z
-executando_desde: 2026-09-23T19:16Z
+executando_desde: 2026-09-23T19:52Z   # renovada pela 1.1: o bloco da leva 9 passou de 40 minutos e a reserva se renova no proximo commit
 bloco_atual: |
   DESPACHO DA SENTINELA DE 23/09 FECHADO INTEIRO (18.2), E ELE NAO GASTOU LEVA NENHUMA: a home ganhou o no WebSite e a divida dos 39 links sem ficha caiu para 14. Casca 1.11.0, manifest revisao 108, /status conferido na 108. NENHUMA URL NOVA — seguem 48 — e NENHUMA leva do teto da 21.4 gasta.
   1. ITEM 1, NO AR E CONFERIDO: a home servia ZERO ocorrencia de application/ld+json contra as outras 47 URLs, e a causa nao era a trilha faltar (a 16.3 manda mesmo) — era nao existir NENHUM outro tipo de JSON-LD na ilha: os oito emissores do repositorio dependiam todos de uma pagina interna. Nasce aquametria_casca_site_jsonld() com WebSite + publisher Organization, no wp_head prioridade 22 e SO na home. conferir-site-jsonld-no-ar: 16 afirmacoes 0 falha; o MESMO portao, antes do conserto, reprovou 4 de 11.
