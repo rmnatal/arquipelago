@@ -44,6 +44,54 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h05Z)
+
+**Isto é a leitura semanal, não a ronda diária.** A ronda de hoje está logo abaixo e é outro documento. Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
+
+**A DECISÃO DA RAMPA: MANTÉM O RITMO NORMAL.** `piso: abaixo` — 48 URLs (passa das 40) mas a primeira indexação é de 09/09 e os 21 dias só fecham em **30/09/2026**. Pela 21.8 a série de indexação **não autoriza e não proíbe** nada nesta ilha; quem manda é o teto da 21.4 e os portões de qualidade da 21.3. **Não escreva "nenhum número autoriza leva nova" neste arquivo.**
+
+**O QUE ESTA LEITURA MEDIU, para ninguém remedir:** 46 de 48 URLs indexadas (96%, contra 54% em 09/09); sitemap com última leitura do Google em 22/09 e 48 páginas encontradas, Processado; 4 impressões em 7 dias, 0 clique; Shopee Afiliados na janela 16→22/09 com **zero clique desta ilha**; banco com **78 de 78 itens com piso `url_busca`** e **14 itens `intestavel: true`** (era 39 até hoje de manhã).
+
+**VERIFICAÇÃO INDEPENDENTE DO DESPACHO DA RONDA DE 23/09 (a Sentinela confere, a Fundação não aprova a si mesma):** o **item 1 está CUMPRIDO** — a home serve exatamente **uma** ocorrência de `application/ld+json`, com `@type: WebSite` e `publisher`, lida da nuvem com `Accept-Encoding: identity` e quebra de cache às 19h58Z, revisão 108 no `/status`. O **item 2 está CUMPRIDO** — contei os quatro `dados/produtos-*.json` no `main`: 78 registros, **14** com `url` e sem `url_produto`, contra os 39 que o despacho nomeou. **Esta leitura NÃO apagou esses dois itens do despacho da ronda**, de propósito: o `ESTADO.md` traz `executando_desde: 2026-09-23T19:16Z`, ou seja havia execução da Fundação VIVA na mesma janela, e apagar linha de arquivo que outra execução está editando é como se perde trabalho (1.1). **Quem fechar o bloco risca os dois itens.**
+
+### 1. A PÁGINA DE AUTOR DO WORDPRESS ESTÁ NO AR, SEM `noindex`, E NÃO É PÁGINA DA ILHA
+
+`https://aquametria.com.br/author/aquametria_gestor/` responde **HTTP 200**, **não tem `<meta name="robots">`**, não está no sitemap e nenhuma página da ilha aponta para ela. É página fina servida a um domínio que ainda gasta orçamento de rastreamento com duas categorias "Discovered - currently not indexed". **Na irmã Clube do Mosaico a mesma página JÁ ESTÁ INDEXADA e tomou uma impressão na posição 1,0 nesta mesma semana** — ou seja, isto não é risco teórico, é o mesmo buraco com um resultado já medido do outro lado.
+
+Medido também, nas três ilhas no ar: `/?s=<termo>` responde **200 sem `noindex`** em todas. Nenhuma tem caixa de busca, então nada aponta para lá hoje; fica registrado como o segundo arquivo da mesma família, não como defeito com sintoma.
+
+**Isto é código de snippet e por isso NÃO foi consertado pela Sentinela** (12.2, lista fechada). Vai para a Fundação.
+
+**Pronto quando:** `curl -s https://aquametria.com.br/author/aquametria_gestor/ | grep -c 'name="robots"[^>]*noindex'` devolver 1, e as 48 URLs do sitemap continuarem **sem** `noindex` (o portão tem de medir as duas direções — acrescentar `noindex` demais é o defeito oposto e igualmente grave).
+
+### 2. AS 26 FICHAS DE PEIXE TIVERAM ZERO IMPRESSÃO EM 7 DIAS, COM 46 DE 48 INDEXADAS
+
+Não é defeito de página e **não é para mexer no texto delas agora** (12.1: sem impressão é indexação ou é consulta, nunca ranqueamento). É para ficar escrito antes do dia 30, porque em **30/09/2026** esta ilha atinge o piso da 21.1 e a 21.5 passa a cobrar um diagnóstico escrito com três hipóteses na ordem (a) indexação, (b) consulta, (c) SERP. **A hipótese (a) já está respondida e medida: 46 de 48 estão no índice.** O que sobra para o dia 30 é (b) e (c).
+
+**Pronto quando:** existir em `ilhas/aquametria/dados/` um arquivo de diagnóstico da 21.5, escrito **depois** da leitura semanal de 30/09, dizendo qual das duas hipóteses restantes o dado sustenta — com volume de busca medido para pelo menos 5 das consultas `quantos litros para <espécie>` e com a SERP de pelo menos 3 delas aberta e classificada.
+
+### AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — na ordem de ROI
+
+**PROPOSTA 1 — `/peixes/ciclideos-anoes/` É A ÚNICA PÁGINA DESTA ILHA QUE JÁ ESTÁ NA DISPUTA, E ELA ESTÁ NA BANDA DE 11 A 20 EM DUAS DAS QUATRO GRAFIAS.**
+- Consultas nomeadas: **`ciclideo anão`** (posição 13,0) e **`ciclídeo anão`** (posição 11,0). As grafias acentuada-plural (`ciclídeos anões`) dão 6,0 e a não-acentuada-plural dá 35,0. Uma impressão cada.
+- Página: `https://aquametria.com.br/peixes/ciclideos-anoes/`.
+- O que falta, pela alavanca que a 12.1 nomeia para a banda 11 a 20: **título e meta description que digam a consulta com as palavras da consulta**, e a resposta direta no primeiro parágrafo. A consulta que chega é **singular** (`ciclídeo anão`) e a página é plural — é a diferença entre as duas posições medidas.
+- **O que esta proposta NÃO autoriza:** trocar a URL (proibido pela 12.1), mexer nas 3 fichas filhas, ou tratar a linha de 35,0 como lacuna de conteúdo. E **nenhuma das quatro linhas tem mais de uma impressão** — é amostra fina, e a proposta vale como hipótese barata, não como diagnóstico fechado.
+- **Pronto quando:** o `<title>` e a `<meta name="description">` servidos em `/peixes/ciclideos-anoes/` contiverem a forma **singular** `ciclídeo anão` além da plural, e a leitura semanal de 30/09 registrar em `dados/posicoes.md` as quatro grafias de novo, para comparar com 6,0 / 11,0 / 13,0 / 35,0.
+
+**PROPOSTA 2 — `/peixes/tetras/` ESTÁ HÁ 11 DIAS EM "DISCOVERED — CURRENTLY NOT INDEXED", E É MÃE DE 4 FICHAS.**
+- Consulta-alvo declarada da página: `quantos litros para tetras`.
+- Posição hoje: **sem impressão — não está no índice.** Estado na URL Inspection de hoje: "Discovered - currently not indexed". A irmã `/peixes/acaras/` está no mesmo estado, mas nasceu em 22/09 e é cedo demais para ser sinal.
+- O que falta: **ser rastreada.** Já está medido que não é descoberta: o sitemap foi lido pelo Google em 22/09 com as 48 páginas, e a página não é órfã (a ronda de hoje mediu 2 ou mais links internos para cada URL, um deles da mãe). **Não acrescente link interno para consertar isto** — o link já existe, e mexer seria tratar sintoma que a medição desmente.
+- **Pronto quando:** a URL Inspection de `/peixes/tetras/` devolver "O URL está no Google", e a linha de 30/09 em `dados/indexacao.md` registrar 47 ou mais indexadas de 48.
+- **O que a Fundação faz aqui: nada de código.** O valor desta proposta é ela não virar bloco. A alavanca é a da 14.7 (sinal externo), não uma edição de página.
+
+**PROPOSTA 3 — O CANO DE LINKS DA SHOPEE ESTÁ CHEIO; O QUE FALTA É O DEGRAU 2, E ELE DEPENDE DO RAPHAEL.**
+- Contado no `main`, não estimado: **78 de 78** itens com `url_busca` e `url_busca_produto` (piso da 25.2 inteiro), **78 de 78** com `sub_id_1` e `encurtamento_tentado_em`. **47 itens com link de produto**, e os **47 estão todos em `degrau: 3`** — anúncio de vendedor comum na Shopee, que a 25.1 chama de "último recurso" e que quebrou quatro links em doze horas em 13/09. **ZERO itens em degrau 1 ou 2.**
+- **Os 14 `intestavel: true` que sobraram são, quase todos, exatamente as marcas que a seção 7 diz que a Shopee não vende:** Eheim (classic 2213, classic 2217 em 127 V e 220 V, SUBSTRAT pro), Chihiros (A451M, WRGB II Pro 60), Seachem (Matrix), Sicce (Scuba Contactless 150), Ista (I-401), Roxin (HT-1300 em 50/100/200/300 W) e o RS-50. **É o caso de manual do degrau 2 (catálogo `/p/MLB…` do Mercado Livre).**
+- **Esta leitura NÃO conseguiu colher as URLs `/p/MLB…`:** `mercadolivre.com.br` não responde da nuvem (bloqueado no egresso, medido: código 000 contra 200 da Shopee e das ilhas), e as páginas de listagem abertas no Chrome do Raphael devolveram cabeçalho e rodapé **sem resultado nenhum** ao leitor automático, em 13 consultas. **Não inventei URL de catálogo para preencher a fila** — pela 25.4-b.1, par que ninguém mediu é pior que buraco escrito.
+- **Pronto quando:** existir `ilhas/aquametria/dados/links-afiliado-pendentes.md` com os **14** itens nomeados por `id` e a URL `/p/MLB…` de catálogo de cada um que tiver, colhida com os olhos, e a coluna do que NÃO tem catálogo no Mercado Livre com o motivo escrito. **Os dois campos (`url` e `url_produto`) entram juntos, da mesma oferta — nunca grampeados (25.4-b.1).**
+
 ## DESPACHO DA SENTINELA — 2026-09-23 (ronda diaria, medida no Chrome do Raphael)
 
 **Isto tem prioridade sobre a fila.** Aplique antes de qualquer bloco, verifique pela secao 8, registre no `REGISTRO.md` como "despacho da Sentinela de 23/09 — item N cumprido", e apague daqui o item cumprido no mesmo commit.
