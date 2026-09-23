@@ -2480,3 +2480,79 @@ pela instrucao e deste log, nenhum arquivo foi tocado.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `c9a32ad` so existiu depois do commit do
 trabalho.
+
+---
+
+## Disparo de 2026-09-23, 17h15 BRT (20h15Z) — leitura semanal da robometria, quatro arquivos
+
+Assunto conferido antes do `git fetch`: ilha Robometria, Sentinela, serie de indexacao e de posicao,
+`ESTADO.md` e `PROMPT.md` da ilha. E do Arquipelago — instrucao executada.
+
+Instrucao: quatro arquivos em `ilhas/robometria/`, aplicados byte a byte, commit unico com a mensagem
+"Sentinela: leitura semanal da robometria — 2026-09-23". Partida de `origin/main` em `0b3c821`.
+
+O que foi feito, arquivo a arquivo:
+1. `dados/indexacao.md` — inserida UMA linha nova imediatamente depois da unica linha que comeca com
+   `| 2026-09-16 |` (era a linha 8, e era a ultima do arquivo). Nada apagado. O arquivo passou de 8 para
+   9 linhas.
+2. `dados/posicoes.md` — inseridas QUATRO linhas novas, na ordem da instrucao, imediatamente depois da
+   linha que comeca com `| 2026-09-16 | — | https://robometria.com.br/qual-peca-serve-no-meu-robo-aspirador/ | sem impressão |`
+   (era a linha 11). Depois, acrescentado ao FIM do arquivo o bloco `## Notas da segunda medição
+   (2026-09-23)`. Nada apagado. O arquivo passou de 52 para 64 linhas.
+3. `PROMPT.md` — bloco do despacho da Sentinela de 23/09 inserido imediatamente ANTES da linha
+   `## DESPACHO DO RAPHAEL — 20/09/2026, 10h30 ...` (era a linha 48), seguido de uma linha em branco.
+   Nada apagado; o despacho de 20/09 continua inteiro, agora na linha 84. O arquivo passou de 1268 para
+   1304 linhas.
+4. `ESTADO.md` — a linha que comecava com `ultima_ronda: 2026-09-18T14:52Z` foi encontrada exatamente como
+   a instrucao previa (uma unica ocorrencia, linha 21, sem comentario ao lado) e substituida inteira pela
+   linha nova. NAO houve o caso de "linha diferente por outra execucao".
+
+`git status --porcelain` depois do commit (vazio — arvore limpa):
+
+```
+```
+
+`git diff --stat` do commit (HEAD~1..HEAD):
+
+```
+ ilhas/robometria/ESTADO.md          |  2 +-
+ ilhas/robometria/PROMPT.md          | 36 ++++++++++++++++++++++++++++++++++++
+ ilhas/robometria/dados/indexacao.md |  1 +
+ ilhas/robometria/dados/posicoes.md  | 12 ++++++++++++
+ 4 files changed, 50 insertions(+), 1 deletion(-)
+```
+
+Hash do commit que foi ao `main`:
+
+```
+450d86b9ac8a0c6fef7f2bc8dade09c0c9397f61
+```
+
+Contagem do que mudou, conferida RELENDO os arquivos depois de gravados (nao pelo que eu achava ter
+escrito):
+
+```
+indexacao.md   — 1 linha comecando com "| 2026-09-23 |"; arquivo com 9 linhas
+posicoes.md    — 4 linhas comecando com "| 2026-09-23 |"; 1 secao "## Notas da segunda medição
+                 (2026-09-23)"; arquivo com 64 linhas
+PROMPT.md      — 1 secao "## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h10Z)" na linha 48;
+                 arquivo com 1304 linhas
+ESTADO.md      — 1 unica linha "ultima_ronda:", na linha 21, comecando com "ultima_ronda: 2026-09-23T20:10Z"
+diff do commit — 4 arquivos, 50 insercoes, 1 remocao
+```
+
+Push: o primeiro `git push origin HEAD:main` foi RECUSADO (nao-fast-forward — o `main` tinha andado de
+`0b3c821` para `d05c309` entre o fetch inicial e o push). Feito `git fetch origin main && git rebase
+origin/main`, rebase limpo, e o segundo push passou: `d05c309..450d86b HEAD -> main`. Nao houve force
+push. Confirmado com `git fetch origin main && git log -1 origin/main`, que mostra `450d86b` com os
+quatro arquivos.
+
+Nenhum outro passo falhou. Nada foi reformatado, nada foi "melhorado", nenhuma linha fora da instrucao
+foi acrescentada. Nenhuma ilha reservada, `executando_desde` nao foi tocado, nenhum bloco de fila
+executado, nada publicado, Sync nao acionado, nenhuma conta criada, `ARQUIPELAGO.md` nao foi lido para
+decidir nada. Nenhum contato pessoal de terceiro entrou no repositorio. Nenhuma secao anterior deste log
+foi apagada, reescrita nem resumida. Alem dos quatro arquivos nomeados pela instrucao e deste log,
+nenhum arquivo foi tocado.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `450d86b` so existiu depois do commit do
+trabalho.
