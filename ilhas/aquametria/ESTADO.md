@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 48
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-23T14:05Z
-executando_desde: null
+executando_desde: 2026-09-23T16:16Z
 bloco_atual: |
   PREPARACAO DA LEVA 9 — OS BARBOS GANHAM BANCO E A NONA CATEGORIA PASSA A SER POSSIVEL. Banco de especies de 39 para 40 registros, catalogo embutido de 32 para 34, peixes 1.14.0, manifest revisao 104, /status conferido na 104. NENHUMA URL NOVA — seguem 48 — e NENHUMA leva do teto da 21.4 gasta: isto e coleta, ferramenta e contagem, nao malha.
   1. O QUE FECHOU, e foi a leva 8 que nomeou os dois passos na vespera: "o barbo sumatra e elegivel, o barbo rosado esta a UM campo — duas fontes distintas —, e nao existe um terceiro barbo no banco". Puntius titteya (barbo cereja) entrou NOVO com dois corpos de fonte, e pethia-conchonius (barbo rosado) saiu de UM corpo para DOIS, deixando de ser 'parcial', que barra a ficha. Sao 3 BARBOS ELEGIVEIS — sumatra, rosado e cereja —, o minimo exato do 16.5 pela terceira leva seguida deste eixo.
