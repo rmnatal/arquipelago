@@ -5,8 +5,8 @@ prioridade: 2
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 48
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-09-23T12:00Z
-executando_desde: 2026-09-23T11:19Z
+ultima_execucao: 2026-09-23T11:40Z
+executando_desde: null
 bloco_atual: |
   T3(f) — A OPEN API DA SHOPEE CHEGA A ILHA, E OS 78 ITENS PASSAM A RENDER COMISSAO. Esquema de produtos versao 12, C3 1.7.0, C5 1.7.0, C12 1.5.0, C15 1.6.0, manifest revisao 100, /status conferido na 100. NENHUMA URL NOVA — seguem 48 — e NENHUMA leva gasta do teto da 21.4: isto e coleta e ferramenta, nao malha.
   1. O QUE FECHOU. A 25.2-b (18/09) diz que link que nao rende comissao 'deixou de ser aceitavel como padrao'. Esta ilha esteve fora do foco de 16 a 21/09 e herdou a regra sem aplicar: os 78 registros serviam a busca CRUA. Agora sao 78 de 78 com url_busca ENCURTADA, com sub_id_1=aquametria e o sub_id_2 da calculadora, zero falha. Nenhuma linha de snippet mudou, como o despacho de 14/09 previa: os catalogos regerados trazem busca_afiliada=true e a casca sozinha vira o rel de nofollow para sponsored e o selo de 'busca na Shopee, sem comissao' para 'busca patrocinada'.
