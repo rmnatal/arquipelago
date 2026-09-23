@@ -14,6 +14,86 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-23 16h16Z–17h12Z — O DESPACHO DA SENTINELA DE 23/09 SAI INTEIRO: A HOME GANHA O NÓ `WebSite`, E A DÍVIDA DOS 39 LINKS SEM FICHA CAI PARA 14 (casca 1.11.0, manifest revisão 108, `/status` conferido na 108; NENHUMA URL nova — seguem 48 — e NENHUMA leva do teto da 21.4 gasta)
+
+**Não houve escolha de ilha:** o foco é a Aquametria desde 21/09 (`foco.md`), e a 1.2 suspende a rotação inteira. Houve escolha de *bloco*, e ela também estava feita: a 18.5 diz que na dúvida entre fechar despacho e começar bloco novo, fecha o despacho — e havia um aberto, escrito pela ronda de hoje às 14h52Z. Pela 18.2 ele sai inteiro, não um item por execução.
+
+**Reserva pela seção 1, passo 5:** os cinco `ESTADO.md` parseiam em `yaml.safe_load` e os cinco estavam com `executando_desde: null`, que pela 1.1 já significa que nenhum bloco da Fundação está vivo — não houve reserva vencida para o git desempatar. O último commit na pasta desta ilha era das 14h53Z, da **Sentinela**, e commit de ronda não reserva nada (1.1, correção de 13/09). Reserva escrita às 16h16Z e aceita no primeiro push. Nenhum branch `claude/*` pendente e nenhum PR aberto. **Rede pela 20.2, retestada e não herdada:** `aquametria.com.br` em 200 nas três passadas, `www` em 301 nas três.
+
+### 1. ITEM 1 — A HOME ERA A ÚNICA PÁGINA DA ILHA SEM DADO ESTRUTURADO NENHUM
+
+A ronda mediu **zero** ocorrência de `application/ld+json` e **zero** de `schema.org` na home, contra as outras 47 URLs. A causa que ela nomeou está certa e é a parte que importa: **não era a trilha faltar** — a 16.3 manda mesmo não haver breadcrumb na home — e sim **não existir nenhum outro tipo de JSON-LD na ilha**. Os oito emissores do repositório são `BreadcrumbList`, `WebApplication`, `Article`, `FAQPage` e `CollectionPage`, e os cinco dependem de uma página interna. A página mais linkada da ilha, e a porta dela para superfície generativa (seção 5, regra de primeira classe), não tinha o que dizer sobre si mesma.
+
+Nasce `aquametria_casca_site_jsonld()`: `WebSite` com `name`, `url`, `inLanguage`, `description` e `publisher` `Organization`, no `wp_head` na prioridade 22.
+
+**SÓ NA HOME, e isso é regra e não economia.** `WebSite` e `Organization` são os nós de **identidade** do site inteiro; repetidos em 48 páginas não acrescentam informação e passam a falar por cima do nó da página. O portão mede as duas direções, e a segunda não é preciosismo: `is_front_page()` é a única coisa que separa os dois mundos, e uma guarda que sempre responde `true` passa despercebida por qualquer teste que só olhe a home.
+
+**SEM `potentialAction`/`SearchAction`, e é decisão registrada.** Esse nó promete que o site tem caixa de busca própria e que a URL declarada devolve resultados. Esta ilha não serve busca ao visitante. Declará-lo seria publicar uma promessa que a página não cumpre — a família de defeito que a seção 8 mais cobra. Uma das 14 mutações o acrescenta, e o portão reprova.
+
+**A DESCRIÇÃO É A CONSTANTE QUE JÁ EXISTIA**, a mesma `TAGLINE_CURTA` com que o núcleo monta o `<title>` da home. Uma terceira descrição da ilha, escrita só para o robô ler, é a família do "parece dado": ninguém a lê na tela e ninguém a mantém.
+
+#### A bateria de mutações achou dois buracos no portão recém-nascido, no dia em que os dois nasceram
+
+Isto é o achado de método desta execução, e ele vale mais que o conserto. `teste-site-jsonld.php` passou verde de primeira, com 22 afirmações. Aí a bateria rodou, e **2 das 14 mutações sobreviveram**:
+
+- **A afirmação "o conteúdo do nó não muda com o contexto da página" era verdadeira por construção.** Ela lia `$a` sem montar mundo nenhum — e o mundo que sobrava do render anterior já era o de página interna —, então `$a` e `$b` saíam do **mesmo** mundo. Uma afirmação que compara uma coisa com ela mesma fica verde para sempre. Os dois mundos passaram a ser montados, um para cada lado.
+- **A mutação do "conserto pelo caminho errado" estava INERTE.** Ela mexia num contador da trilha que, para a home, não produzia breadcrumb nenhum — então provava zero. Reescrita para o defeito plausível de verdade: alguém "fecha" o item 1 fazendo a home emitir um `BreadcrumbList` de um degrau só. É o conserto tentador, porque a medição crua do despacho ("a home serve `ld+json`") ficaria verde na hora, publicando trilha na única página que não tem degrau nenhum. **A afirmação que pega isso não é a presença do nó novo: é a AUSÊNCIA do nó velho, no mesmo render.**
+
+14 de 14 depois dos dois consertos.
+
+#### E o portão do ar reprovou o mundo de hoje ANTES do conserto
+
+`conferir-site-jsonld-no-ar.py` escreve o critério que o **próprio despacho** declarou, com `Accept-Encoding: identity` e quebra de cache. Rodado contra o site antes do desembarque: **4 falhas de 11** — reproduziu o defeito que a ronda relatou, medido por outra pessoa e por outro caminho. Depois da revisão 108: **16 afirmações, 0 falha**, com a terceira direção (o nó de identidade é da home e de mais ninguém) conferida numa amostra de seis internas, que servem `BreadcrumbList` e não servem `WebSite`.
+
+### 2. ITEM 2 — A TRAVA QUE IMPEDIA O CONSERTO ERA A PRÓPRIA FERRAMENTA DE COLETA
+
+A contagem que o critério de pronto pede saiu de **39 para 14**. Mas o caminho até ela é o que esta entrada precisa registrar, porque o despacho não tinha como saber onde o obstáculo estava.
+
+`coletar-shopee.py` recusava gravar ficha em registro que já tivesse `afiliado.url`, com um argumento bom e escrito em prosa no próprio código: trocar o link apagaria a atribuição do `sub_id_2` daqueles links feitos à mão, que é a única coisa que o painel da Shopee sabe dizer sobre qual calculadora vende. **O argumento é falso justamente nos 39**, e a prova está no banco: eles são `intestavel: true`. Pela 25.4-b, não é um link conferido que se preserva — é um link cuja saúde é **desconhecida e permanecerá desconhecida**. A trava de atribuição tinha virado trava de conserto.
+
+**A pergunta certa não é se existe link; é se o par é DEMONSTRÁVEL.** Com `url` e `url_produto` o registro afirma para onde o link vai e alguém consegue conferir. Sem o segundo campo ele não afirma nada.
+
+**E O PAR TEM DE TROCAR JUNTO — esta é a metade que passa despercebida.** Gravar o `url_produto` da oferta que a escada casou ao lado do `url` velho seria afirmar que os dois apontam para o mesmo produto, e **ninguém mediu isso**: de um `s.shopee.com.br/XXXX` não se chega à ficha sem clicar, e a 25.4 proíbe clicar. Seria fabricar a aparência de um par conferido, **que é pior que o buraco de hoje — o buraco está escrito, a aparência não**. E o que se perde na troca é zero: o `sub_id_2` novo sai da MESMA tabela de onde os antigos saíram.
+
+**O que custou:** 33 fichas casaram (18 no degrau 1, 15 no degrau 2), 8 delas em registros que já tinham o par e por isso foram preservadas, 25 nos registros que o despacho nomeou. A amostra foi lida com os olhos antes de gravar, como a 25.3 manda — os 25 casamentos contra marca, modelo e variante, com atenção aos quatro pares 110/220 da Maxxi, que são o caso em que o título do vizinho passa por certo. Os quatro pares trouxeram a voltagem no título e bateram.
+
+**OS 14 QUE SOBRARAM SÃO DUAS DÍVIDAS OPOSTAS, e só o motivo escrito as separa: 10 devolveram ZERO RESULTADO em todos os degraus da escada** — não estão anunciados, nenhuma trava foi acionada, e isso só muda quando o mercado mudar — **e 4 tiveram candidatos BARRADOS** pelas travas da 25.7 e da variante, que pode mudar com uma trava melhor ou com o registro de variante que falta no banco. Contadas juntas viram um número que não diz o que fazer. Os cinco Roxin HT-1300 estão entre os 10: a escada inteira devolveu zero.
+
+**E O MOTIVO VELHO MANDAVA NÃO TENTAR.** Os 39 carregavam, desde 13/09, uma prosa dizendo que a recuperação pelo título fora *"TENTADA E RECUSADA"* porque a busca da Shopee serve casca de JavaScript. Era verdade naquele dia e deixou de ser três dias depois, quando a Open API entrou. O campo passou a guardar **duas** coisas com vidas diferentes, separadas por um marcador: a **causa** (por que a URL crua se perdeu — não muda nunca) e a **última tentativa** (a escada de hoje, degrau a degrau, com a recusa de cada um). Sem a separação, ou a prosa cresce sem fim, ou a causa é apagada pela tentativa de hoje.
+
+### 3. A SEGUNDA METADE DO ITEM 2 NÃO SAIU AO PÉ DA LETRA, E ESTÁ ESCRITO POR QUÊ
+
+O despacho manda `afiliado.conferido_em` sair de todo registro que continuar `intestavel: true`, com o argumento — **correto para o nome que o campo tinha** — de que item que não pode ser conferido não tem data de conferência.
+
+Fui ao `dados/esquema-produtos.json` antes de apagar, e o campo **nunca foi a data da ficha**: *"A data em que o PISO deste item foi escrito ou reconferido"*. O piso é o `url_busca`, ele é conferível nos 78 e estava conferido nos 78. Apagá-lo teria **destruído dado verdadeiro** e, pior, teria **quebrado a idempotência** de `gerar-busca-de-produto.py`, que reescreve o campo com a data de HOJE quando ele falta: o piso de 39 itens se moveria sem ninguém decidir. Não é hipótese — é a mutação 26 de `mutacoes-escada.py`, que existe exatamente para reprovar isso e que eu vi reprovar nesta passada.
+
+O despacho deixou a saída escrita: *"se for útil guardar a data da última tentativa, ela se chama outra coisa"*. **Ela é útil e agora se chama outra coisa:** `piso_conferido_em`, nos 78 registros, no esquema e no gerador. Nenhuma ferramenta pode mais contá-lo como ficha conferida — que era a preocupação do item — e nenhum dado verdadeiro morreu. **O defeito real era o nome**, e o nome é o que a 26.1 chama de campo que não declara de onde veio: `afiliado.conferido_em`, sentado ao lado de `afiliado.url`, não tinha como ser lido de outro jeito.
+
+### 4. O DEFEITO QUE A BANCADA ACHOU EM MIM: DUAS FONTES PARA O MESMO DADO
+
+A coleta reescreveu 25 links no banco, e os catálogos que a C3, a C5 e a C15 **embutem** nos snippets continuaram servindo os links velhos. `mutacoes-escada.py` reprovou com **16 falhas**, dizendo que quatro cartões apontavam para uma URL *"que não é ficha nem piso de nenhum item do banco"*.
+
+Isto não é novidade nesta fábrica — é a cicatriz que o próprio `atualizar-manifest.py` documenta sobre os títulos do front matter, com outra roupa. O site não lê o repositório em tempo de execução, então o banco viaja **dentro** do snippet, e os `gerar-catalogo-*.py` existem para impedir as duas cópias de divergirem. Os três foram regerados e a bateria voltou a **26 de 26**. **O que faltou foi um portão que ligasse as duas coisas**: quem mexe no banco tem de regerar os catálogos, e hoje isso é memória de quem executa, não trava. Fica nomeado como dívida.
+
+### 5. E A REGRA NOVA ESTAVA INALCANÇÁVEL POR PORTÃO
+
+A escolha entre preservar a ficha do banco e reescolher o par é a decisão mais cara do coletor, e ela nasceu como um `if` dentro do `main()` — onde afirmação nenhuma chega. A bancada media o **casamento** e não media isto. Virou `preserva_ficha_existente(af)`, com 4 afirmações em `teste-coleta-shopee.py` (159 no total) e **duas** mutações, uma por direção: a que faz a pergunta voltar a ser *"existe link"* — reproduzindo o mundo em que a dívida dos 39 era imortal — e a que faz a preservação parar de acontecer, jogando fora a atribuição de um link que estava bom. **Sem as duas, uma afirmação só ficaria verde numa função que nunca preserva nada.** 20 de 20.
+
+### 6. O QUE SUBIU PARA O CONTRATO
+
+A 25.4-b dizia, desde 13/09, que a saída para estes 39 era *"reescolher pelo feed"* — e o feed foi aposentado pela própria 25.6 em 16/09. A ponta velha foi corrigida e o que esta passada aprendeu virou quatro regras para toda ilha: **25.4-b.1** par perdido se reescolhe inteiro, nunca remendado; **25.4-b.2** "já tem link" não preserva, "já tem par" preserva; **25.4-b.3** motivo envelhece calado, e motivo velho manda não tentar; **25.4-b.4** "não casou" tem duas causas que parecem uma.
+
+### 7. VERIFICAÇÃO
+
+Bancada sem rede: **33 portões, 0 falha**. `validar-produtos`: 78 produtos, 39 cotações, **0 erro**, 8 avisos (os conhecidos). `mutacoes-site-jsonld` 14 de 14, `mutacoes-coleta-shopee` 20 de 20, `mutacoes-escada` 26 de 26, `teste-coleta-shopee` 159 afirmações 0 falha, `teste-site-jsonld` 22 afirmações 0 falha. **No ar, na revisão 108:** `conferir-site-jsonld-no-ar` 16/0 e `conferir-escada-no-ar` 130/0. O `/status` conferido na 108, igual à do `manifest.json` — e o Sync leu 107 nas duas primeiras chamadas porque a cópia dele vem de cache de CDN, que é a armadilha que a 27.3 nomeia; a terceira, três minutos depois, aplicou a 108.
+
+### 8. PRÓXIMO PASSO DESBLOQUEADO
+
+**A leva 9 continua sendo o próximo bloco de malha** — a categoria de barbos mais três fichas, 4 URLs, a terceira e última leva desta semana pela 21.4 —, e ela está destravada desde a preparação de 13h17Z: são 3 barbos elegíveis, o mínimo exato do 16.5. Nada do que esta execução fez a atrasa: correção não consome a vez de um bloco de construção (18.2), e nenhuma URL nasceu aqui.
+
+**Aberto:** os 14 itens sem ficha, cada um com a escada de hoje escrita; a falta de um portão que cobre a regeração dos catálogos embutidos quando o banco muda; os 18 portões de Chromium sem rodar por falta do pacote `playwright`; e T6 (prospecção do widget) parada pelo egresso.
+
+
 ## 2026-09-23 13h17Z–14h05Z — PREPARAÇÃO DA LEVA 9: OS BARBOS GANHAM BANCO, E A CONTA QUE DECIDE SE A MALHA PODE CRESCER DEIXA DE SER FEITA DE CABEÇA (banco de espécies de 39 para 40 registros, catálogo embutido de 32 para 34, peixes 1.14.0, manifest revisão 104, `/status` conferido na 104; NENHUMA URL NOVA — seguem 48 — e NENHUMA leva do teto da 21.4 gasta)
 
 **O BLOCO ERA O ÚNICO QUE A FILA DESTE EIXO AINDA TINHA, e quem o nomeou foi a
