@@ -2556,3 +2556,98 @@ nenhum arquivo foi tocado.
 
 Este fecho vai num commit proprio, logo a seguir, porque o hash `450d86b` so existiu depois do commit do
 trabalho.
+
+---
+
+## Disparo de 2026-09-23, 17h12 BRT (20h12Z) — leitura semanal da clubedomosaico
+
+Instrucao literal, quatro arquivos, todos em `ilhas/clubedomosaico/`. Assunto conferido ANTES do fetch:
+ilha do Arquipelago (Clube do Mosaico) — executa. Nenhum contato pessoal de terceiro na instrucao, nada
+foi omitido por esse motivo.
+
+O que a instrucao mandou, e o que foi feito:
+
+1. `ilhas/clubedomosaico/dados/indexacao.md` — 1 linha nova inserida imediatamente DEPOIS da unica linha
+   que comeca com `| 2026-09-10 |`. Nada apagado.
+2. `ilhas/clubedomosaico/dados/posicoes.md` — arquivo NOVO, criado com o conteudo exato da instrucao.
+3. `ilhas/clubedomosaico/PROMPT.md` — bloco do despacho inserido imediatamente ANTES da linha
+   `## O LOGO DELE NO CABECALHO — CUMPRIDO E CONFERIDO NO AR EM 11/09/2026, 20h35Z`, seguido de uma linha
+   em branco. Nada apagado.
+4. `ilhas/clubedomosaico/ESTADO.md` — 1 linha `ultima_ronda:` inserida imediatamente ANTES de
+   `bloco_atual: |`. Nenhuma outra linha tocada; `urls_publicadas` continua `13` (correcao de despacho,
+   e da Fundacao).
+
+`git status --porcelain` (depois do commit do trabalho, antes deste log):
+
+```
+(vazio — arvore limpa; o commit 7e9b3f5 ja tinha levado os quatro arquivos)
+```
+
+`git status --porcelain` (imediatamente antes do commit do trabalho):
+
+```
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/indexacao.md
+?? ilhas/clubedomosaico/dados/posicoes.md
+```
+
+`git diff --stat` do commit do trabalho:
+
+```
+ ilhas/clubedomosaico/ESTADO.md          |  1 +
+ ilhas/clubedomosaico/PROMPT.md          | 59 +++++++++++++++++++++++++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md  | 22 ++++++++++++
+ 4 files changed, 83 insertions(+)
+```
+
+Hash do commit que foi ao `main`:
+
+```
+7e9b3f5cb723ed64936dd88d197a53c1a84b6a61
+Sentinela: leitura semanal da clubedomosaico — 2026-09-23
+```
+
+Contagem do que mudou, conferida RELENDO os arquivos depois de gravar (nao pelo que eu achava que tinha
+escrito):
+
+```
+indexacao.md   — 8 linhas no arquivo; 1 unica linha comecando com "| 2026-09-23 |",
+                 logo abaixo da linha "| 2026-09-10 |"
+posicoes.md    — arquivo novo, 22 linhas; 7 linhas de tabela comecando com "| 2026-09-23 |"
+PROMPT.md      — 471 linhas (eram 412); o cabecalho "## DESPACHO DA SENTINELA — 2026-09-23"
+                 esta na linha 60, e a linha do LOGO que antes era a 60 desceu para a 120
+ESTADO.md      — 429 linhas (eram 428); 1 unica linha "ultima_ronda:", na linha 10,
+                 comecando com "ultima_ronda: 2026-09-23T20:12Z"; "urls_publicadas: 13"
+                 intacto na linha 6
+diff do commit — 4 arquivos, 83 insercoes, 0 remocoes
+```
+
+Push: o primeiro `git push origin HEAD:main` foi RECUSADO (`HTTP 403` do proxy e non-fast-forward — o
+`main` tinha andado de `c9a32ad` para `154b0c3` entre o fetch inicial e o push, por causa do disparo da
+robometria). Mensagem completa:
+
+```
+error: RPC failed; HTTP 403 curl 22 The requested URL returned error: 403
+To https://github.com/rmnatal/arquipelago
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to 'https://github.com/rmnatal/arquipelago'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally.
+```
+
+Feito `git fetch origin main && git rebase origin/main`, rebase limpo (o commit passou de `209bb38` para
+`7e9b3f5`), e o segundo push passou: `154b0c3..7e9b3f5  HEAD -> main`. Nao houve force push, nao houve
+PR. Confirmado com `git fetch origin main && git log -1 origin/main`, que mostra `7e9b3f5` com os quatro
+arquivos.
+
+Nenhum outro passo falhou. Nada foi reformatado, nada foi "melhorado", nenhuma linha fora da instrucao
+foi acrescentada. Nenhuma ilha reservada, `executando_desde` nao foi tocado, nenhum bloco de fila
+executado, nada publicado, Sync nao acionado, nenhuma conta criada, `ARQUIPELAGO.md` nao foi lido para
+decidir nada. Nenhum contato pessoal de terceiro entrou no repositorio. Nenhuma secao anterior deste log
+foi apagada, reescrita nem resumida. Alem dos quatro arquivos nomeados pela instrucao e deste log,
+nenhum arquivo foi tocado.
+
+Este fecho vai num commit proprio, logo a seguir, porque o hash `7e9b3f5` so existiu depois do commit do
+trabalho.
