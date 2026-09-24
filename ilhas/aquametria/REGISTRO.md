@@ -14,7 +14,7 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
-## 2026-09-24 13h18Z–__FIM__ — O MUTIRÃO DO DESPACHO DO RAPHAEL: AS 24 FOTOS SEM DIMENSÃO FECHARAM (41 de 41), E O PARÊNTESE QUE CUSTOU TRÊS FICHAS ERA UMA REGRA APLICADA DE UM LADO SÓ. Intestáveis de 14 para 12; NENHUMA URL nova
+## 2026-09-24 13h18Z–14h45Z — O MUTIRÃO DO DESPACHO DO RAPHAEL: AS 24 FOTOS SEM DIMENSÃO FECHARAM (41 de 41), E O PARÊNTESE QUE CUSTOU TRÊS FICHAS ERA UMA REGRA APLICADA DE UM LADO SÓ. Intestáveis de 14 para 12; NENHUMA URL nova
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a aquametria
 desde 21/09 (1.2), então não houve rotação. O cabeçalho trazia
@@ -205,7 +205,34 @@ escritas às 13h38Z e 13h44Z), porque eu somava folga de cabeça em vez de ler o
 relógio. Reserva adiantada faz a ilha parecer ocupada mais tempo do que está, que
 é o contrário do que a 1.1 quer. A terceira foi lida do `date -u`.
 
-__VERIFICACAO__
+**VERIFICAÇÃO.**
+
+**O `bancada.py` FOI MORTO PELO TIMEOUT e isso fica escrito, porque "rodei a bancada" sem esta linha seria falso.** Ele saiu em `exit=124` dentro de `mutacoes-peixes.py`, com **11 dos 38 portões medidos**. Os outros 27 foram rodados **um a um**, à mão, e o número da bancada abaixo é a soma dessas passadas — não a saída de um comando só. *(Causa medida, e ela não era o portão: duas execuções do `bancada.py` estavam vivas ao mesmo tempo, disputando CPU — a segunda ficou com metade da máquina. A primeira, que media uma árvore já desatualizada, foi encerrada; mesmo sozinho, `mutacoes-peixes` leva mais que os 1700 s do timeout.)*
+
+**BANCADA — 38 de 38 portões, 0 falha.** `teste-peixes` **4299** afirmações · `teste-ga4` 825 · `teste-escada-compra` 703 · `teste-seo-tecnico` 555 · **`teste-coleta-shopee` 177 (eram 159)** · `teste-titulos-das-duas-fontes` 160 · `teste-datas-schema` 102 · **`teste-cdn-shopee` 66 (novo)** · `teste-apelidos` 59 · `teste-dimensao-imagem` 42 · `testar-validador-especies` 41 · `teste-site-jsonld` 22 · `teste-robots` 21 · `teste-purga-cache` 21 · `teste-conversor-markdown` 18 · `teste-atualizador-sync` 9 · `teste-escape-shortcode`, `teste-arvore`, `teste-voz`, `conferir-entidades`, `conferir-indice-de-levas`, `conferir-protecao-funcoes`, `conferir-slugs` limpos. `validar-produtos` **78 produtos, 0 erro, 8 avisos** (os V20 conhecidos, de item com link e sem foto); `validar-especies` **40 espécies, 0 erro, 3 avisos** (o E15 do guppy e os dois E21 conhecidos).
+
+**MUTAÇÕES — 0 sobreviventes em todas.** `mutacoes-peixes` **100 de 100** · `mutacoes-escada` 26 · **`mutacoes-coleta-shopee` 22 (eram 20)** · `mutacoes-arvore` 14 · `mutacoes-dimensao` 14 · `mutacoes-site-jsonld` 14 · `mutacoes-ga4` 13 · `mutacoes-datas` 12 · **`mutacoes-cdn-shopee` 11 (novo)** · `mutacoes-titulos` 6 · `mutacoes-privacidade` 23 afirmações · `mutacoes-purga-cache` 8 baterias, zero inertes.
+
+**NO AR, depois do Sync (revisão 113, conferida no `/status`, aplicada na PRIMEIRA chamada — sem a armadilha de cache de CDN da 27.3).** `conferir-peixes-no-ar` **1012** afirmações, 0 falha (eram 1012 na malha de 52 URLs) · `conferir-datas-e-voz-no-ar` **407**, 0 · `conferir-escada-no-ar` **130**, 0 · **`conferir-espelho-cdn` 92, 0 (novo)** · `conferir-cache-do-host` 55, 0 · `conferir-privacidade-no-ar` 21, 0 · `conferir-site-jsonld-no-ar` 16, 0 · `conferir-robots-no-ar` 12, 0 · `conferir-ga4-no-ar` 0 falha.
+
+**E O PORTÃO NOVO REPROVOU NO PRIMEIRO USO NO AR — o meu.** Ver o item 4 abaixo: ele imprimiu um grupo de controle de **32** fotos "medidas por outro instrumento", e 24 daquelas 32 eu tinha medido naquela mesma hora, pelo próprio espelho que elas deveriam estar conferindo. Consertado antes de a execução fechar: **8 controles e 24 regressões**, com os rótulos separados e a procedência exigida em campo.
+
+### 4. O PORTÃO DO ESPELHO ESTAVA DILUINDO A PRÓPRIA PROVA COM AS PRÓPRIAS CONCLUSÕES
+
+A primeira versão definia controle como *"está em host bloqueado e tem dimensão"*. Aquilo estava **certo enquanto as únicas fotos assim eram as 8 que a Sentinela mediu no Chrome** — e deixou de estar certo no minuto seguinte, quando o `coletar-dimensao-imagens.py` mediu 24 do mesmo host pelo espelho. As 24 entraram no controle por construção, e o portão passou a afirmar **quatro vezes mais evidência do que tem**.
+
+**Não era um número errado: era uma prova contaminada.** O portão continuaria ficando vermelho se o CDN mudasse — as 8 verdadeiras reprovariam —, mas evidência inflada é como se para de desconfiar de uma premissa.
+
+**A regra agora:** só é controle quem foi medido por **outro** instrumento, e quem responde isso é o campo `medida_como`. As 24 continuam sendo remedidas, com o rótulo certo: **teste de regressão do CDN**, nunca prova da premissa.
+
+**E a porta dos fundos dessa definição foi fechada junto.** "Controle" está definido por **negação** (não menciona o espelho), então foto com `medida_como` **vazio** cairia no controle por omissão e diluiria a prova do mesmo jeito, sem ninguém ver. Cada membro do controle agora tem de **dizer em campo** de onde veio o número. Provado num banco copiado com a procedência apagada: o portão reprova, nomeando cada uma.
+
+### O QUE FICA DESBLOQUEADO PARA A PRÓXIMA EXECUÇÃO
+
+- **O mutirão do Raphael continua aberto até 30/09** e **não é para apagar**: é exceção com prazo próprio, e morre sozinha na leitura semanal daquele dia.
+- **A fila de dívida que não cria URL está vazia do lado da máquina.** As 24 fotos fecharam; o resíduo das fichas está medido e escrito, e em **39 dos 43** o gargalo é oferta e palavra-chave, não código.
+- **O que sobrou pede olho humano, não execução da Fundação:** os 33 `alt_origem: 'banco'`, a foto que dois registros Maxxi compartilham com `alt` de potências diferentes, e os quatro itens dos grupos C e D de `dados/fichas-pendentes.md`.
+- **Item 2 do despacho da Sentinela (diagnóstico da 21.5) continua aberto de propósito:** o critério exige arquivo escrito **depois** da leitura semanal de 30/09. Hoje é 24.
 
 ---
 
