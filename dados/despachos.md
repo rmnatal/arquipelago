@@ -205,6 +205,34 @@ O critério de entrada desta ilha, escrito no esquema e vindo do corpus do bloco
 
 **Pronto quando:** de dentro de uma rotina, um `curl` a `www.angkorenterprise.gov.kh` ou a `civitatis.com` devolver qualquer código HTTP de verdade. Hoje os dois devolvem `000`, e o WebFetch do primeiro devolve `EGRESS_BLOCKED` — medidos às 23h30Z, não herdados.
 
+### prioridade NORMAL — a RÉGUA de `noindex` erra ao atravessar a fronteira entre as ilhas, e já custou um item de despacho inteiro
+
+24/09/2026 — SENTINELA (e FUNDAÇÃO de quem reservar a clubedomosaico) — Achado na aquametria, ao trabalhar o item 1 do despacho da leitura semanal de 23/09. Está aqui, e não no `PROMPT.md` de uma ilha, porque o defeito é do **instrumento de medição** e ele é usado nas quatro ilhas no ar.
+
+**O QUE ACONTECEU:** a leitura semanal de 23/09 abriu um item dizendo que `https://aquametria.com.br/author/aquametria_gestor/` respondia 200 **sem `noindex`**, e escreveu o critério de pronto assim:
+
+    curl -s .../author/aquametria_gestor/ | grep -c 'name="robots"[^>]*noindex'
+
+**O DEFEITO NÃO EXISTIA.** A página serve, e servia desde 10/09/2026, `<meta name='robots' content='noindex, follow' />` — **aspa simples**. Medido em 24/09/2026 às 10h2xZ, com quebra de cache, nos quatro contextos de arquivo da ilha: autor, `/?s=`, arquivo por data e `/category/metodos/`, os quatro com `noindex, follow`, uma única meta cada.
+
+**POR QUE A RÉGUA ERROU, e é isto que atravessa ilha:** quem imprime a meta muda de ilha para ilha.
+
+| Ilha | Quem imprime | Aspa |
+|---|---|---|
+| **aquametria** | o **núcleo do WordPress**, pelo filtro `wp_robots` | **simples** |
+| **robometria** | o snippet (`robometria-r1.php`, `-r2.php`), com `echo` | dupla |
+| **clubedomosaico** | o snippet (`clubedomosaico-f1/f2/leads/casca.php`) | dupla |
+
+O `grep` de aspa dupla está **certo** nas duas irmãs e **sempre devolve zero** na aquametria, por mais correta que a página esteja. Não foi desleixo: foi uma régua boa atravessando uma fronteira onde a tag tem outro autor. E a aquametria escolheu o filtro do núcleo **de propósito**, documentado no snippet dela — imprimir a meta na mão arrisca servir **duas** metas `robots`, e o Google resolve meta duplicada pelo lado mais restritivo.
+
+**O CUSTO DE UM FALSO POSITIVO AQUI NÃO É ZERO, e é a razão de isto ser despacho e não nota:** o item mandava **acrescentar** `noindex`. Cumprido ao pé da letra por quem confiasse na medição, o conserto imprimiria a segunda meta ao lado da que o núcleo já imprimia — **o conserto de um defeito inexistente é que criaria o defeito**, e ele sairia na direção que apaga página do índice.
+
+**O QUE USAR DAQUI PARA A FRENTE**, e já existe escrito: `ilhas/aquametria/ferramentas/regua-robots.py` é a régua, e ela ignora aspa, exige que o `noindex` seja **diretiva** no `content` de uma meta cujo `name` é `robots` (não a palavra solta na mesma linha), **conta** as metas — duas é defeito tanto quanto zero — e descarta tag **citada** em comentário ou dentro de `<script>`/`<style>`. Os dois portões que a usam são `teste-robots.py` (bancada, 21 afirmações) e `conferir-robots-no-ar.py` (no ar, as duas direções). **A régua é portável**: quem reservar outra ilha copia os três arquivos e troca a lista de contextos e o domínio.
+
+**O QUE ESTE DESPACHO NÃO DECIDE, e é medição de outra ilha:** a leitura semanal registrou que na **clubedomosaico** a página de autor **já está indexada e tomou uma impressão na posição 1,0**. Isso é dado do Search Console e **não é desmentido** pelo que foi medido aqui — a página pode ter entrado no índice antes de qualquer `noindex`, ou pode estar de fato sem a diretiva, porque naquela ilha quem imprime é o snippet e não o núcleo. **Ninguém mediu a clubedomosaico com a régua nova.** A seção 3 proíbe editar arquivo de ilha que não se reservou, então isto fica para quem a reservar.
+
+**Pronto quando:** (a) a próxima ronda ou leitura semanal que medir `noindex` em qualquer ilha usar a `regua-robots.py` (ou uma régua que passe nas 21 afirmações do `teste-robots.py`) em vez de um `grep` digitado na hora; e (b) a `clubedomosaico` tiver sido medida com essa régua, nos contextos de arquivo dela, pela execução que a reservar — com o resultado escrito, seja ele "já estava certa" ou "faltava mesmo".
+
 ## FECHADOS
 
 ### prioridade ALTA — o cache do hospedeiro pode estar segurando bloco de OUTRA ilha, e ninguém saberia

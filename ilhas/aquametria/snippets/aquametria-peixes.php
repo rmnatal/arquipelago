@@ -1,5 +1,40 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.16.0 (24/09/2026) — A PROPOSTA 1 DA LEITURA SEMANAL DE 23/09: o
+ * `titulo` de `/peixes/ciclideos-anoes/` passa a dizer a consulta SINGULAR, e
+ * NENHUMA URL nasce, muda de endereço ou sai. É um campo e uma linha; a metade
+ * caríssima é por que a linha nasceu errada.
+ *
+ *   A CONSULTA QUE CHEGA É SINGULAR E A PÁGINA ERA PLURAL. Medido pela Sentinela
+ *   em 23/09/2026 no Search Console: quatro grafias da mesma busca e quatro
+ *   posições — `ciclídeos anões` em 6,0, `ciclídeo anão` em 11,0, `ciclideo anao`
+ *   em 13,0 e `ciclideos anoes` em 35,0. Esta é a ÚNICA página desta ilha que já
+ *   está na disputa, e as duas grafias SINGULARES são as que caem na banda de 11
+ *   a 20 — a banda em que a 12.1 do contrato nomeia título e meta description
+ *   como a alavanca, e não conteúdo novo.
+ *
+ *   O QUE NINGUÉM TINHA MEDIDO, e é o motivo de a linha ter nascido errada: o
+ *   registro desta página declara `'consulta' => 'quantos litros para ciclídeo
+ *   anão'` desde a leva 6, em 14/09/2026, e o `titulo` NÃO CONTINHA essa frase.
+ *   O título novo a contém inteira, palavra por palavra, e continua abrindo pelo
+ *   rótulo plural da categoria — que é a grafia de melhor posição das quatro, e
+ *   jogá-la fora para consertar a pior seria trocar o defeito de lado. O molde
+ *   `<rótulo>: <pergunta>` é o mesmo das oito irmãs do eixo.
+ *
+ *   O TETO DE 65 DO `teste-voz.mjs` FOI CONTADO, NÃO ESTIMADO: 50 caracteres no
+ *   `titulo`, mais os 13 de ` – Aquametria` que o WordPress acrescenta, dão 63.
+ *   O portão também cobra que o `<title>` COMECE pelo H1, e aqui as duas saem do
+ *   mesmo campo — então mudar este `titulo` move as duas superfícies juntas, que
+ *   é o que aquele portão existe para garantir.
+ *
+ *   E ELE MOVE UMA TERCEIRA SUPERFÍCIE, QUE VIVE EM OUTRO ARQUIVO: o `og:title`
+ *   sai de `dados/metas-seo.json`, que guarda o MESMO título numa segunda cópia.
+ *   As duas cópias concordavam nas 38 páginas do eixo quando esta versão nasceu
+ *   — contado, não suposto — e NADA media isso. Nasce junto o portão
+ *   `ferramentas/teste-titulos-das-duas-fontes.py`, que cobra as duas direções.
+ *   Campo de decisão guardado em dois lugares diverge em silêncio: é a mesma
+ *   família do favicon (casca, seção 2b) e da meta description (seo-técnico).
+ *
  * Versão: 1.15.0 (23/09/2026) — LEVA 9: A NONA CATEGORIA DO EIXO, E O PRIMEIRO
  * CAMPO DE RECUSA DE COMPANHIA. Quatro URLs novas: /peixes/barbos/ e as fichas do
  * barbo sumatra, do barbo rosado e do barbo cereja. A ilha vai de 48 para 52 URLs,
@@ -3785,7 +3820,7 @@ function aquametria_peixes_registro() {
 		'ciclideos-anoes' => array(
 			'nivel'    => 2,
 			'pai'      => 'peixes',
-			'titulo'   => 'Ciclídeos anões: quantos litros, do casal ao grupo',
+			'titulo'   => 'Ciclídeos anões: quantos litros para ciclídeo anão',
 			'conteudo' => '[aquametria_peixes_categoria]',
 			'consulta' => 'quantos litros para ciclídeo anão',
 			'serp_em'  => '14/09/2026',

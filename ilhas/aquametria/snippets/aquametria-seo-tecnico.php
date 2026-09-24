@@ -274,32 +274,17 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Acarás: quantos litros, do solitário ao cardume',
 			'descricao' => 'Acará-bandeira, oscar e acará-disco lado a lado: como cada um vive, a frente mínima declarada por fonte com nome e data, e a faixa térmica.',
 		),
-		/* LEVA 9, 23/09/2026 — as quatro da categoria `barbos`. As descrições são
-		   as mesmas de `dados/metas-seo.json`, que é o registro do que foi
-		   escrito; quem serve a tag é este mapa. */
 		'barbos' => array(
 			'titulo'    => 'Barbos: quantos litros, e quem divide a água',
 			'descricao' => 'Barbo sumatra, rosado e cereja lado a lado: a frente mínima declarada por fonte com nome e data, o cardume de cada um e a faixa térmica.',
-		),
-		'quantos-litros-para-barbo-sumatra' => array(
-			'titulo'    => 'Quantos litros para um cardume de barbo sumatra?',
-			'descricao' => 'Quantos litros para um cardume de barbo sumatra? A base de 80 cm que a fonte declara, as duas réguas de lotação e a recusa que ela escreveu.',
-		),
-		'quantos-litros-para-barbo-rosado' => array(
-			'titulo'    => 'Quantos litros para um cardume de barbo rosado?',
-			'descricao' => 'Quantos litros para um cardume de barbo rosado? As duas frentes que as fontes declaram, a faixa subtropical dele e as réguas de lotação.',
-		),
-		'quantos-litros-para-barbo-cereja' => array(
-			'titulo'    => 'Quantos litros para um cardume de barbo cereja?',
-			'descricao' => 'Quantos litros para um cardume de barbo cereja? A base de 60 cm que a fonte declara, o grupo de 6 a 10 e a conta pelas duas réguas.',
 		),
 		'bettas' => array(
 			'titulo'    => 'Bettas e gouramis: quantos litros cada um pede',
 			'descricao' => 'Betta, colisa-anão e gurami mel não vivem do mesmo jeito: o arranjo que a fonte declara ao lado da frente mínima de cada um, com nome e data.',
 		),
 		'ciclideos-anoes' => array(
-			'titulo'    => 'Ciclídeos anões: quantos litros, do casal ao grupo',
-			'descricao' => 'Ciclídeo anão pede aquário pelo arranjo, não pelo tamanho: dois do mesmo porte pedem 60 cm e o terceiro pede 120, com a fonte de cada linha.',
+			'titulo'    => 'Ciclídeos anões: quantos litros para ciclídeo anão',
+			'descricao' => 'Quantos litros para ciclídeo anão? Os ciclídeos anões pedem aquário pelo arranjo, não pelo tamanho: dois do mesmo porte pedem 60 cm, o terceiro 120.',
 		),
 		'corydoras' => array(
 			'titulo'    => 'Coridoras: quanto chão o grupo pede',
@@ -324,6 +309,18 @@ function aquametria_seo_metas_por_slug() {
 		'quantos-litros-para-apistogramma-agassizi' => array(
 			'titulo'    => 'Quantos litros para apistogramma agassizi?',
 			'descricao' => 'Quantos litros para apistogramma agassizi? Os 60 cm que as duas fontes declaram, uma para casal e outra para harém, e quantos cabem no seu aquário.',
+		),
+		'quantos-litros-para-barbo-cereja' => array(
+			'titulo'    => 'Quantos litros para um cardume de barbo cereja?',
+			'descricao' => 'Quantos litros para um cardume de barbo cereja? A base de 60 cm que a fonte declara, o grupo de 6 a 10 e a conta pelas duas réguas.',
+		),
+		'quantos-litros-para-barbo-rosado' => array(
+			'titulo'    => 'Quantos litros para um cardume de barbo rosado?',
+			'descricao' => 'Quantos litros para um cardume de barbo rosado? As duas frentes que as fontes declaram, a faixa subtropical dele e as réguas de lotação.',
+		),
+		'quantos-litros-para-barbo-sumatra' => array(
+			'titulo'    => 'Quantos litros para um cardume de barbo sumatra?',
+			'descricao' => 'Quantos litros para um cardume de barbo sumatra? A base de 80 cm que a fonte declara, as duas réguas de lotação e a recusa que ela escreveu.',
 		),
 		'quantos-litros-para-betta' => array(
 			'titulo'    => 'Quantos litros para um betta?',

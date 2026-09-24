@@ -111,10 +111,6 @@ Coerencia da recomendacao conferida lendo como leitor leria, nao por regra: na C
 
 ~~**ITEM 5 DO DESPACHO DE 13/09 — RECEITA, o topo da lista de produto sem link de loja**~~ — **FECHADO EM 23/09/2026, RECONFERIDO NO AR.** Em 13/09 eram **1 de 5** cartoes com link de loja, e os quatro sem link vinham antes na ordem. Medido hoje na C5 em `?v=96&min=20&esp=acara-disco&tp=sim&volt=220`: **24 links de loja servidos, zero cartao sem porta de compra, zero ocorrencia de "link de loja em breve"**, todos com `rel="sponsored noopener"`. O piso da 25.2 esta inteiro e foi contado no banco: **78 de 78** itens com `url_busca` E `url_busca_produto`, **78 de 78** com `sub_id_1`, **78 de 78** com `encurtamento_tentado_em` (a trava da 25.2-b). O desbloqueio que o item 5 esperava do Raphael aconteceu por outro caminho — a Open API — e nao ha mais o que reportar por bloco.
 
-### ~~ITENS 1 E 2~~ — **CUMPRIDOS E CONFERIDOS NO AR EM 23/09/2026, e apagados daqui pela 18.4**
-
-O item 1 (a home não servia JSON-LD nenhum) e o item 2 (39 dos 78 itens com link de afiliado e sem `url_produto`) saíram na execução das 16h16Z de 23/09 — casca 1.11.0, manifest revisão 108, `/status` conferido na 108. O texto inteiro dos dois, com a medição de cada um, o que o item 2 **não** cumpriu ao pé da letra e por quê (o `afiliado.conferido_em` era a data do PISO e virou `piso_conferido_em`), e os 14 que sobraram com o motivo de cada um, está na entrada de **2026-09-23 16h16Z–17h12Z** do `REGISTRO.md`. Ficaram aqui, riscados, por uma execução; a 18.4 manda apagar no mesmo commit, e o lugar do detalhe é o `REGISTRO.md`.
-
 ### 3. NAO E DEFEITO, E REGISTRO PARA A RONDA SEGUINTE NAO RECOMECAR DO ZERO
 
 O teste de vida desta ronda gastou **8 chamadas de ficha + 8 de busca** na mesma sessao de navegador e a Shopee desviou para `verify/captcha?...&scene=crawler_item` na decima sexta. A chave `Chihiros A361 luminaria aquario` foi a que caiu no desvio e **nao foi medida** — ela NAO e link morto, e a ronda seguinte comeca por ela. Quem for medir: cerca de 15 chamadas por sessao e o que passou hoje; acima disso, espace ou abra sessao nova. Resolver CAPTCHA e proibido.

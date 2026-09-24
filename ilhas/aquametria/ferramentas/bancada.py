@@ -48,6 +48,17 @@ AS CONVENCOES, e elas ja eram as desta pasta antes deste arquivo
   conferir-*                -> ABRE O SITE: so com --no-ar
   qualquer um que chame um teste-navegador-* -> Chromium: so com --navegador
   gerar-|coletar-|atualizar-|render-|varrer-|listar-|proteger-|aplicar-  -> producao, nao e portao
+  regua-*.py                -> REGUA COMPARTILHADA: nao afirma nada sozinha, entao
+                               nao e portao — mas so escapa da denuncia se algum
+                               portao desta pasta a IMPORTAR pelo nome. Regua que
+                               nenhum portao exercita e regua que ninguem roda, que
+                               e a doenca deste arquivo inteiro. Nasceu em
+                               24/09/2026 com a `regua-robots.py`, que e usada
+                               pelo `teste-robots.py` (bancada) e pelo
+                               `conferir-robots-no-ar.py` (no ar): a regua de
+                               `noindex` mora num arquivo so justamente porque
+                               escrita duas vezes ela erra de um lado, e foi um
+                               erro desses que gerou o falso positivo de 23/09.
 
 A EXCECAO DO `conferir-`, E ELA E DECLARADA PELO PROPRIO ARQUIVO. Tres
 `conferir-*` desta ilha nao abrem o site nenhum (`conferir-slugs.py`,
@@ -215,10 +226,32 @@ def lint_dos_snippets():
     return 1 if ruins else 0
 
 
+def regua_exercitada(nome):
+    """Algum arquivo desta pasta importa esta regua pelo nome?
+
+    A pergunta e feita aos ARQUIVOS, nunca a uma lista aqui dentro — pelo mesmo
+    motivo que o resto deste arquivo nao tem lista. Regua que nenhum portao
+    carrega nao e protegida por nada, e o lado seguro do erro e ela aparecer
+    denunciada em vez de passar por "producao".
+    """
+    for outro in sorted(os.listdir(PASTA)):
+        if outro == nome or not outro.endswith(('.py', '.php', '.mjs')):
+            continue
+        try:
+            with open(os.path.join(PASTA, outro), encoding='utf-8') as f:
+                if nome in f.read():
+                    return True
+        except OSError:
+            continue
+    return False
+
+
 def classificar(nome):
     """Devolve (comando, categoria) ou (None, motivo) para o que nao roda aqui."""
     if NAO_E_PORTAO.match(nome):
         return None, 'producao'
+    if nome.startswith('regua-') and nome.endswith('.py'):
+        return (None, 'producao') if regua_exercitada(nome) else (None, 'sem_convencao')
     if nome.startswith('teste-navegador-') and nome.endswith('.mjs'):
         return ['node', os.path.join('ferramentas', nome), '.'], 'navegador'
     if nome.startswith('conferir-'):
