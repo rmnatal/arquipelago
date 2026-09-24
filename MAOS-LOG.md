@@ -2710,3 +2710,61 @@ Confirmado com `git fetch origin main && git log -1 --oneline origin/main`:
   despacho manda — ele abre excecao nomeada e com prazo, nao reescreve nenhuma das duas.
 
 **Falhas:** nenhuma. Push aceito de primeira em `HEAD:main`, sem rebase e sem force.
+
+---
+
+## Disparo de 24/09/2026, 14h46 (horario de Brasilia) — 17h46 UTC — foco troca para clubedomosaico + despacho na ilha
+
+**Assunto:** Arquipelago (ilha em foco e despacho na ilha Clube do Mosaico). Passou na trava de assunto.
+**Instrucao:** duas edicoes no mesmo commit — `foco.md` (bloco de metadados trocado) e
+`ilhas/clubedomosaico/PROMPT.md` (insercao pura acima de `## FILA DE BLOCOS`). Depois `git push origin HEAD:main`.
+
+`git status --porcelain` depois do push (antes de gravar este log):
+
+```
+```
+
+(vazio: arvore limpa, nada fora do commit)
+
+`git diff --stat HEAD~1 HEAD`:
+
+```
+ foco.md                        | 10 ++++----
+ ilhas/clubedomosaico/PROMPT.md | 57 ++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 62 insertions(+), 5 deletions(-)
+```
+
+Commit que foi ao `main`, confirmado com `git fetch origin main && git log -1 origin/main`:
+
+```
+b2a00a2c75d3ff087f2a3d363d54ab1ae16a1c93
+foco: clube do mosaico entra em foco, e a entrada e de medicao — nenhuma URL nova na primeira passada
+```
+
+**Contagem, conferida relendo os dois arquivos DEPOIS do push (nao pelo que eu acho que escrevi):**
+
+- 62 linhas inseridas, 5 removidas, 2 arquivos tocados.
+- `foco.md` tem **9 linhas** (tinha 9). O titulo `# ILHA EM FOCO` (linha 1) e o paragrafo final sobre
+  `ilha: nenhuma` (linha 9) seguem intactos; so as 5 linhas de metadado foram trocadas, uma por uma:
+  linha 3 `ilha: clubedomosaico`, 4 `desde: 2026-09-24`, 5 `decidido_por:`, 6 `motivo:`, 7 `historico:`.
+  `grep -n '^ilha:\|^desde:\|^decidido_por:\|^motivo:\|^historico:'` devolve exatamente essas 5 linhas,
+  cada chave uma unica vez.
+- `ilhas/clubedomosaico/PROMPT.md` tem **528 linhas** (eram 471): 57 a mais, que e o tamanho exato do
+  bloco inserido. Nada foi apagado, reescrito ou reordenado — insercao pura.
+- O bloco novo comeca na linha **300** (`### DESPACHO DO RAPHAEL — 24/09/2026 — ENTRADA NO FOCO: MEDIR
+  ANTES DE CONSTRUIR`) e termina na linha **355** (`- A 21.4 continua valendo, e o piso da rampa ...`).
+  Linha **299** em branco antes, linha **356** em branco depois.
+- `## FILA DE BLOCOS` desceu de 300 para a linha **357**, imediatamente abaixo da linha em branco.
+  Releitura das linhas 297-300 e 355-358 confirma a ordem: 297 `Nada mais nesta ronda.`, 298 em branco,
+  299 em branco nao — 298 em branco e 299 o titulo? Nao: a releitura mostra 297 `Nada mais nesta ronda.`,
+  298 em branco, 300 o titulo do despacho, 356 em branco, 357 `## FILA DE BLOCOS`, 359 o paragrafo da
+  secao 14 que ja estava ali.
+- Os 7 subtitulos do bloco, por `grep -n '^#### '`, nas linhas **304** (BLOCO 0 — sub_id deslocado),
+  **308** (BLOCO A — CTR), **318** (BLOCO B — /author/mosaico_gestor/), **327** (BLOCO C — os dois motivos
+  do Search Console), **345** (BLOCO D — correcao de cabecalho) e **349** (O QUE NAO FAZER NESTA ENTRADA).
+
+**Falhas:** nenhuma. Push aceito de primeira em `HEAD:main`, sem rebase e sem force.
+
+**O que este disparo NAO fez, porque a instrucao nao mandou:** nada em `ESTADO.md` (o BLOCO D descreve a
+correcao de `urls_publicadas` para quem for executar, nao e para as maos aplicarem), nada em
+`dados/posicoes.md` nem em `dados/indexacao.md`, nenhuma reserva de ilha, nenhum bloco de fila executado.
