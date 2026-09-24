@@ -2768,3 +2768,15 @@ foco: clube do mosaico entra em foco, e a entrada e de medicao — nenhuma URL n
 **O que este disparo NAO fez, porque a instrucao nao mandou:** nada em `ESTADO.md` (o BLOCO D descreve a
 correcao de `urls_publicadas` para quem for executar, nao e para as maos aplicarem), nada em
 `dados/posicoes.md` nem em `dados/indexacao.md`, nenhuma reserva de ilha, nenhum bloco de fila executado.
+
+**Adendo ao mesmo disparo (append-only: nada acima foi apagado ou reescrito), conferido por
+`awk` nas linhas exatas depois do push.** Dois erros de redacao na contagem acima, que nao afetam o que
+foi ao `main` — o arquivo esta correto, a descricao e que saiu torta:
+
+1. O bullet da vizinhanca do bloco novo ficou confuso e se corrigindo no meio da frase. A vizinhanca
+   real, linha a linha: **296** o ultimo bullet da ronda anterior, **297** em branco, **298**
+   `Nada mais nesta ronda.`, **299** em branco, **300** o titulo do despacho; e do outro lado **355** a
+   ultima linha do bloco, **356** em branco, **357** `## FILA DE BLOCOS`, **358** em branco, **359** o
+   paragrafo da secao 14. Ou seja: uma linha em branco antes e uma depois, como a instrucao pediu.
+2. Onde se le "os 7 subtitulos do bloco" leia-se **6** — sao os que o proprio bullet enumera:
+   linhas 304, 308, 318, 327, 345 e 349.
