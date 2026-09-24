@@ -11,6 +11,39 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — a régua do código pode devolver ZERO PARA SEMPRE, e na robometria ela é ainda mais estreita
+
+24/09/2026 — FUNDAÇÃO — Achado na aquametria, no mutirão do despacho do Raphael. Está aqui, e não no `PROMPT.md` da robometria, porque a seção 3 proíbe editar arquivo de ilha que não se reservou.
+
+**O QUE ACONTECEU NA AQUAMETRIA.** O `token_no_titulo()` de lá montava o código com uma classe de separadores `[\s\-/_.]` — sem parêntese. O `codigo_base()`, que produz o outro lado da comparação, **troca `(` e `)` por espaço no modelo desde que nasceu**. Resultado: o registro chegava como `classic 600 2217` e o título do anúncio chegava como `Classic 600 (2217)`, e o anúncio **certo**, na primeira página da busca, era recusado por *"o título não traz o código"*. **Três registros presos, dois destravados hoje.** A regra valia de um lado só da comparação — a mesma família do falso positivo do `noindex` de aspa simples, medido na mesma ilha e no mesmo dia.
+
+**A ROBOMETRIA NÃO TEM ESTE DEFEITO, e tem um parente dele.** O `token_no_titulo()` de lá é outro código: ele faz `sem_acento(codigo).replace(' ', '')` e procura o resultado **literal** no título, sem tolerar separador nenhum. Medido em 24/09/2026 sobre os 84 registros daquele banco: **zero** trazem parêntese ou colchete no modelo, então a exposição ao defeito exato da aquametria é **nula hoje**. Isto fica escrito para ninguém remedir.
+
+**O que sobra, e é o que vale medir:** aquela régua exige o código **exatamente como está escrito no banco**. `B106GL` só casa com `B106GL` — um anúncio que escreva `B106 GL` ou `B-106GL` é recusado, e recusado em silêncio, como um anúncio que não existisse. O varejo troca separador à vontade (é a cicatriz que o próprio arquivo da aquametria documenta: *"HT-1300, HT1300 e ht 1300 são o mesmo código escrito por três lojas"*).
+
+**O que fazer, na primeira execução que reservar a robometria — e MEDIR antes de mexer:**
+
+1. Rodar o ensaio da coleta e **contar quantos registros sem ficha têm, entre as recusas, um título que traz a marca certa e o código com separador diferente**. Esse número é o tamanho da dívida, e pode ser zero.
+2. **Só se for maior que zero**, portar a ideia — não o código: a aquametria passou a aceitar **pontuação** entre as partes do código e continua recusando **palavra** entre elas. Pontuação é o que a loja troca; palavra entre as partes casaria também o anúncio de kit que cita dois produtos da linha.
+3. As duas direções viram afirmação de bancada **e** mutação, como na aquametria (`mutacoes-coleta-shopee.py` 21 e 22). Uma régua com uma direção medida só é como régua boa vira folgada numa passada distraída.
+
+**Por que NORMAL e não ALTA:** ninguém está servindo número errado por causa disto. O custo é ficha que não nasce — receita que não entra —, não defeito no ar. E o passo 1 pode fechar o despacho sem uma linha de código mudar.
+
+### prioridade NORMAL — o espelho do CDN da Shopee existe, e as outras ilhas não sabem disso
+
+24/09/2026 — FUNDAÇÃO — Também da aquametria, no mesmo mutirão.
+
+O egresso desta nuvem barra `down-bs-br.img.susercontent.com` — o CDN de onde o painel de afiliados copia a URL da foto — e isso está medido e escrito em mais de uma ilha como se fosse o fim da linha. **Não é.** `cf.shopee.com.br/file/<mesmo identificador de arquivo>` serve o mesmo arquivo e responde 200 (medido em três passadas em 24/09/2026, contra 000 nas mesmas três do host barrado).
+
+**E a identidade entre os dois hosts não é suposição:** a aquametria tinha, por acaso, oito fotos no host bloqueado cuja dimensão a Sentinela já havia medido no Chrome do Raphael (`naturalWidth` × `naturalHeight`, 13/09). Medidas pelo espelho, **8 de 8 batem** — inclusive em 265, 692, 726 e 1001, que são os números que um espelho servindo miniatura não reproduziria.
+
+**Duas armadilhas, e as duas custam se ignoradas:**
+- **O espelho tem de preservar a extensão.** `/file/<id>` devolve **JPEG** e `/file/<id>.webp` devolve **WebP** — 33.317 contra 21.150 bytes no mesmo id. Medir uma representação e declarar a medida da outra é medir uma coisa e escrever outra.
+- **A premissa é sobre infraestrutura de outra empresa e pode mudar sem aviso.** Por isso o portão da aquametria **remede o grupo de controle a cada passada** em vez de confiar no raciocínio, e reprova se o grupo de controle sumir.
+
+**O que fazer:** a régua é `ilhas/aquametria/ferramentas/regua-cdn-shopee.py`, com bancada (`teste-cdn-shopee.py`, 66 afirmações), portão no ar (`conferir-espelho-cdn.py`) e mutações (11 de 11). **Quem reservar a robometria ou a clubedomosaico e tiver foto sem dimensão pode portá-la** — e tem de levar o grupo de controle junto, porque régua sem controle ali é só um endereço novo em que se confia por fé. Se a ilha não tiver nenhuma foto medida por outro instrumento, ela **não tem grupo de controle** e o porte fica sem prova: nesse caso, escrever isso e parar é a resposta certa.
+
+
 ### prioridade NORMAL — a função que apaga o cache tem um buraco em DUAS ilhas, e o que o fecha é uma linha
 
 15/09/2026 — FUNDAÇÃO — Achado na aquametria, ao portar a purga do cache do hospedeiro e escrever para ela o portão que a robometria e a clubedomosaico nunca tiveram. Está aqui, e não no `PROMPT.md` daquelas ilhas, porque a seção 3 proíbe editar arquivo de ilha que não se reservou — o conserto é de quem reservar cada uma.
