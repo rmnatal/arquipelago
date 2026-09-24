@@ -297,6 +297,63 @@ O que mede isso agora, e onde olhar se voltar: `ferramentas/teste-prestacao-reju
 
 Nada mais nesta ronda.
 
+### DESPACHO DO RAPHAEL — 24/09/2026 — ENTRADA NO FOCO: MEDIR ANTES DE CONSTRUIR
+
+Esta ilha entrou em FOCO em 24/09/2026 por decisão do Raphael. A ordem das coisas aqui é o contrário do de sempre: **a primeira passada com foco não cria página nenhuma.** Esta ilha já tem tráfego e já tem três páginas na primeira página — o próximo ganho não vem de URL nova, vem de consertar o cano e de fazer o clique acontecer. Só a passada SEGUINTE abre malha, e sob o teto da 21.4 (máximo 10 URLs por leva, máximo 3 levas por semana) e com `piso: abaixo` (17 de 40 URLs).
+
+#### BLOCO 0 — O `sub_id` DESLOCADO. Antes de tudo.
+
+Está gravado como `-clubedomosaico-F2--`: deslocado uma casa. Enquanto isso não fecha, **qualquer venda que esta ilha gerar não saberá de onde veio** — e é a ilha com mais tráfego do Arquipélago. É o item de maior ROI do despacho inteiro e não divide passada com nada: conserta, republica os links afetados, e prova no ar gerando um link e lendo o `sub_id` de volta. O item 2 do despacho da Sentinela de 23/09 é a especificação; este parágrafo só o promove a primeiro da fila.
+
+#### BLOCO A — CTR das três páginas que já estão na primeira página
+
+`/materiais/qual-cola-usar-no-mosaico/` (posição 7,8, 17 impressões), `/materiais/quantas-pastilhas-para-mosaico/` (9,1, 9 impressões), `/como-fazer/o-que-e-mosaico-picassiete/` (7,0, 3 impressões). **Zero clique nas três.** Consultas nomeadas: `cola para mosaico` (posição 10,0) e `picassiete` (6,0); 28 das 30 impressões vêm anonimizadas pela Search Console.
+
+- Pela 12.1, banda de 4 a 10 é **trabalho de CTR, não de conteúdo**: título que promete o número, meta que promete a faixa e a fonte.
+- **NÃO REESCREVER O CONTEÚDO dessas três páginas.** Posição conquistada não se mexe: reescrever corpo de página que já rankeia é risco sem retorno.
+- Gravar em `dados/posicoes.md` o título e a meta ANTES da troca, na mesma linha da série, para haver com o que comparar depois.
+- A 12.1 manda comparar o CTR com a média das outras na mesma posição. Com 30 impressões **não há com o que comparar** — isso fica ESCRITO, não estimado.
+- O veredito é de **08/10** (duas semanas de série), não de 30/09. Não declarar vitória nem derrota na leitura de 30/09.
+
+#### BLOCO B — `/author/mosaico_gestor/` indexada
+
+Já há despacho da Sentinela de 23/09 sobre isso. O que este parágrafo acrescenta é uma **lição trazida da Aquametria**, e ela muda o caminho técnico:
+
+- **NÃO adicionar uma segunda meta robots.** O WordPress já imprime a meta pelo `wp_robots` (com aspas simples), e uma tag injetada em paralelo gera **meta duplicada** — o problema fica pior que o original e mais difícil de achar.
+- O caminho é o **filtro** (`wp_robots`, ou o filtro do plugin de SEO), nunca uma tag em paralelo.
+- Sair do sitemap também, não só `noindex`.
+- Conferir no ar depois: a página tem de servir UMA meta robots, com `noindex`, e o `conferir-no-ar` tem de reprovar se aparecerem duas.
+
+#### BLOCO C — os dois motivos do Search Console (clubedomosaico.com.br)
+
+E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomosaico.com.br**, dois motivos novos:
+
+1. "Página alternativa com tag canônica adequada"
+2. "Página com redirecionamento"
+
+**PRIMEIRO, O AVISO QUE EVITA TRABALHO INVENTADO: os dois motivos são, na esmagadora maioria dos casos, COMPORTAMENTO ESPERADO — não defeito.** Canônica apontando para a versão boa e redirecionamento que redireciona para o lugar certo são o Google fazendo o trabalho dele. A tarefa é **verificar e relatar**, não "consertar".
+
+**SEGUNDO, O QUE ESTA NUVEM NÃO ALCANÇA:** a conta de serviço `sentinela@` **não tem acesso** a `sc-domain:clubedomosaico.com.br` — só a aquametria e a robometria (está em `dados/search-console-2026-09-23.md`). Então **não invente a lista de URLs do relatório** e não escreva "verificado" sobre URL que você não abriu. O que é possível fazer sem a Search Console, e é o que deve ser feito nesta passada:
+
+- Varrer as **17 URLs do sitemap** mais `/author/mosaico_gestor/` e, para cada uma: ler o `<link rel="canonical">` servido e seguir a cadeia de redirecionamento (código HTTP, destino, número de saltos).
+- Classificar cada URL em DUAS listas, em `dados/indexacao.md`:
+  - **"esperado, nenhuma ação"** — canônica aponta para a própria URL ou para a página certa; redirect de URL antiga para a nova, ou de variação para a canônica.
+  - **"defeito, com a correção proposta"** — canônica de página de conteúdo apontando para a home; paginação ou variação de filtro canonicalizada para o lugar errado; **URL que está no sitemap e redireciona** (o sitemap não deve listar URL que redireciona); redirect para a home em vez da página equivalente; cadeia com mais de um salto.
+- **NÃO APLICAR CORREÇÃO NESTA PASSADA.** O que for defeito volta como PROPOSTA, URL por URL, com o valor atual e o valor proposto, para o Raphael autorizar item por item.
+- **PEDIDO AO RAPHAEL, que é o que destrava de verdade:** dar acesso à conta de serviço `sentinela@` na propriedade `sc-domain:clubedomosaico.com.br` no Search Console (Configurações, Usuários e permissões, adicionar; leitura basta). Enquanto isso não existir, indexação e posição desta ilha só podem ser lidas no navegador dele, e a série de 30/09 vai ter a mesma nota de rodapé da de 23/09.
+
+#### BLOCO D — correção de cabeçalho, de passagem
+
+`ESTADO.md` traz `urls_publicadas: 13`; o sitemap no ar serve **17**. Corrigir para 17, contado no sitemap, e dizer no `ESTADO.md` que foi contado no sitemap e quando. `primeira_indexacao` continua `desconhecida` e **assim deve ficar**: a série de Desempenho visível começa em 09/09 e isso não basta para cravar a data — cravar sem base adiantaria o relógio dos 21 dias da seção 21 e falsearia o piso.
+
+#### O QUE NÃO FAZER NESTA ENTRADA
+
+- Não criar bloco de malha antes do retrato de medição estar escrito.
+- Não mexer em conteúdo de página que já rankeia.
+- Não aplicar correção de canônica ou de redirect sem autorização item por item.
+- Não escrever número de Search Console que esta nuvem não conseguiu ler.
+- A 21.4 continua valendo, e o piso da rampa (40 URLs + 21 dias desde a primeira indexação) continua `abaixo`.
+
 ## FILA DE BLOCOS
 
 **Leia a seção 14 do `ARQUIPELAGO.md` antes de montar a fila: tudo existe para indexar e chegar à primeira página.** A ordem abaixo já aplica a regra de intenção de compra (seção 9): fichas de material e peças antes de tutorial genérico.
