@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-23T19:16Z
-executando_desde: null
+executando_desde: 2026-09-24T10:16Z
 bloco_atual: |
   LEVA 9 NO AR: /peixes/barbos/ e as fichas do barbo sumatra, do barbo rosado e do barbo cereja. QUATRO URLs novas, a ilha vai de 48 para 52, e e a TERCEIRA E ULTIMA leva da semana que comecou em 21/09 (3 de 3 pela 21.4). Peixes 1.15.0, esquema de especies versao 6, manifest revisao 110, /status conferido na 110.
   1. O CRITERIO E O NOME E VOLTA CONTADO, nao lembrado. Foi o criterio da leva 7, a leva 8 teve de abandona-lo: 'barbo' casa em EXATAMENTE tres registros de nomes_populares_br no banco de 40. O que ele nao suporta e ser encurtado — 'barb', a raiz do genero antigo que o banco guarda nos sinonimos e o nome em ingles do cereja, casa em QUATRO, e o quarto e o cascudo-barbudo, da prateleira dos limpa-vidros e barrado pelo portao. Uma letra separa o criterio que serve do que traz peixe de outra prateleira. Nem familia nem genero servem: Cyprinidae tem quatro elegiveis e o quarto e o kinguio, de 48 cm. As QUATRO contagens da frase publicada sao recomputadas do banco pelo teste-peixes.
