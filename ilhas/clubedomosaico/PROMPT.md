@@ -2,12 +2,16 @@
 
 Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras comuns; aqui fica só o que é desta ilha. **Nunca copie regra do `ARQUIPELAGO.md` para cá.**
 
-> **ESTA ILHA NÃO ESTÁ EM FOCO — 16/09/2026.** `foco.md` na raiz nomeia a **robometria**, e pela seção **1.2** do
-> `ARQUIPELAGO.md` nenhuma outra ilha recebe bloco da Fundação e nenhuma outra ilha é rondada. **Nada deste arquivo
-> é executado enquanto isso valer**, por mais antigo ou prioritário que um despacho daqui pareça: só fura o foco
-> despacho **ALTO** em ilha que esteja **no ar e quebrada**. Quando `foco.md` disser `ilha: nenhuma`, apague este
-> aviso e este arquivo volta a valer inteiro. *(Inserido pelo Pente Fino em 16/09/2026: a 1.2 nasceu hoje e nenhum
-> `PROMPT.md` de ilha fora do foco a mencionava.)*
+> **ESTA ILHA ESTÁ EM FOCO desde 24/09/2026.** `foco.md` na raiz nomeia a **clubedomosaico**, e pela seção **1.2**
+> do `ARQUIPELAGO.md` a Fundação trabalha **só nela**. Este arquivo vale inteiro. *(O aviso anterior era de 16/09,
+> dizia que a ilha estava fora do foco por causa da robometria, e continuou aqui depois de a aquametria entrar e
+> sair — três mundos atrás. Corrigido em 24/09/2026 pela execução que achou a ilha fora do ar.)*
+
+> **ANTES DE QUALQUER BLOCO, A PORTA DE ENTRADA — seção 29 do `ARQUIPELAGO.md` (24/09/2026).** Esta ilha passou
+> pelo menos um dia com 16 das 17 URLs servindo a página de estacionamento da HostGator, com o `/status` verde e a
+> bancada verde, porque todo portão daqui entra por query na raiz ou rota REST. Rodar `python3
+> ferramentas/conferir-no-ar.py .` é um comando e mede a porta; se ela estiver caída, o diagnóstico e o reparo estão
+> em `?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>` (com `&reparar=1` para consertar).
 
 ## O que esta ilha tem de diferente (leia antes de tudo)
 Esta é a **terceira ilha** e a primeira que **não veio da Bússola**: é um projeto pessoal do Raphael. A mãe dele faz mosaico artesanal (vasos, colares, quadros). O site tem **três motores num domínio só**, e a malha fecha um ciclo comercial completo:
@@ -299,6 +303,22 @@ Nada mais nesta ronda.
 
 ### DESPACHO DO RAPHAEL — 24/09/2026 — ENTRADA NO FOCO: MEDIR ANTES DE CONSTRUIR
 
+> **ESTADO DESTE DESPACHO EM 24/09/2026, 19h40Z, pela 18.3 — FALTAM O BLOCO 0 E OS BLOCOS A, B e C.** A primeira
+> execução com foco não fez nenhum deles, e o motivo é do próprio despacho: ele manda **medir antes de construir**, e
+> a medição da rede (seção 20.2) achou a ilha **fora do ar** — 16 das 17 URLs servindo a página de estacionamento da
+> HostGator. Pela **18.5** (verificação antes de construção) e pela **1.2** (ilha no ar e quebrada), a execução
+> inteira foi para levantar a ilha. Ela voltou, está medida no ar com 456 afirmações e 0 falha, e a regra virou a
+> **seção 29** do contrato.
+>
+> **O que isso muda para quem pegar o próximo bloco, e é uma coisa só:** o BLOCO A fala em **CTR de três páginas na
+> primeira página do Google**, e essas três páginas passaram pelo menos um dia servindo 404 ao Google. **A série de
+> `dados/posicoes.md` tem um buraco que não é de CTR**, e o veredito de 08/10 que o bloco marca tem de ser lido
+> contra esse buraco, não contra o título e a meta. Trocar título agora mistura duas causas na mesma janela — quem
+> for fazer o BLOCO A decide isso com o número de 30/09 na mão, e escreve qual das duas leituras está usando.
+>
+> O **BLOCO 0** (o `sub_id` deslocado) continua sendo o primeiro da fila e não divide passada com nada.
+
+
 Esta ilha entrou em FOCO em 24/09/2026 por decisão do Raphael. A ordem das coisas aqui é o contrário do de sempre: **a primeira passada com foco não cria página nenhuma.** Esta ilha já tem tráfego e já tem três páginas na primeira página — o próximo ganho não vem de URL nova, vem de consertar o cano e de fazer o clique acontecer. Só a passada SEGUINTE abre malha, e sob o teto da 21.4 (máximo 10 URLs por leva, máximo 3 levas por semana) e com `piso: abaixo` (17 de 40 URLs).
 
 #### BLOCO 0 — O `sub_id` DESLOCADO. Antes de tudo.
@@ -342,9 +362,11 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
 - **NÃO APLICAR CORREÇÃO NESTA PASSADA.** O que for defeito volta como PROPOSTA, URL por URL, com o valor atual e o valor proposto, para o Raphael autorizar item por item.
 - **PEDIDO AO RAPHAEL, que é o que destrava de verdade:** dar acesso à conta de serviço `sentinela@` na propriedade `sc-domain:clubedomosaico.com.br` no Search Console (Configurações, Usuários e permissões, adicionar; leitura basta). Enquanto isso não existir, indexação e posição desta ilha só podem ser lidas no navegador dele, e a série de 30/09 vai ter a mesma nota de rodapé da de 23/09.
 
-#### BLOCO D — correção de cabeçalho, de passagem
+#### ~~BLOCO D — correção de cabeçalho, de passagem~~ — **CUMPRIDO em 24/09/2026 às 19h33Z**
 
-`ESTADO.md` traz `urls_publicadas: 13`; o sitemap no ar serve **17**. Corrigir para 17, contado no sitemap, e dizer no `ESTADO.md` que foi contado no sitemap e quando. `primeira_indexacao` continua `desconhecida` e **assim deve ficar**: a série de Desempenho visível começa em 09/09 e isso não basta para cravar a data — cravar sem base adiantaria o relógio dos 21 dias da seção 21 e falsearia o piso.
+`urls_publicadas` passou de 13 para **17**, contado no `wp-sitemap.xml` no ar: 12 em `wp-sitemap-posts-page-1.xml` e 5 em `wp-sitemap-posts-peca-1.xml`, listadas uma a uma no `REGISTRO.md`. `primeira_indexacao` continua `desconhecida`, como o bloco manda.
+
+*(A contagem só foi possível porque o sitemap voltou a existir: às 19h20Z ele servia 404. Ver a abertura deste despacho.)*
 
 #### O QUE NÃO FAZER NESTA ENTRADA
 

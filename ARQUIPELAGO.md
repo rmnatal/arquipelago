@@ -6,13 +6,15 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 
 | Papel | Seções |
 |---|---|
-| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, 26 |
-| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24 |
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, 26, 29 |
+| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, 29 |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
-| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21 |
+| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29 |
 | **Bússola** | 10, 11, 14, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
 | **Pauta das ilhas** | 10, 14, 15, 16, 17, 21 |
 | **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
+
+*(A **29** entrou nas três linhas em 24/09/2026: ela é sobre a porta de entrada do site cair sem nenhum portão acusar, e quem não a lê continua lendo "o repositório está verde" como "o site está no ar".)*
 
 **Sempre, para todo papel:** seções **1.2** (foco único — enquanto `foco.md` nomear uma ilha, ela manda em quem trabalha em quê), **2** (cabeçalho de estado), **3** (o repositório é o lugar do trabalho), **4** (o site fica para trás em silêncio), **10** (regras que valem sempre) e **18** (correção fura a fila).
 
@@ -967,3 +969,31 @@ O Raphael toca projetos separados de propósito. A separação chega ao ponto de
 **28.4 O QUE NÃO É CONTAMINAÇÃO, E FICA.** Citação de lição aprendida em outro projeto continua valendo: "esta regra existe porque quebrou lá", "mesma régua de canonização usada na Real 21". Isso é a memória do erro que pagou a regra, não dado de outro projeto. Apagar essas frases deixaria o contrato como uma lista de proibições sem causa — e documento assim alguém desfaz em dois meses, por não saber de onde veio. O Raphael confirmou isso explicitamente em 18/09/2026.
 
 **28.5 O QUE ACONTECEU.** Em 18/09/2026 dois disparos seguidos mandaram assunto da Real 21 para este repositório. O primeiro criou `claude/prospeccao/registro.md` (commit `578a565`), removido em `5dff206`. A causa foi de quem disparou, não da execução: o executor cumpriu a instrução que recebeu. A trava não existia; agora existe. Fica registrado também que o executor, por conta própria, se recusou a escrever o e-mail e o telefone de uma jornalista num repositório público — e esse julgamento foi correto.
+
+## 29. A PORTA DE ENTRADA DO SITE — todo portão desta fábrica entra por uma porta que pode cair sozinha (24/09/2026)
+
+Medido na Clube do Mosaico em 24/09/2026, às 19h20Z, pela primeira execução da Fundação depois de a ilha entrar em foco: **16 das 17 URLs do sitemap serviam a página de estacionamento da HostGator, com 404.** `/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`, `/loja/`, as **três páginas que estavam na primeira página do Google**, mais `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/`. Só a home respondia. A ilha com mais tráfego do Arquipélago estava fora do ar havia pelo menos um dia e **nada, em lugar nenhum, tinha acusado**.
+
+**A CAUSA, nomeada de dentro do servidor e não por palpite:** o `.htaccess` da raiz existia, com 1.057 bytes e gravável, e tinha **um bloco só — `NFD EPC`, o do Endurance Page Cache do hospedeiro**. O bloco `# BEGIN WordPress` não estava lá. Sem ele o Apache não manda para o `index.php` nada que não seja arquivo de verdade, e o WordPress deixa de receber todo caminho bonito. O conserto é `flush_rewrite_rules( true )` — o mesmo que salvar Configurações > Links permanentes —, e as 17 URLs voltaram a 200 no minuto seguinte.
+
+**29.1 POR QUE NENHUM PORTÃO VIU, e esta é a parte que vale para toda ilha.** Porque **todos eles entram pela porta que continuou aberta**. O Sync é `/?<ilha>_sync=`, uma query na raiz. O `/status` é rota REST, alcançável por `?rest_route=`. A bancada (`teste-*.php`, as mutações, `validar-*`) roda sem site e sem rede, por desenho. O `/status` respondeu a revisão certa o tempo inteiro, a bancada fechou verde, e as duas coisas eram verdade — e irrelevantes. **O repositório inteiro verde com o site fora do ar é a seção 4 na sua forma mais cara: aqui o resumo velho lido como fato não era um campo de cabeçalho, era a própria noção de "está no ar".**
+
+**29.2 A REGRA.** O `conferir-no-ar.py` de **toda ilha** mede, além do que já mede, as três URLs que o Google usa e que **nenhuma página do site linka** — e é por não serem linkadas que elas nunca entram na lista de páginas de nenhum portão:
+
+- `/wp-sitemap.xml` em 200, com `content-type` de XML, e trazendo XML de sitemap de verdade (`<sitemap>` ou `<url>`) em vez da página do hospedeiro;
+- `/robots.txt` em 200 e `text/plain`;
+- `/wp-json/` em 200 e `application/json`.
+
+E mede **o 404 que tem de ser 404**: um caminho que a ilha nunca teve responde 404 **na página da própria ilha**, não na do hospedeiro. Portão que só cobra 200 aprova um servidor que responde 200 para tudo, e "tudo responde" é um jeito conhecido de uma ilha inteira sair do índice sem ninguém ver.
+
+As três são as **primeiras a cair** quando a reescrita some, porque não existem como arquivo em disco: são rota virtual do WordPress e dependem inteiramente do `.htaccess`. Uma ilha pode ter todas as páginas em 200 por cache e as três já mortas.
+
+**29.3 A ROTA QUE MEDE A PORTA POR DENTRO.** A casca de toda ilha serve `?rest_route=/<ilha>/v1/rotas&token=<token do Sync>`, que devolve o retrato do roteamento medido no servidor: `permalink_structure`, quantas regras há no banco, `got_mod_rewrite()`, e do `.htaccess` o caminho, se existe, se é gravável, o tamanho, a data e **quais blocos `# BEGIN` ele tem**. Com `&reparar=1` ela roda o `flush_rewrite_rules( true )` e devolve o antes e o depois. O modelo está em `ilhas/clubedomosaico/snippets/clubedomosaico-casca.php`, seção 6.
+
+**O conteúdo do arquivo nunca sai inteiro na resposta** — só os nomes dos blocos e a contagem de linhas de reescrita. `.htaccess` de hospedeiro compartilhado carrega regra de segurança de terceiro, e despejar isso numa resposta HTTP é entregar a configuração do servidor a quem tiver o token.
+
+**29.4 O REPARO NÃO TEM GANCHO AUTOMÁTICO, e isso é decisão e não preguiça.** Seria fácil pendurar o `flush` no `init` e nunca mais pensar nisso. Não: reescrever o `.htaccess` é mexer na porta de entrada do site, e **porta de entrada que se conserta calada a cada carregamento é a que ninguém consegue desfazer no dia em que estiver errada.** O reparo é pedido, com token, e devolve o antes e o depois para quem pediu comparar. Isso também é o que separa os dois mundos com número: se o diagnóstico mostrar o arquivo gravado e correto **e** as URLs continuarem em 404, o `AllowOverride` está desligado do lado do hospedeiro, e aí é chamado na HostGator — não é código de ilha nenhuma.
+
+**29.5 O QUE FOI MEDIDO E NÃO É CULPA DA PURGA.** A suspeita óbvia era `cdm_casca_purgar_cache()`, que apaga arquivo e roda a cada Sync desde 14/09. **Não foi ela**, e está medido: a purga só esvazia `wp-content/endurance-page-cache/`, com `realpath` conferido a cada nível, e nunca encosta na raiz. Mais forte que o argumento: depois do reparo, um Sync novo **reescreveu o `.htaccess` e manteve o bloco do WordPress** — o EPC preserva o que encontra. A causa de origem continua sem nome, e é assim que fica escrito; o que tem nome é o sintoma, o portão que o pega e o reparo que o desfaz. **Causa desconhecida com portão é risco administrado; causa inventada é a próxima execução consertando a coisa errada.**
+
+**29.6 ILHA FORA DO FOCO TAMBÉM CAI.** Esta ilha passou de 15/09 a 24/09 sem uma execução — e a 1.2 diz, com todas as letras, que ninguém ronda ilha fora do foco. O `conferir-no-ar.py` **teria** acusado (ele gruda quebra de cache em toda URL, então toda leitura dele já era uma URL com query, que era exatamente a forma que morria); o que faltou não foi sensibilidade, foi alguém rodar. A 1.2-b.1 manda a medição continuar em toda ilha justamente por isso, e **a medição de uma ilha fora do foco custa um `conferir-no-ar.py`** — que é um comando, não um bloco.

@@ -3985,3 +3985,167 @@ mais coisa continua sendo a **coleta das quatro categorias vazias do
 vocabulario** (`alicate`, `base`, `acabamento`, `apoio`), que e o que abre o bloco
 4c — e o canal de busca alcanca, o egresso direto aos dominios de fabricante nao.
 A semana da 21.4 esta em **2 de 3 levas**, uma URL cada.
+
+---
+
+## 24/09/2026, 19h40Z — A ILHA ESTAVA FORA DO AR. A execução inteira foi levantá-la
+
+**Primeira execução da Fundação depois de a ilha entrar em foco, e ela não criou
+uma URL sequer.** O despacho do Raphael de 24/09 manda **medir antes de
+construir**, e foi a medição de rede da seção 20.2 — o `curl` barato do começo de
+execução — que achou o que nove dias de silêncio esconderam.
+
+### O QUE FOI MEDIDO, às 19h20Z
+
+**16 das 17 URLs do sitemap serviam a página de estacionamento da HostGator, com
+404.** `/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`, `/loja/`,
+`/materiais/quantas-pastilhas-para-mosaico/`, `/como-fazer/o-que-e-trencadis/`,
+`/como-fazer/o-que-e-mosaico-picassiete/`, as cinco peças da Loja, mais
+`/wp-sitemap.xml`, `/robots.txt` e `/wp-json/`. **Só a home respondia.** As três
+páginas que a leitura semanal de 23/09 mediu na primeira página do Google —
+posições 7,8 · 9,1 · 7,0 — estavam entre as mortas.
+
+**O WordPress estava inteiro, e é isso que nomeia a causa.** A busca interna
+(`/?s=picassiete`) renderizava, achava a página do picassiete e listava as URLs
+de todas as outras; o Sync aplicava a revisão 35 sem erro; o `/status` respondia.
+Tudo que é **arquivo de verdade** (`/`, `/index.php`, `/wp-login.php`) ou **query
+na raiz** (`/?s=`, `/?rest_route=`) passava. **Todo caminho bonito morria ANTES de
+chegar no PHP.**
+
+Medido oito vezes por URL, determinístico. A irmã `aquametria`, no **mesmo IP**
+(108.179.253.218), servia sitemap, robots e wp-json em 200 — então não era o
+plano, não era o túnel e não era a rede desta nuvem.
+
+### UMA MEDIÇÃO QUE ATRAPALHOU, e fica escrita porque atrapalharia de novo
+
+Às 19h16 a `/materiais/qual-cola-usar-no-mosaico/` ainda respondia 200. Às 19h21,
+depois de eu disparar o Sync, ela virou 404 como as outras. **Não foi o Sync que
+quebrou a ilha** — ela já estava quebrada quando a medição começou. O que aquela
+URL tinha era um HTML cacheado em disco, que é **arquivo de verdade** e por isso
+passava pela porta fechada; a purga do Sync o apagou. Aquele cache expirava
+sozinho às 20h09 (`max-age=7200` a partir de 18h09). Fica registrado para
+ninguém ler a sequência como causa.
+
+### A CAUSA, medida de dentro do servidor
+
+A casca ganhou a **seção 6** e a rota
+`?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>`, que devolve o
+retrato do roteamento por dentro. Ela respondeu:
+
+```
+permalink_structure : /%year%/%monthnum%/%day%/%postname%/
+regras_no_banco     : 115
+mod_rewrite         : true
+raiz_gravavel       : true
+htaccess            : /home3/rapha921/clubedomosaico.com.br/.htaccess
+                      existe, legivel, gravavel, 1057 bytes
+blocos              : ["NFD EPC"]
+tem_wordpress       : false
+```
+
+**O `.htaccess` tinha um bloco só — `NFD EPC`, o do Endurance Page Cache do
+hospedeiro — e não tinha o `# BEGIN WordPress`.** Sem esse bloco o Apache não
+manda para o `index.php` nada que não seja arquivo existente, e o WordPress
+deixa de receber todo caminho bonito. Um arquivo, sete linhas ausentes, a ilha
+inteira fora do índice.
+
+### O REPARO, com o antes e o depois na mesma resposta
+
+`&reparar=1` roda `flush_rewrite_rules( true )` — o mesmo que salvar
+Configurações > Links permanentes, que é o conserto que a documentação do
+WordPress manda fazer para este defeito:
+
+```
+antes   1057 bytes   blocos NFD EPC             tem_wordpress false   rewrite  8
+depois  1580 bytes   blocos NFD EPC,WordPress   tem_wordpress true    rewrite 15
+```
+
+**As 17 URLs voltaram a 200 no minuto seguinte**, junto com `wp-sitemap.xml`,
+`robots.txt`, `wp-json` e `/author/mosaico_gestor/`. A **F2 voltou a responder
+consulta**: `?cdm_base=vidro&cdm_tessela=pastilha_vidro&cdm_ambiente=externo`
+saiu de 404 com 2.361 bytes de página do hospedeiro para 200 com 121.077 bytes
+da ferramenta. Enquanto a porta esteve fechada, quem chegasse pela busca em
+"cola para mosaico", na posição 7,8, e preenchesse o formulário **recebia a
+página de estacionamento da HostGator** — as duas ferramentas desta ilha são GET
+para a própria página.
+
+### E O CONSERTO DURA — medido, não suposto
+
+A suspeita óbvia era `cdm_casca_purgar_cache()`, que apaga arquivo e roda a cada
+Sync desde 14/09. **Não foi ela**, por dois argumentos e o segundo é mais forte
+que o primeiro: (1) ela só esvazia `wp-content/endurance-page-cache/`, com
+`realpath` conferido a cada nível da recursão, e nunca encosta na raiz; (2)
+**depois do reparo, um Sync novo reescreveu o `.htaccess` (mtime novo, 1579
+bytes) e MANTEVE o bloco do WordPress** — o EPC preserva o que encontra. As
+quatro URLs reconferidas depois dessa purga continuaram em 200.
+
+**A causa de origem continua sem nome, e fica escrito assim.** O que tem nome é o
+sintoma, o portão que o pega e o reparo que o desfaz. Causa inventada seria a
+próxima execução consertando a coisa errada.
+
+### O PORTÃO QUE FALTAVA, e por que ele faltava
+
+`conferir-no-ar.py` media 450 afirmações e **teria** acusado este defeito — ele
+gruda quebra de cache em toda URL, então toda leitura dele já era uma URL com
+query, que era exatamente a forma que morria. **O que faltou não foi
+sensibilidade, foi alguém rodar:** a ilha passou de 15/09 a 24/09 sem bloco.
+
+O que ele **não** cobria são as três URLs que o Google usa e que **nenhuma página
+desta ilha linka** — e é por não serem linkadas que nunca entraram na lista de
+nenhum portão. Entraram agora:
+
+- `/wp-sitemap.xml` em 200 com `content-type` de XML, **e trazendo XML de sitemap
+  de verdade** em vez da página do hospedeiro;
+- `/robots.txt` em 200 e `text/plain`;
+- `/wp-json/` em 200 e `application/json`;
+- **o 404 que tem de ser 404**: caminho inexistente responde 404 **na página desta
+  ilha**, não na do hospedeiro. Portão que só cobra 200 aprova um servidor que
+  responde 200 para tudo.
+
+**456 afirmações, 0 falha**, medidas no HTML servido, a ilha inteira.
+
+### A REGRA SUBIU PARA O CONTRATO — seção 29 do `ARQUIPELAGO.md`
+
+Porque o motivo vale para toda ilha, não só para esta: **todo portão desta
+fábrica entra pela porta que continuou aberta.** O Sync é `/?<ilha>_sync=`, uma
+query na raiz; o `/status` é rota REST; a bancada roda sem site e sem rede, por
+desenho. O `/status` respondeu a revisão certa o tempo inteiro e a bancada fechou
+verde — as duas coisas eram verdade e irrelevantes. Entrou nas **três linhas** do
+mapa de leitura, porque regra que ninguém lê é regra morta.
+
+### A CÓPIA DA SEÇÃO 24 ESTAVA TRÊS PEÇAS ATRASADA
+
+A Loja tinha **1 peça no repositório e 5 no ar**. A artesã cadastrou quatro entre
+15 e 16/09 — Quadro Divino Espírito Santo (15/09), Vaso com flores em cerâmica,
+Quadro Nossa Senhora Aparecida e Bandeja em madeira (16/09) — e **nenhuma
+execução passou aqui desde então para buscá-las**. É o dado que a 24 chama de
+único que não se reconstrói a partir do repositório, e é o trabalho da mãe do
+Raphael. Gravado em `dados/pecas.json`, **formatado e não numa linha só**: cópia
+sem diff legível não é histórico, e histórico é o ganho que a 24.4 nomeia.
+
+### O DESPACHO DO RAPHAEL DE 24/09, pela 18.3
+
+**Saiu:** o **BLOCO D**. `urls_publicadas` passou de 13 para **17**, contado no
+sitemap no ar às 19h33Z — 12 em `wp-sitemap-posts-page-1.xml` (`/`, `/loja/`,
+`/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`,
+`/divulgacao-de-afiliados/`, `/privacidade/`, `/materiais/qual-cola-usar-no-mosaico/`,
+`/materiais/quantas-pastilhas-para-mosaico/`, `/como-fazer/o-que-e-mosaico-picassiete/`,
+`/como-fazer/o-que-e-trencadis/`) e 5 em `wp-sitemap-posts-peca-1.xml`.
+`primeira_indexacao` continua `desconhecida`, como o bloco manda.
+
+**Ficou, reescrito no `PROMPT.md` com o motivo em uma linha:** o **BLOCO 0** (o
+`sub_id` deslocado uma casa) e os **BLOCOS A, B e C**. A ilha estava fora do ar,
+e a 18.5 manda verificação antes de construção.
+
+**E uma coisa que o próximo bloco precisa saber:** o BLOCO A é sobre **CTR de três
+páginas na primeira página do Google**, e essas três páginas passaram pelo menos
+um dia servindo 404 ao Google. **A série de `dados/posicoes.md` tem um buraco que
+não é de CTR.** Trocar título agora mistura duas causas na mesma janela de
+medição — quem fizer o BLOCO A decide isso com o número de 30/09 na mão e escreve
+qual leitura está usando.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** o **BLOCO 0** do despacho do Raphael — o `sub_id`
+da Shopee gravado como `-clubedomosaico-F2--`, deslocado uma casa, com
+`sub_id_1` vazio. É o primeiro da fila, não divide passada com nada, e agora tem
+uma ilha de pé embaixo dele. Nenhuma página nova nesta passada; a semana da 21.4
+continua em **2 de 3 levas**.
