@@ -177,9 +177,16 @@ def validar(dados, regua, md_no_disco=None, ilhas=()):
             erros.append('%s: prioridade escrita %r, calculada %d pelos campos medidos'
                          % (rotulo, c.get('prioridade'), calculada))
 
-    total += 1
+    # AS DUAS DIRECOES, e a segunda e a que ninguem escreve sozinho. A primeira
+    # pega o topo dizendo "ninguem abriu" com alguem tendo aberto. A segunda pega
+    # o topo dizendo que ALGUEM abriu sem que uma linha sequer tenha sido aberta —
+    # mentira mais fraca e por isso mais facil de sobreviver, e ela apagaria
+    # justamente a limitacao que este arquivo existe para deixar visivel.
+    total += 2
     if dados.get('ninguem_abriu_nenhum_site') is True and algum_abriu:
         erros.append('topo: diz que ninguem abriu site e ha candidato com abriu_no_navegador=true')
+    if dados.get('ninguem_abriu_nenhum_site') is False and not algum_abriu:
+        erros.append('topo: diz que alguem abriu site e nenhuma linha tem abriu_no_navegador=true')
 
     # O CRUZAMENTO DAS DUAS LISTAS, nas duas direcoes. E ele que impede a lista
     # de calculadora de existir em paralelo com a de candidatos e as duas

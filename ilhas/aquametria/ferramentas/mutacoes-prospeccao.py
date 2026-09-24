@@ -111,6 +111,13 @@ def mutacoes():
         c['evidencia'][0]['medido_como'] = 'navegador'
         c['evidencia'][0]['medido_por'] = 'Raphael, no Chrome'
 
+    def topo_mente_que_alguem_abriu(d):
+        # O MUNDO QUE O ESQUEMA PERMITE E O BANCO NAO TEM (secao 8): nenhuma linha
+        # foi aberta em navegador hoje, entao a mutacao PRODUZ o caso em vez de
+        # esperar por ele — aqui, o topo declarando o contrario do que as linhas
+        # dizem, na direcao que sobrevive mais facil.
+        d['ninguem_abriu_nenhum_site'] = False
+
     def contato_sem_motivo(d):
         d['candidatos'][0]['contato_motivo'] = ''
 
@@ -183,6 +190,7 @@ def mutacoes():
         ('abriu_no_navegador ausente', abriu_ausente, 'ausencia nao vale como false'),
         ('abriu_no_navegador true sem prova', abriu_sem_prova, 'discorda da evidencia'),
         ('topo diz que ninguem abriu e alguem abriu', topo_mente_sobre_navegador, 'ha candidato com abriu_no_navegador=true'),
+        ('topo diz que alguem abriu e ninguem abriu', topo_mente_que_alguem_abriu, 'nenhuma linha tem abriu_no_navegador=true'),
         ('contato null sem motivo', contato_sem_motivo, '`contato` null sem motivo'),
         ('plataforma null sem motivo', plataforma_sem_motivo, '`plataforma` null sem motivo'),
         ('linha sem porque', sem_porque, 'sem `porque`'),

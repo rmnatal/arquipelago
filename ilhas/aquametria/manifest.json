@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 116,
+  "revisao": 117,
   "atualizado_em": "2026-09-24",
   "estado": "fundacao",
   "desembarque": {
@@ -1198,7 +1198,7 @@
       "arquivo": "ferramentas/validar-prospeccao.py",
       "publicar": false,
       "descricao": "O PORTAO da lista de prospeccao, sem rede. Cobra procedencia por campo, recusa dominio de marketplace ou de rede social como 'site proprio' (a pagina nao e da loja e o link de la nao passa autoridade), recusa dominio de ILHA do arquipelago (ilha nao linka ilha, secao 10), recalcula a prioridade dos campos medidos e reprova se a escrita discordar, e cruza as duas listas nas duas direcoes: quem afirma ter calculadora tem de estar entre os ocupantes da SERP, e quem esta entre eles tem de afirmar. Campo ausente e reprovacao, nunca omissao tolerada.",
-      "sha256": "81d4fc20f5c6ef7afa7676b9662cb5180eb664680b7ea2fac23ed448fd89225c"
+      "sha256": "6f34eeb3de4fbe97ad57e6e1f5f81a1c398914d34aeacb157e5d725ab5287e39"
     },
     {
       "id": "teste-prospeccao",
@@ -1212,7 +1212,7 @@
       "arquivo": "ferramentas/mutacoes-prospeccao.py",
       "publicar": false,
       "descricao": "As mutacoes do portao da prospeccao: 30 quebras deliberadas, cada uma declarando o pedaco da mensagem que espera, para mutacao pega pelo motivo errado contar como INERTE em vez de passar por reprovacao. Roda um portao zero antes (o dado de verdade tem de passar) e tira o .md do caminho nas mutacoes de dado, senao 'fora de sincronia' esconderia a causa verdadeira de quase todas.",
-      "sha256": "c07bb8e45edf38f1fdef0166abf96ae6eeb2e9c8ad7eb097e760ff1daf36ec5d"
+      "sha256": "741e79dc7c0588fbcf0535a621732be070c8d8b7eca4d22c7fd6a3dceb43c3f1"
     }
   ]
 }
