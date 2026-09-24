@@ -205,8 +205,8 @@ def render_md(dados):
     L.append('')
     L.append(dados['por_que_ninguem_abriu'])
     L.append('')
-    L.append('**Ninguem abriu nenhum site: %s.** Entao `contato` e `plataforma` estao'
-             % ('correto' if dados['ninguem_abriu_nenhum_site'] else 'FALSO'))
+    L.append('**Ninguem abriu nenhum site%s.** Entao `contato` e `plataforma` estao'
+             % ('' if dados['ninguem_abriu_nenhum_site'] else ' — E O TOPO DO ARQUIVO DIZ O CONTRARIO'))
     L.append('`null` em todas as linhas, com o motivo escrito em cada uma. O proximo passo')
     L.append('desta lista NAO e da Fundacao: e abrir cada dominio num navegador, confirmar')
     L.append('canal de contato e plataforma, e so entao escrever a abordagem.')
@@ -218,20 +218,23 @@ def render_md(dados):
     ocupantes = dados['ocupantes_da_serp_de_calculadora']
     dominios_candidatos = {c['dominio'] for c in dados['candidatos']}
     lojas_com_calculadora = [o for o in ocupantes if o['dominio'] in dominios_candidatos]
-    L.append('A consulta de calculadora de aquario em portugues do Brasil ja tem **%d**' % len(ocupantes))
-    L.append('dominios publicando ferramenta — e **%d** deles e loja de aquarismo desta lista.'
-             % len(lojas_com_calculadora))
-    L.append('Os outros sao site de conteudo, fazenda de calculadora e um dominio de outro')
-    L.append('nicho inteiro. Isso vale nas duas direcoes, e as duas estao medidas:')
+    lojas = [c for c in dados['candidatos'] if c['tipo'] == 'loja']
+    lojas_com = [c for c in lojas if c['ja_tem_calculadora'] is True]
+    L.append('A consulta de calculadora de aquario em portugues do Brasil ja tem **%d dominios**'
+             % len(ocupantes))
+    L.append('publicando ferramenta. Deles, **%d** e loja de aquarismo (`%s`); os outros %d sao'
+             % (len(lojas_com_calculadora),
+                ', '.join(o['dominio'] for o in lojas_com_calculadora) or '-',
+                len(ocupantes) - len(lojas_com_calculadora)))
+    L.append('site de conteudo, fazenda de calculadora e um dominio de outro nicho inteiro.')
+    L.append('Isso vale nas duas direcoes, e as duas estao medidas:')
     L.append('')
     L.append('- **Para a prospeccao:** loja que ja construiu a propria calculadora nao')
     L.append('  instala a de ninguem, e cai para prioridade 3 por regra, nao por opiniao.')
-    L.append('  Das %d lojas prospectadas, %d tem calculadora medida.'
-             % (sum(1 for c in dados['candidatos'] if c['tipo'] == 'loja'),
-                sum(1 for c in dados['candidatos'] if c['tipo'] == 'loja' and c['ja_tem_calculadora'] is True)))
-    L.append('- **Para a oferta:** a ferramenta que falta na loja brasileira de aquarismo e')
-    L.append('  justamente esta. O espaco existe porque quase ninguem do lado do comercio')
-    L.append('  a tem — e nao porque ninguem tentou.')
+    L.append('- **Para a oferta:** das **%d lojas** desta lista, so **%d** tem calculadora'
+             % (len(lojas), len(lojas_com)))
+    L.append('  medida. A ferramenta que falta na loja brasileira de aquarismo e justamente')
+    L.append('  esta, e o espaco existe porque quase ninguem do lado do comercio a tem.')
     L.append('')
     for nivel in (1, 2, 3):
         linhas = [c for c in dados['candidatos'] if c['prioridade'] == nivel]
@@ -271,7 +274,7 @@ def render_md(dados):
     L.append('  diagnostico de consulta e SERP escrito DEPOIS da leitura semanal de')
     L.append('  30/09/2026, e sobre as consultas `quantos litros para <especie>`. As tres')
     L.append('  consultas desta passada sao de CALCULADORA, para a prospeccao. Escrever o')
-    L.append('  diagnostico agora seria escrever o critério antes do dado.')
+    L.append('  diagnostico agora seria escrever o criterio antes do dado.')
     L.append('- **Nao e contato.** Ninguem foi abordado, e a Fundacao nao abre conta, nao')
     L.append('  escreve e-mail e nao fala com loja nenhuma.')
     return '\n'.join(L) + '\n'

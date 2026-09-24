@@ -80,3 +80,26 @@ A regra **E16** e a parte executavel disso: todo numero de campo tem de aparecer
 no texto de alguma fonte que declara aquele campo, em algarismo ou por extenso.
 Campo e `referencia` sao duas escritas independentes do mesmo fato — quando
 divergem, alguem transcreveu, digitou ou editou um lado so.
+
+## Lista de prospeccao do widget (desde 24/09/2026)
+
+`prospeccao-widget.json` guarda os candidatos a instalar o widget (bloco T6,
+secao 14.7 do contrato). Nao alimenta pagina nenhuma: `publicar: false` no topo e
+em cada linha. Contrato e regua em `ferramentas/regua-prospeccao.py`, portao em
+`validar-prospeccao.py`, bancada em `teste-prospeccao.py`, mutacoes em
+`mutacoes-prospeccao.py`. O irmao `prospeccao-widget.md` e **GERADO** por
+`gerar-prospeccao.py` e nao se edita a mao — o portao regera o texto e compara.
+
+**Este banco tem uma regra que os outros nao tem, e ela vem do instrumento.** Os
+outros bancos foram colhidos por busca E conferidos, campo a campo, contra fonte
+que declara o numero. Este nao: o egresso desta nuvem nao abre nenhum desses
+dominios (403 no CONNECT, politica do proxy), entao o unico instrumento e a
+busca, e busca sabe afirmar **presenca**, nunca ausencia. Por isso os tres campos
+de fato (`vende_equipamento`, `publica_conteudo`, `ja_tem_calculadora`) so aceitam
+`true` — com evidencia que os nomeia e cuja URL e do proprio dominio — ou `null`,
+que quer dizer **nao medido**. O portao **recusa `false`**. Uma lista de
+negativas que ninguem mediu e pior que uma lista curta.
+
+E a **prioridade nao se escreve, se calcula** dos campos medidos: o arquivo diz o
+numero e o portao recalcula, e discordancia e reprovacao. Quem mudar um campo nao
+precisa lembrar de mexer na ordem.

@@ -11,7 +11,7 @@ Atualizado em **2026-09-24**. Nada aqui vai para o ar (`publicar: false`).
 
 O egresso desta nuvem responde 403 no CONNECT para todo dominio fora da lista de permitidos — medido em tres passadas em 24/09/2026, com aquametria.com.br em 200 nas mesmas tres. WebFetch tambem devolve EGRESS_BLOCKED. O unico instrumento que alcanca o mundo aqui e a BUSCA, que e o nivel 3 da escada de coleta desta ilha e foi como este banco inteiro foi construido.
 
-**Ninguem abriu nenhum site: correto.** Entao `contato` e `plataforma` estao
+**Ninguem abriu nenhum site.** Entao `contato` e `plataforma` estao
 `null` em todas as linhas, com o motivo escrito em cada uma. O proximo passo
 desta lista NAO e da Fundacao: e abrir cada dominio num navegador, confirmar
 canal de contato e plataforma, e so entao escrever a abordagem.
@@ -20,17 +20,16 @@ Esta passada sabe afirmar PRESENCA, nunca ausencia. Um dominio nao aparecer na b
 
 ## O ACHADO QUE REORDENOU A LISTA
 
-A consulta de calculadora de aquario em portugues do Brasil ja tem **13**
-dominios publicando ferramenta — e **1** deles e loja de aquarismo desta lista.
-Os outros sao site de conteudo, fazenda de calculadora e um dominio de outro
-nicho inteiro. Isso vale nas duas direcoes, e as duas estao medidas:
+A consulta de calculadora de aquario em portugues do Brasil ja tem **13 dominios**
+publicando ferramenta. Deles, **1** e loja de aquarismo (`aquariosplantados.com.br`); os outros 12 sao
+site de conteudo, fazenda de calculadora e um dominio de outro nicho inteiro.
+Isso vale nas duas direcoes, e as duas estao medidas:
 
 - **Para a prospeccao:** loja que ja construiu a propria calculadora nao
   instala a de ninguem, e cai para prioridade 3 por regra, nao por opiniao.
-  Das 13 lojas prospectadas, 1 tem calculadora medida.
-- **Para a oferta:** a ferramenta que falta na loja brasileira de aquarismo e
-  justamente esta. O espaco existe porque quase ninguem do lado do comercio
-  a tem — e nao porque ninguem tentou.
+- **Para a oferta:** das **13 lojas** desta lista, so **1** tem calculadora
+  medida. A ferramenta que falta na loja brasileira de aquarismo e justamente
+  esta, e o espaco existe porque quase ninguem do lado do comercio a tem.
 
 ## PRIORIDADE 1 — as tres condicoes medidas
 
@@ -150,6 +149,6 @@ quanto para quem for ler SERP depois.
   diagnostico de consulta e SERP escrito DEPOIS da leitura semanal de
   30/09/2026, e sobre as consultas `quantos litros para <especie>`. As tres
   consultas desta passada sao de CALCULADORA, para a prospeccao. Escrever o
-  diagnostico agora seria escrever o critério antes do dado.
+  diagnostico agora seria escrever o criterio antes do dado.
 - **Nao e contato.** Ninguem foi abordado, e a Fundacao nao abre conta, nao
   escreve e-mail e nao fala com loja nenhuma.

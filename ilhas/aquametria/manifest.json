@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 115,
+  "revisao": 116,
   "atualizado_em": "2026-09-24",
   "estado": "fundacao",
   "desembarque": {
@@ -1184,7 +1184,7 @@
       "arquivo": "ferramentas/regua-prospeccao.py",
       "publicar": false,
       "descricao": "A REGUA da lista de prospeccao do widget (T6, secao 14.7): decide o que a lista pode afirmar e gera o .md. Nao e portao — e carregada pelo validar-, pelo teste- e pelo gerar-. As quatro regras dela saem todas do MESMO fato: o egresso desta nuvem nao abre nenhum desses dominios (403 no CONNECT, medido tres vezes em 24/09/2026) e o unico instrumento e a BUSCA. Por isso os campos de fato so aceitam true ou null (busca afirma presenca, nunca ausencia), evidencia tem de ser do dominio que sustenta, a prioridade se CALCULA dos campos medidos em vez de ser escrita, e o que nao foi medido tem de dizer o motivo.",
-      "sha256": "8dee815f127236eddfed98429138470eccd5d20fb45bcbb35d961992c2f6aa0c"
+      "sha256": "3deb038631e887f274c88d775b39beb07f382c8fd95957d9f1676762cc2dd58f"
     },
     {
       "id": "gerar-prospeccao",
