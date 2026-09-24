@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 113,
+  "revisao": 115,
   "atualizado_em": "2026-09-24",
   "estado": "fundacao",
   "desembarque": {
@@ -486,6 +486,18 @@
       "publicar": false,
       "sha256": "f9d31c3136eb2721a4e2f238649fb4677c5556afc5b3ecc5577fa2917ceff61a",
       "descricao": "Meta description das QUATRO paginas da casca (inicio, calculadoras, metodologia, sobre), que nascem do snippet e nao tem arquivo em conteudo/. As nove paginas vindas de conteudo/*.md tem a delas no proprio front matter, campo meta_descricao, e nao se repetem aqui: uma pagina, um lugar. Nasce do despacho da Sentinela de 10/09/2026, item 1 — nenhuma das 13 URLs do sitemap servia meta description. Nao vai para o site por si: quem leva o texto ao ar e o mapa gerado dentro de aquametria-seo-tecnico.php."
+    },
+    {
+      "id": "prospeccao-widget",
+      "arquivo": "dados/prospeccao-widget.json",
+      "formato": "json",
+      "entidade": "candidato a instalar o widget (bloco T6, secao 14.7)",
+      "fonte": "busca na web, 24/09/2026 — nove consultas, registradas uma por uma dentro de cada linha",
+      "verificado_em": "2026-09-24",
+      "registros": 24,
+      "publicar": false,
+      "sha256": "e7139318e1a4ec11a4ecd5d821dcfc5652c01c16e9b6821dec1507b108ce4681",
+      "descricao": "A lista de prospeccao do widget: 24 dominios brasileiros de aquarismo com procedencia por campo, mais os 13 dominios que JA ocupam a SERP de calculadora de aquario. Ninguem abriu nenhum site — o egresso desta nuvem responde 403 no CONNECT para todos eles — e o arquivo declara isso em campo em vez de deixar a limitacao implicita. O .md irmao e GERADO deste arquivo; quem manda e este."
     }
   ],
   "esquema": {
@@ -1151,7 +1163,7 @@
       "arquivo": "ferramentas/conferir-espelho-cdn.py",
       "publicar": false,
       "descricao": "O portao NO AR do espelho. Nao mede o site: mede a PREMISSA que permite esta ilha publicar dimensao de foto hospedada num endereco que a nuvem nao alcanca. Remede, a cada passada, o GRUPO DE CONTROLE — as fotos do banco que estao em host bloqueado E ja tinham dimensao medida por OUTRO INSTRUMENTO (naturalWidth x naturalHeight no Chrome do Raphael, 13/09/2026). Sao 8 hoje e batem 8 de 8. O grupo se monta sozinho do banco, e se ele UM DIA ficar vazio o portao REPROVA, em vez de imprimir '0 de 0, tudo certo'. Afirma tambem que o controle tem dimensao nao redonda, senao ele nao distingue espelho de miniatura.",
-      "sha256": "8f4a2aac01e03e768322163b1b365b1060782cb03ca0b9ae075fdb994323297d"
+      "sha256": "32e1c2815609079256ce23b931845fdce727092310c75c3c4bba53e381eb8b38"
     },
     {
       "id": "mutacoes-cdn-shopee",
@@ -1166,6 +1178,41 @@
       "publicar": false,
       "descricao": "Producao: mede pelo espelho a dimensao das fotos que a nuvem nao alcanca e grava largura, altura, medida_em e medida_como, apagando motivo_sem_medida. NAO muda imagem.url (o host bloqueado entrega a quem tem navegador — quem nao alcanca e esta nuvem, e trocar o que o visitante recebe para contornar isso seria o rabo abanando o cachorro), NAO preenche verificado_em (ninguem abriu a URL servida e viu carregar) e NAO toca alt nem alt_origem (quem le bytes nao ve imagem). Grava com indent=2, que e o formato deste banco: a primeira versao usou indent=1 e reformatou 2.542 linhas para mudar 24 campos.",
       "sha256": "1fceb7225690ede7362f1ecafddac1b23bda03fc1941fc3dc75f1ac2052624f1"
+    },
+    {
+      "id": "regua-prospeccao",
+      "arquivo": "ferramentas/regua-prospeccao.py",
+      "publicar": false,
+      "descricao": "A REGUA da lista de prospeccao do widget (T6, secao 14.7): decide o que a lista pode afirmar e gera o .md. Nao e portao — e carregada pelo validar-, pelo teste- e pelo gerar-. As quatro regras dela saem todas do MESMO fato: o egresso desta nuvem nao abre nenhum desses dominios (403 no CONNECT, medido tres vezes em 24/09/2026) e o unico instrumento e a BUSCA. Por isso os campos de fato so aceitam true ou null (busca afirma presenca, nunca ausencia), evidencia tem de ser do dominio que sustenta, a prioridade se CALCULA dos campos medidos em vez de ser escrita, e o que nao foi medido tem de dizer o motivo.",
+      "sha256": "8dee815f127236eddfed98429138470eccd5d20fb45bcbb35d961992c2f6aa0c"
+    },
+    {
+      "id": "gerar-prospeccao",
+      "arquivo": "ferramentas/gerar-prospeccao.py",
+      "publicar": false,
+      "descricao": "Escreve dados/prospeccao-widget.md a partir do JSON. Producao, nao portao: o .md nao se edita a mao, porque duas fontes para o mesmo fato divergem — foi o que esta ilha mediu em 24/09/2026 com o titulo que morava em dois arquivos. O portao regera este texto em memoria e compara.",
+      "sha256": "9827536d1d6d6c607c4ee7739631ec1ed09cc04c80b5a78467c5dd661ac491af"
+    },
+    {
+      "id": "validar-prospeccao",
+      "arquivo": "ferramentas/validar-prospeccao.py",
+      "publicar": false,
+      "descricao": "O PORTAO da lista de prospeccao, sem rede. Cobra procedencia por campo, recusa dominio de marketplace ou de rede social como 'site proprio' (a pagina nao e da loja e o link de la nao passa autoridade), recusa dominio de ILHA do arquipelago (ilha nao linka ilha, secao 10), recalcula a prioridade dos campos medidos e reprova se a escrita discordar, e cruza as duas listas nas duas direcoes: quem afirma ter calculadora tem de estar entre os ocupantes da SERP, e quem esta entre eles tem de afirmar. Campo ausente e reprovacao, nunca omissao tolerada.",
+      "sha256": "81d4fc20f5c6ef7afa7676b9662cb5180eb664680b7ea2fac23ed448fd89225c"
+    },
+    {
+      "id": "teste-prospeccao",
+      "arquivo": "ferramentas/teste-prospeccao.py",
+      "publicar": false,
+      "descricao": "BANCADA da regua da prospeccao, em casos sinteticos. As afirmacoes sobre a ordem sao INVARIANTES, nao a formula de novo (quem ja tem calculadora nunca sobe; so loja chega a 1; medir mais nunca piora a posicao) mais casos nomeados com a linha real que cada um imita. Mede tambem a armadilha do endswith de texto cru: forfish.com.br.exemplo.com NAO e subdominio de forfish.com.br.",
+      "sha256": "3d9ad1f931a50cb3e21104d129870cb0ca93b74b2ef62bd33336db46416cbc67"
+    },
+    {
+      "id": "mutacoes-prospeccao",
+      "arquivo": "ferramentas/mutacoes-prospeccao.py",
+      "publicar": false,
+      "descricao": "As mutacoes do portao da prospeccao: 30 quebras deliberadas, cada uma declarando o pedaco da mensagem que espera, para mutacao pega pelo motivo errado contar como INERTE em vez de passar por reprovacao. Roda um portao zero antes (o dado de verdade tem de passar) e tira o .md do caminho nas mutacoes de dado, senao 'fora de sincronia' esconderia a causa verdadeira de quase todas.",
+      "sha256": "c07bb8e45edf38f1fdef0166abf96ae6eeb2e9c8ad7eb097e760ff1daf36ec5d"
     }
   ]
 }

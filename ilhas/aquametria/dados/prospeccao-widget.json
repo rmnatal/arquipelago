@@ -1,0 +1,905 @@
+{
+  "esquema": "prospeccao-widget",
+  "versao": 1,
+  "ilha": "aquametria",
+  "atualizado_em": "2026-09-24",
+  "publicar": false,
+  "o_que_este_arquivo_e": "A lista de prospeccao do widget (bloco T6 do PROMPT.md, secao 14.7 do ARQUIPELAGO.md): dominios brasileiros de aquarismo que poderiam instalar uma ferramenta da Aquametria e devolver o unico tipo de backlink que este projeto se permite. Nada aqui vai para o ar: `publicar: false` no topo e em cada linha.",
+  "instrumentos_desta_passada": ["busca"],
+  "ninguem_abriu_nenhum_site": true,
+  "por_que_ninguem_abriu": "O egresso desta nuvem responde 403 no CONNECT para todo dominio fora da lista de permitidos — medido em tres passadas em 24/09/2026, com aquametria.com.br em 200 nas mesmas tres. WebFetch tambem devolve EGRESS_BLOCKED. O unico instrumento que alcanca o mundo aqui e a BUSCA, que e o nivel 3 da escada de coleta desta ilha e foi como este banco inteiro foi construido.",
+  "campos_de_fato": ["vende_equipamento", "publica_conteudo", "ja_tem_calculadora"],
+  "por_que_nao_existe_false": "Esta passada sabe afirmar PRESENCA, nunca ausencia. Um dominio nao aparecer na busca de calculadora nao prova que ele nao tem calculadora — prova que a busca nao o mostrou. Entao os tres campos de fato so aceitam `true` (com evidencia que os nomeia) ou `null` (= nao medido). O portao recusa `false`, de proposito, para o arquivo nao virar uma lista de negativas que ninguem mediu.",
+  "candidatos": [
+    {
+      "id": "aquarios-do-rio",
+      "nome": "Aquarios do Rio",
+      "dominio": "aquariosdorio.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 1,
+      "porque": "O UNICO candidato que fecha as tres condicoes com o que a busca alcanca: e loja, vende o equipamento que as calculadoras dimensionam (filtro canister, aquecedor com termostato) e publica conteudo editorial NO PROPRIO DOMINIO, em /blog/. Quem ja mantem blog tem onde encaixar uma ferramenta e ja tem o habito de publicar; quem nao tem precisa criar a pagina primeiro.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja online aquarismo brasil filtro canister aquecedor aquario comprar equipamentos",
+          "resultado_titulo": "Loja de Aquarismo Online | Aquarios do Rio",
+          "resultado_url": "https://aquariosdorio.com.br/loja/"
+        },
+        {
+          "campos": ["publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "blog artigos dicas aquarismo (restrita a aquaricamp.com.br, atlantidaaquarios.com.br, aquariosdorio.com.br)",
+          "resultado_titulo": "Aquarios do Rio - Loja de Aquarios e Aquarismo Profissional",
+          "resultado_url": "https://aquariosdorio.com.br/blog/top-10-peixes-para-iniciantes/"
+        }
+      ]
+    },
+    {
+      "id": "aquaricamp",
+      "nome": "Aquaricamp",
+      "dominio": "aquaricamp.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja com catalogo de equipamento medido (arvore /equipamentos/filtros/filtros-canister). A busca restrita ao dominio devolveu vitrine de projetos e livro a venda, NAO artigo proprio — vitrine de projeto nao e conteudo editorial, e livro de terceiro menos ainda. Sobe para 1 no dia em que alguem abrir o site e achar area de conteudo.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja online aquarismo brasil filtro canister aquecedor aquario comprar equipamentos",
+          "resultado_titulo": "Filtros Canister | Aquaricamp Loja de Aquarios",
+          "resultado_url": "https://www.aquaricamp.com.br/equipamentos/filtros/filtros-canister"
+        }
+      ]
+    },
+    {
+      "id": "atlantida-aquarios",
+      "nome": "Atlantida Aquarios",
+      "dominio": "atlantidaaquarios.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja com as tres familias que as calculadoras desta ilha dimensionam na mesma arvore: filtro canister, aquecedor com termostato e bomba submersa. A busca restrita ao dominio devolveu SO pagina de produto — nenhum artigo.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja online aquarismo brasil filtro canister aquecedor aquario comprar equipamentos",
+          "resultado_titulo": "Filtros Canister para Aquarios - ATLANTIDA AQUARIOS",
+          "resultado_url": "https://atlantidaaquarios.com.br/loja1/equipamentos/filtros-canister.html"
+        }
+      ]
+    },
+    {
+      "id": "fazenda-submersa",
+      "nome": "Fazenda Submersa",
+      "dominio": "fazendasubmersa.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja de aquapaisagismo que tambem vende equipamento (canister e termostato no mesmo catalogo). A busca restrita ao dominio devolveu pagina de CATEGORIA com texto e LIVRO a venda — categoria com paragrafo nao e artigo, e livro de terceiro nao e conteudo proprio.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja online aquarismo brasil filtro canister aquecedor aquario comprar equipamentos",
+          "resultado_titulo": "Fazenda Submersa | Aquapaisagismo, Plantas Aquaticas, Camaroes e Aquarios",
+          "resultado_url": "https://www.fazendasubmersa.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "rei-dos-aquarios",
+      "nome": "Rei dos Aquarios",
+      "dominio": "reidosaquarios.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja especializada (Maringa) com filtro canister, externo, interno e aquecedor no catalogo. O conteudo que a busca associou a ela e CANAL de video, que fica fora do dominio e nao serve de casa para widget.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja online aquarismo brasil filtro canister aquecedor aquario comprar equipamentos",
+          "resultado_titulo": "Rei dos Aquarios",
+          "resultado_url": "https://www.reidosaquarios.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "franco-aquarismo",
+      "nome": "Franco Aquarismo",
+      "dominio": "francoaquarismo.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja grande, com luminaria de aquario em pagina de produto propria — a familia que a C15 dimensiona. O conteudo que a busca associou a ela tambem e CANAL de video, fora do dominio.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja aquarismo marinho reef brasil site proprio equipamentos iluminacao led aquario",
+          "resultado_titulo": "Luminaria LED Aquario Artika Marine - Franco Aquarismo",
+          "resultado_url": "https://www.francoaquarismo.com.br/luminaria-artika-marine-ocean-tech"
+        }
+      ]
+    },
+    {
+      "id": "aquaverso",
+      "nome": "AQUAVERSO",
+      "dominio": "lojaaquaverso.com.br",
+      "tipo": "loja",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja que publica GUIA proprio, no proprio dominio, e o guia fala de litragem inicial e de filtro e termostato como equipamento basico — o assunto exato das calculadoras desta ilha. Falta so medir o catalogo: se ela vende o equipamento que o guia dela recomenda, vira prioridade 1 na mesma hora.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Guia completo para montar seu primeiro aquario: tudo que voce precisa saber - AQUAVERSO",
+          "resultado_url": "https://lojaaquaverso.com.br/guia-completo-para-montar-seu-primeiro-aquario-tudo-que-voce-precisa-saber/"
+        }
+      ]
+    },
+    {
+      "id": "pet-patao-shop",
+      "nome": "Pet Patao Shop",
+      "dominio": "petpataoshop.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Pet shop com secao de aquarismo e arvore de filtro canister propria. Nao e loja especializada, o que costuma significar menos apetite editorial — mas o catalogo cobre o que a C3 dimensiona.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja online aquarismo brasil filtro canister aquecedor aquario comprar equipamentos",
+          "resultado_titulo": "Comprar CANISTER em PET PATAO SHOP",
+          "resultado_url": "https://www.petpataoshop.com.br/aquarismo/filtros/canister"
+        }
+      ]
+    },
+    {
+      "id": "reef-joinville",
+      "nome": "Reef Joinville",
+      "dominio": "reefjoinville.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja de marinho com iluminacao LED, skimmer, bomba de circulacao e filtragem no catalogo. ATENCAO DE ESCOPO: o banco desta ilha e de AGUA DOCE, e as cinco calculadoras assumem doce — uma delas instalada em loja de marinho serviria numero fora do escopo declarado. Prospeccao valida, oferta a combinar.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja aquarismo marinho reef brasil site proprio equipamentos iluminacao led aquario",
+          "resultado_titulo": "principal - Reef Joinville",
+          "resultado_url": "https://www.reefjoinville.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "reefshock",
+      "nome": "Reefshock",
+      "dominio": "reefshock.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja de marinho com arvore propria de luminaria. Mesma ressalva de escopo da Reef Joinville: o banco desta ilha e de agua doce.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja aquarismo marinho reef brasil site proprio equipamentos iluminacao led aquario",
+          "resultado_titulo": "Luminarias para aquario Marinho",
+          "resultado_url": "https://www.reefshock.com.br/luminarias-marinho"
+        }
+      ]
+    },
+    {
+      "id": "forfish",
+      "nome": "ForFish",
+      "dominio": "forfish.com.br",
+      "tipo": "loja",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Marca com loja propria em subdominio (loja.forfish.com.br) e luminaria de marinho no catalogo. Subdominio proprio conta como site proprio; o que nao contaria e vitrine dentro de marketplace.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja aquarismo marinho reef brasil site proprio equipamentos iluminacao led aquario",
+          "resultado_titulo": "Luminaria ForFish para Aquario Marinho",
+          "resultado_url": "https://loja.forfish.com.br/aquario-marinho/"
+        }
+      ]
+    },
+    {
+      "id": "aquaplantados",
+      "nome": "AquaPlantados",
+      "dominio": "aquaplantados.com.br",
+      "tipo": "loja",
+      "vende_equipamento": null,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Loja de aquapaisagismo e lago ornamental. NADA de fato foi medido nela nesta passada — nem catalogo de equipamento, nem conteudo proprio — e prioridade 3 aqui significa exatamente isso: falta medida, nao falta merito.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo brasileira site proprio aquario plantado equipamentos",
+          "resultado_titulo": "Aquapaisagismo - Tudo para aquarios, plantas de aquario e lagos ornamentais",
+          "resultado_url": "https://www.aquaplantados.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "aquarios-plantados",
+      "nome": "Aquarios Plantados",
+      "dominio": "aquariosplantados.com.br",
+      "tipo": "loja",
+      "vende_equipamento": null,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": true,
+      "prioridade": 3,
+      "porque": "E A LOJA QUE JA CONSTRUIU A PROPRIA CALCULADORA — duas paginas de litragem no proprio dominio. Quem ja tem a ferramenta nao instala a de outro, e insistir aqui e gastar a abordagem no lugar de menor chance. Ela vale mais como MEDIDA do que como alvo: e a prova de que loja de aquarismo brasileira ja enxerga calculadora como conteudo.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo brasileira site proprio aquario plantado equipamentos",
+          "resultado_titulo": "Aquarios Plantados - Aquapaisagismo",
+          "resultado_url": "https://www.aquariosplantados.com.br/"
+        },
+        {
+          "campos": ["ja_tem_calculadora"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "Descubra a Quantidade de Agua Ideal para Seu Aquario",
+          "resultado_url": "https://www.aquariosplantados.com.br/calculadora-de-litragem"
+        },
+        {
+          "campos": ["ja_tem_calculadora"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "Calculadora de Litragem de agua do aquario",
+          "resultado_url": "https://www.aquariosplantados.com.br/calculadora-de-litragem-de-agua-do-aquario"
+        }
+      ]
+    },
+    {
+      "id": "reef-point",
+      "nome": "Reef Point",
+      "dominio": "reefpoint.com.br",
+      "tipo": "distribuidora",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Distribuidora com marcas exclusivas, entre elas iluminacao. Distribuidora nao vende ao leitor, entao o widget nao ajuda a venda dela diretamente — mas ela alcanca as lojas que vendem, e por isso o teto dela e 2 e nao 1.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja aquarismo marinho reef brasil site proprio equipamentos iluminacao led aquario",
+          "resultado_titulo": "Reef Point ditribuidora de produtos para aquarismo",
+          "resultado_url": "https://www.reefpoint.com.br/en"
+        }
+      ]
+    },
+    {
+      "id": "aquatica-brazil",
+      "nome": "Aquatica Brazil",
+      "dominio": "aquaticabrazil.com.br",
+      "tipo": "distribuidora",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Distribuidora com BLOG proprio, e o artigo medido e dirigido a quem MONTA loja de aquarismo — ou seja, o publico dela e a lista de lojas. Um widget citado ali chega a varias lojas de uma vez; e a unica linha desta lista com esse efeito de alavanca.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Como montar sua Loja de Aquarismo: 6 dicas essenciais",
+          "resultado_url": "https://aquaticabrazil.com.br/blog/como-montar-sua-loja-de-aquarismo/"
+        }
+      ]
+    },
+    {
+      "id": "aquatank",
+      "nome": "Aquatank",
+      "dominio": "aquatank.com.br",
+      "tipo": "fabricante",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Fabricante brasileiro com linha propria de filtro, bomba, aquecedor e luminaria, e com faixa de volume declarada por modelo (10 L a 200 L+). Fabricante que declara faixa e interlocutor natural de calculadora — e, de quebra, e fonte de dado para o banco desta ilha.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja online aquarismo brasil filtro canister aquecedor aquario comprar equipamentos",
+          "resultado_titulo": "Aquatank - Solucoes Premium em Aquarismo",
+          "resultado_url": "https://aquatank.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "doled",
+      "nome": "Doled",
+      "dominio": "doled.net.br",
+      "tipo": "fabricante",
+      "vende_equipamento": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Monta luminaria de aquario no Brasil e vende direto, com garantia e peca de reposicao. Fabricante que vende direto junta os dois lados: e alvo de widget e e fonte de especificacao para a C15.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_equipamento"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja aquarismo marinho reef brasil site proprio equipamentos iluminacao led aquario",
+          "resultado_titulo": "Luminaria LED Aquario Marinho 70W Red Sea e Boyu - Doled",
+          "resultado_url": "https://www.doled.net.br/luminaria-led-aquario-marinho-red-sea"
+        }
+      ]
+    },
+    {
+      "id": "grupo-sarlo",
+      "nome": "Grupo Sarlo",
+      "dominio": "gruposarlo.com.br",
+      "tipo": "fabricante",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Fabricante com blog datado e ativo (dois artigos medidos, um deles sobre CONSUMO DE ENERGIA no aquario — vizinho direto da conta que a C5 faz). Fabricante grande costuma ter equipe de conteudo, o que ajuda e atrapalha: ha onde publicar, e ha processo.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Como montar um aquario do zero: guia pratico para iniciantes",
+          "resultado_url": "https://gruposarlo.com.br/2025/05/20/como-montar-um-aquario-do-zero/"
+        },
+        {
+          "campos": ["publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "calculadora quantos watts aquecedor aquario potencia ideal",
+          "resultado_titulo": "Consumo de Energia no Aquario: Como Calcular e Economizar",
+          "resultado_url": "https://gruposarlo.com.br/2025/10/20/consumo-de-energia-no-aquario/"
+        }
+      ]
+    },
+    {
+      "id": "aquario-vivo",
+      "nome": "Aquario Vivo",
+      "dominio": "aquariovivo.com.br",
+      "tipo": "conteudo",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Site de conteudo de aquarismo, e o artigo medido chega a RECOMENDAR FAIXA DE LITRAGEM para iniciante (60 a 80 L) — exatamente a pergunta que a C1 responde com conta. Site de conteudo nao vende, entao o widget nao lhe traz receita; o que ele traz e ferramenta que a pagina dele nao tem.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Como Montar um Aquario para Iniciantes - Aquario Vivo",
+          "resultado_url": "https://aquariovivo.com.br/como-montar-um-aquario-para-iniciantes/"
+        }
+      ]
+    },
+    {
+      "id": "escola-de-aquario",
+      "nome": "Escola de Aquario",
+      "dominio": "escoladeaquario.com.br",
+      "tipo": "conteudo",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Site de conteudo, e o artigo medido e dirigido a quem abre loja de aquarismo — publico de alavanca, como a Aquatica Brazil.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Como Montar uma Loja de Aquario - Escola de Aquario",
+          "resultado_url": "https://escoladeaquario.com.br/como-montar-uma-loja-de-aquario/"
+        }
+      ]
+    },
+    {
+      "id": "kauar",
+      "nome": "Kauar",
+      "dominio": "kauar.com.br",
+      "tipo": "desconhecido",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Tem blog proprio em subdominio, com guia de montagem. O TIPO nao foi medido — nao sei por busca se e loja, fabricante ou so conteudo — e `desconhecido` derruba o teto para 3 de proposito: prospeccao que nao sabe com quem fala escreve texto errado.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Como montar um aquario em 5 passos: o guia definitivo",
+          "resultado_url": "https://blog.kauar.com.br/2020/10/aprenda-montar-seu-primeiro-aquario.html"
+        }
+      ]
+    },
+    {
+      "id": "agrosete",
+      "nome": "Agrosete",
+      "dominio": "agrosete.com.br",
+      "tipo": "desconhecido",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Blog proprio com artigo de aquario grande. Nao mediu se aquarismo e linha de verdade dela ou assunto de passagem — e loja agro com uma prateleira de aquario nao e interlocutor de calculadora.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Como montar um aquario grande - Agrosete",
+          "resultado_url": "https://www.agrosete.com.br/blog/como-montar-um-aquario-grande/"
+        }
+      ]
+    },
+    {
+      "id": "cobasi",
+      "nome": "Cobasi",
+      "dominio": "cobasi.com.br",
+      "tipo": "rede-pet",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Blog grande, com artigo assinado por biologo da equipe. O teto 3 de `rede-pet` e JUIZO, nao medida, e o juizo esta escrito para poder ser contestado: rede nacional tem equipe editorial propria, fornecedor homologado e juridico — widget de dominio desconhecido nao atravessa isso, e a abordagem custa mais do que rende no comeco.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Como montar um aquario de agua doce e marinho | Blog da Cobasi",
+          "resultado_url": "https://blog.cobasi.com.br/como-montar-um-aquario-em-7-passos/"
+        }
+      ]
+    },
+    {
+      "id": "petz",
+      "nome": "Petz",
+      "dominio": "petz.com.br",
+      "tipo": "rede-pet",
+      "vende_equipamento": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Mesmo caso da Cobasi, mesmo juizo escrito: blog proprio, porta institucional fechada para dominio novo.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "loja de aquarismo blog artigos guia como montar aquario brasil",
+          "resultado_titulo": "Saiba como montar um aquario em casa! | Petz",
+          "resultado_url": "https://www.petz.com.br/blog/como-montar-um-aquario/"
+        }
+      ]
+    }
+  ],
+  "ocupantes_da_serp_de_calculadora": [
+    {
+      "id": "serp-aquariosplantados",
+      "nome": "Aquarios Plantados",
+      "dominio": "aquariosplantados.com.br",
+      "o_que_publica": "duas paginas de calculadora de litragem, no dominio de uma LOJA de aquarismo",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "Calculadora de Litragem de agua do aquario",
+          "resultado_url": "https://www.aquariosplantados.com.br/calculadora-de-litragem-de-agua-do-aquario"
+        }
+      ]
+    },
+    {
+      "id": "serp-aquaa3",
+      "nome": "AquaA3",
+      "dominio": "aquaa3.com.br",
+      "o_que_publica": "calculadora de litragem de aquarios",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "Calculadora de Litragem de Aquarios",
+          "resultado_url": "https://aquaa3.com.br/calculadora-de-litragem-de-aquarios/"
+        }
+      ]
+    },
+    {
+      "id": "serp-msfish",
+      "nome": "MSFish",
+      "dominio": "msfish.com.br",
+      "o_que_publica": "calculadora para montagem de aquarios; o proprio resultado diz que ela e baseada na calculadora de OUTRO site (Aquaflux), o que mostra que neste nicho a ferramenta ja circula de site em site",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "MSFish - Calculadora para montagem de aquarios - Aquarismo MS",
+          "resultado_url": "https://www.msfish.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "serp-aquarismobrasil",
+      "nome": "Aquarismo Brasil",
+      "dominio": "aquarismobrasil.com.br",
+      "o_que_publica": "calculadora de aquario",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "Calculadora de Aquario - Aquarismo Brasil",
+          "resultado_url": "https://aquarismobrasil.com.br/calculadora-de-aquario/"
+        }
+      ]
+    },
+    {
+      "id": "serp-aquaninjas",
+      "nome": "AquaNinjas",
+      "dominio": "aquaninjas.com.br",
+      "o_que_publica": "calculadora com 12 calculos (volume, TPA e parametros)",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "12 calculos essenciais Calculadora para Aquarios - AquaNinjas",
+          "resultado_url": "https://aquaninjas.com.br/calculadora-de-aquario/"
+        }
+      ]
+    },
+    {
+      "id": "serp-reefflow",
+      "nome": "ReefFlow",
+      "dominio": "reefflow.com.br",
+      "o_que_publica": "calculadora de aquecedor. ESTA LINHA MERECE ATENCAO: a ReefFlow e a FONTE que a C5 desta ilha cita para a faixa de delta de 10 C — ou seja, a ilha cita como fonte um dominio que publica a calculadora concorrente da C5. Nao e defeito e nao muda o numero; e para ninguem descobrir isso depois.",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "calculadora quantos watts aquecedor aquario potencia ideal",
+          "resultado_titulo": "Calculadora de Aquecedor para Aquario - ReefFlow",
+          "resultado_url": "https://reefflow.com.br/en/calculators/heater/"
+        }
+      ]
+    },
+    {
+      "id": "serp-ranger3d",
+      "nome": "Ranger 3D",
+      "dominio": "ranger3d.com.br",
+      "o_que_publica": "calculadora de volume e custo de vidro — e de OUTRO nicho (impressao 3D), o que mostra que a consulta atrai site sem autoridade tematica",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "Calculadora Online de Aquario - Volume e Custo de Vidro/Acustica | Ranger 3D",
+          "resultado_url": "https://ranger3d.com.br/software/calc-aquario/"
+        }
+      ]
+    },
+    {
+      "id": "serp-baixarfavicon",
+      "nome": "BaixarFavicon",
+      "dominio": "baixarfavicon.com.br",
+      "o_que_publica": "calculadora de aquario que tambem estima filtro, aquecedor e quantidade de peixes — a mesma tese da Aquametria, num dominio de fazenda de ferramentas",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "Calculadora de Aquario",
+          "resultado_url": "https://baixarfavicon.com.br/ferramentas/calculadora-aquario/"
+        }
+      ]
+    },
+    {
+      "id": "serp-calculadorauniversal",
+      "nome": "Calculadora Universal",
+      "dominio": "calculadorauniversal.com.br",
+      "o_que_publica": "calculadora de aquario em fazenda de calculadoras",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "calculadora quantos watts aquecedor aquario potencia ideal",
+          "resultado_titulo": "Calculadora de Aquario",
+          "resultado_url": "https://www.calculadorauniversal.com.br/outros/calculadora-aquario"
+        }
+      ]
+    },
+    {
+      "id": "serp-calculadora-lol",
+      "nome": "Calculadora.lol",
+      "dominio": "calculadora.lol",
+      "o_que_publica": "calculadora de aquario em fazenda de calculadoras",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "calculadora quantos watts aquecedor aquario potencia ideal",
+          "resultado_titulo": "Calculadora de Aquario | Calculadora.lol",
+          "resultado_url": "https://calculadora.lol/calculadora-de-aquario/"
+        }
+      ]
+    },
+    {
+      "id": "serp-shrimpnexus",
+      "nome": "ShrimpNexus",
+      "dominio": "shrimpnexus.com",
+      "o_que_publica": "calculadora de litros, TPA e aquecedor; dominio .com, nao .br",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "\"calculadora\" aquario litros site loja aquarismo ferramenta online brasil",
+          "resultado_titulo": "Calculadora de Aquario: Litros e Volume Online | ShrimpNexus",
+          "resultado_url": "https://shrimpnexus.com/ferramentas/calculadora-aquario/"
+        }
+      ]
+    },
+    {
+      "id": "serp-found-tools",
+      "nome": "Found",
+      "dominio": "found-tools.com",
+      "o_que_publica": "calculadora de potencia e custo de aquecedor, em portugues, em dominio .com",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "calculadora quantos watts aquecedor aquario potencia ideal",
+          "resultado_titulo": "Calculadora de potencia e custo de aquecedor de aquario - Found",
+          "resultado_url": "https://found-tools.com/pt/aquarium-heater-selector/"
+        }
+      ]
+    },
+    {
+      "id": "serp-shrimp4you",
+      "nome": "shrimp4you",
+      "dominio": "shrimp4you.pt",
+      "o_que_publica": "calculadora de aquario; dominio de PORTUGAL aparecendo na consulta em portugues do Brasil",
+      "evidencia": [
+        {
+          "campos": ["o_que_publica"],
+          "medido_como": "busca",
+          "medido_em": "2026-09-24",
+          "consulta": "calculadora quantos watts aquecedor aquario potencia ideal",
+          "resultado_titulo": "Calculadora Aquario | shrimp4you",
+          "resultado_url": "https://www.shrimp4you.pt/page/calculadora-aquario"
+        }
+      ]
+    }
+  ]
+}
