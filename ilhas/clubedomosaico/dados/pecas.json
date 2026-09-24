@@ -1,7 +1,8 @@
 {
   "ilha": "clubedomosaico",
-  "versao_loja": "1.1.0",
-  "total": 1,
+  "gerado_em": "2026-09-24T19:31:47+00:00",
+  "versao_loja": "1.2.0",
+  "total": 5,
   "pecas": [
     {
       "id": 24,
@@ -47,7 +48,194 @@
           "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260913_101514-scaled.jpg"
         }
       ]
+    },
+    {
+      "id": 35,
+      "titulo": "Quadro Divino Espírito Santo",
+      "slug": "quadro-divino-espirito-santo",
+      "estado": "publish",
+      "criada_em": "2026-09-15 23:30:34",
+      "url": "https://clubedomosaico.com.br/loja/quadro-divino-espirito-santo/",
+      "descricao": "DIVINO ESPÍRITO SANTO EM MOSAICO\r\n\r\nUma peça artesanal criada com dedicação, delicadeza e riqueza de detalhes. O Divino Espírito Santo ocupa o centro da composição, rodeado por um trabalho em mosaico em tons de dourado, âmbar, marrom e amarelo, criando um efeito de luz e movimento.\r\n\r\nCada detalhe foi cuidadosamente elaborado à mão, tornando esta peça única e especial. Foram dedicadas 86 horas de trabalho para sua confecção, desde a composição até a aplicação de cada elemento.\r\n\r\n✨ Medida: 46 cm de diâmetro\r\n✨ Técnica: Mosaico artesanal\r\n✨ Tempo de produção: 86 horas\r\n✨ Peça única e feita à mão\r\n\r\nUma obra que une arte, espiritualidade e artesanato, perfeita para valorizar ambientes de oração, espaços especiais da casa ou para presentear alguém querido.\r\n\r\nUma peça feita com arte, fé e muito carinho.",
+      "campos": {
+        "cdm_preco": "530",
+        "cdm_disponibilidade": "pronta_entrega",
+        "cdm_prazo_dias": "",
+        "cdm_medidas": "46cm de diâmetro",
+        "cdm_peso_g": "2000",
+        "cdm_base": "mdf",
+        "cdm_cores": "",
+        "cdm_quantidade": "1"
+      },
+      "colecao": {
+        "slug": "parede",
+        "nome": "Parede e quadros"
+      },
+      "tecnica": {
+        "slug": "trencadis",
+        "nome": "Trencadís (caquinho)"
+      },
+      "fotos": [
+        {
+          "id": 36,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_154917.jpg"
+        },
+        {
+          "id": 37,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_154949-scaled.jpg"
+        },
+        {
+          "id": 38,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_154938-scaled.jpg"
+        },
+        {
+          "id": 39,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_154922-scaled.jpg"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "titulo": "Vaso com flores em cerâmica",
+      "slug": "vaso-com-flores-em-ceramica",
+      "estado": "publish",
+      "criada_em": "2026-09-16 21:30:39",
+      "url": "https://clubedomosaico.com.br/loja/vaso-com-flores-em-ceramica/",
+      "descricao": "Quadro oval  feito no mosaico  picassiette as folhas  e o vasinho, as flores são  de cerâmica, o fundo  com pastilhas de vidro  na cor beje e pastilhas  espelhadas  que dão  um toque especial  na peça, a moldura  foi pintada com tinta chalk paint verde salvia  e com uma leve pátina  nas laterais dando  um toque suave e sofisticado  na peça, o rejunte nas flores é  o cinza outono  e no fundo o beje, esse trabalho  levou 60 horas de trabalho ",
+      "campos": {
+        "cdm_preco": "480",
+        "cdm_disponibilidade": "pronta_entrega",
+        "cdm_prazo_dias": "",
+        "cdm_medidas": "46x36cm",
+        "cdm_peso_g": "1200",
+        "cdm_base": "mdf",
+        "cdm_cores": "",
+        "cdm_quantidade": "1"
+      },
+      "colecao": {
+        "slug": "parede",
+        "nome": "Parede e quadros"
+      },
+      "tecnica": {
+        "slug": "picassiette",
+        "nome": "Pica-sete (louça quebrada)"
+      },
+      "fotos": [
+        {
+          "id": 48,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_160030-1-scaled.jpg"
+        },
+        {
+          "id": 49,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_160015-1-scaled.jpg"
+        },
+        {
+          "id": 50,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_160024-1-scaled.jpg"
+        },
+        {
+          "id": 51,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/Screenshot_20260723-170240_Photos-1.jpg"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "titulo": "Quadro Nossa Senhora Aparecida",
+      "slug": "quadro-nossa-senhora-aparecida",
+      "estado": "publish",
+      "criada_em": "2026-09-16 22:01:57",
+      "url": "https://clubedomosaico.com.br/loja/quadro-nossa-senhora-aparecida/",
+      "descricao": "Essa peça  foi criada com peças  decorativas  vazadas de mdf e decoradas com espelhos, pastilhas  de vidro azul claro e pastilhas  em tons azul escuro com lindas rajadas  douradas na borda e  algumas no centro, a imagem da nossa senhora  é  em mdf , e decorada com azulejos na cor  azul claro, o manto com azul escuro, o rosto e as mãos  com azulejo  marrom, o dourado  do manto e da coroa cola dourada relevo,  o terço  são  gotas de pérola (bijouteria) e a cruz é  bijouteria  na cor dourada, no centro da nossa senhora  foi usado pastilhas de vidro  branca na técnica  trencadis  e em volta  gotas  de vidro  e rosinhas  em metal douradas que deram um toque especial  na peça , foram usados 2 cores derejunte: cinza plátina e azul claro, peça  pintada e envernizada nas laterais  e atrás  do quadro,   horas trabalhadas: 168 ( equivalente a 1 mês  de trabalho, 6 horas por dia",
+      "campos": {
+        "cdm_preco": "500",
+        "cdm_disponibilidade": "pronta_entrega",
+        "cdm_prazo_dias": "",
+        "cdm_medidas": "35cm de diâmetro",
+        "cdm_peso_g": "1500",
+        "cdm_base": "mdf",
+        "cdm_cores": "",
+        "cdm_quantidade": ""
+      },
+      "colecao": {
+        "slug": "parede",
+        "nome": "Parede e quadros"
+      },
+      "tecnica": {
+        "slug": "trencadis",
+        "nome": "Trencadís (caquinho)"
+      },
+      "fotos": [
+        {
+          "id": 54,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260916_183306-scaled.jpg"
+        },
+        {
+          "id": 55,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260916_183256.jpg"
+        },
+        {
+          "id": 56,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260916_183349-scaled.jpg"
+        },
+        {
+          "id": 57,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260916_183325-scaled.jpg"
+        },
+        {
+          "id": 58,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260916_183315-scaled.jpg"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "titulo": "Bandeja em madeira",
+      "slug": "bandeja-em-madeira",
+      "estado": "publish",
+      "criada_em": "2026-09-16 22:12:28",
+      "url": "https://clubedomosaico.com.br/loja/bandeja-em-madeira/",
+      "descricao": "Bandeja em madeira, feita no mosaico  trencadis com pastilhas  de vidro e pastilhas  pigmentadas em tons de azul, laranja, marrom, com uma linda mandala de flores  no centro e na volta da bandeja, as flores  foram  todas lapidadas na ferramenta torques de roldanas e lixadas manualmente  pétala  por pétala, horas trabalhadas: 168 ( 1 mês  de trabalho, 6 horas por dia",
+      "campos": {
+        "cdm_preco": "500",
+        "cdm_disponibilidade": "pronta_entrega",
+        "cdm_prazo_dias": "",
+        "cdm_medidas": "40x28",
+        "cdm_peso_g": "1200",
+        "cdm_base": "mdf",
+        "cdm_cores": "",
+        "cdm_quantidade": ""
+      },
+      "colecao": {
+        "slug": "presentes",
+        "nome": "Presentes"
+      },
+      "tecnica": {
+        "slug": "trencadis",
+        "nome": "Trencadís (caquinho)"
+      },
+      "fotos": [
+        {
+          "id": 61,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_160526-scaled.jpg"
+        },
+        {
+          "id": 62,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_160504-scaled.jpg"
+        },
+        {
+          "id": 63,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_160459-scaled.jpg"
+        },
+        {
+          "id": 64,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_160412.jpg"
+        },
+        {
+          "id": 65,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260915_160446-scaled.jpg"
+        }
+      ]
     }
-  ],
-  "copiado_de": "/wp-json/clubedomosaico/v1/pecas (secao 24.2; o token nao entra no repositorio)"
+  ]
 }

@@ -226,10 +226,10 @@
       "formato": "json",
       "entidade": "peca",
       "fonte": "Copia da secao 24 do ARQUIPELAGO.md: a rota /wp-json/clubedomosaico/v1/pecas do proprio site, protegida pelo token do Sync. O dado nasceu no ateliê, digitado pela artesa — e o unico dado desta ilha que NAO se reconstroi a partir do repositorio.",
-      "verificado_em": "2026-09-14",
-      "registros": 1,
+      "verificado_em": "2026-09-24",
+      "registros": 5,
       "publicar": false,
-      "sha256": "926079e563775504fc8b1d06fe4cc111d1cc25e52432fc6dc836cbdc94f6ae68",
+      "sha256": "e7e4c1c35794ff88448d330b70d4508e62ede30985edfd7ac62869be86904f2f",
       "descricao": "A copia das pecas cadastradas pela artesa: titulo, slug, estado, descricao, campos, colecao, tecnica e as URLs das fotos. NASCEU EM 14/09/2026, no dia seguinte ao primeiro cadastro de verdade — ate 13/09 a rota devolvia total zero, e zero peca e resposta, nao falha. O campo `gerado_em` da rota NAO entra na copia de proposito: com ele dentro, todo commit da ronda seria um commit, e a 24.2 manda commitar so quando o JSON MUDOU; quando a copia foi tirada e o git que sabe. `publicar` false porque este arquivo e copia do site, nunca fonte dele — desembarca-lo devolveria ao WordPress o que veio dele."
     }
   ],
@@ -243,7 +243,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "3ac9c733d95c72beaba204e994556f9387a750e84d75f2f133e89b5bb87f779f",
+      "sha256": "96dcd6ae560c1fe5381eb91b695c3fedacdbfa531f9b86daad7362334d300797",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {

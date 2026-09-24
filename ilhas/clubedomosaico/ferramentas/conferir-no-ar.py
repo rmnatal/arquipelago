@@ -921,5 +921,51 @@ for rot, url in [("original (src)", LOGO),
     ok(codigo == "200" and tipo.startswith("image/png"),
        f"{rot} responde PNG", f"{codigo} · {int(tam)//1024} KB · {tipo}")
 
+# ---------------------------------------------------------------------------
+# A PORTA DE ENTRADA DO SITE. Acrescentado em 24/09/2026, no dia em que 16 das
+# 17 URLs desta ilha serviam a pagina de estacionamento da HostGator com 404 e
+# nenhum portao do repositorio acusou nada por nove dias.
+#
+# Este arquivo TERIA acusado, e vale dizer por que: `buscar()` gruda uma quebra
+# de cache em toda URL, entao toda leitura dele e uma URL com query — que era
+# exatamente a forma que morria. O que faltava nao era sensibilidade, era
+# alguem rodar: a ilha passou de 15/09 a 24/09 sem bloco.
+#
+# O QUE ELE NAO COBRIA, e e o que entra aqui: as tres URLs que o Google usa e
+# que nenhuma pagina desta ilha linka — `wp-sitemap.xml`, `robots.txt` e a raiz
+# do REST. Elas nao sao pagina, nao tem marca, nao tem canonico, e por isso
+# ficaram de fora de todas as afirmacoes acima. Sao tambem as PRIMEIRAS a cair
+# quando o roteamento de permalink some, porque nao existem como arquivo em
+# disco — sao rota virtual do WordPress e dependem inteiramente da reescrita.
+#
+# O 404 QUE TEM DE SER 404 esta aqui de proposito: um portao que so cobra 200
+# aprova um servidor que responde 200 para tudo, e "tudo responde" e um jeito
+# conhecido de uma ilha inteira sair do indice sem ninguem ver.
+print("\nA porta de entrada (roteamento de permalink):")
+
+for caminho, tipo_esperado, rotulo in [
+    ("/wp-sitemap.xml", "xml", "o sitemap responde"),
+    ("/robots.txt", "text/plain", "o robots.txt responde"),
+    ("/wp-json/", "json", "a raiz do REST responde"),
+]:
+    r = subprocess.run(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code} %{content_type}",
+                        "--max-time", "40", BASE + caminho], capture_output=True, text=True)
+    partes = r.stdout.split(" ", 1)
+    codigo = partes[0]
+    tipo = partes[1] if len(partes) > 1 else ""
+    ok(codigo == "200" and tipo_esperado in tipo,
+       "[rota] " + rotulo, codigo + " " + tipo)
+
+_sm, _cod_sm = buscar(BASE + "/wp-sitemap.xml")
+ok("<sitemap>" in _sm or "<url>" in _sm,
+   "[rota] o sitemap traz XML de sitemap, nao pagina do hospedeiro",
+   _sm[:60].replace("\n", " "))
+
+_lixo, _cod_lixo = buscar(BASE + "/caminho-que-esta-ilha-nunca-teve/")
+ok(_cod_lixo == "404", "[rota] caminho inexistente responde 404", _cod_lixo)
+ok("clubedomosaico" in _lixo.lower() or "Clube do Mosaico" in _lixo,
+   "[rota] o 404 e a pagina DESTA ilha, nao a do hospedeiro",
+   "HostGator" if "HostGator" in _lixo else "propria")
+
 print(f"\n{'APROVADO' if falhas == 0 else 'REPROVADO'}: {feitos} afirmacoes medidas no HTML servido, {falhas} falha(s).")
 sys.exit(1 if falhas else 0)
