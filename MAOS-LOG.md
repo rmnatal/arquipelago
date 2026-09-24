@@ -2780,3 +2780,50 @@ foi ao `main` — o arquivo esta correto, a descricao e que saiu torta:
    paragrafo da secao 14. Ou seja: uma linha em branco antes e uma depois, como a instrucao pediu.
 2. Onde se le "os 7 subtitulos do bloco" leia-se **6** — sao os que o proprio bullet enumera:
    linhas 304, 308, 318, 327, 345 e 349.
+
+## Disparo de 24/09/2026, 15h15 BRT (18:15 UTC) — clubedomosaico: nota de acesso ao Search Console
+
+Assunto conferido antes de tudo: ilha Clube do Mosaico, do Arquipelago. Executado.
+
+Instrucao: acrescentar ao FIM de `ilhas/clubedomosaico/dados/search-console-2026-09-23.md`, depois de uma
+linha em branco, a nota RESOLVIDO EM 24/09/2026. A linha original de 23/09 (conta de servico sem acesso)
+NAO foi tocada — continua sendo a linha 1 do arquivo.
+
+Uma decisao de leitura, declarada: os dois `---` que na instrucao cercavam o texto foram tratados como
+delimitadores da citacao, nao como conteudo. Sao simetricos, e uma regua horizontal solta no fim do
+arquivo nao teria sentido. O que entrou foram os 4 paragrafos entre eles, byte a byte.
+
+`git status --porcelain` antes do commit:
+
+```
+ M ilhas/clubedomosaico/dados/search-console-2026-09-23.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ ilhas/clubedomosaico/dados/search-console-2026-09-23.md | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+```
+
+Commit que foi ao `main` (confirmado por `git fetch origin main && git log -1 origin/main`):
+
+```
+a28ee8ae7641d5731d9d8e94208623ae4eef8d54
+clubedomosaico: a sentinela ganhou acesso ao search console da ilha, e a nota de 23/09 fica onde esta
+```
+
+Push direto em `HEAD:main`, sem rebase e sem force: `fc0724a..a28ee8a`.
+
+Contagem, conferida relendo o arquivo DEPOIS de gravar:
+
+```
+Arquivo `ilhas/clubedomosaico/dados/search-console-2026-09-23.md` depois de gravar:
+  9 linhas no total, 5 com texto e 4 em branco, 218 palavras, 1490 bytes.
+  Linha 1 = o registro original de 23/09, intacto.
+  Linha 2 = a linha em branco pedida.
+  Linhas 3, 5, 7 e 9 = os 4 paragrafos da nota nova, separados pelas linhas 4, 6 e 8 em branco.
+  Total acrescentado: 8 linhas, que batem com o `1 file changed, 8 insertions(+)` do diff.
+```
+
+Nenhum outro arquivo do repositorio foi tocado neste disparo, alem deste log.
