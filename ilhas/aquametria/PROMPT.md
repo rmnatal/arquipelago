@@ -54,15 +54,21 @@ Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado �
 
 **VERIFICAÇÃO INDEPENDENTE DO DESPACHO DA RONDA DE 23/09 (a Sentinela confere, a Fundação não aprova a si mesma):** o **item 1 está CUMPRIDO** — a home serve exatamente **uma** ocorrência de `application/ld+json`, com `@type: WebSite` e `publisher`, lida da nuvem com `Accept-Encoding: identity` e quebra de cache às 19h58Z, revisão 108 no `/status`. O **item 2 está CUMPRIDO** — contei os quatro `dados/produtos-*.json` no `main`: 78 registros, **14** com `url` e sem `url_produto`, contra os 39 que o despacho nomeou. **Esta leitura NÃO apagou esses dois itens do despacho da ronda**, de propósito: o `ESTADO.md` traz `executando_desde: 2026-09-23T19:16Z`, ou seja havia execução da Fundação VIVA na mesma janela, e apagar linha de arquivo que outra execução está editando é como se perde trabalho (1.1). **Quem fechar o bloco risca os dois itens.**
 
-### 1. A PÁGINA DE AUTOR DO WORDPRESS ESTÁ NO AR, SEM `noindex`, E NÃO É PÁGINA DA ILHA
+### ~~1. A PÁGINA DE AUTOR ESTÁ NO AR SEM `noindex`~~ — **FALSO POSITIVO, E A CAUSA É A RÉGUA. NÃO REABRA ESTE ITEM COM O MESMO `grep`.**
 
-`https://aquametria.com.br/author/aquametria_gestor/` responde **HTTP 200**, **não tem `<meta name="robots">`**, não está no sitemap e nenhuma página da ilha aponta para ela. É página fina servida a um domínio que ainda gasta orçamento de rastreamento com duas categorias "Discovered - currently not indexed". **Na irmã Clube do Mosaico a mesma página JÁ ESTÁ INDEXADA e tomou uma impressão na posição 1,0 nesta mesma semana** — ou seja, isto não é risco teórico, é o mesmo buraco com um resultado já medido do outro lado.
+**O defeito não existia.** Medido em 24/09/2026 às 10h2xZ, com quebra de cache e `Accept-Encoding: identity`: `/author/aquametria_gestor/` serve, e servia desde 10/09/2026, `<meta name='robots' content='noindex, follow' />` — **aspa simples**. O mesmo nos outros três contextos de arquivo (`/?s=`, arquivo por data, `/category/metodos/`): os quatro com `noindex, follow`, uma única meta cada.
 
-Medido também, nas três ilhas no ar: `/?s=<termo>` responde **200 sem `noindex`** em todas. Nenhuma tem caixa de busca, então nada aponta para lá hoje; fica registrado como o segundo arquivo da mesma família, não como defeito com sintoma.
+**A RAZÃO DE ISTO FICAR ESCRITO EM VEZ DE SÓ APAGADO:** o `grep` do critério de pronto pedia `name="robots"` de aspa **DUPLA**, e nesta ilha quem imprime a meta é o **núcleo do WordPress**, pelo filtro `wp_robots`, que usa aspa **simples**. Aquele `grep` devolve zero para sempre, por mais correta que a página esteja — então **qualquer ronda que o repita reabre este item**. Nas irmãs robometria e clubedomosaico quem imprime é o snippet, com aspa dupla, e lá o mesmo `grep` está certo: foi uma régua boa atravessando a fronteira de uma ilha onde a tag tem outro autor.
 
-**Isto é código de snippet e por isso NÃO foi consertado pela Sentinela** (12.2, lista fechada). Vai para a Fundação.
+**E o conserto que o item pedia era o defeito:** ele mandava *acrescentar* `noindex`. Cumprido ao pé da letra, imprimiria a **segunda** meta `robots` ao lado da que o núcleo já imprime — e o Google resolve meta duplicada pelo lado mais restritivo.
 
-**Pronto quando:** `curl -s https://aquametria.com.br/author/aquametria_gestor/ | grep -c 'name="robots"[^>]*noindex'` devolver 1, e as 48 URLs do sitemap continuarem **sem** `noindex` (o portão tem de medir as duas direções — acrescentar `noindex` demais é o defeito oposto e igualmente grave).
+**O QUE O ITEM ACHOU DE VERDADE, e valia mais que o defeito que ele descreveu:** nada nesta ilha media, **no ar**, a diretiva que decide o que entra no índice. A regra vivia em `aquametria_seo_deve_noindex()` e o portão dela media **fora** do WordPress. Ficou 14 dias sem régua. Agora tem, e nas duas direções que o próprio item declarou:
+
+- `ferramentas/regua-robots.py` — a régua, compartilhada. Ignora aspa, exige o `noindex` como **diretiva** no `content` de uma meta cujo `name` é `robots`, **conta** as metas, e descarta tag **citada** em comentário ou dentro de `<script>`/`<style>`.
+- `ferramentas/teste-robots.py` — 21 afirmações de bancada. O caso 1 é este falso positivo em pessoa.
+- `ferramentas/conferir-robots-no-ar.py` — 12 afirmações no ar, verde em 24/09: os 4 contextos mandam `noindex`, as **52** URLs do sitemap **não** mandam, e cada uma serve **exatamente uma** meta `robots`.
+
+**O que sobrou para outra ilha, e não é desta:** a leitura semanal registrou que na **clubedomosaico** a página de autor já está indexada e tomou impressão na posição 1,0. Isso é dado do Search Console e **não foi desmentido** aqui — lá quem imprime é o snippet. Ninguém mediu aquela ilha com a régua nova, e a seção 3 proíbe editar arquivo de ilha que não se reservou. Está escrito em `dados/despachos.md`, na raiz, como despacho NORMAL.
 
 ### 2. AS 26 FICHAS DE PEIXE TIVERAM ZERO IMPRESSÃO EM 7 DIAS, COM 46 DE 48 INDEXADAS
 
@@ -70,14 +76,23 @@ Não é defeito de página e **não é para mexer no texto delas agora** (12.1: 
 
 **Pronto quando:** existir em `ilhas/aquametria/dados/` um arquivo de diagnóstico da 21.5, escrito **depois** da leitura semanal de 30/09, dizendo qual das duas hipóteses restantes o dado sustenta — com volume de busca medido para pelo menos 5 das consultas `quantos litros para <espécie>` e com a SERP de pelo menos 3 delas aberta e classificada.
 
+> **CONTINUA ABERTO DE PROPÓSITO, E NÃO É DÍVIDA DESTA EXECUÇÃO (18.3).** O critério de pronto deste item exige um arquivo escrito **depois** da leitura semanal de 30/09; hoje é 24/09. Escrevê-lo agora seria escrever o diagnóstico **antes** do dado que ele julga — exatamente a 1.2-b.4 ("critério escrito depois do dado é critério dobrado para caber no dado que veio"), de cabeça para baixo. **A hipótese (a) segue respondida:** 46 de 48 indexadas em 23/09, e **52 de 52** servindo a meta `robots` sem `noindex` em 24/09, medido pelo `conferir-robots-no-ar.py`. O que espera o dia 30 é **(b) consulta** e **(c) SERP**.
+
 ### AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — na ordem de ROI
 
-**PROPOSTA 1 — `/peixes/ciclideos-anoes/` É A ÚNICA PÁGINA DESTA ILHA QUE JÁ ESTÁ NA DISPUTA, E ELA ESTÁ NA BANDA DE 11 A 20 EM DUAS DAS QUATRO GRAFIAS.**
-- Consultas nomeadas: **`ciclideo anão`** (posição 13,0) e **`ciclídeo anão`** (posição 11,0). As grafias acentuada-plural (`ciclídeos anões`) dão 6,0 e a não-acentuada-plural dá 35,0. Uma impressão cada.
-- Página: `https://aquametria.com.br/peixes/ciclideos-anoes/`.
-- O que falta, pela alavanca que a 12.1 nomeia para a banda 11 a 20: **título e meta description que digam a consulta com as palavras da consulta**, e a resposta direta no primeiro parágrafo. A consulta que chega é **singular** (`ciclídeo anão`) e a página é plural — é a diferença entre as duas posições medidas.
-- **O que esta proposta NÃO autoriza:** trocar a URL (proibido pela 12.1), mexer nas 3 fichas filhas, ou tratar a linha de 35,0 como lacuna de conteúdo. E **nenhuma das quatro linhas tem mais de uma impressão** — é amostra fina, e a proposta vale como hipótese barata, não como diagnóstico fechado.
-- **Pronto quando:** o `<title>` e a `<meta name="description">` servidos em `/peixes/ciclideos-anoes/` contiverem a forma **singular** `ciclídeo anão` além da plural, e a leitura semanal de 30/09 registrar em `dados/posicoes.md` as quatro grafias de novo, para comparar com 6,0 / 11,0 / 13,0 / 35,0.
+~~**PROPOSTA 1 — `/peixes/ciclideos-anoes/` NA BANDA DE 11 A 20**~~ — **A METADE DE CÓDIGO ESTÁ NO AR E CONFERIDA EM 24/09/2026; a metade de MEDIÇÃO é da leitura semanal de 30/09 e continua aberta.**
+
+Medido no HTML servido às 10h5xZ, revisão 111, com quebra de cache e depois de decodificar as entidades:
+
+- `<title>`: **`Ciclídeos anões: quantos litros para ciclídeo anão – Aquametria`** — **63** caracteres (teto 65), com a forma **singular** e a **plural**, e com a consulta declarada do registro (`quantos litros para ciclídeo anão`) **inteira, palavra por palavra**. Ela não estava lá desde 14/09, quando a leva 6 declarou o campo `consulta`.
+- `<meta name="description">`: **148** caracteres, abrindo pela consulta singular, com as duas formas.
+- `<h1>` e `og:title` mudaram junto, das mesmas duas fontes — as quatro superfícies dizem o mesmo nome no ar.
+- O rótulo **plural continua abrindo** o título: é a grafia de melhor posição das quatro (6,0), e trocá-la para consertar a pior seria mudar o defeito de lado.
+- Nenhuma URL nasceu, mudou de endereço ou saiu; as 3 fichas filhas não foram tocadas (peixes 1.16.0).
+
+**O QUE FICA ABERTO, e é só da leitura semanal:** registrar em `dados/posicoes.md`, em **30/09/2026**, as quatro grafias de novo, para comparar com **6,0 / 11,0 / 13,0 / 35,0**. A própria proposta avisou que **nenhuma das quatro linhas tem mais de uma impressão** — é amostra fina, então a comparação de 30/09 vale como sinal, não como prova.
+
+**E UM PORTÃO NASCEU PARA ESTA PROPOSTA NÃO SE DESFAZER SOZINHA:** o título mora em **dois** arquivos (o registro do `aquametria-peixes.php`, de onde saem o `post_title`, o `<h1>` e a primeira metade do `<title>`; e o `dados/metas-seo.json`, de onde saem o `og:title` e o `twitter:title`). As 38 páginas do eixo concordavam — contado em 24/09, não suposto — e **nada media isso**. Agora mede: `ferramentas/teste-titulos-das-duas-fontes.py` (160 afirmações, as duas direções, mais o teto de 65 na bancada e sem rede) com `ferramentas/mutacoes-titulos.py`, **6 de 6 mutações reprovadas**.
 
 **PROPOSTA 2 — `/peixes/tetras/` ESTÁ HÁ 11 DIAS EM "DISCOVERED — CURRENTLY NOT INDEXED", E É MÃE DE 4 FICHAS.**
 - Consulta-alvo declarada da página: `quantos litros para tetras`.
@@ -85,12 +100,14 @@ Não é defeito de página e **não é para mexer no texto delas agora** (12.1: 
 - O que falta: **ser rastreada.** Já está medido que não é descoberta: o sitemap foi lido pelo Google em 22/09 com as 48 páginas, e a página não é órfã (a ronda de hoje mediu 2 ou mais links internos para cada URL, um deles da mãe). **Não acrescente link interno para consertar isto** — o link já existe, e mexer seria tratar sintoma que a medição desmente.
 - **Pronto quando:** a URL Inspection de `/peixes/tetras/` devolver "O URL está no Google", e a linha de 30/09 em `dados/indexacao.md` registrar 47 ou mais indexadas de 48.
 - **O que a Fundação faz aqui: nada de código.** O valor desta proposta é ela não virar bloco. A alavanca é a da 14.7 (sinal externo), não uma edição de página.
+- **CONFIRMADO EM 24/09/2026, e o portão novo fecha uma hipótese de graça:** `/peixes/tetras/` serve a meta `robots` **sem** `noindex` — medido entre as 52 URLs do sitemap pelo `conferir-robots-no-ar.py`, que cobra essa direção para todas. Ou seja, **não é a ilha pedindo para não ser indexada**; o "Discovered — currently not indexed" é orçamento de rastreamento, que é o que a 14.7 diz. **Esta execução não mexeu nesta página, e foi de propósito.**
 
 **PROPOSTA 3 — O CANO DE LINKS DA SHOPEE ESTÁ CHEIO; O QUE FALTA É O DEGRAU 2, E ELE DEPENDE DO RAPHAEL.**
 - Contado no `main`, não estimado: **78 de 78** itens com `url_busca` e `url_busca_produto` (piso da 25.2 inteiro), **78 de 78** com `sub_id_1` e `encurtamento_tentado_em`. **47 itens com link de produto**, e os **47 estão todos em `degrau: 3`** — anúncio de vendedor comum na Shopee, que a 25.1 chama de "último recurso" e que quebrou quatro links em doze horas em 13/09. **ZERO itens em degrau 1 ou 2.**
 - **Os 14 `intestavel: true` que sobraram são, quase todos, exatamente as marcas que a seção 7 diz que a Shopee não vende:** Eheim (classic 2213, classic 2217 em 127 V e 220 V, SUBSTRAT pro), Chihiros (A451M, WRGB II Pro 60), Seachem (Matrix), Sicce (Scuba Contactless 150), Ista (I-401), Roxin (HT-1300 em 50/100/200/300 W) e o RS-50. **É o caso de manual do degrau 2 (catálogo `/p/MLB…` do Mercado Livre).**
 - **Esta leitura NÃO conseguiu colher as URLs `/p/MLB…`:** `mercadolivre.com.br` não responde da nuvem (bloqueado no egresso, medido: código 000 contra 200 da Shopee e das ilhas), e as páginas de listagem abertas no Chrome do Raphael devolveram cabeçalho e rodapé **sem resultado nenhum** ao leitor automático, em 13 consultas. **Não inventei URL de catálogo para preencher a fila** — pela 25.4-b.1, par que ninguém mediu é pior que buraco escrito.
 - **Pronto quando:** existir `ilhas/aquametria/dados/links-afiliado-pendentes.md` com os **14** itens nomeados por `id` e a URL `/p/MLB…` de catálogo de cada um que tiver, colhida com os olhos, e a coluna do que NÃO tem catálogo no Mercado Livre com o motivo escrito. **Os dois campos (`url` e `url_produto`) entram juntos, da mesma oferta — nunca grampeados (25.4-b.1).**
+- **RETESTADA EM 24/09/2026, não herdada (20.2/20.3): segue bloqueada.** Três passadas, `www.mercadolivre.com.br` em **403 nas três** — `connect_rejected`, política do proxy de egresso, não intermitência — contra `shopee.com.br` em **200 nas mesmas três**. O critério de pronto exige URL de catálogo **colhida com os olhos**, e da nuvem não há olhos nem rede: **este item não é trabalho da Fundação enquanto o egresso estiver fechado.** Fica escrito assim, e não como "faltando", pelo mesmo motivo da linha da jornadafly em `dados/despachos.md`: "faltando" sugere trabalho que existe e faz o prazo parecer recuperável por esforço.
 
 ## DESPACHO DA SENTINELA — 2026-09-23 (ronda diaria, medida no Chrome do Raphael)
 

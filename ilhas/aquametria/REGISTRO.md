@@ -14,6 +14,305 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-24 10h16Z–11h00Z — O ITEM 1 DO DESPACHO ERA FALSO POSITIVO, E A CAUSA É A RÉGUA: A DIRETIVA QUE DECIDE O ÍNDICE FICOU 14 DIAS SEM PORTÃO NO AR. Mais a Proposta 1 no ar (peixes 1.16.0, manifest revisão 111, `/status` conferido na 111; NENHUMA URL nova)
+
+**A ESCOLHA DA ILHA: FOCO, E A RESERVA PASSOU NA PRIMEIRA.** `foco.md` nomeia a
+aquametria desde 21/09 (1.2), então não houve rotação a aplicar. O cabeçalho
+trazia `executando_desde: null`, que pela **1.1** já significa que não há bloco da
+Fundação vivo — não houve reserva vencida para o git desempatar. Reserva aceita às
+10h16Z, commit `6ea6b13`. Nenhum PR aberto e a branch `claude/*` do repositório
+estava em sincronia com o `main`, nada a mesclar. **Rede pela 20.2, retestada e não
+herdada:** três passadas, home em **200** e `/status` em **200** nas três, revisão
+110 igual à do `manifest.json`.
+
+**O TETO DA 21.4 ESTAVA GASTO ANTES DE EU COMEÇAR, e isso não travou nada:** a
+leva 9, de 23/09, foi a **terceira** da semana que começou em 21/09. Como o
+despacho fura a fila pela **18.5** ("verificação antes de construção, sempre") e
+correção não consome vez de bloco (**18.2**), esta execução é toda de despacho e
+de portão — **zero URL nova**, que é o que o teto proíbe.
+
+### 1. O ITEM 1 NÃO EXISTIA. A PÁGINA ESTAVA CERTA DESDE 10/09, E QUEM ERROU FOI O INSTRUMENTO
+
+O item dizia que `https://aquametria.com.br/author/aquametria_gestor/` respondia
+**200 sem `<meta name="robots">`**. Medido às 10h2xZ com quebra de cache e
+`Accept-Encoding: identity`, a página serve:
+
+    <meta name='robots' content='noindex, follow' />
+
+**Aspa simples.** Nesta ilha quem imprime a meta é o **núcleo do WordPress**, pelo
+filtro `wp_robots` — e o núcleo usa aspa simples. O critério de pronto do item
+pedia `grep -c 'name="robots"[^>]*noindex'`, de aspa **dupla**, que devolve **zero
+para sempre** nesta ilha por mais correta que a página esteja.
+
+**A régua não veio do nada, e é isso que a torna perigosa:** nas irmãs
+**robometria** (`robometria-r1.php`, `-r2.php`) e **clubedomosaico**
+(`clubedomosaico-f1/f2/leads/casca.php`) quem imprime a meta é o **snippet**, com
+`echo '<meta name="robots" content="noindex,follow">'` — **aspa dupla**, e lá o
+mesmo `grep` está exatamente certo. Foi uma régua boa **atravessando a fronteira
+de uma ilha onde a tag tem outro autor**. E a aquametria escolheu o filtro do
+núcleo **de propósito**, com o motivo escrito no próprio snippet desde 10/09:
+imprimir a meta na mão arrisca servir **duas** metas `robots`.
+
+**MEDIDO NOS QUATRO CONTEXTOS DE ARQUIVO, não só no que o item nomeou:**
+
+| URL | HTTP | meta `robots` |
+|---|---|---|
+| `/author/aquametria_gestor/` | 200 | `noindex, follow` — uma só |
+| `/?s=aquario` | 200 | `noindex, follow` — uma só |
+| `/2026/09/` | 200 | `noindex, follow` — uma só |
+| `/category/metodos/` | 200 | `noindex, follow` — uma só |
+| `/` (home, controle) | 200 | `max-image-preview:large` — **sem** noindex, que é o certo |
+
+### 2. O CONSERTO QUE O ITEM PEDIA É QUE SERIA O DEFEITO
+
+O item mandava **acrescentar** `noindex`. Cumprido ao pé da letra por quem
+confiasse na medição, o conserto imprimiria a **segunda** meta `robots` ao lado da
+que o núcleo já imprime — e **o Google resolve meta duplicada pelo lado mais
+restritivo**, numa ilha com 52 URLs que precisam ser indexadas. **O falso positivo
+custaria mais caro que o defeito imaginado**, e a direção do estrago seria a de
+apagar página do índice. É por isso que isto virou arquivo e despacho, e não uma
+linha dizendo "não era nada".
+
+### 3. O QUE O ITEM ACHOU DE VERDADE VALE MAIS QUE O DEFEITO QUE ELE DESCREVEU
+
+**Nada nesta ilha media, no ar, a diretiva que decide o que entra no índice do
+Google.** A regra existia e estava certa — `aquametria_seo_deve_noindex()`, função
+pura, desde 10/09 — e `ferramentas/teste-seo-tecnico.php` a media **fora do
+WordPress**. Ou seja: a régua vivia na bancada e a tela não era medida por
+ninguém. É a distância exata que a **seção 4** do contrato paga mais caro, e ela
+ficou **14 dias** aberta. O único instrumento que já tinha apontado para lá era um
+`grep` digitado numa ronda, e ele estava errado.
+
+Nasceram três arquivos, e a divisão entre eles é o ponto:
+
+- **`ferramentas/regua-robots.py`** — a régua, **compartilhada**. Não é portão: não
+  afirma nada sozinha. Mora num arquivo só porque régua escrita duas vezes erra de
+  um lado, e o lado errado fica verde. Ela (a) **ignora aspa** — simples, dupla ou
+  nenhuma, nos dois atributos; (b) exige que o `noindex` seja **diretiva** no
+  `content` de uma meta cujo `name` é `robots`, não a palavra solta na mesma linha,
+  que era o que o `grep` aceitava; (c) **conta** as metas, porque **duas é defeito
+  tanto quanto zero** e a medição que só pergunta "tem?" nunca vê a segunda.
+- **`ferramentas/teste-robots.py`** — 21 afirmações de bancada, sem rede, em HTML
+  escrito à mão, **nas duas direções**. A metade de cima são páginas que mandam não
+  indexar (aspa simples, dupla, sem aspa, ordem trocada, caixa alta, diretiva no
+  meio da lista, meta duplicada); a de baixo são páginas que **não** mandam (a home
+  desta ilha, sem meta nenhuma, a palavra no corpo, dentro de `<script>`, meta de
+  outro nome, `content` vazio, `noindexar`, tag comentada). **O caso 1 é o falso
+  positivo de 23/09 em pessoa:** se a régua voltar a ler só aspa dupla, ele fica
+  vermelho na bancada em um segundo, e não num despacho.
+- **`ferramentas/conferir-robots-no-ar.py`** — 12 afirmações no ar, **as duas
+  direções que o próprio item declarou** ("acrescentar `noindex` demais é o defeito
+  oposto e igualmente grave"): os 4 contextos de arquivo mandam `noindex`; as **52**
+  URLs do sitemap **não** mandam; e **cada uma serve exatamente uma** meta `robots`
+  — esta última existe porque a maneira plausível de fechar o item era imprimir a
+  segunda tag na mão, e este portão reprovaria esse conserto. A lista de URLs sai do
+  **sitemap no ar**, nunca digitada: a leva seguinte publica página e a régua cresce
+  sozinha.
+
+**Verde no ar em 24/09/2026:** 12 afirmações, 0 falha.
+
+### 4. A RÉGUA NOVA ESTAVA ERRADA NA PRIMEIRA PASSADA, E QUEM DISSE FOI O PORTÃO
+
+Na primeira execução de `teste-robots.py`, **duas afirmações ficaram vermelhas** —
+o caso 15 e o da contagem: a régua contava uma tag **citada dentro de um
+comentário HTML** como diretiva servida. Comentário e corpo de `<script>`/`<style>`
+passaram a sair **antes** da varredura de tags, e dois casos novos entraram para
+provar (a tag inteira como texto dentro de `<script>`, e dentro de comentário
+dentro de `<script>`). **Tag comentada valendo como diretiva é o falso positivo de
+23/09 de novo, do outro lado.** Portão que nasce verde no primeiro uso não provou
+nada; este nasceu vermelho e apontou para quem o escreveu.
+
+### 5. PROPOSTA 1 NO AR: O TÍTULO PASSA A DIZER A CONSULTA, E ELA JÁ ESTAVA DECLARADA NO REGISTRO HAVIA DEZ DIAS
+
+A Sentinela mediu quatro grafias da mesma busca no Search Console de 23/09:
+`ciclídeos anões` **6,0**, `ciclídeo anão` **11,0**, `ciclideo anao` **13,0**,
+`ciclideos anoes` **35,0** — uma impressão cada. As duas **singulares** são as que
+caem na banda de 11 a 20, que é a banda em que a **12.1** nomeia título e meta
+description como a alavanca. A página é a **única desta ilha já na disputa**.
+
+**O QUE NINGUÉM TINHA MEDIDO, e é o motivo de a linha ter nascido errada:** o
+registro desta página declara `'consulta' => 'quantos litros para ciclídeo anão'`
+**desde a leva 6, em 14/09/2026** — e o `titulo` **não continha essa frase**. Dez
+dias de uma página perseguindo uma consulta que o próprio registro nomeia e que o
+título não dizia.
+
+Servido no ar às 10h5xZ, revisão 111, medido depois de decodificar as entidades:
+
+- `<title>`: `Ciclídeos anões: quantos litros para ciclídeo anão – Aquametria` —
+  **63 caracteres** (teto 65 do `teste-voz.mjs`: 50 no campo + os 13 de
+  ` – Aquametria`), com a forma **singular**, a **plural**, e a consulta declarada
+  **inteira, palavra por palavra**.
+- `<meta name="description">`: **148 caracteres**, abrindo pela consulta singular,
+  com as duas formas.
+- `<h1>` e `og:title` mudaram junto. **As quatro superfícies dizem o mesmo nome no
+  ar.**
+
+**O RÓTULO PLURAL CONTINUA ABRINDO O TÍTULO, e isso é escolha e não descuido:** é
+a grafia de **melhor** posição das quatro (6,0). Trocá-la pela singular para
+consertar a pior seria **mudar o defeito de lado**. O molde `<rótulo>: <pergunta>`
+é o mesmo das oito irmãs do eixo. Nenhuma URL nasceu, mudou de endereço ou saiu, e
+as 3 fichas filhas não foram tocadas — a 12.1 proíbe trocar URL, e a proposta
+dizia isso com todas as letras.
+
+### 6. O TÍTULO MORA EM DOIS ARQUIVOS, AS 38 PÁGINAS CONCORDAVAM, E NADA MEDIA ISSO
+
+- `snippets/aquametria-peixes.php`, no `aquametria_peixes_registro()` → `post_title`,
+  logo o `<h1>` e a primeira metade do `<title>`.
+- `dados/metas-seo.json`, em `paginas_do_eixo_peixes` → `og:title` e `twitter:title`.
+
+**Contado antes de escrever o portão, não suposto: 38 e 38, zero divergência.** O
+portão nasce **no dia da primeira mudança de título do eixo** porque é exatamente
+esse o momento em que a segunda cópia fica para trás — quem muda o título para
+consertar posição de busca está pensando no `<title>`, e o `og:title` mora noutro
+arquivo, noutra pasta, sem nada que avise. **É a terceira vez que esta ilha paga a
+mesma doença,** e as duas primeiras já tinham portão: o favicon mantido em dois
+lugares (casca, seção 2b) e a meta description, que por isso é **gerada** e não
+escrita.
+
+- **`ferramentas/teste-titulos-das-duas-fontes.py`** — 160 afirmações, sem rede: as
+  duas direções da concordância, o título igual nas duas, o **teto de 65 cobrado na
+  bancada** (antes só existia no `teste-voz.mjs`, que precisa de Chromium e de site
+  no ar), e o critério da Proposta 1 cobrado **por nome**, para ele não voltar a ser
+  esquecido. O registro é lido **em texto**, não perguntando à função do snippet —
+  a mesma escolha que `teste-peixes.py` declara, pelo mesmo motivo: a afirmação é
+  que os dois **arquivos** concordam.
+- **`ferramentas/mutacoes-titulos.py`** — **6 mutações, 6 reprovadas.** As 1 e 2
+  mudam o título em **só uma** das duas fontes: o site continua 200, o `<h1>`
+  continua certo, e só o `og:title` mente — defeito que nenhuma ronda de HTTP e
+  nenhum olho na tela encontra. A 3 estoura o teto por **um** caractere nas duas
+  juntas. A 4 é o conserto **pela metade** da Proposta 1. A **5 é a porta dos
+  fundos**: a leitura em texto deixa de casar e os dois lados ficam **vazios**,
+  portanto **concordes** — as três primeiras afirmações do portão existem só para
+  que ela fique vermelha. A 6 tira uma página do JSON sem divergir título nenhum.
+
+### 7. A BANCADA APRENDEU UMA CONVENÇÃO, E ELA TEM DENTE
+
+`regua-robots.py` não casava com nenhuma convenção e o `bancada.py` **a denunciou**
+na primeira passada — que é o comportamento certo dele. Régua compartilhada não é
+portão (não afirma nada sozinha) e não é produção. A convenção nova: **`regua-*.py`
+escapa da denúncia SÓ se algum portão da pasta a importar pelo nome.** A pergunta é
+feita aos **arquivos**, nunca a uma lista dentro do `bancada.py` — pelo mesmo
+motivo que o resto daquele arquivo não tem lista. **Provado:** uma `regua-orfa.py`
+num repositório copiado foi denunciada.
+
+### 8. O QUE ESTA EXECUÇÃO NÃO FEZ, COM O MOTIVO DE CADA UM (18.3)
+
+- **Item 2 do despacho (diagnóstico da 21.5).** O critério de pronto dele exige um
+  arquivo escrito **depois** da leitura semanal de **30/09**; hoje é 24/09.
+  Escrevê-lo agora seria escrever o diagnóstico **antes** do dado que ele julga —
+  a **1.2-b.4** de cabeça para baixo. A hipótese **(a) indexação** segue
+  respondida, e ganhou meia medição nova: **52 de 52** URLs do sitemap servindo a
+  meta `robots` **sem** `noindex`.
+- **Proposta 2 (`/peixes/tetras/` em "Discovered — currently not indexed").** A
+  própria proposta diz "nada de código" e "o valor desta proposta é ela não virar
+  bloco". O portão novo fechou uma hipótese de graça: a página serve `robots`
+  **sem** `noindex`, então **não é a ilha pedindo para não ser indexada**.
+- **Proposta 3 (degrau 2, catálogo `/p/MLB…`).** **Retestada, não herdada
+  (20.2/20.3):** `www.mercadolivre.com.br` em **403 nas três passadas** —
+  `connect_rejected`, política do proxy, não intermitência — contra
+  `shopee.com.br` em **200 nas mesmas três**. O critério exige URL de catálogo
+  **colhida com os olhos**, e da nuvem não há olhos nem rede.
+
+### 9. O QUE ATRAVESSA ILHA FOI PARA O CANAL DA RAIZ
+
+`dados/despachos.md` ganhou despacho **NORMAL** endereçado à **Sentinela** (e à
+Fundação de quem reservar a clubedomosaico): a régua de `noindex` erra ao
+atravessar a fronteira entre as ilhas, com a tabela de quem imprime a meta em cada
+uma. **Não foi para o `PROMPT.md` de outra ilha porque a seção 3 proíbe editar
+arquivo de ilha que não se reservou.**
+
+**E o que ele deliberadamente NÃO decide:** a leitura semanal registrou que na
+**clubedomosaico** a página de autor **já está indexada e tomou uma impressão na
+posição 1,0**. Esse dado é do Search Console e **não foi desmentido** pelo que se
+mediu aqui — lá quem imprime a meta é o snippet, não o núcleo, e a página pode ter
+entrado no índice antes de qualquer `noindex`. **Ninguém mediu aquela ilha com a
+régua nova**, e é de quem a reservar.
+
+### 10. O QUE MUDOU SEM SER PEDIDO, E POR QUÊ
+
+- **Três entradas do mapa de metas voltaram para a ordem alfabética.** O
+  `gerar-metas-descricao.py` ordena por `ordem()`, e as três da categoria `barbos`
+  tinham sido inseridas **à mão** no bloco gerado, na leva 9, junto com um
+  comentário `/* LEVA 9 ... */` que morava **dentro** da região gerada. Regerar
+  alinhou o arquivo ao seu gerador e apagou o comentário. **O conteúdo dos 52 pares
+  título/descrição foi comparado antes e depois: só `ciclideos-anoes` mudou.**
+  Comentário dentro de bloco gerado é comentário condenado.
+- **Uma imprecisão minha, corrigida e anotada:** ao renovar `executando_desde` pela
+  **1.1** eu gravei `11:15Z` quando eram ~10h47Z — relógio **à frente**, não atrás.
+  Reserva com horário futuro faria a execução seguinte achá-la mais fresca do que
+  era. O campo está `null` desde o fecho, então não sobrou efeito; fica escrito
+  porque a 1.1 existe justamente para que ninguém confie em campo de relógio sem
+  perguntar ao git.
+
+### A BANCADA DESTA EXECUÇÃO
+
+`php -l` nos **11** snippets, sem erro. `teste-seo-tecnico.php` **555** afirmações,
+0 falha. `teste-peixes.py` **4.299**, 0 falha. `teste-voz.mjs` TUDO OK (é ele que
+cobra que o `<title>` **comece pelo H1** e caiba em 65 — as duas superfícies saem
+do mesmo campo, então a mudança as moveu juntas). `teste-arvore.mjs` 0 falha.
+`conferir-slugs.py` e `conferir-indice-de-levas.py` verdes. **Os portões novos:**
+`teste-robots.py` **21**/0, `teste-titulos-das-duas-fontes.py` **160**/0,
+`mutacoes-titulos.py` **6 de 6** reprovadas. **No ar, depois do desembarque:**
+`conferir-robots-no-ar.py` **12**/0, `conferir-peixes-no-ar.py` **1.012**/0,
+`conferir-datas-e-voz-no-ar.py` **407**/0, `conferir-site-jsonld-no-ar.py` **16**/0.
+
+**A PASSADA COMPLETA DO `bancada.py` NÃO CHEGOU AO FIM, e o motivo não é defeito:**
+ela foi iniciada duas vezes. A **primeira** começou antes de eu terminar de editar
+os arquivos e eu a **encerrei** de propósito, em vez de deixá-la medir um
+repositório que mudava embaixo dela — as mutações copiam a pasta inteira e um alvo
+movido no meio dá falha que não é da ilha. A **segunda** rodou com os arquivos já
+parados e **tudo o que ela mediu ficou verde**, mas ela não terminou dentro desta
+execução: com 36 portões, e as mutações copiando um repositório grande uma vez por
+mutação, a passada é de muitas dezenas de minutos. **Encerrei a execução em vez de
+segurar a reserva**, porque `foco.md` nomeia esta ilha e, pela 1.2 passo 3, outra
+execução que a encontre reservada **para e não pega outra** — segurar a reserva
+para assistir a portões verdes é bloquear o arquipélago.
+
+**O que a segunda passada mediu antes de eu fechar, tudo verde:** a régua do
+veredito (17 afirmações), `php -l` nos 11 snippets, `conferir-entidades.mjs`,
+`conferir-indice-de-levas.py`, `conferir-protecao-funcoes.py`,
+`conferir-slugs.py`, `mutacoes-arvore.py` (14/14), `mutacoes-coleta-shopee.py`
+(20/20), `mutacoes-datas.py` (12/12), `mutacoes-dimensao.py` (14/14),
+`mutacoes-escada.py` (26/26), `mutacoes-ga4.py` (13/13). **Não chegaram a rodar
+nela** os `mutacoes-peixes/privacidade/purga-cache/site-jsonld/voz`, os
+`teste-*.php` de família alheia a esta mudança, `teste-coleta-shopee.py`,
+`teste-datas-schema.py`, `teste-dimensao-imagem.py`, `teste-escada-compra.py`,
+`teste-ga4.py`, os `validar-*` — **e os de Chromium** (`--navegador`), que são
+dezenas de minutos por desenho. Os portões que **esta** mudança toca foram todos
+rodados à mão e estão na lista acima.
+
+### A MEMÓRIA NÃO ESTAVA ALCANÇÁVEL, E ISSO NÃO PAROU A EXECUÇÃO
+
+O `PROMPT.md` manda carregar `/areas/projeto-aquametria.md` e outros quatro
+arquivos de memória, e o cabeçalho deste log manda espelhar o resumo lá. **Neste
+ambiente não existe diretório de memória** — procurado, não suposto. O próprio
+`PROMPT.md` prevê o caso com todas as letras: *"Sem memória, não pare: o estado
+está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta."* Foi o que se fez, e
+o espelho da memória fica **devendo** para a próxima execução que tiver acesso a
+ela — dito aqui em vez de omitido, porque resumo que ninguém escreveu e ninguém
+registra como não escrito é a família do "resumo velho lido como fato" da seção 4.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **Uma passada limpa de `python3 ferramentas/bancada.py --no-ar`**, com os
+   arquivos parados, para fechar o que esta execução deixou medido pela metade.
+2. **A semana da 21.4 virou em 28/09** (a de 21/09 fechou em 3 de 3 com a leva 9).
+   Até lá, **nenhuma URL de malha nova** — o que cabe é portão, correção e as cinco
+   páginas institucionais da 21.7, se faltar alguma.
+3. **30/09/2026 é a data que manda nesta ilha:** a ilha atinge o piso da **21.1**
+   (52 URLs, passa das 40; e 21 dias desde a primeira indexação de 09/09), e a
+   **21.5** passa a cobrar o diagnóstico escrito das hipóteses **(b) consulta** e
+   **(c) SERP** — a **(a)** está respondida. O item 2 do despacho é esse
+   compromisso, e o critério dele exige que o arquivo nasça **depois** da leitura
+   semanal daquele dia.
+4. **A comparação da Proposta 1** (as quatro grafias contra 6,0 / 11,0 / 13,0 /
+   35,0) é da leitura semanal de 30/09, em `dados/posicoes.md`. **Amostra fina:**
+   uma impressão por linha.
+5. **A régua de `noindex` é portável** — três arquivos, trocando a lista de
+   contextos e o domínio. A clubedomosaico é a que tem sintoma medido do outro
+   lado, e o despacho da raiz espera quem a reservar.
+
+
 ## 2026-09-23 19h16Z–20h32Z — LEVA 9: A NONA CATEGORIA, E O CAMPO QUE FAZ A FONTE RECUSAR COMPANHEIRO EM VEZ DE A PROSA PEDIR (peixes 1.15.0, esquema de espécies versão 6, manifest revisão 110, `/status` conferido na 110; QUATRO URLs novas — `/peixes/barbos/` e as fichas do barbo sumatra, do barbo rosado e do barbo cereja; a ilha vai de 48 para 52 URLs)
 
 **A ESCOLHA DA ILHA: FOCO, E A RESERVA PASSOU NA PRIMEIRA.** `foco.md` nomeia a
