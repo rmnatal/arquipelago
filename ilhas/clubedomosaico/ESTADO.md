@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 13
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-15T00:01Z
-executando_desde: null   # reserva orfa de 15/09 LIMPA em 18/09/2026 — a execucao que reservou morreu no limite semanal e nunca fechou
+executando_desde: 2026-09-24T19:16Z   # reserva da Fundacao, bloco 0 do despacho do Raphael de 24/09 (sub_id deslocado)
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
   A FAMILIA DAS TECNICAS VIRA FAMILIA: nasce /como-fazer/o-que-e-trencadis/ e a grade passa a ser medida POR CAQUINHO (tecnicas 1.1.0, manifest revisao 35, /status conferido na 35 em UM disparo com 12 aplicados). UMA URL nova, a segunda e ultima que o portao da secao 4b do ARVORE.md autoriza hoje. Nenhuma peca entrou ou saiu, nenhuma URL mudou de endereco. A semana da 21.4 esta em 2 de 3 levas.
