@@ -2657,3 +2657,56 @@ linha do LOGO "desceu para a 120". Relendo o arquivo depois do push, ela esta na
 contagem confere: 471 linhas, despacho na linha 60, 59 insercoes. O erro foi meu, na aritmetica, nao na
 gravacao — e fica escrito aqui em vez de corrigido em cima, porque a secao acima ja foi ao `main` no
 commit `dc86765`.
+
+---
+
+## Disparo de 24/09/2026, 10h03 (horario de Brasilia) — 13h03 UTC — despacho do Raphael de 24/09 no `ilhas/aquametria/PROMPT.md`
+
+**Assunto:** Arquipelago, ilha Aquametria. Passou a checagem de assunto.
+
+**Instrucao:** inserir um bloco de despacho (mutirao reaberto apenas para divida que nao cria URL nova,
+valido ate a leitura semanal de 30/09/2026) imediatamente antes da primeira linha `## FILA DE BLOCOS`,
+com uma linha em branco entre o fim do bloco e essa linha. Nenhuma outra linha alterada — em particular o
+paragrafo do MODO MUTIRAO e a nota de 22/09 que o desligou continuam no arquivo, sem uma letra mudada.
+
+`git status --porcelain` depois do commit do trabalho (vazio = arvore limpa):
+
+```
+```
+
+`git diff --stat` do commit do trabalho:
+
+```
+ ilhas/aquametria/PROMPT.md | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+```
+
+`git diff --numstat`:
+
+```
+15	0	ilhas/aquametria/PROMPT.md
+```
+
+**Hash que foi ao `main`:** `9c57dbe3abe3b9705835dfac14ce6895ab1cba82`
+
+Confirmado com `git fetch origin main && git log -1 --oneline origin/main`:
+
+```
+9c57dbe aquametria: despacho do Raphael de 24/09 — mutirao reaberto so para a divida que nao cria URL (imagens e fichas), valido ate 30/09
+```
+
+**Contagem, conferida relendo `ilhas/aquametria/PROMPT.md` DEPOIS do push (nao pelo que eu acho que escrevi):**
+
+- 15 linhas inseridas, 0 removidas, 1 arquivo tocado.
+- O arquivo tem **368 linhas** (eram 353).
+- O bloco novo comeca na linha **198** (`## DESPACHO DO RAPHAEL — 24/09/2026, 10h05 ...`) e termina na
+  linha **211** (`**O que ele NAO pediu, e nao e para fazer:** ...`). Linha **212** em branco.
+- `## FILA DE BLOCOS — reordenada em 09/09/2026 pela meta de trafego` desceu de 198 para a linha **213**,
+  imediatamente abaixo da linha em branco. Releitura das linhas 196-200 e 211-213 confirma a ordem:
+  linha 196 o texto anterior (`~~**O QUE CONTINUA ABERTO...`), 197 em branco, 198 o bloco novo, 211 o fim
+  do bloco, 212 em branco, 213 a `## FILA DE BLOCOS`.
+- `grep -n 'MUTIR'` devolve 3 ocorrencias: a nova na 198, a nota de 21/09 que mantem o mutirao desligado
+  na **215**, e o paragrafo do MODO MUTIRAO de 09/09 na **227**. As duas antigas seguem intactas, como o
+  despacho manda — ele abre excecao nomeada e com prazo, nao reescreve nenhuma das duas.
+
+**Falhas:** nenhuma. Push aceito de primeira em `HEAD:main`, sem rebase e sem force.
