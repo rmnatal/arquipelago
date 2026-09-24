@@ -14,6 +14,300 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-24 16h16Z–17h02Z — O T6 SAI DO PAPEL: A ÚNICA ALAVANCA DE LINK DO PROJETO GANHA LISTA MEDIDA, E A SERP DE CALCULADORA JÁ TEM 13 OCUPANTES — SÓ UM DELES É LOJA (nenhuma URL nova, nenhuma leva do teto, nada publicado)
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a aquametria
+desde 21/09 (1.2), então não houve rotação nem comparação de `ultima_execucao`. O
+cabeçalho trazia `executando_desde: null` — pela **1.1** isso já significa que
+não há bloco da Fundação vivo — e o último commit na pasta era de **94 minutos**
+antes, fora da janela dos 40. Reserva aceita às 16h16Z, commit `25402d9`, na
+primeira tentativa. Nenhum PR aberto e a branch `claude/*` em sincronia com o
+`main`, conferidos antes.
+
+**Rede pela 20.2, retestada e não herdada:** home **200** e `wp-sitemap.xml`
+**200**; `/status` responde na rota do `wp-json` (o `/status` cru devolve 404, e
+isso é o endereço, não defeito). Duas passadas, igual nas duas.
+
+**POR QUE ESTE BLOCO, e a escolha não foi livre.** A fila de dívida do mutirão do
+Raphael **está vazia do lado da máquina** — as 24 fotos fecharam em 41 de 41 na
+execução das 13h18Z, e o resíduo das fichas está medido e escrito, com 39 dos 43
+travados em oferta e palavra-chave. O teto da 21.4 segue **3 de 3**, gasto desde
+23/09, então nenhuma leva de malha pode sair antes de 28/09. O que sobrava na
+fila sem URL era o **T6**, e ele não é um bloco qualquer: é a **única alavanca de
+link do projeto** (14.7 e seção 10), estava parado desde que subiu de prioridade,
+e foi para ele que a própria leitura semanal apontou — a Proposta 2 mediu
+`/peixes/tetras/` em "Discovered — currently not indexed" há 11 dias, provou que
+não é falta de descoberta nem `noindex`, e escreveu que a alavanca é **sinal
+externo, não edição de página**.
+
+---
+
+### 1. O INSTRUMENTO DESTA NUVEM É UM SÓ, E ELE DECIDE O ARQUIVO INTEIRO
+
+Conferido antes de coletar, pela 20.3, e não herdado: o egresso responde **403 no
+CONNECT** para **todo** domínio fora da lista de permitidos. Medido, e a medida
+está escrita com o tamanho que ela tem: `cobasi.com.br` e `google.com` em **000
+nas três passadas**, com `aquametria.com.br` em **200 nas mesmas três**;
+`petz.com.br`, `casadoaquarista.com.br`, `aquaplante.com.br` e
+`aquarismopaulista.com.br` em **000 numa passada cada** — uma só, e por isso não
+os chamo de três. O que fecha o diagnóstico não é a contagem e sim o **log do
+próprio proxy**, que nomeia `connect_rejected — gateway answered 403 to CONNECT
+(policy denial)` para `cobasi.com.br:443` e `petz.com.br:443`: é **política**, e
+não a intermitência de túnel que a seção 20 manda descartar antes de chamar
+qualquer coisa de bloqueio. O **WebFetch também não passa**: devolve `EGRESS_BLOCKED` no
+primeiro domínio tentado.
+
+**Sobra a BUSCA.** E ela não é um atalho nesta ilha: é o **nível 3 da escada de
+coleta**, o mesmo instrumento com que este banco inteiro foi construído — está
+escrito no T3(a) do `PROMPT.md` desde 12/09, quando `chihirosaquaticstudio.com` e
+`ista-asia.com` deram `000` e a coleta passou a sair por busca restrita a
+domínio.
+
+**O que isso proíbe, e está escrito em campo em vez de em prosa:** ninguém abriu
+o site de ninguém. `contato` e `plataforma` são `null` nas 24 linhas, **cada uma
+com o motivo escrito**, e o topo do arquivo carrega `ninguem_abriu_nenhum_site:
+true`. Não é ressalva de rodapé: o portão **reprova** se `abriu_no_navegador`
+faltar, porque campo ausente valendo como `false` é a porta dos fundos que o
+portão do espelho do CDN fechou quatro horas antes, no mesmo dia.
+
+### 2. O ACHADO QUE REORDENOU A LISTA ANTES DE ELA FICAR PRONTA
+
+Três das nove consultas foram atrás de calculadora de aquário — e o que voltou
+mudou o critério de ordem, não só o conteúdo de uma linha. **Treze domínios já
+publicam calculadora de aquário em português**, e **um único deles é loja de
+aquarismo**: `aquariosplantados.com.br`, com **duas** páginas de litragem. Os
+outros doze são site de conteúdo, fazenda de calculadora — e um é de **outro
+nicho inteiro** (`ranger3d.com.br`, impressão 3D).
+
+**Isso vale nas duas direções, e as duas estão no arquivo:**
+
+- **Para a prospecção:** loja que já construiu a própria calculadora não instala
+  a de ninguém. Virou **regra** e não opinião: `ja_tem_calculadora: true` derruba
+  a linha para prioridade 3 seja qual for o tipo, e é a **primeira** linha da
+  função de prioridade.
+- **Para a oferta:** o espaço existe justamente porque **quase nenhuma loja tem a
+  ferramenta**. Das **13 lojas** desta lista, só **1** tem calculadora medida.
+
+**E uma linha que ninguém deveria descobrir depois:** `reefflow.com.br` — a fonte
+que a **C5 desta ilha cita** para a faixa de delta de 10 °C — publica a
+**calculadora de aquecedor concorrente da C5**. Não é defeito, não muda número
+nenhum e não vira despacho; fica escrito na linha dela, com essa frase, porque
+citar como fonte quem também é concorrente é um fato sobre procedência que é
+melhor estar no arquivo do que na cabeça de alguém.
+
+### 3. UM CANDIDATO CHEGA A PRIORIDADE 1, E OS OUTROS 23 NÃO É PORQUE FORAM REPROVADOS
+
+`aquariosdorio.com.br` é o único que fecha as três condições com o que a busca
+alcança: é loja, vende o equipamento que as calculadoras dimensionam (filtro
+canister e aquecedor com termostato, em `/loja/`) e publica **conteúdo editorial
+no próprio domínio** (`/blog/top-10-peixes-para-iniciantes/`, achado por busca
+restrita ao domínio).
+
+**Os 23 restantes ficam em 2 e 3 por FALTA DE MEDIDA, e o arquivo diz isso com
+essas palavras.** Dois exemplos do que uma passada de navegador resolveria em
+minutos: `lojaaquaverso.com.br` publica um guia próprio que fala de litragem
+inicial e de filtro e termostato — falta só saber se ela **vende** o que o guia
+dela recomenda, e vira 1 na hora. `aquaricamp.com.br` tem a árvore de filtro
+canister medida e o que a busca achou de "conteúdo" foi **vitrine de projeto e
+livro de terceiro** — e nenhum dos dois é conteúdo editorial próprio, então o
+campo ficou `null` em vez de `true`.
+
+**As duas linhas que valem por alavanca** e não por si: `aquaticabrazil.com.br` e
+`escoladeaquario.com.br` publicam para quem **monta loja de aquarismo** — o
+público delas é a própria lista de lojas.
+
+**E duas ressalvas de escopo escritas na linha de quem as tem:** `reefjoinville`
+e `reefshock` são de **marinho**, e o banco desta ilha é de **água doce** — as
+cinco calculadoras assumem doce, e uma delas instalada lá serviria número fora do
+escopo declarado. Prospecção válida, oferta a combinar.
+
+### 4. O QUE IMPEDE ESTA LISTA DE MENTIR — e por que a prioridade não se escreve
+
+`ferramentas/regua-prospeccao.py` é a régua compartilhada (carregada pelo portão,
+pela bancada e pelo gerador), e as quatro regras dela saem **todas do mesmo
+fato** do item 1:
+
+1. **Não existe `false` nos campos de fato.** Busca sabe afirmar **presença**,
+   nunca ausência: um domínio não aparecer na consulta de calculadora não prova
+   que ele não tem calculadora — prova que a busca não o mostrou. Os três campos
+   aceitam `true` (com evidência) ou `null` (= não medido), e o portão **recusa**
+   `false`. É a mesma disciplina que fez as fotos sem dimensão ficarem `null` em
+   vez de receberem número chutado.
+2. **Evidência tem de ser do domínio que ela sustenta.** O host do
+   `resultado_url` tem de terminar no domínio da linha — e por **rótulo**, não
+   por `endswith` de texto cru, senão `forfish.com.br.exemplo.com` passaria por
+   subdomínio de `forfish.com.br`. A bancada mede esse caso em pessoa.
+3. **A prioridade não se escreve, se calcula.** O arquivo diz o número e o portão
+   **recalcula** dos campos medidos; se discordarem, vermelho. É a doença que a
+   `bancada.py` matou um andar acima em 22/09 — lista escrita à mão envelhece
+   calada. Quem mudar um campo medido não precisa lembrar da prioridade.
+4. **O que não foi medido tem de dizer que não foi.** `null` em `contato` e
+   `plataforma` exige **motivo escrito**. Campo vazio calado é onde a próxima
+   passada inventa um e-mail.
+
+**O `.md` é GERADO, não escrito** (`gerar-prospeccao.py`), e o portão **regera o
+texto em memória e compara**. Duas fontes para o mesmo fato divergem: é a lição
+do título que morava em dois arquivos, medida nesta ilha nesta mesma manhã.
+
+**E o teto por tipo é JUÍZO, e está escrito como juízo** — não como medida. Só
+`loja` chega a 1 (a oferta é "uma ferramenta que recomenda equipamento, ao lado
+do equipamento que você vende"); `rede-pet` (Cobasi, Petz) tem teto 3 com a razão
+na própria linha: rede nacional tem equipe editorial, fornecedor homologado e
+jurídico, e domínio novo não atravessa isso. Quem discordar discorda de um
+parágrafo, não de um silêncio.
+
+**As duas travas que o portão herda do contrato e não da minha cabeça:** domínio
+de marketplace ou rede social **não é site próprio** (a página não é da loja, ela
+não pode instalar nada, e o link de lá não passa autoridade), e **domínio de ilha
+do arquipélago é recusado** — ilha não linka ilha, seção 10. A segunda lê o
+`manifest.json` de cada irmã para saber os nomes; leitura, nunca escrita, porque a
+seção 3 proíbe editar ilha que a execução não reservou.
+
+### 5. E UM SHA QUE MENTIA, achado sem procurar
+
+O `manifest.json` estava na revisão 113 declarando o
+`ferramentas/conferir-espelho-cdn.py` de **antes** da correção das 14h24Z — a
+execução anterior escreveu o manifest (`fe3d673`, 14h15Z) e **depois** corrigiu o
+portão (`32a7040`, 14h24Z), e o inventário ficou com o sha do arquivo velho. Não é
+grave e é exatamente a classe de defeito que o `atualizar-manifest.py` existe para
+gritar: o inventário afirmava o conteúdo de um arquivo que já era outro.
+Corrigido, mais as **seis** entradas novas desta execução. **Manifest 115.**
+
+### 6. TRÊS DEFEITOS MEUS, os três pegos antes do fecho
+
+**(a) Uma frase do gerador saía malformada.** O `.md` imprimia *"Ninguém abriu
+nenhum site: **correto**"* — o ramo que eu escrevi para o caso em que o campo do
+topo fosse `false` acabou vazando para o caso normal. Corrigido na régua e
+regerado; o texto agora diz a frase e, no caso `false`, diz com todas as letras
+que **o topo do arquivo se contradiz**.
+
+**(b) Duas contagens diferentes com o mesmo número, coladas.** O parágrafo do
+achado dizia "13 domínios publicam calculadora" e, três linhas abaixo, "das 13
+lojas prospectadas" — dois **13** que não têm relação nenhuma um com o outro, e um
+leitor apressado soma os dois. Reescrito: os ocupantes agora saem **nomeando** a
+única loja entre eles, e a contagem das lojas mudou de lugar para a linha da
+oferta.
+
+**(c) E o que eu quase escrevi no registro.** O primeiro rascunho desta entrada
+dizia que **seis** domínios deram `000` "nas três passadas". Não é verdade: só
+`cobasi.com.br` e `google.com` foram medidos três vezes; os outros quatro, uma
+vez cada. Está corrigido no item 1, com o número que cada um tem — e o que fecha
+o diagnóstico nem é a contagem, é o log do proxy dizendo `policy denial`. **Seis
+domínios soam mais do que dois, e era exatamente por isso que a frase estava
+errada.**
+
+### 7. O QUE FICA DESBLOQUEADO PARA A PRÓXIMA EXECUÇÃO
+
+- **O próximo passo do T6 NÃO é bloco da Fundação, e isso é resultado e não
+  desculpa.** Falta abrir os domínios de prioridade 1 e 2 num navegador e colher
+  **canal de contato**, **plataforma de e-commerce** (se ela aceita bloco de HTML,
+  o widget é possível; se não, a linha morre) e, nas lojas com catálogo medido,
+  **se publicam conteúdo próprio** — o campo que promove a linha para 1. O portão
+  **exige** `medido_como: "navegador"` e `medido_por` para esse dado, justamente
+  para ele não se misturar com o colhido por busca. Daqui não há navegador nem
+  rede: é da Sentinela Técnica ou do Raphael.
+- **O mutirão do Raphael continua aberto até 30/09** e **não é para apagar**: é
+  exceção com prazo próprio e morre sozinha na leitura semanal daquele dia. A
+  fila dele segue **vazia do lado da máquina**.
+- **O teto da 21.4 zera em 28/09.** Até lá, nenhuma leva de malha. Quem pegar esta
+  ilha antes disso tem, sem gastar leva e sem coleta: o **campo de ESCOPO no
+  esquema de espécies** (destrava o acará-disco e o oscar, e está nomeado desde
+  22/09), o **T5** (artigos-âncora, que cria URL e por isso espera 28/09) e as
+  **dez páginas de dados fora do `manifest.json`**.
+- **Item 2 do despacho da Sentinela (diagnóstico da 21.5) continua aberto de
+  propósito:** o critério exige arquivo escrito **depois** da leitura semanal de
+  30/09. Hoje é 24. **As três consultas de calculadora desta passada não são esse
+  diagnóstico** e não devem ser lidas como ele: o diagnóstico é sobre `quantos
+  litros para <espécie>`, e está escrito no próprio `.md` que esta não é ele.
+- **O que continua pedindo olho humano, da execução anterior:** os 33
+  `alt_origem: 'banco'`, a foto que os dois registros Maxxi compartilham com
+  `alt` de potências diferentes, e os quatro itens dos grupos C e D de
+  `dados/fichas-pendentes.md`.
+- **Memória:** não há diretório de memória nesta execução (`/areas/…` não existe
+  neste ambiente), então o próximo passo está escrito onde o `PROMPT.md` manda
+  procurar quando ela falta — aqui, no `ESTADO.md` e no T6 do `PROMPT.md`.
+### VERIFICAÇÃO
+
+**OS TRÊS PORTÕES NOVOS, e eles nasceram medindo a si mesmos antes de medir o
+dado:** `validar-prospeccao.py` **559 afirmações, 0 falha** · `teste-prospeccao.py`
+**173 afirmações, 0 falha** · `mutacoes-prospeccao.py` **31 de 31 mutações
+reprovadas, zero inerte**.
+
+**AS MUTAÇÕES TÊM UMA EXIGÊNCIA A MAIS QUE A CONTAGEM:** cada uma declara **um
+pedaço da mensagem que espera**, e mutação pega pelo motivo errado conta como
+**INERTE**, não como reprovação. Sem isso, quase todas seriam "pegas" pela regra
+do `.md` fora de sincronia — porque quase toda mutação muda o texto gerado — e a
+contagem ficaria verde sem medir nada. Por isso o `.md` sai do caminho nas 30
+mutações de dado e tem uma mutação só para ele.
+
+**E A SEÇÃO 8 COBRA UM CASO QUE O BANCO NÃO TEM:** todo estado que o **esquema**
+permite e o banco ainda não produziu tem de ser tratado hoje, e provado pela
+mutação que **produz o mundo**. O esquema permite evidência colhida em
+`navegador` e em `curl`, e o banco de hoje não tem nenhuma — foi tudo busca.
+Então as mutações **criam** esse mundo: a que abre um site e deixa o topo dizendo
+que ninguém abriu, e a que faz o topo dizer que alguém abriu sem nenhuma linha
+aberta. **A segunda não existia**, e foi escrita ao reler a seção 8 já com o bloco
+pronto: era a direção que sobrevive mais fácil, e é justamente a que apagaria a
+limitação que este arquivo existe para deixar visível.
+
+**NO AR, depois do Sync** (`/status` conferido, igual à do `manifest.json`):
+`conferir-peixes-no-ar` · `conferir-datas-e-voz-no-ar` **407 afirmações, 0 falha**
+· `conferir-escada-no-ar` **130, 0** · `conferir-espelho-cdn` **92, 0** ·
+`conferir-cache-do-host` **55, 0** · `conferir-privacidade-no-ar` **21, 0** ·
+`conferir-site-jsonld-no-ar` **16, 0** · `conferir-robots-no-ar` **12, 0** ·
+`conferir-ga4-no-ar` limpo, com a nota conhecida do `google-site-kit` nas 52
+páginas. **Nenhuma página mudou nesta execução** — o que o Sync levou foi a
+revisão do manifest, e é por isso que os nove medem o mesmo site de antes.
+
+**O SYNC DEVOLVEU `200` APLICANDO A REVISÃO ERRADA — cinco vezes, e por isso isto
+fica escrito: "sync http=200" não é prova de nada.** O Sync é PULL: ele busca o
+`manifest.json` no `raw.githubusercontent`, que guarda ~5 minutos. A chamada das
+**16h36Z** devolveu `200` e aplicou a **revisão 113** — a de ANTES do commit; a
+das 16h37Z aplicou a **115**. Na subida para a **117** foram **cinco** chamadas
+com `200`: as quatro primeiras (16h45, 16h46, 16h47 e 16h47m58) aplicaram a
+**116**, e só a das **16h48m50Z** aplicou a 117, conferida no `/status` contra a
+do `manifest.json`. Está no contrato como nota de cache duplo, e quem ler só o
+código HTTP conclui que entregou quando não entregou. **A prova é a revisão do
+`/status`, nunca o código da resposta.**
+
+**A BANCADA INTEIRA, NUM COMANDO SÓ E SEM MORRER NO TIMEOUT: `python3
+ferramentas/bancada.py` → APROVADO: 41 portões, 0 falha.** Vale registrar porque
+a execução anterior, quatro horas antes, **não conseguiu**: o `bancada.py` dela
+saiu em `exit=124` dentro da `mutacoes-peixes.py`, com 11 dos 38 portões medidos,
+e os outros 27 tiveram de ser rodados um a um. A causa que ela nomeou era disputa
+de CPU, e a medida de hoje concorda: aqui a bancada rodou **sozinha** os
+primeiros minutos, dividiu a máquina com os nove portões de rede por uns dez, e
+fechou os 41 em **26 minutos**. São 41 e não 38 porque os três portões desta
+execução entraram — e entraram **sozinhos**, sem ninguém os acrescentar a lista
+nenhuma, que é exatamente o que a `bancada.py` existe para fazer.
+
+`teste-peixes` **4299** afirmações · `teste-ga4` 825 · `teste-escada-compra` 703 ·
+`validar-prospeccao` **559** · `teste-seo-tecnico` 555 · `teste-coleta-shopee`
+177 · **`teste-prospeccao` 173** · `teste-titulos-das-duas-fontes` 160 ·
+`teste-datas-schema` 102 · `teste-cdn-shopee` 66 · `teste-apelidos` 59 ·
+`teste-dimensao-imagem` 42 · `testar-validador-especies` 41 · `teste-site-jsonld`
+22 · `teste-robots` 21 · `teste-purga-cache` 21 · `teste-conversor-markdown` 18 ·
+`teste-atualizador-sync` 9 · `teste-escape-shortcode`, `teste-arvore`,
+`teste-voz`, `conferir-entidades`, `conferir-indice-de-levas`,
+`conferir-protecao-funcoes` e `conferir-slugs` limpos. `validar-produtos` **78
+produtos, 0 erro, 8 avisos** (os V20 conhecidos) e `validar-especies` **40
+espécies, 0 erro, 3 avisos** (o E15 do guppy e os dois E21 conhecidos).
+
+**MUTAÇÕES — 0 sobreviventes em todas.** `mutacoes-peixes` **100 de 100** ·
+`mutacoes-escada` 26 · `mutacoes-coleta-shopee` 22 · **`mutacoes-prospeccao` 31,
+zero inerte** · `mutacoes-arvore` 14 · `mutacoes-dimensao` 14 ·
+`mutacoes-site-jsonld` 14 · `mutacoes-ga4` 13 · `mutacoes-datas` 12 ·
+`mutacoes-cdn-shopee` 11 · `mutacoes-voz` 30 · `mutacoes-titulos` 6 ·
+`mutacoes-privacidade` 23 afirmações · `mutacoes-purga-cache` 8 baterias, zero
+inertes.
+
+**REVISÃO NO AR: 117**, conferida no `/status` às 16h48m50Z e de novo às
+16h49m31Z, igual à do `manifest.json`. **Nenhuma página do site mudou nesta
+execução** — o que subiu foi inventário, dado e ferramenta, todos com
+`publicar: false`.
+
+---
+
 ## 2026-09-24 13h18Z–14h45Z — O MUTIRÃO DO DESPACHO DO RAPHAEL: AS 24 FOTOS SEM DIMENSÃO FECHARAM (41 de 41), E O PARÊNTESE QUE CUSTOU TRÊS FICHAS ERA UMA REGRA APLICADA DE UM LADO SÓ. Intestáveis de 14 para 12; NENHUMA URL nova
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a aquametria

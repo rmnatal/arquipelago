@@ -5,8 +5,8 @@ prioridade: 2
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-09-24T14:42Z
-executando_desde: 2026-09-24T16:43Z
+ultima_execucao: 2026-09-24T17:02Z
+executando_desde: null
 bloco_atual: |
   T6 — A PROSPECCAO DO WIDGET SAI DO PAPEL, E O PROXIMO PASSO NAO E DA FUNDACAO. Nenhuma URL nova (a ilha segue em 52), nenhuma leva do teto da 21.4 gasta (segue 3 de 3 desde 23/09, zera em 28/09) e nada publicado. Manifest 115, /status conferido na 115.
   1. POR QUE ESTE BLOCO: a fila de divida do mutirao do Raphael esta VAZIA do lado da maquina (as 24 fotos fecharam em 41 de 41; o residuo das fichas esta escrito em dados/fichas-pendentes.md e em 39 dos 43 o gargalo e oferta e palavra-chave) e o teto da 21.4 proibe leva de malha antes de 28/09. O T6 e a UNICA alavanca de link do projeto (14.7 e secao 10), estava parado desde que subiu de prioridade, e foi para ele que a Proposta 2 da leitura semanal apontou: /peixes/tetras/ em "Discovered - currently not indexed" e falta de SINAL EXTERNO, nao de codigo.
