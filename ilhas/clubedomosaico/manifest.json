@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 35,
-  "atualizado_em": "2026-09-14",
+  "revisao": 36,
+  "atualizado_em": "2026-09-24",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.11.0",
-      "sha256": "3a67b5702919a92eefbd24ecfcafb4db38c40e4a2845dd168feae9545da91630",
-      "descricao": "Casca 1.9.1 — TRES NUMEROS DA TELA ENTRARAM NA VIA VIVA. `celulas_matriz`, `celulas_com_saida` e `celulas_sem_saida` eram os unicos do instantaneo de `cdm_casca_numeros()` que nenhuma linha recontava do repositorio, e em 13/09/2026 os dois produtos novos da categoria cola fecharam as duas ultimas combinacoes sem saida — com a pagina de metodologia, cujo unico produto e o rigor, continuando a publicar que a ilha tinha duas. Agora elas saem contadas do `matriz_esperada_da_F2` gravado nas options, como as contagens de banco ja saiam. A frase da metodologia tambem ganhou o ESCOPO do que ela mede: os numeros sao de base x ambiente, e desde a f2 1.3.0 a ferramenta decide tambem pelo caquinho — sem essa linha, o numero certo virava promessa errada. Nada mais foi tocado."
+      "versao": "1.12.0",
+      "sha256": "299a7297742f63bd656de5f974059dd797d471cff46fed0d1b6dda5a13293797",
+      "descricao": "Casca 1.12.0 — A PORTA DE ENTRADA DO SITE PASSA A SER MEDIDA. Em 24/09/2026 as 19h20Z, 16 das 17 URLs desta ilha serviam a pagina de estacionamento da HostGator com 404, as tres de primeira pagina do Google entre elas, com o WordPress, o Sync e o /status inteiros: o que caiu foi o roteamento de permalink, e nenhum portao viu porque todos entram pela porta que continuou aberta (query na raiz e rota REST). A secao 6 traz a rota /rotas, com token, que mede o .htaccess e as regras de dentro do servidor, e um reparo que faz o mesmo que salvar os Links permanentes. Sem gancho automatico."
     },
     {
       "id": "f2",
@@ -267,7 +267,7 @@
     {
       "id": "mutacoes-arvore",
       "arquivo": "ferramentas/mutacoes-arvore.py",
-      "sha256": "d4119dda675a8d66eb72bd61dc04a1e556c270674918161cb8435751d4199ddd",
+      "sha256": "c43cac25f762587df1e34b66ff18724a49a4fa6f4f4b231598dbc9e92c818138",
       "descricao": "Quebra a arvore da casca de proposito, uma mutacao por vez, e exige que teste-casca.php reprove cada uma. Bancada."
     },
     {

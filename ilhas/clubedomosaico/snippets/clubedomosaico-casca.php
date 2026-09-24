@@ -1,6 +1,17 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
  *
+ * Versão 1.12.0 (24/09/2026) — A PORTA DE ENTRADA DO SITE PASSA A SER MEDIDA.
+ *   Escrita no dia em que 16 das 17 URLs desta ilha serviam a página de
+ *   estacionamento da HostGator com 404 — incluindo as três que estão na
+ *   primeira página do Google — enquanto o WordPress, o Sync e o `/status`
+ *   respondiam inteiros. O que caiu foi o roteamento de permalink; o que
+ *   nenhum portão viu foi exatamente isso, porque todo portão desta ilha entra
+ *   pela porta que continuou aberta (query na raiz e rota REST). A seção 6 traz
+ *   `/rotas`, que mede o `.htaccess` e as regras de dentro do servidor, e um
+ *   reparo com token que faz o mesmo que salvar os Links permanentes. Sem
+ *   gancho automático: porta de entrada não se conserta calada.
+ *
  * Versão 1.10.1 (14/09/2026) — só a nota de medição da purga: o que ela alcança
  *   e a partir de qual Sync, medido depois de o bloco ir ao ar. Sem mudança de
  *   comportamento.
@@ -226,7 +237,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.11.0' );
+	define( 'CDM_CASCA_VERSAO', '1.12.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2924,6 +2935,225 @@ function cdm_casca_purgar_ao_gravar( $opcao ) {
 }
 add_action( 'updated_option', 'cdm_casca_purgar_ao_gravar', 10, 1 );
 add_action( 'added_option', 'cdm_casca_purgar_ao_gravar', 10, 1 );
+
+/* ---------------------------------------------------------------------------
+ * 6. O ROTEAMENTO DE PERMALINK — a ilha inteira cai e o `/status` continua verde
+ *
+ * Medido nesta ilha em 24/09/2026, às 19h20Z, pela Fundação, no dia em que ela
+ * entrou em foco: **16 das 17 URLs do sitemap serviam a página de estacionamento
+ * da HostGator**, com 404. `/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`,
+ * `/loja/`, as três páginas que estão na primeira página do Google, mais
+ * `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/`. Só a home respondia.
+ *
+ * O QUE ESTAVA INTEIRO, e é o que nomeia a causa: o WordPress. A busca interna
+ * (`/?s=picassiete`) renderizava, achava a página do picassiete e listava as
+ * URLs de todas as outras; o Sync aplicava a revisão 35 sem erro; o `/status`
+ * respondia. **Tudo que é arquivo de verdade (`/`, `/index.php`,
+ * `/wp-login.php`) ou query na raiz (`/?s=`, `/?rest_route=`) passava; todo
+ * caminho bonito morria ANTES de chegar no PHP.** Essa é a assinatura de uma
+ * coisa só: as regras de reescrita do Apache sumiram — `.htaccess` perdido,
+ * esvaziado, ou `AllowOverride` desligado do lado do hospedeiro.
+ *
+ * POR QUE NENHUM PORTÃO VIU. Todos eles entram pela porta que continuou aberta:
+ * o Sync é `/?clubedomosaico_sync=`, o `/status` é uma rota REST, e a bancada
+ * (`teste-casca.php` e as mutações) roda sem site e sem rede. `conferir-no-ar.py`
+ * veria — e é ele que abre URL de verdade —, mas ele roda no fim de bloco, e a
+ * ilha passou de 15/09 a 24/09 sem bloco nenhum. **É a seção 4 do contrato na
+ * forma mais cara: o repositório inteiro verde e o site fora do ar.**
+ *
+ * O QUE ESTA SEÇÃO ACRESCENTA, e é deliberadamente pouco: uma rota que MEDE o
+ * roteamento de dentro do servidor, e um reparo que só roda quando pedido com o
+ * token. Não há gancho automático. Reescrever `.htaccess` é mexer na porta de
+ * entrada do site, e porta de entrada não se conserta sozinha a cada
+ * carregamento de página — o reparo que roda calado é o que ninguém consegue
+ * desfazer quando estiver errado.
+ *
+ *   ?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>
+ *   ?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1
+ *
+ * O reparo é `flush_rewrite_rules( true )` — a mesma coisa que salvar
+ * Configurações > Links permanentes no wp-admin, que é o conserto que a
+ * documentação do WordPress manda fazer para este defeito. A diferença é que
+ * daqui ele é MEDIDO: a resposta traz o retrato de antes e o de depois, e quem
+ * lê compara os dois em vez de acreditar.
+ *
+ * O `flush_rewrite_rules( false )` que já existe nesta casca (página criada) e
+ * no snippet da Loja NÃO conserta isto e nunca consertou: o `false` é a purga
+ * mole, que só regrava a option `rewrite_rules` no banco e não encosta no
+ * `.htaccess`. Era a escolha certa para o que ele faz — remontar a estrutura de
+ * páginas não é motivo para reescrever a porta do site —, e é por isso que o
+ * reparo daqui é outra função, com outro portão, e não uma troca de argumento lá.
+ *
+ * O QUE ESTA SEÇÃO NÃO ALCANÇA, escrito para ninguém procurar aqui depois: se o
+ * hospedeiro tiver desligado o `AllowOverride`, o `.htaccess` volta a ser escrito
+ * e o Apache continua ignorando. Nesse caso o diagnóstico abaixo mostra o arquivo
+ * gravado e correto E as URLs continuam em 404 — e aí é chamado na HostGator,
+ * não é código desta ilha. O diagnóstico existe justamente para separar os dois
+ * mundos com número em vez de palpite.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_casca_token_esperado' ) ) {
+/**
+ * O token do Sync, lido de onde o Sync o guarda — o mesmo caminho da Loja.
+ *
+ * A função do Sync é preferida porque ela CRIA o token quando ele ainda não
+ * existe; a option é o caminho de quem só lê. Um segundo segredo para esta ilha
+ * seria um segredo a mais para perder.
+ */
+function cdm_casca_token_esperado() {
+	if ( function_exists( 'clubedomosaico_sync_token' ) ) {
+		$t = clubedomosaico_sync_token();
+		if ( is_string( $t ) && '' !== $t ) {
+			return $t;
+		}
+	}
+	$guardado = get_option( 'clubedomosaico_sync_token', '' );
+
+	return is_string( $guardado ) ? $guardado : '';
+}
+}
+
+if ( ! function_exists( 'cdm_casca_carregar_ferramentas_de_admin' ) ) {
+/**
+ * Traz `get_home_path()`, `got_mod_rewrite()` e `save_mod_rewrite_rules()`.
+ *
+ * As três moram em `wp-admin/includes/` e não existem numa requisição comum.
+ * Sem elas o `flush_rewrite_rules( true )` vira o `false`: o `flush_rules()` do
+ * WordPress só chama `save_mod_rewrite_rules()` `if ( function_exists(...) )`, e
+ * num carregamento sem admin essa condição é falsa — o reparo pareceria rodar e
+ * não encostaria no arquivo. É a família do "portão que nunca rodou é função
+ * morta", e aqui ela seria pior: um verde dizendo que a porta foi consertada.
+ */
+function cdm_casca_carregar_ferramentas_de_admin() {
+	if ( ! defined( 'ABSPATH' ) ) {
+		return false;
+	}
+	foreach ( array( 'file.php', 'misc.php' ) as $arquivo ) {
+		$caminho = ABSPATH . 'wp-admin/includes/' . $arquivo;
+		if ( is_readable( $caminho ) ) {
+			require_once $caminho;
+		}
+	}
+
+	return function_exists( 'get_home_path' )
+		&& function_exists( 'got_mod_rewrite' )
+		&& function_exists( 'save_mod_rewrite_rules' );
+}
+}
+
+if ( ! function_exists( 'cdm_casca_diagnostico_rotas' ) ) {
+/**
+ * O retrato do roteamento, medido de dentro do servidor.
+ *
+ * Só número e fato: o que o arquivo é, não o que deveria ser. Quem decide se
+ * está certo é quem lê a resposta contra as URLs no ar — este lado não opina.
+ */
+function cdm_casca_diagnostico_rotas() {
+	$tem_admin = cdm_casca_carregar_ferramentas_de_admin();
+	$raiz      = function_exists( 'get_home_path' ) ? get_home_path() : ABSPATH;
+	$arquivo   = rtrim( (string) $raiz, '/\\' ) . DIRECTORY_SEPARATOR . '.htaccess';
+
+	$regras = get_option( 'rewrite_rules' );
+
+	$retrato = array(
+		'versao_casca'         => CDM_CASCA_VERSAO,
+		'permalink_structure'  => (string) get_option( 'permalink_structure', '' ),
+		'regras_no_banco'      => is_array( $regras ) ? count( $regras ) : 0,
+		'ferramentas_de_admin' => $tem_admin,
+		'mod_rewrite'          => function_exists( 'got_mod_rewrite' ) ? (bool) got_mod_rewrite() : null,
+		'home_url'             => home_url( '/' ),
+		'site_url'             => site_url( '/' ),
+		'raiz_gravavel'        => is_writable( (string) $raiz ),
+		'htaccess'             => array(
+			'caminho'  => $arquivo,
+			'existe'   => file_exists( $arquivo ),
+			'legivel'  => is_readable( $arquivo ),
+			'gravavel' => is_writable( $arquivo ),
+			'bytes'    => file_exists( $arquivo ) ? (int) filesize( $arquivo ) : 0,
+			'mtime'    => file_exists( $arquivo ) ? gmdate( 'Y-m-d H:i:s', (int) filemtime( $arquivo ) ) . 'Z' : null,
+		),
+	);
+
+	/* O conteúdo do arquivo entra pelos MARCADORES e pela contagem de regras de
+	   reescrita, nunca inteiro: `.htaccess` de hospedeiro compartilhado carrega
+	   bloco de segurança de terceiro, e despejar isso numa resposta HTTP é
+	   entregar a configuração do servidor a quem tiver o token. O que a Fundação
+	   precisa saber é se o bloco do WordPress está lá — e isso são duas linhas. */
+	if ( $retrato['htaccess']['legivel'] ) {
+		$texto = (string) @file_get_contents( $arquivo );
+		preg_match_all( '/^#\s*BEGIN\s+(.+)$/mi', $texto, $achados );
+		$retrato['htaccess']['blocos']         = array_map( 'trim', $achados[1] );
+		$retrato['htaccess']['tem_wordpress']  = (bool) preg_match( '/^#\s*BEGIN\s+WordPress\s*$/mi', $texto );
+		$retrato['htaccess']['linhas_rewrite'] = preg_match_all( '/^\s*Rewrite(Rule|Cond|Engine|Base)/mi', $texto );
+	}
+
+	return $retrato;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_reparar_rotas' ) ) {
+/**
+ * Reescreve as regras de reescrita, e devolve o antes e o depois.
+ *
+ * `flush_rewrite_rules( true )` é o mesmo caminho do botão Salvar dos Links
+ * permanentes. A purga de cache vai junto porque o defeito que trouxe esta
+ * função foi lido, durante horas, através de HTML cacheado em disco: sem a
+ * purga, a primeira medição depois do reparo mediria a cópia velha e diria que
+ * não funcionou.
+ */
+function cdm_casca_reparar_rotas() {
+	$antes = cdm_casca_diagnostico_rotas();
+
+	if ( ! $antes['ferramentas_de_admin'] ) {
+		return array(
+			'reparado' => false,
+			'motivo'   => 'as funcoes de wp-admin/includes nao carregaram; sem elas o flush nao escreve o .htaccess',
+			'antes'    => $antes,
+			'depois'   => $antes,
+		);
+	}
+
+	flush_rewrite_rules( true );
+
+	if ( function_exists( 'cdm_casca_purgar_cache' ) ) {
+		cdm_casca_purgar_cache();
+	}
+
+	$depois = cdm_casca_diagnostico_rotas();
+
+	return array(
+		'reparado' => ( $depois['htaccess']['existe'] && ! empty( $depois['htaccess']['tem_wordpress'] ) ),
+		'motivo'   => null,
+		'antes'    => $antes,
+		'depois'   => $depois,
+	);
+}
+}
+
+add_action( 'rest_api_init', function () {
+	if ( ! function_exists( 'register_rest_route' ) ) {
+		return;
+	}
+	register_rest_route( 'clubedomosaico/v1', '/rotas', array(
+		'methods'             => 'GET',
+		'callback'            => function ( $pedido ) {
+			if ( '1' === (string) $pedido->get_param( 'reparar' ) ) {
+				return cdm_casca_reparar_rotas();
+			}
+
+			return cdm_casca_diagnostico_rotas();
+		},
+		'permission_callback' => function ( $pedido ) {
+			$esperado = cdm_casca_token_esperado();
+			if ( '' === $esperado ) {
+				return false;
+			}
+			$vindo = (string) $pedido->get_param( 'token' );
+
+			return '' !== $vindo && hash_equals( $esperado, $vindo );
+		},
+	) );
+} );
 
 if ( did_action( 'init' ) ) {
 	cdm_casca_boot();
