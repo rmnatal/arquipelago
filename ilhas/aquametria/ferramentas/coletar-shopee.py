@@ -163,6 +163,36 @@ LIGACAO_CURTA = ['de', 'da', 'do', 'e', 'em', 'ou', 'na', 'no', 'a', 'o',
 SUFIXO_DE_VARIANTE = ['pro', 'plus', 'max', 'ultra', 'lite', 'mini', 'premium',
                       'evo', 'advanced']
 
+# O QUE CONTA COMO SEPARADOR ENTRE AS PARTES DE UM CODIGO (24/09/2026).
+#
+# Ate hoje esta classe era `[\s\-/_.]` e nao continha PARENTESE — e o parentese
+# e justamente o que o varejo de aquarismo poe em volta do codigo do filtro:
+#
+#     registro: Eheim Classic 600 (2217)     anuncio: "Filtro Canister Eheim
+#                                                      Classic 600 (2217) 220v"
+#
+# O `codigo_base()` ja trocava `(` e `)` por espaco NO MODELO desde que nasceu,
+# entao o codigo chegava aqui como `classic 600 2217`; o TITULO, que ninguem
+# limpava, continuava com o parentese no meio. A regra era a mesma dos dois
+# lados da comparacao no papel e de um lado so no codigo, e o resultado e o
+# defeito que esta ilha ja conhece pelo nome: **regua que devolve zero para
+# sempre, por mais certo que esteja o anuncio.** E a mesma familia do falso
+# positivo do `noindex` de aspa simples, medido nesta mesma ilha em 24/09/2026,
+# com quatro horas de diferenca.
+#
+# TRES REGISTROS ficaram sem ficha por isto — os dois Eheim Classic 600 (2217),
+# de 220 V e de 127 V, e o Classic 250 (2213) —, todos com o anuncio CERTO
+# aparecendo na primeira pagina da busca e sendo recusado.
+#
+# E O QUE ESTA CLASSE **NAO** FAZ, que e o que a mantem honesta: ela aceita
+# PONTUACAO entre as partes, nunca PALAVRA. "Classic 250 440lh Eheim - 2213"
+# continua reprovado, porque entre `250` e `2213` ha duas palavras, e codigo que
+# so aparece espalhado pelo titulo nao identifica o produto — identificaria
+# tambem um anuncio de kit que citasse os dois filtros da linha. O preco de ser
+# conservador aqui e ficar sem ficha; o preco de ser folgado e a C5 prometer uma
+# coisa e entregar outra na casa de quem leu.
+SEPARADOR = r'[\s\-/_.,:()\[\]]'
+
 
 def sem_acento(texto):
     return ''.join(c for c in unicodedata.normalize('NFD', texto or '')
@@ -186,10 +216,10 @@ def token_no_titulo(codigo, titulo):
     """
     if not codigo:
         return False
-    partes = [re.escape(p) for p in re.split(r'[\s\-/_.]+', sem_acento(str(codigo))) if p]
+    partes = [re.escape(p) for p in re.split(SEPARADOR + '+', sem_acento(str(codigo))) if p]
     if not partes:
         return False
-    padrao = r'[\s\-/_.]*'.join(partes)
+    padrao = (SEPARADOR + '*').join(partes)
     return re.search(r'(?<![a-z0-9])%s(?![a-z0-9+])' % padrao,
                      sem_acento(titulo)) is not None
 
@@ -209,10 +239,10 @@ def variante_depois_do_codigo(codigo, titulo, extras=()):
     proibidos = set(SUFIXO_DE_VARIANTE) | {sem_acento(e) for e in extras}
     if any(alvo.endswith(s) for s in proibidos):
         return False
-    partes = [re.escape(p) for p in re.split(r'[\s\-/_.]+', alvo) if p]
+    partes = [re.escape(p) for p in re.split(SEPARADOR + '+', alvo) if p]
     if not partes:
         return False
-    padrao = r'[\s\-/_.]*'.join(partes)
+    padrao = (SEPARADOR + '*').join(partes)
     achado = re.search(r'(?<![a-z0-9])%s(?![a-z0-9+])\s+([a-z]+)' % padrao,
                        sem_acento(titulo))
     if not achado:

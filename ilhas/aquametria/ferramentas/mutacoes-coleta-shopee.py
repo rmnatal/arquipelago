@@ -195,6 +195,26 @@ MUTACOES = [
     ('a linha volta a valer como codigo',
      troca(COLETOR, "    base = codigo_base(registro) or linha",
            "    base = linha or codigo_base(registro)")),
+
+    # 19. O PARENTESE VOLTA A NAO SER SEPARADOR (24/09/2026). E a mutacao que
+    #     reproduz o defeito que o mutirao de hoje consertou: com a classe
+    #     antiga, "Eheim Classic 600 (2217)" era recusado por "o titulo nao traz
+    #     o codigo". Se ela sobreviver, a bancada voltou a nao medir o lado que
+    #     custou tres fichas.
+    ('o parentese volta a nao ser separador do codigo',
+     troca(COLETOR, "SEPARADOR = r'[\\s\\-/_.,:()\\[\\]]'",
+           "SEPARADOR = r'[\\s\\-/_.]'")),
+
+    # 20. A PORTA DOS FUNDOS DO CONSERTO DE HOJE, e ela e mais perigosa que a
+    #     19: em vez de apertar o separador, alguem o AFROUXA ate engolir
+    #     palavra — `\S` casa letra e digito. Ai "Classic 250 440lh Eheim -
+    #     2213" passa, e com ele o anuncio de kit que cita dois filtros da
+    #     linha. A mutacao 19 mede o afrouxamento que falta; esta mede o que
+    #     sobra. Sem as duas, a classe de separadores so teria uma direcao
+    #     medida, que e como uma regua boa vira folgada numa passada distraida.
+    ('o separador afrouxa ate engolir palavra',
+     troca(COLETOR, "SEPARADOR = r'[\\s\\-/_.,:()\\[\\]]'",
+           "SEPARADOR = r'[^0-9]'")),
 ]
 
 

@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-24T10:58Z
-executando_desde: 2026-09-24T13:18Z   # reserva da execucao da Fundacao de 24/09 13h18Z
+executando_desde: 2026-09-24T13:55Z   # reserva RENOVADA pela 1.1 — bloco longo, execucao viva
 bloco_atual: |
   DESPACHO DA LEITURA SEMANAL DE 23/09, A PARTE QUE E DA FUNDACAO: o item 1 era FALSO POSITIVO e a Proposta 1 esta no ar. NENHUMA URL nova — a ilha segue em 52 e a semana da 21.4 continua em 3 de 3, gasta desde 23/09. Peixes 1.16.0, manifest revisao 111, /status conferido na 111 as 10h50Z.
   1. O ITEM 1 NAO EXISTIA, E A CAUSA E O INSTRUMENTO. A pagina de autor serve `noindex, follow` desde 10/09 — com ASPA SIMPLES, porque nesta ilha quem imprime a meta e o NUCLEO do WordPress pelo filtro wp_robots. O criterio de pronto do item media `name="robots"` de aspa DUPLA, que e como as duas ilhas irmas imprimem (pelo snippet, com echo), e ali o mesmo grep esta certo. Regua boa atravessando a fronteira de uma ilha onde a tag tem outro autor, e ela devolve zero para sempre: qualquer ronda que repita aquele grep REABRE o item. Os quatro contextos de arquivo (autor, /?s=, data, /category/metodos/) foram medidos com quebra de cache: os quatro com noindex, uma meta cada.

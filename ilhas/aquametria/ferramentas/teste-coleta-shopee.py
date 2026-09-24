@@ -369,6 +369,94 @@ ok('registro sem ficha nenhuma: nao ha o que preservar', preserva is False,
 preserva, _ = coletor.preserva_ficha_existente({'url_produto': 'https://shopee.com.br/x.i.1.2'})
 ok('url_produto sozinho nao preserva nada', preserva is False)
 
+
+# ---------------------------------------------------------------------------
+# O PARENTESE E SEPARADOR, E A PALAVRA NAO E (24/09/2026)
+# ---------------------------------------------------------------------------
+# Escrito no mutirao do despacho do Raphael de 24/09, depois que o ensaio da
+# coleta mostrou TRES registros recusando o anuncio CERTO, que aparecia na
+# primeira pagina da busca:
+#
+#     "Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v"
+#         recusado por "o titulo nao traz o codigo (classic 600 2217)"
+#
+# A causa e uma regra aplicada de um lado so da comparacao: `codigo_base()`
+# troca `(` e `)` por espaco NO MODELO desde que nasceu, mas a classe de
+# separadores do `token_no_titulo()` nunca teve parentese, entao o TITULO
+# chegava com ele no meio. Regua que devolve zero para sempre por mais certo que
+# esteja o anuncio — a mesma familia do falso positivo do `noindex` de aspa
+# simples, medido nesta mesma ilha quatro horas antes.
+#
+# AS AFIRMACOES VEM EM PAR, e o par e o ponto: afrouxar o separador e a metade
+# barata, e a metade que importa e a que continua FECHADA. Pontuacao entre as
+# partes do codigo passa; PALAVRA entre elas nao passa, porque codigo espalhado
+# pelo titulo identificaria tambem o anuncio de kit que cita dois filtros da
+# linha.
+
+PASSAM = [
+    ('classic 600 2217', 'Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v',
+     'o parentese em volta do codigo do filtro'),
+    ('classic 600 2217', 'Eheim Classic 600 [2217] bivolt',
+     'o colchete, pelo mesmo motivo do parentese'),
+    ('classic 600 2217', 'Eheim Classic 600, 2217, 1000 l/h',
+     'a virgula separando as partes'),
+    ('ht-1300', 'Termostato Com Aquecedor Roxin HT-1300 - Q3 - 300w - 220v',
+     'o hifen, que ja passava antes e tem de continuar passando'),
+    ('hw-303b', 'Filtro Canister SunSun HW-303B 1400 l/h',
+     'o codigo colado, que ja passava antes'),
+]
+for codigo, titulo, porque in PASSAM:
+    ok('passa: %s (%s)' % (porque, codigo),
+       coletor.token_no_titulo(codigo, titulo) is True,
+       'codigo=%r titulo=%r' % (codigo, titulo))
+
+NAO_PASSAM = [
+    ('classic 250 2213', 'Filtro Canister Classic 250 440lh Eheim - 2213',
+     'PALAVRA entre as partes do codigo nao e separador'),
+    ('classic 250 2213', 'Filtro Canister Ehein Classic 250 - 440 L/h ( 2213 ) 110v',
+     'palavra entre as partes, mesmo com parentese em volta da ultima'),
+    ('classic 250 2213', 'Kit Eheim Classic 250 e Classic 600 com midia 2213 e 2217',
+     'o kit que cita dois filtros da linha — o caso que o afrouxamento criaria'),
+    ('classic 600 2217', 'Filtro Canister Eheim Classic 250 (2213) 440l/h',
+     'o IRMAO da mesma linha, com parentese: separador solto nao pode confundir irmao'),
+    ('hw-303b', 'Filtro Canister SunSun HW-603B',
+     'o vizinho de codigo, que a fronteira de token barra'),
+    ('ht-1300', 'Aquecedor Roxin HT 13000',
+     'o codigo como PEDACO de um numero maior'),
+]
+for codigo, titulo, porque in NAO_PASSAM:
+    ok('NAO passa: %s (%s)' % (porque, codigo),
+       coletor.token_no_titulo(codigo, titulo) is False,
+       'codigo=%r titulo=%r' % (codigo, titulo))
+
+# O QUE ESTA BANCADA DESCOBRIU E **NAO** CONSERTOU, escrito porque divida
+# medida e calada e a que volta:
+#
+#     token_no_titulo('classic 600 2217', 'Eheim Classic 6002217 bivolt') -> True
+#
+# As partes GRUDADAS casam, porque o separador e opcional (`*`) — e isso e de
+# proposito e anterior a 24/09/2026: e o mesmo mecanismo que faz "HT1300" casar
+# com o codigo `HT-1300`, que e como metade do varejo escreve, e que faz `a 301`
+# casar com "A301". Nao da para exigir separador entre duas partes sem perder as
+# duas colagens legitimas, e nao da para exigi-lo so entre digitos sem perder
+# codigos como `2 213`. **Fica afirmado como esta**, e nao como se gostaria, para
+# que uma mudanca futura no `*` apareca aqui em vez de passar calada.
+ok('partes grudadas casam, e isso e o mecanismo do "HT1300" (nao e defeito novo)',
+   coletor.token_no_titulo('classic 600 2217', 'Eheim Classic 6002217 bivolt') is True)
+ok('e e o mesmo mecanismo que faz o varejo escrever HT1300',
+   coletor.token_no_titulo('ht-1300', 'Aquecedor Roxin HT1300 300w') is True)
+
+# E A CLASSE DE SEPARADORES NAO PODE ENGOLIR LETRA NEM DIGITO. Esta afirmacao
+# nao olha exemplo nenhum: olha a propria classe. Um dia alguem acrescenta um
+# caractere a ela para destravar um anuncio, e se aquele caractere for `\w` o
+# codigo passa a casar com qualquer coisa — e nenhum dos exemplos acima
+# reprovaria, porque eles nao usam letra como separador.
+import re as _re
+for _proibido in 'abz09':
+    ok('o separador nao aceita %r' % _proibido,
+       _re.fullmatch(coletor.SEPARADOR, _proibido) is None,
+       'SEPARADOR=%r aceita %r' % (coletor.SEPARADOR, _proibido))
+
 print('\n%d afirmacoes, %d falha(s)' % (afirmacoes, len(falhas)))
 if falhas:
     for f in falhas:
