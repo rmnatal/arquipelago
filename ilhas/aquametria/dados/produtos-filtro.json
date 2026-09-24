@@ -63,13 +63,13 @@
         "anuncio_shopee": "Filtro Canister Classic 250 440lh Eheim - 2213",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Filtro Canister Ehein Classic 250 - 440 L/h ( 2213 ) 110v\" — o titulo nao traz a marca Eheim | degrau 1: \"Filtro Canister Ehein Classic 250 - 440 L/h ( 2213 ) 110v\" — o titulo nao traz a marca Eheim | degrau 1: \"Pacote Econômico de Filtros de Carbono, Filtros Grossos e Filtros Fino\" — o titulo nao traz a marca Eheim | degrau 1: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213) | degrau 2: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213) | degrau 4: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213)",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Filtro Canister Ehein Classic 250 - 440 L/h ( 2213 ) 110v\" — o titulo nao traz a marca Eheim | degrau 1: \"Filtro Canister Ehein Classic 250 - 440 L/h ( 2213 ) 110v\" — o titulo nao traz a marca Eheim | degrau 1: \"Pacote Econômico de Filtros de Carbono, Filtros Grossos e Filtros Fino\" — o titulo nao traz a marca Eheim | degrau 1: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213) | degrau 2: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213) | degrau 4: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213)",
         "url_busca": "https://s.shopee.com.br/2qUnDcMDf0",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20250%20%282213%29%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -154,7 +154,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -247,7 +247,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -345,7 +345,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -462,7 +462,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Tidal%2055%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -549,18 +549,18 @@
         "max": 90
       },
       "imagem": {
-        "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-m2r64apu4xz95a",
-        "largura": 673,
-        "altura": 673,
+        "url": "https://cf.shopee.com.br/file/br-11134207-820lc-mrrqsh10622v2d",
+        "largura": 494,
+        "altura": 494,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: filtro Atman HF-0400",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -571,7 +571,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23",
+        "encurtamento_tentado_em": "2026-09-24",
         "url": "https://s.shopee.com.br/70KMBIakeS",
         "url_produto": "https://shopee.com.br/product/283728328/58215993686",
         "anuncio_shopee": "Filtro Tipo Hang On HF-0400 Atman Hf0400 450 litros/hora Aquário até 110 Litros - 220 Volts",
@@ -675,14 +675,14 @@
         "largura": 551,
         "altura": 551,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: filtro Atman HF-0600",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -693,7 +693,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23",
+        "encurtamento_tentado_em": "2026-09-24",
         "url": "https://s.shopee.com.br/11392HO3l0",
         "url_produto": "https://shopee.com.br/product/508960682/22992974003",
         "anuncio_shopee": "Filtro Externo Silencioso Atman Hf- 0600 600 220v - 650 L/h",
@@ -774,14 +774,14 @@
         "largura": 1000,
         "altura": 1000,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: filtro Atman HF-0800",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -792,7 +792,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23",
+        "encurtamento_tentado_em": "2026-09-24",
         "url": "https://s.shopee.com.br/905QYz6nsR",
         "url_produto": "https://shopee.com.br/product/347533126/23122271361",
         "anuncio_shopee": "Filtro Externo Atman Hf-0800 110V",
@@ -901,7 +901,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -978,14 +978,14 @@
         "largura": 1024,
         "altura": 1024,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: filtro SunSun HW-603B",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -996,7 +996,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23",
+        "encurtamento_tentado_em": "2026-09-24",
         "url": "https://s.shopee.com.br/9fL7MDZ8J8",
         "url_produto": "https://shopee.com.br/product/1067990430/58251966673",
         "anuncio_shopee": "Filtro Mini Canister Sunsun Hw-603b 400l/h para aquário",
@@ -1118,7 +1118,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1173,14 +1173,15 @@
       },
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8258w-msr4ctahgzd058.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Filtro canister Ocean Tech CT-1000-3 fechado, corpo cilíndrico escuro com tampa e duas conexões de mangueira no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1197,7 +1198,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20CT-1000-3%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1251,14 +1252,15 @@
       },
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8258b-mgfeotje1qtm6c.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1001,
+        "altura": 1001,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Filtro canister SunSun HW-702A, corpo cilíndrico branco e azul com cabeçote escuro, mangueiras e conexões ao lado",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1276,7 +1278,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-702A%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1369,7 +1371,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-702B%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1453,14 +1455,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8259u-mqxs78nksphcbc.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 913,
+        "altura": 913,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Mini canister hang-on Maxxi Pro MP-600, caixa retangular compacta com tubo de entrada e saída em cascata para pendurar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1477,7 +1480,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20MP-600%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1528,14 +1531,15 @@
       },
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134201-820lo-mqym2c8d4v7r48.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 502,
+        "altura": 502,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Mini canister externo SunSun XBL-600 preto, caixa alta e estreita para pendurar na borda do aquário, com tubos de entrada e retorno",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1552,7 +1556,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20XBL-600%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1604,14 +1608,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-820lk-ms5tsef4s3d223.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 532,
+        "altura": 532,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Mini canister de pendurar Aquaverso Aquapack APK-600, caixa compacta com tampa e conexões de mangueira, para fixar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1628,7 +1633,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Aquaverso%20APK-600%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1700,22 +1705,21 @@
       },
       "afiliado": {
         "plataforma": "shopee",
-        "url": "https://s.shopee.com.br/9AOUfYKdQv",
+        "url": "https://s.shopee.com.br/5Asjlc6mJN",
         "sub_id_1": "aquametria",
         "sub_id_2": "C3",
         "rel": "sponsored",
-        "verificado_em": "2026-09-09",
-        "anuncio_shopee": "Filtro Canister Eheim Classic 600 (2217) 1000 l/h 20 W 220 V",
+        "verificado_em": "2026-09-24",
+        "anuncio_shopee": "Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v",
         "voltagem_anuncio": "220",
-        "degrau": null,
-        "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v\" — o titulo nao traz o codigo (classic 600 2217) | ",
+        "degrau": 3,
+        "url_produto": "https://shopee.com.br/product/317352124/22498323521",
         "url_busca": "https://s.shopee.com.br/7KxCZxyjma",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20600%20%282217%29%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
-        "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "intestavel": false,
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1804,22 +1808,21 @@
       },
       "afiliado": {
         "plataforma": "shopee",
-        "url": "https://s.shopee.com.br/6Akt6313pJ",
+        "url": "https://s.shopee.com.br/20vhznVtYs",
         "sub_id_1": "aquametria",
         "sub_id_2": "C3",
         "rel": "sponsored",
-        "verificado_em": "2026-09-09",
-        "anuncio_shopee": "Filtro Canister Eheim Classic 600 (2217) 1000 l/h 20 W 127 V",
+        "verificado_em": "2026-09-24",
+        "anuncio_shopee": "Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v",
         "voltagem_anuncio": "127",
-        "degrau": null,
-        "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 1: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v\" — o titulo nao traz o codigo (classic 600 2217) | degrau 2: \"Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v\" — o titulo nao traz o codigo (classic 600 2217) | ",
+        "degrau": 3,
+        "url_produto": "https://shopee.com.br/product/325070633/21297921662",
         "url_busca": "https://s.shopee.com.br/7ptTAtNESR",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20600%20%282217%29%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
-        "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "intestavel": false,
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1857,5 +1860,5 @@
       "observacao": "O contraponto de cima da C3, e o primeiro registro do banco que fecha os cinco campos do minimo_para_sugerir com link E foto na faixa acima de 200 L: 1000 L/h declarados para ate 600 L dao 1,7 renovacoes por hora no teto do volume — o mesmo dimensionamento conservador do classic 250 (2213), tres a seis vezes abaixo da regra de bolso brasileira, e por isso ele aparece com folga em aquarios de 100 a 300 L. Coluna de 2,25 m: vence movel alto, que e onde os canister baratos do banco (0,85 a 1,4 m) caem fora. Registro separado por voltagem de proposito: e chave de compatibilidade e cada anuncio vende uma versao so."
     }
   ],
-  "atualizado_em": "2026-09-23"
+  "atualizado_em": "2026-09-24"
 }

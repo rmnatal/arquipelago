@@ -61,13 +61,13 @@
         "anuncio_shopee": "Mídia biológica - Matrix 1 Litro (Granel) com Bolsa - Seachem",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Carvão Ativado Matrix Carbon 1 L Seachem Filtragem Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon) | degrau 1: \"Seachem Matrix Carbon 1 L Carvão Ativado P/ Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon) | degrau 2: \"Carvão Ativado Matrix Carbon 1 L Seachem Filtragem Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon) | degrau 2: \"Seachem Matrix Carbon 1 L Carvão Ativado P/ Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon) | degrau 4 (Seachem Matrix 1 L midia filtrante aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Carvão Ativado Matrix Carbon 1 L Seachem Filtragem Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon) | degrau 1: \"Seachem Matrix Carbon 1 L Carvão Ativado P/ Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon) | degrau 2: \"Carvão Ativado Matrix Carbon 1 L Seachem Filtragem Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon) | degrau 2: \"Seachem Matrix Carbon 1 L Carvão Ativado P/ Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon) | degrau 4 (Seachem Matrix 1 L midia filtrante aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/3B7dcTS9tf",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Matrix%201%20L%20midia%20filtrante%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -155,13 +155,13 @@
         "anuncio_shopee": "Mídia Biológica Eheim Substrat Pro 1L",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (SUBSTRAT pro 1 L): zero resultados | degrau 2 (Eheim SUBSTRAT pro 1 L): zero resultados | degrau 4 (Eheim SUBSTRAT pro 1 L midia filtrante aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (SUBSTRAT pro 1 L): zero resultados | degrau 2 (Eheim SUBSTRAT pro 1 L): zero resultados | degrau 4 (Eheim SUBSTRAT pro 1 L midia filtrante aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/60RozgdInI",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20SUBSTRAT%20pro%201%20L%20midia%20filtrante%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -227,7 +227,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -292,14 +292,14 @@
         "largura": 1000,
         "altura": 1000,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: midia Ocean Tech Bio Glass 1 L",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -310,7 +310,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23",
+        "encurtamento_tentado_em": "2026-09-24",
         "url": "https://s.shopee.com.br/8fSaAbB9Es",
         "url_produto": "https://shopee.com.br/product/406238143/12220476757",
         "anuncio_shopee": "Midia Biologica Bio Glass Oceantech 1 L + Bag P/ Filtro",
@@ -382,7 +382,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -443,14 +443,14 @@
         "largura": 491,
         "altura": 491,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: midia Seachem Purigen 100 mL",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -461,7 +461,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23",
+        "encurtamento_tentado_em": "2026-09-24",
         "url": "https://s.shopee.com.br/60Rozhq667",
         "url_produto": "https://shopee.com.br/product/377266035/13695051604",
         "anuncio_shopee": "Purigen Seachem 100 ML trata 400 Litros Embalagem original",
@@ -493,5 +493,5 @@
       "observacao": "Entra no banco como a midia de polimento com dosagem declarada mais precisa que achamos: 0,25 mL por litro de agua, com validade declarada em meses e nao em 'ate saturar'. E a prova de que a industria SABE publicar dosagem por litro quando quer - o que torna o silencio sobre a midia biologica ainda mais estranho."
     }
   ],
-  "atualizado_em": "2026-09-23"
+  "atualizado_em": "2026-09-24"
 }

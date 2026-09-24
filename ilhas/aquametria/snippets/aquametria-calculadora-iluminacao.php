@@ -388,8 +388,8 @@ function aquametria_c15_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-22110-t3qqfgb4fnjvc8.webp',
 				'alt' => 'Luminária LED Chihiros Marine A-Series A451M de 45 cm, barra de alumínio com LEDs brancos e azuis para aquário marinho',
-				'largura' => null,
-				'altura' => null,
+				'largura' => 1000,
+				'altura' => 1000,
 				'verificado_em' => null,
 			),
 			'preco' => array(

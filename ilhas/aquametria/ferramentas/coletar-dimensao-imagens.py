@@ -119,7 +119,12 @@ def main():
         if mudou:
             dados['atualizado_em'] = hoje
             with open(caminho, 'w', encoding='utf-8') as f:
-                json.dump(dados, f, ensure_ascii=False, indent=1)
+                # indent=2 E O FORMATO DESTE BANCO, e nao uma preferencia.
+                # A primeira versao gravou com indent=1 e reformatou 2.500
+                # linhas para mudar 24 campos — diff que ninguem revisa e a
+                # maneira mais eficiente de esconder uma mudanca real no meio
+                # de ruido. `coletar-shopee.py` grava o mesmo banco com 2.
+                json.dump(dados, f, ensure_ascii=False, indent=2)
                 f.write('\n')
 
     print('%d ja tinham dimensao e nao foram tocadas' % pulados)

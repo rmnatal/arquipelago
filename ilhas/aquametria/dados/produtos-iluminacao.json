@@ -48,7 +48,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -182,13 +182,13 @@
         "anuncio_shopee": "Ista Luminária Aquário LED I-401 45cm Branca Bivolt",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (I-401 45 cm): zero resultados | degrau 2 (Ista I-401 45 cm): zero resultados | degrau 3 (Ista I-401 45 cm luz branca): zero resultados | degrau 4 (Ista I-401 45 cm luminaria aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (I-401 45 cm): zero resultados | degrau 2 (Ista I-401 45 cm): zero resultados | degrau 3 (Ista I-401 45 cm luz branca): zero resultados | degrau 4 (Ista I-401 45 cm luminaria aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/8fSaAR6SNp",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ista%20I-401%2045%20cm%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -258,14 +258,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzgr4ldc.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Soma S-200 WRGB, barra de alumínio preta ultrafina com hastes reguladas para apoiar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -283,7 +284,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-200%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -341,14 +342,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzqlc5c5.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Soma S-300 WRGB, barra de alumínio preta ultrafina com hastes reguladas para apoiar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -366,7 +368,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-300%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -433,7 +435,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -492,14 +494,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzi5rmb1.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Soma S-400 WRGB, barra de alumínio preta ultrafina com hastes reguladas para apoiar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -517,7 +520,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-400%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -578,14 +581,14 @@
         "largura": 259,
         "altura": 259,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: luminaria SunSun ADE-400c",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -602,7 +605,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20ADE-400c%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -668,7 +671,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -727,14 +730,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzxm6d16.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Soma S-500 WRGB, barra de alumínio preta ultrafina com hastes reguladas para apoiar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -752,7 +756,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-500%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -818,7 +822,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -888,14 +892,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzjk9h77.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Soma S-600 WRGB, barra de alumínio preta ultrafina com hastes reguladas para apoiar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -913,7 +918,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-600%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -971,14 +976,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzrzo53c.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Soma S-800 WRGB, barra de alumínio preta ultrafina com hastes reguladas para apoiar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -996,7 +1002,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-800%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1054,14 +1060,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-22110-t3qqfgb4fnjvc8.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1000,
+        "altura": 1000,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Chihiros Marine A-Series A451M de 45 cm, barra de alumínio com LEDs brancos e azuis para aquário marinho",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1074,13 +1081,13 @@
         "voltagem_anuncio": "bivolt",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (A451M): zero resultados | degrau 2 (Chihiros A451M): zero resultados | degrau 3 (Chihiros A-Series Marine 45 cm 27 W marinho): zero resultados | degrau 4 (Chihiros A451M luminaria aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (A451M): zero resultados | degrau 2 (Chihiros A451M): zero resultados | degrau 3 (Chihiros A-Series Marine 45 cm 27 W marinho): zero resultados | degrau 4 (Chihiros A451M luminaria aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/20vgEFLLsr",
         "observacao": "Titulo e voltagem como o operador transcreveu do painel Shopee Afiliados em 09/09/2026. ATENCAO: o anuncio declara 3.850 lm e a ficha de varejo declara 3.500 lm. O banco publica 3.500 lm, porque anuncio de marketplace (nivel 6) nao sustenta campo tecnico. A divergencia fica aqui de proposito, para a tela poder avisar.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A451M%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1150,14 +1157,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9by04ms5ad.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Soma S-1000 WRGB, barra de alumínio preta ultrafina com hastes reguladas para apoiar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1175,7 +1183,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-1000%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1242,7 +1250,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1331,14 +1339,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8fc8qlkl0505.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Luminária LED Soma S-1200 WRGB, barra de alumínio preta ultrafina com hastes reguladas para apoiar na borda do aquário",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1356,7 +1365,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-1200%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1417,14 +1426,14 @@
         "largura": 1024,
         "altura": 1024,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: luminaria WFish WF-H600 WRGB",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1435,7 +1444,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23",
+        "encurtamento_tentado_em": "2026-09-24",
         "url": "https://s.shopee.com.br/3B7dcPu2He",
         "url_produto": "https://shopee.com.br/product/1001662464/19697921439",
         "anuncio_shopee": "Wfish Luminária Plant Led Wf-h600 Wrgb 36w Aquario Plantado",
@@ -1506,7 +1515,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1574,7 +1583,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1660,7 +1669,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A901%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1738,7 +1747,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1816,13 +1825,13 @@
         "anuncio_shopee": "Chihiros WRGB-2 PRO 60cm- Luminária P/ Aquário Plantado High",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (WRGB II Pro 60): zero resultados | degrau 2 (Chihiros WRGB II Pro 60): zero resultados | degrau 3 (Chihiros WRGB II Pro 60 cm): zero resultados | degrau 4 (Chihiros WRGB II Pro 60 luminaria aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (WRGB II Pro 60): zero resultados | degrau 2 (Chihiros WRGB II Pro 60): zero resultados | degrau 3 (Chihiros WRGB II Pro 60 cm): zero resultados | degrau 4 (Chihiros WRGB II Pro 60 luminaria aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/9zxxl07Hf1",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Pro%2060%20luminaria%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1922,7 +1931,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2000,7 +2009,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2112,7 +2121,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2201,7 +2210,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2239,5 +2248,5 @@
       "observacao": "O registro e completo; disponibilidade_br fica 'desconhecido': das lojas brasileiras conferidas em 09/09/2026, so a Fazenda Submersa anuncia um modelo de 120 cm da familia, e o dela e o PRO. Este registro fecha o degrau de 120 cm que a varredura mediu VAZIO em toda a escala de exigencia. Sobre o status: 'desconhecido' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo. REGULAGEM NORMALIZADA EM 12/09/2026: o valor gravado era 'aplicativo' e o vocabulario do esquema declara 'app'. Nenhum numero mudou e nenhuma fonte foi reinterpretada — o registro sempre declarou controle por aplicativo, e a mesma familia ja gravava 'app' na chihiros-wrgb-ii-pro-60. A grafia divergente deixava estes registros invisiveis para o podeRegular() da C15, que testa por 'app', e a pagina dizia que eles 'nao declaram regulagem de intensidade'."
     }
   ],
-  "atualizado_em": "2026-09-23"
+  "atualizado_em": "2026-09-24"
 }

@@ -14,6 +14,201 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-09-24 13h18Z–__FIM__ — O MUTIRÃO DO DESPACHO DO RAPHAEL: AS 24 FOTOS SEM DIMENSÃO FECHARAM (41 de 41), E O PARÊNTESE QUE CUSTOU TRÊS FICHAS ERA UMA REGRA APLICADA DE UM LADO SÓ. Intestáveis de 14 para 12; NENHUMA URL nova
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a aquametria
+desde 21/09 (1.2), então não houve rotação. O cabeçalho trazia
+`executando_desde: null` — pela **1.1** isso já significa que não há bloco da
+Fundação vivo, e não houve reserva vencida para o git desempatar. O último commit
+na pasta da ilha era de 14 minutos antes, mas era o **despacho do Raphael** escrito
+pelas Mãos no repositório, e a 1.1 diz com todas as letras que o que torna a ilha
+VIVA é commit de **bloco da Fundação**. Reserva aceita às 13h18Z, commit `5a9b027`.
+Nenhum PR aberto; a branch `claude/*` estava em sincronia com o `main`.
+
+**O DESPACHO QUE MANDOU (24/09, 10h05 BRT):** mutirão reaberto **só** para dívida
+que não cria URL — as 24 imagens sem largura e a coleta de ficha. Dentro da
+exceção, quantos blocos couberem; fora dela, a seção 1 inteira. **Nenhuma URL
+nasceu, mudou de endereço ou saiu**, e a cota da 21.4 segue gasta em 3 de 3.
+
+**Rede pela 20.2, retestada e não herdada:** três passadas, home **200** e
+`/status` **200** nas três, revisão 111 igual à do `manifest.json`.
+
+---
+
+### 1. AS 24 FOTOS SEM DIMENSÃO: O ARQUIVO RESPONDIA EM OUTRO ENDEREÇO, E NINGUÉM TINHA PERGUNTADO
+
+A causa estava medida e certa desde 09/09: o egresso desta nuvem barra
+`down-bs-br.img.susercontent.com`, e quem não alcança o arquivo não lê o
+cabeçalho. **Reconferido hoje pela 20.3, não herdado:** `000` em três passadas,
+contra `cf.shopee.com.br` em **200** nas mesmas três.
+
+**O que ninguém tinha perguntado é se o MESMO arquivo respondia em outro host.**
+O identificador (`sg-11134201-8259h-…`) é o mesmo nos dois, e
+`cf.shopee.com.br/file/<id>.webp` serve aquele arquivo.
+
+**E A PROVA NÃO É ESSE RACIOCÍNIO — É UM GRUPO DE CONTROLE QUE JÁ ESTAVA NO
+BANCO.** "Mesmo id, logo mesmo arquivo" é hipótese sobre infraestrutura de outra
+empresa, e hipótese sobre infra alheia envelhece calada. Só que esta ilha tinha
+guardado, sem saber para quê, **oito fotos hospedadas no host BLOQUEADO cuja
+dimensão já estava medida — e medida por OUTRO INSTRUMENTO**, `naturalWidth` ×
+`naturalHeight` lidos no Chrome do Raphael pela ronda da Sentinela de 13/09, do
+outro lado do bloqueio.
+
+Medidas pelo espelho: **8 de 8 batem.** E batem em **265, 692, 726 e 1001** —
+justamente os números que um redimensionamento não sobreviveria. Espelho que
+servisse miniatura padronizada devolveria 800×800 ou 1024×1024 para todas, e as
+tortas ficariam vermelhas na primeira passada.
+
+**Resultado: as 24 mediram. O banco foi de 17 para 41 fotos com dimensão, de 41
+com foto — a fila zerou.**
+
+**O QUE A RÉGUA NÃO FAZ, e cada recusa tem um motivo diferente:**
+- **Não troca `imagem.url` para o espelho.** As 8 do controle provam que o host
+  bloqueado entrega o arquivo a quem tem navegador — ele funciona para o
+  visitante; quem não o alcança é esta nuvem. Trocar o que o visitante recebe
+  para contornar um limite da máquina que constrói o site seria o rabo abanando
+  o cachorro.
+- **Não preenche `verificado_em`.** Ninguém abriu a URL servida e viu a imagem
+  carregar. Três datas, três vidas: `coletado_em`, `verificado_em` e `medida_em`
+  são atos diferentes, e só o terceiro aconteceu aqui.
+- **Não toca `alt` nem `alt_origem`.** Quem lê bytes não vê imagem.
+
+**Nascem** `regua-cdn-shopee.py` (compartilhada, importada pelos dois portões, e
+por isso escapa da denúncia do `bancada.py`), `teste-cdn-shopee.py` (66
+afirmações, sem rede) e `conferir-espelho-cdn.py` (no ar, 36 afirmações), que
+**remede o grupo de controle a cada passada** — a premissa é sobre um CDN que não
+é nosso e pode mudar sem aviso, e quando mudar quem descobre é o controle ficando
+vermelho, não um cartão com a caixa errada na tela de alguém. Ele também **reprova
+se o grupo de controle sumir**, em vez de imprimir "0 de 0, tudo certo".
+
+**O PORTÃO DE BANCADA NASCEU VERDE, QUE NÃO PROVA NADA — e as mutações acharam
+três buracos reais:**
+1. **A máscara de 14 bits do WebP VP8.** Todas as dimensões que eu tinha escolhido
+   cabem em 14 bits com os dois bits altos em zero, então apagar a máscara não
+   mudava resultado nenhum. Arquivo real com escala é raro, e é por isso que só a
+   mutação o acha: o defeito dormiria até a primeira foto que o tivesse.
+2. **O espelho do espelho.** Eu afirmava a identidade com `/file/<id>`, que é a
+   forma canônica — e remontar a canônica dá a canônica. O caso que separa os dois
+   é a URL com parâmetro de consulta.
+3. **As três tentativas da 20.2.** Nenhuma das 54 afirmações tocava a única função
+   com rede. Medidas agora com um `urlopen` de mentira que falha duas vezes e
+   acerta na terceira — sem rede, como a bancada exige.
+
+`mutacoes-cdn-shopee.py`: **11 de 11 reprovadas.**
+
+---
+
+### 2. O PARÊNTESE NÃO ERA SEPARADOR, E A REGRA VALIA DE UM LADO SÓ DA COMPARAÇÃO
+
+O ensaio da coleta mostrou **três registros recusando o anúncio CERTO**, que
+aparecia na primeira página da busca:
+
+    "Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v"
+        recusado por "o titulo nao traz o codigo (classic 600 2217)"
+
+**A causa:** `codigo_base()` troca `(` e `)` por espaço **no modelo** desde que
+nasceu, então o código chegava como `classic 600 2217`; a classe de separadores
+do `token_no_titulo()` nunca teve parêntese, então o **título** chegava com ele no
+meio. Régua que devolve zero para sempre, por mais certo que esteja o anúncio.
+**É a mesma família do falso positivo do `noindex` de aspa simples, medido nesta
+mesma ilha quatro horas antes** — régua boa que atravessa a fronteira onde a outra
+metade da comparação tem outro autor.
+
+**O afrouxamento aceita PONTUAÇÃO, nunca PALAVRA.** `"Classic 250 440lh Eheim -
+2213"` continua reprovado: entre `250` e `2213` há duas palavras, e código
+espalhado pelo título identificaria também o anúncio de kit que cita dois filtros
+da linha. O preço de ser conservador aqui é ficar sem ficha; o de ser folgado é a
+C5 prometer uma coisa e entregar outra na casa de quem leu.
+
+**DUAS FICHAS NOVAS, conferidas com os olhos antes de gravar (25.3):**
+
+| registro | anúncio | degrau |
+|---|---|---|
+| `eheim-classic-600-2217-220v` | Eheim Classic 600 (2217) 1000l/h 20w **220v** | 1 |
+| `eheim-classic-600-2217-127v` | Eheim Classic 600 (2217) 1000l/h 20w **127v** | 1 |
+
+As duas casaram com a voltagem certa, em lojas e URLs diferentes. **E a foto que a
+API devolveu tem o mesmo identificador de arquivo da que já estava no banco**,
+colhida à mão em 09/09 — a API achou o mesmo anúncio que a pessoa tinha achado,
+por outro caminho. É a confirmação mais forte que esta coleta já produziu, e ela
+também confirma, de terceiro lado, a premissa do espelho do item 1.
+
+**`intestavel` foi de 14 para 12**; `url_produto` de 33 para 35.
+
+**E A BANCADA REPROVOU UMA AFIRMAÇÃO MINHA.** Eu tinha escrito que partes
+**grudadas** não deveriam casar (`"Classic 6002217"`). Elas casam, de propósito, e
+é o mesmo mecanismo que faz `"HT1300"` casar com `HT-1300` — que é como metade do
+varejo escreve — e `"A301"` com `a 301`. Não dá para exigir separador entre duas
+partes sem perder as duas colagens legítimas. **Fica afirmado como é, não como eu
+gostaria**, para que uma mudança futura apareça ali em vez de passar calada.
+
+Bancada de **159 para 177** afirmações; mutações de **20 para 22**, e as duas novas
+medem as **duas** direções — o separador apertado demais e o afrouxado até engolir
+palavra. Sem as duas, a classe teria uma direção medida só, que é como régua boa
+vira folgada numa passada distraída.
+
+---
+
+### 3. O NÚMERO "45" JUNTAVA DUAS COISAS DIFERENTES, E A LEITURA SEMANAL TIROU A CONCLUSÃO ERRADA DELE
+
+O despacho fala em **45 itens sem ficha**, e 45 é a contagem de
+`afiliado.url_produto` vazio. Mas `url_produto` é a **URL crua**, não a ficha.
+Contando o que chega à tela: **47 itens com botão de ficha**, **31 sem link de
+ficha nenhum**, **14 com ficha e sem a URL crua** (`intestavel: true`).
+
+**A leitura semanal de 23/09 escreveu que os 14 intestáveis são "exatamente as
+marcas que a seção 7 diz que a Shopee não vende" e que são "o caso de manual do
+degrau 2 (catálogo `/p/MLB…` do Mercado Livre)".** Os 14 têm `plataforma: shopee`
+e o título do anúncio guardado em `afiliado.anuncio_shopee` — a Shopee **vendia**
+os 14 em 07–09/09, e cada um tem link de afiliado no ar hoje. Caçar catálogo no
+Mercado Livre para eles seria trabalho gasto em produtos que já têm link — e é
+justamente a parte da Proposta 3 que depende de um egresso que continua fechado.
+**O que eles precisam é da URL crua do mesmo anúncio**, para o par ficar
+demonstrável (25.4-b.1). Dois fecharam hoje.
+
+**O RESÍDUO FOI ESCRITO INTEIRO**, como o despacho pede, em
+`dados/fichas-pendentes.md`: **43 itens em quatro causas.**
+
+| causa | itens | é portão severo? |
+|---|---|---|
+| **A** — a busca não devolve nada | 27 | não: não há o que julgar |
+| **B** — só resultado de outra categoria (código curto: `AT-100`, `A301`) | 12 | não: recusa correta |
+| **C** — quase, a linha certa apareceu | 3 | **não: nos três o portão está certo** |
+| **D** — o registro não declara marca (`rs-50-50w`) | 1 | não: falta dado, não sobra rigor |
+
+**A leitura que importa: A e B somam 39 dos 43, e nas duas o gargalo é oferta e
+palavra-chave, não código.** Escrever mais portão não move nenhuma delas. Sobram
+quatro itens em que um par de olhos num navegador vale mais do que qualquer coisa
+que esta nuvem consiga fazer.
+
+---
+
+### ACHADO DE DADO QUE NÃO É DESTA FILA, e não dá para consertar de olhos fechados
+
+Medindo as 24 apareceu que **dois registros compartilham a mesma foto**:
+`maxxi-m-050-anuncio-220v` e `maxxi-m-200-anuncio-220v`, mesma URL. Os dois `alt`
+foram escritos por quem viu a foto e descrevem **potências diferentes** (50 W e
+200 W) — a mesma imagem não mostra os dois, então **no máximo um está certo**.
+Qual corrigir depende de **olhar a foto**, e quem lê os bytes não a vê. Fica para
+a Sentinela Técnica, junto com os 33 `alt_origem: 'banco'` que já a esperavam.
+
+### E UM DEFEITO MEU, PEGO ANTES DO AR
+
+A primeira versão do `coletar-dimensao-imagens.py` gravou o banco com `indent=1`
+e **reformatou 2.542 linhas para mudar 24 campos**. Diff que ninguém revisa é a
+maneira mais eficiente de esconder uma mudança real no meio de ruído. Corrigido
+para `indent=2`, que é o formato deste banco e o que o `coletar-shopee.py` usa; o
+diff foi de 2.542 para **78** linhas. Fica escrito no próprio código, não só aqui.
+
+E as **duas primeiras renovações de reserva saíram no FUTURO** (13h55Z e 14h05Z
+escritas às 13h38Z e 13h44Z), porque eu somava folga de cabeça em vez de ler o
+relógio. Reserva adiantada faz a ilha parecer ocupada mais tempo do que está, que
+é o contrário do que a 1.1 quer. A terceira foi lida do `date -u`.
+
+__VERIFICACAO__
+
+---
+
 ## 2026-09-24 10h16Z–11h00Z — O ITEM 1 DO DESPACHO ERA FALSO POSITIVO, E A CAUSA É A RÉGUA: A DIRETIVA QUE DECIDE O ÍNDICE FICOU 14 DIAS SEM PORTÃO NO AR. Mais a Proposta 1 no ar (peixes 1.16.0, manifest revisão 111, `/status` conferido na 111; NENHUMA URL nova)
 
 **A ESCOLHA DA ILHA: FOCO, E A RESERVA PASSOU NA PRIMEIRA.** `foco.md` nomeia a

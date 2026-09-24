@@ -4,7 +4,7 @@
   "esquema": "dados/esquema-produtos.json",
   "descricao": "Banco de aquecedores. Duas linhas: a importada de referencia (Eheim Jager/Thermocontrol) e a popular brasileira (Roxin HT-1300/Q3). Ampliado em 08/09/2026 para alimentar a C5 — nove registros de 25 a 300 W, com a voltagem coletada (era o campo que barrava a sugestao) e a faixa de ajuste da linha Roxin tratada pela intersecao conservadora da regra V17. Em 09/09/2026 o banco saiu de 13 para 23 registros com o lote colhido no painel Shopee Afiliados: 7 Maxxi, 1 RS-50, 1 Ocean Tech Warmer X-5 150 W e 1 Sicce Scuba Contactless 150 W, todos com link e imagem, e o Roxin Q3 50 W (que ja era apto) ganhou link. O lote mostra onde esta o gargalo: dos 10 novos, so o Warmer X-5 tem os quatro campos que a C5 exige — e e ele que fecha a janela de 110 a 150 W que estava vazia. Os 7 Maxxi e o RS-50 entram com potencia de varejo e NADA mais; o Sicce tem a melhor ficha do lote e para em um campo so, a voltagem. Em 09/09/2026, leva de FECHAMENTO DE FAIXA: o banco passou de 23 para 27 registros e ganhou o primeiro aparelho acima de 300 W. A varredura de cobertura (ferramentas/varrer-cobertura.mjs) tinha medido a C5 VAZIA de 310 a 400 L nas quatro combinacoes de delta e tomada, porque o banco parava em 300 W. Entraram Hopar J-226 400 W e 500 W (marca nova no banco, escolhida por ser a unica do levantamento com degrau de 400 W) e Ocean Tech Warmer X-5 250 W e 500 W. Nenhum dos quatro tem link de afiliado ainda.",
   "gerado_em": "2026-09-07",
-  "atualizado_em": "2026-09-23",
+  "atualizado_em": "2026-09-24",
   "bloco": 3,
   "publicar": false,
   "produtos": [
@@ -48,7 +48,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -161,7 +161,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -235,14 +235,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8259h-mge5jlcqmbyhc4.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 959,
+        "altura": 959,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato com aquecedor Maxxi M-050 de 50 W, tubo submersível com dial de ajuste no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -260,7 +261,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-050%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -312,14 +313,15 @@
       },
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lvyuqrs817sla5.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato com aquecedor Roxin Q3 de 50 W, tubo de quartzo submersível com dial de ajuste de temperatura no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -332,13 +334,13 @@
         "voltagem_anuncio": "220",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (HT-1300 50 W): zero resultados | degrau 2 (Roxin HT-1300 50 W): zero resultados | degrau 3 (Roxin HT-1300/Q3 50 W): zero resultados | degrau 4 (Roxin HT-1300 50 W aquecedor aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (HT-1300 50 W): zero resultados | degrau 2 (Roxin HT-1300 50 W): zero resultados | degrau 3 (Roxin HT-1300/Q3 50 W): zero resultados | degrau 4 (Roxin HT-1300 50 W aquecedor aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/9V1h9lm8Hu",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%2050%20W%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -432,14 +434,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rbmi-lm9a2t4hpwe129.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato aquecedor RS-50 de 50 W, tubo de vidro submersível com anel de ajuste de temperatura",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -452,13 +455,13 @@
         "voltagem_anuncio": "220",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Película Hidrogel Compatível C/ Huawei Mate 50 Rs Porsche\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso | degrau 1: \"10, 20 ou 50 Buchas Do Paralama Audi A1 A8 Q7 R8 TT RS\" — o titulo abre com uma peca do aparelho, nao com o aparelho | degrau 1: \"Kit 5 Adesivos Refletivo De Capacete M1 Compativel Aprilia Rs 50 Preto\" — o titulo abre com uma peca do aparelho, nao com o aparelho | degrau 1: \"BALAO 7 SÃO ROQUE LISO RED C/50 RS TUTTI FRUTTI\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso | degrau 1: \"Pasta Catálogo Ofício Rosa com 50 Envelopes Ref. 134.RS ACP\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso | degrau 1: \"Microfones Sem Fio RAYHAYES RS-804 Com Haste Flexível 360° 50 Canais A\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso | degrau 1: \"Kit Adaptador Rolamento Ventilador 608 RS + Calço 29 mm - kit com 50 u\" — o titulo anuncia um kit e o registro nao e um kit ",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Película Hidrogel Compatível C/ Huawei Mate 50 Rs Porsche\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso | degrau 1: \"10, 20 ou 50 Buchas Do Paralama Audi A1 A8 Q7 R8 TT RS\" — o titulo abre com uma peca do aparelho, nao com o aparelho | degrau 1: \"Kit 5 Adesivos Refletivo De Capacete M1 Compativel Aprilia Rs 50 Preto\" — o titulo abre com uma peca do aparelho, nao com o aparelho | degrau 1: \"BALAO 7 SÃO ROQUE LISO RED C/50 RS TUTTI FRUTTI\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso | degrau 1: \"Pasta Catálogo Ofício Rosa com 50 Envelopes Ref. 134.RS ACP\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso | degrau 1: \"Microfones Sem Fio RAYHAYES RS-804 Com Haste Flexível 360° 50 Canais A\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso | degrau 1: \"Kit Adaptador Rolamento Ventilador 608 RS + Calço 29 mm - kit com 50 u\" — o titulo anuncia um kit e o registro nao e um kit ",
         "url_busca": "https://s.shopee.com.br/5AshzoFgvd",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=RS-50%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -523,7 +526,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -614,7 +617,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -688,14 +691,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-820lr-mo8paw9ivi80cb.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato com aquecedor Maxxi M-100 de 100 W, tubo submersível com dial de ajuste no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -713,7 +717,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-100%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -775,13 +779,13 @@
         "voltagem_anuncio": "127",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (HT-1300 100 W): zero resultados | degrau 2 (Roxin HT-1300 100 W): zero resultados | degrau 3 (Roxin HT-1300/Q3 100 W): zero resultados | degrau 4 (Roxin HT-1300 100 W aquecedor aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (HT-1300 100 W): zero resultados | degrau 2 (Roxin HT-1300 100 W): zero resultados | degrau 3 (Roxin HT-1300/Q3 100 W): zero resultados | degrau 4 (Roxin HT-1300 100 W aquecedor aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/70KMBC42tx",
         "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20100%20W%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -893,7 +897,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -984,7 +988,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1085,14 +1089,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-820ld-mo8ms8dpvk022b.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato com aquecedor Maxxi M-150 de 150 W, tubo submersível com dial de ajuste no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1110,7 +1115,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-150%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1193,7 +1198,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20150%20W%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1302,14 +1307,15 @@
       },
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rcc2-lteetuyd2pgz1f.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Aquecedor Sicce Scuba Contactless de 150 W, corpo de vidro preto sem dial, ajustado por aproximação do celular (NFC)",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1322,13 +1328,13 @@
         "voltagem_anuncio": "220",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (Scuba Contactless 150): zero resultados | degrau 2 (Sicce Scuba Contactless 150): zero resultados | degrau 3 (Sicce Scuba Contactless 150 W NFC): zero resultados | degrau 4 (Sicce Scuba Contactless 150 aquecedor aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (Scuba Contactless 150): zero resultados | degrau 2 (Sicce Scuba Contactless 150): zero resultados | degrau 3 (Sicce Scuba Contactless 150 W NFC): zero resultados | degrau 4 (Sicce Scuba Contactless 150 aquecedor aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/6q0vyuhnxE",
         "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Sicce%20Scuba%20Contactless%20150%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1410,7 +1416,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1523,7 +1529,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1615,14 +1621,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8258j-mrtkrk3tf85c15.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 959,
+        "altura": 959,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato com aquecedor Maxxi M-200 de 200 W, tubo submersível com dial de ajuste no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1640,7 +1647,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-200%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1686,14 +1693,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8259h-mge5jlcqmbyhc4.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 959,
+        "altura": 959,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato com aquecedor Maxxi M-200 de 200 W, tubo submersível com dial de ajuste no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -1711,7 +1719,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-200%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1773,13 +1781,13 @@
         "voltagem_anuncio": "110",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (HT-1300 200 W): zero resultados | degrau 2 (Roxin HT-1300 200 W): zero resultados | degrau 3 (Roxin HT-1300/Q3 200 W): zero resultados | degrau 4 (Roxin HT-1300 200 W aquecedor aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (HT-1300 200 W): zero resultados | degrau 2 (Roxin HT-1300 200 W): zero resultados | degrau 3 (Roxin HT-1300/Q3 200 W): zero resultados | degrau 4 (Roxin HT-1300 200 W aquecedor aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/2gBN1HEvl1",
         "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20200%20W%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1890,7 +1898,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -1973,7 +1981,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2045,14 +2053,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-825ap-mgcqyhcddg5pa4.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 959,
+        "altura": 959,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato com aquecedor Maxxi M-300 de 300 W, tubo submersível com dial de ajuste no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -2070,7 +2079,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-300%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2116,14 +2125,15 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/br-11134207-820m8-mo8ms8dpzrpe06.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
         "alt": "Termostato com aquecedor Maxxi M-300 de 300 W, tubo submersível com dial de ajuste no topo",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo lido pelo ESPELHO do CDN da Shopee (cf.shopee.com.br), que serve o MESMO identificador de arquivo da url ao lado — esta nuvem nao alcanca o host daquela url e por isso nao a le direto. A identidade entre os dois hosts nao e suposta: ferramentas/conferir-espelho-cdn.py remede, a cada passada, as 8 fotos deste banco que estao no host bloqueado e cuja dimensao a Sentinela mediu no Chrome do Raphael em 13/09/2026 (naturalWidth x naturalHeight) — 8 de 8 batem, inclusive em 265, 692, 726 e 1001, que sao os numeros que um espelho servindo miniatura nao reproduziria."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -2141,7 +2151,7 @@
         "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-300%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2203,13 +2213,13 @@
         "voltagem_anuncio": "220",
         "degrau": null,
         "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-23: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (HT-1300 300 W): zero resultados | degrau 2 (Roxin HT-1300 300 W): zero resultados | degrau 3 (Roxin HT-1300/Q3 300 W): zero resultados | degrau 4 (Roxin HT-1300 300 W aquecedor aquario): zero resultados",
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-09-24: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 3, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1 (HT-1300 300 W): zero resultados | degrau 2 (Roxin HT-1300 300 W): zero resultados | degrau 3 (Roxin HT-1300/Q3 300 W): zero resultados | degrau 4 (Roxin HT-1300 300 W aquecedor aquario): zero resultados",
         "url_busca": "https://s.shopee.com.br/40gkbkQyvR",
         "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20300%20W%20aquecedor%20aquario",
         "piso_conferido_em": "2026-09-14",
         "intestavel": true,
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2314,14 +2324,14 @@
         "largura": 500,
         "altura": 500,
         "fonte": "anuncio-shopee",
-        "coletado_em": "2026-09-23",
-        "verificado_em": "2026-09-23",
+        "coletado_em": "2026-09-24",
+        "verificado_em": "2026-09-24",
         "motivo_sem_verificacao": null,
         "alt": "Foto do anuncio: aquecedor Hopar J-226 400 W",
         "alt_origem": "banco",
         "motivo_sem_medida": null,
-        "medida_em": "2026-09-23",
-        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-23: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
+        "medida_em": "2026-09-24",
+        "medida_como": "cabecalho do arquivo, lido pela nuvem em 2026-09-24: os primeiros bytes de cf.shopee.com.br foram baixados por ferramentas/coletar-shopee.py e a dimensao saiu do cabecalho JPEG, PNG ou WebP. Nao e naturalWidth de imagem carregada em navegador, e nao e palpite sobre o formato que a Shopee costuma servir — a 25.7 proibe o palpite com essas palavras, porque dimensao digitada parece conferida."
       },
       "afiliado": {
         "plataforma": "shopee",
@@ -2332,7 +2342,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23",
+        "encurtamento_tentado_em": "2026-09-24",
         "url": "https://s.shopee.com.br/7fa2yUYx5Y",
         "url_produto": "https://shopee.com.br/product/1402882902/58268178500",
         "anuncio_shopee": "Termostato Aquecedor Hopar J-226 400w Para Aquário 127v 127v 400 W",
@@ -2437,7 +2447,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {
@@ -2518,7 +2528,7 @@
         "piso_conferido_em": "2026-09-14",
         "intestavel": false,
         "sub_id_1": "aquametria",
-        "encurtamento_tentado_em": "2026-09-23"
+        "encurtamento_tentado_em": "2026-09-24"
       },
       "fontes": [
         {

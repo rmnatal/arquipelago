@@ -1036,8 +1036,8 @@ function aquametria_c5_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lvyuqrs817sla5.webp',
 				'alt' => 'Termostato com aquecedor Roxin Q3 de 50 W, tubo de quartzo submersível com dial de ajuste de temperatura no topo',
-				'largura' => null,
-				'altura' => null,
+				'largura' => 1024,
+				'altura' => 1024,
 				'verificado_em' => null,
 			),
 			'preco' => array(
@@ -1470,7 +1470,7 @@ function aquametria_c5_catalogo() {
 				'alt' => 'Foto do anuncio: aquecedor Hopar J-226 400 W',
 				'largura' => 500,
 				'altura' => 500,
-				'verificado_em' => '2026-09-23',
+				'verificado_em' => '2026-09-24',
 			),
 			'preco' => null,
 		),
