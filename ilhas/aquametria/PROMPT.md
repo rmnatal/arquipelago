@@ -195,6 +195,21 @@ Os cinco itens saíram inteiros numa execução só, como a 18.2 manda. Conferid
 
 ~~**O QUE CONTINUA ABERTO, e não é deste despacho:** os **78 itens seguem sem `url_busca` encurtada**, o piso que renderia comissão. Quem encurta é a Sentinela estratégica no navegador do Raphael, em lotes de 5.~~ **FECHADO EM 23/09/2026 pelo T3(f)**: os 78 estão encurtados, e quem encurta não é mais ninguém no navegador — é a Open API (25.6), numa chamada de rede. **A última frase deste parágrafo estava certa e foi conferida:** *"nenhuma linha de snippet muda"* — `aquametria_cN_compra()` já preferia `url_busca`, e a troca chegou à tela só pela regeração do catálogo.
 
+## DESPACHO DO RAPHAEL — 24/09/2026, 10h05 (horário de Brasília) — MUTIRÃO REABERTO, E SÓ PARA A DÍVIDA QUE NÃO CRIA URL
+
+**O que ele perguntou:** se a dívida aberta desta ilha — os **45 itens sem ficha** e as **24 imagens antigas sem largura** — dava para resolver hoje. A resposta honesta foi: a cota da 21.4 não atrapalha, porque ela limita URL NOVA e isso aqui é dívida no que já está no ar; o que atrapalha é a regra de um bloco por execução da seção 1. Ele autorizou reabrir o mutirão para essa fila.
+
+**A EXCEÇÃO, com fronteira exata.** O mutirão volta a valer nesta ilha **somente para trabalho que não cria URL nova**. Dentro da exceção, entregue quantos blocos couberem na execução, em sequência. Fora dela, a seção 1 continua inteira: **um bloco por execução**.
+
+Está DENTRO: as 24 imagens sem largura; a coleta de ficha dos 45 itens sem ficha; e a dívida técnica já registrada em item que não publique endereço novo.
+Está FORA, e continua um bloco por execução: leva de malha, página nova de qualquer camada, ficha de espécie nova, categoria nova. **Nenhuma URL nova sai desta exceção**, e a cota da 21.4 continua gasta em 3 de 3 nesta semana.
+
+**O QUE NÃO SE AFROUXA, e é a razão de a dívida existir.** Os 45 estão sem ficha porque o casamento não teve certeza, e casamento errado no banco é pior que casamento nenhum — é a mesma regra que fez a Robometria reprovar 6 fotos de 36 pelo olho. O portão do casamento, o portão de dado da seção 13 e a verificação no ar continuam valendo, item por item. **O entregável desta exceção é "as que passaram no portão", nunca "as 45"**, mais a lista do resíduo com o motivo de cada um, agrupada por causa. Se passar 12 de 45, o resultado é 12 e a lista dos 33 — e isso é sucesso, não fracasso.
+
+**PRAZO: esta exceção vale até a leitura semanal de 30/09/2026 e morre nela**, sem precisar de outro despacho. O motivo é a 1.2-b: exceção sem critério de saída vira regra por inércia. Se em 30/09 ainda houver dívida desta fila, ela volta ao ritmo normal de um bloco por execução, e quem quiser reabrir precisa de um despacho novo.
+
+**O que ele NÃO pediu, e não é para fazer:** subir a cota de páginas novas da 21.4. Foi oferecido e ele recusou — a troca de segurança de indexação por velocidade não está autorizada.
+
 ## FILA DE BLOCOS — reordenada em 09/09/2026 pela meta de tráfego
 
 > **O FOCO VOLTOU PARA CÁ EM 21/09/2026, E O MUTIRÃO CONTINUA DESLIGADO — releitura feita, não inércia.**
