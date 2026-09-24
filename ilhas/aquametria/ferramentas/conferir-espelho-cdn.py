@@ -77,23 +77,66 @@ def banco():
             yield os.path.basename(caminho), p
 
 
-fotos = [(arq, p) for arq, p in banco() if (p.get('imagem') or {}).get('url')]
-controle = [(arq, p) for arq, p in fotos
-            if p['imagem'].get('largura') is not None
-            and regua.precisa_de_espelho(p['imagem']['url'])]
-ja_alcancaveis = [(arq, p) for arq, p in fotos
-                  if p['imagem'].get('largura') is not None
-                  and not regua.precisa_de_espelho(p['imagem']['url'])]
+# ---------------------------------------------------------------------------
+# QUEM E CONTROLE E QUEM NAO E — a distincao que este portao quase perdeu
+# ---------------------------------------------------------------------------
+# NA PRIMEIRA VERSAO, escrita horas atras em 24/09/2026, "controle" era toda
+# foto em host bloqueado que tivesse dimensao. Aquilo estava certo enquanto as
+# UNICAS fotos assim eram as 8 que a Sentinela mediu no Chrome — e deixou de
+# estar certo no minuto seguinte, quando o `coletar-dimensao-imagens.py` mediu
+# 24 fotos do mesmo host PELO ESPELHO. O portao passou a imprimir "32 fotos com
+# dimensao medida por outro instrumento", e 24 daquelas 32 tinham sido medidas
+# pelo proprio espelho que elas deveriam estar conferindo.
+#
+# **Nao era um numero errado: era uma PROVA diluida com as proprias conclusoes.**
+# O portao continuaria ficando vermelho se o CDN mudasse (as 8 verdadeiras
+# reprovariam), mas afirmaria quatro vezes mais evidencia do que tem — e
+# evidencia inflada e como se para de desconfiar de uma premissa.
+#
+# A regra: **so e controle quem foi medido por OUTRO instrumento.** Quem
+# escreve `medida_como` diz de onde o numero veio, e e esse campo que separa os
+# dois — nao a presenca da dimensao.
+MARCA_DO_ESPELHO = 'ESPELHO do CDN'
 
-print('%d fotos no banco, %d com dimensao' % (len(fotos), len(controle) + len(ja_alcancaveis)))
-print('GRUPO DE CONTROLE: %d fotos em host que esta nuvem nao alcanca '
-      'e que ja tem dimensao medida por outro instrumento\n' % len(controle))
+fotos = [(arq, p) for arq, p in banco() if (p.get('imagem') or {}).get('url')]
+com_dimensao = [(a, p) for a, p in fotos if p['imagem'].get('largura') is not None]
+
+def medida_pelo_espelho(produto):
+    return MARCA_DO_ESPELHO in (produto['imagem'].get('medida_como') or '')
+
+controle = [(a, p) for a, p in com_dimensao
+            if regua.precisa_de_espelho(p['imagem']['url'])
+            and not medida_pelo_espelho(p)]
+pelo_espelho = [(a, p) for a, p in com_dimensao
+                if regua.precisa_de_espelho(p['imagem']['url'])
+                and medida_pelo_espelho(p)]
+ja_alcancaveis = [(a, p) for a, p in com_dimensao
+                  if not regua.precisa_de_espelho(p['imagem']['url'])]
+
+print('%d fotos no banco, %d com dimensao' % (len(fotos), len(com_dimensao)))
+print('GRUPO DE CONTROLE: %d fotos em host que esta nuvem nao alcanca e cuja '
+      'dimensao veio de OUTRO instrumento' % len(controle))
+print('  (mais %d medidas pelo proprio espelho: elas NAO sao controle, e '
+      'remedi-las e teste de regressao do CDN, nao prova da premissa)\n'
+      % len(pelo_espelho))
 
 # PORTAO QUE MEDE ZERO COISAS PASSA SEMPRE. Se o banco perder o grupo de
 # controle — por troca de CDN, por limpeza, por qualquer motivo —, a premissa do
 # espelho deixa de ser conferivel, e isso e uma reprovacao e nao um silencio.
 ok('o grupo de controle existe (sem ele a premissa do espelho nao se mede)',
-   len(controle) >= 5, 'apenas %d foto(s) no controle' % len(controle))
+   len(controle) >= 5, 'apenas %d foto(s) medida(s) por outro instrumento' % len(controle))
+
+# E A PORTA DOS FUNDOS DA DEFINICAO ACIMA: "controle" esta definido por NEGACAO
+# — nao menciona o espelho. Uma foto com `medida_como` VAZIO, ou com um texto
+# qualquer, cairia no controle por omissao e diluiria a prova do mesmo jeito,
+# so que sem ninguem conseguir ver. Entao o controle tem de dizer, em campo, de
+# onde veio o numero: cada membro declara um instrumento, e o instrumento nao e
+# esta ferramenta.
+for arq, p in controle:
+    como = (p['imagem'].get('medida_como') or '').strip()
+    ok('%s: o controle DIZ de onde veio o numero' % p['id'], len(como) >= 40,
+       'medida_como=%r — controle sem procedencia escrita nao e controle, e '
+       'foto que ninguem sabe quem mediu' % como[:60])
 
 for arq, p in controle:
     img = p['imagem']
@@ -129,6 +172,22 @@ for arq, p in ja_alcancaveis:
         continue
     ok('%s: continua %dx%d' % (p['id'], esperado[0], esperado[1]),
        (L, A) == esperado, 'no ar=%dx%d banco=%dx%d' % (L, A, esperado[0], esperado[1]))
+
+# AS MEDIDAS PELO ESPELHO SAO REMEDIDAS TAMBEM, com o rotulo certo: nao provam a
+# premissa (foram medidas pelo instrumento que estao conferindo), mas pegam o CDN
+# passando a servir outros bytes para o mesmo id — que e exatamente o risco que o
+# controle existe para vigiar, so que sem valer como prova dele.
+print('\n%d fotos medidas pelo espelho, remedidas como regressao' % len(pelo_espelho))
+for arq, p in pelo_espelho:
+    img = p['imagem']
+    esperado = (img['largura'], img['altura'])
+    L, A, alvo, erro = regua.medir_no_espelho(img['url'])
+    if not ok('%s: o espelho responde' % p['id'], L is not None, 'erro=%s' % erro):
+        continue
+    ok('%s: continua %dx%d' % (p['id'], esperado[0], esperado[1]),
+       (L, A) == esperado,
+       'espelho=%dx%d banco=%dx%d — o CDN mudou os bytes deste id desde a medida'
+       % (L, A, esperado[0], esperado[1]))
 
 # E A DIRECAO QUE NENHUMA DAS DE CIMA PEGA: foto SEM dimensao cujo espelho
 # responde e foto que esta esperando medida a toa. Nao e reprovacao — e a lista

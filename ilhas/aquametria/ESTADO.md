@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-24T10:58Z
-executando_desde: 2026-09-24T14:15Z   # reserva RENOVADA pela 1.1, horario LIDO do relogio. Manifest na revisao 113; Sync e verificacao no ar em seguida.
+executando_desde: 2026-09-24T14:24Z   # reserva RENOVADA pela 1.1, horario LIDO do relogio. Revisao 113 NO AR; portoes no ar rodando.
 bloco_atual: |
   MUTIRAO DO DESPACHO DO RAPHAEL DE 24/09 — DUAS DIVIDAS FECHADAS, NENHUMA URL NOVA. A ilha segue em 52 URLs e a semana da 21.4 segue em 3 de 3, gasta desde 23/09. O despacho do Raphael NAO e para apagar: e uma excecao com prazo proprio, valida ate a leitura semanal de 30/09, e morre nela sozinha.
   1. AS 24 FOTOS SEM DIMENSAO FECHARAM: 41 de 41 fotos do banco com largura e altura (eram 17). O egresso segue barrando down-bs-br.img.susercontent.com (000 em tres passadas, reconferido hoje pela 20.3), mas cf.shopee.com.br serve o MESMO identificador de arquivo e responde 200. A premissa nao ficou suposta: OITO fotos deste banco estao no host bloqueado E ja tinham dimensao medida por OUTRO INSTRUMENTO (naturalWidth x naturalHeight no Chrome do Raphael, ronda de 13/09) — 8 de 8 batem pelo espelho, inclusive em 265, 692, 726 e 1001, que um redimensionamento nao sobreviveria.
