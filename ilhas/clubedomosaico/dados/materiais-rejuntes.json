@@ -12,7 +12,7 @@
     "itens_esperando_link": 0,
     "itens_sem_saida_de_compra": 0,
     "itens_com_piso_nao_rastreavel": 0,
-    "observacao": "Os cinco com link da Shopee gerado em 13/09/2026. Sub_id 1 = clubedomosaico em todos; Sub_id 2 = F1 nos dois rejuntes que a F1 recomenda (ceramicas e porcelanatos-e-ceramicas) e F2 nos outros tres. Os cinco tem ficha E busca encurtada: zero item sem saida e zero piso nao rastreavel."
+    "observacao": "Os CINCO com piso encurtado, REGERADO em 25/09/2026 pela Open API (25.6). Sub_id 1 = clubedomosaico em todos e Sub_id 2 = F1 nos dois que a F1 recomenda (ceramicas e porcelanatos) e F2 nos tres restantes — as casas certas da secao 7, que os links de 13/09 nao tinham: eles nasceram no painel com os cinco campos preenchidos a mao e sairam deslocados uma casa, com o campo 1 vazio. As quatro fichas de Shopee foram regeradas junto; a do Mercado Livre (epoxi) nao foi tocada, por ser outro programa. As cinco palavras-chave foram REESCOLHIDAS inteiras (25.4-b.1) e medidas contra a API: todas devolvem oferta."
   },
   "imagens": {
     "itens_sem_imagem": 4,
@@ -110,15 +110,18 @@
       "venda": [],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/AKaXc8DTnU",
+        "url": "https://s.shopee.com.br/6fhYwMyc6p",
         "url_produto": "https://shopee.com.br/Rejunte-Cer%C3%A2micas-1kg-Cores-QUARTZOLIT-i.413687078.14557694103",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/3qN4d6g80x",
+        "gerado_em": "2026-09-25",
+        "url_busca": "https://s.shopee.com.br/1BMcOGJTyn",
         "degrau": 3,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=rejunte%20ceramicas%20quartzolit",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
       },
       "imagem": null,
       "fontes": {
@@ -231,15 +234,18 @@
       "venda": [],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/AUtxoRCqSX",
+        "url": "https://s.shopee.com.br/1qcJBULLPB",
         "url_produto": "https://shopee.com.br/Rejunte-Porcelanato-e-Cer%C3%A2mica-Quartzolit-1kg-Cores-Flex%C3%ADvel-i.326370330.16418874299",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/2gB7ExkZNk",
+        "gerado_em": "2026-09-25",
+        "url_busca": "https://s.shopee.com.br/1BMcOGO1HV",
         "degrau": 3,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=rejunte%20porcelanatos%20e%20ceramicas%20quartzolit",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
       },
       "imagem": null,
       "fontes": {
@@ -357,15 +363,18 @@
       ],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/8fSKNwPDQd",
+        "url": "https://s.shopee.com.br/2LYZmPJeCD",
         "url_produto": "https://shopee.com.br/product/1462074750/58262414865",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/1Vz9qnP9dn",
+        "gerado_em": "2026-09-25",
+        "url_busca": "https://s.shopee.com.br/qjlzePMEo",
         "degrau": 2,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=rejunte%20acrilico%20quartzolit",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
       },
       "imagem": {
         "url": "https://cf.shopee.com.br/file/br-11134207-820mb-mpdulabp648zf5",
@@ -468,9 +477,12 @@
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/3g3eQmGuFE",
+        "url_busca": "https://s.shopee.com.br/113CBxT3P2",
         "degrau": 2,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=rejunte%20epoxi%20quartzolit",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
       },
       "imagem": null,
       "fontes": {
@@ -561,15 +573,18 @@
       "venda": [],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/1qbzUUOFBe",
+        "url": "https://s.shopee.com.br/8fSdK2zjKw",
         "url_produto": "https://shopee.com.br/Rejunte-para-Piscinas-Quartzolit-5-kg-Cores-i.805449066.22997992219",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/3qN4d5GGuH",
+        "gerado_em": "2026-09-25",
+        "url_busca": "https://s.shopee.com.br/5VVbYEBzZl",
         "degrau": 3,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=rejunte%20para%20piscinas%20quartzolit",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
       },
       "imagem": null,
       "fontes": {

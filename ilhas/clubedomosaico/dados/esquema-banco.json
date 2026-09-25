@@ -947,6 +947,14 @@
             "conferido_em": {
               "tipo": "data ISO|null",
               "observacao": "Ultima vez que a ronda abriu a `url_produto` e leu que o anuncio esta vivo (25.4). Nunca clicando o proprio link de afiliado."
+            },
+            "url_busca_gerada_em": {
+              "tipo": "data ISO|null",
+              "observacao": "O dia em que `url_busca` foi ENCURTADA. Separado de `gerado_em`, que e o da ficha: os dois links tem vidas diferentes e ate 25/09/2026 carregavam a mesma data por acidente de escrita. Quem regerar um dos dois carimba so o dele."
+            },
+            "motivo_da_chave": {
+              "tipo": "string|null",
+              "observacao": "Em que degrau da escada de palavra-chave da 25.6 a busca parou, e por que. Procedencia, nao enfeite: em 25/09/2026 as treze chaves das pastilhas devolviam ZERO oferta desde 13/09 — `Glass Mosaic <codigo> pastilha de vidro <medida>`, com a marca e o codigo de catalogo que anuncio de Shopee nao escreve — e a descida parou na FAMILIA (medida e acabamento). O campo e o que impede a proxima passada de ler a chave larga como se fosse escolha do fabricante. Codigo sozinho continua barrado pela armadilha 3 da 25.7: `K2501` devolve grade de aspirador Karcher."
             }
           },
           "a_escada_da_secao_25": {

@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 36,
-  "atualizado_em": "2026-09-24",
+  "revisao": 37,
+  "atualizado_em": "2026-09-25",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -143,7 +143,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "b3306c695e47bdbd05aac42363aacd69c36d7b3ea774d202ada6dcb11723bf75",
+      "sha256": "1575440d4df59c2df86f29404a8027fcb2ff7070b8ba230ecdf70f8614e95927",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -167,7 +167,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "89093c25617020cab29b1d6c7de5f0d025c8a6d32b7b13caddf62a05325b3463",
+      "sha256": "a857f2854fe8f226ca79fc74801c357358733b7e046c1a4de114c9094557bdec",
       "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
       "pendencias": 2,
       "pendencias_que_bloqueiam_publicacao": []
@@ -181,7 +181,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "b5f6e767e977566fbb4ad5b1d7a1ab47930aa4a4b90617e94114a04bc607a9b1",
+      "sha256": "7690e553fa2a5c7854d9991048224d7c36996a71af02bfd3c5555e3ae9b21ba7",
       "descricao": "A categoria REJUNTE do banco MATERIAL: cinco rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas) com faixa de junta, prazo de liberacao e ambiente declarado campo a campo. Sem ela a F2 — que se chama 'seletor de cola E REJUNTE' — respondia metade do que promete, com a metade do rejunte cravada na prosa do snippet em vez de recomputada da declaracao. O arquivo descobriu uma coisa sobre o proprio banco: REJUNTE NAO E COLA. Na cola, a lista do fabricante nomeia a BASE sobre a qual se cola; no rejunte, a mesma lista nomeia a TESSELA que sera rejuntada, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. Achado de maior valor: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso, e mesmo assim ele NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua tratada quimicamente, que e piscina e nao a agua parada de um vaso de jardim."
     },
     {
@@ -217,7 +217,7 @@
       "verificado_em": "2026-09-13",
       "registros": 13,
       "publicar": true,
-      "sha256": "767bef02af8b5172d49ae62f02ef6583b2f3ec8258f51607bbac4e16e896bd04",
+      "sha256": "fdcbcaeab9b55d73b2ac9ea20cbbcf08208a3fcb29802f619c64912ed4479987",
       "descricao": "A categoria PASTILHA do banco MATERIAL. Treze SKUs com lado da pastilha, lado da placa, espessura, placas por caixa, metragem e peso de caixa. A leva de 13/09/2026 acrescentou A37, 102 e IC02, e a A37 e a que FECHA o tamanho 2x2 no minimo de 3 elegiveis da secao 14.3. Tres campos nascem NULL com motivo escrito, e e isso que o arquivo tem de mais util: pecas por placa e passo de fabrica, porque nenhum fabricante brasileiro declara e a divisao que a SERP faz nao fecha (em 9 dos 13 nao da inteiro, nos outros 4 exige junta zero); e peso unitario, porque o peso da caixa de um dos itens PASSA do teto fisico do vidro macico, o que prova que embalagem esta contada dentro. Mede isso ferramentas/validar-pastilhas.py (189 afirmacoes, um processo por item, com a faixa de tamanhos medida na F1 por ferramentas/tamanhos-da-f1.php em vez de digitada) e ferramentas/mutacoes-pastilhas.py (14 de 14: 12 no banco e 2 no codigo da F1)."
     },
     {
@@ -229,7 +229,7 @@
       "verificado_em": "2026-09-24",
       "registros": 5,
       "publicar": false,
-      "sha256": "e7e4c1c35794ff88448d330b70d4508e62ede30985edfd7ac62869be86904f2f",
+      "sha256": "0879619f9d1f7465308beef3c8bf6b6f7c6b5e6aa21521be15f9eed8eb2e178b",
       "descricao": "A copia das pecas cadastradas pela artesa: titulo, slug, estado, descricao, campos, colecao, tecnica e as URLs das fotos. NASCEU EM 14/09/2026, no dia seguinte ao primeiro cadastro de verdade — ate 13/09 a rota devolvia total zero, e zero peca e resposta, nao falha. O campo `gerado_em` da rota NAO entra na copia de proposito: com ele dentro, todo commit da ronda seria um commit, e a 24.2 manda commitar so quando o JSON MUDOU; quando a copia foi tirada e o git que sabe. `publicar` false porque este arquivo e copia do site, nunca fonte dele — desembarca-lo devolveria ao WordPress o que veio dele."
     }
   ],
@@ -351,7 +351,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "fb8c88094cc762a96731ab86d319a41e468188bf8df8cd04a160c481d3f6ce96",
+      "sha256": "90e0535750084bbcc5ef4af8d537dc107cc4392ec2a6da31c26921134edf82ee",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {
@@ -485,6 +485,12 @@
       "arquivo": "ferramentas/conferir-tecnica-no-ar.py",
       "sha256": "b3a6f2ceedb9190c53e0c56b7cff1e7f82a91c384ee20dce385c8157d3856168",
       "descricao": "O irmao no ar do teste-tecnicas: abre a pagina de tecnica com curl e afirma sobre o HTML que o SITE serve. 23 afirmacoes. Reconta as 45 celulas da grade contra dados/cobertura.json (o banco commitado), refaz a prestacao de contas da secao 7 na tela, confere a escada de compra e o rel de cada link, os dois links internos que tiram a pagina da condicao de orfa, o sitemap, e o JSON-LD servido. A secao 4 compara o endereco CANONICO com o mesmo endereco com quebra de cache, por MARCADOR e nunca por bytes — e a trava do cache do hospedeiro, que o /status nao enxerga. O endereco esta literal no arquivo, copiado a mao: ler a constante do snippet seria conferir a pagina com a propria pagina. Accept-Encoding identity em toda requisicao. Bancada."
+    },
+    {
+      "id": "gerar-links-afiliado",
+      "arquivo": "ferramentas/gerar-links-afiliado.py",
+      "sha256": "37c62688f9f55b7281e539bb05db21d5b7cadf42573c7945399ecb160c25028e",
+      "descricao": "Gera e REGERA os links de afiliado da Shopee do banco desta ilha pela Open API (25.6), com os cinco sub-ids na ordem posicional da secao 7. Existe porque os dezesseis links de 13/09/2026 nasceram no painel `offer/custom_link`, com os cinco campos preenchidos a mao, e sairam DESLOCADOS UMA CASA — o unico clique da janela 16->22/09 chegou ao Relatorio como `-clubedomosaico-F2--`, com `sub_id_1` vazio, e o painel nao conseguia dizer qual ilha vendeu. Mao humana em cinco caixas de texto nao tem portao; chamada de API tem. Regera a ficha SO quando `url_produto` existe e e da Shopee, para o par continuar demonstravel (25.4-b.1), e nunca toca link do Mercado Livre, que e outro programa. Traz a tabela das palavras-chave dos dez que perderam a busca crua e das treze pastilhas cuja chave de 13/09 devolvia ZERO oferta, com o degrau da escada da 25.6 escrito em cada uma; `--conferir-chaves` mede todas contra a API antes de qualquer link nascer. Bancada: nunca vai para o site."
     }
   ],
   "esquema": {

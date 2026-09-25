@@ -16,8 +16,8 @@
   "afiliado": {
     "itens_esperando_link": 13,
     "itens_sem_saida_de_compra": 0,
-    "itens_com_piso_nao_rastreavel": 13,
-    "observacao": "Os treze esperam link de FICHA. Desde 14/09/2026 os treze tem PISO na tela: `afiliado.url_busca_produto`, a busca CRUA da Shopee com marca, codigo e o nome que a pessoa usa, servida como botao pela cdm_f2_compra_html(). Ela NAO rende comissao e por isso nao sai como link patrocinado — o que falta nos treze e o encurtamento (25.6), que depende de uma sessao do painel da Shopee. Codigo de origem: Sub_id 2 = F1 na calculadora e G-PASTILHAS na ficha do Guia."
+    "itens_com_piso_nao_rastreavel": 0,
+    "observacao": "Os TREZE esperam link de FICHA e nenhum deles esta sem piso rastreavel desde 25/09/2026: a Open API (25.6) encurtou a busca dos treze, que desde 13/09 dependiam de uma sessao do painel que nenhuma rotina alcanca — motivo que era verdade naquele dia e deixou de ser tres dias depois (25.4-b.3). NO MESMO DIA AS TREZE PALAVRAS-CHAVE FORAM TROCADAS, e por um defeito que nenhum portao pegava: `Glass Mosaic <codigo> pastilha de vidro <medida>` devolvia ZERO oferta nas treze, medido na API. A marca nao e anunciada por nome na Shopee e codigo de catalogo nao aparece em titulo de anuncio — o piso levava a uma busca vazia, que e o beco sem saida que o degrau 4 da 25.1 existe para impedir. A descida da escada da 25.6 parou na FAMILIA (medida e acabamento), com o degrau escrito em `motivo_da_chave` de cada registro. Codigo sozinho esta barrado pela armadilha 3 da 25.7: `K2501` devolve grade traseira de aspirador Karcher."
   },
   "imagens": {
     "itens_sem_imagem": 13,
@@ -91,16 +91,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20K2501%20pastilha%20de%20vidro%202%2C5",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/6VO8k3ha1V",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%20cristal%202%2C5",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: linha + medida"
       },
       "imagem": null,
       "fontes": {
@@ -186,16 +187,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20K2502%20pastilha%20de%20vidro%202%2C5",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/6fhYwMgwgc",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%20cristal%202%2C5",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: linha + medida"
       },
       "imagem": null,
       "fontes": {
@@ -281,16 +283,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20MIX2510%20pastilha%20de%20vidro%202%2C5",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/6q0z8fgNe1",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%20cristal%202%2C5",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: linha + medida"
       },
       "imagem": null,
       "fontes": {
@@ -376,16 +379,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20K117%20pastilha%20de%20vidro%203x3",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/905TiecX1R",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%203x3",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: medida"
       },
       "imagem": null,
       "fontes": {
@@ -471,16 +475,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20K77%20pastilha%20de%20vidro%203x3",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/3B7glvyfZV",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%203x3",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: medida"
       },
       "imagem": null,
       "fontes": {
@@ -566,16 +571,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20K66%20pastilha%20de%20vidro%203x3",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/9AOtuxbpP7",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%203x3",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: medida"
       },
       "imagem": null,
       "fontes": {
@@ -661,16 +667,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20A11%20pastilha%20de%20vidro%20fosca%202x2",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/5Asl9bvWYT",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%202x2",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: medida"
       },
       "imagem": null,
       "fontes": {
@@ -756,16 +763,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20A61%20pastilha%20de%20vidro%20fosca%202x2",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/9KiK7GfnfY",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%202x2",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: medida"
       },
       "imagem": null,
       "fontes": {
@@ -851,16 +859,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20A37%20pastilha%20de%20vidro%20fosca%202x2",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/3VkXAY20Vk",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%202x2",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: medida"
       },
       "imagem": null,
       "fontes": {
@@ -946,16 +955,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20ST5102%20pastilha%20de%20vidro%20strip",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/4B0Dxm3rtL",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%20placa%2030x30",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "strip de 1,2 cm: `strip`, `retangular strip` e `1,2` devolveram zero ou resultado de outro objeto em 25/09/2026. Parou no degrau da placa"
       },
       "imagem": null,
       "fontes": {
@@ -1047,16 +1057,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Pastilhart%20AF1500%20pastilha%20de%20vidro%201%2C5%20bronze%20metalizado",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/3VkXAY6Kz5",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%201%2C5x1%2C5",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: medida"
       },
       "imagem": null,
       "fontes": {
@@ -1149,16 +1160,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20102%20pastilha%20de%20vidro%202%2C5",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/2LYZmPAmLw",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%20cristal%202%2C5",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: linha + medida"
       },
       "imagem": null,
       "fontes": {
@@ -1244,16 +1256,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaicof1",
         "gerado_em": null,
-        "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Glass%20Mosaic%20IC02%20pastilha%20de%20vidro%20ice%202%2C3",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada — medido em 13/09/2026 as 19h16Z e nao refeito aqui. A PALAVRA-CHAVE esta escrita; no dia da sessao e uma colagem e nenhuma linha de codigo muda. Ate la quem vai para a tela e a busca CRUA, que nao rende comissao e por isso nao sai como link patrocinado (25.2 e secao 7).",
-        "degrau": 4
+        "url_busca": "https://s.shopee.com.br/30oGZdCVFo",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=pastilha%20de%20vidro%202%2C3",
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "familia: medida"
       },
       "imagem": null,
       "fontes": {

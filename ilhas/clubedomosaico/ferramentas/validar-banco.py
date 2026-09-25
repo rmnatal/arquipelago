@@ -295,13 +295,38 @@ for nome in arquivos_material:
             erro("%s: sem NENHUMA saida de compra — sem ficha, sem busca encurtada e sem busca "
                  "crua. E o item que chegaria a frase 'link de loja em breve', proibida pela "
                  "secao 7 desde 14/09/2026, e defeito da 19.1 pela 25.2" % onde)
+        # DE AVISO PARA ERRO DURO EM 25/09/2026, e o comentario acima explica a
+        # condicao: "no dia em que o numero chegar a zero em todos os bancos,
+        # esta linha vira erro()". Chegou. Os quinze que faltavam foram gerados
+        # pela Open API (25.6), que nao depende de sessao de ninguem, e o motivo
+        # que mandava esperar o painel era de 13/09 — a 25.4-b.3 em acao.
+        #
+        # `ausente` continua diferente de `tentado-e-falhou` (25.2-b): registro
+        # com `motivo_sem_url_busca` escrito passa, porque ali a tentativa esta
+        # declarada. O que nao passa e o silencio.
         if af.get("url_busca_produto") and not af.get("url_busca"):
             piso_nao_rastreavel += 1
+            if not af.get("motivo_sem_url_busca"):
+                erro("%s: tem busca crua e nao tem busca ENCURTADA, e nao diz por que. "
+                     "Desde 16/09/2026 o encurtamento e uma chamada de API (25.6) e nao "
+                     "depende de sessao de ninguem; 25.2-b manda que a tentativa seja passo "
+                     "do nascimento do registro. Rode "
+                     "ferramentas/gerar-links-afiliado.py --escrever, ou escreva "
+                     "`motivo_sem_url_busca` com o que a API respondeu" % onde)
         # 25.4-b: o endereco CRU da busca, que e o que a ronda abre para conferir
         # se a palavra-chave ainda traz resultado. Do link encurtado nao se chega
         # la sem clicar, e clicar o proprio link de afiliado e o que a 25.4 proibe.
+        # TAMBEM VIROU ERRO DURO EM 25/09/2026, pelo mesmo motivo: os dez que
+        # faltavam tiveram o par REESCOLHIDO inteiro (25.4-b.1) e o numero foi a
+        # zero. Sem o endereco cru ninguem confere se a palavra-chave ainda traz
+        # resultado — e as treze chaves das pastilhas provaram, no mesmo dia, que
+        # chave escrita uma vez envelhece calada: devolviam zero oferta desde
+        # 13/09 e nada acusava.
         if af.get("url_busca") and not af.get("url_busca_produto"):
             sem_busca_crua += 1
+            erro("%s: tem busca ENCURTADA e nao tem o endereco CRU dela — 25.4-b. Do link "
+                 "encurtado nao se chega a busca sem clicar, e clicar o proprio link de "
+                 "afiliado e o que a 25.4 proibe: a palavra-chave fica sem quem a confira" % onde)
         if af.get("url") and not af.get("url_produto"):
             erro("%s: tem link de afiliado e nao tem url_produto — 25.4-b, link cuja saude "
                  "ninguem consegue conferir" % onde)

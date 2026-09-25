@@ -9,8 +9,8 @@
   "afiliado": {
     "itens_esperando_link": 2,
     "itens_sem_saida_de_compra": 0,
-    "itens_com_piso_nao_rastreavel": 2,
-    "observacao": "Cinco dos sete tem ficha de produto com link vivo e conferido em 13/09/2026. Os DOIS que entraram em 13/09 as 21h — Silicone Acetico Maxx e Cascola PL500 — continuam sem ficha e sem busca encurtada, e desde 14/09/2026 a busca CRUA dos dois VAI PARA A TELA: o leitor tem saida de compra, e o que falta e a comissao. A palavra-chave do Silicone Maxx estava ERRADA ate hoje — dizia 'silicone maxx tekbond aquario', com o nicho da Aquametria dentro, copiada de la; trocada por 'silicone acetico maxx tekbond'."
+    "itens_com_piso_nao_rastreavel": 0,
+    "observacao": "Os SETE tem piso encurtado desde 25/09/2026: a Open API (25.6) encurtou a busca dos dois que esperavam sessao de painel desde 13/09 — Silicone Acetico Maxx e Cascola PL500 — e REGEROU os cinco que ja tinham. Cinco tem ficha de produto, conferida viva em 13/09; as duas fichas de Shopee (silicone acetico construcao e cascorez) tambem foram regeradas, porque os links de 13/09 nasceram com os `sub_id` DESLOCADOS UMA CASA (`-clubedomosaico-F2--`, campo 1 vazio) e o painel nao conseguia dizer qual ilha vendeu. Os tres do Mercado Livre nao foram tocados: e outro programa, com `etiqueta_ml` propria. A palavra-chave dos cinco que tinham busca encurtada e sem endereco cru foi REESCOLHIDA inteira pela 25.4-b.1, nunca grampeada ao link velho, e cada uma foi medida contra a API antes de virar link."
   },
   "imagens": {
     "itens_sem_imagem": 5,
@@ -153,15 +153,18 @@
       ],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/8plkZpZ0xy",
+        "url": "https://s.shopee.com.br/AUuHVPFDqG",
         "url_produto": "https://shopee.com.br/product/727184858/23097607614",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/1qc0FNpEIK",
+        "gerado_em": "2026-09-25",
+        "url_busca": "https://s.shopee.com.br/6VO8k3UNg1",
         "degrau": 3,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20acetico%20construcao%20tekbond",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha + uso"
       },
       "imagem": {
         "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lx03nvf7r5bzf2",
@@ -248,9 +251,12 @@
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/1gIa34prdJ",
+        "url_busca": "https://s.shopee.com.br/6AlILRaFv9",
         "degrau": 2,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20neutro%20tekbond",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
       },
       "imagem": null,
       "fontes": {
@@ -320,15 +326,18 @@
       "venda": [],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/905Am8YNcz",
+        "url": "https://s.shopee.com.br/7ptWKVTuYa",
         "url_produto": "https://shopee.com.br/product/1270088146/19497747157",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/1Vz9qlqUyI",
+        "gerado_em": "2026-09-25",
+        "url_busca": "https://s.shopee.com.br/AKarJ6KOTI",
         "degrau": 1,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=cascorez%20extra%20cola%20branca%20pva%20cascola",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha + tipo"
       },
       "imagem": {
         "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-mdasbwbuzm0i23",
@@ -442,9 +451,12 @@
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/1LfjeSr8JH",
+        "url_busca": "https://s.shopee.com.br/7KxFjaa94c",
         "degrau": 2,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=argamassa%20cimentcola%20externo%20quartzolit",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "a chave com `ac-ii` devolvia ZERO em 25/09/2026: a Shopee anuncia AC-2/AC-3 e quase nunca escreve a numeracao romana. Um degrau abaixo na escada da 25.6 — marca + linha + uso"
       },
       "imagem": null,
       "fontes": {
@@ -524,9 +536,12 @@
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/1LfjeUPmyk",
+        "url_busca": "https://s.shopee.com.br/1VzSmrwQBH",
         "degrau": 2,
-        "conferido_em": "2026-09-13"
+        "conferido_em": "2026-09-13",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=durepoxi%20loctite",
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
       },
       "imagem": null,
       "fontes": {
@@ -601,17 +616,17 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": null,
-        "url_busca": "",
+        "url_busca": "https://s.shopee.com.br/3g3xMqny08",
         "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20acetico%20maxx%20tekbond",
-        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada: medido em 13/09/2026 as 19h16Z, ele serve casca de JavaScript com zero ocorrencia de 'custom_link' para quem chega sem sessao. A PALAVRA-CHAVE esta escrita aqui; no dia da sessao e uma colagem e nenhuma linha de codigo muda.",
         "degrau": 4,
-        "motivo_da_troca_da_palavra_chave": "A palavra-chave era 'silicone maxx tekbond AQUARIO', e aquario e o nicho da Aquametria: a chave veio copiada de la e mandaria quem faz mosaico para a prateleira de aquario. Trocada em 14/09/2026 por 'silicone acetico maxx tekbond'. O que esta errado e a chave, nunca o metodo: chave de busca se confere abrindo a busca crua, e e por isso que a 25.4-b manda guardar a URL crua."
+        "motivo_da_troca_da_palavra_chave": "A palavra-chave era 'silicone maxx tekbond AQUARIO', e aquario e o nicho da Aquametria: a chave veio copiada de la e mandaria quem faz mosaico para a prateleira de aquario. Trocada em 14/09/2026 por 'silicone acetico maxx tekbond'. O que esta errado e a chave, nunca o metodo: chave de busca se confere abrindo a busca crua, e e por isso que a 25.4-b manda guardar a URL crua.",
+        "url_busca_gerada_em": "2026-09-25"
       },
       "imagem": null,
       "fontes": {
@@ -707,16 +722,16 @@
         }
       ],
       "afiliado": {
-        "programa": null,
+        "programa": "shopee",
         "url": "",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": null,
-        "url_busca": "",
+        "url_busca": "https://s.shopee.com.br/70KPKybPmg",
         "url_busca_produto": "https://shopee.com.br/search?keyword=cascola%20adesivo%20de%20montagem%20pl500",
-        "motivo_sem_url_busca": "Mesmo motivo do Silicone Maxx, medido na mesma execucao: o encurtador da Shopee exige sessao logada. A palavra-chave esta escrita; falta o encurtamento.",
-        "degrau": 4
+        "degrau": 4,
+        "url_busca_gerada_em": "2026-09-25"
       },
       "imagem": null,
       "fontes": {
