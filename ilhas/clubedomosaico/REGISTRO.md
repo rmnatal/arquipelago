@@ -4428,3 +4428,91 @@ esta ilha não tem item da Fundação aberto que não dependa de dado que ainda 
 chegou. **O que depende do Raphael:** o acesso do `sentinela@` ao Search Console,
 e a proposta de 301 de `http` para `https` em todo caminho, escrita em
 `dados/indexacao.md` e **não aplicada**.
+
+25/09/2026 16:16Z — BLOCO ENTREGUE: a categoria ALICATE sai de zero, e o teto de corte da ilha e 5 mm
+
+- **O que este bloco e, e por que ele e este.** O despacho do Raphael de 24/09 esta fechado menos pelo
+  BLOCO A, que **espera 30/09 por ordem do proprio despacho** — trocar titulo antes do numero de 30/09
+  misturaria duas causas na mesma janela. Com isso a fila normal volta, e o que o `ESTADO.md` e o
+  `ARVORE.md` vinham apontando ha treze dias como "o que destrava mais coisa" e a **coleta das quatro
+  categorias vazias do vocabulario**. Comecei pela `alicate` por um motivo escrito, nao por gosto: o
+  proprio `esquema-banco.json` diz, desde 11/09, que "as categorias rejunte, pastilha e alicate podem ser
+  enchidas em qualquer execucao, **sem decisao nova** — o esquema ja diz que campo cada uma exige". As
+  outras tres nao tem essa linha.
+- **`dados/materiais-alicates.json`, seis SKUs.** Tres torqueses Cortag (mosaico com roldanas de metal
+  duro, azulejista corte reto, azulejista corte curvo) e tres cortadores manuais Vonder (VDEC 51, 75 e
+  90). `dados/cobertura.json` recontado pela propria `ferramentas/cobertura.py`: a lista
+  `categorias_do_vocabulario_sem_nenhum_item` **cai de quatro para tres** — restam `base`, `acabamento`
+  e `apoio`.
+- **O ACHADO NAO ERA DESTE BLOCO, E CRUZA COM O BANCO QUE JA EXISTIA.** O torques de mosaico da Cortag e
+  a **unica** ferramenta do arquivo cuja declaracao nomeia **vidro**, e ela para em **5 mm**. Os tres
+  cortadores de bancada declaram *"pisos ceramicos e porcelanatos ate 10 mm"* e **nao nomeiam vidro em
+  lugar nenhum** — nem na indicacao, nem no rodel de carboneto de tungstenio. Medido contra
+  `materiais-pastilhas.json`: das **13** pastilhas do banco, todas de vidro, **10** cabem no teto e
+  **tres nao** — `st5102` (6 mm), `af1500` (8 mm) e `ic02` (8 mm). **Para tres dos treze produtos cuja
+  quantidade a F1 ja calcula, o banco de ferramentas nao tem uma declaracao de fabricante que sustente o
+  corte.** Nao e falta de coleta: os quatro fabricantes alcancados publicam o teto deles. E faixa
+  DESCOBERTA no sentido da 14.3, escrita na secao **7b-bis** do `ARVORE.md`.
+- **A outra metade vale para as duas paginas de tecnica que ja estao no ar.** A frase do torques nomeia
+  **pastilha** de vidro e de ceramica e **nao nomeia** caco de azulejo, caco de louca, caco de espelho
+  nem pedra — e caco de louca e o material do **picassiete** e caco de azulejo o do **trencadis**. Pelo
+  principio dos tres estados, para esses quatro o estado e `nao_declarado`: nem recomendar, nem proibir,
+  e dizer que ninguem declarou.
+- **A SECAO 8 PEGOU UMA CONSULTA MINHA CONTAMINADA, e ela ficou registrada no dado em vez de apagada.**
+  Uma passada escrita com o prefixo `68.51` devolveu `68.51.075.000` e `68.51.090.000` — exatamente o que
+  ela plantou. A passada limpa seguinte, sem numero nenhum, **nao devolveu referencia**. Os dois codigos
+  ficaram **NULL** com o motivo escrito no registro. O do VDEC 51 (`68.51.050.000`) ficou porque veio de
+  consulta que nao o carregava, e depois foi corroborado por canal independente: o titulo de um anuncio
+  lido pela Open API, *"... VDEC 51, VONDER 6851050000"*. Duas passadas por SKU, escritas de forma
+  diferente, pedindo sempre os ROTULOS da ficha e nunca um numero.
+- **O PORTAO DESMENTIU A MINHA SUPOSICAO, e esse e o melhor pedaco da execucao.** O arquivo nasceu
+  `publicar: false` com o motivo "option que nenhuma pagina le e caminho morto". Quem desmentiu foi o
+  `teste-casca.php`: *"o cartao 'Alicates e corte' mostra o que o banco tem — tela 0 / banco 6"*. O
+  cartao **G-ALICATES existe no Guia desde que a casca nasceu**, e o mapa `G-ALICATES =>
+  materiais-alicates` ja estava escrito **dentro do proprio teste**, esperando o arquivo. O leitor
+  existia; a suposicao e que estava errada. Casca **1.14.0** liga os dois.
+- **E de passagem, a frase de prova do Guia ia publicar uma soma impossivel.** Ela anunciava o total do
+  banco e enumerava **so tres** categorias: com a quarta entrando, teria ido ao ar *"o banco tem 31
+  itens, sendo 7 colas, 5 rejuntes e 13 pastilhas"*. E a familia do *"hoje 10 dos 5 itens esperam link"*
+  que esta ilha ja pagou uma vez. A frase passou a nomear a quarta, e a tabela da metodologia ganhou a
+  linha.
+- **E O SEGUNDO PORTAO REPROVOU A MINHA REDACAO, no ar.** `conferir-no-ar.py`: *"toda categoria com
+  arquivo de banco e NOMEADA na frase — faltou: alicate"*. Eu tinha escrito "6 ferramentas de corte":
+  total certo, parcelas somando certo, e **errado assim mesmo**, porque o cartao se chama "Alicates e
+  corte" e numero que nao usa a palavra do cartao e numero que o leitor nao liga a lugar nenhum. Casca
+  **1.14.1**: "6 alicates e cortadores".
+- **TRAVA NOVA NO `gerar-links-afiliado.py`, escrita pela execucao que caiu nela.** Rodar `--escrever`
+  para gravar **seis** registros novos regerou os **vinte e cinco** que ja estavam certos: URL encurtada
+  nova para a mesma busca, sem um unico ganho. O custo so aparece depois — o banco passa a conhecer um
+  encurtador que a pagina no ar ainda nao serve, e o `conferir-no-ar.py` reprova exatamente isso, entao a
+  ilha ficaria vermelha ate o Sync publicar o banco novo, por causa de uma passada que nao pediu nada
+  disso. Foi desfeito com `git checkout --`, **e mao nao e portao**. Agora registro cuja busca crua ja e
+  a da tabela e cujo encurtador ja existe e **pulado**; `--regerar-tudo` continua existindo para o caso
+  em que a chave mudou, que e o das treze pastilhas.
+- **As seis chaves foram medidas na API ANTES de qualquer link nascer** — a licao das treze pastilhas, de
+  25/09 de manha, aplicada ao contrario do que a causou. As **31** chaves do banco devolvem oferta, e os
+  titulos batem com o produto. Uma desceu um degrau na hora: `torques azulejista corte curvo cortag`
+  devolveu **ZERO** e desceu para a FAMILIA, com o degrau escrito em `motivo_da_chave`.
+- **Tres pendencias nomeadas**, e a primeira e a que mais importa: nao da para saber, desta nuvem, se o
+  torques de corte curvo e o de mosaico com roldanas sao **dois produtos ou duas entradas de catalogo do
+  mesmo** — as URLs sao distintas mas a frase de 5 mm e a mesma palavra por palavra, e a busca por SKU do
+  curvo devolve zero oferta enquanto a do outro devolve tres. O registro do curvo nasceu sem **nenhuma**
+  propriedade tecnica, entao se a resposta for "e o mesmo", ele vira `descartado` com motivo e a
+  categoria cai de 6 para 5 **sem perder um so campo verificado**.
+- **O que este bloco NAO destravou:** o **4c continua fechado**, e por um motivo diferente do de 12/09.
+  Nao e mais "a categoria alicate nao tem um unico item"; e a **16.5** — `/materiais/alicates/` precisa
+  de 3 filhas de nivel 3 e nenhuma filha de alicate existe. E a contagem esconde uma distincao: dos tres
+  registros de `tipo: torques`, **um so** carrega declaracao tecnica propria, entao por elegibilidade
+  `cortador_de_azulejo` esta em 3 e `torques` esta em **1**.
+- **Nenhuma URL nova.** As 17 continuam 17, e a semana da 21.4 continua onde estava.
+- MEDIDO: `teste-casca` **555** e 0 falha (eram **4** quando o arquivo entrou sem leitor), `teste-f1` 196,
+  `teste-f2` 114, `teste-loja` 178, `teste-leads` 211, `teste-tecnicas` 123, `teste-atelie` e
+  `teste-prestacao-rejunte` aprovados, todos 0 falha; `validar-banco` **31 materiais**, 0 sem saida de
+  compra, 0 piso nao rastreavel, 0 busca sem endereco cru; `cobertura` recontada; `mutacoes-f1` 46/46.
+  Sync na revisao **41** e depois **42**, `conferir-no-ar` **488 afirmacoes**.
+- Proximo passo: **as tres categorias que sobraram** (`base`, `acabamento`, `apoio`) — e elas **nao** tem
+  a linha do esquema que a `alicate` tinha, entao cada uma comeca por decidir que campo exige. A de menor
+  atrito e `acabamento` (verniz, impermeabilizante, selador), porque e quimico de fabricante com ficha
+  tecnica publicada, que e o mesmo terreno das colas e dos rejuntes; `base` e `apoio` sao genericas e
+  provavelmente sem fabricante que declare. E o **BLOCO A espera 30/09**, por ordem do despacho.
+

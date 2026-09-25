@@ -5,107 +5,72 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-25T14:10Z
-executando_desde: 2026-09-25T16:43Z
+ultima_execucao: 2026-09-25T16:16Z
+executando_desde: null
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
-  BLOCOS B E C DO DESPACHO DO RAPHAEL DE 24/09 CUMPRIDOS E CONFERIDOS NO AR. Falta so o BLOCO A, que
-  ESPERA 30/09 por ordem do proprio despacho. Casca 1.13.0, f1 1.3.1, f2 1.5.1, leads 1.1.1, manifest 39,
-  /status na 39.
-  BLOCO B — O PEDIDO ERA UMA PAGINA E O DEFEITO ERAM QUATRO. /author/mosaico_gestor/ respondia 200 sem
-  etiqueta nenhuma, fora do sitemap, sem link de nenhuma pagina daqui — e o Google o indexou e o serviu na
-  POSICAO 1,0 na janela 15->21/09, disputando rastreamento com 15 paginas NAO indexadas desta propriedade.
-  Antes de escrever codigo, a medicao achou coisa pior JA NO AR: /materiais/como-sabemos/ servia DUAS
-  <meta name="robots">, a do nucleo e a da casca, injetada num wp_head paralelo — que e exatamente a
-  armadilha que o BLOCO B nomeia como licao da Aquametria. E nao eram duas: a F1, a F2 e o Leads faziam o
-  mesmo, e o estado com parametro de /materiais/qual-cola-usar-no-mosaico/ — a MELHOR pagina desta ilha,
-  17 impressoes na posicao 7,8 — servia duas tambem.
-  POR QUE NENHUM PORTAO VIA: todos mediam SE a frase noindex aparecia; NENHUM media QUANTAS etiquetas
-  apareciam. O idioma de contar existia nesta ilha desde que o teste-f2 nasceu, mas so para o canonical.
-  E a ironia estava escrita no proprio F2, tres linhas acima do echo dele: ele explica por que NAO imprime
-  o canonical ("serviria DOIS canonicals (...) sujo numa pagina cujo proposito inteiro e ter UM endereco no
-  indice") e fazia exatamente isso com a etiqueta de robo.
-  O CONSERTO E O CAMINHO QUE O BLOCO MANDA: a casca declara pelo filtro wp_robots em vez de imprimir, e
-  abriu cdm_fora_do_indice para quem quiser sair do indice DECLARAR a condicao. Quem imprime e a casca, uma
-  vez. Tres contextos saem: as paginas declaradas, o arquivo de autor e a BUSCA INTERNA (/?s=), que a
-  Sentinela mediu em 200 sem etiqueta nas tres ilhas. follow fica nos tres.
-  CINCO REGUAS MEDIAM A ASPA DE QUEM ESCREVEU, NAO A DIRETIVA — o wp_robots() do nucleo usa aspas SIMPLES.
-  Tres reprovaram codigo CERTO no dia do conserto e DUAS passavam A VAZIO, inclusive a que teria pegado as
-  duas etiquetas. As cinco passaram a medir a diretiva e a CONTAR. A bancada passou a emular wp_robots().
-  BLOCO C — O RASTREADOR NUNCA RECEBE REDIRECIONAMENTO. ferramentas/varrer-canonicas.py (nova) leu 71 URLs:
-  71 esperado, 0 defeito, nenhuma correcao aplicada como o bloco manda. O achado quase nao foi feito: a
-  primeira conferencia leu 200 em www.clubedomosaico.com.br/loja/ e a varredura, que gruda ?v=<agora>, leu
-  301 na mesma URL no mesmo minuto. Sao DOIS RESPONDEDORES — com quebra de cache a pergunta chega ao
-  WordPress, que redireciona certo; sem ela responde o CACHE DE PAGINA, que nao sabe redirecionar. E o
-  Googlebot nao manda quebra de cache. Em 36 das 71 as duas leituras discordam.
-  ISSO EXPLICA UM MOTIVO DO E-MAIL DE 23/09 E NAO EXPLICA O OUTRO: "Pagina alternativa com tag canonica
-  adequada" e comportamento esperado, como o despacho ja dizia; "Pagina com redirecionamento" NAO e
-  explicado pelo que a ilha serve hoje, e a fonte provavel e a vida anterior do dominio — lista que so
-  existe dentro do Search Console.
-  O QUE ISSO CUSTA A QUEM MEDIR ESTA ILHA, e e maior que o BLOCO C: conferir-no-ar.py gruda ?v= em toda URL
-  e esta CERTO em fazer isso (secao 4), mas por isso NUNCA VE O QUE O VISITANTE VE. Cache servindo pagina
-  velha para gente de verdade passa por baixo das 488 afirmacoes dele sem encostar em nenhuma.
-  DE PASSAGEM, UMA BANCADA VERMELHA QUE NAO ERA DESTE DESPACHO E TRAVAVA DUAS BATERIAS: teste-f1 (2) e
-  teste-f2 (1) estavam vermelhos no main desde as 10h40Z desta mesma data (confirmado em 82ced82), e
-  mutacoes-f1 e mutacoes-f2 se RECUSAVAM A RODAR por causa disso. A causa era a propria melhora daquela
-  execucao — os treze itens de pastilha subiram do degrau 4 para o 3 — e as reguas cobravam com numero fixo
-  que estivessem no 4, tres linhas abaixo de um comentario que ja avisava que "uma regua presa a isso
-  ficaria verde para sempre". Consertado derivando o degrau do BANCO e produzindo o degrau 4 num mundo novo
-  (so_crua=1) em vez de espera-lo. Os dois verdes, as duas baterias rodando.
-  MEDIDO: teste-casca 555, teste-f1 196, teste-f2 114, atelie, leads, loja, tecnicas e prestacao-rejunte
-  todos 0 falha; mutacoes-atelie 48/48, mutacoes-leads 48/48 e 0 INERTES (era 1), voz-e-cabeca 24/24,
-  arvore 21/21, f1 46/46 e f2 50/50 (as duas ultimas voltaram a RODAR nesta execucao); conferir-no-ar 488
-  afirmacoes 0 falha (eram 459). Tres mutacoes ficaram inertes
-  no conserto e as tres foram retargetadas — mutacao inerte e o pior dos dois estados, porque a bateria
-  continua verde dizendo que mediu.
+  A CATEGORIA ALICATE SAI DE ZERO, E O TETO DE CORTE DESTA ILHA E 5 MM — NAO 10. dados/materiais-alicates.json
+  nasceu com SEIS SKUs (tres torqueses Cortag, tres cortadores manuais Vonder VDEC 51/75/90), e a lista
+  categorias_do_vocabulario_sem_nenhum_item de dados/cobertura.json, recontada pela propria cobertura.py, CAI DE
+  QUATRO PARA TRES: restam base, acabamento e apoio. Casca 1.14.1, manifest 42, /status na 42, conferir-no-ar 488
+  afirmacoes e 0 falha no ar.
+  POR QUE ESTA CATEGORIA E NAO OUTRA: o esquema-banco diz desde 11/09 que 'rejunte, pastilha e alicate podem ser
+  enchidas em qualquer execucao, SEM DECISAO NOVA — o esquema ja diz que campo cada uma exige'. As outras tres nao
+  tem essa linha, e cada uma delas comeca por decidir que campo exige.
+  O ACHADO NAO ERA DESTE BLOCO E CRUZA COM O BANCO QUE JA EXISTIA: o torques de mosaico da Cortag e a UNICA
+  ferramenta do arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm. Os tres cortadores de bancada declaram
+  'pisos ceramicos e porcelanatos ate 10 mm' e NAO nomeiam vidro em lugar nenhum — nem na indicacao, nem no rodel
+  de carboneto de tungstenio. Medido contra materiais-pastilhas.json: das 13 pastilhas do banco, todas de vidro,
+  10 cabem no teto e TRES nao — st5102 (6 mm), af1500 (8 mm) e ic02 (8 mm). Para TRES dos TREZE produtos cuja
+  quantidade a F1 ja calcula, o banco de ferramentas nao tem uma declaracao de fabricante que sustente o corte.
+  Nao e falta de coleta: os quatro fabricantes alcancados publicam o teto deles. E faixa DESCOBERTA da 14.3, e
+  esta escrita na secao 7b-bis do ARVORE.md.
+  A OUTRA METADE VALE PARA AS DUAS PAGINAS DE TECNICA NO AR: a frase do torques nomeia PASTILHA de vidro e de
+  ceramica e NAO nomeia caco de azulejo, caco de louca, caco de espelho nem pedra — e caco de louca e o material
+  do picassiete e caco de azulejo o do trencadis. Pelos tres estados, para esses quatro o estado e nao_declarado.
+  A SECAO 8 PEGOU UMA CONSULTA CONTAMINADA E ELA FICOU REGISTRADA NO DADO, nao apagada: a passada escrita com o
+  prefixo '68.51' devolveu 68.51.075.000 e 68.51.090.000 — exatamente o que plantou. A passada limpa seguinte nao
+  devolveu referencia nenhuma, e os dois codigos ficaram NULL com o motivo escrito. O do VDEC 51 ficou porque veio
+  de consulta que nao o carregava, e foi corroborado por canal independente (titulo de anuncio lido pela Open API:
+  '... VDEC 51, VONDER 6851050000').
+  DOIS PORTOES DESMENTIRAM A EXECUCAO, E ESSE E O MELHOR PEDACO. (1) O arquivo nasceu publicar:false com o motivo
+  'option que nenhuma pagina le e caminho morto'. O teste-casca reprovou: "o cartao 'Alicates e corte' mostra o
+  que o banco tem — tela 0 / banco 6". O cartao G-ALICATES existe no Guia desde que a casca nasceu e o mapa
+  G-ALICATES => materiais-alicates ja estava dentro do proprio teste, esperando o arquivo. O leitor existia; a
+  suposicao e que estava errada. (2) Depois do Sync, conferir-no-ar reprovou NO AR: 'toda categoria com arquivo de
+  banco e NOMEADA na frase — faltou: alicate'. Eu tinha escrito '6 ferramentas de corte': total certo, parcelas
+  somando certo, e errado assim mesmo, porque o cartao se chama 'Alicates e corte'. Casca 1.14.1: '6 alicates e
+  cortadores'.
+  DE PASSAGEM, A FRASE DE PROVA DO GUIA IA PUBLICAR UMA SOMA IMPOSSIVEL: ela anunciava o total do banco e
+  enumerava so TRES categorias. Com a quarta entrando teria ido ao ar 'o banco tem 31 itens, sendo 7 colas, 5
+  rejuntes e 13 pastilhas' — a familia do 'hoje 10 dos 5 itens esperam link' que esta ilha ja pagou uma vez.
+  TRAVA NOVA NO gerar-links-afiliado.py, ESCRITA PELA EXECUCAO QUE CAIU NELA: rodar --escrever para gravar SEIS
+  registros novos regerou os VINTE E CINCO que ja estavam certos. O custo so aparece depois — o banco passaria a
+  conhecer um encurtador que a pagina no ar ainda nao serve, e o conferir-no-ar reprova exatamente isso. Foi
+  desfeito com git checkout, e MAO NAO E PORTAO. Agora registro com a busca crua da tabela e encurtador ja gravado
+  e pulado; --regerar-tudo continua para o caso em que a chave mudou, que e o das treze pastilhas.
+  AS SEIS CHAVES FORAM MEDIDAS NA API ANTES DE QUALQUER LINK NASCER — a licao das treze pastilhas aplicada ao
+  contrario do que a causou. As 31 chaves do banco devolvem oferta. Uma desceu um degrau na hora: 'torques
+  azulejista corte curvo cortag' devolveu ZERO e desceu para a FAMILIA.
+  O QUE ISTO NAO DESTRAVOU: o 4c continua FECHADO, e por motivo diferente do de 12/09. Nao e mais 'a categoria
+  alicate nao tem um unico item'; e a 16.5 — /materiais/alicates/ precisa de 3 filhas de nivel 3 e nenhuma filha
+  de alicate existe. E a contagem esconde uma distincao: dos tres registros de tipo torques, UM SO carrega
+  declaracao tecnica propria (os outros dois so tinham frase de LINHA, e atribuir a linha ao SKU e a parafrase que
+  a secao 8 proibe), entao por ELEGIBILIDADE cortador_de_azulejo esta em 3 e torques esta em 1.
+  NENHUMA URL NOVA: as 17 continuam 17 e a semana da 21.4 continua onde estava.
+  MEDIDO: teste-casca 555 (eram 4 falhas quando o arquivo entrou sem leitor), f1 196, f2 114, loja 178, leads 211,
+  tecnicas 123, atelie e prestacao-rejunte aprovados, todos 0 falha; validar-banco 31 materiais, 0 sem saida de
+  compra, 0 piso nao rastreavel, 0 busca sem endereco cru; validar-pastilhas 0 item com falha; mutacoes-f1 46/46;
+  conferir-no-ar 488 afirmacoes e 0 falha.
   O QUE DEPENDE DO RAPHAEL, e nada disto e da Fundacao: (1) dar acesso de LEITURA a conta sentinela@ em
   sc-domain:clubedomosaico.com.br, que e o que destrava a medicao desta ilha; (2) autorizar, ou nao, a
   proposta de 301 de http para https em TODO caminho — hoje so a home redireciona —, escrita em
   dados/indexacao.md e NAO APLICADA, porque o bloco C proibe.
-
-ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
-bloco_atual: |
-  BLOCO 0 DO DESPACHO DO RAPHAEL DE 24/09 CUMPRIDO E CONFERIDO NO AR: os 31 links de Shopee desta ilha
-  renasceram pela Open API com o sub_id na casa certa. O defeito era que o unico clique da janela 16->22/09
-  chegou ao Relatorio como '-clubedomosaico-F2--' — cinco campos, o PRIMEIRO VAZIO, tudo deslocado uma casa.
-  A secao 7 manda campo 1 = nome da ilha e campo 2 = codigo da ferramenta, e sem o campo 1 o painel nao
-  responde qual ilha vendeu.
-  POR QUE ONZE DIAS NAO BASTARAM PARA ALGUEM VER: o BANCO estava certo o tempo todo — sub_id_1 e sub_id_2
-  gravados nos 25 registros desde 13/09, com portao proprio no validar-banco. O que ninguem media era o LINK,
-  e os 16 links nasceram no painel offer/custom_link com os cinco campos preenchidos A MAO. Mao humana em
-  cinco caixas de texto nao tem portao; chamada de API tem. E a secao 4 outra vez: o banco e o resumo, o link
-  e o fato.
-  O QUE SAIU: 6 fichas regeradas do url_produto conhecido (o par continua demonstravel, 25.4-b.1), 10 buscas
-  regeradas com a palavra-chave REESCOLHIDA inteira e 15 buscas NOVAS, que esperavam sessao de painel desde
-  13/09 por um motivo que deixou de ser verdade em 16/09 — 25.4-b.3, motivo velho mandando a execucao
-  seguinte nem tentar. Os 4 links do Mercado Livre nao foram tocados: outro programa.
-  ACHADO NOVO, que nao estava em bloco nenhum: as TREZE chaves das pastilhas devolviam ZERO oferta desde
-  13/09. 'Glass Mosaic <codigo> pastilha de vidro <medida>' — a marca nao e anunciada por nome na Shopee e
-  codigo de catalogo nao aparece em titulo de anuncio. O piso levava a uma BUSCA VAZIA, o beco sem saida que
-  o degrau 4 da 25.1 existe para impedir. A escada da 25.6 desceu ate a FAMILIA (medida e acabamento), com o
-  degrau escrito em motivo_da_chave. Codigo sozinho esta barrado pela 25.7 (K2501 devolve grade de aspirador
-  Karcher) e 'pastilha de vidro' pelado tambem (devolve pastilha de FREIO). As 25 chaves do banco devolvem
-  oferta hoje, medido antes de qualquer link nascer.
-  OS PORTOES QUE IMPEDEM A VOLTA: (1) ferramentas/conferir-sub-id.py, na raiz, gera link de BANCADA e le a
-  casa no utm_content do 301 sem seguir o redirecionamento — 'bancada-t0---'. E de bancada de proposito: o
-  salto do encurtador e onde a Shopee conta o clique, e conferir os 31 links da ilha gravaria 31 autocliques
-  com a etiqueta dela justo na semana em que a leitura semanal procura o PRIMEIRO clique organico. (2)
-  conferir-no-ar.py ganhou a secao que varre o sitemap e reprova encurtador servido que o banco nao conhece,
-  mais a afirmacao de que ele encontra algum — portao que nao encontra nada aprova por vacuidade. (3)
-  validar-banco.py: 'piso nao rastreavel' e 'busca sem endereco cru' viraram ERRO DURO, como o comentario do
-  arquivo prometia para o dia em que chegassem a zero; as duas mutacoes reprovaram. (4) A regra subiu ao
-  contrato como secao 25.8.
-  MEDIDO NO AR: Sync revisao 37, conferir-no-ar 459 afirmacoes e 0 falha, 14 encurtadores servidos nas 17
-  URLs do sitemap e 0 desconhecido, piso nao rastreavel de 15 para 0, busca sem endereco cru de 10 para 0.
-  O QUE FALTA DO DESPACHO, pela 18.3: os BLOCOS A, B e C, reescritos no PROMPT.md. O BLOCO 0 dizia com todas
-  as letras que nao divide passada com nada. Nenhuma pagina nova, nenhuma URL nova — 17 continuam sendo 17, e
-  a semana da 21.4 continua em 2 de 3 levas.
-  O QUE AINDA NAO ESTA PROVADO: que o Relatorio de cliques mostre 'clubedomosaico-f2---'. Isso exige clique
-  DE GENTE, e conferir com clique nosso apagaria o primeiro clique organico. A leitura de 30/09 le essa linha.
-  PROXIMO PASSO: o BLOCO B — /author/mosaico_gestor/ indexada e com impressao na posicao 1,0. Caminho e o
-  FILTRO wp_robots no snippet da casca, nunca uma segunda meta em paralelo, mais a saida do sitemap. E o
-  unico bloco que nao espera numero que ainda nao chegou.
-  PROXIMO PASSO: o eixo das tecnicas ficou SEM PROXIMA PAGINA — as duas que o portao autoriza nasceram. As tres em zero (direto, indireto, bizantino) sao trabalho de FONTE e nao de texto. O que destrava mais coisa continua sendo a coleta das quatro categorias vazias do vocabulario (alicate, base, acabamento, apoio), que abre o bloco 4c.
+  PROXIMO PASSO: as TRES categorias que sobraram (base, acabamento, apoio), e elas NAO tem a linha do esquema que
+  a alicate tinha — cada uma comeca por decidir que campo exige. A de menor atrito e acabamento (verniz,
+  impermeabilizante, selador), porque e quimico de fabricante com ficha tecnica publicada, o mesmo terreno das
+  colas e dos rejuntes; base e apoio sao genericas e provavelmente sem fabricante que declare. E o BLOCO A do
+  despacho de 24/09 ESPERA 30/09, por ordem do proprio despacho.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO
