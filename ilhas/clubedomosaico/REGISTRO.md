@@ -4149,3 +4149,120 @@ da Shopee gravado como `-clubedomosaico-F2--`, deslocado uma casa, com
 `sub_id_1` vazio. É o primeiro da fila, não divide passada com nada, e agora tem
 uma ilha de pé embaixo dele. Nenhuma página nova nesta passada; a semana da 21.4
 continua em **2 de 3 levas**.
+
+---
+
+## 2026-09-25, 10h16Z → 10h45Z — BLOCO 0 DO DESPACHO DO RAPHAEL DE 24/09: OS 31 LINKS DE SHOPEE RENASCEM COM O `sub_id` NA CASA CERTA
+
+**Ilha em foco** (`foco.md`, desde 24/09). Reserva às 10h16Z, commit `105746f`. Rede conferida antes de
+trabalhar (20.2): home, `/materiais/`, `/wp-sitemap.xml`, `/como-fazer/`, `/loja/` e `/sobre/` em 200 — a
+porta de entrada consertada ontem continua de pé, que é o que `dados/consertos.md` mandava reconferir.
+
+### O DEFEITO, E POR QUE ONZE DIAS NÃO BASTARAM PARA ALGUÉM VER
+
+O único clique desta ilha na janela 16→22/09 chegou ao Relatório da Shopee como `-clubedomosaico-F2--`:
+cinco campos, o **primeiro vazio**, tudo deslocado uma casa. A seção 7 manda `sub_id_1` = nome da ilha e
+`sub_id_2` = código da ferramenta, e sem o campo 1 o painel não responde *"qual ilha vendeu"*.
+
+**O banco estava certo o tempo todo.** `sub_id_1: "clubedomosaico"` e `sub_id_2: "F1"/"F2"` estavam
+gravados em todos os 25 registros desde 13/09, e o `validar-banco.py` cobrava isso num portão próprio.
+O que ninguém media era o **link** — e os 16 links nasceram no painel `offer/custom_link`, com os cinco
+campos preenchidos **à mão**. **Mão humana em cinco caixas de texto não tem portão; chamada de API tem.**
+É a seção 4 de novo, com outro nome: o banco é o resumo e o link é o fato.
+
+### O QUE FOI FEITO — 31 LINKS, PELA OPEN API
+
+| o quê | quantos | de onde saiu |
+|---|---|---|
+| ficha de produto regerada | 6 | do `url_produto` já gravado, que é da Shopee — os dois campos vêm da mesma URL crua conhecida, e o par continua demonstrável (25.4-b.1) |
+| busca encurtada regerada | 10 | palavra-chave **reescolhida inteira**, nunca grampeada ao link velho |
+| busca encurtada NOVA | 15 | esperavam sessão do painel desde 13/09 |
+| Mercado Livre | 4 | **não tocados** — outro programa, com `etiqueta_ml` própria e reCAPTCHA no gerador (25.6) |
+
+**Os 15 que esperavam sessão são a 25.4-b.3 em ação.** O `motivo_sem_url_busca` deles dizia, desde 13/09,
+que o encurtamento *"exige a sessão logada"*. Era verdade naquele dia e deixou de ser **três dias depois**,
+quando a Open API entrou — e, enquanto esteve escrito, mandava toda execução seguinte **nem tentar**.
+
+**Os 10 que tinham link e não tinham busca crua são a 25.4-b.1.** A tentação era buscar uma palavra-chave
+nova e grampeá-la ao lado do link antigo: o campo ficaria preenchido e a dívida iria a zero. Seria fabricar
+a aparência de um par que ninguém mediu. Os dois campos saíram da mesma passada, e o link velho foi
+descartado, não remendado.
+
+### O ACHADO QUE NÃO ESTAVA EM NENHUM BLOCO: AS TREZE CHAVES DAS PASTILHAS DEVOLVIAM ZERO
+
+Conferindo as palavras-chave contra a API **antes** de gerar link — que é o que a 25.4-b manda, porque
+*"busca não esgota, mas muda de nome"* — as **treze** das pastilhas devolveram **zero oferta**:
+`Glass Mosaic <código> pastilha de vidro <medida>`. A marca não é anunciada por nome na Shopee e código de
+catálogo não aparece em título de anúncio. **O piso levava a uma busca vazia**, que é exatamente o beco sem
+saída que o degrau 4 da 25.1 existe para impedir — e estava assim desde 13/09, com o botão na tela, sem
+que nada acusasse.
+
+A descida da escada de palavra-chave da 25.6 parou na **família** (medida e acabamento), com o degrau
+escrito em `motivo_da_chave` de cada registro: `pastilha de vidro cristal 2,5`, `pastilha de vidro 3x3`,
+`pastilha de vidro 2x2`, `pastilha de vidro 2,3`, `pastilha de vidro 1,5x1,5` e, para o strip de 1,2 cm,
+`pastilha de vidro placa 30x30`. **Dois degraus ficaram barrados e o motivo é da 25.7:** código sozinho
+(`K2501` devolve grade traseira de aspirador **Karcher**) e `pastilha de vidro` pelado (devolve pastilha de
+**freio**). O que sustenta a busca é a **medida** junto do substantivo.
+
+**O que se perde na descida, dito sem maquiar:** a busca deixou de prometer *aquele código* e passou a
+prometer a família. **É o que um piso é** — "ver outras ofertas", nunca "este produto". Nenhuma ficha,
+nenhum preço e nenhuma foto saiu daí; casamento de item continua proibido pela 25.7.
+
+Uma chave das dez reescritas também caiu: `argamassa cimentcola externo ac-ii quartzolit` devolveu zero —
+a Shopee anuncia **AC-2/AC-3** e quase nunca escreve a numeração romana. Virou
+`argamassa cimentcola externo quartzolit`. **As 25 palavras-chave do banco devolvem oferta hoje**, medido.
+
+### OS PORTÕES, QUE SÃO O QUE IMPEDE ISSO DE VOLTAR
+
+1. **`ferramentas/conferir-sub-id.py`** (raiz do repositório, vale para todas as ilhas). Gera um link de
+   **bancada** e lê o `utm_content` do **301** do encurtador, **sem seguir o redirecionamento**:
+   `bancada-t0---`. Esse é, letra por letra, o formato do Relatório de cliques.
+   **E o link é de bancada de propósito:** o salto do encurtador é onde a Shopee conta o clique. Conferir
+   os 31 links da ilha por esse caminho gravaria 31 cliques com a etiqueta `clubedomosaico`, justo na
+   semana em que a leitura semanal procura o **primeiro clique orgânico** (proposta 3 de 23/09). O
+   mecanismo se prova **uma vez**; os links da ilha saem certos **por construção**, pela mesma função.
+2. **`conferir-no-ar.py` ganhou a seção "O link de afiliado servido"**: varre as URLs do sitemap e reprova
+   se aparecer encurtador de Shopee que o banco não conhece — mais uma afirmação de que ela **encontra
+   algum**, senão o portão aprovaria por vacuidade. Pega link velho sobrevivendo na tela depois de uma
+   regeração, que é defeito **mudo**: o link antigo continua vivo na Shopee, nada dá 404, e a ilha só perde
+   a atribuição.
+3. **`validar-banco.py`: `piso não rastreável` e `busca sem endereço cru` deixaram de ser aviso e viraram
+   ERRO DURO.** O próprio comentário do arquivo prometia isso *"no dia em que o número chegar a zero"*.
+   Chegou. `ausente` continua diferente de `tentado-e-falhou` (25.2-b): registro com `motivo_sem_url_busca`
+   escrito passa; o que não passa é o silêncio. **As duas mutações reprovaram.**
+4. A regra subiu ao contrato como **seção 25.8**.
+
+**A régua de 14/09 que media a dívida teve de mudar de objeto, e ficou com a história junto.** A afirmação
+`[F1 2 cm]` contava **botões de busca CRUA**, um por elegível — e hoje reprovava, porque a vitrine passou a
+servir o botão **encurtado** com `rel="sponsored"`. É a terceira vez que essa linha troca de objeto contando
+o mesmo número: etiqueta "em breve" (até 14/09), busca crua (14/09→25/09), busca encurtada (desde hoje).
+Ela agora cobra as duas metades — a encurtada apareceu **e** a crua sumiu — porque enquanto as duas puderem
+conviver na mesma tela, um item sem piso rastreável passa escondido atrás do vizinho que tem.
+
+### O QUE FOI MEDIDO NO AR (18.4)
+
+- Sync forçado: **revisão 37**, 12 aplicados.
+- `conferir-no-ar.py`: **459 afirmações, 0 falha**.
+- Varredura das **17 URLs do sitemap** mais dois estados de ferramenta: **14 encurtadores servidos, 0
+  desconhecido** — nenhum link deslocado sobrou na tela.
+- `validar-banco.py`: 25 materiais, **itens SEM SAÍDA de compra 0**, **piso NÃO rastreável 0** (era 15),
+  **busca sem endereço cru 0** (era 10).
+- `validar-pastilhas.py` 189 afirmações · `mutacoes-pastilhas.py` 14/14 · `mutacoes-rejunte.py` 16/16.
+
+### DE PASSAGEM
+
+`dados/pecas.json` carregava `gerado_em`, trazido do endpoint pela execução de ontem: era o **único erro
+vermelho** do `validar-banco.py`, e portão vermelho que ninguém fecha é portão que se aprende a ignorar.
+Removido — o carimbo de hora fica fora da cópia pela 24.2, senão toda passada da ronda vira commit.
+
+### O QUE **NÃO** FOI FEITO, E POR QUÊ
+
+Nenhuma página nova, nenhuma URL nova: continuam **17**, e a semana da 21.4 continua em 2 de 3 levas.
+Os **BLOCOS A, B e C** do despacho de 24/09 não foram tocados e estão reescritos no `PROMPT.md` pela 18.3 —
+o BLOCO 0 dizia, com todas as letras, que **não divide passada com nada**. O BLOCO A depende do número de
+30/09; o BLOCO B (filtro `wp_robots` para `/author/`) é o único que não espera dado nenhum.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** o **BLOCO B** — `/author/mosaico_gestor/` está indexada e tomou impressão na
+posição 1,0. O caminho é o **filtro** `wp_robots` no snippet da casca, nunca uma segunda meta em paralelo
+(lição trazida da Aquametria, escrita no próprio bloco), mais a saída do sitemap. Não depende de nenhum
+número que ainda não chegou.

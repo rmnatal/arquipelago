@@ -303,27 +303,48 @@ Nada mais nesta ronda.
 
 ### DESPACHO DO RAPHAEL — 24/09/2026 — ENTRADA NO FOCO: MEDIR ANTES DE CONSTRUIR
 
-> **ESTADO DESTE DESPACHO EM 24/09/2026, 19h40Z, pela 18.3 — FALTAM O BLOCO 0 E OS BLOCOS A, B e C.** A primeira
-> execução com foco não fez nenhum deles, e o motivo é do próprio despacho: ele manda **medir antes de construir**, e
-> a medição da rede (seção 20.2) achou a ilha **fora do ar** — 16 das 17 URLs servindo a página de estacionamento da
-> HostGator. Pela **18.5** (verificação antes de construção) e pela **1.2** (ilha no ar e quebrada), a execução
-> inteira foi para levantar a ilha. Ela voltou, está medida no ar com 456 afirmações e 0 falha, e a regra virou a
-> **seção 29** do contrato.
+> **ESTADO DESTE DESPACHO EM 25/09/2026, 10h40Z, pela 18.3 — FALTAM OS BLOCOS A, B e C. O BLOCO 0 SAIU.**
 >
-> **O que isso muda para quem pegar o próximo bloco, e é uma coisa só:** o BLOCO A fala em **CTR de três páginas na
-> primeira página do Google**, e essas três páginas passaram pelo menos um dia servindo 404 ao Google. **A série de
-> `dados/posicoes.md` tem um buraco que não é de CTR**, e o veredito de 08/10 que o bloco marca tem de ser lido
-> contra esse buraco, não contra o título e a meta. Trocar título agora mistura duas causas na mesma janela — quem
-> for fazer o BLOCO A decide isso com o número de 30/09 na mão, e escreve qual das duas leituras está usando.
+> **O BLOCO 0 está CUMPRIDO e CONFERIDO NO AR** (18.4). Os **31** links de Shopee desta ilha foram gerados
+> pela Open API (25.6) com `sub_id_1 = clubedomosaico` e `sub_id_2 = F1/F2` nas casas certas: 6 fichas
+> regeradas do `url_produto` conhecido, 10 buscas regeradas com a palavra-chave **reescolhida inteira**
+> (25.4-b.1) e **15 buscas novas**, que esperavam sessão de painel desde 13/09 por um motivo que deixou de
+> ser verdade em 16/09 (25.4-b.3). Os 4 links do Mercado Livre não foram tocados — outro programa. A
+> mecânica da casa está provada em bancada (`bancada-t0---`, lido no `utm_content` do 301) e virou a
+> **seção 25.8** do contrato; `conferir-no-ar.py` ganhou a seção que reprova encurtador servido que o
+> banco não conhece: **459 afirmações, 0 falha**.
 >
-> O **BLOCO 0** (o `sub_id` deslocado) continua sendo o primeiro da fila e não divide passada com nada.
+> **O QUE AINDA NÃO ESTÁ PROVADO, e é o "pronto quando" do item 2 do despacho da Sentinela de 23/09:** que o
+> Relatório de cliques passe a mostrar `clubedomosaico-f2---`. Isso exige um clique **de gente** — e
+> conferir com clique nosso apagaria justamente o primeiro clique orgânico que a leitura semanal procura.
+> **A leitura de 30/09 lê essa linha, não esta execução.**
+>
+> **ACHADO NOVO DA MESMA PASSADA, que não estava em nenhum bloco:** as **treze** palavras-chave das
+> pastilhas devolviam **ZERO oferta** desde 13/09 — `Glass Mosaic <código> pastilha de vidro <medida>`. A
+> marca não é anunciada por nome na Shopee e código de catálogo não aparece em título de anúncio. O piso
+> levava a uma **busca vazia**, que é o beco sem saída que o degrau 4 da 25.1 existe para impedir. A
+> descida da escada da 25.6 parou na **família** (medida e acabamento), com o degrau escrito em
+> `motivo_da_chave` de cada registro.
+>
+> **O que isso muda para quem pegar o BLOCO A, e continua valendo de 24/09:** as três páginas passaram pelo
+> menos um dia servindo 404 ao Google. **A série de `dados/posicoes.md` tem um buraco que não é de CTR**, e
+> o veredito de 08/10 tem de ser lido contra esse buraco. Trocar título agora mistura duas causas na mesma
+> janela — quem fizer o BLOCO A decide isso **com o número de 30/09 na mão** e escreve qual leitura está
+> usando.
+>
+> **A ORDEM DO QUE SOBROU:** o **BLOCO B** é o único que não depende de dado que ainda não chegou (é filtro
+> `wp_robots` no snippet da casca, com critério de pronto objetivo). O **BLOCO C** é varredura e relatório,
+> e pode sair a qualquer momento. O **BLOCO A** espera 30/09.
 
 
 Esta ilha entrou em FOCO em 24/09/2026 por decisão do Raphael. A ordem das coisas aqui é o contrário do de sempre: **a primeira passada com foco não cria página nenhuma.** Esta ilha já tem tráfego e já tem três páginas na primeira página — o próximo ganho não vem de URL nova, vem de consertar o cano e de fazer o clique acontecer. Só a passada SEGUINTE abre malha, e sob o teto da 21.4 (máximo 10 URLs por leva, máximo 3 levas por semana) e com `piso: abaixo` (17 de 40 URLs).
 
-#### BLOCO 0 — O `sub_id` DESLOCADO. Antes de tudo.
+#### ~~BLOCO 0 — O `sub_id` DESLOCADO. Antes de tudo.~~ — **CUMPRIDO em 25/09/2026 às 10h40Z**
 
-Está gravado como `-clubedomosaico-F2--`: deslocado uma casa. Enquanto isso não fecha, **qualquer venda que esta ilha gerar não saberá de onde veio** — e é a ilha com mais tráfego do Arquipélago. É o item de maior ROI do despacho inteiro e não divide passada com nada: conserta, republica os links afetados, e prova no ar gerando um link e lendo o `sub_id` de volta. O item 2 do despacho da Sentinela de 23/09 é a especificação; este parágrafo só o promove a primeiro da fila.
+Estava gravado como `-clubedomosaico-F2--`: deslocado uma casa, `sub_id_1` vazio. Eram 16 links nascidos
+no painel `offer/custom_link` com os cinco campos preenchidos a mão — e mão humana em cinco caixas de
+texto não tem portão. Agora são 31 links gerados por API, com a casa provada em bancada. O detalhe do
+conserto está na abertura deste despacho, no `REGISTRO.md` de 25/09 e em `dados/consertos.md`.
 
 #### BLOCO A — CTR das três páginas que já estão na primeira página
 

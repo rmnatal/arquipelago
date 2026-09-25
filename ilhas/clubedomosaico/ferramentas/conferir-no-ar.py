@@ -498,15 +498,36 @@ ok(all(re.search(r"\b" + re.escape(c) + r"\b", texto_p20) for c in DE_2CM),
    "[F1 2 cm] os tres de 2 cm estao nomeados no bloco", ", ".join(DE_2CM))
 ok(bloco_p20.count('class="cdm-f2-compra"') == len(DE_2CM),
    "[F1 2 cm] todo cartao de pastilha tem bloco de compra")
-# ATE 14/09/2026 ESTA LINHA CONTAVA ETIQUETAS "EM BREVE", uma por elegivel, e
-# estava certa: os treze itens de pastilha nao tinham saida nenhuma. Com o degrau
-# 4 no ar ela conta BOTOES DE BUSCA CRUA, um por elegivel — o mesmo numero, medindo
-# a coisa oposta: nao mais a promessa que a secao 7 proibiu, e sim a saida de
-# compra que ela passou a exigir.
-ok(bloco_p20.count("cdm-f2-botao-busca-crua") == len(DE_2CM)
+# ESTA LINHA JA MUDOU DE OBJETO DUAS VEZES, e as tres versoes contam o MESMO
+# numero medindo coisas diferentes — por isso ela fica, com a historia junto:
+#
+#  - ate 14/09/2026 contava etiquetas "Link de loja em breve", uma por
+#    elegivel, e estava certa: os treze itens de pastilha nao tinham saida
+#    nenhuma;
+#  - de 14/09 a 25/09 contava BOTOES DE BUSCA CRUA — a promessa proibida pela
+#    secao 7 trocada pela saida de compra que ela exige, mas uma saida que nao
+#    rende comissao;
+#  - desde 25/09/2026 conta o botao da busca ENCURTADA, com `rel="sponsored"`,
+#    que e o mesmo piso rendendo. Os treze links nasceram nesse dia, pela Open
+#    API (25.6), e o que os segurava era um motivo de 13/09 dizendo que o
+#    encurtamento exigia sessao do painel — verdade naquele dia, falsa desde
+#    16/09 (25.4-b.3).
+#
+# E O BOTAO CRU TEM DE TER SUMIDO, nao so o encurtado aparecido: enquanto os
+# dois puderem conviver na mesma tela, um item com piso nao rastreavel passa
+# escondido atras do vizinho que tem.
+ok(bloco_p20.count('cdm-f2-botao-busca"') == len(DE_2CM)
+   and bloco_p20.count("cdm-f2-botao-busca-crua") == 0
    and "Link de loja em breve" not in bloco_p20,
-   "[F1 2 cm] cada cartao de pastilha serve a busca CRUA como botao, e nenhum promete",
-   "%d botoes para %d elegiveis" % (bloco_p20.count("cdm-f2-botao-busca-crua"), len(DE_2CM)))
+   "[F1 2 cm] cada cartao de pastilha serve a busca ENCURTADA como botao, zero crua, nenhum promete",
+   "%d encurtadas e %d cruas para %d elegiveis"
+   % (bloco_p20.count('cdm-f2-botao-busca"'),
+      bloco_p20.count("cdm-f2-botao-busca-crua"), len(DE_2CM)))
+# 25.2-b: o botao que rende comissao e um link patrocinado, e isso e exigencia
+# de divulgacao, nao detalhe de markup.
+ok(bloco_p20.count('rel="sponsored') >= len(DE_2CM),
+   "[F1 2 cm] todo botao de compra da vitrine sai como link patrocinado",
+   "%d rel=sponsored para %d elegiveis" % (bloco_p20.count('rel="sponsored'), len(DE_2CM)))
 # A PORTA DO CAQUINHO IRREGULAR, que e a decisao desta versao sobre os cinco
 # itens cujo lado o seletor nao lista.
 ok("caquinho irregular" in re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco_p20)),
@@ -863,7 +884,11 @@ _QUEBRA = str(int(time.time()))
 # Os marcadores deste bloco: o que a revisao 32 mudou e que so existe depois dela.
 _MARCADORES = {
     "/materiais/quantas-pastilhas-para-mosaico/?forma=disco&d=50&pastilha=p20&esp=6&sobra=15&rejunte=cimenticio":
-        ["cdm-f2-botao-busca-crua"],
+        # O MARCADOR TROCOU EM 25/09/2026 com o bloco que ele mede: a vitrine
+        # deixou de servir o botao CRU e passou a servir o ENCURTADO. O par
+        # classe+dominio e o marcador estavel — o codigo do encurtador muda a
+        # cada regeracao e viraria uma regua que apodrece sozinha.
+        ['cdm-f2-botao-busca" href="https://s.shopee.com.br/'],
     "/divulgacao-de-afiliados/": ["Nem todo link daqui rende comiss"],
 }
 
@@ -966,6 +991,64 @@ ok(_cod_lixo == "404", "[rota] caminho inexistente responde 404", _cod_lixo)
 ok("clubedomosaico" in _lixo.lower() or "Clube do Mosaico" in _lixo,
    "[rota] o 404 e a pagina DESTA ilha, nao a do hospedeiro",
    "HostGator" if "HostGator" in _lixo else "propria")
+
+# ---------------------------------------------------------------------------
+# O LINK DE AFILIADO SERVIDO E O DO BANCO. Acrescentado em 25/09/2026, no dia
+# em que os 31 links de Shopee desta ilha foram REGERADOS porque os antigos
+# tinham os `sub_id` deslocados uma casa (`-clubedomosaico-F2--`, campo 1
+# vazio).
+#
+# O QUE ESTA AFIRMACAO PEGA, e e uma familia inteira: encurtador servido que o
+# banco nao conhece. Depois de uma regeracao, o link velho so some da tela se o
+# Sync tiver aplicado o dado novo — e "12 aplicado(s)" no log do Sync nao e
+# evidencia de nada (secao 8). O link velho continua VIVO na Shopee, entao nada
+# quebra e nada responde 404: a unica coisa que acontece e a ilha perder a
+# atribuicao da venda, calada, que foi exatamente o defeito de 13/09 a 24/09.
+#
+# O QUE ELA NAO PEGA, dito para ninguem confiar de mais: a CASA do sub-id
+# dentro do link. Isso nao se le do HTML — so do `utm_content` do 301 do
+# encurtador, e esse salto e onde a Shopee conta o clique. Conferir os links
+# desta ilha por ali gravaria um clique com o sub-id dela por link, justo na
+# semana em que a leitura semanal procura o PRIMEIRO clique organico. Quem mede
+# a casa e `ferramentas/conferir-sub-id.py`, na raiz do repositorio, com um
+# link de BANCADA e sub-id de bancada. Aqui se mede a OUTRA metade: que o link
+# na tela e o que o banco mandou.
+print("\nO link de afiliado servido (25.6, sub_id na casa certa):")
+
+_do_banco = set()
+for _nome in sorted(os.listdir(_DADOS_DIR)):
+    if not (_nome.startswith("materiais-") and _nome.endswith(".json")):
+        continue
+    with open(os.path.join(_DADOS_DIR, _nome), encoding="utf-8") as _fh:
+        _banco = json.load(_fh)
+    for _item in _banco.get("materiais", []):
+        _af = _item.get("afiliado") or {}
+        for _campo in ("url", "url_busca"):
+            _u = _af.get(_campo) or ""
+            if "s.shopee.com.br" in _u:
+                _do_banco.add(_u)
+
+_sm_indice, _ = buscar(BASE + "/wp-sitemap.xml")
+_paginas = []
+for _sub in re.findall(r"<loc>([^<]+)</loc>", _sm_indice):
+    _corpo_sm, _ = buscar(_sub)
+    _paginas += re.findall(r"<loc>([^<]+)</loc>", _corpo_sm)
+
+_servidos = set()
+for _pag in _paginas:
+    _corpo, _cod = buscar(_pag)
+    _servidos |= set(re.findall(r"https://s\.shopee\.com\.br/[A-Za-z0-9]+", _corpo))
+
+_estranhos = sorted(_servidos - _do_banco)
+ok(not _estranhos,
+   "[afiliado] todo encurtador de Shopee servido esta no banco",
+   "%d servido(s), %d estranho(s)%s" % (len(_servidos), len(_estranhos),
+                                        (": " + ", ".join(_estranhos[:3])) if _estranhos else ""))
+# Portao que nao encontra nada aprova por vacuidade, e e assim que um portao
+# morre sem ninguem notar: se a tela parar de servir link, esta afirmacao cai.
+ok(len(_servidos) > 0,
+   "[afiliado] as paginas do sitemap servem pelo menos um encurtador",
+   "%d" % len(_servidos))
 
 print(f"\n{'APROVADO' if falhas == 0 else 'REPROVADO'}: {feitos} afirmacoes medidas no HTML servido, {falhas} falha(s).")
 sys.exit(1 if falhas else 0)

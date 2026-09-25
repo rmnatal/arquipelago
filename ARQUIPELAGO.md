@@ -912,6 +912,19 @@ A regra do despacho — *"o título tem de conter o código da peça ou o nome d
 
 **E O PAINEL DA FOTO É UM SÓ POR ILHA.** Quatro ferramentas escrevendo o painel cada uma por conta própria foi como a Robometria passou meses com duas delas emitindo o espaço vazio **sem perguntar nada ao item** — invisível porque nenhum item tinha foto. Uma função, chamada pelas quatro, e a bancada cobra que continue sendo uma.
 
+### 25.8 O `sub_id` TEM CASA, E A CASA SE LÊ NO 301 — SEM CLICAR NO LINK DA ILHA (25/09/2026)
+
+**A cicatriz, medida na Clube do Mosaico.** Os dezesseis links de Shopee daquela ilha nasceram em 13/09/2026 pelo painel `offer/custom_link`, com os cinco campos de sub-id preenchidos **a mão**. Saíram deslocados uma casa, e o único clique da janela 16→22/09 chegou ao Relatório como `-clubedomosaico-F2--` — `sub_id_1` **vazio**. Ficou onze dias no ar e nenhum portão acusou, porque **todos os portões liam o BANCO, que estava certo o tempo todo**. O que ninguém media era o link.
+
+**A regra, e ela vale para toda ilha:**
+
+- **Link de afiliado não se gera à mão.** A Open API aceita os cinco sub-ids como **lista posicional** (`[sub_id_1, sub_id_2, '', '', '']`) e é a única forma que tem portão. Cinco caixas de texto num painel não têm.
+- **A casa se lê no `utm_content` do 301 do encurtador**, sem seguir o redirecionamento: `s.shopee.com.br/XXXX` responde `301` e o `Location` traz os cinco campos juntos por hífen — exatamente o texto do Relatório de cliques. `-o /dev/null`, sem abrir página nenhuma.
+- **E por isso o link conferido é de BANCADA, nunca o da ilha.** O salto do encurtador é onde a plataforma **conta o clique**. Conferir os links de uma ilha por esse caminho grava um clique com o sub-id dela por link — e a primeira coisa que a leitura semanal procura numa ilha jovem é o **primeiro clique orgânico**. Autoclique com etiqueta da ilha destrói justamente o sinal mais barato que ela tem. O mecanismo se prova **uma vez**, com sub-id de bancada (`ferramentas/conferir-sub-id.py`); os links das ilhas saem certos **por construção**, pela mesma função.
+- **O portão da outra metade é no ar:** varrer as URLs do sitemap e reprovar quando aparecer encurtador que o banco não conhece. Ele não mede a casa — mede que o link na tela é o que o banco mandou, que é o que quebra quando o Sync não aplicou a regeração. Link velho continua **vivo** na plataforma, então nada dá 404 e nada quebra: a ilha só perde a atribuição, calada.
+
+**A moral, que é a da seção 4 outra vez:** o banco é o resumo e o link é o fato. Portão que lê só o resumo aprova a ilha inteira vendendo sem saber para quem.
+
 ---
 
 **A aposta virou chão em 16/09/2026, e o piso continua sendo o piso.** A API deixou de ser hipótese: foi chamada, respondeu, e o degrau 1 passou a ser automático e verificado. Mesmo assim a busca continua sendo o piso da 25.2 — **plataforma que concede API também revoga API**, e no dia em que revogar, a ilha não pode ficar sem porta de compra. O que mudou foi a altura confortável, não o chão.

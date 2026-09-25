@@ -5,19 +5,50 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-24T19:40Z
-executando_desde: 2026-09-25T10:16Z
+ultima_execucao: 2026-09-25T10:45Z
+executando_desde: null
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
-  A ILHA ESTAVA FORA DO AR E VOLTOU. Primeira execucao depois de a ilha entrar em foco, e ela nao construiu pagina nenhuma: as 19h20Z, 16 das 17 URLs do sitemap serviam a pagina de estacionamento da HostGator com 404 — /materiais/, /como-fazer/, /sobre/, /contato/, /loja/, as TRES paginas que estao na primeira pagina do Google, mais wp-sitemap.xml, robots.txt e wp-json. So a home respondia. A ilha com mais trafego do Arquipelago estava assim havia pelo menos um dia e nada tinha acusado.
-  A CAUSA, medida de dentro do servidor e nao por palpite: o .htaccess da raiz existia, gravavel, com UM bloco so — NFD EPC, o do Endurance Page Cache do hospedeiro — e SEM o bloco do WordPress. Sem ele o Apache nao manda para o index.php nada que nao seja arquivo de verdade. Foi por isso que tudo que e query na raiz (o Sync, o /status, a busca interna) respondeu o tempo todo enquanto o site estava morto: o WordPress estava inteiro, a porta e que tinha sumido.
-  O CONSERTO: casca 1.12.0, secao 6, rota ?rest_route=/clubedomosaico/v1/rotas com o token do Sync. Ela mede o roteamento por dentro e, com reparar=1, roda flush_rewrite_rules(true) — o mesmo que salvar os Links permanentes — devolvendo o antes e o depois. Antes: 1057 bytes, blocos 'NFD EPC', tem_wordpress false. Depois: 1580 bytes, blocos 'NFD EPC,WordPress', tem_wordpress true. As 17 URLs voltaram a 200 no minuto seguinte e a F2 voltou a responder consulta.
-  E O CONSERTO DURA, medido e nao suposto: um Sync novo depois do reparo reescreveu o .htaccess (mtime novo) e MANTEVE o bloco do WordPress. O EPC preserva o que encontra. A purga da casca esta inocente — ela so esvazia wp-content/endurance-page-cache/ com realpath conferido a cada nivel e nunca encosta na raiz.
-  A CAUSA DE ORIGEM CONTINUA SEM NOME e fica escrito assim. O que tem nome e o sintoma, o portao que o pega e o reparo que o desfaz. Causa inventada seria a proxima execucao consertando a coisa errada.
-  O PORTAO QUE FALTAVA: conferir-no-ar.py media 450 afirmacoes e nenhuma cobria as tres URLs que o Google usa e que nenhuma pagina linka. Ganhou a secao da porta de entrada — sitemap, robots.txt e raiz do REST em 200 com o tipo certo, o sitemap tem de trazer XML de sitemap, e caminho inexistente tem de dar 404 na pagina DESTA ilha e nao na do hospedeiro. 456 afirmacoes, 0 falha.
-  A REGRA SUBIU PARA O CONTRATO: secao 29 do ARQUIPELAGO.md, nas tres linhas do mapa de leitura. Ela vale para toda ilha porque o motivo vale para toda ilha: TODO portao desta fabrica entra pela porta que continuou aberta — o Sync e query na raiz, o /status e rota REST, a bancada roda sem rede. Repositorio verde com site fora do ar e a secao 4 na forma mais cara.
-  A COPIA DA SECAO 24 ESTAVA TRES PECAS ATRASADA: 1 no repositorio, 5 no ar. A artesa cadastrou quatro pecas entre 15 e 16/09 e nenhuma execucao passou aqui desde entao para busca-las. Gravadas em dados/pecas.json, formatado e nao numa linha so.
-  DO DESPACHO DO RAPHAEL DE 24/09: o BLOCO D saiu (urls_publicadas 13 -> 17, contado no sitemap). O BLOCO 0 (sub_id deslocado) e os BLOCOS A, B e C NAO foram tocados e continuam escritos no PROMPT.md, pela 18.3 — a ilha estava fora do ar e a 18.5 manda verificacao antes de construcao. Nenhuma pagina nova, nenhuma URL nova; a semana da 21.4 continua em 2 de 3 levas.
+  BLOCO 0 DO DESPACHO DO RAPHAEL DE 24/09 CUMPRIDO E CONFERIDO NO AR: os 31 links de Shopee desta ilha
+  renasceram pela Open API com o sub_id na casa certa. O defeito era que o unico clique da janela 16->22/09
+  chegou ao Relatorio como '-clubedomosaico-F2--' — cinco campos, o PRIMEIRO VAZIO, tudo deslocado uma casa.
+  A secao 7 manda campo 1 = nome da ilha e campo 2 = codigo da ferramenta, e sem o campo 1 o painel nao
+  responde qual ilha vendeu.
+  POR QUE ONZE DIAS NAO BASTARAM PARA ALGUEM VER: o BANCO estava certo o tempo todo — sub_id_1 e sub_id_2
+  gravados nos 25 registros desde 13/09, com portao proprio no validar-banco. O que ninguem media era o LINK,
+  e os 16 links nasceram no painel offer/custom_link com os cinco campos preenchidos A MAO. Mao humana em
+  cinco caixas de texto nao tem portao; chamada de API tem. E a secao 4 outra vez: o banco e o resumo, o link
+  e o fato.
+  O QUE SAIU: 6 fichas regeradas do url_produto conhecido (o par continua demonstravel, 25.4-b.1), 10 buscas
+  regeradas com a palavra-chave REESCOLHIDA inteira e 15 buscas NOVAS, que esperavam sessao de painel desde
+  13/09 por um motivo que deixou de ser verdade em 16/09 — 25.4-b.3, motivo velho mandando a execucao
+  seguinte nem tentar. Os 4 links do Mercado Livre nao foram tocados: outro programa.
+  ACHADO NOVO, que nao estava em bloco nenhum: as TREZE chaves das pastilhas devolviam ZERO oferta desde
+  13/09. 'Glass Mosaic <codigo> pastilha de vidro <medida>' — a marca nao e anunciada por nome na Shopee e
+  codigo de catalogo nao aparece em titulo de anuncio. O piso levava a uma BUSCA VAZIA, o beco sem saida que
+  o degrau 4 da 25.1 existe para impedir. A escada da 25.6 desceu ate a FAMILIA (medida e acabamento), com o
+  degrau escrito em motivo_da_chave. Codigo sozinho esta barrado pela 25.7 (K2501 devolve grade de aspirador
+  Karcher) e 'pastilha de vidro' pelado tambem (devolve pastilha de FREIO). As 25 chaves do banco devolvem
+  oferta hoje, medido antes de qualquer link nascer.
+  OS PORTOES QUE IMPEDEM A VOLTA: (1) ferramentas/conferir-sub-id.py, na raiz, gera link de BANCADA e le a
+  casa no utm_content do 301 sem seguir o redirecionamento — 'bancada-t0---'. E de bancada de proposito: o
+  salto do encurtador e onde a Shopee conta o clique, e conferir os 31 links da ilha gravaria 31 autocliques
+  com a etiqueta dela justo na semana em que a leitura semanal procura o PRIMEIRO clique organico. (2)
+  conferir-no-ar.py ganhou a secao que varre o sitemap e reprova encurtador servido que o banco nao conhece,
+  mais a afirmacao de que ele encontra algum — portao que nao encontra nada aprova por vacuidade. (3)
+  validar-banco.py: 'piso nao rastreavel' e 'busca sem endereco cru' viraram ERRO DURO, como o comentario do
+  arquivo prometia para o dia em que chegassem a zero; as duas mutacoes reprovaram. (4) A regra subiu ao
+  contrato como secao 25.8.
+  MEDIDO NO AR: Sync revisao 37, conferir-no-ar 459 afirmacoes e 0 falha, 14 encurtadores servidos nas 17
+  URLs do sitemap e 0 desconhecido, piso nao rastreavel de 15 para 0, busca sem endereco cru de 10 para 0.
+  O QUE FALTA DO DESPACHO, pela 18.3: os BLOCOS A, B e C, reescritos no PROMPT.md. O BLOCO 0 dizia com todas
+  as letras que nao divide passada com nada. Nenhuma pagina nova, nenhuma URL nova — 17 continuam sendo 17, e
+  a semana da 21.4 continua em 2 de 3 levas.
+  O QUE AINDA NAO ESTA PROVADO: que o Relatorio de cliques mostre 'clubedomosaico-f2---'. Isso exige clique
+  DE GENTE, e conferir com clique nosso apagaria o primeiro clique organico. A leitura de 30/09 le essa linha.
+  PROXIMO PASSO: o BLOCO B — /author/mosaico_gestor/ indexada e com impressao na posicao 1,0. Caminho e o
+  FILTRO wp_robots no snippet da casca, nunca uma segunda meta em paralelo, mais a saida do sitemap. E o
+  unico bloco que nao espera numero que ainda nao chegou.
   PROXIMO PASSO: o eixo das tecnicas ficou SEM PROXIMA PAGINA — as duas que o portao autoriza nasceram. As tres em zero (direto, indireto, bizantino) sao trabalho de FONTE e nao de texto. O que destrava mais coisa continua sendo a coleta das quatro categorias vazias do vocabulario (alicate, base, acabamento, apoio), que abre o bloco 4c.
 ---
 
