@@ -81,6 +81,21 @@ Medido hoje: responde **HTTP 200**, **não tem `<meta name="robots">`**, **não 
 
 **Pronto quando:** `/author/mosaico_gestor/` servir `<meta name="robots" content="noindex, follow">` no HTML servido, as 17 URLs do sitemap continuarem **sem** `noindex` (as duas direções medidas por portão, não por olho), e a leitura semanal seguinte registrar que a linha de `/author/` **saiu** de `dados/posicoes.md`.
 
+> **DUAS DAS TRÊS CONDIÇÕES ESTÃO CUMPRIDAS E CONFERIDAS NO AR EM 25/09/2026 às 13h29Z** (casca 1.13.0, BLOCO B
+> do despacho do Raphael de 24/09). `/author/mosaico_gestor/` serve `noindex, follow` e as 17 URLs do sitemap
+> continuam sem `noindex`, as duas direções por portão em `conferir-no-ar.py`. **A terceira é da leitura de
+> 30/09** — só ela pode dizer se a linha de `/author/` saiu de `dados/posicoes.md`, e por isso este item fica
+> aberto até lá, pela 18.4.
+>
+> **A ETIQUETA SAI COM ASPAS SIMPLES**, `<meta name='robots' content='noindex, follow' />`, e isso não é
+> divergência: quem imprime agora é o `wp_robots()` do núcleo, como o BLOCO B manda. Três réguas desta ilha
+> mediam a ASPA em vez da diretiva e tiveram de ser consertadas no mesmo movimento — uma delas passava a vazio
+> justamente onde teria pegado as duas etiquetas.
+>
+> **E `/?s=<termo>` fechou junto**, que este mesmo item nomeia como "o mesmo buraco": a busca interna sai do
+> índice com `noindex, follow` na mesma linha de código. **Nas irmãs continua aberto** — a aquametria e a
+> robometria não foram tocadas, por força do foco.
+
 ### 2. O `sub_id` DA SHOPEE DESTA ILHA ESTÁ DESLOCADO UMA CASA — A ÚNICA VENDA QUE ESTA ILHA GERAR NÃO SABERÁ DE ONDE VEIO
 
 Medido no Relatório de cliques do painel Shopee Afiliados, janela 16→22/09. O único clique desta ilha no período (20/09, 13h23) veio com o `sub_id` gravado assim:
@@ -94,6 +109,11 @@ A Shopee junta os cinco `sub_id` com hífen. Os cinco campos deste clique são, 
 **A seção 7 manda: `Sub_id 1` = nome da ilha, `Sub_id 2` = código da ferramenta.** Aqui está tudo uma casa à direita, com o campo 1 vazio. **Consequência medida: o painel não consegue responder "qual ilha vendeu".** Hoje custa pouco porque o número é 1 clique e 0 pedido; custa tudo no dia em que houver pedido, que é exatamente o dia em que ninguém vai querer descobrir isto.
 
 **Pronto quando:** todo link de afiliado desta ilha for gerado com `sub_id_1 = clubedomosaico` e `sub_id_2 = <código da ferramenta>`, **o banco da ilha for recontado** e o número de registros com `sub_id_1` preenchido for igual ao número de registros com link, e a leitura semanal seguinte encontrar no Relatório de cliques o formato `clubedomosaico-f2---` (campo 1 preenchido) em vez de `-clubedomosaico-F2--`.
+
+> **A METADE DA MÁQUINA FECHOU EM 25/09/2026 às 10h40Z** (BLOCO 0), com os 31 links regerados pela Open API.
+> **A METADE QUE FALTA NÃO É DE CÓDIGO:** só um clique DE GENTE faz o Relatório mostrar `clubedomosaico-f2---`,
+> e conferir com clique nosso apagaria o primeiro clique orgânico que a leitura semanal procura. **Quem lê essa
+> linha é a leitura de 30/09.**
 
 ### 3. CORREÇÃO DE CABEÇALHO — `urls_publicadas: 13` ESTÁ DEFASADO; O SITEMAP SERVE 17
 
@@ -303,39 +323,50 @@ Nada mais nesta ronda.
 
 ### DESPACHO DO RAPHAEL — 24/09/2026 — ENTRADA NO FOCO: MEDIR ANTES DE CONSTRUIR
 
-> **ESTADO DESTE DESPACHO EM 25/09/2026, 10h40Z, pela 18.3 — FALTAM OS BLOCOS A, B e C. O BLOCO 0 SAIU.**
+> **ESTADO DESTE DESPACHO EM 25/09/2026, 14h0xZ, pela 18.3 — FALTA SÓ O BLOCO A. OS BLOCOS 0, B, C e D SAÍRAM.**
 >
-> **O BLOCO 0 está CUMPRIDO e CONFERIDO NO AR** (18.4). Os **31** links de Shopee desta ilha foram gerados
-> pela Open API (25.6) com `sub_id_1 = clubedomosaico` e `sub_id_2 = F1/F2` nas casas certas: 6 fichas
-> regeradas do `url_produto` conhecido, 10 buscas regeradas com a palavra-chave **reescolhida inteira**
-> (25.4-b.1) e **15 buscas novas**, que esperavam sessão de painel desde 13/09 por um motivo que deixou de
-> ser verdade em 16/09 (25.4-b.3). Os 4 links do Mercado Livre não foram tocados — outro programa. A
-> mecânica da casa está provada em bancada (`bancada-t0---`, lido no `utm_content` do 301) e virou a
-> **seção 25.8** do contrato; `conferir-no-ar.py` ganhou a seção que reprova encurtador servido que o
-> banco não conhece: **459 afirmações, 0 falha**.
+> **BLOCO B — CUMPRIDO E CONFERIDO NO AR** (18.4). `/author/mosaico_gestor/` serve `noindex, follow`, numa
+> etiqueta só, e continua fora do sitemap; as 17 URLs do sitemap continuam **sem** `noindex`, medido nas duas
+> direções por portão. O caminho foi o filtro `wp_robots`, como o bloco manda, nunca uma tag em paralelo.
 >
-> **O QUE AINDA NÃO ESTÁ PROVADO, e é o "pronto quando" do item 2 do despacho da Sentinela de 23/09:** que o
-> Relatório de cliques passe a mostrar `clubedomosaico-f2---`. Isso exige um clique **de gente** — e
-> conferir com clique nosso apagaria justamente o primeiro clique orgânico que a leitura semanal procura.
-> **A leitura de 30/09 lê essa linha, não esta execução.**
+> **E ELE ACHOU UM DEFEITO MAIOR, QUE JÁ ESTAVA NO AR:** quatro lugares desta ilha imprimiam a própria
+> `<meta name="robots">` num `wp_head` paralelo — a casca, a F1, a F2 e o Leads —, e o WordPress imprime a
+> dele. O resultado servido eram **DUAS etiquetas**, medido em `/materiais/como-sabemos/` e no estado com
+> parâmetro de `/materiais/qual-cola-usar-no-mosaico/`, que é a **melhor página desta ilha**. Nenhum portão
+> daqui via: todos mediam SE a frase `noindex` aparecia, nenhum media QUANTAS etiquetas apareciam. A casca
+> 1.13.0 abriu `cdm_fora_do_indice` e agora quem imprime é ela, uma vez. **Detalhe que vale mais que o
+> conserto:** a F2 explicava, três linhas acima do próprio `echo`, por que NÃO imprime o canonical — *"serviria
+> DOIS canonicals (...) sujo numa página cujo propósito inteiro é ter UM endereço no índice"* — e fazia
+> exatamente isso com a etiqueta de robô.
 >
-> **ACHADO NOVO DA MESMA PASSADA, que não estava em nenhum bloco:** as **treze** palavras-chave das
-> pastilhas devolviam **ZERO oferta** desde 13/09 — `Glass Mosaic <código> pastilha de vidro <medida>`. A
-> marca não é anunciada por nome na Shopee e código de catálogo não aparece em título de anúncio. O piso
-> levava a uma **busca vazia**, que é o beco sem saída que o degrau 4 da 25.1 existe para impedir. A
-> descida da escada da 25.6 parou na **família** (medida e acabamento), com o degrau escrito em
-> `motivo_da_chave` de cada registro.
+> **BLOCO C — CUMPRIDO.** A varredura está em `dados/indexacao.md` e a ferramenta é
+> `ferramentas/varrer-canonicas.py` (com `--autoteste`, 11 casos fabricados, porque passada limpa em portão que
+> nunca acusou nada não prova nada). **71 URLs lidas, 71 em "esperado, nenhuma ação", 0 defeito.** Nenhuma
+> correção aplicada, como o bloco manda.
 >
-> **O que isso muda para quem pegar o BLOCO A, e continua valendo de 24/09:** as três páginas passaram pelo
-> menos um dia servindo 404 ao Google. **A série de `dados/posicoes.md` tem um buraco que não é de CTR**, e
-> o veredito de 08/10 tem de ser lido contra esse buraco. Trocar título agora mistura duas causas na mesma
-> janela — quem fizer o BLOCO A decide isso **com o número de 30/09 na mão** e escreve qual leitura está
-> usando.
+> **O ACHADO DO BLOCO C, e ele muda como esta ilha se mede:** o rastreador **nunca recebe redirecionamento**.
+> O WordPress redireciona `www`, barra final e a home em `http` — e **o cache de página responde 200 antes**,
+> porque o Googlebot não manda quebra de cache. Em 36 das 71 URLs as duas leituras discordam. Isso explica o
+> primeiro motivo do e-mail ("Página alternativa com tag canônica adequada", e é comportamento esperado) e
+> **não** explica o segundo: a fonte provável de "Página com redirecionamento" é a vida anterior do domínio,
+> e a lista só existe dentro do Search Console. **O pedido de acesso à conta `sentinela@` continua de pé e é o
+> que destrava de verdade.**
 >
-> **A ORDEM DO QUE SOBROU:** o **BLOCO B** é o único que não depende de dado que ainda não chegou (é filtro
-> `wp_robots` no snippet da casca, com critério de pronto objetivo). O **BLOCO C** é varredura e relatório,
-> e pode sair a qualquer momento. O **BLOCO A** espera 30/09.
-
+> **O QUE ISSO CUSTA A QUEM MEDIR ESTA ILHA:** `conferir-no-ar.py` gruda `?v=<agora>` em toda URL — e está
+> certo, porque nasceu para provar que o Sync aplicou a revisão nova. O preço é que **ele nunca vê o que o
+> visitante vê**. Cache servindo página velha para gente de verdade passa por baixo das 488 afirmações dele
+> sem encostar em nenhuma.
+>
+> **DE PASSAGEM, UMA BANCADA VERMELHA QUE NÃO ERA DESTE DESPACHO:** `teste-f1` (2 falhas) e `teste-f2` (1)
+> estavam vermelhos no `main` desde as 10h40Z, e com eles **duas baterias de mutação se recusavam a rodar**
+> ("a F1 de verdade já está reprovada — conserte antes de mutar"). A causa era a própria melhora daquela
+> execução: os treze itens de pastilha subiram do degrau 4 para o 3, e as réguas cobravam, com número fixo,
+> que estivessem no 4. Consertado derivando o degrau do banco em vez de cravá-lo, e produzindo o degrau 4 num
+> mundo novo (`so_crua=1`) em vez de esperá-lo do banco. **Os dois voltaram a verde e as duas baterias
+> voltaram a rodar.**
+>
+> **O QUE FALTA, E É SÓ ISTO:** o **BLOCO A**, que **espera 30/09** por ordem do próprio despacho — o veredito
+> é de 08/10 e trocar título antes do número de 30/09 misturaria duas causas na mesma janela.
 
 Esta ilha entrou em FOCO em 24/09/2026 por decisão do Raphael. A ordem das coisas aqui é o contrário do de sempre: **a primeira passada com foco não cria página nenhuma.** Esta ilha já tem tráfego e já tem três páginas na primeira página — o próximo ganho não vem de URL nova, vem de consertar o cano e de fazer o clique acontecer. Só a passada SEGUINTE abre malha, e sob o teto da 21.4 (máximo 10 URLs por leva, máximo 3 levas por semana) e com `piso: abaixo` (17 de 40 URLs).
 
@@ -356,7 +387,7 @@ conserto está na abertura deste despacho, no `REGISTRO.md` de 25/09 e em `dados
 - A 12.1 manda comparar o CTR com a média das outras na mesma posição. Com 30 impressões **não há com o que comparar** — isso fica ESCRITO, não estimado.
 - O veredito é de **08/10** (duas semanas de série), não de 30/09. Não declarar vitória nem derrota na leitura de 30/09.
 
-#### BLOCO B — `/author/mosaico_gestor/` indexada
+#### ~~BLOCO B — `/author/mosaico_gestor/` indexada~~ — **CUMPRIDO em 25/09/2026 às 13h29Z, casca 1.13.0**
 
 Já há despacho da Sentinela de 23/09 sobre isso. O que este parágrafo acrescenta é uma **lição trazida da Aquametria**, e ela muda o caminho técnico:
 
@@ -365,7 +396,7 @@ Já há despacho da Sentinela de 23/09 sobre isso. O que este parágrafo acresce
 - Sair do sitemap também, não só `noindex`.
 - Conferir no ar depois: a página tem de servir UMA meta robots, com `noindex`, e o `conferir-no-ar` tem de reprovar se aparecerem duas.
 
-#### BLOCO C — os dois motivos do Search Console (clubedomosaico.com.br)
+#### ~~BLOCO C — os dois motivos do Search Console~~ — **CUMPRIDO em 25/09/2026 às 13h4xZ**, em `dados/indexacao.md`. O pedido de acesso do `sentinela@` ao Search Console CONTINUA ABERTO e é o único item deste bloco que depende do Raphael
 
 E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomosaico.com.br**, dois motivos novos:
 

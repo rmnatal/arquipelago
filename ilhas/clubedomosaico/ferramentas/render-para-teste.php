@@ -1014,6 +1014,42 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 		unset($_GET['sem_piso']);
 	}
 
+	/* PRODUZ O MUNDO DO DEGRAU 4 — SO A BUSCA CRUA. `so_crua=1` na consulta.
+	 *
+	 * Apaga a ficha e a busca ENCURTADA e deixa `url_busca_produto` de pe, que e
+	 * o degrau 4 da escada da secao 25: a busca crua da loja, `rel=nofollow`,
+	 * que NAO rende comissao.
+	 *
+	 * NASCEU EM 25/09/2026, e o motivo e o que o irmao `sem_piso` acima ja tinha
+	 * escrito em 14/09 sobre si mesmo — "no dia em que as dez pastilhas ganharem
+	 * `url_busca`, este mundo continua produzindo o caso, enquanto uma regua
+	 * presa ao banco de hoje ficaria verde medindo nada". Esse dia chegou as
+	 * 10h40Z de 25/09, quando os 31 links desta ilha foram regerados pela Open
+	 * API e os treze itens de pastilha subiram para o degrau 3. Depois disso
+	 * NENHUM item do banco esta no degrau 4 — e o `teste-f2.php` reprovava,
+	 * porque cobrava `$cruas > 0` na pagina REAL para nao medir vazio. A
+	 * afirmacao estava certa em se proteger e errada em onde procurar: o caso
+	 * tem de ser PRODUZIDO, nao esperado do banco.
+	 *
+	 * Todo item de cola e de rejunte carrega `url_busca_produto` (7 de 7 e 5 de
+	 * 5, contados em 25/09), entao este mundo sai do banco real sem inventar
+	 * nenhuma URL. */
+	if (!empty($_GET['so_crua'])) {
+		foreach ($GLOBALS['__options'] as $chave => $valor) {
+			if (0 !== strpos($chave, 'clubedomosaico_dados_materiais-') || !is_array($valor)) { continue; }
+			$lista = isset($valor['materiais']) ? 'materiais' : (isset($valor['itens']) ? 'itens' : '');
+			if ('' === $lista) { continue; }
+			foreach ($valor[$lista] as $i => $item) {
+				if (isset($item['afiliado'])) {
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url'] = '';
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['programa'] = '';
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url_busca'] = '';
+				}
+			}
+		}
+		unset($_GET['so_crua']);
+	}
+
 	/* PRODUZ O MUNDO EM QUE AS PASTILHAS JA TEM PISO. `com_piso=1` na consulta.
 	 *
 	 * Ele e o avesso dos dois de cima, e existe pela cicatriz que o contrato chama

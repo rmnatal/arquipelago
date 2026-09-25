@@ -44,6 +44,22 @@ F2_CASOS = [
     ("base=vidro_laminado&onde=interno_seco", "Silicone Neutro", "Silicone Acético Construção"),
 ]
 
+# A ETIQUETA DE ROBO SE MEDE PELA DIRETIVA E PELA CONTAGEM, NUNCA PELA ASPA.
+# Ate 25/09/2026 quatro afirmacoes deste arquivo procuravam a frase literal com
+# ASPAS DUPLAS — as do `echo` que os snippets faziam. Duas delas (as do estado
+# com parametro) reprovaram codigo CERTO no dia em que quem imprime virou o
+# `wp_robots()` do nucleo, que usa aspas simples; as outras duas (as das
+# ancoras) passavam A VAZIO, porque `'name="robots"' not in html` e verdade em
+# toda pagina que use aspas simples — inclusive numa que saisse com `noindex`
+# por engano. Regua de pontuacao reprova o conserto e aprova o desastre.
+RE_ROBOTS = re.compile(r"<meta[^>]*name=[\"']robots[\"'][^>]*>", re.I)
+
+
+def robots_de(html):
+    """As etiquetas de robo do HTML servido, na ordem em que aparecem."""
+    return RE_ROBOTS.findall(html)
+
+
 falhas = 0
 feitos = 0
 def ok(cond, rotulo, medida=""):
@@ -324,7 +340,10 @@ ok(len(re.sub(r"<[^>]+>", " ", corpo_f2)) > 4000, "[F2] o corpo tem tamanho de p
 ok(corpo_f2.count("<table class=\"cdm-f2-tabela\">") == 2,
    "[F2] as duas tabelas pre-renderizadas estao no HTML servido")
 ok('rel="canonical" href="' + BASE + F2 + '"' in html_f2, "[F2] canonical aponta para a ancora")
-ok('name="robots"' not in html_f2, "[F2] a ancora nao sai com noindex")
+_r_f2 = robots_de(html_f2)
+ok(len(_r_f2) == 1, "[F2] a ancora serve UMA etiqueta de robo", f"{len(_r_f2)}")
+ok(len(_r_f2) == 1 and "noindex" not in _r_f2[0].lower(),
+   "[F2] a ancora nao sai com noindex", " | ".join(_r_f2)[:60])
 ok('"@type":"WebApplication"' in html_f2.replace(" ", ""), "[F2] JSON-LD WebApplication servido")
 ok('"@type":"FAQPage"' in html_f2.replace(" ", ""), "[F2] JSON-LD FAQPage servido")
 ok(_reserva_ou_entrega(corpo_f2, ("cola", "rejunte")),
@@ -335,7 +354,10 @@ _escada_na_tela(corpo_f2, ("cola", "rejunte"), "F2")
 for consulta, tem_que_recomendar, nao_pode_recomendar in F2_CASOS:
     html_c, codigo_c = buscar(BASE + F2 + "?" + consulta)
     ok("200" == codigo_c, f"[F2 {consulta}] responde 200", codigo_c)
-    ok('content="noindex, follow"' in html_c, f"[F2 {consulta}] estado com parametro sai com noindex")
+    _rc = robots_de(html_c)
+    ok(len(_rc) == 1, f"[F2 {consulta}] serve UMA etiqueta de robo", f"{len(_rc)}")
+    ok(len(_rc) == 1 and "noindex" in _rc[0].lower(),
+       f"[F2 {consulta}] estado com parametro sai com noindex", " | ".join(_rc)[:60])
     # O bloco onde a RECOMENDACAO mora: a frase da resposta mais a vitrine de
     # compra. A secao do que nao usar fica FORA desta medida de proposito — o
     # nome do produto proibido aparece la, e contar na pagina inteira acharia os
@@ -441,7 +463,10 @@ ok(corpo_f1.count('<table class="cdm-f1-tabela">') == 3,
    "[F1] as tres tabelas pre-renderizadas estao no HTML servido",
    corpo_f1.count('<table class="cdm-f1-tabela">'))
 ok('rel="canonical" href="' + BASE + F1 + '"' in html_f1, "[F1] canonical aponta para a ancora")
-ok('name="robots"' not in html_f1, "[F1] a ancora nao sai com noindex")
+_r_f1 = robots_de(html_f1)
+ok(len(_r_f1) == 1, "[F1] a ancora serve UMA etiqueta de robo", f"{len(_r_f1)}")
+ok(len(_r_f1) == 1 and "noindex" not in _r_f1[0].lower(),
+   "[F1] a ancora nao sai com noindex", " | ".join(_r_f1)[:60])
 ok('"@type":"WebApplication"' in html_f1.replace(" ", ""), "[F1] JSON-LD WebApplication servido")
 ok('"@type":"FAQPage"' in html_f1.replace(" ", ""), "[F1] JSON-LD FAQPage servido")
 ok(_reserva_ou_entrega(corpo_f1, ("rejunte",)),
@@ -589,7 +614,10 @@ for consulta_o, rotulo_o in [("", "ancora"),
 for consulta, area, pastilhas, gramas in F1_CASOS:
     html_c, codigo_c = buscar(BASE + F1 + "?" + consulta)
     ok("200" == codigo_c, f"[F1 {consulta[:28]}] responde 200", codigo_c)
-    ok('content="noindex, follow"' in html_c, f"[F1 {consulta[:28]}] estado com parametro sai com noindex")
+    _rc = robots_de(html_c)
+    ok(len(_rc) == 1, f"[F1 {consulta[:28]}] serve UMA etiqueta de robo", f"{len(_rc)}")
+    ok(len(_rc) == 1 and "noindex" in _rc[0].lower(),
+       f"[F1 {consulta[:28]}] estado com parametro sai com noindex", " | ".join(_rc)[:60])
     # SO o bloco de resposta: a tabela das doze pecas traz outros numeros, e
     # procurar na pagina inteira acharia qualquer um deles. Mesmo erro de contar
     # &#038; na pagina toda.
@@ -1075,12 +1103,9 @@ ok(len(_servidos) > 0,
 # dela em toda URL do sitemap, lida do sitemap no ar e nao digitada aqui.
 print("\nA etiqueta de robo (uma so, e nas paginas certas):")
 
-_RE_ROBOTS = re.compile(r"<meta[^>]*name=[\"']robots[\"'][^>]*>", re.I)
-
 def _robots_de(url):
     html, codigo = buscar(url)
-    achadas = _RE_ROBOTS.findall(html)
-    return codigo, achadas
+    return codigo, robots_de(html)
 
 # 1. As que TEM de sair do indice. `/author/` e o achado da Sentinela de 23/09:
 #    200, sem etiqueta, fora do sitemap, sem link de lugar nenhum — e indexada,
@@ -1097,6 +1122,32 @@ for _caminho, _rotulo in [
        f"[robots] {_rotulo} sai do indice", _conteudo[:70])
     ok(len(_achadas) == 1 and "follow" in _achadas[0].lower().replace("nofollow", ""),
        f"[robots] {_rotulo} mantem follow (a malha nao se corta)", _conteudo[:70])
+
+# 1b. OS ESTADOS COM PARAMETRO DAS DUAS FERRAMENTAS. Sao eles que serviam DUAS
+#     etiquetas ate 25/09/2026 — a do nucleo e a que o proprio snippet imprimia
+#     num `wp_head` paralelo — e o estado com parametro de
+#     `/materiais/qual-cola-usar-no-mosaico/` e da MELHOR pagina desta ilha.
+#     Quem entra no indice e a ancora; o estado com parametro sai, e sai numa
+#     etiqueta so.
+for _caminho, _rotulo in [
+    (F2 + "?base=espelho&onde=interno_seco", "o estado com parametro da F2"),
+    ("/materiais/quantas-pastilhas-para-mosaico/?forma=vaso&caquinho=medio", "o estado com parametro da F1"),
+]:
+    _cod, _achadas = _robots_de(BASE + _caminho)
+    ok(len(_achadas) == 1, f"[robots] {_rotulo} serve UMA etiqueta",
+       f"{len(_achadas)} · {' | '.join(_achadas)[:60]}")
+    ok(len(_achadas) == 1 and "noindex" in _achadas[0].lower(),
+       f"[robots] {_rotulo} sai do indice", " | ".join(_achadas)[:60])
+
+# As DUAS ancoras continuam NO indice — o lado caro da borda: `noindex` indevido
+# tiraria do ar as paginas que rankeiam.
+for _caminho, _rotulo in [
+    (F2, "a ancora da F2 (posicao 7,8)"),
+    ("/materiais/quantas-pastilhas-para-mosaico/", "a ancora da F1 (posicao 9,1)"),
+]:
+    _cod, _achadas = _robots_de(BASE + _caminho)
+    ok(len(_achadas) == 1 and "noindex" not in _achadas[0].lower(),
+       f"[robots] {_rotulo} CONTINUA no indice", " | ".join(_achadas)[:60])
 
 # 2. O OUTRO LADO: toda URL do sitemap continua NO indice, e com uma etiqueta so.
 #    A lista vem do sitemap servido — quem confere nao digita o inventario.

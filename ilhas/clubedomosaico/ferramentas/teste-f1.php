@@ -932,30 +932,68 @@ f1_ok( false === mb_stripos( $com_1cm, 'não aparece em catálogo de fabricante'
 $p20        = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20' ) ) );
 $p20_piso   = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20&com_piso=1' ) ) );
 $p20_sem    = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20&sem_piso=1' ) ) );
-/* A CONTAGEM VIROU A DO DEGRAU 4, e a virada e de 14/09/2026. Ate aqui os treze
-   itens de pastilha nao tinham NADA e a afirmacao contava etiquetas "em breve".
-   Hoje os treze tem `url_busca_produto` escrito no banco, entao o que o cartao
-   serve e a busca crua — e o que se conta e ela, um botao por recomendado. O
-   numero esperado continua saindo da classificacao recomputada aqui, nunca da
-   tela: a regua e propria dos dois lados. */
-$sem_saida_no_banco = 0;
-$so_busca_crua      = 0;
-foreach ( $p_itens as $m ) {
+/* O DEGRAU AGORA SE DERIVA DO BANCO, e a virada e de 25/09/2026. Tres linhas
+   acima, esta mesma secao escreveu em 14/09 que "uma regua presa a isso ficaria
+   verde para sempre" — e a afirmacao logo abaixo se prendeu assim mesmo, ao
+   degrau 4: ela cobrava, com numero fixo, que os TREZE itens estivessem sem
+   piso e que o cartao servisse busca CRUA.
+   Em 25/09/2026 as 10h40Z a execucao do bloco 0 do despacho regerou os 31 links
+   desta ilha pela Open API e os treze itens de pastilha SUBIRAM de degrau: hoje
+   os treze tem `url_busca` — link de afiliado de verdade, com `rel=sponsored`,
+   que rende comissao — no lugar da busca crua com `rel=nofollow`, que nao rende
+   nada. A ilha melhorou e a bancada ficou VERMELHA, em duas afirmacoes, e ficou
+   assim no `main` desde aquela hora. Regua que congela o estado de hoje reprova
+   a melhora de amanha, e foi isso que aconteceu.
+   O QUE ELA COBRA AGORA: o invariante, que nunca mudou — nenhum item sem saida
+   de compra, e o cartao servindo exatamente o botao do degrau em que o item
+   ESTA, um por recomendado. O esperado sai da classificacao recomputada aqui a
+   partir do banco, nunca da tela, entao as duas metades continuam sem errar
+   juntas; e a regua passa a valer nos TRES degraus, em vez de num so. */
+function f1_degrau_do_item( $m ) {
 	$af = isset( $m['afiliado'] ) ? $m['afiliado'] : array();
-	if ( empty( $af['url'] ) && empty( $af['url_busca'] ) && empty( $af['url_busca_produto'] ) ) {
-		$sem_saida_no_banco++;
-	}
-	if ( empty( $af['url'] ) && empty( $af['url_busca'] ) && ! empty( $af['url_busca_produto'] ) ) {
-		$so_busca_crua++;
+	if ( ! empty( $af['url'] ) )                { return 'ficha'; }
+	if ( ! empty( $af['url_busca'] ) )          { return 'busca'; }
+	if ( ! empty( $af['url_busca_produto'] ) )  { return 'crua'; }
+	return 'sem saida';
+}
+
+$degraus_do_banco = array( 'ficha' => 0, 'busca' => 0, 'crua' => 0, 'sem saida' => 0 );
+foreach ( $p_itens as $m ) {
+	$degraus_do_banco[ f1_degrau_do_item( $m ) ]++;
+}
+f1_ok( 0 === $degraus_do_banco['sem saida'],
+	'secao 7: nenhum item de pastilha ficou sem saida de compra',
+	$degraus_do_banco['sem saida'] . ' sem saida de ' . $total_do_banco
+	. ' · ficha ' . $degraus_do_banco['ficha']
+	. ', busca ' . $degraus_do_banco['busca']
+	. ', crua ' . $degraus_do_banco['crua'] );
+
+/* O CARTAO SERVE O BOTAO DO DEGRAU EM QUE O ITEM ESTA — os tres contados, um a
+   um. Os padroes terminam na aspa de fechamento do atributo de proposito:
+   `cdm-f2-botao cdm-f2-botao-busca` e PREFIXO de
+   `cdm-f2-botao cdm-f2-botao-busca cdm-f2-botao-busca-crua`, e contar sem a
+   aspa somaria o degrau 4 dentro do degrau 3. */
+$rec_p20  = f1_classificar( $p_itens, 20, $p_teto )['rec'];
+$esperado = array( 'ficha' => 0, 'busca' => 0, 'crua' => 0, 'sem saida' => 0 );
+foreach ( $rec_p20 as $m ) {
+	$esperado[ f1_degrau_do_item( $m ) ]++;
+}
+$servido = array(
+	'ficha' => preg_match_all( '#class="cdm-f2-botao"#', $p20 ),
+	'busca' => preg_match_all( '#class="cdm-f2-botao cdm-f2-botao-busca"#', $p20 ),
+	'crua'  => preg_match_all( '#cdm-f2-botao-busca-crua#', $p20 ),
+);
+$erra = array();
+foreach ( array( 'ficha', 'busca', 'crua' ) as $d ) {
+	if ( $servido[ $d ] !== $esperado[ $d ] ) {
+		$erra[] = $d . ': ' . $servido[ $d ] . ' servidos para ' . $esperado[ $d ] . ' esperados';
 	}
 }
-f1_ok( 0 === $sem_saida_no_banco && $so_busca_crua === $total_do_banco,
-	'secao 7: nenhum item de pastilha ficou sem saida de compra, e os treze estao no degrau 4',
-	$sem_saida_no_banco . ' sem saida, ' . $so_busca_crua . ' de ' . $total_do_banco . ' so com busca crua' );
-f1_ok( preg_match_all( '#cdm-f2-botao-busca-crua#', $p20 ) === count( f1_classificar( $p_itens, 20, $p_teto )['rec'] )
-	&& 0 === preg_match_all( '#Link de loja em breve#', $p20 ),
-	'o cartao de pastilha serve a busca CRUA como botao, um por recomendado, e nao promete nada',
-	preg_match_all( '#cdm-f2-botao-busca-crua#', $p20 ) . ' botoes para ' . count( f1_classificar( $p_itens, 20, $p_teto )['rec'] ) . ' recomendados' );
+f1_ok( empty( $erra ) && 0 === $esperado['sem saida'] && 0 === preg_match_all( '#Link de loja em breve#', $p20 ),
+	'o cartao de pastilha serve o botao do DEGRAU de cada recomendado, e nao promete nada',
+	empty( $erra )
+		? count( $rec_p20 ) . ' recomendados · ficha ' . $servido['ficha'] . ', busca ' . $servido['busca'] . ', crua ' . $servido['crua']
+		: implode( ' | ', $erra ) );
 f1_ok( preg_match_all( '#cdm-f2-botao cdm-f2-botao-busca#', $p20_piso ) === count( f1_classificar( $p_itens, 20, $p_teto )['rec'] ),
 	'PRODUZ O MUNDO: com piso no banco, o cartao de pastilha serve a busca como botao' );
 f1_ok( false === mb_stripos( $p20_piso, 'Link de loja em breve' ),

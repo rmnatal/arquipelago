@@ -4266,3 +4266,164 @@ o BLOCO 0 dizia, com todas as letras, que **não divide passada com nada**. O BL
 posição 1,0. O caminho é o **filtro** `wp_robots` no snippet da casca, nunca uma segunda meta em paralelo
 (lição trazida da Aquametria, escrita no próprio bloco), mais a saída do sitemap. Não depende de nenhum
 número que ainda não chegou.
+
+25/09/2026 14:10Z — BLOCOS B E C DO DESPACHO DE 24/09 ENTREGUES: a etiqueta de robô era quatro em paralelo, e o rastreador nunca recebe redirecionamento
+
+- **A ILHA DESTA EXECUÇÃO NÃO FOI ESCOLHIDA, FOI IMPOSTA PELO FOCO.** `foco.md`
+  nomeia a **clubedomosaico** desde 24/09, então pela 1.2 a rotação da seção 1
+  está suspensa e não houve o que comparar. `executando_desde` estava `null`, que
+  pela 1.1 já significa que nenhum bloco da Fundação estava vivo — não houve
+  reserva vencida para o git desempatar. Nenhum PR aberto e a branch `claude/*`
+  do repositório está mesclada (zero commits à frente do `main`). Reserva aceita
+  às 13h17Z, no primeiro push.
+- **REDE PELA 20.2, RETESTADA E NÃO HERDADA:** três passadas,
+  `clubedomosaico.com.br` em **200** nas três, com `aquametria.com.br` em 200 nas
+  mesmas três.
+- **A ORDEM VEIO DO PRÓPRIO DESPACHO**, que já a tinha escrito: o BLOCO B não
+  depende de dado que não chegou, o C é varredura e relatório, e **o A espera
+  30/09** — trocar título antes do número de 30/09 misturaria duas causas na
+  mesma janela, e o veredito dele é de 08/10. Pela 18.3 o despacho foi reescrito
+  deixando só o A, com o motivo em uma linha.
+
+**BLOCO B — E ELE ACHOU UM DEFEITO MAIOR DO QUE O QUE VEIO CONSERTAR.**
+
+- O pedido era `/author/mosaico_gestor/`: 200, sem etiqueta, fora do sitemap, sem
+  link de nenhuma página daqui — e mesmo assim indexado e servido na **posição
+  1,0** na janela 15→21/09, disputando orçamento de rastreamento com 15 páginas
+  NÃO indexadas desta mesma propriedade.
+- **O que a primeira medição achou, antes de escrever uma linha de código:**
+  `/materiais/como-sabemos/` já servia **DUAS** `<meta name="robots">` — a do
+  núcleo (`max-image-preview:large`, aspas simples) e a da casca (`noindex,
+  follow`, aspas duplas), injetada num `wp_head` paralelo. **Era exatamente a
+  armadilha que o BLOCO B nomeia como lição da Aquametria**, e ela já estava no ar.
+- **E não eram duas, eram quatro.** A F1, a F2 e o Leads faziam o mesmo, cada um
+  para tirar do índice o estado COM PARÂMETRO da própria página. Medido no ar em
+  `/materiais/qual-cola-usar-no-mosaico/?base=espelho&onde=interno_seco`, que é um
+  estado da **melhor página desta ilha** (17 impressões na posição 7,8).
+- **POR QUE NENHUM PORTÃO VIA:** todos mediam **SE** a frase `noindex` aparecia;
+  **nenhum media QUANTAS etiquetas apareciam.** O idioma de contar já existia
+  nesta ilha desde que o `teste-f2.php` nasceu — mas só para o `<link
+  rel="canonical">` ("a ancora serve UM canonical"). Para o robô, nunca.
+- **A IRONIA ESTAVA ESCRITA NO PRÓPRIO F2**, três linhas acima do `echo` que ele
+  fazia: ele explica, com todas as letras, por que NÃO imprime o canonical —
+  *"serviria DOIS canonicals (...) sujo numa página cujo propósito inteiro é ter
+  UM endereço no índice"* — e fazia exatamente isso com a etiqueta de robô.
+- **O CONSERTO, e é o caminho que o bloco manda:** a casca 1.13.0 declara a
+  etiqueta pelo filtro `wp_robots` (prioridade 20, depois do núcleo) em vez de
+  imprimi-la, e abriu `cdm_fora_do_indice` para quem quiser sair do índice
+  **declarar a condição**. Quem imprime é a casca, uma vez, a partir de um vetor
+  só. `max-image-preview` é retirada quando a página sai do índice, para o texto
+  servido não depender da ordem dos filtros: sai exatamente `noindex, follow`.
+- **TRÊS CONTEXTOS SAEM DO ÍNDICE**, e dois são os que a Sentinela mediu em 23/09:
+  as páginas declaradas na definição, o **arquivo de autor** e a **busca interna**
+  (`/?s=`), que respondia 200 sem etiqueta nas três ilhas. `follow` fica nos três —
+  a página sai do índice e a malha não se corta.
+- **CINCO RÉGUAS DESTA ILHA MEDIAM A ASPA DE QUEM ESCREVEU, NÃO A DIRETIVA**, e
+  as duas famílias apareceram no mesmo dia. `teste-f1`, `teste-f2`, `teste-atelie`
+  e duas afirmações do `conferir-no-ar` procuravam a frase literal com **aspas
+  duplas**, que eram as do `echo` dos snippets. O `wp_robots()` do núcleo usa
+  **aspas simples**. Resultado: três reprovaram código CERTO no dia do conserto, e
+  **duas passavam A VAZIO** — `'name="robots"' not in html` é verdade em toda
+  página de aspas simples, inclusive numa que saísse com `noindex` por engano. As
+  cinco passaram a medir a DIRETIVA e a CONTAR as etiquetas.
+- **A BANCADA PASSOU A EMULAR `wp_robots()`**, com o
+  `wp_robots_max_image_preview()` do núcleo na prioridade 10 e as aspas simples do
+  original. Sem isso ela reprovaria o conserto por não saber produzir o mecanismo
+  novo — e a saída fácil seria afrouxar o teste.
+- **CONFERIDO NO AR**, casca 1.13.0 / f1 1.3.1 / f2 1.5.1 / leads 1.1.1, manifest
+  39 e `/status` na 39: `/author/`, `/materiais/como-sabemos/`, `/?s=mosaico`,
+  `/atelie/` e os estados com parâmetro da F1 e da F2 servem **UMA** etiqueta com
+  `noindex, follow`; a home, as 17 URLs do sitemap e as duas âncoras que rankeiam
+  servem UMA e continuam **no** índice.
+
+**BLOCO C — O RASTREADOR NUNCA RECEBE REDIRECIONAMENTO, E ISSO SÓ APARECEU PORQUE DUAS LEITURAS DISCORDARAM.**
+
+- `ferramentas/varrer-canonicas.py` (nova) lê a canônica e a cadeia de
+  redirecionamento de cada URL e classifica nas duas listas que o bloco pede, em
+  `dados/indexacao.md`. **71 URLs: 71 em "esperado, nenhuma ação", 0 defeito.**
+  Nenhuma correção aplicada, como o bloco manda.
+- **A LISTA NÃO É DIGITADA:** as 17 vêm do `wp-sitemap.xml` no ar, mais `/author/`
+  e as variações de cada uma (`http`, `www`, sem barra final) — os dois motivos do
+  e-mail nascem de DUAS URLs para a mesma coisa, e varrer só a versão boa mediria
+  o lado que nunca dá problema.
+- **O ACHADO, e ele quase não foi feito:** a primeira conferência abriu
+  `https://www.clubedomosaico.com.br/loja/` no `curl` e leu **200**; a varredura,
+  que gruda `?v=<agora>`, leu **301** na mesma URL no mesmo minuto. Não é
+  intermitência: são **dois respondedores**. Com a quebra de cache a pergunta
+  chega ao WordPress, que redireciona certo; sem ela quem responde é o **cache de
+  página**, que não sabe redirecionar. **O Googlebot não manda quebra de cache.**
+  Medido em três passadas por URL e por leitura, porque uma leitura só não
+  distingue cache frio de regra — a primeira leitura da home deu 301 cru, antes de
+  a entrada esquentar, e as três seguintes deram 200.
+- **Em 36 das 71 URLs as duas leituras discordam**, e a coluna nova da tabela as
+  marca uma a uma.
+- **ISSO EXPLICA UM MOTIVO E NÃO EXPLICA O OUTRO.** "Página alternativa com tag
+  canônica adequada": explicado, e o despacho está certo em chamá-lo de
+  comportamento esperado — o rastreador recebe 200 em cada variação e a canônica
+  aponta para a versão boa. "Página com redirecionamento": **não explicado pelo
+  que a ilha serve hoje**, o oposto do que esta execução esperava achar. A fonte
+  provável é a vida anterior do domínio (há um `sitemap.xml` de 2019 na
+  propriedade), e **a lista só existe dentro do Search Console**.
+- **O PEDIDO AO RAPHAEL CONTINUA DE PÉ, e é o que destrava de verdade:** dar
+  acesso de leitura à conta `sentinela@` em `sc-domain:clubedomosaico.com.br`.
+  Sem ele, indexação e posição desta ilha só se leem no navegador dele.
+- **O QUE ISSO CUSTA A QUEM MEDIR ESTA ILHA, e é maior que o BLOCO C:**
+  `conferir-no-ar.py` gruda `?v=<agora>` em toda URL — e está **certo** em fazer
+  isso, porque nasceu para provar que o Sync aplicou a revisão nova (seção 4). O
+  preço é que **ele nunca vê o que o visitante vê**, e nenhuma linha dizia isso.
+  Cache servindo página velha para gente de verdade passa por baixo das 488
+  afirmações dele sem encostar em nenhuma. Mesma família da seção 29.
+- **A FERRAMENTA TEM `--autoteste`**, 11 casos fabricados, um por ramo da régua:
+  a varredura fechou em 71 esperado e ZERO defeito, e portão que nunca acusou nada
+  é indistinguível de portão quebrado. Os sete ramos de defeito acusam; os quatro
+  de "esperado" não. **E o autoteste já pagou:** a primeira passada chamou de
+  DEFEITO a ausência de canônica em `/author/`, que é o comportamento padrão do
+  núcleo em arquivo (só página singular recebe `rel_canonical()`) — trabalho
+  inventado, que é o que a abertura do BLOCO C manda evitar.
+
+**DE PASSAGEM, UMA BANCADA VERMELHA QUE NÃO ERA DESTE DESPACHO — E QUE TRAVAVA DUAS BATERIAS.**
+
+- `teste-f1` (2 falhas) e `teste-f2` (1) estavam vermelhos no `main` **desde as
+  10h40Z desta mesma data**, e com eles `mutacoes-f1` e `mutacoes-f2` se recusavam
+  a rodar: *"a F1 de verdade já está reprovada — conserte antes de mutar"*.
+  Confirmado como anterior rodando as duas em `82ced82`: 2 e 1 falhas, idênticas.
+- **A CAUSA ERA A PRÓPRIA MELHORA DAQUELA EXECUÇÃO.** Os treze itens de pastilha
+  subiram do degrau 4 (busca crua, `rel=nofollow`, que não rende nada) para o
+  degrau 3 (`url_busca`, link de afiliado com `rel=sponsored`). As réguas cobravam,
+  com número fixo, que os treze estivessem no degrau 4 — **e o comentário três
+  linhas acima da própria afirmação já tinha escrito, em 14/09, que "uma régua
+  presa a isso ficaria verde para sempre".** Prendeu-se assim mesmo, e ficou
+  vermelha quando a ilha melhorou.
+- **CONSERTADO SEM AFROUXAR:** o degrau de cada item passa a ser **derivado do
+  banco**, e a régua cobra que o cartão sirva o botão do degrau em que o item
+  está, um por recomendado, nos **três** degraus em vez de num só. O invariante
+  que nunca mudou — nenhum item sem saída de compra, nenhuma promessa de "em
+  breve" — continua cobrado igual.
+- **E O DEGRAU 4 PASSOU A SER PRODUZIDO, NÃO ESPERADO:** nasceu o mundo
+  `so_crua=1` no `render-para-teste.php`, que apaga a ficha e a busca encurtada e
+  deixa a crua de pé. É onde o `rel=nofollow` da busca crua é conferido agora — o
+  irmão `sem_piso` já tinha escrito essa mesma cicatriz sobre si mesmo em 14/09.
+- **Os dois voltaram a verde e as duas baterias voltaram a rodar.**
+
+**TRÊS MUTAÇÕES FICARAM INERTES NO CONSERTO, E AS TRÊS FORAM RETARGETADAS.**
+`mutacoes-leads` 29, `mutacoes-f1` e `mutacoes-f2` apagavam o `echo` que deixou de
+existir. Mutação inerte é o pior dos dois estados: a bateria continua verde
+dizendo que mediu. O alvo novo é a declaração do `cdm_fora_do_indice`, e apagá-la
+devolve o estado com parâmetro ao índice do mesmo jeito.
+
+**MEDIDO NESTA EXECUÇÃO.** Bancada: `teste-casca` 555 (eram 549), `teste-f1` 196,
+`teste-f2` 114, `teste-atelie`, `teste-leads`, `teste-loja`, `teste-tecnicas` e
+`teste-prestacao-rejunte` — **todos 0 falha**. Mutações: `mutacoes-atelie` 48/48,
+`mutacoes-leads` 48/48 e **0 inertes** (era 1), `mutacoes-voz-e-cabeca` 24/24,
+`mutacoes-arvore` 21/21, `mutacoes-f1` 46/46. No ar: `conferir-no-ar.py` **488
+afirmações, 0 falha** (eram 459). As afirmações novas da casca foram provadas não
+inertes uma a uma, com quatro quebras: `max-image-preview` colada no `noindex`,
+autor de volta ao índice, casca devolvendo markup em vez de diretiva, e tudo
+saindo do índice — as quatro reprovam.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** o **BLOCO A** (CTR das três páginas de primeira
+página), que **espera o número de 30/09** por ordem do próprio despacho. Até lá
+esta ilha não tem item da Fundação aberto que não dependa de dado que ainda não
+chegou. **O que depende do Raphael:** o acesso do `sentinela@` ao Search Console,
+e a proposta de 301 de `http` para `https` em todo caminho, escrita em
+`dados/indexacao.md` e **não aplicada**.

@@ -5,8 +5,63 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-25T10:45Z
-executando_desde: 2026-09-25T13:17Z
+ultima_execucao: 2026-09-25T14:10Z
+executando_desde: null
+ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
+bloco_atual: |
+  BLOCOS B E C DO DESPACHO DO RAPHAEL DE 24/09 CUMPRIDOS E CONFERIDOS NO AR. Falta so o BLOCO A, que
+  ESPERA 30/09 por ordem do proprio despacho. Casca 1.13.0, f1 1.3.1, f2 1.5.1, leads 1.1.1, manifest 39,
+  /status na 39.
+  BLOCO B — O PEDIDO ERA UMA PAGINA E O DEFEITO ERAM QUATRO. /author/mosaico_gestor/ respondia 200 sem
+  etiqueta nenhuma, fora do sitemap, sem link de nenhuma pagina daqui — e o Google o indexou e o serviu na
+  POSICAO 1,0 na janela 15->21/09, disputando rastreamento com 15 paginas NAO indexadas desta propriedade.
+  Antes de escrever codigo, a medicao achou coisa pior JA NO AR: /materiais/como-sabemos/ servia DUAS
+  <meta name="robots">, a do nucleo e a da casca, injetada num wp_head paralelo — que e exatamente a
+  armadilha que o BLOCO B nomeia como licao da Aquametria. E nao eram duas: a F1, a F2 e o Leads faziam o
+  mesmo, e o estado com parametro de /materiais/qual-cola-usar-no-mosaico/ — a MELHOR pagina desta ilha,
+  17 impressoes na posicao 7,8 — servia duas tambem.
+  POR QUE NENHUM PORTAO VIA: todos mediam SE a frase noindex aparecia; NENHUM media QUANTAS etiquetas
+  apareciam. O idioma de contar existia nesta ilha desde que o teste-f2 nasceu, mas so para o canonical.
+  E a ironia estava escrita no proprio F2, tres linhas acima do echo dele: ele explica por que NAO imprime
+  o canonical ("serviria DOIS canonicals (...) sujo numa pagina cujo proposito inteiro e ter UM endereco no
+  indice") e fazia exatamente isso com a etiqueta de robo.
+  O CONSERTO E O CAMINHO QUE O BLOCO MANDA: a casca declara pelo filtro wp_robots em vez de imprimir, e
+  abriu cdm_fora_do_indice para quem quiser sair do indice DECLARAR a condicao. Quem imprime e a casca, uma
+  vez. Tres contextos saem: as paginas declaradas, o arquivo de autor e a BUSCA INTERNA (/?s=), que a
+  Sentinela mediu em 200 sem etiqueta nas tres ilhas. follow fica nos tres.
+  CINCO REGUAS MEDIAM A ASPA DE QUEM ESCREVEU, NAO A DIRETIVA — o wp_robots() do nucleo usa aspas SIMPLES.
+  Tres reprovaram codigo CERTO no dia do conserto e DUAS passavam A VAZIO, inclusive a que teria pegado as
+  duas etiquetas. As cinco passaram a medir a diretiva e a CONTAR. A bancada passou a emular wp_robots().
+  BLOCO C — O RASTREADOR NUNCA RECEBE REDIRECIONAMENTO. ferramentas/varrer-canonicas.py (nova) leu 71 URLs:
+  71 esperado, 0 defeito, nenhuma correcao aplicada como o bloco manda. O achado quase nao foi feito: a
+  primeira conferencia leu 200 em www.clubedomosaico.com.br/loja/ e a varredura, que gruda ?v=<agora>, leu
+  301 na mesma URL no mesmo minuto. Sao DOIS RESPONDEDORES — com quebra de cache a pergunta chega ao
+  WordPress, que redireciona certo; sem ela responde o CACHE DE PAGINA, que nao sabe redirecionar. E o
+  Googlebot nao manda quebra de cache. Em 36 das 71 as duas leituras discordam.
+  ISSO EXPLICA UM MOTIVO DO E-MAIL DE 23/09 E NAO EXPLICA O OUTRO: "Pagina alternativa com tag canonica
+  adequada" e comportamento esperado, como o despacho ja dizia; "Pagina com redirecionamento" NAO e
+  explicado pelo que a ilha serve hoje, e a fonte provavel e a vida anterior do dominio — lista que so
+  existe dentro do Search Console.
+  O QUE ISSO CUSTA A QUEM MEDIR ESTA ILHA, e e maior que o BLOCO C: conferir-no-ar.py gruda ?v= em toda URL
+  e esta CERTO em fazer isso (secao 4), mas por isso NUNCA VE O QUE O VISITANTE VE. Cache servindo pagina
+  velha para gente de verdade passa por baixo das 488 afirmacoes dele sem encostar em nenhuma.
+  DE PASSAGEM, UMA BANCADA VERMELHA QUE NAO ERA DESTE DESPACHO E TRAVAVA DUAS BATERIAS: teste-f1 (2) e
+  teste-f2 (1) estavam vermelhos no main desde as 10h40Z desta mesma data (confirmado em 82ced82), e
+  mutacoes-f1 e mutacoes-f2 se RECUSAVAM A RODAR por causa disso. A causa era a propria melhora daquela
+  execucao — os treze itens de pastilha subiram do degrau 4 para o 3 — e as reguas cobravam com numero fixo
+  que estivessem no 4, tres linhas abaixo de um comentario que ja avisava que "uma regua presa a isso
+  ficaria verde para sempre". Consertado derivando o degrau do BANCO e produzindo o degrau 4 num mundo novo
+  (so_crua=1) em vez de espera-lo. Os dois verdes, as duas baterias rodando.
+  MEDIDO: teste-casca 555, teste-f1 196, teste-f2 114, atelie, leads, loja, tecnicas e prestacao-rejunte
+  todos 0 falha; mutacoes-atelie 48/48, mutacoes-leads 48/48 e 0 INERTES (era 1), voz-e-cabeca 24/24,
+  arvore 21/21, f1 46/46; conferir-no-ar 488 afirmacoes 0 falha (eram 459). Tres mutacoes ficaram inertes
+  no conserto e as tres foram retargetadas — mutacao inerte e o pior dos dois estados, porque a bateria
+  continua verde dizendo que mediu.
+  O QUE DEPENDE DO RAPHAEL, e nada disto e da Fundacao: (1) dar acesso de LEITURA a conta sentinela@ em
+  sc-domain:clubedomosaico.com.br, que e o que destrava a medicao desta ilha; (2) autorizar, ou nao, a
+  proposta de 301 de http para https em TODO caminho — hoje so a home redireciona —, escrita em
+  dados/indexacao.md e NAO APLICADA, porque o bloco C proibe.
+
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
   BLOCO 0 DO DESPACHO DO RAPHAEL DE 24/09 CUMPRIDO E CONFERIDO NO AR: os 31 links de Shopee desta ilha

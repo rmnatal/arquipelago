@@ -964,10 +964,44 @@ f2_ok( ! empty( $mb[1] ), 'a varredura acha os blocos de compra para conferir li
 	count( $mb[1] ) . ' blocos' );
 f2_ok( empty( $links_sem_sponsored ), 'TODO link que RENDE comissao declara rel="sponsored" — a busca encurtada tambem',
 	empty( $links_sem_sponsored ) ? 'todos marcados' : implode( ' | ', array_slice( $links_sem_sponsored, 0, 2 ) ) );
-f2_ok( $cruas > 0, 'a pagina de hoje SERVE busca crua — senao a afirmacao abaixo nao mede nada',
-	$cruas . ' botoes de busca crua' );
+/* A BUSCA CRUA DEIXOU DE EXISTIR NO BANCO EM 25/09/2026, e a regua mudou de
+   lugar em vez de mudar de exigencia.
+
+   Ate aqui esta linha cobrava `$cruas > 0` na pagina REAL — uma protecao contra
+   medir vazio, e ela estava certa em existir. So que as 10h40Z daquele dia os
+   31 links desta ilha foram regerados pela Open API e os treze itens de
+   pastilha subiram do degrau 4 para o 3; depois disso NENHUM item do banco esta
+   na busca crua, e a bancada ficou vermelha por a ilha ter melhorado. O irmao
+   `sem_piso` do render ja tinha escrito essa cicatriz em 14/09, sobre si mesmo:
+   caso que o banco pode deixar de produzir tem de ser PRODUZIDO, nao esperado.
+
+   Entao agora sao DUAS afirmacoes, e juntas dizem mais do que a antiga: o banco
+   de hoje nao tem ninguem no degrau 4 (medido do banco, nao cravado), e o
+   `rel` da busca crua e conferido no mundo `so_crua=1`, que a produz. */
+f2_ok( 0 === $cruas, 'o banco de hoje nao tem ninguem no degrau 4 — a busca crua sumiu da pagina real',
+	$cruas . ' botoes de busca crua na ancora' );
+
+$mundo_so_crua      = f2_corpo( f2_render( $raiz, 'so_crua=1' ) );
+$cruas_produzidos   = 0;
+$crua_com_sponsored = array();
+if ( preg_match_all( '#<span class="cdm-f2-compra">(.*?)</span>\s*<span class="cdm-f2-fonte"#is', $mundo_so_crua, $mb_crua ) ) {
+	foreach ( $mb_crua[1] as $bloco ) {
+		if ( preg_match_all( '#<a\b[^>]*>#i', $bloco, $ml_crua ) ) {
+			foreach ( $ml_crua[0] as $tag ) {
+				if ( false === mb_strpos( $tag, 'cdm-f2-botao-busca-crua' ) ) {
+					continue;
+				}
+				$cruas_produzidos++;
+				if ( false !== mb_strpos( $tag, 'rel="sponsored' ) ) { $crua_com_sponsored[] = $tag; }
+				if ( false === mb_strpos( $tag, 'rel="nofollow' ) )  { $crua_com_sponsored[] = $tag; }
+			}
+		}
+	}
+}
+f2_ok( $cruas_produzidos > 0, 'PRODUZ O MUNDO: com so_crua=1 a busca crua volta a ser o botao do cartao',
+	$cruas_produzidos . ' botoes de busca crua' );
 f2_ok( empty( $crua_com_sponsored ), 'a busca CRUA sai nofollow e NUNCA sponsored — ela nao rende comissao',
-	empty( $crua_com_sponsored ) ? $cruas . ' conferidos' : implode( ' | ', array_slice( $crua_com_sponsored, 0, 2 ) ) );
+	empty( $crua_com_sponsored ) ? $cruas_produzidos . ' conferidos' : implode( ' | ', array_slice( $crua_com_sponsored, 0, 2 ) ) );
 
 /* (b) SEM FICHA, COM BUSCA: a busca SOBE e vira o botao. `sem_links=1` apaga a
       ficha e deixa o piso de pe, que e o estado 2 da escada. */

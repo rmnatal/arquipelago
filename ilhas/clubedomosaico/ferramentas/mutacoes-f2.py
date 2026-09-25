@@ -171,9 +171,15 @@ def m_compra_depois_da_procedencia(raiz):
 def m_estado_com_parametro_entra_no_indice(raiz):
     """O `noindex` do estado com parametro cai, e as 45 combinacoes viram URL
     indexavel num dominio recem-nascido (secoes 14.1 e 14.4)."""
+    # O ALVO MUDOU EM 25/09/2026, com a casca 1.13.0: ate entao este snippet
+    # imprimia a propria etiqueta num `wp_head` paralelo, e a pagina servida
+    # ficava com DUAS — medido no ar naquele dia. Agora ele DECLARA a condicao
+    # pelo filtro `cdm_fora_do_indice` e quem imprime e a casca, uma vez. Sem
+    # retarget a mutacao vira INERTE, que e o pior dos dois estados: a bateria
+    # continua verde dizendo que mediu.
     editar(raiz, SNIPPET,
-           "\tif ( $e['escolheu'] ) {\n\t\techo '<meta name=\"robots\" content=\"noindex, follow\">' . \"\\n\";\n\t}",
-           "\tif ( false ) {\n\t\techo '<meta name=\"robots\" content=\"noindex, follow\">' . \"\\n\";\n\t}")
+           "\treturn $fora || ! empty( $e['escolheu'] );",
+           "\treturn $fora;")
 
 
 def m_faq_do_schema_promete_o_que_a_pagina_nao_diz(raiz):

@@ -6,12 +6,25 @@ Trava 19.4(c) do `ARQUIPELAGO.md`: todo conserto que uma ronda faz entra aqui, e
 |---|---|---|---|
 | 2026-09-24 | as 17 URLs do sitemap, mais `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/` | o `.htaccess` da raiz tinha só o bloco `NFD EPC` e não tinha o `# BEGIN WordPress`: a ilha servia a página de estacionamento da HostGator em 16 das 17 URLs. Reparado por `flush_rewrite_rules( true )` pela rota `/rotas` da casca 1.12.0 | **a próxima ronda** |
 | 2026-09-25 | os 31 links de Shopee do banco, servidos em `/materiais/qual-cola-usar-no-mosaico/` e `/materiais/quantas-pastilhas-para-mosaico/` | os `sub_id` estavam deslocados uma casa (`-clubedomosaico-F2--`, campo 1 vazio) nos 16 links de 13/09, e 15 itens não tinham piso encurtado. Todos regerados pela Open API (25.6, 25.8). As 13 chaves das pastilhas devolviam ZERO oferta e foram trocadas | **a próxima ronda** |
+| 2026-09-25 | `/author/mosaico_gestor/`, `/materiais/como-sabemos/`, `/?s=<termo>`, `/atelie/` e os estados com parâmetro da F1 e da F2 | a ilha servia **DUAS** `<meta name="robots">` em toda página que saía do índice — a do núcleo e a que a casca, a F1, a F2 e o Leads imprimiam cada um num `wp_head` paralelo. E `/author/mosaico_gestor/`, que o Google indexou e serviu na posição 1,0, não tinha etiqueta nenhuma. Agora quem imprime é a casca 1.13.0, uma vez, pelo filtro `wp_robots`; quem quer sair do índice declara pelo `cdm_fora_do_indice` | **a próxima ronda** |
 
 ## 12/09/2026 — primeira ronda desta ilha, nenhum conserto
 
 `ultima_ronda` era `null`: a ilha nunca tinha sido rondada. Foram abertas as 11 URLs no navegador do Raphael e nenhum defeito da lista fechada 19.1 apareceu — não há, portanto, nada para a próxima ronda reconferir nesta tabela.
 
 Os dois defeitos encontrados são de **coerência da recomendação** (seção 12) e caem na lista 19.2 (lógica de ferramenta), então a Sentinela não os consertou: eles estão em `PROMPT.md`, na seção `## DESPACHO DA SENTINELA — 12/09/2026`. O que a próxima ronda tem de reconferir é aquele despacho, no ar, pelos critérios de "pronto quando" que ele declara.
+
+## 25/09/2026 — O QUE A PRÓXIMA RONDA RECONFERE NA LINHA DA ETIQUETA DE ROBÔ
+
+**É um comando, e ele mede as duas direções:** `python3 ferramentas/conferir-no-ar.py .` — a seção "A etiqueta
+de robô (uma só, e nas páginas certas)" cobra que `/author/`, `/materiais/como-sabemos/`, `/?s=` e os estados
+com parâmetro da F1 e da F2 sirvam **UMA** etiqueta com `noindex, follow`, **e** que as 17 URLs do sitemap e as
+duas âncoras que rankeiam continuem **no** índice. `noindex` indevido tira do ar uma página que rankeia, e esta
+ilha tem três na primeira página — por isso as duas direções.
+
+**O que a ronda NÃO pode usar como régua:** a aspa. O `wp_robots()` do núcleo imprime `content='noindex,
+follow'` com aspas **simples**. Cinco réguas desta ilha procuravam aspas duplas e tiveram de ser consertadas
+em 25/09; duas delas passavam a vazio, aprovando qualquer coisa.
 
 ## 24/09/2026 — CONSERTO DA FUNDAÇÃO, não da Sentinela, e está aqui de propósito
 

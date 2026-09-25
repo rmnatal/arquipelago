@@ -290,9 +290,15 @@ def m29(r):
     """O estado com `?cdm_lead=` deixa de sair do indice. Cada envio passa a poder
     virar uma URL indexada da mesma ficha — e a peca, que e a pagina que vende,
     passa a disputar consigo mesma."""
+    # O ALVO MUDOU EM 25/09/2026 e a mutacao ficou INERTE por uma passada: ate a
+    # casca 1.13.0 este snippet imprimia a propria etiqueta num `wp_head`
+    # paralelo, e a mutacao apagava o `echo`. Agora ele DECLARA a condicao pelo
+    # filtro `cdm_fora_do_indice` e quem imprime e a casca, uma vez. O alvo novo
+    # e a declaracao — apaga-la devolve o estado com parametro ao indice do
+    # mesmo jeito, e e isso que esta mutacao existe para ver.
     trocar(r, LEADS,
-           "\t\techo '<meta name=\"robots\" content=\"noindex, follow\">' . \"\\n\";",
-           "\t\treturn;")
+           "\treturn $fora || '' !== cdm_atelie_get( 'cdm_lead' ) || '' !== cdm_atelie_get( 'cdm_lead_erro' );",
+           "\treturn $fora;")
 
 
 def m30(r):
