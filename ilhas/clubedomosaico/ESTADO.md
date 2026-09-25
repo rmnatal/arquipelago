@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-25T16:16Z
-executando_desde: null
+executando_desde: 2026-09-25T19:16Z
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
   A CATEGORIA ALICATE SAI DE ZERO, E O TETO DE CORTE DESTA ILHA E 5 MM — NAO 10. dados/materiais-alicates.json
