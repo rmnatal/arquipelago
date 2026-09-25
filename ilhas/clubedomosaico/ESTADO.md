@@ -60,8 +60,9 @@ bloco_atual: |
   NENHUMA URL NOVA: as 17 continuam 17 e a semana da 21.4 continua onde estava.
   MEDIDO: teste-casca 555 (eram 4 falhas quando o arquivo entrou sem leitor), f1 196, f2 114, loja 178, leads 211,
   tecnicas 123, atelie e prestacao-rejunte aprovados, todos 0 falha; validar-banco 31 materiais, 0 sem saida de
-  compra, 0 piso nao rastreavel, 0 busca sem endereco cru; validar-pastilhas 0 item com falha; mutacoes-f1 46/46;
-  conferir-no-ar 488 afirmacoes e 0 falha.
+  compra, 0 piso nao rastreavel, 0 busca sem endereco cru; validar-pastilhas 0 item com falha; conferir-no-ar 488
+  afirmacoes e 0 falha no ar. AS SEIS BATERIAS DE MUTACAO RODARAM INTEIRAS E NENHUMA MUTACAO PASSOU: f1 46/46,
+  f2 50/50, pastilhas 14/14, cobertura 14/14, voz-e-cabeca 24/24 e arvore 21/21.
   O QUE DEPENDE DO RAPHAEL, e nada disto e da Fundacao: (1) dar acesso de LEITURA a conta sentinela@ em
   sc-domain:clubedomosaico.com.br, que e o que destrava a medicao desta ilha; (2) autorizar, ou nao, a
   proposta de 301 de http para https em TODO caminho — hoje so a home redireciona —, escrita em
