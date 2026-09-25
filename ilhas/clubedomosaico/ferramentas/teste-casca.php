@@ -1121,18 +1121,100 @@ foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
 }
 $GLOBALS['__options']['cdm_casca_paginas'] = $ids_falsos;
 
+/* A REGUA DESTA SECAO E DAQUI, e ela e a de um leitor de HTML e nao a da casca
+   (regra 1 do cabecalho): `cdm_robots_texto()` monta a etiqueta do jeito que o
+   `wp_robots()` do nucleo monta — juntando as diretivas com virgula, chave
+   sozinha quando o valor e true, `chave:valor` quando e texto. Se a casca
+   devolver o vetor na ordem errada, ou com diretiva a mais, este texto mostra.
+
+   O NUCLEO ENTRA AQUI TAMBEM, e e o que faz a medicao valer: toda chamada parte
+   de `array( 'max-image-preview' => 'large' )`, que e exatamente o que o
+   `wp_robots_max_image_preview()` do WordPress ja pos no vetor na prioridade 10
+   quando a nossa funcao roda na 20. Medir com vetor vazio aprovaria a casca que
+   deixa a diretiva do nucleo colada no noindex. */
+function cdm_robots_texto( $robots ) {
+	$partes = array();
+	foreach ( $robots as $diretiva => $valor ) {
+		if ( is_string( $valor ) ) {
+			$partes[] = $diretiva . ':' . $valor;
+		} elseif ( $valor ) {
+			$partes[] = $diretiva;
+		}
+	}
+	return implode( ', ', $partes );
+}
+
+$do_nucleo = array( 'max-image-preview' => 'large' );
+$contexto  = function ( $extra ) use ( $ids_falsos ) {
+	return array_merge( array(
+		'id'               => 0,
+		'ids_da_casca'     => $ids_falsos,
+		'arquivo_de_autor' => false,
+		'busca'            => false,
+	), $extra );
+};
+
 $errados = array();
 foreach ( $ids_falsos as $slug => $id ) {
 	$deve_sair = in_array( $slug, cdm_casca_paginas_noindex(), true );
-	$saiu      = ( '' !== cdm_casca_robots_html( $id ) );
+	$texto     = cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'id' => $id ) ) ) );
+	$saiu      = ( false !== strpos( $texto, 'noindex' ) );
 	if ( $deve_sair !== $saiu ) {
 		$errados[] = $slug;
 	}
 }
 cdm_ok( empty( $errados ), 'a etiqueta noindex sai exatamente nas paginas declaradas',
 	empty( $errados ) ? count( $ids_falsos ) . ' paginas' : implode( ', ', $errados ) );
-cdm_ok( '' === cdm_casca_robots_html( 0 ), 'sem pagina identificada, nenhuma etiqueta e impressa' );
-cdm_ok( '' === cdm_casca_robots_html( 999 ), 'pagina de fora da casca nao recebe noindex' );
+
+$fora_declarada = cdm_casca_paginas_noindex();
+$id_declarado   = $ids_falsos[ $fora_declarada[0] ];
+
+cdm_ok( 'noindex, follow' === cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'id' => $id_declarado ) ) ) ),
+	'pagina declarada serve EXATAMENTE noindex, follow',
+	cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'id' => $id_declarado ) ) ) ) );
+
+/* O defeito de 1.12.0, medido no ar em 25/09/2026: a casca injetava a etiqueta
+   dela num `wp_head` proprio e o nucleo imprimia a dele, e a pagina saia com
+   DUAS <meta name="robots">. Com o filtro isso deixa de ser possivel por
+   construcao — o que existe e UM vetor —, e esta afirmacao e quem cobra que o
+   caminho continue sendo o filtro: ela falha no dia em que alguem devolver
+   markup em vez de diretiva. */
+$vetor_declarado = cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'id' => $id_declarado ) ) );
+$tem_markup      = false;
+foreach ( array_merge( array_keys( $vetor_declarado ), array_values( $vetor_declarado ) ) as $pedaco ) {
+	if ( is_string( $pedaco ) && false !== strpos( $pedaco, '<' ) ) {
+		$tem_markup = true;
+	}
+}
+cdm_ok( ! $tem_markup, 'a casca devolve DIRETIVA, nunca etiqueta pronta (uma meta so)',
+	count( $vetor_declarado ) . ' diretivas' );
+
+cdm_ok( ! isset( $vetor_declarado['max-image-preview'] ),
+	'max-image-preview sai quando a pagina sai do indice',
+	isset( $vetor_declarado['max-image-preview'] ) ? 'ficou' : 'saiu' );
+
+/* Os dois contextos que a Sentinela mediu em 23/09/2026. O arquivo de autor
+   tomou impressao na posicao 1,0 sem ser pagina desta ilha; a busca interna
+   ainda nao tem sintoma e fecha na mesma linha. */
+cdm_ok( 'noindex, follow' === cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'arquivo_de_autor' => true ) ) ) ),
+	'o arquivo de autor sai do indice (/author/mosaico_gestor/)',
+	cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'arquivo_de_autor' => true ) ) ) ) );
+cdm_ok( 'noindex, follow' === cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'busca' => true ) ) ) ),
+	'a busca interna sai do indice (/?s=<termo>)',
+	cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'busca' => true ) ) ) ) );
+
+/* O OUTRO LADO DA BORDA, e e o lado caro: `noindex` indevido tira do indice uma
+   pagina que rankeia. As tres paginas com posicao medida desta ilha entram aqui
+   por ID, nao por fe. */
+cdm_ok( 'max-image-preview:large' === cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array() ) ) ),
+	'sem pagina identificada, o vetor do nucleo passa intacto',
+	cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array() ) ) ) );
+cdm_ok( 'max-image-preview:large' === cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'id' => 999 ) ) ) ),
+	'pagina de fora da casca nao recebe noindex',
+	cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'id' => 999 ) ) ) ) );
+cdm_ok( 'max-image-preview:large' === cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'id' => $ids_falsos['inicio'] ) ) ) ),
+	'a home NAO sai do indice',
+	cdm_robots_texto( cdm_casca_robots_diretivas( $do_nucleo, $contexto( array( 'id' => $ids_falsos['inicio'] ) ) ) ) );
 
 $args = cdm_casca_sitemap_sem_noindex( array(), 'page' );
 $fora_do_sitemap = isset( $args['post__not_in'] ) ? $args['post__not_in'] : array();

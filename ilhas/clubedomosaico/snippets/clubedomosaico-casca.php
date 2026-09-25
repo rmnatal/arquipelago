@@ -237,7 +237,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.12.0' );
+	define( 'CDM_CASCA_VERSAO', '1.13.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2507,28 +2507,104 @@ function cdm_casca_paginas_noindex() {
 }
 }
 
-if ( ! function_exists( 'cdm_casca_robots_html' ) ) {
+if ( ! function_exists( 'cdm_casca_robots_diretivas' ) ) {
 /**
- * A etiqueta de robô da página atual, ou '' quando ela é indexável.
+ * As diretivas de robo da pagina atual — A ETIQUETA E UMA SO (1.13.0, 25/09/2026).
  *
- * Devolve texto em vez de imprimir para o teste poder medir os DOIS lados — a
- * página que sai do índice e a que continua nele. Trava que sai de graça e
- * paga sozinha: `noindex` indevido tira do ar uma página que rankeia, e é
- * justamente o tipo de defeito que ninguém vê olhando a tela.
+ * ATE 1.12.0 ESTA ILHA SERVIA DUAS `<meta name="robots">` na mesma pagina, e
+ * foi MEDIDO no ar em 25/09/2026 as 13h2xZ em `/materiais/como-sabemos/`:
+ *
+ *     <meta name='robots' content='max-image-preview:large' />   <- do nucleo
+ *     <meta name="robots" content="noindex, follow">             <- da casca
+ *
+ * A primeira e do proprio WordPress, que imprime `wp_robots()` no `wp_head`
+ * desde a 5.7; a segunda era desta casca, injetada em PARALELO por um
+ * `wp_head` proprio. Duas etiquetas com o mesmo nome e um pedido ambiguo: o
+ * buscador nao tem obrigacao de somar as duas, e qual delas vale nao esta
+ * escrito em lugar nenhum. O defeito nao tinha sintoma na tela e nenhum portao
+ * daqui o via, porque todo portao media SE a frase `noindex` aparecia, nunca
+ * QUANTAS vezes a etiqueta aparecia.
+ *
+ * O caminho certo e o FILTRO, e esta escrito no BLOCO B do despacho do Raphael
+ * de 24/09 como licao trazida da Aquametria: `wp_robots` recebe o vetor de
+ * diretivas ANTES de virar texto, entao o que sai e sempre UMA etiqueta. Esta
+ * funcao e a regra pura — recebe o vetor e o contexto, devolve o vetor — para
+ * a bancada poder medir os dois lados sem WordPress.
+ *
+ * `max-image-preview` e RETIRADA quando a pagina sai do indice: previa de
+ * imagem em pagina que nao entra no indice e diretiva sem destinatario, e
+ * deixa-la ali faria o conteudo servido depender da ordem dos filtros do
+ * nucleo. Assim o que sai e exatamente `noindex, follow`.
+ *
+ * TRES CONTEXTOS SAEM DO INDICE, e os dois novos foram medidos pela Sentinela
+ * em 23/09/2026:
+ *   1. As paginas que a propria ilha declarou `noindex` na definicao.
+ *   2. O ARQUIVO DE AUTOR. `/author/mosaico_gestor/` respondia 200 sem etiqueta
+ *      nenhuma, nao esta no sitemap, nao e linkada por nenhuma pagina daqui — e
+ *      mesmo assim o Google a indexou e a serviu na posicao 1,0 na janela
+ *      15->21/09. E pagina fina, orfa, sem porta de compra, disputando
+ *      orcamento de rastreamento com 15 paginas NAO indexadas desta mesma
+ *      propriedade. Tirar do sitemap (ja feito em 14/09) nao tira do indice:
+ *      sitemap e convite, `noindex` e a recusa.
+ *   3. A BUSCA INTERNA. `/?s=<termo>` responde 200 sem etiqueta nas tres ilhas.
+ *      Hoje nao tem sintoma porque nenhuma serve caixa de busca, mas e o mesmo
+ *      buraco e fecha na mesma linha — e resultado de busca interna e a familia
+ *      de pagina fina que mais se multiplica sozinha, uma URL por termo que
+ *      alguem digitar.
+ *
+ * `follow` fica em todos os tres de proposito: a pagina sai do indice e os
+ * links dela continuam passando. Recusar o rastreamento dos links seria cortar
+ * a malha por causa da etiqueta.
  */
-function cdm_casca_robots_html( $id_atual ) {
-	$ids = get_option( 'cdm_casca_paginas' );
-	if ( ! is_array( $ids ) || ! $id_atual ) {
-		return '';
-	}
-	foreach ( cdm_casca_paginas_noindex() as $slug ) {
-		if ( isset( $ids[ $slug ] ) && (int) $ids[ $slug ] === (int) $id_atual ) {
-			return '<meta name="robots" content="noindex, follow">' . "\n";
+function cdm_casca_robots_diretivas( $robots, $contexto ) {
+	$robots   = is_array( $robots ) ? $robots : array();
+	$contexto = is_array( $contexto ) ? $contexto : array();
+
+	$fora = ! empty( $contexto['arquivo_de_autor'] ) || ! empty( $contexto['busca'] );
+
+	$id  = isset( $contexto['id'] ) ? (int) $contexto['id'] : 0;
+	$ids = isset( $contexto['ids_da_casca'] ) && is_array( $contexto['ids_da_casca'] ) ? $contexto['ids_da_casca'] : array();
+	if ( ! $fora && $id ) {
+		foreach ( cdm_casca_paginas_noindex() as $slug ) {
+			if ( isset( $ids[ $slug ] ) && (int) $ids[ $slug ] === $id ) {
+				$fora = true;
+				break;
+			}
 		}
 	}
-	return '';
+
+	if ( ! $fora ) {
+		return $robots;
+	}
+
+	/* A ordem das chaves e a ordem do texto servido: limpar antes de gravar e o
+	   que garante `noindex, follow` e nao `follow, noindex`. */
+	unset( $robots['max-image-preview'], $robots['index'], $robots['nofollow'], $robots['noindex'], $robots['follow'] );
+	$robots['noindex'] = true;
+	$robots['follow']  = true;
+
+	return $robots;
 }
 }
+
+if ( ! function_exists( 'cdm_casca_robots_do_wordpress' ) ) {
+/** O contexto vem do WordPress aqui, e so aqui; a regra fica na funcao pura acima. */
+function cdm_casca_robots_do_wordpress( $robots ) {
+	$ids = get_option( 'cdm_casca_paginas' );
+
+	return cdm_casca_robots_diretivas( $robots, array(
+		'id'               => function_exists( 'get_queried_object_id' ) ? get_queried_object_id() : 0,
+		'ids_da_casca'     => is_array( $ids ) ? $ids : array(),
+		'arquivo_de_autor' => function_exists( 'is_author' ) ? is_author() : false,
+		'busca'            => function_exists( 'is_search' ) ? is_search() : false,
+	) );
+}
+}
+
+/* Prioridade 20: depois do `wp_robots_max_image_preview` do nucleo, que entra
+   na 10. Entrar antes dele deixaria a diretiva que esta funcao acabou de tirar
+   voltar por cima. */
+add_filter( 'wp_robots', 'cdm_casca_robots_do_wordpress', 20 );
 
 if ( ! function_exists( 'cdm_casca_sitemap_sem_noindex' ) ) {
 /**
@@ -2589,11 +2665,6 @@ function cdm_casca_provedor_de_sitemap( $provedor, $nome ) {
 }
 
 add_filter( 'wp_sitemaps_add_provider', 'cdm_casca_provedor_de_sitemap', 10, 2 );
-
-add_action( 'wp_head', function () {
-	$id = function_exists( 'get_queried_object_id' ) ? get_queried_object_id() : 0;
-	echo cdm_casca_robots_html( $id ); // markup fixo, sem dado de fora
-}, 4 );
 
 if ( ! function_exists( 'cdm_casca_fixar_identidade_do_site' ) ) {
 /**

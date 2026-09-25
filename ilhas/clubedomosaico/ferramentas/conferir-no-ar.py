@@ -1050,5 +1050,81 @@ ok(len(_servidos) > 0,
    "[afiliado] as paginas do sitemap servem pelo menos um encurtador",
    "%d" % len(_servidos))
 
+# ---------------------------------------------------------------------------
+# UMA ETIQUETA DE ROBO, E SO UMA. Acrescentado em 25/09/2026 pelo BLOCO B do
+# despacho do Raphael de 24/09, que trouxe a licao da Aquametria com todas as
+# letras: "NAO adicionar uma segunda meta robots (...) o caminho e o filtro,
+# nunca uma tag em paralelo".
+#
+# O DEFEITO QUE ESTE PORTAO EXISTE PARA PEGAR JA ESTAVA NO AR quando ele
+# nasceu, e nenhum portao daqui o via: `/materiais/como-sabemos/` servia DUAS
+# <meta name="robots"> — a do nucleo (`max-image-preview:large`, aspas simples)
+# e a da casca (`noindex, follow`, aspas duplas), injetada por um `wp_head`
+# proprio. Todo portao anterior media SE a frase `noindex` aparecia; nenhum
+# media QUANTAS etiquetas apareciam. Duas etiquetas com o mesmo nome sao um
+# pedido ambiguo, e nada na tela muda de cor por causa disso.
+#
+# A REGUA E DAQUI, nao da casca: a contagem e por expressao regular sobre o
+# HTML servido, e o veredito de cada URL esta escrito literal nesta lista. Se
+# alguem declarar outra pagina `noindex` na casca, esta lista discorda — que e
+# o ponto: as duas metades nao erram juntas.
+#
+# AS DUAS DIRECOES, porque so uma aprova o desastre: `noindex` indevido tira do
+# indice a pagina que rankeia, e esta ilha tem TRES paginas na primeira pagina
+# do Google. Entao o portao cobra a etiqueta onde ela tem de estar E a ausencia
+# dela em toda URL do sitemap, lida do sitemap no ar e nao digitada aqui.
+print("\nA etiqueta de robo (uma so, e nas paginas certas):")
+
+_RE_ROBOTS = re.compile(r"<meta[^>]*name=[\"']robots[\"'][^>]*>", re.I)
+
+def _robots_de(url):
+    html, codigo = buscar(url)
+    achadas = _RE_ROBOTS.findall(html)
+    return codigo, achadas
+
+# 1. As que TEM de sair do indice. `/author/` e o achado da Sentinela de 23/09:
+#    200, sem etiqueta, fora do sitemap, sem link de lugar nenhum — e indexada,
+#    servida na posicao 1,0. A busca interna e o mesmo buraco sem sintoma.
+for _caminho, _rotulo in [
+    ("/author/mosaico_gestor/", "o arquivo de autor"),
+    ("/materiais/como-sabemos/", "a pagina de prova"),
+    ("/?s=mosaico", "a busca interna"),
+]:
+    _cod, _achadas = _robots_de(BASE + _caminho)
+    _conteudo = " | ".join(_achadas)
+    ok(len(_achadas) == 1, f"[robots] {_rotulo} serve UMA etiqueta", f"{len(_achadas)} · {_conteudo[:70]}")
+    ok(len(_achadas) == 1 and "noindex" in _achadas[0].lower(),
+       f"[robots] {_rotulo} sai do indice", _conteudo[:70])
+    ok(len(_achadas) == 1 and "follow" in _achadas[0].lower().replace("nofollow", ""),
+       f"[robots] {_rotulo} mantem follow (a malha nao se corta)", _conteudo[:70])
+
+# 2. O OUTRO LADO: toda URL do sitemap continua NO indice, e com uma etiqueta so.
+#    A lista vem do sitemap servido — quem confere nao digita o inventario.
+_sm_idx, _ = buscar(BASE + "/wp-sitemap.xml")
+_urls_sitemap = []
+for _sub in re.findall(r"<loc>([^<]+)</loc>", _sm_idx):
+    _corpo, _ = buscar(_sub)
+    _urls_sitemap += re.findall(r"<loc>([^<]+)</loc>", _corpo)
+
+ok(len(_urls_sitemap) > 0, "[robots] o sitemap entregou a lista de URLs", f"{len(_urls_sitemap)} URLs")
+
+_com_noindex, _duplicadas = [], []
+for _u in _urls_sitemap:
+    _cod, _achadas = _robots_de(_u)
+    if len(_achadas) > 1:
+        _duplicadas.append(_u)
+    if _achadas and "noindex" in _achadas[0].lower():
+        _com_noindex.append(_u)
+
+ok(not _duplicadas, "[robots] nenhuma URL do sitemap serve DUAS etiquetas",
+   f"{len(_urls_sitemap)} conferidas" + ((": " + ", ".join(_duplicadas[:2])) if _duplicadas else ""))
+ok(not _com_noindex, "[robots] nenhuma URL do sitemap saiu do indice",
+   f"{len(_urls_sitemap)} conferidas" + ((": " + ", ".join(_com_noindex[:2])) if _com_noindex else ""))
+
+# 3. E o arquivo de autor continua FORA do sitemap — tirar do sitemap e tirar do
+#    indice sao duas coisas, e esta ilha precisa das duas.
+ok(not [_u for _u in _urls_sitemap if "/author/" in _u],
+   "[robots] o arquivo de autor continua fora do sitemap", f"{len(_urls_sitemap)} URLs")
+
 print(f"\n{'APROVADO' if falhas == 0 else 'REPROVADO'}: {feitos} afirmacoes medidas no HTML servido, {falhas} falha(s).")
 sys.exit(1 if falhas else 0)
