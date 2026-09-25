@@ -237,7 +237,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.13.0' );
+	define( 'CDM_CASCA_VERSAO', '1.14.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -360,7 +360,7 @@ function cdm_casca_categorias_do_guia() {
 			'titulo'   => 'Alicates e corte',
 			'slug'     => 'materiais/alicates-e-corte',
 			'resumo'   => 'Torquês de roda, alicate de corte e cortador: o que cada um corta sem estilhaçar, e qual deles estraga a peça.',
-			'no_banco' => 0,
+			'no_banco' => $n['materiais_alicate'],
 		),
 		array(
 			'codigo'   => 'G-BASES',
@@ -1159,6 +1159,13 @@ function cdm_casca_numeros() {
 		'materiais_cola'     => 5,
 		'materiais_rejunte'  => 5,
 		'materiais_pastilha' => 10,
+		/* ZERO NAO E CHUTE: no dia deste instantaneo (12/09/2026) a categoria
+		   `alicate` era uma das cinco que a varredura da 14.3 tinha achado com
+		   nenhum item. Ela so deixou de ser zero em 25/09/2026, e quem conta os
+		   seis e a via viva logo abaixo — este numero e o que a tela mostra se a
+		   option nao tiver chegado, e ai ele tem de ser o do instantaneo, nao o
+		   de hoje. */
+		'materiais_alicate'  => 0,
 		'categorias_do_guia' => 6,
 		'celulas_matriz'     => 18,
 		'celulas_rejunte'    => 9,
@@ -1186,6 +1193,7 @@ function cdm_casca_numeros() {
 		'materiais-colas'     => 'materiais_cola',
 		'materiais-rejuntes'  => 'materiais_rejunte',
 		'materiais-pastilhas' => 'materiais_pastilha',
+		'materiais-alicates'  => 'materiais_alicate',
 	);
 
 	$link_vivo           = 0;
@@ -2056,7 +2064,13 @@ add_shortcode( 'cdm_materiais', function () {
 	$html .= '<div class="cdm-prova">';
 	$html .= '<h2>Como sabemos</h2>';
 	$html .= '<p>Nenhuma recomendação daqui veio de blog: cada uma sai do que o fabricante publica sobre o próprio produto, com o documento e a data em que foi lido. Quando ele não fala de uma superfície, a página escreve que não fala — silêncio não vira "pode".</p>';
-	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas, ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes e ' . cdm_casca_num( $n['materiais_pastilha'] ) . ' pastilhas, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
+	/* A ENUMERACAO TEM DE FECHAR O TOTAL QUE ELA MESMA ANUNCIA. Ate 25/09/2026
+	   esta frase dizia "o banco tem N itens, sendo X colas, Y rejuntes e Z
+	   pastilhas" — e enquanto as tres categorias eram o banco inteiro, X+Y+Z
+	   era N e ninguem via problema. No dia em que a quarta categoria entrou, a
+	   mesma frase passaria a anunciar 31 e a nomear 25, que e a familia do
+	   "hoje 10 dos 5 itens esperam link" que esta ilha ja pos no ar. */
+	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas, ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes, ' . cdm_casca_num( $n['materiais_pastilha'] ) . ' pastilhas e ' . cdm_casca_num( $n['materiais_alicate'] ) . ' ferramentas de corte, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
 	$html .= '<p>O método inteiro — de onde vem cada declaração, o que fazemos quando duas fontes discordam e o que ainda não conferimos — está em ' . cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
 	$html .= '</div>';
 	$html .= '</div>';
@@ -2089,6 +2103,7 @@ add_shortcode( 'cdm_como_sabemos', function () {
 	$html .= '<tr><td>Adesivos</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_cola'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Rejuntes</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_rejunte'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Pastilhas</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_pastilha'] ) ) . '</td></tr>';
+	$html .= '<tr><td>Alicates e corte</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_alicate'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Bases cobertas (cerâmica, vidro, laminado, espelho, MDF, cimento, alvenaria, metal, plástico)</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['bases'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Ambientes cobertos (seco, molhado, externo abrigado, sol e chuva, imersão)</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['ambientes'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Combinações base × ambiente mapeadas</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['celulas_matriz'] ) ) . '</td></tr>';

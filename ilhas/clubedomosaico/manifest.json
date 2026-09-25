@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 40,
+  "revisao": 41,
   "atualizado_em": "2026-09-25",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.13.0",
-      "sha256": "2a6ee6288db236660d623348f5cf527b94bc81da038adc22d7d21522775cd8c6",
+      "versao": "1.14.0",
+      "sha256": "de2e5ac182f8ca69836517a15f4df92b63b3360456749c9a32656ad679fd46db",
       "descricao": "Casca 1.12.0 — A PORTA DE ENTRADA DO SITE PASSA A SER MEDIDA. Em 24/09/2026 as 19h20Z, 16 das 17 URLs desta ilha serviam a pagina de estacionamento da HostGator com 404, as tres de primeira pagina do Google entre elas, com o WordPress, o Sync e o /status inteiros: o que caiu foi o roteamento de permalink, e nenhum portao viu porque todos entram pela porta que continuou aberta (query na raiz e rota REST). A secao 6 traz a rota /rotas, com token, que mede o .htaccess e as regras de dentro do servidor, e um reparo que faz o mesmo que salvar os Links permanentes. Sem gancho automatico."
     },
     {
@@ -205,7 +205,7 @@
       "verificado_em": "2026-09-12",
       "registros": 105,
       "publicar": false,
-      "sha256": "3fcb891c99e2c10ca9df675ea6da2579f296242597f5bda3b7f0f785fa4e93f3",
+      "sha256": "ddf2778ab5c87ec8a3f19b6f9f1cd50f8bdbce0173e2361a259b1e509e60b8c5",
       "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
     },
     {
@@ -219,6 +219,20 @@
       "publicar": true,
       "sha256": "fdcbcaeab9b55d73b2ac9ea20cbbcf08208a3fcb29802f619c64912ed4479987",
       "descricao": "A categoria PASTILHA do banco MATERIAL. Treze SKUs com lado da pastilha, lado da placa, espessura, placas por caixa, metragem e peso de caixa. A leva de 13/09/2026 acrescentou A37, 102 e IC02, e a A37 e a que FECHA o tamanho 2x2 no minimo de 3 elegiveis da secao 14.3. Tres campos nascem NULL com motivo escrito, e e isso que o arquivo tem de mais util: pecas por placa e passo de fabrica, porque nenhum fabricante brasileiro declara e a divisao que a SERP faz nao fecha (em 9 dos 13 nao da inteiro, nos outros 4 exige junta zero); e peso unitario, porque o peso da caixa de um dos itens PASSA do teto fisico do vidro macico, o que prova que embalagem esta contada dentro. Mede isso ferramentas/validar-pastilhas.py (189 afirmacoes, um processo por item, com a faixa de tamanhos medida na F1 por ferramentas/tamanhos-da-f1.php em vez de digitada) e ferramentas/mutacoes-pastilhas.py (14 de 14: 12 no banco e 2 no codigo da F1)."
+    },
+    {
+      "id": "materiais-alicates",
+      "arquivo": "dados/materiais-alicates.json",
+      "formato": "json",
+      "entidade": "MATERIAL",
+      "fonte": "Bloco da coleta das categorias vazias, 25/09/2026. Seis SKUs colhidos por busca restrita ao dominio do fabricante (cortag.com e vonder.com.br, nivel 3); nenhum dominio foi aberto — curl devolveu 000 para cortag.com.br, vonder.com.br, tramontina.com.br, rubi.com, starrett.com.br e montolit.com, e WebFetch devolveu EGRESS_BLOCKED para cortag.com e cortag.com.br, tudo com clubedomosaico.com.br em 200 na mesma passada (secao 20.2). DUAS passadas por SKU, escritas de forma diferente, nenhuma carregando um valor: as consultas pediram os ROTULOS da ficha. Uma passada quebrou essa regra e esta registrada no proprio dado como licao — a consulta com o prefixo '68.51' devolveu exatamente o prefixo que plantou, e os dois codigos que so ela devolveu ficaram NULL.",
+      "verificado_em": "2026-09-25",
+      "registros": 6,
+      "publicar": true,
+      "sha256": "2654b96989602633a31c2d41740045419acd28a6b2c09c879e7675aa31ce309f",
+      "descricao": "A categoria ALICATE do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de quatro para tres (restam base, acabamento e apoio). Tres torqueses Cortag e tres cortadores manuais Vonder (VDEC 51, 75 e 90), cada campo tecnico dentro de `propriedades`, que e o unico container com portao no validar-banco: todo valor aponta fonte, todo null escreve motivo. O ACHADO E UM TETO DE 5 MM QUE CRUZA COM O BANCO DE PASTILHAS. O torques de mosaico da Cortag e a unica ferramenta do arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm; os tres cortadores de bancada declaram 'pisos ceramicos e porcelanatos ate 10 mm' e nao nomeiam vidro em lugar nenhum. Medido contra materiais-pastilhas.json: das 13 pastilhas do banco, todas de vidro, 10 cabem no teto e TRES nao — st5102 (6 mm), af1500 (8 mm) e ic02 (8 mm). Para esses tres a F1 calcula quantidade e o banco de ferramentas nao tem uma declaracao de fabricante que sustente o corte: faixa DESCOBERTA no sentido da 14.3, para a tela dizer em vez de calar. A outra metade vale para as duas paginas de tecnica no ar: a frase do torques nomeia PASTILHA de vidro e de ceramica e NAO nomeia caco de louca (picassiete) nem caco de azulejo (trencadis) — estado `nao_declarado`, nem recomendar nem proibir. NASCEU `publicar: false` E O PORTAO DESMENTIU: o cartao 'Alicates e corte' do Guia existe desde que a casca nasceu e o mapa G-ALICATES => materiais-alicates ja estava escrito dentro do teste-casca, esperando o arquivo. Casca 1.14.0 liga os dois, e a frase de prova do Guia passou a nomear a quarta categoria — ate aqui ela anunciava o total do banco e enumerava so tres, o que teria posto no ar 'o banco tem 31 itens, sendo 7 colas, 5 rejuntes e 13 pastilhas'.",
+      "pendencias": 3,
+      "pendencias_que_bloqueiam_publicacao": []
     },
     {
       "id": "pecas",
@@ -291,7 +305,7 @@
     {
       "id": "gerar-links-afiliado",
       "arquivo": "ferramentas/gerar-links-afiliado.py",
-      "sha256": "37c62688f9f55b7281e539bb05db21d5b7cadf42573c7945399ecb160c25028e",
+      "sha256": "abc750e0cf8f0337522f6b3488bcdd008ee78076a684131ed929fa1ecb160007",
       "descricao": "Gera e REGERA os links de afiliado da Shopee do banco desta ilha pela Open API (25.6), com os cinco sub-ids na ordem posicional da secao 7. Existe porque os dezesseis links de 13/09/2026 nasceram no painel `offer/custom_link`, com os cinco campos preenchidos a mao, e sairam DESLOCADOS UMA CASA — o unico clique da janela 16->22/09 chegou ao Relatorio como `-clubedomosaico-F2--`, com `sub_id_1` vazio, e o painel nao conseguia dizer qual ilha vendeu. Mao humana em cinco caixas de texto nao tem portao; chamada de API tem. Regera a ficha SO quando `url_produto` existe e e da Shopee, para o par continuar demonstravel (25.4-b.1), e nunca toca link do Mercado Livre, que e outro programa. Traz a tabela das palavras-chave dos dez que perderam a busca crua e das treze pastilhas cuja chave de 13/09 devolvia ZERO oferta, com o degrau da escada da 25.6 escrito em cada uma; `--conferir-chaves` mede todas contra a API antes de qualquer link nascer. Bancada: nunca vai para o site."
     },
     {

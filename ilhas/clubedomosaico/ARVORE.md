@@ -378,6 +378,22 @@ O segundo portão é o que decide, e ele é mais duro do que parece: **uma filha
 
 **Por que a coleta não aconteceu nesta execução, e a metade que não é bloqueio:** os domínios de fabricante estão fora da lista de egresso das rotinas — `colormix.com.br`, `vidrotil.com.br` e `quartzolit.weber` responderam `000` por `curl` em **duas passadas da mesma execução**, com `clubedomosaico.com.br` em 200 nas duas (é a reconferência que a seção 20.2 exige antes de chamar qualquer coisa de bloqueio). **Mas a busca alcança**: a coleta do bloco 3c foi feita assim, e foi reconfirmada aqui. Então a coleta de banco continua possível pelo canal de busca, com as travas de coleta da seção 8 — nunca pôr na consulta o valor que se quer confirmar, e fonte que não cita o documento é paráfrase, não fonte.
 
+### 7b-bis. A PRIMEIRA DAS QUATRO CAIU, E O 4c CONTINUA FECHADO POR OUTRO MOTIVO (25/09/2026)
+
+A seção 7b, escrita em 12/09, mandava: **banco primeiro, depois as filhas de nível 3, e só então a mãe de nível 2.** O primeiro degrau andou.
+
+`dados/materiais-alicates.json` nasceu com **seis itens** — três torqueses Cortag e três cortadores manuais Vonder —, e a lista `categorias_do_vocabulario_sem_nenhum_item` de `dados/cobertura.json`, recontada pela própria `ferramentas/cobertura.py`, **caiu de quatro para três**: restam `base`, `acabamento` e `apoio`.
+
+**O que isso NÃO destravou, e é o que importa mais:** o 4c continua bloqueado, e a frase que o bloqueia mudou. Até hoje ela era *"a categoria alicate não tem um único item"*. Agora é a **16.5**: `/materiais/alicates/` precisa de **3 filhas de nível 3**, e nenhuma filha de alicate existe. A ordem da 7b não mudou; a ilha só desceu um degrau nela.
+
+**E há uma distinção que a contagem esconde, escrita aqui para a próxima execução não a redescobrir:** dos três registros de `tipo: torques`, **um só carrega declaração técnica própria**. Os outros dois nasceram com `corte.literal_do_fabricante: null` porque as passadas de busca devolveram uma frase de **linha** (*"a linha Torquês da Cortag foi desenvolvida para..."*) e não uma frase de **produto** — atribuir a linha ao SKU é exatamente a paráfrase que a seção 8 proíbe. Então, pelo critério de **elegibilidade** e não de contagem, `cortador_de_azulejo` está em 3 e `torques` está em **1**.
+
+**O ACHADO QUE NÃO ERA DESTE BLOCO E VALE PARA AS DUAS PÁGINAS DE TÉCNICA QUE JÁ ESTÃO NO AR.** O torquês de mosaico da Cortag é a **única** ferramenta do arquivo cuja declaração nomeia **vidro**, e ela para em **5 mm de espessura**. Os três cortadores de bancada declaram *"pisos cerâmicos e porcelanatos até 10 mm"* e **não nomeiam vidro em lugar nenhum** — nem na indicação, nem no rodel de carboneto de tungstênio.
+
+Medido contra `dados/materiais-pastilhas.json` na mesma execução: das **13** pastilhas do banco, todas de vidro, **10** têm espessura de 3 ou 4 mm e cabem no teto; **três não cabem** — `glassmosaic-st5102` (6 mm), `pastilhart-af1500` (8 mm) e `glassmosaic-ic02` (8 mm). **Para três dos treze produtos cuja quantidade a F1 já calcula, o banco de ferramentas não tem uma declaração de fabricante que sustente o corte.** Não é falta de coleta: os quatro fabricantes alcançados publicam o teto deles. É faixa **DESCOBERTA** no sentido da 14.3, e é coisa que a tela tem de dizer em vez de calar.
+
+A segunda metade é da seção 4b deste arquivo: a frase do torquês nomeia **pastilha** de vidro e de cerâmica e **não nomeia** caco de azulejo, caco de louça, caco de espelho nem pedra — e caco de louça é o material do **picassiete** e caco de azulejo o do **trencadís**, as duas páginas de `/como-fazer/` que estão no ar. Pelo princípio dos três estados, para esses quatro o estado é `nao_declarado`: nem recomendar, nem proibir, e dizer que ninguém declarou.
+
 ## 8. O que este bloco NÃO fez, de propósito
 
 - **Não criou nenhuma URL.** As dez páginas de nível 2 desta árvore (seis do Guia, mais as da Loja e da Escola) esperam a 16.5, que é portão de dado e não de calendário.

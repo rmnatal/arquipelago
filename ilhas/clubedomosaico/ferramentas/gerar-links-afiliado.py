@@ -79,7 +79,8 @@ _spec = importlib.util.spec_from_file_location(
 shopee = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(shopee)
 
-ARQUIVOS = ['materiais-colas', 'materiais-pastilhas', 'materiais-rejuntes']
+ARQUIVOS = ['materiais-colas', 'materiais-pastilhas', 'materiais-rejuntes',
+            'materiais-alicates']
 
 # A PALAVRA-CHAVE DOS DEZ QUE PERDERAM A BUSCA CRUA (25.4-b.1).
 #
@@ -90,6 +91,37 @@ ARQUIVOS = ['materiais-colas', 'materiais-pastilhas', 'materiais-rejuntes']
 # ninguem (25.4-b: "palavra-chave que deixou de trazer resultado e defeito
 # silencioso").
 CHAVES_DE_BUSCA = {
+    # --- OS SEIS ALICATES, NASCIDOS EM 25/09/2026 COM A CHAVE JA MEDIDA ---
+    #
+    # A licao das treze pastilhas e de 25/09 de manha: chave escrita uma vez
+    # envelhece calada, e `Glass Mosaic <codigo> ...` devolvia ZERO havia doze
+    # dias sem nada acusar. Entao estas seis nasceram ao contrario — `--conferir-chaves`
+    # ANTES de qualquer link, e o titulo da oferta conferido contra o produto.
+    #
+    # Uma delas desceu um degrau na hora: `torques azulejista corte curvo cortag`
+    # devolveu ZERO, e a busca vazia e o beco sem saida que o degrau 4 da 25.1
+    # existe para impedir. Desceu para a FAMILIA, que devolve duas ofertas.
+    'cortag-torques-mosaico-roldanas': (
+        'torques para mosaico cortag',
+        'marca + uso: 3 ofertas, uma delas com a referencia 61341 no titulo'),
+    'cortag-torques-azulejista-corte-reto': (
+        'torques azulejista corte reto cortag',
+        'marca + linha + variante: 1 oferta, titulo exato do SKU'),
+    'cortag-torques-azulejista-corte-curvo': (
+        'torques azulejista cortag',
+        'FAMILIA (degrau abaixo): a chave por SKU, `torques azulejista corte '
+        'curvo cortag`, devolveu ZERO oferta em 25/09/2026'),
+    'vonder-vdec-51': (
+        'cortador de ceramica e azulejo manual 51cm vdec51 vonder',
+        'marca + linha + medida: 1 oferta, titulo exato do SKU'),
+    'vonder-vdec-75': (
+        'cortador de ceramica e azulejo manual 75cm vdec75 vonder',
+        'marca + linha + medida: 1 oferta, titulo exato do SKU'),
+    'vonder-vdec-90': (
+        'cortador de ceramica manual 90 cm vonder',
+        'marca + uso + medida: 1 oferta, titulo exato do SKU. A chave com '
+        '`vdec90` colado devolvia a lista inteira da familia'),
+
     # --- OS DEZ QUE PERDERAM A BUSCA CRUA (25.4-b.1) ---
     # Escritas a mao a partir de `marca` + `nome_comercial` do proprio registro,
     # nunca deduzidas do link encurtado, de onde nao se chega sem clicar.
@@ -166,6 +198,9 @@ def main():
     p.add_argument('--escrever', action='store_true')
     p.add_argument('--conferir-chaves', action='store_true',
                    help='so mede se cada palavra-chave nova devolve oferta')
+    p.add_argument('--regerar-tudo', action='store_true',
+                   help='regera TAMBEM os registros cuja busca crua ja e a da '
+                        'tabela e que ja tem encurtador. Ver a trava em main().')
     args = p.parse_args()
 
     if args.conferir_chaves:
@@ -185,7 +220,7 @@ def main():
         return 1 if falhas else 0
 
     resumo = {'url_regerado': 0, 'busca_regerada': 0, 'busca_nova': 0,
-              'ml_intocado': 0, 'sem_chave': []}
+              'ml_intocado': 0, 'ja_certo': 0, 'sem_chave': []}
 
     for nome in ARQUIVOS:
         caminho = os.path.join(RAIZ, 'ilhas', 'clubedomosaico', 'dados', nome + '.json')
@@ -219,6 +254,28 @@ def main():
                 crua, motivo, novo_par = af['url_busca_produto'], None, False
             else:
                 resumo['sem_chave'].append(ident)
+                continue
+
+            # A TRAVA DO REGERAR A ESMO, escrita em 25/09/2026 pela execucao que
+            # caiu nela. Rodar `--escrever` para gravar SEIS registros novos
+            # regerou os VINTE E CINCO que ja estavam certos: URL encurtada nova
+            # para a mesma busca, sem um unico ganho, e com um custo que so
+            # aparece depois. O banco passa a conhecer um encurtador que a pagina
+            # no ar ainda nao serve, e `conferir-no-ar.py` reprova encurtador
+            # servido que o banco nao conhece (portao de 25/09 de manha) — ou
+            # seja, a ilha fica vermelha ate o Sync publicar o banco novo, por
+            # causa de uma passada que nao pediu nada disso. Foi desfeito a mao
+            # com `git checkout --`, e a mao e justamente o que esta fabrica nao
+            # aceita como portao.
+            #
+            # A regra: se a busca crua gravada JA E a da tabela e o encurtador JA
+            # existe, nao ha o que regerar. O que a tabela precisa vencer e a
+            # chave DIFERENTE (o caso das treze pastilhas, que devolviam zero
+            # oferta com a chave velha) — e essa continua passando, porque ali as
+            # duas cruas divergem.
+            ja_gravada = af.get('url_busca_produto')
+            if (not args.regerar_tudo and ja_gravada == crua and af.get('url_busca')):
+                resumo['ja_certo'] += 1
                 continue
 
             tinha_busca = bool(af.get('url_busca'))
@@ -269,10 +326,9 @@ def main():
                 f.write('\n')
 
     print('\nficha regerada: %d | busca regerada: %d | busca nova: %d | '
-          'Mercado Livre intocado: %d' % (resumo['url_regerado'],
-                                          resumo['busca_regerada'],
-                                          resumo['busca_nova'],
-                                          resumo['ml_intocado']))
+          'ja certo (intocado): %d | Mercado Livre intocado: %d'
+          % (resumo['url_regerado'], resumo['busca_regerada'],
+             resumo['busca_nova'], resumo['ja_certo'], resumo['ml_intocado']))
     if resumo['sem_chave']:
         print('SEM PALAVRA-CHAVE (nao gerados): %s' % ', '.join(resumo['sem_chave']))
         return 1
