@@ -363,7 +363,7 @@ Nada mais nesta ronda.
 > execução: os treze itens de pastilha subiram do degrau 4 para o 3, e as réguas cobravam, com número fixo,
 > que estivessem no 4. Consertado derivando o degrau do banco em vez de cravá-lo, e produzindo o degrau 4 num
 > mundo novo (`so_crua=1`) em vez de esperá-lo do banco. **Os dois voltaram a verde e as duas baterias
-> voltaram a rodar.**
+> voltaram a rodar: `mutacoes-f1` 46/46 e `mutacoes-f2` 50/50, nenhuma passando.**
 >
 > **O QUE FALTA, E É SÓ ISTO:** o **BLOCO A**, que **espera 30/09** por ordem do próprio despacho — o veredito
 > é de 08/10 e trocar título antes do número de 30/09 misturaria duas causas na mesma janela.

@@ -54,7 +54,8 @@ bloco_atual: |
   (so_crua=1) em vez de espera-lo. Os dois verdes, as duas baterias rodando.
   MEDIDO: teste-casca 555, teste-f1 196, teste-f2 114, atelie, leads, loja, tecnicas e prestacao-rejunte
   todos 0 falha; mutacoes-atelie 48/48, mutacoes-leads 48/48 e 0 INERTES (era 1), voz-e-cabeca 24/24,
-  arvore 21/21, f1 46/46; conferir-no-ar 488 afirmacoes 0 falha (eram 459). Tres mutacoes ficaram inertes
+  arvore 21/21, f1 46/46 e f2 50/50 (as duas ultimas voltaram a RODAR nesta execucao); conferir-no-ar 488
+  afirmacoes 0 falha (eram 459). Tres mutacoes ficaram inertes
   no conserto e as tres foram retargetadas — mutacao inerte e o pior dos dois estados, porque a bateria
   continua verde dizendo que mediu.
   O QUE DEPENDE DO RAPHAEL, e nada disto e da Fundacao: (1) dar acesso de LEITURA a conta sentinela@ em

@@ -4415,7 +4415,8 @@ devolve o estado com parâmetro ao índice do mesmo jeito.
 `teste-f2` 114, `teste-atelie`, `teste-leads`, `teste-loja`, `teste-tecnicas` e
 `teste-prestacao-rejunte` — **todos 0 falha**. Mutações: `mutacoes-atelie` 48/48,
 `mutacoes-leads` 48/48 e **0 inertes** (era 1), `mutacoes-voz-e-cabeca` 24/24,
-`mutacoes-arvore` 21/21, `mutacoes-f1` 46/46. No ar: `conferir-no-ar.py` **488
+`mutacoes-arvore` 21/21, `mutacoes-f1` 46/46 e `mutacoes-f2` 50/50 — **as duas
+últimas voltaram a rodar nesta execução**, depois de se recusarem desde as 10h40Z. No ar: `conferir-no-ar.py` **488
 afirmações, 0 falha** (eram 459). As afirmações novas da casca foram provadas não
 inertes uma a uma, com quatro quebras: `max-image-preview` colada no `noindex`,
 autor de volta ao índice, casca devolvendo markup em vez de diretiva, e tudo
