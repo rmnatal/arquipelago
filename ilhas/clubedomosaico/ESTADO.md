@@ -5,73 +5,68 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-25T16:16Z
-executando_desde: 2026-09-25T20:40Z   # renovada pela 1.1: o bloco passou de 40 minutos e reserva se prova por commit, nao por campo velho
+ultima_execucao: 2026-09-25T20:56Z
+executando_desde: null
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
-  A CATEGORIA ALICATE SAI DE ZERO, E O TETO DE CORTE DESTA ILHA E 5 MM — NAO 10. dados/materiais-alicates.json
-  nasceu com SEIS SKUs (tres torqueses Cortag, tres cortadores manuais Vonder VDEC 51/75/90), e a lista
+  A CATEGORIA ACABAMENTO SAI DE ZERO, E FOI A PRIMEIRA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR.
+  dados/materiais-acabamento.json nasceu com SETE SKUs (tres vernizes de artesanato Acrilex, um verniz de piso
+  Quartzolit com boletim de nivel 2, dois impermeabilizantes Quartzolit e um selador), e a lista
   categorias_do_vocabulario_sem_nenhum_item de dados/cobertura.json, recontada pela propria cobertura.py, CAI DE
-  QUATRO PARA TRES: restam base, acabamento e apoio. Casca 1.14.1, manifest 42, /status na 42, conferir-no-ar 488
-  afirmacoes e 0 falha no ar.
-  POR QUE ESTA CATEGORIA E NAO OUTRA: o esquema-banco diz desde 11/09 que 'rejunte, pastilha e alicate podem ser
-  enchidas em qualquer execucao, SEM DECISAO NOVA — o esquema ja diz que campo cada uma exige'. As outras tres nao
-  tem essa linha, e cada uma delas comeca por decidir que campo exige.
-  O ACHADO NAO ERA DESTE BLOCO E CRUZA COM O BANCO QUE JA EXISTIA: o torques de mosaico da Cortag e a UNICA
-  ferramenta do arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm. Os tres cortadores de bancada declaram
-  'pisos ceramicos e porcelanatos ate 10 mm' e NAO nomeiam vidro em lugar nenhum — nem na indicacao, nem no rodel
-  de carboneto de tungstenio. Medido contra materiais-pastilhas.json: das 13 pastilhas do banco, todas de vidro,
-  10 cabem no teto e TRES nao — st5102 (6 mm), af1500 (8 mm) e ic02 (8 mm). Para TRES dos TREZE produtos cuja
-  quantidade a F1 ja calcula, o banco de ferramentas nao tem uma declaracao de fabricante que sustente o corte.
-  Nao e falta de coleta: os quatro fabricantes alcancados publicam o teto deles. E faixa DESCOBERTA da 14.3, e
-  esta escrita na secao 7b-bis do ARVORE.md.
-  A OUTRA METADE VALE PARA AS DUAS PAGINAS DE TECNICA NO AR: a frase do torques nomeia PASTILHA de vidro e de
-  ceramica e NAO nomeia caco de azulejo, caco de louca, caco de espelho nem pedra — e caco de louca e o material
-  do picassiete e caco de azulejo o do trencadis. Pelos tres estados, para esses quatro o estado e nao_declarado.
-  A SECAO 8 PEGOU UMA CONSULTA CONTAMINADA E ELA FICOU REGISTRADA NO DADO, nao apagada: a passada escrita com o
-  prefixo '68.51' devolveu 68.51.075.000 e 68.51.090.000 — exatamente o que plantou. A passada limpa seguinte nao
-  devolveu referencia nenhuma, e os dois codigos ficaram NULL com o motivo escrito. O do VDEC 51 ficou porque veio
-  de consulta que nao o carregava, e foi corroborado por canal independente (titulo de anuncio lido pela Open API:
-  '... VDEC 51, VONDER 6851050000').
-  DOIS PORTOES DESMENTIRAM A EXECUCAO, E ESSE E O MELHOR PEDACO. (1) O arquivo nasceu publicar:false com o motivo
-  'option que nenhuma pagina le e caminho morto'. O teste-casca reprovou: "o cartao 'Alicates e corte' mostra o
-  que o banco tem — tela 0 / banco 6". O cartao G-ALICATES existe no Guia desde que a casca nasceu e o mapa
-  G-ALICATES => materiais-alicates ja estava dentro do proprio teste, esperando o arquivo. O leitor existia; a
-  suposicao e que estava errada. (2) Depois do Sync, conferir-no-ar reprovou NO AR: 'toda categoria com arquivo de
-  banco e NOMEADA na frase — faltou: alicate'. Eu tinha escrito '6 ferramentas de corte': total certo, parcelas
-  somando certo, e errado assim mesmo, porque o cartao se chama 'Alicates e corte'. Casca 1.14.1: '6 alicates e
-  cortadores'.
-  DE PASSAGEM, A FRASE DE PROVA DO GUIA IA PUBLICAR UMA SOMA IMPOSSIVEL: ela anunciava o total do banco e
-  enumerava so TRES categorias. Com a quarta entrando teria ido ao ar 'o banco tem 31 itens, sendo 7 colas, 5
-  rejuntes e 13 pastilhas' — a familia do 'hoje 10 dos 5 itens esperam link' que esta ilha ja pagou uma vez.
-  TRAVA NOVA NO gerar-links-afiliado.py, ESCRITA PELA EXECUCAO QUE CAIU NELA: rodar --escrever para gravar SEIS
-  registros novos regerou os VINTE E CINCO que ja estavam certos. O custo so aparece depois — o banco passaria a
-  conhecer um encurtador que a pagina no ar ainda nao serve, e o conferir-no-ar reprova exatamente isso. Foi
-  desfeito com git checkout, e MAO NAO E PORTAO. Agora registro com a busca crua da tabela e encurtador ja gravado
-  e pulado; --regerar-tudo continua para o caso em que a chave mudou, que e o das treze pastilhas.
-  AS SEIS CHAVES FORAM MEDIDAS NA API ANTES DE QUALQUER LINK NASCER — a licao das treze pastilhas aplicada ao
-  contrario do que a causou. As 31 chaves do banco devolvem oferta. Uma desceu um degrau na hora: 'torques
-  azulejista corte curvo cortag' devolveu ZERO e desceu para a FAMILIA.
-  O QUE ISTO NAO DESTRAVOU: o 4c continua FECHADO, e por motivo diferente do de 12/09. Nao e mais 'a categoria
-  alicate nao tem um unico item'; e a 16.5 — /materiais/alicates/ precisa de 3 filhas de nivel 3 e nenhuma filha
-  de alicate existe. E a contagem esconde uma distincao: dos tres registros de tipo torques, UM SO carrega
-  declaracao tecnica propria (os outros dois so tinham frase de LINHA, e atribuir a linha ao SKU e a parafrase que
-  a secao 8 proibe), entao por ELEGIBILIDADE cortador_de_azulejo esta em 3 e torques esta em 1.
-  NENHUMA URL NOVA: as 17 continuam 17 e a semana da 21.4 continua onde estava.
-  MEDIDO: teste-casca 555 (eram 4 falhas quando o arquivo entrou sem leitor), f1 196, f2 114, loja 178, leads 211,
-  tecnicas 123, atelie e prestacao-rejunte aprovados, todos 0 falha; validar-banco 31 materiais, 0 sem saida de
-  compra, 0 piso nao rastreavel, 0 busca sem endereco cru; validar-pastilhas 0 item com falha; conferir-no-ar 488
-  afirmacoes e 0 falha no ar. AS SEIS BATERIAS DE MUTACAO RODARAM INTEIRAS E NENHUMA MUTACAO PASSOU: f1 46/46,
-  f2 50/50, pastilhas 14/14, cobertura 14/14, voz-e-cabeca 24/24 e arvore 21/21.
+  TRES PARA DUAS: restam base e apoio. Casca 1.15.0, manifest 43, /status na 43, conferir-no-ar 488 afirmacoes e
+  0 falha no ar.
+  POR QUE ESTA CATEGORIA E POR QUE ELA CUSTOU MAIS QUE A ALICATE: a alicate era nomeada pela linha do esquema que
+  autoriza encher uma categoria 'SEM DECISAO NOVA'. As tres que sobravam nao sao, e o ESTADO das 17h29Z ja dizia
+  que cada uma comeca por decidir que campo exige. A decisao esta em regras_da_categoria_acabamento do
+  esquema-banco (versao 4), em tres partes: a matriz base x ambiente fica VAZIA (verniz dentro dela viraria
+  candidato a colar peca na F2); o que o fabricante declara mora no objeto `protecao`, irmao do `corte` do
+  alicate, com as listas do que a frase NOMEIA e do que ela NAO NOMEIA cobrindo o vocabulario inteiro; e as
+  propriedades tem NOME FIXO, para a proxima execucao nao gravar secagem_horas onde esta gravou
+  tempo_de_secagem_h. A escolha de acabamento e nao de base ou apoio foi por atrito: quimico de fabricante com
+  ficha publicada e o mesmo terreno das colas e dos rejuntes, como o ESTADO anterior previa.
+  O ACHADO E UMA FAIXA DESCOBERTA ENCONTRADA PELA SUPERFICIE, irma da que a alicate achou pela ESPESSURA tres
+  horas antes. A peca de mosaico pronta expoe DUAS superficies: a pastilha (as 13 do banco sao todas de vidro) e
+  o REJUNTE. NENHUMA das sete frases de fabricante nomeia vidro e NENHUMA nomeia rejunte. Os tres vernizes da
+  Acrilex listam tela, madeira, papel, cortica, ceramica, gesso e isopor; o verniz da Quartzolit e de PISO, com
+  liberacao de trafego de carro e maquina; a borracha liquida e de fachada, telha e laje sem transito; o protetor
+  para fachadas e hidrofugante de revestimento mineral, churrasqueira e pedra natural. Pelos tres estados, para
+  vidro e para rejunte o estado e nao_declarado nos sete. Dito de outro jeito: fabricante de obra nao escreve
+  sobre peca de artesanato e fabricante de artesanato nao escreve sobre mosaico — que e o buraco que esta ilha
+  existe para ocupar.
+  A SEGUNDA METADE E SOBRE A BASE: o unico selador alcancado nomeia concreto, emboco, reboco, pintura PVA ou
+  acrilica e construcao a seco, e NAO nomeia MDF — a base mais comum da peca do atelie e um dos cinco valores de
+  tipo_por_categoria.base. A categoria selador nasce com um item que nao serve a base que a ilha mais usa, e isso
+  esta escrito no dado em vez de escondido.
+  DUAS MUTACOES ACHARAM BURACO ANTES DO COMMIT, E ESSE E O MELHOR PEDACO. ferramentas/mutacoes-acabamento.py
+  nasceu junto com o portao e duas das catorze PASSARAM na primeira rodada. (1) A 05: o portao cobrava motivo no
+  SILENCIO e nada na AFIRMACAO, entao momento_de_uso deduzido do mecanismo do produto passava com cara de
+  declaracao. Agora momento declarado exige trecho_que_declara_o_momento, e o trecho tem de ser pedaco LITERAL da
+  frase do fabricante. (2) A 13: a matriz base x ambiente preenchida num verniz — a regra existia em prosa desde
+  que nasceu e NENHUMA regua a media. A 07 e a que PRODUZ O MUNDO: faz um verniz NOMEAR vidro, o estado que
+  nenhum dos sete tem e do qual o achado central depende. Segunda rodada: 14 de 14, 13 so o portao novo viu.
+  DOIS NUMEROS RECUSADOS, e os dois estao no dado com o motivo: o rendimento da borracha liquida ('18 kg rende no
+  minimo 70 m2/L' mistura embalagem com unidade e nao fecha), e as demaos e o consumo do fundo selador, que a
+  mesma busca devolve emprestados de outros dois produtos.
+  DUAS PALAVRAS-CHAVE DESCERAM UM DEGRAU, MEDIDAS ANTES DE VIRAR LINK: `fundo selador quartzolit` e `protetor
+  para fachadas quartzolit` devolveram ZERO na Open API e desceram para a FAMILIA (`selador quartzolit` e
+  `impermeabilizante fachada quartzolit`, tres ofertas cada). Sete links novos, 31 intocados — a trava escrita as
+  16h43Z segurou.
+  O PORTAO DESMENTIU A EXECUCAO PELA SEGUNDA VEZ NO MESMO DIA: o cartao 'Acabamento' mostrava 0 com o banco em 7,
+  e a frase de prova do Guia enumerava quatro categorias com o total de cinco — teria ido ao ar 'o banco tem 38
+  itens, sendo 7 colas, 5 rejuntes, 13 pastilhas e 6 alicates'. Mesma familia do 'hoje 10 dos 5 itens esperam
+  link'.
+  NENHUMA URL NOVA: as 17 continuam 17 e a semana da 21.4 continua onde estava. O 4c segue FECHADO pela 16.5 —
+  /materiais/acabamento/ precisa de 3 filhas de nivel 3 e nenhuma existe.
   O QUE DEPENDE DO RAPHAEL, e nada disto e da Fundacao: (1) dar acesso de LEITURA a conta sentinela@ em
-  sc-domain:clubedomosaico.com.br, que e o que destrava a medicao desta ilha; (2) autorizar, ou nao, a
-  proposta de 301 de http para https em TODO caminho — hoje so a home redireciona —, escrita em
-  dados/indexacao.md e NAO APLICADA, porque o bloco C proibe.
-  PROXIMO PASSO: as TRES categorias que sobraram (base, acabamento, apoio), e elas NAO tem a linha do esquema que
-  a alicate tinha — cada uma comeca por decidir que campo exige. A de menor atrito e acabamento (verniz,
-  impermeabilizante, selador), porque e quimico de fabricante com ficha tecnica publicada, o mesmo terreno das
-  colas e dos rejuntes; base e apoio sao genericas e provavelmente sem fabricante que declare. E o BLOCO A do
-  despacho de 24/09 ESPERA 30/09, por ordem do proprio despacho.
+  sc-domain:clubedomosaico.com.br; (2) autorizar, ou nao, a proposta de 301 de http para https em TODO caminho,
+  escrita em dados/indexacao.md e NAO APLICADA; (3) acrescentar dominio de fabricante a rede Personalizada do
+  ambiente (20.1), que sobe o banco inteiro de nivel 3 para nivel 1 e e o que abre o boletim onde a tabela de
+  substrato mora.
+  PROXIMO PASSO: as DUAS categorias que sobraram, base e apoio, e as duas herdam o molde de
+  regras_da_categoria_acabamento sem herdar a decisao — cada uma ainda comeca por decidir que campo exige. A
+  `base` e a de maior valor para esta ilha (ela e a primeira pergunta da F2 e da todo tutorial), e a de maior
+  risco: base de artesanato e generica e provavelmente sem fabricante que declare, ao contrario do quimico. E o
+  BLOCO A do despacho de 24/09 ESPERA 30/09, por ordem do proprio despacho.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

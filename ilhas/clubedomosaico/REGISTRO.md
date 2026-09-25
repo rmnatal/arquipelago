@@ -4519,7 +4519,7 @@ e a proposta de 301 de `http` para `https` em todo caminho, escrita em
 
 ---
 
-## 2026-09-25, 19h16Z → 20h??Z — A CATEGORIA ACABAMENTO SAI DE ZERO, E ELA FOI A PRIMEIRA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR
+## 2026-09-25, 19h16Z → 20h58Z — A CATEGORIA ACABAMENTO SAI DE ZERO, E ELA FOI A PRIMEIRA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR
 
 **Ilha em foco** (`foco.md`, desde 24/09). Reserva às 19h16Z, commit `2de100b` — `executando_desde` estava
 `null` e o último commit da ilha era de 17h29Z, 106 minutos atrás, então não havia reserva vencida para o git
@@ -4641,3 +4641,46 @@ pegou a `alicate` três horas antes. **Casca 1.15.0**, manifest **43**.
   madeira — que seriam os dois únicos registros a nomear MDF —, e as duas páginas que a busca devolveu são de
   `loja.suvinil.com.br`, **nível 5** na escada desta ilha, que não sustenta recomendação primária. Nenhuma das
   duas virou registro, e o motivo está escrito em `pendencias_desta_categoria`.
+
+### MEDIDO
+
+**Bancada, tudo sem rede:** `teste-casca` 555 (eram 4 falhas quando o arquivo entrou sem leitor), `teste-f1`
+196, `teste-f2` 114, `teste-loja` 178, `teste-leads` 211, `teste-tecnicas` 123, `teste-atelie` e
+`teste-prestacao-rejunte` aprovados — todos 0 falha. `validar-banco` com **38 materiais**, 0 sem saída de
+compra, 0 piso não rastreável, 0 busca sem endereço cru; `validar-pastilhas` 189 afirmações, 0 item com falha.
+
+**AS SETE BATERIAS DE MUTAÇÃO RODARAM INTEIRAS E NENHUMA MUTAÇÃO PASSOU:** `f1` 46/46, `f2` 50/50,
+`pastilhas` 14/14, `cobertura` 14/14, `voz-e-cabeca` 24/24, `arvore` 21/21 e a nova **`acabamento` 14/14**,
+com 13 das 14 vistas só pelo portão novo.
+
+**No ar:** Sync forçado, `/status` na revisão **43**, `conferir-no-ar.py` com **488 afirmações e 0 falha**.
+A frase servida em `/materiais/` foi lida à mão além do portão: *"Hoje o banco tem 38 itens de fabricante,
+sendo 7 colas, 5 rejuntes, 13 pastilhas, 6 alicates e cortadores e 7 produtos de acabamento, e 28 deles ainda
+esperam link de loja"* — as parcelas somam o total e as cinco categorias com arquivo de banco estão nomeadas.
+
+*(A revisão ficou em 42 no primeiro Sync: o `--revisao 43` foi passado na passada do `atualizar-manifest.py`
+que parou no descasamento de versão da casca, e a passada seguinte não o repetiu. O Sync aplicou os 14 itens
+assim mesmo — ele compara sha, não número —, mas `/status` mostrando 42 depois de um bloco é a seção 4 outra
+vez. Corrigido em commit próprio, e o número de verdade levou ~4 minutos para chegar por causa do cache do
+raw do GitHub.)*
+
+### O QUE DEPENDE DO RAPHAEL — três coisas, e nenhuma é da Fundação
+
+1. **Acesso de leitura da conta `sentinela@`** em `sc-domain:clubedomosaico.com.br` no Search Console. É o que
+   destrava a medição desta ilha, e está aberto desde 23/09.
+2. **Autorizar, ou não, o 301 de `http` para `https` em todo caminho** — hoje só a home redireciona. A
+   proposta está escrita em `dados/indexacao.md` e **não foi aplicada**, porque o BLOCO C proíbe aplicar sem
+   autorização item por item.
+3. **Acrescentar domínio de fabricante à rede Personalizada do ambiente** (20.1). Hoje `acrilex.com.br`,
+   `quartzolit.weber`, `suvinil.com.br`, `corfix.com.br` e `vedacit.com.br` respondem `000`, e **todo o banco
+   desta ilha é nível 2 ou 3 por causa disso**. Com os domínios abertos, o banco inteiro sobe para nível 1 e
+   as tabelas de substrato dos boletins — que é exatamente onde a resposta sobre vidro e rejunte moraria —
+   passam a ser legíveis.
+
+### PRÓXIMO PASSO
+
+As **duas** categorias que sobraram: `base` e `apoio`. As duas herdam o molde de
+`regras_da_categoria_acabamento` sem herdar a decisão — cada uma ainda começa por decidir que campo exige. A
+`base` é a de maior valor para esta ilha (ela é a primeira pergunta da F2 e de todo tutorial) e a de maior
+risco: base de artesanato é genérica e provavelmente sem fabricante que declare, ao contrário do químico. E o
+**BLOCO A** do despacho de 24/09 **espera 30/09**, por ordem do próprio despacho.
