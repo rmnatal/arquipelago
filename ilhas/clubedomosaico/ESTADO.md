@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-24T19:40Z
-executando_desde: null
+executando_desde: 2026-09-25T10:16Z
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
   A ILHA ESTAVA FORA DO AR E VOLTOU. Primeira execucao depois de a ilha entrar em foco, e ela nao construiu pagina nenhuma: as 19h20Z, 16 das 17 URLs do sitemap serviam a pagina de estacionamento da HostGator com 404 — /materiais/, /como-fazer/, /sobre/, /contato/, /loja/, as TRES paginas que estao na primeira pagina do Google, mais wp-sitemap.xml, robots.txt e wp-json. So a home respondia. A ilha com mais trafego do Arquipelago estava assim havia pelo menos um dia e nada tinha acusado.
