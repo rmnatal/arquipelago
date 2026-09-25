@@ -237,7 +237,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.14.0' );
+	define( 'CDM_CASCA_VERSAO', '1.14.1' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2069,8 +2069,16 @@ add_shortcode( 'cdm_materiais', function () {
 	   pastilhas" — e enquanto as tres categorias eram o banco inteiro, X+Y+Z
 	   era N e ninguem via problema. No dia em que a quarta categoria entrou, a
 	   mesma frase passaria a anunciar 31 e a nomear 25, que e a familia do
-	   "hoje 10 dos 5 itens esperam link" que esta ilha ja pos no ar. */
-	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas, ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes, ' . cdm_casca_num( $n['materiais_pastilha'] ) . ' pastilhas e ' . cdm_casca_num( $n['materiais_alicate'] ) . ' ferramentas de corte, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
+	   "hoje 10 dos 5 itens esperam link" que esta ilha ja pos no ar.
+
+	   E A PARCELA NOVA TEM DE CHAMAR A CATEGORIA PELO NOME. A primeira redacao
+	   desta linha, minutos antes, dizia "6 ferramentas de corte" — soma certa,
+	   total certo, e `conferir-no-ar.py` reprovou no ar assim mesmo: "toda
+	   categoria com arquivo de banco e NOMEADA na frase — faltou: alicate". O
+	   portao esta certo e a razao e do leitor, nao do vocabulario: o cartao do
+	   Guia se chama "Alicates e corte", e numero de frase que nao usa a palavra
+	   do cartao e numero que ninguem consegue ligar a lugar nenhum. */
+	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas, ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes, ' . cdm_casca_num( $n['materiais_pastilha'] ) . ' pastilhas e ' . cdm_casca_num( $n['materiais_alicate'] ) . ' alicates e cortadores, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
 	$html .= '<p>O método inteiro — de onde vem cada declaração, o que fazemos quando duas fontes discordam e o que ainda não conferimos — está em ' . cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
 	$html .= '</div>';
 	$html .= '</div>';

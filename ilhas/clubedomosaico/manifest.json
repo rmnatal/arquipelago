@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 41,
+  "revisao": 42,
   "atualizado_em": "2026-09-25",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.14.0",
-      "sha256": "de2e5ac182f8ca69836517a15f4df92b63b3360456749c9a32656ad679fd46db",
+      "versao": "1.14.1",
+      "sha256": "505e047c3a8a22185c071c09647ec9985c8ba9e7efc30fe59a14c5e92db43469",
       "descricao": "Casca 1.12.0 — A PORTA DE ENTRADA DO SITE PASSA A SER MEDIDA. Em 24/09/2026 as 19h20Z, 16 das 17 URLs desta ilha serviam a pagina de estacionamento da HostGator com 404, as tres de primeira pagina do Google entre elas, com o WordPress, o Sync e o /status inteiros: o que caiu foi o roteamento de permalink, e nenhum portao viu porque todos entram pela porta que continuou aberta (query na raiz e rota REST). A secao 6 traz a rota /rotas, com token, que mede o .htaccess e as regras de dentro do servidor, e um reparo que faz o mesmo que salvar os Links permanentes. Sem gancho automatico."
     },
     {
