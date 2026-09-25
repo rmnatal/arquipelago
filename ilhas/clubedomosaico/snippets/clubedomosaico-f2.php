@@ -100,7 +100,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.5.0' );
+	define( 'CDM_F2_VERSAO', '1.5.1' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -2116,10 +2116,22 @@ add_action( 'wp_head', function () {
 	   canonicals identicos — inofensivo para o Google e sujo numa pagina cujo
 	   proposito inteiro e ter UM endereco no indice. O que falta ao nucleo e o
 	   `noindex` do estado com parametro, e e so isso que sai daqui. */
-	if ( $e['escolheu'] ) {
-		echo '<meta name="robots" content="noindex, follow">' . "\n";
-	}
 }, 4 );
+
+/* O ESTADO COM PARAMETRO SAI DO INDICE, e quem IMPRIME a etiqueta e a casca.
+   O paragrafo acima explica por que o canonical NAO sai daqui — "serviria DOIS
+   canonicals (...) sujo numa pagina cujo proposito inteiro e ter UM endereco no
+   indice" — e ate 25/09/2026 este arquivo fazia exatamente isso com a etiqueta
+   de robo, tres linhas abaixo. Medido no ar naquele dia. Agora a condicao e
+   declarada e a casca junta tudo num vetor so (casca 1.13.0). */
+add_filter( 'cdm_fora_do_indice', function ( $fora ) {
+	if ( ! cdm_f2_e_minha_pagina() ) {
+		return $fora;
+	}
+	$e = cdm_f2_entrada();
+
+	return $fora || ! empty( $e['escolheu'] );
+} );
 
 add_action( 'wp_head', function () {
 	if ( ! cdm_f2_e_minha_pagina() ) {

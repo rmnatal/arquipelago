@@ -217,11 +217,26 @@ f2_ok( 1 === substr_count( $ancora, '<link rel="canonical"' ), 'a ancora serve U
 	substr_count( $ancora, '<link rel="canonical"' ) . ' tags' );
 f2_ok( false !== strpos( $ancora, '<link rel="canonical" href="https://clubedomosaico.com.br/' . CDM_F2_SLUG . '/">' ),
 	'canonical aponta para o endereco limpo' );
-f2_ok( false === strpos( $ancora, 'name="robots"' ), 'a ancora NAO sai com noindex' );
+/* A ETIQUETA DE ROBO GANHOU A MESMA CONTAGEM QUE O CANONICAL JA TINHA, e a
+   assimetria durou ate 25/09/2026. As duas linhas acima contam `<link
+   rel="canonical"` e cobram UM; a de robo procurava a frase `name="robots"` com
+   ASPAS DUPLAS — as do `echo` que este snippet fazia — e por isso passava a
+   vazio no dia em que quem imprime virou o `wp_robots()` do nucleo, que usa
+   aspas simples. Pior: era exatamente a linha que teria pegado o defeito medido
+   no ar naquele dia, DUAS etiquetas no estado com parametro desta pagina. */
+$re_robots = '#<meta[^>]*name=[\'"]robots[\'"][^>]*>#i';
+preg_match_all( $re_robots, $ancora, $m_ancora );
+f2_ok( 1 === count( $m_ancora[0] ), 'a ancora serve UMA etiqueta de robo',
+	count( $m_ancora[0] ) . ' tags' );
+f2_ok( 1 === count( $m_ancora[0] ) && false === stripos( $m_ancora[0][0], 'noindex' ),
+	'a ancora NAO sai com noindex', $m_ancora[0] ? $m_ancora[0][0] : '(nenhuma)' );
 
 $com_parametro = f2_render( $raiz, 'base=espelho&onde=externo_exposto&junta=3' );
-f2_ok( false !== strpos( $com_parametro, '<meta name="robots" content="noindex, follow">' ),
-	'o estado com parametro sai com noindex, follow' );
+preg_match_all( $re_robots, $com_parametro, $m_param );
+f2_ok( 1 === count( $m_param[0] ), 'o estado com parametro serve UMA etiqueta de robo',
+	count( $m_param[0] ) . ' tags' );
+f2_ok( 1 === count( $m_param[0] ) && false !== stripos( $m_param[0][0], 'noindex' ),
+	'o estado com parametro sai com noindex, follow', $m_param[0] ? $m_param[0][0] : '(nenhuma)' );
 f2_ok( 1 === substr_count( $com_parametro, '<link rel="canonical"' ), 'o estado com parametro serve UM canonical',
 	substr_count( $com_parametro, '<link rel="canonical"' ) . ' tags' );
 f2_ok( false !== strpos( $com_parametro, '<link rel="canonical" href="https://clubedomosaico.com.br/' . CDM_F2_SLUG . '/">' ),

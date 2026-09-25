@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 38,
+  "revisao": 39,
   "atualizado_em": "2026-09-25",
   "estado": "nascendo",
   "desembarque": {
@@ -21,7 +21,7 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.13.0",
-      "sha256": "e7fe51340603f24facd107609c5d459daae9346d70ec2fe9c8ba2bfec24f9436",
+      "sha256": "2a6ee6288db236660d623348f5cf527b94bc81da038adc22d7d21522775cd8c6",
       "descricao": "Casca 1.12.0 — A PORTA DE ENTRADA DO SITE PASSA A SER MEDIDA. Em 24/09/2026 as 19h20Z, 16 das 17 URLs desta ilha serviam a pagina de estacionamento da HostGator com 404, as tres de primeira pagina do Google entre elas, com o WordPress, o Sync e o /status inteiros: o que caiu foi o roteamento de permalink, e nenhum portao viu porque todos entram pela porta que continuou aberta (query na raiz e rota REST). A secao 6 traz a rota /rotas, com token, que mede o .htaccess e as regras de dentro do servidor, e um reparo que faz o mesmo que salvar os Links permanentes. Sem gancho automatico."
     },
     {
@@ -31,8 +31,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.5.0",
-      "sha256": "155527e01efce6fe55880c072bce752dab335fae0b15251e8f4b169bd6b174fb",
+      "versao": "1.5.1",
+      "sha256": "5d477f0a43fdb7ac33bedaccecf2ccc5b2545f4b8b3127d865f6b89b524813e5",
       "descricao": "F2 1.3.0 — A REGRA 6 NASCE, E AS DUAS FAIXAS QUE ESTA PAGINA DECLARAVA NAO SABER RESPONDER DEIXAM DE SER BURACO. Entraram no banco o Silicone Acetico Maxx (BRSA005), primeiro produto da ilha que pode ser recomendado em contato permanente com agua por fonte de nivel 3, e o Cascola Adesivo de Montagem PL500, primeiro indicado sobre PLASTICO. O PL500 trouxe junto a condicao que obrigou a regra: 'ao menos uma das superficies deve ser porosa, ja que o produto seca por evaporacao da agua' — isso nao e base e nao e ambiente, e o PAR de superficies coladas. A regra 6 e a primeira regua de cola que olha o CAQUINHO, entrada que a ferramenta coleta desde a 1.0.0 e que nenhuma regua de cola lia. Ela roda DEPOIS das cinco e ANTES da ordenacao por score, e quem cai por ela vai para um QUINTO grupo, com frase propria: nao e proibicao (o fabricante nao proibe) e nao e silencio (ele falou). A atribuicao sai dividida ao meio pela secao 26.3 — a condicao e dele, a classificacao de quais superficies sao porosas e nossa, e a pagina diz isso com essas palavras. A secao 'o que a gente ainda nao responde' deixou de ser duas frases escritas a mao (as duas viraram mentira no mesmo dia em que os produtos entraram) e passou a ser CONTADA a cada requisicao: 270 combinacoes de base, lugar e caquinho, 68 delas ainda sem resposta. A tabela pre-renderizada ganhou a coluna da condicao, porque ela e a metade que um modelo de linguagem le sem preencher formulario e era onde 'use PL500 em plastico' sairia sem escopo."
     },
     {
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.3.0",
-      "sha256": "d14d41af6a5aa5afa9ef97e2583e182eab1ca5dae0aaa820af5eb4f9a45dd79a",
+      "versao": "1.3.1",
+      "sha256": "663dcfda2650bd4749c71b8491c58e2f28f88a36040766bff10cd7b36afb3822",
       "descricao": "F1 1.3.0 (14/09/2026) — A ORDEM DAS DUAS VITRINES, E O TITULO QUE DEPENDIA DE ESTAR EM SEGUNDO LUGAR. Ate a 1.2.0 o bloco de compra do REJUNTE vinha antes do da PASTILHA, e a ordem nao era decisao: era heranca de quando o lugar da pastilha era uma frase de espera ('ainda nao temos as pastilhas no nosso banco'). A 1.2.0 encheu aquele lugar com treze produtos e manteve a sequencia de chamada. A pastilha passa a vir primeiro, porque o title, o H1 e a primeira frase de resposta desta pagina falam de pastilha, e quem chega por 'quantas pastilhas para mosaico' veio comprar pastilha (secao 22.1, e o 'produto primeiro' do VOZ.md). Nada da 22.2 se move: resposta antes da explicacao, os DOIS blocos de compra antes da camada de prova (secao 7), nenhuma URL, trilha, ancora ou JSON-LD muda, nenhum produto entra ou sai. O QUE A TROCA REVELOU e o que fez disto bloco e nao um swap: o titulo era 'E onde comprar a pastilha', e aquele 'E' e conector — titulo que so e verdade em segundo lugar, e titulo e a frase que um modelo de linguagem cita sozinho (secao 5). Os dois titulos passam a ser autossuficientes. E A FRONTEIRA DOS DOIS BLOCOS GANHOU NOME: cada vitrine declara o que ela e na propria classe (cdm-f1-vitrine-pastilha e cdm-f1-vitrine-rejunte), em TODAS as saidas, inclusive as degradadas — a bancada e a conferencia no ar extraiam pelo TEXTO do h2, que muda, e que no estado degradado do rejunte NUNCA extraiu nada. Portao novo: secao 4d do teste-f1 (ordem, presenca unica do marcador, resposta antes das vitrines, vitrines antes da prova, e nenhum titulo abrindo com conector), 15 estados, um processo cada; cinco mutacoes novas; e o mundo sem a F2 no ar (sem_f2=1 no render) produzido pela primeira vez — as duas saidas degradadas existiam desde 12/09/2026 sem uma afirmacao encostando nelas."
     },
     {
@@ -86,8 +86,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.1.0",
-      "sha256": "2a7fb13328a9cc46f758891d68348698c0b836d2285b78c2d776e57f485b8642",
+      "versao": "1.1.1",
+      "sha256": "5999a6ec2c07e1471ced302a11773003b8d2b953faf9c784806c04ae122a40d5",
       "descricao": "ADENDO 3 DO BLOCO 4d — os leads da Loja, que ficaram FORA do corte de 12/09 por escrito e voltaram a fila agora que o painel esta de pe. O botao principal da ficha da peca deixou de ser um `wa.me` direto e passou a ser \"Verificar disponibilidade\": um formulario de dois campos (nome e WhatsApp) na propria pagina, que grava o CPT `lead_peca` e manda um aviso imediato para a caixa da artesa com um botao que abre a conversa com o CLIENTE, mensagem ja escrita. SETE DECISOES. (1) TERCEIRO SNIPPET E NAO UM PEDACO DA LOJA — o Sync desembarca um sem o outro, e este e o primeiro arquivo desta ilha que guarda DADO DE PESSOA: manter nome e telefone num lugar so faz a pergunta \"onde eles moram?\" ter resposta de uma linha. (2) A LOJA APLICA UM FILTRO, `cdm_peca_acao`, E ELE E APLICADO DE VERDADE — a cicatriz de 12/09 nesta ilha foram dois add_filter sem ninguem do outro lado, e por isso o portao mede os DOIS lados: que a Loja chama, e que o que volta aparece no corpo servido. Sem este snippet no ar a ficha volta exatamente ao que servia ontem. (3) O FORMULARIO FUNCIONA COM O JAVASCRIPT DESLIGADO (22.8): e um <details> com um <form method=\"post\"> dentro; o unico script e a mascara do telefone, que e enfeite — a canonizacao acontece no PHP. (4) O NOME DA PESSOA NAO VIAJA NA URL: o POST guarda a confirmacao num transient de 10 minutos e redireciona com uma CHAVE aleatoria, entao o nome nao entra no historico, no Referer nem no log de acesso — e quem nao enviou nada nao consegue fabricar a tela de enviado. (5) O ESTADO COM PARAMETRO SAI NOINDEX, pela mesma razao da F2: quem entra no indice e UMA pagina, a ficha limpa. (6) O LEAD NAO VAI PARA O REPOSITORIO — a copia da secao 24 para a PECA e o endpoint /v1/pecas, e para o LEAD e o CSV dentro do painel, na mao dela; NAO existe rota REST de lead, e o portao mede a AUSENCIA, que e a unica forma de uma ausencia nao sumir num bloco futuro. (7) A ABA NAO CRIA CAPACIDADE NOVA no papel `artesa` — sao as mesmas sete, e quem pode editar as pecas pode ver quem perguntou por elas. O DEFEITO QUE O PORTAO PEGOU ANTES DO AR: a funcao do nome da artesa nasceu lendo `first_name` e descartando a palavra \"artesa\" — lista de palavras proibidas, a heuristica que a secao 8 proibe — e falhou na primeira medicao porque o que o Atelie grava ali e `Artesã`, com til e cedilha. A mensagem teria dito \"Aqui é Artesã\" para uma cliente. Agora o nome publico e DECLARADO na option `cdm_artesa_nome`, que nasce vazia, e vazia significa uma coisa so: a identidade de identidade/artesa/ ainda nao chegou."
     }
   ],
@@ -241,6 +241,24 @@
       "descricao": "Recalcula o sha256 de cada item do manifest e IMPRIME cada troca; recusa gravar quando a versao do manifest diverge da constante do snippet, e quando ha arquivo publicavel ou ferramenta no disco que o manifest nao conhece. Bancada."
     },
     {
+      "id": "cobertura",
+      "arquivo": "ferramentas/cobertura.py",
+      "sha256": "366b5737c9d881d3d341e5ec718f6936928c47d360427c3668a8e648e4da3345",
+      "descricao": "A varredura da secao 14.3: para CADA estado que a F2 serve, conta quantos produtos do banco sao elegiveis, e escreve dados/cobertura.json. A faixa vem de faixa-da-f2.php (medida no snippet); a regua vem de validar-banco.py, importada — ela recompoe a elegibilidade das DECLARACOES pelas regras do esquema e foi escrita antes de existir o snippet PHP, entao reimplementa-la aqui uma terceira vez nao acrescentaria independencia, so uma copia para envelhecer calada. Mencao com ressalva NAO conta como elegivel (regra 5: fonte fraca demais). O arquivo gerado NAO leva carimbo de relogio, de proposito: ele e funcao das entradas, e com timestamp dentro o modo --conferir acusaria 'velho' a cada execucao ate alguem desligar o portao. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "conferir-atelie-no-ar",
+      "arquivo": "ferramentas/conferir-atelie-no-ar.py",
+      "sha256": "a83a767c0bcb1848b9aecd43f98ff872c62898eb109b1f9c07d7f57905763f35",
+      "descricao": "Mede NO AR o bloco 4d. Separado do conferir-no-ar.py porque aquele mede as onze URLs no caso-ANCORA e este bloco trouxe uma pagina que muda conforme QUEM abre (o painel) e uma URL que so existe quando a artesa publica (a ficha) — a mesma razao do conferir-kits-no-ar.py da Robometria. PROVA: /atelie/ em 200 servindo a tela de entrar, com noindex, FORA do sitemap (varrendo o indice e os sub-mapas), e ZERO links para ela nas oito paginas publicas; que a vitrine da Loja mostre exatamente as pecas que a rota publica de contagem conta (duas metades lendo o mesmo banco: divergencia e cache velho, que e como o site fica para tras em silencio); que cada ficha publicada sirva description, og:, Product+Offer valido e trilha, e que o preco da TELA e o do SCHEMA sejam o mesmo numero; e, com o token do Sync, que o papel tenha as 7 capacidades e NENHUMA das proibidas, que a usuaria exista, e A HORA EM UTC em que o e-mail de acesso saiu — que e o que o despacho manda escrever no ESTADO.md. Mede a RECUSA da rota sem token antes de usar o token. Sem token, as afirmacoes que dependem dela sao contadas como PULADAS, nunca como aprovadas. NAO PROVA, e diz isso no fim: se o e-mail chegou na caixa da Hotmail (wp_mail true diz que o servidor aceitou, nao que passou do filtro de spam) e se o dedo dela funciona a 360 px."
+    },
+    {
+      "id": "conferir-cobertura",
+      "arquivo": "ferramentas/conferir-cobertura.php",
+      "sha256": "b4ca13a2bd3762fa1ef21e372624a1b761d7cfbd5b703845ac94133673d0308a",
+      "descricao": "Cruza o censo com o que o site SERVE, estado a estado, um processo por estado. dados/cobertura.json e escrito pela regua Python; quem serve a pagina e o snippet PHP: duas implementacoes da mesma regra que, ate este bloco, so se cruzavam nas 27 celulas escritas a mao do esquema, de 105 que as ferramentas servem. Confere tambem que a faixa do censo e a que o snippet serve hoje, que o censo tem um estado por par e nenhum repetido, que toda contagem do resumo BATE com a recontagem feita das listas (numero de tela nasce contado, nunca digitado), que toda faixa descoberta nomeia a causa que o calculo separou, e que nenhuma categoria declarada vazia tem item no banco. Bancada: nunca vai para o site."
+    },
+    {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
       "sha256": "80ea0cd7dd76f1349719d8e675cfaf16979170775bd6c8c3cf571527bb2e045d",
@@ -253,10 +271,28 @@
       "descricao": "Abre a ilha num navegador de verdade e mede o DISPARO do GA4 saindo — a requisicao de coleta com o tid desta ilha e o codigo que o Google devolve. Existe porque o conferir-no-ar.py usa curl, e curl nao executa uma linha de JavaScript: ele prova que a tag ESTA na pagina, nunca que a visita CHEGA na propriedade. Entre as duas cabem o script bloqueado, o ID de propriedade apagada, o erro de JavaScript de outro trecho derrubando o gtag antes do config e o consentimento herdado de plugin — nenhuma aparece no HTML e todas terminam em relatorio zerado. Mede tambem UM page_view por pagina, que e onde a contagem dupla do Site Kit apareceria. NUNCA FOI VISTO APROVANDO, e isto esta escrito no cabecalho dele: a nuvem das rotinas nao o executa porque www.googletagmanager.com responde 403 ao CONNECT (politica de egresso, nao intermitencia) e porque o Chromium nao atravessa o tunel nem para o dominio liberado. Roda no Chrome do Raphael, ou na nuvem no dia em que os dois hosts entrarem na rede Personalizada. Bancada: nunca vai para o site."
     },
     {
+      "id": "conferir-tecnica-no-ar",
+      "arquivo": "ferramentas/conferir-tecnica-no-ar.py",
+      "sha256": "b3a6f2ceedb9190c53e0c56b7cff1e7f82a91c384ee20dce385c8157d3856168",
+      "descricao": "O irmao no ar do teste-tecnicas: abre a pagina de tecnica com curl e afirma sobre o HTML que o SITE serve. 23 afirmacoes. Reconta as 45 celulas da grade contra dados/cobertura.json (o banco commitado), refaz a prestacao de contas da secao 7 na tela, confere a escada de compra e o rel de cada link, os dois links internos que tiram a pagina da condicao de orfa, o sitemap, e o JSON-LD servido. A secao 4 compara o endereco CANONICO com o mesmo endereco com quebra de cache, por MARCADOR e nunca por bytes — e a trava do cache do hospedeiro, que o /status nao enxerga. O endereco esta literal no arquivo, copiado a mao: ler a constante do snippet seria conferir a pagina com a propria pagina. Accept-Encoding identity em toda requisicao. Bancada."
+    },
+    {
+      "id": "faixa-da-f2",
+      "arquivo": "ferramentas/faixa-da-f2.php",
+      "sha256": "00a926ecead6c96abc21a4e30062bf2ab0e135cc59936188848f70ef20240439",
+      "descricao": "Mede a faixa de entrada da F2 PROVOCANDO o proprio snippet, em vez de le-la no codigo ou digita-la: poe cada valor de um superconjunto deliberadamente maior em $_GET, chama cdm_f2_entrada() — a mesma funcao que sanea a consulta de quem visita — e fica com o que sobreviveu. Devolve as 9 bases, os 5 ambientes, as 6 tesselas, a faixa de junta e o produto delas (45 estados de cola, 60 de rejunte). RECUSA medir quando o superconjunto nao passa por cima ou por baixo da faixa (teto medido igual ao teto da regua nao e teto, e o fim da regua) e quando o saneamento aceita um valor inventado. Existe porque a secao 14.3 manda varrer a faixa 'de ponta a ponta', e varredura sobre faixa digitada fica verde no dia em que o campo mudar de teto. Bancada: nunca vai para o site."
+    },
+    {
       "id": "gerar-favicon",
       "arquivo": "ferramentas/gerar-favicon.php",
       "sha256": "f35b5c897a33be98d58ef2a9fbad44d10f69a1da0671f2e8773a968d1e74f363",
       "descricao": "Le identidade/logo/favicon-32.png e grava o base64 dele dentro do snippet da casca, entre os marcadores FAVICON-INICIO/FIM. Diferente da ferramenta homonima da Robometria, que DESENHA o icone: aqui o simbolo e arte entregue e o PROMPT.md proibe redesenhar. Confere que o arquivo e mesmo um PNG de 32x32 antes de embutir. NUNCA e publicada no site."
+    },
+    {
+      "id": "gerar-links-afiliado",
+      "arquivo": "ferramentas/gerar-links-afiliado.py",
+      "sha256": "37c62688f9f55b7281e539bb05db21d5b7cadf42573c7945399ecb160c25028e",
+      "descricao": "Gera e REGERA os links de afiliado da Shopee do banco desta ilha pela Open API (25.6), com os cinco sub-ids na ordem posicional da secao 7. Existe porque os dezesseis links de 13/09/2026 nasceram no painel `offer/custom_link`, com os cinco campos preenchidos a mao, e sairam DESLOCADOS UMA CASA — o unico clique da janela 16->22/09 chegou ao Relatorio como `-clubedomosaico-F2--`, com `sub_id_1` vazio, e o painel nao conseguia dizer qual ilha vendeu. Mao humana em cinco caixas de texto nao tem portao; chamada de API tem. Regera a ficha SO quando `url_produto` existe e e da Shopee, para o par continuar demonstravel (25.4-b.1), e nunca toca link do Mercado Livre, que e outro programa. Traz a tabela das palavras-chave dos dez que perderam a busca crua e das treze pastilhas cuja chave de 13/09 devolvia ZERO oferta, com o degrau da escada da 25.6 escrito em cada uma; `--conferir-chaves` mede todas contra a API antes de qualquer link nascer. Bancada: nunca vai para o site."
     },
     {
       "id": "gerar-marca",
@@ -265,10 +301,28 @@
       "descricao": "Embute a lotus do cabecalho dentro do snippet da casca, entre marcadores; recusa arquivo que nao abre, sem canal alfa ou com canto opaco. Bancada."
     },
     {
+      "id": "medir-imagens",
+      "arquivo": "ferramentas/medir-imagens.py",
+      "sha256": "94028d9266ac4c7f9ad2aa798e1f9b2672a3e30b732e0befdfc9ba4b6f71cad8",
+      "descricao": "Le a largura e a altura REAIS de cada imagem do banco no arquivo servido (JPEG, PNG e WebP, sem biblioteca) e as grava com --gravar. Existe porque o feed de afiliado da Shopee, que e a fonte legitima da foto pela secao 25.3, nao declara dimensao — e o esquema exige as duas para a pagina reservar a caixa e nao dar salto de layout. Nunca inventa: download que falha vira FALHOU e o item continua reprovando no validador. Bancada."
+    },
+    {
       "id": "mutacoes-arvore",
       "arquivo": "ferramentas/mutacoes-arvore.py",
       "sha256": "c43cac25f762587df1e34b66ff18724a49a4fa6f4f4b231598dbc9e92c818138",
       "descricao": "Quebra a arvore da casca de proposito, uma mutacao por vez, e exige que teste-casca.php reprove cada uma. Bancada."
+    },
+    {
+      "id": "mutacoes-atelie",
+      "arquivo": "ferramentas/mutacoes-atelie.py",
+      "sha256": "e7e50c5b6c33b61bd4ad8a641a625bbe9dd29443808a3b2874cb9f4f87d83eda",
+      "descricao": "26 defeitos escritos de volta no snippet do Atelie, 26 reprovados, 23 SO o portao novo pegou. Tres familias: as que ABREM PORTA (o bloqueio do wp-admin que para de bloquear, o papel que ganha edit_others_pecas ou manage_options, o nonce que para de ser conferido, a dona da peca que para de ser conferida, a chave de redefinicao que para de ser validada, a rota que fica publica), as que VAZAM SEGREDO (a senha guardada em option, o link de senha no aviso do Raphael, o 'esqueci a senha' que revela quem tem conta, o e-mail que para de ser mascarado) e as que QUEBRAM PARA ELA (o preco em type=number recusando a virgula, a peca nascendo publicada, a recusa sem motivo, apagar sem lixeira). QUATRO PASSARAM NA PRIMEIRA PASSADA e as quatro eram lacuna real do portao: duas porque ele media telas e nunca DISPARAVA os ganchos (admin_init e show_admin_bar nao aparecem em HTML nenhum), uma porque a varredura da senha nomeava dois lugares, e uma porque conferia a funcao de mascarar sem conferir se a rota a chamava. A m22 e o defeito que este bloco REALMENTE teve, escrito de volta: a direcao da foto num campo escondido, que e enviado seja qual for o botao apertado. Bancada."
+    },
+    {
+      "id": "mutacoes-cobertura",
+      "arquivo": "ferramentas/mutacoes-cobertura.py",
+      "sha256": "529b3d554d5cf997918122bfa9682bf7ddc8e2e8f6c415d629d4b9f7d22e23b5",
+      "descricao": "Quebra a varredura de proposito, uma mutacao por vez, e exige que cobertura.py --conferir ou conferir-cobertura.php reprove cada uma. Mede uma segunda coisa, que e a razao de o bloco existir: para cada mutacao roda TAMBEM os portoes anteriores (validar-banco.py e teste-f2.php) e marca as que so a varredura viu — mutacao que qualquer portao antigo pega ja estava coberta e nao justificaria arquivo novo. A mais importante afrouxa a faixa de junta SO em 7, 8 e 9 mm, que e o vao onde a grade escrita a mao do esquema nao pisa. Bancada: nunca vai para o site."
     },
     {
       "id": "mutacoes-f1",
@@ -289,6 +343,24 @@
       "descricao": "Quebra a tag do GA4 de proposito, uma mutacao por vez, e exige que teste-casca.php reprove cada uma. Existe porque a tag e a unica coisa desta ilha cujo defeito NAO APARECE NA TELA: tag no lugar errado, com o ID de outra ilha ou impressa duas vezes serve uma pagina identica, e o sintoma so chega semanas depois como um numero que ninguem tem como conferir de memoria. Tres familias: a tag some ou sai pela metade; a tag fica e esta errada (ID de outra ilha, ID digitado ao lado da constante, config discordando do src, tag dobrada — o caso Site Kit); e a tag certa no lugar errado (sem async, antes do JSON-LD, depois da folha de fontes), que e cada linha do despacho de 12/09 virada em medicao. Bancada: nunca vai para o site."
     },
     {
+      "id": "mutacoes-leads",
+      "arquivo": "ferramentas/mutacoes-leads.py",
+      "sha256": "f69d100aaaf2676b1a4e27474a456cdaa78c45f42024f117ee1d221f10700b24",
+      "descricao": "36 defeitos escritos de volta no snippet de Leads, na Loja e no Atelie, cada um rodando o portao NOVO e dois ANTIGOS para provar quais so o novo pega. Sete delas sao de PRIVACIDADE (o nome na URL, o IP em texto puro, o nome no titulo do registro, o tipo publico, o tipo na REST, o tipo na busca, a copia para o Raphael sem option) — trava de privacidade que ninguem quebra de proposito e trava que ninguem sabe se funciona. Quatro passaram na primeira passada e eram quatro buracos reais do portao: o IP em texto puro, o e-mail que falha apagando o lead, a acao da aba sem conferir capacidade e o despacho de um estado que ninguem registrou como aba."
+    },
+    {
+      "id": "mutacoes-loja",
+      "arquivo": "ferramentas/mutacoes-loja.py",
+      "sha256": "d0009ff5e4182358945a3f5c2db105b3e4eb1d16bd6f97c6b1fad5f3393bea7f",
+      "descricao": "23 defeitos escritos de volta no snippet da Loja, 23 reprovados, 22 SO o portao novo pegou. Separa 'reprovou' de 'nao compila', porque codigo que nem carrega nao e evidencia de trava. ACHOU TRES COISAS na primeira passada: (a) a afirmacao da regra de reescrita lia um contador COMPARTILHADO com a casca, que ja estava acima de zero — apagar o flush da Loja passava verde; agora o teste zera o contador, limpa a marca, roda o init de novo e afirma sobre o delta, e cobra tambem que NAO remonte na visita seguinte; (b) a mutacao do %0D%0A na mensagem do WhatsApp nao fez portao nenhum reprovar porque o `str_replace` que ela apagava era CODIGO MORTO — rawurlencode de \\n ja devolve %0A —, e o conserto foi tirar a linha do snippet e a mutacao junto; (c) `===` contra `hash_equals` nao e observavel por comportamento, e a trava correspondente passou a ler o fonte, com a razao escrita. Bancada."
+    },
+    {
+      "id": "mutacoes-pastilhas",
+      "arquivo": "ferramentas/mutacoes-pastilhas.py",
+      "sha256": "94f34f4d1a1a364ab0bc06b5b3743133802fa3798956e45c739ca40b6317069c",
+      "descricao": "Doze defeitos escritos de volta no banco de pastilhas, cada um rodando os DOIS portoes (esquema e regua da categoria) e marcando os que SO a regua nova ve — porque mutacao que o portao antigo ja pegava nao justifica arquivo novo. Bancada."
+    },
+    {
       "id": "mutacoes-prestacao",
       "arquivo": "ferramentas/mutacoes-prestacao.py",
       "sha256": "be107eb087f98bf9b38f2ebc4f0ab0c1a150866174792f8bef0be5bc469e0a32",
@@ -301,6 +373,24 @@
       "descricao": "Quebra o banco de rejunte de proposito, uma mutacao por vez numa COPIA da pasta da ilha, e exige que validar-banco.py reprove cada uma. DOZE mutacoes, doze reprovadas. A que mais vale e a ultima: ela tira a declaracao de piscina do epoxi E ajusta o perfil esperado no esquema junto, que e como um editor de verdade mexeria nas duas metades — as duas passam a errar juntas e a conferencia de perfil deixa de ver. Quem viu foi a MATRIZ, que continuava esperando o epoxi no topo da celula de 3 mm submersa. E a prova de que a matriz nao e enfeite da conferencia de perfil, e a resposta local a cicatriz da secao 8 do contrato: teste que chama a regua de quem produziu o dado erra junto com ele. NUNCA e publicada no site."
     },
     {
+      "id": "mutacoes-tecnica-x-material",
+      "arquivo": "ferramentas/mutacoes-tecnica-x-material.py",
+      "sha256": "ff0b81809cffdeedb4b6db6a26280e795101a8d576ee58634af1c3ff46a82883",
+      "descricao": "Quebra a CONTA que liga tecnica a material, uma mutacao por vez, e exige o NUMERO certo em cada uma — nao o veredito, porque afirmar so 'abriu ou fechou' deixaria passar a mutacao que INFLA a conta e fica verde por ter aberto. 8 mutacoes com os dois lados da fronteira: a que fecha o portao, a que o abre para uma terceira tecnica, duas que inflam, uma que encolhe a varredura, uma que tira a pastilha da soma, a que arrasta a conta para fora do validador (o gerador tem de morrer) e a do derivado nao regerado (--conferir tem de acusar). Bancada."
+    },
+    {
+      "id": "mutacoes-tecnicas",
+      "arquivo": "ferramentas/mutacoes-tecnicas.py",
+      "sha256": "62d1f331eaf700deca6b19bb0b6afe9f6e03ce55cb9882d5e36bc7ec52cc79c9",
+      "descricao": "Quebra o banco de TECNICA de proposito, 14 mutacoes, e exige que o validar-banco.py decida certo em cada uma. Nasceu junto com dados/tecnicas.json porque a regua daquela entidade estava escrita desde 12/09 e NUNCA tinha rodado — verde por ausencia do arquivo que ela media. TEM OS DOIS LADOS DA FRONTEIRA: 13 mutacoes que precisam reprovar (id fora do vocabulario, definicao sem fonte, blog sustentando definicao, folga em milimetro inventada, pagina de tecnica declarada com zero item de banco) e UMA que precisa PASSAR — a mesma pagina com o lado do material resolvido —, porque portao que reprova tudo nunca deixaria a familia nascer. Bancada."
+    },
+    {
+      "id": "mutacoes-tecnicas-pagina",
+      "arquivo": "ferramentas/mutacoes-tecnicas-pagina.py",
+      "sha256": "c5b5a7f1d8322719bad7577283cce26f9043e7ed74360b28adf401e690bd1212",
+      "descricao": "Quebra a PAGINA de tecnica de proposito, uma mutacao por vez. 9 mutacoes: tessela digitada no snippet contra banco que diz outra, celula da grade cravada a mao, cartao que some da vitrine que a frase nomeia, recusa que volta a nomear so a causa maior, busca CRUA se declarando patrocinada, FAQPage prometendo pergunta que a tela nao responde, numero da frase digitado, pagina sumindo da listagem da mae (reprova no teste-casca, nao no proprio). A nona NAO reprova por reprovar: com o banco fora do ar a pagina tem de ficar HONESTA — dizer que nao mediu e NAO servir a grade. Bancada."
+    },
+    {
       "id": "mutacoes-voz-e-cabeca",
       "arquivo": "ferramentas/mutacoes-voz-e-cabeca.py",
       "sha256": "be988e919fee61aa90743a302714b4561a99e80c5ebf316556ddeffed1bc357b",
@@ -309,7 +399,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "7fd961c830e376f06eed4d55c84c016955890ee7f54d42901cb8176533243199",
+      "sha256": "f4a4d253ef8f9417b74f5459e4cfd07a396229a5e40152326574c75c15e78951",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -317,6 +407,24 @@
       "arquivo": "ferramentas/restaurar-acentos.py",
       "sha256": "f7a01cd22a2148aacd07baec6dcfee7df9b3695da6fa549b380e48f0a9ff04a6",
       "descricao": "Devolve os acentos as strings do banco que chegam a tela. Bancada."
+    },
+    {
+      "id": "tamanhos-da-f1",
+      "arquivo": "ferramentas/tamanhos-da-f1.php",
+      "sha256": "08c81519c0026dfe90e588a9fc2a806c0053c0f9335ded6d9ea109a44b2c7938",
+      "descricao": "A faixa de tamanhos de pastilha que a F1 serve, MEDIDA no snippet por provocacao de cdm_f1_entrada() — irmao do faixa-da-f2.php. Nasceu em 13/09/2026 porque o validar-pastilhas.py carregava a lista numa constante de QUATRO tamanhos e a ferramenta serve CINCO: o 1,5 cm nunca aparecia no relatorio de cobertura da secao 14.3, e e justamente o lado do unico item do banco sustentado por distribuidor. 8 afirmacoes, incluindo a borda: uma chave inventada tem de ser recusada e o padrao do saneamento tem de ser um tamanho que a tela lista. Bancada."
+    },
+    {
+      "id": "tecnica-x-material",
+      "arquivo": "ferramentas/tecnica-x-material.py",
+      "sha256": "3b8cb781de2b1e401762eb8a709215d6feaaaba7073c73f7c6effc46560b3755",
+      "descricao": "O OUTRO LADO DO BANCO: para cada tecnica, quais itens do banco uma pagina dela poderia recomendar e em que estados de base e ambiente. Deriva dados/tecnica-x-material.json IMPORTANDO a conta de validar-banco.py (itens_de_banco_da_tecnica) em vez de reescreve-la — uma conta, dois leitores. Aceita --conferir, que reprova quando o derivado esta velho em relacao ao banco. Bancada; nunca vai para o site."
+    },
+    {
+      "id": "teste-atelie",
+      "arquivo": "ferramentas/teste-atelie.php",
+      "sha256": "7652b74a1f3eadefa5c45e5d2fb1b01cd4c96d720129768f43d4be9f82241f70",
+      "descricao": "Portao do painel da artesa (bloco 4d). 209 afirmacoes. EXISTE PORQUE O PORTAO DO DESPACHO NAO PODE SER CUMPRIDO PELA FUNDACAO, e isso esta escrito no cabecalho do arquivo em vez de subentendido: a senha da artesa nao existe em lugar nenhum a que a nuvem tenha acesso, por desenho, entao nao ha como entrar como `artesa` e fabricar um jeito seria quebrar o que protege a conta de uma pessoa de verdade. O portao se divide em duas metades declaradas — a que este arquivo mede (o caminho inteiro de dentro do painel, com uma pessoa logada de mentira que tem as capacidades que o SNIPPET criou: 9 telas em processo proprio, o formulario, salvar, publicar, pausar, apagar, as fotos, o nonce, o bloqueio duplo do wp-admin, e cada recusa com a frase que ela le) e a que so um humano mede (o toque no telefone dela e a chegada do e-mail na Hotmail). Cobra as 7 capacidades do papel e a AUSENCIA das 8 proibidas; que a senha aleatoria nao apareca em NENHUM e-mail nem em NENHUMA option (varredura de todas, nao de duas — a versao anterior nomeava onde procurar e a mutacao gravou numa terceira); que a rota de conferencia devolva o e-mail MASCARADO (afirmacao feita CHAMANDO a rota, porque a versao anterior conferia a funcao e nao a chamada); que nenhuma tela diga WordPress, wp-admin ou wp-login; e que tudo funcione por formulario POST, portao 22.8. Bancada."
     },
     {
       "id": "teste-casca",
@@ -327,14 +435,32 @@
     {
       "id": "teste-f1",
       "arquivo": "ferramentas/teste-f1.php",
-      "sha256": "88dc9ebec1a650cd5b8752f9b3e2123e78d241cedd0d88dbeb09b7f717e6494a",
+      "sha256": "50d8c3a7778d8832c80180f7c6bd03170fe34dab4eb619fccf365e18ff88a627",
       "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
     },
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "b8297f60188747822004110cedf55068516cf9bf90095934274a1cc5d8ad5f0c",
+      "sha256": "c695208aa0c443ab9a8f27aa7af7c1ed763d61b4546cf784f5ab01d89c15594b",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
+    },
+    {
+      "id": "teste-leads",
+      "arquivo": "ferramentas/teste-leads.php",
+      "sha256": "4b2acf0287bd2edea9ab165b611f453e8f82c5d52645da8f928134679037b1fa",
+      "descricao": "Portao do adendo 3 (leads da Loja), sem site e sem rede. REGUA PROPRIA: a tabela de telefones esta escrita a mao, entrada por entrada, com o canonico esperado digitado do lado — nada aqui chama cdm_leads_wa_canonico() para saber o que esperar. GRADE COM BORDA: pisa no DDD 10 (invalido) e no 11 (o primeiro valido), no DDD 99 (o ultimo), no assinante de 8 e de 9 digitos e no 9 inicial do celular. Mede no CORPO, conta &#038; so dentro dos <script>, e roda UM PROCESSO POR ESTADO de pagina. O que ele tem de diferente dos outros portoes desta ilha: sete afirmacoes nao medem se a tela esta certa e sim se nome e telefone de uma cliente VAZAM — para a URL, para o repositorio, para o indice ou para quem nao e a artesa. Foi ele que pegou, ANTES do ar, a funcao do nome da artesa lendo o texto de espera `Artesã` do painel e escrevendo 'Aqui é Artesã' na mensagem que iria para uma cliente."
+    },
+    {
+      "id": "teste-loja",
+      "arquivo": "ferramentas/teste-loja.php",
+      "sha256": "614b31ef334bd5fa277901f44bd71e716faf6dd52b3e2f57ead29c5e9107bb09",
+      "descricao": "Portao da Loja (bloco 4d). 140 afirmacoes, regua escrita a mao: os slugs dos termos, as frases de disponibilidade, o formato do preco, os motivos de recusa e as bordas do telefone estao NO TESTE, nunca lidos do snippet. Varre a ficha em 72 estados (6 bases x 2 disponibilidades x 3 quantidades de foto x 2 estados do telefone), UM PROCESSO POR ESTADO — o `static` do logotipo da casca faz o cabecalho sumir a partir do segundo render no mesmo processo. Mede no HTML SERVIDO: description e og: nos 72, Product+Offer valido, PreOrder contra InStock, preco do Offer com ponto, BreadcrumbList de tres degraus, canonical UNICO sob /loja/, zero &#038; dentro de <script>, toda foto com alt e com width/height, exatamente uma foto prioritaria, e a ORDEM da secao 5 medida por POSICAO (preco e botao antes da ficha tecnica). O PISO DE TAMANHO DE PAGINA E DERIVADO de /contato/ nesta mesma bancada, e nao cravado: a primeira escrita cravou 40 KB calibrado na F2 e reprovou fichas corretas de 26 KB. UMA afirmacao le o FONTE, e so uma: hash_equals contra === na comparacao do token, porque os dois devolvem o mesmo resultado e o que muda e o tempo, que nenhuma bancada observa. Bancada."
+    },
+    {
+      "id": "teste-navegador-atelie",
+      "arquivo": "ferramentas/teste-navegador-atelie.mjs",
+      "sha256": "98a7c72b9e07127c184a5ea922d1503c42ae3ec932c5f0120f61fa0fc58cffde",
+      "descricao": "91 medicoes do painel e da ficha num Chromium de verdade, em 6 paginas x 5 larguras (360, 390, 412, 782, 1200). EXISTE PARA CUMPRIR A METADE DO PORTAO DO DESPACHO QUE UMA MAQUINA CUMPRE: o despacho escreve a medida dentro do portao — 'entre em /atelie/ como artesa, NUMA JANELA DE 360 PX' —, a metade do 'como artesa' a Fundacao nao alcanca (a senha nao existe para ela, por desenho), e a metade da LARGURA uma maquina mede melhor que um humano. Mede o que so aparece depois de o CSS ser aplicado: rolagem lateral zero em toda largura, TODO alvo de toque com 44 px ou mais, TODO campo com fonte de 16 px ou mais (abaixo disso o Safari do iPhone da zoom ao focar, a tela pula e ela perde o lugar), nenhum par de campos lado a lado a 360 px, a primeira tela, e o painel inteiro num contexto com javaScriptEnabled FALSE — que e a unica forma honesta de medir a 22.8. ACHOU UM DEFEITO QUE NENHUMA LEITURA DE CODIGO NEM O HTML SERVIDO MOSTRAVAM: os tres botoes de mover e remover foto, os menores do painel e os que ela mais vai apertar com o dedo, tinham 38 px. Viraram 44. E ACHOU TRES REGUAS MINHAS ERRADAS: o piso de 200 caracteres de corpo (emprestado da regra de pagina fina, que existe para pagina de INDICE) reprovava a tela de entrar, a lista e a de criar senha, que estao certas — tela de acao boa tem pouco texto; e duas reguas do painel aplicadas na FICHA da peca, que nao tem formulario (o botao dela e um link wa.me) e que mostra foto grande e titulo na primeira tela, exatamente o que o DESIGN.md manda. ABORTA TODA REQUISICAO DE REDE, e o preco esta declarado no arquivo: as larguras sao medidas com a pilha de recuo da fonte e nao com Outfit, o que e conservador para largura e alvo de toque e impede afirmacao sobre quebra de linha exata. Bancada."
     },
     {
       "id": "teste-navegador-casca",
@@ -349,34 +475,16 @@
       "descricao": "Portao do despacho da Sentinela de 12/09/2026: cobra que todo rejunte do banco seja nomeado uma vez em cada resposta — na frase que o recomenda ou numa linha que diz por que ele nao esta — e que a vitrine sirva exatamente o que a frase nomeia, nas duas ferramentas e na tabela pre-renderizada. Regua propria, recomputada dos perfis escritos a mao no esquema; 540 estados da F2, 180 da F1 e as 9 linhas da tabela, um processo por estado. Bancada: nunca vai para o site."
     },
     {
+      "id": "teste-tecnicas",
+      "arquivo": "ferramentas/teste-tecnicas.php",
+      "sha256": "953ef8c636e7da6acecb41494e0a8b9946f1a0fc245eacb16fab03543275df9a",
+      "descricao": "Verificacao MEDIDA da pagina de tecnica. 49 afirmacoes no corpo servido, e o ESPERADO nao vem do snippet: as 45 celulas da grade sao comparadas com dados/cobertura.json, gerado pela regua em Python — duas metades independentes, em linguagens diferentes, que tem de dar o mesmo numero. Ele comeca rodando cobertura.py --conferir, porque regua velha aprova a pagina de ontem. Mede tambem a prestacao de contas da secao 7 (a soma dos nomeados fecha com o banco contado do arquivo), a escada de compra e o rel de cada link, a recusa do rejunte com a causa, os termos que o VOZ.md proibe no titulo e no primeiro paragrafo, e o FAQ do schema sendo o MESMO da tela. Bancada; nunca vai para o site."
+    },
+    {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
       "sha256": "90e0535750084bbcc5ef4af8d537dc107cc4392ec2a6da31c26921134edf82ee",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
-    },
-    {
-      "id": "faixa-da-f2",
-      "arquivo": "ferramentas/faixa-da-f2.php",
-      "sha256": "00a926ecead6c96abc21a4e30062bf2ab0e135cc59936188848f70ef20240439",
-      "descricao": "Mede a faixa de entrada da F2 PROVOCANDO o proprio snippet, em vez de le-la no codigo ou digita-la: poe cada valor de um superconjunto deliberadamente maior em $_GET, chama cdm_f2_entrada() — a mesma funcao que sanea a consulta de quem visita — e fica com o que sobreviveu. Devolve as 9 bases, os 5 ambientes, as 6 tesselas, a faixa de junta e o produto delas (45 estados de cola, 60 de rejunte). RECUSA medir quando o superconjunto nao passa por cima ou por baixo da faixa (teto medido igual ao teto da regua nao e teto, e o fim da regua) e quando o saneamento aceita um valor inventado. Existe porque a secao 14.3 manda varrer a faixa 'de ponta a ponta', e varredura sobre faixa digitada fica verde no dia em que o campo mudar de teto. Bancada: nunca vai para o site."
-    },
-    {
-      "id": "cobertura",
-      "arquivo": "ferramentas/cobertura.py",
-      "sha256": "366b5737c9d881d3d341e5ec718f6936928c47d360427c3668a8e648e4da3345",
-      "descricao": "A varredura da secao 14.3: para CADA estado que a F2 serve, conta quantos produtos do banco sao elegiveis, e escreve dados/cobertura.json. A faixa vem de faixa-da-f2.php (medida no snippet); a regua vem de validar-banco.py, importada — ela recompoe a elegibilidade das DECLARACOES pelas regras do esquema e foi escrita antes de existir o snippet PHP, entao reimplementa-la aqui uma terceira vez nao acrescentaria independencia, so uma copia para envelhecer calada. Mencao com ressalva NAO conta como elegivel (regra 5: fonte fraca demais). O arquivo gerado NAO leva carimbo de relogio, de proposito: ele e funcao das entradas, e com timestamp dentro o modo --conferir acusaria 'velho' a cada execucao ate alguem desligar o portao. Bancada: nunca vai para o site."
-    },
-    {
-      "id": "conferir-cobertura",
-      "arquivo": "ferramentas/conferir-cobertura.php",
-      "sha256": "b4ca13a2bd3762fa1ef21e372624a1b761d7cfbd5b703845ac94133673d0308a",
-      "descricao": "Cruza o censo com o que o site SERVE, estado a estado, um processo por estado. dados/cobertura.json e escrito pela regua Python; quem serve a pagina e o snippet PHP: duas implementacoes da mesma regra que, ate este bloco, so se cruzavam nas 27 celulas escritas a mao do esquema, de 105 que as ferramentas servem. Confere tambem que a faixa do censo e a que o snippet serve hoje, que o censo tem um estado por par e nenhum repetido, que toda contagem do resumo BATE com a recontagem feita das listas (numero de tela nasce contado, nunca digitado), que toda faixa descoberta nomeia a causa que o calculo separou, e que nenhuma categoria declarada vazia tem item no banco. Bancada: nunca vai para o site."
-    },
-    {
-      "id": "mutacoes-cobertura",
-      "arquivo": "ferramentas/mutacoes-cobertura.py",
-      "sha256": "529b3d554d5cf997918122bfa9682bf7ddc8e2e8f6c415d629d4b9f7d22e23b5",
-      "descricao": "Quebra a varredura de proposito, uma mutacao por vez, e exige que cobertura.py --conferir ou conferir-cobertura.php reprove cada uma. Mede uma segunda coisa, que e a razao de o bloco existir: para cada mutacao roda TAMBEM os portoes anteriores (validar-banco.py e teste-f2.php) e marca as que so a varredura viu — mutacao que qualquer portao antigo pega ja estava coberta e nao justificaria arquivo novo. A mais importante afrouxa a faixa de junta SO em 7, 8 e 9 mm, que e o vao onde a grade escrita a mao do esquema nao pisa. Bancada: nunca vai para o site."
     },
     {
       "id": "validar-pastilhas",
@@ -385,112 +493,10 @@
       "descricao": "A regua da categoria pastilha: confere se os numeros da MESMA ficha do fabricante fecham entre si (placas x area da placa = metragem da caixa, aceitando corte OU arredondamento, porque o catalogo usa os dois na mesma linha), se o kg/m2 tirado do peso da caixa cabe no teto fisico do vidro macico na espessura declarada, e se o banco NAO transformou em numero a divisao lado-da-placa/lado-da-pastilha. Regua escrita a mao no proprio arquivo, um processo por item. Bancada."
     },
     {
-      "id": "mutacoes-pastilhas",
-      "arquivo": "ferramentas/mutacoes-pastilhas.py",
-      "sha256": "94f34f4d1a1a364ab0bc06b5b3743133802fa3798956e45c739ca40b6317069c",
-      "descricao": "Doze defeitos escritos de volta no banco de pastilhas, cada um rodando os DOIS portoes (esquema e regua da categoria) e marcando os que SO a regua nova ve — porque mutacao que o portao antigo ja pegava nao justifica arquivo novo. Bancada."
-    },
-    {
-      "id": "teste-loja",
-      "arquivo": "ferramentas/teste-loja.php",
-      "sha256": "614b31ef334bd5fa277901f44bd71e716faf6dd52b3e2f57ead29c5e9107bb09",
-      "descricao": "Portao da Loja (bloco 4d). 140 afirmacoes, regua escrita a mao: os slugs dos termos, as frases de disponibilidade, o formato do preco, os motivos de recusa e as bordas do telefone estao NO TESTE, nunca lidos do snippet. Varre a ficha em 72 estados (6 bases x 2 disponibilidades x 3 quantidades de foto x 2 estados do telefone), UM PROCESSO POR ESTADO — o `static` do logotipo da casca faz o cabecalho sumir a partir do segundo render no mesmo processo. Mede no HTML SERVIDO: description e og: nos 72, Product+Offer valido, PreOrder contra InStock, preco do Offer com ponto, BreadcrumbList de tres degraus, canonical UNICO sob /loja/, zero &#038; dentro de <script>, toda foto com alt e com width/height, exatamente uma foto prioritaria, e a ORDEM da secao 5 medida por POSICAO (preco e botao antes da ficha tecnica). O PISO DE TAMANHO DE PAGINA E DERIVADO de /contato/ nesta mesma bancada, e nao cravado: a primeira escrita cravou 40 KB calibrado na F2 e reprovou fichas corretas de 26 KB. UMA afirmacao le o FONTE, e so uma: hash_equals contra === na comparacao do token, porque os dois devolvem o mesmo resultado e o que muda e o tempo, que nenhuma bancada observa. Bancada."
-    },
-    {
-      "id": "teste-atelie",
-      "arquivo": "ferramentas/teste-atelie.php",
-      "sha256": "1e189712180f5a00c8f4853ee1c92321c6b12c59e8940b595175344b329808f9",
-      "descricao": "Portao do painel da artesa (bloco 4d). 209 afirmacoes. EXISTE PORQUE O PORTAO DO DESPACHO NAO PODE SER CUMPRIDO PELA FUNDACAO, e isso esta escrito no cabecalho do arquivo em vez de subentendido: a senha da artesa nao existe em lugar nenhum a que a nuvem tenha acesso, por desenho, entao nao ha como entrar como `artesa` e fabricar um jeito seria quebrar o que protege a conta de uma pessoa de verdade. O portao se divide em duas metades declaradas — a que este arquivo mede (o caminho inteiro de dentro do painel, com uma pessoa logada de mentira que tem as capacidades que o SNIPPET criou: 9 telas em processo proprio, o formulario, salvar, publicar, pausar, apagar, as fotos, o nonce, o bloqueio duplo do wp-admin, e cada recusa com a frase que ela le) e a que so um humano mede (o toque no telefone dela e a chegada do e-mail na Hotmail). Cobra as 7 capacidades do papel e a AUSENCIA das 8 proibidas; que a senha aleatoria nao apareca em NENHUM e-mail nem em NENHUMA option (varredura de todas, nao de duas — a versao anterior nomeava onde procurar e a mutacao gravou numa terceira); que a rota de conferencia devolva o e-mail MASCARADO (afirmacao feita CHAMANDO a rota, porque a versao anterior conferia a funcao e nao a chamada); que nenhuma tela diga WordPress, wp-admin ou wp-login; e que tudo funcione por formulario POST, portao 22.8. Bancada."
-    },
-    {
-      "id": "mutacoes-loja",
-      "arquivo": "ferramentas/mutacoes-loja.py",
-      "sha256": "d0009ff5e4182358945a3f5c2db105b3e4eb1d16bd6f97c6b1fad5f3393bea7f",
-      "descricao": "23 defeitos escritos de volta no snippet da Loja, 23 reprovados, 22 SO o portao novo pegou. Separa 'reprovou' de 'nao compila', porque codigo que nem carrega nao e evidencia de trava. ACHOU TRES COISAS na primeira passada: (a) a afirmacao da regra de reescrita lia um contador COMPARTILHADO com a casca, que ja estava acima de zero — apagar o flush da Loja passava verde; agora o teste zera o contador, limpa a marca, roda o init de novo e afirma sobre o delta, e cobra tambem que NAO remonte na visita seguinte; (b) a mutacao do %0D%0A na mensagem do WhatsApp nao fez portao nenhum reprovar porque o `str_replace` que ela apagava era CODIGO MORTO — rawurlencode de \\n ja devolve %0A —, e o conserto foi tirar a linha do snippet e a mutacao junto; (c) `===` contra `hash_equals` nao e observavel por comportamento, e a trava correspondente passou a ler o fonte, com a razao escrita. Bancada."
-    },
-    {
-      "id": "mutacoes-atelie",
-      "arquivo": "ferramentas/mutacoes-atelie.py",
-      "sha256": "e7e50c5b6c33b61bd4ad8a641a625bbe9dd29443808a3b2874cb9f4f87d83eda",
-      "descricao": "26 defeitos escritos de volta no snippet do Atelie, 26 reprovados, 23 SO o portao novo pegou. Tres familias: as que ABREM PORTA (o bloqueio do wp-admin que para de bloquear, o papel que ganha edit_others_pecas ou manage_options, o nonce que para de ser conferido, a dona da peca que para de ser conferida, a chave de redefinicao que para de ser validada, a rota que fica publica), as que VAZAM SEGREDO (a senha guardada em option, o link de senha no aviso do Raphael, o 'esqueci a senha' que revela quem tem conta, o e-mail que para de ser mascarado) e as que QUEBRAM PARA ELA (o preco em type=number recusando a virgula, a peca nascendo publicada, a recusa sem motivo, apagar sem lixeira). QUATRO PASSARAM NA PRIMEIRA PASSADA e as quatro eram lacuna real do portao: duas porque ele media telas e nunca DISPARAVA os ganchos (admin_init e show_admin_bar nao aparecem em HTML nenhum), uma porque a varredura da senha nomeava dois lugares, e uma porque conferia a funcao de mascarar sem conferir se a rota a chamava. A m22 e o defeito que este bloco REALMENTE teve, escrito de volta: a direcao da foto num campo escondido, que e enviado seja qual for o botao apertado. Bancada."
-    },
-    {
-      "id": "conferir-atelie-no-ar",
-      "arquivo": "ferramentas/conferir-atelie-no-ar.py",
-      "sha256": "a83a767c0bcb1848b9aecd43f98ff872c62898eb109b1f9c07d7f57905763f35",
-      "descricao": "Mede NO AR o bloco 4d. Separado do conferir-no-ar.py porque aquele mede as onze URLs no caso-ANCORA e este bloco trouxe uma pagina que muda conforme QUEM abre (o painel) e uma URL que so existe quando a artesa publica (a ficha) — a mesma razao do conferir-kits-no-ar.py da Robometria. PROVA: /atelie/ em 200 servindo a tela de entrar, com noindex, FORA do sitemap (varrendo o indice e os sub-mapas), e ZERO links para ela nas oito paginas publicas; que a vitrine da Loja mostre exatamente as pecas que a rota publica de contagem conta (duas metades lendo o mesmo banco: divergencia e cache velho, que e como o site fica para tras em silencio); que cada ficha publicada sirva description, og:, Product+Offer valido e trilha, e que o preco da TELA e o do SCHEMA sejam o mesmo numero; e, com o token do Sync, que o papel tenha as 7 capacidades e NENHUMA das proibidas, que a usuaria exista, e A HORA EM UTC em que o e-mail de acesso saiu — que e o que o despacho manda escrever no ESTADO.md. Mede a RECUSA da rota sem token antes de usar o token. Sem token, as afirmacoes que dependem dela sao contadas como PULADAS, nunca como aprovadas. NAO PROVA, e diz isso no fim: se o e-mail chegou na caixa da Hotmail (wp_mail true diz que o servidor aceitou, nao que passou do filtro de spam) e se o dedo dela funciona a 360 px."
-    },
-    {
-      "id": "teste-navegador-atelie",
-      "arquivo": "ferramentas/teste-navegador-atelie.mjs",
-      "sha256": "98a7c72b9e07127c184a5ea922d1503c42ae3ec932c5f0120f61fa0fc58cffde",
-      "descricao": "91 medicoes do painel e da ficha num Chromium de verdade, em 6 paginas x 5 larguras (360, 390, 412, 782, 1200). EXISTE PARA CUMPRIR A METADE DO PORTAO DO DESPACHO QUE UMA MAQUINA CUMPRE: o despacho escreve a medida dentro do portao — 'entre em /atelie/ como artesa, NUMA JANELA DE 360 PX' —, a metade do 'como artesa' a Fundacao nao alcanca (a senha nao existe para ela, por desenho), e a metade da LARGURA uma maquina mede melhor que um humano. Mede o que so aparece depois de o CSS ser aplicado: rolagem lateral zero em toda largura, TODO alvo de toque com 44 px ou mais, TODO campo com fonte de 16 px ou mais (abaixo disso o Safari do iPhone da zoom ao focar, a tela pula e ela perde o lugar), nenhum par de campos lado a lado a 360 px, a primeira tela, e o painel inteiro num contexto com javaScriptEnabled FALSE — que e a unica forma honesta de medir a 22.8. ACHOU UM DEFEITO QUE NENHUMA LEITURA DE CODIGO NEM O HTML SERVIDO MOSTRAVAM: os tres botoes de mover e remover foto, os menores do painel e os que ela mais vai apertar com o dedo, tinham 38 px. Viraram 44. E ACHOU TRES REGUAS MINHAS ERRADAS: o piso de 200 caracteres de corpo (emprestado da regra de pagina fina, que existe para pagina de INDICE) reprovava a tela de entrar, a lista e a de criar senha, que estao certas — tela de acao boa tem pouco texto; e duas reguas do painel aplicadas na FICHA da peca, que nao tem formulario (o botao dela e um link wa.me) e que mostra foto grande e titulo na primeira tela, exatamente o que o DESIGN.md manda. ABORTA TODA REQUISICAO DE REDE, e o preco esta declarado no arquivo: as larguras sao medidas com a pilha de recuo da fonte e nao com Outfit, o que e conservador para largura e alvo de toque e impede afirmacao sobre quebra de linha exata. Bancada."
-    },
-    {
-      "id": "teste-leads",
-      "arquivo": "ferramentas/teste-leads.php",
-      "sha256": "4b2acf0287bd2edea9ab165b611f453e8f82c5d52645da8f928134679037b1fa",
-      "descricao": "Portao do adendo 3 (leads da Loja), sem site e sem rede. REGUA PROPRIA: a tabela de telefones esta escrita a mao, entrada por entrada, com o canonico esperado digitado do lado — nada aqui chama cdm_leads_wa_canonico() para saber o que esperar. GRADE COM BORDA: pisa no DDD 10 (invalido) e no 11 (o primeiro valido), no DDD 99 (o ultimo), no assinante de 8 e de 9 digitos e no 9 inicial do celular. Mede no CORPO, conta &#038; so dentro dos <script>, e roda UM PROCESSO POR ESTADO de pagina. O que ele tem de diferente dos outros portoes desta ilha: sete afirmacoes nao medem se a tela esta certa e sim se nome e telefone de uma cliente VAZAM — para a URL, para o repositorio, para o indice ou para quem nao e a artesa. Foi ele que pegou, ANTES do ar, a funcao do nome da artesa lendo o texto de espera `Artesã` do painel e escrevendo 'Aqui é Artesã' na mensagem que iria para uma cliente."
-    },
-    {
-      "id": "mutacoes-leads",
-      "arquivo": "ferramentas/mutacoes-leads.py",
-      "sha256": "f69d100aaaf2676b1a4e27474a456cdaa78c45f42024f117ee1d221f10700b24",
-      "descricao": "36 defeitos escritos de volta no snippet de Leads, na Loja e no Atelie, cada um rodando o portao NOVO e dois ANTIGOS para provar quais so o novo pega. Sete delas sao de PRIVACIDADE (o nome na URL, o IP em texto puro, o nome no titulo do registro, o tipo publico, o tipo na REST, o tipo na busca, a copia para o Raphael sem option) — trava de privacidade que ninguem quebra de proposito e trava que ninguem sabe se funciona. Quatro passaram na primeira passada e eram quatro buracos reais do portao: o IP em texto puro, o e-mail que falha apagando o lead, a acao da aba sem conferir capacidade e o despacho de um estado que ninguem registrou como aba."
-    },
-    {
-      "id": "medir-imagens",
-      "arquivo": "ferramentas/medir-imagens.py",
-      "sha256": "94028d9266ac4c7f9ad2aa798e1f9b2672a3e30b732e0befdfc9ba4b6f71cad8",
-      "descricao": "Le a largura e a altura REAIS de cada imagem do banco no arquivo servido (JPEG, PNG e WebP, sem biblioteca) e as grava com --gravar. Existe porque o feed de afiliado da Shopee, que e a fonte legitima da foto pela secao 25.3, nao declara dimensao — e o esquema exige as duas para a pagina reservar a caixa e nao dar salto de layout. Nunca inventa: download que falha vira FALHOU e o item continua reprovando no validador. Bancada."
-    },
-    {
-      "id": "tamanhos-da-f1",
-      "arquivo": "ferramentas/tamanhos-da-f1.php",
-      "sha256": "08c81519c0026dfe90e588a9fc2a806c0053c0f9335ded6d9ea109a44b2c7938",
-      "descricao": "A faixa de tamanhos de pastilha que a F1 serve, MEDIDA no snippet por provocacao de cdm_f1_entrada() — irmao do faixa-da-f2.php. Nasceu em 13/09/2026 porque o validar-pastilhas.py carregava a lista numa constante de QUATRO tamanhos e a ferramenta serve CINCO: o 1,5 cm nunca aparecia no relatorio de cobertura da secao 14.3, e e justamente o lado do unico item do banco sustentado por distribuidor. 8 afirmacoes, incluindo a borda: uma chave inventada tem de ser recusada e o padrao do saneamento tem de ser um tamanho que a tela lista. Bancada."
-    },
-    {
-      "id": "mutacoes-tecnicas",
-      "arquivo": "ferramentas/mutacoes-tecnicas.py",
-      "sha256": "62d1f331eaf700deca6b19bb0b6afe9f6e03ce55cb9882d5e36bc7ec52cc79c9",
-      "descricao": "Quebra o banco de TECNICA de proposito, 14 mutacoes, e exige que o validar-banco.py decida certo em cada uma. Nasceu junto com dados/tecnicas.json porque a regua daquela entidade estava escrita desde 12/09 e NUNCA tinha rodado — verde por ausencia do arquivo que ela media. TEM OS DOIS LADOS DA FRONTEIRA: 13 mutacoes que precisam reprovar (id fora do vocabulario, definicao sem fonte, blog sustentando definicao, folga em milimetro inventada, pagina de tecnica declarada com zero item de banco) e UMA que precisa PASSAR — a mesma pagina com o lado do material resolvido —, porque portao que reprova tudo nunca deixaria a familia nascer. Bancada."
-    },
-    {
-      "id": "tecnica-x-material",
-      "arquivo": "ferramentas/tecnica-x-material.py",
-      "sha256": "3b8cb781de2b1e401762eb8a709215d6feaaaba7073c73f7c6effc46560b3755",
-      "descricao": "O OUTRO LADO DO BANCO: para cada tecnica, quais itens do banco uma pagina dela poderia recomendar e em que estados de base e ambiente. Deriva dados/tecnica-x-material.json IMPORTANDO a conta de validar-banco.py (itens_de_banco_da_tecnica) em vez de reescreve-la — uma conta, dois leitores. Aceita --conferir, que reprova quando o derivado esta velho em relacao ao banco. Bancada; nunca vai para o site."
-    },
-    {
-      "id": "mutacoes-tecnica-x-material",
-      "arquivo": "ferramentas/mutacoes-tecnica-x-material.py",
-      "sha256": "ff0b81809cffdeedb4b6db6a26280e795101a8d576ee58634af1c3ff46a82883",
-      "descricao": "Quebra a CONTA que liga tecnica a material, uma mutacao por vez, e exige o NUMERO certo em cada uma — nao o veredito, porque afirmar so 'abriu ou fechou' deixaria passar a mutacao que INFLA a conta e fica verde por ter aberto. 8 mutacoes com os dois lados da fronteira: a que fecha o portao, a que o abre para uma terceira tecnica, duas que inflam, uma que encolhe a varredura, uma que tira a pastilha da soma, a que arrasta a conta para fora do validador (o gerador tem de morrer) e a do derivado nao regerado (--conferir tem de acusar). Bancada."
-    },
-    {
-      "id": "teste-tecnicas",
-      "arquivo": "ferramentas/teste-tecnicas.php",
-      "sha256": "953ef8c636e7da6acecb41494e0a8b9946f1a0fc245eacb16fab03543275df9a",
-      "descricao": "Verificacao MEDIDA da pagina de tecnica. 49 afirmacoes no corpo servido, e o ESPERADO nao vem do snippet: as 45 celulas da grade sao comparadas com dados/cobertura.json, gerado pela regua em Python — duas metades independentes, em linguagens diferentes, que tem de dar o mesmo numero. Ele comeca rodando cobertura.py --conferir, porque regua velha aprova a pagina de ontem. Mede tambem a prestacao de contas da secao 7 (a soma dos nomeados fecha com o banco contado do arquivo), a escada de compra e o rel de cada link, a recusa do rejunte com a causa, os termos que o VOZ.md proibe no titulo e no primeiro paragrafo, e o FAQ do schema sendo o MESMO da tela. Bancada; nunca vai para o site."
-    },
-    {
-      "id": "mutacoes-tecnicas-pagina",
-      "arquivo": "ferramentas/mutacoes-tecnicas-pagina.py",
-      "sha256": "c5b5a7f1d8322719bad7577283cce26f9043e7ed74360b28adf401e690bd1212",
-      "descricao": "Quebra a PAGINA de tecnica de proposito, uma mutacao por vez. 9 mutacoes: tessela digitada no snippet contra banco que diz outra, celula da grade cravada a mao, cartao que some da vitrine que a frase nomeia, recusa que volta a nomear so a causa maior, busca CRUA se declarando patrocinada, FAQPage prometendo pergunta que a tela nao responde, numero da frase digitado, pagina sumindo da listagem da mae (reprova no teste-casca, nao no proprio). A nona NAO reprova por reprovar: com o banco fora do ar a pagina tem de ficar HONESTA — dizer que nao mediu e NAO servir a grade. Bancada."
-    },
-    {
-      "id": "conferir-tecnica-no-ar",
-      "arquivo": "ferramentas/conferir-tecnica-no-ar.py",
-      "sha256": "b3a6f2ceedb9190c53e0c56b7cff1e7f82a91c384ee20dce385c8157d3856168",
-      "descricao": "O irmao no ar do teste-tecnicas: abre a pagina de tecnica com curl e afirma sobre o HTML que o SITE serve. 23 afirmacoes. Reconta as 45 celulas da grade contra dados/cobertura.json (o banco commitado), refaz a prestacao de contas da secao 7 na tela, confere a escada de compra e o rel de cada link, os dois links internos que tiram a pagina da condicao de orfa, o sitemap, e o JSON-LD servido. A secao 4 compara o endereco CANONICO com o mesmo endereco com quebra de cache, por MARCADOR e nunca por bytes — e a trava do cache do hospedeiro, que o /status nao enxerga. O endereco esta literal no arquivo, copiado a mao: ler a constante do snippet seria conferir a pagina com a propria pagina. Accept-Encoding identity em toda requisicao. Bancada."
-    },
-    {
-      "id": "gerar-links-afiliado",
-      "arquivo": "ferramentas/gerar-links-afiliado.py",
-      "sha256": "37c62688f9f55b7281e539bb05db21d5b7cadf42573c7945399ecb160c25028e",
-      "descricao": "Gera e REGERA os links de afiliado da Shopee do banco desta ilha pela Open API (25.6), com os cinco sub-ids na ordem posicional da secao 7. Existe porque os dezesseis links de 13/09/2026 nasceram no painel `offer/custom_link`, com os cinco campos preenchidos a mao, e sairam DESLOCADOS UMA CASA — o unico clique da janela 16->22/09 chegou ao Relatorio como `-clubedomosaico-F2--`, com `sub_id_1` vazio, e o painel nao conseguia dizer qual ilha vendeu. Mao humana em cinco caixas de texto nao tem portao; chamada de API tem. Regera a ficha SO quando `url_produto` existe e e da Shopee, para o par continuar demonstravel (25.4-b.1), e nunca toca link do Mercado Livre, que e outro programa. Traz a tabela das palavras-chave dos dez que perderam a busca crua e das treze pastilhas cuja chave de 13/09 devolvia ZERO oferta, com o degrau da escada da 25.6 escrito em cada uma; `--conferir-chaves` mede todas contra a API antes de qualquer link nascer. Bancada: nunca vai para o site."
+      "id": "varrer-canonicas",
+      "arquivo": "ferramentas/varrer-canonicas.py",
+      "sha256": "3c4914177e1d00676f94fed0a3ace801c5a7c1c0095f25195a778a434cdb39d4",
+      "descricao": "Le a CANONICA e a CADEIA DE REDIRECIONAMENTO de cada URL desta ilha e classifica em duas listas — 'esperado, nenhuma acao' e 'defeito, com a correcao proposta' — escrevendo o relatorio em dados/indexacao.md. Nasceu do BLOCO C do despacho do Raphael de 24/09/2026, que veio dos dois motivos novos do e-mail do Search Console de 23/09 ('Pagina alternativa com tag canonica adequada' e 'Pagina com redirecionamento'). NAO APLICA CORRECAO NENHUMA, por ordem do despacho: o que e defeito volta como proposta, URL por URL, para o Raphael autorizar item por item. A lista de URLs vem do wp-sitemap.xml NO AR, nunca digitada, mais /author/ e as variacoes de cada uma (http, www, sem barra final) — os dois motivos nascem de duas URLs para a mesma coisa, e varrer so a versao boa mediria o lado que nunca da problema. MEDE DUAS LEITURAS POR URL, e essa e a razao de ela existir em vez de um curl: com ?v=<agora> a pergunta chega ao WordPress; sem a quebra de cache quem responde e o cache de pagina, que nao sabe redirecionar — e o Googlebot nao manda quebra de cache. Em 25/09/2026: 71 URLs, 71 esperado, 0 defeito, e 36 em que as duas leituras discordam. Tem --autoteste com 11 casos fabricados, um por ramo da regua, porque passada limpa em portao que nunca acusou nada nao prova nada. NUNCA e publicada no site."
     }
   ],
   "esquema": {

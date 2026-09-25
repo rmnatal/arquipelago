@@ -591,6 +591,41 @@ function rel_canonical(){
 add_action('wp_head','rel_canonical',10);
 
 /**
+ * O `wp_robots()` DO NUCLEO, emulado — e ele precisa existir aqui desde
+ * 25/09/2026, quando a casca 1.13.0 parou de imprimir a etiqueta de robo num
+ * `wp_head` proprio e passou a declara-la pelo filtro `wp_robots`.
+ *
+ * SEM ISTO A BANCADA MEDIRIA OUTRA COISA, e mediria calada: os testes do Atelie
+ * e do Leads cobram que a tela saia com `noindex`, e passariam a reprovar nao
+ * porque o site parou de servir a etiqueta — ele NAO parou, medido no ar as
+ * 13h5xZ daquele dia — mas porque a bancada nao sabia mais produzi-la. Bancada
+ * que nao emula o mecanismo novo transforma conserto em falha inventada, e a
+ * saida facil seria afrouxar o teste.
+ *
+ * A COPIA E FIEL AO NUCLEO, nas duas metades que importam:
+ *   - `wp_robots_max_image_preview()` entra ANTES (prioridade 10) e poe
+ *     `max-image-preview => large`. E ele o vizinho com quem a etiqueta da ilha
+ *     dividia a pagina, e medir sem ele aprovaria uma casca que o deixa colado
+ *     no `noindex`.
+ *   - `wp_robots()` junta com virgula, imprime `chave` quando o valor e true e
+ *     `chave:valor` quando e texto, com ASPAS SIMPLES — e nao imprime nada
+ *     quando o vetor fica vazio.
+ */
+function wp_robots_max_image_preview($robots){ $robots['max-image-preview']='large'; return $robots; }
+add_filter('wp_robots','wp_robots_max_image_preview',10);
+
+function wp_robots(){
+	$robots = apply_filters('wp_robots', array());
+	$partes = array();
+	foreach ((array) $robots as $diretiva => $valor) {
+		if (is_string($valor)) { $partes[] = $diretiva.':'.$valor; }
+		elseif ($valor)        { $partes[] = $diretiva; }
+	}
+	if ($partes) { echo "<meta name='robots' content='".esc_attr(implode(', ', $partes))."' />\n"; }
+}
+add_action('wp_head','wp_robots',1);
+
+/**
  * PRODUZ O MUNDO EM QUE UM SNIPPET NAO DESEMBARCOU.
  *
  * O Sync aplica um snippet sem o outro, e o painel tem DOIS pontos de extensao

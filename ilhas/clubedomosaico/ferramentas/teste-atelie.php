@@ -330,13 +330,34 @@ foreach ( $telas as $nome => $consulta ) {
 }
 
 /* O PAINEL NAO ENTRA NO INDICE, em nenhum estado. E a afirmacao mais importante
-   deste arquivo: e a area de uma pessoa. */
+   deste arquivo: e a area de uma pessoa.
+
+   A REGUA ERA DE ASPAS, E ISSO ERA UM DEFEITO ESPERANDO A DATA. Ate 25/09/2026
+   ela procurava a frase literal `content="noindex, follow"` — com ASPAS DUPLAS,
+   que eram as da etiqueta que a casca imprimia num `wp_head` proprio. Quando a
+   casca 1.13.0 passou o trabalho para o filtro `wp_robots`, quem imprime virou
+   o nucleo, que usa ASPAS SIMPLES: `content='noindex, follow'`. A tela continuou
+   saindo do indice, medida no ar no mesmo dia, e esta linha reprovou assim
+   mesmo. Regua que mede a PONTUACAO de quem escreveu reprova o conserto e
+   aprova o defeito no dia em que a pontuacao mudar sozinha.
+
+   AGORA ELA MEDE DUAS COISAS, e a segunda e nova: que a diretiva `noindex`
+   esta na etiqueta, seja qual for a aspa, E que existe UMA etiqueta so. A
+   contagem e o que o BLOCO B do despacho de 24/09 pede com todas as letras, e
+   e o que faltava em toda a ilha: ninguem contava. */
+$re_robots  = '#<meta[^>]*name=[\'"]robots[\'"][^>]*>#i';
 $indexaveis = array();
+$duplicadas = array();
 foreach ( $html_por_tela as $nome => $h ) {
-	if ( false === strpos( $h, 'content="noindex, follow"' ) ) { $indexaveis[] = $nome; }
+	preg_match_all( $re_robots, $h, $m );
+	$achadas = $m[0];
+	if ( count( $achadas ) > 1 ) { $duplicadas[] = $nome; }
+	if ( ! $achadas || false === stripos( $achadas[0], 'noindex' ) ) { $indexaveis[] = $nome; }
 }
 cdm_ok( empty( $indexaveis ), 'TODAS as telas do painel saem com noindex',
 	empty( $indexaveis ) ? count( $html_por_tela ) . ' de ' . count( $html_por_tela ) : implode( ', ', $indexaveis ) );
+cdm_ok( empty( $duplicadas ), 'e nenhuma tela do painel serve DUAS etiquetas de robo',
+	empty( $duplicadas ) ? count( $html_por_tela ) . ' telas' : implode( ', ', $duplicadas ) );
 
 /* E NENHUMA TELA VAZA NADA PARA QUEM NAO ENTROU. */
 $corpo_deslogada = cdm_corpo( $html_por_tela['deslogada'] );

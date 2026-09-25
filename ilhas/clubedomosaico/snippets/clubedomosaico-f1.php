@@ -130,7 +130,7 @@
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.3.0' );
+	define( 'CDM_F1_VERSAO', '1.3.1' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -2003,10 +2003,20 @@ add_action( 'wp_head', function () {
 	echo '<meta name="description" content="'
 		. esc_attr( 'Quantas pastilhas e quanto rejunte a sua peça de mosaico precisa: vaso, tampo, quadro, esfera ou moldura, com a conta da pastilha pequena e não a do azulejo de obra.' )
 		. '">' . "\n";
-	if ( $e['escolheu'] ) {
-		echo '<meta name="robots" content="noindex, follow">' . "\n";
-	}
 }, 4 );
+
+/* O ESTADO COM PARAMETRO SAI DO INDICE, e quem IMPRIME a etiqueta e a casca.
+   Ate 25/09/2026 este arquivo imprimia a propria `<meta name="robots">` aqui, e
+   o resultado servido eram DUAS etiquetas — a do nucleo e esta. Agora a
+   condicao e declarada e a casca junta tudo num vetor so (casca 1.13.0). */
+add_filter( 'cdm_fora_do_indice', function ( $fora ) {
+	if ( ! cdm_f1_e_minha_pagina() ) {
+		return $fora;
+	}
+	$e = cdm_f1_entrada();
+
+	return $fora || ! empty( $e['escolheu'] );
+} );
 
 add_action( 'wp_head', function () {
 	if ( ! cdm_f1_e_minha_pagina() ) {

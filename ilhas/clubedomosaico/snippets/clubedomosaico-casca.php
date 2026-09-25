@@ -2560,7 +2560,8 @@ function cdm_casca_robots_diretivas( $robots, $contexto ) {
 	$robots   = is_array( $robots ) ? $robots : array();
 	$contexto = is_array( $contexto ) ? $contexto : array();
 
-	$fora = ! empty( $contexto['arquivo_de_autor'] ) || ! empty( $contexto['busca'] );
+	$fora = ! empty( $contexto['arquivo_de_autor'] ) || ! empty( $contexto['busca'] )
+	        || ! empty( $contexto['declarado_fora'] );
 
 	$id  = isset( $contexto['id'] ) ? (int) $contexto['id'] : 0;
 	$ids = isset( $contexto['ids_da_casca'] ) && is_array( $contexto['ids_da_casca'] ) ? $contexto['ids_da_casca'] : array();
@@ -2592,11 +2593,27 @@ if ( ! function_exists( 'cdm_casca_robots_do_wordpress' ) ) {
 function cdm_casca_robots_do_wordpress( $robots ) {
 	$ids = get_option( 'cdm_casca_paginas' );
 
+	/* O PONTO DE EXTENSAO, e ele e a outra metade do conserto de 1.13.0 (25/09).
+	   Ate aqui, TRES snippets — F1, F2 e Leads — imprimiam a propria
+	   `<meta name="robots">` num `wp_head` proprio para tirar do indice o estado
+	   COM PARAMETRO das paginas deles. Cada um sozinho parecia certo; os quatro
+	   juntos serviam DUAS etiquetas, e foi medido no ar em 25/09 as 13h5xZ em
+	   `/materiais/qual-cola-usar-no-mosaico/?base=espelho&onde=interno_seco`, que
+	   e um estado da MELHOR pagina desta ilha.
+	   A ironia esta escrita no proprio F2, tres linhas acima do echo que ele
+	   fazia: ele explica, com todas as letras, por que NAO imprime o canonical
+	   ("serviria DOIS canonicals (...) sujo numa pagina cujo proposito inteiro e
+	   ter UM endereco no indice") — e fazia exatamente isso com a etiqueta de
+	   robo. Quem quiser sair do indice agora DECLARA a condicao aqui; quem
+	   imprime a etiqueta e este arquivo, uma vez. */
+	$fora = (bool) apply_filters( 'cdm_fora_do_indice', false );
+
 	return cdm_casca_robots_diretivas( $robots, array(
 		'id'               => function_exists( 'get_queried_object_id' ) ? get_queried_object_id() : 0,
 		'ids_da_casca'     => is_array( $ids ) ? $ids : array(),
 		'arquivo_de_autor' => function_exists( 'is_author' ) ? is_author() : false,
 		'busca'            => function_exists( 'is_search' ) ? is_search() : false,
+		'declarado_fora'   => $fora,
 	) );
 }
 }

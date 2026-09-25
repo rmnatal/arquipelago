@@ -272,6 +272,7 @@ $estados      = array();
 $erros_conta  = array();
 $sem_resposta = array();
 $sem_noindex  = array();
+$robots_dobrado = array();
 $com_script   = array();
 
 /* (a) SEIS FORMAS x QUATRO TAMANHOS DE CAQUINHO — 24 estados, cada um com a
@@ -302,9 +303,21 @@ foreach ( $formas_padrao as $forma => $qs_medidas ) {
 			$sem_resposta[] = $consulta;
 		}
 		/* ESTADO COM PARAMETRO SAI DO INDICE (14.1 e 14.4): quem entra no indice
-		   e a pagina-ancora, uma so. */
-		if ( false === mb_stripos( $html, '<meta name="robots" content="noindex, follow">' ) ) {
+		   e a pagina-ancora, uma so.
+
+		   A REGUA NAO MEDE MAIS A ASPA DE QUEM ESCREVEU. Ate 25/09/2026 ela
+		   procurava a frase literal com aspas DUPLAS, que eram as do `echo` que
+		   este snippet fazia. Desde a casca 1.13.0 quem imprime e o `wp_robots()`
+		   do nucleo, com aspas SIMPLES — e a linha antiga teria reprovado um
+		   estado que sai do indice corretamente. Agora mede a DIRETIVA, e conta
+		   as etiquetas: DUAS e o defeito que o BLOCO B do despacho de 24/09 manda
+		   pegar, e ninguem nesta ilha contava. */
+		preg_match_all( '#<meta[^>]*name=[\'"]robots[\'"][^>]*>#i', $html, $m_robots );
+		if ( 1 !== count( $m_robots[0] ) || false === mb_stripos( $m_robots[0][0], 'noindex' ) ) {
 			$sem_noindex[] = $consulta;
+		}
+		if ( count( $m_robots[0] ) > 1 ) {
+			$robots_dobrado[] = $consulta;
 		}
 		if ( 0 !== substr_count( f1_scripts( $html ), '&#038;' ) ) {
 			$com_script[] = $consulta;
@@ -316,6 +329,8 @@ f1_ok( empty( $erros_conta ), 'a conta servida bate com a regua deste teste nas 
 f1_ok( empty( $sem_resposta ), 'todo estado serve o bloco de resposta' );
 f1_ok( empty( $sem_noindex ), 'todo estado com parametro sai com noindex, follow',
 	empty( $sem_noindex ) ? count( $estados ) . ' estados' : implode( ' | ', array_slice( $sem_noindex, 0, 3 ) ) );
+f1_ok( empty( $robots_dobrado ), 'e NENHUM estado serve duas etiquetas de robo',
+	empty( $robots_dobrado ) ? count( $estados ) . ' estados' : implode( ' | ', array_slice( $robots_dobrado, 0, 3 ) ) );
 f1_ok( empty( $com_script ), 'zero &#038; dentro de <script> em todo estado varrido' );
 
 /* (b) AS DOZE FOLGAS x OS TRES TIPOS DE REJUNTE — 36 estados. Aqui mora a

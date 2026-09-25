@@ -135,7 +135,7 @@
  */
 
 if ( ! defined( 'CDM_LEADS_VERSAO' ) ) {
-	define( 'CDM_LEADS_VERSAO', '1.1.0' );
+	define( 'CDM_LEADS_VERSAO', '1.1.1' );
 }
 if ( ! defined( 'CDM_LEADS_TIPO' ) ) {
 	define( 'CDM_LEADS_TIPO', 'lead_peca' );
@@ -485,19 +485,21 @@ add_filter( 'cdm_peca_acao', function ( $padrao, $peca, $dados = array() ) {
 	return cdm_leads_form_html( $peca, $dados );
 }, 10, 3 );
 
-/* O `noindex` do estado com parâmetro (decisão 5). Prioridade 4, a mesma que a
-   F2 usa, para sair antes do JSON-LD e depois da description. */
-add_action( 'wp_head', function () {
+/* O `noindex` do estado com parâmetro (decisão 5) — a CONDIÇÃO sai daqui e a
+   ETIQUETA sai da casca. Até 25/09/2026 este arquivo imprimia a própria
+   `<meta name="robots">` num `wp_head` paralelo, e a página servida ficava com
+   duas: a do núcleo e esta. Agora quem imprime é `cdm_casca_robots_diretivas()`,
+   uma vez, a partir de um vetor só (casca 1.13.0). */
+add_filter( 'cdm_fora_do_indice', function ( $fora ) {
 	if ( ! function_exists( 'cdm_loja_e_peca' ) || ! cdm_loja_e_peca() ) {
-		return;
+		return $fora;
 	}
 	if ( ! function_exists( 'cdm_atelie_get' ) ) {
-		return;
+		return $fora;
 	}
-	if ( '' !== cdm_atelie_get( 'cdm_lead' ) || '' !== cdm_atelie_get( 'cdm_lead_erro' ) ) {
-		echo '<meta name="robots" content="noindex, follow">' . "\n";
-	}
-}, 4 );
+
+	return $fora || '' !== cdm_atelie_get( 'cdm_lead' ) || '' !== cdm_atelie_get( 'cdm_lead_erro' );
+} );
 
 /* ---------------------------------------------------------------------------
  * 5. O RECEBIMENTO
