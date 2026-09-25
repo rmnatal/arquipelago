@@ -77,6 +77,16 @@ if esquema is None:
     sys.exit(1)
 
 VOC = esquema["vocabularios"]
+
+# INTERRUPTOR DE MEDICAO, e ele existe por um motivo so: `mutacoes-acabamento.py`
+# precisa separar o que o portao NOVO viu do que o esquema ja pegava, e a bateria
+# das pastilhas fazia isso rodando dois scripts diferentes — aqui os dois moram no
+# mesmo. Nao e jeito de aprovar banco: quando ele esta ligado, a saida diz isso em
+# voz alta na primeira linha, entao passada verde com ele ligado nunca e silenciosa.
+SEM_PORTAO_ACABAMENTO = os.environ.get("CDM_SEM_PORTAO_ACABAMENTO") == "1"
+if SEM_PORTAO_ACABAMENTO:
+    print("  ATENCAO: CDM_SEM_PORTAO_ACABAMENTO=1 — o bloco da categoria acabamento "
+          "NAO foi medido nesta passada. So a bateria de mutacao usa isto.")
 BASES = set(VOC["base"])
 AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
@@ -378,6 +388,124 @@ for nome in arquivos_material:
                 if passo_declarado is not None and lado_past is not None and passo_declarado < lado_past - 0.001:
                     erro("%s / geometria: passo (%s cm) menor que a propria pastilha (%s cm) — junta negativa"
                          % (onde, passo_declarado, lado_past))
+
+        # ------------------------------------------------- categoria ACABAMENTO
+        # A REGRA ESTA EM `regras_da_categoria_acabamento` DO ESQUEMA e nasceu em
+        # 25/09/2026, junto com os sete primeiros registros. Ela esta aqui porque
+        # regra escrita sem regua que a meca e promessa, e esta ilha ja pagou por
+        # isso: o `no_banco` do cartao do Guia ficou zero com o banco cheio porque
+        # ninguem media as duas listas juntas.
+        #
+        # O QUE ESTE PORTAO MEDE, e por que cada pedaco:
+        #  - `protecao` existe e a frase do fabricante esta la, com fonte. Sem a
+        #    frase literal nao ha como conferir o que foi lido dela.
+        #  - as duas listas de vocabulario COBREM o vocabulario inteiro, sem
+        #    sobreposicao. E a parte que mais importa: o que nao entra em nenhuma
+        #    das duas e silencio NAO LIDO, e silencio nao lido e como faixa
+        #    descoberta fica invisivel — foi assim que a espessura de 5 mm do
+        #    alicate quase passou batida.
+        #  - `momento_de_uso` sai do vocabulario e, quando e `nao_declarado`,
+        #    escreve o motivo. Deduzir o momento pelo mecanismo do produto e
+        #    afirmar pelo fabricante.
+        #  - as propriedades tem NOME FIXO. Nome livre e o que faz a proxima
+        #    execucao gravar `secagem_horas` onde esta gravou `tempo_de_secagem_h`.
+        #  - `contato_com_alimento` e OBRIGATORIO mesmo (e principalmente) null:
+        #    centro de mesa e tampo sao duas colecoes desta loja, e campo ausente
+        #    e pergunta que ninguem faz.
+        if m.get("categoria") == "acabamento" and not SEM_PORTAO_ACABAMENTO:
+            pr = m.get("protecao")
+            if not pr:
+                erro("%s: acabamento sem o objeto `protecao`" % onde)
+            else:
+                if not pr.get("literal_do_fabricante"):
+                    erro("%s / protecao: sem `literal_do_fabricante`" % onde)
+                if pr.get("fonte_id") not in fontes:
+                    erro("%s / protecao: `fonte_id` nao existe em fontes{}" % onde)
+                mom = pr.get("momento_de_uso")
+                if mom not in VOC["momento_de_uso"]:
+                    erro("%s / protecao: momento_de_uso '%s' fora do vocabulario" % (onde, mom))
+                if mom == "nao_declarado" and not pr.get("motivo_do_momento"):
+                    erro("%s / protecao: momento_de_uso `nao_declarado` sem `motivo_do_momento`" % onde)
+                # ACHADO PELA MUTACAO 05, ANTES DO COMMIT. Ate aqui o portao so
+                # cobrava motivo no `nao_declarado` — e o defeito caro e o CONTRARIO:
+                # gravar um momento que o fabricante nao declarou, deduzido do
+                # mecanismo do produto (hidrofugante "obviamente" se passa depois de
+                # rejuntar). Deducao com cara de declaracao e afirmar pelo fabricante,
+                # que a secao 8 do ARQUIPELAGO.md proibe. Entao momento declarado
+                # exige o TRECHO, e o trecho tem de ser pedaco da frase literal —
+                # nao uma segunda frase escrita aqui, que seria a parafrase de novo.
+                if mom and mom != "nao_declarado":
+                    trecho = pr.get("trecho_que_declara_o_momento")
+                    literal = pr.get("literal_do_fabricante") or ""
+                    if not trecho:
+                        erro("%s / protecao: momento_de_uso '%s' sem `trecho_que_declara_o_momento`. "
+                             "Momento que o fabricante nao declarou e deducao, e deducao com cara de "
+                             "declaracao e o defeito que a escada de fontes existe para impedir"
+                             % (onde, mom))
+                    elif trecho not in literal:
+                        erro("%s / protecao: `trecho_que_declara_o_momento` nao e pedaco de "
+                             "`literal_do_fabricante` — o trecho tem de sair da frase, nao ser "
+                             "uma segunda frase escrita por quem preencheu" % onde)
+                for voc, a, b in (
+                        ("base", "bases_do_vocabulario_que_a_frase_nomeia",
+                         "bases_do_vocabulario_que_a_frase_NAO_nomeia"),
+                        ("material_tessela", "tesselas_do_vocabulario_que_a_frase_nomeia",
+                         "tesselas_do_vocabulario_que_a_frase_NAO_nomeia")):
+                    nomeia = pr.get(a)
+                    nao = pr.get(b)
+                    if not isinstance(nomeia, list) or not isinstance(nao, list):
+                        erro("%s / protecao: `%s` e `%s` tem de ser listas" % (onde, a, b))
+                        continue
+                    inteiro = set(VOC[voc])
+                    juntos = list(nomeia) + list(nao)
+                    if len(juntos) != len(set(juntos)):
+                        erro("%s / protecao: valor repetido entre `%s` e `%s`" % (onde, a, b))
+                    faltando = sorted(inteiro - set(juntos))
+                    sobrando = sorted(set(juntos) - inteiro)
+                    if faltando:
+                        erro("%s / protecao: as duas listas de `%s` nao cobrem o vocabulario — "
+                             "ficou de fora: %s. O que nao entra em nenhuma das duas e silencio "
+                             "NAO LIDO, e e assim que faixa descoberta fica invisivel"
+                             % (onde, voc, ", ".join(faltando)))
+                    if sobrando:
+                        erro("%s / protecao: valor fora do vocabulario `%s`: %s"
+                             % (onde, voc, ", ".join(sobrando)))
+                if not isinstance(pr.get("nomeia_rejunte"), bool):
+                    erro("%s / protecao: `nomeia_rejunte` tem de ser true ou false. REJUNTE nao e "
+                         "valor de `base` nem de `material_tessela` e mesmo assim e metade da "
+                         "superficie exposta de uma peca de mosaico" % onde)
+
+            # ACHADO PELA MUTACAO 13, ANTES DO COMMIT. A regra dizia, desde que
+            # nasceu, que a matriz base x ambiente fica VAZIA em acabamento — e
+            # nenhuma regua media isso. Um verniz com `indicado_para` preenchido
+            # entraria na traducao do mapa de termos e a F2 passaria a considerar
+            # verniz onde ela decide COLA. A regra era prosa; agora e portao.
+            decl = m.get("declaracoes") or {}
+            preenchidas = sorted(k for k, v in decl.items() if v)
+            if preenchidas:
+                erro("%s / declaracoes: acabamento tem de nascer com as listas VAZIAS e "
+                     "preencheu %s. A matriz base x ambiente e o eixo pelo qual a F2 escolhe "
+                     "COLA; verniz dentro dela vira candidato a colar peca"
+                     % (onde, ", ".join(preenchidas)))
+            elif not m.get("motivo_declaracoes_vazias"):
+                erro("%s: acabamento com `declaracoes` vazias e sem `motivo_declaracoes_vazias`. "
+                     "Lista vazia sem motivo e indistinguivel de coleta que ninguem fez" % onde)
+
+            props = m.get("propriedades") or {}
+            nomes_fixos = set(esquema["regras_da_categoria_acabamento"]
+                              ["as_propriedades_tem_NOME_FIXO_e_esta_e_a_lista"]["nomes"].keys())
+            for pnome in props:
+                if pnome not in nomes_fixos:
+                    erro("%s / %s: propriedade de acabamento com nome fora da lista fixa do esquema. "
+                         "Nome livre e o que faz a proxima execucao gravar o mesmo dado com outro "
+                         "nome, e ai nenhuma regua compara dois registros" % (onde, pnome))
+            if "contato_com_alimento" not in props:
+                erro("%s: acabamento sem `contato_com_alimento`. O campo e obrigatorio mesmo quando "
+                     "o fabricante nao declara nada — centro de mesa e tampo sao duas colecoes desta "
+                     "loja, e campo ausente e pergunta que ninguem faz" % onde)
+            av = (props.get("acabamento_visual") or {}).get("valor")
+            if av is not None and av not in VOC["acabamento_visual"]:
+                erro("%s / acabamento_visual: '%s' fora do vocabulario" % (onde, av))
 
     # o cabecalho do arquivo declara numeros; eles tem que bater com a contagem
     dec_link = (arq.get("afiliado") or {}).get("itens_esperando_link")

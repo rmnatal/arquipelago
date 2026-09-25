@@ -23,6 +23,7 @@
   },
   "banco_hoje": {
     "por_categoria": {
+      "acabamento": 7,
       "alicate": 6,
       "cola": 7,
       "pastilha": 13,
@@ -30,7 +31,6 @@
     },
     "categorias_do_vocabulario_sem_nenhum_item": [
       "base",
-      "acabamento",
       "apoio"
     ]
   },

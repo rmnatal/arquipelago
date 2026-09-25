@@ -4516,3 +4516,128 @@ e a proposta de 301 de `http` para `https` em todo caminho, escrita em
   tecnica publicada, que e o mesmo terreno das colas e dos rejuntes; `base` e `apoio` sao genericas e
   provavelmente sem fabricante que declare. E o **BLOCO A espera 30/09**, por ordem do despacho.
 
+
+---
+
+## 2026-09-25, 19h16Z → 20h??Z — A CATEGORIA ACABAMENTO SAI DE ZERO, E ELA FOI A PRIMEIRA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR
+
+**Ilha em foco** (`foco.md`, desde 24/09). Reserva às 19h16Z, commit `2de100b` — `executando_desde` estava
+`null` e o último commit da ilha era de 17h29Z, 106 minutos atrás, então não havia reserva vencida para o git
+desempatar (1.1). Rede conferida antes de trabalhar (20.2): `clubedomosaico.com.br` em **200 nas três
+passadas**.
+
+**O DESPACHO ABERTO NÃO TINHA ITEM PARA HOJE, e isso foi verificado antes de escolher bloco.** O despacho do
+Raphael de 24/09 está em **BLOCO A e mais nada**, e o próprio despacho manda o A **esperar 30/09** ("trocar
+título antes do número de 30/09 misturaria duas causas na mesma janela"). Do despacho da Sentinela de 23/09,
+o item 1 e o item 2 esperam a leitura de 30/09 e o item 3 está cumprido. Pela **18.5** a verificação vem antes
+da construção; não havia o que verificar, e a fila assumiu.
+
+**UMA PROPOSTA ESTAVA MARCADA COMO ABERTA COM A CONDIÇÃO DE FECHAMENTO JÁ CUMPRIDA.** A PROPOSTA 2 de 23/09
+pedia que o Raphael respondesse sobre a ordem do foco, *"ou mantendo a aquametria com o motivo escrito em
+`foco.md`, ou trocando"*. Ele trocou — em **24/09**, com o motivo escrito. A proposta ficou um dia inteiro
+parecendo pendente. É a seção 4 do contrato outra vez, agora dentro do próprio `PROMPT.md`: resumo velho lido
+como fato. Fechada nesta execução.
+
+### O QUE FOI FEITO — SETE PRODUTOS, DE DOIS FABRICANTES, E NENHUM DELES NOMEIA O QUE A PEÇA EXPÕE
+
+`dados/materiais-acabamento.json`: quatro vernizes (três da Acrilex, um boletim de piso da Quartzolit), dois
+impermeabilizantes e um selador. A lista `categorias_do_vocabulario_sem_nenhum_item` de `dados/cobertura.json`,
+recontada pela própria `cobertura.py`, **cai de três para DUAS** — restam `base` e `apoio`.
+
+**O ACHADO, e ele é o motivo de o arquivo existir:** a peça de mosaico pronta expõe **duas** superfícies — a
+**pastilha** (as 13 do banco são todas de vidro) e o **rejunte**. **Nenhuma das sete frases de fabricante
+nomeia vidro. Nenhuma nomeia rejunte.** Os três vernizes de artesanato da Acrilex listam tela, madeira, papel,
+cortiça, cerâmica, gesso e isopor; o verniz da Quartzolit é de **piso**, com liberação de tráfego de carro e
+máquina; a borracha líquida é de fachada, telha e laje sem trânsito; o protetor para fachadas é hidrofugante
+de revestimento mineral, churrasqueira de tijolo e pedra natural. Pelo princípio dos três estados, para vidro
+e para rejunte o estado é `nao_declarado` nos sete: nem recomendar, nem proibir, e dizer que ninguém declarou.
+É a faixa **DESCOBERTA** da 14.3 encontrada pela **superfície**, irmã da que a categoria alicate encontrou
+pela **espessura** às 16h43Z do mesmo dia — e as duas apontam para o mesmo lugar: **fabricante de obra não
+escreve sobre peça de artesanato, e fabricante de artesanato não escreve sobre mosaico.**
+
+**A SEGUNDA METADE É SOBRE A BASE:** o único selador alcançado (`fundo selador quartzolit`) nomeia concreto,
+emboço, reboco, pintura PVA ou acrílica e construção a seco, e **não nomeia MDF** — que é a base mais comum
+da peça do ateliê e um dos cinco valores de `tipo_por_categoria.base`. A categoria `selador` nasce com um item
+que não serve a base que a ilha mais usa, e isso está escrito no dado.
+
+### A DECISÃO DE ESQUEMA, QUE É O QUE ESTE BLOCO TEVE DE DIFERENTE
+
+A `alicate` de 16h43Z era nomeada pela linha do `esquema-banco.json` que autoriza encher uma categoria *"sem
+decisão nova — o esquema já diz que campo cada uma exige"*. As três que sobravam **não são nomeadas nessa
+linha**, e o `ESTADO.md` das 17h29Z registrou isso com todas as letras: *"cada uma começa por decidir que campo
+exige"*. Esta execução tomou a decisão da `acabamento` e a escreveu em `regras_da_categoria_acabamento`
+(esquema **versão 4**), em três partes:
+
+1. **A matriz `base × ambiente` fica VAZIA.** Ela é o eixo pelo qual a F2 escolhe **cola** e **rejunte**;
+   acabamento não adere nada e não se escolhe por ambiente declarado. Verniz dentro dela viraria candidato a
+   colar peça.
+2. **O que o fabricante declara mora no objeto `protecao`**, irmão do `corte` do alicate: a frase literal, a
+   fonte, e as listas do que a frase **nomeia** e do que ela **NÃO nomeia** — cobrindo o vocabulário inteiro,
+   porque o que não entra em nenhuma das duas é silêncio **não lido**, e é assim que faixa descoberta fica
+   invisível. Mais `nomeia_rejunte`, que existe porque rejunte não é valor de `base` nem de `material_tessela`
+   e mesmo assim é metade da superfície exposta.
+3. **As propriedades têm NOME FIXO.** Nome livre é o que faz a segunda execução gravar `secagem_horas` onde a
+   primeira gravou `tempo_de_secagem_h`, e aí nenhuma régua compara dois registros. `contato_com_alimento` é
+   **obrigatório mesmo quando null**: centro de mesa e tampo são duas coleções desta loja, e campo ausente é
+   pergunta que ninguém faz. Nos sete ele é null — ninguém declarou.
+
+### AS DUAS MUTAÇÕES QUE ACHARAM BURACO ANTES DO COMMIT, E É O MELHOR PEDAÇO
+
+`ferramentas/mutacoes-acabamento.py` nasceu junto com o portão, e duas das catorze **passaram** na primeira
+rodada:
+
+- **A 05 — momento de uso deduzido do mecanismo do produto.** O portão cobrava motivo no **silêncio**
+  (`nao_declarado` sem `motivo_do_momento`) e não cobrava **nada na afirmação**: gravar
+  `momento_de_uso: depois_de_rejuntar` num hidrofugante, porque "obviamente" é assim que se usa, passava com
+  cara de declaração. Agora momento declarado exige `trecho_que_declara_o_momento`, **e o trecho tem de ser
+  pedaço literal da frase do fabricante** — não uma segunda frase escrita por quem preencheu.
+- **A 13 — a matriz `base × ambiente` preenchida num verniz.** A regra estava escrita desde que nasceu, em
+  prosa, e **nenhuma régua a media**. Agora o `validar-banco` reprova acabamento com qualquer lista de
+  `declaracoes` preenchida, e reprova lista vazia sem `motivo_declaracoes_vazias`.
+
+A **07** é a que PRODUZ O MUNDO: faz um verniz **nomear vidro**, que é o estado que nenhum dos sete tem hoje e
+do qual o achado central deste arquivo depende. Portão que só funciona enquanto a lista de "nomeia" estiver
+vazia não mede a regra, mede o acaso.
+
+**Segunda rodada: 14 de 14 reprovadas, 13 delas só o portão novo viu.**
+
+### DOIS NÚMEROS QUE ESTA EXECUÇÃO SE RECUSOU A PUBLICAR
+
+- **O rendimento da borracha líquida.** A frase colhida por busca diz *"18 kg rende no mínimo 70 m²/L"* —
+  mistura a embalagem com a unidade e não fecha em nenhuma das duas leituras. Ficou `valor: null` com o motivo
+  escrito, e virou a **mutação 12**.
+- **As demãos e o consumo do fundo selador.** A mesma página de resultados devolve "duas demãos" (que é do
+  **protetor para fachadas**, outro produto) e "350 mL/m² em duas demãos" (que é do **weber.floor selador de
+  base**, produto de piso industrial). Emprestar número de um produto a outro é exatamente o que a regra das
+  duas passadas existe para pegar.
+
+### AS DUAS PALAVRAS-CHAVE QUE DESCERAM UM DEGRAU, MEDIDAS ANTES DE VIRAR LINK
+
+As sete chaves foram conferidas na Open API (`--conferir-chaves`) **antes** de qualquer link nascer, que é a
+lição das treze pastilhas aplicada ao contrário do que a causou. Duas devolveram **ZERO**: `fundo selador
+quartzolit` (a palavra "fundo" não aparece em título de anúncio) e `protetor para fachadas quartzolit` (o
+produto é de canal de obra e não é anunciado por esse nome). As duas desceram para a **família** —
+`selador quartzolit` e `impermeabilizante fachada quartzolit`, três ofertas cada — com o degrau escrito no
+`motivo_da_chave` de cada registro. **Sete links novos, 31 intocados**: a trava escrita às 16h43Z pela execução
+que caiu nela segurou.
+
+### A CASCA, E O PORTÃO QUE DESMENTIU A EXECUÇÃO PELA SEGUNDA VEZ NO MESMO DIA
+
+O cartão "Acabamento" do Guia mostrava **0 com o banco em 7**, e a frase de prova anunciava o total do banco
+enumerando só quatro categorias — com a quinta entrando, ela teria posto no ar *"o banco tem 38 itens, sendo 7
+colas, 5 rejuntes, 13 pastilhas e 6 alicates"*, soma que não fecha. É a mesma família do *"hoje 10 dos 5 itens
+esperam link"* que esta ilha já pôs no ar uma vez, e foi o `teste-casca.php` que a pegou, exatamente como
+pegou a `alicate` três horas antes. **Casca 1.15.0**, manifest **43**.
+
+### O QUE ESTE BLOCO NÃO É
+
+- **Não é o BLOCO A** do despacho de 24/09, que espera 30/09 por ordem do próprio despacho.
+- **Não publica página nenhuma.** A 16.5 exige 3 filhas de nível 3 por categoria e `/materiais/acabamento/`
+  continua sem página. **As 17 URLs continuam 17** e a semana da 21.4 continua onde estava.
+- **Não abriu o domínio de ninguém.** `acrilex.com.br`, `www.acrilex.com.br`, `corfix.com.br`,
+  `www.quartzolit.weber`, `suvinil.com.br` e `vedacit.com.br` em **000 nas três passadas**, com o domínio da
+  ilha em 200 nas três. Todo campo carrega `conferir_no_pdf: true`.
+- **Não usou a loja da marca como fonte técnica.** A Suvinil publica um selador acrílico e uma seladora para
+  madeira — que seriam os dois únicos registros a nomear MDF —, e as duas páginas que a busca devolveu são de
+  `loja.suvinil.com.br`, **nível 5** na escada desta ilha, que não sustenta recomendação primária. Nenhuma das
+  duas virou registro, e o motivo está escrito em `pendencias_desta_categoria`.

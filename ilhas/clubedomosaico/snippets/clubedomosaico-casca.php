@@ -237,7 +237,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.14.1' );
+	define( 'CDM_CASCA_VERSAO', '1.15.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -374,7 +374,7 @@ function cdm_casca_categorias_do_guia() {
 			'titulo'   => 'Acabamento',
 			'slug'     => 'materiais/acabamento',
 			'resumo'   => 'Verniz, impermeabilizante e como limpar depois do rejunte. É a etapa que decide se a peça aguenta sol, chuva e pia.',
-			'no_banco' => 0,
+			'no_banco' => $n['materiais_acabamento'],
 		),
 	);
 
@@ -1166,6 +1166,13 @@ function cdm_casca_numeros() {
 		   option nao tiver chegado, e ai ele tem de ser o do instantaneo, nao o
 		   de hoje. */
 		'materiais_alicate'  => 0,
+		/* MESMO MOTIVO DO ZERO ACIMA, e a categoria e outra: em 12/09/2026 a
+		   `acabamento` tambem estava entre as cinco que a varredura da 14.3 achou
+		   com nenhum item. Ela saiu de zero em 25/09/2026, sete itens, e quem os
+		   conta e a via viva. Este numero e o do INSTANTANEO — o que a tela mostra
+		   enquanto a option nao chegou — e mexer nele para o numero de hoje seria
+		   voltar a ter duas fontes para o mesmo numero. */
+		'materiais_acabamento' => 0,
 		'categorias_do_guia' => 6,
 		'celulas_matriz'     => 18,
 		'celulas_rejunte'    => 9,
@@ -1194,6 +1201,7 @@ function cdm_casca_numeros() {
 		'materiais-rejuntes'  => 'materiais_rejunte',
 		'materiais-pastilhas' => 'materiais_pastilha',
 		'materiais-alicates'  => 'materiais_alicate',
+		'materiais-acabamento' => 'materiais_acabamento',
 	);
 
 	$link_vivo           = 0;
@@ -2078,7 +2086,7 @@ add_shortcode( 'cdm_materiais', function () {
 	   portao esta certo e a razao e do leitor, nao do vocabulario: o cartao do
 	   Guia se chama "Alicates e corte", e numero de frase que nao usa a palavra
 	   do cartao e numero que ninguem consegue ligar a lugar nenhum. */
-	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas, ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes, ' . cdm_casca_num( $n['materiais_pastilha'] ) . ' pastilhas e ' . cdm_casca_num( $n['materiais_alicate'] ) . ' alicates e cortadores, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
+	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas, ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes, ' . cdm_casca_num( $n['materiais_pastilha'] ) . ' pastilhas, ' . cdm_casca_num( $n['materiais_alicate'] ) . ' alicates e cortadores e ' . cdm_casca_num( $n['materiais_acabamento'] ) . ' produtos de acabamento, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
 	$html .= '<p>O método inteiro — de onde vem cada declaração, o que fazemos quando duas fontes discordam e o que ainda não conferimos — está em ' . cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
 	$html .= '</div>';
 	$html .= '</div>';
@@ -2112,6 +2120,7 @@ add_shortcode( 'cdm_como_sabemos', function () {
 	$html .= '<tr><td>Rejuntes</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_rejunte'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Pastilhas</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_pastilha'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Alicates e corte</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_alicate'] ) ) . '</td></tr>';
+	$html .= '<tr><td>Acabamento</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_acabamento'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Bases cobertas (cerâmica, vidro, laminado, espelho, MDF, cimento, alvenaria, metal, plástico)</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['bases'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Ambientes cobertos (seco, molhado, externo abrigado, sol e chuva, imersão)</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['ambientes'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Combinações base × ambiente mapeadas</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['celulas_matriz'] ) ) . '</td></tr>';

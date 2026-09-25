@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 3,
+  "versao_esquema": 4,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -220,6 +220,18 @@
       "parede",
       "joia",
       "utilitario"
+    ],
+    "acabamento_visual": [
+      "brilhante",
+      "fosco",
+      "semibrilho",
+      "incolor"
+    ],
+    "momento_de_uso": [
+      "antes_de_colar",
+      "depois_de_rejuntar",
+      "ambos",
+      "nao_declarado"
     ]
   },
   "mapa_de_termos_do_fabricante": {
@@ -717,6 +729,57 @@
       "o_que_a_tela_NAO_pode_dizer": "Que o fabricante declarou a porosidade de uma superficie. Ele declarou a CONDICAO; a classificacao e nossa. Secao 26.3.",
       "ordem": "Roda DEPOIS das cinco, sobre quem sobreviveu a elas. Produto proibido ou em silencio continua proibido ou em silencio — a condicao nao ressuscita ninguem."
     }
+  },
+  "regras_da_categoria_acabamento": {
+    "escrita_em": "2026-09-25",
+    "por_que_esta_secao_existe": "Ate 25/09/2026 o esquema dizia que campo as categorias cola, rejunte, pastilha e alicate exigem, e nao dizia nada sobre base, acabamento e apoio — a frase de `o_que_este_bloco_deixa_desbloqueado` que autoriza encher uma categoria 'sem decisao nova' nomeia tres categorias e deixa estas tres de fora de proposito. Esta secao e a decisao que faltava para UMA delas. `base` e `apoio` continuam sem a sua.",
+    "o_que_e_um_acabamento_nesta_ilha": "Produto que se passa na peca DEPOIS de montada e rejuntada (verniz, impermeabilizante) ou na base ANTES de colar (selador). O que ele NAO e: cola, que une tessela a base, e rejunte, que preenche a junta. Os tres tipos do vocabulario sao `verniz`, `impermeabilizante` e `selador`.",
+    "a_matriz_base_x_ambiente_fica_VAZIA_e_o_motivo": "`declaracoes` desta ilha e estruturada em base x ambiente, que e o eixo pelo qual a F2 escolhe COLA e REJUNTE. Acabamento nao adere duas coisas uma na outra e nao se escolhe por ambiente declarado: o eixo dele e SOBRE O QUE se passa e EM QUE MOMENTO. Preencher a matriz com um verniz faria a F2 considerar verniz onde ela decide cola. Entao todo registro de acabamento nasce com as seis listas de `declaracoes` VAZIAS e com `motivo_declaracoes_vazias` escrito — a mesma decisao que pastilha tomou em 12/09/2026 (entrou pela geometria) e alicate em 25/09/2026 (entrou pelo corte). ISSO E PORTAO desde 25/09/2026, nao prosa: o validar-banco reprova registro de acabamento com qualquer lista de `declaracoes` preenchida, e reprova lista vazia sem `motivo_declaracoes_vazias`. A mutacao 13 foi quem mostrou que a regra estava escrita e ninguem a media.",
+    "o_campo_novo_e_o_objeto_protecao": {
+      "nome": "protecao",
+      "obrigatorio_para": [
+        "acabamento"
+      ],
+      "espelha": "O objeto `corte` da categoria alicate, e pelo mesmo motivo: a declaracao do fabricante e uma FRASE, e o que importa e quais valores do vocabulario desta ilha ela nomeia e quais ela NAO nomeia.",
+      "subcampos": {
+        "literal_do_fabricante": "A frase do fabricante, na lingua dele, sem parafrase. Obrigatorio.",
+        "fonte_id": "Aponta para uma chave de `fontes`. Obrigatorio.",
+        "momento_de_uso": "Vocabulario `momento_de_uso`. So recebe valor quando o FABRICANTE declara o momento; quando nao declara, e `nao_declarado` e `motivo_do_momento` diz por que. Deduzir o momento pelo mecanismo do produto e afirmar pelo fabricante, que a secao 8 do ARQUIPELAGO.md proibe.",
+        "trecho_que_declara_o_momento": "Obrigatorio quando `momento_de_uso` NAO e `nao_declarado`, e tem de ser pedaco literal de `literal_do_fabricante`. Achado pela mutacao 05 de `mutacoes-acabamento.py` antes do primeiro commit: o portao cobrava motivo no silencio e nao cobrava nada na AFIRMACAO, entao um momento deduzido do mecanismo do produto passava com cara de declaracao.",
+        "motivo_do_momento": "Obrigatorio quando `momento_de_uso` e `nao_declarado`.",
+        "bases_do_vocabulario_que_a_frase_nomeia": "Lista, valores de `vocabularios.base`.",
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": "Lista, o complemento da anterior dentro de `vocabularios.base`. As duas juntas tem de cobrir o vocabulario inteiro: o que sobra e silencio nao lido, e silencio nao lido e como faixa descoberta vira invisivel.",
+        "tesselas_do_vocabulario_que_a_frase_nomeia": "Lista, valores de `vocabularios.material_tessela`.",
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": "Lista, o complemento da anterior.",
+        "nomeia_rejunte": "Booleano. REJUNTE nao e valor de `base` nem de `material_tessela` e mesmo assim e METADE da superficie exposta de uma peca de mosaico — sem este campo a pergunta nunca seria feita a nenhum registro.",
+        "observacao": "Onde mora o julgamento de quem escreveu, separado da frase do fabricante."
+      }
+    },
+    "as_propriedades_tem_NOME_FIXO_e_esta_e_a_lista": {
+      "por_que": "Propriedade de nome livre e o que faz a segunda execucao gravar `secagem_horas` onde a primeira gravou `tempo_de_secagem_h`, e ai nenhuma regua consegue comparar dois registros. A categoria alicate escapou disso por acaso, porque nasceu inteira numa execucao so.",
+      "formato": "O de sempre: {valor, unidade, fonte_id, declarado_como} quando ha valor; {valor: null, unidade, motivo} quando nao ha. O validar-banco ja cobra os dois.",
+      "nomes": {
+        "acabamento_visual": "brilhante | fosco | semibrilho | incolor, como o fabricante escrever. Vocabulario `acabamento_visual`.",
+        "pelicula": "O que o produto deixa sobre a peca, na palavra do fabricante (transparente, opaca, pigmentada).",
+        "demaos_minimas": "Numero de demaos, unidade `demao`. Condicao amarrada a projeto ou a espessura NAO vira numero: vira null com motivo.",
+        "intervalo_entre_demaos_min": "Minutos entre demaos.",
+        "consumo_ml_m2": "Consumo teorico, mL/m2. Rendimento por embalagem NAO se converte aqui: unidade que nao fecha fica null com motivo.",
+        "rendimento_m2": "Rendimento por embalagem, m2, quando o fabricante declarar assim.",
+        "tempo_de_secagem_h": "Horas ate a camada seguinte ou ate o uso, conforme o fabricante declarar — e o `declarado_como` diz qual dos dois.",
+        "liberacao_trafego_leve_h": "So faz sentido em produto de piso; fica ausente nos outros.",
+        "liberacao_total_dias": "Idem.",
+        "temperatura_min_c": "Faixa de aplicacao declarada.",
+        "temperatura_max_c": "Idem.",
+        "diluicao": "Texto do fabricante sobre diluir ou nao.",
+        "base_quimica": "Resina acrilica, silano-siloxano, PU, epoxi — a palavra do fabricante.",
+        "elasticidade_pct": "So em impermeabilizante que a declare.",
+        "pigmentado": "sim | nao, quando o fabricante disser.",
+        "forma_de_aplicacao": "aerossol, rolo, pincel, trincha — quando declarado.",
+        "contato_com_alimento": "OBRIGATORIO em todo registro de acabamento, mesmo (e principalmente) quando for null. Centro de mesa e tampo sao duas colecoes de uso desta ilha e a primeira pergunta de quem compra uma peca dessas e se pode por comida em cima. Campo ausente e pergunta que ninguem faz; campo null com motivo e pergunta feita e respondida com \"ninguem declarou\"."
+      }
+    },
+    "o_que_esta_categoria_NAO_pode_sustentar": "Nenhuma frase publicada pode dizer que um acabamento serve sobre uma superficie que a frase do fabricante nao nomeia. Vale o principio dos TRES ESTADOS do resto deste esquema: nomeado como indicado, nomeado como proibido, ou `nao_declarado` — e o terceiro se diz na tela, nao se cala.",
+    "medido_no_dia_em_que_esta_secao_nasceu": "Os sete primeiros registros de `dados/materiais-acabamento.json`, de dois fabricantes: NENHUM nomeia vidro e NENHUM nomeia rejunte, que sao as duas superficies expostas de uma peca de mosaico pronta. E faixa descoberta da 14.3 encontrada pela SUPERFICIE, irma da que a categoria alicate encontrou pela ESPESSURA no mesmo dia."
   },
   "entidades": {
     "MATERIAL": {

@@ -80,7 +80,7 @@ shopee = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(shopee)
 
 ARQUIVOS = ['materiais-colas', 'materiais-pastilhas', 'materiais-rejuntes',
-            'materiais-alicates']
+            'materiais-alicates', 'materiais-acabamento']
 
 # A PALAVRA-CHAVE DOS DEZ QUE PERDERAM A BUSCA CRUA (25.4-b.1).
 #
@@ -91,6 +91,32 @@ ARQUIVOS = ['materiais-colas', 'materiais-pastilhas', 'materiais-rejuntes',
 # ninguem (25.4-b: "palavra-chave que deixou de trazer resultado e defeito
 # silencioso").
 CHAVES_DE_BUSCA = {
+    # --- OS SETE DA CATEGORIA ACABAMENTO, NASCIDOS EM 25/09/2026 ---
+    #
+    # Mesma ordem do nascimento dos seis alicates: `--conferir-chaves` ANTES de
+    # qualquer link. Duas descidas de degrau aconteceram aqui e estao escritas
+    # no `motivo_da_chave` de cada registro.
+    'acrilex-verniz-acrilico-brilhante': (
+        'verniz acrilico brilhante acrilex', 'marca + linha + acabamento'),
+    'acrilex-verniz-acrilico-fosco': (
+        'verniz acrilico fosco acrilex', 'marca + linha + acabamento'),
+    'acrilex-verniz-acrilfix-brilhante': (
+        'verniz acrilfix brilhante acrilex', 'marca + linha + acabamento'),
+    'quartzolit-verniz-protetor-para-pisos': (
+        'verniz protetor para pisos quartzolit', 'marca + linha'),
+    'quartzolit-borracha-liquida-elastica': (
+        'borracha liquida elastica quartzolit', 'marca + linha'),
+    'quartzolit-protetor-para-fachadas': (
+        'impermeabilizante fachada quartzolit',
+        'FAMILIA (degrau abaixo): `protetor para fachadas quartzolit`, o nome '
+        'comercial exato, devolveu ZERO oferta em 25/09/2026. O produto e de '
+        'canal de obra e nao e anunciado por esse nome na Shopee'),
+    'quartzolit-fundo-selador': (
+        'selador quartzolit',
+        'FAMILIA (degrau abaixo): `fundo selador quartzolit` devolveu ZERO '
+        'oferta em 25/09/2026. A palavra `fundo` nao aparece em titulo de '
+        'anuncio; o que a Shopee anuncia e `selador`'),
+
     # --- OS SEIS ALICATES, NASCIDOS EM 25/09/2026 COM A CHAVE JA MEDIDA ---
     #
     # A licao das treze pastilhas e de 25/09 de manha: chave escrita uma vez

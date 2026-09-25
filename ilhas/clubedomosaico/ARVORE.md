@@ -394,6 +394,37 @@ Medido contra `dados/materiais-pastilhas.json` na mesma execução: das **13** p
 
 A segunda metade é da seção 4b deste arquivo: a frase do torquês nomeia **pastilha** de vidro e de cerâmica e **não nomeia** caco de azulejo, caco de louça, caco de espelho nem pedra — e caco de louça é o material do **picassiete** e caco de azulejo o do **trencadís**, as duas páginas de `/como-fazer/` que estão no ar. Pelo princípio dos três estados, para esses quatro o estado é `nao_declarado`: nem recomendar, nem proibir, e dizer que ninguém declarou.
 
+### 7b-ter. A SEGUNDA DAS QUATRO CAIU, E ELA CUSTOU UMA DECISÃO DE ESQUEMA (25/09/2026, 19h16Z)
+
+`dados/materiais-acabamento.json` nasceu com **sete itens** — quatro vernizes, dois impermeabilizantes e um
+selador —, e a lista `categorias_do_vocabulario_sem_nenhum_item` de `dados/cobertura.json`, recontada pela
+própria `ferramentas/cobertura.py`, **caiu de três para DUAS**: restam `base` e `apoio`.
+
+**O que essa categoria teve que a `alicate` não teve:** a `alicate` era nomeada pela linha do
+`esquema-banco.json` que autoriza encher uma categoria *"sem decisão nova — o esquema já diz que campo cada uma
+exige"*. As três que sobravam em 25/09 **não são nomeadas nessa linha**, e não por esquecimento: cada uma
+começa por decidir que campo exige. A decisão da `acabamento` está escrita em
+`regras_da_categoria_acabamento` (esquema versão **4**) e tem três partes — a matriz `base × ambiente` fica
+**vazia**, o que o fabricante declara mora no objeto **`protecao`** (irmão do `corte` do alicate), e as
+propriedades têm **nome fixo**. `base` e `apoio` herdam o molde e ainda assim precisam da sua.
+
+**O ACHADO É UMA FAIXA DESCOBERTA ENCONTRADA PELA SUPERFÍCIE**, irmã da que a `alicate` achou pela espessura
+no mesmo dia. A peça de mosaico pronta expõe **duas** superfícies: a pastilha (as 13 do banco são todas de
+vidro) e o **rejunte**. Nenhuma das sete frases de fabricante nomeia vidro; nenhuma nomeia rejunte. Os três
+vernizes de artesanato da Acrilex listam tela, madeira, papel, cortiça, cerâmica, gesso e isopor; o verniz da
+Quartzolit é de **piso**, com liberação de tráfego de carro; os dois impermeabilizantes são de fachada, telha
+e laje. **Fabricante de obra não escreve sobre peça de artesanato, e fabricante de artesanato não escreve
+sobre mosaico** — que é, dito de outro jeito, o buraco que esta ilha existe para ocupar.
+
+**E a segunda metade é sobre a BASE:** o único selador alcançado nomeia concreto, emboço, reboco, pintura PVA
+ou acrílica e construção a seco, e **não nomeia MDF** — que é a base mais comum da peça do ateliê e um dos
+cinco valores de `tipo_por_categoria.base`. A categoria `selador` nasce com um item que não serve a base que a
+ilha mais usa, e isso está escrito no dado em vez de escondido.
+
+**O 4c continua fechado, pela mesma 16.5 da 7b-bis:** `/materiais/acabamento/` precisa de 3 filhas de nível 3
+e nenhuma filha de acabamento existe. O que este bloco destravou foi o **cartão do Guia parar de mostrar
+zero** (casca 1.15.0), não a página.
+
 ## 8. O que este bloco NÃO fez, de propósito
 
 - **Não criou nenhuma URL.** As dez páginas de nível 2 desta árvore (seis do Guia, mais as da Loja e da Escola) esperam a 16.5, que é portão de dado e não de calendário.

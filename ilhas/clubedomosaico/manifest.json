@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.14.1",
-      "sha256": "505e047c3a8a22185c071c09647ec9985c8ba9e7efc30fe59a14c5e92db43469",
-      "descricao": "Casca 1.12.0 — A PORTA DE ENTRADA DO SITE PASSA A SER MEDIDA. Em 24/09/2026 as 19h20Z, 16 das 17 URLs desta ilha serviam a pagina de estacionamento da HostGator com 404, as tres de primeira pagina do Google entre elas, com o WordPress, o Sync e o /status inteiros: o que caiu foi o roteamento de permalink, e nenhum portao viu porque todos entram pela porta que continuou aberta (query na raiz e rota REST). A secao 6 traz a rota /rotas, com token, que mede o .htaccess e as regras de dentro do servidor, e um reparo que faz o mesmo que salvar os Links permanentes. Sem gancho automatico."
+      "versao": "1.15.0",
+      "sha256": "53349c1ffa9723660309fdeab6d7a577a0d2f781cb578c3ce9396779cb8009c5",
+      "descricao": "Casca 1.15.0 — A CATEGORIA ACABAMENTO GANHA LEITOR NA TELA. O cartao 'Acabamento' do Guia mostrava 0 com o banco em 7, e a frase de prova anunciava o total do banco enumerando so quatro categorias: com a quinta entrando, ela teria posto no ar 'o banco tem 38 itens, sendo 7 colas, 5 rejuntes, 13 pastilhas e 6 alicates' — soma que nao fecha, a familia do 'hoje 10 dos 5 itens esperam link' que esta ilha ja pagou uma vez. Entram a linha `materiais-acabamento => materiais_acabamento` na lista de bancos, o `no_banco` do cartao ligado ao numero vivo, a parcela nova na frase de prova chamando a categoria pelo nome do cartao (a regua de 25/09 reprova no ar quem nao chama) e a linha Acabamento na tabela de /materiais/como-sabemos/. O instantaneo de 12/09 continua em 0 de proposito: e o que a tela mostra enquanto a option nao chegou, e trocar aquele numero pelo de hoje daria duas fontes para o mesmo numero."
     },
     {
       "id": "f2",
@@ -143,7 +143,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "1575440d4df59c2df86f29404a8027fcb2ff7070b8ba230ecdf70f8614e95927",
+      "sha256": "4abe90d16010ee5cd73754efbd0a0d834a2f68ee78edab033b78bb7a86a05d70",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -205,7 +205,7 @@
       "verificado_em": "2026-09-12",
       "registros": 105,
       "publicar": false,
-      "sha256": "ddf2778ab5c87ec8a3f19b6f9f1cd50f8bdbce0173e2361a259b1e509e60b8c5",
+      "sha256": "c25185457abcbba32aa10be5efeee706b3c882adfcbaf4362ec69585b8390883",
       "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
     },
     {
@@ -245,6 +245,20 @@
       "publicar": false,
       "sha256": "0879619f9d1f7465308beef3c8bf6b6f7c6b5e6aa21521be15f9eed8eb2e178b",
       "descricao": "A copia das pecas cadastradas pela artesa: titulo, slug, estado, descricao, campos, colecao, tecnica e as URLs das fotos. NASCEU EM 14/09/2026, no dia seguinte ao primeiro cadastro de verdade — ate 13/09 a rota devolvia total zero, e zero peca e resposta, nao falha. O campo `gerado_em` da rota NAO entra na copia de proposito: com ele dentro, todo commit da ronda seria um commit, e a 24.2 manda commitar so quando o JSON MUDOU; quando a copia foi tirada e o git que sabe. `publicar` false porque este arquivo e copia do site, nunca fonte dele — desembarca-lo devolveria ao WordPress o que veio dele."
+    },
+    {
+      "id": "materiais-acabamento",
+      "arquivo": "dados/materiais-acabamento.json",
+      "formato": "json",
+      "entidade": "MATERIAL",
+      "fonte": "Bloco da coleta das categorias vazias, 25/09/2026, segunda passada. Sete SKUs colhidos por busca restrita ao dominio do fabricante (acrilex.com.br e www.quartzolit.weber, niveis 2 e 3); nenhum dominio foi aberto — curl devolveu 000 em TRES passadas para acrilex.com.br, www.acrilex.com.br, corfix.com.br, www.quartzolit.weber, suvinil.com.br e vedacit.com.br, com clubedomosaico.com.br em 200 nas tres (secao 20.2). DUAS passadas por SKU, escritas de forma diferente, nenhuma carregando um valor: as consultas pediram os ROTULOS da ficha ('indicado para', 'demaos', 'consumo', 'rendimento', 'secagem', 'nao indicado para').",
+      "verificado_em": "2026-09-25",
+      "registros": 7,
+      "publicar": true,
+      "sha256": "f805824f0b7a327548dce55e4d0ef27394acf303fe416f6921bf248a198339fd",
+      "descricao": "A categoria ACABAMENTO do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de tres para DUAS (restam base e apoio). Quatro vernizes (tres da Acrilex, um boletim de piso da Quartzolit), dois impermeabilizantes e um selador. FOI A PRIMEIRA CATEGORIA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR: a frase do esquema que autoriza encher uma categoria 'sem decisao nova' nomeia rejunte, pastilha e alicate, e deixa base, acabamento e apoio de fora de proposito. A decisao esta em `regras_da_categoria_acabamento` do esquema-banco (versao 4) e tem tres partes: a matriz base x ambiente fica VAZIA, porque acabamento nao adere nada e nao se escolhe por ambiente; o que o fabricante declara mora no objeto `protecao`, irmao do `corte` do alicate, com as listas do que a frase nomeia e do que ela NAO nomeia cobrindo o vocabulario inteiro; e as propriedades tem NOME FIXO, para a segunda execucao nao gravar `secagem_horas` onde a primeira gravou `tempo_de_secagem_h`. O ACHADO E UMA FAIXA DESCOBERTA ENCONTRADA PELA SUPERFICIE, irma da que o alicate achou pela espessura no mesmo dia: a peca de mosaico pronta expoe DUAS superficies, a pastilha (as 13 do banco sao de vidro) e o REJUNTE, e NENHUMA das sete frases de fabricante nomeia vidro, e NENHUMA nomeia rejunte. Fabricante de obra nao escreve sobre peca de artesanato e fabricante de artesanato nao escreve sobre mosaico. A segunda metade e sobre a base: o unico selador alcancado nomeia concreto, emboco, reboco, pintura PVA ou acrilica e construcao a seco, e NAO nomeia MDF — que e a base mais comum do ateliê e um dos cinco valores de `tipo_por_categoria.base`. E o campo `contato_com_alimento` nasce OBRIGATORIO e null nos sete: centro de mesa e tampo sao duas colecoes desta loja e a pergunta 'posso por comida em cima?' fica respondida com 'ninguem declarou' em vez de nao ser feita.",
+      "pendencias": 3,
+      "pendencias_que_bloqueiam_publicacao": []
     }
   ],
   "ferramentas": [
@@ -305,7 +319,7 @@
     {
       "id": "gerar-links-afiliado",
       "arquivo": "ferramentas/gerar-links-afiliado.py",
-      "sha256": "abc750e0cf8f0337522f6b3488bcdd008ee78076a684131ed929fa1ecb160007",
+      "sha256": "d683bc33bfad0ff001aab5c7d6620d8e0852434a0939f372b66fb936f69bb50c",
       "descricao": "Gera e REGERA os links de afiliado da Shopee do banco desta ilha pela Open API (25.6), com os cinco sub-ids na ordem posicional da secao 7. Existe porque os dezesseis links de 13/09/2026 nasceram no painel `offer/custom_link`, com os cinco campos preenchidos a mao, e sairam DESLOCADOS UMA CASA — o unico clique da janela 16->22/09 chegou ao Relatorio como `-clubedomosaico-F2--`, com `sub_id_1` vazio, e o painel nao conseguia dizer qual ilha vendeu. Mao humana em cinco caixas de texto nao tem portao; chamada de API tem. Regera a ficha SO quando `url_produto` existe e e da Shopee, para o par continuar demonstravel (25.4-b.1), e nunca toca link do Mercado Livre, que e outro programa. Traz a tabela das palavras-chave dos dez que perderam a busca crua e das treze pastilhas cuja chave de 13/09 devolvia ZERO oferta, com o degrau da escada da 25.6 escrito em cada uma; `--conferir-chaves` mede todas contra a API antes de qualquer link nascer. Bancada: nunca vai para o site."
     },
     {
@@ -319,6 +333,12 @@
       "arquivo": "ferramentas/medir-imagens.py",
       "sha256": "94028d9266ac4c7f9ad2aa798e1f9b2672a3e30b732e0befdfc9ba4b6f71cad8",
       "descricao": "Le a largura e a altura REAIS de cada imagem do banco no arquivo servido (JPEG, PNG e WebP, sem biblioteca) e as grava com --gravar. Existe porque o feed de afiliado da Shopee, que e a fonte legitima da foto pela secao 25.3, nao declara dimensao — e o esquema exige as duas para a pagina reservar a caixa e nao dar salto de layout. Nunca inventa: download que falha vira FALHOU e o item continua reprovando no validador. Bancada."
+    },
+    {
+      "id": "mutacoes-acabamento",
+      "arquivo": "ferramentas/mutacoes-acabamento.py",
+      "sha256": "883929ae84e7d230f7cef5207a38b844b91d74a0f6eed93d06a217ceb5d8235e",
+      "descricao": "Catorze defeitos escritos de volta no banco de acabamento, cada um rodando o validar-banco DUAS vezes — com e sem o bloco da categoria, pela variavel CDM_SEM_PORTAO_ACABAMENTO — para separar o que SO o portao novo ve. TREZE dos catorze so o portao novo pegou. Duas mutacoes acharam buraco real ANTES do primeiro commit e as duas viraram regra: a 05 (momento de uso deduzido do mecanismo passava com cara de declaracao, porque o portao so cobrava motivo no SILENCIO e nada na AFIRMACAO — agora momento declarado exige o TRECHO da frase literal que o declara) e a 13 (a matriz base x ambiente preenchida num verniz, que a regra proibia em prosa desde que nasceu e nenhuma regua media — verniz dentro dela viraria candidato a colar peca na F2). A mutacao 07 e a que PRODUZ O MUNDO: faz um verniz NOMEAR vidro, que e o estado que nenhum dos sete tem hoje e do qual o achado central do arquivo depende. Bancada."
     },
     {
       "id": "mutacoes-arvore",
@@ -497,7 +517,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "90e0535750084bbcc5ef4af8d537dc107cc4392ec2a6da31c26921134edf82ee",
+      "sha256": "01c563b353b73622cd7802c7da3039f68cc60b0f2a26f9d486313644ddef629b",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {

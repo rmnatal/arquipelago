@@ -1,0 +1,921 @@
+{
+  "id": "materiais-acabamento",
+  "ilha": "clubedomosaico",
+  "categoria": "acabamento",
+  "bloco": "coleta das categorias vazias do vocabulario — a segunda das tres que sobraram, e a primeira que precisou DECIDIR o campo antes de coletar",
+  "gerado_em": "2026-09-25",
+  "esquema": "dados/esquema-banco.json",
+  "o_que_este_arquivo_e": "A categoria ACABAMENTO do banco MATERIAL: o que se passa na peca DEPOIS que ela esta montada e rejuntada, e o que se passa na base ANTES de colar. E a terceira das cinco categorias vazias a ser enchida (depois de pastilha e de alicate) e a PRIMEIRA que nao tinha a linha do esquema dizendo que campo ela exige — as tres que sobravam em 25/09/2026 (base, acabamento, apoio) comecam por essa decisao, e ela esta escrita em `regras_da_categoria_acabamento` do esquema-banco, nao aqui. O bloco NAO publica pagina nenhuma: a 16.5 continua exigindo 3 filhas de nivel 3 por categoria e /materiais/acabamento/ continua sem pagina.",
+  "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3, 3c, 3d e no da categoria alicate. O egresso foi REMEDIDO nesta execucao como a 20.2 manda, em TRES passadas: acrilex.com.br, www.acrilex.com.br, corfix.com.br, www.quartzolit.weber, suvinil.com.br e vedacit.com.br em 000 nas tres, com clubedomosaico.com.br em 200 nas tres. E politica de egresso, nao intermitencia, e por isso todo campo daqui carrega conferir_no_pdf: true. DUAS PASSADAS POR SKU, escritas de forma diferente e nenhuma delas carregando um valor: as consultas pediram os ROTULOS da ficha ('indicado para', 'demaos', 'consumo', 'rendimento', 'secagem', 'nao indicado para'), nunca um numero. A segunda passada do verniz protetor para pisos acrescentou o intervalo de temperatura e o tipo de rolo, e a segunda do impermeabilizante confirmou palavra por palavra a frase do que ele NAO atende — duas passadas concordando e o unico jeito de saber que a frase e do fabricante e nao do resumo.",
+  "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "NENHUM DOS SETE PRODUTOS NOMEIA O QUE A PECA DESTA ILHA EXPOE. A peca de mosaico, depois de pronta, tem duas superficies a vista: a PASTILHA (as 13 do banco sao todas de vidro) e o REJUNTE. Os quatro vernizes e os dois impermeabilizantes alcancados declaram substrato — e nenhuma das seis frases nomeia vidro, e nenhuma nomeia rejunte. Os tres vernizes de artesanato da Acrilex nomeiam tela, madeira, papel, cortica, ceramica, gesso e isopor; o verniz protetor da Quartzolit e de PISO, com liberacao de trafego de carro e maquina; a borracha liquida elastica e para fachada, telha e laje SEM transito; o protetor para fachadas e um hidrofugante para revestimento mineral, churrasqueira de tijolo, telha ceramica e pedra natural. Pelo principio dos TRES ESTADOS, para vidro e para rejunte o estado e `nao_declarado` nos sete: nem recomendar, nem proibir, e dizer que ninguem declarou. E a mesma faixa DESCOBERTA da 14.3 que a categoria alicate encontrou em 25/09 pela espessura, agora encontrada pela SUPERFICIE — e as duas apontam para o mesmo buraco de mercado, que e o motivo desta ilha existir: fabricante de obra nao escreve sobre peca de artesanato, e fabricante de artesanato nao escreve sobre mosaico. A SEGUNDA METADE, e ela e sobre a BASE: o unico selador alcancado (fundo selador quartzolit) nomeia concreto, emboco, reboco, pintura PVA ou acrilica e construcao a seco, e NAO nomeia MDF nem madeira — e MDF e a base mais comum da peca de ateliê e um dos cinco valores de `tipo_por_categoria.base` deste proprio esquema. A categoria selador nasce com o registro que menos serve a ilha, e isso esta dito aqui em vez de escondido atras de uma frase generica.",
+  "afiliado": {
+    "itens_esperando_link": 7,
+    "itens_sem_saida_de_compra": 0,
+    "itens_com_piso_nao_rastreavel": 0,
+    "observacao": "Os sete nascem com piso rastreavel: busca CRUA e busca ENCURTADA pela Open API (25.6), geradas por ferramentas/gerar-links-afiliado.py com sub_id_1 = clubedomosaico e sub_id_2 = GUIA. As sete chaves foram MEDIDAS na API antes de qualquer link nascer (--conferir-chaves), que e a licao das treze pastilhas aplicada ao contrario do que a causou. Nenhum tem ficha de produto (`url` vazio): ficha exige casamento de item, que a 25.7 proibe sem prova de que o anuncio e daquele SKU."
+  },
+  "imagens": {
+    "itens_sem_imagem": 7,
+    "observacao": "Nenhuma foto coletada: a nuvem das rotinas nao alcanca acrilex.com.br nem www.quartzolit.weber (000 em tres passadas nesta execucao, com o dominio da ilha em 200 nas tres). Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+  },
+  "materiais": [
+    {
+      "id": "acrilex-verniz-acrilico-brilhante",
+      "categoria": "acabamento",
+      "tipo": "verniz",
+      "marca": "Acrilex",
+      "fabricante": "Acrilex Tintas Especiais S.A.",
+      "nome_comercial": "Verniz Acrilico Brilhante",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "A pagina de produto identifica o produto pelo nome e pelo acabamento; nenhuma das duas passadas devolveu codigo de catalogo. O codigo de embalagem so aparece em anuncio de varejo, que e nivel 5/6 e sustenta preco, nao identidade tecnica.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "As `declaracoes` desta ilha sao estruturadas no vocabulario `base` x `ambiente`, que e o eixo pelo qual a F2 escolhe COLA e REJUNTE. Acabamento nao cola nada e nao se escolhe por ambiente declarado: o eixo dele e SOBRE O QUE ELE SE PASSA e EM QUE MOMENTO. Preencher a matriz base x ambiente com um verniz faria a F2 considerar verniz onde ela decide cola. Mesma decisao da categoria pastilha (12/09) e da categoria alicate (25/09): o que o fabricante declara mora em `protecao`, e todo valor numerico em `propriedades`, onde o validar-banco cobra fonte para valor e motivo para null.",
+      "protecao": {
+        "literal_do_fabricante": "indicado para dar acabamento brilhante em tela, madeira, papel, cortica, ceramica, gesso e isopor; pode ser aplicado sobre tintas acrilicas depois de totalmente secas; depois de seco deixa sobre o trabalho uma pelicula transparente",
+        "fonte_id": "pagina-produto-verniz-acrilico-brilhante",
+        "momento_de_uso": "nao_declarado",
+        "motivo_do_momento": "A frase fala em aplicar sobre TINTA acrilica seca. Ela nao nomeia rejunte, entao nao ha declaracao de que este verniz se passe na peca depois de rejuntada, que e o momento em que a artesa o usaria.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [
+          "mdf_madeira"
+        ],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "cimento_concreto",
+          "alvenaria_tijolo",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho",
+          "pedra"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "A frase diz 'ceramica', e o vocabulario `base` desta ilha so tem `ceramica_esmaltada_porcelana` — que e a ceramica VIDRADA do vaso e do azulejo. Ceramica crua e ceramica esmaltada absorvem de maneira oposta, e o fabricante nao separa as duas, entao a linha fica em NAO nomeia: ler 'ceramica' como 'ceramica esmaltada' seria escolher, pelo fabricante, a metade que convem a ilha. `mdf_madeira` entra porque 'madeira' e o proprio termo da frase."
+      },
+      "propriedades": {
+        "acabamento_visual": {
+          "valor": "brilhante",
+          "unidade": null,
+          "fonte_id": "pagina-produto-verniz-acrilico-brilhante",
+          "declarado_como": "acabamento brilhante"
+        },
+        "pelicula": {
+          "valor": "transparente",
+          "unidade": null,
+          "fonte_id": "pagina-produto-verniz-acrilico-brilhante",
+          "declarado_como": "depois de seco deixa sobre o trabalho uma pelicula transparente"
+        },
+        "demaos_minimas": {
+          "valor": null,
+          "unidade": "demao",
+          "motivo": "A pagina de produto nao declara numero de demaos, nas duas passadas. Numero de demao de verniz de artesanato circula em blog, que e nivel 7 e proibido como fonte tecnica nesta ilha."
+        },
+        "consumo_ml_m2": {
+          "valor": null,
+          "unidade": "mL/m2",
+          "motivo": "Nao declarado na pagina de produto. Verniz de artesanato e vendido por frasco pequeno e o fabricante nao publica rendimento por area."
+        },
+        "tempo_de_secagem_h": {
+          "valor": null,
+          "unidade": "h",
+          "motivo": "Nao declarado nas duas passadas. A unica condicao temporal que a frase traz e sobre a TINTA embaixo ('depois de totalmente secas'), nao sobre o verniz."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nenhum dos sete produtos deste arquivo declara qualquer coisa sobre contato com alimento, e metade das pecas do ateliê e centro de mesa e tampo. Silencio nao e permissao: pelo principio dos tres estados o campo fica `nao_declarado` e nenhuma tela desta ilha pode dizer que o verniz serve para superficie que encosta em comida."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "",
+        "url_produto": null,
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": null,
+        "url_busca": "https://s.shopee.com.br/5fp2LtqPm6",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=verniz%20acrilico%20brilhante%20acrilex",
+        "degrau": null,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha + acabamento"
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-verniz-acrilico-brilhante": {
+          "url": "https://acrilex.com.br/en/produto/gloss-acrylic-varnish/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (000 em acrilex.com.br em tres passadas nesta execucao)",
+          "nivel": 3,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        }
+      },
+      "fonte_localizada_nao_lida": {
+        "fispq-verniz-acrilico-brilhante": {
+          "url": "https://acrilex.com.br/wp-content/uploads/2017/08/Fispq-GHS-Verniz-Acrilico-Brilhante.pdf",
+          "por_que_esta_fora_de_fontes": "A FISPQ e documento de SEGURANCA quimica: ela sustenta perigo, transporte e primeiros socorros, e nenhum campo deste registro sai dela. Fonte que nao sustenta campo nenhum emprestaria o nivel dela ao produto inteiro, que e o defeito que o validar-banco passou a barrar em 13/09/2026."
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "E o verniz de artesanato mais comum do Brasil e o que a artesa mais provavelmente ja tem na bancada. O que este registro prova nao e que ele sirva: e que o fabricante nao diz que sirva sobre vidro nem sobre rejunte, que sao as duas superficies da peca pronta."
+    },
+    {
+      "id": "acrilex-verniz-acrilico-fosco",
+      "categoria": "acabamento",
+      "tipo": "verniz",
+      "marca": "Acrilex",
+      "fabricante": "Acrilex Tintas Especiais S.A.",
+      "nome_comercial": "Verniz Acrilico Fosco",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "Mesmo motivo do brilhante: a pagina identifica pelo nome e pelo acabamento, e nenhuma das duas passadas devolveu codigo de catalogo.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco: acabamento nao entra na matriz base x ambiente da F2.",
+      "protecao": {
+        "literal_do_fabricante": "indicado para dar acabamento fosco em tela, madeira, papel, cortica, ceramica, gesso e isopor; pode ser aplicado sobre tintas acrilicas depois de totalmente secas; depois de seco deixa sobre o trabalho uma pelicula transparente",
+        "fonte_id": "pagina-produto-verniz-acrilico-fosco",
+        "momento_de_uso": "nao_declarado",
+        "motivo_do_momento": "Identico ao do brilhante: a frase fala de tinta acrilica seca e nao nomeia rejunte.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [
+          "mdf_madeira"
+        ],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "cimento_concreto",
+          "alvenaria_tijolo",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho",
+          "pedra"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "A frase do fosco e a do brilhante sao a MESMA frase com uma palavra trocada, medido em duas passadas por SKU. Os dois registros existem separados porque `acabamento_visual` e o unico campo que difere, e e justamente ele que a artesa escolhe."
+      },
+      "propriedades": {
+        "acabamento_visual": {
+          "valor": "fosco",
+          "unidade": null,
+          "fonte_id": "pagina-produto-verniz-acrilico-fosco",
+          "declarado_como": "acabamento fosco"
+        },
+        "pelicula": {
+          "valor": "transparente",
+          "unidade": null,
+          "fonte_id": "pagina-produto-verniz-acrilico-fosco",
+          "declarado_como": "depois de seco deixa sobre o trabalho uma pelicula transparente"
+        },
+        "demaos_minimas": {
+          "valor": null,
+          "unidade": "demao",
+          "motivo": "Nao declarado na pagina de produto, nas duas passadas."
+        },
+        "consumo_ml_m2": {
+          "valor": null,
+          "unidade": "mL/m2",
+          "motivo": "Nao declarado: verniz de artesanato nao publica rendimento por area."
+        },
+        "tempo_de_secagem_h": {
+          "valor": null,
+          "unidade": "h",
+          "motivo": "Nao declarado nas duas passadas."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado. Mesmo silencio dos outros seis, e ele vale para todo tampo e centro de mesa do ateliê."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "",
+        "url_produto": null,
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": null,
+        "url_busca": "https://s.shopee.com.br/6AlIwooRVw",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=verniz%20acrilico%20fosco%20acrilex",
+        "degrau": null,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha + acabamento"
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-verniz-acrilico-fosco": {
+          "url": "https://acrilex.com.br/produto/manualidades/auxiliares/verniz-acrilico-fosco/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (000 em acrilex.com.br em tres passadas nesta execucao)",
+          "nivel": 3,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        }
+      },
+      "fonte_localizada_nao_lida": {
+        "fispq-verniz-acrilico-fosco": {
+          "url": "https://acrilex.com.br/wp-content/uploads/2019/11/Fispq-GHS-Verniz-Acr%C3%ADlico-Fosco.pdf",
+          "por_que_esta_fora_de_fontes": "Documento de seguranca quimica (revisao de 27/02/2019): nao sustenta nenhum campo deste registro."
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "O fosco e o que a peca de mosaico quase sempre pede — brilho sobre pastilha ja brilhante empasta a leitura das tesselas. Isso e julgamento de quem escreve, nao declaracao de fabricante, e por isso esta aqui e nao em `protecao`."
+    },
+    {
+      "id": "acrilex-verniz-acrilfix-brilhante",
+      "categoria": "acabamento",
+      "tipo": "verniz",
+      "marca": "Acrilex",
+      "fabricante": "Acrilex Tintas Especiais S.A.",
+      "nome_comercial": "Verniz Acrilfix Brilhante",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "A pagina identifica pelo nome da linha e pelo acabamento. As FISPQ da linha trazem numero ONU (1950, de aerossol), que e classificacao de transporte e nao codigo de catalogo.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
+      "protecao": {
+        "literal_do_fabricante": "indicado para dar acabamento e protecao em pinturas sobre tela, pinturas a oleo ou acrilicas, pastel, carvao e trabalhos de artesanato; protege papeis, plantas, documentos, layouts e fotos; depois de seco deixa sobre o trabalho uma pelicula transparente; em pintura a oleo, aplicar um ano depois de a pintura estar pronta",
+        "fonte_id": "pagina-produto-acrilfix-brilhante",
+        "momento_de_uso": "nao_declarado",
+        "motivo_do_momento": "'Trabalhos de artesanato' e a coisa mais proxima que a frase tem de uma peca de mosaico, e ela nao diz sobre QUE superficie nem em que momento.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "mdf_madeira",
+          "cimento_concreto",
+          "alvenaria_tijolo",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho",
+          "pedra"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "E o unico dos sete cuja frase nomeia ZERO valor do vocabulario `base`: ela lista o que se PINTA (tela, oleo, pastel, carvao) e o que se PROTEGE (papel, planta, documento, layout, foto), nunca o substrato. Spray de fixar desenho descrito pelo que o desenho e, nao pelo que esta embaixo dele — e por isso ele nao sustenta uma linha sequer sobre mosaico."
+      },
+      "propriedades": {
+        "acabamento_visual": {
+          "valor": "brilhante",
+          "unidade": null,
+          "fonte_id": "pagina-produto-acrilfix-brilhante",
+          "declarado_como": "acabamento brilhante"
+        },
+        "forma_de_aplicacao": {
+          "valor": "aerossol",
+          "unidade": null,
+          "fonte_id": "pagina-produto-acrilfix-brilhante",
+          "declarado_como": "produto inflamavel, com conteudo sob pressao"
+        },
+        "pelicula": {
+          "valor": "transparente",
+          "unidade": null,
+          "fonte_id": "pagina-produto-acrilfix-brilhante",
+          "declarado_como": "depois de seco deixa sobre o trabalho uma pelicula transparente"
+        },
+        "demaos_minimas": {
+          "valor": null,
+          "unidade": "demao",
+          "motivo": "Nao declarado nas duas passadas."
+        },
+        "tempo_de_secagem_h": {
+          "valor": null,
+          "unidade": "h",
+          "motivo": "Nao declarado. A unica espera declarada e de UM ANO, e ela e sobre pintura a oleo embaixo, nao sobre o verniz."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "",
+        "url_produto": null,
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": null,
+        "url_busca": "https://s.shopee.com.br/40goMpwguk",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=verniz%20acrilfix%20brilhante%20acrilex",
+        "degrau": null,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha + acabamento"
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-acrilfix-brilhante": {
+          "url": "https://acrilex.com.br/en/produto/gloss-acrilfix-varnish/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (000 em acrilex.com.br em tres passadas nesta execucao)",
+          "nivel": 3,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        }
+      },
+      "fonte_localizada_nao_lida": {
+        "fispq-acrilfix-brilhante": {
+          "url": "https://acrilex.com.br/wp-content/uploads/2017/08/Fispq-GHS-Verniz-Acrilfix-Brilhante.pdf",
+          "por_que_esta_fora_de_fontes": "Documento de seguranca quimica: nao sustenta nenhum campo deste registro."
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "Entra no banco como o terceiro verniz de artesanato porque e o formato spray, que e outra decisao de compra — e sai como o registro que menos sustenta frase nenhuma. Registro que nao sustenta e informacao: ele impede que a proxima execucao ache que ainda falta procurar."
+    },
+    {
+      "id": "quartzolit-verniz-protetor-para-pisos",
+      "categoria": "acabamento",
+      "tipo": "verniz",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
+      "nome_comercial": "verniz protetor para pisos quartzolit",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "O boletim tecnico se identifica pelo titulo e pela pasta de data do arquivo (2024-05), sem codigo impresso do tipo BRSA004 — a mesma situacao do rejunte ceramicas.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
+      "protecao": {
+        "literal_do_fabricante": "aplicar com rolo de espuma de poliester limpo e seco, indicado para aplicacao de vernizes e stains em superficies lisas; aplicar no minimo 3 demaos para obter a espessura desejada, com intervalo minimo de 30 minutos entre demaos ou ate apresentar aspecto seco, dependendo da permeabilidade; produto pronto para uso, nao deve ser diluido nem agitado; aplicar entre 10 e 28 graus; liberacao para trafego leve apos 72 horas e liberacao total apos 7 dias; adequado para areas com trafego de carros, maquinas ou ferramentas industriais",
+        "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+        "momento_de_uso": "nao_declarado",
+        "motivo_do_momento": "O produto e de PISO e a frase fala de trafego, nao de peca. Nao ha declaracao de uso sobre peca montada nem sobre rejunte.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "mdf_madeira",
+          "cimento_concreto",
+          "alvenaria_tijolo",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho",
+          "pedra"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "A frase diz 'superficies lisas' e nao nomeia substrato nenhum do vocabulario — `cimento_concreto` ficou FORA de propositio: o piso de cimento queimado aparece em pagina de BLOG do fabricante, que e nivel 4 na escada desta ilha e nao sustenta indicacao primaria. Este e o unico dos sete com numero de demao, intervalo e consumo declarados, e e tambem o mais distante do que a ilha faz."
+      },
+      "propriedades": {
+        "demaos_minimas": {
+          "valor": 3,
+          "unidade": "demao",
+          "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+          "declarado_como": "aplicar no minimo 3 demaos para obter a espessura desejada"
+        },
+        "intervalo_entre_demaos_min": {
+          "valor": 30,
+          "unidade": "min",
+          "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+          "declarado_como": "intervalo minimo de 30 minutos entre demaos, ou ate apresentar aspecto seco, dependendo da permeabilidade"
+        },
+        "consumo_ml_m2": {
+          "valor": 250,
+          "unidade": "mL/m2",
+          "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+          "declarado_como": "consumo teorico aproximado de 250 mL/m2 apos 3 demaos"
+        },
+        "liberacao_trafego_leve_h": {
+          "valor": 72,
+          "unidade": "h",
+          "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+          "declarado_como": "liberacao para trafego leve apos 72 horas"
+        },
+        "liberacao_total_dias": {
+          "valor": 7,
+          "unidade": "dia",
+          "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+          "declarado_como": "liberacao total apos 7 dias"
+        },
+        "temperatura_min_c": {
+          "valor": 10,
+          "unidade": "C",
+          "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+          "declarado_como": "aplicar o produto em condicoes entre 10 e 28 graus"
+        },
+        "temperatura_max_c": {
+          "valor": 28,
+          "unidade": "C",
+          "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+          "declarado_como": "aplicar o produto em condicoes entre 10 e 28 graus"
+        },
+        "diluicao": {
+          "valor": "pronto para uso, nao diluir e nao agitar",
+          "unidade": null,
+          "fonte_id": "bt-verniz-protetor-pisos-2024-05",
+          "declarado_como": "nao e necessario agitar nem diluir o produto antes do uso"
+        },
+        "acabamento_visual": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "O boletim nao declara brilho nem fosco nas duas passadas, e e exatamente o campo pelo qual a artesa escolheria. Boletim de piso fala de espessura e trafego, nao de aparencia."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "",
+        "url_produto": null,
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": null,
+        "url_busca": "https://s.shopee.com.br/2qUqyh5fYn",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=verniz%20protetor%20para%20pisos%20quartzolit",
+        "degrau": null,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
+      },
+      "imagem": null,
+      "fontes": {
+        "bt-verniz-protetor-pisos-2024-05": {
+          "url": "https://www.quartzolit.weber/files/br/2024-05/Boletim_Tcnico_-_Verniz_Protetor_para_Pisos_Quartzolit.pdf",
+          "tipo": "boletim tecnico do fabricante (arquivo 2024-05), lido por busca no dominio dele; PDF nao aberto",
+          "nivel": 2,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        },
+        "pagina-produto-verniz-protetor-pisos": {
+          "url": "https://www.quartzolit.weber/pisos/revestimentos-de-alto-desempenho/verniz-protetor-para-pisos-quartzolit",
+          "tipo": "pagina de produto do fabricante",
+          "nivel": 3,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        }
+      },
+      "fonte_localizada_nao_lida": {
+        "bt-verniz-protetor-pisos-2020-01": {
+          "url": "https://www.quartzolit.weber/files/br/2020-01/BT_verniz_protetor_para_pisos_qtz.pdf",
+          "por_que_esta_fora_de_fontes": "E a versao ANTERIOR do mesmo boletim (2020-01). Nenhum campo deste registro sai dela, e mante-la em `fontes` faria o registro citar duas revisoes do mesmo documento sem dizer qual valeu."
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "Entra porque e o unico verniz alcancado com boletim tecnico de nivel 2 — e o contraste com os tres da Acrilex e o achado: o fabricante de obra publica numero e nao publica aparencia; o de artesanato publica aparencia e nao publica numero. Nenhum dos dois publica mosaico."
+    },
+    {
+      "id": "quartzolit-borracha-liquida-elastica",
+      "categoria": "acabamento",
+      "tipo": "impermeabilizante",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
+      "nome_comercial": "impermeabilizante borracha liquida elastica quartzolit",
+      "codigo_fabricante": "REV110624",
+      "motivo_sem_codigo": null,
+      "nota_do_codigo": "REV110624 e a REVISAO impressa no nome do arquivo do boletim tecnico (BT_Borracha Liquida Elastica Quartzolit_REV110624, pasta 2024-07), nao um codigo de catalogo. Fica em `codigo_fabricante` porque e o unico identificador que o fabricante publica para este documento, e a frase que o citar tem de dize-lo como revisao.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
+      "protecao": {
+        "literal_do_fabricante": "pode ser usado em fachadas, paredes internas e externas, inclusive drywall, telhas de fibrocimento, telhas ceramicas, telhas metalicas e lajes sem transito; pode ser aplicado em quantas demaos forem necessarias, desde que observado o consumo recomendado e atingida a espessura especificada em projeto; nao e indicado para infiltracoes causadas por umidade ascendente ou pressao negativa de agua, nem para superficies com transito de pessoas",
+        "fonte_id": "bt-borracha-liquida-elastica-2024-07",
+        "momento_de_uso": "nao_declarado",
+        "motivo_do_momento": "O produto e de obra e forma pelicula opaca; nada na frase o poe sobre peca montada. Se a artesa o usasse na peca, seria ANTES de colar, na base — e isso nao esta declarado.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [
+          "alvenaria_tijolo"
+        ],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "mdf_madeira",
+          "cimento_concreto",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho",
+          "pedra"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "'Paredes internas e externas' e a unica coisa da frase que encosta no vocabulario, e ela entra como `alvenaria_tijolo` por ser parede. 'Telhas ceramicas' NAO vira `ceramica_esmaltada_porcelana`: telha ceramica e ceramica crua e absorve o oposto da esmaltada, a mesma distincao que barrou o verniz da Acrilex. E o unico dos sete com uma lista explicita do que ele NAO atende, e ela ainda assim nao fala de peca de artesanato."
+      },
+      "propriedades": {
+        "elasticidade_pct": {
+          "valor": 500,
+          "unidade": "%",
+          "fonte_id": "pagina-produto-borracha-liquida-elastica",
+          "declarado_como": "alta elasticidade (500%)"
+        },
+        "base_quimica": {
+          "valor": "resina acrilica",
+          "unidade": null,
+          "fonte_id": "pagina-produto-borracha-liquida-elastica",
+          "declarado_como": "impermeabilizante a base de resina acrilica, com propriedades elasticas, desenvolvido para a protecao de superficies externas submetidas a intemperies como chuva e acao direta do sol"
+        },
+        "demaos_minimas": {
+          "valor": null,
+          "unidade": "demao",
+          "motivo": "O fabricante declara 'quantas demaos forem necessarias' amarrado ao consumo e a espessura DE PROJETO — que e uma condicao, nao um numero. Gravar um numero aqui seria escolher pelo fabricante."
+        },
+        "rendimento_m2": {
+          "valor": null,
+          "unidade": "m2",
+          "motivo": "A frase colhida por busca mistura a embalagem de 18 kg com a unidade m2/L e sai incoerente ('18 kg rende no minimo 70 m2/L'). Numero que nao fecha na propria unidade nao entra no banco: ou o rendimento e por embalagem, ou e por litro, e a passada nao decide qual. Fica para quando o PDF for aberto."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "",
+        "url_produto": null,
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": null,
+        "url_busca": "https://s.shopee.com.br/BU5nnFkjn",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=borracha%20liquida%20elastica%20quartzolit",
+        "degrau": null,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "marca + linha"
+      },
+      "imagem": null,
+      "fontes": {
+        "bt-borracha-liquida-elastica-2024-07": {
+          "url": "https://www.quartzolit.weber/files/br/2024-07/BT_Borracha%20L%C3%ADquida%20El%C3%A1stica%20Quartzolit_REV110624.pdf",
+          "tipo": "boletim tecnico do fabricante (arquivo 2024-07, revisao REV110624), lido por busca no dominio dele; PDF nao aberto",
+          "nivel": 2,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        },
+        "pagina-produto-borracha-liquida-elastica": {
+          "url": "https://www.quartzolit.weber/impermeabilizantes-quartzolit/impermeabilizantes-para-paredes-externas-e-fachadas/impermeabilizante-borracha-liquida-elastica-quartzolit",
+          "tipo": "pagina de produto do fabricante",
+          "nivel": 3,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "A peca de jardim e de parede externa e o caso em que a artesa procuraria impermeabilizante, e este e o produto que a SERP devolve. O registro existe para a ilha poder dizer, com a frase do fabricante na mao, que ele e de obra e nao de peca — que e a resposta honesta a uma pergunta que hoje so tem resposta de blog."
+    },
+    {
+      "id": "quartzolit-protetor-para-fachadas",
+      "categoria": "acabamento",
+      "tipo": "impermeabilizante",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
+      "nome_comercial": "protetor para fachadas",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "A pagina de produto identifica pelo nome; nenhuma das duas passadas devolveu codigo nem revisao de boletim.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
+      "protecao": {
+        "literal_do_fabricante": "hidrofugante a base de silano-siloxano, produto monocomponente, disperso em agua, com elevada penetracao e indispensavel para aplicacao sobre os revestimentos minerais; destinado ao tratamento e protecao de estruturas de concreto, superficies de alvenaria e de outros substratos sujeitos a presenca de umidade e expostos as intemperies; pode ser aplicado em paredes externas, churrasqueiras de tijolo a vista, telhas ceramicas, pedras naturais e revestimentos decorativos; a aplicacao manual devera ser realizada sempre em duas demaos; aplicar sobre superficies secas, sendo que quanto menor o teor de umidade da superficie maior sera a penetracao do produto",
+        "fonte_id": "pagina-produto-protetor-para-fachadas",
+        "momento_de_uso": "nao_declarado",
+        "motivo_do_momento": "Hidrofugante se passa sobre revestimento pronto, o que em tese e o momento da peca rejuntada. Mas 'revestimento mineral' e 'revestimento decorativo' sao termos de obra e a frase nao nomeia pastilha nem rejunte, entao o momento fica nao declarado em vez de deduzido.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [
+          "cimento_concreto",
+          "alvenaria_tijolo"
+        ],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "mdf_madeira",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [
+          "pedra"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "E o UNICO dos sete que nomeia um valor de `material_tessela`: 'pedras naturais', que e a tessela `pedra` do vocabulario desta ilha. E tambem o unico que chega perto do rejunte sem o nomear — hidrofugante de silano-siloxano age em substrato POROSO, e rejunte cimenticio e poroso, mas essa e a inferencia que a secao 8 proibe: quem conclui pelo mecanismo esta afirmando pelo fabricante."
+      },
+      "propriedades": {
+        "demaos_minimas": {
+          "valor": 2,
+          "unidade": "demao",
+          "fonte_id": "pagina-produto-protetor-para-fachadas",
+          "declarado_como": "a aplicacao manual devera ser realizada sempre em duas demaos"
+        },
+        "base_quimica": {
+          "valor": "silano-siloxano disperso em agua",
+          "unidade": null,
+          "fonte_id": "pagina-produto-protetor-para-fachadas",
+          "declarado_como": "hidrofugante a base de silano-siloxano, produto monocomponente, disperso em agua, com elevada penetracao"
+        },
+        "consumo_ml_m2": {
+          "valor": null,
+          "unidade": "mL/m2",
+          "motivo": "O fabricante declara que o consumo depende da porosidade do substrato ('maior porosidade implica consumos superiores') e as duas passadas nao devolveram numero. Consumo que varia com o substrato so tem numero na tabela do boletim, e o boletim nao foi alcancado."
+        },
+        "acabamento_visual": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado nas duas passadas. Hidrofugante de penetracao costuma ser incolor, mas 'costuma' nao e declaracao."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "",
+        "url_produto": null,
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": null,
+        "url_busca": "https://s.shopee.com.br/qjmb1DHeJ",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=impermeabilizante%20fachada%20quartzolit",
+        "degrau": null,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "FAMILIA (degrau abaixo): `protetor para fachadas quartzolit`, o nome comercial exato, devolveu ZERO oferta em 25/09/2026. O produto e de canal de obra e nao e anunciado por esse nome na Shopee"
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-protetor-para-fachadas": {
+          "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-e-revestimentos-decorativos/protetor-para-fachadas",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em duas passadas; pagina NAO aberta (000 em www.quartzolit.weber em tres passadas nesta execucao)",
+          "nivel": 3,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "Dos sete, e o que mais se parece com o que uma peca de mosaico de jardim precisaria: incolor por penetracao, nao pelicula opaca. E o que ele custa a quem quiser publicar isso e uma linha inteira do boletim que ninguem leu."
+    },
+    {
+      "id": "quartzolit-fundo-selador",
+      "categoria": "acabamento",
+      "tipo": "selador",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
+      "nome_comercial": "fundo selador quartzolit",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "A pagina de produto identifica pelo nome; as duas passadas nao devolveram codigo nem revisao de boletim proprio deste produto.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
+      "protecao": {
+        "literal_do_fabricante": "selador pigmentado para aplicacao em conjunto com a texturacrill quartzolit em areas externas e internas; indicado para aplicacao em superficies de concreto, argamassas de emboco e reboco, superficies com pinturas PVA ou acrilica e sistemas de construcao a seco; a funcao e uniformizar o substrato aumentando o rendimento do revestimento decorativo texturizado; a superficie da base deve estar firme, limpa, seca, isenta de po, oleo ou quaisquer outros residuos que possam impedir a aderencia; aguardar a secagem por no minimo 6 horas para aplicacao da textura acrilica",
+        "fonte_id": "pagina-produto-fundo-selador",
+        "momento_de_uso": "antes_de_colar",
+        "trecho_que_declara_o_momento": "aguardar a secagem por no minimo 6 horas para aplicacao da textura acrilica",
+        "motivo_do_momento": "E o unico dos sete cujo momento o fabricante declara com todas as letras: ele vai na base ANTES do revestimento, e a espera de 6 horas e ate a camada seguinte. O que ele nao declara e QUAL revestimento alem da textura acrilica da propria marca.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [
+          "cimento_concreto",
+          "alvenaria_tijolo"
+        ],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "mdf_madeira",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho",
+          "pedra"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "A LINHA QUE FAZ ESTE REGISTRO VALER: a frase NAO nomeia MDF nem madeira, e MDF e a base mais comum da peca de ateliê e um dos cinco valores de `tipo_por_categoria.base` deste esquema. A categoria `selador` entra no banco com UM item, e ele nao serve a base que a ilha mais usa. Isso e faixa DESCOBERTA da 14.3 pela categoria inteira, nao por um estado."
+      },
+      "propriedades": {
+        "tempo_de_secagem_h": {
+          "valor": 6,
+          "unidade": "h",
+          "fonte_id": "pagina-produto-fundo-selador",
+          "declarado_como": "aguardar a secagem por no minimo 6 horas para aplicacao da textura acrilica"
+        },
+        "pigmentado": {
+          "valor": "sim",
+          "unidade": null,
+          "fonte_id": "pagina-produto-fundo-selador",
+          "declarado_como": "selador pigmentado"
+        },
+        "demaos_minimas": {
+          "valor": null,
+          "unidade": "demao",
+          "motivo": "Nao declarado nas duas passadas para este produto. A frase de duas demaos que a busca devolve na mesma pagina de resultados e do PROTETOR PARA FACHADAS, outro produto — e emprestar demao de um produto a outro e exatamente o erro que a regra das duas passadas existe para pegar."
+        },
+        "consumo_ml_m2": {
+          "valor": null,
+          "unidade": "mL/m2",
+          "motivo": "Nao declarado. O numero de 350 mL/m2 em duas demaos que aparece na mesma busca e do weber.floor selador de base, que e produto de PISO industrial e outro registro que esta ilha nao tem."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "",
+        "url_produto": null,
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": null,
+        "url_busca": "https://s.shopee.com.br/113CnKGynO",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=selador%20quartzolit",
+        "degrau": null,
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_da_chave": "FAMILIA (degrau abaixo): `fundo selador quartzolit` devolveu ZERO oferta em 25/09/2026. A palavra `fundo` nao aparece em titulo de anuncio; o que a Shopee anuncia e `selador`"
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-fundo-selador": {
+          "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-e-revestimentos-decorativos/fundo-selador-quartzolit",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em duas passadas; pagina NAO aberta (000 em www.quartzolit.weber em tres passadas nesta execucao)",
+          "nivel": 3,
+          "coletado_em": "2026-09-25",
+          "conferir_no_pdf": true
+        }
+      },
+      "fonte_localizada_nao_lida": {
+        "bt-weber-floor-selador-de-base": {
+          "url": "https://www.quartzolit.weber/files/br/2017-06/weber.floor_selador_de_base_01.pdf",
+          "por_que_esta_fora_de_fontes": "E boletim de OUTRO produto (selador de base para piso industrial), devolvido na mesma busca. Fica registrado como endereco localizado para a proxima passada nao procurar de novo, e fora de `fontes` porque nao sustenta campo nenhum deste registro."
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "Unico selador do banco, e entra sabendo que nao cobre MDF. A alternativa era deixar o tipo `selador` em zero e parecer que faltava procurar; com ele dentro, o que falta esta medido e tem nome."
+    }
+  ],
+  "pendencias_desta_categoria": [
+    {
+      "id": "acabamento-nenhum-nomeia-vidro-nem-rejunte",
+      "estado": "ABERTA, e e a razao de ser deste arquivo",
+      "o_que_falta": "Uma declaracao de fabricante que nomeie VIDRO ou REJUNTE como superficie sobre a qual o acabamento pode ser passado.",
+      "o_que_este_bloco_apurou": "Sete produtos de quatro tipos, de dois fabricantes alcancados, e nenhuma das sete frases nomeia vidro nem rejunte. Nao e falta de coleta: os dois fabricantes publicam as listas de substrato deles, e as listas simplesmente nao tem o que a peca de mosaico expoe.",
+      "consequencia_ja_aplicada": "Nenhuma frase desta ilha pode dizer que verniz ou impermeabilizante serve sobre pastilha ou sobre rejunte. Quando /materiais/acabamento/ nascer, a pagina abre pelo que NAO esta declarado, do mesmo jeito que /materiais/qual-cola-usar-no-mosaico/ abre pelas faixas descobertas.",
+      "o_que_destrava": "Dominio de fabricante na rede Personalizada do ambiente (20.1), que sobe o banco inteiro de nivel 3 para nivel 1 e abre o boletim onde a tabela de substrato mora; ou um fabricante de produto especifico para mosaico e artesanato que publique a lista."
+    },
+    {
+      "id": "acabamento-contato-com-alimento",
+      "estado": "ABERTA, e ela e comercial antes de ser tecnica",
+      "o_que_falta": "Saber se algum acabamento do banco declara contato com alimento.",
+      "o_que_este_bloco_apurou": "Os SETE tem `contato_com_alimento` null. Centro de mesa e tampo sao duas das colecoes de uso desta ilha, e a pergunta 'posso por comida em cima?' e a primeira de quem compra um deles.",
+      "consequencia_ja_aplicada": "Nenhuma tela desta ilha pode afirmar nada sobre comida encostando na peca, e a pagina da peca nao ganha selo nenhum sobre isso. Silencio nao e permissao."
+    },
+    {
+      "id": "acabamento-selador-nao-cobre-mdf",
+      "estado": "ABERTA",
+      "o_que_falta": "Um selador com declaracao de fabricante que nomeie MDF ou madeira.",
+      "o_que_este_bloco_apurou": "O unico selador alcancado nomeia concreto, emboco, reboco, pintura PVA ou acrilica e construcao a seco. A Suvinil publica um selador acrilico e uma seladora para madeira, e as duas paginas que a busca devolveu sao da LOJA da marca (loja.suvinil.com.br), que e nivel 5 na escada desta ilha e nao sustenta recomendacao primaria — por isso nenhuma das duas virou registro.",
+      "consequencia_ja_aplicada": "O tipo `selador` fica com um item so, e o item nao serve a base mais usada do ateliê. A proxima passada procura pagina de produto (nivel 3) no dominio institucional do fabricante, nao na loja dele."
+    }
+  ],
+  "o_que_este_arquivo_deixa_desbloqueado": [
+    "A categoria `acabamento` sai de ZERO e a lista `categorias_do_vocabulario_sem_nenhum_item` de dados/cobertura.json cai de tres para DUAS (base e apoio). Quem regenera essa lista e ferramentas/cobertura.py.",
+    "O esquema passa a dizer que campo a categoria `acabamento` exige (`regras_da_categoria_acabamento`), que era a decisao que faltava e que a ESTADO.md de 25/09 nomeou como o primeiro passo das tres categorias restantes. `base` e `apoio` continuam sem a sua.",
+    "/materiais/acabamento/ continua SEM pagina: a 16.5 exige 3 filhas de nivel 3 e nenhuma filha de acabamento existe. O que este arquivo destrava e o cartao do Guia parar de mostrar zero, nao a pagina."
+  ]
+}
