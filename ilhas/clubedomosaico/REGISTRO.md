@@ -4803,7 +4803,12 @@ está escrita, medida e pronta para sair inteira.**
 e **sem mudança** — continuam **duas** categorias sem nenhum item (`base`, `apoio`) —, `teste-casca.php` 555
 verificações, `teste-f2.php` 114 afirmações, `teste-f1.php` 24 estados com processo próprio,
 `teste-prestacao-rejunte.php` 5 afirmações sobre 540 estados da F2 e 180 da F1, `teste-tecnicas.php` 123
-verificações, `mutacoes-base.py` 20 de 20. **Nenhuma URL nova: as 17 continuam 17**, a semana da 21.4 continua
+verificações. **E as baterias de mutação inteiras, porque a mudança foi no ESQUEMA e o esquema é lido por
+quase todas:** `mutacoes-base.py` 20 de 20, `mutacoes-f2.py` 50 de 50, `mutacoes-arvore.py` 21 de 21,
+`mutacoes-rejunte.py` 16 de 16, `mutacoes-cobertura.py` 14 de 14, `mutacoes-acabamento.py` 14 de 14,
+`mutacoes-pastilhas.py` 14 de 14 e `mutacoes-tecnica-x-material.py` 9 de 9 — **158 mutações, nenhuma passando**.
+E `conferir-no-ar.py` refeito no fecho: **488 afirmações, 0 falha**, o mesmo número da abertura, que é a prova de
+que o site não foi tocado. **Nenhuma URL nova: as 17 continuam 17**, a semana da 21.4 continua
 onde estava, e **não houve Sync** — nada do que este bloco mexeu é conteúdo publicável (seção 4).
 
 ## DE PASSAGEM, UMA MEDIÇÃO QUE DESMENTE UMA INSTRUÇÃO DO PRÓPRIO REPOSITÓRIO (item 4 da fila)

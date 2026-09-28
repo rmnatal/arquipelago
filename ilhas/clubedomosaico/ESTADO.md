@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-28T10:16Z
-executando_desde: 2026-09-28T11:06Z
+executando_desde: null
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
   A CATEGORIA BASE DECIDE O CAMPO, E A DECISAO ACHA A FAIXA DESCOBERTA DENTRO DO PROPRIO VOCABULARIO.
@@ -66,6 +66,12 @@ bloco_atual: |
   porque nenhum fabricante do banco as nomeia. Essa e a pagina de POSICAO 7,8, a melhor do Arquipelago,
   e o BLOCO A do despacho de 24/09 espera 30/09 para nao misturar duas causas na mesma janela. A
   maquina para dizer a verdade JA EXISTE na pagina; falta a decisao, e ela esta escrita e medida.
+  BANCADA: validar-banco verde (38 materiais), cobertura recontada e SEM MUDANCA, teste-casca 555,
+  teste-f2 114, teste-f1 24 estados, teste-prestacao-rejunte 5, teste-tecnicas 123, e as baterias de
+  mutacao INTEIRAS porque a mudanca foi no esquema: base 20/20, f2 50/50, arvore 21/21, rejunte 16/16,
+  cobertura 14/14, acabamento 14/14, pastilhas 14/14, tecnica-x-material 9/9 — 158 mutacoes, nenhuma
+  passando. conferir-no-ar refeito no fecho: 488 afirmacoes e 0 falha, o mesmo numero da abertura, que e
+  a prova de que o site nao foi tocado.
   NENHUMA URL NOVA: as 17 continuam 17 e nao houve Sync — nada do que este bloco mexeu e conteudo
   publicavel (secao 4).
   O QUE DEPENDE DO RAPHAEL, e nada disto e da Fundacao: (1) dar acesso de LEITURA a conta sentinela@ em
