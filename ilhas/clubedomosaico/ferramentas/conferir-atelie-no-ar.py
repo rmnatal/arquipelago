@@ -62,6 +62,39 @@ feitos = 0
 pulados = 0
 
 
+
+# A ETIQUETA DE ROBO SE MEDE PELA DIRETIVA E PELA CONTAGEM, NUNCA PELA ASPA
+# (28/09/2026). As duas afirmacoes abaixo procuravam a frase literal
+# `content="noindex, follow"` com ASPAS DUPLAS — as do `echo` que o snippet do
+# Atelie fazia num `wp_head` proprio. Desde a casca 1.13.0 (25/09/2026) quem
+# imprime a etiqueta e o `wp_robots()` do NUCLEO, com aspas SIMPLES, e as duas
+# passaram a REPROVAR um painel que sai do indice corretamente:
+#
+#     no ar: <meta name='robots' content='noindex, follow' />   <- certo
+#     regua: 'content="noindex, follow"' in html                <- nunca casa
+#
+# `conferir-no-ar.py` aprendeu isto em 25/09 e esta bancada nao — o conserto
+# passou ao lado dela, e ela ficou vermelha por tres dias sem ninguem olhar.
+# Pior que reprovar o certo: a mesma regua PASSARIA A VAZIO num painel que
+# saisse do indice por engano, porque a frase com aspa dupla e falsa nos dois
+# mundos. Regua de pontuacao reprova o conserto e aprova o desastre.
+#
+# Agora ela mede a DIRETIVA e CONTA as etiquetas, que e o mesmo par que o
+# conserto de 1.13.0 deixou escrito: duas etiquetas com o mesmo nome sao um
+# pedido ambiguo, e nada na tela muda de cor por causa disso.
+RE_ROBOTS_ATELIE = re.compile(r"<meta[^>]*name=[\"']robots[\"'][^>]*>", re.I)
+
+
+def fora_do_indice(html):
+    """(uma_etiqueta_so, sai_do_indice, o_que_foi_servido)"""
+    achadas = RE_ROBOTS_ATELIE.findall(html)
+    texto = " | ".join(achadas)
+    return (
+        1 == len(achadas),
+        1 == len(achadas) and "noindex" in achadas[0].lower(),
+        texto if texto else "(nenhuma)",
+    )
+
 def ok(cond, rotulo, medida=""):
     global falhas, feitos
     feitos += 1
@@ -137,7 +170,9 @@ def main():
         ok(palavra.lower() not in corpo.lower(), f"[/atelie/] o corpo nao diz '{palavra}'")
 
     print("\n2. O painel esta FORA do indice e FORA do sitemap")
-    ok('content="noindex, follow"' in html, "[/atelie/] serve noindex, follow")
+    _uma, _fora, _servido = fora_do_indice(html)
+    ok(_uma, "[/atelie/] serve UMA etiqueta de robo", _servido)
+    ok(_fora, "[/atelie/] sai do indice", _servido)
 
     mapa, cod_mapa = buscar(BASE + "/wp-sitemap.xml")
     ok("200" == cod_mapa, "[sitemap] o indice responde 200", cod_mapa)
@@ -249,8 +284,9 @@ def main():
     # tem de cair na tela de entrar, como em qualquer outro estado do painel.
     md_html, md_cod = buscar(BASE + "/atelie/?estado=meus-dados")
     ok("200" == md_cod, "[/atelie/?estado=meus-dados] HTTP 200", md_cod)
-    ok('content="noindex, follow"' in md_html,
-       "[/atelie/?estado=meus-dados] serve noindex, follow")
+    _uma_md, _fora_md, _servido_md = fora_do_indice(md_html)
+    ok(_uma_md, "[/atelie/?estado=meus-dados] serve UMA etiqueta de robo", _servido_md)
+    ok(_fora_md, "[/atelie/?estado=meus-dados] sai do indice", _servido_md)
     md_corpo = corpo_visivel(md_html)
     ok("Entrar no meu ateliê" in md_corpo,
        "[/atelie/?estado=meus-dados] deslogada cai na tela de entrar")

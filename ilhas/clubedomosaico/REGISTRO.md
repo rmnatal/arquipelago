@@ -5143,6 +5143,18 @@ estados: a bateria continuaria verde dizendo que mediu. Foram retargetadas para 
 uma **mutação nova** que escreve de volta a regressão exata de 28/09 — o `noindex` voltando a depender do
 valor.
 
+**E UMA BANCADA VERMELHA ACHADA DE PASSAGEM, QUE NÃO ERA DESTE DESPACHO.** `conferir-atelie-no-ar.py`
+estava com **2 falhas** e as duas eram da régua, não do site: ela procurava a frase literal
+`content="noindex, follow"` com **aspas duplas** — as do `echo` que o snippet do Ateliê fazia num `wp_head`
+próprio — e quem imprime a etiqueta desde a casca **1.13.0** (25/09) é o `wp_robots()` do **núcleo**, com
+aspas **simples**. O painel sai do índice corretamente e a régua o reprovava. **É exatamente a cicatriz que
+`conferir-no-ar.py` pagou em 25/09** — *"a etiqueta de robô se mede pela diretiva e pela contagem, nunca
+pela aspa"* — e o conserto daquele dia **passou ao lado desta bancada**, que ficou vermelha três dias sem
+ninguém olhar. Pior que reprovar o certo: a mesma régua **passaria a vazio** num painel que saísse do índice
+por engano, porque a frase com aspa dupla é falsa nos dois mundos. Agora ela mede a **diretiva** e **conta**
+as etiquetas, como a irmã. **184 afirmações, 0 falha, 3 puladas** (as três dependem do token, e o token não
+foi usado nesta execução).
+
 - **Próximo passo desbloqueado:** a leitura de **30/09**. Ela continua sendo o que libera o **BLOCO A** (CTR
   das três páginas de primeira página, com o veredito em 08/10), e agora ela libera também a **metade que
   falta do item 4** — as duas são a mesma promessa de SERP nas mesmas páginas e saem no mesmo movimento, que
