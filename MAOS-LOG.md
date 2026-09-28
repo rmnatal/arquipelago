@@ -3070,3 +3070,75 @@ Nada alem do que o disparo nomeou. Nao toquei em `manifest.json`, em `dados/*.js
 `ARQUIPELAGO.md`, em `foco.md`, em `ESTADO.md` de ilha nenhuma alem da robometria, nem em cabecalho de
 estado, `bloco_atual` ou fila de ilha nenhuma. Nao reservei ilha, nao executei bloco, nao publiquei, nao
 acionei Sync. `dados/despachos.md` segue intocado, pelo motivo medido la em cima.
+
+---
+
+## Disparo de 28/09/2026, 05h52 BRT (08h52 UTC) — Pente Fino, PARTE 3 de 3: a SUBSTITUICAO 1 reenviada
+
+Instrucao recebida pelo payload do disparo: Pente Fino, auditoria semanal de coerencia do contrato. Assunto
+do Arquipelago (`dados/despachos.md`, bloco do item 2 da robometria) — checagem de assunto passou.
+
+Este disparo existe porque na PARTE 2 a SUBSTITUICAO 1 foi corretamente PULADA: o trecho A vinha com uma
+linha em branco no fim que nao existe no arquivo, entao deu ocorrencias=0 e a regra do proprio disparo
+mandou pular. Aqui o trecho A veio medido — uma linha so, a ULTIMA do arquivo.
+
+### Medicao do trecho A ANTES de aplicar
+
+```
+wc -l dados/despachos.md                                            = 639
+grep -c 'trabalho que existe e faz o prazo parecer recuperável por esforço\.'  = 1
+sed -n '639p' dados/despachos.md                                    = trabalho que existe e faz o prazo parecer recuperável por esforço.
+od -c do fim do arquivo                                             = ...  e s f o r 303 247 o . \n
+```
+
+Confere com o que a instrucao afirmou: 639 linhas, 1 ocorrencia, e o trecho A e de fato a ultima linha, com
+um `\n` final e nenhuma linha em branco depois. Por isso a substituicao pos-se aplicar desta vez.
+
+### git status --porcelain (antes do commit)
+
+```
+ M dados/despachos.md
+```
+
+### git diff --stat (antes do commit)
+
+```
+ dados/despachos.md | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+```
+
+### Commit que foi ao main
+
+```
+91878beef00176912b90f11a862580eff8ea41bf
+pente fino: a linha de fechamento que faltava em dados/despachos.md
+```
+
+Push direto: `git push origin HEAD:main` → `ef1e727..91878be  HEAD -> main`, aceito na primeira tentativa,
+sem rebase e sem force. Confirmado depois com `git fetch origin main && git log -1 origin/main`, que mostra
+este hash e este unico arquivo. Nenhum passo falhou.
+
+### Contagem, conferida RELENDO o arquivo depois de gravar
+
+```
+wc -l dados/despachos.md                                             = 654   (era 639, +15)
+git show -U0 91878be -- dados/despachos.md | grep -c '^+[^+]'        = 14
+grep -c '^\*\*FECHADO — linha escrita pelo Pente Fino em 28/09/2026' = 1
+```
+
+Os `14` e nao `15` nao sao substituicao incompleta: das 15 linhas inseridas, uma e a linha EM BRANCO que
+separa o paragrafo novo da linha antiga, e o padrao `^+[^+]` exige um caractere depois do `+`, entao a linha
+em branco do diff (um `+` solitario) nao casa. 14 linhas de texto + 1 em branco = as 15 insercoes do
+`--stat`. O bloco do item 2, que estava sob `## FECHADOS` afirmando em tempo presente que nenhuma execucao
+o move, agora carrega a linha de fechamento com data e justificativa, como manda a regra do topo do arquivo.
+
+### O que este disparo NAO fez
+
+Nada alem do que a instrucao nomeou. Um unico arquivo de trabalho tocado, `dados/despachos.md`, mais este
+`MAOS-LOG.md`, que e a excecao obrigatoria. Nao reformatei nada, nao "melhorei" texto nenhum, nao acrescentei
+linha que nao estava no trecho B. Nao toquei em `ARQUIPELAGO.md`, `foco.md`, `manifest.json`, `dados/*.json`,
+nem em `ESTADO.md`/`PROMPT.md` de ilha nenhuma — as referencias a `ilhas/robometria/PROMPT.md` e
+`ilhas/robometria/ESTADO.md` dentro do trecho B sao citacao de evidencia, nao edicao daqueles arquivos. Nao
+reservei ilha, nao escrevi `executando_desde`, nao executei bloco de fila, nao publiquei, nao marquei
+`publicar: true`, nao acionei Sync, nao verifiquei site, nao criei conta. Nao li `ARQUIPELAGO.md` para
+decidir nada: a decisao veio na instrucao.
