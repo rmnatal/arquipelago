@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-28T10:16Z
-executando_desde: 2026-09-28T11:02Z
+executando_desde: 2026-09-28T11:06Z
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
   A CATEGORIA BASE DECIDE O CAMPO, E A DECISAO ACHA A FAIXA DESCOBERTA DENTRO DO PROPRIO VOCABULARIO.
@@ -74,6 +74,14 @@ bloco_atual: |
   Personalizada do ambiente (20.1), que sobe o banco inteiro de nivel 3 para nivel 1 e resolve a coleta
   da base junto; (4) NOVO — decidir os dois valores novos de vocabularios.base (ceramica_crua_barro e
   isopor_eps), DEPOIS da leitura de 30/09, porque a mudanca toca a melhor pagina da ilha.
+  DE PASSAGEM, UMA MEDICAO QUE DESMENTE UMA INSTRUCAO DO PROPRIO REPOSITORIO: o item 4 da fila diz que a
+  linha da peca no ARVORE.md e 'conserto de TESTE, nao de documento'. Medido com a bancada servindo a peca
+  de verdade: o mapa ganha a chave `quadro-flores-do-campo` — SLUG NU, nivel 2, mae loja — e NAO
+  `loja/quadro-flores-do-campo`. Toda outra entrada de nivel 2 ou 3 e chaveada pelo CAMINHO INTEIRO; a peca
+  e a unica pelo slug nu, porque o filtro cdm_arvore da Loja escreve $mapa[$peca->post_name]. Na tela
+  funciona (quem pede a trilha da peca passa o post_name); o que nao funciona e escrever a peca numa tabela
+  LIDA POR CAMINHO. Isso deixa de ser conserto e vira DECISAO, e as duas saidas mexem em coisa que esta
+  servindo — nao foi executado, e esta escrito na secao 5 do ARVORE.md.
   PROXIMO PASSO: a categoria APOIO, a ultima das cinco e a unica ainda sem decisao de campo nenhuma — e
   a de menor risco de egresso, porque espatula, oculos e luva sao EPI e ferramenta do mesmo terreno da
   alicate, que saiu de zero por busca. A base espera a decisao do vocabulario e o egresso de fabricante,

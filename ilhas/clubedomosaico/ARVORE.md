@@ -333,6 +333,26 @@ artesã já marca o termo no ateliê.
 
 **O QUE FALTA PARA A LINHA DA PEÇA ENTRAR, medido em 14/09/2026 às 21h17Z e escrito aqui para a próxima execução não redescobrir:** não é escrever a linha — é o **portão** não conseguir vê-la. `cdm_casca_arvore()` é um mapa por requisição, e a peça entra nele pelo filtro `cdm_arvore` do snippet da Loja **só quando ela está sendo servida** (decisão declarada lá, para a lista de irmãs de `/loja/` não encher de peça). O `teste-casca.php` monta o mapa fora de uma requisição de peça, então a linha da tabela apontaria para uma página que o mapa não tem naquele instante, e o portão reprovaria — corretamente. O conserto é no TESTE, não na tabela: ele precisa fabricar a situação "uma peça sendo servida" — e a bancada já sabe fazer isso (`cdm_teste_peca_de_mentira()`, `cdm_teste_pagina_peca()`), é a mesma técnica das bordas fabricadas da seção 6 deste arquivo. Quem fizer isso acrescenta a linha `/loja/quadro-flores-do-campo/` · nível 2 · mãe `/loja/` no mesmo commit.
 
+**MEDIDO EM 28/09/2026 às 11h0xZ, E O PARÁGRAFO ACIMA ESTÁ INCOMPLETO: O CONSERTO NÃO É SÓ NO TESTE.** A frase
+*"o conserto é no TESTE, não na tabela"* supõe que, fabricada a situação "uma peça sendo servida", a linha
+`/loja/quadro-flores-do-campo/` bateria com o código. **Não bate, e a razão não é a requisição — é o FORMATO DA
+CHAVE.** Medido com a bancada, fora de qualquer bloco, servindo a peça de verdade: o mapa ganha a chave
+**`quadro-flores-do-campo`** — nível 2, mãe `loja` —, e **não** `loja/quadro-flores-do-campo`. Toda outra
+entrada de nível 2 ou 3 do mapa é chaveada pelo **caminho inteiro** (`materiais/como-sabemos`,
+`materiais/qual-cola-usar-no-mosaico`); a peça é a única chaveada pelo **slug nu**, porque o filtro `cdm_arvore`
+do snippet da Loja escreve `$mapa[ $peca->post_name ]`.
+
+Na tela isso **funciona**, e por isso ninguém viu: quem pede a trilha da peça passa `$peca->post_name`, e
+`cdm_casca_degraus()` acha a chave e sobe para `loja`. O que não funciona é **escrever a peça numa tabela que é
+lida por caminho** — e o portão reprovaria com razão, de novo, agora pelo outro motivo.
+
+**Então o próximo bloco que pegar isto tem uma DECISÃO pela frente, não um conserto:** ou o filtro da Loja passa
+a chavear por `CDM_LOJA_BASE . '/' . $slug` (e aí quem pede a trilha da peça tem de pedir pelo caminho inteiro —
+é código de snippet que serve uma página **no ar**, `/loja/quadro-flores-do-campo/`, com peça publicada por uma
+pessoa de verdade), ou a tabela declara a exceção com todas as letras e o portão passa a admiti-la. **Escolher
+entre duas opções defensáveis é da Fundação, não da bancada** (19.2) — e as duas mexem em coisa que está
+servindo. Fica medido aqui para a próxima execução não redescobrir, que é o que esta seção existe para evitar.
+
 **Nenhuma página mudou de endereço neste bloco, e nenhuma precisou mudar** — as três seções já eram nível 1, a única página de nível 2 já nascera com mãe em 1.2.0, e as quatro da raiz são as que a 16.1 admite ali. Por isso este bloco não tem 301 nenhum e o sitemap não muda: a árvore desta ilha estava certa na estrutura e faltava ficar **visível** (breadcrumb, schema, cluster), que é o que a 16.3 e a 16.4 pedem.
 
 ---

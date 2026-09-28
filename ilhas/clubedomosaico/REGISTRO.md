@@ -4806,6 +4806,24 @@ verificações, `teste-f2.php` 114 afirmações, `teste-f1.php` 24 estados com p
 verificações, `mutacoes-base.py` 20 de 20. **Nenhuma URL nova: as 17 continuam 17**, a semana da 21.4 continua
 onde estava, e **não houve Sync** — nada do que este bloco mexeu é conteúdo publicável (seção 4).
 
+## DE PASSAGEM, UMA MEDIÇÃO QUE DESMENTE UMA INSTRUÇÃO DO PRÓPRIO REPOSITÓRIO (item 4 da fila)
+
+O item 4 da fila diz que a linha da peça no `ARVORE.md` é *"conserto de TESTE, não de documento"*, e a seção 5
+daquele arquivo explica por quê: o mapa é por requisição e a peça só entra nele quando está sendo servida.
+**Medido com a bancada nesta execução, servindo a peça de verdade: a explicação está certa e a conclusão está
+incompleta.** O mapa ganha a chave **`quadro-flores-do-campo`** — slug nu, nível 2, mãe `loja` —, e **não**
+`loja/quadro-flores-do-campo`. Toda outra entrada de nível 2 ou 3 é chaveada pelo **caminho inteiro**; a peça é a
+única chaveada pelo slug nu, porque o filtro `cdm_arvore` da Loja escreve `$mapa[ $peca->post_name ]`. Na tela
+funciona, e é por isso que ninguém viu: quem pede a trilha da peça passa o `post_name`. O que não funciona é
+escrever a peça numa tabela que é **lida por caminho**.
+
+**Isso deixa de ser conserto e vira decisão** — ou o filtro passa a chavear pelo caminho (e é código de snippet
+que serve `/loja/quadro-flores-do-campo/`, página **no ar**, com peça publicada por uma pessoa de verdade), ou a
+tabela declara a exceção e o portão passa a admiti-la. Escolher entre duas opções defensáveis não é da bancada
+(19.2), e as duas mexem em coisa que está servindo. **Não foi executado nesta passada**, e está escrito na seção
+5 do `ARVORE.md` para a próxima execução não redescobrir. `teste-casca.php` continua em 555 verificações e
+`mutacoes-arvore.py` em 21 de 21 depois da nota.
+
 - **Próximo passo desbloqueado:** a categoria **`apoio`**, que é a última das cinco e a única que ainda não tem
   decisão de campo nenhuma — e ela é a de menor risco de egresso, porque espátula, óculos e luva são EPI e
   ferramenta com ficha de fabricante do mesmo terreno da alicate, que já saiu de zero por busca. A `base`
