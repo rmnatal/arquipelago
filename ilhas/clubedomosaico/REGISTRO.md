@@ -96,6 +96,19 @@ entrando servida ou não, e só a peça da tabela sendo atendida.
 **Bancadas:** `teste-casca` 569 (eram 563), `teste-loja` 208 (eram 196), e
 `leads`, `atelie`, `f1`, `f2`, `tecnicas`, `prestacao-rejunte` sem falha.
 
+**O DESEMBARQUE, e a régua que ele exigiu.** Revisão **47** no ar às 19h48Z, 14 aplicados; `/status`
+na 47 e a rota pública da loja servindo `versao_loja: 1.4.0`. **E o `conferir-no-ar.py` não media a
+trilha — nenhuma linha dele falava dela**, o que para este bloco seria conferir tudo menos o que
+mudou. Entraram três afirmações, medidas no HTML servido das 5 peças: a trilha existe (a chave nova
+não a apagou), ela é `Início › Loja › <nome da peça>` com o degrau atual sem link e com
+`aria-current`, e o `BreadcrumbList` sobe por `/loja/` com a numeração sem buraco. **5 de 5 nas
+três.** O total foi de 501 para **504 afirmações, 0 falha**.
+
+*(O Sync leu a revisão 46 em três disparos seguidos antes de pegar a 47: é o cache de borda do
+`raw.githubusercontent.com`, que serviu 47 para esta nuvem e 46 para o servidor do site por alguns
+minutos. Repetido até passar, como a 20.2 manda — não é bloqueio, e fica registrado porque a próxima
+execução que vir "revisão anterior" logo depois de empurrar vai querer saber que isso é esperado.)*
+
 **Uma afirmação que escrevi e apaguei no mesmo bloco, registrada porque o erro é
 da família que esta ilha mais paga:** a primeira versão da régua de colisão do
 `teste-loja.php` terminava em `|| true`. Ela passava sempre e não media nada —
