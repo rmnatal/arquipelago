@@ -2827,3 +2827,77 @@ Arquivo `ilhas/clubedomosaico/dados/search-console-2026-09-23.md` depois de grav
 ```
 
 Nenhum outro arquivo do repositorio foi tocado neste disparo, alem deste log.
+
+---
+
+## Disparo de 28/09/2026, 05h47 BRT (08h47 UTC) — Pente Fino parte 1 de 2: cria `AUDITORIA-PENTE-FINO-2026-09-28.md` na raiz
+
+Assunto conferido antes do `git fetch`: Arquipelago, repositorio `rmnatal/arquipelago`, auditoria semanal de
+coerencia do contrato (Pente Fino). Nao e assunto de outro projeto — segue.
+
+Instrucao: clonar o `main` do momento, CRIAR `AUDITORIA-PENTE-FINO-2026-09-28.md` na raiz com o conteudo
+verbatim do disparo (da linha `# AUDITORIA PENTE FINO — 28/09/2026` ao fim), nenhuma outra mudanca, commit
+unico com a mensagem `pente fino: auditoria de coerencia do contrato`, push em `HEAD:main`, e esta secao de log.
+As 14 substituicoes nos arquivos de ilha nao entram aqui: sao do disparo irmao (parte 2 de 2).
+
+Motivo do disparo, como veio escrito: o ambiente do Pente Fino de hoje conseguiu clonar e ler o repositorio,
+mas o push para o `main` foi recusado tres vezes pelo proxy de git com `access denied ... rmnatal/arquipelago is
+not in this session's authorized repository set` (HTTP 403) — autorizacao, nao conflito de rebase. Nenhum force
+push foi tentado la, e nenhum aqui.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de
+`82c1ff7558b5a115970f2c1400cc41b355b950c9` (25/09/2026 20h56Z, `clubedomosaico: fecha a execucao das 19h16Z —
+registro, estado e a 7b-ter do ARVORE`).
+
+Sobre a indentacao: no envelope do disparo TODAS as linhas chegaram com o mesmo prefixo de 4 espacos, inclusive
+as linhas de instrucao acima da linha de corte. Esse prefixo uniforme e do envelope, nao do arquivo — mantido,
+ele faria o Markdown inteiro virar um bloco de codigo. O conteudo foi gravado sem esse prefixo de envelope e
+sem nenhuma outra mudanca: nada reformatado, nada reindentado, nada traduzido, nenhuma linha acrescentada.
+
+`git status --porcelain` antes do `git add`:
+
+```
+?? AUDITORIA-PENTE-FINO-2026-09-28.md
+```
+
+`git diff --stat` (contra `82c1ff7`, com o arquivo no index):
+
+```
+ AUDITORIA-PENTE-FINO-2026-09-28.md | 355 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 355 insertions(+)
+```
+
+Commit que foi ao `main`:
+
+```
+c25e5805caad97b5e6dc4bfe5007657593f221d6
+pente fino: auditoria de coerencia do contrato
+```
+
+Push direto em `HEAD:main`, na primeira tentativa, sem rebase e sem force: `82c1ff7..c25e580`. O 403 de
+autorizacao que barrou o ambiente do Pente Fino nao apareceu aqui.
+
+Confirmacao em `origin/main` DEPOIS do push, por `git fetch origin main && git log -1 origin/main`:
+
+```
+c25e5805caad97b5e6dc4bfe5007657593f221d6  2026-09-28 08:47:18 +0000
+pente fino: auditoria de coerencia do contrato
+
+git ls-tree --name-only origin/main -- AUDITORIA-PENTE-FINO-2026-09-28.md
+AUDITORIA-PENTE-FINO-2026-09-28.md
+```
+
+Contagem, conferida relendo o arquivo DEPOIS de gravar (nao pelo que eu acho que escrevi):
+
+```
+Arquivo `AUDITORIA-PENTE-FINO-2026-09-28.md` relido depois de gravar:
+  355 linhas no total, 284 com texto e 71 em branco, 4.532 palavras, 28.020 bytes, termina com newline.
+  7 secoes `##` e 18 subsecoes `###`.
+  Linha 1 = `# AUDITORIA PENTE FINO — 28/09/2026`, a primeira linha pedida.
+  Ultima linha = `> ilha apontando para ela.`, o fim do disparo.
+  As 355 linhas batem com o `1 file changed, 355 insertions(+)` do diff.
+```
+
+Nenhum outro arquivo do repositorio foi tocado neste disparo, alem deste log: nao mexi em arquivo de ilha, em
+`ARQUIPELAGO.md`, em `foco.md`, em cabecalho de `ESTADO.md` nem em fila de ilha nenhuma. As 14 substituicoes
+ficam para o disparo irmao.
