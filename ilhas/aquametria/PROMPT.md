@@ -218,6 +218,13 @@ Está FORA, e continua um bloco por execução: leva de malha, página nova de q
 
 ## FILA DE BLOCOS — reordenada em 09/09/2026 pela meta de tráfego
 
+> **PONTEIRO DO PENTE FINO — 28/09/2026: ESTA ILHA NÃO ESTÁ MAIS EM FOCO.** `foco.md` na raiz nomeia a
+> **clubedomosaico** desde **24/09/2026**, por decisão escrita do Raphael, e a própria `foco.md` registra que
+> a aquametria esteve em foco de 21/09 a 24/09. O parágrafo abaixo descreve 21/09 e continua verdadeiro como
+> registro daquela data — **não como estado de hoje**. Pela 1.2, esta ilha está em **modo de medição** (1.2-b.1):
+> a série semanal continua crescendo e nenhum bloco de construção nasce aqui enquanto `foco.md` não mudar.
+> *(A execução de 24/09 corrigiu o aviso de foco do `PROMPT.md` da clubedomosaico e não releu o das irmãs.)*
+>
 > **O FOCO VOLTOU PARA CÁ EM 21/09/2026, E O MUTIRÃO CONTINUA DESLIGADO — releitura feita, não inércia.**
 > O modo foi ligado em 09/09 porque o Raphael queria a ilha fechada o quanto antes; em 16/09 ele deu a mesma
 > ordem para a robometria e esta ilha saiu do foco. Em 21/09 o foco voltou (`foco.md`: a Aquametria é a única

@@ -65,6 +65,13 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 **A ilha está FORA DO FOCO** (`foco.md` nomeia a aquametria desde 21/09), então pela 1.2 nada aqui fura a fila: **despacho NORMAL de ilha fora do foco espera.** Este despacho existe porque a 1.2-b.1 manda a medição continuar em todas as ilhas, e porque o que a medição achou muda a conversa sobre a ordem do foco.
 
+> **PONTEIRO DO PENTE FINO — 28/09/2026: O PARÁGRAFO ACIMA É DE 23/09 E DEIXOU DE DESCREVER O MUNDO EM 24/09.**
+> Esta ilha **está em foco desde 24/09/2026** (`foco.md`, e o aviso no topo deste mesmo arquivo), justamente por
+> causa do número que este despacho mediu — a Proposta 2 abaixo está fechada com essa decisão. Lida ao pé da
+> letra, a frase "despacho NORMAL de ilha fora do foco espera" manda **adiar** os itens abertos da ilha que hoje
+> recebe todas as execuções. **Não espera: esta é a ilha em foco, e o que sobra deste despacho entra na fila
+> normalmente, atrás do despacho do Raphael de 24/09 (18.1).**
+
 **O NÚMERO QUE MANDA NESTE DESPACHO:** em 15→21/09 esta ilha teve **30 impressões**, contra **4** da aquametria (que tem 48 URLs e está em foco) e **1** da robometria. **Três páginas na primeira página do Google** — 7,8 · 9,1 · 7,0 — e **zero clique**. A ilha não recebe execução desde **15/09** e não tem ronda técnica registrada em nenhuma data.
 
 **A DECISÃO DA RAMPA: MANTÉM.** `piso: abaixo` — 17 URLs de 40. Pela 21.8 a série não autoriza nem proíbe.
@@ -120,6 +127,13 @@ A Shopee junta os cinco `sub_id` com hífen. Os cinco campos deste clique são, 
 Contado no ar hoje: `wp-sitemap-posts-page-1.xml` tem **12** URLs e `wp-sitemap-posts-peca-1.xml` tem **5** — total **17**. É a seção 4 em ação: resumo velho lido como fato.
 
 **Pronto quando:** o cabeçalho do `ESTADO.md` trouxer `urls_publicadas: 17`, com a contagem refeita no sitemap no ar e registrada no `REGISTRO.md`.
+
+> **CUMPRIDO EM 24/09/2026 às 19h33Z, E O ITEM CONTINUAVA SEM A LINHA QUE OS DOIS IRMÃOS GANHARAM.** *(Fechado
+> pelo Pente Fino em 28/09/2026, pela 18.4, contra as duas evidências que já estavam no repositório: o cabeçalho
+> do `ESTADO.md` desta ilha traz `urls_publicadas: 17`, e o **BLOCO D** do despacho do Raphael de 24/09, neste
+> mesmo arquivo, registra a contagem refeita no `wp-sitemap.xml` no ar — 12 em `wp-sitemap-posts-page-1.xml` mais
+> 5 em `wp-sitemap-posts-peca-1.xml` — listada uma a uma no `REGISTRO.md`. Os itens 1 e 2 receberam nota de
+> estado e este não; item cumprido apresentado como aberto faz a execução seguinte refazer contagem.)*
 
 ### AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — na ordem de ROI
 
@@ -322,7 +336,12 @@ O que mede isso agora, e onde olhar se voltar: `ferramentas/teste-prestacao-reju
 
 Nada mais nesta ronda.
 
-### DESPACHO DO RAPHAEL — 24/09/2026 — ENTRADA NO FOCO: MEDIR ANTES DE CONSTRUIR
+## DESPACHO DO RAPHAEL — 24/09/2026 — ENTRADA NO FOCO: MEDIR ANTES DE CONSTRUIR
+
+*(Promovido de `###` para `##` pelo Pente Fino em 28/09/2026: este despacho nasceu como subseção do DESPACHO DA
+SENTINELA de 12/09, que está CUMPRIDO e termina com "Nada mais nesta ronda". Pela 18.1 o despacho do Raphael vem
+antes do da Sentinela, e o único despacho ABERTO do Raphael nesta ilha estava aninhado dentro de um fechado. Só o
+nível do título mudou — nenhuma linha de conteúdo foi movida nem reordenada.)*
 
 > **ESTADO DESTE DESPACHO EM 25/09/2026, 14h0xZ, pela 18.3 — FALTA SÓ O BLOCO A. OS BLOCOS 0, B, C e D SAÍRAM.**
 >
@@ -470,7 +489,7 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
 
 ## Específico desta ilha
 - O dado que é o produto da ilha: a **compatibilidade cola × base × ambiente** e a **quantidade por peça**. Errar aí faz a peça descolar ou faltar material — é a confiança que separa a ilha da lojinha.
-- Programas de afiliado: **Shopee** (conta única do Arquipélago; Sub_id 1 = `clubedomosaico`, Sub_id 2 = código da página: `F1`, `F2`, `G-PASTILHAS`, `G-ALICATES`, `G-COLAS`, `T-VASO`…) e **Mercado Livre** (etiqueta `clubedomosaico<codigo>`, tudo junto e em minúsculas: `clubedomosaicof1`, `clubedomosaicof2` — *a forma com hífen que ficava aqui é recusada pelo painel do ML, medido em 13/09/2026; ver seção 7 do `ARQUIPELAGO.md`. Corrigido pelo Pente Fino em 14/09/2026*). Amazon só com tráfego.
+- Programas de afiliado: **Shopee** (conta única do Arquipélago; Sub_id 1 = `clubedomosaico`, Sub_id 2 = código da página: `F1`, `F2`, `GUIA`, `GPASTILHAS`, `GALICATES`, `GCOLAS`, `TVASO`… — *a forma com hífen que ficava aqui (`G-PASTILHAS`, `G-ALICATES`, `G-COLAS`, `T-VASO`) é **recusada pela própria Shopee**: a seção 25.7 do `ARQUIPELAGO.md` mediu em 16/09/2026 que hífen e sublinhado dentro de um `sub_id` devolvem `[11001] Params Error : invalid sub id`, e esta mesma linha já tinha sido corrigida em 14/09 só na metade do Mercado Livre. O `GUIA` está aqui porque é o código que o banco desta ilha já usa em 13 registros de alicate. Corrigido pelo Pente Fino em 28/09/2026*) e **Mercado Livre** (etiqueta `clubedomosaico<codigo>`, tudo junto e em minúsculas: `clubedomosaicof1`, `clubedomosaicof2` — *a forma com hífen que ficava aqui é recusada pelo painel do ML, medido em 13/09/2026; ver seção 7 do `ARQUIPELAGO.md`. Corrigido pelo Pente Fino em 14/09/2026*). Amazon só com tráfego.
 - Enquanto falta infraestrutura: blocos 1, 2 e 3 não dependem de site. Não invente peça para preencher a Loja.
 
 ## DESPACHO DO RAPHAEL — 12/09/2026, 18h20 BRT — O ATELIÊ TEM DE ESTAR DE PÉ AMANHÃ

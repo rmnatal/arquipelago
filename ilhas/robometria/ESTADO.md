@@ -545,6 +545,12 @@ possível buscar". Isso é propriedade da conta do Raphael e exige o navegador d
 ou uma credencial de conta de serviço que este ambiente ainda não tem. Todo o
 resto do item foi cumprido e medido.
 
+*(PONTEIRO DO PENTE FINO, 28/09/2026 — FECHADO E NÃO REGISTRADO AQUI. O item 4 da
+DEFINIÇÃO DE PRONTA do `PROMPT.md` desta ilha diz "FECHADO em 16/09/2026:
+processado, última leitura 15/09, 9 páginas encontradas", e a credencial de conta
+de serviço passou a existir: `dados/search-console-2026-09-23.md`, nesta mesma
+pasta, é leitura da NUVEM. Esta metade humana não está mais aberta.)*
+
 **O trabalho desbloqueado, em ordem:**
 
 1. **Bloco 5 — o artigo-âncora pareado com a R1.** A fila manda o artigo nascer
@@ -564,6 +570,14 @@ resto do item foi cumprido e medido.
 **Nenhuma leva de malha (bloco 5b) antes de o Search Console voltar a buscar o
 sitemap.** A rampa da seção 14 é inexecutável sem medição, e publicar página no
 escuro é exatamente o que desindexa domínio novo.
+
+*(PONTEIRO DO PENTE FINO, 28/09/2026 — ESTA LINHA É DE 11/09 E JÁ NÃO DESCREVE O
+MUNDO. O sitemap foi **aceito em 16/09/2026** — "processado, última leitura 15/09,
+9 páginas encontradas", item 4 da DEFINIÇÃO DE PRONTA no `PROMPT.md` — e a
+**primeira leva de malha saiu em 21/09/2026 às 19h54Z**, cinco URLs no ar, o que o
+próprio `bloco_atual` do cabeçalho deste arquivo registra. Quem impede leva nova
+aqui hoje é o despacho do Raphael de 21/09, que põe a ilha em modo de medição sem
+construção — não o Search Console.)*
 
 ### Dois achados desta execução que valem para a próxima
 

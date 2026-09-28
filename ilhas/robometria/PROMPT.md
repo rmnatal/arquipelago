@@ -504,6 +504,7 @@ rótulos do `VOZ.md` só entram quando as seções existirem como página.
   metade humana do despacho da Sentinela de 10/09, logo abaixo, e é do Raphael.
   Quando destravar, o nível 1 e o nível 2 da trilha e do `BreadcrumbList` viram
   link sozinhos: quem resolve o endereço é `robometria_casca_url_se_existir()`.
+  *(PONTEIRO DO PENTE FINO, 28/09/2026 — ESTA PONTA É DE 11/09 E JÁ NÃO DESCREVE O MUNDO. O item 4 da DEFINIÇÃO DE PRONTA, neste mesmo arquivo, registra o sitemap **FECHADO em 16/09/2026** — "processado, última leitura 15/09, 9 páginas encontradas" —, e a **primeira leva de malha saiu em 21/09/2026 às 19h54Z**, cinco URLs no ar e conferidas. Quem hoje impede leva nova aqui não é o sitemap: é o despacho do Raphael de 21/09, que põe a ilha em modo de medição sem construção.)*
 - **a frase de mãe dos dois guias** (16.4b), que só nasce junto com `/guias/`: hoje
   ela apontaria para página inexistente, e o portão cobra a ausência dela
   justamente para ninguém fechar isso com um endereço inventado.
@@ -668,6 +669,14 @@ Fechado pela execução das 15h17Z, item por item, e o que ele achou pelo caminh
 ## DEFINIÇÃO DE PRONTA — PRAZO 23/09/2026 (dado pelo Raphael em 16/09/2026)
 
 [stated] Ele disse: "robometria deve estar pronta em no maximo 7 dias". Esta ilha é a única em foco (`foco.md`), então recebe todas as execuções da Fundação e o teto semanal inteiro de geração de link.
+
+> **PONTEIRO DO PENTE FINO — 28/09/2026: A SEGUNDA FRASE ACIMA É DE 16/09 E DEIXOU DE VALER EM 21/09.** O despacho
+> do Raphael de **21/09/2026, 20h46**, neste mesmo arquivo, tira esta ilha do foco e a põe em **modo de medição**
+> (1.2-b.1) — *"nenhuma execução da Fundação abre bloco de construção aqui"* —, e desde **24/09/2026** o `foco.md`
+> nomeia a **clubedomosaico**. Lida ao pé da letra, a frase acima manda a Fundação dar a esta ilha **todas** as
+> execuções e o teto inteiro de geração de link, que é o contrário do que o despacho de 21/09 decidiu. **Vale o
+> despacho de 21/09.** O prazo e os cinco itens da DEFINIÇÃO DE PRONTA abaixo continuam valendo como registro do
+> que foi fechado em 20/09.
 
 **Esta seção manda sobre a FILA DE BLOCOS.** A fila abaixo é aberta por natureza — "expandir o banco" não tem fim. A partir de agora, bloco que não fecha um dos cinco itens desta lista NÃO é executado antes dos que fecham. Quando os cinco estiverem fechados, a ilha é declarada PRONTA no `ESTADO.md` (`estado: viva`) e a fila volta a valer normalmente.
 
@@ -861,6 +870,11 @@ esses PDFs sobem o banco inteiro da marca de nível 3 para nível 2 de uma vez, 
 dos modelos que a loja declara só como "três modos de sucção" **e**, pela varredura da
 R1, são a chance de tirar W400, W1000 e W310 do vazio duplo. Toda a ilha está em nível 3
 ou 4 — nenhuma fonte de nível 2 ainda.
+*(PONTEIRO DO PENTE FINO, 28/09/2026: "hoje" aqui é **09/09/2026**, data em que esta linha foi escrita.
+**ESSE DIA CHEGOU.** A medição de 17/09/2026 às 12h35Z, neste mesmo arquivo, registra
+`mais.conteudo.wap.ind.br  200  aberto` entre os cinco caminhos liberados pelo Raphael, e conclui com todas as
+letras: "OS CINCO CAMINHOS ESTAO ABERTOS." Motivo velho manda não tentar — é a 25.4-b.3. O que impede a coleta
+hoje é o modo de medição do despacho de 21/09, não a rede.)*
 (d) **pares (minutos, m²): a lacuna mudou de natureza e NÃO é mais coleta.** Ficou medido
 que Xiaomi, WAP, Multi e Positivo **não declaram m² em canal nenhum** — só a Electrolux
 declara. Não adianta procurar mais: o número não está publicado. A
@@ -1198,7 +1212,7 @@ qualquer página nova:
   decide primeiro se o tipo nasce, e a régua dessa decisão é a 14.3 (faixa
   descoberta, não número redondo). Na mesma varredura apareceu também um **ERB40**
   com Kit Performance próprio, e ele não está em `modelos-robo.json`.
-  **A leva de malha (5b) continua travada** pela metade humana do despacho: o sitemap precisa ser reenviado no Search Console, e isso exige o navegador do Raphael.
+  **A leva de malha (5b) continua travada** pela metade humana do despacho: o sitemap precisa ser reenviado no Search Console, e isso exige o navegador do Raphael. *(PONTEIRO DO PENTE FINO, 28/09/2026 — ESTA PONTA É DE 11/09 E JÁ NÃO DESCREVE O MUNDO. O item 4 da DEFINIÇÃO DE PRONTA, neste mesmo arquivo, registra o sitemap **FECHADO em 16/09/2026** — "processado, última leitura 15/09, 9 páginas encontradas" —, e a **primeira leva de malha saiu em 21/09/2026 às 19h54Z**, cinco URLs no ar e conferidas. Quem hoje impede leva nova aqui não é o sitemap: é o despacho do Raphael de 21/09, que põe a ilha em modo de medição sem construção.)*
 - **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `teste-casca.php`, `teste-r1.php`, `teste-a1.php`, `teste-r2.php`, `teste-a2.php`, `teste-acentuacao.php`, `teste-arvore.php` e `teste-voz.php`, todos com a raiz da ilha como argumento (`php ferramentas/teste-casca.php .`). **A contagem de afirmações de cada um NÃO está escrita aqui de propósito** — em 13/09/2026 eram 902 no total, e a lista que ficava nesta linha já tinha cinco números vencidos ao mesmo tempo. Quem quiser o número de hoje roda e lê a última linha; quem escreve número derivado em prosa assina um cheque contra o banco de amanhã, e esta ilha já pagou esse cheque dentro da própria bancada (ver `mutacoes-varredura-por-modelo.py`). Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — **e `python3 ferramentas/conferir-kits-no-ar.py` (71) mede a ENTRADA da R1 no ar, 14 estados de modelo × tipo, porque o primeiro mede o caso-âncora e bloco que muda resposta de consulta não aparece lá** — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — um estado por página fixa, um por modelo publicável do banco, um por tipo de peça e as bordas da R2, um processo por estado (eram 72 quando isto nasceu; hoje são quantos o banco pedir, e o próprio portão cobra um estado para CADA modelo, por id), via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
 - **A PORTA DE COMPRA TEM UM DONO SÓ, e ele é a casca.** `robometria_casca_porta_de_compra`, `robometria_casca_rotulo_da_loja`, `robometria_casca_fonte_link` e `robometria_casca_css_vitrine` valem para toda página desta ilha que recomenda item; a R1 delega para elas. Página nova que recomenda produto **chama estas funções**, nunca escreve as suas. Os pesos visuais do botão de compra e do link de procedência são regra do Arquipélago (seção 7), não estilo local: com uma cópia por página, bastaria alguém ajustar uma delas para a ilha voltar — numa página só, e sem ninguém notar — ao defeito de 10/09/2026.
 - **Página nova entra no catálogo da casca pelo FILTRO dela**, `robometria_ferramentas` para ferramenta e `robometria_artigos` para artigo. A casca nunca ganha uma cópia da página dentro; é assim que a home e o hub listam qualquer coisa nova sem serem editados de novo, e é o que garante as duas listagens que a seção 9 exige.
