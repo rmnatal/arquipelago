@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 4,
+  "versao_esquema": 5,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -232,6 +232,15 @@
       "depois_de_rejuntar",
       "ambos",
       "nao_declarado"
+    ],
+    "forma_da_base": [
+      "cilindro",
+      "conico",
+      "placa",
+      "disco",
+      "esfera",
+      "moldura",
+      "nao_declarada"
     ]
   },
   "mapa_de_termos_do_fabricante": {
@@ -708,6 +717,73 @@
       }
     ]
   },
+  "ponte_do_tipo_para_o_vocabulario_base": {
+    "escrita_em": "2026-09-28",
+    "por_que_esta_secao_existe": "A categoria `base` e a unica do banco cujo PRODUTO E o proprio eixo pelo qual a F2 decide: cola e rejunte se escolhem POR base, e um vaso de barro ou um disco de MDF NAO se aplicam sobre nada — eles SAO a base. Antes de coletar um SKU sequer era preciso conferir uma coisa que ninguem tinha conferido: se os cinco tipos que `vocabularios.tipo_por_categoria.base` declara tem onde pousar nos nove valores de `vocabularios.base`. Nao tem. TRES dos cinco nao pousam, e o custo disso ja estava no banco antes desta secao existir — dois vernizes da Acrilex tem `isopor` e `gesso` DENTRO da frase literal do fabricante, e as duas palavras nao existem no vocabulario, entao a declaracao foi lida, classificada e descartada em silencio. Silencio de fabricante a ilha ja sabia ler (e o terceiro estado); declaracao de fabricante JOGADA FORA por falta de vocabulario era um buraco sem nome.",
+    "o_eixo": "`vocabularios.base` — os nove valores pelos quais a F2 escolhe cola e rejunte, e a primeira pergunta que a ferramenta faz a quem chega.",
+    "a_regra": "Todo valor de `vocabularios.tipo_por_categoria.base` declara AQUI onde pousa naquele eixo, em um dos tres estados abaixo, e nenhum fica calado. Isto e PORTAO, nao prosa: o `validar-banco.py` reprova tipo ausente, tipo a mais, estado fora da lista e estado sem o que ele exige.",
+    "os_tres_estados": {
+      "pousa": "O tipo corresponde a um ou mais valores de `vocabularios.base`. Exige `pousa_em` nao vazio, com todos os valores existindo no vocabulario, e `motivo`.",
+      "sem_valor_no_vocabulario": "O tipo e base de peca de mosaico de verdade e o vocabulario nao tem valor para ele. Exige `motivo`, `valor_proposto` (que NAO pode ja existir em `vocabularios.base`, senao o tipo pousaria) e `o_que_falta` — o que precisa acontecer para o valor nascer.",
+      "nao_e_material": "O tipo nao e um material e por isso nao pousa em eixo de material nenhum. Exige `motivo` e `onde_ele_e` — o lugar do arquipelago onde ele de fato mora."
+    },
+    "tipos": {
+      "mdf_cru": {
+        "estado": "pousa",
+        "pousa_em": [
+          "mdf_madeira"
+        ],
+        "motivo": "`mdf_madeira` e o valor do vocabulario e o mapa de termos ja traduz `MDF`, `madeira`, `compensado` e `madeira de alta, media e baixa densidade` para ele. A base mais comum do atelie pousa sem discussao."
+      },
+      "cimento": {
+        "estado": "pousa",
+        "pousa_em": [
+          "cimento_concreto"
+        ],
+        "motivo": "`cimento_concreto` e o valor, e o mapa traduz `cimento`, `concreto` e `superficies alcalinas` para ele. Vaso de cimento e tampo sao pecas do catalogo desta loja."
+      },
+      "ceramica_crua": {
+        "estado": "sem_valor_no_vocabulario",
+        "motivo": "O unico valor de ceramica no eixo e `ceramica_esmaltada_porcelana`, que e a ceramica VIDRADA do azulejo e do vaso esmaltado. Vaso de barro cru, terracota e cachepo nao esmaltado sao o contrario disso: absorvem agua e absorvem cola. A distincao NAO e teorica nesta ilha — ela ja esta escrita a mao, em 25/09/2026, na `observacao` do registro `acrilex-verniz-acrilico-brilhante` de `dados/materiais-acabamento.json`: 'Ceramica crua e ceramica esmaltada absorvem de maneira oposta, e o fabricante nao separa as duas'. Aquele registro resolveu o problema jogando a linha inteira para o lado do NAO nomeia; aqui ele aparece pelo que e, que e falta de valor.",
+        "valor_proposto": "ceramica_crua_barro",
+        "o_que_falta": "Decisao do Raphael, porque acrescentar valor a `vocabularios.base` muda a lista suspensa de `/materiais/qual-cola-usar-no-mosaico/`, que e a melhor pagina desta ilha (posicao 7,8) e esta dentro da janela de medicao do BLOCO A do despacho de 24/09. Ver `o_que_esta_ponte_NAO_executa_e_por_que`."
+      },
+      "isopor_estrutural": {
+        "estado": "sem_valor_no_vocabulario",
+        "motivo": "Nao ha valor nenhum de poliestireno expandido no eixo, e a base de isopor (esfera, letra, cone) e das mais vendidas do artesanato brasileiro. Ela e tambem a unica base do vocabulario que PROIBE uma familia inteira de cola por mecanismo, nao por marca: solvente derrete EPS.",
+        "valor_proposto": "isopor_eps",
+        "condicao_ja_escrita_no_mapa_de_termos": "poliestireno expandido",
+        "o_que_falta": "Mesma decisao da `ceramica_crua`, e com um agravante: a condicao ja estava escrita neste mesmo arquivo. A linha `poliestireno expandido` de `termos_que_nao_traduzem` diz, com todas as letras, 'se virar base (isopor estrutural), entra no vocabulario primeiro' — e `isopor_estrutural` JA ERA um dos cinco tipos de `tipo_por_categoria.base` quando ela foi escrita. A condicao estava cumprida no proprio arquivo que a escreveu, e ninguem tinha o que conferisse as duas linhas juntas. Agora tem: `condicionais_do_mapa_de_termos`, abaixo."
+      },
+      "moldura": {
+        "estado": "nao_e_material",
+        "motivo": "Moldura e FORMA, nao material: a mesma moldura existe em madeira, em MDF, em metal e em plastico, que sao quatro valores diferentes do eixo. Um tipo de base que pode pousar em quatro valores ao mesmo tempo nao esta descrevendo substrato nenhum — esta descrevendo geometria. E onde a geometria manda nesta ilha e a F1, nao a F2.",
+        "onde_ele_e": "A forma `moldura` da F1, com area = L x A - l x a (a formula esta em `as_formulas` de `dados/pecas-tipicas.json`). O material da moldura continua sendo perguntado pela F2 como qualquer outra base.",
+        "consequencia_para_a_coleta": "Registro de moldura nasce com o `substrato` apontando para o material DELA (mdf_madeira, metal...), nunca para um valor 'moldura' que nao existe e nao deve existir."
+      }
+    },
+    "condicionais_do_mapa_de_termos": {
+      "por_que_esta_lista_existe": "Duas linhas de `mapa_de_termos_do_fabricante.termos_que_nao_traduzem` nao recusam o termo para sempre: elas recusam SOB CONDICAO, com a frase 'entra no vocabulario primeiro'. Condicao escrita e nunca conferida e promessa, e uma delas ja estava cumprida no dia em que foi escrita. O `validar-banco.py` cobra que toda linha com aquela frase apareca aqui com a condicao medida.",
+      "linhas": [
+        {
+          "literal": "poliestireno expandido",
+          "condicao": "virar base (isopor estrutural)",
+          "condicao_cumprida": true,
+          "medida_em": "2026-09-28",
+          "por_onde": "`isopor_estrutural` esta em `vocabularios.tipo_por_categoria.base`, listado no estado `sem_valor_no_vocabulario` da ponte acima, com `valor_proposto` escrito."
+        },
+        {
+          "literal": "gesso",
+          "condicao": "aparecer como base de peca de mosaico no corpus",
+          "condicao_cumprida": false,
+          "medida_em": "2026-09-28",
+          "por_onde": "Gesso NAO esta em `tipo_por_categoria.base` e nao aparece em `dados/corpus-buscas.md` como base de peca. A palavra aparece no banco, mas do outro lado do balcao: e o fabricante que a escreve, na frase literal dos dois vernizes acrilicos da Acrilex, e la ela e substrato de PINTURA, nao base de mosaico. A condicao continua nao cumprida, e isto e o registro de que ela foi medida e nao de que foi esquecida."
+        }
+      ]
+    },
+    "o_que_esta_ponte_mediu_no_dia_em_que_nasceu": "Cinco tipos, DOIS pousam (mdf_cru, cimento), DOIS nao tem valor (ceramica_crua, isopor_estrutural) e UM nao e material (moldura). Dito de outro jeito: a categoria `base` tem 40% do proprio vocabulario respondivel pela ferramenta que decide por base. E a faixa descoberta da 14.3 encontrada pela terceira vez nesta ilha, e a primeira em que ela nao esta na frase do fabricante e sim NO NOSSO LADO: a alicate achou pela ESPESSURA, a acabamento achou pela SUPERFICIE, e esta achou pelo VOCABULARIO.",
+    "o_que_esta_ponte_NAO_executa_e_por_que": "Ela NAO acrescenta `ceramica_crua_barro` nem `isopor_eps` a `vocabularios.base`, e a razao nao e duvida: e a janela de medicao. Acrescentar valor ao eixo muda o que `/materiais/qual-cola-usar-no-mosaico/` SERVE — a lista suspensa ganha duas opcoes, a contagem de `cdm_f2_faixas_descobertas_html()` sai de 9x5x6 = 270 para 11x5x6 = 330 combinacoes, e as duas bases novas entram na frase 'Nao indicamos cola nenhuma, em lugar nenhum, para: ...', porque nenhum fabricante do banco as nomeia. Essa pagina esta na posicao 7,8 e e o objeto do BLOCO A do despacho do Raphael de 24/09, que ESPERA 30/09 exatamente para nao misturar duas causas na mesma janela. Mexer no corpo dela hoje misturaria tres. A decisao fica escrita, medida e pronta para sair inteira depois da leitura de 30/09."
+  },
   "regras_de_elegibilidade": {
     "descricao": "As cinco regras que transformam as declaracoes de MATERIAL na matriz da F2. Elas sao a secao 7 do ARQUIPELAGO.md escrita de forma executavel: ferramentas/validar-banco.py as roda, o snippet do bloco 4 as repete em PHP, e as duas implementacoes tem que dar o mesmo resultado.",
     "1_proibicao_vence_indicacao_dentro_do_mesmo_produto": "Quando o mesmo fabricante indica e proibe a mesma base, vale a proibicao. Caso real: o Silicone Acetico Tekbond indica 'aluminio comum e anodizado' (metal) e proibe 'metal corrosivel, zinco e chapa galvanizada' (metal) — o produto sai de metal. E a regra do conjunto MAIS ESTREITO da secao 10 do contrato: quem monta mosaico nao sabe se a chapa dela e galvanizada.",
@@ -780,6 +856,59 @@
     },
     "o_que_esta_categoria_NAO_pode_sustentar": "Nenhuma frase publicada pode dizer que um acabamento serve sobre uma superficie que a frase do fabricante nao nomeia. Vale o principio dos TRES ESTADOS do resto deste esquema: nomeado como indicado, nomeado como proibido, ou `nao_declarado` — e o terceiro se diz na tela, nao se cala.",
     "medido_no_dia_em_que_esta_secao_nasceu": "Os sete primeiros registros de `dados/materiais-acabamento.json`, de dois fabricantes: NENHUM nomeia vidro e NENHUM nomeia rejunte, que sao as duas superficies expostas de uma peca de mosaico pronta. E faixa descoberta da 14.3 encontrada pela SUPERFICIE, irma da que a categoria alicate encontrou pela ESPESSURA no mesmo dia."
+  },
+  "regras_da_categoria_base": {
+    "escrita_em": "2026-09-28",
+    "por_que_esta_secao_existe": "Em 25/09/2026 a `regras_da_categoria_acabamento` nasceu e fechou a propria frase dizendo '`base` e `apoio` continuam sem a sua'. Esta e a da `base`. Ela custou mais que a do acabamento por um motivo que so apareceu ao escreve-la: as outras seis categorias do banco sao coisas que se USAM SOBRE a base, e esta e a base. Por isso ela e a unica que, antes de decidir campo, precisou consertar o proprio eixo — ver `ponte_do_tipo_para_o_vocabulario_base`.",
+    "o_que_e_uma_base_nesta_ilha": "O objeto sobre o qual a peca e montada: o disco ou a bandeja de MDF cru, o vaso de barro, o vaso ou tampo de cimento, a esfera de isopor, a moldura. O que ela NAO e: cola (une tessela a base), rejunte (preenche a junta), acabamento (se passa sobre a peca pronta) e pastilha (e a tessela). Os cinco tipos do vocabulario sao `mdf_cru`, `ceramica_crua`, `cimento`, `isopor_estrutural` e `moldura`, e tres deles nao pousam no eixo da F2 — a ponte diz qual e por que.",
+    "a_matriz_base_x_ambiente_fica_VAZIA_e_o_motivo": "Pela terceira vez, e pela razao mais forte de todas. `declaracoes` e a matriz base x ambiente pela qual a F2 escolhe COLA e REJUNTE: `indicado_para` quer dizer 'este produto adere sobre estas superficies'. Uma base nao adere sobre nada — ela E a superficie. Um disco de MDF com `indicado_para: [mdf_madeira]` entraria na traducao do mapa de termos e a F2 passaria a oferecer MADEIRA como candidata a COLAR madeira. As mesmas seis listas nascem VAZIAS, com `motivo_declaracoes_vazias` escrito, como em pastilha (12/09), alicate (25/09) e acabamento (25/09). O que a base declara mora em `substrato`.",
+    "o_campo_novo_e_o_objeto_substrato": {
+      "nome": "substrato",
+      "obrigatorio_para": [
+        "base"
+      ],
+      "espelha": "O `corte` do alicate e a `protecao` do acabamento, e pelo mesmo motivo dos dois: a declaracao do fabricante e uma FRASE, e o que importa e o que ela nomeia e o que ela NAO nomeia do vocabulario desta ilha. A diferenca e o alvo: `corte` olha o que o alicate corta, `protecao` olha sobre o que o verniz se passa, e `substrato` olha o que o produto E.",
+      "subcampos": {
+        "literal_do_fabricante": "A frase do fabricante, na lingua dele, sem parafrase. Obrigatorio.",
+        "fonte_id": "Aponta para uma chave de `fontes`. Obrigatorio.",
+        "valor_do_vocabulario_base": "UM valor de `vocabularios.base`, ou a palavra `sem_valor_no_vocabulario`. Nao e lista: uma base e feita de um material so, e produto que o fabricante descreve com dois materiais e dois registros. Quando for `sem_valor_no_vocabulario`, o tipo do registro TEM de estar na ponte com esse mesmo estado — senao o registro estaria inventando um buraco que a ponte nao reconhece, ou escondendo um que ela reconhece.",
+        "motivo_sem_valor": "Obrigatorio quando `valor_do_vocabulario_base` e `sem_valor_no_vocabulario`.",
+        "trecho_que_declara_o_material": "Obrigatorio SEMPRE que `valor_do_vocabulario_base` nao e `sem_valor_no_vocabulario`, e tem de ser pedaco literal de `literal_do_fabricante`. Herdado inteiro da mutacao 05 de `mutacoes-acabamento.py`: sem isto, o material deduzido do nome comercial do produto ('disco MDF 20cm' -> mdf_madeira) passa com cara de declaracao do fabricante. Nome comercial nao e declaracao tecnica.",
+        "ambientes_do_vocabulario_que_a_frase_nomeia": "Lista, valores de `vocabularios.ambiente`. A base e a UNICA categoria cujo produto decide onde a peca pronta pode viver: MDF cru inchado nao volta, cimento vai para o sol e chuva. E a F2 ja pergunta o ambiente, entao esta e a metade da frase do fabricante que a ilha sabe usar.",
+        "ambientes_do_vocabulario_que_a_frase_NAO_nomeia": "Lista, o complemento da anterior dentro de `vocabularios.ambiente`. As duas juntas tem de cobrir o vocabulario inteiro: o que sobra e silencio NAO LIDO.",
+        "preparo_declarado": "O que o fabricante manda fazer na base antes de colar (selar, lixar, limpar), na palavra dele; `null` com motivo quando ele nao declara nada. E o campo que liga esta categoria a `acabamento`: o selador do banco tem `momento_de_uso: antes_de_colar` e e exatamente este preparo visto do outro lado.",
+        "observacao": "Onde mora o julgamento de quem escreveu, separado da frase do fabricante."
+      }
+    },
+    "as_propriedades_tem_NOME_FIXO_e_esta_e_a_lista": {
+      "por_que": "O mesmo motivo do acabamento, com um agravante proprio: aqui as propriedades sao MEDIDA, e medida com nome livre e o que faz um registro gravar `diametro_cm` e o seguinte `d_cm`, com a F1 lendo um e nao o outro.",
+      "formato": "O de sempre: {valor, unidade, fonte_id, declarado_como} quando ha valor; {valor: null, unidade, motivo} quando nao ha.",
+      "a_geometria_e_a_entrada_da_F1_e_por_isso_ela_tem_regra_propria": "A base e a unica categoria cujo produto declara, no anuncio ou na ficha, EXATAMENTE o que a F1 pergunta: forma e medidas. Isso e uma tentacao e um risco. A regra: medida colhida em anuncio de marketplace e NIVEL 6 pela escada de fontes, e nivel 6 sustenta 'apenas preco, unidade de venda, peso declarado no anuncio e imagem' — entao medida de anuncio NUNCA entra em formula publicada nem na tabela pre-renderizada da F1. Ela vive no registro, com o nivel a vista, e serve para dizer que tamanho existe no mercado, nao para calcular pastilha de ninguem.",
+      "nomes": {
+        "forma": "Um valor de `vocabularios.forma_da_base`, que e a lista de formas que a F1 calcula. `nao_declarada` quando o fabricante nao diz.",
+        "diametro_cm": "Diametro, cm. So em forma redonda (disco, cilindro, esfera, conico).",
+        "diametro_menor_cm": "O segundo diametro do conico, cm.",
+        "comprimento_cm": "O maior lado da placa ou da moldura, cm.",
+        "largura_cm": "O menor lado da placa ou da moldura, cm.",
+        "altura_cm": "Altura, cm. Cilindro, conico e moldura.",
+        "espessura_mm": "Espessura do painel ou da parede, mm.",
+        "vao_comprimento_cm": "O vao interno da moldura no maior lado, cm — o `l` da formula L x A - l x a de `dados/pecas-tipicas.json`.",
+        "vao_largura_cm": "O vao interno da moldura no menor lado, cm.",
+        "peso_g": "Peso declarado, g.",
+        "densidade_kg_m3": "Densidade declarada pelo fabricante do painel, kg/m3.",
+        "absorcao_declarada": "O que o fabricante declara sobre a base absorver agua (inchamento, absorcao em 24 h), na palavra dele. OBRIGATORIO em todo registro de base, mesmo (e principalmente) quando for null. A base absorver ou nao e o que decide a regra 6 da F2 — a condicao de superficie porosa do PL500 — e e o que separa `ceramica_crua` de `ceramica_esmaltada_porcelana`, que e a metade do achado da ponte. Campo ausente e pergunta que ninguem faz.",
+        "acabamento_de_fabrica": "Se a base ja vem selada, pintada ou crua, na palavra do fabricante. Base pintada tem restricao propria — `superficies pintadas` esta em `termos_que_nao_traduzem` justamente porque e estado da superficie, e aqui e onde esse estado pode ser declarado."
+      }
+    },
+    "o_que_esta_categoria_NAO_pode_sustentar": "Nenhuma frase publicada pode dizer que uma cola serve sobre uma base cujo tipo esta em `sem_valor_no_vocabulario` — nao por falta de fonte, mas porque a pergunta nao existe na ferramenta. Enquanto a ponte nao for executada, vaso de barro cru e esfera de isopor sao bases que esta ilha VENDE conteudo sobre e NAO RESPONDE, e isso se diz na tela. Vale tambem o principio dos TRES ESTADOS do resto do esquema.",
+    "o_que_falta_para_coletar_o_primeiro_SKU": {
+      "bloqueio": "Egresso da nuvem das rotinas.",
+      "medido_em": "2026-09-28, tres passadas",
+      "dominios_em_000": "dexco.com.br, duratex.com.br, guararapes.com.br, arauco.com.br, berneck.com.br, eternit.com.br, brasilit.com.br, termotecnica.ind.br, isoeste.com.br, leroymerlin.com.br — com clubedomosaico.com.br em 200 nas mesmas passadas, que e o que separa bloqueio de rede de intermitencia de tunel (secao 20.2 do ARQUIPELAGO.md).",
+      "por_que_isso_para_a_coleta_desta_categoria_e_nao_parou_a_do_acabamento": "A do acabamento tambem correu com os dominios em 000 e se sustentou na busca restrita ao dominio, que devolve a frase do fabricante sem abrir a pagina (nivel 3). Nesta execucao o canal de busca disponivel devolveu RESUMO e TRADUCAO das paginas de painel de MDF, nao a frase do fabricante — e `literal_do_fabricante` e a viga de todo este esquema. Gravar parafrase de resumo naquele campo seria a familia do numero de tela digitado: parece conferido. Entao a decisao de campo sai inteira aqui, com portao e bateria de mutacao, e o primeiro SKU nasce na execucao em que a frase do fabricante puder ser citada.",
+      "o_que_destrava": "O item ja escrito no ESTADO desta ilha: acrescentar dominio de fabricante a rede Personalizada do ambiente (20.1). Ele sobe o banco inteiro de nivel 3 para nivel 1 e resolve esta categoria junto."
+    },
+    "a_trava_que_a_bateria_de_mutacao_achou_antes_do_commit": "A mutacao 05 de `ferramentas/mutacoes-base.py` PASSOU na primeira rodada, e ela e o defeito mais caro desta categoria: o vaso de barro cru gravado como `ceramica_esmaltada_porcelana`. O portao so consultava a ponte quando o REGISTRO declarava `sem_valor_no_vocabulario` — e o caminho caro e o contrario, o registro gravando um valor de verdade num tipo que a ponte diz que NAO POUSA. Esse defeito nao deixa rastro: some a faixa descoberta e nasce, no lugar dela, uma recomendacao de cola sobre uma superficie que absorve ao contrario da que foi respondida; o registro fica verde e a ponte continua dizendo a verdade, sem que as duas se encontrem. Agora a ponte manda nas DUAS direcoes. Segunda rodada: 20 de 20 reprovadas, 19 so os portoes novos viram."
   },
   "entidades": {
     "MATERIAL": {

@@ -5,68 +5,80 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-25T20:56Z
-executando_desde: 2026-09-28T10:16Z
+ultima_execucao: 2026-09-28T10:16Z
+executando_desde: 2026-09-28T11:02Z
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
-  A CATEGORIA ACABAMENTO SAI DE ZERO, E FOI A PRIMEIRA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR.
-  dados/materiais-acabamento.json nasceu com SETE SKUs (tres vernizes de artesanato Acrilex, um verniz de piso
-  Quartzolit com boletim de nivel 2, dois impermeabilizantes Quartzolit e um selador), e a lista
-  categorias_do_vocabulario_sem_nenhum_item de dados/cobertura.json, recontada pela propria cobertura.py, CAI DE
-  TRES PARA DUAS: restam base e apoio. Casca 1.15.0, manifest 43, /status na 43, conferir-no-ar 488 afirmacoes e
-  0 falha no ar.
-  POR QUE ESTA CATEGORIA E POR QUE ELA CUSTOU MAIS QUE A ALICATE: a alicate era nomeada pela linha do esquema que
-  autoriza encher uma categoria 'SEM DECISAO NOVA'. As tres que sobravam nao sao, e o ESTADO das 17h29Z ja dizia
-  que cada uma comeca por decidir que campo exige. A decisao esta em regras_da_categoria_acabamento do
-  esquema-banco (versao 4), em tres partes: a matriz base x ambiente fica VAZIA (verniz dentro dela viraria
-  candidato a colar peca na F2); o que o fabricante declara mora no objeto `protecao`, irmao do `corte` do
-  alicate, com as listas do que a frase NOMEIA e do que ela NAO NOMEIA cobrindo o vocabulario inteiro; e as
-  propriedades tem NOME FIXO, para a proxima execucao nao gravar secagem_horas onde esta gravou
-  tempo_de_secagem_h. A escolha de acabamento e nao de base ou apoio foi por atrito: quimico de fabricante com
-  ficha publicada e o mesmo terreno das colas e dos rejuntes, como o ESTADO anterior previa.
-  O ACHADO E UMA FAIXA DESCOBERTA ENCONTRADA PELA SUPERFICIE, irma da que a alicate achou pela ESPESSURA tres
-  horas antes. A peca de mosaico pronta expoe DUAS superficies: a pastilha (as 13 do banco sao todas de vidro) e
-  o REJUNTE. NENHUMA das sete frases de fabricante nomeia vidro e NENHUMA nomeia rejunte. Os tres vernizes da
-  Acrilex listam tela, madeira, papel, cortica, ceramica, gesso e isopor; o verniz da Quartzolit e de PISO, com
-  liberacao de trafego de carro e maquina; a borracha liquida e de fachada, telha e laje sem transito; o protetor
-  para fachadas e hidrofugante de revestimento mineral, churrasqueira e pedra natural. Pelos tres estados, para
-  vidro e para rejunte o estado e nao_declarado nos sete. Dito de outro jeito: fabricante de obra nao escreve
-  sobre peca de artesanato e fabricante de artesanato nao escreve sobre mosaico — que e o buraco que esta ilha
-  existe para ocupar.
-  A SEGUNDA METADE E SOBRE A BASE: o unico selador alcancado nomeia concreto, emboco, reboco, pintura PVA ou
-  acrilica e construcao a seco, e NAO nomeia MDF — a base mais comum da peca do atelie e um dos cinco valores de
-  tipo_por_categoria.base. A categoria selador nasce com um item que nao serve a base que a ilha mais usa, e isso
-  esta escrito no dado em vez de escondido.
-  DUAS MUTACOES ACHARAM BURACO ANTES DO COMMIT, E ESSE E O MELHOR PEDACO. ferramentas/mutacoes-acabamento.py
-  nasceu junto com o portao e duas das catorze PASSARAM na primeira rodada. (1) A 05: o portao cobrava motivo no
-  SILENCIO e nada na AFIRMACAO, entao momento_de_uso deduzido do mecanismo do produto passava com cara de
-  declaracao. Agora momento declarado exige trecho_que_declara_o_momento, e o trecho tem de ser pedaco LITERAL da
-  frase do fabricante. (2) A 13: a matriz base x ambiente preenchida num verniz — a regra existia em prosa desde
-  que nasceu e NENHUMA regua a media. A 07 e a que PRODUZ O MUNDO: faz um verniz NOMEAR vidro, o estado que
-  nenhum dos sete tem e do qual o achado central depende. Segunda rodada: 14 de 14, 13 so o portao novo viu.
-  DOIS NUMEROS RECUSADOS, e os dois estao no dado com o motivo: o rendimento da borracha liquida ('18 kg rende no
-  minimo 70 m2/L' mistura embalagem com unidade e nao fecha), e as demaos e o consumo do fundo selador, que a
-  mesma busca devolve emprestados de outros dois produtos.
-  DUAS PALAVRAS-CHAVE DESCERAM UM DEGRAU, MEDIDAS ANTES DE VIRAR LINK: `fundo selador quartzolit` e `protetor
-  para fachadas quartzolit` devolveram ZERO na Open API e desceram para a FAMILIA (`selador quartzolit` e
-  `impermeabilizante fachada quartzolit`, tres ofertas cada). Sete links novos, 31 intocados — a trava escrita as
-  16h43Z segurou.
-  O PORTAO DESMENTIU A EXECUCAO PELA SEGUNDA VEZ NO MESMO DIA: o cartao 'Acabamento' mostrava 0 com o banco em 7,
-  e a frase de prova do Guia enumerava quatro categorias com o total de cinco — teria ido ao ar 'o banco tem 38
-  itens, sendo 7 colas, 5 rejuntes, 13 pastilhas e 6 alicates'. Mesma familia do 'hoje 10 dos 5 itens esperam
-  link'.
-  NENHUMA URL NOVA: as 17 continuam 17 e a semana da 21.4 continua onde estava. O 4c segue FECHADO pela 16.5 —
-  /materiais/acabamento/ precisa de 3 filhas de nivel 3 e nenhuma existe.
+  A CATEGORIA BASE DECIDE O CAMPO, E A DECISAO ACHA A FAIXA DESCOBERTA DENTRO DO PROPRIO VOCABULARIO.
+  tipo_por_categoria.base declara CINCO tipos e vocabularios.base — o eixo pelo qual a F2 decide cola e
+  rejunte — tem NOVE valores. Cruzados pela primeira vez: mdf_cru e cimento POUSAM (mdf_madeira,
+  cimento_concreto); ceramica_crua e isopor_estrutural NAO TEM VALOR; moldura NAO E MATERIAL (a mesma
+  moldura existe em madeira, MDF, metal e plastico — e geometria, e geometria aqui e a F1). Esquema na
+  versao 5, casca 1.15.0 intocada, manifest 43, conferir-no-ar 488 afirmacoes e 0 falha no ar.
+  O PRECO JA ESTAVA PAGO NO BANCO ANTES DA PONTE EXISTIR: dois vernizes da Acrilex carregam 'isopor' e
+  'gesso' DENTRO da frase literal do fabricante, e as duas palavras nao existem em vocabularios.base —
+  a declaracao foi lida, classificada e descartada em silencio. A ilha sabia ler SILENCIO de fabricante
+  (a alicate achou faixa pela ESPESSURA, a acabamento pela SUPERFICIE); o que ela nao sabia ler era
+  DECLARACAO DE FABRICANTE JOGADA FORA por falta de vocabulario NOSSO. Terceira faixa descoberta da
+  ilha e a primeira do nosso lado do balcao.
+  E O ISOPOR E O PIOR DOS TRES PORQUE A REGRA JA ESTAVA ESCRITA NO MESMO ARQUIVO: a linha
+  'poliestireno expandido' de termos_que_nao_traduzem diz 'se virar base (isopor estrutural), entra no
+  vocabulario primeiro' — e isopor_estrutural JA ERA um dos cinco tipos. Condicao cumprida no proprio
+  arquivo que a escreveu, sem nada conferindo as duas linhas juntas. Agora confere:
+  condicionais_do_mapa_de_termos cobra que toda linha com aquela frase apareca com a condicao MEDIDA e
+  o por_onde. Duas linhas: poliestireno expandido CUMPRIDA, gesso NAO CUMPRIDA (gesso nao esta em
+  tipo_por_categoria.base nem no corpus; no banco ele aparece do outro lado do balcao, como substrato
+  de PINTURA na frase do fabricante).
+  O CAMPO NOVO E O OBJETO substrato, irmao do corte da alicate e da protecao do acabamento:
+  valor_do_vocabulario_base e UM valor e nunca lista (base e feita de um material so),
+  trecho_que_declara_o_material obrigatorio (nome comercial nao e declaracao tecnica), as duas listas
+  de AMBIENTE cobrindo o vocabulario inteiro (base e a unica categoria cujo produto decide onde a peca
+  pronta pode VIVER) e preparo_declarado, que e o selador do banco de acabamento visto do outro lado.
+  Propriedades de NOME FIXO, e aqui elas sao MEDIDA: forma (vocabulario novo forma_da_base, as seis
+  formas que a F1 calcula), diametros, lados, vaos da moldura, espessura, peso, densidade,
+  acabamento_de_fabrica e absorcao_declarada OBRIGATORIA MESMO NULL — e a pergunta que decide a regra 6
+  da F2 e a que separa barro cru de ceramica esmaltada. Medida de anuncio de marketplace e nivel 6 e
+  NUNCA entra em formula publicada nem na tabela pre-renderizada da F1.
+  O PORTAO NASCEU ANTES DO DADO, E A BATERIA PROVOU QUE ELE MORDE. mutacoes-base.py e a primeira desta
+  ilha que FABRICA O PROPRIO MUNDO: escreve um materiais-base.json de bancada com cinco registros
+  (um por tipo, cobrindo os tres estados), confere que o mundo certo passa, muta VINTE vezes — treze no
+  registro e SETE NO ESQUEMA, porque a ponte e documento que mede documento —, restaura e APAGA o
+  arquivo fabricado. A MUTACAO 05 PASSOU NA PRIMEIRA RODADA e e o defeito mais caro da categoria: vaso
+  de barro cru gravado como ceramica_esmaltada_porcelana. O portao so consultava a ponte quando o
+  REGISTRO dizia sem_valor_no_vocabulario, e o caminho caro e o contrario. Esse defeito NAO DEIXA
+  RASTRO: some a faixa descoberta e nasce uma recomendacao sobre superficie que absorve ao contrario da
+  que foi respondida. Agora a ponte manda nas DUAS direcoes. Segunda rodada: 20 de 20, 19 so os portoes
+  novos viram. A 14 e a que PRODUZ O MUNDO: executa a ponte (isopor_eps entra no vocabulario) e mede se
+  o esquema acusa que a ponte envelheceu no mesmo commit em que o vocabulario cresceu.
+  NENHUM SKU COLETADO, E O MOTIVO E O CANAL E NAO A REDE. Egresso remedido em tres passadas com o
+  dominio da ilha em 200: 000 em dexco, duratex, guararapes, arauco, berneck, eternit, brasilit,
+  termotecnica, isoeste e leroymerlin. A acabamento correu com o mesmo bloqueio e se sustentou na busca
+  restrita ao dominio, que devolve a frase do fabricante sem abrir a pagina (nivel 3). Nesta execucao o
+  canal de busca devolveu RESUMO E TRADUCAO das paginas de painel de MDF, nao a frase. Parafrase de
+  resumo em literal_do_fabricante e a familia do numero de tela digitado: parece conferido. O primeiro
+  SKU nasce na execucao em que a frase puder ser citada, e isso esta escrito no esquema em
+  o_que_falta_para_coletar_o_primeiro_SKU, nao so no REGISTRO.
+  O QUE ESTE BLOCO DELIBERADAMENTE NAO FEZ: nao acrescentou ceramica_crua_barro nem isopor_eps a
+  vocabularios.base. Nao e duvida, e a janela de medicao. Acrescentar valor ao eixo muda o que
+  /materiais/qual-cola-usar-no-mosaico/ SERVE — a lista suspensa ganha duas opcoes, a contagem de
+  cdm_f2_faixas_descobertas_html sai de 9x5x6=270 para 11x5x6=330, e as duas bases novas entram na
+  frase que a pagina ja sabe dizer sozinha ('Nao indicamos cola nenhuma, em lugar nenhum, para: ...'),
+  porque nenhum fabricante do banco as nomeia. Essa e a pagina de POSICAO 7,8, a melhor do Arquipelago,
+  e o BLOCO A do despacho de 24/09 espera 30/09 para nao misturar duas causas na mesma janela. A
+  maquina para dizer a verdade JA EXISTE na pagina; falta a decisao, e ela esta escrita e medida.
+  NENHUMA URL NOVA: as 17 continuam 17 e nao houve Sync — nada do que este bloco mexeu e conteudo
+  publicavel (secao 4).
   O QUE DEPENDE DO RAPHAEL, e nada disto e da Fundacao: (1) dar acesso de LEITURA a conta sentinela@ em
-  sc-domain:clubedomosaico.com.br; (2) autorizar, ou nao, a proposta de 301 de http para https em TODO caminho,
-  escrita em dados/indexacao.md e NAO APLICADA; (3) acrescentar dominio de fabricante a rede Personalizada do
-  ambiente (20.1), que sobe o banco inteiro de nivel 3 para nivel 1 e e o que abre o boletim onde a tabela de
-  substrato mora.
-  PROXIMO PASSO: as DUAS categorias que sobraram, base e apoio, e as duas herdam o molde de
-  regras_da_categoria_acabamento sem herdar a decisao — cada uma ainda comeca por decidir que campo exige. A
-  `base` e a de maior valor para esta ilha (ela e a primeira pergunta da F2 e da todo tutorial), e a de maior
-  risco: base de artesanato e generica e provavelmente sem fabricante que declare, ao contrario do quimico. E o
-  BLOCO A do despacho de 24/09 ESPERA 30/09, por ordem do proprio despacho.
+  sc-domain:clubedomosaico.com.br; (2) autorizar, ou nao, a proposta de 301 de http para https em TODO
+  caminho, escrita em dados/indexacao.md e NAO APLICADA; (3) acrescentar dominio de fabricante a rede
+  Personalizada do ambiente (20.1), que sobe o banco inteiro de nivel 3 para nivel 1 e resolve a coleta
+  da base junto; (4) NOVO — decidir os dois valores novos de vocabularios.base (ceramica_crua_barro e
+  isopor_eps), DEPOIS da leitura de 30/09, porque a mudanca toca a melhor pagina da ilha.
+  PROXIMO PASSO: a categoria APOIO, a ultima das cinco e a unica ainda sem decisao de campo nenhuma — e
+  a de menor risco de egresso, porque espatula, oculos e luva sao EPI e ferramenta do mesmo terreno da
+  alicate, que saiu de zero por busca. A base espera a decisao do vocabulario e o egresso de fabricante,
+  nessa ordem. E o BLOCO A do despacho de 24/09 continua esperando 30/09.
+
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

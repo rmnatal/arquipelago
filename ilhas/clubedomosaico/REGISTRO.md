@@ -4684,3 +4684,132 @@ As **duas** categorias que sobraram: `base` e `apoio`. As duas herdam o molde de
 `base` é a de maior valor para esta ilha (ela é a primeira pergunta da F2 e de todo tutorial) e a de maior
 risco: base de artesanato é genérica e provavelmente sem fabricante que declare, ao contrário do químico. E o
 **BLOCO A** do despacho de 24/09 **espera 30/09**, por ordem do próprio despacho.
+
+28/09/2026 10:16Z — BLOCO ENTREGUE: a categoria BASE decide o campo, e a decisão descobre que o vocabulário desta ilha não tem onde pousar TRÊS dos cinco tipos dela
+
+- **A ilha em foco continua sendo esta** (`foco.md`, desde 24/09). Rede reconferida antes de trabalhar como manda
+  a 20.2: home em **200**, `/status` em **200** na revisão **43**, e `ferramentas/conferir-no-ar.py .` com
+  **488 afirmações e 0 falha** no HTML servido — a porta de entrada da seção 29 conferida antes de qualquer
+  outra coisa, e ela estava de pé.
+- **O bloco é o item 3 da fila** ("a coleta das categorias vazias"), na categoria `base`, e ele **não coletou
+  SKU nenhum**. A metade que saiu é a que o próprio `ESTADO.md` de 25/09 dizia que vinha primeiro: *"cada uma
+  ainda começa por decidir que campo exige"*. O motivo de a outra metade não ter saído está medido abaixo e
+  está escrito no esquema, não só aqui.
+
+## O ACHADO, E ELE NÃO ESTÁ NA FRASE DO FABRICANTE: ESTÁ DO NOSSO LADO DO BALCÃO
+
+`vocabularios.tipo_por_categoria.base` declara **cinco** tipos — `mdf_cru`, `ceramica_crua`, `cimento`,
+`isopor_estrutural`, `moldura`. `vocabularios.base`, que é o eixo pelo qual a **F2 decide cola e rejunte** e a
+primeira pergunta que ela faz a quem chega, tem **nove** valores. Cruzando os dois, pela primeira vez:
+
+- `mdf_cru` → **pousa** em `mdf_madeira`.
+- `cimento` → **pousa** em `cimento_concreto`.
+- `ceramica_crua` → **não tem valor**. O único valor de cerâmica no eixo é `ceramica_esmaltada_porcelana`, que é
+  a cerâmica **vidrada**. Vaso de barro cru é o contrário: absorve água e absorve cola. A distinção já estava
+  escrita à mão nesta ilha, em 25/09, na `observacao` do registro `acrilex-verniz-acrilico-brilhante` —
+  *"Cerâmica crua e cerâmica esmaltada absorvem de maneira oposta, e o fabricante não separa as duas"*.
+- `isopor_estrutural` → **não tem valor**, e este é o pior dos três, porque **a regra do que fazer já estava
+  escrita no mesmo arquivo**. A linha `poliestireno expandido` de `termos_que_nao_traduzem` diz, com todas as
+  letras: *"se virar base (isopor estrutural), entra no vocabulário primeiro"* — e `isopor_estrutural` **já era**
+  um dos cinco tipos de `tipo_por_categoria.base`. A condição estava cumprida no próprio arquivo que a escreveu,
+  e nada conferia as duas linhas juntas.
+- `moldura` → **não é material**. A mesma moldura existe em madeira, MDF, metal e plástico, que são quatro
+  valores do eixo. Tipo de base que pousa em quatro lugares ao mesmo tempo não descreve substrato: descreve
+  **geometria**, e geometria nesta ilha é a **F1** (`area_moldura = L × A − l × a`), não a F2.
+
+**O preço disso já estava pago no banco, antes desta seção existir.** Dois vernizes da Acrilex carregam `isopor`
+e `gesso` **dentro da frase literal do fabricante** — e as duas palavras não existem em `vocabularios.base`.
+Então a declaração foi lida, classificada e **descartada em silêncio**. A ilha já sabia ler SILÊNCIO de
+fabricante (é o terceiro estado do esquema, e a alicate achou uma faixa pela ESPESSURA e a acabamento pela
+SUPERFÍCIE). O que ela não sabia ler era **declaração de fabricante jogada fora por falta de vocabulário
+nosso** — a mesma família, do nosso lado. É a terceira faixa descoberta desta ilha e a primeira encontrada pelo
+VOCABULÁRIO.
+
+## O QUE FOI ESCRITO, E COMO CADA PEDAÇO É MEDIDO
+
+- **`ponte_do_tipo_para_o_vocabulario_base`** no `dados/esquema-banco.json` (esquema na **versão 5**): os cinco
+  tipos, cada um em um de três estados — `pousa`, `sem_valor_no_vocabulario` (com `valor_proposto` e
+  `o_que_falta`) ou `nao_e_material` (com `onde_ele_e`). Nenhum fica calado, e isso é portão.
+- **`condicionais_do_mapa_de_termos`**, dentro da ponte: toda linha de `termos_que_nao_traduzem` que recusa o
+  termo **sob condição** ("entra no vocabulário primeiro") aparece aqui com a condição **medida** e o `por_onde`.
+  Duas linhas: `poliestireno expandido` (condição **cumprida**) e `gesso` (condição **não cumprida** — gesso não
+  está em `tipo_por_categoria.base` nem no corpus como base de peça; a palavra aparece no banco do outro lado do
+  balcão, como substrato de PINTURA na frase do fabricante). Condição escrita e nunca conferida é promessa, e
+  uma delas já estava cumprida sem ninguém ver.
+- **`regras_da_categoria_base`**: o campo novo é o objeto **`substrato`**, irmão do `corte` da alicate e da
+  `protecao` do acabamento — frase literal, fonte, `valor_do_vocabulario_base` (UM valor, nunca lista, porque
+  base é feita de um material só), `trecho_que_declara_o_material` obrigatório (herdado inteiro da mutação 05 do
+  acabamento: *"disco MDF 20 cm" é nome comercial, e nome comercial não é declaração técnica*), as duas listas
+  de **ambiente** cobrindo o vocabulário inteiro (a base é a única categoria cujo produto decide onde a peça
+  pronta pode **viver**) e `preparo_declarado`, que é o selador do banco de acabamento visto do outro lado.
+- **Propriedades de nome fixo**, e aqui elas são MEDIDA: `forma` (num vocabulário novo, `forma_da_base`, que é a
+  lista das seis formas que a F1 calcula), diâmetros, lados, vãos da moldura, espessura, peso, densidade,
+  `acabamento_de_fabrica` e **`absorcao_declarada` obrigatória mesmo null** — é a pergunta que decide a regra 6
+  da F2 e a que separa barro cru de cerâmica esmaltada.
+- **A regra que protege a F1 de si mesma:** a base é a única categoria cujo produto declara exatamente o que a
+  F1 pergunta (forma e medidas), e medida colhida em anúncio de marketplace é **nível 6**, que sustenta preço,
+  unidade e imagem. Medida de anúncio **nunca** entra em fórmula publicada nem na tabela pré-renderizada.
+
+## O PORTÃO NASCEU ANTES DO DADO, E FOI A BATERIA QUE PROVOU QUE ELE MORDE
+
+`ferramentas/mutacoes-base.py` é a primeira bateria desta ilha que **fabrica o próprio mundo**: ela escreve um
+`dados/materiais-base.json` com cinco registros (um por tipo, cobrindo os três estados da ponte), confere que o
+mundo certo **passa**, muta vinte vezes — treze no registro e **sete no esquema**, porque a ponte é um documento
+que mede outro documento —, restaura tudo e **apaga o arquivo fabricado no fim**. Os textos de fabricante lá
+dentro são inventados e marcados como tal; nenhum vai para o repositório.
+
+**A mutação 05 PASSOU na primeira rodada, e ela é o defeito mais caro desta categoria:** o vaso de barro cru
+gravado como `ceramica_esmaltada_porcelana`. O portão só consultava a ponte quando o **registro** declarava
+`sem_valor_no_vocabulario` — e o caminho caro é o contrário, o registro gravando um valor de verdade num tipo
+que a ponte diz que **não pousa**. Esse defeito **não deixa rastro**: some a faixa descoberta e nasce, no lugar
+dela, uma recomendação de cola sobre uma superfície que absorve ao contrário da que foi respondida; o registro
+fica verde, a ponte continua dizendo a verdade, e as duas nunca se encontram. Agora a ponte manda nas **duas
+direções**. **Segunda rodada: 20 de 20 reprovadas, 19 só os portões novos viram.**
+
+A mutação **14** é a que PRODUZ O MUNDO: ela **executa** a ponte (acrescenta `isopor_eps` a
+`vocabularios.base`) e mede se o esquema acusa que a ponte envelheceu no mesmo commit em que o vocabulário
+cresceu. Sem ela, a ponte viraria, ela própria, o *resumo velho lido como fato* da seção 4 do contrato.
+
+## POR QUE NENHUM SKU FOI COLETADO, E ISSO ESTÁ NO ESQUEMA E NÃO SÓ AQUI
+
+Egresso medido nesta execução, em três passadas, com `clubedomosaico.com.br` em **200** nas mesmas passadas
+(seção 20.2 — é isso que separa bloqueio de rede de intermitência de túnel): **000** em `dexco.com.br`,
+`duratex.com.br`, `guararapes.com.br`, `arauco.com.br`, `berneck.com.br`, `eternit.com.br`, `brasilit.com.br`,
+`termotecnica.ind.br`, `isoeste.com.br` e `leroymerlin.com.br`.
+
+**E a diferença em relação à acabamento, que correu com o mesmo bloqueio, é o CANAL e não a rede:** a acabamento
+se sustentou na busca restrita ao domínio, que devolve a frase do fabricante sem abrir a página (nível 3). Nesta
+execução o canal de busca disponível devolveu **resumo e tradução** das páginas de painel de MDF, não a frase do
+fabricante. `literal_do_fabricante` é a viga de todo este esquema, e gravar paráfrase de resumo naquele campo é
+a família do número de tela digitado: **parece conferido**. Então a decisão de campo saiu inteira, com portão e
+bateria, e o primeiro SKU nasce na execução em que a frase do fabricante puder ser citada. Está escrito em
+`regras_da_categoria_base.o_que_falta_para_coletar_o_primeiro_SKU`, não só neste registro.
+
+## O QUE ESTE BLOCO DELIBERADAMENTE **NÃO** FEZ, E O MOTIVO É A JANELA DE MEDIÇÃO
+
+Ele **não** acrescentou `ceramica_crua_barro` nem `isopor_eps` a `vocabularios.base`. Não é dúvida — é a 12.1 e
+o BLOCO A do despacho de 24/09. Acrescentar valor ao eixo muda o que
+`/materiais/qual-cola-usar-no-mosaico/` **serve**: a lista suspensa ganha duas opções, a contagem de
+`cdm_f2_faixas_descobertas_html()` sai de 9 × 5 × 6 = **270** para 11 × 5 × 6 = **330** combinações, e as duas
+bases novas entram na frase que a página já sabe dizer sozinha — *"Não indicamos cola nenhuma, em lugar nenhum,
+para: …"* —, porque nenhum fabricante do banco as nomeia. Essa é a página de **posição 7,8**, a melhor do
+Arquipélago inteiro, e o BLOCO A espera 30/09 exatamente para não misturar duas causas na mesma janela. Mexer no
+corpo dela hoje misturaria três. **A máquina para dizer a verdade já existe na página; falta a decisão, e ela
+está escrita, medida e pronta para sair inteira.**
+
+## BANCADA DESTA EXECUÇÃO
+
+`validar-banco.py` verde (38 materiais, 0 sem saída de compra, 0 piso não rastreável), `cobertura.py` recontada
+e **sem mudança** — continuam **duas** categorias sem nenhum item (`base`, `apoio`) —, `teste-casca.php` 555
+verificações, `teste-f2.php` 114 afirmações, `teste-f1.php` 24 estados com processo próprio,
+`teste-prestacao-rejunte.php` 5 afirmações sobre 540 estados da F2 e 180 da F1, `teste-tecnicas.php` 123
+verificações, `mutacoes-base.py` 20 de 20. **Nenhuma URL nova: as 17 continuam 17**, a semana da 21.4 continua
+onde estava, e **não houve Sync** — nada do que este bloco mexeu é conteúdo publicável (seção 4).
+
+- **Próximo passo desbloqueado:** a categoria **`apoio`**, que é a última das cinco e a única que ainda não tem
+  decisão de campo nenhuma — e ela é a de menor risco de egresso, porque espátula, óculos e luva são EPI e
+  ferramenta com ficha de fabricante do mesmo terreno da alicate, que já saiu de zero por busca. A `base`
+  espera duas coisas, nesta ordem: (1) a decisão do Raphael sobre os dois valores novos do vocabulário, que só
+  pode sair **depois** da leitura de 30/09; (2) o egresso de fabricante, que é o item 3 do "o que depende do
+  Raphael" e resolve o banco inteiro junto. E o **BLOCO A** do despacho de 24/09 continua esperando 30/09, por
+  ordem do próprio despacho.

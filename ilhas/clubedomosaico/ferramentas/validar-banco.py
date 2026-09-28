@@ -87,6 +87,10 @@ SEM_PORTAO_ACABAMENTO = os.environ.get("CDM_SEM_PORTAO_ACABAMENTO") == "1"
 if SEM_PORTAO_ACABAMENTO:
     print("  ATENCAO: CDM_SEM_PORTAO_ACABAMENTO=1 — o bloco da categoria acabamento "
           "NAO foi medido nesta passada. So a bateria de mutacao usa isto.")
+SEM_PORTAO_BASE = os.environ.get("CDM_SEM_PORTAO_BASE") == "1"
+if SEM_PORTAO_BASE:
+    print("  ATENCAO: CDM_SEM_PORTAO_BASE=1 — o bloco da categoria base NAO foi medido nesta "
+          "passada. So a bateria de mutacao usa isto.")
 BASES = set(VOC["base"])
 AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
@@ -117,6 +121,107 @@ for chave, alvo in MAPA.items():
 for chave in NAO_TRADUZ:
     if chave in MAPA:
         erro("termo '%s' esta ao mesmo tempo no mapa e na lista dos que nao traduzem" % chave)
+
+
+# ---------------------------------------------- A PONTE DO TIPO PARA O EIXO
+# 28/09/2026, com a categoria `base`. Este bloco NAO olha registro nenhum: ele
+# mede o esquema contra si mesmo, e foi preciso porque a categoria `base` e a
+# unica cujo PRODUTO E o eixo pelo qual a F2 decide. Antes dele, tres dos cinco
+# tipos de `tipo_por_categoria.base` nao tinham onde pousar em `vocabularios.base`
+# e nada dizia isso em lugar nenhum — e o preco ja estava pago no banco: dois
+# vernizes da Acrilex carregam `isopor` e `gesso` DENTRO da frase literal do
+# fabricante, e as duas palavras nao existem no vocabulario, entao a declaracao
+# foi lida, classificada e descartada em silencio.
+#
+# A ilha ja sabia ler SILENCIO de fabricante (e o terceiro estado do esquema).
+# O que ela nao sabia ler era declaracao de fabricante JOGADA FORA por falta de
+# vocabulario nosso — que e a mesma familia, do nosso lado do balcao.
+PONTE = esquema.get("ponte_do_tipo_para_o_vocabulario_base")
+SEM_PORTAO_PONTE = os.environ.get("CDM_SEM_PORTAO_PONTE") == "1"
+if SEM_PORTAO_PONTE:
+    print("  ATENCAO: CDM_SEM_PORTAO_PONTE=1 — a ponte do tipo para o eixo NAO foi medida "
+          "nesta passada. So a bateria de mutacao usa isto.")
+if PONTE is None and not SEM_PORTAO_PONTE:
+    erro("esquema sem `ponte_do_tipo_para_o_vocabulario_base`. A categoria `base` e a unica cujo "
+         "produto E o eixo da F2; sem a ponte, tipo sem valor no vocabulario fica invisivel")
+elif PONTE is not None and not SEM_PORTAO_PONTE:
+    ESTADOS_DA_PONTE = ("pousa", "sem_valor_no_vocabulario", "nao_e_material")
+    tipos_declarados = PONTE.get("tipos")
+    if not isinstance(tipos_declarados, dict):
+        erro("ponte: `tipos` tem de ser um objeto")
+        tipos_declarados = {}
+    do_vocabulario = list(VOC["tipo_por_categoria"]["base"])
+
+    faltando = [t for t in do_vocabulario if t not in tipos_declarados]
+    sobrando = [t for t in tipos_declarados if t not in do_vocabulario]
+    if faltando:
+        erro("ponte: tipo de base sem declaracao de onde pousa: %s. Tipo calado aqui e declaracao "
+             "de fabricante que a ilha le e joga fora sem ninguem ver" % ", ".join(sorted(faltando)))
+    if sobrando:
+        erro("ponte: tipo declarado que nao existe em `tipo_por_categoria.base`: %s"
+             % ", ".join(sorted(sobrando)))
+
+    for tipo in sorted(set(do_vocabulario) & set(tipos_declarados)):
+        d = tipos_declarados[tipo] or {}
+        est = d.get("estado")
+        if est not in ESTADOS_DA_PONTE:
+            erro("ponte / %s: estado '%s' fora da lista (%s)" % (tipo, est, ", ".join(ESTADOS_DA_PONTE)))
+            continue
+        if not d.get("motivo"):
+            erro("ponte / %s: estado '%s' sem `motivo`" % (tipo, est))
+        if est == "pousa":
+            alvos = d.get("pousa_em")
+            if not isinstance(alvos, list) or not alvos:
+                erro("ponte / %s: estado `pousa` com `pousa_em` vazio" % tipo)
+            else:
+                for b in alvos:
+                    if b not in BASES:
+                        erro("ponte / %s: pousa em '%s', que nao existe em `vocabularios.base`"
+                             % (tipo, b))
+        elif est == "sem_valor_no_vocabulario":
+            proposto = d.get("valor_proposto")
+            if not proposto:
+                erro("ponte / %s: `sem_valor_no_vocabulario` sem `valor_proposto`. Buraco sem nome "
+                     "e buraco que a proxima execucao redescobre do zero" % tipo)
+            elif proposto in BASES:
+                erro("ponte / %s: `valor_proposto` '%s' JA existe em `vocabularios.base` — entao o "
+                     "tipo pousa e o estado esta errado" % (tipo, proposto))
+            if not d.get("o_que_falta"):
+                erro("ponte / %s: `sem_valor_no_vocabulario` sem `o_que_falta`" % tipo)
+        elif est == "nao_e_material":
+            if not d.get("onde_ele_e"):
+                erro("ponte / %s: `nao_e_material` sem `onde_ele_e`. Tipo que nao e material tem "
+                     "de dizer em que eixo ele mora, senao ele so desaparece" % tipo)
+
+    # AS CONDICIONAIS DO MAPA DE TERMOS. Duas linhas de `termos_que_nao_traduzem`
+    # nao recusam o termo para sempre: recusam SOB CONDICAO, com a frase "entra no
+    # vocabulario primeiro". Uma delas — `poliestireno expandido` — ja estava
+    # cumprida no dia em que foi escrita, porque `isopor_estrutural` ja era um dos
+    # cinco tipos de `tipo_por_categoria.base` no MESMO arquivo. Nada conferia as
+    # duas linhas juntas. Agora confere.
+    FRASE_CONDICIONAL = "entra no vocabulario primeiro"
+    cond = (PONTE.get("condicionais_do_mapa_de_termos") or {}).get("linhas") or []
+    cobertas = {normalizar(l.get("literal", "")) for l in cond if isinstance(l, dict)}
+    for termo in esquema["mapa_de_termos_do_fabricante"]["termos_que_nao_traduzem"]:
+        if FRASE_CONDICIONAL in normalizar(termo.get("por_que", "")):
+            if normalizar(termo["literal"]) not in cobertas:
+                erro("ponte: o termo '%s' recusa a traducao SOB CONDICAO ('%s') e a condicao nao "
+                     "aparece em `condicionais_do_mapa_de_termos`. Condicao escrita e nunca "
+                     "conferida e promessa — foi assim que `poliestireno expandido` ficou com a "
+                     "condicao cumprida no proprio arquivo sem ninguem ver" % (termo["literal"], FRASE_CONDICIONAL))
+    for l in cond:
+        if not isinstance(l, dict):
+            erro("ponte / condicionais: linha que nao e objeto")
+            continue
+        if not isinstance(l.get("condicao_cumprida"), bool):
+            erro("ponte / condicionais / %s: `condicao_cumprida` tem de ser true ou false"
+                 % l.get("literal"))
+        if not l.get("por_onde"):
+            erro("ponte / condicionais / %s: sem `por_onde` — a medicao tem de dizer por onde foi "
+                 "feita, senao ela e opiniao" % l.get("literal"))
+        if l.get("condicao_cumprida") and normalizar(l.get("literal", "")) not in NAO_TRADUZ:
+            erro("ponte / condicionais / %s: condicao cumprida e o termo ja saiu de "
+                 "`termos_que_nao_traduzem` — a linha virou historia e nao portao" % l.get("literal"))
 
 
 def traduzir(lista, onde):
@@ -506,6 +611,154 @@ for nome in arquivos_material:
             av = (props.get("acabamento_visual") or {}).get("valor")
             if av is not None and av not in VOC["acabamento_visual"]:
                 erro("%s / acabamento_visual: '%s' fora do vocabulario" % (onde, av))
+
+        # ----------------------------------------------------- categoria BASE
+        # A REGRA ESTA EM `regras_da_categoria_base` DO ESQUEMA e nasceu em
+        # 28/09/2026, ANTES do primeiro SKU — de proposito, e e a primeira vez
+        # nesta ilha que a ordem e essa. O motivo esta escrito no proprio esquema:
+        # o canal de busca desta execucao devolveu resumo e traducao das paginas
+        # de fabricante, e `literal_do_fabricante` e a viga do banco inteiro.
+        # Portao que nasce antes do dado so vale se alguem provar que ele reprova,
+        # e quem prova e `ferramentas/mutacoes-base.py`, que fabrica os registros.
+        #
+        # O QUE ESTE PORTAO MEDE que os outros nao mediam:
+        #  - `valor_do_vocabulario_base` e UM valor, nao lista: uma base e feita de
+        #    um material so.
+        #  - quando ele e `sem_valor_no_vocabulario`, a PONTE tem de concordar. E a
+        #    trava que impede um registro de inventar um buraco que a ponte nao
+        #    reconhece — ou, pior, de esconder um que ela reconhece gravando o
+        #    valor vizinho (barro cru entrando como ceramica esmaltada, que
+        #    absorvem de maneira oposta).
+        #  - `trecho_que_declara_o_material` e pedaco LITERAL da frase, herdado da
+        #    mutacao 05 do acabamento: 'disco MDF 20 cm' e nome comercial, e nome
+        #    comercial nao e declaracao tecnica.
+        #  - `absorcao_declarada` e obrigatorio mesmo null, pelo mesmo motivo que
+        #    `contato_com_alimento` e no acabamento: e a pergunta que decide a
+        #    regra 6 da F2 e a que separa barro cru de ceramica esmaltada.
+        if m.get("categoria") == "base" and not SEM_PORTAO_BASE:
+            sub = m.get("substrato")
+            if not sub:
+                erro("%s: base sem o objeto `substrato`" % onde)
+            else:
+                if not sub.get("literal_do_fabricante"):
+                    erro("%s / substrato: sem `literal_do_fabricante`" % onde)
+                if sub.get("fonte_id") not in fontes:
+                    erro("%s / substrato: `fonte_id` nao existe em fontes{}" % onde)
+                val = sub.get("valor_do_vocabulario_base")
+                if isinstance(val, list):
+                    erro("%s / substrato: `valor_do_vocabulario_base` e UM valor, nao lista. Uma "
+                         "base e feita de um material so; produto que o fabricante descreve com "
+                         "dois materiais sao dois registros" % onde)
+                elif val == "sem_valor_no_vocabulario":
+                    if not sub.get("motivo_sem_valor"):
+                        erro("%s / substrato: `sem_valor_no_vocabulario` sem `motivo_sem_valor`" % onde)
+                    tipo_do_registro = m.get("tipo")
+                    na_ponte = ((PONTE or {}).get("tipos") or {}).get(tipo_do_registro) or {}
+                    if na_ponte.get("estado") != "sem_valor_no_vocabulario":
+                        erro("%s / substrato: o registro diz `sem_valor_no_vocabulario` e a ponte "
+                             "diz '%s' para o tipo '%s'. Buraco que so o registro enxerga e buraco "
+                             "que some quando o registro sair"
+                             % (onde, na_ponte.get("estado"), tipo_do_registro))
+                elif val not in BASES:
+                    erro("%s / substrato: `valor_do_vocabulario_base` '%s' fora de "
+                         "`vocabularios.base`" % (onde, val))
+                else:
+                    trecho = sub.get("trecho_que_declara_o_material")
+                    literal = sub.get("literal_do_fabricante") or ""
+                    if not trecho:
+                        erro("%s / substrato: `valor_do_vocabulario_base` '%s' sem "
+                             "`trecho_que_declara_o_material`. Material deduzido do nome comercial "
+                             "passa com cara de declaracao do fabricante, e nome comercial nao e "
+                             "declaracao tecnica" % (onde, val))
+                    elif trecho not in literal:
+                        erro("%s / substrato: `trecho_que_declara_o_material` nao e pedaco de "
+                             "`literal_do_fabricante`" % onde)
+                    # A PONTE MANDA TAMBEM DO LADO DE CA: registro cujo tipo a ponte
+                    # diz que POUSA tem de pousar onde ela diz. Senao a ponte vira
+                    # documento e o registro vira a verdade, que e a divergencia que
+                    # a secao 4 do contrato chama de resumo velho lido como fato.
+                    na_ponte = ((PONTE or {}).get("tipos") or {}).get(m.get("tipo")) or {}
+                    # ACHADO PELA MUTACAO 05, ANTES DO COMMIT, e e o defeito mais
+                    # caro desta categoria. Ate aqui a ponte so era consultada
+                    # quando o REGISTRO dizia `sem_valor_no_vocabulario` — e o
+                    # caminho caro e o contrario: o registro grava um valor de
+                    # verdade num tipo que a ponte diz que NAO POUSA. Vaso de barro
+                    # cru entrando como `ceramica_esmaltada_porcelana` nao deixa
+                    # rastro nenhum: some um buraco declarado e nasce, no lugar
+                    # dele, uma recomendacao de cola para uma superficie que
+                    # absorve ao contrario da que foi respondida. O registro ficaria
+                    # verde, a ponte continuaria dizendo a verdade, e as duas nunca
+                    # se encontrariam.
+                    if na_ponte.get("estado") == "sem_valor_no_vocabulario":
+                        erro("%s / substrato: a ponte diz que o tipo '%s' NAO tem valor no "
+                             "vocabulario e o registro gravou '%s'. Buraco escondido atras do "
+                             "valor vizinho e o unico defeito desta categoria que nao deixa "
+                             "rastro: some a faixa descoberta e nasce uma recomendacao sobre "
+                             "uma superficie que ninguem perguntou. Enquanto a ponte nao for "
+                             "executada, o registro diz `sem_valor_no_vocabulario` com o "
+                             "motivo — e e isso que a tela mostra"
+                             % (onde, m.get("tipo"), val))
+                    if na_ponte.get("estado") == "pousa" and val not in (na_ponte.get("pousa_em") or []):
+                        erro("%s / substrato: a ponte diz que o tipo '%s' pousa em %s e o registro "
+                             "gravou '%s'" % (onde, m.get("tipo"),
+                                              ", ".join(na_ponte.get("pousa_em") or []), val))
+                    if na_ponte.get("estado") == "nao_e_material":
+                        # moldura: o registro aponta para o material DELA, e isso e
+                        # certo — mas tem de ser um valor do eixo, nunca o proprio
+                        # nome do tipo.
+                        if val == m.get("tipo"):
+                            erro("%s / substrato: o tipo '%s' nao e material (ponte) e o registro "
+                                 "gravou o proprio nome do tipo como base" % (onde, m.get("tipo")))
+                nomeia = sub.get("ambientes_do_vocabulario_que_a_frase_nomeia")
+                nao = sub.get("ambientes_do_vocabulario_que_a_frase_NAO_nomeia")
+                if not isinstance(nomeia, list) or not isinstance(nao, list):
+                    erro("%s / substrato: as duas listas de ambiente tem de existir e ser listas" % onde)
+                else:
+                    juntos = list(nomeia) + list(nao)
+                    if len(juntos) != len(set(juntos)):
+                        erro("%s / substrato: ambiente repetido entre as duas listas" % onde)
+                    faltam = sorted(AMBIENTES - set(juntos))
+                    sobram = sorted(set(juntos) - AMBIENTES)
+                    if faltam:
+                        erro("%s / substrato: as duas listas de ambiente nao cobrem o vocabulario — "
+                             "ficou de fora: %s. O que nao entra em nenhuma das duas e silencio NAO "
+                             "LIDO" % (onde, ", ".join(faltam)))
+                    if sobram:
+                        erro("%s / substrato: ambiente fora do vocabulario: %s"
+                             % (onde, ", ".join(sobram)))
+                if "preparo_declarado" not in sub:
+                    erro("%s / substrato: sem `preparo_declarado`. O campo e obrigatorio mesmo "
+                         "quando o fabricante nao manda preparar nada — e o mesmo preparo que o "
+                         "selador do banco declara em `momento_de_uso: antes_de_colar`, visto do "
+                         "outro lado" % onde)
+
+            decl = m.get("declaracoes") or {}
+            preenchidas = sorted(k for k, v in decl.items() if v)
+            if preenchidas:
+                erro("%s / declaracoes: base tem de nascer com as listas VAZIAS e preencheu %s. "
+                     "`indicado_para` quer dizer 'este produto adere sobre estas superficies', e "
+                     "uma base nao adere sobre nada — ela E a superficie. Um disco de MDF ali "
+                     "dentro faz a F2 oferecer madeira como candidata a COLAR madeira"
+                     % (onde, ", ".join(preenchidas)))
+            elif not m.get("motivo_declaracoes_vazias"):
+                erro("%s: base com `declaracoes` vazias e sem `motivo_declaracoes_vazias`" % onde)
+
+            props = m.get("propriedades") or {}
+            nomes_fixos = set(esquema["regras_da_categoria_base"]
+                              ["as_propriedades_tem_NOME_FIXO_e_esta_e_a_lista"]["nomes"].keys())
+            for pnome in props:
+                if pnome not in nomes_fixos:
+                    erro("%s / %s: propriedade de base com nome fora da lista fixa do esquema. Aqui "
+                         "as propriedades sao MEDIDA, e medida com nome livre e o que faz um "
+                         "registro gravar `diametro_cm` e o seguinte `d_cm`" % (onde, pnome))
+            if "absorcao_declarada" not in props:
+                erro("%s: base sem `absorcao_declarada`. O campo e obrigatorio mesmo quando o "
+                     "fabricante nao declara nada — a base absorver ou nao e o que decide a regra 6 "
+                     "da F2 e o que separa barro cru de ceramica esmaltada" % onde)
+            fo = (props.get("forma") or {}).get("valor")
+            if fo is not None and fo not in VOC["forma_da_base"]:
+                erro("%s / forma: '%s' fora de `vocabularios.forma_da_base`, que e a lista de formas "
+                     "que a F1 calcula" % (onde, fo))
 
     # o cabecalho do arquivo declara numeros; eles tem que bater com a contagem
     dec_link = (arq.get("afiliado") or {}).get("itens_esperando_link")
