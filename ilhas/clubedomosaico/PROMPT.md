@@ -61,6 +61,71 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-09-28 (RONDA DIÁRIA TÉCNICA, 15h10Z) — a primeira ronda técnica desta ilha
+
+Esta é a **primeira ronda diária técnica** que esta ilha recebe, pela decisão do Raphael de 28/09/2026 registrada na seção 1.2 do `ARQUIPELAGO.md`: a ronda técnica passa a rodar em toda ilha no ar, em foco ou fora. Ela é a ilha em foco, então o que sai daqui entra na fila normalmente, atrás do despacho do Raphael de 24/09 (18.1).
+
+**O QUE ESTÁ VERDE, medido no ar e não herdado.** As **17** URLs do sitemap em **200**. A porta de entrada da 29.2 inteira: `/wp-sitemap.xml` em 200 com `application/xml` e XML de sitemap de verdade, `/robots.txt` em 200 e `text/plain`, `/wp-json/` em 200 e `application/json`, e um caminho que a ilha nunca teve respondendo **404 na página desta ilha**, não na do hospedeiro — é a reconferência do conserto de 24/09 e ela **passou**. `/status` na **revisão 43**, igual à do `manifest.json`. Console **sem uma mensagem** (com recarga, para pegar o carregamento). **Zero** ocorrência de entidade de e comercial dentro de `<script>` nas 17. **Zero** página órfã: toda URL do sitemap tem 2 ou mais links internos e um deles é da mãe; as 5 peças estão todas listadas em `/loja/`. **Zero** `noindex` indevido nas 17. Nenhuma frase da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>` ou primeiro parágrafo. Breadcrumb visível (`nav.cdm-trilha`) e `BreadcrumbList` em todas as 16 que não são a home. `Product` com `Offer` nas 5 peças, e **zero** `rel="sponsored"` em link de peça própria.
+
+**A F2 FOI EXECUTADA COM ENTRADAS NOVAS E A CONTA FOI REFEITA NA MÃO, TRÊS ESTADOS, TODOS CERTOS.** (a) cilindro 15×20 (estado padrão): π·15·20 = 942 cm²; passo 1,2 cm com junta de 2 mm dá 10.000/1,44 = 6.944 por m²; 0,0942 m² × 6.944 × 1,10 = 720 arredondado para cima; rejunte 2,80 kg/m² × 0,0942 = 264 g. (b) cilindro 40×28 com junta de 3 mm e 10% de sobra: 3.519 cm², 5.917 por m², 2.291 pastilhas, rejunte 4,20 kg/m² = 1.478 g. (c) `forma=placa&pastilha=p20&junta=3&sobra=15&rejunte=epoxi`: 1.200 cm², passo 2,3 cm, 1.890 por m², 261 pastilhas, e a página **se recusa a calcular o rejunte epóxi** dizendo por quê — coeficiente do fabricante que não existe para bicomponente. Os três resultados batem com a conta feita à parte. **Coerência da recomendação conferida lendo como leitor:** no estado (c) os três cartões servidos são pastilhas de 2 cm de lado publicado pelo fabricante, o cálculo de placas (32,3 × 32,3 cm, 2 placas) fecha, e a página diz com todas as letras quais lados o banco tem e não tem.
+
+**RECEITA (seção 12) — SEM DEFEITO.** Nos estados abertos, **todos** os cartões do topo têm porta de compra, com `rel="sponsored noopener"`, e não existe a frase "link de loja em breve" em lugar nenhum. O piso da 25.2 está **inteiro**: **38 de 38** itens do banco com `afiliado.url_busca` encurtada e `afiliado.url_busca_produto` crua, e **38 de 38** com `sub_id_1 = clubedomosaico` — que é a reconferência do conserto de 25/09 e ela **passou**. **Zero** encurtador de Shopee servido nas páginas que o banco não conheça (21 links servidos, 21 reconhecidos).
+
+**TESTE DE VIDA DOS LINKS (25.4 e 25.4-b), do navegador do Raphael, sem gastar um clique de afiliado:** **10 itens com `url_produto` testados, 10 VIVOS, 0 mortos, 0 esgotados.** Os 6 da Shopee pela API de ficha (`api/v4/pdp/get_pc`), todos com `item_status: normal` — e o `cascola-cascorez-extra` confirmado na loja **Henkel Oficial**, que é o degrau 1 da escada. Os 4 do Mercado Livre abrindo a página `/p/MLB...` no navegador, as quatro com o produto na tela. Mais **10 chaves de busca** medidas pela API de busca da Shopee: **9 com resultado** (de 37 a 5.466) e **1 não medida** — a chave `verniz acrilico brilhante acrilex` caiu no desvio para `verify/captcha?...&scene=crawler_item` no meio da passada, e a Sentinela é proibida de resolver CAPTCHA; **não é link morto**, fica para a ronda seguinte. **Itens intestáveis: ZERO** — nenhum item tem link de produto sem o par cru.
+
+### 1. A MEDIDA DA PEÇA SAI COM A UNIDADE DOBRADA, NA VITRINE, NA FICHA E NO JSON-LD — em 4 das 5 peças da artesã
+
+**Medido no ar em 28/09/2026, 14h55Z.** Em `/loja/` os cartões servem, na linha de medida: `35cm de diâmetro cm`, `46x36cm cm`, `46cm de diâmetro cm` e `46x37cm cm`. Só a Bandeja em madeira sai certa (`40×28 cm`). A página da peça repete (conferido em `/loja/vaso-com-flores-em-ceramica/`: `46x36cm cm`), e **o texto entra no campo `description` do `Product` no JSON-LD**: *"base de mdf ou madeira, técnica pica-sete (louça quebrada), 46x36cm cm. Pronta entrega"*. Ou seja, sai para a SERP e para superfície generativa junto com o resto da ficha.
+
+**A CAUSA, nomeada e não adivinhada:** o campo `cdm_medidas` de 4 das 5 peças já traz a unidade dentro do valor (`46x36cm`, `35cm de diâmetro`), e o molde acrescenta ` cm` depois. O valor da bandeja é `40×28`, sem unidade, e é o único que sai certo. **Isto é da Fundação por dois caminhos, os dois da 19.2:** ou é o molde do snippet que não pode acrescentar unidade a valor que já a tem, ou é o dado da artesã, que **só existe no site** (seção 24) e cuja edição passa pelo wp-admin, proibido à ronda pela 19.3. **A Sentinela não consertou, e `dados/pecas.json` é dump, não fonte — editá-lo não muda a tela.**
+
+**A decisão é sua e é a parte que importa:** normalizar o valor (tirar a unidade de dentro dos 4 campos, pelo painel `/atelie/` ou por migração) **e** deixar o molde tolerante, é o único desenho em que isto não volta quando a artesã cadastrar a peça 6. Se escolher só um dos dois, escreva no `REGISTRO.md` por quê.
+
+**Pronto quando:** as 5 páginas de peça e a vitrine `/loja/` servirem a medida com **uma** unidade só, o `description` do `Product` no JSON-LD das 5 também, e `ferramentas/conferir-no-ar.py` ganhar uma régua que reprove a expressão de unidade repetida (medindo o **texto servido**, não o valor do campo) — para que a peça 6 não reabra isto.
+
+### 2. OS ESTADOS COM PARÂMETRO DA F1 NÃO SAEM DO ÍNDICE — a reconferência do conserto de 25/09 FALHOU nesta metade
+
+**Reconferência pela 19.4(a), medida em 28/09/2026 às 14h48Z.** O conserto de 25/09 gravado em `dados/consertos.md` declarou o próprio critério: `/author/`, `/materiais/como-sabemos/`, `/?s=`, `/atelie/` e **os estados com parâmetro da F1 e da F2** servem **UMA** etiqueta com `noindex, follow`. Medido alvo por alvo: `/author/mosaico_gestor/` **1 etiqueta, `noindex, follow`** ✔; `/materiais/como-sabemos/` ✔; `/?s=cola` ✔; `/atelie/` ✔; `/materiais/quantas-pastilhas-para-mosaico/?forma=...` (F2) ✔. **A F1 NÃO:** `/materiais/qual-cola-usar-no-mosaico/?base=ceramica&onde=externo`, `?base=mdf` e `?base=ceramica&caco=louca&junta=fina&onde=interno` servem **uma etiqueta só, `max-image-preview:large`**, sem `noindex`. E as 17 URLs do sitemap continuam **sem** `noindex` — a outra direção passou.
+
+**Atenuante medido, para ninguém tratar isto como incêndio:** as três servem `rel="canonical"` para `https://clubedomosaico.com.br/materiais/qual-cola-usar-no-mosaico/`, e o HTML servido com parâmetro é **byte a byte igual** ao sem parâmetro (a F1 resolve no cliente). O risco é orçamento de rastreamento e duplicata, não página errada no índice — mas o critério que o próprio conserto declarou não está cumprido, e é isso que esta linha registra.
+
+**Isto é código de snippet** (`cdm_fora_do_indice` na casca 1.13.0 / `clubedomosaico-f1.php`) e por isso a Sentinela **não consertou**, pela 19.2 sem exceção.
+
+**Pronto quando:** as três URLs de exemplo acima servirem **exatamente uma** `<meta name="robots">` contendo `noindex`, as 17 URLs do sitemap continuarem **sem** `noindex`, e `ferramentas/conferir-no-ar.py` medir a F1 **com os nomes de parâmetro reais** (`base`, `caco`, `junta`, `onde` — a régua atual passa, então ela não está medindo a F1). **E a régua cobra a diretiva, nunca a aspa**, como o próprio `consertos.md` de 25/09 já avisa.
+
+### 3. AS 27 FOTOS DAS PEÇAS DA ARTESÃ ESTÃO COM `alt` VAZIO — nas 5 páginas de `/loja/`, a foto de destaque inclusive
+
+**Medido em 28/09/2026:** das 82 imagens servidas nas 17 URLs, **27 têm `alt=""`**, e as 27 estão nas 5 páginas de peça: a foto de destaque de cada uma (`wp-block-post-featured-image`) mais as miniaturas da galeria. As outras 55 imagens da ilha estão todas com `alt` preenchido, e a aquametria e a robometria estão em **zero** — é defeito só daqui e só das peças.
+
+**Pesa mais nesta ilha que em qualquer outra:** a foto **é** o produto ("a foto é a da peça que você vai receber", diz a própria `/loja/`), a Busca por imagens do Google é canal real de artesanato, e `Product.image` no JSON-LD aponta para arquivos que nenhuma legenda descreve.
+
+**O `alt` está na lista 19.1, e mesmo assim a Sentinela NÃO consertou, com o motivo escrito:** o `alt` de anexo mora em `_wp_attachment_image_alt` na biblioteca de mídia do WordPress — **não existe arquivo no repositório onde ele possa ser escrito**, e a 19.3 proíbe wp-admin porque o Sync desfaz. O conserto pelo repositório é o molde derivar o `alt` quando o anexo não tem — e molde é snippet, 19.2.
+
+**Pronto quando:** as 5 páginas de peça servirem `alt` não vazio em **todas** as imagens, com texto que descreva a peça (o título da peça mais a técnica serve, e `Vaso com flores em cerâmica — pica-sete, foto 2` é melhor que repetir o título cinco vezes), e o painel `/atelie/` pedir a legenda à artesã no cadastro, para a peça 6 nascer certa. Régua em `conferir-no-ar.py` contando `<img>` sem `alt` **e** com `alt` vazio nas duas condições.
+
+### 4. 8 DAS 17 URLs NÃO TÊM `<meta name="description">` NENHUMA — inclusive a home e as três mães
+
+**Medido em 28/09/2026.** Sem etiqueta: `/`, `/loja/`, `/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`. Com etiqueta: as 4 de conteúdo (`qual-cola` 183, `quantas-pastilhas` 165, `picassiete` 192, `trencadis` 189 caracteres) e as 5 peças. **As 9 com etiqueta estão todas acima de 160 caracteres**, a faixa que a régua da aquametria cobra — o Google corta.
+
+Na aquametria as 48 URLs têm `description` entre 120 e 160. **A diferença é de casca, não de conteúdo**, e esta ilha é a que tem impressão para perder: as três páginas de primeira página e a home são exatamente onde a promessa da SERP decide o clique, e a Proposta 1 do despacho de 23/09 nomeia CTR zero em 17 impressões como a melhor linha do Arquipélago inteiro.
+
+**A etiqueta é emitida pela casca e por isso a Sentinela não consertou** (19.2). Não é o texto de uma página: é qual camada emite a etiqueta e para quais tipos de página.
+
+**Pronto quando:** as 17 URLs servirem uma `<meta name="description">`, cada uma entre 120 e 160 caracteres contados no HTML servido e decodificados, sem nenhuma duplicada entre páginas, e `conferir-no-ar.py` cobrando presença e faixa nas 17. **A `description` da home e de `/materiais/qual-cola-usar-no-mosaico/` são as duas que valem dinheiro**, e a segunda tem de cumprir o "Pronto quando" da Proposta 1 de 23/09 no mesmo movimento — prometer a faixa e a fonte com um número que a própria página calcula.
+
+### 5. 13 DOS 38 ITENS DO BANCO SERVEM DEGRAU 4 COM `afiliado.degrau` EM `null` — a 25.1 manda gravar o degrau usado
+
+**Contado no banco em 28/09/2026:** os **7** de `dados/materiais-acabamento.json` e os **6** de `dados/materiais-alicates.json` têm `afiliado.url` vazia, `afiliado.url_produto` em `null`, `afiliado.url_busca` encurtada com `url_busca_gerada_em: 2026-09-25` — e **`degrau: null`**. Os outros 25 têm degrau escrito (1, 2, 3 ou 4). A 25.1 diz, em uma linha, que *"o degrau usado fica gravado em `afiliado.degrau`"*, e item servindo busca é degrau 4.
+
+**Não é cosmético:** o degrau é o campo pelo qual a leitura semanal acha o que pode subir de degrau, e 13 itens em `null` são 13 oportunidades invisíveis. **É dado do banco e por isso a Sentinela não consertou** (19.2).
+
+**Pronto quando:** os 38 itens com `afiliado` tiverem `degrau` preenchido, `ferramentas/validar-banco.py` reprovar registro com link de compra e `degrau` ausente, e a contagem de itens por degrau entrar no `REGISTRO.md` do bloco que fechar isto.
+
+### DUAS OBSERVAÇÕES QUE NÃO ABRI COMO DEFEITO, porque a régua que as cobraria não é desta ilha
+
+- **Quatro `<title>` de peça passam de 64 caracteres** (71, 76, 77 e 79): o molde é `<peça> — <coleção> | Clube do Mosaico`, e "— Parede e quadros em mosaico | Clube do Mosaico" come 48 caracteres antes do nome da peça. A régua de 64 é da aquametria, não do contrato, então isto fica como recomendação: o Google corta o título das quatro, e a coleção no meio não é o que a pessoa digita. **Conferido e NÃO é defeito de taxonomia:** a coleção "Parede e quadros" do Vaso com flores em cerâmica parece errada e não é — a descrição da própria artesã diz *"Quadro oval feito no mosaico picassiette"*.
+- **O campo de tentativa de encurtamento desta ilha chama-se `url_busca_gerada_em`, não `encurtamento_tentado_em`.** A 25.2-b cobra que o validador reprove registro publicável cujo campo de tentativa esteja **ausente**, e distingue ausente de tentado-e-falhou. Aqui o campo existe e registra sucesso, mas com outro nome e sem o caso do fracasso. Não acuso defeito porque não sei se a 25.2-b nomeia um campo ou um conceito — **decida e escreva qual dos dois é, no `esquema-banco.json`.**
+
 ## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h12Z) — a ilha esquecida é a que tem tráfego
 
 **A ilha está FORA DO FOCO** (`foco.md` nomeia a aquametria desde 21/09), então pela 1.2 nada aqui fura a fila: **despacho NORMAL de ilha fora do foco espera.** Este despacho existe porque a 1.2-b.1 manda a medição continuar em todas as ilhas, e porque o que a medição achou muda a conversa sobre a ordem do foco.

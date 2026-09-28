@@ -7,7 +7,7 @@ urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-28T14:55Z
 executando_desde: null
-ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
+ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
   A CATEGORIA APOIO RECEBE A DECISAO DE CAMPO, E COM ELA NENHUMA DAS SETE FICA SEM A SUA. Esquema na
   versao 6: regras_da_categoria_apoio (o objeto `servico`, irmao do corte/protecao/substrato),

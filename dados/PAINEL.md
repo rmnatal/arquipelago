@@ -2,56 +2,56 @@
 
 Instantâneo. Reescrito pela Sentinela ao fim de toda ronda (seção 23 do `ARQUIPELAGO.md`). Não escreva aqui se você não é a ronda.
 
-**Escrito em:** 23/09/2026 15h00Z, pela ronda diária da **aquametria**.
+**Escrito em:** 28/09/2026 15h10Z, pela **ronda diária técnica**, que desta vez mediu **as três ilhas no ar**.
 
-**FOCO ÚNICO (seção 1.2).** `foco.md` nomeia a **aquametria** desde 21/09. A ronda diária trabalhou **só nela** e não abriu, não mediu e não relatou nenhuma outra ilha no ar. As linhas das outras quatro abaixo saem do cabeçalho do `ESTADO.md` de cada uma, lido no repositório — **não foram medidas no ar** (23.4).
+**A RONDA TÉCNICA VOLTOU A OLHAR TODAS AS ILHAS.** Decisão do Raphael em 28/09/2026, registrada na seção 1.2: a ronda diária técnica roda em **toda ilha no ar**, em foco ou fora; o que continua só na ilha em foco é a leitura semanal estratégica e o teto de geração de link de afiliado. A causa está medida e tem nome — o Clube do Mosaico passou nove dias fora do ar sem ninguém ver, porque estava fora do foco. **As linhas das três ilhas no ar abaixo foram medidas no ar nesta ronda.** A jornadafly e a ohmetria não têm site: não há o que rondar, e as linhas delas saem do cabeçalho do `ESTADO.md`.
+
+`foco.md` nomeia a **clubedomosaico** desde 24/09. **Construção continua só nela.**
 
 ## Ilhas
 
 | ilha | estado | prio | páginas | dias de indexação | última construção | última ronda | piso |
 |---|---|---|---|---|---|---|---|
-| aquametria | viva | 2 | **48 / 40** (medido no ar hoje, wp-sitemap) | 14 / 21 (desde 09/09) | 23/09 14h05Z | **23/09 15h00Z** | abaixo |
-| robometria | viva (PRONTA em 20/09, modo de medição) | 1 | 14 / 40 (cabeçalho) | 12 / 21 (desde 11/09) | 21/09 20h09Z | 18/09 14h52Z | abaixo |
-| clubedomosaico | nascendo | 1 | 13 / 40 (cabeçalho) | sem registro | 15/09 00h01Z | sem campo no cabeçalho | abaixo |
-| jornadafly | nascendo | 1 | 0 / 40 (cabeçalho) | sem registro | 15/09 12h05Z | nunca | abaixo |
-| ohmetria | nascendo | 1 | 0 / 40 (cabeçalho) | sem registro | 15/09 11h17Z | sem campo no cabeçalho | abaixo |
+| clubedomosaico | nascendo (EM FOCO) | 1 | **17 / 40** (medido no ar hoje, wp-sitemap) | sem registro (`primeira_indexacao: desconhecida`) | 28/09 10h16Z (reserva de 13h20Z aberta) | **28/09 15h10Z** | abaixo |
+| aquametria | viva (modo de medição) | 2 | **52 / 40** (medido no ar hoje, wp-sitemap) | 19 / 21 (desde 09/09) | 24/09 17h02Z | **28/09 15h10Z** | abaixo |
+| robometria | viva (PRONTA em 20/09, modo de medição) | 1 | **14 / 40** (medido no ar hoje, wp-sitemap) | 17 / 21 (desde 11/09) | 21/09 20h09Z | **28/09 15h10Z** | abaixo |
+| jornadafly | nascendo (sem site) | 1 | 0 / 40 (cabeçalho) | sem registro | 15/09 12h05Z | nunca — não há o que rondar | abaixo |
+| ohmetria | nascendo (sem site) | 1 | 0 / 40 (cabeçalho) | sem registro | 15/09 11h17Z | nunca — não há o que rondar | abaixo |
 
-**Aquametria, medido no ar nesta ronda:** as **48** URLs do sitemap respondem **200**; `/status` na **revisão 104**, igual à do `manifest.json`; console sem uma mensagem nas páginas abertas; zero `&#038;` dentro de `<script>` nas 48; zero página órfã (toda URL tem 2 ou mais links internos, um deles da mãe); zero `noindex` em URL do sitemap; `<title>` de 64 caracteres ou menos nas 48 (decodificado); `<meta name="description">` entre 120 e 160 caracteres nas 48; breadcrumb e `BreadcrumbList` nas 47 que não são a home; `Article` com `datePublished`, `dateModified`, `author` e `publisher` nas **26** fichas de peixe; toda `<img>` com `alt`; favicon próprio servido; menu com `aria-expanded`/`aria-controls` e links no HTML servido; nenhuma palavra da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>` ou primeiro parágrafo; malha 16.4 inteira — as **7** mães listam **todas** as 26 filhas, cada filha linka a mãe 2 vezes ou mais e traz 2 a 4 irmãs em "Veja também", zero âncora "clique aqui"/"saiba mais"; endereço canônico e endereço com quebra de cache servindo o mesmo conteúdo (sem `Endurance Page Cache`).
+**O QUE A RONDA TÉCNICA MEDIU NO AR NAS TRÊS, hoje:** **83 URLs de sitemap em 200** (17 + 52 + 14). A porta de entrada da 29.2 **inteira nas três** — `/wp-sitemap.xml` em 200 com XML de sitemap de verdade, `/robots.txt` em 200 e `text/plain`, `/wp-json/` em 200 e `application/json`, e um caminho inexistente respondendo **404 na página da própria ilha**, não na do hospedeiro. `/status` batendo com o `manifest.json` nas três: **clubedomosaico 43, aquametria 117, robometria 81**. **Console sem uma mensagem** nas três (com recarga). **Zero** entidade de e comercial dentro de `<script>` nas 83. **Zero** página órfã e **zero** `noindex` indevido nas 83. Nenhuma frase da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>` ou primeiro parágrafo, nas três.
 
-**As cinco calculadoras foram executadas com entradas NOVAS e a conta foi refeita na mão, todas certas:** C1 (80×40×45 externas, vidro 8 mm, lâmina 40 cm, substrato 10 cm, rochas 5 L → 144 L brutos, 133 L internos com as internas 78,4×38,4×44,2, 115 L reais; o substrato não é descontado e a página diz por quê); C3 (115,4 L plantado → 200 a 580 L/h, com 1,76×/h no piso e 3 a 5×/h no teto); C5 (96 L, mínima 20 °C, acará-disco, tampado → 95 a 145 W, delta 8 °C dentro dos 10 °C da ReefFlow, degrau comercial 150 W); C12 (250 L → 315 mL a 3,13 L); C15 (250 L exigência média → 5.000 a 10.000 lm). Coerência da recomendação conferida lendo como leitor: nenhum cartão afirma atender número que não atende.
+**Aquametria e robometria: NENHUM defeito.** A clubedomosaico, que nunca tinha tido ronda técnica, tem cinco — todos abaixo.
 
-**RECEITA — o defeito de 13/09 ESTÁ FECHADO.** Naquela ronda, **1 de 5** cartões da C5 tinha link de loja e os quatro sem link vinham antes. Medido hoje na C5 em `?v=96&min=20&esp=acara-disco`: **24 links de loja servidos, 0 cartão sem porta de compra, 0 ocorrência de "link de loja em breve"**, todos com `rel="sponsored noopener"`. O piso da 25.2 está inteiro: **78 de 78** itens do banco com `url_busca` e `url_busca_produto`, **78 de 78** com `sub_id_1`, **78 de 78** com `encurtamento_tentado_em` (trava da 25.2-b).
+**Teste de vida dos links (25.4 e 25.4-b), na ilha em foco, do navegador e sem gastar um clique de afiliado:** **10 de 10 itens com `url_produto` VIVOS**, 0 mortos, 0 esgotados — 6 da Shopee pela API de ficha (`item_status: normal`, e o Cascorez confirmado na Henkel Oficial, degrau 1) e 4 do Mercado Livre abertos no navegador. **10 chaves de busca medidas: 9 com resultado** (37 a 5.466) e **1 não medida**, por desvio para CAPTCHA no meio da passada — não é link morto. **Piso da 25.2 inteiro: 38 de 38** com `url_busca` encurtada e `url_busca_produto` crua; **38 de 38** com `sub_id_1 = clubedomosaico`. **Itens intestáveis: ZERO.**
 
 ## Despachos abertos
 
 | ilha | onde | o que é | aberto desde |
 |---|---|---|---|
-| aquametria | `ilhas/aquametria/PROMPT.md` | **A home não serve JSON-LD nenhum.** Único lugar que emite `ld+json` na casca é a trilha, e ela se pula na home (16.3). Não existe `WebSite` nem `Organization` em lugar nenhum da ilha — a página mais linkada é a única sem dado estruturado, contra a seção 5 | 23/09/2026 (0 dia) |
-| aquametria | `ilhas/aquametria/PROMPT.md` | **39 dos 78 itens do banco têm link de afiliado de PRODUTO e não têm `url_produto`** — `intestavel: true`, exatamente a dívida que a 25.4-b registrou. Os 39 carregam `conferido_em: 2026-09-14`, data de conferência em item que não se pode conferir | 13/09/2026 (10 dias) |
-| robometria | `ilhas/robometria/PROMPT.md` | propostas 1 e 3 da leitura semanal de 16/09: as duas pedem que a **leitura semanal seguinte** meça (rastreio da R1; segunda consulta em formato de superfície generativa). Nenhum bloco da Fundação as fecha | 16/09/2026 (7 dias) |
-| robometria | `ilhas/robometria/PROMPT.md` | metade humana do despacho de 14/09: a linha de método da 25.4. É do Raphael | 14/09/2026 (9 dias) |
-
-**O despacho da Sentinela de 13/09 na aquametria fica FECHADO com esta ronda.** Os itens 1 a 4 já tinham sido cumpridos e verificados em 13/09; o item 5 (RECEITA) foi reconferido no ar hoje e o defeito não existe mais; o item 6 continua suspenso pela seção 21, como o cabeçalho do `ESTADO.md` manda.
-
-**O despacho da Sentinela de 18/09 na robometria está CUMPRIDO INTEIRO** — os quatro itens estão riscados no `PROMPT.md` daquela ilha com verificação no ar em 20/09, 13h45Z. Saiu deste painel.
-
-**As outras quatro ilhas não foram olhadas nesta ronda**, por força do foco da 1.2. Despacho aberto nelas não some — espera.
+| clubedomosaico | `PROMPT.md`, despacho de 28/09 item 1 | **a medida da peça sai com a unidade dobrada** (`46x36cm cm`, `35cm de diâmetro cm`, `46cm de diâmetro cm`, `46x37cm cm`) em 4 das 5 peças, na vitrine, na ficha e dentro do `description` do `Product` no JSON-LD | 28/09/2026 (0 dia) |
+| clubedomosaico | `PROMPT.md`, despacho de 28/09 item 2 | **os estados com parâmetro da F1 não servem `noindex`** — a reconferência do conserto de 25/09 falhou nesta metade; a F2 e os outros 4 alvos passaram. Canônica mitiga | 28/09/2026 (0 dia) |
+| clubedomosaico | `PROMPT.md`, despacho de 28/09 item 3 | **27 fotos das peças com `alt` vazio** nas 5 páginas de `/loja/`, a foto de destaque inclusive. O `alt` mora na biblioteca de mídia, então o conserto é o molde derivá-lo | 28/09/2026 (0 dia) |
+| clubedomosaico | `PROMPT.md`, despacho de 28/09 item 4 | **8 das 17 URLs sem `<meta name="description">`**, inclusive a home e as três mães; e as 9 que têm passam de 160 caracteres | 28/09/2026 (0 dia) |
+| clubedomosaico | `PROMPT.md`, despacho de 28/09 item 5 | **13 dos 38 itens do banco com `afiliado.degrau` em `null`** servindo degrau 4, contra a 25.1 | 28/09/2026 (0 dia) |
+| clubedomosaico | `PROMPT.md`, despacho de 23/09 itens 1 e 2, Propostas 1 e 3 | as quatro linhas só fecham na **leitura semanal de 30/09**: a saída de `/author/` de `dados/posicoes.md`, o formato `clubedomosaico-f2---` no Relatório de cliques, o CTR de `qual-cola` contra 7,8 · 17 impressões · 0%, e o primeiro clique orgânico | 23/09/2026 (5 dias) |
+| robometria | `ilhas/robometria/PROMPT.md` | propostas 1 e 3 da leitura semanal de 16/09: as duas pedem que a **leitura semanal seguinte** meça (rastreio da R1; segunda consulta em formato de superfície generativa). Nenhum bloco da Fundação as fecha | 16/09/2026 (12 dias) |
+| robometria | `ilhas/robometria/PROMPT.md` | metade humana do despacho de 14/09: a linha de método da 25.4. É do Raphael | 14/09/2026 (14 dias) |
+| aquametria | `ilhas/aquametria/PROMPT.md` | **a home não serve JSON-LD nenhum** — o único emissor de `ld+json` da casca é a trilha, e ela se pula na home; não existe `WebSite` nem `Organization` em lugar nenhum da ilha, contra a seção 5 | 23/09/2026 (5 dias) |
+| aquametria | `ilhas/aquametria/PROMPT.md` | **os itens do banco com link de produto e sem `url_produto`** — a dívida da 25.4-b. Em 23/09 eram 39 de 78; o mutirão de 23 e 24/09 fechou 25 e o resíduo está escrito em `dados/fichas-pendentes.md`. **Número não medido nesta ronda** (a ronda técnica de hoje não abriu o banco da aquametria) | 13/09/2026 (15 dias) |
 
 ## Precisa do Raphael
 
-- **Decidir se a ronda diária técnica volta a rodar nas ilhas fora do foco.** O ponteiro do Pente Fino de 21/09, na seção 1.2, registra isto como pendente dele: a 1.2-b.1 diz que fora do foco a Sentinela "continua rodando", a 1.2 diz que a ronda diária não abre nenhuma outra ilha, e as duas leituras são defensáveis. **Hoje a robometria está no ar há 5 dias sem ronda técnica e as outras três não têm ronda registrada.** **Aberto há 2 dias.**
-- **`sac.taramps.com.br` e `*.taramps.com.br`** na rede Personalizada — trava a F3 da ohmetria e 8 constantes. **`civitatis.com` e `www.angkorenterprise.gov.kh`** — travam o critério de entrada do banco da jornadafly. Os dois sobraram do despacho ALTA de 14/09 em `dados/despachos.md`, cuja primeira metade (jornadafly e ohmetria na lista de rede) está cumprida desde 18/09. **Aberto há 9 dias.**
-- **`www.googletagmanager.com`, `*.google-analytics.com` e a credencial `GOOGLE_SA_B64`** na rede Personalizada das rotinas. Detalhe em `dados/despachos.md`. **Aberto há 6 dias.**
-- **Uma caixa de e-mail por ilha** (ou uma só), para a página de privacidade ter canal de titular. **Aberto há 5 dias.**
-- **Uma linha na seção 25.4 do `ARQUIPELAGO.md` sobre como se testa o degrau 4.** O teste de ficha por `api/v4/pdp/get_pc` está escrito e funcionou de novo hoje; o teste do degrau 4 continua sendo a contagem de resultados da busca, e continua não escrito. **Aberto há 4 dias.**
+- **`sac.taramps.com.br` e `*.taramps.com.br`** na rede Personalizada — trava a F3 da ohmetria e 8 constantes. **`civitatis.com` e `www.angkorenterprise.gov.kh`** — travam o critério de entrada do banco da jornadafly. Detalhe em `dados/despachos.md`. **Aberto há 14 dias.**
+- **`www.mercadolivre.com.br` na rede Personalizada.** Medido hoje: o egresso da nuvem devolve **403 no CONNECT** para o domínio, nas quatro tentativas. O teste de vida dos 4 links de catálogo `/p/MLB...` desta ilha teve de ser feito no navegador, e da nuvem **nenhuma rotina agendada consegue conferir link de Mercado Livre**. **Aberto há 0 dia.**
+- **`www.googletagmanager.com`, `*.google-analytics.com` e a credencial `GOOGLE_SA_B64`** na rede Personalizada das rotinas. Detalhe em `dados/despachos.md`. **Aberto há 11 dias.**
+- **Uma caixa de e-mail por ilha** (ou uma só), para a página de privacidade ter canal de titular. **Aberto há 10 dias.**
+- **Uma linha na seção 25.4 do `ARQUIPELAGO.md` sobre como se testa o degrau 4.** O teste de ficha por `api/v4/pdp/get_pc` está escrito e funcionou de novo hoje; o teste do degrau 4 continua sendo a contagem de resultados da busca, e continua não escrito. **Aberto há 9 dias.**
+- **Normalizar a medida das 4 peças no painel `/atelie/`** — o item 1 do despacho de 28/09 tem uma metade que é dado da artesã e não de máquina: tirar a unidade de dentro do valor de `cdm_medidas`. A outra metade (o molde tolerante) é da Fundação. **Aberto há 0 dia.**
+- **Nome, foto e perfis da artesã** para `ilhas/clubedomosaico/identidade/artesa/` — a página Sobre segue com "a artesã" e o bloco vazio. Não bloqueia. **Aberto há 17 dias.**
 - **A ilha 4 / purga por API do hospedeiro** — os dois continuam em `dados/despachos.md`, sem mudança nesta ronda.
-
-**SAIU desta lista:** a credencial da Open API da Shopee. Ela está funcionando — a execução das 10h17Z de 23/09 gravou `url_produto`, `degrau` e `encurtamento_tentado_em` em 8 itens do banco da aquametria, e os 8 foram testados no ar nesta ronda.
 
 ## Consertos das últimas 24 h
 
-**Nenhum.** A ronda de 23/09 na aquametria achou dois defeitos e os dois caem na lista fechada 19.2 — um é código de snippet (JSON-LD da home) e o outro é dado do banco cuja correção exige escolher anúncio (os 39 `url_produto`). Foram despachados em vez de consertados, e `ilhas/aquametria/dados/consertos.md` ganhou a linha de zero conserto.
+**Nenhum.** A ronda de 28/09 achou cinco defeitos na clubedomosaico e os cinco caem na lista fechada 19.2 — molde de snippet, dado que só existe no site, `alt` que mora na biblioteca de mídia, emissor de etiqueta na casca, e dado do banco. Foram despachados em vez de consertados, e `ilhas/clubedomosaico/dados/consertos.md` ganhou a linha de zero conserto. **Aquametria e robometria: nada a consertar, nada achado.**
 
-**Reconferência da 19.4(c):** a única linha de `ilhas/aquametria/dados/consertos.md` é a de 13/09 e registra **zero conserto**, então não havia conserto de ronda anterior a reconferir. O que esta ronda reconferiu foi o despacho de 13/09, no ar, pelos critérios que ele mesmo declarou — e os itens 1 a 5 passaram.
-
-**Teste de vida dos links (25.4 e 25.4-b), feito nesta ronda, na aquametria, do navegador, sem gastar um clique de afiliado:** **8 de 8** itens com `url_produto` testados pela API de ficha da Shopee (`api/v4/pdp/get_pc`) — **8 vivos** (`item_status: normal`), **0 mortos, 0 esgotados**. Mais **7 palavras-chave de busca** medidas pela API de busca: as 7 com resultado (de 39 a 6.000). A oitava chave (`Chihiros A361 luminaria aquario`) **não foi medida**: a Shopee devolveu o desvio para `verify/captcha` no meio da passada e a Sentinela é proibida de resolver CAPTCHA — fica para a ronda seguinte, e não é link morto. **Itens `intestavel: true`: 39**, nomeados no despacho. Chamada da nuvem remedida duas vezes na mesma execução, **403 nas duas**, como a 25.4 já mandava não redescobrir.
+**Reconferência da 19.4(c), na clubedomosaico, que era a dívida mais antiga desta ronda:** as três linhas de `dados/consertos.md` marcadas "**a próxima ronda**" foram reconferidas no ar. **(1) A porta de entrada de 24/09 PASSOU** — o `.htaccess` continua com o bloco do WordPress e as 17 URLs mais as três rotas virtuais respondem. **(2) Os 31 links regerados de 25/09 PASSARAM** — zero encurtador desconhecido servido, 38 de 38 com `sub_id_1` certo. **(3) A etiqueta de robô de 25/09 PASSOU EM 4 DOS 5 ALVOS e falhou nos estados da F1**, que viraram o item 2 do despacho de hoje, com a linha da 19.4(a) escrita.

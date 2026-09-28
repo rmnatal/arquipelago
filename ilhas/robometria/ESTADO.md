@@ -18,7 +18,7 @@ bloco_atual: |
   O QUE A LEVA NAO FEZ: o menu continua apontando "Pecas" para a FERRAMENTA e /ferramentas/ continua de pe — o ARVORE.md condiciona as duas trocas a /succao/ tambem existir, e ela nasce na leva 2.
   A PROXIMA LEVA JA ESTA MEDIDA E NAO E DE FILTRO: /pecas/escovas-laterais/ (13 itens, 5 marcas) e /pecas/mops/ (19, 5) tambem passam no portao hoje; nao nasceram por causa da ordem de levas e do teto, nao por falta de dado.
   BANCADA 41 portoes 0 falha sem rede e conferir-no-ar.py com 389 afirmacoes 0 falha.
-ultima_ronda: 2026-09-23T20:10Z   # leitura semanal da Sentinela em 23/09/2026, a primeira medicao desta ilha desde 18/09. NAO foi ronda tecnica: o que rodou foi a leitura de negocio (indexacao, posicao, vendas). A ronda diaria tecnica continua sem rodar aqui desde 18/09, por forca da 1.2.
+ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a primeira nesta ilha desde 18/09, pela decisao do Raphael de 28/09 (secao 1.2) de a ronda tecnica rodar em TODA ilha no ar. Medido no ar: 14 URLs do sitemap em 200, wp-sitemap.xml/robots.txt/wp-json em 200 com o tipo certo, caminho inexistente em 404 na pagina da propria ilha, /status na revisao 81 igual a do manifest, console sem mensagem, zero ocorrencia de entidade de e comercial dentro de script, zero orfa, zero noindex indevido, nenhuma frase da lista Proibidas do VOZ.md em titulo, h1 ou primeiro paragrafo. NENHUM defeito. A leitura semanal continua sendo 23/09 as 20h10Z.
 bloqueada_por: null
 ---
 
