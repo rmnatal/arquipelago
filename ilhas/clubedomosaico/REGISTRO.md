@@ -5013,3 +5013,138 @@ percorre `vocabularios` de forma genérica. E `conferir-no-ar.py` refeito depois
   a fila útil desta ilha é a leitura de **30/09**: ela é a terceira condição de pronto dos itens 1 e 2 do
   despacho da Sentinela de 23/09, é o que libera o **BLOCO A** (CTR das três páginas de primeira página) e
   é o que autoriza a decisão do Raphael sobre os dois valores novos de `vocabularios.base`.
+
+28/09/2026 16:17Z — DESPACHO DA SENTINELA DE 28/09 ENTREGUE, quatro itens inteiros e meio: cinco camadas, e DUAS contagens da ronda corrigidas pela medição
+
+Revisão **45** no ar. Casca **1.16.0**, Loja **1.3.0**, F1 **1.4.0**, F2 **1.6.0**, Ateliê **1.4.0**,
+Tecnicas **1.2.0**. Foi a primeira ronda diária técnica que esta ilha recebeu, e o despacho dela tinha
+cinco itens; pela 18.2 correção sai inteira, e pela 18.3 o que sobrou está reescrito no `PROMPT.md` com o
+motivo. A ilha estava livre (`executando_desde: null`), a rede respondeu 200 nas duas tentativas da 20.2, e
+o despacho do Raphael de 24/09 não furou a fila porque o único bloco aberto dele (o **BLOCO A**) espera
+30/09 por ordem do próprio despacho.
+
+**O ACHADO QUE MUDA O QUE O ITEM 2 ERA.** A ronda escreveu que os estados com parâmetro de
+`/materiais/qual-cola-usar-no-mosaico/` não saíam do índice e que a reconferência do conserto de 25/09
+tinha falhado nessa metade. Falhou mesmo — mas a causa não é a que o nome do defeito sugere, e ela só
+aparece lendo as **duas** ferramentas lado a lado: **elas liam a MESMA pergunta de dois jeitos opostos.**
+
+- O `escolheu` da F1 pergunta `isset( $_GET['forma'] )` — **a presença** do parâmetro.
+- O `escolheu` da F2 pergunta `isset( $rot['base'][ $base ] )` — **a validade do valor**.
+
+As três URLs que a ronda mediu (`?base=ceramica&onde=externo`, `?base=mdf`,
+`?base=ceramica&caco=louca&junta=fina&onde=interno`) têm os quatro **nomes de parâmetro reais** e **nenhum
+valor que exista** no vocabulário — as chaves são `ceramica_esmaltada_porcelana`, `externo_exposto`,
+`mdf_madeira`, `caco_louca`, e `junta` é número. Então a F2 respondia "não escolheu nada" e a página entrava
+no índice com três endereços a mais. **E a F1 passou pelo motivo oposto e igualmente por acidente:** a régua
+de 25/09 a mediu com `?forma=vaso&caquinho=medio`, em que `forma` foi enviado. Com `?caquinho=medio`
+sozinho ela teria falhado igual. **Duas irmãs, cada uma acertando o portão da outra por sorte.**
+
+O conserto separa as duas perguntas, e a separação é a parte que vale:
+
+- **`escolheu` manda na TELA** e continua medindo o **valor**, nas duas. Valor fora do vocabulário volta ao
+  padrão em silêncio e a página que sai é a âncora; dizer "você escolheu" sobre uma escolha que a página não
+  honrou seria trocar um defeito de índice por um defeito de texto.
+- **`cdm_fX_tem_parametro()` manda no `noindex`** e mede a **presença**. Para essa pergunta o valor não
+  importa: `?base=lixo` é um endereço diferente servindo o MESMO HTML, que é a definição de duplicata — e o
+  conjunto dos valores inválidos é **infinito**, enquanto o das escolhas válidas é finito.
+- Só os parâmetros **da própria ferramenta**, nunca "qualquer query": `noindex` em toda URL com `?`
+  alcançaria a paginação e a busca do núcleo, e tirar do índice página que rankeia é o lado caro da borda —
+  esta ilha tem TRÊS páginas na primeira página do Google.
+
+**E um buraco medido de brinde:** a lista de parâmetros da F1 estava escrita à mão dentro do `escolheu` e
+nomeava `d`, `h`, `l` e `a` — **esquecendo o `d2`**, o diâmetro do fundo do cone, que existe desde que a
+forma cônica existe. `cdm_f1_parametros()` agora deriva os campos de `cdm_f1_formas()`, e a bancada afirma
+que toda medida de toda forma está na lista. `?d2=12` sai com `noindex` no ar.
+
+**A SEGUNDA CONTAGEM CORRIGIDA — O ITEM 3 ERA 27 E SÃO 5.** A ronda contou 27 imagens com `alt=""` nas
+cinco páginas de peça e pediu que "todas" ficassem com alt não vazio. Contadas de novo aqui, imagem por
+imagem no HTML servido, elas se separam em duas famílias e a separação muda o conserto:
+
+- **5 são a foto de DESTAQUE** (`attachment-post-thumbnail`, do bloco do núcleo, que lê
+  `_wp_attachment_image_alt` da biblioteca de mídia). Nenhuma foto da artesã tem esse campo. É a foto
+  **principal** de cada peça, a que `Product.image` aponta, e nesta ilha a foto **é** o produto — a própria
+  `/loja/` diz "a foto é a da peça que você vai receber". **Este é o defeito.**
+- **22 são as miniaturas da tira do carrossel**, e o `alt=""` delas é **deliberado**, com o motivo escrito em
+  `cdm_loja_miniaturas_html()` desde que a tira nasceu: a miniatura repete a foto que já tem `alt`
+  descritivo logo acima, e o nome do controle está no `<a>`, num `<span class="cdm-gal-so-leitor">`. Imagem
+  decorativa que repete conteúdo vizinho leva `alt=""` — é a regra, não a exceção. **Preenchê-las para o
+  número chegar a zero faria o leitor de tela ler a peça inteira duas vezes.** Régua que não sabe distinguir
+  decorativo de descritivo cobra a piora, então a régua nova deixa a tira de fora **por nome**.
+
+**O ALT AGORA SAI DE UMA FUNÇÃO SÓ.** Eram três lugares: o molde do carrossel escrevia
+`<título>, mosaico em <base>, foto N`, o cartão da vitrine escrevia a mesma frase de novo, e o núcleo não
+escrevia nada na foto de destaque. Agora os três chamam `cdm_loja_alt_da_foto()`, no formato que o despacho
+recomenda — **técnica na frente da base**, porque quem olha a foto vê louça quebrada, não vê MDF. No ar:
+`Vaso com flores em cerâmica — pica-sete (louça quebrada), foto 1`. Com uma foto só o "foto 1" não entra:
+seria ruído lido em toda peça da vitrine. E o `alt` da artesã **sempre vence** — o filtro só entra quando o
+campo está vazio.
+
+**O ITEM 1 FOI CONSERTADO DOS DOIS LADOS, e o despacho tinha razão em exigir os dois.** O campo
+`_cdm_medidas` de quatro peças trazia a unidade dentro do valor (`46x36cm`, `35cm de diâmetro`) e o molde
+acrescentava ` cm` depois, nos **três** lugares que servem medida — a frase da ficha (que vira o
+`description` do `Product`), o `additionalProperty` do JSON-LD e a linha do cartão. Consertar só o molde
+deixaria o banco com quatro formatos; consertar só o dado deixaria o molde pronto para dobrar o próximo
+valor que chegasse por outro caminho. Entraram: `cdm_loja_medida_normalizada()` (o que se grava),
+`cdm_loja_medida_na_tela()` (o que se serve), a normalização no `/atelie/` na hora de salvar, e uma migração
+idempotente presa a uma chave de option para as peças que já existiam. **No ar:** `40×28 cm`,
+`35cm de diâmetro`, `46×36 cm`, `46cm de diâmetro`, `46×37 cm`.
+
+**E O QUE ELAS NÃO FAZEM:** reescrever a frase da artesã. `35cm de diâmetro` é texto dela, tem **uma**
+unidade, e sai como ela escreveu — o que se tira é a unidade REDUNDANTE, a do fim do valor, no lugar exato
+onde o molde ia pôr a dele. Valor com uma unidade por dimensão (`12 cm x 5 cm`) fica **intocado**: tirar a
+última daria `12 cm × 5`, que é pior que o defeito.
+
+**O ITEM 4 É O QUE O PRÓPRIO DESPACHO DISSE QUE ERA:** *"não é o texto de uma página: é qual camada emite a
+etiqueta e para quais tipos de página"*. E é o **mesmo desenho** que fez a etiqueta de robô sair dobrada em
+25/09, com o sintoma **invertido** — lá o excesso, aqui a falta, e falta não tem cor na tela. Quem tinha
+snippet próprio imprimia a sua num `wp_head` paralelo (as duas ferramentas, os dois tutoriais, as cinco
+peças pela Loja) e as **oito páginas da casca não tinham quem imprimisse**. Agora **quem tem `description`
+DECLARA pelo filtro `cdm_descricao`; quem imprime é a casca, uma vez.** As oito nasceram entre **121 e 143**
+caracteres, nenhuma repetida, e a home é tratada à parte porque `cdm_casca_slug_atual()` devolve vazio na
+frente do site — sem essa linha o conserto pularia justamente a URL mais visitada da ilha.
+
+**O ITEM 5 e o portão que estava medindo a pergunta errada.** Os 13 itens (7 de acabamento, 6 de alicate)
+estavam com `afiliado.degrau` em `null` servindo degrau 4 na tela, e o validador aprovava porque cobrava o
+degrau de quem tinha `afiliado.url` — a ficha de produto. **Item que serve BUSCA não tem `url`**, então a
+regra velha nunca alcançava o degrau 4, e o esquema dizia o mesmo em `obrigatorio_quando`. Agora o degrau é
+cobrado de quem **serve** link, a escada é contada no relatório — **1:1 · 2:5 · 3:4 · 4:28, soma 38** — e
+`ferramentas/mutacoes-degrau.py` (8 mutações nos **cinco** bancos, porque o buraco era do portão e não do
+arquivo) reprova 8 de 8, **4 delas só pelo portão novo**. A regra antiga fica guardada no esquema em
+`obrigatorio_quando_ate_28_09_2026`, porque ela explica um número do histórico.
+
+**A SEGUNDA OBSERVAÇÃO DO DESPACHO FOI DECIDIDA**, como ela pedia: a **25.2-b nomeia um CONCEITO, não um
+campo**. Nesta ilha o conceito tem **dois** campos e não um — `url_busca_gerada_em` declara o sucesso e
+`motivo_sem_url_busca` declara o fracasso —, e o par cobre os dois desfechos que a regra nomeia. Um campo
+`encurtamento_tentado_em` sozinho cobriria só o carimbo e diria "tentei" sem dizer o que aconteceu. Está
+escrito em `dados/esquema-banco.json`, em `e_o_campo_de_tentativa_da_25_2_b`.
+
+**O QUE NÃO SAIU, E O MOTIVO É DESPACHO DE PRIORIDADE MAIOR.** A **faixa** de 120 a 160 nas quatro páginas
+que já tinham `description` — `qual-cola` (183), `quantas-pastilhas` (165), `picassiete` (192), `trencadis`
+(189). **Três delas estão na primeira página do Google** e o **BLOCO A do despacho do Raphael de 24/09**,
+que pela 18.1 vem antes deste, diz com todas as letras que espera **30/09**, porque *"trocar título antes do
+número de 30/09 misturaria duas causas na mesma janela"*. A `description` é a outra metade da mesma promessa
+de SERP. **E é por isso que o pedido de cumprir a Proposta 1 no mesmo movimento não foi obedecido:** fazer só
+a `description` agora seria a pior das três opções — mexeria na janela de medição sem entregar a alavanca
+inteira. A régua no ar **já mede as quatro** e **imprime o número delas** para não ser esquecido; fechar isto
+depois de 30/09 é tirá-las da lista `TRAVADAS_ATE_30_09`.
+
+**BANCADAS.** Casca 563, Loja 196, F1 200, F2 119, Tecnicas 123, Ateliê 289, Leads 211, Prestação 5 — zero
+falha. Validador do banco verde. **E no ar: `conferir-no-ar.py` com 501 afirmações e 0 falha** (eram 488 na abertura; as 13 novas são as réguas dos quatro itens). **E cada régua nova foi provada contra o defeito que a fez nascer, não
+contra o conserto:** revertida a condição da F2, a bancada reprova servindo
+`<meta name='robots' content='max-image-preview:large' />` nas três URLs — o texto exato que a ronda mediu
+no ar; revertida a da F1, ela reprova no `d2`. **A régua da unidade dobrada foi escrita ERRADA na primeira
+tentativa e o próprio teste pegou:** com `\b` antes da unidade ela **não reconhecia** `46x36cm cm`, porque
+entre o `6` e o `c` não há fronteira de palavra. É a família da régua de robô que media a **aspa** em vez da
+diretiva, que esta ilha pagou em 25/09 — régua que não reconhece o defeito que a fez nascer aprova o
+desastre calada. Agora ela exige o número na frente, e a bancada afirma as duas direções.
+
+**E as mutações de `noindex` da F1 e da F2 estavam a caminho de virar INERTE**, que é o pior dos dois
+estados: a bateria continuaria verde dizendo que mediu. Foram retargetadas para a condição nova e ganharam
+uma **mutação nova** que escreve de volta a regressão exata de 28/09 — o `noindex` voltando a depender do
+valor.
+
+- **Próximo passo desbloqueado:** a leitura de **30/09**. Ela continua sendo o que libera o **BLOCO A** (CTR
+  das três páginas de primeira página, com o veredito em 08/10), e agora ela libera também a **metade que
+  falta do item 4** — as duas são a mesma promessa de SERP nas mesmas páginas e saem no mesmo movimento, que
+  é exatamente por isso que nenhuma das duas saiu hoje. O que **não** depende dela continua sendo o egresso
+  de fabricante, que trava as duas categorias vazias (`base` e `apoio`) e está na lista do Raphael.

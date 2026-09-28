@@ -5,42 +5,42 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-28T14:55Z
-executando_desde: 2026-09-28T16:17Z
+ultima_execucao: 2026-09-28T17:05Z
+executando_desde: null
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
-  A CATEGORIA APOIO RECEBE A DECISAO DE CAMPO, E COM ELA NENHUMA DAS SETE FICA SEM A SUA. Esquema na
-  versao 6: regras_da_categoria_apoio (o objeto `servico`, irmao do corte/protecao/substrato),
-  ponte_do_tipo_de_apoio_para_o_ramo (os seis tipos divididos em ferramenta x EPI) e
-  exigencias_de_apoio_ja_declaradas_no_banco. Portao no validar-banco.py, bateria nova
-  ferramentas/mutacoes-apoio.py com 24 de 24 reprovadas e 24 de 24 so o portao novo viu. Casca 1.15.0
-  intocada, manifest 44, conferir-no-ar 488 afirmacoes e 0 falha no ar — o mesmo numero da abertura, que
-  e a prova de que o site nao foi tocado.
-  A FORQUILHA QUE DECIDE A CATEGORIA INTEIRA, e ela nao e arrumacao: espatula, desempenadeira, pinca e
-  marcador agem sobre o MATERIAL e o erro deles estraga a PECA; oculos e luva agem sobre a PESSOA e o
-  erro deles machuca quem monta. Uma lista so poria luva ao lado de desempenadeira como se a escolha
-  fosse do mesmo tipo. E a assimetria de custo da secao 10 aplicada a um vocabulario que ja existia.
-  O PRECO JA ESTAVA PAGO NO BANCO ANTES DA SECAO EXISTIR, pela segunda vez no mesmo dia: CINCO frases de
-  fabricante, em QUATRO registros de TRES categorias, nomeiam um apoio e nenhuma tinha campo para onde ir.
-  A Pastilhart escreve 'desempenadeira de BORRACHA para nao riscar' no assentamento da AF1500 — e as 13
-  pastilhas do banco sao de vidro. A Cascola escreve 'aplicacao com pincel ou rolo'. A Quartzolit escreve
-  'aplicar com rolo de espuma de poliester'. Foram lidas, classificadas e descartadas em silencio.
-  A CATEGORIA CUJA DECLARACAO VEM DO OUTRO LADO DO BALCAO: quem diz qual desempenadeira usar nao e o
-  fabricante da desempenadeira, e o da PASTILHA. Isso e novo nesta ilha, e por isso o portao mais forte do
-  bloco NAO OLHA registro de apoio nenhum — varre as outras categorias, nas duas direcoes.
-  E O VOCABULARIO E A FRASE DOS FABRICANTES APONTAM PARA LADOS OPOSTOS: dos SEIS tipos que
-  tipo_por_categoria.apoio declara, UM aparece no banco (desempenadeira); dos DOIS termos que mais
-  aparecem no banco (pincel, rolo), ZERO estao no vocabulario. E a intersecao entre
-  tipo_por_categoria.apoio e a propriedade forma_de_aplicacao do acabamento (aerossol, rolo, pincel,
-  trincha) e VAZIA — duas metades contando a mesma coisa sem nunca se falarem.
-  O SILENCIO QUE O BLOCO TRANSFORMOU EM NUMERO: 38 registros, cinco ocorrencias, TODAS no ramo da
-  ferramenta. O ramo do EPI tem ZERO — nenhuma frase do banco nomeia luva ou oculos —, e a F2 recomenda
-  os dois produtos em que a protecao deixa de ser opcional (loctite-durepoxi e quartzolit-rejunte-epoxi).
-  O bloco NAO escreve recomendacao de EPI nenhuma (isso seria afirmar pelo fabricante, secao 8); ele torna
-  `risco_declarado` obrigatorio mesmo null, para a primeira coleta responder 'ninguem declarou' em vez de
-  a pergunta nao ser feita.
-  NENHUM SKU COLETADO, e o motivo e o mesmo canal de sempre: dureza Shore A e norma de EPI moram em PDF de
-  fabricante, e o egresso nao abre PDF. Esta escrito no esquema, em o_que_falta_para_coletar_o_primeiro_SKU.
+  DESPACHO DA SENTINELA DE 28/09 ENTREGUE, QUATRO ITENS INTEIROS E MEIO, e a execucao corrigiu DUAS
+  contagens da propria ronda medindo de novo. Revisao 45 no ar: casca 1.16.0, loja 1.3.0, f1 1.4.0,
+  f2 1.6.0, atelie 1.4.0, tecnicas 1.2.0. conferir-no-ar.py com 501 afirmacoes e 0 falha (eram 488).
+  ITEM 2 — A CAUSA NAO ERA A QUE O NOME DO DEFEITO SUGERE: as duas ferramentas irmas liam a MESMA
+  pergunta de dois jeitos opostos. O `escolheu` da F1 pergunta se o parametro FOI ENVIADO; o da F2, se o
+  VALOR esta no vocabulario. As tres URLs que a ronda mediu tem os quatro nomes de parametro REAIS e
+  nenhum valor que exista, entao a F2 respondia "nao escolheu nada" e entrava no indice com tres
+  enderecos a mais. E a F1 so passou porque a regua de 25/09 a mediu com `?forma=vaso&caquinho=medio`,
+  em que `forma` foi enviado — cada uma acertando o portao da outra por sorte. As duas perguntas foram
+  separadas: `escolheu` manda na TELA e mede o valor; `cdm_fX_tem_parametro()` manda no `noindex` e mede
+  a PRESENCA, porque duplicata se conta por endereco e o conjunto dos valores invalidos e infinito.
+  E UM BURACO MEDIDO DE BRINDE: a lista de parametros da F1 era escrita a mao e esquecia o `d2` do cone
+  desde que a forma conica existe. Agora ela deriva de `cdm_f1_formas()`, e `?d2=12` sai com noindex.
+  ITEM 3 — ERA 27 E SAO 5. Contadas imagem por imagem: 5 sao a foto de DESTAQUE (a principal, a que
+  `Product.image` aponta, e nesta ilha a foto E o produto) e 22 sao as miniaturas da tira, cujo `alt=""`
+  e DELIBERADO e correto — elas repetem a foto que ja tem descricao e o nome do controle esta no `<a>`.
+  Preenche-las para o numero chegar a zero faria o leitor de tela ler a peca duas vezes, entao a regua
+  nova deixa a tira de fora POR NOME. O alt sai de uma funcao so agora, com a tecnica na frente da base.
+  ITEM 1 — CONSERTADO DOS DOIS LADOS, como o despacho exigia: valor normalizado na gravacao (e nas
+  quatro pecas que ja existiam, por migracao idempotente) E molde tolerante. So um dos dois faria isto
+  voltar na peca 6. No ar: 40×28 cm, 35cm de diametro, 46×36 cm, 46cm de diametro, 46×37 cm.
+  ITEM 4 — A ETIQUETA GANHOU DONO, e e o MESMO desenho que fez a de ROBO sair dobrada em 25/09, com o
+  sintoma invertido: la o excesso, aqui a falta, e falta nao tem cor na tela. Quem tem description agora
+  DECLARA pelo filtro `cdm_descricao`; quem imprime e a casca, uma vez. As oito nasceram entre 121 e 143
+  caracteres, nenhuma repetida.
+  ITEM 5 — o portao media a pergunta errada: cobrava o degrau de quem tem `url`, e item que serve BUSCA
+  nao tem `url`. Agora cobra de quem SERVE link, e a escada e contada: 1:1 2:5 3:4 4:28, soma 38.
+  O QUE FALTA, E O MOTIVO E DESPACHO DE PRIORIDADE MAIOR (18.1): a FAIXA de 120 a 160 nas quatro paginas
+  que ja tinham description (183, 165, 192, 189). Tres delas estao na primeira pagina do Google e o
+  BLOCO A do despacho do Raphael de 24/09 espera 30/09 — trocar a promessa da SERP agora misturaria duas
+  causas na mesma janela. A regua no ar ja mede as quatro e IMPRIME o numero delas.
+
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

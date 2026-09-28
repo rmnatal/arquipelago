@@ -1161,7 +1161,8 @@
             },
             "url_busca_gerada_em": {
               "tipo": "data ISO|null",
-              "observacao": "O dia em que `url_busca` foi ENCURTADA. Separado de `gerado_em`, que e o da ficha: os dois links tem vidas diferentes e ate 25/09/2026 carregavam a mesma data por acidente de escrita. Quem regerar um dos dois carimba so o dele."
+              "observacao": "O dia em que `url_busca` foi ENCURTADA. Separado de `gerado_em`, que e o da ficha: os dois links tem vidas diferentes e ate 25/09/2026 carregavam a mesma data por acidente de escrita. Quem regerar um dos dois carimba so o dele.",
+              "e_o_campo_de_tentativa_da_25_2_b": "SIM, e a decisao esta escrita aqui porque a ronda da Sentinela de 28/09/2026 pediu que alguem decidisse: a 25.2-b nomeia um CONCEITO, nao um campo. O que ela cobra e que o validador reprove registro publicavel cuja TENTATIVA de encurtamento nao esteja declarada, e que ele distinga ausente de tentado-e-falhou. Nesta ilha o conceito tem DOIS campos, e nao um: `url_busca_gerada_em` declara o sucesso (a data em que a API respondeu com o link curto) e `motivo_sem_url_busca` declara o fracasso (o que a API respondeu quando nao deu). O par cobre os dois desfechos que a 25.2-b nomeia; um campo `encurtamento_tentado_em` sozinho cobriria so o carimbo, e diria 'tentei' sem dizer o que aconteceu. Um nome diferente do da regra nao e defeito enquanto o conceito estiver coberto e escrito; um nome igual com um desfecho de fora seria."
             },
             "motivo_da_chave": {
               "tipo": "string|null",
