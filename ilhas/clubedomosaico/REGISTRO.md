@@ -4988,3 +4988,28 @@ F1, `teste-tecnicas.php` 123, `teste-loja.php` 178 sobre 72 estados e `teste-lea
 21/21, `mutacoes-rejunte` 16/16, `mutacoes-cobertura` 14/14, `mutacoes-acabamento` 14/14,
 `mutacoes-pastilhas` 14/14 e `mutacoes-tecnica-x-material` 9/9 — **228 mutações, nenhuma passando**.
 
+## DESEMBARQUE E VERIFICAÇÃO NO AR
+
+O `dados/esquema-banco.json` é item **`publicar: true`** do manifest — a casca e a F2 leem a *option*
+`clubedomosaico_dados_esquema-banco` em tempo de requisição. Então este bloco **é publicável**, e o Sync
+foi acionado: **revisão 44 aplicada às 14h57Z, `/status` batendo com o manifest, um disparo só.**
+*(A execução das 10h16Z escreveu a versão 5 do esquema sem subir a revisão e registrou "não houve Sync";
+o site ficou na 43 desde 25/09. A subida para 44 desembarcou as duas de uma vez.)*
+
+**A prova de que o desembarque NÃO mexeu na página da posição 7,8**, que é o que o BLOCO A exige até
+30/09: `/materiais/qual-cola-usar-no-mosaico/` continua servindo **270 combinações** e **45** linhas na
+tabela — `9 × 5 × 6`, os mesmos números de antes —, medido no endereço **canônico** e no mesmo endereço
+**com quebra de cache**, que devolveram o mesmo número. As três chaves que a F2 lê do esquema
+(`vocabularios.base`, `.ambiente`, `.material_tessela`, o `mapa_de_termos_do_fabricante` e as
+`regras_de_elegibilidade`) **não foram tocadas**: a versão 6 só acrescenta chaves novas, e nenhuma página
+percorre `vocabularios` de forma genérica. E `conferir-no-ar.py` refeito depois do Sync: **488 afirmações,
+0 falha**, o mesmo número da abertura.
+
+- **Próximo passo desbloqueado:** o que sobra das duas categorias vazias **não é mais decisão de campo, é
+  CANAL**. `base` e `apoio` têm regra escrita, portão de pé e bateria verde, e as duas esperam a mesma
+  coisa: uma frase de fabricante que esta nuvem consiga **citar literalmente** — o egresso direto está em
+  000 e o canal de busca devolveu resumo e tradução nas duas tentativas de hoje. O item que resolve as
+  duas junto é o **egresso de fabricante**, que já está na lista do que depende do Raphael. Enquanto isso,
+  a fila útil desta ilha é a leitura de **30/09**: ela é a terceira condição de pronto dos itens 1 e 2 do
+  despacho da Sentinela de 23/09, é o que libera o **BLOCO A** (CTR das três páginas de primeira página) e
+  é o que autoriza a decisão do Raphael sobre os dois valores novos de `vocabularios.base`.

@@ -460,6 +460,33 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > **ESTADO EM 28/09/2026 às 10h16Z — A `base` JÁ TEM A DECISÃO DE CAMPO; O QUE FALTA NELA NÃO É DECISÃO, É FRASE DE FABRICANTE.** `regras_da_categoria_base` e `ponte_do_tipo_para_o_vocabulario_base` estão escritas no esquema (**versão 5**), com portão no `validar-banco.py` e `ferramentas/mutacoes-base.py` (20 de 20, 19 só os portões novos viram). **Nenhum SKU foi coletado**, e o motivo é o CANAL e não a rede: o egresso de fabricante continua em 000, e nesta execução a busca devolveu **resumo e tradução** das páginas de painel de MDF em vez da frase do fabricante — e `literal_do_fabricante` é a viga do esquema. Está escrito em `regras_da_categoria_base.o_que_falta_para_coletar_o_primeiro_SKU`.
    >
    > **A DECISÃO ACHOU UM BURACO QUE NÃO ERA DA CATEGORIA, E SIM DO VOCABULÁRIO:** dos cinco tipos de `tipo_por_categoria.base`, só `mdf_cru` e `cimento` pousam em `vocabularios.base`; `ceramica_crua` e `isopor_estrutural` **não têm valor** e `moldura` **não é material** (é forma, e forma aqui é a F1). Dois vernizes do banco carregam `isopor` e `gesso` na frase literal do fabricante, e as duas palavras não existem no vocabulário — declaração lida e descartada em silêncio. **Acrescentar os dois valores novos é decisão do Raphael e só pode sair DEPOIS da leitura de 30/09**, porque muda o que `/materiais/qual-cola-usar-no-mosaico/` (posição 7,8) serve: a lista suspensa ganha duas opções e a contagem da página sai de 270 para 330 combinações. **Pela ordem da fila, a próxima categoria a coletar é a `apoio`** — é a única ainda sem decisão de campo nenhuma e a de menor risco de egresso, porque espátula, óculos e luva são do mesmo terreno da `alicate`, que saiu de zero por busca.
+
+   > **ESTADO EM 28/09/2026 às 14h55Z — A `apoio` TAMBÉM JÁ TEM A DECISÃO DE CAMPO, E AGORA NENHUMA DAS
+   > SETE CATEGORIAS ESTÁ SEM A SUA.** `regras_da_categoria_apoio` (o objeto `servico`),
+   > `ponte_do_tipo_de_apoio_para_o_ramo` (os seis tipos divididos em ferramenta × EPI) e
+   > `exigencias_de_apoio_ja_declaradas_no_banco` estão no esquema (**versão 6**), com portão no
+   > `validar-banco.py` e `ferramentas/mutacoes-apoio.py` (24 de 24, as 24 só o portão novo viu).
+   > **Nenhum SKU foi coletado**, e o motivo é o de sempre: `dureza_shore_a` e `norma_declarada` moram em
+   > PDF de fabricante, e o egresso não abre PDF. Está escrito em
+   > `regras_da_categoria_apoio.o_que_falta_para_coletar_o_primeiro_SKU`.
+   >
+   > **O QUE A DECISÃO ACHOU, e é o achado que vale mais que a categoria:** cinco frases de fabricante, em
+   > quatro registros de três categorias, **já nomeavam um apoio** e nenhuma tinha campo para onde ir — a
+   > Pastilhart escreve *"desempenadeira de borracha para não riscar"* e as 13 pastilhas do banco são de
+   > vidro. E o vocabulário aponta para o lado oposto do banco: dos **seis** tipos que
+   > `tipo_por_categoria.apoio` declara, **um** aparece no banco; dos **dois** termos que mais aparecem
+   > (`pincel`, `rolo`), **zero** estão no vocabulário. Os dois ficam como `sem_valor_no_vocabulario` com
+   > `valor_proposto` escrito, e **isto NÃO espera 30/09** (nenhuma página lê `tipo_por_categoria`): é a
+   > regra de crescimento — o valor nasce com o primeiro SKU que o use.
+   >
+   > **E o silêncio virou número:** o ramo do EPI tem **zero** declarações em 38 registros, e a F2
+   > recomenda os dois epóxis do banco. O bloco não inventou recomendação de proteção; tornou
+   > `risco_declarado` obrigatório mesmo null. **O que destrava é a FISPQ do epóxi — mesmo egresso de PDF
+   > que segura o primeiro SKU da `base`. Terceiro bloco seguido parando na mesma porta.**
+   >
+   > **Pela ordem da fila, o que sobra das categorias vazias não é mais decisão de campo: é CANAL.** As
+   > duas (`base` e `apoio`) têm a regra escrita, o portão de pé e a bateria verde, e as duas esperam a
+   > mesma coisa — uma frase de fabricante que esta nuvem consiga citar literalmente.
 4. **A LINHA DA PEÇA NA TABELA DO `ARVORE.md`** — seção 5 daquele arquivo diz exatamente o que falta, e é conserto de TESTE, não de documento.
 
 **1. CORPUS DE BUSCAS.** `dados/corpus-buscas.md` com os três clusters (materiais/ferramentas · peças prontas · aprender), faixa, concorrência, CPC e a classificação de SERP por consulta (aberta / tomada / armadilha). A base já está na memória; complete com autocomplete e buscas relacionadas. Não depende de infraestrutura.
