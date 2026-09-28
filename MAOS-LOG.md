@@ -3197,3 +3197,105 @@ duas linhas nomeadas na instrucao; a decisao veio pronta no disparo. Nenhum dado
 entrou: a instrucao nao trazia nenhum.
 
 **Falhas:** nenhuma. Todos os passos passaram na primeira tentativa.
+
+---
+
+## 2026-09-28 12h00 (BRT) — 15h00Z — ronda diaria da Sentinela de 28/09: primeira ronda tecnica da clubedomosaico
+
+**Assunto conferido antes do `git fetch`:** Arquipelago. As seis escritas cairam em `ilhas/clubedomosaico/` (ESTADO, PROMPT, dados/consertos), `ilhas/aquametria/ESTADO.md`, `ilhas/robometria/ESTADO.md` e `dados/PAINEL.md` — ilhas, Sentinela e painel do Arquipelago. Nada de outro projeto. Nenhum contato pessoal de terceiros na instrucao, logo nada a omitir por este repositorio ser publico (o item "Nome, foto e perfis da artesa" do PAINEL e um pedido de material de identidade, sem dado de contato).
+
+**Seis escritas pedidas, seis aplicadas, todas literais.** Nenhuma substituicao deixou de encontrar o trecho esperado. Nenhum arquivo de codigo ou de banco mudou, como a instrucao previa. `executando_desde`, `bloco_atual` e `urls_publicadas` da clubedomosaico NAO foram tocados.
+
+`git status --porcelain` depois das escritas e antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+ M ilhas/robometria/ESTADO.md
+```
+
+`git diff --stat` (mesmo conteudo do commit que foi ao `main`):
+
+```
+ dados/PAINEL.md                         | 62 +++++++++++++++----------------
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 65 +++++++++++++++++++++++++++++++++
+ ilhas/clubedomosaico/dados/consertos.md |  7 ++--
+ ilhas/robometria/ESTADO.md              |  2 +-
+ 6 files changed, 103 insertions(+), 37 deletions(-)
+```
+
+**Hash do commit que entrou no `main`:**
+
+```
+588531741dfb43fe9c3a2459e6a1287332a2e662
+git log -1 origin/main = 5885317  ronda diaria da Sentinela 28/09: primeira ronda tecnica
+da clubedomosaico, 5 defeitos da 19.2 despachados e zero conserto; aquametria e robometria
+medidas no ar sem defeito; painel reescrito
+```
+
+**Contagem do que mudou, conferida RELENDO os arquivos depois de gravar (nao pelo que eu achava que escrevi):**
+
+```
+grep -c '^ultima_ronda: 2026-09-28T15:10Z'
+  ilhas/clubedomosaico/ESTADO.md:1
+  ilhas/aquametria/ESTADO.md:1
+  ilhas/robometria/ESTADO.md:1
+
+ilhas/clubedomosaico/dados/consertos.md
+  ocorrencias restantes de '**a proxima ronda**' : 0   (eram 3)
+  ocorrencias de 'a ronda de 28/09/2026'          : 3   (2 PASSOU + 1 PASSOU EM 4 ALVOS)
+  linhas '| 2026-09-28 | - |' (a nova, zero conserto) : 1
+
+ilhas/clubedomosaico/PROMPT.md
+  717 linhas no total (+65: 64 do bloco + 1 linha em branco)
+  '## DESPACHO DA SENTINELA - 2026-09-28' na linha 64, logo apos o '---'
+  e imediatamente antes do despacho de 2026-09-23, que esta na linha 129 e ficou intacto
+
+dados/PAINEL.md
+  57 linhas / 9116 bytes, arquivo reescrito por inteiro
+```
+
+**YAML das duas ilhas que a instrucao mandou validar, mais a terceira por causa do conflito:**
+
+```
+python3 -c "...yaml.safe_load(...ilhas/aquametria/ESTADO.md...)"   -> YAML ok
+python3 -c "...yaml.safe_load(...ilhas/robometria/ESTADO.md...)"   -> YAML ok
+python3 -c "...yaml.safe_load(...ilhas/clubedomosaico/ESTADO.md...)" -> clubedomosaico YAML ok
+```
+
+**A COLISAO AVISADA NO DISPARO ACONTECEU, e este e o rastro dela.** O disparo avisou que `ilhas/clubedomosaico/ESTADO.md` trazia `executando_desde: 2026-09-28T13:20Z` e que podia haver execucao da Fundacao viva. Havia: dois commits da Fundacao chegaram ao `main` entre o meu `git checkout -B trabalho origin/main` (de `225b824`) e o meu push.
+
+Primeiro push recusado, com este erro:
+
+```
+ ! [rejected]        HEAD -> main (fetch first)
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref.
+```
+
+`git fetch origin main` trouxe `225b824..12ad1e3` ("a categoria apoio recebe a decisao de campo"), que reescreveu 120 linhas de `ilhas/clubedomosaico/ESTADO.md`. O `git rebase origin/main` deu conflito nesse unico arquivo:
+
+```
+UU ilhas/clubedomosaico/ESTADO.md
+Could not apply 9219f0e... ronda diaria da Sentinela 28/09: primeira ronda tecnica...
+```
+
+O conflito era de linhas VIZINHAS, nao da minha: a Fundacao mudou `ultima_execucao` para `2026-09-28T14:55Z` e zerou `executando_desde` para `null`; a linha `ultima_ronda` dela continuava em `2026-09-23T20:12Z`. Resolvido tomando o arquivo inteiro de `origin/main` e reaplicando SO a substituicao da linha `ultima_ronda`. Conferido com `git diff --no-index` contra `origin/main`: exatamente UMA linha de diferenca, a `ultima_ronda`. O `executando_desde: null` e o `ultima_execucao: 2026-09-28T14:55Z` da Fundacao foram preservados como ela os gravou.
+
+Segundo push tambem recusado: outro commit da Fundacao, `f99e91a` ("fecha a execucao das 13h20Z — revisao 44 no ar"), tinha chegado e mexido em `ilhas/clubedomosaico/PROMPT.md` (+27 linhas). Segundo `git rebase origin/main` passou sem conflito. Reconferi a posicao do bloco novo depois do rebase: continuou na linha 64, no topo da fila, logo apos o `---` e antes do despacho de 23/09. Terceiro push aceito:
+
+```
+   f99e91a..5885317  HEAD -> main
+```
+
+**Nunca houve force push.** Tres tentativas de push, duas recusas resolvidas por `fetch` + `rebase`, dentro do teto de tres da instrucao. Nao foi preciso abrir PR.
+
+**Uma observacao factual, sem decisao minha:** o disparo declara `/status` da clubedomosaico na revisao 43 e o texto foi gravado assim, ao pe da letra, nas escritas 1 e 6. O commit `f99e91a` da Fundacao, que chegou DEPOIS da medicao da ronda (15h10Z) e depois do meu checkout, diz "revisao 44 no ar". Nao alterei o numero em lugar nenhum — a ronda mediu 43 e e isso que esta escrito. Quem decide se o painel merece correcao e a Fundacao, nao as maos.
+
+**Falhas:** nenhuma escrita falhou. As duas recusas de push estao acima com a mensagem de erro completa e foram resolvidas. Nao reservei ilha, nao escrevi `executando_desde`, nao executei bloco de fila, nao publiquei, nao acionei Sync, nao verifiquei site, nao criei conta, nao mexi em arquivo que a instrucao nao nomeou (salvo este `MAOS-LOG.md`, que e obrigatorio). Nao li `ARQUIPELAGO.md` para decidir nada.
