@@ -5141,7 +5141,8 @@ desastre calada. Agora ela exige o número na frente, e a bancada afirma as duas
 **E as mutações de `noindex` da F1 e da F2 estavam a caminho de virar INERTE**, que é o pior dos dois
 estados: a bateria continuaria verde dizendo que mediu. Foram retargetadas para a condição nova e ganharam
 uma **mutação nova** que escreve de volta a regressão exata de 28/09 — o `noindex` voltando a depender do
-valor.
+valor. **Rodadas no código final: F2 51 de 51 reprovadas, F1 47 de 47, Loja com as 37 pegas, degrau 8 de 8 —
+zero passou, zero inerte, zero sem compilar.**
 
 **E UMA BANCADA VERMELHA ACHADA DE PASSAGEM, QUE NÃO ERA DESTE DESPACHO.** `conferir-atelie-no-ar.py`
 estava com **2 falhas** e as duas eram da régua, não do site: ela procurava a frase literal
