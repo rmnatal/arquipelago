@@ -237,7 +237,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.16.0' );
+	define( 'CDM_CASCA_VERSAO', '1.17.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1610,6 +1610,21 @@ if ( ! function_exists( 'cdm_casca_slug_atual' ) ) {
  * definição de páginas, que é o mesmo lugar de onde a página nasceu. O teste
  * cobra que nenhum último nível se repita nessa definição — sem isso o caminho
  * seria adivinhação.
+ *
+ * O FILTRO `cdm_caminho_atual` É O IRMÃO DO `cdm_arvore`, E OS DOIS EXISTEM
+ * PELO MESMO MOTIVO (1.17.0, 28/09/2026). A definição de páginas desta casca
+ * só conhece PÁGINA; um tipo próprio de outra camada — a peça da Loja — não
+ * está nela e caía no `return $nome` lá embaixo, que devolve o SLUG NU. E o
+ * mapa da árvore é chaveado por CAMINHO em toda outra entrada. As duas pontas
+ * discordavam em silêncio, e o silêncio tinha preço medido: peça cujo slug
+ * bate com o de uma página da raiz (`sobre`, `privacidade`) servia a trilha
+ * DAQUELA página — 'Início › Sobre' na ficha de uma peça, com o nome da peça
+ * fora da trilha e o `BreadcrumbList` apontando para /sobre/.
+ *
+ * Então quem tem tipo próprio DECLARA o caminho por aqui, do mesmo jeito que
+ * declara o lugar por `cdm_arvore`, e o portão cobra que as duas declarações
+ * saiam da MESMA função — duas declarações que podem divergir são a origem do
+ * defeito, não o conserto dele.
  */
 function cdm_casca_slug_atual() {
 	if ( function_exists( 'is_front_page' ) && is_front_page() ) {
@@ -1623,6 +1638,17 @@ function cdm_casca_slug_atual() {
 		return '';
 	}
 	$nome = (string) $post->post_name;
+
+	/* QUEM TEM TIPO PRÓPRIO FALA PRIMEIRO, e a ordem é o conserto inteiro.
+	   A declaração de páginas abaixo conhece PÁGINA e casa por último nível;
+	   uma peça chamada `sobre` casaria com a página /sobre/ e a função
+	   devolveria `sobre` sem nunca chegar ao filtro. Quem declara aqui não
+	   adivinha nada — confere o ID do post contra o próprio tipo —, então é
+	   ele quem tem a resposta certa quando tem alguma. */
+	$declarado = trim( (string) apply_filters( 'cdm_caminho_atual', '', $post ), '/' );
+	if ( '' !== $declarado ) {
+		return $declarado;
+	}
 
 	foreach ( cdm_casca_definicao_paginas() as $caminho => $def ) {
 		if ( cdm_casca_slug_final( $caminho ) === $nome ) {

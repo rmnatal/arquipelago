@@ -556,7 +556,23 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > **Pela ordem da fila, o que sobra das categorias vazias não é mais decisão de campo: é CANAL.** As
    > duas (`base` e `apoio`) têm a regra escrita, o portão de pé e a bateria verde, e as duas esperam a
    > mesma coisa — uma frase de fabricante que esta nuvem consiga citar literalmente.
-4. **A LINHA DA PEÇA NA TABELA DO `ARVORE.md`** — seção 5 daquele arquivo diz exatamente o que falta, e é conserto de TESTE, não de documento.
+4. ~~**A LINHA DA PEÇA NA TABELA DO `ARVORE.md`**~~ — **CUMPRIDO em 28/09/2026 às 19h3xZ** (casca **1.17.0**,
+   Loja **1.4.0**, manifest na revisão **47**). E o item estava **mal descrito**: dizia "é conserto de TESTE, não
+   de documento", e não era — a própria seção 5 já registrava em 28/09 às 11h0xZ que o conserto não era só no
+   teste, e sim uma **decisão de chave** deixada para a Fundação pela 19.2. **Escolhida a chave por caminho
+   inteiro** (`loja/<slug>`), e quem decidiu foi um segundo defeito que só existe com o slug nu e que a outra
+   opção não consertaria: **peça com slug de página da raiz servia a trilha daquela página** — `sobre` saía como
+   `Início › Sobre`, sem o nome da peça, com o `BreadcrumbList` apontando para `/sobre/`. Com o caminho inteiro a
+   colisão deixa de existir por construção. O conserto tem duas pontas e **uma** função
+   (`cdm_loja_caminho_da_peca()`), e o portão da tabela tem **três pernas** — documento × código, documento ×
+   `dados/pecas.json` (a cópia da seção 24) e **todas** as 5 peças da cópia × código —, porque o número de peças
+   não se digita no documento: quem publica peça é a artesã. `mutacoes-arvore.py` foi de 21 para **29, 29
+   reprovadas**. Detalhe inteiro no `REGISTRO.md` de 28/09 e na seção 5 do `ARVORE.md`.
+   > **E UMA MUTAÇÃO PRÉ-EXISTENTE ESTAVA INERTE, achada de passagem e consertada no mesmo commit:**
+   > `dois slugs com o mesmo ultimo nivel` casava com a entrada `'sobre'` escrita em uma linha, e a casca 1.16.0
+   > — de algumas horas antes nesta mesma quarta — quebrou a entrada em várias. A mutação passou a se declarar
+   > INVÁLIDA, que a bancada conta como "passou", e a trava dos slugs repetidos ficou sem ninguém a vendo.
+   > Conferido que já estava inerte **antes** deste bloco.
 
 **1. CORPUS DE BUSCAS.** `dados/corpus-buscas.md` com os três clusters (materiais/ferramentas · peças prontas · aprender), faixa, concorrência, CPC e a classificação de SERP por consulta (aberta / tomada / armadilha). A base já está na memória; complete com autocomplete e buscas relacionadas. Não depende de infraestrutura.
 

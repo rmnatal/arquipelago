@@ -849,6 +849,131 @@ $json_copia = wp_json_encode( $copia );
 cdm_ok( false === strpos( $json_copia, 'whatsapp' ) && false === strpos( $json_copia, 'lead' ),
 	'a copia nao carrega nada de pessoa (nem lead, nem telefone)' );
 
+/* -------------------------------------------------------------------------
+ * O CAMINHO DA PECA NA ARVORE — as duas pontas, e a colisao (1.4.0, 28/09/2026)
+ *
+ * Ate a 1.3.0 a peca era a UNICA entrada do mapa da casca chaveada pelo slug
+ * nu, e nenhum portao media isso: na tela funcionava, porque quem pedia a
+ * trilha passava o mesmo slug nu. As duas pontas erravam JUNTAS, que e
+ * exatamente o que a secao 8 manda a bancada nao deixar acontecer — a regua
+ * abaixo e propria e mede as duas pontas SEPARADAS, mais o estado que a
+ * concordancia escondia.
+ * ------------------------------------------------------------------------- */
+
+echo "\n12. O caminho da peca na arvore: as duas pontas e a colisao\n";
+
+/** Serve uma peca NESTE processo e devolve o estado anterior, para restaurar. */
+function cdm_loja_servir_peca( $peca ) {
+	$antes = array(
+		'post'    => $GLOBALS['__post_atual']    ?? null,
+		'id'      => $GLOBALS['__id_atual']      ?? null,
+		'tipo'    => $GLOBALS['__tipo_atual']    ?? null,
+		'caminho' => $GLOBALS['__caminho_atual'] ?? null,
+		'home'    => $GLOBALS['__e_home']        ?? null,
+	);
+	$GLOBALS['__pecas_por_id'][ (int) $peca->ID ] = $peca;
+	$GLOBALS['__post_atual']    = $peca;
+	$GLOBALS['__id_atual']      = (int) $peca->ID;
+	$GLOBALS['__tipo_atual']    = 'peca';
+	$GLOBALS['__caminho_atual'] = $peca->post_name;
+	$GLOBALS['__e_home']        = false;
+
+	return $antes;
+}
+function cdm_loja_parar_de_servir( $antes ) {
+	$GLOBALS['__post_atual']    = $antes['post'];
+	$GLOBALS['__id_atual']      = $antes['id'];
+	$GLOBALS['__tipo_atual']    = $antes['tipo'];
+	$GLOBALS['__caminho_atual'] = $antes['caminho'];
+	$GLOBALS['__e_home']        = $antes['home'];
+}
+
+/* (a) A FUNCAO, medida sozinha. A regua e a concatenacao escrita a mao aqui —
+   se ela e o snippet errarem juntos, erraram duas vezes a mesma coisa. */
+$p_arv = cdm_teste_peca_de_mentira( array() );
+cdm_ok( 'loja/vaso-azul-com-flores' === cdm_loja_caminho_da_peca( $p_arv ),
+	'cdm_loja_caminho_da_peca devolve o caminho INTEIRO, nao o slug nu',
+	cdm_loja_caminho_da_peca( $p_arv ) );
+cdm_ok( '' === cdm_loja_caminho_da_peca( (object) array( 'post_name' => '' ) ),
+	'peca sem slug devolve vazio, e quem chama nao escreve chave vazia no mapa' );
+
+/* (b) AS DUAS PONTAS, medidas separadas e comparadas depois. Uma so nao prova
+   nada: a chave sem quem a peca some da tela, e o pedido sem a chave tambem. */
+$antes_arv = cdm_loja_servir_peca( $p_arv );
+$mapa_peca = cdm_casca_arvore();
+$pedido    = cdm_casca_slug_atual();
+cdm_loja_parar_de_servir( $antes_arv );
+
+cdm_ok( isset( $mapa_peca['loja/vaso-azul-com-flores'] ),
+	'PONTA 1: o filtro cdm_arvore escreve a peca sob o caminho inteiro',
+	implode( ', ', array_slice( array_filter( array_keys( $mapa_peca ), function ( $k ) { return 0 === strpos( $k, 'loja' ); } ), 0, 3 ) ) );
+cdm_ok( ! isset( $mapa_peca['vaso-azul-com-flores'] ),
+	'e o slug nu NAO e mais chave de nada (era a unica entrada fora do padrao)' );
+cdm_ok( 2 === (int) ( $mapa_peca['loja/vaso-azul-com-flores']['nivel'] ?? 0 )
+	&& 'loja' === (string) ( $mapa_peca['loja/vaso-azul-com-flores']['mae'] ?? '' ),
+	'a peca entra no nivel 2 com mae loja (secao 3b do ARVORE.md)' );
+cdm_ok( 'loja/vaso-azul-com-flores' === $pedido,
+	'PONTA 2: cdm_casca_slug_atual PEDE pelo mesmo caminho inteiro', $pedido );
+cdm_ok( $pedido === cdm_loja_caminho_da_peca( $p_arv ),
+	'AS DUAS PONTAS BATEM — e se um dia nao baterem, a trilha some e este portao acusa' );
+
+/* (c) A TRILHA CONTINUA SAINDO. O conserto que quebra a tela nao e conserto. */
+$antes_arv = cdm_loja_servir_peca( $p_arv );
+$rotulos   = array();
+foreach ( cdm_casca_degraus( cdm_casca_slug_atual() ) as $d ) { $rotulos[] = $d['rotulo']; }
+cdm_loja_parar_de_servir( $antes_arv );
+cdm_ok( array( 'Inicio', 'Loja', 'Vaso azul com flores' ) === array_map( function ( $r ) {
+		return str_replace( array( 'í' ), array( 'i' ), $r ); }, $rotulos ),
+	'a trilha da peca continua inteira: Inicio > Loja > o nome da peca', implode( ' > ', $rotulos ) );
+
+/* (d) A COLISAO, que e o defeito que so aparece com o slug nu. Ate a 1.3.0 uma
+   peca chamada `sobre` servia a trilha da PAGINA /sobre/ — sem o nome da peca,
+   e com o BreadcrumbList apontando para /sobre/. Com o caminho inteiro a
+   colisao deixa de existir por construcao, e isto mede as duas coisas: que a
+   peca fica com a dela, e que a pagina da raiz nao perde a sua. */
+$colidem = array();
+foreach ( array( 'sobre', 'contato', 'privacidade', 'divulgacao-de-afiliados' ) as $slug_raiz ) {
+	$pc = cdm_teste_peca_de_mentira( array() );
+	$pc->post_name  = $slug_raiz;
+	$pc->post_title = 'Peca de teste ' . $slug_raiz;
+	$antes_c = cdm_loja_servir_peca( $pc );
+	$cam     = cdm_casca_slug_atual();
+	$deg     = cdm_casca_degraus( $cam );
+	cdm_loja_parar_de_servir( $antes_c );
+	$ultimo = $deg ? $deg[ count( $deg ) - 1 ]['rotulo'] : '(sem trilha)';
+	if ( 'loja/' . $slug_raiz !== $cam || $pc->post_title !== $ultimo ) {
+		$colidem[] = $slug_raiz . ' -> ' . $cam . ' / ' . $ultimo;
+	}
+}
+cdm_ok( empty( $colidem ), 'peca com slug de pagina da raiz NAO rouba a trilha daquela pagina',
+	empty( $colidem ) ? '4 slugs da raiz, nenhum roubo' : implode( ' | ', $colidem ) );
+
+/* E O OUTRO LADO DA MESMA BORDA: a pagina /sobre/ de verdade continua com a
+   trilha dela. Sem esta afirmacao o portao acima passaria tambem se o conserto
+   tivesse mandado TODA pagina singular para baixo de /loja/. */
+$antes_pg = array( 'post' => $GLOBALS['__post_atual'] ?? null, 'tipo' => $GLOBALS['__tipo_atual'] ?? null,
+	'id' => $GLOBALS['__id_atual'] ?? null, 'home' => $GLOBALS['__e_home'] ?? null );
+$GLOBALS['__post_atual'] = (object) array( 'ID' => 4242, 'post_type' => 'page',
+	'post_status' => 'publish', 'post_title' => 'Sobre', 'post_name' => 'sobre' );
+$GLOBALS['__id_atual']   = 4242;
+$GLOBALS['__tipo_atual'] = 'page';
+$GLOBALS['__e_home']     = false;
+$caminho_sobre = cdm_casca_slug_atual();
+$GLOBALS['__post_atual'] = $antes_pg['post']; $GLOBALS['__tipo_atual'] = $antes_pg['tipo'];
+$GLOBALS['__id_atual']   = $antes_pg['id'];   $GLOBALS['__e_home']     = $antes_pg['home'];
+cdm_ok( 'sobre' === $caminho_sobre,
+	'a pagina /sobre/ de verdade continua respondendo `sobre`, nao `loja/sobre`', $caminho_sobre );
+
+/* (e) UMA FUNCAO SO ESCREVE O CAMINHO. Portao de FORMA, e ele existe porque o
+   defeito de origem foi duas pontas montando a propria string. */
+$fonte_loja = (string) file_get_contents( $raiz . '/snippets/clubedomosaico-loja.php' );
+$montagens  = preg_match_all( "#CDM_LOJA_BASE\s*\.\s*'/'#", $fonte_loja );
+cdm_ok( 1 === $montagens, 'so UM lugar do snippet monta o caminho da peca',
+	$montagens . ' ocorrencia(s) de CDM_LOJA_BASE . \'/\'' );
+$chamadas = preg_match_all( '#cdm_loja_caminho_da_peca\s*\(#', $fonte_loja );
+cdm_ok( $chamadas >= 3, 'e as duas declaracoes (cdm_arvore e cdm_caminho_atual) passam por ela',
+	$chamadas . ' chamadas no snippet (1 definicao + 2 usos, no minimo)' );
+
 echo "\n" . str_repeat( '-', 78 ) . "\n";
 printf( "%d afirmacoes, %d falha(s). %d estados da ficha, um processo cada.\n", $feitos, $falhas, $estados );
 if ( $falhas > 0 ) {

@@ -1258,6 +1258,82 @@ ok(not _dobrada, "[medida] nenhuma peca serve a unidade duas vezes (item 1)",
 ok(not _sem_alt_na_peca, "[alt] a foto de DESTAQUE de toda peca tem alt nao vazio (item 3)",
    f"{_alt_da_peca} imagens com alt" + ((": " + " | ".join(_sem_alt_na_peca[:3])) if _sem_alt_na_peca else ""))
 
+# A TRILHA DA PECA NO AR — a chave por caminho inteiro (casca 1.17.0, Loja 1.4.0).
+#
+# Este bloco mudou a CHAVE interna do mapa da arvore: ate a 1.3.0 a peca era a
+# unica entrada chaveada pelo slug nu, e as duas pontas — quem escreve a chave e
+# quem pede a trilha — erravam JUNTAS. Por isso a bancada sozinha nao basta
+# aqui: se a nova chave e o novo pedido discordassem no ar, a trilha da peca
+# simplesmente SUMIRIA, e sumir nao tem cor na tela. E o que esta regua mede, no
+# HTML servido: a trilha existe, tem tres degraus, o do meio e a Loja com link
+# para /loja/, e o ultimo e o titulo da peca com aria-current e SEM link.
+#
+# A regua e propria (secao 8): o titulo esperado sai do <h1> servido pela
+# propria pagina, nunca do mapa nem da copia — se o snippet errasse o rotulo, o
+# <h1> e a trilha errariam juntos so se o defeito fosse no titulo, que e outro
+# defeito e tem outro portao.
+_sem_trilha, _trilha_torta, _trilhas_ok = [], [], 0
+for _u in URLS_PECA:
+    _h, _c = buscar(_u)
+    _curto = _u.replace(BASE, "")
+    _nav = re.search(r'<nav class="cdm-trilha"[^>]*>(.*?)</nav>', _h, re.S)
+    if not _nav:
+        _sem_trilha.append(_curto)
+        continue
+    _itens = re.findall(r"<li>(.*?)</li>", _nav.group(1), re.S)
+    _h1 = re.search(r"<h1[^>]*>(.*?)</h1>", _h, re.S)
+    _titulo = re.sub(r"<[^>]+>", "", _h1.group(1)).strip() if _h1 else "(sem h1)"
+    if len(_itens) != 3:
+        _trilha_torta.append(f"{_curto}: {len(_itens)} degraus")
+        continue
+    _meio = _itens[1]
+    _fim = _itens[2]
+    if "/loja/" not in _meio or "<a " not in _meio:
+        _trilha_torta.append(f"{_curto}: o degrau do meio nao leva a /loja/")
+    elif 'aria-current="page"' not in _fim:
+        _trilha_torta.append(f"{_curto}: o ultimo degrau nao e o atual")
+    elif "<a " in _fim:
+        _trilha_torta.append(f"{_curto}: o degrau atual virou link")
+    elif _titulo not in re.sub(r"<[^>]+>", "", _fim):
+        _trilha_torta.append(f"{_curto}: o ultimo degrau nao e o titulo da peca")
+    else:
+        _trilhas_ok += 1
+
+ok(not _sem_trilha, "[trilha] toda peca serve a trilha (a chave por caminho nao a apagou)",
+   f"{len(URLS_PECA)} pecas" + ((": " + " | ".join(_sem_trilha[:3])) if _sem_trilha else ""))
+ok(not _trilha_torta, "[trilha] e ela e Inicio > Loja > o nome da peca, com o atual sem link",
+   f"{_trilhas_ok} de {len(URLS_PECA)}" + ((": " + " | ".join(_trilha_torta[:3])) if _trilha_torta else ""))
+
+# E O BreadcrumbList DA PECA, que e o lado que o Google le: os degraus COM
+# endereco mais a peca. Lista invalida e lista ignorada, entao a afirmacao e
+# sobre a FORMA, nao sobre a presenca.
+_schema_torto, _schema_ok = [], 0
+for _u in URLS_PECA:
+    _h, _c = buscar(_u)
+    _curto = _u.replace(BASE, "")
+    _js = re.search(r'<script type="application/ld\+json" id="cdm-trilha-jsonld">(.*?)</script>', _h, re.S)
+    if not _js:
+        _schema_torto.append(_curto + ": sem BreadcrumbList")
+        continue
+    try:
+        _g = json.loads(_js.group(1))
+    except Exception as _erro:
+        _schema_torto.append(f"{_curto}: JSON invalido ({_erro})")
+        continue
+    _itens = _g.get("itemListElement") or []
+    _pos = [i.get("position") for i in _itens]
+    if "BreadcrumbList" != _g.get("@type"):
+        _schema_torto.append(_curto + ": nao e BreadcrumbList")
+    elif _pos != list(range(1, len(_pos) + 1)):
+        _schema_torto.append(f"{_curto}: posicoes {_pos}")
+    elif not any(str(i.get("item", "")).rstrip("/").endswith("/loja") for i in _itens):
+        _schema_torto.append(_curto + ": nenhum degrau aponta para /loja/")
+    else:
+        _schema_ok += 1
+
+ok(not _schema_torto, "[trilha] o BreadcrumbList da peca sobe por /loja/, com a numeracao sem buraco",
+   f"{_schema_ok} de {len(URLS_PECA)}" + ((": " + " | ".join(_schema_torto[:3])) if _schema_torto else ""))
+
 # ITEM 2 — O ESTADO COM PARAMETRO SAI DO INDICE MESMO COM VALOR INVALIDO.
 #
 # As tres consultas abaixo sao as que a ronda de 28/09 mediu no ar e achou NO

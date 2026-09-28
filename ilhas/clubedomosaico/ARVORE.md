@@ -316,6 +316,7 @@ artesã já marca o termo no ateliê.
 |---|---|---|---|
 | `/` (home) | — | — | nenhuma (16.3) |
 | `/loja/` | 1 | home | Início › Loja |
+| `/loja/quadro-flores-do-campo/` | 2 | `/loja/` | Início › Loja › Quadro flores do campo |
 | `/materiais/` | 1 | home | Início › Materiais |
 | `/como-fazer/` | 1 | home | Início › Como fazer |
 | `/materiais/como-sabemos/` | 2 | `/materiais/` | Início › Materiais › Como sabemos |
@@ -329,29 +330,45 @@ artesã já marca o termo no ateliê.
 | `/privacidade/` | raiz | — | Início › Privacidade |
 | `/atelie/` | **fora da árvore** | — | nenhuma — camada `privada` (ver 3c) |
 
-**A peça NÃO está nesta tabela, e a ausência DEIXOU DE SER literal em 14/09/2026:** o título dela diz "cada página que existe HOJE", e desde 14/09 existe **uma** peça publicada pela artesã ("Quadro flores do campo", `/loja/quadro-flores-do-campo/`, conferida em 200 no ar). *(Esta linha dizia "hoje não existe peça nenhuma — a artesã ainda não publicou a primeira". Corrigido pelo Pente Fino em 14/09/2026; **acrescentar a linha da peça à tabela é do próximo bloco desta ilha**, não do Pente Fino, porque o portão da casca cobra que toda linha desta tabela exista no código e eu não meço o código no ar.)* O molde do endereço está na seção 3b (`/loja/<slug>/`, nível 2, mãe `/loja/`), e ele vira linha de verdade nesta tabela no próximo bloco que puder medir a página no código — a condição "no dia em que houver peça", que ficava aqui, **já foi cumprida**. Pôr o molde na tabela foi tentado e o portão da casca reprovou na hora, e com razão: ele cobra que **toda linha desta tabela exista no código**, e molde não é página. A trava é a mesma que impede o documento e o código de divergirem em silêncio — e ela funcionou contra quem a escreveu.
+**A PEÇA ENTROU NA TABELA EM 28/09/2026, e o que faltava não era a linha: era a CHAVE.** A linha acima é a peça
+âncora — `/loja/quadro-flores-do-campo/`, a primeira que a artesã publicou, em 14/09/2026. As outras quatro
+**não** estão escritas aqui de propósito, e a ausência é uma decisão: quem publica peça é uma pessoa, no
+ateliê dela, no dia que ela quiser, e uma tabela escrita pela Fundação que precise de commit a cada peça nova
+nasce velha. **O número de peças não se digita neste documento — ele se mede.** O portão 21 do
+`teste-casca.php` lê `dados/pecas.json`, que é a cópia da seção 24 do contrato, e cobra as três pernas:
 
-**O QUE FALTA PARA A LINHA DA PEÇA ENTRAR, medido em 14/09/2026 às 21h17Z e escrito aqui para a próxima execução não redescobrir:** não é escrever a linha — é o **portão** não conseguir vê-la. `cdm_casca_arvore()` é um mapa por requisição, e a peça entra nele pelo filtro `cdm_arvore` do snippet da Loja **só quando ela está sendo servida** (decisão declarada lá, para a lista de irmãs de `/loja/` não encher de peça). O `teste-casca.php` monta o mapa fora de uma requisição de peça, então a linha da tabela apontaria para uma página que o mapa não tem naquele instante, e o portão reprovaria — corretamente. O conserto é no TESTE, não na tabela: ele precisa fabricar a situação "uma peça sendo servida" — e a bancada já sabe fazer isso (`cdm_teste_peca_de_mentira()`, `cdm_teste_pagina_peca()`), é a mesma técnica das bordas fabricadas da seção 6 deste arquivo. Quem fizer isso acrescenta a linha `/loja/quadro-flores-do-campo/` · nível 2 · mãe `/loja/` no mesmo commit.
+| perna | o que o portão cobra |
+|---|---|
+| documento → código | a linha acima existe no mapa da casca, **com a peça sendo servida** |
+| documento → realidade | `quadro-flores-do-campo` é uma peça que EXISTE na cópia da seção 24 |
+| realidade → código | **todas** as peças da cópia pousam em `loja/<slug>`, nível 2, mãe `loja` |
 
-**MEDIDO EM 28/09/2026 às 11h0xZ, E O PARÁGRAFO ACIMA ESTÁ INCOMPLETO: O CONSERTO NÃO É SÓ NO TESTE.** A frase
-*"o conserto é no TESTE, não na tabela"* supõe que, fabricada a situação "uma peça sendo servida", a linha
-`/loja/quadro-flores-do-campo/` bateria com o código. **Não bate, e a razão não é a requisição — é o FORMATO DA
-CHAVE.** Medido com a bancada, fora de qualquer bloco, servindo a peça de verdade: o mapa ganha a chave
-**`quadro-flores-do-campo`** — nível 2, mãe `loja` —, e **não** `loja/quadro-flores-do-campo`. Toda outra
-entrada de nível 2 ou 3 do mapa é chaveada pelo **caminho inteiro** (`materiais/como-sabemos`,
-`materiais/qual-cola-usar-no-mosaico`); a peça é a única chaveada pelo **slug nu**, porque o filtro `cdm_arvore`
-do snippet da Loja escreve `$mapa[ $peca->post_name ]`.
+A segunda perna é a que impede o portão de ficar vazio: a bancada fabrica a peça com o slug que a tabela
+pedir, então sem ela uma linha inventada passaria. A terceira é a que impede a tabela de virar álibi — hoje
+são cinco peças na cópia e as cinco são medidas, não só a que está escrita.
 
-Na tela isso **funciona**, e por isso ninguém viu: quem pede a trilha da peça passa `$peca->post_name`, e
-`cdm_casca_degraus()` acha a chave e sobe para `loja`. O que não funciona é **escrever a peça numa tabela que é
-lida por caminho** — e o portão reprovaria com razão, de novo, agora pelo outro motivo.
+**O QUE MUDOU NO CÓDIGO, e era o obstáculo inteiro (casca 1.17.0, Loja 1.4.0).** Medido em 28/09/2026 às
+11h0xZ e reconfirmado nesta passada: o filtro `cdm_arvore` do snippet da Loja escrevia `$mapa[ $peca->post_name ]`
+— o **slug nu** —, enquanto **toda** outra entrada de nível 2 ou 3 do mapa é chaveada pelo **caminho inteiro**
+(`materiais/como-sabemos`, `materiais/qual-cola-usar-no-mosaico`). Na tela funcionava, e por isso ninguém viu:
+quem pedia a trilha da peça passava o mesmo slug nu, e as duas pontas **erravam juntas**. O que não funcionava
+era tudo que lê o mapa por caminho — esta tabela entre eles.
 
-**Então o próximo bloco que pegar isto tem uma DECISÃO pela frente, não um conserto:** ou o filtro da Loja passa
-a chavear por `CDM_LOJA_BASE . '/' . $slug` (e aí quem pede a trilha da peça tem de pedir pelo caminho inteiro —
-é código de snippet que serve uma página **no ar**, `/loja/quadro-flores-do-campo/`, com peça publicada por uma
-pessoa de verdade), ou a tabela declara a exceção com todas as letras e o portão passa a admiti-la. **Escolher
-entre duas opções defensáveis é da Fundação, não da bancada** (19.2) — e as duas mexem em coisa que está
-servindo. Fica medido aqui para a próxima execução não redescobrir, que é o que esta seção existe para evitar.
+A decisão que a versão anterior desta seção deixou para a Fundação (19.2) era entre chavear por
+`CDM_LOJA_BASE . '/' . $slug` ou declarar a exceção na tabela. **Escolhida a primeira, e o que decidiu foi um
+segundo defeito que só existe com o slug nu, medido na bancada:** peça cujo slug bate com o de uma página da
+raiz servia a trilha **daquela página**. Uma peça chamada `sobre` saía com `Início › Sobre`, sem o nome da
+peça na trilha, e com o `BreadcrumbList` apontando para `/sobre/`. Com o caminho inteiro a colisão deixa de
+existir **por construção** — `loja/sobre` não é `sobre` —, e declarar a exceção na tabela não teria consertado
+nada disso. Uma exceção documentada continua sendo uma exceção no código.
+
+O conserto tem duas pontas e **uma** função, de propósito: `cdm_loja_caminho_da_peca()` monta o caminho, e dela
+saem tanto a chave do `cdm_arvore` quanto a resposta do filtro novo `cdm_caminho_atual` — irmão do `cdm_arvore`
+na casca, por onde quem tem tipo próprio declara **qual** página está sendo servida. As duas pontas montando a
+própria string é a origem do defeito, não o conserto dele, e o `teste-loja.php` cobra que só um lugar do
+snippet monte o caminho. **A ordem também importa e foi medida:** o filtro fala **antes** do laço que remonta
+o caminho pela definição de páginas — esse laço casa por último nível e daria `sobre` à peça antes de o filtro
+ser chamado. A primeira escrita deste conserto errou exatamente aí e a colisão continuou de pé.
 
 **Nenhuma página mudou de endereço neste bloco, e nenhuma precisou mudar** — as três seções já eram nível 1, a única página de nível 2 já nascera com mãe em 1.2.0, e as quatro da raiz são as que a 16.1 admite ali. Por isso este bloco não tem 301 nenhum e o sitemap não muda: a árvore desta ilha estava certa na estrutura e faltava ficar **visível** (breadcrumb, schema, cluster), que é o que a 16.3 e a 16.4 pedem.
 

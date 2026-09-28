@@ -115,7 +115,7 @@
  */
 
 if ( ! defined( 'CDM_LOJA_VERSAO' ) ) {
-	define( 'CDM_LOJA_VERSAO', '1.3.0' );
+	define( 'CDM_LOJA_VERSAO', '1.4.0' );
 }
 if ( ! defined( 'CDM_LOJA_BASE' ) ) {
 	/* O primeiro segmento da URL da peça. É o mesmo slug da página /loja/ de
@@ -550,6 +550,44 @@ function cdm_loja_e_peca() {
 }
 }
 
+if ( ! function_exists( 'cdm_loja_caminho_da_peca' ) ) {
+/**
+ * O CAMINHO da peça na árvore — `loja/<slug>`, nunca o slug nu (1.4.0, 28/09/2026).
+ *
+ * Esta função existe para ser a ÚNICA, e é o conserto inteiro. Até a 1.3.0 a
+ * peça era a única entrada do mapa da casca chaveada pelo slug nu, enquanto
+ * `materiais/como-sabemos` e `materiais/qual-cola-usar-no-mosaico` — e toda
+ * outra entrada de nível 2 ou 3 — são chaveadas pelo caminho inteiro. Na tela
+ * funcionava, porque quem pedia a trilha passava o mesmo slug nu, e por isso
+ * ninguém viu; o que não funcionava era tudo que lê o mapa POR CAMINHO.
+ *
+ * O que isso custava, medido em 28/09/2026 com a peça servida na bancada:
+ *
+ *   1. A tabela da seção 5 do `ARVORE.md` é lida por caminho, e o portão 21 do
+ *      `teste-casca.php` cobra que toda linha dela exista no código. A peça —
+ *      a única página desta ilha publicada por uma PESSOA — era a única que
+ *      não podia entrar na tabela, e portanto a única sem portão nenhum
+ *      ligando documento a código.
+ *   2. Peça com slug igual ao de uma página da raiz servia a trilha DAQUELA
+ *      página: `sobre` devolvia 'Início › Sobre', sem o nome da peça, e o
+ *      `BreadcrumbList` levava a URL de /sobre/. Com o caminho inteiro a
+ *      colisão deixa de existir por construção — `loja/sobre` não é `sobre`.
+ *
+ * Os DOIS lados saem daqui: o que declara o lugar (`cdm_arvore`) e o que
+ * declara qual página está sendo servida (`cdm_caminho_atual`). Se cada um
+ * montasse a sua string, uma mudança em um lado apagaria a trilha da peça em
+ * silêncio — trilha que some não tem cor na tela, e é o mesmo desenho que fez
+ * a `description` faltar em oito URLs nesta mesma semana. O `teste-loja.php`
+ * cobra que os dois passem por esta função.
+ */
+function cdm_loja_caminho_da_peca( $peca ) {
+	$slug = ( is_object( $peca ) && isset( $peca->post_name ) ) ? (string) $peca->post_name : '';
+	$slug = trim( $slug, '/' );
+
+	return ( '' === $slug ) ? '' : CDM_LOJA_BASE . '/' . $slug;
+}
+}
+
 /* A PEÇA ENTRA NO MAPA DA CASCA, e a trilha vem de graça (decisão 3). Só quando
    ela está sendo servida: o mapa é por requisição, e declarar todas as peças de
    uma vez faria a lista de irmãs de /loja/ encher de peça, que é outra decisão e
@@ -559,11 +597,11 @@ add_filter( 'cdm_arvore', function ( $mapa ) {
 	if ( ! $peca || ! is_array( $mapa ) ) {
 		return $mapa;
 	}
-	$slug = (string) $peca->post_name;
-	if ( '' === $slug || isset( $mapa[ $slug ] ) ) {
+	$caminho = cdm_loja_caminho_da_peca( $peca );
+	if ( '' === $caminho || isset( $mapa[ $caminho ] ) ) {
 		return $mapa;
 	}
-	$mapa[ $slug ] = array(
+	$mapa[ $caminho ] = array(
 		'nivel'  => 2,
 		'mae'    => CDM_LOJA_BASE,
 		'rotulo' => $peca->post_title,
@@ -571,6 +609,23 @@ add_filter( 'cdm_arvore', function ( $mapa ) {
 
 	return $mapa;
 } );
+
+/* E A OUTRA PONTA: a casca remonta o caminho pela definição de PÁGINAS, que não
+   conhece a peça. Sem esta declaração ela cairia no slug nu e não acharia a
+   chave que o filtro acima acabou de escrever — a trilha da peça sumiria da
+   tela, que é justamente o defeito que a chave por caminho existe para não
+   criar. Mesma função nos dois lados, de propósito. */
+add_filter( 'cdm_caminho_atual', function ( $caminho, $post ) {
+	if ( '' !== (string) $caminho ) {
+		return $caminho; // outro dono já respondeu; o primeiro a falar manda
+	}
+	$peca = cdm_loja_e_peca();
+	if ( ! $peca || ! $post || (int) $post->ID !== (int) $peca->ID ) {
+		return $caminho;
+	}
+
+	return cdm_loja_caminho_da_peca( $peca );
+}, 10, 2 );
 
 if ( ! function_exists( 'cdm_loja_guia_da_base' ) ) {
 /**

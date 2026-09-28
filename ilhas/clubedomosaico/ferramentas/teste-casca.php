@@ -1633,6 +1633,21 @@ foreach ( explode( "\n", $arvore_md ) as $linha ) {
 cdm_ok( count( $doc_arvore ) >= 8, 'ARVORE.md declara onde mora cada pagina que existe hoje',
 	count( $doc_arvore ) . ' linhas lidas do documento' );
 
+/* A PECA SAI DO LACO GERAL, e a separacao e a metade honesta do conserto de
+   28/09/2026. O mapa da casca e por REQUISICAO e a peca so entra nele quando
+   esta sendo servida (decisao declarada no filtro `cdm_arvore` do snippet da
+   Loja, para a lista de irmas de /loja/ nao encher de peca). Medir a linha
+   dela no mapa montado fora de uma requisicao de peca reprovaria uma pagina
+   que esta CERTA — foi por isso que a linha da peca ficou quatorze dias fora
+   da tabela. Ela e medida logo abaixo, com a situacao fabricada. */
+$doc_pecas = array();
+foreach ( array_keys( $doc_arvore ) as $caminho ) {
+	if ( 0 === strpos( $caminho, 'loja/' ) ) {
+		$doc_pecas[ $caminho ] = $doc_arvore[ $caminho ];
+		unset( $doc_arvore[ $caminho ] );
+	}
+}
+
 $mapa_codigo = cdm_casca_arvore();
 $divergem    = array();
 foreach ( $doc_arvore as $caminho => $esperado_linha ) {
@@ -1674,6 +1689,119 @@ foreach ( cdm_casca_definicao_paginas() as $caminho => $def ) {
 }
 cdm_ok( empty( $sem_lugar ), 'toda pagina publica tem lugar na arvore (so a home e a privada ficam fora)',
 	empty( $sem_lugar ) ? count( cdm_casca_definicao_paginas() ) . ' paginas' : implode( ', ', $sem_lugar ) );
+
+/* (a-bis) A LINHA DA PECA — documento x codigo x REALIDADE (28/09/2026).
+ *
+ * A peca e a unica pagina desta ilha publicada por uma PESSOA, e ate hoje era
+ * a unica sem portao nenhum ligando documento a codigo: a tabela da secao 5 e
+ * lida por caminho, e o filtro da Loja chaveava a peca pelo slug nu. Os dois
+ * lados nao podiam nem ser comparados. Agora podem, e a comparacao tem TRES
+ * pernas, porque duas deixariam o portao vazio:
+ *
+ *   documento -> codigo   a linha da tabela existe no mapa com a peca servida
+ *   documento -> realidade  o slug da linha e uma peca que EXISTE (dados/pecas.json,
+ *                         que e a copia da secao 24 — nao um nome digitado aqui)
+ *   realidade -> codigo   TODA peca da copia pousa em loja/<slug>, nivel 2, mae loja
+ *
+ * Sem a segunda perna o portao passaria para uma linha inventada, porque a
+ * peca de mentira e fabricada com o slug que a tabela pedir. Sem a terceira,
+ * a tabela nomearia uma peca e as outras quatro ficariam sem ninguem olhando.
+ * O NUMERO de pecas nao esta escrito no documento de proposito: ele sai da
+ * copia, que a artesa move e a Fundacao nao. */
+
+function cdm_casca_servir_peca( $slug, $titulo ) {
+	$peca = cdm_teste_peca_de_mentira( array() );
+	$peca->post_name  = $slug;
+	$peca->post_title = $titulo;
+	$antes = array(
+		'post' => $GLOBALS['__post_atual'] ?? null, 'id' => $GLOBALS['__id_atual'] ?? null,
+		'tipo' => $GLOBALS['__tipo_atual'] ?? null, 'cam' => $GLOBALS['__caminho_atual'] ?? null,
+		'home' => $GLOBALS['__e_home'] ?? null,
+	);
+	$GLOBALS['__pecas_por_id'][ (int) $peca->ID ] = $peca;
+	$GLOBALS['__post_atual'] = $peca;   $GLOBALS['__id_atual']      = (int) $peca->ID;
+	$GLOBALS['__tipo_atual'] = 'peca';  $GLOBALS['__caminho_atual'] = $slug;
+	$GLOBALS['__e_home']     = false;
+
+	$retrato = array( 'mapa' => cdm_casca_arvore(), 'pedido' => cdm_casca_slug_atual() );
+
+	$GLOBALS['__post_atual'] = $antes['post']; $GLOBALS['__id_atual']      = $antes['id'];
+	$GLOBALS['__tipo_atual'] = $antes['tipo']; $GLOBALS['__caminho_atual'] = $antes['cam'];
+	$GLOBALS['__e_home']     = $antes['home'];
+
+	return $retrato;
+}
+
+$copia_pecas = json_decode( (string) @file_get_contents( $raiz . '/dados/pecas.json' ), true );
+$slugs_no_ar = array();
+foreach ( (array) ( $copia_pecas['pecas'] ?? array() ) as $pp ) {
+	if ( ! empty( $pp['slug'] ) ) { $slugs_no_ar[ (string) $pp['slug'] ] = (string) ( $pp['titulo'] ?? $pp['slug'] ); }
+}
+cdm_ok( count( $slugs_no_ar ) >= 1, 'a copia da secao 24 diz quais pecas existem (dados/pecas.json)',
+	count( $slugs_no_ar ) . ' pecas na copia' );
+
+cdm_ok( count( $doc_pecas ) >= 1, 'o ARVORE.md declara onde mora a peca',
+	count( $doc_pecas ) . ' linha(s) de peca na tabela: ' . implode( ', ', array_keys( $doc_pecas ) ) );
+
+$peca_divergem = array();
+foreach ( $doc_pecas as $caminho => $esperado_linha ) {
+	$slug = substr( $caminho, strlen( 'loja/' ) );
+	if ( ! isset( $slugs_no_ar[ $slug ] ) ) {
+		$peca_divergem[] = $caminho . ' (na tabela e NAO na copia da secao 24)';
+		continue;
+	}
+	$r = cdm_casca_servir_peca( $slug, $slugs_no_ar[ $slug ] );
+	if ( ! isset( $r['mapa'][ $caminho ] ) ) {
+		$peca_divergem[] = $caminho . ' (no documento e nao no codigo, com a peca servida)';
+		continue;
+	}
+	if ( (int) $r['mapa'][ $caminho ]['nivel'] !== (int) $esperado_linha['nivel'] ) {
+		$peca_divergem[] = $caminho . ' (nivel ' . $r['mapa'][ $caminho ]['nivel'] . ' no codigo, ' . $esperado_linha['nivel'] . ' no documento)';
+	}
+	if ( (string) $r['mapa'][ $caminho ]['mae'] !== (string) $esperado_linha['mae'] ) {
+		$peca_divergem[] = $caminho . ' (mae "' . $r['mapa'][ $caminho ]['mae'] . '" no codigo, "' . $esperado_linha['mae'] . '" no documento)';
+	}
+	if ( $caminho !== $r['pedido'] ) {
+		$peca_divergem[] = $caminho . ' (o mapa guarda em "' . $caminho . '" e a casca pede por "' . $r['pedido'] . '")';
+	}
+}
+cdm_ok( empty( $peca_divergem ), 'a linha da peca bate entre ARVORE.md, a copia da secao 24 e a casca',
+	empty( $peca_divergem ) ? count( $doc_pecas ) . ' linha(s) conferida(s)' : implode( ' | ', $peca_divergem ) );
+
+$pecas_fora = array();
+foreach ( $slugs_no_ar as $slug => $titulo ) {
+	$r = cdm_casca_servir_peca( $slug, $titulo );
+	$c = 'loja/' . $slug;
+	if ( ! isset( $r['mapa'][ $c ] ) || 2 !== (int) $r['mapa'][ $c ]['nivel'] || 'loja' !== (string) $r['mapa'][ $c ]['mae'] || $c !== $r['pedido'] ) {
+		$pecas_fora[] = $slug . ' (pedido "' . $r['pedido'] . '")';
+	}
+	if ( isset( $r['mapa'][ $slug ] ) && ! isset( $doc_arvore[ $slug ] ) ) {
+		$pecas_fora[] = $slug . ' (chaveada tambem pelo slug nu)';
+	}
+}
+cdm_ok( empty( $pecas_fora ), 'TODA peca da copia pousa em loja/<slug>, nivel 2, mae loja — nao so a da tabela',
+	empty( $pecas_fora ) ? count( $slugs_no_ar ) . ' pecas, uma situacao fabricada por peca' : implode( ' | ', $pecas_fora ) );
+
+/* E A DECISAO QUE O FILTRO DECLARA CONTINUA DE PE: fora de uma requisicao de
+   peca o mapa NAO tem filha de /loja/. Sem esta afirmacao o conserto poderia
+   ter sido "declarar todas as pecas sempre", que encheria a lista de irmas de
+   /loja/ de peca — outra decisao, e nao a de hoje. */
+$filhas_de_loja = array();
+foreach ( cdm_casca_arvore() as $c => $def ) {
+	if ( 'loja' === (string) $def['mae'] ) { $filhas_de_loja[] = $c; }
+}
+cdm_ok( empty( $filhas_de_loja ), 'fora da requisicao da peca, /loja/ nao tem filha no mapa (o mapa e por requisicao)',
+	empty( $filhas_de_loja ) ? 'nenhuma' : implode( ', ', $filhas_de_loja ) );
+
+/* A COLISAO, medida aqui tambem porque quem le este portao e quem mexe na
+   tabela: peca com slug de pagina da raiz nao rouba a trilha daquela pagina. */
+$roubos = array();
+foreach ( array( 'sobre', 'contato', 'privacidade' ) as $slug_raiz ) {
+	$r = cdm_casca_servir_peca( $slug_raiz, 'Peca de teste ' . $slug_raiz );
+	if ( 'loja/' . $slug_raiz !== $r['pedido'] ) { $roubos[] = $slug_raiz . ' -> ' . $r['pedido']; }
+}
+cdm_ok( empty( $roubos ), 'peca com slug de pagina da raiz nao herda a trilha daquela pagina',
+	empty( $roubos ) ? '3 slugs da raiz' : implode( ', ', $roubos ) );
 
 /* (b) OS SLUGS DE NIVEL 2 SAO OS DO VOZ.md. Era exatamente por aqui que a
    divergencia entrava: o registro do Guia dizia 'materiais/colas' e o VOZ.md

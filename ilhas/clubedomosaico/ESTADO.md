@@ -5,42 +5,45 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-28T17:05Z
-executando_desde: 2026-09-28T19:50Z
+ultima_execucao: 2026-09-28T19:42Z
+executando_desde: 2026-09-28T19:42Z
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
-  DESPACHO DA SENTINELA DE 28/09 ENTREGUE, QUATRO ITENS INTEIROS E MEIO, e a execucao corrigiu DUAS
-  contagens da propria ronda medindo de novo. Revisao 46 no ar: casca 1.16.0, loja 1.3.0, f1 1.4.0,
-  f2 1.6.0, atelie 1.4.0, tecnicas 1.2.0. conferir-no-ar.py com 501 afirmacoes e 0 falha (eram 488).
-  ITEM 2 — A CAUSA NAO ERA A QUE O NOME DO DEFEITO SUGERE: as duas ferramentas irmas liam a MESMA
-  pergunta de dois jeitos opostos. O `escolheu` da F1 pergunta se o parametro FOI ENVIADO; o da F2, se o
-  VALOR esta no vocabulario. As tres URLs que a ronda mediu tem os quatro nomes de parametro REAIS e
-  nenhum valor que exista, entao a F2 respondia "nao escolheu nada" e entrava no indice com tres
-  enderecos a mais. E a F1 so passou porque a regua de 25/09 a mediu com `?forma=vaso&caquinho=medio`,
-  em que `forma` foi enviado — cada uma acertando o portao da outra por sorte. As duas perguntas foram
-  separadas: `escolheu` manda na TELA e mede o valor; `cdm_fX_tem_parametro()` manda no `noindex` e mede
-  a PRESENCA, porque duplicata se conta por endereco e o conjunto dos valores invalidos e infinito.
-  E UM BURACO MEDIDO DE BRINDE: a lista de parametros da F1 era escrita a mao e esquecia o `d2` do cone
-  desde que a forma conica existe. Agora ela deriva de `cdm_f1_formas()`, e `?d2=12` sai com noindex.
-  ITEM 3 — ERA 27 E SAO 5. Contadas imagem por imagem: 5 sao a foto de DESTAQUE (a principal, a que
-  `Product.image` aponta, e nesta ilha a foto E o produto) e 22 sao as miniaturas da tira, cujo `alt=""`
-  e DELIBERADO e correto — elas repetem a foto que ja tem descricao e o nome do controle esta no `<a>`.
-  Preenche-las para o numero chegar a zero faria o leitor de tela ler a peca duas vezes, entao a regua
-  nova deixa a tira de fora POR NOME. O alt sai de uma funcao so agora, com a tecnica na frente da base.
-  ITEM 1 — CONSERTADO DOS DOIS LADOS, como o despacho exigia: valor normalizado na gravacao (e nas
-  quatro pecas que ja existiam, por migracao idempotente) E molde tolerante. So um dos dois faria isto
-  voltar na peca 6. No ar: 40×28 cm, 35cm de diametro, 46×36 cm, 46cm de diametro, 46×37 cm.
-  ITEM 4 — A ETIQUETA GANHOU DONO, e e o MESMO desenho que fez a de ROBO sair dobrada em 25/09, com o
-  sintoma invertido: la o excesso, aqui a falta, e falta nao tem cor na tela. Quem tem description agora
-  DECLARA pelo filtro `cdm_descricao`; quem imprime e a casca, uma vez. As oito nasceram entre 121 e 143
-  caracteres, nenhuma repetida.
-  ITEM 5 — o portao media a pergunta errada: cobrava o degrau de quem tem `url`, e item que serve BUSCA
-  nao tem `url`. Agora cobra de quem SERVE link, e a escada e contada: 1:1 2:5 3:4 4:28, soma 38.
-  O QUE FALTA, E O MOTIVO E DESPACHO DE PRIORIDADE MAIOR (18.1): a FAIXA de 120 a 160 nas quatro paginas
-  que ja tinham description (183, 165, 192, 189). Tres delas estao na primeira pagina do Google e o
-  BLOCO A do despacho do Raphael de 24/09 espera 30/09 — trocar a promessa da SERP agora misturaria duas
-  causas na mesma janela. A regua no ar ja mede as quatro e IMPRIME o numero delas.
-
+  ITEM 4 DA FILA ENTREGUE — A LINHA DA PECA ESTA NA TABELA DO ARVORE.md, e o que faltava nao era a
+  linha: era a CHAVE. Revisao 47 EM DESEMBARQUE nesta execucao: casca 1.17.0, loja 1.4.0 (as outras sem mudanca — f1 1.4.0,
+  f2 1.6.0, atelie 1.4.0, tecnicas 1.2.0, leads 1.1.1). teste-casca 569 afirmacoes (eram 563),
+  teste-loja 208 (eram 196), zero falha nas oito bancadas. mutacoes-arvore.py de 21 para 29, 29
+  reprovadas e 0 passando.
+  A DECISAO QUE O ARVORE.md DEIXOU PARA A FUNDACAO (19.2) FOI TOMADA: a peca era a UNICA entrada do
+  mapa da arvore chaveada pelo SLUG NU, enquanto toda outra de nivel 2 ou 3 e chaveada pelo caminho
+  inteiro. As duas opcoes eram chavear por caminho ou declarar a excecao na tabela. Escolhida a
+  primeira, e quem decidiu nao foi gosto: um SEGUNDO DEFEITO que so existe com o slug nu e que a
+  outra opcao nao consertaria — peca cujo slug bate com o de uma pagina da raiz servia a trilha
+  DAQUELA pagina. `sobre` saia como 'Inicio > Sobre', sem o nome da peca, com o BreadcrumbList
+  apontando para /sobre/. Com o caminho inteiro a colisao deixa de existir POR CONSTRUCAO.
+  O CONSERTO TEM DUAS PONTAS E UMA FUNCAO SO: `cdm_loja_caminho_da_peca()` monta o caminho, e dela
+  saem a chave do filtro `cdm_arvore` e a resposta do filtro NOVO `cdm_caminho_atual` da casca —
+  irmao do `cdm_arvore`, por onde quem tem tipo proprio declara QUAL pagina esta sendo servida. Duas
+  pontas montando a propria string sao a origem do defeito, nao o conserto: se uma mudasse e a outra
+  nao, a trilha da peca sumiria sem cor na tela. A ORDEM tambem importa e a primeira escrita errou
+  nela — o filtro fala ANTES do laco da definicao de paginas, que casa por ultimo nivel e daria
+  `sobre` a peca antes de o filtro ser chamado. Ha mutacao guardando isso.
+  O PORTAO TEM TRES PERNAS e nenhuma sobra: documento x codigo (a linha existe no mapa COM A PECA
+  SERVIDA), documento x realidade (o slug esta em dados/pecas.json, a copia da secao 24) e realidade
+  x codigo (TODAS as 5 pecas da copia pousam em loja/<slug>, nivel 2, mae loja). Sem a segunda o
+  portao ficaria vazio, porque a bancada fabrica a peca com o slug que a tabela pedir. O NUMERO DE
+  PECAS NAO FOI DIGITADO NO DOCUMENTO: quem publica peca e a artesa, e tabela que precise de commit
+  a cada peca nova nasce velha. A tabela nomeia a ancora e o portao conta o resto contra a copia.
+  DE PASSAGEM, UMA MUTACAO PRE-EXISTENTE ESTAVA INERTE E O ACHADO E DO MESMO DIA: `dois slugs com o
+  mesmo ultimo nivel` casava com a entrada 'sobre' escrita em UMA linha, e a casca 1.16.0 — de
+  algumas horas antes nesta quarta — quebrou a entrada em varias. Ela passou a se declarar INVALIDA,
+  que a bancada conta como "passou", e a trava dos slugs repetidos ficou sem ninguem a vendo.
+  Conferido que ja estava inerte ANTES deste bloco; o alvo agora e a abertura da entrada.
+  NENHUMA URL NOVA, NENHUM ENDERECO MUDOU, NENHUM TEXTO DE PAGINA MUDOU — de proposito: hoje e 28/09
+  e todo o resto da fila espera a leitura de 30/09 (BLOCO A do despacho do Raphael de 24/09, a faixa
+  de description das quatro travadas, a terceira condicao do item 1 de 23/09 e a segunda metade do
+  item 2). O que sobra alem disso e CANAL e nao decisao: `base` e `apoio` esperam frase literal de
+  fabricante, e e o terceiro bloco seguido parando na mesma porta (PDF).
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

@@ -48,6 +48,8 @@ ILHA = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CASCA = os.path.join("snippets", "clubedomosaico-casca.php")
 RENDER = os.path.join("ferramentas", "render-para-teste.php")
 ARVORE = "ARVORE.md"
+LOJA = os.path.join("snippets", "clubedomosaico-loja.php")
+PECAS = os.path.join("dados", "pecas.json")
 VOZ = "VOZ.md"
 
 
@@ -230,10 +232,28 @@ def m_cartao_de_categoria_vira_link(raiz):
 
 
 def m_dois_slugs_com_o_mesmo_ultimo_nivel(raiz):
-    """Duas paginas terminando no mesmo slug — o caminho remontado vira loteria."""
-    trocar(raiz, CASCA,
-           "'sobre'                   => array( 'titulo' => 'Sobre', 'conteudo' => '[cdm_sobre]' ),",
-           "'sobre'                   => array( 'titulo' => 'Sobre', 'conteudo' => '[cdm_sobre]' ),\n\t\t'materiais/sobre'         => array( 'titulo' => 'Sobre os materiais', 'conteudo' => '[cdm_sobre]', 'pai' => 'materiais' ),")
+    """Duas paginas terminando no mesmo slug — o caminho remontado vira loteria.
+
+    ESTA MUTACAO FICOU INERTE E O ACHADO E DO MESMO DIA (28/09/2026). Ela casava
+    com a entrada `'sobre'` escrita em UMA linha, e a casca 1.16.0 — de algumas
+    horas antes, quando a `description` ganhou dono — quebrou a entrada em
+    varias linhas. A mutacao parou de achar o alvo e passou a se declarar
+    INVALIDA, que a bancada ja conta como "passou": a trava dos slugs repetidos
+    ficou sem ninguem a vendo, e e justamente a trava que sustenta a premissa do
+    caminho remontado. E a mesma cicatriz que o comentario de
+    `m_pagina_de_prova_deixa_de_ser_citada` registra logo abaixo, e ela voltou.
+
+    Agora o alvo e a ABERTURA da entrada, que nao depende de quantos campos ela
+    tem: a pagina nova entra antes dela.
+    """
+    texto = ler(raiz, CASCA)
+    alvo = [l for l in texto.splitlines()
+            if l.strip().startswith("'sobre'") and l.rstrip().endswith("=> array(")]
+    if not alvo:
+        raise AssertionError("a entrada 'sobre' da definicao de paginas mudou de forma")
+    nova = ("\t\t'materiais/sobre'         => array( 'titulo' => 'Sobre os materiais', "
+            "'conteudo' => '[cdm_sobre]', 'pai' => 'materiais' ),\n")
+    trocar(raiz, CASCA, alvo[0] + "\n", nova + alvo[0] + "\n")
 
 
 def m_pagina_de_prova_deixa_de_ser_citada(raiz):
@@ -297,6 +317,105 @@ def m_provedor_de_autor_volta_ao_sitemap(raiz):
            "\treturn $provedor;")
 
 
+def m_peca_volta_a_ser_chaveada_pelo_slug_nu(raiz):
+    """O defeito de origem, de volta: o filtro da Loja escreve o slug nu.
+
+    E a mutacao que mais vale desta leva, porque e exatamente o estado em que a
+    ilha ficou quatorze dias sem nenhum portao acusar: NA TELA A TRILHA SAI
+    IGUAL, porque quem pede passa o mesmo slug nu. So separando as duas pontas
+    o portao ve.
+    """
+    trocar(raiz, LOJA,
+           "\treturn ( '' === $slug ) ? '' : CDM_LOJA_BASE . '/' . $slug;",
+           "\treturn $slug;")
+
+
+def m_so_a_chave_vira_caminho(raiz):
+    """Uma ponta so muda de formato e a outra nao — a trilha da peca SOME.
+
+    Este e o desfecho que a funcao unica existe para impedir, e ele nao tem cor
+    na tela: a peca simplesmente deixa de ter trilha.
+    """
+    trocar(raiz, LOJA,
+           "\tif ( '' !== (string) $caminho ) {\n\t\treturn $caminho; // outro dono já respondeu; o primeiro a falar manda\n\t}\n\t$peca = cdm_loja_e_peca();",
+           "\tif ( '' !== (string) $caminho ) {\n\t\treturn $caminho;\n\t}\n\treturn $caminho;\n\t$peca = cdm_loja_e_peca();")
+
+
+def m_o_filtro_fala_depois_do_laco(raiz):
+    """A ordem invertida na casca — e a colisao volta, so ela.
+
+    A primeira escrita do conserto de 28/09 errou exatamente aqui: com o filtro
+    depois do laco das paginas, a peca chamada `sobre` casa com a pagina /sobre/
+    e nunca chega a declarar o caminho dela. O caso comum continua verde, e por
+    isso a mutacao precisa existir.
+    """
+    texto = ler(raiz, CASCA)
+    declara = ("\t$declarado = trim( (string) apply_filters( 'cdm_caminho_atual', '', $post ), '/' );\n"
+               "\tif ( '' !== $declarado ) {\n\t\treturn $declarado;\n\t}\n\n")
+    laco = ("\tforeach ( cdm_casca_definicao_paginas() as $caminho => $def ) {\n"
+            "\t\tif ( cdm_casca_slug_final( $caminho ) === $nome ) {\n"
+            "\t\t\treturn $caminho;\n\t\t}\n\t}\n")
+    if declara not in texto or laco not in texto:
+        raise AssertionError("a ordem do filtro e do laco mudou de forma")
+    texto = texto.replace(declara, "").replace(laco, laco + "\n" + declara)
+    gravar(raiz, CASCA, texto)
+
+
+def m_tabela_nomeia_peca_que_nao_existe(raiz):
+    """A linha da peca troca por um slug que nao esta na copia da secao 24.
+
+    Sem a perna documento -> realidade o portao passaria: a bancada fabrica a
+    peca com o slug que a tabela pedir, entao qualquer nome inventado casaria
+    com o codigo.
+    """
+    trocar(raiz, ARVORE,
+           "| `/loja/quadro-flores-do-campo/` | 2 | `/loja/` |",
+           "| `/loja/vaso-que-nunca-existiu/` | 2 | `/loja/` |")
+
+
+def m_peca_muda_de_mae_no_documento(raiz):
+    """O documento pendura a peca em /materiais/ e o codigo continua em /loja/."""
+    trocar(raiz, ARVORE,
+           "| `/loja/quadro-flores-do-campo/` | 2 | `/loja/` | Início › Loja › Quadro flores do campo |",
+           "| `/loja/quadro-flores-do-campo/` | 2 | `/materiais/` | Início › Materiais › Quadro flores do campo |")
+
+
+def m_peca_some_da_tabela(raiz):
+    """A linha da peca sai do ARVORE.md — o estado de antes de 28/09/2026.
+
+    Ela reprova pelo portao que a propria linha trouxe: a unica pagina desta
+    ilha publicada por uma pessoa volta a nao ter documento nenhum cobrando o
+    codigo dela.
+    """
+    texto = ler(raiz, ARVORE)
+    alvo = [l for l in texto.splitlines() if l.startswith("| `/loja/quadro-flores-do-campo/`")]
+    if not alvo:
+        raise AssertionError("a linha da peca nao esta na tabela")
+    gravar(raiz, ARVORE, texto.replace(alvo[0] + "\n", ""))
+
+
+def m_todas_as_pecas_entram_sempre(raiz):
+    """O filtro declara a peca fora da requisicao dela.
+
+    E o conserto preguicoso que encheria a lista de irmas de /loja/ de peca —
+    outra decisao, e nao a que o snippet declara.
+    """
+    trocar(raiz, LOJA,
+           "\t$peca = cdm_loja_e_peca();\n\tif ( ! $peca || ! is_array( $mapa ) ) {\n\t\treturn $mapa;\n\t}\n\t$caminho = cdm_loja_caminho_da_peca( $peca );",
+           "\t$peca = cdm_loja_e_peca();\n\tif ( ! is_array( $mapa ) ) {\n\t\treturn $mapa;\n\t}\n\tif ( ! $peca ) {\n\t\t$peca = (object) array( 'post_name' => 'quadro-flores-do-campo', 'post_title' => 'Quadro flores do campo' );\n\t}\n\t$caminho = cdm_loja_caminho_da_peca( $peca );")
+
+
+def m_uma_peca_da_copia_fica_de_fora(raiz):
+    """O codigo passa a atender so a peca que a tabela nomeia.
+
+    A perna realidade -> codigo e a que ve: sem ela, a tabela com uma linha
+    seria alibi para as outras quatro.
+    """
+    trocar(raiz, LOJA,
+           "\t$caminho = cdm_loja_caminho_da_peca( $peca );\n\tif ( '' === $caminho || isset( $mapa[ $caminho ] ) ) {",
+           "\t$caminho = cdm_loja_caminho_da_peca( $peca );\n\tif ( 'quadro-flores-do-campo' !== (string) $peca->post_name ) {\n\t\treturn $mapa;\n\t}\n\tif ( '' === $caminho || isset( $mapa[ $caminho ] ) ) {")
+
+
 MUTACOES = [
     ("a chave de remontagem volta a ser so a versao da casca", m_chave_de_remontagem_volta_a_ser_a_versao),
     ("a home ganha trilha (16.3)", m_home_ganha_trilha),
@@ -319,6 +438,14 @@ MUTACOES = [
     ("dois slugs com o mesmo ultimo nivel", m_dois_slugs_com_o_mesmo_ultimo_nivel),
     ("a pagina fora do sitemap perde a citacao", m_pagina_de_prova_deixa_de_ser_citada),
     ("o provedor de autor volta ao sitemap (/author/)", m_provedor_de_autor_volta_ao_sitemap),
+    ("a peca volta a ser chaveada pelo slug nu", m_peca_volta_a_ser_chaveada_pelo_slug_nu),
+    ("so a chave vira caminho e a outra ponta nao", m_so_a_chave_vira_caminho),
+    ("o filtro do caminho fala DEPOIS do laco das paginas", m_o_filtro_fala_depois_do_laco),
+    ("a tabela nomeia peca que nao esta na copia", m_tabela_nomeia_peca_que_nao_existe),
+    ("ARVORE.md e codigo divergem na mae DA PECA", m_peca_muda_de_mae_no_documento),
+    ("a linha da peca some da tabela", m_peca_some_da_tabela),
+    ("toda peca entra no mapa, servida ou nao", m_todas_as_pecas_entram_sempre),
+    ("so a peca da tabela e atendida; as outras quatro ficam de fora", m_uma_peca_da_copia_fica_de_fora),
 ]
 
 

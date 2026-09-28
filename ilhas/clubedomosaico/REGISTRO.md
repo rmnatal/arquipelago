@@ -3,6 +3,117 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+28/09/2026 19:42Z — A LINHA DA PEÇA ENTRA NA ÁRVORE, E O QUE FALTAVA NÃO ERA A LINHA: ERA A CHAVE
+
+Item 4 da lista de desbloqueados do `PROMPT.md` ("a linha da peça na tabela do
+`ARVORE.md` — é conserto de TESTE, não de documento"). Casca **1.17.0**, Loja
+**1.4.0**, manifest na revisão **47**.
+
+**Por que este item e não outro:** hoje é 28/09 e **todo** o resto da fila desta
+ilha espera 30/09. O BLOCO A do despacho do Raphael de 24/09 espera a leitura de
+30/09 por ordem escrita dele; a metade aberta do item 4 do despacho da Sentinela
+de 28/09 (a faixa de 120 a 160 nas quatro páginas que já tinham `description`)
+espera o BLOCO A pela 18.1; os itens 1 e 2 do despacho de 23/09 têm a última
+condição na leitura de 30/09; e as duas categorias vazias que sobram (`base` e
+`apoio`) já têm decisão de campo e portão — o que falta nelas é **canal**, não
+decisão: frase literal de fabricante que esta nuvem consiga citar, e o egresso
+de PDF continua fechado. Este item não toca em nenhuma das páginas que estão na
+primeira página do Google, não cria URL nova e não mexe em `<title>` nem em
+`description` de nada — então é o único que podia sair hoje sem misturar causa
+na janela de medição que o Raphael mandou preservar.
+
+**A DECISÃO QUE O `ARVORE.md` DEIXOU ESCRITA PARA A FUNDAÇÃO (19.2), E QUAL FOI.**
+A seção 5 daquele arquivo tinha duas opções defensáveis: ou o filtro da Loja
+passa a chavear por `CDM_LOJA_BASE . '/' . $slug`, ou a tabela declara a exceção
+e o portão passa a admiti-la. **Escolhida a primeira**, e o que decidiu não foi
+gosto: foi um **segundo defeito** que só existe com o slug nu e que a segunda
+opção não consertaria.
+
+**O SEGUNDO DEFEITO, MEDIDO NA BANCADA ANTES DE QUALQUER CONSERTO:** peça cujo
+slug bate com o de uma página da raiz servia a trilha **daquela página**. Peça
+chamada `sobre` saía com `Início › Sobre` — sem o nome da peça na trilha — e o
+`BreadcrumbList` levava a URL de `/sobre/`. O mesmo com `privacidade` e
+`contato`. A causa é a ordem: `cdm_casca_slug_atual()` remonta o caminho pela
+definição de PÁGINAS, casando por último nível, e a peça é tipo próprio. Com o
+caminho inteiro a colisão deixa de existir **por construção** — `loja/sobre` não
+é `sobre`. Uma exceção documentada continuaria sendo uma exceção no código.
+
+**O CONSERTO, E ELE TEM DUAS PONTAS E UMA FUNÇÃO SÓ.** `cdm_loja_caminho_da_peca()`
+monta o caminho, e dela saem as duas declarações: a chave do filtro `cdm_arvore`
+(onde a peça mora) e a resposta do filtro novo `cdm_caminho_atual` da casca (qual
+página está sendo servida). As duas pontas montando a própria string são a
+**origem** do defeito, não o conserto dele: se uma mudasse de formato e a outra
+não, a trilha da peça sumiria da tela sem cor nenhuma. O `teste-loja.php` cobra
+que só **um** lugar do snippet monte o caminho, e que as duas declarações passem
+pela função.
+
+**A PRIMEIRA ESCRITA DO CONSERTO ERROU, E O ERRO ESTÁ AQUI PORQUE A MUTAÇÃO DELE
+FICOU:** o filtro nasceu **depois** do laço da definição de páginas. O caso comum
+ficou verde na hora — `loja/vaso-azul-com-flores` — e a colisão continuou de pé
+inteira, porque o laço casava `sobre` e retornava antes de o filtro ser chamado.
+Medido, não deduzido: a régua de colisão reprovou. O filtro passou a falar
+**antes**, e a mutação `o filtro do caminho fala DEPOIS do laco das paginas`
+existe para ninguém reverter isso sem ver.
+
+**O PORTÃO TEM TRÊS PERNAS, E NENHUMA SOBRA** (item 21 do `teste-casca.php`):
+
+| perna | o que cobra | o que ela impede |
+|---|---|---|
+| documento → código | a linha da tabela existe no mapa, **com a peça servida** | a divergência silenciosa de sempre |
+| documento → realidade | o slug da linha está em `dados/pecas.json` | portão vazio: a bancada fabrica a peça com o slug que a tabela pedir, então linha inventada passaria |
+| realidade → código | **todas** as 5 peças da cópia pousam em `loja/<slug>`, nível 2, mãe `loja` | a tabela com uma linha virar álibi para as outras quatro |
+
+**O número de peças não foi digitado no documento**, e isso é decisão: quem
+publica peça é a artesã, no dia que ela quiser, e tabela escrita pela Fundação
+que precise de commit a cada peça nova nasce velha. A tabela nomeia a **âncora**
+(`/loja/quadro-flores-do-campo/`, a primeira que ela publicou, em 14/09) e o
+portão conta o resto contra a cópia da seção 24. Hoje são cinco, e as cinco são
+medidas.
+
+**E a decisão declarada no filtro continua de pé, com portão próprio:** fora de
+uma requisição de peça, `/loja/` **não** tem filha no mapa. Sem essa afirmação o
+conserto preguiçoso — declarar todas as peças sempre — passaria, e encheria a
+lista de irmãs de `/loja/` de peça, que é outra decisão e não é a de hoje.
+
+**UMA MUTAÇÃO PRÉ-EXISTENTE ESTAVA INERTE, E O ACHADO É DO MESMO DIA.**
+`dois slugs com o mesmo ultimo nivel` casava com a entrada `'sobre'` escrita em
+UMA linha da definição de páginas; a casca **1.16.0**, de algumas horas antes
+nesta mesma quarta, quebrou a entrada em várias linhas quando a `description`
+ganhou dono. A mutação parou de achar o alvo e passou a se declarar INVÁLIDA — e
+a bancada conta inválida como "passou", então a trava dos slugs repetidos ficou
+**sem ninguém a vendo**, justamente a trava que sustenta a premissa do caminho
+remontado. Conferido que já estava inerte **antes** deste bloco. O alvo agora é a
+**abertura** da entrada, que não depende de quantos campos ela tem. É a mesma
+cicatriz que `m_pagina_de_prova_deixa_de_ser_citada` registra em comentário desde
+12/09, e ela voltou.
+
+**As baterias.** `ferramentas/mutacoes-arvore.py` foi de 21 para **29 mutações,
+29 reprovadas, 0 passaram** — as oito novas: o slug nu de volta, uma ponta só
+mudando de formato, o filtro falando depois do laço, a tabela nomeando peça que
+não existe, mãe divergente na linha da peça, a linha sumindo da tabela, toda peça
+entrando servida ou não, e só a peça da tabela sendo atendida.
+
+**Bancadas:** `teste-casca` 569 (eram 563), `teste-loja` 208 (eram 196), e
+`leads`, `atelie`, `f1`, `f2`, `tecnicas`, `prestacao-rejunte` sem falha.
+
+**Uma afirmação que escrevi e apaguei no mesmo bloco, registrada porque o erro é
+da família que esta ilha mais paga:** a primeira versão da régua de colisão do
+`teste-loja.php` terminava em `|| true`. Ela passava sempre e não media nada —
+portão que nunca pode reprovar. Foi trocada pela medição real: a página `/sobre/`
+de verdade continua respondendo `sobre`, que é o outro lado da borda e o que
+impede o conserto de ter mandado toda página singular para baixo de `/loja/`.
+
+- **Nenhuma URL nova, nenhuma URL mudou de endereço, nenhum texto de página
+  mudou.** O que muda no ar é a chave interna do mapa e a trilha das peças em
+  caso de colisão de slug — que hoje não acontece em nenhuma das cinco.
+- Próximo passo: **a leitura de 30/09** destrava, de uma vez, o BLOCO A do
+  despacho do Raphael de 24/09, a faixa de `description` das quatro páginas
+  travadas, a terceira condição do item 1 de 23/09 (`/author/` sair de
+  `dados/posicoes.md`) e a segunda metade do item 2 (o formato
+  `clubedomosaico-f2---` no Relatório de cliques). Antes disso, o que sobra na
+  fila é **canal**, não decisão: `base` e `apoio` esperam frase literal de
+  fabricante, e é o terceiro bloco seguido parando na mesma porta (PDF).
+
 10/09/2026 — pasta da ilha criada pelas mãos, a pedido da sessão de conversa
 
 - Criada a pasta `ilhas/clubedomosaico/` com `snippets/`, `conteudo/`,
