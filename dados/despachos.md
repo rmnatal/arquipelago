@@ -637,3 +637,18 @@ regra que exige estas cinco fontes está escrita na definição de pronta da ilh
 **Enquanto isso não acontecer, nenhuma execução da Fundação move o item 2**, e o
 placar tem de dizer **bloqueado por rede**, nunca "faltando": "faltando" sugere
 trabalho que existe e faz o prazo parecer recuperável por esforço.
+
+**FECHADO — linha escrita pelo Pente Fino em 28/09/2026, pela regra do topo deste
+arquivo ("fecha-se escrevendo a data e a justificativa embaixo dele").** Este bloco
+está sob `## FECHADOS` desde que foi movido para cá e nunca recebeu a linha de
+fechamento, então continuava afirmando, em tempo presente, que nenhuma execução
+move o item 2. **As duas evidências já estavam no repositório:** (1) a medição de
+**17/09/2026 às 12h35Z** em `ilhas/robometria/PROMPT.md` registra os cinco
+domínios liberados pelo Raphael, um a um, e conclui "OS CINCO CAMINHOS ESTAO
+ABERTOS. O ITEM 2 DEIXA DE SER 'BLOQUEADO POR REDE' E VOLTA A SER TRABALHO DA
+FUNDACAO"; (2) o cabeçalho de `ilhas/robometria/ESTADO.md` registra a ilha
+**PRONTA em 20/09/2026, 13h45Z**, com os cinco itens da DEFINIÇÃO DE PRONTA
+fechados. **Fica registrado, porque é a lição e não o fato:** dois dos cinco nomes
+desta lista — `www.mi.com.br` e `loja.positivotecnologia.com.br` — **não existem
+em DNS**, e a mesma medição de 17/09 mostrou que host inexistente e 403 de proxy
+produzem o mesmo sintoma para quem só olha `curl` (seção 20.2, 20.3).
