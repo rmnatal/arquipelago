@@ -5016,7 +5016,7 @@ percorre `vocabularios` de forma genérica. E `conferir-no-ar.py` refeito depois
 
 28/09/2026 16:17Z — DESPACHO DA SENTINELA DE 28/09 ENTREGUE, quatro itens inteiros e meio: cinco camadas, e DUAS contagens da ronda corrigidas pela medição
 
-Revisão **45** no ar. Casca **1.16.0**, Loja **1.3.0**, F1 **1.4.0**, F2 **1.6.0**, Ateliê **1.4.0**,
+Revisão **46** no ar. *(A 45 levou o bloco; a 46 e a decisão da 25.2-b, escrita no `esquema-banco.json` depois de o manifest da 45 estar fechado — sha velho no manifest é commit sem entrega com um passo de silêncio a mais.)* Casca **1.16.0**, Loja **1.3.0**, F1 **1.4.0**, F2 **1.6.0**, Ateliê **1.4.0**,
 Tecnicas **1.2.0**. Foi a primeira ronda diária técnica que esta ilha recebeu, e o despacho dela tinha
 cinco itens; pela 18.2 correção sai inteira, e pela 18.3 o que sobrou está reescrito no `PROMPT.md` com o
 motivo. A ilha estava livre (`executando_desde: null`), a rede respondeu 200 nas duas tentativas da 20.2, e

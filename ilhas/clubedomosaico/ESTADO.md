@@ -10,7 +10,7 @@ executando_desde: null
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
   DESPACHO DA SENTINELA DE 28/09 ENTREGUE, QUATRO ITENS INTEIROS E MEIO, e a execucao corrigiu DUAS
-  contagens da propria ronda medindo de novo. Revisao 45 no ar: casca 1.16.0, loja 1.3.0, f1 1.4.0,
+  contagens da propria ronda medindo de novo. Revisao 46 no ar: casca 1.16.0, loja 1.3.0, f1 1.4.0,
   f2 1.6.0, atelie 1.4.0, tecnicas 1.2.0. conferir-no-ar.py com 501 afirmacoes e 0 falha (eram 488).
   ITEM 2 — A CAUSA NAO ERA A QUE O NOME DO DEFEITO SUGERE: as duas ferramentas irmas liam a MESMA
   pergunta de dois jeitos opostos. O `escolheu` da F1 pergunta se o parametro FOI ENVIADO; o da F2, se o
