@@ -2901,3 +2901,172 @@ Arquivo `AUDITORIA-PENTE-FINO-2026-09-28.md` relido depois de gravar:
 Nenhum outro arquivo do repositorio foi tocado neste disparo, alem deste log: nao mexi em arquivo de ilha, em
 `ARQUIPELAGO.md`, em `foco.md`, em cabecalho de `ESTADO.md` nem em fila de ilha nenhuma. As 14 substituicoes
 ficam para o disparo irmao.
+
+---
+
+## DISPARO DE 28/09/2026, 05h49 BRT (08h49 UTC) — PENTE FINO, PARTE 2 DE 2: AS 14 SUBSTITUICOES
+
+Disparo irmao do de 05h48 BRT (08h48 UTC), que subiu o relatorio `AUDITORIA-PENTE-FINO-2026-09-28.md`.
+Este aqui e a outra metade: as 14 substituicoes literais nos arquivos de ilha. **13 foram aplicadas; 1 foi
+PULADA**, pela regra do proprio disparo ("se o trecho A nao aparecer exatamente uma vez, NAO invente: pule
+aquela substituicao e diga no MAOS-LOG.md qual foi e por que"). O motivo esta escrito abaixo, com a medicao.
+
+Checagem de assunto, antes do `git fetch`: **Arquipelago**. Auditoria de coerencia do contrato, mexendo em
+`ilhas/*/PROMPT.md`, `ilhas/robometria/ESTADO.md` e `dados/despachos.md`. Nenhum assunto de outro projeto.
+
+### A SUBSTITUICAO 1 FOI PULADA — `dados/despachos.md` — e o motivo e de um byte
+
+O trecho A pedido tem **2 linhas**: a frase `trabalho que existe e faz o prazo parecer recuperável por
+esforço.` e, embaixo dela, **uma linha em branco**. Essa linha em branco nao existe no arquivo. Medido:
+
+```
+$ wc -l dados/despachos.md
+639 dados/despachos.md
+
+$ python3 -c "..."   # contagem literal do trecho A, em UTF-8
+trecho A como veio (frase + linha em branco)  -> ocorrencias = 0
+so a frase, sem a linha em branco             -> ocorrencias = 1
+o arquivo termina com: 're\ntrabalho que existe e faz o prazo parecer recuperável por esforço.\n'
+```
+
+Ou seja: a frase e a **ultima linha do arquivo**, que fecha com um unico `\n` e nao tem linha em branco
+depois. O trecho A, do jeito que veio, nao casa em lugar nenhum — o disparo contou uma linha 640 que nao
+existe. **Nao inventei onde colar o trecho B**, que seria o unico jeito de aplicar: pulei e registrei aqui.
+
+**Para o proximo disparo consertar em uma linha:** reenviar a SUBSTITUICAO 1 com o trecho A **sem** a linha
+em branco final (so a frase) e o trecho B tambem sem a linha em branco final. O conteudo do trecho B — o
+paragrafo `**FECHADO — linha escrita pelo Pente Fino em 28/09/2026...**`, que fecha o bloco do item 2 sob
+`## FECHADOS` — nao foi escrito em lugar nenhum e continua pendente. `dados/despachos.md` **nao foi tocado
+por este disparo** e segue identico ao que estava no `main`.
+
+### AS 13 QUE ENTRARAM
+
+Cada uma casou o trecho A **exatamente uma vez**, conferido antes de gravar. A contagem de linhas e a do
+trecho A / trecho B como vieram no disparo:
+
+```
+SUB  1  dados/despachos.md              ocorrencias=0  -> PULADA (ver acima)
+SUB  2  ilhas/aquametria/PROMPT.md      ocorrencias=1  (A 4 linhas / B 11 linhas)
+SUB  3  ilhas/clubedomosaico/PROMPT.md  ocorrencias=1  (A 4 linhas / B 11 linhas)
+SUB  4  ilhas/clubedomosaico/PROMPT.md  ocorrencias=1  (A 4 linhas / B 11 linhas)
+SUB  5  ilhas/clubedomosaico/PROMPT.md  ocorrencias=1  (A 5 linhas / B 10 linhas)
+SUB  6  ilhas/clubedomosaico/PROMPT.md  ocorrencias=1  (A 5 linhas / B  5 linhas)
+SUB  7  ilhas/jornadafly/PROMPT.md      ocorrencias=1  (A 5 linhas / B  9 linhas)
+SUB  8  ilhas/ohmetria/PROMPT.md        ocorrencias=1  (A 5 linhas / B  9 linhas)
+SUB  9  ilhas/robometria/ESTADO.md      ocorrencias=1  (A 4 linhas / B 10 linhas)
+SUB 10  ilhas/robometria/ESTADO.md      ocorrencias=1  (A 4 linhas / B 12 linhas)
+SUB 11  ilhas/robometria/PROMPT.md      ocorrencias=1  (A 4 linhas / B  5 linhas)
+SUB 12  ilhas/robometria/PROMPT.md      ocorrencias=1  (A 4 linhas / B 12 linhas)
+SUB 13  ilhas/robometria/PROMPT.md      ocorrencias=1  (A 4 linhas / B  9 linhas)
+SUB 14  ilhas/robometria/PROMPT.md      ocorrencias=1  (A 3 linhas / B  3 linhas)
+```
+
+As quatro da clubedomosaico entraram uma depois da outra no mesmo arquivo, e a contagem de cada uma foi
+refeita **contra o arquivo ja alterado pela anterior**, nunca contra o arquivo original.
+
+### `git status --porcelain`, antes do commit
+
+```
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/jornadafly/PROMPT.md
+ M ilhas/ohmetria/PROMPT.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+```
+
+Depois do commit, `git status --porcelain` devolve **vazio**. Seis arquivos, todos nomeados pelo disparo.
+`dados/despachos.md` nao aparece porque a SUBSTITUICAO 1 foi pulada.
+
+### `git diff --stat`
+
+```
+ ilhas/aquametria/PROMPT.md     |  7 +++++++
+ ilhas/clubedomosaico/PROMPT.md | 23 +++++++++++++++++++++--
+ ilhas/jornadafly/PROMPT.md     |  6 +++++-
+ ilhas/ohmetria/PROMPT.md       |  6 +++++-
+ ilhas/robometria/ESTADO.md     | 14 ++++++++++++++
+ ilhas/robometria/PROMPT.md     | 16 +++++++++++++++-
+ 6 files changed, 67 insertions(+), 5 deletions(-)
+```
+
+As 5 remocoes sao as 5 linhas que os trechos B reescrevem no lugar (a linha da Shopee na clubedomosaico, o
+titulo `###`->`##` do despacho de 24/09, o cabecalho do aviso de foco da jornadafly, o da ohmetria e a linha
+da leva de malha na robometria). Nenhum paragrafo foi movido, reordenado ou apagado.
+
+### O push: o 403 apareceu, e nao era autorizacao
+
+A primeira tentativa de `git push origin HEAD:main` foi recusada:
+
+```
+error: RPC failed; HTTP 403 curl 22 The requested URL returned error: 403
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to 'https://github.com/rmnatal/arquipelago'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally.
+```
+
+**Nao era o 403 de autorizacao que barrou o ambiente do Pente Fino.** Era `fetch first`: entre o meu
+`git checkout -B trabalho origin/main` (`82c1ff7`) e o meu push, o disparo IRMAO tinha subido os dois
+commits dele — `c25e580` (o relatorio) e `dd9defc` (a secao dele neste log). `git fetch origin main &&
+git rebase origin/main` rebaseou limpo, **sem um unico conflito**, porque as duas metades nao tocam nos
+mesmos arquivos. A segunda tentativa passou:
+
+```
+To https://github.com/rmnatal/arquipelago
+   dd9defc..e943247  HEAD -> main
+```
+
+Duas tentativas das tres permitidas. **Nenhum force push foi tentado em momento nenhum.**
+
+### Confirmacao em `origin/main` DEPOIS do push
+
+```
+$ git fetch origin main && git log -1 origin/main
+e943247552667984988ecf15c8f7fa0d6ecd3e2b  2026-09-28 08:48:51 +0000
+pente fino: auditoria de coerencia do contrato
+
+$ git show --stat --format= origin/main
+ ilhas/aquametria/PROMPT.md     |  7 +++++++
+ ilhas/clubedomosaico/PROMPT.md | 23 +++++++++++++++++++++--
+ ilhas/jornadafly/PROMPT.md     |  6 +++++-
+ ilhas/ohmetria/PROMPT.md       |  6 +++++-
+ ilhas/robometria/ESTADO.md     | 14 ++++++++++++++
+ ilhas/robometria/PROMPT.md     | 16 +++++++++++++++-
+ 6 files changed, 67 insertions(+), 5 deletions(-)
+```
+
+**As duas metades do Pente Fino estao no `main`:** `c25e580` (relatorio) e `e943247` (as 13 substituicoes).
+
+### Contagem, conferida relendo os arquivos DEPOIS de gravar
+
+Nao pelo que eu acho que escrevi — relendo do disco, ja com o commit feito:
+
+```
+ilhas/aquametria/PROMPT.md        388 linhas   100938 bytes
+ilhas/clubedomosaico/PROMPT.md    622 linhas    79866 bytes
+ilhas/jornadafly/PROMPT.md        135 linhas    18092 bytes
+ilhas/ohmetria/PROMPT.md          123 linhas    18193 bytes
+ilhas/robometria/ESTADO.md        635 linhas    46921 bytes
+ilhas/robometria/PROMPT.md       1318 linhas   193110 bytes
+
+linhas adicionadas pelo commit (git show -U0 | grep -c '^+') = 73
+delas, contendo a marca PENTE FINO                           = 8
+```
+
+73 linhas `+` = as 67 insercoes liquidas + as 5 linhas reescritas + 1 do cabecalho do diff. As 8 marcas sao
+os 8 ponteiros novos (SUB 2, 3, 4, 5, 9, 10, 11+14 e 12, 13 — dois deles inline, na mesma linha do texto
+que corrigem, por isso nao dao 13 linhas).
+
+Uma medicao que vale guardar: `grep -c 'G-PASTILHAS' ilhas/clubedomosaico/PROMPT.md` ainda devolve **1**, e
+esta certo. O trecho B da SUBSTITUICAO 6 **cita de proposito** as formas velhas com hifen (`G-PASTILHAS`,
+`G-ALICATES`, `G-COLAS`, `T-VASO`) dentro do parentese que explica por que a Shopee as recusa. Elas nao
+sobreviveram como codigo valido: sobreviveram como a licao. Quem for conferir no futuro nao pode ler esse
+`1` como substituicao incompleta.
+
+### O que este disparo NAO fez
+
+Nada alem do que o disparo nomeou. Nao toquei em `manifest.json`, em `dados/*.json`, em snippet nenhum, em
+`ARQUIPELAGO.md`, em `foco.md`, em `ESTADO.md` de ilha nenhuma alem da robometria, nem em cabecalho de
+estado, `bloco_atual` ou fila de ilha nenhuma. Nao reservei ilha, nao executei bloco, nao publiquei, nao
+acionei Sync. `dados/despachos.md` segue intocado, pelo motivo medido la em cima.
