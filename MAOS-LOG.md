@@ -3142,3 +3142,58 @@ nem em `ESTADO.md`/`PROMPT.md` de ilha nenhuma — as referencias a `ilhas/robom
 reservei ilha, nao escrevi `executando_desde`, nao executei bloco de fila, nao publiquei, nao marquei
 `publicar: true`, nao acionei Sync, nao verifiquei site, nao criei conta. Nao li `ARQUIPELAGO.md` para
 decidir nada: a decisao veio na instrucao.
+
+---
+
+## Disparo de 28/09/2026, 11h19 de Brasilia (14h19Z)
+
+**Assunto:** Arquipelago — contrato, secao 1.2. Decisao do Raphael de 28/09/2026 sobre o item
+"PRECISA DO RAPHAEL" (M3) do Pente Fino desta data: a ronda diaria TECNICA passa a rodar em toda
+ilha no ar, em foco ou fora. Checagem de assunto: PASSOU (contrato do Arquipelago, `ARQUIPELAGO.md`).
+
+**O que foi pedido, e so isso:** UMA edicao em UM arquivo, `ARQUIPELAGO.md`, secao 1.2 — (a) substituir
+o paragrafo de citacao que comecava com "O que este ponteiro NAO decide..." pelo paragrafo novo
+"DECIDIDO PELO RAPHAEL EM 28/09/2026...", e (b) acrescentar, logo DEPOIS do item que comeca com
+"**Ronda diaria:**" e sem tocar nele, um item novo "**Ronda diaria — SUPERADO EM 28/09/2026 na metade
+tecnica.**". Os dois textos entraram byte a byte como vieram na instrucao.
+
+**`git status --porcelain` (depois do commit):**
+
+```
+```
+
+(vazio — arvore limpa, nada pendente.)
+
+**`git diff --stat` do commit:**
+
+```
+ ARQUIPELAGO.md | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+```
+
+**Commit que foi ao `main`:**
+
+```
+4393e6f6165f0c2a2a973c75576a885863085151
+contrato: a ronda tecnica passa a medir toda ilha no ar — decisao do Raphael de 28/09, e a causa tem nome
+```
+
+Push direto com `git push origin HEAD:main`, aceito de primeira (`207406b..4393e6f`). Sem force push,
+sem rebase, sem PR. Confirmado por `git fetch origin main && git log -1 origin/main`, que mostra o
+hash acima como ponta do `main`.
+
+**Contagem, conferida relendo `ARQUIPELAGO.md` DEPOIS de gravar (`sed -n '72,81p'`):** 1 arquivo
+alterado, 2 linhas inseridas, 1 removida. A linha removida e a antiga "O que este ponteiro NAO
+decide..." (era a linha 79); as inseridas sao o item novo da lista (agora linha 74, logo apos o item
+"Ronda diaria:" de 16/09, que ficou intacto na linha 73) e o paragrafo "DECIDIDO PELO RAPHAEL EM
+28/09/2026..." (agora linha 80, no lugar do que saiu). Nenhuma outra linha do arquivo foi tocada.
+
+**O que NAO foi tocado:** `dados/PAINEL.md`, como a instrucao mandou — a linha de "Precisa do Raphael"
+sai sozinha na proxima ronda. Nenhum outro arquivo do repositorio alem de `ARQUIPELAGO.md` e deste
+`MAOS-LOG.md`. Nao reservei ilha, nao escrevi `executando_desde`, nao toquei em cabecalho de estado,
+nao executei bloco de fila, nao publiquei, nao marquei `publicar: true`, nao acionei Sync, nao
+verifiquei site, nao criei conta. Nao li `ARQUIPELAGO.md` para decidir nada — so para localizar as
+duas linhas nomeadas na instrucao; a decisao veio pronta no disparo. Nenhum dado pessoal de terceiros
+entrou: a instrucao nao trazia nenhum.
+
+**Falhas:** nenhuma. Todos os passos passaram na primeira tentativa.
