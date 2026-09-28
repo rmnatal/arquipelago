@@ -237,7 +237,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.15.0' );
+	define( 'CDM_CASCA_VERSAO', '1.16.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2408,21 +2408,73 @@ if ( ! function_exists( 'cdm_casca_definicao_paginas' ) ) {
  * seção 16 do contrato. Só 'noindex' fica fora do sitemap.
  */
 function cdm_casca_definicao_paginas() {
+	/* A `descricao` DE CADA PÁGINA — item 4 do despacho da Sentinela de
+	   28/09/2026, e ela mora AQUI porque o defeito não era o texto de nenhuma
+	   página: era qual camada emitia a etiqueta e para que tipo de página.
+	      Medido no ar em 28/09: das 17 URLs, OITO não serviam
+	   `<meta name="description"` nenhuma — a home e as três mães entre elas. As
+	   que serviam eram as que tinham um snippet próprio imprimindo a sua (as
+	   duas ferramentas, os dois tutoriais) e as cinco peças, que têm a da Loja.
+	   Página da casca não tinha dono da etiqueta, e por isso não tinha etiqueta.
+	      A FAIXA É 120 a 160 CARACTERES, contados decodificados, e o teto não é
+	   estético: acima de 160 o Google corta e a promessa da SERP termina no meio.
+	   As quatro que existiam estavam TODAS acima — de 167 a 200. O piso de 120
+	   existe pelo motivo oposto: descrição curta demais o Google descarta e
+	   escreve a dele, e aí a linha que decide o clique volta a não ser nossa.
+	      NENHUMA PODE SE REPETIR. Descrição duplicada entre páginas é o sinal
+	   que faz o buscador tratar as duas como a mesma coisa, e esta ilha tem uma
+	   árvore de três mães que se parecem. O portão conta. */
 	$paginas = array(
-		'inicio'                  => array( 'titulo' => 'Mosaico feito à mão, uma peça por vez', 'conteudo' => '[cdm_home]' ),
-		'loja'                    => array( 'titulo' => 'Loja', 'conteudo' => '[cdm_loja]' ),
-		'materiais'               => array( 'titulo' => 'Materiais', 'conteudo' => '[cdm_materiais]' ),
+		'inicio'                  => array(
+			'titulo'    => 'Mosaico feito à mão, uma peça por vez',
+			'conteudo'  => '[cdm_home]',
+			/* A DA HOME É UMA DAS DUAS QUE VALEM DINHEIRO (o despacho nomeia as
+			   duas). Ela diz as três coisas que o site é — peça pronta, guia de
+			   material e tutorial — porque quem cai na home pela marca ainda não
+			   sabe qual das três quer. */
+			'descricao' => 'Peças de mosaico feitas à mão, uma a uma, e o guia que diz qual cola, qual rejunte e quantas pastilhas a sua peça precisa.',
+		),
+		'loja'                    => array(
+			'titulo'    => 'Loja',
+			'conteudo'  => '[cdm_loja]',
+			'descricao' => 'Peças de mosaico prontas, feitas à mão por uma artesã só: vasos, quadros e bandejas, com a foto da peça que você vai receber.',
+		),
+		'materiais'               => array(
+			'titulo'    => 'Materiais',
+			'conteudo'  => '[cdm_materiais]',
+			'descricao' => 'Guia de materiais para mosaico: cola, rejunte, pastilha, alicate e acabamento, cada ficha com a declaração do próprio fabricante.',
+		),
 		/* 'camada' => 'prova' é a ÚNICA página em que a linguagem de prova pode
 		   ocupar o texto inteiro (seção 15.2). É declarada aqui, é uma só, e o
 		   teste conta: sem essa contagem, bastaria declarar a home como prova
 		   para o portão de voz parar de valer — que é a porta dos fundos que a
 		   Aquametria achou em 11/09/2026 ao tentar quebrar o próprio portão. */
 		'materiais/como-sabemos'  => array( 'titulo' => 'Como sabemos', 'conteudo' => '[cdm_como_sabemos]', 'pai' => 'materiais', 'noindex' => true, 'camada' => 'prova' ),
-		'como-fazer'              => array( 'titulo' => 'Como fazer', 'conteudo' => '[cdm_como_fazer]' ),
-		'sobre'                   => array( 'titulo' => 'Sobre', 'conteudo' => '[cdm_sobre]' ),
-		'contato'                 => array( 'titulo' => 'Contato', 'conteudo' => '[cdm_contato]' ),
-		'divulgacao-de-afiliados' => array( 'titulo' => 'Divulgação de afiliados', 'conteudo' => '[cdm_afiliados]' ),
-		'privacidade'             => array( 'titulo' => 'Privacidade', 'conteudo' => '[cdm_privacidade]' ),
+		'como-fazer'              => array(
+			'titulo'    => 'Como fazer',
+			'conteudo'  => '[cdm_como_fazer]',
+			'descricao' => 'Como fazer mosaico passo a passo: as técnicas, o que muda entre elas e a lista de material de cada uma, escrita para quem começa.',
+		),
+		'sobre'                   => array(
+			'titulo'    => 'Sobre',
+			'conteudo'  => '[cdm_sobre]',
+			'descricao' => 'Quem faz as peças do Clube do Mosaico, como o guia de materiais é montado e por que cada recomendação cita o fabricante que a declarou.',
+		),
+		'contato'                 => array(
+			'titulo'    => 'Contato',
+			'conteudo'  => '[cdm_contato]',
+			'descricao' => 'Fale com o ateliê do Clube do Mosaico: encomenda de peça, dúvida sobre material e prazo de entrega, respondidos por quem faz as peças.',
+		),
+		'divulgacao-de-afiliados' => array(
+			'titulo'    => 'Divulgação de afiliados',
+			'conteudo'  => '[cdm_afiliados]',
+			'descricao' => 'Como o Clube do Mosaico ganha dinheiro: quais links rendem comissão, quais não rendem, e o que isso muda (e não muda) no que a gente recomenda.',
+		),
+		'privacidade'             => array(
+			'titulo'    => 'Privacidade',
+			'conteudo'  => '[cdm_privacidade]',
+			'descricao' => 'Que dados o Clube do Mosaico guarda, por quanto tempo, com quem eles são compartilhados e como pedir para apagar os seus.',
+		),
 	);
 
 	/* 1.5.0 — A PÁGINA DE FERRAMENTA SE REGISTRA SOZINHA, pelo mesmo desenho de
@@ -2525,6 +2577,72 @@ function cdm_casca_garantir_paginas( &$relato ) {
 	return $ids;
 }
 }
+
+if ( ! function_exists( 'cdm_casca_descricao_declarada' ) ) {
+/**
+ * A `description` que a DEFINIÇÃO da página declara. Pura: recebe o slug e o
+ * mapa, devolve o texto — para a bancada medir as 17 sem WordPress.
+ */
+function cdm_casca_descricao_declarada( $slug, $paginas = null ) {
+	$paginas = is_array( $paginas ) ? $paginas : cdm_casca_definicao_paginas();
+	$slug    = (string) $slug;
+
+	return ( isset( $paginas[ $slug ]['descricao'] ) ) ? (string) $paginas[ $slug ]['descricao'] : '';
+}
+}
+
+if ( ! function_exists( 'cdm_casca_descricao_no_ar' ) ) {
+/**
+ * A `<meta name="description">` DA PÁGINA ATUAL — E QUEM A IMPRIME É ESTA CASCA,
+ * UMA VEZ (1.16.0, 28/09/2026).
+ *
+ * É o mesmo desenho do conserto de robô de 25/09 (1.13.0), aplicado à outra
+ * etiqueta da cabeça, e pela mesma razão medida: uma etiqueta sem dono é uma
+ * etiqueta que ora sai duas vezes, ora não sai nenhuma.
+ *
+ *   - Na etiqueta de ROBÔ o sintoma foi o excesso: quatro camadas imprimiam a
+ *     sua num `wp_head` paralelo e a página servia DUAS.
+ *   - Na `description` o sintoma foi a falta, e ninguém viu porque falta não
+ *     tem cor na tela: as camadas que tinham snippet próprio imprimiam a sua
+ *     (as duas ferramentas, os dois tutoriais, as cinco peças pela Loja) e as
+ *     OITO páginas da casca não tinham quem imprimisse. Entre elas a home e as
+ *     três mães da árvore — exatamente onde a promessa da SERP decide o clique,
+ *     numa ilha com três páginas na primeira página do Google e CTR zero.
+ *
+ * O CONTRATO, e ele vale para quem vier depois: **quem tem uma `description`
+ * DECLARA pelo filtro `cdm_descricao`; quem imprime é este arquivo.** Nenhuma
+ * camada volta a dar `echo` na própria — foi assim que a etiqueta de robô saiu
+ * dobrada, e é o erro que esta ilha já pagou uma vez.
+ *
+ * A PÁGINA QUE NÃO TEM DESCRIÇÃO NÃO GANHA UMA INVENTADA: sai sem etiqueta, e o
+ * Google escreve a dele a partir do texto — que é pior que uma escrita, e muito
+ * melhor que uma genérica repetida em cinco páginas, porque descrição duplicada
+ * faz o buscador tratar páginas diferentes como a mesma coisa.
+ */
+function cdm_casca_descricao_no_ar() {
+	/* A HOME NÃO TEM SLUG, e é a página que mais precisa da etiqueta.
+	   `cdm_casca_slug_atual()` devolve string vazia na frente do site por
+	   desenho — ela existe para achar a definição de uma página INTERNA. Sem
+	   esta linha a home cairia no `''`, não acharia descrição nenhuma, e seria
+	   justamente a URL mais visitada da ilha saindo sem etiqueta: o defeito que
+	   este bloco conserta, consertado em toda parte menos onde mais dói. */
+	$home = function_exists( 'is_front_page' ) && is_front_page();
+	$slug = $home ? 'inicio' : ( function_exists( 'cdm_casca_slug_atual' ) ? (string) cdm_casca_slug_atual() : '' );
+	$base = cdm_casca_descricao_declarada( $slug );
+
+	return trim( (string) apply_filters( 'cdm_descricao', $base, $slug ) );
+}
+}
+
+/* Prioridade 4, que é onde a F1 e a F2 já imprimiam a delas — antes do JSON-LD
+   e antes de qualquer coisa que dependa da cabeça montada. */
+add_action( 'wp_head', function () {
+	$d = cdm_casca_descricao_no_ar();
+	if ( '' === $d ) {
+		return;
+	}
+	echo '<meta name="description" content="' . esc_attr( $d ) . '">' . "\n";
+}, 4 );
 
 if ( ! function_exists( 'cdm_casca_paginas_noindex' ) ) {
 /** Os slugs que a ilha declara fora do índice, tirados da própria definição. */

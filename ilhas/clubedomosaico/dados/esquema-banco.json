@@ -1150,8 +1150,10 @@
                 3,
                 4
               ],
-              "obrigatorio_quando": "`url` estiver preenchida",
-              "observacao": "De que degrau da escada da secao 25.1 o link veio. Errar para BAIXO custa uma ressalva mais dura na tela; errar para CIMA faz a metodologia declarar um rigor que a ilha nao tem."
+              "obrigatorio_quando": "QUALQUER saida de compra estiver servida — `url`, `url_produto`, `url_busca` ou `url_busca_produto`. Item que serve so busca e degrau 4, e a busca nao dispensa a declaracao: ela E a declaracao.",
+              "obrigatorio_quando_ate_28_09_2026": "`url` estiver preenchida — a regra ANTIGA, corrigida em 28/09/2026 e guardada aqui porque ela explica um numero do historico. Item que serve BUSCA nao tem `url`, entao a regra velha nunca alcancava o degrau 4: 13 dos 38 itens do banco (os 7 de acabamento e os 6 de alicate) serviam degrau 4 na tela com `degrau: null` no arquivo, e o validador aprovava. Medido pela ronda da Sentinela em 28/09/2026.",
+              "observacao": "De que degrau da escada da secao 25.1 o link veio. Errar para BAIXO custa uma ressalva mais dura na tela; errar para CIMA faz a metodologia declarar um rigor que a ilha nao tem. E o campo pelo qual a leitura semanal acha o que pode SUBIR de degrau: item no 4 e item com degrau em branco sao a mesma tela e leituras opostas — o primeiro e uma oportunidade na fila, o segundo e invisivel.",
+              "portao": "ferramentas/validar-banco.py, com a bateria ferramentas/mutacoes-degrau.py (8 mutacoes nos cinco bancos, 4 que so o portao novo ve)"
             },
             "conferido_em": {
               "tipo": "data ISO|null",

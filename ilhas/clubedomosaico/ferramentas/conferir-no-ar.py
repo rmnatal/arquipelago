@@ -1177,5 +1177,167 @@ ok(not _com_noindex, "[robots] nenhuma URL do sitemap saiu do indice",
 ok(not [_u for _u in _urls_sitemap if "/author/" in _u],
    "[robots] o arquivo de autor continua fora do sitemap", f"{len(_urls_sitemap)} URLs")
 
+# ---------------------------------------------------------------------------
+# AS QUATRO REGUAS DO DESPACHO DA SENTINELA DE 28/09/2026, medidas no ar porque
+# foi no ar que os quatro defeitos apareceram e nenhuma bancada os via.
+# ---------------------------------------------------------------------------
+
+print("\nO despacho de 28/09 no ar (itens 1, 2, 3 e 4):")
+
+# ITEM 1 — A UNIDADE SAI UMA VEZ.
+#
+# Medido em 28/09/2026 as 14h55Z: `/loja/` servia `35cm de diametro cm`,
+# `46x36cm cm`, `46cm de diametro cm` e `46x37cm cm` — quatro das cinco pecas —,
+# a pagina da peca repetia, e o texto entrava no `description` do `Product` no
+# JSON-LD, que e o que vai para a SERP.
+#
+# A REGUA EXIGE O NUMERO NA FRENTE, e a primeira escrita dela nao exigia: com
+# `\b` antes da unidade ela NAO reconhece `46x36cm cm`, porque entre o `6` e o
+# `c` nao ha fronteira de palavra. Regua que nao reconhece o defeito que a fez
+# nascer e regua que aprova o desastre calada — a familia da regua de robo que
+# media a ASPA em vez da diretiva, paga por esta ilha em 25/09.
+#
+# E ELA MEDE O TEXTO SERVIDO, nao o valor do campo: `46x36cm` e um valor
+# legitimo no banco, e o defeito so nasce depois que o molde acrescenta o dele.
+RE_UNIDADE_DOBRADA = re.compile(r"\d\s*(?:cm|mm|m)\s+(?:cm|mm|m)\b", re.I)
+assert RE_UNIDADE_DOBRADA.search("46x36cm cm"), "a regua nao reconhece o defeito medido em 28/09"
+assert not RE_UNIDADE_DOBRADA.search("46x36 cm"), "a regua acusa o valor certo"
+
+_sm_pecas, _ = buscar(BASE + "/wp-sitemap-posts-peca-1.xml")
+URLS_PECA = re.findall(r"<loc>([^<]+)</loc>", _sm_pecas)
+ok(len(URLS_PECA) > 0, "[medida] o sitemap das pecas entregou a lista", f"{len(URLS_PECA)} pecas")
+
+_dobrada, _sem_alt_na_peca, _alt_da_peca = [], [], 0
+for _u in URLS_PECA + [BASE + "/loja/"]:
+    _h, _c = buscar(_u)
+    _texto = re.sub(r"<[^>]+>", " ", _h)
+    if RE_UNIDADE_DOBRADA.search(_texto):
+        _dobrada.append(_u.replace(BASE, "") + ": " + RE_UNIDADE_DOBRADA.search(_texto).group(0))
+    # ITEM 3 — O ALT DA FOTO DA PECA.
+    #
+    # Medido em 28/09: das 82 imagens das 17 URLs, 27 com `alt=""`, todas nas 5
+    # paginas de peca. Contadas de novo neste bloco, imagem por imagem, elas se
+    # separam em DUAS e a separacao muda o que se cobra:
+    #
+    #   - 5 sao a FOTO DE DESTAQUE (`attachment-post-thumbnail`, do bloco do
+    #     nucleo), que le `_wp_attachment_image_alt` da biblioteca de midia.
+    #     Nenhuma foto da artesa tem esse campo. E a foto PRINCIPAL da peca, a
+    #     que `Product.image` aponta, e nesta ilha a foto E o produto. Defeito.
+    #
+    #   - 22 sao as MINIATURAS da tira do carrossel, e o `alt=""` delas e
+    #     DELIBERADO, com o motivo escrito no molde desde que a tira nasceu: a
+    #     miniatura repete a foto que ja tem descricao logo acima e o nome do
+    #     controle esta no `<a>`. Imagem decorativa que repete conteudo vizinho
+    #     leva `alt=""` — e a regra, nao a excecao. Preenche-las para o numero
+    #     chegar a zero faria o leitor de tela ler a peca duas vezes.
+    #
+    # ENTAO A REGUA NAO CONTA `alt=""` NA PAGINA: ela cobra alt nao vazio na foto
+    # de DESTAQUE e nas fotos do carrossel, e deixa a tira de fora por nome.
+    # A FOTO DE DESTAQUE: a do bloco do nucleo, que e a que estava vazia.
+    for _img in re.findall(r"<img[^>]*>", _h):
+        if "wp-post-image" not in _img and "attachment-post-thumbnail" not in _img:
+            continue
+        _alt = re.search(r'\salt="([^"]*)"', _img)
+        if _alt is None or "" == _alt.group(1).strip():
+            _sem_alt_na_peca.append(_u.replace(BASE, "") + ": foto de destaque")
+        else:
+            _alt_da_peca += 1
+    # E AS FOTOS DO CARROSSEL, que ja tinham alt e continuam tendo — o outro lado
+    # da borda: o bloco que conserta o destaque mexeu no molde das duas, e uma
+    # regua que so olhasse o destaque aprovaria o carrossel esvaziado.
+    for _figura in re.findall(r'<figure class="cdm-foto[^"]*"[^>]*>.*?</figure>', _h, re.S):
+        for _img in re.findall(r"<img[^>]*>", _figura):
+            _alt = re.search(r'\salt="([^"]*)"', _img)
+            if _alt is None or "" == _alt.group(1).strip():
+                _sem_alt_na_peca.append(_u.replace(BASE, "") + ": carrossel")
+            else:
+                _alt_da_peca += 1
+
+ok(not _dobrada, "[medida] nenhuma peca serve a unidade duas vezes (item 1)",
+   f"{len(URLS_PECA)} pecas + /loja/" + ((": " + " | ".join(_dobrada[:3])) if _dobrada else ""))
+ok(not _sem_alt_na_peca, "[alt] a foto de DESTAQUE de toda peca tem alt nao vazio (item 3)",
+   f"{_alt_da_peca} imagens com alt" + ((": " + " | ".join(_sem_alt_na_peca[:3])) if _sem_alt_na_peca else ""))
+
+# ITEM 2 — O ESTADO COM PARAMETRO SAI DO INDICE MESMO COM VALOR INVALIDO.
+#
+# As tres consultas abaixo sao as que a ronda de 28/09 mediu no ar e achou NO
+# indice, copiadas LITERAIS do despacho. Os nomes dos quatro parametros sao
+# reais; nenhum dos valores existe no vocabulario da ferramenta — e era
+# exatamente ai que a regua de 25/09 passava sem medir nada: ela usava
+# `?forma=vaso&caquinho=medio`, em que `forma` e real e `caquinho` nem
+# parametro e.
+for _consulta, _rotulo in [
+    (F2 + "?base=ceramica&onde=externo", "F2 com valor invalido nos dois"),
+    (F2 + "?base=mdf", "F2 com um valor invalido so"),
+    (F2 + "?base=ceramica&caco=louca&junta=fina&onde=interno", "F2 com os quatro invalidos"),
+    (F1 + "?forma=vaso", "F1 com valor invalido"),
+    (F1 + "?d2=12", "F1 pelo d2 do cone, que a lista a mao esquecia"),
+]:
+    _cod, _achadas = _robots_de(BASE + _consulta)
+    ok(len(_achadas) == 1 and "noindex" in _achadas[0].lower(),
+       f"[robots] {_rotulo} sai do indice numa etiqueta so", " | ".join(_achadas)[:60])
+
+# ITEM 4 — A META DESCRIPTION DAS 17 URLs.
+#
+# Medido em 28/09: OITO das 17 sem etiqueta nenhuma — a home e as tres maes
+# entre elas —, e as NOVE que tinham, TODAS acima de 160 caracteres.
+#
+# A CONTAGEM E DE CARACTERES DECODIFICADOS. Contar bytes do atributo cru daria
+# outro numero numa lingua com acento, e daria um numero a mais ainda com
+# `&#039;` no meio — o corte do Google e em caractere.
+#
+# AS QUATRO TRAVADAS: `qual-cola`, `quantas-pastilhas`, `picassiete` e
+# `trencadis` estao acima de 160 e ficam. TRES delas estao na primeira pagina do
+# Google e o BLOCO A do despacho do Raphael de 24/09 proibe mexer na promessa da
+# SERP delas antes de 30/09 — trocar agora misturaria duas causas na mesma
+# janela de medicao; a quarta fica parada pelo mesmo despacho, para a proxima
+# leitura ter com o que comparar. A regua cobra PRESENCA nas 17 e FAIXA em todas
+# menos essas quatro, e imprime o numero das quatro para ele nao ser esquecido.
+import html as _html
+
+TRAVADAS_ATE_30_09 = (
+    "/materiais/qual-cola-usar-no-mosaico/",
+    "/materiais/quantas-pastilhas-para-mosaico/",
+    "/como-fazer/o-que-e-mosaico-picassiete/",
+    "/como-fazer/o-que-e-trencadis/",
+)
+
+def _description_de(html_servido):
+    m = re.findall(r'<meta name="description" content="([^"]*)"', html_servido, re.I)
+    return [_html.unescape(x) for x in m]
+
+_sem_description, _fora_da_faixa, _duplicadas_desc, _duas_etiquetas = [], [], [], []
+_vistas, _travadas_medidas = {}, []
+for _u in _urls_sitemap:
+    _h, _ = buscar(_u)
+    _ds = _description_de(_h)
+    _caminho = _u.replace(BASE, "")
+    if len(_ds) > 1:
+        _duas_etiquetas.append(_caminho)
+    if not _ds:
+        _sem_description.append(_caminho)
+        continue
+    _d = _ds[0]
+    _n = len(_d)
+    if _caminho in TRAVADAS_ATE_30_09:
+        _travadas_medidas.append(f"{_caminho} {_n}")
+    elif _n < 120 or _n > 160:
+        _fora_da_faixa.append(f"{_caminho} ({_n})")
+    if _d in _vistas:
+        _duplicadas_desc.append(f"{_caminho} = {_vistas[_d]}")
+    _vistas[_d] = _caminho
+
+ok(not _sem_description, "[description] as 17 URLs do sitemap servem uma meta description (item 4)",
+   f"{len(_urls_sitemap)} conferidas" + ((": " + ", ".join(_sem_description[:4])) if _sem_description else ""))
+ok(not _duas_etiquetas, "[description] e NENHUMA serve duas — o emissor e um so",
+   f"{len(_urls_sitemap)} conferidas" + ((": " + ", ".join(_duas_etiquetas[:3])) if _duas_etiquetas else ""))
+ok(not _fora_da_faixa, "[description] todas cabem em 120 a 160 caracteres, menos as 4 travadas ate 30/09",
+   "na faixa" if not _fora_da_faixa else " | ".join(_fora_da_faixa[:4]))
+ok(not _duplicadas_desc, "[description] nenhuma se repete entre paginas",
+   "todas distintas" if not _duplicadas_desc else " | ".join(_duplicadas_desc[:3]))
+ok(len(_travadas_medidas) == len(TRAVADAS_ATE_30_09),
+   "[description] as 4 travadas pelo BLOCO A estao medidas e o numero delas fica visivel",
+   " | ".join(_travadas_medidas))
+
 print(f"\n{'APROVADO' if falhas == 0 else 'REPROVADO'}: {feitos} afirmacoes medidas no HTML servido, {falhas} falha(s).")
 sys.exit(1 if falhas else 0)

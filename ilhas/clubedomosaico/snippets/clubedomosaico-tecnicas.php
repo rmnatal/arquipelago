@@ -91,7 +91,7 @@
  */
 
 if ( ! defined( 'CDM_TECNICAS_VERSAO' ) ) {
-	define( 'CDM_TECNICAS_VERSAO', '1.1.0' );
+	define( 'CDM_TECNICAS_VERSAO', '1.2.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -857,14 +857,33 @@ function cdm_tecnicas_id_da_pagina_atual() {
 }
 }
 
+/* A `description` DOS TUTORIAIS É DECLARADA, NÃO IMPRESSA (28/09/2026): quem
+   imprime a etiqueta é a casca, uma vez, pelo mesmo contrato que a etiqueta de
+   robô passou a ter em 25/09 — uma etiqueta sem dono ora sai duas vezes, ora não
+   sai nenhuma, e esta ilha já mediu as duas metades.
+      O TEXTO NÃO MUDA NESTA PASSADA, e os dois motivos são de despacho mais
+   antigo e de prioridade maior: o Picassiete é uma das TRÊS páginas na primeira
+   página do Google (posição 7,0) e o BLOCO A do despacho do Raphael de 24/09
+   proíbe mexer na promessa da SERP dela antes de 30/09; o Trencadís fica parado
+   pelo que o mesmo despacho escreve — "deixe uma página parada para a próxima
+   leitura ter com o que comparar". Os dois estão acima de 160 caracteres, e isso
+   está registrado como o que falta do item 4 do despacho de 28/09. */
+add_filter( 'cdm_descricao', function ( $d ) {
+	$id = cdm_tecnicas_id_da_pagina_atual();
+	if ( '' === $id ) {
+		return $d;
+	}
+	$ficha = cdm_tecnicas_ficha( $id );
+
+	return isset( $ficha['description'] ) ? (string) $ficha['description'] : $d;
+} );
+
 add_action( 'wp_head', function () {
 	$id = cdm_tecnicas_id_da_pagina_atual();
 	if ( '' === $id ) {
 		return;
 	}
 	$ficha = cdm_tecnicas_ficha( $id );
-
-	echo '<meta name="description" content="' . esc_attr( $ficha['description'] ) . '">' . "\n";
 
 	$limpa     = home_url( '/' . $ficha['slug'] . '/' );
 	$t         = cdm_tecnicas_do_banco( $id );

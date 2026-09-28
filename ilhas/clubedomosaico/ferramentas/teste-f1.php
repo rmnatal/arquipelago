@@ -333,6 +333,59 @@ f1_ok( empty( $robots_dobrado ), 'e NENHUM estado serve duas etiquetas de robo',
 	empty( $robots_dobrado ) ? count( $estados ) . ' estados' : implode( ' | ', array_slice( $robots_dobrado, 0, 3 ) ) );
 f1_ok( empty( $com_script ), 'zero &#038; dentro de <script> em todo estado varrido' );
 
+/* OS ESTADOS COM VALOR INVALIDO — o mesmo defeito que a ronda de 28/09/2026
+   mediu na irma (a F2), escrito aqui porque a causa era a mesma pergunta lida
+   de dois jeitos e esta ferramenta so passou por acidente.
+
+   O `escolheu` daqui sempre perguntou `isset( $_GET['forma'] )` — PRESENCA — e o
+   da F2 pergunta se o valor esta no vocabulario. As duas leituras estavam no ar
+   ao mesmo tempo, e a regua de 25/09 mediu esta pagina com
+   `?forma=vaso&caquinho=medio`: `forma` foi enviado, entao passou. Com
+   `?caquinho=medio` sozinho teria falhado igual a F2, porque `caquinho` nao e
+   parametro desta ferramenta e `forma` nao teria sido enviado.
+
+   E o `d2` e o buraco MEDIDO da lista escrita a mao: o `escolheu` nomeava
+   `d`, `h`, `l` e `a` e esquecia o diametro do fundo do cone, que existe desde
+   que a forma conica existe. `cdm_f1_parametros()` deriva os campos de
+   `cdm_f1_formas()` justamente para a lista nao poder esquecer um. */
+$estados_invalidos_f1 = array(
+	'forma=vaso',                              /* nome real, valor que nao existe */
+	'pastilha=gigante&junta=fina',             /* dois nomes reais, dois valores invalidos */
+	'rejunte=cola',
+	'd2=12',                                   /* o campo que a lista a mao esquecia */
+	'onde=externo',                            /* o vocabulario da F2, com valor invalido */
+);
+$sem_noindex_invalido_f1 = array();
+foreach ( $estados_invalidos_f1 as $consulta ) {
+	$html = f1_render( $raiz, $consulta );
+	preg_match_all( '#<meta[^>]*name=[\'"]robots[\'"][^>]*>#i', $html, $m_inv );
+	if ( 1 !== count( $m_inv[0] ) || false === mb_stripos( $m_inv[0][0], 'noindex' ) ) {
+		$sem_noindex_invalido_f1[] = $consulta . ' -> ' . ( $m_inv[0] ? $m_inv[0][0] : '(nenhuma)' );
+	}
+}
+f1_ok( empty( $sem_noindex_invalido_f1 ),
+	'estado com parametro de VALOR invalido tambem sai do indice, o `d2` do cone inclusive',
+	empty( $sem_noindex_invalido_f1 ) ? count( $estados_invalidos_f1 ) . ' estados' : implode( ' | ', $sem_noindex_invalido_f1 ) );
+
+/* A LISTA DE PARAMETROS SAI DAS FORMAS, e este par de afirmacoes e o que
+   impede a lista a mao de voltar: toda medida de toda forma tem de estar
+   declarada, hoje e depois de alguem acrescentar uma forma nova. */
+$parametros_f1 = cdm_f1_parametros();
+$medidas_das_formas = array();
+foreach ( cdm_f1_formas() as $forma ) {
+	foreach ( array_keys( (array) $forma['campos'] ) as $campo ) {
+		$medidas_das_formas[ $campo ] = true;
+	}
+}
+$faltando_f1 = array_diff( array_keys( $medidas_das_formas ), $parametros_f1 );
+f1_ok( empty( $faltando_f1 ),
+	'toda medida de toda forma esta na lista de parametros desta ferramenta',
+	empty( $faltando_f1 ) ? implode( ', ', $parametros_f1 ) : 'faltam: ' . implode( ', ', $faltando_f1 ) );
+f1_ok( in_array( 'd2', $parametros_f1, true ),
+	'e o `d2` do cone esta nela — era o que a lista escrita a mao esquecia' );
+f1_ok( ! cdm_f1_tem_parametro( array() ) && ! cdm_f1_tem_parametro( array( 'utm_source' => 'x' ) ),
+	'query vazia e query de terceiro NAO tiram a ancora do indice (o lado caro da borda)' );
+
 /* (b) AS DOZE FOLGAS x OS TRES TIPOS DE REJUNTE — 36 estados. Aqui mora a
    correcao do bloco 3c: o numero de gramas so pode existir no cimenticio. */
 $gramas_indevido = array();

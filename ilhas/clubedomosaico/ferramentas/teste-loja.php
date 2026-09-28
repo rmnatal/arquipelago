@@ -205,6 +205,18 @@ function cdm_por_peca( $id, $campos, $galeria, $termos, $titulo = 'Vaso azul' ) 
 	$GLOBALS['__meta'][ $id ]['_cdm_galeria'] = $galeria;
 	foreach ( $galeria as $a ) {
 		$GLOBALS['__anexos'][ (int) $a ] = array( 'url' => 'https://clubedomosaico.com.br/f.jpg', 'largura' => 1200, 'altura' => 1500 );
+		/* O ANEXO TAMBEM E UM POST, COM PAI (28/09/2026). Ate aqui a bancada
+		   registrava o anexo so como arquivo — url e medidas — e nunca como
+		   post, porque nenhuma regua daqui precisava saber DE QUEM ele era. A
+		   foto de destaque precisa: quem deriva o `alt` dela parte do
+		   `post_parent`, que no site vem de
+		   `media_handle_upload( 'cdm_foto', $peca_id )`. Sem isto a regua da
+		   foto de destaque mediria o vazio e passaria. */
+		$GLOBALS['__pecas_por_id'][ (int) $a ] = (object) array(
+			'ID' => (int) $a, 'post_type' => 'attachment', 'post_status' => 'inherit',
+			'post_parent' => (int) $id, 'post_title' => 'foto', 'post_name' => 'foto-' . (int) $a,
+			'post_content' => '', 'post_author' => 10, 'post_date_gmt' => '2026-09-12 22:00:00',
+		);
 	}
 	$GLOBALS['__objeto_termos'][ $id ] = $termos;
 
@@ -323,6 +335,121 @@ $d2 = cdm_loja_descricao( $GLOBALS['__pecas_por_id'][263] );
 cdm_ok( 0 === preg_match( '/\. [a-záéíóúâêôãõç]/u', $d2 ), 'a description nao abre frase em minuscula depois de ponto', $d2 );
 
 /* ---------------------------------------------------------------------------
+ * 4b. A MEDIDA SAI COM UMA UNIDADE SO — os quatro valores que estavam no ar
+ *     (28/09/2026)
+ *
+ * Os quatro valores abaixo sao os das PECAS DE VERDADE, copiados do que a ronda
+ * da Sentinela mediu em `/loja/` em 28/09/2026 as 14h55Z. Estao literais aqui e
+ * nao derivados de nada: o defeito era o campo trazer a unidade DENTRO do valor,
+ * e um teste que montasse os valores a partir de um numero nunca reproduziria o
+ * estado que falhou.
+ * ------------------------------------------------------------------------- */
+
+echo "\n4b. A medida da peca — a unidade sai UMA vez (item 1 do despacho de 28/09)\n";
+
+$medidas_do_ar = array(
+	/* valor gravado           => como tem de sair na tela */
+	'46x36cm'                  => '46×36 cm',
+	'46x37cm'                  => '46×37 cm',
+	'35cm de diâmetro'         => '35cm de diâmetro',
+	'46cm de diâmetro'         => '46cm de diâmetro',
+	'40×28'                    => '40×28 cm',   /* a bandeja: o unico que ja saia certo */
+);
+$dobradas = array();
+foreach ( $medidas_do_ar as $gravado => $esperado ) {
+	$na_tela = cdm_loja_medida_na_tela( cdm_loja_medida_normalizada( $gravado ) );
+	if ( $na_tela !== $esperado ) {
+		$dobradas[] = $gravado . ' -> ' . $na_tela . ' (esperado ' . $esperado . ')';
+	}
+}
+cdm_ok( empty( $dobradas ), 'os cinco valores que estao no ar saem com UMA unidade',
+	empty( $dobradas ) ? count( $medidas_do_ar ) . ' valores' : implode( ' | ', $dobradas ) );
+
+/* A EXPRESSAO PROIBIDA, medida no TEXTO SERVIDO e nao no valor do campo — e a
+   regua que o despacho pede, porque foi no texto servido que o defeito apareceu
+   e o campo sozinho nunca o mostrou. */
+/* A EXPRESSAO EXIGE O NUMERO NA FRENTE, e a primeira escrita desta linha nao
+   exigia — ela abria com `\b` antes da unidade e por isso NAO reconhecia
+   `46x36cm cm`, que e o proprio texto que estava no ar: entre o `6` e o `c` de
+   `36cm` nao ha fronteira de palavra. Regua que nao reconhece o defeito que a
+   fez nascer e regua que aprova o desastre calada — a mesma familia da regua de
+   robo que media a ASPA em vez da diretiva, paga por esta ilha em 25/09.
+      O numero na frente tambem e o que impede o falso positivo: sem ele, uma
+   frase que termine em `m` seguida de `cm` — "a medida em cm" — bateria. */
+$re_unidade_dobrada = '/\d\s*(?:cm|mm|m)\s+(?:cm|mm|m)\b/iu';
+cdm_ok( 1 === preg_match( $re_unidade_dobrada, '46x36cm cm' ),
+	'a regua de unidade repetida RECONHECE o defeito que estava no ar' );
+cdm_ok( 0 === preg_match( $re_unidade_dobrada, '46×36 cm' ),
+	'e nao acusa o valor certo' );
+
+/* OS TRES LUGARES QUE SERVEM MEDIDA, um por um: a frase da ficha (que vira o
+   `description` do `Product`), o `additionalProperty` do JSON-LD e a linha do
+   cartao da vitrine. Os tres concatenavam ` cm` a mao, e por isso o defeito saiu
+   nos tres ao mesmo tempo. */
+$id = cdm_por_peca( 270, array_merge( $completa, array( '_cdm_medidas' => '46x36cm' ) ), array( 901 ), $termos_ok, 'Vaso com flores' );
+$peca_270 = $GLOBALS['__pecas_por_id'][270];
+$d270 = cdm_loja_descricao( $peca_270 );
+cdm_ok( 0 === preg_match( $re_unidade_dobrada, $d270 ),
+	'a frase da ficha (o `description` do Product) nao dobra a unidade', $d270 );
+$cartao_270 = cdm_loja_cartao_html( $peca_270 );
+cdm_ok( 0 === preg_match( $re_unidade_dobrada, strip_tags( $cartao_270 ) ),
+	'a linha do cartao da vitrine nao dobra a unidade' );
+/* O terceiro lugar — o `additionalProperty` do JSON-LD — sai de dentro de um
+   `wp_head` anonimo e nao tem funcao para chamar daqui; ele e medido no HTML
+   SERVIDO, na varredura dos 72 estados logo abaixo, e no `conferir-no-ar.py`. */
+
+/* A NORMALIZACAO NAO DESTROI O QUE NAO E REDUNDANTE. Com uma unidade por
+   dimensao a ultima NAO sai: tirar daria `12 cm × 5`, que e pior que o defeito. */
+/* DUAS UNIDADES, UMA POR DIMENSAO: a ultima NAO sai. Tirar daria `12 cm x 5`,
+   que e pior que o defeito que este bloco conserta. E o `x` fica como esta — a
+   troca por `×` e so entre NUMEROS, porque `x` entre palavras pode ser qualquer
+   coisa e trocar letra dentro da frase da artesa nao e normalizar, e reescrever. */
+cdm_ok( '12 cm x 5 cm' === cdm_loja_medida_normalizada( '12 cm x 5 cm' ),
+	'valor com uma unidade por dimensao fica intocado', cdm_loja_medida_normalizada( '12 cm x 5 cm' ) );
+cdm_ok( '46×36' === cdm_loja_medida_normalizada( '46x36cm' ),
+	'e o `x` ENTRE NUMEROS vira `×` quando a unidade redundante sai',
+	cdm_loja_medida_normalizada( '46x36cm' ) );
+cdm_ok( '12 cm x 5 cm' === cdm_loja_medida_na_tela( '12 cm x 5 cm' ),
+	'e a tela nao acrescenta a dele por cima' );
+cdm_ok( '' === cdm_loja_medida_na_tela( '' ), 'campo vazio continua sem servir nada' );
+cdm_ok( '30 cm' === cdm_loja_medida_na_tela( '30' ), 'valor sem unidade nenhuma recebe a do campo' );
+
+/* ---------------------------------------------------------------------------
+ * 4c. O `alt` DA FOTO DA PECA — um formato so, e a foto de destaque tambem
+ *     (item 3 do despacho de 28/09)
+ * ------------------------------------------------------------------------- */
+
+echo "\n4c. O alt da foto da peca (item 3 do despacho de 28/09)\n";
+
+$id = cdm_por_peca( 271, $completa, array( 901, 902, 903 ), $termos_ok, 'Vaso com flores em cerâmica' );
+cdm_ok( 'Vaso com flores em cerâmica — direto, foto 2' === cdm_loja_alt_da_foto( 271, 2, 3 ),
+	'o alt e titulo + tecnica + foto N, o formato que o despacho pede',
+	cdm_loja_alt_da_foto( 271, 2, 3 ) );
+cdm_ok( false === mb_strpos( cdm_loja_alt_da_foto( 271, 1, 1 ), 'foto ' ),
+	'com UMA foto so, o "foto 1" nao entra — seria ruido lido em toda peca da vitrine',
+	cdm_loja_alt_da_foto( 271, 1, 1 ) );
+/* SEM TECNICA DECLARADA a base entra no lugar dela, e o alt continua descrevendo
+   alguma coisa. O que nao pode acontecer e voltar a ser vazio. */
+$id = cdm_por_peca( 272, array_merge( $completa, array( '_cdm_base' => 'ceramica' ) ), array( 901 ), array(), 'Quadro flores do campo' );
+$alt_sem_tecnica = cdm_loja_alt_da_foto( 272, 1, 2 );
+cdm_ok( '' !== $alt_sem_tecnica && false !== mb_strpos( $alt_sem_tecnica, 'Quadro flores do campo' ),
+	'peca sem tecnica declarada cai na base e nao volta a ser vazia', $alt_sem_tecnica );
+cdm_ok( '' === cdm_loja_alt_da_foto( 999999, 1, 2 ),
+	'peca que nao existe devolve vazio em vez de inventar descricao (secao 8)' );
+
+/* A FOTO DE DESTAQUE — a que o bloco do nucleo serve e que estava com `alt=""`
+   nas cinco pecas. Quem a preenche e o filtro `wp_get_attachment_image_attributes`,
+   e o que se mede aqui e a ponte que ele usa: de que peca e o anexo e em que
+   posicao da galeria ele esta. */
+$id = cdm_por_peca( 273, $completa, array( 911, 912 ), $termos_ok, 'Bandeja em madeira' );
+$achado = cdm_loja_foto_de_qual_peca( 912 );
+cdm_ok( is_array( $achado ) && 273 === $achado[0] && 2 === $achado[1] && 2 === $achado[2],
+	'o anexo da galeria sabe de que peca e e em que posicao esta',
+	is_array( $achado ) ? implode( '/', $achado ) : 'null' );
+cdm_ok( null === cdm_loja_foto_de_qual_peca( 999998 ),
+	'anexo que nao e de peca nenhuma devolve null — e o alt dele fica como estava' );
+
+/* ---------------------------------------------------------------------------
  * 5. A VARREDURA DA FICHA — 72 estados, um processo por estado
  * ------------------------------------------------------------------------- */
 
@@ -343,6 +470,8 @@ $sem_noindex_errado = array();
 $menores      = array();
 $sem_alt      = array();
 $sem_dim      = array();
+$alt_vazio_na_foto = array();   /* item 3 do despacho de 28/09: a foto da peca descreve a peca */
+$unidade_dobrada   = array();   /* item 1 do despacho de 28/09: a unidade sai UMA vez */
 $sem_botao    = array();
 $com_botao_sem_zap = array();
 $codigos      = array();
@@ -386,6 +515,27 @@ foreach ( $bases as $b ) {
 					if ( false === strpos( $img, 'alt="' ) )    { $sem_alt[] = $rotulo; }
 					if ( false === strpos( $img, 'width="' ) )  { $sem_dim[] = $rotulo; }
 				}
+				/* A FOTO DA PECA TEM alt NAO VAZIO — e a medida que faltava, e a
+				   linha acima e a prova de que faltava: ela cobra que o atributo
+				   EXISTA, e `alt=""` existe. Foi assim que 27 imagens das cinco
+				   pecas foram para o ar sem descricao nenhuma com a bancada
+				   verde, ate a ronda de 28/09/2026 abrir as paginas e contar.
+				      A tira de miniatura fica de FORA desta contagem de
+				   proposito: o `alt=""` dela e deliberado e correto — a
+				   miniatura repete a foto que ja tem descricao logo acima, e o
+				   nome do controle esta no `<a>`. Preencher as 22 para o numero
+				   chegar a zero faria o leitor de tela ler a peca duas vezes.
+				   Regua que nao sabe distinguir decorativo de descritivo cobra a
+				   piora. */
+				preg_match_all( '#<figure class="cdm-foto[^"]*"[^>]*>.*?</figure>#s', $corpo, $figuras );
+				foreach ( $figuras[0] as $figura ) {
+					if ( preg_match( '#<img[^>]*\salt=""#', $figura ) ) { $alt_vazio_na_foto[] = $rotulo; }
+				}
+				/* A UNIDADE DOBRADA, MEDIDA NO TEXTO SERVIDO (item 1 do despacho
+				   de 28/09). No valor do campo ela nao aparece: `46x36cm` e um
+				   valor legitimo, e o defeito so existe depois que o molde
+				   acrescenta o ` cm` dele. */
+				if ( preg_match( $re_unidade_dobrada, strip_tags( $html ) ) ) { $unidade_dobrada[] = $rotulo; }
 				/* PAGINA COM TAMANHO DE PAGINA (secao 8), medido contra o piso que
 				   veio de /contato/ nesta mesma bancada. */
 				if ( strlen( $html ) < $piso_de_tamanho ) { $menores[] = $rotulo . ' (' . strlen( $html ) . ')'; }
@@ -441,6 +591,10 @@ cdm_ok( false !== strpos( $atendido, $marca_do_atendente ), 'e o atendente devol
 cdm_ok( false !== strpos( cdm_corpo( $html ), $marca_do_atendente ),
 	'a ficha servida contem o que o atendente devolveu — o filtro e APLICADO, nao so declarado' );
 cdm_ok( empty( $sem_alt ), 'toda foto servida tem alt', empty( $sem_alt ) ? 'todas' : implode( ', ', array_slice( $sem_alt, 0, 4 ) ) );
+cdm_ok( empty( $alt_vazio_na_foto ), 'e o alt da foto da PECA nao e vazio (a miniatura decorativa fica de fora)',
+	empty( $alt_vazio_na_foto ) ? '72 de 72' : implode( ', ', array_slice( $alt_vazio_na_foto, 0, 4 ) ) );
+cdm_ok( empty( $unidade_dobrada ), 'nenhum dos 72 estados serve unidade repetida no texto',
+	empty( $unidade_dobrada ) ? '72 de 72' : implode( ', ', array_slice( $unidade_dobrada, 0, 4 ) ) );
 cdm_ok( empty( $sem_dim ), 'toda foto servida tem width e height (22.4)', empty( $sem_dim ) ? 'todas' : implode( ', ', array_slice( $sem_dim, 0, 4 ) ) );
 cdm_ok( empty( $menores ), 'nenhum estado e render pela metade (piso = /contato/ desta bancada)',
 	empty( $menores ) ? 'menor: ' . min( $tamanhos ) . ' bytes, piso ' . $piso_de_tamanho : implode( ', ', array_slice( $menores, 0, 3 ) ) );

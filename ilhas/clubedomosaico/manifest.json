@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 44,
+  "revisao": 45,
   "atualizado_em": "2026-09-28",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.15.0",
-      "sha256": "53349c1ffa9723660309fdeab6d7a577a0d2f781cb578c3ce9396779cb8009c5",
-      "descricao": "Casca 1.15.0 — A CATEGORIA ACABAMENTO GANHA LEITOR NA TELA. O cartao 'Acabamento' do Guia mostrava 0 com o banco em 7, e a frase de prova anunciava o total do banco enumerando so quatro categorias: com a quinta entrando, ela teria posto no ar 'o banco tem 38 itens, sendo 7 colas, 5 rejuntes, 13 pastilhas e 6 alicates' — soma que nao fecha, a familia do 'hoje 10 dos 5 itens esperam link' que esta ilha ja pagou uma vez. Entram a linha `materiais-acabamento => materiais_acabamento` na lista de bancos, o `no_banco` do cartao ligado ao numero vivo, a parcela nova na frase de prova chamando a categoria pelo nome do cartao (a regua de 25/09 reprova no ar quem nao chama) e a linha Acabamento na tabela de /materiais/como-sabemos/. O instantaneo de 12/09 continua em 0 de proposito: e o que a tela mostra enquanto a option nao chegou, e trocar aquele numero pelo de hoje daria duas fontes para o mesmo numero."
+      "versao": "1.16.0",
+      "sha256": "de2a29535eb7ae9c582e527503602aad055acb2ef53b492aba6befbdf6192e2f",
+      "descricao": "Casca 1.16.0 — A META DESCRIPTION GANHA DONO, E O DONO E UM SO. Medido no ar pela ronda da Sentinela em 28/09/2026: das 17 URLs, OITO nao serviam `<meta name=\"description\"` nenhuma — a home e as tres maes da arvore entre elas — e as nove que serviam estavam todas acima de 160 caracteres. O defeito nao era o texto de nenhuma pagina: era que a etiqueta nao tinha camada dona. Quem tinha snippet proprio imprimia a sua num `wp_head` paralelo (as duas ferramentas, os dois tutoriais, as cinco pecas pela Loja) e as oito paginas da casca nao tinham quem imprimisse. E o MESMO desenho que fez a etiqueta de ROBO sair dobrada e que a 1.13.0 consertou em 25/09, com o sintoma invertido: la o excesso, aqui a falta, e falta nao tem cor na tela. Entram a chave `descricao` nas oito paginas da definicao (120 a 160 caracteres, nenhuma repetida), a funcao pura `cdm_casca_descricao_declarada()`, o emissor unico `cdm_casca_descricao_no_ar()` num `wp_head` de prioridade 4, e o filtro `cdm_descricao` por onde F1, F2, tecnicas e Loja passam a DECLARAR a delas em vez de imprimir. A home e tratada a parte porque `cdm_casca_slug_atual()` devolve vazio na frente do site — sem essa linha o conserto pularia justamente a URL mais visitada."
     },
     {
       "id": "f2",
@@ -31,9 +31,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.5.1",
-      "sha256": "5d477f0a43fdb7ac33bedaccecf2ccc5b2545f4b8b3127d865f6b89b524813e5",
-      "descricao": "F2 1.3.0 — A REGRA 6 NASCE, E AS DUAS FAIXAS QUE ESTA PAGINA DECLARAVA NAO SABER RESPONDER DEIXAM DE SER BURACO. Entraram no banco o Silicone Acetico Maxx (BRSA005), primeiro produto da ilha que pode ser recomendado em contato permanente com agua por fonte de nivel 3, e o Cascola Adesivo de Montagem PL500, primeiro indicado sobre PLASTICO. O PL500 trouxe junto a condicao que obrigou a regra: 'ao menos uma das superficies deve ser porosa, ja que o produto seca por evaporacao da agua' — isso nao e base e nao e ambiente, e o PAR de superficies coladas. A regra 6 e a primeira regua de cola que olha o CAQUINHO, entrada que a ferramenta coleta desde a 1.0.0 e que nenhuma regua de cola lia. Ela roda DEPOIS das cinco e ANTES da ordenacao por score, e quem cai por ela vai para um QUINTO grupo, com frase propria: nao e proibicao (o fabricante nao proibe) e nao e silencio (ele falou). A atribuicao sai dividida ao meio pela secao 26.3 — a condicao e dele, a classificacao de quais superficies sao porosas e nossa, e a pagina diz isso com essas palavras. A secao 'o que a gente ainda nao responde' deixou de ser duas frases escritas a mao (as duas viraram mentira no mesmo dia em que os produtos entraram) e passou a ser CONTADA a cada requisicao: 270 combinacoes de base, lugar e caquinho, 68 delas ainda sem resposta. A tabela pre-renderizada ganhou a coluna da condicao, porque ela e a metade que um modelo de linguagem le sem preencher formulario e era onde 'use PL500 em plastico' sairia sem escopo."
+      "versao": "1.6.0",
+      "sha256": "94dc28190c2fe77c13af53dd3d442f26441eb82930fb214a16109f7452dfc9c7",
+      "descricao": "F2 1.6.0 — A PAGINA QUE FOI MEDIDA NO AR E ACHADA NO INDICE. `?base=ceramica&onde=externo`, `?base=mdf` e `?base=ceramica&caco=louca&junta=fina&onde=interno` serviam UMA etiqueta de robo SEM `noindex` em 28/09/2026 as 14h48Z: os quatro nomes de parametro sao reais e NENHUM dos valores existe no vocabulario (as chaves sao `ceramica_esmaltada_porcelana`, `externo_exposto`, `mdf_madeira`, `caco_louca`), entao o `escolheu` — que pergunta pelo VALOR — respondia 'nao escolheu nada'. A reconferencia do conserto de 25/09 falhou nesta metade, contra o criterio que o proprio conserto declarou. Entram `cdm_f2_parametros()` e `cdm_f2_tem_parametro()`, e o `noindex` passa a medir a PRESENCA: duplicata se conta por endereco, e o conjunto dos valores invalidos e infinito enquanto o das escolhas validas e finito. A `description` passa a ser declarada pelo filtro `cdm_descricao`; o texto nao muda, pelo BLOCO A de 24/09 — esta e a melhor pagina da ilha, 7,8 com 17 impressoes."
     },
     {
       "id": "tecnicas",
@@ -42,9 +42,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.1.0",
-      "sha256": "00438b24668391658b2afbb2e2dc8733bc57a85d5679f6c2a02870a2ecc7aea8",
-      "descricao": "TECNICAS 1.1.0 — a familia da Escola, e nao mais uma pagina so: /como-fazer/o-que-e-mosaico-picassiete/ e /como-fazer/o-que-e-trencadis/. A 1.0.0 guardava id, slug e titulo em tres CONSTANTES; agora eles moram em cdm_tecnicas_registro() e cada pagina tem shortcode proprio ([cdm_tecnica_<id>]), porque a bancada descobre que pagina esta medindo casando o shortcode com a definicao de paginas — duas paginas com o mesmo shortcode seriam medidas como uma so e a segunda nasceria sem regua. A pagina NAO decide nada: quem escolhe a cola e cdm_f2_celula_cola(), a regua da F2 no ar desde 11/09, chamada aqui para o caquinho que o banco declara — sem segunda copia da decisao. O trencadis declara DOIS caquinhos (caco de azulejo e caco de louca) e o snippet calcula uma grade por caquinho e AGRUPA as que saem iguais: hoje as 90 combinacoes viram uma tabela so, e a pagina diz na tela que comparou as 90 e por que elas empatam — o caquinho so entra na regua na condicao de superficie porosa, e os dois absorvem. Com caquinhos de porosidades diferentes o agrupamento devolve duas tabelas, e esse ramo e medido com mundo fabricado em mutacoes-tecnicas-pagina.py. A prestacao de contas da secao 7 fecha com o banco em cada pagina: das 7 colas, 5 entram na vitrine e as 2 que nao entram sao nomeadas com a causa CONTADA celula a celula. As paginas se RECUSAM a responder o rejunte, com a causa medida; a do trencadis recusa tambem o caco de vidro comum, porque o vocabulario desta ilha nao tem valor para ele. Texto, definicao e fontes saem de dados/tecnicas.json, nunca digitados aqui."
+      "versao": "1.2.0",
+      "sha256": "bdec4d44c13ec5f64662c8d653651f997688eb38215f4b23b764a2bc6463c21d",
+      "descricao": "Tecnicas 1.2.0 — A `description` DOS TUTORIAIS E DECLARADA, NAO IMPRESSA. Este arquivo dava `echo` na propria num `wp_head` paralelo, que e o desenho que fez a etiqueta de ROBO sair dobrada nesta ilha em 25/09; agora ele declara pelo filtro `cdm_descricao` e quem imprime e a casca, uma vez. O TEXTO NAO MUDA: o Picassiete e uma das tres paginas na primeira pagina do Google (posicao 7,0) e o BLOCO A do despacho do Raphael de 24/09 proibe mexer na promessa da SERP dela antes de 30/09; o Trencadis fica parado pelo que o mesmo despacho escreve — 'deixe uma pagina parada para a proxima leitura ter com o que comparar'. Os dois estao acima de 160 caracteres e isso esta registrado como o que falta do item 4."
     },
     {
       "id": "f1",
@@ -53,9 +53,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.3.1",
-      "sha256": "663dcfda2650bd4749c71b8491c58e2f28f88a36040766bff10cd7b36afb3822",
-      "descricao": "F1 1.3.0 (14/09/2026) — A ORDEM DAS DUAS VITRINES, E O TITULO QUE DEPENDIA DE ESTAR EM SEGUNDO LUGAR. Ate a 1.2.0 o bloco de compra do REJUNTE vinha antes do da PASTILHA, e a ordem nao era decisao: era heranca de quando o lugar da pastilha era uma frase de espera ('ainda nao temos as pastilhas no nosso banco'). A 1.2.0 encheu aquele lugar com treze produtos e manteve a sequencia de chamada. A pastilha passa a vir primeiro, porque o title, o H1 e a primeira frase de resposta desta pagina falam de pastilha, e quem chega por 'quantas pastilhas para mosaico' veio comprar pastilha (secao 22.1, e o 'produto primeiro' do VOZ.md). Nada da 22.2 se move: resposta antes da explicacao, os DOIS blocos de compra antes da camada de prova (secao 7), nenhuma URL, trilha, ancora ou JSON-LD muda, nenhum produto entra ou sai. O QUE A TROCA REVELOU e o que fez disto bloco e nao um swap: o titulo era 'E onde comprar a pastilha', e aquele 'E' e conector — titulo que so e verdade em segundo lugar, e titulo e a frase que um modelo de linguagem cita sozinho (secao 5). Os dois titulos passam a ser autossuficientes. E A FRONTEIRA DOS DOIS BLOCOS GANHOU NOME: cada vitrine declara o que ela e na propria classe (cdm-f1-vitrine-pastilha e cdm-f1-vitrine-rejunte), em TODAS as saidas, inclusive as degradadas — a bancada e a conferencia no ar extraiam pelo TEXTO do h2, que muda, e que no estado degradado do rejunte NUNCA extraiu nada. Portao novo: secao 4d do teste-f1 (ordem, presenca unica do marcador, resposta antes das vitrines, vitrines antes da prova, e nenhum titulo abrindo com conector), 15 estados, um processo cada; cinco mutacoes novas; e o mundo sem a F2 no ar (sem_f2=1 no render) produzido pela primeira vez — as duas saidas degradadas existiam desde 12/09/2026 sem uma afirmacao encostando nelas."
+      "versao": "1.4.0",
+      "sha256": "82733cc5b7080210e7424aba172fd2a791573433374d0d30ae2c6f93c0f6c5ef",
+      "descricao": "F1 1.4.0 — O ESTADO COM PARAMETRO SAI DO INDICE PELA PRESENCA DO PARAMETRO, NAO PELA VALIDADE DO VALOR. Esta ferramenta passava na regua de 25/09 por acidente: o `escolheu` daqui pergunta `isset( $_GET['forma'] )` e o da irma pergunta se o valor esta no vocabulario — duas leituras opostas da mesma pergunta, cada uma acertando o portao da outra por sorte, ate a ronda de 28/09 medir a irma no ar e acha-la no indice. Entram `cdm_f1_parametros()` (a lista derivada de `cdm_f1_formas()`, que e o que faz o `d2` do cone — esquecido pela lista escrita a mao — entrar sozinho) e `cdm_f1_tem_parametro()`, que e quem decide o `noindex` agora; `escolheu` fica intocado e continua mandando na TELA, porque valor fora do vocabulario volta ao padrao e dizer 'voce escolheu' sobre escolha nao honrada seria trocar defeito de indice por defeito de texto. A `description` desta pagina passa a ser DECLARADA pelo filtro `cdm_descricao` em vez de impressa; o texto nao muda, porque o BLOCO A do despacho do Raphael de 24/09 trava a promessa da SERP das paginas que rankeiam ate 30/09."
     },
     {
       "id": "loja",
@@ -64,9 +64,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.2.0",
-      "sha256": "7fc40384442c9d5b1260763b96c8bac4491e881f933f4494edcadaa6b7b4029d",
-      "descricao": "1.1.0 (13/09/2026): UMA mudanca, e ela e de tomada e nao de comportamento — o bloco de acao da ficha (preco, disponibilidade, botao) passou a sair por apply_filters('cdm_peca_acao', $padrao, $peca, $dados). Sem ninguem atendendo, a ficha serve exatamente o que servia ontem; quem atende e o snippet de Leads. Consequencia que vale registrar: a option `cdm_whatsapp` deixou de decidir se a peca tem como ser pedida. BLOCO 4d, O MODELO E O LADO PUBLICO — o CORTE do despacho do Raphael das 18h20 BRT de 12/09/2026 (itens 1 e 5). Registra o CPT `peca` e as taxonomias `colecao` e `tecnica`, serve a ficha publica da peca em /loja/<slug>/ e troca a vitrine da casca pela versao com foto. SEIS DECISOES. (1) O CPT NAO TEM ARQUIVO PROPRIO em /loja/, contra o que a especificacao de 10/09 pedia: /loja/ JA e uma pagina desta ilha, com o texto editorial do VOZ.md e a secao 'Como a compra vai funcionar', e ela ja lista as pecas; um arquivo de CPT no mesmo endereco disputaria a URL e o vencedor dependeria da ordem das regras de reescrita. has_archive false, rewrite slug `loja`: a peca nasce em dois segmentos e a pagina de um segmento continua dela. Nada foi perdido — quem lista e a pagina, que e MELHOR que o arquivo porque tem texto de verdade em volta. (2) A FICHA E MONTADA POR `the_content`, nao por template: a peca herda de graca tudo que a casca ja testou (logo, trilha, H1, Veja tambem, rodape, favicon, GA4), e escrever um template seria ficar com duas cascas divergindo em silencio. (3) A TRILHA E O BreadcrumbList SAEM DO MAPA DA CASCA, pelo filtro cdm_arvore, na hora em que a peca esta sendo servida — trilha de peca e a MESMA trilha do resto da ilha, e e por isso que ela nao pode ser um segundo codigo. (4) AS TAXONOMIAS EXISTEM, AS PAGINAS DELAS NAO: public=false, porque taxonomia publica nasce com arquivo e entra no wp-sitemap.xml, e seriam de sete a doze URLs finas pedindo rastreamento num dominio de dois dias (14.1); as paginas de colecao e tecnica estao no corte como o que NAO entra hoje. (5) O BOTAO E O WHATSAPP DA ARTESA, nao o formulario de lead do adendo 3, que esta explicitamente fora do corte; e enquanto a option cdm_whatsapp estiver vazia o botao NAO e inventado — a ficha diz que o contato nao foi publicado. (6) PECA SEM FOTO OU SEM PRECO NAO PUBLICA, e a regua e UMA: cdm_loja_peca_publicavel() devolve os MOTIVOS, o painel mostra os motivos, e a trava tambem esta no nucleo por transition_post_status — botao desabilitado e regra de tela, que some no dia em que alguem publicar por outro caminho. CONTEM O ENDPOINT DE COPIA DA SECAO 24 (/wp-json/clubedomosaico/v1/pecas, protegido pelo token do Sync): as pecas dela sao o UNICO dado do Arquipelago que nao existe fora do banco do WordPress, e sem isto nao ha de onde reconstruir. A contagem sai por rota PUBLICA separada (/v1/loja) e nao pelo /status, porque o /status mora no snippet do Sync, que se pula a si mesmo e nao aplica filtro nenhum — um add_filter ali seria portao que nunca roda. ZERO JavaScript: o carrossel e scroll-snap puro, portao 22.8."
+      "versao": "1.3.0",
+      "sha256": "afbcea237da4ad6acd8c99c78c6ec59bad5ee49df81bb4886981e797c87e9a79",
+      "descricao": "Loja 1.3.0 — A MEDIDA SAI COM UMA UNIDADE E A FOTO DA PECA DESCREVE A PECA. (1) `/loja/` servia `46x36cm cm`, `35cm de diametro cm`, `46cm de diametro cm` e `46x37cm cm` — quatro das cinco pecas —, e o texto entrava no `description` do `Product` no JSON-LD, que e o que vai para a SERP. O campo ja trazia a unidade dentro do valor e os TRES lugares que servem medida concatenavam ` cm` a mao. Entram `cdm_loja_tem_unidade()`, `cdm_loja_medida_normalizada()` (o que se grava) e `cdm_loja_medida_na_tela()` (o que se serve), os tres lugares passam a chamar uma funcao so, e uma migracao idempotente normaliza as pecas que ja existem — os dois lados, porque so um faz o defeito voltar na peca 6. (2) A foto de DESTAQUE das cinco pecas ia ao ar com `alt=\"\"`: e a foto principal, a que `Product.image` aponta, e nesta ilha a foto E o produto. Entram `cdm_loja_alt_da_foto()` (um formato so para os tres lugares, titulo + tecnica + foto N) e um filtro em `wp_get_attachment_image_attributes` que deriva o alt quando o anexo nao tem — o da artesa sempre vence. As 22 miniaturas da tira continuam com `alt=\"\"`, que e deliberado e correto: elas repetem a foto que ja tem descricao e o nome do controle esta no `<a>`."
     },
     {
       "id": "atelie",
@@ -75,9 +75,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.3.0",
-      "sha256": "76fcc2052d45b13d810561a0d4642e7de96c0f7977f8fa0a1a3423f25613e12f",
-      "descricao": "1.1.0 (13/09/2026): O PAINEL GANHOU ABAS, e so isso — lista, formulario, login e criacao de senha continuam letra por letra. Entraram dois pontos de extensao, `cdm_atelie_abas` (quem quer uma aba) e `cdm_atelie_tela` (quem a desenha), mais a navegacao, que so aparece quando existe mais de uma aba, para o painel de ontem continuar sendo o de ontem se ninguem se registrar. A primeira aba de fora e Interessados, do snippet de Leads. O papel `artesa` NAO mudou: nenhuma capacidade nova. BLOCO 4d, A AREA DELA — itens 2, 3 e 4 do CORTE do despacho das 18h20 BRT de 12/09/2026. O Raphael vai a casa dos pais no domingo 13/09 ensinar a propria mae a cadastrar as pecas dela; tudo neste arquivo responde a uma pergunta so: ela consegue fazer isso sozinha, do telefone, sem nunca descobrir o que e WordPress? SETE DECISOES. (1) ELA NUNCA VE O wp-admin, e o bloqueio e DUPLO — admin_init devolve o papel `artesa` para /atelie/ antes de qualquer tela do WordPress ser montada, e show_admin_bar fica false; duas travas porque falham por motivos diferentes. (2) A SENHA DELA NAO EXISTE NESTE REPOSITORIO NEM EM LOG NENHUM: o snippet gera senha aleatoria e a DESCARTA sem imprimir, e o que chega a ela e um link de criacao de senha no e-mail dela (mina196@hotmail.com). O que a Fundacao consegue conferir e se o e-mail SAIU, e e so isso que ela precisa conferir. (3) A SENHA E CRIADA EM /atelie/, NAO NO wp-login.php — desvio consciente da especificacao de 10/09, e a favor dela: o fluxo nativo manda o link para uma tela com a marca do WordPress e um medidor de forca de senha, que e a definicao literal do que o portao deste despacho reprova. A CHAVE continua sendo a nativa (check_password_reset_key + reset_password, nada de criptografia caseira); a TELA e a nossa, com o logo dela, e ao terminar ela ja entra logada. Um passo menos para explicar no domingo. (4) TUDO FUNCIONA SEM UMA LINHA DE JAVASCRIPT (portao 22.8): login, cadastro, envio de foto, reordenar, remover, publicar, pausar e apagar sao formularios POST. E e por isso que reordenar foto e botao ◀ ▶ e nao arrastar-e-soltar, que era o que a especificacao pedia — arrastar depende de JavaScript e de precisao de dedo, e ela vai cadastrar de um celular. (5) O FORMULARIO E UMA TELA SO e salvar nunca perde o que ela digitou; POST seguido de redirecionamento, entao o botao Voltar do celular nao reenvia e nenhuma peca sai duplicada. (6) QUEM DECIDE SE A PECA PODE IR AO AR E A LOJA, nao este arquivo: uma segunda regua aqui deixaria publicar o que a loja recusa, e ela veria a peca sumir sem entender por que. (7) O PAINEL E `noindex` e fora do sitemap, declarado como camada `privada` na definicao de paginas — e a segunda razao para um noindex nesta ilha, diferente da camada de prova, e as duas exigem tratamentos OPOSTOS: a de prova tem de ser citada por outra pagina, e esta nao pode ser citada por nenhuma. FORA DO CORTE, por escrito e nao por esquecimento: o formulario 'Verificar disponibilidade' e o CPT `lead_peca` (adendo 3 de 11/09), a aba Interessados, a exportacao CSV dos leads, 'Meus dados', o feed do Merchant Center e as paginas de tecnica e colecao. CONTEM A ROTA DE CONFERENCIA /wp-json/clubedomosaico/v1/atelie (token do Sync) pela qual a Fundacao prova, da nuvem e sem senha, que a usuaria existe e a que hora o e-mail saiu — sem ela, 'o e-mail foi enviado' seria fe. O e-mail sai mascarado nessa rota. 1.0.1, NO MESMO DIA E DEPOIS DE JA ESTAR NO AR: os tres botoes de mover e remover foto foram de 38 para 44 px. Eles sao os menores do painel e os que ela mais vai apertar com o dedo, e 44 px e o minimo de alvo de toque. O defeito nao aparecia em leitura de codigo nem no HTML servido — so o motor de layout sabe o tamanho que o botao ficou tendo —, e quem o achou foi o teste-navegador-atelie.mjs a 360 px, que e a largura escrita dentro do proprio portao do despacho."
+      "versao": "1.4.0",
+      "sha256": "641c425f085f41b3b3476e3929ea773aa42488cc4c2292f96690a939bba5496b",
+      "descricao": "Atelie 1.4.0 — O PAINEL PEDE A LEGENDA DA FOTO, E GRAVA A MEDIDA SEM A UNIDADE DENTRO. Duas metades do despacho da Sentinela de 28/09 que so fecham do lado de quem CADASTRA: (1) cada foto da peca ganha um campo de legenda, gravado em `_wp_attachment_image_alt` — onde o WordPress inteiro le, e nao num campo so desta ilha —, opcional de proposito porque o molde ja deriva uma e o que este campo compra e o teto, nao o piso; campo vazio APAGA em vez de gravar vazio, que era o estado das 27 fotos. (2) campo de texto que declara `unidade` passa a ser normalizado na gravacao: o valor guarda o numero, a unidade fica com quem serve. E a regra do CAMPO e nao do nome dele — hoje `_cdm_medidas` e o unico assim, e o que esta escrito aqui e o que faz o proximo nascer certo."
     },
     {
       "id": "leads",
@@ -143,7 +143,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "adcb325bc3a2bd03edb84efcd03dfe7c103394fc4f785ad178e17fc96ac13614",
+      "sha256": "f38288e8e07b774528e139d16ede37bd3c1442c5c8b01825b84b2ce8e15f5503",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -229,7 +229,7 @@
       "verificado_em": "2026-09-25",
       "registros": 6,
       "publicar": true,
-      "sha256": "2654b96989602633a31c2d41740045419acd28a6b2c09c879e7675aa31ce309f",
+      "sha256": "593e02d9ce57d2038328594c36f3dcda306deb9e648a625d273f7879660538d4",
       "descricao": "A categoria ALICATE do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de quatro para tres (restam base, acabamento e apoio). Tres torqueses Cortag e tres cortadores manuais Vonder (VDEC 51, 75 e 90), cada campo tecnico dentro de `propriedades`, que e o unico container com portao no validar-banco: todo valor aponta fonte, todo null escreve motivo. O ACHADO E UM TETO DE 5 MM QUE CRUZA COM O BANCO DE PASTILHAS. O torques de mosaico da Cortag e a unica ferramenta do arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm; os tres cortadores de bancada declaram 'pisos ceramicos e porcelanatos ate 10 mm' e nao nomeiam vidro em lugar nenhum. Medido contra materiais-pastilhas.json: das 13 pastilhas do banco, todas de vidro, 10 cabem no teto e TRES nao — st5102 (6 mm), af1500 (8 mm) e ic02 (8 mm). Para esses tres a F1 calcula quantidade e o banco de ferramentas nao tem uma declaracao de fabricante que sustente o corte: faixa DESCOBERTA no sentido da 14.3, para a tela dizer em vez de calar. A outra metade vale para as duas paginas de tecnica no ar: a frase do torques nomeia PASTILHA de vidro e de ceramica e NAO nomeia caco de louca (picassiete) nem caco de azulejo (trencadis) — estado `nao_declarado`, nem recomendar nem proibir. NASCEU `publicar: false` E O PORTAO DESMENTIU: o cartao 'Alicates e corte' do Guia existe desde que a casca nasceu e o mapa G-ALICATES => materiais-alicates ja estava escrito dentro do teste-casca, esperando o arquivo. Casca 1.14.0 liga os dois, e a frase de prova do Guia passou a nomear a quarta categoria — ate aqui ela anunciava o total do banco e enumerava so tres, o que teria posto no ar 'o banco tem 31 itens, sendo 7 colas, 5 rejuntes e 13 pastilhas'.",
       "pendencias": 3,
       "pendencias_que_bloqueiam_publicacao": []
@@ -255,7 +255,7 @@
       "verificado_em": "2026-09-25",
       "registros": 7,
       "publicar": true,
-      "sha256": "f805824f0b7a327548dce55e4d0ef27394acf303fe416f6921bf248a198339fd",
+      "sha256": "8726fadd8f819d8247252e27be37034085e9b222c4a8ffa97fa6561eea1e6b45",
       "descricao": "A categoria ACABAMENTO do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de tres para DUAS (restam base e apoio). Quatro vernizes (tres da Acrilex, um boletim de piso da Quartzolit), dois impermeabilizantes e um selador. FOI A PRIMEIRA CATEGORIA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR: a frase do esquema que autoriza encher uma categoria 'sem decisao nova' nomeia rejunte, pastilha e alicate, e deixa base, acabamento e apoio de fora de proposito. A decisao esta em `regras_da_categoria_acabamento` do esquema-banco (versao 4) e tem tres partes: a matriz base x ambiente fica VAZIA, porque acabamento nao adere nada e nao se escolhe por ambiente; o que o fabricante declara mora no objeto `protecao`, irmao do `corte` do alicate, com as listas do que a frase nomeia e do que ela NAO nomeia cobrindo o vocabulario inteiro; e as propriedades tem NOME FIXO, para a segunda execucao nao gravar `secagem_horas` onde a primeira gravou `tempo_de_secagem_h`. O ACHADO E UMA FAIXA DESCOBERTA ENCONTRADA PELA SUPERFICIE, irma da que o alicate achou pela espessura no mesmo dia: a peca de mosaico pronta expoe DUAS superficies, a pastilha (as 13 do banco sao de vidro) e o REJUNTE, e NENHUMA das sete frases de fabricante nomeia vidro, e NENHUMA nomeia rejunte. Fabricante de obra nao escreve sobre peca de artesanato e fabricante de artesanato nao escreve sobre mosaico. A segunda metade e sobre a base: o unico selador alcancado nomeia concreto, emboco, reboco, pintura PVA ou acrilica e construcao a seco, e NAO nomeia MDF — que e a base mais comum do ateliê e um dos cinco valores de `tipo_por_categoria.base`. E o campo `contato_com_alimento` nasce OBRIGATORIO e null nos sete: centro de mesa e tampo sao duas colecoes desta loja e a pergunta 'posso por comida em cima?' fica respondida com 'ninguem declarou' em vez de nao ser feita.",
       "pendencias": 3,
       "pendencias_que_bloqueiam_publicacao": []
@@ -289,7 +289,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "664ad7c644809aad836e614bd35a97f5bc5de8ef8a7c584d029c99f0db8c9225",
+      "sha256": "5c5e7ce337e6ec63a6bcdb29b6958eb70a01235d3faf3d8a1246fb4951e6c77b",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 459 afirmacoes em 25/09/2026. Cobre a marca no cabecalho, a escada da secao 25 cartao a cartao, o cache do hospedeiro contra o canonico, A PORTA DE ENTRADA (sitemap, robots.txt e raiz do REST em 200 com o tipo certo, e caminho inexistente em 404 na pagina DESTA ilha, acrescentado em 24/09 depois de 16 das 17 URLs servirem a pagina de estacionamento da HostGator) e, desde 25/09, O LINK DE AFILIADO SERVIDO: varre as URLs do sitemap e reprova se aparecer encurtador de Shopee que o banco nao conhece, mais a afirmacao de que ela encontra algum — portao que nao encontra nada aprova por vacuidade. Essa secao NAO mede a CASA do sub-id: isso so se le no utm_content do 301 do encurtador, e esse salto e onde a Shopee conta o clique, entao quem mede a casa e ferramentas/conferir-sub-id.py, na raiz, com link de BANCADA (secao 25.8). REGUA PROPRIA: as medidas estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
@@ -371,15 +371,21 @@
       "descricao": "Quebra a varredura de proposito, uma mutacao por vez, e exige que cobertura.py --conferir ou conferir-cobertura.php reprove cada uma. Mede uma segunda coisa, que e a razao de o bloco existir: para cada mutacao roda TAMBEM os portoes anteriores (validar-banco.py e teste-f2.php) e marca as que so a varredura viu — mutacao que qualquer portao antigo pega ja estava coberta e nao justificaria arquivo novo. A mais importante afrouxa a faixa de junta SO em 7, 8 e 9 mm, que e o vao onde a grade escrita a mao do esquema nao pisa. Bancada: nunca vai para o site."
     },
     {
+      "id": "mutacoes-degrau",
+      "arquivo": "ferramentas/mutacoes-degrau.py",
+      "sha256": "434636dba1f1f73d8c6422cd18c5f67aa1dafda65f7bda20506dc8462ce7ddfb",
+      "descricao": "Oito mutacoes do portao do degrau da escada da 25.1, escritas nos CINCO bancos de material e nao em um so — porque o buraco era do portao e nao do arquivo. O portao antigo cobrava `afiliado.degrau` de quem tinha `afiliado.url` (a ficha de produto) e o esquema dizia o mesmo; item que serve BUSCA nao tem `url`, entao 13 dos 38 itens do banco serviam degrau 4 na tela com `degrau: null` no arquivo, e o validador aprovava — medido pela ronda da Sentinela em 28/09/2026. Cada mutacao roda o validar-banco.py duas vezes e separa o que SO o portao novo viu, desligando-o com CDM_SEM_PORTAO_DEGRAU=1, que restaura exatamente a regra velha. Duas delas PRODUZEM mundo que o banco ainda nao tem (item de acabamento fora do degrau 4; item servindo so a busca crua), porque portao que so funciona enquanto todos os itens estiverem no mesmo degrau mede o acaso e nao a regra. Bancada: nunca vai para o site."
+    },
+    {
       "id": "mutacoes-f1",
       "arquivo": "ferramentas/mutacoes-f1.py",
-      "sha256": "05cf5f83c827754220c7b146c73859e83410c70b3c2e0a9876cc45967a462bb0",
+      "sha256": "3707a596fd771278bef70be03fcf6e0c59fa23abd2024ebb16be96b911e1af9d",
       "descricao": "Quebra a F1 de proposito, uma mutacao por vez, e exige que teste-f1.php reprove cada uma. Bancada."
     },
     {
       "id": "mutacoes-f2",
       "arquivo": "ferramentas/mutacoes-f2.py",
-      "sha256": "c052add60864ea69696beb6e2d94376f3b7fe5bd99fea958b367ac6043ef0fec",
+      "sha256": "78ef112dd0c98721586f74ad3a769b2f85b15f6fb2a6e7d3de25e7f98ae114d5",
       "descricao": "Quebra a F2 de proposito, uma mutacao por vez, e exige que teste-f2.php reprove cada uma. Bancada."
     },
     {
@@ -475,19 +481,19 @@
     {
       "id": "teste-casca",
       "arquivo": "ferramentas/teste-casca.php",
-      "sha256": "6850bf8da8ecdec45363290ee89b8c8e0abf4fd48fa7acf5e9cd601a393892fd",
+      "sha256": "f560fb1a6feda85711e0f23821f63b498accf741413c557c3f46667879888907",
       "descricao": "347 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; dentro de <script>, corpo que nao comeca por metadado, JSON-LD que decodifica, a arvore da secao 16 nas duas direcoes contra o ARVORE.md, a Loja nos dois estados, a camada de prova pela ESTRUTURA e nao pela vizinhanca da palavra, e o piso de 1.500 caracteres de corpo. UM PROCESSO POR PAGINA: o static que impede logotipo e rodape em dobro na mesma pagina faria a bancada medir oito paginas sem eles. SECAO 7 REESCRITA EM 1.4.0 — ate 1.3.0 ela afirmava o CONTRARIO do que o site tem que servir (que o logo nao podia entrar no cabecalho por ter fundo preto, o que era falso). Agora cobra o logo do Raphael em <img>, o src igual ao arquivo que ele subiu, ZERO texto dentro da marca, alt com o nome, width/height na proporcao 3:2, o srcset servindo so o MESMO arquivo menor, os 52 px no CSS, a folga da barra e o logo uma vez em CADA uma das nove paginas. A REGUA E DESTE ARQUIVO: a URL e a medida estao literais aqui, copiadas do despacho, nunca lidas da constante da casca."
     },
     {
       "id": "teste-f1",
       "arquivo": "ferramentas/teste-f1.php",
-      "sha256": "66bd4b9145d09eb5f24d75116131351cdd88b766a265dd1b446615254220b939",
+      "sha256": "abea9505823d59e61fa5c23d0933682e6e6c98babe8b9b7b505480fbdf161663",
       "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
     },
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "e76aa0a50fc70334a4b979289cdb18dd367e062ab1c4f4afbbe41f080e5aff0a",
+      "sha256": "429ea2a59b6bf7742403438f1fce4b4de780a902963071f477a4d7cd4ee65b0a",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
     },
     {
@@ -499,7 +505,7 @@
     {
       "id": "teste-loja",
       "arquivo": "ferramentas/teste-loja.php",
-      "sha256": "614b31ef334bd5fa277901f44bd71e716faf6dd52b3e2f57ead29c5e9107bb09",
+      "sha256": "e2397c1f6c39d0d653d188a9271ec73e5f3c19de414c6c7513c72900306c4d5a",
       "descricao": "Portao da Loja (bloco 4d). 140 afirmacoes, regua escrita a mao: os slugs dos termos, as frases de disponibilidade, o formato do preco, os motivos de recusa e as bordas do telefone estao NO TESTE, nunca lidos do snippet. Varre a ficha em 72 estados (6 bases x 2 disponibilidades x 3 quantidades de foto x 2 estados do telefone), UM PROCESSO POR ESTADO — o `static` do logotipo da casca faz o cabecalho sumir a partir do segundo render no mesmo processo. Mede no HTML SERVIDO: description e og: nos 72, Product+Offer valido, PreOrder contra InStock, preco do Offer com ponto, BreadcrumbList de tres degraus, canonical UNICO sob /loja/, zero &#038; dentro de <script>, toda foto com alt e com width/height, exatamente uma foto prioritaria, e a ORDEM da secao 5 medida por POSICAO (preco e botao antes da ficha tecnica). O PISO DE TAMANHO DE PAGINA E DERIVADO de /contato/ nesta mesma bancada, e nao cravado: a primeira escrita cravou 40 KB calibrado na F2 e reprovou fichas corretas de 26 KB. UMA afirmacao le o FONTE, e so uma: hash_equals contra === na comparacao do token, porque os dois devolvem o mesmo resultado e o que muda e o tempo, que nenhuma bancada observa. Bancada."
     },
     {
@@ -529,7 +535,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "4d014bdf6aab7d34396afdc165b2f4178b333ef97b61f3868298bec1b1000979",
+      "sha256": "4521611889a11e33b498358f519fa255cb0ad7778b469eba04721d1f3b4997cf",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {

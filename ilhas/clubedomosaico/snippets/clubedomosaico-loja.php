@@ -115,7 +115,7 @@
  */
 
 if ( ! defined( 'CDM_LOJA_VERSAO' ) ) {
-	define( 'CDM_LOJA_VERSAO', '1.2.0' );
+	define( 'CDM_LOJA_VERSAO', '1.3.0' );
 }
 if ( ! defined( 'CDM_LOJA_BASE' ) ) {
 	/* O primeiro segmento da URL da peça. É o mesmo slug da página /loja/ de
@@ -268,6 +268,44 @@ add_action( 'init', function () {
 		update_option( 'cdm_loja_termos_relato', $relato, false );
 	}
 }, 6 );
+
+/* A MEDIDA DAS PEÇAS QUE JÁ EXISTEM, normalizada UMA vez (28/09/2026).
+   Os dados da loja só existem no site (seção 24 do contrato) e a edição deles
+   passa pelo wp-admin, que o Sync desfaz e que a 19.3 proíbe à ronda. Então a
+   migração é daqui: idempotente, presa a uma chave de option, e só escreve na
+   peça cujo valor MUDA — passada seguinte não toca em nada e o relato fica
+   gravado para quem quiser saber o que foi tocado.
+      Sem esta passada o banco continuaria com quatro valores num formato e um em
+   outro, e o molde tolerante de 1.3.0 estaria escondendo isso em vez de
+   consertar. Com ela, a próxima régua que ler o campo lê um formato só. */
+add_action( 'init', function () {
+	if ( ! function_exists( 'get_option' ) || ! function_exists( 'get_posts' ) ) {
+		return;
+	}
+	$chave = CDM_LOJA_VERSAO . '|medidas';
+	if ( get_option( 'cdm_loja_medidas_normalizadas' ) === $chave ) {
+		return;
+	}
+	$relato = array();
+	$pecas  = get_posts( array(
+		'post_type'      => 'peca',
+		'post_status'    => 'any',
+		'numberposts'    => -1,
+		'fields'         => 'ids',
+		'suppress_filters' => true,
+	) );
+	foreach ( (array) $pecas as $peca_id ) {
+		$antes  = (string) get_post_meta( (int) $peca_id, '_cdm_medidas', true );
+		$depois = cdm_loja_medida_normalizada( $antes );
+		if ( '' === $antes || $antes === $depois ) {
+			continue;
+		}
+		update_post_meta( (int) $peca_id, '_cdm_medidas', $depois );
+		$relato[] = '#' . (int) $peca_id . ': ' . $antes . ' -> ' . $depois;
+	}
+	update_option( 'cdm_loja_medidas_normalizadas', $chave, false );
+	update_option( 'cdm_loja_medidas_relato', $relato, false );
+}, 20 );
 
 /* A REGRA DE REESCRITA NASCE SOZINHA. Mesma cicatriz que a casca 1.6.0 pagou com
    a F1 nascendo 404: registrar o tipo não cria a regra na base, e sem a regra a
@@ -656,6 +694,248 @@ function cdm_loja_mensagem_whatsapp( $titulo, $url, $disp, $prazo ) {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * 3b. A MEDIDA DA PEÇA — a unidade sai UMA vez (28/09/2026)
+ *
+ * MEDIDO NO AR pela ronda da Sentinela em 28/09/2026 às 14h55Z, em `/loja/`:
+ *
+ *     35cm de diâmetro cm · Pronta entrega
+ *     46x36cm cm · Pronta entrega
+ *     46cm de diâmetro cm · Pronta entrega
+ *     46x37cm cm · Pronta entrega
+ *
+ * Quatro das cinco peças. Só a bandeja saía certa (`40×28 cm`), e ela é a única
+ * cujo campo não traz a unidade dentro do valor. A página da peça repetia o
+ * mesmo texto, e — o que faz isto valer um bloco — ele entrava no `description`
+ * do `Product` no JSON-LD: *"base de mdf ou madeira, técnica pica-sete (louça
+ * quebrada), 46x36cm cm. Pronta entrega"*, que é o que vai para a SERP e para
+ * superfície generativa.
+ *
+ * A CAUSA, e ela tem dois lados: o campo `_cdm_medidas` de quatro peças traz a
+ * unidade dentro do valor, e o molde acrescentava ` cm` depois, sempre, nos três
+ * lugares que servem medida (a frase da ficha, o `additionalProperty` do JSON-LD
+ * e a linha do cartão da vitrine).
+ *
+ * O CONSERTO É NOS DOIS LADOS, e é deliberado — a Sentinela escreveu, no próprio
+ * despacho, que consertar um só faz isto voltar quando a artesã cadastrar a peça
+ * 6. O dado é normalizado na gravação (e uma vez, nas peças que já existem) E o
+ * molde deixa de acrescentar unidade a valor que já a tem. Nenhum dos dois
+ * sozinho fecha: normalizar só o dado deixa o molde pronto para dobrar o próximo
+ * valor que chegue por outro caminho; tolerar só no molde deixa o banco com
+ * quatro valores em formatos diferentes, que é o que faz a régua da vitrine e a
+ * do JSON-LD divergirem depois.
+ *
+ * O QUE ESTAS FUNÇÕES NÃO FAZEM: reescrever a frase da artesã. `35cm de
+ * diâmetro` é texto dela, tem UMA unidade, e sai como ela escreveu. O que se
+ * tira é a unidade REDUNDANTE — a que está no fim do valor, no lugar exato onde
+ * o molde ia pôr a dele.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_loja_tem_unidade' ) ) {
+/**
+ * O valor já carrega unidade de comprimento? Um número colado ou separado da
+ * unidade, com fronteira de palavra depois — `36cm`, `28 cm`, `4 mm`.
+ *
+ * A fronteira não é zelo: sem ela `46x36 metros` casaria no `m` de `metros` e a
+ * pergunta responderia certo pelo motivo errado. E a unidade sem número antes
+ * NÃO conta — "diâmetro" tem um `m` e nenhuma medida.
+ */
+function cdm_loja_tem_unidade( $valor ) {
+	return 1 === preg_match( '/\d\s*(?:cm|mm|m)\b/iu', (string) $valor );
+}
+}
+
+if ( ! function_exists( 'cdm_loja_medida_normalizada' ) ) {
+/**
+ * O QUE SE GRAVA. Tira a unidade redundante do fim e uniformiza o separador.
+ *
+ * A unidade só é tirada quando há UMA no valor inteiro e ela está no fim. Com
+ * duas ou mais — `12 cm × 5 cm`, uma por dimensão — o valor fica intocado: ali a
+ * unidade não é redundante, é parte da leitura, e tirar a última daria
+ * `12 cm × 5`, que é pior que o defeito que este bloco conserta.
+ *
+ * O `×` no lugar do `x` entre números é a mesma linha e o mesmo motivo: a
+ * bandeja já vinha `40×28` e as outras `46x36`, e as cinco aparecem uma embaixo
+ * da outra na vitrine.
+ */
+function cdm_loja_medida_normalizada( $bruto ) {
+	$v = trim( preg_replace( '/\s+/u', ' ', (string) $bruto ) );
+	if ( '' === $v ) {
+		return '';
+	}
+	$v = preg_replace( '/(\d)\s*[xX]\s*(\d)/u', '$1×$2', $v );
+	if ( 1 === preg_match_all( '/\d\s*(?:cm|mm|m)\b/iu', $v ) ) {
+		$v = preg_replace( '/\s*(?:cm|mm|m)\s*$/iu', '', $v );
+	}
+
+	return trim( $v );
+}
+}
+
+if ( ! function_exists( 'cdm_loja_medida_na_tela' ) ) {
+/**
+ * O QUE SE SERVE. A unidade do campo entra só quando o valor não traz nenhuma.
+ *
+ * É esta função que os TRÊS lugares que servem medida chamam — a frase da ficha
+ * (que vira `description` do `Product`), o `additionalProperty` do JSON-LD e a
+ * linha do cartão da vitrine. Três concatenações escritas separadas foi o que
+ * fez o defeito sair nos três ao mesmo tempo e ninguém ver que era um só.
+ */
+function cdm_loja_medida_na_tela( $valor, $unidade = 'cm' ) {
+	$v = trim( (string) $valor );
+	if ( '' === $v ) {
+		return '';
+	}
+	if ( cdm_loja_tem_unidade( $v ) ) {
+		return $v;
+	}
+
+	return $v . ' ' . $unidade;
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 3c. O `alt` DA FOTO DA PEÇA — um formato só, e a foto de destaque também
+ *     (28/09/2026)
+ *
+ * MEDIDO NO AR pela ronda da Sentinela em 28/09/2026: das 82 imagens servidas
+ * nas 17 URLs, 27 com `alt=""`, todas nas 5 páginas de peça. Medido de novo
+ * neste bloco, imagem por imagem, e a conta se separa em duas — o que muda o
+ * conserto:
+ *
+ *   - 5 delas (uma por peça) são a FOTO DE DESTAQUE, servida pelo bloco
+ *     `wp-block-post-featured-image` do núcleo, que lê `_wp_attachment_image_alt`
+ *     da biblioteca de mídia. Nenhuma foto da artesã tem esse campo preenchido,
+ *     então a foto PRINCIPAL de cada peça — a que `Product.image` aponta no
+ *     JSON-LD, a que a Busca por imagens do Google indexa, e nesta ilha a foto
+ *     *é* o produto ("a foto é a da peça que você vai receber", diz a própria
+ *     `/loja/`) — ia para o ar sem uma palavra de descrição. **Isto é o defeito.**
+ *
+ *   - as outras 22 são as MINIATURAS da tira do carrossel, e o `alt=""` delas é
+ *     DELIBERADO, com o motivo escrito em `cdm_loja_miniaturas_html()` desde que
+ *     a tira nasceu: a miniatura é a mesma foto que já tem `alt` descritivo
+ *     logo acima, e o nome do controle está no `<a>`, num
+ *     `<span class="cdm-gal-so-leitor">`. Preenchê-las faria o leitor de tela
+ *     ler a peça inteira duas vezes. **Isto não é defeito, e não foi mexido.**
+ *     Imagem decorativa que repete conteúdo vizinho leva `alt=""` — é a regra,
+ *     não a exceção, e trocar isso para fazer um número chegar a zero seria
+ *     piorar a página para cumprir a régua.
+ *
+ * O QUE ESTE BLOCO FAZ: deriva o `alt` quando o anexo não tem um, para TODA
+ * imagem de peça que o núcleo sirva — a foto de destaque inclusive —, e unifica
+ * o texto num formato só. Até aqui o molde escrevia
+ * `<título>, mosaico em <base>, foto N` em dois lugares e o núcleo não escrevia
+ * nada no terceiro; agora os três chamam a mesma função.
+ *
+ * O `alt` DA ARTESÃ SEMPRE VENCE. A função só entra quando o campo está vazio —
+ * o dia em que o `/atelie/` passar a pedir a legenda (e ele passa, neste mesmo
+ * bloco), o que ela escrever manda, porque quem fez a peça sabe descrevê-la
+ * melhor que um molde.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_loja_alt_da_foto' ) ) {
+/**
+ * O texto alternativo de uma foto de peça — UM formato, para os três lugares.
+ *
+ * A TÉCNICA na frente da base, e é a recomendação escrita no despacho: quem olha
+ * a foto vê louça quebrada, não vê MDF. A base entra quando a peça não tem
+ * técnica declarada, e o `foto N` entra quando há mais de uma — com uma foto só,
+ * "foto 1" é ruído que o leitor de tela lê em toda peça da vitrine.
+ */
+function cdm_loja_alt_da_foto( $peca_id, $n = 0, $de = 0 ) {
+	$peca = get_post( (int) $peca_id );
+	if ( ! $peca ) {
+		return '';
+	}
+	$titulo = trim( (string) $peca->post_title );
+	if ( '' === $titulo ) {
+		return '';
+	}
+
+	$como    = '';
+	$tecnica = function_exists( 'cdm_loja_termo_da_peca' ) ? cdm_loja_termo_da_peca( (int) $peca_id, 'tecnica' ) : null;
+	if ( $tecnica && ! empty( $tecnica->name ) ) {
+		$como = mb_strtolower( $tecnica->name, 'UTF-8' );
+	} else {
+		$campos = cdm_loja_campos();
+		$bases  = isset( $campos['_cdm_base']['opcoes'] ) ? $campos['_cdm_base']['opcoes'] : array();
+		$base   = cdm_loja_meta( (int) $peca_id, '_cdm_base' );
+		if ( isset( $bases[ $base ] ) ) {
+			$como = 'mosaico em ' . mb_strtolower( $bases[ $base ], 'UTF-8' );
+		}
+	}
+
+	$alt = $titulo;
+	if ( '' !== $como ) {
+		$alt .= ' — ' . $como;
+	}
+	if ( (int) $n > 0 && (int) $de > 1 ) {
+		$alt .= ', foto ' . (int) $n;
+	}
+
+	return $alt;
+}
+}
+
+if ( ! function_exists( 'cdm_loja_foto_de_qual_peca' ) ) {
+/**
+ * De que peça é este anexo, e em que posição da galeria dela.
+ *
+ * O caminho é o `post_parent`, e ele é confiável aqui por construção: o
+ * `/atelie/` envia por `media_handle_upload( 'cdm_foto', $peca_id )`, e o
+ * segundo argumento É o pai. Anexo sem pai de peça devolve `null` e o `alt`
+ * fica como estava — inventar descrição para imagem que não se consegue
+ * amarrar a uma peça seria a seção 8 do contrato ao contrário.
+ *
+ * Devolve `array( peca_id, n, total )`; `n` é 0 quando o anexo é da peça e não
+ * está na galeria dela.
+ */
+function cdm_loja_foto_de_qual_peca( $anexo_id ) {
+	$anexo = get_post( (int) $anexo_id );
+	if ( ! $anexo || empty( $anexo->post_parent ) ) {
+		return null;
+	}
+	$pai = get_post( (int) $anexo->post_parent );
+	if ( ! $pai || 'peca' !== $pai->post_type ) {
+		return null;
+	}
+	$galeria = cdm_loja_galeria( (int) $pai->ID );
+	$n       = 0;
+	foreach ( array_values( (array) $galeria ) as $i => $id_galeria ) {
+		if ( (int) $id_galeria === (int) $anexo_id ) {
+			$n = $i + 1;
+			break;
+		}
+	}
+
+	return array( (int) $pai->ID, $n, count( (array) $galeria ) );
+}
+}
+
+/* A FOTO DE DESTAQUE E QUALQUER IMAGEM DE PEÇA QUE O NÚCLEO SIRVA. O molde desta
+   loja monta o `<img>` do carrossel e o do cartão com a mão; a foto de destaque
+   é do bloco do núcleo, e ela passa por aqui. Prioridade 10 e o `alt` da
+   biblioteca de mídia intocado quando existe. */
+add_filter( 'wp_get_attachment_image_attributes', function ( $attr, $anexo ) {
+	if ( ! empty( $attr['alt'] ) ) {
+		return $attr;
+	}
+	if ( ! is_object( $anexo ) || empty( $anexo->ID ) ) {
+		return $attr;
+	}
+	$achado = cdm_loja_foto_de_qual_peca( (int) $anexo->ID );
+	if ( ! $achado ) {
+		return $attr;
+	}
+	list( $peca_id, $n, $total ) = $achado;
+	$alt = cdm_loja_alt_da_foto( $peca_id, $n, $total );
+	if ( '' !== $alt ) {
+		$attr['alt'] = $alt;
+	}
+
+	return $attr;
+}, 10, 2 );
+
 if ( ! function_exists( 'cdm_loja_foto_html' ) ) {
 /**
  * Uma foto da galeria, com `alt` gerado dos campos (item SEO do despacho).
@@ -664,12 +944,16 @@ if ( ! function_exists( 'cdm_loja_foto_html' ) ) {
  * da 22.4: sem eles a página salta quando a foto carrega, e salto na foto de um
  * produto é a primeira coisa que faz alguém achar o site amador.
  */
-function cdm_loja_foto_html( $anexo_id, $titulo, $base_rotulo, $n, $capa ) {
+function cdm_loja_foto_html( $anexo_id, $peca_id, $n, $de, $capa ) {
 	$src = wp_get_attachment_image_src( (int) $anexo_id, $capa ? 'large' : 'medium_large' );
 	if ( ! $src || empty( $src[0] ) ) {
 		return '';
 	}
-	$alt = $titulo . ', mosaico em ' . $base_rotulo . ', foto ' . (int) $n;
+	/* O `alt` NÃO É MONTADO AQUI desde 28/09/2026. Eram três lugares escrevendo
+	   a descrição da mesma foto — este, o cartão da vitrine e o núcleo, que não
+	   escrevia nada na foto de destaque — e três textos para uma coisa só é como
+	   se descobre, meses depois, que um deles estava vazio o tempo todo. */
+	$alt = cdm_loja_alt_da_foto( (int) $peca_id, (int) $n, (int) $de );
 
 	/* O ENDEREÇO DA FOTO GRANDE VIAJA NO HTML, e é o que faz o zoom não ser
 	   enfeite: a ampliada não é a mesma imagem esticada, é o arquivo maior. Sai
@@ -761,7 +1045,6 @@ function cdm_loja_ficha_html( $peca ) {
 	$disp  = cdm_loja_meta( $id, '_cdm_disponibilidade' );
 	$prazo = cdm_loja_meta( $id, '_cdm_prazo_dias' );
 	$base  = cdm_loja_meta( $id, '_cdm_base' );
-	$base_rotulo = isset( $bases[ $base ] ) ? $bases[ $base ] : 'mosaico';
 
 	$colecao = cdm_loja_termo_da_peca( $id, 'colecao' );
 	$tecnica = cdm_loja_termo_da_peca( $id, 'tecnica' );
@@ -801,7 +1084,7 @@ function cdm_loja_ficha_html( $peca ) {
 		$n = 0;
 		foreach ( $galeria as $anexo ) {
 			$n++;
-			$html .= cdm_loja_foto_html( $anexo, $titulo, $base_rotulo, $n, 1 === $n );
+			$html .= cdm_loja_foto_html( $anexo, $id, $n, count( $galeria ), 1 === $n );
 		}
 		$html .= '</div></div>';
 		$html .= cdm_loja_miniaturas_html( $galeria, $titulo );
@@ -973,7 +1256,7 @@ function cdm_loja_descricao( $peca ) {
 		$atributos[] = 'técnica ' . mb_strtolower( $tecnica->name, 'UTF-8' );
 	}
 	if ( '' !== $medidas ) {
-		$atributos[] = $medidas . ' cm';
+		$atributos[] = cdm_loja_medida_na_tela( $medidas );
 	}
 
 	$texto = (string) $peca->post_title . ', peça de mosaico feita à mão';
@@ -1020,6 +1303,12 @@ add_filter( 'document_title_parts', function ( $partes ) {
 	return $partes;
 } );
 
+add_filter( 'cdm_descricao', function ( $d ) {
+	$peca = cdm_loja_e_peca();
+
+	return $peca ? cdm_loja_descricao( $peca ) : $d;
+} );
+
 add_action( 'wp_head', function () {
 	$peca = cdm_loja_e_peca();
 	if ( ! $peca ) {
@@ -1028,8 +1317,12 @@ add_action( 'wp_head', function () {
 	$id  = (int) $peca->ID;
 	$url = get_permalink( $peca );
 
-	echo '<meta name="description" content="' . esc_attr( cdm_loja_descricao( $peca ) ) . '">' . "\n";
-
+	/* A `description` DA PEÇA É DECLARADA, NÃO IMPRESSA (28/09/2026) — o filtro
+	   está logo abaixo deste bloco. Quem imprime a etiqueta é a casca, uma vez,
+	   pelo mesmo contrato que a etiqueta de robô passou a ter em 25/09: uma
+	   etiqueta sem dono ora sai duas vezes, ora não sai nenhuma, e as duas
+	   metades já foram medidas nesta ilha. O `og:description` continua saindo
+	   daqui — ele não é a `description` e não colide com ela. */
 	echo '<meta property="og:type" content="product">' . "\n";
 	echo '<meta property="og:title" content="' . esc_attr( $peca->post_title ) . '">' . "\n";
 	echo '<meta property="og:description" content="' . esc_attr( cdm_loja_descricao( $peca ) ) . '">' . "\n";
@@ -1092,7 +1385,7 @@ add_action( 'wp_head', function () {
 	}
 	$medidas = cdm_loja_meta( $id, '_cdm_medidas' );
 	if ( '' !== $medidas ) {
-		$props[] = array( '@type' => 'PropertyValue', 'name' => 'Medidas', 'value' => $medidas . ' cm' );
+		$props[] = array( '@type' => 'PropertyValue', 'name' => 'Medidas', 'value' => cdm_loja_medida_na_tela( $medidas ) );
 	}
 	if ( $props ) {
 		$produto['additionalProperty'] = $props;
@@ -1141,10 +1434,6 @@ if ( ! function_exists( 'cdm_loja_cartao_html' ) ) {
 function cdm_loja_cartao_html( $peca ) {
 	$id     = (int) $peca->ID;
 	$titulo = (string) $peca->post_title;
-	$campos = cdm_loja_campos();
-	$bases  = isset( $campos['_cdm_base']['opcoes'] ) ? $campos['_cdm_base']['opcoes'] : array();
-	$base   = cdm_loja_meta( $id, '_cdm_base' );
-	$base_rotulo = isset( $bases[ $base ] ) ? $bases[ $base ] : 'mosaico';
 
 	$galeria = cdm_loja_galeria( $id );
 	$html    = '<li class="cdm-card cdm-card-peca">';
@@ -1157,7 +1446,7 @@ function cdm_loja_cartao_html( $peca ) {
 			if ( ! empty( $src[1] ) && ! empty( $src[2] ) ) {
 				$html .= ' width="' . (int) $src[1] . '" height="' . (int) $src[2] . '"';
 			}
-			$html .= ' alt="' . esc_attr( $titulo . ', mosaico em ' . $base_rotulo . ', foto 1' ) . '"';
+			$html .= ' alt="' . esc_attr( cdm_loja_alt_da_foto( $id, 1, count( $galeria ) ) ) . '"';
 			$html .= ' loading="lazy" decoding="async"></a>';
 		}
 	}
@@ -1176,7 +1465,7 @@ function cdm_loja_cartao_html( $peca ) {
 	);
 	$linha = array();
 	if ( '' !== $medidas ) {
-		$linha[] = $medidas . ' cm';
+		$linha[] = cdm_loja_medida_na_tela( $medidas );
 	}
 	if ( '' !== $frase ) {
 		$linha[] = $frase;

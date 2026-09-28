@@ -121,7 +121,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/6q0zXWeKGX",
         "url_busca_produto": "https://shopee.com.br/search?keyword=torques%20para%20mosaico%20cortag",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + uso: 3 ofertas, uma delas com a referencia 61341 no titulo"
       },
@@ -203,7 +203,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/8KpnKHYXxO",
         "url_busca_produto": "https://shopee.com.br/search?keyword=torques%20azulejista%20corte%20reto%20cortag",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha + variante: 1 oferta, titulo exato do SKU"
       },
@@ -272,7 +272,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/8KpnKHd5HX",
         "url_busca_produto": "https://shopee.com.br/search?keyword=torques%20azulejista%20cortag",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "FAMILIA (degrau abaixo): a chave por SKU, `torques azulejista corte curvo cortag`, devolveu ZERO oferta em 25/09/2026"
       },
@@ -383,7 +383,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/30oGyTxBJ9",
         "url_busca_produto": "https://shopee.com.br/search?keyword=cortador%20de%20ceramica%20e%20azulejo%20manual%2051cm%20vdec51%20vonder",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha + medida: 1 oferta, titulo exato do SKU"
       },
@@ -495,7 +495,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/9zy1JLWbNN",
         "url_busca_produto": "https://shopee.com.br/search?keyword=cortador%20de%20ceramica%20e%20azulejo%20manual%2075cm%20vdec75%20vonder",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha + medida: 1 oferta, titulo exato do SKU"
       },
@@ -606,7 +606,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/905U7VesR4",
         "url_busca_produto": "https://shopee.com.br/search?keyword=cortador%20de%20ceramica%20manual%2090%20cm%20vonder",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + uso + medida: 1 oferta, titulo exato do SKU. A chave com `vdec90` colado devolvia a lista inteira da familia"
       },

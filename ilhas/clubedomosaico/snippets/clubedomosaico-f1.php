@@ -130,7 +130,7 @@
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.3.1' );
+	define( 'CDM_F1_VERSAO', '1.4.0' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -1994,28 +1994,109 @@ function cdm_f1_e_minha_pagina() {
 }
 }
 
-add_action( 'wp_head', function () {
+/* A `description` DESTA PÁGINA É DECLARADA, NÃO IMPRESSA (28/09/2026). Até aqui
+   este arquivo dava `echo` na própria num `wp_head` paralelo — o mesmo desenho
+   que fez a etiqueta de ROBÔ sair dobrada e que a casca 1.13.0 consertou em
+   25/09. Agora quem imprime é a casca, uma vez, e quem tem descrição declara
+   aqui. O texto não mudou: ele está fora da faixa de 120 a 160 e continua como
+   estava de propósito, porque esta é uma das TRÊS páginas que estão na primeira
+   página do Google e o BLOCO A do despacho do Raphael de 24/09 proíbe mexer na
+   promessa da SERP delas antes de 30/09 — trocar agora misturaria duas causas
+   na mesma janela de medição. A faixa delas é do bloco que fechar o BLOCO A. */
+add_filter( 'cdm_descricao', function ( $d ) {
 	if ( ! cdm_f1_e_minha_pagina() ) {
-		return;
+		return $d;
 	}
-	$e = cdm_f1_entrada();
 
-	echo '<meta name="description" content="'
-		. esc_attr( 'Quantas pastilhas e quanto rejunte a sua peça de mosaico precisa: vaso, tampo, quadro, esfera ou moldura, com a conta da pastilha pequena e não a do azulejo de obra.' )
-		. '">' . "\n";
-}, 4 );
+	return 'Quantas pastilhas e quanto rejunte a sua peça de mosaico precisa: vaso, tampo, quadro, esfera ou moldura, com a conta da pastilha pequena e não a do azulejo de obra.';
+} );
+
+if ( ! function_exists( 'cdm_f1_parametros' ) ) {
+/**
+ * OS NOMES DE PARAMETRO QUE SAO DESTA FERRAMENTA, em uma lista so.
+ *
+ * Os campos de medida saem de `cdm_f1_formas()` e nao de uma lista escrita aqui:
+ * a uniao dos `campos` de todas as formas e o inventario de verdade, e ele muda
+ * quando alguem acrescenta uma forma. A lista escrita a mao que existia dentro
+ * do `escolheu` ja tinha pago esse preco — ela nomeava `d`, `h`, `l` e `a`, e
+ * ESQUECIA o `d2` do cone, que existe desde que a forma conica existe.
+ */
+function cdm_f1_parametros() {
+	$campos = array();
+	foreach ( cdm_f1_formas() as $forma ) {
+		foreach ( array_keys( (array) $forma['campos'] ) as $campo ) {
+			$campos[ $campo ] = true;
+		}
+	}
+
+	return array_values( array_unique( array_merge(
+		array( 'forma', 'pastilha', 'junta', 'sobra', 'rejunte', 'esp', 'ladoeq', 'onde' ),
+		array_keys( $campos )
+	) ) );
+}
+}
+
+if ( ! function_exists( 'cdm_f1_tem_parametro' ) ) {
+/**
+ * ESTA URL E UM ESTADO COM PARAMETRO? — a pergunta do `noindex`, e ela NAO e a
+ * pergunta do `escolheu` (28/09/2026).
+ *
+ * As duas pareciam a mesma pergunta e sao duas, e a ronda da Sentinela de
+ * 28/09/2026 mediu a diferenca no ar: a F2 servia
+ * `?base=ceramica&onde=externo` — nomes de parametro reais, valores que NAO
+ * existem no vocabulario — com UMA etiqueta de robo sem `noindex`, porque o
+ * `escolheu` dela pergunta se o VALOR esta no vocabulario e nenhum daqueles
+ * dois estava. Esta F1 passou pelo motivo oposto e igualmente por acidente: o
+ * `escolheu` daqui pergunta se o parametro FOI ENVIADO, e a regua de 25/09 a
+ * mediu com `?forma=vaso&caquinho=medio`, em que `forma` foi enviado.
+ *
+ * Duas ferramentas irmas lendo a mesma pergunta de dois jeitos opostos, e cada
+ * uma acertando o portao da outra por sorte.
+ *
+ * A SEPARACAO, e ela e o conserto:
+ *
+ *   - `escolheu` responde "a pessoa escolheu algo que esta pagina sabe
+ *     responder?" e manda na TELA. Valor fora do vocabulario volta ao padrao em
+ *     silencio, e a pagina que sai e a ancora — entao `escolheu` continua
+ *     medindo o VALOR, nas duas ferramentas. Mexer nisso faria a tela dizer
+ *     "voce escolheu" sobre uma escolha que ela nao honrou.
+ *
+ *   - esta funcao responde "esta URL e o endereco canonico?" e manda no
+ *     `noindex`. Para essa pergunta o valor nao importa: `?base=lixo` e um
+ *     endereco diferente do limpo servindo o MESMO HTML, que e a definicao de
+ *     duplicata. E o conjunto dos valores invalidos e INFINITO, enquanto o das
+ *     escolhas validas e finito — qualquer referenciador, bot ou encurtador
+ *     pode pendurar `?utm_qualquer=1` e o do vocabulario nao cobre nenhum.
+ *
+ * Por que so os parametros DESTA ferramenta, e nao qualquer query: `noindex` em
+ * toda URL com `?` alcancaria a paginacao, a busca do nucleo e o que mais o
+ * WordPress inventar, e tirar do indice pagina que rankeia e o lado caro da
+ * borda — esta ilha tem TRES paginas na primeira pagina do Google.
+ */
+function cdm_f1_tem_parametro( $query = null ) {
+	$query = is_array( $query ) ? $query : ( isset( $_GET ) ? (array) $_GET : array() );
+	foreach ( cdm_f1_parametros() as $nome ) {
+		if ( array_key_exists( $nome, $query ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+}
 
 /* O ESTADO COM PARAMETRO SAI DO INDICE, e quem IMPRIME a etiqueta e a casca.
    Ate 25/09/2026 este arquivo imprimia a propria `<meta name="robots">` aqui, e
    o resultado servido eram DUAS etiquetas — a do nucleo e esta. Agora a
-   condicao e declarada e a casca junta tudo num vetor so (casca 1.13.0). */
+   condicao e declarada e a casca junta tudo num vetor so (casca 1.13.0).
+   E desde 28/09/2026 a condicao e a PRESENCA do parametro, nao a validade do
+   valor: o porque esta inteiro em `cdm_f1_tem_parametro()`. */
 add_filter( 'cdm_fora_do_indice', function ( $fora ) {
 	if ( ! cdm_f1_e_minha_pagina() ) {
 		return $fora;
 	}
-	$e = cdm_f1_entrada();
 
-	return $fora || ! empty( $e['escolheu'] );
+	return $fora || cdm_f1_tem_parametro();
 } );
 
 add_action( 'wp_head', function () {

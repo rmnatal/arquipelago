@@ -1113,6 +1113,118 @@ cdm_ok( empty( $degraus_fora ), 'os sete degraus da escada aparecem no corpo da 
  * declarada sai, e toda outra fica.
  * ------------------------------------------------------------------------- */
 
+echo "\n15b. A meta description das paginas da casca (item 4 do despacho de 28/09)\n";
+
+/* A REGUA E DAQUI, NAO DA CASCA. A faixa 120-160 esta escrita literal nesta
+   linha e o veredito de cada pagina sai da contagem de CARACTERES decodificados
+   — nao de bytes, que numa lingua com acento dao outro numero. A casca nao tem
+   voz nenhuma sobre o que e "faixa util": se alguem afrouxar a regra la, esta
+   linha discorda, que e o ponto.
+      POR QUE 160 E O TETO: acima disso o Google corta e a promessa da SERP
+   termina no meio. As QUATRO descricoes que esta ilha tinha em 28/09/2026
+   estavam TODAS acima — 167, 188, 194 e 200 — e as outras OITO paginas nao
+   tinham etiqueta nenhuma.
+      POR QUE 120 E O PISO: descricao curta demais o Google descarta e escreve a
+   dele a partir do texto, e a linha que decide o clique volta a nao ser nossa. */
+$PISO_DESC = 120;
+$TETO_DESC = 160;
+
+$descricoes  = array();
+$sem_desc    = array();
+$fora_faixa  = array();
+foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
+	if ( ! empty( $def['noindex'] ) ) {
+		continue; /* pagina fora do indice nao disputa clique na SERP */
+	}
+	$d = cdm_casca_descricao_declarada( $slug );
+	if ( '' === $d ) {
+		$sem_desc[] = $slug;
+		continue;
+	}
+	$n = mb_strlen( $d, 'UTF-8' );
+	if ( $n < $PISO_DESC || $n > $TETO_DESC ) {
+		$fora_faixa[] = $slug . ' (' . $n . ')';
+	}
+	$descricoes[ $slug ] = $d;
+}
+
+/* AS PAGINAS QUE A CASCA DECLARA, e so elas. As duas ferramentas e os dois
+   tutoriais entram na definicao pelo filtro `cdm_paginas`, vindos do proprio
+   snippet, e a descricao deles e declarada LA, pelo filtro `cdm_descricao` — a
+   da ferramenta no arquivo dela, a do tutorial na ficha de `tecnicas`. Elas nao
+   tem a chave `descricao` aqui e nao deveriam ter: dois lugares declarando a
+   mesma etiqueta e o defeito que este bloco inteiro conserta.
+      AS QUATRO ESTAO ACIMA DE 160 CARACTERES e continuam assim de proposito,
+   com o motivo em despacho de prioridade maior: TRES delas estao na primeira
+   pagina do Google e o BLOCO A do despacho do Raphael de 24/09 proibe mexer na
+   promessa da SERP delas antes de 30/09 — trocar agora misturaria duas causas na
+   mesma janela. A quarta (Trencadis) fica parada pelo que o mesmo despacho
+   escreve: "deixe uma pagina parada para a proxima leitura ter com o que
+   comparar". A afirmacao logo abaixo mede isso e NAO reprova; ela existe para o
+   numero ficar visivel em vez de esquecido. */
+$declaram_no_proprio_snippet = array(
+	'materiais/qual-cola-usar-no-mosaico',
+	'materiais/quantas-pastilhas-para-mosaico',
+	'como-fazer/o-que-e-mosaico-picassiete',
+	'como-fazer/o-que-e-trencadis',
+);
+$sem_desc_da_casca = array_values( array_diff( $sem_desc, $declaram_no_proprio_snippet ) );
+$travadas_presentes = array_values( array_intersect( $declaram_no_proprio_snippet, array_keys( cdm_casca_definicao_paginas() ) ) );
+cdm_ok( count( $travadas_presentes ) === count( $declaram_no_proprio_snippet ),
+	'as quatro paginas que declaram no proprio snippet continuam registradas na arvore',
+	implode( ', ', $travadas_presentes ) );
+cdm_ok( empty( $sem_desc_da_casca ), 'toda pagina da casca que entra no indice declara uma description',
+	empty( $sem_desc_da_casca ) ? count( $descricoes ) . ' paginas' : implode( ', ', $sem_desc_da_casca ) );
+cdm_ok( empty( $fora_faixa ), 'e todas cabem na faixa de 120 a 160 caracteres',
+	empty( $fora_faixa ) ? count( $descricoes ) . ' de ' . count( $descricoes ) : implode( ' | ', $fora_faixa ) );
+
+/* NENHUMA SE REPETE. Descricao duplicada entre paginas e o sinal que faz o
+   buscador tratar duas URLs como a mesma coisa, e esta ilha tem tres maes que se
+   parecem na arvore da secao 16. A comparacao e por texto inteiro E por
+   prefixo longo: duas descricoes que so divergem na ultima palavra sao a mesma
+   promessa na SERP. */
+cdm_ok( count( array_unique( $descricoes ) ) === count( $descricoes ),
+	'nenhuma description se repete inteira entre paginas',
+	count( $descricoes ) . ' textos, ' . count( array_unique( $descricoes ) ) . ' distintos' );
+$prefixos = array();
+foreach ( $descricoes as $slug => $d ) {
+	$prefixos[ $slug ] = mb_substr( $d, 0, 60, 'UTF-8' );
+}
+cdm_ok( count( array_unique( $prefixos ) ) === count( $prefixos ),
+	'nem nos 60 primeiros caracteres, que e o que a SERP mostra antes de cortar',
+	implode( ' | ', array_diff_assoc( $prefixos, array_unique( $prefixos ) ) ) );
+
+/* O EMISSOR E UM SO, e e isto que o item 4 do despacho pede de verdade — ele diz
+   com todas as letras que o defeito "nao e o texto de uma pagina: e qual camada
+   emite a etiqueta e para quais tipos de pagina". Ate 28/09 cada camada dava
+   `echo` na propria e as paginas da casca nao tinham camada nenhuma. Agora quem
+   tem descricao DECLARA pelo filtro `cdm_descricao` e quem imprime e a casca.
+      A contagem abaixo e sobre o CODIGO dos snippets, e nao sobre o HTML: e a
+   unica regua que pega a camada nova que nascer dando echo na propria — que e
+   como a etiqueta de ROBO chegou a sair dobrada nesta mesma ilha em 25/09. */
+$pasta_snippets = dirname( __DIR__ ) . '/snippets';
+$echos_de_description = array();
+foreach ( glob( $pasta_snippets . '/*.php' ) as $arquivo ) {
+	$fonte = file_get_contents( $arquivo );
+	$n     = preg_match_all( '#echo[^\n]{0,8}<meta name="description"#', $fonte );
+	if ( $n > 0 && 'clubedomosaico-casca.php' !== basename( $arquivo ) ) {
+		$echos_de_description[] = basename( $arquivo ) . ' (' . $n . ')';
+	}
+}
+cdm_ok( empty( $echos_de_description ),
+	'nenhum snippet fora da casca imprime a propria meta description',
+	empty( $echos_de_description ) ? 'so a casca' : implode( ', ', $echos_de_description ) );
+$fonte_casca = file_get_contents( $pasta_snippets . '/clubedomosaico-casca.php' );
+cdm_ok( 1 === preg_match_all( '#echo[^\n]{0,8}<meta name="description"#', $fonte_casca ),
+	'e a casca imprime em UM lugar so',
+	preg_match_all( '#echo[^\n]{0,8}<meta name="description"#', $fonte_casca ) . ' lugares' );
+
+/* PAGINA SEM DESCRICAO SAI SEM ETIQUETA, e nao com uma generica: descricao
+   generica repetida e pior que ausencia, porque a ausencia faz o Google escrever
+   uma a partir do texto DAQUELA pagina. */
+cdm_ok( '' === cdm_casca_descricao_declarada( 'pagina-que-nao-existe' ),
+	'slug desconhecido devolve vazio em vez de uma descricao generica' );
+
 echo "\n16. Noindex declarado e sitemap como curadoria (secao 14.1)\n";
 $ids_falsos = array();
 $i_falso    = 100;

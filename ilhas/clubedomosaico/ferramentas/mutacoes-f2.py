@@ -177,9 +177,29 @@ def m_estado_com_parametro_entra_no_indice(raiz):
     # pelo filtro `cdm_fora_do_indice` e quem imprime e a casca, uma vez. Sem
     # retarget a mutacao vira INERTE, que e o pior dos dois estados: a bateria
     # continua verde dizendo que mediu.
+    # O ALVO MUDOU DE NOVO EM 28/09/2026: a condicao deixou de ser `escolheu` e
+    # passou a ser a PRESENCA do parametro (`cdm_f2_tem_parametro()`). Sem este
+    # retarget a mutacao voltaria a ser INERTE, que e o pior dos dois estados.
     editar(raiz, SNIPPET,
-           "\treturn $fora || ! empty( $e['escolheu'] );",
+           "\treturn $fora || cdm_f2_tem_parametro();",
            "\treturn $fora;")
+
+
+def m_noindex_volta_a_depender_do_valor(raiz):
+    """A REGRESSAO QUE ESTE BLOCO CONSERTOU, escrita de volta: o `noindex` volta a
+    sair do `escolheu`, que pergunta se o VALOR esta no vocabulario.
+
+    E o defeito que a ronda da Sentinela mediu no ar em 28/09/2026 —
+    `?base=ceramica&onde=externo`, `?base=mdf` e
+    `?base=ceramica&caco=louca&junta=fina&onde=interno` servindo UMA etiqueta de
+    robo sem `noindex`, porque nenhum daqueles valores existe no vocabulario. Os
+    nomes dos quatro parametros eram todos reais; os valores, nenhum.
+
+    Mutacao que reproduz defeito MEDIDO vale mais que mutacao inventada: se esta
+    passar, a regua que fechou o item 2 do despacho parou de medir."""
+    editar(raiz, SNIPPET,
+           "\treturn $fora || cdm_f2_tem_parametro();",
+           "\t$e = cdm_f2_entrada();\n\n\treturn $fora || ! empty( $e['escolheu'] );")
 
 
 def m_faq_do_schema_promete_o_que_a_pagina_nao_diz(raiz):
@@ -671,6 +691,7 @@ MUTACOES = [
     ("as tabelas pre-renderizadas saem do HTML servido", m_tabela_pre_renderizada_some),
     ("compra depois da procedencia no cartao", m_compra_depois_da_procedencia),
     ("estado com parametro entra no indice", m_estado_com_parametro_entra_no_indice),
+    ("o noindex volta a depender do VALOR (regressao de 28/09)", m_noindex_volta_a_depender_do_valor),
     ("FAQPage promete pergunta que a pagina nao mostra", m_faq_do_schema_promete_o_que_a_pagina_nao_diz),
     ("<script> volta para dentro do shortcode", m_script_volta_para_dentro_do_shortcode),
     ("a pagina perde a mae e nasce na raiz", m_pagina_perde_a_mae),

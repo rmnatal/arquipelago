@@ -96,6 +96,11 @@ if SEM_PORTAO_APOIO:
     print("  ATENCAO: CDM_SEM_PORTAO_APOIO=1 — o bloco da categoria apoio, a ponte do ramo e a "
           "varredura de apoio declarado NAO foram medidos nesta passada. So a bateria de mutacao "
           "usa isto.")
+SEM_PORTAO_DEGRAU = os.environ.get("CDM_SEM_PORTAO_DEGRAU") == "1"
+if SEM_PORTAO_DEGRAU:
+    print("  ATENCAO: CDM_SEM_PORTAO_DEGRAU=1 — o degrau da escada da 25.1 volta a ser cobrado "
+          "so de quem tem `url`, que e a regra ANTIGA, a que deixou 13 itens em null. So a "
+          "bateria de mutacao usa isto.")
 BASES = set(VOC["base"])
 AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
@@ -305,6 +310,12 @@ sem_imagem = 0
 sem_saida = 0            # secao 7 e 25.2: item sem NENHUMA saida de compra — erro duro
 piso_nao_rastreavel = 0  # 25.6: tem busca CRUA e nao tem a encurtada — divida de comissao
 sem_busca_crua = 0    # secao 25.4-b: tem busca e nao guarda o endereco cru dela
+# A ESCADA CONTADA, degrau a degrau (28/09/2026). A 25.1 manda GRAVAR o degrau;
+# esta contagem e o que torna o campo util depois de gravado, porque e por ela
+# que a leitura semanal acha o que pode subir. O 4 e o degrau que nao esgota e
+# nao some, e tambem o que converte pior: banco inteiro no 4 cumpre o esquema e
+# rende o minimo.
+por_degrau = {1: 0, 2: 0, 3: 0, 4: 0}
 
 for nome in arquivos_material:
     arq = carregar(nome)
@@ -490,8 +501,40 @@ for nome in arquivos_material:
                  "ninguem consegue conferir" % onde)
         if af.get("degrau") is not None and af["degrau"] not in (1, 2, 3, 4):
             erro("%s: degrau %r fora da escada da secao 25 (1 a 4)" % (onde, af["degrau"]))
-        if af.get("url") and af.get("degrau") is None:
-            erro("%s: tem link de afiliado e nao diz de que degrau da escada ele veio" % onde)
+        # O DEGRAU E COBRADO DE QUEM SERVE LINK, NAO DE QUEM TEM `url` (28/09/2026).
+        #
+        # Ate aqui esta linha cobrava `degrau` so de quem tinha `af["url"]` — a
+        # ficha de produto —, e o esquema dizia o mesmo em
+        # `obrigatorio_quando: "url estiver preenchida"`. Quem serve BUSCA nao
+        # tem `url`, entao os treze itens de acabamento e alicate passavam com
+        # `degrau: null` servindo degrau 4 na tela. Medido pela ronda da
+        # Sentinela em 28/09/2026: 13 dos 38 itens do banco.
+        #
+        # Nao e cosmetico, e o motivo esta na 25.1: `degrau` e o campo pelo qual
+        # a leitura semanal acha o que pode SUBIR de degrau. Item no 4 e item
+        # com degrau em branco sao a mesma tela e leituras opostas — o primeiro
+        # e uma oportunidade na fila, o segundo e invisivel. Treze itens em
+        # `null` eram treze oportunidades que ninguem conseguia contar.
+        #
+        # A regra, na formulacao da 25.1: "o degrau usado fica gravado em
+        # `afiliado.degrau`". Quem SERVE alguma saida de compra usou um degrau —
+        # qualquer uma das quatro saidas, nao so a ficha. Quem nao serve
+        # nenhuma ja e reprovado acima por `sem_saida`, entao esta linha nunca
+        # cobra degrau de registro que nao tem o que declarar.
+        _serve_compra = bool(af.get("url") or af.get("url_produto")
+                             or af.get("url_busca") or af.get("url_busca_produto"))
+        if SEM_PORTAO_DEGRAU:
+            _serve_compra = bool(af.get("url"))
+        if _serve_compra and af.get("degrau") is None:
+            erro("%s: serve link de compra e nao diz de que degrau da escada ele veio — 25.1. "
+                 "Item que serve so busca e degrau 4; a busca nao dispensa a declaracao, "
+                 "ela E a declaracao" % onde)
+        # A CONTAGEM POR DEGRAU, que e o que a leitura semanal le para achar o
+        # que pode subir. Sem ela o portao diria "o campo esta preenchido" e
+        # ninguem saberia preenchido COM O QUE — e 38 itens todos no 4 e um
+        # banco que cumpre o esquema e nao rende nada.
+        if af.get("degrau") in (1, 2, 3, 4):
+            por_degrau[int(af["degrau"])] += 1
 
         if m.get("imagem") is None:
             sem_imagem += 1
@@ -2070,6 +2113,8 @@ print("  itens esperando link ....... %d" % esperando_link)
 print("  itens SEM SAIDA de compra .. %d  (secao 7 — tem de ser 0)" % sem_saida)
 print("  piso NAO rastreavel ........ %d  (25.6 — divida de comissao, nao defeito)" % piso_nao_rastreavel)
 print("  busca sem endereco cru ..... %d  (25.4-b)" % sem_busca_crua)
+print("  a escada da 25.1, por degrau . 1:%d  2:%d  3:%d  4:%d  (soma %d)"
+      % (por_degrau[1], por_degrau[2], por_degrau[3], por_degrau[4], sum(por_degrau.values())))
 print("  itens sem imagem ........... %d" % sem_imagem)
 for n in notas:
     print("  nota: %s" % n)

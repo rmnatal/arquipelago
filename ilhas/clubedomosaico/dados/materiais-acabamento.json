@@ -112,7 +112,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/5fp2LtqPm6",
         "url_busca_produto": "https://shopee.com.br/search?keyword=verniz%20acrilico%20brilhante%20acrilex",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha + acabamento"
       },
@@ -234,7 +234,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/6AlIwooRVw",
         "url_busca_produto": "https://shopee.com.br/search?keyword=verniz%20acrilico%20fosco%20acrilex",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha + acabamento"
       },
@@ -356,7 +356,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/40goMpwguk",
         "url_busca_produto": "https://shopee.com.br/search?keyword=verniz%20acrilfix%20brilhante%20acrilex",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha + acabamento"
       },
@@ -503,7 +503,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/2qUqyh5fYn",
         "url_busca_produto": "https://shopee.com.br/search?keyword=verniz%20protetor%20para%20pisos%20quartzolit",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha"
       },
@@ -628,7 +628,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/BU5nnFkjn",
         "url_busca_produto": "https://shopee.com.br/search?keyword=borracha%20liquida%20elastica%20quartzolit",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha"
       },
@@ -747,7 +747,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/qjmb1DHeJ",
         "url_busca_produto": "https://shopee.com.br/search?keyword=impermeabilizante%20fachada%20quartzolit",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "FAMILIA (degrau abaixo): `protetor para fachadas quartzolit`, o nome comercial exato, devolveu ZERO oferta em 25/09/2026. O produto e de canal de obra e nao e anunciado por esse nome na Shopee"
       },
@@ -859,7 +859,7 @@
         "gerado_em": null,
         "url_busca": "https://s.shopee.com.br/113CnKGynO",
         "url_busca_produto": "https://shopee.com.br/search?keyword=selador%20quartzolit",
-        "degrau": null,
+        "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "FAMILIA (degrau abaixo): `fundo selador quartzolit` devolveu ZERO oferta em 25/09/2026. A palavra `fundo` nao aparece em titulo de anuncio; o que a Shopee anuncia e `selador`"
       },

@@ -242,6 +242,68 @@ f2_ok( 1 === substr_count( $com_parametro, '<link rel="canonical"' ), 'o estado 
 f2_ok( false !== strpos( $com_parametro, '<link rel="canonical" href="https://clubedomosaico.com.br/' . CDM_F2_SLUG . '/">' ),
 	'o estado com parametro aponta o canonical para a ancora' );
 
+/* OS TRES ESTADOS QUE A RONDA DE 28/09/2026 MEDIU NO AR E ACHOU NO INDICE, e
+   eles estao escritos LITERAIS aqui, copiados do despacho — nao derivados do
+   vocabulario. E deliberado: o defeito era exatamente ter valor FORA do
+   vocabulario, entao uma regua que montasse as consultas a partir do
+   vocabulario nunca reproduziria o estado que falhou.
+      Os nomes dos quatro parametros sao reais; nenhum dos valores existe aqui —
+   as chaves sao `ceramica_esmaltada_porcelana`, `externo_exposto`,
+   `mdf_madeira`, `caco_louca`, e `junta` e numero. Ate 28/09 o `noindex` desta
+   pagina saia do `escolheu`, que pergunta pelo VALOR, e os tres entravam no
+   indice como tres enderecos servindo o HTML da ancora. */
+$estados_invalidos = array(
+	'base=ceramica&onde=externo',
+	'base=mdf',
+	'base=ceramica&caco=louca&junta=fina&onde=interno',
+);
+$sem_noindex_invalido = array();
+$escolheu_invalido    = array();
+foreach ( $estados_invalidos as $consulta ) {
+	$html = f2_render( $raiz, $consulta );
+	preg_match_all( $re_robots, $html, $m_inv );
+	if ( 1 !== count( $m_inv[0] ) || false === stripos( $m_inv[0][0], 'noindex' ) ) {
+		$sem_noindex_invalido[] = $consulta . ' -> ' . ( $m_inv[0] ? $m_inv[0][0] : '(nenhuma)' );
+	}
+	parse_str( $consulta, $q );
+	if ( ! cdm_f2_tem_parametro( $q ) ) {
+		$sem_noindex_invalido[] = $consulta . ' -> cdm_f2_tem_parametro() disse nao';
+	}
+}
+f2_ok( empty( $sem_noindex_invalido ),
+	'os tres estados de 28/09, com VALOR invalido, saem do indice numa etiqueta so',
+	empty( $sem_noindex_invalido ) ? count( $estados_invalidos ) . ' estados' : implode( ' | ', $sem_noindex_invalido ) );
+
+/* O OUTRO LADO DA SEPARACAO, e e ele que impede o conserto de virar mentira na
+   tela: `escolheu` continua medindo o VALOR. Valor fora do vocabulario volta ao
+   padrao em silencio e a pagina que sai e a ancora — dizer "voce escolheu"
+   sobre uma escolha que a pagina nao honrou seria trocar um defeito de indice
+   por um defeito de texto. */
+foreach ( $estados_invalidos as $consulta ) {
+	parse_str( $consulta, $q );
+	$_GET = $q;
+	$e    = cdm_f2_entrada();
+	if ( ! empty( $e['escolheu'] ) ) {
+		$escolheu_invalido[] = $consulta;
+	}
+}
+$_GET = array();
+f2_ok( empty( $escolheu_invalido ),
+	'e `escolheu` continua FALSO neles: o `noindex` mede endereco, a tela mede escolha',
+	empty( $escolheu_invalido ) ? 'os tres' : implode( ' | ', $escolheu_invalido ) );
+
+/* A LISTA DE PARAMETROS E A DO FORMULARIO, nao uma copia. Se alguem acrescentar
+   uma pergunta a `cdm_f2_entrada()` e esquecer `cdm_f2_parametros()`, o estado
+   novo entra no indice calado — e foi calado que os tres de cima entraram. */
+$parametros_f2 = cdm_f2_parametros();
+sort( $parametros_f2 );
+f2_ok( array( 'base', 'caco', 'junta', 'onde' ) === $parametros_f2,
+	'os quatro parametros desta ferramenta estao declarados', implode( ', ', $parametros_f2 ) );
+f2_ok( ! cdm_f2_tem_parametro( array() ) && ! cdm_f2_tem_parametro( array( 'utm_source' => 'x' ) ),
+	'query vazia e query de terceiro NAO tiram a ancora do indice (o lado caro da borda)' );
+f2_ok( cdm_f2_tem_parametro( array( 'base' => '' ) ),
+	'parametro presente e VAZIO ja e um endereco a mais: `?base=` sai do indice' );
+
 /* JSON-LD: WebApplication + FAQPage, e o FAQ do schema tem que ser o mesmo que
    a pagina MOSTRA. Schema que promete o que a pagina nao diz e schema ignorado
    na melhor das hipoteses. */

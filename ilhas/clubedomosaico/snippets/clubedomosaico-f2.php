@@ -100,7 +100,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.5.1' );
+	define( 'CDM_F2_VERSAO', '1.6.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -2101,22 +2101,30 @@ function cdm_f2_e_minha_pagina() {
 }
 }
 
-add_action( 'wp_head', function () {
-	if ( ! cdm_f2_e_minha_pagina() ) {
-		return;
-	}
-	$e = cdm_f2_entrada();
+/* O CANONICAL NAO SAI DAQUI, e a ausencia e deliberada: `rel_canonical()` do
+   nucleo ja imprime o permalink limpo em toda pagina singular, e esta ilha nao
+   tem plugin de SEO que o remova. Imprimir o nosso serviria DOIS canonicals
+   identicos — inofensivo para o Google e sujo numa pagina cujo proposito inteiro
+   e ter UM endereco no indice.
 
-	echo '<meta name="description" content="'
-		. esc_attr( 'Qual cola usar no mosaico, pela declaração do próprio fabricante: cerâmica, vidro, espelho, MDF, cimento ou metal, dentro de casa ou no sol e na chuva. Com o rejunte e o que não usar.' )
-		. '">' . "\n";
-	/* O CANONICAL NAO SAI DAQUI, e a ausencia e deliberada: `rel_canonical()` do
-	   nucleo ja imprime o permalink limpo em toda pagina singular, e esta ilha
-	   nao tem plugin de SEO que o remova. Imprimir o nosso serviria DOIS
-	   canonicals identicos — inofensivo para o Google e sujo numa pagina cujo
-	   proposito inteiro e ter UM endereco no indice. O que falta ao nucleo e o
-	   `noindex` do estado com parametro, e e so isso que sai daqui. */
-}, 4 );
+   E A `description` DESTA PAGINA E DECLARADA, NAO IMPRESSA (28/09/2026), pelo
+   mesmo argumento uma linha acima: ate aqui este arquivo dava `echo` na propria
+   num `wp_head` paralelo, que e o desenho que fez a etiqueta de ROBO sair
+   dobrada e que a casca 1.13.0 consertou em 25/09. Agora quem imprime e a
+   casca, uma vez.
+      O TEXTO NAO MUDOU, e ele esta fora da faixa de 120 a 160 de proposito:
+   esta e a MELHOR pagina desta ilha (posicao 7,8, 17 impressoes) e o BLOCO A do
+   despacho do Raphael de 24/09 proibe mexer na promessa da SERP dela antes de
+   30/09 — trocar agora misturaria duas causas na mesma janela de medicao. A
+   faixa dela, e o numero que a Proposta 1 pede, sao do bloco que fechar o
+   BLOCO A. */
+add_filter( 'cdm_descricao', function ( $d ) {
+	if ( ! cdm_f2_e_minha_pagina() ) {
+		return $d;
+	}
+
+	return 'Qual cola usar no mosaico, pela declaração do próprio fabricante: cerâmica, vidro, espelho, MDF, cimento ou metal, dentro de casa ou no sol e na chuva. Com o rejunte e o que não usar.';
+} );
 
 /* O ESTADO COM PARAMETRO SAI DO INDICE, e quem IMPRIME a etiqueta e a casca.
    O paragrafo acima explica por que o canonical NAO sai daqui — "serviria DOIS
@@ -2124,13 +2132,69 @@ add_action( 'wp_head', function () {
    indice" — e ate 25/09/2026 este arquivo fazia exatamente isso com a etiqueta
    de robo, tres linhas abaixo. Medido no ar naquele dia. Agora a condicao e
    declarada e a casca junta tudo num vetor so (casca 1.13.0). */
+if ( ! function_exists( 'cdm_f2_parametros' ) ) {
+/** OS NOMES DE PARAMETRO QUE SAO DESTA FERRAMENTA. Os mesmos quatro que
+    `cdm_f2_entrada()` le, numa lista so — para a pergunta do `noindex` e a do
+    formulario nao envelhecerem separadas. */
+function cdm_f2_parametros() {
+	return array( 'base', 'onde', 'caco', 'junta' );
+}
+}
+
+if ( ! function_exists( 'cdm_f2_tem_parametro' ) ) {
+/**
+ * ESTA URL E UM ESTADO COM PARAMETRO? — a pergunta do `noindex`, e ela NAO e a
+ * pergunta do `escolheu` (28/09/2026).
+ *
+ * ESTA PAGINA E A QUE FOI MEDIDA. A ronda da Sentinela de 28/09/2026 abriu as
+ * tres no ar e as tres serviam UMA etiqueta de robo SEM `noindex`:
+ *
+ *     ?base=ceramica&onde=externo
+ *     ?base=mdf
+ *     ?base=ceramica&caco=louca&junta=fina&onde=interno
+ *
+ * Os nomes dos quatro parametros sao reais; NENHUM dos valores existe no
+ * vocabulario desta ferramenta — as chaves sao `ceramica_esmaltada_porcelana`,
+ * `externo_exposto`, `mdf_madeira`, `caco_louca`, e `junta` e numero. Entao o
+ * `escolheu` daqui, que pergunta se o valor esta no vocabulario, respondia
+ * "nao escolheu nada" e a pagina entrava no indice com tres enderecos a mais.
+ *
+ * A reconferencia do conserto de 25/09 FALHOU nesta metade por isso, e o
+ * criterio que falhou foi escrito pelo proprio conserto: "os estados com
+ * parametro da F1 e da F2 servem UMA etiqueta com `noindex, follow`".
+ *
+ * O ATENUANTE, medido junto e escrito aqui para ninguem tratar isto como
+ * incendio: as tres servem `rel="canonical"` para o endereco limpo, e o HTML
+ * servido com parametro e byte a byte igual ao sem parametro — esta ferramenta
+ * resolve no cliente. O risco era orcamento de rastreamento e duplicata, nunca
+ * pagina errada no indice.
+ *
+ * A SEPARACAO DAS DUAS PERGUNTAS esta escrita por extenso em
+ * `cdm_f1_tem_parametro()`, no snippet irmao, e vale igual aqui: `escolheu`
+ * manda na TELA e continua medindo o VALOR — valor fora do vocabulario volta ao
+ * padrao e a pagina que sai e a ancora, e dizer "voce escolheu" sobre uma
+ * escolha nao honrada seria mentir na tela. Esta funcao manda no `noindex` e
+ * mede a PRESENCA, porque duplicata se conta por endereco e o conjunto dos
+ * valores invalidos e infinito.
+ */
+function cdm_f2_tem_parametro( $query = null ) {
+	$query = is_array( $query ) ? $query : ( isset( $_GET ) ? (array) $_GET : array() );
+	foreach ( cdm_f2_parametros() as $nome ) {
+		if ( array_key_exists( $nome, $query ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+}
+
 add_filter( 'cdm_fora_do_indice', function ( $fora ) {
 	if ( ! cdm_f2_e_minha_pagina() ) {
 		return $fora;
 	}
-	$e = cdm_f2_entrada();
 
-	return $fora || ! empty( $e['escolheu'] );
+	return $fora || cdm_f2_tem_parametro();
 } );
 
 add_action( 'wp_head', function () {

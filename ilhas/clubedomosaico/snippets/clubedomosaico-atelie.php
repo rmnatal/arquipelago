@@ -173,7 +173,7 @@
  */
 
 if ( ! defined( 'CDM_ATELIE_VERSAO' ) ) {
-	define( 'CDM_ATELIE_VERSAO', '1.3.0' );
+	define( 'CDM_ATELIE_VERSAO', '1.4.0' );
 }
 if ( ! defined( 'CDM_ATELIE_SLUG' ) ) {
 	define( 'CDM_ATELIE_SLUG', 'atelie' );
@@ -813,6 +813,23 @@ function cdm_atelie_salvar_campos( $peca_id ) {
 				break;
 			default:
 				$valor = sanitize_text_field( $bruto );
+				/* CAMPO DE TEXTO QUE DECLARA UNIDADE NASCE SEM A UNIDADE DENTRO
+				   (28/09/2026). Quem serve a medida é o molde, e ele põe a
+				   unidade do próprio campo; valor com `cm` dentro fazia a tela
+				   sair com duas — `46x36cm cm` em quatro das cinco peças, medido
+				   no ar em `/loja/`, na ficha e no `description` do `Product` no
+				   JSON-LD.
+				      A regra é do CAMPO e não do nome dele: campo de texto com
+				   `unidade` declarada guarda o número, a unidade fica com quem
+				   serve. Hoje `_cdm_medidas` é o único assim; a regra escrita
+				   aqui é o que faz o próximo nascer certo.
+				      E ela não recusa nem corrige a artesã: `35cm de diâmetro` é
+				   frase dela, tem UMA unidade, e é gravada como ela escreveu. O
+				   que sai é a unidade REDUNDANTE, a do fim do valor. O porquê
+				   inteiro está em `cdm_loja_medida_normalizada()`. */
+				if ( ! empty( $def['unidade'] ) && function_exists( 'cdm_loja_medida_normalizada' ) ) {
+					$valor = cdm_loja_medida_normalizada( $valor );
+				}
 		}
 
 		if ( '' === $valor ) {
@@ -1116,6 +1133,33 @@ function cdm_atelie_agir() {
 	   mandava "para trás" junto e a foto andava para o lado errado. Botão só
 	   carrega o próprio par nome/valor: quem escolhe a direção é o `value` do
 	   botão, que é a única coisa que o navegador garante. */
+	/* A LEGENDA DA FOTO, gravada onde o WordPress inteiro a lê — o bloco da foto
+	   de destaque, a biblioteca de mídia e qualquer tema. É por isso que ela vai
+	   para `_wp_attachment_image_alt` e não para um campo desta ilha: dado que
+	   só esta ilha sabe ler é dado que some no dia em que a casca mudar. */
+	if ( 'foto_legenda' === $acao ) {
+		if ( ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_atelie_peca_' . $id ) ) {
+			wp_safe_redirect( cdm_atelie_url( array( 'aviso' => 'nonce' ) ) );
+			exit;
+		}
+		$anexo   = (int) cdm_atelie_post( 'cdm_anexo', '0' );
+		$galeria = cdm_loja_galeria( $id );
+		if ( in_array( $anexo, $galeria, true ) ) {
+			$legenda = sanitize_text_field( cdm_atelie_post( 'cdm_legenda' ) );
+			if ( '' === $legenda ) {
+				/* VAZIO APAGA, e não grava vazio: com o campo apagado o molde
+				   volta a derivar, e derivada é melhor que uma string vazia
+				   gravada — que é exatamente o estado em que as 27 fotos
+				   estavam. */
+				delete_post_meta( $anexo, '_wp_attachment_image_alt' );
+			} else {
+				update_post_meta( $anexo, '_wp_attachment_image_alt', $legenda );
+			}
+		}
+		wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id, 'aviso' => 'fotos' ) ) );
+		exit;
+	}
+
 	if ( 'foto_tras' === $acao || 'foto_frente' === $acao || 'foto_remover' === $acao ) {
 		if ( ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_atelie_peca_' . $id ) ) {
 			wp_safe_redirect( cdm_atelie_url( array( 'aviso' => 'nonce' ) ) );
@@ -1622,6 +1666,22 @@ function cdm_atelie_tela_form( $peca ) {
 				$h .= '<button type="submit" name="cdm_acao" value="foto_remover" class="cdm-at-fbotao cdm-at-apagar" ';
 				$h .= 'data-cdm-confirmar="Remover esta foto?" title="Remover">';
 				$h .= '<span aria-hidden="true">✕</span><span class="cdm-at-so-leitor"> remover</span></button>';
+				/* A LEGENDA DA FOTO — item 3 do despacho da Sentinela de
+				   28/09/2026. Nesta ilha a foto É o produto, e as 27 fotos das
+				   peças foram para o ar com `alt=""` porque nada nunca pediu a
+				   legenda a quem sabe descrever a peça. O molde deriva uma
+				   quando este campo está vazio (`cdm_loja_alt_da_foto()`), mas
+				   derivado é `Vaso com flores em cerâmica — pica-sete, foto 2`:
+				   diz o que a peça é, não o que se vê nela.
+				      O campo é OPCIONAL de propósito. Obrigatório, ele viraria
+				   mais um passo entre ela e publicar a peça, e a derivada já
+				   impede o vazio — o que este campo compra é o teto, não o piso. */
+				$legenda = function_exists( 'get_post_meta' ) ? (string) get_post_meta( (int) $anexo, '_wp_attachment_image_alt', true ) : '';
+				$h .= '<label class="cdm-at-so-leitor" for="cdm-legenda-' . (int) $anexo . '">O que aparece nesta foto</label>';
+				$h .= '<input id="cdm-legenda-' . (int) $anexo . '" class="cdm-at-legenda" type="text" name="cdm_legenda" maxlength="160"';
+				$h .= ' placeholder="O que aparece nesta foto" value="' . esc_attr( $legenda ) . '">';
+				$h .= '<button type="submit" name="cdm_acao" value="foto_legenda" class="cdm-at-fbotao" title="Salvar a legenda">';
+				$h .= '<span aria-hidden="true">✓</span><span class="cdm-at-so-leitor"> salvar a legenda</span></button>';
 				$h .= '</form></li>';
 			}
 			$h .= '</ul></div>';
@@ -1981,7 +2041,15 @@ add_action( 'wp_footer', function () {
 .cdm-at-foto{position:relative;margin:0;}
 .cdm-at-foto img{display:block;width:110px;height:110px;object-fit:cover;border-radius:8px;background:var(--cdm-traco);}
 .cdm-at-capa{position:absolute;top:.3rem;left:.3rem;background:var(--cdm-coral);color:var(--cdm-papel);font-family:var(--cdm-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;padding:.1rem .35rem;border-radius:3px;}
-.cdm-at-foto form{display:flex;gap:.25rem;margin:.35rem 0 0;}
+/* A LINHA DOS BOTOES QUEBRA, e o campo de legenda ocupa a linha inteira embaixo
+   (28/09/2026). Sem o `wrap`, o campo de texto entrava na mesma fila de tres
+   botoes de 44 px ao lado de uma miniatura de 110 px e espremia tudo a 360 px de
+   largura — que e a tela em que a artesa usa este painel. O item cresce ate
+   14rem para o campo caber com o que ela digita; a miniatura continua 110 px. */
+.cdm-at-foto{width:min(100%,14rem);}
+.cdm-at-foto form{display:flex;flex-wrap:wrap;gap:.25rem;margin:.35rem 0 0;align-items:center;}
+.cdm-at-legenda{flex:1 1 7rem;min-width:0;min-height:2.75rem;font:inherit;font-size:.85rem;color:var(--cdm-tinta);background:var(--cdm-papel);border:1px solid var(--cdm-traco);border-radius:6px;padding:.2rem .45rem;}
+.cdm-at-legenda:focus{outline:2px solid var(--cdm-coral);outline-offset:1px;}
 /* 2.75rem = 44px, e o numero NAO e estetico: e o minimo de alvo de toque, e estes
    tres botoes (mover, mover, remover) sao os menores do painel e os que ela vai
    apertar mais vezes, com o dedo, num telefone. Nasceram com 2.4rem = 38 px e o
