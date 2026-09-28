@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 43,
-  "atualizado_em": "2026-09-25",
+  "revisao": 44,
+  "atualizado_em": "2026-09-28",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -143,7 +143,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "4abe90d16010ee5cd73754efbd0a0d834a2f68ee78edab033b78bb7a86a05d70",
+      "sha256": "adcb325bc3a2bd03edb84efcd03dfe7c103394fc4f785ad178e17fc96ac13614",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -341,6 +341,12 @@
       "descricao": "Catorze defeitos escritos de volta no banco de acabamento, cada um rodando o validar-banco DUAS vezes — com e sem o bloco da categoria, pela variavel CDM_SEM_PORTAO_ACABAMENTO — para separar o que SO o portao novo ve. TREZE dos catorze so o portao novo pegou. Duas mutacoes acharam buraco real ANTES do primeiro commit e as duas viraram regra: a 05 (momento de uso deduzido do mecanismo passava com cara de declaracao, porque o portao so cobrava motivo no SILENCIO e nada na AFIRMACAO — agora momento declarado exige o TRECHO da frase literal que o declara) e a 13 (a matriz base x ambiente preenchida num verniz, que a regra proibia em prosa desde que nasceu e nenhuma regua media — verniz dentro dela viraria candidato a colar peca na F2). A mutacao 07 e a que PRODUZ O MUNDO: faz um verniz NOMEAR vidro, que e o estado que nenhum dos sete tem hoje e do qual o achado central do arquivo depende. Bancada."
     },
     {
+      "id": "mutacoes-apoio",
+      "arquivo": "ferramentas/mutacoes-apoio.py",
+      "sha256": "5a5b3f602cedfbb4ef75646f7856f8b7ec3ebd34a2cd04a20e68cb1fcb4a45b0",
+      "descricao": "Vinte e quatro defeitos escritos contra a decisao de campo da categoria APOIO, e e a SEGUNDA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-apoio.json nao existe, porque a regra nasceu antes do primeiro SKU. Quatorze mutacoes no mundo fabricado (quatro registros, um por ramo e por estado), SEIS no banco de VERDADE — a AF1500, a Cascorez e o verniz de pisos, restaurados byte a byte no fim — e quatro no esquema. As seis do banco real sao a novidade: esta e a unica categoria cuja declaracao que mais importa vem DO OUTRO LADO DO BALCAO, porque quem diz qual desempenadeira usar e o fabricante da PASTILHA. Duas mutacoes acharam buraco real ANTES do commit e as duas viraram portao: a 15 (a varredura comparava por registro e a AF1500 nomeia a desempenadeira em DOIS campos, entao apagar uma das duas linhas passava verde — a prosa da secao ja dizia 'mede CAMPO, nao registro' e o codigo nao cumpria) e a 20 (trocar o estado de `aerossol` para buraco de vocabulario passava verde, e a proxima execucao criaria um tipo de apoio chamado aerossol, que e EMBALAGEM; o conserto e que proposta de valor novo tem de vir de FRASE de fabricante e nao de um campo de valor do nosso proprio esquema). A 21 e a que PRODUZ O MUNDO: executa a decisao pendente, poe `pincel` em tipo_por_categoria.apoio e mede se o indice acusa que envelheceu no mesmo commit em que o vocabulario cresceu. 24 de 24, as 24 so o portao novo viu. Bancada."
+    },
+    {
       "id": "mutacoes-arvore",
       "arquivo": "ferramentas/mutacoes-arvore.py",
       "sha256": "c43cac25f762587df1e34b66ff18724a49a4fa6f4f4b231598dbc9e92c818138",
@@ -351,6 +357,12 @@
       "arquivo": "ferramentas/mutacoes-atelie.py",
       "sha256": "e7e50c5b6c33b61bd4ad8a641a625bbe9dd29443808a3b2874cb9f4f87d83eda",
       "descricao": "26 defeitos escritos de volta no snippet do Atelie, 26 reprovados, 23 SO o portao novo pegou. Tres familias: as que ABREM PORTA (o bloqueio do wp-admin que para de bloquear, o papel que ganha edit_others_pecas ou manage_options, o nonce que para de ser conferido, a dona da peca que para de ser conferida, a chave de redefinicao que para de ser validada, a rota que fica publica), as que VAZAM SEGREDO (a senha guardada em option, o link de senha no aviso do Raphael, o 'esqueci a senha' que revela quem tem conta, o e-mail que para de ser mascarado) e as que QUEBRAM PARA ELA (o preco em type=number recusando a virgula, a peca nascendo publicada, a recusa sem motivo, apagar sem lixeira). QUATRO PASSARAM NA PRIMEIRA PASSADA e as quatro eram lacuna real do portao: duas porque ele media telas e nunca DISPARAVA os ganchos (admin_init e show_admin_bar nao aparecem em HTML nenhum), uma porque a varredura da senha nomeava dois lugares, e uma porque conferia a funcao de mascarar sem conferir se a rota a chamava. A m22 e o defeito que este bloco REALMENTE teve, escrito de volta: a direcao da foto num campo escondido, que e enviado seja qual for o botao apertado. Bancada."
+    },
+    {
+      "id": "mutacoes-base",
+      "arquivo": "ferramentas/mutacoes-base.py",
+      "sha256": "803934e5571f47e489632ee6b6f98b879d69f926c65d2fad8a20cc746f3fa641",
+      "descricao": "Vinte defeitos escritos contra a decisao de campo da categoria BASE (28/09/2026, 10h16Z). PRIMEIRA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-base.json nao existe, porque a regra nasceu antes do primeiro SKU — entao ela escreve cinco registros de bancada, um por tipo, cobrindo os tres estados da ponte, confere que o mundo certo passa, muta treze vezes no registro e SETE NO ESQUEMA (a ponte e documento que mede documento), restaura e apaga o arquivo fabricado. A mutacao 05 PASSOU na primeira rodada e e o defeito mais caro da categoria: vaso de barro cru gravado como ceramica_esmaltada_porcelana, que nao deixa rastro — some a faixa descoberta e nasce uma recomendacao sobre uma superficie que absorve ao contrario da que foi respondida. A 14 e a que PRODUZ O MUNDO: executa a ponte, poe isopor_eps em vocabularios.base e mede se o esquema acusa que a ponte envelheceu no mesmo commit em que o vocabulario cresceu. 20 de 20, 19 so os portoes novos viram. Bancada. ENTROU NO MANIFEST EM 28/09/2026 as 13h4xZ, pela execucao seguinte: ela nasceu de manha e ficou fora, e quem a achou foi o portao 'FERRAMENTA NO DISCO FORA DO MANIFEST' do proprio atualizar-manifest, que se recusou a gravar enquanto a linha nao existisse."
     },
     {
       "id": "mutacoes-cobertura",
@@ -517,7 +529,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "01c563b353b73622cd7802c7da3039f68cc60b0f2a26f9d486313644ddef629b",
+      "sha256": "4d014bdf6aab7d34396afdc165b2f4178b333ef97b61f3868298bec1b1000979",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {

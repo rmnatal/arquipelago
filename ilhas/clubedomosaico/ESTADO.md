@@ -5,94 +5,42 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-28T10:16Z
-executando_desde: 2026-09-28T13:20Z
+ultima_execucao: 2026-09-28T14:55Z
+executando_desde: null
 ultima_ronda: 2026-09-23T20:12Z   # PRIMEIRA leitura da Sentinela registrada nesta ilha. Foi a leitura SEMANAL (negocio), nao a ronda tecnica: a ronda diaria tecnica nunca rodou aqui. A ilha passou de 15/09 a 23/09 sem ninguem olhar, e e a ilha com mais impressoes do arquipelago.
 bloco_atual: |
-  A CATEGORIA BASE DECIDE O CAMPO, E A DECISAO ACHA A FAIXA DESCOBERTA DENTRO DO PROPRIO VOCABULARIO.
-  tipo_por_categoria.base declara CINCO tipos e vocabularios.base — o eixo pelo qual a F2 decide cola e
-  rejunte — tem NOVE valores. Cruzados pela primeira vez: mdf_cru e cimento POUSAM (mdf_madeira,
-  cimento_concreto); ceramica_crua e isopor_estrutural NAO TEM VALOR; moldura NAO E MATERIAL (a mesma
-  moldura existe em madeira, MDF, metal e plastico — e geometria, e geometria aqui e a F1). Esquema na
-  versao 5, casca 1.15.0 intocada, manifest 43, conferir-no-ar 488 afirmacoes e 0 falha no ar.
-  O PRECO JA ESTAVA PAGO NO BANCO ANTES DA PONTE EXISTIR: dois vernizes da Acrilex carregam 'isopor' e
-  'gesso' DENTRO da frase literal do fabricante, e as duas palavras nao existem em vocabularios.base —
-  a declaracao foi lida, classificada e descartada em silencio. A ilha sabia ler SILENCIO de fabricante
-  (a alicate achou faixa pela ESPESSURA, a acabamento pela SUPERFICIE); o que ela nao sabia ler era
-  DECLARACAO DE FABRICANTE JOGADA FORA por falta de vocabulario NOSSO. Terceira faixa descoberta da
-  ilha e a primeira do nosso lado do balcao.
-  E O ISOPOR E O PIOR DOS TRES PORQUE A REGRA JA ESTAVA ESCRITA NO MESMO ARQUIVO: a linha
-  'poliestireno expandido' de termos_que_nao_traduzem diz 'se virar base (isopor estrutural), entra no
-  vocabulario primeiro' — e isopor_estrutural JA ERA um dos cinco tipos. Condicao cumprida no proprio
-  arquivo que a escreveu, sem nada conferindo as duas linhas juntas. Agora confere:
-  condicionais_do_mapa_de_termos cobra que toda linha com aquela frase apareca com a condicao MEDIDA e
-  o por_onde. Duas linhas: poliestireno expandido CUMPRIDA, gesso NAO CUMPRIDA (gesso nao esta em
-  tipo_por_categoria.base nem no corpus; no banco ele aparece do outro lado do balcao, como substrato
-  de PINTURA na frase do fabricante).
-  O CAMPO NOVO E O OBJETO substrato, irmao do corte da alicate e da protecao do acabamento:
-  valor_do_vocabulario_base e UM valor e nunca lista (base e feita de um material so),
-  trecho_que_declara_o_material obrigatorio (nome comercial nao e declaracao tecnica), as duas listas
-  de AMBIENTE cobrindo o vocabulario inteiro (base e a unica categoria cujo produto decide onde a peca
-  pronta pode VIVER) e preparo_declarado, que e o selador do banco de acabamento visto do outro lado.
-  Propriedades de NOME FIXO, e aqui elas sao MEDIDA: forma (vocabulario novo forma_da_base, as seis
-  formas que a F1 calcula), diametros, lados, vaos da moldura, espessura, peso, densidade,
-  acabamento_de_fabrica e absorcao_declarada OBRIGATORIA MESMO NULL — e a pergunta que decide a regra 6
-  da F2 e a que separa barro cru de ceramica esmaltada. Medida de anuncio de marketplace e nivel 6 e
-  NUNCA entra em formula publicada nem na tabela pre-renderizada da F1.
-  O PORTAO NASCEU ANTES DO DADO, E A BATERIA PROVOU QUE ELE MORDE. mutacoes-base.py e a primeira desta
-  ilha que FABRICA O PROPRIO MUNDO: escreve um materiais-base.json de bancada com cinco registros
-  (um por tipo, cobrindo os tres estados), confere que o mundo certo passa, muta VINTE vezes — treze no
-  registro e SETE NO ESQUEMA, porque a ponte e documento que mede documento —, restaura e APAGA o
-  arquivo fabricado. A MUTACAO 05 PASSOU NA PRIMEIRA RODADA e e o defeito mais caro da categoria: vaso
-  de barro cru gravado como ceramica_esmaltada_porcelana. O portao so consultava a ponte quando o
-  REGISTRO dizia sem_valor_no_vocabulario, e o caminho caro e o contrario. Esse defeito NAO DEIXA
-  RASTRO: some a faixa descoberta e nasce uma recomendacao sobre superficie que absorve ao contrario da
-  que foi respondida. Agora a ponte manda nas DUAS direcoes. Segunda rodada: 20 de 20, 19 so os portoes
-  novos viram. A 14 e a que PRODUZ O MUNDO: executa a ponte (isopor_eps entra no vocabulario) e mede se
-  o esquema acusa que a ponte envelheceu no mesmo commit em que o vocabulario cresceu.
-  NENHUM SKU COLETADO, E O MOTIVO E O CANAL E NAO A REDE. Egresso remedido em tres passadas com o
-  dominio da ilha em 200: 000 em dexco, duratex, guararapes, arauco, berneck, eternit, brasilit,
-  termotecnica, isoeste e leroymerlin. A acabamento correu com o mesmo bloqueio e se sustentou na busca
-  restrita ao dominio, que devolve a frase do fabricante sem abrir a pagina (nivel 3). Nesta execucao o
-  canal de busca devolveu RESUMO E TRADUCAO das paginas de painel de MDF, nao a frase. Parafrase de
-  resumo em literal_do_fabricante e a familia do numero de tela digitado: parece conferido. O primeiro
-  SKU nasce na execucao em que a frase puder ser citada, e isso esta escrito no esquema em
-  o_que_falta_para_coletar_o_primeiro_SKU, nao so no REGISTRO.
-  O QUE ESTE BLOCO DELIBERADAMENTE NAO FEZ: nao acrescentou ceramica_crua_barro nem isopor_eps a
-  vocabularios.base. Nao e duvida, e a janela de medicao. Acrescentar valor ao eixo muda o que
-  /materiais/qual-cola-usar-no-mosaico/ SERVE — a lista suspensa ganha duas opcoes, a contagem de
-  cdm_f2_faixas_descobertas_html sai de 9x5x6=270 para 11x5x6=330, e as duas bases novas entram na
-  frase que a pagina ja sabe dizer sozinha ('Nao indicamos cola nenhuma, em lugar nenhum, para: ...'),
-  porque nenhum fabricante do banco as nomeia. Essa e a pagina de POSICAO 7,8, a melhor do Arquipelago,
-  e o BLOCO A do despacho de 24/09 espera 30/09 para nao misturar duas causas na mesma janela. A
-  maquina para dizer a verdade JA EXISTE na pagina; falta a decisao, e ela esta escrita e medida.
-  BANCADA: validar-banco verde (38 materiais), cobertura recontada e SEM MUDANCA, teste-casca 555,
-  teste-f2 114, teste-f1 24 estados, teste-prestacao-rejunte 5, teste-tecnicas 123, e as baterias de
-  mutacao INTEIRAS porque a mudanca foi no esquema: base 20/20, f2 50/50, arvore 21/21, rejunte 16/16,
-  cobertura 14/14, acabamento 14/14, pastilhas 14/14, tecnica-x-material 9/9 — 158 mutacoes, nenhuma
-  passando. conferir-no-ar refeito no fecho: 488 afirmacoes e 0 falha, o mesmo numero da abertura, que e
-  a prova de que o site nao foi tocado.
-  NENHUMA URL NOVA: as 17 continuam 17 e nao houve Sync — nada do que este bloco mexeu e conteudo
-  publicavel (secao 4).
-  O QUE DEPENDE DO RAPHAEL, e nada disto e da Fundacao: (1) dar acesso de LEITURA a conta sentinela@ em
-  sc-domain:clubedomosaico.com.br; (2) autorizar, ou nao, a proposta de 301 de http para https em TODO
-  caminho, escrita em dados/indexacao.md e NAO APLICADA; (3) acrescentar dominio de fabricante a rede
-  Personalizada do ambiente (20.1), que sobe o banco inteiro de nivel 3 para nivel 1 e resolve a coleta
-  da base junto; (4) NOVO — decidir os dois valores novos de vocabularios.base (ceramica_crua_barro e
-  isopor_eps), DEPOIS da leitura de 30/09, porque a mudanca toca a melhor pagina da ilha.
-  DE PASSAGEM, UMA MEDICAO QUE DESMENTE UMA INSTRUCAO DO PROPRIO REPOSITORIO: o item 4 da fila diz que a
-  linha da peca no ARVORE.md e 'conserto de TESTE, nao de documento'. Medido com a bancada servindo a peca
-  de verdade: o mapa ganha a chave `quadro-flores-do-campo` — SLUG NU, nivel 2, mae loja — e NAO
-  `loja/quadro-flores-do-campo`. Toda outra entrada de nivel 2 ou 3 e chaveada pelo CAMINHO INTEIRO; a peca
-  e a unica pelo slug nu, porque o filtro cdm_arvore da Loja escreve $mapa[$peca->post_name]. Na tela
-  funciona (quem pede a trilha da peca passa o post_name); o que nao funciona e escrever a peca numa tabela
-  LIDA POR CAMINHO. Isso deixa de ser conserto e vira DECISAO, e as duas saidas mexem em coisa que esta
-  servindo — nao foi executado, e esta escrito na secao 5 do ARVORE.md.
-  PROXIMO PASSO: a categoria APOIO, a ultima das cinco e a unica ainda sem decisao de campo nenhuma — e
-  a de menor risco de egresso, porque espatula, oculos e luva sao EPI e ferramenta do mesmo terreno da
-  alicate, que saiu de zero por busca. A base espera a decisao do vocabulario e o egresso de fabricante,
-  nessa ordem. E o BLOCO A do despacho de 24/09 continua esperando 30/09.
-
+  A CATEGORIA APOIO RECEBE A DECISAO DE CAMPO, E COM ELA NENHUMA DAS SETE FICA SEM A SUA. Esquema na
+  versao 6: regras_da_categoria_apoio (o objeto `servico`, irmao do corte/protecao/substrato),
+  ponte_do_tipo_de_apoio_para_o_ramo (os seis tipos divididos em ferramenta x EPI) e
+  exigencias_de_apoio_ja_declaradas_no_banco. Portao no validar-banco.py, bateria nova
+  ferramentas/mutacoes-apoio.py com 24 de 24 reprovadas e 24 de 24 so o portao novo viu. Casca 1.15.0
+  intocada, manifest 44, conferir-no-ar 488 afirmacoes e 0 falha no ar — o mesmo numero da abertura, que
+  e a prova de que o site nao foi tocado.
+  A FORQUILHA QUE DECIDE A CATEGORIA INTEIRA, e ela nao e arrumacao: espatula, desempenadeira, pinca e
+  marcador agem sobre o MATERIAL e o erro deles estraga a PECA; oculos e luva agem sobre a PESSOA e o
+  erro deles machuca quem monta. Uma lista so poria luva ao lado de desempenadeira como se a escolha
+  fosse do mesmo tipo. E a assimetria de custo da secao 10 aplicada a um vocabulario que ja existia.
+  O PRECO JA ESTAVA PAGO NO BANCO ANTES DA SECAO EXISTIR, pela segunda vez no mesmo dia: CINCO frases de
+  fabricante, em QUATRO registros de TRES categorias, nomeiam um apoio e nenhuma tinha campo para onde ir.
+  A Pastilhart escreve 'desempenadeira de BORRACHA para nao riscar' no assentamento da AF1500 — e as 13
+  pastilhas do banco sao de vidro. A Cascola escreve 'aplicacao com pincel ou rolo'. A Quartzolit escreve
+  'aplicar com rolo de espuma de poliester'. Foram lidas, classificadas e descartadas em silencio.
+  A CATEGORIA CUJA DECLARACAO VEM DO OUTRO LADO DO BALCAO: quem diz qual desempenadeira usar nao e o
+  fabricante da desempenadeira, e o da PASTILHA. Isso e novo nesta ilha, e por isso o portao mais forte do
+  bloco NAO OLHA registro de apoio nenhum — varre as outras categorias, nas duas direcoes.
+  E O VOCABULARIO E A FRASE DOS FABRICANTES APONTAM PARA LADOS OPOSTOS: dos SEIS tipos que
+  tipo_por_categoria.apoio declara, UM aparece no banco (desempenadeira); dos DOIS termos que mais
+  aparecem no banco (pincel, rolo), ZERO estao no vocabulario. E a intersecao entre
+  tipo_por_categoria.apoio e a propriedade forma_de_aplicacao do acabamento (aerossol, rolo, pincel,
+  trincha) e VAZIA — duas metades contando a mesma coisa sem nunca se falarem.
+  O SILENCIO QUE O BLOCO TRANSFORMOU EM NUMERO: 38 registros, cinco ocorrencias, TODAS no ramo da
+  ferramenta. O ramo do EPI tem ZERO — nenhuma frase do banco nomeia luva ou oculos —, e a F2 recomenda
+  os dois produtos em que a protecao deixa de ser opcional (loctite-durepoxi e quartzolit-rejunte-epoxi).
+  O bloco NAO escreve recomendacao de EPI nenhuma (isso seria afirmar pelo fabricante, secao 8); ele torna
+  `risco_declarado` obrigatorio mesmo null, para a primeira coleta responder 'ninguem declarou' em vez de
+  a pergunta nao ser feita.
+  NENHUM SKU COLETADO, e o motivo e o mesmo canal de sempre: dureza Shore A e norma de EPI moram em PDF de
+  fabricante, e o egresso nao abre PDF. Esta escrito no esquema, em o_que_falta_para_coletar_o_primeiro_SKU.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

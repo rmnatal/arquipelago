@@ -91,6 +91,11 @@ SEM_PORTAO_BASE = os.environ.get("CDM_SEM_PORTAO_BASE") == "1"
 if SEM_PORTAO_BASE:
     print("  ATENCAO: CDM_SEM_PORTAO_BASE=1 — o bloco da categoria base NAO foi medido nesta "
           "passada. So a bateria de mutacao usa isto.")
+SEM_PORTAO_APOIO = os.environ.get("CDM_SEM_PORTAO_APOIO") == "1"
+if SEM_PORTAO_APOIO:
+    print("  ATENCAO: CDM_SEM_PORTAO_APOIO=1 — o bloco da categoria apoio, a ponte do ramo e a "
+          "varredura de apoio declarado NAO foram medidos nesta passada. So a bateria de mutacao "
+          "usa isto.")
 BASES = set(VOC["base"])
 AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
@@ -222,6 +227,44 @@ elif PONTE is not None and not SEM_PORTAO_PONTE:
         if l.get("condicao_cumprida") and normalizar(l.get("literal", "")) not in NAO_TRADUZ:
             erro("ponte / condicionais / %s: condicao cumprida e o termo ja saiu de "
                  "`termos_que_nao_traduzem` — a linha virou historia e nao portao" % l.get("literal"))
+
+
+# ------------------------------------------ A PONTE DO TIPO DE APOIO PARA O RAMO
+# 28/09/2026, com a categoria `apoio`, a ultima das sete a receber decisao de
+# campo. Irma da ponte acima e escrita pelo mesmo motivo — conferir, ANTES do
+# primeiro SKU, se o vocabulario de tipos tem onde pousar —, mas o eixo aqui nao
+# e material: e RAMO. Espatula, desempenadeira, pinca e marcador agem sobre o
+# MATERIAL e o erro deles estraga a PECA; oculos e luva agem sobre a PESSOA e o
+# erro deles machuca quem monta. Uma lista so poria luva ao lado de
+# desempenadeira como se a escolha fosse do mesmo tipo, e nao e.
+PONTE_APOIO = esquema.get("ponte_do_tipo_de_apoio_para_o_ramo")
+if PONTE_APOIO is None and not SEM_PORTAO_APOIO:
+    erro("esquema sem `ponte_do_tipo_de_apoio_para_o_ramo`. Sem ela, luva e desempenadeira viram "
+         "a mesma lista, e as duas nao se escolhem pelo mesmo criterio")
+elif PONTE_APOIO is not None and not SEM_PORTAO_APOIO:
+    RAMOS = set(VOC.get("ramo_do_apoio") or [])
+    if not RAMOS:
+        erro("esquema sem `vocabularios.ramo_do_apoio`")
+    tipos_apoio = PONTE_APOIO.get("tipos")
+    if not isinstance(tipos_apoio, dict):
+        erro("ponte do apoio: `tipos` tem de ser um objeto")
+        tipos_apoio = {}
+    do_voc_apoio = list(VOC["tipo_por_categoria"]["apoio"])
+    faltando = [t for t in do_voc_apoio if t not in tipos_apoio]
+    sobrando = [t for t in tipos_apoio if t not in do_voc_apoio]
+    if faltando:
+        erro("ponte do apoio: tipo sem ramo declarado: %s. Tipo calado aqui e um item que a "
+             "vitrine nao sabe se protege a peca ou a pessoa" % ", ".join(sorted(faltando)))
+    if sobrando:
+        erro("ponte do apoio: tipo declarado que nao existe em `tipo_por_categoria.apoio`: %s"
+             % ", ".join(sorted(sobrando)))
+    for tipo in sorted(set(do_voc_apoio) & set(tipos_apoio)):
+        linha = tipos_apoio[tipo] or {}
+        if linha.get("ramo") not in RAMOS:
+            erro("ponte do apoio / %s: ramo '%s' fora de `vocabularios.ramo_do_apoio`"
+                 % (tipo, linha.get("ramo")))
+        if not linha.get("motivo"):
+            erro("ponte do apoio / %s: ramo sem `motivo`" % tipo)
 
 
 def traduzir(lista, onde):
@@ -760,6 +803,136 @@ for nome in arquivos_material:
                 erro("%s / forma: '%s' fora de `vocabularios.forma_da_base`, que e a lista de formas "
                      "que a F1 calcula" % (onde, fo))
 
+        # ---------------------------------------------------- categoria APOIO
+        # A REGRA ESTA EM `regras_da_categoria_apoio` DO ESQUEMA e nasceu em
+        # 28/09/2026, ANTES do primeiro SKU, como a da base seis horas antes.
+        #
+        # O QUE ESTE PORTAO MEDE que nenhum outro mede:
+        #  - `servico.ramo` tem de concordar com a ponte NAS DUAS DIRECOES. E a
+        #    trava que a mutacao 05 da base ensinou: ponte consultada so num
+        #    sentido vira documento, e o registro vira a verdade.
+        #  - `material_de_contato` e obrigatorio, e nao e detalhe: a unica frase
+        #    de fabricante do banco que nomeia um apoio nomeia o MATERIAL dele —
+        #    "desempenadeira de borracha para nao riscar". Gravar so
+        #    "desempenadeira" perde a metade da declaracao que decide se a
+        #    pastilha de vidro sai riscada.
+        #  - `etapa` sai de `etapa_da_montagem` e NAO de `momento_de_uso`: aquele
+        #    vocabulario nao tem valor para o ato de COLAR, porque nasceu para o
+        #    acabamento, que por definicao nunca cola.
+        #  - `risco_declarado` e OBRIGATORIO mesmo null, pelo mesmo motivo que
+        #    `contato_com_alimento` no acabamento e `absorcao_declarada` na base:
+        #    e a pergunta que o campo ausente faz ninguem fazer, e aqui ela e a
+        #    pergunta de quem esta com epoxi na mao.
+        if m.get("categoria") == "apoio" and not SEM_PORTAO_APOIO:
+            sv = m.get("servico")
+            if not sv:
+                erro("%s: apoio sem o objeto `servico`" % onde)
+            else:
+                literal = sv.get("literal_do_fabricante") or ""
+                if not literal:
+                    erro("%s / servico: sem `literal_do_fabricante`" % onde)
+                if sv.get("fonte_id") not in fontes:
+                    erro("%s / servico: `fonte_id` nao existe em fontes{}" % onde)
+
+                ramo = sv.get("ramo")
+                if ramo not in set(VOC.get("ramo_do_apoio") or []):
+                    erro("%s / servico: ramo '%s' fora de `vocabularios.ramo_do_apoio`"
+                         % (onde, ramo))
+                else:
+                    na_ponte = ((PONTE_APOIO or {}).get("tipos") or {}).get(m.get("tipo")) or {}
+                    if na_ponte and na_ponte.get("ramo") != ramo:
+                        erro("%s / servico: a ponte diz que o tipo '%s' e do ramo '%s' e o registro "
+                             "gravou '%s'. Ferramenta gravada como EPI some da lista de quem "
+                             "monta e aparece na de quem se protege — e o contrario poe uma luva "
+                             "onde a artesa procura o que encosta na peca"
+                             % (onde, m.get("tipo"), na_ponte.get("ramo"), ramo))
+
+                mat = sv.get("material_de_contato")
+                if mat not in set(VOC.get("material_de_contato_do_apoio") or []):
+                    erro("%s / servico: `material_de_contato` '%s' fora de "
+                         "`vocabularios.material_de_contato_do_apoio`" % (onde, mat))
+                elif mat == "nao_declarado":
+                    if not sv.get("motivo_material_de_contato"):
+                        erro("%s / servico: `material_de_contato` nao declarado e sem "
+                             "`motivo_material_de_contato`" % onde)
+                else:
+                    trecho = sv.get("trecho_que_declara_o_material_de_contato")
+                    if not trecho:
+                        erro("%s / servico: `material_de_contato` '%s' sem "
+                             "`trecho_que_declara_o_material_de_contato`. Material deduzido do "
+                             "nome comercial passa com cara de declaracao do fabricante"
+                             % (onde, mat))
+                    elif trecho not in literal:
+                        erro("%s / servico: `trecho_que_declara_o_material_de_contato` nao e "
+                             "pedaco de `literal_do_fabricante`" % onde)
+
+                etapa = sv.get("etapa")
+                if etapa not in set(VOC.get("etapa_da_montagem") or []):
+                    erro("%s / servico: `etapa` '%s' fora de `vocabularios.etapa_da_montagem`"
+                         % (onde, etapa))
+                elif etapa == "nao_declarada":
+                    if not sv.get("motivo_da_etapa"):
+                        erro("%s / servico: `etapa` nao declarada e sem `motivo_da_etapa`" % onde)
+                else:
+                    trecho = sv.get("trecho_que_declara_a_etapa")
+                    if not trecho:
+                        erro("%s / servico: `etapa` '%s' sem `trecho_que_declara_a_etapa`. Etapa "
+                             "deduzida do mecanismo do produto e deducao com cara de declaracao"
+                             % (onde, etapa))
+                    elif trecho not in literal:
+                        erro("%s / servico: `trecho_que_declara_a_etapa` nao e pedaco de "
+                             "`literal_do_fabricante`" % onde)
+
+                nomeia = sv.get("tesselas_do_vocabulario_que_a_frase_nomeia")
+                nao = sv.get("tesselas_do_vocabulario_que_a_frase_NAO_nomeia")
+                if not isinstance(nomeia, list) or not isinstance(nao, list):
+                    erro("%s / servico: as duas listas de tessela tem de existir e ser listas" % onde)
+                else:
+                    juntos = list(nomeia) + list(nao)
+                    if len(juntos) != len(set(juntos)):
+                        erro("%s / servico: tessela repetida entre as duas listas" % onde)
+                    inteiro = set(VOC["material_tessela"])
+                    faltam = sorted(inteiro - set(juntos))
+                    sobram = sorted(set(juntos) - inteiro)
+                    if faltam:
+                        erro("%s / servico: as duas listas de tessela nao cobrem o vocabulario — "
+                             "ficou de fora: %s. O que nao entra em nenhuma das duas e silencio "
+                             "NAO LIDO" % (onde, ", ".join(faltam)))
+                    if sobram:
+                        erro("%s / servico: tessela fora do vocabulario: %s"
+                             % (onde, ", ".join(sobram)))
+
+                if not isinstance(sv.get("age_sobre_rejunte"), bool):
+                    erro("%s / servico: `age_sobre_rejunte` tem de ser true ou false. A unica "
+                         "ocorrencia de apoio medida no banco declara a desempenadeira para "
+                         "REMOVER O EXCESSO DE REJUNTE, e rejunte nao e valor de `material_tessela` "
+                         "nem de `base` — sem este campo a pergunta nao e feita a registro nenhum"
+                         % onde)
+
+            decl = m.get("declaracoes") or {}
+            preenchidas = sorted(k for k, v in decl.items() if v)
+            if preenchidas:
+                erro("%s / declaracoes: apoio tem de nascer com as listas VAZIAS e preencheu %s. "
+                     "A matriz base x ambiente e o eixo pelo qual a F2 escolhe COLA, e uma "
+                     "desempenadeira ali dentro vira candidata a colar peca"
+                     % (onde, ", ".join(preenchidas)))
+            elif not m.get("motivo_declaracoes_vazias"):
+                erro("%s: apoio com `declaracoes` vazias e sem `motivo_declaracoes_vazias`" % onde)
+
+            props = m.get("propriedades") or {}
+            nomes_fixos = set(esquema["regras_da_categoria_apoio"]
+                              ["as_propriedades_tem_NOME_FIXO_e_esta_e_a_lista"]["nomes"].keys())
+            for pnome in props:
+                if pnome not in nomes_fixos:
+                    erro("%s / %s: propriedade de apoio com nome fora da lista fixa do esquema. "
+                         "Nome livre e o que faz a segunda execucao gravar `dureza` onde a "
+                         "primeira gravou `dureza_shore_a`" % (onde, pnome))
+            if "risco_declarado" not in props:
+                erro("%s: apoio sem `risco_declarado`. O campo e obrigatorio mesmo quando o "
+                     "fabricante nao declara nada — no EPI e o risco de que o item protege, na "
+                     "ferramenta e o dano que ela pode causar a peca, e a ilha recomenda epoxi "
+                     "sem uma unica declaracao de protecao no banco" % onde)
+
     # o cabecalho do arquivo declara numeros; eles tem que bater com a contagem
     dec_link = (arq.get("afiliado") or {}).get("itens_esperando_link")
     dec_img = (arq.get("imagens") or {}).get("itens_sem_imagem")
@@ -803,6 +976,199 @@ for nome in arquivos_material:
         elif declarado != conta:
             erro("%s: cabecalho declara %s em `%s`, o arquivo tem %s"
                  % (nome, declarado, campo, conta))
+
+
+# ------------------ A VARREDURA DO APOIO DECLARADO PELO RESTO DO BANCO (28/09/2026)
+# A categoria `apoio` e a unica cuja declaracao que mais importa vem DO OUTRO LADO
+# DO BALCAO: nao e o fabricante da desempenadeira que diz qual desempenadeira usar,
+# e o fabricante da PASTILHA. A Pastilhart escreve "desempenadeira de borracha para
+# nao riscar" no assentamento da AF1500, e as 13 pastilhas do banco sao de vidro.
+#
+# O preco ja estava pago antes desta secao existir, igual ao que aconteceu com a
+# `base` na mesma manha: CINCO frases, em QUATRO registros de TRES categorias,
+# nomeiam um apoio — e nenhuma tinha campo para onde ir. Foram lidas, classificadas
+# e descartadas em silencio.
+#
+# O portao anda nas DUAS direcoes, como as duas listas de vocabulario do `servico`:
+# ocorrencia encontrada tem de estar listada, e ocorrencia listada tem de ser
+# encontrada. Sem a segunda metade, uma linha sobreviveria a saida do registro que
+# a sustentava, e a secao viraria o "resumo velho lido como fato" da secao 4 do
+# contrato.
+IND_APOIO = esquema.get("exigencias_de_apoio_ja_declaradas_no_banco")
+if IND_APOIO is None and not SEM_PORTAO_APOIO:
+    erro("esquema sem `exigencias_de_apoio_ja_declaradas_no_banco`. Sem ela, frase de fabricante "
+         "que nomeia ferramenta de apoio continua sendo lida e jogada fora sem ninguem ver")
+elif IND_APOIO is not None and not SEM_PORTAO_APOIO:
+    ESTADOS_DO_TERMO = ("pousa", "sem_valor_no_vocabulario", "nao_e_ferramenta")
+    TIPOS_APOIO = set(VOC["tipo_por_categoria"]["apoio"])
+    vigiados = IND_APOIO.get("termos_vigiados")
+    if not isinstance(vigiados, dict) or not vigiados:
+        erro("varredura de apoio: `termos_vigiados` tem de ser um objeto nao vazio")
+        vigiados = {}
+    campos_fab = IND_APOIO.get("campos_que_carregam_frase_de_fabricante")
+    if not isinstance(campos_fab, list) or not campos_fab:
+        erro("varredura de apoio: `campos_que_carregam_frase_de_fabricante` tem de ser uma lista "
+             "nao vazia. Varrer o registro inteiro leria a nossa propria `observacao` como se "
+             "fosse frase de fabricante")
+        campos_fab = []
+
+    for termo, linha in sorted(vigiados.items()):
+        linha = linha or {}
+        est = linha.get("estado")
+        if est not in ESTADOS_DO_TERMO:
+            erro("varredura de apoio / %s: estado '%s' fora da lista (%s)"
+                 % (termo, est, ", ".join(ESTADOS_DO_TERMO)))
+            continue
+        if est == "pousa":
+            if linha.get("tipo_de_apoio") not in TIPOS_APOIO:
+                erro("varredura de apoio / %s: estado `pousa` apontando para '%s', que nao existe "
+                     "em `tipo_por_categoria.apoio`" % (termo, linha.get("tipo_de_apoio")))
+        elif est == "sem_valor_no_vocabulario":
+            proposto = linha.get("valor_proposto")
+            if not proposto:
+                erro("varredura de apoio / %s: `sem_valor_no_vocabulario` sem `valor_proposto`. "
+                     "Buraco sem nome e buraco que a proxima execucao redescobre do zero" % termo)
+            elif proposto in TIPOS_APOIO:
+                erro("varredura de apoio / %s: `valor_proposto` '%s' JA existe em "
+                     "`tipo_por_categoria.apoio` — entao o termo pousa e o estado esta errado"
+                     % (termo, proposto))
+            if not linha.get("o_que_falta"):
+                erro("varredura de apoio / %s: `sem_valor_no_vocabulario` sem `o_que_falta`" % termo)
+            if not linha.get("motivo"):
+                erro("varredura de apoio / %s: `sem_valor_no_vocabulario` sem `motivo`" % termo)
+        elif est == "nao_e_ferramenta":
+            if not linha.get("onde_ele_e"):
+                erro("varredura de apoio / %s: `nao_e_ferramenta` sem `onde_ele_e`. Termo que nao "
+                     "e apoio tem de dizer onde ele mora, senao a proxima execucao o le como "
+                     "buraco de vocabulario" % termo)
+            if not linha.get("motivo"):
+                erro("varredura de apoio / %s: `nao_e_ferramenta` sem `motivo`" % termo)
+
+    def _frases_do_registro(reg):
+        """So os campos que carregam frase de FABRICANTE. A nossa `observacao` fica de
+        fora de proposito: varrer o registro inteiro leria o nosso julgamento como
+        declaracao, que e a familia do numero de tela digitado."""
+        saida = []
+
+        def anda(obj, caminho):
+            if isinstance(obj, dict):
+                for k, v in obj.items():
+                    anda(v, "%s.%s" % (caminho, k) if caminho else k)
+            elif isinstance(obj, list):
+                for i, v in enumerate(obj):
+                    anda(v, "%s[%d]" % (caminho, i))
+            elif isinstance(obj, str):
+                saida.append((caminho, obj))
+
+        for campo in campos_fab:
+            if campo in reg:
+                anda(reg[campo], campo)
+        return saida
+
+    encontradas = set()
+    for ident, reg in materiais.items():
+        # O REGISTRO DE APOIO FICA DE FORA, e isso e a definicao da secao e nao uma
+        # excecao aberta para caber: o que se mede aqui e declaracao que veio DO
+        # OUTRO LADO DO BALCAO e nao tinha onde morar. A frase de um fabricante de
+        # desempenadeira sobre a propria desempenadeira ja tem campo — e o objeto
+        # `servico`, medido acima, registro por registro.
+        if reg.get("categoria") == "apoio":
+            continue
+        for caminho, texto in _frases_do_registro(reg):
+            alvo_txt = normalizar(texto)
+            for termo in vigiados:
+                if re.search(r"\b%s\b" % re.escape(normalizar(termo)), alvo_txt):
+                    # A CHAVE E (registro, CAMPO, termo) E NAO (registro, termo).
+                    # ACHADO PELA MUTACAO 15, ANTES DO COMMIT: a AF1500 nomeia a
+                    # desempenadeira em DOIS campos, e com a chave por registro
+                    # apagar uma das duas linhas passava verde — a outra cobria a
+                    # que sumiu. A propria secao do esquema ja dizia "a varredura
+                    # mede CAMPO, nao registro"; era prosa, e a prosa e que estava
+                    # certa. Mesma familia da mutacao 05 da base: portao que mede
+                    # numa granularidade e descrito noutra.
+                    encontradas.add((ident, caminho, termo))
+
+    listadas = set()
+    for oc in IND_APOIO.get("ocorrencias") or []:
+        if not isinstance(oc, dict):
+            erro("varredura de apoio: ocorrencia que nao e objeto")
+            continue
+        reg_id = oc.get("registro")
+        termo = oc.get("termo")
+        for campo in ("registro", "arquivo", "categoria", "campo", "termo", "trecho", "o_que_obriga"):
+            if not oc.get(campo):
+                erro("varredura de apoio / %s / %s: ocorrencia sem `%s`"
+                     % (reg_id, termo, campo))
+        if termo not in vigiados:
+            erro("varredura de apoio / %s: ocorrencia com termo '%s' que nao esta em "
+                 "`termos_vigiados` — termo nao vigiado nao e medido em registro nenhum"
+                 % (reg_id, termo))
+        if reg_id not in materiais:
+            erro("varredura de apoio: ocorrencia aponta para o registro '%s', que nao existe no "
+                 "banco. Linha que sobrevive ao registro que a sustentava e resumo velho lido "
+                 "como fato" % reg_id)
+        listadas.add((reg_id, oc.get("campo"), termo))
+
+    for ident, campo, termo in sorted(encontradas - listadas):
+        erro("varredura de apoio: o registro '%s' nomeia '%s' em `%s`, que e frase de fabricante, "
+             "e a ocorrencia NAO esta em "
+             "`exigencias_de_apoio_ja_declaradas_no_banco.ocorrencias`. Declaracao lida e jogada "
+             "fora por falta de campo nosso e o buraco que esta secao existe para fechar"
+             % (ident, termo, campo))
+    for ident, campo, termo in sorted(listadas - encontradas):
+        if ident in materiais:
+            erro("varredura de apoio: a ocorrencia '%s / %s / %s' esta listada e a varredura NAO a "
+                 "encontra mais. Ou a frase do fabricante mudou, ou o termo saiu dos vigiados — "
+                 "nos dois casos a lista virou historia e parou de ser portao"
+                 % (ident, campo, termo))
+
+    # (2) PROPOSTA DE VALOR NOVO TEM DE SER SUSTENTADA POR FRASE, NAO POR UM CAMPO
+    # DE VALOR QUE NOS MESMOS CRIAMOS. ACHADO PELA MUTACAO 20, ANTES DO COMMIT.
+    # `aerossol` aparece uma vez so no banco, e aparece em
+    # `propriedades.forma_de_aplicacao.valor` — que e um slot do NOSSO esquema, nao
+    # uma frase do fabricante. Trocar o estado dele para
+    # `sem_valor_no_vocabulario` passava verde, e a proxima execucao criaria um
+    # tipo de apoio chamado aerossol, que e EMBALAGEM e nao ferramenta. Os termos
+    # que de fato propoem valor novo — `pincel` e `rolo` — aparecem em `preparo` e
+    # em `literal_do_fabricante`, que sao prosa de fabricante. `literal_do_fabricante`
+    # e a viga deste esquema inteiro; propor crescimento de vocabulario a partir de
+    # um campo nosso e a mesma familia do numero de tela digitado.
+    por_termo = {}
+    for ident, campo, termo in encontradas:
+        por_termo.setdefault(termo, set()).add(campo)
+
+    def _e_frase(campo):
+        partes = (campo or "").split(".")
+        return not (len(partes) == 3 and partes[0] == "propriedades" and partes[2] == "valor")
+
+    for termo, linha in sorted(vigiados.items()):
+        if (linha or {}).get("estado") != "sem_valor_no_vocabulario":
+            continue
+        campos_do_termo = por_termo.get(termo) or set()
+        if campos_do_termo and not any(_e_frase(c) for c in campos_do_termo):
+            erro("varredura de apoio / %s: o termo propoe valor novo para "
+                 "`tipo_por_categoria.apoio` e so aparece em campo de VALOR do nosso proprio "
+                 "esquema (%s), nunca numa frase de fabricante. Vocabulario que cresce a partir "
+                 "de um slot nosso nao esta lendo declaracao nenhuma — e o que separa `pincel` e "
+                 "`rolo`, que a Cascola e a Quartzolit escrevem em prosa, de `aerossol`, que so "
+                 "existe porque nos criamos o campo `forma_de_aplicacao`"
+                 % (termo, ", ".join(sorted(campos_do_termo))))
+
+    # A REGRA DE CRESCIMENTO DO VOCABULARIO DE MATERIAL DE CONTATO. `borracha` e
+    # `espuma` existem porque DUAS frases de fabricante as declaram (a AF1500 e o
+    # verniz de pisos). Um terceiro valor so pode nascer com a terceira frase:
+    # vocabulario que cresce por previsao vira promessa vazia.
+    declarados = {oc.get("material_de_contato_declarado")
+                  for oc in (IND_APOIO.get("ocorrencias") or []) if isinstance(oc, dict)}
+    declarados |= {(reg.get("servico") or {}).get("material_de_contato")
+                   for reg in materiais.values() if reg.get("categoria") == "apoio"}
+    for valor in VOC.get("material_de_contato_do_apoio") or []:
+        if valor == "nao_declarado":
+            continue
+        if valor not in declarados:
+            erro("varredura de apoio: `material_de_contato_do_apoio` traz '%s' e nenhuma frase de "
+                 "fabricante do banco o declara, nem ha registro de apoio que o use. Vocabulario "
+                 "que cresce por previsao vira promessa vazia" % valor)
 
 
 # ------------------------------------------- as cinco regras de elegibilidade

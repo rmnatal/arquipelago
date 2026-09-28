@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 5,
+  "versao_esquema": 6,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -240,6 +240,23 @@
       "disco",
       "esfera",
       "moldura",
+      "nao_declarada"
+    ],
+    "ramo_do_apoio": [
+      "ferramenta_de_aplicacao",
+      "equipamento_de_protecao_individual"
+    ],
+    "material_de_contato_do_apoio": [
+      "borracha",
+      "espuma",
+      "nao_declarado"
+    ],
+    "etapa_da_montagem": [
+      "cortar",
+      "colar",
+      "rejuntar",
+      "limpar",
+      "acabar",
       "nao_declarada"
     ]
   },
@@ -2929,5 +2946,225 @@
       }
     ],
     "por_que_a_condicao_nao_manda_ninguem_para_o_silencio": "Silencio e 'o fabricante nao falou desta superficie'. Aqui ele falou, e falou uma coisa que esta combinacao nao cumpre. Sao causas diferentes, entao sao grupos diferentes e frases diferentes — secao 7 do ARQUIPELAGO.md, a regra que nasceu nesta mesma ilha em 12/09/2026 depois de a F2 misturar duas causas numa frase so."
+  },
+  "regras_da_categoria_apoio": {
+    "escrita_em": "2026-09-28",
+    "por_que_esta_secao_existe": "Em 25/09/2026 a `regras_da_categoria_acabamento` nasceu dizendo, com essas palavras, que `base` e `apoio` continuavam sem a sua. A `base` recebeu a dela em 28/09 de manha. Esta e a ULTIMA das tres, e com ela nenhuma das sete categorias de `vocabularios.categoria_material` fica sem decisao de campo escrita.",
+    "o_que_e_um_apoio_nesta_ilha": "Ferramenta ou equipamento que a artesa usa durante a montagem e que NAO corta (isso e `alicate`), NAO adere (cola), NAO preenche a junta (rejunte), NAO protege a peca pronta (acabamento) e NAO e a peca (base). Os seis tipos de `tipo_por_categoria.apoio` sao espatula, desempenadeira, oculos, luva, pinca e marcador.",
+    "A_FORQUILHA_QUE_DECIDE_A_CATEGORIA_INTEIRA": {
+      "a_regra": "`apoio` e a unica categoria desta ilha cujos tipos se dividem em dois ramos que nao se comparam entre si, e a divisao nao e de arrumacao: ela muda O QUE O ERRO CUSTA. Espatula, desempenadeira, pinca e marcador agem sobre o MATERIAL — errar neles estraga a PECA. Oculos e luva agem sobre a PESSOA — errar neles machuca QUEM MONTA. Vocabulario `ramo_do_apoio`, e a ponte `ponte_do_tipo_de_apoio_para_o_ramo` declara o ramo de cada um dos seis tipos, sem deixar nenhum calado.",
+      "por_que_isso_e_portao_e_nao_arrumacao": "Uma unica lista de 'apoios' na vitrine poria luva ao lado de desempenadeira como se a escolha fosse do mesmo tipo. Nao e: desempenadeira se escolhe pelo que ela toca, luva se escolhe pelo que ela impede de tocar em voce. A secao 10 do ARQUIPELAGO.md chama isso de assimetria de custo, e a regra desta ilha e que quem separa as duas causas no codigo separa as duas no texto."
+    },
+    "a_matriz_base_x_ambiente_fica_VAZIA_e_o_motivo": "Pelo mesmo motivo que em pastilha (12/09), alicate (25/09), acabamento (25/09) e base (28/09): `declaracoes` e estruturada em base x ambiente, que e o eixo pelo qual a F2 escolhe COLA e REJUNTE. Apoio nao adere nada a nada. Uma desempenadeira com `indicado_para` preenchido entraria na traducao do mapa de termos e viraria candidata a colar peca. Todo registro de apoio nasce com as seis listas VAZIAS e com `motivo_declaracoes_vazias` escrito, e isso e PORTAO.",
+    "o_campo_novo_e_o_objeto_servico": {
+      "nome": "servico",
+      "obrigatorio_para": [
+        "apoio"
+      ],
+      "espelha": "O `corte` do alicate, a `protecao` do acabamento e o `substrato` da base, e pelo mesmo motivo dos tres: a declaracao do fabricante e uma FRASE, e o que importa e quais valores do vocabulario desta ilha ela nomeia e quais ela NAO nomeia.",
+      "subcampos": {
+        "literal_do_fabricante": "A frase do fabricante, na lingua dele, sem parafrase. Obrigatorio.",
+        "fonte_id": "Aponta para uma chave de `fontes`. Obrigatorio.",
+        "ramo": "Vocabulario `ramo_do_apoio`. Tem de concordar com `ponte_do_tipo_de_apoio_para_o_ramo` para o `tipo` do registro, nas DUAS direcoes — a ponte manda no registro e o registro nao pode desmentir a ponte em silencio. E a trava que a mutacao 05 da categoria base ensinou.",
+        "material_de_contato": "Vocabulario `material_de_contato_do_apoio`: o material da parte que ENCOSTA na peca. Nao e o material do cabo nem o do produto inteiro (isso e a propriedade `material_declarado`). Quando o fabricante nao declara, e `nao_declarado` e `motivo_material_de_contato` diz por que. POR QUE ESTE CAMPO EXISTE, e ele e o achado desta secao: a unica frase de fabricante do banco inteiro que nomeia um apoio nao nomeia so a ferramenta — a Pastilhart escreve 'desempenadeira de BORRACHA para nao riscar'. O que decide se a pastilha de vidro sai riscada nao e a ferramenta, e o material dela. Gravar 'desempenadeira' e perder exatamente a metade da declaracao que importa.",
+        "trecho_que_declara_o_material_de_contato": "Obrigatorio quando `material_de_contato` NAO e `nao_declarado`, e tem de ser pedaco literal de `literal_do_fabricante`. Herdado da mutacao 05 do acabamento e da 03 da base: material deduzido do nome comercial passa com cara de declaracao.",
+        "motivo_material_de_contato": "Obrigatorio quando `material_de_contato` e `nao_declarado`.",
+        "etapa": "Vocabulario `etapa_da_montagem`. POR QUE NAO REUSA `momento_de_uso`, que ja existe: aquele vocabulario nasceu para o acabamento e tem `antes_de_colar`, `depois_de_rejuntar` e `ambos` — ele nao tem valor para o ato de COLAR, porque acabamento, por definicao, nunca cola. E a Cascola declara o pincel e o rolo exatamente para colar. Reusar o vocabulario do acabamento aqui obrigaria todo aplicador de cola a responder a uma pergunta que nao e a dele, e a resposta menos errada seria falsa. Vocabulario novo, com o motivo escrito, em vez de valor torcido para caber.",
+        "trecho_que_declara_a_etapa": "Obrigatorio quando `etapa` NAO e `nao_declarada`, pedaco literal da frase. Mesma familia do trecho acima.",
+        "motivo_da_etapa": "Obrigatorio quando `etapa` e `nao_declarada`.",
+        "tesselas_do_vocabulario_que_a_frase_nomeia": "Lista, valores de `vocabularios.material_tessela`.",
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": "Lista, o complemento da anterior dentro de `vocabularios.material_tessela`. As duas juntas tem de cobrir o vocabulario inteiro: o que sobra e silencio NAO LIDO, e silencio nao lido e como faixa descoberta fica invisivel.",
+        "age_sobre_rejunte": "Booleano. Irmao do `nomeia_rejunte` do acabamento, e aqui ele vale ainda mais: a unica ocorrencia medida no banco (`pastilhart-af1500`) declara a desempenadeira para REMOVER O EXCESSO DE REJUNTE, e rejunte nao e valor de `material_tessela` nem de `base`. Sem este campo a pergunta nunca seria feita a registro nenhum.",
+        "observacao": "Onde mora o julgamento de quem escreveu, separado da frase do fabricante."
+      }
+    },
+    "as_propriedades_tem_NOME_FIXO_e_esta_e_a_lista": {
+      "por_que": "O de sempre desde 25/09/2026: propriedade de nome livre e o que faz a segunda execucao gravar `dureza` onde a primeira gravou `dureza_shore_a`, e ai nenhuma regua compara dois registros.",
+      "formato": "{valor, unidade, fonte_id, declarado_como} quando ha valor; {valor: null, unidade, motivo} quando nao ha. O validar-banco ja cobra os dois.",
+      "nomes": {
+        "comprimento_cm": "Comprimento util declarado, cm.",
+        "largura_cm": "Largura da lamina ou da face de trabalho, cm.",
+        "espessura_mm": "Espessura da lamina, mm.",
+        "peso_g": "Peso do item, g.",
+        "dureza_shore_a": "Dureza da borracha, escala Shore A. E a propriedade que sustenta 'para nao riscar': borracha mole nao risca vidro, borracha dura risca. So faz sentido quando `material_de_contato` e `borracha` ou `espuma`.",
+        "material_declarado": "O material do produto INTEIRO na palavra do fabricante (cabo de madeira com lamina de aco). Nao confundir com `material_de_contato`, que e so a parte que encosta na peca.",
+        "norma_declarada": "Norma ou certificado que o fabricante cita (CA do Ministerio do Trabalho, ABNT NBR, EN 166). So aparece no ramo `equipamento_de_protecao_individual`; fica ausente no outro ramo, e isso NAO e falta.",
+        "tamanho_declarado": "P, M, G ou numeracao, como o fabricante escrever. Luva e oculos.",
+        "reutilizavel": "sim | nao, quando o fabricante declarar.",
+        "risco_declarado": "OBRIGATORIO em todo registro de apoio, mesmo (e principalmente) quando for null. No ramo do EPI e o risco de que o item protege; no ramo da ferramenta e o dano que ela pode causar a peca. E irmao do `contato_com_alimento` do acabamento e da `absorcao_declarada` da base: a pergunta que o campo ausente faz ninguem fazer. Ver `o_silencio_que_esta_secao_mediu` em `exigencias_de_apoio_ja_declaradas_no_banco`."
+      }
+    },
+    "o_que_esta_categoria_NAO_pode_sustentar": "Apoio NAO entra na matriz da F2 e NAO entra em formula publicada da F1: ele nao adere, nao preenche e nao tem area. O lugar dele e a vitrine do Guia e a lista de materiais dos tutoriais da Escola. E medida colhida em anuncio de marketplace continua sendo nivel 6, que sustenta preco, unidade e imagem — nunca a dureza Shore A nem a norma, que sao o que faz a recomendacao valer.",
+    "o_que_falta_para_coletar_o_primeiro_SKU": {
+      "estado_em_2026_09_28": "Nenhum SKU de apoio coletado. A decisao de campo saiu inteira, com portao e bateria.",
+      "o_que_o_canal_alcanca": "Espatula, desempenadeira, pinca, oculos e luva sao do mesmo terreno da categoria `alicate`, que saiu de zero em 25/09 por BUSCA restrita ao dominio do fabricante (nivel 3) com o egresso direto fechado. O canal existe e ja foi exercido nesta ilha.",
+      "o_que_ele_nao_alcanca": "`dureza_shore_a` e `norma_declarada` quase nunca estao na pagina de produto: moram em ficha tecnica em PDF, e PDF de fabricante e o que o egresso desta nuvem nao abre (medido de novo em 28/09, tres passadas). Entao o primeiro SKU pode nascer sem as duas, com `motivo` escrito, e NAO pode nascer sem `literal_do_fabricante` e sem `risco_declarado` — que e o campo que essa falta torna obrigatorio."
+    },
+    "a_trava_que_a_bateria_de_mutacao_achou_antes_do_commit": {
+      "quantas": "Duas, as duas antes do commit, e as duas no portao NOVO e nao no esquema antigo.",
+      "a_primeira_mutacao_15": {
+        "o_defeito": "A varredura de `exigencias_de_apoio_ja_declaradas_no_banco` comparava os dois lados por (registro, termo). A AF1500 nomeia a desempenadeira em DOIS campos — `propriedades.assentamento_recomendado.declarado_como` e `preparo` —, entao apagar UMA das duas linhas passava verde: a outra cobria a que sumiu.",
+        "por_que_ela_e_cara": "O texto da propria secao ja dizia, com essas palavras, 'a varredura mede CAMPO, nao registro'. A prosa estava certa e o codigo nao a cumpria — e e exatamente a familia da mutacao 05 da base, seis horas antes: portao que mede numa granularidade e descrito noutra. Prosa certa sobre codigo errado e pior que prosa errada, porque quem le acredita.",
+        "o_conserto": "A chave dos dois conjuntos passou a ser (registro, campo, termo)."
+      },
+      "a_segunda_mutacao_20": {
+        "o_defeito": "Trocar o estado de `aerossol` de `nao_e_ferramenta` para `sem_valor_no_vocabulario` passava verde, porque a troca satisfazia todos os campos que aquele estado exige. A proxima execucao criaria um tipo de apoio chamado `aerossol`, que e EMBALAGEM e nao ferramenta.",
+        "o_que_separa_aerossol_de_pincel_e_rolo_e_e_medivel": "ONDE o termo aparece. `pincel` e `rolo` aparecem em `preparo` e em `protecao.literal_do_fabricante` — prosa escrita pelo fabricante. `aerossol` aparece uma vez so, em `propriedades.forma_de_aplicacao.valor`, que e um SLOT DO NOSSO ESQUEMA. Propor crescimento de vocabulario a partir de um campo que nos mesmos criamos nao e ler declaracao nenhuma: e a mesma familia do numero de tela digitado.",
+        "o_conserto": "Termo em `sem_valor_no_vocabulario` tem de aparecer em pelo menos um campo que NAO seja `propriedades.<nome>.valor`. `literal_do_fabricante` e a viga deste esquema inteiro, e agora o crescimento do vocabulario tambem se apoia nela."
+      }
+    }
+  },
+  "ponte_do_tipo_de_apoio_para_o_ramo": {
+    "escrita_em": "2026-09-28",
+    "por_que_esta_secao_existe": "Irma da `ponte_do_tipo_para_o_vocabulario_base`, escrita seis horas depois dela e pelo mesmo motivo: antes de coletar um SKU, conferir se o vocabulario de tipos desta categoria tem onde pousar. Aqui o eixo nao e material, e RAMO — e a diferenca entre os dois ramos e a diferenca entre estragar a peca e machucar a pessoa.",
+    "o_eixo": "`vocabularios.ramo_do_apoio`, dois valores.",
+    "a_regra": "Todo valor de `vocabularios.tipo_por_categoria.apoio` declara AQUI o seu ramo, com motivo, e nenhum fica calado. Isto e PORTAO: o `validar-banco.py` reprova tipo ausente, tipo a mais, ramo fora do vocabulario e ramo sem motivo — e reprova registro cujo `servico.ramo` discorde da ponte.",
+    "tipos": {
+      "espatula": {
+        "ramo": "ferramenta_de_aplicacao",
+        "motivo": "Espalha cola e rejunte sobre a base. Age sobre o material; o erro dela estraga a peca."
+      },
+      "desempenadeira": {
+        "ramo": "ferramenta_de_aplicacao",
+        "motivo": "E O UNICO TIPO DESTA CATEGORIA QUE UM FABRICANTE DO BANCO JA NOMEOU: a Pastilhart declara 'desempenadeira de borracha para nao riscar' no assentamento da AF1500. Age sobre o rejunte e sobre a face da pastilha, que sao as duas superficies expostas da peca pronta."
+      },
+      "pinca": {
+        "ramo": "ferramenta_de_aplicacao",
+        "motivo": "Posiciona a tessela. Age sobre o material. Nao confundir com `pinca_mosaico`, que e um valor de `tipo_por_categoria.alicate` e CORTA — sao duas ferramentas com quase o mesmo nome em categorias diferentes, e e por isso que o ramo fica escrito e nao subentendido."
+      },
+      "marcador": {
+        "ramo": "ferramenta_de_aplicacao",
+        "motivo": "Risca o desenho na base antes de colar. Age sobre a base — e, no unico caso em que a base e transparente (vidro, espelho), a marca fica visivel pelo outro lado depois de pronta."
+      },
+      "oculos": {
+        "ramo": "equipamento_de_protecao_individual",
+        "motivo": "Protege o olho do estilhaco do corte. O risco nao vem deste item: vem da categoria `alicate`, que tem seis SKUs no banco, e do epoxi, que tem dois. Este e o ramo em que o erro nao estraga a peca."
+      },
+      "luva": {
+        "ramo": "equipamento_de_protecao_individual",
+        "motivo": "Protege a mao do corte e do contato quimico. Mesmo raciocinio do oculos, e com a mesma origem de risco fora da propria categoria."
+      }
+    },
+    "o_que_esta_ponte_mediu_no_dia_em_que_nasceu": "Seis tipos, QUATRO no ramo da ferramenta e DOIS no ramo do EPI. E os dois ramos entram no banco com zero SKU e com um desequilibrio que so aparece cruzando com as outras categorias: o ramo da ferramenta tem UMA declaracao de fabricante a sustenta-lo (a desempenadeira da AF1500) e o ramo do EPI tem ZERO em 38 registros. Ver `exigencias_de_apoio_ja_declaradas_no_banco`."
+  },
+  "exigencias_de_apoio_ja_declaradas_no_banco": {
+    "escrita_em": "2026-09-28",
+    "por_que_esta_secao_existe": "A categoria `apoio` e a unica do banco cuja declaracao que mais importa vem DO OUTRO LADO DO BALCAO: nao e o fabricante da desempenadeira que diz qual desempenadeira usar, e o fabricante da PASTILHA. Isso e novo nesta ilha e nao tinha onde ser guardado. E o preco ja estava pago no banco antes desta secao existir, exatamente como aconteceu com a `base` seis horas antes: CINCO frases de fabricante, em QUATRO registros de tres categorias diferentes, nomeiam um apoio — e nenhuma tinha campo para onde ir. Foram lidas, classificadas e descartadas em silencio.",
+    "como_se_mede": "O `validar-banco.py` varre os registros das OUTRAS categorias — os de `apoio` ficam de fora, e isso e a definicao da secao e nao uma excecao: aqui se mede declaracao que veio DO OUTRO LADO DO BALCAO e nao tinha onde morar; a frase de um fabricante de desempenadeira sobre a propria desempenadeira ja tem campo, que e o objeto `servico`. Dentro de cada registro a varredura le apenas os campos de `campos_que_carregam_frase_de_fabricante` (a nossa `observacao` fica de fora de proposito: varrer o registro inteiro leria o nosso julgamento como declaracao), normaliza o texto e procura cada chave de `termos_vigiados` com fronteira de palavra. Toda ocorrencia encontrada tem de estar listada em `ocorrencias`, e toda ocorrencia listada tem de ser encontrada. As duas direcoes, como as duas listas de vocabulario do `servico`: sem a segunda, uma linha antiga sobreviveria a saida do registro que a sustentava.",
+    "campos_que_carregam_frase_de_fabricante": [
+      "declaracoes",
+      "preparo",
+      "protecao",
+      "substrato",
+      "corte",
+      "propriedades"
+    ],
+    "termos_vigiados": {
+      "desempenadeira": {
+        "estado": "pousa",
+        "tipo_de_apoio": "desempenadeira"
+      },
+      "espatula": {
+        "estado": "pousa",
+        "tipo_de_apoio": "espatula"
+      },
+      "luva": {
+        "estado": "pousa",
+        "tipo_de_apoio": "luva"
+      },
+      "luvas": {
+        "estado": "pousa",
+        "tipo_de_apoio": "luva"
+      },
+      "oculos": {
+        "estado": "pousa",
+        "tipo_de_apoio": "oculos"
+      },
+      "pincel": {
+        "estado": "sem_valor_no_vocabulario",
+        "valor_proposto": "pincel",
+        "motivo": "`pincel` NAO esta em `vocabularios.tipo_por_categoria.apoio`, e mesmo assim e um dos dois aplicadores que uma cola do banco declara por escrito. O vocabulario de apoio e a frase dos fabricantes apontam para lados opostos: dos seis tipos que o vocabulario tem, UM aparece no banco; dos dois termos que mais aparecem no banco, ZERO estao no vocabulario.",
+        "o_que_falta": "O valor nasce junto com o primeiro SKU que o use, nunca antes — vocabulario que cresce por previsao vira promessa vazia. Acrescentar `pincel` e `rolo` a `tipo_por_categoria.apoio` NAO muda nada do que o site serve hoje (nenhuma pagina le `tipo_por_categoria`, e a categoria tem zero itens), entao isto NAO e a espera da leitura de 30/09 que trava o vocabulario da `base`: e a regra de crescimento, e so."
+      },
+      "rolo": {
+        "estado": "sem_valor_no_vocabulario",
+        "valor_proposto": "rolo",
+        "motivo": "Mesmo caso do `pincel`, e com uma agravante que o torna mais caro: o rolo e declarado por DOIS fabricantes diferentes, em duas categorias diferentes (a cola PVA da Cascola e o verniz de pisos da Quartzolit), e o segundo declara ate o MATERIAL da face — 'rolo de espuma de poliester'.",
+        "o_que_falta": "O mesmo do `pincel`: nasce com o primeiro SKU."
+      },
+      "aerossol": {
+        "estado": "nao_e_ferramenta",
+        "motivo": "Aerossol e EMBALAGEM, nao ferramenta: quem aplica e a propria lata. Ele entra aqui porque esta escrito em `forma_de_aplicacao` do acabamento, que e a lista onde `rolo`, `pincel` e `trincha` tambem estao — e ai esta o defeito de modelo que esta secao desenterrou: `propriedades.forma_de_aplicacao` do acabamento e `tipo_por_categoria.apoio` sao DUAS METADES CONTANDO A MESMA COISA sem nunca se falarem, e a intersecao entre as duas listas e VAZIA.",
+        "onde_ele_e": "A propriedade `forma_de_aplicacao` da categoria acabamento, que e texto do fabricante e nao vocabulario controlado. Fica onde esta; o que muda e que agora ha uma linha dizendo que ela NAO e um apoio."
+      }
+    },
+    "ocorrencias": [
+      {
+        "registro": "pastilhart-af1500",
+        "arquivo": "dados/materiais-pastilhas.json",
+        "categoria": "pastilha",
+        "campo": "propriedades.assentamento_recomendado.declarado_como",
+        "termo": "desempenadeira",
+        "trecho": "desempenadeira de borracha para nao riscar",
+        "material_de_contato_declarado": "borracha",
+        "o_que_obriga": "E a declaracao mais forte desta categoria inteira e a razao de `material_de_contato` existir: o fabricante da PASTILHA declara o material da FERRAMENTA, e declara o porque — 'para nao riscar'. As 13 pastilhas do banco sao todas de vidro. Um registro de desempenadeira com `material_de_contato: aco` seria, para esta ilha, uma recomendacao contra a unica declaracao que ela tem."
+      },
+      {
+        "registro": "pastilhart-af1500",
+        "arquivo": "dados/materiais-pastilhas.json",
+        "categoria": "pastilha",
+        "campo": "preparo",
+        "termo": "desempenadeira",
+        "trecho": "desempenadeira de borracha",
+        "material_de_contato_declarado": "borracha",
+        "o_que_obriga": "Mesma declaracao repetida no campo `preparo`. Fica listada separada de proposito: a varredura mede CAMPO, nao registro, e duas linhas do mesmo registro nao se cobrem uma a outra."
+      },
+      {
+        "registro": "cascola-cascorez-extra",
+        "arquivo": "dados/materiais-colas.json",
+        "categoria": "cola",
+        "campo": "preparo",
+        "termo": "pincel",
+        "trecho": "Aplicacao com pincel ou rolo",
+        "material_de_contato_declarado": null,
+        "o_que_obriga": "Uma cola do banco declara o aplicador dela, e o aplicador nao existe no vocabulario de apoio. Quando o primeiro SKU de pincel nascer, este registro e a fonte que o justifica."
+      },
+      {
+        "registro": "cascola-cascorez-extra",
+        "arquivo": "dados/materiais-colas.json",
+        "categoria": "cola",
+        "campo": "preparo",
+        "termo": "rolo",
+        "trecho": "Aplicacao com pincel ou rolo",
+        "material_de_contato_declarado": null,
+        "o_que_obriga": "Ver `pincel`, acima: a mesma frase nomeia os dois."
+      },
+      {
+        "registro": "quartzolit-verniz-protetor-para-pisos",
+        "arquivo": "dados/materiais-acabamento.json",
+        "categoria": "acabamento",
+        "campo": "protecao.literal_do_fabricante",
+        "termo": "rolo",
+        "trecho": "aplicar com rolo de espuma de poliester limpo e seco",
+        "material_de_contato_declarado": "espuma",
+        "o_que_obriga": "Segundo fabricante, outra categoria, e o unico que declara o material da face do aplicador alem da Pastilhart. E o par que sustenta os DOIS valores de `material_de_contato_do_apoio` que existem hoje: `borracha` e `espuma`. Nenhum terceiro valor pode nascer sem uma terceira frase assim."
+      },
+      {
+        "registro": "acrilex-verniz-acrilfix-brilhante",
+        "arquivo": "dados/materiais-acabamento.json",
+        "categoria": "acabamento",
+        "campo": "propriedades.forma_de_aplicacao.valor",
+        "termo": "aerossol",
+        "trecho": "aerossol",
+        "material_de_contato_declarado": null,
+        "o_que_obriga": "Nada, e e por isso que esta listado: `aerossol` e embalagem. A linha existe para que a proxima execucao nao o leia como ferramenta faltando no vocabulario."
+      }
+    ],
+    "o_silencio_que_esta_secao_mediu": {
+      "o_numero": "38 registros nas cinco categorias coletadas, CINCO ocorrencias de apoio, TODAS no ramo `ferramenta_de_aplicacao`. O ramo `equipamento_de_protecao_individual` tem ZERO: nenhuma frase de fabricante no banco inteiro nomeia luva, oculos, mascara ou qualquer protecao de quem monta.",
+      "por_que_isso_importa_nesta_ilha_e_nao_em_qualquer_uma": "Porque a F2 RECOMENDA os dois produtos em que a protecao deixa de ser opcional: `loctite-durepoxi` (cola epoxi) e `quartzolit-rejunte-epoxi` (rejunte epoxi) estao no banco e sao servidos pela ferramenta. A ilha recomenda epoxi a uma pessoa em casa e nao tem UMA declaracao de fabricante sobre protecao para sustentar o que quer que seja ao lado disso.",
+      "o_que_esta_secao_NAO_faz_e_de_proposito": "Nao escreve recomendacao de EPI nenhuma. A secao 8 do ARQUIPELAGO.md proibe afirmar pelo fabricante, e deduzir 'epoxi pede luva' do mecanismo do produto seria exatamente isso — e o mesmo defeito que a mutacao 05 do acabamento pegou no `momento_de_uso`. O que ela faz e transformar o silencio em NUMERO e deixar o campo `risco_declarado` obrigatorio, para que a primeira coleta de EPI responda 'ninguem declarou' em vez de a pergunta nao ser feita.",
+      "o_que_destrava": "A ficha de seguranca (FISPQ) do epoxi, que e documento de nivel 1 e mora em PDF no dominio do fabricante — o mesmo egresso fechado que segura o primeiro SKU da `base`. E o terceiro bloco seguido desta ilha a parar na mesma porta."
+    }
   }
 }

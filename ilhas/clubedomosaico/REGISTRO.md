@@ -4836,3 +4836,155 @@ tabela declara a exceção e o portão passa a admiti-la. Escolher entre duas op
   pode sair **depois** da leitura de 30/09; (2) o egresso de fabricante, que é o item 3 do "o que depende do
   Raphael" e resolve o banco inteiro junto. E o **BLOCO A** do despacho de 24/09 continua esperando 30/09, por
   ordem do próprio despacho.
+
+---
+
+# 28/09/2026 14h55Z — A CATEGORIA `APOIO` RECEBE A DECISÃO DE CAMPO, E COM ELA NENHUMA DAS SETE FICA SEM A SUA
+
+Esquema na **versão 6**, casca **1.15.0 intocada**, manifest **44**, `conferir-no-ar.py` com **488
+afirmações e 0 falha** no ar — o mesmo número da abertura, que é a prova de que o site não foi tocado.
+**Nenhuma URL nova: as 17 continuam 17**, a semana da 21.4 continua onde estava.
+
+## A ESCOLHA DA ILHA, E O QUE A FILA DEIXOU DE LADO
+
+`foco.md` nomeia a **clubedomosaico** desde 24/09, então pela **1.2** não há escolha de ilha a fazer.
+Reserva por commit às **13h20Z**, aceita na primeira tentativa. Nenhum PR aberto; a branch
+`claude/dreamy-mccarthy-kf0p74` não tem commit além do `main`. Rede pela **20.2**, medida e não herdada:
+três passadas, `clubedomosaico.com.br` em **200** nas três e `/wp-json/clubedomosaico/v1/status` em **200**
+nas três.
+
+Pela **18.1** li o topo do `PROMPT.md` antes de pegar bloco, e **os dois despachos abertos desta ilha não
+têm item acionável hoje** — não por falta de fôlego, e sim por ordem escrita: o **BLOCO A** do despacho do
+Raphael de 24/09 espera 30/09 pelo próprio texto dele; os itens **1** e **2** do despacho da Sentinela de
+23/09 já fecharam a metade de máquina e têm a terceira condição de pronto na **leitura de 30/09**; o item
+**3** foi fechado pelo Pente Fino nesta manhã. Então a fila normal, e nela o próximo passo estava escrito
+com todas as letras pela execução das 10h16Z: **a categoria `apoio`**, a última das sete sem decisão de
+campo.
+
+## A FORQUILHA QUE DECIDE A CATEGORIA INTEIRA, E ELA NÃO É ARRUMAÇÃO
+
+`apoio` é a única categoria desta ilha cujos tipos se dividem em dois ramos que **não se comparam entre
+si**, e a divisão muda **o que o erro custa**. Espátula, desempenadeira, pinça e marcador agem sobre o
+**material** — errar neles estraga a **peça**. Óculos e luva agem sobre a **pessoa** — errar neles machuca
+**quem monta**. Uma lista só poria luva ao lado de desempenadeira como se a escolha fosse do mesmo tipo, e
+não é: desempenadeira se escolhe pelo que ela toca, luva se escolhe pelo que ela impede de tocar em você.
+É a assimetria de custo da seção 10 aplicada a um vocabulário que já existia e que ninguém tinha cruzado.
+
+Vocabulário novo `ramo_do_apoio` e ponte `ponte_do_tipo_de_apoio_para_o_ramo`, irmã da ponte da `base`
+escrita seis horas antes e pelo mesmo motivo. **Seis tipos, quatro na ferramenta e dois no EPI**, nenhum
+calado, e o portão reprova registro cujo `servico.ramo` discorde da ponte — nas **duas** direções, que é a
+trava que a mutação 05 da base ensinou.
+
+## O PREÇO JÁ ESTAVA PAGO NO BANCO, PELA SEGUNDA VEZ NO MESMO DIA
+
+**CINCO frases de fabricante, em QUATRO registros de TRÊS categorias diferentes, nomeiam um apoio — e
+nenhuma tinha campo para onde ir.** Foram lidas, classificadas e descartadas em silêncio, exatamente como
+`isopor` e `gesso` na manhã de hoje.
+
+- **`pastilhart-af1500`** (pastilha), em `propriedades.assentamento_recomendado.declarado_como` e em
+  `preparo`: *"desempenadeira de **borracha** para não riscar"*.
+- **`cascola-cascorez-extra`** (cola), em `preparo`: *"Aplicação com **pincel** ou **rolo**"*.
+- **`quartzolit-verniz-protetor-para-pisos`** (acabamento), em `protecao.literal_do_fabricante`:
+  *"aplicar com **rolo de espuma de poliéster** limpo e seco"*.
+
+**A primeira delas é a que desenhou o campo novo.** O fabricante da PASTILHA não nomeia só a ferramenta:
+ele nomeia o **material dela**, e diz por quê. As 13 pastilhas do banco são todas de vidro. O que decide se
+a peça sai riscada não é "desempenadeira", é "de borracha" — então o objeto `servico` tem
+`material_de_contato` com vocabulário próprio, e o valor exige o **trecho literal** da frase que o declara.
+Gravar só a ferramenta perderia exatamente a metade da declaração que importa.
+
+## É A PRIMEIRA CATEGORIA CUJA DECLARAÇÃO VEM DO OUTRO LADO DO BALCÃO
+
+Quem diz qual desempenadeira usar **não é o fabricante da desempenadeira**. Isso é novo nesta ilha e não
+tinha onde ser guardado. Por isso o portão mais forte deste bloco **não olha registro de apoio nenhum**:
+`exigencias_de_apoio_ja_declaradas_no_banco` varre as **outras** categorias, só nos campos que carregam
+frase de fabricante (a nossa `observacao` fica de fora de propósito — varrer o registro inteiro leria o
+nosso julgamento como declaração), e anda nas **duas direções**: ocorrência encontrada tem de estar
+listada, e ocorrência listada tem de ser encontrada. Sem a segunda metade, uma linha sobreviveria à saída
+do registro que a sustentava, e a seção viraria o *resumo velho lido como fato* da seção 4.
+
+## O VOCABULÁRIO E A FRASE DOS FABRICANTES APONTAM PARA LADOS OPOSTOS
+
+Dos **seis** tipos que `tipo_por_categoria.apoio` declara, **UM** aparece no banco (desempenadeira). Dos
+**dois** termos que mais aparecem no banco (`pincel`, `rolo`), **ZERO** estão no vocabulário. E há uma
+terceira metade que ninguém tinha cruzado: a propriedade `forma_de_aplicacao` da categoria acabamento
+declara *"aerossol, rolo, pincel, trincha"* — e a **interseção dela com `tipo_por_categoria.apoio` é
+VAZIA**. Duas metades contando a mesma coisa sem nunca se falarem, que é a família de defeito que esta ilha
+mais nomeia.
+
+`pincel` e `rolo` ficam como `sem_valor_no_vocabulario`, com `valor_proposto` e `o_que_falta` escritos, e
+**não** entram hoje. E o motivo é diferente do que trava o vocabulário da `base`: nenhuma página lê
+`tipo_por_categoria`, e a categoria tem zero itens, então isto **não** é a espera da leitura de 30/09 — é a
+regra de crescimento, e só. Valor de vocabulário controlado nasce junto com o primeiro registro que o usa.
+
+## O SILÊNCIO QUE ESTE BLOCO TRANSFORMOU EM NÚMERO
+
+**38 registros, cinco ocorrências, TODAS no ramo `ferramenta_de_aplicacao`. O ramo
+`equipamento_de_protecao_individual` tem ZERO:** nenhuma frase de fabricante no banco inteiro nomeia luva,
+óculos ou qualquer proteção de quem monta.
+
+Isso importa nesta ilha e não em qualquer uma, porque **a F2 recomenda os dois produtos em que a proteção
+deixa de ser opcional**: `loctite-durepoxi` e `quartzolit-rejunte-epoxi` estão no banco e são servidos pela
+ferramenta. A ilha recomenda epóxi a uma pessoa em casa e não tem **uma** declaração de fabricante sobre
+proteção para pôr ao lado disso.
+
+**O que o bloco NÃO fez, de propósito:** não escreveu recomendação de EPI nenhuma. Deduzir "epóxi pede
+luva" do mecanismo do produto é afirmar pelo fabricante, que a seção 8 proíbe, e é o mesmo defeito que a
+mutação 05 do acabamento pegou no `momento_de_uso`. O que ele fez foi tornar `risco_declarado`
+**obrigatório mesmo null**, para que a primeira coleta responda *"ninguém declarou"* em vez de a pergunta
+não ser feita. O que destrava é a FISPQ do epóxi — nível 1, em PDF no domínio do fabricante, o mesmo
+egresso fechado que segura o primeiro SKU da `base`. **É o terceiro bloco seguido desta ilha a parar na
+mesma porta.**
+
+## UM VOCABULÁRIO QUE NÃO FOI REUSADO, E O MOTIVO É MEDIÇÃO E NÃO GOSTO
+
+`momento_de_uso` já existia (`antes_de_colar`, `depois_de_rejuntar`, `ambos`, `nao_declarado`) e seria o
+candidato óbvio para a etapa do apoio. **Ele não tem valor para o ato de COLAR** — porque nasceu para o
+acabamento, que por definição nunca cola. E a Cascola declara o pincel e o rolo exatamente para colar.
+Reusá-lo obrigaria todo aplicador de cola a responder a uma pergunta que não é a dele, e a resposta menos
+errada seria falsa. Nasceu `etapa_da_montagem`, com o motivo escrito no campo, em vez de um valor torcido
+para caber.
+
+## AS DUAS COISAS QUE A BATERIA ACHOU ANTES DO COMMIT, E AS DUAS NO PORTÃO NOVO
+
+`ferramentas/mutacoes-apoio.py` é a **segunda** bateria desta ilha que **fabrica o próprio mundo** — e a
+primeira que também muta o **banco de verdade**, porque a declaração que importa mora nas outras
+categorias. 24 mutações: 14 no mundo fabricado, **6 na AF1500, na Cascorez e no verniz de pisos**
+(restaurados byte a byte no fim) e 4 no esquema.
+
+- **A mutação 15** passou na primeira rodada. A varredura comparava os dois lados por `(registro, termo)`,
+  e a AF1500 nomeia a desempenadeira em **dois campos** — então apagar **uma** das duas linhas passava
+  verde: a outra cobria a que sumiu. **O texto da própria seção já dizia, com essas palavras, "a varredura
+  mede CAMPO, não registro".** A prosa estava certa e o código não a cumpria, que é pior que prosa errada,
+  porque quem lê acredita. A chave passou a ser `(registro, campo, termo)`.
+- **A mutação 20** passou também. Trocar o estado de `aerossol` de `nao_e_ferramenta` para
+  `sem_valor_no_vocabulario` satisfazia todos os campos que aquele estado exige — e a próxima execução
+  criaria um tipo de apoio chamado `aerossol`, que é **embalagem**. O que separa `aerossol` de `pincel` e
+  `rolo` é medível: **onde o termo aparece.** Os dois últimos aparecem em `preparo` e em
+  `literal_do_fabricante`, que é prosa de fabricante; `aerossol` aparece uma vez só, em
+  `propriedades.forma_de_aplicacao.valor`, que é um **slot do nosso próprio esquema**. Propor crescimento de
+  vocabulário a partir de um campo que nós mesmos criamos não é ler declaração nenhuma. Agora o crescimento
+  do vocabulário também se apoia em `literal_do_fabricante`, que é a viga deste esquema inteiro.
+
+Segunda rodada: **24 de 24 reprovadas, e as 24 só o portão novo viu.**
+
+## DE PASSAGEM, UMA FERRAMENTA NO DISCO FORA DO MANIFEST — E QUEM A ACHOU FOI O PRÓPRIO PORTÃO
+
+`ferramentas/mutacoes-base.py` nasceu nesta manhã, às 10h16Z, e **não entrou no manifest**. O
+`atualizar-manifest.py --gravar` **se recusou a gravar** enquanto a linha não existisse: *"FERRAMENTA NO
+DISCO FORA DO MANIFEST"*. Entrou com descrição própria, e a linha dela diz que entrou tarde e por quem.
+
+## BANCADA DESTA EXECUÇÃO
+
+`validar-banco.py` verde (38 materiais, 0 sem saída de compra, 0 piso não rastreável), `cobertura.py`
+recontada e **sem mudança** — continuam **duas** categorias sem nenhum item (`base`, `apoio`), porque
+decisão de campo não é SKU —, `validar-pastilhas.py` 189 afirmações, `tecnica-x-material.py` reescrito sem
+mudança, `teste-casca.php` 555 verificações, `teste-f2.php` 114 afirmações, `teste-f1.php` 196 sobre 24
+estados com processo próprio, `teste-prestacao-rejunte.php` 5 afirmações sobre 540 estados da F2 e 180 da
+F1, `teste-tecnicas.php` 123, `teste-loja.php` 178 sobre 72 estados e `teste-leads.php` 211 sobre 8.
+
+**E as baterias de mutação inteiras, porque a mudança foi no ESQUEMA e o esquema é lido por quase todas:**
+`mutacoes-apoio` 24/24, `mutacoes-base` 20/20, `mutacoes-f2` 50/50, `mutacoes-f1` 46/46, `mutacoes-arvore`
+21/21, `mutacoes-rejunte` 16/16, `mutacoes-cobertura` 14/14, `mutacoes-acabamento` 14/14,
+`mutacoes-pastilhas` 14/14 e `mutacoes-tecnica-x-material` 9/9 — **228 mutações, nenhuma passando**.
+
