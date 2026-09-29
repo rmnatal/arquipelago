@@ -289,7 +289,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "4d13088c908bfb6cd1cab87925cf2e0887d65907af7fcc38c9d53b1b873bdbab",
+      "sha256": "98a952cc29d8b6bc7a56991e023fa5d656312aec5fcf53fbee5bbaf80a54fbdb",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 459 afirmacoes em 25/09/2026. Cobre a marca no cabecalho, a escada da secao 25 cartao a cartao, o cache do hospedeiro contra o canonico, A PORTA DE ENTRADA (sitemap, robots.txt e raiz do REST em 200 com o tipo certo, e caminho inexistente em 404 na pagina DESTA ilha, acrescentado em 24/09 depois de 16 das 17 URLs servirem a pagina de estacionamento da HostGator) e, desde 25/09, O LINK DE AFILIADO SERVIDO: varre as URLs do sitemap e reprova se aparecer encurtador de Shopee que o banco nao conhece, mais a afirmacao de que ela encontra algum — portao que nao encontra nada aprova por vacuidade. Essa secao NAO mede a CASA do sub-id: isso so se le no utm_content do 301 do encurtador, e esse salto e onde a Shopee conta o clique, entao quem mede a casa e ferramentas/conferir-sub-id.py, na raiz, com link de BANCADA (secao 25.8). REGUA PROPRIA: as medidas estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
@@ -327,6 +327,12 @@
       "arquivo": "ferramentas/gerar-marca.php",
       "sha256": "d8f61aa70cbc3d74d49008d526d94ede3e76f706c08b3d0201ab83f66e2edcda",
       "descricao": "Embute a lotus do cabecalho dentro do snippet da casca, entre marcadores; recusa arquivo que nao abre, sem canal alfa ou com canto opaco. Bancada."
+    },
+    {
+      "id": "leitura-do-visitante",
+      "arquivo": "ferramentas/leitura-do-visitante.py",
+      "sha256": "f79630b0b4c197d28dd757c5952303d417a6c8e3e4fb823fd3c46fc86b117e92",
+      "descricao": "Le as 17 URLs do sitemap SEM quebra de cache — a leitura que se parece com a do Google, que nao manda quebra — e termina na sonda de 404 pela borda. Existe por um achado escrito no BLOCO C em 25/09 e sem instrumento ate 29/09: todo portao desta ilha gruda `?v=<agora>` em toda URL, entao todos medem a ORIGEM e nenhum ve o que o visitante ve. Reprova so o visitante NAO receber a ilha (codigo != 200, pagina do hospedeiro, casca ausente, sem <title>, e o 404 servido com 200); divergencia de titulo ou canonica entre borda e origem e janela de cache e sai RELATADA, pela politica que esta ilha decidiu em 14/09. A regua e funcao pura e tem --autoteste com 11 casos fabricados, um por ramo. O `conferir-no-ar.py` importa a regua daqui em vez de copia-la. Bancada: nunca vai para o site."
     },
     {
       "id": "medir-imagens",

@@ -1415,5 +1415,126 @@ ok(len(_travadas_medidas) == len(TRAVADAS_ATE_30_09),
    "[description] as 4 travadas pelo BLOCO A estao medidas e o numero delas fica visivel",
    " | ".join(_travadas_medidas))
 
+# ---------------------------------------------------------------------------
+# A LEITURA DO VISITANTE. Acrescentada em 29/09/2026, e o achado que a pede esta
+# escrito neste repositorio desde 25/09, no BLOCO C do despacho do Raphael de
+# 24/09, com todas as letras:
+#
+#     "conferir-no-ar.py gruda `?v=<agora>` em toda URL — e esta certo, porque
+#     nasceu para provar que o Sync aplicou a revisao nova. O preco e que ELE
+#     NUNCA VE O QUE O VISITANTE VE. Cache servindo pagina velha para gente de
+#     verdade passa por baixo das 488 afirmacoes dele sem encostar em nenhuma."
+#
+# TODAS as 504 afirmacoes acima usam `buscar()`, e `buscar()` gruda a quebra de
+# cache. Entao ate esta linha este arquivo mede a ORIGEM — nunca a borda. E a
+# borda existe e foi medida: `x-proxy-cache`, nginx, `max-age=7200`.
+#
+# E O GOOGLEBOT LE PELA BORDA, que e a outra metade do mesmo achado: ele nao
+# manda quebra de cache, e por isso NUNCA RECEBE REDIRECIONAMENTO desta ilha —
+# em 36 das 71 URLs daquela varredura as duas leituras discordam.
+#
+# A REGUA E A DE `ferramentas/leitura-do-visitante.py`, IMPORTADA DAQUI, e nao
+# uma copia: uma terceira reimplementacao do que e "o visitante recebeu a ilha"
+# nao acrescentaria independencia, so uma copia para envelhecer calada. La ela
+# tem `--autoteste` com 11 casos fabricados, um por ramo, porque a varredura de
+# 29/09 fechou em 17 esperado e zero defeito — e esta ilha ja escreveu que
+# passada limpa em portao que nunca acusou nada nao prova nada.
+#
+# O QUE REPROVA AQUI e so o visitante NAO receber a ilha: codigo diferente de
+# 200, pagina do hospedeiro, casca ausente, pagina sem titulo, e o 404 servido
+# com 200. Divergencia de titulo ou de canonica entre a borda e a origem e
+# JANELA DE CACHE e sai RELATADA, pela mesma politica que esta ilha decidiu em
+# 14/09 e que esta escrita mais acima neste arquivo.
+print("\nA leitura do VISITANTE — as 17 URLs sem quebra de cache (BLOCO C, 25/09):")
+
+import importlib.util as _ilu
+
+_spec = _ilu.spec_from_file_location(
+    "cdm_leitura_do_visitante",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "leitura-do-visitante.py"))
+_visitante = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(_visitante)
+
+_defeitos_v, _janelas_v = [], []
+for _u in _urls_sitemap:
+    _caminho = _u.replace(BASE, "") or "/"
+    # O visitante PRIMEIRO, de proposito: a quebra de cache aquece a borda, e
+    # medi-la depois de aquecer mediria o proprio instrumento.
+    _crua = subprocess.run(["curl", "-s", "--max-time", "40", "-w", "\n%{http_code}", _u],
+                           capture_output=True, text=True).stdout.rsplit("\n", 1)
+    _html_v, _cod_v = _crua[0], (_crua[1] if len(_crua) > 1 else "000")
+    _html_o, _ = buscar(_u)
+    _veredito, _motivo = _visitante.classificar(
+        _cod_v, _html_v, _visitante.titulo_de(_html_o), _visitante.canonica_de(_html_o))
+    if _veredito == "defeito":
+        _defeitos_v.append(_caminho + ": " + _motivo)
+    elif _veredito == "janela":
+        _janelas_v.append(_caminho + " — " + _motivo)
+
+ok(not _defeitos_v,
+   "[visitante] as 17 URLs do sitemap chegam inteiras a quem nao quebra o cache",
+   f"{len(_urls_sitemap)} conferidas" + ((": " + " | ".join(_defeitos_v[:3])) if _defeitos_v else ""))
+# Janela de cache NAO reprova — mas fica na tela com a URL e o motivo, que e o
+# que separa "esta tudo igual" de "ninguem olhou".
+ok(True, "[visitante] janelas de cache abertas no momento da leitura (registro, nunca portao)",
+   "nenhuma" if not _janelas_v else " | ".join(_janelas_v[:3]))
+# O CORPO do sitemap lido sem quebra: o codigo dele ja e medido sem quebra mais
+# acima, e codigo 200 e exatamente o que a pagina de estacionamento tambem serve.
+_sm_v = subprocess.run(["curl", "-s", "--max-time", "40", BASE + "/wp-sitemap.xml"],
+                       capture_output=True, text=True).stdout
+ok("<sitemap>" in _sm_v or "<url>" in _sm_v,
+   "[visitante] o sitemap serve XML tambem pela borda, nao pagina do hospedeiro",
+   _sm_v[:44].replace("\n", " "))
+
+# ---------------------------------------------------------------------------
+# O 404 PELA BORDA — DEFEITO MEDIDO EM 29/09/2026, COM DONO, E QUE NAO REPROVA
+# AQUI DE PROPOSITO.
+#
+# A medicao, repetida pela 20.2 antes de virar afirmacao (5 leituras de uma URL
+# e 3 de outra, mais uma URL virgem):
+#
+#   1a leitura de uma URL inexistente: 404, `no-cache, no-store` — a ORIGEM
+#   2a em diante, por 2 horas:         200, `x-proxy-cache: HIT`,
+#                                      `x-server-cache: true`, `max-age=7200`,
+#                                      e o corpo e a pagina de 404 DESTA ilha
+#
+# E SOFT 404, e e sistematico: basta uma URL morta ser lida duas vezes em duas
+# horas. Quem le duas vezes e o Googlebot.
+#
+# A afirmacao logo acima — "[rota] caminho inexistente responde 404" — passa, e
+# esta certa: ela usa `buscar()`, que quebra o cache, entao mede a ORIGEM, e a
+# origem responde 404 corretamente. O defeito mora na camada da frente.
+#
+# POR QUE ISTO REGISTRA E NAO REPROVA, e a jurisprudencia e desta ilha: o cache
+# de borda e do HOSPEDEIRO e nao ha uma linha de codigo daqui que o alcance —
+# o EPC roda antes do PHP, e a origem ja manda `no-store`, que ele ignora. Um
+# portao vermelho que nenhuma execucao consegue fechar "se aprende a ignorar,
+# que e pior do que nao ter portao", e foi assim que o canonico velho de 14/09
+# foi resolvido neste mesmo arquivo. ENTAO A LINHA SAI EM TODA PASSADA, com o
+# numero e com o dono — o que nao pode e ficar calada.
+#
+# QUEM FECHA: o Raphael, no cPanel da HostGator (cache de pagina que nao guarde
+# resposta 404), e esta escrito no ESTADO.md como pendencia dele. NO DIA EM QUE
+# FECHAR, esta afirmacao vira portao: trocar `ok(True` por `ok(_borda_404_ok`.
+# A sonda com reprovacao de verdade ja existe e ja fica vermelha hoje, em
+# `ferramentas/leitura-do-visitante.py` — a ferramenta diz a verdade, o portao
+# de entrega nao para a fabrica por algo sem dono aqui.
+#
+# A SONDA LEVA SUFIXO NOVO A CADA PASSADA: uma URL fixa mediria a entrada que a
+# passada anterior criou, e a sonda acusaria a si mesma para sempre.
+_sonda = BASE + "/sonda-de-404-%d/" % int(time.time())
+_, _primeira_404 = buscar(_sonda)      # com quebra: a origem
+_r1 = subprocess.run(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "40", _sonda],
+                     capture_output=True, text=True).stdout
+_r2 = subprocess.run(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "40", _sonda],
+                     capture_output=True, text=True).stdout
+_borda_404_ok = _r1 == "404" and _r2 == "404"
+ok(True,
+   "[borda] o 404 pela borda — PENDENTE COM O RAPHAEL desde 29/09, registro e nao portao",
+   ("a borda responde 404 nas duas leituras — a pendencia FECHOU, vire esta linha em portao"
+    if _borda_404_ok else
+    "SOFT 404 ATIVO: origem %s, borda 1a %s e 2a %s (x-proxy-cache HIT, max-age=7200)"
+    % (_primeira_404, _r1, _r2)))
+
 print(f"\n{'APROVADO' if falhas == 0 else 'REPROVADO'}: {feitos} afirmacoes medidas no HTML servido, {falhas} falha(s).")
 sys.exit(1 if falhas else 0)

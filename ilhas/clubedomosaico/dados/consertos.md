@@ -45,3 +45,46 @@ Também não é conserto de Sentinela, e está aqui pelo mesmo motivo da linha d
 2. `SHOPEE_APP_ID=… SHOPEE_SECRET=… python3 ../../ferramentas/conferir-sub-id.py` — gera um link de **bancada** e lê a casa do sub-id no `utm_content` do 301. **Não use link desta ilha nesse teste:** o salto do encurtador é onde a Shopee conta o clique, e a leitura semanal está justamente procurando o PRIMEIRO clique orgânico desta ilha (proposta 3 do despacho de 23/09). Um autoclique com a etiqueta `clubedomosaico` apaga esse sinal. É a seção **25.8** do contrato, escrita hoje.
 
 **O que ela NÃO consegue reconferir, e é a metade que falta:** se o Relatório de cliques da Shopee passou a mostrar `clubedomosaico-f2---` com o campo 1 preenchido. Isso só aparece quando houver um clique **de gente**, e é o que o "pronto quando" do item 2 do despacho de 23/09 pede. Até lá o que está provado é a mecânica, na bancada, e que a tela serve os links de hoje.
+
+## 29/09/2026 — ACHADO DA FUNDAÇÃO QUE **NÃO** FOI CONSERTADO, e o motivo é que não há daqui como consertar: SOFT 404 NA BORDA
+
+Não é conserto. Está nesta lista porque **a ronda seguinte abre esta lista antes de qualquer outra coisa**, e esta
+é a linha que ela precisa ler antes de concluir que a ilha está sã pelo portão verde.
+
+**O QUE FOI MEDIDO**, em 29/09/2026 entre 10h5xZ e 11h0xZ, repetido pela 20.2 antes de virar afirmação — cinco
+leituras de uma URL, três de outra e uma URL virgem nunca lida:
+
+| leitura de uma URL que **não existe** | resposta |
+|---|---|
+| **1ª** (o cache ainda não tem a entrada) | **404**, `cache-control: no-cache, must-revalidate, max-age=0, no-store, private` — a **origem**, e ela está certa |
+| **2ª em diante, por 2 horas** | **200**, `x-proxy-cache: HIT`, `x-server-cache: true`, `max-age=7200` — e o corpo é a página de **404 desta ilha** |
+
+A prova de que é mecanismo e não coincidência está numa URL virgem, criada com o relógio no nome: 1ª leitura
+**404**, 2ª **200**, 3ª **200**. E as três URLs inexistentes lidas uma vez minutos antes, todas com 404 na
+primeira, respondiam **200** na segunda.
+
+**POR QUE ISTO IMPORTA, e não é zelo teórico:** 200 com corpo de erro é **soft 404**. O Google conta a URL como
+existente, e quem lê uma URL duas vezes é exatamente o Googlebot. O orçamento de rastreamento é o recurso escasso
+da seção 14.1 e esta ilha tem **15 URLs ainda não indexadas**. É também a mesma família do achado do BLOCO C de
+25/09 — *"o rastreador nunca recebe redirecionamento"* —, com a mesma causa: **a camada de cache responde antes do
+WordPress**.
+
+**POR QUE NENHUM PORTÃO DAQUI VIA:** todos leem com `?v=<agora>`, isto é, medem a **origem**. A afirmação
+`[rota] caminho inexistente responde 404` do `conferir-no-ar.py` passa, e está **certa** — a origem responde 404.
+O defeito mora na camada da frente, e até hoje nada daqui a lia.
+
+**QUEM FECHA: o Raphael, e não a Fundação.** O cache é do hospedeiro, roda **antes** do PHP, e a origem já manda
+`no-store`, que ele ignora. Não há linha de código desta ilha que o alcance — snippet do Code Snippets roda dentro
+do WordPress, depois da camada que está servindo a resposta. O pedido está escrito no `ESTADO.md` como pendência
+dele.
+
+**O QUE A PRÓXIMA RONDA RECONFERE, e é um comando:**
+
+`python3 ferramentas/leitura-do-visitante.py .` — ele lê as 17 URLs do sitemap **sem quebra de cache** (a leitura
+que se parece com a do Google) e termina com a sonda de 404 pela borda. Hoje ele fecha **REPROVADO por 1 defeito**,
+e esse 1 defeito é este. **Ficar vermelho é a verdade, e é para ficar** até a pendência fechar.
+
+O `conferir-no-ar.py` ganhou as mesmas medições, mas ali a linha da borda **registra e não reprova** — a
+jurisprudência é desta ilha, de 14/09: portão vermelho que nenhuma execução consegue fechar "se aprende a ignorar,
+que é pior do que não ter portão". **No dia em que o Raphael fechar, a linha vira portão trocando `ok(True` por
+`ok(_borda_404_ok`**, e está escrito assim no próprio arquivo.

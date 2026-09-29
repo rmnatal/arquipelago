@@ -5,47 +5,39 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-28T19:51Z
-executando_desde: 2026-09-29T10:16Z   # reserva da execucao das 10:16Z (secao 1, passo 5; foco.md nomeia esta ilha pela 1.2)
+ultima_execucao: 2026-09-29T11:12Z
+executando_desde: null
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
-  ITEM 4 DA FILA ENTREGUE — A LINHA DA PECA ESTA NA TABELA DO ARVORE.md, e o que faltava nao era a
-  linha: era a CHAVE. Revisao 47 NO AR, conferida: /status na 47, a rota publica da loja servindo
-  versao_loja 1.4.0, e conferir-no-ar.py com 504 afirmacoes e 0 falha (eram 501). casca 1.17.0,
-  loja 1.4.0 (as outras sem mudanca — f1 1.4.0,
-  f2 1.6.0, atelie 1.4.0, tecnicas 1.2.0, leads 1.1.1). teste-casca 569 afirmacoes (eram 563),
-  teste-loja 208 (eram 196), zero falha nas oito bancadas. mutacoes-arvore.py de 21 para 29, 29
-  reprovadas e 0 passando.
-  A DECISAO QUE O ARVORE.md DEIXOU PARA A FUNDACAO (19.2) FOI TOMADA: a peca era a UNICA entrada do
-  mapa da arvore chaveada pelo SLUG NU, enquanto toda outra de nivel 2 ou 3 e chaveada pelo caminho
-  inteiro. As duas opcoes eram chavear por caminho ou declarar a excecao na tabela. Escolhida a
-  primeira, e quem decidiu nao foi gosto: um SEGUNDO DEFEITO que so existe com o slug nu e que a
-  outra opcao nao consertaria — peca cujo slug bate com o de uma pagina da raiz servia a trilha
-  DAQUELA pagina. `sobre` saia como 'Inicio > Sobre', sem o nome da peca, com o BreadcrumbList
-  apontando para /sobre/. Com o caminho inteiro a colisao deixa de existir POR CONSTRUCAO.
-  O CONSERTO TEM DUAS PONTAS E UMA FUNCAO SO: `cdm_loja_caminho_da_peca()` monta o caminho, e dela
-  saem a chave do filtro `cdm_arvore` e a resposta do filtro NOVO `cdm_caminho_atual` da casca —
-  irmao do `cdm_arvore`, por onde quem tem tipo proprio declara QUAL pagina esta sendo servida. Duas
-  pontas montando a propria string sao a origem do defeito, nao o conserto: se uma mudasse e a outra
-  nao, a trilha da peca sumiria sem cor na tela. A ORDEM tambem importa e a primeira escrita errou
-  nela — o filtro fala ANTES do laco da definicao de paginas, que casa por ultimo nivel e daria
-  `sobre` a peca antes de o filtro ser chamado. Ha mutacao guardando isso.
-  O PORTAO TEM TRES PERNAS e nenhuma sobra: documento x codigo (a linha existe no mapa COM A PECA
-  SERVIDA), documento x realidade (o slug esta em dados/pecas.json, a copia da secao 24) e realidade
-  x codigo (TODAS as 5 pecas da copia pousam em loja/<slug>, nivel 2, mae loja). Sem a segunda o
-  portao ficaria vazio, porque a bancada fabrica a peca com o slug que a tabela pedir. O NUMERO DE
-  PECAS NAO FOI DIGITADO NO DOCUMENTO: quem publica peca e a artesa, e tabela que precise de commit
-  a cada peca nova nasce velha. A tabela nomeia a ancora e o portao conta o resto contra a copia.
-  DE PASSAGEM, UMA MUTACAO PRE-EXISTENTE ESTAVA INERTE E O ACHADO E DO MESMO DIA: `dois slugs com o
-  mesmo ultimo nivel` casava com a entrada 'sobre' escrita em UMA linha, e a casca 1.16.0 — de
-  algumas horas antes nesta quarta — quebrou a entrada em varias. Ela passou a se declarar INVALIDA,
-  que a bancada conta como "passou", e a trava dos slugs repetidos ficou sem ninguem a vendo.
-  Conferido que ja estava inerte ANTES deste bloco; o alvo agora e a abertura da entrada.
-  NENHUMA URL NOVA, NENHUM ENDERECO MUDOU, NENHUM TEXTO DE PAGINA MUDOU — de proposito: hoje e 28/09
-  e todo o resto da fila espera a leitura de 30/09 (BLOCO A do despacho do Raphael de 24/09, a faixa
-  de description das quatro travadas, a terceira condicao do item 1 de 23/09 e a segunda metade do
-  item 2). O que sobra alem disso e CANAL e nao decisao: `base` e `apoio` esperam frase literal de
-  fabricante, e e o terceiro bloco seguido parando na mesma porta (PDF).
+  A LEITURA DO VISITANTE — O PORTAO DESTA ILHA NUNCA TINHA VISTO O QUE O VISITANTE VE, E NA PRIMEIRA
+  VEZ QUE VIU ACHOU UM DEFEITO NO AR. Nenhuma URL nova, nenhum endereco mudou, nenhum texto de pagina
+  mudou e NENHUM ARQUIVO PUBLICAVEL MUDOU — entao nao houve Sync e o ar esta exatamente como estava:
+  manifest e /status seguem na revisao 47. De proposito: hoje e 29/09, vespera da leitura, e o BLOCO A
+  do despacho do Raphael de 24/09 proibe misturar causa na janela de medicao.
+  O ACHADO, e ele e o item da execucao: TODA URL INEXISTENTE DESTA ILHA RESPONDE 404 NA PRIMEIRA
+  LEITURA E 200 NA SEGUNDA, por 2 horas, com o corpo da pagina de 404 e `x-proxy-cache: HIT`. E SOFT
+  404, e quem le uma URL duas vezes e o Googlebot. Provado com URL virgem carimbada pelo relogio
+  (404, 200, 200) e repetido pela 20.2 antes de virar afirmacao. A origem esta CERTA: responde 404 com
+  `no-store`. Quem serve 200 e a camada de cache do hospedeiro, que roda ANTES do PHP.
+  POR QUE NENHUM PORTAO VIA: as 504 afirmacoes do conferir-no-ar.py usam `buscar()`, e `buscar()` gruda
+  `?v=<agora>` em toda URL. Todas mediam a ORIGEM; nenhuma media a borda. O achado ja estava escrito no
+  repositorio desde 25/09, no BLOCO C — "ele nunca ve o que o visitante ve" — e ficou quatro dias sem
+  instrumento. E a mesma causa do outro achado daquele bloco, o de que o rastreador nunca recebe
+  redirecionamento.
+  O QUE FOI CONSTRUIDO: ferramentas/leitura-do-visitante.py, que le as 17 URLs do sitemap SEM quebra de
+  cache e termina na sonda de 404 pela borda (sufixo novo a cada passada, senao a sonda acusaria a
+  entrada que ela mesma criou). Regua em funcao pura com --autoteste de 11 casos fabricados, um por
+  ramo. O conferir-no-ar.py IMPORTA essa regua em vez de copia-la e foi de 504 para 508 afirmacoes,
+  0 falha.
+  AS DUAS POLITICAS, e nenhuma e nova: a ferramenta REPROVA (fecha em 1 defeito hoje, e e para ficar
+  vermelha ate a pendencia fechar); o portao de entrega REGISTRA a linha da borda com o numero e o dono,
+  porque portao vermelho que nenhuma execucao consegue fechar se aprende a ignorar — a jurisprudencia e
+  desta ilha, de 14/09, e esta escrita no proprio arquivo. No dia em que o Raphael fechar, a linha vira
+  portao trocando `ok(True` por `ok(_borda_404_ok`.
+  E O RETRATO "ANTES" DO BLOCO A FICOU GRAVADO: dados/posicoes.md ganhou o <title> e a description
+  servidos hoje pelas quatro paginas travadas, medidos PELA BORDA, com a contagem decodificada. Era o
+  unico pedaco do BLOCO A que nao dependia de esperar 30/09, e depois da troca ele nao teria como ser
+  remontado. Nenhum dos quatro titulos promete numero e nenhuma das quatro descriptions promete faixa.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO
@@ -79,6 +71,23 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   tag por navegador a partir da nuvem funciona**, e o Tempo Real do GA4 só o Raphael
   confirma, no Chrome dele. Falta também a credencial da conta de serviço
   (`GOOGLE_SA_B64`) no ambiente, sem a qual `ferramentas/ga4.py` não lê a série.
+- **PENDÊNCIA DO RAPHAEL, ABERTA EM 29/09/2026 — SOFT 404 NA BORDA, e é a única coisa que
+  esta ilha serve errado hoje:** toda URL que **não existe** responde **404 na primeira
+  leitura** e **200 na segunda**, por duas horas, com o corpo da página de 404 desta ilha e
+  `x-proxy-cache: HIT`, `x-server-cache: true`, `max-age=7200`. Provado com URL virgem
+  carimbada pelo relógio — 404, 200, 200 — e repetido pela 20.2 antes de virar afirmação.
+  **A origem está certa** (404 com `no-cache, no-store`): quem serve 200 é a camada de cache
+  do hospedeiro, que roda **antes** do PHP, e por isso **nenhum snippet daqui a alcança** —
+  não é conserto da Fundação. **O que custa:** 200 com corpo de erro é soft 404, o Google
+  conta a URL como existente, e quem lê uma URL duas vezes é o Googlebot; o orçamento de
+  rastreamento é o recurso escasso da 14.1 e esta ilha tem 15 URLs ainda não indexadas.
+  **O que fecha:** no cPanel da HostGator, cache de página que não guarde resposta 404 (ou
+  chamado ao suporte, o mesmo caminho que a 19.4(b) já aponta para o `.htaccess` da raiz).
+  **Não bloqueia bloco nenhum** e está medido em `dados/consertos.md`. Quem reconfere é
+  `python3 ferramentas/leitura-do-visitante.py .`, que fecha **REPROVADO por este 1 defeito**
+  e é para ficar vermelho até fechar; no `conferir-no-ar.py` a mesma medição sai como linha
+  de registro com o número e o dono, e **vira portão** trocando `ok(True` por
+  `ok(_borda_404_ok` no dia em que a pendência morrer.
 - Casca: snippet "Clube do Mosaico Casca" **v1.5.0**, `publicar: true` no manifest (revisão 9),
   snippet #6 no Code Snippets. **No ar e conferido nas dez URLs em 11/09/2026 22h05Z.**
 - Ferramenta F2: snippet "Clube do Mosaico F2 — qual cola e qual rejunte" **v1.0.0**,

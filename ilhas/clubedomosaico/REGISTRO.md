@@ -3,6 +3,158 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+29/09/2026 11:12Z — A LEITURA DO VISITANTE, E ELA ACHOU UM DEFEITO NO AR NA PRIMEIRA VEZ QUE OLHOU
+
+Bloco de instrumento, escolhido por eliminação e com a eliminação escrita: hoje é
+**29/09**, véspera da leitura, e o BLOCO A do despacho do Raphael de 24/09 proíbe
+mexer na promessa de SERP das páginas que rankeiam até 30/09. A metade aberta do
+item 4 da Sentinela de 28/09 espera o BLOCO A pela 18.1; os itens 1 e 2 de 23/09
+têm a última condição na leitura de amanhã; e `base` e `apoio` esperam **canal**,
+não decisão — o que foi **remedido** nesta execução, e continua fechado: o egresso a
+`quartzolit.weber`, `tekbond`, `loctite`, `cascola` e `pastilhart` devolve **403 ao
+CONNECT** (política de egresso), cinco domínios, cinco tentativas, com o domínio da
+ilha em 200 na mesma passada. **Quarto bloco seguido parando nessa porta**, e agora
+com o pedido escrito, que é o que faltava (ver "O que depende do Raphael").
+
+**NENHUM ARQUIVO PUBLICÁVEL MUDOU, e por isso não houve Sync.** Manifest e `/status`
+seguem na **revisão 47**. Nenhuma URL nova, nenhum endereço mudou, nenhum `<title>`,
+nenhuma `description` e nenhum texto de página mudou. O ar está exatamente como
+estava — que é a condição que o despacho do Raphael impõe a esta véspera.
+
+## O ACHADO, E ELE NÃO ESTAVA ESCONDIDO: ESTAVA ESCRITO AQUI HÁ QUATRO DIAS
+
+O BLOCO C, em 25/09, mediu e escreveu, com todas as letras:
+
+> *"`conferir-no-ar.py` gruda `?v=<agora>` em toda URL — e está certo, porque nasceu
+> para provar que o Sync aplicou a revisão nova. O preço é que **ele nunca vê o que o
+> visitante vê**. Cache servindo página velha para gente de verdade passa por baixo
+> das 488 afirmações dele sem encostar em nenhuma."*
+
+Ficou **quatro dias sem instrumento**. Esta execução construiu o instrumento e, na
+primeira passada, ele achou um defeito que está no ar agora.
+
+## O DEFEITO, MEDIDO E REPETIDO ANTES DE VIRAR AFIRMAÇÃO (20.2)
+
+**Toda URL que não existe nesta ilha responde 404 na primeira leitura e 200 na
+segunda**, por duas horas.
+
+| leitura | resposta |
+|---|---|
+| 1ª (cache sem a entrada) | **404**, `cache-control: no-cache, must-revalidate, max-age=0, no-store, private` — a **origem**, e ela está **certa** |
+| 2ª em diante, por 2h | **200**, `x-proxy-cache: HIT`, `x-server-cache: true`, `max-age=7200`, corpo = a página de **404 desta ilha** |
+
+**Como foi provado que é mecanismo e não coincidência:** uma URL **virgem**, com o
+relógio no nome, nunca lida por ninguém — 1ª **404**, 2ª **200**, 3ª **200**. E as
+três URLs inexistentes lidas uma vez minutos antes, todas 404 na primeira, davam
+**200** na segunda. Mais cinco leituras seguidas de uma delas: 200, 200, 200, 200,
+200. Com quebra de cache, na mesma janela: 404, 404, 404.
+
+**É SOFT 404.** 200 com corpo de erro faz o Google contar a URL como existente. Quem
+lê uma URL duas vezes é exatamente o Googlebot, e o orçamento de rastreamento é o
+recurso escasso da 14.1 — esta ilha tem **15 URLs ainda não indexadas**. É a mesma
+família, e a mesma causa, do outro achado do BLOCO C: *"o rastreador nunca recebe
+redirecionamento"*. A camada de cache responde antes do WordPress.
+
+**POR QUE NENHUM PORTÃO DAQUI VIA.** As 504 afirmações do `conferir-no-ar.py` passam
+por `buscar()`, e `buscar()` gruda a quebra de cache. **Todas mediam a origem.** A
+afirmação `[rota] caminho inexistente responde 404` passa, e está **certa**: a origem
+responde 404. O defeito mora na camada da frente, e até hoje nada daqui a lia.
+
+## O QUE FOI CONSTRUÍDO
+
+`ferramentas/leitura-do-visitante.py` — lê as **17 URLs do sitemap sem quebra de
+cache**, que é a leitura que se parece com a do Google, e termina na sonda de 404
+pela borda.
+
+- **A régua é função pura** e tem `--autoteste` com **11 casos fabricados, um por
+  ramo** (11 de 11, zero falha). A varredura fechou em 17 esperado e zero defeito nas
+  URLs, e esta ilha já escreveu em 25/09 que *"passada limpa em portão que nunca
+  acusou nada não prova nada"*.
+- **A sonda leva sufixo novo a cada passada**, e isso não é detalhe: com URL fixa ela
+  mediria a entrada de cache que a **passada anterior** criou, e acusaria a si mesma
+  para sempre.
+- **O visitante é lido PRIMEIRO**, antes da origem: a quebra de cache aquece a borda,
+  e medi-la depois de aquecer mediria o instrumento, não o site.
+- O `conferir-no-ar.py` **importa** essa régua em vez de copiá-la — uma terceira
+  reimplementação de "o visitante recebeu a ilha" não acrescentaria independência, só
+  uma cópia para envelhecer calada (é o mesmo motivo escrito em `cobertura.py`). Foi
+  de **504 para 508 afirmações, 0 falha**.
+
+## AS DUAS POLÍTICAS, E NENHUMA DELAS É NOVA
+
+**A ferramenta REPROVA** — fecha em `REPROVADO: 18 URL(s) lidas, 1 defeito(s)`, e é
+para ficar vermelha até a pendência fechar. **O portão de entrega REGISTRA**, com o
+número, a data e o dono na linha. A jurisprudência é desta ilha, de 14/09, e está
+escrita no próprio `conferir-no-ar.py`: portão vermelho que nenhuma execução consegue
+fechar *"se aprende a ignorar, que é pior do que não ter portão"*. **No dia em que o
+Raphael fechar, a linha vira portão** trocando `ok(True` por `ok(_borda_404_ok` — e
+isso está escrito no arquivo, ao lado da linha, não só aqui.
+
+**O que impediu a outra saída fácil, e vale registrar:** a primeira tentação era fazer
+a afirmação reprovar de qualquer jeito, "para não deixar passar". Isso travaria toda
+execução futura desta ilha num vermelho que nenhuma delas pode consertar — o cache é
+do hospedeiro, roda antes do PHP, e a origem já manda `no-store`, que ele ignora.
+
+## O RETRATO "ANTES" DO BLOCO A, QUE ERA O ÚNICO PEDAÇO DELE QUE NÃO ESPERAVA
+
+O BLOCO A manda, textualmente: *"Gravar em `dados/posicoes.md` o título e a meta ANTES
+da troca, na mesma linha da série, para haver com o que comparar depois."* Estava por
+fazer, e **depois da troca não teria como ser remontado** — o HTML servido não guarda
+o que servia ontem. Gravado, **medido pela borda** (a leitura do Google), com contagem
+em caracteres decodificados:
+
+| URL | `<title>` | nº | `description` | nº |
+|---|---|---|---|---|
+| `/materiais/qual-cola-usar-no-mosaico/` | Qual cola usar no mosaico, e qual rejunte – Clube do Mosaico | 60 | … pela declaração do próprio fabricante … | 183 |
+| `/materiais/quantas-pastilhas-para-mosaico/` | Quantas pastilhas e quanto rejunte comprar – Clube do Mosaico | 61 | … a conta da pastilha pequena e não a do azulejo de obra | 165 |
+| `/como-fazer/o-que-e-mosaico-picassiete/` | O que é mosaico Picassiete, e como colar – Clube do Mosaico | 59 | … com o que colar o caquinho em cada superfície … | 192 |
+| `/como-fazer/o-que-e-trencadis/` | O que é trencadís, e com o que colar o caco – Clube do Mosaico | 62 | … de onde vem o nome ligado a Gaudí … | 189 |
+
+**O que o retrato já diz para quem escrever o BLOCO A depois de 30/09:** nenhum dos
+quatro `<title>` promete um número, e nenhuma das quatro `description` promete a
+faixa — as duas alavancas que a 12.1 nomeia para a banda de 4 a 10 estão **inteiras
+por usar**. E os quatro títulos cabem em 64 com folga de **2 a 5 caracteres**: quem
+for enfiar um número ali vai ter de tirar palavra, e a candidata é a marca no fim,
+que foi o caminho do precedente da robometria.
+
+## MEDIDO NESTA EXECUÇÃO
+
+- `conferir-no-ar.py`: **508 afirmações, 0 falha** (eram 504).
+- `leitura-do-visitante.py --autoteste`: **11 de 11**, 0 falha.
+- `leitura-do-visitante.py`: 17 URLs esperado, **0 janela de cache aberta**, **1
+  defeito** — a sonda de 404.
+- `teste-casca.php` **569**, `teste-loja.php` **208**, `validar-banco.py` OK,
+  `varrer-canonicas.py --autoteste` **11 de 11**. Zero falha.
+- Cabeçalho do `ESTADO.md` em `yaml.safe_load`: **ok**.
+- Rede da ilha pela 20.2 no começo da execução: `/` **200**, `wp-sitemap.xml` **200**,
+  `/wp-json/clubedomosaico/v1/status` **revisão 47**.
+
+## O QUE DEPENDE DO RAPHAEL — três coisas, e duas já estavam abertas
+
+1. **NOVA: o soft 404 da borda.** No cPanel da HostGator, cache de página que não
+   guarde resposta 404. Está no `ESTADO.md` e em `dados/consertos.md`, com o comando
+   que reconfere.
+2. **O egresso aos domínios de fabricante** (20.1 e 20.3), e é o que destrava o
+   primeiro SKU de `base` e de `apoio` — **quarto bloco seguido parando aqui**.
+   `quartzolit.weber`, `tekbond.com.br`, `loctite.com.br`, `cascola.com.br` e
+   `pastilhart.com.br` respondem **403 ao CONNECT**. O caminho está na 20.1:
+   `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → Domínios permitidos.
+   **Sem PDF de fabricante não sai FISPQ de epóxi nem `dureza_shore_a`**, e as duas
+   categorias já têm regra, portão e bateria verde esperando só a frase.
+3. **O acesso da conta `sentinela@` ao Search Console** desta propriedade, que
+   continua aberto desde o BLOCO C e é o que tira a nota de rodapé da leitura de
+   30/09.
+
+## PRÓXIMO PASSO
+
+**A leitura de 30/09 é amanhã**, e ela destrava de uma vez o BLOCO A (agora com o
+retrato "antes" já gravado, que era pré-requisito dele), a faixa de `description` das
+quatro travadas, a terceira condição do item 1 de 23/09 e a segunda metade do item 2.
+O que sobra antes disso continua sendo **canal**, não decisão.
+
+**Memória:** `/areas` e `/topics` não existem neste ambiente — conferido, como em
+execuções anteriores. O estado está no `ESTADO.md`, neste registro e no `PROMPT.md`.
+
 28/09/2026 19:42Z — A LINHA DA PEÇA ENTRA NA ÁRVORE, E O QUE FALTAVA NÃO ERA A LINHA: ERA A CHAVE
 
 Item 4 da lista de desbloqueados do `PROMPT.md` ("a linha da peça na tabela do
