@@ -316,6 +316,8 @@ sem_busca_crua = 0    # secao 25.4-b: tem busca e nao guarda o endereco cru dela
 # nao some, e tambem o que converte pior: banco inteiro no 4 cumpre o esquema e
 # rende o minimo.
 por_degrau = {1: 0, 2: 0, 3: 0, 4: 0}
+casamentos_a_reconferir = []   # (onde, registro, titulo gravado) — reconferidos abaixo
+reconferidos = 0
 
 for nome in arquivos_material:
     arq = carregar(nome)
@@ -535,6 +537,33 @@ for nome in arquivos_material:
         # banco que cumpre o esquema e nao rende nada.
         if af.get("degrau") in (1, 2, 3, 4):
             por_degrau[int(af["degrau"])] += 1
+
+        # O CASAMENTO SE RECONFERE, NAO SE ACREDITA (29/09/2026).
+        #
+        # Dez registros ganharam ficha de produto em 29/09/2026 porque um anuncio
+        # da Shopee foi provadamente daquele SKU, pela regra de
+        # `ferramentas/casar-anuncio.py`. A prova ficou gravada em
+        # `afiliado.casamento`, com o titulo do anuncio que a produziu.
+        #
+        # Titulo gravado e procedencia; procedencia que ninguem reconfere e
+        # decoracao. Entao este portao NAO le o campo: ele passa o titulo
+        # gravado pela regra VIVA e exige que ela continue identificando ESTE
+        # registro e mais nenhum. No dia em que alguem afrouxar a regra, renomear
+        # um registro ou acrescentar um irmao que o titulo tambem descreve, o
+        # casamento para de valer e isto reprova — que e exatamente o que a
+        # secao 4 do contrato pede: o resumo nao pode sobreviver ao fato.
+        cas = af.get("casamento")
+        if cas:
+            for campo in ("casado_em", "regra", "degrau_da_palavra_chave",
+                          "palavra_chave", "titulo_do_anuncio", "loja",
+                          "item_id", "shop_id", "por_que_este_degrau_da_25_1",
+                          "prova_de_vida"):
+                if campo not in cas:
+                    erro("%s / casamento: falta %s" % (onde, campo))
+            if not af.get("url") or not af.get("url_produto"):
+                erro("%s: tem casamento gravado e nao tem ficha — casamento sem `url` "
+                     "e prova de uma coisa que nao esta no ar" % onde)
+            casamentos_a_reconferir.append((onde, m, cas.get("titulo_do_anuncio") or ""))
 
         if m.get("imagem") is None:
             sem_imagem += 1
@@ -2103,6 +2132,39 @@ if os.path.exists(CAMINHO_PECAS):
 
 # ---------------------------------------------------------------- relatorio
 
+# ---------------------------------------------- O CASAMENTO, RECONFERIDO PELA REGRA VIVA
+#
+# Aqui, e nao dentro do laco, porque a regra precisa do banco INTEIRO: ela so
+# aprova um casamento quando UM registro passa nas travas, e isso se mede contra
+# todos os outros. Reconferir registro a registro, sem os irmaos na mao, seria a
+# metade da regra fingindo ser a regra.
+if casamentos_a_reconferir:
+    import importlib.util as _iu
+    _s = _iu.spec_from_file_location(
+        "casar_anuncio", os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                      "casar-anuncio.py"))
+    _casar = _iu.module_from_spec(_s)
+    _s.loader.exec_module(_casar)
+    _todos = list(materiais.values())
+
+    def _irmaos(reg):
+        marca = (reg.get("marca") or "").lower()
+        return [x for x in _todos
+                if (x.get("marca") or "").lower() == marca and x.get("id") != reg.get("id")]
+
+    for onde, registro, titulo in casamentos_a_reconferir:
+        escolhido, laudo = _casar.casar(titulo, _todos, _irmaos)
+        if escolhido is None or escolhido.get("id") != registro.get("id"):
+            motivo = ""
+            for linha in laudo:
+                if linha["id"] == registro.get("id"):
+                    motivo = linha["motivo"] or ""
+            erro("%s: o titulo gravado em `casamento` NAO identifica mais este registro "
+                 "pela regra viva de casar-anuncio.py — %s. Ou a regra mudou, ou o banco "
+                 "mudou, e nos dois casos a ficha esta apoiada numa prova que caducou "
+                 "(secao 4 do contrato)" % (onde, motivo or "nenhum registro casou"))
+    reconferidos = len(casamentos_a_reconferir)
+
 print("Banco do Clube do Mosaico — verificacao do esquema do bloco 3")
 print("  materiais no banco ......... %d" % len(materiais))
 print("  celulas da F2 recomputadas . %d  (so categoria %s)" % (celulas_conferidas, CATEGORIA_DA_MATRIZ_F2))
@@ -2116,6 +2178,8 @@ print("  busca sem endereco cru ..... %d  (25.4-b)" % sem_busca_crua)
 print("  a escada da 25.1, por degrau . 1:%d  2:%d  3:%d  4:%d  (soma %d)"
       % (por_degrau[1], por_degrau[2], por_degrau[3], por_degrau[4], sum(por_degrau.values())))
 print("  itens sem imagem ........... %d" % sem_imagem)
+print("  casamentos reconferidos .... %d  (titulo gravado passado pela regra viva "
+      "de casar-anuncio.py, contra o banco inteiro)" % reconferidos)
 for n in notas:
     print("  nota: %s" % n)
 for a in avisos:

@@ -1,6 +1,41 @@
 # Links de afiliado — Clube do Mosaico
 
-**Estado em 13/09/2026:** 10 dos 20 itens do banco com link de afiliado vivo — 9 pela Shopee e 1 pelo Mercado Livre. **Nenhum material espera link.** As 10 pastilhas estão fora por decisão registrada abaixo.
+**ESTADO EM 29/09/2026 — a escada da 25.1 e `1:1 · 2:5 · 3:14 · 4:18`, soma 38.** Vinte dos trinta e oito
+registros servem FICHA de produto e dezoito servem o piso da 25.2, a pagina de busca. **Nenhum registro do banco
+esta sem porta de compra**, e nenhum tem piso nao rastreavel.
+
+O que mudou hoje: **dez registros sairam do degrau 4 para o 3**, pela Open API (25.6) e pela regra de casamento
+de `ferramentas/casar-anuncio.py` — tres vernizes da Acrilex, o verniz protetor de piso da Quartzolit, cinco
+alicates/cortadores (Cortag e Vonder) e o Silicone Acetico Maxx da Tekbond. Cada um ganhou `url`, `url_produto`
+(o teste de vida da 25.4-b), o degrau da 25.1 e **foto medida** — dez fotos, que e a primeira vez que este banco
+ganha imagem sem depender do dominio do fabricante, fechado ao egresso desta nuvem desde que a ilha nasceu.
+
+**CINCO NAO SUBIRAM, e o motivo esta escrito registro a registro em `afiliado.motivo_sem_ficha`:**
+
+| registro | o que segurou |
+|---|---|
+| `quartzolit-borracha-liquida-elastica` | o `nome_comercial` e uma DESCRICAO (`impermeabilizante borracha liquida elastica quartzolit`), nao o batismo do fabricante — e a trava que cobra o nome comercial inteiro no titulo do anuncio nunca fecha |
+| `quartzolit-protetor-para-fachadas` | mesmo caso |
+| `quartzolit-fundo-selador` | mesmo caso. E a chave `selador quartzolit` devolve **PU40, PU30 e Primer Flex**, que sao outros produtos: aqui a trava evitou um casamento errado, medido no ensaio de hoje |
+| `cortag-torques-azulejista-corte-curvo` | as chaves devolvem o anuncio de corte **RETO**; anuncio que nao traz `curvo` nao separa os dois irmaos |
+| `cascola-pl500-adesivo-de-montagem` | uma letra de genero: o anuncio se chama `Cola **Adesiva** Montagem Cascola Monta E Fixa Interior Pl500` e o registro diz `**Adesivo** de Montagem`. Afrouxar a trava para este passar seria dobrar o criterio para caber no dado que veio (1.2-b.4) |
+
+**O ACHADO QUE VALE MAIS QUE OS DEZ LINKS, e ele e da secao 26 do contrato:** tres dos cinco que nao subiram sao
+da Quartzolit e os tres tem em `nome_comercial` uma **frase descritiva escrita por nos**, em minusculas e com a
+marca repetida dentro, em vez do nome que o fabricante da ao produto. A 26 diz que *o vocabulario da ilha
+classifica pela funcao e o fabricante batiza pela posicao* — e o `nome_comercial` e o lado do FABRICANTE. Nenhum
+portao via isso porque nada, ate hoje, comparava esse campo com um texto de fora. **A regra de casamento foi o
+primeiro a comparar, e o que ela achou nao foi um anuncio: foi um campo do proprio banco escrito no papel
+errado.** Consertar os tres e trabalho de coleta (achar o batismo na pagina do fabricante), e o egresso a
+`quartzolit.weber` continua em 403 — esta na lista de dominios do Raphael.
+
+**AS TREZE PASTILHAS CONTINUAM FORA, e nao por falha da regra: elas nem foram tentadas.** A decisao pendente e a
+de baixo, "As 10 pastilhas ficaram de fora, e por que" — hoje sao treze, e o caminho continua sendo o mesmo
+campo `afiliado.tipo_de_casamento: "equivalente"`, que e decisao do Raphael.
+
+---
+
+**Estado em 13/09/2026 (historico):** 10 dos 20 itens do banco com link de afiliado vivo — 9 pela Shopee e 1 pelo Mercado Livre. **Nenhum material espera link.** As 10 pastilhas estão fora por decisão registrada abaixo.
 
 > **E ELES SÓ FORAM AO AR ÀS 11h56Z, oito horas depois de commitados.** A execução que
 > gerou os links gravou `materiais-colas.json` e `materiais-rejuntes.json` **sem atualizar

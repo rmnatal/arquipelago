@@ -7,14 +7,14 @@
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria COLA do banco MATERIAL, escrita no formato do esquema do bloco 3. NENHUM dado novo foi coletado nesta execucao: cada declaracao abaixo e a transposicao campo a campo do que o bloco 2 ja tinha colhido em dados/constantes.json, com a mesma fonte, o mesmo tipo de documento e a mesma data. O que este arquivo acrescenta e ESTRUTURA — a lista literal do fabricante virou campo com peso (indicado, proibido, nao recomendado, delimita, resiste), e por isso a matriz da F2 pode ser recomputada em vez de lida.",
   "afiliado": {
-    "itens_esperando_link": 2,
+    "itens_esperando_link": 1,
     "itens_sem_saida_de_compra": 0,
     "itens_com_piso_nao_rastreavel": 0,
-    "observacao": "Os SETE tem piso encurtado desde 25/09/2026: a Open API (25.6) encurtou a busca dos dois que esperavam sessao de painel desde 13/09 — Silicone Acetico Maxx e Cascola PL500 — e REGEROU os cinco que ja tinham. Cinco tem ficha de produto, conferida viva em 13/09; as duas fichas de Shopee (silicone acetico construcao e cascorez) tambem foram regeradas, porque os links de 13/09 nasceram com os `sub_id` DESLOCADOS UMA CASA (`-clubedomosaico-F2--`, campo 1 vazio) e o painel nao conseguia dizer qual ilha vendeu. Os tres do Mercado Livre nao foram tocados: e outro programa, com `etiqueta_ml` propria. A palavra-chave dos cinco que tinham busca encurtada e sem endereco cru foi REESCOLHIDA inteira pela 25.4-b.1, nunca grampeada ao link velho, e cada uma foi medida contra a API antes de virar link."
+    "observacao": "Os SETE tem piso encurtado desde 25/09/2026: a Open API (25.6) encurtou a busca dos dois que esperavam sessao de painel desde 13/09 — Silicone Acetico Maxx e Cascola PL500 — e REGEROU os cinco que ja tinham. Cinco tem ficha de produto, conferida viva em 13/09; as duas fichas de Shopee (silicone acetico construcao e cascorez) tambem foram regeradas, porque os links de 13/09 nasceram com os `sub_id` DESLOCADOS UMA CASA (`-clubedomosaico-F2--`, campo 1 vazio) e o painel nao conseguia dizer qual ilha vendeu. Os tres do Mercado Livre nao foram tocados: e outro programa, com `etiqueta_ml` propria. A palavra-chave dos cinco que tinham busca encurtada e sem endereco cru foi REESCOLHIDA inteira pela 25.4-b.1, nunca grampeada ao link velho, e cada uma foi medida contra a API antes de virar link. EM 29/09/2026 O SILICONE ACETICO MAXX SUBIU DO DEGRAU 4 PARA O 3: a Open API (25.6) devolveu um anuncio que a regra de ferramentas/casar-anuncio.py identificou como este registro e mais nenhum, e ele ganhou `url`, `url_produto` e foto medida. O CASCOLA PL500 NAO subiu, e a causa e de uma letra: o anuncio se chama 'Cola Adesiva Montagem Cascola Monta E Fixa Interior Pl500 360g' e o nome comercial do registro diz 'Adesivo', com o. A trava que cobra o nome comercial inteiro no titulo nao conhece genero, e afrouxa-la para deixar este passar seria dobrar o criterio para caber no dado que veio (1.2-b.4). Fica o motivo escrito em `afiliado.motivo_sem_ficha` e o piso da 25.2 intacto."
   },
   "imagens": {
-    "itens_sem_imagem": 5,
-    "observacao": "Duas das sete tem foto, e as duas vieram do FEED DE AFILIADO DA SHOPEE (secao 25.3), que e a fonte legitima. Largura e altura foram LIDAS do arquivo servido por ferramentas/medir-imagens.py em 13/09/2026, nunca estimadas. As CINCO sem foto seguem sem foto pelo mesmo motivo, remedido em 13/09/2026 em duas passadas: tekbond.com.br, quartzolit.weber, cascola.com.br e henkel.com.br respondem 000 por politica de egresso, e os dois produtos novos deste bloco entram sem foto porque nao estao no recorte de feed que a ilha tem. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque."
+    "itens_sem_imagem": 4,
+    "observacao": "TRES DAS SETE TEM FOTO. Duas vieram do FEED DE AFILIADO DA SHOPEE (secao 25.3) em 13/09/2026 e a terceira — o Silicone Acetico Maxx — veio do anuncio CASADO na Open API em 29/09/2026 (25.6), quando ele subiu do degrau 4 para o 3. Nos tres casos largura e altura foram LIDAS do arquivo servido por ferramentas/medir-imagens.py, nunca estimadas, porque nem o feed nem a API declaram dimensao e caixa sem medida e o salto de layout da 22.4. As QUATRO sem foto seguem sem: tekbond.com.br, quartzolit.weber, cascola.com.br e henkel.com.br respondem 000 por politica de egresso, e o Cascola PL500 nao teve anuncio casado. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque."
   },
   "pendencias_desta_categoria": [
     {
@@ -617,18 +617,39 @@
       ],
       "afiliado": {
         "programa": "shopee",
-        "url": "",
+        "url": "https://s.shopee.com.br/5AsrvyZtmH",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": null,
+        "gerado_em": "2026-09-29",
         "url_busca": "https://s.shopee.com.br/3g3xMqny08",
         "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20acetico%20maxx%20tekbond",
-        "degrau": 4,
+        "degrau": 3,
         "motivo_da_troca_da_palavra_chave": "A palavra-chave era 'silicone maxx tekbond AQUARIO', e aquario e o nicho da Aquametria: a chave veio copiada de la e mandaria quem faz mosaico para a prateleira de aquario. Trocada em 14/09/2026 por 'silicone acetico maxx tekbond'. O que esta errado e a chave, nunca o metodo: chave de busca se confere abrindo a busca crua, e e por isso que a 25.4-b manda guardar a URL crua.",
-        "url_busca_gerada_em": "2026-09-25"
+        "url_busca_gerada_em": "2026-09-25",
+        "url_produto": "https://shopee.com.br/product/1098293603/21297997810",
+        "conferido_em": "2026-09-29",
+        "casamento": {
+          "casado_em": "2026-09-29",
+          "regra": "ferramentas/casar-anuncio.py (cinco travas mais unicidade)",
+          "degrau_da_palavra_chave": 2,
+          "palavra_chave": "Tekbond Silicone Acético Maxx",
+          "titulo_do_anuncio": "Adesivo Silicone Acético Maxx Transparente 280g Tekbond",
+          "loja": "BSB Distribuidora",
+          "item_id": 21297997810,
+          "shop_id": 1098293603,
+          "por_que_este_degrau_da_25_1": "a loja \"BSB Distribuidora\" e vendedor comum (25.1, degrau 3)",
+          "prova_de_vida": "a API devolveu este anuncio em 2026-09-29. Nao foi clicado: o salto do encurtador e onde a Shopee conta o clique e autoclique com a etiqueta da ilha apaga o primeiro clique organico (25.8)."
+        }
       },
-      "imagem": null,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-7rfhw-m4abblfhnfdu31",
+        "largura": 1024,
+        "altura": 1024,
+        "fonte": "Open API de Afiliados da Shopee (25.6), anuncio casado",
+        "coletado_em": "2026-09-29",
+        "alt": "Silicone Acético Maxx"
+      },
       "fontes": {
         "pagina-produto-maxx": {
           "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico-maxx",
@@ -731,7 +752,8 @@
         "url_busca": "https://s.shopee.com.br/70KPKybPmg",
         "url_busca_produto": "https://shopee.com.br/search?keyword=cascola%20adesivo%20de%20montagem%20pl500",
         "degrau": 4,
-        "url_busca_gerada_em": "2026-09-25"
+        "url_busca_gerada_em": "2026-09-25",
+        "motivo_sem_ficha": "nenhum anuncio identificou este registro sozinho na escada de palavra-chave de 2026-09-29: 1 \"Cascola PL500\" -> 12 ofertas; 2 \"Cascola Cascola Adesivo de Montagem PL500 Interior\" -> 4 ofertas; 3 \"cascola adesivo de montagem pl500\" -> 6 ofertas; 4 \"Cascola adesivo montagem\" -> 12 ofertas"
       },
       "imagem": null,
       "fontes": {

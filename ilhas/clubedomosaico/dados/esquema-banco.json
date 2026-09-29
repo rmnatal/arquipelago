@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 6,
+  "versao_esquema": 7,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -1167,6 +1167,30 @@
             "motivo_da_chave": {
               "tipo": "string|null",
               "observacao": "Em que degrau da escada de palavra-chave da 25.6 a busca parou, e por que. Procedencia, nao enfeite: em 25/09/2026 as treze chaves das pastilhas devolviam ZERO oferta desde 13/09 — `Glass Mosaic <codigo> pastilha de vidro <medida>`, com a marca e o codigo de catalogo que anuncio de Shopee nao escreve — e a descida parou na FAMILIA (medida e acabamento). O campo e o que impede a proxima passada de ler a chave larga como se fosse escolha do fabricante. Codigo sozinho continua barrado pela armadilha 3 da 25.7: `K2501` devolve grade de aspirador Karcher."
+            },
+            "casamento": {
+              "tipo": "objeto|ausente",
+              "obrigatorio": false,
+              "observacao": "A PROVA DE QUE O ANUNCIO E DESTE SKU (29/09/2026). Ate 28/09 nenhum item de acabamento, alicate ou pastilha tinha ficha de produto, e o motivo estava escrito nos cabecalhos dos bancos: 'ficha exige casamento de item, que a 25.7 proibe sem prova de que o anuncio e daquele SKU'. A prova passou a existir e mora aqui. Presente em todo registro cuja `url` nasceu de um casamento de anuncio; ausente nos que a ficha veio por outro caminho (os cinco de 13/09, escolhidos antes de a regra existir) — e ausencia aqui NAO e defeito, e historia.",
+              "subcampos_obrigatorios_quando_existe": [
+                "casado_em",
+                "regra",
+                "degrau_da_palavra_chave",
+                "palavra_chave",
+                "titulo_do_anuncio",
+                "loja",
+                "item_id",
+                "shop_id",
+                "por_que_este_degrau_da_25_1",
+                "prova_de_vida"
+              ],
+              "degrau_da_palavra_chave": "Em que degrau da escada de palavra-chave o casamento aconteceu, e isso e PROCEDENCIA e nao curiosidade: casar pelo codigo do fabricante (degrau 1) e casar pela chave larga (degrau 4) nao valem o mesmo. A escada desta ilha esta no cabecalho de ferramentas/coletar-shopee.py e NAO e a da 25.6 ao pe da letra — os codigos deste banco sao SKU industrial que vendedor de Shopee nao digita.",
+              "portao": "ferramentas/validar-banco.py reconfere o `titulo_do_anuncio` gravado passando-o pela regra VIVA de ferramentas/casar-anuncio.py, contra o banco inteiro, e reprova quando ela deixa de identificar este registro. Bancada: ferramentas/teste-casamento.py (42 afirmacoes). Bateria: ferramentas/mutacoes-casamento.py (12 mutacoes na regra e 5 no banco, 17 de 17 reprovadas). Titulo gravado que ninguem reconfere e decoracao, nao procedencia."
+            },
+            "motivo_sem_ficha": {
+              "tipo": "string|ausente",
+              "obrigatorio": false,
+              "observacao": "O OUTRO DESFECHO DA MESMA TENTATIVA, e ele e tao obrigatorio de escrever quanto o sucesso — mesma logica do par `url_busca_gerada_em` / `motivo_sem_url_busca` da 25.2-b: ausente e diferente de tentado-e-falhou. Traz a data, as palavras-chave tentadas em ordem de degrau e quantas ofertas cada uma devolveu, para a proxima execucao saber se vale retentar ou se o problema e outro. Item com este campo continua servindo o piso da 25.2 e nao perde porta de compra nenhuma."
             }
           },
           "a_escada_da_secao_25": {
@@ -3169,5 +3193,6 @@
       "o_que_esta_secao_NAO_faz_e_de_proposito": "Nao escreve recomendacao de EPI nenhuma. A secao 8 do ARQUIPELAGO.md proibe afirmar pelo fabricante, e deduzir 'epoxi pede luva' do mecanismo do produto seria exatamente isso — e o mesmo defeito que a mutacao 05 do acabamento pegou no `momento_de_uso`. O que ela faz e transformar o silencio em NUMERO e deixar o campo `risco_declarado` obrigatorio, para que a primeira coleta de EPI responda 'ninguem declarou' em vez de a pergunta nao ser feita.",
       "o_que_destrava": "A ficha de seguranca (FISPQ) do epoxi, que e documento de nivel 1 e mora em PDF no dominio do fabricante — o mesmo egresso fechado que segura o primeiro SKU da `base`. E o terceiro bloco seguido desta ilha a parar na mesma porta."
     }
-  }
+  },
+  "o_que_mudou_na_versao_7": "29/09/2026: `afiliado.casamento` e `afiliado.motivo_sem_ficha`. A escada da 25.1 saiu de 1:1 2:5 3:4 4:28 para 1:1 2:5 3:14 4:18 — dez registros de acabamento, alicate e cola sairam do piso e ganharam ficha de produto, cada um com a prova do casamento gravada e reconferida por portao. Cinco nao sairam e tem o motivo escrito. As treze pastilhas nao foram tentadas: elas dependem da decisao de `afiliado.tipo_de_casamento: 'equivalente'` descrita em dados/links-afiliado-pendentes.md, que e do Raphael e nao da Fundacao."
 }
