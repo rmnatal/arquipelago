@@ -3,6 +3,141 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+29/09/2026 13:17Z — A PÁGINA DE DIVULGAÇÃO DIZIA AO LEITOR QUE 28 BOTÕES NÃO RENDIAM COMISSÃO, E OS 28 SAEM COM `rel="sponsored"`
+
+Casca **1.18.0**, manifest e `/status` na **revisão 48**. Nenhuma URL nova, nenhum
+endereço mudou, nenhum `<title>` e nenhuma `description` mudou — o BLOCO A do
+despacho do Raphael de 24/09 continua intocado e a janela de medição de 30/09
+segue limpa. O que mudou é o TEXTO de uma página que não rankeia e cujo produto
+inteiro é dizer a verdade sobre dinheiro.
+
+## O DEFEITO, E ELE ESTAVA NO AR HÁ QUATRO DIAS
+
+`/divulgacao-de-afiliados/` servia, hoje de manhã, esta frase:
+
+> *"Quando ainda não existe [link de afiliado para o produto], o botão leva você
+> para a **busca daquele produto na loja**, e essa busca **não é link de
+> afiliado**: ninguém nos paga por aquele clique."*
+
+**É falso para 28 dos 38 materiais do banco.** O `url_busca` desses 28 é um
+encurtador `s.shopee.com.br/...` com `sub_id_1 = clubedomosaico` — link de
+afiliado, que rende comissão. O validador mede `piso nao rastreavel = 0` desde
+25/09, e `conferir-no-ar.py` contou hoje **29 encurtadores servidos** nas 17
+URLs, **todos com `rel="sponsored"`**.
+
+**A DIREÇÃO DO ERRO É O QUE O TORNA GRAVE, e ela é a rara.** O defeito comum de
+site de afiliado é esconder do buscador a relação paga. Aqui era o contrário: a
+ilha **declarava** a relação paga ao Google, no atributo, e a **negava** a quem
+lê, no texto — na única página do site cujo produto inteiro é a divulgação.
+
+## NINGUÉM MENTIU: A FRASE ENVELHECEU SOZINHA, E ISSO TEM DATA
+
+- **14/09/2026** — a busca CRUA subiu para o botão (f2 1.5.0, degrau 4 da 25.1).
+  A frase nasceu nesse dia e **era verdadeira**: busca crua leva à mesma loja e
+  não paga nada. Escrevê-la foi zelo, não descuido.
+- **16/09/2026** — a Open API de afiliados entrou (25.6 do contrato). Encurtar
+  deixou de exigir o painel do Raphael e virou uma chamada de rede.
+- **25/09/2026** — o BLOCO 0 regerou os links pela API e **os 38 itens ganharam
+  busca encurtada**. A frase ficou falsa nesse instante, e ninguém a tocou.
+
+É a seção 4 do contrato na forma mais pura — o texto fica para trás em silêncio
+—, com o agravante de que o texto era uma **afirmação sobre dinheiro**.
+
+## E A CONTA EMBAIXO TINHA DUAS PARCELAS DE TRÊS
+
+A mesma página publicava: *"os **38** materiais do banco têm, todos, um caminho
+de compra. Em **10** deles esse caminho é um link de afiliado (…); em **0** ele é
+a busca na loja, que não rende nada."*
+
+**10 + 0 = 10, de 38.** Os 28 do meio — a busca encurtada — não apareciam em
+parcela nenhuma, e **nenhum dígito estava visivelmente errado**. É assim que uma
+classificação inteira some de uma página sem nenhum número parecer falso: a
+conta tinha duas parcelas porque o mundo tinha dois estados em 14/09, e ganhou o
+terceiro sem ninguém recontar as parcelas.
+
+## POR QUE NENHUM PORTÃO VIA, E É ESTRUTURAL
+
+O texto mora na **casca** e o `rel` mora na **F2**. Nenhuma régua comparava os
+dois — e o docbloco da própria `cdm_f2_compra_html()` já dizia, desde 14/09, que
+*"a busca ENCURTADA (…) é link de afiliado e rende comissão"*. **O código sabia
+e a página não.** Duas verdades em dois snippets, sem nada entre elas.
+
+## O QUE FOI CONSTRUÍDO
+
+**A página** passa a nomear os **três** estados do botão, dizendo quais dois são
+afiliado: ficha do produto (afiliado), busca daquele produto (afiliado, e a
+palavra "também" está lá de propósito) e busca sem rastreio (não afiliado, e é o
+único botão do site sem a marca de patrocinado). A conta passa a ter **três
+parcelas que fecham no total**.
+
+**E ela só sai pela via viva.** O instantâneo de `cdm_casca_numeros()` é de 14/09
+e ainda declara `piso_nao_rastreavel => 15` num banco que tem zero; publicá-lo
+hoje repetiria o defeito que esta versão conserta. Quando os cinco bancos não
+chegaram, a seção fica com a **regra** — que é o que o leitor tem direito de
+saber — e sem a contagem. **Estatística velha envelhece; disclosure velho mente**,
+e essa é a distinção que justificou não seguir a convenção de "não mexer no
+instantâneo" com um `if` em vez de um dígito.
+
+**O portão (teste-casca, seção 15c) não guarda a resposta: ele pergunta ao
+código.** Para cada um dos três estados, monta o `afiliado` à mão, chama
+`cdm_f2_compra_html()`, lê se o `rel` emitido é `sponsored`, acha o `<li>`
+correspondente na página pelo marcador do próprio texto e exige que as duas
+classificações **batam**. No dia em que a escada mudar de novo, quem falha é o
+par — não o lado que alguém lembrou de atualizar.
+
+**A régua no ar** (`conferir-no-ar.py`) mede a mesma coisa no HTML servido: a
+frase aposentada ausente, as três parcelas com os números **recontados dos
+registros** (nunca dos cabeçalhos que a tela lê), e o `rel` de **cada** link de
+loja das 17 URLs — 29 encurtadores, 29 patrocinados, 0 busca crua se dizendo
+patrocinada.
+
+## A MUTAÇÃO QUE PASSOU, E ELA VALE MAIS QUE AS SETE QUE REPROVARAM
+
+`ferramentas/mutacoes-divulgacao.py`, oito mutações. Na primeira rodada **uma
+passou**: *"a parcela da busca troca de fonte"* — trocar
+`esperando_link - piso_nao_rastreavel` por `esperando_link` sozinho. Com
+`piso_nao_rastreavel` em **0** os dois dão o mesmo número, e a trava **nasceu
+inerte**: ela mediria o acaso de hoje, não a regra. O defeito que essa mutação
+escreve só aparece no dia em que um item perder o rastreio — que é exatamente o
+dia em que a página voltaria a contar como pago um clique que não paga.
+
+A bancada passou a **fabricar esse dia** (regra 2 da seção 8: a grade inclui a
+borda): um item de alicate perde a busca encurtada, e a conta tem de sair
+10 · 27 · 1. Com a borda, **8 de 8 reprovaram**.
+
+## DE PASSAGEM, UM MARCADOR DE PURGA QUE O PRÓPRIO BLOCO INVALIDOU
+
+O portão de cache da seção 12 compara origem e canônico por **marcadores** de
+texto, e o marcador de `/divulgacao-de-afiliados/` era o título antigo da seção.
+Trocar o título derrubou o portão na primeira passada — e ele reprovou **como
+devia**: marcador é o texto que só existe depois da revisão nova, então ele muda
+junto com o bloco ou para de medir purga. Atualizado no mesmo commit.
+
+## BANCADAS E O AR
+
+Casca **591** afirmações (eram 587; as novas são o portão do par, as três
+parcelas e a borda), F2 119, Técnicas 123, F1, Loja, Ateliê, Leads e Prestação
+verdes, validador do banco verde. `mutacoes-divulgacao.py` 8 de 8 reprovadas.
+**No ar: `conferir-no-ar.py` com 519 afirmações e 0 falha** (eram 508).
+`leitura-do-visitante.py` continua REPROVADO por **1** defeito, o mesmo de hoje
+de manhã — o soft 404 da borda, que é do hospedeiro e está pendente com o
+Raphael. A borda já serve o texto novo: lida **sem** quebra de cache, a página
+traz o título novo e as três parcelas.
+
+- **Próximo passo desbloqueado:** continua sendo a leitura de **30/09**, que
+  libera o **BLOCO A** (CTR das três páginas de primeira página, veredito em
+  08/10) e, com ele, a metade que falta do item 4 da Sentinela de 28/09 — as duas
+  são a mesma promessa de SERP nas mesmas páginas. O que **não** depende dela
+  continua sendo o egresso de fabricante, que trava `base` e `apoio` e está na
+  lista do Raphael. **E entra um item novo de valor comercial, que não depende
+  de nenhum dos dois:** 28 dos 38 materiais estão no degrau 4 da 25.1 (busca, que
+  converte pior que ficha) — entre eles as **13 pastilhas**, que são a vitrine da
+  F1. Subir degrau é trabalho de API da Shopee, que esta nuvem alcança; o que
+  falta nas pastilhas é a decisão de `afiliado.tipo_de_casamento: "equivalente"`
+  descrita em `dados/links-afiliado-pendentes.md`, e ela é do Raphael.
+
+---
+
 29/09/2026 11:12Z — A LEITURA DO VISITANTE, E ELA ACHOU UM DEFEITO NO AR NA PRIMEIRA VEZ QUE OLHOU
 
 Bloco de instrumento, escolhido por eliminação e com a eliminação escrita: hoje é

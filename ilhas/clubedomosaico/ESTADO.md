@@ -5,39 +5,39 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-29T11:12Z
-executando_desde: 2026-09-29T13:38Z
+ultima_execucao: 2026-09-29T13:17Z
+executando_desde: null
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
-  A LEITURA DO VISITANTE — O PORTAO DESTA ILHA NUNCA TINHA VISTO O QUE O VISITANTE VE, E NA PRIMEIRA
-  VEZ QUE VIU ACHOU UM DEFEITO NO AR. Nenhuma URL nova, nenhum endereco mudou, nenhum texto de pagina
-  mudou e NENHUM ARQUIVO PUBLICAVEL MUDOU — entao nao houve Sync e o ar esta exatamente como estava:
-  manifest e /status seguem na revisao 47. De proposito: hoje e 29/09, vespera da leitura, e o BLOCO A
-  do despacho do Raphael de 24/09 proibe misturar causa na janela de medicao.
-  O ACHADO, e ele e o item da execucao: TODA URL INEXISTENTE DESTA ILHA RESPONDE 404 NA PRIMEIRA
-  LEITURA E 200 NA SEGUNDA, por 2 horas, com o corpo da pagina de 404 e `x-proxy-cache: HIT`. E SOFT
-  404, e quem le uma URL duas vezes e o Googlebot. Provado com URL virgem carimbada pelo relogio
-  (404, 200, 200) e repetido pela 20.2 antes de virar afirmacao. A origem esta CERTA: responde 404 com
-  `no-store`. Quem serve 200 e a camada de cache do hospedeiro, que roda ANTES do PHP.
-  POR QUE NENHUM PORTAO VIA: as 504 afirmacoes do conferir-no-ar.py usam `buscar()`, e `buscar()` gruda
-  `?v=<agora>` em toda URL. Todas mediam a ORIGEM; nenhuma media a borda. O achado ja estava escrito no
-  repositorio desde 25/09, no BLOCO C — "ele nunca ve o que o visitante ve" — e ficou quatro dias sem
-  instrumento. E a mesma causa do outro achado daquele bloco, o de que o rastreador nunca recebe
-  redirecionamento.
-  O QUE FOI CONSTRUIDO: ferramentas/leitura-do-visitante.py, que le as 17 URLs do sitemap SEM quebra de
-  cache e termina na sonda de 404 pela borda (sufixo novo a cada passada, senao a sonda acusaria a
-  entrada que ela mesma criou). Regua em funcao pura com --autoteste de 11 casos fabricados, um por
-  ramo. O conferir-no-ar.py IMPORTA essa regua em vez de copia-la e foi de 504 para 508 afirmacoes,
-  0 falha.
-  AS DUAS POLITICAS, e nenhuma e nova: a ferramenta REPROVA (fecha em 1 defeito hoje, e e para ficar
-  vermelha ate a pendencia fechar); o portao de entrega REGISTRA a linha da borda com o numero e o dono,
-  porque portao vermelho que nenhuma execucao consegue fechar se aprende a ignorar — a jurisprudencia e
-  desta ilha, de 14/09, e esta escrita no proprio arquivo. No dia em que o Raphael fechar, a linha vira
-  portao trocando `ok(True` por `ok(_borda_404_ok`.
-  E O RETRATO "ANTES" DO BLOCO A FICOU GRAVADO: dados/posicoes.md ganhou o <title> e a description
-  servidos hoje pelas quatro paginas travadas, medidos PELA BORDA, com a contagem decodificada. Era o
-  unico pedaco do BLOCO A que nao dependia de esperar 30/09, e depois da troca ele nao teria como ser
-  remontado. Nenhum dos quatro titulos promete numero e nenhuma das quatro descriptions promete faixa.
+  A DIVULGACAO DIZIA AO LEITOR QUE 28 BOTOES NAO RENDIAM COMISSAO, E OS 28 SAEM COM rel="sponsored".
+  Casca 1.18.0, manifest e /status na revisao 48. NENHUMA URL NOVA, nenhum endereco mudou, nenhum
+  <title> e nenhuma description mudaram: o BLOCO A do despacho do Raphael de 24/09 continua intocado
+  e a janela de medicao de 30/09 segue limpa.
+  O DEFEITO, e ele estava no ar ha quatro dias: /divulgacao-de-afiliados/ servia "essa busca NAO e
+  link de afiliado: ninguem nos paga por aquele clique" sobre os 28 itens cujo botao e a busca
+  ENCURTADA — que E link de afiliado, com sub_id, e rende comissao. A ilha DECLARAVA a relacao paga
+  ao Google (29 encurtadores servidos, 29 com rel="sponsored") e a NEGAVA a quem le, na unica pagina
+  cujo produto inteiro e a divulgacao. Ninguem mentiu: a frase nasceu em 14/09 verdadeira, quando a
+  busca CRUA era o botao; a Open API entrou em 16/09 (25.6) e em 25/09 os 38 itens ganharam busca
+  encurtada. E a secao 4 do contrato numa afirmacao sobre dinheiro.
+  E A CONTA TINHA DUAS PARCELAS DE TRES: publicava 10 com ficha e 0 sem rastreio, de 38, com os 28 do
+  meio ausentes e NENHUM DIGITO VISIVELMENTE ERRADO.
+  POR QUE NENHUM PORTAO VIA: o texto mora na casca, o rel mora na F2, e o docbloco da propria
+  cdm_f2_compra_html() ja dizia desde 14/09 que a busca encurtada "e link de afiliado e rende
+  comissao". O codigo sabia e a pagina nao; nada comparava os dois.
+  O QUE FOI CONSTRUIDO: a pagina nomeia os TRES estados do botao dizendo quais dois sao afiliado, e a
+  conta passa a ter tres parcelas que FECHAM no total. Ela so sai pela via viva (numeros_vivos),
+  porque o instantaneo de 14/09 ainda declara piso_nao_rastreavel 15 num banco que tem zero —
+  estatistica velha envelhece, disclosure velho mente. Portao novo no teste-casca (15c) que PERGUNTA
+  AO CODIGO quais estados sao pagos e cobra da pagina a mesma classificacao; regua no ar medindo o
+  texto servido e o rel de cada link de loja das 17 URLs.
+  A MUTACAO QUE PASSOU VALE MAIS QUE AS SETE QUE REPROVARAM: com piso_nao_rastreavel em 0, trocar
+  "esperando_link - piso_nao_rastreavel" por "esperando_link" nao muda digito nenhum, e a trava nasceu
+  INERTE. A bancada passou a fabricar a borda em que um item perde o rastreio (10 · 27 · 1), e ai
+  8 de 8 reprovaram.
+  BANCADAS: casca 591, F2 119, tecnicas 123, F1/Loja/Atelie/Leads/Prestacao e validador verdes.
+  NO AR: conferir-no-ar.py com 519 afirmacoes e 0 falha (eram 508). leitura-do-visitante.py continua
+  REPROVADO por 1 defeito — o soft 404 da borda, do hospedeiro, pendente com o Raphael, inalterado.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO
@@ -100,6 +100,23 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   11/09/2026. Agora os números da tela vêm do banco servido, não do instantâneo digitado.
 
 ## O que já foi entregue
+- 29/09/2026 13h17Z — **A PÁGINA DE DIVULGAÇÃO DIZIA AO LEITOR QUE 28 BOTÕES NÃO
+  RENDIAM COMISSÃO, E OS 28 SAEM COM `rel="sponsored"`.** Casca **1.18.0**,
+  manifest e `/status` na revisão **48**. **Nenhuma URL nova**, nenhum `<title>` e
+  nenhuma `description` mudaram — a janela de medição de 30/09 do BLOCO A segue
+  limpa. A frase nasceu verdadeira em 14/09, quando a busca CRUA era o botão;
+  a Open API entrou em 16/09 (25.6) e em 25/09 os 38 itens ganharam busca
+  **encurtada**, que é link de afiliado. A ilha passou a declarar a relação paga
+  ao Google e a negá-la a quem lê — e a conta embaixo tinha **duas parcelas de
+  três** (10 com ficha, 0 sem rastreio, de 38). Nenhum portão via porque o texto
+  mora na casca e o `rel` na F2. Agora a página nomeia os três estados do botão,
+  a conta fecha, e o portão da seção **15c** do `teste-casca` **pergunta ao
+  código** quais estados são pagos e cobra da página a mesma classificação.
+  `mutacoes-divulgacao.py` **8 de 8 reprovadas** — a sétima só depois de a bancada
+  fabricar a borda em que um item perde o rastreio, porque com
+  `piso_nao_rastreavel` em 0 ela tinha nascido inerte.
+  **Bancada:** casca **591**, F2 119, técnicas 123, validador verde.
+  **No ar:** `conferir-no-ar` **519** afirmações, 0 falha (eram 508).
 - 14/09/2026 23h19Z — **A FAMÍLIA DAS TÉCNICAS VIRA FAMÍLIA, E A GRADE PASSA A SER
   MEDIDA POR CAQUINHO.** Snippet `clubedomosaico-tecnicas` **1.1.0**, manifest na
   revisão **35**, `/status` com revisão 35 em UM disparo com 12 aplicados. **Uma

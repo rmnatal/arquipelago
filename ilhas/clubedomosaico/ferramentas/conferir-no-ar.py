@@ -917,7 +917,11 @@ _MARCADORES = {
         # classe+dominio e o marcador estavel — o codigo do encurtador muda a
         # cada regeracao e viraria uma regua que apodrece sozinha.
         ['cdm-f2-botao-busca" href="https://s.shopee.com.br/'],
-    "/divulgacao-de-afiliados/": ["Nem todo link daqui rende comiss"],
+    # O MARCADOR TROCOU EM 29/09/2026 com o bloco que ele mede: o titulo da secao
+    # era "Nem todo link daqui rende comissao" e a casca 1.18.0 o trocou junto com
+    # a frase que mentia embaixo dele. Marcador e o texto que SO existe depois da
+    # revisao nova — quando o bloco muda, ele muda junto ou para de medir purga.
+    "/divulgacao-de-afiliados/": ["Qual link daqui rende comiss"],
 }
 
 
