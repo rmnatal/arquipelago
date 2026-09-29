@@ -593,6 +593,45 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > INVÁLIDA, que a bancada conta como "passou", e a trava dos slugs repetidos ficou sem ninguém a vendo.
    > Conferido que já estava inerte **antes** deste bloco.
 
+5. **A ESCADA DA 25.1 SUBIU DE VERDADE, E O QUE SOBRA NELA E DE TRES DONOS DIFERENTES.**
+   **ENTREGUE em 29/09/2026 as 16h17Z** (manifest e `/status` na **revisao 49**): a escada saiu de
+   `1:1 · 2:5 · 3:4 · 4:28` para `1:1 · 2:5 · 3:14 · 4:18` — dez materiais de acabamento, alicate e cola
+   sairam do piso da 25.2 e ganharam **ficha de produto**, com foto medida, pela Open API (25.6) e pela
+   regra de casamento de `ferramentas/casar-anuncio.py`. O que impedia isto nao era falta de trabalho e
+   sim falta de portao: o cabecalho dos bancos dizia, desde 25/09 e com razao, que *"ficha exige casamento
+   de item, que a 25.7 proibe sem prova de que o anuncio e daquele SKU"*. **A prova passou a existir**, com
+   bancada (`teste-casamento.py`, 42 afirmacoes sobre titulos reais) e bateria (`mutacoes-casamento.py`,
+   17 de 17 reprovadas), e `validar-banco.py` reconfere o titulo gravado passando-o pela regra **viva**.
+   Detalhe inteiro no `REGISTRO.md` de 29/09.
+   > **OS 18 QUE CONTINUAM NO DEGRAU 4 SE DIVIDEM EM TRES, E SO UM TERCO E DA FUNDACAO:**
+   >
+   > - **TREZE sao as pastilhas, e sao do RAPHAEL.** Nao foram nem tentadas: a Shopee nao anuncia a
+   >   codificacao da Glass Mosaic, e o caminho continua sendo o campo
+   >   `afiliado.tipo_de_casamento: "equivalente"` descrito em `dados/links-afiliado-pendentes.md`, com a
+   >   frase na tela dizendo ao leitor que o produto e equivalente e nao o exato. **E decisao, nao coleta**
+   >   — e sao a maior fatia do que resta, incluindo a vitrine inteira da F1.
+   > - **TRES sao da Quartzolit e o defeito NAO e do link: e do BANCO.** `borracha-liquida-elastica`,
+   >   `protetor-para-fachadas` e `fundo-selador` tem em `nome_comercial` uma **descricao escrita por nos**,
+   >   em minusculas e com a marca repetida dentro, em vez do batismo do fabricante — a **secao 26** ao
+   >   contrario. Nada, ate 29/09, comparava esse campo com um texto de fora; a regra de casamento foi a
+   >   primeira, e o que ela achou foi um campo do proprio banco escrito no papel errado. **Consertar e
+   >   COLETA**, na pagina do fabricante, e esbarra no mesmo egresso do item 3 acima: `quartzolit.weber`
+   >   em 403, na lista do Raphael. **Nao invente o nome comercial** — inventa-lo e a mesma familia do
+   >   numero de tela digitado.
+   > - **DOIS sao retentativa barata, e sao da FUNDACAO.** `cortag-torques-azulejista-corte-curvo` (as
+   >   chaves devolvem o anuncio de corte RETO, e so duas ofertas voltam da chave larga — vale tentar uma
+   >   chave nova, escrita para o anuncio e nao para a busca do site) e `cascola-pl500-adesivo-de-montagem`
+   >   (o anuncio diz `Cola **Adesiva** Montagem`, o registro diz `**Adesivo** de Montagem`, e a trava do
+   >   nome comercial nao conhece genero). **O que NAO vale e afrouxar a trava para o Cascola passar:**
+   >   isso e criterio dobrado para caber no dado que veio (1.2-b.4), e a trava existe porque sem ela um
+   >   `Selador PU30` entrou como `fundo selador` no ensaio deste mesmo bloco. Se for mexer, mexa na
+   >   CHAVE ou no `nome_comercial`, com fonte — nunca na regua.
+   >
+   > **E o que este item deixa desbloqueado para quem vier:** a mesma ferramenta
+   > (`ferramentas/coletar-shopee.py`) sobe o degrau de **qualquer** registro novo que nascer no degrau 4,
+   > sem codigo novo — `--ensaio` mostra o que ela faria sem tocar no banco. Ela e o caminho normal de todo
+   > item daqui em diante, nao um mutirao de uma vez.
+
 **1. CORPUS DE BUSCAS.** `dados/corpus-buscas.md` com os três clusters (materiais/ferramentas · peças prontas · aprender), faixa, concorrência, CPC e a classificação de SERP por consulta (aberta / tomada / armadilha). A base já está na memória; complete com autocomplete e buscas relacionadas. Não depende de infraestrutura.
 
 **2. ESPECIFICAÇÃO DAS DUAS FERRAMENTAS.** `dados/especificacao-calculadoras.md` + `dados/constantes.json`:

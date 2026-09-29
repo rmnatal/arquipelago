@@ -3,6 +3,249 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+29/09/2026 16:17Z — DEZ MATERIAIS SAEM DO PISO DA 25.2 E GANHAM FICHA DE PRODUTO, COM A PROVA DO CASAMENTO GRAVADA E RECONFERIDA POR PORTÃO
+
+Manifest e `/status` na **revisão 49**, conferidos no ar. Nenhuma URL nova, nenhum
+endereço mudou, nenhum `<title>` e nenhuma `description` mudaram: o BLOCO A do
+despacho do Raphael de 24/09 continua intocado e a janela de medição de 30/09 segue
+limpa. O que mudou foi o **banco**, e o que o banco mudou apareceu na tela.
+
+**A escada da 25.1 saiu de `1:1 · 2:5 · 3:4 · 4:28` para `1:1 · 2:5 · 3:14 · 4:18`.**
+Vinte dos trinta e oito materiais servem agora a FICHA do produto; dezoito servem o
+piso da 25.2, a página de busca. E a página de divulgação, que conta isso ao leitor,
+passou de *"Em 10 o botão é a ficha do produto e em 28 é a busca"* para **20 e 18**,
+sem ninguém digitar número nenhum — ela conta dos registros.
+
+## POR QUE ISTO NÃO TINHA SIDO FEITO ANTES, E A RESPOSTA ESTAVA ESCRITA NO PRÓPRIO BANCO
+
+O cabeçalho de `materiais-acabamento.json` dizia, desde 25/09, com todas as letras:
+*"Nenhum tem ficha de produto (`url` vazio): ficha exige casamento de item, que a
+25.7 proíbe sem prova de que o anúncio é daquele SKU."* O de `materiais-alicates.json`
+dizia o mesmo em outras palavras. **Não era preguiça nem esquecimento: era uma
+recusa correta.** A 25.7 é explícita — *casamento errado no banco é pior que
+casamento nenhum, porque parece dado* — e escolher um anúncio pelo olho, item a
+item, é exatamente a mão humana sem portão que fez os dezesseis `sub_id` nascerem
+deslocados em 13/09.
+
+**O que faltava não era trabalho: era o portão.** Este bloco construiu o portão, e
+só então usou.
+
+## A REGRA, E ELA MORA SOZINHA NUM ARQUIVO PARA PODER SER ATACADA
+
+`ferramentas/casar-anuncio.py` não fala com a rede e não grava nada. É só a regra —
+separada de propósito, porque quem a **usa** (`coletar-shopee.py`) e quem a **ataca**
+(`mutacoes-casamento.py`) precisam da mesma função. Regra copiada em dois lugares é
+regra que a bateria mede num lugar e o banco usa no outro.
+
+São **seis travas mais a unicidade**, e todas as sete têm de passar:
+
+1. **A marca aparece no título.** Sem ela, `verniz acrílico brilhante` é o catálogo
+   de meio Brasil.
+2. **A cabeça do título é o produto** — as quatro primeiras palavras trazem algo do
+   nome comercial. É a armadilha 1 da 25.7 traduzida para este nicho: *"Kit 3
+   Pincéis para aplicar Verniz Acrilex Brilhante"* tem o verniz no meio e um pincel
+   na cabeça, e quem compra leva pincel.
+3. **O título separa o registro de cada irmão** (outro registro da mesma marca).
+4. **O título NÃO traz o que é do irmão**, quando o irmão é do mesmo tipo.
+5. **Nenhuma palavra de armadilha** — `kit`, `combo`, `usado`, `apostila`. A lista
+   **não** tem `manual`, e isso é medição e não esquecimento: três registros deste
+   banco são *"Cortador de cerâmicas e azulejos MANUAL"*.
+6. **O título traz o nome comercial inteiro.**
+
+E por cima delas, a **unicidade**: o anúncio casa quando UM registro passa. Dois
+passando é a armadilha 5 da 25.7 — no máximo um está certo e não há como dizer
+qual, então os dois caem.
+
+## A TRAVA 6 NASCEU NO ENSAIO, E ELA É A QUE VALE A LEITURA
+
+O primeiro ensaio casou **13 de 15** e um dos treze estava **errado**:
+`quartzolit-fundo-selador` casou com *"Selador PU30 Cinza Quartzolit 600g"*, que é
+um selante de poliuretano e não o fundo selador acrílico de parede.
+
+As cinco travas não viram nada, e o motivo é mecânico: elas comparam o registro com
+os **irmãos**, e nenhum irmão da Quartzolit disputa a palavra `selador`. **Token que
+nenhum irmão tem nunca era exigido de ninguém** — a palavra `fundo`, que é o produto
+inteiro, era a única coisa que separava o certo do errado e era exatamente a que
+ninguém cobrava. O buraco não era do irmão: era de não cobrar do título o nome que o
+fabricante deu ao produto.
+
+A trava 6 custou **três casamentos** — caiu de 13 para 10. É o lado certo de errar, e
+está escrito para poder ser discordado.
+
+## O QUE O ENSAIO MEDIU, COPIADO DA SHOPEE E NÃO IMAGINADO
+
+A chave `verniz acrilico brilhante acrilex` devolveu oito anúncios. **Dois**
+identificam um registro só. Os outros seis são o catálogo da armadilha 5:
+
+    Verniz para Couro Acrilex 100ml Fosco Semibrilho Brilhante     <- fosco E brilhante
+    Verniz Acrilico Acrilex 100ml / 250ml / 500ml (Fosco ou Brilhante)
+    Verniz Acrilex Acrilfix Fosco, SemiBrilho ou Brilhante Spray
+    Verniz Vitral Acrilex 100ml Incolor Brilhante Madreperola     <- outro produto
+
+O terceiro é o que obrigou a trava 4 a existir na forma que tem. Ele traz `acrilfix`
+e `brilhante`, e o banco **não tem** um `acrilfix fosco` para disputá-lo — então uma
+regra que só exigisse os tokens do registro o aprovaria. **Quem escreve "Fosco,
+SemiBrilho ou Brilhante" está vendendo a escolha, e a escolha não é um SKU.** Por
+isso a regra proíbe o título de trazer o que é do irmão, e não só exige o que é dele.
+
+## OS CINCO QUE NÃO SUBIRAM, E O ACHADO QUE VALE MAIS QUE OS DEZ LINKS
+
+| registro | o que segurou |
+|---|---|
+| `quartzolit-borracha-liquida-elastica` | o `nome_comercial` é uma descrição, não o batismo do fabricante |
+| `quartzolit-protetor-para-fachadas` | idem |
+| `quartzolit-fundo-selador` | idem — e aqui a trava 6 **evitou** o casamento errado |
+| `cortag-torques-azulejista-corte-curvo` | as chaves devolvem o anúncio de corte **reto**; sem a palavra `curvo` o título não separa os dois irmãos |
+| `cascola-pl500-adesivo-de-montagem` | uma letra de gênero: o anúncio é *"Cola **Adesiva** Montagem Cascola Monta E Fixa Interior Pl500"* e o registro diz *"**Adesivo** de Montagem"* |
+
+**Três dos cinco são da Quartzolit e têm o mesmo defeito, e ele não é da regra: é do
+banco.** `impermeabilizante borracha liquida elastica quartzolit`, `protetor para
+fachadas`, `fundo selador quartzolit` — minúsculas, com a marca repetida dentro, e
+uma frase que **nós** escrevemos para descrever o produto. A seção 26 do contrato diz
+que *o vocabulário da ilha classifica pela função e o fabricante batiza pela posição*,
+e `nome_comercial` é o lado do FABRICANTE.
+
+Nenhum portão via isso porque, até hoje, **nada comparava esse campo com um texto de
+fora**. A regra de casamento foi a primeira a comparar — e o que ela achou não foi um
+anúncio: foi um campo do próprio banco escrito no papel errado. Consertar os três é
+coleta na página do fabricante, e o egresso a `quartzolit.weber` continua em 403.
+
+**E o Cascola não foi consertado de propósito.** Afrouxar a trava para aceitar
+`adesiva` onde o registro diz `adesivo` faria a régua passar por causa deste item, que
+é critério dobrado para caber no dado que veio — a 1.2-b.4 nomeia isso. Fica o motivo
+escrito em `afiliado.motivo_sem_ficha`, com as chaves tentadas e quantas ofertas cada
+uma devolveu, para a próxima execução saber se vale retentar.
+
+**As treze pastilhas não foram tentadas.** Elas dependem da decisão de
+`afiliado.tipo_de_casamento: "equivalente"` descrita em `dados/links-afiliado-pendentes.md`,
+e ela é do Raphael. A regra não as alcança e não deveria: a Shopee não anuncia a
+codificação da Glass Mosaic.
+
+## A ESCADA DE PALAVRA-CHAVE DESTA ILHA NÃO É A DA 25.6 AO PÉ DA LETRA, E ISSO ESTÁ ESCRITO
+
+A 25.6 nasceu na Robometria, onde o degrau 1 é *"o código do fabricante sozinho"* —
+e lá funciona porque `ERB10` é digitado no título pelo vendedor de reposição. Aqui os
+códigos são `61341`, `68.51.050.000`, `REV110624`, `BRSA005`: **SKU interno de
+catálogo industrial**, que nenhum vendedor de Shopee escreve. Código sozinho aqui casa
+com o mundo, que é a armadilha 3 da 25.7. A escada desta ilha é marca + código, depois
+marca + nome comercial, depois a chave de hoje, depois marca + os dois primeiros
+tokens. **O degrau em que cada um casou fica gravado**, porque casar pelo código e
+casar pela chave larga não valem o mesmo — e um deles casou pelo código: a torquês de
+mosaico da Cortag, com `61341` no título do anúncio.
+
+## O DEGRAU DA 25.1 NUNCA FOI CHUTADO PARA CIMA
+
+Todos os dez entraram no **degrau 3**, anúncio de vendedor comum. Nenhum virou degrau
+1, e a régua é dupla: o nome da loja tem de trazer a marca do fabricante **e** uma
+palavra de loja oficial. `arteciaoficial` tem "oficial" e **não** é a Acrilex —
+revendedor que se chama oficial é revendedor. Errar para baixo custa uma ressalva mais
+dura na tela; errar para cima faz a metodologia declarar um rigor que a ilha não tem.
+
+## DEZ FOTOS, E É A PRIMEIRA VEZ QUE ESTE BANCO GANHA IMAGEM SEM O FABRICANTE
+
+O egresso a `acrilex.com.br`, `cortag.com`, `vonder.com.br` e `quartzolit.weber`
+continua fechado, e continua na lista do Raphael. O que mudou é que agora existe um
+anúncio **provadamente** daquele produto, e a foto dele é legítima. Largura e altura
+saíram dos primeiros bytes do arquivo servido, por `ferramentas/medir-imagens.py`, que
+já existia e **não foi reescrito** — a API não devolve dimensão, e caixa de foto sem
+medida é o salto de layout da 22.4. Foto que não pôde ser medida não entra. Itens sem
+imagem caíram de 35 para 25.
+
+## O PORTÃO DO OUTRO LADO: A PROVA SE RECONFERE, NÃO SE ACREDITA
+
+A prova ficou gravada em `afiliado.casamento`, com o título do anúncio que a produziu.
+**Título gravado que ninguém reconfere é decoração, não procedência.** Então
+`validar-banco.py` ganhou um portão que não lê o campo: ele passa o título gravado pela
+regra **viva** de `casar-anuncio.py`, contra o banco inteiro, e reprova quando ela deixa
+de identificar aquele registro. No dia em que alguém afrouxar a regra, renomear um
+registro ou acrescentar um irmão que o título também descreve, o casamento para de valer
+e o validador acusa. É a seção 4 do contrato aplicada ao banco: o resumo não pode
+sobreviver ao fato.
+
+O esquema foi para a **versão 7**, com `casamento` e `motivo_sem_ficha` escritos — e a
+ausência de `casamento` nos cinco registros de 13/09 é declarada como **história, não
+defeito**: a ficha deles veio por outro caminho, antes de a regra existir.
+
+## AS DUAS BORDAS QUE A BATERIA OBRIGOU A BANCADA A FABRICAR
+
+A primeira rodada de `mutacoes-casamento.py` deu **10 de 12**: duas mutações passaram
+com a bancada verde, e as duas são travas que **nenhum registro do banco de hoje
+exercita**.
+
+- **A metade positiva da trava 3** só é a única a salvar quando o nome comercial de um
+  registro cabe inteiro no do irmão e o único separador dos dois é o código. Isso não
+  existe neste banco; existe no dia em que um fabricante lançar a versão "Spray" do que
+  já vende. A bancada passou a fabricar esse par, e a mutação reprova.
+- **A unicidade** só morde no **lote**: um anúncio que vende dois produtos de marcas
+  diferentes não são irmãos um do outro, então as travas 3 e 4 não se olham. E o lote
+  tem de começar pela palavra que os dois dividem, senão nem chega lá — a primeira
+  versão desse título juntava a torquês da Cortag com o cortador da Vonder, e a **trava
+  2 sozinha** já derrubava a Vonder, porque a cabeça do título era a torquês. Dois
+  **vernizes** de marcas diferentes é o caso real.
+
+**Bateria que só mede o banco de hoje envelhece junto com ele.**
+
+## BANCADA E BATERIA
+
+`ferramentas/teste-casamento.py`: **42 afirmações**, todas sobre títulos **reais**
+devolvidos pela Open API em 29/09/2026, copiados byte a byte — com acento, com caixa
+errada, com espaço duplo e com uma quebra de linha no meio de um deles, que é como o
+vendedor escreveu. Título inventado mede a regra contra a imaginação de quem a escreveu.
+
+`ferramentas/mutacoes-casamento.py`: **17 mutações em duas metades, 17 de 17
+reprovadas**. Doze atacam a regra — cada trava cai uma vez, e **uma delas APERTA em vez
+de afrouxar**, pondo `manual` nas armadilhas, porque régua que reprova o certo custa
+tanto quanto régua que aprova o errado. Cinco atacam o **banco** e medem o portão novo
+do validador: o título vira o do irmão, fica vazio, a ficha some, um campo de
+procedência some, e — a que mais importa — **o banco muda e a prova caduca sem ninguém
+tocar no campo**. As cinco reprovaram pelo portão do casamento, nenhuma por outro.
+
+## O QUE NÃO FOI CLICADO, E POR QUÊ
+
+Nenhum link desta ilha foi aberto. A 25.8 é explícita: o salto do encurtador é onde a
+Shopee **conta** o clique, e autoclique com a etiqueta `clubedomosaico` apaga
+justamente o primeiro clique orgânico que a leitura de 30/09 vai procurar. A prova de
+vida de cada anúncio é a API tê-lo devolvido nesta passada, e está escrita assim, com
+essas palavras, dentro de cada `casamento`.
+
+## DE PASSAGEM, UM ALARME FALSO QUE VALE SER REGISTRADO
+
+`conferir-atelie-no-ar.py` fechou com **1 falha** numa passada — *"com token a rota
+responde 401"* — e a falha era da chamada, não do site: a ferramenta lê `argv[1]` como
+**token**, e ela foi chamada com `.`, que é o argumento que quase todas as outras desta
+ilha recebem como caminho. Chamada sem argumento ela fecha em **184 afirmações, 0 falha,
+3 puladas**, exatamente como em 28/09. Fica escrito porque um 401 lido como defeito faria
+a execução seguinte caçar um bug que não existe.
+
+## BANCADAS E O AR
+
+Casca **591**, F2 119, F1 200, Loja 208, Técnicas 123, Ateliê 289, Leads 211, Prestação
+5 — zero falha. Validador do banco verde, com a linha nova **casamentos reconferidos:
+10**. `validar-pastilhas.py` verde. `teste-casamento.py` 42 e 0.
+**No ar: `conferir-no-ar.py` com 519 afirmações e 0 falha**, `conferir-tecnica-no-ar.py`
+com 54 e 0, `conferir-atelie-no-ar.py` com 184 e 0. O soft 404 da borda continua
+REPROVANDO a leitura do visitante por **1** defeito — é do hospedeiro, está pendente com
+o Raphael e não mudou.
+
+**O desembarque levou duas tentativas e isso é registro, não defeito:** a primeira
+chamada do Sync leu a **revisão 48** com o `raw` do GitHub já servindo a **49** — cache
+de borda do próprio GitHub, não do WordPress, que anexa `?v=time()` em toda leitura. A
+segunda, dois minutos depois, aplicou. **Commit sem Sync não é entrega, e Sync que
+responde não é entrega: o que é entrega é o número na tela.** Quem provou foi a página
+de divulgação dizendo 20 e 18.
+
+- **Próximo passo desbloqueado:** continua sendo a leitura de **30/09**, que libera o
+  **BLOCO A** (CTR das três páginas de primeira página, veredito em 08/10) e, com ele, a
+  metade que falta do item 4 da Sentinela de 28/09 — as duas são a mesma promessa de SERP
+  nas mesmas páginas. O que **não** depende dela: (a) o egresso de fabricante, que trava
+  `base` e `apoio` e está na lista do Raphael; (b) a decisão de
+  `tipo_de_casamento: "equivalente"` das **treze pastilhas**, que é a maior fatia dos 18
+  que restam no degrau 4 e é dele; (c) **os três `nome_comercial` da Quartzolit escritos
+  como descrição em vez do batismo do fabricante** — item novo, achado por este bloco, que
+  é coleta e não decisão, e que hoje esbarra no mesmo egresso de (a).
+
+---
+
 29/09/2026 13:17Z — A PÁGINA DE DIVULGAÇÃO DIZIA AO LEITOR QUE 28 BOTÕES NÃO RENDIAM COMISSÃO, E OS 28 SAEM COM `rel="sponsored"`
 
 Casca **1.18.0**, manifest e `/status` na **revisão 48**. Nenhuma URL nova, nenhum

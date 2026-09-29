@@ -5,39 +5,56 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-29T13:17Z
-executando_desde: 2026-09-29T16:45Z
+ultima_execucao: 2026-09-29T16:17Z
+executando_desde: null
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
-  A DIVULGACAO DIZIA AO LEITOR QUE 28 BOTOES NAO RENDIAM COMISSAO, E OS 28 SAEM COM rel="sponsored".
-  Casca 1.18.0, manifest e /status na revisao 48. NENHUMA URL NOVA, nenhum endereco mudou, nenhum
-  <title> e nenhuma description mudaram: o BLOCO A do despacho do Raphael de 24/09 continua intocado
-  e a janela de medicao de 30/09 segue limpa.
-  O DEFEITO, e ele estava no ar ha quatro dias: /divulgacao-de-afiliados/ servia "essa busca NAO e
-  link de afiliado: ninguem nos paga por aquele clique" sobre os 28 itens cujo botao e a busca
-  ENCURTADA — que E link de afiliado, com sub_id, e rende comissao. A ilha DECLARAVA a relacao paga
-  ao Google (29 encurtadores servidos, 29 com rel="sponsored") e a NEGAVA a quem le, na unica pagina
-  cujo produto inteiro e a divulgacao. Ninguem mentiu: a frase nasceu em 14/09 verdadeira, quando a
-  busca CRUA era o botao; a Open API entrou em 16/09 (25.6) e em 25/09 os 38 itens ganharam busca
-  encurtada. E a secao 4 do contrato numa afirmacao sobre dinheiro.
-  E A CONTA TINHA DUAS PARCELAS DE TRES: publicava 10 com ficha e 0 sem rastreio, de 38, com os 28 do
-  meio ausentes e NENHUM DIGITO VISIVELMENTE ERRADO.
-  POR QUE NENHUM PORTAO VIA: o texto mora na casca, o rel mora na F2, e o docbloco da propria
-  cdm_f2_compra_html() ja dizia desde 14/09 que a busca encurtada "e link de afiliado e rende
-  comissao". O codigo sabia e a pagina nao; nada comparava os dois.
-  O QUE FOI CONSTRUIDO: a pagina nomeia os TRES estados do botao dizendo quais dois sao afiliado, e a
-  conta passa a ter tres parcelas que FECHAM no total. Ela so sai pela via viva (numeros_vivos),
-  porque o instantaneo de 14/09 ainda declara piso_nao_rastreavel 15 num banco que tem zero —
-  estatistica velha envelhece, disclosure velho mente. Portao novo no teste-casca (15c) que PERGUNTA
-  AO CODIGO quais estados sao pagos e cobra da pagina a mesma classificacao; regua no ar medindo o
-  texto servido e o rel de cada link de loja das 17 URLs.
-  A MUTACAO QUE PASSOU VALE MAIS QUE AS SETE QUE REPROVARAM: com piso_nao_rastreavel em 0, trocar
-  "esperando_link - piso_nao_rastreavel" por "esperando_link" nao muda digito nenhum, e a trava nasceu
-  INERTE. A bancada passou a fabricar a borda em que um item perde o rastreio (10 · 27 · 1), e ai
-  8 de 8 reprovaram.
-  BANCADAS: casca 591, F2 119, tecnicas 123, F1/Loja/Atelie/Leads/Prestacao e validador verdes.
-  NO AR: conferir-no-ar.py com 519 afirmacoes e 0 falha (eram 508). leitura-do-visitante.py continua
-  REPROVADO por 1 defeito — o soft 404 da borda, do hospedeiro, pendente com o Raphael, inalterado.
+  DEZ MATERIAIS SAEM DO PISO DA 25.2 E GANHAM FICHA DE PRODUTO, COM A PROVA DO CASAMENTO
+  GRAVADA E RECONFERIDA POR PORTAO. Manifest e /status na revisao 49. NENHUMA URL NOVA,
+  nenhum endereco mudou, nenhum title e nenhuma description mudaram: o BLOCO A do despacho
+  do Raphael de 24/09 continua intocado e a janela de medicao de 30/09 segue limpa.
+  A ESCADA DA 25.1 SAIU DE 1:1 2:5 3:4 4:28 PARA 1:1 2:5 3:14 4:18. Vinte dos 38 materiais
+  servem a FICHA do produto e 18 servem o piso da busca. A pagina de divulgacao, que conta
+  isso ao leitor, passou de '10 e 28' para '20 e 18' sem ninguem digitar numero: ela conta
+  dos registros.
+  POR QUE SO AGORA: o cabecalho dos bancos dizia desde 25/09, com razao, que 'ficha exige
+  casamento de item, que a 25.7 proibe sem prova de que o anuncio e daquele SKU'. Nao era
+  esquecimento, era recusa correta. O que faltava nao era trabalho: era o portao.
+  A REGRA mora sozinha em ferramentas/casar-anuncio.py, para poder ser atacada: seis travas
+  (marca; a cabeca do titulo e o produto; separa de cada irmao; nao traz o que e do irmao;
+  nenhuma palavra de armadilha, e 'manual' NAO esta na lista porque tres registros a trazem
+  no nome; o titulo traz o nome comercial inteiro) mais a UNICIDADE, que e a armadilha 5 da
+  25.7 mecanizada.
+  A TRAVA 6 NASCEU NO ENSAIO e e a que vale a leitura: as outras cinco casaram 13 de 15 e um
+  dos treze estava ERRADO — um 'Selador PU30' passando por 'fundo selador'. Token que nenhum
+  irmao tem nunca era exigido de ninguem, e a palavra 'fundo' era a unica que separava o certo
+  do errado. Ela custou tres casamentos, de 13 para 10, e esse e o lado certo de errar.
+  OS CINCO QUE NAO SUBIRAM tem motivo escrito em afiliado.motivo_sem_ficha. E TRES DELES
+  APONTAM PARA UM DEFEITO DO BANCO, nao da regra: os tres da Quartzolit tem em nome_comercial
+  uma DESCRICAO nossa em vez do batismo do fabricante, que e a secao 26 ao contrario. Nada
+  comparava esse campo com um texto de fora ate hoje. O Cascola PL500 caiu por uma letra de
+  genero ('adesiva' no anuncio, 'adesivo' no registro) e NAO foi consertado de proposito:
+  afrouxar a regua por causa de um item e criterio dobrado para caber no dado (1.2-b.4).
+  AS TREZE PASTILHAS NAO FORAM TENTADAS: dependem da decisao de tipo_de_casamento
+  'equivalente', que e do Raphael.
+  DEZ FOTOS entraram com largura e altura LIDAS do arquivo servido — a primeira imagem deste
+  banco que nao depende do dominio do fabricante, que segue em 403. Itens sem imagem: 35 para 25.
+  O PORTAO DO OUTRO LADO: validar-banco.py nao le o campo casamento, ele passa o titulo gravado
+  pela regra VIVA contra o banco inteiro e reprova quando ela deixa de identificar o registro.
+  Esquema na versao 7. Linha nova no validador: casamentos reconferidos 10.
+  A BATERIA OBRIGOU A BANCADA A FABRICAR DUAS BORDAS: a primeira rodada deu 10 de 12 e as duas
+  que passaram sao travas que nenhum registro de hoje exercita — o registro cujo nome cabe
+  inteiro no do irmao, e o lote de duas marcas. Bateria que so mede o banco de hoje envelhece
+  junto com ele.
+  BANCADAS: casca 591, F2 119, F1 200, Loja 208, tecnicas 123, atelie 289, leads 211,
+  prestacao 5, validador e validar-pastilhas verdes, teste-casamento 42.
+  mutacoes-casamento 17 de 17 reprovadas (12 na regra, 5 no banco).
+  NO AR: conferir-no-ar.py com 519 afirmacoes e 0 falha, conferir-tecnica-no-ar 54 e 0,
+  conferir-atelie-no-ar 184 e 0. leitura-do-visitante.py continua REPROVADO por 1 defeito — o
+  soft 404 da borda, do hospedeiro, pendente com o Raphael, inalterado.
+  O DESEMBARQUE LEVOU DUAS TENTATIVAS: a primeira chamada do Sync leu a revisao 48 com o raw
+  do GitHub ja servindo a 49 — cache de borda do GitHub, nao do WordPress. A segunda aplicou.
+  Sync que responde nao e entrega; entrega e o numero na tela.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO
