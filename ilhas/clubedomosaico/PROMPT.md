@@ -610,19 +610,40 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    >   `afiliado.tipo_de_casamento: "equivalente"` descrito em `dados/links-afiliado-pendentes.md`, com a
    >   frase na tela dizendo ao leitor que o produto e equivalente e nao o exato. **E decisao, nao coleta**
    >   — e sao a maior fatia do que resta, incluindo a vitrine inteira da F1.
-   > - **TRES sao da Quartzolit e o defeito NAO e do link: e do BANCO.** `borracha-liquida-elastica`,
-   >   `protetor-para-fachadas` e `fundo-selador` tem em `nome_comercial` uma **descricao escrita por nos**,
-   >   em minusculas e com a marca repetida dentro, em vez do batismo do fabricante — a **secao 26** ao
-   >   contrario. Nada, ate 29/09, comparava esse campo com um texto de fora; a regra de casamento foi a
-   >   primeira, e o que ela achou foi um campo do proprio banco escrito no papel errado. **Consertar e
-   >   COLETA**, na pagina do fabricante, e esbarra no mesmo egresso do item 3 acima: `quartzolit.weber`
-   >   em 403, na lista do Raphael. **Nao invente o nome comercial** — inventa-lo e a mesma familia do
-   >   numero de tela digitado.
+   > - ~~**TRES sao da Quartzolit** (...) **Consertar e COLETA** (...) **esbarra no mesmo egresso**~~ —
+   >   **MEDIDO E DERRUBADO NA MESMA QUARTA, as 19h16Z, e a correcao vale mais que o item.** O batismo
+   >   do fabricante **ja estava no repositorio**, dentro do proprio registro, desde 25/09: `fontes[].url`
+   >   guarda o boletim tecnico, e o **NOME DO ARQUIVO** e o fabricante escrevendo o nome do produto
+   >   (`BT_Borracha Liquida Elastica Quartzolit_REV110624.pdf`). **Nao dependia do egresso.** O defeito
+   >   era um so — `borracha-liquida-elastica` trazia `impermeabilizante`, palavra que veio do **CAMINHO**
+   >   da pagina de produto, que e a **prateleira** do fabricante e nao o nome. Corrigido com a divergencia
+   >   gravada, e o registro **subiu para o degrau 3** (escada `1:1 2:5 3:15 4:17`). A regra ja era do
+   >   banco: `escada_de_fontes` manda o nivel mais alto vencer, e ninguem tinha aplicado isso a
+   >   `nome_comercial`. Virou portao: `ferramentas/batismo-do-fabricante.py` + `teste-batismo.py` (59
+   >   afirmacoes) + `mutacoes-batismo.py` (14 de 14), esquema **versao 8**.
+   >   **O QUE SOBRA DA QUARTZOLIT SAO DOIS, e nao e coleta de nome:** `protetor-para-fachadas` e
+   >   `fundo-selador` tem o nome **certo**, so em minusculas, e a caixa nao foi conferida de proposito —
+   >   a unica fonte deles e a pagina de produto e o batismo chega pelo **SLUG**, que soletra as palavras
+   >   e perde a tipografia. Capitalizar dali e palpite com cara de declaracao do fabricante. O que os
+   >   segura no degrau 4 e a **Shopee**, nao o nome: nenhuma das chaves identificou um anuncio so.
+   >   **Nao invente o nome comercial** — inventa-lo e a mesma familia do numero de tela digitado.
+   >   **E a licao maior, que nao e sobre a Quartzolit:** quatro execucoes anotaram "esbarra no egresso"
+   >   sem abrir a fonte que estava em casa. A **20.2** manda retestar bloqueio herdado antes de
+   >   respeita-lo, e isso vale para bloqueio herdado de **documento** tanto quanto do `ESTADO.md`.
    > - **DOIS sao retentativa barata, e sao da FUNDACAO.** `cortag-torques-azulejista-corte-curvo` (as
    >   chaves devolvem o anuncio de corte RETO, e so duas ofertas voltam da chave larga — vale tentar uma
-   >   chave nova, escrita para o anuncio e nao para a busca do site) e `cascola-pl500-adesivo-de-montagem`
+   >   chave nova, escrita para o anuncio e nao para a busca do site — **TENTADO em 29/09 as 19h2xZ com
+   >   quatro chaves novas, e a resposta e que a Shopee NAO anuncia este produto: "cortag corte curvo" e
+   >   "torques corte curvo" devolvem a torques de MOSAICO, que ja e outro registro deste banco, e casar
+   >   as duas seria a armadilha 5 da 25.7. Nao e chave ruim; e catalogo que nao tem o item**) e
+   >   `cascola-pl500-adesivo-de-montagem`
    >   (o anuncio diz `Cola **Adesiva** Montagem`, o registro diz `**Adesivo** de Montagem`, e a trava do
-   >   nome comercial nao conhece genero). **O que NAO vale e afrouxar a trava para o Cascola passar:**
+   >   nome comercial nao conhece genero — **REMEDIDO em 29/09 as 19h2xZ e o diagnostico do genero esta
+   >   INCOMPLETO**: existe anuncio com o genero certo, `Adesivo de Montagem Monta e Fixa 360g PL500 -
+   >   CASCOLA`, e ele cai pela palavra **`Interior`** e pela marca repetida dentro do `nome_comercial`,
+   >   nao pelo genero. E o `nome_comercial` **nao e defeito**: ele e identico ao slug da propria pagina
+   >   do fabricante (`cascola-adesivo-de-montagem---pl500-interior`), que e a unica fonte deste registro.
+   >   Entao aqui nao ha nome a consertar; ha uma chave a escrever ou nada a fazer). **O que NAO vale e afrouxar a trava para o Cascola passar:**
    >   isso e criterio dobrado para caber no dado que veio (1.2-b.4), e a trava existe porque sem ela um
    >   `Selador PU30` entrou como `fundo selador` no ensaio deste mesmo bloco. Se for mexer, mexa na
    >   CHAVE ou no `nome_comercial`, com fonte — nunca na regua.
