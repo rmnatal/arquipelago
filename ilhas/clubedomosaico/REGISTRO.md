@@ -3,6 +3,167 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+29/09/2026 19:16Z — O BATISMO DO FABRICANTE JÁ ESTAVA NO REPOSITÓRIO, E O EGRESSO NÃO ERA O QUE TRAVAVA
+
+Manifest e `/status` na **revisão 50**, conferidos no ar. Nenhuma URL nova, nenhum
+endereço mudou, nenhum `<title>` e nenhuma `description` mudaram: o BLOCO A do
+despacho do Raphael de 24/09 continua intocado e a janela de medição de 30/09 segue
+limpa. O que mudou foi o **banco** — e, desta vez, um campo do banco que ninguém
+tinha lido.
+
+**A escada da 25.1 saiu de `1:1 · 2:5 · 3:14 · 4:18` para `1:1 · 2:5 · 3:15 · 4:17`**,
+e a página de divulgação passou de *"Em 20 o botão é a ficha do produto e em 18 é a
+busca"* para **21 e 17**, sem ninguém digitar número: ela conta dos registros.
+
+## ESTE BLOCO CONTRADIZ O QUE A EXECUÇÃO ANTERIOR ESCREVEU, E A CORREÇÃO VALE MAIS QUE O ITEM
+
+O `REGISTRO.md` das 16h17Z de hoje fechou dizendo, sobre os três registros da
+Quartzolit presos no degrau 4:
+
+> *"TRÊS são da Quartzolit e o defeito NÃO é do link: é do BANCO. (...) Consertar é
+> COLETA, na página do fabricante, e esbarra no mesmo egresso do item 3 acima:
+> `quartzolit.weber` em 403, na lista do Raphael."*
+
+**Não esbarra.** O batismo do fabricante estava dentro do próprio registro desde
+25/09, em `fontes[].url`: o endereço do boletim técnico, cujo **nome de arquivo** é o
+fabricante escrevendo o nome do produto.
+
+```
+BT_Borracha Líquida Elástica Quartzolit_REV110624.pdf
+```
+
+O registro chamava-se *"impermeabilizante borracha liquida elastica quartzolit"*. A
+palavra `impermeabilizante` **não está no boletim**: ela veio do **caminho** da página
+de produto — `/impermeabilizantes-quartzolit/impermeabilizantes-para-paredes-externas-e-fachadas/`
+—, que é a **prateleira** do fabricante, não o nome do produto. A ilha colou a
+classificação dentro do batismo, que é a seção 26 exatamente ao contrário.
+
+**O egresso continua fechado e continua travando `base` e `apoio`.** Este item não era
+dele, e quatro execuções seguidas anotaram "esbarra no egresso" sem abrir a fonte que
+já estava em casa. Vale como aviso mais do que como conserto: *bloqueio herdado de um
+documento é retestado antes de ser respeitado* (seção 20.2) — e isso vale para o
+bloqueio herdado do `REGISTRO.md` tanto quanto para o do `ESTADO.md`.
+
+## A REGRA JÁ ERA DO BANCO; O QUE FALTAVA ERA ALGUÉM APLICÁ-LA A ESTE CAMPO
+
+`escada_de_fontes`, do `dados/esquema-banco.json`, diz desde o bloco 3: *"em conflito,
+o nível mais alto vence e o outro fica registrado em `divergencias[]`"*. O registro
+citava **duas** fontes do mesmo fabricante — boletim técnico (nível 2) e página de
+produto (nível 3) — e elas **discordam sobre o nome**. O banco já mandava o nível 2
+vencer. Nenhum portão media isso para `nome_comercial`, porque até hoje de manhã nada
+comparava esse campo com um texto de fora: `casar-anuncio.py` foi o primeiro, e o que
+ele achou foi um campo do próprio banco escrito no papel errado.
+
+A divergência ficou **gravada** no registro, com as duas declarações, os dois níveis e
+a resolução escrita — não foi corrigida em silêncio.
+
+## DUAS RÉGUAS MAIS LARGAS FORAM MEDIDAS E DESCARTADAS ANTES DESTA
+
+Isto é o que evita que a trava nasça grande e morra ignorada:
+
+1. *"o batismo tem de caber na URL da melhor fonte"* — reprova **20 dos 38**, e quase
+   todos são honestos: página de produto de fabricante tem endereço genérico, e
+   `Verniz Acrilico Brilhante` não está no dele.
+2. *"o batismo não começa com a palavra que a ilha usa para classificar"* — reprova
+   **20 dos 38**, entre eles `Verniz Acrilico Brilhante` (tipo `verniz`) e
+   `Rejunte Cerâmicas Quartzolit` (categoria `rejunte`). O fabricante batiza pelo tipo
+   o tempo todo.
+
+A terceira, a que ficou, mede **7 registros** — os que citam PDF de fabricante — e
+reprova **1**, com **zero falso positivo**. Trava larga que a próxima execução aprende
+a ignorar não é trava.
+
+## A COMPARAÇÃO TEM DE SABER QUE O SERVIDOR DO FABRICANTE MUTILA O NOME DO ARQUIVO
+
+Duas mutilações, as duas medidas neste banco: ele **apaga a letra acentuada inteira**
+(`Boletim_Tcnico` por "Técnico", `rejunte_epxi_quartzolit.pdf` por "Rejunte Epóxi") e
+**cola as palavras** (`RejuntePorcelanatoseCeramicas`). Uma comparação ingênua
+reprovaria `Rejunte Epóxi Quartzolit` e `Rejunte Porcelanatos e Cerâmicas Quartzolit`,
+que são batismos **certos**. E a **marca** fica fora da cobrança: ela mora no campo
+dela, e o fabricante nem sempre a repete no nome do arquivo.
+
+## A BATERIA OBRIGOU A BANCADA A FABRICAR DUAS BORDAS — DE NOVO, E PELO MESMO MOTIVO
+
+A primeira rodada deu **7 de 10** na regra: duas mutações passaram com a bancada verde,
+e as duas atacavam travas que **nenhum registro de hoje exercita**.
+
+- **A palavra vazia.** Cobrar `de` num batismo cujo arquivo não o traz reprovaria um
+  nome certo — mas o `para` de *"Verniz Protetor para Pisos"* está escrito no próprio
+  arquivo, então a trava nunca era exercitada. A bancada passou a fabricar o par.
+- **O separador.** O fabricante pode partir no arquivo o que o batismo escreve junto
+  (`AC2` virando `AC_2`); nenhum arquivo deste banco faz isso hoje.
+
+**Bancada que só mede o banco de hoje envelhece junto com ele** — a mesma frase do
+bloco das 16h17Z, e a segunda vez em um dia que a bateria a cobra.
+
+## O QUE MEDE ISSO
+
+- `ferramentas/batismo-do-fabricante.py` — a regra sozinha, sem rede e sem gravação,
+  pelo mesmo motivo de `casar-anuncio.py`: quem a usa e quem a ataca precisam da mesma
+  função.
+- `ferramentas/teste-batismo.py` — **59 afirmações, 0 falha**, sobre os registros reais
+  em **cópia** (bancada que escreve no banco para se provar estraga o que mede).
+- `ferramentas/mutacoes-batismo.py` — **14 de 14 reprovadas**: 10 na regra (duas delas
+  **apertando** a régua, porque folga deliberada que ninguém mede alguém aperta por
+  zelo na leitura seguinte) e 4 no esquema/banco, entre elas a que a **26.2** exige por
+  escrito — apagar a chave da lista.
+- `validar-banco.py` ganhou a linha `batismos conferidos .... 7`.
+- Esquema na **versão 8**, com `batismo_do_fabricante`. A lista de quais fontes batizam
+  mora **no esquema**, nunca dentro da régua (26.2).
+
+## O QUE ESTE BLOCO NÃO FEZ, DE PROPÓSITO
+
+**`quartzolit-fundo-selador` e `quartzolit-protetor-para-fachadas` continuam em
+minúsculas**, e agora com o motivo escrito no registro: a única fonte deles é a página
+de produto, e o batismo chega pelo **slug** do endereço, que soletra as palavras e
+**perde a tipografia**. Capitalizar dali seria palpite sobre como o fabricante escreve
+— palpite com cara de declaração do fabricante é o que a seção 26 existe para impedir.
+Os dois ficam fora do escopo da trava, com o motivo no laudo, não aprovados em silêncio.
+
+**E os outros três do degrau 4 continuam onde estavam**, cada um com o dono que a
+execução anterior já tinha nomeado certo: as **treze pastilhas** dependem de
+`tipo_de_casamento: "equivalente"` e são do Raphael; a **torquês de corte curvo da
+Cortag** foi remedida com quatro chaves novas nesta execução e **a Shopee não anuncia
+esse produto** — as chaves de "corte curvo" devolvem a torquês de **mosaico**, que já é
+outro registro do banco, e casar as duas seria a armadilha 5 da 25.7; o **Cascola
+PL500** continua caindo na trava do nome comercial inteiro, e afrouxá-la para ele
+passar é critério dobrado para caber no dado (1.2-b.4).
+
+## O QUE APARECE NA TELA, E O QUE NÃO APARECE
+
+A prova servida é a frase da página de divulgação: **21 e 17**. O nome corrigido em si
+**não aparece em página nenhuma hoje** — os sete materiais de acabamento estão no
+banco e `/materiais/` lista a categoria como *"Em breve"*, porque a ficha de categoria
+é o bloco **4c** e ele não nasceu. Dizer que o conserto "foi ao ar" sem essa ressalva
+seria contar meia verdade.
+
+## NO AR, E UMA FALHA QUE NÃO ERA DA ILHA
+
+`conferir-no-ar.py` **519 afirmações, 0 falha**; `conferir-tecnica-no-ar.py` **54 e 0**;
+`conferir-atelie-no-ar.py` **197 e 0**. O soft 404 da borda continua reprovando a leitura
+do visitante por **1** defeito — é do hospedeiro, está pendente com o Raphael e não mudou.
+O desembarque aplicou **na primeira chamada** (revisão 50, 14 aplicados).
+
+O ateliê chegou a fechar vermelho, e o vermelho era meu: **`conferir-atelie-no-ar.py` toma
+o TOKEN como primeiro argumento**, e todas as outras ferramentas desta ilha tomam a raiz
+(`conferir-no-ar.py .`). Chamei com `.` por hábito, o ponto foi para a rota protegida, e o
+401 que voltou era a rota **recusando corretamente** uma palavra errada. Custou uma
+passada de diagnóstico. Virou trava em vez de nota: a ferramenta agora **recusa um
+argumento que seja caminho** em vez de transformá-lo em credencial, e diz como se chama.
+Nada do site foi tocado.
+
+- **Próximo passo desbloqueado:** continua sendo a leitura de **30/09**, que libera o
+  **BLOCO A** (CTR das três páginas de primeira página, veredito em 08/10) e, com ele, a
+  metade que falta do item 4 da Sentinela de 28/09. O que **não** depende dela: (a) o
+  egresso de fabricante, que trava `base` e `apoio` e está na lista do Raphael — e que
+  este bloco confirma ser o travamento **de verdade** daquelas duas, não uma herança de
+  documento; (b) a decisão de `tipo_de_casamento: "equivalente"` das treze pastilhas,
+  que é do Raphael; (c) **a ficha de categoria de acabamento (bloco 4c)**, que é o que
+  daria página ao que este bloco corrigiu — e que, pela 21.4, é leva de malha e deve
+  esperar a leitura de 30/09 fechar a janela de medição.
+
+---
+
 29/09/2026 16:17Z — DEZ MATERIAIS SAEM DO PISO DA 25.2 E GANHAM FICHA DE PRODUTO, COM A PROVA DO CASAMENTO GRAVADA E RECONFERIDA POR PORTÃO
 
 Manifest e `/status` na **revisão 49**, conferidos no ar. Nenhuma URL nova, nenhum

@@ -5,56 +5,58 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-29T16:17Z
-executando_desde: 2026-09-29T19:34Z
+ultima_execucao: 2026-09-29T19:16Z
+executando_desde: null
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
-  DEZ MATERIAIS SAEM DO PISO DA 25.2 E GANHAM FICHA DE PRODUTO, COM A PROVA DO CASAMENTO
-  GRAVADA E RECONFERIDA POR PORTAO. Manifest e /status na revisao 49. NENHUMA URL NOVA,
-  nenhum endereco mudou, nenhum title e nenhuma description mudaram: o BLOCO A do despacho
-  do Raphael de 24/09 continua intocado e a janela de medicao de 30/09 segue limpa.
-  A ESCADA DA 25.1 SAIU DE 1:1 2:5 3:4 4:28 PARA 1:1 2:5 3:14 4:18. Vinte dos 38 materiais
-  servem a FICHA do produto e 18 servem o piso da busca. A pagina de divulgacao, que conta
-  isso ao leitor, passou de '10 e 28' para '20 e 18' sem ninguem digitar numero: ela conta
-  dos registros.
-  POR QUE SO AGORA: o cabecalho dos bancos dizia desde 25/09, com razao, que 'ficha exige
-  casamento de item, que a 25.7 proibe sem prova de que o anuncio e daquele SKU'. Nao era
-  esquecimento, era recusa correta. O que faltava nao era trabalho: era o portao.
-  A REGRA mora sozinha em ferramentas/casar-anuncio.py, para poder ser atacada: seis travas
-  (marca; a cabeca do titulo e o produto; separa de cada irmao; nao traz o que e do irmao;
-  nenhuma palavra de armadilha, e 'manual' NAO esta na lista porque tres registros a trazem
-  no nome; o titulo traz o nome comercial inteiro) mais a UNICIDADE, que e a armadilha 5 da
-  25.7 mecanizada.
-  A TRAVA 6 NASCEU NO ENSAIO e e a que vale a leitura: as outras cinco casaram 13 de 15 e um
-  dos treze estava ERRADO — um 'Selador PU30' passando por 'fundo selador'. Token que nenhum
-  irmao tem nunca era exigido de ninguem, e a palavra 'fundo' era a unica que separava o certo
-  do errado. Ela custou tres casamentos, de 13 para 10, e esse e o lado certo de errar.
-  OS CINCO QUE NAO SUBIRAM tem motivo escrito em afiliado.motivo_sem_ficha. E TRES DELES
-  APONTAM PARA UM DEFEITO DO BANCO, nao da regra: os tres da Quartzolit tem em nome_comercial
-  uma DESCRICAO nossa em vez do batismo do fabricante, que e a secao 26 ao contrario. Nada
-  comparava esse campo com um texto de fora ate hoje. O Cascola PL500 caiu por uma letra de
-  genero ('adesiva' no anuncio, 'adesivo' no registro) e NAO foi consertado de proposito:
-  afrouxar a regua por causa de um item e criterio dobrado para caber no dado (1.2-b.4).
-  AS TREZE PASTILHAS NAO FORAM TENTADAS: dependem da decisao de tipo_de_casamento
-  'equivalente', que e do Raphael.
-  DEZ FOTOS entraram com largura e altura LIDAS do arquivo servido — a primeira imagem deste
-  banco que nao depende do dominio do fabricante, que segue em 403. Itens sem imagem: 35 para 25.
-  O PORTAO DO OUTRO LADO: validar-banco.py nao le o campo casamento, ele passa o titulo gravado
-  pela regra VIVA contra o banco inteiro e reprova quando ela deixa de identificar o registro.
-  Esquema na versao 7. Linha nova no validador: casamentos reconferidos 10.
-  A BATERIA OBRIGOU A BANCADA A FABRICAR DUAS BORDAS: a primeira rodada deu 10 de 12 e as duas
-  que passaram sao travas que nenhum registro de hoje exercita — o registro cujo nome cabe
-  inteiro no do irmao, e o lote de duas marcas. Bateria que so mede o banco de hoje envelhece
-  junto com ele.
-  BANCADAS: casca 591, F2 119, F1 200, Loja 208, tecnicas 123, atelie 289, leads 211,
-  prestacao 5, validador e validar-pastilhas verdes, teste-casamento 42.
-  mutacoes-casamento 17 de 17 reprovadas (12 na regra, 5 no banco).
+  O BATISMO DO FABRICANTE JA ESTAVA NO REPOSITORIO, E O EGRESSO NAO ERA O QUE TRAVAVA.
+  Manifest e /status na revisao 50. NENHUMA URL NOVA, nenhum endereco mudou, nenhum title
+  e nenhuma description mudaram: o BLOCO A do despacho do Raphael de 24/09 continua
+  intocado e a janela de medicao de 30/09 segue limpa.
+  A ESCADA DA 25.1 SAIU DE 1:1 2:5 3:14 4:18 PARA 1:1 2:5 3:15 4:17, e a pagina de
+  divulgacao passou de '20 e 18' para 21 E 17, contando dos registros.
+  ESTE BLOCO CORRIGE O QUE A EXECUCAO DAS 16h17Z ESCREVEU. Ela fechou dizendo que os tres
+  nome_comercial da Quartzolit eram COLETA e 'esbarram no egresso, quartzolit.weber em
+  403'. Nao esbarram: o batismo estava dentro do proprio registro desde 25/09, em
+  fontes[].url — o NOME DO ARQUIVO do boletim tecnico e o fabricante escrevendo o nome do
+  produto (BT_Borracha Liquida Elastica Quartzolit_REV110624.pdf).
+  O DEFEITO: o registro se chamava 'impermeabilizante borracha liquida elastica
+  quartzolit', e 'impermeabilizante' veio do CAMINHO da pagina de produto — a PRATELEIRA
+  do fabricante, nao o nome do produto. Classificacao colada dentro do batismo e a secao
+  26 ao contrario. A divergencia ficou GRAVADA no registro, com os dois niveis e a
+  resolucao, nao corrigida em silencio.
+  A REGRA JA ERA DO BANCO: escada_de_fontes manda o nivel mais alto vencer em qualquer
+  conflito, e nada tinha aplicado isso a nome_comercial. Ate hoje de manha nada comparava
+  esse campo com um texto de fora; casar-anuncio.py foi o primeiro.
+  O EGRESSO CONTINUA FECHADO e continua travando base e apoio. Este item nao era dele — e
+  quatro execucoes anotaram 'esbarra no egresso' sem abrir a fonte que estava em casa.
+  Bloqueio herdado de DOCUMENTO tambem e retestado antes de respeitado (20.2).
+  DUAS REGUAS MAIS LARGAS FORAM MEDIDAS E DESCARTADAS: as duas reprovavam 20 dos 38
+  registros, quase todos honestos. A que ficou mede 7 e reprova 1, zero falso positivo.
+  A BATERIA OBRIGOU A BANCADA A FABRICAR DUAS BORDAS, de novo: a palavra vazia ausente do
+  arquivo e o arquivo que parte o que o batismo escreve junto. Nenhuma existe no banco de
+  hoje. Bancada que so mede o banco de hoje envelhece junto com ele.
+  O QUE NAO FOI FEITO DE PROPOSITO: fundo-selador e protetor-para-fachadas continuam em
+  minusculas, com o motivo no registro — a unica fonte deles e o SLUG da pagina, que
+  soletra as palavras e perde a tipografia, e capitalizar dali e palpite com cara de
+  declaracao do fabricante.
+  NA TELA aparece a frase 21 e 17. O nome corrigido NAO aparece em pagina nenhuma: os
+  sete materiais de acabamento estao no banco e /materiais/ lista a categoria como 'Em
+  breve', porque a ficha de categoria e o bloco 4c e ele nao nasceu.
+  ESQUEMA NA VERSAO 8, chave batismo_do_fabricante (a lista mora no esquema, 26.2).
+  BANCADAS: casca 591, F2 119, F1 24 estados, Loja, tecnicas 123, atelie, leads,
+  prestacao 5, validador e validar-pastilhas verdes, teste-casamento 42, teste-batismo 59.
+  mutacoes-batismo 14 de 14 reprovadas (10 na regra, 4 no esquema/banco).
   NO AR: conferir-no-ar.py com 519 afirmacoes e 0 falha, conferir-tecnica-no-ar 54 e 0,
-  conferir-atelie-no-ar 184 e 0. leitura-do-visitante.py continua REPROVADO por 1 defeito — o
-  soft 404 da borda, do hospedeiro, pendente com o Raphael, inalterado.
-  O DESEMBARQUE LEVOU DUAS TENTATIVAS: a primeira chamada do Sync leu a revisao 48 com o raw
-  do GitHub ja servindo a 49 — cache de borda do GitHub, nao do WordPress. A segunda aplicou.
-  Sync que responde nao e entrega; entrega e o numero na tela.
+  conferir-atelie-no-ar 197 e 0.
+  UMA FALHA QUE NAO ERA DA ILHA, e virou trava: conferir-atelie-no-ar.py tomou o `.` que
+  eu passei por habito das outras ferramentas como se fosse o TOKEN, mandou o ponto para
+  a rota protegida e leu 401 — a rota recusando uma palavra errada, que e o trabalho
+  dela. Custou uma passada. Agora a ferramenta RECUSA um argumento que seja caminho, em
+  vez de transforma-lo em credencial, e diz como se chama. Nao mexeu em nada do site.
+  leitura-do-visitante.py continua REPROVADO por 1 defeito — o soft 404 da borda, do
+  hospedeiro, pendente com o Raphael, inalterado.
+  O DESEMBARQUE APLICOU NA PRIMEIRA CHAMADA: revisao 50, 14 aplicados.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

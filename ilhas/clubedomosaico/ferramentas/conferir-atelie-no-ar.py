@@ -140,8 +140,25 @@ def corpo_visivel(html):
 
 
 def token():
+    """O token do Sync, do argumento ou de CDM_SYNC_TOKEN.
+
+    CAMINHO NAO E TOKEN (29/09/2026). As outras ferramentas desta ilha tomam a
+    RAIZ como primeiro argumento (`conferir-no-ar.py .`), e esta toma o TOKEN.
+    Quem chamou `conferir-atelie-no-ar.py .` por habito mandou o ponto para a
+    rota protegida, levou 401 e leu uma falha que nao existia — a rota tinha
+    recusado uma palavra errada, que e o trabalho dela. Custou uma passada.
+    Um argumento que e um caminho existente, ou `.`/`..`, e recusado aqui em vez
+    de virar credencial: token de verdade nunca e um caminho do disco.
+    """
     if len(sys.argv) > 1 and sys.argv[1].strip():
-        return sys.argv[1].strip()
+        bruto = sys.argv[1].strip()
+        if bruto in (".", "..") or os.sep in bruto or os.path.exists(bruto):
+            raise SystemExit(
+                "o primeiro argumento desta ferramenta e o TOKEN do Sync, nao a raiz "
+                "da ilha — %r parece um caminho. Use: python3 "
+                "ferramentas/conferir-atelie-no-ar.py <token>, ou deixe o argumento "
+                "de fora e ponha o token em CDM_SYNC_TOKEN." % bruto)
+        return bruto
     return os.environ.get("CDM_SYNC_TOKEN", "").strip()
 
 
