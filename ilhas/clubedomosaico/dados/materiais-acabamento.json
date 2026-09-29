@@ -9,13 +9,13 @@
   "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3, 3c, 3d e no da categoria alicate. O egresso foi REMEDIDO nesta execucao como a 20.2 manda, em TRES passadas: acrilex.com.br, www.acrilex.com.br, corfix.com.br, www.quartzolit.weber, suvinil.com.br e vedacit.com.br em 000 nas tres, com clubedomosaico.com.br em 200 nas tres. E politica de egresso, nao intermitencia, e por isso todo campo daqui carrega conferir_no_pdf: true. DUAS PASSADAS POR SKU, escritas de forma diferente e nenhuma delas carregando um valor: as consultas pediram os ROTULOS da ficha ('indicado para', 'demaos', 'consumo', 'rendimento', 'secagem', 'nao indicado para'), nunca um numero. A segunda passada do verniz protetor para pisos acrescentou o intervalo de temperatura e o tipo de rolo, e a segunda do impermeabilizante confirmou palavra por palavra a frase do que ele NAO atende — duas passadas concordando e o unico jeito de saber que a frase e do fabricante e nao do resumo.",
   "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "NENHUM DOS SETE PRODUTOS NOMEIA O QUE A PECA DESTA ILHA EXPOE. A peca de mosaico, depois de pronta, tem duas superficies a vista: a PASTILHA (as 13 do banco sao todas de vidro) e o REJUNTE. Os quatro vernizes e os dois impermeabilizantes alcancados declaram substrato — e nenhuma das seis frases nomeia vidro, e nenhuma nomeia rejunte. Os tres vernizes de artesanato da Acrilex nomeiam tela, madeira, papel, cortica, ceramica, gesso e isopor; o verniz protetor da Quartzolit e de PISO, com liberacao de trafego de carro e maquina; a borracha liquida elastica e para fachada, telha e laje SEM transito; o protetor para fachadas e um hidrofugante para revestimento mineral, churrasqueira de tijolo, telha ceramica e pedra natural. Pelo principio dos TRES ESTADOS, para vidro e para rejunte o estado e `nao_declarado` nos sete: nem recomendar, nem proibir, e dizer que ninguem declarou. E a mesma faixa DESCOBERTA da 14.3 que a categoria alicate encontrou em 25/09 pela espessura, agora encontrada pela SUPERFICIE — e as duas apontam para o mesmo buraco de mercado, que e o motivo desta ilha existir: fabricante de obra nao escreve sobre peca de artesanato, e fabricante de artesanato nao escreve sobre mosaico. A SEGUNDA METADE, e ela e sobre a BASE: o unico selador alcancado (fundo selador quartzolit) nomeia concreto, emboco, reboco, pintura PVA ou acrilica e construcao a seco, e NAO nomeia MDF nem madeira — e MDF e a base mais comum da peca de ateliê e um dos cinco valores de `tipo_por_categoria.base` deste proprio esquema. A categoria selador nasce com o registro que menos serve a ilha, e isso esta dito aqui em vez de escondido atras de uma frase generica.",
   "afiliado": {
-    "itens_esperando_link": 3,
+    "itens_esperando_link": 2,
     "itens_sem_saida_de_compra": 0,
     "itens_com_piso_nao_rastreavel": 0,
     "observacao": "QUATRO DOS SETE SUBIRAM DO DEGRAU 4 PARA O 3 EM 29/09/2026, pela Open API (25.6) e pela regra de casamento de ferramentas/casar-anuncio.py: os tres vernizes da Acrilex e o verniz protetor de piso da Quartzolit ganharam FICHA de produto (`url`), `url_produto` para o teste de vida da 25.4-b e foto medida. O que este arquivo dizia ate ontem — 'ficha exige casamento de item, que a 25.7 proibe sem prova de que o anuncio e daquele SKU' — continua verdadeiro; o que mudou e que a prova passou a existir, com bancada (ferramentas/teste-casamento.py) e bateria (ferramentas/mutacoes-casamento.py, 12 de 12 reprovadas). OS TRES QUE NAO SUBIRAM sao os tres da Quartzolit cujo `nome_comercial` e uma DESCRICAO e nao o batismo do fabricante — 'impermeabilizante borracha liquida elastica quartzolit', 'protetor para fachadas', 'fundo selador quartzolit' — e a trava que os segura e a que cobra o nome comercial inteiro no titulo do anuncio. O motivo esta escrito registro a registro em `afiliado.motivo_sem_ficha`, com as chaves tentadas e quantas ofertas cada uma devolveu. Os sete continuam com o piso da 25.2 intacto: busca crua e busca encurtada, geradas em 25/09 com sub_id_1 = clubedomosaico e sub_id_2 = GUIA."
   },
   "imagens": {
-    "itens_sem_imagem": 3,
+    "itens_sem_imagem": 2,
     "observacao": "QUATRO DAS SETE GANHARAM FOTO EM 29/09/2026, e a fonte e o anuncio CASADO na Open API da Shopee (25.6) — nao o dominio do fabricante, que continua fechado ao egresso desta nuvem (acrilex.com.br e www.quartzolit.weber em 000, remedido em 28/09). Largura e altura foram LIDAS dos primeiros bytes do arquivo servido por ferramentas/medir-imagens.py, nunca estimadas: a API nao devolve dimensao, e caixa de foto sem medida e o salto de layout da 22.4. Foto que nao pode ser medida nao entra. As tres sem foto sao as tres sem ficha — sem anuncio casado nao ha imagem legitima a copiar. Material sem imagem NAO some da vitrine: aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
   },
   "materiais": [
@@ -451,7 +451,7 @@
       "tipo": "verniz",
       "marca": "Quartzolit",
       "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
-      "nome_comercial": "verniz protetor para pisos quartzolit",
+      "nome_comercial": "Verniz Protetor para Pisos Quartzolit",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "O boletim tecnico se identifica pelo titulo e pela pasta de data do arquivo (2024-05), sem codigo impresso do tipo BRSA004 — a mesma situacao do rejunte ceramicas.",
       "declaracoes": {
@@ -625,7 +625,7 @@
       "tipo": "impermeabilizante",
       "marca": "Quartzolit",
       "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
-      "nome_comercial": "impermeabilizante borracha liquida elastica quartzolit",
+      "nome_comercial": "Borracha Líquida Elástica Quartzolit",
       "codigo_fabricante": "REV110624",
       "motivo_sem_codigo": null,
       "nota_do_codigo": "REV110624 e a REVISAO impressa no nome do arquivo do boletim tecnico (BT_Borracha Liquida Elastica Quartzolit_REV110624, pasta 2024-07), nao um codigo de catalogo. Fica em `codigo_fabricante` porque e o unico identificador que o fabricante publica para este documento, e a frase que o citar tem de dize-lo como revisao.",
@@ -700,20 +700,39 @@
       "venda": [],
       "afiliado": {
         "programa": "shopee",
-        "url": "",
-        "url_produto": null,
+        "url": "https://s.shopee.com.br/qjsySdnUK",
+        "url_produto": "https://shopee.com.br/product/1462074750/20298101801",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "GUIA",
         "etiqueta_ml": null,
-        "gerado_em": null,
+        "gerado_em": "2026-09-29",
         "url_busca": "https://s.shopee.com.br/BU5nnFkjn",
         "url_busca_produto": "https://shopee.com.br/search?keyword=borracha%20liquida%20elastica%20quartzolit",
-        "degrau": 4,
+        "degrau": 3,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "marca + linha",
-        "motivo_sem_ficha": "nenhum anuncio identificou este registro sozinho na escada de palavra-chave de 2026-09-29: 1 \"Quartzolit REV110624\" -> 0 ofertas; 2 \"Quartzolit impermeabilizante borracha liquida elastica quartzolit\" -> 12 ofertas; 3 \"borracha liquida elastica quartzolit\" -> 12 ofertas; 4 \"Quartzolit impermeabilizante borracha\" -> 12 ofertas"
+        "conferido_em": "2026-09-29",
+        "casamento": {
+          "casado_em": "2026-09-29",
+          "regra": "ferramentas/casar-anuncio.py (cinco travas mais unicidade)",
+          "degrau_da_palavra_chave": 2,
+          "palavra_chave": "Quartzolit Borracha Líquida Elástica Quartzolit",
+          "titulo_do_anuncio": "Tinta Borracha Líquida Elástica Quartzolit Impermeabilizante Para Paredes e Telhados 18Kg Branco e Cinza",
+          "loja": "Edu Tintas Ltda",
+          "item_id": 20298101801,
+          "shop_id": 1462074750,
+          "por_que_este_degrau_da_25_1": "a loja \"Edu Tintas Ltda\" e vendedor comum (25.1, degrau 3)",
+          "prova_de_vida": "a API devolveu este anuncio em 2026-09-29. Nao foi clicado: o salto do encurtador e onde a Shopee conta o clique e autoclique com a etiqueta da ilha apaga o primeiro clique organico (25.8)."
+        }
       },
-      "imagem": null,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-820m7-mpcldjzl2qkia7",
+        "largura": 1024,
+        "altura": 1024,
+        "fonte": "Open API de Afiliados da Shopee (25.6), anuncio casado",
+        "coletado_em": "2026-09-29",
+        "alt": "Borracha Líquida Elástica Quartzolit"
+      },
       "fontes": {
         "bt-borracha-liquida-elastica-2024-07": {
           "url": "https://www.quartzolit.weber/files/br/2024-07/BT_Borracha%20L%C3%ADquida%20El%C3%A1stica%20Quartzolit_REV110624.pdf",
@@ -730,8 +749,16 @@
           "conferir_no_pdf": true
         }
       },
-      "divergencias": [],
-      "resolucao": null,
+      "divergencias": [
+        {
+          "campo": "nome_comercial",
+          "declaracao_a": "'Borracha Liquida Elastica Quartzolit', no NOME DO ARQUIVO do boletim tecnico do proprio fabricante (BT_Borracha Liquida Elastica Quartzolit_REV110624.pdf, pasta 2024-07), colhido em 2026-09-25.",
+          "declaracao_b": "'impermeabilizante borracha liquida elastica quartzolit', montado a partir do CAMINHO da pagina de produto (/impermeabilizantes-quartzolit/impermeabilizantes-para-paredes-externas-e-fachadas/impermeabilizante-borracha-liquida-elastica-quartzolit), colhido em 2026-09-25.",
+          "nivel_a": 2,
+          "nivel_b": 3
+        }
+      ],
+      "resolucao": "Vence a declaracao A, pelo nivel: `escada_de_fontes` ja mandava o nivel mais alto vencer em qualquer conflito, e nada tinha aplicado essa regra a `nome_comercial`. A palavra `impermeabilizante` e a PRATELEIRA do fabricante, nao o batismo do produto — classificacao colada dentro do nome e a secao 26 ao contrario. Corrigido em 29/09/2026 pela trava `batismo_do_fabricante` (esquema versao 8), que nasceu deste registro. NAO foi coleta e NAO dependeu do egresso a quartzolit.weber, que segue em 403: a fonte ja estava no repositorio, dentro do proprio registro, desde 25/09.",
       "status": "ativo",
       "motivo_do_descarte": null,
       "usada_por": [
@@ -850,7 +877,8 @@
       "usada_por": [
         "G-ACABAMENTO"
       ],
-      "observacao": "Dos sete, e o que mais se parece com o que uma peca de mosaico de jardim precisaria: incolor por penetracao, nao pelicula opaca. E o que ele custa a quem quiser publicar isso e uma linha inteira do boletim que ninguem leu."
+      "observacao": "Dos sete, e o que mais se parece com o que uma peca de mosaico de jardim precisaria: incolor por penetracao, nao pelicula opaca. E o que ele custa a quem quiser publicar isso e uma linha inteira do boletim que ninguem leu.",
+      "motivo_do_batismo_em_minusculas": "O nome esta certo e a CAIXA nao foi conferida: a unica fonte deste registro e a pagina de produto (nivel 3) e o batismo chega pelo SLUG do endereco, que soletra as palavras e perde a tipografia. Capitalizar daqui seria palpite sobre como o fabricante escreve, e palpite com cara de declaracao do fabricante e o que a secao 26 existe para impedir. Fecha no dia em que o egresso a quartzolit.weber abrir, ou quando este produto ganhar boletim tecnico citado. Escrito em 29/09/2026, no bloco da trava `batismo_do_fabricante`."
     },
     {
       "id": "quartzolit-fundo-selador",
@@ -969,7 +997,8 @@
       "usada_por": [
         "G-ACABAMENTO"
       ],
-      "observacao": "Unico selador do banco, e entra sabendo que nao cobre MDF. A alternativa era deixar o tipo `selador` em zero e parecer que faltava procurar; com ele dentro, o que falta esta medido e tem nome."
+      "observacao": "Unico selador do banco, e entra sabendo que nao cobre MDF. A alternativa era deixar o tipo `selador` em zero e parecer que faltava procurar; com ele dentro, o que falta esta medido e tem nome.",
+      "motivo_do_batismo_em_minusculas": "O nome esta certo e a CAIXA nao foi conferida: a unica fonte deste registro e a pagina de produto (nivel 3) e o batismo chega pelo SLUG do endereco, que soletra as palavras e perde a tipografia. Capitalizar daqui seria palpite sobre como o fabricante escreve, e palpite com cara de declaracao do fabricante e o que a secao 26 existe para impedir. Fecha no dia em que o egresso a quartzolit.weber abrir, ou quando este produto ganhar boletim tecnico citado. Escrito em 29/09/2026, no bloco da trava `batismo_do_fabricante`."
     }
   ],
   "pendencias_desta_categoria": [

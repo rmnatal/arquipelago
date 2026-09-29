@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 7,
+  "versao_esquema": 8,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -3194,5 +3194,27 @@
       "o_que_destrava": "A ficha de seguranca (FISPQ) do epoxi, que e documento de nivel 1 e mora em PDF no dominio do fabricante — o mesmo egresso fechado que segura o primeiro SKU da `base`. E o terceiro bloco seguido desta ilha a parar na mesma porta."
     }
   },
-  "o_que_mudou_na_versao_7": "29/09/2026: `afiliado.casamento` e `afiliado.motivo_sem_ficha`. A escada da 25.1 saiu de 1:1 2:5 3:4 4:28 para 1:1 2:5 3:14 4:18 — dez registros de acabamento, alicate e cola sairam do piso e ganharam ficha de produto, cada um com a prova do casamento gravada e reconferida por portao. Cinco nao sairam e tem o motivo escrito. As treze pastilhas nao foram tentadas: elas dependem da decisao de `afiliado.tipo_de_casamento: 'equivalente'` descrita em dados/links-afiliado-pendentes.md, que e do Raphael e nao da Fundacao."
+  "o_que_mudou_na_versao_7": "29/09/2026: `afiliado.casamento` e `afiliado.motivo_sem_ficha`. A escada da 25.1 saiu de 1:1 2:5 3:4 4:28 para 1:1 2:5 3:14 4:18 — dez registros de acabamento, alicate e cola sairam do piso e ganharam ficha de produto, cada um com a prova do casamento gravada e reconferida por portao. Cinco nao sairam e tem o motivo escrito. As treze pastilhas nao foram tentadas: elas dependem da decisao de `afiliado.tipo_de_casamento: 'equivalente'` descrita em dados/links-afiliado-pendentes.md, que e do Raphael e nao da Fundacao.",
+  "batismo_do_fabricante": {
+    "o_que_e": "`nome_comercial` e campo do FABRICANTE: e o batismo dele, nao a descricao da ilha. A regra que mede isso mora em ferramentas/batismo-do-fabricante.py, sozinha, porque ferramentas/mutacoes-batismo.py ataca a MESMA funcao que validar-banco.py usa.",
+    "por_que_esta_lista_mora_no_esquema_e_nao_na_regua": "Secao 26.2 do ARQUIPELAGO.md: quais fontes batizam e decisao do esquema, escrita no esquema. Lista digitada dentro da regua envelhece calada — o dia em que uma fonte nova batizar, ela entra numa linha aqui e a trava passa a cobra-la sem uma linha de codigo. E a trava REPROVA quando esta chave some: regua que le a propria lista de um arquivo de dados aprova tudo, em silencio, no dia em que o arquivo perder a chave.",
+    "origens_que_batizam": [
+      "documento-pdf-do-fabricante"
+    ],
+    "por_que_so_o_PDF_por_enquanto": "O nome do arquivo de um boletim ou ficha tecnica E o fabricante escrevendo o nome do produto (nivel 2 da escada_de_fontes). O CAMINHO de uma pagina de produto nao e: ele e a PRATELEIRA do fabricante, e prateleira e classificacao. Foi exatamente dai que saiu o defeito que esta trava nasceu para pegar.",
+    "como_a_fonte_e_escolhida": "Entre as fontes do registro cujas origens estao nesta lista, vence a de MENOR nivel — a mesma regra que escada_de_fontes ja declarava para qualquer conflito ('em conflito, o nivel mais alto vence'). O que faltava nao era a regra: era alguem aplica-la a este campo.",
+    "o_que_a_trava_cobra": "Toda palavra do nome_comercial, fora as palavras vazias e fora a MARCA (que mora no campo dela), tem de ser legivel no nome do arquivo da fonte que batiza.",
+    "como_a_comparacao_tolera_o_servidor_do_fabricante": "O servidor do fabricante mutila o nome do arquivo de dois jeitos medidos neste banco: apaga a letra acentuada inteira (Boletim_Tcnico por 'Tecnico', rejunte_epxi por 'Epoxi') e cola as palavras (RejuntePorcelanatoseCeramicas). A comparacao ignora separador dos dois lados e aceita a palavra tambem sem as letras acentuadas. Sem isso ela reprovaria dois batismos CERTOS.",
+    "duas_reguas_mais_largas_foram_medidas_e_descartadas_em_29_09_2026": "(1) 'o batismo tem de caber na URL da melhor fonte' reprova 20 dos 38, quase todos honestos — pagina de produto de fabricante tem endereco generico. (2) 'o batismo nao comeca com a palavra que a ilha usa para classificar' reprova 20 dos 38, entre eles 'Verniz Acrilico Brilhante' e 'Rejunte Ceramicas Quartzolit' — o fabricante batiza pelo tipo o tempo todo. Esta, a terceira, mede 7 e reprova 1, com zero falso positivo. Trava larga que a proxima execucao aprende a ignorar nao e trava.",
+    "alcance_de_hoje": "7 registros citam PDF de fabricante e entram em escopo. Os outros 31 ficam fora com o motivo escrito no laudo, nao aprovados em silencio."
+  },
+  "o_que_mudou_na_versao_8": {
+    "data": "2026-09-29",
+    "resumo": "`nome_comercial` ganhou dono e ganhou portao. O batismo do fabricante ja estava no repositorio desde 25/09, dentro do proprio registro, e ninguem tinha lido: fontes[].url guarda o boletim tecnico e o NOME DO ARQUIVO e o fabricante batizando o produto.",
+    "o_defeito_que_ela_pegou": "quartzolit-borracha-liquida-elastica chamava-se 'impermeabilizante borracha liquida elastica quartzolit'. A palavra 'impermeabilizante' nao esta no boletim (BT_Borracha Liquida Elastica Quartzolit_REV110624.pdf, nivel 2): ela veio do CAMINHO da pagina de produto, que e a prateleira do fabricante. O registro citava as duas fontes e tinha tomado a mais fraca.",
+    "por_que_isto_contradiz_o_que_a_execucao_anterior_escreveu": "O REGISTRO.md de 29/09 as 16h17Z dizia que consertar os tres nome_comercial da Quartzolit 'e COLETA, na pagina do fabricante, e esbarra no mesmo egresso' — quartzolit.weber em 403. Nao esbarra: a fonte estava em casa. O egresso continua fechado e continua travando base e apoio; este item nao era dele.",
+    "chaves_novas": [
+      "batismo_do_fabricante"
+    ]
+  }
 }

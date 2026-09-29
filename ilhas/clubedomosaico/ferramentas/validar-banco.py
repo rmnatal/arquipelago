@@ -319,6 +319,22 @@ por_degrau = {1: 0, 2: 0, 3: 0, 4: 0}
 casamentos_a_reconferir = []   # (onde, registro, titulo gravado) — reconferidos abaixo
 reconferidos = 0
 
+# ---------------------------------------------- A TRAVA DO BATISMO (esquema v8)
+#
+# `nome_comercial` e campo do FABRICANTE. A regra mora sozinha em
+# batismo-do-fabricante.py porque mutacoes-batismo.py ataca a MESMA funcao que
+# este validador usa. Quais fontes batizam e decisao do esquema (26.2), e a
+# regra levanta EsquemaSemBatismo quando a chave some — trava que le a propria
+# lista de um arquivo de dados aprova tudo em silencio no dia em que a lista
+# sumir, e esse dia nao pode passar despercebido.
+import importlib.util as _iu_bat
+_s_bat = _iu_bat.spec_from_file_location(
+    "batismo_do_fabricante",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "batismo-do-fabricante.py"))
+_batismo = _iu_bat.module_from_spec(_s_bat)
+_s_bat.loader.exec_module(_batismo)
+batismos_conferidos = 0
+
 for nome in arquivos_material:
     arq = carregar(nome)
     categoria_arquivo = arq.get("categoria")
@@ -350,6 +366,22 @@ for nome in arquivos_material:
             erro("%s: codigo_fabricante null exige motivo_sem_codigo" % onde)
         if m.get("divergencias") and not m.get("resolucao"):
             erro("%s: divergencias sem resolucao escrita" % onde)
+
+        # O BATISMO E DO FABRICANTE (esquema v8, secao 26 ao contrario). Nasceu de
+        # `quartzolit-borracha-liquida-elastica`, que se chamava "impermeabilizante
+        # borracha liquida elastica quartzolit" — e `impermeabilizante` veio do
+        # CAMINHO da pagina de produto, a prateleira do fabricante, enquanto o
+        # boletim tecnico do mesmo produto (nivel 2) nao a escreve. O registro
+        # citava as duas fontes e tinha tomado a mais fraca.
+        try:
+            ok_batismo, laudo_batismo = _batismo.conferir(m, esquema)
+        except _batismo.EsquemaSemBatismo as falha:
+            erro("%s: %s" % (onde, falha))
+        else:
+            if laudo_batismo.get("em_escopo"):
+                batismos_conferidos += 1
+                if not ok_batismo:
+                    erro("%s / nome_comercial: %s" % (onde, laudo_batismo["motivo"]))
 
         # fontes
         fontes = m.get("fontes") or {}
@@ -2180,6 +2212,8 @@ print("  a escada da 25.1, por degrau . 1:%d  2:%d  3:%d  4:%d  (soma %d)"
 print("  itens sem imagem ........... %d" % sem_imagem)
 print("  casamentos reconferidos .... %d  (titulo gravado passado pela regra viva "
       "de casar-anuncio.py, contra o banco inteiro)" % reconferidos)
+print("  batismos conferidos ........ %d  (nome_comercial lido contra o nome do arquivo "
+      "da fonte que batiza, esquema v8)" % batismos_conferidos)
 for n in notas:
     print("  nota: %s" % n)
 for a in avisos:
