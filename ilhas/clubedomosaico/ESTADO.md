@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-29T11:12Z
-executando_desde: null
+executando_desde: 2026-09-29T13:17Z
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
   A LEITURA DO VISITANTE — O PORTAO DESTA ILHA NUNCA TINHA VISTO O QUE O VISITANTE VE, E NA PRIMEIRA
