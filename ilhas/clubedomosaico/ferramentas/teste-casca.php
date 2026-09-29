@@ -1094,6 +1094,167 @@ $corpo_afiliados_texto = cdm_texto( cdm_corpo( $html_por_pagina['cdm_afiliados']
 cdm_ok( false === mb_stripos( $corpo_afiliados_texto, 'não há nenhum link de afiliado' ),
 	'a divulgacao nao afirma por escrito o que pode contar' );
 
+/* ---------------------------------------------------------------------------
+ * A DIVULGACAO x O `rel` QUE O SITE REALMENTE EMITE (29/09/2026).
+ *
+ * O defeito que fez estas reguas nascerem, e ele estava no ar: a pagina dizia
+ * "essa busca NAO e link de afiliado: ninguem nos paga por aquele clique" sobre
+ * 28 botoes que `cdm_f2_compra_html()` emite com `rel="sponsored"`. A ilha
+ * declarava a relacao paga ao buscador e a negava a quem le. Nenhuma regua via,
+ * porque o texto mora na casca, o `rel` mora na F2, e ninguem comparava os dois.
+ *
+ * Por isso a regua nao le o texto contra uma frase esperada escrita aqui: ela
+ * pergunta ao CODIGO quais estados do botao sao pagos e cobra da PAGINA a mesma
+ * classificacao. No dia em que a escada mudar de novo, quem falhar e o par.
+ * ------------------------------------------------------------------------- */
+echo "\n15c. A divulgacao x o `rel` emitido, e a conta de tres parcelas (25.2-b)\n";
+
+$corpo_afiliados_html = cdm_corpo( $html_por_pagina['cdm_afiliados'] );
+
+/* Os TRES estados da escada da 25.1, montados a mao para a funcao de compra
+   responder o que ela faz em cada um. Sao os tres que a pagina descreve. */
+$estados_do_botao = array(
+	'ficha do produto' => array(
+		'afiliado' => array( 'url' => 'https://s.shopee.com.br/FICHA', 'url_busca' => 'https://s.shopee.com.br/BUSCA' ),
+		'marcador' => 'ficha do produto',
+	),
+	'busca encurtada'  => array(
+		'afiliado' => array( 'url' => '', 'url_busca' => 'https://s.shopee.com.br/BUSCA' ),
+		'marcador' => 'busca daquele produto',
+	),
+	'busca crua'       => array(
+		'afiliado' => array( 'url' => '', 'url_busca' => '', 'url_busca_produto' => 'https://shopee.com.br/search?keyword=x' ),
+		'marcador' => 'sem rastreio',
+	),
+);
+
+cdm_ok( function_exists( 'cdm_f2_compra_html' ), 'a funcao de compra da escada esta carregada no teste da casca' );
+
+$pagos_pelo_codigo  = 0;
+$pagos_pela_pagina  = 0;
+foreach ( $estados_do_botao as $nome => $e ) {
+	$botao = cdm_f2_compra_html( $e['afiliado'] );
+	/* O `rel` do BOTAO principal, que e o unico que muda de estado para estado. */
+	$paga_no_codigo = ( false !== mb_strpos( $botao, 'cdm-f2-botao' ) && false !== mb_strpos( $botao, 'rel="sponsored' ) );
+	if ( 'busca crua' === $nome ) {
+		$paga_no_codigo = ( false !== mb_strpos( $botao, 'rel="sponsored' ) );
+	}
+
+	/* O <li> daquele estado na pagina, achado pelo marcador do proprio texto. */
+	$li = '';
+	if ( preg_match_all( '#<li>(.*?)</li>#is', $corpo_afiliados_html, $lis ) ) {
+		foreach ( $lis[1] as $candidato ) {
+			if ( false !== mb_stripos( cdm_texto( $candidato ), $e['marcador'] ) ) {
+				$li = cdm_texto( $candidato );
+				break;
+			}
+		}
+	}
+	cdm_ok( '' !== $li, 'a divulgacao descreve o estado "' . $nome . '" do botao', $e['marcador'] );
+
+	$diz_que_paga     = ( false !== mb_stripos( $li, 'link de afiliado' ) || false !== mb_stripos( $li, 'render comissão' ) );
+	$diz_que_nao_paga = ( false !== mb_stripos( $li, 'ninguém nos paga' ) || false !== mb_stripos( $li, 'não é link de afiliado' ) );
+	$paga_na_pagina   = ( $diz_que_paga && ! $diz_que_nao_paga );
+
+	cdm_ok( $paga_no_codigo === $paga_na_pagina,
+		'"' . $nome . '": o que a pagina promete e o `rel` que o site emite',
+		( $paga_no_codigo ? 'codigo: sponsored' : 'codigo: nao pago' ) . ' / ' . ( $paga_na_pagina ? 'pagina: rende' : 'pagina: nao rende' ) );
+
+	$pagos_pelo_codigo += $paga_no_codigo ? 1 : 0;
+	$pagos_pela_pagina += $paga_na_pagina ? 1 : 0;
+}
+cdm_ok( $pagos_pelo_codigo === $pagos_pela_pagina && 2 === $pagos_pelo_codigo,
+	'dois dos tres estados sao pagos, no codigo e na pagina',
+	$pagos_pelo_codigo . ' no codigo / ' . $pagos_pela_pagina . ' na pagina' );
+
+/* A FRASE APOSENTADA NAO PODE VOLTAR. Ela e a regressao exata de 25/09 a 29/09,
+   e a regua a mede pelo texto servido, nao pelo codigo-fonte do snippet. */
+cdm_ok( false === mb_stripos( $corpo_afiliados_texto, 'essa busca não é link de afiliado' ),
+	'a frase de 14/09 sobre a busca nao voltou ao ar' );
+
+/* AS TRES PARCELAS, RECONTADAS DOS REGISTROS — nunca dos cabecalhos que a casca
+   le. Regra 1 da secao 8: os dois lados nao erram juntos. */
+$r_ficha = 0;
+$r_busca = 0;
+$r_crua  = 0;
+$r_nada  = 0;
+foreach ( $banco_por_categoria as $banco ) {
+	foreach ( $banco['materiais'] as $m ) {
+		$af = isset( $m['afiliado'] ) && is_array( $m['afiliado'] ) ? $m['afiliado'] : array();
+		if ( ! empty( $af['url'] ) ) {
+			$r_ficha++;
+		} elseif ( ! empty( $af['url_busca'] ) ) {
+			$r_busca++;
+		} elseif ( ! empty( $af['url_busca_produto'] ) ) {
+			$r_crua++;
+		} else {
+			$r_nada++;
+		}
+	}
+}
+cdm_ok( 0 === $r_nada, 'nenhum item do banco fica sem saida de compra (secao 7)', $r_nada . ' sem saida' );
+cdm_ok( $r_ficha + $r_busca + $r_crua === $total_no_banco,
+	'as tres parcelas da escada fecham no total do banco',
+	$r_ficha . ' + ' . $r_busca . ' + ' . $r_crua . ' = ' . $total_no_banco );
+
+/* E AS TRES TEM QUE CHEGAR A TELA, na mesma ordem em que a frase as apresenta —
+   porque o defeito de 25/09 nao foi um numero errado: foram duas parcelas de
+   tres, com os 28 do meio ausentes e nenhum digito visivelmente falso. */
+cdm_ok( ! empty( $n['numeros_vivos'] ), 'a conta da divulgacao sai pela via viva no teste' );
+$frase_conta = '';
+if ( preg_match( '#<p class="cdm-nota"><strong>Estado de hoje:(.*?)</p>#is', $corpo_afiliados_html, $mc ) ) {
+	$frase_conta = cdm_texto( $mc[1] );
+}
+cdm_ok( '' !== $frase_conta, 'a divulgacao publica a conta do estado de hoje' );
+/* O numero e cobrado NO CONTEXTO da parcela, nunca solto: "0" e "10" aparecem
+   em qualquer frase por acidente, e uma regua que aceita o digito solto aprova
+   a frase que perdeu a parcela do meio — que e exatamente o defeito de 25/09. */
+$n_txt = function ( $v ) {
+	return cdm_texto( cdm_casca_num( $v ) );
+};
+foreach ( array(
+	'o total do banco'          => 'os ' . $n_txt( $total_no_banco ) . ' materiais do banco',
+	'a parcela da ficha'        => 'Em ' . $n_txt( $r_ficha ) . ' o botão é a ficha do produto',
+	'a parcela da busca'        => 'em ' . $n_txt( $r_busca ) . ' é a busca na loja',
+	'a soma do que rende'       => 'esses ' . $n_txt( $r_ficha + $r_busca ) . ' são link de afiliado',
+	'a parcela sem rastreio'    => 'Em ' . $n_txt( $r_crua ) . ' o botão é a busca sem rastreio',
+) as $rotulo => $trecho ) {
+	cdm_ok( false !== mb_strpos( $frase_conta, $trecho ),
+		'a conta servida traz ' . $rotulo . ', com o numero no lugar', $trecho );
+}
+
+/* A BORDA, E ELA NAO E ZELO: SEM ELA UMA TRAVA DESTE BLOCO NASCEU INERTE.
+   Hoje `piso_nao_rastreavel` e 0, e com zero a parcela do meio da conta
+   (`esperando_link - piso_nao_rastreavel`) tem o MESMO valor de `esperando_link`
+   sozinho. Trocar uma pela outra nao muda digito nenhum no mundo de hoje, e a
+   bateria de mutacao provou isso: a mutacao "a parcela da busca troca de fonte"
+   PASSOU na primeira rodada. O defeito que ela escreve so aparece no dia em que
+   um item perder o rastreio — que e o dia em que a pagina voltaria a contar um
+   clique que nao paga como se pagasse.
+   Entao a bancada fabrica esse dia: um item de alicate perde a busca encurtada e
+   fica so com a crua. Regra 2 da secao 8 — grade tem que incluir a borda. */
+$chave_borda = 'clubedomosaico_dados_materiais-alicates';
+$guardado    = $GLOBALS['__options'][ $chave_borda ];
+
+$GLOBALS['__options'][ $chave_borda ]['afiliado']['itens_com_piso_nao_rastreavel'] = 1;
+cdm_teste_rebobinar();
+$frase_borda = '';
+if ( preg_match( '#<p class="cdm-nota"><strong>Estado de hoje:(.*?)</p>#is', cdm_corpo( cdm_teste_pagina( 'cdm_afiliados' ) ), $mb ) ) {
+	$frase_borda = cdm_texto( $mb[1] );
+}
+cdm_ok( '' !== $frase_borda, 'na borda, a divulgacao continua publicando a conta' );
+cdm_ok( false !== mb_strpos( $frase_borda, 'em ' . $n_txt( $r_busca - 1 ) . ' é a busca na loja' ),
+	'na borda, a parcela da busca DESCONTA quem perdeu o rastreio',
+	'esperado ' . ( $r_busca - 1 ) . ', nunca ' . $r_busca );
+cdm_ok( false !== mb_strpos( $frase_borda, 'esses ' . $n_txt( $r_ficha + $r_busca - 1 ) . ' são link de afiliado' ),
+	'na borda, a soma do que rende encolhe junto',
+	(string) ( $r_ficha + $r_busca - 1 ) );
+cdm_ok( false !== mb_strpos( $frase_borda, 'Em ' . $n_txt( 1 ) . ' o botão é a busca sem rastreio' ),
+	'na borda, o item sem rastreio aparece na parcela dele' );
+
+$GLOBALS['__options'][ $chave_borda ] = $guardado;
+cdm_teste_rebobinar();
+
 /* A escada de fontes tem que CHEGAR A TELA, e nao so estar certa na funcao. */
 $corpo_prova = cdm_texto( cdm_corpo( $html_por_pagina['cdm_como_sabemos'] ) );
 $degraus_fora = array();

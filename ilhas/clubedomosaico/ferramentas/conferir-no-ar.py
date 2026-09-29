@@ -1079,6 +1079,102 @@ ok(len(_servidos) > 0,
    "%d" % len(_servidos))
 
 # ---------------------------------------------------------------------------
+# A DIVULGACAO CONTRA O `rel` QUE O VISITANTE RECEBE (29/09/2026).
+#
+# O defeito que fez esta secao nascer estava no ar e tinha quatro dias: a pagina
+# `/divulgacao-de-afiliados/` dizia "essa busca NAO e link de afiliado: ninguem
+# nos paga por aquele clique" sobre 28 botoes que o site serve com
+# `rel="sponsored"`. A frase foi escrita em 14/09, quando a busca CRUA era o
+# botao e era verdade; em 25/09 os 38 itens ganharam busca ENCURTADA e a frase
+# ficou para tras sozinha (secao 4 do contrato).
+#
+# A BANCADA JA MEDE ISSO no codigo (teste-casca, secao 15c). Esta secao mede no
+# AR, e a diferenca nao e zelo: a frase e servida por uma option do WordPress e
+# os botoes por outra, e entre o repositorio e o /status ja houve, nesta ilha,
+# oito horas de distancia (13/09, os dez links commitados que o site nao servia).
+# ---------------------------------------------------------------------------
+print("\nA divulgacao contra o `rel` servido (25.2-b, 29/09):")
+
+import html as _html_div
+
+
+def _texto_servido(html_bruto):
+    """O texto visivel do <main>, sem etiqueta e com entidade decodificada."""
+    m = re.search(r"<main[^>]*>(.*?)</main>", html_bruto, re.S | re.I)
+    corpo = m.group(1) if m else html_bruto
+    corpo = re.sub(r"<script.*?</script>", " ", corpo, flags=re.S | re.I)
+    return re.sub(r"\s+", " ", _html_div.unescape(re.sub(r"<[^>]+>", " ", corpo)))
+
+
+# AS TRES PARCELAS, RECONTADAS DOS REGISTROS commitados — nunca do cabecalho que
+# a tela le. Se os dois se separarem, os dois lados nao erram juntos (secao 8).
+_p_ficha = _p_busca = _p_crua = _p_nada = 0
+for _nome in sorted(os.listdir(_DADOS_DIR)):
+    if not (_nome.startswith("materiais-") and _nome.endswith(".json")):
+        continue
+    with open(os.path.join(_DADOS_DIR, _nome), encoding="utf-8") as _fh:
+        for _item in json.load(_fh).get("materiais", []):
+            _af = _item.get("afiliado") or {}
+            if _af.get("url"):
+                _p_ficha += 1
+            elif _af.get("url_busca"):
+                _p_busca += 1
+            elif _af.get("url_busca_produto"):
+                _p_crua += 1
+            else:
+                _p_nada += 1
+_p_total = _p_ficha + _p_busca + _p_crua + _p_nada
+
+_div_html, _div_cod = buscar(BASE + "/divulgacao-de-afiliados/")
+_div_txt = _texto_servido(_div_html)
+
+ok("200" == _div_cod, "[divulgacao] a pagina de divulgacao responde", _div_cod)
+ok("essa busca não é link de afiliado" not in _div_txt.lower(),
+   "[divulgacao] a frase de 14/09 sobre a busca NAO esta mais no ar")
+for _rotulo, _trecho in (
+    ("o total do banco", "os %d materiais do banco" % _p_total),
+    ("a parcela da ficha", "Em %d o botão é a ficha do produto" % _p_ficha),
+    ("a parcela da busca", "em %d é a busca na loja" % _p_busca),
+    ("a soma do que rende", "esses %d são link de afiliado" % (_p_ficha + _p_busca)),
+    ("a parcela sem rastreio", "Em %d o botão é a busca sem rastreio" % _p_crua),
+):
+    ok(_trecho in _div_txt, "[divulgacao] a conta servida traz %s" % _rotulo, _trecho)
+ok(_p_nada == 0, "[divulgacao] nenhum item do banco fica sem saida de compra", "%d" % _p_nada)
+
+# E A OUTRA METADE DA PROMESSA: o `rel` de CADA link de loja servido nas paginas
+# do sitemap. O que a divulgacao promete e que encurtador sai patrocinado e que
+# busca crua nao sai — e isso se mede no atributo, nunca no texto.
+_RE_A = re.compile(r"<a\b[^>]*>", re.I)
+_encurtados_sem_sponsored = []
+_cruas_com_sponsored = []
+_n_encurtados = _n_cruas = 0
+for _pag in _paginas:
+    _corpo, _ = buscar(_pag)
+    for _tag in _RE_A.findall(_corpo):
+        _href = re.search(r'href="([^"]*)"', _tag)
+        if not _href:
+            continue
+        _u = _html_div.unescape(_href.group(1))
+        _rel = re.search(r'rel="([^"]*)"', _tag)
+        _rel = _rel.group(1) if _rel else ""
+        if "s.shopee.com.br" in _u:
+            _n_encurtados += 1
+            if "sponsored" not in _rel:
+                _encurtados_sem_sponsored.append(_u)
+        elif "shopee.com.br/search" in _u or "mercadolivre.com.br" in _u and "meli.la" not in _u:
+            _n_cruas += 1
+            if "sponsored" in _rel:
+                _cruas_com_sponsored.append(_u)
+
+ok(_n_encurtados > 0, "[rel] as paginas servem link de afiliado encurtado", "%d" % _n_encurtados)
+ok(not _encurtados_sem_sponsored,
+   "[rel] TODO encurtador servido sai como patrocinado, como a pagina promete",
+   "%d de %d fora" % (len(_encurtados_sem_sponsored), _n_encurtados))
+ok(not _cruas_com_sponsored,
+   "[rel] nenhuma busca CRUA se diz patrocinada (mentira na direcao oposta)",
+   "%d de %d" % (len(_cruas_com_sponsored), _n_cruas))
+
+# ---------------------------------------------------------------------------
 # UMA ETIQUETA DE ROBO, E SO UMA. Acrescentado em 25/09/2026 pelo BLOCO B do
 # despacho do Raphael de 24/09, que trouxe a licao da Aquametria com todas as
 # letras: "NAO adicionar uma segunda meta robots (...) o caminho e o filtro,

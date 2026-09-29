@@ -1,6 +1,28 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
  *
+ * Versão 1.18.0 (29/09/2026) — A PÁGINA DE DIVULGAÇÃO DIZIA AO LEITOR QUE 28
+ *   BOTÕES NÃO RENDIAM COMISSÃO, E OS 28 SAEM COM `rel="sponsored"`.
+ *   Nenhuma linha foi tocada desde 14/09; o mundo é que mudou embaixo dela. Em
+ *   14/09 a busca CRUA subiu para o botão e a frase "essa busca não é link de
+ *   afiliado: ninguém nos paga por aquele clique" era verdadeira. Em 16/09 a
+ *   Open API de afiliados entrou (25.6) e encurtar virou chamada de rede; em
+ *   25/09 os 38 itens do banco ganharam busca ENCURTADA, que É link de afiliado.
+ *   Desde então o validador mede `piso nao rastreavel = 0` e a página continuou
+ *   servindo a frase do mundo anterior.
+ *   A DIREÇÃO DO ERRO É O QUE O TORNA GRAVE: a ilha declarava a relação paga ao
+ *   Google (`rel="sponsored"`, emitido por `cdm_f2_compra_html()`) e a negava a
+ *   quem lê — numa página cujo único produto é a divulgação. E a conta embaixo
+ *   não fechava: 10 com ficha mais 0 sem rastreio, de 38.
+ *   O QUE MUDA: a seção passa a nomear os TRÊS estados do botão (ficha, busca
+ *   encurtada, busca sem rastreio), dizendo que os dois primeiros são link de
+ *   afiliado; a conta passa a ter três parcelas que fecham no total; e ela só é
+ *   publicada quando os cinco bancos chegaram (`numeros_vivos`), porque número
+ *   de disclosure velho é pior que nenhum. O portão novo está na seção 15 do
+ *   `teste-casca.php` e compara o TEXTO da página com o `rel` que a função de
+ *   compra realmente emite — os dois moravam em snippets diferentes e nenhuma
+ *   régua os tinha comparado.
+ *
  * Versão 1.12.0 (24/09/2026) — A PORTA DE ENTRADA DO SITE PASSA A SER MEDIDA.
  *   Escrita no dia em que 16 das 17 URLs desta ilha serviam a página de
  *   estacionamento da HostGator com 404 — incluindo as três que estão na
@@ -237,7 +259,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.17.0' );
+	define( 'CDM_CASCA_VERSAO', '1.18.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1189,6 +1211,14 @@ function cdm_casca_numeros() {
 		   dizer "esperando link" sobre gente que ja tinha para onde mandar. */
 		'sem_saida_de_compra' => 0,
 		'piso_nao_rastreavel' => 15,
+		/* FALSO ENQUANTO FOR INSTANTANEO, e por isso ele agora se declara. O 15
+		   era verdade em 14/09/2026 e hoje o banco mede 0; a convencao desta
+		   funcao e nao mexer no instantaneo (ver o comentario de
+		   `materiais_acabamento`), porque numero de tela nasce contado e nao
+		   digitado. A saida nao e corrigir o digito: e a pagina de divulgacao
+		   NAO PUBLICAR a conta quando ela vem daqui. Estatistica velha envelhece;
+		   disclosure velho mente. */
+		'numeros_vivos'      => false,
 		'sem_imagem'         => 20,
 		'pecas_na_loja'      => 0,
 	);
@@ -1238,6 +1268,7 @@ function cdm_casca_numeros() {
 		$n['sem_imagem']           = $img_viva;
 		$n['sem_saida_de_compra']  = $sem_saida_viva;
 		$n['piso_nao_rastreavel']  = $nao_rastreavel_vivo;
+		$n['numeros_vivos']        = true;
 	}
 
 	/* AS CÉLULAS DA MATRIZ ENTRAM NA VIA VIVA, e a razão tem data: em 13/09/2026
@@ -2361,26 +2392,59 @@ add_shortcode( 'cdm_afiliados', function () {
 	$html .= '<div class="cdm-secao"><h2>Preço</h2>';
 	$html .= '<p>Nenhum preço de material aqui é apresentado como o preço de agora. Ou a página não traz preço, ou traz a faixa com a data em que ela foi coletada. Preço muda mais rápido do que qualquer página estática consegue acompanhar, e fingir o contrário seria enganar. O preço das peças do ateliê é outra coisa: esse é o preço real, definido por quem faz.</p></div>';
 
-	/* A SEÇÃO NASCEU EM 14/09/2026, e ela existe porque a página passou a servir
-	   DOIS tipos de link que o leitor não distingue olhando. Dizer só "os links
-	   daqui são de afiliado" virou meia verdade no dia em que a busca crua subiu
-	   para o botão: ela leva à mesma loja e não rende nada. Quem lê tem direito de
-	   saber qual é qual, e essa é a única coisa que ele tem o direito de saber
-	   sobre nós. */
-	$html .= '<div class="cdm-secao"><h2>Nem todo link daqui rende comissão</h2>';
-	$html .= '<p>Quando existe um link de afiliado para o produto, ele é o botão do cartão e está marcado como patrocinado — é dele que pode vir comissão. Quando ainda não existe, o botão leva você para a <strong>busca daquele produto na loja</strong>, e essa busca <strong>não é link de afiliado</strong>: ninguém nos paga por aquele clique. Ela está ali por um motivo simples — é melhor você chegar à prateleira do que encontrar uma promessa de que o link vem depois.</p></div>';
+	/* A SEÇÃO NASCEU EM 14/09/2026, VIROU MENTIRA EM 25/09 SEM NINGUÉM TOCAR
+	   NELA, E FOI CORRIGIDA EM 29/09/2026.
+	      Ela foi escrita no dia em que a busca CRUA subiu para o botão, e naquele
+	   mundo a frase era verdadeira: busca crua leva à mesma loja e não rende
+	   nada. Em 16/09 a Open API de afiliados entrou (25.6) e encurtar virou uma
+	   chamada de rede; em 25/09 os 38 itens deste banco ganharam busca
+	   ENCURTADA, que É link de afiliado. O validador mede `piso nao rastreavel`
+	   em 0 desde então, e esta página continuou dizendo ao leitor que ninguém
+	   nos paga por aqueles cliques.
+	      A DIREÇÃO DO ERRO É O QUE O TORNA GRAVE, e ela é a rara: a ilha
+	   declarava a relação paga ao BUSCADOR — os 28 botões saem com
+	   `rel="sponsored"`, emitido por `cdm_f2_compra_html()` — e a negava a QUEM
+	   LÊ. Numa página cujo único produto é a divulgação, é o pior lugar
+	   possível para um resumo velho.
+	      E O TEXTO NÃO ESTAVA SOZINHO NO ERRO: o docbloco da própria
+	   `cdm_f2_compra_html()` já dizia, desde 14/09, que a busca encurtada "é
+	   link de afiliado e rende comissão". Texto e comportamento moravam em
+	   snippets diferentes e nenhuma régua os comparava. Agora comparam, na
+	   seção 15 do `teste-casca.php`. */
+	$html .= '<div class="cdm-secao"><h2>Qual link daqui rende comissão, e qual não rende</h2>';
+	$html .= '<p>O botão de compra de um material leva você a uma loja parceira, e ele pode ser uma de três coisas. <strong>As duas primeiras são link de afiliado</strong>, e as duas saem marcadas como patrocinadas:</p>';
+	$html .= '<ul class="cdm-lista">';
+	$html .= '<li><strong>A ficha do produto na loja.</strong> É o melhor caso: leva direto ao produto que a página recomendou, e pode render comissão se você comprar.</li>';
+	$html .= '<li><strong>A busca daquele produto na loja</strong>, quando ainda não escolhemos uma ficha para ele. <strong>Também é link de afiliado</strong> e também pode render comissão. Ela existe por um motivo simples: é melhor você chegar à prateleira do que encontrar uma promessa de que o link vem depois.</li>';
+	$html .= '<li><strong>A busca sem rastreio.</strong> Quando não foi possível gerar o link de afiliado daquela busca, o botão vai para a busca comum da loja — e aí <strong>ninguém nos paga por aquele clique</strong>. Esse é o único botão do site que não sai marcado como patrocinado.</li>';
+	$html .= '</ul></div>';
 
 	/* A frase "não há nenhum link no ar" era digitada, e frase digitada sobre o
-	   próprio banco passa a mentir em silêncio no dia em que o banco muda. Agora
-	   ela é a SUBTRAÇÃO entre o que existe e o que espera link: no dia em que o
-	   primeiro link entrar, esta página muda sozinha.
+	   próprio banco passa a mentir em silêncio no dia em que o banco muda. Por
+	   isso ela é SUBTRAÇÃO desde 14/09.
 
-	   E DESDE 14/09/2026 SÃO DUAS CONTAS, porque eram duas perguntas coladas numa
-	   só enquanto nenhum item tinha saída crua: quantos têm PARA ONDE MANDAR quem
-	   quer comprar (e isso tem de ser todos), e quantos desses cliques rendem
-	   comissão. */
-	$com_link = (int) $n['itens_no_banco'] - (int) $n['esperando_link'];
-	$html    .= '<p class="cdm-nota"><strong>Estado de hoje:</strong> os ' . cdm_casca_num( $n['itens_no_banco'] ) . ' materiais do banco têm, todos, um caminho de compra na página. Em ' . cdm_casca_num( $com_link ) . ' deles esse caminho é um link de afiliado, que pode render comissão; em ' . cdm_casca_num( $n['piso_nao_rastreavel'] ) . ' ele é a busca na loja, que não rende nada. Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
+	   E DESDE 29/09/2026 SÃO TRÊS PARCELAS QUE TÊM DE FECHAR NO TOTAL, porque
+	   eram duas de três: a página publicava 10 com ficha e 0 sem rastreio, de 38,
+	   e os 28 do meio — a busca encurtada — não apareciam em lugar nenhum da
+	   conta. Parcela que não fecha é como uma classificação inteira some de uma
+	   página de divulgação sem nenhum número ficar visivelmente errado.
+
+	   E ELA SÓ SAI PELA VIA VIVA. O instantâneo de `cdm_casca_numeros()` é de
+	   14/09 e ainda traz `piso_nao_rastreavel => 15`; publicá-lo hoje repetiria
+	   o defeito que esta versão conserta. Estatística velha envelhece,
+	   disclosure velho mente — então quando os cinco bancos não chegaram, a
+	   seção fica com a regra (que é o que o leitor tem direito de saber) e sem a
+	   contagem. */
+	if ( ! empty( $n['numeros_vivos'] ) ) {
+		$com_ficha    = (int) $n['itens_no_banco'] - (int) $n['esperando_link'];
+		$com_busca    = (int) $n['esperando_link'] - (int) $n['piso_nao_rastreavel'];
+		$sem_rastreio = (int) $n['piso_nao_rastreavel'];
+		$rendem       = $com_ficha + $com_busca;
+
+		$html .= '<p class="cdm-nota"><strong>Estado de hoje:</strong> os ' . cdm_casca_num( $n['itens_no_banco'] ) . ' materiais do banco têm, todos, um caminho de compra na página. Em ' . cdm_casca_num( $com_ficha ) . ' o botão é a ficha do produto e em ' . cdm_casca_num( $com_busca ) . ' é a busca na loja: esses ' . cdm_casca_num( $rendem ) . ' são link de afiliado e podem render comissão. Em ' . cdm_casca_num( $sem_rastreio ) . ' o botão é a busca sem rastreio, que não rende nada. Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
+	} else {
+		$html .= '<p class="cdm-nota"><strong>A contagem de hoje não está sendo publicada nesta carga da página</strong>, porque o banco inteiro não chegou até aqui — e número de divulgação velho é pior que nenhum. A regra acima vale igual: o que é patrocinado está marcado como patrocinado.</p>';
+	}
 	$html .= '</div>';
 
 	return $html;
