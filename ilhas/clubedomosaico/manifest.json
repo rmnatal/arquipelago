@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 51,
+  "revisao": 52,
   "atualizado_em": "2026-09-30",
   "estado": "nascendo",
   "desembarque": {
@@ -286,6 +286,26 @@
       "fonte": "Escrito a mao em 30/09/2026. Guarda a faixa que nenhum banco alcanca: dominio que o repositorio EXIGE em prosa e que nenhum registro cita como URL, porque nenhum SKU dele foi coletado. Cada linha aponta quem o exige, e a ferramenta RECUSA linha sem `exigido_por`.",
       "publicar": false,
       "sha256": "f513c29df07f0dfc7cad5bb6c5937c1e60b4b7beb5385e56d9590abf8a273fc3"
+    },
+    {
+      "id": "filhas-do-guia",
+      "arquivo": "dados/filhas-do-guia.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
+      "registros": 42,
+      "publicar": false,
+      "sha256": "949edb5c197cb1908c94fae7559a80dcb6867ba36064892fea01f088f6138f53"
+    },
+    {
+      "id": "filhas-do-guia-md",
+      "arquivo": "dados/filhas-do-guia.md",
+      "formato": "md",
+      "entidade": "constante",
+      "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira e a classificacao de SERP da 14.9, coletada por busca web desta nuvem em 30/09/2026, consulta a consulta, com o desvio de pais e o vicio de marca na consulta declarados por linha e duas consultas marcadas NAO MEDIDA por causa deles. Volume de busca NAO foi coletado nesta passada: verniz nao existe em dados/corpus-buscas.md e isso esta escrito como desconhecido, nunca estimado.",
+      "verificado_em": "2026-09-30",
+      "publicar": false,
+      "sha256": "ad0d23a5f83de5e9b2732c79dfdc3a136f136c61991eee1388403803ec956568"
     }
   ],
   "ferramentas": [
@@ -636,6 +656,12 @@
       "arquivo": "ferramentas/medir-egresso.py",
       "sha256": "b34f55c938ca32c8c93495617f9a6649a6098d35b36a98d3b591abb759798744",
       "descricao": "Mede, host por host, o que esta nuvem alcanca das fontes que os bancos desta ilha citam — e separa CONNECT de ENTREGA, que e a distincao que faltava: apex liberado que redireciona para `www.` recusado entrega zero. Deriva a lista de dados/*.json, dos campos cujo nome fala de dominio, do apex e do `www.` de cada host, e de dados/fontes-pedidas.json; tres passadas por host (20.2), com controle obrigatorio que torna a medicao VOID se cair. Gera dados/egresso-de-fontes.md e .json, e o PEDIDO de rede sai da medicao com quem exige cada dominio. `--autoteste` com 29 casos fabricados. Bancada."
+    },
+    {
+      "id": "filhas-do-guia",
+      "arquivo": "ferramentas/filhas-do-guia.py",
+      "sha256": "a916193a99cd080ee9c8b650d6d93a6481cd142b739c8823962ce518ecd84cc9",
+      "descricao": "Aplica o portao INTEIRO da secao 9 (3 itens de banco reais E um numero calculado proprio) a cada recorte que o vocabulario do esquema admite no Guia, e diz a que DISTANCIA esta o que nao passa. Os recortes saem de vocabularios.tipo_por_categoria e o teto de nivel de fonte sai de escada_de_fontes: nada digitado. Tres vereditos e nunca um booleano (passa, passa_na_contagem_sem_lastro, nao_passa), pela licao do medir-egresso.py — os dois vereditos saem juntos ou nenhum dos dois serve. Separa SKU novo de campo vazio em registro que ja mora no banco, e so promete 'completar registro' quando o recorte esta a UM. Gera dados/filhas-do-guia.json e o .md, preservando o trecho de SERP que e busca e nao derivacao; --conferir regera e compara e tambem confere a tabela da secao 2 do ARVORE.md nas duas direcoes; --autoteste roda 27 casos fabricados."
     }
   ],
   "esquema": {

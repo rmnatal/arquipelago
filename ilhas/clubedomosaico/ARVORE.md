@@ -30,17 +30,46 @@ Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divul
 
 ## 2. `/materiais/` — o Guia
 
-| nível 2 | slug | banco hoje | existe |
-|---|---|---|---|
-| Colas e adesivos | `/materiais/colas-e-adesivos/` | 7 itens | não |
-| Rejuntes | `/materiais/rejuntes/` | 5 itens | não |
-| Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | não |
-| Alicates e corte | `/materiais/alicates-e-corte/` | 0 | não |
-| Bases | `/materiais/bases/` | 0 | não |
-| Acabamento | `/materiais/acabamento/` | 0 | não |
-| Como sabemos | `/materiais/como-sabemos/` | — | **sim** |
+| nível 2 | slug | banco hoje | tipos que passam o portão da 9 | existe |
+|---|---|---|---|---|
+| Colas e adesivos | `/materiais/colas-e-adesivos/` | 7 itens | 0 de 7 | não |
+| Rejuntes | `/materiais/rejuntes/` | 5 itens | 0 de 4 | não |
+| Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | 1 de 6 | não |
+| Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 1 de 4 | não |
+| Bases | `/materiais/bases/` | 0 | 0 de 5 | não |
+| Acabamento | `/materiais/acabamento/` | 7 itens | 1 de 3 | não |
+| Como sabemos | `/materiais/como-sabemos/` | — | — | **sim** |
+
+*(As colunas acima são **derivadas** de `dados/filhas-do-guia.json`, e as duas primeiras estavam
+erradas: `Alicates e corte` e `Acabamento` diziam **0** desde que esta tabela nasceu, e as duas saíram
+de zero em **25/09/2026** — 6 e 7 itens, como as próprias seções 7b-bis e 7b-ter deste arquivo
+registram três telas abaixo. É a seção 4 do contrato dentro de um documento que já tinha a correção
+escrita em prosa e não na tabela que se lê primeiro. Corrigido em 30/09/2026, e a coluna nova existe
+para a tabela parar de responder a pergunta errada: **banco não é filha**, e era o número do banco que
+esta tabela mostrava ao lado de uma coluna chamada "existe".)*
 
 **Nenhuma das seis categorias atinge as 3 filhas com dado real hoje**, então nenhuma nasce agora — é a 16.5, e ela é o que impede a ilha de publicar seis páginas magras num domínio que ainda não indexou nada. Colas e Rejuntes têm banco, mas banco não é filha: filha é página de nível 3 publicada.
+
+> **E DESDE 30/09/2026 ISSO É UM NÚMERO, NÃO UMA FRASE — ver `dados/filhas-do-guia.md`.** A ordem da
+> seção 7b deste arquivo ("banco, depois as filhas de nível 3, só então a mãe") estava escrita desde
+> 12/09 e o **segundo** degrau nunca havia sido medido: o que existia era "nenhuma filha de alicate
+> existe", que diz o que falta e não diz o que já dá. Medido agora nos **42** recortes que o
+> vocabulário do esquema admite, pelo portão inteiro da seção 9 (3 itens **e** um número calculado):
+> **7 passam, 3 passam só na contagem, 32 não passam** — e **nenhuma categoria** alcança as 3 filhas
+> da 16.5, nem somando todos os tipos dela. A mãe de nível 2 continua fechada, agora com o número na
+> mesa e com a **lista de compras** por categoria: a mais barata é `acabamento`, a **3 itens** de ter
+> as três filhas; a mais cara que ainda é possível é `apoio`, a 9. E `rejunte/cimenticio` está a **um
+> campo** de um registro que já mora no banco — `liberacao_area_molhada_h` no
+> `quartzolit-rejunte-piscinas` —, não a um produto novo.
+>
+> **A classificação de SERP da 14.9, feita na mesma passada, inverteu a ordem que esta tabela
+> supunha:** as duas filhas que a SERP abre são **perguntas** (`como cortar pastilha de vidro para
+> mosaico`, `verniz para peça de mosaico artesanal`), e as duas que ela recusa são as de **produto** —
+> inclusive `pastilha/vidro`, que é a de mais banco da ilha, com 13 itens e três números em 12 deles.
+> Quem vende produto já ocupa a consulta de produto; a consulta de método está com blogspot de 2010.
+> **Consequência para esta tabela:** o recorte de TIPO, que é o que ela lista, é a forma de filha que a
+> SERP menos autoriza. A régua de contagem é a mesma para a pergunta, e está em
+> `ferramentas/filhas-do-guia.py` para ser chamada em vez de reescrita.
 
 **Dois slugs mudaram neste bloco, e nenhuma URL se moveu**, porque nenhuma das duas páginas existe: `materiais/colas` virou `materiais/colas-e-adesivos` e `materiais/alicates` virou `materiais/alicates-e-corte`, que são os nomes escritos no `VOZ.md`. O registro da casca e o `VOZ.md` diziam coisas diferentes desde que a casca nasceu; o dia de acertar isso é o dia **antes** de a página existir, não depois.
 

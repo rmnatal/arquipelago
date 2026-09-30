@@ -6172,3 +6172,261 @@ um número que ninguém sabe de onde veio.
   pastilha no degrau 4 são decisão do Raphael (`tipo_de_casamento: "equivalente"`) e os dois da
   Quartzolit não têm anúncio único na Shopee. **É por isso que esta execução mediu em vez de
   construir, e não por falta de fôlego.**
+
+# 30/09/2026, 13h17Z — O SEGUNDO DEGRAU DA 7b NUNCA TINHA SIDO CONTADO, E "NADA NA FILA" ERA UMA FRASE QUE NINGUÉM MEDIU
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h17Z** com `executando_desde` e push
+aceito na primeira tentativa. **NENHUMA URL NOVA** — a ilha segue em 17 —, **nenhum título e
+nenhuma `description` mudaram**: o BLOCO A do despacho do Raphael de 24/09 continua intocado e a
+janela de medição de 30/09 segue limpa. Manifest e `/status` na revisão **52**.
+
+## A PORTA DE ENTRADA, ANTES DE QUALQUER BLOCO (seção 29.2)
+
+`conferir-no-ar.py`: **519 afirmações, 0 falha** na origem. `leitura-do-visitante.py`:
+**REPROVADO com 1 defeito, e é o esperado** — o soft 404 do hospedeiro (404 na 1ª leitura, 200 na
+2ª), aberto em 29/09, com dono escrito e fora do alcance de qualquer snippet daqui. **Nenhum defeito
+novo.** Rede pela 20.2: três passadas em `clubedomosaico.com.br`, 200 nas três, com
+`aquametria.com.br` em 200 nas mesmas.
+
+## O QUE ESTE BLOCO É, E POR QUE ELE CONTRADIZ AS DUAS EXECUÇÕES ANTERIORES
+
+O registro das 10h16Z de hoje fechou dizendo, com todas as letras: *"O que NÃO depende de ninguém:
+**nada na fila desta ilha**."* O de 29/09 dissera o equivalente. **Esta execução derrubou a frase**,
+e o caminho foi o que a própria ilha já tinha escrito duas vezes como lição: a **20.2** manda
+retestar bloqueio herdado antes de respeitá-lo, e a 7b-ter de 25/09 estendeu isso a bloqueio herdado
+de **documento** — *"quatro execuções anotaram 'esbarra no egresso' sem abrir a fonte que estava em
+casa"*.
+
+**Primeiro, o que era bloqueio de verdade e continua sendo, conferido e não herdado:** a leitura de
+30/09 não sai desta nuvem. `GOOGLE_SA_B64`, `GOOGLE_SA_JSON`, `GOOGLE_SA_FILE` e
+`GOOGLE_APPLICATION_CREDENTIALS` estão **as quatro ausentes** (a execução anterior mediu três; a
+quarta também não existe), e o acesso do `sentinela@` a `sc-domain:clubedomosaico.com.br` segue
+pendente com o Raphael. Então o **BLOCO A** e a metade que falta do item 4 do despacho de 28/09
+seguem travados, e **o veredito de 08/10 escorrega**. Nada disso mudou.
+
+**Segundo, o que não era bloqueio:** a ordem da seção 7b do `ARVORE.md` — *"Banco. (...) Só então as
+filhas de nível 3, por cluster. Só então a mãe de nível 2, que é o 4c."* — está escrita desde
+12/09/2026, e o **segundo degrau nunca foi MEDIDO**. O que existia era *"nenhuma filha de alicate
+existe"*, que diz o que falta e **não diz o que já dá**. Entre "o 4c está fechado" e "quais páginas
+podem nascer amanhã" há uma **contagem**, e ela nunca tinha sido feita. Fazê-la não dependia de
+ninguém: nem de rede, nem de credencial, nem de decisão do Raphael.
+
+## A FERRAMENTA, E O QUE ELA MEDE QUE NENHUMA OUTRA MEDIA
+
+`ferramentas/filhas-do-guia.py` aplica o portão **inteiro** da seção 9 — *"pelo menos 3 itens de
+banco reais **e** um número calculado próprio por página"* — a cada recorte que o vocabulário do
+esquema admite no Guia. **A segunda metade nunca tinha sido contada nesta ilha.** O `cobertura.py`
+conta itens elegíveis por **faixa das ferramentas**, que é outra pergunta; contar se existe um número
+que a página consegue calcular **sobre 3 itens do mesmo recorte** é o que decide se a página compara
+três produtos ou mostra um número e duas lacunas.
+
+**Nada é digitado.** Os 42 recortes saem de `vocabularios.tipo_por_categoria` (categoria inteira mais
+cada tipo), o teto de nível de fonte sai de
+`escada_de_fontes.nivel_minimo_para_recomendacao_primaria`, e os itens saem dos
+`dados/materiais-*.json`. Recorte digitado mediria os recortes que alguém lembrou, e ficaria verde no
+dia em que o vocabulário crescesse — que é justamente o que acontece aqui, onde a regra de
+crescimento faz valor novo nascer junto com o primeiro registro que o usa.
+
+**TRÊS VEREDITOS, NUNCA UM BOOLEANO,** e a razão é a lição que o `medir-egresso.py` desta mesma ilha
+pagou às 10h22Z de hoje: *"os dois vereditos saem juntos ou nenhum dos dois serve."* Um portão que
+olhasse só a **contagem** diria que `alicate/torques` passa (três registros) e mandaria escrever uma
+página que compara um produto com dois silêncios; um que olhasse só a **declaração** esconderia que
+falta uma frase de fabricante, não um produto. Então: `passa`, `passa_na_contagem_sem_lastro`,
+`nao_passa`.
+
+**E a régua reproduziu, sem ser mandada, o exemplo que o próprio esquema nomeia:** o
+`loctite-durepoxi` sai da contagem de lastro porque sua única declaração tem fonte de **nível 4**
+(press release) — que é textualmente o caso que a `regra 5` do esquema escreveu para explicar a
+própria regra. Régua que reencontra sozinha o exemplo da regra é régua que está lendo a regra, e não
+a lembrança dela.
+
+## O NÚMERO: 7 PASSAM, 3 PASSAM SÓ NA CONTAGEM, 32 NÃO PASSAM — E NENHUMA CATEGORIA ALCANÇA A 16.5
+
+Passam: `acabamento`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `pastilha`,
+`pastilha/vidro`, `rejunte`. Os de nível de **tipo** — que são os que podem ser filha — são **três**,
+e são **um por categoria**: `acabamento/verniz`, `alicate/cortador_de_azulejo`, `pastilha/vidro`.
+
+**Por isso nenhuma categoria do Guia alcança as 3 filhas da 16.5**, nem somando todos os tipos que o
+vocabulário lhe dá. A mãe de nível 2 continua fechada — e agora por um **número**, não por uma frase.
+O achado por trás do número: **o banco desta ilha é largo entre categorias e fino dentro de cada
+uma**, então o 16.5 não se abre coletando em qualquer lugar; ele se abre coletando **dentro de uma**.
+
+## A LISTA DE COMPRAS, QUE É O QUE SEPARA "NÃO PASSA" DE "NÃO SE SABE O QUE FALTA"
+
+A lição é do `cobertura.py` desta ilha: *"O que falta nessa varredura é a lista de compras do banco —
+e o número final aparece sozinho."* Por categoria, itens a coletar para ter as três filhas:
+**`acabamento` 3** (1 impermeabilizante + 2 seladores) · `rejunte` 5 · `alicate` 5 · `cola` 6 ·
+`pastilha` 6 · `base` 9 · `apoio` 9.
+
+**A distância conta o MAIOR buraco, nunca a soma** — um item novo com número declarado fecha os três
+de uma vez, e somar faria a lista pedir o triplo.
+
+**E ela separa SKU novo de campo vazio,** que não custam a mesma coisa: `rejunte/cimenticio` está a
+**um campo** de um registro que **já mora no banco** — `liberacao_area_molhada_h` no
+`quartzolit-rejunte-piscinas` —, não a um produto novo.
+
+## A CLASSIFICAÇÃO DE SERP DA 14.9 INVERTEU A ORDEM QUE A FILA SUPUNHA
+
+A 14.9 manda olhar a SERP **antes** de criar a página. Feita nesta passada, consulta a consulta, em
+`dados/filhas-do-guia.md`, abaixo de uma fronteira que o gerador **preserva** (busca não é derivação,
+e regenerar o arquivo não pode apagar o que custou busca).
+
+**As duas ABERTAS são PERGUNTA; as duas TOMADAS são PRODUTO.**
+
+- `como cortar pastilha de vidro para mosaico qual ferramenta` → **8 de 10** são blog e resposta
+  genérica sem número: Vila do Artesão, Obramax, FazFácil (2), Além da Rua Atelier (**2012**),
+  Artesanato Benjoino (**2010**), O Portal das Maravilhas (2). **ABERTA**, e é o galho da 14.9 escrito
+  ao pé da letra.
+- `verniz para peça de mosaico artesanal qual usar` → Portal de Artesanato, três blogspots de
+  **2010**, Revista Oeste, em.com.br, Viva Decora, Como Fazer Artesanatos. **ABERTA**.
+- `pastilhas de vidro para mosaico` → **9 de 9** marketplace e loja: Mercado Livre, Buscapé, Elo7 (2),
+  Bazar Horizonte, Vetro Designer, Mosaico & Cia, Mosaico em Casa, Pastilhart. **TOMADA.**
+- `quantas pastilhas vem na caixa placa telada mosaico vidro medida` → **10 de 10** loja e obra,
+  Leroy Merlin PT e Telhanorte inclusive. **TOMADA, e é a ARMADILHA do revestimento** que o corpus de
+  10/09 já tinha nomeado — agora com evidência nova.
+
+**A leitura, e ela não é sobre categoria:** quem vende produto **já ocupa** a consulta de produto, e
+**ninguém ocupa** a consulta de método. Consequência dura para a fila: a filha de mais banco da ilha
+— `pastilha/vidro`, 13 itens, três números em 12 deles — **passa no dado e a SERP recusa.** E a
+ferramenta já dizia, na própria nota de alcance, que mede recorte de **tipo** e é um **piso**; a SERP
+acabou de dizer que o piso mede a forma errada, e que as filhas publicáveis são **perguntas**, cuja
+régua de contagem é a mesma.
+
+## O QUE CADA ABERTA TEM DE NÚMERO QUE A SERP NÃO PUBLICA
+
+- **Cortar pastilha de vidro:** nenhum dos oito resultados editoriais dá **espessura máxima de corte
+  em mm**. O banco dá, em 4 dos 6 itens de `alicate`, com fonte de nível 2 ou 3. E a página nasce com
+  a faixa descoberta que a 7b-bis mediu em 25/09: o torquês de mosaico para em **5 mm** e **3 das 13**
+  pastilhas do banco não cabem (6, 8 e 8 mm) — três dos treze produtos cuja quantidade a F1 já calcula
+  não têm ferramenta declarada que os corte.
+- **Verniz:** nenhum dos nove dá demãos, consumo em ml/m² nem secagem. O banco dá. **E dá a ausência,
+  que vale mais:** a 7b-ter mediu que **nenhuma** das sete frases de fabricante de `acabamento` nomeia
+  **vidro** e **nenhuma** nomeia **rejunte** — as duas superfícies que a peça pronta expõe.
+
+## DOIS DEFEITOS DO MEU PRÓPRIO INSTRUMENTO, E OS DOIS ESTÃO NO ARQUIVO EM VEZ DE ESCONDIDOS
+
+1. **O canal de busca desta nuvem é dos EUA**, declarado pela própria ferramenta. Uma consulta
+   (`cortador de azulejo manual para mosaico`) voltou com SERP **espanhola** — Amazon MX, Leroy ES,
+   Bricodepot ES, Home Depot MX. Está marcada **NÃO MEDIDA**, não "consulta sem concorrente
+   brasileiro". E daí sai o limite do arquivo inteiro: ele classifica **quem ocupa**, que é o que a
+   14.9 pede com essas palavras, e **não afirma posição de ninguém** — posição, nesta ilha, vem do
+   Search Console, cujo acesso está pendente.
+2. **Eu pus `Vonder` e `Cortag` dentro da consulta**, e ela voltou cheia de página de fabricante. Era
+   previsível e o defeito é meu: é a trava de coleta da seção 8 — *"nunca pôr na consulta o valor que
+   se quer confirmar"* — aplicada à SERP em vez de ao dado. Também **NÃO MEDIDA**, com o motivo, e
+   refeita sem marca. Foi a passada sem marca que achou a consulta aberta.
+
+## E CONTRADIZ O CORPUS DE 10/09 COM TODAS AS LETRAS, EM VEZ DE EM SILÊNCIO
+
+O corpus classificou `pastilhas de vidro para mosaico` como **ABERTA**, com a **mesma** evidência que
+esta passada leu como **tomada** (anúncio da Shopee, Bazar Horizonte, Art Glass). A diferença não é de
+dado, é de **régua**: o corpus chamou de aberta porque *ninguém responde a pergunta técnica*, e a 14.9
+manda classificar **quem ocupa** — e quem ocupa é marketplace, que é o primeiro galho dela, o do "a
+página NÃO nasce agora". As duas leituras cabem na mesma SERP, e **a 14.9 é a que decide se a página
+nasce**. Está escrito no arquivo, com a instrução de quem for mexer no corpus ler aquele parágrafo
+primeiro: o que está velho lá é o **rótulo** daquela linha, não a evidência.
+
+## A TABELA DO `ARVORE.md` DIZIA ZERO EM DUAS CATEGORIAS QUE SAÍRAM DE ZERO HÁ CINCO DIAS
+
+A seção 2 do `ARVORE.md` trazia `0` em `Alicates e corte` e em `Acabamento`. As duas saíram de zero em
+**25/09** — 6 e 7 itens —, e **as próprias seções 7b-bis e 7b-ter do mesmo arquivo registram isso três
+telas abaixo**. É a seção 4 do contrato dentro de um documento que já tinha a correção escrita: em
+prosa, e não na tabela que se lê primeiro.
+
+Corrigida, com coluna nova (`tipos que passam o portão da 9`) para a tabela parar de responder a
+pergunta errada — **banco não é filha**, e era o número do banco que ela mostrava ao lado de uma coluna
+chamada "existe".
+
+**E aqui eu cometi, e consertei, o defeito que esta ilha mais nomeia:** escrevi que as colunas eram
+*"derivadas de `dados/filhas-do-guia.json`"* **tendo digitado os números à mão** — número de tela que
+parece conferido. Agora `--conferir` confere a tabela contra a derivação, **nas duas direções**: cada
+linha tem de bater no número de banco e na forma `N de M`, e **toda categoria do vocabulário com nível
+2 tem de ter linha**. Slug fora da ponte é ignorado de propósito, porque a tabela tem linhas que não
+são categoria de banco (`/materiais/como-sabemos/`) e reprovar por elas faria o portão brigar com o
+documento certo.
+
+## TRÊS DEFEITOS DA PRÓPRIA FERRAMENTA, OS TRÊS ACHADOS POR ELA RODANDO E OS TRÊS ANTES DO COMMIT
+
+1. **Um `motivo` contava a lista errada:** dizia *"os 7 itens sustentam recomendação"* para a `cola`,
+   onde **3** sustentam — ele imprimia o total do banco no lugar da contagem de lastro. Frase de
+   diagnóstico com o número errado é pior que frase ausente: ela é o que a próxima execução cita.
+2. **"Pode fechar completando registro existente" prometia uma coleta e eram seis.** Para a `cola`,
+   dizia que faltava `tempo_de_ajuste` em **6 registros que já moram no banco** — verdade literal que
+   se lê como um campo a preencher, quando a propriedade era declarada por **um** item só. Número que
+   existe num registro só não está *perto* de ser número da página: ele ainda tem de ser
+   **construído**, e construir não é completar. A promessa passou a valer só a **um** registro de
+   distância, e sobrou exatamente um caso no banco real — o do Rejunte Piscinas.
+3. **O gerador não era idempotente.** O trecho preservado chegava com a quebra de linha que o separava
+   da fronteira, e `A("")` punha outra: o arquivo ganhava **uma linha vazia por passada** e
+   `--conferir` reprovava o arquivo que a passada anterior havia escrito. Achado porque eu rodei
+   `--conferir` depois de gerar, e não porque eu o li. **Gerador que não é idempotente é gerador que
+   não fecha com a própria derivação** — e o caso 18 do autoteste agora gera três vezes e compara.
+
+## UM CAMPO OBRIGATÓRIO FALTAVA NO CABEÇALHO DESTA ILHA, E A SEÇÃO 1 LÊ ESSE CAMPO
+
+Ao fechar o cabeçalho, `bloqueada_por` **não existia** nele — e a seção 2 do contrato o exige desde que
+ela existe. Conferido que já faltava antes desta execução (`git show HEAD`), e medido nos **seis**
+`ESTADO.md` do repositório, o `_modelo` incluído: **os seis parseiam** em `yaml.safe_load` e **dois
+estavam incompletos** — esta ilha sem `bloqueada_por`, a `ohmetria` sem `bloqueada_por` **e** sem
+`ultima_ronda`. O molde está certo desde 21/09; as ilhas nascidas antes dele não foram acertadas.
+
+**Por que isso é a seção 1 lendo a si mesma errada:** o passo 3 manda descartar ilha *"com
+`bloqueada_por` preenchido"*. Com o campo **ausente**, `grep` e olho concluem "não está preenchido" e
+acertam por acidente; um parser com `d["bloqueada_por"]` **morre**; e `d.get()` trata ausência como
+`null` sem nunca dizer que o campo não existe. As três leituras concordam **hoje** porque o valor certo
+é mesmo `null`, e discordam no primeiro dia em que uma ilha for bloqueada de verdade. **Campo ausente
+que se comporta como o valor certo é a forma mais paciente de defeito: ele espera o dia em que o valor
+certo muda.**
+
+Consertado **nesta ilha** e escrito no contrato: a régua da seção 2, que desde 13/09 conferia se o
+cabeçalho **parseia**, passa a conferir **presença** na mesma linha. **Não toquei na `ohmetria`** —
+reserva é por ilha, e consertar cabeçalho de ilha que não se reservou é a colisão que a seção 1 existe
+para impedir. O defeito dela está nomeado no contrato para a próxima execução que a reservar não
+precisar redescobri-lo.
+
+## O QUE ESTE BLOCO NÃO FEZ, DE PROPÓSITO
+
+- **Não criou nenhuma URL, e não podia:** a 16.5 exige 3 filhas por categoria e nenhuma categoria tem
+  3. Duas filhas abertas não são três.
+- **Não coletou nenhum SKU.** A coleta das 3 de `acabamento` é o bloco seguinte, e a seção 13 proíbe
+  empilhar dois blocos numa passada sem a verificação inteira de cada um.
+- **Não tocou em `<title>` nem em `description`** de nenhuma das 17 URLs. O BLOCO A espera o número de
+  30/09 por ordem escrita do Raphael, e a janela segue limpa.
+- **Não escreveu volume de busca que não mediu:** `verniz` **não existe** em `dados/corpus-buscas.md`,
+  então a filha de SERP mais aberta da ilha é a que **não tem faixa de volume**. A 14.9 exige o
+  cruzamento de intenção com chance; a intenção é clara (é produto que a artesã compra) e o volume está
+  escrito como **desconhecido**, nunca estimado.
+- **Não afrouxou nenhuma régua** para o banco de hoje passar. Onde a régua mordeu, o conserto foi na
+  régua ou na frase — nunca no limiar.
+
+## BANCADA DESTA EXECUÇÃO
+
+`filhas-do-guia.py --autoteste`: **27 casos fabricados, 0 falha** — 19 sobre a medição (entre eles o
+teto lido do esquema nas duas direções, fonte órfã, valor nulo, registro inativo, e a distância que
+conta o maior buraco e não a soma), **5 jeitos diferentes de reprovar uma tabela de `ARVORE.md`
+fabricada** mais os 2 que ela tem de aprovar, e a idempotência em três passadas. `--conferir`:
+**aprovado**, e roda duas vezes seguidas sem reprovar o próprio arquivo.
+
+`validar-banco.py` verde (38 materiais, escada **1:1 · 2:5 · 3:15 · 4:17**, soma 38).
+`cobertura.py --conferir` OK. `mutacoes-arvore.py` **29 de 29 reprovadas**. Casca **591**, Loja
+**208**, F1 **200**, F2 **119**, Técnicas **123**, Ateliê, Leads e Prestação aprovados — **zero
+falha**. `conferir-no-ar.py` **519 afirmações, 0 falha**, antes e depois do desembarque.
+
+## DESEMBARQUE E VERIFICAÇÃO NO AR
+
+Ver a seção seguinte deste registro, escrita depois do push: o Sync lê o `manifest.json` do `main`
+pelo `raw.githubusercontent`, então ele é acionado **depois** do push, e disparo anterior ao push lê a
+revisão velha e é descartado.
+
+- **Próximo passo desbloqueado, e desta vez ele é da FUNDAÇÃO e não de ninguém de fora:** coletar **1
+  impermeabilizante e 2 seladores** fecha as **3 filhas de `acabamento`**, que é a categoria mais
+  barata do Guia, e é o que abre a primeira mãe de nível 2 desta ilha — o **4c**, parado desde 12/09.
+  **Confirmado alcançável nesta passada**, e não presumido: selador com rendimento em m²/demão, número
+  de demãos e tempo de secagem declarados existe em página de fabricante. **E o resultado reproduziu o
+  achado da 7b-ter antes de eu coletar nada:** o selador do Coral nomeia reboco, bloco, concreto, gesso
+  e fibrocimento e **não nomeia MDF** — a base mais comum da peça do ateliê. Quem coletar decide antes
+  se selador de alvenaria cabe em `regras_da_categoria_acabamento`, que é decisão de esquema e não de
+  coleta. **O que continua fora do alcance daqui:** a leitura de 30/09 (acesso do `sentinela@` ou
+  `GOOGLE_SA_B64`), que trava o BLOCO A e a faixa de `description` das quatro páginas, e o **curinga**
+  de egresso, que trava `base` e `apoio`. Os dois estão na lista do Raphael e nenhum dos dois é
+  pré-requisito do passo acima.

@@ -1,0 +1,1657 @@
+{
+ "id": "filhas-do-guia",
+ "ilha": "clubedomosaico",
+ "gerado_por": "ferramentas/filhas-do-guia.py",
+ "derivado_de": [
+  "dados/esquema-banco.json",
+  "dados/materiais-*.json"
+ ],
+ "o_que_este_arquivo_e": "O portao de dado da secao 9 do ARQUIPELAGO.md aplicado, um por um, a TODOS os recortes que o vocabulario do esquema admite no Guia. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario.",
+ "a_pergunta": "quais filhas de nivel 3 do Guia passam HOJE o portao da secao 9 — 3 itens de banco reais E um numero calculado proprio — e, para as que nao passam, qual das duas metades falta",
+ "minimo_exigido_pela_secao_9": 3,
+ "nivel_maximo_de_fonte_lido_do_esquema": 3,
+ "versao_do_esquema_lida": 8,
+ "o_que_conta_como_numero_calculavel": "propriedade com valor nao nulo e fonte de nivel <= 3 declarada por pelo menos 3 itens DO MESMO recorte. Propriedade que so um item declara nao e numero da pagina: e numero de um produto, e a pagina que a publicasse compararia um item com dois silencios.",
+ "o_que_este_arquivo_mede_e_o_que_ele_NAO_alcanca": "Ele mede os recortes que o VOCABULARIO nomeia — categoria inteira e cada tipo de `tipo_por_categoria`. Filha de nivel 3 tambem pode ter forma de PERGUNTA em vez de forma de tipo, e as duas que esta ilha ja publicou sao assim: a F2 ('qual cola usar no mosaico') e a F1 ('quantas pastilhas'). Uma pergunta atravessa tipos e pode reunir 3 itens onde nenhum tipo sozinho reune. Portanto este arquivo e um PISO do que pode nascer hoje, nunca um teto — e um `nao_passa` aqui nao proibe a pergunta, proibe o tipo. Quem escrever a pergunta conta os 3 itens dela pela mesma regua, e a regua esta nesta ferramenta para ser chamada em vez de reescrita.",
+ "o_que_este_arquivo_NAO_decide": [
+  "o endereco da pagina — quem publica escolhe, e a 16.5 manda a mae esperar 3 filhas",
+  "a chance de primeira pagina — e a 14.9, e ela se mede na SERP, nao no banco",
+  "a ordem das levas — e a secao 9, por intencao de compra, e ela olha a SERP tambem"
+ ],
+ "recortes": [
+  {
+   "recorte": "acabamento",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "acabamento_visual",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "acabamento",
+   "tipo": null,
+   "itens_no_banco": 7,
+   "itens": [
+    "acrilex-verniz-acrilfix-brilhante",
+    "acrilex-verniz-acrilico-brilhante",
+    "acrilex-verniz-acrilico-fosco",
+    "quartzolit-borracha-liquida-elastica",
+    "quartzolit-fundo-selador",
+    "quartzolit-protetor-para-fachadas",
+    "quartzolit-verniz-protetor-para-pisos"
+   ],
+   "itens_que_sustentam_recomendacao": 7,
+   "quais_sustentam": [
+    "acrilex-verniz-acrilfix-brilhante",
+    "acrilex-verniz-acrilico-brilhante",
+    "acrilex-verniz-acrilico-fosco",
+    "quartzolit-borracha-liquida-elastica",
+    "quartzolit-fundo-selador",
+    "quartzolit-protetor-para-fachadas",
+    "quartzolit-verniz-protetor-para-pisos"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "acabamento_visual",
+     "em_quantos_itens": 3,
+     "itens": [
+      "acrilex-verniz-acrilfix-brilhante",
+      "acrilex-verniz-acrilico-brilhante",
+      "acrilex-verniz-acrilico-fosco"
+     ]
+    },
+    {
+     "propriedade": "pelicula",
+     "em_quantos_itens": 3,
+     "itens": [
+      "acrilex-verniz-acrilfix-brilhante",
+      "acrilex-verniz-acrilico-brilhante",
+      "acrilex-verniz-acrilico-fosco"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
+  },
+  {
+   "recorte": "acabamento/verniz",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "acabamento_visual",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "acabamento",
+   "tipo": "verniz",
+   "itens_no_banco": 4,
+   "itens": [
+    "acrilex-verniz-acrilfix-brilhante",
+    "acrilex-verniz-acrilico-brilhante",
+    "acrilex-verniz-acrilico-fosco",
+    "quartzolit-verniz-protetor-para-pisos"
+   ],
+   "itens_que_sustentam_recomendacao": 4,
+   "quais_sustentam": [
+    "acrilex-verniz-acrilfix-brilhante",
+    "acrilex-verniz-acrilico-brilhante",
+    "acrilex-verniz-acrilico-fosco",
+    "quartzolit-verniz-protetor-para-pisos"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "acabamento_visual",
+     "em_quantos_itens": 3,
+     "itens": [
+      "acrilex-verniz-acrilfix-brilhante",
+      "acrilex-verniz-acrilico-brilhante",
+      "acrilex-verniz-acrilico-fosco"
+     ]
+    },
+    {
+     "propriedade": "pelicula",
+     "em_quantos_itens": 3,
+     "itens": [
+      "acrilex-verniz-acrilfix-brilhante",
+      "acrilex-verniz-acrilico-brilhante",
+      "acrilex-verniz-acrilico-fosco"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
+  },
+  {
+   "recorte": "acabamento/impermeabilizante",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 1,
+    "itens_com_lastro_que_faltam_para_3": 1,
+    "itens_que_faltam_para_o_numero_mais_perto": 1,
+    "propriedade_mais_perto_de_ser_numero": "base_quimica",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "acabamento",
+   "tipo": "impermeabilizante",
+   "itens_no_banco": 2,
+   "itens": [
+    "quartzolit-borracha-liquida-elastica",
+    "quartzolit-protetor-para-fachadas"
+   ],
+   "itens_que_sustentam_recomendacao": 2,
+   "quais_sustentam": [
+    "quartzolit-borracha-liquida-elastica",
+    "quartzolit-protetor-para-fachadas"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 2 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "acabamento/selador",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 2,
+    "itens_com_lastro_que_faltam_para_3": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "tempo_de_secagem_h",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "acabamento",
+   "tipo": "selador",
+   "itens_no_banco": 1,
+   "itens": [
+    "quartzolit-fundo-selador"
+   ],
+   "itens_que_sustentam_recomendacao": 1,
+   "quais_sustentam": [
+    "quartzolit-fundo-selador"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "alicate",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "espessura_maxima_de_corte_mm",
+    "itens_sem_nenhum_numero_com_lastro": [
+     "cortag-torques-azulejista-corte-curvo",
+     "cortag-torques-azulejista-corte-reto"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "alicate",
+   "tipo": null,
+   "itens_no_banco": 6,
+   "itens": [
+    "cortag-torques-azulejista-corte-curvo",
+    "cortag-torques-azulejista-corte-reto",
+    "cortag-torques-mosaico-roldanas",
+    "vonder-vdec-51",
+    "vonder-vdec-75",
+    "vonder-vdec-90"
+   ],
+   "itens_que_sustentam_recomendacao": 4,
+   "quais_sustentam": [
+    "cortag-torques-mosaico-roldanas",
+    "vonder-vdec-51",
+    "vonder-vdec-75",
+    "vonder-vdec-90"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "espessura_maxima_de_corte_mm",
+     "em_quantos_itens": 4,
+     "itens": [
+      "cortag-torques-mosaico-roldanas",
+      "vonder-vdec-51",
+      "vonder-vdec-75",
+      "vonder-vdec-90"
+     ]
+    },
+    {
+     "propriedade": "comprimento_maximo_de_corte_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "vonder-vdec-51",
+      "vonder-vdec-75",
+      "vonder-vdec-90"
+     ]
+    },
+    {
+     "propriedade": "diametro_do_rodel_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "vonder-vdec-51",
+      "vonder-vdec-75",
+      "vonder-vdec-90"
+     ]
+    },
+    {
+     "propriedade": "dimensoes_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "vonder-vdec-51",
+      "vonder-vdec-75",
+      "vonder-vdec-90"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
+  },
+  {
+   "recorte": "alicate/torques",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "material_do_corpo",
+    "itens_sem_nenhum_numero_com_lastro": [
+     "cortag-torques-azulejista-corte-curvo",
+     "cortag-torques-azulejista-corte-reto"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "alicate",
+   "tipo": "torques",
+   "itens_no_banco": 3,
+   "itens": [
+    "cortag-torques-azulejista-corte-curvo",
+    "cortag-torques-azulejista-corte-reto",
+    "cortag-torques-mosaico-roldanas"
+   ],
+   "itens_que_sustentam_recomendacao": 1,
+   "quais_sustentam": [
+    "cortag-torques-mosaico-roldanas"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "passa_na_contagem_sem_lastro",
+   "motivo": "1 dos 3 itens sustentam recomendacao primaria (fonte de nivel <= 3); a secao 9 exige 3"
+  },
+  {
+   "recorte": "alicate/cortador_de_azulejo",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "comprimento_maximo_de_corte_mm",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "alicate",
+   "tipo": "cortador_de_azulejo",
+   "itens_no_banco": 3,
+   "itens": [
+    "vonder-vdec-51",
+    "vonder-vdec-75",
+    "vonder-vdec-90"
+   ],
+   "itens_que_sustentam_recomendacao": 3,
+   "quais_sustentam": [
+    "vonder-vdec-51",
+    "vonder-vdec-75",
+    "vonder-vdec-90"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "comprimento_maximo_de_corte_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "vonder-vdec-51",
+      "vonder-vdec-75",
+      "vonder-vdec-90"
+     ]
+    },
+    {
+     "propriedade": "diametro_do_rodel_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "vonder-vdec-51",
+      "vonder-vdec-75",
+      "vonder-vdec-90"
+     ]
+    },
+    {
+     "propriedade": "dimensoes_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "vonder-vdec-51",
+      "vonder-vdec-75",
+      "vonder-vdec-90"
+     ]
+    },
+    {
+     "propriedade": "espessura_maxima_de_corte_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "vonder-vdec-51",
+      "vonder-vdec-75",
+      "vonder-vdec-90"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
+  },
+  {
+   "recorte": "alicate/pinca_mosaico",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "alicate",
+   "tipo": "pinca_mosaico",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "alicate/martelinho",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "alicate",
+   "tipo": "martelinho",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "apoio",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "apoio",
+   "tipo": null,
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "apoio/espatula",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "apoio",
+   "tipo": "espatula",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "apoio/desempenadeira",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "apoio",
+   "tipo": "desempenadeira",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "apoio/oculos",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "apoio",
+   "tipo": "oculos",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "apoio/luva",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "apoio",
+   "tipo": "luva",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "apoio/pinca",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "apoio",
+   "tipo": "pinca",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "apoio/marcador",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "apoio",
+   "tipo": "marcador",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "base",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "base",
+   "tipo": null,
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "base/mdf_cru",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "base",
+   "tipo": "mdf_cru",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "base/ceramica_crua",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "base",
+   "tipo": "ceramica_crua",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "base/cimento",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "base",
+   "tipo": "cimento",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "base/isopor_estrutural",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "base",
+   "tipo": "isopor_estrutural",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "base/moldura",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "base",
+   "tipo": "moldura",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "cola",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "tempo_de_ajuste",
+    "itens_sem_nenhum_numero_com_lastro": [
+     "cascola-cascorez-extra",
+     "loctite-durepoxi",
+     "tekbond-silicone-acetico-maxx",
+     "tekbond-silicone-neutro"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": null,
+   "itens_no_banco": 7,
+   "itens": [
+    "cascola-cascorez-extra",
+    "cascola-pl500-adesivo-de-montagem",
+    "loctite-durepoxi",
+    "quartzolit-cimentcola-externo-acii",
+    "tekbond-silicone-acetico-construcao",
+    "tekbond-silicone-acetico-maxx",
+    "tekbond-silicone-neutro"
+   ],
+   "itens_que_sustentam_recomendacao": 3,
+   "quais_sustentam": [
+    "cascola-pl500-adesivo-de-montagem",
+    "quartzolit-cimentcola-externo-acii",
+    "tekbond-silicone-acetico-construcao"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "passa_na_contagem_sem_lastro",
+   "motivo": "3 dos 7 itens sustentam recomendacao, e NENHUMA propriedade e declarada por 3 deles ao mesmo tempo — nao ha numero que a pagina calcule sobre o recorte inteiro"
+  },
+  {
+   "recorte": "cola/pva",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 1,
+    "itens_com_lastro_que_faltam_para_3": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "tempo_de_ajuste",
+    "itens_sem_nenhum_numero_com_lastro": [
+     "cascola-cascorez-extra"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": "pva",
+   "itens_no_banco": 2,
+   "itens": [
+    "cascola-cascorez-extra",
+    "cascola-pl500-adesivo-de-montagem"
+   ],
+   "itens_que_sustentam_recomendacao": 1,
+   "quais_sustentam": [
+    "cascola-pl500-adesivo-de-montagem"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 2 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "cola/silicone_acetico",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 1,
+    "itens_com_lastro_que_faltam_para_3": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "temperatura_de_trabalho",
+    "itens_sem_nenhum_numero_com_lastro": [
+     "tekbond-silicone-acetico-maxx"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": "silicone_acetico",
+   "itens_no_banco": 2,
+   "itens": [
+    "tekbond-silicone-acetico-construcao",
+    "tekbond-silicone-acetico-maxx"
+   ],
+   "itens_que_sustentam_recomendacao": 1,
+   "quais_sustentam": [
+    "tekbond-silicone-acetico-construcao"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 2 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "cola/silicone_neutro",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 2,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [
+     "tekbond-silicone-neutro"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": "silicone_neutro",
+   "itens_no_banco": 1,
+   "itens": [
+    "tekbond-silicone-neutro"
+   ],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "cola/cimentcola_acii",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 2,
+    "itens_com_lastro_que_faltam_para_3": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "liberacao_para_agua_em_piscina",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": "cimentcola_acii",
+   "itens_no_banco": 1,
+   "itens": [
+    "quartzolit-cimentcola-externo-acii"
+   ],
+   "itens_que_sustentam_recomendacao": 1,
+   "quais_sustentam": [
+    "quartzolit-cimentcola-externo-acii"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "cola/cimentcola_aciii",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": "cimentcola_aciii",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "cola/epoxi",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 2,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [
+     "loctite-durepoxi"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": "epoxi",
+   "itens_no_banco": 1,
+   "itens": [
+    "loctite-durepoxi"
+   ],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "cola/adesivo_para_espelho",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": "adesivo_para_espelho",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "pastilha",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "m2_por_caixa",
+    "itens_sem_nenhum_numero_com_lastro": [
+     "pastilhart-af1500"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "pastilha",
+   "tipo": null,
+   "itens_no_banco": 13,
+   "itens": [
+    "glassmosaic-102",
+    "glassmosaic-a11",
+    "glassmosaic-a37",
+    "glassmosaic-a61",
+    "glassmosaic-ic02",
+    "glassmosaic-k117",
+    "glassmosaic-k2501",
+    "glassmosaic-k2502",
+    "glassmosaic-k66",
+    "glassmosaic-k77",
+    "glassmosaic-mix2510",
+    "glassmosaic-st5102",
+    "pastilhart-af1500"
+   ],
+   "itens_que_sustentam_recomendacao": 12,
+   "quais_sustentam": [
+    "glassmosaic-102",
+    "glassmosaic-a11",
+    "glassmosaic-a37",
+    "glassmosaic-a61",
+    "glassmosaic-ic02",
+    "glassmosaic-k117",
+    "glassmosaic-k2501",
+    "glassmosaic-k2502",
+    "glassmosaic-k66",
+    "glassmosaic-k77",
+    "glassmosaic-mix2510",
+    "glassmosaic-st5102"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "m2_por_caixa",
+     "em_quantos_itens": 12,
+     "itens": [
+      "glassmosaic-102",
+      "glassmosaic-a11",
+      "glassmosaic-a37",
+      "glassmosaic-a61",
+      "glassmosaic-ic02",
+      "glassmosaic-k117",
+      "glassmosaic-k2501",
+      "glassmosaic-k2502",
+      "glassmosaic-k66",
+      "glassmosaic-k77",
+      "glassmosaic-mix2510",
+      "glassmosaic-st5102"
+     ]
+    },
+    {
+     "propriedade": "peso_caixa_kg",
+     "em_quantos_itens": 12,
+     "itens": [
+      "glassmosaic-102",
+      "glassmosaic-a11",
+      "glassmosaic-a37",
+      "glassmosaic-a61",
+      "glassmosaic-ic02",
+      "glassmosaic-k117",
+      "glassmosaic-k2501",
+      "glassmosaic-k2502",
+      "glassmosaic-k66",
+      "glassmosaic-k77",
+      "glassmosaic-mix2510",
+      "glassmosaic-st5102"
+     ]
+    },
+    {
+     "propriedade": "placas_por_caixa",
+     "em_quantos_itens": 12,
+     "itens": [
+      "glassmosaic-102",
+      "glassmosaic-a11",
+      "glassmosaic-a37",
+      "glassmosaic-a61",
+      "glassmosaic-ic02",
+      "glassmosaic-k117",
+      "glassmosaic-k2501",
+      "glassmosaic-k2502",
+      "glassmosaic-k66",
+      "glassmosaic-k77",
+      "glassmosaic-mix2510",
+      "glassmosaic-st5102"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
+  },
+  {
+   "recorte": "pastilha/vidro",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "m2_por_caixa",
+    "itens_sem_nenhum_numero_com_lastro": [
+     "pastilhart-af1500"
+    ],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "pastilha",
+   "tipo": "vidro",
+   "itens_no_banco": 13,
+   "itens": [
+    "glassmosaic-102",
+    "glassmosaic-a11",
+    "glassmosaic-a37",
+    "glassmosaic-a61",
+    "glassmosaic-ic02",
+    "glassmosaic-k117",
+    "glassmosaic-k2501",
+    "glassmosaic-k2502",
+    "glassmosaic-k66",
+    "glassmosaic-k77",
+    "glassmosaic-mix2510",
+    "glassmosaic-st5102",
+    "pastilhart-af1500"
+   ],
+   "itens_que_sustentam_recomendacao": 12,
+   "quais_sustentam": [
+    "glassmosaic-102",
+    "glassmosaic-a11",
+    "glassmosaic-a37",
+    "glassmosaic-a61",
+    "glassmosaic-ic02",
+    "glassmosaic-k117",
+    "glassmosaic-k2501",
+    "glassmosaic-k2502",
+    "glassmosaic-k66",
+    "glassmosaic-k77",
+    "glassmosaic-mix2510",
+    "glassmosaic-st5102"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "m2_por_caixa",
+     "em_quantos_itens": 12,
+     "itens": [
+      "glassmosaic-102",
+      "glassmosaic-a11",
+      "glassmosaic-a37",
+      "glassmosaic-a61",
+      "glassmosaic-ic02",
+      "glassmosaic-k117",
+      "glassmosaic-k2501",
+      "glassmosaic-k2502",
+      "glassmosaic-k66",
+      "glassmosaic-k77",
+      "glassmosaic-mix2510",
+      "glassmosaic-st5102"
+     ]
+    },
+    {
+     "propriedade": "peso_caixa_kg",
+     "em_quantos_itens": 12,
+     "itens": [
+      "glassmosaic-102",
+      "glassmosaic-a11",
+      "glassmosaic-a37",
+      "glassmosaic-a61",
+      "glassmosaic-ic02",
+      "glassmosaic-k117",
+      "glassmosaic-k2501",
+      "glassmosaic-k2502",
+      "glassmosaic-k66",
+      "glassmosaic-k77",
+      "glassmosaic-mix2510",
+      "glassmosaic-st5102"
+     ]
+    },
+    {
+     "propriedade": "placas_por_caixa",
+     "em_quantos_itens": 12,
+     "itens": [
+      "glassmosaic-102",
+      "glassmosaic-a11",
+      "glassmosaic-a37",
+      "glassmosaic-a61",
+      "glassmosaic-ic02",
+      "glassmosaic-k117",
+      "glassmosaic-k2501",
+      "glassmosaic-k2502",
+      "glassmosaic-k66",
+      "glassmosaic-k77",
+      "glassmosaic-mix2510",
+      "glassmosaic-st5102"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
+  },
+  {
+   "recorte": "pastilha/ceramica",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "pastilha",
+   "tipo": "ceramica",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "pastilha/pedra",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "pastilha",
+   "tipo": "pedra",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "pastilha/caco_azulejo",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "pastilha",
+   "tipo": "caco_azulejo",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "pastilha/caco_espelho",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "pastilha",
+   "tipo": "caco_espelho",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "pastilha/resina",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "pastilha",
+   "tipo": "resina",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "rejunte",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "junta_max_mm",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "rejunte",
+   "tipo": null,
+   "itens_no_banco": 5,
+   "itens": [
+    "quartzolit-rejunte-acrilico",
+    "quartzolit-rejunte-ceramicas",
+    "quartzolit-rejunte-epoxi",
+    "quartzolit-rejunte-piscinas",
+    "quartzolit-rejunte-porcelanatos-e-ceramicas"
+   ],
+   "itens_que_sustentam_recomendacao": 5,
+   "quais_sustentam": [
+    "quartzolit-rejunte-acrilico",
+    "quartzolit-rejunte-ceramicas",
+    "quartzolit-rejunte-epoxi",
+    "quartzolit-rejunte-piscinas",
+    "quartzolit-rejunte-porcelanatos-e-ceramicas"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "junta_max_mm",
+     "em_quantos_itens": 4,
+     "itens": [
+      "quartzolit-rejunte-acrilico",
+      "quartzolit-rejunte-ceramicas",
+      "quartzolit-rejunte-epoxi",
+      "quartzolit-rejunte-porcelanatos-e-ceramicas"
+     ]
+    },
+    {
+     "propriedade": "junta_min_mm",
+     "em_quantos_itens": 4,
+     "itens": [
+      "quartzolit-rejunte-acrilico",
+      "quartzolit-rejunte-ceramicas",
+      "quartzolit-rejunte-epoxi",
+      "quartzolit-rejunte-porcelanatos-e-ceramicas"
+     ]
+    },
+    {
+     "propriedade": "liberacao_area_molhada_h",
+     "em_quantos_itens": 3,
+     "itens": [
+      "quartzolit-rejunte-ceramicas",
+      "quartzolit-rejunte-epoxi",
+      "quartzolit-rejunte-porcelanatos-e-ceramicas"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
+  },
+  {
+   "recorte": "rejunte/cimenticio",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 0,
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 1,
+    "propriedade_mais_perto_de_ser_numero": "liberacao_area_molhada_h",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": "liberacao_area_molhada_h",
+     "registros_que_nao_a_declaram": [
+      "quartzolit-rejunte-piscinas"
+     ],
+     "leitura": "a propriedade `liberacao_area_molhada_h` falta em 1 registro(s) que JA estao no banco: o recorte fecha coletando esse valor, nao um produto novo"
+    }
+   },
+   "categoria": "rejunte",
+   "tipo": "cimenticio",
+   "itens_no_banco": 3,
+   "itens": [
+    "quartzolit-rejunte-ceramicas",
+    "quartzolit-rejunte-piscinas",
+    "quartzolit-rejunte-porcelanatos-e-ceramicas"
+   ],
+   "itens_que_sustentam_recomendacao": 3,
+   "quais_sustentam": [
+    "quartzolit-rejunte-ceramicas",
+    "quartzolit-rejunte-piscinas",
+    "quartzolit-rejunte-porcelanatos-e-ceramicas"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "passa_na_contagem_sem_lastro",
+   "motivo": "3 dos 3 itens sustentam recomendacao, e NENHUMA propriedade e declarada por 3 deles ao mesmo tempo — nao ha numero que a pagina calcule sobre o recorte inteiro"
+  },
+  {
+   "recorte": "rejunte/flexivel",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 3,
+    "itens_com_lastro_que_faltam_para_3": 3,
+    "itens_que_faltam_para_o_numero_mais_perto": 3,
+    "propriedade_mais_perto_de_ser_numero": null,
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "rejunte",
+   "tipo": "flexivel",
+   "itens_no_banco": 0,
+   "itens": [],
+   "itens_que_sustentam_recomendacao": 0,
+   "quais_sustentam": [],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "rejunte/acrilico",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 2,
+    "itens_com_lastro_que_faltam_para_3": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "validade_meses",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "rejunte",
+   "tipo": "acrilico",
+   "itens_no_banco": 1,
+   "itens": [
+    "quartzolit-rejunte-acrilico"
+   ],
+   "itens_que_sustentam_recomendacao": 1,
+   "quais_sustentam": [
+    "quartzolit-rejunte-acrilico"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "rejunte/epoxi",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 2,
+    "itens_com_lastro_que_faltam_para_3": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "liberacao_imersao_dias",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "rejunte",
+   "tipo": "epoxi",
+   "itens_no_banco": 1,
+   "itens": [
+    "quartzolit-rejunte-epoxi"
+   ],
+   "itens_que_sustentam_recomendacao": 1,
+   "quais_sustentam": [
+    "quartzolit-rejunte-epoxi"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  }
+ ],
+ "resumo": {
+  "vereditos": {
+   "passa": 7,
+   "passa_na_contagem_sem_lastro": 3,
+   "nao_passa": 32
+  },
+  "filhas_que_podem_nascer_hoje": [
+   "acabamento",
+   "acabamento/verniz",
+   "alicate",
+   "alicate/cortador_de_azulejo",
+   "pastilha",
+   "pastilha/vidro",
+   "rejunte"
+  ],
+  "por_categoria_do_guia": {
+   "acabamento": {
+    "tipos_que_passam": 1,
+    "tipos_no_vocabulario": 3,
+    "tipos_que_passam_quais": [
+     "acabamento/verniz"
+    ],
+    "caminho_mais_barato_para_as_3_filhas": {
+     "faltam_filhas": 2,
+     "itens_de_banco_a_coletar": 3,
+     "em_quais_tipos": [
+      {
+       "tipo": "acabamento/impermeabilizante",
+       "itens_a_coletar": 1
+      },
+      {
+       "tipo": "acabamento/selador",
+       "itens_a_coletar": 2
+      }
+     ]
+    }
+   },
+   "alicate": {
+    "tipos_que_passam": 1,
+    "tipos_no_vocabulario": 4,
+    "tipos_que_passam_quais": [
+     "alicate/cortador_de_azulejo"
+    ],
+    "caminho_mais_barato_para_as_3_filhas": {
+     "faltam_filhas": 2,
+     "itens_de_banco_a_coletar": 5,
+     "em_quais_tipos": [
+      {
+       "tipo": "alicate/torques",
+       "itens_a_coletar": 2
+      },
+      {
+       "tipo": "alicate/martelinho",
+       "itens_a_coletar": 3
+      }
+     ]
+    }
+   },
+   "apoio": {
+    "tipos_que_passam": 0,
+    "tipos_no_vocabulario": 6,
+    "tipos_que_passam_quais": [],
+    "caminho_mais_barato_para_as_3_filhas": {
+     "faltam_filhas": 3,
+     "itens_de_banco_a_coletar": 9,
+     "em_quais_tipos": [
+      {
+       "tipo": "apoio/desempenadeira",
+       "itens_a_coletar": 3
+      },
+      {
+       "tipo": "apoio/espatula",
+       "itens_a_coletar": 3
+      },
+      {
+       "tipo": "apoio/luva",
+       "itens_a_coletar": 3
+      }
+     ]
+    }
+   },
+   "base": {
+    "tipos_que_passam": 0,
+    "tipos_no_vocabulario": 5,
+    "tipos_que_passam_quais": [],
+    "caminho_mais_barato_para_as_3_filhas": {
+     "faltam_filhas": 3,
+     "itens_de_banco_a_coletar": 9,
+     "em_quais_tipos": [
+      {
+       "tipo": "base/ceramica_crua",
+       "itens_a_coletar": 3
+      },
+      {
+       "tipo": "base/cimento",
+       "itens_a_coletar": 3
+      },
+      {
+       "tipo": "base/isopor_estrutural",
+       "itens_a_coletar": 3
+      }
+     ]
+    }
+   },
+   "cola": {
+    "tipos_que_passam": 0,
+    "tipos_no_vocabulario": 7,
+    "tipos_que_passam_quais": [],
+    "caminho_mais_barato_para_as_3_filhas": {
+     "faltam_filhas": 3,
+     "itens_de_banco_a_coletar": 6,
+     "em_quais_tipos": [
+      {
+       "tipo": "cola/cimentcola_acii",
+       "itens_a_coletar": 2
+      },
+      {
+       "tipo": "cola/pva",
+       "itens_a_coletar": 2
+      },
+      {
+       "tipo": "cola/silicone_acetico",
+       "itens_a_coletar": 2
+      }
+     ]
+    }
+   },
+   "pastilha": {
+    "tipos_que_passam": 1,
+    "tipos_no_vocabulario": 6,
+    "tipos_que_passam_quais": [
+     "pastilha/vidro"
+    ],
+    "caminho_mais_barato_para_as_3_filhas": {
+     "faltam_filhas": 2,
+     "itens_de_banco_a_coletar": 6,
+     "em_quais_tipos": [
+      {
+       "tipo": "pastilha/caco_azulejo",
+       "itens_a_coletar": 3
+      },
+      {
+       "tipo": "pastilha/caco_espelho",
+       "itens_a_coletar": 3
+      }
+     ]
+    }
+   },
+   "rejunte": {
+    "tipos_que_passam": 0,
+    "tipos_no_vocabulario": 4,
+    "tipos_que_passam_quais": [],
+    "caminho_mais_barato_para_as_3_filhas": {
+     "faltam_filhas": 3,
+     "itens_de_banco_a_coletar": 5,
+     "em_quais_tipos": [
+      {
+       "tipo": "rejunte/cimenticio",
+       "itens_a_coletar": 1
+      },
+      {
+       "tipo": "rejunte/acrilico",
+       "itens_a_coletar": 2
+      },
+      {
+       "tipo": "rejunte/epoxi",
+       "itens_a_coletar": 2
+      }
+     ]
+    }
+   }
+  },
+  "categorias_que_alcancam_as_3_filhas_da_16_5": []
+ }
+}

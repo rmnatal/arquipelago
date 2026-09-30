@@ -5,53 +5,74 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-30T10:16Z
-executando_desde: 2026-09-30T13:17Z
+ultima_execucao: 2026-09-30T13:17Z
+executando_desde: null
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
+bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
+                      # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
+                      # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
+                      # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  A PORTA DO EGRESSO NAO ESTAVA FECHADA: ESTAVA PELA METADE, E QUATRO EXECUCOES A CHAMARAM DE FECHADA.
-  Manifest e /status na revisao 51. NENHUMA URL NOVA (segue em 17), nenhum title e nenhuma
+  O SEGUNDO DEGRAU DA 7b NUNCA TINHA SIDO MEDIDO, E AGORA E UM NUMERO COM LISTA DE COMPRAS.
+  Manifest e /status na revisao 52. NENHUMA URL NOVA (segue em 17), nenhum title e nenhuma
   description mudaram: o BLOCO A do despacho do Raphael de 24/09 segue intocado e a janela de
   medicao de 30/09 segue limpa.
   PORTA DE ENTRADA (29.2) ANTES DE TUDO: conferir-no-ar.py com 519 afirmacoes e 0 falha na origem;
-  leitura-do-visitante.py REPROVADO com 1 defeito, e e o esperado — o soft 404 do hospedeiro, aberto
-  em 29/09, com dono escrito e fora do alcance de snippet daqui. Nenhum defeito novo.
-  O ACHADO: os apex quartzolit.weber, tekbond.com.br, cascola.com.br e loctite.com.br ESTABELECEM o
-  CONNECT (HTTP/1.1 200 Connection Established, e o servidor de verdade respondendo 301 com server
-  Apache e CloudFront). Entraram na lista de rede entre 29/09 e hoje. E o ganho e ZERO: os quatro
-  redirecionam tudo para o host www. (a Loctite para next.henkel-adhesives.com), que segue em
-  connect_rejected, e as 36 URLs de boletim tecnico que os bancos citam nesses dominios estao TODAS
-  em www. pastilhart.com.br nao entrou nem no apex. A frase "403 ao CONNECT", que o repositorio
-  afirmava em quatro lugares, e FALSA hoje — e a frase oposta seria igualmente falsa. FALTA O
-  CURINGA, nao o dominio: a 20.1 sempre mandou os dois, e o pedido de 29/09 foi atendido na metade.
-  O INSTRUMENTO: ferramentas/medir-egresso.py, saida gerada em dados/egresso-de-fontes.md e .json,
-  --autoteste com 29 casos fabricados. Quatro travas, todas cicatriz desta ilha: lista derivada e
-  nao digitada, tres passadas (20.2), CONTROLE que torna a medicao VOID se cair, e a ENTREGA
-  calculada em vez de escrita — o veredito liberado_mas_sem_entrega, que nenhuma das quatro passadas
-  anteriores tinha como escrever.
+  leitura-do-visitante.py REPROVADO com 1 defeito, e e o esperado — o soft 404 do hospedeiro, com
+  dono escrito e fora do alcance de snippet daqui. Nenhum defeito novo. Rede pela 20.2: tres
+  passadas em clubedomosaico.com.br, 200 nas tres, com aquametria.com.br em 200 nas mesmas.
+  POR QUE ESTE BLOCO: a leitura de 30/09 continua fora do alcance desta nuvem, e eu CONFERI em vez
+  de herdar — GOOGLE_SA_B64, GOOGLE_SA_JSON, GOOGLE_SA_FILE e GOOGLE_APPLICATION_CREDENTIALS estao
+  as quatro ausentes, e o acesso do sentinela@ a sc-domain:clubedomosaico.com.br segue pendente.
+  Entao o BLOCO A e a faixa de description das quatro paginas seguem travados. O que as duas
+  execucoes anteriores escreveram — "nada na fila desta ilha" — e o que este bloco DERRUBOU.
+  A ORDEM DA 7b DO ARVORE.md ("banco, depois as filhas de nivel 3, so entao a mae de nivel 2") esta
+  escrita desde 12/09 e o SEGUNDO degrau nunca havia sido contado: o que existia era "nenhuma filha
+  de alicate existe", que diz o que falta e nao diz o que ja da. Medido agora nos 42 recortes que o
+  vocabulario do esquema admite, pelo portao INTEIRO da secao 9 (3 itens E um numero calculado):
+  7 passam, 3 passam so na contagem, 32 nao passam.
+  E NENHUMA CATEGORIA DO GUIA ALCANCA AS 3 FILHAS DA 16.5, nem somando todos os tipos dela — a mae
+  de nivel 2 continua fechada, agora por numero e nao por frase. Com a LISTA DE COMPRAS por
+  categoria: acabamento a 3 itens, rejunte e alicate a 5, cola e pastilha a 6, base e apoio a 9.
+  O PROXIMO PASSO FICOU DESBLOQUEADO E E DA FUNDACAO: coletar 1 impermeabilizante e 2 seladores
+  fecha as 3 filhas de acabamento, que e a categoria mais barata do Guia. Confirmado alcancavel
+  nesta passada — selador com rendimento, demaos e secagem declarados existe em pagina de
+  fabricante — e o proprio resultado REPRODUZIU o achado da 7b-ter: o Coral nomeia reboco, bloco,
+  concreto, gesso e fibrocimento e NAO nomeia MDF. Nao coletei: coleta e o bloco seguinte, e a
+  13 proibe misturar dois blocos numa passada sem a verificacao inteira de cada um.
+  E A CLASSIFICACAO DE SERP DA 14.9 INVERTEU A ORDEM QUE A FILA SUPUNHA: as duas filhas que a SERP
+  ABRE sao PERGUNTAS ("como cortar pastilha de vidro para mosaico", 8 de 10 blog velho e resposta
+  sem numero; "verniz para peca de mosaico artesanal", blogspot de 2010 e portal), e as duas que ela
+  RECUSA sao de PRODUTO — inclusive pastilha/vidro, a de mais banco da ilha, com 13 itens e tres
+  numeros em 12 deles, cuja SERP e 9 de 9 marketplace e loja. Quem vende produto ja ocupa a consulta
+  de produto; a consulta de metodo esta vazia.
+  DOIS DEFEITOS DO MEU PROPRIO INSTRUMENTO, achados por ele rodando e os dois declarados no arquivo
+  em vez de escondidos: (1) uma consulta voltou com SERP ESPANHOLA (Amazon MX, Leroy ES) porque o
+  canal de busca desta nuvem e dos EUA — esta como NAO MEDIDA, nao como consulta sem concorrente;
+  (2) eu pus Vonder e Cortag DENTRO da consulta, que puxa pagina de fabricante e e a trava de coleta
+  da secao 8 aplicada a SERP — tambem NAO MEDIDA, com o motivo, e refeita sem marca.
+  E CONTRADIZ O CORPUS DE 10/09 COM TODAS AS LETRAS, em vez de em silencio: ele classificou
+  "pastilhas de vidro para mosaico" como ABERTA com a MESMA evidencia que esta passada leu como
+  tomada. A diferenca e de regua, nao de dado — o corpus chamou de aberta porque ninguem responde a
+  pergunta tecnica, e a 14.9 manda classificar QUEM OCUPA. A 14.9 e a que decide se a pagina nasce.
+  A TABELA DA SECAO 2 DO ARVORE.md DIZIA 0 EM DUAS CATEGORIAS QUE SAIRAM DE ZERO EM 25/09 (alicate
+  6, acabamento 7), com a correcao escrita em prosa tres telas abaixo e nao na tabela que se le
+  primeiro. Corrigida, com coluna nova ("tipos que passam o portao da 9") e com PORTAO: eu havia
+  chamado a tabela de derivada tendo digitado os numeros, que e o defeito que esta ilha nomeia, e
+  agora --conferir a confere nas DUAS direcoes contra dados/filhas-do-guia.json.
   TRES DEFEITOS DA PROPRIA FERRAMENTA, os tres achados por ela rodando e os tres antes do commit:
-  (1) a primeira versao media so os hosts que os bancos citam, e os bancos citam www., nunca o apex
-  — ela imprimiu "bloqueado" para os quatro e NAO viu o unico fato novo do dia; (2) ela lia a
-  propria saida e se citava como fonte, que e circular; (3) loctite.com.br, o quarto dominio
-  meio-aberto, ficou fora da medicao de 36 hosts porque nos bancos "loctite" e MARCA e nunca URL —
-  virou dado em dados/fontes-pedidas.json, que recusa linha sem exigido_por.
-  O PEDIDO: 21 dominios, 42 linhas, cada um com o arquivo que o exige. E o que NAO se pede esta
-  escrito junto com o motivo — marketplace e as 16 referencias de conteudo ja lidas.
-  A base NAO E ALCANCADA por essa correcao: os dez fabricantes de painel estao em 000 no apex E no
-  www., tres passadas, com o controle em 200. Para a apoio e o contrario — a FISPQ do epoxi mora em
-  www., entao o curinga a destrava.
-  DUAS BATERIAS VERMELHAS NO MAIN HAVIA UM DIA: mutacoes-base e mutacoes-apoio fechavam com "o mundo
-  FABRICADO ja esta reprovado antes de qualquer mutacao", medido vermelho no main limpo ANTES de
-  qualquer mudanca desta execucao. A causa era a melhora de ontem: as duas nasceram em 28/09 com
-  degrau None, e a leva de 29/09 as 16h17Z tornou o degrau obrigatorio. Bateria que nao roda deixa
-  20 e 24 mutacoes SEM NINGUEM MEDINDO. Consertado CALCULANDO o degrau dos campos (sem url_produto e
-  com url_busca, a 25.1 da degrau 4), nunca cravando o numero. De volta ao verde: 20 de 20 e 24 de
-  24, os numeros que o registro de 28/09 declarava.
-  O QUE NAO DEPENDIA DE MIM, E E O QUE TRAVA O FOCO: a leitura de 30/09 e HOJE e nao pode ser feita
-  daqui, por dois lados independentes — a conta sentinela@ nao tem acesso a
-  sc-domain:clubedomosaico.com.br e a credencial nao esta no ambiente (GOOGLE_SA_B64, GOOGLE_SA_JSON
-  e GOOGLE_SA_FILE as tres ausentes, conferido nesta execucao). Sem uma das duas, o BLOCO A e a
-  faixa de description das quatro paginas seguem travados e o veredito de 08/10 escorrega.
+  (1) um motivo contava os itens do banco onde queria dizer quantos sustentam recomendacao, e saiu
+  "os 7 itens sustentam" com 3 sustentando; (2) "pode fechar completando registro existente" dizia
+  que faltava um campo em 6 registros da cola — verdade literal que se le como UMA coleta e sao
+  seis, porque a propriedade mais perto era declarada por UM item so; agora so vale a UM registro de
+  distancia; (3) o gerador NAO era idempotente — a fronteira ganhava uma linha vazia por passada e
+  --conferir reprovava o arquivo que a passada anterior escreveu.
+  O QUE SOBROU A UM CAMPO, e nao a um produto: rejunte/cimenticio fecha com
+  liberacao_area_molhada_h no quartzolit-rejunte-piscinas, que JA mora no banco.
+  BANCADA: filhas-do-guia --autoteste 27 de 27 (5 jeitos diferentes de reprovar a tabela fabricada,
+  mais a idempotencia em tres passadas), validar-banco verde (escada 1:1 2:5 3:15 4:17, soma 38),
+  cobertura --conferir OK, mutacoes-arvore 29 de 29, casca 591, Loja 208, F1 200, F2 119, Tecnicas
+  123, Atelie, Leads e Prestacao aprovados — zero falha.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

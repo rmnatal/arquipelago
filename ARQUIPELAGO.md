@@ -153,6 +153,18 @@ python3 -c "import io,yaml;yaml.safe_load(io.open('ilhas/<ilha>/ESTADO.md',encod
 
 Dentro do `bloco_atual`, **citação vai entre aspas simples** e regex ou caminho com barra invertida se escreve por extenso. O conserto nunca é encurtar a prosa: ela é o que faz a próxima execução saber o que aconteceu sem abrir o `REGISTRO.md` inteiro — o que está errado é a citação, não o tamanho.
 
+**PARSEAR NÃO É TER O CAMPO, E ISSO SE MEDE NA MESMA LINHA (Clube do Mosaico, 30/09/2026).** A régua acima nasceu em 13/09 contra cabeçalho que **não parseia**, e ela é certa. O que ela não vê é cabeçalho que parseia **sem os campos que a seção 1 lê** — e `yaml.safe_load` aprova os dois. Medido às 13h5xZ de 30/09/2026, passando os seis `ESTADO.md` (o `_modelo` incluído) por um teste de presença: **os seis parseiam e dois estavam incompletos.** A `clubedomosaico` estava sem `bloqueada_por`; a `ohmetria`, sem `bloqueada_por` **e** sem `ultima_ronda`. O `_modelo` tinha os dois — o molde está certo desde 21/09 e as ilhas que nasceram antes dele não foram acertadas.
+
+**O que isso custa, e é a seção 1 lendo a si mesma errada:** o passo 3 manda "descarte as ilhas (...) com `bloqueada_por` preenchido". Com o campo **ausente**, quem lê com `grep` ou com o olho conclui "não está preenchido" e acerta por acidente; quem lê com um parser e `d["bloqueada_por"]` **morre**, e quem usa `d.get()` trata ausência como `null` sem nunca dizer que o campo não existe. As três leituras concordam hoje porque o valor certo é mesmo `null` — e discordam no primeiro dia em que uma ilha for bloqueada de verdade e alguém escrever o campo em cinco ilhas e esquecer a sexta. **Campo ausente que se comporta como o valor certo é a forma mais paciente de defeito: ele espera o dia em que o valor certo muda.**
+
+Portanto a linha da régua passa a conferir **presença**, e continua sendo uma linha:
+
+```
+python3 -c "import io,yaml;d=yaml.safe_load(io.open('ilhas/<ilha>/ESTADO.md',encoding='utf-8').read().split('---')[1]);f=[k for k in ('ilha','estado','prioridade','ultima_execucao','executando_desde','bloco_atual','ultima_ronda','bloqueada_por') if k not in d];print('YAML ok' if not f else 'FALTAM: '+', '.join(f))"
+```
+
+**Quem fecha bloco conserta o cabeçalho da ilha que reservou, e só dela.** A execução de 30/09 acrescentou `bloqueada_por: null` à `clubedomosaico` e **não** tocou na `ohmetria`: reserva é por ilha, e consertar cabeçalho de ilha que não se reservou é a colisão que a seção 1 existe para impedir. O da `ohmetria` fica escrito aqui para a próxima execução que a reservar não precisar redescobrir — e a linha acima o encontra em dois segundos.
+
 ---
 
 ## 3. O repositório é o lugar do trabalho
