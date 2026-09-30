@@ -6414,9 +6414,20 @@ falha**. `conferir-no-ar.py` **519 afirmações, 0 falha**, antes e depois do de
 
 ## DESEMBARQUE E VERIFICAÇÃO NO AR
 
-Ver a seção seguinte deste registro, escrita depois do push: o Sync lê o `manifest.json` do `main`
-pelo `raw.githubusercontent`, então ele é acionado **depois** do push, e disparo anterior ao push lê a
-revisão velha e é descartado.
+Push aceito na **primeira tentativa** (`307dcd1..b2e39c0`). Sync acionado **depois** do push, porque
+ele lê o `manifest.json` do `main` pelo `raw.githubusercontent` e disparo anterior ao push leria a
+revisão 51 — é a forma de "commit sem Sync não é entrega" da seção 20 com a ordem invertida. **Sync na
+revisão 52** às 13h43:41, 14 aplicados e 11 aguardando desembarque, e `/status` devolvendo **52**,
+igual à do manifest. Os dois arquivos novos de `dados/` nascem com `publicar: false` e por isso estão
+entre os que aguardam — eles são medição, não conteúdo de página.
+
+**E no ar depois do desembarque: `conferir-no-ar.py` com 519 afirmações e 0 falha**, medido antes e
+depois. O único vermelho da borda continua sendo o soft 404 do hospedeiro, com dono escrito.
+
+**A memória da ilha não foi atualizada porque ela não existe neste ambiente:** `/areas/` não está
+montado, conferido nesta execução. O `PROMPT.md` desta ilha já prevê isto com estas palavras — *"Sem
+memória, não pare: o estado está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta"* — e é onde
+o próximo passo ficou escrito.
 
 - **Próximo passo desbloqueado, e desta vez ele é da FUNDAÇÃO e não de ninguém de fora:** coletar **1
   impermeabilizante e 2 seladores** fecha as **3 filhas de `acabamento`**, que é a categoria mais
