@@ -3299,3 +3299,67 @@ Segundo push tambem recusado: outro commit da Fundacao, `f99e91a` ("fecha a exec
 **Uma observacao factual, sem decisao minha:** o disparo declara `/status` da clubedomosaico na revisao 43 e o texto foi gravado assim, ao pe da letra, nas escritas 1 e 6. O commit `f99e91a` da Fundacao, que chegou DEPOIS da medicao da ronda (15h10Z) e depois do meu checkout, diz "revisao 44 no ar". Nao alterei o numero em lugar nenhum — a ronda mediu 43 e e isso que esta escrito. Quem decide se o painel merece correcao e a Fundacao, nao as maos.
 
 **Falhas:** nenhuma escrita falhou. As duas recusas de push estao acima com a mensagem de erro completa e foram resolvidas. Nao reservei ilha, nao escrevi `executando_desde`, nao executei bloco de fila, nao publiquei, nao acionei Sync, nao verifiquei site, nao criei conta, nao mexi em arquivo que a instrucao nao nomeou (salvo este `MAOS-LOG.md`, que e obrigatorio). Nao li `ARQUIPELAGO.md` para decidir nada.
+
+---
+
+## 30/09/2026 — 11h59 de Brasília (14h59Z) — ronda diária técnica de 30/09 da Sentinela: 6 escritas, 1 commit, push aceito de primeira
+
+**Assunto conferido antes do `git fetch`:** Arquipélago — despacho da Sentinela em duas ilhas (`clubedomosaico`, `robometria`), cabeçalho de três `ESTADO.md` e o `dados/PAINEL.md` da raiz. Passou. Nenhum dado pessoal de terceiro veio na instrução, então nada foi omitido por causa da regra de repositório público.
+
+**Âncoras:** as seis foram encontradas exatamente como escritas na instrução. Nenhuma faltou, nada foi adivinhado.
+
+**As seis escritas, ao pé da letra:**
+1. `ilhas/clubedomosaico/PROMPT.md` — bloco novo inserido na **linha 72**, imediatamente antes de `## DESPACHO DA SENTINELA — 2026-09-28 (RONDA DIÁRIA TÉCNICA, 15h10Z)`. Nada apagado: +29 linhas, −0. O arquivo passou de 839 para **868 linhas** e agora tem **4** cabeçalhos `## DESPACHO DA SENTINELA`.
+2. `ilhas/robometria/PROMPT.md` — bloco novo inserido na **linha 48**, imediatamente antes de `## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h10Z)`. +25 linhas, −0. O arquivo passou de 1318 para **1343 linhas** e agora tem **8** cabeçalhos de despacho.
+3. `ilhas/clubedomosaico/dados/consertos.md` — uma linha só, na **linha 11**, logo depois da de `| 2026-09-28 | — |`. A tabela passou de 4 para **5 linhas de data**.
+4. `ilhas/clubedomosaico/ESTADO.md` — `ultima_ronda` da linha 10 substituída por inteiro. Continua havendo **exatamente 1** campo `ultima_ronda` no arquivo; nenhum outro campo do cabeçalho tocado (1 linha trocada, 1 por 1).
+5. `ilhas/aquametria/ESTADO.md` (linha 21) e `ilhas/robometria/ESTADO.md` (linha 21) — mesma substituição, uma linha cada, **1** `ultima_ronda` em cada arquivo, nenhum outro campo tocado.
+6. `dados/PAINEL.md` — arquivo inteiro substituído. Agora com **56 linhas / 9.095 bytes**, **5 ilhas** na tabela de ilhas e **7 linhas** na tabela de despachos abertos.
+
+Contagens acima conferidas relendo os arquivos DEPOIS de gravar, com `wc` e `grep -c`, não pelo que eu achava ter escrito.
+
+Uma única coisa foi acrescentada além do texto da instrução: **uma linha em branco** ao fim de cada um dos dois blocos inseridos (escritas 1 e 2), para o último parágrafo do bloco novo não colar no cabeçalho `##` seguinte. Sem ela o Markdown funde os dois. Nenhum outro caractere entrou.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+```
+
+`git diff --stat`:
+
+```
+ dados/PAINEL.md                         | 57 ++++++++++++++++-----------------
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 29 +++++++++++++++++
+ ilhas/clubedomosaico/dados/consertos.md |  1 +
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 25 +++++++++++++++
+ 7 files changed, 86 insertions(+), 32 deletions(-)
+```
+
+Sete caminhos, seis escritas: o arquivo 5 da instrução são dois arquivos.
+
+**Commit único, com a mensagem que a instrução deu:**
+
+```
+8c5c5a9b49d75c38032a408bebfd295ec55dcb66
+Sentinela: ronda diária técnica de 30/09/2026 — 3 ilhas medidas no ar, 0 conserto, soft 404 de borda agora também na robometria
+```
+
+**Push aceito na primeira tentativa**, sem rebase e **sem force push**:
+
+```
+   41e1626..8c5c5a9  HEAD -> main
+```
+
+**Confirmado no remoto**, não no meu clone: `git fetch origin main && git log -1 origin/main` devolveu `8c5c5a9b49d75c38032a408bebfd295ec55dcb66`, a mesma da linha acima. Push que não aparece em `origin/main` não é push — este aparece.
+
+**Falhas: nenhuma.** Nenhuma âncora faltou, nenhuma escrita falhou, nenhuma recusa de push. Não reservei ilha, não escrevi `executando_desde`, não toquei em cabeçalho de estado que a instrução não nomeou, não executei bloco de fila, não publiquei nem acionei Sync, não verifiquei site, não criei conta, não mexi em arquivo que a instrução não nomeou — salvo este `MAOS-LOG.md`, que é obrigatório. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
