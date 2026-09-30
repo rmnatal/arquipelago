@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 8,
+  "versao_esquema": 9,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -1190,8 +1190,17 @@
             },
             "motivo_sem_ficha": {
               "tipo": "string|ausente",
-              "obrigatorio": false,
-              "observacao": "O OUTRO DESFECHO DA MESMA TENTATIVA, e ele e tao obrigatorio de escrever quanto o sucesso — mesma logica do par `url_busca_gerada_em` / `motivo_sem_url_busca` da 25.2-b: ausente e diferente de tentado-e-falhou. Traz a data, as palavras-chave tentadas em ordem de degrau e quantas ofertas cada uma devolveu, para a proxima execucao saber se vale retentar ou se o problema e outro. Item com este campo continua servindo o piso da 25.2 e nao perde porta de compra nenhuma."
+              "obrigatorio": "SIM quando `degrau` for 4 e `url` estiver vazia",
+              "observacao": "O OUTRO DESFECHO DA MESMA TENTATIVA, e ele e tao obrigatorio de escrever quanto o sucesso — mesma logica do par `url_busca_gerada_em` / `motivo_sem_url_busca` da 25.2-b: ausente e diferente de tentado-e-falhou. **PASSOU A SER COBRADO EM 30/09/2026**, por despacho da ronda diaria tecnica daquele dia: dos 17 registros no degrau 4, doze traziam so `motivo_da_chave` — que conta como a chave foi MONTADA e nao o que a escada devolveu — e nada distinguia os dois estados. Item que serve o piso da 25.2 nao perde porta de compra nenhuma; o que ele nao pode e calar por que parou ali.",
+              "forma": "`CAUSA (<classe>): <o que nao muda>  ||  ULTIMA TENTATIVA <AAAA-MM-DD>: <o que a passada tentou e o que ouviu de volta>`. E a 25.4-b.3 ao pe da letra: campo de motivo guarda duas coisas com vidas diferentes, separadas por um marcador, e so a segunda se reescreve. Sem isso, ou a prosa cresce sem fim, ou a causa e apagada pela tentativa de hoje — e foi assim que os 39 links da Aquametria passaram dez dias carregando um motivo que mandava 'nem tentar' e havia deixado de ser verdade no quarto dia. A data e ISO porque data legivel e nao ordenavel nao responde 'qual motivo esta mais velho?'.",
+              "classes_da_causa": {
+                "nao-anunciado": "a escada inteira devolveu ZERO oferta. Nenhuma trava foi acionada porque nao houve candidato. So o mercado resolve.",
+                "marca-nao-anunciada": "houve oferta e NENHUMA traz a marca do registro. O produto nao e vendido sob o nome que este banco guarda. E o caso das 13 pastilhas: a Shopee tem o produto Glass Mosaic e o anuncia como CG10/CG21/CG33. Subir o degrau exigiria casar por ATRIBUTO — `tipo_de_casamento: \"equivalente\"`, DECISAO DO RAPHAEL registrada em dados/links-afiliado-pendentes.md. Esta classe e um pedido a ele, nao divida tecnica: contada junto com as de baixo, o pedido desaparece.",
+                "candidato-barrado-nome": "ha anuncio COM a marca e o que barra todos e o NOME — a trava 5b (o titulo nao traz o `nome_comercial` inteiro) ou a trava 2 (a cabeca do titulo nao e este produto). O rotulo NAO decide entre as duas leituras possiveis, porque a regra nao as mede: ou o nosso `nome_comercial` e descricao em vez do batismo do fabricante (secao 26), ou o anuncio e outro produto da mesma marca cuja diferenca esta no token que falta. Quem consertar abre o anuncio.",
+                "candidato-barrado-variante": "ha anuncio COM a marca e um IRMAO do banco disputou o titulo. Divida nossa, do lado da regra de casamento ou de um registro de variante que falta. E a distincao que a 25.4-b.4 pede, e ela so aparece depois de a marca passar."
+              },
+              "quem_escreve": "`ferramentas/medir-degrau-4.py`, que desce a escada pela Open API (25.6) e classifica pelo laudo da regra de `ferramentas/casar-anuncio.py`, importada e nunca copiada. Ela NAO grava `url`: subir o degrau e do `coletar-shopee.py`, e medir nao e agir. A primeira versao dela classificava pela trava que barrou o candidato e devolveu 17 de 17 na mesma classe, porque as travas correm em ORDEM e a 5b quase sempre falha antes de qualquer trava de irmao: media a ordem do codigo, nao o mundo. A pergunta que separa as causas no mundo e a trava 1 — algum anuncio traz a marca?",
+              "quem_cobra": "`ferramentas/validar-banco.py` (erro duro; desliga-se com CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1 so para a bateria) e `ferramentas/mutacoes-motivo-degrau-4.py`, 10 mutacoes, as 10 reprovadas e as 10 so pelo portao novo. O relatorio imprime `degrau 4 com motivo escrito: N de M` e a reparticao por classe, porque a 25.4-b.4 diz que causas somadas viram um numero que nao diz o que fazer."
             }
           },
           "a_escada_da_secao_25": {
@@ -3218,5 +3227,6 @@
     "chaves_novas": [
       "batismo_do_fabricante"
     ]
-  }
+  },
+  "o_que_mudou_na_versao_9": "30/09/2026 — `motivo_sem_ficha` deixou de ser opcional para quem esta no degrau 4 sem ficha, ganhou FORMA cobrada por portao (a da 25.4-b.3: causa + ultima tentativa datada, separadas por ` || `) e ganhou uma lista fechada de CLASSES de causa, para a 25.4-b.4 poder ser lida em numero. O que a mudanca conserta nao e um campo vazio: e doze registros que diziam como a chave foi montada e calavam o que a escada respondeu. Fica registrado que a classe `marca-nao-anunciada` e um PEDIDO AO RAPHAEL e as duas `candidato-barrado-*` sao divida nossa — e que era exatamente essa diferenca que a contagem antiga escondia."
 }

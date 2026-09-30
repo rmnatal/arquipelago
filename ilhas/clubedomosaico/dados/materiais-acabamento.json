@@ -858,7 +858,7 @@
         "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "FAMILIA (degrau abaixo): `protetor para fachadas quartzolit`, o nome comercial exato, devolveu ZERO oferta em 25/09/2026. O produto e de canal de obra e nao e anunciado por esse nome na Shopee",
-        "motivo_sem_ficha": "nenhum anuncio identificou este registro sozinho na escada de palavra-chave de 2026-09-29: 2 \"Quartzolit protetor para fachadas\" -> 0 ofertas; 3 \"impermeabilizante fachada quartzolit\" -> 9 ofertas; 4 \"Quartzolit protetor fachada\" -> 0 ofertas"
+        "motivo_sem_ficha": "CAUSA (candidato-barrado-nome): ha anuncio COM a marca (9 de 9 ofertas) e o que barra todos e o NOME: o titulo do vendedor nao traz o `nome_comercial` inteiro deste registro, ou a cabeca do titulo nao e este produto. Nenhum irmao do banco disputou, entao a divida e nossa: ou o `nome_comercial` e descricao e nao o batismo do fabricante (secao 26), ou o anuncio e outro produto da mesma marca. Quem consertar abre o anuncio — a regra nao separa os dois || ULTIMA TENTATIVA 2026-09-30: 2 \"Quartzolit protetor para fachadas\" -> 0 ofertas; 3 \"impermeabilizante fachada quartzolit\" -> 9 ofertas, 9 com a marca, a mais proxima barrada por: a cabeca do titulo nao e este produto: nenhuma das 4 primeiras palavras esta no nome comercial; 4 \"Quartzolit protetor fachada\" -> 0 ofertas"
       },
       "imagem": null,
       "fontes": {
@@ -972,7 +972,7 @@
         "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "FAMILIA (degrau abaixo): `fundo selador quartzolit` devolveu ZERO oferta em 25/09/2026. A palavra `fundo` nao aparece em titulo de anuncio; o que a Shopee anuncia e `selador`",
-        "motivo_sem_ficha": "nenhum anuncio identificou este registro sozinho na escada de palavra-chave de 2026-09-29: 2 \"Quartzolit fundo selador quartzolit\" -> 0 ofertas; 3 \"selador quartzolit\" -> 12 ofertas; 4 \"Quartzolit fundo selador\" -> 0 ofertas"
+        "motivo_sem_ficha": "CAUSA (candidato-barrado-variante): ha anuncio COM a marca (12 de 12 ofertas) e um irmao do banco disputou o titulo em 1 deles: a divida e da regra de casamento ou de um registro de variante que falta, nao do mercado || ULTIMA TENTATIVA 2026-09-30: 2 \"Quartzolit fundo selador quartzolit\" -> 0 ofertas; 3 \"selador quartzolit\" -> 12 ofertas, 12 com a marca, a mais proxima barrada por: o titulo traz a palavra de armadilha \"kit\"; 4 \"Quartzolit fundo selador\" -> 0 ofertas"
       },
       "imagem": null,
       "fontes": {

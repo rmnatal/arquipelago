@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-30T13:17Z
-executando_desde: 2026-09-30T16:17Z   # reserva da execucao das 16h17Z
+executando_desde: 2026-09-30T16:33Z   # reserva da execucao das 16h17Z, RENOVADA pela 1.1 (bloco passou de 40 min)
 ultima_ronda: 2026-09-30T14:53Z   # RONDA DIARIA TECNICA de 30/09/2026. 17 de 17 URLs em 200, porta de entrada da 29.2 inteira, /status na revisao 52 igual a do manifest, console limpo, zero orfa, zero &#038; em script, zero noindex indevido. F1 e F2 executadas com entrada real e os cinco numeros conferidos na mao. Teste de vida: 21 de 21 itens com url_produto VIVOS (17 Shopee pela API de ficha, 4 Mercado Livre no navegador), 0 morto, 0 esgotado, piso 38 de 38, 10 de 10 chaves de busca com resultado, zero intestavel. UM defeito novo, da 19.2, no DESPACHO DA SENTINELA de 30/09 no PROMPT.md: 12 dos 17 itens de degrau 4 sem motivo escrito. ZERO conserto. Os quatro consertos anteriores reconferidos no ar: os tres primeiros passaram e a etiqueta de robo agora passa nos CINCO alvos, fechando o item 2 do despacho de 28/09. O soft 404 na borda continua e foi medido tambem na robometria.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo

@@ -101,6 +101,11 @@ if SEM_PORTAO_DEGRAU:
     print("  ATENCAO: CDM_SEM_PORTAO_DEGRAU=1 — o degrau da escada da 25.1 volta a ser cobrado "
           "so de quem tem `url`, que e a regra ANTIGA, a que deixou 13 itens em null. So a "
           "bateria de mutacao usa isto.")
+SEM_PORTAO_MOTIVO_DEGRAU_4 = os.environ.get("CDM_SEM_PORTAO_MOTIVO_DEGRAU_4") == "1"
+if SEM_PORTAO_MOTIVO_DEGRAU_4:
+    print("  ATENCAO: CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1 — o motivo do degrau 4 NAO foi cobrado "
+          "nesta passada, que e a regra ANTIGA, a que deixou 12 dos 17 itens sem dizer por que "
+          "pararam. So a bateria de mutacao usa isto.")
 BASES = set(VOC["base"])
 AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
@@ -316,6 +321,16 @@ sem_busca_crua = 0    # secao 25.4-b: tem busca e nao guarda o endereco cru dela
 # nao some, e tambem o que converte pior: banco inteiro no 4 cumpre o esquema e
 # rende o minimo.
 por_degrau = {1: 0, 2: 0, 3: 0, 4: 0}
+# O MOTIVO DO DEGRAU 4, CONTADO POR CLASSE DE CAUSA (30/09/2026). A 25.4-b.4 diz
+# que "nao casou" tem causas que parecem uma e que, contadas juntas, "viram um
+# numero que nao diz o que fazer". Entao o portao nao conta quantos tem o campo:
+# conta quantos estao em CADA causa, porque e essa reparticao que diz o que fazer
+# — item cuja marca nem e anunciada espera decisao do Raphael, e item com
+# candidato barrado espera trava melhor ou registro de variante. Um numero so
+# mistura um pedido a ele com uma divida nossa.
+degrau_4_sem_ficha = 0
+degrau_4_com_motivo = 0
+por_causa_do_degrau_4 = {}
 casamentos_a_reconferir = []   # (onde, registro, titulo gravado) — reconferidos abaixo
 reconferidos = 0
 
@@ -569,6 +584,55 @@ for nome in arquivos_material:
         # banco que cumpre o esquema e nao rende nada.
         if af.get("degrau") in (1, 2, 3, 4):
             por_degrau[int(af["degrau"])] += 1
+
+        # POR QUE ESTE ITEM PAROU NO DEGRAU 4 (30/09/2026) — despacho da ronda
+        # diaria tecnica daquele dia, item 1.
+        #
+        # O portao do degrau, de 28/09, cobra que o degrau esteja ESCRITO. Ele
+        # nao ve o degrau 4 que nao diz por que. Medido no `main` de 30/09: dos
+        # 17 registros no 4, **12 traziam so `motivo_da_chave`** — texto como
+        # `"familia: medida"`, que conta como a chave foi MONTADA e nao o que a
+        # escada devolveu. Cinco escreviam o motivo de verdade e doze calavam, e
+        # nada distinguia os dois estados.
+        #
+        # Nao e zelo de arquivo. A 25.4-b.4 diz que "nao casou" tem causas que
+        # parecem uma — produto nao anunciado (so o mercado resolve) ou candidato
+        # barrado por trava (resolve-se com trava melhor ou com um registro de
+        # variante que falta) — e a 25.4-b.3 manda o campo separar a CAUSA, que
+        # nao muda, da ULTIMA TENTATIVA, que muda a cada passada. Sem a segunda
+        # escrita, a passada seguinte nao sabe se deve tentar de novo; e foi
+        # exatamente assim que os 39 links da Aquametria passaram dez dias
+        # carregando um motivo que mandava "nem tentar" e havia deixado de ser
+        # verdade no quarto dia (25.4-b.3).
+        #
+        # O portao cobra a FORMA, nunca o texto: o marcador ` || `, a palavra
+        # CAUSA com a classe entre parenteses e uma ULTIMA TENTATIVA com data
+        # ISO. Quem escreve e `ferramentas/medir-degrau-4.py`, que mede a escada
+        # pela Open API e classifica pelo laudo da regra de casamento.
+        if af.get("degrau") == 4 and not af.get("url"):
+            degrau_4_sem_ficha += 1
+            motivo = af.get("motivo_sem_ficha") or ""
+            partes = motivo.split(" || ")
+            causa = partes[0].strip() if partes else ""
+            tentativa = partes[1].strip() if len(partes) > 1 else ""
+            casado = re.match(r"^CAUSA \(([a-z0-9-]+)\):\s*\S", causa)
+            datada = re.match(r"^ULTIMA TENTATIVA (\d{4}-\d{2}-\d{2}):\s*\S", tentativa)
+            if SEM_PORTAO_MOTIVO_DEGRAU_4:
+                pass
+            elif not motivo.strip():
+                erro("%s: esta no degrau 4 e nao diz POR QUE — 25.4-b.4. `motivo_da_chave` "
+                     "conta como a chave foi montada, nao o que a escada devolveu. Rode "
+                     "ferramentas/medir-degrau-4.py --gravar" % onde)
+            elif not casado or not datada:
+                erro("%s: tem motivo do degrau 4 fora da forma da 25.4-b.3 — a causa (que nao "
+                     "muda) e a ultima tentativa (que muda a cada passada) se separam por ' || ', "
+                     "e a tentativa leva data ISO: `CAUSA (<classe>): ... || ULTIMA TENTATIVA "
+                     "<AAAA-MM-DD>: ...`. Sem as duas metades, ou a prosa cresce sem fim ou a "
+                     "causa e apagada pela tentativa de hoje" % onde)
+            else:
+                degrau_4_com_motivo += 1
+                classe = casado.group(1)
+                por_causa_do_degrau_4[classe] = por_causa_do_degrau_4.get(classe, 0) + 1
 
         # O CASAMENTO SE RECONFERE, NAO SE ACREDITA (29/09/2026).
         #
@@ -2209,6 +2273,14 @@ print("  piso NAO rastreavel ........ %d  (25.6 — divida de comissao, nao defe
 print("  busca sem endereco cru ..... %d  (25.4-b)" % sem_busca_crua)
 print("  a escada da 25.1, por degrau . 1:%d  2:%d  3:%d  4:%d  (soma %d)"
       % (por_degrau[1], por_degrau[2], por_degrau[3], por_degrau[4], sum(por_degrau.values())))
+print("  degrau 4 com motivo escrito  %d de %d  (25.4-b.3: causa + ultima tentativa datada)"
+      % (degrau_4_com_motivo, degrau_4_sem_ficha))
+# A REPARTICAO, e nao so o total: a 25.4-b.4 diz que causas contadas juntas
+# "viram um numero que nao diz o que fazer". `marca-nao-anunciada` e pedido de
+# decisao ao Raphael; `candidato-barrado-*` e divida nossa. Somados, o pedido
+# a ele desaparece dentro de uma divida tecnica que nao e dele.
+for _classe in sorted(por_causa_do_degrau_4):
+    print("    causa: %-28s %d" % (_classe, por_causa_do_degrau_4[_classe]))
 print("  itens sem imagem ........... %d" % sem_imagem)
 print("  casamentos reconferidos .... %d  (titulo gravado passado pela regra viva "
       "de casar-anuncio.py, contra o banco inteiro)" % reconferidos)

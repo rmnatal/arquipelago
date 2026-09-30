@@ -315,7 +315,7 @@
         "degrau": 4,
         "url_busca_gerada_em": "2026-09-25",
         "motivo_da_chave": "FAMILIA (degrau abaixo): a chave por SKU, `torques azulejista corte curvo cortag`, devolveu ZERO oferta em 25/09/2026",
-        "motivo_sem_ficha": "nenhum anuncio identificou este registro sozinho na escada de palavra-chave de 2026-09-29: 2 \"Cortag Torques Azulejista Corte Curvo\" -> 0 ofertas; 3 \"torques azulejista cortag\" -> 2 ofertas; 4 \"Cortag torque azulejista\" -> 2 ofertas"
+        "motivo_sem_ficha": "CAUSA (candidato-barrado-nome): ha anuncio COM a marca (4 de 4 ofertas) e o que barra todos e o NOME: o titulo do vendedor nao traz o `nome_comercial` inteiro deste registro, ou a cabeca do titulo nao e este produto. Nenhum irmao do banco disputou, entao a divida e nossa: ou o `nome_comercial` e descricao e nao o batismo do fabricante (secao 26), ou o anuncio e outro produto da mesma marca. Quem consertar abre o anuncio — a regra nao separa os dois || ULTIMA TENTATIVA 2026-09-30: 2 \"Cortag Torques Azulejista Corte Curvo\" -> 0 ofertas; 3 \"torques azulejista cortag\" -> 2 ofertas, 2 com a marca, a mais proxima barrada por: o titulo nao traz ['curvo'], que esta no nome comercial deste registro; 4 \"Cortag torque azulejista\" -> 2 ofertas, 2 com a marca, a mais proxima barrada por: o titulo nao traz ['curvo'], que esta no nome comercial deste registro"
       },
       "imagem": null,
       "fontes": {
