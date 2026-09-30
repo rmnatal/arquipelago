@@ -5,74 +5,52 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-30T13:17Z
-executando_desde: 2026-09-30T16:33Z   # reserva da execucao das 16h17Z, RENOVADA pela 1.1 (bloco passou de 40 min)
+ultima_execucao: 2026-09-30T16:40Z
+executando_desde: null
 ultima_ronda: 2026-09-30T14:53Z   # RONDA DIARIA TECNICA de 30/09/2026. 17 de 17 URLs em 200, porta de entrada da 29.2 inteira, /status na revisao 52 igual a do manifest, console limpo, zero orfa, zero &#038; em script, zero noindex indevido. F1 e F2 executadas com entrada real e os cinco numeros conferidos na mao. Teste de vida: 21 de 21 itens com url_produto VIVOS (17 Shopee pela API de ficha, 4 Mercado Livre no navegador), 0 morto, 0 esgotado, piso 38 de 38, 10 de 10 chaves de busca com resultado, zero intestavel. UM defeito novo, da 19.2, no DESPACHO DA SENTINELA de 30/09 no PROMPT.md: 12 dos 17 itens de degrau 4 sem motivo escrito. ZERO conserto. Os quatro consertos anteriores reconferidos no ar: os tres primeiros passaram e a etiqueta de robo agora passa nos CINCO alvos, fechando o item 2 do despacho de 28/09. O soft 404 na borda continua e foi medido tambem na robometria.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  O SEGUNDO DEGRAU DA 7b NUNCA TINHA SIDO MEDIDO, E AGORA E UM NUMERO COM LISTA DE COMPRAS.
-  Manifest e /status na revisao 52. NENHUMA URL NOVA (segue em 17), nenhum title e nenhuma
+  OS DOZE DIZIAM COMO A CHAVE FOI MONTADA E CALAVAM O QUE A ESCADA RESPONDEU.
+  Manifest e /status na revisao 53. NENHUMA URL NOVA (segue em 17), nenhum title e nenhuma
   description mudaram: o BLOCO A do despacho do Raphael de 24/09 segue intocado e a janela de
-  medicao de 30/09 segue limpa.
-  PORTA DE ENTRADA (29.2) ANTES DE TUDO: conferir-no-ar.py com 519 afirmacoes e 0 falha na origem;
-  leitura-do-visitante.py REPROVADO com 1 defeito, e e o esperado — o soft 404 do hospedeiro, com
-  dono escrito e fora do alcance de snippet daqui. Nenhum defeito novo. Rede pela 20.2: tres
-  passadas em clubedomosaico.com.br, 200 nas tres, com aquametria.com.br em 200 nas mesmas.
-  POR QUE ESTE BLOCO: a leitura de 30/09 continua fora do alcance desta nuvem, e eu CONFERI em vez
-  de herdar — GOOGLE_SA_B64, GOOGLE_SA_JSON, GOOGLE_SA_FILE e GOOGLE_APPLICATION_CREDENTIALS estao
-  as quatro ausentes, e o acesso do sentinela@ a sc-domain:clubedomosaico.com.br segue pendente.
-  Entao o BLOCO A e a faixa de description das quatro paginas seguem travados. O que as duas
-  execucoes anteriores escreveram — "nada na fila desta ilha" — e o que este bloco DERRUBOU.
-  A ORDEM DA 7b DO ARVORE.md ("banco, depois as filhas de nivel 3, so entao a mae de nivel 2") esta
-  escrita desde 12/09 e o SEGUNDO degrau nunca havia sido contado: o que existia era "nenhuma filha
-  de alicate existe", que diz o que falta e nao diz o que ja da. Medido agora nos 42 recortes que o
-  vocabulario do esquema admite, pelo portao INTEIRO da secao 9 (3 itens E um numero calculado):
-  7 passam, 3 passam so na contagem, 32 nao passam.
-  E NENHUMA CATEGORIA DO GUIA ALCANCA AS 3 FILHAS DA 16.5, nem somando todos os tipos dela — a mae
-  de nivel 2 continua fechada, agora por numero e nao por frase. Com a LISTA DE COMPRAS por
-  categoria: acabamento a 3 itens, rejunte e alicate a 5, cola e pastilha a 6, base e apoio a 9.
-  O PROXIMO PASSO FICOU DESBLOQUEADO E E DA FUNDACAO: coletar 1 impermeabilizante e 2 seladores
-  fecha as 3 filhas de acabamento, que e a categoria mais barata do Guia. Confirmado alcancavel
-  nesta passada — selador com rendimento, demaos e secagem declarados existe em pagina de
-  fabricante — e o proprio resultado REPRODUZIU o achado da 7b-ter: o Coral nomeia reboco, bloco,
-  concreto, gesso e fibrocimento e NAO nomeia MDF. Nao coletei: coleta e o bloco seguinte, e a
-  13 proibe misturar dois blocos numa passada sem a verificacao inteira de cada um.
-  E A CLASSIFICACAO DE SERP DA 14.9 INVERTEU A ORDEM QUE A FILA SUPUNHA: as duas filhas que a SERP
-  ABRE sao PERGUNTAS ("como cortar pastilha de vidro para mosaico", 8 de 10 blog velho e resposta
-  sem numero; "verniz para peca de mosaico artesanal", blogspot de 2010 e portal), e as duas que ela
-  RECUSA sao de PRODUTO — inclusive pastilha/vidro, a de mais banco da ilha, com 13 itens e tres
-  numeros em 12 deles, cuja SERP e 9 de 9 marketplace e loja. Quem vende produto ja ocupa a consulta
-  de produto; a consulta de metodo esta vazia.
-  DOIS DEFEITOS DO MEU PROPRIO INSTRUMENTO, achados por ele rodando e os dois declarados no arquivo
-  em vez de escondidos: (1) uma consulta voltou com SERP ESPANHOLA (Amazon MX, Leroy ES) porque o
-  canal de busca desta nuvem e dos EUA — esta como NAO MEDIDA, nao como consulta sem concorrente;
-  (2) eu pus Vonder e Cortag DENTRO da consulta, que puxa pagina de fabricante e e a trava de coleta
-  da secao 8 aplicada a SERP — tambem NAO MEDIDA, com o motivo, e refeita sem marca.
-  E CONTRADIZ O CORPUS DE 10/09 COM TODAS AS LETRAS, em vez de em silencio: ele classificou
-  "pastilhas de vidro para mosaico" como ABERTA com a MESMA evidencia que esta passada leu como
-  tomada. A diferenca e de regua, nao de dado — o corpus chamou de aberta porque ninguem responde a
-  pergunta tecnica, e a 14.9 manda classificar QUEM OCUPA. A 14.9 e a que decide se a pagina nasce.
-  A TABELA DA SECAO 2 DO ARVORE.md DIZIA 0 EM DUAS CATEGORIAS QUE SAIRAM DE ZERO EM 25/09 (alicate
-  6, acabamento 7), com a correcao escrita em prosa tres telas abaixo e nao na tabela que se le
-  primeiro. Corrigida, com coluna nova ("tipos que passam o portao da 9") e com PORTAO: eu havia
-  chamado a tabela de derivada tendo digitado os numeros, que e o defeito que esta ilha nomeia, e
-  agora --conferir a confere nas DUAS direcoes contra dados/filhas-do-guia.json.
-  TRES DEFEITOS DA PROPRIA FERRAMENTA, os tres achados por ela rodando e os tres antes do commit:
-  (1) um motivo contava os itens do banco onde queria dizer quantos sustentam recomendacao, e saiu
-  "os 7 itens sustentam" com 3 sustentando; (2) "pode fechar completando registro existente" dizia
-  que faltava um campo em 6 registros da cola — verdade literal que se le como UMA coleta e sao
-  seis, porque a propriedade mais perto era declarada por UM item so; agora so vale a UM registro de
-  distancia; (3) o gerador NAO era idempotente — a fronteira ganhava uma linha vazia por passada e
-  --conferir reprovava o arquivo que a passada anterior escreveu.
-  O QUE SOBROU A UM CAMPO, e nao a um produto: rejunte/cimenticio fecha com
-  liberacao_area_molhada_h no quartzolit-rejunte-piscinas, que JA mora no banco.
-  BANCADA: filhas-do-guia --autoteste 27 de 27 (5 jeitos diferentes de reprovar a tabela fabricada,
-  mais a idempotencia em tres passadas), validar-banco verde (escada 1:1 2:5 3:15 4:17, soma 38),
-  cobertura --conferir OK, mutacoes-arvore 29 de 29, casca 591, Loja 208, F1 200, F2 119, Tecnicas
-  123, Atelie, Leads e Prestacao aprovados — zero falha.
+  medicao de 30/09 continua limpa. conferir-no-ar 519 afirmacoes, 0 falha.
+  BLOCO: o item 1 do DESPACHO DA SENTINELA de 30/09, o unico da ilha que nao depende da leitura
+  semanal. Dos 17 registros no degrau 4, doze traziam so motivo_da_chave — que conta como a chave
+  foi MONTADA e nao o que a escada devolveu. A escada foi descida INTEIRA pela Open API para os 17,
+  por ferramentas/medir-degrau-4.py, com a regra de casar-anuncio.py importada e nunca copiada.
+  ELA NAO GRAVA url EM NENHUMA HIPOTESE, e e por isso que pode medir as 13 pastilhas que o
+  coletar-shopee.py exclui por decisao pendente do Raphael: medir nao e agir, e foi por confundir
+  os dois que elas passaram 17 dias carregando a frase 'elas nem foram tentadas'.
+  A REPARTICAO, que era o que o item pedia, e a 25.4-b.4 previa DUAS causas e a medicao achou TRES:
+  13 marca-nao-anunciada (nenhuma oferta traz a marca; degraus por codigo e por nome comercial dao
+  zero — e um PEDIDO AO RAPHAEL, o tipo_de_casamento 'equivalente', nao trava melhor), 2
+  candidato-barrado-nome (quartzolit-protetor-para-fachadas, cortag-torques-azulejista-corte-curvo)
+  e 2 candidato-barrado-variante (quartzolit-fundo-selador, cascola-pl500-adesivo-de-montagem).
+  Os quatro batem com o diagnostico escrito A MAO em 29/09 em dados/links-afiliado-pendentes.md,
+  que nenhuma maquina tinha conferido — diagnostico que a maquina reproduz deixa de ser opiniao.
+  O ERRO DESTA EXECUCAO, e ele vale mais que o item: a primeira versao do classificador decidia
+  pela trava que barrou o candidato e devolveu 17 de 17 NA MESMA CLASSE, que e exatamente o numero
+  que nao diz nada de que o despacho reclamava. As cinco travas de casar.compativel correm EM
+  ORDEM e a 5b quase sempre falha antes de qualquer trava de irmao ser avaliada: 'nenhuma trava de
+  irmao foi acionada' media a ordem do codigo, nao o mundo. O que separa as causas e a trava 1 —
+  algum anuncio traz a marca? Regua que mede a ordem em que o portao pergunta nunca reprova o portao.
+  PORTAO NOVO no validar-banco.py: degrau 4 sem ficha exige motivo_sem_ficha na forma da 25.4-b.3
+  (causa, que nao muda, mais ULTIMA TENTATIVA com data ISO, separadas por marcador). O relatorio
+  imprime 'degrau 4 com motivo escrito: 17 de 17' e a REPARTICAO POR CLASSE — somadas, o pedido ao
+  Raphael desaparece dentro de uma divida que nao e dele. Esquema do banco na v9.
+  BANCADA: mutacoes-motivo-degrau-4 10 de 10, as 10 so pelo portao novo (duas PRODUZEM mundo que o
+  banco nao tem e as duas recontam itens_esperando_link, senao era o portao do CABECALHO que as
+  pegava — mutacao pega pelo portao errado nao prova portao nenhum). validar-banco verde,
+  validar-pastilhas, mutacoes-degrau 8 de 8, mutacoes-casamento, teste-casamento 42,
+  mutacoes-pastilhas 14 de 14, casca 591, F1 24 estados, F2 119, Loja, Atelie, Leads, Tecnicas 123,
+  cobertura 353 — zero falha. leitura-do-visitante segue REPROVADO pelo soft 404 da borda, que e do
+  hospedeiro, esta com o Raphael desde 29/09 e hoje tambem foi medido na robometria.
+  PROXIMO PASSO: nada da Fundacao ate a leitura semanal de 30/09 acontecer. BLOCO A (Raphael,
+  24/09) espera o numero dela; o item 4 (metade) de 28/09 espera o BLOCO A; os quatro itens de
+  23/09 esperam a leitura; o item 2 de 30/09 e do hospedeiro.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

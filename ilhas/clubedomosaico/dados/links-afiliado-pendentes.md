@@ -1,10 +1,46 @@
 # Links de afiliado — Clube do Mosaico
 
-**ESTADO EM 29/09/2026 — a escada da 25.1 e `1:1 · 2:5 · 3:14 · 4:18`, soma 38.** Vinte dos trinta e oito
-registros servem FICHA de produto e dezoito servem o piso da 25.2, a pagina de busca. **Nenhum registro do banco
-esta sem porta de compra**, e nenhum tem piso nao rastreavel.
+**ESTADO EM 30/09/2026 — a escada da 25.1 e `1:1 · 2:5 · 3:15 · 4:17`, soma 38.** Vinte e um dos trinta e oito
+registros servem FICHA de produto e dezessete servem o piso da 25.2, a pagina de busca. **Nenhum registro do
+banco esta sem porta de compra**, e nenhum tem piso nao rastreavel.
 
-O que mudou hoje: **dez registros sairam do degrau 4 para o 3**, pela Open API (25.6) e pela regra de casamento
+**O QUE MUDOU HOJE: OS DEZESSETE DO DEGRAU 4 PASSARAM A DIZER POR QUE PARARAM ALI, E A DIVIDA SE PARTIU EM
+DUAS.** Nenhum link novo foi gerado e nenhum degrau subiu. O que existia era um numero — "17 no degrau 4" — que
+nao dizia o que fazer, e cinco motivos escritos contra doze calados. A ronda de 30/09 mediu isso e despachou; a
+escada foi descida INTEIRA pela Open API para os dezessete, com a regra de `ferramentas/casar-anuncio.py`
+importada, por `ferramentas/medir-degrau-4.py`.
+
+| causa medida | quantos | o que ela pede, e de quem |
+|---|---|---|
+| `marca-nao-anunciada` | **13** | as pastilhas. Os degraus por codigo e por nome comercial devolvem ZERO e os degraus largos devolvem catalogo de outras marcas: **nenhuma oferta traz a marca**. Pede a DECISAO DO RAPHAEL sobre `afiliado.tipo_de_casamento: "equivalente"`, escrita mais abaixo neste arquivo. Nao e divida tecnica e nao se conserta com trava melhor |
+| `candidato-barrado-nome` | **2** | `quartzolit-protetor-para-fachadas` e `cortag-torques-azulejista-corte-curvo`. Ha anuncio COM a marca e o que barra todos e o NOME. **Duas leituras possiveis, e a regra nao as separa:** ou o nosso `nome_comercial` e descricao em vez do batismo do fabricante (secao 26), ou o anuncio e outro produto da mesma marca — no torques, os anuncios sao de corte RETO e o registro e o CURVO. Quem consertar abre o anuncio |
+| `candidato-barrado-variante` | **2** | `quartzolit-fundo-selador` e `cascola-pl500-adesivo-de-montagem`. Ha anuncio COM a marca e um IRMAO do banco disputou o titulo. Divida nossa, do lado da regra de casamento ou de um registro de variante que falta |
+
+**E A MEDICAO CONFIRMOU, POR MAQUINA, O DIAGNOSTICO QUE ESTAVA ESCRITO A MAO AQUI EM 29/09.** A tabela dos
+"cinco que nao subiram", logo abaixo, foi escrita lendo ensaio com o olho. Hoje a classificacao saiu do laudo da
+regra, sem ninguem olhar, e caiu nos mesmos lugares: os tres da Quartzolit e o da Cortag como divida de nome ou
+de variante, nenhum deles como produto inexistente. **Diagnostico escrito a mao que a maquina reproduz deixa de
+ser opiniao.**
+
+**O QUE A PRIMEIRA VERSAO DA FERRAMENTA ERROU, e vale mais que o resultado dela.** Ela classificava pela trava
+que barrou o candidato e devolveu **17 de 17 na mesma classe** — exatamente o numero que nao diz nada de que o
+despacho reclamava. A causa: em `casar.compativel` as travas correm em ORDEM e a 5b (o titulo tem de trazer o
+nome comercial inteiro) quase sempre falha antes de qualquer trava de irmao ser avaliada. **"Nenhuma trava de
+irmao foi acionada" media a ordem do codigo, nao o mundo.** A pergunta que separa as causas no mundo e a trava 1:
+algum anuncio traz a marca? **Regua que mede a ordem em que o portao pergunta nunca reprova o portao.**
+
+**O motivo agora tem FORMA cobrada por portao** (25.4-b.3): `CAUSA (<classe>): ... || ULTIMA TENTATIVA
+<AAAA-MM-DD>: ...`. A causa nao se reescreve; a tentativa, sim, a cada passada. O `validar-banco.py` reprova
+degrau 4 sem ficha e sem esse campo, imprime `degrau 4 com motivo escrito: 17 de 17` e **imprime a reparticao
+por classe** — porque somadas, o pedido ao Raphael desaparece dentro de uma divida que nao e dele. Bateria:
+`ferramentas/mutacoes-motivo-degrau-4.py`, 10 mutacoes, 10 reprovadas, as 10 so pelo portao novo. Esquema do
+banco na v9.
+
+---
+
+**ESTADO EM 29/09/2026 (historico):** a escada era `1:1 · 2:5 · 3:14 · 4:18`.
+
+O que mudou naquele dia: **dez registros sairam do degrau 4 para o 3**, pela Open API (25.6) e pela regra de casamento
 de `ferramentas/casar-anuncio.py` — tres vernizes da Acrilex, o verniz protetor de piso da Quartzolit, cinco
 alicates/cortadores (Cortag e Vonder) e o Silicone Acetico Maxx da Tekbond. Cada um ganhou `url`, `url_produto`
 (o teste de vida da 25.4-b), o degrau da 25.1 e **foto medida** — dez fotos, que e a primeira vez que este banco
@@ -28,6 +64,15 @@ portao via isso porque nada, ate hoje, comparava esse campo com um texto de fora
 primeiro a comparar, e o que ela achou nao foi um anuncio: foi um campo do proprio banco escrito no papel
 errado.** Consertar os tres e trabalho de coleta (achar o batismo na pagina do fabricante), e o egresso a
 `quartzolit.weber` continua em 403 — esta na lista de dominios do Raphael.
+
+> **A METADE "NEM FORAM TENTADAS" DEIXOU DE SER VERDADE EM 30/09/2026, e por isso a frase nao foi apagada.**
+> Elas foram tentadas — a escada inteira, pela Open API, uma vez por registro — e o resultado esta gravado no
+> `motivo_sem_ficha` de cada uma: degraus 1 e 2 (marca + codigo, marca + nome comercial) devolvem **zero oferta**,
+> e os degraus largos devolvem ofertas em que a marca **nao aparece**. Isso nao muda a decisao pendente: muda o
+> que se sabe sobre ela. Ate 30/09, "nem foram tentadas" era uma afirmacao sobre NOSSO trabalho; agora ha uma
+> medicao sobre O MERCADO, e ela diz que o caminho do codigo esta fechado, e nao apenas inexplorado. **E o que a
+> 25.4-b.3 ensina, na letra: motivo que diz "nem tentamos" manda a execucao seguinte nao tentar, e fica assim
+> por quanto tempo ninguem olhar.** Aqui foram dezessete dias.
 
 **AS TREZE PASTILHAS CONTINUAM FORA, e nao por falha da regra: elas nem foram tentadas.** A decisao pendente e a
 de baixo, "As 10 pastilhas ficaram de fora, e por que" — hoje sao treze, e o caminho continua sendo o mesmo

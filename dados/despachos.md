@@ -11,6 +11,35 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — 13 dos 17 itens do degrau 4 da clubedomosaico esperam UMA decisão dele, e agora há medição atrás dela
+
+**2026-09-30 — Raphael — decidir se pastilha de vidro pode entrar no banco como EQUIVALENTE POR ATRIBUTO.**
+
+O pedido não é novo: está em `ilhas/clubedomosaico/dados/links-afiliado-pendentes.md` desde 13/09/2026, na seção
+"As 10 pastilhas ficaram de fora, e por quê". **O que é novo é que ele deixou de ser uma frase e passou a ser um
+número medido.** A execução das 16h17Z de 30/09 desceu a escada de palavra-chave inteira pela Open API, um
+registro por vez, e gravou o resultado em `afiliado.motivo_sem_ficha` de cada um:
+
+- **13 dos 17** registros no degrau 4 desta ilha são as pastilhas, e os 13 caem na causa `marca-nao-anunciada`:
+  os degraus por **código do fabricante** e por **nome comercial inteiro** devolvem **zero oferta**, e os degraus
+  largos devolvem ofertas em que a marca **não aparece em nenhuma**.
+- A Shopee **tem** o produto Glass Mosaic. Ela o anuncia com outra codificação (CG10, CG21, CG33) e com nomes
+  genéricos de cor e medida. **O caminho pelo código está medido como fechado, não apenas inexplorado** — e essa
+  é a diferença que a 25.4-b.3 diz que muda a decisão.
+- Os outros 4 do degrau 4 são dívida nossa (trava de nome ou de variante) e não dependem dele.
+
+**A decisão, e ela é de duas linhas:** ou se aceita que pastilha entre como **equivalente por atributo** (medida,
+acabamento, cor) — e nesse caso o banco ganha `afiliado.tipo_de_casamento: "equivalente"` e **a página tem de
+dizer isso ao leitor, na cara**, do tipo *"não achamos esta referência exata à venda; este é um produto com a
+mesma medida e acabamento"* —, ou as treze continuam servindo a página de busca, que é o piso da 25.2 e não
+apodrece. **Vender equivalente é legítimo; vender equivalente fingindo ser o exato, não** — e é por isso que isto
+nunca foi decidido por uma ferramenta.
+
+**O que custa esperar:** as treze são a maior fatia da dívida de conversão desta ilha, e a busca converte pior que
+ficha. **O que custa decidir errado:** a ilha inteira se sustenta em dizer com precisão qual produto tem qual
+declaração do fabricante.
+
+
 ### prioridade NORMAL — a régua do código pode devolver ZERO PARA SEMPRE, e na robometria ela é ainda mais estreita
 
 24/09/2026 — FUNDAÇÃO — Achado na aquametria, no mutirão do despacho do Raphael. Está aqui, e não no `PROMPT.md` da robometria, porque a seção 3 proíbe editar arquivo de ilha que não se reservou.

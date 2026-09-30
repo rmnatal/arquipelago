@@ -3,6 +3,149 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+30/09/2026 16:3xZ — OS DOZE DIZIAM COMO A CHAVE FOI MONTADA E CALAVAM O QUE A ESCADA RESPONDEU
+
+Manifest e `/status` na **revisão 53**, conferidos no ar. Nenhuma URL nova, nenhum
+endereço mudou, nenhum `<title>` e nenhuma `description` mudaram: o **BLOCO A** do
+despacho do Raphael de 24/09 continua intocado e a janela de medição de 30/09 segue
+limpa — o veredito dele é de 08/10 e a troca de título espera a leitura semanal, que
+ainda não aconteceu hoje. `conferir-no-ar.py`: **519 afirmações, 0 falha.**
+
+**O bloco desta execução é o item 1 do DESPACHO DA SENTINELA de 30/09**, e pela 18.1
+ele é o único item da ilha que não depende da leitura semanal: o BLOCO A espera 30/09,
+o item 4 (metade) do despacho de 28/09 espera o BLOCO A, e os quatro itens do despacho
+de 23/09 esperam a leitura. **Nada foi construído, por 18.5: verificação antes de
+construção.**
+
+## O QUE O DESPACHO PEDIA, E POR QUE NÃO ERA ZELO DE ARQUIVO
+
+Dos 38 registros do banco, **17 estão no degrau 4** — servem a página de busca, que é
+o piso da 25.2. Cinco escreviam por que pararam ali; **doze traziam só
+`motivo_da_chave`**, texto como `"familia: medida"`, que conta como a chave foi
+MONTADA e não o que a escada de palavra-chave devolveu. Os dois estados eram a mesma
+tela, e a 25.4-b.4 diz o preço disso: "não casou" tem causas que parecem uma — produto
+que ninguém anuncia (só o mercado resolve) ou candidato barrado por trava (resolve-se
+com trava melhor ou com um registro de variante que falta) — e **contadas juntas viram
+um número que não diz o que fazer.**
+
+## O QUE FOI MEDIDO, E A FERRAMENTA QUE NÃO PODIA SER O COLETOR
+
+`ferramentas/medir-degrau-4.py` desceu a escada **inteira** pela Open API (25.6) para
+os dezessete, com a regra de casamento de `casar-anuncio.py` **importada, nunca
+copiada**. Ela não para no primeiro degrau que casa, ao contrário do coletor: quem mede
+quer a escada toda, senão o motivo fala de um degrau e cala os outros três.
+
+**Ela não grava `url` em nenhuma hipótese, e é isso que a deixa medir as 13 pastilhas.**
+O `coletar-shopee.py` as exclui por `FORA = ('dados/materiais-pastilhas.json',)`, e com
+razão: subir o degrau delas dependeria de `afiliado.tipo_de_casamento: "equivalente"`,
+que é decisão do Raphael. **Mas medir não é agir** — e foi por confundir os dois que
+elas ficaram de 13/09 a 30/09 carregando a frase *"elas nem foram tentadas"*, que é
+exatamente a família de defeito que a 25.4-b.3 nomeia: motivo que diz "nem tentamos"
+manda a execução seguinte não tentar, e fica assim por quanto tempo ninguém olhar.
+**Dezessete dias, aqui.**
+
+## A REPARTIÇÃO, QUE É O QUE O DESPACHO PEDIA — E ELA NÃO É A DA 25.4-b.4
+
+| causa medida | quantos | de quem é a dívida |
+|---|---|---|
+| `marca-nao-anunciada` | **13** | do Raphael. Nenhuma oferta da escada traz a marca: degraus 1 e 2 (marca + código, marca + nome comercial) devolvem **zero** e os largos devolvem catálogo de outras marcas. Pede a decisão do casamento por atributo, não trava melhor |
+| `candidato-barrado-nome` | **2** | nossa. `quartzolit-protetor-para-fachadas` e `cortag-torques-azulejista-corte-curvo` |
+| `candidato-barrado-variante` | **2** | nossa. `quartzolit-fundo-selador` e `cascola-pl500-adesivo-de-montagem` |
+
+**A 25.4-b.4 previa duas causas e a medição achou três**, e a terceira é a que mais
+importa: `marca-nao-anunciada` não é "produto não anunciado" (a Shopee **tem** o
+produto Glass Mosaic, anunciado como CG10/CG21/CG33) nem "candidato barrado por trava
+que se pode melhorar" — é **pedido de decisão**. Somada a qualquer das outras duas, o
+pedido ao Raphael desaparece dentro de uma dívida técnica que não é dele. Por isso o
+relatório do validador imprime a repartição, e não só o total.
+
+**E a medição confirmou, por máquina, o diagnóstico que estava escrito à mão em 29/09**
+em `dados/links-afiliado-pendentes.md` — os três da Quartzolit e o da Cortag caíram como
+dívida de nome ou de variante, nenhum como produto inexistente. Aquela tabela tinha sido
+escrita lendo ensaio com o olho; hoje a classificação saiu do laudo da regra, sem
+ninguém olhar, e caiu nos mesmos lugares.
+
+## O ERRO DESTA EXECUÇÃO, ESCRITO PORQUE VALE MAIS QUE O ITEM
+
+A **primeira versão do classificador** decidia a causa pela trava que barrou o
+candidato, e o ensaio das 17 devolveu **17 de 17 na mesma classe** — precisamente o
+número que não diz nada de que o despacho reclamava. A causa do erro: em
+`casar.compativel` as cinco travas correm **em ordem** e a primeira que falha encerra o
+julgamento, e a trava 5b (o título tem de trazer o `nome_comercial` inteiro) quase
+sempre falha antes de qualquer trava de irmão ser avaliada. **"Nenhuma trava de irmão
+foi acionada" media a ordem do código, não o mundo.**
+
+O conserto foi trocar a pergunta: o que separa as causas é a **trava 1** — algum
+anúncio da escada traz a marca deste registro? Zero oferta em toda a escada é
+`nao-anunciado`; oferta sem a marca é `marca-nao-anunciada`; oferta **com** a marca é
+dívida nossa, e aí a trava que barrou diz se é de nome ou de variante. **Régua que mede
+a ordem em que o portão pergunta nunca reprova o portão.**
+
+E uma segunda honestidade, na hora de batizar as classes: a primeira versão chamava uma
+delas de `candidato-barrado-batismo`, afirmando que o nosso `nome_comercial` é que
+estava errado. Para a Quartzolit é verdade (seção 26), para o torques da Cortag **não**
+— lá o `nome_comercial` está certo e os anúncios são de corte RETO. A trava 5b não
+distingue as duas leituras, então o rótulo passou a ser `candidato-barrado-nome` e o
+campo diz, com todas as letras, que quem consertar tem de abrir o anúncio.
+
+## O PORTÃO, E ELE COBRA A FORMA E NUNCA O TEXTO
+
+`validar-banco.py` reprova registro no degrau 4 sem ficha cujo `motivo_sem_ficha` não
+esteja na forma da 25.4-b.3: `CAUSA (<classe>): ... || ULTIMA TENTATIVA <AAAA-MM-DD>:
+...`. A causa não se reescreve; a tentativa, sim, a cada passada. O relatório passou a
+imprimir **`degrau 4 com motivo escrito: 17 de 17`** — que é o critério de pronto que o
+despacho declarou — e a repartição por classe abaixo dele.
+
+**Bateria nova:** `ferramentas/mutacoes-motivo-degrau-4.py`, **10 mutações, 10
+reprovadas, as 10 só pelo portão novo** (desligado por
+`CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1`). Atacam uma metade da forma por vez: o campo
+ausente, a prosa de uma metade só que era a forma de 29/09 e passava, a causa sem
+classe, a classe escrita em prosa com maiúscula (duas grafias da mesma causa viram duas
+causas e a repartição soma errado **sem reprovar**), a tentativa sem data, a data em
+formato brasileiro — legível e não ordenável — e a causa vazia dentro da forma certa.
+Duas **produzem o mundo** que o banco não tem: ficha achada com link não encurtado, e
+item que **cai** do degrau 3 de volta para o 4 quando o anúncio sai do ar. As duas
+recontam `itens_esperando_link` do cabeçalho, porque sem isso era o portão do CABEÇALHO
+que as pegava — e **mutação pega pelo portão errado não prova portão nenhum**: era
+assim que as duas apareciam como "outro portão já pegava" na primeira rodada.
+
+`dados/esquema-banco.json` foi para a **v9**, declarando a forma, as quatro classes,
+quem escreve e quem cobra.
+
+## BANCADAS, TODAS VERDES
+
+`validar-banco` · `validar-pastilhas` · `mutacoes-degrau` 8/8 · `mutacoes-casamento`
+17/17 · `teste-casamento` 42 · `mutacoes-pastilhas` 14/14 · `teste-casca` 591 ·
+`teste-f1` 24 estados · `teste-f2` 119 · `teste-loja` · `teste-atelie` · `teste-leads` ·
+`teste-tecnicas` 123 · `conferir-cobertura` 353 · `conferir-no-ar` **519 afirmações, 0
+falha**. `leitura-do-visitante` continua **REPROVADO pelo soft 404 da borda**, que é do
+hospedeiro, está com o Raphael desde 29/09 e hoje também foi medido na robometria.
+
+## O PRÓXIMO PASSO DESBLOQUEADO
+
+**Nada da Fundação, até a leitura semanal de 30/09 acontecer.** Os quatro itens que
+restam nesta ilha dependem todos dela, e é uma dependência escrita, não uma escolha:
+
+1. **BLOCO A** (Raphael, 24/09) — título e meta das três páginas de primeira página.
+   Espera a leitura de 30/09 por ordem do próprio despacho; o retrato "antes" já está
+   gravado em `dados/posicoes.md` desde 29/09.
+2. **Item 4 (metade) do despacho de 28/09** — a faixa de 120 a 160 nas quatro
+   `description` acima de 160. Espera o BLOCO A, porque é a outra metade da mesma
+   promessa de SERP.
+3. **Itens 1 e 2 e Propostas 1 e 3 do despacho de 23/09** — os quatro só fecham com
+   número da leitura semanal: a saída de `/author/` de `dados/posicoes.md`, o formato
+   `clubedomosaico-f2---` no Relatório de cliques, o CTR de `qual-cola` e o primeiro
+   clique orgânico.
+4. **Item 2 do despacho de 30/09** — o soft 404 da borda. É do hospedeiro e não se
+   conserta daqui.
+
+**E um pedido novo ao Raphael, que esta execução não inventou e sim mediu:** a decisão
+do `tipo_de_casamento: "equivalente"` para as 13 pastilhas deixou de ser uma frase
+antiga e passou a ser uma linha de banco com medição de hoje atrás dela. São 13 dos 17
+itens do degrau 4 — a maior fatia da dívida de conversão desta ilha — e o caminho pelo
+código está **medido como fechado**, não apenas inexplorado.
+
+
 29/09/2026 19:16Z — O BATISMO DO FABRICANTE JÁ ESTAVA NO REPOSITÓRIO, E O EGRESSO NÃO ERA O QUE TRAVAVA
 
 Manifest e `/status` na **revisão 50**, conferidos no ar. Nenhuma URL nova, nenhum

@@ -71,6 +71,21 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ## DESPACHO DA SENTINELA — 2026-09-30 (RONDA DIÁRIA TÉCNICA, 14h53Z) — UM ITEM NOVO; OS QUATRO DE 28/09 RECONFERIDOS NO AR E CONFIRMADOS
 
+> **ESTADO DESTE DESPACHO EM 30/09/2026 às 16h3xZ, pela 18.3 — O ITEM 1 SAIU E NÃO SOBROU NADA PARA A FUNDAÇÃO.**
+> O **item 1** está CUMPRIDO e conferido contra o critério de pronto que ele mesmo declarou (18.4): o validador
+> imprime `degrau 4 com motivo escrito: 17 de 17`, reprova a forma errada, e a bateria nova fecha 10 de 10 só pelo
+> portão novo. O detalhe ficou escrito no lugar do item, e não apagado, porque o erro que a execução cometeu no
+> caminho — um classificador que media a ordem das travas e devolveu 17 de 17 na mesma classe — é a parte que a
+> próxima execução precisa ler.
+>
+> O **item 2** (soft 404 na borda) continua aberto e **não é trabalho da Fundação**: é camada de cache do
+> hospedeiro, está com o Raphael desde 29/09 e hoje foi medido também na robometria. `leitura-do-visitante.py`
+> segue fechando **REPROVADO por esse único defeito**, que é vermelho esperado com dono escrito.
+>
+> **E um pedido NOVO ao Raphael saiu deste item, medido e não inventado:** 13 dos 17 registros do degrau 4 são as
+> pastilhas e os 13 esperam a decisão do `tipo_de_casamento: "equivalente"`. Está em `dados/despachos.md`, na
+> lista de ABERTOS.
+
 **RECONFERÊNCIA DA 19.4(c), antes de qualquer outra coisa.** As quatro linhas de `dados/consertos.md` foram abertas primeiro e reconferidas no ar, com quebra de cache:
 
 - **24/09 — a porta de entrada (29.2): PASSOU pela segunda ronda seguida.** As 17 URLs do `wp-sitemap.xml` em **200**; `/wp-sitemap.xml` em 200 com `application/xml` e XML de sitemap de verdade; `/robots.txt` em 200 e `text/plain`; `/wp-json/` em 200 e `application/json`; e um caminho inexistente respondendo **404 na página desta ilha**, não na do hospedeiro.
@@ -86,13 +101,35 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 **TESTE DE VIDA DOS LINKS (25.4 e 25.4-b), do navegador, sem gastar um clique de afiliado:** **21 de 21 itens com `url_produto` VIVOS**, 0 morto, 0 esgotado. **17 da Shopee** pela API de ficha (`api/v4/pdp/get_pc`, `item_status: normal` nos 17, título batendo com o registro) e **4 do Mercado Livre** (`/p/MLB...`) abertos no navegador, os quatro com botão "Comprar agora" e preço; a expressão "Sem estoque" que aparece no HTML dos dois rejuntes/durepoxi é o **texto de erro do seletor de quantidade**, não o estado do anúncio — medido e descartado. **Piso da 25.2: 38 de 38** com `url_busca`; **10 de 10** chaves de busca medidas com resultado (de 42 a 5.913 ofertas), inclusive a `cascola adesivo de montagem pl500`, que em 28/09 tinha caído no desvio para CAPTCHA. **Itens intestáveis: ZERO** — nenhum item do banco tem `url` sem `url_produto`.
 
-### 1. DOZE DOS DEZESSETE ITENS DE DEGRAU 4 NÃO DIZEM POR QUE PARARAM NO DEGRAU 4 — e a 25.4-b.4 existe exatamente para essa distinção
+#### ~~1. DOZE DOS DEZESSETE ITENS DE DEGRAU 4 NÃO DIZEM POR QUE PARARAM NO DEGRAU 4~~ — **CUMPRIDO em 30/09/2026 às 16h3xZ, manifest e `/status` na revisão 53**
 
-**O que foi medido, item por item, no `main` de hoje:** 17 dos 38 registros estão no **degrau 4** (sem ficha, servindo só a busca). Cinco deles escrevem o motivo — `quartzolit-protetor-para-fachadas`, `quartzolit-fundo-selador`, `cortag-torques-azulejista-corte-curvo`, `cascola-pl500-adesivo-de-montagem` e `glassmosaic-st5102` trazem `motivo_sem_ficha` ou um `motivo_da_chave` que nomeia a escada percorrida e o que ela devolveu. **Os outros doze não escrevem nada além da chave**: `glassmosaic-k2501`, `glassmosaic-k2502`, `glassmosaic-mix2510`, `glassmosaic-102`, `glassmosaic-k117`, `glassmosaic-k77`, `glassmosaic-k66`, `glassmosaic-a11`, `glassmosaic-a61`, `glassmosaic-a37`, `glassmosaic-ic02` e `pastilhart-af1500` têm só `"motivo_da_chave": "familia: medida"` ou `"familia: linha + medida"` — que diz como a chave foi montada, **não** por que nenhum anúncio casou com o registro.
+**Conferido contra o critério de pronto que o próprio item declarou (18.4), e ele era medível por portão:** o
+`validar-banco.py` imprime **`degrau 4 com motivo escrito: 17 de 17`**, e reprova registro no degrau 4 sem ficha
+cujo `motivo_sem_ficha` não esteja na forma da 25.4-b.3 — `CAUSA (<classe>): ... || ULTIMA TENTATIVA
+<AAAA-MM-DD>: ...`, a causa que não muda separada por marcador da tentativa que se reescreve a cada passada.
+Bateria `ferramentas/mutacoes-motivo-degrau-4.py`: **10 mutações, 10 reprovadas, as 10 só pelo portão novo.**
+Esquema do banco na **v9**.
 
-**Por que isso importa e não é zelo de arquivo:** a **25.4-b.4** diz que "não casou" tem duas causas que parecem uma — o produto não está anunciado (só se resolve quando o mercado mudar) ou os candidatos foram **barrados por trava** (pode se resolver com trava melhor ou com um registro de variante que falta). Contadas juntas, viram um número que não diz o que fazer. E a **25.4-b.3** manda o campo separar a **causa** (não muda) da **última tentativa** (muda a cada passada); sem ela escrita, a passada seguinte não sabe se deve tentar de novo. Hoje esses doze são metade do banco em degrau 4 e ninguém sabe qual das duas dívidas eles são. **É dado do banco: pela 19.2 a Sentinela não conserta.**
+**O motivo foi MEDIDO, não escrito de cabeça.** `ferramentas/medir-degrau-4.py` desceu a escada inteira pela Open
+API para os dezessete, com a regra de `casar-anuncio.py` importada. Ela não grava `url` em nenhuma hipótese, e é
+por isso que pôde medir as treze pastilhas que o `coletar-shopee.py` exclui por decisão pendente do Raphael:
+**medir não é agir**, e foi por confundir os dois que elas passaram dezessete dias carregando a frase "elas nem
+foram tentadas".
 
-**Pronto quando:** os doze registros acima trouxerem, no `afiliado`, um campo de motivo que nomeie (a) a causa — zero oferta na escada, ou candidato barrado e por qual trava — e (b) a data da última tentativa, na forma que a 25.4-b.3 pede; e o validador do banco reprovar registro em degrau 4 sem esse campo, do mesmo jeito que já reprova registro publicável sem o campo de tentativa da 25.2-b. Medir com o próprio validador: ele passa a contar "degrau 4 com motivo escrito: 17 de 17".
+**A REPARTIÇÃO, que era o que o item pedia — e a 25.4-b.4 previa duas causas, a medição achou três:**
+
+| causa medida | quantos | de quem é |
+|---|---|---|
+| `marca-nao-anunciada` | **13** | **do Raphael.** Nenhuma oferta da escada traz a marca; os degraus por código e por nome comercial devolvem zero. Pede a decisão do `tipo_de_casamento: "equivalente"`, não trava melhor |
+| `candidato-barrado-nome` | **2** | nossa — `quartzolit-protetor-para-fachadas`, `cortag-torques-azulejista-corte-curvo` |
+| `candidato-barrado-variante` | **2** | nossa — `quartzolit-fundo-selador`, `cascola-pl500-adesivo-de-montagem` |
+
+**E O ERRO DA PRÓPRIA EXECUÇÃO, que vale mais que o item:** a primeira versão do classificador decidia a causa
+pela trava que barrou o candidato e devolveu **17 de 17 na mesma classe** — exatamente o número que não diz nada
+de que este item reclamava. As cinco travas de `casar.compativel` correm **em ordem** e a 5b quase sempre falha
+antes de qualquer trava de irmão ser avaliada: **"nenhuma trava de irmão foi acionada" media a ordem do código,
+não o mundo.** O que separa as causas é a trava 1 — algum anúncio traz a marca? O relato inteiro está no
+`REGISTRO.md` de 30/09 e a repartição em `dados/links-afiliado-pendentes.md`.
 
 ### 2. O SOFT 404 NA BORDA CONTINUA, E HOJE ELE FOI MEDIDO TAMBÉM NA ROBOMETRIA — a pendência deixou de ser desta ilha
 
