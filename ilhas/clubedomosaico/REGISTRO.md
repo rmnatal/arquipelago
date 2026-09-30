@@ -6125,3 +6125,46 @@ reprovadas, `mutacoes-apoio` 24 de 24** — os números que o registro de 28/09 
   de 30/09 por ordem escrita do Raphael, e a janela segue limpa.
 - **Não afrouxou nenhuma régua** para o mundo fabricado passar. O degrau passou a ser derivado, não
   tolerado.
+
+## DESEMBARQUE E VERIFICAÇÃO NO AR
+
+Push aceito na primeira tentativa. Sync acionado **depois** do push, porque ele lê o
+`manifest.json` do `main` pelo `raw.githubusercontent` — o disparo anterior ao push leu a revisão
+**50** e foi descartado, que é a forma de "commit sem Sync não é entrega" da seção 20 com a ordem
+invertida. Sync na **revisão 51**, 14 aplicados, e `/status` devolvendo **51**, igual à do manifest.
+
+**BANCADA DESTA EXECUÇÃO.** Casca 591, Loja 208, F1 200, F2 119, Técnicas 123, Ateliê 289, Leads
+211, Prestação 5 — **zero falha**. `validar-banco.py` verde (38 materiais, 0 sem saída de compra, 0
+piso não rastreável, escada **1:1 · 2:5 · 3:15 · 4:17**, soma 38). `cobertura.py` recontada **sem
+mudança** — seguem duas categorias em zero (`base`, `apoio`). Baterias: `mutacoes-degrau` 8 de 8,
+`mutacoes-batismo` 14 de 14, `mutacoes-casamento` 5 de 5 no banco, `mutacoes-acabamento` 14 de 14,
+`mutacoes-base` **20 de 20** e `mutacoes-apoio` **24 de 24** (as duas de volta ao verde nesta
+execução). `medir-egresso.py --autoteste` **29 de 29**. **E no ar: `conferir-no-ar.py` com 519
+afirmações e 0 falha**, medido antes e depois do desembarque.
+
+**E O QUE ESTA EXECUÇÃO NÃO VIU FECHAR, escrito em vez de omitido:** `mutacoes-cobertura.py` roda
+**dois portões inteiros por mutação** (`validar-banco.py` e `teste-f2.php`, este varrendo 105
+estados) e não terminou dentro desta execução. O que dela **está medido**: o mundo intacto sai
+**APROVADO** — *"como tem que estar antes de começar"*, que é exatamente a afirmação que estava
+falhando em `mutacoes-base` e `mutacoes-apoio` — e as três primeiras mutações **reprovaram como
+deviam**, com a régua do censo e a do snippet dando o mesmo elegível. Ela não foi tocada por este
+bloco: as mudanças aqui são três campos de prosa no esquema, o degrau derivado em duas outras
+baterias e arquivos novos. **Não afirmo verde nem vermelho no que não vi fechar** — é a diferença
+entre bancada e impressão, e esta ilha já pagou por ela.
+
+**E a reprodutibilidade do artefato foi conferida, não presumida:** re-derivados os hosts depois de
+todas as edições do esquema, são **76**, os mesmos 76 que `dados/egresso-de-fontes.json` gravou,
+sem nenhum a mais nem a menos. Arquivo gerado que não fecha com a própria derivação é o começo de
+um número que ninguém sabe de onde veio.
+
+- **Próximo passo desbloqueado: continua sendo a leitura de 30/09, e agora ela tem DOIS donos
+  possíveis escritos** — o acesso da conta `sentinela@` a `sc-domain:clubedomosaico.com.br`, ou a
+  credencial `GOOGLE_SA_B64` no ambiente das rotinas. Qualquer uma das duas serve; **nenhuma existe
+  hoje**, e sem ela o BLOCO A e a faixa de `description` das quatro páginas ficam onde estão. O
+  segundo item do Raphael é o **curinga** dos quatro domínios de adesivo mais o par de
+  `pastilhart.com.br`, e esse destrava a `apoio` — a lista inteira, derivada, está em
+  `dados/egresso-de-fontes.md`. **O que NÃO depende de ninguém:** nada na fila desta ilha. As três
+  técnicas em zero esperam fonte, `base` espera dez domínios que não entraram, os 13 itens de
+  pastilha no degrau 4 são decisão do Raphael (`tipo_de_casamento: "equivalente"`) e os dois da
+  Quartzolit não têm anúncio único na Shopee. **É por isso que esta execução mediu em vez de
+  construir, e não por falta de fôlego.**
