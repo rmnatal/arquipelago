@@ -5976,3 +5976,152 @@ foi usado nesta execução).
   falta do item 4** — as duas são a mesma promessa de SERP nas mesmas páginas e saem no mesmo movimento, que
   é exatamente por isso que nenhuma das duas saiu hoje. O que **não** depende dela continua sendo o egresso
   de fabricante, que trava as duas categorias vazias (`base` e `apoio`) e está na lista do Raphael.
+
+# 30/09/2026, 10h16Z — A PORTA DO EGRESSO NÃO ESTAVA FECHADA: ESTAVA PELA METADE, E QUATRO EXECUÇÕES A CHAMARAM DE FECHADA
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h16Z** com `executando_desde` e push
+aceito na primeira tentativa. **NENHUMA URL NOVA** — a ilha segue em 17 —, **nenhum título e
+nenhuma `description` mudaram**: o BLOCO A do despacho do Raphael de 24/09 continua intocado e a
+janela de medição de 30/09 segue limpa. Manifest e `/status` na revisão **51**.
+
+## A PORTA DE ENTRADA, ANTES DE QUALQUER BLOCO (seção 29.2)
+
+`conferir-no-ar.py`: **519 afirmações, 0 falha** na origem. `leitura-do-visitante.py`:
+**REPROVADO com 1 defeito, e é o esperado** — o soft 404 do hospedeiro (404 na 1ª leitura, 200 na
+2ª, `x-proxy-cache: HIT`, `max-age=7200`), aberto em 29/09, com dono escrito e fora do alcance de
+qualquer snippet daqui. **Nenhum defeito novo.** Rede pela 20.2: três passadas em
+`clubedomosaico.com.br`, 200 nas três, com `aquametria.com.br` em 200 nas mesmas.
+
+## O QUE ESTE BLOCO É, E POR QUE NÃO É O BLOCO A
+
+O passo que o registro de 29/09 deixou nomeado como desbloqueado era **a leitura de 30/09** — é
+hoje. **Ela não pode ser feita daqui, e agora isso está medido por dois lados independentes:** a
+conta de serviço `sentinela@` não tem acesso a `sc-domain:clubedomosaico.com.br` (escrito em
+`dados/search-console-2026-09-23.md` desde 23/09) **e a credencial não está neste ambiente** —
+`GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` estão as três ausentes, conferido nesta
+execução. Sem uma das duas, o BLOCO A e a metade que falta do item 4 do despacho de 28/09 (a faixa
+de 120 a 160 nas quatro `description`) continuam travados, e **o veredito de 08/10 escorrega**.
+Está no aviso ao Raphael.
+
+**O que sobrava sem depender dela era o egresso de fabricante.** A 20.2 manda retestar bloqueio
+herdado antes de respeitá-lo, e a lição da Quartzolit de 29/09 estendeu isso a bloqueio herdado de
+**documento**. Foi o que esta execução fez — e a resposta não era nenhuma das duas que estavam
+postas.
+
+## O ACHADO: O APEX RESPONDE, O `www.` NÃO, E NENHUMA FONTE MORA NO APEX
+
+Medido às **10h22Z**, e o que separa este relato de um palpite é o cabeçalho. Os apex
+`quartzolit.weber`, `tekbond.com.br`, `cascola.com.br` e `loctite.com.br` devolvem
+`HTTP/1.1 200 Connection Established` — **o CONNECT passa** — e em seguida o servidor **de
+verdade** responde **301**, com `server: Apache` e `server: CloudFront`, data, `content-length` e
+`location`. Os quatro domínios **entraram na lista de rede** entre 29/09 e hoje.
+
+**E o ganho é zero.** Os quatro redirecionam tudo para o host `www.` (a Loctite para
+`next.henkel-adhesives.com`), e esse host responde `connect_rejected` — política de egresso — nas
+três passadas. As **36 URLs de boletim técnico** que os bancos desta ilha citam nesses domínios
+estão **todas** em `www.`, incluindo os sete PDFs da Quartzolit e os dois da Tekbond.
+`pastilhart.com.br` não entrou nem no apex.
+
+**A frase que o repositório afirmava em quatro lugares — "403 ao CONNECT" — é FALSA hoje**, e a
+frase oposta seria igualmente falsa. Os dois vereditos têm de sair juntos:
+
+- Um portão que medisse só o CONNECT diria **"liberado"** e mandaria a próxima execução coletar o
+  que não há como ler.
+- Um que medisse só o código final diria **"bloqueado"** e esconderia que falta **uma linha**, não
+  uma decisão.
+
+**A 20.1 sempre mandou os dois**, `<domínio>` **e** `*.<domínio>`. O pedido de 29/09 foi atendido
+só na primeira metade, e nenhuma das quatro execuções anteriores tinha o veredito
+`liberado_mas_sem_entrega` para escrever.
+
+## A FERRAMENTA, E AS QUATRO TRAVAS QUE SÃO CICATRIZ DESTA ILHA
+
+`ferramentas/medir-egresso.py`, com saída em `dados/egresso-de-fontes.md` e `.json` (gerados, não
+editáveis à mão). **`--autoteste`: 29 casos fabricados, 29 ok** — passada limpa em portão que nunca
+acusou nada não prova nada, e o **caso 6** é exatamente o mundo de hoje.
+
+1. **A lista não é digitada.** Os hosts saem de `dados/*.json`. Lista escrita à mão envelhece
+   calada — foi assim que `urls_publicadas` ficou quatro dias defasado.
+2. **Três passadas, nunca uma** (20.2). Host que responde em duas de três sai como
+   **intermitente**, que é veredito e não erro: foi um `000` lido como bloqueio que prendeu esta
+   ilha dois dias em 11/09.
+3. **Controle obrigatório.** Se `clubedomosaico.com.br` não responder nas três, a medição é
+   **VOID** e nada é gravado. Sem isso, queda de túnel escreveria "tudo bloqueado" com cara de
+   fato.
+4. **A entrega é calculada, nunca escrita.** Apex que só redireciona para host recusado sai como
+   `liberado_mas_sem_entrega`, com o host que falta nomeado.
+
+## TRÊS DEFEITOS DA PRÓPRIA FERRAMENTA, OS TRÊS ACHADOS POR ELA RODANDO E OS TRÊS ANTES DO COMMIT
+
+**(1) A primeira versão não viu o achado do dia.** Ela media só os hosts que os bancos citam — e os
+bancos citam `www.quartzolit.weber`, nunca o apex. Resultado: imprimiu `bloqueado` para os quatro
+fabricantes e **o único fato novo do dia ficou invisível**. Portão que mede só o que o banco cita vê
+só o lado que o banco já conhece. Corrigido medindo o **irmão** de cada host — o apex e o `www.` do
+mesmo domínio registrável —, o que exigiu `dominio_registravel()` com sufixos de dois rótulos
+(`com.br`, `leg.br`, `gob.es`), porque `www2.camara.leg.br` pelo "penúltimo rótulo" daria `leg.br`
+e o pedido sairia errado. **Doze casos de autoteste só para isso.**
+
+**(2) Ela lia a própria saída e se citava como fonte.** `egresso-de-fontes.json` nasce em
+`dados/` e na passada seguinte apareceu em "citado em: egresso-de-fontes.json". É circular: o
+portão passaria a se sustentar no que ele mesmo escreveu ontem, que é a seção 4 do contrato com
+outra roupa.
+
+**(3) `loctite.com.br` — o quarto domínio meio-aberto — ficou fora da medição de 36 hosts**, porque
+`loctite` aparece nos bancos como **marca** e nunca como URL: nenhum SKU dele foi coletado. A 20.3
+manda que quem escreve a regra que exige a fonte confira se a fonte está liberada, então a fonte
+exigida em prosa teve de virar **dado**: `dados/fontes-pedidas.json`, onde cada linha aponta **quem
+a exige** e a ferramenta **recusa** linha sem `exigido_por` — senão viraria lista de desejo. E o
+gatilho teve de aprender a ler esse arquivo: na passada seguinte `loctite.com.br` saiu listado em
+"bloqueado e **não pedido**", que é o absurdo de um portão não ler o arquivo escrito para ele ler.
+
+**Um segundo extrator nasceu no caminho**, e a fonte que mais trava esta ilha só existe por causa
+dele: os **dez** fabricantes de painel de MDF que `regras_da_categoria_base` nomeia estão em
+**prosa**, num campo chamado `dominios_em_000`, e nenhum é URL. Campo cujo **nome** fala de domínio
+passou a ser lido como lista de domínio — com trava, porque na primeira tentativa ele pediu rede
+para **`validar-banco.py`** (dois rótulos, TLD de duas letras: tem a forma de um host e não é um).
+
+## O PEDIDO, AGORA DERIVADO E COM DONO POR LINHA
+
+**21 domínios, 42 linhas**, cada um com o arquivo que o exige, em `dados/egresso-de-fontes.md`. E o
+que **não** se pede está escrito junto, com o motivo: marketplace (o link nasce pela Open API da
+25.6, não por leitura de página) e as **16 referências de conteúdo já lidas e já citadas** —
+Wikipédia, `camara.leg.br`, teses, museus. Elas também não chegam, e não se pedem: nenhum trabalho
+pendente depende delas, e **pedido longo é pedido que não se atende**.
+
+## A `base` NÃO É ALCANÇADA POR ESSA CORREÇÃO, E O NÚMERO DIZ POR QUÊ
+
+Os dez fabricantes de painel — `dexco`, `duratex`, `guararapes`, `arauco`, `berneck`, `eternit`,
+`brasilit`, `termotecnica`, `isoeste`, `leroymerlin` — estão em **000 no apex E no `www.`**, três
+passadas, com o controle em 200. **Nenhum entrou na lista.** O primeiro SKU de `base` continua
+esperando frase de fabricante que esta nuvem possa citar literalmente, e a correção de hoje não o
+alcança. Para a `apoio` é o contrário: a FISPQ do epóxi mora justamente em `www.`, então **o curinga
+a destrava**.
+
+## DUAS BATERIAS VERMELHAS NO `main`, HAVIA UM DIA, E NINGUÉM AS ESTAVA VENDO
+
+Achado de passagem, e **medido vermelho no `main` limpo antes de qualquer mudança desta execução**:
+`mutacoes-base.py` e `mutacoes-apoio.py` fechavam com *"o mundo FABRICADO já está reprovado antes de
+qualquer mutação. Portão que reprova o mundo certo não mede nada."*
+
+**A causa é a melhora de ontem.** As duas nasceram em 28/09 com `"degrau": None` no mundo
+fabricado, e isso era válido naquele dia. A leva de 29/09 às 16h17Z tornou o degrau **obrigatório**
+para todo item que serve link de compra — e a partir dali as duas baterias passaram a se recusar a
+rodar. **Não é vermelho inofensivo:** bateria que não roda deixa os portões novos das duas
+categorias, 20 e 24 mutações, **sem ninguém medindo** — e foi por isso que o vermelho passou um dia
+inteiro sem ser visto. É a mesma família do `conferir-atelie-no-ar.py`, que ficou três dias
+vermelho por medir a aspa em vez da diretiva.
+
+**O conserto não foi cravar `4`: foi calcular.** O mundo fabricado não tem `url_produto` e tem
+`url_busca`, e a 25.1 diz que item que serve só busca é degrau 4 — então o degrau sai dos campos,
+por duas constantes que são as mesmas que o mundo usa. Cravar o número deixaria a bateria à espera
+do próximo aperto de regra para apagar-se outra vez. **De volta ao verde: `mutacoes-base` 20 de 20
+reprovadas, `mutacoes-apoio` 24 de 24** — os números que o registro de 28/09 declarava.
+
+## O QUE ESTE BLOCO NÃO FEZ, DE PROPÓSITO
+
+- **Não coletou nenhum SKU.** A porta continua sem entregar; coletar hoje seria escrever paráfrase
+  de resumo em `literal_do_fabricante`, que é a viga do esquema.
+- **Não tocou em `<title>` nem em `description`** de nenhuma das 17 URLs. O BLOCO A espera o número
+  de 30/09 por ordem escrita do Raphael, e a janela segue limpa.
+- **Não afrouxou nenhuma régua** para o mundo fabricado passar. O degrau passou a ser derivado, não
+  tolerado.

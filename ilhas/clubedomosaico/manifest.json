@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 50,
-  "atualizado_em": "2026-09-29",
+  "revisao": 51,
+  "atualizado_em": "2026-09-30",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -143,7 +143,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "09335b48d5bcd89e61dd86ed70b254df08f1f3722ab3fac2b1c5183b9c33475f",
+      "sha256": "2031d434114c0230bc030c5e55dc51de93c765fb325660f8390a16bd680f20c9",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -259,6 +259,33 @@
       "descricao": "A categoria ACABAMENTO do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de tres para DUAS (restam base e apoio). Quatro vernizes (tres da Acrilex, um boletim de piso da Quartzolit), dois impermeabilizantes e um selador. FOI A PRIMEIRA CATEGORIA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR: a frase do esquema que autoriza encher uma categoria 'sem decisao nova' nomeia rejunte, pastilha e alicate, e deixa base, acabamento e apoio de fora de proposito. A decisao esta em `regras_da_categoria_acabamento` do esquema-banco (versao 4) e tem tres partes: a matriz base x ambiente fica VAZIA, porque acabamento nao adere nada e nao se escolhe por ambiente; o que o fabricante declara mora no objeto `protecao`, irmao do `corte` do alicate, com as listas do que a frase nomeia e do que ela NAO nomeia cobrindo o vocabulario inteiro; e as propriedades tem NOME FIXO, para a segunda execucao nao gravar `secagem_horas` onde a primeira gravou `tempo_de_secagem_h`. O ACHADO E UMA FAIXA DESCOBERTA ENCONTRADA PELA SUPERFICIE, irma da que o alicate achou pela espessura no mesmo dia: a peca de mosaico pronta expoe DUAS superficies, a pastilha (as 13 do banco sao de vidro) e o REJUNTE, e NENHUMA das sete frases de fabricante nomeia vidro, e NENHUMA nomeia rejunte. Fabricante de obra nao escreve sobre peca de artesanato e fabricante de artesanato nao escreve sobre mosaico. A segunda metade e sobre a base: o unico selador alcancado nomeia concreto, emboco, reboco, pintura PVA ou acrilica e construcao a seco, e NAO nomeia MDF — que e a base mais comum do ateliê e um dos cinco valores de `tipo_por_categoria.base`. E o campo `contato_com_alimento` nasce OBRIGATORIO e null nos sete: centro de mesa e tampo sao duas colecoes desta loja e a pergunta 'posso por comida em cima?' fica respondida com 'ninguem declarou' em vez de nao ser feita.",
       "pendencias": 3,
       "pendencias_que_bloqueiam_publicacao": []
+    },
+    {
+      "id": "egresso-de-fontes",
+      "arquivo": "dados/egresso-de-fontes.md",
+      "formato": "md",
+      "entidade": "medicao",
+      "fonte": "GERADO por ferramentas/medir-egresso.py. Medicao de egresso de 30/09/2026, tres passadas por host, com clubedomosaico.com.br como controle. Nao editar a mao: o portao regera e compara.",
+      "publicar": false,
+      "sha256": "3f5078b64175df0a9f8d3a88bf03c29e521c5114ed0dfa8c76e8bd7343d2ce6b"
+    },
+    {
+      "id": "egresso-de-fontes-json",
+      "arquivo": "dados/egresso-de-fontes.json",
+      "formato": "json",
+      "entidade": "medicao",
+      "fonte": "GERADO por ferramentas/medir-egresso.py, no mesmo passo do .md. E a fonte que a proxima execucao le por maquina em vez de reler prosa.",
+      "publicar": false,
+      "sha256": "ea427708de0c163e3d0b72674ed21f0e1a063b3a974243e955f59c62b2d3c0cf"
+    },
+    {
+      "id": "fontes-pedidas",
+      "arquivo": "dados/fontes-pedidas.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "Escrito a mao em 30/09/2026. Guarda a faixa que nenhum banco alcanca: dominio que o repositorio EXIGE em prosa e que nenhum registro cita como URL, porque nenhum SKU dele foi coletado. Cada linha aponta quem o exige, e a ferramenta RECUSA linha sem `exigido_por`.",
+      "publicar": false,
+      "sha256": "f513c29df07f0dfc7cad5bb6c5937c1e60b4b7beb5385e56d9590abf8a273fc3"
     }
   ],
   "ferramentas": [
@@ -367,7 +394,7 @@
     {
       "id": "mutacoes-apoio",
       "arquivo": "ferramentas/mutacoes-apoio.py",
-      "sha256": "5a5b3f602cedfbb4ef75646f7856f8b7ec3ebd34a2cd04a20e68cb1fcb4a45b0",
+      "sha256": "ebce1d9413710ad13b29fff1f1a476f468e8c777ee66a4d4f5b967a95b4b31ee",
       "descricao": "Vinte e quatro defeitos escritos contra a decisao de campo da categoria APOIO, e e a SEGUNDA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-apoio.json nao existe, porque a regra nasceu antes do primeiro SKU. Quatorze mutacoes no mundo fabricado (quatro registros, um por ramo e por estado), SEIS no banco de VERDADE — a AF1500, a Cascorez e o verniz de pisos, restaurados byte a byte no fim — e quatro no esquema. As seis do banco real sao a novidade: esta e a unica categoria cuja declaracao que mais importa vem DO OUTRO LADO DO BALCAO, porque quem diz qual desempenadeira usar e o fabricante da PASTILHA. Duas mutacoes acharam buraco real ANTES do commit e as duas viraram portao: a 15 (a varredura comparava por registro e a AF1500 nomeia a desempenadeira em DOIS campos, entao apagar uma das duas linhas passava verde — a prosa da secao ja dizia 'mede CAMPO, nao registro' e o codigo nao cumpria) e a 20 (trocar o estado de `aerossol` para buraco de vocabulario passava verde, e a proxima execucao criaria um tipo de apoio chamado aerossol, que e EMBALAGEM; o conserto e que proposta de valor novo tem de vir de FRASE de fabricante e nao de um campo de valor do nosso proprio esquema). A 21 e a que PRODUZ O MUNDO: executa a decisao pendente, poe `pincel` em tipo_por_categoria.apoio e mede se o indice acusa que envelheceu no mesmo commit em que o vocabulario cresceu. 24 de 24, as 24 so o portao novo viu. Bancada."
     },
     {
@@ -385,7 +412,7 @@
     {
       "id": "mutacoes-base",
       "arquivo": "ferramentas/mutacoes-base.py",
-      "sha256": "803934e5571f47e489632ee6b6f98b879d69f926c65d2fad8a20cc746f3fa641",
+      "sha256": "b9091650d40580b7a7c35f450ad57084d3beef73ed9bae7595ef1eee7cbb4c68",
       "descricao": "Vinte defeitos escritos contra a decisao de campo da categoria BASE (28/09/2026, 10h16Z). PRIMEIRA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-base.json nao existe, porque a regra nasceu antes do primeiro SKU — entao ela escreve cinco registros de bancada, um por tipo, cobrindo os tres estados da ponte, confere que o mundo certo passa, muta treze vezes no registro e SETE NO ESQUEMA (a ponte e documento que mede documento), restaura e apaga o arquivo fabricado. A mutacao 05 PASSOU na primeira rodada e e o defeito mais caro da categoria: vaso de barro cru gravado como ceramica_esmaltada_porcelana, que nao deixa rastro — some a faixa descoberta e nasce uma recomendacao sobre uma superficie que absorve ao contrario da que foi respondida. A 14 e a que PRODUZ O MUNDO: executa a ponte, poe isopor_eps em vocabularios.base e mede se o esquema acusa que a ponte envelheceu no mesmo commit em que o vocabulario cresceu. 20 de 20, 19 so os portoes novos viram. Bancada. ENTROU NO MANIFEST EM 28/09/2026 as 13h4xZ, pela execucao seguinte: ela nasceu de manha e ficou fora, e quem a achou foi o portao 'FERRAMENTA NO DISCO FORA DO MANIFEST' do proprio atualizar-manifest, que se recusou a gravar enquanto a linha nao existisse."
     },
     {
@@ -603,6 +630,12 @@
       "arquivo": "ferramentas/varrer-canonicas.py",
       "sha256": "3c4914177e1d00676f94fed0a3ace801c5a7c1c0095f25195a778a434cdb39d4",
       "descricao": "Le a CANONICA e a CADEIA DE REDIRECIONAMENTO de cada URL desta ilha e classifica em duas listas — 'esperado, nenhuma acao' e 'defeito, com a correcao proposta' — escrevendo o relatorio em dados/indexacao.md. Nasceu do BLOCO C do despacho do Raphael de 24/09/2026, que veio dos dois motivos novos do e-mail do Search Console de 23/09 ('Pagina alternativa com tag canonica adequada' e 'Pagina com redirecionamento'). NAO APLICA CORRECAO NENHUMA, por ordem do despacho: o que e defeito volta como proposta, URL por URL, para o Raphael autorizar item por item. A lista de URLs vem do wp-sitemap.xml NO AR, nunca digitada, mais /author/ e as variacoes de cada uma (http, www, sem barra final) — os dois motivos nascem de duas URLs para a mesma coisa, e varrer so a versao boa mediria o lado que nunca da problema. MEDE DUAS LEITURAS POR URL, e essa e a razao de ela existir em vez de um curl: com ?v=<agora> a pergunta chega ao WordPress; sem a quebra de cache quem responde e o cache de pagina, que nao sabe redirecionar — e o Googlebot nao manda quebra de cache. Em 25/09/2026: 71 URLs, 71 esperado, 0 defeito, e 36 em que as duas leituras discordam. Tem --autoteste com 11 casos fabricados, um por ramo da regua, porque passada limpa em portao que nunca acusou nada nao prova nada. NUNCA e publicada no site."
+    },
+    {
+      "id": "medir-egresso",
+      "arquivo": "ferramentas/medir-egresso.py",
+      "sha256": "b34f55c938ca32c8c93495617f9a6649a6098d35b36a98d3b591abb759798744",
+      "descricao": "Mede, host por host, o que esta nuvem alcanca das fontes que os bancos desta ilha citam — e separa CONNECT de ENTREGA, que e a distincao que faltava: apex liberado que redireciona para `www.` recusado entrega zero. Deriva a lista de dados/*.json, dos campos cujo nome fala de dominio, do apex e do `www.` de cada host, e de dados/fontes-pedidas.json; tres passadas por host (20.2), com controle obrigatorio que torna a medicao VOID se cair. Gera dados/egresso-de-fontes.md e .json, e o PEDIDO de rede sai da medicao com quem exige cada dominio. `--autoteste` com 29 casos fabricados. Bancada."
     }
   ],
   "esquema": {

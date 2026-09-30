@@ -565,16 +565,39 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > duas (`base` e `apoio`) têm a regra escrita, o portão de pé e a bateria verde, e as duas esperam a
    > mesma coisa — uma frase de fabricante que esta nuvem consiga citar literalmente.
    >
-   > **REMEDIDO EM 29/09/2026 às 10h20Z, E O CANAL CONTINUA FECHADO — MAS AGORA COM O PEDIDO ESCRITO.**
+   > ~~**REMEDIDO EM 29/09/2026 às 10h20Z, E O CANAL CONTINUA FECHADO**~~ — o parágrafo de 29/09 dizia que
    > `quartzolit.weber`, `tekbond.com.br`, `loctite.com.br`, `cascola.com.br` e `pastilhart.com.br`
-   > devolvem **403 ao CONNECT** (política de egresso do ambiente), cinco domínios numa passada, com
-   > `clubedomosaico.com.br` em **200** na mesma passada — então é a lista de rede, não a rede. **Quarto
-   > bloco seguido parando nesta porta**, e nas três vezes anteriores o defeito foi registrado sem que
-   > ninguém escrevesse o pedido que o fecha. A **20.3** é explícita: *"quem escreve a regra que exige a
-   > fonte é quem confere se a fonte está liberada"*. O pedido está no `ESTADO.md` e no `REGISTRO.md` de
-   > 29/09, com o caminho da **20.1**: `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem →
-   > Domínios permitidos. **Enquanto esses domínios não entrarem, nenhuma execução da Fundação tira
-   > `base` ou `apoio` do zero** — e insistir é gastar bloco para reescrever o mesmo motivo.
+   > *"devolvem **403 ao CONNECT**"*. **Essa frase é FALSA desde algum momento entre 29/09 e 30/09, e
+   > quem a derrubou foi a 20.2.** Ela fica riscada e não apagada porque foi ela que motivou o pedido
+   > que o Raphael atendeu — pela metade.
+   >
+   > **REMEDIDO EM 30/09/2026 às 10h22Z, E A PORTA ESTÁ PELA METADE — FALTA O CURINGA, NÃO O DOMÍNIO.**
+   > Os **apex** `quartzolit.weber`, `tekbond.com.br`, `cascola.com.br` e `loctite.com.br` **estabelecem o
+   > CONNECT**: o túnel devolve `HTTP/1.1 200 Connection Established` e o **servidor de verdade** responde
+   > **301**, com cabeçalho de Apache e de CloudFront, data e `content-length`. Os quatro domínios
+   > **entraram na lista de rede**. E o ganho é **zero**, porque os quatro redirecionam tudo para o host
+   > `www.` (a Loctite para `next.henkel-adhesives.com`), que continua em `connect_rejected` por política
+   > de egresso — e as **36 URLs de boletim técnico** que os bancos desta ilha citam nesses domínios estão
+   > **todas** em `www.`. `pastilhart.com.br` não entrou nem no apex.
+   >
+   > **A 20.1 sempre mandou os dois**, `<ilha>.com.br` **e** `*.<ilha>.com.br`; o que falta é exatamente a
+   > metade que serve para algo. O pedido novo é **derivado da medição**, domínio por domínio, com quem
+   > exige cada um, em `dados/egresso-de-fontes.md`, e a ferramenta que o produz é
+   > `ferramentas/medir-egresso.py` (`--autoteste`, 29 casos fabricados). **Enquanto o curinga não entrar,
+   > nenhuma execução da Fundação tira `base` ou `apoio` do zero** — e insistir é gastar bloco para
+   > reescrever o mesmo motivo, que foi o que aconteceu quatro vezes entre 26/09 e 29/09.
+   >
+   > **A `base` continua bloqueada por outro motivo, e ele é inteiro:** os **dez** fabricantes de painel
+   > que `regras_da_categoria_base` nomeia — `dexco`, `duratex`, `guararapes`, `arauco`, `berneck`,
+   > `eternit`, `brasilit`, `termotecnica`, `isoeste`, `leroymerlin` — estão em **000 no apex E no `www.`**,
+   > medido nas três passadas. Nenhum deles entrou na lista. A correção acima não os alcança.
+   >
+   > **E A LIÇÃO, que não é sobre estes domínios:** quatro execuções escreveram "403 ao CONNECT" e a
+   > quinta mediu. Medir CONNECT **não é** medir entrega: um portão que olhasse só o CONNECT diria hoje
+   > "liberado" e mandaria coletar o que não há como ler; um que olhasse só o código final diria
+   > "bloqueado" e esconderia que falta **uma linha**, não uma decisão. Os dois vereditos saem juntos ou
+   > nenhum dos dois serve — e é por isso que a ferramenta tem o veredito
+   > `liberado_mas_sem_entrega`, que nenhuma das quatro passadas anteriores tinha como escrever.
 4. ~~**A LINHA DA PEÇA NA TABELA DO `ARVORE.md`**~~ — **CUMPRIDO em 28/09/2026 às 19h3xZ** (casca **1.17.0**,
    Loja **1.4.0**, manifest na revisão **47**). E o item estava **mal descrito**: dizia "é conserto de TESTE, não
    de documento", e não era — a própria seção 5 já registrava em 28/09 às 11h0xZ que o conserto não era só no

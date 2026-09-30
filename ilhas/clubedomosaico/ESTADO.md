@@ -5,58 +5,53 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-29T19:16Z
-executando_desde: 2026-09-30T10:16Z
+ultima_execucao: 2026-09-30T10:16Z
+executando_desde: null
 ultima_ronda: 2026-09-28T15:10Z   # RONDA DIARIA TECNICA de 28/09/2026, a PRIMEIRA ronda tecnica registrada nesta ilha. As 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 43 igual a do manifest, console limpo, zero orfa. Achou 5 defeitos, todos da lista fechada 19.2, e por isso ZERO conserto: estao no DESPACHO DA SENTINELA de 28/09 no PROMPT.md. A leitura semanal anterior foi 23/09 as 20h12Z.
 bloco_atual: |
-  O BATISMO DO FABRICANTE JA ESTAVA NO REPOSITORIO, E O EGRESSO NAO ERA O QUE TRAVAVA.
-  Manifest e /status na revisao 50. NENHUMA URL NOVA, nenhum endereco mudou, nenhum title
-  e nenhuma description mudaram: o BLOCO A do despacho do Raphael de 24/09 continua
-  intocado e a janela de medicao de 30/09 segue limpa.
-  A ESCADA DA 25.1 SAIU DE 1:1 2:5 3:14 4:18 PARA 1:1 2:5 3:15 4:17, e a pagina de
-  divulgacao passou de '20 e 18' para 21 E 17, contando dos registros.
-  ESTE BLOCO CORRIGE O QUE A EXECUCAO DAS 16h17Z ESCREVEU. Ela fechou dizendo que os tres
-  nome_comercial da Quartzolit eram COLETA e 'esbarram no egresso, quartzolit.weber em
-  403'. Nao esbarram: o batismo estava dentro do proprio registro desde 25/09, em
-  fontes[].url — o NOME DO ARQUIVO do boletim tecnico e o fabricante escrevendo o nome do
-  produto (BT_Borracha Liquida Elastica Quartzolit_REV110624.pdf).
-  O DEFEITO: o registro se chamava 'impermeabilizante borracha liquida elastica
-  quartzolit', e 'impermeabilizante' veio do CAMINHO da pagina de produto — a PRATELEIRA
-  do fabricante, nao o nome do produto. Classificacao colada dentro do batismo e a secao
-  26 ao contrario. A divergencia ficou GRAVADA no registro, com os dois niveis e a
-  resolucao, nao corrigida em silencio.
-  A REGRA JA ERA DO BANCO: escada_de_fontes manda o nivel mais alto vencer em qualquer
-  conflito, e nada tinha aplicado isso a nome_comercial. Ate hoje de manha nada comparava
-  esse campo com um texto de fora; casar-anuncio.py foi o primeiro.
-  O EGRESSO CONTINUA FECHADO e continua travando base e apoio. Este item nao era dele — e
-  quatro execucoes anotaram 'esbarra no egresso' sem abrir a fonte que estava em casa.
-  Bloqueio herdado de DOCUMENTO tambem e retestado antes de respeitado (20.2).
-  DUAS REGUAS MAIS LARGAS FORAM MEDIDAS E DESCARTADAS: as duas reprovavam 20 dos 38
-  registros, quase todos honestos. A que ficou mede 7 e reprova 1, zero falso positivo.
-  A BATERIA OBRIGOU A BANCADA A FABRICAR DUAS BORDAS, de novo: a palavra vazia ausente do
-  arquivo e o arquivo que parte o que o batismo escreve junto. Nenhuma existe no banco de
-  hoje. Bancada que so mede o banco de hoje envelhece junto com ele.
-  O QUE NAO FOI FEITO DE PROPOSITO: fundo-selador e protetor-para-fachadas continuam em
-  minusculas, com o motivo no registro — a unica fonte deles e o SLUG da pagina, que
-  soletra as palavras e perde a tipografia, e capitalizar dali e palpite com cara de
-  declaracao do fabricante.
-  NA TELA aparece a frase 21 e 17. O nome corrigido NAO aparece em pagina nenhuma: os
-  sete materiais de acabamento estao no banco e /materiais/ lista a categoria como 'Em
-  breve', porque a ficha de categoria e o bloco 4c e ele nao nasceu.
-  ESQUEMA NA VERSAO 8, chave batismo_do_fabricante (a lista mora no esquema, 26.2).
-  BANCADAS: casca 591, F2 119, F1 24 estados, Loja, tecnicas 123, atelie, leads,
-  prestacao 5, validador e validar-pastilhas verdes, teste-casamento 42, teste-batismo 59.
-  mutacoes-batismo 14 de 14 reprovadas (10 na regra, 4 no esquema/banco).
-  NO AR: conferir-no-ar.py com 519 afirmacoes e 0 falha, conferir-tecnica-no-ar 54 e 0,
-  conferir-atelie-no-ar 197 e 0.
-  UMA FALHA QUE NAO ERA DA ILHA, e virou trava: conferir-atelie-no-ar.py tomou o `.` que
-  eu passei por habito das outras ferramentas como se fosse o TOKEN, mandou o ponto para
-  a rota protegida e leu 401 — a rota recusando uma palavra errada, que e o trabalho
-  dela. Custou uma passada. Agora a ferramenta RECUSA um argumento que seja caminho, em
-  vez de transforma-lo em credencial, e diz como se chama. Nao mexeu em nada do site.
-  leitura-do-visitante.py continua REPROVADO por 1 defeito — o soft 404 da borda, do
-  hospedeiro, pendente com o Raphael, inalterado.
-  O DESEMBARQUE APLICOU NA PRIMEIRA CHAMADA: revisao 50, 14 aplicados.
+  A PORTA DO EGRESSO NAO ESTAVA FECHADA: ESTAVA PELA METADE, E QUATRO EXECUCOES A CHAMARAM DE FECHADA.
+  Manifest e /status na revisao 51. NENHUMA URL NOVA (segue em 17), nenhum title e nenhuma
+  description mudaram: o BLOCO A do despacho do Raphael de 24/09 segue intocado e a janela de
+  medicao de 30/09 segue limpa.
+  PORTA DE ENTRADA (29.2) ANTES DE TUDO: conferir-no-ar.py com 519 afirmacoes e 0 falha na origem;
+  leitura-do-visitante.py REPROVADO com 1 defeito, e e o esperado — o soft 404 do hospedeiro, aberto
+  em 29/09, com dono escrito e fora do alcance de snippet daqui. Nenhum defeito novo.
+  O ACHADO: os apex quartzolit.weber, tekbond.com.br, cascola.com.br e loctite.com.br ESTABELECEM o
+  CONNECT (HTTP/1.1 200 Connection Established, e o servidor de verdade respondendo 301 com server
+  Apache e CloudFront). Entraram na lista de rede entre 29/09 e hoje. E o ganho e ZERO: os quatro
+  redirecionam tudo para o host www. (a Loctite para next.henkel-adhesives.com), que segue em
+  connect_rejected, e as 36 URLs de boletim tecnico que os bancos citam nesses dominios estao TODAS
+  em www. pastilhart.com.br nao entrou nem no apex. A frase "403 ao CONNECT", que o repositorio
+  afirmava em quatro lugares, e FALSA hoje — e a frase oposta seria igualmente falsa. FALTA O
+  CURINGA, nao o dominio: a 20.1 sempre mandou os dois, e o pedido de 29/09 foi atendido na metade.
+  O INSTRUMENTO: ferramentas/medir-egresso.py, saida gerada em dados/egresso-de-fontes.md e .json,
+  --autoteste com 29 casos fabricados. Quatro travas, todas cicatriz desta ilha: lista derivada e
+  nao digitada, tres passadas (20.2), CONTROLE que torna a medicao VOID se cair, e a ENTREGA
+  calculada em vez de escrita — o veredito liberado_mas_sem_entrega, que nenhuma das quatro passadas
+  anteriores tinha como escrever.
+  TRES DEFEITOS DA PROPRIA FERRAMENTA, os tres achados por ela rodando e os tres antes do commit:
+  (1) a primeira versao media so os hosts que os bancos citam, e os bancos citam www., nunca o apex
+  — ela imprimiu "bloqueado" para os quatro e NAO viu o unico fato novo do dia; (2) ela lia a
+  propria saida e se citava como fonte, que e circular; (3) loctite.com.br, o quarto dominio
+  meio-aberto, ficou fora da medicao de 36 hosts porque nos bancos "loctite" e MARCA e nunca URL —
+  virou dado em dados/fontes-pedidas.json, que recusa linha sem exigido_por.
+  O PEDIDO: 21 dominios, 42 linhas, cada um com o arquivo que o exige. E o que NAO se pede esta
+  escrito junto com o motivo — marketplace e as 16 referencias de conteudo ja lidas.
+  A base NAO E ALCANCADA por essa correcao: os dez fabricantes de painel estao em 000 no apex E no
+  www., tres passadas, com o controle em 200. Para a apoio e o contrario — a FISPQ do epoxi mora em
+  www., entao o curinga a destrava.
+  DUAS BATERIAS VERMELHAS NO MAIN HAVIA UM DIA: mutacoes-base e mutacoes-apoio fechavam com "o mundo
+  FABRICADO ja esta reprovado antes de qualquer mutacao", medido vermelho no main limpo ANTES de
+  qualquer mudanca desta execucao. A causa era a melhora de ontem: as duas nasceram em 28/09 com
+  degrau None, e a leva de 29/09 as 16h17Z tornou o degrau obrigatorio. Bateria que nao roda deixa
+  20 e 24 mutacoes SEM NINGUEM MEDINDO. Consertado CALCULANDO o degrau dos campos (sem url_produto e
+  com url_busca, a 25.1 da degrau 4), nunca cravando o numero. De volta ao verde: 20 de 20 e 24 de
+  24, os numeros que o registro de 28/09 declarava.
+  O QUE NAO DEPENDIA DE MIM, E E O QUE TRAVA O FOCO: a leitura de 30/09 e HOJE e nao pode ser feita
+  daqui, por dois lados independentes — a conta sentinela@ nao tem acesso a
+  sc-domain:clubedomosaico.com.br e a credencial nao esta no ambiente (GOOGLE_SA_B64, GOOGLE_SA_JSON
+  e GOOGLE_SA_FILE as tres ausentes, conferido nesta execucao). Sem uma das duas, o BLOCO A e a
+  faixa de description das quatro paginas seguem travados e o veredito de 08/10 escorrega.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO
@@ -469,13 +464,34 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - **Duas faixas descobertas da F2, declaradas em vez de chutadas**: peça em contato
   permanente com água e base de plástico. A página vai dizer que não publica recomendação
   nesses dois casos.
-- **A nuvem não abre PDF de fabricante.** `curl` e `WebFetch` para quartzolit.weber e
-  tekbond.com.br voltaram `EGRESS_BLOCKED`/`connect_rejected`: a rede das rotinas libera os
-  domínios das ilhas, `*.googleapis.com` e `github.com`, e nada mais. A coleta do bloco 2 foi
-  feita por busca web restrita ao domínio de cada fabricante, e cada constante declara isso
-  em `fonte_tipo`, com `conferir_no_pdf` marcando as que merecem segunda leitura. Se o
-  Raphael quiser fechar essa lacuna, é acrescentar quartzolit.weber, tekbond.com.br,
-  cascola.com.br e henkel.com.br à rede Personalizada do ambiente das rotinas.
+- **A nuvem não abre PDF de fabricante — e desde 30/09/2026 o motivo mudou de nome.** A frase
+  antiga desta linha dizia que *"a rede das rotinas libera os domínios das ilhas,
+  `*.googleapis.com` e `github.com`, **e nada mais**"*. **Isso é falso desde 30/09.** Medido às
+  10h22Z e às 10h5xZ, três passadas, com `clubedomosaico.com.br` em 200 nas mesmas: os **apex**
+  `quartzolit.weber`, `tekbond.com.br`, `cascola.com.br` e `loctite.com.br` **estabelecem o
+  CONNECT** e o servidor de verdade responde **301** (Apache e CloudFront, com data e
+  `content-length`). Eles entraram na lista.
+  **E ainda assim nenhum PDF abre, porque falta o curinga:** os quatro redirecionam tudo para o
+  host `www.` — a Loctite para `next.henkel-adhesives.com` —, e esse host segue em
+  `connect_rejected`. As **36 URLs** de boletim técnico que os bancos desta ilha citam nesses
+  domínios estão **todas** em `www.`. `pastilhart.com.br` não entrou nem no apex.
+  **PEDIDO AO RAPHAEL, e é uma linha por domínio:** em `claude.ai/code` → seletor de ambiente →
+  Nuvem → engrenagem → Domínios permitidos, acrescentar o **curinga** dos quatro
+  (`*.quartzolit.weber`, `*.tekbond.com.br`, `*.cascola.com.br`, `*.loctite.com.br`,
+  `*.henkel-adhesives.com`) e o par inteiro de `pastilhart.com.br`. A **20.1** sempre mandou os
+  dois, `<domínio>` e `*.<domínio>`; o pedido de 29/09 foi atendido só na primeira metade.
+  **A lista completa e derivada da medição está em `dados/egresso-de-fontes.md`**, com quem exige
+  cada domínio, produzida por `ferramentas/medir-egresso.py` — que também separa
+  `liberado_mas_sem_entrega` de `bloqueado`, distinção que nenhuma das quatro passadas anteriores
+  tinha como escrever, e por isso as quatro escreveram "403 ao CONNECT".
+  Enquanto isso, a coleta do bloco 2 continua sendo por busca web restrita ao domínio de cada
+  fabricante, e cada constante declara isso em `fonte_tipo`, com `conferir_no_pdf` marcando as
+  que merecem segunda leitura.
+- **A CATEGORIA `base` NÃO É ALCANÇADA POR ESSA CORREÇÃO, e o número diz por quê.** Os **dez**
+  fabricantes de painel que `regras_da_categoria_base` nomeia (`dexco`, `duratex`, `guararapes`,
+  `arauco`, `berneck`, `eternit`, `brasilit`, `termotecnica`, `isoeste`, `leroymerlin`) estão em
+  **000 no apex e no `www.`**, três passadas, em 30/09. Nenhum entrou na lista. O primeiro SKU de
+  `base` continua esperando frase de fabricante que esta nuvem possa citar literalmente.
 - DNS/WordPress/Search Console seguem como no registro de 10/09. Nada disso trava os blocos 2 e 3, que não dependem de site.
 
 ## Pendências do Raphael (não travam)

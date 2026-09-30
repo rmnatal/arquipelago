@@ -71,18 +71,34 @@ def fonte(fid, nivel=3):
     }
 
 
+_URL_PRODUTO = None                                   # o mundo fabricado nao tem anuncio casado
+_URL_BUSCA = "https://s.shopee.com.br/bancada"        # e tem busca, que e o degrau 4 da 25.1
+
+
 def afiliado():
     return {
         "programa": "shopee",
         "url": "",
-        "url_produto": None,
+        "url_produto": _URL_PRODUTO,
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "GUIA",
         "etiqueta_ml": None,
         "gerado_em": None,
-        "url_busca": "https://s.shopee.com.br/bancada",
+        "url_busca": _URL_BUSCA,
         "url_busca_produto": "https://shopee.com.br/search?keyword=bancada",
-        "degrau": None,
+        # O DEGRAU E CALCULADO DOS CAMPOS ACIMA, nunca cravado: sem `url_produto` e com
+        # `url_busca`, a 25.1 diz degrau 4 — item que serve so busca. Ele era `None` desde
+        # 28/09, quando esta bateria nasceu, e ficou VALIDO por um dia: a leva de 29/09 as
+        # 16h17Z tornou o degrau obrigatorio para todo item que serve link de compra, e a
+        # partir dali o MUNDO FABRICADO desta bateria passou a ser reprovado ANTES de
+        # qualquer mutacao — "portao que reprova o mundo certo nao mede nada". As duas
+        # baterias (`base` e `apoio`) ficaram assim, e nao e vermelho inofensivo: bateria
+        # que se recusa a rodar deixa os portoes novos das duas categorias SEM NINGUEM
+        # MEDINDO, e foi por isso que ninguem viu por um dia inteiro. Achado de passagem em
+        # 30/09/2026, medido vermelho no `main` limpo antes de qualquer mudanca desta
+        # execucao. Calcular em vez de cravar e o que impede o proximo aperto de regra de
+        # apagar esta bateria outra vez.
+        "degrau": 4 if _URL_BUSCA and not _URL_PRODUTO else None,
         "url_busca_gerada_em": "2026-09-28",
         "motivo_da_chave": "bancada",
     }

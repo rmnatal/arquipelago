@@ -1,0 +1,19 @@
+{
+  "por_que_este_arquivo_existe": "A ferramenta `medir-egresso.py` deriva a lista de hosts dos bancos, e derivar e o certo: lista digitada dentro de ferramenta envelhece calada. Mas existe uma faixa que nenhum banco alcanca — o dominio que o REPOSITORIO exige em PROSA e que nenhum registro cita como URL, porque nenhum SKU dele foi coletado ainda. `loctite.com.br` e o caso que abriu este arquivo: a especificacao da F2 manda `Constante so com fonte de fabricante (Quartzolit, Tekbond, Loctite, Cascola)` e o pedido de rede de 29/09 o nomeia, e ainda assim ele ficou FORA da medicao de 30/09 as 10h31Z, que media 36 hosts. A 20.3 e explicita: quem escreve a regra que exige a fonte confere se a fonte esta liberada — entao a fonte exigida em prosa tem de virar DADO para poder ser conferida.",
+  "o_que_este_arquivo_NAO_e": "Nao e lista de desejo e nao e precaucao. Cada linha aponta o lugar do repositorio que EXIGE aquele dominio. Dominio sem `exigido_por` nao entra, porque pedido longo e pedido que nao se atende.",
+  "escrito_em": "2026-09-30",
+  "dominios": [
+    {
+      "dominio": "loctite.com.br",
+      "exigido_por": "dados/especificacao-calculadoras.md e o bloco 2 do PROMPT.md: \"Constante so com fonte de fabricante (Quartzolit, Tekbond, Loctite, Cascola) e data\". Nomeado tambem no pedido de rede de 29/09/2026 no PROMPT.md, item 3 da fila.",
+      "o_que_ele_destrava": "Frase literal de fabricante para as colas da marca. Hoje o banco de colas tem 7 itens e o substrato da cimentcola AC-II continua pendente desde o bloco 3.",
+      "medido_a_mao_em_2026_09_30": "apex responde 301 para next.henkel-adhesives.com, que o egresso recusa — o mesmo meio-aberto dos outros tres."
+    },
+    {
+      "dominio": "next.henkel-adhesives.com",
+      "exigido_por": "E o destino do 301 de `loctite.com.br`, medido em 30/09/2026 as 10h22Z. Sem ele o apex liberado da Loctite nao entrega nada — e o proprio caso `liberado_mas_sem_entrega` que esta ferramenta nasceu para nomear.",
+      "o_que_ele_destrava": "O mesmo que a linha acima; sao a mesma fonte em dois hosts.",
+      "medido_a_mao_em_2026_09_30": "CONNECT recusado."
+    }
+  ]
+}
