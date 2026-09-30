@@ -6142,15 +6142,19 @@ mudança** — seguem duas categorias em zero (`base`, `apoio`). Baterias: `muta
 execução). `medir-egresso.py --autoteste` **29 de 29**. **E no ar: `conferir-no-ar.py` com 519
 afirmações e 0 falha**, medido antes e depois do desembarque.
 
-**E O QUE ESTA EXECUÇÃO NÃO VIU FECHAR, escrito em vez de omitido:** `mutacoes-cobertura.py` roda
+**E A BATERIA MAIS LENTA DA ILHA FECHOU VERDE, depois do push:** `mutacoes-cobertura.py` roda
 **dois portões inteiros por mutação** (`validar-banco.py` e `teste-f2.php`, este varrendo 105
-estados) e não terminou dentro desta execução. O que dela **está medido**: o mundo intacto sai
-**APROVADO** — *"como tem que estar antes de começar"*, que é exatamente a afirmação que estava
-falhando em `mutacoes-base` e `mutacoes-apoio` — e as três primeiras mutações **reprovaram como
-deviam**, com a régua do censo e a do snippet dando o mesmo elegível. Ela não foi tocada por este
-bloco: as mudanças aqui são três campos de prosa no esquema, o degrau derivado em duas outras
-baterias e arquivos novos. **Não afirmo verde nem vermelho no que não vi fechar** — é a diferença
-entre bancada e impressão, e esta ilha já pagou por ela.
+estados), levou perto de uma hora e fechou em **14 mutações, 14 reprovadas, 0 passaram** — com o
+mundo intacto saindo **APROVADO** antes de começar, que é exatamente a afirmação que estava falhando
+em `mutacoes-base` e `mutacoes-apoio`. **Nove das 14 nenhum portão antigo pegou**, entre elas *"o
+GERADOR conta errado e regenera coerente com o próprio defeito"* e *"o resumo do censo é digitado em
+vez de contado"*. Ela não foi tocada por este bloco, e a árvore ficou limpa depois dela: os 14
+bancos seguem parseando.
+
+*(Esta frase substitui, no mesmo lugar, a que esta execução escreveu antes do push dizendo que a
+bateria **não** terminara — e a substituição é o ponto, não um detalhe: naquele momento a frase
+honesta era "não afirmo verde nem vermelho no que não vi fechar", e é ela que este parágrafo pôde
+trocar por um número. Bancada que ainda roda se declara em aberto; nunca se arredonda para verde.)*
 
 **E a reprodutibilidade do artefato foi conferida, não presumida:** re-derivados os hosts depois de
 todas as edições do esquema, são **76**, os mesmos 76 que `dados/egresso-de-fontes.json` gravou,
