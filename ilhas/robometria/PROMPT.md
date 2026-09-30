@@ -45,6 +45,31 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-09-30 (RONDA DIÁRIA TÉCNICA, 14h53Z) — UM ITEM, E ELE NÃO É DA FUNDAÇÃO
+
+**A ilha segue em MODO DE MEDIÇÃO (1.2-b.1) e este despacho não abre bloco.** A ronda técnica passou a rodar em toda ilha no ar pela decisão do Raphael de 28/09 (seção 1.2), e foi ela que achou o que está abaixo.
+
+**O QUE ESTA RONDA MEDIU E PASSOU:** **14 de 14** URLs do sitemap em HTTP 200; `/status` na **revisão 81**, igual à do `manifest.json`; porta de entrada da 29.2 inteira (`/wp-sitemap.xml` em 200 com XML de sitemap de verdade, `/robots.txt` em 200 e `text/plain`, `/wp-json/` em 200 e `application/json`); **console sem uma mensagem** na home, com recarga; **zero** `&#038;` dentro de `<script>` nas 14; **zero** página órfã; **zero** `noindex` indevido; JSON-LD nas 14 e `BreadcrumbList` nas 13 que não são a home; `<meta name="description">` nas 14, todas dentro de 160 caracteres; **zero** `<img>` sem `width`/`height` e **zero** sem `alt`; nenhuma frase da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>` ou primeiro parágrafo.
+
+**A FERRAMENTA FOI EXECUTADA COM ENTRADA REAL:** `?modelo=electrolux-erb60&peca=filtro` → devolve o "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62" e o "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62", os dois com a lista de compatibilidade declarada pela loja oficial, verificada em 09/09/2026, e o aviso de que o fabricante não publica código de peça nesta página. **O ERB60 está nas duas listas: nenhuma contradição entre a recomendação e o texto da própria página.** Os dois botões de compra são links encurtados e rastreáveis (`s.shopee.com.br`) — **zero link cru servido** nesta entrada, ao contrário do que a medição de 18/09 achou na R2.
+
+### 1. O SOFT 404 NA BORDA TAMBÉM ACONTECE NESTA ILHA — e isso é do Raphael, não da Fundação
+
+**O que foi medido**, em 30/09/2026 por volta das 14h4xZ, em **duas** URLs virgens criadas com o relógio no nome, quatro leituras cada, **sem quebra de cache** (a leitura que se parece com a do Google):
+
+| leitura de uma URL que não existe | resposta |
+|---|---|
+| **1ª** | **404**, `cache-control: no-cache, must-revalidate, max-age=0, no-store, private` — a **origem**, e ela está certa |
+| **2ª, 3ª e 4ª** | **200**, `x-server-cache: true`, `cache-control: max-age=7200`, e o corpo é a página de **404 desta ilha** |
+
+As duas sondas deram o mesmo resultado. Na **clubedomosaico** o comportamento é idêntico e está registrado desde 29/09; na **aquametria** as duas sondas deram **404 nas quatro leituras**. **Não é defeito de código de ilha nenhuma: é a camada de borda do hospedeiro, e a aquametria é a exceção que prova que dá para não ter.**
+
+**POR QUE IMPORTA:** 200 com corpo de erro é **soft 404**. O Google conta a URL como existente, e quem lê uma URL duas vezes é exatamente o Googlebot. O orçamento de rastreamento é o recurso escasso da seção 14.1.
+
+**POR QUE NENHUM PORTÃO DAQUI VIA:** o `conferir-no-ar.py` lê com `?v=<agora>`, isto é, mede a **origem** — e a origem responde 404, corretamente. O defeito mora na camada da frente.
+
+**Pronto quando:** uma URL inexistente desta ilha responder **404 em quatro leituras seguidas sem quebra de cache**. Enquanto isso não acontecer, o que a Fundação PODE fazer, e é a única coisa, é dar olhos ao portão: acrescentar ao `conferir-no-ar.py` desta ilha a sonda de borda (URL virgem, quatro leituras sem quebra de cache, **registra e não reprova** — a jurisprudência é a da clubedomosaico de 14/09: portão vermelho que nenhuma execução consegue fechar se aprende a ignorar, e isso é pior que não ter portão). **O fechamento é do Raphael**, com o hospedeiro, e está no `dados/PAINEL.md`.
+
 ## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h10Z) — a ilha está em MODO DE MEDIÇÃO e este despacho quase não pede trabalho
 
 **Esta ilha não recebe construção até a decisão pré-registrada de outubro** (despacho do Raphael de 21/09, 1.2-b.1). Portanto: **nenhum item abaixo é bloco de fila.** O que há é o fecho de duas propostas antigas, um defeito de descoberta já remediado pela própria Sentinela, e uma correção de uma linha.
