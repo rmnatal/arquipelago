@@ -75,6 +75,34 @@ PALAVRAS = {
     "sao": "são", "sobreposicao": "sobreposição", "superficies": "superfícies",
     "tecnica": "técnica", "tecnico": "técnico", "variacao": "variação",
     "vedacao": "vedação",
+
+    # AS QUARENTA E UMA DE 02/10/2026, NO BLOCO 4c — a frase do fabricante de
+    # `acabamento` passou a ser servida inteira, e ate aqui ela nunca tinha
+    # sido lida por ninguem alem de uma ferramenta. Cada uma entrou porque a
+    # forma acentuada e a UNICA leitura possivel em portugues; o que apenas
+    # PARECE faltar acento (acabado, pronto, total, secas, horizontais) ficou
+    # de fora e esta em `_CONHECIDAS`.
+    "acrilicas": "acrílicas", "aderencia": "aderência", "aplicacao": "aplicação",
+    "apos": "após", "atraves": "através", "carvao": "carvão",
+    "demao": "demão", "demaos": "demãos", "devera": "deverá",
+    "diluicao": "diluição", "diluivel": "diluível", "emboco": "emboço",
+    "formacao": "formação", "funcao": "função", "indispensavel": "indispensável",
+    "infiltracoes": "infiltrações", "intemperies": "intempéries",
+    "maquinas": "máquinas", "metalicas": "metálicas", "minimo": "mínimo",
+    "molhaveis": "molháveis", "necessarias": "necessárias", "oleo": "óleo",
+    "otima": "ótima", "papeis": "papéis", "pelicula": "película",
+    "penetracao": "penetração", "poliester": "poliéster", "presenca": "presença",
+    "pressao": "pressão", "protecao": "proteção", "rapida": "rápida",
+    "realcando": "realçando", "residuos": "resíduos", "sera": "será",
+    "superficie": "superfície", "trafego": "tráfego", "transito": "trânsito",
+    "elasticas": "elásticas", "acao": "ação", "pos": "pós",
+
+    # AS DUAS QUE O AVISO ACUSOU NO BANCO DOS VIZINHOS. Elas moram em
+    # `propriedades.*.valor` da `alicate` e da `pastilha` — campo que passou a
+    # ser de tela em 02/10/2026 —, e nenhuma pagina as serve HOJE. Entram
+    # agora porque a categoria delas nasce depois e, quando nascer, a frase ja
+    # esta certa: foi a ordem inversa que criou este arquivo.
+    "flexivel": "flexível", "manutencao": "manutenção",
 }
 
 # Frases inteiras, para o que palavra nenhuma resolve.
@@ -153,6 +181,32 @@ def percorrer(material):
             if isinstance(v, str):
                 saida.append(("declaracoes.%s[%d]" % (lista, i), v,
                               lambda nv, l=valores, j=i: l.__setitem__(j, nv)))
+    # O OBJETO `protecao` E O VALOR DE TEXTO DAS PROPRIEDADES ENTRARAM EM
+    # 02/10/2026, NO DIA EM QUE A PRIMEIRA PAGINA DO GUIA PASSOU A SERVI-LOS.
+    #
+    # E exatamente o caso que o cabecalho deste arquivo descreve: "o banco
+    # nasceu sem acento porque foi digitado a partir de busca, e ate aqui ele
+    # so era lido por ferramenta; no dia em que uma PAGINA passou a servi-lo, o
+    # defeito virou texto no ar". A categoria `acabamento` guarda a declaracao
+    # do fabricante em `protecao.literal_do_fabricante` — campo que nenhuma
+    # outra categoria tem, criado em 25/09/2026 —, e o bloco 4c publica essa
+    # frase inteira, entre aspas, em cada ficha de produto.
+    #
+    # O QUE FICOU DE FORA, E A REGRA E A MESMA DE SEMPRE: so entra campo que
+    # CHEGA A TELA. O `declarado_como` de uma propriedade e a procedencia de um
+    # numero e nenhuma pagina desta ilha o imprime — as paginas imprimem o
+    # NUMERO, com a unidade, e o link da fonte. O `motivo` de propriedade nula
+    # e prosa de execucao para a proxima passada ler. Nenhum dos dois e tela, e
+    # acentuar o que nao e lido e alargar a superficie sem ganho.
+    prot = material.get("protecao") or {}
+    for campo in ("literal_do_fabricante", "trecho_que_declara_o_momento"):
+        if isinstance(prot.get(campo), str):
+            saida.append(("protecao.%s" % campo, prot[campo],
+                          lambda v, c=campo, pr=prot: pr.__setitem__(c, v)))
+    for nome_prop, prop in (material.get("propriedades") or {}).items():
+        if isinstance(prop, dict) and isinstance(prop.get("valor"), str):
+            saida.append(("propriedades.%s.valor" % nome_prop, prop["valor"],
+                          lambda v, pp=prop: pp.__setitem__("valor", v)))
     for fid, fonte in (material.get("fontes") or {}).items():
         if isinstance(fonte.get("tipo"), str):
             saida.append(("fontes.%s.tipo" % fid, fonte["tipo"],
@@ -262,6 +316,25 @@ acrilex acrilfix akzonobel coral cortag maxx pastilhart shopee suvinil vonder
 blocked curl drywall egress fetch glass gourmet halls marketplace mosaic open
 spas strip vdec
 duas duro
+ajuste allen cabos carbono chave forjado hexagonal plastificados tipo
+acabado acabamento adequado aerossol agitado agitar aguardar aparente aplicado
+aplicar apresentar aproximado argamassas artesanato ascendente aspecto
+atingida aumentando base bonitos branco carros casa causadas cera
+churrasqueiras cobertura como conjunto decorativo deixa dependendo depois
+desde deseja desejada desenho destinado deve diluido diluir disperso diversas
+documentos elevada enchimento especificada espessura espuma estar estruturas
+expostos externos feita ferramentas fibrocimento final firme forem fotos
+grande hidrofugante horizontais ideal impedir impermeabiliza impermeabilizante
+indicada indicado intervalo isenta isopor laca lajes layouts leve limpa limpo
+litro madeiras maior mais menor minerais minutos monocomponente muito negativa
+nitrocelulose novas observado obter oferece pastel pelo permeabilidade pessoas
+pigmentado pintura pinturas plantas pode poder possam preservar projeto pronta
+pronto protege protegendo quaisquer quantas quanto quem realizada reboco
+recomenda rende rendimento revestimento rolo seca secagem secas seco selagem
+sempre sendo silano siloxano sistemas stains substrato substratos sujeitos
+telhas teor textura texturacrill texturizado thinner tijolos tonalidade toque
+total totalmente trabalho trabalhos transparente tratamento umidade uniformiza
+uniformizar vernizes vista
 """.split())
 
 

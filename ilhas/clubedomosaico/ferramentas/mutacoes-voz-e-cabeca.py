@@ -140,10 +140,17 @@ def m_alt_do_logo_fica_vazio(raiz):
 
 
 def m_home_volta_a_ser_inicio(raiz):
-    """O titulo da home volta a ser a palavra Inicio, que e o H1 que o tema imprime."""
+    """O titulo da home volta a ser a palavra Inicio, que e o H1 que o tema imprime.
+
+    INERTE DE 28/09 A 02/10/2026, pela mesma causa das outras duas desta
+    bateria: o alvo casava a entrada da home escrita numa linha so, e a casca
+    1.16.0 quebrou aquela entrada em varias ao dar `descricao` a cada pagina.
+    O conserto e casar SO o par `'titulo' => <nome da home>`, que e a parte que
+    esta mutacao existe para trocar.
+    """
     trocar(raiz, CASCA,
-           "'inicio'                  => array( 'titulo' => 'Mosaico feito à mão, uma peça por vez'",
-           "'inicio'                  => array( 'titulo' => 'Início'")
+           "'titulo'    => 'Mosaico feito à mão, uma peça por vez',",
+           "'titulo'    => 'Início',")
 
 
 def m_titulo_para_de_sincronizar(raiz):
@@ -185,10 +192,18 @@ def m_porta_dos_fundos_pagina_inteira(raiz):
 
 
 def m_porta_dos_fundos_segunda_pagina_de_prova(raiz):
-    """A outra porta: declarar a home tambem como camada de prova."""
+    """A outra porta: declarar a home tambem como camada de prova.
+
+    INERTE DE 28/09 A 02/10/2026, pela mesma causa — e esta era a mais cara das
+    tres, porque e a que guarda a porta dos fundos da camada de prova: bastaria
+    declarar a home como prova para o portao de voz parar de valer. Ela passou
+    quatro dias sem morder. O conserto pendura a camada logo depois do
+    `conteudo` da home, que e a parte que nao muda quando um campo novo entra
+    ao lado.
+    """
     trocar(raiz, CASCA,
-           "'inicio'                  => array( 'titulo' => 'Mosaico feito à mão, uma peça por vez', 'conteudo' => '[cdm_home]' ),",
-           "'inicio'                  => array( 'titulo' => 'Mosaico feito à mão, uma peça por vez', 'conteudo' => '[cdm_home]', 'camada' => 'prova' ),")
+           "'conteudo'  => '[cdm_home]',",
+           "'conteudo'  => '[cdm_home]', 'camada' => 'prova',")
 
 
 def m_prova_antes_do_texto(raiz):
@@ -222,10 +237,25 @@ def m_total_digitado(raiz):
 
 
 def m_noindex_na_pagina_errada(raiz):
-    """`noindex` indevido: o Guia sai do indice sem ninguem ver na tela."""
+    """`noindex` indevido: o Guia sai do indice sem ninguem ver na tela.
+
+    ESTA MUTACAO ESTEVE INERTE DE 28/09 A 02/10/2026, e o achado vale mais que
+    ela. O alvo era a linha inteira da pagina `materiais` escrita em UM so
+    rengue; na casca 1.16.0, de 28/09, aquela entrada ganhou o campo `descricao`
+    e virou varias linhas. A partir dali `trocar()` nao achava o trecho e a
+    mutacao se declarava INVALIDA — o runner conta isso como erro, e o erro
+    passou quatro dias no `main` sem ninguem rodar esta bateria. E a MESMA
+    familia do que o bloco de 28/09 achou em `mutacoes-arvore.py`, no mesmo dia
+    e pela mesma causa: alvo de mutacao casado por linha inteira morre na
+    primeira reformatacao do codigo que ele mede.
+
+    O CONSERTO E NAO CASAR MAIS A LINHA INTEIRA: a mutacao passa a pendurar o
+    `noindex` logo depois do `conteudo` daquela pagina, que e a parte que nao
+    muda quando um campo novo entra ao lado.
+    """
     trocar(raiz, CASCA,
-           "'materiais'               => array( 'titulo' => 'Materiais', 'conteudo' => '[cdm_materiais]' ),",
-           "'materiais'               => array( 'titulo' => 'Materiais', 'conteudo' => '[cdm_materiais]', 'noindex' => true ),")
+           "'conteudo'  => '[cdm_materiais]',",
+           "'conteudo'  => '[cdm_materiais]', 'noindex' => true,")
 
 
 def m_pagina_de_prova_volta_ao_sitemap(raiz):

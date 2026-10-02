@@ -3,78 +3,73 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 17        # SEGUE 17 em 02/10/2026 16h40Z: o bloco das 16h17Z tambem NAO criou URL.
+urls_publicadas: 21        # 17 -> 21 em 02/10/2026 19h51Z: o BLOCO 4c publicou a mae /materiais/acabamento/
+                           # e as tres filhas de nivel 3 dela. Primeira categoria do Guia a nascer, e a
+                           # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-02T16:40Z
-executando_desde: 2026-10-02T19:16Z
+ultima_execucao: 2026-10-02T19:51Z
+executando_desde: null
 ultima_ronda: 2026-10-02T14:51Z   # RONDA DIARIA TECNICA de 02/10/2026. 17 de 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira (sitemap XML de verdade, robots.txt text/plain, wp-json JSON, e caminho inexistente em 404 da propria ilha), /status na revisao 55 igual a do manifest, console limpo com recarga, zero orfa, zero &#038; em script, zero noindex indevido, description nas 17 e NENHUMA acima de 160 (o que fecha a metade que faltava do item 4 do despacho de 28/09), JSON-LD nas 17 e BreadcrumbList nas 16 que nao sao home, zero imagem sem width/height. F1 executada com DUAS entradas novas e os oito numeros conferidos na mao (cilindro 20x30 com pastilha de 2 cm: 1.885 cm2, 2.066/m2, 429 pastilhas, 264 g; placa 40x25 com pastilha de 1,5 cm e junta de 3 mm: 1.000 cm2, 3.086/m2, 340 pastilhas, 280 g) e F2 em vidro comum no sol e na chuva (Tekbond Silicone Neutro, com declaracao do fabricante citada e o produto recomendado fora da propria lista de 'o que nao usar'). Teste de vida: 24 de 24 itens com url_produto VIVOS (20 Shopee pela API de ficha, 4 Mercado Livre no navegador), 0 morto, 0 esgotado; piso 41 de 41 com url_busca E url_busca_produto; 12 de 12 chaves de busca com resultado; zero intestavel; degrau 4 com motivo na forma da 25.4-b.3 em 17 de 17, o que RECONFERE E FECHA o item 1 do despacho de 30/09. NENHUM defeito novo e ZERO conserto. As cinco linhas de dados/consertos.md reconferidas no ar: porta de entrada PASSOU pela terceira ronda seguida, links regerados PASSARAM, etiqueta de robo PASSOU, e o soft 404 na borda CONTINUA (404 200 200 200 em sonda virgem) e segue sendo do Raphael.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  O CRUZAMENTO DA 14.9 DEIXOU DE SER TRABALHO DE CABECA E VIROU PORTAO — E ELE ABRIU O 4c
-  DE `acabamento`, A PRIMEIRA CATEGORIA DO GUIA A PASSAR OS DOIS PORTOES.
-  Manifest e /status seguem na revisao 55: este bloco NAO mudou nada que o Sync publique.
-  NENHUMA URL NOVA (segue em 17), nenhum endereco, nenhum <title> e nenhuma description —
-  a janela de comparacao do BLOCO A continua limpa e o veredito dele segue de 08/10. Sem
-  Sync porque nao havia o que desembarcar.
-  O DIAGNOSTICO, e ele e de arquitetura: as duas metades da 14.9 existiam desde 30/09 e
-  nunca se encontravam num veredito. A de DADO era numero derivado do banco
-  (dados/filhas-do-guia.json); a de SERP era PROSA, numa secao de dados/filhas-do-guia.md
-  que o gerador preserva SEM LER — e o cabecalho daquele gerador diz de si mesmo que "nao
-  classifica SERP". Prosa nao cruza com numero: a pergunta "o 4c pode nascer?" exigia dois
-  arquivos e a conta na cabeca, e o cabecalho das 13h17Z teve de escrever A MAO o aviso
-  "o portao de DADO abriu, o de SERP e outro". Aviso a mao e o que um portao substitui.
-  O QUE FOI MEDIDO: quatro consultas novas, com os tres limites do canal respeitados.
-  `acabamento` (a mae) ABERTA — Catraca Livre, Benjoino 2010, NeuralWord, mosaico.arq.br
-  em 4 (e e OBRA), Portal das Maravilhas, Artesanato Local 2010. `acabamento/selador`
-  ABERTA pela consulta do vaso de ceramica. `acabamento/impermeabilizante` ABERTA — forum
-  PT, Benjoino 2010, FazFacil em 2, Redelease. ZERO MARKETPLACE NAS QUATRO.
-  E NASCEU UMA CLASSE DA MEDICAO, nao da escolha: ABERTA_SEM_INTENCAO_NA_SERP, para a
-  consulta `precisa passar selador na base antes de colar mosaico em MDF ou ceramica`, em
-  que 9 dos 10 resultados sao PINTURA DE PAREDE. Ninguem ocupa porque nenhum resultado
-  fala da pergunta desta ilha: chance alta e intencao NAO PROVADA, que e a metade "chance
-  alta sem intencao" que a propria 14.9 nomeia. Entrou na legenda do corpus.
-  O QUE FICOU DE PE: `dados/serp-das-filhas.json` (a metade coletada, 10 medicoes, com as
-  6 de 30/09 movidas SEM UMA PALAVRA ALTERADA), `ferramentas/cruzamento-14-9.py` (seis
-  vereditos CALCULADOS e nunca escritos; --autoteste 32 casos 0 falha; --conferir de pe) e
-  `dados/cruzamento-14-9.md`. A SEGUNDA VERDADE FOI APAGADA: a tabela em prosa saiu do
-  filhas-do-guia.md e ficou um ponteiro. Uma fonte por campo.
-  O VEREDITO, de 42 recortes: 5 pode_nascer (`acabamento` + as 3 filhas dela +
-  `alicate/cortador_de_azulejo`), 1 espera_autoridade, 3 espera_serp, 33 sem_nenhum_dos_dois.
-  O ACHADO QUE VALE MAIS QUE O VEREDITO: a 16.5 conta filha, e FILHA NAO E FILHA NO DADO —
-  e no cruzamento. `acabamento` tem 3 no dado e 3 no cruzamento (a mae pode nascer);
-  `pastilha` tem 1 no dado e ZERO no cruzamento, porque `pastilha/vidro`, a de mais banco
-  da ilha (13 itens, tres numeros em 12), tem SERP de marketplace. Pela contagem do dado
-  ela estava a duas filhas da mae; pelo cruzamento, a tres. Tem autoteste proprio, junto
-  com o caso da MAE TOMADA com 3 filhas abertas.
-  TRES MAES EM espera_serp — `alicate`, `pastilha` e `rejunte`: DADO VERDE E SERP NUNCA
-  OLHADA, o estado que parece passe livre. Medir as tres e busca, nao coleta: e o trabalho
-  mais barato que sobrou nesta fila.
-  O DEFEITO DA PROPRIA EXECUCAO, achado antes de qualquer commit: a primeira versao cravava
-  "nem 3 itens de banco" no veredito sem_nenhum_dos_dois, e isso era FALSO em
-  `alicate/torques` e `rejunte/cimenticio`, que TEM 3 itens e param por lastro e por numero
-  comum. Corrigido extraindo `falta_no_dado()`, que deriva a frase da distancia ja medida.
-  Frase cravada envelhece calada; frase derivada nao.
-  O QUE SOBRA ANTES DE PUBLICAR O 4c, E E UMA COISA SO: a FAIXA DE VOLUME das seis consultas
-  abertas nao existe. O Planejador e do Raphael, o campo ficou `null` nos dez registros em
-  vez de estimado, e o pedido esta em dados/despachos.md com a lista DERIVADA pela
-  ferramenta — so consulta ABERTA entra, e o N encolhe quando o numero chega e nao quando
-  alguem edita a lista. ELA NAO DECIDE SE A PAGINA NASCE; DECIDE A ORDEM DA LEVA (1.2-b.3).
-  E O ROTULO VELHO DO CORPUS CAIU, como a medicao de 30/09 mandava: `pastilhas de vidro para
-  mosaico` virou ~~ABERTA~~ -> TOMADA, com a evidencia INTACTA e a diferenca entre as duas
-  reguas escrita na propria linha. As cinco consultas de `acabamento` entraram na secao 1E,
-  com a SERP citada dali e a fonte no JSON novo.
-  BANCADA: conferir-no-ar 524 afirmacoes 0 falha ANTES do bloco; validar-banco verde (41
-  materiais); validar-pastilhas 189; cobertura --conferir OK; filhas-do-guia --conferir nas
-  tres pernas e --autoteste 27; cruzamento-14-9 --conferir e --autoteste 32 casos 0 falha;
-  mutacoes acabamento 14, base 20, apoio 24, degrau 8, motivo-degrau-4 10, batismo 14,
-  casamento 5, arvore 29, pastilhas 14, cobertura 14 — todas reprovaram. atualizar-manifest
-  --gravar com os 5 sha impressos, e ele ACUSOU a ferramenta nova fora do manifest antes de
-  eu a registrar.
-  O soft 404 na borda CONTINUA e segue com o Raphael desde 29/09 — vermelho esperado, com dono.
+  BLOCO 4c ENTREGUE: A PRIMEIRA CATEGORIA DO GUIA NASCEU, E NASCEU COM AS TRES FILHAS.
+  Quatro URLs novas (17 -> 21): /materiais/acabamento/ e as tres filhas
+  selar-a-base-antes-de-fazer-mosaico, verniz-para-peca-de-mosaico e
+  impermeabilizar-peca-de-mosaico. Snippet novo 'Clube do Mosaico Guia' 1.0.0; manifest e
+  /status na revisao 56; casca inalterada na 1.19.0.
+  QUEM ESCOLHEU A CATEGORIA NAO FOI A EXECUCAO, FOI O CRUZAMENTO DA 14.9: `acabamento` e o
+  unico recorte da ilha em que os dois portoes abriram na mae E nas tres filhas. As quatro
+  saem juntas pela 16.6 (a mae e as 3 primeiras filhas) e pela 16.5 (mae so nasce com 3).
+  A `alicate/cortador_de_azulejo`, tambem em pode_nascer, FICOU DE FORA de proposito: a mae
+  dela esta em espera_serp e filha sozinha pendurada em /materiais/ e o cluster ralo que a
+  16.6 proibe.
+  PRIMEIRA ARVORE DE TRES SEGMENTOS DA ILHA. As quatro paginas de nivel 3 anteriores (as duas
+  ferramentas e as duas tecnicas) vivem em DOIS porque a categoria delas nao existia quando
+  nasceram. Este e o primeiro bloco em que a categoria nasce ANTES da filha.
+  O NUMERO DA SECAO 9 E A COBERTURA DECLARADA: das 15 superficies do vocabulario (9 bases e 6
+  caquinhos), quantas a frase do proprio fabricante alcanca. Mae 13 de 150; selador 4 de 45;
+  verniz 2 de 60; impermeabilizante 7 de 45. E literalmente o que a medicao de SERP de hoje
+  chamou de 'o numero que a SERP nao publica' — os dez resultados da consulta de
+  impermeabilizante dizem 'tinta betuminosa' e 'emulsao de silicone', tipo de produto sem
+  marca e sem numero.
+  O SEGUNDO NUMERO E O RELOGIO: (demaos - 1) x intervalo + secagem final, aritmetica da ilha
+  sobre tres declaracoes. Fecha em 2 dos 10 e SO neles (Coral Selador 5 h; Coral Resina 20 h);
+  nos outros oito a pagina diz que o fabricante nao declara, em vez de emprestar o numero do
+  vizinho de prateleira.
+  NENHUMA LINHA ESCOLHE PRODUTO PARA UMA BASE, e isso e o esquema: regras_da_categoria_
+  acabamento manda a matriz base x ambiente nascer vazia. As paginas LISTAM o que o fabricante
+  escreveu, com a frase dele entre aspas, e deixam a escolha com quem le.
+  A DIVIDA ACHADA NO CAMINHO: o banco de acabamento nunca tinha sido lido por uma pagina e
+  estava SEM ACENTO. restaurar-acentos.py cresceu para protecao.literal_do_fabricante,
+  protecao.trecho_que_declara_o_momento e propriedades.*.valor; 41 palavras novas no mapa, 164
+  em _CONHECIDAS, 21 trocas gravadas com --provar aprovado. O aviso fecha em ZERO pela
+  primeira vez. O declarado_como ficou de fora de proposito: a pagina publica o numero, nao a
+  frase de onde ele saiu.
+  DOIS PORTOES DA ILHA ESTAVAM CRAVADOS NO 'HOJE' E REPROVARAM A CASCA POR ELA ESTAR CERTA:
+  'nenhum cartao de categoria e link hoje' (era 0 cravado, virou a contagem de categorias com
+  pagina declarada) e 'os blocos de recusa sao poucos' (era teto 4, virou no maximo um por
+  pagina). Os dois teriam reprovado qualquer bloco que fizesse a ilha crescer.
+  E TRES MUTACOES ESTAVAM INERTES DESDE 28/09 em mutacoes-voz-e-cabeca.py — 'noindex na pagina
+  errada', 'a home volta a se chamar Inicio' e 'PORTA DOS FUNDOS: segunda pagina declarada como
+  prova'. Todas casavam a entrada de uma pagina escrita em UMA linha, e a casca 1.16.0 quebrou
+  aquelas entradas em varias ao dar descricao a cada pagina. A terceira e a que guarda a porta
+  dos fundos da camada de prova. Mesma familia e mesmo dia do que o bloco de 28/09 achou em
+  mutacoes-arvore.py.
+  BANCADAS NOVAS: teste-guia.php (106 afirmacoes, 0 falha) e mutacoes-guia.py (14 mutacoes, 14
+  decididas certo). A bateria achou TRES buracos na bancada recem-escrita na primeira passada —
+  a frase da lacuna podia virar lista escrita, a busca CRUA podia se declarar sponsored, e a
+  propria mutacao do vidro media o corpo inteiro. Os tres viraram portao.
+  NENHUMA DAS QUATRO DECLARA PROMESSA NO <title>: a alavanca da 12.1 e para posicao 4 a 10 e
+  elas nascem sem posicao. Nenhuma URL antiga se moveu, nenhum 301, nenhum <title> ou
+  description existente tocado — a janela de comparacao do BLOCO A segue limpa ate 08/10.
+  PROXIMO PASSO DESBLOQUEADO: medir a SERP das tres maes em espera_serp (alicate, pastilha,
+  rejunte). E busca, nao coleta, e e o trabalho mais barato que sobrou. Com a de `alicate`
+  medida, a `alicate/cortador_de_azulejo` — ja em pode_nascer — ganha mae e a segunda categoria
+  do Guia sai com a mesma leva de quatro.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

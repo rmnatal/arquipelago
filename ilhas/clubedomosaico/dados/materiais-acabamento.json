@@ -38,7 +38,7 @@
       },
       "motivo_declaracoes_vazias": "As `declaracoes` desta ilha sao estruturadas no vocabulario `base` x `ambiente`, que e o eixo pelo qual a F2 escolhe COLA e REJUNTE. Acabamento nao cola nada e nao se escolhe por ambiente declarado: o eixo dele e SOBRE O QUE ELE SE PASSA e EM QUE MOMENTO. Preencher a matriz base x ambiente com um verniz faria a F2 considerar verniz onde ela decide cola. Mesma decisao da categoria pastilha (12/09) e da categoria alicate (25/09): o que o fabricante declara mora em `protecao`, e todo valor numerico em `propriedades`, onde o validar-banco cobra fonte para valor e motivo para null.",
       "protecao": {
-        "literal_do_fabricante": "indicado para dar acabamento brilhante em tela, madeira, papel, cortica, ceramica, gesso e isopor; pode ser aplicado sobre tintas acrilicas depois de totalmente secas; depois de seco deixa sobre o trabalho uma pelicula transparente",
+        "literal_do_fabricante": "indicado para dar acabamento brilhante em tela, madeira, papel, cortiça, cerâmica, gesso e isopor; pode ser aplicado sobre tintas acrílicas depois de totalmente secas; depois de seco deixa sobre o trabalho uma película transparente",
         "fonte_id": "pagina-produto-verniz-acrilico-brilhante",
         "momento_de_uso": "nao_declarado",
         "motivo_do_momento": "A frase fala em aplicar sobre TINTA acrilica seca. Ela nao nomeia rejunte, entao nao ha declaracao de que este verniz se passe na peca depois de rejuntada, que e o momento em que a artesa o usaria.",
@@ -180,7 +180,7 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco: acabamento nao entra na matriz base x ambiente da F2.",
       "protecao": {
-        "literal_do_fabricante": "indicado para dar acabamento fosco em tela, madeira, papel, cortica, ceramica, gesso e isopor; pode ser aplicado sobre tintas acrilicas depois de totalmente secas; depois de seco deixa sobre o trabalho uma pelicula transparente",
+        "literal_do_fabricante": "indicado para dar acabamento fosco em tela, madeira, papel, cortiça, cerâmica, gesso e isopor; pode ser aplicado sobre tintas acrílicas depois de totalmente secas; depois de seco deixa sobre o trabalho uma película transparente",
         "fonte_id": "pagina-produto-verniz-acrilico-fosco",
         "momento_de_uso": "nao_declarado",
         "motivo_do_momento": "Identico ao do brilhante: a frase fala de tinta acrilica seca e nao nomeia rejunte.",
@@ -322,7 +322,7 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
       "protecao": {
-        "literal_do_fabricante": "indicado para dar acabamento e protecao em pinturas sobre tela, pinturas a oleo ou acrilicas, pastel, carvao e trabalhos de artesanato; protege papeis, plantas, documentos, layouts e fotos; depois de seco deixa sobre o trabalho uma pelicula transparente; em pintura a oleo, aplicar um ano depois de a pintura estar pronta",
+        "literal_do_fabricante": "indicado para dar acabamento e proteção em pinturas sobre tela, pinturas a óleo ou acrílicas, pastel, carvão e trabalhos de artesanato; protege papéis, plantas, documentos, layouts e fotos; depois de seco deixa sobre o trabalho uma película transparente; em pintura a óleo, aplicar um ano depois de a pintura estar pronta",
         "fonte_id": "pagina-produto-acrilfix-brilhante",
         "momento_de_uso": "nao_declarado",
         "motivo_do_momento": "'Trabalhos de artesanato' e a coisa mais proxima que a frase tem de uma peca de mosaico, e ela nao diz sobre QUE superficie nem em que momento.",
@@ -464,7 +464,7 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
       "protecao": {
-        "literal_do_fabricante": "aplicar com rolo de espuma de poliester limpo e seco, indicado para aplicacao de vernizes e stains em superficies lisas; aplicar no minimo 3 demaos para obter a espessura desejada, com intervalo minimo de 30 minutos entre demaos ou ate apresentar aspecto seco, dependendo da permeabilidade; produto pronto para uso, nao deve ser diluido nem agitado; aplicar entre 10 e 28 graus; liberacao para trafego leve apos 72 horas e liberacao total apos 7 dias; adequado para areas com trafego de carros, maquinas ou ferramentas industriais",
+        "literal_do_fabricante": "aplicar com rolo de espuma de poliéster limpo e seco, indicado para aplicação de vernizes e stains em superfícies lisas; aplicar no mínimo 3 demãos para obter a espessura desejada, com intervalo mínimo de 30 minutos entre demãos ou até apresentar aspecto seco, dependendo da permeabilidade; produto pronto para uso, não deve ser diluido nem agitado; aplicar entre 10 e 28 graus; liberação para tráfego leve após 72 horas e liberação total após 7 dias; adequado para áreas com tráfego de carros, máquinas ou ferramentas industriais",
         "fonte_id": "bt-verniz-protetor-pisos-2024-05",
         "momento_de_uso": "nao_declarado",
         "motivo_do_momento": "O produto e de PISO e a frase fala de trafego, nao de peca. Nao ha declaracao de uso sobre peca montada nem sobre rejunte.",
@@ -536,7 +536,7 @@
           "declarado_como": "aplicar o produto em condicoes entre 10 e 28 graus"
         },
         "diluicao": {
-          "valor": "pronto para uso, nao diluir e nao agitar",
+          "valor": "pronto para uso, não diluir e não agitar",
           "unidade": null,
           "fonte_id": "bt-verniz-protetor-pisos-2024-05",
           "declarado_como": "nao e necessario agitar nem diluir o produto antes do uso"
@@ -639,7 +639,7 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
       "protecao": {
-        "literal_do_fabricante": "pode ser usado em fachadas, paredes internas e externas, inclusive drywall, telhas de fibrocimento, telhas ceramicas, telhas metalicas e lajes sem transito; pode ser aplicado em quantas demaos forem necessarias, desde que observado o consumo recomendado e atingida a espessura especificada em projeto; nao e indicado para infiltracoes causadas por umidade ascendente ou pressao negativa de agua, nem para superficies com transito de pessoas",
+        "literal_do_fabricante": "pode ser usado em fachadas, paredes internas e externas, inclusive drywall, telhas de fibrocimento, telhas cerâmicas, telhas metálicas e lajes sem trânsito; pode ser aplicado em quantas demãos forem necessárias, desde que observado o consumo recomendado e atingida a espessura especificada em projeto; não e indicado para infiltrações causadas por umidade ascendente ou pressão negativa de água, nem para superfícies com trânsito de pessoas",
         "fonte_id": "bt-borracha-liquida-elastica-2024-07",
         "momento_de_uso": "nao_declarado",
         "motivo_do_momento": "O produto e de obra e forma pelicula opaca; nada na frase o poe sobre peca montada. Se a artesa o usasse na peca, seria ANTES de colar, na base — e isso nao esta declarado.",
@@ -676,7 +676,7 @@
           "declarado_como": "alta elasticidade (500%)"
         },
         "base_quimica": {
-          "valor": "resina acrilica",
+          "valor": "resina acrílica",
           "unidade": null,
           "fonte_id": "pagina-produto-borracha-liquida-elastica",
           "declarado_como": "impermeabilizante a base de resina acrilica, com propriedades elasticas, desenvolvido para a protecao de superficies externas submetidas a intemperies como chuva e acao direta do sol"
@@ -785,7 +785,7 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
       "protecao": {
-        "literal_do_fabricante": "hidrofugante a base de silano-siloxano, produto monocomponente, disperso em agua, com elevada penetracao e indispensavel para aplicacao sobre os revestimentos minerais; destinado ao tratamento e protecao de estruturas de concreto, superficies de alvenaria e de outros substratos sujeitos a presenca de umidade e expostos as intemperies; pode ser aplicado em paredes externas, churrasqueiras de tijolo a vista, telhas ceramicas, pedras naturais e revestimentos decorativos; a aplicacao manual devera ser realizada sempre em duas demaos; aplicar sobre superficies secas, sendo que quanto menor o teor de umidade da superficie maior sera a penetracao do produto",
+        "literal_do_fabricante": "hidrofugante a base de silano-siloxano, produto monocomponente, disperso em água, com elevada penetração e indispensável para aplicação sobre os revestimentos minerais; destinado ao tratamento e proteção de estruturas de concreto, superfícies de alvenaria e de outros substratos sujeitos a presença de umidade e expostos as intempéries; pode ser aplicado em paredes externas, churrasqueiras de tijolo a vista, telhas cerâmicas, pedras naturais e revestimentos decorativos; a aplicação manual deverá ser realizada sempre em duas demãos; aplicar sobre superfícies secas, sendo que quanto menor o teor de umidade da superfície maior será a penetração do produto",
         "fonte_id": "pagina-produto-protetor-para-fachadas",
         "momento_de_uso": "nao_declarado",
         "motivo_do_momento": "Hidrofugante se passa sobre revestimento pronto, o que em tese e o momento da peca rejuntada. Mas 'revestimento mineral' e 'revestimento decorativo' sao termos de obra e a frase nao nomeia pastilha nem rejunte, entao o momento fica nao declarado em vez de deduzido.",
@@ -823,7 +823,7 @@
           "declarado_como": "a aplicacao manual devera ser realizada sempre em duas demaos"
         },
         "base_quimica": {
-          "valor": "silano-siloxano disperso em agua",
+          "valor": "silano-siloxano disperso em água",
           "unidade": null,
           "fonte_id": "pagina-produto-protetor-para-fachadas",
           "declarado_como": "hidrofugante a base de silano-siloxano, produto monocomponente, disperso em agua, com elevada penetracao"
@@ -899,10 +899,10 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
       "protecao": {
-        "literal_do_fabricante": "selador pigmentado para aplicacao em conjunto com a texturacrill quartzolit em areas externas e internas; indicado para aplicacao em superficies de concreto, argamassas de emboco e reboco, superficies com pinturas PVA ou acrilica e sistemas de construcao a seco; a funcao e uniformizar o substrato aumentando o rendimento do revestimento decorativo texturizado; a superficie da base deve estar firme, limpa, seca, isenta de po, oleo ou quaisquer outros residuos que possam impedir a aderencia; aguardar a secagem por no minimo 6 horas para aplicacao da textura acrilica",
+        "literal_do_fabricante": "selador pigmentado para aplicação em conjunto com a texturacrill quartzolit em áreas externas e internas; indicado para aplicação em superfícies de concreto, argamassas de emboço e reboco, superfícies com pinturas PVA ou acrílica e sistemas de construção a seco; a função e uniformizar o substrato aumentando o rendimento do revestimento decorativo texturizado; a superfície da base deve estar firme, limpa, seca, isenta de po, óleo ou quaisquer outros resíduos que possam impedir a aderência; aguardar a secagem por no mínimo 6 horas para aplicação da textura acrílica",
         "fonte_id": "pagina-produto-fundo-selador",
         "momento_de_uso": "antes_de_colar",
-        "trecho_que_declara_o_momento": "aguardar a secagem por no minimo 6 horas para aplicacao da textura acrilica",
+        "trecho_que_declara_o_momento": "aguardar a secagem por no mínimo 6 horas para aplicação da textura acrílica",
         "motivo_do_momento": "E o unico dos sete cujo momento o fabricante declara com todas as letras: ele vai na base ANTES do revestimento, e a espera de 6 horas e ate a camada seguinte. O que ele nao declara e QUAL revestimento alem da textura acrilica da propria marca.",
         "bases_do_vocabulario_que_a_frase_nomeia": [
           "cimento_concreto",
@@ -1020,7 +1020,7 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
       "protecao": {
-        "literal_do_fabricante": "seladora indicada para superficies internas nao molhaveis de madeira; ideal para quem deseja preservar o desenho natural da madeira ao aplicar verniz ou cera; a diluicao deve ser feita com thinner para laca nitrocelulose em ate 30%; secagem ao toque 20 minutos e secagem final 2 horas; rende ate 10 m2 acabado com 2 a 3 demaos",
+        "literal_do_fabricante": "seladora indicada para superfícies internas não molháveis de madeira; ideal para quem deseja preservar o desenho natural da madeira ao aplicar verniz ou cera; a diluição deve ser feita com thinner para laca nitrocelulose em até 30%; secagem ao toque 20 minutos e secagem final 2 horas; rende até 10 m2 acabado com 2 a 3 demãos",
         "fonte_id": "pagina-produto-seladora-para-madeira",
         "momento_de_uso": "nao_declarado",
         "motivo_do_momento": "O FABRICANTE declara o momento em relacao ao VERNIZ e a CERA — \"ao aplicar verniz ou cera\" —, e nesta ilha o verniz e o produto que vai na peca DEPOIS de rejuntada: a propria frase, lida ao pe da letra, poria este selador depois do rejunte, que e o oposto do que a categoria entende por selador. A frase nao localiza o produto na linha do tempo DESTA ilha, e preenche-la com `antes_de_colar` seria deduzir pelo mecanismo. NOTA sobre o irmao de banco: `quartzolit-fundo-selador` ficou com `antes_de_colar` porque a frase dele datava a espera \"para aplicacao da textura acrilica\", que e camada de revestimento e nao de acabamento. A diferenca entre os dois e qual camada o fabricante nomeia, e esta escrita para a proxima passada nao achar que uma das duas esta errada.",
@@ -1063,7 +1063,7 @@
           "declarado_como": "rende ate 10 m2 acabado com 2 a 3 demaos"
         },
         "diluicao": {
-          "valor": "thinner para laca nitrocelulose em ate 30%",
+          "valor": "thinner para laca nitrocelulose em até 30%",
           "unidade": null,
           "fonte_id": "pagina-produto-seladora-para-madeira",
           "declarado_como": "a diluicao deve ser feita com thinner para laca nitrocelulose em ate 30%"
@@ -1174,7 +1174,7 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
       "protecao": {
-        "literal_do_fabricante": "indicado para paredes novas, impermeabiliza e uniformiza as mais diversas superficies de alvenaria pelo seu poder de selagem e otima aderencia; fundo de cor branco fosco, diluivel em agua e de rapida secagem; tem grande poder de enchimento e cobertura e pode ser aplicado em ambientes internos e externos; secagem ao toque 30 minutos, entre demaos 4 horas e final 5 horas; 1 demao; rendimento aproximado de 5 m2 por litro",
+        "literal_do_fabricante": "indicado para paredes novas, impermeabiliza e uniformiza as mais diversas superfícies de alvenaria pelo seu poder de selagem e ótima aderência; fundo de cor branco fosco, diluível em água e de rápida secagem; tem grande poder de enchimento e cobertura e pode ser aplicado em ambientes internos e externos; secagem ao toque 30 minutos, entre demãos 4 horas e final 5 horas; 1 demão; rendimento aproximado de 5 m2 por litro",
         "fonte_id": "pagina-produto-selador-acrilico",
         "momento_de_uso": "antes_de_colar",
         "trecho_que_declara_o_momento": "indicado para paredes novas",
@@ -1236,7 +1236,7 @@
           "declarado_como": "fundo de cor branco fosco"
         },
         "diluicao": {
-          "valor": "diluivel em agua",
+          "valor": "diluível em água",
           "unidade": null,
           "fonte_id": "pagina-produto-selador-acrilico",
           "declarado_como": "diluivel em agua"
@@ -1337,10 +1337,10 @@
       },
       "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
       "protecao": {
-        "literal_do_fabricante": "a resina acrilica deixa telhas, tijolos e pedras da sua casa muito mais bonitos; sua formula age como impermeabilizante, protegendo e realcando a tonalidade natural das superficies atraves da formacao de uma pelicula brilhante e transparente; e indicada para uso interno e externo em telhas, tijolos e pedras, e oferece grande aderencia em diferentes superficies, protegendo telhas, tijolos, pedras naturais, concreto aparente e fibrocimento; nao se recomenda o uso em superficies horizontais e/ou em madeiras; acabamento brilhante, rendimento aproximado de 9 m2 por litro, secagem ao toque 30 minutos, entre demaos 4 horas e final 12 horas, 3 demaos",
+        "literal_do_fabricante": "a resina acrílica deixa telhas, tijolos e pedras da sua casa muito mais bonitos; sua fórmula age como impermeabilizante, protegendo e realçando a tonalidade natural das superfícies através da formação de uma película brilhante e transparente; e indicada para uso interno e externo em telhas, tijolos e pedras, e oferece grande aderência em diferentes superfícies, protegendo telhas, tijolos, pedras naturais, concreto aparente e fibrocimento; não se recomenda o uso em superfícies horizontais e/ou em madeiras; acabamento brilhante, rendimento aproximado de 9 m2 por litro, secagem ao toque 30 minutos, entre demãos 4 horas e final 12 horas, 3 demãos",
         "fonte_id": "pagina-produto-resina-acrilica",
         "momento_de_uso": "depois_de_rejuntar",
-        "trecho_que_declara_o_momento": "protegendo e realcando a tonalidade natural das superficies atraves da formacao de uma pelicula brilhante e transparente",
+        "trecho_que_declara_o_momento": "protegendo e realçando a tonalidade natural das superfícies através da formação de uma película brilhante e transparente",
         "motivo_do_momento": "O fabricante o data sobre a superficie ACABADA e a vista — telha, tijolo e pedra que ficam expostos — e o que ele faz e formar pelicula POR CIMA, realcando a tonalidade do que ja esta la. Nao e preparo de base: nada vai colado em cima dele na frase do fabricante.",
         "bases_do_vocabulario_que_a_frase_nomeia": [
           "cimento_concreto",
@@ -1370,7 +1370,7 @@
       },
       "propriedades": {
         "base_quimica": {
-          "valor": "resina acrilica",
+          "valor": "resina acrílica",
           "unidade": null,
           "fonte_id": "pagina-produto-resina-acrilica",
           "declarado_como": "a resina acrilica deixa telhas, tijolos e pedras da sua casa muito mais bonitos"
@@ -1416,7 +1416,7 @@
           "motivo": "Nao declarado. Converter 9 m2/L em mL/m2 e aritmetica desta ilha, e o esquema proibe a conversao neste campo."
         },
         "pigmentado": {
-          "valor": "nao",
+          "valor": "não",
           "unidade": null,
           "fonte_id": "pagina-produto-resina-acrilica",
           "declarado_como": "pelicula brilhante e transparente"

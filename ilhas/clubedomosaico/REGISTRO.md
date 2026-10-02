@@ -3,6 +3,168 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+02/10/2026 19h16Z — O BLOCO 4c: A PRIMEIRA CATEGORIA DO GUIA NASCEU, E NASCEU COM AS TRÊS FILHAS
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h16Z** e push da reserva aceito na
+primeira tentativa (`e52777e`). `executando_desde` estava `null` e o último commit da ilha era de
+16h56Z, duas horas e vinte antes — pela 1.1, ilha livre sem desempate.
+
+**Quatro URLs novas**, a ilha vai de **17 para 21**. Casca na **1.19.0** sem mudança; snippet novo
+`Clube do Mosaico Guia` **1.0.0**; manifest na **revisão 56**.
+
+## A PORTA DE ENTRADA, ANTES DO BLOCO (seção 20.2)
+
+`https://clubedomosaico.com.br/` em **200** na primeira tentativa. A ronda técnica da Sentinela
+tinha fechado às 14h51Z com 17 de 17 URLs em 200 e zero defeito novo; este bloco não remediu o que
+ela mediu há quatro horas.
+
+## O BLOCO: `acabamento`, a mãe e as três filhas
+
+**Quem escolheu a categoria não foi esta execução — foi o `cruzamento-14-9.py`**, escrito às 16h2xZ
+de hoje. `acabamento` é o único recorte desta ilha em que os **dois** portões da 14.9 abriram ao
+mesmo tempo, na mãe **e** nas três filhas:
+
+| recorte | dado (seção 9) | SERP (14.9) | veredito |
+|---|---|---|---|
+| `acabamento` | passa, 10 itens | ABERTA | **pode_nascer** |
+| `acabamento/selador` | passa, 3 itens | ABERTA | **pode_nascer** |
+| `acabamento/verniz` | passa, 4 itens | ABERTA | **pode_nascer** |
+| `acabamento/impermeabilizante` | passa, 3 itens | ABERTA | **pode_nascer** |
+
+As quatro saem numa leva só porque é o que a **16.6** manda — *"primeiro a mãe e suas 3 primeiras
+filhas"*, nunca uma filha de cada categoria espalhada —, e porque a **16.5** só deixa a mãe nascer
+com três filhas. A `alicate/cortador_de_azulejo`, que também está em `pode_nascer`, **ficou de
+fora**: a mãe dela está em `espera_serp` e uma filha sozinha pendurada em `/materiais/` seria
+cluster ralo, que é exatamente o que a 16.6 proíbe.
+
+**A ÁRVORE DESTA ILHA SERVE TRÊS SEGMENTOS PELA PRIMEIRA VEZ.** As quatro páginas de nível 3 que
+existiam antes — as duas ferramentas e as duas técnicas — vivem em dois segmentos por estado de
+transição declarado: a categoria delas não existia quando nasceram, e a 12.1 proíbe mover URL
+publicada. Este é o primeiro bloco em que a **categoria nasce antes da filha**, e por isso o
+primeiro que não precisa do estado de transição. Endereços:
+
+- `/materiais/acabamento/` — nível 2, mãe `/materiais/`
+- `/materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/`
+- `/materiais/acabamento/verniz-para-peca-de-mosaico/`
+- `/materiais/acabamento/impermeabilizar-peca-de-mosaico/`
+
+## O NÚMERO CALCULADO DA SEÇÃO 9, E ELE NÃO FOI ESCOLHIDO PARA PREENCHER O PORTÃO
+
+É a **cobertura declarada**: das **15 superfícies** que o vocabulário do esquema nomeia (9 bases e 6
+caquinhos), quantas a frase do próprio fabricante de cada produto alcança — e, portanto, quantas ele
+não alcança. Contado, por página, do banco:
+
+| página | produtos | combinações | nomeadas | superfícies alcançadas |
+|---|---|---|---|---|
+| `acabamento` (mãe) | 10 | 150 | **13** | 4 de 15 |
+| `selador` | 3 | 45 | **4** | 3 de 15 |
+| `verniz` | 4 | 60 | **2** | 1 de 15 |
+| `impermeabilizante` | 3 | 45 | **7** | 3 de 15 |
+
+**Este número é literalmente o que a medição de SERP de hoje chamou de "o número que a SERP não
+publica".** Os dez resultados que ocupam a consulta de impermeabilizante dizem *emulsão de
+silicone*, *tinta betuminosa duas ou mais demãos* e *silicone ou verniz*: tipo de produto, sem
+marca, sem produto e sem número. Nenhum deles diz **sobre o quê** o fabricante escreveu que o
+produto pode ir. A ausência medida é o produto desta ilha.
+
+**O SEGUNDO NÚMERO É O RELÓGIO**, aritmética desta ilha sobre três declarações, no mesmo desenho dos
+gramas de rejunte da F1: `(demãos − 1) × intervalo entre demãos + secagem final`. Ele fecha em
+**2 dos 10** produtos e **só neles** — o Selador Acrílico da Coral (1 demão, 5 h) e a Resina Acrílica
+da Coral (3 demãos, 4 h entre elas, 12 h final: **20 horas**). Nos outros oito falta uma das
+parcelas e a página **diz que o fabricante não declara**, em vez de emprestar o número do vizinho de
+prateleira — que é o erro escrito dentro do próprio `quartzolit-fundo-selador`, no registro dele.
+
+## O QUE ESTAS PÁGINAS SE RECUSAM A FAZER, E A RECUSA É CONTADA
+
+Nenhuma linha deste snippet **escolhe produto para uma base**. Não é omissão: é o esquema.
+`regras_da_categoria_acabamento` diz, desde 25/09, que acabamento não entra na matriz base ×
+ambiente, porque *"acabamento não adere duas coisas uma na outra e não se escolhe por ambiente
+declarado"* — e por isso todo registro da categoria nasce com as seis listas de `declaracoes`
+vazias, o que é portão no `validar-banco.py`. Montar uma régua de "qual verniz para qual peça" em
+cima de declarações que não falam de peça de mosaico seria inventar a recomendação.
+
+E a lacuna é **derivada**, não escrita: o vidro, a pastilha de vidro e o rejunte entram na frase
+porque a conta diz que faltam. No dia em que um fabricante nomear vidro, a frase do vidro some
+sozinha — e **a bateria de mutações fabrica esse dia e exige que ela suma**.
+
+## A DÍVIDA QUE ESTE BLOCO ACHOU NO CAMINHO, E ELA NÃO ERA DESTA CATEGORIA
+
+**O banco de `acabamento` nunca tinha sido lido por uma página, e por isso estava sem acento.**
+`ferramentas/restaurar-acentos.py` existe desde 11/09 exatamente para isto, e o cabeçalho dele diz
+com estas palavras: *"o banco nasceu sem acento porque foi digitado a partir de busca, e até aqui
+ele só era lido por ferramenta; no dia em que uma PÁGINA passou a servi-lo, o defeito virou texto no
+ar"*. Hoje foi esse dia. `CAMPOS_DE_TELA` via `marca`, `fabricante` e `nome_comercial`, e a
+declaração do fabricante de `acabamento` mora em `protecao.literal_do_fabricante` — campo que
+nenhuma outra categoria tem, criado em 25/09.
+
+- O alcance cresceu para `protecao.literal_do_fabricante`, `protecao.trecho_que_declara_o_momento` e
+  `propriedades.*.valor`. O `declarado_como` e o `motivo` **ficaram de fora de propósito**: a página
+  publica o **número**, não a frase de onde ele saiu, e acentuar o que ninguém lê é alargar a
+  superfície sem ganho.
+- **41 palavras** entraram no mapa, uma a uma, só aquelas cuja forma acentuada é a única leitura
+  possível; **164** foram para `_CONHECIDAS` porque não precisam de acento. **21 trocas gravadas**,
+  e o `--provar` aprovou: reduzidas a sem-diacrítico, as 21 são byte a byte iguais às de antes.
+- Duas das trocas são de **outros bancos** (`flexível` na pastilhart, `manutenção` na cortag): elas
+  não chegam à tela hoje, mas o campo passou a ser de tela e a categoria delas nasce depois — foi a
+  ordem inversa que criou aquela ferramenta.
+- O aviso de palavras fora do mapa fecha hoje em **zero**, pela primeira vez.
+
+## DOIS PORTÕES DA ILHA ESTAVAM CRAVADOS NO "HOJE", E OS DOIS FORAM DERIVADOS
+
+Os dois reprovaram a casca por ela estar **certa** — e os dois reprovariam qualquer bloco que fizesse
+a ilha crescer:
+
+1. **`nenhum cartao de categoria e link hoje (16.5)`**, cravado em `0 === $viraram_link`. A 16.5 não
+   diz "nenhum cartão abre"; ela diz que cartão **sem página** não vira link. Agora o esperado é a
+   contagem de categorias que têm página declarada, e ela cresce sozinha.
+2. **`os blocos de recusa sao poucos e contados`**, com teto **4**, que era o retrato de uma ilha de
+   nove páginas. Ele teria reprovado esta leva por existir — quatro páginas novas, uma recusa cada,
+   todas legítimas. Virou **no máximo um bloco de recusa por página**, medido por página.
+
+**E UMA MUTAÇÃO ESTAVA INERTE DESDE 28/09, achada de passagem:** `noindex na pagina errada`, em
+`mutacoes-voz-e-cabeca.py`, casava a entrada da página `materiais` escrita em **uma linha só**; na
+casca 1.16.0, de 28/09, aquela entrada ganhou o campo `descricao` e virou várias linhas. É a mesma
+família — e o mesmo dia — do que o bloco de 28/09 achou em `mutacoes-arvore.py`. O conserto é não
+casar mais a linha inteira.
+
+## AS DUAS BANCADAS NOVAS, E O QUE A SEGUNDA ACHOU NA PRIMEIRA
+
+- **`ferramentas/teste-guia.php`** — **106 afirmações, 0 falha**. O portão da 14.9 **nos dois
+  sentidos** (nenhuma página sem autorização **e** nenhum recorte autorizado sem página, que é a
+  metade que impede a família de parar calada); a cobertura e o relógio recontados do JSON cru por um
+  caminho que não chama uma linha do snippet, conferidos contra o número **na tela**; a prestação de
+  contas da seção 7; a 16.4(a) com a consulta-alvo como texto-âncora e a 16.4(b) com a mãe linkada no
+  **corpo**, fora dos `<nav>`; o `rel` de cada link derivado do que o link **é**; a frase da lacuna.
+- **`ferramentas/mutacoes-guia.py`** — **14 mutações, 14 decididas certo**. Onze reprovam, uma fica
+  honesta (banco fora do ar), uma degrada (F2 fora do ar) e uma **passa** (um fabricante nomeia vidro
+  e a lacuna some sozinha).
+- **E a bateria achou TRÊS buracos na bancada recém-escrita, na primeira passada**, que é o motivo de
+  ela existir: (a) a frase da lacuna podia virar lista escrita à mão e passar; (b) a busca **crua**
+  podia se declarar `sponsored` e passar — a régua media "tem rel", não "tem o rel certo"; (c) a
+  própria mutação do vidro media o corpo inteiro em vez da frase. Os três viraram portão.
+
+## O QUE ESTE BLOCO NÃO FEZ, DE PROPÓSITO
+
+- **Nenhuma das quatro declara promessa no `<title>`.** A alavanca da 12.1 é para a banda de posição
+  4 a 10: título que promete número numa página que já está na primeira página e não é clicada. Estas
+  nascem hoje, sem impressão e sem posição — não há CTR a consertar. O portão que cobra a lista
+  inteira de páginas com promessa, nas duas direções, foi quem apontou isso.
+- **A faixa de volume das consultas continua `null`.** O Planejador é do Raphael e o pedido está em
+  `dados/despachos.md`. Ela não decide se a página nasce; decide a ordem da leva (1.2-b.3) — e a
+  execução das 16h2xZ já tinha escrito que quem publicasse o 4c podia publicar sem ela e **não podia
+  estimá-la**.
+- **Nenhuma URL antiga se moveu**, nenhum 301, nenhum `<title>` e nenhuma `description` existente
+  foram tocados: a janela de comparação do BLOCO A, que fecha em **08/10**, continua limpa.
+
+## PRÓXIMO PASSO DESBLOQUEADO
+
+**Medir a SERP das três mães em `espera_serp` — `alicate`, `pastilha` e `rejunte`.** É o estado que
+parece passe livre (dado verde, SERP nunca olhada) e é o trabalho mais barato que sobrou nesta fila:
+é **busca, não coleta**. Com a SERP de `alicate` medida, a `alicate/cortador_de_azulejo` — que já
+está em `pode_nascer` — ganha mãe e a segunda categoria do Guia pode sair com a mesma leva de
+quatro. O caminho agora é um comando: `python3 ferramentas/cruzamento-14-9.py` depois de escrever a
+medição em `dados/serp-das-filhas.json`, e o veredito sai calculado.
+
 02/10/2026 16h17Z — O PORTÃO DE SERP DEIXOU DE SER PROSA, E O 4c DE `acabamento` ESTÁ LIBERADO PELOS DOIS PORTÕES
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h17Z** e push da reserva aceito na

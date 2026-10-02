@@ -88,6 +88,17 @@ $paginas = array(
 	   F2, a aritmetica da F1 e a varredura da entrada inteira das duas — mora
 	   em ferramentas/teste-f2.php e ferramentas/teste-f1.php, separados. */
 	'cdm_f2', 'cdm_f1',
+	/* AS QUATRO PAGINAS DO GUIA (bloco 4c, 02/10/2026) entram pelo mesmo motivo
+	   que as duas ferramentas: os trinta e tantos portoes desta bancada — voz,
+	   prova, escassez, trilha, arvore, pagina fina, entidade dentro de <script>
+	   — valem para toda pagina da ilha, e e aqui que eles moram. O que e SO
+	   delas (a conta de cobertura, o relogio, a prestacao de contas dos dez
+	   produtos, a 16.4(a) da mae) mora em ferramentas/teste-guia.php.
+	      E HA UMA RAZAO A MAIS, medida nesta mesma execucao: a contagem de
+	   pagina orfa da secao 26 so enxerga link que sai de uma pagina DESTA
+	   lista. Sem a mae aqui, as tres filhas de nivel 3 apareciam com ZERO
+	   link interno — orfas no numero, linkadas no site. */
+	'cdm_guia_acabamento', 'cdm_guia_selador', 'cdm_guia_verniz', 'cdm_guia_impermeabilizante',
 );
 
 echo "Clube do Mosaico — verificacao da casca " . CDM_CASCA_VERSAO . "\n\n";
@@ -831,6 +842,7 @@ $proibidos   = array( 'mais vendido', 'últimas unidades', 'ultimas unidades', '
 $achados     = array();
 $recusas_tot = 0;
 $recusa_ruim = array();
+$recusas_por_pagina = array();
 foreach ( $paginas as $tag ) {
 	$recusas = array();
 	$limpo   = mb_strtolower( strip_tags( cdm_sem_blocos_de_recusa( cdm_corpo( $html_por_pagina[ $tag ] ), $recusas ) ), 'UTF-8' );
@@ -846,6 +858,7 @@ foreach ( $paginas as $tag ) {
 	 * para escrever "Peça mais vendido, últimas unidades!" no começo e deixar um
 	 * "que não tenha medido" no fim que o teste perdoava. Recusa de verdade
 	 * começa pela negação — é assim que as duas desta casca estão escritas. */
+	$recusas_por_pagina[ $tag ] = count( $recusas );
 	foreach ( $recusas as $r ) {
 		$recusas_tot++;
 		$t      = mb_strtolower( trim( html_entity_decode( strip_tags( $r ), ENT_QUOTES, 'UTF-8' ) ), 'UTF-8' );
@@ -865,7 +878,21 @@ cdm_ok( empty( $achados ), 'nenhuma escassez ou superlativo nao medido fora de u
 	empty( $achados ) ? 'limpo' : implode( ' | ', $achados ) );
 cdm_ok( empty( $recusa_ruim ), 'todo bloco marcado como recusa e mesmo uma negacao',
 	empty( $recusa_ruim ) ? $recusas_tot . ' blocos' : implode( ' | ', $recusa_ruim ) );
-cdm_ok( $recusas_tot > 0 && $recusas_tot <= 4, 'os blocos de recusa sao poucos e contados', $recusas_tot . ' blocos' );
+/* O TETO DE RECUSA E UM POR PAGINA, E ELE DEIXOU DE SER O NUMERO 4 EM
+   02/10/2026. O 4 era o retrato de uma ilha de nove paginas e teria reprovado
+   a leva do bloco 4c por existir — quatro paginas novas, uma recusa cada, todas
+   legitimas. O que a afirmacao quer dizer e que recusa e EXCECAO na pagina, nao
+   um paragrafo de rotina: entao o teto passa a ser medido por pagina, e a ilha
+   pode crescer sem o portao virar obstaculo ao trabalho certo. */
+$recusa_demais = array();
+foreach ( $recusas_por_pagina as $tag => $quantas ) {
+	if ( $quantas > 1 ) {
+		$recusa_demais[] = $tag . ': ' . $quantas;
+	}
+}
+cdm_ok( $recusas_tot > 0 && empty( $recusa_demais ),
+	'bloco de recusa e excecao: no maximo um por pagina',
+	empty( $recusa_demais ) ? $recusas_tot . ' blocos em ' . count( $paginas ) . ' paginas' : implode( ' | ', $recusa_demais ) );
 
 /* A distincao que vale para esta ilha: peca propria NAO e afiliado. */
 $corpo_afiliados = cdm_corpo( $html_por_pagina['cdm_afiliados'] );
@@ -2443,7 +2470,24 @@ foreach ( array( 'cdm_home', 'cdm_materiais' ) as $tag ) {
 	}
 	cdm_ok( empty( $com_numero ), "[$tag] nenhum cartao 'em breve' publica contagem de banco",
 		empty( $com_numero ) ? count( $ma[1] ) . ' cartoes' : implode( ' | ', $com_numero ) );
-	cdm_ok( 0 === $viraram_link, "[$tag] nenhum cartao de categoria e link hoje (16.5)", "links: $viraram_link" );
+	/* QUANTOS CARTOES ABREM E DERIVADO, NAO CRAVADO (02/10/2026, bloco 4c).
+	   Ate hoje esta linha dizia `0 === $viraram_link` com o comentario "hoje",
+	   e ela estava certa enquanto nenhuma categoria existia. No dia em que a
+	   primeira nasceu — `acabamento`, pela 16.5 cumprida — a afirmacao
+	   reprovou a casca por SERVIR O CARTAO CERTO. O que a 16.5 manda e que
+	   cartao sem pagina nao vire link; entao o esperado e a contagem de
+	   categorias que TEM pagina declarada, e ela cresce sozinha. Frase cravada
+	   envelhece calada; frase derivada falha so quando ha defeito. */
+	$paginas_declaradas = cdm_casca_definicao_paginas();
+	$categorias_com_pagina = 0;
+	foreach ( cdm_casca_categorias_do_guia() as $c ) {
+		if ( ! empty( $c['slug'] ) && isset( $paginas_declaradas[ $c['slug'] ] ) ) {
+			$categorias_com_pagina++;
+		}
+	}
+	cdm_ok( $categorias_com_pagina === $viraram_link,
+		"[$tag] so abre o cartao da categoria que TEM pagina (16.5)",
+		"abrem: $viraram_link, com pagina: $categorias_com_pagina" );
 }
 /* E o numero NAO sumiu do site: ele continua na camada de prova, contado. */
 $corpo_guia = cdm_corpo( $html_por_pagina['cdm_materiais'] );

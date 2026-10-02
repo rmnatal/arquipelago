@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 55,
+  "revisao": 56,
   "atualizado_em": "2026-10-02",
   "estado": "nascendo",
   "desembarque": {
@@ -89,6 +89,17 @@
       "versao": "1.1.1",
       "sha256": "5999a6ec2c07e1471ced302a11773003b8d2b953faf9c784806c04ae122a40d5",
       "descricao": "ADENDO 3 DO BLOCO 4d — os leads da Loja, que ficaram FORA do corte de 12/09 por escrito e voltaram a fila agora que o painel esta de pe. O botao principal da ficha da peca deixou de ser um `wa.me` direto e passou a ser \"Verificar disponibilidade\": um formulario de dois campos (nome e WhatsApp) na propria pagina, que grava o CPT `lead_peca` e manda um aviso imediato para a caixa da artesa com um botao que abre a conversa com o CLIENTE, mensagem ja escrita. SETE DECISOES. (1) TERCEIRO SNIPPET E NAO UM PEDACO DA LOJA — o Sync desembarca um sem o outro, e este e o primeiro arquivo desta ilha que guarda DADO DE PESSOA: manter nome e telefone num lugar so faz a pergunta \"onde eles moram?\" ter resposta de uma linha. (2) A LOJA APLICA UM FILTRO, `cdm_peca_acao`, E ELE E APLICADO DE VERDADE — a cicatriz de 12/09 nesta ilha foram dois add_filter sem ninguem do outro lado, e por isso o portao mede os DOIS lados: que a Loja chama, e que o que volta aparece no corpo servido. Sem este snippet no ar a ficha volta exatamente ao que servia ontem. (3) O FORMULARIO FUNCIONA COM O JAVASCRIPT DESLIGADO (22.8): e um <details> com um <form method=\"post\"> dentro; o unico script e a mascara do telefone, que e enfeite — a canonizacao acontece no PHP. (4) O NOME DA PESSOA NAO VIAJA NA URL: o POST guarda a confirmacao num transient de 10 minutos e redireciona com uma CHAVE aleatoria, entao o nome nao entra no historico, no Referer nem no log de acesso — e quem nao enviou nada nao consegue fabricar a tela de enviado. (5) O ESTADO COM PARAMETRO SAI NOINDEX, pela mesma razao da F2: quem entra no indice e UMA pagina, a ficha limpa. (6) O LEAD NAO VAI PARA O REPOSITORIO — a copia da secao 24 para a PECA e o endpoint /v1/pecas, e para o LEAD e o CSV dentro do painel, na mao dela; NAO existe rota REST de lead, e o portao mede a AUSENCIA, que e a unica forma de uma ausencia nao sumir num bloco futuro. (7) A ABA NAO CRIA CAPACIDADE NOVA no papel `artesa` — sao as mesmas sete, e quem pode editar as pecas pode ver quem perguntou por elas. O DEFEITO QUE O PORTAO PEGOU ANTES DO AR: a funcao do nome da artesa nasceu lendo `first_name` e descartando a palavra \"artesa\" — lista de palavras proibidas, a heuristica que a secao 8 proibe — e falhou na primeira medicao porque o que o Atelie grava ali e `Artesã`, com til e cedilha. A mensagem teria dito \"Aqui é Artesã\" para uma cliente. Agora o nome publico e DECLARADO na option `cdm_artesa_nome`, que nasce vazia, e vazia significa uma coisa so: a identidade de identidade/artesa/ ainda nao chegou."
+    },
+    {
+      "id": "guia",
+      "nome": "Clube do Mosaico Guia",
+      "arquivo": "snippets/clubedomosaico-guia.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "versao": "1.0.0",
+      "sha256": "f5cc67670300d67e6f6d69719b6006127d9c0cedde19792c3089fc621ff69e46",
+      "descricao": "Guia 1.0.0 — BLOCO 4c: A PRIMEIRA CATEGORIA DO GUIA NASCE, E COM AS TRES FILHAS. `acabamento` e o unico recorte desta ilha em que os DOIS portoes da 14.9 abriram ao mesmo tempo, e quem apontou foi o `ferramentas/cruzamento-14-9.py`, nao a escolha de quem executa: 10 itens de banco na mae, 3 em cada filha, e SERP aberta nas quatro consultas medidas. Sao quatro URLs numa leva so, pela 16.6 — a mae e as tres filhas —, e e a primeira vez que esta ilha serve a arvore INTEIRA de tres segmentos (/materiais/acabamento/<consulta>/): a F2, a F1 e as duas tecnicas vivem em dois porque a categoria delas nao existia quando nasceram. O NUMERO CALCULADO da secao 9 e a COBERTURA DECLARADA — das 15 superficies que o vocabulario do esquema nomeia, quantas a frase do proprio fabricante alcanca —, e ele e o que a medicao de SERP de 02/10 chamou de 'o numero que a SERP nao publica': os dez resultados da consulta de impermeabilizante dizem 'tinta betuminosa' e 'emulsao de silicone', tipo de produto sem marca e sem numero. O SEGUNDO NUMERO e o relogio, aritmetica desta ilha sobre tres declaracoes — (demaos menos 1) vezes o intervalo mais a secagem final —, que fecha em 2 dos 10 produtos e SO neles: onde falta uma parcela a pagina diz que o fabricante nao declara, em vez de emprestar o numero do vizinho de prateleira. NENHUMA LINHA DAQUI ESCOLHE PRODUTO, e isso e o esquema: `regras_da_categoria_acabamento` manda a matriz base x ambiente nascer vazia porque acabamento nao se escolhe por ambiente declarado. Estas quatro NAO declaram promessa no <title> — a alavanca da 12.1 e para posicao 4 a 10, e elas nascem sem posicao nenhuma."
     }
   ],
   "conteudo": [],
@@ -240,7 +251,7 @@
       "verificado_em": "2026-09-13",
       "registros": 13,
       "publicar": true,
-      "sha256": "1622fd3590b264a001a798348b3ec9cb267d6dd6d9f7d8f60bd9221a3955534f",
+      "sha256": "ac5058af721f44a26dd5718fc126632ed32b728652b939d7a66b9af366db1cdc",
       "descricao": "A categoria PASTILHA do banco MATERIAL. Treze SKUs com lado da pastilha, lado da placa, espessura, placas por caixa, metragem e peso de caixa. A leva de 13/09/2026 acrescentou A37, 102 e IC02, e a A37 e a que FECHA o tamanho 2x2 no minimo de 3 elegiveis da secao 14.3. Tres campos nascem NULL com motivo escrito, e e isso que o arquivo tem de mais util: pecas por placa e passo de fabrica, porque nenhum fabricante brasileiro declara e a divisao que a SERP faz nao fecha (em 9 dos 13 nao da inteiro, nos outros 4 exige junta zero); e peso unitario, porque o peso da caixa de um dos itens PASSA do teto fisico do vidro macico, o que prova que embalagem esta contada dentro. Mede isso ferramentas/validar-pastilhas.py (189 afirmacoes, um processo por item, com a faixa de tamanhos medida na F1 por ferramentas/tamanhos-da-f1.php em vez de digitada) e ferramentas/mutacoes-pastilhas.py (14 de 14: 12 no banco e 2 no codigo da F1)."
     },
     {
@@ -252,7 +263,7 @@
       "verificado_em": "2026-09-25",
       "registros": 6,
       "publicar": true,
-      "sha256": "c3b6dbc91bc48793b4c37303f2c0db01588ad03836102447696cd0997d6520b1",
+      "sha256": "c6d8a9efca9fa70e834e9e6d7f968ab5fae5bc0dbce769cfc087240a6a29472f",
       "descricao": "A categoria ALICATE do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de quatro para tres (restam base, acabamento e apoio). Tres torqueses Cortag e tres cortadores manuais Vonder (VDEC 51, 75 e 90), cada campo tecnico dentro de `propriedades`, que e o unico container com portao no validar-banco: todo valor aponta fonte, todo null escreve motivo. O ACHADO E UM TETO DE 5 MM QUE CRUZA COM O BANCO DE PASTILHAS. O torques de mosaico da Cortag e a unica ferramenta do arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm; os tres cortadores de bancada declaram 'pisos ceramicos e porcelanatos ate 10 mm' e nao nomeiam vidro em lugar nenhum. Medido contra materiais-pastilhas.json: das 13 pastilhas do banco, todas de vidro, 10 cabem no teto e TRES nao — st5102 (6 mm), af1500 (8 mm) e ic02 (8 mm). Para esses tres a F1 calcula quantidade e o banco de ferramentas nao tem uma declaracao de fabricante que sustente o corte: faixa DESCOBERTA no sentido da 14.3, para a tela dizer em vez de calar. A outra metade vale para as duas paginas de tecnica no ar: a frase do torques nomeia PASTILHA de vidro e de ceramica e NAO nomeia caco de louca (picassiete) nem caco de azulejo (trencadis) — estado `nao_declarado`, nem recomendar nem proibir. NASCEU `publicar: false` E O PORTAO DESMENTIU: o cartao 'Alicates e corte' do Guia existe desde que a casca nasceu e o mapa G-ALICATES => materiais-alicates ja estava escrito dentro do teste-casca, esperando o arquivo. Casca 1.14.0 liga os dois, e a frase de prova do Guia passou a nomear a quarta categoria — ate aqui ela anunciava o total do banco e enumerava so tres, o que teria posto no ar 'o banco tem 31 itens, sendo 7 colas, 5 rejuntes e 13 pastilhas'.",
       "pendencias": 3,
       "pendencias_que_bloqueiam_publicacao": []
@@ -278,7 +289,7 @@
       "verificado_em": "2026-09-25",
       "registros": 7,
       "publicar": true,
-      "sha256": "38fa85174187903ddc44a4b080168cba7539e917d8372c0cf58b3cd04ad1c438",
+      "sha256": "a3dd4a2130eded905309f7fae0620d11f52580b58cf8c98d4a2032a49f1d7cf4",
       "descricao": "A categoria ACABAMENTO do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de tres para DUAS (restam base e apoio). Quatro vernizes (tres da Acrilex, um boletim de piso da Quartzolit), dois impermeabilizantes e um selador. FOI A PRIMEIRA CATEGORIA QUE PRECISOU DECIDIR O CAMPO ANTES DE COLETAR: a frase do esquema que autoriza encher uma categoria 'sem decisao nova' nomeia rejunte, pastilha e alicate, e deixa base, acabamento e apoio de fora de proposito. A decisao esta em `regras_da_categoria_acabamento` do esquema-banco (versao 4) e tem tres partes: a matriz base x ambiente fica VAZIA, porque acabamento nao adere nada e nao se escolhe por ambiente; o que o fabricante declara mora no objeto `protecao`, irmao do `corte` do alicate, com as listas do que a frase nomeia e do que ela NAO nomeia cobrindo o vocabulario inteiro; e as propriedades tem NOME FIXO, para a segunda execucao nao gravar `secagem_horas` onde a primeira gravou `tempo_de_secagem_h`. O ACHADO E UMA FAIXA DESCOBERTA ENCONTRADA PELA SUPERFICIE, irma da que o alicate achou pela espessura no mesmo dia: a peca de mosaico pronta expoe DUAS superficies, a pastilha (as 13 do banco sao de vidro) e o REJUNTE, e NENHUMA das sete frases de fabricante nomeia vidro, e NENHUMA nomeia rejunte. Fabricante de obra nao escreve sobre peca de artesanato e fabricante de artesanato nao escreve sobre mosaico. A segunda metade e sobre a base: o unico selador alcancado nomeia concreto, emboco, reboco, pintura PVA ou acrilica e construcao a seco, e NAO nomeia MDF — que e a base mais comum do ateliê e um dos cinco valores de `tipo_por_categoria.base`. E o campo `contato_com_alimento` nasce OBRIGATORIO e null nos sete: centro de mesa e tampo sao duas colecoes desta loja e a pergunta 'posso por comida em cima?' fica respondida com 'ninguem declarou' em vez de nao ser feita.",
       "pendencias": 3,
       "pendencias_que_bloqueiam_publicacao": []
@@ -594,19 +605,19 @@
     {
       "id": "mutacoes-voz-e-cabeca",
       "arquivo": "ferramentas/mutacoes-voz-e-cabeca.py",
-      "sha256": "be988e919fee61aa90743a302714b4561a99e80c5ebf316556ddeffed1bc357b",
+      "sha256": "f1d70a531dcf98f44e0c443f5378e4a4b8f5527c177fbc9ebce95bb63908391d",
       "descricao": "Quebra a voz e o cabecalho da casca de proposito e exige que teste-casca.php reprove cada uma. Bancada."
     },
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "ed2206eb8b09f2d770ad48dca557ce376f81edf8f005c849ca8e641706b450b8",
+      "sha256": "b7a044278cb113bbda66a6dbb5ba1aac9aa218d7489b9a32413dd60b137bfc57",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
       "id": "restaurar-acentos",
       "arquivo": "ferramentas/restaurar-acentos.py",
-      "sha256": "644c06fc4e7fdfd8f9f1474df3710651112cd0b5840764ff8c76d02b267da091",
+      "sha256": "33b4934c4740c9c7d429c1649ab2568006ea1de77e05b49b9cb2d9eaf8f85eb6",
       "descricao": "Devolve os acentos as strings do banco que chegam a tela. Bancada."
     },
     {
@@ -642,7 +653,7 @@
     {
       "id": "teste-casca",
       "arquivo": "ferramentas/teste-casca.php",
-      "sha256": "c720f8ee9df19531fe4e73ad6e134e3e84820260d77fbbbb0db29e57390c9977",
+      "sha256": "c7ed6c52ec500c5dd651dbb5a161daa2eae558be3375611bc97afdd93b71279f",
       "descricao": "347 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; dentro de <script>, corpo que nao comeca por metadado, JSON-LD que decodifica, a arvore da secao 16 nas duas direcoes contra o ARVORE.md, a Loja nos dois estados, a camada de prova pela ESTRUTURA e nao pela vizinhanca da palavra, e o piso de 1.500 caracteres de corpo. UM PROCESSO POR PAGINA: o static que impede logotipo e rodape em dobro na mesma pagina faria a bancada medir oito paginas sem eles. SECAO 7 REESCRITA EM 1.4.0 — ate 1.3.0 ela afirmava o CONTRARIO do que o site tem que servir (que o logo nao podia entrar no cabecalho por ter fundo preto, o que era falso). Agora cobra o logo do Raphael em <img>, o src igual ao arquivo que ele subiu, ZERO texto dentro da marca, alt com o nome, width/height na proporcao 3:2, o srcset servindo so o MESMO arquivo menor, os 52 px no CSS, a folga da barra e o logo uma vez em CADA uma das nove paginas. A REGUA E DESTE ARQUIVO: a URL e a medida estao literais aqui, copiadas do despacho, nunca lidas da constante da casca."
     },
     {
@@ -710,6 +721,18 @@
       "arquivo": "ferramentas/varrer-canonicas.py",
       "sha256": "3c4914177e1d00676f94fed0a3ace801c5a7c1c0095f25195a778a434cdb39d4",
       "descricao": "Le a CANONICA e a CADEIA DE REDIRECIONAMENTO de cada URL desta ilha e classifica em duas listas — 'esperado, nenhuma acao' e 'defeito, com a correcao proposta' — escrevendo o relatorio em dados/indexacao.md. Nasceu do BLOCO C do despacho do Raphael de 24/09/2026, que veio dos dois motivos novos do e-mail do Search Console de 23/09 ('Pagina alternativa com tag canonica adequada' e 'Pagina com redirecionamento'). NAO APLICA CORRECAO NENHUMA, por ordem do despacho: o que e defeito volta como proposta, URL por URL, para o Raphael autorizar item por item. A lista de URLs vem do wp-sitemap.xml NO AR, nunca digitada, mais /author/ e as variacoes de cada uma (http, www, sem barra final) — os dois motivos nascem de duas URLs para a mesma coisa, e varrer so a versao boa mediria o lado que nunca da problema. MEDE DUAS LEITURAS POR URL, e essa e a razao de ela existir em vez de um curl: com ?v=<agora> a pergunta chega ao WordPress; sem a quebra de cache quem responde e o cache de pagina, que nao sabe redirecionar — e o Googlebot nao manda quebra de cache. Em 25/09/2026: 71 URLs, 71 esperado, 0 defeito, e 36 em que as duas leituras discordam. Tem --autoteste com 11 casos fabricados, um por ramo da regua, porque passada limpa em portao que nunca acusou nada nao prova nada. NUNCA e publicada no site."
+    },
+    {
+      "id": "teste-guia",
+      "arquivo": "ferramentas/teste-guia.php",
+      "sha256": "cf75ee4ebb5032199c951b7e1486d5f6d691aef87a6d89fac3dbb885b0e6eb35",
+      "descricao": "Bancada das quatro paginas do Guia (bloco 4c), com o que e SO desta familia — os portoes gerais ja rodam no teste-casca.php, que passou a montar as quatro. Mede: (1) o portao da 14.9 NOS DOIS SENTIDOS, lendo a lista `pode_nascer` de dados/cruzamento-14-9.md — nenhuma pagina sem autorizacao E nenhum recorte autorizado sem pagina, que e a metade que impede a familia de parar calada; (2) a cobertura e o relogio recontados do JSON cru por um caminho que nao chama uma linha do snippet, conferidos contra o numero NA TELA; (3) a prestacao de contas da secao 7, cada produto uma vez; (4) a 16.4(a) com a consulta-alvo como texto-ancora e a 16.4(b) com a mae linkada no CORPO, fora dos <nav>; (5) o rel de cada link derivado do que o link E, par a par com o banco; (6) a frase da lacuna nomeando exatamente o que falta e nada do que sobra; (7) as quatro nao sendo a mesma pagina. Bancada."
+    },
+    {
+      "id": "mutacoes-guia",
+      "arquivo": "ferramentas/mutacoes-guia.py",
+      "sha256": "5ef898dfa95f734b518df1bd9625bf98959fea045873c91bd90985057f047d3b",
+      "descricao": "Quebra as paginas do GUIA de proposito, 14 mutacoes, numa copia da pasta da ilha. 11 precisam reprovar (cobertura cravada, denominador digitado, relogio emprestando o intervalo que falta, produto que fica mudo em vez de recusar, produto que some da mae, ancora que vira nome curto, filha que perde a frase que linka a mae, frase da lacuna virando lista escrita, busca CRUA declarada patrocinada, pagina que nasce sem autorizacao do cruzamento, filha autorizada que some do registro), 1 precisa ficar HONESTA (banco fora do ar: diz que nao mediu e nao serve ficha), 1 precisa DEGRADAR (F2 fora do ar: pagina inteira, sem botao, com o aviso) e 1 precisa PASSAR (um fabricante passa a nomear vidro e a lacuna do vidro some sozinha). As TRES ultimas sao mundos que o banco de hoje nao pisa. Na primeira passada ela achou tres buracos na bancada recem-escrita, e os tres viraram portao. Bancada."
     }
   ],
   "esquema": {

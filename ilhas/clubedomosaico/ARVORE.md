@@ -37,7 +37,7 @@ Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divul
 | Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | 1 de 6 | não |
 | Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 1 de 4 | não |
 | Bases | `/materiais/bases/` | 0 | 0 de 5 | não |
-| Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 | não |
+| Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 | **sim**, desde 02/10/2026 |
 | Como sabemos | `/materiais/como-sabemos/` | — | — | **sim** |
 
 *(As colunas acima são **derivadas** de `dados/filhas-do-guia.json`, e as duas primeiras estavam
@@ -48,7 +48,30 @@ escrita em prosa e não na tabela que se lê primeiro. Corrigido em 30/09/2026, 
 para a tabela parar de responder a pergunta errada: **banco não é filha**, e era o número do banco que
 esta tabela mostrava ao lado de uma coluna chamada "existe".)*
 
-**Nenhuma das seis categorias atinge as 3 filhas com dado real hoje**, então nenhuma nasce agora — é a 16.5, e ela é o que impede a ilha de publicar seis páginas magras num domínio que ainda não indexou nada. Colas e Rejuntes têm banco, mas banco não é filha: filha é página de nível 3 publicada.
+**CINCO das seis continuam sem as 3 filhas, e a sexta nasceu em 02/10/2026.** A frase desta linha dizia
+"nenhuma das seis", e ela foi verdadeira de 11/09 a 02/10. A `acabamento` passou os dois portões da 14.9 —
+3 de 3 tipos com dado real **e** SERP aberta na mãe e nas três filhas — e foi publicada com a leva inteira,
+que é o que a 16.6 manda: "primeiro a mãe e suas 3 primeiras filhas", nunca uma filha de cada categoria
+espalhada. As outras cinco seguem fechadas pela 16.5, e o motivo de cada uma está no veredito por recorte de
+`dados/cruzamento-14-9.md` — Colas e Rejuntes têm banco, mas banco não é filha: filha é página de nível 3
+publicada, e no cruzamento ela também precisa de SERP olhada.
+
+**A ÁRVORE DESTA ILHA PASSOU A TER TRÊS SEGMENTOS DE VERDADE, pela primeira vez.** As quatro páginas de
+nível 3 que existiam antes desta (as duas ferramentas e as duas técnicas) vivem em DOIS segmentos, por um
+estado de transição declarado: a categoria delas não existia no dia em que nasceram, e mover URL publicada é
+proibido pela 12.1. O 4c é o primeiro bloco em que a categoria nasce **antes** da filha, e por isso é o
+primeiro que não precisa do estado de transição:
+
+| nível 3 | slug | mãe | consulta-alvo medida (14.9) |
+|---|---|---|---|
+| Selar a base antes de fazer mosaico | `/materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/` | `/materiais/acabamento/` | selar a base antes de fazer mosaico: precisa de selador? |
+| Verniz para peça de mosaico | `/materiais/acabamento/verniz-para-peca-de-mosaico/` | `/materiais/acabamento/` | verniz para peça de mosaico artesanal: qual usar |
+| Impermeabilizar a peça de mosaico | `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` | `/materiais/acabamento/` | como impermeabilizar peça de mosaico para ficar no jardim, na chuva |
+
+O nome da categoria na tela deixou de ser "Acabamento" e passou a ser **"Acabamento: o que passar depois do
+rejunte"** — o mesmo nome no cartão do Guia, no degrau da trilha e no H1, que é a regra de UM NOME POR PÁGINA.
+Quem o troca é o snippet que publica a página, pelo filtro `cdm_categorias_do_guia`, no mesmo desenho que a
+F2 usa com `cdm_ferramentas` desde 11/09/2026 — a casca não sabe o nome de uma página que ela não serve.
 
 > **E DESDE 30/09/2026 ISSO É UM NÚMERO, NÃO UMA FRASE — ver `dados/filhas-do-guia.md`.** A ordem da
 > seção 7b deste arquivo ("banco, depois as filhas de nível 3, só então a mãe") estava escrita desde
@@ -349,6 +372,10 @@ artesã já marca o termo no ateliê.
 | `/materiais/` | 1 | home | Início › Materiais |
 | `/como-fazer/` | 1 | home | Início › Como fazer |
 | `/materiais/como-sabemos/` | 2 | `/materiais/` | Início › Materiais › Como sabemos |
+| `/materiais/acabamento/` | 2 | `/materiais/` | Início › Materiais › Acabamento: o que passar depois do rejunte |
+| `/materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Selar a base antes de fazer mosaico |
+| `/materiais/acabamento/verniz-para-peca-de-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Verniz para peça de mosaico |
+| `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Impermeabilizar a peça de mosaico |
 | `/materiais/qual-cola-usar-no-mosaico/` | 3 | `/materiais/` | Início › Materiais › Qual cola usar no mosaico, e qual rejunte |
 | `/materiais/quantas-pastilhas-para-mosaico/` | 3 | `/materiais/` | Início › Materiais › Quantas pastilhas e quanto rejunte comprar |
 | `/como-fazer/o-que-e-mosaico-picassiete/` | 3 | `/como-fazer/` | Início › Como fazer › O que é mosaico Picassiete, e como colar |

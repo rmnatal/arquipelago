@@ -863,6 +863,17 @@ function cdm_teste_paginas_no_ar($modo = 'hoje') {
 			if (!empty($ficha['slug'])) { $hoje[$ficha['slug']] = true; }
 		}
 	}
+	/* AS PAGINAS DO GUIA, pelo mesmo motivo e pelo mesmo desenho das tecnicas:
+	   quem publica a categoria ja declara o endereco no registro do snippet, e
+	   repetir o endereco aqui e a segunda copia da mesma decisao. A mae do Guia
+	   tambem entra pelo registro de categorias da casca, mais abaixo, mas as
+	   FILHAS de nivel 3 so existem aqui — e sem elas a mae listaria tres
+	   cartoes que nao abrem e o cluster entre irmas nao sairia. */
+	if (function_exists('cdm_guia_registro')) {
+		foreach (cdm_guia_registro() as $ficha) {
+			if (!empty($ficha['slug'])) { $hoje[$ficha['slug']] = true; }
+		}
+	}
 	if ('todas' !== $modo) { return $hoje; }
 	foreach (cdm_casca_categorias_do_guia() as $c) {
 		if (!empty($c['slug'])) { $hoje[$c['slug']] = true; }
