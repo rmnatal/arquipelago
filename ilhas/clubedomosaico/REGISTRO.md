@@ -168,6 +168,60 @@ acabamento **14**, batismo **14**, casamento **17** (12 na regra + 5 no banco), 
 **127**, técnicas **137**, F1 24 estados com processo próprio, Loja, Ateliê, Leads e Prestação
 **aprovados** — **zero falha**. `restaurar-acentos --provar` **aprovada**, 47 trocas diacrítico-only.
 
+## DESEMBARQUE E VERIFICAÇÃO NO AR
+
+Push aceito na **primeira tentativa** (`1e2c211..50fc063`). Sync acionado **depois** do push, que é a
+ordem certa porque ele lê o `manifest.json` do `main` pelo `raw.githubusercontent`.
+
+**E a primeira leva de Sync NÃO entregou, por um motivo que vale escrever:** o Sync leu o manifest na
+revisão **54** — a anterior — e devolveu **`sha256 divergente — não aplicado`** justamente nos três
+bancos que este bloco mudou (`materiais-acabamento`, `materiais-alicates`, `materiais-pastilhas`). Não
+era defeito do bloco nem do Sync: é o **cache do `raw.githubusercontent`**, que serviu o manifest
+velho enquanto os arquivos de dado já vinham novos. Seis disparos ao longo de **cerca de quatro
+minutos** e meio, e o sexto leu **55**. A lição operacional, para a próxima execução não diagnosticar
+isto como sha errado: **`sha256 divergente` logo depois do push é cache de manifest até prova em
+contrário — o reteste é um disparo, e a 20.2 já manda repetir antes de chamar de bloqueio.** Nesse
+intervalo o ar ficou coerente, e não meio aplicado: o Sync recusa o par que não fecha, então os três
+bancos continuaram servindo o estado anterior até o manifest novo chegar.
+
+**Sync na revisão 55** às **14h13:46**, **14 aplicados** e 11 aguardando desembarque, com
+`dados/materiais-acabamento`, `materiais-alicates`, `materiais-pastilhas` e `dados/esquema-banco`
+todos em `ok`. `/status` devolvendo **55**, igual à do manifest.
+
+**E no ar depois do desembarque: `conferir-no-ar.py` com 524 afirmações e 0 falha**, medido antes e
+depois. O único vermelho da borda continua sendo o **soft 404 do hospedeiro**, com dono escrito desde
+29/09.
+
+**A correção de acento foi CONFERIDA NA TELA, não só no dado**, porque era disso que ela se tratava:
+`/materiais/quantas-pastilhas-para-mosaico/` serve agora **`catálogo`** e **zero** ocorrências de
+`catalogo` — antes deste bloco ela servia a palavra sem acento, e serviu assim por 21 dias sem que a
+ferramenta que existe para isso olhasse aquele banco.
+
+**A memória da ilha não foi atualizada porque ela não existe neste ambiente:** `/areas/` não está
+montado, conferido nesta execução com `find`. O `PROMPT.md` desta ilha já prevê isto — *"Sem memória,
+não pare: o estado está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta"* — e é onde o próximo
+passo ficou escrito.
+
+- **Próximo passo desbloqueado, e ele é uma ESCOLHA e não mais uma espera:** o 4c tem o portão de
+  **dado** aberto em `acabamento` (3 de 3), e o que falta para publicar é o portão de **SERP** da
+  14.9. As duas pontas estão medidas e discordam da fila: a filha de mais banco (`pastilha/vidro`,
+  13 itens, três números) está **TOMADA** por marketplace, e a de SERP mais aberta
+  (`verniz para peça de mosaico artesanal`) **não tem faixa de volume** em
+  `dados/corpus-buscas.md`. Então o próximo bloco é um dos dois, e os dois são da Fundação: **(a)**
+  medir `verniz` e os termos de acabamento no corpus, acrescentando-os a `dados/corpus-buscas.md`
+  com faixa, concorrência e classificação de SERP — é o que falta para a 14.9 poder ser cruzada e
+  não depende de ninguém; ou **(b)** levar a mesma régua de 3 itens a um recorte em forma de
+  **pergunta** em vez de tipo, que é o que o próprio `filhas-do-guia.md` diz ser a forma que esta
+  ilha publica (a F1 e a F2 são assim) — a régua já está na ferramenta para ser chamada em vez de
+  reescrita. **(a) vem antes de (b)**, porque (b) sem faixa de volume publicaria escolhendo pelo
+  dado que temos e não pela demanda, e foi por isso que a 14.9 existe.
+- **O que continua fora do alcance daqui, e os dois seguem com o Raphael:** a leitura da janela
+  23→30/09 (acesso do `sentinela@` a `sc-domain:clubedomosaico.com.br`, ou `GOOGLE_SA_B64` no
+  ambiente), que é o veredito do BLOCO A e segue marcado para **08/10**; e o **curinga** de egresso
+  dos domínios de fabricante, que trava o primeiro SKU de `base` e de `apoio` — a lista derivada,
+  domínio por domínio, está em `dados/egresso-de-fontes.md`. O soft 404 da borda é o terceiro, aberto
+  desde 29/09. **Nenhum dos três é pré-requisito do passo acima.**
+
 02/10/2026 11:5xZ — A MARCA CEDEU O LUGAR AO NÚMERO NAS TRÊS QUE O GOOGLE JÁ MOSTRA
 
 Manifest e `/status` na **revisão 54**, conferidos no ar. **Nenhuma URL nova** (a ilha segue
