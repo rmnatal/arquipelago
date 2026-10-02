@@ -91,7 +91,7 @@
  */
 
 if ( ! defined( 'CDM_TECNICAS_VERSAO' ) ) {
-	define( 'CDM_TECNICAS_VERSAO', '1.2.0' );
+	define( 'CDM_TECNICAS_VERSAO', '1.3.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -125,7 +125,14 @@ function cdm_tecnicas_registro() {
 			'curto'  => 'Picassiete',
 			'resumo' => 'Mosaico de louça quebrada — prato, xícara, azulejo antigo. O que é, de onde vem o nome e com o que colar o caquinho em cada superfície.',
 			'linha_mestra' => 'Picassiete é mosaico de louça quebrada — prato, xícara, azulejo antigo. Aqui está o que é, de onde vem o nome, e com o que colar o caquinho em cada superfície e em cada lugar da casa.',
-			'description'  => 'Mosaico Picassiete: o que é o mosaico de louça quebrada e com o que colar o caquinho em cada superfície — cerâmica, vidro, espelho, MDF, cimento ou metal — dentro de casa ou no sol e na chuva.',
+			/* A DESCRIÇÃO COM NÚMERO (02/10/2026, BLOCO A). A frase antiga tinha
+			   192 caracteres — a mais longa das quatro — e não dizia número
+			   nenhum. Esta página está em 7,0 com 3 impressões e CTR zero, e a
+			   12.1 pede faixa e fonte na meta. Os dois números saem de
+			   `cdm_tecnicas_contas()`, a mesma varredura que escreve a tabela
+			   da página; o molde é recusado inteiro se um deles faltar. */
+			'description_molde' => 'Mosaico Picassiete: o mosaico de louça quebrada, e com o que colar o caquinho em cada superfície — {colas} colas em {celulas} casos, pela declaração do fabricante.',
+			'description'  => 'Mosaico Picassiete: o que é o mosaico de louça quebrada e com o que colar o caquinho em cada superfície, dentro de casa ou no sol e na chuva.',
 			'o_que_muda'   => 'A diferença para o resto do mosaico está no material: em vez de pastilha comprada em placa, entra o que sobrou de uma louça. Isso muda duas coisas práticas — o caquinho tem espessuras diferentes na mesma peça, e a face esmaltada do prato é lisa, então a cola precisa segurar sobre esmalte e não sobre porosidade.',
 			'faq_propria'  => array(
 				array(
@@ -146,7 +153,13 @@ function cdm_tecnicas_registro() {
 			'curto'  => 'trencadís',
 			'resumo' => 'O caquinho quebrado a martelo — azulejo, louça — que ficou conhecido pela obra de Gaudí. O que é, de onde vem o nome e com o que colar cada caco.',
 			'linha_mestra' => 'Trencadís é o caquinho quebrado a martelo e encaixado um a um — azulejo, louça, o que sobrou da obra. Aqui está o que é, de onde vem o nome, e com o que colar o caco em cada superfície e em cada lugar da casa.',
-			'description'  => 'Trencadís: o que é o mosaico de caco quebrado a martelo, de onde vem o nome ligado a Gaudí, e com o que colar caco de azulejo ou de louça em cerâmica, vidro, espelho, MDF, cimento ou metal.',
+			/* ENCURTADA EM 02/10/2026 de 189 para dentro da faixa de 120 a 160
+			   (item 4 do despacho de 28/09), e SEM número de propósito: esta é
+			   a página que fica parada para a próxima leitura ter com o que
+			   comparar, por ordem escrita do despacho de 23/09 — "deixe uma
+			   página parada". O `<title>` dela não foi tocado e ela não declara
+			   promessa; o que mudou aqui é só o que estava fora da faixa. */
+			'description'  => 'Trencadís: o mosaico de caco quebrado a martelo, o nome ligado a Gaudí, e com o que colar o caco de azulejo ou de louça em cada superfície.',
 			'o_que_muda'   => 'A diferença para o resto do mosaico está no material: em vez de pastilha comprada em placa, entra caco quebrado a martelo — azulejo que sobrou de obra, louça que trincou, peça irregular e de espessura desigual. Isso muda a colagem de um jeito que decide a cola: o caco assenta pelo lado quebrado ou pelo tardoz, e essa é a parte que absorve. Há adesivo no nosso banco que só cura se uma das duas superfícies absorver, e é por aí que o caquinho entra na conta.',
 			'faq_propria'  => array(
 				array(
@@ -861,13 +874,13 @@ function cdm_tecnicas_id_da_pagina_atual() {
    imprime a etiqueta é a casca, uma vez, pelo mesmo contrato que a etiqueta de
    robô passou a ter em 25/09 — uma etiqueta sem dono ora sai duas vezes, ora não
    sai nenhuma, e esta ilha já mediu as duas metades.
-      O TEXTO NÃO MUDA NESTA PASSADA, e os dois motivos são de despacho mais
-   antigo e de prioridade maior: o Picassiete é uma das TRÊS páginas na primeira
-   página do Google (posição 7,0) e o BLOCO A do despacho do Raphael de 24/09
-   proíbe mexer na promessa da SERP dela antes de 30/09; o Trencadís fica parado
-   pelo que o mesmo despacho escreve — "deixe uma página parada para a próxima
-   leitura ter com o que comparar". Os dois estão acima de 160 caracteres, e isso
-   está registrado como o que falta do item 4 do despacho de 28/09. */
+      OS DOIS TEXTOS MUDARAM EM 02/10/2026, pelo BLOCO A do despacho do Raphael
+   de 24/09 (janela de medição fechada em 30/09) e pelo item 4 do despacho de
+   28/09, que pedia os dois dentro da faixa de 120 a 160. O do Picassiete passou
+   a trazer NÚMERO, porque ele está na primeira página com CTR zero; o do
+   Trencadís não traz, porque ele é a página que fica parada para comparar.
+      QUEM TEM MOLDE É PREENCHIDO AQUI, e a recusa é do mesmo preenchedor da
+   casca: se um número faltar, sai a frase sem número — nunca o molde cru. */
 add_filter( 'cdm_descricao', function ( $d ) {
 	$id = cdm_tecnicas_id_da_pagina_atual();
 	if ( '' === $id ) {
@@ -875,8 +888,59 @@ add_filter( 'cdm_descricao', function ( $d ) {
 	}
 	$ficha = cdm_tecnicas_ficha( $id );
 
+	if ( ! empty( $ficha['description_molde'] ) ) {
+		$com_numero = cdm_tecnicas_description_com_numero( $id, $ficha );
+		if ( '' !== $com_numero ) {
+			return $com_numero;
+		}
+	}
+
 	return isset( $ficha['description'] ) ? (string) $ficha['description'] : $d;
 } );
+
+if ( ! function_exists( 'cdm_tecnicas_description_com_numero' ) ) {
+/**
+ * A `description` DA TÉCNICA COM OS NÚMEROS DA PRÓPRIA PÁGINA, ou '' (02/10/2026).
+ *
+ * Os dois números são os mesmos que a tabela e o FAQ da página já publicam —
+ * `celulas` e `colas_no_banco` de `cdm_tecnicas_contas()`. Não há segunda conta
+ * aqui, e é essa a razão de a função existir em vez de o molde ser preenchido
+ * dentro do filtro: quem quiser medir a frase não precisa de WordPress.
+ */
+function cdm_tecnicas_description_com_numero( $id, $ficha = null ) {
+	$ficha = ( null === $ficha ) ? cdm_tecnicas_ficha( $id ) : $ficha;
+	if ( empty( $ficha['description_molde'] ) ) {
+		return '';
+	}
+	$c = cdm_tecnicas_contas( $id );
+
+	return cdm_casca_preencher_promessa(
+		(string) $ficha['description_molde'],
+		array( 'colas' => $c['colas_no_banco'], 'celulas' => $c['celulas'] )
+	);
+}
+}
+
+/* A PROMESSA DO `<title>` DO PICASSIETE, e de mais nenhuma página desta camada.
+      O TRENCADÍS NÃO DECLARA PROMESSA, e a ausência é a decisão: ele é a página
+   que fica como estava para a leitura seguinte ter com o que comparar (despacho
+   de 23/09, "deixe uma página parada"). Trocar as quatro de uma vez torna a
+   próxima leitura ilegível — é o mesmo argumento que a Robometria escreveu em
+   17/09 ao dar promessa a três cabeças e a nenhuma outra.
+      Com nome de 40 caracteres mais o separador, o título fica em 62. */
+add_filter( 'cdm_promessa', function ( $p, $slug ) {
+	$registro = cdm_tecnicas_registro();
+	if ( empty( $registro['picassiette'] ) || $registro['picassiette']['slug'] !== $slug ) {
+		return $p;
+	}
+
+	$c = cdm_tecnicas_contas( 'picassiette' );
+
+	return cdm_casca_preencher_promessa(
+		'{colas} colas em {celulas} casos',
+		array( 'colas' => $c['colas_no_banco'], 'celulas' => $c['celulas'] )
+	);
+}, 10, 2 );
 
 add_action( 'wp_head', function () {
 	$id = cdm_tecnicas_id_da_pagina_atual();

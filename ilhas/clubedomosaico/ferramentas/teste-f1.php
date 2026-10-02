@@ -237,6 +237,89 @@ f1_ok( empty( $divergem_mao ), 'os doze resultados da bancada batem com os escri
 f1_ok( empty( $fora_da_tela ), 'as doze linhas estao no HTML SERVIDO, com os numeros certos',
 	empty( $fora_da_tela ) ? count( $pecas_json['pecas'] ) . ' linhas' : implode( ' | ', $fora_da_tela ) );
 
+/* ---------------------------------------------------------------------------
+ * A PROMESSA DA SERP — titulo e description com os numeros da tabela
+ *
+ * Acrescentada em 02/10/2026 com o BLOCO A do despacho do Raphael de 24/09,
+ * cuja janela de medicao fechou em 30/09. Esta pagina esta em 9,1 com 9
+ * impressoes e CTR ZERO, e a 12.1 nomeia uma alavanca so para a banda de 4 a
+ * 10: titulo que promete o numero, meta que promete a faixa e a fonte.
+ *
+ * OS TRES NUMEROS SAO OS ESCRITOS A MAO em `dados/pecas-tipicas.json`, nunca os
+ * do snippet: a contagem de pecas e o tamanho da lista daquele arquivo, e a
+ * faixa e o minimo e o maximo do campo `esperado.pastilhas` dele. Se a pagina
+ * prometer uma faixa que a tabela dela nao entrega, as duas escritas discordam
+ * aqui — e quem le o resultado da busca nao tem como saber qual esta certa.
+ * ------------------------------------------------------------------------- */
+$html_ancora   = f1_render( $raiz );
+$pastilhas_mao = array();
+foreach ( $pecas_json['pecas'] as $p ) {
+	$pastilhas_mao[] = (int) $p['esperado']['pastilhas'];
+}
+$quantas_mao = count( $pecas_json['pecas'] );
+$min_mao     = min( $pastilhas_mao );
+$max_mao     = max( $pastilhas_mao );
+
+$desc_f1 = '';
+if ( preg_match( '#<meta name="description" content="([^"]*)"#', $html_ancora, $md_f1 ) ) {
+	$desc_f1 = html_entity_decode( $md_f1[1], ENT_QUOTES, 'UTF-8' );
+}
+$desc_esperada_f1 = 'Quantas pastilhas e quanto rejunte a sua peça precisa: '
+	. number_format_i18n( $quantas_mao ) . ' peças já calculadas, de ' . number_format_i18n( $min_mao )
+	. ' a ' . number_format_i18n( $max_mao ) . ' pastilhas, pela medida que o fabricante publica.';
+f1_ok( $desc_f1 === $desc_esperada_f1,
+	'a description serve a faixa e a fonte, com os numeros escritos a mao',
+	$desc_f1 === $desc_esperada_f1 ? 'igual' : 'servida: ' . $desc_f1 );
+f1_ok( mb_strlen( $desc_f1 ) >= 120 && mb_strlen( $desc_f1 ) <= 160,
+	'e ela cabe na faixa de 120 a 160 (item 4 do despacho de 28/09)',
+	mb_strlen( $desc_f1 ) . ' caracteres' );
+f1_ok( false === strpos( $desc_f1, '{' ), 'e nunca serve o molde cru' );
+
+$titulo_f1 = '';
+if ( preg_match( '#<title>(.*?)</title>#is', $html_ancora, $mt_f1 ) ) {
+	$titulo_f1 = html_entity_decode( $mt_f1[1], ENT_QUOTES, 'UTF-8' );
+}
+$titulo_esperado_f1 = CDM_F1_TITULO . ' – ' . number_format_i18n( $quantas_mao ) . ' peças calculadas';
+f1_ok( $titulo_f1 === $titulo_esperado_f1,
+	'o <title> e o NOME da pagina mais a promessa contada, e a marca saiu do fim', $titulo_f1 );
+f1_ok( '' !== $titulo_f1 && mb_strlen( $titulo_f1 ) <= CDM_CASCA_TITULO_TETO,
+	'e ele cabe no teto de ' . CDM_CASCA_TITULO_TETO, mb_strlen( $titulo_f1 ) . ' caracteres' );
+f1_ok( 0 === strpos( $titulo_f1, CDM_F1_TITULO ),
+	'o nome da pagina nao foi tocado — ele continua sendo o mesmo do H1 e da trilha' );
+
+/* O MUNDO EM QUE O BANCO NAO CHEGOU. Aqui a divisao e diferente da F2 de
+   proposito, e a razao esta escrita no snippet: a FAIXA desta pagina sai da
+   aritmetica das doze pecas, que e dela e sobrevive ao desembarque falhar; a
+   FONTE prometida — "a medida que o fabricante publica" — mora no banco. Entao
+   sem banco o <title> CONTINUA prometendo (12 pecas calculadas e verdade com a
+   tabela no ar) e a description cai na frase sem procedencia. Prometer uma
+   fonte que nao chegou e a unica das duas que seria mentira. */
+$html_sem_banco = f1_render( $raiz, 'sem_banco=1' );
+$titulo_sb = '';
+if ( preg_match( '#<title>(.*?)</title>#is', $html_sem_banco, $mt_sb ) ) {
+	$titulo_sb = html_entity_decode( $mt_sb[1], ENT_QUOTES, 'UTF-8' );
+}
+$desc_sb = '';
+if ( preg_match( '#<meta name="description" content="([^"]*)"#', $html_sem_banco, $md_sb ) ) {
+	$desc_sb = html_entity_decode( $md_sb[1], ENT_QUOTES, 'UTF-8' );
+}
+f1_ok( $titulo_sb === $titulo_esperado_f1,
+	'sem banco, o <title> continua prometendo — a faixa dele e aritmetica desta pagina', $titulo_sb );
+f1_ok( '' !== $desc_sb && false === mb_strpos( $desc_sb, 'fabricante publica' ) && 0 === preg_match( '/\d/', $desc_sb ),
+	'e a description cai na frase sem numero e sem procedencia', $desc_sb );
+f1_ok( mb_strlen( $desc_sb ) >= 120 && mb_strlen( $desc_sb ) <= 160,
+	'e a frase sem numero cabe na mesma faixa de 120 a 160', mb_strlen( $desc_sb ) . ' caracteres' );
+
+/* O NUMERO ESCRITO EM PALAVRA NO <h2> DA TABELA, que e o unico desta pagina que
+   nao e contado: ela diz "Doze pecas ja calculadas" com a palavra, e a lista tem
+   doze. O BLOCO A proibe reescrever o conteudo desta pagina, entao a palavra
+   FICA — e passa a ter portao, para o dia em que a lista mudar nao ser o dia em
+   que a tela ensina errado com cara de conferida. Quem acrescentar a decima
+   terceira peca reprova aqui e troca a palavra junto. */
+f1_ok( 12 === $quantas_mao && false !== mb_strpos( $texto_ancora, 'Doze peças já calculadas' ),
+	'o <h2> escrito em PALAVRA bate com o tamanho da lista (e reprova no dia em que ela mudar)',
+	$quantas_mao . ' pecas, <h2> em palavra' );
+
 /* A TABELA E PRE-RENDERIZADA (secao 5 do contrato, item 1): ela existe no HTML
    de quem NAO preencheu nada. Se um dia alguem a esconder atras do formulario,
    a pagina passa a mostrar a um modelo de linguagem uma tela vazia. */

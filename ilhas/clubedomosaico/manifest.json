@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 53,
-  "atualizado_em": "2026-09-30",
+  "revisao": 54,
+  "atualizado_em": "2026-10-02",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.18.0",
-      "sha256": "aa227faeeed49978ad00890e35cd02b1ccf8726dbb771b44f5ab3be3c55fa616",
+      "versao": "1.19.0",
+      "sha256": "0e85b77351cedaf62987b6940f10fd8fabb40e94730398f4533e69699e3538f5",
       "descricao": "Casca 1.18.0 — A PAGINA DE DIVULGACAO DIZIA AO LEITOR QUE 28 BOTOES NAO RENDIAM COMISSAO, E OS 28 SAEM COM rel=\"sponsored\". A frase foi escrita em 14/09/2026, quando a busca CRUA era o botao e era verdadeira; em 16/09 a Open API de afiliados entrou (25.6) e em 25/09 os 38 itens do banco ganharam busca ENCURTADA, que E link de afiliado. A pagina continuou servindo a frase do mundo anterior — declarando a relacao paga ao buscador e negando-a a quem le, na unica pagina cujo produto inteiro e a divulgacao. A secao passa a nomear os TRES estados do botao (ficha, busca encurtada, busca sem rastreio) dizendo quais dois sao afiliado; a conta passa a ter TRES parcelas que fecham no total (publicava 10 e 0, de 38, com os 28 do meio ausentes); e ela so sai pela via viva (`numeros_vivos`), porque o instantaneo de 14/09 ainda declara 15 buscas sem rastreio num banco que tem zero — estatistica velha envelhece, disclosure velho mente."
     },
     {
@@ -31,8 +31,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.6.0",
-      "sha256": "94dc28190c2fe77c13af53dd3d442f26441eb82930fb214a16109f7452dfc9c7",
+      "versao": "1.7.0",
+      "sha256": "21299bf8fd44de7474c0efd9412ce917ea4460abbba0e0c1bda8dcee7cd3a412",
       "descricao": "F2 1.6.0 — A PAGINA QUE FOI MEDIDA NO AR E ACHADA NO INDICE. `?base=ceramica&onde=externo`, `?base=mdf` e `?base=ceramica&caco=louca&junta=fina&onde=interno` serviam UMA etiqueta de robo SEM `noindex` em 28/09/2026 as 14h48Z: os quatro nomes de parametro sao reais e NENHUM dos valores existe no vocabulario (as chaves sao `ceramica_esmaltada_porcelana`, `externo_exposto`, `mdf_madeira`, `caco_louca`), entao o `escolheu` — que pergunta pelo VALOR — respondia 'nao escolheu nada'. A reconferencia do conserto de 25/09 falhou nesta metade, contra o criterio que o proprio conserto declarou. Entram `cdm_f2_parametros()` e `cdm_f2_tem_parametro()`, e o `noindex` passa a medir a PRESENCA: duplicata se conta por endereco, e o conjunto dos valores invalidos e infinito enquanto o das escolhas validas e finito. A `description` passa a ser declarada pelo filtro `cdm_descricao`; o texto nao muda, pelo BLOCO A de 24/09 — esta e a melhor pagina da ilha, 7,8 com 17 impressoes."
     },
     {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.2.0",
-      "sha256": "bdec4d44c13ec5f64662c8d653651f997688eb38215f4b23b764a2bc6463c21d",
+      "versao": "1.3.0",
+      "sha256": "455d02d64acf5f26e549bbe556aa95ed0322df332f8a12d7cfcc1c7d45a65cf2",
       "descricao": "Tecnicas 1.2.0 — A `description` DOS TUTORIAIS E DECLARADA, NAO IMPRESSA. Este arquivo dava `echo` na propria num `wp_head` paralelo, que e o desenho que fez a etiqueta de ROBO sair dobrada nesta ilha em 25/09; agora ele declara pelo filtro `cdm_descricao` e quem imprime e a casca, uma vez. O TEXTO NAO MUDA: o Picassiete e uma das tres paginas na primeira pagina do Google (posicao 7,0) e o BLOCO A do despacho do Raphael de 24/09 proibe mexer na promessa da SERP dela antes de 30/09; o Trencadis fica parado pelo que o mesmo despacho escreve — 'deixe uma pagina parada para a proxima leitura ter com o que comparar'. Os dois estao acima de 160 caracteres e isso esta registrado como o que falta do item 4."
     },
     {
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.4.0",
-      "sha256": "82733cc5b7080210e7424aba172fd2a791573433374d0d30ae2c6f93c0f6c5ef",
+      "versao": "1.5.0",
+      "sha256": "c65422ccd720165456506c7e3b6e3ae65f1372045d5a2a2e2a5cf49130f15d76",
       "descricao": "F1 1.4.0 — O ESTADO COM PARAMETRO SAI DO INDICE PELA PRESENCA DO PARAMETRO, NAO PELA VALIDADE DO VALOR. Esta ferramenta passava na regua de 25/09 por acidente: o `escolheu` daqui pergunta `isset( $_GET['forma'] )` e o da irma pergunta se o valor esta no vocabulario — duas leituras opostas da mesma pergunta, cada uma acertando o portao da outra por sorte, ate a ronda de 28/09 medir a irma no ar e acha-la no indice. Entram `cdm_f1_parametros()` (a lista derivada de `cdm_f1_formas()`, que e o que faz o `d2` do cone — esquecido pela lista escrita a mao — entrar sozinho) e `cdm_f1_tem_parametro()`, que e quem decide o `noindex` agora; `escolheu` fica intocado e continua mandando na TELA, porque valor fora do vocabulario volta ao padrao e dizer 'voce escolheu' sobre escolha nao honrada seria trocar defeito de indice por defeito de texto. A `description` desta pagina passa a ser DECLARADA pelo filtro `cdm_descricao` em vez de impressa; o texto nao muda, porque o BLOCO A do despacho do Raphael de 24/09 trava a promessa da SERP das paginas que rankeiam ate 30/09."
     },
     {
@@ -354,7 +354,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "6f5eddc99aa42badf096c0b0de183b93e49daa6737aede198e6015aa0861fd58",
+      "sha256": "4bd58c2c97343e58da0f5038690e84cd32bf95399abd8e5d82ac4650ab4f8fe6",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 459 afirmacoes em 25/09/2026. Cobre a marca no cabecalho, a escada da secao 25 cartao a cartao, o cache do hospedeiro contra o canonico, A PORTA DE ENTRADA (sitemap, robots.txt e raiz do REST em 200 com o tipo certo, e caminho inexistente em 404 na pagina DESTA ilha, acrescentado em 24/09 depois de 16 das 17 URLs servirem a pagina de estacionamento da HostGator) e, desde 25/09, O LINK DE AFILIADO SERVIDO: varre as URLs do sitemap e reprova se aparecer encurtador de Shopee que o banco nao conhece, mais a afirmacao de que ela encontra algum — portao que nao encontra nada aprova por vacuidade. Essa secao NAO mede a CASA do sub-id: isso so se le no utm_content do 301 do encurtador, e esse salto e onde a Shopee conta o clique, entao quem mede a casa e ferramentas/conferir-sub-id.py, na raiz, com link de BANCADA (secao 25.8). REGUA PROPRIA: as medidas estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
@@ -374,6 +374,12 @@
       "arquivo": "ferramentas/faixa-da-f2.php",
       "sha256": "00a926ecead6c96abc21a4e30062bf2ab0e135cc59936188848f70ef20240439",
       "descricao": "Mede a faixa de entrada da F2 PROVOCANDO o proprio snippet, em vez de le-la no codigo ou digita-la: poe cada valor de um superconjunto deliberadamente maior em $_GET, chama cdm_f2_entrada() — a mesma funcao que sanea a consulta de quem visita — e fica com o que sobreviveu. Devolve as 9 bases, os 5 ambientes, as 6 tesselas, a faixa de junta e o produto delas (45 estados de cola, 60 de rejunte). RECUSA medir quando o superconjunto nao passa por cima ou por baixo da faixa (teto medido igual ao teto da regua nao e teto, e o fim da regua) e quando o saneamento aceita um valor inventado. Existe porque a secao 14.3 manda varrer a faixa 'de ponta a ponta', e varredura sobre faixa digitada fica verde no dia em que o campo mudar de teto. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "filhas-do-guia",
+      "arquivo": "ferramentas/filhas-do-guia.py",
+      "sha256": "a916193a99cd080ee9c8b650d6d93a6481cd142b739c8823962ce518ecd84cc9",
+      "descricao": "Aplica o portao INTEIRO da secao 9 (3 itens de banco reais E um numero calculado proprio) a cada recorte que o vocabulario do esquema admite no Guia, e diz a que DISTANCIA esta o que nao passa. Os recortes saem de vocabularios.tipo_por_categoria e o teto de nivel de fonte sai de escada_de_fontes: nada digitado. Tres vereditos e nunca um booleano (passa, passa_na_contagem_sem_lastro, nao_passa), pela licao do medir-egresso.py — os dois vereditos saem juntos ou nenhum dos dois serve. Separa SKU novo de campo vazio em registro que ja mora no banco, e so promete 'completar registro' quando o recorte esta a UM. Gera dados/filhas-do-guia.json e o .md, preservando o trecho de SERP que e busca e nao derivacao; --conferir regera e compara e tambem confere a tabela da secao 2 do ARVORE.md nas duas direcoes; --autoteste roda 27 casos fabricados."
     },
     {
       "id": "gerar-favicon",
@@ -398,6 +404,18 @@
       "arquivo": "ferramentas/leitura-do-visitante.py",
       "sha256": "f79630b0b4c197d28dd757c5952303d417a6c8e3e4fb823fd3c46fc86b117e92",
       "descricao": "Le as 17 URLs do sitemap SEM quebra de cache — a leitura que se parece com a do Google, que nao manda quebra — e termina na sonda de 404 pela borda. Existe por um achado escrito no BLOCO C em 25/09 e sem instrumento ate 29/09: todo portao desta ilha gruda `?v=<agora>` em toda URL, entao todos medem a ORIGEM e nenhum ve o que o visitante ve. Reprova so o visitante NAO receber a ilha (codigo != 200, pagina do hospedeiro, casca ausente, sem <title>, e o 404 servido com 200); divergencia de titulo ou canonica entre borda e origem e janela de cache e sai RELATADA, pela politica que esta ilha decidiu em 14/09. A regua e funcao pura e tem --autoteste com 11 casos fabricados, um por ramo. O `conferir-no-ar.py` importa a regua daqui em vez de copia-la. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "medir-degrau-4",
+      "arquivo": "ferramentas/medir-degrau-4.py",
+      "sha256": "a04614723c042ab3a756495061b44c38f0848e45812635b32fc20ea5ad49bcea",
+      "descricao": "POR QUE ESTE ITEM PAROU NO DEGRAU 4, medido hoje e nunca herdado. Desce a escada de palavra-chave pela Open API (25.6) para todo registro no degrau 4 sem ficha e grava `afiliado.motivo_sem_ficha` na forma da 25.4-b.3 — causa, que nao muda, mais ultima tentativa datada, que se reescreve a cada passada, separadas por ' || '. Nasceu do despacho da ronda de 30/09/2026: dos 17 no degrau 4, doze traziam so `motivo_da_chave`, que conta como a chave foi MONTADA e nao o que a escada devolveu. ELA NAO GRAVA `url` EM NENHUMA HIPOTESE — subir degrau e do coletar-shopee.py, e e por isso que ela PODE medir as 13 pastilhas, que o coletor exclui por decisao pendente do Raphael: medir nao e agir, e foi por confundir os dois que elas ficaram dezessete dias sem ninguem perguntar nada a elas. A regra de casamento vem importada de casar-anuncio.py, nunca copiada. A PRIMEIRA VERSAO CLASSIFICAVA PELA TRAVA QUE BARROU O CANDIDATO E DEU 17 DE 17 NA MESMA CLASSE — porque as travas correm em ORDEM e a 5b quase sempre falha antes de qualquer trava de irmao ser avaliada: media a ordem do codigo, nao o mundo. A pergunta que separa as causas e a trava 1, algum anuncio traz a marca? Bancada: nunca vai para o site."
+    },
+    {
+      "id": "medir-egresso",
+      "arquivo": "ferramentas/medir-egresso.py",
+      "sha256": "b34f55c938ca32c8c93495617f9a6649a6098d35b36a98d3b591abb759798744",
+      "descricao": "Mede, host por host, o que esta nuvem alcanca das fontes que os bancos desta ilha citam — e separa CONNECT de ENTREGA, que e a distincao que faltava: apex liberado que redireciona para `www.` recusado entrega zero. Deriva a lista de dados/*.json, dos campos cujo nome fala de dominio, do apex e do `www.` de cada host, e de dados/fontes-pedidas.json; tres passadas por host (20.2), com controle obrigatorio que torna a medicao VOID se cair. Gera dados/egresso-de-fontes.md e .json, e o PEDIDO de rede sai da medicao com quem exige cada dominio. `--autoteste` com 29 casos fabricados. Bancada."
     },
     {
       "id": "medir-imagens",
@@ -496,6 +514,12 @@
       "descricao": "23 defeitos escritos de volta no snippet da Loja, 23 reprovados, 22 SO o portao novo pegou. Separa 'reprovou' de 'nao compila', porque codigo que nem carrega nao e evidencia de trava. ACHOU TRES COISAS na primeira passada: (a) a afirmacao da regra de reescrita lia um contador COMPARTILHADO com a casca, que ja estava acima de zero — apagar o flush da Loja passava verde; agora o teste zera o contador, limpa a marca, roda o init de novo e afirma sobre o delta, e cobra tambem que NAO remonte na visita seguinte; (b) a mutacao do %0D%0A na mensagem do WhatsApp nao fez portao nenhum reprovar porque o `str_replace` que ela apagava era CODIGO MORTO — rawurlencode de \\n ja devolve %0A —, e o conserto foi tirar a linha do snippet e a mutacao junto; (c) `===` contra `hash_equals` nao e observavel por comportamento, e a trava correspondente passou a ler o fonte, com a razao escrita. Bancada."
     },
     {
+      "id": "mutacoes-motivo-degrau-4",
+      "arquivo": "ferramentas/mutacoes-motivo-degrau-4.py",
+      "sha256": "af03eb2f89b5b3400f689d26f02a49b5101f01bc1941c363d8034146cc594c66",
+      "descricao": "Dez mutacoes do portao do motivo do degrau 4, escritas nos CINCO bancos, 10 de 10 reprovadas e as 10 SO pelo portao novo (desligado por CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1). Atacam a forma da 25.4-b.3 uma metade por vez: o campo ausente (o defeito exato de 30/09), a prosa de uma metade so que era a forma de 29/09 e passava, a causa sem classe, a classe escrita em prosa com maiuscula (duas grafias da mesma causa viram duas causas e a reparticao soma errado sem reprovar), a tentativa sem data — que e a que a 25.4-b.3 nomeia, porque motivo sem data manda a execucao seguinte nem tentar —, a data em formato brasileiro, que nao e ordenavel, e a causa vazia dentro da forma certa. Duas PRODUZEM O MUNDO que o banco nao tem: ficha achada com link nao encurtado, e item que CAI do degrau 3 de volta para o 4 quando o anuncio sai do ar — as duas recontam `itens_esperando_link` do cabecalho, senao era o portao do CABECALHO que as pegava, e mutacao pega pelo portao errado nao prova portao nenhum. Bancada: nunca vai para o site."
+    },
+    {
       "id": "mutacoes-pastilhas",
       "arquivo": "ferramentas/mutacoes-pastilhas.py",
       "sha256": "94f34f4d1a1a364ab0bc06b5b3743133802fa3798956e45c739ca40b6317069c",
@@ -506,6 +530,13 @@
       "arquivo": "ferramentas/mutacoes-prestacao.py",
       "sha256": "be107eb087f98bf9b38f2ebc4f0ab0c1a150866174792f8bef0be5bc469e0a32",
       "descricao": "Quebra a prestacao de contas do rejunte de proposito, uma mutacao por vez, e exige que teste-prestacao-rejunte.php reprove cada uma. As duas primeiras sao os dois defeitos do despacho de 12/09 escritos de volta. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "mutacoes-promessa-do-titulo",
+      "arquivo": "ferramentas/mutacoes-promessa-do-titulo.py",
+      "sha256": "82243fb9b92b6e7fd8e36f055d5894e261eb047a534986b201ffaaf44751e9fe",
+      "descricao": "Quebra de proposito a promessa numerica do <title> e as quatro description de SERP, uma mutacao por vez, e exige que as quatro bancadas reprovem cada uma. 19 mutacoes. Duas das tres travas sao silenciosas por desenho (teto e banco que nao chegou), e trava silenciosa que ninguem viu disparar nao mediu nada.",
+      "publicar": false
     },
     {
       "id": "mutacoes-rejunte",
@@ -540,7 +571,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "fa4036f563583ceaeffc13d97b14dc36fc735ffcc757b3a38230ba71754e88ee",
+      "sha256": "ed2206eb8b09f2d770ad48dca557ce376f81edf8f005c849ca8e641706b450b8",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -582,19 +613,19 @@
     {
       "id": "teste-casca",
       "arquivo": "ferramentas/teste-casca.php",
-      "sha256": "0c257f123f1b4cefe62f7eb218723ce63c9c39573036e549cf4988f1b312818f",
+      "sha256": "c720f8ee9df19531fe4e73ad6e134e3e84820260d77fbbbb0db29e57390c9977",
       "descricao": "347 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; dentro de <script>, corpo que nao comeca por metadado, JSON-LD que decodifica, a arvore da secao 16 nas duas direcoes contra o ARVORE.md, a Loja nos dois estados, a camada de prova pela ESTRUTURA e nao pela vizinhanca da palavra, e o piso de 1.500 caracteres de corpo. UM PROCESSO POR PAGINA: o static que impede logotipo e rodape em dobro na mesma pagina faria a bancada medir oito paginas sem eles. SECAO 7 REESCRITA EM 1.4.0 — ate 1.3.0 ela afirmava o CONTRARIO do que o site tem que servir (que o logo nao podia entrar no cabecalho por ter fundo preto, o que era falso). Agora cobra o logo do Raphael em <img>, o src igual ao arquivo que ele subiu, ZERO texto dentro da marca, alt com o nome, width/height na proporcao 3:2, o srcset servindo so o MESMO arquivo menor, os 52 px no CSS, a folga da barra e o logo uma vez em CADA uma das nove paginas. A REGUA E DESTE ARQUIVO: a URL e a medida estao literais aqui, copiadas do despacho, nunca lidas da constante da casca."
     },
     {
       "id": "teste-f1",
       "arquivo": "ferramentas/teste-f1.php",
-      "sha256": "abea9505823d59e61fa5c23d0933682e6e6c98babe8b9b7b505480fbdf161663",
+      "sha256": "6ecd1b1ea02faf1d6bcf52b7b320ed11d151c217169b101d97dcc3f213c51761",
       "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
     },
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "429ea2a59b6bf7742403438f1fce4b4de780a902963071f477a4d7cd4ee65b0a",
+      "sha256": "834a4c738a99b06856a927b99be1e223e451ddd0b355e1a3dd85271d20212c05",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
     },
     {
@@ -630,7 +661,7 @@
     {
       "id": "teste-tecnicas",
       "arquivo": "ferramentas/teste-tecnicas.php",
-      "sha256": "953ef8c636e7da6acecb41494e0a8b9946f1a0fc245eacb16fab03543275df9a",
+      "sha256": "5b9a3e21d22f3f0f9795dd27c4e03e4eeca516ac54068a03064c7fe2ac2e60c0",
       "descricao": "Verificacao MEDIDA da pagina de tecnica. 49 afirmacoes no corpo servido, e o ESPERADO nao vem do snippet: as 45 celulas da grade sao comparadas com dados/cobertura.json, gerado pela regua em Python — duas metades independentes, em linguagens diferentes, que tem de dar o mesmo numero. Ele comeca rodando cobertura.py --conferir, porque regua velha aprova a pagina de ontem. Mede tambem a prestacao de contas da secao 7 (a soma dos nomeados fecha com o banco contado do arquivo), a escada de compra e o rel de cada link, a recusa do rejunte com a causa, os termos que o VOZ.md proibe no titulo e no primeiro paragrafo, e o FAQ do schema sendo o MESMO da tela. Bancada; nunca vai para o site."
     },
     {
@@ -650,30 +681,6 @@
       "arquivo": "ferramentas/varrer-canonicas.py",
       "sha256": "3c4914177e1d00676f94fed0a3ace801c5a7c1c0095f25195a778a434cdb39d4",
       "descricao": "Le a CANONICA e a CADEIA DE REDIRECIONAMENTO de cada URL desta ilha e classifica em duas listas — 'esperado, nenhuma acao' e 'defeito, com a correcao proposta' — escrevendo o relatorio em dados/indexacao.md. Nasceu do BLOCO C do despacho do Raphael de 24/09/2026, que veio dos dois motivos novos do e-mail do Search Console de 23/09 ('Pagina alternativa com tag canonica adequada' e 'Pagina com redirecionamento'). NAO APLICA CORRECAO NENHUMA, por ordem do despacho: o que e defeito volta como proposta, URL por URL, para o Raphael autorizar item por item. A lista de URLs vem do wp-sitemap.xml NO AR, nunca digitada, mais /author/ e as variacoes de cada uma (http, www, sem barra final) — os dois motivos nascem de duas URLs para a mesma coisa, e varrer so a versao boa mediria o lado que nunca da problema. MEDE DUAS LEITURAS POR URL, e essa e a razao de ela existir em vez de um curl: com ?v=<agora> a pergunta chega ao WordPress; sem a quebra de cache quem responde e o cache de pagina, que nao sabe redirecionar — e o Googlebot nao manda quebra de cache. Em 25/09/2026: 71 URLs, 71 esperado, 0 defeito, e 36 em que as duas leituras discordam. Tem --autoteste com 11 casos fabricados, um por ramo da regua, porque passada limpa em portao que nunca acusou nada nao prova nada. NUNCA e publicada no site."
-    },
-    {
-      "id": "medir-egresso",
-      "arquivo": "ferramentas/medir-egresso.py",
-      "sha256": "b34f55c938ca32c8c93495617f9a6649a6098d35b36a98d3b591abb759798744",
-      "descricao": "Mede, host por host, o que esta nuvem alcanca das fontes que os bancos desta ilha citam — e separa CONNECT de ENTREGA, que e a distincao que faltava: apex liberado que redireciona para `www.` recusado entrega zero. Deriva a lista de dados/*.json, dos campos cujo nome fala de dominio, do apex e do `www.` de cada host, e de dados/fontes-pedidas.json; tres passadas por host (20.2), com controle obrigatorio que torna a medicao VOID se cair. Gera dados/egresso-de-fontes.md e .json, e o PEDIDO de rede sai da medicao com quem exige cada dominio. `--autoteste` com 29 casos fabricados. Bancada."
-    },
-    {
-      "id": "filhas-do-guia",
-      "arquivo": "ferramentas/filhas-do-guia.py",
-      "sha256": "a916193a99cd080ee9c8b650d6d93a6481cd142b739c8823962ce518ecd84cc9",
-      "descricao": "Aplica o portao INTEIRO da secao 9 (3 itens de banco reais E um numero calculado proprio) a cada recorte que o vocabulario do esquema admite no Guia, e diz a que DISTANCIA esta o que nao passa. Os recortes saem de vocabularios.tipo_por_categoria e o teto de nivel de fonte sai de escada_de_fontes: nada digitado. Tres vereditos e nunca um booleano (passa, passa_na_contagem_sem_lastro, nao_passa), pela licao do medir-egresso.py — os dois vereditos saem juntos ou nenhum dos dois serve. Separa SKU novo de campo vazio em registro que ja mora no banco, e so promete 'completar registro' quando o recorte esta a UM. Gera dados/filhas-do-guia.json e o .md, preservando o trecho de SERP que e busca e nao derivacao; --conferir regera e compara e tambem confere a tabela da secao 2 do ARVORE.md nas duas direcoes; --autoteste roda 27 casos fabricados."
-    },
-    {
-      "id": "medir-degrau-4",
-      "arquivo": "ferramentas/medir-degrau-4.py",
-      "sha256": "a04614723c042ab3a756495061b44c38f0848e45812635b32fc20ea5ad49bcea",
-      "descricao": "POR QUE ESTE ITEM PAROU NO DEGRAU 4, medido hoje e nunca herdado. Desce a escada de palavra-chave pela Open API (25.6) para todo registro no degrau 4 sem ficha e grava `afiliado.motivo_sem_ficha` na forma da 25.4-b.3 — causa, que nao muda, mais ultima tentativa datada, que se reescreve a cada passada, separadas por ' || '. Nasceu do despacho da ronda de 30/09/2026: dos 17 no degrau 4, doze traziam so `motivo_da_chave`, que conta como a chave foi MONTADA e nao o que a escada devolveu. ELA NAO GRAVA `url` EM NENHUMA HIPOTESE — subir degrau e do coletar-shopee.py, e e por isso que ela PODE medir as 13 pastilhas, que o coletor exclui por decisao pendente do Raphael: medir nao e agir, e foi por confundir os dois que elas ficaram dezessete dias sem ninguem perguntar nada a elas. A regra de casamento vem importada de casar-anuncio.py, nunca copiada. A PRIMEIRA VERSAO CLASSIFICAVA PELA TRAVA QUE BARROU O CANDIDATO E DEU 17 DE 17 NA MESMA CLASSE — porque as travas correm em ORDEM e a 5b quase sempre falha antes de qualquer trava de irmao ser avaliada: media a ordem do codigo, nao o mundo. A pergunta que separa as causas e a trava 1, algum anuncio traz a marca? Bancada: nunca vai para o site."
-    },
-    {
-      "id": "mutacoes-motivo-degrau-4",
-      "arquivo": "ferramentas/mutacoes-motivo-degrau-4.py",
-      "sha256": "af03eb2f89b5b3400f689d26f02a49b5101f01bc1941c363d8034146cc594c66",
-      "descricao": "Dez mutacoes do portao do motivo do degrau 4, escritas nos CINCO bancos, 10 de 10 reprovadas e as 10 SO pelo portao novo (desligado por CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1). Atacam a forma da 25.4-b.3 uma metade por vez: o campo ausente (o defeito exato de 30/09), a prosa de uma metade so que era a forma de 29/09 e passava, a causa sem classe, a classe escrita em prosa com maiuscula (duas grafias da mesma causa viram duas causas e a reparticao soma errado sem reprovar), a tentativa sem data — que e a que a 25.4-b.3 nomeia, porque motivo sem data manda a execucao seguinte nem tentar —, a data em formato brasileiro, que nao e ordenavel, e a causa vazia dentro da forma certa. Duas PRODUZEM O MUNDO que o banco nao tem: ficha achada com link nao encurtado, e item que CAI do degrau 3 de volta para o 4 quando o anuncio sai do ar — as duas recontam `itens_esperando_link` do cabecalho, senao era o portao do CABECALHO que as pegava, e mutacao pega pelo portao errado nao prova portao nenhum. Bancada: nunca vai para o site."
     }
   ],
   "esquema": {

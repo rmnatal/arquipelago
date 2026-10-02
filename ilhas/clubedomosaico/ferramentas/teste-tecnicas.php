@@ -637,9 +637,67 @@ foreach ( $registro as $id => $ficha ) {
 		$desc = html_entity_decode( $m[1], ENT_QUOTES, 'UTF-8' );
 	}
 	tec_ok( '' !== $desc, 'a pagina serve meta description' );
-	tec_ok( $desc === $ficha['description'], 'e e a description DESTA pagina' );
-	tec_ok( mb_strlen( $desc ) >= 120 && mb_strlen( $desc ) <= 200,
-		'a description tem tamanho util', mb_strlen( $desc ) . ' caracteres' );
+
+	/* A PAGINA QUE DECLARA MOLDE TEM A DESCRIPTION PREENCHIDA PELA REGUA
+	   INDEPENDENTE (02/10/2026), e os dois numeros nao vem do snippet: as colas
+	   sao `$no_banco`, contadas do arquivo na secao 5 deste mesmo teste, e as
+	   celulas sao `$servidas`, contadas da cobertura na secao 4. Se o snippet
+	   preencher o molde com outro numero, as duas escritas discordam aqui — que
+	   e a trava da secao 8 do contrato aplicada a etiqueta onde o clique se
+	   decide. */
+	$desc_esperada = isset( $ficha['description'] ) ? (string) $ficha['description'] : '';
+	if ( ! empty( $ficha['description_molde'] ) ) {
+		$desc_esperada = strtr( (string) $ficha['description_molde'], array(
+			'{colas}'   => (string) count( $no_banco ),
+			'{celulas}' => (string) $servidas,
+		) );
+	}
+	tec_ok( $desc === $desc_esperada, 'e e a description DESTA pagina, com os numeros da regua independente',
+		$desc === $desc_esperada ? 'igual' : 'servida: ' . $desc );
+
+	/* MOLDE CRU NO AR E O UNICO JEITO DE ESTE BLOCO PIORAR O QUE VEIO CONSERTAR. */
+	tec_ok( false === strpos( $desc, '{' ) && false === strpos( $desc, '%1$s' ),
+		'a description servida nunca traz o molde cru' );
+	tec_ok( empty( $ficha['description_molde'] ) || 1 === preg_match( '/\d/', $desc ),
+		'a pagina que declara molde serve NUMERO na description (trava 3)' );
+
+	/* A FAIXA E 120 A 160, e nao 200: e a faixa do item 4 do despacho de 28/09,
+	   fechada em 02/10. O teto de 200 daqui era o de antes, e deixava passar
+	   justamente os 192 caracteres que a pagina do Picassiete servia. */
+	tec_ok( mb_strlen( $desc ) >= 120 && mb_strlen( $desc ) <= 160,
+		'a description cabe na faixa de 120 a 160', mb_strlen( $desc ) . ' caracteres' );
+
+	/* A FRASE SEM NUMERO, que e a saida da TRAVA 2 desta camada: a pagina que
+	   declara molde declara TAMBEM uma `description` sem numero, e ela tem de
+	   caber na mesma faixa. Medida na declaracao e nao no ar porque o mundo sem
+	   banco desta camada nao se produz dentro do mesmo processo — a cobertura
+	   fica em `static`. */
+	if ( ! empty( $ficha['description_molde'] ) ) {
+		$sem_numero = isset( $ficha['description'] ) ? (string) $ficha['description'] : '';
+		tec_ok( mb_strlen( $sem_numero ) >= 120 && mb_strlen( $sem_numero ) <= 160,
+			'a frase SEM numero tambem cabe na faixa de 120 a 160', mb_strlen( $sem_numero ) . ' caracteres' );
+		tec_ok( 0 === preg_match( '/\d/', $sem_numero ) && false === strpos( $sem_numero, '{' ),
+			'e ela nao traz numero nenhum nem molde' );
+	}
+
+	/* O TITULO INTEIRO, COM A CAUDA QUE A CASCA DECIDE (02/10/2026).
+	   O Picassiete declara promessa e o Trencadis nao — por decisao escrita, para
+	   a leitura seguinte ter uma pagina parada com que comparar. O teto e o da
+	   casca, contado em caracteres DECODIFICADOS. */
+	$titulo_servido = '';
+	if ( preg_match( '#<title>(.*?)</title>#is', $html, $mt ) ) {
+		$titulo_servido = html_entity_decode( $mt[1], ENT_QUOTES, 'UTF-8' );
+	}
+	tec_ok( 0 === strpos( $titulo_servido, $ficha['titulo'] ),
+		'o <title> comeca pelo NOME da pagina, intocado', $titulo_servido );
+	tec_ok( '' !== $titulo_servido && mb_strlen( $titulo_servido ) <= CDM_CASCA_TITULO_TETO,
+		'o <title> cabe no teto da casca', mb_strlen( $titulo_servido ) . ' caracteres' );
+	$tem_promessa = ( 'picassiette' === $id );
+	tec_ok( $tem_promessa === ( 1 === preg_match( '/\d/', $titulo_servido ) ),
+		'so a pagina que declara promessa serve digito no <title>',
+		$tem_promessa ? 'picassiete promete' : 'trencadis fica como estava' );
+	tec_ok( $tem_promessa !== ( false !== strpos( $titulo_servido, CDM_CASCA_NOME_SITE ) ),
+		'a marca cede o lugar na que promete, e fica na que nao promete' );
 
 	$ld = '';
 	if ( preg_match( '#<script type="application/ld\+json" id="cdm-tecnicas-jsonld">(.*?)</script>#is', $html, $m ) ) {

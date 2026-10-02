@@ -1462,32 +1462,65 @@ for _consulta, _rotulo in [
 # outro numero numa lingua com acento, e daria um numero a mais ainda com
 # `&#039;` no meio — o corte do Google e em caractere.
 #
-# AS QUATRO TRAVADAS: `qual-cola`, `quantas-pastilhas`, `picassiete` e
-# `trencadis` estao acima de 160 e ficam. TRES delas estao na primeira pagina do
-# Google e o BLOCO A do despacho do Raphael de 24/09 proibe mexer na promessa da
-# SERP delas antes de 30/09 — trocar agora misturaria duas causas na mesma
-# janela de medicao; a quarta fica parada pelo mesmo despacho, para a proxima
-# leitura ter com o que comparar. A regua cobra PRESENCA nas 17 e FAIXA em todas
-# menos essas quatro, e imprime o numero das quatro para ele nao ser esquecido.
+# AS QUATRO QUE ESTAVAM TRAVADAS ENTRARAM NA FAIXA EM 02/10/2026, e com elas a
+# lista `TRAVADAS_ATE_30_09` saiu daqui: `qual-cola` (183), `quantas-pastilhas`
+# (165), `picassiete` (192) e `trencadis` (189) esperavam o BLOCO A do despacho
+# do Raphael de 24/09, que mandava nao mexer na promessa da SERP delas antes da
+# janela de medicao de 30/09. A janela fechou, o BLOCO A saiu, e agora a faixa e
+# cobrada nas 17 — sem excecao escrita em lista nenhuma, que e o unico jeito de
+# uma excecao nao sobreviver ao motivo dela.
 import html as _html
-
-TRAVADAS_ATE_30_09 = (
-    "/materiais/qual-cola-usar-no-mosaico/",
-    "/materiais/quantas-pastilhas-para-mosaico/",
-    "/como-fazer/o-que-e-mosaico-picassiete/",
-    "/como-fazer/o-que-e-trencadis/",
-)
 
 def _description_de(html_servido):
     m = re.findall(r'<meta name="description" content="([^"]*)"', html_servido, re.I)
     return [_html.unescape(x) for x in m]
 
+
+def _titulo_de(html_servido):
+    m = re.search(r"<title>(.*?)</title>", html_servido, re.I | re.S)
+    return _html.unescape(m.group(1)).strip() if m else ""
+
+
+# AS TRES COM PROMESSA NUMERICA sao exatamente as tres que a leitura de 23/09
+# mediu na primeira pagina do Google com CTR zero. O Trencadis NAO esta aqui, e
+# a ausencia e a decisao: ele e a pagina que fica como estava para a leitura
+# seguinte ter com o que comparar (despacho de 23/09, "deixe uma pagina
+# parada"). A regua mede as DUAS direcoes — promessa onde tem de haver, marca
+# onde tem de ficar —, porque medir so um lado aprovaria tanto a ilha certa
+# quanto a ilha que promete em tudo.
+COM_PROMESSA = (
+    "/materiais/qual-cola-usar-no-mosaico/",
+    "/materiais/quantas-pastilhas-para-mosaico/",
+    "/como-fazer/o-que-e-mosaico-picassiete/",
+)
+MARCA = "Clube do Mosaico"
+TETO_TITULO = 65
+
 _sem_description, _fora_da_faixa, _duplicadas_desc, _duas_etiquetas = [], [], [], []
-_vistas, _travadas_medidas = {}, []
+_vistas, _medidas_desc = {}, []
+_titulo_longo, _promessa_faltando, _promessa_indevida, _titulo_com_molde = [], [], [], []
 for _u in _urls_sitemap:
     _h, _ = buscar(_u)
     _ds = _description_de(_h)
     _caminho = _u.replace(BASE, "")
+
+    # O <title> SERVIDO, contado em caracteres DECODIFICADOS — `&#8211;` conta 1
+    # e nao 7. E a mesma regua da description, e e a regua do corte do Google.
+    _t = _titulo_de(_h)
+    if _t and len(_t) > TETO_TITULO:
+        _titulo_longo.append(f"{_caminho} ({len(_t)})")
+    if "{" in _t or "%1$s" in _t:
+        _titulo_com_molde.append(_caminho)
+    _tem_digito = bool(re.search(r"\d", _t))
+    if _caminho in COM_PROMESSA:
+        # TRAVA 3 do bloco de 02/10: a pagina que DECLARA promessa tem de servir
+        # digito. As travas 1 e 2 sao silenciosas por desenho — elas devolvem a
+        # marca —, e esta linha e a unica que conta quando elas disparam.
+        if not _tem_digito or MARCA in _t:
+            _promessa_faltando.append(f"{_caminho}: {_t}")
+    elif _tem_digito and MARCA not in _t:
+        _promessa_indevida.append(f"{_caminho}: {_t}")
+
     if len(_ds) > 1:
         _duas_etiquetas.append(_caminho)
     if not _ds:
@@ -1495,10 +1528,12 @@ for _u in _urls_sitemap:
         continue
     _d = _ds[0]
     _n = len(_d)
-    if _caminho in TRAVADAS_ATE_30_09:
-        _travadas_medidas.append(f"{_caminho} {_n}")
-    elif _n < 120 or _n > 160:
+    if _n < 120 or _n > 160:
         _fora_da_faixa.append(f"{_caminho} ({_n})")
+    if "{" in _d or "%1$s" in _d:
+        _fora_da_faixa.append(f"{_caminho} (molde cru servido)")
+    if _caminho in COM_PROMESSA or _caminho == "/como-fazer/o-que-e-trencadis/":
+        _medidas_desc.append(f"{_caminho} {_n}")
     if _d in _vistas:
         _duplicadas_desc.append(f"{_caminho} = {_vistas[_d]}")
     _vistas[_d] = _caminho
@@ -1507,13 +1542,25 @@ ok(not _sem_description, "[description] as 17 URLs do sitemap servem uma meta de
    f"{len(_urls_sitemap)} conferidas" + ((": " + ", ".join(_sem_description[:4])) if _sem_description else ""))
 ok(not _duas_etiquetas, "[description] e NENHUMA serve duas — o emissor e um so",
    f"{len(_urls_sitemap)} conferidas" + ((": " + ", ".join(_duas_etiquetas[:3])) if _duas_etiquetas else ""))
-ok(not _fora_da_faixa, "[description] todas cabem em 120 a 160 caracteres, menos as 4 travadas ate 30/09",
+ok(not _fora_da_faixa, "[description] as 17 cabem em 120 a 160 caracteres — sem excecao travada (item 4 fechado em 02/10)",
    "na faixa" if not _fora_da_faixa else " | ".join(_fora_da_faixa[:4]))
 ok(not _duplicadas_desc, "[description] nenhuma se repete entre paginas",
    "todas distintas" if not _duplicadas_desc else " | ".join(_duplicadas_desc[:3]))
-ok(len(_travadas_medidas) == len(TRAVADAS_ATE_30_09),
-   "[description] as 4 travadas pelo BLOCO A estao medidas e o numero delas fica visivel",
-   " | ".join(_travadas_medidas))
+ok(len(_medidas_desc) == 4,
+   "[description] as 4 que estavam travadas estao medidas e o numero delas fica visivel",
+   " | ".join(_medidas_desc))
+
+# A PROMESSA NUMERICA DO <title> — BLOCO A do despacho do Raphael de 24/09.
+ok(not _titulo_longo, f"[title] as 17 cabem no teto de {TETO_TITULO} caracteres decodificados",
+   "no teto" if not _titulo_longo else " | ".join(_titulo_longo[:4]))
+ok(not _titulo_com_molde, "[title] nenhuma serve o molde cru no lugar do numero",
+   "nenhuma" if not _titulo_com_molde else " | ".join(_titulo_com_molde[:3]))
+ok(not _promessa_faltando,
+   "[title] as 3 paginas de primeira pagina servem a promessa numerica, e a marca saiu do fim",
+   "as 3 prometem" if not _promessa_faltando else " | ".join(_promessa_faltando[:3]))
+ok(not _promessa_indevida,
+   "[title] e nenhuma outra URL do sitemap trocou a marca por numero — o Trencadis entre elas",
+   "so as 3" if not _promessa_indevida else " | ".join(_promessa_indevida[:3]))
 
 # ---------------------------------------------------------------------------
 # A LEITURA DO VISITANTE. Acrescentada em 29/09/2026, e o achado que a pede esta

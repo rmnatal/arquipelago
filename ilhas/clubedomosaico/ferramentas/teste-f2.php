@@ -207,8 +207,14 @@ echo "\n3. Cabeca da pagina (secoes 14.1 e 14.4)\n";
 preg_match( '#<meta name="description" content="([^"]*)"#', $ancora, $md );
 $desc = isset( $md[1] ) ? html_entity_decode( $md[1], ENT_QUOTES, 'UTF-8' ) : '';
 f2_ok( '' !== $desc, 'a pagina serve meta description' );
-f2_ok( mb_strlen( $desc ) >= 120 && mb_strlen( $desc ) <= 200, 'a description cabe na faixa util',
+/* A FAIXA E 120 A 160 desde 02/10/2026, e nao 200: e a faixa do item 4 do
+   despacho de 28/09, que esta pagina so pode cumprir depois de a janela de
+   medicao de 30/09 fechar. O teto de 200 daqui deixava passar os 183 caracteres
+   que ela servia. O texto COM OS NUMEROS e conferido contra a regua
+   independente na secao 6b deste arquivo, onde os numeros existem contados. */
+f2_ok( mb_strlen( $desc ) >= 120 && mb_strlen( $desc ) <= 160, 'a description cabe na faixa de 120 a 160',
 	mb_strlen( $desc ) . ' caracteres' );
+f2_ok( false === strpos( $desc, '{' ), 'e ela nunca serve o molde cru' );
 /* UM canonical, e ele aponta para o endereco limpo. O "um" nao e zelo: quem
    imprime o proprio canonical por cima do `rel_canonical()` do nucleo serve
    dois, e a bancada so consegue ver isso porque passou a servir o do nucleo
@@ -1318,6 +1324,61 @@ f2_ok( false !== mb_strpos( $texto_faltas, number_format_i18n( $total_combinacoe
 f2_ok( false !== mb_strpos( $texto_faltas, 'Em ' . number_format_i18n( $descobertos_varridos ) . ' delas' ),
 	'o numero de faixas descobertas publicado bate com a varredura das paginas',
 	$descobertos_varridos . ' varridas' );
+/* ---------------------------------------------------------------------------
+ * 6b. A PROMESSA DA SERP — titulo e description com os numeros desta varredura
+ *
+ * Acrescentada em 02/10/2026 com o BLOCO A do despacho do Raphael de 24/09. Os
+ * tres numeros usados aqui — colas, combinacoes e descobertas — sao os que ESTE
+ * arquivo contou sozinho (`$colas_ativas` do banco, `$total_combinacoes` do
+ * vocabulario, `$descobertos_varridos` das 270 paginas servidas). Se o snippet
+ * preencher a frase com outro numero, as duas escritas discordam aqui.
+ *   POR QUE ISTO E O PORTAO QUE IMPORTA: a promessa do resultado da busca e a
+ * unica afirmacao desta ilha que ninguem de dentro le. Quem a ve e quem decide
+ * clicar, e ele nao tem como conferir nada.
+ * ------------------------------------------------------------------------- */
+$desc_esperada_f2 = 'Qual cola e qual rejunte pela declaração do fabricante: '
+	. number_format_i18n( $colas_ativas ) . ' colas em ' . number_format_i18n( $total_combinacoes )
+	. ' casos de base, lugar e caquinho, e os ' . number_format_i18n( $descobertos_varridos )
+	. ' que a gente ainda não responde.';
+f2_ok( $desc === $desc_esperada_f2,
+	'a description serve os TRES numeros que esta bancada contou sozinha',
+	$desc === $desc_esperada_f2 ? 'igual' : 'servida: ' . $desc );
+
+$titulo_f2 = '';
+if ( preg_match( '#<title>(.*?)</title>#is', $ancora, $mt_f2 ) ) {
+	$titulo_f2 = html_entity_decode( $mt_f2[1], ENT_QUOTES, 'UTF-8' );
+}
+$titulo_esperado_f2 = CDM_F2_TITULO . ' – ' . number_format_i18n( $colas_ativas )
+	. ' colas para ' . number_format_i18n( count( $esquema['vocabularios']['base'] ) ) . ' bases';
+f2_ok( $titulo_f2 === $titulo_esperado_f2,
+	'o <title> e o NOME da pagina mais a promessa contada, e a marca saiu do fim',
+	$titulo_f2 );
+f2_ok( '' !== $titulo_f2 && mb_strlen( $titulo_f2 ) <= CDM_CASCA_TITULO_TETO,
+	'e ele cabe no teto de ' . CDM_CASCA_TITULO_TETO, mb_strlen( $titulo_f2 ) . ' caracteres' );
+f2_ok( 0 === strpos( $titulo_f2, CDM_F2_TITULO ),
+	'o nome da pagina nao foi tocado — ele continua sendo o mesmo do H1 e da trilha' );
+
+/* O MUNDO EM QUE O BANCO NAO CHEGOU — a TRAVA 2 exercida na pagina, e nao so na
+   funcao pura. Sem numero nao ha promessa: a marca volta ao fim do titulo e a
+   `description` cai na frase sem numero, que tem de caber na MESMA faixa de 120
+   a 160. Frase curta aqui seria trocar um defeito por outro no lugar onde o
+   clique se decide — o Google descarta description curta e escreve a dele. */
+$html_sem_banco = f2_render( $raiz, 'sem_banco=1' );
+$titulo_sb = '';
+if ( preg_match( '#<title>(.*?)</title>#is', $html_sem_banco, $mt_sb ) ) {
+	$titulo_sb = html_entity_decode( $mt_sb[1], ENT_QUOTES, 'UTF-8' );
+}
+$desc_sb = '';
+if ( preg_match( '#<meta name="description" content="([^"]*)"#', $html_sem_banco, $md_sb ) ) {
+	$desc_sb = html_entity_decode( $md_sb[1], ENT_QUOTES, 'UTF-8' );
+}
+f2_ok( $titulo_sb === CDM_F2_TITULO . ' – ' . CDM_CASCA_NOME_SITE,
+	'TRAVA 2 no ar: sem banco, a marca volta ao fim do <title>', $titulo_sb );
+f2_ok( '' !== $desc_sb && 0 === preg_match( '/\d/', $desc_sb ),
+	'e a description cai na frase SEM numero', $desc_sb );
+f2_ok( mb_strlen( $desc_sb ) >= 120 && mb_strlen( $desc_sb ) <= 160,
+	'e a frase sem numero cabe na mesma faixa de 120 a 160', mb_strlen( $desc_sb ) . ' caracteres' );
+
 f2_ok( $descobertos_varridos > 0 && $descobertos_varridos < $total_combinacoes,
 	'a contagem nao e vacuidade: nem tudo descoberto, nem tudo coberto',
 	$descobertos_varridos . ' de ' . $total_combinacoes );

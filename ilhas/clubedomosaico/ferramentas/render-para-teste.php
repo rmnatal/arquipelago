@@ -691,6 +691,44 @@ function cdm_teste_titulo_da_pagina($tag) {
 	return isset($defs[$caminho]['titulo']) ? $defs[$caminho]['titulo'] : '';
 }
 
+/**
+ * O `<title>` QUE O SITE SERVIRIA PARA ESTA PAGINA — e nao um rotulo de bancada.
+ *
+ * Acrescentado em 02/10/2026, com o bloco da promessa numerica do titulo. Ate
+ * aqui esta bancada servia `<title>Clube do Mosaico — teste</title>` em TODA
+ * pagina: um titulo fixo, que nenhuma afirmacao podia medir. O bloco que troca
+ * a marca por um numero mexe exatamente nessa etiqueta, e regua que nao alcanca
+ * o que o bloco muda e regua que nasce cega (secao 8 do ARQUIPELAGO.md).
+ *
+ * O CAMINHO E O DO WORDPRESS, nao um segundo: as partes nascem como o nucleo as
+ * monta — nome da pagina e nome do site —, passam pelo filtro
+ * `document_title_parts` (que e por onde a casca e a Loja entram) e sao juntadas
+ * pelo separador. O separador aqui e o TRAVESSAO, que e o que o site serve: o
+ * nucleo junta com " - " e o `wptexturize` dele troca o hifen cercado de espaco
+ * por travessao. Medido no ar em 02/10/2026: `&#8211;` nas quatro paginas.
+ */
+function cdm_teste_titulo_do_documento($tag, $padrao = 'Clube do Mosaico — teste') {
+	$nome = cdm_teste_titulo_da_pagina($tag);
+	if ('' === $nome) {
+		return $padrao;
+	}
+
+	$site   = defined('CDM_CASCA_NOME_SITE') ? CDM_CASCA_NOME_SITE : 'Clube do Mosaico';
+	$partes = apply_filters('document_title_parts', array('title' => $nome, 'site' => $site));
+	if (!is_array($partes)) {
+		return $padrao;
+	}
+
+	$pedacos = array();
+	foreach (array('title', 'tagline', 'site') as $chave) {
+		if (isset($partes[$chave]) && '' !== trim((string) $partes[$chave])) {
+			$pedacos[] = trim((string) $partes[$chave]);
+		}
+	}
+
+	return $pedacos ? implode(' – ', $pedacos) : $padrao;
+}
+
 function cdm_teste_pagina($tag, $titulo = 'Clube do Mosaico — teste') {
 	$GLOBALS['__conteudo_pagina'] = '[' . $tag . ']';
 
@@ -724,6 +762,10 @@ function cdm_teste_pagina($tag, $titulo = 'Clube do Mosaico — teste') {
 	   de seguranca de prioridade 9 disparava, a trilha ia para dentro do corpo —
 	   e a medicao reprovou oito paginas por um defeito que so existia aqui.
 	   Render de bancada tem que servir o que o site serve (secao 8). */
+	/* DEPOIS de `__caminho_atual` e `__e_home` estarem declarados: a promessa e
+	   por pagina, e `cdm_casca_slug_atual()` le essas duas variaveis. */
+	$titulo = cdm_teste_titulo_do_documento($tag, $titulo);
+
 	$titulo_da_pagina = cdm_teste_titulo_da_pagina($tag);
 	$h1 = '' !== $titulo_da_pagina
 		? '<h1 class="wp-block-post-title">' . htmlspecialchars($titulo_da_pagina, ENT_QUOTES) . '</h1>'
@@ -1131,6 +1173,28 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 			}
 		}
 		unset($_GET['um_de_1cm']);
+	}
+
+	/* PRODUZ O MUNDO EM QUE O BANCO NAO CHEGOU AO SITE. `sem_banco=1`.
+	 *
+	 * NASCEU EM 02/10/2026, com a promessa numerica do <title>, e e o mundo da
+	 * TRAVA 2: sem numero nao ha promessa, a marca fica onde estava e a
+	 * `description` sai na frase sem numero. As duas saidas existiam desde o
+	 * primeiro minuto do bloco e NENHUMA afirmacao as alcancava — a trava e
+	 * silenciosa por desenho, ela devolve a marca e a pagina continua valida.
+	 * Trava que ninguem viu disparar nao mediu nada (secao 8 do ARQUIPELAGO.md),
+	 * e aqui o preco de nao medir e a promessa desaparecer do ar sem ninguem ver.
+	 *
+	 * Ele apaga as options de MATERIAL, que e o que o Sync entrega: nao e o mundo
+	 * sem snippet (esse e o `sem_f2`), e nem o mundo sem link (`sem_links`). E o
+	 * mundo em que o desembarque do dado nao aconteceu. */
+	if (!empty($_GET['sem_banco'])) {
+		foreach (array_keys($GLOBALS['__options']) as $chave) {
+			if (0 === strpos($chave, 'clubedomosaico_dados_materiais-')) {
+				unset($GLOBALS['__options'][$chave]);
+			}
+		}
+		unset($_GET['sem_banco']);
 	}
 
 	/* O MUNDO SEM O SNIPPET DE LEADS. `sem_leads=1` na consulta. */

@@ -259,7 +259,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.18.0' );
+	define( 'CDM_CASCA_VERSAO', '1.19.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2733,6 +2733,187 @@ add_action( 'wp_head', function () {
 	}
 	echo '<meta name="description" content="' . esc_attr( $d ) . '">' . "\n";
 }, 4 );
+
+/* ---------------------------------------------------------------------------
+ * A PROMESSA NUMÉRICA DO `<title>` — a marca cede o lugar, e só nas páginas que
+ * declararam uma (1.19.0, 02/10/2026).
+ *
+ * POR QUE ESTE BLOCO EXISTE, e o número que o pediu: na leitura de 23/09/2026
+ * esta ilha tinha 30 impressões em 7 dias, TRÊS páginas na primeira página do
+ * Google (7,8 · 9,1 · 7,0) e **CTR zero nas três**. A seção 12.1 do contrato
+ * nomeia uma alavanca só para a banda de 4 a 10, e ela não é conteúdo: "título
+ * que promete o número, meta que promete a faixa e a fonte". O BLOCO A do
+ * despacho do Raphael de 24/09 mandou fazer exatamente isso, e mandou esperar a
+ * janela de medição de 30/09 — que fechou.
+ *
+ * O NOME DA PÁGINA NÃO É TOCADO. Ele continua sendo um só nas cinco superfícies
+ * em que aparece (H1, cartão, degrau da trilha, og:title da peça e a primeira
+ * metade daqui) — a regra "UM NOME POR PÁGINA" que esta ilha herdou da cicatriz
+ * que a Aquametria pagou em 11/09/2026. O que cede o lugar é a MARCA: 16
+ * caracteres de carimbo, no fim de um título que está na primeira página e não é
+ * clicado, numa ilha com ZERO clique orgânico medido — ninguém a procura pelo
+ * nome. É o precedente da Robometria de 17/09/2026, portado.
+ *
+ * TRÊS TRAVAS, porque promessa que estoura o teto é pior que promessa nenhuma:
+ *
+ *   1. SÓ ENTRA SE O TÍTULO INTEIRO COUBER NO TETO. O banco cresce e o número
+ *      cresce com ele; no dia em que não couber, o título volta a ser o nome
+ *      mais a marca, que é sempre válido.
+ *   2. SÓ ENTRA SE O BANCO CHEGOU AO SITE. Sem medição não há promessa, e a
+ *      marca fica onde estava. Quem preenche o molde recusa o molde INTEIRO
+ *      quando uma das chaves falta ou não é número — "0 colas para 9 bases" no
+ *      resultado da busca seria o único jeito de este bloco piorar o que veio
+ *      consertar.
+ *   3. A BANCADA REPROVA a página que DECLARA promessa e serve título sem
+ *      dígito. As travas 1 e 2 são silenciosas por desenho, e trava silenciosa
+ *      sem quem a conte é como a promessa some sem ninguém ver.
+ *
+ * O CONTRATO DAS CAMADAS é o mesmo da `description` (28/09) e da etiqueta de
+ * robô (25/09): **quem tem promessa DECLARA pelo filtro `cdm_promessa`; quem
+ * monta o título é esta casca, uma vez.** Nenhuma camada volta a mexer em
+ * `document_title_parts` por conta própria — foi assim que a etiqueta de robô
+ * saiu dobrada nesta ilha.
+ *
+ * O SEPARADOR É O QUE O SITE SERVE, e ele não é escolha deste arquivo: o
+ * WordPress junta as partes com " - " e o `wptexturize` do próprio núcleo, que
+ * o núcleo pendura no filtro `document_title`, troca o hífen por travessão —
+ * medido no ar hoje, `&#8211;`. A conta do teto é em CARACTERES DECODIFICADOS,
+ * a mesma régua do `conferir-no-ar.py`: `&#8211;` conta 1, e não 7.
+ * ------------------------------------------------------------------------- */
+
+if ( ! defined( 'CDM_CASCA_TITULO_TETO' ) ) {
+	/* 65, que é o teto que os três snippets desta ilha já declaravam nos
+	   próprios comentários ("abaixo do teto de 65") desde que nasceram. A régua
+	   de 64 é da Aquametria e aqui é recomendação, não defeito — está escrito
+	   assim no despacho de 28/09 e no retrato de 29/09. */
+	define( 'CDM_CASCA_TITULO_TETO', 65 );
+}
+if ( ! defined( 'CDM_CASCA_TITULO_SEPARADOR' ) ) {
+	/* O QUE O SITE SERVE, decodificado — não o que o WordPress junta. Usado só
+	   para CONTAR; quem imprime é o núcleo. */
+	define( 'CDM_CASCA_TITULO_SEPARADOR', ' – ' );
+}
+
+if ( ! function_exists( 'cdm_casca_preencher_promessa' ) ) {
+/**
+ * PREENCHE UM MOLDE DE PROMESSA COM NÚMEROS CONTADOS — ou devolve '' e não
+ * promete nada (trava 2).
+ *
+ * FALHA FECHADA, de propósito: chave que não chegou, que não é número, ou que é
+ * zero faz o molde inteiro ser recusado. Zero entra na recusa porque promessa é
+ * sobre o que a página TEM — "0 colas" é uma frase verdadeira que não serve, e
+ * no resultado da busca ela custa o clique que este bloco existe para ganhar.
+ *
+ * O molde usa `{chave}`, e não `%1$s`, pelo mesmo motivo que o das técnicas usa:
+ * molde posicional obriga quem escreve a contar a ordem, e a ordem é a única
+ * coisa que ninguém confere ao ler.
+ */
+function cdm_casca_preencher_promessa( $molde, $numeros ) {
+	$molde   = (string) $molde;
+	$numeros = (array) $numeros;
+
+	if ( '' === $molde || ! $numeros ) {
+		return '';
+	}
+
+	$troca = array();
+	foreach ( $numeros as $chave => $valor ) {
+		if ( ! is_numeric( $valor ) || (float) $valor <= 0 ) {
+			return '';
+		}
+		$troca[ '{' . $chave . '}' ] = number_format_i18n( (float) $valor );
+	}
+
+	$frase = strtr( $molde, $troca );
+
+	/* Molde que sobrou com chave dentro NÃO vai para o ar. É a mesma recusa da
+	   linha de cima, para o caso em que o molde pede uma chave que quem o
+	   escreveu esqueceu de passar — e é o único jeito de "{colas}" chegar ao
+	   resultado da busca. */
+	if ( false !== strpos( $frase, '{' ) ) {
+		return '';
+	}
+
+	return trim( $frase );
+}
+}
+
+if ( ! function_exists( 'cdm_casca_promessa_do_titulo' ) ) {
+/**
+ * A PROMESSA DA PÁGINA ATUAL, declarada pela camada que a tem, ou ''.
+ *
+ * Quem responde é F1, F2 ou as técnicas, cada uma sobre a própria página e com
+ * números contados do próprio banco. A casca não conhece nenhum deles — se
+ * conhecesse, seria a segunda cópia de uma contagem, que é a família de defeito
+ * que esta ilha mais pagou.
+ */
+function cdm_casca_promessa_do_titulo( $slug ) {
+	$slug = (string) $slug;
+	if ( '' === $slug ) {
+		return '';
+	}
+
+	return trim( (string) apply_filters( 'cdm_promessa', '', $slug ) );
+}
+}
+
+if ( ! function_exists( 'cdm_casca_titulo_do_documento' ) ) {
+/**
+ * O `<title>` INTEIRO da página, como ele vai ao ar — nome, separador e cauda.
+ *
+ * Pura de propósito: recebe o nome e o slug, devolve o texto. É assim que a
+ * bancada mede as travas sem WordPress, e é assim que a régua do teto pode ser
+ * a mesma nos dois lados.
+ */
+function cdm_casca_titulo_do_documento( $nome, $slug ) {
+	$nome = trim( (string) $nome );
+	if ( '' === $nome ) {
+		return '';
+	}
+
+	$promessa = cdm_casca_promessa_do_titulo( $slug );
+	if ( '' !== $promessa ) {
+		$com_promessa = $nome . CDM_CASCA_TITULO_SEPARADOR . $promessa;
+		if ( mb_strlen( $com_promessa, 'UTF-8' ) <= CDM_CASCA_TITULO_TETO ) {
+			return $com_promessa;
+		}
+	}
+
+	return $nome . CDM_CASCA_TITULO_SEPARADOR . CDM_CASCA_NOME_SITE;
+}
+}
+
+/* A CAUDA É A ÚNICA PARTE QUE TROCA, e isso não é economia de código: o
+   `$partes['title']` é o nome da página, a mesma string que sai no H1 e no
+   degrau da trilha. Reescrever as duas partes aqui abriria a porta para o
+   `<title>` e o H1 dizerem nomes diferentes a uma linha de distância, que é
+   exatamente o que a Aquametria pagou em 11/09/2026.
+
+   E ELE SAI SEM MEXER NA PEÇA: o snippet da Loja também pendura um filtro aqui,
+   e ele monta o título inteiro da peça e tira a cauda. Esta função devolve as
+   partes INTACTAS quando a página não declarou promessa — e nenhuma peça
+   declara —, então as duas convivem em qualquer ordem de carga. */
+add_filter( 'document_title_parts', function ( $partes ) {
+	if ( ! is_array( $partes ) || ! isset( $partes['title'] ) ) {
+		return $partes;
+	}
+
+	$home = function_exists( 'is_front_page' ) && is_front_page();
+	$slug = $home ? 'inicio' : ( function_exists( 'cdm_casca_slug_atual' ) ? (string) cdm_casca_slug_atual() : '' );
+
+	$promessa = cdm_casca_promessa_do_titulo( $slug );
+	if ( '' === $promessa ) {
+		return $partes;
+	}
+
+	$inteiro = cdm_casca_titulo_do_documento( (string) $partes['title'], $slug );
+	$cauda   = mb_substr( $inteiro, mb_strlen( (string) $partes['title'] . CDM_CASCA_TITULO_SEPARADOR, 'UTF-8' ), null, 'UTF-8' );
+
+	$partes['site'] = $cauda;
+	unset( $partes['tagline'] );
+
+	return $partes;
+}, 20 );
 
 if ( ! function_exists( 'cdm_casca_paginas_noindex' ) ) {
 /** Os slugs que a ilha declara fora do índice, tirados da própria definição. */

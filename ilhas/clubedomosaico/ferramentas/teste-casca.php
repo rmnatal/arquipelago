@@ -1386,6 +1386,109 @@ cdm_ok( 1 === preg_match_all( '#echo[^\n]{0,8}<meta name="description"#', $fonte
 cdm_ok( '' === cdm_casca_descricao_declarada( 'pagina-que-nao-existe' ),
 	'slug desconhecido devolve vazio em vez de uma descricao generica' );
 
+echo "\n15d. A promessa numerica do <title> — as tres travas (BLOCO A, fechado em 02/10/2026)\n";
+
+/* A REGUA E DAQUI. `cdm_casca_titulo_do_documento()` e pura — recebe o nome e o
+   slug e devolve o texto —, e e por isso que estas afirmacoes podem medir o
+   MUNDO e nao o estado de hoje do banco: a promessa de teste nasce aqui, num
+   slug que nao existe no site, e as travas sao exercidas uma por uma.
+      POR QUE ISTO NAO E LUXO: as travas 1 e 2 sao SILENCIOSAS por desenho — elas
+   devolvem a marca e nao falham —, e trava silenciosa que ninguem viu reprovar
+   nao mediu nada (secao 8 do ARQUIPELAGO.md). */
+$nome_de_teste = 'Nome de pagina com 38 caracteres aqui';
+
+cdm_ok( $nome_de_teste . ' – ' . CDM_CASCA_NOME_SITE === cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-sem-promessa' ),
+	'pagina sem promessa serve o nome mais a MARCA, como sempre serviu',
+	cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-sem-promessa' ) );
+
+add_filter( 'cdm_promessa', function ( $p, $slug ) {
+	if ( 'slug-de-teste-que-cabe' === $slug ) {
+		return cdm_casca_preencher_promessa( '{a} colas para {b} bases', array( 'a' => 7, 'b' => 9 ) );
+	}
+	if ( 'slug-de-teste-que-estoura' === $slug ) {
+		return cdm_casca_preencher_promessa( '{a} colas para {b} bases em {c} lugares e {d} caquinhos', array( 'a' => 7, 'b' => 9, 'c' => 5, 'd' => 6 ) );
+	}
+	if ( 'slug-de-teste-sem-banco' === $slug ) {
+		return cdm_casca_preencher_promessa( '{a} colas para {b} bases', array( 'a' => 0, 'b' => 9 ) );
+	}
+	if ( 'slug-de-teste-com-chave-esquecida' === $slug ) {
+		return cdm_casca_preencher_promessa( '{a} colas para {b} bases', array( 'a' => 7 ) );
+	}
+	return $p;
+}, 10, 2 );
+
+cdm_ok( $nome_de_teste . ' – 7 colas para 9 bases' === cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-que-cabe' ),
+	'promessa que cabe no teto ENTRA, e a marca sai do fim',
+	cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-que-cabe' ) );
+
+cdm_ok( mb_strlen( cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-que-cabe' ), 'UTF-8' ) <= CDM_CASCA_TITULO_TETO,
+	'e o titulo inteiro cabe no teto de ' . CDM_CASCA_TITULO_TETO,
+	mb_strlen( cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-que-cabe' ), 'UTF-8' ) . ' caracteres' );
+
+/* TRAVA 1 — a promessa que estoura o teto NAO entra, e o titulo volta a ser o
+   nome mais a marca, que e sempre valido. Promessa cortada no meio pelo Google
+   e pior que promessa nenhuma. */
+cdm_ok( $nome_de_teste . ' – ' . CDM_CASCA_NOME_SITE === cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-que-estoura' ),
+	'TRAVA 1: promessa que estoura o teto devolve a marca',
+	cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-que-estoura' ) );
+
+/* TRAVA 2 — banco que nao chegou. Zero e recusa, e nao "0 colas": a frase e
+   verdadeira e nao serve, e no resultado da busca ela custa o clique. */
+cdm_ok( $nome_de_teste . ' – ' . CDM_CASCA_NOME_SITE === cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-sem-banco' ),
+	'TRAVA 2: numero ausente ou zero recusa o molde INTEIRO e devolve a marca',
+	cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-sem-banco' ) );
+
+cdm_ok( false === strpos( cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-com-chave-esquecida' ), '{' ),
+	'e chave esquecida pelo molde nunca chega ao <title>',
+	cdm_casca_titulo_do_documento( $nome_de_teste, 'slug-de-teste-com-chave-esquecida' ) );
+
+cdm_ok( '' === cdm_casca_preencher_promessa( '{a} colas', array( 'a' => 'sete' ) )
+	&& '' === cdm_casca_preencher_promessa( '{a} colas', array( 'a' => -3 ) )
+	&& '' === cdm_casca_preencher_promessa( '', array( 'a' => 7 ) )
+	&& '' === cdm_casca_preencher_promessa( '{a} colas', array() ),
+	'o preenchedor recusa texto, negativo, molde vazio e lista vazia' );
+
+cdm_ok( '' === cdm_casca_titulo_do_documento( '', 'slug-de-teste-que-cabe' ),
+	'pagina sem nome nao ganha titulo montado a partir da promessa sozinha' );
+
+/* O MONTADOR E UM SO, e esta e a mesma regua do emissor da description: a
+   contagem e sobre o CODIGO dos snippets, que e a unica que pega a camada nova
+   que nascer penduando o proprio filtro. A Loja tem o dela por desenho (ela
+   monta o titulo da PECA, que nao tem nome na arvore da casca); qualquer
+   terceiro e defeito. */
+$filtros_de_titulo = array();
+foreach ( glob( $pasta_snippets . '/*.php' ) as $arquivo ) {
+	$fonte = file_get_contents( $arquivo );
+	$n     = preg_match_all( "#add_filter\(\s*'document_title_parts'#", $fonte );
+	if ( $n > 0 ) {
+		$filtros_de_titulo[ basename( $arquivo ) ] = $n;
+	}
+}
+cdm_ok( array( 'clubedomosaico-casca.php' => 1, 'clubedomosaico-loja.php' => 1 ) === $filtros_de_titulo,
+	'so a casca e a Loja montam <title>, uma vez cada',
+	implode( ', ', array_map( function ( $k, $v ) { return $k . ' (' . $v . ')'; }, array_keys( $filtros_de_titulo ), $filtros_de_titulo ) ) );
+
+/* QUEM DECLARA PROMESSA HOJE: as TRES paginas que a leitura de 23/09 mediu na
+   primeira pagina com CTR zero, e mais nenhuma. O Trencadis fica parado de
+   proposito, para a leitura seguinte ter com o que comparar — e e por isso que
+   esta afirmacao mede a lista INTEIRA, nas duas direcoes, em vez de so conferir
+   as tres. */
+$com_promessa = array();
+foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
+	if ( '' !== cdm_casca_promessa_do_titulo( $slug ) ) {
+		$com_promessa[] = $slug;
+	}
+}
+sort( $com_promessa );
+$esperadas_com_promessa = array(
+	'como-fazer/o-que-e-mosaico-picassiete',
+	'materiais/qual-cola-usar-no-mosaico',
+	'materiais/quantas-pastilhas-para-mosaico',
+);
+cdm_ok( $esperadas_com_promessa === $com_promessa,
+	'as TRES paginas de primeira pagina declaram promessa, e nenhuma outra',
+	implode( ' | ', $com_promessa ) );
+
 echo "\n16. Noindex declarado e sitemap como curadoria (secao 14.1)\n";
 $ids_falsos = array();
 $i_falso    = 100;

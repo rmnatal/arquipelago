@@ -100,7 +100,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.6.0' );
+	define( 'CDM_F2_VERSAO', '1.7.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -1669,8 +1669,19 @@ function cdm_f2_caquinhos_porosos_lista() {
 }
 }
 
-if ( ! function_exists( 'cdm_f2_faixas_descobertas_html' ) ) {
+if ( ! function_exists( 'cdm_f2_cobertura' ) ) {
 /**
+ * A COBERTURA DA FERRAMENTA, CONTADA UMA VEZ E LIDA POR TRÊS (02/10/2026).
+ *
+ * A varredura é a entrada INTEIRA — base × lugar × caquinho —, e os números dela
+ * sustentam agora TRÊS afirmações que antes não se falavam: a seção "o que a
+ * gente ainda não responde" na tela, a promessa do `<title>` e a
+ * `<meta name="description">`. Contar a mesma coisa em três lugares seria a
+ * família de defeito que esta ilha mais pagou — duas metades contando a mesma
+ * coisa sem nunca se falarem.
+ *
+ * O texto abaixo é o da seção de tela, e ele continua valendo:
+ *
  * O que a ilha ainda NÃO responde — DERIVADO do banco, nunca digitado.
  *
  * Esta seção era duas frases escritas à mão, e as duas eram exatas no dia em que
@@ -1687,7 +1698,12 @@ if ( ! function_exists( 'cdm_f2_faixas_descobertas_html' ) ) {
  * regra 6 o caquinho decide junto, e varrer só base × lugar seria afirmar sobre
  * um escopo maior do que o medido.
  */
-function cdm_f2_faixas_descobertas_html() {
+function cdm_f2_cobertura() {
+	static $conta = null;
+	if ( null !== $conta ) {
+		return $conta;
+	}
+
 	$rot   = cdm_f2_rotulos();
 	$bases = array_keys( $rot['base_curto'] );
 	$ambs  = array_keys( $rot['ambiente_curto'] );
@@ -1715,8 +1731,56 @@ function cdm_f2_faixas_descobertas_html() {
 		}
 	}
 
-	$por_base = count( $ambs ) * count( $tess );
-	$por_amb  = count( $bases ) * count( $tess );
+	$conta = array(
+		'total'       => $total,
+		'descobertos' => $descobertos,
+		'respondidos' => $total - $descobertos,
+		'vazio_base'  => $vazio_base,
+		'vazio_amb'   => $vazio_amb,
+		'por_base'    => count( $ambs ) * count( $tess ),
+		'por_amb'     => count( $bases ) * count( $tess ),
+		'bases'       => count( $bases ),
+		'ambientes'   => count( $ambs ),
+		'tesselas'    => count( $tess ),
+		'colas'       => cdm_f2_quantas_colas(),
+	);
+
+	return $conta;
+}
+}
+
+if ( ! function_exists( 'cdm_f2_quantas_colas' ) ) {
+/**
+ * QUANTAS COLAS O BANCO TEM — varrido do banco, nunca digitado.
+ *
+ * A categoria é lida de cada registro, e não o tamanho da lista inteira: o
+ * mesmo banco traz os rejuntes, e a frase "10 dos 5 itens" que esta ilha já
+ * serviu no ar em 12/09/2026 nasceu exatamente de contar um denominador que
+ * não era o da afirmação.
+ */
+function cdm_f2_quantas_colas() {
+	$n = 0;
+	foreach ( cdm_f2_banco()['materiais'] as $m ) {
+		if ( 'cola' === ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
+			$n++;
+		}
+	}
+
+	return $n;
+}
+}
+
+if ( ! function_exists( 'cdm_f2_faixas_descobertas_html' ) ) {
+function cdm_f2_faixas_descobertas_html() {
+	$rot   = cdm_f2_rotulos();
+	$conta = cdm_f2_cobertura();
+
+	$total       = $conta['total'];
+	$descobertos = $conta['descobertos'];
+	$vazio_base  = $conta['vazio_base'];
+	$vazio_amb   = $conta['vazio_amb'];
+	$por_base    = $conta['por_base'];
+	$por_amb     = $conta['por_amb'];
 
 	$html  = '<div class="cdm-f2-secao">';
 	$html .= '<h2>O que a gente ainda não responde</h2>';
@@ -2112,19 +2176,57 @@ function cdm_f2_e_minha_pagina() {
    num `wp_head` paralelo, que e o desenho que fez a etiqueta de ROBO sair
    dobrada e que a casca 1.13.0 consertou em 25/09. Agora quem imprime e a
    casca, uma vez.
-      O TEXTO NAO MUDOU, e ele esta fora da faixa de 120 a 160 de proposito:
-   esta e a MELHOR pagina desta ilha (posicao 7,8, 17 impressoes) e o BLOCO A do
-   despacho do Raphael de 24/09 proibe mexer na promessa da SERP dela antes de
-   30/09 — trocar agora misturaria duas causas na mesma janela de medicao. A
-   faixa dela, e o numero que a Proposta 1 pede, sao do bloco que fechar o
-   BLOCO A. */
+      O TEXTO MUDOU EM 02/10/2026, e esta e a pagina que pediu o bloco: 7,8 de
+   posicao, 17 impressoes, CTR ZERO — a melhor linha do Arquipelago inteiro. O
+   BLOCO A do despacho do Raphael de 24/09 mandava esperar a janela de 30/09, e
+   ela fechou. A frase antiga tinha 183 caracteres (fora da faixa de 120 a 160
+   do item 4 do despacho de 28/09), dizia a procedencia e NAO dizia numero
+   nenhum; a Proposta 1 de 23/09 pede, com estas palavras, "um numero que a
+   propria pagina calcula, com a fonte".
+      E O NUMERO NAO E DIGITADO: ele sai de `cdm_f2_cobertura()`, a mesma
+   varredura que escreve a secao "o que a gente ainda nao responde" na tela.
+   Entao a promessa do resultado da busca e a confissao do fim da pagina nao tem
+   como discordar — e no dia em que o banco mudar, as duas mudam juntas. */
 add_filter( 'cdm_descricao', function ( $d ) {
 	if ( ! cdm_f2_e_minha_pagina() ) {
 		return $d;
 	}
 
-	return 'Qual cola usar no mosaico, pela declaração do próprio fabricante: cerâmica, vidro, espelho, MDF, cimento ou metal, dentro de casa ou no sol e na chuva. Com o rejunte e o que não usar.';
+	$c = cdm_f2_cobertura();
+
+	$com_numero = cdm_casca_preencher_promessa(
+		'Qual cola e qual rejunte pela declaração do fabricante: {colas} colas em {casos} casos de base, lugar e caquinho, e os {sem} que a gente ainda não responde.',
+		array( 'colas' => $c['colas'], 'casos' => $c['total'], 'sem' => $c['descobertos'] )
+	);
+
+	/* A FRASE SEM NUMERO E A SAIDA DO BANCO QUE NAO CHEGOU, e ela tambem cabe na
+	   faixa de 120 a 160: servir o molde cru, ou uma frase de 40 caracteres,
+	   seria trocar um defeito por outro no lugar onde o clique se decide. */
+	return '' !== $com_numero
+		? $com_numero
+		: 'Qual cola e qual rejunte usar no mosaico, pela declaração do próprio fabricante: cerâmica, vidro, espelho, MDF, cimento, metal ou madeira.';
 } );
+
+/* A PROMESSA DO `<title>`, declarada e nao impressa — quem monta o titulo e a
+   casca 1.19.0, uma vez, pelo mesmo contrato que a `description` tem desde
+   28/09 e a etiqueta de robo desde 25/09.
+      OS DOIS NUMEROS SAO CONTADOS: as colas, do banco; as bases, do vocabulario
+   que a propria ferramenta oferece no formulario. Com nome de 41 caracteres e
+   separador de 3, o titulo fica em 64 — abaixo do teto de 65 — e a marca sai do
+   fim. Se o banco crescer e a frase estourar o teto, a casca devolve a marca e
+   a promessa desaparece sozinha: e a trava 1, e e de proposito. */
+add_filter( 'cdm_promessa', function ( $p, $slug ) {
+	if ( CDM_F2_SLUG !== $slug ) {
+		return $p;
+	}
+
+	$c = cdm_f2_cobertura();
+
+	return cdm_casca_preencher_promessa(
+		'{colas} colas para {bases} bases',
+		array( 'colas' => $c['colas'], 'bases' => $c['bases'] )
+	);
+}, 10, 2 );
 
 /* O ESTADO COM PARAMETRO SAI DO INDICE, e quem IMPRIME a etiqueta e a casca.
    O paragrafo acima explica por que o canonical NAO sai daqui — "serviria DOIS
