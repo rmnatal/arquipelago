@@ -3363,3 +3363,72 @@ Sentinela: ronda diária técnica de 30/09/2026 — 3 ilhas medidas no ar, 0 con
 **Confirmado no remoto**, não no meu clone: `git fetch origin main && git log -1 origin/main` devolveu `8c5c5a9b49d75c38032a408bebfd295ec55dcb66`, a mesma da linha acima. Push que não aparece em `origin/main` não é push — este aparece.
 
 **Falhas: nenhuma.** Nenhuma âncora faltou, nenhuma escrita falhou, nenhuma recusa de push. Não reservei ilha, não escrevi `executando_desde`, não toquei em cabeçalho de estado que a instrução não nomeou, não executei bloco de fila, não publiquei nem acionei Sync, não verifiquei site, não criei conta, não mexi em arquivo que a instrução não nomeou — salvo este `MAOS-LOG.md`, que é obrigatório. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
+
+---
+
+## 02/10/2026 12h00 (14h57–15h02Z) — ronda diária da Sentinela de 02/10: seis escritas em seis arquivos, um commit, sem falha
+
+**Assunto conferido antes do `git fetch`:** Arquipélago. A instrução mexe em `ilhas/robometria/PROMPT.md`, nos `ESTADO.md` de clubedomosaico, aquametria e robometria, nos `dados/consertos.md` de clubedomosaico e robometria, e no `dados/PAINEL.md` da raiz — todos arquivos de ilha, de Sentinela e de painel do Arquipélago. **Nenhum dado pessoal de terceiro** no texto a gravar: a única pessoa nomeada é o Raphael, e só como dono de pendência, sem contato. **Nada foi deixado de fora.**
+
+**Parti do `main` real:** `git fetch origin main && git checkout -B trabalho origin/main`, em `0c1b8ed`.
+
+**As seis escritas, cada uma por âncora conferida antes de gravar:**
+1. `ilhas/robometria/PROMPT.md` — bloco novo de 35 linhas inserido **imediatamente antes** do cabeçalho `## DESPACHO DA SENTINELA — 2026-09-30 (RONDA DIÁRIA TÉCNICA, 14h53Z) — UM ITEM, E ELE NÃO É DA FUNDAÇÃO` (âncora encontrada 1 vez, exigida única), com uma linha em branco entre o fim do bloco e aquele cabeçalho. **Nada foi apagado:** o despacho de 30/09 passou da linha 48 para a 84 e segue intacto.
+2. `ilhas/clubedomosaico/ESTADO.md` — a única linha física que começava com `ultima_ronda:` (linha 11) trocada inteira.
+3. `ilhas/aquametria/ESTADO.md` — idem, linha 21.
+4. `ilhas/robometria/ESTADO.md` — idem, linha 21.
+5a. `ilhas/clubedomosaico/dados/consertos.md` — linha nova acrescentada **depois** da linha de dados que começa com `| 2026-09-30 | — |` (linha 11) e antes da linha em branco que separa a tabela do `## 12/09/2026`.
+5b. `ilhas/robometria/dados/consertos.md` — linha nova acrescentada como última linha de dados da tabela do topo, depois da última linha que começava com `| 2026-` (`| 2026-09-18 |`, linha 10) e antes da linha em branco e do `## 14/09/2026`.
+6. `dados/PAINEL.md` — arquivo inteiro substituído, do primeiro caractere ao último.
+
+**Nenhum outro campo de cabeçalho foi tocado em nenhum `ESTADO.md`** — os três diffs são `1 inserção / 1 remoção`, uma linha só cada: `ultima_execucao`, `executando_desde`, `bloco_atual`, `urls_publicadas` e `bloqueada_por` ficaram como estavam. Nada foi reformatado, nenhum acento mexido, nenhuma linha acrescentada além das pedidas.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/dados/consertos.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+```
+
+`git diff --stat`:
+
+```
+ dados/PAINEL.md                         | 54 ++++++++++++++++++---------------
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/dados/consertos.md |  1 +
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 36 ++++++++++++++++++++++
+ ilhas/robometria/dados/consertos.md     |  1 +
+ 7 files changed, 70 insertions(+), 28 deletions(-)
+```
+
+**Hash que foi ao `main`:**
+
+```
+36ee243a30e2d252c64aeed12ac817b340a378de
+ronda diaria da Sentinela 02/10/2026: despacho na robometria, ultima_ronda nas tres ilhas no ar, consertos.md e PAINEL.md
+```
+
+Push aceito de primeira: `git push origin HEAD:main` → `0c1b8ed..36ee243  HEAD -> main`. Nenhuma recusa, nenhum rebase, nenhum force, nenhum PR.
+
+**Confirmado no remoto, não no meu clone:** `git fetch origin main && git log -1 origin/main` devolve `36ee243a30e2d252c64aeed12ac817b340a378de`, com os sete arquivos acima.
+
+**Contagem do que mudou, conferida RELENDO os arquivos depois de gravar (não pelo que eu acho que escrevi):**
+
+```
+ilhas/robometria/PROMPT.md       36 linhas inseridas, 0 removidas; 1379 linhas no total; 9 cabecalhos '## DESPACHO DA SENTINELA', o de 02/10 na linha 48 e o de 30/09 na 84
+ESTADO.md com 'ultima_ronda: 2026-10-02T14:51Z'   3 de 3 (clubedomosaico, aquametria, robometria)
+ilhas/clubedomosaico/dados/consertos.md   6 linhas de dados '| 2026-' (era 5); a nova e a ultima, '| 2026-10-02 | - |'
+ilhas/robometria/dados/consertos.md       4 linhas de dados '| 2026-' (era 3); a nova e a ultima, '| 2026-10-02 | /sobre/, ... |'
+dados/PAINEL.md                  60 linhas, 10398 bytes; '**Escrito em:** 02/10/2026 14h51Z'
+```
+
+**Falhas: nenhuma.** As seis âncoras foram encontradas, todas únicas onde a unicidade era exigida; nenhuma escrita falhou; o push foi aceito na primeira tentativa e aparece em `origin/main`.
+
+**Nenhum Sync acionado**, como a instrução mandou: nada em `snippets/`, `conteudo/` ou `manifest.json` foi tocado, e esta ronda não abre bloco de construção.
