@@ -5,52 +5,57 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-30T16:40Z
-executando_desde: 2026-10-02T11:47Z
+ultima_execucao: 2026-10-02T11:58Z
+executando_desde: null
 ultima_ronda: 2026-09-30T14:53Z   # RONDA DIARIA TECNICA de 30/09/2026. 17 de 17 URLs em 200, porta de entrada da 29.2 inteira, /status na revisao 52 igual a do manifest, console limpo, zero orfa, zero &#038; em script, zero noindex indevido. F1 e F2 executadas com entrada real e os cinco numeros conferidos na mao. Teste de vida: 21 de 21 itens com url_produto VIVOS (17 Shopee pela API de ficha, 4 Mercado Livre no navegador), 0 morto, 0 esgotado, piso 38 de 38, 10 de 10 chaves de busca com resultado, zero intestavel. UM defeito novo, da 19.2, no DESPACHO DA SENTINELA de 30/09 no PROMPT.md: 12 dos 17 itens de degrau 4 sem motivo escrito. ZERO conserto. Os quatro consertos anteriores reconferidos no ar: os tres primeiros passaram e a etiqueta de robo agora passa nos CINCO alvos, fechando o item 2 do despacho de 28/09. O soft 404 na borda continua e foi medido tambem na robometria.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  OS DOZE DIZIAM COMO A CHAVE FOI MONTADA E CALAVAM O QUE A ESCADA RESPONDEU.
-  Manifest e /status na revisao 53. NENHUMA URL NOVA (segue em 17), nenhum title e nenhuma
-  description mudaram: o BLOCO A do despacho do Raphael de 24/09 segue intocado e a janela de
-  medicao de 30/09 continua limpa. conferir-no-ar 519 afirmacoes, 0 falha.
-  BLOCO: o item 1 do DESPACHO DA SENTINELA de 30/09, o unico da ilha que nao depende da leitura
-  semanal. Dos 17 registros no degrau 4, doze traziam so motivo_da_chave — que conta como a chave
-  foi MONTADA e nao o que a escada devolveu. A escada foi descida INTEIRA pela Open API para os 17,
-  por ferramentas/medir-degrau-4.py, com a regra de casar-anuncio.py importada e nunca copiada.
-  ELA NAO GRAVA url EM NENHUMA HIPOTESE, e e por isso que pode medir as 13 pastilhas que o
-  coletar-shopee.py exclui por decisao pendente do Raphael: medir nao e agir, e foi por confundir
-  os dois que elas passaram 17 dias carregando a frase 'elas nem foram tentadas'.
-  A REPARTICAO, que era o que o item pedia, e a 25.4-b.4 previa DUAS causas e a medicao achou TRES:
-  13 marca-nao-anunciada (nenhuma oferta traz a marca; degraus por codigo e por nome comercial dao
-  zero — e um PEDIDO AO RAPHAEL, o tipo_de_casamento 'equivalente', nao trava melhor), 2
-  candidato-barrado-nome (quartzolit-protetor-para-fachadas, cortag-torques-azulejista-corte-curvo)
-  e 2 candidato-barrado-variante (quartzolit-fundo-selador, cascola-pl500-adesivo-de-montagem).
-  Os quatro batem com o diagnostico escrito A MAO em 29/09 em dados/links-afiliado-pendentes.md,
-  que nenhuma maquina tinha conferido — diagnostico que a maquina reproduz deixa de ser opiniao.
-  O ERRO DESTA EXECUCAO, e ele vale mais que o item: a primeira versao do classificador decidia
-  pela trava que barrou o candidato e devolveu 17 de 17 NA MESMA CLASSE, que e exatamente o numero
-  que nao diz nada de que o despacho reclamava. As cinco travas de casar.compativel correm EM
-  ORDEM e a 5b quase sempre falha antes de qualquer trava de irmao ser avaliada: 'nenhuma trava de
-  irmao foi acionada' media a ordem do codigo, nao o mundo. O que separa as causas e a trava 1 —
-  algum anuncio traz a marca? Regua que mede a ordem em que o portao pergunta nunca reprova o portao.
-  PORTAO NOVO no validar-banco.py: degrau 4 sem ficha exige motivo_sem_ficha na forma da 25.4-b.3
-  (causa, que nao muda, mais ULTIMA TENTATIVA com data ISO, separadas por marcador). O relatorio
-  imprime 'degrau 4 com motivo escrito: 17 de 17' e a REPARTICAO POR CLASSE — somadas, o pedido ao
-  Raphael desaparece dentro de uma divida que nao e dele. Esquema do banco na v9.
-  BANCADA: mutacoes-motivo-degrau-4 10 de 10, as 10 so pelo portao novo (duas PRODUZEM mundo que o
-  banco nao tem e as duas recontam itens_esperando_link, senao era o portao do CABECALHO que as
-  pegava — mutacao pega pelo portao errado nao prova portao nenhum). validar-banco verde,
-  validar-pastilhas, mutacoes-degrau 8 de 8, mutacoes-casamento, teste-casamento 42,
-  mutacoes-pastilhas 14 de 14, casca 591, F1 24 estados, F2 119, Loja, Atelie, Leads, Tecnicas 123,
-  cobertura 353 — zero falha. leitura-do-visitante segue REPROVADO pelo soft 404 da borda, que e do
-  hospedeiro, esta com o Raphael desde 29/09 e hoje tambem foi medido na robometria.
-  PROXIMO PASSO: nada da Fundacao ate a leitura semanal de 30/09 acontecer. BLOCO A (Raphael,
-  24/09) espera o numero dela; o item 4 (metade) de 28/09 espera o BLOCO A; os quatro itens de
-  23/09 esperam a leitura; o item 2 de 30/09 e do hospedeiro.
+  A MARCA CEDEU O LUGAR AO NUMERO NAS TRES QUE O GOOGLE JA MOSTRA.
+  Manifest e /status na revisao 54, conferidos no ar. NENHUMA URL NOVA (segue em 17), nenhum
+  endereco mudou e NENHUMA LINHA DE CORPO mudou: o que trocou e a etiqueta onde o clique se
+  decide. conferir-no-ar 524 afirmacoes, 0 falha; bancada teste-casca 601, f1 210, f2 127,
+  tecnicas 137, loja e leads aprovados, 0 falha.
+  BLOCO: o BLOCO A do despacho do Raphael de 24/09, que esperava UMA coisa — a janela de
+  medicao de 30/09 fechar. Fechou. No mesmo movimento saiu o item 4 (metade) do despacho de
+  28/09, porque a description e a outra metade da mesma promessa de SERP. OS DESPACHOS DE
+  24/09 E DE 28/09 ESTAO FECHADOS INTEIROS.
+  O QUE ESTA NO AR: qual-cola "...e qual rejunte – 7 colas para 9 bases" (64), quantas-pastilhas
+  "...rejunte comprar – 12 pecas calculadas" (64), picassiete "...e como colar – 7 colas em 45
+  casos" (62). As quatro description entraram na faixa de 120 a 160: 183->143, 165->139,
+  192->150, 189->139.
+  O NOME DA PAGINA NAO FOI TOCADO EM NENHUMA DAS QUATRO. Quem cede o lugar e a MARCA, 16
+  caracteres de carimbo no fim de um titulo que esta na primeira pagina e nao e clicado — a
+  ilha tem ZERO clique organico medido, ninguem a procura pelo nome. O h1 servido continua
+  "Qual cola usar no mosaico, e qual rejunte", e a promessa aparece UMA vez no HTML inteiro:
+  dentro do <title>. Casca 1.19.0 monta o titulo uma vez; quem tem promessa DECLARA pelo
+  filtro cdm_promessa, o mesmo contrato de camadas da description (28/09) e do robo (25/09).
+  O TRENCADIS FICOU PARADO, e a ausencia dele na lista de promessas e a decisao: o despacho de
+  23/09 manda "deixe uma pagina parada para a proxima leitura ter com o que comparar". So a
+  description dele mudou, que era o que estava fora da faixa. O portao mede as DUAS direcoes.
+  NENHUM NUMERO E DIGITADO. Os tres da qual-cola saem de cdm_f2_cobertura(), a MESMA varredura
+  de base x lugar x caquinho que escreve "o que a gente ainda nao responde" na tela — contada
+  agora uma vez e lida por tres. Os da F1, da mesma conta da tabela das doze pecas; os do
+  picassiete, de cdm_tecnicas_contas().
+  TRES TRAVAS, DUAS SILENCIOSAS POR DESENHO: teto de 65 devolve a marca; numero ausente ou
+  ZERO recusa o molde inteiro; e a bancada reprova quem DECLARA promessa e serve titulo sem
+  digito. Bateria nova mutacoes-promessa-do-titulo.py: 19 mutacoes, 19 reprovadas.
+  O ACHADO DE BANCADA, e e o maior: a bancada servia um <title> FIXO ("Clube do Mosaico —
+  teste") em toda pagina, que nenhuma afirmacao media — e o bloco de hoje mexe exatamente
+  nessa etiqueta. Agora ela monta o titulo pelo caminho do WordPress, e ganhou o mundo
+  sem_banco=1, em que a trava 2 dispara NA PAGINA e nao so na funcao pura.
+  E A REGUA NOVA NASCEU REPROVANDO PAGINA CERTA: o teto de 65 reprovou QUATRO titulos de peca
+  da Loja (71 a 79). Nao e defeito — o formato e do despacho de 10/09 e a observacao de 28/09
+  decidiu que "a regua de 64 e da aquametria e nao do contrato". Consertada: portao nas paginas
+  cujo titulo a casca monta, e na peca o numero e MEDIDO E IMPRESSO, nunca reprovado.
+  O QUE NAO FECHOU, E E INFORMACAO: a LEITURA SEMANAL DE 30/09 NAO ACONTECEU (a tecnica rodou,
+  a estrategica nao; 01/10 sem execucao). A serie de posicoes.md tem UMA linha, a de 23/09. A
+  troca de hoje nao a prejudica: a janela 23->30/09 esta fechada e congelada no Search Console.
+  Foram para dados/despachos.md o acesso da conta sentinela@ (aberto desde 23/09, vivia so no
+  PROMPT.md) e o pedido de LER a janela 23->30/09, que e a ultima semana inteira com o titulo
+  antigo — a de 30/09->07/10 ja nasce misturada. O veredito segue de 08/10.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

@@ -78,6 +78,11 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 > caminho — um classificador que media a ordem das travas e devolveu 17 de 17 na mesma classe — é a parte que a
 > próxima execução precisa ler.
 >
+> **ATUALIZADO EM 02/10/2026 às 11h5xZ:** o item 1 continua cumprido e nada nele foi tocado. O que mudou neste
+> arquivo hoje é de despacho mais antigo e de prioridade maior — o **BLOCO A** do despacho do Raphael de 24/09 e o
+> **item 4 (metade)** do despacho de 28/09, os dois fechados com a janela de medição de 30/09. **O item 2 abaixo
+> segue aberto e segue não sendo da Fundação.**
+>
 > O **item 2** (soft 404 na borda) continua aberto e **não é trabalho da Fundação**: é camada de cache do
 > hospedeiro, está com o Raphael desde 29/09 e hoje foi medido também na robometria. `leitura-do-visitante.py`
 > segue fechando **REPROVADO por esse único defeito**, que é vermelho esperado com dono escrito.
@@ -135,7 +140,7 @@ não o mundo.** O que separa as causas é a trava 1 — algum anúncio traz a ma
 
 **Não é item novo desta ilha e não é da Fundação.** Está registrado desde 29/09 em `dados/consertos.md` e depende do Raphael, porque a camada de cache do hospedeiro responde antes do PHP. **O que mudou hoje é o alcance**, e isso muda o diagnóstico: a mesma sonda, rodada em duas URLs virgens por ilha, quatro leituras cada, deu **404 · 200 · 200 · 200** na clubedomosaico **e na robometria** (`x-server-cache: true`, `cache-control: max-age=7200`, corpo de 404 da própria ilha), e **404 · 404 · 404 · 404** nas duas sondas da **aquametria**. **Não é defeito de uma ilha: é a camada de borda, e a aquametria é a exceção que prova.** O pedido ao Raphael passa a valer para as duas ilhas, e está no `dados/PAINEL.md`. Esta linha existe aqui só para a próxima ronda não a redescobrir.
 
-## DESPACHO DA SENTINELA — 2026-09-28 (RONDA DIÁRIA TÉCNICA, 15h10Z) — QUATRO ITENS FECHADOS E CONFERIDOS NO AR; FALTA MEIO ITEM
+## ~~DESPACHO DA SENTINELA — 2026-09-28 (RONDA DIÁRIA TÉCNICA, 15h10Z)~~ — **FECHADO INTEIRO EM 02/10/2026 às 11h5xZ**: os cinco itens cumpridos e conferidos no ar, o meio item que faltava incluído
 
 > **REESCRITO PELA 18.3 em 28/09/2026 às 17h0xZ, pela execução das 16h17Z que o resolveu.** O despacho tinha
 > CINCO itens. Os itens **1, 2, 3 e 5 estão CUMPRIDOS e conferidos no ar** pela 18.4 — cada um contra o critério
@@ -170,7 +175,36 @@ não o mundo.** O que separa as causas é a trava 1 — algum anúncio traz a ma
 > continua como recomendação, não como defeito, pelo que ela mesma diz: a régua de 64 é da aquametria e não do
 > contrato.)*
 
-### 4. (METADE) AS QUATRO PÁGINAS QUE JÁ TINHAM `description` CONTINUAM ACIMA DE 160 — e a espera é por ordem de despacho mais antigo
+### ~~4. (METADE) AS QUATRO PÁGINAS QUE JÁ TINHAM `description` CONTINUAM ACIMA DE 160~~ — **CUMPRIDO em 02/10/2026 às 11h5xZ, revisão 54. COM ISTO O DESPACHO DE 28/09 ESTÁ FECHADO INTEIRO.**
+
+**Conferido no ar contra o critério de pronto que o próprio item declarou (18.4), palavra por palavra:**
+
+- *"as quatro servirem `description` entre 120 e 160 caracteres contados decodificados"* — **143, 139, 150 e 139**,
+  medidas no HTML servido pelo `conferir-no-ar.py`, que imprime as quatro.
+- *"sem duplicata"* — as 17 descrições do sitemap são distintas, inclusive nos 60 primeiros caracteres.
+- *"e a de `/materiais/qual-cola-usar-no-mosaico/` citar um número que a própria página calcula, com a fonte"* —
+  ela cita **três**: `7 colas em 270 casos de base, lugar e caquinho, e os 68 que a gente ainda não responde`,
+  todos de `cdm_f2_cobertura()`, a mesma varredura que escreve a seção "o que a gente ainda não responde" na tela.
+  **Com isso a Proposta 1 de 23/09 fecha do lado da máquina**, como este item pedia.
+- *"Fechar isto é tirar as quatro da lista `TRAVADAS_ATE_30_09`"* — a lista **não foi esvaziada, foi apagada**: a
+  faixa passa a ser cobrada nas 17 sem exceção escrita em lista nenhuma, que é o único jeito de uma exceção não
+  sobreviver ao motivo dela.
+
+**A ESPERA ERA LEGÍTIMA E ACABOU.** O motivo escrito aqui em 28/09 era o BLOCO A do despacho do Raphael de 24/09,
+que pela 18.1 vem antes deste e mandava não mexer na promessa da SERP antes da janela de 30/09. A janela fechou, o
+BLOCO A saiu no mesmo movimento — a `description` é a outra metade da mesma promessa, e separá-las é que teria
+feito o que aquele bloco existia para impedir.
+
+**E A PEÇA DA LOJA FICOU DE FORA, de propósito e com a decisão citada:** o portão novo de `<title>` mediu as 17 e
+achou **quatro títulos de peça entre 71 e 79 caracteres** (`/loja/quadro-nossa-senhora-aparecida/` é o maior). A
+primeira observação deste mesmo despacho de 28/09 já tinha decidido isso — *"continua como recomendação, não como
+defeito, pelo que ela mesma diz: a régua de 64 é da aquametria e não do contrato"* —, e o formato é o que o
+despacho do Raphael de 10/09 escreveu. Então o número é **medido e impresso, nunca reprovado**, no mesmo desenho
+do soft 404 de borda. A régua nasceu reprovando página certa e foi consertada antes de o despacho fechar.
+
+*(O texto original do item, para a próxima execução saber contra o que ele foi conferido, está preservado abaixo.)*
+
+### ~~4-original. (METADE) AS QUATRO PÁGINAS QUE JÁ TINHAM `description` CONTINUAM ACIMA DE 160~~ — e a espera era por ordem de despacho mais antigo
 
 **O que já saiu:** as **oito** URLs que não serviam `<meta name="description">` nenhuma — `/`, `/loja/`,
 `/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/` — servem uma
@@ -237,6 +271,13 @@ Medido hoje: responde **HTTP 200**, **não tem `<meta name="robots">`**, **não 
 > 30/09** — só ela pode dizer se a linha de `/author/` saiu de `dados/posicoes.md`, e por isso este item fica
 > aberto até lá, pela 18.4.
 >
+> **A TERCEIRA CONDIÇÃO SEGUE ABERTA EM 02/10/2026, E O MOTIVO MUDOU DE DONO.** Ela dizia "a leitura semanal
+> seguinte registrar que a linha de `/author/` **saiu** de `dados/posicoes.md`". **A leitura semanal de 30/09 não
+> aconteceu** — a ronda diária técnica daquele dia rodou às 14h53Z, a estratégica não foi disparada, e em 01/10
+> não houve execução nenhuma. A Fundação **não pode** fazê-la: a conta `sentinela@` não tem acesso a
+> `sc-domain:clubedomosaico.com.br`. Então este item não espera mais trabalho de máquina: espera a próxima
+> leitura semanal, e o que a destrava está em `dados/despachos.md`, na lista de ABERTOS.
+>
 > **A ETIQUETA SAI COM ASPAS SIMPLES**, `<meta name='robots' content='noindex, follow' />`, e isso não é
 > divergência: quem imprime agora é o `wp_robots()` do núcleo, como o BLOCO B manda. Três réguas desta ilha
 > mediam a ASPA em vez da diretiva e tiveram de ser consertadas no mesmo movimento — uma delas passava a vazio
@@ -262,8 +303,10 @@ A Shopee junta os cinco `sub_id` com hífen. Os cinco campos deste clique são, 
 
 > **A METADE DA MÁQUINA FECHOU EM 25/09/2026 às 10h40Z** (BLOCO 0), com os 31 links regerados pela Open API.
 > **A METADE QUE FALTA NÃO É DE CÓDIGO:** só um clique DE GENTE faz o Relatório mostrar `clubedomosaico-f2---`,
-> e conferir com clique nosso apagaria o primeiro clique orgânico que a leitura semanal procura. **Quem lê essa
-> linha é a leitura de 30/09.**
+> e conferir com clique nosso apagaria o primeiro clique orgânico que a leitura semanal procura. ~~**Quem lê essa
+> linha é a leitura de 30/09.**~~ **A leitura de 30/09 não aconteceu** (02/10/2026), então quem lê é a próxima —
+> e o clique continua não existindo: a ilha tinha zero clique orgânico em 23/09 e nada desde então o produziu.
+> **A troca de título e de meta de 02/10 é justamente a aposta que existe para esse clique aparecer.**
 
 ### 3. CORREÇÃO DE CABEÇALHO — `urls_publicadas: 13` ESTÁ DEFASADO; O SITEMAP SERVE 17
 
@@ -286,6 +329,14 @@ Contado no ar hoje: `wp-sitemap-posts-page-1.xml` tem **12** URLs e `wp-sitemap-
 - Banda 4 a 10 pela 12.1: o trabalho é de **CTR, não de conteúdo**. A alavanca que a 12.1 nomeia: **título que promete o número, meta que promete a faixa e a fonte**. O precedente que já rodou está na robometria, proposta 2 de 16/09: o número sai de um arquivo derivado do banco, nunca digitado, e a marca é o que cede lugar no `<title>`.
 - **O que esta proposta NÃO autoriza:** trocar a URL (proibido pela 12.1), reescrever a página, ou mexer em `/como-fazer/o-que-e-mosaico-picassiete/` — deixe uma página parada para a próxima leitura ter com o que comparar.
 - **Pronto quando:** o `<title>` e a `<meta name="description">` servidos citarem um número que a própria página calcula, com a fonte, e a leitura de 30/09 registrar impressões e CTR desta linha para comparar com **7,8 · 17 impressões · CTR 0%**.
+- > **A PRIMEIRA METADE ESTÁ CUMPRIDA E CONFERIDA NO AR EM 02/10/2026 às 11h5xZ** (BLOCO A, revisão 54). O
+  > `<title>` serve `Qual cola usar no mosaico, e qual rejunte – 7 colas para 9 bases` e a `description` serve
+  > `7 colas em 270 casos de base, lugar e caquinho, e os 68 que a gente ainda não responde` — **três** números,
+  > todos de `cdm_f2_cobertura()`, com a fonte na frase. O precedente que esta proposta citava foi seguido à
+  > risca: o número sai de uma varredura derivada, nunca digitado, e a marca é o que cede lugar no `<title>`.
+  > **A SEGUNDA METADE NÃO É DA FUNDAÇÃO e segue aberta:** a leitura de 30/09 não aconteceu, e a janela
+  > 23→30/09 — a última semana inteira com o título antigo, e por isso a única base de comparação limpa que vai
+  > existir — está pedida em `dados/despachos.md`. **O veredito continua de 08/10**, como o BLOCO A manda.
 
 **PROPOSTA 2 — A ORDEM DO FOCO MERECE SER REVISTA, E QUEM DECIDE É O RAPHAEL.**
 - A 1.2-b.3 diz, com todas as letras, que **a fila de foco é reordenada por número, não por quem esperou mais**, e que a aquametria entrou em foco por ser a única com demanda medida. **Isso era verdade em 18/09 e hoje há número novo:** a aquametria tem 46 de 48 URLs indexadas e **4 impressões**; a clubedomosaico tem 17 URLs, três páginas na primeira página e **30 impressões**. **Demanda medida por corpus e demanda medida por impressão não são a mesma coisa, e a segunda é mais barata de acreditar.**
@@ -486,6 +537,18 @@ SENTINELA de 12/09, que está CUMPRIDO e termina com "Nada mais nesta ronda". Pe
 antes do da Sentinela, e o único despacho ABERTO do Raphael nesta ilha estava aninhado dentro de um fechado. Só o
 nível do título mudou — nenhuma linha de conteúdo foi movida nem reordenada.)*
 
+> **ESTADO DESTE DESPACHO EM 02/10/2026, 11h5xZ — FECHADO. O BLOCO A SAIU, E COM ELE O ÚLTIMO ITEM.**
+> Os cinco blocos (0, A, B, C, D) estão CUMPRIDOS e conferidos no ar pela 18.4. O **BLOCO A** foi o único que
+> esperou, e esperou por ordem escrita deste despacho: a janela de medição de 30/09 tinha de fechar primeiro.
+> Fechou. O que mudou no ar está medido em `dados/posicoes.md`, no retrato "DEPOIS" de 02/10, ao lado do retrato
+> "ANTES" de 29/09 — e o veredito continua sendo de **08/10**, como este despacho manda.
+> **A ÚNICA COISA QUE SOBREVIVE A ELE é o pedido do BLOCO C ao Raphael** (acesso da conta `sentinela@` ao Search
+> Console desta propriedade), que não é trabalho da Fundação e passou a morar em `dados/despachos.md`, na lista de
+> ABERTOS, junto com o pedido novo de ler a janela 23→30/09 — a última semana inteira com o título antigo.
+>
+> *(O bloco de estado anterior, de 25/09 às 14h0xZ, dizia "FALTA SÓ O BLOCO A" e está preservado abaixo, porque o
+> que ele conta sobre os blocos B e C é o que a próxima execução precisa ler.)*
+
 > **ESTADO DESTE DESPACHO EM 25/09/2026, 14h0xZ, pela 18.3 — FALTA SÓ O BLOCO A. OS BLOCOS 0, B, C e D SAÍRAM.**
 >
 > **BLOCO B — CUMPRIDO E CONFERIDO NO AR** (18.4). `/author/mosaico_gestor/` serve `noindex, follow`, numa
@@ -540,9 +603,59 @@ no painel `offer/custom_link` com os cinco campos preenchidos a mão — e mão 
 texto não tem portão. Agora são 31 links gerados por API, com a casa provada em bancada. O detalhe do
 conserto está na abertura deste despacho, no `REGISTRO.md` de 25/09 e em `dados/consertos.md`.
 
-#### BLOCO A — CTR das três páginas que já estão na primeira página
+#### ~~BLOCO A — CTR das três páginas que já estão na primeira página~~ — **CUMPRIDO em 02/10/2026 às 11h5xZ, manifest e `/status` na revisão 54**
 
-`/materiais/qual-cola-usar-no-mosaico/` (posição 7,8, 17 impressões), `/materiais/quantas-pastilhas-para-mosaico/` (9,1, 9 impressões), `/como-fazer/o-que-e-mosaico-picassiete/` (7,0, 3 impressões). **Zero clique nas três.** Consultas nomeadas: `cola para mosaico` (posição 10,0) e `picassiete` (6,0); 28 das 30 impressões vêm anonimizadas pela Search Console.
+**Conferido no ar pela 18.4, contra as cinco ordens que o próprio bloco escreveu:**
+
+| o que o bloco mandou | o que está no ar |
+|---|---|
+| título que promete o número | `– 7 colas para 9 bases` (64) · `– 12 peças calculadas` (64) · `– 7 colas em 45 casos` (62) |
+| meta que promete a faixa e a fonte | as quatro em **120 a 160**: 143 · 139 · 150 · 139, cada uma dizendo a procedência |
+| NÃO reescrever o conteúdo das três | nenhuma linha de corpo mudou. O `<h1>` servido continua `Qual cola usar no mosaico, e qual rejunte`, e a promessa aparece **uma vez** no HTML inteiro: dentro do `<title>` |
+| gravar título e meta ANTES da troca | `dados/posicoes.md`, retrato "ANTES" de 29/09 (medido pela borda) e retrato "DEPOIS" de 02/10 |
+| CTR sem com o que comparar fica ESCRITO | está escrito nos dois retratos, com as 30 impressões nomeadas |
+| não declarar vitória nem derrota | nada declarado; o veredito segue de **08/10** |
+
+**O QUE CEDEU O LUGAR FOI A MARCA, NÃO O NOME DA PÁGINA.** `Clube do Mosaico` são 16 caracteres de carimbo no fim
+de um título que está na primeira página e não é clicado, numa ilha com **zero clique orgânico medido** — ninguém
+a procura pelo nome. O nome continua um só nas cinco superfícies em que aparece (H1, cartão, degrau da trilha,
+`og:title` e a primeira metade do `<title>`), que é a regra que a Aquametria pagou para esta ilha herdar em
+11/09/2026. O caminho é o precedente da Robometria de 17/09, portado: a casca 1.19.0 monta o título **uma vez**, e
+quem tem promessa a **declara** pelo filtro `cdm_promessa` — o mesmo contrato de camadas que a `description` tem
+desde 28/09 e a etiqueta de robô desde 25/09.
+
+**NENHUM NÚMERO É DIGITADO, e é isso que faz a promessa não envelhecer calada.** Os três da `qual-cola` saem de
+`cdm_f2_cobertura()`, a **mesma** varredura de base × lugar × caquinho que escreve "o que a gente ainda não
+responde" na tela — então a promessa da SERP e a confissão do fim da página não têm como discordar. Os da
+`quantas-pastilhas` saem da mesma conta que monta a tabela das doze peças; os do `picassiete`, de
+`cdm_tecnicas_contas()`.
+
+**TRÊS TRAVAS, E DUAS SÃO SILENCIOSAS POR DESENHO:** promessa que estoura o teto de 65 devolve a marca; número que
+não chegou — ou zero — recusa o molde **inteiro**; e a bancada reprova quem DECLARA promessa e serve título sem
+dígito. As duas primeiras não falham, elas devolvem a marca e a página continua válida: por isso a bancada ganhou
+o mundo `sem_banco=1`, em que a trava 2 dispara **na página** e não só na função pura. Bateria nova
+`ferramentas/mutacoes-promessa-do-titulo.py`: **19 mutações, 19 reprovadas, 0 passaram.**
+
+**E A BANCADA SERVIA UM TÍTULO QUE NENHUMA AFIRMAÇÃO MEDIA.** Até 02/10 o `render-para-teste.php` punha
+`<title>Clube do Mosaico — teste</title>` em toda página — um rótulo fixo. O bloco que troca a marca por um número
+mexe exatamente nessa etiqueta, e régua que não alcança o que o bloco muda é régua que nasce cega. Agora a bancada
+monta o título pelo caminho do WordPress: partes, filtro `document_title_parts`, separador.
+
+**O QUE NÃO FOI TOCADO, E A AUSÊNCIA É A DECISÃO:** o `<title>` do **Trencadís**. Este mesmo despacho, no de 23/09,
+manda *"deixe uma página parada para a próxima leitura ter com o que comparar"*. Ele não declara promessa, e o
+portão mede isso nas duas direções — promessa onde tem de haver, marca onde tem de ficar. Só a `description` dele
+mudou, de 189 para 139, que era o que o item 4 do despacho de 28/09 cobrava.
+
+**O QUE ESTE BLOCO NÃO PODE FECHAR, e não é por falta de fôlego:** a segunda metade da **Proposta 1** de 23/09 pede
+que *"a leitura de 30/09 registre impressões e CTR desta linha"*. **A leitura semanal de 30/09 não aconteceu** — a
+ronda técnica daquele dia rodou, a estratégica não —, e a Fundação não pode fazê-la: a conta `sentinela@` não tem
+acesso a esta propriedade. Está em `dados/posicoes.md` com todas as letras e virou pedido em `dados/despachos.md`.
+
+*(O texto original do bloco, para a próxima execução saber contra o que ele foi conferido: as três páginas eram
+`/materiais/qual-cola-usar-no-mosaico/` (posição 7,8, 17 impressões), `/materiais/quantas-pastilhas-para-mosaico/`
+(9,1, 9 impressões) e `/como-fazer/o-que-e-mosaico-picassiete/` (7,0, 3 impressões), com **zero clique nas três**;
+consultas nomeadas `cola para mosaico` (10,0) e `picassiete` (6,0), e 28 das 30 impressões anonimizadas pela
+Search Console.)*
 
 - Pela 12.1, banda de 4 a 10 é **trabalho de CTR, não de conteúdo**: título que promete o número, meta que promete a faixa e a fonte.
 - **NÃO REESCREVER O CONTEÚDO dessas três páginas.** Posição conquistada não se mexe: reescrever corpo de página que já rankeia é risco sem retorno.

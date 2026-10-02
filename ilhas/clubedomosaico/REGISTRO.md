@@ -3,6 +3,139 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+02/10/2026 11:5xZ — A MARCA CEDEU O LUGAR AO NÚMERO NAS TRÊS QUE O GOOGLE JÁ MOSTRA
+
+Manifest e `/status` na **revisão 54**, conferidos no ar. **Nenhuma URL nova** (a ilha segue
+em 17), nenhum endereço mudou, nenhuma linha de corpo mudou. O que mudou é a etiqueta onde o
+clique se decide: o `<title>` de **três** páginas e a `description` de **quatro**.
+`conferir-no-ar.py`: **524 afirmações, 0 falha.** Bancada: teste-casca 601, teste-f1 210,
+teste-f2 127, teste-tecnicas 137, teste-loja e teste-leads aprovados, 0 falha.
+
+**O BLOCO desta execução é o BLOCO A do despacho do Raphael de 24/09**, que pela 18.1 vem
+antes de tudo nesta ilha e que esperava uma coisa só: a janela de medição de **30/09**.
+Hoje é 02/10 e ela fechou. No mesmo movimento saiu o **item 4 (metade)** do despacho da
+Sentinela de 28/09 — a `description` é a outra metade da mesma promessa de SERP, e separar
+as duas é exatamente o que o BLOCO A existia para impedir. Com isso **os despachos de 24/09
+e de 28/09 estão fechados inteiros.**
+
+## O QUE ESTÁ NO AR, E O QUE NÃO MUDOU
+
+| página | `<title>` servido | nº | `description` | nº |
+|---|---|---|---|---|
+| qual-cola | …e qual rejunte **– 7 colas para 9 bases** | 64 | …7 colas em 270 casos…, e os 68 que a gente ainda não responde | 143 |
+| quantas-pastilhas | …rejunte comprar **– 12 peças calculadas** | 64 | …12 peças já calculadas, de 23 a 960 pastilhas… | 139 |
+| picassiete | …e como colar **– 7 colas em 45 casos** | 62 | …7 colas em 45 casos, pela declaração do fabricante | 150 |
+| trencadís | …colar o caco – Clube do Mosaico (**INTOCADO**) | 62 | …o caco de azulejo ou de louça em cada superfície | 139 |
+
+**O NOME DA PÁGINA NÃO FOI TOCADO EM NENHUMA DAS QUATRO**, e isso é a parte que mais importa:
+o que cede o lugar é a **marca**, 16 caracteres de carimbo no fim de um título que está na
+primeira página e não é clicado — numa ilha com **zero clique orgânico medido**, ninguém a
+procura pelo nome. O `<h1>` servido continua `Qual cola usar no mosaico, e qual rejunte`, e a
+promessa aparece **uma vez** no HTML inteiro: dentro do `<title>`. É a regra "UM NOME POR
+PÁGINA" que esta ilha herdou da cicatriz que a Aquametria pagou em 11/09, e o caminho é o
+precedente da Robometria de 17/09, portado: a casca **1.19.0** monta o título uma vez e quem
+tem promessa a **declara** pelo filtro `cdm_promessa` — o mesmo contrato de camadas que a
+`description` tem desde 28/09 e a etiqueta de robô desde 25/09.
+
+## O TRENCADÍS FICOU PARADO, E A AUSÊNCIA DELE É A DECISÃO
+
+O despacho de 23/09 manda, com estas palavras, *"deixe uma página parada para a próxima
+leitura ter com o que comparar"*. Ele não declara promessa, e o portão mede isso nas **duas
+direções** — promessa onde tem de haver, marca onde tem de ficar. Só a `description` dele
+mudou, de 189 para 139, que era o que o item 4 cobrava. **Trocar as quatro de uma vez não é
+zelo: é tornar a próxima medição ilegível**, e é o mesmo argumento que a Robometria escreveu
+ao dar promessa a três cabeças e a nenhuma outra.
+
+## NENHUM NÚMERO É DIGITADO, E A VARREDURA É A MESMA DA TELA
+
+Os três números da `qual-cola` saem de `cdm_f2_cobertura()` — e ela **não é nova por
+capricho**: a varredura de base × lugar × caquinho já existia dentro da seção "o que a gente
+ainda não responde", contando ali e em lugar nenhum mais. Agora ela é contada **uma vez e
+lida por três** (a seção da tela, a promessa do título e a `description`). Contar a mesma
+coisa em três lugares é a família de defeito que esta ilha mais pagou: duas metades contando
+a mesma coisa sem nunca se falarem. No dia em que o banco mudar, a promessa do resultado da
+busca e a confissão do fim da página mudam **juntas**.
+
+## TRÊS TRAVAS, E DUAS SÃO SILENCIOSAS POR DESENHO
+
+1. Promessa que estoura o teto de **65** devolve a marca — promessa cortada no meio pelo
+   Google é pior que promessa nenhuma.
+2. Número que não chegou, ou **zero**, recusa o molde **inteiro**. Zero entra na recusa
+   porque "0 colas" é uma frase verdadeira que não serve, e no resultado da busca ela custa
+   o clique que o bloco existe para ganhar.
+3. A bancada reprova quem **declara** promessa e serve título sem dígito.
+
+As duas primeiras **não falham**: elas devolvem a marca e a página continua válida. Trava
+silenciosa sem quem a conte é como a promessa desaparece do ar sem ninguém ver — então a
+bancada ganhou o mundo **`sem_banco=1`**, que apaga as options de material e faz a trava 2
+disparar **na página**, não só na função pura. Bateria nova
+`ferramentas/mutacoes-promessa-do-titulo.py`: **19 mutações, 19 reprovadas, 0 passaram.**
+
+## O ACHADO DE BANCADA, E ELE É O MAIOR DESTA EXECUÇÃO
+
+**A bancada servia um `<title>` que nenhuma afirmação media.** Até hoje o
+`render-para-teste.php` punha `<title>Clube do Mosaico — teste</title>` em **toda** página —
+um rótulo fixo, igual nas dezessete. O bloco de hoje mexe exatamente nessa etiqueta, e régua
+que não alcança o que o bloco muda é régua que nasce cega (seção 8). Agora a bancada monta o
+título pelo caminho do WordPress: partes, filtro `document_title_parts`, separador. **O
+separador não é escolha nossa:** o núcleo junta com `" - "` e o `wptexturize` dele troca o
+hífen cercado de espaço por travessão — `&#8211;`, medido no ar hoje. A conta do teto é em
+caracteres **decodificados**, a mesma régua da `description`: `&#8211;` conta 1, não 7.
+
+## E A RÉGUA NOVA NASCEU REPROVANDO PÁGINA CERTA
+
+O portão de `<title>` do `conferir-no-ar.py` cobrou o teto de 65 nas **17** e reprovou
+**quatro títulos de peça da Loja**, entre 71 e 79 caracteres
+(`/loja/quadro-nossa-senhora-aparecida/`, 79, é o maior). Não é defeito: o formato é o que o
+despacho do Raphael de **10/09** escreveu, e a primeira observação do despacho de **28/09** já
+tinha decidido que *"a régua de 64 é da aquametria e não do contrato"* — recomendação, não
+defeito. A régua foi consertada antes de o despacho fechar: o teto é portão nas páginas cujo
+título a **casca** monta, e na peça o número é **medido e impresso, nunca reprovado**, no
+mesmo desenho do soft 404 de borda. É a quinta vez que esta família aparece no Arquipélago, e
+a lição não muda: **portão que não sabe sobre o que decide acusa a coisa errada.**
+
+## O QUE ESTA EXECUÇÃO NÃO PODE FECHAR, E POR QUE ISSO É INFORMAÇÃO
+
+**A leitura semanal de 30/09 não aconteceu.** A ronda diária técnica daquele dia rodou
+(14h53Z, nas três ilhas no ar) e fechou sem defeito de página aqui; a estratégica não foi
+disparada, e em 01/10 não houve execução nenhuma. A série de `dados/posicoes.md` tem **uma
+linha**, a de 23/09.
+
+**E isso não impediu a troca de hoje, por uma razão medida e não conveniente:** a janela
+23→30/09 está **fechada e congelada** no Search Console, e nada servido em 02/10 reescreve
+aquela semana. A ordem do BLOCO A era não misturar duas causas **dentro** daquela janela.
+Fora dela, esperar não protege nada — protelaria a única alavanca medida desta ilha por uma
+leitura que a Fundação **não tem como fazer**: a conta `sentinela@` não tem acesso a
+`sc-domain:clubedomosaico.com.br`, e o pedido está aberto desde 23/09.
+
+**Então duas coisas foram para `dados/despachos.md`, na lista de ABERTOS:** o acesso da conta
+`sentinela@` (que vivia só dentro deste `PROMPT.md` desde 23/09) e o pedido de **ler a janela
+de 7 dias que termina em 30/09** — a última semana inteira com o título antigo, e por isso a
+única base de comparação limpa que vai existir. A semana 30/09→07/10 já nasce misturada: dois
+dias de título velho e cinco de novo. **O veredito continua de 08/10**, como o BLOCO A manda,
+e nada aqui declara vitória nem derrota.
+
+## O QUE SOBRA ABERTO NESTA ILHA, em uma linha cada
+
+- **Soft 404 na borda** (item 2 do despacho de 30/09): do hospedeiro, com o Raphael desde
+  29/09, medido também na robometria. `leitura-do-visitante.py` fecha REPROVADO por esse
+  **único** defeito — vermelho esperado, com dono escrito.
+- **A decisão do `tipo_de_casamento: "equivalente"`** para as 13 pastilhas: do Raphael, em
+  `dados/despachos.md`, com a medição de 30/09 atrás dela.
+- **Os quatro itens que dependem da leitura semanal**: a linha de `/author/` sair de
+  `posicoes.md`, o formato `clubedomosaico-f2---` no Relatório de cliques, o CTR da
+  `qual-cola` e o primeiro clique orgânico. Nenhum é trabalho de máquina.
+
+## PRÓXIMO PASSO DESBLOQUEADO
+
+Com os despachos de 24/09 e 28/09 fechados e o de 30/09 sem item de Fundação, **a fila volta
+a ser fila**: o próximo bloco é de construção, sob o teto da 21.4 (10 URLs por leva, 3 levas
+por semana) e com `piso: abaixo` (17 de 40 URLs). A semana está com **zero leva gasta** — a
+última URL nova desta ilha é de 14/09. E a 18.5 não bloqueia mais nada: não há defeito de
+página no ar.
+
+---
+
 30/09/2026 16:3xZ — OS DOZE DIZIAM COMO A CHAVE FOI MONTADA E CALAVAM O QUE A ESCADA RESPONDEU
 
 Manifest e `/status` na **revisão 53**, conferidos no ar. Nenhuma URL nova, nenhum

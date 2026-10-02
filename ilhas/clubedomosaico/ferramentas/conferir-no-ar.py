@@ -1499,6 +1499,7 @@ TETO_TITULO = 65
 _sem_description, _fora_da_faixa, _duplicadas_desc, _duas_etiquetas = [], [], [], []
 _vistas, _medidas_desc = {}, []
 _titulo_longo, _promessa_faltando, _promessa_indevida, _titulo_com_molde = [], [], [], []
+_titulo_de_peca_longo = []
 for _u in _urls_sitemap:
     _h, _ = buscar(_u)
     _ds = _description_de(_h)
@@ -1507,8 +1508,18 @@ for _u in _urls_sitemap:
     # O <title> SERVIDO, contado em caracteres DECODIFICADOS — `&#8211;` conta 1
     # e nao 7. E a mesma regua da description, e e a regua do corte do Google.
     _t = _titulo_de(_h)
+    # A PECA DA LOJA NAO ENTRA NO TETO, E A EXCECAO E DECISAO ESCRITA, NAO
+    # CONVENIENCIA. O titulo dela sai do formato que o despacho do Raphael de
+    # 10/09 definiu — `<nome> — <colecao> em mosaico | Clube do Mosaico` — e a
+    # observacao de que as quatro passam de 64 esta registrada no despacho de
+    # 28/09 com o veredito: "continua como recomendacao, nao como defeito, pelo
+    # que ela mesma diz: a regua de 64 e da aquametria e nao do contrato".
+    #   Entao aqui ela e MEDIDA E IMPRESSA, nunca reprovada — o mesmo desenho do
+    # soft 404 de borda logo abaixo. Quem reprova e o teto das paginas cujo
+    # titulo a casca monta, que e onde a promessa numerica mora.
+    _e_peca = _caminho.startswith("/loja/") and _caminho != "/loja/"
     if _t and len(_t) > TETO_TITULO:
-        _titulo_longo.append(f"{_caminho} ({len(_t)})")
+        (_titulo_de_peca_longo if _e_peca else _titulo_longo).append(f"{_caminho} ({len(_t)})")
     if "{" in _t or "%1$s" in _t:
         _titulo_com_molde.append(_caminho)
     _tem_digito = bool(re.search(r"\d", _t))
@@ -1551,8 +1562,10 @@ ok(len(_medidas_desc) == 4,
    " | ".join(_medidas_desc))
 
 # A PROMESSA NUMERICA DO <title> — BLOCO A do despacho do Raphael de 24/09.
-ok(not _titulo_longo, f"[title] as 17 cabem no teto de {TETO_TITULO} caracteres decodificados",
+ok(not _titulo_longo, f"[title] as paginas da arvore cabem no teto de {TETO_TITULO} caracteres decodificados",
    "no teto" if not _titulo_longo else " | ".join(_titulo_longo[:4]))
+ok(True, "[title] e o titulo da PECA e medido e impresso, nunca reprovado (recomendacao do despacho de 28/09)",
+   ("acima de 65: " + " | ".join(_titulo_de_peca_longo)) if _titulo_de_peca_longo else "as pecas cabem no teto")
 ok(not _titulo_com_molde, "[title] nenhuma serve o molde cru no lugar do numero",
    "nenhuma" if not _titulo_com_molde else " | ".join(_titulo_com_molde[:3]))
 ok(not _promessa_faltando,

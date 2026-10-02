@@ -11,6 +11,35 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — a ilha EM FOCO tem três páginas na primeira página do Google e ninguém de dentro consegue ler o número delas
+
+**2026-10-02 — Raphael — duas coisas na mesma propriedade do Search Console, e a segunda leva um minuto.**
+
+**1. DAR ACESSO DE LEITURA À CONTA `sentinela@` EM `sc-domain:clubedomosaico.com.br`** (Search Console →
+Configurações → Usuários e permissões → adicionar; leitura basta). O pedido é de **23/09/2026** e vive, até hoje,
+só dentro do `PROMPT.md` da ilha — por isso ele entra aqui, onde os pedidos a você moram. A conta de serviço já
+tem acesso à **aquametria** e à **robometria**; a clubedomosaico, que é a ilha **em foco** e a que tem **mais
+tráfego do Arquipélago**, é justamente a que a nuvem não alcança. Está medido em
+`ilhas/clubedomosaico/dados/search-console-2026-09-23.md`.
+
+**O que isso custou, medido e não suposto:** a **leitura semanal de 30/09 não aconteceu**, e a série de
+`dados/posicoes.md` desta ilha tem **uma linha só**, a de 23/09. Enquanto o acesso não existir, posição e
+indexação desta ilha só podem ser lidas no seu navegador — e a Fundação não pode fechar nenhum item de despacho
+que dependa delas, por mais pronto que esteja o lado da máquina.
+
+**2. LER, QUANDO PUDER, A JANELA DE 7 DIAS QUE TERMINA EM 30/09/2026** (Desempenho → últimos 7 dias, ajustando a
+data) e colar as linhas em `ilhas/clubedomosaico/dados/posicoes.md`. **Por que exatamente essa janela:** em
+02/10/2026 o `<title>` e a `<meta description>` das três páginas de primeira página foram trocados, pelo BLOCO A
+do seu despacho de 24/09 — a janela 23→30/09 é a **última semana inteira com o título antigo**, e portanto a única
+base de comparação limpa que vai existir. A semana 30/09→07/10 já nasce misturada: dois dias de título velho e
+cinco de novo. O Search Console guarda o histórico, então a leitura não tem prazo — **mas o número só existe se
+alguém o copiar para a série.**
+
+**Pronto quando:** `python3 ferramentas/ga4.py`-equivalente do Search Console (a varredura da conta de serviço)
+devolver leitura para `sc-domain:clubedomosaico.com.br` em vez de "sem acesso"; e a tabela de
+`ilhas/clubedomosaico/dados/posicoes.md` tiver a linha de 2026-09-30 com posição, impressões e cliques das três
+páginas.
+
 ### prioridade NORMAL — 13 dos 17 itens do degrau 4 da clubedomosaico esperam UMA decisão dele, e agora há medição atrás dela
 
 **2026-09-30 — Raphael — decidir se pastilha de vidro pode entrar no banco como EQUIVALENTE POR ATRIBUTO.**

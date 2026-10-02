@@ -354,7 +354,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "4bd58c2c97343e58da0f5038690e84cd32bf95399abd8e5d82ac4650ab4f8fe6",
+      "sha256": "3c3ab88edc1f5d0dd210e1ab8d12e67234c46ae06ea480301a6cf32acb688ab1",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 459 afirmacoes em 25/09/2026. Cobre a marca no cabecalho, a escada da secao 25 cartao a cartao, o cache do hospedeiro contra o canonico, A PORTA DE ENTRADA (sitemap, robots.txt e raiz do REST em 200 com o tipo certo, e caminho inexistente em 404 na pagina DESTA ilha, acrescentado em 24/09 depois de 16 das 17 URLs servirem a pagina de estacionamento da HostGator) e, desde 25/09, O LINK DE AFILIADO SERVIDO: varre as URLs do sitemap e reprova se aparecer encurtador de Shopee que o banco nao conhece, mais a afirmacao de que ela encontra algum — portao que nao encontra nada aprova por vacuidade. Essa secao NAO mede a CASA do sub-id: isso so se le no utm_content do 301 do encurtador, e esse salto e onde a Shopee conta o clique, entao quem mede a casa e ferramentas/conferir-sub-id.py, na raiz, com link de BANCADA (secao 25.8). REGUA PROPRIA: as medidas estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {

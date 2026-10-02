@@ -53,3 +53,59 @@ mesma passada, as duas leituras concordaram nas 17 URLs: **zero janela de cache 
   defeito, como o despacho de 28/09 já registrou. Mas o espaço que sobra para enfiar um número é **de 2 a 5
   caracteres**: quem escrever o BLOCO A vai ter de tirar palavra, e a candidata é a marca no fim, que foi o
   caminho do precedente da robometria.
+
+## O RETRATO "DEPOIS" — A PROMESSA DE SERP FOI TROCADA EM 02/10/2026 (BLOCO A cumprido)
+
+O **BLOCO A** do despacho do Raphael de 24/09 esperava a janela de medição de **30/09**, por ordem escrita dele
+mesmo: *"trocar título antes do número de 30/09 misturaria duas causas na mesma janela"*. Hoje é **02/10** e a
+janela fechou. O que mudou está abaixo, linha por linha, ao lado do que estava no ar — e o "antes" não foi
+remontado de memória: ele está na seção acima, medido em 29/09 pela borda, justamente porque **depois da troca
+não há como remontá-lo**.
+
+**O NOME DA PÁGINA NÃO MUDOU EM NENHUMA DAS QUATRO.** O que cede o lugar é a **marca** no fim do `<title>` — 16
+caracteres de carimbo numa ilha com **zero clique orgânico medido**, ou seja ninguém a procura pelo nome. H1,
+cartão e degrau da trilha continuam dizendo exatamente o mesmo de ontem.
+
+| URL | `<title>` servido em 02/10 | nº | `<meta description>` servida em 02/10 | nº |
+|---|---|---|---|---|
+| `/materiais/qual-cola-usar-no-mosaico/` | Qual cola usar no mosaico, e qual rejunte – 7 colas para 9 bases | 64 | Qual cola e qual rejunte pela declaração do fabricante: 7 colas em 270 casos de base, lugar e caquinho, e os 68 que a gente ainda não responde. | 143 |
+| `/materiais/quantas-pastilhas-para-mosaico/` | Quantas pastilhas e quanto rejunte comprar – 12 peças calculadas | 64 | Quantas pastilhas e quanto rejunte a sua peça precisa: 12 peças já calculadas, de 23 a 960 pastilhas, pela medida que o fabricante publica. | 139 |
+| `/como-fazer/o-que-e-mosaico-picassiete/` | O que é mosaico Picassiete, e como colar – 7 colas em 45 casos | 62 | Mosaico Picassiete: o mosaico de louça quebrada, e com o que colar o caquinho em cada superfície — 7 colas em 45 casos, pela declaração do fabricante. | 150 |
+| `/como-fazer/o-que-e-trencadis/` | **O que é trencadís, e com o que colar o caco – Clube do Mosaico** (INTOCADO) | 62 | Trencadís: o mosaico de caco quebrado a martelo, o nome ligado a Gaudí, e com o que colar o caco de azulejo ou de louça em cada superfície. | 139 |
+
+**Contagem em caracteres decodificados**, a mesma régua de 29/09: `&#8211;` conta 1 e não 7.
+
+**O TRENCADÍS É A PÁGINA PARADA, E A AUSÊNCIA DELE NA LISTA DE PROMESSAS É A DECISÃO.** O despacho de 23/09 manda,
+com estas palavras, *"deixe uma página parada para a próxima leitura ter com o que comparar"*. O `<title>` dele não
+foi tocado e ele não declara promessa nenhuma; o que mudou nele foi só a `description`, que estava em 189 e é o que
+o item 4 do despacho de 28/09 cobrava. **Trocar as quatro de uma vez não é zelo: é tornar a próxima medição
+ilegível.**
+
+**NENHUM DOS NÚMEROS É DIGITADO**, e isto é o que faz a promessa não envelhecer calada: os três da `qual-cola` saem
+de `cdm_f2_cobertura()`, a **mesma** varredura de base × lugar × caquinho que escreve "o que a gente ainda não
+responde" na tela; os da `quantas-pastilhas`, da mesma conta que monta a tabela das doze peças; os do `picassiete`,
+de `cdm_tecnicas_contas()`. No dia em que o banco mudar, a promessa da SERP e a confissão do fim da página mudam
+juntas — e se discordarem, a bancada reprova antes de o ar ver.
+
+### O QUE ESTA LINHA DA SÉRIE NÃO TEM, E É HONESTIDADE E NÃO DESCUIDO
+
+**A LEITURA SEMANAL DE 30/09 NÃO ACONTECEU.** A série tem **uma** linha, a de 23/09. A ronda diária técnica de
+30/09 rodou (14h53Z, nas três ilhas no ar) e fechou sem defeito de página aqui; a **leitura semanal estratégica**
+daquele dia não foi disparada, e o `REGISTRO.md` de 30/09 às 16h3xZ já registrava isso com estas palavras: *"a
+leitura semanal, que ainda não aconteceu hoje"*. Em 01/10 não houve nenhuma execução.
+
+**E ISSO NÃO IMPEDE A TROCA DE HOJE, por uma razão medida e não conveniente:** a janela 23→30/09 está **fechada e
+congelada** no Search Console — os dados daquela semana não mudam mais, e nada que seja servido em 02/10 pode
+reescrevê-los. A ordem do BLOCO A era não misturar duas causas **dentro** daquela janela. Fora dela, esperar não
+protege nada: protelaria a única alavanca medida desta ilha por uma leitura que a Fundação **não tem como fazer** —
+a conta de serviço `sentinela@` não tem acesso a `sc-domain:clubedomosaico.com.br` (ver `dados/search-console-2026-09-23.md`),
+e esse pedido ao Raphael continua aberto desde 23/09.
+
+**O QUE FICA PEDIDO, E É O QUE DESTRAVA O VEREDITO:** a janela **23→30/09** ainda pode ser lida no navegador do
+Raphael, a qualquer momento, porque o Search Console guarda o histórico. Ela é a **segunda linha da série com o
+título antigo** e, portanto, a única base de comparação limpa que existirá — a janela de 30/09→07/10 já nasce
+misturada, com dois dias de título velho e cinco de novo. **Quem ler, escreva aqui.**
+
+**O VEREDITO CONTINUA SENDO DE 08/10**, como o BLOCO A manda, e nem a leitura de 30/09 nem esta linha declaram
+vitória ou derrota. E a 12.1 pede comparar o CTR com a média das outras na mesma posição: com **30 impressões**
+não há com o que comparar, e isso continua **escrito** em vez de estimado.
