@@ -66,6 +66,13 @@ bloco_atual: |
   NENHUMA DAS QUATRO DECLARA PROMESSA NO <title>: a alavanca da 12.1 e para posicao 4 a 10 e
   elas nascem sem posicao. Nenhuma URL antiga se moveu, nenhum 301, nenhum <title> ou
   description existente tocado — a janela de comparacao do BLOCO A segue limpa ate 08/10.
+  VERIFICADO NO AR DEPOIS DO SYNC (secao 8 e 18.4): Sync aplicou 15 itens e criou o snippet #13;
+  /status na revisao 56 igual a do manifest; as quatro URLs novas em 200; conferir-no-ar.py
+  APROVADO com 524 afirmacoes e 0 falha, agora sobre 21 URLs. O soft 404 na borda continua e
+  segue com o Raphael desde 29/09 — registro, nao portao.
+  E UM ROTULO DO conferir-no-ar.py ESTAVA CRAVADO: quatro linhas diziam "as 17 URLs" com a
+  medida ao lado dizendo 21, na mesma linha. O portao sempre varreu o sitemap inteiro e estava
+  certo; so o texto envelheceu. Passou a sair do len() do sitemap.
   PROXIMO PASSO DESBLOQUEADO: medir a SERP das tres maes em espera_serp (alicate, pastilha,
   rejunte). E busca, nao coleta, e e o trabalho mais barato que sobrou. Com a de `alicate`
   medida, a `alicate/cortador_de_azulejo` — ja em pode_nascer — ganha mae e a segunda categoria

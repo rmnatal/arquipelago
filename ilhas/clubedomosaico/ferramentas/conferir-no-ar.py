@@ -1549,11 +1549,16 @@ for _u in _urls_sitemap:
         _duplicadas_desc.append(f"{_caminho} = {_vistas[_d]}")
     _vistas[_d] = _caminho
 
-ok(not _sem_description, "[description] as 17 URLs do sitemap servem uma meta description (item 4)",
+# O NUMERO DO ROTULO SAI DO SITEMAP, NAO DE UMA LEMBRANCA (02/10/2026, bloco 4c).
+# Estes quatro rotulos diziam "as 17 URLs" e a medida ao lado dizia 21 na mesma
+# linha, no dia em que o Guia publicou quatro paginas. O portao estava certo — ele
+# sempre varreu `_urls_sitemap` —, e so o texto envelheceu; mas rotulo que discorda
+# da medida ao lado e exatamente o que faz alguem ler "17" e nao contar.
+ok(not _sem_description, f"[description] as {len(_urls_sitemap)} URLs do sitemap servem uma meta description (item 4)",
    f"{len(_urls_sitemap)} conferidas" + ((": " + ", ".join(_sem_description[:4])) if _sem_description else ""))
 ok(not _duas_etiquetas, "[description] e NENHUMA serve duas — o emissor e um so",
    f"{len(_urls_sitemap)} conferidas" + ((": " + ", ".join(_duas_etiquetas[:3])) if _duas_etiquetas else ""))
-ok(not _fora_da_faixa, "[description] as 17 cabem em 120 a 160 caracteres — sem excecao travada (item 4 fechado em 02/10)",
+ok(not _fora_da_faixa, f"[description] as {len(_urls_sitemap)} cabem em 120 a 160 caracteres — sem excecao travada (item 4 fechado em 02/10)",
    "na faixa" if not _fora_da_faixa else " | ".join(_fora_da_faixa[:4]))
 ok(not _duplicadas_desc, "[description] nenhuma se repete entre paginas",
    "todas distintas" if not _duplicadas_desc else " | ".join(_duplicadas_desc[:3]))
@@ -1605,7 +1610,7 @@ ok(not _promessa_indevida,
 # com 200. Divergencia de titulo ou de canonica entre a borda e a origem e
 # JANELA DE CACHE e sai RELATADA, pela mesma politica que esta ilha decidiu em
 # 14/09 e que esta escrita mais acima neste arquivo.
-print("\nA leitura do VISITANTE — as 17 URLs sem quebra de cache (BLOCO C, 25/09):")
+print(f"\nA leitura do VISITANTE — as {len(_urls_sitemap)} URLs sem quebra de cache (BLOCO C, 25/09):")
 
 import importlib.util as _ilu
 
@@ -1632,7 +1637,7 @@ for _u in _urls_sitemap:
         _janelas_v.append(_caminho + " — " + _motivo)
 
 ok(not _defeitos_v,
-   "[visitante] as 17 URLs do sitemap chegam inteiras a quem nao quebra o cache",
+   f"[visitante] as {len(_urls_sitemap)} URLs do sitemap chegam inteiras a quem nao quebra o cache",
    f"{len(_urls_sitemap)} conferidas" + ((": " + " | ".join(_defeitos_v[:3])) if _defeitos_v else ""))
 # Janela de cache NAO reprova — mas fica na tela com a URL e o motivo, que e o
 # que separa "esta tudo igual" de "ninguem olhou".

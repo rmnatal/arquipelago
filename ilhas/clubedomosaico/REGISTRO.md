@@ -156,6 +156,24 @@ casar mais a linha inteira.
 - **Nenhuma URL antiga se moveu**, nenhum 301, nenhum `<title>` e nenhuma `description` existente
   foram tocados: a janela de comparação do BLOCO A, que fecha em **08/10**, continua limpa.
 
+## O DESEMBARQUE E A VERIFICAÇÃO NO AR (seção 8 e 18.4)
+
+Sync acionado por `curl` às **19h52Z**: *revisão 56, 15 aplicados*, `snippets/guia: ok (snippet #13
+criado)`. `/status` na **revisão 56**, igual à do `manifest.json`. As quatro URLs novas em **200**,
+com quebra de cache. `conferir-no-ar.py` **APROVADO: 524 afirmações medidas no HTML servido, 0
+falha** — agora sobre **21** URLs do sitemap, com as quatro novas dentro da faixa de 120–160 na
+`description`, no teto de 65 no `<title>`, com JSON-LD, `BreadcrumbList` e sem `&#038;` dentro de
+`<script>`. O soft 404 na borda **continua** e segue com o Raphael desde 29/09: registro, não portão.
+
+**E um rótulo do próprio `conferir-no-ar.py` estava cravado**, achado na saída desta verificação:
+quatro linhas diziam *"as 17 URLs"* com a medida ao lado dizendo **21**, na mesma linha. O portão
+sempre varreu `_urls_sitemap` inteiro e estava **certo** — só o texto envelheceu. Mas rótulo que
+discorda da medida ao lado é o que faz alguém ler "17" e não contar. Passou a sair do `len()`.
+
+As cinco baterias de mutação que este bloco podia ter quebrado foram rodadas e as cinco fecham
+verdes: `mutacoes-arvore` 29/29, `mutacoes-voz-e-cabeca` **24/24 depois do conserto das três
+inertes**, `mutacoes-promessa-do-titulo` 19/19, `mutacoes-acabamento` 14/14 e `mutacoes-guia` 14/14.
+
 ## PRÓXIMO PASSO DESBLOQUEADO
 
 **Medir a SERP das três mães em `espera_serp` — `alicate`, `pastilha` e `rejunte`.** É o estado que

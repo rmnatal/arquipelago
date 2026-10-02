@@ -712,7 +712,26 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
 
 1. ~~**A SEGUNDA PÁGINA DE TÉCNICA: o trencadís.**~~ **ENTREGUE em 14/09/2026 às 23h19Z**, em `/como-fazer/o-que-e-trencadis/` (técnicas **1.1.0**, manifest na revisão 35). A pergunta que este item deixava em aberto — "duas grades ou uma?" — **não foi escolhida, foi medida**: o snippet calcula uma grade por caquinho e agrupa as idênticas, as duas do trencadís saem iguais nas 45 células, e a página serve uma tabela **dizendo na tela que comparou as 90 e por quê**. A causa está na régua da F2 e vale para as próximas: **o caquinho entra na decisão num lugar só**, a condição de superfície porosa, e os dois cacos são porosos. Está tudo na seção 4b do `ARVORE.md`, com a comparação dos seis caquinhos do vocabulário. **Com isso o eixo das técnicas está SEM PRÓXIMA PÁGINA** — as duas que o portão autoriza já nasceram, e a terceira depende do item 2 abaixo. **A semana da 21.4 está em 2 de 3 levas** (uma URL cada).
 2. **AS TRÊS TÉCNICAS QUE SEGUEM EM ZERO** (direto, indireto, bizantino) **não são trabalho de texto, e sim de FONTE.** Cada uma tem o `motivo_sem_materiais` escrito dizendo por que não declara material. O bizantino é o de maior valor de indexação da ilha e o mais distante; o indireto tem uma faixa de banco descoberta com nome próprio: **a cola hidrossolúvel que o método exige não existe nos 7 itens do banco de colas.**
-3. > **ESTADO EM 02/10/2026 às 13h17Z — A METADE DESTE ITEM QUE TRAVAVA O 4c SAIU, E `acabamento` É A
+3. > **ENTREGUE EM 02/10/2026 às 19h51Z — O 4c DE `acabamento` ESTÁ NO AR, COM A MÃE E AS TRÊS FILHAS.**
+   > Quatro URLs novas (a ilha vai de **17 para 21**), snippet `Clube do Mosaico Guia` **1.0.0**, manifest e
+   > `/status` na **revisão 56**. Endereços: `/materiais/acabamento/` e, debaixo dela,
+   > `selar-a-base-antes-de-fazer-mosaico`, `verniz-para-peca-de-mosaico` e
+   > `impermeabilizar-peca-de-mosaico` — **a primeira árvore de três segmentos desta ilha**, porque é o
+   > primeiro bloco em que a categoria nasce ANTES da filha. O número da seção 9 é a **cobertura
+   > declarada** (das 15 superfícies do vocabulário, quantas a frase do fabricante alcança: 13 de 150 na
+   > mãe) e o segundo é o **relógio**, que fecha em 2 dos 10 produtos e só neles. Bancadas novas:
+   > `teste-guia.php` (106 afirmações) e `mutacoes-guia.py` (14 de 14). O detalhe inteiro está no
+   > `REGISTRO.md` de 02/10 às 19h51Z.
+   >
+   > **A `alicate/cortador_de_azulejo` TAMBÉM está em `pode_nascer` e FICOU DE FORA de propósito:** a mãe
+   > dela está em `espera_serp`, e filha sozinha pendurada em `/materiais/` é o cluster ralo que a 16.6
+   > proíbe. **O que a destrava é medir a SERP de `alicate`** — busca, não coleta —, e com ela a segunda
+   > categoria do Guia sai com a mesma leva de quatro. O mesmo vale para `pastilha` e `rejunte`.
+   >
+   > *(O texto abaixo é de três e seis horas antes e fica sem uma palavra alterada: foi ele que mandou
+   > medir, e é ele que explica por que a categoria escolhida não foi escolhida.)*
+   >
+   > **ESTADO EM 02/10/2026 às 13h17Z — A METADE DESTE ITEM QUE TRAVAVA O 4c SAIU, E `acabamento` É A
    > PRIMEIRA CATEGORIA DO GUIA A PASSAR A 16.5.** O ponteiro de 30/09 abaixo mediu que o 4c esperava
    > **3 filhas de nível 3 numa categoria que já tem tipos**, e nomeou o caminho mais barato:
    > `acabamento`, **a 3 itens** — 1 impermeabilizante e 2 seladores, por busca. **Coletados hoje, os
