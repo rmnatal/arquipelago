@@ -45,6 +45,42 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-02 (RONDA DIÁRIA TÉCNICA, 14h51Z) — UM ITEM NOVO, E ELE É DA FUNDAÇÃO
+
+**O QUE ESTA RONDA MEDIU NESTA ILHA E PASSOU, para a Fundação não remedir:** **14 de 14** URLs do `wp-sitemap.xml` em HTTP 200; porta de entrada da 29.2 inteira (`/wp-sitemap.xml` 200 com `application/xml` e XML de sitemap de verdade, `/robots.txt` 200 e `text/plain`, `/wp-json/` 200 e `application/json`, e caminho inexistente em **404 na página desta ilha**); `/status` na **revisão 81**, igual à do `manifest.json`; **console sem uma mensagem** (com recarga) em `/qual-peca-serve-no-meu-robo-aspirador/`; **zero** `&#038;` dentro de `<script>` nas 14; **zero** página órfã; **zero** `noindex` indevido; `description` nas 14 e **nenhuma** acima de 160; JSON-LD nas 14 e `BreadcrumbList` nas 13 que não são a home; **zero** `<img>` sem `width`/`height` e **zero** sem `alt`.
+
+**A FERRAMENTA FOI EXECUTADA COM ENTRADA REAL, NO NAVEGADOR, E A RESPOSTA LIDA COMO LEITOR LERIA:** `?modelo=electrolux-erb60&peca=filtro` responde com o "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62", declarado pela loja oficial para ERB44, ERB60, ERB61 e ERB62 — o modelo pedido está na lista, e a página diz com essas palavras que o fabricante não publica código de peça nesta página. Também nomeia o Kit Performance como segunda via do mesmo filtro. **Nenhuma contradição.**
+
+**SOBRE O TOM (15.4), E A RÉGUA ERROU ANTES DE EU OLHAR:** uma varredura por substring acusou `/filtro-universal-de-robo-aspirador/` por trazer "compatibilidade declarada pelo fabricante" no primeiro parágrafo. **Não é defeito, e está registrado para ninguém reabrir:** a frase proibida do `VOZ.md` é a construção inteira *"Esta ferramenta cruza a matriz de compatibilidade declarada pelo fabricante…"*, e o primeiro parágrafo daquela página é a resposta direta na língua da pessoa — "Não existe filtro universal que sirva no seu robô aspirador" — com o qualificador técnico depois. É a mesma jurisprudência do "em breve" da 16.5: **régua de tom cobra a frase, nunca a palavra solta.**
+
+### 1. A ILHA PUBLICA DOIS NÚMEROS PARA A MESMA FRASE — 91 e 92 PARES PEÇA × MODELO — E OS DOIS ESTÃO CERTOS SOB DEFINIÇÕES DIFERENTES
+
+**O que está no ar, medido hoje nas 14 URLs:**
+
+| URL | o que a página diz |
+|---|---|
+| `/sobre/` | "6 marcas, 45 modelos de robô e **91** pares peça × modelo declarados pelo fabricante" |
+| `/qual-peca-serve-no-meu-robo-aspirador/` | "Hoje são **91** pares peça × modelo declarados, em 6 marcas, cobrindo 38 dos 45 modelos do banco" |
+| `/pecas/` | "O banco tem 54 peças publicáveis de 6 marcas e **91** pares peça × modelo" |
+| `/filtro-universal-de-robo-aspirador/` | "São **92** pares peça × modelo, em 6 marcas" |
+
+**A ORIGEM DOS DOIS NÚMEROS, e nenhum deles foi digitado:** `dados/casca-fatos.json` traz `medicao.pares_declarados: 91` (gerado por `ferramentas/gerar-casca-fatos.py`, `gerado_em: 2026-09-21`) e `dados/a1-fatos.json` traz `pares_declarados: 92`. O próprio banco concorda com o segundo: `dados/pecas.json` (`gerado_em: 2026-09-17`) tem `contagem.pares_peca_x_modelo_declarados: 92`.
+
+**A CAUSA, CONTADA NO BANCO E NÃO ADIVINHADA — é UM par, e ele tem nome.** Somando `compatibilidade` de todos os registros com `status: publicavel`, dão **92** pares, os 92 com `selo: declarada_fabricante`, 92 distintos. Cruzando cada par com `dados/modelos-robo.json` (50 registros, **45** publicáveis), **exatamente um** par aponta para modelo **não publicável**:
+
+- peça **`multi-pr10124`** × modelo **`multi-ho401`**
+
+Tirando esse par, sobram **91**. Então: **91 = pares cujos DOIS lados são publicáveis; 92 = pares declarados pelo fabricante, contados do lado da peça.** As duas contas estão corretas, medem coisas diferentes e nenhuma das quatro páginas diz qual delas está dizendo.
+
+**POR QUE A SENTINELA NÃO CONSERTOU, e isto é a 19.2 e não preguiça:** (a) decidir qual das duas definições a ilha publica é **escolher entre duas opções defensáveis**, que é item nominal da lista fechada 19.2; (b) `casca-fatos.json` é arquivo **GERADO** — trocar o número à mão nele seria desfeito na próxima passada de `gerar-casca-fatos.py`, que é exatamente o conserto que volta; (c) o `por_que_derivado` desse mesmo arquivo registra, desde 11/09, que a coluna foi derivada justamente porque digitada contradizia o banco — **o defeito de hoje é a segunda cópia que o `ESTADO.md` do bloco 5b já tinha nomeado como risco** ("recontar criaria a segunda cópia de `pares_declarados`"), e ela divergiu.
+
+**O QUE A FUNDAÇÃO TEM DE DECIDIR, e são três coisas, não uma:**
+1. **Qual número a ilha publica** nas quatro páginas — e a frase passa a dizer a definição com palavras de leitor ("pares em que a peça e o modelo estão publicados" ou "pares que o fabricante declarou"), porque número sem definição é o que permitiu os dois conviverem.
+2. **Como as duas cópias param de existir**: `a1-fatos.json` e `casca-fatos.json` passam a tirar `pares_declarados` da MESMA derivação, e o portão da bancada reprova se os dois discordarem entre si ou do `contagem` do `pecas.json`. Enquanto houver duas contagens independentes do mesmo fato, elas voltam a divergir — hoje foi por um par, amanhã é por outro.
+3. **De passagem, e é dado de banco, não de página:** o par `multi-pr10124` × `multi-ho401` declara compatibilidade com um modelo que esta ilha **não publica** (ele não aparece no seletor da ferramenta). Ou o modelo nasce publicável, ou o par merece uma linha dizendo por que fica no banco sem destino — hoje ele é invisível nas duas pontas.
+
+**PRONTO QUANDO:** as quatro URLs (`/sobre/`, `/qual-peca-serve-no-meu-robo-aspirador/`, `/pecas/`, `/filtro-universal-de-robo-aspirador/`) servirem, lidas no ar com quebra de cache e `Accept-Encoding: identity`, **o MESMO número** de pares peça × modelo, cada uma com a definição escrita na própria frase; `dados/casca-fatos.json` e `dados/a1-fatos.json` trouxerem o mesmo valor de `pares_declarados` e ele for igual ao `contagem.pares_peca_x_modelo_declarados` de `dados/pecas.json`; e a bancada tiver uma afirmação que REPROVA quando os três discordarem (provada por mutação, adulterando um dos três numa cópia).
+
 ## DESPACHO DA SENTINELA — 2026-09-30 (RONDA DIÁRIA TÉCNICA, 14h53Z) — UM ITEM, E ELE NÃO É DA FUNDAÇÃO
 
 **A ilha segue em MODO DE MEDIÇÃO (1.2-b.1) e este despacho não abre bloco.** A ronda técnica passou a rodar em toda ilha no ar pela decisão do Raphael de 28/09 (seção 1.2), e foi ela que achou o que está abaixo.
