@@ -117,6 +117,18 @@ CHAVES_DE_BUSCA = {
         'oferta em 25/09/2026. A palavra `fundo` nao aparece em titulo de '
         'anuncio; o que a Shopee anuncia e `selador`'),
 
+    # --- OS TRES QUE FECHARAM AS 3 FILHAS DE `acabamento` EM 02/10/2026 ---
+    #
+    # Nascidos na mesma ordem dos seis alicates e dos sete acima:
+    # `--conferir-chaves` ANTES de qualquer link. A chave sai de `marca` +
+    # `nome_comercial` do proprio registro, e nunca do link encurtado.
+    'suvinil-seladora-para-madeira': (
+        'seladora para madeira suvinil', 'marca + nome comercial'),
+    'coral-selador-acrilico': (
+        'selador acrilico coral', 'marca + nome comercial'),
+    'coral-resina-acrilica': (
+        'resina acrilica coral', 'marca + nome comercial'),
+
     # --- OS SEIS ALICATES, NASCIDOS EM 25/09/2026 COM A CHAVE JA MEDIDA ---
     #
     # A licao das treze pastilhas e de 25/09 de manha: chave escrita uma vez
@@ -208,7 +220,18 @@ CHAVES_DE_BUSCA = {
         'resultado de outro objeto em 25/09/2026. Parou no degrau da placa'),
 }
 
-HOJE = '2026-09-25'
+# A DATA SAI DO RELOGIO, E ATE 02/10/2026 ELA ERA UMA CONSTANTE DE 25/09.
+#
+# Defeito achado de passagem em 02/10/2026, pela execucao que coletou os tres
+# acabamentos: esta linha era `HOJE = '2026-09-25'`, digitada no dia em que a
+# ferramenta nasceu, e e ela que vira `url_busca_gerada_em` de todo link que a
+# ferramenta gerar DEPOIS daquele dia. Os tres links encurtados nascidos hoje
+# saíram datados de 25/09 — sete dias antes de existirem. Nao e cosmetico: a
+# 25.4-b manda reconferir palavra-chave que envelhece, e quem reconfere escolhe
+# pela data. Data velha escrita como fato e a secao 4 do contrato, e aqui ela
+# estava dentro da propria ferramenta que escreve a data.
+HOJE = __import__('datetime').datetime.now(
+    __import__('datetime').timezone.utc).strftime('%Y-%m-%d')
 
 
 def url_de_busca(chave):

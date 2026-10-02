@@ -101,6 +101,30 @@ def afiliado():
         "degrau": 4 if _URL_BUSCA and not _URL_PRODUTO else None,
         "url_busca_gerada_em": "2026-09-28",
         "motivo_da_chave": "bancada",
+        # E ACONTECEU DE NOVO, PELA MESMA REGRA, NO MESMO DIA — achado em
+        # 02/10/2026 e medido vermelho no `main` limpo antes de qualquer
+        # mudanca desta execucao.
+        #
+        # O comentario acima conta como o aperto do degrau, em 29/09, apagou
+        # esta bateria por um dia. A leva de 30/09 que subiu o esquema para a
+        # VERSAO 9 tornou `motivo_sem_ficha` obrigatorio, e com FORMA, para
+        # todo item no degrau 4 sem ficha — e as duas baterias fabricadas
+        # (`base` e `apoio`) voltaram a ser reprovadas ANTES de qualquer
+        # mutacao, pela segunda vez em dois dias. Ficaram assim DOIS DIAS, e o
+        # que elas deixaram sem ninguem medindo foram justamente os portoes das
+        # duas categorias que esperam o curinga de egresso: as unicas duas sem
+        # SKU, portanto as unicas cujo portao nao tem banco real que o exercite.
+        #
+        # O conserto e o mesmo de 29/09, e por isso o mundo fabricado DERIVA o
+        # campo em vez de crava-lo: ele existe quando, e so quando, o proprio
+        # mundo esta no degrau 4 sem ficha. Proximo aperto que mexer no degrau
+        # move as duas linhas juntas, e esta bateria nao morre uma terceira vez.
+        "motivo_sem_ficha": (
+            "CAUSA (marca-nao-anunciada): mundo FABRICADO desta bancada — nao ha "
+            "produto no mercado a que esta chave corresponda, por construcao "
+            "|| ULTIMA TENTATIVA 2026-10-02: bancada, nenhuma chamada de API foi "
+            "feita e nenhuma deve ser"
+        ) if (_URL_BUSCA and not _URL_PRODUTO) else None,
     }
 
 

@@ -712,6 +712,30 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
 
 1. ~~**A SEGUNDA PÁGINA DE TÉCNICA: o trencadís.**~~ **ENTREGUE em 14/09/2026 às 23h19Z**, em `/como-fazer/o-que-e-trencadis/` (técnicas **1.1.0**, manifest na revisão 35). A pergunta que este item deixava em aberto — "duas grades ou uma?" — **não foi escolhida, foi medida**: o snippet calcula uma grade por caquinho e agrupa as idênticas, as duas do trencadís saem iguais nas 45 células, e a página serve uma tabela **dizendo na tela que comparou as 90 e por quê**. A causa está na régua da F2 e vale para as próximas: **o caquinho entra na decisão num lugar só**, a condição de superfície porosa, e os dois cacos são porosos. Está tudo na seção 4b do `ARVORE.md`, com a comparação dos seis caquinhos do vocabulário. **Com isso o eixo das técnicas está SEM PRÓXIMA PÁGINA** — as duas que o portão autoriza já nasceram, e a terceira depende do item 2 abaixo. **A semana da 21.4 está em 2 de 3 levas** (uma URL cada).
 2. **AS TRÊS TÉCNICAS QUE SEGUEM EM ZERO** (direto, indireto, bizantino) **não são trabalho de texto, e sim de FONTE.** Cada uma tem o `motivo_sem_materiais` escrito dizendo por que não declara material. O bizantino é o de maior valor de indexação da ilha e o mais distante; o indireto tem uma faixa de banco descoberta com nome próprio: **a cola hidrossolúvel que o método exige não existe nos 7 itens do banco de colas.**
+3. > **ESTADO EM 02/10/2026 às 13h17Z — A METADE DESTE ITEM QUE TRAVAVA O 4c SAIU, E `acabamento` É A
+   > PRIMEIRA CATEGORIA DO GUIA A PASSAR A 16.5.** O ponteiro de 30/09 abaixo mediu que o 4c esperava
+   > **3 filhas de nível 3 numa categoria que já tem tipos**, e nomeou o caminho mais barato:
+   > `acabamento`, **a 3 itens** — 1 impermeabilizante e 2 seladores, por busca. **Coletados hoje, os
+   > três**: `suvinil-seladora-para-madeira`, `coral-selador-acrilico` e `coral-resina-acrilica`.
+   > `acabamento/selador` foi de 1 para 3 e `acabamento/impermeabilizante` de 2 para 3, com lastro e
+   > com número calculável (`tempo_de_secagem_h` nos três seladores, `base_quimica` nos três
+   > impermeabilizantes); com o verniz, **3 de 3**. `dados/filhas-do-guia.json` registra `acabamento`
+   > como a única categoria que alcança as 3, e a tabela da seção 2 do `ARVORE.md` foi para
+   > `10 itens | 3 de 3` — corrigida pelo portão `--conferir`, não pela mão.
+   >
+   > **O QUE ISTO ABRE, E O QUE NÃO ABRE.** Abre o portão de **DADO** do 4c. **Não** abre o de SERP: a
+   > medição da 14.9 em `dados/filhas-do-guia.md` diz que as filhas publicáveis desta ilha hoje têm
+   > forma de **pergunta** e não de tipo (`verniz para peça de mosaico` ABERTA, `pastilhas de vidro
+   > para mosaico` TOMADA), e **`verniz` não existe em `dados/corpus-buscas.md`** — sem faixa de volume
+   > medida. Quem for publicar o 4c cruza os dois, que é o que a 14.9 manda com essas palavras. Os dois
+   > vereditos saem juntos ou nenhum dos dois serve.
+   >
+   > **E A PARTE DESTE ITEM QUE CONTINUA INTEIRA:** `base` e `apoio` seguem em ZERO SKU e seguem
+   > travadas pelo **curinga** de egresso, não por decisão — as duas têm regra escrita, portão de pé e
+   > bateria verde (e as duas baterias estavam **vermelhas** no `main` desde 30/09, consertadas nesta
+   > execução). A lista derivada do que falta liberar está em `dados/egresso-de-fontes.md`, e segue com
+   > o Raphael.
+
 3. **A COLETA DAS CATEGORIAS VAZIAS** — *(**PONTEIRO DE 30/09/2026: A PRIMEIRA FRASE DESTE ITEM ESTÁ INCOMPLETA E ELA É A QUE TRAVAVA A FILA.** Ele diz, três linhas abaixo, que a coleta das categorias vazias "continua sendo o que destrava o bloco **4c**" — e isso foi lido por quatro execuções como "o 4c espera `base` e `apoio`", que estão presas no egresso. **Medido agora:** o 4c espera a **16.5**, que são 3 filhas de nível 3 por categoria, e ela se fecha coletando **DENTRO de uma categoria que já tem tipos**, não nas vazias. A `apoio` nem tem nível 2 nesta árvore. O caminho mais barato é **`acabamento`, a 3 itens** — 1 impermeabilizante e 2 seladores —, alcançável por **busca**, que é como a própria `acabamento` saiu de zero em 25/09. O número inteiro, recorte por recorte, com a lista de compras das sete categorias e a classificação de SERP da 14.9, está em `dados/filhas-do-guia.md`, e o portão é `ferramentas/filhas-do-guia.py`. **`base` e `apoio` continuam presas no curinga do egresso e continuam NÃO sendo o caminho do 4c.**)* — eram quatro (`alicate`, `base`, `acabamento`, `apoio`) e **restam DUAS**: a `alicate` saiu de zero em 25/09/2026 às 16h43Z (6 itens) e a `acabamento` às 19h16Z do mesmo dia (7 itens). Continua sendo o que destrava o bloco **4c**, e nenhuma coleta de cola ou de rejunte a fecha. Está medido em `dados/cobertura.json` e explicado na seção 7b do `ARVORE.md`. O canal de busca alcança; o egresso direto aos domínios de fabricante, não. **`base` e `apoio` são as duas que sobram, e nenhuma das duas tem a linha do esquema que autoriza enchê-la sem decisão nova** — a `acabamento` também não tinha, e a decisão dela está em `regras_da_categoria_acabamento` do `dados/esquema-banco.json` (versão 4), que serve de molde para as outras duas.
    > **ESTADO EM 28/09/2026 às 10h16Z — A `base` JÁ TEM A DECISÃO DE CAMPO; O QUE FALTA NELA NÃO É DECISÃO, É FRASE DE FABRICANTE.** `regras_da_categoria_base` e `ponte_do_tipo_para_o_vocabulario_base` estão escritas no esquema (**versão 5**), com portão no `validar-banco.py` e `ferramentas/mutacoes-base.py` (20 de 20, 19 só os portões novos viram). **Nenhum SKU foi coletado**, e o motivo é o CANAL e não a rede: o egresso de fabricante continua em 000, e nesta execução a busca devolveu **resumo e tradução** das páginas de painel de MDF em vez da frase do fabricante — e `literal_do_fabricante` é a viga do esquema. Está escrito em `regras_da_categoria_base.o_que_falta_para_coletar_o_primeiro_SKU`.
    >

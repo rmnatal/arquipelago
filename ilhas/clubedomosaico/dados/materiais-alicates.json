@@ -149,14 +149,14 @@
       "fontes": {
         "pagina-produto-torques-mosaico-roldanas": {
           "url": "https://cortag.com/pt-br/produto/torques-para-mosaico-com-roldanas-de-metal-duro/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
         },
         "anuncio-shopee-61341": {
           "url": "https://shopee.com.br/search?keyword=torques%20para%20mosaico%20cortag",
-          "tipo": "anuncio de marketplace lido pela Open API da Shopee nesta execucao; sustenta SO o codigo do fabricante por corroboracao de canal, nunca campo tecnico",
+          "tipo": "anúncio de marketplace lido pela Open API da Shopee nesta execução; sustenta SO o código do fabricante por corroboração de canal, nunca campo técnico",
           "nivel": 6,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -251,7 +251,7 @@
       "fontes": {
         "pagina-produto-torques-azulejista-corte-reto": {
           "url": "https://cortag.com/pt-br/produto/torques-azulejista-corte-reto/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -321,7 +321,7 @@
       "fontes": {
         "pagina-produto-torques-azulejista-corte-curvo": {
           "url": "https://cortag.com/pt-br/produto/torques-azulejista-corte-curvo/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -336,7 +336,7 @@
       "tipo": "cortador_de_azulejo",
       "marca": "Vonder",
       "fabricante": "Vonder",
-      "nome_comercial": "Cortador de ceramicas e azulejos manual, 51 cm, VDEC 51",
+      "nome_comercial": "Cortador de cerâmicas e azulejos manual, 51 cm, VDEC 51",
       "codigo_fabricante": "68.51.050.000",
       "motivo_sem_codigo": null,
       "declaracoes": {
@@ -452,7 +452,7 @@
       "fontes": {
         "pagina-produto-vonder-vdec-51": {
           "url": "https://www.vonder.com.br/produto/cortador_de_cermicas_e_azulejos_manual_51_cm_vdec_51_vonder/6403",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -467,7 +467,7 @@
       "tipo": "cortador_de_azulejo",
       "marca": "Vonder",
       "fabricante": "Vonder",
-      "nome_comercial": "Cortador de ceramicas e azulejos manual, 75 cm, VDEC 75",
+      "nome_comercial": "Cortador de cerâmicas e azulejos manual, 75 cm, VDEC 75",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "A passada que devolveu 68.51.075.000 CARREGAVA o prefixo '68.51' na propria consulta — e a secao 8 proibe pedir ao buscador o valor que se quer confirmar. A passada limpa seguinte, escrita sem numero nenhum, nao devolveu referencia. O codigo fica null ate uma passada que nao o plante devolve-lo.",
       "declaracoes": {
@@ -584,7 +584,7 @@
       "fontes": {
         "pagina-produto-vonder-vdec-75": {
           "url": "https://www.vonder.com.br/produto/cortador_de_cermicas_e_azulejos_manual_75_cm_vdec_75_vonder/6430",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -599,7 +599,7 @@
       "tipo": "cortador_de_azulejo",
       "marca": "Vonder",
       "fabricante": "Vonder",
-      "nome_comercial": "Cortador de ceramicas e azulejos manual, 90 cm, VDEC 90",
+      "nome_comercial": "Cortador de cerâmicas e azulejos manual, 90 cm, VDEC 90",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "Mesmo motivo do VDEC 75: o unico canal que escreveu o numero foi uma consulta que ja o carregava.",
       "declaracoes": {
@@ -715,7 +715,7 @@
       "fontes": {
         "pagina-produto-vonder-vdec-90": {
           "url": "https://www.vonder.com.br/produto/cortador_de_cermicas_e_azulejos_manual_90_cm_vdec_90_vonder/8399",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true

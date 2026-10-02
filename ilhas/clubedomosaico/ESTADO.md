@@ -3,59 +3,75 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 17        # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
+urls_publicadas: 17        # SEGUE 17 em 02/10/2026 13h17Z: o bloco de hoje NAO criou URL.
+                           # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-02T11:58Z
-executando_desde: 2026-10-02T13:17Z
+ultima_execucao: 2026-10-02T13:17Z
+executando_desde: null
 ultima_ronda: 2026-09-30T14:53Z   # RONDA DIARIA TECNICA de 30/09/2026. 17 de 17 URLs em 200, porta de entrada da 29.2 inteira, /status na revisao 52 igual a do manifest, console limpo, zero orfa, zero &#038; em script, zero noindex indevido. F1 e F2 executadas com entrada real e os cinco numeros conferidos na mao. Teste de vida: 21 de 21 itens com url_produto VIVOS (17 Shopee pela API de ficha, 4 Mercado Livre no navegador), 0 morto, 0 esgotado, piso 38 de 38, 10 de 10 chaves de busca com resultado, zero intestavel. UM defeito novo, da 19.2, no DESPACHO DA SENTINELA de 30/09 no PROMPT.md: 12 dos 17 itens de degrau 4 sem motivo escrito. ZERO conserto. Os quatro consertos anteriores reconferidos no ar: os tres primeiros passaram e a etiqueta de robo agora passa nos CINCO alvos, fechando o item 2 do despacho de 28/09. O soft 404 na borda continua e foi medido tambem na robometria.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  A MARCA CEDEU O LUGAR AO NUMERO NAS TRES QUE O GOOGLE JA MOSTRA.
-  Manifest e /status na revisao 54, conferidos no ar. NENHUMA URL NOVA (segue em 17), nenhum
-  endereco mudou e NENHUMA LINHA DE CORPO mudou: o que trocou e a etiqueta onde o clique se
-  decide. conferir-no-ar 524 afirmacoes, 0 falha; bancada teste-casca 601, f1 210, f2 127,
-  tecnicas 137, loja e leads aprovados, 0 falha.
-  BLOCO: o BLOCO A do despacho do Raphael de 24/09, que esperava UMA coisa — a janela de
-  medicao de 30/09 fechar. Fechou. No mesmo movimento saiu o item 4 (metade) do despacho de
-  28/09, porque a description e a outra metade da mesma promessa de SERP. OS DESPACHOS DE
-  24/09 E DE 28/09 ESTAO FECHADOS INTEIROS.
-  O QUE ESTA NO AR: qual-cola "...e qual rejunte – 7 colas para 9 bases" (64), quantas-pastilhas
-  "...rejunte comprar – 12 pecas calculadas" (64), picassiete "...e como colar – 7 colas em 45
-  casos" (62). As quatro description entraram na faixa de 120 a 160: 183->143, 165->139,
-  192->150, 189->139.
-  O NOME DA PAGINA NAO FOI TOCADO EM NENHUMA DAS QUATRO. Quem cede o lugar e a MARCA, 16
-  caracteres de carimbo no fim de um titulo que esta na primeira pagina e nao e clicado — a
-  ilha tem ZERO clique organico medido, ninguem a procura pelo nome. O h1 servido continua
-  "Qual cola usar no mosaico, e qual rejunte", e a promessa aparece UMA vez no HTML inteiro:
-  dentro do <title>. Casca 1.19.0 monta o titulo uma vez; quem tem promessa DECLARA pelo
-  filtro cdm_promessa, o mesmo contrato de camadas da description (28/09) e do robo (25/09).
-  O TRENCADIS FICOU PARADO, e a ausencia dele na lista de promessas e a decisao: o despacho de
-  23/09 manda "deixe uma pagina parada para a proxima leitura ter com o que comparar". So a
-  description dele mudou, que era o que estava fora da faixa. O portao mede as DUAS direcoes.
-  NENHUM NUMERO E DIGITADO. Os tres da qual-cola saem de cdm_f2_cobertura(), a MESMA varredura
-  de base x lugar x caquinho que escreve "o que a gente ainda nao responde" na tela — contada
-  agora uma vez e lida por tres. Os da F1, da mesma conta da tabela das doze pecas; os do
-  picassiete, de cdm_tecnicas_contas().
-  TRES TRAVAS, DUAS SILENCIOSAS POR DESENHO: teto de 65 devolve a marca; numero ausente ou
-  ZERO recusa o molde inteiro; e a bancada reprova quem DECLARA promessa e serve titulo sem
-  digito. Bateria nova mutacoes-promessa-do-titulo.py: 19 mutacoes, 19 reprovadas.
-  O ACHADO DE BANCADA, e e o maior: a bancada servia um <title> FIXO ("Clube do Mosaico —
-  teste") em toda pagina, que nenhuma afirmacao media — e o bloco de hoje mexe exatamente
-  nessa etiqueta. Agora ela monta o titulo pelo caminho do WordPress, e ganhou o mundo
-  sem_banco=1, em que a trava 2 dispara NA PAGINA e nao so na funcao pura.
-  E A REGUA NOVA NASCEU REPROVANDO PAGINA CERTA: o teto de 65 reprovou QUATRO titulos de peca
-  da Loja (71 a 79). Nao e defeito — o formato e do despacho de 10/09 e a observacao de 28/09
-  decidiu que "a regua de 64 e da aquametria e nao do contrato". Consertada: portao nas paginas
-  cujo titulo a casca monta, e na peca o numero e MEDIDO E IMPRESSO, nunca reprovado.
-  O QUE NAO FECHOU, E E INFORMACAO: a LEITURA SEMANAL DE 30/09 NAO ACONTECEU (a tecnica rodou,
-  a estrategica nao; 01/10 sem execucao). A serie de posicoes.md tem UMA linha, a de 23/09. A
-  troca de hoje nao a prejudica: a janela 23->30/09 esta fechada e congelada no Search Console.
-  Foram para dados/despachos.md o acesso da conta sentinela@ (aberto desde 23/09, vivia so no
-  PROMPT.md) e o pedido de LER a janela 23->30/09, que e a ultima semana inteira com o titulo
-  antigo — a de 30/09->07/10 ja nasce misturada. O veredito segue de 08/10.
+  A PRIMEIRA CATEGORIA DO GUIA A ALCANCAR AS 3 FILHAS DA 16.5 — E O 4c DEIXOU DE ESTAR
+  FECHADO POR PORTAO DE DADO, depois de parado desde 12/09.
+  Manifest e /status na revisao 55, conferidos no ar. NENHUMA URL NOVA (segue em 17), nenhum
+  endereco mudou, nenhum <title> e nenhuma description foram tocados: a janela de comparacao
+  do BLOCO A continua limpa e o veredito segue de 08/10.
+  BLOCO: o proximo passo que o registro de 30/09 deixou escrito — coletar 1 impermeabilizante
+  e 2 seladores. Entraram TRES registros, e os tres pela Open API no mesmo movimento:
+  suvinil-seladora-para-madeira, coral-selador-acrilico e coral-resina-acrilica.
+  O NUMERO QUE MOVEU: acabamento/selador saiu de 1 para 3 itens e acabamento/impermeabilizante
+  de 2 para 3, os dois com lastro e com numero calculavel sobre o recorte inteiro —
+  tempo_de_secagem_h nos tres seladores (6, 2 e 5 h) e base_quimica nos tres impermeabilizantes
+  (duas resinas acrilicas e um silano-siloxano). Com o verniz, que ja passava, sao 3 de 3.
+  `filhas-do-guia.json` registra `acabamento` como a UNICA categoria que alcanca as 3.
+  Banco em 41 materiais, escada 1:1 · 2:5 · 3:18 · 4:17. Os tres CASARAM anuncio na primeira
+  tentativa e nasceram no degrau 3, com ficha, url_produto e foto medida — nenhum entrou no
+  degrau 4, entao o motivo do degrau 4 segue em 17 de 17.
+  DOIS ACHADOS DE DECLARACAO, e valem mais que a contagem. (1) O suvinil e o PRIMEIRO acabamento
+  deste banco a nomear `mdf_madeira` — a base mais comum da peca do atelie, que a categoria
+  selador nao cobria desde 25/09. (2) A Resina Acrilica da Coral e a PRIMEIRA frase de acabamento
+  a nomear uma TESSELA do vocabulario, `pedra`, e no mesmo paragrafo o fabricante EXCLUI
+  superficie horizontal — e tampo e centro de mesa sao duas colecoes de uso da Loja. Nenhuma
+  frase publicada pode indicar esse produto para peca horizontal, por declaracao do fabricante.
+  O QUE CONTINUA ABERTO NA CATEGORIA: vidro e rejunte. Das DEZ frases de fabricante, zero nomeiam
+  vidro e zero nomeiam rejunte — as duas superficies que a peca pronta expoe. A pendencia
+  `acabamento-nenhum-nomeia-vidro-nem-rejunte` fica, com uma tessela a menos de buraco.
+  A DECISAO DE ESQUEMA QUE A PASSADA DE 30/09 EXIGIU ANTES DA COLETA saiu primeiro, e por isso o
+  esquema esta na VERSAO 10: selador de alvenaria CABE em `regras_da_categoria_acabamento`,
+  porque a secao define selador pelo MOMENTO e nunca pelo substrato, e `alvenaria_tijolo` e
+  `cimento_concreto` sao dois dos nove valores de `vocabularios.base`. Criterio escrito antes do
+  dado, como a 1.2-b.4 manda.
+  QUATRO DEFEITOS ACHADOS DE PASSAGEM, TODOS NO MESMO COMMIT, e os quatro de alcance:
+  (1) `gerar-links-afiliado.py` tinha `HOJE = '2026-09-25'` cravado, e datava de 25/09 todo link
+  gerado depois disso — os tres de hoje nasceram datados de sete dias antes de existirem. Agora
+  sai do relogio. (2) `restaurar-acentos.py` varria DOIS dos cinco bancos: pastilhas, alicates e
+  acabamento nunca foram vistos, e a ferramenta fechava "0 trocas" nos arquivos que ela via. Com
+  os cinco, 47 trocas GRAVADAS, e entre elas texto que estava no ar — "Verniz Acrilico Brilhante",
+  "Cortador de ceramicas e azulejos", "Construcao Ltda.". (3) O `--provar` dessa mesma ferramenta
+  estava prometido no cabecalho desde 11/09 e NAO EXISTIA no codigo: `sys.argv` so lia --gravar.
+  Implementado, e conferido que ele REPROVA de verdade (mapa adulterado numa copia, 1 violacao
+  acusada). (4) `mutacoes-base.py` e `mutacoes-apoio.py` estavam VERMELHAS no main desde 30/09,
+  pela segunda vez em dois dias e pela mesma causa: o aperto do portao (versao 9, motivo_sem_ficha
+  obrigatorio) reprovava o MUNDO FABRICADO antes de qualquer mutacao, e as duas baterias que
+  medem as unicas categorias sem SKU ficaram sem ninguem as vendo. Medido vermelho no main limpo
+  antes de qualquer mudanca desta execucao. Consertadas DERIVANDO o campo do estado fabricado, nao
+  cravando — 20 de 20 e 24 de 24.
+  E O PORTAO CORRIGIU O DOCUMENTO, NAO A MAO: `filhas-do-guia.py --conferir` reprovou a tabela da
+  secao 2 do ARVORE.md dizendo "banco 7 e 1 de 3" contra a derivacao dizendo "10 e 3 de 3".
+  O QUE ESTE BLOCO NAO AUTORIZA, escrito para a proxima execucao nao ler passe livre: o portao de
+  DADO abriu, o de SERP e outro. A medicao da 14.9 de 30/09 diz que as filhas publicaveis desta
+  ilha hoje tem forma de PERGUNTA e nao de tipo — `verniz para peca de mosaico` esta ABERTA,
+  `pastilhas de vidro para mosaico` esta TOMADA — e `verniz` nao existe em corpus-buscas.md, sem
+  faixa de volume medida. Quem publicar o 4c cruza os dois, como a 14.9 manda.
+  BANCADA: validar-banco verde (41 materiais); conferir-no-ar 524 afirmacoes 0 falha antes do
+  bloco; teste-casca 601, f2 127, tecnicas 137, f1 24 estados, loja/atelie/leads/prestacao
+  aprovados; batismo 62, casamento 42, pastilhas verde; mutacoes acabamento 14, batismo 14,
+  degrau 8, motivo-degrau-4 10, pastilhas 14, arvore 29, base 20, apoio 24; filhas-do-guia
+  --autoteste 27 casos 0 falha e --conferir aprovado; cobertura regerada e --conferir OK.
+  O soft 404 na borda CONTINUA e segue com o Raphael desde 29/09 — vermelho esperado, com dono.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

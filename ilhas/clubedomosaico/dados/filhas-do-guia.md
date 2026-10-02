@@ -5,29 +5,28 @@ Nao edite este trecho a mao: `--conferir` regera e compara, e uma edicao manual 
 portao. O que se escreve a mao esta depois da fronteira, no fim do arquivo.
 
 Minimo da secao 9: **3** itens. Nivel maximo de fonte para recomendacao primaria, lido do
-esquema (versao 8): **3**.
+esquema (versao 10): **3**.
 
 ## O numero que manda
 
 | veredito | recortes |
 |---|---|
-| `passa` | 7 |
+| `passa` | 9 |
 | `passa_na_contagem_sem_lastro` | 3 |
-| `nao_passa` | 32 |
+| `nao_passa` | 30 |
 
-**Podem nascer hoje:** `acabamento`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `pastilha`, `pastilha/vidro`, `rejunte`.
+**Podem nascer hoje:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `pastilha`, `pastilha/vidro`, `rejunte`.
 
-**Nenhuma categoria do Guia alcanca as 3 filhas que a 16.5 exige** — nem somando todos os
-tipos que o vocabulario admite. A mae de nivel 2 continua fechada, e agora por um numero.
+**Categorias que alcancam as 3 filhas da 16.5:** `acabamento`.
 
 ## Recorte por recorte
 
 | recorte | itens | com lastro | numeros calculaveis | veredito |
 |---|---|---|---|---|
-| `acabamento` | 7 | 7 | `acabamento_visual` (3), `pelicula` (3) | `passa` |
+| `acabamento` | 10 | 10 | `acabamento_visual` (5), `demaos_minimas` (5), `pelicula` (4), e mais 5 | `passa` |
 | `acabamento/verniz` | 4 | 4 | `acabamento_visual` (3), `pelicula` (3) | `passa` |
-| `acabamento/impermeabilizante` | 2 | 2 | — | `nao_passa` |
-| `acabamento/selador` | 1 | 1 | — | `nao_passa` |
+| `acabamento/impermeabilizante` | 3 | 3 | `base_quimica` (3) | `passa` |
+| `acabamento/selador` | 3 | 3 | `tempo_de_secagem_h` (3) | `passa` |
 | `alicate` | 6 | 4 | `espessura_maxima_de_corte_mm` (4), `comprimento_maximo_de_corte_mm` (3), `diametro_do_rodel_mm` (3), e mais 1 | `passa` |
 | `alicate/torques` | 3 | 1 | — | `passa_na_contagem_sem_lastro` |
 | `alicate/cortador_de_azulejo` | 3 | 3 | `comprimento_maximo_de_corte_mm` (3), `diametro_do_rodel_mm` (3), `dimensoes_mm` (3), e mais 1 | `passa` |
@@ -69,8 +68,6 @@ tipos que o vocabulario admite. A mae de nivel 2 continua fechada, e agora por u
 
 ## O motivo, nos recortes que nao passam inteiros
 
-- **`acabamento/impermeabilizante`** — o banco tem 2 item(ns) ativo(s) neste recorte e a secao 9 exige 3
-- **`acabamento/selador`** — o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`alicate/torques`** — 1 dos 3 itens sustentam recomendacao primaria (fonte de nivel <= 3); a secao 9 exige 3
 - **`alicate/pinca_mosaico`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`alicate/martelinho`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3

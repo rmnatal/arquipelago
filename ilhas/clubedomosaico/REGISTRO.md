@@ -3,6 +3,171 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+02/10/2026 13h17Z — A PRIMEIRA CATEGORIA DO GUIA A ALCANÇAR AS 3 FILHAS DA 16.5, E QUATRO FERRAMENTAS QUE MEDIAM MENOS DO QUE PROMETIAM
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h17Z** e push aceito na primeira
+tentativa. Manifest e `/status` na **revisão 55**. **NENHUMA URL NOVA** — a ilha segue em 17 —, e
+**nenhum `<title>` e nenhuma `description` foram tocados**: a janela de comparação do BLOCO A
+continua limpa e o veredito dele segue de **08/10**.
+
+## A PORTA DE ENTRADA, ANTES DE QUALQUER BLOCO (seção 29.2)
+
+Rede pela **20.2**, antes de trabalhar: `clubedomosaico.com.br` em **200**; o `/status` da rota REST
+em **200** na revisão 54, igual à do manifest daquele momento. `conferir-no-ar.py`: **524 afirmações,
+0 falha** na origem. `leitura-do-visitante.py` segue **REPROVADO pelo soft 404 da borda** — 404 na 1ª
+leitura, 200 na 2ª com `x-proxy-cache HIT` e `max-age=7200` —, que é **vermelho esperado, com dono
+escrito** desde 29/09 e fora do alcance de qualquer snippet daqui. **Nenhum defeito novo.**
+
+## O BLOCO: O PRÓXIMO PASSO QUE O REGISTRO DE 30/09 DEIXOU ESCRITO, E ELE SAIU INTEIRO
+
+O registro de 30/09 às 13h17Z fechou nomeando o passo: *"coletar **1 impermeabilizante e 2
+seladores** fecha as **3 filhas de `acabamento`**, que é a categoria mais barata do Guia, e é o que
+abre a primeira mãe de nível 2 desta ilha — o **4c**, parado desde 12/09"*. Saiu, e saiu inteiro.
+
+**Entraram três registros**, por busca restrita ao domínio do fabricante, **duas passadas por SKU,
+escritas de forma diferente e nenhuma delas carregando um valor** — as consultas pediram os
+**rótulos** da ficha ("indicado para", "demãos", "rendimento", "secagem", "diluição", "composição",
+"não indicado para"), que é o método que a categoria usou em 25/09:
+
+| registro | tipo | o que a frase do fabricante nomeia |
+|---|---|---|
+| `suvinil-seladora-para-madeira` | selador | **`mdf_madeira`** — "superfícies internas não molháveis de madeira" |
+| `coral-selador-acrilico` | selador | `alvenaria_tijolo` — "as mais diversas superfícies de alvenaria" |
+| `coral-resina-acrilica` | impermeabilizante | `cimento_concreto`, `alvenaria_tijolo` e a tessela **`pedra`** |
+
+**O NÚMERO QUE MOVEU, e ele é o portão e não a contagem:** `acabamento/selador` saiu de **1 para 3**
+itens e `acabamento/impermeabilizante` de **2 para 3**, os dois **com lastro** (fonte de nível ≤ 3) e
+os dois **com número calculável sobre o recorte inteiro** — `tempo_de_secagem_h` nos três seladores
+(6 h, 2 h e 5 h) e `base_quimica` nos três impermeabilizantes (duas resinas acrílicas e um
+silano-siloxano). Com `acabamento/verniz`, que já passava, **são 3 filhas de 3**, e
+`dados/filhas-do-guia.json` registra `acabamento` como a **única categoria do Guia que alcança as 3
+da 16.5**. Recortes que podem nascer hoje: de 7 para **9**.
+
+**E os três NASCERAM NO DEGRAU 3, não no 4.** `coletar-shopee.py --ensaio` casou anúncio para os três
+na primeira tentativa, e `--gravar` deu `url`, `url_produto` e **foto medida** a cada um — o caminho
+normal de registro novo que o item 5 da fila já tinha deixado pronto, sem uma linha de código nova.
+Banco em **41 materiais**, escada **1:1 · 2:5 · 3:18 · 4:17**, e o `motivo_sem_ficha` do degrau 4
+segue em **17 de 17** porque nenhum dos três entrou lá.
+
+## A DECISÃO DE ESQUEMA SAIU ANTES DA COLETA, QUE É O QUE A 1.2-b.4 EXIGE
+
+A passada de 30/09 deixou a pergunta escrita como **pré-requisito**: *"quem coletar decide antes se
+selador de alvenaria cabe em `regras_da_categoria_acabamento`, que é decisão de esquema e não de
+coleta"*. **Decidido, e por escrito antes dos três registros entrarem — esquema na versão 10.** Cabe,
+e o motivo não é tolerância: a seção define selador pelo **MOMENTO** ("na base ANTES de colar"), nunca
+pelo substrato, e `alvenaria_tijolo` e `cimento_concreto` são **dois dos nove** valores de
+`vocabularios.base` desta ilha. Recusar selador de alvenaria deixaria essas duas bases sem preparo
+declarado **por decisão de esquema, não por falta de fonte**. O que não muda é
+`o_que_esta_categoria_NAO_pode_sustentar`, e a trava disso não é a decisão: é a lista
+`bases_do_vocabulario_que_a_frase_NAO_nomeia`, que cobre o vocabulário inteiro e não deixa o silêncio
+passar. **Critério escrito depois do dado é critério dobrado para caber no dado que veio.**
+
+## DOIS ACHADOS DE DECLARAÇÃO, E ELES VALEM MAIS QUE A CONTAGEM QUE FECHARAM
+
+- **O selador deixou de ser um item que não serve MDF.** A observação de 25/09 estava escrita no
+  dado: *"a categoria `selador` entra no banco com UM item, e ele não serve a base que a ilha mais
+  usa"*. O `suvinil-seladora-para-madeira` é o **primeiro acabamento deste banco a nomear
+  `mdf_madeira`** — a base mais comum da peça do ateliê. A faixa descoberta da categoria passou a ter
+  dono.
+- **A primeira frase de acabamento a nomear uma TESSELA, e ela vem com uma EXCLUSÃO.** A Resina
+  Acrílica da Coral nomeia **`pedra`** ("pedras naturais"), e nenhum dos sete anteriores nomeava
+  tessela nenhuma. No mesmo parágrafo o fabricante escreve que **não se recomenda o uso em superfícies
+  horizontais** — e **tampo de mesa e centro de mesa são duas das coleções de uso da Loja desta
+  ilha**. Nenhuma frase publicada pode indicar esse produto para peça horizontal, e o motivo é
+  declaração do fabricante, não cautela nossa. É o lado que esta ilha quase nunca consegue citar.
+
+**O QUE CONTINUA ABERTO, e agora está medido em dez em vez de sete:** das **dez** frases de
+fabricante desta categoria, **zero nomeiam `vidro`** e **zero nomeiam rejunte** — as duas superfícies
+que a peça de mosaico pronta expõe. A pendência `acabamento-nenhum-nomeia-vidro-nem-rejunte` fica
+aberta, com uma tessela a menos de buraco.
+
+## QUATRO DEFEITOS ACHADOS DE PASSAGEM, OS QUATRO DE ALCANCE, OS QUATRO NO MESMO COMMIT
+
+Nenhum deles foi procurado; os quatro apareceram porque o bloco de hoje passou por eles. E os quatro
+são da mesma família: **ferramenta que mede menos do que promete, e fecha verde.**
+
+1. **`gerar-links-afiliado.py` datava os links com uma constante de 25/09.** A linha era
+   `HOJE = '2026-09-25'`, digitada no dia em que a ferramenta nasceu, e é ela que vira
+   `url_busca_gerada_em`. **Os três links encurtados de hoje nasceram datados de sete dias antes de
+   existirem.** Não é cosmético: a 25.4-b manda reconferir palavra-chave que envelhece, e quem
+   reconfere escolhe **pela data**. A data agora sai do relógio, em UTC.
+2. **`restaurar-acentos.py` varria DOIS dos cinco bancos.** A tupla `ARQUIVOS` trazia só
+   `materiais-colas` e `materiais-rejuntes`, os dois que existiam quando ela nasceu; **pastilhas,
+   alicates e acabamento nunca foram varridos**, e nada acusava, porque ela sempre fechava "0 trocas"
+   nos arquivos que ela via. Com os cinco: **47 trocas GRAVADAS**, e entre elas texto que estava **no
+   ar** — `Verniz Acrilico Brilhante`, `Cortador de ceramicas e azulejos manual`,
+   `Saint-Gobain ... Construcao Ltda.`. É a mesma família da mutação inerte de 28/09: **régua que não
+   alcança aprova em silêncio.** Dez palavras entraram no mapa (as únicas, de 118 acusadas, cuja forma
+   acentuada é a única leitura possível) e as outras 108 foram para `_CONHECIDAS` uma a uma, porque
+   aviso que grita 118 palavras não é aviso.
+3. **O `--provar` dessa mesma ferramenta estava prometido no cabeçalho e NÃO EXISTIA no código.** O
+   cabeçalho diz desde 11/09 *"A OPERAÇÃO É PROVADAMENTE DIACRÍTICO-ONLY, e é o `--provar` que
+   garante"*, e `sys.argv` era lido **só** para `--gravar`: `--provar` passava direto, ignorado em
+   silêncio, imprimindo o mesmo relatório e dando a impressão de ter provado. **E é justamente essa
+   prova que torna a ampliação do item 2 segura**, porque o que ela impede é "restaurar acento" virar
+   reescrita de declaração de fabricante. Implementado — e **conferido que ele REPROVA de verdade**,
+   adulterando o mapa numa cópia em `/tmp` e vendo a única violação ser acusada pelo nome. Portão que
+   nunca reprovou nada não é portão.
+4. **`mutacoes-base.py` e `mutacoes-apoio.py` estavam VERMELHAS no `main`, pela segunda vez em dois
+   dias e pela mesma causa.** O comentário dentro delas conta a primeira: o aperto do degrau, em
+   29/09, reprovava o **mundo fabricado** antes de qualquer mutação. A leva de 30/09 que subiu o
+   esquema para a **versão 9** tornou `motivo_sem_ficha` obrigatório, com forma, para todo item no
+   degrau 4 sem ficha — e as duas voltaram a cair, **dois dias**, sem ninguém as vendo. O que elas
+   deixam sem medição não é pouco: **`base` e `apoio` são as duas únicas categorias sem SKU**, portanto
+   as únicas cujos portões não têm banco real que os exercite. **Medido vermelho no `main` limpo**
+   (`git stash`) antes de qualquer mudança desta execução, para não chamar de meu o que era de antes.
+   Consertadas **derivando** o campo do estado fabricado em vez de cravá-lo, que é o que impede a
+   terceira morte: **20 de 20** e **24 de 24**.
+
+## E O PORTÃO CORRIGIU O DOCUMENTO, NÃO A MÃO
+
+`filhas-do-guia.py --conferir` **reprovou** a tabela da seção 2 do `ARVORE.md`: ela dizia
+`7 itens | 1 de 3` para `/materiais/acabamento/` e a derivação dizia `10 | 3 de 3`. As duas direções
+foram medidas. O documento foi para 10 e 3 de 3, e a seção 7b-ter ganhou a atualização que diz, com
+todas as letras, que **o parágrafo "o 4c continua fechado" é de 25/09 e deixou de descrever o mundo**
+— e também que o selador já não é mais o item que não serve MDF. A régua fabricada da bancada
+(`tabela()`, escrita à mão de propósito, para não chamar a função que ela mede) foi atualizada no
+mesmo movimento, com a linha dizendo o preço disso: quem mudar o banco e vir aquele caso falhar não
+tem defeito para procurar, tem dois números para reescrever.
+
+## O QUE ESTE BLOCO NÃO FEZ, DE PROPÓSITO
+
+- **Não criou nenhuma URL, e o portão de dado abrir não autoriza criar.** A **14.9** exige o
+  cruzamento de intenção de compra com chance real de primeira página, e a medição de SERP de 30/09
+  (em `dados/filhas-do-guia.md`) diz que as filhas publicáveis desta ilha hoje têm forma de
+  **pergunta** e não de tipo: `verniz para peça de mosaico artesanal` está **ABERTA** e `pastilhas de
+  vidro para mosaico` está **TOMADA**. Além disso **`verniz` não existe em `dados/corpus-buscas.md`**
+  — sem faixa de volume medida. **Dois vereditos saem juntos ou nenhum dos dois serve.**
+- **Não tocou em `<title>` nem em `description`** de nenhuma das 17 URLs. O BLOCO A espera a leitura
+  da janela 23→30/09 por ordem escrita do Raphael, e a janela segue limpa.
+- **Não inventou nome comercial.** Os três têm a caixa do **título** da página de produto (nível 3), e
+  por `batismo_do_fabricante.origens_que_batizam` **só PDF batiza** — então os três ficam **fora do
+  escopo da trava, com o motivo escrito em `motivo_do_batismo_pela_pagina`** em vez de aprovados em
+  silêncio. `batismos conferidos` segue em 7.
+- **Não escreveu `fabricante` de cabeça.** O da Suvinil ficou **null com motivo**: a marca trocou de
+  dono e as duas passadas devolveram marca, não razão social. O da Coral é **AkzoNobel**, lido no
+  próprio domínio do fabricante (`coral.com.br/content/dam/akzonobel-flourish/coral/`), com a razão
+  social da entidade brasileira registrada como não obtida.
+- **Não converteu rendimento em consumo** em nenhum dos três. Os fabricantes declaram m²/L e o campo
+  pede mL/m²; converter é aritmética desta ilha, e o esquema proíbe a conversão nesse campo com essas
+  palavras. Ficaram null **com motivo**, que é pergunta feita e respondida.
+- **Não mexeu no egresso.** Reteste da **20.2** nesta execução: `loja.suvinil.com.br`,
+  `suvinil.com.br`, `coral.com.br`, `vedacit.com.br`, `sayerlack.com.br` e `montanaquimica.com.br`
+  em **000** por `curl` e **EGRESS_BLOCKED** por fetch; `www.quartzolit.weber` em **403**. Todo campo
+  dos três carrega `conferir_no_pdf: true`, como os sete de 25/09.
+
+## BANCADA DESTA EXECUÇÃO
+
+`validar-banco.py` verde: **41 materiais**, escada **1:1 · 2:5 · 3:18 · 4:17** (soma 41), degrau 4
+com motivo **17 de 17**, itens sem saída de compra **0**, piso não rastreável **0**, casamentos
+reconferidos **14**. `filhas-do-guia.py --autoteste` **27 casos fabricados, 0 falha** e `--conferir`
+**aprovado**, nas duas direções. `cobertura.py` regerado e `--conferir` **OK**, com `mutacoes-cobertura` verde. `mutacoes-promessa-do-titulo` **19 de 19**. Mutações:
+acabamento **14**, batismo **14**, casamento **17** (12 na regra + 5 no banco), degrau **8**, motivo-degrau-4 **10**, pastilhas
+**14**, árvore **29 de 29**, **base 20 de 20** e **apoio 24 de 24** (as duas que estavam vermelhas).
+`teste-batismo` **62**, `teste-casamento` **42**, `validar-pastilhas` verde. PHP: casca **601**, F2
+**127**, técnicas **137**, F1 24 estados com processo próprio, Loja, Ateliê, Leads e Prestação
+**aprovados** — **zero falha**. `restaurar-acentos --provar` **aprovada**, 47 trocas diacrítico-only.
+
 02/10/2026 11:5xZ — A MARCA CEDEU O LUGAR AO NÚMERO NAS TRÊS QUE O GOOGLE JÁ MOSTRA
 
 Manifest e `/status` na **revisão 54**, conferidos no ar. **Nenhuma URL nova** (a ilha segue

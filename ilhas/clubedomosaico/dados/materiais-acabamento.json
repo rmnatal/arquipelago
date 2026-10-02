@@ -25,7 +25,7 @@
       "tipo": "verniz",
       "marca": "Acrilex",
       "fabricante": "Acrilex Tintas Especiais S.A.",
-      "nome_comercial": "Verniz Acrilico Brilhante",
+      "nome_comercial": "Verniz Acrílico Brilhante",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "A pagina de produto identifica o produto pelo nome e pelo acabamento; nenhuma das duas passadas devolveu codigo de catalogo. O codigo de embalagem so aparece em anuncio de varejo, que e nivel 5/6 e sustenta preco, nao identidade tecnica.",
       "declaracoes": {
@@ -140,7 +140,7 @@
       "fontes": {
         "pagina-produto-verniz-acrilico-brilhante": {
           "url": "https://acrilex.com.br/en/produto/gloss-acrylic-varnish/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (000 em acrilex.com.br em tres passadas nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -167,7 +167,7 @@
       "tipo": "verniz",
       "marca": "Acrilex",
       "fabricante": "Acrilex Tintas Especiais S.A.",
-      "nome_comercial": "Verniz Acrilico Fosco",
+      "nome_comercial": "Verniz Acrílico Fosco",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "Mesmo motivo do brilhante: a pagina identifica pelo nome e pelo acabamento, e nenhuma das duas passadas devolveu codigo de catalogo.",
       "declaracoes": {
@@ -282,7 +282,7 @@
       "fontes": {
         "pagina-produto-verniz-acrilico-fosco": {
           "url": "https://acrilex.com.br/produto/manualidades/auxiliares/verniz-acrilico-fosco/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (000 em acrilex.com.br em tres passadas nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -424,7 +424,7 @@
       "fontes": {
         "pagina-produto-acrilfix-brilhante": {
           "url": "https://acrilex.com.br/en/produto/gloss-acrilfix-varnish/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina NAO aberta (000 em acrilex.com.br em tres passadas nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -450,7 +450,7 @@
       "categoria": "acabamento",
       "tipo": "verniz",
       "marca": "Quartzolit",
-      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
+      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construção Ltda.",
       "nome_comercial": "Verniz Protetor para Pisos Quartzolit",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "O boletim tecnico se identifica pelo titulo e pela pasta de data do arquivo (2024-05), sem codigo impresso do tipo BRSA004 — a mesma situacao do rejunte ceramicas.",
@@ -591,14 +591,14 @@
       "fontes": {
         "bt-verniz-protetor-pisos-2024-05": {
           "url": "https://www.quartzolit.weber/files/br/2024-05/Boletim_Tcnico_-_Verniz_Protetor_para_Pisos_Quartzolit.pdf",
-          "tipo": "boletim tecnico do fabricante (arquivo 2024-05), lido por busca no dominio dele; PDF nao aberto",
+          "tipo": "boletim técnico do fabricante (arquivo 2024-05), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
         },
         "pagina-produto-verniz-protetor-pisos": {
           "url": "https://www.quartzolit.weber/pisos/revestimentos-de-alto-desempenho/verniz-protetor-para-pisos-quartzolit",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -624,7 +624,7 @@
       "categoria": "acabamento",
       "tipo": "impermeabilizante",
       "marca": "Quartzolit",
-      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
+      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construção Ltda.",
       "nome_comercial": "Borracha Líquida Elástica Quartzolit",
       "codigo_fabricante": "REV110624",
       "motivo_sem_codigo": null,
@@ -736,14 +736,14 @@
       "fontes": {
         "bt-borracha-liquida-elastica-2024-07": {
           "url": "https://www.quartzolit.weber/files/br/2024-07/BT_Borracha%20L%C3%ADquida%20El%C3%A1stica%20Quartzolit_REV110624.pdf",
-          "tipo": "boletim tecnico do fabricante (arquivo 2024-07, revisao REV110624), lido por busca no dominio dele; PDF nao aberto",
+          "tipo": "boletim técnico do fabricante (arquivo 2024-07, revisão REV110624), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
         },
         "pagina-produto-borracha-liquida-elastica": {
           "url": "https://www.quartzolit.weber/impermeabilizantes-quartzolit/impermeabilizantes-para-paredes-externas-e-fachadas/impermeabilizante-borracha-liquida-elastica-quartzolit",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -771,7 +771,7 @@
       "categoria": "acabamento",
       "tipo": "impermeabilizante",
       "marca": "Quartzolit",
-      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
+      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construção Ltda.",
       "nome_comercial": "protetor para fachadas",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "A pagina de produto identifica pelo nome; nenhuma das duas passadas devolveu codigo nem revisao de boletim.",
@@ -864,7 +864,7 @@
       "fontes": {
         "pagina-produto-protetor-para-fachadas": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-e-revestimentos-decorativos/protetor-para-fachadas",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em duas passadas; pagina NAO aberta (000 em www.quartzolit.weber em tres passadas nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (000 em www.quartzolit.weber em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -885,7 +885,7 @@
       "categoria": "acabamento",
       "tipo": "selador",
       "marca": "Quartzolit",
-      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.",
+      "fabricante": "Saint-Gobain do Brasil Produtos Industriais e para Construção Ltda.",
       "nome_comercial": "fundo selador quartzolit",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "A pagina de produto identifica pelo nome; as duas passadas nao devolveram codigo nem revisao de boletim proprio deste produto.",
@@ -978,7 +978,7 @@
       "fontes": {
         "pagina-produto-fundo-selador": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-e-revestimentos-decorativos/fundo-selador-quartzolit",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em duas passadas; pagina NAO aberta (000 em www.quartzolit.weber em tres passadas nesta execucao)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (000 em www.quartzolit.weber em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true
@@ -999,6 +999,494 @@
       ],
       "observacao": "Unico selador do banco, e entra sabendo que nao cobre MDF. A alternativa era deixar o tipo `selador` em zero e parecer que faltava procurar; com ele dentro, o que falta esta medido e tem nome.",
       "motivo_do_batismo_em_minusculas": "O nome esta certo e a CAIXA nao foi conferida: a unica fonte deste registro e a pagina de produto (nivel 3) e o batismo chega pelo SLUG do endereco, que soletra as palavras e perde a tipografia. Capitalizar daqui seria palpite sobre como o fabricante escreve, e palpite com cara de declaracao do fabricante e o que a secao 26 existe para impedir. Fecha no dia em que o egresso a quartzolit.weber abrir, ou quando este produto ganhar boletim tecnico citado. Escrito em 29/09/2026, no bloco da trava `batismo_do_fabricante`."
+    },
+    {
+      "id": "suvinil-seladora-para-madeira",
+      "categoria": "acabamento",
+      "tipo": "selador",
+      "marca": "Suvinil",
+      "fabricante": null,
+      "motivo_sem_fabricante": "As duas passadas devolveram a MARCA e nao a razao social, e a marca Suvinil trocou de dono em 2025 — escrever a entidade de cabeca seria afirmar pelo fabricante sobre quem ELE e, que e a secao 8 aplicada ao proprio campo de identidade. Fecha no dia em que o egresso a suvinil.com.br abrir ou um boletim tecnico deste produto for citado.",
+      "nome_comercial": "Seladora para Madeira",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "A pagina de produto identifica pelo nome; as duas passadas nao devolveram codigo nem revisao de boletim proprio deste produto.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
+      "protecao": {
+        "literal_do_fabricante": "seladora indicada para superficies internas nao molhaveis de madeira; ideal para quem deseja preservar o desenho natural da madeira ao aplicar verniz ou cera; a diluicao deve ser feita com thinner para laca nitrocelulose em ate 30%; secagem ao toque 20 minutos e secagem final 2 horas; rende ate 10 m2 acabado com 2 a 3 demaos",
+        "fonte_id": "pagina-produto-seladora-para-madeira",
+        "momento_de_uso": "nao_declarado",
+        "motivo_do_momento": "O FABRICANTE declara o momento em relacao ao VERNIZ e a CERA — \"ao aplicar verniz ou cera\" —, e nesta ilha o verniz e o produto que vai na peca DEPOIS de rejuntada: a propria frase, lida ao pe da letra, poria este selador depois do rejunte, que e o oposto do que a categoria entende por selador. A frase nao localiza o produto na linha do tempo DESTA ilha, e preenche-la com `antes_de_colar` seria deduzir pelo mecanismo. NOTA sobre o irmao de banco: `quartzolit-fundo-selador` ficou com `antes_de_colar` porque a frase dele datava a espera \"para aplicacao da textura acrilica\", que e camada de revestimento e nao de acabamento. A diferenca entre os dois e qual camada o fabricante nomeia, e esta escrita para a proxima passada nao achar que uma das duas esta errada.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [
+          "mdf_madeira"
+        ],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "cimento_concreto",
+          "alvenaria_tijolo",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho",
+          "pedra"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "A LINHA QUE FAZ ESTE REGISTRO VALER, e ela e o inverso exato da do `quartzolit-fundo-selador`: este nomeia MDF e madeira, a base mais comum da peca do atelie, e e o PRIMEIRO acabamento deste banco a nomear `mdf_madeira`. A faixa descoberta que a categoria `selador` carregava desde 25/09 — um unico item, que nao cobria a base que a ilha mais usa — deixa de ser faixa descoberta e passa a ter dono. O que ele NAO cobre e o resto: oito dos nove valores de base e os seis de tessela, inclusive `vidro`, e continua calado sobre rejunte."
+      },
+      "propriedades": {
+        "tempo_de_secagem_h": {
+          "valor": 2,
+          "unidade": "h",
+          "fonte_id": "pagina-produto-seladora-para-madeira",
+          "declarado_como": "secagem final 2 horas"
+        },
+        "demaos_minimas": {
+          "valor": 2,
+          "unidade": "demao",
+          "fonte_id": "pagina-produto-seladora-para-madeira",
+          "declarado_como": "rende ate 10 m2 acabado com 2 a 3 demaos"
+        },
+        "diluicao": {
+          "valor": "thinner para laca nitrocelulose em ate 30%",
+          "unidade": null,
+          "fonte_id": "pagina-produto-seladora-para-madeira",
+          "declarado_como": "a diluicao deve ser feita com thinner para laca nitrocelulose em ate 30%"
+        },
+        "base_quimica": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarada. O DILUENTE nomeia a familia — thinner para laca nitrocelulose —, e diluente nao e base quimica do produto: ler um pelo outro poria `nitrocelulose` neste campo com cara de declaracao do fabricante. O campo fica null e a frase do diluente fica onde ela e verdadeira, em `diluicao`."
+        },
+        "rendimento_m2": {
+          "valor": null,
+          "unidade": "m2",
+          "motivo": "As duas passadas devolveram rendimento POR DEMAO e por embalagem com numeros que nao fecham entre si (ate 40 e ate 85 m2 por demao no galao de 3,6 L; ate 10 e ate 20 m2 por demao na de 0,9 L), condicionados a \"superficie e absorcao da madeira\". Faixa condicionada nao e numero de embalagem, e escolher uma das pontas seria escolher o dado que cabe."
+        },
+        "consumo_ml_m2": {
+          "valor": null,
+          "unidade": "mL/m2",
+          "motivo": "Nao declarado. Converter m2/L em mL/m2 e aritmetica DESTA ilha, nao declaracao do fabricante — e o esquema diz, com estas palavras, que rendimento por embalagem nao se converte aqui."
+        },
+        "acabamento_visual": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado. E produto de preparo de base; o acabamento visual quem da e o verniz ou a cera que vem depois dele."
+        },
+        "pelicula": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarada. A frase fala de preservar o desenho da madeira, nao do que o produto deixa sobre ela."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "https://s.shopee.com.br/4LJpWzeNWK",
+        "url_produto": "https://shopee.com.br/product/436242341/58252099178",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": "2026-10-02",
+        "url_busca": "https://s.shopee.com.br/1gJ4M2GXqZ",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=seladora%20para%20madeira%20suvinil",
+        "degrau": 3,
+        "url_busca_gerada_em": "2026-10-02",
+        "motivo_da_chave": "marca + nome comercial",
+        "conferido_em": "2026-10-02",
+        "casamento": {
+          "casado_em": "2026-10-02",
+          "regra": "ferramentas/casar-anuncio.py (cinco travas mais unicidade)",
+          "degrau_da_palavra_chave": 2,
+          "palavra_chave": "Suvinil Seladora para Madeira",
+          "titulo_do_anuncio": "SUVINIL SELADORA PARA MADEIRA 900ML",
+          "loja": "Baratão das Tintas",
+          "item_id": 58252099178,
+          "shop_id": 436242341,
+          "por_que_este_degrau_da_25_1": "a loja \"Baratão das Tintas\" e vendedor comum (25.1, degrau 3)",
+          "prova_de_vida": "a API devolveu este anuncio em 2026-10-02. Nao foi clicado: o salto do encurtador e onde a Shopee conta o clique e autoclique com a etiqueta da ilha apaga o primeiro clique organico (25.8)."
+        }
+      },
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-81ztv-midcwrsla41vd7",
+        "largura": 1000,
+        "altura": 1000,
+        "fonte": "Open API de Afiliados da Shopee (25.6), anuncio casado",
+        "coletado_em": "2026-10-02",
+        "alt": "Seladora para Madeira"
+      },
+      "fontes": {
+        "pagina-produto-seladora-para-madeira": {
+          "url": "https://loja.suvinil.com.br/produto/suvinil-seladora-para-madeira",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (loja.suvinil.com.br e suvinil.com.br em 000 por curl e EGRESS_BLOCKED por fetch nesta execução)",
+          "nivel": 3,
+          "coletado_em": "2026-10-02",
+          "conferir_no_pdf": true
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "Segundo selador do banco, e entra por um motivo que o primeiro nao podia dar: ele nomeia MDF e madeira. Com ele e com o `coral-selador-acrilico` o tipo `selador` sai de 1 para 3 itens e passa o portao da secao 9, que era a filha que faltava para `acabamento` alcancar as 3 da 16.5.",
+      "motivo_do_batismo_pela_pagina": "A caixa de `Seladora para Madeira` vem do TITULO da pagina de produto (nivel 3), nao de nome de arquivo de boletim: por `batismo_do_fabricante.origens_que_batizam` so PDF batiza, e por isso este registro fica FORA do escopo da trava, com o motivo escrito em vez de aprovado em silencio. Diferente do `quartzolit-fundo-selador`, que ficou em minusculas porque la o nome chegou pelo SLUG e slug perde tipografia; aqui o titulo traz a tipografia do fabricante. Fecha no dia em que o egresso abrir ou um boletim deste produto for citado."
+    },
+    {
+      "id": "coral-selador-acrilico",
+      "categoria": "acabamento",
+      "tipo": "selador",
+      "marca": "Coral",
+      "fabricante": "AkzoNobel",
+      "motivo_do_fabricante": "Lido no PROPRIO dominio do fabricante: coral.com.br serve material da marca sob /content/dam/akzonobel-flourish/coral/, que e a AkzoNobel se declarando dona da marca Coral no site dela. A razao social da entidade brasileira nao apareceu nas duas passadas e nao foi escrita de cabeca.",
+      "nome_comercial": "Selador Acrílico",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "A pagina de produto identifica pelo nome; as duas passadas nao devolveram codigo nem revisao de boletim proprio deste produto.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
+      "protecao": {
+        "literal_do_fabricante": "indicado para paredes novas, impermeabiliza e uniformiza as mais diversas superficies de alvenaria pelo seu poder de selagem e otima aderencia; fundo de cor branco fosco, diluivel em agua e de rapida secagem; tem grande poder de enchimento e cobertura e pode ser aplicado em ambientes internos e externos; secagem ao toque 30 minutos, entre demaos 4 horas e final 5 horas; 1 demao; rendimento aproximado de 5 m2 por litro",
+        "fonte_id": "pagina-produto-selador-acrilico",
+        "momento_de_uso": "antes_de_colar",
+        "trecho_que_declara_o_momento": "indicado para paredes novas",
+        "motivo_do_momento": "O fabricante datas o produto na superficie NOVA e ainda nao revestida — \"paredes novas\" —, que e a base antes de receber qualquer camada. E o mesmo tipo de declaracao do `quartzolit-fundo-selador`, que data a espera antes da textura: os dois dizem o que vem DEPOIS deles, e nos dois o que vem depois e revestimento, nao acabamento.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [
+          "alvenaria_tijolo"
+        ],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "mdf_madeira",
+          "cimento_concreto",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho",
+          "pedra"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "A frase nomeia alvenaria e NAO nomeia MDF — e esse silencio foi MEDIDO antes de coletar, na passada de 30/09, e e ele que fez a coleta de hoje ir buscar um selador de madeira em vez de um segundo selador de parede. Ele entra pelo que cobre, nao pelo que falta: `alvenaria_tijolo` e `cimento_concreto` sao dois dos nove valores de `vocabularios.base` desta ilha, e peca de mosaico em parede e muro e a leitura inteira da F2 nesses dois valores."
+      },
+      "propriedades": {
+        "tempo_de_secagem_h": {
+          "valor": 5,
+          "unidade": "h",
+          "fonte_id": "pagina-produto-selador-acrilico",
+          "declarado_como": "secagem final 5 horas"
+        },
+        "intervalo_entre_demaos_min": {
+          "valor": 240,
+          "unidade": "min",
+          "fonte_id": "pagina-produto-selador-acrilico",
+          "declarado_como": "entre demaos 4 horas"
+        },
+        "demaos_minimas": {
+          "valor": 1,
+          "unidade": "demao",
+          "fonte_id": "pagina-produto-selador-acrilico",
+          "declarado_como": "1 demao"
+        },
+        "acabamento_visual": {
+          "valor": "fosco",
+          "unidade": null,
+          "fonte_id": "pagina-produto-selador-acrilico",
+          "declarado_como": "fundo de cor branco fosco"
+        },
+        "pigmentado": {
+          "valor": "sim",
+          "unidade": null,
+          "fonte_id": "pagina-produto-selador-acrilico",
+          "declarado_como": "fundo de cor branco fosco"
+        },
+        "diluicao": {
+          "valor": "diluivel em agua",
+          "unidade": null,
+          "fonte_id": "pagina-produto-selador-acrilico",
+          "declarado_como": "diluivel em agua"
+        },
+        "base_quimica": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarada nas duas passadas. A palavra `acrilico` esta no NOME do produto, e nome nao e declaracao de composicao: a segunda passada pediu composicao com essas letras e a resposta foi que a informacao esta na FISPQ, que o egresso desta nuvem nao abre."
+        },
+        "rendimento_m2": {
+          "valor": null,
+          "unidade": "m2",
+          "motivo": "O fabricante declara rendimento POR LITRO (aproximadamente 5 m2/L) e um exemplo de lata de 18 L que pinta ate 100 m2 por demao; o campo pede rendimento por embalagem e as duas formas nao fecham sem conta minha."
+        },
+        "consumo_ml_m2": {
+          "valor": null,
+          "unidade": "mL/m2",
+          "motivo": "Nao declarado. Converter 5 m2/L em mL/m2 e aritmetica desta ilha, e o esquema proibe a conversao neste campo."
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "https://s.shopee.com.br/5q8dJkqCLc",
+        "url_produto": "https://shopee.com.br/product/1160317881/22892786559",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": "2026-10-02",
+        "url_busca": "https://s.shopee.com.br/2BFKwxER3l",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=selador%20acrilico%20coral",
+        "degrau": 3,
+        "url_busca_gerada_em": "2026-10-02",
+        "motivo_da_chave": "marca + nome comercial",
+        "conferido_em": "2026-10-02",
+        "casamento": {
+          "casado_em": "2026-10-02",
+          "regra": "ferramentas/casar-anuncio.py (cinco travas mais unicidade)",
+          "degrau_da_palavra_chave": 2,
+          "palavra_chave": "Coral Selador Acrilico",
+          "titulo_do_anuncio": "Selador Acrílico 3.6 litros - Coral",
+          "loja": "Bernal Materiais",
+          "item_id": 22892786559,
+          "shop_id": 1160317881,
+          "por_que_este_degrau_da_25_1": "a loja \"Bernal Materiais\" e vendedor comum (25.1, degrau 3)",
+          "prova_de_vida": "a API devolveu este anuncio em 2026-10-02. Nao foi clicado: o salto do encurtador e onde a Shopee conta o clique e autoclique com a etiqueta da ilha apaga o primeiro clique organico (25.8)."
+        }
+      },
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-m3uprd5q5hdhed",
+        "largura": 1024,
+        "altura": 1024,
+        "fonte": "Open API de Afiliados da Shopee (25.6), anuncio casado",
+        "coletado_em": "2026-10-02",
+        "alt": "Selador Acrilico"
+      },
+      "fontes": {
+        "pagina-produto-selador-acrilico": {
+          "url": "https://www.coral.com.br/pt/produtos/selador-acrilico",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (www.coral.com.br em 000 nesta execução)",
+          "nivel": 3,
+          "coletado_em": "2026-10-02",
+          "conferir_no_pdf": true
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "Terceiro selador, e o que fecha a contagem de 3 do tipo. Entra com cinco propriedades declaradas, que e mais do que qualquer outro acabamento deste banco tinha, e com a mesma lacuna dos outros: nao nomeia vidro, nao nomeia tessela nenhuma e nao nomeia rejunte.",
+      "motivo_do_batismo_pela_pagina": "A caixa de `Selador Acrilico` vem do TITULO da pagina de produto (nivel 3), nao de nome de arquivo de boletim: por `batismo_do_fabricante.origens_que_batizam` so PDF batiza, e este registro fica FORA do escopo da trava, com o motivo escrito."
+    },
+    {
+      "id": "coral-resina-acrilica",
+      "categoria": "acabamento",
+      "tipo": "impermeabilizante",
+      "marca": "Coral",
+      "fabricante": "AkzoNobel",
+      "motivo_do_fabricante": "Lido no PROPRIO dominio do fabricante: coral.com.br serve material da marca sob /content/dam/akzonobel-flourish/coral/. A razao social da entidade brasileira nao apareceu nas duas passadas e nao foi escrita de cabeca.",
+      "nome_comercial": "Resina Acrílica",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "A pagina de produto identifica pelo nome; as duas passadas nao devolveram codigo nem revisao de boletim proprio deste produto.",
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Ver `regras_da_categoria_acabamento` do esquema-banco.",
+      "protecao": {
+        "literal_do_fabricante": "a resina acrilica deixa telhas, tijolos e pedras da sua casa muito mais bonitos; sua formula age como impermeabilizante, protegendo e realcando a tonalidade natural das superficies atraves da formacao de uma pelicula brilhante e transparente; e indicada para uso interno e externo em telhas, tijolos e pedras, e oferece grande aderencia em diferentes superficies, protegendo telhas, tijolos, pedras naturais, concreto aparente e fibrocimento; nao se recomenda o uso em superficies horizontais e/ou em madeiras; acabamento brilhante, rendimento aproximado de 9 m2 por litro, secagem ao toque 30 minutos, entre demaos 4 horas e final 12 horas, 3 demaos",
+        "fonte_id": "pagina-produto-resina-acrilica",
+        "momento_de_uso": "depois_de_rejuntar",
+        "trecho_que_declara_o_momento": "protegendo e realcando a tonalidade natural das superficies atraves da formacao de uma pelicula brilhante e transparente",
+        "motivo_do_momento": "O fabricante o data sobre a superficie ACABADA e a vista — telha, tijolo e pedra que ficam expostos — e o que ele faz e formar pelicula POR CIMA, realcando a tonalidade do que ja esta la. Nao e preparo de base: nada vai colado em cima dele na frase do fabricante.",
+        "bases_do_vocabulario_que_a_frase_nomeia": [
+          "cimento_concreto",
+          "alvenaria_tijolo"
+        ],
+        "bases_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "ceramica_esmaltada_porcelana",
+          "vidro",
+          "vidro_laminado",
+          "espelho",
+          "mdf_madeira",
+          "metal",
+          "plastico"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_nomeia": [
+          "pedra"
+        ],
+        "tesselas_do_vocabulario_que_a_frase_NAO_nomeia": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "caco_espelho"
+        ],
+        "nomeia_rejunte": false,
+        "observacao": "O ACHADO DESTE REGISTRO, e ele vale mais que a contagem que ele fecha: e o PRIMEIRO acabamento deste banco cuja frase nomeia uma TESSELA do vocabulario desta ilha — `pedra`, em \"pedras naturais\". Os sete primeiros nao nomeavam nenhuma, e a pendencia `acabamento-nenhum-nomeia-vidro-nem-rejunte` foi escrita em 25/09 contando base e tessela juntas; ela continua ABERTA para vidro e para rejunte, que e o que a peca de mosaico de verdade expoe, e passa a ter UMA tessela coberta. E o segundo achado e uma EXCLUSAO, que e o lado que esta ilha quase nunca consegue citar: o fabricante escreve que nao se recomenda o uso em superficies HORIZONTAIS — e tampo de mesa e centro de mesa sao duas das colecoes de uso da Loja desta ilha. Nenhuma frase publicada pode indicar este produto para peca horizontal, e o motivo e declaracao do fabricante, nao cautela nossa."
+      },
+      "propriedades": {
+        "base_quimica": {
+          "valor": "resina acrilica",
+          "unidade": null,
+          "fonte_id": "pagina-produto-resina-acrilica",
+          "declarado_como": "a resina acrilica deixa telhas, tijolos e pedras da sua casa muito mais bonitos"
+        },
+        "acabamento_visual": {
+          "valor": "brilhante",
+          "unidade": null,
+          "fonte_id": "pagina-produto-resina-acrilica",
+          "declarado_como": "formacao de uma pelicula brilhante e transparente"
+        },
+        "pelicula": {
+          "valor": "brilhante e transparente",
+          "unidade": null,
+          "fonte_id": "pagina-produto-resina-acrilica",
+          "declarado_como": "formacao de uma pelicula brilhante e transparente"
+        },
+        "demaos_minimas": {
+          "valor": 3,
+          "unidade": "demao",
+          "fonte_id": "pagina-produto-resina-acrilica",
+          "declarado_como": "3 demaos"
+        },
+        "intervalo_entre_demaos_min": {
+          "valor": 240,
+          "unidade": "min",
+          "fonte_id": "pagina-produto-resina-acrilica",
+          "declarado_como": "entre demaos 4 horas"
+        },
+        "tempo_de_secagem_h": {
+          "valor": 12,
+          "unidade": "h",
+          "fonte_id": "pagina-produto-resina-acrilica",
+          "declarado_como": "secagem final 12 horas"
+        },
+        "rendimento_m2": {
+          "valor": null,
+          "unidade": "m2",
+          "motivo": "O fabricante declara rendimento POR LITRO (aproximadamente 9 m2/L); o campo pede por embalagem e a conversao exigiria o volume da lata, que a frase nao traz."
+        },
+        "consumo_ml_m2": {
+          "valor": null,
+          "unidade": "mL/m2",
+          "motivo": "Nao declarado. Converter 9 m2/L em mL/m2 e aritmetica desta ilha, e o esquema proibe a conversao neste campo."
+        },
+        "pigmentado": {
+          "valor": "nao",
+          "unidade": null,
+          "fonte_id": "pagina-produto-resina-acrilica",
+          "declarado_como": "pelicula brilhante e transparente"
+        },
+        "contato_com_alimento": {
+          "valor": null,
+          "unidade": null,
+          "motivo": "Nao declarado."
+        }
+      },
+      "venda": [],
+      "afiliado": {
+        "programa": "shopee",
+        "url": "https://s.shopee.com.br/8KpyILy8sX",
+        "url_produto": "https://shopee.com.br/product/1160317881/22999027033",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "GUIA",
+        "etiqueta_ml": null,
+        "gerado_em": "2026-10-02",
+        "url_busca": "https://s.shopee.com.br/3VkiXPDtbm",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=resina%20acrilica%20coral",
+        "degrau": 3,
+        "url_busca_gerada_em": "2026-10-02",
+        "motivo_da_chave": "marca + nome comercial",
+        "conferido_em": "2026-10-02",
+        "casamento": {
+          "casado_em": "2026-10-02",
+          "regra": "ferramentas/casar-anuncio.py (cinco travas mais unicidade)",
+          "degrau_da_palavra_chave": 2,
+          "palavra_chave": "Coral Resina Acrilica",
+          "titulo_do_anuncio": "Resina Acrílica Incolor 5 litros - Coral",
+          "loja": "Bernal Materiais",
+          "item_id": 22999027033,
+          "shop_id": 1160317881,
+          "por_que_este_degrau_da_25_1": "a loja \"Bernal Materiais\" e vendedor comum (25.1, degrau 3)",
+          "prova_de_vida": "a API devolveu este anuncio em 2026-10-02. Nao foi clicado: o salto do encurtador e onde a Shopee conta o clique e autoclique com a etiqueta da ilha apaga o primeiro clique organico (25.8)."
+        }
+      },
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/sg-11134201-825an-mfv696rl88w8b8",
+        "largura": 1000,
+        "altura": 1000,
+        "fonte": "Open API de Afiliados da Shopee (25.6), anuncio casado",
+        "coletado_em": "2026-10-02",
+        "alt": "Resina Acrilica"
+      },
+      "fontes": {
+        "pagina-produto-resina-acrilica": {
+          "url": "https://www.coral.com.br/pt/produtos/resina-acrilica",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (www.coral.com.br em 000 nesta execução)",
+          "nivel": 3,
+          "coletado_em": "2026-10-02",
+          "conferir_no_pdf": true
+        }
+      },
+      "fonte_localizada_nao_lida": {
+        "protecao-sol-e-chuva-resina-impermeabilizante": {
+          "url": "https://www.coral.com.br/pt/produtos/protecao-sol-chuva-resina-impermeabilizante",
+          "por_que_esta_fora_de_fontes": "E OUTRO produto da mesma marca (linha Protecao Sol & Chuva), devolvido nas duas passadas com numeros proprios e diferentes — 2 demaos, 24 horas de secagem final, 120 horas para limpeza e trafego, ate 275 m2 na lata de 18 L. Fica registrado como endereco localizado para a proxima passada nao procurar de novo, e FORA de `fontes` porque emprestar demao e secagem de um produto a outro e exatamente o erro que a regra das duas passadas existe para pegar. E candidato a quarto impermeabilizante do banco."
+        }
+      },
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "G-ACABAMENTO"
+      ],
+      "observacao": "Terceiro impermeabilizante, e o que fecha a contagem de 3 do tipo. Os tres declaram `base_quimica`, que e a propriedade que o portao da secao 9 conta sobre o recorte inteiro — duas resinas acrilicas e um silano-siloxano, tres produtos onde a pagina pode comparar quimica em vez de comparar um numero com dois silencios.",
+      "motivo_do_batismo_pela_pagina": "A caixa de `Resina Acrilica` vem do TITULO da pagina de produto (nivel 3), nao de nome de arquivo de boletim: por `batismo_do_fabricante.origens_que_batizam` so PDF batiza, e este registro fica FORA do escopo da trava, com o motivo escrito."
     }
   ],
   "pendencias_desta_categoria": [

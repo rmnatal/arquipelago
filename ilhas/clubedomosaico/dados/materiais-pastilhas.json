@@ -108,7 +108,7 @@
       "fontes": {
         "pagina-produto-k2501": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k2501/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -205,7 +205,7 @@
       "fontes": {
         "pagina-produto-k2502": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k2502/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -302,7 +302,7 @@
       "fontes": {
         "pagina-produto-mix2510": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/mix2510/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -399,7 +399,7 @@
       "fontes": {
         "pagina-produto-k117": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k117/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -496,7 +496,7 @@
       "fontes": {
         "pagina-produto-k77": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k77/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -593,7 +593,7 @@
       "fontes": {
         "pagina-produto-k66": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k66/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -690,7 +690,7 @@
       "fontes": {
         "pagina-produto-a11": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/fosca/a11/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -787,7 +787,7 @@
       "fontes": {
         "pagina-produto-a61": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/fosca/a61/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -884,7 +884,7 @@
       "fontes": {
         "pagina-produto-a37": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/fosca/a37/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; pagina nao aberta (EGRESS_BLOCKED reconferido em 13/09/2026, secao 20.2)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09/2026, seção 20.2)",
           "nivel": 3,
           "coletado_em": "2026-09-13",
           "conferir_no_pdf": true
@@ -981,7 +981,7 @@
       "fontes": {
         "pagina-produto-st5102": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/strip/st5102/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
@@ -1009,14 +1009,14 @@
       "categoria": "pastilha",
       "tipo": "vidro",
       "marca": "Pastilhart",
-      "fabricante": "Pastilhart Revestimentos Ltda (importadora e distribuidora, nao fabricante)",
+      "fabricante": "Pastilhart Revestimentos Ltda (importadora e distribuidora, não fabricante)",
       "nome_comercial": "Pastilha de Vidro 1,5x1,5 Bronze Metalizado AF1500",
       "codigo_fabricante": "AF1500",
       "motivo_sem_codigo": null,
       "declaracoes": {
         "indicado_para": [
           "banheiros, inclusive dentro do box",
-          "cozinhas modernas e areas gourmet",
+          "cozinhas modernas e áreas gourmet",
           "lavanderias e lavabos",
           "halls de entrada, garagens cobertas e varandas",
           "piscinas internas, spas e saunas"
@@ -1084,14 +1084,14 @@
       "fontes": {
         "pagina-produto-af1500": {
           "url": "https://www.pastilhart.com.br/pastilha-de-vidro-af1500",
-          "tipo": "pagina de produto do importador e distribuidor da marca, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "tipo": "página de produto do importador e distribuidor da marca, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 5,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": true
         },
         "pagina-sobre-pastilhart": {
           "url": "https://www.pastilhart.com.br/pagina/sobre-nos.html",
-          "tipo": "pagina institucional, onde a propria empresa se declara importadora e distribuidora",
+          "tipo": "página institucional, onde a própria empresa se declara importadora e distribuidora",
           "nivel": 5,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": false
@@ -1114,7 +1114,7 @@
       "tipo": "vidro",
       "marca": "Glass Mosaic",
       "fabricante": "Glass Mosaic",
-      "nome_comercial": "102 — sem linha declarada no catalogo",
+      "nome_comercial": "102 — sem linha declarada no catálogo",
       "codigo_fabricante": "102",
       "motivo_sem_codigo": null,
       "declaracoes": {
@@ -1188,7 +1188,7 @@
       "fontes": {
         "pagina-produto-102": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/uncategorized/102/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; pagina nao aberta (EGRESS_BLOCKED reconferido em 13/09/2026, secao 20.2)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09/2026, seção 20.2)",
           "nivel": 3,
           "coletado_em": "2026-09-13",
           "conferir_no_pdf": true
@@ -1285,7 +1285,7 @@
       "fontes": {
         "pagina-produto-ic02": {
           "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/ice/ic02/",
-          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; pagina nao aberta (EGRESS_BLOCKED reconferido em 13/09/2026, secao 20.2)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09/2026, seção 20.2)",
           "nivel": 3,
           "coletado_em": "2026-09-13",
           "conferir_no_pdf": true

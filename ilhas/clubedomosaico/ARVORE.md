@@ -37,7 +37,7 @@ Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divul
 | Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | 1 de 6 | não |
 | Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 1 de 4 | não |
 | Bases | `/materiais/bases/` | 0 | 0 de 5 | não |
-| Acabamento | `/materiais/acabamento/` | 7 itens | 1 de 3 | não |
+| Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 | não |
 | Como sabemos | `/materiais/como-sabemos/` | — | — | **sim** |
 
 *(As colunas acima são **derivadas** de `dados/filhas-do-guia.json`, e as duas primeiras estavam
@@ -490,6 +490,31 @@ ilha mais usa, e isso está escrito no dado em vez de escondido.
 **O 4c continua fechado, pela mesma 16.5 da 7b-bis:** `/materiais/acabamento/` precisa de 3 filhas de nível 3
 e nenhuma filha de acabamento existe. O que este bloco destravou foi o **cartão do Guia parar de mostrar
 zero** (casca 1.15.0), não a página.
+
+> **SUPERADO EM 02/10/2026 ÀS 13hxxZ — O 4c DEIXOU DE ESTAR FECHADO PELA 16.5, E `acabamento` É A PRIMEIRA
+> CATEGORIA DO GUIA A PASSAR.** O parágrafo acima é de 25/09 e descreve o mundo daquele dia. A coleta de
+> 02/10 acrescentou **três** registros — `suvinil-seladora-para-madeira`, `coral-selador-acrilico` e
+> `coral-resina-acrilica` — e com eles `acabamento/impermeabilizante` e `acabamento/selador` saíram de 2 e de
+> 1 item para **3 cada**, com lastro e com número calculável sobre o recorte inteiro: `base_quimica` nos três
+> impermeabilizantes e `tempo_de_secagem_h` nos três seladores. Com `acabamento/verniz`, que já passava,
+> **são 3 filhas de 3**, e `dados/filhas-do-guia.json` registra `acabamento` como a única categoria que
+> alcança as 3 da 16.5. A linha da tabela acima foi para **10 itens | 3 de 3** no mesmo movimento, e quem a
+> corrigiu foi o portão `--conferir`, não a mão: ele reprovou o documento dizendo 7 e 1 de 3 contra a
+> derivação dizendo 10 e 3 de 3.
+>
+> **E a segunda metade do parágrafo acima deixou de ser verdade na metade que importa:** o selador já NÃO é
+> mais um item que não serve MDF. O `suvinil-seladora-para-madeira` é o **primeiro acabamento deste banco a
+> nomear `mdf_madeira`**, e a faixa descoberta da categoria `selador` passou a ter dono. O que continua
+> aberto, e continua sendo a pendência de verdade desta categoria, é **vidro e rejunte**: das dez frases de
+> fabricante, nenhuma nomeia `vidro` e nenhuma nomeia rejunte — as duas superfícies que a peça de mosaico
+> pronta expõe. Ganhou **uma** tessela, `pedra`, pela Resina Acrílica da Coral, que é a primeira frase de
+> acabamento deste banco a nomear tessela nenhuma.
+>
+> **O que isto NÃO autoriza, e está escrito aqui para a próxima execução não ler passe livre:** a 14.9 exige
+> o cruzamento com a SERP, e a medição de 30/09 em `dados/filhas-do-guia.md` diz que as filhas publicáveis
+> desta ilha hoje têm forma de **pergunta**, não de tipo — `verniz para peça de mosaico artesanal` está
+> ABERTA e `pastilhas de vidro para mosaico` está TOMADA. O portão de dado abriu; o de SERP é outro, e quem
+> for publicar o 4c lê os dois.
 
 ## 8. O que este bloco NÃO fez, de propósito
 

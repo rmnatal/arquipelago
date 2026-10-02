@@ -46,6 +46,18 @@ LISTAS_DE_DECLARACAO = (
 # Palavra sem acento -> palavra com acento. So palavras em que a forma acentuada
 # e a UNICA leitura possivel em portugues; qualquer ambiguidade vai para FRASES.
 PALAVRAS = {
+    # AS DEZ DE 02/10/2026, quando a tupla ARQUIVOS passou a ver os cinco
+    # bancos: foram as unicas, das 118 palavras que o aviso acusou, cuja forma
+    # acentuada e a UNICA leitura possivel. As outras 108 nao precisam de
+    # acento (selador, verniz, fosco, montagem), sao marca (Suvinil, Coral,
+    # AkzoNobel), sao estrangeiras (fetch, egress, marketplace) ou sao codigo
+    # (VDEC). Elas foram para `_CONHECIDAS`, uma a uma, porque aviso que grita
+    # 118 palavras nao e aviso.
+    "acrilica": "acrílica", "anuncio": "anúncio", "catalogo": "catálogo",
+    "codigo": "código", "corroboracao": "corroboração",
+    "execucao": "execução", "propria": "própria", "revisao": "revisão",
+    "secao": "seção", "tres": "três",
+
     "acetico": "acético", "acidos": "ácidos", "acrilico": "acrílico",
     "agua": "água", "aluminio": "alumínio", "aquarios": "aquários",
     "area": "área", "areas": "áreas", "ate": "até",
@@ -84,7 +96,21 @@ CAIXA = {
     "rejunte porcelanatos e ceramicas quartzolit": "Rejunte Porcelanatos e Cerâmicas Quartzolit",
 }
 
-ARQUIVOS = ("materiais-colas.json", "materiais-rejuntes.json")
+# OS CINCO BANCOS, E ATE 02/10/2026 ESTA LINHA VIA DOIS.
+#
+# Defeito achado em 02/10/2026 pela execucao que coletou os tres acabamentos:
+# esta tupla trazia so `materiais-colas` e `materiais-rejuntes`, os dois bancos
+# que existiam no dia em que a ferramenta nasceu. Pastilhas, alicates e
+# acabamento nasceram depois e NUNCA foram varridos — a ferramenta cujo motivo
+# de existir e "o banco chega a tela e portugues errado no ar e defeito" nao
+# olhava tres quintos do banco, e nada acusava, porque ela sempre fechava com
+# "0 trocas" nos arquivos que ela via. E a mesma familia da mutacao inerte de
+# 28/09: regua que nao alcanca aprova em silencio. O `--provar` continua sendo
+# o que garante que o alcance maior nao virou reescrita de declaracao: ele
+# roda sobre tudo que a tupla nomeia.
+ARQUIVOS = ("materiais-colas.json", "materiais-rejuntes.json",
+            "materiais-pastilhas.json", "materiais-alicates.json",
+            "materiais-acabamento.json")
 
 
 def sem_diacritico(texto):
@@ -137,7 +163,19 @@ def percorrer(material):
 def main():
     raiz = sys.argv[1] if len(sys.argv) > 1 else "."
     gravar = "--gravar" in sys.argv
+    # O `--provar` E NOVO EM 02/10/2026, E ELE ERA PROMETIDO DESDE 11/09.
+    #
+    # O cabecalho deste arquivo diz, desde o dia em que ele nasceu, "A OPERACAO
+    # E PROVADAMENTE DIACRITICO-ONLY, e e o `--provar` que garante". O codigo
+    # nunca teve esse argumento: `sys.argv` era lido so para `--gravar`, e
+    # `--provar` passava direto, ignorado em silencio, imprimindo o mesmo
+    # relatorio e dando a impressao de ter provado. Achado em 02/10/2026 pela
+    # execucao que AMPLIOU o alcance da ferramenta de dois bancos para cinco —
+    # e e justamente essa prova que torna a ampliacao segura, porque o que ela
+    # impede e "restaurar acento" virar reescrita de declaracao de fabricante.
+    provar = "--provar" in sys.argv
     trocas = 0
+    violacoes = []
     sem_mapa = set()
 
     for nome in ARQUIVOS:
@@ -150,6 +188,13 @@ def main():
                 novo = acentuar(valor)
                 if novo != valor:
                     trocas += 1
+                    # A PROVA, nas duas excecoes NOMEADAS do cabecalho: CAIXA e
+                    # FRASES mudam mais que diacritico de proposito (caixa alta
+                    # em nome de produto), e por isso sao desconsideradas pelo
+                    # nome, nunca por tolerancia de regra.
+                    if (valor not in CAIXA and valor not in FRASES
+                            and sem_diacritico(novo) != sem_diacritico(valor)):
+                        violacoes.append((material["id"], campo, valor, novo))
                     print("  %-34s %-38s %s  ->  %s" % (material["id"], campo, valor, novo))
                     setter(novo)
                     valor = novo
@@ -169,6 +214,16 @@ def main():
     if sem_mapa:
         print("  palavras sem acento que o mapa nao conhece (confira uma a uma):")
         print("    " + ", ".join(sorted(sem_mapa)))
+    if violacoes:
+        print("\n  REPROVADO: %d troca(s) mudaram mais que diacritico e nao estao"
+              " nas excecoes nomeadas:" % len(violacoes))
+        for ident, campo, antes, depois in violacoes:
+            print("    %s / %s: %r -> %r" % (ident, campo, antes, depois))
+        return 1
+    if provar:
+        print("  PROVA: aprovada — reduzidas a sem-diacritico, as %d trocas sao"
+              " byte a byte iguais as strings de antes (fora as excecoes"
+              " nomeadas CAIXA e FRASES)." % trocas)
     return 0
 
 
@@ -193,6 +248,20 @@ esquadria natural revisada arquivo busca ajuda consumo exemplo publicados
 aberto agentes algicida alguns aquecidas brsa celsius certos chapa chuva cola
 entre especiais espelhos estrutural externas fechado ficha graus horas internas
 onde paredes proteger tipos tratada materiais
+aberta adesivo alimentos azulejista azulejos banheiros bebedouros brasil
+brilhante bronze campo canal carregando civil cobertas consultas cortador
+corte cozinhas cristal curvo declara declarada delas dentro diferentes
+distribuidor distribuidora empresa entrada fachadas fosca fosco fundo
+garagens geral importador importadora inclusive industriais institucional
+interior lavabos lavanderias lida linha lisas loja ltda manual medido
+mercado metalizado modernas montagem mosaico nenhuma nesta nunca passadas
+pastilha pela produtos protetor reconferido resina restrita reto roldanas
+saunas selador seladora sustenta tintas torques tradicionais valor varandas
+verniz vitrificadas vitrines
+acrilex acrilfix akzonobel coral cortag maxx pastilhart shopee suvinil vonder
+blocked curl drywall egress fetch glass gourmet halls marketplace mosaic open
+spas strip vdec
+duas duro
 """.split())
 
 

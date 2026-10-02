@@ -715,7 +715,15 @@ def autoteste():
                 "/materiais/pastilhas/": ("pastilha", "13 itens", "1 de 6"),
                 "/materiais/alicates-e-corte/": ("alicate", "6 itens", "1 de 4"),
                 "/materiais/bases/": ("base", "0", "0 de 5"),
-                "/materiais/acabamento/": ("acabamento", "7 itens", "1 de 3")}
+                # 10 itens e 3 de 3 desde 02/10/2026: a coleta de um
+                # impermeabilizante e dois seladores fez `acabamento` ser a
+                # primeira categoria do Guia a alcancar as 3 filhas da 16.5.
+                # A regua desta bancada e ESCRITA A MAO de proposito, para nao
+                # chamar a funcao que ela mede — e o preco disso e que ela se
+                # atualiza quando o banco muda. Quem mudar o banco e vir este
+                # caso falhar nao tem defeito para procurar: tem dois numeros
+                # para reescrever, aqui e na tabela do ARVORE.md.
+                "/materiais/acabamento/": ("acabamento", "10 itens", "3 de 3")}
         for slug, (cat, b, q) in alvo.items():
             if cat in faltando:
                 continue
