@@ -40,6 +40,7 @@ seria inventar dado dentro do arquivo que decide a fila inteira da ilha.
 | **ABERTA** | Top 10 é fórum, vídeo, blog velho, ou resposta genérica sem número | Alvo. Página nasce assim que o portão de dado da seção 9 fechar |
 | **TOMADA** | Marketplace, fabricante ou domínio forte ocupando quase tudo | Não nasce agora. Vai para "quando houver autoridade" |
 | **ARMADILHA** | A consulta parece do nicho e é de outra intenção | Nunca construir. Entra como termo negativo |
+| **ABERTA, SEM INTENÇÃO NA SERP** | Ninguém ocupa, e ninguém ocupa porque **nenhum** resultado do top 10 fala da pergunta desta ilha — a SERP responde um nicho vizinho | Chance alta, intenção não provada. Não lidera leva; o pedido de faixa ao Planejador nasce daqui. *(Classe acrescentada em 02/10/2026, quando `selador` mediu uma SERP inteira de pintura de parede)* |
 
 ---
 
@@ -54,9 +55,18 @@ bloco 4c e a vitrine das duas ferramentas.
 |---|---|---|---|
 | material para mosaico | 100–1.000 | Mercado Livre, Shopee, lojinhas WooCommerce (bazarhorizonte, artglassrevestimentos, lojadeazulejos, boutiquedosazulejos) — nenhum artigo editorial | **ABERTA** |
 | pastilhas para mosaico | 100–1.000 | Lista do Mercado Livre + páginas de categoria de loja. Zero conteúdo que explique a escolha | **ABERTA** |
-| pastilhas de vidro para mosaico | 100–1.000 | Anúncio da Shopee (1,5×1,5 cm, 100 peças), Bazar Horizonte (1×1 cm a partir de R$ 18,50), Art Glass | **ABERTA** |
+| pastilhas de vidro para mosaico | 100–1.000 | Anúncio da Shopee (1,5×1,5 cm, 100 peças), Bazar Horizonte (1×1 cm a partir de R$ 18,50), Art Glass | ~~**ABERTA**~~ → **TOMADA** |
 | azulejo para mosaico | 100–1.000 | Lojas de revestimento misturadas com artesanato — a SERP não separa as duas intenções | **ABERTA** |
 | tesselas | não medido | SERP majoritariamente **em espanhol**: domuspucelae, laguia2000, andamento.art, domusbaebia. Quase nada em pt-BR | **ABERTA** |
+
+> **O RÓTULO DESTA LINHA FOI CORRIGIDO EM 02/10/2026, E A EVIDÊNCIA DELA NÃO MUDOU UMA PALAVRA.**
+> Remedida em 30/09 pela régua da 14.9 (`dados/serp-das-filhas.json`), a consulta é **TOMADA**: 9 de 9
+> resultados são marketplace ou loja. A diferença entre as duas leituras não é de dado — é de régua. Este
+> corpus chamou de aberta porque *ninguém responde a pergunta técnica*, e a 14.9 manda classificar **quem
+> ocupa**, que é o primeiro galho dela: *"a página NÃO nasce agora"*. As duas leituras cabem na mesma SERP, e a
+> **14.9 é a que decide se a página nasce** — por isso ela é a que fica no rótulo. O achado do bloco, logo
+> abaixo, continua inteiro e continua sendo o motivo de a F1 existir; o que ele não é, e nunca foi, é
+> autorização para a página nascer. O veredito do cruzamento para `pastilha/vidro` é `espera_autoridade`.
 
 **Achado do bloco.** A oferta é enorme e o conteúdo é zero: quem busca
 "pastilhas para mosaico" recebe catálogo, nunca critério. As lojas nem
@@ -126,6 +136,23 @@ literalmente o produto da F1, e a SERP inteira erra a pergunta.
 | base para mosaico | 10–100 | FazFácil, Vila do Artesão, blogspot de 2010 | **ABERTA** |
 | mosaico em MDF | 10–100 | Artesanato e Reciclagem, Cultura Mix, mearts | **ABERTA** |
 | como impermeabilizar vaso de cerâmica para mosaico | não medido | Uma menção isolada a "tinta betuminosa, duas ou mais demãos" (FazFácil), sem marca nem data | **ABERTA** |
+| acabamento para peça de mosaico artesanal qual produto passar depois do rejunte | **não medido** | Medida em 02/10/2026: Catraca Livre, Benjoino (2010), NeuralWord, mosaico.arq.br (4, e é obra), Artesanato Passo a Passo, Portal das Maravilhas, Artesanato Local (2010). Zero marketplace | **ABERTA** |
+| verniz para peça de mosaico artesanal qual usar | **não medido** | Medida em 30/09/2026: Portal de Artesanato, Benjoino (2010), Carla Arte e Cor (2010), Artesanato Local (2010), Revista Oeste, em.com.br, Viva Decora, Como Fazer Artesanatos, Maluli Armarinhos | **ABERTA** |
+| selar vaso de cerâmica antes de fazer mosaico artesanato precisa selador | **não medido** | Medida em 02/10/2026: Cenário Tocantins, Viva Decora, Sua Decoração, umComo, art4u.pt, Limpeza.com, Terra, Ferber Painting, Wikipedia, selanteceramico.com | **ABERTA** |
+| precisa passar selador na base antes de colar mosaico em MDF ou cerâmica | **não medido** | Medida em 02/10/2026: 9 dos 10 são **pintura de parede** (selador de parede, massa acrílica, fundo para MDF). Um único resultado fala de mosaico | **ABERTA, SEM INTENÇÃO NA SERP** |
+| como impermeabilizar peça de mosaico para ficar no jardim na chuva | **não medido** | Medida em 02/10/2026: forumdacasa.com PT (2), Benjoino (2010), FazFácil (2), Casas Jardim, Redelease, soudal.pt, Paratu Reforma | **ABERTA** |
+
+> **AS CINCO LINHAS NOVAS ENTRARAM EM 02/10/2026, E A FAIXA DELAS ESTÁ `não medido` DE PROPÓSITO.** A evidência
+> de SERP é coleta desta nuvem e o dado dela mora em `dados/serp-das-filhas.json` — **este corpus cita, não é a
+> fonte**; o veredito cruzado de cada recorte está em `dados/cruzamento-14-9.md`. A **faixa** é do Planejador, na
+> conta do Raphael, e está pedida em `dados/despachos.md` com a lista derivada, consulta por consulta. Escrever
+> faixa estimada aqui seria inventar dado dentro do arquivo que decide a fila inteira da ilha — que é o que o
+> cabeçalho deste arquivo já proibia para o CPC, em 10/09.
+>
+> **E a classe nova desta tabela tem motivo medido:** `ABERTA, SEM INTENÇÃO NA SERP` não é "aberta" com
+> ressalva de estilo. Ela diz que **ninguém ocupa porque nenhum resultado do top 10 fala da pergunta desta
+> ilha** — a SERP respondeu o nicho vizinho da pintura. Chance alta e intenção **não provada**: a página não
+> lidera leva. A legenda da seção 14.9, no topo deste arquivo, tinha três classes e nenhuma delas descrevia isso.
 
 **Achado do bloco.** Aqui a SERP tem uma informação técnica boa e enterrada:
 MDF ou compensado naval em vez de madeira maciça, porque a maciça dilata com

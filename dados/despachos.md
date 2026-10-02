@@ -40,6 +40,45 @@ devolver leitura para `sc-domain:clubedomosaico.com.br` em vez de "sem acesso"; 
 `ilhas/clubedomosaico/dados/posicoes.md` tiver a linha de 2026-09-30 com posição, impressões e cliques das três
 páginas.
 
+### prioridade NORMAL — seis consultas da clubedomosaico passaram os dois portões da 14.9, e a FAIXA DE VOLUME delas é o único número que falta
+
+**2026-10-02 — Raphael — uma passada no Planejador de palavras-chave, seis consultas, e o número não existe sem você.**
+
+A 14.9 do `ARQUIPELAGO.md` manda cruzar **intenção de compra × chance real de primeira página**, e as duas metades
+agora existem em dado nesta ilha: o portão de dado da seção 9 em `dados/filhas-do-guia.json` e o de SERP em
+`dados/serp-das-filhas.json`, cruzados por `ferramentas/cruzamento-14-9.py`. **Seis consultas saíram com veredito
+`pode_nascer`** — os dois portões abertos — e **nenhuma delas tem faixa de volume medida**, porque o Planejador
+está na sua conta, no seu navegador, e a nuvem não abre painel autenticado.
+
+**A lista é DERIVADA, não digitada:** ela sai de `dados/cruzamento-14-9.md`, seção "O pedido de faixa de volume",
+e entra ali só consulta **ABERTA** sem faixa — consulta tomada não vira pedido, porque faixa de consulta que não
+vai nascer é número que ninguém usa. Hoje são estas:
+
+| consulta | recorte que a exige |
+|---|---|
+| `acabamento para peça de mosaico artesanal qual produto passar depois do rejunte` | `acabamento` |
+| `verniz para peça de mosaico artesanal qual usar` | `acabamento/verniz` |
+| `selar vaso de cerâmica antes de fazer mosaico artesanato precisa selador` | `acabamento/selador` |
+| `precisa passar selador na base antes de colar mosaico em MDF ou cerâmica` | `acabamento/selador` |
+| `como impermeabilizar peça de mosaico para ficar no jardim na chuva` | `acabamento/impermeabilizante` |
+| `como cortar pastilha de vidro para mosaico qual ferramenta` | `alicate/cortador_de_azulejo` |
+
+**Por que agora e não antes:** até 02/10 nenhuma categoria do Guia alcançava as 3 filhas da 16.5, então faixa de
+volume era pergunta sem consequência. Hoje a `acabamento` alcança — mãe e três filhas, pelos dois portões — e o
+4c está liberado nela. **O que a faixa decide não é SE a página nasce; é a ORDEM da leva.** A chance está medida
+(a SERP dessas seis é fórum, blog de 2010 e resposta sem número) e a intenção está clara (é produto que a artesã
+compra). O que não existe é o tamanho: sem faixa, a Fundação publica na ordem da árvore e não na ordem da demanda,
+e foi exatamente isso que a 1.2-b.3 corrigiu no foco — *a ordem sai da medição, não da rotação.*
+
+**Não é bloqueio, e isto está escrito para ninguém o ler como um.** A Fundação pode publicar o 4c de `acabamento`
+sem esta faixa; o que ela não pode é **estimar** a faixa, e é por isso que o campo está `null` nos dez registros de
+`dados/serp-das-filhas.json` em vez de preenchido por palpite.
+
+**Pronto quando:** as seis consultas tiverem `faixa_de_volume` e `fonte_da_faixa` preenchidos em
+`ilhas/clubedomosaico/dados/serp-das-filhas.json`, e `python3 ferramentas/cruzamento-14-9.py` imprimir
+`Pedido de faixa ao Raphael: 0 consulta(s)`. O portão confere sozinho: a lista é derivada, então ela encolhe
+quando o número chega e não quando alguém a edita.
+
 ### prioridade NORMAL — 13 dos 17 itens do degrau 4 da clubedomosaico esperam UMA decisão dele, e agora há medição atrás dela
 
 **2026-09-30 — Raphael — decidir se pastilha de vidro pode entrar no banco como EQUIVALENTE POR ATRIBUTO.**

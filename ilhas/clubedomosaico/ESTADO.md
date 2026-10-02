@@ -3,74 +3,77 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 17        # SEGUE 17 em 02/10/2026 13h17Z: o bloco de hoje NAO criou URL.
+urls_publicadas: 17        # SEGUE 17 em 02/10/2026 16h40Z: o bloco das 16h17Z tambem NAO criou URL.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-02T13:17Z
-executando_desde: 2026-10-02T16:17Z   # reserva da execucao da Fundacao de 02/10/2026 16h17Z (secao 1, passo 5)
+ultima_execucao: 2026-10-02T16:40Z
+executando_desde: null
 ultima_ronda: 2026-10-02T14:51Z   # RONDA DIARIA TECNICA de 02/10/2026. 17 de 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira (sitemap XML de verdade, robots.txt text/plain, wp-json JSON, e caminho inexistente em 404 da propria ilha), /status na revisao 55 igual a do manifest, console limpo com recarga, zero orfa, zero &#038; em script, zero noindex indevido, description nas 17 e NENHUMA acima de 160 (o que fecha a metade que faltava do item 4 do despacho de 28/09), JSON-LD nas 17 e BreadcrumbList nas 16 que nao sao home, zero imagem sem width/height. F1 executada com DUAS entradas novas e os oito numeros conferidos na mao (cilindro 20x30 com pastilha de 2 cm: 1.885 cm2, 2.066/m2, 429 pastilhas, 264 g; placa 40x25 com pastilha de 1,5 cm e junta de 3 mm: 1.000 cm2, 3.086/m2, 340 pastilhas, 280 g) e F2 em vidro comum no sol e na chuva (Tekbond Silicone Neutro, com declaracao do fabricante citada e o produto recomendado fora da propria lista de 'o que nao usar'). Teste de vida: 24 de 24 itens com url_produto VIVOS (20 Shopee pela API de ficha, 4 Mercado Livre no navegador), 0 morto, 0 esgotado; piso 41 de 41 com url_busca E url_busca_produto; 12 de 12 chaves de busca com resultado; zero intestavel; degrau 4 com motivo na forma da 25.4-b.3 em 17 de 17, o que RECONFERE E FECHA o item 1 do despacho de 30/09. NENHUM defeito novo e ZERO conserto. As cinco linhas de dados/consertos.md reconferidas no ar: porta de entrada PASSOU pela terceira ronda seguida, links regerados PASSARAM, etiqueta de robo PASSOU, e o soft 404 na borda CONTINUA (404 200 200 200 em sonda virgem) e segue sendo do Raphael.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  A PRIMEIRA CATEGORIA DO GUIA A ALCANCAR AS 3 FILHAS DA 16.5 — E O 4c DEIXOU DE ESTAR
-  FECHADO POR PORTAO DE DADO, depois de parado desde 12/09.
-  Manifest e /status na revisao 55, conferidos no ar. NENHUMA URL NOVA (segue em 17), nenhum
-  endereco mudou, nenhum <title> e nenhuma description foram tocados: a janela de comparacao
-  do BLOCO A continua limpa e o veredito segue de 08/10.
-  BLOCO: o proximo passo que o registro de 30/09 deixou escrito — coletar 1 impermeabilizante
-  e 2 seladores. Entraram TRES registros, e os tres pela Open API no mesmo movimento:
-  suvinil-seladora-para-madeira, coral-selador-acrilico e coral-resina-acrilica.
-  O NUMERO QUE MOVEU: acabamento/selador saiu de 1 para 3 itens e acabamento/impermeabilizante
-  de 2 para 3, os dois com lastro e com numero calculavel sobre o recorte inteiro —
-  tempo_de_secagem_h nos tres seladores (6, 2 e 5 h) e base_quimica nos tres impermeabilizantes
-  (duas resinas acrilicas e um silano-siloxano). Com o verniz, que ja passava, sao 3 de 3.
-  `filhas-do-guia.json` registra `acabamento` como a UNICA categoria que alcanca as 3.
-  Banco em 41 materiais, escada 1:1 · 2:5 · 3:18 · 4:17. Os tres CASARAM anuncio na primeira
-  tentativa e nasceram no degrau 3, com ficha, url_produto e foto medida — nenhum entrou no
-  degrau 4, entao o motivo do degrau 4 segue em 17 de 17.
-  DOIS ACHADOS DE DECLARACAO, e valem mais que a contagem. (1) O suvinil e o PRIMEIRO acabamento
-  deste banco a nomear `mdf_madeira` — a base mais comum da peca do atelie, que a categoria
-  selador nao cobria desde 25/09. (2) A Resina Acrilica da Coral e a PRIMEIRA frase de acabamento
-  a nomear uma TESSELA do vocabulario, `pedra`, e no mesmo paragrafo o fabricante EXCLUI
-  superficie horizontal — e tampo e centro de mesa sao duas colecoes de uso da Loja. Nenhuma
-  frase publicada pode indicar esse produto para peca horizontal, por declaracao do fabricante.
-  O QUE CONTINUA ABERTO NA CATEGORIA: vidro e rejunte. Das DEZ frases de fabricante, zero nomeiam
-  vidro e zero nomeiam rejunte — as duas superficies que a peca pronta expoe. A pendencia
-  `acabamento-nenhum-nomeia-vidro-nem-rejunte` fica, com uma tessela a menos de buraco.
-  A DECISAO DE ESQUEMA QUE A PASSADA DE 30/09 EXIGIU ANTES DA COLETA saiu primeiro, e por isso o
-  esquema esta na VERSAO 10: selador de alvenaria CABE em `regras_da_categoria_acabamento`,
-  porque a secao define selador pelo MOMENTO e nunca pelo substrato, e `alvenaria_tijolo` e
-  `cimento_concreto` sao dois dos nove valores de `vocabularios.base`. Criterio escrito antes do
-  dado, como a 1.2-b.4 manda.
-  QUATRO DEFEITOS ACHADOS DE PASSAGEM, TODOS NO MESMO COMMIT, e os quatro de alcance:
-  (1) `gerar-links-afiliado.py` tinha `HOJE = '2026-09-25'` cravado, e datava de 25/09 todo link
-  gerado depois disso — os tres de hoje nasceram datados de sete dias antes de existirem. Agora
-  sai do relogio. (2) `restaurar-acentos.py` varria DOIS dos cinco bancos: pastilhas, alicates e
-  acabamento nunca foram vistos, e a ferramenta fechava "0 trocas" nos arquivos que ela via. Com
-  os cinco, 47 trocas GRAVADAS, e entre elas texto que estava no ar — "Verniz Acrilico Brilhante",
-  "Cortador de ceramicas e azulejos", "Construcao Ltda.". (3) O `--provar` dessa mesma ferramenta
-  estava prometido no cabecalho desde 11/09 e NAO EXISTIA no codigo: `sys.argv` so lia --gravar.
-  Implementado, e conferido que ele REPROVA de verdade (mapa adulterado numa copia, 1 violacao
-  acusada). (4) `mutacoes-base.py` e `mutacoes-apoio.py` estavam VERMELHAS no main desde 30/09,
-  pela segunda vez em dois dias e pela mesma causa: o aperto do portao (versao 9, motivo_sem_ficha
-  obrigatorio) reprovava o MUNDO FABRICADO antes de qualquer mutacao, e as duas baterias que
-  medem as unicas categorias sem SKU ficaram sem ninguem as vendo. Medido vermelho no main limpo
-  antes de qualquer mudanca desta execucao. Consertadas DERIVANDO o campo do estado fabricado, nao
-  cravando — 20 de 20 e 24 de 24.
-  E O PORTAO CORRIGIU O DOCUMENTO, NAO A MAO: `filhas-do-guia.py --conferir` reprovou a tabela da
-  secao 2 do ARVORE.md dizendo "banco 7 e 1 de 3" contra a derivacao dizendo "10 e 3 de 3".
-  O QUE ESTE BLOCO NAO AUTORIZA, escrito para a proxima execucao nao ler passe livre: o portao de
-  DADO abriu, o de SERP e outro. A medicao da 14.9 de 30/09 diz que as filhas publicaveis desta
-  ilha hoje tem forma de PERGUNTA e nao de tipo — `verniz para peca de mosaico` esta ABERTA,
-  `pastilhas de vidro para mosaico` esta TOMADA — e `verniz` nao existe em corpus-buscas.md, sem
-  faixa de volume medida. Quem publicar o 4c cruza os dois, como a 14.9 manda.
-  BANCADA: validar-banco verde (41 materiais); conferir-no-ar 524 afirmacoes 0 falha antes do
-  bloco; teste-casca 601, f2 127, tecnicas 137, f1 24 estados, loja/atelie/leads/prestacao
-  aprovados; batismo 62, casamento 42, pastilhas verde; mutacoes acabamento 14, batismo 14,
-  degrau 8, motivo-degrau-4 10, pastilhas 14, arvore 29, base 20, apoio 24; filhas-do-guia
-  --autoteste 27 casos 0 falha e --conferir aprovado; cobertura regerada e --conferir OK.
+  O CRUZAMENTO DA 14.9 DEIXOU DE SER TRABALHO DE CABECA E VIROU PORTAO — E ELE ABRIU O 4c
+  DE `acabamento`, A PRIMEIRA CATEGORIA DO GUIA A PASSAR OS DOIS PORTOES.
+  Manifest e /status seguem na revisao 55: este bloco NAO mudou nada que o Sync publique.
+  NENHUMA URL NOVA (segue em 17), nenhum endereco, nenhum <title> e nenhuma description —
+  a janela de comparacao do BLOCO A continua limpa e o veredito dele segue de 08/10. Sem
+  Sync porque nao havia o que desembarcar.
+  O DIAGNOSTICO, e ele e de arquitetura: as duas metades da 14.9 existiam desde 30/09 e
+  nunca se encontravam num veredito. A de DADO era numero derivado do banco
+  (dados/filhas-do-guia.json); a de SERP era PROSA, numa secao de dados/filhas-do-guia.md
+  que o gerador preserva SEM LER — e o cabecalho daquele gerador diz de si mesmo que "nao
+  classifica SERP". Prosa nao cruza com numero: a pergunta "o 4c pode nascer?" exigia dois
+  arquivos e a conta na cabeca, e o cabecalho das 13h17Z teve de escrever A MAO o aviso
+  "o portao de DADO abriu, o de SERP e outro". Aviso a mao e o que um portao substitui.
+  O QUE FOI MEDIDO: quatro consultas novas, com os tres limites do canal respeitados.
+  `acabamento` (a mae) ABERTA — Catraca Livre, Benjoino 2010, NeuralWord, mosaico.arq.br
+  em 4 (e e OBRA), Portal das Maravilhas, Artesanato Local 2010. `acabamento/selador`
+  ABERTA pela consulta do vaso de ceramica. `acabamento/impermeabilizante` ABERTA — forum
+  PT, Benjoino 2010, FazFacil em 2, Redelease. ZERO MARKETPLACE NAS QUATRO.
+  E NASCEU UMA CLASSE DA MEDICAO, nao da escolha: ABERTA_SEM_INTENCAO_NA_SERP, para a
+  consulta `precisa passar selador na base antes de colar mosaico em MDF ou ceramica`, em
+  que 9 dos 10 resultados sao PINTURA DE PAREDE. Ninguem ocupa porque nenhum resultado
+  fala da pergunta desta ilha: chance alta e intencao NAO PROVADA, que e a metade "chance
+  alta sem intencao" que a propria 14.9 nomeia. Entrou na legenda do corpus.
+  O QUE FICOU DE PE: `dados/serp-das-filhas.json` (a metade coletada, 10 medicoes, com as
+  6 de 30/09 movidas SEM UMA PALAVRA ALTERADA), `ferramentas/cruzamento-14-9.py` (seis
+  vereditos CALCULADOS e nunca escritos; --autoteste 32 casos 0 falha; --conferir de pe) e
+  `dados/cruzamento-14-9.md`. A SEGUNDA VERDADE FOI APAGADA: a tabela em prosa saiu do
+  filhas-do-guia.md e ficou um ponteiro. Uma fonte por campo.
+  O VEREDITO, de 42 recortes: 5 pode_nascer (`acabamento` + as 3 filhas dela +
+  `alicate/cortador_de_azulejo`), 1 espera_autoridade, 3 espera_serp, 33 sem_nenhum_dos_dois.
+  O ACHADO QUE VALE MAIS QUE O VEREDITO: a 16.5 conta filha, e FILHA NAO E FILHA NO DADO —
+  e no cruzamento. `acabamento` tem 3 no dado e 3 no cruzamento (a mae pode nascer);
+  `pastilha` tem 1 no dado e ZERO no cruzamento, porque `pastilha/vidro`, a de mais banco
+  da ilha (13 itens, tres numeros em 12), tem SERP de marketplace. Pela contagem do dado
+  ela estava a duas filhas da mae; pelo cruzamento, a tres. Tem autoteste proprio, junto
+  com o caso da MAE TOMADA com 3 filhas abertas.
+  TRES MAES EM espera_serp — `alicate`, `pastilha` e `rejunte`: DADO VERDE E SERP NUNCA
+  OLHADA, o estado que parece passe livre. Medir as tres e busca, nao coleta: e o trabalho
+  mais barato que sobrou nesta fila.
+  O DEFEITO DA PROPRIA EXECUCAO, achado antes de qualquer commit: a primeira versao cravava
+  "nem 3 itens de banco" no veredito sem_nenhum_dos_dois, e isso era FALSO em
+  `alicate/torques` e `rejunte/cimenticio`, que TEM 3 itens e param por lastro e por numero
+  comum. Corrigido extraindo `falta_no_dado()`, que deriva a frase da distancia ja medida.
+  Frase cravada envelhece calada; frase derivada nao.
+  O QUE SOBRA ANTES DE PUBLICAR O 4c, E E UMA COISA SO: a FAIXA DE VOLUME das seis consultas
+  abertas nao existe. O Planejador e do Raphael, o campo ficou `null` nos dez registros em
+  vez de estimado, e o pedido esta em dados/despachos.md com a lista DERIVADA pela
+  ferramenta — so consulta ABERTA entra, e o N encolhe quando o numero chega e nao quando
+  alguem edita a lista. ELA NAO DECIDE SE A PAGINA NASCE; DECIDE A ORDEM DA LEVA (1.2-b.3).
+  E O ROTULO VELHO DO CORPUS CAIU, como a medicao de 30/09 mandava: `pastilhas de vidro para
+  mosaico` virou ~~ABERTA~~ -> TOMADA, com a evidencia INTACTA e a diferenca entre as duas
+  reguas escrita na propria linha. As cinco consultas de `acabamento` entraram na secao 1E,
+  com a SERP citada dali e a fonte no JSON novo.
+  BANCADA: conferir-no-ar 524 afirmacoes 0 falha ANTES do bloco; validar-banco verde (41
+  materiais); validar-pastilhas 189; cobertura --conferir OK; filhas-do-guia --conferir nas
+  tres pernas e --autoteste 27; cruzamento-14-9 --conferir e --autoteste 32 casos 0 falha;
+  mutacoes acabamento 14, base 20, apoio 24, degrau 8, motivo-degrau-4 10, batismo 14,
+  casamento 5, arvore 29, pastilhas 14, cobertura 14 — todas reprovaram. atualizar-manifest
+  --gravar com os 5 sha impressos, e ele ACUSOU a ferramenta nova fora do manifest antes de
+  eu a registrar.
   O soft 404 na borda CONTINUA e segue com o Raphael desde 29/09 — vermelho esperado, com dono.
 ---
 

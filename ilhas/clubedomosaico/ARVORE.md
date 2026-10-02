@@ -516,6 +516,54 @@ zero** (casca 1.15.0), não a página.
 > ABERTA e `pastilhas de vidro para mosaico` está TOMADA. O portão de dado abriu; o de SERP é outro, e quem
 > for publicar o 4c lê os dois.
 
+### 7b-quater. OS DOIS PORTÕES SE ENCONTRARAM NUM VEREDITO, E O 4c DE `acabamento` ESTÁ LIBERADO (02/10/2026, 16h2xZ)
+
+A 7b-ter fecha dizendo, com estas palavras, que *"o portão de dado abriu; o de SERP é outro, e quem for publicar
+o 4c lê os dois"*. **Ler os dois era o problema.** O portão de dado era número derivado
+(`dados/filhas-do-guia.json`) e o de SERP era **prosa**, numa seção de `dados/filhas-do-guia.md` que o gerador
+preservava sem ler — e prosa não cruza com número. O custo é datado: entre 30/09 e 02/10 a pergunta "o 4c pode
+nascer?" exigia abrir dois arquivos e fazer a conta na cabeça, e o `ESTADO.md` das 13h17Z de 02/10 teve de
+escrever **à mão** o aviso *"o portão de DADO abriu, o de SERP é outro"* para a execução seguinte não ler passe
+livre. Aviso à mão é o que um portão substitui.
+
+**AGORA É UM COMANDO.** `ferramentas/cruzamento-14-9.py` lê as duas metades — a de dado derivada do banco, a de
+SERP coletada por busca e gravada em `dados/serp-das-filhas.json` — e devolve **um** veredito por recorte, dos
+seis que ele calcula e nunca escreve: `pode_nascer`, `pode_nascer_sem_demanda_medida`, `espera_autoridade`,
+`espera_dado`, `espera_serp` e `nunca`. A saída está em `dados/cruzamento-14-9.md`. Bancada: `--autoteste` com
+**32 casos fabricados**, 0 falha, e `--conferir` que regera e compara.
+
+**O VEREDITO DO PRIMEIRO DIA, e ele responde a pergunta que a 7b abriu em 12/09:**
+
+| recorte | dado | SERP | veredito |
+|---|---|---|---|
+| `acabamento` (a mãe, que é o 4c) | `passa`, 10 itens | **ABERTA** | **`pode_nascer`** |
+| `acabamento/verniz` | `passa`, 4 itens | **ABERTA** | **`pode_nascer`** |
+| `acabamento/selador` | `passa`, 3 itens | **ABERTA** | **`pode_nascer`** |
+| `acabamento/impermeabilizante` | `passa`, 3 itens | **ABERTA** | **`pode_nascer`** |
+| `alicate/cortador_de_azulejo` | `passa`, 3 itens | **ABERTA** | **`pode_nascer`** |
+| `pastilha/vidro` | `passa`, 13 itens | **TOMADA** | `espera_autoridade` |
+
+**`acabamento` é a primeira categoria do Guia a passar os dois portões na mãe E nas três filhas da 16.5.** A
+ordem da 7b — banco, depois as filhas de nível 3, só então a mãe de nível 2 — foi percorrida inteira numa
+categoria, e é a primeira vez desde 12/09 que isso vale para alguma.
+
+**E O PORTÃO VIU UMA COISA QUE NENHUM DOS DOIS ARQUIVOS DE ENTRADA MOSTRA SOZINHO.** A 16.5 conta filhas, e
+*filha* não é filha no dado: é no cruzamento. A tabela que o gerador imprime põe as duas contagens lado a lado,
+e a diferença aparece na `pastilha` — **1 filha que o dado autoriza, 0 que o cruzamento autoriza**, porque a
+filha de mais banco da ilha (13 itens, três números em 12 deles) tem SERP de marketplace. Pela contagem do
+dado, a `pastilha` estava a duas filhas da mãe; pelo cruzamento, está a três. Esse caso tem autoteste próprio.
+
+**TRÊS RECORTES FICARAM COM DADO VERDE E SERP NUNCA OLHADA** — `alicate`, `pastilha` e `rejunte`, as três mães.
+É o veredito `espera_serp`, e ele existe porque é **o caso que mais custou nesta ilha**: dado verde com SERP não
+medida parece passe livre e não é. Medir as três é busca, não coleta de banco.
+
+**O QUE ISTO AINDA NÃO AUTORIZA, e desta vez está num campo e não numa frase:** nenhuma das seis consultas
+abertas tem **faixa de volume** medida. O Planejador está na conta do Raphael, o campo está `null` nos dez
+registros de `dados/serp-das-filhas.json` em vez de estimado, e o pedido está em `dados/despachos.md` com a
+lista **derivada** — a ferramenta imprime `Pedido de faixa ao Raphael: N`, e o N encolhe quando o número chega,
+não quando alguém edita a lista. **A faixa não decide SE a página nasce; decide a ORDEM da leva**, que é o que
+a 1.2-b.3 do contrato manda sair da medição e não da rotação.
+
 ## 8. O que este bloco NÃO fez, de propósito
 
 - **Não criou nenhuma URL.** As dez páginas de nível 2 desta árvore (seis do Guia, mais as da Loja e da Escola) esperam a 16.5, que é portão de dado e não de calendário.

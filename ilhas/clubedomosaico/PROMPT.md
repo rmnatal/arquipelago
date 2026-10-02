@@ -723,6 +723,33 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > como a única categoria que alcança as 3, e a tabela da seção 2 do `ARVORE.md` foi para
    > `10 itens | 3 de 3` — corrigida pelo portão `--conferir`, não pela mão.
    >
+   > **ATUALIZADO EM 02/10/2026 às 16h2xZ — O PORTÃO DE SERP TAMBÉM ABRIU, E AGORA OS DOIS SÃO UM
+   > COMANDO.** O parágrafo abaixo é de três horas antes e dizia que o de SERP era outro. Ele foi
+   > **medido**: `acabamento/selador` e `acabamento/impermeabilizante` nunca tinham tido SERP olhada, e
+   > as duas saíram **ABERTAS**, como a `acabamento/verniz` de 30/09 e como a mãe `acabamento`, medida
+   > hoje — fórum, blog de 2010 e resposta genérica sem número, **zero marketplace**. Com isso
+   > `acabamento` passa os dois portões na mãe **e** nas três filhas da 16.5: **o 4c está liberado
+   > nela**, e é a primeira categoria do Guia onde isso vale.
+   >
+   > **E a leitura dos dois portões deixou de ser trabalho de cabeça.** A metade de SERP era prosa num
+   > arquivo que o gerador preservava sem ler; agora é dado em `dados/serp-das-filhas.json`, e
+   > `ferramentas/cruzamento-14-9.py` devolve **um** veredito por recorte em `dados/cruzamento-14-9.md`
+   > (32 casos de autoteste, `--conferir` de pé). Quem pegar o 4c **lê o veredito, não cruza na mão.**
+   >
+   > **O que o cruzamento achou e nenhum dos dois arquivos mostrava:** a 16.5 conta filhas, e filha não
+   > é filha no dado — é no cruzamento. A `pastilha` tem **1 filha no dado e 0 no cruzamento**, porque
+   > `pastilha/vidro`, a de mais banco da ilha, tem SERP de marketplace (`espera_autoridade`). E
+   > `alicate`, `pastilha` e `rejunte` — as três mães — ficaram em `espera_serp`: **dado verde e SERP
+   > nunca olhada**, que é o estado que parece passe livre.
+   >
+   > **O QUE SOBRA ANTES DE PUBLICAR, e é UMA coisa só:** a **faixa de volume** das seis consultas
+   > abertas não existe — o Planejador é do Raphael, o campo está `null` em vez de estimado, e o pedido
+   > está em `dados/despachos.md` com a lista derivada. **Ela não decide se a página nasce; decide a
+   > ordem da leva** (1.2-b.3). Quem publicar o 4c de `acabamento` pode publicar sem ela, e **não pode
+   > estimá-la**.
+   >
+   > *(O parágrafo seguinte fica como estava, sem uma palavra alterada, porque foi ele que mandou medir.)*
+   >
    > **O QUE ISTO ABRE, E O QUE NÃO ABRE.** Abre o portão de **DADO** do 4c. **Não** abre o de SERP: a
    > medição da 14.9 em `dados/filhas-do-guia.md` diz que as filhas publicáveis desta ilha hoje têm
    > forma de **pergunta** e não de tipo (`verniz para peça de mosaico` ABERTA, `pastilhas de vidro

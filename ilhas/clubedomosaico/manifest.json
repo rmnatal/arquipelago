@@ -98,11 +98,11 @@
       "arquivo": "dados/corpus-buscas.md",
       "formato": "md",
       "entidade": "constante",
-      "fonte": "Bloco 1 da Fundacao. Duas coletas distintas e declaradas separadamente no arquivo: (a) faixa de volume do Planejador de palavras-chave na conta do Raphael, coletada em 10/09/2026 e recebida pelo PROMPT.md da ilha, nao refeita nesta execucao; (b) SERP coletada nesta execucao por busca web da nuvem em 10/09/2026, com os ocupantes do top 10 nomeados consulta a consulta. CPC nao foi coletado e esta declarado como ausente, nao estimado.",
-      "verificado_em": "2026-09-10",
-      "registros": 30,
+      "fonte": "Bloco 1 da Fundacao. Duas coletas distintas e declaradas separadamente no arquivo: (a) faixa de volume do Planejador de palavras-chave na conta do Raphael, coletada em 10/09/2026 e recebida pelo PROMPT.md da ilha, nao refeita nesta execucao; (b) SERP coletada nesta execucao por busca web da nuvem em 10/09/2026, com os ocupantes do top 10 nomeados consulta a consulta. CPC nao foi coletado e esta declarado como ausente, nao estimado. ACRESCENTADO em 02/10/2026: cinco consultas de acabamento na secao 1E, com a SERP medida em 30/09 e 02/10 e a faixa declarada 'nao medido' — a evidencia de SERP delas e CITADA daqui e tem fonte em dados/serp-das-filhas.json. E o rotulo de 'pastilhas de vidro para mosaico' foi corrigido de ABERTA para TOMADA pela regua da 14.9, com a evidencia intacta e a diferenca entre as duas reguas escrita na propria linha.",
+      "verificado_em": "2026-10-02",
+      "registros": 36,
       "publicar": false,
-      "sha256": "aa0b92ef5bed7e19b38e2e9662866a76d2d7c37bc13ae04d18be76e6c2bd9fbd",
+      "sha256": "24a92678d0a874bac017d9006ba5f3b5edbeeaecc296073753868af5d9274dba",
       "descricao": "Corpus de buscas do mosaico artesanal BR nos tres motores da ilha (materiais/ferramentas, pecas prontas, aprender), com a SERP classificada por consulta em aberta/tomada/armadilha pela regra da secao 14.9. Tres achados medidos decidem a ordem da fila: a SERP de rejunte responde a pergunta de OBRA (0,2-0,4 kg/m2 com azulejo grande) e portanto esta errada para peca de artesanato com pastilha de 1x1 cm, o que faz da F1 numero proprio sem concorrente; a regra de cola x base circula em blog sem fabricante, codigo nem data, o que abre a F2 mas proibe usar a SERP como fonte dela; e 'mosaico bizantino', de faixa 1k-100k, tem a primeira pagina em portugues ocupada por resultado em espanhol. Tomadas: 'curso de mosaico' (escolas reais, a ilha nao disputa), 'presente artesanal' (Elo7) e 'vaso centro de mesa' (Leroy)."
     },
     {
@@ -121,6 +121,17 @@
         "cimentcola-consumo-e-tempo-em-aberto",
         "silicone-rendimento-por-area"
       ]
+    },
+    {
+      "id": "cruzamento-14-9-md",
+      "arquivo": "dados/cruzamento-14-9.md",
+      "formato": "md",
+      "entidade": "constante",
+      "fonte": "GERADO por ferramentas/cruzamento-14-9.py a partir de dados/filhas-do-guia.json e dados/serp-das-filhas.json. Nada aqui e digitado: --conferir regera e compara, e edicao a mao reprova o portao.",
+      "verificado_em": "2026-10-02",
+      "publicar": false,
+      "sha256": "84fb24b7000834dabdffe1473c29ea8956fa5cced564c9c2165223d439d240fc",
+      "descricao": "O veredito cruzado dos dois portoes, recorte por recorte, com a tabela da 16.5 lado a lado — filhas que o DADO autoriza contra filhas que o CRUZAMENTO autoriza — e o pedido de faixa de volume derivado. No primeiro dia em que existiu: acabamento e a primeira categoria do Guia a passar os dois portoes na mae e nas tres filhas (o 4c liberado ali), pastilha/vidro saiu espera_autoridade, e alicate, pastilha e rejunte ficaram com dado verde e SERP nunca olhada, que e o caso que parece passe livre."
     },
     {
       "id": "especificacao-calculadoras",
@@ -145,6 +156,18 @@
       "publicar": true,
       "sha256": "1eee50fee8a8db5cb13e8ca45275bdaf3deb3c2ae31282a97b5f22b43e348ff0",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
+    },
+    {
+      "id": "serp-das-filhas",
+      "arquivo": "dados/serp-das-filhas.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "Coleta propria por busca web desta nuvem, consulta a consulta, com a data POR MEDICAO: seis em 30/09/2026 (movidas sem uma palavra alterada da secao de prosa de dados/filhas-do-guia.md) e quatro em 02/10/2026. Os tres limites do canal estao declarados no proprio arquivo — desvio de pais, ausencia de ORDEM e vicio de marca na consulta — e duas medicoes estao marcadas NAO_MEDIDA por causa deles, nunca como consulta sem concorrente. Faixa de volume NAO foi coletada: ela e do Planejador na conta do Raphael, esta null nos dez registros e pedida em dados/despachos.md com a lista derivada.",
+      "verificado_em": "2026-10-02",
+      "registros": 10,
+      "publicar": false,
+      "sha256": "e805f9d3b69f661537b455592d328d0ffcf59dd1fea06c131078f343ca6a8a99",
+      "descricao": "A metade COLETADA do cruzamento da 14.9: quem ocupa o top 10 da consulta-alvo de cada recorte do Guia, escrito pelo nome. Cinco classificacoes, e a quinta nasceu desta coleta — ABERTA_SEM_INTENCAO_NA_SERP, para a consulta em que ninguem ocupa porque NENHUM resultado fala da pergunta desta ilha (o selador mediu uma SERP inteira de pintura de parede). Guarda tambem o numero que a SERP nao publica e o banco desta ilha publica, recorte por recorte, que e a resposta da 14.9 a pergunta 'por que ela chega as 10 primeiras'."
     },
     {
       "id": "tecnicas",
@@ -302,10 +325,10 @@
       "arquivo": "dados/filhas-do-guia.md",
       "formato": "md",
       "entidade": "constante",
-      "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira e a classificacao de SERP da 14.9, coletada por busca web desta nuvem em 30/09/2026, consulta a consulta, com o desvio de pais e o vicio de marca na consulta declarados por linha e duas consultas marcadas NAO MEDIDA por causa deles. Volume de busca NAO foi coletado nesta passada: verniz nao existe em dados/corpus-buscas.md e isso esta escrito como desconhecido, nunca estimado.",
-      "verificado_em": "2026-09-30",
+      "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira era a classificacao de SERP da 14.9 em PROSA, e em 02/10/2026 ela saiu daqui e virou dado em dados/serp-das-filhas.json, com o cruzamento em dados/cruzamento-14-9.md: prosa que o gerador preserva sem ler nao cruza com numero. O que ficou abaixo da fronteira e o ponteiro para os dois arquivos novos e o motivo da mudanca.",
+      "verificado_em": "2026-10-02",
       "publicar": false,
-      "sha256": "ed8588be681305b1277258c9cd10cbaa4340aff6c71911016d84e50abb4ae07b"
+      "sha256": "20e3cc3d131017b7f0a252dbcbdc7ecc44170ef5f1ac520c5385df96609dc3bd"
     }
   ],
   "ferramentas": [
@@ -368,6 +391,12 @@
       "arquivo": "ferramentas/conferir-tecnica-no-ar.py",
       "sha256": "b3a6f2ceedb9190c53e0c56b7cff1e7f82a91c384ee20dce385c8157d3856168",
       "descricao": "O irmao no ar do teste-tecnicas: abre a pagina de tecnica com curl e afirma sobre o HTML que o SITE serve. 23 afirmacoes. Reconta as 45 celulas da grade contra dados/cobertura.json (o banco commitado), refaz a prestacao de contas da secao 7 na tela, confere a escada de compra e o rel de cada link, os dois links internos que tiram a pagina da condicao de orfa, o sitemap, e o JSON-LD servido. A secao 4 compara o endereco CANONICO com o mesmo endereco com quebra de cache, por MARCADOR e nunca por bytes — e a trava do cache do hospedeiro, que o /status nao enxerga. O endereco esta literal no arquivo, copiado a mao: ler a constante do snippet seria conferir a pagina com a propria pagina. Accept-Encoding identity em toda requisicao. Bancada."
+    },
+    {
+      "id": "cruzamento-14-9",
+      "arquivo": "ferramentas/cruzamento-14-9.py",
+      "sha256": "36c33a63adb356927a53e6300e567cb096afc7a5c65a3a5b0abee759d0b9fb91",
+      "descricao": "O CRUZAMENTO DA SECAO 14.9: le o portao de DADO da secao 9 (dados/filhas-do-guia.json, derivado do banco) e o portao de SERP (dados/serp-das-filhas.json, coletado por busca) e devolve UM veredito por recorte, porque a 14.9 manda cruzar intencao com chance 'nunca de uma so'. Seis vereditos calculados, nunca escritos: pode_nascer, pode_nascer_sem_demanda_medida, espera_autoridade, espera_dado, espera_serp e nunca. Conta a 16.5 pelas filhas que o CRUZAMENTO autoriza, que nao sao as que o dado autoriza — e foi assim que pastilha saiu de 1 filha para 0. Deriva o pedido de faixa de volume ao Raphael, so de consulta ABERTA sem faixa, em vez de estimar o numero. Acusa medicao de SERP em recorte que o portao de dado nao conhece. Bancada: --autoteste com 32 casos fabricados e --conferir que regera e compara."
     },
     {
       "id": "faixa-da-f2",

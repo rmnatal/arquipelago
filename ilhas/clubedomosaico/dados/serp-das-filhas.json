@@ -1,0 +1,151 @@
+{
+  "id": "serp-das-filhas",
+  "ilha": "clubedomosaico",
+  "o_que_este_arquivo_e": "A metade COLETADA do cruzamento da secao 14.9 do ARQUIPELAGO.md: quem ocupa o top 10 da consulta-alvo de cada recorte do Guia. Nada aqui e derivado do banco — e busca, consulta por consulta, com quem apareceu escrito pelo nome. A outra metade, o portao de dado da secao 9, e derivada e mora em dados/filhas-do-guia.json; quem cruza as duas e ferramentas/cruzamento-14-9.py. Este arquivo e escrito A MAO, porque busca nao se deriva — e por isso ele tem data por linha.",
+  "por_que_ele_existe_separado": "Ate 02/10/2026 a classificacao de SERP morava em prosa, numa secao de dados/filhas-do-guia.md que o gerador preservava. Prosa nao cruza com numero: quatro execucoes leram 'o 4c espera a 16.5' e nenhuma pode responder 'o 4c pode nascer?' sem reler dois arquivos e fazer a conta na cabeca. Com a SERP em dado, o cruzamento e um comando.",
+  "o_que_este_arquivo_NAO_decide": [
+    "a POSICAO de ninguem na SERP — o canal desta nuvem nao da ordem, e posicao nesta ilha vem do Search Console",
+    "a faixa de volume — ela e do Planejador, na conta do Raphael, e onde falta esta escrito `null` e nunca estimado",
+    "se a pagina nasce — isso e o cruzamento, e ele e calculado por ferramentas/cruzamento-14-9.py"
+  ],
+  "o_canal_e_os_limites_dele": {
+    "canal": "busca web da nuvem, declarada US-only pela propria ferramenta",
+    "limite_1_pais": "devolve resultado brasileiro quando a consulta e inequivocamente portuguesa, e desvia para SERP espanhola ou portuguesa quando a frase tambem cabe nelas. Desvio medido fica como NAO_MEDIDA, nunca como consulta sem concorrente",
+    "limite_2_ordem": "nao da a ORDEM da SERP brasileira. Este arquivo classifica QUEM OCUPA, que e o que a 14.9 pede com essas palavras, e nao afirma posicao",
+    "limite_3_marca": "marca dentro da consulta vicia a medicao e devolve pagina de fabricante. E a trava de coleta da secao 8 aplicada a SERP: nunca por na consulta o valor que se quer confirmar"
+  },
+  "classificacoes": {
+    "ABERTA": "top 10 e forum, video, blog velho ou resposta generica sem numero, E ao menos um deles fala do assunto desta ilha. Alvo da 14.9",
+    "ABERTA_SEM_INTENCAO_NA_SERP": "ninguem ocupa, e ninguem ocupa porque NENHUM resultado do top 10 fala da pergunta desta ilha — a SERP responde um nicho vizinho. Chance alta e intencao NAO PROVADA: a pagina nao lidera leva, e o pedido de faixa ao Planejador nasce daqui. Classe acrescentada em 02/10/2026, quando `selador` mediu uma SERP inteira de pintura de parede",
+    "TOMADA": "marketplace, fabricante ou dominio forte ocupando quase tudo. Nao nasce agora",
+    "ARMADILHA": "a consulta parece do nicho e e de outra intencao. Nunca construir; entra como termo negativo",
+    "NAO_MEDIDA": "a medicao falhou por defeito do instrumento ou de quem escreveu a consulta, e o motivo esta escrito. NAO e consulta sem concorrente"
+  },
+  "medicoes": [
+    {
+      "recorte": "pastilha/vidro",
+      "consulta": "pastilhas de vidro para mosaico",
+      "medida_em": "2026-09-30",
+      "quem_ocupa": ["Mercado Livre", "Buscape", "Elo7 (2)", "Bazar Horizonte", "Vetro Designer", "Mosaico & Cia", "Mosaico em Casa", "Pastilhart"],
+      "tipos_que_ocupam": ["marketplace", "loja"],
+      "classificacao": "TOMADA",
+      "motivo": "9 de 9 resultados sao marketplace ou loja. Quem vende o produto ja ocupa a consulta de produto",
+      "faixa_de_volume": "100-1.000",
+      "fonte_da_faixa": "Planejador, conta do Raphael, 10/09/2026, via dados/corpus-buscas.md secao 1A",
+      "numero_que_a_serp_nao_publica": null
+    },
+    {
+      "recorte": "pastilha/vidro",
+      "consulta": "quantas pastilhas vem na caixa placa telada mosaico vidro medida",
+      "medida_em": "2026-09-30",
+      "quem_ocupa": ["Elevato", "MadeiraMadeira", "Leroy Merlin PT", "Telhanorte", "Pastilhart (2)", "Mosaico em Casa", "Gerador de Precos PT", "Revestimentta", "Eckofloor"],
+      "tipos_que_ocupam": ["loja", "obra"],
+      "classificacao": "TOMADA",
+      "motivo": "10 de 10 sao loja e obra, e e a armadilha do revestimento que o PROMPT.md desta ilha nomeia desde 10/09",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null
+    },
+    {
+      "recorte": "alicate/cortador_de_azulejo",
+      "consulta": "cortador de azulejo manual para mosaico",
+      "medida_em": "2026-09-30",
+      "quem_ocupa": ["Amazon MX", "Leroy Merlin ES", "Bricodepot ES", "Home Depot MX"],
+      "tipos_que_ocupam": ["fora_do_pais"],
+      "classificacao": "NAO_MEDIDA",
+      "motivo": "desvio de pais: a frase tambem e espanhola e o canal devolveu SERP de MX e ES. Limite 1 do canal",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null
+    },
+    {
+      "recorte": "alicate/cortador_de_azulejo",
+      "consulta": "torques cortador de azulejo para mosaico Vonder Cortag",
+      "medida_em": "2026-09-30",
+      "quem_ocupa": ["Mercado Livre (4)", "Anhanguera Ferramentas (2)", "cortag.com (2)", "vonder.com.br (2)"],
+      "tipos_que_ocupam": ["marketplace", "fabricante"],
+      "classificacao": "NAO_MEDIDA",
+      "motivo": "marca na consulta, defeito de quem escreveu. Limite 3 do canal: a consulta trouxe a pagina de fabricante que ela mesma nomeou",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null
+    },
+    {
+      "recorte": "alicate/cortador_de_azulejo",
+      "consulta": "como cortar pastilha de vidro para mosaico qual ferramenta",
+      "medida_em": "2026-09-30",
+      "quem_ocupa": ["Vila do Artesao", "Obramax", "FazFacil (2)", "Alem da Rua Atelier (2012)", "Artesanato Benjoino (2010)", "O Portal das Maravilhas (2)"],
+      "tipos_que_ocupam": ["blog", "resposta_generica"],
+      "classificacao": "ABERTA",
+      "motivo": "8 de 10 sao blog e resposta generica, 2 de loja. Nenhum dos oito editoriais da espessura maxima de corte em mm",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": "espessura_maxima_de_corte_mm, declarada em 4 dos 6 itens de `alicate` com fonte de nivel 2 ou 3 — e a faixa descoberta da 7b-bis: o torques de mosaico para em 5 mm e 3 das 13 pastilhas do banco nao cabem"
+    },
+    {
+      "recorte": "acabamento/verniz",
+      "consulta": "verniz para peca de mosaico artesanal qual usar",
+      "medida_em": "2026-09-30",
+      "quem_ocupa": ["Portal de Artesanato", "Artesanato Benjoino (2010)", "Carla Arte e Cor (2010)", "Artesanato Local (2010)", "Revista Oeste", "em.com.br", "Viva Decora", "Como Fazer Artesanatos", "Maluli Armarinhos"],
+      "tipos_que_ocupam": ["blog", "resposta_generica", "noticia"],
+      "classificacao": "ABERTA",
+      "motivo": "9 de 9 sao blog, noticia ou resposta generica, tres deles de 2010, e nenhum da demaos, consumo em ml/m2 nem tempo de secagem",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": "`acabamento_visual` e `pelicula` em 3 dos 4 vernizes, com `demaos_minimas` e `consumo_ml_m2` por registro — e a AUSENCIA medida pela 7b-ter: nenhuma frase de fabricante de `acabamento` nomeia vidro nem rejunte"
+    },
+    {
+      "recorte": "acabamento",
+      "consulta": "acabamento para peca de mosaico artesanal qual produto passar depois do rejunte",
+      "medida_em": "2026-10-02",
+      "quem_ocupa": ["Catraca Livre", "Artesanato Benjoino (2010)", "NeuralWord", "mosaico.arq.br (4)", "Artesanato Passo a Passo", "O Portal das Maravilhas", "Artesanato Local (2010)"],
+      "tipos_que_ocupam": ["blog", "resposta_generica", "noticia", "obra"],
+      "classificacao": "ABERTA",
+      "motivo": "nenhum marketplace e nenhum fabricante. 4 dos 10 sao mosaico.arq.br, que e piso e parede de OBRA — a armadilha do revestimento ocupando a consulta do artesanato. Dos que falam da peca, dois sao blogspot de 2010 e um e resposta generica sem marca",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": "a propria SERP recomenda a Resina Acrilica da Coral para peca de mosaico, e o fabricante EXCLUI superficie horizontal na mesma frase em que declara pedra — medido e gravado em 02/10/2026. Tampo e centro de mesa sao duas colecoes de uso da Loja desta ilha. Nenhum dos 10 resultados diz isso"
+    },
+    {
+      "recorte": "acabamento/selador",
+      "consulta": "precisa passar selador na base antes de colar mosaico em MDF ou ceramica",
+      "medida_em": "2026-10-02",
+      "quem_ocupa": ["Cenario Tocantins", "De Casa Blog", "Westwing", "Figueira Laser", "Monte Voce Mesmo", "Leroy Merlin PT", "Pintura Alves", "2 PDFs de catalogo", "academy.europa.eu"],
+      "tipos_que_ocupam": ["blog", "resposta_generica", "fora_do_pais", "irrelevante"],
+      "classificacao": "ABERTA_SEM_INTENCAO_NA_SERP",
+      "motivo": "a palavra `mosaico` esta na consulta e a SERP respondeu PINTURA DE PAREDE: 9 dos 10 resultados sao selador de parede, massa acrilica e fundo para MDF de pintura. Um unico resultado fala de mosaico. Nao e consulta tomada e nao e consulta nossa: e consulta que o Google ainda nao associou ao artesanato",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null
+    },
+    {
+      "recorte": "acabamento/selador",
+      "consulta": "selar vaso de ceramica antes de fazer mosaico artesanato precisa selador",
+      "medida_em": "2026-10-02",
+      "quem_ocupa": ["Cenario Tocantins", "Viva Decora", "Sua Decoracao", "umComo", "art4u.pt", "Limpeza.com", "Terra", "Ferber Painting (traduzido)", "Wikipedia", "selanteceramico.com"],
+      "tipos_que_ocupam": ["blog", "resposta_generica", "enciclopedia", "fora_do_pais"],
+      "classificacao": "ABERTA",
+      "motivo": "nenhum marketplace, nenhum fabricante forte, e quatro dos dez falam de mosaico. Nenhum da numero, e os que respondem CONFUNDEM os dois momentos: selar a base antes de colar e selar a peca depois do rejunte saem no mesmo paragrafo, como se fossem o mesmo produto",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": "`tempo_de_secagem_h` nos 3 seladores do banco (6, 2 e 5 h) — e a separacao dos dois momentos, que e a propria definicao do esquema: `regras_da_categoria_acabamento` define selador pelo MOMENTO e nunca pelo substrato (versao 10). A SERP mistura os dois; o banco desta ilha nao pode"
+    },
+    {
+      "recorte": "acabamento/impermeabilizante",
+      "consulta": "como impermeabilizar peca de mosaico para ficar no jardim na chuva",
+      "medida_em": "2026-10-02",
+      "quem_ocupa": ["forumdacasa.com PT (2)", "Artesanato Benjoino (2010)", "FazFacil (2)", "Casas Jardim", "Redelease", "soudal.pt", "Paratu Reforma (traduzido)"],
+      "tipos_que_ocupam": ["forum", "blog", "resposta_generica", "fora_do_pais"],
+      "classificacao": "ABERTA",
+      "motivo": "forum, blog velho e resposta generica, exatamente o primeiro galho da 14.9. Zero marketplace. E o que eles dao e `emulsao de silicone`, `tinta betuminosa duas ou mais demaos` e `silicone ou verniz`: tipo de produto sem marca, sem produto e sem numero",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": "`base_quimica` nos 3 impermeabilizantes do banco (duas resinas acrilicas e um silano-siloxano), com a frase do fabricante citada — contra `tinta betuminosa` sem marca e sem data. E a exclusao de superficie horizontal da Coral, que nenhum dos 10 menciona"
+    }
+  ],
+  "a_leitura_que_as_medicoes_pedem": {
+    "as_abertas_sao_pergunta_e_as_tomadas_sao_produto": "As consultas que a SERP recusa nomeiam o PRODUTO (`pastilhas de vidro para mosaico`, `quantas pastilhas vem na caixa`); as que ela abre fazem a PERGUNTA (`como cortar`, `verniz para peca de`, `como impermeabilizar`). A causa esta no proprio resultado: quem vende produto ja ocupa a consulta de produto, e ninguem ocupa a consulta de metodo, onde o que existe e blogspot de 2010 e resposta sem numero. Medido em 30/09 em dois recortes e reconfirmado em 02/10 em tres.",
+    "o_piso_mede_a_forma_errada_e_isso_nao_e_defeito_dele": "dados/filhas-do-guia.json mede os recortes que o VOCABULARIO nomeia, que sao recortes de TIPO, e se declara um piso. A SERP diz que as filhas publicaveis desta ilha tem forma de PERGUNTA. A regua de contagem da secao 9 continua a mesma; o que muda e o recorte em que ela se aplica — e nenhum dos dois arquivos sozinho ve isso.",
+    "a_contradicao_com_o_corpus_de_10_09_fica_escrita": "O corpus classificou `pastilhas de vidro para mosaico` como ABERTA com a MESMA evidencia que 30/09 leu como TOMADA. A diferenca nao e de dado, e de regua: o corpus chamou de aberta porque ninguem responde a pergunta tecnica, e a 14.9 manda classificar QUEM OCUPA. As duas leituras cabem na mesma SERP, e a 14.9 e a que decide se a pagina nasce. Quem for mexer no corpus le este campo primeiro: o que esta velho la e o rotulo daquela linha, nao a evidencia."
+  }
+}

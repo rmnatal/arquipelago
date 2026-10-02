@@ -3,6 +3,155 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+02/10/2026 16h17Z — O PORTÃO DE SERP DEIXOU DE SER PROSA, E O 4c DE `acabamento` ESTÁ LIBERADO PELOS DOIS PORTÕES
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h17Z** e push da reserva aceito na
+primeira tentativa (`2d16710`). Manifest e `/status` seguem na **revisão 55**: este bloco **não
+mudou nada que o Sync publique** — nenhuma URL nova (a ilha segue em **17**), nenhum endereço,
+nenhum `<title>` e nenhuma `description`. A janela de comparação do BLOCO A continua limpa e o
+veredito dele segue de **08/10**. Por isso não houve acionamento do Sync: não havia o que
+desembarcar.
+
+## A PORTA DE ENTRADA, ANTES DO BLOCO (seção 29.2)
+
+`conferir-no-ar.py` **APROVADO: 524 afirmações, 0 falha**, antes de qualquer mudança. As 17 URLs do
+sitemap em 200, as 17 descriptions na faixa de 120–160, os títulos no teto de 65, `/status` igual ao
+`manifest.json`. O soft 404 na borda **continua** — registro e não portão, com dono escrito desde
+29/09.
+
+## O BLOCO: O CRUZAMENTO DA 14.9 VIROU PORTÃO, E ELE ABRIU O 4c NUMA CATEGORIA
+
+**O que a execução das 13h17Z deixou escrito, palavra por palavra:** *"o portão de DADO abriu, o de
+SERP é outro. (...) Quem publicar o 4c cruza os dois, como a 14.9 manda."* Este bloco cruzou — e
+descobriu que **cruzar era o problema**, não o resultado.
+
+**O DIAGNÓSTICO, e ele é de arquitetura:** as duas metades da 14.9 existiam desde 30/09 e nunca se
+encontraram num veredito. O portão de **dado** da seção 9 era número derivado do banco
+(`dados/filhas-do-guia.json`). O portão de **SERP** era **prosa**, numa seção de
+`dados/filhas-do-guia.md` que o gerador preserva **sem ler** — e o próprio cabeçalho daquele gerador
+diz, de si mesmo, que *"não classifica SERP"*. **Prosa não cruza com número.** O custo é datado: a
+pergunta "o 4c pode nascer?" exigia abrir dois arquivos e fazer a conta na cabeça, e o `ESTADO.md`
+das 13h17Z teve de escrever **à mão** o aviso para a execução seguinte não ler passe livre. Aviso à
+mão é o que um portão substitui.
+
+**A MEDIÇÃO QUE FALTAVA — duas filhas que nunca tiveram SERP olhada, e a mãe também não.** Quatro
+consultas novas, com os três limites do canal respeitados (frase inequivocamente portuguesa, nenhuma
+marca dentro da consulta, e sem afirmar posição de ninguém, porque este canal não dá ordem):
+
+| recorte | consulta | quem ocupa | classe |
+|---|---|---|---|
+| `acabamento` (a mãe) | *acabamento para peça de mosaico artesanal qual produto passar depois do rejunte* | Catraca Livre, Benjoino (2010), NeuralWord, **mosaico.arq.br (4, e é obra)**, Artesanato Passo a Passo, Portal das Maravilhas, Artesanato Local (2010) | **ABERTA** |
+| `acabamento/selador` | *precisa passar selador na base antes de colar mosaico em MDF ou cerâmica* | 9 dos 10 são **pintura de parede** | **ABERTA, SEM INTENÇÃO NA SERP** |
+| `acabamento/selador` | *selar vaso de cerâmica antes de fazer mosaico artesanato precisa selador* | Cenário Tocantins, Viva Decora, Sua Decoração, umComo, Terra, Limpeza.com, Wikipedia | **ABERTA** |
+| `acabamento/impermeabilizante` | *como impermeabilizar peça de mosaico para ficar no jardim na chuva* | forumdacasa.com PT (2), Benjoino (2010), FazFácil (2), Casas Jardim, Redelease, soudal.pt | **ABERTA** |
+
+**Zero marketplace nas quatro.** E a classe da segunda linha **é nova**, e nasceu da medição em vez
+de ter sido escolhida: `ABERTA_SEM_INTENCAO_NA_SERP` diz que ninguém ocupa **porque nenhum resultado
+do top 10 fala da pergunta desta ilha** — a SERP respondeu o nicho vizinho da pintura de parede.
+Chance alta e intenção **não provada**, que é literalmente a metade *"chance alta sem intenção"* que
+a 14.9 nomeia e que a legenda de três classes do corpus não sabia descrever. Ela entrou na legenda.
+
+**O QUE FOI CONSTRUÍDO, e é o que fica depois do veredito de hoje:**
+
+- **`dados/serp-das-filhas.json`** — a metade **coletada**, agora em dado: dez medições, com quem
+  ocupa escrito pelo nome, data **por medição**, os três limites do canal declarados, as cinco
+  classificações e o número que a SERP não publica. **As seis medições de 30/09 foram movidas para
+  cá sem uma palavra alterada.**
+- **`ferramentas/cruzamento-14-9.py`** — o portão. Lê as duas metades de arquivos diferentes e
+  devolve **um** veredito por recorte, dos seis que **calcula e nunca escreve**: `pode_nascer`,
+  `pode_nascer_sem_demanda_medida`, `espera_autoridade`, `espera_dado`, `espera_serp`, `nunca`.
+  Bancada: **`--autoteste` com 32 casos fabricados, 0 falha**, e `--conferir` que regera e compara.
+- **`dados/cruzamento-14-9.md`** — a saída, derivada e não digitada.
+- **A segunda verdade foi apagada:** a tabela de SERP em prosa saiu de `dados/filhas-do-guia.md` e o
+  que ficou ali é um ponteiro para os dois arquivos novos, com o motivo. **Uma fonte por campo.**
+
+## O VEREDITO: `acabamento` É A PRIMEIRA CATEGORIA DO GUIA A PASSAR OS DOIS PORTÕES
+
+| recorte | dado | SERP | veredito |
+|---|---|---|---|
+| `acabamento` (a mãe, que é o 4c) | `passa`, 10 itens | ABERTA | **`pode_nascer`** |
+| `acabamento/verniz` | `passa`, 4 itens | ABERTA | **`pode_nascer`** |
+| `acabamento/selador` | `passa`, 3 itens | ABERTA | **`pode_nascer`** |
+| `acabamento/impermeabilizante` | `passa`, 3 itens | ABERTA | **`pode_nascer`** |
+| `alicate/cortador_de_azulejo` | `passa`, 3 itens | ABERTA | **`pode_nascer`** |
+| `pastilha/vidro` | `passa`, 13 itens | TOMADA | `espera_autoridade` |
+
+Dos 42 recortes: **5 `pode_nascer`**, 1 `espera_autoridade`, 3 `espera_serp`, 33
+`sem_nenhum_dos_dois`. **A ordem da 7b — banco, depois as filhas de nível 3, só então a mãe de nível
+2 — foi percorrida inteira numa categoria pela primeira vez desde 12/09.**
+
+## O ACHADO QUE VALE MAIS QUE O VEREDITO: A 16.5 CONTA FILHA, E FILHA NÃO É FILHA NO DADO
+
+A 16.5 exige 3 filhas de nível 3 para a mãe nascer, e até hoje "filha" era lida na contagem do
+**dado**. O cruzamento põe as duas contagens lado a lado e elas **discordam**:
+
+| categoria | filhas que o DADO autoriza | filhas que o CRUZAMENTO autoriza |
+|---|---|---|
+| `acabamento` | 3 | **3** → a mãe pode nascer |
+| `pastilha` | 1 | **0** |
+
+**A `pastilha` é a de mais banco da ilha** — 13 itens, três números em 12 deles — e a filha dela que
+passa no dado é justamente a que a SERP recusa. Pela contagem do dado ela estava a **duas** filhas da
+mãe; pelo cruzamento, a **três**. Nenhum dos dois arquivos de entrada mostra isso sozinho, e o caso
+tem autoteste próprio na bateria (`3 filhas verdes no dado e 2 no cruzamento`, mais o caso da **mãe
+TOMADA com 3 filhas abertas**, que sem o portão faria a mãe nascer para uma SERP de marketplace).
+
+**E três recortes ficaram com `espera_serp` — `alicate`, `pastilha` e `rejunte`, as três mães: dado
+verde e SERP nunca olhada.** Esse veredito existe por nome próprio porque é **o estado que parece
+passe livre**. Medir as três é busca, não coleta de banco: é o trabalho mais barato que sobrou nesta
+fila.
+
+## O DEFEITO QUE A PRÓPRIA EXECUÇÃO ACHOU, ANTES DE QUALQUER COMMIT
+
+A primeira versão do `cruzamento-14-9.py` cravava, no veredito `sem_nenhum_dos_dois`, a frase *"os
+dois: nem 3 itens de banco, nem SERP medida"* — e ela era **FALSA** em `alicate/torques` e
+`rejunte/cimenticio`, que **têm** 3 itens e param por lastro e por número comum, não por contagem.
+Achado lendo o documento gerado, não por portão. Corrigido extraindo `falta_no_dado()`, que **deriva**
+a frase da distância que o portão de dado já mediu, e agora as duas saem certas: *"2 itens com fonte
+que sustente recomendação primária"* e *"um número que a página calcule sobre 3 itens do mesmo
+recorte (a propriedade mais perto é `liberacao_area_molhada_h`)"*. **A lição é a de sempre nesta
+ilha: frase cravada envelhece calada; frase derivada não.**
+
+## O PEDIDO AO RAPHAEL É DERIVADO, E A FAIXA NÃO FOI ESTIMADA
+
+Nenhuma das **seis** consultas abertas tem faixa de volume. O Planejador está na conta dele, a nuvem
+não abre painel autenticado, e o campo ficou **`null` nos dez registros** em vez de preenchido por
+palpite — que é o que o cabeçalho do `corpus-buscas.md` já proibia para o CPC desde 10/09. O pedido
+entrou em `dados/despachos.md` com a lista **derivada pela ferramenta**, consulta por consulta, com o
+recorte que a exige; e só consulta ABERTA entra, porque faixa de consulta que não vai nascer é número
+que ninguém usa. O portão confere sozinho: `Pedido de faixa ao Raphael: N` encolhe quando o número
+chega, **não quando alguém edita a lista**.
+
+**E está escrito que não é bloqueio:** a faixa **não decide se a página nasce** — decide a **ORDEM da
+leva**, que é o que a 1.2-b.3 manda sair da medição e não da rotação. Quem pegar o 4c de `acabamento`
+pode publicar sem ela.
+
+## O RÓTULO VELHO QUE O CRUZAMENTO DERRUBOU NO CORPUS
+
+A medição de 30/09 deixou escrito que o corpus classificava `pastilhas de vidro para mosaico` como
+**ABERTA** com a **mesma evidência** que a régua da 14.9 lê como **TOMADA**, e mandava: *"quem for
+mexer no corpus lê este parágrafo primeiro"*. **Mexido hoje:** o rótulo daquela linha virou
+`~~ABERTA~~ → TOMADA`, com a evidência **intacta** e a diferença entre as duas réguas escrita na
+própria linha — o corpus chamou de aberta porque ninguém responde a pergunta técnica, e a 14.9 manda
+classificar **quem ocupa**, que é o galho do *"a página NÃO nasce agora"*. **O achado do bloco de
+10/09 continua inteiro; o que ele nunca foi é autorização para a página nascer.** E as cinco consultas
+de `acabamento` entraram na seção 1E, com a SERP **citada** daqui e a fonte no JSON novo.
+
+## BANCADA
+
+`conferir-no-ar.py` **524 afirmações, 0 falha** (antes do bloco) · `validar-banco.py` verde, 41
+materiais · `validar-pastilhas.py` 189 afirmações, 0 falha · `cobertura.py --conferir` OK ·
+`filhas-do-guia.py --conferir` aprovado nas três pernas e `--autoteste` 27 casos 0 falha ·
+`cruzamento-14-9.py --conferir` aprovado e **`--autoteste` 32 casos 0 falha** · mutações:
+acabamento 14, base 20, apoio 24, degrau 8, motivo-degrau-4 10, batismo 14, casamento 5, árvore 29,
+pastilhas 14, cobertura 14 — **todas reprovaram, nenhuma passou** · `atualizar-manifest.py --gravar`
+com os 5 sha impressos, e ele **acusou a ferramenta nova fora do manifest** antes de eu a registrar,
+que é o portão dele funcionando.
+
+O soft 404 na borda **continua** e segue com o Raphael desde 29/09 — vermelho esperado, com dono.
+
+---
+
 02/10/2026 13h17Z — A PRIMEIRA CATEGORIA DO GUIA A ALCANÇAR AS 3 FILHAS DA 16.5, E QUATRO FERRAMENTAS QUE MEDIAM MENOS DO QUE PROMETIAM
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h17Z** e push aceito na primeira
