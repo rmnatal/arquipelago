@@ -3,6 +3,234 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+05/10/2026 16h17Z — O DESPACHO DE 05/10 SAI PELOS DOIS ITENS DA FUNDAÇÃO, E O PORTÃO DA F2 VOLTA A MORDER
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h17Z**, push da reserva aceito na primeira
+tentativa (`8fc16e1`). Pela **1.2** não houve escolha a fazer: o foco nomeia esta ilha e a rotação da seção 1
+está suspensa. O cabeçalho estava com `executando_desde: null`, o que pela **1.1** já basta — reserva se escreve
+ANTES do trabalho, então `null` significa que nenhum bloco da Fundação está vivo, e não houve reserva vencida
+para o git desempatar. O último commit na pasta era de **15h08Z**, 69 minutos antes, e era commit de **ronda da
+Sentinela**, que pela 1.1 não reserva nada. Nenhum PR aberto; a branch `claude/dreamy-mccarthy-abrxrs` estava no
+mesmo commit do `main`. **Rede pela 20.2:** três passadas, raiz em **200** nas três.
+
+**Nenhuma URL nova** (a ilha segue em **21**), **nenhuma leva da 21.4 gasta**. O que esta execução publicou foi
+**dado**, não página: manifest **56 → 57** e Sync acionado, com o `/status` conferido na 57.
+
+## O QUE ESTA EXECUÇÃO FEZ: O DESPACHO DA RONDA DE HOJE, PELOS DOIS ITENS QUE SÃO DA FUNDAÇÃO
+
+O despacho das 14h55Z tem três itens. O **3** está escrito, no próprio despacho, como *"não é trabalho da
+Fundação e não é defeito do site"* — é o achado de método sobre o teto de 4 a 6 fichas por sessão do anti-robô da
+Shopee, e ele é endereçado ao Raphael. Sobraram o **1** e o **2**, e pela **18.2** os dois saíram na mesma
+execução.
+
+## ITEM 1 — O DE DINHEIRO: O BANCO SABIA E O SITE NÃO. **CUMPRIDO, E CONFERIDO NO AR**
+
+**O defeito foi medido antes de eu tocar em nada**, com quebra de cache e `Accept-Encoding: identity`, exatamente
+onde o despacho disse que estava: em
+`/materiais/qual-cola-usar-no-mosaico/?base=ceramica_esmaltada_porcelana&onde=contato_permanente_agua&caco=pastilha_vidro&junta=6`
+a página servia *"Não temos rejunte para indicar com 6 mm de junta dentro da água"* — célula **vazia** — e, uma
+linha abaixo, *"De Rejunte Piscinas Quartzolit a gente não conseguiu a faixa de junta que o fabricante publica,
+então ele não entra em recomendação nenhuma"*. O `main` tinha a faixa desde a manhã: `junta_min_mm: 2` e
+`junta_max_mm: 10`, do boletim de agosto de 2017, lidos e gravados pela execução de 13h18Z. **A página estava
+fazendo uma afirmação sobre o nosso próprio trabalho, e a afirmação tinha ficado falsa três horas antes.**
+
+**A causa era uma só e o despacho a nomeou certo:** `/status` na revisão **56**, último desembarque **02/10
+19h52**. Commit sem Sync não é entrega (seções 4 e 20.2).
+
+**E O ATRASO NÃO ERA SÓ DO REJUNTE — ESTE É O ACHADO DE CARONA, E ELE É MAIOR QUE O ITEM.** Rodando o
+`atualizar-manifest.py`, **13 sha estavam vencidos**, e **dez deles são de commits de HOJE**, das duas execuções
+anteriores (`0463fc9` e `552a629`): `cruzamento-14-9`, `serp-das-filhas`, `egresso-de-fontes` (os dois arquivos),
+`filhas-do-guia` (os dois), `medir-egresso` e `mutacoes-batismo`, além do `esquema-banco` e do
+`materiais-rejuntes`. **Não era um dado parado: era a manhã inteira parada.** O `bloco_atual` da execução de
+13h18Z diz, com todas as letras, *"nada publicado e NENHUM Sync acionado"* — ela sabia, escreveu, e o conserto
+ficou para quem viesse depois. O mesmo conserto fecha os dez.
+
+**Manifest 56 → 57**, `atualizado_em: 2026-10-05`, Sync acionado por `curl` às **16h36Z**: revisão 57, *"15
+aplicado(s), 13 aguardando desembarque [forçado]"*.
+
+**NOTA DE PAPEL, PORQUE ELA MUDA O QUE A SENTINELA PODE FAZER:** a ronda de hoje **tentou** acionar o Sync e foi
+**recusada por aquele ambiente**, com a classificação de *deploy em produção*; pela **19.4(a)** o conserto virou
+despacho. Daqui, no papel de Fundação, o mesmo acionamento passou — é o fecho de bloco que a seção 4 manda fazer.
+**O que a ronda escreveu continua valendo como achado:** enquanto o acionamento for recusado ao papel dela, a
+**19.1** e a **19.3** são letra morta para a Sentinela em todo defeito que dependa de desembarque, e ela vai
+despachar em vez de consertar. Isso é limite de ambiente, não de regra, e está em "Precisa do Raphael" no
+`PAINEL.md`.
+
+**OS QUATRO CRITÉRIOS DE PRONTO QUE O ITEM DECLAROU (18.4), medidos um por um no ar, com quebra de cache:**
+
+| critério | medido |
+|---|---|
+| (a) `/status` com `revisao` > 56 e `ultimo` de 05/10 ou depois | **revisão 57**, `ultimo` 2026-10-05 16:36:21 |
+| (b) `junta=6` deixa de dizer "Não temos rejunte para indicar" e **nomeia** o Piscinas | *"o rejunte é Rejunte Piscinas Quartzolit"*, com *"Cobre junta de 2 a 10 mm"* e a declaração de uso submerso citada. **Zero** ocorrência da frase antiga |
+| (c) "a gente não conseguiu a faixa de junta" ausente nas três entradas | **0** em `junta=3`, **0** em `junta=5`, **0** em `junta=6` |
+| (d) `junta=3` lista o Piscinas ao lado do Epóxi | *"o rejunte é Rejunte Epóxi Quartzolit e Rejunte Piscinas Quartzolit — o fabricante nomeia este lugar nos dois"* |
+
+A célula que estava **vazia** passou a ter recomendado, e a pergunta em que isso mais importa — dentro da água o
+tempo todo — passou a nomear justamente o produto que o fabricante fez para ficar dentro da água.
+
+## ITEM 2 — O DEGRAU 2 QUE ERA ANÚNCIO DE VENDEDOR. **CUMPRIDO, E COM PORTÃO NOVO**
+
+**A escolha era da Fundação pela 19.2**, e o despacho pôs as duas opções defensáveis na mesa. **Escolhi descer o
+degrau com o motivo escrito**, e não trocar o `url_produto` por uma `/p/MLB...` do Mercado Livre. O motivo é
+medido e não de gosto: a **25.4-b.1** manda reescolher o par **inteiro** — `url` e `url_produto` da mesma oferta,
+na mesma chamada —, e o **item 3 do mesmo despacho** acabou de medir que o anti-robô da Shopee fecha a sessão em
+4 a 6 fichas e que a Sentinela é proibida de resolver CAPTCHA. **Rotular o que o link É está sempre disponível;
+casar um catálogo que ninguém conferiu, não** — e inventar procedência é o defeito que esta ilha mais paga.
+
+`quartzolit-rejunte-acrilico`: `degrau` **2 → 3**, com `por_que_este_degrau_da_25_1` escrito. A escada fecha
+**1:1 2:4 3:19 4:17** em 41 — **o degrau 2 saiu de 5 para 4**, como o item pediu que fosse dito explicitamente, e
+o 3 subiu de 18 para 19.
+
+**ONDE A JUSTIFICATIVA FOI ESCRITA, E POR QUE NÃO FOI NO LUGAR ÓBVIO:** o campo
+`por_que_este_degrau_da_25_1` mora **dentro de `casamento`** nos 36 registros que passaram pelo
+`casar-anuncio.py`, ao lado da `loja`, do `shop_id` e do `titulo_do_anuncio` que o sustentam. Este registro é um
+**dos cinco de 13/09/2026**, escolhidos antes de a regra de casamento existir — e o esquema já diz que a ausência
+de `casamento` neles é **história e não defeito**. Escrever um bloco `casamento` só para a justificativa caber
+seria **inventar procedência que ninguém mediu**. O campo entrou no nível de `afiliado`, documentado no esquema
+com a trava de onde **não** escrevê-lo: em registro que tenha `casamento`, porque duas cópias da mesma frase em
+níveis diferentes é a segunda fonte que envelhece calada (seção 4).
+
+**O PORTÃO NOVO, e ele é a TERCEIRA CAMADA DA MESMA FAMÍLIA.** A linhagem, escrita porque ela é o argumento:
+
+- **28/09** — o degrau tem de estar **escrito** (`mutacoes-degrau.py`);
+- **30/09** — o degrau 4 tem de dizer **por que** parou ali (`mutacoes-motivo-degrau-4.py`);
+- **05/10** — o degrau escrito tem de **descrever a URL que está ao lado dele**.
+
+Os dois primeiros olham o campo. **Nenhum dos três dias olhou se o número gravado corresponde ao link**, e foi
+por esse buraco que o registro passou dez dias com `degrau: 2` carregando
+`shopee.com.br/product/1462074750/58262414865`. A régua nova é a **forma da URL**, nunca a prosa ao lado dela,
+porque forma de URL é objetiva e prosa envelhece calada: degrau 2 exige a `/p/MLB...` do Mercado Livre, reprova
+explicitamente o `produto.mercadolivre.com.br/MLB-..._JM` que a **25.1** nomeia com todas as letras, e degrau 3
+exige `url_busca`, que a 25.1 escreve dentro do próprio degrau.
+
+**E A METADE SILENCIOSA DO ACHADO, que a forma da URL não pega:** a mesma `shop_id` da Shopee não pode carregar
+dois degraus. Ser **loja oficial do fabricante** (degrau 1) ou **vendedor comum** (degrau 3) é propriedade da
+**loja**, não do produto — então dois registros da mesma loja em degraus diferentes têm, com certeza, um dos dois
+errado. A loja `1462074750` estava **degrau 3** no `quartzolit-borracha-liquida-elastica`, com o nome dela
+escrito no campo (*"a loja Edu Tintas Ltda e vendedor comum"*), e **degrau 2** no rejunte acrílico. **O banco
+sabia a resposta num registro e dizia outra coisa no outro.** Hoje: **15 lojas da Shopee lidas, 0 com mais de um
+degrau**.
+
+**A BATERIA (`mutacoes-forma-do-degrau.py`): 5 de 5 reprovadas, 4 SÓ pelo portão novo.** A quinta
+(degrau 3 sem `url_busca`) o portão antigo já pegava, e está escrito assim no relatório dela — mutação pega pelo
+portão errado não prova portão nenhum. Duas **produzem o mundo** que o banco não tem: a forma
+`-i.<shop>.<item>`, que um portão lendo só `/product/` não veria em metade dos registros, e a loja com dois
+degraus, que o conserto de hoje acabou de tirar do banco.
+
+**E ELA MEDE O FALSO POSITIVO, o que é novo entre as irmãs.** Escrevi a régua primeiro exigindo o rótulo do
+produto no caminho da URL — e isso **reprovaria catálogo de verdade**, porque a `/p/MLB...` também existe na
+forma curta sem rótulo, que é a que o próprio Mercado Livre devolve ao compartilhar. **Portão que reprova o link
+certo é desligado pela primeira pessoa com pressa, e aí deixa de medir qualquer coisa.** A bateria passou a
+afirmar que as duas formas legítimas **passam**, e as duas passam.
+
+**O QUE ESTE CONSERTO NÃO MUDA, dito porque a tentação é dizer que mudou:** **nenhum snippet lê
+`afiliado.degrau`** — conferido grepando os oito. A vitrine da F2 desempata por presença de `url`, não por
+degrau. Então este item corrige a **verdade do banco** e a contagem que mede durabilidade, e **não um pixel do
+que o site serve**. O ganho é o que a 25.1 existe para dar: a leitura semanal deixa de ler um link perecível como
+durável, e a ordenação da 25.2-b deixa de ter um dado errado embaixo.
+
+## A METADE DO ITEM 2 QUE EU **NÃO** FIZ, E O MOTIVO ESTÁ MEDIDO (18.3)
+
+O item 2 pede duas regras no validador. A primeira entrou. A segunda — *"reprovar `etiqueta_ml` não nulo com
+`programa` diferente de `mercadolivre`"* — **não entrou, e não é esquecimento.**
+
+**Contei antes de escrever régua: 21 dos 41 registros** do banco têm `etiqueta_ml` preenchida com `programa:
+shopee`. Não é um registro desalinhado: são 4 colas, 13 pastilhas e 4 rejuntes. **A regra, como está escrita,
+reprovaria 21 — e o próprio critério de pronto do item ("rodado no banco desta ilha, imprimir zero reprovação")
+seria inalcançável.**
+
+**E o campo não é defeito, é rótulo pré-atribuído.** A seção 7 diz: *"uma etiqueta por par ilha × ferramenta"* —
+`clubedomosaicof1` e `clubedomosaicof2` são as etiquetas das **duas ferramentas desta ilha**, não de um programa.
+E o `REGISTRO.md` de 13/09/2026 guarda a decisão: o validador cobrava a forma `clubedomosaico-<codigo>`, que é
+uma etiqueta **impossível de criar**, e **23 registros foram corrigidos de propósito** para a forma sem hífen,
+nos dois programas. **Zerar o campo num registro só o tornaria o único incoerente dos 21.**
+
+Isto é a **19.2** funcionando como ela promete: *"sintoma não é causa; quem vê o sintoma costuma errar a causa"*.
+O despacho acertou o degrau — que era defeito de verdade, e caro — e leu a etiqueta ao lado dele como parte do
+mesmo defeito. Era outra coisa. **Não reverti conserto de Sentinela nenhum** (nada havia sido consertado nessa
+metade); o que fica escrito, pela **19.6**, é por que a régua pedida não nasceu.
+
+## O PORTÃO DA F2 ESTAVA VERMELHO E BLOQUEAVA A BATERIA INTEIRA — E A CAUSA FOI A LACUNA QUE FECHOU HOJE
+
+**Isto não estava em despacho nenhum: apareceu ao rodar o portão antes de publicar, que é o que a seção 13
+manda.** `teste-f2.php` fechava **1 falha em 127 afirmações**, e `mutacoes-f2.py` se recusava a começar — *"a F2
+de verdade já está reprovada, conserte antes de mutar"*. **As 51 mutações da F2 estavam paradas**, e nenhuma
+ronda veria isso, porque a ronda mede a tela e não a bancada.
+
+**A afirmação que falhava era um canário, e ele morreu de a notícia ser boa.** A régua era: varra o banco, ache o
+produto com `junta_min_mm` ou `junta_max_mm` em `null`, e exija que ele **nunca** apareça recomendado nos 60
+estados. Ao lado dela, `! empty( $sem_faixa )` — *"o banco tem produto com faixa de junta não obtida, e ele é
+medido"* — existia justamente para provar que havia o que varrer. **Quando o boletim do Piscinas foi aberto hoje
+e a faixa entrou no banco, o último produto sem faixa desapareceu:** o canário reprovou, e o portão de verdade
+virou **vácuo** — zero produto varrido, zero estado medido, e **verde**.
+
+**E a mutação `faixa pela metade vira sem limite` ficou INERTE pelo mesmo motivo** — ela completa as pontas
+`null`, e sem ponta `null` no banco não há o que completar. O comentário dentro dela avisa, de uma versão
+anterior, que *"mutação que acha o alvo e mesmo assim não muda o que o site serve é verde sem medir nada — a
+mesma família do alvo que não existe, e mais difícil de ver"*. **Foi exatamente isso que aconteceu com ela
+outra vez, e por um conserto que estava certo.**
+
+**O conserto não foi apagar o canário — foi parar de depender da sorte do banco.** A bancada passa a
+**sintetizar** o produto sem faixa, numa cópia do repositório (só `manifest.json`, `snippets/` e `dados/`, que é
+tudo o que o `render-para-teste.php` lê da raiz), clonando **o registro mais perigoso que existe** — o único
+declarado para pastilha de vidro submersa — com as duas pontas em `null` e outro nome. O molde é escolhido **por
+id nomeado** e a bancada **morre com erro** se ele sair do banco: molde escolhido por posição mudaria de produto
+sem ninguém ver, e o portão passaria a medir outra coisa calado.
+
+**E ele mede as DUAS direções**, porque sintético que o render engole em silêncio seria o mesmo vácuo com outra
+roupa: **(a)** o nome nunca aparece em recomendação em nenhum dos **60** estados, e **(b)** ele **aparece** na
+lista do que ficou de fora, com a frase que declara a faixa não obtida — prova de que o render leu o registro em
+vez de descartá-lo antes da conta. Hoje: **60 de 60 estados** na direção (b).
+
+**Resultado: `teste-f2.php` 127 afirmações, 0 falhas** — e o portão passou a medir **60 estados** onde media
+**zero**. **A mutação inerte voltou a morder:** `faixa de junta pela metade vira sem limite` reprovou, e reprovou
+**pela afirmação nova**.
+
+## UM NÚMERO DE BATERIA QUE ENVELHECEU CALADO, E ELE NÃO ERA MEU
+
+Ao escrever o portão novo no esquema, conferi o número da bateria irmã e ele não batia. O esquema dizia
+`mutacoes-degrau.py (8 mutacoes, 4 que so o portao novo ve)`. **Medido hoje: 1, não 4.** E medido **com o meu
+portão desligado e com a árvore de antes desta execução** (`git stash`), para não me dar por inocente sem provar:
+**era 1 antes de eu tocar em nada**. Não é regressão do portão de 05/10 — é o banco que cresceu, e sete das oito
+mutações passaram a ser pegas também por portões vizinhos. A linha do esquema foi corrigida **com a medição e com
+a data**, em vez de ser reescrita em silêncio. **Número de bateria escrito num arquivo de esquema é número que
+envelhece calado**, e este envelheceu.
+
+## PORTÕES DESTA EXECUÇÃO
+
+| portão | resultado |
+|---|---|
+| `validar-banco.py` | **OK** — 41 itens, escada 1:1 2:4 3:19 4:17, 15 lojas da Shopee lidas, **0** com mais de um degrau |
+| `teste-f2.php` | **127 afirmações, 0 falhas** (era 1 falha) |
+| `mutacoes-forma-do-degrau.py` (nova) | **5 de 5**, 4 só pelo portão novo, **0 falso positivo** |
+| `mutacoes-degrau.py` | 8 de 8 |
+| `mutacoes-motivo-degrau-4.py` | 10 de 10, as 10 só pelo portão novo |
+| `mutacoes-casamento.py` | 5 de 5 no banco |
+| `teste-casamento.py` | 42 afirmações, 0 falhas |
+| `validar-pastilhas.py` | 189 afirmações, 0 item com falha |
+| `mutacoes-f2.py` | **51 mutações, 51 reprovadas, 0 passaram** (estava BLOQUEADA antes desta execução) |
+| `conferir-no-ar.py` | **APROVADO — 524 afirmações no HTML servido, 0 falhas** |
+| `leitura-do-visitante.py` | **REPROVADO por 1 defeito, e é o esperado com dono escrito**: 22 URLs lidas, 0 em janela de cache, e o único defeito é o soft 404 na borda (1ª leitura 404, 2ª 200), do hospedeiro, pendente com o Raphael desde 29/09. **Não ficou vermelho por nenhum outro motivo** |
+| YAML do `ESTADO.md` (seção 2) | parseia e os **oito** campos presentes |
+
+## O PRÓXIMO PASSO DESBLOQUEADO
+
+O despacho de 05/10 fica no `PROMPT.md` **só com o item 3**, que ele mesmo declara método endereçado ao Raphael —
+ou a Open API de Afiliados passa a responder o estado do anúncio, ou a **25.4** ganha a linha que diz quantos
+itens por ronda são possíveis e em que ordem. **Enquanto não houver uma das duas, nenhuma ronda deve escrever "N
+de N vivos" sobre um banco que não conseguiu varrer** — e isso é o item falando, não eu.
+
+**A ilha fica sem despacho acionável pela Fundação**, então a próxima execução volta à fila normal do `PROMPT.md`.
+O que decide se cabe leva de malha é o **teto da 21.4**, e quem abrir o próximo bloco lê o teto antes de escolher.
+
+**E FICA UM AVISO DE PROCESSO, que é a lição desta execução e não é regra nova:** as duas execuções da manhã
+fecharam escrevendo "nenhum Sync acionado" e deixaram **dez** sha vencidos para trás. Nenhum portão do
+repositório vê isso — o `main` fica verde, o commit parece entrega, e quem paga é a página. **Quem fecha bloco
+publicável aciona o Sync na mesma execução**, mesmo quando o bloco "só mexeu em dado": nesta ilha dado É página,
+porque as ferramentas leem o banco a cada requisição.
+
+---
+
 05/10/2026 13h18Z — O NÚMERO QUE FALTAVA ESTAVA NUM PDF QUE A ILHA DAVA POR FECHADO; O EGRESSO NUNCA BARROU PDF, BARRA HOST
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h18Z**, push da reserva aceito na primeira

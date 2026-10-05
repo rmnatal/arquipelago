@@ -69,7 +69,7 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-10-05 (RONDA DIÁRIA TÉCNICA, 14h55Z) — TRÊS ITENS, E O PRIMEIRO É DE DINHEIRO
+## DESPACHO DA SENTINELA — 2026-10-05 (RONDA DIÁRIA TÉCNICA, 14h55Z) — TRÊS ITENS; OS DOIS DA FUNDAÇÃO ESTÃO FECHADOS, SÓ O 3 FICOU
 
 > **ESTA RONDA ESCOLHEU A clubedomosaico PELA REGRA DA DÍVIDA (seção 12):** ela é a única ilha com publicação
 > nova desde a última ronda — o `ultima_execucao` do cabeçalho é de **hoje, 14h05Z**, e o sitemap foi de 17 para
@@ -141,86 +141,87 @@ não é "vivo", e esta ronda não vai escrever que é.** **Piso da 25.2: 41 de 4
 
 ---
 
-### 1. O BANCO SABE E O SITE NÃO: SETE DAS NOVE CÉLULAS DE REJUNTE DA F2 ESTÃO ERRADAS NO AR, E UMA DELAS ESTÁ VAZIA — **TENTEI CONSERTAR EM 05/10/2026 E FALHOU**
 
-**É o defeito mais caro desta ronda, e ele foi previsto por escrito pela própria execução que o criou.** O
-`bloco_atual` de hoje, item 4, diz com todas as letras: *"A FAIXA DE JUNTA MUDOU 7 DAS 9 CELULAS DA F2, QUE JA
-ESTA NO AR, e duas delas sao ganho: a 3 mm em contato_permanente_agua o rejunte piscinas subiu ao TOPO ao lado
-do epoxi, e a 6 mm em contato_permanente_agua a celula ESTAVA VAZIA e passou a ter recomendado."* E o mesmo
-`bloco_atual`, duas linhas acima, fecha com: *"nada publicado e NENHUM Sync acionado (...) Manifest e /status
-seguem na revisao 56."* **As duas frases não podem ser verdadeiras ao mesmo tempo: a F2 no ar não mudou, porque
-o dado não desembarcou.**
-
-**O QUE ESTÁ NO REPOSITÓRIO:** `ilhas/clubedomosaico/dados/materiais-rejuntes.json`, registro
-`quartzolit-rejunte-piscinas`, com `junta_min_mm: 2` e `junta_max_mm: 10` lidos do boletim de agosto de 2017
-("Juntas de assentamento: de 2 a 10 mm"), mais `liberacao_area_molhada_h: 96`. Commitado hoje.
-
-**O QUE O SITE SERVE, medido às 14h4xZ com quebra de cache, em três células:**
-
-| entrada | o que a página diz hoje | o que o banco manda dizer |
-|---|---|---|
-| `onde=contato_permanente_agua&junta=6` | **"Não temos rejunte para indicar com 6 mm de junta dentro da água"** — célula **vazia** | o Rejunte Piscinas cobre 2 a 10 mm e declara uso submerso em água tratada |
-| `onde=contato_permanente_agua&junta=3` | recomenda só o Epóxi; do Piscinas diz **"a gente não conseguiu a faixa de junta que o fabricante publica"** | o Piscinas sobe ao topo ao lado do Epóxi |
-| `onde=contato_permanente_agua&junta=5` | idem, mesma frase | o Piscinas entra |
-
-**A frase que está no ar é uma afirmação sobre o nosso próprio trabalho, e ela ficou falsa hoje.** A página diz
-ao leitor que não conseguimos um número que o `main` tem. E o produto que ela deixa de fora é justamente o que o
-fabricante fez para ficar dentro da água — numa pergunta cuja resposta é "dentro da água o tempo todo". O
-`/status` confirma: `revisao: 56`, e o **último desembarque registrado é de 02/10 19h52**.
-
-**ESTE DEFEITO É DA LISTA FECHADA 19.1 — `Sync não disparado` — E EU TENTEI CONSERTÁ-LO, COMO A 19.3 MANDA.
-FALHOU, E A CAUSA NÃO É DO SITE:** o acionamento de `?clubedomosaico_sync=<token>&forcar=1` por `curl` foi
-**recusado pelo ambiente desta rotina**, com a classificação de *deploy em produção*. Não há caminho alternativo
-que eu deva tentar: contornar a recusa é proibido. Pela **19.4(a)**, conserto que não passa a conferência no ar
-vira despacho, e é o que esta linha é: **tentei consertar em 05/10/2026, falhou: o acionamento do Sync por curl
-é bloqueado para a rotina da Sentinela.** Está também em "Precisa do Raphael" no `dados/PAINEL.md`, porque
-**enquanto estiver assim a 19.1 e a 19.3 são letra morta para a Sentinela**: ela não consegue cumprir "aciona o
-Sync e reabre a URL para conferir", e todo defeito que dependa de desembarque vai virar despacho em vez de
-conserto.
-
-**O que a Fundação faz:** sobe a `revisao` do `manifest.json` de **56 para 57** (com `atualizado_em: 2026-10-05`)
-e aciona o Sync da ilha, como qualquer fecho de bloco.
-
-**PRONTO QUANDO:** (a) `?rest_route=/clubedomosaico/v1/status` devolver `revisao` **maior que 56** com `ultimo`
-de 05/10 ou depois; (b) `/materiais/qual-cola-usar-no-mosaico/?base=ceramica_esmaltada_porcelana&onde=contato_permanente_agua&caco=pastilha_vidro&junta=6`
-**deixar de dizer** "Não temos rejunte para indicar" e **nomear** o Rejunte Piscinas Quartzolit; (c) a frase
-"a gente não conseguiu a faixa de junta" **não aparecer** em nenhuma das três entradas da tabela acima; e (d) a
-mesma URL com `junta=3` listar o Rejunte Piscinas ao lado do Epóxi. As quatro medidas são de abrir URL e ler.
+> **ESTADO DESTE DESPACHO EM 05/10/2026 às 16h4xZ, pela 18.3 — OS ITENS 1 E 2 SAÍRAM E SÓ O 3 FICOU, QUE NÃO É DA FUNDAÇÃO.**
+> Os dois itens acionáveis estão **CUMPRIDOS e conferidos contra o critério de pronto que eles mesmos declararam**
+> (18.4). O texto deles foi substituído pelo fecho, logo abaixo, e não apagado: o que a próxima execução precisa
+> ler não é o defeito, é a escolha que o item 2 exigia e **a metade dele que NÃO virou régua, com o número que
+> mostra por quê**. O **item 3** fica inteiro, porque ele mesmo se declara método endereçado ao Raphael — e com
+> ele fica a consequência: **nenhuma ronda deve escrever "N de N vivos" sobre um banco que não conseguiu varrer.**
+>
+> **E UM ACHADO DE CARONA QUE VALE MAIS QUE O ITEM 1, para a próxima execução não repetir:** o atraso de
+> desembarque não era do rejunte. **13 sha estavam vencidos no manifest, dez deles de commits de HOJE** — a manhã
+> inteira parada, com o `bloco_atual` de 13h18Z dizendo "nenhum Sync acionado" e deixando o conserto para quem
+> viesse depois. **Quem fecha bloco publicável aciona o Sync na mesma execução**, mesmo quando o bloco "só mexeu
+> em dado": dado desta ilha É página, porque as ferramentas leem o banco.
 
 ---
 
-### 2. `quartzolit-rejunte-acrilico` ESTÁ NO `degrau: 2` COM UMA URL DE ANÚNCIO DE VENDEDOR NA SHOPEE — E O DEGRAU 2 DA 25.1 É SÓ O CATÁLOGO DO MERCADO LIVRE
+### ~~1. O BANCO SABE E O SITE NÃO: SETE DAS NOVE CÉLULAS DE REJUNTE DA F2 ESTÃO ERRADAS NO AR~~ — **CUMPRIDO em 05/10/2026 às 16h36Z, manifest e `/status` na revisão 57**
 
-**Dado do banco: é 19.2, e eu não conserto.** Em `ilhas/clubedomosaico/dados/materiais-rejuntes.json`, o bloco
-`afiliado` do registro `quartzolit-rejunte-acrilico` traz, ao mesmo tempo:
+**Os quatro critérios de pronto que o item declarou foram medidos um por um no ar, com quebra de cache:** (a)
+`/status` em **revisão 57**, `ultimo` **2026-10-05 16:36:21**; (b) a entrada de `junta=6` em
+`contato_permanente_agua` deixou de dizer "Não temos rejunte para indicar" e agora serve *"o rejunte é **Rejunte
+Piscinas Quartzolit**"*, com *"Cobre junta de 2 a 10 mm"* e a declaração de uso submerso citada — **a célula que
+estava VAZIA passou a ter recomendado**; (c) a frase "a gente não conseguiu a faixa de junta" tem **zero**
+ocorrência em `junta=3`, `junta=5` e `junta=6`; (d) `junta=3` lista *"Rejunte Epóxi Quartzolit **e** Rejunte
+Piscinas Quartzolit — o fabricante nomeia este lugar nos dois"*.
 
-- `"programa": "shopee"` e `"url_produto": "https://shopee.com.br/product/1462074750/58262414865"`;
-- `"degrau": 2` — e a **25.1** reserva o degrau 2 para **a página de catálogo `/p/MLB...` do Mercado Livre**, "ela
-  é *o produto*, não o anúncio". Anúncio de vendedor comum na Shopee é **degrau 3**, "último recurso";
-- `"etiqueta_ml": "clubedomosaicof2"` — etiqueta de Mercado Livre num registro cujo programa é a Shopee;
-- **nenhum** bloco `casamento` e **nenhum** campo `por_que_este_degrau_da_25_1`, que os itens casados em 29/09
-  carregam.
+**O DIAGNÓSTICO DO ITEM ESTAVA CERTO E A CAUSA ERA UMA SÓ:** commit sem Sync não é entrega. Nada no banco
+precisou mudar — a faixa de 2 a 10 mm já estava no `main` desde a manhã, do boletim de agosto de 2017.
 
-**E a loja é a mesma que o banco já classificou como vendedor comum, em outro registro:** o `shop_id`
-`1462074750` é o do `quartzolit-borracha-liquida-elastica`, que escreve, no próprio campo,
-`por_que_este_degrau_da_25_1: a loja "Edu Tintas Ltda" e vendedor comum (25.1, degrau 3)`. **O mesmo vendedor
-está rotulado degrau 3 num registro e degrau 2 no outro.**
+**A NOTA DE PAPEL QUE O ITEM DEIXOU CONTINUA VALENDO, e ela não se fecha daqui:** a ronda **tentou** acionar o
+Sync e foi **recusada pelo ambiente dela** como *deploy em produção*; daqui, no papel de Fundação, o mesmo
+acionamento passou. **Enquanto for assim, a 19.1 e a 19.3 são letra morta para a Sentinela em todo defeito que
+dependa de desembarque** — ela vai despachar em vez de consertar, e isso não é falha dela. Segue em "Precisa do
+Raphael" no `dados/PAINEL.md`.
 
-**POR QUE ISSO NÃO É COSMÉTICO.** O degrau é o que a 25.1 manda gravar para se saber **quanto aquele link dura**,
-e é por degrau que a 25.2-b ordena a vitrine. Um anúncio de vendedor rotulado como catálogo é um link perecível
-vestido de link durável — e ele está servido em `/materiais/qual-cola-usar-no-mosaico/`, onde o rejunte acrílico
-aparece em recomendação. A contagem de degraus do banco hoje (1 no degrau 1, **5** no degrau 2, 18 no 3, 17 no 4,
-em 41) está errada na casa que mede durabilidade.
+---
 
-**Escolher o conserto é da Fundação (19.2), porque são duas opções defensáveis:** ou o `degrau` desce para 3 com
-o `por_que_este_degrau_da_25_1` escrito e o `etiqueta_ml` zerado, ou o `url_produto` é trocado por uma
-`/p/MLB...` real do Mercado Livre — e nesse caso a **25.4-b.1** manda reescolher o par **inteiro**, `url` e
-`url_produto` da mesma oferta na mesma chamada, nunca grampear um ao lado do outro.
+### ~~2. `quartzolit-rejunte-acrilico` ESTÁ NO `degrau: 2` COM UMA URL DE ANÚNCIO DE VENDEDOR NA SHOPEE~~ — **CUMPRIDO em 05/10/2026, com portão novo; e UMA METADE DELE NÃO VIROU RÉGUA, com o número**
 
-**PRONTO QUANDO:** `validar-banco.py` reprovar registro cujo `degrau` seja 2 sem `url_produto` de catálogo do
-Mercado Livre, e reprovar `etiqueta_ml` não nulo com `programa` diferente de `mercadolivre`; e, rodado no banco
-desta ilha, imprimir **zero** reprovação. O número de itens no degrau 2 tem de sair de 5 e ser dito
-explicitamente no fecho.
+**A ESCOLHA, que pela 19.2 era da Fundação:** o `degrau` desceu para **3** com o
+`por_que_este_degrau_da_25_1` escrito, em vez de trocar o `url_produto` por uma `/p/MLB...` do Mercado Livre. O
+motivo é medido: a **25.4-b.1** manda reescolher o par **inteiro** — `url` e `url_produto` da mesma oferta, na
+mesma chamada — e o **item 3 deste mesmo despacho** acabou de medir que o anti-robô fecha a sessão em 4 a 6
+fichas. **Rotular o que o link É está sempre disponível; casar um catálogo que ninguém conferiu, não.**
+
+**O critério de pronto do item, cumprido:** `validar-banco.py` reprova registro cujo `degrau` seja 2 sem
+`url_produto` de catálogo do Mercado Livre e, rodado no banco desta ilha, imprime **zero** reprovação. **O degrau
+2 saiu de 5 para 4**, e a escada fecha **1:1 2:4 3:19 4:17** em 41.
+
+**O PORTÃO NOVO É A TERCEIRA CAMADA DA MESMA FAMÍLIA** (28/09: o degrau tem de estar escrito; 30/09: o degrau 4
+diz por que parou ali; **05/10: o degrau escrito tem de DESCREVER a URL ao lado dele**). A régua é a **forma da
+URL**, nunca a prosa ao lado dela: degrau 2 exige a `/p/MLB...` (nas **duas** formas legítimas, com rótulo no
+caminho e na curta sem rótulo), reprova o `produto.mercadolivre.com.br/MLB-..._JM` que a 25.1 nomeia, e degrau 3
+exige `url_busca`. **Mais a metade silenciosa do achado:** a mesma `shop_id` da Shopee não pode carregar dois
+degraus, porque ser loja oficial do fabricante é propriedade da **loja** e não do produto. Hoje: **15 lojas da
+Shopee lidas, 0 com mais de um degrau**. Bateria `ferramentas/mutacoes-forma-do-degrau.py`: **5 de 5 reprovadas,
+4 só pelo portão novo, 0 falso positivo** — e ela é a primeira entre as irmãs a medir falso positivo, porque a
+primeira régua escrita exigia o rótulo no caminho da URL e **reprovaria catálogo de verdade** na forma curta.
+
+**O QUE ESTE CONSERTO NÃO MUDOU, dito porque a tentação é dizer que mudou:** **nenhum snippet lê
+`afiliado.degrau`** (conferido nos oito), e a vitrine da F2 desempata por presença de `url`. O item corrigiu a
+**verdade do banco** e a contagem que mede durabilidade — **não um pixel do que o site serve**.
+
+#### A METADE QUE NÃO VIROU RÉGUA, E O NÚMERO QUE MOSTRA POR QUÊ — leia antes de pedir de novo
+
+O item pedia também que o validador **reprovasse `etiqueta_ml` não nulo com `programa` diferente de
+`mercadolivre`**. **Essa régua não entrou, e não é esquecimento.**
+
+**Contado antes de escrever régua: 21 dos 41 registros** do banco estão assim — 4 colas, **13 pastilhas** e 4
+rejuntes. A régua reprovaria **21**, e o próprio critério de pronto do item (*"rodado no banco desta ilha,
+imprimir zero reprovação"*) seria **inalcançável**.
+
+**E o campo não é defeito: é rótulo pré-atribuído.** A **seção 7** diz *"uma etiqueta por par ilha × ferramenta"*
+— `clubedomosaicof1` e `clubedomosaicof2` são as etiquetas das **duas ferramentas desta ilha**, não de um
+programa. E o `REGISTRO.md` de **13/09/2026** guarda a decisão: o validador cobrava a forma
+`clubedomosaico-<codigo>`, **impossível de criar**, e **23 registros foram corrigidos de propósito** para a forma
+sem hífen, **nos dois programas**. **Zerar o campo num registro só o tornaria o único incoerente dos 21.**
+
+Isto é a **19.2** funcionando como ela promete — *"sintoma não é causa; quem vê o sintoma costuma errar a
+causa"*. O despacho **acertou o degrau**, que era defeito de verdade e caro, e leu a etiqueta ao lado dele como
+parte do mesmo defeito. Era outra coisa. Registrado aqui pela **19.6**, para a decisão não ficar no silêncio.
 
 ---
 
