@@ -19,11 +19,12 @@
   "pendencias_desta_categoria": [
     {
       "id": "cimentcola-substrato-declarado",
-      "o_que_falta": "Declaracao de SUBSTRATO da argamassa cimentcola AC-II: sobre o que ela pode ser aplicada (contrapiso, parede de alvenaria, concreto, vaso de cimento).",
-      "onde_buscar": "Boletim Tecnico cimentcola externo ACII (quartzolit.weber, arquivo 2024-09), campo 'substratos' ou 'aplicacao'.",
+      "o_que_falta": "Nao e mais a declaracao de substrato: ela esta no banco, literal, na secao 4.1 do boletim lido em 05/10/2026 (emboco, alvenaria, contrapiso, paredes de concreto, alvenarias de blocos e gesso acartonado). O que falta e a regra 7 de elegibilidade — proibicao declarada sobre a PECA que se cola —, sem a qual gravar o substrato faz a F2 recomendar esta argamassa para pastilha de vidro, que a secao 3 do MESMO boletim proibe como `revestimento especial`.",
+      "onde_buscar": "Em nenhum lugar: a coleta acabou. O proximo passo e esquema + validar-banco.py + snippet da F2 + matriz esperada + bateria.",
       "por_que_importa": "ACHADO DESTE BLOCO. A secao 1.3 da especificacao recomenda a cimentcola para base de cimento citando que ela e declarada para 'area interna e externa' — mas isso e ambiente, nao substrato. As unicas superficies que a coleta do bloco 2 nomeou ('ceramicas e placas de pedra natural de ate 120 x 120 cm') sao a PECA ASSENTADA. Sem a declaracao de substrato, a cimentcola nao pode ser recomendacao primaria em base nenhuma, e quem responde a base de cimento e o silicone neutro, que declara concreto e alvenaria com todas as letras.",
       "bloqueia_publicacao": false,
-      "bloqueia_o_que": "a cimentcola AC-II aparecer como recomendada na F2 e na ficha /materiais/colas"
+      "bloqueia_o_que": "a cimentcola AC-II aparecer como recomendada na F2 e na ficha /materiais/colas — e e bom que bloqueie, porque sem a regra 7 a recomendacao sairia errada",
+      "estado": "MUDOU DE NATUREZA EM 05/10/2026 — O DADO CHEGOU E O QUE FALTA AGORA E REGRA, NAO COLETA."
     },
     {
       "id": "colas-sem-imagem-e-sem-oferta",
@@ -377,15 +378,22 @@
       "fabricante": "Saint-Gobain Weber",
       "nome_comercial": "Argamassa Cimentcola Externo AC-II Quartzolit",
       "codigo_fabricante": null,
-      "motivo_sem_codigo": "Identificada pela classificacao normativa (AC-II conforme NBR 14.081) e pelo nome comercial; o Boletim Tecnico 2024-09 nao foi aberto.",
+      "motivo_sem_codigo": "Identificada pela classificacao normativa (AC II conforme NBR 14.081) e pelo nome do produto como o proprio fabricante o escreve no boletim ('cimentcola externo quartzolit', em minusculas). O boletim NAO imprime codigo de produto. A frase anterior deste campo dizia que 'o Boletim Tecnico 2024-09 nao foi aberto' — um boletim deste produto FOI aberto e lido em 05/10/2026, e e o de maio de 2016; o 2024-09 segue sem canal.",
       "declaracoes": {
         "indicado_para": [
-          "assentamento cerâmico em área interna e externa",
-          "cerâmicas e placas de pedra natural de até 120 x 120 cm em área interna e 100 x 100 cm em área externa"
+          "assentar revestimentos ceramicos de ate 60x60 cm em pisos e paredes de areas internas e externas, bem como superficies de gesso acartonado (drywall)",
+          "assentar revestimentos ceramicos de ate 20x20 cm e de absorcao de agua de 3% a 6% em fachadas e em piscinas residenciais nao aquecidas",
+          "placas de pedras naturais, arenitos, quartzitos, como miracema, sao tome, mineira, goias e ardosia, de ate 60x60 cm, com espessura irregular de ate 3 cm, em pisos e paredes de areas internas e externas",
+          "em camada grossa com espessuras de ate 3 cm de argamassa colante",
+          "ceramicas principalmente quando se deseja regularizar desniveis de planeza da base"
         ],
         "nao_usar_em": [],
         "nao_recomendado_em": [],
-        "nao_indicado_para": [],
+        "nao_indicado_para": [
+          "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigorificos e revestimentos especiais",
+          "ceramicas do tipo porcelanato ou com absorcao de agua menor que 3%",
+          "bases com pintura ou quaisquer materiais que possam impedir a aderencia da argamassa cimentcola externo quartzolit"
+        ],
         "ambientes_declarados": [
           "área interna e externa"
         ],
@@ -411,21 +419,32 @@
           "declarado_como": "em piscina, encher com agua somente 7 dias depois"
         },
         "consumo_por_area": {
-          "valor": null,
+          "valor": 3.5,
           "unidade": "kg/m2",
-          "fonte_id": null,
-          "motivo": "Nao coletado — pendencia `cimentcola-consumo-e-tempo-em-aberto` de dados/constantes.json. Segura a coluna de gramas de cola da F1."
+          "fonte_id": "bt-cimentcola-externo-2016-05",
+          "declarado_como": "secao 6 do boletim, tres faixas por area da peca assentada: 'Ceramica ate 400 cm2 +/- 3,5 kg/m2', 'Ceramica de 400 a 900 cm2 +/- 4,5 kg/m2', 'Ceramica maior que 900 cm2 +/- 8 kg/m2'",
+          "por_que_a_faixa_de_ate_400_cm2": "O valor gravado e o da PRIMEIRA faixa porque e a unica que alcanca peca de mosaico: a pastilha desta ilha tem de 1,2 a 3 cm de lado, e as outras duas faixas falam de revestimento de 20x20 cm para cima. As tres ficam escritas em declarado_como para quem publicar numero nao ter de reabrir o PDF.",
+          "nao_publicavel_sem_decisao": "Este numero NAO liga sozinho a coluna de gramas de cola da F1, e nenhuma linha de codigo o le hoje (conferido por varredura em 05/10/2026). Ligar a coluna exige decidir que consumo de argamassa colante de obra vale para peca de artesanato, o que e decisao e nao coleta."
         },
         "tempo_em_aberto": {
-          "valor": null,
+          "valor": 20,
           "unidade": "min",
-          "fonte_id": null,
-          "motivo": "Mesma pendencia."
+          "fonte_id": "bt-cimentcola-externo-2016-05",
+          "declarado_como": "'Tempo em aberto >=20 minutos', na tabela de propriedades e caracteristicas (secao 5)"
         }
       },
       "preparo": null,
       "geometria": null,
       "venda": [
+        {
+          "unidade": "saco",
+          "quantidade": 5,
+          "embalagem_declarada": "saco plastico de 5 kg",
+          "loja": null,
+          "fonte_id": "bt-cimentcola-externo-2016-05",
+          "coletado_em": "2026-10-05",
+          "por_que_esta_entrada_importa": "A secao 7 do boletim declara 'sacos plasticos de 5, 15 ou 20kg', e o banco so tinha 15 e 20. O 5 kg e o unico formato deste produto que nao e formato de obra — e a propria observacao deste registro dizia que recomendar 15 kg para um vaso destroi confianca."
+        },
         {
           "unidade": "saco",
           "quantidade": 15,
@@ -466,20 +485,70 @@
           "nivel": 3,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true
+        },
+        "bt-cimentcola-externo-2016-05": {
+          "url": "https://telhanorte.vteximg.com.br/arquivos/908487.pdf",
+          "tipo": "boletim tecnico do fabricante, ABERTO E LIDO pagina a pagina (3 paginas) pelo canal de espelho da escada_de_fontes; o documento se identifica como 'Boletim Tecnico - cimentcola externo quartzolit' e fecha com 'Documento revisado em maio de 2016'",
+          "nivel": 2,
+          "coletado_em": "2026-10-05",
+          "conferir_no_pdf": false,
+          "por_que_nivel_2_e_nao_1": "O PDF foi lido inteiro, mas em ESPELHO (CDN de varejista), nao no servidor do fabricante. Do espelho sai o documento, nao a garantia de que a revisao e a vigente — e aqui isso nao e detalhe: a pendencia que este documento fecha aponta para o arquivo 2024-09 e o documento lido e de MAIO DE 2016. Ver escada_de_fontes.canal_de_espelho.",
+          "revisao_declarada_no_documento": "maio de 2016",
+          "documento": "Boletim Tecnico - cimentcola externo quartzolit, 3 paginas; titulo da pagina 1 em minusculas ('cimentcola externo quartzolit') e subtitulo 'argamassa colante para ceramicas em areas internas e externas'",
+          "revisao_declarada": "Documento revisado em maio de 2016",
+          "espelho": "O PDF NAO foi obtido no dominio do fabricante: www.quartzolit.weber segue em 403 e o apex so redireciona para ele (egresso remedido nesta execucao). Este arquivo esta no CDN da Telha Norte e o conteudo e o boletim do fabricante, com cabecalho, rodape e data de revisao proprios. Fica no nivel 2 e nao no 1 pelo motivo de sempre: por espelho de terceiro nao da para afirmar que esta e a revisao vigente — e aqui a duvida tem nome, porque a pendencia aponta para o arquivo 2024-09 e este e de maio de 2016.",
+          "tipo_de_origem": "documento-pdf-do-fabricante-em-espelho-de-terceiro",
+          "por_que_esta_origem_nao_batiza": "Segunda aplicacao da linha escrita hoje em batismo_do_fabricante.origens_que_NAO_batizam_e_por_que, e ela se provou sozinha: ao entrar sem este campo, a trava do batismo leu o nome do arquivo (`908487.pdf`, codigo do varejista) e reprovou `Argamassa Cimentcola Externo AC-II Quartzolit` dizendo que o fabricante nao escreve essas palavras. Falso positivo pelo mesmo mecanismo do rejunte piscinas. O fabricante batiza DENTRO do documento, no titulo da pagina 1 — e o que ele escreve ali esta medido em `o_que_o_documento_diz_sobre_o_proprio_nome`, abaixo, porque desta vez o nome do documento e o nome do banco NAO sao a mesma coisa.",
+          "o_que_o_documento_diz_sobre_o_proprio_nome": "O titulo da pagina 1 e `cimentcola externo quartzolit`, em minusculas, e o subtitulo e `argamassa colante para ceramicas em areas internas e externas`. O banco grava `Argamassa Cimentcola Externo AC-II Quartzolit`. As duas pontas que SOBRAM no banco sao `Argamassa`, que no documento e o subtitulo (a categoria do produto, nao o nome), e `AC-II`, que no documento e a linha da tabela de propriedades (`Classificacao normativa (NBR 14.081)  AC II`). Pela 26.1 as duas sao classificacao colada no batismo — o fabricante batiza pela posicao e nos classificamos pela funcao. O nome NAO foi corrigido nesta execucao de proposito, e o motivo e medido: `nome_comercial` e entrada da regra de casamento de anuncio (ferramentas/casar-anuncio.py), este registro esta no degrau 2 com `url_produto` de catalogo do Mercado Livre casado pelo nome, e trocar o nome sem reconferir os 14 casamentos e mexer no que paga comissao para ganhar tipografia. Fica como item nomeado, com o documento em casa.",
+          "substratos_que_o_documento_declara_e_que_NAO_foram_gravados": {
+            "por_que_este_campo_existe": "Para a declaracao nao ficar LIDA E DESCARTADA EM SILENCIO, que e o defeito que esta ilha ja mediu tres vezes (os dois vernizes com `isopor` e `gesso`, a desempenadeira da Pastilhart). O documento responde a pendencia `cimentcola-substrato-declarado` com todas as letras, na secao 4.1, e a resposta esta aqui inteira.",
+            "literal_do_documento": [
+              "Emboco, alvenaria e contrapiso em areas internas, curados ha pelo menos 14 dias, conforme NBR 13.754.",
+              "Paredes de concreto curado ha 180 dias. Se curado ha 28 dias, utilize cimentcola flexivel quartzolit.",
+              "Alvenarias de blocos vazados de concreto, de blocos silicocalcarios e de blocos de concreto celular em paredes internas, conforme a Norma Tecnica NBR 13.754.",
+              "(da secao 2) bem como superficies de gesso acartonado (drywall)"
+            ],
+            "onde_isso_pousaria_no_vocabulario": {
+              "cimento_concreto": "emboco, contrapiso e paredes de concreto",
+              "alvenaria_tijolo": "alvenaria e alvenarias de blocos vazados, silicocalcarios e de concreto celular",
+              "sem_valor_no_vocabulario": "gesso acartonado (drywall) — QUARTA ocorrencia da mesma lacuna: `vocabularios.base` nao tem valor para gesso, e dois vernizes do banco ja carregavam `gesso` e `isopor` na frase literal do fabricante. Acrescentar valor a `vocabularios.base` muda a lista suspensa da F2, que e pagina com impressao, e a decisao e do Raphael (esta escrita na fila do PROMPT.md desde 28/09)."
+            },
+            "por_que_NAO_foram_gravados": "Porque gravar so esta metade publica recomendacao que o MESMO documento proibe. A secao 3 do boletim diz `nao indicado para (...) revestimentos especiais`, e a unica tessela deste banco e pastilha de VIDRO, que e revestimento especial. As cinco regras de elegibilidade da F2 decidem sobre BASE e AMBIENTE, e a sexta (condicao de superficie) le a tessela por um campo so, `exige_superficie_porosa`. NAO EXISTE CAMPO para uma proibicao que fala da PECA que se cola. Entao, gravado o substrato, a F2 passaria a recomendar esta argamassa em `cimento_concreto` e `alvenaria_tijolo` para quem respondeu pastilha de vidro — exatamente o que o fabricante proibe, e exatamente o erro caro que a regra_de_divergencia nomeia (peca que descola meses depois).",
+            "o_que_falta_para_gravar": "Uma regra 7 em `regras_de_elegibilidade`: proibicao declarada sobre a PECA elimina o produto para as tesselas que a ilha classifica naquele grupo. Ela segue o molde que ja existe — a lista mora no esquema (como `superficies_porosas`), a classificacao e NOSSA e a tela nao pode dizer que o fabricante classificou (26.3) —, e tem de nascer nas DUAS implementacoes, validar-banco.py e o snippet da F2 em PHP, com matriz esperada e bateria. E bloco, nao linha."
+          }
         }
       },
       "constantes_relacionadas": [
         "cimentcola-externo-acii-quartzolit"
       ],
-      "divergencias": [],
-      "resolucao": null,
+      "divergencias": [
+        {
+          "campo": "declaracoes.indicado_para — tamanho maximo da peca assentada",
+          "lado_a": {
+            "fonte_id": "pagina-produto-cimentcola",
+            "nivel": 3,
+            "coletado_em": "2026-09-10",
+            "diz": "ceramicas e placas de pedra natural de ate 120 x 120 cm em area interna e 100 x 100 cm em area externa"
+          },
+          "lado_b": {
+            "fonte_id": "bt-cimentcola-externo-2016-05",
+            "nivel": 2,
+            "coletado_em": "2026-10-05",
+            "diz": "assentar revestimentos ceramicos de ate 60x60 cm em pisos e paredes de areas internas e externas; placas de pedras naturais (...) de ate 60x60 cm; e, em fachadas e piscinas residenciais nao aquecidas, ate 20x20 cm com absorcao de agua de 3% a 6%"
+          },
+          "resolucao": "VALE O LADO B, e por DOIS motivos que apontam para o mesmo lado. Pela escada_de_fontes o nivel mais alto vence, e boletim tecnico (2) vence pagina de produto (3). E pela regra_de_divergencia.compatibilidade_de_adesivo o campo grava o conjunto MAIS ESTREITO, que tambem e o lado B: 60x60 e menos que 120x120. Os dois criterios concordam, entao nao houve escolha a fazer.",
+          "o_que_isto_NAO_resolve": "O boletim lido e de maio de 2016 e a pagina de produto foi colhida em setembro de 2026. E possivel que a Quartzolit tenha ampliado o formato num boletim mais novo (a pendencia aponta para o arquivo 2024-09) e que o lado A seja o atual. O espelho nao prova vigencia. Mas o erro de gravar 120x120 vindo de uma linha de pagina de produto e o erro CARO (peca descolada), e o de gravar 60x60 e o barato (recomendacao mais estreita do que precisava).",
+          "por_que_nenhum_dos_dois_mudou_a_tela": "Este campo nomeia a PECA ASSENTADA, nao a base, e nenhuma regra de elegibilidade da F2 le o tamanho da peca. A matriz de 45 celulas nao se move por esta correcao — conferido recomputando as 45 com validar-banco.py depois da escrita."
+        }
+      ],
+      "resolucao": "Divergencia de tamanho resolvida pelo boletim (nivel 2), que e tambem o conjunto mais estreito. O texto de indicado_para foi reescrito com a frase do boletim e a frase da pagina de produto ficou em divergencias[], com data, como a regra manda.",
       "status": "ativo",
       "motivo_do_descarte": null,
       "usada_por": [
         "F2",
         "G-COLAS"
       ],
-      "observacao": "Registro com uma lacuna nomeada, e por isso ele nao aparece como recomendado em nenhuma celula da matriz: NENHUMA das duas declaracoes coletadas nomeia o SUBSTRATO. As duas nomeiam a peca que se assenta (ceramica, placa de pedra) e o ambiente (interna e externa). Ver a pendencia `cimentcola-substrato-declarado`. A embalagem de 15 e 20 kg tambem diz algo a esta ilha: e formato de obra para uma peca de artesanato de 900 cm2 — quando o substrato for confirmado, a ficha do Guia precisa dizer isso ao visitante, porque comprar 15 kg para um vaso e o tipo de conselho que destroi confianca."
+      "observacao": "Registro com uma lacuna nomeada, e por isso ele nao aparece como recomendado em nenhuma celula da matriz: nenhuma declaracao GRAVADA nomeia o SUBSTRATO. Ate 05/10/2026 isso era porque ninguem tinha a declaracao; desde 05/10 e porque gravar a metade que existe publicaria recomendacao que o proprio boletim proibe — a razao inteira esta em `fontes['bt-cimentcola-externo-2016-05'].substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. A embalagem tambem diz algo a esta ilha, e o boletim melhorou a resposta: alem dos sacos de 15 e 20 kg que o banco ja tinha, a secao 7 declara `sacos plasticos de 5, 15 ou 20kg`, e o de 5 kg e o unico formato deste produto que nao e formato de obra. Validade declarada: 8 meses em embalagem de papel e 12 meses em plastico."
     },
     {
       "id": "loctite-durepoxi",

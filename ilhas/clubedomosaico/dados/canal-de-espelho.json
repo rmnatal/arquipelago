@@ -1,0 +1,374 @@
+{
+  "veredito_da_medicao": "valida",
+  "controle": [
+    "200",
+    "200",
+    "200"
+  ],
+  "hosts": [
+    {
+      "grupo": "familia_de_espelho",
+      "host": "telhanorte.vteximg.com.br",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "o membro que o achado de 13h2xZ mediu"
+    },
+    {
+      "grupo": "familia_de_espelho",
+      "host": "leroymerlin.vteximg.com.br",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "varejista FORA do grupo Saint-Gobain: se responde, a explicacao de grupo cai"
+    },
+    {
+      "grupo": "familia_de_espelho",
+      "host": "mkpcoral.vteximg.com.br",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "outro ramo do varejo, achado por busca servindo boletim da Coral"
+    },
+    {
+      "grupo": "familia_de_espelho",
+      "host": "cec.vteximg.com.br",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "terceiro membro"
+    },
+    {
+      "grupo": "familia_de_espelho",
+      "host": "balaroti.vteximg.com.br",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "quarto membro"
+    },
+    {
+      "grupo": "familia_de_espelho",
+      "host": "chatuba.vteximg.com.br",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "quinto membro"
+    },
+    {
+      "grupo": "familia_de_espelho",
+      "host": "tumelero.vteximg.com.br",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "sexto membro"
+    },
+    {
+      "grupo": "familia_de_espelho",
+      "host": "telhanorte.vtexassets.com",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "a familia NOVA do mesmo fornecedor de CDN"
+    },
+    {
+      "grupo": "familia_de_espelho",
+      "host": "leroymerlin.vtexassets.com",
+      "codigos": [
+        "400",
+        "400",
+        "400"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "segundo membro da familia nova"
+    },
+    {
+      "grupo": "descoberta",
+      "host": "www.telhanorte.com.br",
+      "codigos": [
+        "000",
+        "000",
+        "000"
+      ],
+      "veredito": "fechado",
+      "entrega": "fechado",
+      "o_que_prova": "a loja: se abrisse, daria para procurar o produto e achar o link do boletim"
+    },
+    {
+      "grupo": "descoberta",
+      "host": "telhanorte.vtexcommercestable.com.br",
+      "codigos": [
+        "000",
+        "000",
+        "000"
+      ],
+      "veredito": "fechado",
+      "entrega": "fechado",
+      "o_que_prova": "a API de catalogo da VTEX: e o jeito limpo de listar produto e anexo"
+    },
+    {
+      "grupo": "descoberta",
+      "host": "telhanorte.myvtex.com",
+      "codigos": [
+        "000",
+        "000",
+        "000"
+      ],
+      "veredito": "fechado",
+      "entrega": "fechado",
+      "o_que_prova": "o painel, o outro endereco da mesma API"
+    },
+    {
+      "grupo": "escapatoria",
+      "host": "web.archive.org",
+      "codigos": [
+        "000",
+        "000",
+        "000"
+      ],
+      "veredito": "fechado",
+      "entrega": "fechado",
+      "o_que_prova": "espelho de tudo: resolveria o fabricante fechado se estivesse aberto"
+    },
+    {
+      "grupo": "escapatoria",
+      "host": "r.jina.ai",
+      "codigos": [
+        "000",
+        "000",
+        "000"
+      ],
+      "veredito": "fechado",
+      "entrega": "fechado",
+      "o_que_prova": "proxy de leitura"
+    },
+    {
+      "grupo": "escapatoria",
+      "host": "docs.google.com",
+      "codigos": [
+        "000",
+        "000",
+        "000"
+      ],
+      "veredito": "fechado",
+      "entrega": "fechado",
+      "o_que_prova": "visualizador de PDF de terceiro"
+    },
+    {
+      "grupo": "fabricante",
+      "host": "www.quartzolit.weber",
+      "codigos": [
+        "403",
+        "403",
+        "403"
+      ],
+      "veredito": "aberto",
+      "entrega": "conversa_sem_entrega",
+      "o_que_prova": "o host onde moram TODAS as URLs de boletim que os bancos citam — o nivel 1 da escada"
+    },
+    {
+      "grupo": "fabricante",
+      "host": "quartzolit.weber",
+      "codigos": [
+        "301",
+        "301",
+        "301"
+      ],
+      "veredito": "aberto",
+      "entrega": "redireciona",
+      "o_que_prova": "o apex, que entrou na lista de rede em 30/09 e so redireciona para o www"
+    }
+  ],
+  "inventario": [
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/101494.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 534710,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Em conformidade com NBR 14725 - parte 4: 2012"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/1156527.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 645889,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico – porcelanato interno branco quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/1200003.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 860391,
+      "citado_por": [
+        "canal-de-espelho.json",
+        "materiais-rejuntes.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico – rejunte piscinas quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/1338838.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 776108,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico – pastilhas exteriores quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/1399250.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 523376,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Em conformidade com NBR 14725:2014"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/1430424.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 647329,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico – porcelanato interno cinza quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/1458361.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 640748,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico – pastilhas fachadas quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/1463217.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 644245,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico – super formatos quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/1463705.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 470229,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico – piso sobre piso externo branco quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/27073.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 649692,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico - cimentcola flexível quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/298182.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 370039,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/59668.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 526065,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico – bloco de vidro quartzolit"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/90387.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 433226,
+      "citado_por": [
+        "canal-de-espelho.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Em conformidade com NBR 14725 - parte 4: 2014"
+    },
+    {
+      "url": "https://telhanorte.vteximg.com.br/arquivos/908487.pdf",
+      "codigo": "200",
+      "content_type": "application/pdf",
+      "bytes": 648452,
+      "citado_por": [
+        "canal-de-espelho.json",
+        "materiais-colas.json"
+      ],
+      "procedencia_da_entrada": "derivada dos bancos",
+      "identidade_lida_no_documento": "Boletim Técnico - cimentcola externo quartzolit"
+    }
+  ],
+  "gerado_em": "2026-10-05 19:41Z",
+  "gerado_por": "ferramentas/medir-espelho.py"
+}

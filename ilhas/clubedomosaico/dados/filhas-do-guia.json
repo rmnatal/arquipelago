@@ -826,7 +826,7 @@
     "itens_que_faltam_para_3": 0,
     "itens_com_lastro_que_faltam_para_3": 0,
     "itens_que_faltam_para_o_numero_mais_perto": 2,
-    "propriedade_mais_perto_de_ser_numero": "tempo_de_ajuste",
+    "propriedade_mais_perto_de_ser_numero": "tempo_em_aberto",
     "itens_sem_nenhum_numero_com_lastro": [
      "cascola-cascorez-extra",
      "loctite-durepoxi",
@@ -957,7 +957,7 @@
     "itens_que_faltam_para_3": 2,
     "itens_com_lastro_que_faltam_para_3": 2,
     "itens_que_faltam_para_o_numero_mais_perto": 2,
-    "propriedade_mais_perto_de_ser_numero": "liberacao_para_agua_em_piscina",
+    "propriedade_mais_perto_de_ser_numero": "tempo_em_aberto",
     "itens_sem_nenhum_numero_com_lastro": [],
     "pode_fechar_completando_registro_existente": {
      "propriedade": null,

@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 57,
+  "revisao": 58,
   "atualizado_em": "2026-10-05",
   "estado": "nascendo",
   "desembarque": {
@@ -105,6 +105,24 @@
   "conteudo": [],
   "dados": [
     {
+      "id": "canal-de-espelho",
+      "arquivo": "dados/canal-de-espelho.md",
+      "formato": "md",
+      "entidade": "medicao",
+      "fonte": "GERADO por ferramentas/medir-espelho.py. Medicao do canal de espelho de 05/10/2026, tres passadas por host, com clubedomosaico.com.br como controle. Nao editar a mao: o portao regera e compara.",
+      "publicar": false,
+      "sha256": "cac96cccac1960962f980a94252256c034a68caa7292df0439c71252d1c743be"
+    },
+    {
+      "id": "canal-de-espelho-json",
+      "arquivo": "dados/canal-de-espelho.json",
+      "formato": "json",
+      "entidade": "medicao",
+      "fonte": "GERADO por ferramentas/medir-espelho.py, no mesmo passo do .md. E a fonte que a proxima execucao le por maquina em vez de reler prosa — e e onde esta o inventario dos 14 documentos de fabricante que este canal alcanca, com a identidade de cada um lida na pagina 1 do PDF.",
+      "publicar": false,
+      "sha256": "77138a5fc21528fc3f8562e1a24107d5477b9da5fa5b7458c06ebe2b1ae1113e"
+    },
+    {
       "id": "corpus-buscas",
       "arquivo": "dados/corpus-buscas.md",
       "formato": "md",
@@ -125,7 +143,7 @@
       "verificado_em": "2026-09-11",
       "registros": 17,
       "publicar": false,
-      "sha256": "e88bef4a836a601ab693d31ffefa290f9a770a960c76e5df26610a81414f64bd",
+      "sha256": "4110845b95178ec618067645f09a38f2702022c8ec12ab07242c49c4c9daada6",
       "descricao": "11 constantes de fabricante e 6 pendencias nomeadas para as calculadoras F1 e F2. A mais valiosa e a lista de restricoes da ficha BRSA004 do Silicone Acetico Construcao Tekbond (revisada em 10/2025), que proibe o produto em espelho, concreto, cimento, tijolo, calcario, superficie alcalina, pintada ou porosa, acrilico, aquario, metal corrosivel e imersao continua — e que torna a elegibilidade da F2 mecanica em vez de opinativa, porque sao exatamente os casos em que o mosaico artesanal brasileiro usa silicone acetico por indicacao de blog. Traz tambem a formula de consumo de rejunte publicada pela propria Quartzolit (((A+B)xExLxCR)/(AxB), CR 1,75 no exemplo do fabricante), a faixa de junta de 2 a 10 mm e o procedimento do rejunte ceramicas, a cimentcola AC-II pela NBR 14.081, o silicone neutro Tekbond como saida declarada para espelho e alcalino, o PVA Cascorez para MDF interno e o Loctite Durepoxi (com ressalva: a fonte e press release, nao ficha tecnica). Declara a direcao de divergencia da ilha pela assimetria de custo: conjunto MAIS ESTREITO na compatibilidade da F2, arredondamento para o MAIOR na quantidade da F1.",
       "pendencias": 6,
       "pendencias_que_bloqueiam_publicacao": [
@@ -141,7 +159,7 @@
       "fonte": "GERADO por ferramentas/cruzamento-14-9.py a partir de dados/filhas-do-guia.json e dados/serp-das-filhas.json. Nada aqui e digitado: --conferir regera e compara, e edicao a mao reprova o portao.",
       "verificado_em": "2026-10-02",
       "publicar": false,
-      "sha256": "21d7189d86c4e96feaefc7305b974488e752f356280d51f598d1606a190e9a45",
+      "sha256": "10a349117d748d83cb81d53d05b6b8b5ab98da27ac37ad2bc5f7449c5747e622",
       "descricao": "O veredito cruzado dos dois portoes, recorte por recorte, com a tabela da 16.5 lado a lado — filhas que o DADO autoriza contra filhas que o CRUZAMENTO autoriza — e o pedido de faixa de volume derivado. No primeiro dia em que existiu: acabamento e a primeira categoria do Guia a passar os dois portoes na mae e nas tres filhas (o 4c liberado ali), pastilha/vidro saiu espera_autoridade, e alicate, pastilha e rejunte ficaram com dado verde e SERP nunca olhada, que e o caso que parece passe livre."
     },
     {
@@ -165,7 +183,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "5effc9c9dbcd2838994f58c4cdbdb16df0cbafe35be60c93168c6bb24cef2d0c",
+      "sha256": "d43900dbe263e8864afe154d23366d8657a7a6dc1ce22224c2f93d1d9f8d9163",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -201,7 +219,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "f49eb93dabaf902dd284a6b5327dab0eb52d4be610aa491867ac1f41a28dd6ef",
+      "sha256": "dc95e6fa321c40ca0d69a5b2c5c511da536d9acffd9552896bf90e2da983110e",
       "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
       "pendencias": 2,
       "pendencias_que_bloqueiam_publicacao": []
@@ -239,7 +257,7 @@
       "verificado_em": "2026-09-12",
       "registros": 105,
       "publicar": false,
-      "sha256": "48b76ea8d1bbe965cc6953efe23892131be990c57f02c60c7cd594974c9eb601",
+      "sha256": "63e3d1652472b8436eb0d46aeebe191fb2201836ea743ed7f501117a2cb2b405",
       "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
     },
     {
@@ -251,7 +269,7 @@
       "verificado_em": "2026-09-13",
       "registros": 13,
       "publicar": true,
-      "sha256": "ac5058af721f44a26dd5718fc126632ed32b728652b939d7a66b9af366db1cdc",
+      "sha256": "e1c09fcba4869d8d28eac77085e2d01078a6136c25142bb722b1f61529a70a84",
       "descricao": "A categoria PASTILHA do banco MATERIAL. Treze SKUs com lado da pastilha, lado da placa, espessura, placas por caixa, metragem e peso de caixa. A leva de 13/09/2026 acrescentou A37, 102 e IC02, e a A37 e a que FECHA o tamanho 2x2 no minimo de 3 elegiveis da secao 14.3. Tres campos nascem NULL com motivo escrito, e e isso que o arquivo tem de mais util: pecas por placa e passo de fabrica, porque nenhum fabricante brasileiro declara e a divisao que a SERP faz nao fecha (em 9 dos 13 nao da inteiro, nos outros 4 exige junta zero); e peso unitario, porque o peso da caixa de um dos itens PASSA do teto fisico do vidro macico, o que prova que embalagem esta contada dentro. Mede isso ferramentas/validar-pastilhas.py (189 afirmacoes, um processo por item, com a faixa de tamanhos medida na F1 por ferramentas/tamanhos-da-f1.php em vez de digitada) e ferramentas/mutacoes-pastilhas.py (14 de 14: 12 no banco e 2 no codigo da F1)."
     },
     {
@@ -301,7 +319,7 @@
       "entidade": "medicao",
       "fonte": "GERADO por ferramentas/medir-egresso.py. Medicao de egresso de 30/09/2026, tres passadas por host, com clubedomosaico.com.br como controle. Nao editar a mao: o portao regera e compara.",
       "publicar": false,
-      "sha256": "fcbc362ae16f816e6d5b867747426b9c550aed8c94df9a7f874fe56a69a308b2"
+      "sha256": "27bcfdac858ed4bbbe97c97014e75ec41c7f581d040135ee23236e829296e54d"
     },
     {
       "id": "egresso-de-fontes-json",
@@ -310,7 +328,7 @@
       "entidade": "medicao",
       "fonte": "GERADO por ferramentas/medir-egresso.py, no mesmo passo do .md. E a fonte que a proxima execucao le por maquina em vez de reler prosa.",
       "publicar": false,
-      "sha256": "79bd4559a93b8e994c6af4a1b59c7bcccf21ad3487a0c479f6e453e029944955"
+      "sha256": "0d3ed462159679e2b4bca5b3b291827bef2777c2b9e52e0feb86e82124172a8b"
     },
     {
       "id": "fontes-pedidas",
@@ -329,7 +347,7 @@
       "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
       "registros": 42,
       "publicar": false,
-      "sha256": "66c49e0cb77fbe625104b1249cf5bb0a987b4608df8a3533fe2e5f1228d69174"
+      "sha256": "52d4f2b0125c53fc5d403ee965c187c1b7c7108aa902d95bce905cd058e22ab3"
     },
     {
       "id": "filhas-do-guia-md",
@@ -456,6 +474,12 @@
       "arquivo": "ferramentas/medir-egresso.py",
       "sha256": "90e1650dd8f10e6cd5d96e2d6eac19761bfe862ce2596ae0507690697ff84f9b",
       "descricao": "Mede, host por host, o que esta nuvem alcanca das fontes que os bancos desta ilha citam — e separa CONNECT de ENTREGA, que e a distincao que faltava: apex liberado que redireciona para `www.` recusado entrega zero. Deriva a lista de dados/*.json, dos campos cujo nome fala de dominio, do apex e do `www.` de cada host, e de dados/fontes-pedidas.json; tres passadas por host (20.2), com controle obrigatorio que torna a medicao VOID se cair. Gera dados/egresso-de-fontes.md e .json, e o PEDIDO de rede sai da medicao com quem exige cada dominio. `--autoteste` com 29 casos fabricados. Bancada."
+    },
+    {
+      "id": "medir-espelho",
+      "arquivo": "ferramentas/medir-espelho.py",
+      "sha256": "a864112058f5e7a4731c5473c5dd0d6c7680ac5f94fe7fbd94d2483eb81c2e27",
+      "descricao": "Mede o CANAL DE ESPELHO: por onde esta nuvem abre documento de fabricante quando o fabricante esta fechado. Nasceu porque o achado de 05/10/2026 as 13h2xZ estava certo e a EXPLICACAO dele errada — nomeava a Telha Norte e a relacao de grupo Saint-Gobain, quando o que esta liberado e o SUFIXO do CDN: `*.vteximg.com.br` e `*.vtexassets.com`, nove hosts sondados e nove conversando, varejistas que nao sao do grupo entre eles. Sonda quatro grupos e nao um — a familia de espelho, os hosts de DESCOBERTA (loja, API de catalogo VTEX e painel: os tres fechados, e e por isso que o canal e arquivo por nome conhecido e nunca catalogo), as escapatorias (archive.org, r.jina.ai, docs.google.com: as tres fechadas) e o fabricante. Dois vereditos por host, pela licao do medir-egresso.py: conversar nao e entregar, e `www.quartzolit.weber` e o caso vivo (403 nas tres passadas, onde o registro de 30/09 dizia connect_rejected). O inventario e DERIVADO dos `fontes[].url` dos bancos, e a parte que a busca achou vem declarada como digitada, com o motivo; cada PDF alcancado e aberto e a identidade sai da PAGINA 1, nunca do nome do arquivo, que no espelho e codigo do varejista e foi exatamente o que fez a trava do batismo acusar dois campos certos. Tres passadas por host (20.2) e controle obrigatorio que torna a medicao VOID se cair. `--autoteste`: 24 casos fabricados. Bancada: nunca vai para o site."
     },
     {
       "id": "medir-imagens",

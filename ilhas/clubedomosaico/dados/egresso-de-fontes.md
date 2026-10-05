@@ -2,7 +2,7 @@
 
 **GERADO por `ferramentas/medir-egresso.py` — nao edite a mao.** A lista de hosts e derivada de
 `dados/*.json` (mais o apex e o `www.` de cada um, que nenhum banco cita e sem os quais nao ha
-diagnostico); medido em **2026-10-05 13:40Z**, 3 passadas por host, com `clubedomosaico.com.br` como controle.
+diagnostico); medido em **2026-10-05 19:43Z**, 3 passadas por host, com `clubedomosaico.com.br` como controle.
 
 > **A PERGUNTA QUE ESTE ARQUIVO RESPONDE NAO E "o dominio esta liberado": e "a fonte chega".**
 > As duas discordaram em 30/09/2026 e a diferenca custou quatro blocos. Apex liberado que
@@ -50,7 +50,7 @@ diagnostico); medido em **2026-10-05 13:40Z**, 3 passadas por host, com `clubedo
 | `quartzolit.weber` | alcanca | responde, sem entrega | **sim** | 19 |
 | `shopee.com.br` | alcanca | alcanca | **sim** | 132 |
 | `tekbond.com.br` | alcanca | responde, sem entrega | **sim** | 5 |
-| `vteximg.com.br` | recusado | alcanca | **sim** | 1 |
+| `vteximg.com.br` | recusado | alcanca | **sim** | 14 |
 
 ## DETALHE POR HOST
 
@@ -134,9 +134,9 @@ diagnostico); medido em **2026-10-05 13:40Z**, 3 passadas por host, com `clubedo
 | `s.shopee.com.br` | **alcancavel** | responde 301 e redireciona para `shopee.com.br`, que tambem e alcancavel | materiais-acabamento.json, materiais-alicates.json, materiais-colas.json, materiais-pastilhas.json, materiais-rejuntes.json |
 | `shopee.com.br` | **alcancavel** | responde 200 com 198615 bytes | materiais-acabamento.json, materiais-alicates.json, materiais-colas.json, materiais-pastilhas.json, materiais-rejuntes.json |
 | `tekbond.com.br` | **alcancavel** | responde 301 e redireciona para `www.tekbond.com.br`, que tambem e alcancavel | _nenhum banco o cita (irmao medido)_ |
-| `telhanorte.vteximg.com.br` | **alcancavel** | responde 200 com 860391 bytes | materiais-rejuntes.json |
+| `telhanorte.vteximg.com.br` | **alcancavel** | responde 200 com 534710 bytes | canal-de-espelho.json, materiais-colas.json, materiais-rejuntes.json |
 | `www.cascola.com.br` | **alcancavel** | responde 200 com 238588 bytes | constantes.json, materiais-colas.json |
-| `www.clubedomosaico.com.br` | **alcancavel** | responde 200 com 93264 bytes | _nenhum banco o cita (irmao medido)_ |
+| `www.clubedomosaico.com.br` | **alcancavel** | responde 301 e redireciona para `clubedomosaico.com.br`, que tambem e alcancavel | _nenhum banco o cita (irmao medido)_ |
 | `www.pastilhart.com.br` | **alcancavel** | responde 200 com 100659 bytes | materiais-pastilhas.json |
 | `www.shopee.com.br` | **alcancavel** | responde 302 e redireciona para `shopee.com.br`, que tambem e alcancavel | _nenhum banco o cita (irmao medido)_ |
 | `www.vteximg.com.br` | **alcancavel** | responde 400 com 1771 bytes | _nenhum banco o cita (irmao medido)_ |

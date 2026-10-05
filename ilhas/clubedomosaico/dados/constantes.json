@@ -322,11 +322,27 @@
     },
     {
       "id": "cimentcola-consumo-e-tempo-em-aberto",
-      "o_que_falta": "Consumo em kg/m2, tempo em aberto e tempo de pega da cimentcola AC-II e AC-III.",
+      "o_que_falta": "O `tempo de pega` dos dois, que NENHUM dos dois boletins declara com esse nome. O que eles declaram e coisa diferente e nao se deve trocar uma pela outra: `Deixe repousar por 15 minutos e remisture antes do uso` e maturacao, e `Use a argamassa em até 2h30 após a mistura` e vida util da mistura no recipiente. Chamar qualquer das duas de tempo de pega seria inventar a propriedade que a pendencia pediu.",
       "onde_buscar": "Boletim Tecnico cimentcola externo ACII 2024 (quartzolit.weber, arquivo 2024-09) e BT cimentcola flexivel ACIII (2021-07).",
-      "por_que_importa": "A F1 so publica gramas de ADESIVO quando este numero existir. Ate la a F1 entrega pastilhas e rejunte, e diz na tela por que a coluna de cola esta vazia.",
+      "por_que_importa": "A F1 so publica gramas de ADESIVO quando este numero existir. ELE AGORA EXISTE PARA O AC-II — e a coluna CONTINUA desligada de proposito, porque nenhuma linha de codigo le `consumo_por_area` (varrido em 05/10/2026) e porque ligar a coluna nao e coleta: e decidir que o consumo de uma argamassa colante de obra, medido por faixa de area de revestimento de 20x20 cm para cima, vale para uma peca de artesanato de 700 cm2 montada com pastilha de 2,5 cm. A faixa de ate 400 cm2 e a unica que alcanca a peca, e ela e a borda da tabela do fabricante, nao o meio.",
       "bloqueia_publicacao": true,
-      "bloqueia_o_que": "coluna 'gramas de cola' da F1"
+      "bloqueia_o_que": "coluna 'gramas de cola' da F1 — agora por decisao escrita, nao por falta de numero",
+      "estado": "DOIS TERCOS FECHADOS EM 05/10/2026, PELO CANAL DE ESPELHO — e o terco que sobra nao e numero, e nome.",
+      "o_que_chegou": {
+        "como": "Os dois boletins tecnicos foram ABERTOS E LIDOS pagina a pagina pelo canal de espelho (escada_de_fontes.canal_de_espelho). Nenhum numero aqui vem de resumo de busca.",
+        "cimentcola externo quartzolit (AC II), revisado em maio de 2016, https://telhanorte.vteximg.com.br/arquivos/908487.pdf": {
+          "consumo": "Ceramica ate 400 cm2 +/- 3,5 kg/m2; de 400 a 900 cm2 +/- 4,5 kg/m2; maior que 900 cm2 +/- 8 kg/m2",
+          "tempo_em_aberto": ">=20 minutos",
+          "classificacao_normativa": "AC II (NBR 14.081)",
+          "gravado_no_banco": "sim — dados/materiais-colas.json, quartzolit-cimentcola-externo-acii, propriedades.consumo_por_area e propriedades.tempo_em_aberto"
+        },
+        "cimentcola flexivel quartzolit (AC III), revisado em marco de 2017, https://telhanorte.vteximg.com.br/arquivos/27073.pdf": {
+          "consumo": "Ceramica ate 400 cm2 +/- 4 kg/m2; de 400 a 900 cm2 +/- 4,5 kg/m2; maior que 900 cm2 +/- 8,5 kg/m2",
+          "tempo_em_aberto": ">=20 minutos",
+          "classificacao_normativa": "AC III (NBR 14.081)",
+          "gravado_no_banco": "NAO, e nao por descuido: nao existe registro de cimentcola AC-III em dados/materiais-colas.json. `tipo_por_categoria.cola` tem o valor `cimentcola_aciii` e ZERO item o usa. O numero fica escrito aqui para quem coletar o SKU nao reabrir o PDF, e o boletim esta nomeado com URL e revisao."
+        }
+      }
     },
     {
       "id": "silicone-rendimento-por-area",

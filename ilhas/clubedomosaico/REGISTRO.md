@@ -3,6 +3,165 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+05/10/2026 19h5xZ — O ESPELHO NÃO É UM HOST, É UMA FAMÍLIA; E ELE PAGOU A PRIMEIRA DÍVIDA DE `conferir_no_pdf` DESTA ILHA
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h17Z**, push da reserva aceito na primeira
+tentativa (`2a2c507`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta, e o último commit na pasta era de **16h45Z** —
+2h32 antes, portanto nem o git tinha o que desempatar. Nenhum PR aberto; a branch `claude/*` desta
+sessão estava sincronizada com o `main` e sem commit à frente. **Rede pela 20.2, retestada e não
+herdada:** três passadas, `clubedomosaico.com.br` em **200** nas três, com `aquametria.com.br` em 200
+nas mesmas três.
+
+**O DESPACHO DE HOJE ESTAVA FECHADO PARA A FUNDAÇÃO** antes de eu começar: os itens 1 e 2 saíram às
+16h3xZ e o item 3 se declara método endereçado ao Raphael. Então a execução foi para a fila.
+
+## O BLOCO QUE A FILA MANDAVA, E POR QUE ELE NÃO EXISTE
+
+A fila mandava coletar **2 itens de banco** para `rejunte/acrilico` e **2** para `rejunte/epoxi`, com
+a frase de seis horas antes: *"não é mais procura de número — é coleta de SKU"*. **A coleta foi
+tentada e o bloqueio tem nome novo: é ÍNDICE DE BUSCA, não egresso.** Medido, não presumido:
+
+| porta | três passadas |
+|---|---|
+| `*.vteximg.com.br` e `*.vtexassets.com` | **ABERTAS**, 9 de 9 hosts conversaram |
+| `www.quartzolit.weber` | **403** — e o repositório o tinha como `connect_rejected` desde 30/09 |
+| `portokoll`, `rejuntamix`, `bautech`, `kerakoll`, `mapei`, `votomassa`, `eucatex` | `000`, falha de **DNS** |
+| `web.archive.org`, `r.jina.ai`, `docs.google.com` | `000` — as três escapatórias fechadas |
+| `www.telhanorte.com.br`, `*.vtexcommercestable.com.br`, `*.myvtex.com` | `000` — **não há como navegar o espelho** |
+
+**E WebFetch não é caminho alternativo:** ele falha no DNS (`getaddrinfo ENOTFOUND`) nos mesmos hosts.
+A parede é a mesma para `curl` e para WebFetch, e isso estava não medido.
+
+Quatro consultas diferentes procuraram o boletim do rejunte acrílico e do epóxi nas duas famílias de
+CDN. **Zero.** O inventário inteiro do canal são **14 documentos**, e nenhum é dos dois. Então *"o
+egresso não abre PDF de fabricante"* e *"eu não sei o nome do arquivo"* são **bloqueios diferentes**, e
+quatro blocos desta ilha escreveram os dois com a mesma frase. Está escrito na fila do `PROMPT.md`
+para a próxima execução não repetir a coleta.
+
+## O QUE SAIU NO LUGAR, E É O MESMO VEIO
+
+### 1. A EXPLICAÇÃO DO ACHADO DE 13h2xZ ESTAVA ERRADA, E A EXPLICAÇÃO ERRADA ESTREITA A PORTA
+
+O bloco de 13h2xZ descobriu que o boletim da Quartzolit abre pelo CDN da Telha Norte e escreveu, no
+esquema, que a razão era a Telha Norte ser *"varejista do próprio grupo Saint-Gobain"*. **Não é.**
+`leroymerlin`, `mkpcoral`, `cec`, `balaroti`, `chatuba` e `tumelero` respondem igual no mesmo CDN e
+nenhum é do grupo. O que está liberado é o **sufixo**, e são dois. O achado ficou; a explicação caiu —
+e ela custava, porque quem acreditasse nela não tentaria o CDN de nenhuma outra loja, e a Coral, que
+não é Saint-Gobain, serve boletim pelo mesmo caminho.
+
+Virou ferramenta: **`ferramentas/medir-espelho.py`**, com `--autoteste` (**24 casos, 24 de 24**),
+gerando `dados/canal-de-espelho.json` e `.md`. Ela sonda **quatro grupos e não um** — a família, os
+hosts de **descoberta**, as **escapatórias** e o **fabricante** —, com três passadas e controle
+obrigatório, e dá **dois vereditos por host**, pela lição do `medir-egresso.py`: conversar não é
+entregar. O caso vivo é o `www.quartzolit.weber` em 403. **A trava que mais importa é a que lê `400` do
+CDN como host RESPONDENDO** — ler 400 como bloqueio é o mesmo erro que ler 000 como bloqueio em 11/09,
+e um autoteste guarda isso. E o inventário **se confere lendo o documento**: cada PDF é aberto e a
+identidade sai da **página 1**, nunca do nome do arquivo.
+
+### 2. A PRIMEIRA DÍVIDA DE `conferir_no_pdf` FOI PAGA — ERAM 46 FONTES
+
+O boletim do **`cimentcola externo quartzolit`** (revisado em **maio de 2016**) foi aberto e lido
+página a página, e com ele:
+
+- **`cimentcola-consumo-e-tempo-em-aberto` saiu de "falta número" para número escrito:** consumo de
+  **±3,5 / ±4,5 / ±8 kg/m²** por faixa de área e **tempo em aberto ≥20 min**. Mais os do **AC-III**,
+  do boletim do `cimentcola flexível` (±4 / ±4,5 / ±8,5 kg/m², ≥20 min), que ficaram em
+  `dados/constantes.json` e **não** no banco, porque **não existe registro de AC-III** — o valor
+  `cimentcola_aciii` está no vocabulário e zero itens o usam.
+- **O que a pendência pedia e NENHUM dos dois boletins declara:** o *tempo de pega*. Eles declaram
+  maturação (*"deixe repousar por 15 minutos"*) e vida útil da mistura (*"use a argamassa em até 2h30
+  após a mistura"*), e chamar qualquer das duas de tempo de pega seria inventar a propriedade pedida.
+- **`nao_indicado_para` estava VAZIO** e ganhou as três proibições da seção 3.
+- **A embalagem ganhou o saco plástico de 5 kg**, que o banco não tinha — e é o único formato deste
+  produto que não é formato de obra, o que responde à própria `observacao` do registro.
+- **Uma divergência de tamanho, resolvida pelos dois critérios no mesmo sentido:** a página de produto
+  (nível 3) diz *"até 120 x 120 cm"* e o boletim (nível 2) diz *"até 60x60 cm"*. Vence o boletim pela
+  escada **e** pelo conjunto mais estreito. Fica em `divergencias[]` com a ressalva de que o espelho
+  não prova vigência — e com o motivo de o erro barato ser o escolhido.
+
+### 3. A DECISÃO QUE ESTE BLOCO TOMOU E NÃO ESCONDEU
+
+A pendência `cimentcola-substrato-declarado` **mudou de natureza e continua aberta**. O documento a
+responde inteira, na seção 4.1, e **nada disso foi gravado, de propósito**: gravar só essa metade faria
+a F2 recomendar esta argamassa em `cimento_concreto` e `alvenaria_tijolo` para quem respondeu
+**pastilha de vidro** — e o MESMO boletim proíbe *"revestimentos especiais"*, que é o que pastilha de
+vidro é. As cinco regras decidem sobre BASE e AMBIENTE; a sexta lê a tessela por **um** campo. **Não
+existe campo para proibição que fala da PEÇA que se cola.** A declaração ficou escrita inteira em
+`substratos_que_o_documento_declara_e_que_NAO_foram_gravados` — para não repetir o defeito de
+*declaração lida e descartada em silêncio*, que esta ilha já mediu em quatro lugares, o `drywall`
+deste mesmo boletim sendo o quarto.
+
+### 4. O BATISMO ACUSOU UM CAMPO CERTO PELA SEGUNDA VEZ NO MESMO DIA, E A LINHA DE HOJE O CONSERTOU
+
+Ao entrar sem `tipo_de_origem`, a fonte nova fez a trava do batismo ler `908487.pdf` — código do
+varejista — e reprovar `Argamassa Cimentcola Externo AC-II Quartzolit`. **Falso positivo pelo mesmo
+mecanismo do rejunte piscinas, oito horas antes.** A linha escrita hoje em
+`origens_que_NAO_batizam_e_por_que` resolveu, e **se provou sozinha**: a regra já existia e a segunda
+aplicação dela foi a prova que a primeira não teve. O `nome_comercial` **não** foi corrigido, e o
+motivo é medido: ele é entrada da regra de casamento, este registro está no degrau 2 com `url_produto`
+de catálogo casado pelo nome, e trocar o nome sem reconferir os 14 casamentos é mexer no que paga
+comissão para ganhar tipografia. Fica nomeado, com o documento em casa.
+
+## TRÊS PORTAS MEDIDAS DE CARONA
+
+- **`www.pastilhart.com.br` responde 200 nas três passadas**, e o registro de 28/09 dizia que *"não
+  entrou nem no apex"*. A página do `pastilhart-af1500` foi **aberta e lida** (167 KB): as **cinco**
+  declarações de ambiente e os **três** números de geometria **conferiram, zero divergência**. A coleta
+  por busca de 12/09 estava certa — e isso também é resultado: a 20.2 não serve só para achar erro. **O
+  nível não subiu e não devia:** nível é natureza da fonte, nunca alcance dela, e confundir as duas
+  faria toda fonte subir de nível no dia em que a rede abrisse.
+- **O primeiro preço que esta ilha vê numa fonte alcançável** está medido (R$ 49,00 à vista, de R$
+  71,89, estoque 30). `dados/cotacoes.json` segue não existindo: criá-lo é decidir formato, validade do
+  preço e como a tela mostra preço datado, e a seção 7 é dura nisso. Bloco, não linha.
+- **A pista da FISPQ está FECHADA, e a resposta é NÃO.** Os dois arquivos que o bloco de 13h2xZ deixou
+  nomeados são a FISPQ do **Osmocolor ST** e a do **Pentox Cupim**, as duas da Montana Química; uma
+  terceira, achada hoje, é a do **Piso Sobre Piso Interno Quartzolit**. Nenhuma é a do epóxi.
+  `regras_da_categoria_apoio` continua travada onde estava, e ninguém precisa gastar bloco nela de novo.
+
+## DOIS PORTÕES ESTAVAM VERMELHOS NO `main` ANTES DESTE BLOCO, E FORAM CONSERTADOS
+
+Conferido contra o `main` com `git archive`, para não atribuir a mim o que já estava quebrado:
+`cobertura.py --conferir` **já reprovava** e `filhas-do-guia.py --conferir` **já reprovava** a linha de
+`/materiais/rejuntes/` do `ARVORE.md` (dizia `0 de 4`, a derivação diz `1 de 4` desde 13h2xZ de hoje).
+Os dois regerados/corrigidos. **O portão de `filhas-do-guia` compara o documento com a derivação e NÃO
+reescreve a tabela** — então linha errada ali fica errada até alguém olhar, e é por isso que ela passou
+por duas execuções.
+
+**E o `cobertura.json` velho estava ESCONDENDO UM GANHO, não um erro** — que é a forma de defeito mais
+fácil de nunca olhar. Regerado, a categoria `rejunte` vai de **12 para 22** estados com o mínimo (e de
+48 para 38 descobertos, e o maior número de elegíveis num estado de 4 para 5). Os 10 estados novos são
+consequência direta da faixa de junta do `rejunte piscinas` que o bloco de 13h2xZ fechou: o produto
+deixou de ser eliminado por faixa e passou a ser elegível onde o ambiente o autoriza. **O trabalho tinha
+sido feito às 13h2xZ e o número que o mostra ficou seis horas fora do repositório.** Portão derivado que
+não é regerado no mesmo commit mede o mundo de antes — e aqui ele subavaliava a própria ilha.
+
+## O QUE ESTE BLOCO NÃO MUDOU, DITO PORQUE A TENTAÇÃO É DIZER QUE MUDOU
+
+**Nenhum pixel do que o site serve.** A matriz de 45 células da F2 foi recomputada pelo
+`validar-banco.py` depois de cada escrita e bate com as declarações; os gates derivados dão
+exatamente o mesmo resultado que dão no `main` (`pode_nascer` em 8, `espera_autoridade` em 2, as
+mesmas 10 filhas no portão de dado). O que mudou é a **verdade do banco** e a **dívida nomeada** — não
+a recomendação.
+
+## O PRÓXIMO PASSO DESBLOQUEADO, E ELE ESTÁ ESCOLHIDO
+
+**A REGRA 7:** proibição declarada sobre a **peça** elimina o produto para as tesselas que a ilha
+classifica naquele grupo. Lista no esquema (molde de `superficies_porosas`), classificação **nossa** e
+a tela proibida de dizer que o fabricante classificou (**26.3**), nas **duas** implementações
+(`validar-banco.py` e o snippet da F2 em PHP), com matriz esperada e bateria. Fechada ela, o substrato
+entra e a **cimentcola AC-II passa a ser recomendação primária em duas bases** — o primeiro produto
+novo na matriz da F2 desde 13/09. Depois dela, e já com documento em casa, o **SKU de AC-III**.
+
+**O que continua fora do alcance daqui:** o curinga `*.quartzolit.weber` (com a ressalva nova de que o
+`www.` já responde 403, então o curinga pode entrar e o 403 ficar — 403 é decisão do fabricante, não da
+rede do Raphael), o acesso do `sentinela@` ao Search Console, e a faixa de volume das consultas
+abertas. Os três estão na lista dele e nenhum é pré-requisito do passo acima.
+
+**A memória da ilha não foi atualizada porque ela não existe neste ambiente:** `/areas/` não está
+montado, conferido nesta execução. O `PROMPT.md` desta ilha já prevê isso, e é nele que o próximo passo
+ficou escrito.
+
 05/10/2026 16h17Z — O DESPACHO DE 05/10 SAI PELOS DOIS ITENS DA FUNDAÇÃO, E O PORTÃO DA F2 VOLTA A MORDER
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h17Z**, push da reserva aceito na primeira

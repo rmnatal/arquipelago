@@ -61,7 +61,7 @@ passe livre: nenhum
 | `base/isopor_estrutural` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `base/mdf_cru` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `base/moldura` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
-| `cola` | `passa_na_contagem_sem_lastro` | 7 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: um numero que a pagina calcule sobre 3 itens do mesmo recorte (a propriedade mais perto e `tempo_de_ajuste`), e a SERP nunca foi olhada |
+| `cola` | `passa_na_contagem_sem_lastro` | 7 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: um numero que a pagina calcule sobre 3 itens do mesmo recorte (a propriedade mais perto e `tempo_em_aberto`), e a SERP nunca foi olhada |
 | `cola/adesivo_para_espelho` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `cola/cimentcola_acii` | `nao_passa` | 1 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 2 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `cola/cimentcola_aciii` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |

@@ -45,10 +45,10 @@
     },
     "rejunte": {
       "estados_varridos": 60,
-      "estados_com_o_minimo": 12,
-      "estados_descobertos": 48,
-      "estados_sem_nenhum_elegivel": 25,
-      "maior_numero_de_elegiveis_em_um_estado": 4,
+      "estados_com_o_minimo": 22,
+      "estados_descobertos": 38,
+      "estados_sem_nenhum_elegivel": 20,
+      "maior_numero_de_elegiveis_em_um_estado": 5,
       "menor_numero_de_elegiveis_em_um_estado": 0
     }
   },
@@ -5474,19 +5474,18 @@
         "junta_mm": 2,
         "ambiente": "contato_permanente_agua",
         "elegiveis": [
-          "quartzolit-rejunte-epoxi"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-epoxi",
           "quartzolit-rejunte-piscinas"
         ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 2,
@@ -5494,34 +5493,32 @@
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 3,
         "ambiente": "contato_permanente_agua",
         "elegiveis": [
-          "quartzolit-rejunte-epoxi"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-epoxi",
           "quartzolit-rejunte-piscinas"
         ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 3,
@@ -5529,34 +5526,32 @@
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 4,
         "ambiente": "contato_permanente_agua",
         "elegiveis": [
-          "quartzolit-rejunte-epoxi"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-epoxi",
           "quartzolit-rejunte-piscinas"
         ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 4,
@@ -5564,28 +5559,27 @@
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 5,
         "ambiente": "contato_permanente_agua",
         "elegiveis": [
-          "quartzolit-rejunte-epoxi"
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
         ],
-        "quantos_elegiveis": 1,
+        "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-acrilico"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -5600,12 +5594,12 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-acrilico"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -5613,36 +5607,20 @@
       {
         "junta_mm": 6,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
-      },
-      {
-        "junta_mm": 6,
-        "ambiente": "externo_abrigado",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
       },
       {
         "junta_mm": 6,
@@ -5652,11 +5630,11 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -5672,39 +5650,24 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 6,
-        "ambiente": "interno_seco",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 7,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -5714,34 +5677,17 @@
       },
       {
         "junta_mm": 7,
-        "ambiente": "externo_abrigado",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 7,
         "ambiente": "externo_exposto",
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -5757,39 +5703,24 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 7,
-        "ambiente": "interno_seco",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 8,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -5799,34 +5730,17 @@
       },
       {
         "junta_mm": 8,
-        "ambiente": "externo_abrigado",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 8,
         "ambiente": "externo_exposto",
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -5842,39 +5756,24 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 8,
-        "ambiente": "interno_seco",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 9,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -5884,34 +5783,17 @@
       },
       {
         "junta_mm": 9,
-        "ambiente": "externo_abrigado",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 9,
         "ambiente": "externo_exposto",
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -5927,39 +5809,24 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 9,
-        "ambiente": "interno_seco",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 10,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -5969,34 +5836,17 @@
       },
       {
         "junta_mm": 10,
-        "ambiente": "externo_abrigado",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 10,
         "ambiente": "externo_exposto",
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -6012,28 +5862,12 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
-      },
-      {
-        "junta_mm": 10,
-        "ambiente": "interno_seco",
-        "elegiveis": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 11,
@@ -12215,19 +12049,18 @@
         "junta_mm": 2,
         "ambiente": "contato_permanente_agua",
         "elegiveis": [
-          "quartzolit-rejunte-epoxi"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-epoxi",
           "quartzolit-rejunte-piscinas"
         ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 2,
@@ -12236,13 +12069,12 @@
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 4,
+        "quantos_elegiveis": 5,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": []
       },
       {
@@ -12251,16 +12083,15 @@
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 2,
@@ -12273,10 +12104,10 @@
         ],
         "quantos_elegiveis": 4,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+        "eliminados_por_faixa_de_junta": [],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": []
+        ]
       },
       {
         "junta_mm": 2,
@@ -12285,32 +12116,30 @@
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 4,
+        "quantos_elegiveis": 5,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 3,
         "ambiente": "contato_permanente_agua",
         "elegiveis": [
-          "quartzolit-rejunte-epoxi"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-epoxi",
           "quartzolit-rejunte-piscinas"
         ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 3,
@@ -12319,13 +12148,12 @@
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 4,
+        "quantos_elegiveis": 5,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": []
       },
       {
@@ -12334,16 +12162,15 @@
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 3,
@@ -12356,10 +12183,10 @@
         ],
         "quantos_elegiveis": 4,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+        "eliminados_por_faixa_de_junta": [],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": []
+        ]
       },
       {
         "junta_mm": 3,
@@ -12368,32 +12195,30 @@
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 4,
+        "quantos_elegiveis": 5,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 4,
         "ambiente": "contato_permanente_agua",
         "elegiveis": [
-          "quartzolit-rejunte-epoxi"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-epoxi",
           "quartzolit-rejunte-piscinas"
         ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 4,
@@ -12402,13 +12227,12 @@
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 4,
+        "quantos_elegiveis": 5,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": []
       },
       {
@@ -12417,16 +12241,15 @@
         "elegiveis": [],
         "quantos_elegiveis": 0,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+        "por_que": "o fabricante nao declara este ambiente"
       },
       {
         "junta_mm": 4,
@@ -12439,10 +12262,10 @@
         ],
         "quantos_elegiveis": 4,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+        "eliminados_por_faixa_de_junta": [],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": []
+        ]
       },
       {
         "junta_mm": 4,
@@ -12451,26 +12274,25 @@
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 4,
+        "quantos_elegiveis": 5,
         "com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 5,
         "ambiente": "contato_permanente_agua",
         "elegiveis": [
-          "quartzolit-rejunte-epoxi"
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
         ],
-        "quantos_elegiveis": 1,
+        "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-acrilico"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -12484,13 +12306,13 @@
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 3,
+        "quantos_elegiveis": 4,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-acrilico"
         ],
         "eliminados_por_ambiente": []
       },
@@ -12501,12 +12323,12 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-acrilico"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -12522,10 +12344,11 @@
         "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-acrilico"
         ],
-        "eliminados_por_ambiente": []
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-piscinas"
+        ]
       },
       {
         "junta_mm": 5,
@@ -12533,26 +12356,27 @@
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 3,
+        "quantos_elegiveis": 4,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-acrilico"
         ],
         "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 6,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -12565,17 +12389,16 @@
         "ambiente": "externo_abrigado",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 6,
@@ -12585,11 +12408,11 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -12605,39 +12428,40 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 6,
         "ambiente": "interno_seco",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 7,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -12650,17 +12474,16 @@
         "ambiente": "externo_abrigado",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 7,
@@ -12670,11 +12493,11 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -12690,39 +12513,40 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 7,
         "ambiente": "interno_seco",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 8,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -12735,17 +12559,16 @@
         "ambiente": "externo_abrigado",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 8,
@@ -12755,11 +12578,11 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -12775,39 +12598,40 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 8,
         "ambiente": "interno_seco",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 9,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -12820,17 +12644,16 @@
         "ambiente": "externo_abrigado",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 9,
@@ -12840,11 +12663,11 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -12860,39 +12683,40 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 9,
         "ambiente": "interno_seco",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 10,
         "ambiente": "contato_permanente_agua",
-        "elegiveis": [],
-        "quantos_elegiveis": 0,
+        "elegiveis": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
@@ -12905,17 +12729,16 @@
         "ambiente": "externo_abrigado",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 10,
@@ -12925,11 +12748,11 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
@@ -12945,28 +12768,28 @@
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
       },
       {
         "junta_mm": 10,
         "ambiente": "interno_seco",
         "elegiveis": [
           "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 3,
         "com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
-        "por_que": "a faixa de junta declarada nao cobre esta largura"
+        "eliminados_por_ambiente": []
       },
       {
         "junta_mm": 11,

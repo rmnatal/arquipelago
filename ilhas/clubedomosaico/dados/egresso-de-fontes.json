@@ -697,7 +697,7 @@
         301
       ],
       "connect": "estabelecido",
-      "destino_do_salto": "https://shopee.com.br/search?keyword=rejunte+epoxi+quartzolit&mmp_pid=an_18378401253&uls_trackid=56q6rmoc01k8&utm_campaign=id_3vwj6jRjXo9&utm_content=clubedomosaico-F2---&utm_medium=affiliates&utm_source=an_18378401253&utm_term=fnm2weyfak3a",
+      "destino_do_salto": "https://shopee.com.br/search?keyword=rejunte+epoxi+quartzolit&mmp_pid=an_18378401253&uls_trackid=56q8u4hp00ku&utm_campaign=id_3vwj6jRjXo9&utm_content=clubedomosaico-F2---&utm_medium=affiliates&utm_source=an_18378401253&utm_term=fnnk1qpcs3kj",
       "dominio_registravel": "shopee.com.br",
       "host_do_destino": "shopee.com.br",
       "motivo": "responde 301 e redireciona para `shopee.com.br`, que tambem e alcancavel",
@@ -831,9 +831,11 @@
       "veredito": "alcancavel"
     },
     "telhanorte.vteximg.com.br": {
-      "bytes": 860391,
+      "bytes": 534710,
       "citado_pelo_banco": true,
       "citado_por": [
+        "canal-de-espelho.json",
+        "materiais-colas.json",
         "materiais-rejuntes.json"
       ],
       "codigos": [
@@ -845,10 +847,10 @@
       "destino_do_salto": "",
       "dominio_registravel": "vteximg.com.br",
       "host_do_destino": null,
-      "motivo": "responde 200 com 860391 bytes",
-      "n_urls": 1,
+      "motivo": "responde 200 com 534710 bytes",
+      "n_urls": 14,
       "sonda": "fonte citada pelo banco",
-      "url_medida": "https://telhanorte.vteximg.com.br/arquivos/1200003.pdf",
+      "url_medida": "https://telhanorte.vteximg.com.br/arquivos/101494.pdf",
       "veredito": "alcancavel"
     },
     "termotecnica.ind.br": {
@@ -1066,19 +1068,19 @@
       "veredito": "alcancavel"
     },
     "www.clubedomosaico.com.br": {
-      "bytes": 93264,
+      "bytes": 0,
       "citado_pelo_banco": false,
       "citado_por": [],
       "codigos": [
-        200,
-        200,
-        200
+        301,
+        301,
+        301
       ],
       "connect": "estabelecido",
-      "destino_do_salto": "",
+      "destino_do_salto": "https://clubedomosaico.com.br/",
       "dominio_registravel": "clubedomosaico.com.br",
-      "host_do_destino": null,
-      "motivo": "responde 200 com 93264 bytes",
+      "host_do_destino": "clubedomosaico.com.br",
+      "motivo": "responde 301 e redireciona para `clubedomosaico.com.br`, que tambem e alcancavel",
       "n_urls": 0,
       "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.clubedomosaico.com.br/",
@@ -1441,7 +1443,7 @@
       "veredito": "alcancavel"
     },
     "www.quartzolit.weber": {
-      "bytes": 133442,
+      "bytes": 127612,
       "citado_pelo_banco": true,
       "citado_por": [
         "constantes.json",
@@ -1560,7 +1562,7 @@
       "veredito": "bloqueado"
     },
     "www.tekbond.com.br": {
-      "bytes": 133172,
+      "bytes": 127342,
       "citado_pelo_banco": true,
       "citado_por": [
         "constantes.json",
@@ -1700,7 +1702,7 @@
       "veredito": "bloqueado"
     }
   },
-  "medido_em": "2026-10-05 13:40Z",
+  "medido_em": "2026-10-05 19:43Z",
   "o_que_pedir": [
     "acrilex.com.br",
     "*.acrilex.com.br",

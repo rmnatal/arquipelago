@@ -33,12 +33,20 @@ Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divul
 | nível 2 | slug | banco hoje | tipos que passam o portão da 9 | existe |
 |---|---|---|---|---|
 | Colas e adesivos | `/materiais/colas-e-adesivos/` | 7 itens | 0 de 7 | não |
-| Rejuntes | `/materiais/rejuntes/` | 5 itens | 0 de 4 | não |
+| Rejuntes | `/materiais/rejuntes/` | 5 itens | 1 de 4 | não |
 | Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | 1 de 6 | não |
 | Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 1 de 4 | não |
 | Bases | `/materiais/bases/` | 0 | 0 de 5 | não |
 | Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 | **sim**, desde 02/10/2026 |
 | Como sabemos | `/materiais/como-sabemos/` | — | — | **sim** |
+
+*(A linha dos **Rejuntes** foi de `0 de 4` para `1 de 4` em 05/10/2026 às 19h4xZ. Não é dado novo: a
+`rejunte/cimenticio` passou o portão da seção 9 às 13h2xZ do mesmo dia, quando a faixa de junta do
+`rejunte piscinas` chegou pelo boletim técnico, e **o documento não foi acertado junto**.
+`ferramentas/filhas-do-guia.py . --conferir` já reprovava esta linha no `main`, e reprovava sozinha —
+este portão compara o documento com a derivação e **não reescreve a tabela**, então linha errada aqui
+fica errada até alguém olhar. Corrigida pela execução seguinte, que achou o portão vermelho antes de
+abrir bloco.)*
 
 *(As colunas acima são **derivadas** de `dados/filhas-do-guia.json`, e as duas primeiras estavam
 erradas: `Alicates e corte` e `Acabamento` diziam **0** desde que esta tabela nasceu, e as duas saíram

@@ -1084,10 +1084,25 @@
       "fontes": {
         "pagina-produto-af1500": {
           "url": "https://www.pastilhart.com.br/pastilha-de-vidro-af1500",
-          "tipo": "página de produto do importador e distribuidor da marca, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
+          "tipo": "pagina de produto do importador e distribuidor da marca, ABERTA E LIDA (167 KB de HTML) em 05/10/2026",
           "nivel": 5,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": false,
+          "reaberta_em": "2026-10-05",
+          "o_que_a_abertura_mudou": {
+            "o_que_dizia_antes": "`pagina nao aberta (EGRESS_BLOCKED)`. O egresso de `www.pastilhart.com.br` foi remedido nesta execucao e deu **200 nas tres passadas** — o registro de 28/09/2026 dizia que este dominio `nao entrou nem no apex`. A 20.2 manda retestar bloqueio herdado antes de respeita-lo, e aqui o bloqueio herdado tinha sumido.",
+            "as_cinco_declaracoes_CONFERIDAS_UMA_POR_UMA": "O bloco `ONDE USAR?` da pagina serve exatamente as cinco linhas gravadas, na mesma ordem: `Banheiros (inclusive dentro do box)`, `Cozinhas modernas e areas gourmet`, `Lavanderias e lavabos`, `Halls de entrada, garagens cobertas e varandas`, `Piscinas internas, spas e saunas`. ZERO divergencia: a coleta por busca de 12/09 estava certa, e isso tambem e resultado — a 20.2 nao serve so para achar erro.",
+            "a_geometria_CONFERIDA": "`Dimensao da pastilha: 1,5 x 1,5 cm`, `Dimensao da placa: 30 x 30 cm`, `Espessura: 8mm`. Os tres batem com `geometria`. E `pastilhas_por_placa` continua **nao declarado** na pagina aberta, o que confirma o motivo ja escrito no campo em vez de o desmentir.",
+            "o_nivel_NAO_subiu_e_por_que": "Continua 5. Abrir a pagina mede o que ela DIZ, nao o que ela E: a empresa se declara importadora e distribuidora na propria pagina institucional, e nivel 5 e `varejo-oficial-da-marca`. Nivel e natureza da fonte, nunca alcance dela — confundir as duas faria toda fonte alcancavel subir de nivel no dia em que a rede abrisse."
+          },
+          "o_que_a_pagina_declara_e_NAO_tem_campo_neste_banco": {
+            "por_que_este_campo_existe": "Para a declaracao nao ficar lida e descartada em silencio. Nenhum dos itens abaixo entrou em campo nenhum, e nenhum deles PODE entrar em recomendacao: a fonte e nivel 5 e o teto da escada e 3.",
+            "codigo_do_distribuidor": "`Codigo: VIDRO-AF1500-BRONZE-OCRE`. NAO e `codigo_fabricante`: e codigo do distribuidor, e gravar um no campo do outro e a familia do batismo pela prateleira (26.1).",
+            "base_da_placa": "`Base: Pode ser enviada em papel ou tela (nao interfere na qualidade do produto)`. O banco desta ilha nao modela o verso da placa, e para quem monta mosaico a diferenca entre papel e tela muda a ordem de montagem. Fica medido.",
+            "sobra_sugerida_de_10_por_cento": "`Compre 10% a mais para cortes e ajustes na aplicacao`. A F1 desta ilha trabalha com sobra de 15% por padrao. NAO e divergencia a resolver: 15% e parametro de entrada da ferramenta, escolhido pela ilha, e 10% e sugestao de um distribuidor em nivel 5. Fica escrito para quem for mexer no padrao da F1 saber que existe um numero de terceiro, e de onde ele vem.",
+            "recomendacao_de_argamassa_e_rejunte": "`Utilize argamassa branca e rejunte flexivel de boa qualidade`. E declaracao sobre o que colar pastilha de vidro COM — exatamente o que a F2 decide — e NAO pode virar recomendacao: nivel 5. Mencao com ressalva e o maximo que a escada permite.",
+            "preco_e_estoque": "`R$ 71,89` riscado, `R$ 49,00` a vista, `Disponibilidade: Imediata`, `Estoque: 30 unidades`, lido em 05/10/2026. E o PRIMEIRO preco que esta ilha ja viu numa fonte alcancavel — `dados/cotacoes.json` nao existe, e o laudo do validar-banco.py diz isso em toda passada. Nao foi criado aqui porque criar o arquivo de cotacoes e decidir o formato, a validade do preco e como a tela mostra preco datado, e a secao 7 e dura nisso: preco nunca entra em criterio de ordem. E bloco, nao linha."
+          }
         },
         "pagina-sobre-pastilhart": {
           "url": "https://www.pastilhart.com.br/pagina/sobre-nos.html",

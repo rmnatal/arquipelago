@@ -937,6 +937,81 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > proíbe. **O que a destrava é medir a SERP de `alicate`** — busca, não coleta —, e com ela a segunda
    > categoria do Guia sai com a mesma leva de quatro. O mesmo vale para `pastilha` e `rejunte`.
    >
+   > **MEDIDO EM 05/10/2026 ÀS 19h3xZ — AS DUAS FILHAS QUE FALTAM NO `rejunte` NÃO ESTÃO A UMA COLETA DE
+   > SKU, E O BLOQUEIO TEM NOME NOVO: É ÍNDICE DE BUSCA, NÃO EGRESSO. NÃO REPITA A COLETA.**
+   >
+   > A frase de seis horas antes mandava a próxima execução coletar **2 itens de banco** para
+   > `rejunte/acrilico` e **2** para `rejunte/epoxi`, dizendo *"não é mais procura de número — é coleta de
+   > SKU"*. A metade sobre o número está certa. A outra metade supôs que coletar SKU de rejunte fosse como
+   > coletar de `acabamento`, e **não é**: `acabamento` saiu de zero por busca porque Acrilex, Coral e
+   > Suvinil publicam a declaração em página de produto, e nenhuma delas entra em fórmula de junta. O
+   > rejunte entra, e a declaração de faixa de junta mora em **boletim técnico**.
+   >
+   > **O que foi medido nesta execução, e é a razão:**
+   >
+   > | porta | medida (três passadas) |
+   > |---|---|
+   > | `*.vteximg.com.br` e `*.vtexassets.com` (o espelho) | **ABERTAS** — 9 de 9 hosts conversaram |
+   > | `www.quartzolit.weber` | **403**, e isto MUDOU: o registro de 30/09 dizia `connect_rejected` |
+   > | `www.portokoll.com.br`, `rejuntamix.com.br`, `bautech`, `kerakoll`, `mapei`, `votomassa`, `eucatex` | `000` — falha de **DNS**, inclusive por WebFetch (`ENOTFOUND`) |
+   > | `web.archive.org`, `r.jina.ai`, `docs.google.com` | `000` — as três escapatórias estão fechadas |
+   > | `www.telhanorte.com.br`, `*.vtexcommercestable.com.br`, `*.myvtex.com` | `000` — **não há como NAVEGAR o espelho** |
+   >
+   > **A consequência prática, e ela é a regra que fica:** o espelho é **arquivo por nome conhecido**, nunca
+   > catálogo. O inventário inteiro dele são **14 documentos**, listados em `dados/canal-de-espelho.md`
+   > com a identidade lida na página 1 de cada um — e **nenhum é rejunte acrílico nem epóxi**. Quatro
+   > consultas diferentes desta execução procuraram os dois nas duas famílias de CDN e deram zero. Então
+   > *"o egresso não abre PDF de fabricante"* e *"eu não sei o nome do arquivo"* são **bloqueios
+   > diferentes**, e quatro blocos desta ilha escreveram os dois com a mesma frase. O que destrava
+   > `rejunte/acrilico` e `rejunte/epoxi` é uma das duas, e nenhuma é coleta: **(a)** o curinga
+   > `*.quartzolit.weber` na lista de rede — com a ressalva nova de que o `www.` já responde **403**, então
+   > o curinga pode entrar e o 403 ficar, porque 403 é decisão do fabricante e não da rede do Raphael; ou
+   > **(b)** o nome do arquivo aparecer num host do espelho, que é sorte de índice e não trabalho.
+   >
+   > **O QUE ESTE BLOCO ENTREGOU NO LUGAR, e ele é o mesmo veio:** o espelho pagou a **primeira dívida de
+   > `conferir_no_pdf` desta ilha**. Eram **46** fontes marcadas *"confira no PDF"*; o boletim do
+   > `cimentcola externo quartzolit` (revisado em **maio de 2016**) foi aberto e lido página a página, e com
+   > ele: a pendência `cimentcola-consumo-e-tempo-em-aberto` saiu de "falta número" para **número escrito**
+   > (3,5 / 4,5 / 8 kg/m² por faixa de área, e tempo em aberto ≥20 min — mais os do **AC-III**, do boletim
+   > do `cimentcola flexível`, que ficaram em `dados/constantes.json` porque **não existe registro de
+   > AC-III no banco**); a embalagem ganhou o **saco plástico de 5 kg**, que o banco não tinha e que é o
+   > único formato deste produto que não é formato de obra; e o `nao_indicado_para`, que estava **vazio**,
+   > ganhou as três proibições da seção 3 do boletim.
+   >
+   > **E A DECISÃO QUE ESTE BLOCO TOMOU E NÃO ESCONDEU, porque ela é o achado:** a pendência
+   > `cimentcola-substrato-declarado` **mudou de natureza e continua aberta**. O documento responde
+   > inteira, na seção 4.1 — emboço, alvenaria, contrapiso, paredes de concreto, alvenarias de blocos e
+   > gesso acartonado —, e **nada disso foi gravado**, de propósito. Gravar só essa metade faria a F2
+   > recomendar esta argamassa em `cimento_concreto` e `alvenaria_tijolo` para quem respondeu **pastilha de
+   > vidro** — e o MESMO boletim proíbe *"revestimentos especiais"*, que é o que pastilha de vidro é. As
+   > cinco regras de elegibilidade decidem sobre BASE e AMBIENTE; a sexta lê a tessela por **um** campo
+   > (`exige_superficie_porosa`). **Não existe campo para proibição que fala da PEÇA que se cola.**
+   >
+   > **ENTÃO O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A REGRA 7**, e ela não é linha, é bloco: proibição
+   > declarada sobre a peça elimina o produto para as tesselas que a ilha classifica naquele grupo — lista
+   > no esquema (molde de `superficies_porosas`), classificação **nossa** e a tela proibida de dizer que o
+   > fabricante classificou (26.3), nas **duas** implementações (`validar-banco.py` e o snippet da F2 em
+   > PHP), com matriz esperada e bateria. Fechada ela, o substrato entra e a cimentcola AC-II passa a ser
+   > recomendação primária em duas bases — o primeiro produto novo na matriz da F2 desde 13/09.
+   >
+   > **TRÊS PORTAS MEDIDAS DE CARONA, e as três valem mais que uma coleta:**
+   > **(1)** `www.pastilhart.com.br` responde **200 nas três passadas**, e o registro de 28/09 dizia que
+   > *"não entrou nem no apex"*. A página do `pastilhart-af1500` foi **aberta e lida** (167 KB): as cinco
+   > declarações de ambiente e os três números de geometria **conferiram, zero divergência** — a coleta por
+   > busca de 12/09 estava certa, e isso também é resultado. O nível **não** subiu e não devia: nível é
+   > natureza da fonte, nunca alcance dela.
+   > **(2)** O **primeiro preço** que esta ilha vê numa fonte alcançável está medido (R$ 49,00 à vista, de
+   > R$ 71,89, estoque 30, lido em 05/10). `dados/cotacoes.json` segue não existindo, e criá-lo é decidir
+   > formato, validade do preço e como a tela mostra preço datado — bloco, não linha.
+   > **(3)** A **pista da FISPQ** que o bloco de 13h2xZ deixou está **FECHADA, e a resposta é NÃO**: os
+   > dois arquivos são a FISPQ do **Osmocolor ST** e a do **Pentox Cupim**, as duas da Montana Química, e
+   > uma terceira achada hoje é a do **Piso Sobre Piso Interno Quartzolit**. Nenhuma é a FISPQ do epóxi, e
+   > `regras_da_categoria_apoio` continua travada exatamente onde estava. **Ninguém precisa gastar bloco
+   > nesta pista outra vez.**
+   >
+   > *(O texto abaixo é de seis horas antes e fica sem uma palavra alterada: foi ele que abriu o canal, e
+   > foi a explicação dele — não o achado — que caiu.)*
+   >
    > **MEDIDO EM 05/10/2026 ÀS 13h2xZ — O NÚMERO QUE FALTAVA FOI ENCONTRADO, E `rejunte/cimenticio`
    > PASSOU OS DOIS PORTÕES. O QUE SEGURA A SEGUNDA CATEGORIA DO GUIA AGORA SÃO AS OUTRAS DUAS FILHAS.**
    >
