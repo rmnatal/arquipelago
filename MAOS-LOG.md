@@ -3557,3 +3557,85 @@ log. Este repositório é público.
 
 **Falhas: nenhuma.** Nenhuma ilha reservada, nenhum cabeçalho de estado tocado, nenhum bloco de fila executado, nenhum Sync
 acionado, nada publicado, nenhum `ARQUIPELAGO.md` consultado para decidir o que fazer.
+
+---
+
+## 05/10/2026 06h03 (09:03Z) — disparo 2 de 3 do Pente Fino de 05/10: 8 substituições, todas casaram
+
+Instrução recebida pelo canal das Mãos porque o Pente Fino levou 403 do proxy do git (`rmnatal/arquipelago is not in this
+session's authorized repository set`) e a credencial do ambiente dele estava inválida — negação de credencial, não corrida de
+push. Assunto conferido antes do `git fetch`: contrato, Bússola, dossiês e molde de ilha. **É do Arquipélago, executei.**
+
+**As 8 substituições (1 a 8 de 19) casaram byte a byte. Nenhuma pulada.** Conferido por contagem de ocorrência antes de cada
+gravação — cada TRECHO ANTIGO aparecia exatamente uma vez no arquivo indicado.
+
+```
+APLICADA 1 ARQUIPELAGO.md
+APLICADA 2 ARQUIPELAGO.md
+APLICADA 3 ARQUIPELAGO.md
+APLICADA 4 ARQUIPELAGO.md
+APLICADA 5 bussola/despacho-viagem.md
+APLICADA 6 bussola/dossies/som-automotivo/DOSSIE.md
+APLICADA 7 bussola/dossies/viagem-experiencia-icone/DOSSIE.md
+APLICADA 8 ilhas/_modelo/ESTADO.md
+OK: [1, 2, 3, 4, 5, 6, 7, 8]
+FALHAS: []
+```
+
+Portão da seção 2 do contrato, rodado antes do commit (a `ohmetria` já vinha FALTANDO `ultima_ronda` e `bloqueada_por` desde
+antes deste disparo — defeito conhecido, não é meu e não consertei; as outras cinco saíram OK, como a instrução previa):
+
+```
+OK ilhas/_modelo/ESTADO.md []
+OK ilhas/aquametria/ESTADO.md []
+OK ilhas/clubedomosaico/ESTADO.md []
+OK ilhas/jornadafly/ESTADO.md []
+FALTA ilhas/ohmetria/ESTADO.md ['ultima_ronda', 'bloqueada_por']
+OK ilhas/robometria/ESTADO.md []
+```
+
+`git status --porcelain` antes do commit:
+
+```
+ M ARQUIPELAGO.md
+ M bussola/despacho-viagem.md
+ M bussola/dossies/som-automotivo/DOSSIE.md
+ M bussola/dossies/viagem-experiencia-icone/DOSSIE.md
+ M ilhas/_modelo/ESTADO.md
+```
+
+`git diff --stat`:
+
+```
+ ARQUIPELAGO.md                                     |  8 ++++----
+ bussola/despacho-viagem.md                         |  2 +-
+ bussola/dossies/som-automotivo/DOSSIE.md           |  9 +++++++++
+ bussola/dossies/viagem-experiencia-icone/DOSSIE.md | 11 +++++++++++
+ ilhas/_modelo/ESTADO.md                            |  2 +-
+ 5 files changed, 26 insertions(+), 6 deletions(-)
+```
+
+**Hash que foi ao `main`: `f36669308c9e000f551947e6f06192b914cb31a3`** (`f366693`), confirmado com `git fetch origin main &&
+git log -1 origin/main`.
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar:** 5 arquivos, 26 linhas inseridas e 6 removidas.
+ARQUIPELAGO.md: 4 linhas trocadas (seção com o mapa de leitura, a linha da PROCEDÊNCIA na seção 7, o parágrafo VERIFICAR POR
+DÍVIDA da seção 12, e a 29.6). bussola/despacho-viagem.md: 1 linha trocada. som-automotivo/DOSSIE.md: 9 linhas novas.
+viagem-experiencia-icone/DOSSIE.md: 11 linhas novas. ilhas/_modelo/ESTADO.md: 1 linha trocada, dentro do cabeçalho YAML — e o
+portão acima prova que o arquivo continua parseando depois da gravação.
+
+**O push foi recusado na primeira tentativa** (`Updates were rejected because the remote contains work that you do not have
+locally`) — era um disparo irmão que chegou primeiro, exatamente como a instrução previa para hoje, e não é erro:
+
+```
+git fetch origin main   ->  4f1ea32..fec7483  main -> origin/main
+git rebase origin/main  ->  Rebasing (1/1) Successfully rebased and updated refs/heads/trabalho
+git push origin HEAD:main  ->  fec7483..f366693  HEAD -> main
+```
+
+Uma tentativa de rebase resolveu, das três permitidas. **Nenhum force push.** Não foi preciso abrir PR.
+
+**Falhas: nenhuma.** Nenhum valor de token, chave, senha ou e-mail de pessoa foi escrito em arquivo, commit ou resposta.
+Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado tocado além da linha de comentário que a
+instrução nomeou no molde, nenhum bloco de fila executado, nenhum Sync acionado, nada publicado. Nenhum arquivo fora dos 5
+nomeados, mais este log.
