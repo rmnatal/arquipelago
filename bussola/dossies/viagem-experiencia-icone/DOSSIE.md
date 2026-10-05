@@ -213,6 +213,17 @@ regra 1 acima é inegociável: se o símbolo voar, a contradição vira a cara d
 ## (e) Identidade
 
 ### Conceito do símbolo
+> **PONTEIRO DO PENTE FINO EM 05/10/2026 — TODA A IDENTIDADE DESTA SEÇÃO ESTÁ DESCARTADA, E AQUI O `logo.svg` DA PASTA TAMBÉM É O DESCARTADO.**
+> O Raphael trouxe a marca pronta em **14/09/2026** e `ilhas/jornadafly/DESIGN.md` a declara oficial: monograma em "J" com traço
+> ascendente azul, e *"**O que o dossiê propunha está descartado** — as duas barras horizontais com marcador vertical não são mais
+> a marca desta ilha. Fica escrito para ninguém 'restaurar' o desenho do dossiê achando que corrige um desvio."* Descartados com ele:
+> a **paleta de sete valores** (o `--sinal` oficial é `#378AD0`, não o índigo `#2F3E9E` desta seção) e a **tipografia de título
+> Fraunces** (a oficial é **Montserrat**; a Source Sans 3 do corpo, essa sim, foi mantida). Diferença do caso irmão, e é por isso que
+> este ponteiro é mais forte: na ohmetria o arquivo foi atualizado e só a prosa envelheceu, aqui **o `logo.svg` desta pasta continua
+> sendo o desenho descartado** e NÃO bate com `ilhas/jornadafly/logo.svg`. `ilhas/jornadafly/PROMPT.md:4` manda ler este dossiê
+> inteiro na primeira execução — então sem este ponteiro a primeira execução da ilha desenha a marca errada a partir de um arquivo
+> que parece oficial. O dono da forma é `ilhas/jornadafly/DESIGN.md` (§22.6); isto aqui é registro do que o dossiê propôs.
+
 **Duas barras horizontais de comprimentos diferentes, alinhadas à esquerda, com um marcador vertical curto na ponta da barra
 menor.** É o gesto de **comparar o que se paga com o que se recebe** — a leitura de custo posta lado a lado com a leitura de
 valor, e o marcador é o ponto em que a decisão é tomada. Traço uniforme de 2 px na grade de 24, cantos retos.

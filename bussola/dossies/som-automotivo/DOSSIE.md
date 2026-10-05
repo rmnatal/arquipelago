@@ -208,6 +208,15 @@ quatro contas do mesmo ofício.
 certa* —, nunca de animal, produto ou mascote. **Não há carro, alto-falante, onda sonora, nota musical nem fone.**
 
 ### Conceito do símbolo
+> **PONTEIRO DO PENTE FINO EM 05/10/2026 — O DESENHO DESCRITO ABAIXO FOI RECUSADO PELO RAPHAEL, E O `logo.svg` DESTA PASTA JÁ É O OUTRO.**
+> `ilhas/ohmetria/DESIGN.md` registra a recusa com data (14/09/2026) e causa: *"a primeira proposta (dois arcos em ferradura, do dossiê)
+> foi recusada por ele porque repetia a receita da Robometria — arco escuro mais peça colorida. Fica escrito para ninguém
+> 'restaurar' o desenho antigo achando que é o original."* O símbolo oficial é **"O paralelo"**: duas barras horizontais iguais
+> e o traço âmbar que as fecha no meio. A prova está nesta pasta e é mecânica: `bussola/dossies/som-automotivo/logo.svg` é
+> **byte-idêntico** a `ilhas/ohmetria/logo.svg` (md5 `f147548de2871ecea2cd2f4d216122e1`) — o arquivo foi atualizado e **só a prosa
+> ficou para trás**. Quem ler os parágrafos abaixo como especificação redesenha o que foi recusado. O dono da forma é
+> `ilhas/ohmetria/DESIGN.md` (§22.6); isto aqui é registro do que o dossiê propôs.
+
 **Dois arcos espelhados que se aproximam e travam num traço vertical curto.** É o gesto de casar duas bobinas numa carga só:
 dois caminhos que viram um. Lido de longe, o conjunto tem a silhueta de uma ferradura fechada — parentesco visual com o ohm
 sem ser o glifo Ω, que seria notação emprestada e não desenho próprio. O traço vertical no encontro é o **ponto de medida**:

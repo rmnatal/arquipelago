@@ -1,6 +1,6 @@
 # DESPACHO DO RAPHAEL — 13/09/2026 — o nicho de VIAGEM entra como candidato, e ele não é como os outros
 
-**O Raphael aprovou em 13/09/2026 que viagem seja avaliada como ilha nº 4**, com os critérios da seção 2 já ampliados para permitir serviço. Este arquivo existe para a Bússola não recomeçar do zero: o enquadramento, a medição de SERP e o levantamento de monetização já foram feitos na conversa. **Confira o que quiser, mas não repita o que já está medido — gaste a rodada no que falta.**
+**O Raphael aprovou em 13/09/2026 que viagem seja avaliada como ilha nº 4**, *(**ponteiro do Pente Fino em 05/10/2026: ela nasceu como ilha nº 5, não nº 4.** O som automotivo foi aprovado no dia seguinte e `ohmetria.com.br` foi pago em 14/09/2026 às 15h00Z, antes — então a nº 4 é a **ohmetria** (`ilhas/ohmetria/PROMPT.md:19`) e a nº 5 é a **jornadafly** (`ilhas/jornadafly/PROMPT.md:19`, e `bussola/fila.md` registra as duas assim). Este número era a expectativa de 13/09, quando só havia três ilhas e um candidato; ficou de pé porque o arquivo nunca foi relido depois da aprovação das duas. Duas ilhas não podem ser a nº 4.)* com os critérios da seção 2 já ampliados para permitir serviço. Este arquivo existe para a Bússola não recomeçar do zero: o enquadramento, a medição de SERP e o levantamento de monetização já foram feitos na conversa. **Confira o que quiser, mas não repita o que já está medido — gaste a rodada no que falta.**
 
 ## O ativo, que muda tudo
 

@@ -3,7 +3,7 @@ ilha: <nome>
 estado: nascendo
 prioridade: 3
 piso: abaixo                     # abaixo | atingido — obrigatorio pela secao 21.6 do ARQUIPELAGO.md
-primeira_indexacao: null         # data da 1a URL indexada, ou null — obrigatorio pela secao 21.6. Os dois campos foram acrescentados pelo Pente Fino em 21/09/2026: as quatro ilhas vivas os tinham e o molde nao, entao toda ilha nova nascia sem os campos que a Fundacao le para decidir o tamanho da leva. E o mesmo defeito que o ultima_ronda abaixo, cinco dias depois
+primeira_indexacao: null         # data da 1a URL indexada, ou null — obrigatorio pela secao 21.6. Os dois campos foram acrescentados pelo Pente Fino em 21/09/2026: as CINCO ilhas vivas os tinham e o molde nao (dizia "quatro"; corrigido pelo Pente Fino em 05/10/2026 — ha cinco pastas de ilha em ilhas/ fora deste molde desde 15/09/2026, e as cinco tem os dois campos, como o PROMPT.md deste mesmo molde ja dizia), entao toda ilha nova nascia sem os campos que a Fundacao le para decidir o tamanho da leva. E o mesmo defeito que o ultima_ronda abaixo, cinco dias depois
 ultima_execucao: null
 executando_desde: null
 bloco_atual: "1"
