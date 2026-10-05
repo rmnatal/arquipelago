@@ -136,6 +136,33 @@ deixou de ser eliminado por faixa e passou a ser elegível onde o ambiente o aut
 sido feito às 13h2xZ e o número que o mostra ficou seis horas fora do repositório.** Portão derivado que
 não é regerado no mesmo commit mede o mundo de antes — e aqui ele subavaliava a própria ilha.
 
+## DESEMBARQUE E VERIFICAÇÃO NO AR
+
+**Sync acionado pela própria Fundação, na mesma execução** — a lição de 16h17Z de hoje, com todas as
+letras: *"quem fecha bloco publicável aciona o Sync na mesma execução, mesmo quando o bloco só mexeu em
+dado"*, porque dado desta ilha É página. **Revisão 58 aplicada às 20h03:20Z, 15 itens aplicados**, e o
+`/status` lê **58**, igual à do `manifest.json`.
+
+**No ar, depois do desembarque:** `conferir-no-ar.py` com **524 afirmações e 0 falha**. E
+`leitura-do-visitante.py` — o segundo comando, o que lê como o Google lê, sem quebra de cache —
+**REPROVADO com exatamente 1 defeito, e é o esperado**: o soft 404 da borda (1ª leitura 404, 2ª 200,
+`x-proxy-cache HIT`, `max-age=7200`), que é do hospedeiro, está com o Raphael desde 29/09 e tem dono
+escrito. **22 URLs lidas, 0 em janela de cache, e nenhum motivo NOVO de vermelho** — que é a única
+coisa que esse portão proíbe.
+
+## BANCADA DESTA EXECUÇÃO
+
+`validar-banco.py` **OK**, com a matriz das 45 células recomputada depois de cada escrita ·
+`validar-pastilhas.py` **189 afirmações, 0 falha** · `teste-f2.php` **127** · `teste-f1.php` **210** ·
+`teste-prestacao-rejunte.php` **5** (540 estados da F2 e 180 da F1) · `teste-guia.php` **106** ·
+`mutacoes-f2.py` **51 de 51** · `mutacoes-f1.py` **47 de 47** · `mutacoes-batismo.py` **16 de 16** (era
+14 em 05/10 às 16h3xZ: a bateria cresceu sozinha com a fonte de PDF nova, então ela cobre o caso novo
+em vez de ignorá-lo) · `mutacoes-degrau.py` **8** · `mutacoes-forma-do-degrau.py` **5** ·
+`mutacoes-pastilhas.py` **14** · `mutacoes-rejunte.py` **16 de 16** · `mutacoes-arvore.py` **29 de 29**
+· `medir-espelho.py --autoteste` **24 de 24** · `medir-egresso.py --autoteste` **36 de 36** ·
+`cobertura.py --conferir`, `filhas-do-guia.py --conferir` e `cruzamento-14-9.py --conferir` **verdes**
+(os dois primeiros estavam vermelhos no `main`).
+
 ## O QUE ESTE BLOCO NÃO MUDOU, DITO PORQUE A TENTAÇÃO É DIZER QUE MUDOU
 
 **Nenhum pixel do que o site serve.** A matriz de 45 células da F2 foi recomputada pelo
