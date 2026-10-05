@@ -254,7 +254,21 @@ def entrega(medida, alcancaveis):
     if hd:
         return "alcancavel", "responde %d e redireciona para `%s`, que tambem e alcancavel" % (
             medida["codigos"][0], hd)
-    return "alcancavel", "responde %d com %d bytes" % (medida["codigos"][0], medida["bytes"])
+    # FONTE QUE RESPONDE 4xx/5xx NAO CHEGA (05/10/2026).
+    # Enquanto a sonda era a RAIZ do host, um 403 ali ainda podia significar "o host
+    # atende, o arquivo talvez venha". Com a sonda na FONTE CITADA isso acabou: 403 na
+    # URL que o banco cita e a fonte NAO chegando, e chamar isso de `alcancavel` seria
+    # escrever no arquivo o contrario do que ele existe para medir. Achado medindo o
+    # proprio conserto da sonda: `www.quartzolit.weber` saiu 403 na URL de boletim que
+    # 19 campos deste banco citam, e teria sido publicado como "alcancavel" — a mesma
+    # frase que quatro execucoes pagaram caro para desfazer. So vale para host com
+    # fonte citada; irmao sondado na raiz continua medindo o dominio, nao a fonte.
+    codigo = medida["codigos"][0]
+    if medida.get("sonda", "").startswith("fonte") and codigo >= 400:
+        return "liberado_mas_sem_entrega", (
+            "o CONNECT passa e o servidor responde **%d** na propria URL que o banco cita "
+            "— o host atende e a fonte nao chega" % codigo)
+    return "alcancavel", "responde %d com %d bytes" % (codigo, medida["bytes"])
 
 
 # ---------------------------------------------------------------- autoteste
@@ -287,6 +301,29 @@ def autoteste():
             falhas += 1
         print("  %s caso %2d  connect=%-13s destino=%-14s -> %s (esperado %s)"
               % (marca, i, connect, hd or "-", veredito, esperado))
+    # O CODIGO DA FONTE CITADA. Sem estes casos, a regra de 05/10 nao e medida por
+    # ninguem — e ela e a que separa "o host atende" de "a fonte chega".
+    print()
+    cod_casos = [
+        # (sonda, codigo, veredito esperado)
+        ("fonte citada pelo banco", 200, "alcancavel"),
+        ("fonte citada pelo banco", 301, "alcancavel"),   # salto resolvido antes daqui
+        ("fonte citada pelo banco", 403, "liberado_mas_sem_entrega"),
+        ("fonte citada pelo banco", 404, "liberado_mas_sem_entrega"),
+        ("fonte citada pelo banco", 500, "liberado_mas_sem_entrega"),
+        ("raiz do host (nenhum banco o cita)", 400, "alcancavel"),   # raiz nao mede fonte
+        ("raiz do host (nenhum banco o cita)", 403, "alcancavel"),
+    ]
+    for i, (sonda, codigo, esperado) in enumerate(cod_casos, 1):
+        m = {"connect": "estabelecido", "codigos": [codigo] * 3,
+             "host_do_destino": None, "bytes": 10, "sonda": sonda}
+        veredito, _ = entrega(m, set())
+        marca = "ok  " if veredito == esperado else "FALHA"
+        if veredito != esperado:
+            falhas += 1
+        print("  %s codigo %2d  sonda=%-36s %d -> %s (esperado %s)"
+              % (marca, i, sonda.split(" (")[0], codigo, veredito, esperado))
+
     # O DOMINIO REGISTRAVEL, que e de onde sai o PEDIDO. Errar aqui produz pedido errado,
     # e pedido errado foi atendido pela metade em 29/09 — e por isso ele tem caso proprio.
     print()
@@ -339,7 +376,7 @@ def autoteste():
     print("       (esperado %s — nem `validar-banco.py` nem `1.13.0` entram)" % esperado)
     prosa_casos = 1
 
-    total = len(casos) + len(reg_casos) + len(irmao_casos) + prosa_casos
+    total = len(casos) + len(cod_casos) + len(reg_casos) + len(irmao_casos) + prosa_casos
     print()
     if falhas:
         sys.exit("AUTOTESTE REPROVADO: %d de %d" % (falhas, total))
@@ -495,8 +532,23 @@ def main():
 
     medidas = {}
     for h in sorted(a_medir):
-        amostra = "https://%s/" % h
+        # A SONDA E A FONTE CITADA, NAO A RAIZ DO HOST (05/10/2026).
+        # Ate hoje esta linha era `"https://%s/" % h` sempre, e com isso a ferramenta
+        # respondia uma pergunta que nao e a dela. A abertura deste arquivo diz, com
+        # todas as letras: "a pergunta que este arquivo responde nao e 'o dominio esta
+        # liberado': e 'a fonte chega'". Medido nesta execucao: o CDN
+        # `telhanorte.vteximg.com.br` responde **400 na raiz** e entrega **200 no PDF
+        # que o banco cita** — dois boletins tecnicos Quartzolit foram baixados e lidos
+        # inteiros de la. Com a sonda na raiz, a proxima execucao leria "400" e jogaria
+        # fora o unico canal de boletim de fabricante que esta nuvem alcanca.
+        # E a licao e a MESMA que este arquivo ja ensina duas vezes, um andar acima:
+        # medir CONNECT nao e medir entrega, e medir a RAIZ nao e medir a FONTE.
+        # Host que nenhum banco cita (os irmaos) nao tem fonte para sondar e continua
+        # na raiz — para esses a pergunta e mesmo sobre o dominio.
+        citadas = sorted(a_medir[h]["urls"])
+        amostra = citadas[0] if citadas else "https://%s/" % h
         medidas[h] = medir_host(h, amostra)
+        medidas[h]["sonda"] = "fonte citada pelo banco" if citadas else "raiz do host (nenhum banco o cita)"
         print("  %-26s connect=%-13s codigos=%s salto=%s%s"
               % (h, medidas[h]["connect"], medidas[h]["codigos"],
                  medidas[h]["host_do_destino"] or "-",
@@ -542,6 +594,18 @@ def main():
         familia = [x for x in hosts.values()
                    if x["dominio_registravel"] == r["dominio_registravel"]]
         if not any(trava_coleta(x) for x in familia):
+            continue
+        # NAO SE PEDE DOMINIO CUJA FONTE JA CHEGA (05/10/2026).
+        # O pulo de cima e por HOST: o apex `vteximg.com.br` esta bloqueado e entrava
+        # na lista, embora `telhanorte.vteximg.com.br` — o host que o banco CITA —
+        # entregue 200 e dois boletins tecnicos tenham sido lidos de la nesta mesma
+        # execucao. Pedir esse dominio e exatamente a "precaucao" que o texto gerado
+        # logo abaixo jura nao haver ("e nenhum esta por precaucao"), e ela custa caro
+        # onde mais importa: o pedido vai para uma PESSOA, e linha desnecessaria
+        # enfraquece a linha que decide. A trava olha a familia, nao o host, e so
+        # conta host que algum banco cita — irmao alcancavel que ninguem cita nao
+        # prova que a fonte chega.
+        if any(x["veredito"] == "alcancavel" and x["citado_pelo_banco"] for x in familia):
             continue
         reg = r["dominio_registravel"]
         for linha in (reg, "*." + reg):

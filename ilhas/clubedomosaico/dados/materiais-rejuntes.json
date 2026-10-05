@@ -522,7 +522,7 @@
       "fabricante": "Saint-Gobain Weber",
       "nome_comercial": "Rejunte Piscinas Quartzolit",
       "codigo_fabricante": null,
-      "motivo_sem_codigo": "So a pagina de produto foi obtida; o boletim tecnico correspondente nao apareceu na busca desta execucao.",
+      "motivo_sem_codigo": "O boletim tecnico FOI obtido em 05/10/2026 (ver fontes) e nao traz codigo de produto: identifica-se por nome e pela data de revisao, 'agosto de 2017'. O motivo anterior dizia que o boletim 'nao apareceu na busca desta execucao', o que era verdade em 11/09 e deixou de ser. O codigo 0108.00000.0030FD que circula no varejo e SKU de loja, nao codigo do fabricante, e por isso nao entra aqui.",
       "declaracoes": {
         "indicado_para": [
           "cerâmicas",
@@ -541,31 +541,54 @@
       },
       "propriedades": {
         "junta_min_mm": {
-          "valor": null,
+          "valor": 2,
           "unidade": "mm",
-          "motivo": "NAO obtida. A unica mencao de junta e de procedimento — 'juntas com ate 3 mm devem ser molhadas com agua limpa antes da aplicacao' —, que diz o que fazer numa junta estreita e nao qual e a faixa admitida. Gravar 3 mm como maximo inverteria a frase do fabricante."
+          "fonte_id": "bt-rejunte-piscinas-2017-08",
+          "declarado_como": "Indicado para: 'Juntas de assentamento: de 2 a 10 mm.'",
+          "corrige": "Este campo era null com o motivo 'NAO obtida'. O motivo estava certo para a fonte que existia (so a pagina de produto, que nao traz a faixa) e deixou de descrever o mundo quando o boletim foi aberto em 05/10/2026. A frase de procedimento que o motivo antigo citava — 'juntas de ate 3 mm devem ser molhadas' — continua no campo `preparo` e continua NAO sendo a faixa, exatamente como o motivo antigo dizia."
         },
         "junta_max_mm": {
-          "valor": null,
+          "valor": 10,
           "unidade": "mm",
-          "motivo": "Mesmo motivo do campo acima."
+          "fonte_id": "bt-rejunte-piscinas-2017-08",
+          "declarado_como": "Indicado para: 'Juntas de assentamento: de 2 a 10 mm.'",
+          "corrige": "Mesmo caso do campo acima."
         },
         "CR": {
           "valor": null,
           "unidade": "adimensional",
-          "motivo": "Nao obtido; a pagina remete a calculadora da embalagem."
+          "motivo": "CONTINUA null, e agora por motivo MEDIDO em vez de suposto. A secao 5 'Consumo' do boletim NAO e um CR: e uma tabela de RENDIMENTO por saco de 5 kg, em m2, cruzando tamanho da peca (de 10x10 a 40x40 cm) com largura da junta (2 a 10 mm) — transcrita inteira na `observacao` deste registro. Derivar CR dela exigiria a ESPESSURA da peca, que o boletim nao declara em lugar nenhum, e arbitrar uma espessura para fechar a conta seria inventar o numero do fabricante. O motivo anterior ('nao obtido; a pagina remete a calculadora da embalagem') estava incompleto: o dado existe, tem outra forma, e a outra forma nao converte sem um dado que ninguem publicou."
         },
         "liberacao_imersao_dias": {
           "valor": 4,
           "unidade": "dia",
-          "fonte_id": "pagina-produto-rejunte-piscinas",
-          "declarado_como": "esperar pelo menos 4 dias apos o rejuntamento para encher a piscina com agua"
+          "fonte_id": "bt-rejunte-piscinas-2017-08",
+          "declarado_como": "3.5. Liberacao: 'Encher com agua a piscina: Apos 4 dias de execucao.'",
+          "observacao_da_fonte": "O valor nao mudou. O que mudou foi o degrau: estava na pagina de produto (nivel 3) e agora esta no boletim tecnico aberto (nivel 2), com a mesma frase."
         },
         "temperatura_maxima_agua_C": {
           "valor": 40,
           "unidade": "C",
           "fonte_id": "pagina-produto-rejunte-piscinas",
           "declarado_como": "pode ser usado em piscinas aquecidas de ate 40 graus Celsius"
+        },
+        "liberacao_area_molhada_h": {
+          "valor": 96,
+          "unidade": "h",
+          "fonte_id": "bt-rejunte-piscinas-2017-08",
+          "declarado_como": "3.5. Liberacao: 'Outros ambientes: 4 dias da execucao.'",
+          "leitura": "O FABRICANTE NAO ESCREVE 'area molhada' PARA ESTE PRODUTO, e isto tem de ir para a tela com estas palavras. A secao 3.5 do boletim tem DUAS linhas e so duas: encher a piscina (4 dias) e 'outros ambientes' (4 dias). 'Outros ambientes' e a liberacao de TUDO o que nao e encher a piscina, e area molhada e um desses ambientes — entao o numero de area molhada deste produto e esse, e 4 dias sao 96 h por aritmetica, nao por escolha. A diferenca com os dois irmaos e o achado: `rejunte-ceramicas` e `rejunte-porcelanatos-e-ceramicas` declaram 'liberacao para contato com area molhada: 24 horas' NESSAS PALAVRAS, e este declara uma liberacao unica, generica e QUATRO VEZES mais longa. Quem publicar a comparacao dos tres cita a frase de cada um, nunca so o numero: dois sao 'area molhada' do fabricante e o terceiro e 'outros ambientes' lido como tal.",
+          "por_que_isto_nao_e_esticar_a_frase": "A trava que este mesmo registro ja aplicou duas vezes — 'gravar 3 mm como maximo INVERTERIA a frase' e 'virar pode usar em peca de agua seria ESTICAR a frase' — barra o que faz o fabricante dizer o que ele nao disse. Aqui o movimento e o oposto: le-se uma frase GERAL ('outros ambientes') no caso particular que ela declaradamente cobre, e o numero que sai e o mais CONSERVADOR dos tres do recorte. Nenhum leitor molha a peca mais cedo por causa deste registro."
+        },
+        "densidade_aparente_g_cm3": {
+          "valor": null,
+          "unidade": "g/cm3",
+          "motivo": "O boletim publica uma FAIXA (1,1 a 1,5 g/cm3) na tabela da secao 4, nao um valor unico — identica a do `rejunte-porcelanatos-e-ceramicas` e descartada pelo mesmo motivo que la: a ilha nao escolhe um ponto dentro da faixa do fabricante para poder gravar um numero."
+        },
+        "classificacao_normativa": {
+          "valor": null,
+          "unidade": "NBR 14.992",
+          "motivo": "AUSENCIA MEDIDA, nao lacuna: o boletim de agosto de 2017 deste produto NAO cita a NBR 14.992 nem classifica o rejunte em tipo I ou II — zero ocorrencias de 'NBR', 'norma' e 'tipo I' nas 3 paginas. Os dois irmaos cimenticios declaram 'tipo II conforme a NBR 14.992' nos boletins deles. Silencio nao e permissao (principio 2 do esquema): este registro fica SEM classificacao em vez de herdar a dos irmaos."
         }
       },
       "preparo": "Juntas com ate 3 mm de largura devem ser molhadas com agua limpa antes da aplicacao.",
@@ -594,6 +617,18 @@
           "nivel": 3,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": true
+        },
+        "bt-rejunte-piscinas-2017-08": {
+          "url": "https://telhanorte.vteximg.com.br/arquivos/1200003.pdf",
+          "tipo": "boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina",
+          "nivel": 2,
+          "coletado_em": "2026-10-05",
+          "conferir_no_pdf": false,
+          "documento": "Boletim Tecnico - rejunte piscinas quartzolit, 3 paginas, rodape 'Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.'",
+          "revisao_declarada": "Documento revisado em agosto de 2017",
+          "espelho": "O PDF NAO foi obtido no dominio do fabricante: www.quartzolit.weber continua em 403 e o apex so redireciona para ele (egresso medido em 30/09 e remedido nesta execucao). Este arquivo esta hospedado no CDN da Telha Norte, varejista do proprio grupo Saint-Gobain, e o conteudo e o boletim do fabricante com cabecalho, rodape e data de revisao proprios. POR ISSO FICA NO NIVEL 2 E NAO NO 1: o nivel 1 do esquema e a ficha lida NO fabricante, e por espelho de terceiro nao da para afirmar que esta e a revisao vigente — a de agosto de 2017 e a que existe aqui.",
+          "tipo_de_origem": "documento-pdf-do-fabricante-em-espelho-de-terceiro",
+          "por_que_esta_origem_nao_batiza": "A trava do batismo (secao 26.2, ferramentas/batismo-do-fabricante.py) vale por uma premissa escrita no esquema: 'o nome do arquivo de um boletim e o fabricante escrevendo o nome do produto'. ESSA PREMISSA E FALSA NESTE ARQUIVO e foi medida falsa aqui: o PDF esta no CDN da Telha Norte e o nome dele e `1200003.pdf`, codigo do varejista. O fabricante batiza o produto DENTRO do documento — 'Rejunte piscinas quartzolit' no titulo da pagina 1 e 'Rejuntamento piscinas quartzolit' na secao 6 —, e nao no nome do arquivo. Sem esta linha a regra lia `1200003.pdf` e concluia que o fabricante nao escreve 'Rejunte' nem 'Piscinas', que e o oposto do que o documento diz. A origem fica declarada e FORA de `origens_que_batizam`: o batismo deste registro continua ancorado na pagina de produto, cujo caminho traz o nome."
         }
       },
       "constantes_relacionadas": [],
@@ -605,7 +640,7 @@
         "F2",
         "G-REJUNTES"
       ],
-      "observacao": "O REGISTRO MAIS IMPORTANTE DESTE BLOCO, e o que ele NAO resolve. E o primeiro material do banco cujo fabricante nomeia a tessela do mosaico — 'pastilhas de porcelana e de vidro' — no ambiente mais critico do vocabulario, submerso. Mas ele nao fecha a faixa descoberta de peca em contato permanente com agua, por duas razoes que a pagina tem que dizer com todas as letras: (1) e REJUNTE, nao cola — a peca submersa continua sem adesivo declarado, porque a unica declaracao de colagem submersa que a ilha tem e o press release do Durepoxi, nivel 4; e (2) o que o fabricante declara e 'agua tratada quimicamente', que e piscina, e NAO a agua parada de uma fonte ou de um vaso de jardim. Meia resposta declarada e meia resposta e; virar 'pode usar em peca de agua' seria esticar a frase do fabricante ate o ponto em que ela deixa de ser dele."
+      "observacao": "O REGISTRO MAIS IMPORTANTE DESTE BLOCO, e o que ele NAO resolve. E o primeiro material do banco cujo fabricante nomeia a tessela do mosaico — 'pastilhas de porcelana e de vidro' — no ambiente mais critico do vocabulario, submerso. Mas ele nao fecha a faixa descoberta de peca em contato permanente com agua, por duas razoes que a pagina tem que dizer com todas as letras: (1) e REJUNTE, nao cola — a peca submersa continua sem adesivo declarado, porque a unica declaracao de colagem submersa que a ilha tem e o press release do Durepoxi, nivel 4; e (2) o que o fabricante declara e 'agua tratada quimicamente', que e piscina, e NAO a agua parada de uma fonte ou de um vaso de jardim. Meia resposta declarada e meia resposta e; virar 'pode usar em peca de agua' seria esticar a frase do fabricante ate o ponto em que ela deixa de ser dele.\n\n--- ACRESCENTADO EM 05/10/2026, COM O BOLETIM TECNICO ABERTO ---\nO BOLETIM FOI LIDO PAGINA A PAGINA e fechou quatro nulos deste registro (junta min, junta max, liberacao de area molhada e a classificacao normativa, esta ultima como AUSENCIA medida). As duas metades que o registro ja dizia nao resolver continuam exatamente como estavam: o produto segue sendo REJUNTE e nao cola, e o que ele declara segue sendo 'agua tratada quimicamente', que e piscina.\n\nA TABELA DE RENDIMENTO DA SECAO 5, transcrita inteira porque ela nao cabe em nenhuma propriedade de nome fixo e porque e o unico dado de consumo que este fabricante publica para este produto. Embalagem de 5 kg; as celulas sao a area coberta em m2, cruzando tamanho da peca com a largura da junta:\n  tamanho da peca (cm) | 2 mm | 4 mm | 5 mm | 7 mm | 8 mm | 10 mm\n  10 X 10              | 10   | 5    | 4    | 3    | 2    | 2\n  15 X 15              | 14   | 7    | 6    | 4    | 4    | 3\n  20 X 20              | 19   | 10   | 8    | 6    | 5    | 4\n  20 X 30              | 23   | 12   | 9    | 7    | 6    | 5\n  30 X 30              | 29   | 14   | 12   | 8    | 7    | 6\n  40 X 40              | 39   | 19   | 15   | 11   | 10   | 8\nA tabela e uma IMAGEM dentro do PDF: o texto extraido traz a secao 5 vazia, e ela so apareceu quando a pagina 2 foi renderizada e olhada. Fica registrado porque e armadilha de metodo, nao detalhe deste produto: toda extracao de texto destes boletins vai perder as tabelas, e a secao que mais interessa a esta ilha — consumo — e justamente a que o fabricante desenha em vez de escrever.\n\nE A LEITURA QUE A TABELA PERMITE E A QUE ELA NEGA: a menor peca que o fabricante tabela e 10x10 cm, e a tessela de mosaico desta ilha tem 1 a 2 cm. Extrapolar a tabela para baixo e o erro que o nicho comete — a area de junta por m2 cresce de forma nao linear quando a peca encolhe, e e exatamente por isso que a F1 desta ilha calcula a gramatura em vez de ler tabela de obra."
     }
   ]
 }

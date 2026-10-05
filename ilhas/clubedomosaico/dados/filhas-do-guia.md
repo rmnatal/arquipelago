@@ -11,11 +11,11 @@ esquema (versao 10): **3**.
 
 | veredito | recortes |
 |---|---|
-| `passa` | 9 |
-| `passa_na_contagem_sem_lastro` | 3 |
+| `passa` | 10 |
+| `passa_na_contagem_sem_lastro` | 2 |
 | `nao_passa` | 30 |
 
-**Podem nascer hoje:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `pastilha`, `pastilha/vidro`, `rejunte`.
+**Podem nascer hoje:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `pastilha`, `pastilha/vidro`, `rejunte`, `rejunte/cimenticio`.
 
 **Categorias que alcancam as 3 filhas da 16.5:** `acabamento`.
 
@@ -60,8 +60,8 @@ esquema (versao 10): **3**.
 | `pastilha/caco_azulejo` | 0 | 0 | — | `nao_passa` |
 | `pastilha/caco_espelho` | 0 | 0 | — | `nao_passa` |
 | `pastilha/resina` | 0 | 0 | — | `nao_passa` |
-| `rejunte` | 5 | 5 | `junta_max_mm` (4), `junta_min_mm` (4), `liberacao_area_molhada_h` (3) | `passa` |
-| `rejunte/cimenticio` | 3 | 3 | — | `passa_na_contagem_sem_lastro` |
+| `rejunte` | 5 | 5 | `junta_max_mm` (5), `junta_min_mm` (5), `liberacao_area_molhada_h` (4) | `passa` |
+| `rejunte/cimenticio` | 3 | 3 | `junta_max_mm` (3), `junta_min_mm` (3), `liberacao_area_molhada_h` (3) | `passa` |
 | `rejunte/flexivel` | 0 | 0 | — | `nao_passa` |
 | `rejunte/acrilico` | 1 | 1 | — | `nao_passa` |
 | `rejunte/epoxi` | 1 | 1 | — | `nao_passa` |
@@ -97,7 +97,6 @@ esquema (versao 10): **3**.
 - **`pastilha/caco_azulejo`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`pastilha/caco_espelho`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`pastilha/resina`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
-- **`rejunte/cimenticio`** — 3 dos 3 itens sustentam recomendacao, e NENHUMA propriedade e declarada por 3 deles ao mesmo tempo — nao ha numero que a pagina calcule sobre o recorte inteiro
 - **`rejunte/flexivel`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`rejunte/acrilico`** — o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`rejunte/epoxi`** — o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3

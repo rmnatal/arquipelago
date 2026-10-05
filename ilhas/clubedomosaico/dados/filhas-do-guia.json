@@ -1426,30 +1426,33 @@
    "numeros_calculaveis_sobre_o_recorte": [
     {
      "propriedade": "junta_max_mm",
-     "em_quantos_itens": 4,
+     "em_quantos_itens": 5,
      "itens": [
       "quartzolit-rejunte-acrilico",
       "quartzolit-rejunte-ceramicas",
       "quartzolit-rejunte-epoxi",
+      "quartzolit-rejunte-piscinas",
       "quartzolit-rejunte-porcelanatos-e-ceramicas"
      ]
     },
     {
      "propriedade": "junta_min_mm",
-     "em_quantos_itens": 4,
+     "em_quantos_itens": 5,
      "itens": [
       "quartzolit-rejunte-acrilico",
       "quartzolit-rejunte-ceramicas",
       "quartzolit-rejunte-epoxi",
+      "quartzolit-rejunte-piscinas",
       "quartzolit-rejunte-porcelanatos-e-ceramicas"
      ]
     },
     {
      "propriedade": "liberacao_area_molhada_h",
-     "em_quantos_itens": 3,
+     "em_quantos_itens": 4,
      "itens": [
       "quartzolit-rejunte-ceramicas",
       "quartzolit-rejunte-epoxi",
+      "quartzolit-rejunte-piscinas",
       "quartzolit-rejunte-porcelanatos-e-ceramicas"
      ]
     }
@@ -1462,15 +1465,13 @@
    "a_que_distancia_esta": {
     "itens_que_faltam_para_3": 0,
     "itens_com_lastro_que_faltam_para_3": 0,
-    "itens_que_faltam_para_o_numero_mais_perto": 1,
-    "propriedade_mais_perto_de_ser_numero": "liberacao_area_molhada_h",
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "junta_max_mm",
     "itens_sem_nenhum_numero_com_lastro": [],
     "pode_fechar_completando_registro_existente": {
-     "propriedade": "liberacao_area_molhada_h",
-     "registros_que_nao_a_declaram": [
-      "quartzolit-rejunte-piscinas"
-     ],
-     "leitura": "a propriedade `liberacao_area_molhada_h` falta em 1 registro(s) que JA estao no banco: o recorte fecha coletando esse valor, nao um produto novo"
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
     }
    },
    "categoria": "rejunte",
@@ -1487,9 +1488,37 @@
     "quartzolit-rejunte-piscinas",
     "quartzolit-rejunte-porcelanatos-e-ceramicas"
    ],
-   "numeros_calculaveis_sobre_o_recorte": [],
-   "veredito": "passa_na_contagem_sem_lastro",
-   "motivo": "3 dos 3 itens sustentam recomendacao, e NENHUMA propriedade e declarada por 3 deles ao mesmo tempo — nao ha numero que a pagina calcule sobre o recorte inteiro"
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "junta_max_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "quartzolit-rejunte-ceramicas",
+      "quartzolit-rejunte-piscinas",
+      "quartzolit-rejunte-porcelanatos-e-ceramicas"
+     ]
+    },
+    {
+     "propriedade": "junta_min_mm",
+     "em_quantos_itens": 3,
+     "itens": [
+      "quartzolit-rejunte-ceramicas",
+      "quartzolit-rejunte-piscinas",
+      "quartzolit-rejunte-porcelanatos-e-ceramicas"
+     ]
+    },
+    {
+     "propriedade": "liberacao_area_molhada_h",
+     "em_quantos_itens": 3,
+     "itens": [
+      "quartzolit-rejunte-ceramicas",
+      "quartzolit-rejunte-piscinas",
+      "quartzolit-rejunte-porcelanatos-e-ceramicas"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
   },
   {
    "recorte": "rejunte/flexivel",
@@ -1574,8 +1603,8 @@
  ],
  "resumo": {
   "vereditos": {
-   "passa": 9,
-   "passa_na_contagem_sem_lastro": 3,
+   "passa": 10,
+   "passa_na_contagem_sem_lastro": 2,
    "nao_passa": 30
   },
   "filhas_que_podem_nascer_hoje": [
@@ -1587,7 +1616,8 @@
    "alicate/cortador_de_azulejo",
    "pastilha",
    "pastilha/vidro",
-   "rejunte"
+   "rejunte",
+   "rejunte/cimenticio"
   ],
   "por_categoria_do_guia": {
    "acabamento": {
@@ -1712,17 +1742,15 @@
     }
    },
    "rejunte": {
-    "tipos_que_passam": 0,
+    "tipos_que_passam": 1,
     "tipos_no_vocabulario": 4,
-    "tipos_que_passam_quais": [],
+    "tipos_que_passam_quais": [
+     "rejunte/cimenticio"
+    ],
     "caminho_mais_barato_para_as_3_filhas": {
-     "faltam_filhas": 3,
-     "itens_de_banco_a_coletar": 5,
+     "faltam_filhas": 2,
+     "itens_de_banco_a_coletar": 4,
      "em_quais_tipos": [
-      {
-       "tipo": "rejunte/cimenticio",
-       "itens_a_coletar": 1
-      },
       {
        "tipo": "rejunte/acrilico",
        "itens_a_coletar": 2

@@ -112,6 +112,21 @@ def m10(t):
                     "        if False:\n            continue")
 
 
+def m11(t):
+    """o `tipo_de_origem` declarado na fonte para de ser lido
+
+    ACRESCENTADA EM 05/10/2026. Sem esta mutacao, a linha que faz a regra
+    respeitar a origem declarada podia ser apagada sem nenhuma bancada
+    acusar — e com ela apagada o PDF espelhado no CDN de um varejista volta
+    a ser classificado pela EXTENSAO, volta a batizar, e volta a reprovar
+    `Rejunte Piscinas Quartzolit` dizendo que o fabricante nao escreve esse
+    nome. O fabricante escreve: no titulo da pagina 1 do boletim. Quem nao
+    escreve e o CDN, no nome `1200003.pdf`.
+    """
+    return troca(t, "        if (fonte.get('tipo_de_origem') or _origem_pela_url(fonte)) in origens:",
+                    "        if _origem_pela_url(fonte) in origens:")
+
+
 MUTACOES = [
     ('a trava para de cobrar palavra nenhuma', m01),
     ('a excecao da marca esvazia a cobranca inteira', m02),
@@ -123,6 +138,7 @@ MUTACOES = [
     ('APERTA: a palavra tem de casar inteira', m08),
     ('o separador volta a contar', m09),
     ('a palavra vazia passa a ser cobrada', m10),
+    ('o `tipo_de_origem` da fonte para de ser lido (espelho volta a batizar)', m11),
 ]
 
 
@@ -158,11 +174,30 @@ def d04(esquema, bancos):
     # pode ser desligada do esquema sem ninguem ver.
 
 
+def d05(esquema, bancos):
+    """a origem de ESPELHO entra na lista das que batizam
+
+    ACRESCENTADA EM 05/10/2026, e e a trava do lado do DADO. A outra ponta
+    (m11) guarda o codigo; esta guarda a decisao, que pela 26.2 mora no
+    esquema. Se alguem acrescentar `documento-pdf-do-fabricante-em-espelho-
+    de-terceiro` a `origens_que_batizam`, o boletim da Telha Norte volta a
+    batizar o rejunte piscinas pelo nome de arquivo do varejista e o
+    validador TEM de ficar vermelho. Se ele ficar verde, a decisao de 05/10
+    nao esta sendo medida por ninguem.
+    """
+    lista = esquema['batismo_do_fabricante']['origens_que_batizam']
+    espelho = 'documento-pdf-do-fabricante-em-espelho-de-terceiro'
+    if espelho in lista:
+        raise SystemExit('mutacao invalida: o espelho ja esta na lista')
+    lista.append(espelho)
+
+
 MUTACOES_DO_BANCO = [
     ('o batismo volta a ser a descricao da ilha', d01, VALIDADOR),
     ('a chave `batismo_do_fabricante` some do esquema (26.2)', d02, VALIDADOR),
     ('`origens_que_batizam` esvazia', d03, VALIDADOR),
     ('a origem que batiza vira uma que ninguem cita', d04, BANCADA),
+    ('a origem de ESPELHO entra na lista das que batizam', d05, VALIDADOR),
 ]
 
 

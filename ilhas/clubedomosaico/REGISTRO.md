@@ -3,6 +3,167 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+05/10/2026 13h18Z — O NÚMERO QUE FALTAVA ESTAVA NUM PDF QUE A ILHA DAVA POR FECHADO; O EGRESSO NUNCA BARROU PDF, BARRA HOST
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h18Z**, push da reserva aceito na primeira
+tentativa (`3a34f4e`). Os cinco `ESTADO.md` do `main` estavam com `executando_desde: null` — pela **1.1** isso
+já basta, não houve reserva vencida para o git desempatar. Nenhum PR aberto; a branch `claude/dreamy-mccarthy-hbaqap`
+estava no mesmo commit do `main`. Pela **18.1**, o topo do `PROMPT.md` antes de escolher bloco: o despacho de
+30/09 tem o item 1 cumprido e o item 2 (soft 404 na borda) **aberto e não sendo da Fundação**; o de 23/09 tem a
+metade que falta esperando **clique de gente**, não código. Nada da Fundação fura a fila.
+
+**Nenhuma URL nova** (a ilha segue em **21**), **nenhuma leva da 21.4 gasta**, **nada publicado**, **nenhum Sync
+acionado** — esta execução não escreveu página. Manifest e `/status` seguem na **revisão 56**.
+
+## A PORTA DE ENTRADA, ANTES DO BLOCO (seções 20.2 e 29.2) — DE PÉ
+
+Ao contrário de três horas antes: `/` **200**, `/wp-sitemap.xml` **200**, `/robots.txt` **200**, `/wp-json/`
+**200**, e caminho inexistente em **404**. O reparo do `.htaccess` feito às 10h3xZ continuava segurando.
+
+## O BLOCO: `rejunte/cimenticio` PASSOU OS DOIS PORTÕES
+
+A fila de 10h3xZ deixou a frase mais útil que esta ilha já recebeu de uma execução anterior: *"a filha
+`rejunte/cimenticio` está a UM número de passar — `liberacao_area_molhada_h`, que é declaração de fabricante"*.
+Era exatamente isso. Dos 3 itens do recorte, dois já declaravam **24 h** com essas palavras; o
+`quartzolit-rejunte-piscinas` não declarava nada, e o motivo escrito no campo dizia que a página de produto não
+traz o dado.
+
+**Traz o boletim técnico — e ele foi aberto.** `telhanorte.vteximg.com.br/arquivos/1200003.pdf`, *"Boletim
+Técnico – rejunte piscinas quartzolit"*, 3 páginas, *"Documento revisado em agosto de 2017"*, lido página a
+página. O que ele fechou neste registro:
+
+| campo | era | virou | a frase do fabricante |
+|---|---|---|---|
+| `junta_min_mm` | `null`, *"NÃO obtida"* | **2** | *"Juntas de assentamento: de 2 a 10 mm."* |
+| `junta_max_mm` | `null`, *"NÃO obtida"* | **10** | a mesma |
+| `liberacao_area_molhada_h` | ausente | **96** | *"3.5. Liberação: Outros ambientes: 4 dias da execução."* |
+| `classificacao_normativa` | ausente | `null` **com ausência medida** | zero ocorrências de NBR, norma ou tipo I/II nas 3 páginas |
+| `liberacao_imersao_dias` | 4, nível 3 | 4, **nível 2** | *"Encher com água a piscina: Após 4 dias de execução."* |
+
+**O 96 h é a única leitura desta passada que não é transcrição, e ela está escrita no próprio campo.** A seção
+3.5 do boletim tem duas linhas e só duas: encher a piscina (4 dias) e *"outros ambientes"* (4 dias). O
+fabricante **não escreve "área molhada" para este produto**. "Outros ambientes" é a liberação de tudo o que não
+é encher a piscina, e área molhada é um desses — então 4 dias são 96 h por aritmética, não por escolha. Ficou
+registrado com `leitura` e `por_que_isto_nao_e_esticar_a_frase`, porque este mesmo registro já barrou duas
+leituras parecidas (*"gravar 3 mm como máximo INVERTERIA a frase"*, *"virar pode usar em peça de água seria
+ESTICAR a frase"*) e a diferença importa: ali o registro faria o fabricante dizer o que ele não disse; aqui se
+lê uma frase GERAL no caso particular que ela declaradamente cobre, e o número que sai é o **mais conservador
+dos três do recorte** — os irmãos liberam em 24 h e este em 96 h. Quem publicar a comparação cita a frase de
+cada um, nunca só o número: dois são "área molhada" do fabricante e o terceiro é "outros ambientes" lido como tal.
+
+**Resultado nos portões:** `ferramentas/filhas-do-guia.py` e `ferramentas/cruzamento-14-9.py` (autoteste 32 de
+32, `--conferir` aprovado) levam `rejunte/cimenticio` de `espera_dado` a **`pode_nascer`**, e `dados/cruzamento-14-9.md`
+foi regerado pelo portão.
+
+## O QUE A FAIXA DE JUNTA MUDOU NA FERRAMENTA QUE JÁ ESTÁ NO AR — 7 das 9 células da F2
+
+Esta é a metade que não estava prevista. O rejunte piscinas tinha a faixa de junta em `[null, null]` e por isso
+a **regra 1** o eliminava de **toda** a grade. Com `[2, 10]`, **sete das nove células** mudaram, e todas pela
+mesma causa:
+
+| célula | mudança |
+|---|---|
+| **3 mm × `contato_permanente_agua`** | o piscinas sobe ao **topo**, ao lado do epóxi |
+| **6 mm × `contato_permanente_agua`** | a célula **estava VAZIA** e passa a ter um recomendado |
+| 2 mm × `interno_seco` · 10 mm × `externo_abrigado` | entra como elegível abaixo do topo |
+| 4 e 5 mm × `interno_molhado` · 2 mm × `externo_exposto` | continua eliminado, mas **por ambiente**, não por junta — outra frase na tela |
+
+**A observação da célula de 3 mm tinha previsto este bloco, com todas as letras:** *"o único produto do banco
+cujo fabricante nomeia pastilha de VIDRO debaixo d'água, o rejunte piscinas, é justamente o que não pode ser
+recomendado, porque a faixa de junta dele não foi obtida. Ter o dado quase todo não é ter o dado."* As
+observações das 7 células foram reescritas à mão, uma a uma — a matriz é escrita à mão de propósito e seria
+mentira deixar o texto velho debaixo do número novo. **Nenhuma regra foi tocada: a matriz mudou porque o banco
+soube mais.**
+
+## O ACHADO QUE VALE MAIS QUE O BLOCO: O EGRESSO NUNCA BARROU PDF — ELE BARRA HOST
+
+Três blocos seguidos pararam escrevendo alguma forma de *"o egresso não abre PDF de fabricante"*, e o pedido de
+rede ao Raphael sempre foi *"liberem o domínio do fabricante"*. **Ninguém tinha medido um host de TERCEIRO.**
+
+| host | medido hoje |
+|---|---|
+| `telhanorte.vteximg.com.br` | **ABRE** — dois boletins Quartzolit baixados e lidos inteiros |
+| `cdn.obramax.com.br` | `EGRESS_BLOCKED` |
+| `bd-sp.canaldapeca.com.br` | `EGRESS_BLOCKED` |
+| `www.quartzolit.weber` | 403, como em 29/09 e 30/09 |
+
+Está no esquema, em `escada_de_fontes.canal_de_espelho`, **com o que ele não autoriza**: espelho **não vira
+nível 1** (do espelho sai o documento, não a garantia de que a revisão lida é a vigente — a de lá é de agosto de
+2017), e espelho **não batiza**. O pedido do curinga `*.quartzolit.weber` continua de pé e continua sendo o
+caminho do nível 1; ele só deixou de ser a única porta.
+
+**E o segundo boletim só foi aberto para medir o host.** `arquivos/1463217.pdf` é a argamassa colante *super
+formatos quartzolit* e **não entrou em banco nenhum** — um arquivo lido não prova um canal, dois no mesmo host
+provam que a porta é do host.
+
+## DOIS PORTÕES MORDERAM NO CAMINHO, E OS DOIS ESTAVAM CERTOS
+
+**1. A trava do batismo (26.2) reprovou `Rejunte Piscinas Quartzolit`** dizendo que o fabricante não escreve
+`Rejunte` nem `Piscinas` no batismo dele. **A trava estava certa e a premissa dela é que não vale aqui:** o
+esquema diz que *"o nome do arquivo de um boletim É o fabricante escrevendo o nome do produto"* — verdade no
+servidor do fabricante, falsa no espelho, onde o arquivo se chama `1200003.pdf`, código do varejista. O
+fabricante batiza **dentro** do documento, no título da página 1. Falso positivo da pior espécie: acusa o campo
+certo e manda a próxima execução estragar um batismo correto. Consertado declarando
+`tipo_de_origem: documento-pdf-do-fabricante-em-espelho-de-terceiro` na fonte, **fora** de `origens_que_batizam`,
+com o motivo escrito nos dois lugares. **E guardado por duas mutações novas** em `mutacoes-batismo.py`, uma por
+ponta — `m11` (o código deixa de ler o `tipo_de_origem` declarado) e `d05` (a origem de espelho entra na lista
+das que batizam). A bancada foi de 14 para **16, 16 reprovadas, nenhuma passou**. Sem elas a decisão de hoje
+não teria ninguém a medindo.
+
+**2. `medir-egresso.py` sondava a RAIZ do host, nunca a fonte citada** — e por isso ele dizia `telhanorte`
+**400** no exato host de onde esta execução baixou dois PDFs. A abertura do próprio arquivo gerado diz: *"a
+pergunta que este arquivo responde não é 'o domínio está liberado': é 'a fonte chega'"*. A sonda passou a ser a
+**URL que o banco cita**, com a raiz só para os hosts irmãos que nenhum banco cita. É a mesma lição que o
+arquivo já ensina um andar acima, um degrau mais fundo: **medir CONNECT não é medir entrega, e medir a RAIZ não
+é medir a FONTE.**
+
+**E o conserto da sonda produziu um defeito MEU, achado medindo o próprio conserto e corrigido antes do
+commit.** Com a sonda na raiz, um `403` ali ainda podia significar *"o host atende, o arquivo talvez venha"*,
+e `entrega()` chamava isso de `alcancavel`. Com a sonda na **fonte citada** isso deixou de valer: a primeira
+remedição publicou **`www.quartzolit.weber` como `alcancavel`** — 403 na própria URL de boletim que **19
+campos** deste banco citam. Seria escrever no arquivo o **oposto** do que ele existe para medir, e justamente a
+frase que quatro execuções pagaram caro para desfazer. A regra passou a olhar o código **quando a sonda é a
+fonte**: `>= 400` vira `liberado_mas_sem_entrega` ("o host atende e a fonte não chega"); irmão sondado na raiz
+continua medindo o domínio. **Sete casos fabricados novos** guardam exatamente essa fronteira (200, 301, 403,
+404, 500 na fonte; 400 e 403 na raiz), e o autoteste foi de **29 para 36**.
+
+**E a sonda certa achou uma fonte que a ilha dava por perdida:** `www.pastilhart.com.br` responde **200** na
+URL que o banco de pastilhas cita — ele estava na lista de pedidos ao Raphael, medido pela raiz, e **sai dela**.
+`pastilhart.com.br` era um dos dois domínios cuja ausência o bloco das pastilhas registrou.
+
+**E o pedido ao Raphael trocou de conteúdo, o que é a parte que vale.** Ele continua com 21 domínios, mas
+**duas linhas saíram e duas entraram**, e as que entraram são justamente as que a ilha mais pede:
+
+| | domínio | por quê |
+|---|---|---|
+| **saiu** | `vteximg.com.br` | `telhanorte.vteximg.com.br`, o host que o banco cita, **entrega** |
+| **saiu** | `pastilhart.com.br` | `www.pastilhart.com.br` responde **200** na URL citada |
+| **entrou** | `quartzolit.weber` | 403 **na URL de boletim que 19 campos citam** — nunca chegou, e a régua velha o chamava de alcançável |
+| **entrou** | `tekbond.com.br` | mesmo caso |
+
+**A régua antiga mantinha fora do pedido os dois domínios que seguram o nível 1 do banco inteiro**, porque um
+403 na raiz contava como "o host responde". O pedido que está com o Raphael desde 29/09 pedia o curinga por
+prosa; agora a lista **derivada** o pede também, e pelos dois lados do mesmo domínio.
+
+## PORTÕES DESTA PASSADA
+
+`validar-banco.py` **verde** (41 materiais, 9 células de rejunte, 7 batismos conferidos, zero AVISO) ·
+`mutacoes-batismo.py` **16 de 16** · `mutacoes-rejunte.py` **16 de 16** · `mutacoes-casamento.py` **5 de 5** ·
+`cruzamento-14-9.py --autoteste` **32 de 32** · `medir-egresso.py --autoteste` **36 de 36** (era 29) ·
+`conferir-no-ar.py` **APROVADO, 524 afirmações, 0 falha** — a ilha segue inteira no ar, e o único vermelho é o
+soft 404 na borda, que é do Raphael desde 29/09.
+
+## O PRÓXIMO PASSO, E ELE MUDOU DE NATUREZA
+
+A procura de **propriedade** acabou: `espera_dado` zerou no `rejunte`. O que segura a segunda categoria do Guia
+é a **16.5**, que cobra 3 filhas, e o `rejunte` tem **1**. `rejunte/acrilico` e `rejunte/epoxi` têm **1 item de
+banco cada** e precisam de **2 mais cada uma**, e depois a SERP de cada recorte. **É coleta de SKU**, igual à
+que a `acabamento` fez em 25/09 e 02/10 — não é mais procura de número.
+
+**A pista medida e não aberta:** o mesmo host de espelho serve **FISPQ** (`arquivos/101494.pdf`,
+`arquivos/90387.pdf`). A FISPQ do epóxi é nomeada em `regras_da_categoria_apoio` como a única coisa que segura o
+primeiro SKU de `apoio`, e a `base` para na mesma porta. Não foram abertas e não se sabe de que produto são.
+
 05/10/2026 10h18Z — A PORTA DE ENTRADA CAIU DE NOVO, E O BLOCO PROVOU ERRADA A FRASE QUE O MANDOU
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h18Z** e push da reserva aceito na primeira

@@ -18,7 +18,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 6,
-      "url_medida": "https://acrilex.com.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://acrilex.com.br/en/produto/gloss-acrilfix-varnish/",
       "veredito": "bloqueado"
     },
     "arauco.com.br": {
@@ -38,6 +39,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://arauco.com.br/",
       "veredito": "bloqueado"
     },
@@ -58,6 +60,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://berneck.com.br/",
       "veredito": "bloqueado"
     },
@@ -78,7 +81,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://blog.sagradafamilia.org/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://blog.sagradafamilia.org/en/trencadis-mosaic-hallmark-of-gaudi/",
       "veredito": "bloqueado"
     },
     "brasilit.com.br": {
@@ -98,6 +102,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://brasilit.com.br/",
       "veredito": "bloqueado"
     },
@@ -116,6 +121,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://camara.leg.br/",
       "veredito": "bloqueado"
     },
@@ -132,13 +138,14 @@
       "destino_do_salto": "https://www.cascola.com.br/",
       "dominio_registravel": "cascola.com.br",
       "host_do_destino": "www.cascola.com.br",
-      "motivo": "o CONNECT passa e o servidor responde 301, mas ele redireciona para `www.cascola.com.br`, que o egresso recusa — nada chega",
+      "motivo": "responde 301 e redireciona para `www.cascola.com.br`, que tambem e alcancavel",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://cascola.com.br/",
-      "veredito": "liberado_mas_sem_entrega"
+      "veredito": "alcancavel"
     },
     "cf.shopee.com.br": {
-      "bytes": 42,
+      "bytes": 277608,
       "citado_pelo_banco": true,
       "citado_por": [
         "materiais-acabamento.json",
@@ -155,13 +162,14 @@
       "destino_do_salto": "",
       "dominio_registravel": "shopee.com.br",
       "host_do_destino": null,
-      "motivo": "responde 200 com 42 bytes",
-      "n_urls": 14,
-      "url_medida": "https://cf.shopee.com.br/",
+      "motivo": "responde 200 com 277608 bytes",
+      "n_urls": 17,
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://cf.shopee.com.br/file/br-11134201-820lc-mqyin6qmk7b9c7",
       "veredito": "alcancavel"
     },
     "clubedomosaico.com.br": {
-      "bytes": 93181,
+      "bytes": 112283,
       "citado_pelo_banco": true,
       "citado_por": [
         "esquema-banco.json (campo `dominios_em_000`)",
@@ -176,10 +184,30 @@
       "destino_do_salto": "",
       "dominio_registravel": "clubedomosaico.com.br",
       "host_do_destino": null,
-      "motivo": "responde 200 com 93181 bytes",
+      "motivo": "responde 200 com 112283 bytes",
       "n_urls": 27,
-      "url_medida": "https://clubedomosaico.com.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://clubedomosaico.com.br/loja/bandeja-em-madeira/",
       "veredito": "alcancavel"
+    },
+    "coral.com.br": {
+      "bytes": 0,
+      "citado_pelo_banco": false,
+      "citado_por": [],
+      "codigos": [
+        0,
+        0,
+        0
+      ],
+      "connect": "recusado",
+      "destino_do_salto": "",
+      "dominio_registravel": "coral.com.br",
+      "host_do_destino": null,
+      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
+      "url_medida": "https://coral.com.br/",
+      "veredito": "bloqueado"
     },
     "cortag.com": {
       "bytes": 0,
@@ -198,7 +226,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 3,
-      "url_medida": "https://cortag.com/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://cortag.com/pt-br/produto/torques-azulejista-corte-curvo/",
       "veredito": "bloqueado"
     },
     "cultura.gob.es": {
@@ -216,6 +245,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://cultura.gob.es/",
       "veredito": "bloqueado"
     },
@@ -236,6 +266,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://dexco.com.br/",
       "veredito": "bloqueado"
     },
@@ -256,6 +287,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://duratex.com.br/",
       "veredito": "bloqueado"
     },
@@ -276,7 +308,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://en.wikipedia.org/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://en.wikipedia.org/wiki/Maison_Picassiette",
       "veredito": "bloqueado"
     },
     "eternit.com.br": {
@@ -296,6 +329,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://eternit.com.br/",
       "veredito": "bloqueado"
     },
@@ -314,6 +348,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://faecpr.edu.br/",
       "veredito": "bloqueado"
     },
@@ -334,7 +369,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://fasbam.edu.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://fasbam.edu.br/2019/10/09/a-beleza-de-tirar-o-folego-dos-mosaicos-bizantinos/",
       "veredito": "bloqueado"
     },
     "glassmosaic.com.br": {
@@ -354,7 +390,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 12,
-      "url_medida": "https://glassmosaic.com.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k117/",
       "veredito": "bloqueado"
     },
     "guararapes.com.br": {
@@ -374,6 +411,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://guararapes.com.br/",
       "veredito": "bloqueado"
     },
@@ -392,6 +430,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://henkel-adhesives.com/",
       "veredito": "bloqueado"
     },
@@ -410,6 +449,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://henkel.com.br/",
       "veredito": "bloqueado"
     },
@@ -430,6 +470,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://isoeste.com.br/",
       "veredito": "bloqueado"
     },
@@ -450,6 +491,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://leroymerlin.com.br/",
       "veredito": "bloqueado"
     },
@@ -471,8 +513,30 @@
       "host_do_destino": "next.henkel-adhesives.com",
       "motivo": "o CONNECT passa e o servidor responde 301, mas ele redireciona para `next.henkel-adhesives.com`, que o egresso recusa — nada chega",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://loctite.com.br/",
       "veredito": "liberado_mas_sem_entrega"
+    },
+    "loja.suvinil.com.br": {
+      "bytes": 0,
+      "citado_pelo_banco": true,
+      "citado_por": [
+        "materiais-acabamento.json"
+      ],
+      "codigos": [
+        0,
+        0,
+        0
+      ],
+      "connect": "recusado",
+      "destino_do_salto": "",
+      "dominio_registravel": "suvinil.com.br",
+      "host_do_destino": null,
+      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "n_urls": 1,
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://loja.suvinil.com.br/produto/suvinil-seladora-para-madeira",
+      "veredito": "bloqueado"
     },
     "meli.la": {
       "bytes": 0,
@@ -492,7 +556,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 4,
-      "url_medida": "https://meli.la/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://meli.la/13fPigD",
       "veredito": "bloqueado"
     },
     "mercadolivre.com.br": {
@@ -510,6 +575,7 @@
       "host_do_destino": null,
       "motivo": "responde 403 com 2585 bytes",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://mercadolivre.com.br/",
       "veredito": "alcancavel"
     },
@@ -531,6 +597,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://next.henkel-adhesives.com/",
       "veredito": "bloqueado"
     },
@@ -549,6 +616,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://pastilhart.com.br/",
       "veredito": "bloqueado"
     },
@@ -569,7 +637,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://pt.wikipedia.org/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://pt.wikipedia.org/wiki/Mosaicos_bizantinos",
       "veredito": "bloqueado"
     },
     "quartzolit.weber": {
@@ -585,10 +654,11 @@
       "destino_do_salto": "https://www.quartzolit.weber/",
       "dominio_registravel": "quartzolit.weber",
       "host_do_destino": "www.quartzolit.weber",
-      "motivo": "o CONNECT passa e o servidor responde 301, mas ele redireciona para `www.quartzolit.weber`, que o egresso recusa — nada chega",
+      "motivo": "responde 301 e redireciona para `www.quartzolit.weber`, que tambem e alcancavel",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://quartzolit.weber/",
-      "veredito": "liberado_mas_sem_entrega"
+      "veredito": "alcancavel"
     },
     "run.unl.pt": {
       "bytes": 0,
@@ -607,11 +677,12 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://run.unl.pt/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://run.unl.pt/bitstream/10362/187739/1/Santos_2025.pdf",
       "veredito": "bloqueado"
     },
     "s.shopee.com.br": {
-      "bytes": 63,
+      "bytes": 303,
       "citado_pelo_banco": true,
       "citado_por": [
         "materiais-acabamento.json",
@@ -621,18 +692,19 @@
         "materiais-rejuntes.json"
       ],
       "codigos": [
-        307,
-        307,
-        307
+        301,
+        301,
+        301
       ],
       "connect": "estabelecido",
-      "destino_do_salto": "https://shope.ee/error_page",
+      "destino_do_salto": "https://shopee.com.br/search?keyword=rejunte+epoxi+quartzolit&mmp_pid=an_18378401253&uls_trackid=56q6rmoc01k8&utm_campaign=id_3vwj6jRjXo9&utm_content=clubedomosaico-F2---&utm_medium=affiliates&utm_source=an_18378401253&utm_term=fnm2weyfak3a",
       "dominio_registravel": "shopee.com.br",
-      "host_do_destino": "shope.ee",
-      "motivo": "o CONNECT passa e o servidor responde 307, mas ele redireciona para `shope.ee`, que o egresso recusa — nada chega",
-      "n_urls": 55,
-      "url_medida": "https://s.shopee.com.br/",
-      "veredito": "liberado_mas_sem_entrega"
+      "host_do_destino": "shopee.com.br",
+      "motivo": "responde 301 e redireciona para `shopee.com.br`, que tambem e alcancavel",
+      "n_urls": 61,
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://s.shopee.com.br/113CBxT3P2",
+      "veredito": "alcancavel"
     },
     "sagradafamilia.org": {
       "bytes": 0,
@@ -649,6 +721,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://sagradafamilia.org/",
       "veredito": "bloqueado"
     },
@@ -669,11 +742,12 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://sarasa.com.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://sarasa.com.br/article.php?recid=50",
       "veredito": "bloqueado"
     },
     "shopee.com.br": {
-      "bytes": 198160,
+      "bytes": 198615,
       "citado_pelo_banco": true,
       "citado_por": [
         "materiais-acabamento.json",
@@ -691,9 +765,10 @@
       "destino_do_salto": "",
       "dominio_registravel": "shopee.com.br",
       "host_do_destino": null,
-      "motivo": "responde 200 com 198160 bytes",
-      "n_urls": 48,
-      "url_medida": "https://shopee.com.br/",
+      "motivo": "responde 200 com 198615 bytes",
+      "n_urls": 54,
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://shopee.com.br/Rejunte-Cer%C3%A2micas-1kg-Cores-QUARTZOLIT-i.413687078.14557694103",
       "veredito": "alcancavel"
     },
     "spacesarchives.org": {
@@ -713,7 +788,27 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://spacesarchives.org/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://spacesarchives.org/explore/search-the-online-collection/la-maison-de-picassiette/",
+      "veredito": "bloqueado"
+    },
+    "suvinil.com.br": {
+      "bytes": 0,
+      "citado_pelo_banco": false,
+      "citado_por": [],
+      "codigos": [
+        0,
+        0,
+        0
+      ],
+      "connect": "recusado",
+      "destino_do_salto": "",
+      "dominio_registravel": "suvinil.com.br",
+      "host_do_destino": null,
+      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
+      "url_medida": "https://suvinil.com.br/",
       "veredito": "bloqueado"
     },
     "tekbond.com.br": {
@@ -729,10 +824,32 @@
       "destino_do_salto": "https://www.tekbond.com.br/",
       "dominio_registravel": "tekbond.com.br",
       "host_do_destino": "www.tekbond.com.br",
-      "motivo": "o CONNECT passa e o servidor responde 301, mas ele redireciona para `www.tekbond.com.br`, que o egresso recusa — nada chega",
+      "motivo": "responde 301 e redireciona para `www.tekbond.com.br`, que tambem e alcancavel",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://tekbond.com.br/",
-      "veredito": "liberado_mas_sem_entrega"
+      "veredito": "alcancavel"
+    },
+    "telhanorte.vteximg.com.br": {
+      "bytes": 860391,
+      "citado_pelo_banco": true,
+      "citado_por": [
+        "materiais-rejuntes.json"
+      ],
+      "codigos": [
+        200,
+        200,
+        200
+      ],
+      "connect": "estabelecido",
+      "destino_do_salto": "",
+      "dominio_registravel": "vteximg.com.br",
+      "host_do_destino": null,
+      "motivo": "responde 200 com 860391 bytes",
+      "n_urls": 1,
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://telhanorte.vteximg.com.br/arquivos/1200003.pdf",
+      "veredito": "alcancavel"
     },
     "termotecnica.ind.br": {
       "bytes": 0,
@@ -751,6 +868,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://termotecnica.ind.br/",
       "veredito": "bloqueado"
     },
@@ -769,6 +887,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://unl.pt/",
       "veredito": "bloqueado"
     },
@@ -787,7 +906,27 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://vonder.com.br/",
+      "veredito": "bloqueado"
+    },
+    "vteximg.com.br": {
+      "bytes": 0,
+      "citado_pelo_banco": false,
+      "citado_por": [],
+      "codigos": [
+        0,
+        0,
+        0
+      ],
+      "connect": "recusado",
+      "destino_do_salto": "",
+      "dominio_registravel": "vteximg.com.br",
+      "host_do_destino": null,
+      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
+      "url_medida": "https://vteximg.com.br/",
       "veredito": "bloqueado"
     },
     "wikipedia.org": {
@@ -805,6 +944,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://wikipedia.org/",
       "veredito": "bloqueado"
     },
@@ -823,6 +963,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.acrilex.com.br/",
       "veredito": "bloqueado"
     },
@@ -841,6 +982,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.arauco.com.br/",
       "veredito": "bloqueado"
     },
@@ -859,6 +1001,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.berneck.com.br/",
       "veredito": "bloqueado"
     },
@@ -877,6 +1020,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.brasilit.com.br/",
       "veredito": "bloqueado"
     },
@@ -895,32 +1039,34 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.camara.leg.br/",
       "veredito": "bloqueado"
     },
     "www.cascola.com.br": {
-      "bytes": 0,
+      "bytes": 238588,
       "citado_pelo_banco": true,
       "citado_por": [
         "constantes.json",
         "materiais-colas.json"
       ],
       "codigos": [
-        0,
-        0,
-        0
+        200,
+        200,
+        200
       ],
-      "connect": "recusado",
+      "connect": "estabelecido",
       "destino_do_salto": "",
       "dominio_registravel": "cascola.com.br",
       "host_do_destino": null,
-      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "motivo": "responde 200 com 238588 bytes",
       "n_urls": 2,
-      "url_medida": "https://www.cascola.com.br/",
-      "veredito": "bloqueado"
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-adesivo-de-montagem---pl500-interior/SAP_0201C8I05EAB.html",
+      "veredito": "alcancavel"
     },
     "www.clubedomosaico.com.br": {
-      "bytes": 93181,
+      "bytes": 93264,
       "citado_pelo_banco": false,
       "citado_por": [],
       "codigos": [
@@ -932,10 +1078,32 @@
       "destino_do_salto": "",
       "dominio_registravel": "clubedomosaico.com.br",
       "host_do_destino": null,
-      "motivo": "responde 200 com 93181 bytes",
+      "motivo": "responde 200 com 93264 bytes",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.clubedomosaico.com.br/",
       "veredito": "alcancavel"
+    },
+    "www.coral.com.br": {
+      "bytes": 0,
+      "citado_pelo_banco": true,
+      "citado_por": [
+        "materiais-acabamento.json"
+      ],
+      "codigos": [
+        0,
+        0,
+        0
+      ],
+      "connect": "recusado",
+      "destino_do_salto": "",
+      "dominio_registravel": "coral.com.br",
+      "host_do_destino": null,
+      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "n_urls": 3,
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.coral.com.br/pt/produtos/protecao-sol-chuva-resina-impermeabilizante",
+      "veredito": "bloqueado"
     },
     "www.cortag.com": {
       "bytes": 0,
@@ -952,6 +1120,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.cortag.com/",
       "veredito": "bloqueado"
     },
@@ -972,7 +1141,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://www.cultura.gob.es/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.cultura.gob.es/mnceramica/exposiciones/historico/2020/gaudi-trencadis.html",
       "veredito": "bloqueado"
     },
     "www.dexco.com.br": {
@@ -990,6 +1160,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.dexco.com.br/",
       "veredito": "bloqueado"
     },
@@ -1008,6 +1179,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.duratex.com.br/",
       "veredito": "bloqueado"
     },
@@ -1026,6 +1198,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.eternit.com.br/",
       "veredito": "bloqueado"
     },
@@ -1046,7 +1219,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://www.faecpr.edu.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.faecpr.edu.br/site/documentos/assentamento_de_ceramica/assentamento_de_azulejos_e_mosaicos.pdf",
       "veredito": "bloqueado"
     },
     "www.fasbam.edu.br": {
@@ -1064,6 +1238,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.fasbam.edu.br/",
       "veredito": "bloqueado"
     },
@@ -1082,6 +1257,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.glassmosaic.com.br/",
       "veredito": "bloqueado"
     },
@@ -1100,6 +1276,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.guararapes.com.br/",
       "veredito": "bloqueado"
     },
@@ -1118,6 +1295,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.henkel-adhesives.com/",
       "veredito": "bloqueado"
     },
@@ -1139,7 +1317,8 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://www.henkel.com.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.henkel.com.br/imprensa-midia/press-releases-e-kits/2018-09-11-familia-loctite-durepoxi-possibilita-diferentes-reparos-e-aplicacoes-875598",
       "veredito": "bloqueado"
     },
     "www.isoeste.com.br": {
@@ -1157,6 +1336,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.isoeste.com.br/",
       "veredito": "bloqueado"
     },
@@ -1175,26 +1355,28 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.leroymerlin.com.br/",
       "veredito": "bloqueado"
     },
     "www.loctite.com.br": {
-      "bytes": 0,
+      "bytes": 292,
       "citado_pelo_banco": false,
       "citado_por": [],
       "codigos": [
-        0,
-        0,
-        0
+        301,
+        301,
+        301
       ],
-      "connect": "recusado",
-      "destino_do_salto": "",
+      "connect": "estabelecido",
+      "destino_do_salto": "https://next.henkel-adhesives.com/br/pt.html",
       "dominio_registravel": "loctite.com.br",
-      "host_do_destino": null,
-      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "host_do_destino": "next.henkel-adhesives.com",
+      "motivo": "o CONNECT passa e o servidor responde 301, mas ele redireciona para `next.henkel-adhesives.com`, que o egresso recusa — nada chega",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.loctite.com.br/",
-      "veredito": "bloqueado"
+      "veredito": "liberado_mas_sem_entrega"
     },
     "www.meli.la": {
       "bytes": 0,
@@ -1211,6 +1393,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.meli.la/",
       "veredito": "bloqueado"
     },
@@ -1230,33 +1413,35 @@
       "destino_do_salto": "",
       "dominio_registravel": "mercadolivre.com.br",
       "host_do_destino": null,
-      "motivo": "responde 403 com 2585 bytes",
+      "motivo": "o CONNECT passa e o servidor responde **403** na propria URL que o banco cita — o host atende e a fonte nao chega",
       "n_urls": 4,
-      "url_medida": "https://www.mercadolivre.com.br/",
-      "veredito": "alcancavel"
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.mercadolivre.com.br/argamassa-externa-quartzolit-ac-ii-saco-20kg-cinza-weber/p/MLB27315078",
+      "veredito": "liberado_mas_sem_entrega"
     },
     "www.pastilhart.com.br": {
-      "bytes": 0,
+      "bytes": 100659,
       "citado_pelo_banco": true,
       "citado_por": [
         "materiais-pastilhas.json"
       ],
       "codigos": [
-        0,
-        0,
-        0
+        200,
+        200,
+        200
       ],
-      "connect": "recusado",
+      "connect": "estabelecido",
       "destino_do_salto": "",
       "dominio_registravel": "pastilhart.com.br",
       "host_do_destino": null,
-      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "motivo": "responde 200 com 100659 bytes",
       "n_urls": 2,
-      "url_medida": "https://www.pastilhart.com.br/",
-      "veredito": "bloqueado"
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.pastilhart.com.br/pagina/sobre-nos.html",
+      "veredito": "alcancavel"
     },
     "www.quartzolit.weber": {
-      "bytes": 0,
+      "bytes": 133442,
       "citado_pelo_banco": true,
       "citado_por": [
         "constantes.json",
@@ -1265,18 +1450,19 @@
         "materiais-rejuntes.json"
       ],
       "codigos": [
-        0,
-        0,
-        0
+        403,
+        403,
+        403
       ],
-      "connect": "recusado",
+      "connect": "estabelecido",
       "destino_do_salto": "",
       "dominio_registravel": "quartzolit.weber",
       "host_do_destino": null,
-      "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
+      "motivo": "o CONNECT passa e o servidor responde **403** na propria URL que o banco cita — o host atende e a fonte nao chega",
       "n_urls": 19,
-      "url_medida": "https://www.quartzolit.weber/",
-      "veredito": "bloqueado"
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.quartzolit.weber/ajuda-e-dicas-para-construir/tudo-sobre-os-tipos-de-rejuntes-e-suas-funcoes/dicas-importantes-sobre-rejuntes",
+      "veredito": "liberado_mas_sem_entrega"
     },
     "www.sagradafamilia.org": {
       "bytes": 0,
@@ -1293,6 +1479,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.sagradafamilia.org/",
       "veredito": "bloqueado"
     },
@@ -1311,6 +1498,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.sarasa.com.br/",
       "veredito": "bloqueado"
     },
@@ -1329,6 +1517,7 @@
       "host_do_destino": "shopee.com.br",
       "motivo": "responde 302 e redireciona para `shopee.com.br`, que tambem e alcancavel",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.shopee.com.br/",
       "veredito": "alcancavel"
     },
@@ -1347,16 +1536,14 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.spacesarchives.org/",
       "veredito": "bloqueado"
     },
-    "www.tekbond.com.br": {
+    "www.suvinil.com.br": {
       "bytes": 0,
-      "citado_pelo_banco": true,
-      "citado_por": [
-        "constantes.json",
-        "materiais-colas.json"
-      ],
+      "citado_pelo_banco": false,
+      "citado_por": [],
       "codigos": [
         0,
         0,
@@ -1364,12 +1551,35 @@
       ],
       "connect": "recusado",
       "destino_do_salto": "",
-      "dominio_registravel": "tekbond.com.br",
+      "dominio_registravel": "suvinil.com.br",
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
-      "n_urls": 5,
-      "url_medida": "https://www.tekbond.com.br/",
+      "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
+      "url_medida": "https://www.suvinil.com.br/",
       "veredito": "bloqueado"
+    },
+    "www.tekbond.com.br": {
+      "bytes": 133172,
+      "citado_pelo_banco": true,
+      "citado_por": [
+        "constantes.json",
+        "materiais-colas.json"
+      ],
+      "codigos": [
+        403,
+        403,
+        403
+      ],
+      "connect": "estabelecido",
+      "destino_do_salto": "",
+      "dominio_registravel": "tekbond.com.br",
+      "host_do_destino": null,
+      "motivo": "o CONNECT passa e o servidor responde **403** na propria URL que o banco cita — o host atende e a fonte nao chega",
+      "n_urls": 5,
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico",
+      "veredito": "liberado_mas_sem_entrega"
     },
     "www.termotecnica.ind.br": {
       "bytes": 0,
@@ -1386,6 +1596,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.termotecnica.ind.br/",
       "veredito": "bloqueado"
     },
@@ -1404,6 +1615,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.unl.pt/",
       "veredito": "bloqueado"
     },
@@ -1424,8 +1636,28 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 3,
-      "url_medida": "https://www.vonder.com.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www.vonder.com.br/produto/cortador_de_cermicas_e_azulejos_manual_51_cm_vdec_51_vonder/6403",
       "veredito": "bloqueado"
+    },
+    "www.vteximg.com.br": {
+      "bytes": 1771,
+      "citado_pelo_banco": false,
+      "citado_por": [],
+      "codigos": [
+        400,
+        400,
+        400
+      ],
+      "connect": "estabelecido",
+      "destino_do_salto": "",
+      "dominio_registravel": "vteximg.com.br",
+      "host_do_destino": null,
+      "motivo": "responde 400 com 1771 bytes",
+      "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
+      "url_medida": "https://www.vteximg.com.br/",
+      "veredito": "alcancavel"
     },
     "www.wikipedia.org": {
       "bytes": 0,
@@ -1442,6 +1674,7 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 0,
+      "sonda": "raiz do host (nenhum banco o cita)",
       "url_medida": "https://www.wikipedia.org/",
       "veredito": "bloqueado"
     },
@@ -1462,11 +1695,12 @@
       "host_do_destino": null,
       "motivo": "o CONNECT e recusado nas 3 passadas (politica de egresso)",
       "n_urls": 1,
-      "url_medida": "https://www2.camara.leg.br/",
+      "sonda": "fonte citada pelo banco",
+      "url_medida": "https://www2.camara.leg.br/a-camara/visiteacamara/cultura-na-camara/exposicoes-2014/ate-2012/exposicoes-artisticas/dialogo-entre-tesselas-grupo-ciranda-do-mosaico",
       "veredito": "bloqueado"
     }
   },
-  "medido_em": "2026-09-30 10:36Z",
+  "medido_em": "2026-10-05 13:40Z",
   "o_que_pedir": [
     "acrilex.com.br",
     "*.acrilex.com.br",
@@ -1476,8 +1710,8 @@
     "*.berneck.com.br",
     "brasilit.com.br",
     "*.brasilit.com.br",
-    "cascola.com.br",
-    "*.cascola.com.br",
+    "coral.com.br",
+    "*.coral.com.br",
     "cortag.com",
     "*.cortag.com",
     "dexco.com.br",
@@ -1500,16 +1734,16 @@
     "*.leroymerlin.com.br",
     "loctite.com.br",
     "*.loctite.com.br",
-    "pastilhart.com.br",
-    "*.pastilhart.com.br",
-    "quartzolit.weber",
-    "*.quartzolit.weber",
-    "tekbond.com.br",
-    "*.tekbond.com.br",
+    "suvinil.com.br",
+    "*.suvinil.com.br",
     "termotecnica.ind.br",
     "*.termotecnica.ind.br",
     "vonder.com.br",
-    "*.vonder.com.br"
+    "*.vonder.com.br",
+    "quartzolit.weber",
+    "*.quartzolit.weber",
+    "tekbond.com.br",
+    "*.tekbond.com.br"
   ],
   "passadas": 3,
   "por_que_se_pede": {
@@ -1525,9 +1759,8 @@
     "brasilit.com.br": [
       "esquema-banco.json (campo `dominios_em_000`)"
     ],
-    "cascola.com.br": [
-      "constantes.json",
-      "materiais-colas.json"
+    "coral.com.br": [
+      "materiais-acabamento.json"
     ],
     "cortag.com": [
       "materiais-alicates.json"
@@ -1565,14 +1798,14 @@
       "fontes-pedidas.json (campo `dominio`)",
       "fontes-pedidas.json (exigido em prosa)"
     ],
-    "pastilhart.com.br": [
-      "materiais-pastilhas.json"
-    ],
     "quartzolit.weber": [
       "constantes.json",
       "materiais-acabamento.json",
       "materiais-colas.json",
       "materiais-rejuntes.json"
+    ],
+    "suvinil.com.br": [
+      "materiais-acabamento.json"
     ],
     "tekbond.com.br": [
       "constantes.json",

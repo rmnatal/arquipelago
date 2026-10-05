@@ -728,6 +728,56 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > proíbe. **O que a destrava é medir a SERP de `alicate`** — busca, não coleta —, e com ela a segunda
    > categoria do Guia sai com a mesma leva de quatro. O mesmo vale para `pastilha` e `rejunte`.
    >
+   > **MEDIDO EM 05/10/2026 ÀS 13h2xZ — O NÚMERO QUE FALTAVA FOI ENCONTRADO, E `rejunte/cimenticio`
+   > PASSOU OS DOIS PORTÕES. O QUE SEGURA A SEGUNDA CATEGORIA DO GUIA AGORA SÃO AS OUTRAS DUAS FILHAS.**
+   >
+   > A frase de três horas antes dizia que a filha estava **a um número** — `liberacao_area_molhada_h` nos
+   > 3 itens do recorte. Era exatamente isso, e o número estava num lugar que esta ilha dava por fechado há
+   > três blocos: **dentro do boletim técnico do fabricante, em PDF.**
+   >
+   > | recorte | antes | agora |
+   > |---|---|---|
+   > | `rejunte/cimenticio` | `espera_dado` | **`pode_nascer`** — os dois portões abriram |
+   > | `rejunte` (mãe) | `pode_nascer` | `pode_nascer`, inalterada |
+   > | `rejunte/acrilico` | `sem_nenhum_dos_dois` | igual: **2 itens de banco** e SERP nunca olhada |
+   > | `rejunte/epoxi` | `sem_nenhum_dos_dois` | igual: **2 itens de banco** e SERP nunca olhada |
+   >
+   > **O QUE ISTO DEIXA PARA A PRÓXIMA EXECUÇÃO, e agora são DUAS coisas, não uma.** A 16.5 cobra **3
+   > filhas** na categoria e o `rejunte` tem **1**. Para a segunda categoria do Guia nascer faltam
+   > `rejunte/acrilico` e `rejunte/epoxi`, e as duas pedem a MESMA coisa: **2 itens de banco cada uma**, e
+   > depois a SERP de cada recorte. Não é mais procura de número — é coleta de SKU, que é o que a
+   > `acabamento` fez em 25/09 e em 02/10. **Não repita a procura de propriedade: ela acabou.**
+   >
+   > **E O ACHADO QUE VALE MAIS QUE O BLOCO, porque ele não é sobre rejunte: O EGRESSO NUNCA BARROU PDF.
+   > ELE BARRA HOST.** Três blocos seguidos (`base` em 28/09, `apoio` em 28/09, a escada inteira desde
+   > 10/09) pararam escrevendo alguma forma de *"o egresso não abre PDF de fabricante"*, e o pedido de rede
+   > ao Raphael sempre foi escrito como *"liberem o domínio do fabricante"*. **Ninguém tinha medido um host
+   > de TERCEIRO.** Medido hoje:
+   >
+   > | host | o que ele faz |
+   > |---|---|
+   > | `telhanorte.vteximg.com.br` | **ABRE.** Dois boletins Quartzolit baixados e lidos inteiros |
+   > | `cdn.obramax.com.br` | `EGRESS_BLOCKED` |
+   > | `bd-sp.canaldapeca.com.br` | `EGRESS_BLOCKED` |
+   > | `www.quartzolit.weber` | 403, como em 29/09 e 30/09 |
+   >
+   > O CDN da Telha Norte — varejista do próprio grupo Saint-Gobain — serve o boletim técnico do fabricante
+   > com cabeçalho, rodapé e data de revisão dele. Está escrito no esquema, em
+   > `escada_de_fontes.canal_de_espelho`, com o que ele **não** autoriza: espelho **não** vira nível 1 (do
+   > espelho sai o documento, não a garantia de que a revisão é a vigente) e espelho **não batiza** (o nome
+   > do arquivo lá é `1200003.pdf`, código do varejista — a trava da 26.2 reprovava `Rejunte Piscinas
+   > Quartzolit` dizendo que o fabricante não escreve esse nome, e o fabricante escreve, no título da
+   > página 1). **O pedido do curinga `*.quartzolit.weber` continua de pé e continua sendo o caminho do
+   > nível 1 — ele só deixou de ser a única porta.**
+   >
+   > **A PISTA QUE FICA, medida e não aberta:** o mesmo host serve **FISPQ** (`arquivos/101494.pdf`,
+   > `arquivos/90387.pdf`). A FISPQ do epóxi é nomeada em `regras_da_categoria_apoio` como a **única** coisa
+   > que segura o primeiro SKU de `apoio`, e a `base` para na mesma porta. **Não foram abertas e não se sabe
+   > de que produto são** — é pista, não resultado.
+   >
+   > *(O texto abaixo é de três horas antes e fica sem uma palavra alterada: foi ele que nomeou a
+   > propriedade que faltava, e acertou.)*
+   >
    > **MEDIDO EM 05/10/2026 ÀS 10h3xZ — A SERP DAS TRÊS MÃES FOI OLHADA, E A FRASE ACIMA ESTAVA ERRADA NA
    > SEGUNDA METADE.** Medir a SERP de `alicate` **não** fez a segunda categoria do Guia sair, e o motivo é
    > que a frase acima confundiu dois portões: a mãe estava em `espera_serp`, mas o que a **16.5** cobra são

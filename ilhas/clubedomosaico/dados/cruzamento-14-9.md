@@ -11,11 +11,10 @@ cruzava: uma metade era numero e a outra era prosa.
 | veredito | recortes |
 |---|---|
 | `sem_nenhum_dos_dois` | 32 |
-| `pode_nascer` | 7 |
+| `pode_nascer` | 8 |
 | `espera_autoridade` | 2 |
-| `espera_dado` | 1 |
 
-**Podem nascer hoje, pelos DOIS portoes:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `rejunte`
+**Podem nascer hoje, pelos DOIS portoes:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `rejunte`, `rejunte/cimenticio`
 
 **Podem nascer, mas sem demanda medida:** nenhum
 
@@ -34,7 +33,7 @@ passe livre: nenhum
 | `base` | 0 | 0 | `sem_nenhum_dos_dois` | nao |
 | `cola` | 0 | 0 | `sem_nenhum_dos_dois` | nao |
 | `pastilha` | 1 | 0 | `espera_autoridade` | nao |
-| `rejunte` | 0 | 0 | `pode_nascer` | nao |
+| `rejunte` | 1 | 1 | `pode_nascer` | nao |
 
 ## Recorte por recorte
 
@@ -79,7 +78,7 @@ passe livre: nenhum
 | `pastilha/vidro` | `passa` | 13 | `TOMADA` | 2 | **`espera_autoridade`** | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
 | `rejunte` | `passa` | 5 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `rejunte/acrilico` | `nao_passa` | 1 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 2 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
-| `rejunte/cimenticio` | `passa_na_contagem_sem_lastro` | 3 | `ABERTA` | 1 | **`espera_dado`** | um numero que a pagina calcule sobre 3 itens do mesmo recorte (a propriedade mais perto e `liberacao_area_molhada_h`) |
+| `rejunte/cimenticio` | `passa` | 3 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `rejunte/epoxi` | `nao_passa` | 1 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 2 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `rejunte/flexivel` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 
@@ -98,7 +97,7 @@ consulta ABERTA entra** — faixa de consulta que nao vai nascer e numero que ni
 | `selar vaso de ceramica antes de fazer mosaico artesanato precisa selador` | `acabamento/selador` | `pode_nascer` |
 | `verniz para peca de mosaico artesanal qual usar` | `acabamento/verniz` | `pode_nascer` |
 | `como cortar pastilha de vidro para mosaico qual ferramenta` | `alicate/cortador_de_azulejo` | `pode_nascer` |
-| `quanto tempo esperar para molhar peca de mosaico depois do rejunte cimenticio` | `rejunte/cimenticio` | `espera_dado` |
+| `quanto tempo esperar para molhar peca de mosaico depois do rejunte cimenticio` | `rejunte/cimenticio` | `pode_nascer` |
 
 ## Os numeros que a SERP nao publica e o banco desta ilha publica
 

@@ -46,14 +46,14 @@
         "origem": "ficha-tecnica-fabricante-lida",
         "o_que_pode_sustentar": "qualquer campo tecnico, inclusive restricao e tempo de cura, com o numero do documento e a revisao citados.",
         "existe_hoje": false,
-        "observacao": "Bloqueado hoje: o egresso da nuvem das rotinas barra quartzolit.weber, tekbond.com.br, cascola.com.br e henkel.com.br (medido em 10/09/2026, EGRESS_BLOCKED / connect_rejected). E coleta em aberto, nao dependencia humana — se o Raphael acrescentar esses dominios a rede Personalizada do ambiente, sobe todo o banco de nivel 2 para nivel 1.  || REMEDIDO EM 30/09/2026 as 10h22Z e a frase acima ficou PELA METADE VERDADEIRA: os apex quartzolit.weber, tekbond.com.br, cascola.com.br e loctite.com.br ESTABELECEM o CONNECT (HTTP/1.1 200 Connection Established, servidor de verdade em 301, Apache e CloudFront) — entraram na lista de rede. O que continua recusado e o host `www.`, para onde os quatro redirecionam tudo, e e nele que estao TODAS as URLs de boletim tecnico que este banco cita. Falta o CURINGA, nao o dominio: a 20.1 manda `<dominio>` E `*.<dominio>`, e o pedido de 29/09 foi atendido so na primeira metade. Medicao inteira, derivada e com autoteste em dados/egresso-de-fontes.md e ferramentas/medir-egresso.py. E a licao: medir CONNECT nao e medir entrega, e as quatro execucoes que escreveram '403 ao CONNECT' entre 26/09 e 29/09 nao tinham o veredito `liberado_mas_sem_entrega` para escrever."
+        "observacao": "Bloqueado hoje: o egresso da nuvem das rotinas barra quartzolit.weber, tekbond.com.br, cascola.com.br e henkel.com.br (medido em 10/09/2026, EGRESS_BLOCKED / connect_rejected). E coleta em aberto, nao dependencia humana — se o Raphael acrescentar esses dominios a rede Personalizada do ambiente, sobe todo o banco de nivel 2 para nivel 1.  || REMEDIDO EM 30/09/2026 as 10h22Z e a frase acima ficou PELA METADE VERDADEIRA: os apex quartzolit.weber, tekbond.com.br, cascola.com.br e loctite.com.br ESTABELECEM o CONNECT (HTTP/1.1 200 Connection Established, servidor de verdade em 301, Apache e CloudFront) — entraram na lista de rede. O que continua recusado e o host `www.`, para onde os quatro redirecionam tudo, e e nele que estao TODAS as URLs de boletim tecnico que este banco cita. Falta o CURINGA, nao o dominio: a 20.1 manda `<dominio>` E `*.<dominio>`, e o pedido de 29/09 foi atendido so na primeira metade. Medicao inteira, derivada e com autoteste em dados/egresso-de-fontes.md e ferramentas/medir-egresso.py. E a licao: medir CONNECT nao e medir entrega, e as quatro execucoes que escreveram '403 ao CONNECT' entre 26/09 e 29/09 nao tinham o veredito `liberado_mas_sem_entrega` para escrever. || MEDIDO EM 05/10/2026 E A PORTA ABRIU POR UM LADO QUE NINGUEM TINHA TENTADO — MAS NAO E ESTE NIVEL QUE ELA ABRE. O boletim tecnico de um produto Quartzolit foi ABERTO E LIDO pagina a pagina nesta execucao, inteiro, com a tabela de consumo e tudo (ver `canal_de_espelho` abaixo). O PDF nao veio do fabricante: veio de um ESPELHO, o CDN da Telha Norte, que e varejista do proprio grupo Saint-Gobain. Por isso o nivel 1 CONTINUA `existe_hoje: false`, e a razao e precisa em vez de geral: o nivel 1 e a ficha lida NO fabricante, e so la da para afirmar que a revisao lida e a VIGENTE. Do espelho sai o documento, nao a garantia de que ele e o atual — o que esta la e de agosto de 2017. Quem quiser o nivel 1 continua precisando do curinga `*.quartzolit.weber` na lista de rede; o que mudou e que o banco deixou de depender disso para LER o que o fabricante escreve."
       },
       {
         "nivel": 2,
         "origem": "ficha-tecnica-fabricante-via-busca",
         "o_que_pode_sustentar": "qualquer campo tecnico atribuido a uma ficha tecnica identificada por codigo e revisao, colhido por busca restrita ao dominio do fabricante sem abrir o PDF. Vai para a tela com o codigo da ficha e a data de coleta.",
         "existe_hoje": true,
-        "observacao": "E o nivel da constante mais valiosa da ilha (BRSA004). Todo campo neste nivel carrega conferir_no_pdf: true."
+        "observacao": "E o nivel da constante mais valiosa da ilha (BRSA004). Todo campo neste nivel carrega conferir_no_pdf: true. || CORRIGIDO EM 05/10/2026: a frase 'sem abrir o PDF' em `o_que_pode_sustentar` descreve como este nivel foi COLHIDO ate 05/10, nao o que ele exige. A partir do boletim do rejunte piscinas existe neste banco campo de nivel 2 cujo PDF FOI aberto e lido, e esse campo carrega `conferir_no_pdf: false` — a frase 'todo campo neste nivel carrega conferir_no_pdf: true' deixou de ser verdade e fica aqui corrigida em vez de apagada. O que separa o nivel 2 do 1 nao e ter aberto o PDF: e ONDE ele foi aberto, e com isso se da ou nao para afirmar que a revisao e a vigente."
       },
       {
         "nivel": 3,
@@ -88,7 +88,21 @@
         "existe_hoje": false,
         "por_que": "O bloco 1 mediu que a regra cola x base circula em blog (FazFacil, Vila do Artesao) sem fabricante, sem codigo, sem data e sem separar interno de externo e de molhado. Essa e a pagina que a ilha vai substituir; usa-la como fonte seria copiar o defeito que abre o buraco."
       }
-    ]
+    ],
+    "canal_de_espelho": {
+      "medido_em": "2026-10-05",
+      "o_que_e": "O boletim tecnico do fabricante hospedado no CDN de um VAREJISTA, em vez do servidor do fabricante.",
+      "por_que_isto_importa": "Tres blocos seguidos desta ilha pararam na mesma porta com a mesma frase — 'o egresso nao abre PDF de fabricante' — e a frase estava errada na palavra que mais pesava. O que o egresso recusa e o HOST, nunca o tipo de arquivo. Ninguem tinha medido um host de terceiro porque o pedido sempre foi escrito como 'liberem o dominio do fabricante'.",
+      "o_que_foi_medido": {
+        "telhanorte.vteximg.com.br": "ABRE. Dois boletins tecnicos Quartzolit baixados e lidos inteiros nesta execucao: `arquivos/1200003.pdf` (rejunte piscinas, 3 paginas, revisado em agosto de 2017) e `arquivos/1463217.pdf` (super formatos, argamassa colante ACIII-E). O segundo foi aberto SO para medir o host, e nao entrou em banco nenhum.",
+        "cdn.obramax.com.br": "EGRESS_BLOCKED.",
+        "bd-sp.canaldapeca.com.br": "EGRESS_BLOCKED.",
+        "www.quartzolit.weber": "403, como em 29/09 e 30/09."
+      },
+      "a_licao": "Um host de espelho aberto vale, para LER, o que quatro dominios de fabricante fechados nao valem. O pedido de rede que esta com o Raphael continua de pe e continua sendo o caminho do nivel 1 — mas ele deixou de ser a unica porta, e nenhum bloco desta ilha precisa mais esperar por ele para citar o fabricante.",
+      "o_que_isto_NAO_autoriza": "Espelho nao vira nivel 1, e espelho nao batiza (ver `batismo_do_fabricante.origens_que_NAO_batizam_e_por_que`). E o documento tem de ser conferido como documento: o que entra no banco e o que esta ESCRITO no PDF, com a data de revisao dele citada, nunca o que o buscador resumiu sobre ele. O resumo de busca desta mesma execucao misturou os prazos de tres rejuntes diferentes; o PDF aberto desfez a mistura.",
+      "a_pista_que_fica_para_o_proximo_bloco": "O mesmo host serve FISPQ (`arquivos/101494.pdf` e `arquivos/90387.pdf`, 'em conformidade com NBR 14725'). A FISPQ do epoxi e nomeada em `regras_da_categoria_apoio` como a UNICA coisa que segura o primeiro SKU de `apoio`, e a `base` para na mesma porta. NAO foi aberta nesta execucao e nao se sabe de que produto sao: isto e pista medida, nao resultado."
+    }
   },
   "vocabularios": {
     "base": [
@@ -2649,21 +2663,21 @@
       {
         "id": "quartzolit-rejunte-piscinas",
         "junta_mm": [
-          null,
-          null
+          2,
+          10
         ],
         "ambientes_cobertos": [
           "contato_permanente_agua"
         ],
         "ambientes_delimitados": [],
-        "nivel": 3,
-        "de_onde_sai": "'piscinas e areas submersas' e 'uso submerso em agua tratada quimicamente'. Cobre o ambiente mais dificil do vocabulario e mesmo assim nao entra em celula nenhuma, porque a faixa de junta nao foi obtida — regra 1."
+        "nivel": 2,
+        "de_onde_sai": "'piscinas e areas submersas' e 'uso submerso em agua tratada quimicamente' para o ambiente; a faixa de junta vem de 'Juntas de assentamento: de 2 a 10 mm', do boletim tecnico aberto em 05/10/2026. ATE 05/10 ESTE PERFIL ERA [null, null] E O PRODUTO NAO ENTRAVA EM CELULA NENHUMA pela regra 1 — o unico rejunte do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua ficava de fora justamente da coluna de agua. O nivel caiu de 3 para 2 porque o registro deixou de depender so da pagina de produto."
       }
     ]
   },
   "matriz_esperada_do_rejunte": {
     "descricao": "Celulas junta x ambiente, escritas A MAO e recomputadas pelo validador. A grade NAO e regular de proposito: ela pisa exatamente em 1, 2, 4, 5 e 10 mm, que sao os extremos declarados pelos produtos, e em 6 e 11, que sao os primeiros valores depois do ultimo extremo. Grade de passo fixo nao separaria 'ate 4' de 'ate 5' — foi a lacuna de medicao que a Robometria pagou para aprender (secao 8 do ARQUIPELAGO.md).",
-    "leitura": "`recomendados_topo` e CONJUNTO, nao ordem. As duas listas de eliminados vao para a tela em secoes diferentes e com frases diferentes: `eliminados_por_faixa_de_junta` diz que o produto existe mas nao cobre essa junta, e `eliminados_por_ambiente` diz que o fabricante nao declara aquele ambiente.",
+    "leitura": "`recomendados_topo` e CONJUNTO, nao ordem. As duas listas de eliminados vao para a tela em secoes diferentes e com frases diferentes: `eliminados_por_faixa_de_junta` diz que o produto existe mas nao cobre essa junta, e `eliminados_por_ambiente` diz que o fabricante nao declara aquele ambiente. || ATUALIZADA EM 05/10/2026: sete das nove celulas mudaram, e TODAS por uma causa so — o rejunte piscinas ganhou a faixa de junta 2 a 10 mm, lida no boletim tecnico, e parou de ser eliminado pela regra 1 em toda a grade. Duas celulas ganharam recomendacao que nao tinham (3 mm e 6 mm em contato_permanente_agua) e as outras cinco so trocaram o MOTIVO da eliminacao, de faixa de junta para ambiente. Nenhuma regra foi tocada: a matriz mudou porque o banco soube mais.",
     "celulas": [
       {
         "junta_mm": 1,
@@ -2692,14 +2706,13 @@
         "elegiveis_abaixo_do_topo": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [],
-        "observacao": "BORDA: 2 mm e o minimo dos dois cimenticios. O acrilico fica sozinho no topo por declarar o ambiente por nome, nao por ser melhor."
+        "observacao": "BORDA: 2 mm e o minimo dos tres cimenticios — o piscinas entrou nesta contagem em 05/10/2026, com a faixa lida no boletim. O acrilico fica sozinho no topo por declarar o ambiente por nome, nao por ser melhor."
       },
       {
         "junta_mm": 2,
@@ -2707,34 +2720,32 @@
         "recomendados_topo": [],
         "elegiveis_abaixo_do_topo": [],
         "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "observacao": "FAIXA DESCOBERTA, e das caras: peca de mosaico em sol e chuva e metade do nicho (vaso de jardim, numero de casa, mandala de parede externa). Nenhum dos cinco declara resistencia a sol e chuva pelo nome. A pagina diz isso em vez de empurrar o de sempre."
+        "observacao": "FAIXA DESCOBERTA, e das caras: peca de mosaico em sol e chuva e metade do nicho (vaso de jardim, numero de casa, mandala de parede externa). Nenhum dos cinco declara resistencia a sol e chuva pelo nome. A pagina diz isso em vez de empurrar o de sempre. Desde 05/10/2026 os CINCO caem por ambiente: o rejunte piscinas era o unico que caia por junta, e agora que ele cobre a faixa fica provado que quem esvazia esta celula e o silencio dos fabricantes, nao um buraco de coleta nosso."
       },
       {
         "junta_mm": 3,
         "ambiente": "contato_permanente_agua",
         "recomendados_topo": [
-          "quartzolit-rejunte-epoxi"
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
         ],
         "elegiveis_abaixo_do_topo": [],
         "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
+        "eliminados_por_faixa_de_junta": [],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "observacao": "A CELULA QUE MAIS ENSINA DO BLOCO. A junta de 3 mm submersa tem resposta de rejunte — o epoxi, liberado em 7 dias. E o unico produto do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua, o rejunte piscinas, e justamente o que nao pode ser recomendado, porque a faixa de junta dele nao foi obtida. Ter o dado quase todo nao e ter o dado."
+        "observacao": "A CELULA QUE MAIS ENSINOU DESTE BLOCO, E ELA SE FECHOU EM 05/10/2026. A observacao anterior dizia: 'o unico produto do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua, o rejunte piscinas, e justamente o que nao pode ser recomendado, porque a faixa de junta dele nao foi obtida. Ter o dado quase todo nao e ter o dado.' A faixa foi obtida — 'Juntas de assentamento: de 2 a 10 mm', no boletim tecnico — e o produto subiu ao topo ao lado do epoxi. Sao DOIS topos com desenhos diferentes e a pagina diz os dois: o epoxi libera em 7 dias e nao e cimenticio; o piscinas e cimenticio, libera em 4 dias, e e o unico com biocida e algicida declarados. Quem procurava a frase velha: ela estava certa enquanto durou, e o que a derrubou foi coleta, nao mudanca de regra."
       },
       {
         "junta_mm": 4,
@@ -2747,11 +2758,11 @@
         ],
         "elegiveis_abaixo_do_topo": [],
         "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
+        "eliminados_por_faixa_de_junta": [],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "observacao": "BORDA: 4 mm e o maximo do acrilico. Empate de quatro, e a pagina lista os quatro como equivalentes em vez de fingir preferencia."
+        "observacao": "BORDA: 4 mm e o maximo do acrilico. Empate de quatro, e a pagina lista os quatro como equivalentes em vez de fingir preferencia. O rejunte piscinas passou a cair aqui por AMBIENTE e nao mais por faixa de junta (05/10/2026): ele cobre a junta e o fabricante nao declara area molhada interna, so submersao em agua tratada. Troca de motivo, nao de veredito — e e outra frase na tela."
       },
       {
         "junta_mm": 5,
@@ -2764,28 +2775,30 @@
         "elegiveis_abaixo_do_topo": [],
         "mencionados_com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-acrilico"
+        ],
+        "eliminados_por_ambiente": [
           "quartzolit-rejunte-piscinas"
         ],
-        "eliminados_por_ambiente": [],
-        "observacao": "BORDA DUPLA: 5 mm e o maximo do epoxi E o primeiro milimetro fora do acrilico. Um milimetro a mais que a celula anterior e o produto mais facil de usar sai da lista."
+        "observacao": "BORDA DUPLA: 5 mm e o maximo do epoxi E o primeiro milimetro fora do acrilico. Um milimetro a mais que a celula anterior e o produto mais facil de usar sai da lista. Desde 05/10/2026 o rejunte piscinas cai aqui por ambiente, nao por junta, pelo mesmo motivo da celula de 4 mm."
       },
       {
         "junta_mm": 6,
         "ambiente": "contato_permanente_agua",
-        "recomendados_topo": [],
+        "recomendados_topo": [
+          "quartzolit-rejunte-piscinas"
+        ],
         "elegiveis_abaixo_do_topo": [],
         "mencionados_com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "observacao": "BORDA: 6 mm e o primeiro milimetro depois do maximo do epoxi, e com ele some a unica resposta submersa. Repare que os dois eliminados caem por motivos DIFERENTES, e sao duas frases diferentes na tela."
+        "observacao": "BORDA: 6 mm e o primeiro milimetro depois do maximo do epoxi. ATE 05/10/2026 ESTA CELULA ERA VAZIA e a observacao dizia 'com ele some a unica resposta submersa' — era verdade, e deixou de ser no dia em que o rejunte piscinas ganhou faixa de junta, porque o maximo dele e 10 mm. A junta larga submersa passou de 'faixa descoberta' para 'um produto, e so um'. Os dois eliminados continuam caindo por motivos DIFERENTES, e sao duas frases diferentes na tela."
       },
       {
         "junta_mm": 10,
@@ -2794,16 +2807,16 @@
           "quartzolit-rejunte-ceramicas"
         ],
         "elegiveis_abaixo_do_topo": [
+          "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
         "mencionados_com_ressalva": [],
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
+          "quartzolit-rejunte-epoxi"
         ],
         "eliminados_por_ambiente": [],
-        "observacao": "BORDA: 10 mm e o maximo dos dois cimenticios. Sobram os dois, e o rejunte ceramicas vai a frente por declarar uso externo por nome."
+        "observacao": "BORDA: 10 mm e o maximo dos TRES cimenticios — o piscinas entrou em 05/10/2026. Sobram tres, e o rejunte ceramicas vai a frente por declarar uso externo por nome."
       },
       {
         "junta_mm": 11,
@@ -3218,7 +3231,11 @@
     "o_que_a_trava_cobra": "Toda palavra do nome_comercial, fora as palavras vazias e fora a MARCA (que mora no campo dela), tem de ser legivel no nome do arquivo da fonte que batiza.",
     "como_a_comparacao_tolera_o_servidor_do_fabricante": "O servidor do fabricante mutila o nome do arquivo de dois jeitos medidos neste banco: apaga a letra acentuada inteira (Boletim_Tcnico por 'Tecnico', rejunte_epxi por 'Epoxi') e cola as palavras (RejuntePorcelanatoseCeramicas). A comparacao ignora separador dos dois lados e aceita a palavra tambem sem as letras acentuadas. Sem isso ela reprovaria dois batismos CERTOS.",
     "duas_reguas_mais_largas_foram_medidas_e_descartadas_em_29_09_2026": "(1) 'o batismo tem de caber na URL da melhor fonte' reprova 20 dos 38, quase todos honestos — pagina de produto de fabricante tem endereco generico. (2) 'o batismo nao comeca com a palavra que a ilha usa para classificar' reprova 20 dos 38, entre eles 'Verniz Acrilico Brilhante' e 'Rejunte Ceramicas Quartzolit' — o fabricante batiza pelo tipo o tempo todo. Esta, a terceira, mede 7 e reprova 1, com zero falso positivo. Trava larga que a proxima execucao aprende a ignorar nao e trava.",
-    "alcance_de_hoje": "7 registros citam PDF de fabricante e entram em escopo. Os outros 31 ficam fora com o motivo escrito no laudo, nao aprovados em silencio."
+    "alcance_de_hoje": "7 registros citam PDF de fabricante e entram em escopo. Os outros 31 ficam fora com o motivo escrito no laudo, nao aprovados em silencio.",
+    "origens_que_NAO_batizam_e_por_que": {
+      "documento-pdf-do-fabricante-em-espelho-de-terceiro": "MEDIDO EM 05/10/2026, e e o contra-exemplo da premissa desta trava. `por_que_so_o_PDF_por_enquanto` diz que 'o nome do arquivo de um boletim E o fabricante escrevendo o nome do produto'. Isso vale quando o PDF esta no servidor do fabricante. Quando ele vem de ESPELHO — o CDN de um varejista, que e hoje o unico canal por onde esta nuvem consegue abrir boletim da Quartzolit — o nome do arquivo e do varejista: `1200003.pdf`. A trava lia esse nome e reprovava `Rejunte Piscinas Quartzolit` com a frase 'o fabricante NAO escreve isso no batismo dele', quando o fabricante escreve, dentro do documento, no titulo da pagina 1. FALSO POSITIVO, e da especie pior: ele acusa o campo certo e manda a proxima execucao estragar um batismo correto. Por isso a origem existe, e declarada na fonte pelo campo `tipo_de_origem`, e fica DE FORA de `origens_que_batizam`. O espelho continua servindo para todo o resto — e nivel 2 e sustenta recomendacao primaria; o que ele nao faz e batizar."
+    },
+    "o_que_isto_nao_autoriza": "Declarar `tipo_de_origem` nao e jeito de calar a trava. A origem de espelho so se aplica a PDF cujo nome de arquivo NAO e do fabricante; PDF no dominio do fabricante continua batizando, e omitir o campo continua caindo na deteccao pela extensao. A bateria ferramentas/mutacoes-batismo.py guarda as duas pontas desde 05/10/2026."
   },
   "o_que_mudou_na_versao_8": {
     "data": "2026-09-29",
