@@ -3484,3 +3484,76 @@ telefone e CEP: nenhuma ocorrência. Nada de token, chave ou senha entrou em arq
 
 **Falhas: nenhuma.** Nenhuma ilha reservada, nenhum cabeçalho de estado tocado, nenhum bloco de fila executado, nenhum Sync
 acionado, nada publicado.
+
+---
+
+## 05/10/2026 05h59 (Brasília) — 08h59Z — PENTE FINO, DISPARO 1 DE 3: nada a fazer, arquivo já no `main`
+
+**Instrução recebida:** criar `AUDITORIA-PENTE-FINO-2026-10-05.md` na raiz, com conteúdo literal entre marcadores, commit com
+mensagem dada e push para o `main`. A instrução se declarava autossuficiente, mandava ignorar um disparo anterior que pedia para
+esperar uma "parte 2", e trazia a própria saída de escape: *"Se o arquivo abaixo JA existir no main com conteudo identico, nao
+duplique: diga isso na resposta, escreva o MAOS-LOG.md e pare."*
+
+**Assunto conferido antes do `git fetch`:** é do Arquipélago — `ARQUIPELAGO.md`, a Bússola, os dossiês, as cinco ilhas, rodadas
+004/005. Nada de outro projeto. Executável.
+
+**Resultado: o arquivo já estava no `main`, byte a byte igual ao pedido. Nenhum commit de trabalho foi feito.** O disparo anterior
+(registrado na seção de 05h56 deste log) já tinha criado e empurrado exatamente este conteúdo, no commit `2d3eb6a`, e o próprio log
+dele explica por que não esperou a "parte 2". O escape da instrução foi acionado como ela mandava: não dupliquei, não reescrevi, não
+criei segunda cópia, não toquei em arquivo nenhum além deste log.
+
+**Como a identidade foi medida, e não presumida.** Reconstruí o conteúdo instruído byte a byte num arquivo de rascunho fora do
+repositório e rodei `diff` contra o que está no `main`:
+
+```
+264 linhas, 24269 bytes nos dois
+diff: nenhuma diferença
+md5 fd93d619b062d8b5a1987fd00ec31ed8
+```
+
+O md5 bate com o que a seção de 05h56 deste log registrou depois de gravar. A primeira passada do `diff` acusou **uma** linha
+diferente (a 39) — e o erro era da minha transcrição, não do arquivo: eu havia digitado `— a "a 1.2 **diz**` onde a instrução traz
+`— "a 1.2 **diz**`. Corrigido o rascunho, o `diff` ficou vazio. Registro isso porque o contrário — aceitar "quase igual" como igual
+— é exatamente o defeito que o relatório deste dia cataloga.
+
+`git status --porcelain` ao chegar, antes de escrever este log (vazio: árvore limpa em `origin/main` = `4f1ea32`):
+
+```
+```
+
+`git status --porcelain` depois de escrever este log:
+
+```
+ M MAOS-LOG.md
+```
+
+`git diff --stat` do trabalho instruído:
+
+```
+ nenhum arquivo alterado, 0 inserções, 0 remoções
+```
+
+**Hashes:** o conteúdo instruído está no `main` em **`2d3eb6a`** (criação do relatório) e **`4f1ea32`** (log daquele disparo), ambos
+anteriores a este. Este disparo gera **um** commit, que é só este registro; o hash dele vai na resposta do disparo, por ser
+impossível um commit conter o próprio hash.
+
+**Contagem, conferida relendo os arquivos DEPOIS de gravar:**
+
+```
+AUDITORIA-PENTE-FINO-2026-10-05.md   264 linhas, 24269 bytes — INTOCADO por este disparo
+MAOS-LOG.md                          1 seção nova acrescentada ao FIM; nenhuma seção anterior apagada, reescrita ou resumida
+```
+
+0 arquivo criado, 1 arquivo modificado (este log), 0 removidos.
+
+**Os dois disparos irmãos (2 de 3 e 3 de 3), que aplicam as 19 substituições em 11 arquivos, continuam pendentes** — esta instrução
+declara que eles não tocam o relatório, e eu não toquei em nenhum dos 11 arquivos. Se eles ainda não chegaram, as 19 correções
+seguem não aplicadas no `main`; quem ler o relatório hoje vê uma seção "MÉDIO — CORRIGIDO (19 consertos)" cujas correções ainda não
+estão nos arquivos. Fica dito aqui para não virar outra ponta velha.
+
+**Segredo e dado pessoal:** nada transcrito, como a instrução exigiu. O relatório cita arquivo e linha onde há token e menciona a
+existência de e-mail de terceiro versionado, sempre sem reproduzir valor — não fui procurar valor nenhum e não copiei nada para este
+log. Este repositório é público.
+
+**Falhas: nenhuma.** Nenhuma ilha reservada, nenhum cabeçalho de estado tocado, nenhum bloco de fila executado, nenhum Sync
+acionado, nada publicado, nenhum `ARQUIPELAGO.md` consultado para decidir o que fazer.
