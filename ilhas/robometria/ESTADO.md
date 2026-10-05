@@ -219,8 +219,16 @@ para o dia em que andar.
 - **Plugins (10/09/2026):** Code Snippets, Site Kit by Google, Converter for Media e Limit Login Attempts Reloaded instalados e ATIVOS. Akismet e Hello Dolly estão desativados (a exclusão foi barrada pelo classificador de segurança; fica para o Raphael, é cosmético). Site Kit ainda **não conectado** à conta Google — exige autorização OAuth do Raphael; não é bloqueio, porque a propriedade de domínio no Search Console já existe.
 - **Snippet de Sync: "Robometria Sync" v1.1.5, snippet #5 do Code Snippets, ATIVO desde 10/09/2026** — fonte em `snippets/robometria-sync.php` (sha256 `b4fa6b84…`), token gerado pelo próprio WordPress. **Primeiro sync executado às 13:09 UTC: revisão 6 lida, 0 aplicados, 9 aguardando desembarque** — correto, porque os 9 itens do manifest são pesquisa com `publicar: false`. Endpoints no `PROMPT.md`.
 - **Search Console: propriedade de domínio `sc-domain:robometria.com.br` criada e VERIFICADA em 09/09/2026** (TXT `google-site-verification=xvI914rD2M69UhAao_MF2csPC3XAKKSUmol9JU-xxwg` gravado no Editor de Zona DNS; passo 4b da seção 11). Sitemap `wp-sitemap.xml` submetido em 10/09/2026. **O "não foi possível buscar" do Google NÃO era normalidade de domínio novo, como se supôs aqui: era defeito.** Os sitemaps serviam XML válido com status HTTP **404**, e sitemap com 404 é sitemap inexistente. Consertado em 10/09 às 15h49Z (casca 1.0.1) — hoje `wp-sitemap.xml` devolve **200**. **Falta reenviar o sitemap no Search Console**, e isso exige o navegador do Raphael. `dados/indexacao.md` aberto com a linha zero.
-- **Identidade visual:** aprovada pelo Raphael em 09/09/2026. Paleta, tipografia
-  e a geometria do símbolo estão no `PROMPT.md` desta pasta.
+- **Identidade visual:** aprovada pelo Raphael em 09/09/2026. Paleta e tipografia
+  moram em **`DESIGN.md`** desta pasta, que é o dono dos tokens pela §22.6 do
+  `ARQUIPELAGO.md` desde 12/09/2026; as linhas do `PROMPT.md` ficam como registro
+  do que foi aprovado, e onde as duas discordarem vale o `DESIGN.md`.
+  *(Esta linha dizia que paleta e tipografia estavam no `PROMPT.md`. Corrigido pelo
+  Pente Fino em 05/10/2026: ela é de 09–10/09, anterior à §22.6, e mandava editar
+  token exatamente no arquivo que o `PROMPT.md:8` e o `DESIGN.md:3` declaram não ser
+  mais o dono. A **geometria do símbolo** é a metade certa da frase antiga: ela de
+  fato só existe no `PROMPT.md` e em nenhum lugar do `DESIGN.md` — o que é, pela
+  própria §22.6, medida fora do dono, e fica registrado para a Fundação mover.)*
 
 Sem credenciais neste arquivo.
 
@@ -581,6 +589,16 @@ construção — não o Search Console.)*
 
 ### Dois achados desta execução que valem para a próxima
 
+> **PONTEIRO DO PENTE FINO EM 05/10/2026 — OS DOIS ACHADOS ABAIXO ESTÃO FECHADOS, E OS DOIS SEGUEM ESCRITOS NO PRESENTE.**
+> Eles são da execução de **10/09/2026, 11h17Z**, e a execução seguinte resolveu os dois — o que está registrado neste mesmo
+> arquivo, 430 linhas acima, e riscado no `PROMPT.md`. **Achado 1 (banco em ASCII): CUMPRIDO em 11/09/2026** — 121 strings
+> restauradas nos nove campos que chegam à tela, com portão novo (`ferramentas/teste-acentuacao.php`, que lê o corpo dos 72
+> estados); as duas strings que o achado cita como erradas na tela são justamente as que a prova no ar mostra corretas.
+> **Achado 2 (fonte no nível 2): DECIDIDO em 11/09/2026** — manual de fabricante guardado por terceiro e colhido por busca
+> **não é nível 2, é nível 3**, e o banco foi acertado. Portanto **não há bloco de dados a abrir para nenhum dos dois**, e
+> quem ler a seção abaixo como fila de trabalho gasta execução da Fundação em serviço já feito. O ponteiro de 28/09 do Pente
+> Fino chegou às linhas 548 e 574 e parou antes daqui; esta é a cauda que ele não varreu.
+
 1. **O BANCO ESTÁ EM ASCII, E AGORA ELE APARECE NA TELA.** Enquanto o banco só
    alimentava medição, os acentos faltando em `nome_na_fonte`, `publicador` e
    `o_que_muda` não custavam nada. Com a R1 no ar, esse texto é citado dentro da
@@ -621,6 +639,15 @@ ao banco. É trabalho pendente de verdade, não
 estatística: pela seção 7 do contrato, quem gera link é a Sentinela estratégica,
 no navegador do Raphael, com teto de calendário — o cano enche em paralelo e não
 compete com a fila da Fundação.
+
+> **PONTEIRO DO PENTE FINO EM 05/10/2026 — TRÊS AFIRMAÇÕES DESTE PARÁGRAFO MORRERAM, E A ÚLTIMA É A MAIS CARA.**
+> (1) **Os 44 esperando link fecharam:** em **20/09/2026, 15h30Z** a ilha passou a **95 de 95 publicáveis rendendo comissão**,
+> conferido em `/divulgacao-de-afiliados/` no ar (registrado 500 linhas acima neste arquivo). (2) **A revisão 6 do site é de
+> 09/09:** a ronda de 02/10/2026 leu o `/status` na **revisão 81**, igual à do `manifest.json`. (3) **O navegador do Raphael
+> saiu do caminho:** a §7 do `ARQUIPELAGO.md` decidiu em **22/09/2026** que *"o portal de afiliado da Shopee aberto no Chrome
+> do Raphael não é mais pré-requisito de nenhuma rotina"* — na Shopee o link sai encurtado pela Open API na própria coleta,
+> na nuvem (§25.6). Só o Mercado Livre ainda exige clique humano. Quem ler este parágrafo hoje põe na conta do Raphael um
+> trabalho que é da Fundação e que, nesta ilha, já está feito.
 
 Uma coleta segue em aberto, e não é bloqueio: o egresso HTTP direto está fechado
 (`multilaser.com.br`, `suporte.multilaser.com.br`, `lamina.multilaser.com.br`,

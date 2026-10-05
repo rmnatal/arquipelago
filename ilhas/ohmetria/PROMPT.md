@@ -6,7 +6,15 @@ O dossiê que aprovou esta ilha é `bussola/dossies/som-automotivo/DOSSIE.md` �
 > **ESTA ILHA NÃO ESTÁ EM FOCO — 16/09/2026; A ILHA EM FOCO MUDOU DUAS VEZES DESDE ENTÃO.** *(Ponteiro do Pente
 > Fino em 28/09/2026: `foco.md` nomeia a **clubedomosaico** desde 24/09/2026 — nomeou a aquametria de 21/09 a
 > 24/09 e a robometria antes disso. A conclusão deste aviso continua certa; a ilha que ele nomeia, não. Quem ler
-> este arquivo confere `foco.md`, que é a fonte, nunca este parágrafo.)* `foco.md` na raiz nomeava a **robometria**
+> este arquivo confere `foco.md`, que é a fonte, nunca este parágrafo.)*
+> *(**SEGUNDO PONTEIRO, PENTE FINO EM 05/10/2026 — O DE 28/09 RATIFICOU A METADE QUE A DECISÃO DAQUELE MESMO DIA
+> REVOGOU.** O aviso abaixo diz que "nenhuma outra ilha é rondada". Isso **deixou de ser verdade em 28/09/2026**:
+> pela decisão do Raphael registrada no ponteiro da §1.2 do `ARQUIPELAGO.md`, a **ronda diária técnica roda em toda
+> ilha que está no ar, em foco ou fora** — a causa foi o Clube do Mosaico ter passado nove dias fora do ar sem
+> ninguém medir. O que continua valendo deste aviso é só a metade da CONSTRUÇÃO: ilha fora do foco não recebe
+> bloco da Fundação, e nada deste arquivo é executado. Hoje o efeito prático é nulo porque esta ilha ainda não
+> está no ar e "ilha que ainda não está no ar não tem o que rondar" — mas a frase é falsa a partir do dia em que
+> ela subir, e era exatamente essa frase que custou os nove dias.)* `foco.md` na raiz nomeava a **robometria**
 > quando este aviso foi escrito, e pela seção **1.2** do
 > `ARQUIPELAGO.md` nenhuma outra ilha recebe bloco da Fundação e nenhuma outra ilha é rondada. **Nada deste arquivo
 > é executado enquanto isso valer**, por mais antigo ou prioritário que um despacho daqui pareça: só fura o foco

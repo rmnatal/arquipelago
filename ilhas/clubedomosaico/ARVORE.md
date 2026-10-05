@@ -243,7 +243,11 @@ o contrato em vez de contra a lembrança de quem escreveu:
   ISSO ERRADO.** A seção 21.1 do contrato é literal: abaixo do piso — **40 URLs
   publicadas e 21 dias desde a primeira URL indexada** —, "zero impressão"
   **não é informação** e **nunca** trava, adia ou reduz leva nenhuma. Esta ilha
-  tem **11 URLs publicadas** e `piso: abaixo` escrito no cabeçalho do
+  tem **21 URLs publicadas** — *(dizia **11**, que era verdade quando esta linha
+  foi escrita; recontado pelo Pente Fino em 05/10/2026: `urls_publicadas: 21` no
+  cabeçalho do `ESTADO.md` em 02/10/2026 19h51Z, das quais **17 medidas no ar** pela
+  ronda das 14h51Z, antes de o BLOCO 4c publicar as outras quatro. O argumento não
+  muda: 21 continua abaixo do piso de 40)* — e `piso: abaixo` escrito no cabeçalho do
   `ESTADO.md`, que é o campo que a 21.6 manda a Fundação ler em vez de
   recalcular de cabeça. O cabeçalho da própria seção 9 repete: *"a rampa desta
   seção só passa a ler o sinal de impressão depois do PISO da seção 21"*. O que
