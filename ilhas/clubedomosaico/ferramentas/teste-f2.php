@@ -100,6 +100,70 @@ function f2_nome_esperado( $m ) {
 	return $marca . ' ' . $nome;
 }
 
+/**
+ * Uma COPIA do repositorio com um rejunte a mais: clone do registro declarado
+ * para pastilha de vidro submersa, com as duas pontas da faixa de junta em
+ * null. Serve ao portao da faixa nao obtida, que antes dependia de o banco
+ * real ter essa lacuna (ver o comentario do portao, mais abaixo).
+ *
+ * So `manifest.json`, `snippets/` e `dados/` sao copiados, porque e tudo o que
+ * `render-para-teste.php` le da raiz. A copia morre com o processo.
+ */
+function f2_raiz_com_rejunte_sem_faixa( $raiz ) {
+	static $destino = null;
+	if ( null !== $destino ) {
+		return $destino;
+	}
+
+	$destino = rtrim( sys_get_temp_dir(), '/' ) . '/cdm-f2-sem-faixa-' . getmypid();
+	if ( ! is_dir( $destino ) && ! mkdir( $destino, 0700, true ) ) {
+		fwrite( STDERR, "nao consegui criar a raiz sintetica em $destino\n" );
+		exit( 2 );
+	}
+	foreach ( array( 'snippets', 'dados' ) as $pasta ) {
+		if ( ! is_dir( $destino . '/' . $pasta ) ) {
+			mkdir( $destino . '/' . $pasta, 0700, true );
+		}
+		foreach ( (array) glob( $raiz . '/' . $pasta . '/*' ) as $arquivo ) {
+			if ( is_file( $arquivo ) ) {
+				copy( $arquivo, $destino . '/' . $pasta . '/' . basename( $arquivo ) );
+			}
+		}
+	}
+	copy( $raiz . '/manifest.json', $destino . '/manifest.json' );
+
+	$banco = json_decode( (string) file_get_contents( $destino . '/dados/materiais-rejuntes.json' ), true );
+	$molde = null;
+	foreach ( $banco['materiais'] as $m ) {
+		if ( 'quartzolit-rejunte-piscinas' === $m['id'] ) {
+			$molde = $m;
+		}
+	}
+	if ( null === $molde ) {
+		/* O clone tem molde NOMEADO de proposito: molde escolhido por posicao
+		   mudaria de produto sem ninguem ver, e o portao passaria a medir outra
+		   coisa calado. Sem o molde, o portao nao existe. */
+		fwrite( STDERR, "o molde quartzolit-rejunte-piscinas saiu do banco: o portao da faixa nao obtida perdeu o chao\n" );
+		exit( 2 );
+	}
+
+	$clone                                      = $molde;
+	$clone['id']                                = 'bancada-rejunte-sem-faixa';
+	$clone['nome_comercial']                    = 'Rejunte de Bancada Sem Faixa Declarada';
+	$clone['marca']                             = 'Bancada';
+	$clone['propriedades']['junta_min_mm']      = array(
+		'valor'  => null,
+		'unidade' => 'mm',
+		'motivo' => 'NAO obtida — registro sintetizado por ferramentas/teste-f2.php, nunca vai ao ar.',
+	);
+	$clone['propriedades']['junta_max_mm']      = $clone['propriedades']['junta_min_mm'];
+	$banco['materiais'][]                       = $clone;
+	file_put_contents( $destino . '/dados/materiais-rejuntes.json',
+		json_encode( $banco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) );
+
+	return $destino;
+}
+
 echo "Clube do Mosaico — verificacao da F2 " . ( defined( 'CDM_F2_VERSAO' ) ? CDM_F2_VERSAO : '?' ) . "\n";
 
 cdm_teste_carregar_options( $raiz );
@@ -782,39 +846,61 @@ f2_ok( empty( $erros_matriz_r ), 'a tela do rejunte diz o que a matriz escrita a
 	empty( $erros_matriz_r ) ? $esperadas_rejunte . ' celulas' : implode( ' | ', array_slice( $erros_matriz_r, 0, 4 ) ) );
 
 /* O produto cuja faixa de junta nao foi obtida nao pode ser recomendado em
-   NENHUM dos 50 estados. E o achado mais valioso do bloco 3c e o mais facil de
-   perder: ele e o unico do banco que nomeia pastilha de vidro submersa. */
-$sem_faixa = array();
-foreach ( $rejuntes['materiais'] as $m ) {
-	$min = isset( $m['propriedades']['junta_min_mm']['valor'] ) ? $m['propriedades']['junta_min_mm']['valor'] : null;
-	$max = isset( $m['propriedades']['junta_max_mm']['valor'] ) ? $m['propriedades']['junta_max_mm']['valor'] : null;
-	if ( null === $min || null === $max ) {
-		$sem_faixa[] = f2_nome_esperado( $m );
-	}
-}
-$vazou = array();
-if ( $sem_faixa ) {
+   NENHUM dos 60 estados.
+ *
+ * ESTE PORTAO DEPENDIA DE O BANCO TER UMA LACUNA, E A LACUNA FECHOU (05/10/2026).
+ * Ate hoje a regua era: varra o banco, ache o produto com `junta_min_mm` ou
+ * `junta_max_mm` em null, e exija que ele nunca apareca recomendado. Isso media
+ * de verdade enquanto existisse um produto assim — e o canario ao lado
+ * (`! empty( $sem_faixa )`) existia justo para provar que existia. Quando o
+ * boletim do Rejunte Piscinas foi aberto e a faixa de 2 a 10 mm entrou no
+ * banco, o ULTIMO produto sem faixa desapareceu: o canario reprovou e o portao
+ * de verdade virou VACUO — zero produto varrido, zero estado medido, verde.
+ * E a mutacao `faixa pela metade vira sem limite` do `mutacoes-f2.py`, que
+ * completa as pontas null, ficou INERTE pelo mesmo motivo: sem ponta null no
+ * banco, nao ha o que completar.
+ *
+ * O CONSERTO NAO E APAGAR O CANARIO — e parar de depender da sorte do banco.
+ * A bancada SINTETIZA o produto sem faixa, numa copia do repositorio, e mede
+ * contra ela. O sintetico e um CLONE do registro mais perigoso que existe (o
+ * unico declarado para pastilha de vidro submersa), com as duas pontas da faixa
+ * em null e outro nome. Assim o portao morde para sempre, com banco lacunoso ou
+ * sem nenhuma lacuna, e a mutacao volta a ter alvo.
+ *
+ * E ele mede as DUAS direcoes, porque sintetico que o render engole em silencio
+ * seria o mesmo vacuo com outra roupa: (a) o nome nao aparece em recomendacao
+ * em nenhum dos 60 estados, e (b) ele APARECE na lista do que ficou de fora,
+ * com a frase que declara a faixa nao obtida — prova de que o render leu o
+ * registro em vez de descarta-lo antes da conta. */
+$raiz_sem_faixa = f2_raiz_com_rejunte_sem_faixa( $raiz );
+$nome_sintetico = 'Rejunte de Bancada Sem Faixa Declarada';
+$vazou          = array();
+$declarou       = 0;
+foreach ( $ambientes as $ambiente ) {
 	for ( $junta = 1; $junta <= 12; $junta++ ) {
-		foreach ( $ambientes as $ambiente ) {
-			$corpo = f2_corpo( f2_render( $raiz, 'base=ceramica_esmaltada_porcelana&onde=' . $ambiente . '&junta=' . $junta ) );
-			/* Frase E vitrine: o produto sem faixa de junta nao pode aparecer em
-			   NENHUM dos dois lugares — foi entrando pela vitrine que a mutacao
-			   da faixa pela metade passou. */
-			preg_match( '#<h2>E o rejunte, que vai entre os caquinhos</h2>(.*?)(?:<div class="cdm-f2-secao cdm-f2-fora">|<h2>A tabela inteira)#is', $corpo, $mf );
-			$bloco_r = isset( $mf[1] ) ? $mf[1] : '';
-			$recomendado_ali = f2_texto(
-				( preg_match( '#<p class="cdm-f2-frase">(.*?)</p>#is', $bloco_r, $m1 ) ? $m1[1] : '' )
-				. ' ' . ( preg_match( '#<ul class="cdm-f2-vitrine">(.*?)</ul>#is', $bloco_r, $m2 ) ? $m2[1] : '' )
-			);
-			foreach ( $sem_faixa as $nome ) {
-				if ( false !== mb_strpos( $recomendado_ali, $nome ) ) {
-					$vazou[] = $junta . 'mm x ' . $ambiente . ': ' . $nome;
-				}
-			}
+		$corpo = f2_corpo( f2_render( $raiz_sem_faixa, 'base=ceramica_esmaltada_porcelana&onde=' . $ambiente . '&junta=' . $junta ) );
+		/* Frase E vitrine: o produto sem faixa de junta nao pode aparecer em
+		   NENHUM dos dois lugares — foi entrando pela vitrine que a mutacao
+		   da faixa pela metade passou. */
+		preg_match( '#<h2>E o rejunte, que vai entre os caquinhos</h2>(.*?)(?:<div class="cdm-f2-secao cdm-f2-fora">|<h2>A tabela inteira)#is', $corpo, $mf );
+		$bloco_r = isset( $mf[1] ) ? $mf[1] : '';
+		$recomendado_ali = f2_texto(
+			( preg_match( '#<p class="cdm-f2-frase">(.*?)</p>#is', $bloco_r, $m1 ) ? $m1[1] : '' )
+			. ' ' . ( preg_match( '#<ul class="cdm-f2-vitrine">(.*?)</ul>#is', $bloco_r, $m2 ) ? $m2[1] : '' )
+		);
+		if ( false !== mb_strpos( $recomendado_ali, $nome_sintetico ) ) {
+			$vazou[] = $junta . 'mm x ' . $ambiente . ': ' . $nome_sintetico;
+		}
+		$texto_todo = f2_texto( $corpo );
+		if ( false !== mb_strpos( $texto_todo, $nome_sintetico )
+			&& false !== mb_strpos( $texto_todo, 'a gente não conseguiu a faixa de junta' ) ) {
+			$declarou++;
 		}
 	}
 }
-f2_ok( ! empty( $sem_faixa ), 'o banco tem produto com faixa de junta nao obtida, e ele e medido', implode( ', ', $sem_faixa ) );
+f2_ok( 60 === $declarou,
+	'o produto sem faixa sintetizado e LIDO pelo render, e a faixa nao obtida e declarada',
+	$declarou . ' de 60 estados' );
 f2_ok( empty( $vazou ), 'produto sem faixa de junta nunca e recomendado, nos 60 estados',
 	empty( $vazou ) ? '60 estados' : implode( ' | ', array_slice( $vazou, 0, 3 ) ) );
 

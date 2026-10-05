@@ -101,6 +101,12 @@ if SEM_PORTAO_DEGRAU:
     print("  ATENCAO: CDM_SEM_PORTAO_DEGRAU=1 — o degrau da escada da 25.1 volta a ser cobrado "
           "so de quem tem `url`, que e a regra ANTIGA, a que deixou 13 itens em null. So a "
           "bateria de mutacao usa isto.")
+SEM_PORTAO_FORMA_DO_DEGRAU = os.environ.get("CDM_SEM_PORTAO_FORMA_DO_DEGRAU") == "1"
+if SEM_PORTAO_FORMA_DO_DEGRAU:
+    print("  ATENCAO: CDM_SEM_PORTAO_FORMA_DO_DEGRAU=1 — a forma da URL NAO foi conferida contra "
+          "o degrau declarado, nem a loja da Shopee contra as suas classificacoes. E a regra "
+          "ANTIGA, a que deixou um anuncio de vendedor rotulado degrau 2 por dez dias. So a "
+          "bateria de mutacao usa isto.")
 SEM_PORTAO_MOTIVO_DEGRAU_4 = os.environ.get("CDM_SEM_PORTAO_MOTIVO_DEGRAU_4") == "1"
 if SEM_PORTAO_MOTIVO_DEGRAU_4:
     print("  ATENCAO: CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1 — o motivo do degrau 4 NAO foi cobrado "
@@ -331,6 +337,42 @@ por_degrau = {1: 0, 2: 0, 3: 0, 4: 0}
 degrau_4_sem_ficha = 0
 degrau_4_com_motivo = 0
 por_causa_do_degrau_4 = {}
+# A FORMA DA URL CONTRA O DEGRAU DECLARADO (05/10/2026) — despacho da ronda
+# diaria tecnica daquele dia, item 2. O portao de 28/09 cobra que o degrau esteja
+# ESCRITO e o de 30/09 cobra que o degrau 4 diga por que parou ali. Nenhum dos
+# dois olha se o degrau escrito DESCREVE o link que esta ao lado dele — e foi por
+# esse buraco que `quartzolit-rejunte-acrilico` passou 10 dias com
+# `degrau: 2` carregando `shopee.com.br/product/<shop_id>/<item_id>`, que e
+# anuncio de vendedor, degrau 3 da 25.1.
+#
+# POR QUE E CARO, e nao e zelo de arquivo: a 25.1 existe para gravar QUANTO
+# AQUELE LINK DURA, e a 25.2-b ordena a vitrine por degrau. Anuncio de vendedor
+# rotulado como catalogo e link pereciveel vestido de durave — ele sobe na
+# vitrine por uma durabilidade que nao tem, e a contagem por degrau, que e o que
+# a leitura semanal le para achar o que pode subir, mente na casa que mede
+# durabilidade.
+#
+# A REGUA E A FORMA DA URL, nunca a prosa ao lado dela, porque forma de URL e
+# objetiva e prosa envelhece calada. Os dois lados da 25.1, ao pe da letra:
+#   degrau 2 = "a URL com /p/MLB..." do Mercado Livre, e a propria 25.1 nomeia o
+#              que NAO vale ("nunca use produto.mercadolivre.com.br/MLB-...-_JM
+#              quando existir a /p/" — aquela e anuncio de vendedor);
+#   degrau 3 = "anuncio de vendedor comum na Shopee. (...) Quem usa este degrau
+#              TEM DE ter url_busca preenchida".
+# AS DUAS FORMAS LEGITIMAS da pagina de catalogo, e isto e trava contra FALSO
+# POSITIVO, nao detalhe de regex: o Mercado Livre serve a /p/ com o rotulo do
+# produto no caminho (`/rejunte-epoxi-quartzolit-1kg-cinza-platina/p/MLB25541512`,
+# a forma que este banco usa nos quatro) e tambem na forma CURTA, sem rotulo
+# (`/p/MLB25541512`), que e a que o proprio site devolve ao compartilhar. Uma
+# regua que exigisse o rotulo reprovaria link de catalogo de verdade — e portao
+# que reprova o certo e desligado pela primeira pessoa com pressa.
+CATALOGO_ML = re.compile(r"^https://(?:www\.)?mercadolivre\.com\.br/(?:[^?#]*/)?p/MLB\d+", re.I)
+ANUNCIO_ML = re.compile(r"^https://produto\.mercadolivre\.com\.br/MLB-", re.I)
+# As duas formas em que a Shopee escreve o par (shop_id, item_id): a canonica
+# `/product/<shop>/<item>` e a de rotulo `...-i.<shop>.<item>`. As duas aparecem
+# neste banco, e um portao que leia so uma mede metade dos registros.
+LOJA_SHOPEE = re.compile(r"^https://(?:www\.)?shopee\.com\.br/(?:product/(\d+)/\d+|[^?#]*-i\.(\d+)\.\d+)", re.I)
+degrau_por_loja_shopee = {}   # shop_id -> {degrau: [onde, ...]}
 casamentos_a_reconferir = []   # (onde, registro, titulo gravado) — reconferidos abaixo
 reconferidos = 0
 
@@ -584,6 +626,45 @@ for nome in arquivos_material:
         # banco que cumpre o esquema e nao rende nada.
         if af.get("degrau") in (1, 2, 3, 4):
             por_degrau[int(af["degrau"])] += 1
+
+        # O DEGRAU DECLARADO TEM DE DESCREVER O LINK QUE ESTA AO LADO DELE
+        # (05/10/2026). Ver o comentario longo junto de CATALOGO_ML, no topo.
+        _up = "" if SEM_PORTAO_FORMA_DO_DEGRAU else (af.get("url_produto") or "")
+        if af.get("degrau") == 2 and _up:
+            if ANUNCIO_ML.match(_up):
+                erro("%s: degrau 2 com `url_produto` de ANUNCIO de vendedor do Mercado Livre "
+                     "(produto.mercadolivre.com.br/MLB-...-_JM) — a 25.1 reserva o degrau 2 "
+                     "para a pagina de catalogo /p/MLB..., e nomeia esta forma como o que "
+                     "apodrece igual a Shopee. Ou troque pela /p/ (e entao a 25.4-b.1 manda "
+                     "reescolher o par INTEIRO, `url` e `url_produto` da mesma oferta na mesma "
+                     "chamada), ou desca para o degrau 3." % onde)
+            elif not CATALOGO_ML.match(_up):
+                erro("%s: degrau 2 sem `url_produto` de catalogo do Mercado Livre — a 25.1 "
+                     "reserva o degrau 2 para a URL /p/MLB..., que E o produto e nao o anuncio. "
+                     "Esta aqui: %s. Anuncio de vendedor comum na Shopee e degrau 3, ultimo "
+                     "recurso. Rotular anuncio como catalogo poe link pereciveel acima de link "
+                     "duravel na vitrine ordenada pela 25.2-b." % (onde, _up))
+        if af.get("degrau") == 3 and not af.get("url_busca") and not SEM_PORTAO_FORMA_DO_DEGRAU:
+            erro("%s: degrau 3 sem `url_busca` — a 25.1 escreve, no proprio degrau, que "
+                 "\"quem usa este degrau tem de ter url_busca preenchida\". Foi o degrau que "
+                 "quebrou quatro links em doze horas em 13/09/2026." % onde)
+
+        # A MESMA LOJA DA SHOPEE NAO PODE TER DUAS CLASSIFICACOES DE DEGRAU.
+        #
+        # Esta e a metade do achado de 05/10 que a forma da URL nao pega, e e a
+        # mais silenciosa: o degrau 1 ("loja oficial do fabricante") e o 3
+        # ("vendedor comum") sao propriedades da LOJA, nao do produto. Entao dois
+        # registros da mesma `shop_id` em degraus diferentes sao, com certeza, um
+        # dos dois errado — e qual dos dois nenhum portao sabe, so quem abrir a
+        # loja. Medido no `main` de 05/10/2026: a loja 1462074750 estava rotulada
+        # degrau 3 em `quartzolit-borracha-liquida-elastica`, com o nome dela
+        # escrito no `por_que_este_degrau_da_25_1` ("Edu Tintas Ltda e vendedor
+        # comum"), e degrau 2 no `quartzolit-rejunte-acrilico`. O banco sabia a
+        # resposta num registro e dizia outra coisa no outro.
+        _loja = LOJA_SHOPEE.match(_up)
+        if _loja and af.get("degrau") in (1, 2, 3, 4):
+            _shop = _loja.group(1) or _loja.group(2)
+            degrau_por_loja_shopee.setdefault(_shop, {}).setdefault(int(af["degrau"]), []).append(onde)
 
         # POR QUE ESTE ITEM PAROU NO DEGRAU 4 (30/09/2026) — despacho da ronda
         # diaria tecnica daquele dia, item 1.
@@ -2261,6 +2342,18 @@ if casamentos_a_reconferir:
                  "(secao 4 do contrato)" % (onde, motivo or "nenhum registro casou"))
     reconferidos = len(casamentos_a_reconferir)
 
+# A LOJA DA SHOPEE COM DUAS CLASSIFICACOES DE DEGRAU (05/10/2026). A coleta e
+# por registro; a contradicao so aparece quando o banco inteiro ja passou, e e
+# por isso que ela se mede aqui e nao dentro do laco.
+for _shop, _degraus in sorted(degrau_por_loja_shopee.items()):
+    if len(_degraus) > 1:
+        _detalhe = "; ".join(
+            "degrau %d em %s" % (d, ", ".join(ondes)) for d, ondes in sorted(_degraus.items()))
+        erro("a loja %s da Shopee esta classificada em MAIS DE UM degrau da 25.1 — %s. "
+             "Degrau 1 (loja oficial do fabricante) e degrau 3 (vendedor comum) sao "
+             "propriedade da LOJA e nao do produto, entao um dos dois esta errado; qual, "
+             "so sabe quem abrir a loja" % (_shop, _detalhe))
+
 print("Banco do Clube do Mosaico — verificacao do esquema do bloco 3")
 print("  materiais no banco ......... %d" % len(materiais))
 print("  celulas da F2 recomputadas . %d  (so categoria %s)" % (celulas_conferidas, CATEGORIA_DA_MATRIZ_F2))
@@ -2275,6 +2368,10 @@ print("  a escada da 25.1, por degrau . 1:%d  2:%d  3:%d  4:%d  (soma %d)"
       % (por_degrau[1], por_degrau[2], por_degrau[3], por_degrau[4], sum(por_degrau.values())))
 print("  degrau 4 com motivo escrito  %d de %d  (25.4-b.3: causa + ultima tentativa datada)"
       % (degrau_4_com_motivo, degrau_4_sem_ficha))
+print("  forma da URL x degrau ...... %d lojas da Shopee lidas, %d com mais de um degrau  "
+      "(25.1, portao de 05/10)"
+      % (len(degrau_por_loja_shopee),
+         sum(1 for _d in degrau_por_loja_shopee.values() if len(_d) > 1)))
 # A REPARTICAO, e nao so o total: a 25.4-b.4 diz que causas contadas juntas
 # "viram um numero que nao diz o que fazer". `marca-nao-anunciada` e pedido de
 # decisao ao Raphael; `candidato-barrado-*` e divida nossa. Somados, o pedido
