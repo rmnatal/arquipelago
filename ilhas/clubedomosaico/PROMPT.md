@@ -728,6 +728,39 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > proíbe. **O que a destrava é medir a SERP de `alicate`** — busca, não coleta —, e com ela a segunda
    > categoria do Guia sai com a mesma leva de quatro. O mesmo vale para `pastilha` e `rejunte`.
    >
+   > **MEDIDO EM 05/10/2026 ÀS 10h3xZ — A SERP DAS TRÊS MÃES FOI OLHADA, E A FRASE ACIMA ESTAVA ERRADA NA
+   > SEGUNDA METADE.** Medir a SERP de `alicate` **não** fez a segunda categoria do Guia sair, e o motivo é
+   > que a frase acima confundiu dois portões: a mãe estava em `espera_serp`, mas o que a **16.5** cobra são
+   > **3 filhas no cruzamento**, e as filhas não param na SERP — param no **dado**. As cinco medições novas
+   > estão em `dados/serp-das-filhas.json` (de 10 para 15) e o veredito regerado em
+   > `dados/cruzamento-14-9.md`:
+   >
+   > | recorte | antes | agora | o que falta AGORA |
+   > |---|---|---|---|
+   > | `alicate` (mãe) | `espera_serp` | **`pode_nascer`** | nada nela: os dois portões abriram |
+   > | `rejunte` (mãe) | `espera_serp` | **`pode_nascer`** | nada nela: os dois portões abriram |
+   > | `pastilha` (mãe) | `espera_serp` | `espera_autoridade` | autoridade — 7 de 9 da SERP são loja, fabricante ou marketplace |
+   > | `rejunte/cimenticio` | `sem_nenhum_dos_dois` | **`espera_dado`** | **UMA coisa: um número que a página calcule sobre os 3 itens — `liberacao_area_molhada_h`** |
+   > | `alicate/torques` | `sem_nenhum_dos_dois` | `sem_nenhum_dos_dois` | SERP saiu **TOMADA** (7 de 10 lojas): este recorte **não é** o caminho, e agora está medido |
+   >
+   > **O QUE ISTO DEIXA PARA A PRÓXIMA EXECUÇÃO, e é uma coisa só:** `espera_serp` **ZEROU** — não há mais
+   > nenhum recorte com "dado verde e SERP nunca olhada", que este arquivo chamava de *"o caso que mais
+   > custou nesta ilha, porque parece passe livre"*. **Daqui para frente o que falta no Guia é DADO, não
+   > busca** — e o caminho mais curto para a segunda categoria é o **`rejunte`**, não o `alicate`: a mãe já
+   > passa os dois portões e a filha `rejunte/cimenticio` está a **um número** de passar (os 3 itens já
+   > existem; falta `liberacao_area_molhada_h` neles, que é declaração de fabricante, o mesmo tipo de lastro
+   > que a `acabamento` juntou por busca em 25/09). As outras duas filhas de `rejunte` (`acrilico`, `epoxi`)
+   > têm 1 item cada e precisam de 2 mais cada uma.
+   >
+   > **E UMA ARMADILHA DE CONSULTA FICOU MEDIDA, porque ela muda o que se vai escrever:** a consulta crua
+   > `rejunte para mosaico` cai na SERP de **obra** (o corpus de 10/09 mediu isso: Omni, Viva Decora, cálculo
+   > de piso), e a consulta em forma de pergunta sobre **peça artesanal** cai numa SERP com **ZERO
+   > marketplace, ZERO loja e ZERO fabricante em 10 de 10** — a mais aberta que esta ilha já mediu. São
+   > **duas SERPs vizinhas**, e a frase da página decide em qual ela aterrissa. Quem escrever a página de
+   > `rejunte` mira a pergunta da peça, nunca o termo cru. A margem, porém, é de **UM** resultado, e isso
+   > está escrito no `motivo` da medição: 8 dos 10 respondem obra e o décimo é a biografia de uma pessoa na
+   > Wikipedia — SERP rala, não SERP conquistada.
+   >
    > *(O texto abaixo é de três e seis horas antes e fica sem uma palavra alterada: foi ele que mandou
    > medir, e é ele que explica por que a categoria escolhida não foi escolhida.)*
    >

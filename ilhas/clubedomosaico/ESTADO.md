@@ -8,75 +8,25 @@ urls_publicadas: 21        # 17 -> 21 em 02/10/2026 19h51Z: o BLOCO 4c publicou 
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-02T19:51Z
-executando_desde: 2026-10-05T10:18Z   # reserva da execucao da Fundacao de 05/10/2026
+ultima_execucao: 2026-10-05T10:4xZ
+executando_desde: null
 ultima_ronda: 2026-10-02T14:51Z   # RONDA DIARIA TECNICA de 02/10/2026. 17 de 17 URLs do sitemap em 200, porta de entrada da 29.2 inteira (sitemap XML de verdade, robots.txt text/plain, wp-json JSON, e caminho inexistente em 404 da propria ilha), /status na revisao 55 igual a do manifest, console limpo com recarga, zero orfa, zero &#038; em script, zero noindex indevido, description nas 17 e NENHUMA acima de 160 (o que fecha a metade que faltava do item 4 do despacho de 28/09), JSON-LD nas 17 e BreadcrumbList nas 16 que nao sao home, zero imagem sem width/height. F1 executada com DUAS entradas novas e os oito numeros conferidos na mao (cilindro 20x30 com pastilha de 2 cm: 1.885 cm2, 2.066/m2, 429 pastilhas, 264 g; placa 40x25 com pastilha de 1,5 cm e junta de 3 mm: 1.000 cm2, 3.086/m2, 340 pastilhas, 280 g) e F2 em vidro comum no sol e na chuva (Tekbond Silicone Neutro, com declaracao do fabricante citada e o produto recomendado fora da propria lista de 'o que nao usar'). Teste de vida: 24 de 24 itens com url_produto VIVOS (20 Shopee pela API de ficha, 4 Mercado Livre no navegador), 0 morto, 0 esgotado; piso 41 de 41 com url_busca E url_busca_produto; 12 de 12 chaves de busca com resultado; zero intestavel; degrau 4 com motivo na forma da 25.4-b.3 em 17 de 17, o que RECONFERE E FECHA o item 1 do despacho de 30/09. NENHUM defeito novo e ZERO conserto. As cinco linhas de dados/consertos.md reconferidas no ar: porta de entrada PASSOU pela terceira ronda seguida, links regerados PASSARAM, etiqueta de robo PASSOU, e o soft 404 na borda CONTINUA (404 200 200 200 em sonda virgem) e segue sendo do Raphael.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  BLOCO 4c ENTREGUE: A PRIMEIRA CATEGORIA DO GUIA NASCEU, E NASCEU COM AS TRES FILHAS.
-  Quatro URLs novas (17 -> 21): /materiais/acabamento/ e as tres filhas
-  selar-a-base-antes-de-fazer-mosaico, verniz-para-peca-de-mosaico e
-  impermeabilizar-peca-de-mosaico. Snippet novo 'Clube do Mosaico Guia' 1.0.0; manifest e
-  /status na revisao 56; casca inalterada na 1.19.0.
-  QUEM ESCOLHEU A CATEGORIA NAO FOI A EXECUCAO, FOI O CRUZAMENTO DA 14.9: `acabamento` e o
-  unico recorte da ilha em que os dois portoes abriram na mae E nas tres filhas. As quatro
-  saem juntas pela 16.6 (a mae e as 3 primeiras filhas) e pela 16.5 (mae so nasce com 3).
-  A `alicate/cortador_de_azulejo`, tambem em pode_nascer, FICOU DE FORA de proposito: a mae
-  dela esta em espera_serp e filha sozinha pendurada em /materiais/ e o cluster ralo que a
-  16.6 proibe.
-  PRIMEIRA ARVORE DE TRES SEGMENTOS DA ILHA. As quatro paginas de nivel 3 anteriores (as duas
-  ferramentas e as duas tecnicas) vivem em DOIS porque a categoria delas nao existia quando
-  nasceram. Este e o primeiro bloco em que a categoria nasce ANTES da filha.
-  O NUMERO DA SECAO 9 E A COBERTURA DECLARADA: das 15 superficies do vocabulario (9 bases e 6
-  caquinhos), quantas a frase do proprio fabricante alcanca. Mae 13 de 150; selador 4 de 45;
-  verniz 2 de 60; impermeabilizante 7 de 45. E literalmente o que a medicao de SERP de hoje
-  chamou de 'o numero que a SERP nao publica' — os dez resultados da consulta de
-  impermeabilizante dizem 'tinta betuminosa' e 'emulsao de silicone', tipo de produto sem
-  marca e sem numero.
-  O SEGUNDO NUMERO E O RELOGIO: (demaos - 1) x intervalo + secagem final, aritmetica da ilha
-  sobre tres declaracoes. Fecha em 2 dos 10 e SO neles (Coral Selador 5 h; Coral Resina 20 h);
-  nos outros oito a pagina diz que o fabricante nao declara, em vez de emprestar o numero do
-  vizinho de prateleira.
-  NENHUMA LINHA ESCOLHE PRODUTO PARA UMA BASE, e isso e o esquema: regras_da_categoria_
-  acabamento manda a matriz base x ambiente nascer vazia. As paginas LISTAM o que o fabricante
-  escreveu, com a frase dele entre aspas, e deixam a escolha com quem le.
-  A DIVIDA ACHADA NO CAMINHO: o banco de acabamento nunca tinha sido lido por uma pagina e
-  estava SEM ACENTO. restaurar-acentos.py cresceu para protecao.literal_do_fabricante,
-  protecao.trecho_que_declara_o_momento e propriedades.*.valor; 41 palavras novas no mapa, 164
-  em _CONHECIDAS, 21 trocas gravadas com --provar aprovado. O aviso fecha em ZERO pela
-  primeira vez. O declarado_como ficou de fora de proposito: a pagina publica o numero, nao a
-  frase de onde ele saiu.
-  DOIS PORTOES DA ILHA ESTAVAM CRAVADOS NO 'HOJE' E REPROVARAM A CASCA POR ELA ESTAR CERTA:
-  'nenhum cartao de categoria e link hoje' (era 0 cravado, virou a contagem de categorias com
-  pagina declarada) e 'os blocos de recusa sao poucos' (era teto 4, virou no maximo um por
-  pagina). Os dois teriam reprovado qualquer bloco que fizesse a ilha crescer.
-  E TRES MUTACOES ESTAVAM INERTES DESDE 28/09 em mutacoes-voz-e-cabeca.py — 'noindex na pagina
-  errada', 'a home volta a se chamar Inicio' e 'PORTA DOS FUNDOS: segunda pagina declarada como
-  prova'. Todas casavam a entrada de uma pagina escrita em UMA linha, e a casca 1.16.0 quebrou
-  aquelas entradas em varias ao dar descricao a cada pagina. A terceira e a que guarda a porta
-  dos fundos da camada de prova. Mesma familia e mesmo dia do que o bloco de 28/09 achou em
-  mutacoes-arvore.py.
-  BANCADAS NOVAS: teste-guia.php (106 afirmacoes, 0 falha) e mutacoes-guia.py (14 mutacoes, 14
-  decididas certo). A bateria achou TRES buracos na bancada recem-escrita na primeira passada —
-  a frase da lacuna podia virar lista escrita, a busca CRUA podia se declarar sponsored, e a
-  propria mutacao do vidro media o corpo inteiro. Os tres viraram portao.
-  NENHUMA DAS QUATRO DECLARA PROMESSA NO <title>: a alavanca da 12.1 e para posicao 4 a 10 e
-  elas nascem sem posicao. Nenhuma URL antiga se moveu, nenhum 301, nenhum <title> ou
-  description existente tocado — a janela de comparacao do BLOCO A segue limpa ate 08/10.
-  VERIFICADO NO AR DEPOIS DO SYNC (secao 8 e 18.4): Sync aplicou 15 itens e criou o snippet #13;
-  /status na revisao 56 igual a do manifest; as quatro URLs novas em 200; conferir-no-ar.py
-  APROVADO com 524 afirmacoes e 0 falha, agora sobre 21 URLs. O soft 404 na borda continua e
-  segue com o Raphael desde 29/09 — registro, nao portao.
-  E UM ROTULO DO conferir-no-ar.py ESTAVA CRAVADO: quatro linhas diziam "as 17 URLs" com a
-  medida ao lado dizendo 21, na mesma linha. O portao sempre varreu o sitemap inteiro e estava
-  certo; so o texto envelheceu. Passou a sair do len() do sitemap.
-  PROXIMO PASSO DESBLOQUEADO: medir a SERP das tres maes em espera_serp (alicate, pastilha,
-  rejunte). E busca, nao coleta, e e o trabalho mais barato que sobrou. Com a de `alicate`
-  medida, a `alicate/cortador_de_azulejo` — ja em pode_nascer — ganha mae e a segunda categoria
-  do Guia sai com a mesma leva de quatro.
+  A PORTA DE ENTRADA CAIU DE NOVO E FOI RECONSERTADA; O BLOCO FOI A SERP DAS TRES MAES DO GUIA, E ELE PROVOU ERRADA A FRASE QUE O MANDOU.
+  Nenhuma URL nova (a ilha segue em 21), nenhuma leva da 21.4 gasta, nada publicado e NENHUM Sync acionado — esta execucao nao escreveu pagina. Manifest e /status seguem na revisao 56.
+  1. A ILHA ESTAVA FORA DO AR, DE NOVO, E NAO ERA REGRESSAO NOSSA. As 21 URLs do sitemap, o /wp-sitemap.xml, o /robots.txt, o /wp-json/ e as TRES paginas de primeira pagina do Google em 404 as 10h17Z; so a home respondia. O bloco '# BEGIN WordPress' tinha desaparecido do .htaccess da raiz — 1.057 bytes, bloco unico 'NFD EPC', tem_wordpress false, 8 linhas de reescrita, byte por byte a assinatura de 24/09. Reparado pela rota da 29.3 (1.580 bytes, dois blocos, 15 linhas) e conferido no ar: 21 de 21 em 200, porta de entrada inteira pela 29.2 e caminho inexistente em 404 da propria ilha. conferir-no-ar.py 524 afirmacoes 0 falha; leitura-do-visitante.py REPROVADO pelo unico defeito de 29/09, o soft 404 na borda, que e vermelho esperado com dono escrito.
+  2. A JANELA E O NUMERO MAIS CARO DA PASSADA: ATE 2 DIAS E 14 HORAS. Ultima prova de vida em 02/10 19h57Z, queda medida em 05/10 10h17Z, e a ultima_ronda estava em 02/10 14h51Z — a decisao do Raphael de 28/09, que manda a ronda tecnica rodar em TODA ilha no ar, nao foi executada. Nao da para estreitar daqui: a Search Console diria quando o Google viu 404 e o ambiente NAO tem GOOGLE_SA_B64 (pendencia que ja e despacho aberto desde 12/09).
+  3. PELA 19.4(b) ESTE DEFEITO JA NAO E PARA CONSERTAR DAQUI, e quem disse isso foi a propria ilha. A entrada de 24/09 em dados/consertos.md pre-registrou o desfecho: 'Se o defeito voltar (...) o caminho e chamado na HostGator sobre o .htaccess da raiz, nao mais um reparo.' Voltou. O chamado e do Raphael e esta aberto em dados/despachos.md com prioridade ALTA, com o que dizer ja medido de dentro do servidor — inclusive que NAO e permissao nem AllowOverride (arquivo gravavel, raiz gravavel, mod_rewrite ligado, 115 regras no banco). O reparo desta passada foi feito porque a ilha estava caida AGORA, e ele nao substitui o chamado.
+  4. O ACHADO QUE MATOU UM PORTAO ANTES DE ALGUEM O CONSTRUIR: o .htaccess e reescrito A CADA REQUISICAO. O mtime da rota de diagnostico avancou 10:23:49 para 10:24:10 para 10:24:31, acompanhando o relogio de quem le. Entao 'mtime recente' nunca vai delatar esta falha — o arquivo parece recem-salvo inclusive nos dias em que esta errado, e quem for vigiar a porta vigia o CONTEUDO, quais blocos '# BEGIN' existem, nunca a data. E o reescritor PRESERVA o que encontra (o bloco do WordPress sobreviveu as tres reescritas medidas depois do reparo), o que quer dizer que a perda nao e desgaste gradual: existe UM evento que gravou o arquivo sem o bloco e todas as reescritas seguintes copiaram a ausencia fielmente. Isso estreita a causa que a 29.5 declara sem nome — procura-se um evento com hora, nao um processo. Escrito na 29.5.
+  5. O BLOCO: A SERP DAS TRES MAES DO GUIA, e 'espera_serp' ZEROU. dados/serp-das-filhas.json foi de 10 para 15 medicoes e dados/cruzamento-14-9.md foi regerado pelo portao (--autoteste 32 casos 0 falha, --conferir APROVADO). Nao ha mais nenhum recorte com 'dado verde e SERP nunca olhada', que o proprio arquivo chamava de 'o caso que mais custou nesta ilha, porque parece passe livre'.
+  6. E O BLOCO PROVOU ERRADA A FRASE QUE O MANDOU, que e a parte que a proxima execucao precisa ler. A fila dizia, em 02/10: 'O que a destrava e medir a SERP de alicate, e com ela a segunda categoria do Guia sai com a mesma leva de quatro.' Nao saiu. A frase confundiu dois portoes: a mae estava em espera_serp, mas o que a 16.5 cobra sao 3 FILHAS no cruzamento, e as filhas nao param na SERP — param no DADO. alicate (mae) e rejunte (mae) foram para pode_nascer e nenhuma das duas pode nascer, porque alicate tem 1 filha no cruzamento e rejunte tem 0.
+  7. O CAMINHO MAIS CURTO MUDOU DE DONO: E O REJUNTE, NAO O ALICATE. rejunte/cimenticio saiu de sem_nenhum_dos_dois para espera_dado e esta a UMA coisa de passar — um numero que a pagina calcule sobre os 3 itens que ja existem, e a propriedade mais perto e liberacao_area_molhada_h, que e declaracao de fabricante, o mesmo tipo de lastro que a acabamento juntou por busca em 25/09. Ja o alicate/torques saiu TOMADA (7 de 10 sao loja ou fabricante): ele NAO e o caminho, e agora isso esta medido em vez de suposto.
+  8. UMA ARMADILHA DE CONSULTA FICOU MEDIDA, e ela decide o que se escreve: 'rejunte para mosaico' cru cai na SERP de OBRA (o corpus de 10/09 mediu: calculo de piso, Viva Decora, Omni) e a pergunta sobre PECA ARTESANAL cai numa SERP com ZERO marketplace, ZERO loja e ZERO fabricante em 10 de 10 — a mais aberta que esta ilha ja mediu. Sao duas SERPs vizinhas e a frase da pagina decide em qual ela aterrissa. A margem, porem, e de UM resultado e isso esta escrito no motivo: 8 dos 10 respondem obra e o decimo e a biografia de uma pessoa na Wikipedia. SERP rala, nao SERP conquistada.
+  9. E A LEITURA DO ARQUIVO ACERTOU PELA QUARTA VEZ, agora com um refinamento: 'as abertas sao pergunta e as tomadas sao produto' previu alicate/torques (consulta que nomeia o produto, 7 lojas) e previu pastilha. O refinamento e que forma de pergunta NAO basta — 'qual pastilha escolher' e pergunta e saiu TOMADA, porque quem vende a pastilha e exatamente quem vende para mosaico. O que decide e se o vendedor do produto mira ESTE nicho: no rejunte ele mira obra, e por isso a pergunta do artesanato fica vazia.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO

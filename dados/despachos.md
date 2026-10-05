@@ -11,6 +11,64 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade ALTA — a porta de entrada da ilha com MAIS TRÁFEGO caiu DUAS vezes na mesma raiz, e pela 19.4(b) o próximo passo é chamado, não reparo
+
+**2026-10-05 — Raphael — abrir chamado na HostGator sobre o `.htaccess` da raiz de `/clubedomosaico.com.br`.** A
+Fundação não abre conta, não contrata e não fala com fornecedor: este é o único desfecho que não é dela, e foi
+**pré-registrado** pela própria ilha em 24/09, em `ilhas/clubedomosaico/dados/consertos.md`, com estas palavras —
+*"Se o defeito voltar, a 19.4(b) vale com força dobrada (...) e aí o caminho é chamado na HostGator sobre o
+`.htaccess` da raiz de `/clubedomosaico.com.br`, não mais um reparo."* **Voltou.**
+
+**O QUE ACONTECEU, duas vezes, com a mesma assinatura byte por byte:** o bloco `# BEGIN WordPress` desaparece do
+`.htaccess` da raiz, que fica com **1.057 bytes e um bloco só, `NFD EPC`** (Endurance Page Cache, do hospedeiro),
+e **8 linhas de reescrita**. Sem esse bloco o Apache não encaminha caminho bonito para o `index.php`, e o
+WordPress deixa de receber toda URL que não seja arquivo em disco. Resultado: **as 21 URLs do site, o
+`/wp-sitemap.xml`, o `/robots.txt`, o `/wp-json/` e as TRÊS páginas que estão na primeira página do Google
+respondem 404.** Só a home responde.
+
+| | 1ª queda | 2ª queda |
+|---|---|---|
+| medida em | 24/09/2026 19h20Z | **05/10/2026 10h17Z** |
+| tempo fora do ar | ao menos 9 dias | **até 2 dias e 14 horas** |
+| `.htaccess` | 1.057 bytes, só `NFD EPC` | **1.057 bytes, só `NFD EPC`** |
+| reparo | `flush_rewrite_rules(true)` | o mesmo, pela rota da 29.3 |
+| depois do reparo | 1.580 bytes, 2 blocos | **1.580 bytes, 2 blocos** |
+
+**O QUE DIZER NO CHAMADO, já medido de dentro do servidor — eles não vão precisar investigar nada disso:**
+
+1. O caminho exato: `/home3/rapha921/clubedomosaico.com.br/.htaccess`.
+2. O arquivo **existe, é legível e é gravável**, e a raiz também é (`raiz_gravavel: true`). `mod_rewrite` está
+   **ligado** (`got_mod_rewrite(): true`) e há **115 regras de reescrita no banco** do WordPress. **Não é
+   permissão e não é `AllowOverride`** — a 29.4 separa justamente este caso: se o arquivo estivesse gravado e
+   correto **e** as URLs continuassem em 404, aí sim seria `AllowOverride`; aqui o arquivo está gravado e
+   **errado**, e o reparo funciona na hora.
+3. **A pergunta a fazer a eles, e é uma só:** *o que, do lado da HostGator, reescreve o `.htaccess` da raiz deste
+   domínio e por que ele é escrito sem o bloco `# BEGIN WordPress`?*
+4. **O dado novo que estreita a pergunta, medido em 05/10:** o arquivo é reescrito **a cada requisição** (o
+   `mtime` acompanha o relógio de quem lê: 10:23:49 → 10:24:10 → 10:24:31 em três leituras minhas de ~20s), e o
+   reescritor **preserva o que encontra** (o bloco do WordPress sobreviveu às três reescritas medidas depois do
+   reparo). Logo **não é desgaste gradual: existe UM evento que gravou o arquivo sem o bloco**, e todas as
+   centenas de reescritas seguintes copiaram a ausência fielmente. Vale perguntar se houve atualização,
+   migração, mudança de painel ou intervenção de suporte **em 24/09 e por volta de 02 a 05/10** — as duas datas.
+
+**PRONTO QUANDO:** houver resposta da HostGator nomeando o que reescreve o arquivo, **ou** eles confirmarem que
+nada do lado deles o faz — e nesse caso o suspeito passa a ser plugin do site e o despacho volta para a fábrica,
+com nome e endereço.
+
+**ENQUANTO NÃO HOUVER RESPOSTA, a ilha não fica caída esperando:** o reparo da 29.3 continua sendo aplicado por
+quem encontrar a porta no chão (`?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1`), e cada
+reparo escreve uma linha em `ilhas/clubedomosaico/dados/consertos.md`. **A série é o que sustenta o chamado** —
+duas linhas já valem mais que a primeira, e uma terceira fecha qualquer dúvida sobre ser acaso.
+
+**E A SEGUNDA METADE DISTO NÃO É DA HOSTGATOR, É NOSSA — as duas quedas demoraram a ser vistas pelo mesmo
+motivo: ninguém rodou o comando.** A decisão sua de 28/09 já manda a ronda técnica diária rodar em **toda** ilha
+no ar, em foco ou fora (ponteiro da 1.2), exatamente por causa da 1ª queda. A ilha caiu de novo com
+`ultima_ronda` em **02/10 14h51Z**. A regra está certa e não foi executada — **regra nova não roda sozinha.**
+Vale decidir entre (a) a ronda diária passar a rodar de fato todo dia nesta ilha, ou (b) revogar a 29.4 e
+pendurar o reparo num gancho automático, assumindo o custo que ela nomeia (*"porta de entrada que se conserta
+calada a cada carregamento é a que ninguém consegue desfazer no dia em que estiver errada"*). **A 29.4 é decisão
+sua e a Fundação não a revoga por conta própria** — por isso isto é pergunta e não conserto.
+
 ### prioridade NORMAL — a ilha EM FOCO tem três páginas na primeira página do Google e ninguém de dentro consegue ler o número delas
 
 **2026-10-02 — Raphael — duas coisas na mesma propriedade do Search Console, e a segunda leva um minuto.**

@@ -90,3 +90,56 @@ O `conferir-no-ar.py` ganhou as mesmas medições, mas ali a linha da borda **re
 jurisprudência é desta ilha, de 14/09: portão vermelho que nenhuma execução consegue fechar "se aprende a ignorar,
 que é pior do que não ter portão". **No dia em que o Raphael fechar, a linha vira portão trocando `ok(True` por
 `ok(_borda_404_ok`**, e está escrito assim no próprio arquivo.
+
+## 05/10/2026 — A PORTA DE ENTRADA CAIU DE NOVO, E PELA 19.4(b) ISSO DEIXA DE SER CONSERTO E VIRA CHAMADO
+
+**Defeito, não sintoma:** o bloco `# BEGIN WordPress` desapareceu outra vez do `.htaccess` da raiz
+(`/home3/rapha921/clubedomosaico.com.br/.htaccess`), **1.057 bytes, bloco único `NFD EPC`,
+`tem_wordpress: false`, 8 linhas de reescrita** — byte por byte a mesma assinatura de 24/09/2026. Sem o bloco, o
+Apache não encaminha caminho bonito para o `index.php` e o WordPress deixa de receber toda URL que não seja
+arquivo em disco.
+
+**O que estava fora do ar, medido às 10h17Z:** as **21** URLs do sitemap, `/wp-sitemap.xml`, `/robots.txt`,
+`/wp-json/` e as **três páginas que estão na primeira página do Google**. Só a home respondia. O
+`?rest_route=/clubedomosaico/v1/status` respondia **200** o tempo inteiro, que é a 29.1 exatamente como escrita:
+todo portão desta fábrica entra pela porta que continuou aberta.
+
+**O que foi feito:** a rota de reparo da 29.3,
+`?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1`. O `.htaccess` foi de **1.057 para 1.580
+bytes**, de **1 para 2 blocos** (`NFD EPC` + `WordPress`) e de **8 para 15 linhas** de reescrita.
+
+**Conferido pela 19.4(a), no ar, com quebra de cache:** 21 de 21 URLs em **200**; `/wp-sitemap.xml` em 200 com
+`application/xml` e XML de sitemap de verdade; `/robots.txt` em 200 e `text/plain`; `/wp-json/` em 200 e
+`application/json`; e `/nunca-existiu-abc123/` em **404 na página desta ilha**. `conferir-no-ar.py`: **524
+afirmações, 0 falha**. `leitura-do-visitante.py` fecha **REPROVADO pelo único defeito de 29/09** (o soft 404 na
+borda), que é vermelho esperado com dono escrito e **não** é regressão desta passada.
+
+**A JANELA, e ela é o número mais caro desta entrada: até 2 dias e 14 horas.** A última prova de vida é de
+**02/10 às 19h57Z** (fecho do bloco 4c, conferido no ar) e a queda foi medida em **05/10 às 10h17Z**. Nenhuma
+ronda rodou nessa janela — `ultima_ronda` estava em **02/10 14h51Z**. Não há como estreitar daqui: a Search
+Console é o instrumento que diria quando o Google viu 404, e **não há credencial neste ambiente**
+(`GOOGLE_SA_B64` ausente), o que por si é uma pendência.
+
+**PELA 19.4(b) ESTE DEFEITO JÁ NÃO É PARA CONSERTAR DAQUI.** A entrada de 24/09 neste mesmo arquivo
+pré-registrou o desfecho com estas palavras: *"Se o defeito voltar, a 19.4(b) vale com força dobrada (...) e aí o
+caminho é chamado na HostGator sobre o `.htaccess` da raiz de `/clubedomosaico.com.br`, não mais um reparo."* É
+a segunda vez, na mesma raiz, com a mesma assinatura. **O chamado é do Raphael** — a Fundação não abre conta,
+não contrata e não fala com fornecedor —, e está escrito em `dados/despachos.md` na lista de ABERTOS. O reparo
+desta passada foi feito porque a ilha estava fora do ar **agora** e deixá-la caída esperando chamado seria pior;
+ele não substitui o chamado.
+
+**ACHADO NOVO, e ele explica por que nenhum relógio delata esta falha:** o `.htaccess` é reescrito
+**a cada requisição**. O `mtime` devolvido pela rota de diagnóstico avançou 10:23:49 → 10:24:10 → 10:24:31 em
+três leituras espaçadas pelos meus próprios ~20 segundos de intervalo. Duas consequências, e as duas importam:
+(1) **"mtime recente" nunca vai acusar o defeito** — o arquivo parece sempre recém-salvo, inclusive nos dias em
+que está errado, então qualquer portão que pensasse em vigiar a data do arquivo estaria vigiando ruído; e
+(2) o reescritor **preserva o que encontra** — o bloco do WordPress sobreviveu às três reescritas medidas depois
+do reparo —, o que quer dizer que a perda **não é desgaste gradual**: é **um evento único** que todas as
+reescritas seguintes copiam fielmente. Isso estreita a causa que a 29.5 declara sem nome: o que se procura é o
+evento que escreveu o arquivo sem o bloco, não um processo que o corrói. Está escrito na 29.5 do
+`ARQUIPELAGO.md`.
+
+**O que a próxima ronda reconfere, e é um comando:** `python3 ferramentas/conferir-no-ar.py .` (a seção da porta
+de entrada da 29.2 reprova se qualquer uma das três cair). Se reprovar **antes** de o chamado da HostGator ter
+resposta, repare pela 29.3 para a ilha não ficar caída, **e escreva a terceira linha aqui** — a série é o que vai
+sustentar o chamado.

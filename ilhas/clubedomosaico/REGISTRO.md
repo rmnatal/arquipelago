@@ -3,6 +3,171 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+05/10/2026 10h18Z — A PORTA DE ENTRADA CAIU DE NOVO, E O BLOCO PROVOU ERRADA A FRASE QUE O MANDOU
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h18Z** e push da reserva aceito na primeira
+tentativa (`1edd3e9`). Os cinco `ESTADO.md` do `main` real estavam com `executando_desde: null`, que pela **1.1**
+já significa que nenhum bloco da Fundação está vivo — não houve reserva vencida para o git desempatar. Nenhum PR
+aberto; a branch `claude/dreamy-mccarthy-mj47ht` estava no mesmo commit do `main`. Pela **18.1** li o topo do
+`PROMPT.md` desta ilha antes de escolher bloco: o despacho de 30/09 tem o item 1 **cumprido** e o item 2 (soft
+404 na borda) **aberto e não sendo da Fundação**.
+
+**Nenhuma URL nova** (a ilha segue em **21**), **nenhuma leva da 21.4 gasta**, **nada publicado** e **nenhum
+Sync acionado** — esta execução não escreveu página. Manifest e `/status` seguem na **revisão 56**.
+
+## A PORTA DE ENTRADA, ANTES DO BLOCO (seção 20.2) — E ELA ESTAVA NO CHÃO
+
+O `curl` da 20.2 devolveu **200 na raiz nas três passadas**, e **se eu tivesse parado nele teria construído
+em cima de uma ilha fora do ar.** O `/status` por caminho bonito devolveu **404** nas mesmas três — e foi esse
+desencontro que abriu o resto:
+
+| endereço | código às 10h17Z |
+|---|---|
+| `/` | **200** |
+| `?rest_route=/clubedomosaico/v1/status` | **200** |
+| `/wp-json/clubedomosaico/v1/status` | **404** |
+| `/wp-json/` · `/wp-sitemap.xml` · `/robots.txt` | **404** · **404** · **404** |
+| `/materiais/acabamento/` (e as outras 20 do sitemap) | **404** |
+
+**É a 29.1 escrita como aconteceu:** o Sync é query na raiz, o `/status` é alcançável por `?rest_route=`, a
+bancada roda sem rede — **todo portão desta fábrica entra pela porta que continuou aberta**, e a porta que o
+Google usa estava fechada. As **três páginas que estão na primeira página do Google** entre elas.
+
+**O diagnóstico por dentro do servidor** (rota da 29.3) deu a assinatura **byte por byte** da queda de 24/09:
+
+| campo | 1ª queda (24/09) | **2ª queda (05/10)** | depois do reparo |
+|---|---|---|---|
+| bytes | 1.057 | **1.057** | 1.580 |
+| blocos `# BEGIN` | só `NFD EPC` | **só `NFD EPC`** | `NFD EPC` + `WordPress` |
+| `tem_wordpress` | false | **false** | true |
+| linhas de reescrita | 8 | **8** | 15 |
+
+E o que ele **descartou de saída**: `raiz_gravavel: true`, arquivo legível e gravável, `got_mod_rewrite(): true`,
+**115 regras de reescrita no banco**. Pela **29.4**, isto separa os dois mundos com número: **não é
+`AllowOverride`** — se o arquivo estivesse gravado e correto e as URLs continuassem em 404, aí sim seria o
+hospedeiro; aqui o arquivo está gravado e **errado**, e o reparo funciona na hora.
+
+**Reparado** com `&reparar=1` e **conferido no ar pela 19.4(a)**, com quebra de cache: **21 de 21** URLs em
+**200**; `/wp-sitemap.xml` em 200 com `application/xml` e XML de sitemap de verdade; `/robots.txt` em 200 e
+`text/plain`; `/wp-json/` em 200 e `application/json`; `/nunca-existiu-abc123/` em **404 na página desta ilha**.
+`conferir-no-ar.py`: **524 afirmações, 0 falha**. `leitura-do-visitante.py`: **REPROVADO pelo único defeito de
+29/09** — o soft 404 na borda, vermelho esperado com dono escrito — e **nenhum defeito novo**.
+
+## A JANELA, QUE É O NÚMERO MAIS CARO DESTA PASSADA: ATÉ 2 DIAS E 14 HORAS
+
+Última prova de vida em **02/10 19h57Z** (fecho do 4c, conferido no ar); queda medida em **05/10 10h17Z**.
+Nenhuma ronda rodou na janela: `ultima_ronda` estava em **02/10 14h51Z**. **A decisão do Raphael de 28/09 — que
+manda a ronda técnica rodar em TODA ilha no ar, em foco ou fora, e que nasceu exatamente da 1ª queda desta ilha —
+não foi executada.** Não há como estreitar a janela daqui: o instrumento que diria quando o Google viu 404 é a
+Search Console, e o ambiente **não tem** `GOOGLE_SA_B64` (pendência que já é despacho aberto desde 12/09, não
+item novo).
+
+## PELA 19.4(b), ESTE DEFEITO JÁ NÃO É PARA CONSERTAR DAQUI — E QUEM DISSE ISSO FOI A PRÓPRIA ILHA
+
+A entrada de **24/09** em `dados/consertos.md` pré-registrou o desfecho com estas palavras: *"Se o defeito
+voltar, a 19.4(b) vale com força dobrada (...) e aí o caminho é chamado na HostGator sobre o `.htaccess` da raiz
+de `/clubedomosaico.com.br`, não mais um reparo."* **Voltou, na mesma raiz, com a mesma assinatura.** O chamado
+está aberto em `dados/despachos.md` com prioridade **ALTA**, endereçado ao Raphael — a Fundação não abre conta,
+não contrata e não fala com fornecedor —, e leva pronto o que dizer, inclusive os quatro campos que descartam
+permissão e `AllowOverride` e as **duas datas** a perguntar (24/09 e 02–05/10). **O reparo desta passada foi
+feito porque a ilha estava caída AGORA**; ele mantém a ilha no ar e **não substitui o chamado**.
+
+## O ACHADO QUE MATOU UM PORTÃO ANTES DE ALGUÉM O CONSTRUIR
+
+**O `.htaccess` é reescrito a cada requisição.** Três leituras da rota de diagnóstico, espaçadas pelos meus
+próprios ~20 segundos, devolveram `mtime` **10:23:49 → 10:24:10 → 10:24:31** — o arquivo acompanhando o relógio
+de quem lê. Duas consequências, e as duas foram para a **29.5**:
+
+1. **"mtime recente" nunca vai delatar esta falha.** O arquivo parece recém-salvo **todos os dias**, inclusive
+   nos dias em que está errado. O portão que qualquer um escreveria primeiro — vigiar a data do arquivo da porta
+   de entrada — **vigiaria ruído**. Quem for vigiar a porta vigia o **conteúdo**: quais blocos `# BEGIN`
+   existem. É a família do "número de tela digitado" da seção 8 — o sinal que parece medição e não mede nada.
+2. **O reescritor preserva o que encontra**, e o bloco do WordPress sobreviveu às três reescritas medidas depois
+   do reparo. Junto com (1): o arquivo é reescrito centenas de vezes por dia e **todas as reescritas copiam
+   fielmente o estado anterior** — logo a perda **não é desgaste gradual**. Existe **um** evento que gravou o
+   arquivo sem o bloco, e todas as reescritas seguintes propagaram a ausência. **Procura-se um evento com hora,
+   não um processo** — e isso é o que estreita a causa que a 29.5 declara sem nome.
+
+## O BLOCO: A SERP DAS TRÊS MÃES DO GUIA, E `espera_serp` ZEROU
+
+Escolhido pela fila: o item do 4c nomeava *"medir a SERP de `alicate` — busca, não coleta"* como o que destrava a
+segunda categoria do Guia, *"o mesmo vale para `pastilha` e `rejunte`"*. **É medição, não construção**: não cria
+URL, não gasta leva da 21.4 e não precisa de Sync — e pela **18.5** era o que cabia numa passada que começou
+achando a ilha fora do ar.
+
+`dados/serp-das-filhas.json` foi de **10 para 15** medições (três mães + duas filhas), e
+`dados/cruzamento-14-9.md` foi **regerado pelo portão**, nunca pela mão: `--autoteste` **32 casos, 0 falha**;
+`--conferir` **APROVADO**. **Não há mais nenhum recorte em "dado verde e SERP nunca olhada"** — o estado que o
+próprio arquivo chamava de *"o caso que mais custou nesta ilha, porque parece passe livre"*.
+
+| recorte | antes | agora | o que falta agora |
+|---|---|---|---|
+| `alicate` (mãe) | `espera_serp` | **`pode_nascer`** | nada nela: os dois portões abriram |
+| `rejunte` (mãe) | `espera_serp` | **`pode_nascer`** | nada nela: os dois portões abriram |
+| `pastilha` (mãe) | `espera_serp` | `espera_autoridade` | autoridade: 7 de 9 são loja, fabricante ou marketplace |
+| `rejunte/cimenticio` | `sem_nenhum_dos_dois` | **`espera_dado`** | **UMA coisa:** `liberacao_area_molhada_h` nos 3 itens |
+| `alicate/torques` | `sem_nenhum_dos_dois` | `sem_nenhum_dos_dois` | SERP **TOMADA** (7 de 10 lojas): **não é** o caminho |
+
+## E O BLOCO PROVOU ERRADA A FRASE QUE O MANDOU — a parte que a próxima execução precisa ler
+
+A fila dizia, em 02/10: *"O que a destrava é medir a SERP de `alicate`, e com ela a segunda categoria do Guia
+sai com a mesma leva de quatro."* **Não saiu.** A frase confundiu dois portões: a mãe estava de fato em
+`espera_serp`, mas o que a **16.5** cobra são **3 filhas no cruzamento** — e **as filhas não param na SERP,
+param no DADO**. `alicate` e `rejunte` foram as duas para `pode_nascer` e **nenhuma das duas pode nascer**:
+`alicate` tem 1 filha no cruzamento e `rejunte` tem 0.
+
+**O caminho mais curto trocou de dono: é o `rejunte`, não o `alicate`.** A mãe já passa os dois portões, e
+`rejunte/cimenticio` está a **um número** de passar — os 3 itens já existem e falta `liberacao_area_molhada_h`
+neles, declaração de fabricante, o mesmo tipo de lastro que a `acabamento` juntou **por busca** em 25/09. As
+outras duas filhas de `rejunte` (`acrilico`, `epoxi`) têm 1 item cada e precisam de 2 mais cada uma. Já o
+`alicate/torques`, que parecia o atalho óbvio, **saiu TOMADA** — e isso é informação negativa que poupa a
+próxima passada de tentar.
+
+## A ARMADILHA DE CONSULTA QUE FICOU MEDIDA, E ELA DECIDE O QUE SE ESCREVE
+
+`rejunte para mosaico` **cru** cai na SERP de **obra** — o corpus de 10/09 já tinha medido: cálculo de piso,
+Viva Decora, Omni. A **pergunta sobre peça artesanal** cai numa SERP com **ZERO marketplace, ZERO loja e ZERO
+fabricante em 10 de 10**, a mais aberta que esta ilha já mediu. São **duas SERPs vizinhas**, e a frase da página
+decide em qual ela aterrissa: quem escrever `rejunte` mira a pergunta da peça, nunca o termo cru.
+
+**E a margem está escrita no `motivo`, porque ela é fina:** 8 dos 10 respondem obra, e o décimo é a **biografia
+de uma pessoa na Wikipedia**. Isso é **SERP rala, não SERP conquistada** — o único resultado que fala do assunto
+desta ilha é um blog de mosaico, e é só ele que sustenta `ABERTA` em vez de `ABERTA_SEM_INTENCAO_NA_SERP`, cuja
+definição exige que **nenhum** fale.
+
+## A LEITURA DO ARQUIVO ACERTOU PELA QUARTA VEZ, COM UM REFINAMENTO
+
+`as_abertas_sao_pergunta_e_as_tomadas_sao_produto` previu `alicate/torques` (consulta que nomeia o produto → 7
+lojas) e previu `pastilha`. **O refinamento é que forma de pergunta NÃO basta:** `qual pastilha escolher para
+fazer mosaico artesanal` **é** pergunta e saiu **TOMADA**, porque quem vende pastilha vende exatamente para
+mosaico. **O que decide é se o vendedor do produto mira ESTE nicho.** No rejunte ele mira obra — e é por isso
+que a pergunta do artesanato ficou vazia. Está escrito no `motivo` das medições.
+
+## O QUE ESTA EXECUÇÃO NÃO FEZ, DE PROPÓSITO
+
+- **Não publicou página nem acionou o Sync.** Medição não cria URL; o manifest segue na 56.
+- **Não estimou faixa de volume.** As faixas das três mães vieram de `dados/corpus-buscas.md` (Planejador, conta
+  do Raphael); a de `rejunte/cimenticio` ficou **`null`**, nunca estimada — o pedido de faixa já é despacho
+  aberto e subiu de 6 para **7** consultas.
+- **Não coletou SKU** para fechar as filhas de `rejunte`. Isso é o próximo bloco, e agora ele tem alvo único.
+- **Não abriu o chamado na HostGator** nem falou com fornecedor: virou despacho ALTA para o Raphael.
+- **Não tocou em nenhuma outra ilha.** Reserva é por ilha (seção 1).
+
+## BANCADA DESTA EXECUÇÃO
+
+`cruzamento-14-9.py --autoteste` **32 casos, 0 falha** · `--conferir` **APROVADO** · `conferir-no-ar.py` **524
+afirmações, 0 falha** · `leitura-do-visitante.py` **22 URLs, 1 defeito** (o soft 404 da borda, de 29/09, com
+dono escrito) · cabeçalho do `ESTADO.md` por `yaml.safe_load` com **teste de presença dos 8 campos: YAML ok**.
+
+## PRÓXIMO PASSO DESBLOQUEADO
+
+**Fechar `rejunte/cimenticio` pelo dado:** `liberacao_area_molhada_h` nos 3 itens que já existem, por busca, com
+`literal_do_fabricante` — exatamente o método que tirou a `acabamento` do zero em 25/09. Com ele a filha sai de
+`espera_dado` para `pode_nascer`, e então faltam **2 filhas** para a mãe `rejunte` cumprir a 16.5 e a segunda
+categoria do Guia nascer com a leva de quatro. **O que NÃO falta mais é SERP** — em recorte nenhum.
+
+---
+
 02/10/2026 19h16Z — O BLOCO 4c: A PRIMEIRA CATEGORIA DO GUIA NASCEU, E NASCEU COM AS TRÊS FILHAS
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h16Z** e push da reserva aceito na
