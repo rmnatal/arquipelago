@@ -69,6 +69,214 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-05 (RONDA DIÁRIA TÉCNICA, 14h55Z) — TRÊS ITENS, E O PRIMEIRO É DE DINHEIRO
+
+> **ESTA RONDA ESCOLHEU A clubedomosaico PELA REGRA DA DÍVIDA (seção 12):** ela é a única ilha com publicação
+> nova desde a última ronda — o `ultima_execucao` do cabeçalho é de **hoje, 14h05Z**, e o sitemap foi de 17 para
+> **21 URLs** com a mãe `/materiais/acabamento/` e as três filhas. Código novo é onde mora defeito. A aquametria
+> e a robometria receberam **sonda de vida** (porta de entrada e contagem de sitemap), e as duas estão de pé:
+> `/`, `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/` em 200 com o tipo certo, caminho inexistente em 404, e
+> sitemap com 52 URLs na aquametria e 14 na robometria.
+
+**RECONFERÊNCIA DA 19.4(c), ANTES DE QUALQUER OUTRA COISA.** As **oito** entradas de `dados/consertos.md` foram
+abertas primeiro e reconferidas no ar, com quebra de cache e `Accept-Encoding: identity`:
+
+- **24/09 — a porta de entrada (29.2): PASSOU pela quarta ronda seguida.** 21 de 21 URLs do `wp-sitemap.xml` em
+  **200**; `/wp-sitemap.xml` em 200 com `application/xml` e XML de sitemap de verdade; `/robots.txt` em 200 e
+  `text/plain`; `/wp-json/` em 200 e `application/json`; caminho inexistente em **404 na página desta ilha**.
+- **05/10 — o reparo do `.htaccess` das 10h17Z: PASSOU.** É a mesma medição acima, e ela é a reconferência que a
+  entrada de hoje pediu. **Pela 19.4(b), se cair uma terceira vez o caminho é o chamado na HostGator, não um
+  terceiro reparo** — e o chamado já está na lista de ABERTOS de `dados/despachos.md`.
+- **25/09 — os links regerados: PASSARAM.** **35** links de loja servidos nas 21 URLs, **todos** presentes no
+  banco (`url` ou `url_busca`), **zero** encurtador desconhecido e **zero** link cru de Shopee ou Mercado Livre.
+- **25/09 — a etiqueta de robô: PASSOU, e hoje em CINCO alvos, um deles novo.** `/author/artesa/` — que nasceu
+  com as páginas de peça e é linkado das **cinco** pelo bloco "Escrito por" — serve **uma**
+  `<meta name='robots' content='noindex, follow' />`, igual a `/author/mosaico_gestor/`,
+  `/materiais/como-sabemos/` e `/?s=cola`. E **zero** `noindex` indevido nas 21 do sitemap.
+- **29/09 — o soft 404 na borda: CONTINUA**, e segue sendo do Raphael (item 2 do despacho de 30/09).
+- **28/09 — OS CINCO ITENS ESTÃO FECHADOS, e dois deles foram medidos hoje pela primeira vez desde que fecharam:**
+  a **unidade dobrada** (`46x36cm cm`) tem **zero** ocorrência nas 21 URLs, na vitrine, na página da peça e no
+  `description` do `Product` no JSON-LD; os **estados com parâmetro da F1** servem `noindex`; as 21 servem
+  `<meta name="description">` e **nenhuma** passa de 160 caracteres; **zero** `afiliado.degrau` em `null` em 41
+  de 41 itens com bloco de afiliado; e o **`alt` das imagens de `/loja/`** está certo — a foto de destaque e as
+  cinco do carrossel de cada peça têm `alt` descritivo ("Bandeja em madeira — trencadís (caquinho), foto 3"), e
+  as únicas que restam com `alt=""` são as **miniaturas de 150×150 da tira**, duplicata decorativa da imagem já
+  rotulada ao lado. **Miniatura decorativa com `alt` vazio é correto e não é defeito** — a contagem de 22 não
+  deve voltar a ser relatada como pendência.
+- **30/09 — o item 1 CONTINUA cumprido:** **17 de 17** itens de degrau 4 com `motivo_sem_ficha` na forma da
+  25.4-b.3, com a causa separada da última tentativa pelo marcador.
+
+**O QUE ESTA RONDA MEDIU E PASSOU, para a Fundação não remedir:** 21 de 21 URLs em **200**; **zero** `&#038;`
+dentro de `<script>` nas 21 (contado só nos blocos `<script>`, como a seção 12 manda); **zero** página órfã —
+toda URL com 2 ou mais links internos apontando para ela, a mais pobre com 2; JSON-LD nas 21 e `BreadcrumbList`
+nas 20 que não são home, com os **quatro** níveis certos nas três filhas novas; breadcrumb **visível**
+(`nav.cdm-trilha`, com `aria-current="page"` no nível atual) nas 20; **zero** `<img>` sem `width`/`height`;
+`aria-expanded` e `aria-controls` nas 21; nenhuma palavra da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>`
+ou primeiro parágrafo das 21; **console sem uma mensagem**, com recarga, em `/materiais/acabamento/` e em
+`/materiais/acabamento/impermeabilizar-peca-de-mosaico/`; `/status` na **revisão 56**, igual à do
+`manifest.json`. **Malha da 16.4 fechada na categoria nova:** a mãe lista as três filhas com âncora na consulta
+de cada uma ("selar a base antes de fazer mosaico: precisa de selador?"), e cada filha linka a mãe **e as duas
+irmãs** em bloco "Veja também", mais o seletor de cola no corpo.
+
+**AS DUAS FERRAMENTAS FORAM EXECUTADAS COM ENTRADA REAL E A CONTA REFEITA NA MÃO:**
+
+- **F1 (quantas pastilhas)**, entrada nova — `forma=disco&d=30&pastilha=p25&esp=4&junta=4&sobra=15&rejunte=epoxi&onde=externo_exposto`
+  → **707 cm² (0,071 m²)**, **passo 2,9 cm**, **1.189 pastilhas/m²**, **97 pastilhas para comprar**. Confere:
+  π × 15² = 706,86 cm²; 2,5 + 0,4 = 2,9 cm; 10.000 ÷ 2,9² = 1.189,1; 706,86 ÷ 8,41 = 84,05 pastilhas, com 15%
+  de sobra = 96,66, arredondado para cima = **97**. **Os cinco números batem.** O rejunte epóxi sai como "a
+  gente não calcula para esse", com o motivo publicado — e isso é a regra funcionando, não defeito.
+- **F2 (qual cola)**, `base=espelho&onde=externo_exposto&caco=caco_espelho&junta=3` → **Tekbond Silicone
+  Neutro**. Conferido no banco na mão: `espelhos` está em `declaracoes.indicado_para` e `chuva` e `raios UV` em
+  `resistencias_declaradas`. **Nenhuma contradição:** o produto recomendado **não** aparece na própria lista de
+  "o que não usar", que nomeia o Acético Construção pelo motivo publicado. Coerência da recomendação conferida
+  lendo como leitor leria, não por régua.
+
+**TESTE DE VIDA DOS LINKS (25.4 e 25.4-b), do navegador do Raphael, sem gastar um clique de afiliado:**
+**10 de 24 itens com `url_produto` medidos — 10 VIVOS, 0 morto, 0 esgotado — e 14 NÃO MEDIDOS.** Os **4** do
+Mercado Livre `/p/MLB...` foram abertos no navegador e os quatro estão vivos com preço (R$ 59, R$ 81, R$ 19,
+R$ 76), nenhum pausado. Dos **20** da Shopee, **6** responderam `item_status: "normal"` pela API de ficha, com
+o título batendo com o registro; os outros 14 não foram medidos pelo motivo do **item 3** abaixo. **"Não medido"
+não é "vivo", e esta ronda não vai escrever que é.** **Piso da 25.2: 41 de 41** itens com bloco de afiliado têm
+`url_busca` **e** `url_busca_produto`. **Itens intestáveis (com `url` e sem `url_produto`): ZERO.**
+
+---
+
+### 1. O BANCO SABE E O SITE NÃO: SETE DAS NOVE CÉLULAS DE REJUNTE DA F2 ESTÃO ERRADAS NO AR, E UMA DELAS ESTÁ VAZIA — **TENTEI CONSERTAR EM 05/10/2026 E FALHOU**
+
+**É o defeito mais caro desta ronda, e ele foi previsto por escrito pela própria execução que o criou.** O
+`bloco_atual` de hoje, item 4, diz com todas as letras: *"A FAIXA DE JUNTA MUDOU 7 DAS 9 CELULAS DA F2, QUE JA
+ESTA NO AR, e duas delas sao ganho: a 3 mm em contato_permanente_agua o rejunte piscinas subiu ao TOPO ao lado
+do epoxi, e a 6 mm em contato_permanente_agua a celula ESTAVA VAZIA e passou a ter recomendado."* E o mesmo
+`bloco_atual`, duas linhas acima, fecha com: *"nada publicado e NENHUM Sync acionado (...) Manifest e /status
+seguem na revisao 56."* **As duas frases não podem ser verdadeiras ao mesmo tempo: a F2 no ar não mudou, porque
+o dado não desembarcou.**
+
+**O QUE ESTÁ NO REPOSITÓRIO:** `ilhas/clubedomosaico/dados/materiais-rejuntes.json`, registro
+`quartzolit-rejunte-piscinas`, com `junta_min_mm: 2` e `junta_max_mm: 10` lidos do boletim de agosto de 2017
+("Juntas de assentamento: de 2 a 10 mm"), mais `liberacao_area_molhada_h: 96`. Commitado hoje.
+
+**O QUE O SITE SERVE, medido às 14h4xZ com quebra de cache, em três células:**
+
+| entrada | o que a página diz hoje | o que o banco manda dizer |
+|---|---|---|
+| `onde=contato_permanente_agua&junta=6` | **"Não temos rejunte para indicar com 6 mm de junta dentro da água"** — célula **vazia** | o Rejunte Piscinas cobre 2 a 10 mm e declara uso submerso em água tratada |
+| `onde=contato_permanente_agua&junta=3` | recomenda só o Epóxi; do Piscinas diz **"a gente não conseguiu a faixa de junta que o fabricante publica"** | o Piscinas sobe ao topo ao lado do Epóxi |
+| `onde=contato_permanente_agua&junta=5` | idem, mesma frase | o Piscinas entra |
+
+**A frase que está no ar é uma afirmação sobre o nosso próprio trabalho, e ela ficou falsa hoje.** A página diz
+ao leitor que não conseguimos um número que o `main` tem. E o produto que ela deixa de fora é justamente o que o
+fabricante fez para ficar dentro da água — numa pergunta cuja resposta é "dentro da água o tempo todo". O
+`/status` confirma: `revisao: 56`, e o **último desembarque registrado é de 02/10 19h52**.
+
+**ESTE DEFEITO É DA LISTA FECHADA 19.1 — `Sync não disparado` — E EU TENTEI CONSERTÁ-LO, COMO A 19.3 MANDA.
+FALHOU, E A CAUSA NÃO É DO SITE:** o acionamento de `?clubedomosaico_sync=<token>&forcar=1` por `curl` foi
+**recusado pelo ambiente desta rotina**, com a classificação de *deploy em produção*. Não há caminho alternativo
+que eu deva tentar: contornar a recusa é proibido. Pela **19.4(a)**, conserto que não passa a conferência no ar
+vira despacho, e é o que esta linha é: **tentei consertar em 05/10/2026, falhou: o acionamento do Sync por curl
+é bloqueado para a rotina da Sentinela.** Está também em "Precisa do Raphael" no `dados/PAINEL.md`, porque
+**enquanto estiver assim a 19.1 e a 19.3 são letra morta para a Sentinela**: ela não consegue cumprir "aciona o
+Sync e reabre a URL para conferir", e todo defeito que dependa de desembarque vai virar despacho em vez de
+conserto.
+
+**O que a Fundação faz:** sobe a `revisao` do `manifest.json` de **56 para 57** (com `atualizado_em: 2026-10-05`)
+e aciona o Sync da ilha, como qualquer fecho de bloco.
+
+**PRONTO QUANDO:** (a) `?rest_route=/clubedomosaico/v1/status` devolver `revisao` **maior que 56** com `ultimo`
+de 05/10 ou depois; (b) `/materiais/qual-cola-usar-no-mosaico/?base=ceramica_esmaltada_porcelana&onde=contato_permanente_agua&caco=pastilha_vidro&junta=6`
+**deixar de dizer** "Não temos rejunte para indicar" e **nomear** o Rejunte Piscinas Quartzolit; (c) a frase
+"a gente não conseguiu a faixa de junta" **não aparecer** em nenhuma das três entradas da tabela acima; e (d) a
+mesma URL com `junta=3` listar o Rejunte Piscinas ao lado do Epóxi. As quatro medidas são de abrir URL e ler.
+
+---
+
+### 2. `quartzolit-rejunte-acrilico` ESTÁ NO `degrau: 2` COM UMA URL DE ANÚNCIO DE VENDEDOR NA SHOPEE — E O DEGRAU 2 DA 25.1 É SÓ O CATÁLOGO DO MERCADO LIVRE
+
+**Dado do banco: é 19.2, e eu não conserto.** Em `ilhas/clubedomosaico/dados/materiais-rejuntes.json`, o bloco
+`afiliado` do registro `quartzolit-rejunte-acrilico` traz, ao mesmo tempo:
+
+- `"programa": "shopee"` e `"url_produto": "https://shopee.com.br/product/1462074750/58262414865"`;
+- `"degrau": 2` — e a **25.1** reserva o degrau 2 para **a página de catálogo `/p/MLB...` do Mercado Livre**, "ela
+  é *o produto*, não o anúncio". Anúncio de vendedor comum na Shopee é **degrau 3**, "último recurso";
+- `"etiqueta_ml": "clubedomosaicof2"` — etiqueta de Mercado Livre num registro cujo programa é a Shopee;
+- **nenhum** bloco `casamento` e **nenhum** campo `por_que_este_degrau_da_25_1`, que os itens casados em 29/09
+  carregam.
+
+**E a loja é a mesma que o banco já classificou como vendedor comum, em outro registro:** o `shop_id`
+`1462074750` é o do `quartzolit-borracha-liquida-elastica`, que escreve, no próprio campo,
+`por_que_este_degrau_da_25_1: a loja "Edu Tintas Ltda" e vendedor comum (25.1, degrau 3)`. **O mesmo vendedor
+está rotulado degrau 3 num registro e degrau 2 no outro.**
+
+**POR QUE ISSO NÃO É COSMÉTICO.** O degrau é o que a 25.1 manda gravar para se saber **quanto aquele link dura**,
+e é por degrau que a 25.2-b ordena a vitrine. Um anúncio de vendedor rotulado como catálogo é um link perecível
+vestido de link durável — e ele está servido em `/materiais/qual-cola-usar-no-mosaico/`, onde o rejunte acrílico
+aparece em recomendação. A contagem de degraus do banco hoje (1 no degrau 1, **5** no degrau 2, 18 no 3, 17 no 4,
+em 41) está errada na casa que mede durabilidade.
+
+**Escolher o conserto é da Fundação (19.2), porque são duas opções defensáveis:** ou o `degrau` desce para 3 com
+o `por_que_este_degrau_da_25_1` escrito e o `etiqueta_ml` zerado, ou o `url_produto` é trocado por uma
+`/p/MLB...` real do Mercado Livre — e nesse caso a **25.4-b.1** manda reescolher o par **inteiro**, `url` e
+`url_produto` da mesma oferta na mesma chamada, nunca grampear um ao lado do outro.
+
+**PRONTO QUANDO:** `validar-banco.py` reprovar registro cujo `degrau` seja 2 sem `url_produto` de catálogo do
+Mercado Livre, e reprovar `etiqueta_ml` não nulo com `programa` diferente de `mercadolivre`; e, rodado no banco
+desta ilha, imprimir **zero** reprovação. O número de itens no degrau 2 tem de sair de 5 e ser dito
+explicitamente no fecho.
+
+---
+
+### 3. O TESTE DE VIDA DA 25.4 PAROU DE COBRIR UMA RONDA INTEIRA, E ISTO É MÉTODO, NÃO DEFEITO DESTA ILHA
+
+**Não é trabalho da Fundação e não é defeito do site.** Está aqui para a próxima ronda não gastar a execução
+redescobrindo, como a 25.4 avisa que acontece.
+
+**O QUE FOI MEDIDO HOJE, no navegador do Raphael, entre 14h2xZ e 14h4xZ:**
+
+- Abrir `https://shopee.com.br/` direto **cai no anti-robô na hora**: a aba é levada para
+  `shopee.com.br/verify/captcha?...&scene=crawler_item`.
+- Chamar `https://shopee.com.br/api/v4/pdp/get_pc?...` **como URL de aba** devolve
+  `{"is_login":true,"error":90309999,"redirect_to_error_page":true}` — a sessão existe e o anti-robô recusa.
+- De dentro de uma aba **já numa ficha de produto** (`/product/<shop_id>/<item_id>`), o `fetch` para
+  `/api/v4/pdp/get_pc?shop_id=…&item_id=…&detail_level=0` com `X-API-SOURCE: pc`,
+  `X-Shopee-Language: pt-BR` e `X-Requested-With: XMLHttpRequest` **funciona** — 200, `error: null`,
+  `item_status` e `title` de verdade. **Mas só nos primeiros 4 a 6 chamados daquele contexto.** Do quinto ou
+  sexto em diante vem `error: 90309999`, e a aba é redirecionada para
+  `shopee.com.br/verify/traffic?...&scene=crawler_item`, o que mata qualquer laço em andamento.
+- Abrir uma ficha nova para zerar o contador **deixou de funcionar na terceira tentativa**: a quarta aba já
+  respondeu `90309999` no primeiro chamado. O limite escalou para a sessão, não para a página.
+- **Dois erros de método, medidos e escritos para ninguém repetir:** (a) `fetch` com um header `af-ac-enc-dat`
+  vazio devolve **403** mesmo dentro da ficha — não invente header; (b) chamar `/api/v4/item/get` ou
+  `/api/v4/pdp/get_rw` **aciona o anti-robô na hora** e queima o contexto. **Só `pdp/get_pc`.**
+- E uma observação que **não** vira régua: na ficha de produto o `document.title` chega por um instante com o
+  nome real do produto antes de voltar para o genérico "Shopee Brasil | Ofertas incríveis…". **A 25.4 proíbe usar
+  o `<title>` como teste e continua certa** — isto é frágil e some em milissegundos.
+
+**A Sentinela é proibida de resolver CAPTCHA (25.4), então não há o que tentar daqui.** O resultado honesto desta
+ronda é **6 de 20 itens da Shopee medidos** (todos `normal`: `acrilex-verniz-acrilico-brilhante`,
+`acrilex-verniz-acrilico-fosco`, `acrilex-verniz-acrilfix-brilhante`, `quartzolit-verniz-protetor-para-pisos`,
+`quartzolit-borracha-liquida-elastica`, `suvinil-seladora-para-madeira`) e **14 não medidos**:
+`coral-selador-acrilico`, `coral-resina-acrilica`, `cortag-torques-mosaico-roldanas`,
+`cortag-torques-azulejista-corte-reto`, `vonder-vdec-51`, `vonder-vdec-75`, `vonder-vdec-90`,
+`tekbond-silicone-acetico-construcao`, `cascola-cascorez-extra`, `tekbond-silicone-acetico-maxx`,
+`quartzolit-rejunte-ceramicas`, `quartzolit-rejunte-porcelanatos-e-ceramicas`, `quartzolit-rejunte-acrilico`,
+`quartzolit-rejunte-piscinas`.
+
+**O QUE ISSO CUSTA, dito sem maquiar:** com 4 a 6 itens por sessão, um banco de 20 fichas na Shopee precisa de
+**três a quatro rondas** para ser varrido uma vez, e a cicatriz de 13/09 foi **quatro links mortos em menos de
+doze horas**. A escolha de quais itens testar primeiro deixa de ser detalhe: a 25.4 manda começar pelos que a
+ferramenta mais recomenda e pelos que nunca foram testados, e com teto de 6 isso passa a ser a regra inteira.
+
+**O que seria preciso, e é decisão do Raphael, não da Fundação:** ou a Open API de Afiliados (25.6) passa a
+responder o estado do anúncio — ela já é chamada para encurtar, e aí o teste sai do navegador e vira rotina de
+nuvem —, ou a 25.4 ganha a linha que diz quantos itens por ronda são possíveis e em que ordem. **Enquanto não
+houver uma das duas, nenhuma ronda deve escrever "N de N vivos" sobre um banco que ela não conseguiu varrer.**
+
+**REGISTRO, NÃO DEFEITO (seção 12, RECEITA):** em `/materiais/acabamento/` e em
+`/materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/`, o `quartzolit-fundo-selador` — que está no degrau 4
+e serve só a busca — aparece em **segundo** lugar, acima do `suvinil-seladora-para-madeira`, que tem ficha. **Não
+viola a 25.2-b**, porque o link de busca é rastreável e rende; e o **primeiro** item das duas listas tem ficha,
+então a régua da RECEITA não dispara. Fica escrito porque o topo é o espaço mais caro da página e a ordenação é
+escolha da Fundação (19.2).
+
 ## DESPACHO DA SENTINELA — 2026-09-30 (RONDA DIÁRIA TÉCNICA, 14h53Z) — UM ITEM NOVO; OS QUATRO DE 28/09 RECONFERIDOS NO AR E CONFIRMADOS
 
 > **ESTADO DESTE DESPACHO EM 30/09/2026 às 16h3xZ, pela 18.3 — O ITEM 1 SAIU E NÃO SOBROU NADA PARA A FUNDAÇÃO.**
