@@ -3721,3 +3721,81 @@ necessário, **nenhum force push**, nenhum PR aberto.
 **Falhas: nenhuma.** Nenhum valor de token, chave, senha ou e-mail de pessoa foi escrito em arquivo, commit ou resposta. Nenhuma
 ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado tocado, nenhum bloco de fila de ilha executado,
 nenhum Sync acionado, nada publicado, nenhuma conta criada. Nenhum arquivo fora dos 6 nomeados, mais este log.
+
+## 05/10/2026 12h09 BRT (15h09 UTC) — ronda diária técnica da Sentinela na clubedomosaico: QUATRO escritas, um commit, tudo no `main`
+
+**Instrução recebida:** quatro escritas literais, num commit só, com a mensagem ditada pela Sentinela. Nenhum arquivo de conserto — a própria instrução diz que não há quinta escrita e que é de propósito, porque esta ronda não efetivou conserto nenhum.
+
+**Checagem de assunto, antes do `git fetch`:** assunto do Arquipélago. É a ilha clubedomosaico, a Sentinela, a ferramenta F2, o banco de materiais da ilha, links de afiliado da ilha e o `dados/PAINEL.md`. Executado.
+
+**Âncoras — as quatro foram encontradas exatamente como escritas, nenhuma adivinhada:**
+
+```
+ESCRITA 1  ilhas/clubedomosaico/PROMPT.md
+           ancora "## DESPACHO DA SENTINELA — 2026-09-30 (RONDA DIARIA TECNICA, 14h53Z)"
+           achada na linha 72, uma unica ocorrencia -> bloco inserido imediatamente antes
+ESCRITA 2  ilhas/clubedomosaico/dados/consertos.md
+           ancora "| 2026-10-02 | — |" achada na linha 12, uma unica ocorrencia,
+           seguida de linha em branco (13) e do titulo "## 12/09/2026" (14), como a instrucao descreve
+ESCRITA 3  ilhas/clubedomosaico/ESTADO.md
+           ancora "ultima_ronda: 2026-10-02T14:51Z" achada na linha 13, uma unica ocorrencia
+ESCRITA 4  dados/PAINEL.md (raiz, nao dentro de ilhas/) existia com 60 linhas -> substituido inteiro
+```
+
+**`git status --porcelain` (antes do commit):**
+
+```
+ M dados/PAINEL.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+```
+
+**`git diff --stat` (antes do commit):**
+
+```
+ dados/PAINEL.md                         |  67 +++++-----
+ ilhas/clubedomosaico/ESTADO.md          |   2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 208 ++++++++++++++++++++++++++++++++
+ ilhas/clubedomosaico/dados/consertos.md |   1 +
+ 4 files changed, 247 insertions(+), 31 deletions(-)
+```
+
+**Commit que foi ao `main`, confirmado em `origin/main` por `git fetch origin main && git log -1 origin/main`:**
+
+```
+176186c80033c8e3cefbca3bf504681a5ef60fd1
+sentinela: ronda diaria tecnica de 05/10 na clubedomosaico (3 defeitos, 0 conserto efetivado, 1 tentado e recusado pelo ambiente)
+0463fc9..176186c  HEAD -> main   (push aceito de primeira, sem rebase, sem force, sem PR)
+```
+
+**Contagem do que mudou — CONFERIDA RELENDO OS ARQUIVOS DEPOIS DE GRAVAR, não pelo que eu achava que havia escrito:**
+
+```
+ilhas/clubedomosaico/PROMPT.md       1380 linhas no total
+  despacho de 05/10 abre na linha 72 (1 ocorrencia do titulo)
+  despacho de 30/09 abre agora na linha 280 (1 ocorrencia, intacto)
+  bloco inserido = 207 linhas + 1 linha em branco antes do titulo de 30/09
+  conferido: exatamente UMA linha em branco separa o fim do bloco do titulo de 30/09
+ilhas/clubedomosaico/dados/consertos.md   147 linhas no total
+  7 linhas de tabela comecando com "| 2026-" (eram 6)
+  linha nova de 2026-10-05 na linha 13, 4097 caracteres, 1 ocorrencia, UMA unica linha
+ilhas/clubedomosaico/ESTADO.md       493 linhas no total
+  ultima_ronda na linha 13, 1 ocorrencia, 2260 caracteres
+  valor novo: ultima_ronda: 2026-10-05T14:55Z   # RONDA DIARIA TECNICA de 05/10/2026, ...
+  git diff --numstat: 1 insercao, 1 remocao -> nenhuma outra linha do cabecalho tocada
+dados/PAINEL.md                      68 linhas, 13623 caracteres (antes: 60 linhas, 10398 bytes)
+```
+
+**Verificador de YAML pedido pela instrução, rodado depois da escrita 3 e rodado outra vez na releitura:**
+
+```
+$ python3 -c "import io,yaml;d=yaml.safe_load(...ESTADO.md...split('---')[1]);f=[...];print('YAML ok' if not f else ...)"
+YAML ok
+```
+
+Saiu exatamente `YAML ok` nas duas vezes, então a escrita 3 **fica** — não houve o desfazimento previsto pela instrução.
+
+**Falhas: nenhuma.** As quatro âncoras bateram, o push foi aceito de primeira e o commit está em `origin/main`.
+
+**O que eu NÃO fiz, de propósito:** não acionei o Sync (é o item 1 do despacho e é trabalho da Fundação na execução seguinte, e a própria instrução proíbe as mãos de acionar); não subi a `revisao` do `manifest.json` de 56 para 57, pelo mesmo motivo; não reservei ilha; não escrevi `executando_desde`; não toquei em nenhum cabeçalho de estado além da única linha `ultima_ronda` que a escrita 3 nomeou; não executei bloco de fila; não publiquei nada nem marquei `publicar: true`; não verifiquei site; não criei conta; não criei PR; não mexi em nenhum arquivo além dos 4 nomeados mais este `MAOS-LOG.md`, que é a exceção obrigatória. Nenhum contato pessoal de terceiro entrou no repositório — o texto das quatro escritas não traz e-mail, telefone nem endereço de pessoa, e o `GOOGLE_SA_B64` citado no PAINEL é só o nome da credencial, nunca o valor.
