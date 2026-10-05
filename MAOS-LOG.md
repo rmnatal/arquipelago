@@ -3639,3 +3639,85 @@ Uma tentativa de rebase resolveu, das três permitidas. **Nenhum force push.** N
 Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado tocado além da linha de comentário que a
 instrução nomeou no molde, nenhum bloco de fila executado, nenhum Sync acionado, nada publicado. Nenhum arquivo fora dos 5
 nomeados, mais este log.
+
+---
+
+## 05/10/2026, 06h06 (09h06Z) — Pente Fino de 05/10, DISPARO 3 DE 3 (o último): 11 de 19 consertos nas ilhas
+
+**Assunto conferido ANTES do `git fetch`, como a trava manda:** correções de coerência nos `PROMPT.md`/`ESTADO.md`/`ARVORE.md`/
+`DESIGN.md` das ilhas aquametria, clubedomosaico, jornadafly, ohmetria e robometria. É do Arquipélago — executado.
+
+**Este foi o disparo 3 de 3 do Pente Fino de 05/10/2026, e as 11 substituições (as de número 9 a 19 de um total de 19) casaram
+todas: 11 de 11. Nenhuma pulada.** Cada TRECHO ANTIGO apareceu exatamente uma vez no arquivo indicado, conferido por contagem
+antes de cada gravação.
+
+```
+git status --porcelain
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/clubedomosaico/ARVORE.md
+ M ilhas/clubedomosaico/DESIGN.md
+ M ilhas/jornadafly/PROMPT.md
+ M ilhas/ohmetria/PROMPT.md
+ M ilhas/robometria/ESTADO.md
+```
+
+```
+git diff --stat
+ ilhas/aquametria/PROMPT.md     |  5 +++--
+ ilhas/clubedomosaico/ARVORE.md |  6 +++++-
+ ilhas/clubedomosaico/DESIGN.md |  4 +++-
+ ilhas/jornadafly/PROMPT.md     | 12 ++++++++++--
+ ilhas/ohmetria/PROMPT.md       | 10 +++++++++-
+ ilhas/robometria/ESTADO.md     | 31 +++++++++++++++++++++++++++++--
+ 6 files changed, 59 insertions(+), 9 deletions(-)
+```
+
+**Portão da seção 2 do contrato, rodado ANTES do commit (saída colada como a instrução pediu):**
+
+```
+OK ilhas/_modelo/ESTADO.md []
+OK ilhas/aquametria/ESTADO.md []
+OK ilhas/clubedomosaico/ESTADO.md []
+OK ilhas/jornadafly/ESTADO.md []
+FALTA ilhas/ohmetria/ESTADO.md ['ultima_ronda', 'bloqueada_por']
+OK ilhas/robometria/ESTADO.md []
+```
+
+A `ilhas/ohmetria/ESTADO.md` já vinha FALTANDO `ultima_ronda` e `bloqueada_por` antes deste disparo — defeito conhecido,
+registrado no relatório, **não é coisa das mãos e não foi consertado**, como a instrução mandou. As outras saíram OK, incluindo a
+`ilhas/robometria/ESTADO.md`, que é a única das seis alteradas aqui: as três substituições nela são todas abaixo do cabeçalho
+YAML e o portão prova que o arquivo continua parseando depois da gravação.
+
+**Hash que foi ao `main`: `0e4d45752898d439a7d3d91f0f0d0fc8052e10b3`** (`0e4d457`), confirmado com `git fetch origin main &&
+git log -1 origin/main`, que devolveu este mesmo hash e o assunto `pente fino 05/10/2026: ordens velhas nas ilhas — 11 de 19
+consertos`.
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar, nunca pelo que eu achei que escrevi:** 6 arquivos,
+59 linhas inseridas e 9 removidas.
+
+- `ilhas/aquametria/PROMPT.md` — 3 substituições (9, 10 e 11): o "pronto quando" de **14** itens que viraram **12**; o ponteiro
+  de 05/10 sobre a manchete de 22/09 do mutirão, que ficou de pé por cima da reabertura de 24/09 e da expiração de 30/09; e a
+  linha de largura/altura riscada, porque o banco já trouxe a medida (41 de 41 em 24/09, zero imagem sem `width`/`height` na
+  ronda de 02/10).
+- `ilhas/clubedomosaico/ARVORE.md` — 1 substituição (12): **11 URLs publicadas** recontadas para **21**, com a indentação de
+  2 espaços preservada. O argumento não muda, 21 segue abaixo do piso de 40.
+- `ilhas/clubedomosaico/DESIGN.md` — 1 substituição (13): o cabeçalho de **~96 px / 64 px** passou a **~84 px / 52 px**, com o
+  aviso de que este arquivo era a única ponta divergente contra cinco (VOZ.md, PROMPT.md, ESTADO.md, a casca no ar e o portão) e
+  que a §22.2 nomeia o `VOZ.md` como desempate. **Nada no ar mudou: o site já serve 52.**
+- `ilhas/jornadafly/PROMPT.md` — 2 substituições (14 e 15): o segundo ponteiro sobre o aviso de foco de 28/09, e a Source Sans 3
+  tirada da lista de descarte porque o `DESIGN.md` a manda no texto corrido.
+- `ilhas/ohmetria/PROMPT.md` — 1 substituição (16): o mesmo segundo ponteiro do aviso de foco, nesta outra ilha.
+- `ilhas/robometria/ESTADO.md` — 3 substituições (17, 18 e 19): o dono da paleta e da tipografia apontado para o `DESIGN.md`
+  pela §22.6; o ponteiro de que os dois achados de 10/09 fecharam em 11/09; e o ponteiro das três afirmações mortas (os 44
+  links que fecharam em 20/09, a revisão 6 que hoje é 81, e o navegador do Raphael que saiu do caminho em 22/09).
+
+**Aplicação byte a byte:** nada foi reformatado, reindentado, traduzido, "melhorado" ou acrescentado além do que a instrução
+trouxe. Na substituição 17 a âncora começava em `- **Identidade visual:**` de propósito, e a linha de cima — a do Search
+Console, que carrega um valor de verificação — **não foi tocada, não foi copiada e não foi citada**, conforme o aviso.
+
+**Push: aceito na primeira tentativa** (`9ea6d99..0e4d457  HEAD -> main`), ao contrário do disparo 2 de hoje. Nenhum rebase foi
+necessário, **nenhum force push**, nenhum PR aberto.
+
+**Falhas: nenhuma.** Nenhum valor de token, chave, senha ou e-mail de pessoa foi escrito em arquivo, commit ou resposta. Nenhuma
+ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado tocado, nenhum bloco de fila de ilha executado,
+nenhum Sync acionado, nada publicado, nenhuma conta criada. Nenhum arquivo fora dos 6 nomeados, mais este log.
