@@ -105,7 +105,15 @@
           "declarado_como": "rejunte cimenticio colorido, tipo II conforme a NBR 14.992"
         }
       },
-      "preparo": "Misturar com a agua indicada na embalagem ate consistencia pastosa e firme e deixar em REPOUSO por 15 minutos antes de usar. Junta de ate 3 mm deve ser molhada com agua limpa antes da aplicacao; em dia de sol ou vento forte, molhar TODAS as juntas.",
+      "preparo": {
+        "literal_do_fabricante": null,
+        "fonte_id": "pagina-produto-rejunte-ceramicas",
+        "lido_em": null,
+        "recorte_do_documento": null,
+        "nossa_leitura": "Misturar com a agua indicada na embalagem ate consistencia pastosa e firme e deixar em REPOUSO por 15 minutos antes de usar. Junta de ate 3 mm deve ser molhada com agua limpa antes da aplicacao; em dia de sol ou vento forte, molhar TODAS as juntas.",
+        "motivo_sem_literal": "CAUSA (host-recusa): www.quartzolit.weber responde 403 nas tres passadas de 06/10/2026 e os dois documentos deste registro moram lá. O canal de espelho tem 14 arquivos e nenhum e o boletim deste rejunte. A fonte da parafrase, porem, E rastreavel: o texto gravado e palavra por palavra os itens da constante `rejunte-ceramicas-quartzolit-aplicacao`, cujo `fonte_url` e a pagina de produto deste registro — por isso `fonte_id` esta escrito mesmo sem literal.",
+        "como_a_fonte_foi_derivada": "A parafrase nao trazia procedencia. Ela foi casada, frase a frase, com os `itens` da constante `rejunte-ceramicas-quartzolit-aplicacao` em dados/constantes.json, e o `fonte_url` dessa constante e a URL de `pagina-produto-rejunte-ceramicas` deste registro. Derivacao, nao palpite — e a unica das cinco que fechou."
+      },
       "geometria": null,
       "venda": [],
       "afiliado": {
@@ -229,7 +237,14 @@
           "motivo": "O boletim publica uma FAIXA (1,1 a 1,5 g/cm3), nao um valor unico. A ilha nao escolhe um ponto dentro da faixa do fabricante para poder gravar um numero: a faixa inteira esta em declarado_como da classificacao, e nenhuma formula publicada usa este campo."
         }
       },
-      "preparo": "Nao coletado nesta execucao.",
+      "preparo": {
+        "literal_do_fabricante": null,
+        "fonte_id": null,
+        "lido_em": null,
+        "recorte_do_documento": null,
+        "nossa_leitura": null,
+        "motivo_sem_literal": "CAUSA (nao-coletado): nunca foi lido. O campo trazia a frase \"Nao coletado nesta execucao.\", que e MOTIVO escrito no lugar do texto — era este o estado que a tela nao podia servir e que esta migracao existe para separar. Nada do fabricante foi perdido aqui: nada foi colhido."
+      },
       "geometria": null,
       "venda": [],
       "afiliado": {
@@ -349,7 +364,14 @@
           "declarado_como": "validade de 18 meses a contar da data de fabricacao impressa na embalagem"
         }
       },
-      "preparo": "Pronto uso: nao leva agua nem mistura.",
+      "preparo": {
+        "literal_do_fabricante": null,
+        "fonte_id": null,
+        "lido_em": null,
+        "recorte_do_documento": null,
+        "nossa_leitura": "Pronto uso: nao leva agua nem mistura.",
+        "motivo_sem_literal": "CAUSA (host-recusa): www.quartzolit.weber em 403 nas tres passadas de 06/10/2026, e o espelho nao tem o boletim do rejunte acrilico (medido em 05/10, quatro consultas, zero). A parafrase gravada (\"Pronto uso: nao leva agua nem mistura.\") tambem nao diz de qual dos dois documentos do registro saiu."
+      },
       "geometria": null,
       "venda": [
         {
@@ -467,7 +489,14 @@
           "declarado_como": "liberacao para contato com agua em piscinas e areas molhadas: 7 dias"
         }
       },
-      "preparo": "Bicomponente, fornecido ja fracionado em duas partes para misturar.",
+      "preparo": {
+        "literal_do_fabricante": null,
+        "fonte_id": null,
+        "lido_em": null,
+        "recorte_do_documento": null,
+        "nossa_leitura": "Bicomponente, fornecido ja fracionado em duas partes para misturar.",
+        "motivo_sem_literal": "CAUSA (host-recusa): www.quartzolit.weber em 403 nas tres passadas de 06/10/2026, e o espelho nao tem o boletim do rejunte epoxi. A parafrase gravada (\"Bicomponente, fornecido ja fracionado em duas partes para misturar.\") nao diz se saiu do boletim ou do blog do fabricante, e os dois estao nas fontes do registro."
+      },
       "geometria": null,
       "venda": [],
       "afiliado": {
@@ -592,7 +621,17 @@
           "motivo": "AUSENCIA MEDIDA, nao lacuna: o boletim de agosto de 2017 deste produto NAO cita a NBR 14.992 nem classifica o rejunte em tipo I ou II — zero ocorrencias de 'NBR', 'norma' e 'tipo I' nas 3 paginas. Os dois irmaos cimenticios declaram 'tipo II conforme a NBR 14.992' nos boletins deles. Silencio nao e permissao (principio 2 do esquema): este registro fica SEM classificacao em vez de herdar a dos irmaos."
         }
       },
-      "preparo": "Juntas com ate 3 mm de largura devem ser molhadas com agua limpa antes da aplicacao.",
+      "preparo": {
+        "literal_do_fabricante": "Realize o rejuntamento 72 h após o assentamento das cerâmicas, para argamassas colantes convencionais; para argamassas colantes especiais (com secagem rápida), consulte o fabricante, para que movimentações ou manchas provocadas por umidade sejam evitadas. O produto deve ser aplicado à temperatura do ar e da base de 5 °C até 40 °C. Certifique-se de que as juntas estejam limpas e livres de resíduos. Proteja as peças e ferramentas de alumínio. Superfícies antiderrapantes, não esmaltadas, foscas ou com apliques são, por características próprias, sujeitas a manchas ou a ações do atrito; recomenda-se teste antes da aplicação. No caso de revestimentos com apliques dourados, prateados ou materiais sensíveis a atrito, recomenda-se consulta prévia ao fabricante sobre a melhor forma de aplicação e de limpeza. Juntas de até 3 mm devem ser molhadas com água limpa antes da aplicação do rejuntamento. Em dias de sol ou vento forte, todas as juntas devem ser molhadas.",
+        "fonte_id": "bt-rejunte-piscinas-2017-08",
+        "como_a_tela_chama_o_documento": "no boletim técnico dele, revisado em agosto de 2017",
+        "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
+        "lido_em": "2026-10-06",
+        "recorte_do_documento": "A secao 3.1 \"Antes de aplicar\" do boletim tecnico, INTEIRA, as oito frases na ordem em que ele as publica. Nada foi cortado desta secao.",
+        "nossa_leitura": "Juntas com ate 3 mm de largura devem ser molhadas com agua limpa antes da aplicacao.",
+        "motivo_sem_literal": null,
+        "o_que_a_parafrase_perdia": "Sete das oito frases. O gravado era \"Juntas com ate 3 mm de largura devem ser molhadas com agua limpa antes da aplicacao.\" e sumia com as 72 h de espera, a faixa de temperatura, a limpeza da junta, o aluminio, as superficies sujeitas a mancha e — a mais cara — \"Em dias de sol ou vento forte, todas as juntas devem ser molhadas\", que e a MESMA frase que o irmao `quartzolit-rejunte-ceramicas` carrega inteira. O mesmo par de frases do mesmo fabricante foi gravado completo num registro e pela metade no outro."
+      },
       "geometria": null,
       "venda": [],
       "afiliado": {

@@ -183,7 +183,8 @@
       "coletado_em": "2026-09-10",
       "status": "verificado",
       "conferir_no_pdf": true,
-      "observacao": "A cura de >= 3 mm por 24 h e o numero que a F2 usa para dizer quanto tempo a peca precisa descansar antes do rejunte, e nao 'deixe secar', que e o que a SERP diz."
+      "observacao": "A cura de >= 3 mm por 24 h e o numero que a F2 usa para dizer quanto tempo a peca precisa descansar antes do rejunte, e nao 'deixe secar', que e o que a SERP diz.",
+      "o_que_este_preparo_E_e_o_que_ele_NAO_E": "MEDIDO EM 06/10/2026: o campo `preparo` desta constante e PARAFRASE e e a ORIGEM da parafrase gravada em dados/materiais-colas.json / tekbond-silicone-acetico-construcao / preparo / nossa_leitura — foi casando as duas que o registro ganhou `fonte_id`. O literal NAO pode ser lido: www.tekbond.com.br responde 403 nas tres passadas de 06/10 (o apex redireciona 301 para o www, e a ficha BRSA004 em PDF tambem da 403). Enquanto for assim, esta frase nao vai a tela: das quatro parafrases desta ilha que deu para conferir contra o documento, as quatro perdiam informacao dele."
     },
     {
       "id": "tekbond-silicone-neutro-substratos",
@@ -248,7 +249,8 @@
       "coletado_em": "2026-09-10",
       "status": "verificado",
       "conferir_no_pdf": true,
-      "observacao": "ATENCAO AO QUE NAO ESTA ESCRITO: o fabricante lista usos porosos e INTERNOS e nao declara resistencia a agua nem uso externo. A F2 nao transforma esse silencio em proibicao inventada — ela diz literalmente 'o fabricante nao declara uso externo nem resistencia a agua para este produto', e por isso o PVA nao entra como recomendado em peca externa ou molhada. Ausencia de declaracao e motivo suficiente para nao recomendar, e e diferente de uma proibicao declarada."
+      "observacao": "ATENCAO AO QUE NAO ESTA ESCRITO: o fabricante lista usos porosos e INTERNOS e nao declara resistencia a agua nem uso externo. A F2 nao transforma esse silencio em proibicao inventada — ela diz literalmente 'o fabricante nao declara uso externo nem resistencia a agua para este produto', e por isso o PVA nao entra como recomendado em peca externa ou molhada. Ausencia de declaracao e motivo suficiente para nao recomendar, e e diferente de uma proibicao declarada.",
+      "o_que_este_preparo_E_e_o_que_ele_NAO_E": "MEDIDO EM 06/10/2026: o campo `preparo` desta constante e PARAFRASE, nao a frase do fabricante, e a pagina de produto foi reaberta e lida nesse dia. O literal esta em dados/materiais-colas.json / cascola-cascorez-extra / preparo / literal_do_fabricante, e e ele que a tela serve. A diferenca nao e de estilo: esta parafrase FECHA uma lista que o fabricante deixou aberta — ele escreve \"passadeiras automaticas ou manualmente, utilizando pincel, rolo, etc.\" e aqui esta \"Aplicacao com pincel ou rolo\". Nenhum snippet le este campo (varredura de 06/10), entao a parafrase nunca foi ao ar; ela fica porque foi dela que a do banco saiu."
     },
     {
       "id": "loctite-durepoxi-substratos",

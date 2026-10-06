@@ -2,6 +2,16 @@
  * CLUBE DO MOSAICO — O GUIA DE MATERIAIS, CATEGORIA POR CATEGORIA (bloco 4c)
  * Snippet "Clube do Mosaico Guia", registrado pelo Sync.
  *
+ * Versão 1.1.0 (06/10/2026) — a ficha do produto passa a servir o `preparo` do
+ * fabricante, logo abaixo da frase de onde ele vai. A régua é da F2
+ * (`cdm_f2_preparo`), como já era a do bloco de compra, e por um motivo que não
+ * é economia de linha: os três estados do campo (literal lido, só a nossa
+ * paráfrase, nada) decidem o que pode ir à tela, e duas implementações da mesma
+ * decisão divergem caladas. Hoje nenhum dos dez itens de `acabamento` tem o
+ * campo preenchido, então este cartão não serve nada em `/materiais/acabamento/`
+ * — ele está pronto para a categoria `rejunte`, que tem cinco registros com o
+ * campo e é a próxima da fila do Guia.
+ *
  * A primeira categoria do Guia a nascer é a `acabamento`, em 02/10/2026, e ela
  * não foi escolhida: foi o `ferramentas/cruzamento-14-9.py` que a apontou. Ela é
  * o único recorte do Guia em que os DOIS portões da 14.9 abriram ao mesmo tempo
@@ -71,7 +81,7 @@
  */
 
 if ( ! defined( 'CDM_GUIA_VERSAO' ) ) {
-	define( 'CDM_GUIA_VERSAO', '1.0.0' );
+	define( 'CDM_GUIA_VERSAO', '1.1.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -839,6 +849,36 @@ function cdm_guia_ficha_do_produto_html( $item ) {
 			. esc_html( $p['literal_do_fabricante'] ) . '</p></blockquote>';
 	}
 
+	/* E O PREPARO, logo abaixo da frase de onde o produto vai (esquema v12,
+	   06/10/2026). A dona da régua é a F2, como já é dona do bloco de compra:
+	   são os três estados do campo, e a ficha do Guia não os reescreve. Sem a F2
+	   carregada, o cartão não inventa a instrução nem finge que não existe — ele
+	   diz que a parte de preparo está fora do ar, que é a mesma saída degradada
+	   do bloco de compra logo abaixo.
+
+	   O VERBO AQUI É "aplicar", e não "colar" como na F2: este cartão serve verniz,
+	   selador e impermeabilizante tanto quanto cola, e "antes de colar" seria o
+	   verbo de uma categoria posto na boca das outras. Por isso a ficha escreve a
+	   própria frase em vez de chamar `cdm_f2_preparo_html()` — dela vem só a
+	   régua dos três estados (`cdm_f2_preparo`), que é o que não pode divergir. */
+	if ( function_exists( 'cdm_f2_preparo' ) ) {
+		$prep = cdm_f2_preparo( $item );
+		if ( $prep['literal'] ) {
+			$fonte_prep = $prep['fonte'];
+			$html .= '<p class="cdm-guia-preparo"><strong>Antes de aplicar, o que o fabricante manda fazer:</strong> '
+				. '<em>' . esc_html( $prep['literal'] ) . '</em></p>';
+			$html .= '<div class="cdm-prova cdm-guia-preparo-prova"><p>Está escrito '
+				. esc_html( $prep['documento'] ? $prep['documento'] : 'num documento dele que a gente não soube nomear' )
+				. ( ! empty( $prep['lido_em'] ) && function_exists( 'cdm_casca_data_br' )
+					? ', lido em ' . esc_html( cdm_casca_data_br( $prep['lido_em'] ) ) : '' )
+				. ( ! empty( $fonte_prep['url'] ) ? ' (<a href="' . esc_url( $fonte_prep['url'] ) . '" rel="nofollow noopener" target="_blank">abrir</a>)' : '' )
+				. '.</p></div>';
+		}
+	} else {
+		$html .= '<p class="cdm-guia-sem-loja">A parte de preparo está fora do ar neste momento. '
+			. 'O produto e a declaração acima continuam de pé.</p>';
+	}
+
 	if ( function_exists( 'cdm_f2_compra_html' ) ) {
 		$html .= cdm_f2_compra_html( isset( $item['afiliado'] ) ? $item['afiliado'] : array() );
 	} else {
@@ -1149,6 +1189,8 @@ add_action( 'wp_footer', function () {
 .cdm-guia-relogio{margin:.6rem 0;}
 .cdm-guia-sem-conta{color:var(--cdm-legenda);font-size:.92rem;}
 .cdm-guia-literal{margin:.8rem 0;padding:.6rem .9rem;border-left:2px solid var(--cdm-traco);}
+.cdm-guia-preparo{margin:.8rem 0 .2rem;font-size:.95rem;line-height:1.6;}
+.cdm-guia-preparo-prova{margin:.3rem 0 .8rem;padding:.4rem 0 0;}
 .cdm-guia-literal p{margin:0;font-size:.92rem;color:var(--cdm-legenda);}
 .cdm-guia-fonte{display:block;margin-top:.5rem;font-size:.85rem;color:var(--cdm-legenda);clear:both;}
 .cdm-guia-sem-loja{color:var(--cdm-legenda);font-size:.92rem;}

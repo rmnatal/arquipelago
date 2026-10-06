@@ -1018,6 +1018,54 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > ou seja, a régua independente tinha o defeito escrito como **resultado esperado**. Portão
    > independente mede divergência entre as metades; nunca a lacuna que as duas têm.
    >
+   > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O BARATO DOS DOIS QUE FICARAM: a F2 (e o Guia) passarem a
+   > servir `preparo` na resposta.**~~ **ENTREGUE EM 06/10/2026 às 14h0xZ** — esquema na **v12**
+   > (`regras_do_campo_preparo`, três estados), F2 **1.9.0**, Guia **1.1.0**, casca **1.20.0**,
+   > `mutacoes-preparo.py` (16 de 16, 12 só pelo portão novo, 0 falso positivo). **CINCO registros
+   > ganharam `literal_do_fabricante` lido no dia** — Cascorez, PL500, AF1500 e os boletins do rejunte
+   > piscinas e da cimentcola externo — e **oito** ficaram sem, com a causa classificada em
+   > `host-recusa` (4, Tekbond e Quartzolit em 403 nas três passadas) e `nao-coletado` (4).
+   >
+   > **A FRASE ABAIXO ACERTOU O BLOCO E ERROU O TAMANHO DELE, e o que faltava não era trabalho: era
+   > CONFERIR.** Ela dizia que eram "nove declarações de fabricante lidas, gravadas e descartadas em
+   > silêncio" e que o bloco era a tela passar a ler o campo. A primeira metade estava certa. A
+   > segunda supunha que as nove frases fossem do fabricante — e **quatro** delas puderam ser
+   > conferidas contra o documento em 06/10, **as quatro perdendo informação dele**: uma fechou uma
+   > lista que ele deixou aberta, uma apagou o motivo de uma instrução e uma linha com número, uma
+   > apagou a condição que ele escreve dentro do preparo, e uma apagou **sete das oito** frases da
+   > seção — entre elas uma que o registro IRMÃO carrega inteira. **Paráfrase servida entre aspas é a
+   > instrução dele menos a parte que a gente deixou cair, com o nome dele embaixo.** Por isso o campo
+   > tem três estados e a tela serve só o primeiro, e por isso o bloco custou o que custou.
+   >
+   > **E A DÍVIDA QUE ESTE BLOCO EXISTIA PARA PAGAR ESTÁ PAGA, com a metade que ele não paga dita:** a
+   > cura de 180 dias da cimentcola AC-II **está na tela**. O **substrato dela continua fora**, e o
+   > motivo é o segundo bloqueio, não desânimo — substrato cujo qualificador é de AMBIENTE, que é
+   > decisão de esquema (campo de par substrato × ambiente, ou uma regra 8 lida como a 7 lê o grupo).
+   >
+   > **O PRÓXIMO BLOCO TEM DOIS CANDIDATOS MEDIDOS, e o barato é o (a):**
+   >
+   > **(a) `propriedades.sobra_declarada_pct` na F1, a partir dos 10% da AF1500.** A linha *"Compre 10%
+   > a mais para cortes e ajustes na aplicação"* é a **única** sobra declarada por fabricante que esta
+   > ilha tem lida — e a paráfrase a tinha apagado por inteiro. A F1 pergunta a sobra ao visitante
+   > **sugerindo 15%**, um número que não é de ninguém. Hoje a declaração dele está na tela como frase
+   > e **não entra na conta**. Quem fizer: o campo é `propriedades`, então exige fonte por valor; a F1
+   > tem de dizer **de quem** é o número quando usar o declarado; e a bateria tem de medir o estado em
+   > que o produto escolhido **não** declara sobra, que é o de 40 dos 41 registros.
+   >
+   > **(b) O campo de par substrato × ambiente**, medido em `materiais-colas.json /
+   > quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05 /
+   > substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. Decisão de esquema — bloco, não linha.
+   >
+   > **E uma coisa que NÃO é bloco e destrava quatro registros de uma vez:** `*.quartzolit.weber` na
+   > lista de rede (`dados/despachos.md`, ABERTOS). Quatro das oito paráfrases sem literal são da
+   > Quartzolit e **duas já têm o documento nomeado** por derivação da constante. A ressalva nova: o
+   > `www.` já responde **403**, então o curinga pode entrar e o 403 ficar — 403 é decisão do
+   > fabricante, não da rede do Raphael.
+   >
+   > *(O texto abaixo é o da execução de 12h34Z e fica sem uma palavra alterada: foi ele que escolheu o
+   > bloco, e o que ele mediu — a varredura dos nove snippets, os 9 de 41 registros, o
+   > `quartzolit-rejunte-porcelanatos-e-ceramicas` com motivo no lugar do texto — está todo certo.)*
+   >
    > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O BARATO DOS DOIS QUE FICARAM: a F2 (e o Guia) passarem a
    > servir `preparo` na resposta.** Varredura de 06/10/2026 nos nove snippets: a palavra `preparo` não
    > aparece em **nenhum** deles, e **9 dos 41 registros** do banco têm o campo preenchido com frase de

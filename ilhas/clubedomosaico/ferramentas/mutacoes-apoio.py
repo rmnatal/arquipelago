@@ -391,16 +391,30 @@ def m16(b, e, r):
     reg = reg_de(r["pastilhas"], "pastilhart-af1500")
     reg["propriedades"]["assentamento_recomendado"]["declarado_como"] = \
         "utilizar argamassa branca e rejunte flexivel de boa qualidade"
-    reg["preparo"] = "Argamassa branca e rejunte flexivel."
+    # `preparo` virou OBJETO no esquema v12 (06/10/2026) e a frase do fabricante
+    # mora em `literal_do_fabricante`. Esta linha dizia `reg["preparo"] = "..."` e
+    # a bateria QUEBROU em vez de passar verde quando o campo mudou de forma —
+    # que e o comportamento certo de uma mutacao que aponta para um caminho.
+    reg["preparo"]["literal_do_fabricante"] = "Argamassa branca e rejunte flexivel."
 
 
 def m17(b, e, r):
     """Uma frase NOVA de fabricante nomeando luva, num registro que hoje nao
     nomeia nenhuma. E o mundo do dia em que a FISPQ do epoxi for lida: o portao
-    tem de exigir a linha no mesmo commit em que a frase entra."""
-    reg = reg_de(r["colas"], "loctite-durepoxi")
-    reg["preparo"] = ((reg.get("preparo") or "") +
-                      " Usar luvas de protecao durante o manuseio.").strip()
+    tem de exigir a linha no mesmo commit em que a frase entra.
+
+    O ALVO MUDOU EM 06/10/2026, de `loctite-durepoxi` para o PL500, e o motivo e
+    de medicao e nao de gosto: com o esquema v12 o `preparo` do durepoxi esta no
+    estado SEM LITERAL (`literal_do_fabricante: null`, com a causa escrita), e
+    escrever uma frase ali faria o registro reprovar por FORMA — sem `fonte_id`,
+    sem `lido_em`, sem `recorte_do_documento`. A mutacao mediria o portao do
+    preparo em vez do portao do apoio, que e o que ela existe para medir. O PL500
+    tem literal completo e nao nomeia luva, entao a frase entra sem quebrar a
+    forma e so a varredura de apoio pode ve-la."""
+    reg = reg_de(r["colas"], "cascola-pl500-adesivo-de-montagem")
+    p = reg["preparo"]
+    p["literal_do_fabricante"] = (p["literal_do_fabricante"] +
+                                  " Usar luvas de protecao durante o manuseio.").strip()
 
 
 def m18(b, e, r):

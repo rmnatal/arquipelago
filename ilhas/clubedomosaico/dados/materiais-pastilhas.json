@@ -1042,7 +1042,17 @@
           "declarado_como": "comprar 10% a mais para cortes e ajustes na aplicacao"
         }
       },
-      "preparo": "Argamassa branca e rejunte flexivel; desempenadeira de borracha; retirar o excesso de rejunte entre 15 e 30 minutos.",
+      "preparo": {
+        "literal_do_fabricante": "Utilize argamassa branca e rejunte flexível de boa qualidade. Compre 10% a mais para cortes e ajustes na aplicação. Use desempenadeira de borracha para evitar riscos. Remova o excesso de rejunte entre 15 e 30 minutos após a aplicação.",
+        "fonte_id": "pagina-produto-af1500",
+        "como_a_tela_chama_o_documento": "na página de produto dele",
+        "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
+        "lido_em": "2026-10-06",
+        "recorte_do_documento": "A secao \"DICAS PARA UMA INSTALACAO PERFEITA\" da pagina de produto, as quatro linhas, inteiras e na ordem.",
+        "nossa_leitura": "Argamassa branca e rejunte flexivel; desempenadeira de borracha; retirar o excesso de rejunte entre 15 e 30 minutos.",
+        "motivo_sem_literal": null,
+        "o_que_a_parafrase_perdia": "Duas coisas, e a segunda tem numero. (1) O MOTIVO da desempenadeira de borracha, que e dele: \"para evitar riscos\". (2) A linha \"Compre 10% a mais para cortes e ajustes na aplicacao\" desapareceu por inteiro — e ela e a UNICA sobra declarada por fabricante que esta ilha tem lida, num banco cuja F1 pergunta a sobra ao visitante e sugere 15%. Nao foi gravada como numero nesta execucao de proposito: `propriedades.sobra_declarada_pct` seria campo novo lido por ferramenta de calculo, e isso e bloco, nao linha. Fica aqui, na frase dele, onde a F1 pode ser confrontada com ela."
+      },
       "geometria": {
         "lado_anunciado_cm": 1.5,
         "placa_lado_a_cm": 30.0,
@@ -1088,7 +1098,7 @@
           "nivel": 5,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": false,
-          "reaberta_em": "2026-10-05",
+          "reaberta_em": "2026-10-06",
           "o_que_a_abertura_mudou": {
             "o_que_dizia_antes": "`pagina nao aberta (EGRESS_BLOCKED)`. O egresso de `www.pastilhart.com.br` foi remedido nesta execucao e deu **200 nas tres passadas** — o registro de 28/09/2026 dizia que este dominio `nao entrou nem no apex`. A 20.2 manda retestar bloqueio herdado antes de respeita-lo, e aqui o bloqueio herdado tinha sumido.",
             "as_cinco_declaracoes_CONFERIDAS_UMA_POR_UMA": "O bloco `ONDE USAR?` da pagina serve exatamente as cinco linhas gravadas, na mesma ordem: `Banheiros (inclusive dentro do box)`, `Cozinhas modernas e areas gourmet`, `Lavanderias e lavabos`, `Halls de entrada, garagens cobertas e varandas`, `Piscinas internas, spas e saunas`. ZERO divergencia: a coleta por busca de 12/09 estava certa, e isso tambem e resultado — a 20.2 nao serve so para achar erro.",
@@ -1102,6 +1112,11 @@
             "sobra_sugerida_de_10_por_cento": "`Compre 10% a mais para cortes e ajustes na aplicacao`. A F1 desta ilha trabalha com sobra de 15% por padrao. NAO e divergencia a resolver: 15% e parametro de entrada da ferramenta, escolhido pela ilha, e 10% e sugestao de um distribuidor em nivel 5. Fica escrito para quem for mexer no padrao da F1 saber que existe um numero de terceiro, e de onde ele vem.",
             "recomendacao_de_argamassa_e_rejunte": "`Utilize argamassa branca e rejunte flexivel de boa qualidade`. E declaracao sobre o que colar pastilha de vidro COM — exatamente o que a F2 decide — e NAO pode virar recomendacao: nivel 5. Mencao com ressalva e o maximo que a escada permite.",
             "preco_e_estoque": "`R$ 71,89` riscado, `R$ 49,00` a vista, `Disponibilidade: Imediata`, `Estoque: 30 unidades`, lido em 05/10/2026. E o PRIMEIRO preco que esta ilha ja viu numa fonte alcancavel — `dados/cotacoes.json` nao existe, e o laudo do validar-banco.py diz isso em toda passada. Nao foi criado aqui porque criar o arquivo de cotacoes e decidir o formato, a validade do preco e como a tela mostra preco datado, e a secao 7 e dura nisso: preco nunca entra em criterio de ordem. E bloco, nao linha."
+          },
+          "o_que_a_abertura_de_06_10_mudou": {
+            "por_que_foi_reaberta_um_dia_depois": "A reabertura de 05/10 conferiu as cinco declaracoes de ambiente e os tres numeros de geometria e nao olhou o `preparo`, que ja estava gravado como parafrase desde 12/09. Esta leitura foi so para ele.",
+            "o_que_a_leitura_trouxe": "A secao \"DICAS PARA UMA INSTALACAO PERFEITA\", as quatro linhas, agora em `preparo.literal_do_fabricante`.",
+            "a_linha_QUE_A_PARAFRASE_TINHA_APAGADO_e_ela_tem_numero": "\"Compre 10% a mais para cortes e ajustes na aplicacao.\" E a UNICA sobra declarada por fabricante que esta ilha tem lida, e a F1 pergunta a sobra ao visitante sugerindo 15%. Nao foi gravada como propriedade nesta execucao de proposito: `sobra_declarada_pct` seria campo novo lido por ferramenta de calculo, e isso e bloco. Fica na frase dele, na tela, onde a F1 pode ser confrontada com ela."
           }
         },
         "pagina-sobre-pastilhart": {

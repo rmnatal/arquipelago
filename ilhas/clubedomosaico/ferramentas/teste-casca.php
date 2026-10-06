@@ -597,12 +597,25 @@ sort( $arquivos_de_banco );
 $banco_por_categoria = array();
 $total_esperando_link = 0;
 $total_sem_imagem     = 0;
+$total_documentos        = 0;
+$total_documentos_abertos = 0;
 foreach ( $arquivos_de_banco as $arquivo ) {
 	$b = json_decode( file_get_contents( $arquivo ), true );
 	$banco_por_categoria[ basename( $arquivo, '.json' ) ] = $b;
 	$total_esperando_link += (int) $b['afiliado']['itens_esperando_link'];
 	$total_sem_imagem     += (int) $b['imagens']['itens_sem_imagem'];
+	foreach ( (array) ( isset( $b['materiais'] ) ? $b['materiais'] : array() ) as $_m ) {
+		foreach ( (array) ( isset( $_m['fontes'] ) ? $_m['fontes'] : array() ) as $_f ) {
+			$total_documentos++;
+			if ( ! empty( $_f['tipo_de_origem'] ) ) {
+				$total_documentos_abertos++;
+			}
+		}
+	}
 }
+cdm_ok( $total_documentos_abertos > 0,
+	'ha documento aberto pagina a pagina no banco — senao a frase da prova nao morde',
+	$total_documentos_abertos . ' de ' . $total_documentos );
 $rejuntes = isset( $banco_por_categoria['materiais-rejuntes'] ) ? $banco_por_categoria['materiais-rejuntes'] : null;
 
 $bases_no_esquema     = array();
@@ -633,6 +646,17 @@ $esperado = array(
 	'bases'              => count( $bases_vocab ),
 	'ambientes'          => count( $ambientes_vocab ),
 	'categorias_do_guia' => 6,
+	/* OS DOIS NUMEROS DOS DOCUMENTOS, recontados AQUI a partir dos arquivos
+	   commitados (06/10/2026). A frase da camada de prova da F2 publicava, desde
+	   11/09, que "nenhum PDF de fabricante foi aberto linha a linha" — e em 05 e
+	   06/10 dois boletins foram abertos e lidos pagina a pagina. Nenhuma regua
+	   recontava isso, porque a frase era prosa e nao numero: foi so quando ela
+	   virou conta que esta linha pudera existir. O marcador de "aberto" e a
+	   presenca de `tipo_de_origem` na fonte, nunca a prosa do `tipo` — contar
+	   pela frase leria "PDF nao aberto" como aberto no dia em que alguem
+	   reescrevesse a frase. */
+	'documentos_no_banco' => $total_documentos,
+	'documentos_abertos'  => $total_documentos_abertos,
 );
 
 $n = cdm_casca_numeros();
@@ -995,10 +1019,48 @@ foreach ( $paginas as $tag ) {
 
 	/* AS TRES TRAVAS DA PORTA DOS FUNDOS. Sem elas, declarar a pagina inteira
 	   como camada de prova desligaria o portao de voz sem mudar uma palavra. */
-	preg_match_all( '#<div class="cdm-prova">#i', $corpo, $mb );
+	/* A TRAVA DEIXOU DE SER UM NUMERO E PASSOU A SER A ESTRUTURA, em 06/10/2026.
+	   Ela cobrava no maximo DOIS blocos por pagina, e o 2 era o retrato de uma
+	   pagina com duas camadas de prova — a da resposta e o "Como sabemos" do pe.
+	   Quando a F2 ganhou o bloco de preparo do rejunte, que e resposta de outra
+	   secao e por isso precisa da propria prova ao lado dela (15.2: a prova desce
+	   um paragrafo, dentro da mesma caixa), a pagina passou a ter TRES camadas
+	   legitimas e a trava reprovou — medindo o acaso do dia em que foi escrita.
+
+	   O QUE ELA QUERIA IMPEDIR, nas palavras dela mesma, e "embrulhar a pagina
+	   inteira na marca". Isso nao e uma questao de quantidade: e de SECAO. Quem
+	   abre duas camadas de prova dentro do MESMO bloco de texto esta estendendo a
+	   marca sobre prosa que nao e prova; quem abre uma por secao esta pondo o
+	   rodape onde ele pertence. Entao a regra passa a ser: entre dois blocos de
+	   prova tem de existir uma abertura de secao, e continua valendo o teto de
+	   tamanho de 50% logo abaixo, que e a metade substantiva da trava.
+
+	   O teto absoluto fica, agora em 5, so para o caso de alguem fabricar secoes
+	   vazias para abrir provas — mas quem faz isso cai no teto de 50%.
+
+	   E A LACUNA QUE ESTA TRAVA TEM DESDE QUE NASCEU, escrita aqui porque quem a
+	   reescreveu em 06/10 a viu e NAO a fechou: ela conta `class="cdm-prova"`
+	   exato, entao `class="cdm-prova cdm-guia-literal"` — a forma que a ficha do
+	   Guia usa, e que o bloco de preparo da ficha passou a usar — nao e contada
+	   NEM retirada por `cdm_sem_prova()`. Isso e deliberado na ilha (uma pagina
+	   de Guia com dez cartoes teria dez camadas de prova e estouraria qualquer
+	   teto), mas tem um custo: o texto dentro dessas caixas e medido pelo portao
+	   de voz como se estivesse FORA de bloco de prova. Hoje nenhuma delas carrega
+	   os termos vigiados, e por isso a lacuna nao e defeito no ar. Fecha-la e
+	   bloco — a classe de prova teria de ser medida por prefixo nas DUAS funcoes,
+	   e a conta por secao passaria a valer para as paginas do Guia tambem. */
+	preg_match_all( '#<div class="cdm-prova">#i', $corpo, $mb, PREG_OFFSET_CAPTURE );
 	$quantos_prova = count( $mb[0] );
-	if ( $quantos_prova > 2 ) {
-		$prova_ruim[] = $tag . ": $quantos_prova blocos de prova (maximo 2)";
+	if ( $quantos_prova > 5 ) {
+		$prova_ruim[] = $tag . ": $quantos_prova blocos de prova (teto absoluto 5)";
+	}
+	for ( $i = 1; $i < $quantos_prova; $i++ ) {
+		$de    = (int) $mb[0][ $i - 1 ][1];
+		$ate   = (int) $mb[0][ $i ][1];
+		$entre = mb_substr( $corpo, $de, max( 0, $ate - $de ) );
+		if ( ! preg_match( '#<(?:div|section|article)\b[^>]*class="[^"]*(?:cdm-f2-secao|cdm-f2-resposta|cdm-guia-|cdm-f1-secao|cdm-bloco)#i', $entre ) ) {
+			$prova_ruim[] = $tag . ': duas camadas de prova dentro da mesma secao';
+		}
 	}
 	if ( $quantos_prova ) {
 		$posicao = mb_stripos( $corpo, '<div class="cdm-prova">' );

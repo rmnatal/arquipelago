@@ -139,7 +139,15 @@
           "motivo": "O fabricante declara rendimento por CORDAO (metros de cordao de X mm por cartucho), nao por area colada. Converter isso em gramas por metro quadrado seria palpite — e por isso a coluna de cola da F1 nasce vazia com essa frase na tela."
         }
       },
-      "preparo": "Limpar a superficie com alcool ou acetona; superficie seca e firme. Cortar a ponta do cartucho e o bico a 45 graus.",
+      "preparo": {
+        "literal_do_fabricante": null,
+        "fonte_id": "pagina-produto-acetico",
+        "lido_em": null,
+        "recorte_do_documento": null,
+        "nossa_leitura": "Limpar a superficie com alcool ou acetona; superficie seca e firme. Cortar a ponta do cartucho e o bico a 45 graus.",
+        "motivo_sem_literal": "CAUSA (host-recusa): o documento esta em www.tekbond.com.br e o servidor responde 403 nas tres passadas de 06/10/2026 (o apex redireciona 301 para o www, e a ficha BRSA004 em PDF tambem da 403). Nao e o egresso: o egresso conversou. Sem reler, a frase gravada nao pode ir a tela como frase dele — e o documento de onde ela saiu ESTA nomeado desde 06/10, derivado da constante (ver `como_a_fonte_foi_derivada`), entao o que falta e o 403 cair, nao descobrir a procedencia.",
+        "como_a_fonte_foi_derivada": "A parafrase nao trazia procedencia. Ela e, palavra por palavra, o campo `preparo` da constante `tekbond-silicone-acetico-indicacoes` em dados/constantes.json, cujo `fonte_url` e a URL de `pagina-produto-acetico` deste registro. Derivacao, nao palpite — a mesma que fechou o `quartzolit-rejunte-ceramicas`. Com ela, DUAS das cinco parafrases sem literal tem documento nomeado, e o que falta nelas e reler, nao descobrir de onde saiu."
+      },
       "geometria": null,
       "venda": [
         {
@@ -255,7 +263,14 @@
         ]
       },
       "propriedades": {},
-      "preparo": null,
+      "preparo": {
+        "literal_do_fabricante": null,
+        "fonte_id": null,
+        "lido_em": null,
+        "recorte_do_documento": null,
+        "nossa_leitura": null,
+        "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo. A fonte e www.tekbond.com.br, em 403 nas tres passadas de 06/10/2026. E o registro mais caro desta lista: ele e a recomendacao de TOPO da F2 para caco de espelho, e e justamente dele que o leitor nao recebe preparo nenhum."
+      },
       "geometria": null,
       "venda": [],
       "afiliado": {
@@ -336,7 +351,18 @@
           "motivo": "Nao coletado. Esta em pendentes de dados/constantes.json como `cascorez-tempo-de-secagem` — a F2 hoje indica o PVA para MDF interno sem dizer quanto tempo esperar."
         }
       },
-      "preparo": "Superficies limpas, firmes, niveladas e secas; lixar quando necessario para deixar aspero. Aplicacao com pincel ou rolo.",
+      "preparo": {
+        "literal_do_fabricante": "Antes de aplicar, prepare as superfícies a serem coladas, que devem estar limpas, firmes, niveladas e secas. Lixe-as quando necessário para torna-las mais ásperas. A aplicação poderá ser feita por meio de passadeiras automáticas ou manualmente, utilizando pincel, rolo, etc.",
+        "fonte_id": "pagina-produto-cascorez",
+        "como_a_tela_chama_o_documento": "na página de produto dele",
+        "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
+        "lido_em": "2026-10-06",
+        "recorte_do_documento": "Passos 1 e 2 de \"Como utilizar o produto?\", na pagina de produto, inteiros. Os passos 3 e 4 ficaram fora: eles descrevem o GESTO de colar (aplicar em uma das superficies, juntar as partes, pressionar ate secar), nao o preparo.",
+        "nossa_leitura": "Superficies limpas, firmes, niveladas e secas; lixar quando necessario para deixar aspero. Aplicacao com pincel ou rolo.",
+        "motivo_sem_literal": null,
+        "o_que_a_parafrase_perdia": "A parafrase FECHAVA uma lista que o fabricante deixou aberta. Ele escreve \"passadeiras automaticas ou manualmente, utilizando pincel, rolo, etc.\" e o gravado dizia \"Aplicacao com pincel ou rolo\" — duas formas de aplicar viraram as unicas duas.",
+        "observacao_sobre_a_grafia": "O fabricante publica `torna-las` sem acento. A frase vai ao ar como ele a publicou: corrigir a grafia dele dentro das aspas seria editar a citacao."
+      },
       "geometria": null,
       "venda": [],
       "afiliado": {
@@ -368,7 +394,14 @@
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "reaberta_em": "2026-10-06",
+          "o_que_a_abertura_mudou": {
+            "por_que_foi_reaberta": "Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 241 KB de HTML.",
+            "o_que_a_leitura_trouxe": "O bloco \"Como utilizar o produto?\", passo a passo. Os passos 1 e 2 sao o preparo e estao agora em `preparo.literal_do_fabricante`, inteiros.",
+            "a_divergencia_que_ela_achou": "A parafrase que o banco carregava desde 10/09 — \"Aplicacao com pincel ou rolo\" — FECHAVA uma lista que o fabricante deixou aberta: ele escreve \"passadeiras automaticas ou manualmente, utilizando pincel, rolo, etc.\". E uma das quatro parafrases conferidas em 06/10, e as quatro perderam informacao do documento.",
+            "o_nivel_NAO_subiu_e_por_que": "Continua 3. Nivel e natureza da fonte, nunca alcance dela — abrir a pagina mede o que ela DIZ, nao o que ela E. Mesma razao escrita na reabertura da AF1500 em 05/10."
+          }
         }
       },
       "constantes_relacionadas": [
@@ -447,7 +480,18 @@
           "declarado_como": "'Tempo em aberto >=20 minutos', na tabela de propriedades e caracteristicas (secao 5)"
         }
       },
-      "preparo": null,
+      "preparo": {
+        "literal_do_fabricante": "Emboço, alvenaria e contrapiso em áreas internas, curados há pelo menos 14 dias, conforme NBR 13.754. Paredes de concreto curado há 180 dias. Se curado há 28 dias, utilize cimentcola flexível quartzolit. O assentamento de placas cerâmicas com argamassa colante sobre alvenarias somente deve ocorrer quando elas tiverem, no mínimo, 14 dias. A superfície das bases não deve apresentar desvios de prumo e de planeza, conforme a Norma Técnica NBR 13.749, e deve estar firme, seca e sem pó. Certifique-se de que a base e o verso das placas estão secos, limpos e livres de resíduos. A superfície da base não deve apresentar deformações, e precisa estar firme, seca, curada e limpa (NBR 13.749). Certifique-se de que retrações do cimento e possíveis fissuras estão estabilizadas. Impermeabilize bases que tenham problemas de umidade. Obs.: quando os dentes da desempenadeira se desgastarem em mais de 1 mm de altura, substitua-a ou refaça os dentes.",
+        "fonte_id": "bt-cimentcola-externo-2016-05",
+        "como_a_tela_chama_o_documento": "no boletim técnico dele, revisado em maio de 2016",
+        "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
+        "lido_em": "2026-10-06",
+        "recorte_do_documento": "Da secao 4.1 \"Bases para aplicacao\" as frases que exigem CURA e ESTADO da base (as duas de alvenaria que qualificam o AMBIENTE — `em areas internas` e `em paredes internas` — ficaram fora, porque qualificador de ambiente colado no substrato e o bloqueio aberto medido em 06/10 neste mesmo registro, e cita-lo pela metade na tela seria decidi-lo sem campo); da 4.2 \"Antes de aplicar\" a frase sobre a base e o verso das placas; e da 4.3 \"Preparo da base\" a prosa inteira, incluindo a obs. do desgaste dos dentes da desempenadeira e EXCLUINDO apenas a tabela de dentes por formato de ceramica e a linha que a introduz, que sem a tabela nao e frase. Ficaram fora, nomeadas: as juntas estruturais do projetista, a protecao das pecas de aluminio, a conferencia de ferramentas, a temperatura do ambiente e a lista de EPI — todas da 4.2 e todas sobre a obra e a seguranca do aplicador, nao sobre o preparo da base. A obs. da desempenadeira NAO ficou fora de proposito: ela e declaracao de fabricante que nomeia ferramenta de apoio, e cortar frase assim e justamente o que `exigencias_de_apoio_ja_declaradas_no_banco` existe para impedir — a varredura daquela secao le o literal e cobra a linha.",
+        "nossa_leitura": null,
+        "motivo_sem_literal": null,
+        "por_que_este_registro_entra_sem_parafrase_anterior": "Este registro tinha `preparo: null`. O campo foi preenchido hoje porque o proprio banco pedia: em `fontes / bt-cimentcola-externo-2016-05 / substratos_que_o_documento_declara_e_que_NAO_foram_gravados / os_outros_dois_bloqueios_medidos_em_06_10_2026` esta escrito, com estas palavras, que a cura dos 180 dias nao podia ser gravada porque \"o campo `preparo` nao resolve: ele existe neste esquema e a F2 NAO o serve em lugar nenhum\". A F2 passou a servir. A cura esta na tela.",
+        "o_que_este_literal_NAO_destrava": "O substrato continua FORA de `declaracoes.indicado_para`. A cura virar texto na tela e o que o registro pedia para o terceiro bloqueio; o segundo — substrato cujo qualificador e de ambiente — segue aberto e segue sendo decisao de esquema. Gravar o substrato hoje faria a F2 recomendar esta argamassa como primaria em `cimento_concreto`, que nesta ilha e o vaso que a artesa acabou de fazer, e e exatamente abaixo dos 180 dias que o documento manda usar outro produto."
+      },
       "geometria": null,
       "venda": [
         {
@@ -642,7 +686,14 @@
           "declarado_como": "versao extraforte seca em 10 minutos"
         }
       },
-      "preparo": null,
+      "preparo": {
+        "literal_do_fabricante": null,
+        "fonte_id": null,
+        "lido_em": null,
+        "recorte_do_documento": null,
+        "nossa_leitura": null,
+        "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo. A fonte dele e material do fabricante de nivel que ja o mantem fora de recomendacao (ele vive em `mencionados_com_ressalva`), e releitura dele nao muda nenhuma celula da F2 — por isso nao foi pedida nesta execucao."
+      },
       "geometria": null,
       "venda": [],
       "afiliado": {
@@ -718,7 +769,14 @@
           "motivo": "Mesmo caso do Silicone Acetico Construcao: silicone rende por CORDAO, nao por area colada. Converter seria palpite."
         }
       },
-      "preparo": null,
+      "preparo": {
+        "literal_do_fabricante": null,
+        "fonte_id": null,
+        "lido_em": null,
+        "recorte_do_documento": null,
+        "nossa_leitura": null,
+        "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo e a fonte e www.tekbond.com.br, em 403 nas tres passadas de 06/10/2026."
+      },
       "geometria": null,
       "condicoes": {},
       "venda": [
@@ -846,7 +904,18 @@
           "motivo": "O fabricante nao publica rendimento por area colada para este produto. A coluna de cola da F1 continua vazia com a frase na tela."
         }
       },
-      "preparo": "Superficies limpas, firmes e niveladas. Parede pintada ou com tinta em mau estado deve ser lixada antes. Excesso sai com pano umido em agua ou alcool domestico ANTES de secar. Peca pesada ou que va receber esforco pede escora ate a cura completa.",
+      "preparo": {
+        "literal_do_fabricante": "Prepare as superfícies a serem coladas, deixando-as limpas, firmes e niveladas. Superfícies ou paredes pintadas ou com tintas em más condições, devem ser lixadas previamente. Importante destacar que ao menos uma das superfícies deve ser porosa, já que o produto seca por evaporação da água. Corte a ponta do cartucho e rosqueie o bico nele. Feito isso, destampe o bico e corte-o na diagonal, conforme o diâmetro desejado, e insira o cartucho na pistola. Para peças pesadas ou que receberão esforço, utilize um suporte, mantendo-o até a cura total do adesivo. O excesso de adesivo deverá ser retirado imediatamente com um pano umedecido com água ou álcool doméstico antes da secagem.",
+        "fonte_id": "pagina-produto-pl500",
+        "como_a_tela_chama_o_documento": "na página de produto dele",
+        "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
+        "lido_em": "2026-10-06",
+        "recorte_do_documento": "Passos 1 e 2 de \"Como utilizar o produto?\" inteiros, mais as duas frases finais do Passo 4 (o suporte da peca pesada e a retirada do excesso). Ficaram fora o Passo 3 e a primeira frase do 4, que sao o gesto de aplicar e juntar.",
+        "nossa_leitura": "Superficies limpas, firmes e niveladas. Parede pintada ou com tinta em mau estado deve ser lixada antes. Excesso sai com pano umido em agua ou alcool domestico ANTES de secar. Peca pesada ou que va receber esforco pede escora ate a cura completa.",
+        "motivo_sem_literal": null,
+        "o_que_a_parafrase_perdia": "Tres coisas. (1) A condicao da superficie porosa, que o fabricante escreve DENTRO do preparo e que o banco guarda em `condicoes.exige_superficie_porosa` — a tela dizia a condicao pela nossa regra e nao pela frase dele. (2) O motivo da condicao, que e dele: \"ja que o produto seca por evaporacao da agua\". (3) O preparo do cartucho, que era o Passo 2 inteiro.",
+        "divergencia_lida_no_proprio_documento": "A mesma pagina publica DOIS tempos de ajuste: a lista de caracteristicas, no topo, diz \"Tempo para ajustes de 10 minutos\" e o Passo 4 diz \"O tempo para ajustes e de 05 minutos\". Nenhum dos dois esta gravado no banco e nenhum vai a tela — este campo e preparo, nao propriedade. Fica escrito aqui porque quem for gravar `tempo_para_ajustes_min` precisa saber que a fonte se contradiz antes de escolher um numero."
+      },
       "geometria": null,
       "condicoes": {
         "exige_superficie_porosa": {
@@ -888,7 +957,14 @@
           "nivel": 3,
           "coletado_em": "2026-09-13",
           "conferir_no_pdf": false,
-          "leitura": "busca restrita ao dominio do fabricante. cascola.com.br tambem nao abre desta nuvem (000, medido em 13/09/2026). Duas buscas independentes, com perguntas diferentes e SEM o valor dentro da pergunta (secao 8), devolveram a mesma lista de materiais, a mesma condicao de porosidade e o mesmo tempo de ajuste."
+          "leitura": "busca restrita ao dominio do fabricante. cascola.com.br tambem nao abre desta nuvem (000, medido em 13/09/2026). Duas buscas independentes, com perguntas diferentes e SEM o valor dentro da pergunta (secao 8), devolveram a mesma lista de materiais, a mesma condicao de porosidade e o mesmo tempo de ajuste.",
+          "reaberta_em": "2026-10-06",
+          "o_que_a_abertura_mudou": {
+            "por_que_foi_reaberta": "Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 238 KB de HTML.",
+            "o_que_a_leitura_trouxe": "Os passos 1, 2 e as duas frases finais do 4 de \"Como utilizar o produto?\", agora em `preparo.literal_do_fabricante`. Entre eles, a frase que o fabricante escreve DENTRO do preparo: \"ao menos uma das superficies deve ser porosa, ja que o produto seca por evaporacao da agua\" — a condicao que o banco ja guardava em `condicoes.exige_superficie_porosa` e que a tela, ate hoje, dizia so pela nossa regra.",
+            "a_divergencia_DENTRO_do_documento": "A mesma pagina publica DOIS tempos de ajuste: a lista de caracteristicas, no topo, diz \"Tempo para ajustes de 10 minutos\" e o passo 4 diz \"O tempo para ajustes e de 05 minutos\". Nenhum dos dois esta gravado como propriedade e nenhum vai a tela; quem for gravar `tempo_para_ajustes_min` precisa saber que a fonte se contradiz ANTES de escolher um numero. Fica escrito aqui pela 19.6, nao em `divergencias`, porque `divergencias` pede resolucao e nao ha o que resolver num campo que nao existe.",
+            "o_nivel_NAO_subiu_e_por_que": "Continua 3, pela mesma razao do Cascorez."
+          }
         }
       },
       "constantes_relacionadas": [],

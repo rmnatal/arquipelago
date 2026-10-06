@@ -1,5 +1,18 @@
 /**
  * Clube do Mosaico F2 — Qual cola usar no mosaico, e qual rejunte
+ * Versão 1.9.0 (06/10/2026) — A PÁGINA PASSA A DIZER O QUE FAZER ANTES DE
+ * PASSAR A COLA, e a frase é do fabricante. O campo `preparo` existia no banco
+ * desde 10/09/2026, em nove registros, como texto solto sem fonte — e a palavra
+ * `preparo` não aparecia em NENHUM dos nove snippets desta ilha. Nove
+ * declarações de fabricante lidas, gravadas e descartadas em silêncio, que é o
+ * defeito que esta ilha já mediu com quatro outros nomes. Entram
+ * `cdm_f2_preparo()` (os três estados do campo, esquema v12) e
+ * `cdm_f2_preparo_html()`, chamada nas DUAS respostas — a da cola e a do
+ * rejunte. O que sobe é só o `literal_do_fabricante` com documento e data; a
+ * paráfrase antiga NÃO sobe, e isso foi medido e não escolhido: das quatro
+ * paráfrases que deu para conferir contra a fonte em 06/10, as quatro perdiam
+ * informação dela. E quem não tem a instrução aparece pelo nome, com a causa —
+ * lista que só mostra quem passou faz o leitor ler ausência como "não precisa".
  * Versão 1.8.0 (06/10/2026) — a REGRA 7 nasce, e ela entra consertando um
  * defeito que esta página servia desde 11/09: o Tekbond Silicone Acético
  * Construção aparecia no TOPO da recomendação para quem respondeu CACO DE
@@ -121,7 +134,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.8.0' );
+	define( 'CDM_F2_VERSAO', '1.9.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -1024,6 +1037,151 @@ function cdm_f2_fonte_principal( $m ) {
 }
 }
 
+if ( ! function_exists( 'cdm_f2_preparo' ) ) {
+/**
+ * O `preparo` de UM produto, nos três estados do esquema v12 — e a leitura é a
+ * régua, não a prosa ao lado dela.
+ *
+ * Devolve `array( 'literal' => ..., 'fonte' => ... )` quando o fabricante
+ * escreveu e a gente leu o documento dele; `array( 'literal' => null )` nos
+ * outros dois estados. A tela serve o primeiro e NUNCA os outros dois.
+ *
+ * POR QUE A PARÁFRASE NÃO SOBE, e isto foi medido e não escolhido: de 10/09 a
+ * 06/10/2026 nove registros carregaram `preparo` como texto solto, sem dizer de
+ * qual documento tinham saído. Em 06/10 quatro deles puderam ser conferidos
+ * contra a fonte, e AS QUATRO perdiam informação dela — uma fechou lista que o
+ * fabricante deixou aberta, uma apagou o motivo de uma instrução, uma apagou a
+ * condição que ele escreve dentro do preparo e uma apagou sete frases de oito.
+ * Servir um resumo entre aspas seria publicar a instrução dele menos a parte
+ * que a gente deixou cair, com o nome dele embaixo (seção 26.3).
+ */
+function cdm_f2_preparo( $m ) {
+	$p = isset( $m['preparo'] ) && is_array( $m['preparo'] ) ? $m['preparo'] : array();
+	if ( empty( $p['literal_do_fabricante'] ) || empty( $p['fonte_id'] ) ) {
+		return array( 'literal' => null, 'fonte' => null );
+	}
+	$fontes = isset( $m['fontes'] ) && is_array( $m['fontes'] ) ? $m['fontes'] : array();
+	if ( ! isset( $fontes[ $p['fonte_id'] ] ) ) {
+		/* Fonte que o registro aponta e não tem é o mesmo que não ter fonte: a
+		   frase não sobe sem o endereço dela. O validador do banco já reprova
+		   isso; aqui a tela não depende de o portão ter rodado. */
+		return array( 'literal' => null, 'fonte' => null );
+	}
+
+	return array(
+		'literal'    => $p['literal_do_fabricante'],
+		'fonte'      => $fontes[ $p['fonte_id'] ],
+		'lido_em'    => isset( $p['lido_em'] ) ? $p['lido_em'] : '',
+		/* O NOME QUE O LEITOR OUVE, e não o campo `tipo` da fonte. O `tipo` é
+		   prosa de arquivo: o do boletim do rejunte piscinas chega sem um acento
+		   ("boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina") e o
+		   da cimentcola traz `escada_de_fontes` e o nome de um arquivo do
+		   repositório dentro da frase. Foi um render que mostrou isso, não uma
+		   ideia: a primeira versão deste bloco servia o `tipo`, como o bloco de
+		   prova da cola ainda faz — e nas colas passa, porque o `tipo` delas é
+		   curto e acentuado. */
+		'documento'  => isset( $p['como_a_tela_chama_o_documento'] ) ? $p['como_a_tela_chama_o_documento'] : '',
+	);
+}
+}
+
+if ( ! function_exists( 'cdm_f2_preparo_provas' ) ) {
+/**
+ * AS PROCEDENCIAS DO PREPARO, uma frase por produto, para o chamador JUNTAR na
+ * camada de prova que ele já abre. Nunca um bloco novo: o `teste-casca.php`
+ * cobra no máximo DOIS `cdm-prova` por página, e a trava é o que impede
+ * declarar a página inteira como camada de prova e desligar o portão de voz.
+ */
+function cdm_f2_preparo_provas( $ids ) {
+	$banco  = cdm_f2_banco();
+	$frases = array();
+	foreach ( (array) $ids as $id ) {
+		if ( ! isset( $banco['materiais'][ $id ] ) ) {
+			continue;
+		}
+		$p = cdm_f2_preparo( $banco['materiais'][ $id ] );
+		if ( ! $p['literal'] ) {
+			continue;
+		}
+		$fonte    = $p['fonte'];
+		$frases[] = esc_html( cdm_f2_nome( $id ) ) . ': o preparo está escrito '
+			. esc_html( $p['documento'] ? $p['documento'] : 'num documento dele que a gente não soube nomear' )
+			. ( ! empty( $p['lido_em'] ) && function_exists( 'cdm_casca_data_br' )
+				? ', lido em ' . esc_html( cdm_casca_data_br( $p['lido_em'] ) ) : '' )
+			. ( ! empty( $fonte['url'] ) ? ' (<a href="' . esc_url( $fonte['url'] ) . '" rel="nofollow noopener" target="_blank">abrir</a>)' : '' );
+	}
+
+	return $frases;
+}
+}
+
+if ( ! function_exists( 'cdm_f2_preparo_html' ) ) {
+/**
+ * O BLOCO DE PREPARO DA RESPOSTA. Recebe os ids que a página acabou de
+ * recomendar e o verbo da ação ("colar" ou "rejuntar"), e serve duas coisas: a
+ * instrução de quem a tem, na palavra do fabricante, e o nome de quem não a
+ * tem, com a causa.
+ *
+ * A SEGUNDA METADE É A QUE IMPORTA MAIS, e ela é a mesma cicatriz da prestação
+ * de contas do rejunte: lista que só mostra quem passou faz o leitor ler
+ * ausência como "não precisa de preparo". Não é isso que a ausência quer dizer
+ * aqui — quer dizer que o servidor do fabricante recusa a gente, ou que ninguém
+ * leu ainda, e as duas são nossas, não dele.
+ */
+function cdm_f2_preparo_html( $ids, $verbo ) {
+	$banco = cdm_f2_banco();
+	$com   = array();
+	$sem   = array();
+
+	foreach ( (array) $ids as $id ) {
+		if ( ! isset( $banco['materiais'][ $id ] ) ) {
+			continue;
+		}
+		$m = $banco['materiais'][ $id ];
+		$p = cdm_f2_preparo( $m );
+		if ( $p['literal'] ) {
+			$com[ $id ] = $p;
+		} else {
+			$sem[] = $id;
+		}
+	}
+
+	if ( ! $com && ! $sem ) {
+		return '';
+	}
+
+	$html = '<div class="cdm-f2-preparo">';
+	$html .= '<h3>Antes de ' . esc_html( $verbo ) . ', o que o fabricante manda fazer</h3>';
+
+	/* A PROCEDENCIA NAO SAI AQUI, e isso nao e estilo: ela sai em
+	   `cdm_f2_preparo_provas()`, para o chamador juntar a camada de prova que ele
+	   ja tem. A primeira versao deste bloco abria um `cdm-prova` por literal, e o
+	   `teste-casca.php` reprovou na hora — a pagina passou a servir TRES camadas
+	   de prova, e o maximo e DOIS. A trava existe porque embrulhar a pagina
+	   inteira em `cdm-prova` e a porta dos fundos do portao de voz: quem pode
+	   abrir quantos blocos quiser desliga a regua sem mudar uma palavra. */
+	foreach ( $com as $id => $p ) {
+		$html .= '<p class="cdm-f2-preparo-item"><strong>' . esc_html( cdm_f2_nome( $id ) ) . '</strong>: '
+			. '<em>' . esc_html( $p['literal'] ) . '</em></p>';
+	}
+
+	if ( $sem ) {
+		$nomes = array();
+		foreach ( $sem as $id ) {
+			$nomes[] = cdm_f2_nome( $id );
+		}
+		$html .= '<p class="cdm-f2-silencio">De <strong>' . esc_html( cdm_f2_lista_humana( $nomes ) )
+			. '</strong> a gente não tem a instrução de preparo na palavra do fabricante: o documento '
+			. 'dele não abre daqui, ou ninguém o leu ainda. A gente prefere dizer isso a resumir — '
+			. 'resumo de instrução é instrução pela metade, e o nome que ficaria embaixo dela é o dele.</p>';
+	}
+
+	$html .= '</div>';
+
+	return $html;
+}
+}
+
 if ( ! function_exists( 'cdm_f2_lista_humana' ) ) {
 /** "a, b e c" — como gente escreve, nunca "a, b, c". */
 function cdm_f2_lista_humana( $itens ) {
@@ -1339,9 +1497,12 @@ function cdm_f2_resposta_cola_html( $base, $ambiente, $tessela ) {
 			. esc_html( $fonte ? $fonte['tipo'] : 'fonte não registrada' ) . ', lido em '
 			. esc_html( cdm_casca_data_br( $fonte ? $fonte['coletado_em'] : '' ) ) . ')';
 	}
-	if ( $provas ) {
-		$html .= '<div class="cdm-prova"><p>' . implode( '. ', $provas ) . '.</p></div>';
-	}
+	/* A PROVA DESCEU PARA O FIM DA CAIXA em 06/10/2026, com o bloco de preparo.
+	   Antes ela saía aqui, logo depois da frase, e o preparo teria de abrir uma
+	   segunda camada de prova para citar o documento dele — o que estoura a trava
+	   de DOIS blocos do `teste-casca.php`. Com uma caixa só no pé, a página tem
+	   UMA camada de prova por resposta, que é o que o VOZ.md pede com outras
+	   palavras: "número, fonte e data moram na camada de prova, nunca na voz". */
 
 	/* A CONDIÇÃO DE QUEM FICOU, e a atribuição dividida ao meio (seção 26.3 do
 	   ARQUIPELAGO.md). O fabricante declarou a CONDIÇÃO — "ao menos uma das
@@ -1370,6 +1531,24 @@ function cdm_f2_resposta_cola_html( $base, $ambiente, $tessela ) {
 	}
 	if ( $com_condicao ) {
 		$html .= '<div class="cdm-f2-condicao"><p>' . implode( ' ', $com_condicao ) . '</p></div>';
+	}
+
+	/* O PREPARO (esquema v12, 06/10/2026). Ele vem DEPOIS da prova e da condição
+	   de propósito: a prova diz por que este produto foi indicado, a condição diz
+	   o que ele exige das superfícies, e só então a página diz o que fazer antes
+	   de passar cola. Quem lê de cima para baixo recebe a decisão, o motivo e a
+	   instrução nessa ordem.
+
+	   Ele cobre o MESMO conjunto do bloco de prova — o topo mais os elegíveis que
+	   a frase nomeia — e não a vitrine: produto que a página não indicou não
+	   recebe instrução de aplicação, porque instrução sem indicação é receita de
+	   usar o que a gente acabou de dizer que não serve. */
+	$recomendados = array_merge( $celula['recomendados_topo'], $celula['elegiveis_abaixo_do_topo'] );
+	$html .= cdm_f2_preparo_html( $recomendados, 'colar' );
+
+	$provas = array_merge( $provas, cdm_f2_preparo_provas( $recomendados ) );
+	if ( $provas ) {
+		$html .= '<div class="cdm-prova"><p>' . implode( '. ', $provas ) . '.</p></div>';
 	}
 
 	$html .= '</div>';
@@ -1690,6 +1869,7 @@ function cdm_f2_resposta_rejunte_html( $junta, $ambiente, $tessela ) {
 			$html .= cdm_f2_cartao_html( $id, $motivo, in_array( $id, $celula['recomendados_topo'], true ) ? '' : 'cdm-f2-segundo' );
 		}
 		$html .= '</ul>';
+
 	} else {
 		/* A RECUSA NÃO OFERECE HIPÓTESE — as linhas de prestação de contas logo
 		   abaixo nomeiam quem caiu por qual motivo, e é delas que o leitor tira
@@ -1757,6 +1937,33 @@ function cdm_f2_resposta_rejunte_html( $junta, $ambiente, $tessela ) {
 			. 'nem para dizer que cabe, nem para dizer que não cabe.</p>';
 	}
 	$html .= '</div>';
+
+	/* O PREPARO DO REJUNTE SAI EM SEÇÃO IRMÃ, e o motivo é a prestação de contas
+	   acima dele. A regra desta ilha, do despacho da Sentinela de 12/09/2026, é
+	   que TODO rejunte do banco é nomeado EXATAMENTE UMA VEZ na resposta — ou na
+	   frase de recomendação, ou numa linha que diz por que ele não está — e
+	   `teste-prestacao-rejunte.php` recomputa essa conta nos 540 estados. A
+	   primeira versão deste bloco nasceu DENTRO da seção e nomeou os produtos uma
+	   segunda vez: 1.017 erros em 540 estados, de um portão que mede o que a
+	   página diz e não o que ela pretende dizer. A instrução de aplicação não é
+	   prestação de contas, e agora as duas não moram no mesmo cômodo — a fronteira
+	   que a bancada lê é a classe `cdm-f2-secao`, e ela é esta.
+
+	   Nesta metade da página o preparo é mais caro do que na da cola: a junta
+	   típica desta ilha é de 2 a 3 mm, e a Quartzolit manda molhar com água limpa
+	   toda junta de até 3 mm antes de rejuntar. Era essa a frase que o banco
+	   guardava desde 10/09 e que nenhuma tela servia. */
+	$recomendados = array_merge( $celula['recomendados_topo'], $celula['elegiveis_abaixo_do_topo'] );
+	$preparo      = cdm_f2_preparo_html( $recomendados, 'rejuntar' );
+	if ( '' !== $preparo ) {
+		$html .= '<div class="cdm-f2-secao cdm-f2-preparo-secao">';
+		$html .= $preparo;
+		$provas_r = cdm_f2_preparo_provas( $recomendados );
+		if ( $provas_r ) {
+			$html .= '<div class="cdm-prova"><p>' . implode( '. ', $provas_r ) . '.</p></div>';
+		}
+		$html .= '</div>';
+	}
 
 	return $html;
 }
@@ -2333,7 +2540,30 @@ add_shortcode( 'cdm_f2', function () {
 		. ' rejuntes desta página vêm do que cada fabricante publica sobre o próprio produto, com o documento e a data em que foi lido. A recomendação é <em>recalculada</em> das declarações a cada carregamento, nunca digitada — são '
 		. cdm_casca_num( $n['celulas_matriz'] ) . ' combinações de base e ambiente e ' . cdm_casca_num( $n['celulas_rejunte'] )
 		. ' de folga e ambiente conferidas uma a uma.</p>';
-	$html .= '<p>A mais importante delas é a ficha técnica BRSA004 do Silicone Acético Construção Tekbond, revisada em 10/2025, que lista espelho, concreto, cimento, tijolo, calcário, superfície alcalina, pintada ou porosa, acrílico, aquário, metal corrosível e imersão contínua entre as superfícies em que o produto não deve ser usado. Nenhum PDF de fabricante foi aberto linha a linha: a leitura foi feita no domínio de cada um, em 10 e 11/09/2026, e isso está declarado item a item no nosso banco.</p>';
+	/* A SEGUNDA METADE DESTE PARAGRAFO ERA UM DISCLOSURE VELHO, E ELE MENTIA.
+	   Ela dizia "Nenhum PDF de fabricante foi aberto linha a linha: a leitura foi
+	   feita no dominio de cada um, em 10 e 11/09/2026". Era verdade quando foi
+	   escrita, em 11/09/2026. Em 05 e 06/10/2026 DOIS boletins tecnicos foram
+	   abertos e lidos pagina a pagina pelo canal de espelho — e e de um deles que
+	   sai a instrucao de preparo do rejunte piscinas que esta pagina agora serve.
+	   A frase envelheceu calada, na unica camada da pagina cujo produto inteiro e
+	   o rigor; e a mesma cicatriz que a casca 1.18.0 pagou com os 28 botoes de
+	   afiliado declarados como nao-afiliado.
+
+	   Entao a conta passa a ser CONTADA e a sair so pela via viva (`numeros_vivos`),
+	   como a da divulgacao: com o instantaneo, a pagina diz onde a leitura foi
+	   feita e nao afirma quantidade nenhuma. Numero de tela nasce contado. */
+	$html .= '<p>A mais importante delas é a ficha técnica BRSA004 do Silicone Acético Construção Tekbond, revisada em 10/2025, que lista espelho, concreto, cimento, tijolo, calcário, superfície alcalina, pintada ou porosa, acrílico, aquário, metal corrosível e imersão contínua entre as superfícies em que o produto não deve ser usado. '
+		. ( ! empty( $n['numeros_vivos'] )
+			? 'Dos ' . cdm_casca_num( $n['documentos_no_banco'] ) . ' documentos que o banco cita, '
+				. ( (int) $n['documentos_abertos'] > 0
+					? cdm_casca_num( $n['documentos_abertos'] ) . ' '
+						. ( 1 === (int) $n['documentos_abertos'] ? 'foi aberto' : 'foram abertos' )
+						. ' e ' . ( 1 === (int) $n['documentos_abertos'] ? 'lido' : 'lidos' ) . ' página a página'
+					: 'nenhum foi aberto página a página' )
+				. '; o resto foi lido no domínio de cada fabricante, e isso está declarado item a item no nosso banco.'
+			: 'A leitura foi feita no domínio de cada fabricante, e quais documentos foram abertos página a página está declarado item a item no nosso banco.' )
+		. '</p>';
 	$html .= '<p>Hoje ' . cdm_casca_num( $n['esperando_link'] ) . ' dos ' . cdm_casca_num( $n['itens_no_banco'] )
 		. ' itens do banco ainda esperam link de loja. O método inteiro está em ' . cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
 	$html .= '</div>';
@@ -2640,6 +2870,15 @@ add_action( 'wp_footer', function () {
    gradiente (secao 6), separada por linha de 1px como o resto da ilha. */
 .cdm-f2-condicao{margin:.9rem 0 0;padding:.7rem .8rem;border:1px solid var(--cdm-traco);border-radius:2px;font-size:.95rem;}
 .cdm-f2-condicao p{margin:0;}
+/* O PREPARO (esquema v12). Mesma familia visual da condicao: parte da resposta,
+   no corpo e nao em cor de legenda, separado por linha de 1px. O literal vai em
+   italico porque e citacao, e a procedencia desce para a cdm-prova logo abaixo,
+   que e onde a prova mora nesta ilha (secao 15.2). */
+.cdm-f2-preparo{margin:1.1rem 0 0;padding:.8rem .9rem;border:1px solid var(--cdm-traco);border-radius:2px;}
+.cdm-f2-preparo h3{font-family:var(--cdm-display);font-size:1rem;font-weight:600;margin:0 0 .5rem;}
+.cdm-f2-preparo-item{margin:.5rem 0 0;font-size:.95rem;line-height:1.6;}
+.cdm-f2-preparo .cdm-prova{margin:.4rem 0 .8rem;padding:.4rem 0 0;}
+.cdm-f2-preparo .cdm-f2-silencio{margin:.7rem 0 0;}
 .cdm-f2-rolagem{overflow-x:auto;}
 .cdm-f2-tabela{width:100%;font-size:.93rem;}
 .cdm-f2-vazio{color:var(--cdm-ambar);}

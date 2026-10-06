@@ -1,6 +1,19 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
  *
+ * Versão 1.20.0 (06/10/2026) — `cdm_casca_numeros()` passa a CONTAR os
+ *   documentos que o banco cita e quantos deles foram abertos e lidos página a
+ *   página. Os dois números nasceram porque uma frase de prosa mentiu: a camada
+ *   de prova da F2 publicava, desde 11/09, que "nenhum PDF de fabricante foi
+ *   aberto linha a linha", e em 05 e 06/10 dois boletins técnicos foram abertos
+ *   pelo canal de espelho — um deles é a fonte da instrução de preparo que a F2
+ *   agora serve. Prosa não tem régua; número tem. O marcador de "aberto" é a
+ *   presença de `tipo_de_origem` na fonte, nunca a frase do `tipo`: contar pela
+ *   frase leria "PDF não aberto" como aberto no dia em que alguém a
+ *   reescrevesse. Os dois entram no instantâneo com ZERO e só saem à tela pela
+ *   via viva, como a conta da divulgação — estatística velha envelhece,
+ *   disclosure velho mente.
+ *
  * Versão 1.18.0 (29/09/2026) — A PÁGINA DE DIVULGAÇÃO DIZIA AO LEITOR QUE 28
  *   BOTÕES NÃO RENDIAM COMISSÃO, E OS 28 SAEM COM `rel="sponsored"`.
  *   Nenhuma linha foi tocada desde 14/09; o mundo é que mudou embaixo dela. Em
@@ -259,7 +272,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.19.0' );
+	define( 'CDM_CASCA_VERSAO', '1.20.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1218,6 +1231,17 @@ function cdm_casca_numeros() {
 		   digitado. A saida nao e corrigir o digito: e a pagina de divulgacao
 		   NAO PUBLICAR a conta quando ela vem daqui. Estatistica velha envelhece;
 		   disclosure velho mente. */
+		/* OS DOIS NUMEROS DOS DOCUMENTOS, nascidos em 06/10/2026 com o bloco de
+		   preparo. O instantaneo e o do dia 12/09, quando NENHUM PDF de
+		   fabricante havia sido aberto — e era exatamente isso que a F2 dizia na
+		   camada de prova dela, com todas as letras. Hoje dois boletins foram
+		   abertos e lidos pagina a pagina pelo canal de espelho, e a frase
+		   antiga virou mentira sem ninguem mexer nela. A saida e a mesma da
+		   `piso_nao_rastreavel` logo acima: a pagina so publica a conta pela via
+		   VIVA, e com o instantaneo ela diz o que mediu em vez de afirmar um
+		   numero velho. */
+		'documentos_no_banco' => 0,
+		'documentos_abertos'  => 0,
 		'numeros_vivos'      => false,
 		'sem_imagem'         => 20,
 		'pecas_na_loja'      => 0,
@@ -1236,6 +1260,8 @@ function cdm_casca_numeros() {
 
 	$link_vivo           = 0;
 	$img_viva            = 0;
+	$docs_vivos          = 0;
+	$docs_abertos_vivos  = 0;
 	$lidos               = 0;
 	$sem_saida_viva      = 0;
 	$nao_rastreavel_vivo = 0;
@@ -1258,6 +1284,22 @@ function cdm_casca_numeros() {
 		if ( isset( $banco['imagens']['itens_sem_imagem'] ) ) {
 			$img_viva += (int) $banco['imagens']['itens_sem_imagem'];
 		}
+		/* OS DOCUMENTOS, contados registro por registro. "Aberto" tem marcador
+		   proprio no banco e nao se adivinha pela prosa do `tipo`: e a presenca
+		   de `tipo_de_origem`, que so existe na fonte cujo PDF foi aberto e lido
+		   pagina a pagina. Contar pela frase do `tipo` leria "PDF nao aberto"
+		   como aberto no dia em que alguem reescrevesse a frase. */
+		foreach ( $banco['materiais'] as $_m ) {
+			if ( empty( $_m['fontes'] ) || ! is_array( $_m['fontes'] ) ) {
+				continue;
+			}
+			foreach ( $_m['fontes'] as $_f ) {
+				$docs_vivos++;
+				if ( ! empty( $_f['tipo_de_origem'] ) ) {
+					$docs_abertos_vivos++;
+				}
+			}
+		}
 	}
 
 	/* Os totais da ilha so assumem a via viva quando TODOS os bancos chegaram. Somar
@@ -1268,6 +1310,8 @@ function cdm_casca_numeros() {
 		$n['sem_imagem']           = $img_viva;
 		$n['sem_saida_de_compra']  = $sem_saida_viva;
 		$n['piso_nao_rastreavel']  = $nao_rastreavel_vivo;
+		$n['documentos_no_banco']  = $docs_vivos;
+		$n['documentos_abertos']   = $docs_abertos_vivos;
 		$n['numeros_vivos']        = true;
 	}
 

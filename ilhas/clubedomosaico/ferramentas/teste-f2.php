@@ -56,6 +56,27 @@ function f2_scripts( $html ) {
 	return implode( "\n", $m[1] );
 }
 
+/**
+ * O TRECHO DE TEXTO QUE COMECA EM UMA FRASE E TERMINA NA PROXIMA FRONTEIRA.
+ * Existe porque delimitar bloco por `</div>` nao funciona onde ha aninhamento,
+ * e porque a afirmacao que importa aqui e sobre o que a pagina DIZ.
+ */
+function f2_recorte( $texto, $inicio, $fronteiras ) {
+	$i = mb_strpos( $texto, $inicio );
+	if ( false === $i ) {
+		return '';
+	}
+	$resto = mb_substr( $texto, $i );
+	$fim   = mb_strlen( $resto );
+	foreach ( (array) $fronteiras as $f ) {
+		$j = mb_strpos( $resto, $f, mb_strlen( $inicio ) );
+		if ( false !== $j && $j < $fim ) {
+			$fim = $j;
+		}
+	}
+	return mb_substr( $resto, 0, $fim );
+}
+
 function f2_texto( $html ) {
 	return trim( preg_replace( '/\s+/u', ' ', html_entity_decode( strip_tags( $html ), ENT_QUOTES, 'UTF-8' ) ) );
 }
@@ -775,6 +796,7 @@ f2_ok( empty( $faltando ), 'a grade do esquema pisa em toda borda de faixa decla
 
 $estados_r    = 0;
 $erros_rejunte = array();
+$secoes_rejunte = array();
 for ( $junta = 1; $junta <= 12; $junta++ ) {
 	foreach ( $ambientes as $ambiente ) {
 		$html = f2_render( $raiz, 'base=ceramica_esmaltada_porcelana&onde=' . $ambiente . '&junta=' . $junta );
@@ -785,6 +807,14 @@ for ( $junta = 1; $junta <= 12; $junta++ ) {
 			preg_match( '#<h2>E o rejunte, que vai entre os caquinhos</h2>(.*)#is', $corpo, $mr );
 		}
 		$trecho = isset( $mr[1] ) ? f2_texto( $mr[1] ) : '';
+		/* E A SECAO IRMA DO PREPARO, que mora FORA do bloco da prestacao de
+		   contas de proposito (ver o comentario no snippet): a conta da 12/09
+		   exige que todo rejunte seja nomeado uma vez so la dentro, e instrucao
+		   de aplicacao nao e prestacao de contas. Para a afirmacao do preparo ela
+		   entra aqui, concatenada, porque o que se mede e o que a PAGINA diz. */
+		preg_match( '#<div class="cdm-f2-secao cdm-f2-preparo-secao">(.*?)(?=<div class="cdm-f2-secao[ "]|<h2|$)#is', $corpo, $mpr );
+		$secoes_rejunte[ $junta . '|' . $ambiente ] = $trecho
+			. ( isset( $mpr[1] ) ? ' ' . f2_texto( $mpr[1] ) : '' );
 		if ( '' === $trecho ) {
 			$erros_rejunte[] = $junta . 'mm x ' . $ambiente . ': secao do rejunte ausente';
 			continue;
@@ -1826,8 +1856,17 @@ foreach ( $alvos_peca as $chave7 => $esperados ) {
 	   passaria por todas as afirmacoes acima. */
 	$t_livre = $caquinhos_livres[0];
 	$html_c  = f2_corpo( f2_render( $raiz, 'base=' . $b7 . '&onde=' . $a7 . '&caco=' . $t_livre ) );
+	/* A FRONTEIRA DA CAIXA DE RESPOSTA E O MARCADOR DA SECAO SEGUINTE, nunca o
+	   primeiro `</div>`. A forma antiga — `<div class="cdm-f2-resposta">(.*?)</div>`
+	   — fechava no primeiro aninhamento, e por isso ela media "a frase mais o que
+	   vier antes do proximo </div>": enquanto a camada de prova era o primeiro
+	   filho, dava certo por acidente de ordem. Em 06/10/2026 o bloco de preparo
+	   entrou antes dela e esta afirmacao caiu em duas celulas, sem que nada da
+	   regra 7 tivesse mudado. Regua que depende de contar `</div>` mede o HTML;
+	   fronteira de teste e marcador escrito — a mesma cicatriz que a Robometria
+	   deixou em 13/09/2026 e que o `pr_bloco_f1` do teste-prestacao-rejunte cita. */
 	$resp_c  = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '',
-		preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>#is', $html_c, $mrc ) ? $mrc[1] : '' ) );
+		preg_match( '#<div class="cdm-f2-resposta">(.*?)(?=<div class="cdm-f2-secao[ "]|<h2|$)#is', $html_c, $mrc ) ? $mrc[1] : '' ) );
 	$peca_c  = preg_match_all( '#<p class="cdm-f2-peca-fora">(.*?)</p>#is', $html_c, $mpc )
 		? f2_texto( implode( ' ', $mpc[1] ) ) : '';
 	foreach ( $esperados as $id7 ) {
@@ -1890,6 +1929,146 @@ f2_ok( $linhas_com_peca > 0,
 f2_ok( empty( $erros_tabela7 ),
 	'toda linha que indica produto com proibicao de peca publica o caquinho e a frase literal',
 	empty( $erros_tabela7 ) ? $linhas_com_peca . ' linhas conferidas' : implode( ' | ', array_slice( $erros_tabela7, 0, 3 ) ) );
+
+/* ---------------------------------------------------------------------------
+ * O PREPARO NA TELA (esquema v12, 06/10/2026) — e a regua aqui e a INVERSA da
+ * do resto deste arquivo.
+ *
+ * As outras afirmacoes partem da matriz escrita a mao e cobram que a pagina
+ * concorde com ela. Esta parte da PAGINA SERVIDA: ela le, no texto, quem a
+ * pagina acabou de recomendar, e so entao vai ao banco buscar o que aquele
+ * produto declara. O motivo e que o defeito que este bloco conserta nao era de
+ * calculo e sim de OMISSAO — nove declaracoes gravadas e nenhuma tela servindo-as
+ * —, e omissao nao aparece numa regua que mede concordancia entre duas listas.
+ *
+ * As tres afirmacoes, e a terceira e a que importa mais:
+ *   1. produto recomendado que TEM literal serve o literal, em toda celula;
+ *   2. produto recomendado que NAO tem literal aparece pelo nome, com a causa —
+ *      lista que so mostra quem passou faz o leitor ler ausencia como "nao
+ *      precisa de preparo", e nao e isso que a ausencia quer dizer;
+ *   3. NENHUMA parafrase nossa aparece em estado nenhum. E a unica das tres que
+ *      mede o defeito de 26.3 — a nossa frase saindo com o nome do fabricante
+ *      embaixo — e ela varre os 45 corpos de cola e as 60 secoes de rejunte
+ *      contra TODAS as parafrases do banco, nao so as dos recomendados.
+ * ------------------------------------------------------------------------- */
+
+$com_literal   = array();   // nome comercial => literal
+$sem_literal   = array();   // nome comercial => true
+$parafrases    = array();   // nome comercial => parafrase que NAO pode subir
+foreach ( array( $colas, $rejuntes ) as $_banco ) {
+	foreach ( (array) $_banco['materiais'] as $_m ) {
+		$_nome = $_m['nome_comercial'];
+		$_p    = isset( $_m['preparo'] ) && is_array( $_m['preparo'] ) ? $_m['preparo'] : array();
+		if ( ! empty( $_p['literal_do_fabricante'] ) ) {
+			$com_literal[ $_nome ] = $_p['literal_do_fabricante'];
+		} else {
+			$sem_literal[ $_nome ] = true;
+		}
+		if ( ! empty( $_p['nossa_leitura'] ) ) {
+			$parafrases[ $_nome ] = $_p['nossa_leitura'];
+		}
+	}
+}
+
+f2_ok( count( $com_literal ) > 0 && count( $sem_literal ) > 0 && count( $parafrases ) > 0,
+	'o banco tem os TRES estados do preparo — senao as afirmacoes abaixo nao mordem',
+	count( $com_literal ) . ' com literal, ' . count( $sem_literal ) . ' sem, '
+		. count( $parafrases ) . ' parafrases guardadas' );
+
+$faltou_literal = array();
+$faltou_causa   = array();
+$celulas_com_preparo = 0;
+
+foreach ( $corpos as $chave => $corpo ) {
+	$texto = f2_texto( $corpo );
+	/* Quem a PAGINA recomendou, lido do texto dela: o nome aparece na frase de
+	   indicacao. Nada de ler a celula do esquema aqui — a inversao e o ponto. */
+	/* O BLOCO SE DELIMITA PELO TEXTO, e nao por `</div>`: dentro dele mora a
+	   caixa `cdm-prova` de cada literal, entao `(.*?)</div></div>` fecha no
+	   primeiro aninhamento e, quando a celula nao tem cola recomendada, engole a
+	   pagina a partir da secao do rejunte. Foi assim que a primeira versao desta
+	   afirmacao acusou tres colas em `vidro x contato permanente com agua`, que e
+	   uma celula SEM cola nenhuma. Regua que depende de contar `</div>` mede o
+	   HTML; esta mede o que a pagina diz. */
+	$bloco_preparo = f2_recorte( $texto, 'Antes de colar, o que o fabricante manda fazer',
+		array( 'Antes de rejuntar, o que o fabricante manda fazer', 'E o rejunte, que vai entre os caquinhos' ) );
+	if ( '' === $bloco_preparo ) {
+		continue;
+	}
+	$celulas_com_preparo++;
+	foreach ( $com_literal as $nome => $literal ) {
+		if ( false !== mb_strpos( $bloco_preparo, $nome ) ) {
+			if ( false === mb_strpos( $bloco_preparo, f2_texto( $literal ) ) ) {
+				$faltou_literal[] = $chave . ': ' . $nome;
+			}
+		}
+	}
+	foreach ( $sem_literal as $nome => $_ ) {
+		if ( false !== mb_strpos( $bloco_preparo, $nome )
+			&& false === mb_strpos( $bloco_preparo, 'não tem a instrução de preparo' ) ) {
+			$faltou_causa[] = $chave . ': ' . $nome;
+		}
+	}
+}
+
+f2_ok( $celulas_com_preparo > 0, 'ha celula de cola servindo o bloco de preparo',
+	$celulas_com_preparo . ' de 45' );
+f2_ok( empty( $faltou_literal ),
+	'todo produto recomendado que tem literal de preparo serve o literal',
+	empty( $faltou_literal ) ? $celulas_com_preparo . ' celulas conferidas'
+		: implode( ' | ', array_slice( $faltou_literal, 0, 3 ) ) );
+f2_ok( empty( $faltou_causa ),
+	'todo produto recomendado SEM literal aparece pelo nome, com a causa',
+	empty( $faltou_causa ) ? $celulas_com_preparo . ' celulas conferidas'
+		: implode( ' | ', array_slice( $faltou_causa, 0, 3 ) ) );
+
+$rejunte_sem_literal = array();
+$rejunte_com_bloco   = 0;
+foreach ( $secoes_rejunte as $chave => $trecho ) {
+	if ( false === mb_strpos( $trecho, 'Antes de rejuntar' ) ) {
+		continue;
+	}
+	$rejunte_com_bloco++;
+	$bloco_r = f2_recorte( $trecho, 'Antes de rejuntar, o que o fabricante manda fazer', array() );
+	foreach ( $com_literal as $nome => $literal ) {
+		if ( false !== mb_strpos( $bloco_r, $nome )
+			&& false === mb_strpos( $bloco_r, 'não tem a instrução de preparo na palavra' )
+			&& false === mb_strpos( $bloco_r, f2_texto( $literal ) ) ) {
+			$rejunte_sem_literal[] = $chave . ': ' . $nome;
+		}
+	}
+}
+f2_ok( $rejunte_com_bloco > 0, 'ha estado de rejunte servindo o bloco de preparo',
+	$rejunte_com_bloco . ' de 60' );
+f2_ok( empty( $rejunte_sem_literal ), 'no rejunte, quem abre o bloco de preparo abre com o literal',
+	empty( $rejunte_sem_literal ) ? $rejunte_com_bloco . ' estados conferidos'
+		: implode( ' | ', array_slice( $rejunte_sem_literal, 0, 3 ) ) );
+
+/* A TERCEIRA, e a que mede o defeito da 26.3: nenhuma parafrase nossa em
+   estado nenhum, nem na cola nem no rejunte. */
+$parafrase_no_ar = array();
+foreach ( $parafrases as $nome => $parafrase ) {
+	$agulha = f2_texto( $parafrase );
+	if ( mb_strlen( $agulha ) < 20 ) {
+		continue;
+	}
+	foreach ( $corpos as $chave => $corpo ) {
+		if ( false !== mb_strpos( f2_texto( $corpo ), $agulha ) ) {
+			$parafrase_no_ar[] = 'cola ' . $chave . ': ' . $nome;
+			break;
+		}
+	}
+	foreach ( $secoes_rejunte as $chave => $trecho ) {
+		if ( false !== mb_strpos( $trecho, $agulha ) ) {
+			$parafrase_no_ar[] = 'rejunte ' . $chave . ': ' . $nome;
+			break;
+		}
+	}
+}
+f2_ok( empty( $parafrase_no_ar ),
+	'nenhuma parafrase NOSSA de preparo chega a tela, em 45 + 60 estados',
+	empty( $parafrase_no_ar ) ? count( $parafrases ) . ' parafrases procuradas'
+		: implode( ' | ', array_slice( $parafrase_no_ar, 0, 3 ) ) );
 
 /* ---------------------------------------------------------------------------
  * Fecho

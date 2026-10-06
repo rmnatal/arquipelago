@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 11,
+  "versao_esquema": 12,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -3228,31 +3228,31 @@
         "registro": "pastilhart-af1500",
         "arquivo": "dados/materiais-pastilhas.json",
         "categoria": "pastilha",
-        "campo": "preparo",
+        "campo": "preparo.literal_do_fabricante",
         "termo": "desempenadeira",
         "trecho": "desempenadeira de borracha",
         "material_de_contato_declarado": "borracha",
-        "o_que_obriga": "Mesma declaracao repetida no campo `preparo`. Fica listada separada de proposito: a varredura mede CAMPO, nao registro, e duas linhas do mesmo registro nao se cobrem uma a outra."
+        "o_que_obriga": "Mesma declaracao repetida no campo `preparo`. Fica listada separada de proposito: a varredura mede CAMPO, nao registro, e duas linhas do mesmo registro nao se cobrem uma a outra. CAMINHO ATUALIZADO EM 06/10/2026: era `preparo`, quando o campo era string; com o esquema v12 ele e objeto e a frase do fabricante mora em `literal_do_fabricante`. A varredura reprovou nas DUAS direcoes no mesmo instante — achou a ocorrencia num caminho novo e deixou de achar a listada —, que e o portao fazendo o que promete."
       },
       {
         "registro": "cascola-cascorez-extra",
         "arquivo": "dados/materiais-colas.json",
         "categoria": "cola",
-        "campo": "preparo",
+        "campo": "preparo.literal_do_fabricante",
         "termo": "pincel",
         "trecho": "Aplicacao com pincel ou rolo",
         "material_de_contato_declarado": null,
-        "o_que_obriga": "Uma cola do banco declara o aplicador dela, e o aplicador nao existe no vocabulario de apoio. Quando o primeiro SKU de pincel nascer, este registro e a fonte que o justifica."
+        "o_que_obriga": "Uma cola do banco declara o aplicador dela, e o aplicador nao existe no vocabulario de apoio. Quando o primeiro SKU de pincel nascer, este registro e a fonte que o justifica. CAMINHO ATUALIZADO EM 06/10/2026: era `preparo`, quando o campo era string; com o esquema v12 ele e objeto e a frase do fabricante mora em `literal_do_fabricante`. A varredura reprovou nas DUAS direcoes no mesmo instante — achou a ocorrencia num caminho novo e deixou de achar a listada —, que e o portao fazendo o que promete."
       },
       {
         "registro": "cascola-cascorez-extra",
         "arquivo": "dados/materiais-colas.json",
         "categoria": "cola",
-        "campo": "preparo",
+        "campo": "preparo.literal_do_fabricante",
         "termo": "rolo",
         "trecho": "Aplicacao com pincel ou rolo",
         "material_de_contato_declarado": null,
-        "o_que_obriga": "Ver `pincel`, acima: a mesma frase nomeia os dois."
+        "o_que_obriga": "Ver `pincel`, acima: a mesma frase nomeia os dois. CAMINHO ATUALIZADO EM 06/10/2026: era `preparo`, quando o campo era string; com o esquema v12 ele e objeto e a frase do fabricante mora em `literal_do_fabricante`. A varredura reprovou nas DUAS direcoes no mesmo instante — achou a ocorrencia num caminho novo e deixou de achar a listada —, que e o portao fazendo o que promete."
       },
       {
         "registro": "quartzolit-verniz-protetor-para-pisos",
@@ -3273,6 +3273,16 @@
         "trecho": "aerossol",
         "material_de_contato_declarado": null,
         "o_que_obriga": "Nada, e e por isso que esta listado: `aerossol` e embalagem. A linha existe para que a proxima execucao nao o leia como ferramenta faltando no vocabulario."
+      },
+      {
+        "registro": "quartzolit-cimentcola-externo-acii",
+        "arquivo": "dados/materiais-colas.json",
+        "categoria": "cola",
+        "campo": "preparo.literal_do_fabricante",
+        "termo": "desempenadeira",
+        "trecho": "quando os dentes da desempenadeira se desgastarem em mais de 1 mm de altura, substitua-a ou refaca os dentes",
+        "material_de_contato_declarado": null,
+        "o_que_obriga": "NOVA EM 06/10/2026, e ela entrou porque a secao mordeu antes de o literal estar fechado. A primeira versao do recorte do boletim deixava a obs. da desempenadeira de FORA (era 'tabela'), e o termo aparecia so em `recorte_do_documento`, que e prosa nossa. Cortar a frase e cegar a varredura no mesmo gesto e a definicao de declaracao lida e descartada em silencio. A obs. entrou no literal e a ocorrencia entrou aqui. O fabricante NAO declara material de contato nesta frase — ele fala de desgaste dos dentes —, por isso `material_de_contato_declarado` e null: o que ele nao disse nao se preenche por semelhanca com a da AF1500, que diz `borracha`."
       }
     ],
     "o_silencio_que_esta_secao_mediu": {
@@ -3280,6 +3290,23 @@
       "por_que_isso_importa_nesta_ilha_e_nao_em_qualquer_uma": "Porque a F2 RECOMENDA os dois produtos em que a protecao deixa de ser opcional: `loctite-durepoxi` (cola epoxi) e `quartzolit-rejunte-epoxi` (rejunte epoxi) estao no banco e sao servidos pela ferramenta. A ilha recomenda epoxi a uma pessoa em casa e nao tem UMA declaracao de fabricante sobre protecao para sustentar o que quer que seja ao lado disso.",
       "o_que_esta_secao_NAO_faz_e_de_proposito": "Nao escreve recomendacao de EPI nenhuma. A secao 8 do ARQUIPELAGO.md proibe afirmar pelo fabricante, e deduzir 'epoxi pede luva' do mecanismo do produto seria exatamente isso — e o mesmo defeito que a mutacao 05 do acabamento pegou no `momento_de_uso`. O que ela faz e transformar o silencio em NUMERO e deixar o campo `risco_declarado` obrigatorio, para que a primeira coleta de EPI responda 'ninguem declarou' em vez de a pergunta nao ser feita.",
       "o_que_destrava": "A ficha de seguranca (FISPQ) do epoxi, que e documento de nivel 1 e mora em PDF no dominio do fabricante — o mesmo egresso fechado que segura o primeiro SKU da `base`. E o terceiro bloco seguido desta ilha a parar na mesma porta."
+    },
+    "subcampos_que_NAO_sao_frase_do_fabricante": {
+      "por_que_esta_lista_nasceu": "06/10/2026, com o esquema v12. O campo `preparo` deixou de ser string e virou objeto, e o objeto tem subcampos que sao NOSSOS: `nossa_leitura` (a parafrase antiga), `motivo_sem_literal`, `recorte_do_documento` e `o_que_a_parafrase_perdia`. A varredura desta secao desceu no objeto inteiro e acusou os quatro como se fossem declaracao do fabricante — a mesma familia do erro que a nossa `observacao` ficar de fora ja impedia, aparecendo de novo um nivel abaixo. O defeito oposto e pior: se a lista crescer sozinha, a varredura fica cega para a frase dele, e e exatamente para isso que ela existe. Por isso a lista nomeia SUBCAMINHO por SUBCAMINHO e o validador nao aceita prefixo generico.",
+      "caminhos": [
+        "preparo.nossa_leitura",
+        "preparo.motivo_sem_literal",
+        "preparo.recorte_do_documento",
+        "preparo.o_que_a_parafrase_perdia",
+        "preparo.observacao_sobre_a_grafia",
+        "preparo.divergencia_lida_no_proprio_documento",
+        "preparo.por_que_este_registro_entra_sem_parafrase_anterior",
+        "preparo.o_que_este_literal_NAO_destrava",
+        "preparo.como_a_fonte_foi_derivada",
+        "preparo.como_a_tela_chama_o_documento",
+        "preparo.por_que_a_tela_nao_usa_o_tipo_da_fonte"
+      ],
+      "o_que_continua_sendo_lido_dentro_do_preparo": "`preparo.literal_do_fabricante`, e so ele. E a unica coisa ali que ele escreveu."
     }
   },
   "o_que_mudou_na_versao_7": "29/09/2026: `afiliado.casamento` e `afiliado.motivo_sem_ficha`. A escada da 25.1 saiu de 1:1 2:5 3:4 4:28 para 1:1 2:5 3:14 4:18 — dez registros de acabamento, alicate e cola sairam do piso e ganharam ficha de produto, cada um com a prova do casamento gravada e reconferida por portao. Cinco nao sairam e tem o motivo escrito. As treze pastilhas nao foram tentadas: elas dependem da decisao de `afiliado.tipo_de_casamento: 'equivalente'` descrita em dados/links-afiliado-pendentes.md, que e do Raphael e nao da Fundacao.",
@@ -3508,5 +3535,50 @@
     ],
     "por_que_a_proibicao_da_peca_nao_vai_para_o_silencio_nem_para_a_condicao": "Sao tres frases diferentes para tres fatos diferentes. Silencio e `o fabricante nao falou desta superficie`. Condicao e `ele falou, pos uma exigencia, e este par nao a cumpre`. Proibicao de peca e `ele falou, e disse para nao usar nisto`. A terceira e a mais forte das tres e e a unica que nao tem conserto trocando o ambiente: so trocando o caquinho. Junta-las e a mistura de causas que a secao 7 do contrato proibe desde 12/09/2026, escrita nesta mesma ilha."
   },
-  "o_que_mudou_na_versao_11": "06/10/2026 — a REGRA 7 nasce, e com ela um campo novo no registro (`condicoes.proibe_grupos_de_tessela`), uma lista nova no esquema (`grupos_de_tessela_proibidos`) e uma matriz nova escrita a mao (`matriz_esperada_da_proibicao_sobre_a_peca`, 5 ancoras ponta a ponta). Ela e a SEGUNDA regra a olhar a tessela e a PRIMEIRA a elimina-la por proibicao declarada. O que a fez nascer nao foi a cimentcola que a pedira em 05/10: foi um defeito que ja estava no ar, achado ao escrever a lista. O Tekbond Silicone Acetico Construcao proibe `espelhos` e a F2 o servia no TOPO para quem respondeu caco de espelho sobre ceramica — a frase do fabricante era lida como base e so como base. A cimentcola AC-II continua em SILENCIO em toda celula, e por que ela continua esta medido em `materiais-colas.json / quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05 / substratos_que_o_documento_declara_e_que_NAO_foram_gravados`: a proibicao de peca era UM de TRES bloqueios, nao o unico."
+  "o_que_mudou_na_versao_11": "06/10/2026 — a REGRA 7 nasce, e com ela um campo novo no registro (`condicoes.proibe_grupos_de_tessela`), uma lista nova no esquema (`grupos_de_tessela_proibidos`) e uma matriz nova escrita a mao (`matriz_esperada_da_proibicao_sobre_a_peca`, 5 ancoras ponta a ponta). Ela e a SEGUNDA regra a olhar a tessela e a PRIMEIRA a elimina-la por proibicao declarada. O que a fez nascer nao foi a cimentcola que a pedira em 05/10: foi um defeito que ja estava no ar, achado ao escrever a lista. O Tekbond Silicone Acetico Construcao proibe `espelhos` e a F2 o servia no TOPO para quem respondeu caco de espelho sobre ceramica — a frase do fabricante era lida como base e so como base. A cimentcola AC-II continua em SILENCIO em toda celula, e por que ela continua esta medido em `materiais-colas.json / quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05 / substratos_que_o_documento_declara_e_que_NAO_foram_gravados`: a proibicao de peca era UM de TRES bloqueios, nao o unico.",
+  "regras_do_campo_preparo": {
+    "nasceu_em": "06/10/2026",
+    "o_que_o_campo_e": "O que o fabricante manda fazer, ou manda exigir da base, ANTES de aplicar o produto: limpar, lixar, selar, molhar a junta, esperar a cura, preparar o cartucho, misturar e repousar. E a quarta familia de declaracao que este banco guarda, ao lado de `declaracoes` (onde o produto vai), `propriedades` (os numeros dele) e `condicoes` (o que ele exige das superficies). A diferenca das `condicoes` e o destino: condicao ELIMINA produto numa celula; preparo nao elimina ninguem — ele e instrucao para quem ja recebeu a recomendacao.",
+    "por_que_ele_existe_como_regra_e_nao_como_campo_solto": "Porque ele existia como campo solto e isso custou. De 10/09 a 06/10/2026 nove registros carregaram `preparo` como STRING, fora do esquema, sem fonte, sem forma e sem nenhum portao olhando — e os nove snippets desta ilha nao liam a palavra `preparo` em lugar nenhum (varredura de 06/10/2026). Eram nove declaracoes de fabricante lidas, gravadas e descartadas em silencio, que e o defeito que esta ilha ja mediu com quatro outros nomes (o `isopor` e o `gesso` dos dois vernizes, a desempenadeira da Pastilhart, o drywall do boletim da cimentcola). E o preco tinha endereco escrito: em `materiais-colas.json / quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05`, o proprio banco registrava que a cura de 180 dias nao podia ser gravada porque \"o campo `preparo` nao resolve: ele existe neste esquema e a F2 NAO o serve em lugar nenhum\". Um terco do substrato daquela argamassa estava parado atras de uma frase que nenhuma tela servia.",
+    "a_forma": {
+      "tipo": "objeto; nunca string",
+      "literal_do_fabricante": "As palavras DELE, copiadas do documento, acentuadas, prontas para a tela entre aspas. `null` quando nao ha.",
+      "fonte_id": "Chave de `fontes` DESTE registro — o documento de onde o literal foi copiado. Obrigatorio quando ha literal.",
+      "como_a_tela_chama_o_documento": "O nome que o LEITOR ouve para esse documento, curto, acentuado e JA COM A PREPOSICAO, porque a tela escreve `Esta escrito ` e cola este campo logo depois: `na pagina de produto dele`, `no boletim tecnico dele, revisado em maio de 2016`. Obrigatorio quando ha literal, e NAO e o campo `tipo` da fonte: `tipo` e prosa de arquivo, escrita para quem le o banco, e nos dois boletins desta ilha ela chega a tela sem acento e com o nome de um arquivo do repositorio dentro. Dois leitores, dois campos. A preposicao vem no campo e nao no codigo porque `em` + `a pagina` da `em a pagina`: contracao em portugues depende do genero do substantivo que vem depois, e adivinha-lo no PHP seria regra de gramatica escrita em dois lugares.",
+      "lido_em": "Data ISO em que o documento foi aberto e o literal copiado. Obrigatorio quando ha literal.",
+      "recorte_do_documento": "Que parte do documento foi citada e, nomeadamente, o que ficou fora e por que. Obrigatorio quando ha literal.",
+      "nossa_leitura": "A parafrase que o banco carregava antes, preservada. NUNCA vai a tela. `null` quando nunca houve.",
+      "motivo_sem_literal": "Por que nao ha literal, na forma `CAUSA (<classe>): ...`. Obrigatorio quando `literal_do_fabricante` e `null`."
+    },
+    "os_tres_estados_e_o_que_a_tela_faz_com_cada_um": [
+      {
+        "estado": "DECLARADO",
+        "como_se_reconhece": "`literal_do_fabricante` escrito, com `fonte_id`, `lido_em` e `recorte_do_documento`",
+        "a_tela": "SERVE, entre aspas, atribuido ao fabricante, com o tipo do documento e a data da leitura ao lado"
+      },
+      {
+        "estado": "SO NOSSA LEITURA",
+        "como_se_reconhece": "`literal_do_fabricante` em `null`, `nossa_leitura` escrita, `motivo_sem_literal` escrito",
+        "a_tela": "NAO SERVE NADA. Servir a parafrase como frase dele e a 26.3 ao contrario: emprestar a autoridade do fabricante a uma frase nossa. Servi-la como nossa, sem o documento aberto, e afirmar sem prova (secao 15.2)."
+      },
+      {
+        "estado": "NADA",
+        "como_se_reconhece": "`literal_do_fabricante` e `nossa_leitura` em `null`, `motivo_sem_literal` escrito",
+        "a_tela": "NAO SERVE NADA, e nao finge que o fabricante calou: o motivo distingue `nao-coletado` de `host-recusa`, e nenhuma das duas e silencio do fabricante."
+      }
+    ],
+    "por_que_a_parafrase_nao_vai_a_tela_e_isso_foi_MEDIDO_nao_escolhido": "Em 06/10/2026 quatro das nove parafrases puderam ser conferidas contra o documento (tres paginas de produto por HTTP, um boletim em PDF pelo canal de espelho). AS QUATRO PERDERAM INFORMACAO DO DOCUMENTO, cada uma de um jeito diferente: a do Cascorez FECHOU uma lista que o fabricante deixou aberta (\"passadeiras automaticas ou manualmente, utilizando pincel, rolo, etc.\" virou \"pincel ou rolo\"); a da AF1500 apagou o MOTIVO da desempenadeira de borracha e uma linha inteira com numero (\"Compre 10% a mais\"); a do PL500 apagou a condicao de superficie porosa e o motivo dela, que o fabricante escreve dentro do preparo; e a do rejunte piscinas apagou SETE das oito frases da secao 3.1, entre elas uma que o registro IRMAO (`quartzolit-rejunte-ceramicas`) carrega inteira. Quatro de quatro. Uma parafrase servida entre aspas seria a instrucao dele menos a parte que a gente deixou cair, com o nome dele embaixo.",
+    "categorias_que_exigem_o_campo": [
+      "cola",
+      "rejunte"
+    ],
+    "por_que_a_lista_mora_aqui_e_nao_no_validador": "Secao 26.2 do ARQUIPELAGO.md: quais campos uma categoria exige e decisao do esquema, escrita no esquema. Cola e rejunte sao as duas categorias pelas quais a F2 DECIDE — e e na resposta da F2 que o preparo precisa chegar. Pastilha, acabamento e alicate ficam fora hoje: o preparo delas nao muda nenhuma celula e exigi-lo criaria 28 motivos \"nao coletado\" que ninguem ia ler. O registro de pastilha que JA tinha o campo (`pastilhart-af1500`) foi migrado junto e continua valendo pela forma, nao pela exigencia: campo presente e campo cobrado, em qualquer categoria.",
+    "e_a_trava_tem_de_reprovar_quando_a_lista_some": "Mesma exigencia da 26.2: regua que le a propria lista de um arquivo de dados aprova tudo, em silencio, no dia em que o arquivo perder a chave. A mutacao que prova isso nao estraga registro nenhum — ela apaga `categorias_que_exigem_o_campo` do esquema.",
+    "o_que_este_campo_NAO_e": {
+      "nao_e_substrato_preparo_declarado": "`regras_da_categoria_base.o_campo_novo_e_o_objeto_substrato.subcampos.preparo_declarado` e outro campo, de outra categoria (base), e fala do preparo daquela BASE especifica vista do lado de quem a vende. Este fala do preparo que o fabricante do ADESIVO ou do REJUNTE manda fazer. Os dois podem existir no mesmo mundo e dizer coisas diferentes; confundi-los seria por a instrucao de um fabricante na boca de outro.",
+      "nao_e_condicao": "Condicao (regras 6 e 7) elimina produto. Preparo nao elimina: ele instrui. O PL500 e o exemplo em que os dois se tocam — a frase \"ao menos uma das superficies deve ser porosa\" e, ao mesmo tempo, condicao gravada em `condicoes.exige_superficie_porosa` e parte do literal do preparo. A condicao continua decidindo a celula; o literal continua sendo a frase dele, inteira.",
+      "nao_e_propriedade": "Numero que o preparo mencione (as 72 h, os 15 minutos de repouso, os 10% de sobra) NAO nasce como propriedade por estar aqui. Propriedade exige fonte por valor e motivo por `null`, e e lida por ferramenta de calculo. Numero dentro de literal e texto do fabricante; numero em `propriedades` e conta que a ilha publica. Quem quiser o numero grava o campo, com fonte."
+    }
+  },
+  "o_que_mudou_na_versao_12": "06/10/2026 — o campo `preparo` sai do silencio. Ele existia como string em nove registros, fora do esquema e sem portao, e NENHUM dos nove snippets desta ilha lia a palavra. Agora e objeto com tres estados (`regras_do_campo_preparo`), com forma cobrada pelo validador, com a lista de categorias que o exigem morando no esquema pela 26.2, e com a F2 (cola e rejunte) e a ficha do Guia servindo o `literal_do_fabricante` entre aspas, com documento e data. CINCO registros ganharam literal LIDO HOJE — Cascorez e PL500 em www.cascola.com.br, AF1500 em www.pastilhart.com.br, e os boletins do rejunte piscinas e da cimentcola externo pelo canal de espelho em PDF — e OITO ficaram sem, com a causa classificada (`host-recusa` para Tekbond e Quartzolit, em 403 nas tres passadas; `nao-coletado` para os que nunca foram lidos). A migracao achou o que nenhuma regua procurava: das quatro parafrases que deu para conferir contra o documento, QUATRO perderam informacao dele. E ela paga a divida que o proprio banco tinha escrito — a cura de 180 dias da cimentcola AC-II, que estava parada porque \"a F2 NAO serve preparo em lugar nenhum\", esta na tela."
 }

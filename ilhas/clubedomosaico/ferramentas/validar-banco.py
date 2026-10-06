@@ -107,11 +107,21 @@ if SEM_PORTAO_FORMA_DO_DEGRAU:
           "o degrau declarado, nem a loja da Shopee contra as suas classificacoes. E a regra "
           "ANTIGA, a que deixou um anuncio de vendedor rotulado degrau 2 por dez dias. So a "
           "bateria de mutacao usa isto.")
+SEM_PORTAO_PREPARO = os.environ.get("CDM_SEM_PORTAO_PREPARO") == "1"
+if SEM_PORTAO_PREPARO:
+    print("  ATENCAO: CDM_SEM_PORTAO_PREPARO=1 — a forma do campo `preparo` NAO foi conferida "
+          "nesta passada. E a regra ANTIGA, a que deixou nove declaracoes de fabricante gravadas "
+          "como string solta, sem fonte e sem nenhuma tela servindo-as, de 10/09 a 06/10/2026. So "
+          "a bateria de mutacao usa isto.")
 SEM_PORTAO_MOTIVO_DEGRAU_4 = os.environ.get("CDM_SEM_PORTAO_MOTIVO_DEGRAU_4") == "1"
 if SEM_PORTAO_MOTIVO_DEGRAU_4:
     print("  ATENCAO: CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1 — o motivo do degrau 4 NAO foi cobrado "
           "nesta passada, que e a regra ANTIGA, a que deixou 12 dos 17 itens sem dizer por que "
           "pararam. So a bateria de mutacao usa isto.")
+preparo_declarado = 0
+preparo_so_nossa_leitura = 0
+preparo_sem_nada = 0
+preparo_por_causa = {}
 BASES = set(VOC["base"])
 AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
@@ -423,6 +433,131 @@ for nome in arquivos_material:
             erro("%s: codigo_fabricante null exige motivo_sem_codigo" % onde)
         if m.get("divergencias") and not m.get("resolucao"):
             erro("%s: divergencias sem resolucao escrita" % onde)
+
+        # O CAMPO `preparo` (esquema v12, 06/10/2026) — regras_do_campo_preparo.
+        #
+        # Por que ele tem portao hoje e nao tinha ontem: de 10/09 a 06/10/2026 ele
+        # foi uma STRING solta em nove registros, sem fonte, sem forma e sem nenhuma
+        # tela servindo-a. Nove declaracoes de fabricante lidas, gravadas e
+        # descartadas em silencio.
+        #
+        # O portao cobra a FORMA e so a forma — tres estados, e nenhum deles
+        # ambiguo: literal com fonte, lido_em e recorte; parafrase sem literal e
+        # com causa; ou nada, com causa. O que NAO pode acontecer e o quarto
+        # estado, que era o do banco real: texto no campo sem dizer de onde veio.
+        #
+        # A LISTA DE CATEGORIAS QUE O EXIGEM MORA NO ESQUEMA (26.2), e some com
+        # ela o portao inteiro — por isso a chave e lida aqui, nao digitada: a
+        # mutacao que apaga a chave tem de reprovar.
+        if not SEM_PORTAO_PREPARO and m.get("status") != "descartado":
+            if "regras_do_campo_preparo" not in esquema:
+                erro("%s: o esquema nao tem `regras_do_campo_preparo` e o campo `preparo` "
+                     "ficou sem regra. Regua que le a propria lista de um arquivo de dados "
+                     "aprova tudo em silencio no dia em que o arquivo perder a chave (26.2)"
+                     % onde)
+            else:
+                _rp = esquema["regras_do_campo_preparo"]
+                _exigem = _rp.get("categorias_que_exigem_o_campo")
+                if not isinstance(_exigem, list) or not _exigem:
+                    erro("%s: `regras_do_campo_preparo.categorias_que_exigem_o_campo` tem de "
+                         "ser lista nao vazia — sem ela o portao do preparo nao cobra ninguem"
+                         % onde)
+                    _exigem = []
+                _prep = m.get("preparo")
+                if m.get("categoria") in _exigem and _prep is None and "preparo" not in m:
+                    erro("%s: categoria '%s' exige o campo `preparo` (esquema v12) e o registro "
+                         "nao o tem. O campo e obrigatorio MESMO quando nada foi colhido — e "
+                         "nesse caso ele diz por que, e a diferenca entre 'o fabricante calou' "
+                         "e 'ninguem leu' e a informacao" % (onde, m.get("categoria")))
+                elif _prep is not None:
+                    if not isinstance(_prep, dict):
+                        erro("%s / preparo: tem de ser OBJETO, nunca string. String nao carrega "
+                             "fonte, e frase sem fonte nao vai a tela (15.2). A forma esta em "
+                             "`regras_do_campo_preparo.a_forma`" % onde)
+                    else:
+                        _lit = _prep.get("literal_do_fabricante")
+                        _nossa = _prep.get("nossa_leitura")
+                        _motivo = _prep.get("motivo_sem_literal") or ""
+                        for _campo in ("literal_do_fabricante", "fonte_id", "lido_em",
+                                       "nossa_leitura", "motivo_sem_literal",
+                                       "recorte_do_documento"):
+                            if _campo not in _prep:
+                                erro("%s / preparo: falta o subcampo %s. Os seis existem sempre, "
+                                     "com null onde nao se aplica — subcampo ausente e o estado "
+                                     "que nenhuma regua distingue de 'nao pensei nisso'"
+                                     % (onde, _campo))
+                        if _lit is not None and (not isinstance(_lit, str) or not _lit.strip()):
+                            erro("%s / preparo: `literal_do_fabricante` existe mas esta vazio — "
+                                 "use null com `motivo_sem_literal`" % onde)
+                        elif _lit:
+                            preparo_declarado += 1
+                            _fid = _prep.get("fonte_id")
+                            if not _fid:
+                                erro("%s / preparo: tem literal e nao tem `fonte_id`. A frase vai "
+                                     "a tela entre aspas, com o nome do fabricante — sem o "
+                                     "documento, e afirmacao sem prova (15.2)" % onde)
+                            elif _fid not in (m.get("fontes") or {}):
+                                erro("%s / preparo: `fonte_id` '%s' nao esta nas `fontes` deste "
+                                     "registro" % (onde, _fid))
+                            if not re.match(r"^\d{4}-\d{2}-\d{2}$",
+                                            str(_prep.get("lido_em") or "")):
+                                erro("%s / preparo: tem literal e `lido_em` nao e data ISO. Quem "
+                                     "cita documento de fabricante publica o dia da leitura — "
+                                     "documento de 2016 relido hoje e outra coisa de documento "
+                                     "lido em 2016" % onde)
+                            _rot = str(_prep.get("como_a_tela_chama_o_documento") or "")
+                            if not _rot.strip():
+                                erro("%s / preparo: tem literal e nao diz "
+                                     "`como_a_tela_chama_o_documento`. O campo `tipo` da fonte e "
+                                     "prosa de arquivo: nos dois boletins desta ilha ele chega a "
+                                     "tela sem acento, e num deles com `escada_de_fontes` e o nome "
+                                     "de um arquivo do repositorio dentro da frase" % onde)
+                            else:
+                                for _proibido in (".json", "_", "/", "escada", "secao ", "25.", "26."):
+                                    if _proibido in _rot:
+                                        erro("%s / preparo: `como_a_tela_chama_o_documento` tem "
+                                             "`%s` dentro. E o vocabulario de quem escreveu a ilha, "
+                                             "nao o de quem a le — mesma cicatriz do caminho de "
+                                             "arquivo servido ao visitante (Ohmetria, 15/09/2026)"
+                                             % (onde, _proibido))
+                                if not _rot.startswith(("na ", "no ", "nas ", "nos ")):
+                                    erro("%s / preparo: `como_a_tela_chama_o_documento` tem de "
+                                         "comecar pela preposicao contraida (`na `, `no `), porque "
+                                         "a tela escreve `Esta escrito ` e cola o campo depois. "
+                                         "Sem ela sai `Esta escrito em a pagina de produto dele`, "
+                                         "que foi o que o primeiro render serviu" % onde)
+                                if len(_rot) > 90:
+                                    erro("%s / preparo: `como_a_tela_chama_o_documento` tem %d "
+                                         "caracteres. E rotulo de uma linha, nao a prosa do `tipo`"
+                                         % (onde, len(_rot)))
+                            if not str(_prep.get("recorte_do_documento") or "").strip():
+                                erro("%s / preparo: tem literal e nao diz `recorte_do_documento`. "
+                                     "Citacao parcial de documento longo e legitima; citacao "
+                                     "parcial SILENCIOSA e o defeito que esta migracao mediu "
+                                     "quatro vezes em quatro parafrases" % onde)
+                            if _prep.get("motivo_sem_literal"):
+                                erro("%s / preparo: tem literal E `motivo_sem_literal`. Os dois "
+                                     "juntos nao sao estado nenhum: ou a frase dele existe, ou "
+                                     "existe a causa de ela faltar" % onde)
+                        else:
+                            if _nossa and str(_nossa).strip():
+                                preparo_so_nossa_leitura += 1
+                            else:
+                                preparo_sem_nada += 1
+                            if not re.match(r"^CAUSA \(([a-z0-9-]+)\):\s*\S", _motivo):
+                                erro("%s / preparo: sem literal e sem causa na forma "
+                                     "`CAUSA (<classe>): ...`. A classe separa o que o proximo "
+                                     "trabalhador pode resolver (`nao-coletado`) do que nao "
+                                     "depende dele (`host-recusa`), e foi por nao separar as duas "
+                                     "que esta ilha releu quatro vezes a mesma porta fechada"
+                                     % onde)
+                            else:
+                                _classe = re.match(r"^CAUSA \(([a-z0-9-]+)\)", _motivo).group(1)
+                                preparo_por_causa[_classe] = preparo_por_causa.get(_classe, 0) + 1
+                            if _prep.get("fonte_id") and not _nossa:
+                                erro("%s / preparo: nao tem literal nem parafrase e ainda assim "
+                                     "aponta `fonte_id`. Fonte sem texto nenhum nao prova nada e "
+                                     "sugere que algo foi lido" % onde)
 
         # O BATISMO E DO FABRICANTE (esquema v8, secao 26 ao contrario). Nasceu de
         # `quartzolit-borracha-liquida-elastica`, que se chamava "impermeabilizante
@@ -1312,7 +1447,29 @@ elif IND_APOIO is not None and not SEM_PORTAO_APOIO:
         for campo in campos_fab:
             if campo in reg:
                 anda(reg[campo], campo)
-        return saida
+        # E OS SUBCAMPOS NOSSOS SAEM AQUI, pela lista do esquema (06/10/2026).
+        # `preparo` virou objeto no esquema v12 e carrega, ao lado da frase do
+        # fabricante, quatro campos de prosa NOSSA — a parafrase antiga, o motivo,
+        # o recorte e o que a parafrase perdia. Varre-los e ler o nosso julgamento
+        # como declaracao dele, que e a mesma familia do erro que manter a
+        # `observacao` fora desta varredura ja impedia, um nivel acima.
+        #
+        # A lista mora no ESQUEMA (26.2) e e de CAMINHO COMPLETO, nunca de prefixo:
+        # prefixo generico (`preparo`) devolveria a cegueira inteira, que e o
+        # defeito oposto e o pior dos dois.
+        return [(c, t) for c, t in saida if c not in subcampos_nossos]
+
+    _sub = IND_APOIO.get("subcampos_que_NAO_sao_frase_do_fabricante") or {}
+    subcampos_nossos = set(_sub.get("caminhos") or [])
+    if not subcampos_nossos:
+        erro("varredura de apoio: `subcampos_que_NAO_sao_frase_do_fabricante.caminhos` tem de "
+             "existir e nao ser vazia. Sem ela a varredura desce nos subcampos NOSSOS do "
+             "`preparo` e le a nossa parafrase como declaracao do fabricante")
+    for _c in sorted(subcampos_nossos):
+        if "." not in _c:
+            erro("varredura de apoio: `%s` em `subcampos_que_NAO_sao_frase_do_fabricante` nao e "
+                 "caminho de subcampo. Prefixo generico apagaria o campo inteiro da varredura, "
+                 "inclusive a frase do fabricante — que e o defeito oposto e o pior dos dois" % _c)
 
     encontradas = set()
     for ident, reg in materiais.items():
@@ -2593,6 +2750,12 @@ print("  forma da URL x degrau ...... %d lojas da Shopee lidas, %d com mais de u
 # a ele desaparece dentro de uma divida tecnica que nao e dele.
 for _classe in sorted(por_causa_do_degrau_4):
     print("    causa: %-28s %d" % (_classe, por_causa_do_degrau_4[_classe]))
+print("  preparo (esquema v12) ...... %d com literal do fabricante, %d so com a nossa leitura, "
+      "%d sem nada  (soma %d)"
+      % (preparo_declarado, preparo_so_nossa_leitura, preparo_sem_nada,
+         preparo_declarado + preparo_so_nossa_leitura + preparo_sem_nada))
+for _c in sorted(preparo_por_causa):
+    print("    preparo sem literal, causa: %-18s %d" % (_c, preparo_por_causa[_c]))
 print("  itens sem imagem ........... %d" % sem_imagem)
 print("  casamentos reconferidos .... %d  (titulo gravado passado pela regra viva "
       "de casar-anuncio.py, contra o banco inteiro)" % reconferidos)

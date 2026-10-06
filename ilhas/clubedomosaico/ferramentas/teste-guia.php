@@ -94,6 +94,65 @@ function gui_render( $raiz, $tag ) {
 	return 0 === $codigo ? implode( "\n", $saida ) : '';
 }
 
+/**
+ * UMA RAIZ SINTETICA EM QUE UM VERNIZ DO BANCO TEM PREPARO. O molde e NOMEADO
+ * (`acrilex-verniz-acrilico-brilhante`) e nao escolhido por posicao: molde por
+ * posicao troca de produto sem ninguem ver, e o portao passa a medir outra coisa
+ * sem avisar — a mesma razao escrita no clone do rejunte sem faixa, em
+ * `teste-f2.php`.
+ */
+function gui_raiz_com_preparo( $raiz, $literal ) {
+	static $destino = null;
+	if ( null !== $destino ) {
+		return $destino;
+	}
+	$destino = rtrim( sys_get_temp_dir(), '/' ) . '/cdm-guia-preparo-' . getmypid();
+	foreach ( array( 'snippets', 'dados' ) as $pasta ) {
+		if ( ! is_dir( $destino . '/' . $pasta ) ) {
+			mkdir( $destino . '/' . $pasta, 0700, true );
+		}
+		foreach ( (array) glob( $raiz . '/' . $pasta . '/*' ) as $arquivo ) {
+			if ( is_file( $arquivo ) ) {
+				copy( $arquivo, $destino . '/' . $pasta . '/' . basename( $arquivo ) );
+			}
+		}
+	}
+	copy( $raiz . '/manifest.json', $destino . '/manifest.json' );
+
+	$arq   = $destino . '/dados/materiais-acabamento.json';
+	$banco = json_decode( (string) file_get_contents( $arq ), true );
+	$achou = false;
+	foreach ( $banco['materiais'] as &$m ) {
+		if ( 'acrilex-verniz-acrilico-brilhante' !== $m['id'] ) {
+			continue;
+		}
+		$fonte_id = null;
+		foreach ( (array) $m['fontes'] as $fid => $f ) {
+			if ( null === $fonte_id ) {
+				$fonte_id = $fid;
+			}
+		}
+		$m['preparo'] = array(
+			'literal_do_fabricante'           => $literal,
+			'fonte_id'                        => $fonte_id,
+			'como_a_tela_chama_o_documento'   => 'na página de produto dele',
+			'lido_em'                         => '2026-10-06',
+			'recorte_do_documento'            => 'bancada: frase fabricada para medir o caminho da tela.',
+			'nossa_leitura'                   => null,
+			'motivo_sem_literal'              => null,
+		);
+		$achou = true;
+	}
+	unset( $m );
+	if ( ! $achou ) {
+		fwrite( STDERR, "o molde nomeado do preparo nao existe mais no banco de acabamento\n" );
+		exit( 2 );
+	}
+	file_put_contents( $arq, json_encode( $banco, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) );
+
+	return $destino;
+}
+
 cdm_teste_carregar_options( $raiz );
 cdm_teste_carregar( $raiz );
 $GLOBALS['__paginas'] = cdm_teste_paginas_no_ar( 'hoje' );
@@ -456,6 +515,71 @@ for ( $i = 0; $i < count( $ids ); $i++ ) {
 }
 gui_ok( empty( $iguais ), 'nenhum par de paginas passa de 70% de texto em comum',
 	empty( $iguais ) ? count( $ids ) . ' paginas comparadas' : implode( ', ', $iguais ) );
+
+/* ---------------------------------------------------------------------------
+ * O PREPARO NA FICHA DO PRODUTO (esquema v12, 06/10/2026) — e aqui ele e CODIGO
+ * DORMENTE, o que torna esta secao obrigatoria e nao opcional.
+ *
+ * Nenhum dos dez itens de `acabamento` tem o campo preenchido hoje, entao as
+ * quatro paginas no ar nao servem uma linha de preparo. Codigo que nunca roda e
+ * exatamente o `else` que esta ilha mediu morto em 13/09/2026, no ramo das
+ * faixas descobertas da F2: ele estava no ar em quatro estados dizendo coisa
+ * falsa, e nenhuma regua havia pisado nele porque nenhuma celula o alcancava.
+ *
+ * Entao esta secao FABRICA O MUNDO: uma raiz sintetica onde um verniz do banco
+ * recebe um preparo com literal, fonte e rotulo de tela, e a pagina e renderizada
+ * de la. Sao duas afirmacoes, e as duas precisam da outra: a pagina real nao
+ * serve nada (porque nao ha dado) e a pagina do mundo fabricado serve (porque o
+ * caminho existe). Uma sozinha nao distingue "dormente" de "quebrado".
+ * ------------------------------------------------------------------------- */
+
+echo "\n" . "PREPARO NA FICHA — hoje dormente, medido no mundo fabricado\n";
+
+$com_preparo_hoje = 0;
+foreach ( (array) $banco_cru['materiais'] as $_m ) {
+	if ( ! empty( $_m['preparo']['literal_do_fabricante'] ) ) {
+		$com_preparo_hoje++;
+	}
+}
+gui_ok( 0 === $com_preparo_hoje,
+	'nenhum item de acabamento tem literal de preparo — o bloco esta dormente por falta de DADO',
+	$com_preparo_hoje . ' de ' . count( $banco_cru['materiais'] ) );
+
+$vazou_preparo = array();
+foreach ( $html_por_id as $id => $html ) {
+	$t = gui_texto( gui_corpo( $html ) );
+	if ( false !== mb_strpos( $t, 'Antes de aplicar, o que o fabricante manda fazer' ) ) {
+		$vazou_preparo[] = $id;
+	}
+	/* E a saida degradada NAO pode aparecer com a F2 carregada: ela existe para o
+	   dia em que o snippet da F2 cair, e servi-la com ele de pe seria dizer ao
+	   leitor que falta algo que nao falta. */
+	if ( false !== mb_strpos( $t, 'A parte de preparo está fora do ar' ) ) {
+		$vazou_preparo[] = $id . ' (saida degradada com a F2 de pe)';
+	}
+}
+gui_ok( empty( $vazou_preparo ), 'as quatro paginas no ar nao servem bloco de preparo nenhum',
+	empty( $vazou_preparo ) ? count( $html_por_id ) . ' paginas' : implode( ', ', $vazou_preparo ) );
+
+$LITERAL_FABRICADO = 'Lixe a peça e remova o pó antes da primeira demão, e aguarde a cura do rejunte.';
+$raiz_preparo = gui_raiz_com_preparo( $raiz, $LITERAL_FABRICADO );
+$achou_literal = 0;
+$achou_fonte   = 0;
+foreach ( cdm_guia_registro() as $id => $ficha ) {
+	$t = gui_texto( gui_corpo( gui_render( $raiz_preparo, 'cdm_guia_' . $id ) ) );
+	if ( false !== mb_strpos( $t, $LITERAL_FABRICADO ) ) {
+		$achou_literal++;
+		if ( false !== mb_strpos( $t, 'Está escrito na página de produto dele' ) ) {
+			$achou_fonte++;
+		}
+	}
+}
+gui_ok( $achou_literal > 0,
+	'no mundo fabricado a ficha SERVE o literal de preparo — o caminho nao e codigo morto',
+	$achou_literal . ' de ' . count( cdm_guia_registro() ) . ' paginas' );
+gui_ok( $achou_literal === $achou_fonte && $achou_fonte > 0,
+	'e serve junto o documento e a data — frase de fabricante nunca sai sem procedencia',
+	$achou_fonte . ' de ' . $achou_literal );
 
 echo "\n";
 if ( $falhas ) {

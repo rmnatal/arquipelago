@@ -3,6 +3,149 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+06/10/2026 14h00Z — NOVE DECLARAÇÕES DE FABRICANTE ESTAVAM GRAVADAS E NENHUMA TELA AS SERVIA; AGORA CINCO ESTÃO NO AR, E AS QUATRO QUE DEU PARA CONFERIR ESTAVAM ERRADAS
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h18Z**, push da reserva aceito na primeira
+tentativa (`f9b03dd`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta; o último commit na pasta era de **12h34Z**, 43
+minutos antes, e era o fecho da execução anterior. Nenhum PR aberto, nenhuma branch `claude/*` à
+frente do `main`. **Rede pela 20.2:** `https://clubedomosaico.com.br/` em **200** nas três passadas.
+
+**Nenhum despacho aberto para a Fundação** — o de 05/10 tem os itens 1 e 2 fechados e o 3 declara no
+próprio texto que não é dela; o de 30/09 tem o 1 cumprido e o 2 é do Raphael (soft 404 da borda); o de
+28/09 e o do Raphael de 24/09 estão fechados inteiros. Valeu a fila, e a fila trazia **o próximo bloco
+escolhido por escrito pela execução de 12h34Z: a F2 e o Guia servirem `preparo`**.
+
+## O BURACO NÃO ERA UM CAMPO ERRADO: ERA UM CAMPO SEM NENHUM PORTÃO E SEM NENHUMA TELA
+
+De 10/09 a 06/10/2026, **nove registros** carregaram `preparo` como **string solta** — sem fonte, sem
+forma, fora do esquema (o único `preparo` que o esquema declarava era o `substrato.preparo_declarado`
+da categoria `base`, que é outro campo de outra categoria) — e **nenhum dos nove snippets** desta ilha
+lia a palavra. Nove declarações de fabricante lidas, gravadas e descartadas em silêncio, que é o
+defeito que esta ilha já mediu com quatro outros nomes.
+
+**E o preço tinha endereço escrito no próprio banco.** Em `materiais-colas.json /
+quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05` estava registrado, com
+estas palavras, que a cura de 180 dias não podia ser gravada porque *"o campo `preparo` não resolve:
+ele existe neste esquema e a F2 NÃO o serve em lugar nenhum"*. Um terço do substrato daquela argamassa
+estava parado atrás de uma frase que nenhuma tela servia.
+
+## O ACHADO, E ELE NÃO ERA O ESPERADO: 4 DE 4 PARÁFRASES PERDIAM INFORMAÇÃO DO DOCUMENTO
+
+O bloco ia ser "a tela passa a ler o campo". Ao conferir o campo contra os documentos, virou outra
+coisa. **Quatro** das nove frases puderam ser conferidas em 06/10 — três páginas de produto por HTTP
+(`www.cascola.com.br` e `www.pastilhart.com.br`, 200 nas três passadas) e um boletim em PDF pelo canal
+de espelho. **As quatro perderam informação da fonte, cada uma de um jeito:**
+
+| registro | o que a paráfrase fez |
+|---|---|
+| `cascola-cascorez-extra` | **FECHOU** uma lista que o fabricante deixou aberta: *"passadeiras automáticas ou manualmente, utilizando pincel, rolo, etc."* virou *"Aplicação com pincel ou rolo"* |
+| `pastilhart-af1500` | apagou o **motivo** da desempenadeira de borracha (*"para evitar riscos"*) e **uma linha inteira com número**: *"Compre 10% a mais para cortes e ajustes"* |
+| `cascola-pl500-adesivo-de-montagem` | apagou a condição de superfície porosa — que o fabricante escreve **dentro** do preparo — e o motivo dela (*"já que o produto seca por evaporação da água"*) |
+| `quartzolit-rejunte-piscinas` | apagou **sete das oito** frases da seção 3.1, entre elas uma que o registro **irmão** (`quartzolit-rejunte-ceramicas`) carrega inteira |
+
+**Quatro de quatro.** Uma paráfrase servida entre aspas seria a instrução dele menos a parte que a
+gente deixou cair, com o nome dele embaixo — a **26.3** ao contrário. Por isso a paráfrase **não sobe**,
+e isso foi medido e não escolhido.
+
+## O QUE FOI ENTREGUE
+
+- **Esquema v12**, `regras_do_campo_preparo`: o campo é **objeto** com **três estados** —
+  DECLARADO (`literal_do_fabricante` + `fonte_id` + `lido_em` + `recorte_do_documento` +
+  `como_a_tela_chama_o_documento`), SÓ NOSSA LEITURA (`nossa_leitura` + `motivo_sem_literal` na forma
+  `CAUSA (<classe>)`) e NADA. A tela serve **só** o primeiro. A lista de categorias que exigem o campo
+  (`cola`, `rejunte`) mora **no esquema**, pela **26.2**.
+- **Banco:** 13 registros migrados. **CINCO ganharam literal lido HOJE** — Cascorez, PL500, AF1500, o
+  boletim do rejunte piscinas e o da cimentcola externo. **OITO ficaram sem**, com a causa
+  classificada: `host-recusa` (4) para Tekbond e Quartzolit, em **403 nas três passadas**, e
+  `nao-coletado` (4). **DUAS das sem-literal ganharam `fonte_id` DERIVADO** — o texto gravado é, palavra
+  por palavra, o campo `preparo` de uma constante de `dados/constantes.json`, cujo `fonte_url` casa com
+  uma fonte do registro. Derivação, não palpite: nelas falta o 403 cair, não descobrir a procedência.
+- **A dívida que o banco tinha escrito foi paga:** a cura de 180 dias da cimentcola AC-II **está na
+  tela**. O substrato dela **continua fora**, e por quê continua escrito no registro: dos três
+  bloqueios medidos em 06/10, só este dependia de a F2 servir `preparo`.
+- **F2 1.9.0:** `cdm_f2_preparo()` (os três estados) e `cdm_f2_preparo_html()` / `cdm_f2_preparo_provas()`,
+  nas **duas** respostas — a da cola e a do rejunte. Quem **não** tem a instrução aparece **pelo nome**,
+  com a causa: lista que só mostra quem passou faz o leitor ler ausência como *"não precisa de preparo"*.
+- **Guia 1.1.0:** a ficha do produto serve o preparo logo abaixo da frase de onde o produto vai. Hoje é
+  **código dormente** — nenhum dos dez itens de `acabamento` tem o campo — e por isso a bancada o mede
+  num **mundo fabricado**.
+- **Casca 1.20.0:** `cdm_casca_numeros()` passa a contar os documentos do banco e quantos foram abertos
+  página a página (**2 de 53**).
+- **Bancadas:** `ferramentas/mutacoes-preparo.py` (**16 de 16 reprovadas, 12 só pelo portão novo, 0 falso
+  positivo**), `teste-f2.php` 136 → **143** afirmações, `teste-guia.php` 106 → **110**, `teste-casca.php`
+  741 → **744**.
+
+## TRÊS COISAS QUE O BLOCO ACHOU NO CAMINHO, E NENHUMA ERA SOBRE PREPARO
+
+**(1) A camada de prova da F2 publicava um disclosure que havia virado mentira.** A frase dizia
+*"Nenhum PDF de fabricante foi aberto linha a linha: a leitura foi feita no domínio de cada um, em 10 e
+11/09/2026"*. Era verdade quando foi escrita. Em **05 e 06/10** dois boletins foram abertos e lidos
+página a página — e é de um deles que sai a instrução de preparo que esta página agora serve. A frase
+envelheceu calada, na única camada da página cujo produto inteiro é o rigor, e **nenhuma régua a
+recontava porque ela era prosa, não número**. Virou conta, derivada do banco, servida só pela via viva
+(`numeros_vivos`); com o instantâneo a página diz **onde** a leitura foi feita e não afirma quantidade.
+Mesma família dos 28 botões da casca 1.18.0.
+
+**(2) A trava dos blocos de prova do `teste-casca.php` media o acaso do dia em que foi escrita.** Ela
+cobrava **no máximo DOIS** `cdm-prova` por página, e o 2 era o retrato de uma página com duas camadas.
+Com a resposta do rejunte ganhando prova própria — que a **15.2** pede: a prova desce um parágrafo,
+dentro da mesma caixa — a página passou a ter **três legítimas** e a trava reprovou. O que ela queria
+impedir, nas palavras dela, é *"embrulhar a página inteira na marca"*, e isso não é quantidade: é
+**seção**. A régua passou a ser estrutural — **entre dois blocos de prova tem de existir uma abertura de
+seção** — com o teto de tamanho de 50% intacto e um teto absoluto de 5. Conferido que ela morde: duas
+provas na mesma seção reprovam.
+
+**(3) A prestação de contas do rejunte pegou o bloco novo em 1.017 erros.** A regra do despacho da
+Sentinela de 12/09 é que **todo rejunte do banco é nomeado exatamente UMA VEZ** na resposta, e
+`teste-prestacao-rejunte.php` recomputa isso nos 540 estados. O bloco de preparo nasceu **dentro** da
+seção e nomeou os produtos uma segunda vez. Instrução de aplicação não é prestação de contas: o bloco
+virou **seção irmã**, fora da fronteira que a bancada lê. **Portão de outra regra achando o defeito do
+bloco novo é a bancada pagando por si mesma.**
+
+E uma quarta, menor e com nome: a **varredura de apoio** reprovou nas duas direções no mesmo instante,
+porque `preparo` virou objeto e a frase do fabricante mudou de caminho. Com ela nasceu
+`subcampos_que_NAO_sao_frase_do_fabricante` no esquema — a varredura desce no objeto e **não** pode ler
+`nossa_leitura`, `motivo_sem_literal`, `recorte_do_documento` nem as notas. A lista é de **caminho
+completo**, nunca de prefixo: prefixo genérico apagaria o campo inteiro da varredura, inclusive a
+frase dele, que é o defeito oposto e o pior dos dois. E o bloco **cortou uma frase do fabricante por
+alguns minutos** — a obs. da desempenadeira saiu do literal da cimentcola como "tabela" e o termo
+ficou só em prosa nossa; cegar a varredura no mesmo gesto em que se corta a declaração é a definição do
+defeito que a seção existe para impedir. A frase voltou e a ocorrência foi listada.
+
+## O QUE ESTE BLOCO NÃO FEZ, dito porque a tentação é dizer que fez
+
+- **O substrato da cimentcola AC-II continua fora.** A cura virou texto na tela, que era o terceiro
+  bloqueio; o segundo — substrato cujo qualificador é de **ambiente** — segue aberto e é decisão de
+  esquema.
+- **Nenhum número novo nasceu de propriedade.** Os 10% de sobra da AF1500, as 72 h do rejunte piscinas
+  e os 15 minutos de repouso estão na **frase dele**, não em `propriedades`. Número de propriedade exige
+  fonte por valor e é lido por ferramenta de cálculo — gravá-los é bloco, não linha.
+- **Nenhuma URL nova.** A ilha segue em **21**.
+- **Nenhum link de afiliado gerado**, nenhum teto da 21.4 gasto.
+
+## O PRÓXIMO BLOCO, e ele tem dois candidatos medidos — o primeiro é o barato
+
+**(a) `propriedades.sobra_declarada_pct` na F1, a partir dos 10% da AF1500.** É a **única** sobra
+declarada por fabricante que esta ilha tem lida, e a F1 pergunta a sobra ao visitante **sugerindo 15%**
+— um número que não é de ninguém. Hoje a declaração dele está na tela como frase e **não** entra na
+conta. Quem fizer: o campo exige fonte por valor (é `propriedades`), a F1 tem de dizer **de quem** é o
+número quando usar o declarado, e a bateria tem de medir o estado em que o produto escolhido **não**
+declara sobra, que é o de 40 dos 41 registros.
+
+**(b) O campo de par substrato × ambiente, ou uma regra 8 lida como a 7 lê o grupo.** É o segundo
+bloqueio do substrato da AC-II, está medido em
+`materiais-colas.json / quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05 /
+substratos_que_o_documento_declara_e_que_NAO_foram_gravados`, e é decisão de esquema — bloco, não linha.
+
+**E uma terceira coisa que NÃO é bloco e destrava quatro registros de uma vez:** `*.quartzolit.weber`
+na lista de rede. Quatro das oito paráfrases sem literal são da Quartzolit e duas delas já têm o
+documento nomeado. Está em `dados/despachos.md`, nos ABERTOS, e a ressalva nova é que o `www.` já
+responde **403** — então o curinga pode entrar e o 403 ficar, porque 403 é decisão do fabricante e não
+da rede do Raphael.
+
+---
+
 06/10/2026 12h34Z — A REGRA 7 NASCEU PARA DESTRAVAR UMA ARGAMASSA E O QUE ELA ACHOU FOI UM DEFEITO NO AR, EM OUTRO PRODUTO
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h17Z**, push da reserva aceito na primeira
