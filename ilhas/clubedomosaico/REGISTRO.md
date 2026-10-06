@@ -3,6 +3,216 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+06/10/2026 12h34Z — A REGRA 7 NASCEU PARA DESTRAVAR UMA ARGAMASSA E O QUE ELA ACHOU FOI UM DEFEITO NO AR, EM OUTRO PRODUTO
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h17Z**, push da reserva aceito na primeira
+tentativa (`ef54546`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta; o último commit na pasta era de **05/10 às 20h12Z**,
+14 horas antes. Nenhum PR aberto, nenhuma branch `claude/*` à frente do `main`. **Rede pela 20.2:**
+`https://clubedomosaico.com.br/` em **200** nas três passadas.
+
+**Nenhum despacho aberto para a Fundação.** O de 05/10 tem os itens 1 e 2 fechados e o 3 declara, no
+próprio texto, que não é trabalho da Fundação; o de 30/09 tem o item 1 cumprido e o 2 é do Raphael
+(soft 404 da borda); o de 28/09 e o do Raphael de 24/09 estão fechados inteiros. Então valeu a fila, e
+a fila trazia **o próximo bloco escolhido por escrito pela execução de 05/10: a REGRA 7**.
+
+## O QUE A REGRA 7 É, E POR QUE ELA PRECISAVA DE BLOCO
+
+A execução de 05/10 abriu o boletim do `cimentcola externo quartzolit` e achou, na seção 4.1, a
+declaração de substrato que a pendência `cimentcola-substrato-declarado` esperava desde 10/09. Ela
+**não gravou**, e escreveu o motivo: a seção 3 do mesmo boletim proíbe *"revestimentos especiais"* — e
+pastilha de vidro é revestimento especial. As cinco regras de elegibilidade decidem sobre **base** e
+**ambiente**; a sexta lê a tessela por um campo só (`exige_superficie_porosa`). **Não existia campo
+para proibição que fala da PEÇA que se cola.**
+
+Agora existe, e segue o molde da regra 6 inteiro, porque o molde é o que a **26.2** e a **26.3**
+pedem: a lista mora no esquema (`grupos_de_tessela_proibidos`), a classificação de quais caquinhos
+caem no grupo é **nossa**, e a tela diz as duas coisas em orações separadas. Com uma inversão
+deliberada e escrita: **a `regra_da_direcao` é o avesso da de `superficies_porosas`.** Lá a lista
+decide quem GANHA recomendação e a dúvida fica fora; aqui ela decide quem PERDE, e a assimetria da
+seção 10 inverte com ela — classificar de menos publica recomendação proibida, classificar de mais
+custa uma recomendação verdadeira. As duas travas de "a lista sumiu" também são opostas: sem
+`superficies_porosas` todo produto com condição é reprovado; sem `grupos_de_tessela_proibidos` todo
+produto que declara grupo sai de TODO caquinho. Nos dois casos a direção é a mesma — não recomendar.
+
+## E O QUE ELE ACHOU NÃO TEM NADA A VER COM A ARGAMASSA
+
+**Escrever a lista achou um defeito que estava servido desde 11/09/2026.** O **Tekbond Silicone
+Acético Construção** escreve `espelhos` em `nao_usar_em`, e essa frase era lida como **base e só como
+base**: na base `espelho` o produto saía proibido, certo. Mas a F2 pergunta o caquinho desde a 1.0.0, e
+em **cerâmica + caco de espelho + externo abrigado** a página servia esse silicone no **TOPO** da
+recomendação, empatado com o Maxx e com o neutro. O ácido acético da cura ataca a prata e a pintura de
+proteção do espelho — e é por isso que a **mesma Tekbond** vende um silicone **neutro** declarando
+`espelhos` entre os usos dele. **O banco tinha as duas metades desde 10/09 e nenhuma regra para
+juntá-las.**
+
+**A parte que vale mais que a regra:** a **âncora escrita à mão da regra 6**, de 13/09/2026, declarava
+`tekbond-silicone-acetico-construcao` no topo de `vidro` + `caco de espelho`. Ou seja: a régua
+independente da seção 8 tinha o defeito escrito como **resultado esperado**. Ela fez o que promete —
+nunca concordou com o código por cópia — e não podia pegar isto: as duas metades estavam certas sobre a
+regra 6 e as duas eram cegas para a mesma frase. **Portão independente mede divergência entre as
+metades; nunca a lacuna que as duas têm.** A âncora foi corrigida com esse parágrafo escrito dentro
+dela, não apagada.
+
+## O QUE MUDOU NO AR, EM NÚMERO
+
+- A **F2 1.8.0** tira o acético de **6 estados** base × lugar × caquinho (todos com caco de espelho), e
+  em cada um deles ele sai num bloco próprio (`cdm-f2-peca-fora`) com a frase do fabricante citada e a
+  classificação atribuída a nós.
+- O **censo da seção 14.3** mexeu, e é a medida honesta do que estava contado errado:
+  `estados_com_o_minimo` da cola vai de **28 para 25** e `estados_descobertos` de **242 para 245**.
+  Três estados estavam acima do piso contando um produto que o fabricante proíbe no caquinho.
+- A **tabela pré-renderizada** — a metade da página que um modelo de linguagem lê sem preencher
+  formulário — passa a dizer, em 4 linhas, com que caquinho a indicação **não** vale, com a frase
+  literal do fabricante. Sem isso a linha "cerâmica, no sol e na chuva: use Tekbond Silicone Acético
+  Construção" valia para qualquer caquinho.
+
+## O SUBSTRATO DA CIMENTCOLA **NÃO** ENTROU, E ISSO É MEDIÇÃO, NÃO DESÂNIMO
+
+A frase de 05/10 era: *"Fechada ela, o substrato entra e a cimentcola AC-II passa a ser recomendação
+primária em duas bases."* **A regra 7 fechou e o substrato continua fora.** Ao ler as três frases da
+seção 4.1 que **já estavam gravadas no repositório desde 05/10**, a proibição de peça se revelou **um
+de três bloqueios**:
+
+| bloqueio | estado em 06/10 | o que falta |
+|---|---|---|
+| proibição declarada sobre a PEÇA | **FECHADO** | nada — é a regra 7 |
+| o qualificador de **ambiente** vem colado no substrato (`em áreas internas`, `em paredes internas`) e o banco decide ambiente por PRODUTO | aberto | campo de par (substrato + ambiente), ou uma regra 8 lida como a 7 lê o grupo |
+| o substrato sem qualificador de ambiente tem qualificador de **CURA** (`paredes de concreto curado há 180 dias`; abaixo disso o próprio boletim manda usar outro produto, nomeado) | aberto | a F2 servir `preparo` na resposta — o campo existe no esquema e **nenhuma linha do snippet o lê** (conferido por varredura em 06/10) |
+
+O segundo e o terceiro são caros justamente nesta ilha: `alvenaria_tijolo` + `externo_abrigado` é um
+muro de mosaico ao ar livre, e `cimento_concreto` aqui não é parede de obra — é vaso e tampo que a
+artesã acabou de fazer, muito abaixo dos 180 dias. Gravar o substrato sem os dois publicaria
+recomendação primária para o caso **mais comum** da ilha exatamente onde o fabricante indica outro
+produto. E o custo de não gravar é baixo e conhecido: essa base já é respondida pelo silicone neutro,
+que declara concreto e alvenaria com todas as letras.
+
+**Por que a promessa de 05/10 errou:** ela não leu a própria citação. O campo
+`substratos_que_o_documento_declara_e_que_NAO_foram_gravados` já tinha, palavra por palavra, as três
+frases que mostram os outros dois bloqueios. Isso está escrito dentro do campo, agora, com os dois
+bloqueios medidos e com o campo que cada um pede.
+
+## A CLASSIFICAÇÃO É NOSSA, ENTÃO A DÚVIDA FICA ESCRITA
+
+Três grupos nasceram, e cada caquinho do vocabulário tem motivo escrito nos dois lados de cada um:
+
+- **`espelho`** (do acético, `espelhos`) → só `caco_espelho`. Pastilha de vidro fica **fora**, e não por
+  tolerância: o que o acético ataca é a prata, e a própria Tekbond indica `vidro não laminado` para
+  este produto **na mesma lista** de onde `espelhos` foi proibido.
+- **`revestimento_especial`** (da AC-II) → `pastilha_vidro`, `pastilha_ceramica`, `caco_espelho`. A
+  pastilha de cerâmica entrou **pela regra da direção**, e a dúvida está escrita: pastilha é formato, e
+  o mesmo documento indica `revestimentos cerâmicos de até 60x60 cm`. `caco_azulejo` e `pedra` ficam
+  fora porque o **mesmo documento os indica nominalmente** — classificar como especial o que ele indica
+  seria inventar proibição.
+- **`baixa_absorcao_de_agua`** (da AC-II) → `pastilha_vidro`, `caco_espelho`, `caco_louca`. A louça
+  entrou pela direção, com a dúvida nomeada: `louça` cobre de faiança de absorção alta a porcelana
+  abaixo de 1%, e quem quebra um prato em casa não sabe qual tem na mão.
+
+**E a tensão com `superficies_porosas` está escrita em vez de escondida:** aquela lista chama
+`caco_louca` de **porosa** e esta o põe num grupo de **baixa absorção**. Não é contradição e não se
+resolve escolhendo uma. A primeira pergunta se a **face que recebe a cola** absorve água — o pé do
+prato e a quebra expõem massa —, porque é dela que depende um adesivo que seca por evaporação. A
+segunda pergunta a **classe de absorção do corpo** da peça, que é o que a frase do fabricante de
+argamassa mede. Um caquinho pode ser poroso na quebra e vitrificado no corpo, e as duas leituras estão
+certas ao mesmo tempo.
+
+## A ASSIMETRIA QUE A REGRA 7 **NÃO** RESOLVEU, E NÃO DEVIA
+
+Dois silicones **acéticos** da mesma Tekbond estão no banco. Só **um** escreve `espelhos` na lista do
+que não se deve tocar; o **Maxx** tem `nao_usar_em` vazio. A regra 7 tira só o que declara. Estender a
+declaração de um produto para o irmão dele seria inventar declaração — o avesso exato do que a regra 2
+proíbe do outro lado do balcão. Então a página continua podendo recomendar o Maxx para caco de
+espelho, e isso está **nomeado, não escondido**: o pedido do boletim técnico do Maxx entrou em
+`dados/fontes-pedidas.json`. As duas portas da Tekbond respondem **403** desta nuvem (medido hoje, nas
+duas URLs do registro do acético).
+
+## UMA MUTAÇÃO PASSOU, E ELA É A SEGUNDA LIÇÃO DO BLOCO
+
+A primeira rodada da bateria fechou **70 de 71**, e a que passou foi *"a recusa da regra 7 some e a
+página volta a negar a declaração"*: apagar do snippet o ramo que serve a frase de recusa da regra 7
+**não reprovou nada**. O motivo é que **esse ramo não é alcançado hoje** — nas seis células em que a
+regra 7 morde, sempre sobra alguém recomendado, então a frase nunca chega à tela. É a mesma família do
+`else` que ficou **código morto para o portão** na regra 6 até a matriz escrita à mão ir de 18 para 45
+células em 13/09/2026 — e naquela vez o código morto estava **no ar dizendo a frase errada** em quatro
+estados.
+
+Duas coisas saíram daí, e nenhuma é "aceitar que não dá para medir":
+
+1. **A asserção foi escrita agora**, cobrando a causa certa no dia em que a célula esvaziar: se a regra
+   7 tirar o último sobrevivente, a página tem de dizer *"não dá para indicar cola aqui com esse
+   caquinho"* e **não pode** dizer *"nenhum dos adesivos do nosso banco é declarado"*.
+2. **A mutação passou a PRODUZIR O MUNDO** em que a asserção morde: dá o grupo `espelho` ao Maxx e ao
+   neutro — que é exatamente o mundo que a pendência nomeada do Maxx diz que pode chegar com um
+   documento —, e aí a célula esvazia.
+
+E a asserção nova **achou o próprio erro dela** ao ser medida nesse mundo: ela procurava a frase com
+minúscula inicial e a página a serve com maiúscula. Duas voltas, e a segunda só existiu porque a
+primeira produziu o mundo em vez de confiar na leitura. A mutação também teve de ser corrigida: por um
+instante ela escrevia `nao_usar_em: ["espelhos"]` nos dois produtos, e isso tirava o neutro da **base**
+`espelho` pela regra 1 — a reprovação passava a vir da **trava vizinha** (a matriz das 45 células), não
+do ramo apagado. Mutação reprovada pela trava vizinha é verde que prova que ALGUMA trava existe, nunca
+que ESTA existe.
+
+## O PORTÃO VERMELHO QUE ERA ANTERIOR A ESTE BLOCO, E ELE É DA MESMA FAMÍLIA
+
+`mutacoes-tecnicas-pagina.py` não estava na bancada da execução anterior, e ela fechava **13 de 14**
+— conferido contra o `main` com `git archive`, para não atribuir a este bloco o que já estava
+quebrado. A que passava troca o `rel` da busca crua de `nofollow` para `sponsored`: chamar de
+patrocinado um link que **não paga comissão**, que é mentir ao leitor sobre a única coisa que ele tem
+o direito de saber sobre nós.
+
+**A causa não era a mutação: era a afirmação passar MEDINDO VAZIO.** A página de técnica não serve
+nenhum botão de degrau 4, porque os sete itens de cola do banco têm `url` ou `url_busca`. Então
+`0 === $crua_errada` era verdade de graça, e a medida imprimia *"0 links de busca crua"* como
+aprovação. É a mesma cicatriz que o `teste-f2.php` já carrega escrita desde 25/09: **caso que o banco
+pode deixar de produzir tem de ser PRODUZIDO, não esperado** — e é a mesma do ramo da recusa da regra
+7, duas seções acima, no mesmo dia.
+
+O conserto foi o mundo `so_crua=1`, e ele custou duas voltas medidas, as duas escritas no arquivo:
+`$_GET['so_crua']` não alcança porque aquele bloco mora dentro do guarda de linha de comando de
+`render-para-teste.php` e este teste o inclui por `require`; e produzir o mundo **no próprio
+processo** também não alcança, porque o banco que a F2 serve vem de um `static` dentro de
+`cdm_f2_banco()` que as oito seções acima já carregaram. **Mundo produzido depois da primeira leitura
+não alcança quem já leu.** Com `exec`, como o `teste-f2.php` faz: `teste-tecnicas` vai a **140
+afirmações**, mede **5 botões** de busca crua, e a bateria fecha **14 de 14**.
+
+## O QUE ESTE BLOCO NÃO FEZ, DE PROPÓSITO
+
+- **Nenhuma URL nova.** Segue em 21. Nenhuma página criada.
+- **Não inventou proibição para o Maxx**, pelo motivo acima.
+- **Não gravou o substrato da AC-II**, pelos dois bloqueios medidos.
+- **Não criou campo de cura nem de par substrato×ambiente.** Os dois são decisão de esquema e são
+  bloco; o barato dos dois (a F2 servir `preparo`) vale para o banco inteiro, não só para este
+  registro, e por isso não cabe de carona aqui.
+
+## O PRÓXIMO PASSO, MEDIDO E NÃO ESCOLHIDO DE CABEÇA
+
+**A F2 e o Guia passarem a servir `preparo` na resposta.** Varredura de 06/10 nos nove snippets: a
+palavra `preparo` **não aparece em nenhum deles**, e **9 dos 41 registros** do banco têm o campo
+preenchido com frase de fabricante — o acético ("limpar com álcool ou acetona; cortar o bico a 45
+graus"), o Cascorez, o PL500, a AF1500 e cinco rejuntes da Quartzolit ("deixar em REPOUSO por 15
+minutos antes de usar", "juntas de até 3 mm devem ser molhadas com água limpa antes"). **São nove
+declarações de fabricante lidas, gravadas e descartadas em silêncio** — o defeito que esta ilha já
+mediu quatro vezes com outros nomes. Não é só a cura da cimentcola: vale para o banco inteiro, e é o
+que destrava **um terço** do substrato da AC-II. Um dos nove
+(`quartzolit-rejunte-porcelanatos-e-ceramicas`) tem `preparo: "Nao coletado nesta execucao."` — isso é
+motivo, não texto de fabricante, e a tela não pode servi-lo; separar os dois estados é parte do bloco.
+
+## A MEMÓRIA QUE O `PROMPT.md` MANDA CARREGAR NÃO EXISTE NESTE AMBIENTE
+
+Dito porque a próxima execução vai tentar de novo: os caminhos de `## Memória a carregar`
+(`/areas/projeto-clube-do-mosaico.md` e os outros cinco) **não existem** nesta nuvem — não há `/areas`
+e não há diretório de memória. Medido em 06/10/2026. O próprio `PROMPT.md` prevê isso com todas as
+letras (*"Sem memória, não pare: o estado está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta
+pasta"*), então o próximo passo desbloqueado foi escrito **no repositório**, nos dois lugares que a
+seção 1, passo 7 alcança: o item 10 do `bloco_atual` no `ESTADO.md` e a fila do `PROMPT.md`.
+
+## BANCADA DESTA EXECUÇÃO
+
+validar-banco OK (41 materiais, 45 celulas da F2, 9 do rejunte, 54 pares da regra 6 com 5 ancoras, **18 pares da regra 7 com 5 ancoras e 3 grupos**, 17 de 17 com motivo de degrau 4, 14 casamentos, 7 batismos), validar-pastilhas 189 afirmacoes 0 falha, **teste-f2 136** (era 127: 9 novas da regra 7), teste-f1 210, teste-guia 106, teste-prestacao-rejunte 5 (540 estados da F2 e 180 da F1), **teste-tecnicas 140** (era 137), teste-casca 741, teste-loja 208, teste-atelie APROVADO, teste-leads 211, teste-batismo 62, teste-casamento 42, cobertura --conferir OK, filhas-do-guia --conferir OK (regerado: a unica linha que mudou foi a versao do esquema, 10 para 11), tecnica-x-material --conferir OK, medir-espelho --autoteste 24 de 24, medir-egresso --autoteste 36 de 36. MUTACOES: **mutacoes-f2 71 de 71** (era 51; 20 novas da regra 7), **mutacoes-tecnicas-pagina 14 de 14** (era 13 de 14 no main, e o conserto esta descrito acima), mutacoes-f1 47, mutacoes-rejunte 16, mutacoes-batismo 16, mutacoes-arvore 29, mutacoes-guia 14, mutacoes-pastilhas 14, mutacoes-degrau 8, mutacoes-forma-do-degrau 5, mutacoes-cobertura 14 (identica ao main, 9 delas so pelo portao novo), mutacoes-motivo-degrau-4 10. NO AR, depois do desembarque na revisao 59: conferir-no-ar.py **524 afirmacoes, 0 falha**, e leitura-do-visitante.py REPROVADO com **exatamente 1 defeito, o esperado** — o soft 404 da borda, do hospedeiro, com o Raphael desde 29/09 (22 URLs lidas, 0 em janela de cache, nenhum motivo NOVO de vermelho).
+
+---
+
 05/10/2026 19h5xZ — O ESPELHO NÃO É UM HOST, É UMA FAMÍLIA; E ELE PAGOU A PRIMEIRA DÍVIDA DE `conferir_no_pdf` DESTA ILHA
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h17Z**, push da reserva aceito na primeira
