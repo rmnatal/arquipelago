@@ -61,9 +61,19 @@ e isso foi medido e não escolhido.
   `nao-coletado` (4). **DUAS das sem-literal ganharam `fonte_id` DERIVADO** — o texto gravado é, palavra
   por palavra, o campo `preparo` de uma constante de `dados/constantes.json`, cujo `fonte_url` casa com
   uma fonte do registro. Derivação, não palpite: nelas falta o 403 cair, não descobrir a procedência.
-- **A dívida que o banco tinha escrito foi paga:** a cura de 180 dias da cimentcola AC-II **está na
-  tela**. O substrato dela **continua fora**, e por quê continua escrito no registro: dos três
-  bloqueios medidos em 06/10, só este dependia de a F2 servir `preparo`.
+- **A dívida que o banco tinha escrito NÃO foi paga, e eu escrevi que tinha sido antes de medir.** A
+  cura de 180 dias da cimentcola AC-II está **gravada** e **não está na tela**. Varredura dos 45
+  estados de cola, um render por estado: **zero** servem a frase. O produto é **eliminado por
+  silêncio** nas 45 células, porque `indicado_para` não nomeia nenhuma base do vocabulário — e não
+  nomeia porque **o substrato não foi gravado**. O bloco de preparo só alcança quem a página
+  **recomenda**, e instrução sem indicação seria receita de usar o que a gente acabou de dizer que
+  não serve. **A F2 servir `preparo` era necessário e não suficiente: o terceiro bloqueio é JUSANTE
+  do segundo, não irmão dele.** A frase de 05/10 (*"ou a F2 passa a servir `preparo` na resposta, e a
+  cura vira texto na tela"*) acertou o mecanismo e errou a ordem — e esta execução **repetiu a
+  própria lição que o registro de 05/10 deixou escrita**: acreditou na promessa do campo em vez de
+  varrer os 45 estados. Medido e corrigido no mesmo commit, com afirmação nova em `teste-f2.php` que
+  fixa o estado nos **dois** sentidos (hoje cobra zero; no dia em que o substrato entrar ela cai, e o
+  comentário diz que a queda é a entrega).
 - **F2 1.9.0:** `cdm_f2_preparo()` (os três estados) e `cdm_f2_preparo_html()` / `cdm_f2_preparo_provas()`,
   nas **duas** respostas — a da cola e a do rejunte. Quem **não** tem a instrução aparece **pelo nome**,
   com a causa: lista que só mostra quem passou faz o leitor ler ausência como *"não precisa de preparo"*.

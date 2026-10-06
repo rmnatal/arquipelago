@@ -1037,10 +1037,23 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > instrução dele menos a parte que a gente deixou cair, com o nome dele embaixo.** Por isso o campo
    > tem três estados e a tela serve só o primeiro, e por isso o bloco custou o que custou.
    >
-   > **E A DÍVIDA QUE ESTE BLOCO EXISTIA PARA PAGAR ESTÁ PAGA, com a metade que ele não paga dita:** a
-   > cura de 180 dias da cimentcola AC-II **está na tela**. O **substrato dela continua fora**, e o
-   > motivo é o segundo bloqueio, não desânimo — substrato cujo qualificador é de AMBIENTE, que é
-   > decisão de esquema (campo de par substrato × ambiente, ou uma regra 8 lida como a 7 lê o grupo).
+   > **E A DÍVIDA QUE ESTE BLOCO EXISTIA PARA PAGAR NÃO FOI PAGA — LEIA ISTO ANTES DE PROMETÊ-LA DE
+   > NOVO.** A cura de 180 dias da cimentcola AC-II está **gravada** e **não está na tela**. Varredura
+   > dos 45 estados de cola em 06/10, um render por estado: **zero** servem a frase. O produto é
+   > **eliminado por silêncio** nas 45 células, porque `indicado_para` não nomeia nenhuma base do
+   > vocabulário — e não nomeia porque **o substrato não foi gravado**. O bloco de preparo só alcança
+   > quem a página **recomenda**. **Servir `preparo` era necessário e não suficiente: o terceiro
+   > bloqueio é JUSANTE do segundo, não irmão dele.**
+   >
+   > A frase de 05/10 — *"ou a F2 passa a servir `preparo` na resposta, e a cura vira texto na tela"* —
+   > acertou o mecanismo e errou a ordem, e a execução de 06/10 **a repetiu**: escreveu que a cura
+   > estava na tela antes de varrer os 45 estados, e corrigiu depois de medir. `teste-f2.php` passou a
+   > fixar o estado nos **dois** sentidos: hoje ele cobra **zero**, e no dia em que o substrato entrar
+   > a afirmação cai — a queda é a **entrega**, não o defeito, e o comentário dela diz isso.
+   >
+   > **A ordem certa está medida:** primeiro o campo de par substrato × ambiente (ou a regra 8 lida
+   > como a 7 lê o grupo), e a cura entra na tela **junto** com a recomendação, no mesmo bloco,
+   > dizendo ao leitor que o vaso novo não serve.
    >
    > **O PRÓXIMO BLOCO TEM DOIS CANDIDATOS MEDIDOS, e o barato é o (a):**
    >

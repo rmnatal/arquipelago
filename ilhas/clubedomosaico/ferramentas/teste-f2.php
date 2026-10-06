@@ -2070,6 +2070,51 @@ f2_ok( empty( $parafrase_no_ar ),
 	empty( $parafrase_no_ar ) ? count( $parafrases ) . ' parafrases procuradas'
 		: implode( ' | ', array_slice( $parafrase_no_ar, 0, 3 ) ) );
 
+/* A QUARTA AFIRMACAO, e ela existe porque uma frase deste repositorio prometeu o
+   que nao aconteceu. O registro da `quartzolit-cimentcola-externo-acii` dizia,
+   desde 05/10, que a cura de 180 dias nao podia ser gravada porque "a F2 NAO
+   serve preparo em lugar nenhum" — e dai se leu que servir preparo poria a cura
+   na tela. NAO POS: este produto e eliminado por SILENCIO nas 45 celulas,
+   porque `indicado_para` nao nomeia nenhuma base do vocabulario, e o bloco de
+   preparo so alcanca quem a pagina RECOMENDA. Servir preparo era necessario e
+   nao suficiente; o terceiro bloqueio e JUSANTE do segundo.
+
+   Esta afirmacao fixa o estado de hoje nos DOIS sentidos, e e por isso que ela
+   nao e uma linha so: enquanto o literal nao estiver em celula nenhuma, ela
+   cobra ZERO; no dia em que o substrato entrar, ela cai, e quem a vir cair tem o
+   comentario aqui dizendo que a queda e a ENTREGA e nao o defeito. Afirmacao que
+   so sabe dizer "continua zero" deixaria a cura entrar na tela sem ninguem
+   conferir que ela entrou junto com a recomendacao. */
+$CURA_DA_CIMENTCOLA = 'Paredes de concreto curado há 180 dias';
+$com_cura = array();
+foreach ( $corpos as $chave => $corpo ) {
+	if ( false !== mb_strpos( f2_texto( $corpo ), $CURA_DA_CIMENTCOLA ) ) {
+		$com_cura[] = $chave;
+	}
+}
+$cimentcola_indicada = array();
+/* AS CELULAS SAIM DO ESQUEMA AQUI, e nao da variavel `$celulas`: naquele ponto
+   do arquivo ela ja esta `null`, e a primeira versao desta afirmacao passou
+   VAZIA por isso — 0 estados contra 0 celulas, as duas metades zeradas pelo
+   mesmo acidente. Afirmacao que passa com as duas pontas vazias e a cicatriz que
+   a secao 8 do contrato mais cobra, e ela quase entrou na regua escrita para
+   impedir exatamente este tipo de erro. */
+$celulas_do_esquema = (array) $esquema['matriz_esperada_da_F2']['celulas'];
+f2_ok( 45 === count( $celulas_do_esquema ),
+	'as 45 celulas da matriz foram lidas para medir a cura — senao a afirmacao abaixo passa vazia',
+	count( $celulas_do_esquema ) . ' celulas' );
+foreach ( $celulas_do_esquema as $c ) {
+	$todos = array_merge( (array) ( isset( $c['recomendados_topo'] ) ? $c['recomendados_topo'] : array() ),
+		(array) ( isset( $c['elegiveis_abaixo_do_topo'] ) ? $c['elegiveis_abaixo_do_topo'] : array() ) );
+	if ( in_array( 'quartzolit-cimentcola-externo-acii', $todos, true ) ) {
+		$cimentcola_indicada[] = $c['base'] . '|' . $c['ambiente'];
+	}
+}
+f2_ok( count( $com_cura ) === count( $cimentcola_indicada ),
+	'a cura de 180 dias aparece exatamente nas celulas que indicam a cimentcola (hoje, nenhuma)',
+	count( $com_cura ) . ' estados com a cura / ' . count( $cimentcola_indicada ) . ' celulas que a indicam'
+		. ( $cimentcola_indicada ? ' (' . implode( ', ', array_slice( $cimentcola_indicada, 0, 3 ) ) . ')' : '' ) );
+
 /* ---------------------------------------------------------------------------
  * Fecho
  * ------------------------------------------------------------------------- */
