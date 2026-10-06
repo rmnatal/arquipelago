@@ -1094,12 +1094,62 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > em `materiais-rejuntes.json`, **um dos dois bancos que esta página lê**. Virou conta derivada
    > (2 de 53 documentos), servida só pela via viva.
    >
-   > **(b) O campo de par substrato × ambiente**, medido em `materiais-colas.json /
+   > ~~**(b) O campo de par substrato × ambiente**, medido em `materiais-colas.json /
    > quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05 /
-   > substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. Decisão de esquema — bloco, não linha.
-   > **COM O (a) ENTREGUE, ESTE É O PRÓXIMO BLOCO**, e ele é o que destrava a cura de 180 dias da
-   > cimentcola AC-II: o terceiro bloqueio é **jusante** dele, não irmão, como a execução de 14h10Z
-   > mediu varrendo os 45 estados.
+   > substratos_que_o_documento_declara_e_que_NAO_foram_gravados`.~~ **ENTREGUE EM 06/10/2026 às
+   > 20h42Z** — esquema **v14** (a **REGRA 8**, `ambiente_que_qualifica_a_base` no mapa de termos,
+   > `regras_do_par_substrato_ambiente` e `matriz_esperada_do_par_substrato_ambiente` com cinco âncoras),
+   > **F2 1.10.0** com o quarto balde da resposta da cola
+   > (`eliminados_por_ambiente_do_substrato`), `ferramentas/mutacoes-par.py` (17 mutações de forma, 13 só
+   > pelo portão novo, + 5 de tela, 4 falsos positivos) e `teste-f2.php` de 145 para 149 afirmações.
+   > **DEZ das 45 células foram reescritas** e a quinta âncora da matriz da peça **mudou de lado**.
+   >
+   > **E O CAMPO QUE NOMEAVA O ITEM MUDOU DE NOME, porque o nome ficou falso:** com o substrato gravado,
+   > `substratos_que_o_documento_declara_e_que_NAO_foram_gravados` passou a afirmar o contrário do que o
+   > arquivo faz. Ele agora é `substratos_que_o_documento_declara`, com o nome velho escrito dentro e a
+   > razão ao lado — renomeado, não apagado. Quem procurar o nome velho neste arquivo está lendo
+   > história.
+   >
+   > **O TERCEIRO BLOQUEIO CAIU DE CARONA E SEM CAMPO NOVO, e era isso que `jusante` queria dizer:** a
+   > cura de 180 dias entrou na tela JUNTO com a recomendação, pela citação da declaração que fez o
+   > produto entrar (`Paredes de concreto curado há 180 dias`, que é literalmente a declaração) e pelo
+   > bloco de `preparo`, que serve a frase do documento inteira com o produto que o fabricante manda usar
+   > abaixo disso. Os dois só alcançam produto RECOMENDADO, e era por isso que ele era jusante do segundo
+   > e não irmão dele. Medido com `caco_azulejo`, o único caquinho fora dos dois grupos que esta argamassa
+   > proíbe: a cura sai nas CINCO células que a indicam e NÃO sai na célula que a regra 8 tira.
+   >
+   > **A cura NÃO virou regra de elegibilidade, e isso é decisão escrita:** ela não tem valor em
+   > vocabulário nenhum e a F2 não pergunta a idade da peça. Virar regra exige pergunta nova na
+   > ferramenta — decisão de interface e bloco próprio.
+   >
+   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É UM DEFEITO QUE A REGRA 8 DEIXOU À VISTA — COM O NÚMERO
+   > MEDIDO EM 06/10/2026 ÀS 20h4xZ: A REGRA 3 MANDA PARA O BALDE DO SILÊNCIO QUEM O FABRICANTE
+   > DECLARA, E A PÁGINA DIZ QUE ELE NÃO FALA.** A frase que a seção do silêncio serve é *"O fabricante
+   > simplesmente não fala desta superfície, e silêncio não vira 'pode'"*, e ela sai hoje sobre produtos
+   > cujos fabricantes **falam da superfície** e apenas delimitaram o ambiente do produto inteiro
+   > (`declaracoes.ambientes_declarados`, regra 3). Varrido nas 45 células: **29 delas**, em três
+   > produtos — **24** no `cascola-pl500-adesivo-de-montagem`, **4** no `cascola-cascorez-extra` e **1**
+   > na `quartzolit-cimentcola-externo-acii` (esta de hoje, e é a única célula em que o conteúdo não
+   > mudou e a CAUSA mudou).
+   >
+   > **É o mesmo defeito que a REGRA 8 consertou um andar acima e é SETE VEZES MAIOR** — 4 células contra
+   > 29. A diferença é só onde o qualificador mora: na 8 ele vem colado no substrato, na 3 ele é campo do
+   > produto. **As 28 primeiras estão no ar desde 10/09**, o dia em que o PL500 e o Cascorez entraram no
+   > banco, e passaram por toda régua desta ilha sem que nenhuma as visse — porque todas mediam
+   > concordância entre a matriz e a tela, e as duas concordavam dizendo a mesma coisa errada.
+   >
+   > **O MOLDE JÁ FOI CONSTRUÍDO DUAS VEZES EM 06/10 e é para ser copiado, não inventado:** balde próprio
+   > (`eliminados_por_ambiente_do_produto`), frase própria que CITA o literal de `ambientes_declarados` e
+   > não o nosso vocabulário (26.3), a regra escrita em `regras_de_elegibilidade` com a ORDEM (ela é a
+   > regra 3 ganhando balde, então roda onde a 3 já roda — depois da 8 e antes da 4), as células da
+   > `matriz_esperada_da_F2` reescritas à mão ANTES de o validador rodar, e bateria com as duas direções
+   > e trava de falso positivo. **Sai inteiro numa execução só.**
+   >
+   > **E uma coisa que o próximo bloco NÃO deve fazer:** juntar a regra 3 com a 8 num balde só. São
+   > frases diferentes para fatos diferentes — *"ele declara esta superfície só em ambiente interno"* é
+   > sobre a SUPERFÍCIE, *"ele delimitou este produto a áreas internas e externas"* é sobre o PRODUTO —, e
+   > juntá-las é a mistura de causas que a seção 7 do `ARQUIPELAGO.md` proíbe desde 12/09/2026, escrita
+   > nesta mesma ilha.
    >
    > **REGISTRO, NÃO DEFEITO (seção 12, RECEITA), deixado pela entrega do (a):** a ressalva do nível no
    > bloco da sobra diz *"recomendação primária para em 3"*. A palavra não está na lista "Proibidas" do

@@ -3,6 +3,237 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+06/10/2026 20h42Z — O BOLETIM DECIDE AMBIENTE POR SUBSTRATO E O BANCO DECIDIA POR PRODUTO; A REGRA 8 FECHA OS TRÊS BLOQUEIOS DE UMA VEZ, E O TERCEIRO SAIU SEM CAMPO NOVO
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h17Z**, push da reserva aceito na primeira
+tentativa (`67577b7`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta; o último commit na pasta era de **17h45Z**, uma hora
+e meia antes, e era o fecho da execução anterior. Nenhuma branch `claude/*` à frente do `main` e nenhum PR
+aberto. **Rede pela 20.2:** `https://clubedomosaico.com.br/` em **200** nas três passadas, com
+`aquametria.com.br` em 200 nas mesmas três. **Reserva RENOVADA às 20h21Z pela 1.1**, porque o bloco passou
+de 40 minutos — a bancada desta ilha sozinha leva mais que isso.
+
+**Nenhum despacho aberto para a Fundação** — o de 05/10 tem os itens 1 e 2 fechados e o 3 se declara
+método endereçado ao Raphael. Então o bloco foi **o da fila**: o candidato **(b)**, escolhido por escrito
+pela execução de 17h45Z e o único dos dois que restava.
+
+Nenhuma URL nova (segue em **21**), nenhuma página criada, nenhum link de afiliado gerado, nenhum teto da
+21.4 gasto, nenhuma coleta nova. Esquema **v14**, **F2 1.10.0**, manifest e `/status` conferidos na mesma
+revisão, Sync acionado pela própria Fundação.
+
+## O QUE O BLOCO ERA, E A PRIMEIRA COISA QUE ELE FEZ FOI LER O CAMPO
+
+O candidato (b) estava escrito como "o campo de par substrato × ambiente, decisão de esquema". Lido o
+campo que o nomeava — `materiais-colas.json / quartzolit-cimentcola-externo-acii / fontes /
+bt-cimentcola-externo-2016-05 / substratos_que_o_documento_declara_e_que_NAO_foram_gravados` —, ele já
+trazia a leitura inteira da seção 4.1 do boletim, feita em 05/10 e confirmada em 06/10: **três frases de
+substrato, e DUAS delas com o lugar colado dentro da frase.**
+
+- `Emboço, alvenaria e contrapiso em áreas internas, curados há pelo menos 14 dias, conforme NBR 13.754.`
+- `Paredes de concreto curado há 180 dias.`
+- `Alvenarias de blocos vazados de concreto, de blocos silicocalcários e de blocos de concreto celular em paredes internas, conforme a Norma Técnica NBR 13.754.`
+
+**O banco decidia ambiente por PRODUTO** (`declaracoes.ambientes_declarados`, regra 3) **e o documento o
+decide por SUBSTRATO.** Sem campo para o par havia duas saídas e as duas mentiam, em direções opostas:
+deixar as três frases fora de `indicado_para` manteve a argamassa **eliminada por silêncio nas 45 células
+de 10/09 a 06/10** — 26 dias dizendo ao leitor que a Quartzolit não fala de concreto, quando ela fala com
+número de norma dentro; gravá-las sem o qualificador faria a F2 recomendar argamassa de assentamento em
+`alvenaria_tijolo` + `externo_abrigado`, que nesta ilha é **muro de mosaico ao ar livre**, caso em que o
+documento não declara nada.
+
+## A DECISÃO DE ESQUEMA, E ELA FOI DE ONDE O CAMPO MORA ANTES DE SER DE FORMA
+
+O par **não** virou campo do registro. Ele é **tradução**, e tradução desta ilha mora num lugar só e
+auditável (26.2): o campo novo é `ambiente_que_qualifica_a_base`, numa linha de
+`mapa_de_termos_do_fabricante.termos`, e **a fronteira da frase é a fronteira do par** — nada de
+sub-parsear a sentença. Gravar o par dentro do registro criaria a segunda cópia da mesma declaração, que é
+exatamente o que a execução de 17h45Z pagou no campo da sobra.
+
+**A REGRA 8** roda **entre a 1 e a 2**: depois da 1 porque proibição continua sendo a afirmação mais forte
+(o Silicone Acético Construção indica E proíbe `alvenaria`, e tem de sair pela proibição); **antes da 2**
+porque a 2 é a regra do SILÊNCIO e aqui não há silêncio — ele falou desta superfície, e falou colando um
+lugar na frase. Quem cai nela vai para um balde próprio, `eliminados_por_ambiente_do_substrato`, com seção
+e frase próprias na tela. É a **quarta causa** de não-recomendação da resposta da cola, e a quinta no total
+com a da peça.
+
+**E A METADE QUE SE ERRA É A UNIÃO.** O qualificador estreita **só o par que a própria frase cria**; ele
+nunca estreita outra frase do mesmo fabricante. `cimento_concreto` é declarada pelas paredes de concreto
+**sem** qualificador, então fica declarada larga — nos quatro ambientes que o produto delimita.
+`alvenaria_tijolo` é declarada **só** por frases qualificadas, então vale só em `interno_seco`.
+Implementação que INTERSECTA publica menos do que ele escreveu; a que ignora o qualificador publica mais.
+**As duas direções têm mutação própria** (t04 e t01), e é por isso que esta régua virou bateria em vez de
+duas afirmações a mais.
+
+## O TERCEIRO BLOQUEIO CAIU SEM CAMPO NOVO, E ERA ISSO QUE "JUSANTE" QUERIA DIZER
+
+A cura de 180 dias estava gravada desde 05/10 e **fora da tela**. A execução de 17h45Z mediu, varrendo os
+45 estados um render por estado: **zero** serviam a frase. O motivo é que o bloco de `preparo` só alcança
+quem a página **recomenda** — e o produto era eliminado por silêncio em todas as 45. Com o substrato
+gravado, a cura entrou **junto com a recomendação**, em dois lugares e nenhum deles novo:
+
+1. a **citação da declaração que fez o produto entrar**, que a F2 serve desde a 1.0.0 — e a declaração é,
+   literalmente, `Paredes de concreto curado há 180 dias`;
+2. o **bloco de preparo**, que serve a frase do documento inteira, incluindo a instrução que nomeia OUTRO
+   produto abaixo dos 180 dias.
+
+**A cura NÃO virou regra de elegibilidade, e isso é decisão escrita e não esquecimento:** ela não tem valor
+em vocabulário nenhum e a F2 não pergunta a idade da peça. Transformá-la em regra exige pergunta nova na
+ferramenta, que é decisão de interface e bloco próprio. Enquanto não for, a cura é TEXTO — texto citado do
+fabricante, no mesmo bloco da recomendação, que é o que esta ilha tem de mais honesto a oferecer sobre uma
+condição que ela não mede.
+
+## O QUE MUDOU NO AR: DEZ CÉLULAS, E UMA DELAS MUDOU DE CAUSA SEM MUDAR DE CONTEÚDO
+
+As dez (as cinco de `cimento_concreto` e as cinco de `alvenaria_tijolo`) foram **derivadas à mão das
+declarações ANTES de o validador rodar uma vez**, e as dez bateram com a recomputação sem uma divergência.
+
+- `cimento_concreto` × interno_seco: a AC-II **empata com o PL500** em score 4 e a página lista os dois
+  como equivalentes — a `ordem_entre_os_elegiveis` proíbe desempatar por gosto.
+- `cimento_concreto` × interno_molhado, externo_abrigado: a AC-II **assume o topo sozinha** (4 contra 2 do
+  neutro, que declara a base e não declara ambiente).
+- `cimento_concreto` × externo_exposto: **empate com o neutro**, as duas passando pela regra 4 por motivos
+  diferentes — ela porque `área interna e externa` cobre o exposto, ele porque declara chuva e UV.
+- `cimento_concreto` × contato_permanente_agua: **a célula não mudou e a CAUSA mudou.** A AC-II continua em
+  `eliminados_por_silencio` e não está mais ali por não declarar substrato: agora declara, e quem a tira é
+  a **regra 3**. Fica escrito no próprio esquema que esta célula passou a ter DUAS causas no mesmo balde, e
+  que separá-las é o próximo campo que esta ilha vai querer — não é defeito de hoje e não se conserta sem
+  bloco.
+- `alvenaria_tijolo` × interno_seco: a AC-II **assume o topo**, e é a única das cinco desta base em que ela
+  aparece. Fecha a divergência que a seção 1.3 da especificação carregava desde o bloco 3.
+- `alvenaria_tijolo` × os outros quatro: **REGRA 8**, com a frase própria.
+
+**E A QUINTA ÂNCORA DA MATRIZ DA PEÇA MUDOU DE LADO, que era o que ela existia para medir.** Escrita de
+manhã, quando a AC-II era silêncio nas 45, ela cobrava `eliminados_por_proibicao_da_peca` VAZIO em
+`cimento_concreto` × `interno_seco` × `pastilha_vidro`. À noite a argamassa entrou na célula com score 4 e
+a **regra 7 a tirou**, pelos dois grupos que ela declara. O `recomendados_topo` não se mexeu: continua só o
+PL500. A frase que a regra 7 deixou escrita no dia em que nasceu era exatamente esta — *"com ele, o dia em
+que o substrato entrar não será o dia em que a F2 passar a mandar colar pastilha de vidro com argamassa que
+proíbe revestimento especial"*.
+
+## TRÊS DEFEITOS ACHADOS PELO CAMINHO, E NENHUM DELES ERA DO BLOCO
+
+**(1) O "TROQUE POR ISTO" DA REGRA 7 OFERECIA UM CAQUINHO QUE O MESMO PRODUTO PROÍBE — e estava no ar desde
+hoje de manhã.** A saída era calculada sobre os grupos que **morderam aquele caquinho**, não sobre os que o
+produto **declara**. Com `pastilha de cerâmica` no formulário, só `revestimento_especial` morde, e a saída
+calculada sobre ele sozinho oferecia `caquinho de louça ou prato` — que `baixa_absorcao_de_agua`, o outro
+grupo da mesma argamassa, proíbe. **A página mandava trocar um caquinho proibido por outro caquinho
+proibido, com o nome do fabricante embaixo.** Não apareceu antes porque o mundo não se movia: o único
+produto com proibição de peça elegível até hoje declarava UM grupo, e com um grupo as duas contas dão o
+mesmo número. **Campo que só erra quando o mundo se move parece certo até o mundo se mover** — e quem o
+pegou foi uma afirmação que a própria regra 7 escreveu de manhã e que nunca tinha tido um mundo em que
+morder.
+
+**(2) A SEÇÃO 5 DO `teste-f2.php` MEDIA A CAMADA ERRADA.** Ela parte da matriz escrita à mão (declaração:
+regras 1 a 5 e 8) e compara com a página servida (que é a declaração MENOS as regras 7 e 6) — e descontava
+só a regra 6. Faltava desde que a 7 nasceu, de manhã, e era invisível porque nenhum produto com proibição
+de peça era elegível em célula nenhuma. As quatro células de cimento falharam de uma vez, cada uma
+acusando que a tela não recomendava quem a matriz manda. **A matriz estava certa e a tela estava certa: era
+a régua que media a camada errada.** Agora ela desconta as duas, na ordem do esquema, e cobra as duas
+metades — que caiu da recomendação e que apareceu na página.
+
+**(3) O `recorte_do_documento` DO `preparo` AFIRMAVA UMA COISA QUE METADE DELE DESMENTIA.** Escrito às
+14h10Z, ele dizia que as **duas** frases de alvenaria com qualificador de ambiente `ficaram fora`, com o
+motivo certo (*"citá-lo pela metade na tela seria decidi-lo sem campo"*). Só que `em áreas internas`
+**nunca ficou fora**: ela é a PRIMEIRA sentença do literal servido desde aquela hora, com o qualificador
+dentro. Só a terceira frase tinha de fato ficado fora. Como a página não recomendava ninguém ali, a frase
+falsa foi invisível em vez de inofensiva. **Mesma família do defeito da sobra, seis horas depois: prosa de
+registro copiada da anterior sem ninguém abrir o campo ao lado.** A terceira frase entrou no literal
+(a v14 deu o campo que faltava) e a prosa foi corrigida para dizer o que o recorte faz.
+
+## A BATERIA ACHOU DOIS BURACOS NAS MINHAS PRÓPRIAS RÉGUAS, E UM DELES ERA UMA FIXTURE QUE DESLIGAVA A RÉGUA
+
+**A m12 PASSOU na primeira rodada.** Dar qualificador a um termo de `nao_indicado_para` não mudava nada —
+porque a leitura da proibição é **ampliativa de propósito**, e é assim que ela tem de ser. Passar verde
+aqui é pior do que parece: o campo fica **gravado, sem efeito e sem uma palavra**, e a próxima execução o
+lê como *"proibido só naquele lugar"*, que é o avesso do que a régua faz. É a família inteira de defeitos
+desta ilha num campo só. A trava nova é no **USO** e não no mapa: o mesmo literal pode ser indicação num
+produto e proibição noutro, e recusá-lo no mapa tiraria o campo de quem tem direito a ele.
+
+**E A `fp2` REPROVOU, e a reprovação estava certa.** A primeira versão dela alargava o qualificador para os
+CINCO ambientes dizendo que *"isso é o mesmo que não ter qualificador"*. É — e nesse mundo a REGRA 8 nunca
+morde, e a trava dos dois lados da matriz do par reprova com razão: tabela de âncoras que nunca morde não
+mede regra nenhuma. **Não era falso positivo: era uma fixture que neutralizava a própria régua e chamava a
+reprovação de defeito.** Trocada por um qualificador de DOIS ambientes, que exerce a união entre duas
+frases qualificadas do mesmo produto e deixa a regra mordendo em três células. **Fixture que desliga o
+portão é o jeito mais limpo de desligar um portão sem apagar uma linha.**
+
+## O DESEMBARQUE, E O SYNC PRECISOU DE TRÊS ACIONAMENTOS
+
+Manifest **63**, `/status` conferido na **63**, Sync acionado pela própria Fundação. **A primeira
+chamada aplicou 12 de 15 e recusou TRÊS com `sha256 divergente`** — `snippets/f2`, `dados/esquema-banco`
+e `dados/materiais-colas`, exatamente os três arquivos deste bloco. O manifest novo chegou e os arquivos
+novos não: é a janela de cache do espelho que serve os blobs, e ela não se resolve por insistência cega
+mas por insistência MEDIDA. Acionado em laço até o log não trazer mais nenhuma linha divergente: **15 de
+15 aplicados às 20h42**.
+
+**Fica escrito porque é a cicatriz do próprio ESTADO.md de 05/10, um nível abaixo:** lá treze sha estavam
+vencidos no manifest porque ninguém acionou o Sync; aqui o Sync foi acionado e **o `/status` na revisão
+certa não quer dizer que os arquivos subiram.** `revisão 63` com três divergentes é um `/status` verde
+sobre uma página velha. O que fecha é o log sem `sha256 divergente`, não o número da revisão.
+
+## A VERIFICAÇÃO NO AR (18.4), com o critério que o próprio bloco declarou
+
+- `conferir-no-ar.py`: **APROVADO, 524 afirmações, 0 falha** (eram 508 antes da 25/09; a contagem é da
+  ilha, não deste bloco).
+- `leitura-do-visitante.py`: **REPROVADO com exatamente 1 defeito, o soft 404 na borda** — 404 na 1ª
+  leitura e 200 na 2ª, com `x-proxy-cache: HIT` e `max-age=7200`. É o vermelho ESPERADO, do hospedeiro e
+  do Raphael desde 29/09, e **nenhum defeito novo**.
+- **A entrega, aberta no ar e lida:** em `cimento` + `fora de casa mas abrigado` + `caco de azulejo`, a
+  página recomenda a argamassa e serve, no mesmo bloco, `Paredes de concreto curado há 180 dias. Se curado
+  há 28 dias, utilize cimentcola flexível quartzolit.` — a cura E o produto que o fabricante manda usar
+  abaixo dela. Em `alvenaria, tijolo ou pedra` + o mesmo lugar e o mesmo caquinho, a mesma argamassa sai
+  no parágrafo da REGRA 8, citando as duas frases dele e dizendo, com as nossas palavras, que este caso
+  não é aquele lugar.
+
+## E O QUE A REGRA 8 DEIXOU À VISTA É UM DEFEITO MAIOR QUE ELA, COM O NÚMERO MEDIDO
+
+**A REGRA 3 MANDA PARA O BALDE DO SILÊNCIO QUEM O FABRICANTE DECLARA, E A PÁGINA DIZ QUE ELE NÃO FALA.**
+A frase da seção do silêncio é *"O fabricante simplesmente não fala desta superfície, e silêncio não vira
+'pode'"*, e ela sai hoje sobre produtos cujos fabricantes **falam da superfície** e apenas delimitaram o
+ambiente do produto inteiro. **Medido nas 45 células: 29 delas**, em três produtos.
+
+| produto | células | desde |
+|---|---|---|
+| `cascola-pl500-adesivo-de-montagem` | **24** | 10/09/2026 |
+| `cascola-cascorez-extra` | 4 | 10/09/2026 |
+| `quartzolit-cimentcola-externo-acii` | 1 | hoje, e por ela a célula não mudou de conteúdo e mudou de causa |
+
+É **o mesmo defeito que este bloco consertou um andar acima**, com uma diferença só: na regra 8 o
+qualificador vinha colado no substrato, e na regra 3 ele é campo do produto. E é **sete vezes maior** —
+4 células contra 29. Não é defeito de hoje: as 28 primeiras estão no ar desde o dia em que o PL500 e o
+Cascorez entraram no banco, e passaram por toda régua desta ilha sem que nenhuma as visse, porque todas
+mediam concordância entre a matriz e a tela — e as duas concordavam, dizendo a mesma coisa errada.
+
+**Por que não saiu nesta execução:** é bloco, pelo mesmo molde construído duas vezes hoje — balde próprio,
+frase própria citando o literal de `ambientes_declarados`, matriz da F2 reescrita nas células afetadas e
+bateria —, e sai inteiro numa execução só. Está nomeado na fila do `PROMPT.md` como o próximo, e a célula
+`cimento_concreto` × `contato_permanente_agua` do esquema já carrega a frase que o aponta.
+
+## O PRÓXIMO BLOCO, E ELE É UM DEFEITO QUE ESTE BLOCO ACHOU NO AR, NÃO UMA IDEIA
+
+**A REGRA 3 MANDA PARA O BALDE DO SILÊNCIO QUEM O FABRICANTE DECLARA, E A PÁGINA DIZ QUE ELE NÃO FALA.**
+A frase que a seção do silêncio serve é *"O fabricante simplesmente não fala desta superfície, e silêncio
+não vira 'pode'"* — e ela sai, hoje, sobre produtos cujos fabricantes **falam da superfície** e apenas
+delimitaram o AMBIENTE do produto inteiro. É exatamente o defeito que a REGRA 8 acabou de consertar um
+andar acima, com a diferença de que ali o qualificador estava colado no substrato e aqui ele é campo do
+produto.
+
+É o mesmo molde já construído duas vezes hoje: um balde próprio
+(`eliminados_por_ambiente_do_produto`), uma frase própria citando o literal do `ambientes_declarados`, a
+matriz da F2 reescrita nas células afetadas, e bateria. **A diferença de tamanho é que ele mexe em mais
+células que a regra 8**, porque a regra 3 já estava em uso desde o bloco 3 — o PL500 e o Cascorez
+delimitam ambiente desde 10/09.
+
+**E uma coisa que NÃO é bloco e continua destravando quatro registros de uma vez:** `*.quartzolit.weber`
+na lista de rede (`dados/despachos.md`, ABERTOS), com a ressalva de que o `www.` já responde **403** —
+403 é decisão do fabricante, não da rede do Raphael.
+
+**O que o `gesso acartonado (drywall)` espera continua sendo decisão do Raphael**, e é a ÚNICA das quatro
+ocorrências da lacuna de vocabulário que este bloco não fechou: `vocabularios.base` não tem valor para
+gesso, e mexer na lista suspensa da F2 mexe em página com impressão.
+
+---
+
 06/10/2026 16h19Z — A SOBRA QUE O VENDEDOR PEDE ESTAVA GRAVADA HÁ SEIS DIAS E NENHUMA TELA A LIA; O ACHADO NÃO FOI O CAMPO, FOI O NOME DELE — E DUAS FRASES DO REPOSITÓRIO SOBRE ESTA ILHA ERAM FALSAS
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h19Z**, push da reserva aceito na primeira
