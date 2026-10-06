@@ -82,9 +82,24 @@ e isso foi medido e não escolhido.
   num **mundo fabricado**.
 - **Casca 1.20.0:** `cdm_casca_numeros()` passa a contar os documentos do banco e quantos foram abertos
   página a página (**2 de 53**).
-- **Bancadas:** `ferramentas/mutacoes-preparo.py` (**16 de 16 reprovadas, 12 só pelo portão novo, 0 falso
-  positivo**), `teste-f2.php` 136 → **143** afirmações, `teste-guia.php` 106 → **110**, `teste-casca.php`
-  741 → **744**.
+- **Bancadas, todas rodadas e verdes:** `ferramentas/mutacoes-preparo.py` (**16 de 16 reprovadas, 12
+  só pelo portão novo, 0 falso positivo**); `teste-f2.php` 136 → **145** afirmações, `teste-guia.php`
+  106 → **110**, `teste-casca.php` 741 → **744**, mais `teste-f1` (210), `teste-tecnicas` (140) e
+  `teste-prestacao-rejunte` (540 estados da F2 e 180 da F1). As **onze** baterias irmãs reconferidas
+  depois do bloco: f2 71/71, voz-e-cabeça 24/24, apoio 24/24, base 20/20, rejunte 16/16, batismo
+  16/16, guia 14/14 decididas certo, acabamento 14/14, pastilhas 14/14, motivo-degrau-4 10/10, degrau
+  8/8 e forma-do-degrau 5/5 com os dois catálogos legítimos passando.
+- **E no ar, depois do Sync:** `conferir-no-ar.py` **APROVADO, 524 afirmações medidas no HTML servido,
+  0 falha**, e `leitura-do-visitante.py` com as 21 URLs chegando inteiras a quem não quebra o cache. O
+  único vermelho dele é o **soft 404 da borda**, que é do Raphael desde 29/09 e está medido como
+  registro, não como portão (origem 404; borda 1ª 404 e 2ª 200, `x-proxy-cache HIT`, `max-age=7200`).
+- **Duas baterias irmãs precisaram de remendo, e as duas QUEBRARAM em vez de passar verde** quando o
+  campo mudou de forma — que é o comportamento certo de uma mutação que aponta para um caminho. A
+  `mutacoes-apoio` 16 e 17; a 17 ainda trocou de alvo com o motivo escrito, porque no durepoxi ela
+  passaria a medir o portão do **preparo** em vez do portão do **apoio**.
+- **E a `mut-voz` devolveu o `esquema-banco.json` com uma quebra de linha final que o commit não
+  tinha.** Conteúdo idêntico, conferido por comparação de JSON — e sha256 diferente, o que deixaria o
+  manifest vencido sem uma linha de conteúdo ter mudado. A forma em bytes foi restaurada.
 
 ## TRÊS COISAS QUE O BLOCO ACHOU NO CAMINHO, E NENHUMA ERA SOBRE PREPARO
 
