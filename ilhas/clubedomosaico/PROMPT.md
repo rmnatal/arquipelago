@@ -1101,6 +1101,14 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > cimentcola AC-II: o terceiro bloqueio é **jusante** dele, não irmão, como a execução de 14h10Z
    > mediu varrendo os 45 estados.
    >
+   > **REGISTRO, NÃO DEFEITO (seção 12, RECEITA), deixado pela entrega do (a):** a ressalva do nível no
+   > bloco da sobra diz *"recomendação primária para em 3"*. A palavra não está na lista "Proibidas" do
+   > `VOZ.md`, ela sai num `cdm-f1-nota` (letra miúda, que é onde esta ilha põe o rigor), e o portão de
+   > voz da `teste-casca` aprovou — mas "recomendação primária" é vocabulário de quem escreveu a ilha, e
+   > o `VOZ.md` pede palavra que a pessoa usa. **Não vale um desembarque só para isso**; vale a troca na
+   > próxima passada que já mexer na F1, mantendo os dois números (nível 5 e teto 3), que são o que a
+   > bancada cobra. Fica escrito porque tom é escolha da Fundação (19.2) e escolha calada não se revisa.
+   >
    > **E A LIÇÃO DE MÉTODO QUE A ENTREGA DO (a) DEIXOU, que vale para este item e para todo item desta
    > fila:** três lugares deste repositório afirmavam 15% sobre uma ferramenta cujo padrão servido é
    > 10%, e dois afirmavam que um campo não existia estando ele gravado no `main`. Nenhuma das cinco
