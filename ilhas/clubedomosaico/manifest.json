@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 63,
+  "revisao": 64,
   "atualizado_em": "2026-10-06",
   "estado": "nascendo",
   "desembarque": {
@@ -556,7 +556,7 @@
     {
       "id": "mutacoes-f2",
       "arquivo": "ferramentas/mutacoes-f2.py",
-      "sha256": "f06cd7880e8ca1ad83ee850803beb0de1b4a4f600d084e969376a866bf796bce",
+      "sha256": "f00dafece57928cf9d0aa22edeb778ee949c79c3d3774f98441a34f3bd209151",
       "descricao": "Quebra a F2 de proposito, uma mutacao por vez, e exige que teste-f2.php reprove cada uma. Bancada."
     },
     {

@@ -69,9 +69,18 @@ def m_proibicao_deixa_de_vencer(raiz):
 def m_silencio_vira_pode(raiz):
     """A regra 2 cai: base sem declaracao passa a valer como indicada.
 
-    O defeito de blog, escrito em PHP: silencio do fabricante virando 'pode'."""
+    O defeito de blog, escrito em PHP: silencio do fabricante virando 'pode'.
+
+    REAPONTADA EM 06/10/2026 PELA REGRA 8 (esquema v14), e a reapontada e o
+    corolario que a secao 8 escreve: a condicao da regra 2 ganhou a segunda
+    metade (`&& ! isset( $p['bases_indicadas_so_em'][ $base ] )`), a ancora
+    velha deixou de existir e a mutacao fechou INERTE — teste verde com outro
+    nome. O alvo e a condicao INTEIRA de proposito: trocar so a primeira metade
+    deixaria a regra 2 de pe pela segunda, e a mutacao mediria meia regra. O
+    `if ( false )` nao toca a regra 8, que fica ACIMA desta linha e tem mutacao
+    propria em `ferramentas/mutacoes-par.py`."""
     editar(raiz, SNIPPET,
-           "\tif ( ! isset( $p['bases_indicadas'][ $base ] ) ) {\n\t\treturn array( 'silencio', 0 );",
+           "\tif ( ! isset( $p['bases_indicadas'][ $base ] )\n\t\t&& ! isset( $p['bases_indicadas_so_em'][ $base ] ) ) {\n\t\treturn array( 'silencio', 0 );",
            "\tif ( false ) {\n\t\treturn array( 'silencio', 0 );")
 
 
@@ -788,9 +797,16 @@ def m_regra7_saida_vira_digitada(raiz):
     """A unica frase da pagina que diz a pessoa o que FAZER para a peca nao
     descolar volta a ser digitada. Digitada, ela erra calada no dia em que um
     caquinho novo entrar no vocabulario — e erra do jeito caro, mandando colar.
-    Mesma familia de `m_contagem_do_que_falta_vira_digitada`."""
+    Mesma familia de `m_contagem_do_que_falta_vira_digitada`.
+
+    REAPONTADA EM 06/10/2026, e nao por mudanca cosmetica: a linha alvo passou a
+    ler `cdm_f2_proibe_grupos_de_peca( $m )` em vez de `$grupos`, porque a versao
+    anterior calculava a saida sobre os grupos que MORDERAM aquele caquinho e nao
+    sobre os que o produto DECLARA — e oferecia, com pastilha de ceramica no
+    formulario, um caquinho que o outro grupo da mesma argamassa proibe. A ancora
+    velha sumiu junto com o defeito e a mutacao fechou INERTE."""
     editar(raiz, SNIPPET,
-           "\t\t\t$sobram = cdm_f2_caquinhos_fora_dos_grupos( $grupos );",
+           "\t\t\t$sobram = cdm_f2_caquinhos_fora_dos_grupos( cdm_f2_proibe_grupos_de_peca( $m ) );",
            "\t\t\t$sobram = 'pastilha de vidro';")
 
 
