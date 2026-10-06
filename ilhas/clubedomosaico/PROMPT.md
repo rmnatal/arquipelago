@@ -1019,7 +1019,7 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > independente mede divergência entre as metades; nunca a lacuna que as duas têm.
    >
    > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O BARATO DOS DOIS QUE FICARAM: a F2 (e o Guia) passarem a
-   > servir `preparo` na resposta.**~~ **ENTREGUE EM 06/10/2026 às 14h0xZ** — esquema na **v12**
+   > servir `preparo` na resposta.**~~ **ENTREGUE EM 06/10/2026 às 14h10Z** — esquema na **v12**
    > (`regras_do_campo_preparo`, três estados), F2 **1.9.0**, Guia **1.1.0**, casca **1.20.0**,
    > `mutacoes-preparo.py` (16 de 16, 12 só pelo portão novo, 0 falso positivo). **CINCO registros
    > ganharam `literal_do_fabricante` lido no dia** — Cascorez, PL500, AF1500 e os boletins do rejunte

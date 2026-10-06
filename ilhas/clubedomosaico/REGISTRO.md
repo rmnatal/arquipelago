@@ -3,7 +3,7 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
-06/10/2026 14h00Z — NOVE DECLARAÇÕES DE FABRICANTE ESTAVAM GRAVADAS E NENHUMA TELA AS SERVIA; AGORA CINCO ESTÃO NO AR, E AS QUATRO QUE DEU PARA CONFERIR ESTAVAM ERRADAS
+06/10/2026 14h10Z — NOVE DECLARAÇÕES DE FABRICANTE ESTAVAM GRAVADAS E NENHUMA TELA AS SERVIA; AGORA CINCO ESTÃO NO AR, E AS QUATRO QUE DEU PARA CONFERIR ESTAVAM ERRADAS
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h18Z**, push da reserva aceito na primeira
 tentativa (`f9b03dd`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
