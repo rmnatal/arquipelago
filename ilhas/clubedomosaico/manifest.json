@@ -496,7 +496,7 @@
     {
       "id": "mutacoes-apoio",
       "arquivo": "ferramentas/mutacoes-apoio.py",
-      "sha256": "b4ee2f0c05e3277f85dde0a2b3f1ef95abdce49791b1ddeeacaeeedb027f892f",
+      "sha256": "e881c3f5ce9a6937791996b864037faf4b6273dbcee8105380b639c561fa0287",
       "descricao": "Vinte e quatro defeitos escritos contra a decisao de campo da categoria APOIO, e e a SEGUNDA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-apoio.json nao existe, porque a regra nasceu antes do primeiro SKU. Quatorze mutacoes no mundo fabricado (quatro registros, um por ramo e por estado), SEIS no banco de VERDADE — a AF1500, a Cascorez e o verniz de pisos, restaurados byte a byte no fim — e quatro no esquema. As seis do banco real sao a novidade: esta e a unica categoria cuja declaracao que mais importa vem DO OUTRO LADO DO BALCAO, porque quem diz qual desempenadeira usar e o fabricante da PASTILHA. Duas mutacoes acharam buraco real ANTES do commit e as duas viraram portao: a 15 (a varredura comparava por registro e a AF1500 nomeia a desempenadeira em DOIS campos, entao apagar uma das duas linhas passava verde — a prosa da secao ja dizia 'mede CAMPO, nao registro' e o codigo nao cumpria) e a 20 (trocar o estado de `aerossol` para buraco de vocabulario passava verde, e a proxima execucao criaria um tipo de apoio chamado aerossol, que e EMBALAGEM; o conserto e que proposta de valor novo tem de vir de FRASE de fabricante e nao de um campo de valor do nosso proprio esquema). A 21 e a que PRODUZ O MUNDO: executa a decisao pendente, poe `pincel` em tipo_por_categoria.apoio e mede se o indice acusa que envelheceu no mesmo commit em que o vocabulario cresceu. 24 de 24, as 24 so o portao novo viu. Bancada."
     },
     {
@@ -514,7 +514,7 @@
     {
       "id": "mutacoes-base",
       "arquivo": "ferramentas/mutacoes-base.py",
-      "sha256": "1f5b1fe59b49b607de36b55c96081d81baa157e7222806d6505e42a8b0dbefbc",
+      "sha256": "1683d83b76e74c1bc3b8ba0d075d7a7a275649bc05c5c4863caeab24f3bf7c81",
       "descricao": "Vinte defeitos escritos contra a decisao de campo da categoria BASE (28/09/2026, 10h16Z). PRIMEIRA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-base.json nao existe, porque a regra nasceu antes do primeiro SKU — entao ela escreve cinco registros de bancada, um por tipo, cobrindo os tres estados da ponte, confere que o mundo certo passa, muta treze vezes no registro e SETE NO ESQUEMA (a ponte e documento que mede documento), restaura e apaga o arquivo fabricado. A mutacao 05 PASSOU na primeira rodada e e o defeito mais caro da categoria: vaso de barro cru gravado como ceramica_esmaltada_porcelana, que nao deixa rastro — some a faixa descoberta e nasce uma recomendacao sobre uma superficie que absorve ao contrario da que foi respondida. A 14 e a que PRODUZ O MUNDO: executa a ponte, poe isopor_eps em vocabularios.base e mede se o esquema acusa que a ponte envelheceu no mesmo commit em que o vocabulario cresceu. 20 de 20, 19 so os portoes novos viram. Bancada. ENTROU NO MANIFEST EM 28/09/2026 as 13h4xZ, pela execucao seguinte: ela nasceu de manha e ficou fora, e quem a achou foi o portao 'FERRAMENTA NO DISCO FORA DO MANIFEST' do proprio atualizar-manifest, que se recusou a gravar enquanto a linha nao existisse."
     },
     {
@@ -550,7 +550,7 @@
     {
       "id": "mutacoes-f1",
       "arquivo": "ferramentas/mutacoes-f1.py",
-      "sha256": "3707a596fd771278bef70be03fcf6e0c59fa23abd2024ebb16be96b911e1af9d",
+      "sha256": "872fd6cdf008e17b0e1bb1823fb50c8b4f599561d0563b1b0adc639554c8f190",
       "descricao": "Quebra a F1 de proposito, uma mutacao por vez, e exige que teste-f1.php reprove cada uma. Bancada."
     },
     {

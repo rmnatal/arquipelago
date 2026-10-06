@@ -453,6 +453,40 @@ def grava(caminho, conteudo):
         fh.write("\n")
 
 
+# RESTAURA OS BYTES, NAO O CONTEUDO — e a diferenca e um byte que muda um sha.
+#
+# Medido em 06/10/2026, depois de uma passada desta bateria: ela deixava
+# `dados/esquema-banco.json` e `dados/materiais-pastilhas.json` MODIFICADOS no
+# repositorio, com o conteudo identico ao original e um `\n` a mais no fim. A
+# causa e `grava()` logo acima: ela re-serializa o original guardado em memoria
+# em vez de devolver os bytes que estavam no disco, e acrescenta a quebra de
+# linha que aqueles dois arquivos nao tinham.
+#
+# POR QUE ISSO NAO E COSMETICO: o `manifest.json` guarda o `sha256` de cada
+# arquivo de dado e o Sync compara sha para decidir o que aplicar. Um byte a mais
+# muda o sha sem mudar uma palavra, entao a proxima execucao que rodasse
+# `atualizar-manifest.py` veria dois arquivos "trocados", gravaria shas novos e
+# desembarcaria um no-op — ou, pior, commitaria um sha que o site depois acusa
+# divergente. Conteudo igual, validador verde, nada vermelho em lugar nenhum: e a
+# familia do defeito que esta ilha mais paga, o que envelhece calado.
+#
+# `grava()` continua certa para o mundo FABRICADO (`BANCO`), que nasce e morre
+# nesta passada. Para arquivo que e do repositorio, quem restaura e isto.
+LEMBRADOS = {}
+
+
+def lembra_bytes(caminho):
+    with open(caminho, "rb") as fh:
+        LEMBRADOS[caminho] = fh.read()
+
+
+def restaura_bytes(caminho):
+    if caminho not in LEMBRADOS:
+        raise SystemExit("restaura_bytes sem lembra_bytes: %s" % caminho)
+    with open(caminho, "wb") as fh:
+        fh.write(LEMBRADOS[caminho])
+
+
 def main():
     if os.path.exists(BANCO):
         print("FALHA: dados/materiais-base.json JA EXISTE. Esta bateria fabrica o proprio "
@@ -461,6 +495,7 @@ def main():
               "que mutam o banco real.")
         return 1
 
+    lembra_bytes(ESQUEMA)
     esquema_original = json.load(open(ESQUEMA, encoding="utf-8"))
     banco_original = mundo()
 
@@ -494,7 +529,7 @@ def main():
                 pegou_sem = roda(sem_portao_novo=True)
             finally:
                 grava(BANCO, banco_original)
-                grava(ESQUEMA, esquema_original)
+                restaura_bytes(ESQUEMA)
 
             if pegou:
                 reprovadas += 1
@@ -506,7 +541,7 @@ def main():
             else:
                 print("  PASSOU    %-54s  <-- NENHUM PORTAO VIU" % nome)
     finally:
-        grava(ESQUEMA, esquema_original)
+        restaura_bytes(ESQUEMA)
         if os.path.exists(BANCO):
             os.remove(BANCO)
 

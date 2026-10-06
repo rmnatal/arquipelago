@@ -136,8 +136,41 @@ dando verde. Corrigido para o que o WordPress faz — a URL atual com os parâme
 `mutacoes-f1` **47 de 47 reprovadas, 0 passaram, nenhuma inerte** (na primeira passada, antes do reapontamento,
 ela **abortou** na mutação inerte); `mutacoes-pastilhas` **14 de 14** (é o banco que este bloco editou);
 `mutacoes-preparo` **16 de 16**, 12 só pelo portão novo, com os 3 estados legítimos passando (é o esquema que
-este bloco editou). As dez restantes, de `mutacoes-f2` em diante, ficaram rodando em sequência depois do fecho e
-**não estão medidas aqui** — nenhuma delas toca código que este bloco mudou, e quem vier confere.
+este bloco editou). **E as dez restantes fecharam também, todas verdes:** f2 **71 de 71**, apoio 24, base 20, rejunte 16,
+guia 14 decididas certo, acabamento 14, degrau 8 (1 só pelo portão novo), forma-do-degrau 5 (4 só pelo portão
+novo, com as 2 formas legítimas de catálogo passando), motivo-degrau-4 10 (10 só pelo portão novo), batismo 16,
+voz-e-cabeça 24. **Catorze de catorze.**
+
+## E A ÚLTIMA PASSADA DAS IRMÃS ACHOU UM DEFEITO DA BANCADA QUE NENHUM PORTÃO PODIA VER, PORQUE ELE É DE BYTE
+
+`mutacoes-apoio.py` e `mutacoes-base.py` restauravam os arquivos de verdade **re-serializando** o original
+guardado em memória — `json.dump` seguido de `fh.write("\n")` — em vez de devolver os bytes que estavam no
+disco. E os dois arquivos que elas tocam, `esquema-banco.json` e `materiais-pastilhas.json`, **não terminavam em
+quebra de linha**.
+
+O resultado é a assinatura do defeito que esta ilha mais paga: passada **verde**, conteúdo **idêntico**,
+`validar-banco` **OK**, nada vermelho em lugar nenhum — e o repositório sujo com dois arquivos cujo `sha256`
+mudou sem uma palavra mudar. **O manifest guarda esse sha e o Sync o compara.** A próxima execução que rodasse
+`atualizar-manifest.py` veria dois arquivos "trocados", gravaria shas novos e desembarcaria um no-op; ou, pior,
+commitaria um sha que o site depois acusa divergente — que é exatamente o `sha256 divergente` que a execução de
+14h10Z de hoje viu e atribuiu, com razão, à borda do CDN.
+
+**Foi medido aqui porque eu ia commitar os dois arquivos assim.** O `git status` acusou, e a conferência mostrou
+o que importava: o `HEAD` batia com o manifest e com o que o site aplicou na revisão 62, e o **disco divergia**.
+Descartei a mudança de disco em vez de regravar o manifest, porque o lado certo era o que já estava no ar.
+
+**O conserto:** as duas baterias tiram retrato dos **bytes** de todo arquivo do repositório que tocam e devolvem
+os bytes; `grava()` fica para o mundo **fabricado**, que nasce e morre na passada. E `restaura_bytes` levanta
+exceção quando o retrato não existe — o que fez a primeira versão do conserto **parar na hora**, dizendo o nome
+do arquivo que faltava (`materiais-pastilhas.json`, que a `apoio` também muta), em vez de restaurar pela metade
+e me deixar achar que tinha consertado. Conferido rodando as duas de novo: **24 e 20 verdes, e a árvore limpa
+depois**.
+
+**E de carona, o `atualizar-manifest.py` pegou um descuido meu desta mesma execução:** ao reapontar a
+`mutacoes-f1.py` eu deixei no manifest o sha de uma versão que já não existia. É a cicatriz escrita no cabeçalho
+daquela ferramenta — *"quem mexesse numa ferramenta de bancada deixava para trás uma etiqueta que dizia o hash
+de uma versão que não existe mais"* —, e ela pegou quem a escreveu. Três shas regravados, **sem bumpar a
+revisão**: nenhum dos três arquivos é servido, o site segue na 62 e o manifest segue na 62.
 
 **As onze baterias irmãs reconferidas depois do bloco:** f2 145/145, casca 744/744, guia 110/110,
 técnicas 140/140, loja 208/208, leads 211/211, prestação-rejunte 5/5 sobre 540 estados da F2 e 180 da
