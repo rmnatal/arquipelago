@@ -134,7 +134,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.9.0' );
+	define( 'CDM_F2_VERSAO', '1.10.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -262,8 +262,14 @@ function cdm_f2_mapa_cola() {
 	foreach ( ( isset( $fonte['termos'] ) ? $fonte['termos'] : array() ) as $t ) {
 		$chave                    = cdm_f2_normalizar( $t['literal'] );
 		$mapa['termos'][ $chave ] = array(
-			'base'     => isset( $t['base'] ) ? $t['base'] : array(),
-			'ambiente' => isset( $t['ambiente'] ) ? $t['ambiente'] : array(),
+			'base'      => isset( $t['base'] ) ? $t['base'] : array(),
+			'ambiente'  => isset( $t['ambiente'] ) ? $t['ambiente'] : array(),
+			/* O QUALIFICADOR DE AMBIENTE DO SUBSTRATO (esquema v14, REGRA 8). A
+			   frase do fabricante nomeia a superfície JÁ COM o lugar colado
+			   nela — "Emboço, alvenaria e contrapiso em áreas internas" —, e
+			   achatar as duas coisas em dois conjuntos independentes faz a régua
+			   cruzá-los. */
+			'qualifica' => isset( $t['ambiente_que_qualifica_a_base'] ) ? $t['ambiente_que_qualifica_a_base'] : array(),
 		);
 		if ( ! empty( $t['vago'] ) ) {
 			$mapa['vagos'][ $chave ] = true;
@@ -288,7 +294,8 @@ if ( ! function_exists( 'cdm_f2_traduzir_cola' ) ) {
  */
 function cdm_f2_traduzir_cola( $lista ) {
 	$mapa = cdm_f2_mapa_cola();
-	$out  = array( 'base' => array(), 'ambiente' => array(), 'vago' => array(), 'literais' => array() );
+	$out  = array( 'base' => array(), 'ambiente' => array(), 'vago' => array(),
+		'par' => array(), 'literais' => array() );
 
 	foreach ( (array) $lista as $literal ) {
 		$chave = cdm_f2_normalizar( $literal );
@@ -299,6 +306,15 @@ function cdm_f2_traduzir_cola( $lista ) {
 		foreach ( $alvo['base'] as $b ) {
 			if ( isset( $mapa['vagos'][ $chave ] ) ) {
 				$out['vago'][ $b ] = true;
+			} elseif ( ! empty( $alvo['qualifica'] ) ) {
+				/* REGRA 8: esta base sai em `par`, não em `base`. Quem chama
+				   decide o que fazer com ela, e a assimetria do mapa manda — do
+				   lado da INDICAÇÃO o par é lido estreito, do lado da PROIBIÇÃO
+				   é lido largo, porque a tradução é ampliativa para o lado da
+				   restrição. */
+				foreach ( $alvo['qualifica'] as $qa ) {
+					$out['par'][ $b ][ $qa ] = true;
+				}
 			} else {
 				$out['base'][ $b ] = true;
 			}
@@ -358,9 +374,34 @@ function cdm_f2_perfil_cola( $m ) {
 		}
 	}
 
+	/* A UNIÃO, E É A METADE QUE SE ERRA (esquema v14). O qualificador estreita só
+	   o par que a própria frase cria: se OUTRA frase do mesmo fabricante declara
+	   a mesma base sem qualificador, a base fica declarada larga, porque as duas
+	   frases são dele e a larga também é declaração. É o caso da Cimentcola
+	   AC-II em `cimento_concreto`, declarada por "Paredes de concreto curado há
+	   180 dias" (larga) e por "Emboço, alvenaria e contrapiso em áreas internas"
+	   (estreita). Implementação que INTERSECTA publica menos do que ele escreveu;
+	   a que ignora o qualificador publica mais. */
+	$so_em = array();
+	foreach ( $ind['par'] as $b => $ambs ) {
+		if ( ! isset( $ind['base'][ $b ] ) ) {
+			$so_em[ $b ] = $ambs;
+		}
+	}
+	/* DO LADO DA PROIBIÇÃO O PAR É LIDO LARGO: base proibida vale em todo
+	   ambiente. Ler o qualificador aqui estreitaria uma proibição, que é a
+	   direção que o mapa proíbe. */
+	$proibidas = $pro1['base'] + $pro2['base'];
+	foreach ( array( $pro1['par'], $pro2['par'] ) as $pp ) {
+		foreach ( $pp as $b => $ambs ) {
+			$proibidas[ $b ] = true;
+		}
+	}
+
 	$cache[ $id ] = array(
 		'bases_indicadas'       => $ind['base'],
-		'bases_proibidas'       => $pro1['base'] + $pro2['base'],
+		'bases_indicadas_so_em' => $so_em,
+		'bases_proibidas'       => $proibidas,
 		'bases_vagas'           => $ind['vago'] + $naorec['base'] + $naorec['vago'],
 		'ambientes_proibidos'   => $pro1['ambiente'] + $pro2['ambiente'],
 		'ambientes_delimitados' => $delim['ambiente'],
@@ -570,7 +611,7 @@ if ( ! function_exists( 'cdm_f2_avaliar_cola' ) ) {
 /**
  * As cinco regras, na ordem em que elas decidem.
  * Devolve array( situacao, score ). Situação: recomendado | ressalva |
- * proibido | silencio.
+ * proibido | silencio | ambiente_do_substrato.
  */
 function cdm_f2_avaliar_cola( $m, $base, $ambiente ) {
 	$p = cdm_f2_perfil_cola( $m );
@@ -582,8 +623,19 @@ function cdm_f2_avaliar_cola( $m, $base, $ambiente ) {
 	if ( isset( $p['bases_proibidas'][ $base ] ) || isset( $p['ambientes_proibidos'][ $ambiente ] ) ) {
 		return array( 'proibido', 0 );
 	}
+	/* 8 — O SUBSTRATO DECLARADO SÓ EM CERTO AMBIENTE, e ela roda ENTRE a 1 e a 2
+	   (esquema v14). Depois da 1 porque proibição continua sendo a afirmação mais
+	   forte; antes da 2 porque a 2 é a regra do SILÊNCIO e aqui não há silêncio —
+	   o fabricante falou desta superfície, e falou colando um lugar na frase.
+	   Dizer "ele não fala desta superfície" numa célula em que ele a declara para
+	   outro lugar é trocar uma causa pela outra, que é o que esta ilha mais paga. */
+	if ( isset( $p['bases_indicadas_so_em'][ $base ] )
+		&& ! isset( $p['bases_indicadas_so_em'][ $base ][ $ambiente ] ) ) {
+		return array( 'ambiente_do_substrato', 0 );
+	}
 	/* 2 — base sem declaração não é recomendação. Silêncio não vira "pode". */
-	if ( ! isset( $p['bases_indicadas'][ $base ] ) ) {
+	if ( ! isset( $p['bases_indicadas'][ $base ] )
+		&& ! isset( $p['bases_indicadas_so_em'][ $base ] ) ) {
 		return array( 'silencio', 0 );
 	}
 	/* 3 — quem delimita ambiente fica fechado nele. */
@@ -634,6 +686,7 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 	$silencio     = array();
 	$condicao     = array();
 	$peca         = array();
+	$amb_substrato = array();
 
 	foreach ( $banco['materiais'] as $id => $m ) {
 		if ( 'cola' !== ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
@@ -664,6 +717,8 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 			$ressalva[] = $id;
 		} elseif ( 'proibido' === $situacao ) {
 			$proibidos[] = $id;
+		} elseif ( 'ambiente_do_substrato' === $situacao ) {
+			$amb_substrato[] = $id;
 		} else {
 			$silencio[] = $id;
 		}
@@ -688,6 +743,7 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 	sort( $silencio );
 	sort( $condicao );
 	sort( $peca );
+	sort( $amb_substrato );
 
 	return array(
 		'recomendados_topo'             => $topo,
@@ -697,6 +753,7 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 		'eliminados_por_silencio'       => $silencio,
 		'eliminados_por_condicao'       => $condicao,
 		'eliminados_por_proibicao_da_peca' => $peca,
+		'eliminados_por_ambiente_do_substrato' => $amb_substrato,
 	);
 }
 }
@@ -1637,7 +1694,8 @@ function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
 
 	if ( ! $celula['eliminados_por_proibicao'] && ! $celula['eliminados_por_silencio']
 		&& ! $celula['mencionados_com_ressalva'] && ! $celula['eliminados_por_condicao']
-		&& ! $celula['eliminados_por_proibicao_da_peca'] ) {
+		&& ! $celula['eliminados_por_proibicao_da_peca']
+		&& ! $celula['eliminados_por_ambiente_do_substrato'] ) {
 		return '';
 	}
 
@@ -1678,6 +1736,31 @@ function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
 		if ( $vagos ) {
 			$html .= '<p class="cdm-f2-silencio">Um caso à parte: ' . implode( '; ', $vagos )
 				. '. Isso não nomeia material nenhum, então não dá para virar recomendação — é declaração que existe e não decide.</p>';
+		}
+	}
+
+	/* O GRUPO DA REGRA 8 — o lugar que vem colado no substrato, e ele precisou de
+	   frase própria pelo mesmo motivo dos outros: não é nenhuma das causas que já
+	   estavam aqui. Não é proibição (ele não proibiu), não é silêncio (ele falou
+	   desta superfície) e não é fonte fraca (é o boletim técnico dele). É a
+	   superfície declarada PARA OUTRO LUGAR.
+	   A TELA CITA A FRASE DELE E NÃO O NOSSO VOCABULÁRIO: quem traduziu "em áreas
+	   internas" para `interno_seco` fomos nós, e dizer que ele classificou o lugar
+	   seria pôr a nossa leitura na boca dele (seção 26.3, terceira aplicação —
+	   depois da porosidade da regra 6 e dos grupos de peça da regra 7). */
+	if ( $celula['eliminados_por_ambiente_do_substrato'] ) {
+		foreach ( $celula['eliminados_por_ambiente_do_substrato'] as $id ) {
+			$m = $banco['materiais'][ $id ];
+			$p = cdm_f2_perfil_cola( $m );
+			$lits = isset( $p['literais_indicacao'][ $base ] ) ? $p['literais_indicacao'][ $base ] : array();
+			$html .= '<p class="cdm-f2-ambiente-substrato"><strong>' . esc_html( cdm_f2_nome( $id ) )
+				. '</strong> — a ' . esc_html( $m['fabricante'] ) . ' declara esta superfície, e declara '
+				. 'com o lugar dentro da frase';
+			if ( $lits ) {
+				$html .= ': <em>' . esc_html( cdm_f2_lista_humana( $lits ) ) . '</em>';
+			}
+			$html .= '. Este caso não é esse lugar, então ela fica de fora — não por proibição e não '
+				. 'por silêncio, e a diferença importa: ele falou, e falou de outra situação.</p>';
 		}
 	}
 
@@ -1748,7 +1831,21 @@ function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
 					$literais[] = $m['condicoes']['proibe_grupos_de_tessela']['literais'][ $g ];
 				}
 			}
-			$sobram = cdm_f2_caquinhos_fora_dos_grupos( $grupos );
+			/* OS GRUPOS DA SAÍDA SÃO OS QUE O PRODUTO *DECLARA*, NUNCA SÓ OS QUE
+			   MORDERAM ESTE CAQUINHO. Defeito medido em 06/10/2026, quando a
+			   REGRA 8 fez a Cimentcola AC-II virar recomendável: ela declara DOIS
+			   grupos (`baixa_absorcao_de_agua` e `revestimento_especial`) e eles
+			   se cruzam sem se conter. Com `pastilha de cerâmica` no formulário só
+			   o segundo morde, e a saída calculada sobre ele sozinho oferecia
+			   `caquinho de louça ou prato` — que o PRIMEIRO grupo proíbe. A página
+			   mandava trocar um caquinho proibido por outro caquinho proibido, com
+			   o nome do fabricante embaixo.
+			   NÃO APARECEU ANTES porque o mundo não se movia: o único produto com
+			   proibição de peça elegível até hoje declarava UM grupo, e com um
+			   grupo as duas contas dão o mesmo número. Campo que só erra quando o
+			   mundo se move parece certo até o mundo se mover — a mesma frase que
+			   a jornadafly escreveu sobre `faixa_etaria` no mesmo dia. */
+			$sobram = cdm_f2_caquinhos_fora_dos_grupos( cdm_f2_proibe_grupos_de_peca( $m ) );
 			$html  .= '<p class="cdm-f2-peca-fora"><strong>' . esc_html( cdm_f2_nome( $id ) )
 				. '</strong> — não é falta de declaração e não é o lugar da peça: a '
 				. esc_html( $m['fabricante'] ) . ' escreve <em>'

@@ -609,26 +609,55 @@ foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 	}
 	$pedaco = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '', $pedaco_html ) );
 
-	/* A MATRIZ DO ESQUEMA E A CAMADA DE DECLARACAO; a tela e ela MENOS a regra 6.
-	   Quem carrega condicao e nao a cumpre neste par de superficies sai da
+	/* A MATRIZ DO ESQUEMA E A CAMADA DE DECLARACAO; a tela e ela MENOS a regra 7 e
+	   MENOS a regra 6, nessa ordem. Quem carrega condicao e nao a cumpre neste par
+	   de superficies, ou carrega proibicao de peca que morde este caquinho, sai da
 	   recomendacao e tem de aparecer no grupo proprio — e as duas metades sao
 	   cobradas, porque so cobrar a primeira deixaria o produto sumir da pagina
-	   inteira sem ninguem ver. */
+	   inteira sem ninguem ver.
+	   A REGRA 7 ENTROU AQUI EM 06/10/2026, e ela faltava desde que nasceu, de
+	   manha: esta secao descontava so a regra 6 porque nenhum produto com
+	   proibicao de peca era elegivel em celula nenhuma — o acetico sai por
+	   proibicao de BASE onde a peca tambem o pegaria. No dia em que a REGRA 8 fez
+	   a cimentcola virar recomendavel em cinco celulas, as quatro de cimento
+	   falharam de uma vez, cada uma acusando que a tela nao recomendava quem a
+	   matriz manda. A matriz estava certa e a tela estava certa: era a regua que
+	   media a camada errada. */
 	$caidos_pela_condicao = array();
+	$caidos_pela_peca     = array();
+	$grupos_do_esquema    = isset( $esquema['grupos_de_tessela_proibidos']['grupos'] )
+		? $esquema['grupos_de_tessela_proibidos']['grupos'] : array();
 	$elegiveis_da_celula  = array_merge(
 		isset( $c['recomendados_topo'] ) ? $c['recomendados_topo'] : array(),
 		isset( $c['elegiveis_abaixo_do_topo'] ) ? $c['elegiveis_abaixo_do_topo'] : array() );
 	foreach ( $elegiveis_da_celula as $id ) {
-		if ( f2_condicao_falha( $por_id[ $id ], $c['base'], $tessela_varrida ) ) {
+		/* A ORDEM E A DO ESQUEMA: a 7 ANTES da 6, porque proibicao e afirmacao
+		   mais forte que condicao nao cumprida. Quem cai nas duas sai pela 7. */
+		if ( f2_peca_proibida_no_banco( $por_id[ $id ], $tessela_varrida, $grupos_do_esquema ) ) {
+			$caidos_pela_peca[] = $id;
+		} elseif ( f2_condicao_falha( $por_id[ $id ], $c['base'], $tessela_varrida ) ) {
 			$caidos_pela_condicao[] = $id;
 		}
 	}
-	$sobreviventes = array_values( array_diff( $elegiveis_da_celula, $caidos_pela_condicao ) );
+	$sobreviventes = array_values( array_diff( $elegiveis_da_celula,
+		$caidos_pela_condicao, $caidos_pela_peca ) );
 
 	foreach ( $sobreviventes as $id ) {
 		$nome = f2_nome_esperado( $por_id[ $id ] );
 		if ( false === mb_strpos( $pedaco, $nome ) ) {
 			$erros_celula[] = $chave . ': "' . $nome . '" era para estar recomendado e nao esta';
+		}
+	}
+	/* E QUEM CAIU PELA PECA TEM DE SAIR DA RECOMENDACAO E APARECER NA PAGINA, pelas
+	   duas metades, igual a condicao. Sem a segunda, o produto poderia sumir da
+	   pagina inteira e a regua ficaria verde — foi essa a licao da regra 6. */
+	foreach ( $caidos_pela_peca as $id ) {
+		$nome = f2_nome_esperado( $por_id[ $id ] );
+		if ( false !== mb_strpos( $pedaco, $nome ) ) {
+			$graves[] = $chave . ': "' . $nome . '" caiu pela proibicao de peca e mesmo assim esta recomendado';
+		}
+		if ( false === mb_strpos( $fora, $nome ) ) {
+			$erros_celula[] = $chave . ': "' . $nome . '" caiu pela proibicao de peca e sumiu da pagina';
 		}
 	}
 	foreach ( $caidos_pela_condicao as $id ) {
@@ -713,7 +742,20 @@ foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 		   "existe mencao a Loctite Durepoxi". Quem manda aqui e a MATRIZ, nao o
 		   que a tela devolveu: `mencionados_com_ressalva` e escrito a mao. */
 		$ressalva_da_matriz = isset( $c['mencionados_com_ressalva'] ) ? $c['mencionados_com_ressalva'] : array();
-		if ( $caidos_pela_condicao ) {
+		if ( $caidos_pela_peca ) {
+			/* A QUINTA CAUSA de celula sem recomendacao, e ela nao tinha ramo aqui
+			   porque nunca tinha acontecido. A pagina nao pode dizer "ninguem
+			   declara": o fabricante declarou a superficie, declarou o ambiente, e
+			   proibiu o caquinho. */
+			if ( false !== mb_strpos( $t_corpo, 'Nenhum dos adesivos do nosso banco é declarado' ) ) {
+				$graves[] = $chave . ': caiu pela proibicao de peca e a pagina nega que exista declaracao';
+			}
+			foreach ( $caidos_pela_peca as $id ) {
+				if ( false === mb_strpos( $t_corpo, f2_nome_esperado( $por_id[ $id ] ) ) ) {
+					$erros_celula[] = $chave . ': caiu pela proibicao de peca e o produto nao e nomeado';
+				}
+			}
+		} elseif ( $caidos_pela_condicao ) {
 			if ( false === mb_strpos( $t_corpo, 'o motivo não é falta de declaração' ) ) {
 				$erros_celula[] = $chave . ': caiu pela condicao e a recusa nao nomeia a causa medida';
 			}
@@ -2086,34 +2128,103 @@ f2_ok( empty( $parafrase_no_ar ),
    so sabe dizer "continua zero" deixaria a cura entrar na tela sem ninguem
    conferir que ela entrou junto com a recomendacao. */
 $CURA_DA_CIMENTCOLA = 'Paredes de concreto curado há 180 dias';
-$com_cura = array();
+$NOME_AC            = 'Argamassa Cimentcola Externo AC-II Quartzolit';
+
+/* (A) OS 45 ESTADOS DA VARREDURA, e os DOIS lados lidos da PAGINA SERVIDA.
+   Esta afirmacao comparava o texto servido com a MATRIZ do esquema, e isso media
+   duas camadas diferentes: a matriz e a de DECLARACAO (regras 1 a 5 e 8) e a
+   pagina serve a de declaracao MENOS as regras 7 e 6. O caquinho padrao da
+   varredura e `pastilha_vidro`, que e justamente um dos que esta argamassa
+   proibe nos DOIS grupos dela — entao nos 45 estados a cimentcola nunca chega a
+   ser recomendada, e a cura nao sai. Comparar com a matriz cobrava cinco
+   presencas que a pagina esta CERTA em nao ter.
+   Lida dos dois lados na propria pagina, a afirmacao volta a dizer uma coisa
+   verdadeira e util: a cura sai exatamente onde o produto e recomendado. */
+$com_cura    = array();
+$recomenda_ac = array();
 foreach ( $corpos as $chave => $corpo ) {
-	if ( false !== mb_strpos( f2_texto( $corpo ), $CURA_DA_CIMENTCOLA ) ) {
+	$texto = f2_texto( $corpo );
+	if ( false !== mb_strpos( $texto, $CURA_DA_CIMENTCOLA ) ) {
 		$com_cura[] = $chave;
 	}
+	$bloco = f2_recorte( $texto, 'Antes de colar, o que o fabricante manda fazer',
+		array( 'Antes de rejuntar, o que o fabricante manda fazer', 'E o rejunte, que vai entre os caquinhos' ) );
+	if ( '' !== $bloco && false !== mb_strpos( $bloco, $NOME_AC ) ) {
+		$recomenda_ac[] = $chave;
+	}
 }
-$cimentcola_indicada = array();
-/* AS CELULAS SAIM DO ESQUEMA AQUI, e nao da variavel `$celulas`: naquele ponto
-   do arquivo ela ja esta `null`, e a primeira versao desta afirmacao passou
-   VAZIA por isso — 0 estados contra 0 celulas, as duas metades zeradas pelo
-   mesmo acidente. Afirmacao que passa com as duas pontas vazias e a cicatriz que
-   a secao 8 do contrato mais cobra, e ela quase entrou na regua escrita para
-   impedir exatamente este tipo de erro. */
-$celulas_do_esquema = (array) $esquema['matriz_esperada_da_F2']['celulas'];
-f2_ok( 45 === count( $celulas_do_esquema ),
-	'as 45 celulas da matriz foram lidas para medir a cura — senao a afirmacao abaixo passa vazia',
-	count( $celulas_do_esquema ) . ' celulas' );
-foreach ( $celulas_do_esquema as $c ) {
+sort( $com_cura );
+sort( $recomenda_ac );
+f2_ok( $com_cura === $recomenda_ac,
+	'nos 45 estados, a cura de 180 dias sai exatamente onde a pagina recomenda a cimentcola',
+	$com_cura === $recomenda_ac
+		? count( $com_cura ) . ' estados (o caquinho padrao da varredura e proibido por ela)'
+		: 'com a cura: ' . ( implode( ', ', $com_cura ) ?: 'nenhum' )
+			. ' | recomendam: ' . ( implode( ', ', $recomenda_ac ) ?: 'nenhum' ) );
+
+/* (B) A ENTREGA DE 06/10/2026, MEDIDA ONDE ELA ACONTECE — e esta parte existe
+   porque a (A) nao consegue ve-la. A cura entrou na tela JUNTO com a
+   recomendacao, e para um leitor de verdade: quem vai colar CACO DE AZULEJO
+   sobre cimento. `caco_azulejo` e o unico caquinho fora dos dois grupos que esta
+   argamassa proibe, e e por isso que ele e o caquinho desta medicao — a escolha
+   nao e de gosto e esta conferida contra o esquema, logo abaixo.
+   A regua tem os DOIS SENTIDOS, e e por isso que ela vale um bloco: nas celulas
+   em que a matriz indica a argamassa a cura TEM de sair, e numa celula em que a
+   REGRA 8 a tira ela NAO pode sair. Sem o segundo sentido, uma implementacao que
+   servisse a cura em toda pagina de cimento ficaria verde. */
+$CAQUINHO_LIVRE = 'caco_azulejo';
+$grupos_da_ac = array();
+foreach ( (array) $por_id['quartzolit-cimentcola-externo-acii']['condicoes']['proibe_grupos_de_tessela']['valor'] as $g ) {
+	$grupos_da_ac[] = $g;
+}
+$livre_de_verdade = true;
+foreach ( $grupos_da_ac as $g ) {
+	if ( in_array( $CAQUINHO_LIVRE, (array) $esquema['grupos_de_tessela_proibidos']['grupos'][ $g ]['tesselas_no_grupo'], true ) ) {
+		$livre_de_verdade = false;
+	}
+}
+f2_ok( $livre_de_verdade && count( $grupos_da_ac ) > 0,
+	'o caquinho desta medicao esta fora dos grupos que a cimentcola proibe — senao ela mede o nada',
+	$CAQUINHO_LIVRE . ' contra ' . count( $grupos_da_ac ) . ' grupos declarados' );
+
+$indicam_na_matriz = array();
+foreach ( (array) $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 	$todos = array_merge( (array) ( isset( $c['recomendados_topo'] ) ? $c['recomendados_topo'] : array() ),
 		(array) ( isset( $c['elegiveis_abaixo_do_topo'] ) ? $c['elegiveis_abaixo_do_topo'] : array() ) );
 	if ( in_array( 'quartzolit-cimentcola-externo-acii', $todos, true ) ) {
-		$cimentcola_indicada[] = $c['base'] . '|' . $c['ambiente'];
+		$indicam_na_matriz[] = $c['base'] . '|' . $c['ambiente'];
 	}
 }
-f2_ok( count( $com_cura ) === count( $cimentcola_indicada ),
-	'a cura de 180 dias aparece exatamente nas celulas que indicam a cimentcola (hoje, nenhuma)',
-	count( $com_cura ) . ' estados com a cura / ' . count( $cimentcola_indicada ) . ' celulas que a indicam'
-		. ( $cimentcola_indicada ? ' (' . implode( ', ', array_slice( $cimentcola_indicada, 0, 3 ) ) . ')' : '' ) );
+f2_ok( count( $indicam_na_matriz ) > 0,
+	'a matriz indica a cimentcola em pelo menos uma celula — senao a entrega nao existe para medir',
+	count( $indicam_na_matriz ) . ' celulas' );
+
+$sem_a_cura = array();
+foreach ( $indicam_na_matriz as $chave ) {
+	list( $b_, $a_ ) = explode( '|', $chave );
+	$t_ = f2_texto( f2_corpo( f2_render( $raiz, 'base=' . $b_ . '&onde=' . $a_ . '&caco=' . $CAQUINHO_LIVRE ) ) );
+	if ( false === mb_strpos( $t_, $CURA_DA_CIMENTCOLA ) || false === mb_strpos( $t_, $NOME_AC ) ) {
+		$sem_a_cura[] = $chave;
+	}
+}
+f2_ok( empty( $sem_a_cura ),
+	'com caquinho que ela nao proibe, a cura de 180 dias esta na tela em TODA celula que a indica',
+	empty( $sem_a_cura ) ? count( $indicam_na_matriz ) . ' celulas conferidas com ' . $CAQUINHO_LIVRE
+		: implode( ', ', $sem_a_cura ) );
+
+/* O OUTRO SENTIDO, na celula que a REGRA 8 decide: mesmo caquinho, mesma base de
+   alvenaria, trocando so o LUGAR. Aqui a argamassa nao e recomendada, entao a
+   cura NAO pode aparecer — e a frase da regra 8 TEM de aparecer, com a citacao
+   do fabricante, porque a causa que o codigo separa o texto separa. */
+$t_fora = f2_texto( f2_corpo( f2_render( $raiz,
+	'base=alvenaria_tijolo&onde=externo_abrigado&caco=' . $CAQUINHO_LIVRE ) ) );
+f2_ok( '' !== $t_fora && false === mb_strpos( $t_fora, $CURA_DA_CIMENTCOLA ),
+	'na celula que a regra 8 tira, a cura NAO vai a tela — instrucao sem indicacao seria receita do que nao serve',
+	'' === $t_fora ? 'o render falhou' : 'alvenaria_tijolo x externo_abrigado' );
+f2_ok( false !== mb_strpos( $t_fora, 'declara esta superfície, e declara com o lugar dentro da frase' )
+	&& false !== mb_strpos( $t_fora, 'em paredes internas' ),
+	'e a frase da regra 8 sai com a citacao do fabricante, nao com o nosso vocabulario',
+	'alvenaria_tijolo x externo_abrigado' );
 
 /* ---------------------------------------------------------------------------
  * Fecho

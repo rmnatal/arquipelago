@@ -86,18 +86,19 @@
         "caco_azulejo",
         "caco_louca"
       ],
-      "itens_de_banco": 5,
+      "itens_de_banco": 6,
       "portao_da_secao_9": "ABERTO",
       "pastilhas_do_banco": [],
       "colas_elegiveis": [
         "cascola-cascorez-extra",
         "cascola-pl500-adesivo-de-montagem",
+        "quartzolit-cimentcola-externo-acii",
         "tekbond-silicone-acetico-construcao",
         "tekbond-silicone-acetico-maxx",
         "tekbond-silicone-neutro"
       ],
       "estados_varridos": 90,
-      "estados_com_o_minimo": 10,
+      "estados_com_o_minimo": 11,
       "estados_sem_nenhum_elegivel": 22,
       "maior_numero_de_elegiveis_em_um_estado": 4,
       "estados": [
@@ -386,6 +387,18 @@
           "ambiente": "interno_seco",
           "elegiveis": [
             "cascola-pl500-adesivo-de-montagem",
+            "quartzolit-cimentcola-externo-acii",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "cimento_concreto",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "quartzolit-cimentcola-externo-acii",
             "tekbond-silicone-neutro"
           ],
           "quantos_elegiveis": 2,
@@ -394,21 +407,12 @@
         {
           "tessela": "caco_azulejo",
           "base": "cimento_concreto",
-          "ambiente": "interno_molhado",
-          "elegiveis": [
-            "tekbond-silicone-neutro"
-          ],
-          "quantos_elegiveis": 1,
-          "com_ressalva": []
-        },
-        {
-          "tessela": "caco_azulejo",
-          "base": "cimento_concreto",
           "ambiente": "externo_abrigado",
           "elegiveis": [
+            "quartzolit-cimentcola-externo-acii",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 1,
+          "quantos_elegiveis": 2,
           "com_ressalva": []
         },
         {
@@ -416,9 +420,10 @@
           "base": "cimento_concreto",
           "ambiente": "externo_exposto",
           "elegiveis": [
+            "quartzolit-cimentcola-externo-acii",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 1,
+          "quantos_elegiveis": 2,
           "com_ressalva": []
         },
         {
@@ -434,9 +439,10 @@
           "base": "alvenaria_tijolo",
           "ambiente": "interno_seco",
           "elegiveis": [
+            "quartzolit-cimentcola-externo-acii",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 1,
+          "quantos_elegiveis": 2,
           "com_ressalva": [
             "loctite-durepoxi"
           ]

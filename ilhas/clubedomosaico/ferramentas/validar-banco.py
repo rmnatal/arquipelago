@@ -125,12 +125,24 @@ if SEM_PORTAO_SOBRA:
           "ANTIGA, a que deixou os 10% da Pastilhart gravados em 30/09/2026 sem nenhuma tela "
           "le-los e o repositorio prometendo grava-los OUTRA VEZ com outro nome. So a bateria de "
           "mutacao usa isto.")
+SEM_PORTAO_PAR = os.environ.get("CDM_SEM_PORTAO_PAR") == "1"
+if SEM_PORTAO_PAR:
+    print("  ATENCAO: CDM_SEM_PORTAO_PAR=1 — as travas de forma do qualificador de ambiente do "
+          "substrato e a `matriz_esperada_do_par_substrato_ambiente` NAO foram medidas nesta "
+          "passada. E a regra ANTIGA, a de antes da REGRA 8: a de quando o banco decidia ambiente "
+          "por PRODUTO e as tres frases da secao 4.1 do boletim da cimentcola nao podiam ser "
+          "gravadas. So a bateria de mutacao usa isto. ATENCAO DENTRO DA ATENCAO: isto NAO "
+          "desliga a regra 8 em si — a elegibilidade continua sendo calculada com ela, porque "
+          "desligar a REGRA faria a matriz escrita a mao reprovar, que e justamente o portao que "
+          "a bateria quer medir separado da forma.")
 preparo_declarado = 0
 preparo_so_nossa_leitura = 0
 preparo_sem_nada = 0
 preparo_por_causa = {}
 sobra_declarada = 0
 sobra_por_quem = {}
+pares_qualificados = 0
+ancoras_par = 0
 BASES = set(VOC["base"])
 AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
@@ -144,9 +156,60 @@ MAPA = {}
 VAGOS = set()
 for termo in esquema["mapa_de_termos_do_fabricante"]["termos"]:
     chave = normalizar(termo["literal"])
-    MAPA[chave] = {"base": termo.get("base", []), "ambiente": termo.get("ambiente", [])}
+    MAPA[chave] = {"base": termo.get("base", []), "ambiente": termo.get("ambiente", []),
+                   "qualifica": list(termo.get("ambiente_que_qualifica_a_base") or [])}
     if termo.get("vago"):
         VAGOS.add(chave)
+
+
+# -------- O QUALIFICADOR DE AMBIENTE DO SUBSTRATO (esquema v14) — travas da REGRA 8
+#
+# A direcao desta lista e a de `grupos_de_tessela_proibidos`, nao a de
+# `superficies_porosas`: aqui o campo decide quem PERDE recomendacao. Entao a trava e
+# "qualificador gravado sem a regra escrita REPROVA", e nunca "regra ausente libera".
+# Sem a regra, uma frase qualificada seria lida como indicacao larga e a F2 recomendaria
+# a argamassa de assentamento em `alvenaria_tijolo` + `externo_abrigado`, que e muro de
+# mosaico ao ar livre e caso em que o documento nao declara nada. A direcao perigosa e
+# sempre a de publicar MAIS do que o fabricante disse.
+REGRAS_PAR = esquema.get("regras_do_par_substrato_ambiente")
+TERMOS_QUALIFICADOS = [t for t in esquema["mapa_de_termos_do_fabricante"]["termos"]
+                       if t.get("ambiente_que_qualifica_a_base")]
+if TERMOS_QUALIFICADOS and not REGRAS_PAR and not SEM_PORTAO_PAR:
+    erro("ha %d termo(s) com `ambiente_que_qualifica_a_base` e o esquema nao tem "
+         "`regras_do_par_substrato_ambiente`. Campo sem regra escrita e lido pela proxima "
+         "execucao como indicacao larga, que e a direcao que publica MAIS do que o "
+         "fabricante declarou" % len(TERMOS_QUALIFICADOS))
+if REGRAS_PAR and not SEM_PORTAO_PAR:
+    if "8_substrato_declarado_SO_EM_CERTO_AMBIENTE" not in esquema["regras_de_elegibilidade"]:
+        erro("`regras_do_par_substrato_ambiente` existe e a regra 8 nao esta em "
+             "`regras_de_elegibilidade`. A forma sem a regra e campo que ninguem le")
+    if not REGRAS_PAR.get("regra_da_direcao"):
+        erro("`regras_do_par_substrato_ambiente` sem `regra_da_direcao`. Lista sem direcao "
+             "escrita e lista que a proxima execucao preenche pelo lado errado")
+    _forma = REGRAS_PAR.get("a_forma") or {}
+    if _forma.get("campo") != "ambiente_que_qualifica_a_base":
+        erro("`regras_do_par_substrato_ambiente.a_forma.campo` tem de nomear o campo que a "
+             "regua le (`ambiente_que_qualifica_a_base`), e nomeia '%s'. Regra que descreve "
+             "outro campo aprova o campo errado" % _forma.get("campo"))
+for termo in (TERMOS_QUALIFICADOS if not SEM_PORTAO_PAR else []):
+    _onde = "mapa de termos / '%s'" % termo["literal"][:40]
+    for a in termo["ambiente_que_qualifica_a_base"]:
+        if a not in AMBIENTES:
+            erro("%s: `ambiente_que_qualifica_a_base` aponta para ambiente inexistente '%s'"
+                 % (_onde, a))
+    if not termo.get("base"):
+        erro("%s: qualificador de ambiente sem `base`. Qualificador nao qualifica nada "
+             "sozinho — ele estreita uma indicacao de substrato, e sem substrato ele e uma "
+             "delimitacao solta que a regua le e descarta" % _onde)
+    if termo.get("ambiente"):
+        erro("%s: `ambiente_que_qualifica_a_base` e `ambiente` na MESMA linha. Os dois tem "
+             "direcoes opostas — um DELIMITA o substrato e o outro COBRE o produto — e uma "
+             "linha com os dois e lida de um jeito pela regua e de outro por quem a escreveu"
+             % _onde)
+    if not any(k.startswith("por_que") and termo[k] for k in termo):
+        erro("%s: qualificador sem nenhum campo `por_que...`. A traducao de `em areas "
+             "internas` para o vocabulario desta ilha e NOSSA (26.3), e classificacao nossa "
+             "sem motivo escrito e palpite com cara de regra" % _onde)
 
 NAO_TRADUZ = {normalizar(t["literal"]) for t in esquema["mapa_de_termos_do_fabricante"]["termos_que_nao_traduzem"]}
 
@@ -303,21 +366,39 @@ elif PONTE_APOIO is not None and not SEM_PORTAO_APOIO:
 
 
 def traduzir(lista, onde):
-    """Devolve (bases, ambientes, vagos) de uma lista de termos literais do fabricante."""
+    """Devolve (bases, ambientes, vagos, pares) de termos literais do fabricante.
+
+    `bases` traz so as bases declaradas SEM qualificador de ambiente. As que vem com
+    qualificador saem em `pares` (base -> conjunto de ambientes), porque a frase do
+    fabricante nomeia o substrato JA COM o lugar colado nele e achatar as duas coisas em
+    dois conjuntos independentes faz a regua cruza-los: era por isso que a secao 4.1 do
+    boletim da AC-II nao podia ser gravada antes do esquema v14.
+
+    QUEM CHAMA DECIDE O QUE FAZER COM `pares`, e a assimetria do mapa manda: do lado da
+    INDICACAO o par e lido estreito (vale so naqueles ambientes, REGRA 8); do lado da
+    PROIBICAO ele e lido LARGO (proibe em todo ambiente), porque a traducao e ampliativa
+    para o lado da restricao. Devolver as duas metades separadas e o que permite as duas
+    leituras sem o mapa ter de escolher uma.
+    """
     bases, ambientes, vagos = set(), set(), set()
+    pares = {}
     for literal in lista or []:
         chave = normalizar(literal)
         if chave in MAPA:
+            alvo = MAPA[chave]
             if chave in VAGOS:
-                vagos.update(MAPA[chave]["base"])
+                vagos.update(alvo["base"])
+            elif alvo["qualifica"]:
+                for b in alvo["base"]:
+                    pares.setdefault(b, set()).update(alvo["qualifica"])
             else:
-                bases.update(MAPA[chave]["base"])
-            ambientes.update(MAPA[chave]["ambiente"])
+                bases.update(alvo["base"])
+            ambientes.update(alvo["ambiente"])
         elif chave in NAO_TRADUZ:
             continue
         else:
             aviso("%s: termo do fabricante sem traducao no mapa, ficou so na citacao literal: '%s'" % (onde, literal))
-    return bases, ambientes, vagos
+    return bases, ambientes, vagos, pares
 
 
 # ---------------------------------------------------------------- MATERIAL
@@ -1688,18 +1769,46 @@ def perfil(m):
         return _perfis[m["id"]]
     d = m.get("declaracoes") or {}
     onde = m.get("id")
-    ind_b, ind_a, vagos = traduzir(d.get("indicado_para"), onde)
-    proib_b1, proib_a1, _ = traduzir(d.get("nao_usar_em"), onde)
-    proib_b2, proib_a2, _ = traduzir(d.get("nao_indicado_para"), onde)
-    naorec_b, _, naorec_vagos = traduzir(d.get("nao_recomendado_em"), onde)
-    delim_b, delim_a, _ = traduzir(d.get("ambientes_declarados"), onde)
-    _, resist_a, _ = traduzir(d.get("resistencias_declaradas"), onde)
+    ind_b, ind_a, vagos, ind_pares = traduzir(d.get("indicado_para"), onde)
+    proib_b1, proib_a1, _, proib_par1 = traduzir(d.get("nao_usar_em"), onde)
+    proib_b2, proib_a2, _, proib_par2 = traduzir(d.get("nao_indicado_para"), onde)
+    naorec_b, _, naorec_vagos, naorec_pares = traduzir(d.get("nao_recomendado_em"), onde)
+    delim_b, delim_a, _, delim_pares = traduzir(d.get("ambientes_declarados"), onde)
+    _, resist_a, _, resist_pares = traduzir(d.get("resistencias_declaradas"), onde)
     if delim_b:
         aviso("%s: ambientes_declarados traduziu para BASE ('%s'), o que nao faz sentido" % (onde, ", ".join(sorted(delim_b))))
+    # QUALIFICADOR FORA DO LADO DA INDICACAO: nos campos de AMBIENTE do produto ele nao
+    # tem sentido nenhum (delimitar um substrato dentro de uma lista de ambientes), e nos
+    # de PROIBICAO a leitura e ampliativa, entao a base proibida vale em todo ambiente —
+    # ler o qualificador la estreitaria uma proibicao, que e a direcao proibida pelo mapa.
+    if delim_pares or resist_pares:
+        erro("%s: termo com `ambiente_que_qualifica_a_base` dentro de `ambientes_declarados` "
+             "ou `resistencias_declaradas`. Aqueles campos sao de AMBIENTE do produto: "
+             "qualificador de substrato ali e campo no lugar errado" % onde)
+    # E O MESMO VALE DO LADO DA PROIBICAO, por um motivo mais fino e mais caro.
+    # ACHADO PELA MUTACAO 12 DE `mutacoes-par.py`, ANTES DO COMMIT: dar
+    # qualificador a um termo de `nao_indicado_para` nao mudava NADA, porque a
+    # leitura da proibicao e ampliativa de proposito — base proibida vale em todo
+    # ambiente, e e assim que ela tem de ser lida. A mutacao passava verde, e
+    # passar verde aqui e pior do que parece: o campo fica GRAVADO, sem efeito e
+    # sem uma palavra, e a proxima execucao o le como `proibido so naquele lugar`,
+    # que e o avesso do que a regua faz. E a familia inteira de defeitos desta
+    # ilha num campo so — declaracao lida e descartada em silencio.
+    # A trava e no USO e nao no mapa: o mesmo literal pode ser indicacao num
+    # produto e proibicao noutro, e recusa-lo no mapa tiraria o campo de quem tem
+    # direito a ele.
+    if (proib_par1 or proib_par2 or naorec_pares) and not SEM_PORTAO_PAR:
+        erro("%s: termo com `ambiente_que_qualifica_a_base` dentro de `nao_usar_em`, "
+             "`nao_indicado_para` ou `nao_recomendado_em`. Do lado da proibicao a leitura e "
+             "AMPLIATIVA — a base proibida vale em todo ambiente — entao o qualificador ali "
+             "nao tem efeito nenhum e fica gravado dizendo o contrario do que a regua faz. "
+             "Se um dia o fabricante proibir uma base SO num ambiente, isso e campo novo e "
+             "decisao escrita, nunca este campo lido ao contrario" % onde)
     _perfis[m.get("id")] = {
         "bases_indicadas": ind_b,
-        "bases_proibidas": proib_b1 | proib_b2,
-        "bases_nao_recomendadas": naorec_b | naorec_vagos | vagos,
+        "bases_indicadas_so_em": {b: set(a) for b, a in ind_pares.items() if b not in ind_b},
+        "bases_proibidas": proib_b1 | proib_b2 | set(proib_par1) | set(proib_par2),
+        "bases_nao_recomendadas": naorec_b | naorec_vagos | vagos | set(naorec_pares),
         "ambientes_proibidos": proib_a1 | proib_a2,
         "ambientes_delimitados": delim_a,
         "ambientes_cobertos": delim_a | resist_a | ind_a,
@@ -1709,16 +1818,28 @@ def perfil(m):
 
 
 def avaliar(m, base, ambiente):
-    """Devolve (situacao, score). Situacao: recomendado | ressalva | proibido | silencio."""
+    """Devolve (situacao, score). Situacao: recomendado | ressalva | proibido | silencio
+    | ambiente_do_substrato."""
     p = perfil(m)
     if base in p["bases_proibidas"] or ambiente in p["ambientes_proibidos"]:
         return "proibido", 0                                        # regra 1
-    if base not in p["bases_indicadas"]:
+    # REGRA 8, e ela roda ENTRE a 1 e a 2 (esquema v14). Depois da 1 porque proibicao
+    # continua sendo a afirmacao mais forte; antes da 2 porque a 2 e a regra do SILENCIO
+    # e aqui nao ha silencio — o fabricante falou desta superficie, e falou colando um
+    # lugar na frase. Dizer "ele nao declara uso nesta superficie" numa celula em que ele
+    # a declara para outro lugar e trocar uma causa pela outra.
+    so_em = p["bases_indicadas_so_em"].get(base)
+    if so_em and ambiente not in so_em:
+        return "ambiente_do_substrato", 0                           # regra 8
+    if base not in p["bases_indicadas"] and not so_em:
         return "silencio", 0                                        # regra 2
     if p["ambientes_delimitados"] and ambiente not in p["ambientes_delimitados"]:
         return "silencio", 0                                        # regra 3
     if ambiente in CRITICOS and ambiente not in p["ambientes_cobertos"]:
         return "silencio", 0                                        # regra 4
+    # O SCORE NAO MUDA COM A REGRA 8: quem passa por ela passa com o score que as cinco
+    # calculariam. Qualificador DELIMITA e nao COBRE — cobertura e `ambientes_declarados`
+    # e `resistencias_declaradas`, que sao campos do produto.
     score = 2 + (2 if ambiente in p["ambientes_cobertos"] else 0)
     if p["nivel"] > NIVEL_MAX:
         return "ressalva", score                                    # regra 5
@@ -1736,6 +1857,7 @@ def computar_celula(base, ambiente):
     besteira. O conserto certo e este: a categoria e parte da pergunta.
     """
     recomendados, ressalva, proibidos, silencio = {}, [], [], []
+    por_ambiente_do_substrato = []
     for ident, m in materiais.items():
         if m.get("status") != "ativo":
             continue
@@ -1748,6 +1870,8 @@ def computar_celula(base, ambiente):
             ressalva.append(ident)
         elif situacao == "proibido":
             proibidos.append(ident)
+        elif situacao == "ambiente_do_substrato":
+            por_ambiente_do_substrato.append(ident)
         else:
             silencio.append(ident)
     topo = []
@@ -1762,6 +1886,7 @@ def computar_celula(base, ambiente):
         "mencionados_com_ressalva": sorted(ressalva),
         "eliminados_por_proibicao": sorted(proibidos),
         "eliminados_por_silencio": sorted(silencio),
+        "eliminados_por_ambiente_do_substrato": sorted(por_ambiente_do_substrato),
     }
 
 
@@ -1780,7 +1905,8 @@ if materiais and matriz:
         celulas_conferidas += 1
         for campo in ("recomendados_topo", "elegiveis_abaixo_do_topo",
                       "mencionados_com_ressalva", "eliminados_por_proibicao",
-                      "eliminados_por_silencio"):
+                      "eliminados_por_silencio",
+                      "eliminados_por_ambiente_do_substrato"):
             esperado = sorted(celula.get(campo, []))
             obtido = computado[campo]
             if esperado != obtido:
@@ -1955,7 +2081,7 @@ def computar_celula_com_condicao(base, ambiente, tessela):
     elegiveis na mao — e a ancora vidro x caco_espelho existe para medir isso.
     """
     recomendados, ressalva, proibidos, silencio, condicao = {}, [], [], [], []
-    peca = []
+    peca, por_ambiente_do_substrato = [], []
     for ident, m in materiais.items():
         if m.get("status") != "ativo":
             continue
@@ -1978,6 +2104,8 @@ def computar_celula_com_condicao(base, ambiente, tessela):
             ressalva.append(ident)
         elif situacao == "proibido":
             proibidos.append(ident)
+        elif situacao == "ambiente_do_substrato":
+            por_ambiente_do_substrato.append(ident)
         else:
             silencio.append(ident)
     topo, abaixo = [], []
@@ -1993,6 +2121,7 @@ def computar_celula_com_condicao(base, ambiente, tessela):
         "eliminados_por_silencio": sorted(silencio),
         "eliminados_por_condicao": sorted(condicao),
         "eliminados_por_proibicao_da_peca": sorted(peca),
+        "eliminados_por_ambiente_do_substrato": sorted(por_ambiente_do_substrato),
     }
 
 
@@ -2162,6 +2291,113 @@ elif materiais:
             erro("ancora da peca %s x %s x %s: sem `por_que` escrito"
                  % (a["base"], a["ambiente"], a["tessela"]))
 
+    # 4-b) A MATRIZ DA REGRA 8, e ela e conferida AQUI porque as ancoras dela precisam da
+    #      celula com tessela — a mesma funcao que as ancoras da peca usam. Sem esta
+    #      regua, `matriz_esperada_do_par_substrato_ambiente` seria tabela escrita que
+    #      ninguem le, que e o defeito que a propria secao 26.2 nomeia.
+    mpar = esquema.get("matriz_esperada_do_par_substrato_ambiente")
+    if SEM_PORTAO_PAR:
+        mpar = None
+    if REGRAS_PAR and mpar is None and not SEM_PORTAO_PAR:
+        erro("esquema com `regras_do_par_substrato_ambiente` e sem "
+             "`matriz_esperada_do_par_substrato_ambiente`: a regra 8 ficaria sem regua "
+             "escrita a mao, e duas metades que erram juntas ficam verdes")
+    if mpar is not None:
+        # (1) a lista COMPLETA dos pares qualificados, recomputada do banco. Produto novo
+        #     com frase qualificada nao entra mudo — mesma trava de
+        #     `produtos_que_carregam_a_proibicao_hoje` na regra 7.
+        computados = []
+        livres = []
+        for ident, m in sorted(materiais.items()):
+            if m.get("status") != "ativo" or m.get("categoria") != CATEGORIA_DA_MATRIZ_F2:
+                continue
+            p = perfil(m)
+            for b, ambs in sorted(p["bases_indicadas_so_em"].items()):
+                computados.append((ident, b, sorted(ambs)))
+            for b in sorted(p["bases_indicadas"]):
+                livres.append((ident, b))
+        escritos = []
+        for linha in mpar.get("pares_qualificados_hoje") or []:
+            if not isinstance(linha, dict):
+                erro("matriz do par: linha de `pares_qualificados_hoje` que nao e objeto")
+                continue
+            escritos.append((linha.get("produto"), linha.get("base"),
+                             sorted(linha.get("vale_so_em") or [])))
+            if not linha.get("literais_que_a_declaram"):
+                erro("matriz do par / %s x %s: sem `literais_que_a_declaram`. Par sem a frase "
+                     "do fabricante que o criou e par nosso fingindo ser declaracao dele"
+                     % (linha.get("produto"), linha.get("base")))
+            if not linha.get("por_que_ela_e_qualificada"):
+                erro("matriz do par / %s x %s: sem `por_que_ela_e_qualificada`"
+                     % (linha.get("produto"), linha.get("base")))
+            # E AS FRASES TEM DE ESTAR NO REGISTRO, uma a uma. Sem isto a tabela pode citar
+            # uma frase que o banco nao tem — que e a forma mais limpa de a regua medir
+            # ficcao: ela compararia o par computado com um par escrito a partir de uma
+            # declaracao inexistente, e as duas metades fecham verdes.
+            reg = materiais.get(linha.get("produto")) or {}
+            declaradas = (reg.get("declaracoes") or {}).get("indicado_para") or []
+            for lit in linha.get("literais_que_a_declaram") or []:
+                if lit not in declaradas:
+                    erro("matriz do par / %s x %s: a frase citada nao esta em "
+                         "`declaracoes.indicado_para` do registro: '%s'"
+                         % (linha.get("produto"), linha.get("base"), lit[:60]))
+        if sorted(computados) != sorted(escritos):
+            erro("matriz do par / `pares_qualificados_hoje`: escrito %s, computado %s"
+                 % (sorted(escritos) or "[]", sorted(computados) or "[]"))
+        pares_qualificados = len(computados)
+        # (2) A OUTRA METADE, E ELA E A QUE MEDE A REGRA DA UNIAO: base que o MESMO produto
+        #     declara tambem sem qualificador fica larga. A tabela lista essas, e a regua
+        #     cobra que a base listada NAO esteja entre as qualificadas daquele produto —
+        #     que e exatamente o que uma implementacao com intersecao faria.
+        for linha in mpar.get("bases_que_o_mesmo_produto_declara_SEM_qualificador") or []:
+            if not isinstance(linha, dict):
+                erro("matriz do par: linha de `bases_que_o_mesmo_produto_declara_SEM_qualificador` "
+                     "que nao e objeto")
+                continue
+            par = (linha.get("produto"), linha.get("base"))
+            if par not in livres:
+                erro("matriz do par / %s x %s: a tabela diz que esta base e declarada SEM "
+                     "qualificador e o banco nao a tem assim. E a regra da uniao falhando: "
+                     "implementacao que intersecta os qualificadores publica menos do que o "
+                     "fabricante escreveu" % par)
+            reg = materiais.get(linha.get("produto")) or {}
+            declaradas = (reg.get("declaracoes") or {}).get("indicado_para") or []
+            if linha.get("literal_que_a_livra") not in declaradas:
+                erro("matriz do par / %s x %s: `literal_que_a_livra` nao esta em "
+                     "`declaracoes.indicado_para` do registro" % par)
+            if not linha.get("por_que_ela_NAO_e_qualificada"):
+                erro("matriz do par / %s x %s: sem `por_que_ela_NAO_e_qualificada`" % par)
+        # (3) as ancoras ponta a ponta
+        for a in mpar.get("ancoras_ponta_a_ponta") or []:
+            if a.get("tessela") not in TESSELAS:
+                erro("ancora do par: tessela '%s' fora do vocabulario" % a.get("tessela"))
+                continue
+            c = computar_celula_com_condicao(a["base"], a["ambiente"], a["tessela"])
+            ancoras_par += 1
+            for campo in ("recomendados_topo", "eliminados_por_ambiente_do_substrato"):
+                if sorted(a.get(campo, [])) != c[campo]:
+                    erro("ancora do par %s x %s x %s / %s: esperado %s, computado %s"
+                         % (a["base"], a["ambiente"], a["tessela"], campo,
+                            sorted(a.get(campo, [])) or "[]", c[campo] or "[]"))
+            if not a.get("por_que"):
+                erro("ancora do par %s x %s x %s: sem `por_que` escrito"
+                     % (a["base"], a["ambiente"], a["tessela"]))
+        # (4) E A TABELA TEM DE TER ANCORA DOS DOIS LADOS. Cinco ancoras que todas CAEM
+        #     deixariam passar uma regra 8 que tira o produto de alvenaria em todo
+        #     ambiente, inclusive no que o fabricante declara; cinco que todas PASSAM
+        #     deixariam passar a regra desligada. A mesma trava de um lado so que
+        #     `superficies_porosas` cobra com `bases_porosas` e `bases_nao_porosas`.
+        if mpar.get("ancoras_ponta_a_ponta"):
+            caem = [a for a in mpar["ancoras_ponta_a_ponta"]
+                    if a.get("eliminados_por_ambiente_do_substrato")]
+            if not caem:
+                erro("matriz do par: nenhuma ancora em que a regra 8 MORDE. Tabela de um "
+                     "lado so nao mede regra nenhuma")
+            if len(caem) == len(mpar["ancoras_ponta_a_ponta"]):
+                erro("matriz do par: TODAS as ancoras mordem. Falta a que passa, e e ela "
+                     "que impede a regra 8 de tirar o produto do ambiente que o "
+                     "fabricante declara")
+
     # 5) as invariantes, que sao as mesmas da regra 6 e por um motivo so: as tres causas
     #    tem de continuar separadas. A proibicao de peca nao pode mexer no silencio, nao
     #    pode mexer na proibicao de base e nao pode mover quem nao era elegivel.
@@ -2173,6 +2409,11 @@ elif materiais:
                 if com["eliminados_por_silencio"] != sem["eliminados_por_silencio"]:
                     erro("peca %s x %s x %s: ela mexeu na lista do silencio, e silencio e "
                          "outra causa" % (b, amb, t_))
+                if com["eliminados_por_ambiente_do_substrato"] != \
+                        sem["eliminados_por_ambiente_do_substrato"]:
+                    erro("peca %s x %s x %s: ela mexeu na lista do ambiente do substrato, "
+                         "e a regra 8 decide ANTES da 7 — quem a 8 tirou nao volta e quem "
+                         "ela deixou passar nao entra ali depois" % (b, amb, t_))
                 if com["eliminados_por_proibicao"] != sem["eliminados_por_proibicao"]:
                     erro("peca %s x %s x %s: ela mexeu na lista da proibicao de base"
                          % (b, amb, t_))
@@ -2413,7 +2654,8 @@ if rejuntes:
         computado = computar_celula(celula["base"], celula["ambiente"])
         for campo in ("recomendados_topo", "elegiveis_abaixo_do_topo",
                       "mencionados_com_ressalva", "eliminados_por_proibicao",
-                      "eliminados_por_silencio"):
+                      "eliminados_por_silencio",
+                      "eliminados_por_ambiente_do_substrato"):
             invasores = [i for i in computado[campo] if i in rejuntes]
             if invasores:
                 erro("matriz da F2 %s x %s / %s: rejunte na matriz de cola (%s). A matriz "
@@ -2832,6 +3074,8 @@ print("  pares da condicao (regra 6) . %d  (%d ancoras ponta a ponta)"
       % (pares_conferidos, ancoras_conferidas))
 print("  pares da peca (regra 7) ..... %d  (%d ancoras ponta a ponta, %d grupos)"
       % (pares_peca, ancoras_peca, len(GRUPOS)))
+print("  pares do substrato (regra 8) . %d  (%d ancoras ponta a ponta, %d termo(s) com "
+      "qualificador)" % (pares_qualificados, ancoras_par, len(TERMOS_QUALIFICADOS)))
 print("  itens esperando link ....... %d" % esperando_link)
 print("  itens SEM SAIDA de compra .. %d  (secao 7 — tem de ser 0)" % sem_saida)
 print("  piso NAO rastreavel ........ %d  (25.6 — divida de comissao, nao defeito)" % piso_nao_rastreavel)
