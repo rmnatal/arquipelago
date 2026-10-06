@@ -568,8 +568,19 @@ foreach ( $registro as $id => $ficha ) {
 			$crua_errada++;
 		}
 	}
+	/* A MEDIDA DIZ QUANDO NAO MEDIU NADA, e isso foi achado em 06/10/2026 por
+	   uma mutacao de `mutacoes-tecnicas-pagina.py` que PASSOU: ela troca o `rel`
+	   da busca crua para `sponsored` e este portao nao via, porque a pagina de
+	   tecnica nao serve NENHUM botao de busca crua — os sete itens de cola do
+	   banco tem `url` ou `url_busca`, e o degrau 4 nunca aparece aqui. Entao
+	   `0 === $crua_errada` era verdade de graca, e "0 links de busca crua"
+	   passava por aprovacao. E a MESMA cicatriz que o `teste-f2.php` ja carrega
+	   escrita, desde 25/09: caso que o banco pode deixar de produzir tem de ser
+	   PRODUZIDO, nao esperado. O mundo que o produz esta no fim deste arquivo. */
 	tec_ok( 0 === $crua_errada, 'a busca crua sai nofollow e NUNCA sponsored',
-		count( $cruas[0] ) . ' links de busca crua' );
+		$cruas[0]
+			? count( $cruas[0] ) . ' links de busca crua'
+			: 'ZERO links de busca crua nesta pagina — esta afirmacao nao mediu nada (ver o mundo so_crua no fim)' );
 
 	preg_match_all( '#<a [^>]*rel="sponsored[^"]*"[^>]*>#i', $corpo, $pagos );
 	tec_ok( count( $pagos[0] ) > 0, 'os links que rendem comissao saem sponsored',
@@ -760,6 +771,52 @@ foreach ( $registro as $id => $ficha ) {
 	tec_ok( false === strpos( $corpo, '&#038;' ) && false === strpos( $corpo, '&amp;#039;' ),
 		'zero escape duplo no corpo servido' );
 }
+
+/* ---------------------------------------------------------------------------
+ * PRODUZ O MUNDO DO DEGRAU 4
+ *
+ * Por que ele existe: ver o comentario da afirmacao da busca crua, na secao 6.
+ * Sem este bloco, aquela afirmacao e verdadeira e vazia — e foi assim que uma
+ * mutacao que troca `nofollow` por `sponsored` num link que NAO rende comissao
+ * passou por este portao em 06/10/2026.
+ * ------------------------------------------------------------------------- */
+
+echo "\n9. PRODUZ O MUNDO: com so_crua=1 o degrau 4 volta a ser o botao do cartao\n";
+
+/* O MUNDO SAI DE UM PROCESSO PROPRIO, e isso foi medido em duas voltas hoje.
+   Primeiro esta secao tentou `$_GET['so_crua']`: aquele bloco mora DENTRO do
+   guarda de linha de comando de `render-para-teste.php`
+   (`basename(__FILE__) === basename($argv[0])`), e este arquivo o inclui por
+   `require`, entao ele nunca roda neste caminho. Depois ela produziu o mundo A
+   MAO nas options, no proprio processo, e continuou dando "0 botoes": o banco
+   que a F2 serve vem de um `static` dentro de `cdm_f2_banco()`, ja carregado
+   pelas oito secoes acima. Mundo produzido depois da primeira leitura nao
+   alcanca quem ja leu. Por isso aqui e `exec`, como o `teste-f2.php` faz desde
+   25/09 — e por isso a secao nao precisa mais vir no fim por ser destrutiva. */
+$saida_crua  = array();
+$codigo_crua = 0;
+exec( escapeshellcmd( PHP_BINARY ) . ' ' . escapeshellarg( __DIR__ . '/render-para-teste.php' )
+	. ' ' . escapeshellarg( $raiz ) . ' ' . escapeshellarg( 'cdm_tecnica_trencadis' )
+	. ' ' . escapeshellarg( 'hoje' ) . ' ' . escapeshellarg( 'so_crua=1' ) . ' 2>/dev/null',
+	$saida_crua, $codigo_crua );
+$mundo_crua = 0 === $codigo_crua ? tec_corpo( implode( "\n", $saida_crua ) ) : '';
+tec_ok( '' !== $mundo_crua, 'o processo do mundo so_crua serviu a pagina de tecnica',
+	strlen( $mundo_crua ) . ' bytes' );
+preg_match_all( '#<a [^>]*class="[^"]*cdm-f2-botao-busca-crua[^"]*"[^>]*>#i', $mundo_crua, $cruas_mundo );
+$crua_mentindo = array();
+foreach ( $cruas_mundo[0] as $a ) {
+	if ( false !== stripos( $a, 'sponsored' ) || false === stripos( $a, 'nofollow' ) ) {
+		$crua_mentindo[] = $a;
+	}
+}
+tec_ok( count( $cruas_mundo[0] ) > 0,
+	'o mundo so_crua produz botao de busca crua na pagina de tecnica',
+	count( $cruas_mundo[0] ) . ' botoes' );
+tec_ok( empty( $crua_mentindo ),
+	'e nele a busca CRUA sai nofollow e NUNCA sponsored — ela nao rende comissao',
+	empty( $crua_mentindo )
+		? count( $cruas_mundo[0] ) . ' conferidos'
+		: implode( ' | ', array_slice( $crua_mentindo, 0, 2 ) ) );
 
 echo "\n";
 if ( $falhas ) {

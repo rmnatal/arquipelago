@@ -731,7 +731,7 @@
     {
       "id": "teste-tecnicas",
       "arquivo": "ferramentas/teste-tecnicas.php",
-      "sha256": "3f94d9efd2d31a0f12005cdb254ac80037e32442d45bb4e7e9757129508a1f3c",
+      "sha256": "f5fa0edfaefedf9ee7d65facda0abf2aea87249c3b7fbb2509cdeb4fd04bd103",
       "descricao": "Verificacao MEDIDA da pagina de tecnica. 49 afirmacoes no corpo servido, e o ESPERADO nao vem do snippet: as 45 celulas da grade sao comparadas com dados/cobertura.json, gerado pela regua em Python — duas metades independentes, em linguagens diferentes, que tem de dar o mesmo numero. Ele comeca rodando cobertura.py --conferir, porque regua velha aprova a pagina de ontem. Mede tambem a prestacao de contas da secao 7 (a soma dos nomeados fecha com o banco contado do arquivo), a escada de compra e o rel de cada link, a recusa do rejunte com a causa, os termos que o VOZ.md proibe no titulo e no primeiro paragrafo, e o FAQ do schema sendo o MESMO da tela. Bancada; nunca vai para o site."
     },
     {
