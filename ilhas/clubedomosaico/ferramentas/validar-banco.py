@@ -118,10 +118,19 @@ if SEM_PORTAO_MOTIVO_DEGRAU_4:
     print("  ATENCAO: CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1 — o motivo do degrau 4 NAO foi cobrado "
           "nesta passada, que e a regra ANTIGA, a que deixou 12 dos 17 itens sem dizer por que "
           "pararam. So a bateria de mutacao usa isto.")
+SEM_PORTAO_SOBRA = os.environ.get("CDM_SEM_PORTAO_SOBRA") == "1"
+if SEM_PORTAO_SOBRA:
+    print("  ATENCAO: CDM_SEM_PORTAO_SOBRA=1 — a forma de `propriedades.sobra_recomendada_pct` NAO "
+          "foi conferida nesta passada, e o segundo nome do campo volta a ser aceito. E a regra "
+          "ANTIGA, a que deixou os 10% da Pastilhart gravados em 30/09/2026 sem nenhuma tela "
+          "le-los e o repositorio prometendo grava-los OUTRA VEZ com outro nome. So a bateria de "
+          "mutacao usa isto.")
 preparo_declarado = 0
 preparo_so_nossa_leitura = 0
 preparo_sem_nada = 0
 preparo_por_causa = {}
+sobra_declarada = 0
+sobra_por_quem = {}
 BASES = set(VOC["base"])
 AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
@@ -614,6 +623,97 @@ for nome in arquivos_material:
                     erro("%s / %s: valor sem fonte_id" % (onde, pnome))
                 elif fid not in fontes:
                     erro("%s / %s: fonte_id '%s' nao existe em fontes{}" % (onde, pnome, fid))
+
+        # A SOBRA DECLARADA (esquema v13, 06/10/2026) — regras_do_campo_sobra_declarada.
+        #
+        # Por que ela tem portao proprio sendo uma propriedade como as outras: ela e
+        # a unica propriedade deste banco que COLIDE com um parametro de entrada de
+        # ferramenta. A F1 pergunta a sobra ao visitante e sugere 10% por escolha
+        # desta ilha (lote de cor); o numero declarado e de outra pessoa e por outra
+        # razao (corte e ajuste). Numeros iguais por razoes diferentes sao dois
+        # numeros, e a tela so pode dizer isso se souber QUEM declarou — que e o
+        # unico subcampo que nenhuma propriedade tinha.
+        #
+        # E ele cobra o NOME, que foi o achado: o valor estava gravado como
+        # `sobra_recomendada_pct` desde 30/09/2026 e o repositorio prometia, em dois
+        # lugares, grava-lo como `sobra_declarada_pct` dizendo que era campo novo.
+        # Dois nomes para a mesma declaracao fazem a mesma coisa que duas listas do
+        # mesmo vocabulario: envelhecem separadas, e a tela que le a vazia publica
+        # ausencia sobre um dado que o banco tem.
+        #
+        # A LISTA DE NOMES E O VOCABULARIO MORAM NO ESQUEMA (26.2): sao lidos daqui,
+        # nunca digitados, e a mutacao que apaga a chave tem de reprovar.
+        if not SEM_PORTAO_SOBRA and m.get("status") != "descartado":
+            if "regras_do_campo_sobra_declarada" not in esquema:
+                erro("%s: o esquema nao tem `regras_do_campo_sobra_declarada` e a sobra declarada "
+                     "ficou sem regra. Regua que le a propria lista de um arquivo de dados aprova "
+                     "tudo em silencio no dia em que o arquivo perder a chave (26.2)" % onde)
+            else:
+                _rs = esquema["regras_do_campo_sobra_declarada"]
+                _nome = _rs.get("o_nome_do_campo_e_UM_e_este", "")
+                if not _nome.startswith("propriedades."):
+                    erro("%s: `regras_do_campo_sobra_declarada.o_nome_do_campo_e_UM_e_este` tem de "
+                         "ser o caminho completo da propriedade (`propriedades.<nome>`) — sem ele o "
+                         "portao do nome nao cobra ninguem" % onde)
+                    _nome = "propriedades.sobra_recomendada_pct"
+                _chave = _nome.split(".", 1)[1]
+                _quem = _rs.get("quem_pode_declarar")
+                if not isinstance(_quem, dict) or not _quem:
+                    erro("%s: `regras_do_campo_sobra_declarada.quem_pode_declarar` tem de ser "
+                         "objeto nao vazio — sem ele a atribuicao da tela volta a ser adivinhada "
+                         "(26.3)" % onde)
+                    _quem = {}
+
+                _props = m.get("propriedades") or {}
+                # O SEGUNDO NOME E PROIBIDO, e esta e a metade do portao que nasceu de um
+                # defeito real: dois campos de prosa deste banco e o PROMPT.md da ilha
+                # prometiam `sobra_declarada_pct` como campo NOVO para um numero que ja
+                # estava gravado com o outro nome.
+                for _alias in ("sobra_declarada_pct", "sobra_pct", "sobra_sugerida_pct"):
+                    if _alias != _chave and _alias in _props:
+                        erro("%s / propriedades: `%s` e um SEGUNDO nome para a sobra declarada e e "
+                             "proibido. O nome e um so e esta no esquema: `%s`. Duas chaves para a "
+                             "mesma declaracao envelhecem separadas, e a tela que ler a vazia "
+                             "publica ausencia sobre um dado que o banco tem" % (onde, _alias, _chave))
+
+                _sb = _props.get(_chave)
+                if isinstance(_sb, dict) and _sb.get("valor") is not None:
+                    _v = _sb.get("valor")
+                    if not isinstance(_v, (int, float)) or isinstance(_v, bool) or not (0 <= _v <= 100):
+                        erro("%s / %s: `valor` tem de ser numero de 0 a 100 (por cento). Sobra e "
+                             "fracao de compra, nao texto: quem a serve vai somar com a escolha do "
+                             "visitante" % (onde, _chave))
+                    if _sb.get("unidade") != "%":
+                        erro("%s / %s: `unidade` tem de ser '%%' — a F1 soma este numero a uma "
+                             "porcentagem e unidade errada aqui vira pastilha comprada a mais ou a "
+                             "menos" % (onde, _chave))
+                    if not _sb.get("literal_do_fabricante"):
+                        erro("%s / %s: tem valor e nao tem `literal_do_fabricante`. A tela cita a "
+                             "linha DELE entre aspas; parafrase entre aspas e a frase dele menos a "
+                             "parte que a gente deixou cair, com o nome dele embaixo (26.3) — e "
+                             "aqui a frase carrega um NUMERO sobre o qual o leitor vai agir"
+                             % (onde, _chave))
+                    _dp = _sb.get("declarada_por")
+                    if not _dp:
+                        erro("%s / %s: tem valor e nao diz `declarada_por`. Sem ele a tela so pode "
+                             "ADIVINHAR a atribuicao, e foi exatamente isso que a 26.3 existe para "
+                             "impedir: quem pede os 10%% da AF1500 e o distribuidor, nao o "
+                             "fabricante" % (onde, _chave))
+                    elif _quem and _dp not in _quem:
+                        erro("%s / %s: `declarada_por` '%s' fora do vocabulario "
+                             "`quem_pode_declarar` do esquema (%s)"
+                             % (onde, _chave, _dp, ", ".join(sorted(_quem))))
+                    else:
+                        sobra_por_quem[_dp] = sobra_por_quem.get(_dp, 0) + 1
+                    if not _sb.get("como_a_tela_chama_quem_declarou"):
+                        erro("%s / %s: tem valor e nao diz `como_a_tela_chama_quem_declarou`. O "
+                             "artigo vem no campo porque genero de substantivo nao se adivinha em "
+                             "PHP — mesma razao da preposicao em `como_a_tela_chama_o_documento`"
+                             % (onde, _chave))
+                    if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(_sb.get("lido_em") or "")):
+                        erro("%s / %s: tem valor e `lido_em` nao e data ISO. Quem cita linha de "
+                             "documento diz o dia em que a abriu" % (onde, _chave))
+                    sobra_declarada += 1
 
         # ofertas
         for oferta in m.get("venda") or []:
@@ -2756,6 +2856,10 @@ print("  preparo (esquema v12) ...... %d com literal do fabricante, %d so com a 
          preparo_declarado + preparo_so_nossa_leitura + preparo_sem_nada))
 for _c in sorted(preparo_por_causa):
     print("    preparo sem literal, causa: %-18s %d" % (_c, preparo_por_causa[_c]))
+print("  sobra declarada (v13) ...... %d registro(s) com `sobra_recomendada_pct` em forma de ir "
+      "a tela" % sobra_declarada)
+for _q in sorted(sobra_por_quem):
+    print("    sobra declarada por: %-22s %d" % (_q, sobra_por_quem[_q]))
 print("  itens sem imagem ........... %d" % sem_imagem)
 print("  casamentos reconferidos .... %d  (titulo gravado passado pela regra viva "
       "de casar-anuncio.py, contra o banco inteiro)" % reconferidos)

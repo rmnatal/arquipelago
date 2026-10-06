@@ -259,7 +259,21 @@ function current_time($t){ return date('Y-m-d H:i:s'); }
 function get_option($k,$d=false){ return isset($GLOBALS['__options'][$k]) ? $GLOBALS['__options'][$k] : $d; }
 function update_option($k,$v,$auto=null){ $GLOBALS['__options'][$k]=$v; return true; }
 function trailingslashit($s){ return rtrim($s,'/').'/'; } function untrailingslashit($s){ return rtrim($s,'/'); }
-function add_query_arg($a=array()){ return '/'; } function __($t,$d=null){ return $t; }
+/* add_query_arg COM UM ARGUMENTO SO E, NO WORDPRESS, "a URL ATUAL com estes
+   parametros por cima" — e a bancada devolvia '/' sempre, ignorando os
+   parametros. Isso bastou enquanto o unico chamador era o `action` do
+   formulario, que nao passa nada; em 06/10/2026 a F1 1.6.0 passou a servir um
+   link que REFAZ a conta com a sobra declarada pelo vendedor
+   (`add_query_arg(array('sobra'=>10))`), e com o stub antigo esse link chegava
+   a bancada como `/#resposta`: o teste mediria um link que no ar leva a outro
+   estado e aqui nao leva a nenhum. E a cicatriz da secao 8 — render de bancada
+   que serve menos que o site, e a metade que falta some em silencio. */
+function add_query_arg($a=array()){
+	$q = isset($GLOBALS['__GET_BASE']) ? $GLOBALS['__GET_BASE'] : (is_array($_GET) ? $_GET : array());
+	foreach ((array) $a as $k=>$v) { $q[$k] = $v; }
+	$q = array_filter($q, function($v){ return !is_array($v); });
+	return $q ? '/?'.http_build_query($q) : '/';
+} function __($t,$d=null){ return $t; }
 /* A F2 e servida pelo SERVIDOR e le a escolha da pessoa em $_GET, entao a
    bancada precisa saber varrer a entrada inteira — 45 combinacoes de base x
    ambiente e 50 de junta x ambiente, cada uma um estado de pagina de verdade.

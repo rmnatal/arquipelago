@@ -1057,17 +1057,56 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    >
    > **O PRÓXIMO BLOCO TEM DOIS CANDIDATOS MEDIDOS, e o barato é o (a):**
    >
-   > **(a) `propriedades.sobra_declarada_pct` na F1, a partir dos 10% da AF1500.** A linha *"Compre 10%
-   > a mais para cortes e ajustes na aplicação"* é a **única** sobra declarada por fabricante que esta
-   > ilha tem lida — e a paráfrase a tinha apagado por inteiro. A F1 pergunta a sobra ao visitante
-   > **sugerindo 15%**, um número que não é de ninguém. Hoje a declaração dele está na tela como frase
-   > e **não entra na conta**. Quem fizer: o campo é `propriedades`, então exige fonte por valor; a F1
-   > tem de dizer **de quem** é o número quando usar o declarado; e a bateria tem de medir o estado em
-   > que o produto escolhido **não** declara sobra, que é o de 40 dos 41 registros.
+   > ~~**(a) `propriedades.sobra_declarada_pct` na F1, a partir dos 10% da AF1500.**~~ **ENTREGUE EM
+   > 06/10/2026 às 17h45Z** — esquema **v13** (`regras_do_campo_sobra_declarada`), **F1 1.6.0**,
+   > `mutacoes-sobra.py` (13 mutações de forma, 13 só pelo portão novo, + 5 de tela, 0 falso positivo),
+   > `teste-f1.php` de 210 para **228** afirmações.
+   >
+   > **E AS DUAS FRASES DESTE ITEM ESTAVAM FALSAS — as duas medidas, não supostas, e leia isto antes de
+   > escrever o próximo item desta fila.**
+   >
+   > **(1) O CAMPO NÃO SERIA NOVO: ELE JÁ EXISTIA.** `propriedades.sobra_recomendada_pct` carrega os
+   > 10% no `pastilhart-af1500` desde **30/09/2026**, commit **`66f99ef`**, com valor, unidade,
+   > `fonte_id` e `declarado_como`. O item acima, o `bloco_atual` de 14h10Z e **dois campos de prosa do
+   > próprio registro** diziam que o número "não foi gravado como propriedade de propósito" e que
+   > `sobra_declarada_pct` seria campo novo. Quem obedecesse ao pé da letra teria gravado a **mesma
+   > declaração duas vezes**, uma delas vazia — e a tela que lesse a vazia publicaria **ausência sobre
+   > um dado que o banco tem**. Por isso o primeiro entregável do bloco não foi tela, foi **nome**: o
+   > esquema v13 escreve que o nome é UM e o validador reprova `sobra_declarada_pct`, `sobra_pct` e
+   > `sobra_sugerida_pct` como chave de propriedade.
+   >
+   > **(2) A F1 NÃO SUGERE 15%, SUGERE 10%.** Medido no `selected` do seletor servido:
+   > `<option value="10" selected>10% de sobra (o comum)`. O 15 era o **parâmetro de teste da ronda de
+   > 05/10** (`&sobra=15` na URL do exemplo dela), lido como padrão por quem leu o relatório — e
+   > copiado para **três** lugares deste repositório. Então não havia divergência a resolver: havia
+   > **coincidência a explicar**, e isso é mais difícil, porque dois números iguais parecem um só. A
+   > tela diz que são dois: o nosso 10% é pelo **lote de cor**, o dele é por **corte e ajuste**.
+   >
+   > **E a terceira correção, que o item também errava em uma palavra:** quem declara os 10% **não é
+   > fabricante**. É a Pastilhart, que **importa e distribui** a marca, em fonte de **nível 5** — acima
+   > do teto 3 da escada. A tela cita, atribui pelo nome, escreve a ressalva do nível e **não** deixa o
+   > número virar recomendação. A palavra da atribuição sai do campo `declarada_por` do banco, nunca do
+   > código: é a **26.3 com um número dentro**.
+   >
+   > **O que o bloco achou de carona, e é o gêmeo do defeito que a F2 pagou às 14h10Z:** a camada de
+   > prova DESTA página publicava *"Nenhum documento de fabricante foi aberto linha a linha daqui"*, e
+   > em 05/10 o boletim do Rejunte Piscinas Quartzolit foi aberto e lido página a página — e ele está
+   > em `materiais-rejuntes.json`, **um dos dois bancos que esta página lê**. Virou conta derivada
+   > (2 de 53 documentos), servida só pela via viva.
    >
    > **(b) O campo de par substrato × ambiente**, medido em `materiais-colas.json /
    > quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05 /
    > substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. Decisão de esquema — bloco, não linha.
+   > **COM O (a) ENTREGUE, ESTE É O PRÓXIMO BLOCO**, e ele é o que destrava a cura de 180 dias da
+   > cimentcola AC-II: o terceiro bloqueio é **jusante** dele, não irmão, como a execução de 14h10Z
+   > mediu varrendo os 45 estados.
+   >
+   > **E A LIÇÃO DE MÉTODO QUE A ENTREGA DO (a) DEIXOU, que vale para este item e para todo item desta
+   > fila:** três lugares deste repositório afirmavam 15% sobre uma ferramenta cujo padrão servido é
+   > 10%, e dois afirmavam que um campo não existia estando ele gravado no `main`. Nenhuma das cinco
+   > frases foi medida antes de ser escrita; todas foram **copiadas da anterior**. É a família do
+   > "disclosure velho mente", um andar acima: **relatório velho também mente, e o custo dele é um
+   > bloco inteiro desenhado sobre a premissa errada.** Antes de escrever o campo, abra o registro.
    >
    > **E uma coisa que NÃO é bloco e destrava quatro registros de uma vez:** `*.quartzolit.weber` na
    > lista de rede (`dados/despachos.md`, ABERTOS). Quatro das oito paráfrases sem literal são da

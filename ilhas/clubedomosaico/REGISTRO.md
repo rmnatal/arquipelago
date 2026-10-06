@@ -3,6 +3,167 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+06/10/2026 16h19Z — A SOBRA QUE O VENDEDOR PEDE ESTAVA GRAVADA HÁ SEIS DIAS E NENHUMA TELA A LIA; O ACHADO NÃO FOI O CAMPO, FOI O NOME DELE — E DUAS FRASES DO REPOSITÓRIO SOBRE ESTA ILHA ERAM FALSAS
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h19Z**, push da reserva aceito na primeira
+tentativa (`c6683f3`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta; o último commit na pasta era de **14h45Z**, 94
+minutos antes, e era o fecho da execução anterior. Nenhum PR aberto, nenhuma branch `claude/*` à frente
+do `main`. **Rede pela 20.2:** `https://clubedomosaico.com.br/` em **200**.
+
+**Nenhum despacho aberto para a Fundação** — o de 05/10 tem os itens 1 e 2 fechados e o 3 declara no
+próprio texto que é método endereçado ao Raphael; o de 30/09 tem o 1 cumprido e o 2 é do Raphael (soft
+404 da borda); o de 28/09 e o do Raphael de 24/09 estão fechados inteiros. Valeu a fila, e a fila
+trazia **o próximo bloco escolhido por escrito pela execução de 14h10Z: o candidato (a),
+`propriedades.sobra_declarada_pct` na F1, a partir dos 10% da AF1500**.
+
+## A PRIMEIRA COISA QUE ESTE BLOCO FEZ FOI DESCOBRIR QUE O CAMPO QUE ELE IA CRIAR JÁ EXISTIA
+
+O item 10 do `bloco_atual` e o item (a) da fila diziam que `propriedades.sobra_declarada_pct` seria
+**campo novo**, lido por ferramenta de cálculo, e que o número "não foi gravado como propriedade nesta
+execução de propósito". Os mesmos dizeres estavam em **dois campos de prosa do próprio registro** da
+AF1500 (`preparo.o_que_a_parafrase_perdia` e
+`fontes.pagina-produto-af1500.o_que_a_abertura_de_06_10_mudou.a_linha_QUE_A_PARAFRASE_TINHA_APAGADO`).
+
+**Medido antes de escrever uma linha de código:** `propriedades.sobra_recomendada_pct` existe no
+`pastilhart-af1500` desde **30/09/2026**, commit **`66f99ef`**, com `valor: 10`, `unidade: "%"`,
+`fonte_id` e `declarado_como`. É o mesmo número, com outro nome.
+
+**O que o bloco teria feito se obedecesse ao que estava escrito:** gravado a MESMA declaração **duas
+vezes**, uma das duas vazia — porque quem cria campo para um número que já tem não traz o número, traz
+a chave. E a tela que lesse a chave vazia publicaria **ausência sobre um dado que o banco tem**. Duas
+chaves para a mesma declaração são duas listas do mesmo vocabulário: envelhecem separadas. Por isso o
+primeiro entregável deste bloco não é tela, é **nome**: `regras_do_campo_sobra_declarada` no esquema
+v13 escreve que o nome é UM, e o validador **reprova** `sobra_declarada_pct`, `sobra_pct` e
+`sobra_sugerida_pct` como chave de propriedade.
+
+## A SEGUNDA FRASE FALSA ERA A PREMISSA DO BLOCO: ESTA FERRAMENTA NÃO SUGERE 15%, SUGERE 10%
+
+O `PROMPT.md`, o `ESTADO.md` e o próprio registro repetiam, em três lugares, que *"a F1 pergunta a
+sobra ao visitante sugerindo 15%"* — e a premissa inteira do bloco vinha daí: um número nosso
+divergindo do dele, "um número que não é de ninguém".
+
+**Medido no `selected` do seletor servido:** `<option value="10" selected>10% de sobra (o comum)`. O
+padrão é **10%**, igual ao que o distribuidor pede, e o rótulo da opção já dizia "o comum". O 15 era o
+**parâmetro de teste da ronda de 05/10** (`&sobra=15` na URL do exemplo dela), lido como padrão por
+quem leu o relatório dela. Três lugares do repositório copiaram a leitura errada do número de outro.
+
+**O bloco continua valendo e muda de forma, e a forma nova é mais difícil:** não há divergência a
+resolver, há **coincidência a explicar**. Dois números iguais parecem um número só, e o leitor que vê
+"10% (o comum)" não tem como saber se aquilo é declaração de alguém ou escolha nossa. A tela passa a
+dizer que são dois: o nosso 10% é pelo **lote de cor** que muda entre duas compras, o dele é por
+**corte e ajuste na aplicação**.
+
+## O QUE FOI AO AR
+
+Esquema **v13** (`regras_do_campo_sobra_declarada`, com `quem_pode_declarar` em três classes), **F1
+1.6.0**, e o `render-para-teste.php` corrigido.
+
+1. **O BLOCO DE CONFRONTO**, `cdm-f1-sobra-declarada`, servido no lado de quem declara: cita a linha
+   dele **entre aspas e inteira**, nomeia quem a escreveu, oferece **refazer a conta** com o número
+   dele (link que preserva o resto do estado), e nunca o toma como padrão.
+2. **A ATRIBUIÇÃO É A METADE QUE MAIS IMPORTA, e é a 26.3 com um número dentro.** Quem pede os 10% é a
+   **Pastilhart, que importa e distribui a marca** — não quem fabrica a pastilha. A palavra sai do
+   campo `declarada_por` do banco, nunca do código; o campo `fabricante` daquele registro traz
+   *"(importadora e distribuidora, não fabricante)"* dentro da prosa, e deduzir a atribuição dali seria
+   a heurística por vizinhança que a seção 8 proíbe. A fonte é **nível 5**, acima do teto **3** da
+   escada: menção **com a ressalva escrita**, nunca recomendação.
+3. **A COLUNA `Sobra que ele pede`** na tabela dos treze produtos, com a ausência visível em doze —
+   porque tabela que só mostrasse quem declara faria o leitor ler o silêncio como "não precisa".
+4. **A RESPOSTA DO FAQ** sobre sobra deixou de ser texto fixo e passa a nomear quem declarou e a
+   explicar a coincidência. É a frase que um modelo de linguagem cita sozinho (seção 5), então a
+   procedência vai **dentro** dela.
+5. **O ESTADO DEGRADADO TAMBÉM FOI DECIDIDO:** sem a F2 no ar não há escada, e a classificação passa a
+   devolver `teto_de_fonte: null`. O bloco **continua saindo** — citar a linha dele e dizer quem a
+   escreveu não depende de escada nenhuma — e diz, na tela, que hoje a página não afirma se a fonte
+   sustenta recomendação. Uma régua para as duas telas, nunca uma segunda escrita no lugar.
+
+## UM DEFEITO QUE O BLOCO ACHOU NA CAMADA DE PROVA DESTA MESMA PÁGINA, E ELE É O GÊMEO DO DE ONTEM
+
+A camada "Como sabemos" da F1 publicava *"Nenhum documento de fabricante foi aberto linha a linha
+daqui"*. Era verdade quando foi escrita. Em **05/10/2026** o boletim técnico do **Rejunte Piscinas
+Quartzolit** foi aberto e lido página a página pelo canal de espelho — e ele está em
+`materiais-rejuntes.json`, que é **um dos dois bancos que esta página lê** (é de lá que sai o
+coeficiente CR).
+
+**É o mesmo defeito que a F2 pagou no bloco de 14h10Z de hoje, na mesma família e pelo mesmo motivo:**
+disclosure velho mente, e nenhuma régua o recontava porque ele era **prosa, não número**. Medido:
+**2 de 53** fontes do banco carregam o marcador `tipo_de_origem`. A frase virou conta derivada de
+`cdm_casca_numeros()`, servida só pela **via viva**; com o instantâneo a página diz onde a leitura foi
+feita e não afirma quantidade nenhuma. A bancada passou a cobrar as duas direções.
+
+## A BANCADA ACHOU TRÊS DEFEITOS NAS MINHAS PRÓPRIAS RÉGUAS, E É POR ISSO QUE ELA EXISTE
+
+A bateria nova (`mutacoes-sobra.py`) reprovou a primeira versão das afirmações **três vezes**, e as
+três eram defeitos de régua, não de código:
+
+| o que reprovou | a régua errada | o conserto |
+|---|---|---|
+| contagem de "não publicada" deu 13 onde o arquivo diz 12 | contava a frase na **tabela inteira**, e a coluna "A caixa" usa a mesma frase para a mesma ausência — a AF1500 é justamente um item sem caixa publicada | o índice da coluna sai do `<th>`, lido na hora, e a contagem é **dentro da coluna** |
+| mutação que torna o declarante **fabricante** | a afirmação procurava a palavra `fabricante` no texto — e o nome que a tela usa vem do banco ("a própria fábrica da pastilha", sem a palavra) | cobra a **ausência da ressalva** que não se aplica, não a presença de uma palavra |
+| mutação que cria o **segundo** declarante | a régua pegava o primeiro item que não declara e usava o lado DELE, afirmando sobre quatro itens a partir de um; e a consulta de teste cravava `sobra=15`, que é justo o que o segundo declarante pede — o teste cobrou um link na tela em que o link não deve existir | o lado sem declarante é propriedade do **lado**; e a sobra da consulta é derivada do dado, escolhida **depois** de olhar o declarado |
+
+E uma quarta coisa que a bateria **mudou de ideia** sobre si mesma: a primeira versão exigia que toda
+mutação de banco deixasse a bancada **vermelha**, e duas passaram verdes — trocar 10% por 20% e baixar
+a fonte para nível 3. Não eram buracos: eram as afirmações **derivadas** seguindo o mundo. Exigir
+vermelho ali seria exigir que a régua reprovasse a **melhora**, que é a cicatriz da régua amarrada a um
+degrau. **Mundo que muda não é defeito.** A cobrança certa, e é a dobradiça deste bloco inteiro, é
+outra: a **página servida** tem de mudar quando o banco muda, e a bancada tem de continuar verde. Tela
+que repete texto fixo parecido com o dado fica **idêntica** — e foi exatamente esse o estado de 30/09 a
+06/10.
+
+Também caiu, no `teste-f1.php`, a afirmação "o banco tem UM declarante de sobra hoje": isso é tabela de
+estado esperado **digitada**, e envelheceria calada no dia em que o segundo vendedor publicasse sobra.
+No lugar ficou a afirmação de **acordo** — o número que a página publica contra o número contado do
+arquivo, os dois lados derivados.
+
+## A BANCADA DE BANCADA: O RENDER DE TESTE SERVIA MENOS QUE O SITE, EM UMA LINHA
+
+`add_query_arg($a)` da bancada devolvia `'/'` **sempre**, ignorando os parâmetros. Bastou enquanto o
+único chamador era o `action` do formulário, que não passa nada. O link de refazer a conta chegaria à
+bancada como `/#resposta`: um link que no ar leva a outro estado e aqui não leva a nenhum, com o teste
+dando verde. Corrigido para o que o WordPress faz — a URL atual com os parâmetros por cima.
+
+## OS NÚMEROS
+
+| bateria | antes | agora |
+|---|---|---|
+| `teste-f1.php` | 210 afirmações | **228** |
+| `mutacoes-sobra.py` | — | **13 de forma** (13 só pelo portão novo) + **5 de tela** + 3 falsos positivos em 0 |
+| `validar-banco.py` | OK | **OK**, com a linha nova: 1 registro com sobra em forma de ir à tela, declarada por `distribuidor` |
+
+**As onze baterias irmãs reconferidas depois do bloco:** f2 145/145, casca 744/744, guia 110/110,
+técnicas 140/140, loja 208/208, leads 211/211, prestação-rejunte 5/5 sobre 540 estados da F2 e 180 da
+F1, ateliê APROVADO, batismo 62/62, casamento 42/42. `validar-banco` OK.
+
+## O QUE ESTE BLOCO NÃO FEZ
+
+Nenhuma URL nova (segue em **21**), nenhuma página criada, nenhum link de afiliado gerado, nenhum teto
+da 21.4 gasto, nenhuma coleta nova. **Nenhum número novo nasceu de propriedade:** os 10% já estavam
+gravados — o que nasceu foram os quatro subcampos que faltavam para eles poderem ir à tela com a
+atribuição certa.
+
+## O PRÓXIMO BLOCO
+
+**O candidato (b) da fila, e agora ele é o único dos dois que sobrou: o campo de par substrato ×
+ambiente.** Está medido em `materiais-colas.json / quartzolit-cimentcola-externo-acii / fontes /
+bt-cimentcola-externo-2016-05 / substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. É decisão
+de esquema — bloco, não linha — e é ele que destrava a cura de 180 dias da cimentcola AC-II, que segue
+gravada e fora da tela: o terceiro bloqueio é **jusante** dele, como a execução de 14h10Z mediu.
+
+**E uma coisa que NÃO é bloco e destrava quatro registros de uma vez:** `*.quartzolit.weber` na lista
+de rede (`dados/despachos.md`, ABERTOS), com a ressalva de que o `www.` já responde **403** — 403 é
+decisão do fabricante, não da rede do Raphael.
+
+**E uma lição de método para quem vier:** três lugares deste repositório afirmavam 15% sobre uma
+ferramenta cujo padrão servido é 10%, e dois afirmavam que um campo não existia estando ele gravado no
+`main`. Nenhuma das cinco frases foi medida antes de ser escrita; todas foram copiadas da anterior. É a
+mesma família do "disclosure velho mente", um andar acima: **relatório velho também mente, e o custo
+dele é um bloco inteiro desenhado sobre a premissa errada.** O que salvou este foi o primeiro comando —
+abrir o registro antes de escrever o campo.
+
+---
+
 06/10/2026 14h10Z — NOVE DECLARAÇÕES DE FABRICANTE ESTAVAM GRAVADAS E NENHUMA TELA AS SERVIA; AGORA CINCO ESTÃO NO AR, E AS QUATRO QUE DEU PARA CONFERIR ESTAVAM ERRADAS
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h18Z**, push da reserva aceito na primeira

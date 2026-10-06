@@ -119,6 +119,53 @@
  * autossuficientes — "Onde comprar a pastilha" e "Qual rejunte cabe nessa
  * folga" —, e nenhum depende da posição em que foi servido.
  *
+ * ------------------------------------------------------------------------
+ * 1.6.0 (06/10/2026) — A SOBRA QUE O VENDEDOR PEDE ESTAVA NO BANCO HÁ SEIS DIAS
+ * E NENHUMA TELA A LIA; E O ACHADO NÃO FOI O CAMPO, FOI O NOME DELE
+ * ------------------------------------------------------------------------
+ *
+ * O que mudou: esta página passa a ler `propriedades.sobra_recomendada_pct`
+ * (esquema v13, `regras_do_campo_sobra_declarada`) e a servir o número como
+ * CONFRONTO — cita a linha de quem o escreveu, diz quem escreveu, oferece refazer
+ * a conta com ele, e nunca o toma como padrão. Mais a coluna "Sobra que ele pede"
+ * na tabela dos treze produtos e a resposta do FAQ derivada do banco.
+ *
+ * O QUE FOI MEDIDO E CONTRARIA O QUE ESTAVA ESCRITO, em dois lugares:
+ *
+ * 1. O CAMPO JÁ EXISTIA. Os 10% da Pastilhart para a AF1500 estão gravados desde
+ *    30/09/2026 (commit `66f99ef`), com valor, unidade, `fonte_id` e
+ *    `declarado_como`. E o `PROMPT.md` da ilha e dois campos de prosa do próprio
+ *    registro diziam que o número "não foi gravado como propriedade de propósito"
+ *    e que `propriedades.sobra_declarada_pct` seria CAMPO NOVO. Quem seguisse a
+ *    promessa ao pé da letra teria gravado a MESMA declaração duas vezes, uma das
+ *    duas vazia — e a tela que lesse a vazia publicaria ausência sobre um dado que
+ *    o banco tem. O nome agora é um só e está no esquema; o segundo é reprovado
+ *    pelo validador.
+ *
+ * 2. ESTA FERRAMENTA NÃO SUGERE 15%, SUGERE 10%. O `PROMPT.md` e o registro
+ *    repetiam que "a F1 pergunta a sobra ao visitante sugerindo 15%", e a premissa
+ *    inteira do bloco vinha daí: um número nosso divergindo do dele. Medido no
+ *    `selected` do seletor servido: o padrão é 10%. O 15 era o parâmetro de teste
+ *    da ronda de 05/10, lido como padrão por quem leu o relatório dela. O bloco
+ *    continua valendo e muda de forma — não há divergência a resolver, há
+ *    COINCIDÊNCIA a explicar, e explicar coincidência é mais difícil do que
+ *    explicar diferença: dois números iguais parecem um só.
+ *
+ * A DECISÃO DE DESENHO, que é a 26.3 com um número dentro: quem pede os 10% é o
+ * DISTRIBUIDOR da marca, em fonte de nível 5 — acima do teto 3 da escada. A tela
+ * cita, atribui a ele pelo nome, escreve a ressalva do nível, e não o deixa virar
+ * recomendação. Dizer "o fabricante pede 10%" ali emprestaria a autoridade de quem
+ * fabrica a quem revende, com um número sobre o qual a pessoa vai gastar dinheiro.
+ * A atribuição sai do campo `declarada_por` do banco, nunca da prosa ao lado.
+ *
+ * E UM DEFEITO QUE O BLOCO ACHOU NA PRÓPRIA CAMADA DE PROVA DESTA PÁGINA: ela
+ * publicava "Nenhum documento de fabricante foi aberto linha a linha daqui", e em
+ * 05/10/2026 o boletim do Rejunte Piscinas Quartzolit foi aberto e lido página a
+ * página — e ele está no banco de rejuntes, que é um dos dois que esta página lê.
+ * Mesmo defeito, mesma família e o mesmo dia em que a F2 pagou o dela: disclosure
+ * velho mente, e nenhuma régua o recontava porque ele era PROSA. Virou conta
+ * derivada (`cdm_casca_numeros()`), servida só pela via viva.
+ *
  * E A FRONTEIRA DOS DOIS BLOCOS PASSOU A TER NOME. A bancada e a conferência no
  * ar extraíam cada vitrine pelo TEXTO do `<h2>` — régua que morre calada no dia
  * em que o título muda, e que no estado degradado do rejunte (sem a F2 no ar, o
@@ -130,7 +177,7 @@
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.5.0' );
+	define( 'CDM_F1_VERSAO', '1.6.0' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -1111,7 +1158,15 @@ if ( ! function_exists( 'cdm_f1_pastilhas_classificadas' ) ) {
  */
 function cdm_f1_pastilhas_classificadas( $lado_mm ) {
 	$itens = cdm_f1_banco_pastilhas()['materiais'];
-	$teto  = cdm_f2_nivel_maximo();
+	/* O TETO DA ESCADA É DA F2 E PODE NÃO ESTAR NO AR. A vitrine sai antes de
+	   chamar esta função nesse caso, mas o bloco da sobra declarada não pode
+	   sair calado só porque a escada caiu: citar a linha do vendedor e dizer
+	   quem a escreveu não depende de escada nenhuma. Então o teto vira `null` —
+	   nada cai em `fonte_fraca`, e quem lê o resultado sabe, pelo próprio campo,
+	   que a classificação de fonte não aconteceu. Uma régua para as duas telas,
+	   nunca uma segunda escrita aqui. */
+	$teto  = function_exists( 'cdm_f2_nivel_maximo' ) && function_exists( 'cdm_f2_nivel' )
+		? (int) cdm_f2_nivel_maximo() : null;
 
 	$saida = array(
 		'recomendadas'   => array(),
@@ -1134,7 +1189,7 @@ function cdm_f1_pastilhas_classificadas( $lado_mm ) {
 			$saida['outro_formato'][] = $m;
 			continue;
 		}
-		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {
+		if ( null !== $teto && cdm_f1_nivel_da_pastilha( $m ) > $teto ) {
 			$saida['fonte_fraca'][] = $m;
 			continue;
 		}
@@ -1142,6 +1197,208 @@ function cdm_f1_pastilhas_classificadas( $lado_mm ) {
 	}
 
 	return $saida;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_sobra_declarada' ) ) {
+/**
+ * A SOBRA QUE O VENDEDOR DECLARA, de UM produto — esquema v13,
+ * `regras_do_campo_sobra_declarada`.
+ *
+ * Devolve `null` quando o registro não declara, e um array com o número, a linha
+ * dele, quem a escreveu e o nível da fonte quando declara. Nunca devolve número
+ * sem atribuição: é a 26.3 aplicada a um número, e aqui ela morde mais do que no
+ * nome de um produto — quem pede os 10% da AF1500 é o DISTRIBUIDOR da marca, e
+ * uma tela que dissesse "o fabricante pede" estaria emprestando a autoridade de
+ * quem fabrica a quem revende, com um número dentro sobre o qual a pessoa vai
+ * gastar dinheiro.
+ *
+ * POR QUE A LEITURA É AQUI E NÃO NO LUGAR QUE O REPOSITÓRIO PROMETIA: o campo
+ * `propriedades.sobra_recomendada_pct` existe desde 30/09/2026 e nenhuma tela o
+ * lia — nem esta página, que é a que PERGUNTA a sobra. E dois lugares do
+ * repositório prometiam gravá-lo outra vez, com outro nome
+ * (`sobra_declarada_pct`), dizendo que era campo novo. O nome agora é um só, está
+ * no esquema, e o validador reprova o segundo.
+ */
+function cdm_f1_sobra_declarada( $m ) {
+	$chave = 'sobra_recomendada_pct';
+	$p     = isset( $m['propriedades'][ $chave ] ) && is_array( $m['propriedades'][ $chave ] )
+		? $m['propriedades'][ $chave ] : array();
+
+	if ( ! isset( $p['valor'] ) || null === $p['valor'] || '' === $p['valor'] ) {
+		return null;
+	}
+	/* OS QUATRO SUBCAMPOS SÃO CONDIÇÃO DE IR À TELA, e a falta de qualquer um
+	   deles devolve `null` em vez de meia frase. O validador já cobra a forma; a
+	   tela não depende de o portão ter rodado, pela mesma razão que o bloco de
+	   preparo não depende: quem serve declaração de terceiro confere na hora de
+	   servir. */
+	foreach ( array( 'literal_do_fabricante', 'declarada_por', 'como_a_tela_chama_quem_declarou', 'fonte_id' ) as $exigido ) {
+		if ( empty( $p[ $exigido ] ) ) {
+			return null;
+		}
+	}
+	if ( ! isset( $m['fontes'][ $p['fonte_id'] ] ) ) {
+		return null;
+	}
+
+	$fonte = $m['fontes'][ $p['fonte_id'] ];
+
+	return array(
+		'pct'       => (float) $p['valor'],
+		'literal'   => (string) $p['literal_do_fabricante'],
+		'quem'      => (string) $p['declarada_por'],
+		'nome'      => (string) $p['como_a_tela_chama_quem_declarou'],
+		'lido_em'   => isset( $p['lido_em'] ) ? (string) $p['lido_em'] : '',
+		'fonte'     => $fonte,
+		'nivel'     => isset( $fonte['nivel'] ) ? (int) $fonte['nivel'] : 9,
+		'produto'   => isset( $m['nome_comercial'] ) ? (string) $m['nome_comercial'] : '',
+	);
+}
+}
+
+if ( ! function_exists( 'cdm_f1_sobras_declaradas_do_lado' ) ) {
+/**
+ * As sobras declaradas pelos produtos do lado que a pessoa pediu — e a classe de
+ * cada um sai de `cdm_f1_pastilhas_classificadas()`, nunca de uma segunda régua.
+ *
+ * Por que a varredura pega as TRÊS listas do lado e não só as recomendadas: hoje
+ * o único produto que declara sobra é de fonte nível 5, acima do teto 3 da
+ * escada, então ele está em `fonte_fraca` e NUNCA entra na vitrine. Ler só as
+ * recomendadas faria esta função devolver vazio para sempre e o bloco nascer
+ * morto — régua escrita para um mundo que não acontece (seção 8). O que o nível
+ * muda é o que a tela DIZ, não se ela diz: acima do teto é menção com ressalva.
+ */
+function cdm_f1_sobras_declaradas_do_lado( $lado_mm ) {
+	$c     = cdm_f1_pastilhas_classificadas( $lado_mm );
+	$saida = array();
+
+	foreach ( array( 'recomendadas', 'fonte_fraca', 'outro_formato' ) as $lista ) {
+		foreach ( $c[ $lista ] as $m ) {
+			$sb = cdm_f1_sobra_declarada( $m );
+			if ( null === $sb ) {
+				continue;
+			}
+			$sb['lista']       = $lista;
+			$sb['recomendada'] = ( 'recomendadas' === $lista );
+			$saida[]           = $sb;
+		}
+	}
+
+	return $saida;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_quantas_declaram_sobra' ) ) {
+/**
+ * Quantos produtos do banco publicam sobra — CONTADO, nunca digitado. É a
+ * cicatriz do cartão do Guia que dizia zero enquanto a categoria tinha cinco
+ * itens: número de tela nasce contado.
+ */
+function cdm_f1_quantas_declaram_sobra() {
+	$com = 0;
+	$tot = 0;
+	foreach ( cdm_f1_banco_pastilhas()['materiais'] as $m ) {
+		$tot++;
+		if ( null !== cdm_f1_sobra_declarada( $m ) ) {
+			$com++;
+		}
+	}
+
+	return array( 'com' => $com, 'total' => $tot );
+}
+}
+
+if ( ! function_exists( 'cdm_f1_sobra_confronto_html' ) ) {
+/**
+ * O CONFRONTO DA SOBRA: o número que a pessoa escolheu contra o número que o
+ * vendedor pede, com o nome de quem pede e a linha dele entre aspas.
+ *
+ * NÃO É RECOMENDAÇÃO, E A TELA DIZ ISSO. Sobra é parâmetro de quem faz a peça —
+ * depende de quanto a pessoa vai recortar —, não propriedade do produto. O padrão
+ * desta ferramenta é 10% e ele é escolha DESTA ILHA, pelo lote de cor que muda
+ * entre duas compras; o 10% da Pastilhart é por corte e ajuste. São dois números
+ * iguais por razões diferentes, e quando eles coincidem a tela fala da
+ * coincidência em vez de deixar o leitor supor que um veio do outro.
+ *
+ * O LINK QUE REFAZ A CONTA só aparece quando o número declarado é uma das opções
+ * do seletor. Oferecer um valor que o formulário não aceita devolveria a pessoa
+ * ao padrão sem dizer nada, e ela leria o número do padrão como se fosse o dele.
+ */
+function cdm_f1_sobra_confronto_html( $e ) {
+	$lista = cdm_f1_sobras_declaradas_do_lado( $e['lado_mm'] );
+	if ( ! $lista ) {
+		return '';
+	}
+
+	$conta  = cdm_f1_quantas_declaram_sobra();
+	$sobras = cdm_f1_sobras();
+	$teto   = cdm_f1_pastilhas_classificadas( $e['lado_mm'] )['teto_de_fonte'];
+	$lado   = cdm_f1_lado_em_texto( $e['lado_mm'] );
+
+	$html  = '<div class="cdm-f1-secao cdm-f1-sobra-declarada">';
+	$html .= '<h2>Quanto de sobra o vendedor pede, e por que esse número não é o nosso</h2>';
+
+	$html .= '<p>Você pediu <strong>' . cdm_casca_num( $e['sobra'] ) . '% de sobra</strong>. '
+		. 'De ' . cdm_casca_num( $conta['total'] ) . ' produtos no nosso banco, '
+		. cdm_casca_num( $conta['com'] ) . ' ' . ( 1 === $conta['com'] ? 'publica' : 'publicam' )
+		. ' quanto comprar a mais, e ' . ( 1 === count( $lista ) ? 'um deles é' : 'alguns deles são' )
+		. ' de caquinho de <strong>' . esc_html( $lado ) . ' cm</strong>:</p>';
+
+	foreach ( $lista as $sb ) {
+		$html .= '<p class="cdm-f1-sobra-item"><strong>' . esc_html( $sb['produto'] ) . '</strong>: '
+			. '<em>' . esc_html( $sb['literal'] ) . '</em>';
+		/* A ATRIBUIÇÃO VEM DO BANCO (26.1 e 26.3), com o artigo dentro do campo —
+		   genero de substantivo não se adivinha em PHP. */
+		$html .= ' Quem escreveu isso foi ' . esc_html( $sb['nome'] )
+			. ( 'fabricante' === $sb['quem'] ? '' : ', e não quem fabrica a pastilha' ) . '.';
+
+		if ( abs( $sb['pct'] - (float) $e['sobra'] ) < 0.001 ) {
+			$html .= ' <strong>É o mesmo número que você escolheu</strong> — e a coincidência é '
+				. 'coincidência: o nosso ' . cdm_casca_num( $e['sobra'] ) . '% é por causa do lote de cor, '
+				. 'que muda entre duas compras, e o dele é por corte e ajuste na aplicação.';
+		} else {
+			$pct   = (int) round( $sb['pct'] );
+			$texto = ' Você escolheu ' . cdm_casca_num( $e['sobra'] ) . '% e ele pede '
+				. cdm_casca_num( $pct ) . '%.';
+			if ( isset( $sobras[ $pct ] ) ) {
+				$texto .= ' <a href="' . esc_url( add_query_arg( array( 'sobra' => $pct ) ) ) . '#resposta">'
+					. 'Refazer a conta com os ' . cdm_casca_num( $pct ) . '% dele</a>.';
+			} else {
+				$texto .= ' O formulário aqui em cima não oferece esse valor, então a gente não '
+					. 'manda você para uma conta que ele não aceita.';
+			}
+			$html .= $texto;
+		}
+
+		if ( null === $teto ) {
+			/* A ESCADA ESTÁ FORA DO AR, e a tela diz isso em vez de calar ou de
+			   afirmar sobre o nível. Citar a linha dele e dizer quem a escreveu
+			   não depende da escada; dizer se ela sustenta recomendação, sim. */
+			$html .= ' <span class="cdm-f1-nota">A nossa escada de fontes não está no ar neste momento, '
+				. 'então esta página não diz hoje se essa fonte sustenta recomendação. A linha é dele e '
+				. 'está citada como ele a escreveu.</span>';
+		} elseif ( (int) $sb['nivel'] > (int) $teto ) {
+			$html .= ' <span class="cdm-f1-nota">Esse número não entra na nossa recomendação: a página '
+				. 'de onde ele foi lido é nível ' . cdm_casca_num( $sb['nivel'] ) . ' na nossa escada de '
+				. 'fontes, e recomendação primária para em ' . cdm_casca_num( (int) $teto )
+				. '. É menção, com a ressalva escrita.</span>';
+		}
+		$html .= '</p>';
+	}
+
+	$sem = (int) $conta['total'] - (int) $conta['com'];
+	if ( $sem > 0 ) {
+		$html .= '<p class="cdm-f1-faixa">Nos outros ' . cdm_casca_num( $sem )
+			. ' produtos do banco ninguém publica sobra, e ausência aqui <strong>não</strong> quer dizer '
+			. '"não precisa comprar a mais": quer dizer que o vendedor não escreveu quanto. '
+			. 'O nosso ' . cdm_casca_num( 10 ) . '% padrão é escolha nossa — faltar dez peças no fim da peça '
+			. 'é pior que sobrar dez, porque lote novo de pastilha muda de cor.</p>';
+	}
+
+	$html .= '</div>';
+
+	return $html;
 }
 }
 
@@ -1556,14 +1813,27 @@ function cdm_f1_tabela_pastilhas_html() {
 		}
 	}
 
+	$conta_sobra = cdm_f1_quantas_declaram_sobra();
+
 	$html  = '<div class="cdm-f1-secao"><h2>As pastilhas que a gente já conferiu</h2>';
 	$html .= '<p>São <strong>' . cdm_casca_num( count( $itens ) ) . '</strong> produtos de '
 		. cdm_casca_num( count( $marcas ) ) . ' marcas, com a medida que o próprio fabricante publica. '
 		. 'A última coluna diz se o formulário aí em cima oferece aquele lado: quando não oferece, '
 		. 'o caminho é o caquinho irregular, digitando o lado.</p>';
+	/* O NÚMERO É CONTADO, NUNCA DIGITADO (seção 8): no dia em que o segundo
+	   vendedor publicar sobra, esta frase muda sozinha. */
+	$html .= '<p>A coluna da sobra é a que quase ninguém publica: de '
+		. cdm_casca_num( $conta_sobra['total'] ) . ' produtos, '
+		. ( 0 === $conta_sobra['com']
+			? 'nenhum diz quanto comprar a mais'
+			: cdm_casca_num( $conta_sobra['com'] ) . ' ' . ( 1 === $conta_sobra['com'] ? 'diz' : 'dizem' )
+				. ' quanto comprar a mais por causa de corte e quebra' )
+		. '. Quando um deles diz, a gente cita a linha dele e escreve quem a escreveu — '
+		. 'o número de sobra do formulário é escolha nossa, não dele.</p>';
 	$html .= '<div class="cdm-f1-rolagem"><table class="cdm-f1-tabela cdm-f1-tabela-pastilhas"><thead><tr>'
 		. '<th scope="col">Produto</th><th scope="col">Caquinho</th><th scope="col">Placa</th>'
-		. '<th scope="col">Espessura</th><th scope="col">A caixa</th><th scope="col">Está no formulário?</th>'
+		. '<th scope="col">Espessura</th><th scope="col">A caixa</th><th scope="col">Sobra que ele pede</th>'
+		. '<th scope="col">Está no formulário?</th>'
 		. '</tr></thead><tbody>';
 
 	foreach ( $itens as $m ) {
@@ -1587,6 +1857,14 @@ function cdm_f1_tabela_pastilhas_html() {
 			. esc_html( number_format_i18n( (float) $g['placa_lado_b_cm'], 1 ) ) . ' cm</td>';
 		$html .= '<td>' . cdm_casca_num( $g['espessura_mm'] ) . ' mm</td>';
 		$html .= '<td>' . $caixa . '</td>';
+		/* A SOBRA DECLARADA, item a item — e a coluna existe para a ausência ficar
+		   VISÍVEL. Tabela que só mostrasse quem declara faria o leitor ler o
+		   silêncio das outras doze como "não precisa"; aqui ele lê "não publicada",
+		   que é o que a ausência quer dizer. */
+		$sb    = cdm_f1_sobra_declarada( $m );
+		$html .= '<td>' . ( null === $sb
+			? '<span class="cdm-f1-vazio">não publicada</span>'
+			: cdm_casca_num( (int) round( $sb['pct'] ) ) . '%' ) . '</td>';
 		$html .= '<td>' . ( $tem ? 'sim' : '<span class="cdm-f1-vazio">não</span>' ) . '</td>';
 		$html .= '</tr>';
 	}
@@ -1811,6 +2089,15 @@ add_shortcode( 'cdm_f1', function () {
 	   camada de prova, que é o que a seção 7 do contrato manda. */
 	$html .= cdm_f1_vitrine_pastilha_html( $e );
 	$html .= cdm_f1_vitrine_html( $e );
+	/* O CONFRONTO DA SOBRA VEM DEPOIS DOS DOIS BLOCOS DE COMPRA, de propósito. Ele
+	   fala do número que a pessoa ESCOLHEU e de um produto que hoje não é
+	   recomendável (fonte nível 5, acima do teto 3), então não pode vir antes dos
+	   produtos que são: a seção 22.1 põe ranqueamento antes de conversão e
+	   conversão antes de explicação, e este bloco é explicação. E ele cai no lugar
+	   certo para o leitor justamente no estado em que mais importa — com caquinho
+	   de 1,5 cm a vitrine não tem nenhum item para mostrar, e é logo abaixo dela
+	   que a pessoa lê por que. */
+	$html .= cdm_f1_sobra_confronto_html( $e );
 	$html .= cdm_f1_tabela_pecas_html();
 	$html .= cdm_f1_tabela_pastilhas_html();
 	$html .= cdm_f1_tabela_consumo_html();
@@ -1882,9 +2169,36 @@ function cdm_f1_prova_html() {
 			. 'quase todos, e onde fecha só fecha com folga zero entre as peças — que é placa que não se rejunta.</p>';
 	}
 
-	$html .= '<p>Nenhum documento de fabricante foi aberto linha a linha daqui: a leitura foi feita no domínio de cada um, '
-		. 'e cada item do nosso banco diz qual documento sustenta qual número. O método inteiro está em '
-		. cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
+	/* ESTA FRASE ERA UM DISCLOSURE VELHO E ELE MENTIA — mesmo defeito, mesma
+	   família e o MESMO DIA em que a camada de prova da F2 o pagou (06/10/2026).
+	   Ela dizia "Nenhum documento de fabricante foi aberto linha a linha daqui",
+	   e era verdade quando foi escrita. Em 05/10/2026 o boletim técnico do
+	   Rejunte Piscinas Quartzolit foi aberto e lido página a página pelo canal de
+	   espelho — e esse boletim está no banco de rejuntes, que é um dos dois que
+	   ESTA página lê. A frase envelheceu calada, na única camada da página cujo
+	   produto inteiro é o rigor, e nenhuma régua a recontava porque ela era PROSA
+	   e não número.
+
+	   Então ela passa a ser CONTADA, pela mesma via da F2 (`cdm_casca_numeros()`,
+	   marcador `tipo_de_origem` no banco, nunca a prosa do campo `tipo`) e só pela
+	   via VIVA: com o instantâneo, a página diz ONDE a leitura foi feita e não
+	   afirma quantidade nenhuma. Número de tela nasce contado. */
+	$n = function_exists( 'cdm_casca_numeros' ) ? cdm_casca_numeros() : array();
+	if ( ! empty( $n['numeros_vivos'] ) ) {
+		$html .= '<p>Dos ' . cdm_casca_num( $n['documentos_no_banco'] ) . ' documentos que o nosso banco cita, '
+			. ( (int) $n['documentos_abertos'] > 0
+				? cdm_casca_num( $n['documentos_abertos'] ) . ' '
+					. ( 1 === (int) $n['documentos_abertos'] ? 'foi aberto e lido' : 'foram abertos e lidos' )
+					. ' página a página'
+				: 'nenhum foi aberto página a página' )
+			. '; o resto foi lido no domínio de cada fabricante, e cada item do nosso banco diz qual '
+			. 'documento sustenta qual número. O método inteiro está em '
+			. cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
+	} else {
+		$html .= '<p>A leitura foi feita no domínio de cada fabricante, e quais documentos foram abertos '
+			. 'página a página está declarado item a item no nosso banco. O método inteiro está em '
+			. cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
+	}
 	$html .= '</div>';
 
 	return $html;
@@ -1940,6 +2254,57 @@ function cdm_f1_resposta_do_vaso() {
 }
 }
 
+if ( ! function_exists( 'cdm_f1_resposta_da_sobra' ) ) {
+/**
+ * A RESPOSTA DA SOBRA, derivada do banco — e ela é a frase que um modelo de
+ * linguagem cita sozinho (seção 5), então tem de carregar a atribuição dentro
+ * dela, não ao lado.
+ *
+ * POR QUE ELA PRECISOU DEIXAR DE SER TEXTO FIXO: o texto antigo dizia "10% é o
+ * que a gente usa por padrão" e parava ali. Está certo e é metade da verdade: o
+ * banco desta ilha guarda, desde 30/09/2026, UMA sobra declarada por vendedor —
+ * também 10% — e um leitor que visse os dois números iguais sem mais nada
+ * concluiria que o nosso saiu do dele. Não saiu: o nosso é por lote de cor, o
+ * dele é por corte e ajuste. Dois números iguais por razões diferentes são dois
+ * números, e a frase diz isso.
+ */
+function cdm_f1_resposta_da_sobra() {
+	$base  = '10% é o que a gente usa por padrão, e o arredondamento é sempre para cima. '
+		. 'O motivo não é o preço: lote novo de pastilha muda de cor, e faltar dez peças no fim da peça '
+		. 'é pior que sobrar dez.';
+	$conta = cdm_f1_quantas_declaram_sobra();
+
+	if ( 0 === $conta['com'] ) {
+		return $base . ' Nenhum dos ' . number_format_i18n( $conta['total'] ) . ' produtos do nosso banco '
+			. 'publica quanto comprar a mais, então esse número é nosso e de mais ninguém.';
+	}
+
+	/* O PRIMEIRO QUE DECLARA, com o nome de quem declarou. Varre o banco inteiro
+	   em vez de olhar um id escrito aqui: id digitado numa frase publicada é a
+	   mesma família do número digitado, e morre calado no dia em que o registro
+	   mudar de nome. */
+	$primeiro = null;
+	foreach ( cdm_f1_banco_pastilhas()['materiais'] as $m ) {
+		$sb = cdm_f1_sobra_declarada( $m );
+		if ( null !== $sb ) {
+			$primeiro = $sb;
+			break;
+		}
+	}
+	if ( null === $primeiro ) {
+		return $base;
+	}
+
+	return $base . ' Dos ' . number_format_i18n( $conta['total'] ) . ' produtos do nosso banco, '
+		. number_format_i18n( $conta['com'] ) . ' ' . ( 1 === $conta['com'] ? 'publica' : 'publicam' )
+		. ' um número de sobra: ' . $primeiro['produto'] . ' pede '
+		. number_format_i18n( (int) round( $primeiro['pct'] ) ) . '%, e quem escreveu isso foi '
+		. $primeiro['nome'] . ( 'fabricante' === $primeiro['quem'] ? '' : ', não quem fabrica a pastilha' )
+		. '. Quando o número dele e o nosso coincidem, é coincidência: o dele é por corte e ajuste na '
+		. 'aplicação, o nosso é pelo lote de cor.';
+}
+}
+
 if ( ! function_exists( 'cdm_f1_perguntas' ) ) {
 /**
  * Uma fonte só para a tela e para o FAQPage. Toda resposta aqui é sustentada
@@ -1965,7 +2330,7 @@ function cdm_f1_perguntas() {
 		),
 		array(
 			'pergunta' => 'Quanta sobra de pastilha eu devo comprar?',
-			'resposta' => '10% é o que a gente usa por padrão, e o arredondamento é sempre para cima. O motivo não é o preço: lote novo de pastilha muda de cor, e faltar dez peças no fim da peça é pior que sobrar dez.',
+			'resposta' => cdm_f1_resposta_da_sobra(),
 		),
 		array(
 			'pergunta' => 'A conta serve para rejunte epóxi ou acrílico?',

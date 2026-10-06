@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 61,
+  "revisao": 62,
   "atualizado_em": "2026-10-06",
   "estado": "nascendo",
   "desembarque": {
@@ -53,9 +53,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.5.0",
-      "sha256": "c65422ccd720165456506c7e3b6e3ae65f1372045d5a2a2e2a5cf49130f15d76",
-      "descricao": "F1 1.4.0 — O ESTADO COM PARAMETRO SAI DO INDICE PELA PRESENCA DO PARAMETRO, NAO PELA VALIDADE DO VALOR. Esta ferramenta passava na regua de 25/09 por acidente: o `escolheu` daqui pergunta `isset( $_GET['forma'] )` e o da irma pergunta se o valor esta no vocabulario — duas leituras opostas da mesma pergunta, cada uma acertando o portao da outra por sorte, ate a ronda de 28/09 medir a irma no ar e acha-la no indice. Entram `cdm_f1_parametros()` (a lista derivada de `cdm_f1_formas()`, que e o que faz o `d2` do cone — esquecido pela lista escrita a mao — entrar sozinho) e `cdm_f1_tem_parametro()`, que e quem decide o `noindex` agora; `escolheu` fica intocado e continua mandando na TELA, porque valor fora do vocabulario volta ao padrao e dizer 'voce escolheu' sobre escolha nao honrada seria trocar defeito de indice por defeito de texto. A `description` desta pagina passa a ser DECLARADA pelo filtro `cdm_descricao` em vez de impressa; o texto nao muda, porque o BLOCO A do despacho do Raphael de 24/09 trava a promessa da SERP das paginas que rankeiam ate 30/09."
+      "versao": "1.6.0",
+      "sha256": "023e77d877e308f053712b6f0826664335215f582007db75a0a16c8a3fcbfbec",
+      "descricao": "F1 1.6.0 — A SOBRA QUE O VENDEDOR PEDE ESTAVA GRAVADA HA SEIS DIAS E NENHUMA TELA A LIA; E O ACHADO NAO FOI O CAMPO, FOI O NOME DELE. `propriedades.sobra_recomendada_pct` carrega os 10% da Pastilhart para a AF1500 desde 30/09/2026, com valor, unidade e fonte — e esta ferramenta, que e a que PERGUNTA a sobra ao visitante, nao tocava a palavra. Pior: o PROMPT.md da ilha e dois campos de prosa do proprio registro prometiam gravar o numero OUTRA VEZ, como `sobra_declarada_pct`, dizendo que era campo novo — quem seguisse a promessa teria criado a mesma declaracao duas vezes, uma delas vazia. Entra o esquema v13 (`regras_do_campo_sobra_declarada`, nome unico e o segundo reprovado pelo validador), o bloco de CONFRONTO na pagina (cita a linha dele, nomeia quem a escreveu pelo campo `declarada_por`, oferece refazer a conta com o numero dele e NUNCA o toma como padrao), a coluna `Sobra que ele pede` nos treze produtos e a resposta do FAQ derivada do banco. A atribuicao e a metade que mais importa: quem pede os 10% e o DISTRIBUIDOR da marca, em fonte nivel 5 acima do teto 3 da escada — mencao com ressalva escrita, nunca recomendacao, e nunca `o fabricante pede` (26.3 com um numero dentro). De carona, duas medicoes contrariaram o que estava escrito: o padrao servido desta ferramenta e 10% e nao 15% (lido no `selected` do seletor; o 15 era parametro de teste da ronda de 05/10), e a camada de prova desta pagina publicava que nenhum documento de fabricante havia sido aberto linha a linha, o que deixou de ser verdade em 05/10 — virou conta derivada, como a F2 fez com a dela no mesmo dia."
     },
     {
       "id": "loja",
@@ -183,7 +183,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "84fa11beb8be861e721c58dbbc08aaa7037eae4aae8624a499cda97770951452",
+      "sha256": "892144efe4422be7d2b3e403fb6b06ec352034d7158206a8a81a3185d89899ab",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -269,7 +269,7 @@
       "verificado_em": "2026-09-13",
       "registros": 13,
       "publicar": true,
-      "sha256": "fcaa5401e3a1e23b5fa728484fae2b6e510eda70263dacb1e6929124b9dfcce2",
+      "sha256": "126490edba1bbf119e6cc733b2ce5ee4801847ae9a574b693f188b5b046e9b89",
       "descricao": "A categoria PASTILHA do banco MATERIAL. Treze SKUs com lado da pastilha, lado da placa, espessura, placas por caixa, metragem e peso de caixa. A leva de 13/09/2026 acrescentou A37, 102 e IC02, e a A37 e a que FECHA o tamanho 2x2 no minimo de 3 elegiveis da secao 14.3. Tres campos nascem NULL com motivo escrito, e e isso que o arquivo tem de mais util: pecas por placa e passo de fabrica, porque nenhum fabricante brasileiro declara e a divisao que a SERP faz nao fecha (em 9 dos 13 nao da inteiro, nos outros 4 exige junta zero); e peso unitario, porque o peso da caixa de um dos itens PASSA do teto fisico do vidro macico, o que prova que embalagem esta contada dentro. Mede isso ferramentas/validar-pastilhas.py (189 afirmacoes, um processo por item, com a faixa de tamanhos medida na F1 por ferramentas/tamanhos-da-f1.php em vez de digitada) e ferramentas/mutacoes-pastilhas.py (14 de 14: 12 no banco e 2 no codigo da F1)."
     },
     {
@@ -615,6 +615,12 @@
       "descricao": "Quebra o banco de rejunte de proposito, uma mutacao por vez numa COPIA da pasta da ilha, e exige que validar-banco.py reprove cada uma. DOZE mutacoes, doze reprovadas. A que mais vale e a ultima: ela tira a declaracao de piscina do epoxi E ajusta o perfil esperado no esquema junto, que e como um editor de verdade mexeria nas duas metades — as duas passam a errar juntas e a conferencia de perfil deixa de ver. Quem viu foi a MATRIZ, que continuava esperando o epoxi no topo da celula de 3 mm submersa. E a prova de que a matriz nao e enfeite da conferencia de perfil, e a resposta local a cicatriz da secao 8 do contrato: teste que chama a regua de quem produziu o dado erra junto com ele. NUNCA e publicada no site."
     },
     {
+      "id": "mutacoes-sobra",
+      "arquivo": "ferramentas/mutacoes-sobra.py",
+      "sha256": "f9bc1985ff44320f6755fdd39688079bea52b7abfe20b12758b1f3db7bb07c21",
+      "descricao": "Bateria de mutacao da sobra declarada (esquema v13). Treze mutacoes de FORMA, medidas pelo validar-banco.py com o portao novo ligado e desligado — entre elas a que restaura a promessa que o repositorio tinha escrito, o mesmo numero ganhando uma SEGUNDA chave. E cinco de TELA, medidas pelo HTML servido: mundo que muda nao e defeito, entao a cobranca e a bancada continuar verde E a pagina mudar — tela que repete texto fixo parecido com o dado fica identica, e foi esse o estado de 30/09 a 06/10/2026. Tres estados legitimos tem de passar, entre eles o de 12 dos 13 itens, que e nao declarar sobra. Bancada."
+    },
+    {
       "id": "mutacoes-tecnica-x-material",
       "arquivo": "ferramentas/mutacoes-tecnica-x-material.py",
       "sha256": "ff0b81809cffdeedb4b6db6a26280e795101a8d576ee58634af1c3ff46a82883",
@@ -641,7 +647,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "b7a044278cb113bbda66a6dbb5ba1aac9aa218d7489b9a32413dd60b137bfc57",
+      "sha256": "4f1c0a6d333dc96cec484d7d00d8de60b8377955807959cadd9a15d4cfdb47f1",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -689,7 +695,7 @@
     {
       "id": "teste-f1",
       "arquivo": "ferramentas/teste-f1.php",
-      "sha256": "6ecd1b1ea02faf1d6bcf52b7b320ed11d151c217169b101d97dcc3f213c51761",
+      "sha256": "1166e9ff3c62c73efa6ac74c4ee861fed2b3f6988fa46219bbacef4d34400b97",
       "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
     },
     {
@@ -737,7 +743,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "47c4da19a9058c499ef0c48471092e53ac11dc50e559ba3f7457c48f06636406",
+      "sha256": "bffc3c3e5d335cf531faec2cc7f428e1f30be1a0c899b68a5c128806cf788be7",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {

@@ -371,12 +371,22 @@ def m_pastilha_ignora_o_formato(raiz):
            "")
 
 
+# REAPONTADAS EM 06/10/2026, com a F1 1.6.0. As tres mutacoes abaixo editam a
+# trava da fonte dentro de `cdm_f1_pastilhas_classificadas()`, e o alvo delas
+# mudou de texto: o teto da escada passou a poder ser `null` (quando a F2 nao
+# esta no ar), porque o bloco da sobra declarada precisa sair mesmo sem escada —
+# citar a linha do vendedor e dizer quem a escreveu nao depende dela. A primeira
+# passada depois da mudanca acusou `m_pastilha_inverte_formato_e_fonte` como
+# INERTE, e e exatamente o corolario que a secao 8 do ARQUIPELAGO.md escreve:
+# quando a fonte muda, toda mutacao que editava a forma antiga vira inerte, e
+# mutacao que nao morde e teste verde com outro nome.
+
 def m_pastilha_ignora_a_fonte(raiz):
     """A escada de fontes deixa de valer para a pastilha: o item sustentado por
     DISTRIBUIDOR entra em recomendacao primaria, que e exatamente o que o
     nivel <= 3 do esquema existe para impedir."""
     editar(raiz, SNIPPET,
-           "		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}",
+           "		if ( null !== $teto && cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}",
            "")
 
 
@@ -386,8 +396,8 @@ def m_pastilha_inverte_formato_e_fonte(raiz):
     e quem pega isto e o mundo `strip_fraco=1`, que rebaixa a fonte do strip
     para nivel 5 e exige que a pagina culpe o FORMATO."""
     editar(raiz, SNIPPET,
-           "		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) {\n			$saida['outro_formato'][] = $m;\n			continue;\n		}\n		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}",
-           "		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}\n		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) {\n			$saida['outro_formato'][] = $m;\n			continue;\n		}")
+           "		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) {\n			$saida['outro_formato'][] = $m;\n			continue;\n		}\n		if ( null !== $teto && cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}",
+           "		if ( null !== $teto && cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}\n		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) {\n			$saida['outro_formato'][] = $m;\n			continue;\n		}")
 
 
 def m_pastilha_reimplementa_a_escada(raiz):

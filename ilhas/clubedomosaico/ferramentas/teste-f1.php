@@ -1534,6 +1534,321 @@ f1_ok( empty( $prefixos_errados ), 'toda funcao nova usa o prefixo cdm_f1_',
 	empty( $prefixos_errados ) ? count( $mf[1] ) . ' funcoes' : implode( ', ', $prefixos_errados ) );
 
 /* ---------------------------------------------------------------------------
+ * 6b. A SOBRA DECLARADA PELO VENDEDOR — a f1 1.6.0
+ *
+ * REGUA PROPRIA, RECOMPUTADA DO ARQUIVO: a lista de quem declara sobra e lida
+ * AQUI, do `dados/materiais-pastilhas.json` no disco, sem chamar uma linha do
+ * snippet. Se as duas implementacoes discordarem, este arquivo diz qual item.
+ *
+ * O QUE ESTA SECAO EXISTE PARA IMPEDIR, e sao tres coisas diferentes:
+ *
+ *   1. QUE O NUMERO VOLTE A SER DIGITADO. "1 de 13" e contagem: a afirmacao do
+ *      estado SEM declarante nao espera o mundo mudar, ela PRODUZ o mundo
+ *      (secao 8) — apagando a propriedade de um banco de mentira e exigindo que
+ *      a pagina mude de frase. Verde sobre um banco de um declarante so nao e
+ *      medicao, e hoje o banco tem um declarante so.
+ *
+ *   2. QUE A TELA CHAME DE FABRICANTE QUEM E DISTRIBUIDOR (26.3). O registro diz
+ *      `declarada_por: distribuidor`, e a frase servida nao pode atribuir a
+ *      declaracao a quem fabrica. Esta e a afirmacao que mede o defeito mais
+ *      caro desta fabrica: emprestar autoridade de procedencia.
+ *
+ *   3. QUE O NUMERO DELE VIRE PADRAO. A sobra e parametro de quem faz a peca; o
+ *      padrao servido e 10% por escolha DESTA ILHA. A afirmacao le o `selected`
+ *      do seletor, que e o que o visitante ve — e e exatamente a medicao que
+ *      mostrou que a frase de "15% por padrao" repetida em dois lugares do
+ *      repositorio era falsa.
+ * ------------------------------------------------------------------------- */
+
+echo "\n6b. A sobra que o vendedor declara: citada, atribuida e nunca padrao\n";
+
+/** Quem declara sobra, implementado NESTE arquivo, com os subcampos exigidos. */
+function f1_declara_sobra( $m ) {
+	$p = isset( $m['propriedades']['sobra_recomendada_pct'] ) ? $m['propriedades']['sobra_recomendada_pct'] : null;
+	if ( ! is_array( $p ) || ! isset( $p['valor'] ) || null === $p['valor'] ) {
+		return null;
+	}
+	foreach ( array( 'literal_do_fabricante', 'declarada_por', 'como_a_tela_chama_quem_declarou', 'fonte_id' ) as $c ) {
+		if ( empty( $p[ $c ] ) ) {
+			return null;
+		}
+	}
+	return $p;
+}
+
+$declarantes = array();
+foreach ( $p_itens as $m ) {
+	if ( null !== f1_declara_sobra( $m ) ) {
+		$declarantes[ $m['id'] ] = $m;
+	}
+}
+
+/* A CONTAGEM NAO E AFIRMACAO DE ESTADO, E AFIRMACAO DE ACORDO. A primeira versao
+   desta linha cobrava "o banco tem UM declarante hoje", e isso e tabela de estado
+   esperado digitada: ela envelhece calada no dia em que o segundo vendedor
+   publicar sobra, e reprovaria a MELHORA em vez do defeito (a cicatriz da regua
+   amarrada a um degrau, secao 8). O que se cobra e que o numero PUBLICADO pela
+   pagina seja o numero CONTADO do arquivo — os dois lados derivados, nenhum
+   digitado. */
+echo "  (o arquivo diz " . count( $declarantes ) . " declarante(s) de sobra em "
+	. count( $p_itens ) . " itens — numero de referencia, nao criterio)\n";
+
+/* O ESTADO EM QUE O BLOCO APARECE: o lado de quem declara. Sai do arquivo, nunca
+   escrito a mao — no dia em que outro produto declarar, a grade o alcanca. */
+$consulta_com = '';
+$esperado     = null;
+foreach ( $declarantes as $id => $m ) {
+	$lado_mm = (int) round( $m['geometria']['lado_anunciado_cm'] * 10 );
+	/* A SOBRA DA CONSULTA TEM DE SER DIFERENTE DA DECLARADA, e isto nao e detalhe:
+	   o estado "igual" e outra tela (coincidencia explicada, sem link de refazer).
+	   A primeira versao desta regua cravava `sobra=15` e reprovou na mutacao t05 da
+	   bateria, onde o segundo declarante pede justamente 15% — o teste cobrou um
+	   link na tela em que o link nao deve existir, por ter escolhido a entrada
+	   antes de olhar o dado. A entrada sai do dado, como tudo nesta secao. */
+	$pct_declarado = (int) round( $m['propriedades']['sobra_recomendada_pct']['valor'] );
+	$sobra_teste   = null;
+	foreach ( array( 15, 20, 10, 5, 0 ) as $op ) {
+		if ( $op !== $pct_declarado ) {
+			$sobra_teste = $op;
+			break;
+		}
+	}
+	$consulta_com = 'forma=cilindro&d=25&h=35&pastilha=p' . $lado_mm . '&junta=2&sobra='
+		. $sobra_teste . '&esp=4&rejunte=cimenticio';
+	$esperado     = f1_declara_sobra( $m );
+	$esperado['id'] = $id;
+	$esperado['nome_comercial'] = $m['nome_comercial'];
+	$esperado['nivel'] = f1_nivel_do_item( $m );
+	$esperado['lado_mm'] = $lado_mm;
+	break;
+}
+
+if ( ! $declarantes ) {
+	/* BANCO SEM NENHUM DECLARANTE — e um estado legitimo, e era o estado desta
+	   ilha antes de 30/09/2026. Aqui a cobranca inverte: o bloco NAO pode existir
+	   em nenhum dos lados do seletor, porque nao ha o que confrontar. */
+	$sobrou = array();
+	foreach ( array( 'p10', 'p15', 'p20', 'p25' ) as $t ) {
+		$c = f1_corpo( f1_render( $raiz, 'forma=cilindro&d=25&h=35&pastilha=' . $t . '&junta=2&sobra=15&esp=4&rejunte=cimenticio' ) );
+		if ( '' !== f1_bloco_marcado( $c, 'cdm-f1-sobra-declarada' ) ) {
+			$sobrou[] = $t;
+		}
+	}
+	f1_ok( ! $sobrou, 'sem declarante no banco, o bloco da sobra nao aparece em lado nenhum',
+		$sobrou ? implode( ', ', $sobrou ) : 'nenhum dos quatro lados' );
+	$bloco_tabela_zero = '';
+	preg_match( '#<table class="cdm-f1-tabela cdm-f1-tabela-pastilhas">.*?</table>#is', $corpo_ancora, $mtz );
+	$bloco_tabela_zero = isset( $mtz[0] ) ? $mtz[0] : '';
+	f1_ok( false !== mb_stripos( $bloco_tabela_zero, 'Sobra que ele pede' )
+		&& false !== mb_stripos( f1_texto( $corpo_ancora ), 'nenhum diz quanto comprar a mais' ),
+		'e a tabela mantem a coluna, dizendo que nenhum declara — a ausencia fica visivel' );
+} else {
+
+$corpo_sobra = f1_corpo( f1_render( $raiz, $consulta_com ) );
+$bloco_sobra = f1_bloco_marcado( $corpo_sobra, 'cdm-f1-sobra-declarada' );
+$texto_sobra = f1_texto( $bloco_sobra );
+
+f1_ok( '' !== $bloco_sobra, 'no lado de quem declara, o bloco da sobra existe e tem marcador proprio',
+	$consulta_com );
+f1_ok( false !== mb_strpos( $texto_sobra, (string) $esperado['literal_do_fabricante'] ),
+	'a linha DELE sai inteira e entre aspas, nunca a nossa parafrase' );
+f1_ok( false !== mb_strpos( $texto_sobra, (string) $esperado['como_a_tela_chama_quem_declarou'] ),
+	'a tela nomeia quem declarou, com o nome que o banco escreveu' );
+f1_ok( false !== mb_strpos( $texto_sobra, (string) $esperado['nome_comercial'] ),
+	'e nomeia o produto de que a declaracao e' );
+
+/* A 26.3 COM UM NUMERO DENTRO: quem declara aqui NAO e fabricante, e a frase nao
+   pode dizer que e. A regua mede a palavra no bloco, nao na pagina — na pagina
+   ela aparece dezenas de vezes por motivos legitimos. */
+if ( 'fabricante' !== $esperado['declarada_por'] ) {
+	f1_ok( false === mb_stripos( $texto_sobra, 'o fabricante pede' )
+		&& false === mb_stripos( $texto_sobra, 'o fabricante manda' )
+		&& false !== mb_stripos( $texto_sobra, 'não quem fabrica' ),
+		'declarante que nao e fabricante sai DITO que nao e (26.3)',
+		$esperado['declarada_por'] );
+} else {
+	/* QUANDO QUEM DECLARA E O FABRICANTE, a ressalva "nao quem fabrica" seria
+	   FALSA e nao pode sair. A primeira versao desta linha procurava a palavra
+	   `fabricante` no texto — e reprovou na mutacao t04 da bateria, porque o nome
+	   que a tela usa vem do banco e pode ser "a propria fabrica da pastilha", sem
+	   a palavra. Procurar palavra e a heuristica por vizinhanca que a secao 8
+	   proibe; o que se cobra e a ausencia da ressalva que nao se aplica. */
+	f1_ok( false === mb_stripos( $texto_sobra, 'não quem fabrica' ),
+		'declarante que E fabricante nao carrega a ressalva de que nao e (26.3)' );
+}
+
+/* A RESSALVA DO NIVEL, e ela e condicional ao teto — a regua recalcula o teto
+   aqui em vez de perguntar ao snippet. */
+if ( (int) $esperado['nivel'] > $p_teto ) {
+	f1_ok( false !== mb_stripos( $texto_sobra, 'não entra na nossa recomendação' )
+		&& false !== mb_strpos( $texto_sobra, (string) $esperado['nivel'] ),
+		'fonte acima do teto da escada sai como MENCAO COM RESSALVA, com o nivel escrito',
+		'nivel ' . $esperado['nivel'] . ' > teto ' . $p_teto );
+} else {
+	f1_ok( false === mb_stripos( $texto_sobra, 'não entra na nossa recomendação' ),
+		'fonte dentro do teto nao carrega ressalva que nao se aplica' );
+}
+
+/* O LINK QUE REFAZ A CONTA leva ao valor DELE e preserva o estado. Medido no
+   href, nao no texto: o texto pode dizer qualquer coisa. */
+$pct_dele  = (int) round( $esperado['valor'] );
+$lado_dele = (int) round( $esperado['lado_mm'] );
+preg_match( '#href="([^"]*sobra=' . $pct_dele . '[^"]*)"#', $bloco_sobra, $mlink );
+$href = isset( $mlink[1] ) ? html_entity_decode( $mlink[1], ENT_QUOTES ) : '';
+f1_ok( '' !== $href
+	&& false !== mb_strpos( $href, 'pastilha=p' . $lado_dele )
+	&& false !== mb_strpos( $href, 'd=25' )
+	&& false !== mb_strpos( $href, 'junta=2' ),
+	'o link de refazer a conta leva a sobra DELE e preserva o resto do estado',
+	'' !== $href ? $href : 'sem link com sobra=' . $pct_dele );
+
+/* QUANDO OS DOIS NUMEROS COINCIDEM, a tela fala da coincidencia. E o estado mais
+   perigoso dos dois: numeros iguais parecem um numero so, e o leitor conclui que
+   o nosso saiu do dele. */
+$consulta_igual = str_replace( 'sobra=' . $sobra_teste, 'sobra=' . $pct_dele, $consulta_com );
+$texto_igual    = f1_texto( f1_bloco_marcado( f1_corpo( f1_render( $raiz, $consulta_igual ) ), 'cdm-f1-sobra-declarada' ) );
+f1_ok( false !== mb_stripos( $texto_igual, 'mesmo número que você escolheu' )
+	&& false !== mb_stripos( $texto_igual, 'coincidência' )
+	&& false !== mb_stripos( $texto_igual, 'lote de cor' ),
+	'sobra escolhida IGUAL a declarada sai como coincidencia explicada, com as duas razoes' );
+f1_ok( false === mb_strpos( $texto_igual, 'Refazer a conta' ),
+	'e nesse estado o link de refazer a conta NAO aparece — ele nao levaria a lugar nenhum' );
+
+/* O ESTADO SEM DECLARANTE: lado que o banco tem e que ninguem declara. */
+/* O LADO SEM DECLARANTE E PROPRIEDADE DO LADO, NAO DO ITEM. A primeira versao
+   desta regua pegava o primeiro item que nao declara e usava o lado DELE — e
+   reprovou na mutacao t05 da bateria, que faz nascer um segundo declarante de
+   2,5 cm: o lado passou a ter declarante e a regua continuou chamando-o de lado
+   sem declarante, porque olhava um item e afirmava sobre quatro. */
+$lados_com_declarante = array();
+foreach ( $declarantes as $m ) {
+	$lados_com_declarante[ (int) round( $m['geometria']['lado_anunciado_cm'] * 10 ) ] = true;
+}
+$lado_sem = null;
+foreach ( array( 10, 15, 20, 25 ) as $l ) {
+	if ( isset( $lados_com_declarante[ $l ] ) ) {
+		continue;
+	}
+	foreach ( $p_itens as $m ) {
+		if ( (int) round( $m['geometria']['lado_anunciado_cm'] * 10 ) === $l ) {
+			$lado_sem = $l;
+			break 2;
+		}
+	}
+}
+if ( null !== $lado_sem ) {
+	$corpo_sem = f1_corpo( f1_render( $raiz, 'forma=cilindro&d=25&h=35&pastilha=p' . $lado_sem . '&junta=2&sobra=15&esp=4&rejunte=cimenticio' ) );
+	f1_ok( '' === f1_bloco_marcado( $corpo_sem, 'cdm-f1-sobra-declarada' ),
+		'no lado em que ninguem declara, o bloco NAO aparece — nada a confrontar',
+		'p' . $lado_sem );
+}
+
+/* A TABELA DOS TREZE: a coluna existe, a ausencia e VISIVEL e a contagem e
+   contada. Doze "nao publicada" nao e numero digitado: sai de count(). */
+$bloco_tabela = f1_bloco_marcado( $corpo_ancora, 'cdm-f1-tabela-pastilhas' );
+if ( '' === $bloco_tabela ) {
+	/* A tabela nao declara classe de secao propria: extrai pelo marcador da
+	   tabela, que ela TEM. Fronteira e marcador escrito, nunca titulo. */
+	preg_match( '#<table class="cdm-f1-tabela cdm-f1-tabela-pastilhas">.*?</table>#is', $corpo_ancora, $mt );
+	$bloco_tabela = isset( $mt[0] ) ? $mt[0] : '';
+}
+$sem_declarar = count( $p_itens ) - count( $declarantes );
+/* A CONTAGEM E DENTRO DA COLUNA, NUNCA NA TABELA INTEIRA — e a primeira versao
+   desta afirmacao reprovou por isso: contou 13 "nao publicada" onde o arquivo
+   diz 12, porque a coluna "A caixa" usa a MESMA frase para a mesma ausencia, e a
+   AF1500 e justamente um dos itens sem caixa publicada. E o mesmo erro de contar
+   `&#038;` na pagina inteira em vez de dentro do `<script>` (secao 8): o indice
+   da coluna sai do cabecalho da tabela, lido aqui, e nao de um numero digitado. */
+preg_match_all( '#<th[^>]*>(.*?)</th>#is', $bloco_tabela, $mth );
+$col_sobra = -1;
+foreach ( (array) $mth[1] as $i => $titulo ) {
+	if ( false !== mb_stripos( $titulo, 'Sobra que ele pede' ) ) {
+		$col_sobra = $i;
+	}
+}
+f1_ok( $col_sobra >= 0, 'a tabela dos treze tem a coluna da sobra, e a regua acha o indice dela',
+	'coluna ' . ( $col_sobra + 1 ) . ' de ' . count( $mth[1] ) );
+
+preg_match_all( '#<tr>(?:(?!</tbody>).)*?</tr>#is', $bloco_tabela, $mtr );
+$vazias_na_coluna = 0;
+$cheias_na_coluna = 0;
+foreach ( (array) $mtr[0] as $linha ) {
+	if ( ! preg_match_all( '#<td[^>]*>(.*?)</td>#is', $linha, $mtd ) || $col_sobra < 0 ) {
+		continue;
+	}
+	if ( ! isset( $mtd[1][ $col_sobra ] ) ) {
+		continue;
+	}
+	if ( false !== mb_stripos( $mtd[1][ $col_sobra ], 'não publicada' ) ) {
+		$vazias_na_coluna++;
+	} else {
+		$cheias_na_coluna++;
+	}
+}
+f1_ok( $sem_declarar === $vazias_na_coluna && count( $declarantes ) === $cheias_na_coluna,
+	'a coluna mostra a AUSENCIA item a item, e as duas contagens batem com o arquivo',
+	$vazias_na_coluna . ' sem + ' . $cheias_na_coluna . ' com, arquivo diz '
+		. $sem_declarar . ' + ' . count( $declarantes ) );
+
+/* E A CONTAGEM QUE A PAGINA ESCREVE EM PROSA tem de ser a mesma: numero de tela
+   nasce contado, e a frase da tabela e do FAQ publicam esse numero por extenso. */
+$texto_ancora_tudo = f1_texto( $corpo_ancora );
+f1_ok( false !== mb_strpos( $texto_ancora_tudo, 'de ' . count( $p_itens ) . ' produtos' )
+	|| false !== mb_strpos( $texto_ancora_tudo, 'Dos ' . count( $p_itens ) . ' produtos' ),
+	'a prosa da pagina cita o total do banco CONTADO', count( $p_itens ) . ' produtos' );
+
+/* O PADRAO DA FERRAMENTA E 10% E SAI DO `selected` DO SELETOR — a medicao que
+   derrubou a frase de "15% por padrao" escrita em dois lugares do repositorio. */
+preg_match( '#<select[^>]*name="sobra".*?</select>#s', $corpo_ancora, $msel );
+preg_match( '#<option value="(\d+)" selected#', isset( $msel[0] ) ? $msel[0] : '', $mpad );
+f1_ok( isset( $mpad[1] ) && 10 === (int) $mpad[1],
+	'o padrao servido da sobra e 10%, nao 15% — lido no selected do seletor',
+	isset( $mpad[1] ) ? $mpad[1] . '%' : 'sem selected' );
+
+/* E A RESPOSTA DO FAQ CARREGA A ATRIBUICAO DENTRO DELA (secao 5): a frase que um
+   modelo cita sozinho nao pode deixar a procedencia do lado de fora. */
+$faq_sobra = '';
+foreach ( cdm_f1_perguntas() as $pg ) {
+	if ( false !== mb_stripos( $pg['pergunta'], 'sobra' ) ) {
+		$faq_sobra = $pg['resposta'];
+	}
+}
+f1_ok( false !== mb_stripos( $faq_sobra, (string) $esperado['como_a_tela_chama_quem_declarou'] )
+	&& false !== mb_stripos( $faq_sobra, 'coincid' ),
+	'a resposta do FAQ sobre sobra nomeia quem declarou e explica a coincidencia' );
+f1_ok( false !== mb_stripos( f1_texto( $corpo_ancora ), (string) $faq_sobra ),
+	'e o texto da tela e o mesmo do FAQPage — uma funcao, nunca dois textos' );
+
+}   /* fim do ramo "o banco tem declarante" */
+
+/* A CAMADA DE PROVA NAO PODE MAIS DIZER QUE NENHUM DOCUMENTO FOI ABERTO. A regua
+   conta os marcadores `tipo_de_origem` nos DOIS bancos que esta pagina le,
+   escrita aqui, e cobra que a frase servida nao contradiga a contagem. */
+$abertos_regua = 0;
+foreach ( array( 'materiais-colas', 'materiais-rejuntes', 'materiais-pastilhas', 'materiais-alicates', 'materiais-acabamento' ) as $arq ) {
+	$b = json_decode( (string) file_get_contents( $raiz . '/dados/' . $arq . '.json' ), true );
+	foreach ( (array) $b['materiais'] as $m ) {
+		foreach ( (array) $m['fontes'] as $f ) {
+			if ( ! empty( $f['tipo_de_origem'] ) ) {
+				$abertos_regua++;
+			}
+		}
+	}
+}
+$prova_texto = f1_texto( preg_match( '#<div class="cdm-prova">.*?</div>#is', $corpo_ancora, $mpv ) ? $mpv[0] : '' );
+if ( $abertos_regua > 0 ) {
+	f1_ok( false === mb_stripos( $prova_texto, 'Nenhum documento de fabricante foi aberto' ),
+		'a camada de prova NAO afirma mais que nenhum documento foi aberto',
+		$abertos_regua . ' aberto(s) no banco' );
+	f1_ok( false !== mb_strpos( $prova_texto, (string) $abertos_regua ),
+		'e ela publica a contagem CONTADA de documentos abertos', (string) $abertos_regua );
+} else {
+	f1_ok( false !== mb_stripos( $prova_texto, 'nenhum foi aberto' ),
+		'sem documento aberto, a camada de prova diz isso com a conta contada' );
+}
+
+
+/* ---------------------------------------------------------------------------
  * 7. O que a pagina promete e nao entrega (secao 10: o silencio declarado)
  * ------------------------------------------------------------------------- */
 

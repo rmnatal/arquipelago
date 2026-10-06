@@ -1039,7 +1039,12 @@
           "valor": 10,
           "unidade": "%",
           "fonte_id": "pagina-produto-af1500",
-          "declarado_como": "comprar 10% a mais para cortes e ajustes na aplicacao"
+          "declarado_como": "comprar 10% a mais para cortes e ajustes na aplicacao",
+          "literal_do_fabricante": "Compre 10% a mais para cortes e ajustes na aplicação.",
+          "declarada_por": "distribuidor",
+          "como_a_tela_chama_quem_declarou": "a Pastilhart, que importa e distribui a marca",
+          "lido_em": "2026-10-06",
+          "o_que_a_execucao_de_06_10_2026_achou_neste_campo": "O campo ESTAVA AQUI desde 30/09/2026 (commit 66f99ef) e nenhuma tela o lia — nem a F1, que e a ferramenta que pergunta sobra ao visitante. Pior: nesta mesma data dois campos de prosa deste registro e o PROMPT.md da ilha escreveram que o numero \"nao foi gravado como propriedade de proposito\" e que `propriedades.sobra_declarada_pct` seria CAMPO NOVO. Quem seguisse a promessa ao pe da letra teria gravado a mesma declaracao duas vezes, uma delas vazia. O nome agora esta no esquema v13 (`regras_do_campo_sobra_declarada`) e o segundo nome e reprovado pelo validador. Os quatro subcampos de 06/10 — literal, `declarada_por`, o nome que a tela usa e `lido_em` — sao o que faltava para o numero poder ir a tela SEM virar declaracao de fabricante: quem pede os 10% e o distribuidor, em fonte nivel 5, acima do teto 3 da escada."
         }
       },
       "preparo": {
@@ -1051,7 +1056,7 @@
         "recorte_do_documento": "A secao \"DICAS PARA UMA INSTALACAO PERFEITA\" da pagina de produto, as quatro linhas, inteiras e na ordem.",
         "nossa_leitura": "Argamassa branca e rejunte flexivel; desempenadeira de borracha; retirar o excesso de rejunte entre 15 e 30 minutos.",
         "motivo_sem_literal": null,
-        "o_que_a_parafrase_perdia": "Duas coisas, e a segunda tem numero. (1) O MOTIVO da desempenadeira de borracha, que e dele: \"para evitar riscos\". (2) A linha \"Compre 10% a mais para cortes e ajustes na aplicacao\" desapareceu por inteiro — e ela e a UNICA sobra declarada por fabricante que esta ilha tem lida, num banco cuja F1 pergunta a sobra ao visitante e sugere 15%. Nao foi gravada como numero nesta execucao de proposito: `propriedades.sobra_declarada_pct` seria campo novo lido por ferramenta de calculo, e isso e bloco, nao linha. Fica aqui, na frase dele, onde a F1 pode ser confrontada com ela."
+        "o_que_a_parafrase_perdia": "Duas coisas, e a segunda tem numero. (1) O MOTIVO da desempenadeira de borracha, que e dele: \"para evitar riscos\". (2) A linha \"Compre 10% a mais para cortes e ajustes na aplicacao\" desapareceu por inteiro — e ela e a UNICA sobra declarada por vendedor que esta ilha tem lida. EM 06/10/2026 ELA VOLTOU A SER NUMERO NA TELA, e a frase que estava aqui antes errava DUAS coisas que a execucao seguinte mediu: dizia que a F1 \"sugere 15%\" (o padrao servido dela e 10%, lido no `selected` do seletor — o 15 era parametro de teste da ronda de 05/10) e dizia que o numero nao tinha sido gravado como propriedade \"de proposito\", quando `propriedades.sobra_recomendada_pct` carregava os 10% desde 30/09/2026. Ver `propriedades.sobra_recomendada_pct.o_que_a_execucao_de_06_10_2026_achou_neste_campo`."
       },
       "geometria": {
         "lado_anunciado_cm": 1.5,
@@ -1109,14 +1114,14 @@
             "por_que_este_campo_existe": "Para a declaracao nao ficar lida e descartada em silencio. Nenhum dos itens abaixo entrou em campo nenhum, e nenhum deles PODE entrar em recomendacao: a fonte e nivel 5 e o teto da escada e 3.",
             "codigo_do_distribuidor": "`Codigo: VIDRO-AF1500-BRONZE-OCRE`. NAO e `codigo_fabricante`: e codigo do distribuidor, e gravar um no campo do outro e a familia do batismo pela prateleira (26.1).",
             "base_da_placa": "`Base: Pode ser enviada em papel ou tela (nao interfere na qualidade do produto)`. O banco desta ilha nao modela o verso da placa, e para quem monta mosaico a diferenca entre papel e tela muda a ordem de montagem. Fica medido.",
-            "sobra_sugerida_de_10_por_cento": "`Compre 10% a mais para cortes e ajustes na aplicacao`. A F1 desta ilha trabalha com sobra de 15% por padrao. NAO e divergencia a resolver: 15% e parametro de entrada da ferramenta, escolhido pela ilha, e 10% e sugestao de um distribuidor em nivel 5. Fica escrito para quem for mexer no padrao da F1 saber que existe um numero de terceiro, e de onde ele vem.",
+            "sobra_sugerida_de_10_por_cento": "`Compre 10% a mais para cortes e ajustes na aplicacao`. ESTE CAMPO EXISTE DESDE 30/09/2026 e passou a ser SERVIDO em 06/10/2026, pela F1 1.6.0, como confronto: citado, atribuido a quem o escreveu e com a ressalva do nivel 5. A frase que estava aqui dizia que \"a F1 desta ilha trabalha com sobra de 15% por padrao\" e isso era FALSO — o padrao dela e 10%, medido no `selected` do seletor servido; o 15 vinha de um parametro de teste. A metade que continua certa e a que importa: 10% da ilha e 10% dele sao DOIS numeros, por razoes diferentes (lote de cor contra corte e ajuste), e a tela diz isso quando eles coincidem.",
             "recomendacao_de_argamassa_e_rejunte": "`Utilize argamassa branca e rejunte flexivel de boa qualidade`. E declaracao sobre o que colar pastilha de vidro COM — exatamente o que a F2 decide — e NAO pode virar recomendacao: nivel 5. Mencao com ressalva e o maximo que a escada permite.",
             "preco_e_estoque": "`R$ 71,89` riscado, `R$ 49,00` a vista, `Disponibilidade: Imediata`, `Estoque: 30 unidades`, lido em 05/10/2026. E o PRIMEIRO preco que esta ilha ja viu numa fonte alcancavel — `dados/cotacoes.json` nao existe, e o laudo do validar-banco.py diz isso em toda passada. Nao foi criado aqui porque criar o arquivo de cotacoes e decidir o formato, a validade do preco e como a tela mostra preco datado, e a secao 7 e dura nisso: preco nunca entra em criterio de ordem. E bloco, nao linha."
           },
           "o_que_a_abertura_de_06_10_mudou": {
             "por_que_foi_reaberta_um_dia_depois": "A reabertura de 05/10 conferiu as cinco declaracoes de ambiente e os tres numeros de geometria e nao olhou o `preparo`, que ja estava gravado como parafrase desde 12/09. Esta leitura foi so para ele.",
             "o_que_a_leitura_trouxe": "A secao \"DICAS PARA UMA INSTALACAO PERFEITA\", as quatro linhas, agora em `preparo.literal_do_fabricante`.",
-            "a_linha_QUE_A_PARAFRASE_TINHA_APAGADO_e_ela_tem_numero": "\"Compre 10% a mais para cortes e ajustes na aplicacao.\" E a UNICA sobra declarada por fabricante que esta ilha tem lida, e a F1 pergunta a sobra ao visitante sugerindo 15%. Nao foi gravada como propriedade nesta execucao de proposito: `sobra_declarada_pct` seria campo novo lido por ferramenta de calculo, e isso e bloco. Fica na frase dele, na tela, onde a F1 pode ser confrontada com ela."
+            "a_linha_QUE_A_PARAFRASE_TINHA_APAGADO_e_ela_tem_numero": "\"Compre 10% a mais para cortes e ajustes na aplicacao.\" E a UNICA sobra declarada por vendedor que esta ilha tem lida. A frase anterior dizia que a F1 \"pergunta a sobra ao visitante sugerindo 15%\" e que o numero nao tinha sido gravado como propriedade — as duas metades erradas, e as duas corrigidas em 06/10/2026 depois de medir: o padrao servido e 10% e o campo `propriedades.sobra_recomendada_pct` existia desde 30/09. O que o dia 06/10 fez foi dar ao campo os subcampos que faltavam para ele poder ir a tela com a atribuicao certa, e fazer a F1 le-lo."
           }
         },
         "pagina-sobre-pastilhart": {
