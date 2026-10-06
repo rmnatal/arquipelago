@@ -132,6 +132,13 @@ dando verde. Corrigido para o que o WordPress faz — a URL atual com os parâme
 | `mutacoes-sobra.py` | — | **13 de forma** (13 só pelo portão novo) + **5 de tela** + 3 falsos positivos em 0 |
 | `validar-banco.py` | OK | **OK**, com a linha nova: 1 registro com sobra em forma de ir à tela, declarada por `distribuidor` |
 
+**AS BATERIAS DE MUTAÇÃO IRMÃS, reconferidas depois do desembarque — e a reapontada é a que importa:**
+`mutacoes-f1` **47 de 47 reprovadas, 0 passaram, nenhuma inerte** (na primeira passada, antes do reapontamento,
+ela **abortou** na mutação inerte); `mutacoes-pastilhas` **14 de 14** (é o banco que este bloco editou);
+`mutacoes-preparo` **16 de 16**, 12 só pelo portão novo, com os 3 estados legítimos passando (é o esquema que
+este bloco editou). As dez restantes, de `mutacoes-f2` em diante, ficaram rodando em sequência depois do fecho e
+**não estão medidas aqui** — nenhuma delas toca código que este bloco mudou, e quem vier confere.
+
 **As onze baterias irmãs reconferidas depois do bloco:** f2 145/145, casca 744/744, guia 110/110,
 técnicas 140/140, loja 208/208, leads 211/211, prestação-rejunte 5/5 sobre 540 estados da F2 e 180 da
 F1, ateliê APROVADO, batismo 62/62, casamento 42/42. `validar-banco` OK.
