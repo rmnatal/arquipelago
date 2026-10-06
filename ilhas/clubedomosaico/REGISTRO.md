@@ -209,6 +209,48 @@ frase própria citando o literal de `ambientes_declarados`, matriz da F2 reescri
 bateria —, e sai inteiro numa execução só. Está nomeado na fila do `PROMPT.md` como o próximo, e a célula
 `cimento_concreto` × `contato_permanente_agua` do esquema já carrega a frase que o aponta.
 
+## A VARREDURA DAS IRMÃS DEPOIS DO DESEMBARQUE, E ELA ACHOU DUAS MUTAÇÕES INERTES
+
+**A `mutacoes-f2.py` fechou VERMELHA na primeira passada, e não por defeito do código: por DUAS mutações
+INERTES**, as duas apontando para linhas que este bloco mudou.
+
+- `silencio do fabricante vira 'pode'` — a condição da regra 2 ganhou a segunda metade
+  (`&& ! isset( $p['bases_indicadas_so_em'][ $base ] )`), pela REGRA 8, e a âncora velha deixou de existir.
+- `a saida 'troque o caquinho' volta a ser digitada` — a linha alvo passou a ler
+  `cdm_f2_proibe_grupos_de_peca( $m )` em vez de `$grupos`, que é exatamente o conserto do defeito que
+  este bloco achou no ar.
+
+**É o corolário que a seção 8 escreve e que a execução de 17h45Z já tinha pago na `mutacoes-f1`:
+mutação que não morde é teste verde com outro nome.** As duas foram reapontadas com o motivo escrito ao
+lado, e a primeira teve o alvo ampliado para a condição INTEIRA de propósito — trocar só a primeira
+metade deixaria a regra 2 de pé pela segunda, e a mutação mediria meia regra. O `if ( false )` não toca a
+regra 8, que fica acima daquela linha e tem mutação própria em `ferramentas/mutacoes-par.py`.
+
+**A bancada DESTE bloco, toda verde e toda rodada:** `validar-banco` (45 celulas da F2, 9 do rejunte, 54
+pares da regra 6, 18 da regra 7, **1 par qualificado e 5 ancoras da regra 8**), `teste-f2` de 145 para
+**149** afirmacoes, `mutacoes-par` **17 de 17** de forma com 13 so pelo portao novo + **5 de 5** de tela +
+**4 de 4** falsos positivos, e `mutacoes-f2` **71 de 71** depois da reapontada. As oito bancadas PHP
+irmas reconferidas e verdes: casca 744, guia 110, tecnicas 139, loja 208, leads 211, f1 228,
+prestacao-rejunte 5 sobre 540+180 estados, atelie APROVADO.
+
+**E A TECNICAS CAIU DE 140 PARA 139 AFIRMACOES, o que parece perda de cobertura e nao e — medido, nao
+suposto.** Rodei a bancada no `HEAD` anterior, num worktree, para comparar linha a linha: a afirmacao que
+desapareceu e `a recusa de quartzolit-cimentcola-externo-acii nomeia TODAS as causas que o calculo
+separou`, na pagina do **Picassiete**. Ela e por produto RECUSADO, e a argamassa deixou de ser recusada
+ali: a pagina passou de 5 para **6 cartoes** de cola e de 9 para **11** links que rendem comissao. Na
+pagina do Trencadis ela continua recusada e a afirmacao continua, agora nomeando DUAS causas em vez de
+uma (`silencio 36, peca 5`). **A entrega alcancou duas paginas que nao eram o alvo do bloco.**
+
+**AS 24 BATERIAS DE MUTACAO RESTANTES NAO FORAM RODADAS NESTA EXECUCAO, e ficam nomeadas em vez de
+resumidas:** cobertura, tecnica-x-material, tecnicas, tecnicas-pagina, guia, pastilhas, apoio, base,
+rejunte, acabamento, degrau, forma-do-degrau, motivo-degrau-4, batismo, casamento, f1, arvore,
+voz-e-cabeca, promessa-do-titulo, divulgacao, prestacao, loja, leads, atelie e ga4. Elas somam ~380
+mutacoes e varias rodam bancada que renderiza uma pagina por estado; a varredura inteira e coisa de horas.
+**Escrever `CATORZE DE CATORZE` aqui sem as ter rodado seria a afirmacao em bloco com escopo maior do que
+o medido — o defeito que esta ilha paga mais vezes.** O que elas cobrem e regressao de blocos ANTERIORES;
+a regra que este bloco mexeu (a 2, a 7 e a ordem entre elas) esta coberta pela `mutacoes-f2`, que rodou e
+fechou 71 de 71.
+
 ## O PRÓXIMO BLOCO, E ELE É UM DEFEITO QUE ESTE BLOCO ACHOU NO AR, NÃO UMA IDEIA
 
 **A REGRA 3 MANDA PARA O BALDE DO SILÊNCIO QUEM O FABRICANTE DECLARA, E A PÁGINA DIZ QUE ELE NÃO FALA.**
