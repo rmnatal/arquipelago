@@ -1,5 +1,26 @@
 /**
  * Clube do Mosaico F2 — Qual cola usar no mosaico, e qual rejunte
+ * Versão 1.8.0 (06/10/2026) — a REGRA 7 nasce, e ela entra consertando um
+ * defeito que esta página servia desde 11/09: o Tekbond Silicone Acético
+ * Construção aparecia no TOPO da recomendação para quem respondeu CACO DE
+ * ESPELHO sobre cerâmica, e a Tekbond escreve "espelhos" na lista do que este
+ * produto não deve tocar desde o dia em que o registro entrou no banco. A frase
+ * era lida como BASE e só como base: na base "espelho" o produto saía proibido,
+ * com o espelho no caquinho ele saía recomendado. O ácido acético da cura ataca
+ * a prata e a pintura de proteção do espelho — e é por isso que a MESMA Tekbond
+ * vende um silicone NEUTRO declarando "espelhos" entre os usos dele. A regra 7
+ * é a segunda a olhar o caquinho (a 6 foi a primeira) e a primeira a eliminá-lo
+ * por proibição declarada: a frase é do fabricante, a lista de quais caquinhos
+ * do nosso vocabulário caem nela é NOSSA, e a tela diz as duas coisas em
+ * orações separadas (seção 26.3). Ela roda ANTES da regra 6, porque proibição é
+ * afirmação mais forte que condição não cumprida.
+ * (O 1.6.0 e o 1.7.0 NÃO têm entrada aqui, e isso é defeito desta lista, não
+ * salto de numeração: o 1.6.0 entrou em `4240501` — dez materiais saindo do
+ * piso da 25.2 — e o 1.7.0 em `8dc288e` — a marca cedendo o lugar ao número no
+ * `<title>`. Nos dois a constante `CDM_F2_VERSAO` subiu e este changelog não.
+ * O portão de `atualizar-manifest.py` compara o manifest com a CONSTANTE, não
+ * com este cabeçalho, então esta metade envelheceu calada — a mesma família da
+ * cicatriz que aquele arquivo carrega no próprio cabeçalho.)
  * Versão 1.5.0 (14/09/2026) — A FRASE PROIBIDA SAI DA ILHA, E O QUE FALTAVA NÃO
  * ERA DECISÃO: ERA A TELA LER O CAMPO. A seção 7 do contrato passou a proibir
  * "link de loja em breve" em 14/09/2026, e esta ilha ainda a servia em 15 dos 25
@@ -100,7 +121,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.7.0' );
+	define( 'CDM_F2_VERSAO', '1.8.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -390,6 +411,115 @@ function cdm_f2_porosas() {
 }
 }
 
+if ( ! function_exists( 'cdm_f2_grupos_de_peca' ) ) {
+/**
+ * A classificação de quais caquinhos caem em cada GRUPO DE PEÇA proibido.
+ *
+ * Irmã de `cdm_f2_porosas()` e escrita pelo mesmo motivo (seção 26.2: a lista
+ * mora no esquema, nunca dentro da régua), com UMA diferença que é o oposto de
+ * um detalhe: aqui a lista decide quem PERDE a recomendação. Então, quando ela
+ * falta, a direção segura é a contrária — `cdm_f2_peca_proibida()` passa a
+ * eliminar o produto em TODO caquinho, em vez de em nenhum. Nos dois casos a
+ * ilha prefere deixar de indicar a indicar sem conferir.
+ */
+function cdm_f2_grupos_de_peca() {
+	static $cache = null;
+	if ( null !== $cache ) {
+		return $cache;
+	}
+	$banco  = cdm_f2_banco();
+	$raiz   = isset( $banco['esquema']['grupos_de_tessela_proibidos'] )
+		? $banco['esquema']['grupos_de_tessela_proibidos'] : array();
+	$grupos = isset( $raiz['grupos'] ) ? (array) $raiz['grupos'] : array();
+	$mapa   = array();
+	foreach ( $grupos as $chave => $g ) {
+		if ( empty( $g['tesselas_no_grupo'] ) ) {
+			continue;
+		}
+		$mapa[ $chave ] = array(
+			'tesselas' => array_flip( (array) $g['tesselas_no_grupo'] ),
+			'literal'  => isset( $g['literal_que_o_origina'] ) ? $g['literal_que_o_origina'] : '',
+		);
+	}
+	$cache = array( 'grupos' => $mapa, 'existe' => ! empty( $mapa ) );
+
+	return $cache;
+}
+}
+
+if ( ! function_exists( 'cdm_f2_grupos_de_peca_conhecidos' ) ) {
+/** A ilha ainda sabe classificar caquinho em grupo de peça? */
+function cdm_f2_grupos_de_peca_conhecidos() {
+	$g = cdm_f2_grupos_de_peca();
+
+	return ! empty( $g['existe'] );
+}
+}
+
+if ( ! function_exists( 'cdm_f2_proibe_grupos_de_peca' ) ) {
+/** Os grupos de peça que ESTE produto proíbe, pela declaração dele. */
+function cdm_f2_proibe_grupos_de_peca( $m ) {
+	$c = isset( $m['condicoes']['proibe_grupos_de_tessela'] )
+		? $m['condicoes']['proibe_grupos_de_tessela'] : array();
+
+	return isset( $c['valor'] ) ? (array) $c['valor'] : array();
+}
+}
+
+if ( ! function_exists( 'cdm_f2_peca_proibida' ) ) {
+/**
+ * Os grupos declarados por este produto em que ESTE caquinho cai.
+ *
+ * Devolve a lista, e não um booleano, porque a tela cita a frase do grupo que
+ * mordeu — dizer "o fabricante proíbe" sem mostrar onde é a metade da frase que
+ * a seção 15.2 não aceita.
+ */
+function cdm_f2_peca_proibida( $m, $tessela ) {
+	$declarados = cdm_f2_proibe_grupos_de_peca( $m );
+	if ( ! $declarados ) {
+		return array();
+	}
+	if ( ! cdm_f2_grupos_de_peca_conhecidos() ) {
+		return $declarados;
+	}
+	$mapa  = cdm_f2_grupos_de_peca();
+	$morde = array();
+	foreach ( $declarados as $g ) {
+		if ( ! isset( $mapa['grupos'][ $g ] ) || isset( $mapa['grupos'][ $g ]['tesselas'][ $tessela ] ) ) {
+			$morde[] = $g;
+		}
+	}
+
+	return $morde;
+}
+}
+
+if ( ! function_exists( 'cdm_f2_caquinhos_fora_dos_grupos' ) ) {
+/**
+ * Os caquinhos do vocabulário que NENHUM dos grupos dados alcança — o "troque
+ * por isto e ele volta a servir" da regra 7. Contado do esquema, nunca digitado.
+ */
+function cdm_f2_caquinhos_fora_dos_grupos( $grupos ) {
+	$banco = cdm_f2_banco();
+	$rot   = cdm_f2_rotulos();
+	$mapa  = cdm_f2_grupos_de_peca();
+	$nomes = array();
+	foreach ( (array) $banco['esquema']['vocabularios']['material_tessela'] as $t ) {
+		$dentro = false;
+		foreach ( (array) $grupos as $g ) {
+			if ( isset( $mapa['grupos'][ $g ]['tesselas'][ $t ] ) ) {
+				$dentro = true;
+			}
+		}
+		if ( ! $dentro && isset( $rot['tessela'][ $t ] ) ) {
+			$nomes[] = mb_strtolower( $rot['tessela'][ $t ], 'UTF-8' );
+		}
+	}
+
+	return cdm_f2_lista_humana( $nomes );
+}
+}
+
 if ( ! function_exists( 'cdm_f2_exige_porosa' ) ) {
 /** O fabricante declarou, para ESTE produto, que uma das superfícies tem de ser porosa. */
 function cdm_f2_exige_porosa( $m ) {
@@ -490,12 +620,24 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 	$proibidos    = array();
 	$silencio     = array();
 	$condicao     = array();
+	$peca         = array();
 
 	foreach ( $banco['materiais'] as $id => $m ) {
 		if ( 'cola' !== ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
 			continue;
 		}
 		list( $situacao, $score ) = cdm_f2_avaliar_cola( $m, $base, $ambiente );
+		/* A REGRA 7 ANTES DA 6, e a ordem está escrita no esquema: proibição é
+		   afirmação mais forte que condição não cumprida — a mesma hierarquia da
+		   regra 1. Quem caísse nas duas tem de sair pela proibição, com as
+		   palavras dela: a elegibilidade seria igual nas duas ordens e a frase
+		   que o leitor recebe, não. */
+		if ( null !== $tessela
+			&& ( 'recomendado' === $situacao || 'ressalva' === $situacao )
+			&& cdm_f2_peca_proibida( $m, $tessela ) ) {
+			$peca[] = $id;
+			continue;
+		}
 		if ( null !== $tessela
 			&& ( 'recomendado' === $situacao || 'ressalva' === $situacao )
 			&& cdm_f2_exige_porosa( $m )
@@ -532,14 +674,16 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 	sort( $proibidos );
 	sort( $silencio );
 	sort( $condicao );
+	sort( $peca );
 
 	return array(
-		'recomendados_topo'        => $topo,
-		'elegiveis_abaixo_do_topo' => $abaixo,
-		'mencionados_com_ressalva' => $ressalva,
-		'eliminados_por_proibicao' => $proibidos,
-		'eliminados_por_silencio'  => $silencio,
-		'eliminados_por_condicao'  => $condicao,
+		'recomendados_topo'             => $topo,
+		'elegiveis_abaixo_do_topo'      => $abaixo,
+		'mencionados_com_ressalva'      => $ressalva,
+		'eliminados_por_proibicao'      => $proibidos,
+		'eliminados_por_silencio'       => $silencio,
+		'eliminados_por_condicao'       => $condicao,
+		'eliminados_por_proibicao_da_peca' => $peca,
 	);
 }
 }
@@ -1097,6 +1241,25 @@ function cdm_f2_resposta_cola_html( $base, $ambiente, $tessela ) {
 			. esc_html( $na ) . '</strong>, use <strong>' . esc_html( cdm_f2_lista_humana( $nomes ) ) . '</strong>'
 			. ( $quantos > 1 ? ' — os ' . ( 2 === $quantos ? 'dois' : $quantos ) . ' servem aqui, e a gente não escolhe por você o que o fabricante não separou.' : '.' )
 			. '</p>';
+	} elseif ( $celula['eliminados_por_proibicao_da_peca'] ) {
+		/* A SEXTA CAUSA, e ela precisou de frase própria pelo mesmo motivo que a
+		   quarta: não é nenhuma das cinco anteriores. Não é silêncio (o
+		   fabricante falou), não é condição (ele não pôs exigência: ele proibiu)
+		   e não é a proibição de base, que fala de onde a peça fica, não do que
+		   se cola. E é a única das seis que não tem conserto trocando o
+		   ambiente: só trocando o caquinho — e é isso que a frase diz. */
+		$nomes = array();
+		foreach ( $celula['eliminados_por_proibicao_da_peca'] as $id ) {
+			$nomes[] = cdm_f2_nome( $id );
+		}
+		$quantos = count( $nomes );
+		$html   .= '<p class="cdm-f2-frase cdm-f2-faixa">Não dá para indicar cola aqui com esse '
+			. 'caquinho, e o motivo não é falta de declaração: <strong>'
+			. esc_html( cdm_f2_lista_humana( $nomes ) ) . '</strong> '
+			. ( 1 === $quantos ? 'é declarado' : 'são declarados' ) . ' pelo fabricante para <strong>'
+			. esc_html( $nb ) . '</strong>, e o mesmo fabricante escreve que não se usa '
+			. ( 1 === $quantos ? 'esse produto' : 'esses produtos' ) . ' no que você vai colar. '
+			. 'Logo abaixo está a frase dele, e com que caquinho a resposta mudaria.</p>';
 	} elseif ( $celula['eliminados_por_condicao'] ) {
 		/* A RECUSA NOMEIA A CAUSA QUE A PÁGINA MEDIU (seção 7 do ARQUIPELAGO.md).
 		   A frase antiga dizia "nenhum dos adesivos do nosso banco é declarado
@@ -1294,7 +1457,8 @@ function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
 	$banco  = cdm_f2_banco();
 
 	if ( ! $celula['eliminados_por_proibicao'] && ! $celula['eliminados_por_silencio']
-		&& ! $celula['mencionados_com_ressalva'] && ! $celula['eliminados_por_condicao'] ) {
+		&& ! $celula['mencionados_com_ressalva'] && ! $celula['eliminados_por_condicao']
+		&& ! $celula['eliminados_por_proibicao_da_peca'] ) {
 		return '';
 	}
 
@@ -1375,6 +1539,47 @@ function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
 				. '</em> nem <em>' . esc_html( mb_strtolower( $rot['tessela'][ $tessela ], 'UTF-8' ) )
 				. '</em> absorvem água. Essa última parte é classificação nossa, não dela. '
 				. 'Trocando por ' . esc_html( cdm_f2_caquinhos_porosos_lista() ) . ', ele voltaria a servir.</p>';
+		}
+	}
+
+	/* O GRUPO DA PROIBIÇÃO DE PEÇA — sexta causa, e a atribuição sai dividida ao
+	   meio, igual à da regra 6 (seção 26.3). O fabricante declarou a PROIBIÇÃO —
+	   "espelhos" — e não declarou QUAIS caquinhos do nosso vocabulário são
+	   espelho: classificar o caco de espelho dentro dessa palavra é leitura
+	   nossa. Escrever "a Tekbond declara que caco de espelho é espelho" seria
+	   emprestar a autoridade dela para uma frase nossa — e aqui a tentação é
+	   maior que na regra 6, porque a nossa leitura parece óbvia. */
+	if ( $celula['eliminados_por_proibicao_da_peca'] ) {
+		foreach ( $celula['eliminados_por_proibicao_da_peca'] as $id ) {
+			$m      = $banco['materiais'][ $id ];
+			$grupos = cdm_f2_peca_proibida( $m, $tessela );
+			if ( ! cdm_f2_grupos_de_peca_conhecidos() ) {
+				/* A classificação sumiu do esquema. A direção segura é não
+				   recomendar, e a frase honesta é dizer o que aconteceu. */
+				$html .= '<p class="cdm-f2-peca-fora"><strong>' . esc_html( cdm_f2_nome( $id ) )
+					. '</strong> — a ' . esc_html( $m['fabricante'] ) . ' proíbe este produto em '
+					. 'certo tipo de peça e a nossa classificação de caquinhos não está '
+					. 'disponível agora, então ele fica de fora. Preferimos deixar de indicar '
+					. 'a indicar sem conferir.</p>';
+				continue;
+			}
+			$literais = array();
+			foreach ( $grupos as $g ) {
+				if ( isset( $m['condicoes']['proibe_grupos_de_tessela']['literais'][ $g ] ) ) {
+					$literais[] = $m['condicoes']['proibe_grupos_de_tessela']['literais'][ $g ];
+				}
+			}
+			$sobram = cdm_f2_caquinhos_fora_dos_grupos( $grupos );
+			$html  .= '<p class="cdm-f2-peca-fora"><strong>' . esc_html( cdm_f2_nome( $id ) )
+				. '</strong> — não é falta de declaração e não é o lugar da peça: a '
+				. esc_html( $m['fabricante'] ) . ' escreve <em>'
+				. esc_html( cdm_f2_lista_humana( $literais ) ) . '</em>, e quem diz que <em>'
+				. esc_html( mb_strtolower( $rot['tessela'][ $tessela ], 'UTF-8' ) ) . '</em> entra '
+				. 'nessa frase somos nós, não ela. Aqui não dá para trocar o lugar da peça: '
+				. ( '' !== $sobram
+					? 'o que muda a resposta é o caquinho, e com ' . esc_html( $sobram ) . ' ele voltaria a servir.'
+					: 'nenhum caquinho do nosso vocabulário escapa dessa frase.' )
+				. '</p>';
 		}
 	}
 
@@ -1900,6 +2105,36 @@ function cdm_f2_tabela_cola_html() {
 			if ( cdm_f2_exige_porosa( $m ) ) {
 				$cond[] = cdm_f2_nome( $id ) . ': ' . $m['condicoes']['exige_superficie_porosa']['literal'];
 			}
+			/* A MESMA ARITMÉTICA DA COLUNA, agora para a regra 7 — e aqui ela
+			   morde de verdade: esta tabela é a camada de DECLARAÇÃO e não tem o
+			   caquinho, então a linha "cerâmica, no sol e na chuva: use Tekbond
+			   Silicone Acético Construção" era servida no HTML como se valesse
+			   sempre, e ela não vale com caco de espelho. É a metade da página
+			   que se lê sem preencher formulário, e é onde a afirmação sem
+			   escopo custa mais caro. */
+			$grupos_do_m = cdm_f2_proibe_grupos_de_peca( $m );
+			if ( $grupos_do_m ) {
+				$mapa_g   = cdm_f2_grupos_de_peca();
+				$caquinhos = array();
+				foreach ( $grupos_do_m as $g ) {
+					foreach ( array_keys( isset( $mapa_g['grupos'][ $g ]['tesselas'] ) ? $mapa_g['grupos'][ $g ]['tesselas'] : array() ) as $tq ) {
+						if ( isset( $rot['tessela'][ $tq ] ) ) {
+							$caquinhos[ $tq ] = mb_strtolower( $rot['tessela'][ $tq ], 'UTF-8' );
+						}
+					}
+				}
+				$lits = array();
+				foreach ( $grupos_do_m as $g ) {
+					if ( isset( $m['condicoes']['proibe_grupos_de_tessela']['literais'][ $g ] ) ) {
+						$lits[] = $m['condicoes']['proibe_grupos_de_tessela']['literais'][ $g ];
+					}
+				}
+				if ( $caquinhos ) {
+					$cond[] = cdm_f2_nome( $id ) . ': não com ' . cdm_f2_lista_humana( array_values( $caquinhos ) )
+						. ' — o fabricante escreve "' . cdm_f2_lista_humana( $lits )
+						. '", e a classificação do caquinho é nossa';
+				}
+			}
 		}
 
 		$html .= '<tr>';
@@ -2399,6 +2634,7 @@ add_action( 'wp_footer', function () {
 .cdm-f2-lista-fora li{margin:0 0 .5rem;}
 .cdm-f2-silencio,.cdm-f2-ressalva{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
 .cdm-f2-condicao-fora{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
+.cdm-f2-peca-fora{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
 /* A condicao de quem FICOU na recomendacao nao e nota de rodape: ela e parte da
    resposta, entao fica no corpo e nao na cor de legenda. Sem sombra e sem
    gradiente (secao 6), separada por linha de 1px como o resto da ilha. */

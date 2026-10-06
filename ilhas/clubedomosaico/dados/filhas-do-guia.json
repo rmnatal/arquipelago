@@ -10,7 +10,7 @@
  "a_pergunta": "quais filhas de nivel 3 do Guia passam HOJE o portao da secao 9 — 3 itens de banco reais E um numero calculado proprio — e, para as que nao passam, qual das duas metades falta",
  "minimo_exigido_pela_secao_9": 3,
  "nivel_maximo_de_fonte_lido_do_esquema": 3,
- "versao_do_esquema_lida": 10,
+ "versao_do_esquema_lida": 11,
  "o_que_conta_como_numero_calculavel": "propriedade com valor nao nulo e fonte de nivel <= 3 declarada por pelo menos 3 itens DO MESMO recorte. Propriedade que so um item declara nao e numero da pagina: e numero de um produto, e a pagina que a publicasse compararia um item com dois silencios.",
  "o_que_este_arquivo_mede_e_o_que_ele_NAO_alcanca": "Ele mede os recortes que o VOCABULARIO nomeia — categoria inteira e cada tipo de `tipo_por_categoria`. Filha de nivel 3 tambem pode ter forma de PERGUNTA em vez de forma de tipo, e as duas que esta ilha ja publicou sao assim: a F2 ('qual cola usar no mosaico') e a F1 ('quantas pastilhas'). Uma pergunta atravessa tipos e pode reunir 3 itens onde nenhum tipo sozinho reune. Portanto este arquivo e um PISO do que pode nascer hoje, nunca um teto — e um `nao_passa` aqui nao proibe a pergunta, proibe o tipo. Quem escrever a pergunta conta os 3 itens dela pela mesma regua, e a regua esta nesta ferramenta para ser chamada em vez de reescrita.",
  "o_que_este_arquivo_NAO_decide": [

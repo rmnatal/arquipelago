@@ -5,7 +5,7 @@ Nao edite este trecho a mao: `--conferir` regera e compara, e uma edicao manual 
 portao. O que se escreve a mao esta depois da fronteira, no fim do arquivo.
 
 Minimo da secao 9: **3** itens. Nivel maximo de fonte para recomendacao primaria, lido do
-esquema (versao 10): **3**.
+esquema (versao 11): **3**.
 
 ## O numero que manda
 

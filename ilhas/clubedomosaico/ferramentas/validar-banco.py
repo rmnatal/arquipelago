@@ -1595,6 +1595,89 @@ if POROSAS:
                  "classificacao" % nome_lista)
 
 
+# ---------------------------- REGRA 7: a proibicao declarada sobre a PECA colada
+#
+# 06/10/2026. Irma da regra 6 e escrita pelo mesmo molde — a lista mora no esquema, a
+# classificacao e NOSSA e a tela nao pode atribui-la ao fabricante (26.2 e 26.3) —, mas
+# a direcao e OPOSTA, e isso muda a trava: la a lista decide quem GANHA recomendacao, e
+# perder a lista tem de reprovar TODO produto com condicao; aqui a lista decide quem
+# PERDE, e perder a lista tem de tirar TODO produto que declara grupo, de TODO caquinho.
+# Nos dois casos a direcao segura e a mesma — nao recomendar —, e e por isso que as duas
+# travas sao escritas ao contrario uma da outra.
+#
+# Ela nasceu de um defeito que estava NO AR, e nao da argamassa que a pediu: o Tekbond
+# Silicone Acetico Construcao escreve `espelhos` na lista do que ele nao deve tocar, e
+# essa frase era lida como BASE e so como base. Na base `espelho` o produto saia
+# proibido; com caco de espelho sobre ceramica ele saia no TOPO da recomendacao.
+
+GRUPOS_PECA = esquema.get("grupos_de_tessela_proibidos")
+if not GRUPOS_PECA:
+    erro("esquema sem `grupos_de_tessela_proibidos`: a regra 7 nao tem de onde ler a "
+         "classificacao, e sem esta trava ela aprovaria tudo em silencio (secao 26.2)")
+    GRUPOS_PECA = {}
+
+GRUPOS = GRUPOS_PECA.get("grupos") or {}
+if GRUPOS_PECA and not GRUPOS:
+    erro("grupos_de_tessela_proibidos sem `grupos`: a chave existe e esta vazia, que e a "
+         "mesma coisa que nao existir com a aparencia de existir")
+
+DENTRO_DO_GRUPO = {}
+for _g, _d in sorted(GRUPOS.items()):
+    _dentro = list((_d or {}).get("tesselas_no_grupo") or [])
+    _fora = list((_d or {}).get("tesselas_fora_do_grupo") or [])
+    DENTRO_DO_GRUPO[_g] = set(_dentro)
+    # cobertura nas DUAS direcoes, igual a regra 6: caquinho sem classificacao seria
+    # decidido por omissao — e aqui a omissao DEIXA PASSAR, que e a direcao caro.
+    if set(_dentro) | set(_fora) != set(TESSELAS):
+        erro("grupo `%s`: a classificacao de caquinho nao cobre o vocabulario "
+             "(faltam %s; sobram %s)"
+             % (_g, sorted(set(TESSELAS) - set(_dentro) - set(_fora)) or "nenhum",
+                sorted((set(_dentro) | set(_fora)) - set(TESSELAS)) or "nenhum"))
+    if set(_dentro) & set(_fora):
+        erro("grupo `%s`: caquinho nas duas listas ao mesmo tempo: %s"
+             % (_g, sorted(set(_dentro) & set(_fora))))
+    if not _dentro:
+        erro("grupo `%s`: `tesselas_no_grupo` vazia — grupo que nao alcanca nenhum "
+             "caquinho do vocabulario nao e grupo, e proibicao sem alcance tem lugar "
+             "proprio em `proibicoes_de_peca_lidas_e_SEM_caquinho_no_vocabulario`" % _g)
+    # E O POR QUE DE CADA UM, nos dois lados. A classificacao e nossa (26.3): se ela nao
+    # tem motivo escrito por caquinho, a proxima execucao nao sabe se `pastilha_ceramica`
+    # entrou medida ou por descuido — e foi por isso que a regra_da_direcao existe.
+    _porques = (_d or {}).get("por_que_cada_uma") or {}
+    _faltam = [x for x in TESSELAS if not _porques.get(x)]
+    if _faltam:
+        erro("grupo `%s`: sem `por_que_cada_uma` para %s. Classificacao nossa sem motivo "
+             "escrito e palpite com cara de regra" % (_g, ", ".join(sorted(_faltam))))
+    if not (_d or {}).get("literal_que_o_origina"):
+        erro("grupo `%s`: sem `literal_que_o_origina` — grupo sem a frase do fabricante "
+             "que o criou e grupo nosso fingindo ser declaracao dele" % _g)
+
+if GRUPOS_PECA and not GRUPOS_PECA.get("regra_da_direcao"):
+    erro("grupos_de_tessela_proibidos sem `regra_da_direcao`. A direcao desta lista e o "
+         "AVESSO da de `superficies_porosas`, e lista sem direcao escrita e lista que a "
+         "proxima execucao preenche pelo lado errado")
+
+
+def proibe_grupos(m):
+    """Os grupos de peca que ESTE produto proibe, pela declaracao dele."""
+    c = ((m.get("condicoes") or {}).get("proibe_grupos_de_tessela") or {})
+    return [g for g in (c.get("valor") or [])]
+
+
+def peca_proibida(m, tessela):
+    """Os grupos declarados por este produto em que ESTE caquinho cai.
+
+    Regua propria: le as listas do esquema e nao chama nada de quem produziu o dado.
+    Sem a classificacao, todo grupo declarado morde — a direcao segura e nao recomendar.
+    """
+    declarados = proibe_grupos(m)
+    if not declarados:
+        return []
+    if not GRUPOS:
+        return list(declarados)
+    return [g for g in declarados if tessela in DENTRO_DO_GRUPO.get(g, set(TESSELAS))]
+
+
 def exige_porosa(m):
     """True quando o fabricante declarou a condicao para este produto."""
     c = ((m.get("condicoes") or {}).get("exige_superficie_porosa") or {})
@@ -1615,12 +1698,19 @@ def computar_celula_com_condicao(base, ambiente, tessela):
     elegiveis na mao — e a ancora vidro x caco_espelho existe para medir isso.
     """
     recomendados, ressalva, proibidos, silencio, condicao = {}, [], [], [], []
+    peca = []
     for ident, m in materiais.items():
         if m.get("status") != "ativo":
             continue
         if m.get("categoria") != CATEGORIA_DA_MATRIZ_F2:
             continue
         situacao, score = avaliar(m, base, ambiente)
+        # A REGRA 7 ANTES DA 6, e a ordem esta escrita no esquema: proibicao e afirmacao
+        # mais forte que condicao nao cumprida (mesma hierarquia da regra 1). Quem cai nas
+        # duas tem de sair pela proibicao, com as palavras dela.
+        if situacao in ("recomendado", "ressalva") and peca_proibida(m, tessela):
+            peca.append(ident)
+            continue
         if situacao in ("recomendado", "ressalva") and exige_porosa(m) \
                 and not condicao_cumprida(base, tessela):
             condicao.append(ident)
@@ -1645,6 +1735,7 @@ def computar_celula_com_condicao(base, ambiente, tessela):
         "eliminados_por_proibicao": sorted(proibidos),
         "eliminados_por_silencio": sorted(silencio),
         "eliminados_por_condicao": sorted(condicao),
+        "eliminados_por_proibicao_da_peca": sorted(peca),
     }
 
 
@@ -1717,6 +1808,128 @@ elif materiais:
                 if movidos - antes:
                     erro("condicao %s x %s x %s: moveu %s, que nao estava elegivel antes"
                          % (b, amb, t, sorted(movidos - antes)))
+
+
+# ---------------------- A MATRIZ ESCRITA A MAO DA REGRA 7 (secao 8 do contrato)
+
+mp = esquema.get("matriz_esperada_da_proibicao_sobre_a_peca")
+pares_peca = 0
+ancoras_peca = 0
+if mp is None:
+    erro("esquema sem `matriz_esperada_da_proibicao_sobre_a_peca`: a regra 7 ficaria sem "
+         "regua escrita a mao, e duas metades que erram juntas ficam verdes")
+elif materiais:
+    # 1) o alcance de cada grupo, recomputado do vocabulario e comparado um a um
+    morde_computado = {g: sorted(s) for g, s in DENTRO_DO_GRUPO.items()}
+    morde_escrito = {g: sorted(v) for g, v in
+                     (mp.get("caquinhos_em_que_cada_grupo_MORDE") or {}).items()}
+    pares_peca = len(GRUPOS) * len(TESSELAS)
+    if pares_peca != mp.get("total_de_pares"):
+        erro("matriz da peca: total_de_pares diz %r e grupo x vocabulario da %d"
+             % (mp.get("total_de_pares"), pares_peca))
+    if morde_computado != morde_escrito:
+        erro("matriz da peca: o alcance dos grupos nao bate.\n      escrito:   %s"
+             "\n      computado: %s" % (morde_escrito, morde_computado))
+
+    # 2) quem carrega a proibicao hoje — para produto novo com proibicao nao entrar mudo
+    carregam = {i: sorted(proibe_grupos(m)) for i, m in materiais.items()
+                if m.get("categoria") == CATEGORIA_DA_MATRIZ_F2
+                and m.get("status") == "ativo" and proibe_grupos(m)}
+    escrito = {i: sorted(v) for i, v in
+               (mp.get("produtos_que_carregam_a_proibicao_hoje") or {}).items()}
+    if carregam != escrito:
+        erro("matriz da peca: `produtos_que_carregam_a_proibicao_hoje` diz %s e o banco "
+             "tem %s" % (escrito, carregam))
+
+    # 3) e cada declaracao tem de ser RASTREAVEL ate a frase do fabricante. Grupo que o
+    #    produto nao declara, literal que ele nao escreveu e fonte que ele nao tem sao as
+    #    tres formas de a regra 7 inventar uma proibicao com cara de declaracao.
+    for ident in sorted(carregam):
+        m = materiais[ident]
+        c = m["condicoes"]["proibe_grupos_de_tessela"]
+        d = m.get("declaracoes") or {}
+        onde = c.get("onde_o_fabricante_escreve") or ""
+        campo = onde.split(".")[-1]
+        if campo not in d:
+            erro("%s: `onde_o_fabricante_escreve` aponta '%s', que nao e lista de "
+                 "declaracao deste registro" % (ident, onde))
+            campo = None
+        if c.get("fonte_id") not in (m.get("fontes") or {}):
+            erro("%s: proibicao de peca aponta fonte_id inexistente" % ident)
+        if not c.get("quem_classifica_o_grupo"):
+            erro("%s: proibicao de peca sem dizer QUEM classifica o grupo — secao 26.3, a "
+                 "tela nao pode atribuir ao fabricante uma classificacao que e nossa" % ident)
+        for g in carregam[ident]:
+            if g not in GRUPOS:
+                erro("%s: declara o grupo `%s`, que nao existe em "
+                     "`grupos_de_tessela_proibidos.grupos`" % (ident, g))
+                continue
+            literal = (c.get("literais") or {}).get(g)
+            if not literal:
+                erro("%s / grupo `%s`: sem o texto LITERAL do fabricante. E o texto que a "
+                     "tela cita; sem ele a pagina diria `o fabricante proibe` sem mostrar "
+                     "onde" % (ident, g))
+                continue
+            if campo and literal not in (d.get(campo) or []):
+                erro("%s / grupo `%s`: o literal gravado nao esta em `%s` deste registro. "
+                     "Citacao que nao volta a declaracao e citacao inventada"
+                     % (ident, g, campo))
+            fragmento = normalizar(GRUPOS[g].get("literal_que_o_origina") or "")
+            if fragmento and fragmento not in normalizar(literal):
+                erro("%s / grupo `%s`: o `literal_que_o_origina` do grupo (%r) nao aparece "
+                     "dentro do literal gravado no registro. O grupo tem de nascer da "
+                     "frase, nao ao lado dela"
+                     % (ident, g, GRUPOS[g].get("literal_que_o_origina")))
+    # grupo no esquema que ninguem declara e vocabulario crescendo por previsao
+    for g in sorted(GRUPOS):
+        if not any(g in v for v in carregam.values()):
+            erro("grupo `%s` existe no esquema e nenhum produto do banco o declara. Lista "
+                 "que cresce por previsao vira promessa vazia" % g)
+
+    # 4) as ancoras ponta a ponta
+    for a in mp.get("ancoras_ponta_a_ponta", []):
+        if a["tessela"] not in TESSELAS:
+            erro("ancora da peca: tessela '%s' fora do vocabulario" % a["tessela"])
+            continue
+        c = computar_celula_com_condicao(a["base"], a["ambiente"], a["tessela"])
+        ancoras_peca += 1
+        campos = ["recomendados_topo", "eliminados_por_proibicao_da_peca"]
+        if "eliminados_por_condicao" in a:
+            campos.append("eliminados_por_condicao")
+        for campo in campos:
+            if sorted(a.get(campo, [])) != c[campo]:
+                erro("ancora da peca %s x %s x %s / %s: esperado %s, computado %s"
+                     % (a["base"], a["ambiente"], a["tessela"], campo,
+                        sorted(a.get(campo, [])) or "[]", c[campo] or "[]"))
+        if not a.get("por_que"):
+            erro("ancora da peca %s x %s x %s: sem `por_que` escrito"
+                 % (a["base"], a["ambiente"], a["tessela"]))
+
+    # 5) as invariantes, que sao as mesmas da regra 6 e por um motivo so: as tres causas
+    #    tem de continuar separadas. A proibicao de peca nao pode mexer no silencio, nao
+    #    pode mexer na proibicao de base e nao pode mover quem nao era elegivel.
+    for b in BASES:
+        for t_ in TESSELAS:
+            for amb in AMBIENTES:
+                sem = computar_celula(b, amb)
+                com = computar_celula_com_condicao(b, amb, t_)
+                if com["eliminados_por_silencio"] != sem["eliminados_por_silencio"]:
+                    erro("peca %s x %s x %s: ela mexeu na lista do silencio, e silencio e "
+                         "outra causa" % (b, amb, t_))
+                if com["eliminados_por_proibicao"] != sem["eliminados_por_proibicao"]:
+                    erro("peca %s x %s x %s: ela mexeu na lista da proibicao de base"
+                         % (b, amb, t_))
+                movidos = set(com["eliminados_por_proibicao_da_peca"])
+                antes = set(sem["recomendados_topo"] + sem["elegiveis_abaixo_do_topo"]
+                            + sem["mencionados_com_ressalva"])
+                if movidos - antes:
+                    erro("peca %s x %s x %s: moveu %s, que nao estava elegivel antes"
+                         % (b, amb, t_, sorted(movidos - antes)))
+                # e os dois baldes novos nao se tocam: produto em um nao pode estar no outro
+                if movidos & set(com["eliminados_por_condicao"]):
+                    erro("peca %s x %s x %s: %s esta na proibicao de peca E na condicao de "
+                         "superficie — sao duas frases e o leitor so pode receber uma"
+                         % (b, amb, t_, sorted(movidos & set(com["eliminados_por_condicao"]))))
 
 
 # ------------------------------------------------------- REJUNTE: regua propria
@@ -2360,6 +2573,8 @@ print("  celulas da F2 recomputadas . %d  (so categoria %s)" % (celulas_conferid
 print("  celulas do rejunte ......... %d" % celulas_rejunte_conferidas)
 print("  pares da condicao (regra 6) . %d  (%d ancoras ponta a ponta)"
       % (pares_conferidos, ancoras_conferidas))
+print("  pares da peca (regra 7) ..... %d  (%d ancoras ponta a ponta, %d grupos)"
+      % (pares_peca, ancoras_peca, len(GRUPOS)))
 print("  itens esperando link ....... %d" % esperando_link)
 print("  itens SEM SAIDA de compra .. %d  (secao 7 — tem de ser 0)" % sem_saida)
 print("  piso NAO rastreavel ........ %d  (25.6 — divida de comissao, nao defeito)" % piso_nao_rastreavel)

@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 58,
-  "atualizado_em": "2026-10-05",
+  "revisao": 59,
+  "atualizado_em": "2026-10-06",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -31,8 +31,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.7.0",
-      "sha256": "21299bf8fd44de7474c0efd9412ce917ea4460abbba0e0c1bda8dcee7cd3a412",
+      "versao": "1.8.0",
+      "sha256": "37e91bb107f8fc600653d7ea56676ed04218c49784d6f3e4b0e0fd146abdcaab",
       "descricao": "F2 1.6.0 — A PAGINA QUE FOI MEDIDA NO AR E ACHADA NO INDICE. `?base=ceramica&onde=externo`, `?base=mdf` e `?base=ceramica&caco=louca&junta=fina&onde=interno` serviam UMA etiqueta de robo SEM `noindex` em 28/09/2026 as 14h48Z: os quatro nomes de parametro sao reais e NENHUM dos valores existe no vocabulario (as chaves sao `ceramica_esmaltada_porcelana`, `externo_exposto`, `mdf_madeira`, `caco_louca`), entao o `escolheu` — que pergunta pelo VALOR — respondia 'nao escolheu nada'. A reconferencia do conserto de 25/09 falhou nesta metade, contra o criterio que o proprio conserto declarou. Entram `cdm_f2_parametros()` e `cdm_f2_tem_parametro()`, e o `noindex` passa a medir a PRESENCA: duplicata se conta por endereco, e o conjunto dos valores invalidos e infinito enquanto o das escolhas validas e finito. A `description` passa a ser declarada pelo filtro `cdm_descricao`; o texto nao muda, pelo BLOCO A de 24/09 — esta e a melhor pagina da ilha, 7,8 com 17 impressoes."
     },
     {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.3.0",
-      "sha256": "455d02d64acf5f26e549bbe556aa95ed0322df332f8a12d7cfcc1c7d45a65cf2",
+      "versao": "1.4.0",
+      "sha256": "3dbd087d56a18df0548441e908b3d607b7444f41647ced7d1908eb466599ae80",
       "descricao": "Tecnicas 1.2.0 — A `description` DOS TUTORIAIS E DECLARADA, NAO IMPRESSA. Este arquivo dava `echo` na propria num `wp_head` paralelo, que e o desenho que fez a etiqueta de ROBO sair dobrada nesta ilha em 25/09; agora ele declara pelo filtro `cdm_descricao` e quem imprime e a casca, uma vez. O TEXTO NAO MUDA: o Picassiete e uma das tres paginas na primeira pagina do Google (posicao 7,0) e o BLOCO A do despacho do Raphael de 24/09 proibe mexer na promessa da SERP dela antes de 30/09; o Trencadis fica parado pelo que o mesmo despacho escreve — 'deixe uma pagina parada para a proxima leitura ter com o que comparar'. Os dois estao acima de 160 caracteres e isso esta registrado como o que falta do item 4."
     },
     {
@@ -183,7 +183,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "d43900dbe263e8864afe154d23366d8657a7a6dc1ce22224c2f93d1d9f8d9163",
+      "sha256": "5f90f56e3a3a593846d1ba372ecd534e5445f779816acb7fc70b247a27966e0c",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -219,7 +219,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "dc95e6fa321c40ca0d69a5b2c5c511da536d9acffd9552896bf90e2da983110e",
+      "sha256": "37e7966043def3eefbe1ca366d38cf1804c2488c6694b8f4aca334a097978191",
       "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
       "pendencias": 2,
       "pendencias_que_bloqueiam_publicacao": []
@@ -257,7 +257,7 @@
       "verificado_em": "2026-09-12",
       "registros": 105,
       "publicar": false,
-      "sha256": "63e3d1652472b8436eb0d46aeebe191fb2201836ea743ed7f501117a2cb2b405",
+      "sha256": "816eefc7b81bb7da35eca97417153967fd44ff3b097a82f0d5d9da93a4462969",
       "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
     },
     {
@@ -347,7 +347,7 @@
       "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
       "registros": 42,
       "publicar": false,
-      "sha256": "52d4f2b0125c53fc5d403ee965c187c1b7c7108aa902d95bce905cd058e22ab3"
+      "sha256": "8117b4a825303bdaa7126b4e24b57e22d252f44cba30b2bf552be974c161e390"
     },
     {
       "id": "filhas-do-guia-md",
@@ -357,7 +357,7 @@
       "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira era a classificacao de SERP da 14.9 em PROSA, e em 02/10/2026 ela saiu daqui e virou dado em dados/serp-das-filhas.json, com o cruzamento em dados/cruzamento-14-9.md: prosa que o gerador preserva sem ler nao cruza com numero. O que ficou abaixo da fronteira e o ponteiro para os dois arquivos novos e o motivo da mudanca.",
       "verificado_em": "2026-10-02",
       "publicar": false,
-      "sha256": "954ff1bc958a3fc1f001a35555b304335ce8503c400dfbc6d4e93d21424d7332"
+      "sha256": "e21a4e269d33d1e46bc25261b042c4267c31dfe8ab0fe6a49f376afaedd2d48d"
     }
   ],
   "ferramentas": [
@@ -382,7 +382,7 @@
     {
       "id": "cobertura",
       "arquivo": "ferramentas/cobertura.py",
-      "sha256": "366b5737c9d881d3d341e5ec718f6936928c47d360427c3668a8e648e4da3345",
+      "sha256": "65d80dab13c35f4efab4fbfaa8e7317b3475f832e3a82a544e060fb943f23050",
       "descricao": "A varredura da secao 14.3: para CADA estado que a F2 serve, conta quantos produtos do banco sao elegiveis, e escreve dados/cobertura.json. A faixa vem de faixa-da-f2.php (medida no snippet); a regua vem de validar-banco.py, importada — ela recompoe a elegibilidade das DECLARACOES pelas regras do esquema e foi escrita antes de existir o snippet PHP, entao reimplementa-la aqui uma terceira vez nao acrescentaria independencia, so uma copia para envelhecer calada. Mencao com ressalva NAO conta como elegivel (regra 5: fonte fraca demais). O arquivo gerado NAO leva carimbo de relogio, de proposito: ele e funcao das entradas, e com timestamp dentro o modo --conferir acusaria 'velho' a cada execucao ate alguem desligar o portao. Bancada: nunca vai para o site."
     },
     {
@@ -556,7 +556,7 @@
     {
       "id": "mutacoes-f2",
       "arquivo": "ferramentas/mutacoes-f2.py",
-      "sha256": "78ef112dd0c98721586f74ad3a769b2f85b15f6fb2a6e7d3de25e7f98ae114d5",
+      "sha256": "f06cd7880e8ca1ad83ee850803beb0de1b4a4f600d084e969376a866bf796bce",
       "descricao": "Quebra a F2 de proposito, uma mutacao por vez, e exige que teste-f2.php reprove cada uma. Bancada."
     },
     {
@@ -695,7 +695,7 @@
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "fec51397c182ad545cdff6b58228bfa58bf08131954de8667b61f9bbd3788e0a",
+      "sha256": "08fc43c2bef6d8ce515ed0bee7ef58d462618d3c45c18af4515d63fcb53139d6",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
     },
     {
@@ -731,13 +731,13 @@
     {
       "id": "teste-tecnicas",
       "arquivo": "ferramentas/teste-tecnicas.php",
-      "sha256": "5b9a3e21d22f3f0f9795dd27c4e03e4eeca516ac54068a03064c7fe2ac2e60c0",
+      "sha256": "3f94d9efd2d31a0f12005cdb254ac80037e32442d45bb4e7e9757129508a1f3c",
       "descricao": "Verificacao MEDIDA da pagina de tecnica. 49 afirmacoes no corpo servido, e o ESPERADO nao vem do snippet: as 45 celulas da grade sao comparadas com dados/cobertura.json, gerado pela regua em Python — duas metades independentes, em linguagens diferentes, que tem de dar o mesmo numero. Ele comeca rodando cobertura.py --conferir, porque regua velha aprova a pagina de ontem. Mede tambem a prestacao de contas da secao 7 (a soma dos nomeados fecha com o banco contado do arquivo), a escada de compra e o rel de cada link, a recusa do rejunte com a causa, os termos que o VOZ.md proibe no titulo e no primeiro paragrafo, e o FAQ do schema sendo o MESMO da tela. Bancada; nunca vai para o site."
     },
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "50ec8353d3b8c48a95250a74fdc78b9a2578eb47ec38c40fb0be59db0755c3b6",
+      "sha256": "8475d2482547a415b7d3fb5d215a8c62bd8875d7f85c219d879ddf2159377ce5",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {

@@ -37,8 +37,8 @@
   "resumo": {
     "cola": {
       "estados_varridos": 270,
-      "estados_com_o_minimo": 28,
-      "estados_descobertos": 242,
+      "estados_com_o_minimo": 25,
+      "estados_descobertos": 245,
       "estados_sem_nenhum_elegivel": 68,
       "maior_numero_de_elegiveis_em_um_estado": 4,
       "menor_numero_de_elegiveis_em_um_estado": 0
@@ -74,6 +74,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -96,6 +97,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -118,6 +120,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -140,6 +143,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -162,6 +166,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -184,6 +189,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -207,6 +213,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -230,6 +237,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -253,6 +261,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -276,6 +285,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -299,6 +309,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -322,6 +333,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -344,6 +356,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -366,6 +379,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -388,6 +402,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -410,6 +425,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -432,6 +448,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -454,6 +471,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -477,6 +495,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -500,6 +519,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -523,6 +543,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -546,6 +567,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -569,6 +591,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -592,6 +615,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -615,6 +639,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -638,6 +663,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -661,6 +687,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -684,6 +711,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -707,6 +735,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -730,6 +759,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -753,6 +783,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -776,6 +807,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -799,6 +831,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -822,6 +855,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -845,6 +879,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -868,7 +903,32 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "externo_abrigado",
+        "tessela": "caco_espelho",
+        "elegiveis": [
+          "tekbond-silicone-acetico-maxx",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -889,6 +949,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -910,6 +971,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -931,6 +993,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -952,6 +1015,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -973,6 +1037,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -994,9 +1059,59 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "interno_molhado",
+        "tessela": "caco_espelho",
+        "elegiveis": [
+          "tekbond-silicone-acetico-maxx",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "interno_seco",
+        "tessela": "caco_espelho",
+        "elegiveis": [
+          "tekbond-silicone-acetico-maxx",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_condicao": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
         "base": "cimento_concreto",
         "ambiente": "contato_permanente_agua",
         "tessela": "caco_azulejo",
@@ -1015,6 +1130,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1036,6 +1152,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1057,6 +1174,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1078,6 +1196,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1099,6 +1218,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1120,6 +1240,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1142,6 +1263,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1164,6 +1286,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1186,6 +1309,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1208,6 +1332,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1230,6 +1355,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1252,6 +1378,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1274,6 +1401,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1296,6 +1424,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1318,6 +1447,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1340,6 +1470,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1362,6 +1493,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1384,6 +1516,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1406,6 +1539,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1428,6 +1562,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1450,6 +1585,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1472,6 +1608,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1494,6 +1631,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1516,6 +1654,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1538,6 +1677,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1560,6 +1700,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1582,6 +1723,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1604,6 +1746,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1626,6 +1769,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1648,6 +1792,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1669,6 +1814,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1690,6 +1836,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1711,6 +1858,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1732,6 +1880,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1753,6 +1902,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1774,6 +1924,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1796,6 +1947,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1818,6 +1970,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1840,6 +1993,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1862,6 +2016,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1884,6 +2039,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1906,6 +2062,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1928,6 +2085,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1950,6 +2108,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1972,6 +2131,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -1994,6 +2154,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2016,6 +2177,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2038,6 +2200,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2060,6 +2223,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2082,6 +2246,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2104,6 +2269,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2126,6 +2292,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2148,6 +2315,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2170,6 +2338,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2192,6 +2361,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2214,6 +2384,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2236,6 +2407,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2258,6 +2430,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2280,6 +2453,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2302,6 +2476,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2324,6 +2499,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2346,6 +2522,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2368,6 +2545,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2390,6 +2568,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2412,6 +2591,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2434,6 +2614,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2457,6 +2638,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2480,6 +2662,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2503,6 +2686,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2526,6 +2710,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2549,6 +2734,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2572,6 +2758,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2594,6 +2781,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2616,6 +2804,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2638,6 +2827,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2660,6 +2850,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2682,6 +2873,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2704,6 +2896,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2727,6 +2920,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2750,6 +2944,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2773,6 +2968,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2796,6 +2992,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2819,6 +3016,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2842,6 +3040,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2864,6 +3063,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2886,6 +3086,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2908,6 +3109,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2930,6 +3132,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2952,6 +3155,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2974,6 +3178,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -2997,6 +3202,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3020,6 +3226,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3043,6 +3250,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3066,6 +3274,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3089,6 +3298,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3112,6 +3322,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3134,6 +3345,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3156,6 +3368,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3178,6 +3391,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3200,6 +3414,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3222,6 +3437,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3244,6 +3460,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3267,6 +3484,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3290,6 +3508,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3313,6 +3532,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3336,6 +3556,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3359,6 +3580,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3382,6 +3604,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3405,6 +3628,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3429,6 +3653,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -3452,6 +3677,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3475,6 +3701,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3499,6 +3726,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -3522,6 +3750,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3543,6 +3772,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3564,6 +3794,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3585,6 +3816,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3606,6 +3838,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3627,6 +3860,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3648,6 +3882,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3669,6 +3904,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3690,6 +3926,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3711,6 +3948,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3732,6 +3970,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3753,6 +3992,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3774,6 +4014,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3795,6 +4036,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3816,6 +4058,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3837,6 +4080,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3858,6 +4102,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3879,6 +4124,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3900,6 +4146,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3921,6 +4168,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3942,6 +4190,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3963,6 +4212,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -3984,6 +4234,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4005,6 +4256,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4026,6 +4278,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4048,6 +4301,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4070,6 +4324,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -4092,6 +4347,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4114,6 +4370,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4136,6 +4393,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -4158,6 +4416,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4180,6 +4439,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4202,6 +4462,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4224,6 +4485,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4246,6 +4508,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4268,6 +4531,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4290,6 +4554,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4312,6 +4577,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4319,10 +4585,9 @@
         "ambiente": "externo_abrigado",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-neutro"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 1,
         "com_ressalva": [
           "loctite-durepoxi"
         ],
@@ -4334,7 +4599,10 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
-        "por_que": "o fabricante nao declara esta base ou este ambiente"
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "vidro",
@@ -4356,6 +4624,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4378,6 +4647,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4400,6 +4670,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4422,6 +4693,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4443,6 +4715,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4464,6 +4737,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4485,6 +4759,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4506,6 +4781,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4527,6 +4803,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4548,6 +4825,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4570,6 +4848,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4577,10 +4856,9 @@
         "ambiente": "interno_molhado",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-neutro"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 1,
         "com_ressalva": [
           "loctite-durepoxi"
         ],
@@ -4592,7 +4870,10 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
-        "por_que": "o fabricante nao declara esta base ou este ambiente"
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "vidro",
@@ -4614,6 +4895,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4636,6 +4918,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4658,6 +4941,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -4680,12 +4964,38 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
         "base": "vidro",
         "ambiente": "interno_seco",
         "tessela": "caco_espelho",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_vidro",
         "elegiveis": [
           "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-neutro"
@@ -4703,29 +5013,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
-      },
-      {
-        "base": "vidro",
-        "ambiente": "interno_seco",
-        "tessela": "pastilha_vidro",
-        "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -4747,6 +5035,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4768,6 +5057,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4789,6 +5079,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4810,6 +5101,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4831,6 +5123,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4852,6 +5145,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4874,6 +5168,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4896,6 +5191,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4918,6 +5214,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4940,6 +5237,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4962,6 +5260,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -4984,6 +5283,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5006,6 +5306,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5028,6 +5329,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5050,6 +5352,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5072,6 +5375,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5094,6 +5398,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5116,6 +5421,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5138,6 +5444,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5160,6 +5467,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5182,6 +5490,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5204,6 +5513,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5226,6 +5536,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5248,6 +5559,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5270,6 +5582,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5292,6 +5605,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5314,6 +5628,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5336,6 +5651,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5358,6 +5674,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -5380,6 +5697,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       }
     ],
@@ -6053,6 +6371,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6075,6 +6394,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6097,6 +6417,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6119,6 +6440,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6141,6 +6463,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6163,6 +6486,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6186,6 +6510,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6209,6 +6534,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6232,6 +6558,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6255,6 +6582,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6278,6 +6606,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6301,6 +6630,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6323,6 +6653,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6345,6 +6676,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6367,6 +6699,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6389,6 +6722,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6411,6 +6745,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6433,6 +6768,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6456,6 +6792,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6479,6 +6816,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6502,6 +6840,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6525,6 +6864,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6548,6 +6888,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6571,6 +6912,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6594,6 +6936,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6617,6 +6960,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6640,6 +6984,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6663,6 +7008,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6686,6 +7032,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6709,6 +7056,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6732,6 +7080,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6755,6 +7104,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6778,6 +7128,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6801,6 +7152,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6824,6 +7176,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6847,6 +7200,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -6868,18 +7222,18 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
         "ambiente": "externo_abrigado",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
-        "quantos_elegiveis": 3,
+        "quantos_elegiveis": 2,
         "com_ressalva": [
           "loctite-durepoxi"
         ],
@@ -6889,7 +7243,11 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -6910,7 +7268,8 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -6931,7 +7290,8 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -6952,7 +7312,8 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -6973,7 +7334,8 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -6994,6 +7356,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -7015,6 +7378,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -7036,6 +7400,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -7057,6 +7422,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -7078,6 +7444,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -7099,6 +7466,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -7120,18 +7488,18 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
         "ambiente": "interno_molhado",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
-        "quantos_elegiveis": 3,
+        "quantos_elegiveis": 2,
         "com_ressalva": [
           "loctite-durepoxi"
         ],
@@ -7141,7 +7509,11 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7162,7 +7534,8 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7183,7 +7556,8 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7204,7 +7578,8 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7225,7 +7600,8 @@
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7246,18 +7622,18 @@
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
         "ambiente": "interno_seco",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
-        "quantos_elegiveis": 3,
+        "quantos_elegiveis": 2,
         "com_ressalva": [
           "loctite-durepoxi"
         ],
@@ -7268,7 +7644,11 @@
         ],
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
-        ]
+        ],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7289,7 +7669,8 @@
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7310,7 +7691,8 @@
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7332,7 +7714,8 @@
         ],
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
-        ]
+        ],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7353,7 +7736,8 @@
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "cimento_concreto",
@@ -7374,6 +7758,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7395,6 +7780,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7416,6 +7802,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7437,6 +7824,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7458,6 +7846,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7479,6 +7868,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7501,6 +7891,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7523,6 +7914,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7545,6 +7937,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7567,6 +7960,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7589,6 +7983,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7611,6 +8006,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7633,6 +8029,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7655,6 +8052,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7677,6 +8075,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7699,6 +8098,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7721,6 +8121,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7743,6 +8144,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7765,6 +8167,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7787,6 +8190,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7809,6 +8213,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7831,6 +8236,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7853,6 +8259,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7875,6 +8282,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7897,6 +8305,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7919,6 +8328,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7941,6 +8351,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7963,6 +8374,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -7985,6 +8397,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8007,6 +8420,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8028,6 +8442,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8049,6 +8464,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8070,6 +8486,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8091,6 +8508,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8112,6 +8530,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8133,6 +8552,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8155,6 +8575,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8177,6 +8598,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8199,6 +8621,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8221,6 +8644,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8243,6 +8667,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8265,6 +8690,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8287,6 +8713,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8309,6 +8736,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8331,6 +8759,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8353,6 +8782,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8375,6 +8805,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8397,6 +8828,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8419,6 +8851,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8441,6 +8874,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8463,6 +8897,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8485,6 +8920,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8507,6 +8943,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8529,6 +8966,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8551,6 +8989,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8573,6 +9012,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8595,6 +9035,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8617,6 +9058,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8639,6 +9081,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8661,6 +9104,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8683,6 +9127,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8705,6 +9150,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8727,6 +9173,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8749,6 +9196,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8771,6 +9219,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8793,6 +9242,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8816,6 +9266,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8839,6 +9290,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8862,6 +9314,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8885,6 +9338,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8908,6 +9362,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8931,6 +9386,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8953,6 +9409,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8975,6 +9432,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -8997,6 +9455,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9019,6 +9478,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9041,6 +9501,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9063,6 +9524,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9086,6 +9548,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9109,6 +9572,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9132,6 +9596,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9155,6 +9620,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9178,6 +9644,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9201,6 +9668,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9223,7 +9691,8 @@
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "mdf_madeira",
@@ -9245,7 +9714,8 @@
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "mdf_madeira",
@@ -9267,7 +9737,8 @@
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "mdf_madeira",
@@ -9289,7 +9760,8 @@
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "mdf_madeira",
@@ -9311,7 +9783,8 @@
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "mdf_madeira",
@@ -9333,7 +9806,8 @@
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "metal",
@@ -9355,6 +9829,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9377,6 +9852,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9399,6 +9875,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9421,6 +9898,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9443,6 +9921,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9465,6 +9944,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9488,6 +9968,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9511,6 +9992,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9534,6 +10016,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9557,6 +10040,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9580,6 +10064,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9603,6 +10088,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9625,6 +10111,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9647,6 +10134,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9669,6 +10157,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9691,6 +10180,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9713,6 +10203,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9735,6 +10226,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9758,6 +10250,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9781,6 +10274,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9804,6 +10298,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9827,6 +10322,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9850,6 +10346,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9873,6 +10370,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9896,6 +10394,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9920,6 +10419,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -9943,6 +10443,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9966,6 +10467,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -9990,6 +10492,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -10013,6 +10516,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10034,6 +10538,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10055,6 +10560,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10076,6 +10582,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10097,6 +10604,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10118,6 +10626,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10139,6 +10648,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10160,6 +10670,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10181,6 +10692,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10202,6 +10714,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10223,6 +10736,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10244,6 +10758,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10265,6 +10780,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10286,6 +10802,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10307,6 +10824,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10328,6 +10846,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10349,6 +10868,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10370,6 +10890,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10391,6 +10912,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10412,6 +10934,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10433,6 +10956,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10454,6 +10978,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10475,6 +11000,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10496,6 +11022,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10517,6 +11044,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10539,6 +11067,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10561,6 +11090,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -10583,6 +11113,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10605,6 +11136,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10627,6 +11159,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -10649,6 +11182,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10671,6 +11205,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10693,6 +11228,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10715,6 +11251,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10737,6 +11274,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10759,6 +11297,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10781,6 +11320,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -10803,6 +11343,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -10810,10 +11351,9 @@
         "ambiente": "externo_abrigado",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-neutro"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 1,
         "com_ressalva": [
           "loctite-durepoxi"
         ],
@@ -10825,7 +11365,10 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
-        "por_que": "o fabricante nao declara esta base ou este ambiente"
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "vidro",
@@ -10847,6 +11390,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -10869,6 +11413,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -10891,6 +11436,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -10913,6 +11459,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -10934,6 +11481,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -10955,6 +11503,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -10976,6 +11525,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -10997,6 +11547,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -11018,6 +11569,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -11039,6 +11591,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -11061,6 +11614,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -11068,10 +11622,9 @@
         "ambiente": "interno_molhado",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-neutro"
         ],
-        "quantos_elegiveis": 2,
+        "quantos_elegiveis": 1,
         "com_ressalva": [
           "loctite-durepoxi"
         ],
@@ -11083,7 +11636,10 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
-        "por_que": "o fabricante nao declara esta base ou este ambiente"
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "vidro",
@@ -11105,6 +11661,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -11127,6 +11684,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -11149,6 +11707,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -11171,6 +11730,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante nao declara esta base ou este ambiente"
       },
       {
@@ -11192,12 +11752,82 @@
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "vidro",
         "ambiente": "interno_seco",
         "tessela": "caco_espelho",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_seco",
+        "tessela": "caco_louca",
+        "elegiveis": [
+          "cascola-pl500-adesivo-de-montagem",
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_ceramica",
+        "elegiveis": [
+          "cascola-pl500-adesivo-de-montagem",
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_vidro",
         "elegiveis": [
           "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-neutro"
@@ -11215,71 +11845,7 @@
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
-      },
-      {
-        "base": "vidro",
-        "ambiente": "interno_seco",
-        "tessela": "caco_louca",
-        "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 3,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": []
-      },
-      {
-        "base": "vidro",
-        "ambiente": "interno_seco",
-        "tessela": "pastilha_ceramica",
-        "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 3,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": []
-      },
-      {
-        "base": "vidro",
-        "ambiente": "interno_seco",
-        "tessela": "pastilha_vidro",
-        "elegiveis": [
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
       },
       {
@@ -11301,7 +11867,8 @@
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
-        "eliminados_por_condicao": []
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": []
       },
       {
         "base": "vidro_laminado",
@@ -11322,6 +11889,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11343,6 +11911,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11364,6 +11933,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11385,6 +11955,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11406,6 +11977,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11427,6 +11999,7 @@
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11449,6 +12022,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11471,6 +12045,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11493,6 +12068,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11515,6 +12091,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11537,6 +12114,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11559,6 +12137,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11581,6 +12160,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11603,6 +12183,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11625,6 +12206,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11647,6 +12229,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11669,6 +12252,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11691,6 +12275,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11713,6 +12298,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11735,6 +12321,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11757,6 +12344,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11779,6 +12367,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11801,6 +12390,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11823,6 +12413,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11845,6 +12436,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11867,6 +12459,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11889,6 +12482,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11911,6 +12505,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11933,6 +12528,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
@@ -11955,6 +12551,7 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
       }
     ],

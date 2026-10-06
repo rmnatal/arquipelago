@@ -7,6 +7,24 @@
  * o trencadís, o caquinho de Gaudí.
  *
  * -------------------------------------------------------------------------
+ * O QUE MUDOU NA 1.4.0 (06/10/2026) — o QUINTO balde
+ * -------------------------------------------------------------------------
+ * A regra 7 da F2 nasceu hoje e separa uma causa nova: o fabricante proíbe o
+ * produto no CAQUINHO que se cola, por escrito. Esta página conta por balde
+ * para dizer, de cada cola que fica de fora, QUAL causa a tirou e em quantas
+ * das células servidas — e com quatro baldes ela somaria a causa nova ao
+ * silêncio, afirmando que o fabricante não fala daquela superfície quando ele
+ * escreveu para não usar nela. É a seção 7 do contrato, a mesma que nasceu
+ * nesta ilha em 12/09/2026.
+ *
+ * E ELE SAI ZERADO HOJE, nas duas técnicas servidas — isso é resultado, não
+ * descuido. As tesselas delas são caco de azulejo e caco de louça, e o único
+ * produto do banco que proíbe caco de louça (a cimentcola AC-II) cai pela
+ * regra 2 antes de chegar aqui. O balde existe porque a CAUSA existe: no dia em
+ * que um produto com proibição de peça for elegível numa dessas grades, a
+ * página já nomeia a causa certa em vez de inventar a outra.
+ *
+ * -------------------------------------------------------------------------
  * O QUE MUDOU NA 1.1.0, e é a razão de este arquivo ter sido reescrito
  * -------------------------------------------------------------------------
  * A 1.0.0 era uma página, não uma família: o id, o slug e o título eram três
@@ -91,7 +109,7 @@
  */
 
 if ( ! defined( 'CDM_TECNICAS_VERSAO' ) ) {
-	define( 'CDM_TECNICAS_VERSAO', '1.3.0' );
+	define( 'CDM_TECNICAS_VERSAO', '1.4.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -341,6 +359,15 @@ function cdm_tecnicas_grade_de_uma_tessela( $tessela ) {
 				'proibicao' => $c['eliminados_por_proibicao'],
 				'silencio'  => $c['eliminados_por_silencio'],
 				'condicao'  => $c['eliminados_por_condicao'],
+				/* O QUINTO BALDE (06/10/2026, regra 7). Hoje ele sai ZERADO nas
+				   duas técnicas servidas, e isso é resultado, não descuido: as
+				   tesselas delas são caco de azulejo e caco de louça, e o único
+				   produto do banco que proíbe caco de louça — a cimentcola AC-II
+				   — cai pela regra 2 antes de chegar aqui. O balde existe porque
+				   a causa existe: no dia em que um produto com proibição de peça
+				   for elegível numa dessas grades, a página tem de dizer QUAL
+				   causa o tirou, e não somá-lo ao silêncio. */
+				'peca'      => $c['eliminados_por_proibicao_da_peca'],
 			);
 		}
 	}
@@ -458,10 +485,10 @@ function cdm_tecnicas_contas( $id ) {
 			if ( 0 === $c['quantos'] ) {
 				$zeradas++;
 			}
-			foreach ( array( 'ressalva', 'proibicao', 'silencio', 'condicao' ) as $balde ) {
+			foreach ( array( 'ressalva', 'proibicao', 'silencio', 'condicao', 'peca' ) as $balde ) {
 				foreach ( $c[ $balde ] as $id_cola ) {
 					if ( ! isset( $baldes[ $id_cola ] ) ) {
-						$baldes[ $id_cola ] = array( 'ressalva' => 0, 'proibicao' => 0, 'silencio' => 0, 'condicao' => 0 );
+						$baldes[ $id_cola ] = array( 'ressalva' => 0, 'proibicao' => 0, 'silencio' => 0, 'condicao' => 0, 'peca' => 0 );
 					}
 					$baldes[ $id_cola ][ $balde ]++;
 				}
@@ -486,7 +513,7 @@ function cdm_tecnicas_contas( $id ) {
 		if ( isset( $dentro[ $id_cola ] ) ) {
 			continue;
 		}
-		$b = isset( $baldes[ $id_cola ] ) ? $baldes[ $id_cola ] : array( 'ressalva' => 0, 'proibicao' => 0, 'silencio' => 0, 'condicao' => 0 );
+		$b = isset( $baldes[ $id_cola ] ) ? $baldes[ $id_cola ] : array( 'ressalva' => 0, 'proibicao' => 0, 'silencio' => 0, 'condicao' => 0, 'peca' => 0 );
 
 		/* TODOS OS BALDES COM CONTAGEM, não só o maior. A seção 7 do contrato é
 		   literal desde 12/09/2026: "causa que o código separa, o texto separa —
@@ -537,7 +564,7 @@ if ( ! function_exists( 'cdm_tecnicas_causa_em_palavras' ) ) {
  *
  * A seção 7 do contrato, desde 12/09/2026: "causa que o código separa, o texto
  * separa — grupo por motivo, com nome próprio; misturar duas causas numa frase é
- * inventar uma delas". Aqui o código separa quatro e o texto separa quatro.
+ * inventar uma delas". Aqui o código separa cinco e o texto separa cinco.
  */
 function cdm_tecnicas_causa_em_palavras( $causas, $celulas ) {
 	$mapa = array(
@@ -545,6 +572,7 @@ function cdm_tecnicas_causa_em_palavras( $causas, $celulas ) {
 		'proibicao' => 'o próprio fabricante desaconselha',
 		'ressalva'  => 'entra só com ressalva, porque a melhor fonte que temos dele não é a ficha técnica — e ressalva não vira recomendação aqui',
 		'condicao'  => 'o fabricante exige que uma das superfícies seja porosa, e essa combinação não tem nenhuma',
+		'peca'      => 'o próprio fabricante escreve que não se usa esse produto no caquinho desta técnica',
 	);
 	$partes = array();
 	foreach ( (array) $causas as $c ) {

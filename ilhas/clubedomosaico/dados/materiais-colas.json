@@ -203,7 +203,21 @@
         "F2",
         "G-COLAS"
       ],
-      "observacao": "O registro mais importante do banco, e o unico cuja lista NEGATIVA vale mais que a positiva. Duas declaracoes do mesmo fabricante colidem em METAL — indicado para aluminio anodizado, proibido em metal corrosivel, zinco e chapa galvanizada — e a regra 1 do esquema resolve pela proibicao: quem monta mosaico nao sabe dizer se a chapa dela e galvanizada. Colisao parecida em pedra: granito indicado, calcario e superficie alcalina proibidos."
+      "observacao": "O registro mais importante do banco, e o unico cuja lista NEGATIVA vale mais que a positiva. Duas declaracoes do mesmo fabricante colidem em METAL — indicado para aluminio anodizado, proibido em metal corrosivel, zinco e chapa galvanizada — e a regra 1 do esquema resolve pela proibicao: quem monta mosaico nao sabe dizer se a chapa dela e galvanizada. Colisao parecida em pedra: granito indicado, calcario e superficie alcalina proibidos.",
+      "condicoes": {
+        "proibe_grupos_de_tessela": {
+          "valor": [
+            "espelho"
+          ],
+          "literais": {
+            "espelho": "espelhos"
+          },
+          "onde_o_fabricante_escreve": "declaracoes.nao_usar_em",
+          "fonte_id": "ficha-brsa004",
+          "quem_classifica_o_grupo": "a ilha, em esquema-banco.json / grupos_de_tessela_proibidos — nunca o fabricante, que declarou a PROIBICAO e nao a lista de quais caquinhos do nosso vocabulario caem nela (secao 26.3 do ARQUIPELAGO.md)",
+          "o_que_este_campo_CONSERTOU": "Um defeito que estava no ar. `espelhos` sempre esteve nesta lista e sempre eliminou o produto na BASE `espelho` — e a F2 pergunta o caquinho desde a 1.0.0. Em `ceramica` + `caco de espelho` + `externo abrigado` a pagina servia este silicone no TOPO da recomendacao, empatado com o Maxx e com o neutro. O acido acetico da cura ataca a prata e a pintura de protecao do espelho, e e por isso que a MESMA Tekbond vende um silicone neutro declarando `espelhos` entre os usos dele: os dois produtos dela se separam exatamente neste ponto, e o banco tinha as duas metades desde 10/09/2026 sem nenhuma regra para junta-las."
+        }
+      }
     },
     {
       "id": "tekbond-silicone-neutro",
@@ -381,18 +395,18 @@
       "motivo_sem_codigo": "Identificada pela classificacao normativa (AC II conforme NBR 14.081) e pelo nome do produto como o proprio fabricante o escreve no boletim ('cimentcola externo quartzolit', em minusculas). O boletim NAO imprime codigo de produto. A frase anterior deste campo dizia que 'o Boletim Tecnico 2024-09 nao foi aberto' — um boletim deste produto FOI aberto e lido em 05/10/2026, e e o de maio de 2016; o 2024-09 segue sem canal.",
       "declaracoes": {
         "indicado_para": [
-          "assentar revestimentos ceramicos de ate 60x60 cm em pisos e paredes de areas internas e externas, bem como superficies de gesso acartonado (drywall)",
-          "assentar revestimentos ceramicos de ate 20x20 cm e de absorcao de agua de 3% a 6% em fachadas e em piscinas residenciais nao aquecidas",
-          "placas de pedras naturais, arenitos, quartzitos, como miracema, sao tome, mineira, goias e ardosia, de ate 60x60 cm, com espessura irregular de ate 3 cm, em pisos e paredes de areas internas e externas",
-          "em camada grossa com espessuras de ate 3 cm de argamassa colante",
-          "ceramicas principalmente quando se deseja regularizar desniveis de planeza da base"
+          "assentar revestimentos cerâmicos de até 60x60 cm em pisos e paredes de áreas internas e externas, bem como superfícies de gesso acartonado (drywall)",
+          "assentar revestimentos cerâmicos de até 20x20 cm e de absorção de água de 3% a 6% em fachadas e em piscinas residenciais não aquecidas",
+          "placas de pedras naturais, arenitos, quartzitos, como miracema, são tomé, mineira, goiás e ardósia, de até 60x60 cm, com espessura irregular de até 3 cm, em pisos e paredes de áreas internas e externas",
+          "em camada grossa com espessuras de até 3 cm de argamassa colante",
+          "cerâmicas principalmente quando se deseja regularizar desníveis de planeza da base"
         ],
         "nao_usar_em": [],
         "nao_recomendado_em": [],
         "nao_indicado_para": [
-          "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigorificos e revestimentos especiais",
-          "ceramicas do tipo porcelanato ou com absorcao de agua menor que 3%",
-          "bases com pintura ou quaisquer materiais que possam impedir a aderencia da argamassa cimentcola externo quartzolit"
+          "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigoríficos e revestimentos especiais",
+          "cerâmicas do tipo porcelanato ou com absorção de água menor que 3%",
+          "bases com pintura ou quaisquer materiais que possam impedir a aderência da argamassa cimentcola externo quartzolit"
         ],
         "ambientes_declarados": [
           "área interna e externa"
@@ -501,7 +515,7 @@
           "por_que_esta_origem_nao_batiza": "Segunda aplicacao da linha escrita hoje em batismo_do_fabricante.origens_que_NAO_batizam_e_por_que, e ela se provou sozinha: ao entrar sem este campo, a trava do batismo leu o nome do arquivo (`908487.pdf`, codigo do varejista) e reprovou `Argamassa Cimentcola Externo AC-II Quartzolit` dizendo que o fabricante nao escreve essas palavras. Falso positivo pelo mesmo mecanismo do rejunte piscinas. O fabricante batiza DENTRO do documento, no titulo da pagina 1 — e o que ele escreve ali esta medido em `o_que_o_documento_diz_sobre_o_proprio_nome`, abaixo, porque desta vez o nome do documento e o nome do banco NAO sao a mesma coisa.",
           "o_que_o_documento_diz_sobre_o_proprio_nome": "O titulo da pagina 1 e `cimentcola externo quartzolit`, em minusculas, e o subtitulo e `argamassa colante para ceramicas em areas internas e externas`. O banco grava `Argamassa Cimentcola Externo AC-II Quartzolit`. As duas pontas que SOBRAM no banco sao `Argamassa`, que no documento e o subtitulo (a categoria do produto, nao o nome), e `AC-II`, que no documento e a linha da tabela de propriedades (`Classificacao normativa (NBR 14.081)  AC II`). Pela 26.1 as duas sao classificacao colada no batismo — o fabricante batiza pela posicao e nos classificamos pela funcao. O nome NAO foi corrigido nesta execucao de proposito, e o motivo e medido: `nome_comercial` e entrada da regra de casamento de anuncio (ferramentas/casar-anuncio.py), este registro esta no degrau 2 com `url_produto` de catalogo do Mercado Livre casado pelo nome, e trocar o nome sem reconferir os 14 casamentos e mexer no que paga comissao para ganhar tipografia. Fica como item nomeado, com o documento em casa.",
           "substratos_que_o_documento_declara_e_que_NAO_foram_gravados": {
-            "por_que_este_campo_existe": "Para a declaracao nao ficar LIDA E DESCARTADA EM SILENCIO, que e o defeito que esta ilha ja mediu tres vezes (os dois vernizes com `isopor` e `gesso`, a desempenadeira da Pastilhart). O documento responde a pendencia `cimentcola-substrato-declarado` com todas as letras, na secao 4.1, e a resposta esta aqui inteira.",
+            "por_que_este_campo_existe": "Para a declaracao nao ficar LIDA E DESCARTADA EM SILENCIO, que e o defeito que esta ilha ja mediu quatro vezes (os dois vernizes com `isopor` e `gesso`, a desempenadeira da Pastilhart, o drywall deste mesmo boletim). O documento responde a pendencia `cimentcola-substrato-declarado` com todas as letras, na secao 4.1, e a resposta esta aqui inteira.",
             "literal_do_documento": [
               "Emboco, alvenaria e contrapiso em areas internas, curados ha pelo menos 14 dias, conforme NBR 13.754.",
               "Paredes de concreto curado ha 180 dias. Se curado ha 28 dias, utilize cimentcola flexivel quartzolit.",
@@ -513,8 +527,26 @@
               "alvenaria_tijolo": "alvenaria e alvenarias de blocos vazados, silicocalcarios e de concreto celular",
               "sem_valor_no_vocabulario": "gesso acartonado (drywall) — QUARTA ocorrencia da mesma lacuna: `vocabularios.base` nao tem valor para gesso, e dois vernizes do banco ja carregavam `gesso` e `isopor` na frase literal do fabricante. Acrescentar valor a `vocabularios.base` muda a lista suspensa da F2, que e pagina com impressao, e a decisao e do Raphael (esta escrita na fila do PROMPT.md desde 28/09)."
             },
-            "por_que_NAO_foram_gravados": "Porque gravar so esta metade publica recomendacao que o MESMO documento proibe. A secao 3 do boletim diz `nao indicado para (...) revestimentos especiais`, e a unica tessela deste banco e pastilha de VIDRO, que e revestimento especial. As cinco regras de elegibilidade da F2 decidem sobre BASE e AMBIENTE, e a sexta (condicao de superficie) le a tessela por um campo so, `exige_superficie_porosa`. NAO EXISTE CAMPO para uma proibicao que fala da PECA que se cola. Entao, gravado o substrato, a F2 passaria a recomendar esta argamassa em `cimento_concreto` e `alvenaria_tijolo` para quem respondeu pastilha de vidro — exatamente o que o fabricante proibe, e exatamente o erro caro que a regra_de_divergencia nomeia (peca que descola meses depois).",
-            "o_que_falta_para_gravar": "Uma regra 7 em `regras_de_elegibilidade`: proibicao declarada sobre a PECA elimina o produto para as tesselas que a ilha classifica naquele grupo. Ela segue o molde que ja existe — a lista mora no esquema (como `superficies_porosas`), a classificacao e NOSSA e a tela nao pode dizer que o fabricante classificou (26.3) —, e tem de nascer nas DUAS implementacoes, validar-banco.py e o snippet da F2 em PHP, com matriz esperada e bateria. E bloco, nao linha."
+            "ESTADO_EM_06_10_2026": "A REGRA 7 EXISTE, E O SUBSTRATO CONTINUA FORA. O campo de 05/10 dizia, com todas as letras, que faltava `uma regra 7` e que, com ela, o substrato entraria. A regra 7 nasceu hoje, nas duas implementacoes, com matriz escrita a mao e bateria. O substrato NAO entrou, e o motivo nao e desanimo: ao ler as tres frases da secao 4.1 deste mesmo documento — que ja estavam gravadas aqui desde 05/10 — a proibicao de peca se revelou UM de TRES bloqueios, nao o unico. Os outros dois estao medidos abaixo e cada um pede um campo que o banco nao tem. Foi por nao ler a propria citacao que a execucao de 05/10 prometeu o substrato para hoje.",
+            "os_outros_dois_bloqueios_medidos_em_06_10_2026": [
+              {
+                "bloqueio": "o qualificador de AMBIENTE vem colado no substrato, e o banco decide ambiente por PRODUTO",
+                "o_que_o_documento_diz": "Duas das tres frases da secao 4.1 qualificam o lugar: `Emboco, alvenaria e contrapiso em areas internas` e `Alvenarias de blocos (...) em paredes internas`. So a terceira, `Paredes de concreto curado ha 180 dias`, nao qualifica nada.",
+                "por_que_isso_trava": "`declaracoes.ambientes_declarados` e um campo do PRODUTO e hoje diz `area interna e externa`, que o mapa traduz para quatro ambientes. Traduzir as duas frases de alvenaria para base faria a F2 recomendar esta argamassa em `alvenaria_tijolo` + `externo_abrigado` — um muro de mosaico ao ar livre —, e para esse caso o documento nao declara nada. NAO EXISTE CAMPO para declaracao de substrato QUE VALE SO EM CERTO AMBIENTE; as regras 3 e 4 delimitam ambiente para o produto inteiro, nunca por substrato.",
+                "o_que_falta": "Decidir se `indicado_para` ganha forma de par (substrato + ambiente) ou se o qualificador vira uma regra 8 lida do mesmo jeito que a 7 le o grupo de peca. E decisao de esquema, e bloco — nao linha."
+              },
+              {
+                "bloqueio": "o substrato que NAO tem qualificador de ambiente tem qualificador de CURA, e ele e o pior dos dois para esta ilha",
+                "o_que_o_documento_diz": "`Paredes de concreto curado ha 180 dias. Se curado ha 28 dias, utilize cimentcola flexivel quartzolit.` E a secao 4.1 abre exigindo `curados ha pelo menos 14 dias` para emboco, alvenaria e contrapiso.",
+                "por_que_isso_trava": "A base `cimento_concreto` desta F2 nao e parede de obra: e vaso, tampo e cachepo que a artesa acabou de fazer. O documento nao proibe concreto novo — ele manda usar OUTRO produto, nomeado, abaixo de 180 dias. Gravar o substrato sem a cura publicaria recomendacao primaria para o caso mais comum desta ilha justamente onde o fabricante indica outro produto. E o campo `preparo` nao resolve: ele existe neste esquema e a F2 NAO o serve em lugar nenhum (conferido por varredura do snippet em 06/10/2026), entao escrever a cura ali seria escreve-la onde o leitor nao a ve.",
+                "o_que_falta": "Ou a F2 passa a servir `preparo` na resposta, e a cura vira texto na tela; ou nasce uma condicao com regra propria, no molde da 6 e da 7. As duas sao bloco. O barato e o primeiro, e ele vale para o banco inteiro, nao so para este registro."
+              }
+            ],
+            "o_bloqueio_que_SAIU_hoje": {
+              "era": "`NAO EXISTE CAMPO para proibicao que fala da PECA que se cola`, escrito em 05/10. A secao 3 deste boletim proibe `revestimentos especiais` e `ceramicas do tipo porcelanato ou com absorcao de agua menor que 3%`, e as cinco regras decidiam sobre base e ambiente enquanto a sexta lia a tessela por um campo so.",
+              "agora": "O campo existe e e `condicoes.proibe_grupos_de_tessela`, neste registro, lido pela regra 7 contra `grupos_de_tessela_proibidos` do esquema. Com ele, o dia em que o substrato entrar nao sera o dia em que a F2 passar a mandar colar pastilha de vidro com argamassa que proibe revestimento especial.",
+              "e_a_regra_nao_nasceu_de_graca": "Escrever a lista achou um defeito que ja estava NO AR e nao tinha nada a ver com esta argamassa: o Tekbond Silicone Acetico Construcao proibe `espelhos` e a F2 o servia no TOPO para quem respondeu caco de espelho sobre ceramica. Ver `matriz_esperada_da_proibicao_sobre_a_peca`, primeira ancora."
+            }
           }
         }
       },
@@ -548,7 +580,23 @@
         "F2",
         "G-COLAS"
       ],
-      "observacao": "Registro com uma lacuna nomeada, e por isso ele nao aparece como recomendado em nenhuma celula da matriz: nenhuma declaracao GRAVADA nomeia o SUBSTRATO. Ate 05/10/2026 isso era porque ninguem tinha a declaracao; desde 05/10 e porque gravar a metade que existe publicaria recomendacao que o proprio boletim proibe — a razao inteira esta em `fontes['bt-cimentcola-externo-2016-05'].substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. A embalagem tambem diz algo a esta ilha, e o boletim melhorou a resposta: alem dos sacos de 15 e 20 kg que o banco ja tinha, a secao 7 declara `sacos plasticos de 5, 15 ou 20kg`, e o de 5 kg e o unico formato deste produto que nao e formato de obra. Validade declarada: 8 meses em embalagem de papel e 12 meses em plastico."
+      "observacao": "Registro com uma lacuna nomeada, e por isso ele nao aparece como recomendado em nenhuma celula da matriz: nenhuma declaracao GRAVADA nomeia o SUBSTRATO. Ate 05/10/2026 isso era porque ninguem tinha a declaracao; desde 05/10 e porque gravar a metade que existe publicaria recomendacao que o proprio boletim proibe — a razao inteira esta em `fontes['bt-cimentcola-externo-2016-05'].substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. A embalagem tambem diz algo a esta ilha, e o boletim melhorou a resposta: alem dos sacos de 15 e 20 kg que o banco ja tinha, a secao 7 declara `sacos plasticos de 5, 15 ou 20kg`, e o de 5 kg e o unico formato deste produto que nao e formato de obra. Validade declarada: 8 meses em embalagem de papel e 12 meses em plastico.",
+      "condicoes": {
+        "proibe_grupos_de_tessela": {
+          "valor": [
+            "baixa_absorcao_de_agua",
+            "revestimento_especial"
+          ],
+          "literais": {
+            "baixa_absorcao_de_agua": "cerâmicas do tipo porcelanato ou com absorção de água menor que 3%",
+            "revestimento_especial": "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigoríficos e revestimentos especiais"
+          },
+          "onde_o_fabricante_escreve": "declaracoes.nao_indicado_para",
+          "fonte_id": "bt-cimentcola-externo-2016-05",
+          "quem_classifica_o_grupo": "a ilha, em esquema-banco.json / grupos_de_tessela_proibidos — nunca o fabricante, que declarou a PROIBICAO e nao a lista de quais caquinhos do nosso vocabulario caem nela (secao 26.3 do ARQUIPELAGO.md)",
+          "o_que_este_campo_NAO_destrava": "Ele NAO torna esta argamassa recomendavel. A regra 7 roda sobre quem sobreviveu as cinco, e este registro cai na regra 2 em TODA base: nenhuma declaracao gravada aqui nomeia substrato. O campo existe para o dia em que o substrato for gravado — e para que, nesse dia, a F2 nao recomende em `pastilha de vidro` uma argamassa que o proprio boletim proibe em revestimento especial."
+        }
+      }
     },
     {
       "id": "loctite-durepoxi",
@@ -747,6 +795,14 @@
         "leitura": "A ficha EXISTE e o endereco dela esta aqui, mas NENHUM campo deste registro veio dela: o PDF nao abre desta nuvem. Ela esta gravada para que a proxima execucao que tiver canal saiba exatamente onde ir — e para que ninguem a colha de novo.",
         "sustenta_algum_campo": false,
         "por_que_ela_NAO_esta_em_fontes": "Porque `fontes` e o que SUSTENTA este registro, e ela nao sustenta uma linha dele. Gravada dentro de `fontes` ela fez duas coisas erradas de uma vez, e as duas foram pegas por portao em 13/09/2026, antes do commit: (1) o nivel do produto virou 2, o da ficha tecnica, quando toda declaracao deste registro veio da pagina de produto, nivel 3 — e a secao 10 do ARQUIPELAGO.md diz que o nivel e o do elo MAIS FRACO, entao inflar aqui e o defeito mais caro que existe numa fabrica que vende procedencia; (2) a linha de prova da tela passou a atribuir a declaracao a um documento que ninguem abriu. Ficha localizada e endereco guardado, nao fonte."
+      },
+      "pendencia_nomeada_em_06_10_2026": {
+        "id": "maxx-nao-declara-nada-sobre-espelho",
+        "o_que_e": "A REGRA 7 nasceu hoje e tirou o Tekbond Silicone Acetico Construcao de todo caso com caco de espelho, porque a Tekbond escreve `espelhos` na lista do que ele nao deve tocar. ESTE registro e acetico tambem, da MESMA Tekbond, e tem `nao_usar_em` VAZIO. Entao ele continua podendo ser recomendado para caco de espelho.",
+        "por_que_a_ilha_NAO_estendeu_a_proibicao": "Porque seria inventar declaracao. A regra 2 do esquema proibe transformar silencio de fabricante em recomendacao; estender a proibicao de um produto para o irmao dele e o avesso exato do mesmo defeito, do outro lado do balcao. A regra 7 le `condicoes.proibe_grupos_de_tessela`, que e campo POR PRODUTO, e esta escrito no esquema em `grupos_de_tessela_proibidos.o_grupo_e_do_PRODUTO_e_nao_do_CAQUINHO`.",
+        "o_que_a_ilha_SABE_e_o_que_ela_NAO_sabe": "SABE que a unica fonte deste registro e pagina de produto (nivel 3) e que ela nao traz lista de proibicao nenhuma — nem de espelho nem de qualquer outra superficie. NAO SABE se o boletim tecnico do Maxx proibe espelho, porque esse documento nunca foi aberto: `www.tekbond.com.br` responde 403 desta nuvem, remedido em 06/10/2026 nas DUAS URLs do registro do acetico (pagina de produto e ficha BRSA004). Silencio de documento nao lido nao e silencio de fabricante.",
+        "o_que_destrava": "O boletim tecnico ou a FISPQ do Maxx, numa fonte alcancavel. As duas portas do fabricante estao em 403; o canal de espelho de `dados/canal-de-espelho.md` e arquivo por NOME CONHECIDO e o inventario dele sao 14 documentos, nenhum da Tekbond. Enquanto nao houver documento, nada muda aqui — e a frase que NAO se pode escrever e `o Maxx pode em espelho`, porque disso nao se mediu nada.",
+        "custo_de_deixar_aberta": "Uma recomendacao de acetico para caco de espelho continua possivel em `ceramica_esmaltada_porcelana`, que e a unica base que este produto declara. Nao e hipotese confortavel e nao esta escondida: o mecanismo e o mesmo que tirou o irmao dele — o acido acetico da cura ataca a prata do espelho —, e o que falta nao e raciocinio, e documento."
       }
     },
     {

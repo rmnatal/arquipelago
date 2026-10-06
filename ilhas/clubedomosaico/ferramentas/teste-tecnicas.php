@@ -506,13 +506,21 @@ foreach ( $registro as $id => $ficha ) {
 	   inventar a outra. Os baldes sao contados sobre as celulas SERVIDAS, que e o
 	   universo de que a frase da pagina fala. */
 	foreach ( $fora_esperado as $id_cola ) {
-		$baldes = array( 'ressalva' => 0, 'silencio' => 0, 'proibicao' => 0, 'condicao' => 0 );
+		$baldes = array( 'ressalva' => 0, 'silencio' => 0, 'proibicao' => 0, 'condicao' => 0, 'peca' => 0 );
 		foreach ( $grupos_esperados as $tesselas_do_grupo ) {
 			foreach ( $celulas_por_tessela[ $tesselas_do_grupo[0] ] as $e ) {
 				if ( in_array( $id_cola, $e['com_ressalva'], true ) ) { $baldes['ressalva']++; }
 				if ( in_array( $id_cola, $e['eliminados_por_silencio'], true ) ) { $baldes['silencio']++; }
 				if ( in_array( $id_cola, $e['eliminados_por_proibicao'], true ) ) { $baldes['proibicao']++; }
 				if ( in_array( $id_cola, $e['eliminados_por_condicao'], true ) ) { $baldes['condicao']++; }
+				/* O QUINTO BALDE (regra 7, 06/10/2026). Ele sai zerado nas duas
+				   tecnicas servidas hoje e `array_filter` o descarta, entao a
+				   afirmacao abaixo nao muda — mas no dia em que um produto com
+				   proibicao de peca for elegivel numa dessas grades, esta linha
+				   cobra que a pagina nomeie ESSA causa, em vez de somar a
+				   recusa ao silencio. Balde que o calculo separa e o portao nao
+				   conta e balde que a tela pode esquecer sem ninguem ver. */
+				if ( in_array( $id_cola, $e['eliminados_por_proibicao_da_peca'], true ) ) { $baldes['peca']++; }
 			}
 		}
 		$quantas       = array_filter( $baldes );

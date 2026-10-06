@@ -987,12 +987,48 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > cinco regras de elegibilidade decidem sobre BASE e AMBIENTE; a sexta lê a tessela por **um** campo
    > (`exige_superficie_porosa`). **Não existe campo para proibição que fala da PEÇA que se cola.**
    >
-   > **ENTÃO O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A REGRA 7**, e ela não é linha, é bloco: proibição
+   > ~~**ENTÃO O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A REGRA 7**, e ela não é linha, é bloco: proibição
    > declarada sobre a peça elimina o produto para as tesselas que a ilha classifica naquele grupo — lista
    > no esquema (molde de `superficies_porosas`), classificação **nossa** e a tela proibida de dizer que o
    > fabricante classificou (26.3), nas **duas** implementações (`validar-banco.py` e o snippet da F2 em
-   > PHP), com matriz esperada e bateria. Fechada ela, o substrato entra e a cimentcola AC-II passa a ser
-   > recomendação primária em duas bases — o primeiro produto novo na matriz da F2 desde 13/09.
+   > PHP), com matriz esperada e bateria.~~ **ENTREGUE EM 06/10/2026** — esquema na **v11**, F2 **1.8.0**,
+   > Técnicas **1.4.0**, `grupos_de_tessela_proibidos` com 3 grupos, `matriz_esperada_da_proibicao_sobre_a_peca`
+   > com 18 pares e 5 âncoras, e 20 mutações novas em `mutacoes-f2.py`.
+   >
+   > **MAS A SEGUNDA METADE DA FRASE ESTAVA ERRADA, E O ERRO ERA LEGÍVEL NO PRÓPRIO REPOSITÓRIO.** Ela
+   > dizia *"fechada ela, o substrato entra e a cimentcola AC-II passa a ser recomendação primária em duas
+   > bases"*. **O substrato NÃO entrou.** As três frases da seção 4.1 do boletim já estavam gravadas aqui
+   > desde 05/10, e lê-las mostrou que a proibição de peça era **um de três** bloqueios:
+   >
+   > | bloqueio | estado | o que falta |
+   > |---|---|---|
+   > | proibição sobre a PEÇA | **fechado** | nada — é a regra 7 |
+   > | o qualificador de **ambiente** vem colado no substrato (`em áreas internas`, `em paredes internas`) e o banco decide ambiente por PRODUTO | aberto | campo de par substrato×ambiente, ou uma regra 8 lida como a 7 lê o grupo |
+   > | o substrato sem qualificador de ambiente tem qualificador de **CURA** (`paredes de concreto curado há 180 dias`; abaixo disso o boletim manda usar outro produto, nomeado) | aberto | a F2 servir `preparo` na resposta |
+   >
+   > Os dois abertos são caros **nesta** ilha: `alvenaria_tijolo` + `externo_abrigado` é muro de mosaico ao
+   > ar livre, e `cimento_concreto` aqui não é parede de obra — é vaso e tampo que a artesã acabou de
+   > fazer, muito abaixo dos 180 dias. A razão inteira está em `materiais-colas.json`, no campo
+   > `substratos_que_o_documento_declara_e_que_NAO_foram_gravados.os_outros_dois_bloqueios_medidos_em_06_10_2026`.
+   >
+   > **E A REGRA 7 ACHOU UM DEFEITO QUE NÃO TINHA NADA A VER COM A ARGAMASSA.** O Tekbond Silicone
+   > Acético Construção proíbe `espelhos` desde 10/09 e a F2 o servia **no topo** para quem respondeu
+   > **caco de espelho** sobre cerâmica: a frase era lida como base e só como base. Pior — a **âncora
+   > escrita à mão da regra 6**, de 13/09, declarava esse produto no topo de `vidro` + `caco de espelho`,
+   > ou seja, a régua independente tinha o defeito escrito como **resultado esperado**. Portão
+   > independente mede divergência entre as metades; nunca a lacuna que as duas têm.
+   >
+   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O BARATO DOS DOIS QUE FICARAM: a F2 (e o Guia) passarem a
+   > servir `preparo` na resposta.** Varredura de 06/10/2026 nos nove snippets: a palavra `preparo` não
+   > aparece em **nenhum** deles, e **9 dos 41 registros** do banco têm o campo preenchido com frase de
+   > fabricante — o acético, o Cascorez, o PL500, a AF1500 e cinco rejuntes da Quartzolit ("deixar em
+   > repouso por 15 minutos antes de usar", "juntas de até 3 mm devem ser molhadas antes"). **São nove
+   > declarações de fabricante lidas, gravadas e descartadas em silêncio**, que é o defeito que esta ilha
+   > já mediu quatro vezes com outros nomes. Não é só a cura da cimentcola: vale para o banco inteiro, e é
+   > o que destrava um terço do substrato da AC-II. Um dos nove (`quartzolit-rejunte-porcelanatos-e-ceramicas`)
+   > tem `preparo: "Nao coletado nesta execucao."` — isso é motivo, não texto de fabricante, e a tela não
+   > pode servi-lo; separar os dois estados é parte do bloco. Depois dele, o campo de par
+   > substrato×ambiente, que é decisão de esquema.
    >
    > **TRÊS PORTAS MEDIDAS DE CARONA, e as três valem mais que uma coleta:**
    > **(1)** `www.pastilhart.com.br` responde **200 nas três passadas**, e o registro de 28/09 dizia que

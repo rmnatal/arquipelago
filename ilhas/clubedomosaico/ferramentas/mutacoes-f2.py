@@ -679,6 +679,306 @@ def m_mapa_perde_a_pedra_do_epoxi(raiz):
     gravar(raiz, "esquema-banco.json", esquema)
 
 
+# --------------------------------------------------- a REGRA 7 (06/10/2026)
+#
+# Ela entrou consertando um defeito que ESTAVA NO AR, e isso muda o que estas
+# mutacoes tem de provar: nao basta a regra existir, ela tem de morder na celula
+# certa e so nela. A ancora da regra 6 escrita a mao em 13/09 declarava o
+# acetico no topo de `vidro` + `caco de espelho`, e as duas metades do portao
+# concordavam — o que uma regua independente nao pega e a lacuna que as duas tem.
+
+def m_regra7_ignorada(raiz):
+    """A regra 7 cai: quem o fabricante proibe no caquinho volta a ser
+    recomendado. E a mutacao central do bloco, e o estado que ela restaura e o
+    que estava servido ate hoje — o acetico no topo para quem cola caco de
+    espelho, com a Tekbond escrevendo `espelhos` na lista do que ele nao toca."""
+    editar(raiz, SNIPPET,
+           "\t\t\t&& cdm_f2_peca_proibida( $m, $tessela ) ) {",
+           "\t\t\t&& false ) {")
+
+
+def m_regra7_morde_todo_caquinho(raiz):
+    """O avesso: a proibicao passa a valer para TODO caquinho, e o produto some
+    de toda combinacao. Erro plausivel de quem esquece de cruzar a lista — e ele
+    encolhe a resposta em silencio, o modo de falhar mais dificil de ver. Quem
+    pega e a CELULA DE CONTROLE, que roda o mesmo estado com caquinho livre."""
+    editar(raiz, SNIPPET,
+           "\t\tif ( ! isset( $mapa['grupos'][ $g ] ) || isset( $mapa['grupos'][ $g ]['tesselas'][ $tessela ] ) ) {",
+           "\t\tif ( true ) {")
+
+
+def m_regra7_manda_para_o_silencio(raiz):
+    """A causa nova e jogada no balde do silencio. A elegibilidade fica IGUAL,
+    entao a unica coisa que muda e a frase que o leitor recebe: passa a ler que
+    o fabricante nao fala daquela superficie quando ele escreveu para nao usar
+    nela. Mistura de causas, secao 7, a mesma de 12/09/2026."""
+    editar(raiz, SNIPPET,
+           "\t\t\t$peca[] = $id;\n\t\t\tcontinue;",
+           "\t\t\t$silencio[] = $id;\n\t\t\tcontinue;")
+
+
+def m_regra7_antes_das_cinco(raiz):
+    """A regra 7 passa a rodar sobre QUEM FOI PROIBIDO tambem, e um produto
+    proibido pela base ou pelo ambiente reaparece no grupo da peca — que e
+    ressuscitar proibicao com outro nome e trocar a frase do leitor inteira.
+    E a ancora `ceramica x contato permanente com agua x caco de espelho` que
+    existe para medir isto."""
+    editar(raiz, SNIPPET,
+           "\t\t\t&& ( 'recomendado' === $situacao || 'ressalva' === $situacao )\n"
+           "\t\t\t&& cdm_f2_peca_proibida( $m, $tessela ) ) {",
+           "\t\t\t&& true\n\t\t\t&& cdm_f2_peca_proibida( $m, $tessela ) ) {")
+
+
+def m_regra7_recusa_volta_a_negar_a_declaracao(raiz):
+    """PRODUZ O MUNDO: a frase de recusa da regra 7 some, e a celula que ela
+    esvazia volta a dizer outra causa — a declaracao de nivel 4 do Durepoxi, que
+    nao e o que tirou ninguem dali.
+
+    ESTA MUTACAO PASSOU NA PRIMEIRA RODADA, e e por isso que ela produz o mundo.
+    Apagar o ramo nao reprovava nada: nas seis celulas em que a regra 7 morde
+    HOJE sempre sobra alguem recomendado, entao o ramo nunca e alcancado — e
+    codigo que o portao nao ve e a mesma familia do `else` morto da regra 6, que
+    ficou no ar dizendo a frase errada em quatro estados ate 13/09/2026.
+
+    O mundo e o minimo que torna o ramo alcancavel: em `ceramica` + `caco de
+    espelho` + `externo abrigado` os TRES elegiveis sao o acetico, o Maxx e o
+    neutro; dando `espelho` aos dois que ainda nao o tem, a celula esvazia. Nao
+    e mundo arbitrario — e exatamente o mundo que a pendencia nomeada do Maxx
+    diz que pode chegar com um documento."""
+    b = carregar(raiz, "materiais-colas.json")
+    for m in b["materiais"]:
+        if m["id"] in ("tekbond-silicone-acetico-maxx", "tekbond-silicone-neutro"):
+            # NAO mexe em `declaracoes`: por um instante esta mutacao escrevia
+            # `nao_usar_em: ["espelhos"]` nos dois, e isso tirava o neutro da BASE
+            # `espelho` pela regra 1 — a reprovacao passava a vir da trava VIZINHA
+            # (a matriz escrita a mao das 45 celulas), nao do ramo apagado.
+            m["condicoes"] = {"proibe_grupos_de_tessela": {
+                "valor": ["espelho"],
+                "literais": {"espelho": "espelhos"},
+                "onde_o_fabricante_escreve": "declaracoes.nao_usar_em",
+                "fonte_id": sorted((m.get("fontes") or {}))[0],
+                "quem_classifica_o_grupo": "a ilha",
+            }}
+    gravar(raiz, "materiais-colas.json", b)
+    editar(raiz, SNIPPET,
+           "\t} elseif ( $celula['eliminados_por_proibicao_da_peca'] ) {",
+           "\t} elseif ( false ) {")
+
+
+def m_regra7_atribuicao_vira_do_fabricante(raiz):
+    """A pagina passa a dizer que quem classificou o caquinho dentro da palavra
+    do fabricante foi ele. A frase fica mais forte e e emprestimo de autoridade
+    — secao 26.3, e aqui a tentacao e maior que na regra 6, porque a nossa
+    leitura (caco de espelho e espelho) parece obvia."""
+    editar(raiz, SNIPPET,
+           "\t\t\t\t. 'nessa frase somos nós, não ela.",
+           "\t\t\t\t. 'nessa frase é a própria fabricante.")
+
+
+def m_regra7_bloco_sem_a_frase_do_fabricante(raiz):
+    """O bloco deixa de citar a frase do fabricante e passa a afirmar a
+    proibicao com as nossas palavras. E a metade que a secao 15.2 cobra: sem o
+    literal, a pagina diz `o fabricante proibe` sem mostrar onde."""
+    editar(raiz, SNIPPET,
+           "\t\t\t\t. esc_html( cdm_f2_lista_humana( $literais ) ) . '</em>, e quem diz que <em>'",
+           "\t\t\t\t. esc_html( 'uma restrição de uso' ) . '</em>, e quem diz que <em>'")
+
+
+def m_regra7_saida_vira_digitada(raiz):
+    """A unica frase da pagina que diz a pessoa o que FAZER para a peca nao
+    descolar volta a ser digitada. Digitada, ela erra calada no dia em que um
+    caquinho novo entrar no vocabulario — e erra do jeito caro, mandando colar.
+    Mesma familia de `m_contagem_do_que_falta_vira_digitada`."""
+    editar(raiz, SNIPPET,
+           "\t\t\t$sobram = cdm_f2_caquinhos_fora_dos_grupos( $grupos );",
+           "\t\t\t$sobram = 'pastilha de vidro';")
+
+
+def m_tabela_perde_a_coluna_da_peca(raiz):
+    """A tabela pre-renderizada volta a servir "ceramica, no sol e na chuva: use
+    Tekbond Silicone Acetico Construcao" sem dizer com que caquinho nao serve. E
+    a metade que um modelo de linguagem le sem preencher formulario, e e onde a
+    afirmacao sem escopo custa mais caro."""
+    editar(raiz, SNIPPET,
+           "\t\t\tif ( $grupos_do_m ) {",
+           "\t\t\tif ( false ) {")
+
+
+def m_esquema_perde_os_grupos_de_peca(raiz):
+    """A chave `grupos_de_tessela_proibidos` some do esquema. Secao 26.2 por
+    escrito: regua que le a propria lista de um arquivo de dados aprova tudo, em
+    silencio, no dia em que o arquivo perder a chave. Nenhum registro e tocado."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    del esquema["grupos_de_tessela_proibidos"]
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
+def m_caquinho_sem_classificacao_de_grupo(raiz):
+    """Um caquinho sai da classificacao de um grupo sem sair do vocabulario — o
+    que acontece no dia em que alguem acrescentar uma tessela e esquecer esta
+    lista. Sem a trava das duas direcoes ele seria tratado como FORA do grupo
+    por omissao, e aqui a omissao deixa passar: e a direcao caro."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    esquema["grupos_de_tessela_proibidos"]["grupos"]["espelho"]["tesselas_fora_do_grupo"].remove("pedra")
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
+def m_caquinho_em_duas_listas_do_grupo(raiz):
+    """O mesmo caquinho fica dentro E fora do grupo. O codigo nao quebra: ele le
+    a lista de dentro e ignora a outra, entao a contradicao passaria calada."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    esquema["grupos_de_tessela_proibidos"]["grupos"]["espelho"]["tesselas_no_grupo"].append("pedra")
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
+def m_grupo_sem_por_que_de_um_caquinho(raiz):
+    """A classificacao de um caquinho perde o motivo escrito. A lista e NOSSA, e
+    sem motivo por caquinho a proxima execucao nao sabe se `pastilha_ceramica`
+    entrou medida ou por descuido — e foi por isso que a regra_da_direcao
+    existe."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    del esquema["grupos_de_tessela_proibidos"]["grupos"]["revestimento_especial"]["por_que_cada_uma"]["pastilha_ceramica"]
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
+def m_proibicao_sem_dizer_quem_classifica(raiz):
+    """O registro para de dizer quem classifica o grupo. A tela continua
+    imprimindo a frase dividida, mas o banco deixa de sustentar a divisao — e o
+    portao da 26.3 tem de medir no banco tambem, nao so na tela."""
+    b = carregar(raiz, "materiais-colas.json")
+    for m in b["materiais"]:
+        if m["id"] == "tekbond-silicone-acetico-construcao":
+            del m["condicoes"]["proibe_grupos_de_tessela"]["quem_classifica_o_grupo"]
+    gravar(raiz, "materiais-colas.json", b)
+
+
+def m_literal_do_registro_nao_esta_na_declaracao(raiz):
+    """A citacao da regra 7 deixa de voltar a declaracao do fabricante: o
+    literal gravado passa a ser uma frase que ele nunca escreveu neste registro.
+    E a forma mais barata de a pagina citar uma proibicao inventada, porque a
+    frase continua com cara de declaracao."""
+    b = carregar(raiz, "materiais-colas.json")
+    for m in b["materiais"]:
+        if m["id"] == "tekbond-silicone-acetico-construcao":
+            m["condicoes"]["proibe_grupos_de_tessela"]["literais"]["espelho"] = \
+                "nao use em espelhos nem em superficies espelhadas"
+    gravar(raiz, "materiais-colas.json", b)
+
+
+def m_grupo_declarado_que_nao_existe_no_esquema(raiz):
+    """O registro declara um grupo que a lista do esquema nao tem. Sem a trava,
+    `peca_proibida` nao acha o grupo e o produto passa — proibicao declarada que
+    nao elimina ninguem, com o campo preenchido para quem olhar."""
+    b = carregar(raiz, "materiais-colas.json")
+    for m in b["materiais"]:
+        if m["id"] == "tekbond-silicone-acetico-construcao":
+            m["condicoes"]["proibe_grupos_de_tessela"]["valor"] = ["espelho_e_vidro"]
+            m["condicoes"]["proibe_grupos_de_tessela"]["literais"] = {"espelho_e_vidro": "espelhos"}
+    gravar(raiz, "materiais-colas.json", b)
+
+
+def m_segundo_produto_com_proibicao_de_peca(raiz):
+    """PRODUZ O MUNDO: um segundo produto ganha proibicao de peca e entra MUDO,
+    sem passar pela matriz escrita a mao. E o caminho pelo qual um registro novo
+    muda a resposta de dezenas de celulas sem ninguem escrever uma linha —
+    irma da mutacao da regra 6."""
+    b = carregar(raiz, "materiais-colas.json")
+    for m in b["materiais"]:
+        if m["id"] == "tekbond-silicone-neutro":
+            m["condicoes"] = {"proibe_grupos_de_tessela": {
+                "valor": ["espelho"],
+                "literais": {"espelho": "espelhos"},
+                "onde_o_fabricante_escreve": "declaracoes.indicado_para",
+                "fonte_id": sorted((m.get("fontes") or {}))[0],
+                "quem_classifica_o_grupo": "a ilha",
+            }}
+    gravar(raiz, "materiais-colas.json", b)
+
+
+def m_grupo_que_ninguem_declara(raiz):
+    """Um grupo fica no esquema sem nenhum produto que o declare — lista que
+    cresce por previsao, o mesmo defeito que a varredura de apoio ja mede em
+    `material_de_contato_do_apoio`. Grupo sem dono nao reprova nada e da a
+    impressao de que a ilha mede mais do que mede."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    g = esquema["grupos_de_tessela_proibidos"]["grupos"]
+    g["pedra_natural"] = {
+        "literal_que_o_origina": "pedras naturais",
+        "quem_declara": "ninguem",
+        "onde_o_fabricante_escreve": "declaracoes.nao_usar_em",
+        "tesselas_no_grupo": ["pedra"],
+        "tesselas_fora_do_grupo": [t for t in esquema["vocabularios"]["material_tessela"]
+                                   if t != "pedra"],
+        "por_que_cada_uma": {t: "inventado pela mutacao"
+                             for t in esquema["vocabularios"]["material_tessela"]},
+    }
+    esquema["matriz_esperada_da_proibicao_sobre_a_peca"]["caquinhos_em_que_cada_grupo_MORDE"]["pedra_natural"] = ["pedra"]
+    esquema["matriz_esperada_da_proibicao_sobre_a_peca"]["total_de_pares"] = \
+        len(g) * len(esquema["vocabularios"]["material_tessela"])
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
+def m_validador_regra7_antes_das_cinco(raiz):
+    """A mesma inversao da ordem, agora no VALIDADOR. Ele tem a propria copia da
+    regra por desenho (secao 8), entao a trava tem de existir duas vezes — e uma
+    das duas podia estar certa sozinha sem ninguem notar."""
+    editar(raiz, "ferramentas/validar-banco.py",
+           '        if situacao in ("recomendado", "ressalva") and peca_proibida(m, tessela):',
+           '        if peca_proibida(m, tessela):')
+
+
+def m_ordem_das_duas_regras_novas_invertida(raiz):
+    """PRODUZ O MUNDO E INVERTE A ORDEM: o PL500 ganha a proibicao de `espelho`,
+    e passa a cair nas DUAS regras na mesma celula (`vidro` + `caco de
+    espelho`), porque nem vidro nem espelho absorvem agua. O mundo e escrito
+    inteiro — matriz, os dois pares de ancoras — como quem o produzisse de
+    verdade escreveria; so depois a ordem e invertida no validador. Sem isto a
+    frase `a regra 7 roda antes da 6` seria uma intencao escrita no esquema e
+    nunca medida, porque HOJE nenhum produto do banco cai nas duas."""
+    b = carregar(raiz, "materiais-colas.json")
+    for m in b["materiais"]:
+        if m["id"] == "cascola-pl500-adesivo-de-montagem":
+            m["condicoes"]["proibe_grupos_de_tessela"] = {
+                "valor": ["espelho"],
+                "literais": {"espelho": "espelhos"},
+                "onde_o_fabricante_escreve": "declaracoes.nao_usar_em",
+                "fonte_id": "pagina-produto-pl500",
+                "quem_classifica_o_grupo": "a ilha",
+            }
+            m["declaracoes"]["nao_usar_em"] = ["espelhos"]
+    gravar(raiz, "materiais-colas.json", b)
+
+    esquema = carregar(raiz, "esquema-banco.json")
+    mp = esquema["matriz_esperada_da_proibicao_sobre_a_peca"]
+    mp["produtos_que_carregam_a_proibicao_hoje"]["cascola-pl500-adesivo-de-montagem"] = ["espelho"]
+    for a in mp["ancoras_ponta_a_ponta"]:
+        if (a["base"], a["ambiente"], a["tessela"]) == ("vidro", "interno_seco", "caco_espelho"):
+            a["eliminados_por_proibicao_da_peca"] = ["cascola-pl500-adesivo-de-montagem",
+                                                     "tekbond-silicone-acetico-construcao"]
+            a["eliminados_por_condicao"] = []
+    for a in esquema["matriz_esperada_da_condicao_de_superficie"]["ancoras_ponta_a_ponta"]:
+        if (a["base"], a["ambiente"], a["tessela"]) == ("vidro", "interno_seco", "caco_espelho"):
+            a["eliminados_por_condicao"] = []
+    gravar(raiz, "esquema-banco.json", esquema)
+
+    v = "ferramentas/validar-banco.py"
+    editar(raiz, v,
+           '        if situacao in ("recomendado", "ressalva") and peca_proibida(m, tessela):\n'
+           '            peca.append(ident)\n'
+           '            continue\n'
+           '        if situacao in ("recomendado", "ressalva") and exige_porosa(m) \\\n'
+           '                and not condicao_cumprida(base, tessela):\n'
+           '            condicao.append(ident)\n'
+           '            continue',
+           '        if situacao in ("recomendado", "ressalva") and exige_porosa(m) \\\n'
+           '                and not condicao_cumprida(base, tessela):\n'
+           '            condicao.append(ident)\n'
+           '            continue\n'
+           '        if situacao in ("recomendado", "ressalva") and peca_proibida(m, tessela):\n'
+           '            peca.append(ident)\n'
+           '            continue')
+
+
 MUTACOES = [
     ("proibicao do fabricante deixa de vencer", m_proibicao_deixa_de_vencer),
     ("silencio do fabricante vira 'pode'", m_silencio_vira_pode),
@@ -737,6 +1037,27 @@ MUTACOES = [
     ("a faixa descoberta volta a negar a declaracao que a pagina cita", m_faixa_descoberta_nega_a_declaracao, "tela"),
     ("a vitrine vazia volta a negar a mesma declaracao", m_vitrine_vazia_nega_a_declaracao, "tela"),
     ("SO AS 27 CELULAS NOVAS PEGAM: o mapa perde a pedra do epoxi", m_mapa_perde_a_pedra_do_epoxi, "banco"),
+    # --- regra 7, 06/10/2026. Mesma terceira coluna: qual portao tem de reprovar.
+    ("a regra 7 e ignorada: quem o fabricante proibe no caquinho volta ao topo", m_regra7_ignorada, "tela"),
+    ("a proibicao de peca morde TODO caquinho", m_regra7_morde_todo_caquinho, "tela"),
+    ("a proibicao de peca vai para o balde do silencio", m_regra7_manda_para_o_silencio, "tela"),
+    ("a regra 7 roda antes das cinco e ressuscita proibido", m_regra7_antes_das_cinco, "tela"),
+    ("PRODUZ O MUNDO: a recusa da regra 7 some na celula que ela esvazia", m_regra7_recusa_volta_a_negar_a_declaracao, "tela"),
+    ("a classificacao do caquinho vira declaracao do fabricante", m_regra7_atribuicao_vira_do_fabricante, "tela"),
+    ("o bloco da peca para de citar a frase do fabricante", m_regra7_bloco_sem_a_frase_do_fabricante, "tela"),
+    ("a saida 'troque o caquinho' volta a ser digitada", m_regra7_saida_vira_digitada, "tela"),
+    ("a tabela pre-renderizada perde a coluna da proibicao de peca", m_tabela_perde_a_coluna_da_peca, "tela"),
+    ("o esquema perde a lista de grupos de peca", m_esquema_perde_os_grupos_de_peca, "banco"),
+    ("um caquinho fica sem classificacao de grupo", m_caquinho_sem_classificacao_de_grupo, "banco"),
+    ("o mesmo caquinho fica dentro E fora do grupo", m_caquinho_em_duas_listas_do_grupo, "banco"),
+    ("a classificacao de um caquinho perde o motivo escrito", m_grupo_sem_por_que_de_um_caquinho, "banco"),
+    ("a proibicao de peca para de dizer quem classifica o grupo", m_proibicao_sem_dizer_quem_classifica, "banco"),
+    ("a citacao da regra 7 nao volta mais a declaracao do fabricante", m_literal_do_registro_nao_esta_na_declaracao, "banco"),
+    ("o registro declara grupo que o esquema nao tem", m_grupo_declarado_que_nao_existe_no_esquema, "banco"),
+    ("PRODUZ O MUNDO: um segundo produto ganha proibicao de peca, mudo", m_segundo_produto_com_proibicao_de_peca, "banco"),
+    ("um grupo fica no esquema sem nenhum produto que o declare", m_grupo_que_ninguem_declara, "banco"),
+    ("no VALIDADOR, a regra 7 roda antes das cinco", m_validador_regra7_antes_das_cinco, "banco"),
+    ("PRODUZ O MUNDO: as regras 6 e 7 trocam de ordem na mesma celula", m_ordem_das_duas_regras_novas_invertida, "banco"),
 ]
 
 

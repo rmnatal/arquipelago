@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 10,
+  "versao_esquema": 11,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -760,6 +760,38 @@
       {
         "literal": "rodapes, pecas decorativas, azulejos, ladrilhos, molduras, canaletas, cantoneiras, maquetes, mosaicos",
         "por_que": "Cascola PL500. E a lista do que se COLA com o produto, nunca a lista do que se cola SOBRE. E o mesmo erro que este banco ja pegou na cimentcola AC-II, e o mais perigoso de todos aqui porque a frase contem 'azulejos', que o mapa traduz como BASE quando aparece numa lista de substratos. O sinal vem da lista em que o termo esta, nunca da palavra."
+      },
+      {
+        "literal": "assentar revestimentos cerâmicos de até 60x60 cm em pisos e paredes de áreas internas e externas, bem como superfícies de gesso acartonado (drywall)",
+        "por_que": "Cimentcola AC-II, secao 2 do boletim. O que a frase nomeia e a PECA ASSENTADA e o tamanho maximo dela; a parte de ambiente ja esta em `ambientes_declarados`; e `gesso acartonado (drywall)` nao tem valor em `vocabularios.base`, como as linhas `gesso` e `drywall` desta mesma lista ja dizem. Nenhuma das tres metades e substrato do mosaico."
+      },
+      {
+        "literal": "assentar revestimentos cerâmicos de até 20x20 cm e de absorção de água de 3% a 6% em fachadas e em piscinas residenciais não aquecidas",
+        "por_que": "Mesma coisa: peca assentada, com faixa de absorcao da PECA e aplicacao predial (fachada, piscina). A faixa de absorcao e, inclusive, o avesso do grupo `baixa_absorcao_de_agua` da regra 7 — ela fala de que peca SERVE, nao de que base."
+      },
+      {
+        "literal": "placas de pedras naturais, arenitos, quartzitos, como miracema, são tomé, mineira, goiás e ardósia, de até 60x60 cm, com espessura irregular de até 3 cm, em pisos e paredes de áreas internas e externas",
+        "por_que": "Peca assentada. A linha `placas de pedra natural` desta lista ja recusa a forma curta desta mesma frase, pelo mesmo motivo, desde o bloco que achou o defeito na matriz publicada."
+      },
+      {
+        "literal": "em camada grossa com espessuras de até 3 cm de argamassa colante",
+        "por_que": "Descreve a TECNICA de aplicacao e a espessura da camada, nao a superficie. O numero dela ja esta em `propriedades.espessura_maxima_de_camada`."
+      },
+      {
+        "literal": "cerâmicas principalmente quando se deseja regularizar desníveis de planeza da base",
+        "por_que": "Peca assentada outra vez, agora com um proposito (regularizar desnivel). A palavra `base` aparece na frase e nao nomeia base nenhuma: ela e o objeto do desnivel. O sinal vem da funcao do termo na frase, nunca da palavra."
+      },
+      {
+        "literal": "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigoríficos e revestimentos especiais",
+        "por_que": "Os seis primeiros itens sao APLICACAO e LUGAR — sauna, lareira e frigorifico sao onde a peca fica, e nenhum tem valor em `vocabularios.ambiente`. A setima parte, `revestimentos especiais`, fala da PECA, e e a REGRA 7 que a le, em `grupos_de_tessela_proibidos.revestimento_especial` — nunca o mapa de base e ambiente."
+      },
+      {
+        "literal": "cerâmicas do tipo porcelanato ou com absorção de água menor que 3%",
+        "por_que": "Proibicao sobre a PECA, lida pela REGRA 7 em `grupos_de_tessela_proibidos.baixa_absorcao_de_agua`. Traduzi-la como base seria proibir esta argamassa sobre porcelanato, e o fabricante esta falando do que se assenta, nao do que se assenta EM CIMA."
+      },
+      {
+        "literal": "bases com pintura ou quaisquer materiais que possam impedir a aderência da argamassa cimentcola externo quartzolit",
+        "por_que": "Estado da superficie, nao base: a linha `superficies pintadas` desta lista ja diz que MDF pintado e cimento pintado sao a MESMA restricao vista de fora, e que ela vai para a tela como aviso de preparo. O `quaisquer materiais` e generico demais para virar base."
       }
     ]
   },
@@ -831,7 +863,7 @@
     "o_que_esta_ponte_NAO_executa_e_por_que": "Ela NAO acrescenta `ceramica_crua_barro` nem `isopor_eps` a `vocabularios.base`, e a razao nao e duvida: e a janela de medicao. Acrescentar valor ao eixo muda o que `/materiais/qual-cola-usar-no-mosaico/` SERVE — a lista suspensa ganha duas opcoes, a contagem de `cdm_f2_faixas_descobertas_html()` sai de 9x5x6 = 270 para 11x5x6 = 330 combinacoes, e as duas bases novas entram na frase 'Nao indicamos cola nenhuma, em lugar nenhum, para: ...', porque nenhum fabricante do banco as nomeia. Essa pagina esta na posicao 7,8 e e o objeto do BLOCO A do despacho do Raphael de 24/09, que ESPERA 30/09 exatamente para nao misturar duas causas na mesma janela. Mexer no corpo dela hoje misturaria tres. A decisao fica escrita, medida e pronta para sair inteira depois da leitura de 30/09."
   },
   "regras_de_elegibilidade": {
-    "descricao": "As cinco regras que transformam as declaracoes de MATERIAL na matriz da F2. Elas sao a secao 7 do ARQUIPELAGO.md escrita de forma executavel: ferramentas/validar-banco.py as roda, o snippet do bloco 4 as repete em PHP, e as duas implementacoes tem que dar o mesmo resultado.",
+    "descricao": "As regras que transformam as declaracoes de MATERIAL na matriz da F2. As CINCO primeiras decidem por BASE e AMBIENTE, que e o que as listas dos fabricantes nomeiam; a 6 e a 7 olham a TESSELA, e sao as unicas que leem o PAR de superficies coladas. Elas sao a secao 7 do ARQUIPELAGO.md escrita de forma executavel: ferramentas/validar-banco.py as roda, o snippet do bloco 4 as repete em PHP, e as duas implementacoes tem que dar o mesmo resultado.",
     "1_proibicao_vence_indicacao_dentro_do_mesmo_produto": "Quando o mesmo fabricante indica e proibe a mesma base, vale a proibicao. Caso real: o Silicone Acetico Tekbond indica 'aluminio comum e anodizado' (metal) e proibe 'metal corrosivel, zinco e chapa galvanizada' (metal) — o produto sai de metal. E a regra do conjunto MAIS ESTREITO da secao 10 do contrato: quem monta mosaico nao sabe se a chapa dela e galvanizada.",
     "2_base_sem_declaracao_nao_e_recomendacao": "Produto so entra nos recomendados de uma base que o fabricante declara. Silencio sobre a base manda o produto para a secao rotulada, com a frase 'o fabricante nao declara uso nesta superficie' — que e diferente de proibicao e sai na tela com essas palavras.",
     "3_ambiente_declarado_DELIMITA": "Quando o produto tem `ambientes_declarados` nao vazio, ele so e elegivel nos ambientes que declara. O fabricante que escreve 'revestimentos decorativos em ambientes internos' delimitou o uso dele — e por isso o PVA Cascorez nao entra em peca molhada nem externa, sem que a ilha precise inventar proibicao. Produto que nao delimita ambiente nenhum passa pelos ambientes comuns.",
@@ -850,6 +882,14 @@
       "onde_a_lista_mora": "superficies_porosas, neste mesmo esquema (secao 26.2 do contrato).",
       "o_que_a_tela_NAO_pode_dizer": "Que o fabricante declarou a porosidade de uma superficie. Ele declarou a CONDICAO; a classificacao e nossa. Secao 26.3.",
       "ordem": "Roda DEPOIS das cinco, sobre quem sobreviveu a elas. Produto proibido ou em silencio continua proibido ou em silencio — a condicao nao ressuscita ninguem."
+    },
+    "7_proibicao_declarada_sobre_a_PECA": {
+      "regra": "Produto que declara `condicoes.proibe_grupos_de_tessela` sai dos recomendados quando o caquinho do caso cai em QUALQUER um dos grupos que ele proibe. Ele vai para um grupo proprio, com frase propria, e NUNCA para o balde do silencio nem para o da condicao: o fabricante nao ficou calado e nao pos condicao — ele PROIBIU, e proibiu uma coisa que este caquinho e. Causa que o codigo separa, o texto separa (secao 7 do ARQUIPELAGO.md).",
+      "por_que_ela_nasceu_em_06_10_2026": "Por um DEFEITO QUE JA ESTAVA NO AR, e nao pela cimentcola que a tinha pedido. O Tekbond Silicone Acetico Construcao escreve `espelhos` na lista do que ele nao deve tocar, e essa frase estava sendo lida como BASE e so como base: na base `espelho` o produto saia proibido, certo. Mas a F2 pergunta o caquinho desde a 1.0.0, e em `ceramica` + `caco de espelho` + `externo abrigado` a pagina servia o acetico no TOPO da recomendacao — colar espelho quebrado com o silicone que o proprio fabricante proibe em espelho. O acido acetico da cura ataca a prata e a pintura de protecao do espelho, e e por isso que a mesma Tekbond vende um silicone NEUTRO declarando `espelhos`: os dois produtos dela se separam exatamente nesse ponto. Seis regras e nenhuma lia a frase pelo lado da peca.",
+      "onde_a_lista_mora": "grupos_de_tessela_proibidos, neste mesmo esquema (secao 26.2 do contrato). Lista digitada dentro da regua envelhece calada no dia em que um caquinho novo entrar no vocabulario.",
+      "o_que_a_tela_NAO_pode_dizer": "Que o fabricante classificou o caquinho dentro do grupo. Ele declarou a PROIBICAO; a classificacao de quais caquinhos do vocabulario caem nela e nossa. Secao 26.3, segunda aplicacao — a primeira foi a porosidade da regra 6.",
+      "ordem": "Roda DEPOIS das cinco e ANTES da regra 6, sobre quem sobreviveu as cinco. A ordem nao e gosto: proibicao e afirmacao mais forte que condicao nao cumprida, e e a mesma hierarquia da regra 1 (proibicao vence indicacao dentro do mesmo produto). Produto que caisse nas duas teria a MESMA elegibilidade nas duas ordens e uma frase diferente — e a frase e o que esta pagina entrega. Hoje nenhum produto do banco cai nas duas; a bateria produz o mundo em que isso acontece, porque ordem que nunca foi medida e so uma intencao.",
+      "o_que_ela_NAO_faz": "Nao ressuscita ninguem, nao mexe no balde do silencio nem no da proibicao de base, e NAO inventa proibicao. Dois silicones ACETICOS da mesma Tekbond estao no banco e so UM escreve `espelhos`: a regra 7 tira so esse. Estender a declaracao de um produto para o irmao dele seria inventar declaracao — o avesso exato do que a regra 2 proibe do outro lado do balcao. A assimetria esta medida e nomeada no proprio registro do Maxx, em `pendencia_nomeada_em_06_10_2026`, com o que a ilha sabe, o que ela nao sabe e o documento que destrava — nao resolvida de cabeca."
     }
   },
   "regras_da_categoria_acabamento": {
@@ -3000,13 +3040,13 @@
         "ambiente": "interno_seco",
         "tessela": "caco_espelho",
         "recomendados_topo": [
-          "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-neutro"
         ],
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "O PL500 era o TOPO desta celula na camada de declaracao, por score. A condicao o derruba e quem sobe sao os dois silicones, que estavam abaixo dele. Se a regra 6 fosse escrita depois da ordenacao, esta celula ficaria sem topo com dois elegiveis na mao."
+        "por_que": "O PL500 era o TOPO desta celula na camada de declaracao, por score. A condicao o derruba e quem sobe sao os dois silicones, que estavam abaixo dele. Se a regra 6 fosse escrita depois da ordenacao, esta celula ficaria sem topo com dois elegiveis na mao.",
+        "o_que_mudou_em_06_10_2026": "ESTA ANCORA CARREGAVA O DEFEITO COMO RESULTADO ESPERADO, e e a parte deste bloco que vale mais que a regra. Escrita a mao em 13/09/2026, ela declarava `tekbond-silicone-acetico-construcao` no TOPO de `vidro` + `caco de espelho` — e a Tekbond escreve `espelhos` na lista do que este produto nao deve tocar desde o dia em que o registro entrou no banco, em 10/09. A regua independente da secao 8 fez o que promete (ela nunca concordou com o codigo por copia), e nao podia pegar isto: as duas metades estavam certas sobre a REGRA 6 e as duas eram cegas para a mesma frase, porque nenhuma regra lia proibicao pelo lado da peca. Portao independente mede divergencia entre as metades, nunca uma lacuna que as duas tem. Quem achou foi a regra 7 nascendo. Esta ancora continua sendo a da REGRA 6 e mede o balde dela (o PL500 sai pela condicao de superficie); a mesma celula tem uma ancora irma em `matriz_esperada_da_proibicao_sobre_a_peca`, que mede o balde da regra 7 — de proposito, porque e a unica celula do banco em que as duas disparam juntas."
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -3270,5 +3310,203 @@
     ]
   },
   "o_que_mudou_na_versao_9": "30/09/2026 — `motivo_sem_ficha` deixou de ser opcional para quem esta no degrau 4 sem ficha, ganhou FORMA cobrada por portao (a da 25.4-b.3: causa + ultima tentativa datada, separadas por ` || `) e ganhou uma lista fechada de CLASSES de causa, para a 25.4-b.4 poder ser lida em numero. O que a mudanca conserta nao e um campo vazio: e doze registros que diziam como a chave foi montada e calavam o que a escada respondeu. Fica registrado que a classe `marca-nao-anunciada` e um PEDIDO AO RAPHAEL e as duas `candidato-barrado-*` sao divida nossa — e que era exatamente essa diferenca que a contagem antiga escondia.",
-  "o_que_mudou_na_versao_10": "02/10/2026 — nenhum campo novo e nenhum portao novo: a versao sobe porque a DECISAO que a 1.2-b.4 exige (\"criterio escrito depois do dado e criterio dobrado para caber no dado que veio\") foi tomada por escrito ANTES dos tres registros entrarem, e nao depois deles. Esta em `regras_da_categoria_acabamento.decisao_do_selador_de_ALVENARIA_e_do_selador_de_MADEIRA`. Ela e barata de ler e caro de nao ter: sem ela, a proxima execucao que encontrasse um selador de parede no banco teria de adivinhar se ele entrou por regra ou por descuido — e a diferenca entre as duas e exatamente o que separa este banco de uma lista de produtos."
+  "o_que_mudou_na_versao_10": "02/10/2026 — nenhum campo novo e nenhum portao novo: a versao sobe porque a DECISAO que a 1.2-b.4 exige (\"criterio escrito depois do dado e criterio dobrado para caber no dado que veio\") foi tomada por escrito ANTES dos tres registros entrarem, e nao depois deles. Esta em `regras_da_categoria_acabamento.decisao_do_selador_de_ALVENARIA_e_do_selador_de_MADEIRA`. Ela e barata de ler e caro de nao ter: sem ela, a proxima execucao que encontrasse um selador de parede no banco teria de adivinhar se ele entrou por regra ou por descuido — e a diferenca entre as duas e exatamente o que separa este banco de uma lista de produtos.",
+  "grupos_de_tessela_proibidos": {
+    "descricao": "Quais caquinhos do vocabulario desta ilha caem em cada GRUPO DE PECA que algum fabricante proibe por escrito. Nasce em 06/10/2026 com a regra 7, e por dois produtos ao mesmo tempo: o Tekbond Silicone Acetico Construcao, que escreve `espelhos` na lista do que ele nao deve tocar, e a Argamassa Cimentcola Externo AC-II Quartzolit, que escreve `revestimentos especiais` e `ceramicas do tipo porcelanato ou com absorcao de agua menor que 3%`. As tres frases falam da PECA QUE SE COLA, nunca da base nem do ambiente — e nenhuma das seis regras anteriores tinha onde le-las.",
+    "quem_declara_o_que": "O fabricante declara a PROIBICAO. Quem classifica QUAIS caquinhos do vocabulario caem no grupo somos nos, e isso e a secao 26.3 do ARQUIPELAGO.md aplicada a letra: a tela NAO pode dizer que a Quartzolit declarou que pastilha de ceramica e revestimento especial, porque ela nunca nomeou pastilha de ceramica nessa frase. A frase da pagina separa as duas metades, e o portao mede a separacao.",
+    "regra_da_direcao": "Na duvida, DENTRO do grupo proibido — e e o AVESSO da direcao de `superficies_porosas`, de proposito. La a lista decide quem GANHA uma recomendacao, e por isso a duvida fica fora; aqui a lista decide quem PERDE, e a assimetria de custo da secao 10 inverte com ela: classificar de menos publica uma recomendacao que o fabricante proibiu, e a peca descola ou a prata do espelho corroe meses depois; classificar de mais custa uma recomendacao verdadeira que a pagina deixa de dar. Mesmo principio, direcao oposta, porque o que esta em jogo e o oposto.",
+    "por_que_as_duas_listas_podem_discordar_no_mesmo_caquinho": "`superficies_porosas` classifica `caco_louca` como POROSA e `grupos_de_tessela_proibidos.baixa_absorcao_de_agua` o poe DENTRO do grupo de baixa absorcao. Nao e contradicao, e nao se resolve escolhendo uma: as duas respondem perguntas diferentes sobre o mesmo pedaco. A primeira pergunta se a FACE QUE RECEBE A COLA absorve agua — e o pe do prato e a quebra expoem massa —, porque e dela que depende um adesivo que seca por evaporacao. A segunda pergunta a CLASSE DE ABSORCAO DO CORPO da peca, que e o que a frase do fabricante de argamassa mede. Um caquinho pode ser poroso na quebra e vitrificado no corpo, e as duas leituras estao certas ao mesmo tempo.",
+    "o_grupo_e_do_PRODUTO_e_nao_do_CAQUINHO": "Quem carrega a proibicao e o registro do produto, no campo `condicoes.proibe_grupos_de_tessela`. Nenhum caquinho e `proibido` em abstrato: ele cai num grupo, e um produto proibe aquele grupo. Por isso a mesma `caco_espelho` sai do acetico da Tekbond e NAO sai do Maxx da mesma Tekbond: o campo e por produto, e silencio de fabricante nao vira proibicao.",
+    "a_lista_mora_no_esquema_e_nao_na_regua": "Secao 26.2 do ARQUIPELAGO.md, igual a `superficies_porosas`. E a outra metade da mesma secao, que quase ninguem escreve: a trava tem de REPROVAR quando a lista some, porque regua que le a propria lista de um arquivo de dados aprova tudo em silencio no dia em que o arquivo perder a chave. Aqui a direcao segura e a oposta a da regra 6: sem a classificacao, produto que declara grupo sai de TODO caquinho.",
+    "grupos": {
+      "espelho": {
+        "literal_que_o_origina": "espelhos",
+        "quem_declara": "tekbond-silicone-acetico-construcao",
+        "onde_o_fabricante_escreve": "declaracoes.nao_usar_em",
+        "tesselas_no_grupo": [
+          "caco_espelho"
+        ],
+        "tesselas_fora_do_grupo": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "caco_louca",
+          "pedra"
+        ],
+        "por_que_cada_uma": {
+          "pastilha_vidro": "FORA. Vidro comum, sem prata atras. O que o acetico ataca e a camada de prata e a pintura de protecao do espelho, e vidro sem prata nao tem o que corroer — a propria Tekbond indica `vidro nao laminado` para este produto, na MESMA lista de onde `espelhos` foi proibido.",
+          "pastilha_ceramica": "FORA. Nao e espelho, e o fabricante indica `ceramica` para este produto com todas as letras.",
+          "caco_azulejo": "FORA. Nao e espelho, e o fabricante indica `azulejo`.",
+          "caco_louca": "FORA. Nao e espelho.",
+          "caco_espelho": "DENTRO. E espelho quebrado, e a frase do fabricante nomeia o MATERIAL, nao o lugar dele na peca. Era aqui que o defeito morava: o termo `espelhos` ja eliminava o produto na base `espelho` e nao o eliminava quando o espelho era o caquinho.",
+          "pedra": "FORA. Nao e espelho, e o fabricante indica `granito` para este produto."
+        }
+      },
+      "revestimento_especial": {
+        "literal_que_o_origina": "revestimentos especiais",
+        "quem_declara": "quartzolit-cimentcola-externo-acii",
+        "onde_o_fabricante_escreve": "declaracoes.nao_indicado_para",
+        "tesselas_no_grupo": [
+          "pastilha_vidro",
+          "pastilha_ceramica",
+          "caco_espelho"
+        ],
+        "tesselas_fora_do_grupo": [
+          "caco_azulejo",
+          "caco_louca",
+          "pedra"
+        ],
+        "por_que_cada_uma": {
+          "pastilha_vidro": "DENTRO. Pastilha de vidro e o caso canonico do termo — e a razao de existir argamassa especifica para pastilha ao lado da argamassa colante comum no catalogo de argamassa.",
+          "pastilha_ceramica": "DENTRO, pela regra_da_direcao, e a duvida fica escrita em vez de escondida: pastilha e FORMATO, e o documento indica `revestimentos ceramicos de ate 60x60 cm` — pastilha ceramica e ceramica. Mas pastilha tambem e o que a palavra `especiais` costuma nomear no vocabulario de quem escreve boletim de argamassa. Na duvida, dentro, porque errar para fora publica recomendacao proibida.",
+          "caco_azulejo": "FORA, e nao por tolerancia: o MESMO documento indica `assentar revestimentos ceramicos de ate 60x60 cm`, com todas as letras, e azulejo quebrado e revestimento ceramico. Classificar como especial o que o documento indica seria inventar uma proibicao.",
+          "caco_louca": "FORA deste grupo. Prato e louca de mesa nao sao revestimento, entao a palavra `revestimentos especiais` nao os alcanca. O que os alcanca e a OUTRA proibicao do mesmo documento, e ela e o grupo `baixa_absorcao_de_agua`.",
+          "caco_espelho": "DENTRO. Espelho e vidro com prata; se pastilha de vidro e revestimento especial, caco de espelho e com mais razao.",
+          "pedra": "FORA, pelo mesmo motivo do caco de azulejo: o MESMO documento indica `placas de pedras naturais, arenitos, quartzitos, como miracema, sao tome, mineira, goias e ardosia, de ate 60x60 cm`."
+        }
+      },
+      "baixa_absorcao_de_agua": {
+        "literal_que_o_origina": "ceramicas do tipo porcelanato ou com absorcao de agua menor que 3%",
+        "quem_declara": "quartzolit-cimentcola-externo-acii",
+        "onde_o_fabricante_escreve": "declaracoes.nao_indicado_para",
+        "tesselas_no_grupo": [
+          "pastilha_vidro",
+          "caco_louca",
+          "caco_espelho"
+        ],
+        "tesselas_fora_do_grupo": [
+          "pastilha_ceramica",
+          "caco_azulejo",
+          "pedra"
+        ],
+        "por_que_cada_uma": {
+          "pastilha_vidro": "DENTRO. Vidro nao absorve agua: zero por cento, bem abaixo dos 3%.",
+          "pastilha_ceramica": "FORA. O tardoz e biscoito cru e a pastilha ceramica de mosaico e de absorcao alta — a mesma leitura de `superficies_porosas`.",
+          "caco_azulejo": "FORA. Azulejo e revestimento ceramico esmaltado de absorcao alta; e o oposto de porcelanato, e o documento o indica nominalmente.",
+          "caco_louca": "DENTRO, pela regra_da_direcao, e a duvida tem nome: `louca` cobre desde faianca de absorcao alta ate porcelana de absorcao abaixo de 1%, e quem quebra um prato em casa nao sabe qual tem na mao. Na duvida, dentro.",
+          "caco_espelho": "DENTRO. Vidro com prata atras; nenhuma das duas faces absorve.",
+          "pedra": "FORA. Pedra natural sem polimento absorve agua, e o MESMO documento indica placas de pedras naturais nominalmente."
+        }
+      }
+    },
+    "proibicoes_de_peca_lidas_e_SEM_caquinho_no_vocabulario": [
+      {
+        "literal": "vidro laminado",
+        "quem_declara": "tekbond-silicone-acetico-construcao",
+        "onde": "declaracoes.nao_usar_em",
+        "por_que_nao_virou_grupo": "`vidro_laminado` existe em `vocabularios.base` e NAO existe em `vocabularios.material_tessela`: ninguem quebra vidro laminado para fazer mosaico, porque a pelicula do meio segura os pedacos no lugar. Nenhum caquinho do vocabulario cairia no grupo, entao o grupo nao nasce — e a declaracao fica escrita aqui para nao ser lida e descartada em silencio, que e o defeito que esta ilha ja mediu quatro vezes."
+      },
+      {
+        "literal": "acrilico",
+        "quem_declara": "tekbond-silicone-acetico-construcao",
+        "onde": "declaracoes.nao_usar_em",
+        "por_que_nao_virou_grupo": "Acrilico e BASE no vocabulario desta ilha (dentro de `plastico`) e nao e caquinho: ninguem quebra acrilico para tessela. Mesmo caso do vidro laminado."
+      },
+      {
+        "literal": "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigorificos",
+        "quem_declara": "quartzolit-cimentcola-externo-acii",
+        "onde": "declaracoes.nao_indicado_para",
+        "por_que_nao_virou_grupo": "Os seis primeiros itens da frase sao APLICACAO e LUGAR, nao peca: sauna, lareira e frigorifico sao onde a peca fica, e nenhum deles tem valor em `vocabularios.ambiente`. So a setima parte da frase — `e revestimentos especiais` — fala da peca, e e ela que virou grupo. O sinal vem da parte da frase, nunca da frase inteira."
+      },
+      {
+        "literal": "bases com pintura ou quaisquer materiais que possam impedir a aderencia da argamassa cimentcola externo quartzolit",
+        "quem_declara": "quartzolit-cimentcola-externo-acii",
+        "onde": "declaracoes.nao_indicado_para",
+        "por_que_nao_virou_grupo": "Fala da BASE e do ESTADO dela, nao da peca — e o mapa de termos ja recusa `superficies pintadas` pelo mesmo motivo, mandando a frase para a tela como aviso de preparo. Esta linha existe para a proxima execucao nao confundir uma proibicao de base com uma proibicao de peca so porque as duas estao na mesma lista."
+      }
+    ]
+  },
+  "matriz_esperada_da_proibicao_sobre_a_peca": {
+    "descricao": "A camada da REGRA 7, que roda depois das cinco e ANTES da regra 6. Ela nao substitui `matriz_esperada_da_F2` nem `matriz_esperada_da_condicao_de_superficie`: a primeira decide por DECLARACAO (base x ambiente), a segunda por CONDICAO (base x tessela) e esta por PROIBICAO (produto x tessela). Cruzar as tres daria 270 celulas e nenhuma delas caberia escrita a mao — e regra escrita a mao e o que impede as metades de errarem juntas (secao 8 do ARQUIPELAGO.md).",
+    "leitura": "`caquinhos_em_que_cada_grupo_MORDE` e a lista COMPLETA dos caquinhos de cada grupo, recomputada do vocabulario pelo validador e comparada uma a uma. `produtos_que_carregam_a_proibicao_hoje` existe para produto novo com proibicao de peca nao entrar mudo. As ancoras sao celulas inteiras calculadas ponta a ponta, escritas A MAO ANTES de o validador rodar uma vez.",
+    "total_de_pares": 18,
+    "caquinhos_em_que_cada_grupo_MORDE": {
+      "espelho": [
+        "caco_espelho"
+      ],
+      "revestimento_especial": [
+        "pastilha_vidro",
+        "pastilha_ceramica",
+        "caco_espelho"
+      ],
+      "baixa_absorcao_de_agua": [
+        "pastilha_vidro",
+        "caco_louca",
+        "caco_espelho"
+      ]
+    },
+    "produtos_que_carregam_a_proibicao_hoje": {
+      "quartzolit-cimentcola-externo-acii": [
+        "baixa_absorcao_de_agua",
+        "revestimento_especial"
+      ],
+      "tekbond-silicone-acetico-construcao": [
+        "espelho"
+      ]
+    },
+    "ancoras_ponta_a_ponta": [
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "externo_abrigado",
+        "tessela": "caco_espelho",
+        "recomendados_topo": [
+          "tekbond-silicone-acetico-maxx",
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "O DEFEITO QUE ESTAVA NO AR, escrito como ancora. Antes da regra 7 esta celula servia o acetico no TOPO, empatado com o Maxx e com o neutro, para quem respondeu caco de espelho — e a Tekbond escreve `espelhos` na lista do que este produto nao deve tocar. Depois dela, sobem os dois que estavam empatados com ele e ninguem desce de posicao por gosto."
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "externo_abrigado",
+        "tessela": "caco_azulejo",
+        "recomendados_topo": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-acetico-maxx",
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao_da_peca": [],
+        "por_que": "O MESMO estado da linha de cima trocando so o caquinho, e a resposta volta ao normal. E a prova de que a regra 7 morde pela PECA e por nada mais: sem ela as duas linhas seriam identicas, e com uma regra larga demais as duas ficariam sem o acetico."
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "contato_permanente_agua",
+        "tessela": "caco_espelho",
+        "recomendados_topo": [
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_proibicao_da_peca": [],
+        "por_que": "A ORDEM MEDIDA. Aqui o acetico ja esta proibido pelas cinco (ele proibe `imersao continua em meio liquido`), e a regra 7 nao pode toca-lo: se ela rodasse antes das cinco, ou sobre os proibidos, o produto sairia do bloco da proibicao de ambiente e cairia no da proibicao de peca — a elegibilidade seria a mesma e a frase que o leitor recebe, outra. E a mesma cicatriz que a regra 6 pagou em 13/09."
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_seco",
+        "tessela": "caco_espelho",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao_da_peca": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_condicao": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
+        "por_que": "A ANCORA MAIS CARA DAS CINCO: as regras 6 e 7 disparam na MESMA celula, em produtos diferentes e em baldes diferentes. O PL500 era o topo da camada de declaracao e sai pela condicao de superficie (nem vidro nem espelho absorvem agua); o acetico estava abaixo dele e sai pela proibicao de peca. Quem sobra e o neutro, que era o terceiro. Se as duas causas se misturassem num balde so, esta celula imprimiria a frase errada para os dois."
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_vidro",
+        "recomendados_topo": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
+        "eliminados_por_proibicao_da_peca": [],
+        "por_que": "A INVARIANTE DA CIMENTCOLA, e ela e o motivo de esta ancora existir. A AC-II carrega as DUAS proibicoes de peca e as duas mordem `pastilha_vidro` — e ela tem de continuar no balde do SILENCIO, porque nenhuma declaracao gravada dela nomeia substrato e a regra 2 a elimina antes. Proibicao de peca nao ressuscita quem as cinco ja tiraram, e nao e so a elegibilidade que esta em jogo: ler `a Quartzolit proibe este caquinho` numa celula onde a resposta honesta e `ela nao fala desta superficie` e trocar uma causa pela outra."
+      }
+    ],
+    "por_que_a_proibicao_da_peca_nao_vai_para_o_silencio_nem_para_a_condicao": "Sao tres frases diferentes para tres fatos diferentes. Silencio e `o fabricante nao falou desta superficie`. Condicao e `ele falou, pos uma exigencia, e este par nao a cumpre`. Proibicao de peca e `ele falou, e disse para nao usar nisto`. A terceira e a mais forte das tres e e a unica que nao tem conserto trocando o ambiente: so trocando o caquinho. Junta-las e a mistura de causas que a secao 7 do contrato proibe desde 12/09/2026, escrita nesta mesma ilha."
+  },
+  "o_que_mudou_na_versao_11": "06/10/2026 — a REGRA 7 nasce, e com ela um campo novo no registro (`condicoes.proibe_grupos_de_tessela`), uma lista nova no esquema (`grupos_de_tessela_proibidos`) e uma matriz nova escrita a mao (`matriz_esperada_da_proibicao_sobre_a_peca`, 5 ancoras ponta a ponta). Ela e a SEGUNDA regra a olhar a tessela e a PRIMEIRA a elimina-la por proibicao declarada. O que a fez nascer nao foi a cimentcola que a pedira em 05/10: foi um defeito que ja estava no ar, achado ao escrever a lista. O Tekbond Silicone Acetico Construcao proibe `espelhos` e a F2 o servia no TOPO para quem respondeu caco de espelho sobre ceramica — a frase do fabricante era lida como base e so como base. A cimentcola AC-II continua em SILENCIO em toda celula, e por que ela continua esta medido em `materiais-colas.json / quartzolit-cimentcola-externo-acii / fontes / bt-cimentcola-externo-2016-05 / substratos_que_o_documento_declara_e_que_NAO_foram_gravados`: a proibicao de peca era UM de TRES bloqueios, nao o unico."
 }

@@ -150,6 +150,7 @@ def varrer(regua, faixa):
                     "eliminados_por_proibicao": c["eliminados_por_proibicao"],
                     "eliminados_por_silencio": c["eliminados_por_silencio"],
                     "eliminados_por_condicao": c["eliminados_por_condicao"],
+                    "eliminados_por_proibicao_da_peca": c["eliminados_por_proibicao_da_peca"],
                 })
 
     for junta in faixa["junta_mm"]:
@@ -184,6 +185,17 @@ def causa_da_cola(e):
     # pagina. Somar essa celula a "o fabricante nao declara" mandaria comprar um
     # produto novo para um buraco que nao e de catalogo.
     cond = bool(e.get("eliminados_por_condicao"))
+    # A QUINTA CAUSA (06/10/2026, regra 7) vem ANTES da quarta quando as duas existem, e
+    # pelo mesmo critério que decide a ordem das regras: proibição é afirmação mais forte
+    # que condição não cumprida. Ela também é acionável — o conserto é trocar o caquinho —
+    # mas o que ela diz à pessoa é outra coisa: não é que falte porosidade, é que o
+    # fabricante escreveu para não usar naquilo. Somar as duas numa frase seria a mistura
+    # de causas que a seção 7 do contrato proíbe.
+    peca = bool(e.get("eliminados_por_proibicao_da_peca"))
+    if peca and not (proib or sil or cond):
+        return "ha produto declarado para esta base, e o fabricante proibe este produto no caquinho escolhido"
+    if peca:
+        return "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
     if cond and not (proib or sil):
         return "ha produto declarado para esta base, e a condicao de superficie dele nao fecha com este caquinho"
     if cond:

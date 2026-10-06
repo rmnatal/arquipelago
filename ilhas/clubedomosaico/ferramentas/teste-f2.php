@@ -1619,6 +1619,279 @@ f2_ok( false !== mb_strpos( $submerso_vidro, 'Não temos cola para indicar' ),
 	'a mesma agua sobre VIDRO continua descoberta — o fabricante nomeia ceramica, nao vidro' );
 
 /* ---------------------------------------------------------------------------
+ * A REGUA DA REGRA 7, escrita AQUI — 06/10/2026
+ *
+ * Ela le `grupos_de_tessela_proibidos` do esquema e `condicoes` do banco em
+ * disco, e nao chama uma linha do snippet. Mesma trava da secao 8 que a regra 6
+ * tem, e aqui ela e mais necessaria, nao menos: a ANCORA escrita a mao da regra
+ * 6 em 13/09/2026 declarava o Tekbond Silicone Acetico Construcao no topo de
+ * `vidro` + `caco de espelho`, e o produto estava proibido em espelho desde
+ * 10/09. As duas metades estavam certas sobre a regra 6 e as duas eram cegas
+ * para a MESMA frase. Portao independente mede divergencia entre as metades,
+ * nunca a lacuna que as duas tem — e e por isso que esta secao varre o
+ * CAQUINHO, que a varredura dos 45 estados nao varre.
+ * ------------------------------------------------------------------------- */
+
+echo "\n9. A regra 7: a proibicao declarada sobre a PECA\n";
+
+$grupos_esq = isset( $esquema['grupos_de_tessela_proibidos']['grupos'] )
+	? $esquema['grupos_de_tessela_proibidos']['grupos'] : array();
+f2_ok( ! empty( $grupos_esq ), 'o esquema traz os grupos de peca — sem eles esta secao nao mede nada',
+	count( $grupos_esq ) . ' grupos' );
+
+/** Os caquinhos que ESTE produto proibe, pela declaracao dele cruzada com a lista do esquema. */
+function f2_peca_proibida_no_banco( $m, $tessela, $grupos_esq ) {
+	$dec = isset( $m['condicoes']['proibe_grupos_de_tessela']['valor'] )
+		? (array) $m['condicoes']['proibe_grupos_de_tessela']['valor'] : array();
+	$morde = array();
+	foreach ( $dec as $g ) {
+		if ( isset( $grupos_esq[ $g ] )
+			&& in_array( $tessela, (array) $grupos_esq[ $g ]['tesselas_no_grupo'], true ) ) {
+			$morde[] = $g;
+		}
+	}
+
+	return $morde;
+}
+
+/* Quem carrega proibicao de peca, e todo caquinho que algum grupo alcanca. Os
+   dois contados do disco: digitar aqui faria o portao medir o mundo de hoje. */
+$com_proibicao_de_peca = array();
+foreach ( $por_id as $id_p => $m_p ) {
+	if ( ! empty( $m_p['condicoes']['proibe_grupos_de_tessela']['valor'] ) ) {
+		$com_proibicao_de_peca[] = $id_p;
+	}
+}
+f2_ok( ! empty( $com_proibicao_de_peca ),
+	'o banco tem produto com proibicao de peca declarada — senao a regra 7 nao morde em nada',
+	count( $com_proibicao_de_peca ) . ' produtos' );
+
+$caquinhos_proibidos = array();
+foreach ( $grupos_esq as $g_ => $d_ ) {
+	foreach ( (array) $d_['tesselas_no_grupo'] as $t_ ) {
+		$caquinhos_proibidos[ $t_ ] = true;
+	}
+}
+$caquinhos_livres = array_values( array_diff(
+	$esquema['vocabularios']['material_tessela'], array_keys( $caquinhos_proibidos ) ) );
+f2_ok( ! empty( $caquinhos_livres ),
+	'ha caquinho FORA de todo grupo — senao a celula de controle nao existe',
+	implode( ', ', $caquinhos_livres ) );
+
+/* O ALVO DA VARREDURA: as celulas em que a regra 7 TEM de morder, derivadas da
+   matriz escrita a mao (camada de declaracao) cruzada com os caquinhos
+   proibidos. Produto que a matriz nao poe como elegivel nao e candidato — e e
+   essa a invariante que a cimentcola AC-II carrega: ela declara DOIS grupos e
+   nao aparece em nenhuma celula aqui, porque a regra 2 a tira antes. */
+$alvos_peca = array();
+foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c7 ) {
+	$eleg7 = f2_elegiveis_da_matriz( $esquema, $c7['base'], $c7['ambiente'] );
+	foreach ( array_keys( $caquinhos_proibidos ) as $t7 ) {
+		$esperados = array();
+		foreach ( $eleg7 as $id7 ) {
+			if ( f2_peca_proibida_no_banco( $por_id[ $id7 ], $t7, $grupos_esq ) ) {
+				$esperados[] = $id7;
+			}
+		}
+		if ( $esperados ) {
+			$alvos_peca[ $c7['base'] . '|' . $c7['ambiente'] . '|' . $t7 ] = $esperados;
+		}
+	}
+}
+f2_ok( ! empty( $alvos_peca ),
+	'a regra 7 morde em pelo menos uma celula servida — regra que nunca morde nao foi medida',
+	count( $alvos_peca ) . ' celulas base x lugar x caquinho' );
+
+$erros_peca   = array();
+$graves_peca  = array();
+$medidas_peca = 0;
+foreach ( $alvos_peca as $chave7 => $esperados ) {
+	list( $b7, $a7, $t7 ) = explode( '|', $chave7 );
+	$html7 = f2_corpo( f2_render( $raiz, 'base=' . $b7 . '&onde=' . $a7 . '&caco=' . $t7 ) );
+	$medidas_peca++;
+
+	$resp_html = preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>#is', $html7, $mr7 ) ? $mr7[1] : '';
+	/* O bloco de recusa sai da resposta antes de qualquer afirmacao sobre quem
+	   esta recomendado — mesma trava que a regra 6 pagou em 13/09: a recusa
+	   NOMEIA o produto, e medir presenca de nome na regiao inteira leria a
+	   verdade como defeito. */
+	$resp = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '', $resp_html ) );
+	$fora_html7 = preg_match( '#<div class="cdm-f2-secao cdm-f2-fora">(.*?)</div>#is', $html7, $mf7 ) ? $mf7[1] : '';
+	$blocos_peca = preg_match_all( '#<p class="cdm-f2-peca-fora">(.*?)</p>#is', $fora_html7, $mbp )
+		? $mbp[1] : array();
+	$texto_peca  = f2_texto( implode( ' ', $blocos_peca ) );
+	$blocos_cond7 = preg_match_all( '#<p class="cdm-f2-condicao-fora">(.*?)</p>#is', $fora_html7, $mbc7 )
+		? f2_texto( implode( ' ', $mbc7[1] ) ) : '';
+
+	foreach ( $esperados as $id7 ) {
+		$m7   = $por_id[ $id7 ];
+		$nome7 = f2_nome_esperado( $m7 );
+		if ( false !== mb_strpos( $resp, $nome7 ) ) {
+			/* GRAVE pelo mesmo motivo da regra 6: a pagina estaria recomendando
+			   um produto que ela mesma, duas secoes abaixo, diz que o fabricante
+			   proibe no que se cola. */
+			$graves_peca[] = $chave7 . ': "' . $nome7 . '" e proibido neste caquinho e esta recomendado';
+		}
+		if ( false === mb_strpos( $texto_peca, $nome7 ) ) {
+			$erros_peca[] = $chave7 . ': "' . $nome7 . '" saiu pela proibicao de peca e nao esta no bloco dela';
+			continue;
+		}
+		if ( '' !== $blocos_cond7 && false !== mb_strpos( $blocos_cond7, $nome7 ) ) {
+			/* Causa se mede pelo BLOCO em que o produto sai. Proibicao de peca
+			   lida como condicao de superficie troca a frase inteira que o
+			   leitor recebe: ele passa a ler que falta porosidade onde o
+			   fabricante escreveu para nao usar. */
+			$graves_peca[] = $chave7 . ': "' . $nome7 . '" sai pela proibicao de peca e aparece como caso de condicao';
+		}
+		/* A ATRIBUICAO DIVIDIDA (26.3) e a CITACAO: as duas metades sao cobradas
+		   no bloco, nao na pagina. A frase nossa sem a frase dele e acusacao sem
+		   prova; a frase dele sem a nossa e emprestimo de autoridade. */
+		foreach ( f2_peca_proibida_no_banco( $m7, $t7, $grupos_esq ) as $g7 ) {
+			$lit7 = isset( $m7['condicoes']['proibe_grupos_de_tessela']['literais'][ $g7 ] )
+				? $m7['condicoes']['proibe_grupos_de_tessela']['literais'][ $g7 ] : '';
+			if ( '' === $lit7 || false === mb_strpos( $texto_peca, $lit7 ) ) {
+				$erros_peca[] = $chave7 . ': o bloco nao cita a frase do fabricante do grupo ' . $g7;
+			}
+		}
+		if ( false === mb_strpos( $texto_peca, 'somos nós, não ela' ) ) {
+			$graves_peca[] = $chave7 . ': o bloco nao separa a classificacao nossa da declaracao dela (26.3)';
+		}
+		/* A SAIDA OFERECIDA, nas duas direcoes, igual a da regra 6: todo caquinho
+		   que ESTE produto nao proibe tem de ser nomeado, e nenhum que ele proiba.
+		   Digitada, esta frase erra calada no dia em que um caquinho novo entrar
+		   — e erra mandando colar.
+
+		   A PRIMEIRA VERSAO DESTA AFIRMACAO REPROVOU A PAGINA E A PAGINA ESTAVA
+		   CERTA: ela media a saida contra a uniao dos grupos de TODOS os
+		   produtos, e acusou o acetico de oferecer pastilha de vidro — que so e
+		   proibida pela cimentcola AC-II, outro registro. A frase da pagina diz
+		   "com X ELE voltaria a servir", no singular, e e por produto que ela
+		   tem de ser medida. Grupo e do PRODUTO, nunca do caquinho em abstrato,
+		   e esta a linha que o esquema escreve em
+		   `o_grupo_e_do_PRODUTO_e_nao_do_CAQUINHO`. */
+		$proibidos_deste = array();
+		foreach ( (array) $m7['condicoes']['proibe_grupos_de_tessela']['valor'] as $gd ) {
+			foreach ( (array) $grupos_esq[ $gd ]['tesselas_no_grupo'] as $td ) {
+				$proibidos_deste[ $td ] = true;
+			}
+		}
+		foreach ( $esquema['vocabularios']['material_tessela'] as $tl ) {
+			$nome_tl = $rot['tessela'][ $tl ];
+			if ( isset( $proibidos_deste[ $tl ] ) ) {
+				if ( $tl !== $t7 && false !== mb_stripos( $texto_peca, $nome_tl ) ) {
+					$erros_peca[] = $chave7 . ': a saida oferece ' . $nome_tl
+						. ', que este mesmo produto proibe';
+				}
+			} elseif ( false === mb_stripos( $texto_peca, $nome_tl ) ) {
+				$erros_peca[] = $chave7 . ': a saida nao oferece ' . $nome_tl;
+			}
+		}
+	}
+
+	/* A CELULA SEM SOBREVIVENTE TEM DE NOMEAR *ESTA* CAUSA — e esta afirmacao
+	   nasceu de uma MUTACAO QUE PASSOU. Apagar o ramo da recusa da regra 7 do
+	   snippet nao reprovou nada na primeira rodada da bateria, e o motivo e que
+	   HOJE nao existe celula em que a regra 7 esvazie a recomendacao: nas seis
+	   que ela morde, sempre sobra alguem. O ramo e codigo que o portao nao
+	   alcanca — a mesma familia do `else` que ficou morto na regra 6 ate a
+	   matriz ir de 18 para 45 celulas em 13/09/2026, e que no ar dizia a frase
+	   errada em quatro estados.
+
+	   Entao a afirmacao fica escrita AGORA, cobrando a causa certa no dia em que
+	   a celula esvaziar, e a bateria passa a PRODUZIR esse mundo para medi-la.
+	   Sem as duas, a frase mais honesta desta pagina seria servida sem ninguem
+	   nunca a ter visto. */
+	$sobrevive = array();
+	foreach ( f2_elegiveis_da_matriz( $esquema, $b7, $a7 ) as $id_s ) {
+		if ( in_array( $id_s, $esperados, true ) ) {
+			continue;
+		}
+		if ( f2_condicao_falha( $por_id[ $id_s ], $b7, $t7 ) ) {
+			continue;
+		}
+		$sobrevive[] = $id_s;
+	}
+	if ( ! $sobrevive ) {
+		$t7_corpo = f2_texto( $html7 );
+		if ( false === mb_strpos( $t7_corpo, 'para indicar cola aqui com esse caquinho' ) ) {
+			$erros_peca[] = $chave7 . ': celula esvaziada pela regra 7 e a recusa nao nomeia essa causa';
+		}
+		if ( false !== mb_strpos( $t7_corpo, 'Nenhum dos adesivos do nosso banco é declarado' ) ) {
+			$graves_peca[] = $chave7 . ': a pagina nega que exista declaracao e ela mesma cita a proibicao';
+		}
+	}
+
+	/* A CELULA DE CONTROLE: o MESMO estado trocando so o caquinho por um livre.
+	   Sem ela, uma regra larga demais — que tirasse o produto de todo caquinho —
+	   passaria por todas as afirmacoes acima. */
+	$t_livre = $caquinhos_livres[0];
+	$html_c  = f2_corpo( f2_render( $raiz, 'base=' . $b7 . '&onde=' . $a7 . '&caco=' . $t_livre ) );
+	$resp_c  = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '',
+		preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>#is', $html_c, $mrc ) ? $mrc[1] : '' ) );
+	$peca_c  = preg_match_all( '#<p class="cdm-f2-peca-fora">(.*?)</p>#is', $html_c, $mpc )
+		? f2_texto( implode( ' ', $mpc[1] ) ) : '';
+	foreach ( $esperados as $id7 ) {
+		$nome7 = f2_nome_esperado( $por_id[ $id7 ] );
+		if ( false !== mb_strpos( $peca_c, $nome7 ) ) {
+			$graves_peca[] = $b7 . '|' . $a7 . '|' . $t_livre . ': "' . $nome7
+				. '" sai pela proibicao de peca com caquinho que nenhum grupo alcanca';
+		}
+		if ( false === mb_strpos( $resp_c, $nome7 ) ) {
+			$erros_peca[] = $b7 . '|' . $a7 . '|' . $t_livre . ': "' . $nome7
+				. '" era para voltar a ser recomendado com caquinho livre e nao esta';
+		}
+	}
+}
+
+f2_ok( empty( $graves_peca ), 'GRAVE: nenhuma pagina recomenda produto proibido no caquinho escolhido',
+	empty( $graves_peca ) ? $medidas_peca . ' celulas medidas, mais a de controle de cada uma'
+		: implode( ' | ', array_slice( $graves_peca, 0, 3 ) ) );
+f2_ok( empty( $erros_peca ), 'a regra 7 sai no bloco dela, com a frase do fabricante e a saida certa',
+	empty( $erros_peca ) ? $medidas_peca . ' celulas conferidas' : implode( ' | ', array_slice( $erros_peca, 0, 3 ) ) );
+
+/* A TABELA PRE-RENDERIZADA, pela mesma aritmetica da coluna da condicao: ela e a
+   camada de DECLARACAO e nao tem o caquinho, entao a linha que indica um produto
+   com proibicao de peca seria lida como se valesse para qualquer caquinho. E a
+   metade da pagina que um modelo de linguagem le sem preencher formulario. */
+f2_ok( '' !== $tabela_html, 'a tabela pre-renderizada foi achada para medir a regra 7' );
+$linhas7       = preg_match_all( '#<tr>(?!<th)(.*?)</tr>#is', $tabela_html, $ml7 ) ? $ml7[1] : array();
+$erros_tabela7 = array();
+$linhas_com_peca = 0;
+foreach ( $linhas7 as $linha7 ) {
+	$cels7 = preg_match_all( '#<td>(.*?)</td>#is', $linha7, $mc7l ) ? $mc7l[1] : array();
+	if ( count( $cels7 ) < 5 ) {
+		continue;
+	}
+	$usa7  = f2_texto( $cels7[2] );
+	$cond7 = f2_texto( $cels7[4] );
+	foreach ( $com_proibicao_de_peca as $id7 ) {
+		$nome7 = f2_nome_esperado( $por_id[ $id7 ] );
+		if ( false === mb_strpos( $usa7, $nome7 ) ) {
+			continue;
+		}
+		$linhas_com_peca++;
+		if ( false === mb_strpos( $cond7, $nome7 ) || false === mb_strpos( $cond7, 'não com ' ) ) {
+			$erros_tabela7[] = '"' . $usa7 . '" indica ' . $nome7 . ' e a linha nao diz o caquinho proibido';
+			continue;
+		}
+		$grupos7 = (array) $por_id[ $id7 ]['condicoes']['proibe_grupos_de_tessela']['valor'];
+		foreach ( $grupos7 as $g7 ) {
+			$lit7 = isset( $por_id[ $id7 ]['condicoes']['proibe_grupos_de_tessela']['literais'][ $g7 ] )
+				? $por_id[ $id7 ]['condicoes']['proibe_grupos_de_tessela']['literais'][ $g7 ] : '';
+			if ( '' !== $lit7 && false === mb_strpos( $cond7, $lit7 ) ) {
+				$erros_tabela7[] = '"' . $usa7 . '" diz o caquinho proibido sem o texto literal do fabricante';
+			}
+		}
+	}
+}
+f2_ok( $linhas_com_peca > 0,
+	'ha linha da tabela que indica produto com proibicao de peca — senao a afirmacao abaixo nao morde',
+	$linhas_com_peca . ' linhas' );
+f2_ok( empty( $erros_tabela7 ),
+	'toda linha que indica produto com proibicao de peca publica o caquinho e a frase literal',
+	empty( $erros_tabela7 ) ? $linhas_com_peca . ' linhas conferidas' : implode( ' | ', array_slice( $erros_tabela7, 0, 3 ) ) );
+
+/* ---------------------------------------------------------------------------
  * Fecho
  * ------------------------------------------------------------------------- */
 
