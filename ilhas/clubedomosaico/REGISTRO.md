@@ -164,10 +164,51 @@ nota datada ao lado da tabela. **Nenhum portão lê essa prosa** (conferido: só
 arquivo, e numa linha de comentário sobre geometria de placa), então não é régua — é **relatório velho, e
 relatório velho também mente**, que é a lição que a execução de 06/10 deixou escrita neste mesmo `PROMPT.md`.
 
-## A BANCADA
+## A BANCADA, E ELA TEM UMA METADE QUE NÃO RODOU E ESTÁ NOMEADA
 
-**Esta execução não publicou nada e não acionou o Sync**, porque não há o que desembarcar até o fecho — o
-desembarque e a conferência no ar vêm abaixo, no mesmo bloco.
+**Verde e rodado:** `validar-banco.py` (as 45 células da F2, com a linha nova do resumo — **29 entradas em 24
+células, 3 produtos que delimitam, 5 âncoras**), `cobertura.py` regerado e `--conferir` verde nos 270 + 60
+estados, `teste-f2.php` de 149 para **160** afirmações, e a bateria nova
+`mutacoes-ambiente-do-produto.py`: **16 de 16 de forma reprovadas, 12 só pelo portão novo; 6 de 6 de tela;
+5 de 5 falsos positivos passaram.** A `mutacoes-par.py` da regra 8 foi **reconferida** depois das mudanças e
+segue **17 de 17, 5 de 5, 4 de 4**. As duas baterias da técnica, que este bloco tocou, fecham **14 de 14
+decididas certo** cada uma (`mutacoes-tecnicas-pagina.py` e `mutacoes-tecnicas.py`).
+
+**As oito bancadas PHP irmãs, reconferidas:** casca **744**, guia **110**, técnicas **139** (depois do
+conserto), loja APROVADO, leads APROVADO, f1 **228**, ateliê APROVADO, prestação-rejunte **5** sobre 540+180
+estados.
+
+**AS 22 BATERIAS DE MUTAÇÃO RESTANTES NÃO RODARAM, e ficam nomeadas em vez de resumidas:** cobertura,
+tecnica-x-material, pastilhas, apoio, base, rejunte, acabamento, degrau, forma-do-degrau, motivo-degrau-4,
+batismo, casamento, f1, arvore, voz-e-cabeca, promessa-do-titulo, divulgacao, prestacao, loja, leads, atelie e
+ga4. Somam ~350 mutações e a varredura inteira é de horas. O que elas cobrem é regressão de blocos
+ANTERIORES; o que **este** bloco mexeu está coberto pela `mutacoes-ambiente-do-produto`, pela
+`mutacoes-par` e pelas duas da técnica, que rodaram. **Escrever "todas verdes" sem as ter rodado seria
+afirmação com escopo maior do que o medido.**
+
+## O DESEMBARQUE E A CONFERÊNCIA NO AR, PELA 18.4
+
+**Sync acionado pela própria Fundação às 11h02Z: revisão 65, 15 de 15 aplicados, ZERO linha divergente** — e o
+que fecha é o log sem divergência, não o número da revisão (cicatriz de 06/10, quando a revisão 63 subiu com
+três sha divergentes e um `/status` verde sobre página velha). `/status` na **65**, igual à do `manifest.json`.
+
+- `conferir-no-ar.py`: **APROVADO, 524 afirmações no HTML servido, 0 falha.**
+- `leitura-do-visitante.py`: **REPROVADO com EXATAMENTE 1 defeito**, o soft 404 na borda — o vermelho esperado
+  do hospedeiro e do Raphael desde 29/09 (404 na 1ª leitura, 200 na 2ª). **Nenhum defeito novo.**
+
+**E A ENTREGA LIDA NO AR, NAS TRÊS PONTAS**, em `/materiais/qual-cola-usar-no-mosaico/`, com quebra de cache e
+`Accept-Encoding: identity`:
+
+1. **`mdf_madeira` × `externo_abrigado`** (a regra morde) — os **dois** Cascola no balde novo, cada um citando
+   o literal dele: *"a Henkel declara esta superfície, e delimitou o produto inteiro a outros lugares: ela
+   escreve **ambientes internos**"* e *"... ela escreve **uso interno**"*. E o parágrafo do **silêncio** da
+   mesma célula passou a nomear **só** a cimentcola e o Acético Maxx — os dois Cascola **saíram** dele, que era
+   exatamente onde eles estavam.
+2. **`mdf_madeira` × `interno_seco`** (a regra passa) — **nenhum** parágrafo de ambiente. A regra não morde no
+   lugar que o fabricante declara.
+3. **`alvenaria_tijolo` × `externo_abrigado`** (a regra 8) — **só** o parágrafo da regra 8, citando as duas
+   frases do boletim com o lugar dentro delas. **Os dois baldes não se cruzam e as frases são diferentes**,
+   lido na página e não por régua.
 
 ## O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O MESMO DEFEITO UM ANDAR ABAIXO, NO REJUNTE — COM O NÚMERO MEDIDO
 
