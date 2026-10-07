@@ -1122,9 +1122,71 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > vocabulário nenhum e a F2 não pergunta a idade da peça. Virar regra exige pergunta nova na
    > ferramenta — decisão de interface e bloco próprio.
    >
-   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É UM DEFEITO QUE A REGRA 8 DEIXOU À VISTA — COM O NÚMERO
+   > **ENTREGUE EM 07/10/2026 — A REGRA 3 GANHOU BALDE PRÓPRIO, 29 ENTRADAS EM 24 DAS 45 CÉLULAS, E
+   > SEM UM CAMPO NOVO NO BANCO.** Esquema **v15** (`3_ambiente_declarado_DELIMITA` virou dicionário
+   > com balde, ordem e as travas; nasceu `regras_do_balde_do_ambiente_do_produto` com os três
+   > produtos que delimitam ambiente e **cinco âncoras** ponta a ponta), **F2 1.11.0** com o quinto
+   > balde da resposta da cola (`eliminados_por_ambiente_do_produto`),
+   > `ferramentas/mutacoes-ambiente-do-produto.py` (16 de forma, **12 só pelo portão novo**, + 6 de
+   > tela, 5 falsos positivos) e `teste-f2.php` de 149 para **160** afirmações. **24 das 45 células
+   > reescritas à mão** antes de o validador rodar uma vez, e as 24 bateram com a recomputação **sem
+   > uma divergência**.
+   >
+   > **A ELEGIBILIDADE NÃO MUDOU EM NENHUMA DAS 45**, e é isso que explica os 27 dias: `recomendados_topo`,
+   > `elegiveis_abaixo_do_topo`, `mencionados_com_ressalva` e `eliminados_por_proibicao` são **idênticos**
+   > antes e depois. Trocar de balde não muda número nenhum, e **toda** régua desta ilha mediu
+   > CONCORDÂNCIA entre o banco e a página — as duas concordavam dizendo a mesma coisa errada.
+   > **Portão que compara listas de elegíveis nunca pegaria isto; só portão que compara FRASES pega.**
+   >
+   > **29 SÃO ENTRADAS, 24 SÃO CÉLULAS, e os dois números estão no esquema em campos separados:** as 4
+   > do Cascorez e a 1 da cimentcola caem **dentro** das 24 do PL500. O registro de 06/10 escreveu "29
+   > células"; a linha `por_que_29_e_nao_24` existe para a próxima execução não procurar cinco células
+   > que nunca existiram.
+   >
+   > **TRÊS COISAS QUE A BATERIA NOVA ACHOU NAS RÉGUAS DESTE PRÓPRIO BLOCO, as três antes do commit:**
+   > a **m01** passou porque a trava do bloco ausente ficou sem ninguém do outro lado (ela foi escrita
+   > onde `materiais` ainda não existe); a **m14** passou e **não era defeito** — termo de ambiente que
+   > registro nenhum cita não delimita nada —, então virou a **fp5**, porque mutação que passa com razão
+   > troca de lado em vez de ser consertada; e a **t05 passou com a bancada VERDE**, trocando a frase do
+   > balde da regra 3 pela da regra 8 palavra por palavra, que é **exatamente o que este item proibiu**.
+   > A seção 10 media PRESENÇA (nome, literal, ausência da palavra do silêncio) e os três continuam ali
+   > depois da fusão. Virou afirmação nas duas direções. **Régua que mede presença não mede troca de
+   > frase.**
+   >
+   > **DOIS CONSUMIDORES PERDIAM OS DOIS BALDES, e o da regra 8 já perdia desde 06/10:** `cobertura.py`
+   > e `clubedomosaico-tecnicas.php` não carregavam `eliminados_por_ambiente_do_substrato` — em **24 dos
+   > 270** estados do censo a cimentcola caía nele e **desaparecia de toda causa**. Os dois baldes
+   > entraram nos dois, `causa_da_cola()` ganhou as duas frases e `teste-tecnicas.php` passou a contar os
+   > dois. **ZERO `por_que` mudou nos 270**: a frase do censo não mentia, estava **incompleta**.
+   >
+   > **E A ESPECIFICAÇÃO TAMBÉM NOMEAVA A CAUSA ERRADA:** a linha de MDF molhado/externo da seção 1.3 de
+   > `dados/especificacao-calculadoras.md` dizia *"a ilha não transforma silêncio em recomendação"* sobre
+   > um produto que escreve `ambientes internos`. Acertada, com nota datada. Nenhum portão lê essa prosa —
+   > é relatório, e **relatório velho também mente**.
+   >
+   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O MESMO DEFEITO UM ANDAR ABAIXO, NO REJUNTE — COM O NÚMERO
+   > MEDIDO EM 07/10/2026, VARRENDO OS 60 ESTADOS: o balde `eliminados_por_ambiente` do rejunte carrega
+   > DUAS causas sob UMA frase só, *"Fora porque o fabricante não declara este lugar"*.**
+   >
+   > | causa | entradas | estados | produtos | a frase está |
+   > |---|---|---|---|---|
+   > | **regra 3** (delimitação de ambiente) | **8** | 8 | `quartzolit-rejunte-acrilico`, que escreve `áreas internas e externas` | **ERRADA** — é a mesma mentira que a cola servia |
+   > | **regra 2 do rejunte** (ambiente crítico exige declaração explícita) | **59** | 28 | epóxi, piscinas, cerâmicas, porcelanatos-e-cerâmicas | certa |
+   >
+   > **E 7 dos 60 estados carregam as DUAS ao mesmo tempo**, no mesmo parágrafo, sem o leitor poder saber
+   > qual frase vale para qual produto. É **menor que o da cola** (8 contra 29) e o molde está construído
+   > **três** vezes (regras 7, 8 e 3): balde próprio, frase própria que cita o literal de
+   > `ambientes_declarados`, a ordem escrita, âncoras à mão e bateria com as duas direções e trava de falso
+   > positivo. **Sai inteiro numa execução só.**
+   >
+   > **E uma coisa que o próximo bloco NÃO deve fazer: reaproveitar as funções da cola.** O rejunte tem régua
+   > própria **de propósito**, e a razão é de conteúdo antes de método — na cola a lista do fabricante nomeia
+   > a BASE sobre a qual se cola; no rejunte, a TESSELA que será rejuntada e o ambiente. **Rejunte não toca a
+   > base.** E a lista de ambientes críticos é maior lá: três em vez de dois.
+   >
+   > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É UM DEFEITO QUE A REGRA 8 DEIXOU À VISTA — COM O NÚMERO
    > MEDIDO EM 06/10/2026 ÀS 20h4xZ: A REGRA 3 MANDA PARA O BALDE DO SILÊNCIO QUEM O FABRICANTE
-   > DECLARA, E A PÁGINA DIZ QUE ELE NÃO FALA.** A frase que a seção do silêncio serve é *"O fabricante
+   > DECLARA, E A PÁGINA DIZ QUE ELE NÃO FALA.**~~ A frase que a seção do silêncio serve é *"O fabricante
    > simplesmente não fala desta superfície, e silêncio não vira 'pode'"*, e ela sai hoje sobre produtos
    > cujos fabricantes **falam da superfície** e apenas delimitaram o ambiente do produto inteiro
    > (`declaracoes.ambientes_declarados`, regra 3). Varrido nas 45 células: **29 delas**, em três

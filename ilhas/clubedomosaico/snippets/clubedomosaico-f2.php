@@ -134,7 +134,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.10.0' );
+	define( 'CDM_F2_VERSAO', '1.11.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -398,6 +398,20 @@ function cdm_f2_perfil_cola( $m ) {
 		}
 	}
 
+	/* OS LITERAIS DA DELIMITACAO, SEPARADOS DOS DE COBERTURA (REGRA 3, v15). Eles ja
+	   estavam dentro de `literais_cobertura`, misturados com os de `resistencias_declaradas`
+	   e de `indicado_para` — e a frase do balde novo precisa citar EXATAMENTE o que o
+	   fabricante escreveu em `ambientes_declarados`, nada mais. Citar a frase errada ali
+	   seria a mesma falha de um andar acima: a nossa leitura na boca dele (26.3). */
+	$literais_delimitacao = array();
+	foreach ( $delim['literais'] as $alvo => $ls ) {
+		foreach ( $ls as $l ) {
+			$literais_delimitacao[ $l ] = true;
+		}
+	}
+	$literais_delimitacao = array_keys( $literais_delimitacao );
+	sort( $literais_delimitacao );
+
 	$cache[ $id ] = array(
 		'bases_indicadas'       => $ind['base'],
 		'bases_indicadas_so_em' => $so_em,
@@ -409,6 +423,7 @@ function cdm_f2_perfil_cola( $m ) {
 		'literais_indicacao'    => $ind['literais'],
 		'literais_proibicao'    => $literais_proibicao,
 		'literais_cobertura'    => $literais_cobertura,
+		'literais_delimitacao'  => $literais_delimitacao,
 		'nivel'                 => cdm_f2_nivel( $m ),
 	);
 
@@ -611,7 +626,7 @@ if ( ! function_exists( 'cdm_f2_avaliar_cola' ) ) {
 /**
  * As cinco regras, na ordem em que elas decidem.
  * Devolve array( situacao, score ). Situação: recomendado | ressalva |
- * proibido | silencio | ambiente_do_substrato.
+ * proibido | silencio | ambiente_do_substrato | ambiente_do_produto.
  */
 function cdm_f2_avaliar_cola( $m, $base, $ambiente ) {
 	$p = cdm_f2_perfil_cola( $m );
@@ -638,9 +653,17 @@ function cdm_f2_avaliar_cola( $m, $base, $ambiente ) {
 		&& ! isset( $p['bases_indicadas_so_em'][ $base ] ) ) {
 		return array( 'silencio', 0 );
 	}
-	/* 3 — quem delimita ambiente fica fechado nele. */
+	/* 3 — quem delimita ambiente fica fechado nele. E ELA TEM BALDE PROPRIO DESDE
+	   07/10/2026 (esquema v15): ela nao mudou de lugar — continua entre a 8 e a 4 — e
+	   mudou para onde manda o produto. Devolver 'silencio' aqui fazia a tela servir "o
+	   fabricante simplesmente nao fala desta superficie" sobre quem a declara em
+	   `indicado_para`, porque a regra 2 roda ANTES desta e quem chega aqui JA passou por
+	   ela, com a base declarada. O que o fabricante fez foi delimitar o AMBIENTE DO
+	   PRODUTO INTEIRO — outro fato, outra frase. Eram 29 entradas em 24 das 45 celulas,
+	   28 delas no ar desde 10/09/2026, e nenhuma regua desta ilha as viu porque todas
+	   mediam ELEGIBILIDADE, que a regra 3 nunca mudou. */
 	if ( $p['ambientes_delimitados'] && ! isset( $p['ambientes_delimitados'][ $ambiente ] ) ) {
-		return array( 'silencio', 0 );
+		return array( 'ambiente_do_produto', 0 );
 	}
 	/* 4 — ambiente crítico exige declaração explícita. */
 	$criticos = cdm_f2_criticos_cola();
@@ -687,6 +710,7 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 	$condicao     = array();
 	$peca         = array();
 	$amb_substrato = array();
+	$amb_produto   = array();
 
 	foreach ( $banco['materiais'] as $id => $m ) {
 		if ( 'cola' !== ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
@@ -719,6 +743,8 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 			$proibidos[] = $id;
 		} elseif ( 'ambiente_do_substrato' === $situacao ) {
 			$amb_substrato[] = $id;
+		} elseif ( 'ambiente_do_produto' === $situacao ) {
+			$amb_produto[] = $id;
 		} else {
 			$silencio[] = $id;
 		}
@@ -744,6 +770,7 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 	sort( $condicao );
 	sort( $peca );
 	sort( $amb_substrato );
+	sort( $amb_produto );
 
 	return array(
 		'recomendados_topo'             => $topo,
@@ -754,6 +781,7 @@ function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 		'eliminados_por_condicao'       => $condicao,
 		'eliminados_por_proibicao_da_peca' => $peca,
 		'eliminados_por_ambiente_do_substrato' => $amb_substrato,
+		'eliminados_por_ambiente_do_produto'   => $amb_produto,
 	);
 }
 }
@@ -1695,7 +1723,8 @@ function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
 	if ( ! $celula['eliminados_por_proibicao'] && ! $celula['eliminados_por_silencio']
 		&& ! $celula['mencionados_com_ressalva'] && ! $celula['eliminados_por_condicao']
 		&& ! $celula['eliminados_por_proibicao_da_peca']
-		&& ! $celula['eliminados_por_ambiente_do_substrato'] ) {
+		&& ! $celula['eliminados_por_ambiente_do_substrato']
+		&& ! $celula['eliminados_por_ambiente_do_produto'] ) {
 		return '';
 	}
 
@@ -1761,6 +1790,34 @@ function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
 			}
 			$html .= '. Este caso não é esse lugar, então ela fica de fora — não por proibição e não '
 				. 'por silêncio, e a diferença importa: ele falou, e falou de outra situação.</p>';
+		}
+	}
+
+	/* O GRUPO DA REGRA 3 — a QUINTA causa, e ela e a mais velha de todas a ganhar frase.
+	   A regra 3 existe desde o bloco 3 e mandava quem ela eliminava para o balde do
+	   SILENCIO, que serve "o fabricante simplesmente nao fala desta superficie". Ele fala:
+	   a base esta em `indicado_para` e a regra 2, que roda antes desta, ja a deixou
+	   passar. O que ele fez foi delimitar o PRODUTO INTEIRO a certos lugares.
+	   E ELA NAO SE JUNTA A REGRA 8, embora as duas falem de ambiente: ali o lugar vem
+	   colado no SUBSTRATO, dentro da frase que nomeia a superficie; aqui a delimitacao e
+	   campo do PRODUTO e vale para todas as superficies dele. Duas frases para dois fatos
+	   — junta-las e a mistura de causas que a secao 7 do contrato proibe desde 12/09/2026.
+	   A TELA CITA `ambientes_declarados` E NAO O NOSSO VOCABULARIO: quem traduziu "uso
+	   interno" para `interno_seco` fomos nos (26.3, quarta aplicacao). */
+	if ( $celula['eliminados_por_ambiente_do_produto'] ) {
+		foreach ( $celula['eliminados_por_ambiente_do_produto'] as $id ) {
+			$m    = $banco['materiais'][ $id ];
+			$p    = cdm_f2_perfil_cola( $m );
+			$lits = $p['literais_delimitacao'];
+			$html .= '<p class="cdm-f2-ambiente-do-produto"><strong>' . esc_html( cdm_f2_nome( $id ) )
+				. '</strong> — a ' . esc_html( $m['fabricante'] ) . ' declara esta superfície, e '
+				. 'delimitou o produto inteiro a outros lugares';
+			if ( $lits ) {
+				$html .= ': ela escreve <em>' . esc_html( cdm_f2_lista_humana( $lits ) ) . '</em>';
+			}
+			$html .= '. Então ele fica de fora deste caso — não por proibição e não porque ela '
+				. 'tenha ficado calada sobre a superfície, e a diferença importa: ela falou da '
+				. 'superfície, e disse onde o produto pode ir.</p>';
 		}
 	}
 
@@ -2962,6 +3019,12 @@ add_action( 'wp_footer', function () {
 .cdm-f2-silencio,.cdm-f2-ressalva{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
 .cdm-f2-condicao-fora{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
 .cdm-f2-peca-fora{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
+/* OS DOIS BALDES DE AMBIENTE, e eles entram na MESMA familia visual dos outros
+   quatro de propósito: a seção "o que não usar" tem cinco causas e nenhuma delas é
+   mais importante que as outras — o que muda é a frase. O da regra 8 nasceu em
+   06/10/2026 SEM regra própria e vinha saindo em cor de corpo, o que o fazia parecer
+   a resposta e não a ressalva; entrou aqui junto com o irmão. */
+.cdm-f2-ambiente-substrato,.cdm-f2-ambiente-do-produto{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
 /* A condicao de quem FICOU na recomendacao nao e nota de rodape: ela e parte da
    resposta, entao fica no corpo e nao na cor de legenda. Sem sombra e sem
    gradiente (secao 6), separada por linha de 1px como o resto da ilha. */

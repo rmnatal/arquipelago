@@ -135,6 +135,20 @@ if SEM_PORTAO_PAR:
           "desliga a regra 8 em si — a elegibilidade continua sendo calculada com ela, porque "
           "desligar a REGRA faria a matriz escrita a mao reprovar, que e justamente o portao que "
           "a bateria quer medir separado da forma.")
+SEM_PORTAO_AMBIENTE_DO_PRODUTO = os.environ.get("CDM_SEM_PORTAO_AMBIENTE_DO_PRODUTO") == "1"
+if SEM_PORTAO_AMBIENTE_DO_PRODUTO:
+    print("  ATENCAO: CDM_SEM_PORTAO_AMBIENTE_DO_PRODUTO=1 — as travas do balde da REGRA 3 e a "
+          "`regras_do_balde_do_ambiente_do_produto` NAO foram medidas nesta passada. E a regra "
+          "ANTIGA, a de antes de 07/10/2026: a de quando a regra 3 mandava o produto para o balde "
+          "do SILENCIO e a tela dizia que o fabricante nao fala de uma superficie que ele declara "
+          "em `indicado_para`. So a bateria de mutacao usa isto. ATENCAO DENTRO DA ATENCAO: isto "
+          "NAO desliga a regra 3 nem o balde — a elegibilidade e a matriz continuam com os dois, "
+          "porque desliga-los faria as 45 celulas escritas a mao reprovar, que e justamente o "
+          "portao que a bateria quer medir separado da forma.")
+ancoras_ambiente_do_produto = 0
+entradas_no_balde_do_produto = 0
+celulas_no_balde_do_produto = 0
+produtos_que_delimitam_ambiente = 0
 preparo_declarado = 0
 preparo_so_nossa_leitura = 0
 preparo_sem_nada = 0
@@ -210,6 +224,40 @@ for termo in (TERMOS_QUALIFICADOS if not SEM_PORTAO_PAR else []):
         erro("%s: qualificador sem nenhum campo `por_que...`. A traducao de `em areas "
              "internas` para o vocabulario desta ilha e NOSSA (26.3), e classificacao nossa "
              "sem motivo escrito e palpite com cara de regra" % _onde)
+
+# -------- O BALDE DO AMBIENTE DO PRODUTO (esquema v15) — travas da REGRA 3
+#
+# A DIRECAO AQUI E AO CONTRARIO DA DA REGRA 8, e e por isso que ela tem trava propria.
+# Perder a regra 8 faz a ilha publicar MAIS do que o fabricante disse; perder a regra 3
+# faz a mesma coisa, mas perder o BALDE dela nao muda elegibilidade nenhuma — muda a FRASE
+# que o leitor recebe, e frase errada nao tem portao natural. Entao a trava e: existindo
+# produto que delimita ambiente e traduz, a regra 3 tem de estar escrita COM balde, e o
+# balde tem de ter literal para citar. Sem isto, voltar o `return` para "silencio" deixaria
+# as 45 celulas vermelhas (bom) e o CENSO dos 270 estados VERDE, que e onde ela some calada.
+# (A lista dos produtos que delimitam ambiente e a trava que a cobra ficam na secao das
+# ancoras, mais abaixo: ali `materiais` ja foi carregado. O que cabe aqui e so a FORMA do
+# bloco, que se le do esquema e nao do banco.)
+REGRAS_AMBIENTE_PRODUTO = esquema.get("regras_do_balde_do_ambiente_do_produto")
+if REGRAS_AMBIENTE_PRODUTO and not SEM_PORTAO_AMBIENTE_DO_PRODUTO:
+    _r3 = esquema["regras_de_elegibilidade"].get("3_ambiente_declarado_DELIMITA")
+    if not isinstance(_r3, dict):
+        erro("`regras_do_balde_do_ambiente_do_produto` existe e a regra 3 ainda e prosa solta "
+             "em `regras_de_elegibilidade`. A forma sem a regra e campo que ninguem le")
+    elif _r3.get("o_balde") != "eliminados_por_ambiente_do_produto":
+        erro("a regra 3 nomeia o balde '%s' e a regua escreve "
+             "`eliminados_por_ambiente_do_produto`. Regra que descreve outro balde aprova o "
+             "balde errado" % _r3.get("o_balde"))
+    elif not _r3.get("e_ela_NAO_SE_JUNTA_a_regra_8"):
+        erro("a regra 3 sem `e_ela_NAO_SE_JUNTA_a_regra_8`. Os dois baldes sao vizinhos e a "
+             "proxima execucao os junta se ninguem escrever por que eles sao dois")
+    if not REGRAS_AMBIENTE_PRODUTO.get("regra_da_direcao"):
+        erro("`regras_do_balde_do_ambiente_do_produto` sem `regra_da_direcao`. Lista sem "
+             "direcao escrita e lista que a proxima execucao preenche pelo lado errado")
+    _tela = REGRAS_AMBIENTE_PRODUTO.get("o_que_a_tela_tem_de_dizer") or {}
+    for _campo in ("secao_propria", "cita_o_literal", "nao_diz_que_ele_nao_fala"):
+        if not _tela.get(_campo):
+            erro("`regras_do_balde_do_ambiente_do_produto.o_que_a_tela_tem_de_dizer` sem "
+                 "`%s`. A regra que nasceu por causa da FRASE tem de escrever a frase" % _campo)
 
 NAO_TRADUZ = {normalizar(t["literal"]) for t in esquema["mapa_de_termos_do_fabricante"]["termos_que_nao_traduzem"]}
 
@@ -1819,7 +1867,7 @@ def perfil(m):
 
 def avaliar(m, base, ambiente):
     """Devolve (situacao, score). Situacao: recomendado | ressalva | proibido | silencio
-    | ambiente_do_substrato."""
+    | ambiente_do_substrato | ambiente_do_produto."""
     p = perfil(m)
     if base in p["bases_proibidas"] or ambiente in p["ambientes_proibidos"]:
         return "proibido", 0                                        # regra 1
@@ -1833,8 +1881,15 @@ def avaliar(m, base, ambiente):
         return "ambiente_do_substrato", 0                           # regra 8
     if base not in p["bases_indicadas"] and not so_em:
         return "silencio", 0                                        # regra 2
+    # REGRA 3, E ELA TEM BALDE PROPRIO DESDE 07/10/2026 (esquema v15). Ela NAO mudou de
+    # lugar — continua entre a 8 e a 4 — e mudou para onde manda o produto. Devolver
+    # "silencio" aqui fazia a tela servir "o fabricante simplesmente nao fala desta
+    # superficie" sobre quem a declara em `indicado_para`: a regra 2 roda ANTES desta, e
+    # quem chega aqui JA passou por ela, com a base declarada. O que o fabricante fez foi
+    # delimitar o AMBIENTE DO PRODUTO INTEIRO, que e outro fato e outra frase.
+    # 29 entradas em 24 celulas, em tres produtos, 28 delas no ar desde 10/09/2026.
     if p["ambientes_delimitados"] and ambiente not in p["ambientes_delimitados"]:
-        return "silencio", 0                                        # regra 3
+        return "ambiente_do_produto", 0                             # regra 3
     if ambiente in CRITICOS and ambiente not in p["ambientes_cobertos"]:
         return "silencio", 0                                        # regra 4
     # O SCORE NAO MUDA COM A REGRA 8: quem passa por ela passa com o score que as cinco
@@ -1858,6 +1913,7 @@ def computar_celula(base, ambiente):
     """
     recomendados, ressalva, proibidos, silencio = {}, [], [], []
     por_ambiente_do_substrato = []
+    por_ambiente_do_produto = []
     for ident, m in materiais.items():
         if m.get("status") != "ativo":
             continue
@@ -1872,6 +1928,8 @@ def computar_celula(base, ambiente):
             proibidos.append(ident)
         elif situacao == "ambiente_do_substrato":
             por_ambiente_do_substrato.append(ident)
+        elif situacao == "ambiente_do_produto":
+            por_ambiente_do_produto.append(ident)
         else:
             silencio.append(ident)
     topo = []
@@ -1887,6 +1945,7 @@ def computar_celula(base, ambiente):
         "eliminados_por_proibicao": sorted(proibidos),
         "eliminados_por_silencio": sorted(silencio),
         "eliminados_por_ambiente_do_substrato": sorted(por_ambiente_do_substrato),
+        "eliminados_por_ambiente_do_produto": sorted(por_ambiente_do_produto),
     }
 
 
@@ -1906,7 +1965,8 @@ if materiais and matriz:
         for campo in ("recomendados_topo", "elegiveis_abaixo_do_topo",
                       "mencionados_com_ressalva", "eliminados_por_proibicao",
                       "eliminados_por_silencio",
-                      "eliminados_por_ambiente_do_substrato"):
+                      "eliminados_por_ambiente_do_substrato",
+                      "eliminados_por_ambiente_do_produto"):
             esperado = sorted(celula.get(campo, []))
             obtido = computado[campo]
             if esperado != obtido:
@@ -2081,7 +2141,7 @@ def computar_celula_com_condicao(base, ambiente, tessela):
     elegiveis na mao — e a ancora vidro x caco_espelho existe para medir isso.
     """
     recomendados, ressalva, proibidos, silencio, condicao = {}, [], [], [], []
-    peca, por_ambiente_do_substrato = [], []
+    peca, por_ambiente_do_substrato, por_ambiente_do_produto = [], [], []
     for ident, m in materiais.items():
         if m.get("status") != "ativo":
             continue
@@ -2106,6 +2166,8 @@ def computar_celula_com_condicao(base, ambiente, tessela):
             proibidos.append(ident)
         elif situacao == "ambiente_do_substrato":
             por_ambiente_do_substrato.append(ident)
+        elif situacao == "ambiente_do_produto":
+            por_ambiente_do_produto.append(ident)
         else:
             silencio.append(ident)
     topo, abaixo = [], []
@@ -2122,6 +2184,7 @@ def computar_celula_com_condicao(base, ambiente, tessela):
         "eliminados_por_condicao": sorted(condicao),
         "eliminados_por_proibicao_da_peca": sorted(peca),
         "eliminados_por_ambiente_do_substrato": sorted(por_ambiente_do_substrato),
+        "eliminados_por_ambiente_do_produto": sorted(por_ambiente_do_produto),
     }
 
 
@@ -2398,6 +2461,164 @@ elif materiais:
                      "que impede a regra 8 de tirar o produto do ambiente que o "
                      "fabricante declara")
 
+    # 4-c) A MATRIZ DO BALDE DA REGRA 3 (esquema v15), conferida aqui pelo mesmo motivo da
+    #      4-b: as ancoras dela sao celulas com tessela. A regra 3 e a mais velha das tres
+    #      que ganharam balde (ela existe desde o bloco 3) e foi a ultima a ganhar o seu —
+    #      e o balde errado dela sobreviveu 27 dias no ar porque elegibilidade NAO MUDA
+    #      quando a causa muda, e toda regua desta ilha media elegibilidade.
+    mamb = esquema.get("regras_do_balde_do_ambiente_do_produto")
+    if SEM_PORTAO_AMBIENTE_DO_PRODUTO:
+        mamb = None
+    # A TRAVA DE AUSENCIA, E ELA MORA AQUI PORQUE PRECISA DO BANCO. Medida pela m01 da
+    # `mutacoes-ambiente-do-produto.py` ANTES do commit: a trava de forma foi escrita
+    # junto com as outras, no topo do arquivo, onde `materiais` ainda nao existe — e ao
+    # mover a lista para ca ficou um `if` sem ninguem do outro lado. Apagar o bloco
+    # inteiro do esquema nao reprovava nada, que e a direcao desta regra: perder o balde
+    # nao muda elegibilidade, muda a FRASE, e frase nao tem portao natural.
+    _delimitam = [i for i, m in sorted(materiais.items())
+                  if m.get("status") == "ativo"
+                  and m.get("categoria") == CATEGORIA_DA_MATRIZ_F2
+                  and ((m.get("declaracoes") or {}).get("ambientes_declarados") or [])]
+    if _delimitam and mamb is None and not SEM_PORTAO_AMBIENTE_DO_PRODUTO:
+        erro("ha %d produto(s) de cola com `ambientes_declarados` e o esquema nao tem "
+             "`regras_do_balde_do_ambiente_do_produto`. A regra 3 os elimina e, sem este "
+             "bloco, ninguem escreveu PARA ONDE eles vao nem O QUE a tela diz — e o balde "
+             "do silencio aceita qualquer um deles calado, dizendo que o fabricante nao "
+             "fala de uma superficie que ele declara em `indicado_para`" % len(_delimitam))
+    if mamb is not None:
+        # (1) a lista COMPLETA dos produtos que delimitam ambiente, recomputada do banco.
+        #     Produto novo com `ambientes_declarados` nao entra mudo — mesma trava de
+        #     `pares_qualificados_hoje` na regra 8.
+        computados, escritos = [], []
+        for ident, m in sorted(materiais.items()):
+            if m.get("status") != "ativo" or m.get("categoria") != CATEGORIA_DA_MATRIZ_F2:
+                continue
+            p_ = perfil(m)
+            if p_["ambientes_delimitados"]:
+                computados.append((ident, sorted(p_["ambientes_delimitados"]),
+                                   sorted(p_["bases_indicadas"])))
+        for linha in mamb.get("produtos_que_delimitam_ambiente_hoje") or []:
+            if not isinstance(linha, dict):
+                erro("balde do ambiente do produto: linha que nao e objeto")
+                continue
+            escritos.append((linha.get("produto"), sorted(linha.get("vale_so_em") or []),
+                             sorted(linha.get("bases_que_ele_declara") or [])))
+            # A FRASE TEM DE EXISTIR NO REGISTRO, e e ela que a tela cita (26.3). Sem esta
+            # trava a tabela poderia citar um literal que o banco nao tem, e a tela diria
+            # "ele delimitou" mostrando uma frase que ninguem escreveu.
+            reg = materiais.get(linha.get("produto")) or {}
+            declaradas = (reg.get("declaracoes") or {}).get("ambientes_declarados") or []
+            if not linha.get("literais"):
+                erro("balde do ambiente do produto / %s: sem `literais`. A frase da tela cita "
+                     "o literal do fabricante, e tabela sem ele e a nossa leitura disfarcada "
+                     "de declaracao dele" % linha.get("produto"))
+            for lit in linha.get("literais") or []:
+                if lit not in declaradas:
+                    erro("balde do ambiente do produto / %s: a frase citada nao esta em "
+                         "`declaracoes.ambientes_declarados` do registro: '%s'"
+                         % (linha.get("produto"), lit[:60]))
+        if sorted(computados) != sorted(escritos):
+            erro("balde do ambiente do produto / `produtos_que_delimitam_ambiente_hoje`: "
+                 "escrito %s, computado %s" % (sorted(escritos) or "[]", sorted(computados) or "[]"))
+        produtos_que_delimitam_ambiente = len(computados)
+        # (2) AS CONTAGENS, e elas sao a metade que mede a REGRA e nao a forma: quantas
+        #     entradas cada produto tem no balde nas 45 celulas, mais o total e o numero de
+        #     celulas distintas. Era aqui que o registro de 06/10 confundiu 29 entradas com
+        #     29 celulas — a tabela agora carrega os dois numeros e a regua recomputa os dois.
+        entradas, celulas_com_balde = {}, set()
+        for b_ in sorted(BASES):
+            for a_ in sorted(AMBIENTES):
+                for ident in computar_celula(b_, a_)["eliminados_por_ambiente_do_produto"]:
+                    entradas[ident] = entradas.get(ident, 0) + 1
+                    celulas_com_balde.add((b_, a_))
+        for linha in mamb.get("produtos_que_delimitam_ambiente_hoje") or []:
+            if not isinstance(linha, dict):
+                continue
+            esperado = linha.get("entradas_no_balde")
+            obtido = entradas.get(linha.get("produto"), 0)
+            if esperado != obtido:
+                erro("balde do ambiente do produto / %s: `entradas_no_balde` diz %s e a "
+                     "varredura das 45 celulas conta %s"
+                     % (linha.get("produto"), esperado, obtido))
+        if mamb.get("total_de_entradas_hoje") != sum(entradas.values()):
+            erro("balde do ambiente do produto: `total_de_entradas_hoje` diz %s e a varredura "
+                 "conta %s" % (mamb.get("total_de_entradas_hoje"), sum(entradas.values())))
+        if mamb.get("total_de_celulas_tocadas_hoje") != len(celulas_com_balde):
+            erro("balde do ambiente do produto: `total_de_celulas_tocadas_hoje` diz %s e a "
+                 "varredura conta %s celulas distintas"
+                 % (mamb.get("total_de_celulas_tocadas_hoje"), len(celulas_com_balde)))
+        entradas_no_balde_do_produto = sum(entradas.values())
+        celulas_no_balde_do_produto = len(celulas_com_balde)
+        if not mamb.get("por_que_29_e_nao_24"):
+            erro("balde do ambiente do produto: sem `por_que_29_e_nao_24`. Duas contagens "
+                 "verdadeiras sobre coisas diferentes, sem a linha que as separa, e o registro "
+                 "de 06/10 outra vez")
+        # (3) as ancoras ponta a ponta
+        for a in mamb.get("ancoras_ponta_a_ponta") or []:
+            if a.get("tessela") not in TESSELAS:
+                erro("ancora do ambiente do produto: tessela '%s' fora do vocabulario"
+                     % a.get("tessela"))
+                continue
+            c = computar_celula_com_condicao(a["base"], a["ambiente"], a["tessela"])
+            ancoras_ambiente_do_produto += 1
+            # OS TRES BALDES VIZINHOS NA MESMA ANCORA, e e de proposito: a ancora anti-fusao
+            # mede o silencio e a dos dois baldes mede o do substrato. Conferir so o balde
+            # novo deixaria passar a implementacao que o enche ROUBANDO do silencio.
+            for campo in ("eliminados_por_ambiente_do_produto", "eliminados_por_silencio",
+                          "eliminados_por_ambiente_do_substrato", "recomendados_topo"):
+                if campo not in a:
+                    continue
+                if sorted(a.get(campo, [])) != c[campo]:
+                    erro("ancora do ambiente do produto %s x %s x %s / %s: esperado %s, "
+                         "computado %s" % (a["base"], a["ambiente"], a["tessela"], campo,
+                                           sorted(a.get(campo, [])) or "[]", c[campo] or "[]"))
+            if not a.get("por_que"):
+                erro("ancora do ambiente do produto %s x %s x %s: sem `por_que` escrito"
+                     % (a["base"], a["ambiente"], a["tessela"]))
+        # (4) ANCORA DOS DOIS LADOS, pela mesma razao da 4-b (4): cinco que todas caem
+        #     deixariam passar uma regra 3 que tira o produto do ambiente que o fabricante
+        #     DECLARA; cinco que todas passam deixariam passar o balde desligado.
+        if mamb.get("ancoras_ponta_a_ponta"):
+            caem = [a for a in mamb["ancoras_ponta_a_ponta"]
+                    if a.get("eliminados_por_ambiente_do_produto")]
+            if not caem:
+                erro("balde do ambiente do produto: nenhuma ancora em que a regra 3 MORDE. "
+                     "Tabela de um lado so nao mede regra nenhuma")
+            if len(caem) == len(mamb["ancoras_ponta_a_ponta"]):
+                erro("balde do ambiente do produto: TODAS as ancoras mordem. Falta a que "
+                     "passa, e e ela que impede a regra 3 de tirar o produto do ambiente que "
+                     "o fabricante declara")
+            # E PELO MENOS UMA ANCORA TEM DE MEDIR O SILENCIO AO LADO, porque a fusao dos
+            # dois baldes e o defeito mais provavel desta regra: quem implementar "produto
+            # que delimita ambiente vai para o balde novo" esvazia o silencio de quem nao
+            # tem a base declarada, e nenhuma ancora que olhe so o balde novo veria isso.
+            if not any(a.get("eliminados_por_silencio")
+                       for a in mamb["ancoras_ponta_a_ponta"]):
+                erro("balde do ambiente do produto: nenhuma ancora com "
+                     "`eliminados_por_silencio` escrito. Sem ela a regua nao distingue o "
+                     "balde novo cheio por direito do balde novo cheio roubando do silencio")
+        # (5) A INVARIANTE QUE E A PROPRIA REGRA, varrida nas 45: produto no balde novo tem
+        #     de ter a base DECLARADA. Se nao tiver, ele e do silencio e a frase da tela
+        #     esta errada na outra direcao — a ilha diria "ele delimitou esta superficie"
+        #     sobre uma superficie que ele nunca nomeou.
+        for b_ in sorted(BASES):
+            for a_ in sorted(AMBIENTES):
+                cc = computar_celula(b_, a_)
+                for ident in cc["eliminados_por_ambiente_do_produto"]:
+                    p_ = perfil(materiais[ident])
+                    if b_ not in p_["bases_indicadas"] and not p_["bases_indicadas_so_em"].get(b_):
+                        erro("balde do ambiente do produto %s x %s: %s esta nele e NAO declara "
+                             "esta base. Quem nao declara a base e do silencio, e a regra 2 "
+                             "roda antes da 3 justamente para isso" % (b_, a_, ident))
+                    if not p_["ambientes_delimitados"]:
+                        erro("balde do ambiente do produto %s x %s: %s esta nele e nao tem "
+                             "`ambientes_declarados`. O balde ficaria sem literal para citar"
+                             % (b_, a_, ident))
+                    if ident in cc["eliminados_por_ambiente_do_substrato"]:
+                        erro("balde do ambiente do produto %s x %s: %s esta nos DOIS baldes de "
+                             "ambiente. Sao duas frases sobre fatos diferentes e o leitor so "
+                             "pode receber uma" % (b_, a_, ident))
+
     # 5) as invariantes, que sao as mesmas da regra 6 e por um motivo so: as tres causas
     #    tem de continuar separadas. A proibicao de peca nao pode mexer no silencio, nao
     #    pode mexer na proibicao de base e nao pode mover quem nao era elegivel.
@@ -2409,6 +2630,11 @@ elif materiais:
                 if com["eliminados_por_silencio"] != sem["eliminados_por_silencio"]:
                     erro("peca %s x %s x %s: ela mexeu na lista do silencio, e silencio e "
                          "outra causa" % (b, amb, t_))
+                if com["eliminados_por_ambiente_do_produto"] != \
+                        sem["eliminados_por_ambiente_do_produto"]:
+                    erro("peca %s x %s x %s: ela mexeu na lista do ambiente do produto, e a "
+                         "regra 3 decide ANTES da 7 — quem a 3 tirou nao volta e quem ela "
+                         "deixou passar nao entra ali depois" % (b, amb, t_))
                 if com["eliminados_por_ambiente_do_substrato"] != \
                         sem["eliminados_por_ambiente_do_substrato"]:
                     erro("peca %s x %s x %s: ela mexeu na lista do ambiente do substrato, "
@@ -2655,7 +2881,8 @@ if rejuntes:
         for campo in ("recomendados_topo", "elegiveis_abaixo_do_topo",
                       "mencionados_com_ressalva", "eliminados_por_proibicao",
                       "eliminados_por_silencio",
-                      "eliminados_por_ambiente_do_substrato"):
+                      "eliminados_por_ambiente_do_substrato",
+                      "eliminados_por_ambiente_do_produto"):
             invasores = [i for i in computado[campo] if i in rejuntes]
             if invasores:
                 erro("matriz da F2 %s x %s / %s: rejunte na matriz de cola (%s). A matriz "
@@ -3076,6 +3303,10 @@ print("  pares da peca (regra 7) ..... %d  (%d ancoras ponta a ponta, %d grupos)
       % (pares_peca, ancoras_peca, len(GRUPOS)))
 print("  pares do substrato (regra 8) . %d  (%d ancoras ponta a ponta, %d termo(s) com "
       "qualificador)" % (pares_qualificados, ancoras_par, len(TERMOS_QUALIFICADOS)))
+print("  balde do ambiente do produto . %d entrada(s) em %d celula(s), %d produto(s) que "
+      "delimitam  (%d ancoras ponta a ponta)"
+      % (entradas_no_balde_do_produto, celulas_no_balde_do_produto,
+         produtos_que_delimitam_ambiente, ancoras_ambiente_do_produto))
 print("  itens esperando link ....... %d" % esperando_link)
 print("  itens SEM SAIDA de compra .. %d  (secao 7 — tem de ser 0)" % sem_saida)
 print("  piso NAO rastreavel ........ %d  (25.6 — divida de comissao, nao defeito)" % piso_nao_rastreavel)

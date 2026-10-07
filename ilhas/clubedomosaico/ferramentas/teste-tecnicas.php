@@ -506,7 +506,8 @@ foreach ( $registro as $id => $ficha ) {
 	   inventar a outra. Os baldes sao contados sobre as celulas SERVIDAS, que e o
 	   universo de que a frase da pagina fala. */
 	foreach ( $fora_esperado as $id_cola ) {
-		$baldes = array( 'ressalva' => 0, 'silencio' => 0, 'proibicao' => 0, 'condicao' => 0, 'peca' => 0 );
+		$baldes = array( 'ressalva' => 0, 'silencio' => 0, 'proibicao' => 0, 'condicao' => 0,
+			'peca' => 0, 'amb_substrato' => 0, 'amb_produto' => 0 );
 		foreach ( $grupos_esperados as $tesselas_do_grupo ) {
 			foreach ( $celulas_por_tessela[ $tesselas_do_grupo[0] ] as $e ) {
 				if ( in_array( $id_cola, $e['com_ressalva'], true ) ) { $baldes['ressalva']++; }
@@ -521,6 +522,15 @@ foreach ( $registro as $id => $ficha ) {
 				   recusa ao silencio. Balde que o calculo separa e o portao nao
 				   conta e balde que a tela pode esquecer sem ninguem ver. */
 				if ( in_array( $id_cola, $e['eliminados_por_proibicao_da_peca'], true ) ) { $baldes['peca']++; }
+				/* O SEXTO E O SETIMO (regras 8 e 3). O primeiro sai zerado nestas
+				   duas tecnicas hoje — a cimentcola cai pela regra 2 nas tesselas
+				   delas — e o segundo NAO: os dois Cascola delimitam ambiente e
+				   declaram as bases destas grades. Sem estas duas linhas, mover 29
+				   entradas do silencio para o balde novo baixaria a contagem de
+				   silencio da pagina sem nada cobrar a contagem nova, e o portao
+				   ficaria verde sobre uma pagina que perdeu uma frase. */
+				if ( in_array( $id_cola, $e['eliminados_por_ambiente_do_substrato'], true ) ) { $baldes['amb_substrato']++; }
+				if ( in_array( $id_cola, $e['eliminados_por_ambiente_do_produto'], true ) ) { $baldes['amb_produto']++; }
 			}
 		}
 		$quantas       = array_filter( $baldes );

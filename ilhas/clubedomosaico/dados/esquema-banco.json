@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 14,
+  "versao_esquema": 15,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -902,10 +902,17 @@
     "o_que_esta_ponte_NAO_executa_e_por_que": "Ela NAO acrescenta `ceramica_crua_barro` nem `isopor_eps` a `vocabularios.base`, e a razao nao e duvida: e a janela de medicao. Acrescentar valor ao eixo muda o que `/materiais/qual-cola-usar-no-mosaico/` SERVE — a lista suspensa ganha duas opcoes, a contagem de `cdm_f2_faixas_descobertas_html()` sai de 9x5x6 = 270 para 11x5x6 = 330 combinacoes, e as duas bases novas entram na frase 'Nao indicamos cola nenhuma, em lugar nenhum, para: ...', porque nenhum fabricante do banco as nomeia. Essa pagina esta na posicao 7,8 e e o objeto do BLOCO A do despacho do Raphael de 24/09, que ESPERA 30/09 exatamente para nao misturar duas causas na mesma janela. Mexer no corpo dela hoje misturaria tres. A decisao fica escrita, medida e pronta para sair inteira depois da leitura de 30/09."
   },
   "regras_de_elegibilidade": {
-    "descricao": "As regras que transformam as declaracoes de MATERIAL na matriz da F2. As CINCO primeiras decidem por BASE e AMBIENTE, que e o que as listas dos fabricantes nomeiam; a 6 e a 7 olham a TESSELA, e sao as unicas que leem o PAR de superficies coladas. Elas sao a secao 7 do ARQUIPELAGO.md escrita de forma executavel: ferramentas/validar-banco.py as roda, o snippet do bloco 4 as repete em PHP, e as duas implementacoes tem que dar o mesmo resultado.",
+    "descricao": "As regras que transformam as declaracoes de MATERIAL na matriz da F2. As CINCO primeiras decidem por BASE e AMBIENTE, que e o que as listas dos fabricantes nomeiam; a 6 e a 7 olham a TESSELA, e sao as unicas que leem o PAR de superficies coladas. A 3 nao decide sozinha para onde o produto vai desde 07/10/2026: ela tem balde proprio (`eliminados_por_ambiente_do_produto`) e nao emprega mais o balde do silencio da 2. Elas sao a secao 7 do ARQUIPELAGO.md escrita de forma executavel: ferramentas/validar-banco.py as roda, o snippet do bloco 4 as repete em PHP, e as duas implementacoes tem que dar o mesmo resultado.",
     "1_proibicao_vence_indicacao_dentro_do_mesmo_produto": "Quando o mesmo fabricante indica e proibe a mesma base, vale a proibicao. Caso real: o Silicone Acetico Tekbond indica 'aluminio comum e anodizado' (metal) e proibe 'metal corrosivel, zinco e chapa galvanizada' (metal) — o produto sai de metal. E a regra do conjunto MAIS ESTREITO da secao 10 do contrato: quem monta mosaico nao sabe se a chapa dela e galvanizada.",
     "2_base_sem_declaracao_nao_e_recomendacao": "Produto so entra nos recomendados de uma base que o fabricante declara. Silencio sobre a base manda o produto para a secao rotulada, com a frase 'o fabricante nao declara uso nesta superficie' — que e diferente de proibicao e sai na tela com essas palavras.",
-    "3_ambiente_declarado_DELIMITA": "Quando o produto tem `ambientes_declarados` nao vazio, ele so e elegivel nos ambientes que declara. O fabricante que escreve 'revestimentos decorativos em ambientes internos' delimitou o uso dele — e por isso o PVA Cascorez nao entra em peca molhada nem externa, sem que a ilha precise inventar proibicao. Produto que nao delimita ambiente nenhum passa pelos ambientes comuns.",
+    "3_ambiente_declarado_DELIMITA": {
+      "regra": "Quando o produto tem `ambientes_declarados` nao vazio, ele so e elegivel nos ambientes que declara. O fabricante que escreve 'revestimentos decorativos em ambientes internos' delimitou o uso dele — e por isso o PVA Cascorez nao entra em peca molhada nem externa, sem que a ilha precise inventar proibicao. Produto que nao delimita ambiente nenhum passa pelos ambientes comuns.",
+      "o_balde": "eliminados_por_ambiente_do_produto",
+      "ordem": "Ela NAO mudou de lugar: continua rodando depois da 8 e antes da 4. O que mudou em 07/10/2026 e so para onde ela manda o produto — um balde proprio, com frase propria, em vez do balde do SILENCIO da regra 2.",
+      "por_que_ela_ganhou_balde_em_07_10_2026": "Porque quem ela eliminava saia da pagina com a frase da regra 2: \"O fabricante simplesmente nao fala desta superficie, e silencio nao vira 'pode'\" — e o fabricante FALA da superficie. Ele declarou a base e delimitou o AMBIENTE DO PRODUTO INTEIRO, que e outro fato. Varrido nas 45 celulas antes do conserto: 29 entradas (produto x celula) em 24 celulas distintas, em tres produtos — 24 no `cascola-pl500-adesivo-de-montagem` (6 bases declaradas x os 4 ambientes que `uso interno` nao cobre), 4 no `cascola-cascorez-extra` (mdf_madeira x os mesmos 4) e 1 na `quartzolit-cimentcola-externo-acii` (cimento_concreto x contato_permanente_agua, o unico ambiente que `area interna e externa` nao alcanca). As 28 primeiras estavam no ar desde 10/09/2026 e passaram por toda regua desta ilha sem que nenhuma as visse, porque todas mediam CONCORDANCIA entre a matriz e a tela e as duas concordavam dizendo a mesma coisa errada.",
+      "e_ela_NAO_SE_JUNTA_a_regra_8": "Sao frases diferentes para fatos diferentes, e junta-las e a mistura de causas que a secao 7 do ARQUIPELAGO.md proibe desde 12/09/2026, escrita nesta mesma ilha. A regra 8 diz \"ele declara esta superficie SO EM certo lugar\" — o qualificador vem colado no SUBSTRATO, dentro da frase. A regra 3 diz \"ele delimitou o PRODUTO INTEIRO a certos lugares\" — a delimitacao e campo do produto e vale para todas as superficies dele. Os dois baldes nunca carregam o mesmo produto na mesma celula, porque a 8 roda antes e quem ela pega sai por ela.",
+      "a_frase_CITA_o_literal": "Pela 26.3: a tela cita o literal de `ambientes_declarados` do fabricante, nunca o nosso valor de `vocabularios.ambiente`. Quem traduziu `uso interno` para `interno_seco` fomos nos, e dizer que ele classificou o lugar seria por a nossa leitura na boca dele. Quarta aplicacao da regra, depois da porosidade (6), dos grupos de peca (7) e do qualificador de substrato (8). O validador reprova produto no balde sem literal para citar."
+    },
     "4_ambiente_critico_exige_declaracao_EXPLICITA": {
       "ambientes": [
         "externo_exposto",
@@ -1653,7 +1660,7 @@
   },
   "matriz_esperada_da_F2": {
     "descricao": "As 45 celulas base x ambiente que a F2 publica — a grade INTEIRA, 9 bases x 5 ambientes —, escritas A MAO a partir das declaracoes de dados/materiais-colas.json pelas regras_de_elegibilidade. ferramentas/validar-banco.py recalcula cada uma e falha se o resultado divergir — e o que impede o banco e a pagina de se separarem em silencio. Onde o resultado difere da matriz escrita a mao na secao 1.3 de dados/especificacao-calculadoras.md, a diferenca esta anotada em `divergencia_com_a_especificacao`: quem manda e esta tabela, porque ela sai da declaracao e a outra saiu da leitura. ESTA MATRIZ E A CAMADA DE DECLARACAO — regras 1 a 5, que decidem sobre BASE e AMBIENTE. A regra 6 (condicao de superficie) roda DEPOIS dela, olha a TESSELA, e tem matriz propria: matriz_esperada_da_condicao_de_superficie. Separar as duas e o que permite que estas 45 celulas continuem escritas a mao: cruzar tessela aqui daria 270. DE 18 PARA 45 EM 13/09/2026, e o motivo e o que este campo dizia antes: ate esta data a matriz cobria 18 celulas e as outras 27 passavam so pela varredura das paginas servidas, que mede a AGREGACAO e le a MESMA implementacao de elegibilidade dos dois lados — portao verde que nao e regua independente. A divida estava nomeada no ESTADO.md e o conserto era este, nunca o portao fingir que ja media o que nao media. As 27 novas foram DERIVADAS A MAO das declaracoes ANTES de o validador rodar uma vez, e as cinco listas das 27 bateram com a recomputacao sem uma divergencia; o que o validador cobrou foram 9 observacoes que faltavam em celula sem recomendacao.",
-    "leitura": "`recomendados_topo` e um CONJUNTO, nao uma ordem: quando mais de um produto empata no score, a pagina lista os dois como equivalentes. `eliminados_por_proibicao` sao os que o fabricante proibe naquela base ou ambiente; `eliminados_por_silencio` sao os que ele simplesmente nao declara — as duas listas vao para a tela em secoes DIFERENTES, com frases diferentes. CELULA SEM `recomendados_topo` E FAIXA DESCOBERTA, e o validador exige `observacao` nela dizendo POR QUE — as causas sao tres e nao se misturam: SILENCIO (ninguem declara a base), NIVEL DE FONTE (alguem declara as duas metades e a fonte e nivel 4, entao sai como mencao com ressalva) e AMBIENTE DELIMITADO (o fabricante declarou a base e delimitou o uso a um ambiente que nao e este). Trocar uma pela outra e afirmacao com escopo maior do que o medido. QUARTA CAUSA, 06/10/2026: `eliminados_por_ambiente_do_substrato` — o fabricante DECLARA aquela superficie e declara com o lugar colado na frase, e o lugar desta celula nao e aquele (REGRA 8). Ela nao e silencio (ele falou) e nao e proibicao (ele nao proibiu), entao tem secao e frase proprias na tela. Com ela as causas de celula SEM `recomendados_topo` passam a ser quatro, e continuam nao se misturando.",
+    "leitura": "`recomendados_topo` e um CONJUNTO, nao uma ordem: quando mais de um produto empata no score, a pagina lista os dois como equivalentes. `eliminados_por_proibicao` sao os que o fabricante proibe naquela base ou ambiente; `eliminados_por_silencio` sao os que ele simplesmente nao declara — as duas listas vao para a tela em secoes DIFERENTES, com frases diferentes. CELULA SEM `recomendados_topo` E FAIXA DESCOBERTA, e o validador exige `observacao` nela dizendo POR QUE — as causas sao tres e nao se misturam: SILENCIO (ninguem declara a base), NIVEL DE FONTE (alguem declara as duas metades e a fonte e nivel 4, entao sai como mencao com ressalva) e AMBIENTE DELIMITADO (o fabricante declarou a base e delimitou o uso a um ambiente que nao e este). Trocar uma pela outra e afirmacao com escopo maior do que o medido. QUARTA CAUSA, 06/10/2026: `eliminados_por_ambiente_do_substrato` — o fabricante DECLARA aquela superficie e declara com o lugar colado na frase, e o lugar desta celula nao e aquele (REGRA 8). Ela nao e silencio (ele falou) e nao e proibicao (ele nao proibiu), entao tem secao e frase proprias na tela. Com ela as causas de celula SEM `recomendados_topo` passam a ser quatro, e continuam nao se misturando. QUINTA CAUSA, 07/10/2026: `eliminados_por_ambiente_do_produto` — o fabricante DECLARA aquela superficie e delimitou o PRODUTO INTEIRO a certos ambientes, e o desta celula nao esta entre eles (REGRA 3). Ela nao e silencio (ele falou da superficie), nao e proibicao (ele nao proibiu) e nao e a regra 8 (ali o lugar vem colado no substrato, aqui e campo do produto). A terceira causa que a frase acima chamava de AMBIENTE DELIMITADO era exatamente esta, e ela estava descrita na `observacao` e ERRADA na tela: a pagina servia a frase do silencio. Com ela as causas de celula SEM `recomendados_topo` passam a ser cinco, e continuam nao se misturando.",
     "celulas": [
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1687,13 +1694,15 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
-        "divergencia_com_a_especificacao": "Mesmo empate da linha anterior."
+        "divergencia_com_a_especificacao": "Mesmo empate da linha anterior.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1706,13 +1715,15 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
-        "divergencia_com_a_especificacao": "Mesmo empate. Externo ABRIGADO nao e ambiente critico: silencio nao elimina."
+        "divergencia_com_a_especificacao": "Mesmo empate. Externo ABRIGADO nao e ambiente critico: silencio nao elimina.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1723,14 +1734,16 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "A secao 1.3 deixa o acetico 'em segundo lugar'. Pela regra 4 ele nao fica em lugar nenhum da lista de recomendados: sol e chuva exigem declaracao explicita, e so o neutro declara chuva e raios UV."
+        "divergencia_com_a_especificacao": "A secao 1.3 deixa o acetico 'em segundo lugar'. Pela regra 4 ele nao fica em lugar nenhum da lista de recomendados: sol e chuva exigem declaracao explicita, e so o neutro declara chuva e raios UV.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1743,7 +1756,6 @@
         ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-neutro"
         ],
@@ -1751,7 +1763,10 @@
           "loctite-durepoxi"
         ],
         "divergencia_com_a_especificacao": null,
-        "observacao": "A FAIXA DEIXOU DE SER DESCOBERTA EM 13/09/2026. Era a celula que a regra 5 mantinha descoberta de proposito: o Durepoxi declara secar debaixo d'agua, mas a fonte e press release de 2018 (nivel 4) e o minimo para recomendacao primaria e 3. Quem abriu foi o Silicone Acetico Maxx, cuja declaracao de aquario e piscina esta na pagina de produto do fabricante (nivel 3). O Durepoxi continua onde estava, como mencao com ressalva. As outras OITO bases seguem descobertas neste ambiente, porque 'ceramicas vitrificadas' e a unica superficie que o Maxx nomeia."
+        "observacao": "A FAIXA DEIXOU DE SER DESCOBERTA EM 13/09/2026. Era a celula que a regra 5 mantinha descoberta de proposito: o Durepoxi declara secar debaixo d'agua, mas a fonte e press release de 2018 (nivel 4) e o minimo para recomendacao primaria e 3. Quem abriu foi o Silicone Acetico Maxx, cuja declaracao de aquario e piscina esta na pagina de produto do fabricante (nivel 3). O Durepoxi continua onde estava, como mencao com ressalva. As outras OITO bases seguem descobertas neste ambiente, porque 'ceramicas vitrificadas' e a unica superficie que o Maxx nomeia.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "vidro",
@@ -1785,13 +1800,15 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-acetico-maxx",
-          "cascola-pl500-adesivo-de-montagem"
+          "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
-        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela junta 'interno, externo abrigado' numa linha so e nao separa seco de molhado. Nenhum dos dois silicones delimita ambiente, entao molhado le igual a seco — e o empate entre acetico e neutro e o mesmo das celulas de ceramica."
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela junta 'interno, externo abrigado' numa linha so e nao separa seco de molhado. Nenhum dos dois silicones delimita ambiente, entao molhado le igual a seco — e o empate entre acetico e neutro e o mesmo das celulas de ceramica.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "vidro",
@@ -1803,14 +1820,16 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
-        "divergencia_com_a_especificacao": null
+        "divergencia_com_a_especificacao": null,
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "vidro",
@@ -1821,14 +1840,16 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela trata vidro so em 'interno, externo abrigado'. Vidro em sol e chuva existe (mesa de jardim, placa de numero) e agora tem resposta."
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela trata vidro so em 'interno, externo abrigado'. Vidro em sol e chuva existe (mesa de jardim, placa de numero) e agora tem resposta.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "vidro",
@@ -1841,14 +1862,16 @@
           "tekbond-silicone-neutro",
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-acetico-maxx",
-          "cascola-pl500-adesivo-de-montagem"
+          "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
         "divergencia_com_a_especificacao": "Concorda com a ultima linha da 1.3 ('as outras oito bases: faixa descoberta'), e o motivo e mais estreito do que aquela linha diz: aqui existe declaracao de vidro E de uso submerso, as duas no Durepoxi. O que a segura e a regra 5, nao a falta de declaracao — press release de 2018 e nivel 4. E a mesma posicao em que a ceramica ficou ate o Maxx entrar em 13/09/2026.",
-        "observacao": "FAIXA DESCOBERTA por NIVEL DE FONTE, nao por falta de declaracao — e a distincao e a propria celula. Existe um produto que declara as duas metades: o Loctite Durepoxi lista vidro entre os substratos e declara secar em condicao submersa. O que o segura e a regra 5: a unica fonte dessa declaracao e press release de 2018, nivel 4 da escada, e recomendacao primaria exige nivel 3 ou melhor. Ele aparece na pagina como mencao com ressalva, citando o tipo do documento e o ano. E a mesma posicao em que a ceramica ficou ate o Tekbond Silicone Acetico Maxx entrar em 13/09/2026, e o desbloqueio desta celula tem a mesma forma: uma ficha tecnica do proprio fabricante substituindo o press release."
+        "observacao": "FAIXA DESCOBERTA por NIVEL DE FONTE, nao por falta de declaracao — e a distincao e a propria celula. Existe um produto que declara as duas metades: o Loctite Durepoxi lista vidro entre os substratos e declara secar em condicao submersa. O que o segura e a regra 5: a unica fonte dessa declaracao e press release de 2018, nivel 4 da escada, e recomendacao primaria exige nivel 3 ou melhor. Ele aparece na pagina como mencao com ressalva, citando o tipo do documento e o ano. E a mesma posicao em que a ceramica ficou ate o Tekbond Silicone Acetico Maxx entrar em 13/09/2026, e o desbloqueio desta celula tem a mesma forma: uma ficha tecnica do proprio fabricante substituindo o press release.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "vidro_laminado",
@@ -2070,15 +2093,17 @@
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
-        "divergencia_com_a_especificacao": "A secao 1.3 escreveu 'a ilha nao recomenda' porque so olhou PVA e acetico. O banco mostra saida: o Silicone Neutro Tekbond declara madeira entre os substratos que veda. O PVA sai por delimitacao propria do fabricante (ambientes internos), nao por proibicao."
+        "divergencia_com_a_especificacao": "A secao 1.3 escreveu 'a ilha nao recomenda' porque so olhou PVA e acetico. O banco mostra saida: o Silicone Neutro Tekbond declara madeira entre os substratos que veda. O PVA sai por delimitacao propria do fabricante (ambientes internos), nao por proibicao.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "mdf_madeira",
@@ -2090,13 +2115,15 @@
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
+        ],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem"
         ]
       },
       {
@@ -2109,14 +2136,16 @@
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "Mesma correcao: o neutro declara madeira e declara chuva e raios UV, entao passa ate na regra do ambiente critico. Continua valendo o aviso de que MDF ao tempo e problema de BASE, nao de cola — e isso e texto da pagina, nao campo do banco."
+        "divergencia_com_a_especificacao": "Mesma correcao: o neutro declara madeira e declara chuva e raios UV, entao passa ate na regra do ambiente critico. Continua valendo o aviso de que MDF ao tempo e problema de BASE, nao de cola — e isso e texto da pagina, nao campo do banco.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "mdf_madeira",
@@ -2127,15 +2156,17 @@
         ],
         "eliminados_por_silencio": [
           "tekbond-silicone-neutro",
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
-        "observacao": "MDF submerso e a celula em que a resposta honesta e a mais util: nenhuma cola recomendada, e a mencao com ressalva do Durepoxi existe para quem insistir saber que a unica declaracao que existe e um press release de 2018. A pagina nao transforma isso em indicacao."
+        "observacao": "MDF submerso e a celula em que a resposta honesta e a mais util: nenhuma cola recomendada, e a mencao com ressalva do Durepoxi existe para quem insistir saber que a unica declaracao que existe e um press release de 2018. A pagina nao transforma isso em indicacao.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "cimento_concreto",
@@ -2169,7 +2200,6 @@
         ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "tekbond-silicone-acetico-maxx"
         ],
@@ -2177,7 +2207,10 @@
         "elegiveis_abaixo_do_topo": [
           "tekbond-silicone-neutro"
         ],
-        "divergencia_com_a_especificacao": "A AC-II ENTRA E ASSUME O TOPO SOZINHA, em 06/10/2026. Ela declara a base (`Paredes de concreto curado ha 180 dias`, sem qualificador de lugar) e declara o ambiente (`area interna e externa`), entao soma 4; o neutro declara a base e nao declara ambiente nenhum, e fica em 2. O PL500 sai pela regra 3 — `uso interno` cobre `interno_seco` e nao cobre o molhado, que e onde um adesivo que cura por evaporacao de agua falha primeiro."
+        "divergencia_com_a_especificacao": "A AC-II ENTRA E ASSUME O TOPO SOZINHA, em 06/10/2026. Ela declara a base (`Paredes de concreto curado ha 180 dias`, sem qualificador de lugar) e declara o ambiente (`area interna e externa`), entao soma 4; o neutro declara a base e nao declara ambiente nenhum, e fica em 2. O PL500 sai pela regra 3 — `uso interno` cobre `interno_seco` e nao cobre o molhado, que e onde um adesivo que cura por evaporacao de agua falha primeiro.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "cimento_concreto",
@@ -2190,7 +2223,6 @@
         ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "tekbond-silicone-acetico-maxx"
         ],
@@ -2198,7 +2230,10 @@
         "elegiveis_abaixo_do_topo": [
           "tekbond-silicone-neutro"
         ],
-        "divergencia_com_a_especificacao": "Mesma entrada da celula anterior, pelo mesmo caminho: a frase sem qualificador de lugar declara `cimento_concreto` em todo ambiente que o produto delimita, e `area interna e externa` delimita os quatro."
+        "divergencia_com_a_especificacao": "Mesma entrada da celula anterior, pelo mesmo caminho: a frase sem qualificador de lugar declara `cimento_concreto` em todo ambiente que o produto delimita, e `area interna e externa` delimita os quatro.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "cimento_concreto",
@@ -2212,12 +2247,14 @@
         ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "AMBIENTE CRITICO, e as duas passam pela regra 4 por motivos diferentes: a AC-II porque `area interna e externa` cobre o exposto, o neutro porque declara resistencia a chuva e a raios UV. Empatam em 4 e a pagina lista as duas. O achado velho desta celula — que a AC-II nao declarava substrato — era verdadeiro de 10/09 a 06/10 e deixou de ser."
+        "divergencia_com_a_especificacao": "AMBIENTE CRITICO, e as duas passam pela regra 4 por motivos diferentes: a AC-II porque `area interna e externa` cobre o exposto, o neutro porque declara resistencia a chuva e a raios UV. Empatam em 4 e a pagina lista as duas. O achado velho desta celula — que a AC-II nao declarava substrato — era verdadeiro de 10/09 a 06/10 e deixou de ser.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "cimento_concreto",
@@ -2228,15 +2265,17 @@
         ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
-          "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
         "mencionados_com_ressalva": [],
-        "observacao": "FAIXA DESCOBERTA, E A CAUSA DA AC-II MUDOU EM 06/10/2026 SEM A CELULA MUDAR. Ela continua em `eliminados_por_silencio` e NAO esta mais ali por nao declarar substrato: agora ela declara `cimento_concreto`, e o que a tira e a REGRA 3 — `area interna e externa` delimita quatro ambientes e imersao nao e nenhum deles. O boletim dela fala de piscina, e fala da PECA assentada e do prazo para encher a piscina, nunca de imersao como ambiente de uso do produto. O silicone neutro declara concreto e alvenaria e para na chuva; o Durepoxi declara condicao submersa em fonte de nivel 4. Celula sem recomendacao com DUAS causas no mesmo balde e o proximo campo que esta ilha vai querer separar — fica escrito aqui, nao e defeito de hoje e nao se conserta sem bloco.",
-        "divergencia_com_a_especificacao": "FAIXA DESCOBERTA, E A CAUSA DA AC-II MUDOU EM 06/10/2026 SEM A CELULA MUDAR. Ela continua em `eliminados_por_silencio` e NAO esta mais ali por nao declarar substrato: agora ela declara `cimento_concreto`, e o que a tira e a REGRA 3 — `area interna e externa` delimita quatro ambientes e imersao nao e nenhum deles. O boletim dela fala de piscina, e fala da PECA assentada e do prazo para encher a piscina, nunca de imersao como ambiente de uso do produto. O silicone neutro declara concreto e alvenaria e para na chuva; o Durepoxi declara condicao submersa em fonte de nivel 4. Celula sem recomendacao com DUAS causas no mesmo balde e o proximo campo que esta ilha vai querer separar — fica escrito aqui, nao e defeito de hoje e nao se conserta sem bloco."
+        "observacao": "FAIXA DESCOBERTA, E A CAUSA DA AC-II MUDOU EM 06/10/2026 SEM A CELULA MUDAR. Ela saiu de `eliminados_por_silencio` em 07/10/2026 e esta em `eliminados_por_ambiente_do_produto`: ela declara `cimento_concreto`, e o que a tira e a REGRA 3 — `area interna e externa` delimita quatro ambientes e imersao nao e nenhum deles. O boletim dela fala de piscina, e fala da PECA assentada e do prazo para encher a piscina, nunca de imersao como ambiente de uso do produto. O silicone neutro declara concreto e alvenaria e para na chuva; o Durepoxi declara condicao submersa em fonte de nivel 4. AS DUAS CAUSAS QUE DIVIDIAM O MESMO BALDE ESTAO SEPARADAS DESDE 07/10/2026, e era a frase anterior desta observacao pedindo o bloco que a separou: a AC-II sai por delimitacao de ambiente do produto (balde novo, frase que cita `area interna e externa`) e o PL500 sai pela mesma regra, enquanto o Durepoxi fica na ressalva por nivel de fonte. O balde do silencio nesta celula ficou com o acetico, o maxx e o neutro — os tres que de fato nao declaram imersao.",
+        "divergencia_com_a_especificacao": "FAIXA DESCOBERTA, E A CAUSA DA AC-II MUDOU EM 06/10/2026 SEM A CELULA MUDAR. Ela continua em `eliminados_por_silencio` e NAO esta mais ali por nao declarar substrato: agora ela declara `cimento_concreto`, e o que a tira e a REGRA 3 — `area interna e externa` delimita quatro ambientes e imersao nao e nenhum deles. O boletim dela fala de piscina, e fala da PECA assentada e do prazo para encher a piscina, nunca de imersao como ambiente de uso do produto. O silicone neutro declara concreto e alvenaria e para na chuva; o Durepoxi declara condicao submersa em fonte de nivel 4. Celula sem recomendacao com DUAS causas no mesmo balde e o proximo campo que esta ilha vai querer separar — fica escrito aqui, nao e defeito de hoje e nao se conserta sem bloco.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii"
+        ]
       },
       {
         "base": "alvenaria_tijolo",
@@ -2381,14 +2420,16 @@
         ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
-        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela trata metal so em 'interno'. O neutro nao delimita ambiente, entao molhado le igual a seco."
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela trata metal so em 'interno'. O neutro nao delimita ambiente, entao molhado le igual a seco.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "metal",
@@ -2401,14 +2442,16 @@
         ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [
           "loctite-durepoxi"
         ],
-        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha, mesmo motivo da anterior."
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha, mesmo motivo da anterior.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "metal",
@@ -2421,13 +2464,15 @@
         ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha. Aqui o Durepoxi CAI para o silencio, e nao por falta de base: ele declara metal, aluminio, ferro, cobre e latao. O que falta e a declaracao de sol e chuva, que a regra 4 exige — a mesma razao que tira o acetico de externo exposto nas celulas de ceramica."
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha. Aqui o Durepoxi CAI para o silencio, e nao por falta de base: ele declara metal, aluminio, ferro, cobre e latao. O que falta e a declaracao de sol e chuva, que a regra 4 exige — a mesma razao que tira o acetico de externo exposto nas celulas de ceramica.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "metal",
@@ -2439,7 +2484,6 @@
         "eliminados_por_silencio": [
           "tekbond-silicone-neutro",
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
@@ -2447,7 +2491,10 @@
           "loctite-durepoxi"
         ],
         "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha. Faixa descoberta com declaracao existindo dos dois lados no MESMO produto (o Durepoxi declara metal e declara secar submerso) e segurada so pela regra 5. E a celula que mais barato ficaria coberta no dia em que uma ficha tecnica do Durepoxi, de nivel 2 ou 3, substituir o press release de 2018.",
-        "observacao": "FAIXA DESCOBERTA por nivel de fonte, e e a mais barata de fechar do banco inteiro: o Durepoxi declara metal, aluminio, ferro, cobre e latao E declara secar submerso — as duas metades no mesmo produto e no mesmo documento. So o nivel 4 o segura. Uma ficha tecnica do fabricante, de nivel 2 ou 3, cobriria esta celula e mais tres (vidro, madeira e alvenaria em contato permanente com agua) sem mudar uma linha de codigo."
+        "observacao": "FAIXA DESCOBERTA por nivel de fonte, e e a mais barata de fechar do banco inteiro: o Durepoxi declara metal, aluminio, ferro, cobre e latao E declara secar submerso — as duas metades no mesmo produto e no mesmo documento. So o nivel 4 o segura. Uma ficha tecnica do fabricante, de nivel 2 ou 3, cobriria esta celula e mais tres (vidro, madeira e alvenaria em contato permanente com agua) sem mudar uma linha de codigo.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "plastico",
@@ -2479,14 +2526,16 @@
         "eliminados_por_silencio": [
           "tekbond-silicone-neutro",
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
         "divergencia_com_a_especificacao": "Concorda com a 1.3 ('os outros 26 dos 30 casos: faixa descoberta'), e o motivo desta linha e um so: o PL500 declara plasticos e declara USO INTERNO, que o mapa traduz de forma restritiva para interno_seco. Banheiro e cozinha sao internos e sao onde um adesivo que cura por evaporacao de agua falha primeiro.",
-        "observacao": "FAIXA DESCOBERTA por AMBIENTE DELIMITADO, que e uma terceira causa e vale distingui-la: nao e silencio sobre a base e nao e nivel de fonte. O Cascola PL500 declara plasticos entre os materiais em que adere — e a unica indicacao de plastico que este banco aceita, porque 'certos tipos' e 'alguns tipos' nao nomeiam tipo nenhum — mas o mesmo fabricante escreve USO INTERNO, e o mapa traduz isso de forma restritiva para interno seco. Banheiro e cozinha sao internos e sao exatamente onde um adesivo que cura por evaporacao de agua falha primeiro; ampliar aqui seria o erro caro da secao 10 do contrato."
+        "observacao": "FAIXA DESCOBERTA por AMBIENTE DELIMITADO, que e uma terceira causa, vale distingui-la e desde 07/10/2026 tem balde proprio (`eliminados_por_ambiente_do_produto`) e frase propria na tela: nao e silencio sobre a base e nao e nivel de fonte. O Cascola PL500 declara plasticos entre os materiais em que adere — e a unica indicacao de plastico que este banco aceita, porque 'certos tipos' e 'alguns tipos' nao nomeiam tipo nenhum — mas o mesmo fabricante escreve USO INTERNO, e o mapa traduz isso de forma restritiva para interno seco. Banheiro e cozinha sao internos e sao exatamente onde um adesivo que cura por evaporacao de agua falha primeiro; ampliar aqui seria o erro caro da secao 10 do contrato.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "plastico",
@@ -2498,13 +2547,15 @@
         "eliminados_por_silencio": [
           "tekbond-silicone-neutro",
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
-        "observacao": "FAIXA DESCOBERTA pela mesma delimitacao de ambiente da celula anterior: o PL500 e o unico que declara plastico de verdade e e declarado para uso interno. Varanda coberta nao e interno, e a ilha nao alarga a palavra do fabricante para caber a peca."
+        "observacao": "FAIXA DESCOBERTA pela mesma delimitacao de ambiente da celula anterior: o PL500 e o unico que declara plastico de verdade e e declarado para uso interno. Varanda coberta nao e interno, e a ilha nao alarga a palavra do fabricante para caber a peca.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "plastico",
@@ -2516,13 +2567,15 @@
         "eliminados_por_silencio": [
           "tekbond-silicone-neutro",
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
-        "observacao": "Duas razoes independentes deixam esta celula descoberta, e vale registrar as duas porque a primeira sozinha ja bastaria: o unico produto que declara plastico de verdade (PL500) e delimitado a uso interno, e o unico que declara sol e chuva (neutro) so fala de 'certos tipos de plastico', que nao nomeia tipo nenhum."
+        "observacao": "Duas razoes independentes deixam esta celula descoberta, e vale registrar as duas porque a primeira sozinha ja bastaria: o unico produto que declara plastico de verdade (PL500) e delimitado a uso interno, e o unico que declara sol e chuva (neutro) so fala de 'certos tipos de plastico', que nao nomeia tipo nenhum.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "plastico",
@@ -2534,19 +2587,22 @@
         "eliminados_por_silencio": [
           "tekbond-silicone-neutro",
           "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
           "tekbond-silicone-acetico-maxx"
         ],
         "mencionados_com_ressalva": [],
         "divergencia_com_a_especificacao": "Concorda com a 1.3. Aqui nem o Durepoxi entra com ressalva: 'alguns tipos de plastico' nao nomeia tipo nenhum e por isso nao e indicacao, entao ele cai no silencio e nao na ressalva.",
-        "observacao": "FAIXA DESCOBERTA por silencio, e aqui nem a mencao com ressalva existe: o Durepoxi declara condicao submersa mas escreve 'alguns tipos de plastico', que nao nomeia tipo nenhum e por isso nao e indicacao — ele cai no silencio, nao na ressalva. O PL500 declara plasticos e e de uso interno. O acetico e proibido nas duas pontas, acrilico como base e aquario como ambiente."
+        "observacao": "FAIXA DESCOBERTA por DUAS causas que agora saem em baldes diferentes, e aqui nem a mencao com ressalva existe: o Durepoxi declara condicao submersa mas escreve 'alguns tipos de plastico', que nao nomeia tipo nenhum e por isso nao e indicacao — ele cai no silencio, nao na ressalva. O PL500 declara plasticos e e de uso interno, entao ele sai pela REGRA 3 e vai para `eliminados_por_ambiente_do_produto` — nao para o silencio, que aqui fica com o Durepoxi. O acetico e proibido nas duas pontas, acrilico como base e aquario como ambiente.",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       }
     ],
     "categoria_considerada": "cola",
     "escopo": "SO MATERIAIS DE `categoria == cola` entram nesta matriz, e isso agora e verificado em codigo. Ate o bloco 3c a regra existia so na cabeca de quem escreveu: `computar_celula` varria o banco inteiro, e como o banco so tinha colas, as 18 celulas passavam. O primeiro rejunte gravado teria entrado nas 18 como 'eliminado por silencio' — frase que nem sentido faz para um rejunte, que nunca foi candidato a colar coisa nenhuma — e a correcao provavel seria colar os cinco ids nas 18 celulas, deixando a matriz verde e sem significado.",
-    "o_que_mudou_em_06_10_2026": "DEZ das 45 celulas foram reescritas — as cinco de `cimento_concreto` e as cinco de `alvenaria_tijolo` —, porque a Cimentcola Externo AC-II saiu do silencio em que estava desde 10/09/2026: as tres frases de substrato da secao 4.1 do boletim entraram em `declaracoes.indicado_para` e duas delas trazem o ambiente colado. As DEZ foram derivadas A MAO das declaracoes, pelas regras 1 a 5 mais a 8, ANTES de o validador rodar uma vez, e as dez bateram com a recomputacao sem uma divergencia — inclusive a de `cimento_concreto` x `contato_permanente_agua`, que nao mudou de conteudo e mudou de CAUSA."
+    "o_que_mudou_em_06_10_2026": "DEZ das 45 celulas foram reescritas — as cinco de `cimento_concreto` e as cinco de `alvenaria_tijolo` —, porque a Cimentcola Externo AC-II saiu do silencio em que estava desde 10/09/2026: as tres frases de substrato da secao 4.1 do boletim entraram em `declaracoes.indicado_para` e duas delas trazem o ambiente colado. As DEZ foram derivadas A MAO das declaracoes, pelas regras 1 a 5 mais a 8, ANTES de o validador rodar uma vez, e as dez bateram com a recomputacao sem uma divergencia — inclusive a de `cimento_concreto` x `contato_permanente_agua`, que nao mudou de conteudo e mudou de CAUSA.",
+    "o_que_mudou_em_07_10_2026": "24 das 45 celulas foram reescritas A MAO, ANTES de o validador rodar uma vez: 29 entradas sairam de `eliminados_por_silencio` e entraram em `eliminados_por_ambiente_do_produto`. A derivacao nao passou pela regua — ela e o cruzamento das tres linhas de `ambientes_declarados` do banco com as bases que cada produto declara SEM qualificador, e cada uma das 29 foi conferida como presente no balde do silencio antes de sair dele. NENHUMA celula mudou de `recomendados_topo`, de `elegiveis_abaixo_do_topo`, de `mencionados_com_ressalva` nem de `eliminados_por_proibicao`: a elegibilidade e a MESMA e o que muda e a CAUSA publicada. Era por isso que o defeito sobreviveu a toda regua desta ilha."
   },
   "ordem_da_vitrine": {
     "regra": "Secao 7 do ARQUIPELAGO.md, aplicada por este banco: (1) elegibilidade tecnica completa — nenhuma restricao declarada bate com a entrada; (2) adequacao tecnica entre os elegiveis — quem declara o ambiente exato vem antes de quem so nao proibe; (3) ter link de loja SO como desempate entre equivalentes.",
@@ -3775,5 +3831,121 @@
     ],
     "por_que_o_balde_da_regra_8_nao_e_o_do_silencio_nem_o_da_proibicao": "Sao quatro frases diferentes para quatro fatos diferentes, e a quarta nasceu hoje. Silencio e `o fabricante nao falou desta superficie`. Condicao (regra 6) e `ele falou, pos uma exigencia, e este par nao a cumpre`. Proibicao de peca (regra 7) e `ele falou, e disse para nao usar nisto`. Ambiente do substrato (regra 8) e `ele falou desta superficie, e falou colando um lugar na frase — e este nao e o lugar`. Juntar a quarta com a primeira e o erro mais barato de cometer e o mais caro de descobrir: a AC-II passou 26 dias no balde do silencio dizendo ao leitor que a Quartzolit nao falava de concreto, quando ela fala, com numero de norma dentro."
   },
-  "o_que_mudou_na_versao_14": "06/10/2026 — a REGRA 8 nasce, e com ela o par substrato x ambiente: o campo `ambiente_que_qualifica_a_base` em `mapa_de_termos_do_fabricante.termos`, o bloco `regras_do_par_substrato_ambiente` com a forma e a direcao da trava, a `matriz_esperada_do_par_substrato_ambiente` com cinco ancoras, e um quarto balde na celula da cola (`eliminados_por_ambiente_do_substrato`). O QUE A FEZ NASCER: o banco decidia ambiente por PRODUTO e o boletim da Cimentcola Externo AC-II o decide por SUBSTRATO — duas das tres frases da secao 4.1 nomeiam a superficie JA COM o lugar colado nela (`em areas internas`, `em paredes internas`). Sem campo para o par havia duas saidas e as duas mentiam: deixar as frases fora de `indicado_para` manteve o produto eliminado por silencio nas 45 celulas de 10/09 a 06/10, com a cura de 180 dias gravada e invisivel; grava-las sem o qualificador faria a F2 recomendar argamassa de assentamento para muro de mosaico ao ar livre. DEZ celulas da matriz da F2 foram reescritas e a quinta ancora da matriz da peca MUDOU DE LADO, que era o que ela existia para medir. E com isto o terceiro bloqueio caiu de carona, sem campo novo: a cura entrou na tela junto com a recomendacao, pela citacao da declaracao que fez o produto entrar e pelo bloco de `preparo` — os dois so alcancam produto recomendado, e era por isso que ele era JUSANTE do segundo e nao irmao dele."
+  "o_que_mudou_na_versao_14": "06/10/2026 — a REGRA 8 nasce, e com ela o par substrato x ambiente: o campo `ambiente_que_qualifica_a_base` em `mapa_de_termos_do_fabricante.termos`, o bloco `regras_do_par_substrato_ambiente` com a forma e a direcao da trava, a `matriz_esperada_do_par_substrato_ambiente` com cinco ancoras, e um quarto balde na celula da cola (`eliminados_por_ambiente_do_substrato`). O QUE A FEZ NASCER: o banco decidia ambiente por PRODUTO e o boletim da Cimentcola Externo AC-II o decide por SUBSTRATO — duas das tres frases da secao 4.1 nomeiam a superficie JA COM o lugar colado nela (`em areas internas`, `em paredes internas`). Sem campo para o par havia duas saidas e as duas mentiam: deixar as frases fora de `indicado_para` manteve o produto eliminado por silencio nas 45 celulas de 10/09 a 06/10, com a cura de 180 dias gravada e invisivel; grava-las sem o qualificador faria a F2 recomendar argamassa de assentamento para muro de mosaico ao ar livre. DEZ celulas da matriz da F2 foram reescritas e a quinta ancora da matriz da peca MUDOU DE LADO, que era o que ela existia para medir. E com isto o terceiro bloqueio caiu de carona, sem campo novo: a cura entrou na tela junto com a recomendacao, pela citacao da declaracao que fez o produto entrar e pelo bloco de `preparo` — os dois so alcancam produto recomendado, e era por isso que ele era JUSANTE do segundo e nao irmao dele.",
+  "regras_do_balde_do_ambiente_do_produto": {
+    "descricao": "A forma e as travas do balde da REGRA 3. Irmao de `regras_do_par_substrato_ambiente`: a regra mora no esquema, a traducao do literal e NOSSA, e a trava tem de REPROVAR quando a regra desaparece. O que ele NAO e: campo novo no registro. A delimitacao de ambiente ja estava gravada em `declaracoes.ambientes_declarados` desde 10/09/2026 — este bloco nao coleta nada, ele conserta para onde a regra manda o produto e o que a tela diz.",
+    "regra_da_direcao": "A direcao e a de `grupos_de_tessela_proibidos` e a da regra 8, nao a de `superficies_porosas`: aqui a lista decide quem PERDE recomendacao. Mas a trava e ao contrario das duas, e vale dizer por que: perder a regra 3 do codigo nao tira produto nenhum — ela ALARGA o produto para os cinco ambientes e a F2 passa a recomendar PVA de madeira para peca em contato permanente com agua. Entao a trava e `produto com ambientes_declarados que traduzem e nenhuma celula no balde REPROVA`, e nao `regra ausente libera`. Sem ela, apagar a linha da regra 3 deixaria as 45 celulas vermelhas na matriz — o que e bom — e deixaria o CENSO de 270 estados verde, que e onde a regra some calada.",
+    "o_que_a_tela_tem_de_dizer": {
+      "secao_propria": "Paragrafo proprio em `cdm_f2_fora_html`, classe `cdm-f2-ambiente-do-produto`, nunca somado ao do silencio.",
+      "cita_o_literal": "A frase cita o literal de `ambientes_declarados`, entre <em>, e nao o valor de `vocabularios.ambiente`. Produto no balde sem literal para citar e REPROVADO pelo validador: frase que diz 'ele delimitou' sem mostrar onde ele delimitou e a nossa leitura disfarcada de declaracao dele.",
+      "nao_diz_que_ele_nao_fala": "A palavra que o balde do silencio usa — o fabricante nao FALA desta superficie — e proibida nesta secao, porque ele fala: a base esta em `indicado_para`. O que ele nao fez foi soltar o produto deste lugar."
+    },
+    "produtos_que_delimitam_ambiente_hoje": [
+      {
+        "produto": "cascola-cascorez-extra",
+        "literais": [
+          "ambientes internos"
+        ],
+        "vale_so_em": [
+          "interno_seco"
+        ],
+        "bases_que_ele_declara": [
+          "mdf_madeira"
+        ],
+        "entradas_no_balde": 4
+      },
+      {
+        "produto": "cascola-pl500-adesivo-de-montagem",
+        "literais": [
+          "uso interno"
+        ],
+        "vale_so_em": [
+          "interno_seco"
+        ],
+        "bases_que_ele_declara": [
+          "ceramica_esmaltada_porcelana",
+          "cimento_concreto",
+          "mdf_madeira",
+          "metal",
+          "plastico",
+          "vidro"
+        ],
+        "entradas_no_balde": 24
+      },
+      {
+        "produto": "quartzolit-cimentcola-externo-acii",
+        "literais": [
+          "área interna e externa"
+        ],
+        "vale_so_em": [
+          "externo_abrigado",
+          "externo_exposto",
+          "interno_molhado",
+          "interno_seco"
+        ],
+        "bases_que_ele_declara": [
+          "cimento_concreto"
+        ],
+        "entradas_no_balde": 1,
+        "observacao": "`alvenaria_tijolo` NAO conta aqui: ela e declarada so por frases qualificadas, entao quem a tira e a regra 8, que roda antes. E a prova de que os dois baldes nao se cruzam."
+      }
+    ],
+    "total_de_entradas_hoje": 29,
+    "total_de_celulas_tocadas_hoje": 24,
+    "por_que_29_e_nao_24": "29 e o numero de entradas (produto x celula) e 24 e o de celulas distintas: nas 24 celulas do PL500 cabem tambem as 4 do Cascorez e a 1 da cimentcola, porque as bases delas estao entre as seis do PL500. O registro de 06/10/2026 escreveu '29 celulas' e as duas contagens sao verdadeiras sobre coisas diferentes — esta linha existe para a proxima execucao nao procurar cinco celulas que nunca existiram.",
+    "ancoras_ponta_a_ponta": [
+      {
+        "base": "mdf_madeira",
+        "ambiente": "interno_seco",
+        "tessela": "caco_azulejo",
+        "eliminados_por_ambiente_do_produto": [],
+        "por_que": "O LADO QUE A REGRA DEIXA PASSAR, e ele tem de existir na tabela: sem uma ancora que PASSA, a regra 3 poderia estar tirando os dois Cascola de madeira em TODO ambiente e a tabela ficaria verde. Aqui o lugar e o que `uso interno` e `ambientes internos` nomeiam, e o balde fica vazio."
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "externo_abrigado",
+        "tessela": "caco_azulejo",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem"
+        ],
+        "por_que": "A MESMA celula de cima trocando so o lugar, e os dois caem — que e a forma que esta ilha usa para medir regra de ambiente desde a regra 6. Os dois declaram madeira e os dois delimitaram o produto a ambiente interno. Nenhum dos dois pode aparecer em `eliminados_por_silencio` nesta celula: era ali que eles estavam, e era a frase errada."
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "contato_permanente_agua",
+        "tessela": "caco_azulejo",
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "A ORDEM ENTRE A 3 E A 4, medida na unica celula da cimentcola. A AC-II declara `cimento_concreto` sem qualificador e `area interna e externa` NAO alcanca imersao, entao a 3 morde; a 4 (ambiente critico exige declaracao explicita) tambem morderia, porque `ambientes_cobertos` nao tem imersao. Quem tem de ganhar e a 3, porque ela roda antes e porque a frase dela e mais precisa: ele delimitou, nao ficou calado. Trocar a ordem deixa esta ancora vermelha."
+      },
+      {
+        "base": "espelho",
+        "ambiente": "interno_seco",
+        "tessela": "caco_azulejo",
+        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "por_que": "A ANCORA ANTI-FUSAO, e ela e a que mais importa. Os TRES produtos que delimitam ambiente estao aqui no balde do SILENCIO, e e onde eles tem de estar: nenhum dos tres declara `espelho`, e o lugar desta celula e justamente o que os tres declaram. Quem implementasse a regra 3 como 'produto que delimita ambiente vai para o balde novo' esvaziaria o silencio aqui e a ancora fica vermelha. A regra 2 roda ANTES da 3, e e por isso que o balde novo so recebe quem tem a base declarada. A LISTA SAIU DE TRES PARA CINCO AO SER MEDIDA, e fica registrado: escrita a mao ela trazia so os tres que delimitam ambiente, que era o que a ancora existia para provar, e o balde do silencio desta celula tem tambem o Durepoxi e o Acetico Maxx, que simplesmente nao declaram espelho. O neutro declara `espelhos` e e o topo; o Acetico Construcao proibe `espelhos` e sai pela regra 1. Ancora de um balde tem de trazer o balde INTEIRO, senao ela mede a presenca de quem se lembrou e nao a lista que a tela serve."
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "externo_abrigado",
+        "tessela": "caco_azulejo",
+        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_substrato": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "OS DOIS BALDES LADO A LADO, na mesma celula, e eles nao se cruzam. A AC-II declara `alvenaria_tijolo` SO por frases qualificadas e o lugar desta celula nao e o qualificador — entao sai pela regra 8, que roda antes. O balde da regra 3 fica VAZIO aqui mesmo com a cimentcola delimitando ambiente, porque ela nunca chega na 3. Implementacao que pusesse o mesmo produto nos dois baldes diria duas coisas diferentes sobre o mesmo fato na mesma tela."
+      }
+    ]
+  },
+  "o_que_mudou_na_versao_15": "07/10/2026 — a REGRA 3 ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`), sem campo novo no banco e sem coleta nenhuma: `regras_de_elegibilidade.3_ambiente_declarado_DELIMITA` virou dicionario com o balde, a ordem e a trava; nasceu o bloco `regras_do_balde_do_ambiente_do_produto` com os tres produtos que delimitam ambiente hoje e cinco ancoras ponta a ponta; e 24 das 45 celulas da `matriz_esperada_da_F2` foram reescritas a mao, movendo 29 entradas do balde do silencio para o novo. O QUE A FEZ NASCER: a frase do silencio — 'O fabricante simplesmente nao fala desta superficie' — estava sendo servida sobre produtos cujos fabricantes FALAM da superficie e apenas delimitaram o ambiente do produto inteiro. E o mesmo defeito que a regra 8 consertou um andar acima em 06/10 e e SETE VEZES MAIOR (29 entradas contra 4); a diferenca entre as duas e so onde o qualificador mora — na 8 colado no substrato, na 3 campo do produto —, e por isso elas tem baldes e frases SEPARADOS. NENHUMA celula mudou de elegibilidade: a lista de recomendados, de elegiveis abaixo, de ressalva e de proibicao e identica em 45 de 45. Era exatamente isso que fazia o defeito atravessar toda regua desta ilha — todas mediam concordancia entre a matriz e a tela, e as duas concordavam dizendo a mesma coisa errada desde 10/09/2026."
 }

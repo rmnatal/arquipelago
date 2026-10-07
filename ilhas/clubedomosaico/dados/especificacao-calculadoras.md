@@ -101,7 +101,7 @@ Matriz publicada (cada linha vira uma linha da tabela pré-renderizada):
 | vidro laminado | qualquer | silicone neutro | acético **proibido** em vidro laminado pelo fabricante | acético (restrição declarada) |
 | **espelho** | qualquer | silicone **neutro** | o mesmo fabricante lista espelhos entre o que o neutro veda | **acético: proibido em espelhos pela ficha BRSA004** |
 | MDF / madeira | interno seco | PVA (Cascorez Extra) | o fabricante indica MDF, compensado e madeira de alta, média e baixa densidade | acético: superfície porosa é restrição declarada |
-| MDF / madeira | molhado ou externo | **a ilha não recomenda** | o fabricante do PVA não declara uso externo nem resistência a água, e a ilha não transforma silêncio em recomendação | PVA (sem declaração) e acético (poroso) |
+| MDF / madeira | molhado ou externo | **a ilha não recomenda** | o fabricante do PVA escreve `ambientes internos`, e a ilha não alarga a palavra dele — **não é silêncio: é delimitação do produto** (corrigido em 07/10/2026, ver abaixo) | PVA e PL500 (delimitação de ambiente, regra 3) e acético (poroso) |
 | cimento / concreto | qualquer | cimentcola AC-II (área grande) ou silicone neutro (colagem pontual) | AC-II é declarada para área interna e externa pela NBR 14.081; o neutro é declarado para concreto e alvenaria | **acético: concreto, cimento e superfície alcalina são restrição declarada** |
 | alvenaria / tijolo | qualquer | cimentcola AC-II ou silicone neutro | mesma justificativa | **acético: tijolo e superfície alcalina, restrição declarada** |
 | metal | interno | silicone neutro | declarado resistente a metais corrosíveis | **acético: metal corrosível, zinco e chapa galvanizada, restrição declarada** |
@@ -109,6 +109,16 @@ Matriz publicada (cada linha vira uma linha da tabela pré-renderizada):
 | plástico | os outros 26 dos 30 casos | **faixa descoberta** — ver 1.6 | o PL500 é declarado para uso interno, e com caquinho liso a condição de porosidade não fecha | — |
 | cerâmica ou porcelana | contato permanente com água | Tekbond Silicone Acético Maxx (desde 13/09/2026) | a Tekbond declara vedação de aquário e piscina na página de produto, nível 3 da escada — é a declaração explícita que a regra 4 exige para ambiente crítico | **acético Construção: imersão contínua é restrição declarada** |
 | as outras oito bases | contato permanente com água | **faixa descoberta** — ver 1.6 | 'cerâmicas vitrificadas' é a única superfície que o fabricante do Maxx nomeia, e a ilha não traduz 'fabricação de aquários' em base vidro | em piscina, a cimentcola AC-II só recebe água 7 dias depois |
+
+> **CORREÇÃO DE CAUSA, 07/10/2026 — e ela é o bloco da REGRA 3 lido para dentro desta tabela.** A linha de
+> MDF molhado/externo dizia *"a ilha não transforma silêncio em recomendação"*, e a palavra estava errada: o
+> fabricante do PVA **declara** MDF, compensado e madeira em `indicado_para`, e **escreve `ambientes
+> internos`** em `ambientes_declarados`. Isso não é silêncio — é **delimitação do produto inteiro**, que é a
+> regra 3 e desde 07/10/2026 tem balde próprio (`eliminados_por_ambiente_do_produto`) e frase própria na tela.
+> A eliminação sempre esteve certa; o **nome da causa** é que estava trocado, aqui e na página, em **29
+> entradas de 24 das 45 células**, desde 10/09/2026. Quem manda continua sendo a `matriz_esperada_da_F2` do
+> esquema (ela sai da declaração; esta tabela saiu da leitura) — esta linha foi acertada porque **relatório
+> velho também mente**, e esta tabela é lida por quem escreve bloco.
 
 ### 1.4 O que a F2 devolve
 1. **A frase-resposta**, primeira coisa da página, com fabricante e data dentro dela.

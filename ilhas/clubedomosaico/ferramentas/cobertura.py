@@ -151,6 +151,16 @@ def varrer(regua, faixa):
                     "eliminados_por_silencio": c["eliminados_por_silencio"],
                     "eliminados_por_condicao": c["eliminados_por_condicao"],
                     "eliminados_por_proibicao_da_peca": c["eliminados_por_proibicao_da_peca"],
+                    # OS DOIS BALDES DE AMBIENTE, e eles entram juntos porque o censo os
+                    # perdia os DOIS. O da regra 8 nasceu em 06/10/2026 e nunca chegou aqui:
+                    # 24 das 270 entradas do censo tinham um produto que o calculo separou e
+                    # esta varredura nao carregava, entao ele desaparecia de toda causa — nao
+                    # estava no silencio (certo) e nao estava em lugar nenhum (errado). O da
+                    # regra 3 nasceu em 07/10/2026 e chegou aqui no mesmo commit, porque
+                    # mover 29 entradas para fora do silencio sem as trazer para ca repetiria
+                    # o mesmo desaparecimento, um dia depois e sete vezes maior.
+                    "eliminados_por_ambiente_do_substrato": c["eliminados_por_ambiente_do_substrato"],
+                    "eliminados_por_ambiente_do_produto": c["eliminados_por_ambiente_do_produto"],
                 })
 
     for junta in faixa["junta_mm"]:
@@ -192,6 +202,24 @@ def causa_da_cola(e):
     # fabricante escreveu para não usar naquilo. Somar as duas numa frase seria a mistura
     # de causas que a seção 7 do contrato proíbe.
     peca = bool(e.get("eliminados_por_proibicao_da_peca"))
+    # A SEXTA E A SETIMA CAUSAS, as duas de ambiente, e elas vem DEPOIS das anteriores na
+    # ordem das frases por um motivo so: as duas sao a MENOS acionavel do censo. Quem cai
+    # nelas nao tem conserto do lado de quem le a pagina — nao e trocar o caquinho e nao e
+    # comprar outro produto para a mesma base: o fabricante declarou a superficie e disse
+    # onde ela vale, e o lugar da pessoa nao e aquele. A frase tem de dizer isso, porque
+    # soma-las a "o fabricante nao declara" manda comprar catalogo para um buraco que nao e
+    # de catalogo, e e o avesso do que a causa diz.
+    amb_sub = bool(e.get("eliminados_por_ambiente_do_substrato"))
+    amb_pro = bool(e.get("eliminados_por_ambiente_do_produto"))
+    if (amb_sub or amb_pro) and not (proib or sil or cond or peca):
+        if amb_sub and amb_pro:
+            return ("o fabricante declara estas superficies e delimita o lugar — num produto "
+                    "dentro da propria frase da superficie, no outro para o produto inteiro")
+        if amb_sub:
+            return ("o fabricante declara esta superficie e declara com o lugar dentro da "
+                    "frase, e o lugar deste caso nao e aquele")
+        return ("o fabricante declara esta superficie e delimitou o produto inteiro a outros "
+                "lugares")
     if peca and not (proib or sil or cond):
         return "ha produto declarado para esta base, e o fabricante proibe este produto no caquinho escolhido"
     if peca:
@@ -204,6 +232,9 @@ def causa_da_cola(e):
         return "o fabricante proibe uns e nao declara os outros"
     if proib:
         return "o fabricante proibe nesta base ou neste ambiente"
+    if sil and (amb_sub or amb_pro):
+        return ("o fabricante nao declara esta base em uns, e noutros ele a declara e "
+                "delimita o lugar")
     if sil:
         return "o fabricante nao declara esta base ou este ambiente"
     return "o banco nao tem produto suficiente nesta categoria"

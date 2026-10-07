@@ -109,7 +109,7 @@
  */
 
 if ( ! defined( 'CDM_TECNICAS_VERSAO' ) ) {
-	define( 'CDM_TECNICAS_VERSAO', '1.4.0' );
+	define( 'CDM_TECNICAS_VERSAO', '1.5.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -368,6 +368,18 @@ function cdm_tecnicas_grade_de_uma_tessela( $tessela ) {
 				   for elegível numa dessas grades, a página tem de dizer QUAL
 				   causa o tirou, e não somá-lo ao silêncio. */
 				'peca'      => $c['eliminados_por_proibicao_da_peca'],
+				/* O SEXTO E O SETIMO BALDES, e eles entram JUNTOS porque esta grade
+				   perdia os dois. O da regra 8 nasceu em 06/10/2026 e nao chegou
+				   aqui: a cimentcola AC-II caia nele em 24 dos 270 estados do censo
+				   e nesta grade ela desaparecia de toda lista — nem elegivel, nem
+				   silencio, nem proibicao. Balde que o calculo separa e a grade nao
+				   carrega e produto que a tela pode esquecer sem ninguem ver, e e a
+				   mesma frase que o comentario do balde da peca escreveu dois dias
+				   antes. O da regra 3 entra no mesmo commit, porque tirar 29
+				   entradas do silencio sem as trazer para ca repetiria o
+				   desaparecimento sete vezes maior. */
+				'amb_substrato' => $c['eliminados_por_ambiente_do_substrato'],
+				'amb_produto'   => $c['eliminados_por_ambiente_do_produto'],
 			);
 		}
 	}
@@ -485,10 +497,19 @@ function cdm_tecnicas_contas( $id ) {
 			if ( 0 === $c['quantos'] ) {
 				$zeradas++;
 			}
-			foreach ( array( 'ressalva', 'proibicao', 'silencio', 'condicao', 'peca' ) as $balde ) {
+			/* OS SETE BALDES, e os dois ultimos entraram em 07/10/2026 com o balde da
+			   REGRA 3. Ate aqui a lista digitada tinha CINCO e a grade ja carregava o
+			   sexto desde 06/10: a cimentcola caia em `amb_substrato` em 4 das 45
+			   celulas desta pagina e NAO era contada em lugar nenhum — nem no silencio
+			   (certo), nem em causa alguma (errado). A soma dos baldes dela fechava 40
+			   de 45 e nada acusava os 5 que faltavam, porque a afirmacao que soma
+			   confere o TAMANHO DO BANCO, nunca a soma das causas de cada produto. */
+			foreach ( array( 'ressalva', 'proibicao', 'silencio', 'condicao', 'peca',
+				'amb_substrato', 'amb_produto' ) as $balde ) {
 				foreach ( $c[ $balde ] as $id_cola ) {
 					if ( ! isset( $baldes[ $id_cola ] ) ) {
-						$baldes[ $id_cola ] = array( 'ressalva' => 0, 'proibicao' => 0, 'silencio' => 0, 'condicao' => 0, 'peca' => 0 );
+						$baldes[ $id_cola ] = array( 'ressalva' => 0, 'proibicao' => 0, 'silencio' => 0, 'condicao' => 0,
+						'peca' => 0, 'amb_substrato' => 0, 'amb_produto' => 0 );
 					}
 					$baldes[ $id_cola ][ $balde ]++;
 				}
@@ -513,7 +534,8 @@ function cdm_tecnicas_contas( $id ) {
 		if ( isset( $dentro[ $id_cola ] ) ) {
 			continue;
 		}
-		$b = isset( $baldes[ $id_cola ] ) ? $baldes[ $id_cola ] : array( 'ressalva' => 0, 'proibicao' => 0, 'silencio' => 0, 'condicao' => 0, 'peca' => 0 );
+		$b = isset( $baldes[ $id_cola ] ) ? $baldes[ $id_cola ] : array( 'ressalva' => 0, 'proibicao' => 0, 'silencio' => 0, 'condicao' => 0,
+						'peca' => 0, 'amb_substrato' => 0, 'amb_produto' => 0 );
 
 		/* TODOS OS BALDES COM CONTAGEM, não só o maior. A seção 7 do contrato é
 		   literal desde 12/09/2026: "causa que o código separa, o texto separa —
@@ -564,7 +586,9 @@ if ( ! function_exists( 'cdm_tecnicas_causa_em_palavras' ) ) {
  *
  * A seção 7 do contrato, desde 12/09/2026: "causa que o código separa, o texto
  * separa — grupo por motivo, com nome próprio; misturar duas causas numa frase é
- * inventar uma delas". Aqui o código separa cinco e o texto separa cinco.
+ * inventar uma delas". Aqui o código separa SETE e o texto separa sete — eram
+ * cinco até 07/10/2026, e os dois que faltavam eram os de ambiente: o da REGRA 8
+ * (06/10) e o da REGRA 3 (07/10), que esta grade carregava sem contar.
  */
 function cdm_tecnicas_causa_em_palavras( $causas, $celulas ) {
 	$mapa = array(
@@ -573,6 +597,14 @@ function cdm_tecnicas_causa_em_palavras( $causas, $celulas ) {
 		'ressalva'  => 'entra só com ressalva, porque a melhor fonte que temos dele não é a ficha técnica — e ressalva não vira recomendação aqui',
 		'condicao'  => 'o fabricante exige que uma das superfícies seja porosa, e essa combinação não tem nenhuma',
 		'peca'      => 'o próprio fabricante escreve que não se usa esse produto no caquinho desta técnica',
+		/* AS DUAS CAUSAS DE AMBIENTE, e elas sao DUAS frases porque sao dois fatos
+		   (esquema v14 e v15). Na do SUBSTRATO o fabricante nomeia a superficie JA COM
+		   o lugar dentro da frase; na do PRODUTO ele delimita o produto inteiro, e isso
+		   vale para todas as superficies dele. Juntar as duas e a mistura de causas que
+		   a secao 7 do contrato proibe — e somar qualquer uma delas ao silencio e pior,
+		   porque o silencio afirma que ele NAO FALA de uma superficie que ele declara. */
+		'amb_substrato' => 'o fabricante declara essa superfície com o lugar dentro da frase, e o lugar não é esse',
+		'amb_produto'   => 'o fabricante declara essa superfície e delimitou o produto inteiro a outros lugares',
 	);
 	$partes = array();
 	foreach ( (array) $causas as $c ) {

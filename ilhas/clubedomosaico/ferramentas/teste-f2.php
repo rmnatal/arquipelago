@@ -2227,6 +2227,196 @@ f2_ok( false !== mb_strpos( $t_fora, 'declara esta superfície, e declara com o 
 	'alvenaria_tijolo x externo_abrigado' );
 
 /* ---------------------------------------------------------------------------
+ * 10. A REGRA 3: o ambiente DO PRODUTO, e a frase que ela tirou do silencio
+ *
+ * Esta secao mede a causa que atravessou 27 dias no ar. A regra 3 existe desde o
+ * bloco 3, sempre eliminou certo, e mandava quem ela eliminava para o balde do
+ * SILENCIO — que serve "O fabricante simplesmente nao fala desta superficie" sobre
+ * produtos cujos fabricantes a declaram em `indicado_para`. Nenhuma regua viu,
+ * porque todas mediam ELEGIBILIDADE, e a elegibilidade nunca mudou.
+ *
+ * Por isso as afirmacoes aqui sao sobre a FRASE e sobre os DOIS SENTIDOS da lista.
+ * A do silencio, na secao 7, ja cobra o que falta e o que sobra; se a matriz e o
+ * snippet discordarem sobre quem saiu dela, aquela secao reprova. Esta cobra o
+ * outro lado: que quem saiu de la esteja NO BALDE NOVO, com o literal do fabricante
+ * ao lado e sem a palavra que diz que ele nao falou.
+ * ------------------------------------------------------------------------- */
+
+echo "\n10. A regra 3: o ambiente DO PRODUTO\n";
+
+$REGRAS_AMB = isset( $esquema['regras_do_balde_do_ambiente_do_produto'] )
+	? $esquema['regras_do_balde_do_ambiente_do_produto'] : array();
+f2_ok( ! empty( $REGRAS_AMB['produtos_que_delimitam_ambiente_hoje'] ),
+	'o esquema traz os produtos que delimitam ambiente — sem eles esta secao nao mede nada',
+	count( (array) ( isset( $REGRAS_AMB['produtos_que_delimitam_ambiente_hoje'] )
+		? $REGRAS_AMB['produtos_que_delimitam_ambiente_hoje'] : array() ) ) . ' produtos' );
+
+/* Os literais que a tela tem de citar, LIDOS DO BANCO e nao desta tabela: o que o
+   esquema escreve e conferido pelo validador contra o registro, e aqui quem manda e
+   o registro, para as duas metades nao se apoiarem uma na outra. */
+$LITERAIS_DELIM = array();
+foreach ( $por_id as $id => $m ) {
+	/* SO COLA. A categoria e parte da pergunta, e `$por_id` carrega o banco inteiro:
+	   sem este filtro a evidencia desta linha listava `quartzolit-rejunte-acrilico`
+	   entre os produtos de cola. A afirmacao nao mudava — os ids conferidos saem da
+	   matriz, que e de cola — e o numero impresso mentia, que e a familia do defeito
+	   que esta secao existe para medir um andar acima. */
+	if ( 'cola' !== ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
+		continue;
+	}
+	$ad = isset( $m['declaracoes']['ambientes_declarados'] ) ? (array) $m['declaracoes']['ambientes_declarados'] : array();
+	if ( $ad ) {
+		$LITERAIS_DELIM[ $id ] = $ad;
+	}
+}
+ksort( $LITERAIS_DELIM );
+f2_ok( count( $LITERAIS_DELIM ) > 0,
+	'ha produto de cola com `ambientes_declarados` no banco — senao a regra 3 nao morde em nada',
+	implode( ', ', array_keys( $LITERAIS_DELIM ) ) );
+
+/* AS CELULAS EM QUE A REGRA MORDE, lidas da MATRIZ escrita a mao — nunca do
+   snippet. Regua que pergunta ao medido quais celulas medir nao e regua. */
+$celulas_amb_produto = array();
+foreach ( (array) $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
+	if ( ! empty( $c['eliminados_por_ambiente_do_produto'] ) ) {
+		$celulas_amb_produto[ $c['base'] . '|' . $c['ambiente'] ] = (array) $c['eliminados_por_ambiente_do_produto'];
+	}
+}
+f2_ok( count( $celulas_amb_produto ) > 0,
+	'a regra 3 morde em pelo menos uma celula da matriz — regra que nunca morde nao foi medida',
+	count( $celulas_amb_produto ) . ' celulas base x lugar' );
+
+$faltam_no_balde   = array();
+$sobram_no_balde   = array();
+$frases_fundidas   = array();
+$sem_o_literal     = array();
+$negam_que_ele_fala = array();
+$no_silencio_errado = array();
+foreach ( $celulas_amb_produto as $chave => $esperados ) {
+	list( $b_, $a_ ) = explode( '|', $chave );
+	$html_ = f2_render( $raiz, 'base=' . $b_ . '&onde=' . $a_ . '&caco=' . $CAQUINHO_LIVRE );
+	$corpo_ = f2_corpo( $html_ );
+	$blocos = preg_match_all( '#<p class="cdm-f2-ambiente-do-produto">(.*?)</p>#is', $corpo_, $mb )
+		? $mb[1] : array();
+	$texto_balde = f2_texto( implode( ' ', $blocos ) );
+	/* A celula com tessela nao e a celula de declaracao: a regra 7 e a 6 podem ter
+	   tirado um dos esperados ANTES — mas elas rodam DEPOIS da 3, entao quem a 3
+	   pegou nao pode ter sido movido por nenhuma das duas. Por isso a lista
+	   esperada aqui e a da matriz, inteira. */
+	foreach ( $esperados as $id ) {
+		$nome_ = f2_nome_esperado( $por_id[ $id ] );
+		if ( false === mb_strpos( $texto_balde, $nome_ ) ) {
+			$faltam_no_balde[] = $chave . ' / ' . $nome_;
+			continue;
+		}
+		/* O LITERAL DO FABRICANTE, e e esta a afirmacao que a regra existe para
+		   sustentar (26.3): ao menos um dos literais de `ambientes_declarados`
+		   daquele produto tem de estar na tela. */
+		$achou_literal = false;
+		foreach ( $LITERAIS_DELIM[ $id ] as $lit ) {
+			if ( false !== mb_strpos( $texto_balde, $lit ) ) {
+				$achou_literal = true;
+			}
+		}
+		if ( ! $achou_literal ) {
+			$sem_o_literal[] = $chave . ' / ' . $nome_;
+		}
+	}
+	/* E O OUTRO SENTIDO, que e o que impede o balde de encher roubando do silencio. */
+	foreach ( $por_id as $id => $m ) {
+		if ( in_array( $id, $esperados, true ) ) {
+			continue;
+		}
+		if ( false !== mb_strpos( $texto_balde, f2_nome_esperado( $m ) ) ) {
+			$sobram_no_balde[] = $chave . ' / ' . f2_nome_esperado( $m );
+		}
+	}
+	/* A PALAVRA PROIBIDA NESTE BLOCO. Ela e a frase do balde do silencio, e sair
+	   dentro deste paragrafo seria o defeito consertado voltando com outra
+	   formatacao: dizer "ele nao fala" de uma superficie que ele declara. */
+	if ( '' !== $texto_balde && false !== mb_strpos( $texto_balde, 'não fala desta superfície' ) ) {
+		$negam_que_ele_fala[] = $chave;
+	}
+	/* AS DUAS FRASES DE AMBIENTE TEM DE SER DIFERENTES, E ESTA LINHA NASCEU DE UMA
+	   MUTACAO QUE PASSOU. A t05 da `mutacoes-ambiente-do-produto.py` troca a frase do
+	   balde da regra 3 pela da regra 8, palavra por palavra — e a bancada ficou VERDE,
+	   porque tudo o que ela media era a PRESENCA do nome do produto e do literal, e os
+	   dois continuam ali. Juntar as duas frases e exatamente o que o PROMPT.md deste
+	   bloco proibiu com todas as letras, e era a unica coisa que nenhuma afirmacao olhava.
+	   A regua e a frase CARACTERISTICA de cada balde, nas duas direcoes: a da 3 fala do
+	   PRODUTO, a da 8 fala da frase que nomeia o SUBSTRATO. */
+	if ( '' !== $texto_balde ) {
+		if ( false !== mb_strpos( $texto_balde, 'declara com o lugar dentro da frase' ) ) {
+			$frases_fundidas[] = $chave . ' (a 3 usando a frase da 8)';
+		}
+		if ( false === mb_strpos( $texto_balde, 'delimitou o produto inteiro' ) ) {
+			$frases_fundidas[] = $chave . ' (a 3 sem a frase propria dela)';
+		}
+	}
+	$blocos_8 = preg_match_all( '#<p class="cdm-f2-ambiente-substrato">(.*?)</p>#is', $corpo_, $m8 )
+		? f2_texto( implode( ' ', $m8[1] ) ) : '';
+	if ( '' !== $blocos_8 && false !== mb_strpos( $blocos_8, 'delimitou o produto inteiro' ) ) {
+		$frases_fundidas[] = $chave . ' (a 8 usando a frase da 3)';
+	}
+	/* E A CONFERENCIA CRUZADA: nenhum dos eliminados por ambiente do produto pode
+	   aparecer no paragrafo do SILENCIO da cola. A secao 7 ja mede isso pela lista
+	   da matriz; aqui ela e medida pelo balde, que e o outro caminho para o mesmo
+	   fato — duas metades que nao se apoiam uma na outra. */
+	$fora_html_ = preg_match( '#<div class="cdm-f2-secao cdm-f2-fora">(.*?)</div>#is', $corpo_, $mf )
+		? $mf[1] : '';
+	$sil_ = preg_match( '#<p class="cdm-f2-silencio">(.*?)</p>#is', $fora_html_, $msx )
+		? f2_texto( $msx[1] ) : '';
+	foreach ( $esperados as $id ) {
+		if ( '' !== $sil_ && false !== mb_strpos( $sil_, f2_nome_esperado( $por_id[ $id ] ) ) ) {
+			$no_silencio_errado[] = $chave . ' / ' . f2_nome_esperado( $por_id[ $id ] );
+		}
+	}
+}
+f2_ok( empty( $faltam_no_balde ),
+	'todo produto que a matriz poe no balde da regra 3 sai NOMEADO no bloco dele',
+	empty( $faltam_no_balde ) ? count( $celulas_amb_produto ) . ' celulas conferidas'
+		: implode( '; ', array_slice( $faltam_no_balde, 0, 4 ) ) );
+f2_ok( empty( $sobram_no_balde ),
+	'e ninguem mais aparece nele — balde que enche roubando do silencio troca uma causa pela outra',
+	empty( $sobram_no_balde ) ? count( $celulas_amb_produto ) . ' celulas conferidas nos dois sentidos'
+		: implode( '; ', array_slice( $sobram_no_balde, 0, 4 ) ) );
+f2_ok( empty( $sem_o_literal ),
+	'a frase cita o literal de `ambientes_declarados` do fabricante, nao o nosso vocabulario',
+	empty( $sem_o_literal ) ? count( $celulas_amb_produto ) . ' celulas conferidas'
+		: implode( '; ', array_slice( $sem_o_literal, 0, 4 ) ) );
+f2_ok( empty( $negam_que_ele_fala ),
+	'GRAVE: o bloco da regra 3 nunca diz que o fabricante nao fala da superficie que ele declara',
+	empty( $negam_que_ele_fala ) ? count( $celulas_amb_produto ) . ' celulas conferidas'
+		: implode( ', ', array_slice( $negam_que_ele_fala, 0, 4 ) ) );
+f2_ok( empty( $no_silencio_errado ),
+	'GRAVE: e nenhum deles continua no paragrafo do silencio — era exatamente ali que eles estavam',
+	empty( $no_silencio_errado ) ? count( $celulas_amb_produto ) . ' celulas conferidas'
+		: implode( '; ', array_slice( $no_silencio_errado, 0, 4 ) ) );
+f2_ok( empty( $frases_fundidas ),
+	'GRAVE: as frases dos DOIS baldes de ambiente sao diferentes, nas duas direcoes',
+	empty( $frases_fundidas ) ? count( $celulas_amb_produto ) . ' celulas conferidas, a frase de cada balde e a dele'
+		: implode( '; ', array_slice( $frases_fundidas, 0, 4 ) ) );
+
+/* OS DOIS BALDES DE AMBIENTE NA MESMA PAGINA, e e a afirmacao que impede a fusao
+   deles: a celula alvenaria x externo_abrigado tem a cimentcola no balde da regra 8
+   e NENHUM produto no da regra 3, e as duas frases sao diferentes palavra por
+   palavra. Se alguem juntar os dois baldes num so, esta linha fica vermelha. */
+$t_dois = f2_corpo( f2_render( $raiz,
+	'base=alvenaria_tijolo&onde=externo_abrigado&caco=' . $CAQUINHO_LIVRE ) );
+f2_ok( false !== mb_strpos( $t_dois, 'cdm-f2-ambiente-substrato' )
+	&& false === mb_strpos( $t_dois, 'cdm-f2-ambiente-do-produto' ),
+	'os dois baldes de ambiente nao se cruzam: onde a regra 8 morde, a 3 nao escreve nada',
+	'alvenaria_tijolo x externo_abrigado' );
+
+/* E O LADO QUE A REGRA DEIXA PASSAR, que e a trava que impede a regra 3 de tirar o
+   produto do ambiente que o fabricante DECLARA: mesma base, trocando so o lugar
+   para o que os dois Cascola nomeiam. */
+$t_passa = f2_corpo( f2_render( $raiz, 'base=mdf_madeira&onde=interno_seco&caco=' . $CAQUINHO_LIVRE ) );
+f2_ok( '' !== $t_passa && false === mb_strpos( $t_passa, 'cdm-f2-ambiente-do-produto' ),
+	'no lugar que o fabricante declara, o balde da regra 3 fica VAZIO — senao a regra morde sempre',
+	'mdf_madeira x interno_seco' );
+
+/* ---------------------------------------------------------------------------
  * Fecho
  * ------------------------------------------------------------------------- */
 

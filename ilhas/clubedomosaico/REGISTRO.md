@@ -3,6 +3,231 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+07/10/2026 11h05Z — A REGRA 3 MANDAVA PARA O BALDE DO SILÊNCIO QUEM O FABRICANTE DECLARA, E A PÁGINA DIZIA QUE ELE NÃO FALA; O BALDE PRÓPRIO FECHA 29 ENTRADAS EM 24 CÉLULAS, SEM UM CAMPO NOVO
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h17Z**, push da reserva aceito na primeira
+tentativa (`0ffb01f`). Pela **1.2** não houve escolha a fazer: o `foco.md` nomeia esta ilha e a rotação da
+seção 1 está suspensa. O cabeçalho estava com `executando_desde: null`, que pela **1.1** já basta — a reserva
+é escrita ANTES do trabalho, então `null` significa que nenhum bloco da Fundação está vivo e não houve reserva
+vencida para o git desempatar; o último commit na pasta era de **06/10 às 21h50Z**, doze horas e meia antes,
+e era o fecho da execução anterior. `git fetch origin main` trouxe 20 commits; a branch `claude/*` local
+estava **idêntica ao `main`** e nenhum PR aberto — nada a mesclar. **Rede pela 20.2:**
+`https://clubedomosaico.com.br/` em **200** nas três passadas, com `aquametria.com.br` em 200 nas mesmas três.
+**Reserva RENOVADA às 10h46Z pela 1.1**, porque o bloco passou de 40 minutos: a bateria nova sozinha leva mais
+que isso.
+
+**Nenhum despacho aberto para a Fundação.** O de 05/10 tem os itens 1 e 2 **CUMPRIDOS** e o **item 3** se
+declara método endereçado ao Raphael (o anti-robô da Shopee fecha a sessão em 4 a 6 fichas) — li o topo do
+`PROMPT.md` antes de escolher, pela 18.1, e não há item acionável. Então o bloco foi **o da fila**, e ele
+estava escolhido por escrito, com o número medido, pela execução de 06/10 às 20h4xZ.
+
+Nenhuma URL nova (segue em **21**), nenhuma página criada, nenhum link de afiliado gerado, nenhum teto da
+21.4 gasto, nenhuma coleta nova e **nenhum campo novo no banco**. Esquema **v15**, **F2 1.11.0**,
+`teste-f2` de 149 para **159** afirmações, bateria `mutacoes-ambiente-do-produto.py` nova.
+
+## O DEFEITO, E POR QUE ELE ATRAVESSOU 27 DIAS E TODA RÉGUA DESTA ILHA
+
+A **regra 3** (`3_ambiente_declarado_DELIMITA`) existe desde o bloco 3 e **sempre eliminou certo**: produto
+com `ambientes_declarados` não vazio só é elegível nos ambientes que declara. O que estava errado não era a
+eliminação — era **para onde ela mandava o produto**. Ela devolvia `silencio`, e o balde do silêncio serve,
+na tela, esta frase:
+
+> *"O fabricante simplesmente não fala desta superfície, e silêncio não vira 'pode'."*
+
+E o fabricante fala. A **regra 2 roda ANTES da 3**, então quem chega na 3 **já passou pela 2 com a base
+declarada em `indicado_para`**. O que ele fez foi delimitar o **ambiente do produto inteiro**, que é outro
+fato e outra frase.
+
+**É o mesmo defeito que a REGRA 8 consertou um andar acima em 06/10 e é SETE VEZES MAIOR** — 29 entradas
+contra 4. A diferença entre as duas é só **onde o qualificador mora**: na 8 ele vem colado no substrato,
+dentro da frase que nomeia a superfície (`Alvenarias de blocos (...) em paredes internas`); na 3 ele é
+**campo do produto** e vale para todas as superfícies dele (`uso interno`).
+
+**POR QUE NENHUMA RÉGUA O VIU, e esta é a lição do bloco:** todas as réguas desta ilha mediam
+**CONCORDÂNCIA** entre o que o banco calcula e o que a página serve — a matriz de 45 células, o censo de 270
+estados, as oito bancadas PHP, as 26 baterias de mutação. **As duas concordavam.** As duas diziam a mesma
+coisa errada. Trocar de balde **não muda nenhum número**: a lista de recomendados, a de elegíveis abaixo, a
+de ressalva e a de proibição são **idênticas em 45 de 45 células** antes e depois deste bloco. Portão que
+compara listas de elegíveis nunca pegaria isto. Só portão que compara **frases**, e frase se mede no HTML
+servido.
+
+## O NÚMERO, MEDIDO À MÃO ANTES DE O VALIDADOR RODAR — E ELE SÃO DOIS NÚMEROS, NÃO UM
+
+A derivação não passou pela régua: é o cruzamento das **três linhas de `ambientes_declarados` do banco** com
+as **bases que cada produto declara SEM qualificador**.
+
+| produto | literal | vale só em | bases declaradas | entradas |
+|---|---|---|---|---|
+| `cascola-pl500-adesivo-de-montagem` | `uso interno` | `interno_seco` | 6 (cerâmica, cimento, mdf, metal, plástico, vidro) | **24** |
+| `cascola-cascorez-extra` | `ambientes internos` | `interno_seco` | 1 (`mdf_madeira`) | **4** |
+| `quartzolit-cimentcola-externo-acii` | `área interna e externa` | 4 ambientes (todos menos imersão) | 1 (`cimento_concreto`) | **1** |
+
+**29 entradas em 24 CÉLULAS DISTINTAS, e os dois números são verdadeiros sobre coisas diferentes.** O
+registro de 06/10 escreveu "29 células"; são **29 pares (produto × célula)**, e as 4 do Cascorez e a 1 da
+cimentcola **caem dentro das 24 do PL500**, porque as bases delas estão entre as seis dele. A linha
+`por_que_29_e_nao_24` existe no esquema para a próxima execução não procurar cinco células que nunca
+existiram — e o validador recomputa os **dois** números, em campos separados, porque trocar um pelo outro
+ficaria verde se fosse um só.
+
+**E a derivação se provou sozinha ao ser aplicada:** cada uma das 29 foi conferida como **presente em
+`eliminados_por_silencio`** antes de sair dele. As 24 células reescritas bateram com a recomputação do
+validador **sem uma divergência**.
+
+## O MOLDE FOI COPIADO, NÃO INVENTADO — E UMA COISA ELE NÃO FEZ DE PROPÓSITO
+
+O `PROMPT.md` mandava copiar o molde construído duas vezes em 06/10 (regras 7 e 8), e é o que foi feito:
+balde próprio (`eliminados_por_ambiente_do_produto`), frase própria que **cita o literal de
+`ambientes_declarados`** e não o nosso vocabulário (26.3, **quarta** aplicação), a regra escrita com a
+**ordem** (ela não mudou de lugar: continua entre a 8 e a 4), as células da matriz reescritas à mão antes do
+validador, e bateria com as duas direções e trava de falso positivo.
+
+**E o que ele NÃO fez, porque o `PROMPT.md` proibiu com todas as letras:** juntar a regra 3 com a 8 num balde
+só. São frases diferentes para fatos diferentes — *"ela declara esta superfície, e declara com o lugar dentro
+da frase"* é sobre a SUPERFÍCIE; *"ela declara esta superfície, e delimitou o produto inteiro a outros
+lugares"* é sobre o PRODUTO. Os dois baldes **nunca carregam o mesmo produto na mesma célula**, porque a 8
+roda antes e quem ela pega sai por ela — e isso é **invariante varrida nas 45**, não promessa escrita.
+
+## O QUE A TELA DIZ AGORA, E A DIFERENÇA ENTRE AS DUAS FRASES NA MESMA SEÇÃO
+
+Em `mdf_madeira` × `externo_abrigado` (varanda coberta, caco de azulejo), a seção "o que não usar" passou a
+dizer, em parágrafo próprio e em cor de legenda como os outros quatro:
+
+> **Cascola PL500 Adesivo de Montagem** — a Cascola declara esta superfície, e delimitou o produto inteiro a
+> outros lugares: ela escreve *uso interno*. Então ele fica de fora deste caso — não por proibição e não
+> porque ela tenha ficado calada sobre a superfície, e a diferença importa: ela falou da superfície, e disse
+> onde o produto pode ir.
+
+A seção tem **cinco causas** agora, e nenhuma é mais importante que as outras — o que muda é a frase. **E o
+CSS do balde da regra 8 entrou junto:** ele nasceu em 06/10 **sem regra própria** e vinha saindo em cor de
+corpo, o que o fazia parecer a resposta em vez da ressalva. Uma linha, os dois no mesmo seletor.
+
+## DOIS CONSUMIDORES PERDIAM OS DOIS BALDES, E O DA REGRA 8 JÁ PERDIA DESDE 06/10 — COM O NÚMERO
+
+Mover 29 entradas para fora do silêncio **sem trazê-las para os consumidores** repetiria o defeito um dia
+depois e sete vezes maior. Ao abri-los, o buraco de ontem estava lá:
+
+- **`ferramentas/cobertura.py`** (o censo de 270 estados) não carregava `eliminados_por_ambiente_do_substrato`:
+  em **24 dos 270 estados** a cimentcola caía nele e **desaparecia de toda causa** — não estava no silêncio
+  (certo) e não estava em lugar nenhum (errado). Os dois baldes entraram, e `causa_da_cola()` ganhou as duas
+  frases, **depois** das anteriores na ordem, porque as duas são as **menos acionáveis** do censo: quem cai
+  nelas não tem conserto do lado de quem lê a página.
+- **`snippets/clubedomosaico-tecnicas.php`** (a grade de 45 células por caquinho) tinha o mesmo buraco, e o
+  comentário do balde da peça, escrito dois dias antes, já havia nomeado a família: *"balde que o cálculo
+  separa e a grade não carrega é produto que a tela pode esquecer sem ninguém ver"*.
+- **`ferramentas/teste-tecnicas.php`** passou a contar os dois baldes. Sem isso, tirar 29 entradas do silêncio
+  **baixaria a contagem de silêncio da página sem nada cobrar a contagem nova**, e o portão ficaria verde
+  sobre uma página que perdeu uma frase.
+
+**Medido depois, no censo regerado:** **144 dos 270** estados de cola carregam o balde da regra 3 (174
+entradas) e **24** carregam o da regra 8. **E ZERO `por_que` mudou nos 270** — em toda célula afetada já havia
+outro produto no silêncio ou na proibição, então a frase do censo não mentia: ela estava **incompleta**. Dito
+assim porque a diferença importa.
+
+## O QUE A BATERIA NOVA ACHOU NAS MINHAS PRÓPRIAS RÉGUAS — DUAS COISAS, E AS DUAS ANTES DO COMMIT
+
+**(1) A `m01` PASSOU: a trava do bloco ausente ficou sem ninguém do outro lado.** Ela foi escrita junto com as
+outras travas de forma, no topo do `validar-banco.py`, onde `materiais` **ainda não existe** — o arquivo
+morreu com `NameError`. Movi a lista de produtos para a seção das âncoras e **deixei para trás um `if` sem
+nada do outro lado**: apagar o bloco inteiro do esquema não reprovava nada. É a direção desta regra escrita no
+próprio defeito — **perder o balde não muda elegibilidade, muda a FRASE, e frase não tem portão natural.**
+Consertada, a m01 reprova com a mensagem inteira.
+
+**(2) A `m14` PASSOU E NÃO ERA DEFEITO — ela mudou de lado.** Escrita como "nasce o termo do quarto
+delimitador", ela acrescentava ao mapa um termo com `ambiente` e esperava reprovação. Ninguém a pegou, **e com
+razão**: termo que registro nenhum cita **não delimita nada**, exatamente como o termo com qualificador que
+ninguém cita é falso positivo na `mutacoes-par.py` (fp3). Virou a **fp5** aqui. **Mutação que passa com razão
+não se conserta para reprovar: ela troca de lado.** O que produz o mundo é a metade do REGISTRO, e ela não
+precisava da outra — o literal `ambientes internos` já está no mapa desde que o Cascorez entrou.
+
+**E uma coisa que a bateria mediu sobre si mesma:** a âncora anti-fusão que escrevi à mão listava **três**
+produtos em `eliminados_por_silencio` de `espelho` × `interno_seco` — os três que delimitam ambiente, que era o
+que ela existia para provar — e o balde daquela célula tem **cinco**: o Durepoxi e o Acético Maxx também não
+declaram espelho. O validador a reprovou na primeira passada. **Âncora de um balde tem de trazer o balde
+INTEIRO**, senão ela mede a presença de quem o autor lembrou, não a lista que a tela serve. Corrigida, com o
+motivo escrito ao lado dela no esquema.
+
+**E DOIS MARCADORES DE MUTAÇÃO ERAM RUINS, os dois pela mesma razão e a razão já estava escrita.** A `t03`
+procurava o literal cru `uso interno` para provar que ele saiu da tela, e **a mutação PASSOU**: a frase *"o
+produto é declarado para uso interno"* está no **FAQ desta mesma página**, no JSON-LD e no `<dd>`, e continua
+lá depois da mutação. A `t04` tinha o mesmo problema com `madeira`, que é o próprio rótulo da base. **Marcador
+que existe nos DOIS lados da mutação não mede nada** — e é a cicatriz exata que a `t04` da `mutacoes-par.py`
+escreveu **um dia antes**, com outro literal. Os dois passaram a procurar a citação inteira, com a tag dentro,
+e o da `t04` foi **medido na tela mutada** antes de ser escrito, não suposto.
+
+## A ESPECIFICAÇÃO TAMBÉM NOMEAVA A CAUSA ERRADA, E ELA É LIDA POR QUEM ESCREVE BLOCO
+
+`dados/especificacao-calculadoras.md`, seção 1.3, linha de **MDF/madeira × molhado ou externo**, dizia *"o
+fabricante do PVA não declara uso externo nem resistência a água, e a ilha não transforma silêncio em
+recomendação"*. A eliminação está certa; a palavra **silêncio** está errada pelo mesmo motivo que estava na
+tela — o fabricante do PVA **declara** MDF em `indicado_para` e **escreve `ambientes internos`**. Acertada, com
+nota datada ao lado da tabela. **Nenhum portão lê essa prosa** (conferido: só o `validar-banco.py` cita o
+arquivo, e numa linha de comentário sobre geometria de placa), então não é régua — é **relatório velho, e
+relatório velho também mente**, que é a lição que a execução de 06/10 deixou escrita neste mesmo `PROMPT.md`.
+
+## A BANCADA
+
+**Esta execução não publicou nada e não acionou o Sync**, porque não há o que desembarcar até o fecho — o
+desembarque e a conferência no ar vêm abaixo, no mesmo bloco.
+
+## O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O MESMO DEFEITO UM ANDAR ABAIXO, NO REJUNTE — COM O NÚMERO MEDIDO
+
+Varrido nos **60 estados** da F2 de rejunte (12 larguras de junta × 5 lugares) nesta mesma execução: o balde
+`eliminados_por_ambiente` do rejunte carrega **DUAS causas** sob **uma frase só**, *"Fora porque o fabricante
+não declara este lugar"*.
+
+- **Regra 3 (delimitação):** **8 entradas em 8 estados**, todas do `quartzolit-rejunte-acrilico`, que escreve
+  `áreas internas e externas` em `ambientes_declarados`. Para essas oito a frase é **a mesma mentira que a cola
+  servia**: ele declara, e declarou outro lugar.
+- **Regra 2 do rejunte (ambiente crítico exige declaração explícita):** **59 entradas em 28 estados**, em
+  quatro produtos. Para essas a frase está **certa**.
+- **E 7 dos 60 estados carregam as DUAS ao mesmo tempo**, no mesmo parágrafo, sem o leitor poder saber qual
+  frase vale para qual produto.
+
+**É menor que o da cola (8 contra 29) e é o mesmo molde**, já construído três vezes: balde próprio, frase
+própria que cita o literal de `ambientes_declarados`, a ordem escrita, âncoras à mão e bateria com as duas
+direções. **Sai inteiro numa execução só.**
+
+**E uma coisa que o próximo bloco NÃO deve fazer:** reaproveitar as funções da cola. O rejunte tem régua
+própria **de propósito** e a razão é de conteúdo antes de método — na cola a lista do fabricante nomeia a
+BASE sobre a qual se cola; no rejunte, a TESSELA que será rejuntada e o ambiente. Rejunte não toca a base.
+
+**E o que NÃO é bloco e destrava quatro registros de uma vez** (herdado, segue valendo): `*.quartzolit.weber`
+na lista de rede (`dados/despachos.md`, ABERTOS). O `www.` já responde **403**, então o curinga pode entrar e o
+403 ficar — 403 é decisão do fabricante, não da rede do Raphael.
+
+**E A TERCEIRA COISA QUE A BATERIA ACHOU NA MINHA PRÓPRIA RÉGUA É A MAIS IMPORTANTE DE TODAS: a `t05`
+PASSOU, com a bancada VERDE.** Ela troca a frase do balde da regra 3 pela da regra 8, **palavra por palavra** —
+e **juntar as duas frases é exatamente o que o `PROMPT.md` deste bloco proibiu com todas as letras**. A seção
+10 que eu havia escrito media a **presença** do nome do produto, do literal e a ausência da palavra do
+silêncio; os três continuam ali depois da fusão, então ela aprovou. **Era a única coisa que nenhuma afirmação
+olhava, e era a coisa que o bloco existia para não fazer.** Virou afirmação nas **duas direções** (a frase
+característica de cada balde: a da 3 fala do PRODUTO, a da 8 fala da frase que nomeia o SUBSTRATO), e com ela
+o `teste-f2` foi de 159 para **160**. **Régua que mede presença não mede troca de frase** — e esta ilha acabou
+de pagar isso duas vezes no mesmo dia, uma na tela e uma na bancada.
+
+## E A PÁGINA DA TÉCNICA ESTAVA PUBLICANDO UMA LISTA DE CAUSAS INCOMPLETA DESDE 06/10 — ACHADO PELO PORTÃO NOVO
+
+Com os dois baldes contados, `teste-tecnicas.php` **reprovou**, e com razão. Em
+`/como-fazer/o-que-e-picassiete/`, a recusa da **Argamassa Cimentcola Externo AC-II** dizia *"o fabricante não
+declara essa superfície em **36** das 45; ... no caquinho desta técnica em **5** das 45"* — **41 de 45**, e as
+**4** que faltavam eram o balde da regra 8, nascido em 06/10 e nunca carregado por esta grade. Além disso,
+**uma** das 36 estava sob a causa errada (é a célula que hoje virou `amb_produto`).
+
+**Nenhum portão viu porque a afirmação que soma confere o TAMANHO DO BANCO, não a soma das causas de cada
+produto** — 7 colas nomeadas é 7 colas nomeadas, mesmo que uma delas publique 41 de 45 células.
+
+A página passa a servir **as quatro causas, somando 45 de 45**:
+
+> **Argamassa Cimentcola Externo AC-II Quartzolit** — o fabricante não declara essa superfície em **35** das 45;
+> o próprio fabricante escreve que não se usa esse produto no caquinho desta técnica em **5** das 45; o
+> fabricante declara essa superfície com o lugar dentro da frase, e o lugar não é esse em **4** das 45; o
+> fabricante declara essa superfície e delimitou o produto inteiro a outros lugares em **1** das 45.
+
+A lista digitada de baldes do snippet das técnicas tinha **cinco** e a grade já carregava o sexto; agora são
+**sete**, com frase própria para cada. `teste-tecnicas` volta a **APROVADO, 139 verificações**.
+
+---
+
 06/10/2026 20h42Z — O BOLETIM DECIDE AMBIENTE POR SUBSTRATO E O BANCO DECIDIA POR PRODUTO; A REGRA 8 FECHA OS TRÊS BLOQUEIOS DE UMA VEZ, E O TERCEIRO SAIU SEM CAMPO NOVO
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h17Z**, push da reserva aceito na primeira
