@@ -1164,9 +1164,31 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > um produto que escreve `ambientes internos`. Acertada, com nota datada. Nenhum portão lê essa prosa —
    > é relatório, e **relatório velho também mente**.
    >
-   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O MESMO DEFEITO UM ANDAR ABAIXO, NO REJUNTE — COM O NÚMERO
+   > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É O MESMO DEFEITO UM ANDAR ABAIXO, NO REJUNTE — COM O NÚMERO
    > MEDIDO EM 07/10/2026, VARRENDO OS 60 ESTADOS: o balde `eliminados_por_ambiente` do rejunte carrega
-   > DUAS causas sob UMA frase só, *"Fora porque o fabricante não declara este lugar"*.**
+   > DUAS causas sob UMA frase só, *"Fora porque o fabricante não declara este lugar"*.**~~
+   > **ENTREGUE EM 07/10/2026 às 14h16Z** — esquema **v16**, **F2 1.12.0**, **F1 1.7.0**, manifest e
+   > `/status` na **revisão 66**. Balde `eliminados_por_ambiente_do_produto` com frase própria citando o
+   > literal, e o da regra 2 **RENOMEADO** para `eliminados_por_ambiente_critico`, porque com dois baldes de
+   > ambiente o nome velho descrevia os dois e distinguia nenhum. Cinco âncoras à mão,
+   > `mutacoes-ambiente-do-produto-do-rejunte.py` (**21 de forma, 15 só pelo portão novo, + 7 de tela, 5
+   > falsos positivos**) e `teste-f2.php` de 149 para **162** afirmações. Detalhe inteiro no `REGISTRO.md`
+   > de hoje às 14h16Z.
+   >
+   > **A FRASE ABAIXO ACERTOU O BLOCO E ERROU O TAMANHO: ERAM DUAS TELAS, NÃO UMA.** Ela dizia
+   > *"o molde está construído três vezes (regras 7, 8 e 3)"* e *"sai inteiro numa execução só"* — as duas
+   > metades certas. O que ela não disse é que a célula do rejunte é lida pela **F2 e pela F1**, e que as
+   > duas serviam a frase errada com palavras diferentes: a F1 dizia *"o que ele não declara é peça ao ar
+   > livre"* sobre um produto que escreve `áreas internas e externas`. **Conserto que chegasse a uma só
+   > trocaria uma tela mentindo por duas telas discordando** — e nenhuma régua acusaria, porque as duas
+   > leem a mesma célula. Quem escrever o próximo item desta fila sobre tela: **conte as telas antes de
+   > contar o tamanho.**
+   >
+   > **E A MATRIZ NÃO ERA A RÉGUA DESTA REGRA, com o número:** das **nove** células da
+   > `matriz_esperada_do_rejunte` a regra 3 toca **duas**. A grade dela foi escolhida pelas bordas de
+   > **junta** — 1, 2, 4, 5, 10 e 11 mm —, e grade de borda de junta não cobre regra de ambiente. Quatro
+   > das cinco âncoras pisam em estados que ela não visita. **Grade escolhida por um eixo não mede regra do
+   > outro, e fingir que mede é o defeito de medição que esta ilha paga desde a regra 6.**
    >
    > | causa | entradas | estados | produtos | a frase está |
    > |---|---|---|---|---|
@@ -1179,6 +1201,72 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > `ambientes_declarados`, a ordem escrita, âncoras à mão e bateria com as duas direções e trava de falso
    > positivo. **Sai inteiro numa execução só.**
    >
+   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É O PRIMEIRO DE CRESCIMENTO DEPOIS DE QUATRO DE PORTÃO: A
+   > SEGUNDA CATEGORIA DO GUIA, PELO `alicate` — COLETA DE 5 ITENS DE BANCO, COM O QUADRO INTEIRO MEDIDO
+   > EM 07/10/2026 ÀS 14h2xZ.**
+   >
+   > **E A PRIMEIRA COISA A DIZER É QUE DUAS FRASES DESTA FILA ESTAVAM ERRADAS PELO MESMO MOTIVO — a 16.5,
+   > que ninguém tinha contado.** O item 3, de 02/10, diz que a `alicate/cortador_de_azulejo` ficou de fora
+   > porque a mãe estava em `espera_serp` e que *"o que a destrava é medir a SERP de `alicate` — busca,
+   > não coleta"*. E o texto de 05/10 às 13h2xZ diz que *"o que segura a segunda categoria do Guia agora
+   > são as outras duas filhas"* do `rejunte`. **A segunda metade da primeira frase é falsa: medir a SERP
+   > não destrava nada.** A **16.5** exige **3 filhas com dado real** para a página de nível 2 nascer, e
+   > `alicate` tem **1**. SERP medida numa categoria de uma filha dá uma categoria que não pode ser
+   > publicada. **A primeira execução a contar as filhas de todas as categorias foi esta, e o quadro é
+   > este:**
+   >
+   > | categoria | filhas que passam | faltam p/ a 16.5 | itens de banco a coletar | depende de boletim em PDF? |
+   > |---|---|---|---|---|
+   > | `acabamento` | **3** de 3 | — | já alcançada (02/10) | não |
+   > | `rejunte` | 1 de 4 | 2 | **4** — o mais barato na conta | **SIM, e está bloqueado** |
+   > | `alicate` | 1 de 4 | 2 | **5** (torques 2, martelinho 3) | **não** |
+   > | `pastilha` | 1 de 6 | 2 | 6 | não |
+   > | `cola` | 0 de 7 | 3 | 6 | não |
+   > | `apoio` | 0 de 6 | 3 | 9 | não |
+   > | `base` | 0 de 5 | 3 | 9 | não |
+   >
+   > *(Contado de `resumo.por_categoria_do_guia` em `dados/filhas-do-guia.json`, campo
+   > `caminho_mais_barato_para_as_3_filhas`, que o `filhas-do-guia.py` já escrevia e que nenhuma execução
+   > tinha lido inteiro.)*
+   >
+   > **O MAIS BARATO NA CONTA NÃO É O MAIS BARATO NA REALIDADE, e é por isso que o bloco é o `alicate`.**
+   > O `rejunte` pede 4 itens contra 5 do `alicate` — e os 4 dele são justamente `rejunte/acrilico` e
+   > `rejunte/epoxi`, cujo dado que falta é **faixa de junta**, que mora em **boletim técnico**. A medição
+   > de 05/10 às 19h3xZ fechou essa porta com nome: o espelho da Telha Norte é **arquivo por nome
+   > conhecido, nunca catálogo**, o inventário inteiro dele são 14 documentos e **nenhum é rejunte
+   > acrílico nem epóxi**; os sete hosts de fabricante dão `000` por DNS e o `quartzolit.weber` dá 403.
+   > **Aquela execução escreveu, com todas as letras: NÃO REPITA A COLETA.** Os 5 itens do `alicate` são
+   > **ferramenta**, não química: o dado real de um alicate é medida, material e mecanismo, que página de
+   > fabricante e ficha de marketplace publicam — nenhum deles precisa de PDF. **Contagem de itens não é
+   > custo; custo é de onde o dado vem.**
+   >
+   > **O QUE O BLOCO FAZ, na ordem:** (1) coleta **2** itens de `alicate/torques` e **3** de
+   > `alicate/martelinho`, pela escada da 25.1 e pelo método de uma passada só da `shopee-affiliate`;
+   > (2) roda `filhas-do-guia.py` e confere que `alicate` passou a **3 filhas** — se não passou, para aí e
+   > escreve quanto faltou, porque publicar categoria com 2 filhas é o que a 16.5 proíbe; (3) mede as
+   > **duas** consultas de SERP que estão em `NAO_MEDIDA` em `dados/serp-das-filhas.json`
+   > (*cortador de azulejo manual para mosaico* e *torques cortador de azulejo para mosaico Vonder
+   > Cortag*) mais a do `martelinho`, que ainda não existe no arquivo; (4) publica a mãe e as 3 filhas de
+   > maior intenção de compra, pela ordem de leva da **16.6** — **4 URLs, e a ilha vai de 21 para 25.**
+   >
+   > **A MÃE JÁ ESTÁ PRONTA E ISSO NÃO É POUCO:** `alicate` está em `passa` e a consulta dela foi medida
+   > **ABERTA** (*qual alicate usar para cortar pastilha de mosaico artesanal*), que é o alvo da 14.9.
+   > Quem fizer o bloco não precisa medir a mãe outra vez.
+   >
+   > **POR QUE CRESCIMENTO E NÃO MAIS UM PORTÃO:** esta ilha tem **21 URLs** e o piso da seção 21 são **40
+   > páginas e 21 dias**. As quatro últimas execuções foram todas de portão e de frase — todas certas, e
+   > nenhuma acrescentou uma URL. A ilha está em foco porque é a que tem **tráfego** (30 impressões em 7
+   > dias, três páginas na primeira página do Google), e malha é o que converte tráfego em mais tráfego. O
+   > eixo das técnicas segue **sem próxima página**, e as três que faltam dependem de FONTE.
+   >
+   > **E UMA LINHA QUE O PRÓXIMO BLOCO CARREGA DE CARONA, medida em 07/10 e pequena de propósito:** a
+   > trava do literal ilegível em `ambientes_declarados` — que a `m17` da bateria do rejunte fez nascer,
+   > porque literal fora do mapa deixa `ambientes_delimitados` vazio e **desliga a regra 3 em silêncio** —
+   > existe **só para o rejunte**: ela mora dentro do `if rejuntes` do `validar-banco.py`. A cola tem
+   > **três** produtos com `ambientes_declarados` e **os três literais traduzem hoje**, então o buraco é
+   > **latente, não ativo**. É uma linha de código e uma mutação, não um bloco — e não vale abrir execução
+   > só para ela.
+
    > **E uma coisa que o próximo bloco NÃO deve fazer: reaproveitar as funções da cola.** O rejunte tem régua
    > própria **de propósito**, e a razão é de conteúdo antes de método — na cola a lista do fabricante nomeia
    > a BASE sobre a qual se cola; no rejunte, a TESSELA que será rejuntada e o ambiente. **Rejunte não toca a

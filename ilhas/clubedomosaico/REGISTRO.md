@@ -3,6 +3,160 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+07/10/2026 14h16Z — O MESMO DEFEITO UM ANDAR ABAIXO: A REGRA 3 DO REJUNTE DIVIDIA O BALDE COM A REGRA 2 E SERVIA A FRASE DELA; BALDE PRÓPRIO EM **DUAS** TELAS, 8 ENTRADAS EM 8 DOS 60 ESTADOS
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h17Z**, push da reserva aceito na primeira
+tentativa (`5c6e190`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta — a reserva é escrita ANTES do trabalho, então `null`
+significa que nenhum bloco da Fundação está vivo; o último commit na pasta era de **11h08Z**, duas horas
+antes, e era o fecho da execução anterior. `git fetch origin main` trouxe 5 commits; a branch `claude/*`
+estava **idêntica ao `main`** e nenhum PR aberto — nada a mesclar. **Rede pela 20.2:**
+`https://clubedomosaico.com.br/` em **200** e o `/status` na revisão **65**, igual à do `manifest.json` que a
+execução anterior deixou. **Reserva RENOVADA às 13h37Z pela 1.1.**
+
+**Nenhum despacho aberto para a Fundação.** O de 05/10 tem os itens 1 e 2 **CUMPRIDOS** e o item 3 se declara
+método endereçado ao Raphael; o item 2 do de 30/09 é o soft 404 da borda, que já é do hospedeiro e das duas
+ilhas. Li o topo do `PROMPT.md` pela **18.1** antes de escolher.
+
+**O BLOCO ERA O DA FILA, escolhido por escrito e com o número medido pela execução anterior**, às 11h0xZ: o
+balde `eliminados_por_ambiente` do rejunte carregava **duas causas sob uma frase só**. E a primeira coisa que
+esta execução fez foi **remedir**, com uma reimplementação independente das quatro regras lida do esquema —
+não do validador. Os três números bateram: **8 entradas em 8 estados pela regra 3**, **59 em 28 pela regra
+2**, **7 estados carregando as duas**.
+
+## O que mudou
+
+Esquema **v16**: a `3_ambiente_declarado_DELIMITA` do rejunte era uma frase de uma linha e virou dicionário
+com balde, ordem e travas; nasceu `regras_do_balde_do_ambiente_do_produto_do_rejunte` com o único produto que
+delimita ambiente hoje e **cinco âncoras ponta a ponta**; as nove células da `matriz_esperada_do_rejunte`
+foram reescritas **à mão** e bateram com a recomputação sem uma divergência. **F2 1.12.0**, **F1 1.7.0**,
+`teste-f2.php` de 160 para **162** afirmações, `teste-prestacao-rejunte.php` com a quarta régua separada e a
+F1 cobrada nas duas direções, `cobertura.py` carregando os dois baldes, e
+`ferramentas/mutacoes-ambiente-do-produto-do-rejunte.py` nova (**21 de forma + 7 de tela, 5 falsos
+positivos**). Nenhuma URL nova (segue em **21**), nenhuma página criada.
+
+## 1. O BALDE DA REGRA 2 FOI RENOMEADO, E ISSO A BATERIA DA COLA NÃO PRECISOU FAZER
+
+Na cola, o balde da regra 2 já se chamava `eliminados_por_silencio` — nome preciso. Aqui ele se chamava
+`eliminados_por_ambiente`, e **o nome ficou falso no instante em que passou a existir um segundo balde de
+ambiente**: as duas causas são "por ambiente", e um nome que descreve as duas não distingue nenhuma. Ele
+passa a ser `eliminados_por_ambiente_critico`. **Renomeado, não apagado** — a mesma convenção que a v14 usou
+em `substratos_que_o_documento_declara`; quem procurar o nome velho está lendo história.
+
+## 2. SÃO **DUAS** TELAS, E ERA ISSO QUE A COLA NÃO TINHA
+
+A célula do rejunte é lida pela F2 **e pela F1**, que serve a vitrine de rejunte por folga. As duas serviam a
+frase errada, com palavras diferentes: a F2 dizia *"Fora porque o fabricante não declara este lugar"*; a F1,
+*"o que ele não declara é peça ao ar livre"*. **Conserto que chegasse a uma só trocaria uma tela mentindo por
+duas telas discordando** — e é isso que a `t06` da bateria guarda. O bloco de travas do esquema cobra
+`secao_propria_na_F2` **e** `secao_propria_na_F1`, em campos separados, e a `m07` e a `m08` medem as duas.
+
+## 3. A MATRIZ NUNCA SERIA A RÉGUA DESTA REGRA, E O NÚMERO MOSTRA POR QUÊ
+
+Das nove células da `matriz_esperada_do_rejunte`, a regra 3 toca **duas**: `2 mm × externo_exposto` e
+`3 mm × contato_permanente_agua`. A grade dela foi escolhida pelas **bordas de junta** — 1, 2, 4, 5, 10 e 11
+mm —, e grade escolhida por borda de junta não cobre regra de ambiente. As cinco âncoras existem para pisar
+nos estados que ela não visita, e quatro das cinco são estados que a matriz não tem.
+
+## 4. A ÂNCORA PRÓPRIA DESTA REGRA É A DO ESTADO **SEM A OUTRA CAUSA**
+
+Em **7 dos 8** estados a regra 2 também morde, e ali a frase errada se esconde atrás da certa. O oitavo é
+`1 mm × contato_permanente_agua`: o balde da regra 2 está **VAZIO** e o da 3 tem o acrílico. Naquele estado,
+se a tela servir "o fabricante não declara este lugar", a frase só pode ser sobre o acrílico e só pode ser
+falsa. **Estado sem a outra causa é onde a frase errada não tem onde se esconder** — e o validador cobra que
+exista uma âncora assim.
+
+## 5. E A FUSÃO MAIS PROVÁVEL AQUI NÃO É COM O SILÊNCIO: É COM A FAIXA DE JUNTA
+
+Na cola, a âncora anti-fusão media o balde do silêncio. Aqui a regra 1 roda **antes** da 3, e de 5 mm para
+cima o acrílico sai por **folga**, não por lugar. Quem implementar "produto que delimita ambiente e não cobre
+o lugar vai para o balde novo" põe no balde quem **nem cabe na folga** — e a elegibilidade continua idêntica
+nos 60 estados. A âncora de `5 mm × externo_exposto` é essa, a `t05` é a mutação dela, e a `m14` é a trava
+que impede a âncora de sair da tabela.
+
+## 6. TRÊS COISAS QUE A BATERIA ACHOU NAS RÉGUAS DESTE PRÓPRIO BLOCO, as três antes do commit
+
+**(a) A `m15` PASSOU, e a trava da "âncora que passa" estava fraca.** Ela contava âncora com o balde novo
+vazio — e com isso a âncora **anti-fusão de 5 mm já ocupava o lugar da que passa**, porque ali o balde está
+vazio mesmo: o produto saiu pela folga. Apagar a única âncora em que o acrílico aparece **recomendado**
+deixava a tabela verde, e com ela uma regra 3 que tirasse o produto dos três ambientes que o fabricante
+declara. **Balde vazio não prova que a regra deixa passar: prova que ela não morde ali, e as duas coisas se
+separam exatamente no produto que outra regra já tirou.** A trava passou a exigir um delimitador em
+`recomendados_topo`.
+
+**(b) A `m17` PASSOU, e achou que `ambientes_declarados` ILEGÍVEL desliga a regra 3 em silêncio.** Ela dava
+`áreas internas` ao epóxi para criar um segundo delimitador. O literal não está no
+`mapa_de_termos_do_rejunte`, então `ambientes_delimitados` ficou **vazio**, a regra 3 não se aplicou, e o
+único efeito foi um **`aviso`**. E nos outros dois campos de declaração um termo ilegível **encolhe** o
+produto — ele deixa de cobrir um ambiente e perde pontos, e aviso basta. Em `ambientes_declarados` ele
+**alarga**: perder a leitura da frase que FECHA o produto é o mesmo que não ter a frase. Virou **erro** no
+validador, a `m17` passou a usar um literal que o mapa conhece, e a **`m21`** nasceu do achado.
+
+**(c) A `t01` e a `t03` mutavam a régua da COLA.** As duas linhas que elas procuravam —
+`return array( 'ambiente_do_produto', 0 );` e `$lits = $p['literais_delimitacao'];` — existem **duas vezes**
+no arquivo, idênticas, e a da cola vem antes. A bancada ficou vermelha pelo motivo errado, que numa bateria é
+pior que verde, porque conta como mutação pega. As duas foram reancoradas no bloco que só existe na régua do
+rejunte. **Marcador que existe nas duas réguas não mede nenhuma das duas** — é a mesma família da cicatriz
+que a `t03` da bateria da cola e a `t04` da `mutacoes-par.py` já tinham escrito, com outro literal.
+
+**E a `fp4` saiu INERTE**, apanhada pelo canário de inércia: ela reescrevia o literal com o **mesmo valor**
+que já estava lá. Virou outra coisa — o delimitador aprendendo uma declaração que confirma um ambiente que
+ele já cobre. E fica escrito por que o conserto óbvio não servia: acrescentar um segundo literal de ambiente
+ao registro **tem de reprovar**, porque o perfil escrito à mão carrega `literais_delimitacao`.
+
+## 7. UM CONSUMIDOR PERDIA O BALDE E UMA MUTAÇÃO IRMÃ IA QUEBRAR
+
+`cobertura.py` servia *"o fabricante nao declara este ambiente"* no censo dos 60 estados, e os **8** da regra
+3 estão todos entre as `faixas_descobertas` — então a causa saía errada em 8 de 8. Agora o censo carrega os
+dois baldes e a `causa_do_rejunte` compõe até três frases. E a
+`m_f2_a_vitrine_ganha_um_produto_que_a_frase_nao_nomeia`, da `mutacoes-prestacao.py`, nomeava o balde velho
+**no texto de substituição**: deixada como estava ela continuaria aplicando (a busca é no código não mutado)
+e produziria PHP com chave inexistente — **bancada vermelha pelo motivo errado**. Ela passou a empurrar os
+dois baldes.
+
+## 8. E A FRASE SAIU DA TELA COM O SUJEITO ERRADO, lida no render antes do commit
+
+A primeira versão dizia *"Rejunte Acrílico Quartzolit — a Saint-Gobain Weber **cabe nessa folga**"*: quem
+cabe na folga é o produto, não o fabricante. Nenhum portão lê concordância, e as duas bancadas estavam
+verdes. Corrigida para *"— cabe nessa folga, e a Saint-Gobain Weber fechou o produto inteiro em outros
+lugares"*. **Portão que mede presença de frase não mede frase que não se lê.**
+
+## O que NÃO mudou, e é o que explica o bloco inteiro
+
+**A elegibilidade é idêntica em 60 de 60 estados.** `recomendados_topo`, `elegiveis_abaixo_do_topo`,
+`mencionados_com_ressalva` e `eliminados_por_faixa_de_junta` não se movem. As 8 entradas saíram de uma lista
+de eliminados para outra. **Trocar de balde não muda número nenhum, e é por isso que toda régua desta ilha
+atravessou o defeito desde 10/09/2026: todas mediam CONCORDÂNCIA entre o banco e a página, e as duas
+concordavam dizendo a mesma coisa errada.** Portão que compara listas de elegíveis nunca pegaria isto; só
+portão que compara FRASES pega — e desta vez em duas telas.
+
+## O próximo bloco, e ele é o primeiro de CRESCIMENTO depois de quatro de portão
+
+Está escrito no `PROMPT.md`: a **segunda categoria do Guia, pelo `alicate`** — **coleta de 5 itens de
+banco** (2 em `alicate/torques`, 3 em `alicate/martelinho`), depois as SERPs, depois mãe + 3 filhas: **4
+URLs, e a ilha vai de 21 para 25.**
+
+**E ao escolhê-lo esta execução achou que DUAS frases desta fila estavam erradas pelo mesmo motivo — a
+16.5, que ninguém tinha contado.** O item 3 da fila, de 02/10, diz que *"o que destrava a
+`alicate/cortador_de_azulejo` é medir a SERP de `alicate` — busca, não coleta"*. **Medir a SERP não destrava
+nada:** a 16.5 exige **3 filhas com dado real** para a página de nível 2 nascer, e `alicate` tem **1**. SERP
+medida numa categoria de uma filha dá categoria que não pode ser publicada. A primeira versão desta própria
+entrada repetia o erro e dizia "mãe + 2 filhas, 21 para 24" — **corrigida antes do commit, contando as
+filhas de todas as sete categorias** em `resumo.por_categoria_do_guia` de `dados/filhas-do-guia.json`, um
+campo que o `filhas-do-guia.py` já escrevia e que nenhuma execução tinha lido inteiro.
+
+**E o mais barato na conta não é o mais barato na realidade.** O `rejunte` pede **4** itens contra **5** do
+`alicate` — e os 4 dele são `rejunte/acrilico` e `rejunte/epoxi`, cujo dado que falta é **faixa de junta**,
+que mora em **boletim técnico**, e a medição de 05/10 às 19h3xZ fechou essa porta com nome e escreveu *"NÃO
+REPITA A COLETA"*. Os 5 do `alicate` são **ferramenta, não química**: medida, material e mecanismo, que
+página de fabricante e ficha de marketplace publicam. **Contagem de itens não é custo; custo é de onde o
+dado vem.**
+
+**E uma linha que o próximo bloco carrega de carona, medida aqui:** a trava do literal ilegível em
+`ambientes_declarados` que a `m17` fez nascer existe **só para o rejunte** — ela mora dentro do
+`if rejuntes`. A cola tem três produtos com `ambientes_declarados` e **os três literais traduzem hoje**,
+então o buraco é **latente, não ativo**. É uma linha de código e uma mutação, não um bloco.
+
 07/10/2026 11h05Z — A REGRA 3 MANDAVA PARA O BALDE DO SILÊNCIO QUEM O FABRICANTE DECLARA, E A PÁGINA DIZIA QUE ELE NÃO FALA; O BALDE PRÓPRIO FECHA 29 ENTRADAS EM 24 CÉLULAS, SEM UM CAMPO NOVO
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h17Z**, push da reserva aceito na primeira
