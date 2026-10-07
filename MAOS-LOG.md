@@ -4047,3 +4047,119 @@ ilhas/clubedomosaico/dados/search-console-2026-10-07.md : 17 linhas, PRIVATE=0
 **Para quem ler depois:** dois disparos receberam a mesma instrução de leitura da Search Console de 2026-10-07 e rodaram o script em paralelo. Não houve dano — o script só lê a API e escreve arquivo novo —, mas a janela entre `git fetch` e `git push` é real e nesse intervalo o `main` pode andar. Vale olhar por que a instrução saiu duas vezes.
 
 **O que eu NÃO fiz, de propósito:** não imprimi, gravei nem commitei o valor de `GOOGLE_SA_B64`; não forcei push; não apaguei nem reescrevi seção anterior deste log; não reservei ilha, não escrevi `executando_desde` nem toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; não acionei Sync, não publiquei, não verifiquei site; não criei conta em plataforma nenhuma; não mexi em arquivo que a instrução não nomeou — só neste `MAOS-LOG.md`, que é a exceção obrigatória. Nenhum contato pessoal de terceiro entrou (as leituras não traziam nenhum).
+
+---
+
+## Disparo de 2026-10-07, 17:08 BRT (20:08 UTC) — DESPACHO DA SENTINELA, LEITURA SEMANAL DE 2026-10-07, 12 EDIÇÕES NAS TRÊS ILHAS NO AR
+
+**Checagem de assunto, antes do `git fetch`:** PASSOU. A instrução trata das ilhas aquametria, robometria e clubedomosaico, dos despachos da Sentinela, do `ESTADO.md` e dos dados de indexação e posições — tudo do Arquipélago. Nada de outro projeto entrou.
+
+**Instrução recebida:** 12 edições em 12 arquivos, para aplicar byte a byte. Regra de inserção das tabelas (`indexacao.md` e `posicoes.md`): logo depois da ÚLTIMA linha do arquivo que comece com `|`. Regra de inserção dos `PROMPT.md`: logo antes da primeira linha que comece com `## DESPACHO`. Os três `ESTADO.md`: substituir a linha que começa com `ultima_ronda:`.
+
+**Partida:** `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `4e9fb75`.
+
+### `git status --porcelain` (antes do commit)
+
+```
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/aquametria/dados/indexacao.md
+ M ilhas/aquametria/dados/posicoes.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/indexacao.md
+ M ilhas/clubedomosaico/dados/posicoes.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/indexacao.md
+ M ilhas/robometria/dados/posicoes.md
+```
+
+### `git diff --stat` (antes do commit)
+
+```
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/aquametria/PROMPT.md              | 54 +++++++++++++++++++++++++++++++++
+ ilhas/aquametria/dados/indexacao.md     |  1 +
+ ilhas/aquametria/dados/posicoes.md      | 12 ++++++++
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 53 ++++++++++++++++++++++++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md  | 10 ++++++
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 31 +++++++++++++++++++
+ ilhas/robometria/dados/indexacao.md     |  1 +
+ ilhas/robometria/dados/posicoes.md      |  4 +++
+ 12 files changed, 170 insertions(+), 3 deletions(-)
+```
+
+### Hash do commit que foi ao `main`
+
+```
+5009f09  Despacho da Sentinela — leitura semanal de 2026-10-07 nas tres ilhas no ar
+```
+
+Push direto: `git push origin HEAD:main` → `4e9fb75..5009f09  HEAD -> main`, aceito na primeira tentativa, sem rebase e sem force. Confirmado com `git fetch origin main && git log -1 origin/main`, que mostra `5009f09` e os 12 arquivos acima. Não houve PR.
+
+### Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar
+
+```
+linhas de tabela com data 2026-10-07, contadas com grep nos arquivos gravados:
+ilhas/aquametria/dados/indexacao.md     : 1   (edição 1)
+ilhas/aquametria/dados/posicoes.md      : 12  (edição 2)
+ilhas/robometria/dados/indexacao.md     : 1   (edição 5)
+ilhas/robometria/dados/posicoes.md      : 4   (edição 6)
+ilhas/clubedomosaico/dados/indexacao.md : 1   (edição 9)
+ilhas/clubedomosaico/dados/posicoes.md  : 10  (edição 10)
+soma das linhas de tabela inseridas      : 29
+
+cabeçalho "## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)", ocorrências:
+ilhas/aquametria/PROMPT.md     : 1   (edição 3,  53 linhas de bloco)
+ilhas/robometria/PROMPT.md     : 1   (edição 7,  30 linhas de bloco)
+ilhas/clubedomosaico/PROMPT.md : 1   (edição 11, 52 linhas de bloco)
+
+linha "ultima_ronda: 2026-10-07T20:35Z", ocorrências (cada arquivo tinha exatamente 1 linha ultima_ronda antes, e tem exatamente 1 depois):
+ilhas/aquametria/ESTADO.md     : 1   (edição 4)
+ilhas/robometria/ESTADO.md     : 1   (edição 8)
+ilhas/clubedomosaico/ESTADO.md : 1   (edição 12)
+
+total de linhas de cada arquivo depois de gravar:
+   263 ilhas/aquametria/dados/indexacao.md
+    31 ilhas/aquametria/dados/posicoes.md
+   443 ilhas/aquametria/PROMPT.md
+   519 ilhas/aquametria/ESTADO.md
+    10 ilhas/robometria/dados/indexacao.md
+    68 ilhas/robometria/dados/posicoes.md
+  1410 ilhas/robometria/PROMPT.md
+   662 ilhas/robometria/ESTADO.md
+   130 ilhas/clubedomosaico/dados/indexacao.md
+   121 ilhas/clubedomosaico/dados/posicoes.md
+  2221 ilhas/clubedomosaico/PROMPT.md
+   492 ilhas/clubedomosaico/ESTADO.md
+```
+
+**Conferência byte a byte:** para as 9 edições de inserção, comparei as linhas `+` do `git diff -U0` com o texto da instrução, arquivo por arquivo, e as nove voltaram IDÊNTICAS. As três linhas `ultima_ronda:` novas foram relidas do diff e conferidas contra a instrução. `git diff --check` não acusou nada e os 12 arquivos terminam com newline, como antes.
+
+### Onde cada inserção caiu, e uma ressalva honesta
+
+As posições de inserção, pela regra literal da instrução:
+
+```
+ilhas/aquametria/dados/indexacao.md     : depois da linha 227 (última do arquivo começando com |)
+ilhas/aquametria/dados/posicoes.md      : depois da linha 11
+ilhas/robometria/dados/indexacao.md     : depois da linha 9
+ilhas/robometria/dados/posicoes.md      : depois da linha 40
+ilhas/clubedomosaico/dados/indexacao.md : depois da linha 125
+ilhas/clubedomosaico/dados/posicoes.md  : depois da linha 74
+ilhas/aquametria/PROMPT.md              : antes da linha 47  (## DESPACHO ... 2026-09-23)
+ilhas/robometria/PROMPT.md              : antes da linha 48  (## DESPACHO ... 2026-10-02)
+ilhas/clubedomosaico/PROMPT.md          : antes da linha 72  (## DESPACHO ... 2026-10-07 ronda diária)
+```
+
+**RESSALVA, e é para quem ler depois e não para corrigir agora:** em quatro dos seis arquivos de tabela a última linha começando com `|` NÃO pertence à tabela de série da data, e sim a uma tabela de análise mais abaixo no arquivo — `aquametria/dados/indexacao.md` (linha 227, tabela de consultas), `robometria/dados/posicoes.md` (linha 40, tabela de títulos), `clubedomosaico/dados/indexacao.md` (linha 125, tabela de URLs) e `clubedomosaico/dados/posicoes.md` (linha 74, tabela de títulos). A regra da instrução é explícita e mecânica — "imediatamente depois da ÚLTIMA linha do arquivo que comece com `|`" — e foi ela que eu segui, ao pé da letra, sem escolher tabela por conta própria. O resultado é que, nesses quatro, a linha nova ficou colada ao fim de uma tabela de colunas diferentes. Não reformatei e não movi nada: mãos não decidem onde a Sentinela quis a linha. Se a intenção era a tabela de série, quem manda a próxima instrução pode nomear a linha de ancoragem, ou mandar mover.
+
+**A ÚNICA coisa que acrescentei e que não estava na instrução:** uma linha em branco depois de cada um dos três blocos de `## DESPACHO`, para o cabeçalho `## DESPACHO` que já existia não ficar grudado na última linha do bloco novo. São 3 linhas em branco no total, e é por isso que o `git diff --stat` dos `PROMPT.md` marca 54, 31 e 53 em vez de 53, 30 e 52. Nenhum outro byte foi acrescentado, nenhum texto foi reformatado, resumido ou "melhorado", e nenhuma seção existente foi apagada.
+
+**Nenhum passo falhou neste disparo.** Não houve erro de fetch, de push nem de leitura de arquivo; os 12 arquivos da instrução já existiam, então nenhum foi criado.
+
+**O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada — a decisão veio na instrução; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`, que é a exceção obrigatória; não apaguei nem reescrevi seção anterior deste log; não forcei push e não abri PR; não reservei ilha, não escrevi `executando_desde` nem toquei em `piso:` (a edição 4 manda a Fundação passar `piso` a `atingido` no primeiro bloco, e isso é dela, não minha); não executei bloco de fila de ilha nenhuma; não acionei Sync, não publiquei, não marquei `publicar: true` e não verifiquei site; não criei conta em plataforma nenhuma. Nenhum contato pessoal de terceiro entrou — a instrução não trazia nenhum.
