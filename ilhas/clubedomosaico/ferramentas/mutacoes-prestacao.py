@@ -163,11 +163,19 @@ def m_f2_a_tabela_volta_a_contar_so_dois_grupos(raiz):
 def m_f2_a_vitrine_ganha_um_produto_que_a_frase_nao_nomeia(raiz):
     """O empurrao classico: a vitrine passa a servir tambem quem foi eliminado
     pelo lugar. A frase continua honesta, a lista nao — e o bloco de compra e o
-    espaco mais caro da pagina."""
+    espaco mais caro da pagina.
+
+    E ELA EMPURRA OS DOIS BALDES DE LUGAR DESDE 07/10/2026 (esquema v16). Ate ali
+    havia um balde so, `eliminados_por_ambiente`, e esta mutacao o nomeava. Com a
+    separacao da regra 3, o nome velho deixou de existir: deixada como estava, ela
+    continuaria aplicando (a busca e no codigo NAO mutado) e produziria PHP com
+    chave inexistente — bancada vermelha pelo motivo errado, que e o pior resultado
+    possivel numa bateria, porque conta como mutacao pega. Os dois baldes entram, e
+    com isso ela passa a empurrar tambem quem a regra 3 eliminou."""
     editar(raiz, F2,
            "\t\tforeach ( array_merge( $celula['recomendados_topo'], $celula['elegiveis_abaixo_do_topo'] ) as $id ) {\n"
            "\t\t\t$p      = cdm_f2_perfil_rejunte( $banco['materiais'][ $id ] );",
-           "\t\tforeach ( array_merge( $celula['recomendados_topo'], $celula['elegiveis_abaixo_do_topo'], $celula['eliminados_por_ambiente'] ) as $id ) {\n"
+           "\t\tforeach ( array_merge( $celula['recomendados_topo'], $celula['elegiveis_abaixo_do_topo'], $celula['eliminados_por_ambiente_critico'], $celula['eliminados_por_ambiente_do_produto'] ) as $id ) {\n"
            "\t\t\t$p      = cdm_f2_perfil_rejunte( $banco['materiais'][ $id ] );")
 
 

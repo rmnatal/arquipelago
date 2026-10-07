@@ -177,7 +177,7 @@
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.6.0' );
+	define( 'CDM_F1_VERSAO', '1.7.0' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -998,9 +998,23 @@ function cdm_f1_vitrine_html( $e ) {
 			$fora_folga[] = $id;
 		}
 	}
-	foreach ( $celula['eliminados_por_ambiente'] as $id ) {
+	foreach ( $celula['eliminados_por_ambiente_critico'] as $id ) {
 		if ( isset( $por_id[ $id ] ) && $e['rejunte'] === ( isset( $por_id[ $id ]['tipo'] ) ? $por_id[ $id ]['tipo'] : '' ) ) {
 			$fora_lugar[] = $id;
+		}
+	}
+	/* O QUARTO GRUPO, e ele e o conserto de 07/10/2026. Esta tela lia um balde onde
+	   havia DUAS causas e servia a frase de uma delas sobre as duas: "o que ele nao
+	   declara e peca <lugar>" saia sobre o rejunte acrilico, que escreve `areas
+	   internas e externas` em `ambientes_declarados` — e e justamente essa frase que o
+	   fecha. A F2 serviu o mesmo erro com outras palavras, e as duas telas o serviram
+	   desde 10/09/2026, porque leem a mesma celula. O balde novo chega aqui JUNTO com
+	   a F2 de proposito: conserto que chegasse so a uma delas trocaria uma tela
+	   mentindo por duas telas discordando. */
+	$fora_lugar_produto = array();
+	foreach ( $celula['eliminados_por_ambiente_do_produto'] as $id ) {
+		if ( isset( $por_id[ $id ] ) && $e['rejunte'] === ( isset( $por_id[ $id ]['tipo'] ) ? $por_id[ $id ]['tipo'] : '' ) ) {
+			$fora_lugar_produto[] = $id;
 		}
 	}
 
@@ -1029,7 +1043,7 @@ function cdm_f1_vitrine_html( $e ) {
 			$html  .= cdm_f2_cartao_html( $id, $motivo );
 		}
 		$html .= '</ul>';
-	} elseif ( ! $fora_folga && ! $sem_faixa && ! $fora_lugar ) {
+	} elseif ( ! $fora_folga && ! $sem_faixa && ! $fora_lugar && ! $fora_lugar_produto ) {
 		/* Nem eliminado, nem elegível: o tipo não existe no banco. */
 		$html .= '<p class="cdm-f1-faixa">Ainda não temos nenhum ' . esc_html( $nome_tipo ) . ' no nosso banco — nenhuma marca, '
 			. 'nenhuma faixa de folga. Quando tiver, o cartão aparece aqui com a medida que fez o produto entrar na lista.</p>';
@@ -1063,6 +1077,20 @@ function cdm_f1_vitrine_html( $e ) {
 	 * passou pela folga antes (a régua da F2 testa a folga primeiro), então "a
 	 * folga cabe" não é suposição, é o que a ordem das travas garante.
 	 * ------------------------------------------------------------------ */
+	if ( $fora_lugar_produto ) {
+		foreach ( $fora_lugar_produto as $id ) {
+			$p    = cdm_f2_perfil_rejunte( $por_id[ $id ] );
+			$lits = $p['literais_delimitacao'];
+			$html .= '<p class="cdm-f1-faixa-ambiente-do-produto">O que exclui '
+				. esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( array( $id ) ) ) )
+				. ' é o LUGAR, não a folga: ' . $mm . ' cabe na faixa que o fabricante publica, '
+				. 'e ele declarou onde o produto pode ir';
+			if ( $lits ) {
+				$html .= ' — escreve <em>' . esc_html( cdm_f2_lista_humana( $lits ) ) . '</em>';
+			}
+			$html .= '. Peça ' . esc_html( $lugar ) . ' não está nessa lista.</p>';
+		}
+	}
 	if ( $fora_lugar ) {
 		$html .= '<p class="cdm-f1-faixa">O que exclui ' . esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $fora_lugar ) ) )
 			. ' é o LUGAR, não a folga: ' . $mm . ' cabe na faixa que o fabricante publica para '

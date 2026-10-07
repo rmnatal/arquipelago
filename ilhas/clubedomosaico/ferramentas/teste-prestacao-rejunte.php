@@ -150,7 +150,16 @@ $tipos     = array( 'cimenticio', 'acrilico', 'epoxi' );
 
 /**
  * A classificacao esperada de UM rejunte, pelas regras 1 a 4 — reimplementadas.
- * Devolve: topo | abaixo | ressalva | fora_folga | sem_faixa | fora_lugar.
+ * Devolve: topo | abaixo | ressalva | fora_folga | sem_faixa | fora_lugar |
+ * fora_lugar_produto.
+ *
+ * AS DUAS ULTIMAS ERAM UMA SO ate 07/10/2026, aqui como no snippet e no
+ * validador, e era a mistura que este bloco conserta: `fora_lugar` e a regra 2
+ * (o lugar e critico e o fabricante nao o nomeia) e `fora_lugar_produto` e a
+ * regra 3 (ele NOMEOU os lugares do produto e este nao esta entre eles). Esta
+ * regua e a QUARTA implementacao das regras do rejunte e e independente de
+ * proposito: separar aqui e repetir a REGRA lida do esquema, nao confiar na
+ * funcao de quem produz o dado.
  */
 function pr_classificar( $perfil, $junta, $ambiente, $criticos ) {
 	$min = $perfil['junta_mm'][0];
@@ -163,9 +172,10 @@ function pr_classificar( $perfil, $junta, $ambiente, $criticos ) {
 	if ( $junta < $min || $junta > $max ) {
 		return 'fora_folga';
 	}
-	/* Regra 3 — quem delimita ambiente fica fechado nele. */
+	/* Regra 3 — quem delimita ambiente fica fechado nele, e com balde proprio desde
+	   o esquema v16. A ordem nao mudou: ela continua depois da 1 e antes da 2. */
 	if ( $perfil['ambientes_delimitados'] && ! in_array( $ambiente, $perfil['ambientes_delimitados'], true ) ) {
-		return 'fora_lugar';
+		return 'fora_lugar_produto';
 	}
 	/* Regra 2 — ambiente critico exige declaracao explicita. */
 	if ( in_array( $ambiente, $criticos, true ) && ! in_array( $ambiente, $perfil['ambientes_cobertos'], true ) ) {
@@ -182,7 +192,8 @@ function pr_classificar( $perfil, $junta, $ambiente, $criticos ) {
 /** A grade inteira de uma celula, pela regua deste arquivo. */
 function pr_celula( $perfis, $junta, $ambiente, $criticos ) {
 	$out = array( 'topo' => array(), 'abaixo' => array(), 'ressalva' => array(),
-		'fora_folga' => array(), 'sem_faixa' => array(), 'fora_lugar' => array() );
+		'fora_folga' => array(), 'sem_faixa' => array(), 'fora_lugar' => array(),
+		'fora_lugar_produto' => array() );
 	foreach ( $perfis as $id => $p ) {
 		$out[ pr_classificar( $p, $junta, $ambiente, $criticos ) ][] = $id;
 	}
@@ -299,6 +310,12 @@ foreach ( $bases as $base ) {
 			$linhas_esperadas = array(
 				'Fora por causa da folga'                  => $esperado['fora_folga'],
 				'Fora porque o fabricante não declara este lugar' => $esperado['fora_lugar'],
+				/* A LINHA DA REGRA 3, e ela e a razao deste bloco. O marcador e a frase que
+				   SO ela serve — "fechou o produto inteiro em outros lugares" —, e a linha de
+				   cima, a da regra 2, continua cobrada com ninguem a mais: em 7 dos 8 estados
+				   da regra 3 as duas saem juntas, e e exatamente ali que uma frase sozinha
+				   enganaria. As duas chaves no mesmo array medem as duas direcoes. */
+				'fechou o produto inteiro em outros lugares' => $esperado['fora_lugar_produto'],
 				'a gente não conseguiu a faixa de junta'   => $esperado['sem_faixa'],
 				'Existe menção a'                          => $esperado['ressalva'],
 			);
@@ -449,14 +466,34 @@ foreach ( $tipos as $tipo ) {
 			$aprovados_tipo = $do_tipo( array_merge( $esperado['topo'], $esperado['abaixo'] ) );
 			$folga_tipo     = $do_tipo( $esperado['fora_folga'] );
 			$lugar_tipo     = $do_tipo( $esperado['fora_lugar'] );
+			$produto_tipo   = $do_tipo( $esperado['fora_lugar_produto'] );
 
 			$culpa_a_folga = ( false !== mb_strpos( $texto, 'Fora por causa da folga de' ) );
 			if ( $culpa_a_folga && ! $folga_tipo ) {
 				$f1_erros[] = "$onde: a pagina culpa a folga e nenhum rejunte deste tipo cai pela folga";
 			}
-			if ( ! $aprovados_tipo && $lugar_tipo && ! $folga_tipo
+			if ( ! $aprovados_tipo && ( $lugar_tipo || $produto_tipo ) && ! $folga_tipo
 				&& false === mb_strpos( $texto, 'é o LUGAR, não a folga' ) ) {
 				$f1_erros[] = "$onde: quem exclui e o lugar, e a pagina nao diz isso";
+			}
+			/* AS DUAS CAUSAS DE LUGAR NA F1, nas duas direcoes (07/10/2026). Esta tela
+			   servia "o que ele nao declara e peça <lugar>" sobre o rejunte acrilico, que
+			   escreve `areas internas e externas` — a mesma mentira da F2, com outras
+			   palavras, e nenhuma regua a via porque as duas causas eram um balde so.
+			   A frase da regra 3 aqui e "ele declarou onde o produto pode ir". */
+			$diz_declarou = ( false !== mb_strpos( $texto, 'ele declarou onde o produto pode ir' ) );
+			$diz_nao_declara = ( false !== mb_strpos( $texto, 'o que ele não declara é peça' ) );
+			if ( $produto_tipo && ! $diz_declarou ) {
+				$f1_erros[] = "$onde: [" . implode( ', ', $produto_tipo ) . '] cai pela regra 3 e a pagina nao diz que ele declarou onde o produto pode ir';
+			}
+			if ( ! $produto_tipo && $diz_declarou ) {
+				$f1_erros[] = "$onde: a pagina diz que o fabricante declarou onde o produto pode ir e ninguem deste tipo cai pela regra 3";
+			}
+			if ( $produto_tipo && ! $lugar_tipo && $diz_nao_declara ) {
+				$f1_erros[] = "$onde: so a regra 3 morde e a pagina diz que o fabricante NAO declara o lugar — e a frase que este bloco existe para tirar";
+			}
+			if ( $lugar_tipo && ! $diz_nao_declara ) {
+				$f1_erros[] = "$onde: [" . implode( ', ', $lugar_tipo ) . '] cai pela regra 2 e a pagina nao diz que o fabricante nao declara o lugar';
 			}
 
 			/* (d) A CONTRADICAO DO MESMO BLOCO, que e o coracao do item 1 do

@@ -174,7 +174,14 @@ def varrer(regua, faixa):
                 "quantos_elegiveis": len(eleg),
                 "com_ressalva": c["mencionados_com_ressalva"],
                 "eliminados_por_faixa_de_junta": c["eliminados_por_faixa_de_junta"],
-                "eliminados_por_ambiente": c["eliminados_por_ambiente"],
+                # OS DOIS BALDES DE AMBIENTE, e eles entram juntos (esquema v16, 07/10/2026).
+                # O da regra 2 chamava-se `eliminados_por_ambiente` e carregava TAMBEM quem a
+                # regra 3 eliminava — e foi exatamente este arquivo que, um dia antes, perdeu o
+                # balde da regra 8 da cola e fez a cimentcola DESAPARECER de toda causa em 24
+                # dos 270 estados do censo. Censo que nao carrega um balde nao mente: fica
+                # INCOMPLETO, que e pior, porque a frase sai plausivel.
+                "eliminados_por_ambiente_critico": c["eliminados_por_ambiente_critico"],
+                "eliminados_por_ambiente_do_produto": c["eliminados_por_ambiente_do_produto"],
             })
 
     return estados
@@ -241,14 +248,29 @@ def causa_da_cola(e):
 
 
 def causa_do_rejunte(e):
+    """A causa que o proprio calculo separou. Nunca uma hipotese.
+
+    SAO TRES CAUSAS DESDE 07/10/2026 e eram duas, pelo mesmo motivo que a cola
+    passou de tres para cinco: o balde de ambiente carregava a regra 2 (o lugar e
+    critico e o fabricante nao o nomeia) e a regra 3 (ele NOMEOU os lugares do
+    produto e este nao esta entre eles) sob a frase da primeira. Dizer "o
+    fabricante nao declara este ambiente" do rejunte acrilico, que escreve `areas
+    internas e externas`, e a frase errada — e o censo a servia tambem.
+    """
     faixa = bool(e["eliminados_por_faixa_de_junta"])
-    amb = bool(e["eliminados_por_ambiente"])
-    if faixa and amb:
-        return "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+    crit = bool(e["eliminados_por_ambiente_critico"])
+    prod = bool(e["eliminados_por_ambiente_do_produto"])
+    partes = []
     if faixa:
-        return "a faixa de junta declarada nao cobre esta largura"
-    if amb:
-        return "o fabricante nao declara este ambiente"
+        partes.append("a faixa de junta declarada nao cobre esta largura")
+    if crit:
+        partes.append("o fabricante nao declara este ambiente")
+    if prod:
+        partes.append("o fabricante fechou o produto em outros lugares")
+    if len(partes) > 1:
+        return " e ".join([", ".join(partes[:-1]), partes[-1]])
+    if partes:
+        return partes[0]
     return "o banco nao tem produto suficiente nesta categoria"
 
 

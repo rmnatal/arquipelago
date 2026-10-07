@@ -145,6 +145,22 @@ if SEM_PORTAO_AMBIENTE_DO_PRODUTO:
           "NAO desliga a regra 3 nem o balde — a elegibilidade e a matriz continuam com os dois, "
           "porque desliga-los faria as 45 celulas escritas a mao reprovar, que e justamente o "
           "portao que a bateria quer medir separado da forma.")
+SEM_PORTAO_AMBIENTE_DO_PRODUTO_REJUNTE = os.environ.get(
+    "CDM_SEM_PORTAO_AMBIENTE_DO_PRODUTO_REJUNTE") == "1"
+if SEM_PORTAO_AMBIENTE_DO_PRODUTO_REJUNTE:
+    print("  ATENCAO: CDM_SEM_PORTAO_AMBIENTE_DO_PRODUTO_REJUNTE=1 — as travas do balde da REGRA 3 "
+          "DO REJUNTE e a `regras_do_balde_do_ambiente_do_produto_do_rejunte` NAO foram medidas "
+          "nesta passada. E a regra ANTIGA, a de antes de 07/10/2026: a de quando a regra 3 e a "
+          "regra 2 dividiam o balde `eliminados_por_ambiente` e as DUAS telas, F2 e F1, diziam que "
+          "o fabricante nao declara um lugar que ele declara em `ambientes_declarados`. So a "
+          "bateria de mutacao usa isto. ATENCAO DENTRO DA ATENCAO: isto NAO desliga a regra 3 nem "
+          "o balde — a elegibilidade, a matriz e as ancoras continuam com os dois, porque "
+          "desliga-los faria as nove celulas escritas a mao reprovar, que e justamente o portao "
+          "que a bateria quer medir separado da forma.")
+ancoras_ambiente_do_produto_rejunte = 0
+entradas_no_balde_do_produto_rejunte = 0
+estados_no_balde_do_produto_rejunte = 0
+rejuntes_que_delimitam_ambiente = 0
 ancoras_ambiente_do_produto = 0
 entradas_no_balde_do_produto = 0
 celulas_no_balde_do_produto = 0
@@ -2725,12 +2741,18 @@ def perfil_rejunte(m):
     onde = m.get("id")
     amb_ind, tess_ind = traduzir_rejunte(d.get("indicado_para"), onde)
     amb_delim, _ = traduzir_rejunte(d.get("ambientes_declarados"), onde)
+    # Os literais da delimitacao, inteiros e sem indice: a frase do balde da regra 3
+    # CITA o que o fabricante escreveu em `ambientes_declarados` (26.3), e sem eles a
+    # trava da citacao nao teria o que conferir.
+    lits_delim = sorted({l for l in (d.get("ambientes_declarados") or [])
+                         if normalizar(l) in MAPA_REJ})
     amb_resist, tess_resist = traduzir_rejunte(d.get("resistencias_declaradas"), onde)
     return {
         "junta_min": _num(m, "junta_min_mm"),
         "junta_max": _num(m, "junta_max_mm"),
         "ambientes_cobertos": amb_ind | amb_delim | amb_resist,
         "ambientes_delimitados": amb_delim,
+        "literais_delimitacao": lits_delim,
         "tesselas_declaradas": tess_ind | tess_resist,
         "nivel": min((f["nivel"] for f in (m.get("fontes") or {}).values()), default=9),
     }
@@ -2739,7 +2761,15 @@ def perfil_rejunte(m):
 def avaliar_rejunte(m, junta_mm, ambiente):
     """Devolve (situacao, score).
 
-    situacao: recomendado | ressalva | fora_da_junta | fora_do_ambiente
+    situacao: recomendado | ressalva | fora_da_junta | ambiente_do_produto |
+              ambiente_critico
+
+    AS DUAS ULTIMAS ERAM UMA SO (`fora_do_ambiente`) ate 07/10/2026, e e por isso
+    que esta regua nunca viu o defeito: ela media CONCORDANCIA com a matriz, e as
+    duas concordavam dizendo a mesma coisa errada. Regra 3 e regra 2 eliminam por
+    fatos diferentes — ele NOMEOU os lugares do produto e este nao esta entre eles
+    (3) contra ele ficou CALADO sobre um lugar critico (2) — e cada uma tem balde
+    e frase propria desde o esquema v16.
     """
     p = perfil_rejunte(m)
     # regra 1: as DUAS pontas da faixa precisam existir, e a junta tem que caber nelas.
@@ -2748,12 +2778,15 @@ def avaliar_rejunte(m, junta_mm, ambiente):
         return "fora_da_junta", 0
     if not (p["junta_min"] <= junta_mm <= p["junta_max"]):
         return "fora_da_junta", 0
-    # regra 3: quem delimita ambiente fica fechado nele
+    # regra 3: quem delimita ambiente fica fechado nele. Balde proprio desde a v16:
+    # ela nao mudou de lugar (continua depois da 1 e antes da 2), mudou para onde
+    # manda o produto. A ordem importa e esta medida: em 7 dos 8 estados que ela toca,
+    # a regra 2 tambem morderia o mesmo produto se chegasse a rodar.
     if p["ambientes_delimitados"] and ambiente not in p["ambientes_delimitados"]:
-        return "fora_do_ambiente", 0
+        return "ambiente_do_produto", 0
     # regra 2: ambiente critico exige declaracao explicita
     if ambiente in CRITICOS_REJ and ambiente not in p["ambientes_cobertos"]:
-        return "fora_do_ambiente", 0
+        return "ambiente_critico", 0
     score = 2 + (2 if ambiente in p["ambientes_cobertos"] else 0)
     # regra 4: nivel de fonte limita a recomendacao primaria
     if p["nivel"] > NIVEL_MAX:
@@ -2762,7 +2795,8 @@ def avaliar_rejunte(m, junta_mm, ambiente):
 
 
 def computar_celula_rejunte(junta_mm, ambiente):
-    recomendados, ressalva, fora_junta, fora_ambiente = {}, [], [], []
+    recomendados, ressalva, fora_junta = {}, [], []
+    amb_critico, amb_produto = [], []
     for ident, m in materiais.items():
         if m.get("status") != "ativo" or m.get("categoria") != "rejunte":
             continue
@@ -2773,8 +2807,10 @@ def computar_celula_rejunte(junta_mm, ambiente):
             ressalva.append(ident)
         elif situacao == "fora_da_junta":
             fora_junta.append(ident)
+        elif situacao == "ambiente_do_produto":
+            amb_produto.append(ident)
         else:
-            fora_ambiente.append(ident)
+            amb_critico.append(ident)
     topo, abaixo = [], []
     if recomendados:
         maior = max(recomendados.values())
@@ -2785,7 +2821,11 @@ def computar_celula_rejunte(junta_mm, ambiente):
         "elegiveis_abaixo_do_topo": abaixo,
         "mencionados_com_ressalva": sorted(ressalva),
         "eliminados_por_faixa_de_junta": sorted(fora_junta),
-        "eliminados_por_ambiente": sorted(fora_ambiente),
+        # `eliminados_por_ambiente_critico` chamava-se `eliminados_por_ambiente` ate
+        # 07/10/2026. Renomeado, nao apagado: com dois baldes de ambiente o nome velho
+        # descrevia os dois e distinguia nenhum.
+        "eliminados_por_ambiente_critico": sorted(amb_critico),
+        "eliminados_por_ambiente_do_produto": sorted(amb_produto),
     }
 
 
@@ -2820,7 +2860,8 @@ if rejuntes:
             erro("perfil %s / junta: esperado %s, computado %s"
                  % (ident, esperado["junta_mm"], obtido_junta))
         for campo, chave in (("ambientes_cobertos", "ambientes_cobertos"),
-                             ("ambientes_delimitados", "ambientes_delimitados")):
+                             ("ambientes_delimitados", "ambientes_delimitados"),
+                             ("literais_delimitacao", "literais_delimitacao")):
             if sorted(esperado[campo]) != sorted(p[chave]):
                 erro("perfil %s / %s: esperado %s, computado %s"
                      % (ident, campo, sorted(esperado[campo]), sorted(p[chave])))
@@ -2842,7 +2883,8 @@ if rejuntes:
         celulas_rejunte_conferidas += 1
         for campo in ("recomendados_topo", "elegiveis_abaixo_do_topo",
                       "mencionados_com_ressalva", "eliminados_por_faixa_de_junta",
-                      "eliminados_por_ambiente"):
+                      "eliminados_por_ambiente_critico",
+                      "eliminados_por_ambiente_do_produto"):
             if sorted(celula.get(campo, [])) != computado[campo]:
                 erro("matriz do rejunte %s mm x %s / %s: esperado %s, computado %s"
                      % (junta, ambiente, campo,
@@ -2851,7 +2893,8 @@ if rejuntes:
         vistos = (computado["recomendados_topo"] + computado["elegiveis_abaixo_do_topo"]
                   + computado["mencionados_com_ressalva"]
                   + computado["eliminados_por_faixa_de_junta"]
-                  + computado["eliminados_por_ambiente"])
+                  + computado["eliminados_por_ambiente_critico"]
+                  + computado["eliminados_por_ambiente_do_produto"])
         if sorted(vistos) != sorted(rejuntes):
             erro("matriz do rejunte %s mm x %s: a celula nao classifica todos os rejuntes "
                  "exatamente uma vez (%s)" % (junta, ambiente, vistos))
@@ -2874,6 +2917,282 @@ if rejuntes:
     if bordas and not any(j > max(bordas) for j in juntas_na_grade):
         erro("matriz do rejunte: a grade nao tem nenhum valor ACIMA da maior borda "
              "declarada (%s). Sem isso ninguem prova que a faixa fecha" % max(bordas))
+
+    # ---------------------------------------------------------------- O BALDE DA
+    # REGRA 3 DO REJUNTE (esquema v16, 07/10/2026). Irmao do da cola, e TUDO num
+    # lugar so DE PROPOSITO: a m01 da `mutacoes-ambiente-do-produto.py` achou, um dia
+    # antes, que a trava de forma do balde da cola tinha sido escrita no topo do
+    # arquivo (onde `materiais` ainda nao existe) e, ao mover a lista para baixo,
+    # ficou um `if` sem ninguem do outro lado — apagar o bloco do esquema nao
+    # reprovava nada. Aqui a forma, o banco, as contagens e as ancoras ficam juntos,
+    # dentro do `if rejuntes`, e nenhuma delas pode orfanar sozinha.
+    mamb_r = esquema.get("regras_do_balde_do_ambiente_do_produto_do_rejunte")
+    if SEM_PORTAO_AMBIENTE_DO_PRODUTO_REJUNTE:
+        mamb_r = None
+
+    # `ambientes_declarados` QUE NAO TRADUZ DESLIGA A REGRA 3 EM SILENCIO — ACHADO PELA
+    # m17 DA BATERIA, ANTES DO COMMIT. A mutacao dava `areas internas` ao epoxi para criar
+    # um SEGUNDO delimitador, e PASSOU: o literal nao esta no `mapa_de_termos_do_rejunte`,
+    # entao `ambientes_delimitados` ficou VAZIO, a regra 3 nao se aplicou, e tudo que saiu
+    # disso foi um `aviso`. O produto continua passando nos cinco ambientes com uma
+    # delimitacao escrita no registro que ninguem leu.
+    #
+    # E ESTA E A UNICA DECLARACAO DO BANCO EM QUE TERMO ILEGIVEL E PERIGOSO NA DIRECAO
+    # ERRADA. Em `indicado_para` e em `resistencias_declaradas` o termo que nao traduz
+    # ENCOLHE o produto: ele deixa de cobrir um ambiente e perde pontos, e aviso basta. Em
+    # `ambientes_declarados` ele ALARGA: perder a leitura da frase que FECHA o produto e o
+    # mesmo que nao ter a frase. Por isso aqui e erro, nao aviso.
+    for _ident, _m in sorted(rejuntes.items()):
+        if _m.get("status") != "ativo":
+            continue
+        for _lit in ((_m.get("declaracoes") or {}).get("ambientes_declarados") or []):
+            _k = normalizar(_lit)
+            if _k in NAO_TRADUZ_REJ:
+                erro("%s: `ambientes_declarados` traz um literal que o mapa manda NAO "
+                     "traduzir ('%s'). Em `indicado_para` isso e legitimo; aqui a frase que "
+                     "FECHA o produto fica ilegivel e a regra 3 nao se aplica — o produto "
+                     "passa nos cinco ambientes com uma delimitacao escrita que ninguem le"
+                     % (_ident, _lit[:60]))
+            elif _k not in MAPA_REJ:
+                erro("%s: `ambientes_declarados` traz '%s', que nao esta no "
+                     "`mapa_de_termos_do_rejunte`. Delimitacao que nao traduz nao delimita: "
+                     "a regra 3 fica DESLIGADA para este produto em silencio e ele continua "
+                     "elegivel nos cinco ambientes. Ou o termo entra no mapa, ou ele vai "
+                     "para `termos_que_nao_traduzem` com o motivo — calado, nao"
+                     % (_ident, _lit[:60]))
+
+    # A TRAVA DE AUSENCIA, e ela e a razao pela qual este bloco existe: perder a regra
+    # 3 do codigo nao tira produto nenhum — ela ALARGA o acrilico para os cinco
+    # ambientes, e a F2 passa a recomendar rejunte acrilico para peca em contato
+    # permanente com agua, que e piscina. Frase nao tem portao natural; este e o dela.
+    _delim_r = [i for i, m in sorted(rejuntes.items())
+                if m.get("status") == "ativo"
+                and ((m.get("declaracoes") or {}).get("ambientes_declarados") or [])]
+    if _delim_r and mamb_r is None and not SEM_PORTAO_AMBIENTE_DO_PRODUTO_REJUNTE:
+        erro("ha %d rejunte(s) com `ambientes_declarados` e o esquema nao tem "
+             "`regras_do_balde_do_ambiente_do_produto_do_rejunte`. A regra 3 os elimina e, "
+             "sem este bloco, ninguem escreveu PARA ONDE eles vao nem O QUE as duas telas "
+             "dizem — e o balde da regra 2 os aceita calados, dizendo que o fabricante nao "
+             "declara um lugar que ele escreve em `ambientes_declarados`" % len(_delim_r))
+
+    if mamb_r is not None:
+        # (0) A FORMA: a regra 3 tem de ser dicionario e nomear ESTE balde, e a 2 tem de
+        #     nomear o dela. Bloco de travas sem a regra e campo que ninguem le.
+        _r3r = REJ.get("3_ambiente_declarado_DELIMITA")
+        if not isinstance(_r3r, dict):
+            erro("`regras_do_balde_do_ambiente_do_produto_do_rejunte` existe e a regra 3 do "
+                 "rejunte ainda e prosa solta em `regras_de_elegibilidade_do_rejunte`")
+        elif _r3r.get("o_balde") != "eliminados_por_ambiente_do_produto":
+            erro("a regra 3 do rejunte nomeia o balde '%s' e a regua escreve "
+                 "`eliminados_por_ambiente_do_produto`" % _r3r.get("o_balde"))
+        elif not _r3r.get("e_ela_NAO_SE_JUNTA_a_regra_2"):
+            erro("a regra 3 do rejunte sem `e_ela_NAO_SE_JUNTA_a_regra_2`. Os dois baldes sao "
+                 "vizinhos e falam os dois de ambiente: a proxima execucao os junta se "
+                 "ninguem escrever por que eles sao dois")
+        _r2r = REJ.get("2_ambiente_critico_exige_declaracao_EXPLICITA") or {}
+        if _r2r.get("o_balde") != "eliminados_por_ambiente_critico":
+            erro("a regra 2 do rejunte nomeia o balde '%s' e a regua escreve "
+                 "`eliminados_por_ambiente_critico`. Com dois baldes de ambiente, regra que "
+                 "nao nomeia o seu aprova o balde errado" % _r2r.get("o_balde"))
+        if not mamb_r.get("regra_da_direcao"):
+            erro("balde do ambiente do produto do rejunte: sem `regra_da_direcao`")
+        _tela_r = mamb_r.get("o_que_as_TELAS_tem_de_dizer") or {}
+        for _campo in ("sao_DUAS_telas_e_nao_uma", "secao_propria_na_F2", "secao_propria_na_F1",
+                       "cita_o_literal", "nao_diz_que_ele_nao_declara_o_lugar"):
+            if not _tela_r.get(_campo):
+                erro("balde do ambiente do produto do rejunte / "
+                     "`o_que_as_TELAS_tem_de_dizer` sem `%s`. A regra que nasceu por causa da "
+                     "FRASE tem de escrever a frase, e aqui sao DUAS telas" % _campo)
+
+        # (1) a lista COMPLETA dos rejuntes que delimitam ambiente, recomputada do banco.
+        computados_r, escritos_r = [], []
+        for ident, m in sorted(rejuntes.items()):
+            if m.get("status") != "ativo":
+                continue
+            p_ = perfil_rejunte(m)
+            if p_["ambientes_delimitados"]:
+                computados_r.append((ident, sorted(p_["ambientes_delimitados"]),
+                                     [p_["junta_min"], p_["junta_max"]]))
+        for linha in mamb_r.get("produtos_que_delimitam_ambiente_hoje") or []:
+            if not isinstance(linha, dict):
+                erro("balde do ambiente do produto do rejunte: linha que nao e objeto")
+                continue
+            escritos_r.append((linha.get("produto"), sorted(linha.get("vale_so_em") or []),
+                               list(linha.get("faixa_de_junta_mm") or [])))
+            # A FRASE TEM DE EXISTIR NO REGISTRO, e e ela que as duas telas citam (26.3).
+            reg = rejuntes.get(linha.get("produto")) or {}
+            declaradas = (reg.get("declaracoes") or {}).get("ambientes_declarados") or []
+            if not linha.get("literais"):
+                erro("balde do ambiente do produto do rejunte / %s: sem `literais`. As duas "
+                     "telas citam o literal do fabricante, e tabela sem ele e a nossa leitura "
+                     "disfarcada de declaracao dele" % linha.get("produto"))
+            for lit in linha.get("literais") or []:
+                if lit not in declaradas:
+                    erro("balde do ambiente do produto do rejunte / %s: a frase citada nao "
+                         "esta em `declaracoes.ambientes_declarados` do registro: '%s'"
+                         % (linha.get("produto"), lit[:60]))
+        if sorted(computados_r) != sorted(escritos_r):
+            erro("balde do ambiente do produto do rejunte / "
+                 "`produtos_que_delimitam_ambiente_hoje`: escrito %s, computado %s"
+                 % (sorted(escritos_r) or "[]", sorted(computados_r) or "[]"))
+        rejuntes_que_delimitam_ambiente = len(computados_r)
+
+        # (2) AS CONTAGENS, varridas nos 60 estados (12 folgas x 5 lugares), que e a grade
+        #     que a propria F2 oferece no seletor. Mede a REGRA e nao a forma — e era aqui
+        #     que o bloco da cola confundiu entradas com celulas em 06/10.
+        entradas_r, estados_r, ambos_r = {}, set(), set()
+        for j_ in range(1, 13):
+            for a_ in sorted(AMBIENTES):
+                c_ = computar_celula_rejunte(j_, a_)
+                for ident in c_["eliminados_por_ambiente_do_produto"]:
+                    entradas_r[ident] = entradas_r.get(ident, 0) + 1
+                    estados_r.add((j_, a_))
+                if c_["eliminados_por_ambiente_do_produto"] and c_["eliminados_por_ambiente_critico"]:
+                    ambos_r.add((j_, a_))
+        for linha in mamb_r.get("produtos_que_delimitam_ambiente_hoje") or []:
+            if not isinstance(linha, dict):
+                continue
+            esperado = linha.get("entradas_no_balde")
+            obtido = entradas_r.get(linha.get("produto"), 0)
+            if esperado != obtido:
+                erro("balde do ambiente do produto do rejunte / %s: `entradas_no_balde` diz "
+                     "%s e a varredura dos 60 estados conta %s"
+                     % (linha.get("produto"), esperado, obtido))
+        if mamb_r.get("total_de_entradas_hoje") != sum(entradas_r.values()):
+            erro("balde do ambiente do produto do rejunte: `total_de_entradas_hoje` diz %s e "
+                 "a varredura conta %s"
+                 % (mamb_r.get("total_de_entradas_hoje"), sum(entradas_r.values())))
+        if mamb_r.get("total_de_estados_tocados_hoje") != len(estados_r):
+            erro("balde do ambiente do produto do rejunte: `total_de_estados_tocados_hoje` "
+                 "diz %s e a varredura conta %s estados distintos"
+                 % (mamb_r.get("total_de_estados_tocados_hoje"), len(estados_r)))
+        if not mamb_r.get("por_que_8_e_8_e_nao_8_e_menos"):
+            erro("balde do ambiente do produto do rejunte: sem "
+                 "`por_que_8_e_8_e_nao_8_e_menos`. Hoje as duas contagens coincidem por haver "
+                 "UM produto, e coincidencia sem explicacao vira regra na leitura seguinte")
+        if not mamb_r.get("os_7_estados_que_carregam_as_DUAS_causas"):
+            erro("balde do ambiente do produto do rejunte: sem "
+                 "`os_7_estados_que_carregam_as_DUAS_causas`")
+        entradas_no_balde_do_produto_rejunte = sum(entradas_r.values())
+        estados_no_balde_do_produto_rejunte = len(estados_r)
+
+        # (3) as ancoras ponta a ponta, escritas A MAO e recomputadas aqui.
+        for a in mamb_r.get("ancoras_ponta_a_ponta") or []:
+            if a.get("ambiente") not in AMBIENTES:
+                erro("ancora do ambiente do produto do rejunte: ambiente '%s' fora do "
+                     "vocabulario" % a.get("ambiente"))
+                continue
+            c = computar_celula_rejunte(a["junta_mm"], a["ambiente"])
+            ancoras_ambiente_do_produto_rejunte += 1
+            # OS BALDES VIZINHOS NA MESMA ANCORA, e e de proposito: conferir so o balde novo
+            # deixaria passar a implementacao que o enche ROUBANDO do da regra 2 ou do da
+            # faixa de junta. A ancora anti-fusao de 5 mm e exatamente esse caso.
+            for campo in ("eliminados_por_ambiente_do_produto", "eliminados_por_ambiente_critico",
+                          "eliminados_por_faixa_de_junta", "recomendados_topo"):
+                if campo not in a:
+                    continue
+                if sorted(a.get(campo, [])) != c[campo]:
+                    erro("ancora do ambiente do produto do rejunte %s mm x %s / %s: esperado "
+                         "%s, computado %s" % (a["junta_mm"], a["ambiente"], campo,
+                                               sorted(a.get(campo, [])) or "[]", c[campo] or "[]"))
+            if not a.get("por_que"):
+                erro("ancora do ambiente do produto do rejunte %s mm x %s: sem `por_que` "
+                     "escrito" % (a["junta_mm"], a["ambiente"]))
+
+        # (4) ANCORA DOS DOIS LADOS. Cinco que todas caem deixariam passar uma regra 3 que
+        #     tira o acrilico do ambiente que o fabricante DECLARA; cinco que todas passam
+        #     deixariam passar o balde desligado.
+        ancoras_r = mamb_r.get("ancoras_ponta_a_ponta") or []
+        if ancoras_r:
+            caem = [a for a in ancoras_r if a.get("eliminados_por_ambiente_do_produto")]
+            if not caem:
+                erro("balde do ambiente do produto do rejunte: nenhuma ancora em que a regra "
+                     "3 MORDE. Tabela de um lado so nao mede regra nenhuma")
+            if len(caem) == len(ancoras_r):
+                erro("balde do ambiente do produto do rejunte: TODAS as ancoras mordem. Falta "
+                     "a que passa, e e ela que impede a regra 3 de tirar o produto do "
+                     "ambiente que o fabricante declara")
+            # E "A QUE PASSA" E A QUE O TEM NO TOPO, NAO A QUE SO NAO O TEM NO BALDE —
+            # MEDIDO PELA m15 DA BATERIA, ANTES DO COMMIT. A trava acima nasceu contando
+            # ancora com o balde vazio, e com ela a ancora anti-fusao de 5 mm ja satisfazia
+            # "a que passa": ali o balde esta vazio mesmo, porque o produto saiu pela FOLGA.
+            # Apagar a unica ancora em que o acrilico aparece RECOMENDADO deixava a tabela
+            # verde — e com ela uma regra 3 que tirasse o produto dos tres ambientes que o
+            # fabricante declara. Balde vazio nao e prova de que a regra deixa passar: e
+            # prova de que ela nao morde ali, e as duas coisas se separam exatamente no
+            # produto que outra regra ja tirou.
+            delimitadores = {l.get("produto") for l in
+                             (mamb_r.get("produtos_que_delimitam_ambiente_hoje") or [])
+                             if isinstance(l, dict)}
+            if delimitadores and not any(
+                    delimitadores & set(a.get("recomendados_topo") or []) for a in ancoras_r):
+                erro("balde do ambiente do produto do rejunte: nenhuma ancora com um dos "
+                     "produtos que delimitam ambiente em `recomendados_topo`. Ancora de balde "
+                     "vazio nao prova que a regra deixa passar — prova que ela nao morde ali, "
+                     "e o produto pode estar fora por OUTRA regra. Sem esta, uma regra 3 que "
+                     "tirasse o produto dos ambientes que o fabricante DECLARA fica verde")
+            # A ANCORA SEM A OUTRA CAUSA, e ela e propria desta regra: em 7 dos 8 estados a
+            # regra 2 tambem morde, e ali a frase errada se esconde atras da certa. E
+            # preciso pelo menos um estado em que o balde da 2 esteja VAZIO e o da 3 cheio.
+            if not any(a.get("eliminados_por_ambiente_do_produto")
+                       and not a.get("eliminados_por_ambiente_critico")
+                       for a in ancoras_r):
+                erro("balde do ambiente do produto do rejunte: nenhuma ancora com o balde da "
+                     "regra 3 cheio e o da regra 2 VAZIO. Em 7 dos 8 estados as duas causas "
+                     "saem juntas, e a frase errada so se mede onde ela nao tem onde se "
+                     "esconder")
+            # E PELO MENOS UMA ANCORA TEM DE MEDIR A FAIXA DE JUNTA AO LADO: a fusao mais
+            # provavel desta regra nao e com o silencio, e com a regra 1 — quem implementar
+            # "produto que delimita ambiente e nao cobre o lugar vai para o balde novo" poe
+            # no balde quem nem cabe na folga.
+            if not any(a.get("eliminados_por_faixa_de_junta")
+                       and not a.get("eliminados_por_ambiente_do_produto") for a in ancoras_r):
+                erro("balde do ambiente do produto do rejunte: nenhuma ancora em que o "
+                     "produto que delimita ambiente sai pela FAIXA DE JUNTA e o balde novo "
+                     "fica vazio. Sem ela a regua nao distingue a regra 3 da regra 1 rodando "
+                     "antes dela")
+
+        # (5) A INVARIANTE QUE E A PROPRIA REGRA, varrida nos 60 estados: rejunte no balde
+        #     novo tem de ter `ambientes_declarados` que traduz, ter literal para citar, e
+        #     caber na folga. As tres juntas sao a frase da tela escrita como condicao.
+        for j_ in range(1, 13):
+            for a_ in sorted(AMBIENTES):
+                c_ = computar_celula_rejunte(j_, a_)
+                for ident in c_["eliminados_por_ambiente_do_produto"]:
+                    p_ = perfil_rejunte(rejuntes[ident])
+                    if not p_["ambientes_delimitados"]:
+                        erro("%s mm x %s: '%s' esta no balde do ambiente do produto e nao tem "
+                             "`ambientes_declarados` que traduza. A tela vai dizer que ele "
+                             "fechou o produto em outros lugares sem ele ter dito onde"
+                             % (j_, a_, ident))
+                    if not p_["literais_delimitacao"]:
+                        erro("%s mm x %s: '%s' esta no balde do ambiente do produto sem "
+                             "literal para citar (26.3)" % (j_, a_, ident))
+                    if a_ in p_["ambientes_delimitados"]:
+                        erro("%s mm x %s: '%s' esta no balde do ambiente do produto E declara "
+                             "este ambiente. A regra 3 virou ao contrario" % (j_, a_, ident))
+                    if p_["junta_min"] is None or p_["junta_max"] is None \
+                            or not (p_["junta_min"] <= j_ <= p_["junta_max"]):
+                        erro("%s mm x %s: '%s' esta no balde do ambiente do produto e NAO "
+                             "cabe na folga. A regra 1 roda antes da 3 e quem ela pega sai "
+                             "por ela" % (j_, a_, ident))
+                # E O LADO DE LA DA MESMA INVARIANTE: rejunte que delimita ambiente, cabe na
+                # folga e NAO declara este lugar tem de estar no balde novo — nunca no da
+                # regra 2 nem recomendado. E esta metade que pega a regra 3 apagada.
+                for ident, m in sorted(rejuntes.items()):
+                    if m.get("status") != "ativo":
+                        continue
+                    p_ = perfil_rejunte(m)
+                    if not p_["ambientes_delimitados"] or a_ in p_["ambientes_delimitados"]:
+                        continue
+                    if p_["junta_min"] is None or p_["junta_max"] is None \
+                            or not (p_["junta_min"] <= j_ <= p_["junta_max"]):
+                        continue
+                    if ident not in c_["eliminados_por_ambiente_do_produto"]:
+                        erro("%s mm x %s: '%s' delimita ambiente, cabe na folga e NAO declara "
+                             "este lugar, e nao esta no balde do ambiente do produto. A regra "
+                             "3 esta desligada ou mandando o produto para o balde errado"
+                             % (j_, a_, ident))
 
     # regressao do defeito que este bloco corrigiu: rejunte nunca entra na matriz da F2
     for celula in matriz:
@@ -3307,6 +3626,10 @@ print("  balde do ambiente do produto . %d entrada(s) em %d celula(s), %d produt
       "delimitam  (%d ancoras ponta a ponta)"
       % (entradas_no_balde_do_produto, celulas_no_balde_do_produto,
          produtos_que_delimitam_ambiente, ancoras_ambiente_do_produto))
+print("  balde do ambiente do produto do rejunte . %d entrada(s) em %d estado(s) dos 60, %d "
+      "rejunte(s) que delimitam  (%d ancoras ponta a ponta)"
+      % (entradas_no_balde_do_produto_rejunte, estados_no_balde_do_produto_rejunte,
+         rejuntes_que_delimitam_ambiente, ancoras_ambiente_do_produto_rejunte))
 print("  itens esperando link ....... %d" % esperando_link)
 print("  itens SEM SAIDA de compra .. %d  (secao 7 — tem de ser 0)" % sem_saida)
 print("  piso NAO rastreavel ........ %d  (25.6 — divida de comissao, nao defeito)" % piso_nao_rastreavel)

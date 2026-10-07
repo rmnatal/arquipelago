@@ -134,7 +134,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.11.0' );
+	define( 'CDM_F2_VERSAO', '1.12.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -875,6 +875,22 @@ function cdm_f2_perfil_rejunte( $m ) {
 		}
 	}
 
+	/* OS LITERAIS DA DELIMITACAO, SEPARADOS DOS DE COBERTURA (REGRA 3 DO REJUNTE,
+	   esquema v16). Eles ja estavam dentro de `literais`, misturados com os de
+	   `indicado_para` e de `resistencias_declaradas` e indexados pelo ALVO da
+	   traducao — e a frase do balde novo precisa citar o que o fabricante escreveu
+	   em `ambientes_declarados`, inteiro e sem indice. Citar a frase errada ali
+	   seria a nossa leitura na boca dele (26.3), que e o defeito que este bloco
+	   conserta virado ao contrario. */
+	$literais_delimitacao = array();
+	foreach ( $delim['literais'] as $alvo => $ls ) {
+		foreach ( $ls as $l ) {
+			$literais_delimitacao[ $l ] = true;
+		}
+	}
+	$literais_delimitacao = array_keys( $literais_delimitacao );
+	sort( $literais_delimitacao );
+
 	$cache[ $id ] = array(
 		'junta_min'             => cdm_f2_prop( $m, 'junta_min_mm' ),
 		'junta_max'             => cdm_f2_prop( $m, 'junta_max_mm' ),
@@ -882,6 +898,7 @@ function cdm_f2_perfil_rejunte( $m ) {
 		'ambientes_delimitados' => $delim['ambiente'],
 		'tesselas_declaradas'   => $ind['tessela'] + $resist['tessela'],
 		'literais'              => $literais,
+		'literais_delimitacao'  => $literais_delimitacao,
 		'nivel'                 => cdm_f2_nivel( $m ),
 	);
 
@@ -901,7 +918,18 @@ function cdm_f2_criticos_rejunte() {
 }
 
 if ( ! function_exists( 'cdm_f2_avaliar_rejunte' ) ) {
-/** Situação: recomendado | ressalva | fora_da_junta | fora_do_ambiente. */
+/**
+ * Situação: recomendado | ressalva | fora_da_junta | ambiente_do_produto |
+ * ambiente_critico.
+ *
+ * AS DUAS ULTIMAS ERAM UMA SO ATE 07/10/2026 (`fora_do_ambiente`), e era isso
+ * que fazia a tela servir UMA frase sobre DUAS causas. Medido nos 60 estados:
+ * a regra 2 punha ali 59 entradas em 28 estados, com a frase certa — produtos
+ * que de fato nao nomeiam o lugar critico; a regra 3 punha 8 entradas em 8
+ * estados, com a frase ERRADA, todas no rejunte acrilico, que escreve
+ * `areas internas e externas` e e justamente essa frase que o fecha. E 7 dos 8
+ * estados carregam as duas causas no mesmo paragrafo.
+ */
 function cdm_f2_avaliar_rejunte( $m, $junta_mm, $ambiente ) {
 	$p = cdm_f2_perfil_rejunte( $m );
 
@@ -915,14 +943,22 @@ function cdm_f2_avaliar_rejunte( $m, $junta_mm, $ambiente ) {
 	if ( $junta_mm < $p['junta_min'] || $junta_mm > $p['junta_max'] ) {
 		return array( 'fora_da_junta', 0 );
 	}
-	/* 3 — quem delimita ambiente fica fechado nele. */
+	/* 3 — quem delimita ambiente fica fechado nele. E ELA TEM BALDE PROPRIO DESDE
+	   07/10/2026 (esquema v16): ela nao mudou de lugar — continua depois da 1 e antes
+	   da 2 — e mudou para onde manda o produto. Devolver `fora_do_ambiente` aqui fazia
+	   as duas telas dizerem que o fabricante NAO DECLARA este lugar sobre quem o
+	   declara, e declara numa frase que esta gravada desde 10/09/2026. O que ele fez
+	   foi NOMEAR os lugares do produto, e este nao esta entre eles — outro fato, outra
+	   frase. A ordem importa e esta medida: em 7 dos 8 estados a regra 2 tambem
+	   morderia o acrilico se chegasse a rodar, e quem tem de ganhar e a 3, porque
+	   declaracao e mais precisa que silencio. */
 	if ( $p['ambientes_delimitados'] && ! isset( $p['ambientes_delimitados'][ $ambiente ] ) ) {
-		return array( 'fora_do_ambiente', 0 );
+		return array( 'ambiente_do_produto', 0 );
 	}
 	/* 2 — ambiente crítico exige declaração explícita. */
 	$criticos = cdm_f2_criticos_rejunte();
 	if ( isset( $criticos[ $ambiente ] ) && ! isset( $p['ambientes_cobertos'][ $ambiente ] ) ) {
-		return array( 'fora_do_ambiente', 0 );
+		return array( 'ambiente_critico', 0 );
 	}
 
 	$score = 2 + ( isset( $p['ambientes_cobertos'][ $ambiente ] ) ? 2 : 0 );
@@ -942,7 +978,8 @@ function cdm_f2_celula_rejunte( $junta_mm, $ambiente ) {
 	$recomendados = array();
 	$ressalva     = array();
 	$fora_junta   = array();
-	$fora_amb     = array();
+	$amb_critico  = array();
+	$amb_produto  = array();
 
 	foreach ( $banco['materiais'] as $id => $m ) {
 		if ( 'rejunte' !== ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
@@ -955,8 +992,10 @@ function cdm_f2_celula_rejunte( $junta_mm, $ambiente ) {
 			$ressalva[] = $id;
 		} elseif ( 'fora_da_junta' === $situacao ) {
 			$fora_junta[] = $id;
+		} elseif ( 'ambiente_do_produto' === $situacao ) {
+			$amb_produto[] = $id;
 		} else {
-			$fora_amb[] = $id;
+			$amb_critico[] = $id;
 		}
 	}
 
@@ -976,14 +1015,22 @@ function cdm_f2_celula_rejunte( $junta_mm, $ambiente ) {
 	sort( $abaixo );
 	sort( $ressalva );
 	sort( $fora_junta );
-	sort( $fora_amb );
+	sort( $amb_critico );
+	sort( $amb_produto );
 
+	/* `eliminados_por_ambiente_critico` CHAMAVA-SE `eliminados_por_ambiente` ate
+	   07/10/2026, e o nome ficou falso no instante em que passou a existir um segundo
+	   balde de ambiente: as duas causas sao "por ambiente", e um nome que descreve as
+	   duas nao distingue nenhuma. Renomeado, nao apagado — quem procurar o nome velho
+	   neste repositorio esta lendo historia. A cola nao precisou disto porque la o
+	   balde da regra 2 ja se chamava `eliminados_por_silencio`, que e preciso. */
 	return array(
 		'recomendados_topo'           => $topo,
 		'elegiveis_abaixo_do_topo'    => $abaixo,
 		'mencionados_com_ressalva'    => $ressalva,
 		'eliminados_por_faixa_de_junta' => $fora_junta,
-		'eliminados_por_ambiente'     => $fora_amb,
+		'eliminados_por_ambiente_critico'   => $amb_critico,
+		'eliminados_por_ambiente_do_produto' => $amb_produto,
 	);
 }
 }
@@ -2069,9 +2116,41 @@ function cdm_f2_resposta_rejunte_html( $junta, $ambiente, $tessela ) {
 		}
 		$html .= '<p class="cdm-f2-silencio">Fora por causa da folga: ' . implode( '; ', $linhas ) . '.</p>';
 	}
-	if ( $celula['eliminados_por_ambiente'] ) {
+	if ( $celula['eliminados_por_ambiente_critico'] ) {
 		$html .= '<p class="cdm-f2-silencio">Fora porque o fabricante não declara este lugar: '
-			. esc_html( cdm_f2_lista_humana( cdm_f2_rejunte_nomes( $celula['eliminados_por_ambiente'] ) ) ) . '.</p>';
+			. esc_html( cdm_f2_lista_humana( cdm_f2_rejunte_nomes( $celula['eliminados_por_ambiente_critico'] ) ) ) . '.</p>';
+	}
+
+	/* O GRUPO DA REGRA 3 DO REJUNTE — a sexta causa desta tela, e a unica que estava
+	   sendo servida com a frase de OUTRA. Ate 07/10/2026 ela caia no paragrafo de cima,
+	   que diz "o fabricante nao declara este lugar", e o fabricante declara: o acrilico
+	   escreve `areas internas e externas` em `ambientes_declarados` desde 10/09/2026, e
+	   e justamente essa frase que o fecha. Eram 8 entradas em 8 dos 60 estados, e 7
+	   delas dividiam o paragrafo com a causa certa, sem o leitor poder saber qual frase
+	   valia para qual produto.
+	   NAO SE JUNTA A REGRA 2, embora as duas falem de ambiente: ali o fabricante ficou
+	   CALADO sobre um lugar perigoso; aqui ele NOMEOU os lugares do produto e este nao
+	   esta entre eles. Duas frases para dois fatos — junta-las e a mistura de causas que
+	   a secao 7 do contrato proibe desde 12/09/2026, escrita nesta mesma ilha.
+	   A TELA CITA `ambientes_declarados` E NAO O NOSSO VOCABULARIO: quem traduziu "areas
+	   internas e externas" para `interno_seco`, `interno_molhado` e `externo_abrigado`
+	   fomos nos (26.3, quinta aplicacao). */
+	if ( $celula['eliminados_por_ambiente_do_produto'] ) {
+		foreach ( $celula['eliminados_por_ambiente_do_produto'] as $id ) {
+			$m    = $banco['materiais'][ $id ];
+			$p    = cdm_f2_perfil_rejunte( $m );
+			$lits = $p['literais_delimitacao'];
+			$html .= '<p class="cdm-f2-rejunte-ambiente-do-produto"><strong>'
+				. esc_html( cdm_f2_nome( $id ) ) . '</strong> — cabe nessa folga, e a '
+				. esc_html( $m['fabricante'] )
+				. ' fechou o produto inteiro em outros lugares';
+			if ( $lits ) {
+				$html .= ': ela escreve <em>' . esc_html( cdm_f2_lista_humana( $lits ) ) . '</em>';
+			}
+			$html .= '. Então ele fica de fora deste caso — não porque ela tenha ficado calada '
+				. 'sobre o lugar, e a diferença importa: ela disse onde o produto pode ir, e '
+				. 'este não está na lista.</p>';
+		}
 	}
 	if ( $celula['mencionados_com_ressalva'] ) {
 		/* O QUINTO ESTADO, que não era impresso em lugar nenhum até 12/09/2026.
@@ -2565,8 +2644,16 @@ function cdm_f2_tabela_rejunte_html() {
 		if ( $t_folga ) {
 			$fora[] = count( $t_folga ) . ' por causa da folga';
 		}
-		if ( $celula['eliminados_por_ambiente'] ) {
-			$fora[] = count( $celula['eliminados_por_ambiente'] ) . ' porque o fabricante não declara este lugar';
+		if ( $celula['eliminados_por_ambiente_critico'] ) {
+			$fora[] = count( $celula['eliminados_por_ambiente_critico'] ) . ' porque o fabricante não declara este lugar';
+		}
+		/* O SEXTO GRUPO DO RESUMO, e ele tinha de entrar aqui JUNTO com o paragrafo:
+		   a soma deste resumo fecha o banco inteiro em toda combinacao de folga x
+		   lugar, e e essa soma que o portao cobra. Balde novo que nao entrasse no
+		   resumo faria a conta faltar 1 nos 8 estados da regra 3 — e a prestacao de
+		   contas acusaria o conserto como se fosse o defeito. */
+		if ( $celula['eliminados_por_ambiente_do_produto'] ) {
+			$fora[] = count( $celula['eliminados_por_ambiente_do_produto'] ) . ' porque o fabricante fechou o produto em outros lugares';
 		}
 		if ( $celula['mencionados_com_ressalva'] ) {
 			$fora[] = count( $celula['mencionados_com_ressalva'] ) . ' porque a fonte é material de imprensa';

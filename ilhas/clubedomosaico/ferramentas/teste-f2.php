@@ -895,7 +895,8 @@ foreach ( $esquema['matriz_esperada_do_rejunte']['celulas'] as $c ) {
 		$vitrine_r = f2_texto( $mv[1] );
 	}
 	$recomendaveis = array_merge( $c['recomendados_topo'], $c['elegiveis_abaixo_do_topo'] );
-	foreach ( array_merge( $c['eliminados_por_ambiente'], $c['eliminados_por_faixa_de_junta'] ) as $id ) {
+	foreach ( array_merge( $c['eliminados_por_ambiente_critico'], $c['eliminados_por_ambiente_do_produto'],
+			$c['eliminados_por_faixa_de_junta'] ) as $id ) {
 		$nome = f2_nome_esperado( $por_id[ $id ] );
 		if ( false !== mb_strpos( $frase, $nome ) ) {
 			$erros_matriz_r[] = $c['junta_mm'] . 'mm x ' . $c['ambiente'] . ': "' . $nome . '" esta na frase e era para estar fora';
@@ -944,6 +945,109 @@ f2_ok( empty( $erros_matriz_r ), 'a tela do rejunte diz o que a matriz escrita a
  * em nenhum dos 60 estados, e (b) ele APARECE na lista do que ficou de fora,
  * com a frase que declara a faixa nao obtida — prova de que o render leu o
  * registro em vez de descarta-lo antes da conta. */
+/* AS DUAS CAUSAS DE AMBIENTE DO REJUNTE, VARRIDAS NOS 60 ESTADOS E NAS DUAS
+ * DIRECOES (esquema v16, 07/10/2026).
+ *
+ * O DEFEITO QUE ESTA REGUA EXISTE PARA GUARDAR nao mudava numero nenhum: o balde
+ * `eliminados_por_ambiente` carregava a regra 2 (o lugar e critico e o fabricante nao
+ * o nomeia) e a regra 3 (ele NOMEOU os lugares do produto e este nao esta entre eles)
+ * sob a frase da primeira. Pela regra 2 a frase estava certa — 59 entradas em 28
+ * estados; pela regra 3 estava ERRADA — 8 entradas em 8 estados, todas no acrilico,
+ * que escreve `areas internas e externas`. A elegibilidade era identica nos 60 estados
+ * antes e depois, e e por isso que nenhuma regua desta ilha o viu: todas mediam
+ * CONCORDANCIA entre a matriz e a tela, e as duas concordavam dizendo a mesma coisa
+ * errada desde 10/09/2026.
+ *
+ * ENTAO ESTA REGUA NAO COMPARA LISTAS, COMPARA FRASES, e nas duas direcoes — a licao
+ * da t05 da bateria da cola, medida um dia antes: a secao 10 dela media PRESENCA dos
+ * tres marcadores, e trocar a frase do balde da regra 3 pela da regra 8 palavra por
+ * palavra passou com a bancada VERDE. Presenca nao mede troca. Aqui:
+ *   (a) quem esta no balde da regra 3 TEM de ser nomeado no paragrafo da regra 3;
+ *   (b) quem esta no balde da regra 3 NAO pode ser nomeado na linha da regra 2;
+ *   (c) quem esta no balde da regra 2 TEM de estar na linha da regra 2;
+ *   (d) quem esta no balde da regra 2 NAO pode ser nomeado no paragrafo da regra 3;
+ *   (e) paragrafo da regra 3 que exista sem ninguem no balde e frase sem dono;
+ *   (f) e o paragrafo da regra 3 nunca carrega a palavra do silencio da regra 2. */
+$r3_erros = array();
+$r3_estados = $r3_com_balde = 0;
+$r3_marcador = 'fechou o produto inteiro em outros lugares';
+$r2_marcador = 'Fora porque o fabricante não declara este lugar';
+foreach ( $ambientes as $ambiente ) {
+	for ( $junta = 1; $junta <= 12; $junta++ ) {
+		$cel   = cdm_f2_celula_rejunte( $junta, $ambiente );
+		$corpo = f2_corpo( f2_render( $raiz, 'base=ceramica_esmaltada_porcelana&onde=' . $ambiente . '&junta=' . $junta ) );
+		$onde  = $junta . 'mm x ' . $ambiente;
+		$r3_estados++;
+
+		preg_match_all( '#<p class="cdm-f2-rejunte-ambiente-do-produto">(.*?)</p>#is', $corpo, $mp3 );
+		$par3 = f2_texto( implode( ' ', $mp3[1] ) );
+		preg_match_all( '#<p class="cdm-f2-silencio">(Fora porque o fabricante não declara este lugar.*?)</p>#is', $corpo, $mp2 );
+		$lin2 = f2_texto( implode( ' ', $mp2[1] ) );
+
+		if ( $cel['eliminados_por_ambiente_do_produto'] ) {
+			$r3_com_balde++;
+			if ( '' === $par3 ) {
+				$r3_erros[] = "$onde: ha produto no balde da regra 3 e o paragrafo dela nao saiu";
+			}
+			if ( false === mb_strpos( $par3, $r3_marcador ) ) {
+				$r3_erros[] = "$onde: o paragrafo da regra 3 saiu sem a frase que so ela serve";
+			}
+		} elseif ( '' !== $par3 ) {
+			$r3_erros[] = "$onde: o paragrafo da regra 3 saiu sem ninguem no balde — frase sem dono";
+		}
+		/* A PALAVRA DO SILENCIO NAO ENTRA NO PARAGRAFO DA REGRA 3. E a trava da troca
+		   de frase: o paragrafo poderia existir, com a classe certa, servindo a frase
+		   da regra 2 — e uma regua de presenca de classe aprovaria. */
+		if ( '' !== $par3 && false !== mb_strpos( $par3, 'não declara este lugar' ) ) {
+			$r3_erros[] = "$onde: o paragrafo da regra 3 diz que o fabricante nao declara o lugar — e a frase da regra 2";
+		}
+		foreach ( $cel['eliminados_por_ambiente_do_produto'] as $id ) {
+			$nome = f2_nome_esperado( $por_id[ $id ] );
+			if ( false === mb_strpos( $par3, $nome ) ) {
+				$r3_erros[] = "$onde: \"$nome\" esta no balde da regra 3 e nao e nomeado no paragrafo dela";
+			}
+			if ( '' !== $lin2 && false !== mb_strpos( $lin2 , $nome ) ) {
+				$r3_erros[] = "$onde: \"$nome\" cai pela regra 3 e esta na linha da regra 2";
+			}
+		}
+		foreach ( $cel['eliminados_por_ambiente_critico'] as $id ) {
+			$nome = f2_nome_esperado( $por_id[ $id ] );
+			if ( false === mb_strpos( $lin2, $nome ) ) {
+				$r3_erros[] = "$onde: \"$nome\" esta no balde da regra 2 e nao e nomeado na linha dela";
+			}
+			if ( '' !== $par3 && false !== mb_strpos( $par3, $nome ) ) {
+				$r3_erros[] = "$onde: \"$nome\" cai pela regra 2 e esta no paragrafo da regra 3";
+			}
+		}
+		/* A CITACAO, pela 26.3: o paragrafo cita o literal de `ambientes_declarados`,
+		   nunca o nosso valor de `vocabularios.ambiente`. */
+		foreach ( $cel['eliminados_por_ambiente_do_produto'] as $id ) {
+			$p = cdm_f2_perfil_rejunte( $banco['materiais'][ $id ] );
+			foreach ( $p['literais_delimitacao'] as $lit ) {
+				if ( false === mb_strpos( $par3, $lit ) ) {
+					$r3_erros[] = "$onde: o paragrafo da regra 3 nao cita o literal do fabricante (\"$lit\")";
+				}
+			}
+			foreach ( array( 'interno_seco', 'interno_molhado', 'externo_abrigado' ) as $nosso ) {
+				if ( false !== mb_strpos( $par3, $nosso ) ) {
+					$r3_erros[] = "$onde: o paragrafo da regra 3 serve o NOSSO valor de vocabulario ($nosso)";
+				}
+			}
+		}
+	}
+}
+f2_ok( empty( $r3_erros ),
+	'as duas causas de ambiente do rejunte tem frase propria, nas duas direcoes, nos 60 estados',
+	empty( $r3_erros )
+		? $r3_estados . ' estados, ' . $r3_com_balde . ' com a regra 3 mordendo'
+		: implode( ' | ', array_slice( $r3_erros, 0, 4 ) ) );
+/* O CANARIO DA VARREDURA: se nenhum estado tiver a regra 3 mordendo, a varredura
+   acima e vacuo verde — exatamente o defeito que o portao do produto sem faixa teve
+   quando o banco fechou a lacuna, e que esta bancada ja pagou uma vez. */
+f2_ok( $r3_com_balde > 0,
+	'a varredura das duas causas MEDIU alguma coisa: ha estado com a regra 3 mordendo',
+	$r3_com_balde . ' de ' . $r3_estados . ' estados (medido em 07/10/2026: 8)' );
+
 $raiz_sem_faixa = f2_raiz_com_rejunte_sem_faixa( $raiz );
 $nome_sintetico = 'Rejunte de Bancada Sem Faixa Declarada';
 $vazou          = array();

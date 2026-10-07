@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 65,
+  "revisao": 66,
   "atualizado_em": "2026-10-07",
   "estado": "nascendo",
   "desembarque": {
@@ -31,8 +31,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.11.0",
-      "sha256": "ee0e801dd7c6fa38075c8e991a678f98b93812bce84aa8ef77424c4e71a712f3",
+      "versao": "1.12.0",
+      "sha256": "33684d376ca7aff7b382c9940d0ca32350f8d9344b4ca9acb303cb7a48943fdd",
       "descricao": "F2 1.11.0 — o QUINTO balde da resposta da cola, `eliminados_por_ambiente_do_produto` (REGRA 3, esquema v15): produto que declara a superficie em `indicado_para` e delimitou o AMBIENTE DO PRODUTO INTEIRO sai em secao e frase proprias, citando o literal de `ambientes_declarados` (26.3), em vez de ir para o balde do SILENCIO dizendo que o fabricante nao fala de uma superficie que ele declara. Eram 29 entradas em 24 das 45 celulas, 28 delas no ar desde 10/09/2026, e NENHUMA regua viu porque a elegibilidade e identica em 45 de 45 — todas mediam concordancia entre banco e pagina, e as duas concordavam dizendo a mesma coisa errada. O perfil da cola ganhou `literais_delimitacao`, separado dos de cobertura, porque a frase cita EXATAMENTE `ambientes_declarados`. A regra nao mudou de lugar: continua entre a 8 e a 4. E o CSS dos DOIS baldes de ambiente entrou junto: o da regra 8 nasceu em 06/10 sem regra propria e vinha saindo em cor de corpo, parecendo a resposta em vez da ressalva. F2 1.10.0 — A REGRA 8 NASCE, E COM ELA O PAR SUBSTRATO x AMBIENTE. O banco decidia ambiente por PRODUTO (`ambientes_declarados`, regra 3) e o boletim da Cimentcola Externo AC-II o decide por SUBSTRATO: duas das tres frases da secao 4.1 nomeiam a superficie JA COM o lugar colado nela (`em areas internas`, `em paredes internas`). Sem campo para o par havia duas saidas e as duas mentiam — deixar as frases fora de `indicado_para` manteve a argamassa eliminada por silencio nas 45 celulas de 10/09 a 06/10, com a cura de 180 dias gravada e invisivel; grava-las sem o qualificador faria a pagina recomendar argamassa de assentamento para muro de mosaico ao ar livre. Entram `ambiente_que_qualifica_a_base` no mapa de termos (esquema v14), o par em `cdm_f2_traduzir_cola()`, `bases_indicadas_so_em` no perfil, a regra 8 em `cdm_f2_avaliar_cola()` — ENTRE a 1 e a 2 — e o QUARTO balde da resposta da cola, `eliminados_por_ambiente_do_substrato`, com secao e frase proprias que CITAM a frase do fabricante (26.3: a traducao para `interno_seco` e nossa). A UNIAO e a metade que se erra: o qualificador estreita so o par da propria frase, nunca outra frase do mesmo fabricante. E ela entrou consertando um defeito que esta pagina servia desde a 1.8.0, de hoje: o `troque por isto` da regra 7 era calculado sobre os grupos que MORDERAM aquele caquinho e nao sobre os que o produto DECLARA, entao com pastilha de ceramica ela oferecia caquinho de louca — que o outro grupo da mesma argamassa proibe. Mandava trocar um caquinho proibido por outro, com o nome do fabricante embaixo."
     },
     {
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.6.0",
-      "sha256": "023e77d877e308f053712b6f0826664335215f582007db75a0a16c8a3fcbfbec",
+      "versao": "1.7.0",
+      "sha256": "b1af8c5fafc0afa1539626b6274a7aa12e55a03f85d174de6c42e9520f07e782",
       "descricao": "F1 1.6.0 — A SOBRA QUE O VENDEDOR PEDE ESTAVA GRAVADA HA SEIS DIAS E NENHUMA TELA A LIA; E O ACHADO NAO FOI O CAMPO, FOI O NOME DELE. `propriedades.sobra_recomendada_pct` carrega os 10% da Pastilhart para a AF1500 desde 30/09/2026, com valor, unidade e fonte — e esta ferramenta, que e a que PERGUNTA a sobra ao visitante, nao tocava a palavra. Pior: o PROMPT.md da ilha e dois campos de prosa do proprio registro prometiam gravar o numero OUTRA VEZ, como `sobra_declarada_pct`, dizendo que era campo novo — quem seguisse a promessa teria criado a mesma declaracao duas vezes, uma delas vazia. Entra o esquema v13 (`regras_do_campo_sobra_declarada`, nome unico e o segundo reprovado pelo validador), o bloco de CONFRONTO na pagina (cita a linha dele, nomeia quem a escreveu pelo campo `declarada_por`, oferece refazer a conta com o numero dele e NUNCA o toma como padrao), a coluna `Sobra que ele pede` nos treze produtos e a resposta do FAQ derivada do banco. A atribuicao e a metade que mais importa: quem pede os 10% e o DISTRIBUIDOR da marca, em fonte nivel 5 acima do teto 3 da escada — mencao com ressalva escrita, nunca recomendacao, e nunca `o fabricante pede` (26.3 com um numero dentro). De carona, duas medicoes contrariaram o que estava escrito: o padrao servido desta ferramenta e 10% e nao 15% (lido no `selected` do seletor; o 15 era parametro de teste da ronda de 05/10), e a camada de prova desta pagina publicava que nenhum documento de fabricante havia sido aberto linha a linha, o que deixou de ser verdade em 05/10 — virou conta derivada, como a F2 fez com a dela no mesmo dia."
     },
     {
@@ -183,7 +183,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "216e1d970991fca012c60e8479d991ef31a17541c3e734a414c6736a8ab310b2",
+      "sha256": "b9ca42da39e651aea710cb0b0b703874b9d3ba44a4cd5b2bf479e9900bb85276",
       "descricao": "Esquema v15 — a REGRA 3 ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`) sem campo novo no banco: a regra virou dicionario com o balde, a ordem e a trava, nasceu `regras_do_balde_do_ambiente_do_produto` com os tres produtos que delimitam ambiente e cinco ancoras ponta a ponta, e 24 das 45 celulas da `matriz_esperada_da_F2` foram reescritas a mao movendo 29 entradas do balde do silencio para o novo. Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -257,7 +257,7 @@
       "verificado_em": "2026-09-12",
       "registros": 105,
       "publicar": false,
-      "sha256": "f03ee3471f1994d74a15736c4888f8658865fb6d8cbb56c10f4d607ac3dbd6eb",
+      "sha256": "0aaf37afde8bd1dd46d5409466590c226c5922c6fb0f5381ba71dc4b5fc195c5",
       "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
     },
     {
@@ -382,7 +382,7 @@
     {
       "id": "cobertura",
       "arquivo": "ferramentas/cobertura.py",
-      "sha256": "4f9ec247d3281b686549950b64022aee99e48814e32a8103742ea1fadcbe62cd",
+      "sha256": "9121afa0a4a0043160be9f58f7682e8bf1d9c5f347f7d5d5f1ba2fbbcd3d8ec3",
       "descricao": "A varredura da secao 14.3: para CADA estado que a F2 serve, conta quantos produtos do banco sao elegiveis, e escreve dados/cobertura.json. A faixa vem de faixa-da-f2.php (medida no snippet); a regua vem de validar-banco.py, importada — ela recompoe a elegibilidade das DECLARACOES pelas regras do esquema e foi escrita antes de existir o snippet PHP, entao reimplementa-la aqui uma terceira vez nao acrescentaria independencia, so uma copia para envelhecer calada. Mencao com ressalva NAO conta como elegivel (regra 5: fonte fraca demais). O arquivo gerado NAO leva carimbo de relogio, de proposito: ele e funcao das entradas, e com timestamp dentro o modo --conferir acusaria 'velho' a cada execucao ate alguem desligar o portao. Bancada: nunca vai para o site."
     },
     {
@@ -598,7 +598,7 @@
     {
       "id": "mutacoes-prestacao",
       "arquivo": "ferramentas/mutacoes-prestacao.py",
-      "sha256": "be107eb087f98bf9b38f2ebc4f0ab0c1a150866174792f8bef0be5bc469e0a32",
+      "sha256": "ba4c4706b5c8568592034f162155ec6df59b95156c607da8e3470816f862db87",
       "descricao": "Quebra a prestacao de contas do rejunte de proposito, uma mutacao por vez, e exige que teste-prestacao-rejunte.php reprove cada uma. As duas primeiras sao os dois defeitos do despacho de 12/09 escritos de volta. Bancada: nunca vai para o site."
     },
     {
@@ -701,7 +701,7 @@
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "cd0bc11cd7514279f5b93949c70034cc347d5158934eb81a2dc4c72991787464",
+      "sha256": "d42984edfbdac2e49233c573844d65b3bd9ed83d3a95f67a012d20696010c2c9",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
     },
     {
@@ -731,7 +731,7 @@
     {
       "id": "teste-prestacao-rejunte",
       "arquivo": "ferramentas/teste-prestacao-rejunte.php",
-      "sha256": "2b2f96fe31dbff486fbd62eed3bc5ac9cc9d3c6877f48321513db6031bfa2c6f",
+      "sha256": "9f90f88a6b99ce3cfee0c99fec321533724a4af31ef8bf4da61bf09835319043",
       "descricao": "Portao do despacho da Sentinela de 12/09/2026: cobra que todo rejunte do banco seja nomeado uma vez em cada resposta — na frase que o recomenda ou numa linha que diz por que ele nao esta — e que a vitrine sirva exatamente o que a frase nomeia, nas duas ferramentas e na tabela pre-renderizada. Regua propria, recomputada dos perfis escritos a mao no esquema; 540 estados da F2, 180 da F1 e as 9 linhas da tabela, um processo por estado. Bancada: nunca vai para o site."
     },
     {
@@ -743,7 +743,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "11da816bc64506837164637f3efaf6fcae69c69fd7be52fe68abcac33b4deb51",
+      "sha256": "8e3c6946504acf95b14a9c4c4a1ea668b382252d5b09f3554594d6d6e6f5efd5",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {
@@ -787,6 +787,12 @@
       "arquivo": "ferramentas/mutacoes-ambiente-do-produto.py",
       "sha256": "3f90dc619ec7ec78740c611780f2f5e9cfd52837eddd0d79514a5843ad6acf99",
       "descricao": "Quebra o balde do ambiente DO PRODUTO da REGRA 3 de proposito, 16 mutacoes de forma + 6 de tela, e mede quais SO o portao novo do esquema v15 pega (12 das 16). O que torna esta bateria diferente das irmas e que a regra que ela guarda NUNCA ERROU a elegibilidade: a regra 3 existe desde o bloco 3, sempre eliminou certo, e por 27 dias mandou quem eliminava para o balde do SILENCIO, que serve na tela 'O fabricante simplesmente nao fala desta superficie' sobre produtos cujos fabricantes declaram a superficie em indicado_para e apenas delimitaram o ambiente do produto inteiro. Foram 29 entradas em 24 das 45 celulas, 28 delas no ar desde 10/09/2026, e nenhuma regua desta ilha as viu porque todas mediam CONCORDANCIA entre o banco e a pagina e as duas concordavam dizendo a mesma coisa errada. Por isso a metade de TELA aqui e maior que a de forma, ao contrario das irmas: trocar de balde nao muda numero nenhum, e so portao que compara FRASES pega — a t01 e o defeito exato que o bloco consertou, um `return` so. Ha mutacao que PRODUZ O MUNDO (o QUARTO delimitador no banco; a delimitacao do PL500 desaparecendo, que devolve 24 celulas a recomendacao; e ela alargando, que tira uma do balde) e a que junta os dois baldes de ambiente num so, que e a mistura de causas que a secao 7 do contrato proibe. DUAS MUTACOES PASSARAM NA PRIMEIRA RODADA E AS DUAS VIRARAM COISA DIFERENTE: a m01 achou uma trava escrita onde `materiais` ainda nao existe, que ficou sem ninguem do outro lado quando a lista foi movida — apagar o bloco do esquema nao reprovava nada; e a m14, que acrescentava ao mapa um termo de ambiente novo, nao era defeito (termo que registro nenhum cita nao delimita nada) e virou a fp5. Mutacao que passa com razao nao se conserta para reprovar: ela troca de lado. 5 travas de falso positivo. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "mutacoes-ambiente-do-produto-do-rejunte",
+      "arquivo": "ferramentas/mutacoes-ambiente-do-produto-do-rejunte.py",
+      "sha256": "1dcfb7fd487a6497bb4662a301a0a0e15253b4f647a1e264c7ccf12a7ce72a6f",
+      "descricao": "Quebra o balde do ambiente DO PRODUTO DO REJUNTE de proposito, 21 mutacoes de forma + 7 de tela, e mede quais SO o portao novo do esquema v16 pega. E o mesmo defeito da bateria irma um andar abaixo, e o molde esta construido QUATRO vezes (regras 7, 8, 3 da cola e 3 do rejunte): a regra 3 do rejunte sempre eliminou CERTO e por 27 dias mandou quem eliminava para o balde `eliminados_por_ambiente`, que era TAMBEM o da regra 2 e serve na tela 'Fora porque o fabricante nao declara este lugar' — sobre o rejunte acrilico, que escreve `areas internas e externas` em `ambientes_declarados`, e e justamente essa frase que o fecha. Varrido nos 60 estados: 8 entradas em 8 estados pela regra 3 com a frase ERRADA, 59 em 28 pela regra 2 com a frase certa, e 7 estados carregando as duas no mesmo paragrafo. DUAS COISAS QUE A BATERIA DA COLA NAO TINHA: a t06, porque sao DUAS telas lendo a mesma celula (a F2 e a F1, que dizia 'o que ele nao declara e peca <lugar>'), e a t05, porque a fusao mais provavel aqui nao e com o silencio e com a FAIXA DE JUNTA — de 5 mm para cima o acrilico sai por folga, nao por lugar, e trocar as duas causas certas uma pela outra e este bloco virado ao contrario. TRES MUTACOES PASSARAM NA PRIMEIRA RODADA, as tres antes do commit: a m15 mostrou que a trava da 'ancora que passa' aceitava a ancora anti-fusao no lugar dela, porque balde vazio nao prova que a regra deixa passar — prova que ela nao morde ali; a m17 nasceu `areas internas`, PASSOU por o literal nao estar no mapa do rejunte, e com isso achou que `ambientes_declarados` ilegivel DESLIGA a regra 3 em silencio (virou erro no validador e a m21 nasceu dela); e a t01 e a t03 mutavam a regua da COLA, porque as duas linhas que elas procuravam existem identicas nas duas reguas e a da cola vem antes — marcador que existe nas duas nao mede nenhuma. 5 travas de falso positivo. Bancada: nunca vai para o site."
     }
   ],
   "esquema": {

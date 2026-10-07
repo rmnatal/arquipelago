@@ -3,7 +3,7 @@
   "ilha": "clubedomosaico",
   "bloco": "3 (criado) + 3c (categoria rejunte) + 3e (condicao de superficie e os dois produtos das faixas de zero)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 15,
+  "versao_esquema": 16,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -2776,15 +2776,25 @@
         "contato_permanente_agua"
       ],
       "regra": "Nestes tres, silencio nao basta: so entra quem declara o ambiente por nome, pelo mapa_de_termos_do_rejunte. Nos demais (interno_seco, externo_abrigado), silencio nao elimina.",
-      "por_que_interno_molhado_e_critico_aqui_e_nao_na_cola": "A lista de ambientes criticos da COLA tem dois; a do rejunte tem tres, e a diferenca e interno_molhado. Nao e inconsistencia: e a geometria da peca. A cola fica ESCONDIDA atras da tessela e a agua chega nela por ultimo; o rejunte e a superficie exposta, a agua fica parada em cima dele e e nele que o mofo cresce. Na pia e no banheiro, quem falha primeiro e o rejunte."
+      "por_que_interno_molhado_e_critico_aqui_e_nao_na_cola": "A lista de ambientes criticos da COLA tem dois; a do rejunte tem tres, e a diferenca e interno_molhado. Nao e inconsistencia: e a geometria da peca. A cola fica ESCONDIDA atras da tessela e a agua chega nela por ultimo; o rejunte e a superficie exposta, a agua fica parada em cima dele e e nele que o mofo cresce. Na pia e no banheiro, quem falha primeiro e o rejunte.",
+      "o_balde": "eliminados_por_ambiente_critico",
+      "o_nome_velho_do_balde": "Ate 07/10/2026 ele se chamava `eliminados_por_ambiente` e carregava TAMBEM quem a regra 3 eliminava — 8 entradas que nao eram dele, com a frase dele por cima. A renomeacao e a separacao sao do mesmo bloco, e a razao esta na 3, em `por_que_o_balde_da_regra_2_FOI_RENOMEADO`."
     },
-    "3_ambiente_declarado_DELIMITA": "Igual a regra 3 da cola: `ambientes_declarados` nao vazio fecha o produto nos ambientes que ele lista. Quem nao delimita nada passa pelos ambientes nao criticos.",
+    "3_ambiente_declarado_DELIMITA": {
+      "regra": "Igual a regra 3 da cola: `ambientes_declarados` nao vazio fecha o produto nos ambientes que ele lista. Quem nao delimita nada passa pelos ambientes nao criticos.",
+      "o_balde": "eliminados_por_ambiente_do_produto",
+      "ordem": "Ela NAO mudou de lugar: continua rodando depois da 1 (a junta manda) e antes da 2 (ambiente critico exige declaracao explicita). O que mudou em 07/10/2026 e so para onde ela manda o produto — um balde proprio, com frase propria, em vez do balde que a regra 2 ja usava. E a ordem IMPORTA e esta medida: em 7 dos 8 estados que a regra 3 toca, a regra 2 tambem morderia o mesmo produto se chegasse a rodar. Quem tem de ganhar e a 3, porque a frase dela e mais precisa — ele declarou o lugar e fechou o produto nos lugares dele; nao ficou calado sobre este.",
+      "por_que_ela_ganhou_balde_em_07_10_2026": "Porque quem ela eliminava saia das DUAS telas com a frase da regra 2: na F2, \"Fora porque o fabricante nao declara este lugar\"; na F1, \"o que ele nao declara e peca <lugar>\". E o fabricante DECLARA o lugar: o `quartzolit-rejunte-acrilico` escreve `areas internas e externas` em `ambientes_declarados`, e e justamente essa frase que o fecha. Varrido nos 60 estados antes do conserto: 8 entradas em 8 estados (junta 1 a 4 mm x `externo_exposto` e `contato_permanente_agua`), todas no acrilico, no ar desde 10/09/2026. A regra 2, no mesmo balde, carregava 59 entradas em 28 estados — e essas 59 estavam com a frase CERTA. Era o balde que misturava duas causas, nao a regra.",
+      "e_ela_NAO_SE_JUNTA_a_regra_2": "Sao frases diferentes para fatos diferentes, e junta-las e a mistura de causas que a secao 7 do ARQUIPELAGO.md proibe desde 12/09/2026, escrita nesta mesma ilha. A regra 2 diz \"este lugar e critico e o fabricante nao o nomeia\" — e silencio sobre um lugar perigoso. A regra 3 diz \"ele nomeou os lugares do produto e este nao esta entre eles\" — e declaracao, nao silencio. Os dois baldes podem carregar produtos DIFERENTES no mesmo estado, e carregam em 7 dos 60: ali as duas frases saem no mesmo paragrafo e o leitor tem de poder saber qual vale para qual produto.",
+      "a_frase_CITA_o_literal": "Pela 26.3: as duas telas citam o literal de `ambientes_declarados` do fabricante, nunca o nosso valor de `vocabularios.ambiente`. Quem traduziu `areas internas e externas` para `interno_seco`, `interno_molhado` e `externo_abrigado` fomos nos, e dizer que ele classificou os lugares seria por a nossa leitura na boca dele. Quinta aplicacao da regra, depois da porosidade (6), dos grupos de peca (7), do qualificador de substrato (8) e da delimitacao da cola (3 da cola). O validador reprova produto no balde sem literal para citar.",
+      "por_que_o_balde_da_regra_2_FOI_RENOMEADO": "O balde da regra 2 chamava-se `eliminados_por_ambiente` e o nome ficou falso no instante em que passou a existir um segundo balde de ambiente: as duas causas sao \"por ambiente\", e um nome que descreve as duas nao distingue nenhuma. Ele passa a ser `eliminados_por_ambiente_critico`, que e o que ele sempre carregou. Renomeado, nao apagado — quem procurar `eliminados_por_ambiente` neste repositorio esta lendo historia, e e a mesma convencao que a v14 usou em `substratos_que_o_documento_declara`. A cola nao precisou disto porque la o balde da regra 2 ja se chamava `eliminados_por_silencio`, que e preciso."
+    },
     "4_nivel_de_fonte_limita_a_recomendacao": "Igual a regra 5 da cola: recomendacao primaria exige fonte de nivel <= 3. O nivel do produto e o MENOR (melhor) entre as fontes dele — o rejunte epoxi tem boletim de nivel 2 e uma materia de blog de nivel 4, e quem o sustenta e o boletim; o blog so acrescenta a mencao a pastilhas, que vai para a tela citada como materia do proprio fabricante.",
     "ordem_entre_os_elegiveis": "Score: +2 por junta dentro da faixa declarada, +2 por ambiente declarado por nome. Empate no topo NAO se desfaz por gosto — a pagina lista os empatados como equivalentes. O unico desempate permitido continua sendo ter link de loja (secao 7 do ARQUIPELAGO.md).",
     "por_que_nao_ha_regra_de_proibicao": "Nenhum dos cinco produtos declara 'nao usar em'. A regra 1 da cola (proibicao vence indicacao) continua valendo e esta implementada, mas hoje nao encontra nada em que pegar — e isso e uma diferenca real entre as duas categorias, nao um esquecimento: o fabricante de cola publica lista de superficies proibidas, o de rejunte publica faixa de junta."
   },
   "perfis_esperados_do_rejunte": {
-    "descricao": "Escrito A MAO a partir das declaracoes de dados/materiais-rejuntes.json, produto por produto, ANTES de rodar o validador. O validador recomputa cada um pelas regras acima e falha se divergir. E a trava da secao 8 do ARQUIPELAGO.md aplicada aqui: quem confere escreve a propria regua, em vez de conferir o dado chamando a funcao de quem o produziu.",
+    "descricao": "Escrito A MAO a partir das declaracoes de dados/materiais-rejuntes.json, produto por produto, ANTES de rodar o validador. O validador recomputa cada um pelas regras acima e falha se divergir. E a trava da secao 8 do ARQUIPELAGO.md aplicada aqui: quem confere escreve a propria regua, em vez de conferir o dado chamando a funcao de quem o produziu. || 07/10/2026: cada perfil ganhou `literais_delimitacao`, a lista escrita A MAO do que o fabricante escreve em `ambientes_declarados` — vazia em quatro dos cinco. Ela existe porque a frase do balde da regra 3 CITA esse literal (26.3), e sem um lugar escrito a mao para conferir, a citacao seria conferida contra a funcao que a produz. Perfil com `ambientes_delimitados` cheio e `literais_delimitacao` vazio e contradicao e o validador reprova.",
     "perfis": [
       {
         "id": "quartzolit-rejunte-ceramicas",
@@ -2797,6 +2807,7 @@
           "interno_molhado"
         ],
         "ambientes_delimitados": [],
+        "literais_delimitacao": [],
         "nivel": 2,
         "de_onde_sai": "interno_molhado vem de 'liberacao para contato com area molhada em 24 horas'; externo_abrigado vem de 'em area externa, proteger do sol, do vento e da chuva por 24 horas', que declara uso externo mas nao durabilidade ao tempo."
       },
@@ -2810,6 +2821,7 @@
           "interno_molhado"
         ],
         "ambientes_delimitados": [],
+        "literais_delimitacao": [],
         "nivel": 2,
         "de_onde_sai": "So a liberacao de 24 h para areas molhadas. A tecnologia Protect nao traduz em ambiente."
       },
@@ -2829,6 +2841,9 @@
           "interno_molhado",
           "interno_seco"
         ],
+        "literais_delimitacao": [
+          "áreas internas e externas"
+        ],
         "nivel": 2,
         "de_onde_sai": "'areas internas e externas' delimita os tres (externo_exposto fica de fora pela regra restritiva do mapa), e 'recomendado para areas molhadas' cobre interno_molhado por nome."
       },
@@ -2843,6 +2858,7 @@
           "interno_molhado"
         ],
         "ambientes_delimitados": [],
+        "literais_delimitacao": [],
         "nivel": 2,
         "de_onde_sai": "'paredes, pisos e piscinas' e 'piscinas' cobrem contato_permanente_agua; a liberacao de 7 dias cobre os dois."
       },
@@ -2856,6 +2872,7 @@
           "contato_permanente_agua"
         ],
         "ambientes_delimitados": [],
+        "literais_delimitacao": [],
         "nivel": 2,
         "de_onde_sai": "'piscinas e areas submersas' e 'uso submerso em agua tratada quimicamente' para o ambiente; a faixa de junta vem de 'Juntas de assentamento: de 2 a 10 mm', do boletim tecnico aberto em 05/10/2026. ATE 05/10 ESTE PERFIL ERA [null, null] E O PRODUTO NAO ENTRAVA EM CELULA NENHUMA pela regra 1 — o unico rejunte do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua ficava de fora justamente da coluna de agua. O nivel caiu de 3 para 2 porque o registro deixou de depender so da pagina de produto."
       }
@@ -2863,7 +2880,7 @@
   },
   "matriz_esperada_do_rejunte": {
     "descricao": "Celulas junta x ambiente, escritas A MAO e recomputadas pelo validador. A grade NAO e regular de proposito: ela pisa exatamente em 1, 2, 4, 5 e 10 mm, que sao os extremos declarados pelos produtos, e em 6 e 11, que sao os primeiros valores depois do ultimo extremo. Grade de passo fixo nao separaria 'ate 4' de 'ate 5' — foi a lacuna de medicao que a Robometria pagou para aprender (secao 8 do ARQUIPELAGO.md).",
-    "leitura": "`recomendados_topo` e CONJUNTO, nao ordem. As duas listas de eliminados vao para a tela em secoes diferentes e com frases diferentes: `eliminados_por_faixa_de_junta` diz que o produto existe mas nao cobre essa junta, e `eliminados_por_ambiente` diz que o fabricante nao declara aquele ambiente. || ATUALIZADA EM 05/10/2026: sete das nove celulas mudaram, e TODAS por uma causa so — o rejunte piscinas ganhou a faixa de junta 2 a 10 mm, lida no boletim tecnico, e parou de ser eliminado pela regra 1 em toda a grade. Duas celulas ganharam recomendacao que nao tinham (3 mm e 6 mm em contato_permanente_agua) e as outras cinco so trocaram o MOTIVO da eliminacao, de faixa de junta para ambiente. Nenhuma regra foi tocada: a matriz mudou porque o banco soube mais.",
+    "leitura": "`recomendados_topo` e CONJUNTO, nao ordem. As duas listas de eliminados vao para a tela em secoes diferentes e com frases diferentes: `eliminados_por_faixa_de_junta` diz que o produto existe mas nao cobre essa junta, e `eliminados_por_ambiente` diz que o fabricante nao declara aquele ambiente. || ATUALIZADA EM 05/10/2026: sete das nove celulas mudaram, e TODAS por uma causa so — o rejunte piscinas ganhou a faixa de junta 2 a 10 mm, lida no boletim tecnico, e parou de ser eliminado pela regra 1 em toda a grade. Duas celulas ganharam recomendacao que nao tinham (3 mm e 6 mm em contato_permanente_agua) e as outras cinco so trocaram o MOTIVO da eliminacao, de faixa de junta para ambiente. Nenhuma regra foi tocada: a matriz mudou porque o banco soube mais. || ATUALIZADA EM 07/10/2026: sao TRES listas de eliminados, nao duas. `eliminados_por_faixa_de_junta` diz que o produto existe mas nao cobre essa junta; `eliminados_por_ambiente_critico` — que ate hoje se chamava `eliminados_por_ambiente` — diz que o lugar e critico e o fabricante nao o nomeia; e `eliminados_por_ambiente_do_produto` diz que ele NOMEOU os lugares do produto e este nao esta entre eles. As tres vao para a tela em secoes diferentes e com frases diferentes. NENHUMA celula mudou de elegibilidade: as 8 entradas que mudaram de balde sairam de uma lista de eliminados para outra. E DUAS das nove celulas tocam a regra 3 — so duas, e e por isso que esta matriz NAO e a regua dela: quem mede a regra 3 sao as cinco ancoras de `regras_do_balde_do_ambiente_do_produto_do_rejunte`, que pisam nos estados que esta grade nao visita (1 mm x imersao, 2 mm x interno_molhado, 4 e 5 mm x os dois ambientes de fora). Grade escolhida por borda de junta nao cobre regra de ambiente, e fingir que cobre e o defeito de medicao que esta ilha paga desde a regra 6.",
     "celulas": [
       {
         "junta_mm": 1,
@@ -2880,7 +2897,8 @@
           "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "eliminados_por_ambiente": [],
+        "eliminados_por_ambiente_critico": [],
+        "eliminados_por_ambiente_do_produto": [],
         "observacao": "BORDA: 1 mm e exatamente o minimo do acrilico e do epoxi, e esta abaixo do minimo dos dois cimenticios de 2 mm. A junta mais fina do mosaico corta metade do banco."
       },
       {
@@ -2897,7 +2915,8 @@
         ],
         "mencionados_com_ressalva": [],
         "eliminados_por_faixa_de_junta": [],
-        "eliminados_por_ambiente": [],
+        "eliminados_por_ambiente_critico": [],
+        "eliminados_por_ambiente_do_produto": [],
         "observacao": "BORDA: 2 mm e o minimo dos tres cimenticios — o piscinas entrou nesta contagem em 05/10/2026, com a faixa lida no boletim. O acrilico fica sozinho no topo por declarar o ambiente por nome, nao por ser melhor."
       },
       {
@@ -2907,14 +2926,16 @@
         "elegiveis_abaixo_do_topo": [],
         "mencionados_com_ressalva": [],
         "eliminados_por_faixa_de_junta": [],
-        "eliminados_por_ambiente": [
-          "quartzolit-rejunte-acrilico",
+        "eliminados_por_ambiente_critico": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-epoxi",
           "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "observacao": "FAIXA DESCOBERTA, e das caras: peca de mosaico em sol e chuva e metade do nicho (vaso de jardim, numero de casa, mandala de parede externa). Nenhum dos cinco declara resistencia a sol e chuva pelo nome. A pagina diz isso em vez de empurrar o de sempre. Desde 05/10/2026 os CINCO caem por ambiente: o rejunte piscinas era o unico que caia por junta, e agora que ele cobre a faixa fica provado que quem esvazia esta celula e o silencio dos fabricantes, nao um buraco de coleta nosso."
+        "eliminados_por_ambiente_do_produto": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "observacao": "FAIXA DESCOBERTA, e das caras: peca de mosaico em sol e chuva e metade do nicho (vaso de jardim, numero de casa, mandala de parede externa). Nenhum dos cinco declara resistencia a sol e chuva pelo nome. A pagina diz isso em vez de empurrar o de sempre. Desde 05/10/2026 os CINCO caem por ambiente: o rejunte piscinas era o unico que caia por junta, e agora que ele cobre a faixa fica provado que quem esvazia esta celula e o silencio dos fabricantes, nao um buraco de coleta nosso. || 07/10/2026: esta e uma das DUAS celulas da grade que a regra 3 toca. O acrilico saiu de `eliminados_por_ambiente` para `eliminados_por_ambiente_do_produto` — a elegibilidade nao mudou, a CAUSA mudou. Ele escreve `areas internas e externas` e este lugar nao e nenhum dos tres que a frase nomeia; dizer que ele nao declara o lugar era a mentira que o balde unico servia."
       },
       {
         "junta_mm": 3,
@@ -2926,12 +2947,14 @@
         "elegiveis_abaixo_do_topo": [],
         "mencionados_com_ressalva": [],
         "eliminados_por_faixa_de_junta": [],
-        "eliminados_por_ambiente": [
-          "quartzolit-rejunte-acrilico",
+        "eliminados_por_ambiente_critico": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "observacao": "A CELULA QUE MAIS ENSINOU DESTE BLOCO, E ELA SE FECHOU EM 05/10/2026. A observacao anterior dizia: 'o unico produto do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua, o rejunte piscinas, e justamente o que nao pode ser recomendado, porque a faixa de junta dele nao foi obtida. Ter o dado quase todo nao e ter o dado.' A faixa foi obtida — 'Juntas de assentamento: de 2 a 10 mm', no boletim tecnico — e o produto subiu ao topo ao lado do epoxi. Sao DOIS topos com desenhos diferentes e a pagina diz os dois: o epoxi libera em 7 dias e nao e cimenticio; o piscinas e cimenticio, libera em 4 dias, e e o unico com biocida e algicida declarados. Quem procurava a frase velha: ela estava certa enquanto durou, e o que a derrubou foi coleta, nao mudanca de regra."
+        "eliminados_por_ambiente_do_produto": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "observacao": "A CELULA QUE MAIS ENSINOU DESTE BLOCO, E ELA SE FECHOU EM 05/10/2026. A observacao anterior dizia: 'o unico produto do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua, o rejunte piscinas, e justamente o que nao pode ser recomendado, porque a faixa de junta dele nao foi obtida. Ter o dado quase todo nao e ter o dado.' A faixa foi obtida — 'Juntas de assentamento: de 2 a 10 mm', no boletim tecnico — e o produto subiu ao topo ao lado do epoxi. Sao DOIS topos com desenhos diferentes e a pagina diz os dois: o epoxi libera em 7 dias e nao e cimenticio; o piscinas e cimenticio, libera em 4 dias, e e o unico com biocida e algicida declarados. Quem procurava a frase velha: ela estava certa enquanto durou, e o que a derrubou foi coleta, nao mudanca de regra. || 07/10/2026: esta e uma das DUAS celulas da grade que a regra 3 toca. O acrilico saiu de `eliminados_por_ambiente` para `eliminados_por_ambiente_do_produto` — a elegibilidade nao mudou, a CAUSA mudou. Ele escreve `areas internas e externas` e este lugar nao e nenhum dos tres que a frase nomeia; dizer que ele nao declara o lugar era a mentira que o balde unico servia."
       },
       {
         "junta_mm": 4,
@@ -2945,9 +2968,10 @@
         "elegiveis_abaixo_do_topo": [],
         "mencionados_com_ressalva": [],
         "eliminados_por_faixa_de_junta": [],
-        "eliminados_por_ambiente": [
+        "eliminados_por_ambiente_critico": [
           "quartzolit-rejunte-piscinas"
         ],
+        "eliminados_por_ambiente_do_produto": [],
         "observacao": "BORDA: 4 mm e o maximo do acrilico. Empate de quatro, e a pagina lista os quatro como equivalentes em vez de fingir preferencia. O rejunte piscinas passou a cair aqui por AMBIENTE e nao mais por faixa de junta (05/10/2026): ele cobre a junta e o fabricante nao declara area molhada interna, so submersao em agua tratada. Troca de motivo, nao de veredito — e e outra frase na tela."
       },
       {
@@ -2963,9 +2987,10 @@
         "eliminados_por_faixa_de_junta": [
           "quartzolit-rejunte-acrilico"
         ],
-        "eliminados_por_ambiente": [
+        "eliminados_por_ambiente_critico": [
           "quartzolit-rejunte-piscinas"
         ],
+        "eliminados_por_ambiente_do_produto": [],
         "observacao": "BORDA DUPLA: 5 mm e o maximo do epoxi E o primeiro milimetro fora do acrilico. Um milimetro a mais que a celula anterior e o produto mais facil de usar sai da lista. Desde 05/10/2026 o rejunte piscinas cai aqui por ambiente, nao por junta, pelo mesmo motivo da celula de 4 mm."
       },
       {
@@ -2980,10 +3005,11 @@
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [
+        "eliminados_por_ambiente_critico": [
           "quartzolit-rejunte-ceramicas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
+        "eliminados_por_ambiente_do_produto": [],
         "observacao": "BORDA: 6 mm e o primeiro milimetro depois do maximo do epoxi. ATE 05/10/2026 ESTA CELULA ERA VAZIA e a observacao dizia 'com ele some a unica resposta submersa' — era verdade, e deixou de ser no dia em que o rejunte piscinas ganhou faixa de junta, porque o maximo dele e 10 mm. A junta larga submersa passou de 'faixa descoberta' para 'um produto, e so um'. Os dois eliminados continuam caindo por motivos DIFERENTES, e sao duas frases diferentes na tela."
       },
       {
@@ -3001,7 +3027,8 @@
           "quartzolit-rejunte-acrilico",
           "quartzolit-rejunte-epoxi"
         ],
-        "eliminados_por_ambiente": [],
+        "eliminados_por_ambiente_critico": [],
+        "eliminados_por_ambiente_do_produto": [],
         "observacao": "BORDA: 10 mm e o maximo dos TRES cimenticios — o piscinas entrou em 05/10/2026. Sobram tres, e o rejunte ceramicas vai a frente por declarar uso externo por nome."
       },
       {
@@ -3017,7 +3044,8 @@
           "quartzolit-rejunte-piscinas",
           "quartzolit-rejunte-porcelanatos-e-ceramicas"
         ],
-        "eliminados_por_ambiente": [],
+        "eliminados_por_ambiente_critico": [],
+        "eliminados_por_ambiente_do_produto": [],
         "observacao": "BORDA: 11 mm e o primeiro milimetro fora de TODA a faixa do banco, no ambiente mais facil que existe. Celula vazia num ambiente seco prova que quem elimina e a junta, nao o ambiente."
       }
     ]
@@ -3947,5 +3975,124 @@
       }
     ]
   },
-  "o_que_mudou_na_versao_15": "07/10/2026 — a REGRA 3 ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`), sem campo novo no banco e sem coleta nenhuma: `regras_de_elegibilidade.3_ambiente_declarado_DELIMITA` virou dicionario com o balde, a ordem e a trava; nasceu o bloco `regras_do_balde_do_ambiente_do_produto` com os tres produtos que delimitam ambiente hoje e cinco ancoras ponta a ponta; e 24 das 45 celulas da `matriz_esperada_da_F2` foram reescritas a mao, movendo 29 entradas do balde do silencio para o novo. O QUE A FEZ NASCER: a frase do silencio — 'O fabricante simplesmente nao fala desta superficie' — estava sendo servida sobre produtos cujos fabricantes FALAM da superficie e apenas delimitaram o ambiente do produto inteiro. E o mesmo defeito que a regra 8 consertou um andar acima em 06/10 e e SETE VEZES MAIOR (29 entradas contra 4); a diferenca entre as duas e so onde o qualificador mora — na 8 colado no substrato, na 3 campo do produto —, e por isso elas tem baldes e frases SEPARADOS. NENHUMA celula mudou de elegibilidade: a lista de recomendados, de elegiveis abaixo, de ressalva e de proibicao e identica em 45 de 45. Era exatamente isso que fazia o defeito atravessar toda regua desta ilha — todas mediam concordancia entre a matriz e a tela, e as duas concordavam dizendo a mesma coisa errada desde 10/09/2026."
+  "regras_do_balde_do_ambiente_do_produto_do_rejunte": {
+    "descricao": "A forma e as travas do balde da REGRA 3 DO REJUNTE. Irmao de `regras_do_balde_do_ambiente_do_produto`, que e o da cola, e NAO reaproveita uma linha dele: o rejunte tem regua propria de proposito (na cola a lista do fabricante nomeia a BASE sobre a qual se cola; no rejunte, a TESSELA que sera rejuntada e o ambiente — rejunte nao toca a base), e a lista de ambientes criticos e maior aqui, tres em vez de dois. O que ele NAO e: campo novo no banco. A delimitacao esta gravada em `declaracoes.ambientes_declarados` desde 10/09/2026 — este bloco nao coleta nada, ele conserta para onde a regra manda o produto e o que as telas dizem.",
+    "regra_da_direcao": "A direcao e a da regra 3 da cola: aqui a declaracao decide quem PERDE recomendacao. E a trava e ao contrario do que a intuicao pede, pela mesma razao de um andar acima: perder a regra 3 do codigo nao tira produto nenhum — ela ALARGA o acrilico para os cinco ambientes, e a F2 passa a recomendar rejunte acrilico para peca em contato permanente com agua, que e piscina. Entao a trava e `produto com ambientes_declarados que traduzem e nenhum estado no balde REPROVA`, e nao `regra ausente libera`. Sem ela, apagar a linha da regra 3 deixaria a matriz vermelha — o que e bom — e deixaria o CENSO de estados de `cobertura.json` verde, que e onde a regra some calada.",
+    "o_que_as_TELAS_tem_de_dizer": {
+      "sao_DUAS_telas_e_nao_uma": "Esta e a diferenca de tamanho em relacao a regra 3 da cola, e ela e para cima: a celula do rejunte e lida pela F2 (`cdm_f2_fora_html`) E pela F1 (`cdm_f1_vitrine_rejunte_html`, que serve a vitrine de rejunte por folga). As duas serviam a frase da regra 2 sobre quem a regra 3 eliminava, com palavras diferentes e o mesmo erro. Balde novo que chegasse so a F2 deixaria a F1 dizendo `o que ele nao declara e peca ao ar livre` sobre um produto que escreve `areas internas e externas`.",
+      "secao_propria_na_F2": "Paragrafo proprio em `cdm_f2_fora_html`, classe `cdm-f2-rejunte-ambiente-do-produto`, nunca somado ao da regra 2.",
+      "secao_propria_na_F1": "Paragrafo proprio em `cdm_f1_vitrine_rejunte_html`, classe `cdm-f1-faixa-ambiente-do-produto`, nunca somado ao `fora_lugar` da regra 2.",
+      "cita_o_literal": "A frase cita o literal de `ambientes_declarados`, entre <em>, e nao o valor de `vocabularios.ambiente`. Produto no balde sem literal para citar e REPROVADO pelo validador: frase que diz \"ele fechou o produto nestes lugares\" sem mostrar onde ele os escreveu e a nossa leitura disfarcada de declaracao dele.",
+      "nao_diz_que_ele_nao_declara_o_lugar": "A frase que a regra 2 usa — o fabricante nao DECLARA este lugar — e proibida nesta secao, nas duas telas, porque ele declara: a frase esta em `ambientes_declarados` e e ela que o fecha. O que ele nao fez foi soltar o produto deste lugar."
+    },
+    "produtos_que_delimitam_ambiente_hoje": [
+      {
+        "produto": "quartzolit-rejunte-acrilico",
+        "literais": [
+          "áreas internas e externas"
+        ],
+        "vale_so_em": [
+          "externo_abrigado",
+          "interno_molhado",
+          "interno_seco"
+        ],
+        "faixa_de_junta_mm": [
+          1,
+          4
+        ],
+        "entradas_no_balde": 8,
+        "observacao": "E o UNICO rejunte do banco com `ambientes_declarados` que traduz, e por isso as 8 entradas sao todas dele. `externo_exposto` e `contato_permanente_agua` sao os dois ambientes que `areas internas e externas` NAO alcanca — \"externas\" traduz para `externo_abrigado`, e o mapa de termos do rejunte nao deixa `externo_exposto` nem imersao entrarem por uma palavra que nao os nomeia. A faixa de 1 a 4 mm e o que limita as 8 a oito: de 5 mm para cima quem tira o acrilico e a regra 1, que roda ANTES, e o balde fica vazio."
+      }
+    ],
+    "total_de_entradas_hoje": 8,
+    "total_de_estados_tocados_hoje": 8,
+    "por_que_8_e_8_e_nao_8_e_menos": "Na cola as duas contagens discordavam (29 entradas em 24 celulas) porque tres produtos delimitam ambiente e as celulas deles se sobrepoem. Aqui ha UM produto, entao cada entrada e um estado e os dois numeros coincidem. A linha existe para a proxima execucao nao ler a coincidencia como regra: no dia em que um segundo rejunte delimitar ambiente, os dois numeros se separam, e o validador recomputa os dois em campos separados exatamente como faz na cola.",
+    "os_7_estados_que_carregam_as_DUAS_causas": "Dos 8 estados da regra 3, SETE tem tambem produto no balde da regra 2 — os dois paragrafos saem juntos e e por isso que as frases precisam ser distinguiveis. O oitavo e `1 mm x contato_permanente_agua`, e ele e a ancora 1: ali o balde da regra 2 esta VAZIO, entao se a tela servir \"o fabricante nao declara este lugar\" naquele estado a frase so pode ser sobre o acrilico, e so pode ser falsa. Estado sem a outra causa e onde a frase errada nao tem onde se esconder.",
+    "ancoras_ponta_a_ponta": [
+      {
+        "junta_mm": 1,
+        "ambiente": "contato_permanente_agua",
+        "eliminados_por_ambiente_do_produto": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "eliminados_por_ambiente_critico": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "recomendados_topo": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "por_que": "O ESTADO SEM A OUTRA CAUSA, e e a ancora que mais importa. E o unico dos 8 em que o balde da regra 2 esta vazio: a frase dela nao pode aparecer nesta tela, e se aparecer e sobre o acrilico e e falsa. Antes do conserto era aqui que ficava a prova mais limpa do defeito. O balde INTEIRO esta escrito, os quatro grupos, porque ancora de balde que lista so quem o autor lembrou mede a memoria do autor — foi o que a ancora anti-fusao da cola ensinou em 07/10/2026, quando a lista escrita a mao saiu de tres para cinco ao ser medida."
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "externo_exposto",
+        "eliminados_por_ambiente_do_produto": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "eliminados_por_ambiente_critico": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_faixa_de_junta": [],
+        "recomendados_topo": [],
+        "por_que": "O PIOR DOS 7 ESTADOS COM AS DUAS CAUSAS: o banco INTEIRO esta fora, 1 produto por uma causa e 4 pela outra, e os dois paragrafos saem um embaixo do outro sem nenhum elegivel entre eles. E o estado que prova que as duas frases tem de ser distinguiveis na tela, nao so no codigo: com um balde so, o leitor recebia \"o fabricante nao declara este lugar\" sobre cinco produtos, e sobre um deles era mentira. Tambem e uma das duas celulas da `matriz_esperada_do_rejunte` que a regra 3 toca."
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "interno_molhado",
+        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_critico": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_faixa_de_junta": [],
+        "recomendados_topo": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "O LADO QUE A REGRA DEIXA PASSAR, e ele tem de existir: sem uma ancora que PASSA, a regra 3 poderia estar tirando o acrilico em TODO ambiente e a tabela ficaria verde. Aqui o lugar e um dos tres que `areas internas e externas` nomeia, e o acrilico esta no TOPO — nao no balde. Note que o balde da regra 2 nao esta vazio nesta celula, e isso e de proposito: ela mede a regra 3 passando sem mandar a regra 2 embora."
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "externo_exposto",
+        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_critico": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "recomendados_topo": [],
+        "por_que": "A ANCORA ANTI-FUSAO, e ela e a irma da do espelho na cola. O acrilico delimita ambiente e este ambiente nao e um dos dele — quem implementasse a regra 3 como \"produto que delimita ambiente e nao cobre o lugar vai para o balde novo\" o poria aqui. Ele NAO vai: a regra 1 roda antes e 5 mm esta fora da faixa de 1 a 4 que o fabricante publica, entao ele sai por FAIXA DE JUNTA. Dizer \"ele fechou o produto em outros lugares\" de um produto que nem cabe na folga e trocar uma causa certa por outra certa, que e o mesmo erro deste bloco virado ao contrario. Compare com a ancora de 4 mm no mesmo eixo: la ele cabe e vai para o balde."
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "contato_permanente_agua",
+        "eliminados_por_ambiente_do_produto": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "eliminados_por_ambiente_critico": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_faixa_de_junta": [],
+        "recomendados_topo": [
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "por_que": "A BORDA DA FAIXA, e ela fecha o par com a ancora de 5 mm: 4 mm e exatamente o `junta_max` do acrilico, entao ele ainda cabe e a regra 3 e que o tira. Trocar a comparacao da regra 1 de `>` para `>=` deixa esta ancora vermelha E a de 5 mm vermelha, nas duas direcoes. E o unico estado das cinco ancoras com os dois baldes cheios E recomendacao na tela: a prestacao de contas aqui tem de fechar o banco inteiro em tres grupos e dois recomendados."
+      }
+    ]
+  },
+  "o_que_mudou_na_versao_15": "07/10/2026 — a REGRA 3 ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`), sem campo novo no banco e sem coleta nenhuma: `regras_de_elegibilidade.3_ambiente_declarado_DELIMITA` virou dicionario com o balde, a ordem e a trava; nasceu o bloco `regras_do_balde_do_ambiente_do_produto` com os tres produtos que delimitam ambiente hoje e cinco ancoras ponta a ponta; e 24 das 45 celulas da `matriz_esperada_da_F2` foram reescritas a mao, movendo 29 entradas do balde do silencio para o novo. O QUE A FEZ NASCER: a frase do silencio — 'O fabricante simplesmente nao fala desta superficie' — estava sendo servida sobre produtos cujos fabricantes FALAM da superficie e apenas delimitaram o ambiente do produto inteiro. E o mesmo defeito que a regra 8 consertou um andar acima em 06/10 e e SETE VEZES MAIOR (29 entradas contra 4); a diferenca entre as duas e so onde o qualificador mora — na 8 colado no substrato, na 3 campo do produto —, e por isso elas tem baldes e frases SEPARADOS. NENHUMA celula mudou de elegibilidade: a lista de recomendados, de elegiveis abaixo, de ressalva e de proibicao e identica em 45 de 45. Era exatamente isso que fazia o defeito atravessar toda regua desta ilha — todas mediam concordancia entre a matriz e a tela, e as duas concordavam dizendo a mesma coisa errada desde 10/09/2026.",
+  "o_que_mudou_na_versao_16": "07/10/2026 — a REGRA 3 DO REJUNTE ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`), sem campo novo no banco e sem coleta nenhuma, e o balde da REGRA 2 e RENOMEADO de `eliminados_por_ambiente` para `eliminados_por_ambiente_critico`, porque com dois baldes de ambiente o nome velho descrevia os dois e distinguia nenhum. `regras_de_elegibilidade_do_rejunte.3_ambiente_declarado_DELIMITA` virou dicionario com o balde, a ordem e as travas; nasceu `regras_do_balde_do_ambiente_do_produto_do_rejunte` com o produto que delimita ambiente hoje e CINCO ancoras ponta a ponta; e as nove celulas da `matriz_esperada_do_rejunte` foram reescritas a mao, duas delas movendo o acrilico de balde. O QUE A FEZ NASCER: e o MESMO defeito que a v15 consertou um andar acima, na cola, e foi medido nos 60 estados em 07/10/2026 — o balde unico carregava DUAS causas sob UMA frase, \"Fora porque o fabricante nao declara este lugar\". Pela regra 2 ela estava certa: 59 entradas em 28 estados, produtos que de fato nao nomeiam o lugar critico. Pela regra 3 estava ERRADA: 8 entradas em 8 estados, todas no `quartzolit-rejunte-acrilico`, que escreve `areas internas e externas` em `ambientes_declarados` — e e justamente essa frase que o fecha. E 7 dos 8 estados carregam as duas causas no mesmo paragrafo, sem o leitor poder saber qual frase vale para qual produto. E DUAS COISAS QUE ESTE BLOCO ACHOU E A DA COLA NAO TINHA: (1) sao DUAS telas servindo a frase errada, nao uma — a F2 e a F1, que le a mesma celula para a vitrine de rejunte por folga e dizia \"o que ele nao declara e peca ao ar livre\"; e (2) a `matriz_esperada_do_rejunte` toca so 2 dos 8 estados da regra, porque a grade dela foi escolhida pelas bordas de JUNTA — entao a matriz nunca seria a regua desta regra, e as cinco ancoras existem para pisar nos estados que ela nao visita. NENHUMA celula mudou de elegibilidade em nenhum dos 60 estados: `recomendados_topo`, `elegiveis_abaixo_do_topo`, `mencionados_com_ressalva` e `eliminados_por_faixa_de_junta` sao identicos antes e depois. Era isso que fazia o defeito atravessar toda regua desta ilha — todas mediam concordancia entre a matriz e a tela, e as duas concordavam dizendo a mesma coisa errada desde 10/09/2026."
 }
