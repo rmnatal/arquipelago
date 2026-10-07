@@ -3,6 +3,164 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+07/10/2026 19h5xZ — A FILHA EM FORMA DE PERGUNTA ENTROU NO PORTÃO, E A 16.5 PASSOU A CONTAR CONSULTA: A `alicate` TEM UMA FILHA, NÃO TRÊS, E A SEGUNDA MÃE DO GUIA É A `rejunte`
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h18Z**, push da reserva aceito na primeira
+tentativa (`30a3269`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta, e o último commit na pasta era de **16h37Z** — duas
+horas e meia atrás, fora da janela dos 40 minutos. `git fetch origin main` trouxe 2 commits; a branch
+`claude/*` estava **idêntica ao `main`** e sem PR aberto — nada a mesclar. **Rede pela 20.2:**
+`https://clubedomosaico.com.br/` em **200**, primeira tentativa.
+
+**Nenhum despacho aberto para a Fundação.** O único item do despacho de 07/10 continua sendo o teste de vida
+da 25.4, e ele diz com todas as letras que é **19.2**, do Raphael. Li o topo do `PROMPT.md` pela **18.1**
+antes de escolher o bloco.
+
+**O BLOCO ERA O DA FILA**, escrito às 16h5xZ pela execução anterior: a terceira filha da `alicate` em forma
+de PERGUNTA, medida *"chamando a régua de `filhas-do-guia.py` em vez de reescrevê-la"*, e depois a mãe
+`/materiais/alicates-e-corte/` com as 3 filhas — **4 URLs, 21 → 25**. **A primeira metade saiu inteira. A
+segunda estava errada na conta da 16.5, e o erro é de uma família que esta ilha já nomeou: contar recorte
+onde o que escasseia é consulta.** Nenhuma URL nova (segue em **21**), nada no ar mudou, manifest segue em
+**67** e não houve Sync a acionar — este é um bloco de régua e de medição.
+
+## O que mudou
+
+**`dados/perguntas-do-guia.json` (novo).** As filhas em forma de PERGUNTA, declaradas. O que se digita é
+decisão de **nome**, no mesmo lugar e pelo mesmo motivo que o `PONTE_SLUG_CATEGORIA` é a única coisa digitada
+no `filhas-do-guia.py`: o id, a categoria, **a propriedade que carrega o número**, a consulta-alvo e uma
+`ancora_a_mao`. **Nenhum número, nenhum item e nenhum veredito.** Duas perguntas entraram:
+`pergunta:alicate-espessura-de-corte` (`espessura_maxima_de_corte_mm`) e `pergunta:rejunte-largura-da-junta`
+(`junta_min_mm`).
+
+**`ferramentas/filhas-do-guia.py`.** `carregar_perguntas()`, `medir_perguntas()` e `resumo_das_perguntas()`,
+medindo pela **mesma** régua: mesmo `MINIMO_DA_SECAO_9`, mesmo `propriedades_com_lastro()`, mesmo teto lido
+do esquema. O recorte de uma pergunta é derivado — os itens **ativos** da categoria que declaram a
+propriedade com lastro. A seção nova entrou no `.json`, no `.md` e **no `--conferir`**, que passou a cobrar
+as duas chaves novas e a derrubar a execução quando uma `ancora_a_mao` divergir da derivação. Autoteste de
+**27 para 40 casos**; 13 novos, 12 só pelo portão novo.
+
+**`ferramentas/cruzamento-14-9.py`.** `serp_da_pergunta()`, `cruzar_perguntas()` e
+`o_que_falta_na_pergunta()`; a pergunta se liga à SERP **pela consulta**, não pelo nome do recorte — e por
+isso herda a classificação de uma medição arquivada sob outro recorte, o que é exatamente o caso desta ilha.
+`mae_pode_nascer()` reescrita: a 16.5 passou a contar **consultas abertas distintas**, fora a da mãe, com as
+perguntas dentro da conta e a consulta disputada saindo nomeada. Autoteste de **32 para 46 casos**.
+
+**`dados/serp-das-filhas.json`.** Três medições novas (17 → 20) e o **`limite_5`** do canal.
+
+**`ARVORE.md`.** Seção **2b**, com o quadro por categoria derivado do cruzamento.
+
+## A pergunta não afrouxou o portão, e isto está no código
+
+No recorte de tipo a seção 9 cobra **três** coisas separadas: 3 itens no recorte, 3 deles com lastro, e uma
+propriedade declarada por 3 ao mesmo tempo. Na pergunta as três **coincidem**, porque o recorte dela não é
+um tipo do vocabulário: é o conjunto dos itens que declaram o número com lastro. Contar "itens no recorte"
+ali seria contar a mesma coisa duas vezes e dizer que o portão ficou mais largo. Quem ler "um veredito em
+vez de três" tem de ler esta frase junto, e ela está no cabeçalho da seção nova e na página gerada.
+
+## A CORREÇÃO: a 16.5 se fecha por CONSULTA, e por sete dias esta ilha contou RECORTE
+
+O item da fila somava três filhas para a `alicate`. Duas coisas estavam erradas, as duas mensuráveis:
+
+- **`alicate/torques` não é filha.** O DADO dela abriu às 16h37Z de hoje, e a **SERP é `TOMADA`** desde
+  05/10 — 7 de 10 são loja de ferramenta ou fabricante na página do próprio torques. Veredito do cruzamento:
+  `espera_autoridade`. O `ARVORE.md` já escrevia, desde 02/10, que *"filha não é filha no dado: é no
+  cruzamento"* — e a fila somou no dado.
+- **A pergunta não é uma SEGUNDA filha ao lado de `alicate/cortador_de_azulejo`: é a MESMA.** As duas miram
+  `como cortar pastilha de vidro para mosaico qual ferramenta`, medida ABERTA em 30/09, cujo próprio campo
+  `numero_que_a_serp_nao_publica` nomeia `espessura_maxima_de_corte_mm` *"declarada em 4 dos 6 itens de
+  `alicate`"*. A consulta era da pergunta desde o começo; o tipo estava sentado nela porque foi quem mediu
+  primeiro.
+
+**Recorte não é o que escasseia. Consulta é.** Duas páginas na mesma consulta não são duas filhas: são a
+mesma página duas vezes, disputando a própria consulta. O quadro derivado de hoje:
+
+| categoria | filhas no DADO | no CRUZAMENTO (tipos) | perguntas | **por CONSULTA** | a mãe pode nascer |
+|---|---|---|---|---|---|
+| `acabamento` | 3 | 3 | 0 | **3** | **SIM** — e é o controle do experimento |
+| `rejunte` | 1 | 1 | 1 | **2** | não, falta **uma** |
+| `alicate` | 2 | 1 | 1 | **1** | não |
+| `pastilha` | 1 | 0 | 0 | **0** | não |
+| `cola`, `base`, `apoio` | 0 | 0 | 0 | **0** | não |
+
+A `acabamento` é o caso que exige que a régua nova **aprove** a mãe que já está no ar — três consultas
+distintas, nenhuma igual à da mãe —, e ela aprova. Régua que não aprova o certo vai reprovar trabalho bom, e
+esta ilha pagou isso hoje de manhã com o `--autoteste` do próprio `filhas-do-guia.py`.
+
+## A SEGUNDA MÃE DO GUIA MUDOU DE CATEGORIA, E A PERGUNTA É QUEM A MOVEU
+
+A fila dizia que `rejunte` custava **4 itens de banco** e que a coleta estava fechada por boletim em PDF.
+Verdade **por tipo**: `acrilico` tem 1 item e `epoxi` tem 1, e o caminho de SKU novo foi fechado com nome em
+05/10. A pergunta passa por fora: `junta_min_mm` e `junta_max_mm` são declaradas por **5 de 5** rejuntes,
+com fonte de **nível 2** nos cinco, atravessando os **três** tipos — acrílico 1–4 mm, epóxi 1–5 mm,
+cimentício 2–10 mm. **Ela reúne cinco onde nenhum tipo reúne três**, que é literalmente o caso que o
+`filhas-do-guia.py` descreve desde 30/09. Nenhum SKU, nenhum PDF, nenhuma coleta.
+
+E a consulta dela foi medida hoje e **ABRIU**: *"dá para colar os caquinhos bem juntos no mosaico ou precisa
+deixar espaço para o rejunte"*. Nove resultados únicos — quatro matérias de decoração sobre caquinho, dois
+manuais de assentamento de um **kit** de fabricante (que dá `1 cm a 3 cm` para aquele kit, não para
+caquinho), uma calculadora de consumo, uma tese e uma ficha espanhola. **Zero marketplace, zero página de
+produto de rejunte**, e nenhum dos nove diz de quantos milímetros é a junta que um rejunte de prateleira
+cobre. A faixa descoberta que a página terá de **dizer** (14.3) já está no campo: o piso dos três
+cimentícios é **2 mm**, então quem encosta os caquinhos não tem cimentício neste banco que o atenda — os
+dois que chegam a 1 mm são o acrílico e o epóxi.
+
+## O LIMITE 5 DO CANAL, e ele derruba a regra prática que o limite 4 escreveu seis horas antes
+
+O limite 4, de hoje às 16h5xZ, fechou dizendo: *"para medir corte nesta ilha, ancore em `alicate`, nunca em
+`cortador de azulejo`"*. Esta execução fez exatamente isso — *"até quantos milímetros de espessura o
+**alicate** corta pastilha e **caquinho** para **mosaico artesanal**"*, a âncora pedida mais duas expressões
+que não existem em espanhol — **e desviou igual**: ManoMano e MosaicShop da Espanha, Mercado Livre do Chile,
+Truper e Sears do México, e no Brasil só agregador de preço (Zoom, Bondfaro) e portal de compra pública.
+
+**A variável não é a âncora: é PEDIR O NÚMERO.** A prova vem dos dois lados e de **duas categorias**:
+
+| consultas que PEDEM a medida | consultas que NÃO pedem |
+|---|---|
+| 5, todas desviadas: três de corte (30/09 e duas hoje de manhã), a de hoje no alicate e *"rejunte para junta fina de **1 mm**"*, que trouxe Grupo Puma, Isaval, Anfapa e o Gerador de Preços, todos da Espanha | 3, todas medidas no Brasil: a mãe do alicate, `como cortar pastilha de vidro para mosaico qual ferramenta` e a do caquinho de hoje |
+
+A causa é **estrutural** e já estava escrita do outro lado deste mesmo arquivo: quem publica medida é o
+fabricante, em documento técnico, e o corpus de documento técnico que este canal alcança é ibérico e
+mexicano. O campo `numero_que_a_serp_nao_publica` é essa frase pelo avesso — se o número **não** está na
+SERP brasileira, a consulta que o exige sai do Brasil para achar quem o tem. **A regra que fica, para toda
+categoria: a consulta-alvo de uma filha NUNCA pede o número. Ela faz a pergunta da artesã, e o número é o
+que a PÁGINA entrega** — é assim que a F1 e a F2 são.
+
+## O boletim do rejunte piscinas foi aberto outra vez, e o que se procurava não está lá
+
+`classificacao_normativa` tem lastro em **2 de 3** registros que a declaram e seria o terceiro número do
+`rejunte` a **um campo** de distância. O boletim no espelho da Telha Norte (`1200003.pdf`, 3 páginas,
+revisão de agosto de 2017) foi baixado (HTTP 200, 860 KB) e lido: **zero ocorrência de `tipo I`, `tipo II`,
+`NBR` ou `14992`**. O campo fica ausente **por medição**, não por esquecimento, e os outros quatro boletins
+seguem em `www.quartzolit.weber` com **403**. Não procure de novo neste documento.
+
+## O que não foi feito, de propósito
+
+**Nada foi publicado.** A mãe `/materiais/alicates-e-corte/` não nasce com 1 filha (**16.5**), e filha
+sozinha pendurada em `/materiais/` é o cluster ralo que a **16.6** proíbe — decisão desta ilha, escrita no
+item 3 desta fila desde 02/10. **Quinta execução seguida sem URL nova**, e o argumento de crescimento da
+fila continua de pé: 21 URLs contra as 40 do piso da seção 21.
+
+## Bancada
+
+Tudo verde, e nada no ar mudou de comportamento porque nenhum snippet foi tocado:
+`validar-banco.py` OK · `validar-pastilhas.py` 0 falhas · `filhas-do-guia.py --autoteste` **40 de 40** e
+`--conferir` APROVADO (json, md e a tabela da seção 2 do `ARVORE.md` nas duas direções) ·
+`cruzamento-14-9.py --autoteste` **46 de 46** e `--conferir` APROVADO · `teste-guia.php` 110 ·
+`teste-casca.php` 744 · `teste-f1.php` 228 · `teste-f2.php` 162 · `teste-tecnicas.php` 139 ·
+`teste-prestacao-rejunte.php` 5 afirmações sobre 540 estados da F2 e 180 da F1.
+
+## Próximo passo desbloqueado
+
+**Medir a SERP de uma pergunta de MÉTODO na `pastilha`** — a categoria com mais banco da ilha (13 itens) e a
+única com número sobrando: `m2_por_caixa`, `peso_caixa_kg` e `placas_por_caixa` têm lastro em **12 dos 13** e
+não servem a nenhuma página. Ela está em `espera_autoridade` porque as **duas** consultas medidas nela são de
+**produto**, e a leitura `as_abertas_sao_pergunta_e_as_tomadas_sao_produto` já acertou cinco vezes. Se abrir,
+o Guia passa a ter **duas** categorias a uma filha da mãe. Se vier TOMADA, está medido que a `pastilha` não
+é alcançável por pergunta neste canal — e o bloco seguinte é o snippet do Guia deixar de ser de **uma
+categoria só**, que é código e não medição, e que toda segunda mãe vai exigir de qualquer jeito.
+
+---
+
 07/10/2026 16h5xZ — O PORTÃO DE `alicate/torques` ABRIU SEM UM ÚNICO SKU NOVO; A MÃE NÃO FOI PUBLICADA PORQUE FALTOU UMA FILHA, E A TERCEIRA NÃO É UM TIPO: É UMA PERGUNTA
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h17Z**, push da reserva aceito na primeira

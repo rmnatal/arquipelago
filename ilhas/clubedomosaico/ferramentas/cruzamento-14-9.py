@@ -157,16 +157,95 @@ def o_que_falta(veredito, recorte_dado, medicoes):
     return "os dois: %s, e %s" % (falta_no_dado(recorte_dado), lado_da_serp)
 
 
+# ------------------------------------------------ as filhas em forma de PERGUNTA (07/10/2026)
+#
+# O `filhas-do-guia.py` passou a medir, pela mesma regua, as filhas em forma de PERGUNTA
+# declaradas em `dados/perguntas-do-guia.json`. Elas chegam aqui no mesmo arquivo de entrada, na
+# chave `perguntas`, e precisam do mesmo cruzamento — com uma diferenca que e a razao desta secao
+# existir: a pergunta se liga a SERP pela CONSULTA, nao pelo nome do recorte. Uma consulta medida
+# pode estar arquivada sob um recorte de tipo e ser a consulta-alvo de uma pergunta, e foi
+# exatamente isso que esta ilha achou em 07/10/2026 — `como cortar pastilha de vidro para mosaico
+# qual ferramenta` esta arquivada em `alicate/cortador_de_azulejo` desde 30/09 e e a consulta da
+# pergunta da espessura.
+
+def serp_da_pergunta(pergunta, medicoes):
+    """A classificacao que vale para uma pergunta: a melhor entre as medicoes DA CONSULTA dela.
+
+    Entram duas coisas: medicao arquivada sob o id da pergunta, e medicao de QUALQUER recorte cuja
+    `consulta` seja a consulta-alvo dela. A segunda e a que importa e a que nenhuma versao anterior
+    deste arquivo alcancava: consulta e consulta, e onde ela foi arquivada e acidente de quem
+    mediu primeiro.
+    """
+    minhas = [m for m in medicoes
+              if m.get("recorte") == pergunta["pergunta"]
+              or m.get("consulta") == pergunta["consulta_alvo"]]
+    return serp_do_recorte(minhas), minhas
+
+
+def cruzar_perguntas(perguntas, medicoes):
+    linhas = []
+    for p in perguntas:
+        classe, minhas = serp_da_pergunta(p, medicoes)
+        veredito = cruzar(p["veredito"], classe)
+        # Onde a consulta-alvo dela foi arquivada. Nao e enfeite: e o que o passo da 16.5 usa para
+        # nao contar duas filhas onde existe uma consulta.
+        creditada_a = sorted(set(m["recorte"] for m in minhas
+                                 if m.get("consulta") == p["consulta_alvo"]
+                                 and m.get("recorte") != p["pergunta"]))
+        sem_faixa = [m["consulta"] for m in minhas
+                     if m["classificacao"] in ("ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP")
+                     and not m.get("faixa_de_volume")]
+        linhas.append({
+            "pergunta": p["pergunta"],
+            "categoria": p["categoria"],
+            "consulta_alvo": p["consulta_alvo"],
+            "veredito_de_dado": p["veredito"],
+            "itens_que_declaram_o_numero": p["itens_que_declaram_o_numero"],
+            "classe_de_serp": classe,
+            "consultas_medidas": len(minhas),
+            "consulta_alvo_creditada_a": creditada_a,
+            "coincide_com_o_recorte_de_tipo": p["coincide_com_o_recorte_de_tipo"],
+            "veredito": veredito,
+            "o_que_falta": o_que_falta_na_pergunta(veredito, p, minhas),
+            "consultas_abertas_sem_faixa": sem_faixa,
+            "numeros_que_a_serp_nao_publica": [m["numero_que_a_serp_nao_publica"] for m in minhas
+                                               if m.get("numero_que_a_serp_nao_publica")],
+        })
+    return linhas
+
+
+def o_que_falta_na_pergunta(veredito, p, medicoes):
+    """O mesmo texto dos recortes, menos o que nao se aplica: pergunta nao tem `passa_na_contagem
+    _sem_lastro`, porque o recorte dela JA e o conjunto dos itens com lastro."""
+    if veredito in ("pode_nascer", "pode_nascer_sem_demanda_medida", "espera_autoridade", "nunca"):
+        return o_que_falta(veredito, None, medicoes)
+    if veredito == "espera_dado":
+        return ("%d item(ns) declarando `%s` com fonte que sustente recomendacao primaria"
+                % (3 - p["itens_que_declaram_o_numero"], p["propriedade_que_carrega_o_numero"]))
+    if veredito == "espera_serp":
+        if medicoes:
+            return ("uma consulta MEDIDA: as %d tentativas desta pergunta falharam por instrumento,"
+                    " nao por concorrente" % len(medicoes))
+        return "olhar a SERP da consulta-alvo: o dado passa e ninguem classificou quem ocupa"
+    return ("os dois: %d item(ns) declarando `%s`, e %s"
+            % (3 - p["itens_que_declaram_o_numero"], p["propriedade_que_carrega_o_numero"],
+               ("%d consulta(s) medida(s) e nenhuma aberta" % len(medicoes)) if medicoes
+               else "a SERP da consulta-alvo nunca foi olhada"))
+
+
 def montar(dado, serp):
     por_recorte = {r["recorte"]: r for r in dado["recortes"]}
+    perguntas = dado.get("perguntas", [])
     medicoes_por_recorte = {}
     for m in serp["medicoes"]:
         medicoes_por_recorte.setdefault(m["recorte"], []).append(m)
 
     # Toda medicao de SERP tem de cair num recorte que o portao de dado conhece. Medicao de
     # recorte inexistente e consulta orfa — e orfa passa despercebida justamente no arquivo
-    # que decide o que nasce.
-    orfas = sorted(set(medicoes_por_recorte) - set(por_recorte))
+    # que decide o que nasce. Desde 07/10/2026 o id de uma PERGUNTA tambem e um lugar valido:
+    # sem esta linha, a primeira medicao de consulta de pergunta sairia como orfa.
+    conhecidos = set(por_recorte) | set(p["pergunta"] for p in perguntas)
+    orfas = sorted(set(medicoes_por_recorte) - conhecidos)
 
     linhas = []
     for nome in sorted(por_recorte):
@@ -184,6 +263,7 @@ def montar(dado, serp):
             "classe_de_serp": classe,
             "consultas_medidas": len(medicoes),
             "veredito": veredito,
+            "consulta_que_autoriza": consulta_que_autoriza(medicoes),
             "o_que_falta": o_que_falta(veredito, r, medicoes),
             "consultas_abertas_sem_faixa": sem_faixa,
             "numeros_que_a_serp_nao_publica": [m["numero_que_a_serp_nao_publica"] for m in medicoes
@@ -198,6 +278,11 @@ def montar(dado, serp):
         for c in l["consultas_abertas_sem_faixa"]:
             pedido.append({"consulta": c, "exigida_por": l["recorte"], "veredito": l["veredito"]})
 
+    linhas_de_pergunta = cruzar_perguntas(perguntas, serp["medicoes"])
+    for l in linhas_de_pergunta:
+        for c in l["consultas_abertas_sem_faixa"]:
+            pedido.append({"consulta": c, "exigida_por": l["pergunta"], "veredito": l["veredito"]})
+
     contagem = {}
     for l in linhas:
         contagem[l["veredito"]] = contagem.get(l["veredito"], 0) + 1
@@ -208,6 +293,7 @@ def montar(dado, serp):
         "gerado_por": "ferramentas/cruzamento-14-9.py",
         "derivado_de": ["dados/filhas-do-guia.json", "dados/serp-das-filhas.json"],
         "recortes": linhas,
+        "perguntas": linhas_de_pergunta,
         "medicoes_de_serp_orfas": orfas,
         "resumo": {
             "vereditos": contagem,
@@ -219,33 +305,91 @@ def montar(dado, serp):
             "dado_verde_e_serp_nunca_olhada": [l["recorte"] for l in linhas
                                                if l["veredito"] == "espera_serp"],
             "pedido_de_faixa_ao_raphael": pedido,
+            "perguntas_que_podem_nascer": [l["pergunta"] for l in linhas_de_pergunta
+                                           if l["veredito"] in VEREDITOS_QUE_AUTORIZAM],
         },
     }
 
 
 # ------------------------------------------------------------------ a 16.5, que e da mae
 
+def consulta_que_autoriza(medicoes):
+    """A consulta ABERTA que faz este recorte poder nascer, entre as medidas nele. '' quando nenhuma.
+
+    A 16.5 pede 3 filhas, e por sete dias esta ilha contou RECORTES. Recorte nao e o que escasseia:
+    o que escasseia e a CONSULTA aberta. Duas paginas que miram a mesma consulta nao sao duas
+    filhas — sao a mesma pagina duas vezes, disputando a propria consulta.
+    """
+    abertas = [m for m in medicoes
+               if m["classificacao"] in ("ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP")]
+    if not abertas:
+        return ""
+    # A melhor primeiro, pela mesma escada do recorte, e depois em ordem alfabetica para a
+    # derivacao nao depender da ordem em que alguem gravou as medicoes.
+    abertas.sort(key=lambda m: (ESCADA_DA_SERP.index(m["classificacao"]), m["consulta"]))
+    return abertas[0]["consulta"]
+
+
 def mae_pode_nascer(c, categorias_do_dado):
     """A 16.5 pede 3 filhas de nivel 3 para a mae de nivel 2 nascer. E o cruzamento muda a
-    pergunta: 3 filhas que PASSAM NO DADO nao sao 3 filhas que podem nascer.
+    pergunta DUAS vezes.
 
-    Devolve, por categoria: quantas filhas o dado autoriza, quantas o CRUZAMENTO autoriza, e
-    se a mae pode nascer. A diferenca entre os dois numeros e o que nenhum dos dois arquivos
-    de entrada mostra sozinho.
+    A primeira, de 02/10/2026: 3 filhas que PASSAM NO DADO nao sao 3 filhas que podem nascer.
+
+    A segunda, de 07/10/2026, e a que esta versao acrescenta: filha nao se conta por RECORTE, e por
+    CONSULTA ABERTA. As filhas em forma de pergunta entram na conta — era isso que faltava, e o
+    `filhas-do-guia.py` avisava desde 30/09 que o recorte de tipo e so o piso — e, na mesma conta,
+    pergunta e tipo que miram a MESMA consulta valem UMA filha. O caso que forcou isto esta medido
+    nesta ilha: `alicate/cortador_de_azulejo` esta em `pode_nascer` e a `pergunta:alicate-espessura-
+    de-corte` tambem, e as duas miram `como cortar pastilha de vidro para mosaico qual ferramenta`.
+    Contadas por recorte, a `alicate` teria 2 filhas; contadas por consulta, tem 1 — e a fila da
+    ilha prometia 3, somando o tipo que a SERP recusa.
+
+    A consulta da MAE nao conta: ela e a pagina de nivel 2, nao filha dela mesma.
     """
     por_recorte = {l["recorte"]: l for l in c["recortes"]}
+    perguntas_por_categoria = {}
+    for l in c.get("perguntas", []):
+        perguntas_por_categoria.setdefault(l["categoria"], []).append(l)
+
     saida = {}
     for cat, info in sorted(categorias_do_dado.items()):
         filhas_no_dado = info["tipos_que_passam_quais"]
         filhas_no_cruzamento = [f for f in filhas_no_dado
                                 if por_recorte.get(f, {}).get("veredito") in VEREDITOS_QUE_AUTORIZAM]
         mae = por_recorte.get(cat, {})
+        consulta_da_mae = mae.get("consulta_que_autoriza", "")
+
+        # As candidatas, com a consulta de cada uma: tipos autorizados + perguntas autorizadas.
+        candidatas = []
+        for f in filhas_no_cruzamento:
+            candidatas.append((f, por_recorte[f].get("consulta_que_autoriza", "")))
+        perguntas_autorizadas = [l for l in perguntas_por_categoria.get(cat, [])
+                                 if l["veredito"] in VEREDITOS_QUE_AUTORIZAM]
+        for l in perguntas_autorizadas:
+            candidatas.append((l["pergunta"], l["consulta_alvo"]))
+
+        # A conta: consultas DISTINTAS, fora a da mae. Candidata sem consulta aberta nao conta —
+        # ela esta autorizada por uma medicao que nao e dela, e isso e o que o `espera_serp` existe
+        # para dizer.
+        consultas = {}
+        for nome, consulta in candidatas:
+            if not consulta or consulta == consulta_da_mae:
+                continue
+            consultas.setdefault(consulta, []).append(nome)
+
         saida[cat] = {
             "filhas_que_o_dado_autoriza": len(filhas_no_dado),
             "filhas_que_o_cruzamento_autoriza": len(filhas_no_cruzamento),
             "quais_o_cruzamento_autoriza": filhas_no_cruzamento,
+            "perguntas_que_o_cruzamento_autoriza": [l["pergunta"] for l in perguntas_autorizadas],
+            "consultas_abertas_de_filha": sorted(consultas),
+            "filhas_contadas_por_consulta": len(consultas),
+            "consultas_disputadas_por_mais_de_uma_candidata": {
+                k: sorted(v) for k, v in sorted(consultas.items()) if len(v) > 1},
+            "consulta_da_mae": consulta_da_mae,
             "veredito_da_mae": mae.get("veredito", "sem_nenhum_dos_dois"),
-            "a_mae_pode_nascer": (len(filhas_no_cruzamento) >= 3
+            "a_mae_pode_nascer": (len(consultas) >= 3
                                   and mae.get("veredito") in VEREDITOS_QUE_AUTORIZAM),
         }
     return saida
@@ -284,14 +428,54 @@ def gerar_md(c, maes):
     A("passe livre: %s"
       % (", ".join("`%s`" % x for x in c["resumo"]["dado_verde_e_serp_nunca_olhada"]) or "nenhum"))
     A("")
-    A("## A 16.5 — a mae de nivel 2 so nasce com 3 filhas, e filha nao e filha no dado: e no cruzamento")
+    A("## A 16.5 — a mae de nivel 2 so nasce com 3 filhas, e filha se conta por CONSULTA")
     A("")
-    A("| categoria | filhas que o DADO autoriza | filhas que o CRUZAMENTO autoriza | veredito da mae | a mae pode nascer |")
-    A("|---|---|---|---|---|")
+    A("Duas correcoes de leitura, nesta ordem. **02/10/2026:** 3 filhas que passam no DADO nao sao 3")
+    A("filhas que podem nascer — por isso a coluna do cruzamento. **07/10/2026:** filha nao se conta")
+    A("por RECORTE, e por **consulta aberta**. As filhas em forma de PERGUNTA entram na conta, e na")
+    A("mesma conta pergunta e tipo que miram a MESMA consulta valem **uma** filha: duas paginas na")
+    A("mesma consulta nao sao duas filhas, sao a mesma pagina duas vezes. A consulta da mae nao")
+    A("conta — ela e a pagina de nivel 2, nao filha de si mesma.")
+    A("")
+    A("| categoria | filhas no DADO | filhas no CRUZAMENTO (tipos) | perguntas | **filhas por CONSULTA** | veredito da mae | a mae pode nascer |")
+    A("|---|---|---|---|---|---|---|")
     for cat, m in maes.items():
-        A("| `%s` | %d | %d | `%s` | %s |"
+        A("| `%s` | %d | %d | %d | **%d** | `%s` | %s |"
           % (cat, m["filhas_que_o_dado_autoriza"], m["filhas_que_o_cruzamento_autoriza"],
+             len(m["perguntas_que_o_cruzamento_autoriza"]), m["filhas_contadas_por_consulta"],
              m["veredito_da_mae"], "**SIM**" if m["a_mae_pode_nascer"] else "nao"))
+    A("")
+    disputa = [(cat, m) for cat, m in maes.items()
+               if m["consultas_disputadas_por_mais_de_uma_candidata"]]
+    if disputa:
+        A("**Consultas disputadas por mais de uma candidata** — cada uma delas vale UMA filha, e e")
+        A("aqui que a conta por recorte inflava:")
+        A("")
+        for cat, m in disputa:
+            for consulta, quem in m["consultas_disputadas_por_mais_de_uma_candidata"].items():
+                A("- `%s` — *%s* e disputada por %s"
+                  % (cat, consulta, ", ".join("`%s`" % q for q in quem)))
+        A("")
+    A("## As filhas em forma de PERGUNTA, cruzadas")
+    A("")
+    A("Elas vem medidas no portao de DADO por `filhas-do-guia.py`, pela mesma regua dos recortes de")
+    A("tipo, e se ligam a SERP pela **consulta**, nao pelo nome do recorte — consulta e consulta, e")
+    A("onde ela foi arquivada e acidente de quem mediu primeiro.")
+    A("")
+    if not c.get("perguntas"):
+        A("Nenhuma pergunta declarada em `dados/perguntas-do-guia.json`.")
+    else:
+        A("| pergunta | categoria | itens | SERP | veredito | consulta-alvo tambem creditada a | o que falta |")
+        A("|---|---|---|---|---|---|---|")
+        for l in c["perguntas"]:
+            A("| `%s` | `%s` | %d | `%s` | **`%s`** | %s | %s |"
+              % (l["pergunta"], l["categoria"], l["itens_que_declaram_o_numero"],
+                 l["classe_de_serp"], l["veredito"],
+                 ", ".join("`%s`" % x for x in l["consulta_alvo_creditada_a"]) or "—",
+                 l["o_que_falta"]))
+        A("")
+        for l in c["perguntas"]:
+            A("- **`%s`** — consulta-alvo: *%s*" % (l["pergunta"], l["consulta_alvo"]))
     A("")
     A("## Recorte por recorte")
     A("")
@@ -326,6 +510,9 @@ def gerar_md(c, maes):
     for l in c["recortes"]:
         for n in l["numeros_que_a_serp_nao_publica"]:
             A("- **`%s`** — %s" % (l["recorte"], n))
+    for l in c.get("perguntas", []):
+        for n in l["numeros_que_a_serp_nao_publica"]:
+            A("- **`%s`** — %s" % (l["pergunta"], n))
     A("")
     if c["medicoes_de_serp_orfas"]:
         A("## MEDICOES DE SERP ORFAS — consulta medida em recorte que o portao de dado nao conhece")
@@ -400,13 +587,17 @@ def autoteste():
 
     print("")
     print("A 16.5 — e o caso que o portao de dado sozinho nao ve: 3 filhas verdes no dado e 2 no cruzamento:")
+    # CADA MEDICAO COM A CONSULTA DELA, e isto nao e detalhe de fixture desde 07/10/2026: a 16.5
+    # passou a contar CONSULTA DISTINTA, e o fixture antigo deixava as quatro com a consulta "c" do
+    # valor padrao do `_medicao`. Com a conta nova ele devolvia zero filha para uma mae que o caso
+    # declara publicavel — a regua mordendo o proprio fixture, que e o que se espera dela.
     dado = {"ilha": "x", "recortes": [
         _recorte("acab", "passa"),
         _recorte("acab/a", "passa"), _recorte("acab/b", "passa"), _recorte("acab/c", "passa"),
     ]}
     serp = {"medicoes": [
-        _medicao("acab", "ABERTA"), _medicao("acab/a", "ABERTA"),
-        _medicao("acab/b", "ABERTA"), _medicao("acab/c", "TOMADA"),
+        _medicao("acab", "ABERTA", consulta="a mae"), _medicao("acab/a", "ABERTA", consulta="ca"),
+        _medicao("acab/b", "ABERTA", consulta="cb"), _medicao("acab/c", "TOMADA", consulta="cc"),
     ]}
     cats = {"acab": {"tipos_que_passam_quais": ["acab/a", "acab/b", "acab/c"]}}
     m = mae_pode_nascer(montar(dado, serp), cats)["acab"]
@@ -419,7 +610,7 @@ def autoteste():
         print("  %s %-34s -> %-6s (esperado %s)"
               % ("ok  " if ok else "FALHA", rotulo, obtido, esperado))
 
-    serp["medicoes"][3] = _medicao("acab/c", "ABERTA_SEM_INTENCAO_NA_SERP")
+    serp["medicoes"][3] = _medicao("acab/c", "ABERTA_SEM_INTENCAO_NA_SERP", consulta="cc")
     m = mae_pode_nascer(montar(dado, serp), cats)["acab"]
     for rotulo, obtido, esperado in (
             ("com a 3a filha sem demanda medida", m["filhas_que_o_cruzamento_autoriza"], 3),
@@ -431,7 +622,7 @@ def autoteste():
 
     # E A MAE TOMADA COM TRES FILHAS ABERTAS: a 16.5 conta filha, o cruzamento conta a mae
     # tambem, e sem isso a mae nasceria para uma SERP de marketplace.
-    serp["medicoes"][0] = _medicao("acab", "TOMADA")
+    serp["medicoes"][0] = _medicao("acab", "TOMADA", consulta="a mae")
     m = mae_pode_nascer(montar(dado, serp), cats)["acab"]
     ok = m["a_mae_pode_nascer"] is False and m["filhas_que_o_cruzamento_autoriza"] == 3
     falhas += 0 if ok else 1
@@ -457,6 +648,138 @@ def autoteste():
     print("       (esperado %s — `tomada sem faixa` e `aberta com faixa` ficam fora)" % esperado)
 
     print("")
+    print("")
+    print("A FILHA EM FORMA DE PERGUNTA, e a trava que a 16.5 ganhou em 07/10/2026 — ela conta CONSULTA:")
+
+    def _pergunta(id_, categoria, veredito="passa", itens=4, consulta="cp",
+                  coincide=None, prop="p"):
+        return {"pergunta": id_, "categoria": categoria, "veredito": veredito,
+                "itens_que_declaram_o_numero": itens, "consulta_alvo": consulta,
+                "propriedade_que_carrega_o_numero": prop,
+                "coincide_com_o_recorte_de_tipo": coincide}
+
+    # (1) A PERGUNTA ACRESCENTA FILHA quando a consulta dela e PROPRIA: dois tipos autorizados mais
+    # a pergunta, tres consultas distintas, mae nasce. E o caso que a fila da ilha supunha.
+    dado3 = {"ilha": "x",
+             "recortes": [_recorte("rej", "passa"), _recorte("rej/a", "passa"),
+                          _recorte("rej/b", "passa")],
+             "perguntas": [_pergunta("pergunta:junta", "rej", consulta="a junta")],
+             "resumo": {"por_categoria_do_guia": {}}}
+    serp3 = {"medicoes": [
+        _medicao("rej", "ABERTA", consulta="a mae"),
+        _medicao("rej/a", "ABERTA", consulta="ca"),
+        _medicao("rej/b", "ABERTA", consulta="cb"),
+        _medicao("pergunta:junta", "ABERTA", consulta="a junta"),
+    ]}
+    cats3 = {"rej": {"tipos_que_passam_quais": ["rej/a", "rej/b"]}}
+    m3 = mae_pode_nascer(montar(dado3, serp3), cats3)["rej"]
+    for rotulo, obtido, esperado in (
+            ("filhas por RECORTE (tipos so)", m3["filhas_que_o_cruzamento_autoriza"], 2),
+            ("filhas por CONSULTA (com a pergunta)", m3["filhas_contadas_por_consulta"], 3),
+            ("a mae pode nascer", m3["a_mae_pode_nascer"], True)):
+        ok = obtido == esperado
+        falhas += 0 if ok else 1
+        print("  %s %-38s -> %-6s (esperado %s)"
+              % ("ok  " if ok else "FALHA", rotulo, obtido, esperado))
+
+    # (2) A TRAVA: a pergunta mira a consulta que JA e creditada a um tipo autorizado. Duas
+    # candidatas, UMA consulta, UMA filha. E o caso medido na `alicate` em 07/10/2026, e e ele que
+    # desmente a frase da fila que prometia a mae com tres filhas.
+    dado4 = {"ilha": "x",
+             "recortes": [_recorte("ali", "passa"), _recorte("ali/cortador", "passa")],
+             "perguntas": [_pergunta("pergunta:esp", "ali", consulta="como cortar")],
+             "resumo": {"por_categoria_do_guia": {}}}
+    serp4 = {"medicoes": [
+        _medicao("ali", "ABERTA", consulta="a mae"),
+        _medicao("ali/cortador", "ABERTA", consulta="como cortar"),
+    ]}
+    cats4 = {"ali": {"tipos_que_passam_quais": ["ali/cortador"]}}
+    c4 = montar(dado4, serp4)
+    m4 = mae_pode_nascer(c4, cats4)["ali"]
+    for rotulo, obtido, esperado in (
+            ("a pergunta herda a SERP da consulta", c4["perguntas"][0]["classe_de_serp"], "ABERTA"),
+            ("e ela diz a quem a consulta e creditada",
+             c4["perguntas"][0]["consulta_alvo_creditada_a"], ["ali/cortador"]),
+            ("candidatas autorizadas", 1 + len(m4["perguntas_que_o_cruzamento_autoriza"]), 2),
+            ("filhas por CONSULTA", m4["filhas_contadas_por_consulta"], 1),
+            ("a consulta sai marcada como disputada",
+             sorted(m4["consultas_disputadas_por_mais_de_uma_candidata"]), ["como cortar"]),
+            ("a mae pode nascer", m4["a_mae_pode_nascer"], False)):
+        ok = obtido == esperado
+        falhas += 0 if ok else 1
+        print("  %s %-38s -> %-28s (esperado %s)"
+              % ("ok  " if ok else "FALHA", rotulo, obtido, esperado))
+
+    # (3) A CONSULTA DA MAE NAO CONTA COMO FILHA. Sem esta linha, uma categoria com a mae aberta e
+    # duas filhas na mesma consulta da mae contaria tres, e a mae nasceria sendo filha de si mesma.
+    dado5 = {"ilha": "x",
+             "recortes": [_recorte("rej", "passa"), _recorte("rej/a", "passa")],
+             "perguntas": [_pergunta("pergunta:x", "rej", consulta="a mae")],
+             "resumo": {"por_categoria_do_guia": {}}}
+    serp5 = {"medicoes": [
+        _medicao("rej", "ABERTA", consulta="a mae"),
+        _medicao("rej/a", "ABERTA", consulta="a mae"),
+    ]}
+    m5 = mae_pode_nascer(montar(dado5, serp5), {"rej": {"tipos_que_passam_quais": ["rej/a"]}})["rej"]
+    ok = m5["filhas_contadas_por_consulta"] == 0 and m5["a_mae_pode_nascer"] is False
+    falhas += 0 if ok else 1
+    print("  %s %-38s -> %-6s (esperado 0)"
+          % ("ok  " if ok else "FALHA", "consulta da MAE nao conta como filha",
+             m5["filhas_contadas_por_consulta"]))
+
+    # (4) PERGUNTA COM DADO VERMELHO nao vira filha, por aberta que a consulta esteja.
+    dado6 = {"ilha": "x", "recortes": [_recorte("rej", "passa")],
+             "perguntas": [_pergunta("pergunta:y", "rej", veredito="nao_passa", itens=2,
+                                     consulta="minha")],
+             "resumo": {"por_categoria_do_guia": {}}}
+    serp6 = {"medicoes": [_medicao("rej", "ABERTA", consulta="a mae"),
+                          _medicao("pergunta:y", "ABERTA", consulta="minha")]}
+    c6 = montar(dado6, serp6)
+    m6 = mae_pode_nascer(c6, {"rej": {"tipos_que_passam_quais": []}})["rej"]
+    ok = (c6["perguntas"][0]["veredito"] == "espera_dado"
+          and "1 item" in c6["perguntas"][0]["o_que_falta"]
+          and m6["filhas_contadas_por_consulta"] == 0)
+    falhas += 0 if ok else 1
+    print("  %s %-38s -> %-28s (esperado espera_dado)"
+          % ("ok  " if ok else "FALHA", "pergunta com dado vermelho nao conta",
+             c6["perguntas"][0]["veredito"]))
+
+    # (5) PERGUNTA SEM CONSULTA MEDIDA: dado verde e SERP nunca olhada, que e o caso que esta ilha
+    # chama de passe livre falso. E a mae nao ganha filha por ela.
+    dado7 = {"ilha": "x", "recortes": [_recorte("rej", "passa")],
+             "perguntas": [_pergunta("pergunta:z", "rej", consulta="ninguem mediu")],
+             "resumo": {"por_categoria_do_guia": {}}}
+    serp7 = {"medicoes": [_medicao("rej", "ABERTA", consulta="a mae")]}
+    c7 = montar(dado7, serp7)
+    m7 = mae_pode_nascer(c7, {"rej": {"tipos_que_passam_quais": []}})["rej"]
+    ok = (c7["perguntas"][0]["veredito"] == "espera_serp"
+          and m7["filhas_contadas_por_consulta"] == 0
+          and not c7["medicoes_de_serp_orfas"])
+    falhas += 0 if ok else 1
+    print("  %s %-38s -> %-28s (esperado espera_serp)"
+          % ("ok  " if ok else "FALHA", "pergunta sem consulta medida",
+             c7["perguntas"][0]["veredito"]))
+
+    # (6) MEDICAO ARQUIVADA SOB O ID DA PERGUNTA NAO E ORFA. Sem a linha de `conhecidos` no montar,
+    # a primeira medicao de consulta de pergunta sairia como orfa e o --conferir reprovaria o
+    # repositorio inteiro.
+    ok = not montar(dado7, {"medicoes": [_medicao("pergunta:z", "ABERTA", consulta="x")]})[
+        "medicoes_de_serp_orfas"]
+    falhas += 0 if ok else 1
+    print("  %s %-38s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "medicao sob id de pergunta nao e orfa", ok))
+
+    # (7) ARQUIVO SEM A CHAVE `perguntas` continua funcionando: a ferramenta e de 02/10 e o
+    # `filhas-do-guia.json` de ontem nao tem a chave. Entrada velha nao pode explodir a derivacao.
+    dado8 = {"ilha": "x", "recortes": [_recorte("rej", "passa")],
+             "resumo": {"por_categoria_do_guia": {}}}
+    c8 = montar(dado8, {"medicoes": [_medicao("rej", "ABERTA", consulta="a mae")]})
+    ok = c8["perguntas"] == [] and not c8["medicoes_de_serp_orfas"]
+    falhas += 0 if ok else 1
+    print("  %s %-38s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "entrada SEM a chave perguntas nao explode", ok))
+
+    print("")
     print("A MEDICAO ORFA — consulta num recorte que o portao de dado nao conhece:")
     orfas = montar({"ilha": "x", "recortes": [_recorte("a", "passa")]},
                    {"medicoes": [_medicao("a", "ABERTA"), _medicao("inventado/x", "ABERTA")]})
@@ -465,7 +788,11 @@ def autoteste():
     falhas += 0 if ok else 1
     print("  %s orfas -> %s (esperado ['inventado/x'])" % ("ok  " if ok else "FALHA", obtido))
 
-    total = len(casos) + len(prec) + 3 + 2 + 1 + 1 + 1
+    # A conta e a mao e por isso ela erra calada: a bancada das PERGUNTAS entrou em
+    # 07/10/2026 com 14 afirmacoes e o total continuou em 32 na primeira passada, dizendo
+    # verde sobre menos do que media. 3+2+1 = a 16.5; 1 = pedido de faixa; 1 = orfa;
+    # 3+6+1+1+1+1+1 = as sete pecas da bancada das perguntas, na ordem em que saem.
+    total = len(casos) + len(prec) + 3 + 2 + 1 + 1 + 1 + (3 + 6 + 1 + 1 + 1 + 1 + 1)
     print("")
     if falhas:
         print("REPROVADO: %d de %d casos falharam." % (falhas, total))
@@ -527,8 +854,9 @@ def main(argv):
           % (", ".join(c["resumo"]["dado_verde_e_serp_nunca_olhada"]) or "nenhum"))
     print("")
     for cat, m in maes.items():
-        print("  16.5  %-12s dado %d filha(s), cruzamento %d -> mae %s"
+        print("  16.5  %-12s dado %d, cruzamento %d, por consulta %d -> mae %s"
               % (cat, m["filhas_que_o_dado_autoriza"], m["filhas_que_o_cruzamento_autoriza"],
+                 m["filhas_contadas_por_consulta"],
                  "PODE NASCER" if m["a_mae_pode_nascer"] else "espera"))
     print("")
     print("Pedido de faixa ao Raphael: %d consulta(s) aberta(s) sem faixa medida"

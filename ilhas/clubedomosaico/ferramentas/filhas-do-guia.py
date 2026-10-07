@@ -305,8 +305,10 @@ def resumo(linhas):
     }
 
 
-def montar(esquema, banco):
+def montar(esquema, banco, perguntas=None):
     teto, linhas = medir(esquema, banco)
+    perguntas = carregar_perguntas() if perguntas is None else perguntas
+    linhas_de_pergunta = medir_perguntas(esquema, banco, perguntas)
     return {
         "id": "filhas-do-guia",
         "ilha": "clubedomosaico",
@@ -329,13 +331,15 @@ def montar(esquema, banco):
             " silencios." % (teto, MINIMO_DA_SECAO_9)),
         "o_que_este_arquivo_mede_e_o_que_ele_NAO_alcanca": (
             "Ele mede os recortes que o VOCABULARIO nomeia — categoria inteira e cada tipo de"
-            " `tipo_por_categoria`. Filha de nivel 3 tambem pode ter forma de PERGUNTA em vez de"
-            " forma de tipo, e as duas que esta ilha ja publicou sao assim: a F2 ('qual cola usar no"
-            " mosaico') e a F1 ('quantas pastilhas'). Uma pergunta atravessa tipos e pode reunir 3"
-            " itens onde nenhum tipo sozinho reune. Portanto este arquivo e um PISO do que pode"
-            " nascer hoje, nunca um teto — e um `nao_passa` aqui nao proibe a pergunta, proibe o"
-            " tipo. Quem escrever a pergunta conta os 3 itens dela pela mesma regua, e a regua esta"
-            " nesta ferramenta para ser chamada em vez de reescrita."),
+            " `tipo_por_categoria` — e, desde 07/10/2026, tambem as filhas em forma de PERGUNTA"
+            " declaradas em `dados/perguntas-do-guia.json`, pela MESMA regua e com o mesmo minimo."
+            " De 30/09 a 07/10 esta frase dizia que a pergunta ficava fora e que o arquivo era um"
+            " PISO; a pergunta entrou, e o piso de hoje e outro: o que continua fora e a pergunta"
+            " que ninguem declarou. Uma pergunta atravessa tipos e pode reunir 3 itens onde nenhum"
+            " tipo sozinho reune, e e por isso que `nao_passa` num tipo nao proibe a pergunta —"
+            " proibe o tipo. O que esta regua NAO faz pela pergunta e dizer se ela ACRESCENTA uma"
+            " filha a categoria: isso e do `cruzamento-14-9.py`, porque a 16.5 se fecha por"
+            " CONSULTA, e pergunta que mira a consulta aberta de um tipo e o tipo com outro titulo."),
         "o_que_este_arquivo_NAO_decide": [
             "o endereco da pagina — quem publica escolhe, e a 16.5 manda a mae esperar 3 filhas",
             "a chance de primeira pagina — e a 14.9, e ela se mede na SERP, nao no banco",
@@ -343,6 +347,135 @@ def montar(esquema, banco):
         ],
         "recortes": linhas,
         "resumo": resumo(linhas),
+        "perguntas": linhas_de_pergunta,
+        "resumo_das_perguntas": resumo_das_perguntas(linhas_de_pergunta),
+    }
+
+
+# ------------------------------------------------- as filhas em forma de PERGUNTA (07/10/2026)
+#
+# O cabecalho deste arquivo diz, desde 30/09/2026, que ele e um PISO e nunca um teto, porque
+# filha de nivel 3 tambem pode ter forma de PERGUNTA — e que "quem escrever a pergunta conta os
+# 3 itens dela pela mesma regua, e a regua esta nesta ferramenta para ser chamada em vez de
+# reescrita". Por sete dias ninguem a chamou: a fila inteira da ilha foi escrita contando TIPOS,
+# e as duas filhas vivas (a F1 e a F2) sao perguntas. Esta secao e a frase deixando de ser prosa.
+#
+# A PERGUNTA NAO AFROUXA O PORTAO, E ISTO TEM DE SER LIDO ANTES DE QUALQUER NUMERO. No recorte de
+# tipo a secao 9 cobra TRES coisas separadas: 3 itens no recorte, 3 deles com lastro, e uma
+# propriedade declarada por 3 ao mesmo tempo. Na pergunta as tres COINCIDEM, porque o recorte dela
+# nao e um tipo do vocabulario: e o conjunto dos itens que declaram o numero com lastro. Contar
+# "itens no recorte" ali seria contar a mesma coisa duas vezes e dizer que o portao e mais largo.
+# O minimo e o mesmo, lido da mesma constante, e o teto de nivel de fonte e o mesmo do esquema.
+#
+# E A PERGUNTA NAO DECIDE SOZINHA SE A CATEGORIA GANHOU UMA FILHA. Isso e do `cruzamento-14-9.py`,
+# porque a 16.5 se fecha por CONSULTA e nao por recorte: pergunta que mira a consulta aberta que
+# ja esta creditada a um tipo nao e uma segunda filha — e o mesmo tipo com outro titulo, e publicar
+# as duas seria disputar a propria consulta. Aqui mede-se so o lado do BANCO, igual aos recortes.
+
+def carregar_perguntas(dados=DADOS):
+    """As perguntas declaradas. Arquivo ausente = nenhuma pergunta, e isso nao e falha."""
+    caminho = os.path.join(dados, "perguntas-do-guia.json")
+    if not os.path.exists(caminho):
+        return []
+    with io.open(caminho, encoding="utf-8") as f:
+        return json.load(f).get("perguntas", [])
+
+
+def medir_perguntas(esquema, banco, perguntas):
+    """Cada pergunta medida pela MESMA regua dos recortes de tipo.
+
+    O recorte de uma pergunta e derivado: os itens ATIVOS da categoria dela que declaram a
+    propriedade apontada com fonte de nivel <= teto. Nada aqui e digitado alem do nome da
+    categoria, do nome da propriedade e da consulta — e os tres sao decisao de nome.
+    """
+    teto = teto_de_nivel(esquema)
+    por_categoria = esquema["vocabularios"]["tipo_por_categoria"]
+    linhas = []
+    for p in perguntas:
+        categoria = p["categoria"]
+        propriedade = p["propriedade_que_carrega_o_numero"]
+
+        dentro = [m for m in banco
+                  if m.get("categoria") == categoria
+                  and m.get("status") == "ativo"
+                  and propriedade in propriedades_com_lastro(m, teto)]
+        tipos = sorted(set(m.get("tipo") for m in dentro if m.get("tipo")))
+
+        veredito = "passa" if len(dentro) >= MINIMO_DA_SECAO_9 else "nao_passa"
+        motivo = None
+        if veredito == "nao_passa":
+            motivo = ("%d item(ns) ativo(s) de `%s` declaram `%s` com fonte de nivel <= %d, e a"
+                      " secao 9 exige %d"
+                      % (len(dentro), categoria, propriedade, teto, MINIMO_DA_SECAO_9))
+
+        # A PERGUNTA QUE NAO ATRAVESSA TIPO NAO E UM TETO: E O PISO COM OUTRO TITULO. O proprio
+        # cabecalho deste arquivo justifica a pergunta por ela "reunir 3 itens onde nenhum tipo
+        # sozinho reune". Quando o conjunto de itens da pergunta e exatamente o de um recorte de
+        # tipo, ela nao reuniu nada — e publicar as duas seria a mesma pagina duas vezes. Sai
+        # escrito, com o nome do tipo, em vez de deduzido por quem ler a lista de tipos.
+        # E A COINCIDENCIA COM A CATEGORIA INTEIRA NAO E O MESMO DEFEITO — foi a propria regua que
+        # mostrou isso, na primeira passada, apontando `rejunte` para a pergunta da junta. A mae de
+        # nivel 2 e INDICE de categoria e a pergunta e a pagina de nivel 3 que responde; os dois
+        # lerem os mesmos 5 itens e o que "atravessa os tres tipos" significa no limite, e e assim
+        # que a F1 e a F2 desta ilha vivem desde 11/09/2026. O que nao pode e coincidir com um TIPO.
+        ids = set(m["id"] for m in dentro)
+        coincide = None
+        for tipo in por_categoria.get(categoria, []):
+            do_tipo = set(m["id"] for m in banco
+                          if m.get("categoria") == categoria
+                          and m.get("status") == "ativo"
+                          and m.get("tipo") == tipo)
+            if ids and do_tipo == ids:
+                coincide = "%s/%s" % (categoria, tipo)
+                break
+        da_categoria_inteira = set(m["id"] for m in banco
+                                   if m.get("categoria") == categoria and m.get("status") == "ativo")
+        cobre_a_categoria = bool(ids) and ids == da_categoria_inteira
+
+        # A ANCORA A MAO, e ela e o unico lugar deste arquivo onde um numero escrito por uma
+        # pessoa encosta na derivacao. Ela existe para CAIR: banco que cresce derruba a ancora e o
+        # portao reprova, e a lida e reescrever dois numeros, nao procurar defeito.
+        ancora = p.get("ancora_a_mao") or {}
+        divergencias = []
+        if "itens_que_declaram_o_numero" in ancora and ancora["itens_que_declaram_o_numero"] != len(dentro):
+            divergencias.append("a ancora diz %s item(ns) e a derivacao conta %d"
+                                % (ancora["itens_que_declaram_o_numero"], len(dentro)))
+        if "tipos_atravessados" in ancora and sorted(ancora["tipos_atravessados"]) != tipos:
+            divergencias.append("a ancora diz os tipos %s e a derivacao acha %s"
+                                % (sorted(ancora["tipos_atravessados"]), tipos))
+
+        linhas.append({
+            "pergunta": p["id"],
+            "categoria": categoria,
+            "propriedade_que_carrega_o_numero": propriedade,
+            "consulta_alvo": p["consulta_alvo"],
+            "titulo_candidato": p.get("titulo_candidato"),
+            "itens_que_declaram_o_numero": len(dentro),
+            "itens": sorted(ids),
+            "tipos_atravessados": tipos,
+            "atravessa_mais_de_um_tipo": len(tipos) > 1,
+            "coincide_com_o_recorte_de_tipo": coincide,
+            "cobre_a_categoria_inteira": cobre_a_categoria,
+            "veredito": veredito,
+            "motivo": motivo,
+            "divergencias_com_a_ancora_a_mao": divergencias,
+        })
+    return linhas
+
+
+def resumo_das_perguntas(linhas):
+    return {
+        "perguntas_medidas": len(linhas),
+        "passam_o_portao_de_dado": sorted(l["pergunta"] for l in linhas if l["veredito"] == "passa"),
+        "atravessam_mais_de_um_tipo": sorted(l["pergunta"] for l in linhas
+                                             if l["atravessa_mais_de_um_tipo"]),
+        "coincidem_com_um_recorte_de_tipo": sorted(
+            "%s = %s" % (l["pergunta"], l["coincide_com_o_recorte_de_tipo"])
+            for l in linhas if l["coincide_com_o_recorte_de_tipo"]),
+        "cobrem_a_categoria_inteira": sorted(l["pergunta"] for l in linhas
+                                             if l["cobre_a_categoria_inteira"]),
+        "ancoras_a_mao_que_cairam": sorted(l["pergunta"] for l in linhas
+                                           if l["divergencias_com_a_ancora_a_mao"]),
     }
 
 
@@ -480,6 +613,45 @@ def gerar_md(d, preservado=""):
         A("| `%s` | %d | %d | %s | `%s` |"
           % (l["recorte"], l["itens_no_banco"], l["itens_que_sustentam_recomendacao"],
              cel or "—", l["veredito"]))
+    A("")
+    A("## As filhas em forma de PERGUNTA — a mesma regua, declaradas em `dados/perguntas-do-guia.json`")
+    A("")
+    A("A pergunta **nao afrouxa o portao**: no recorte de tipo a secao 9 cobra tres coisas separadas")
+    A("(3 itens, 3 com lastro, um numero sobre 3); na pergunta as tres COINCIDEM, porque o recorte")
+    A("dela e o conjunto dos itens que declaram o numero com lastro. Minimo e teto de nivel sao os")
+    A("mesmos, lidos dos mesmos lugares. **E ela nao decide se a categoria ganhou filha** — a 16.5 se")
+    A("fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.")
+    A("")
+    if not d["perguntas"]:
+        A("**Nenhuma pergunta declarada.** O arquivo de perguntas esta ausente ou vazio, e o portao")
+        A("acima volta a ser o piso que ele era antes de 07/10/2026.")
+    else:
+        A("| pergunta | categoria | numero | itens | tipos que atravessa | veredito |")
+        A("|---|---|---|---|---|---|")
+        for l in d["perguntas"]:
+            A("| `%s` | `%s` | `%s` | %d | %s | `%s` |"
+              % (l["pergunta"], l["categoria"], l["propriedade_que_carrega_o_numero"],
+                 l["itens_que_declaram_o_numero"],
+                 ", ".join("`%s`" % t for t in l["tipos_atravessados"]) or "—",
+                 l["veredito"]))
+        A("")
+        for l in d["perguntas"]:
+            A("- **`%s`** — consulta-alvo: *%s*" % (l["pergunta"], l["consulta_alvo"]))
+            if l["motivo"]:
+                A("  - nao passa: %s" % l["motivo"])
+            if l["coincide_com_o_recorte_de_tipo"]:
+                A("  - **o conjunto de itens dela e exatamente o do TIPO `%s`**: ela nao reuniu o"
+                  % l["coincide_com_o_recorte_de_tipo"])
+                A("    que nenhum tipo reune, e publicar as duas seria a mesma pagina duas vezes.")
+            elif l["cobre_a_categoria_inteira"]:
+                A("  - cobre a categoria inteira (%d de %d itens ativos), e isso e o esperado: a mae"
+                  % (l["itens_que_declaram_o_numero"], l["itens_que_declaram_o_numero"]))
+                A("    de nivel 2 e indice e esta pergunta e a pagina de nivel 3 que responde.")
+            elif not l["atravessa_mais_de_um_tipo"]:
+                A("  - atravessa um tipo so, e ainda assim nao coincide com ele: o recorte da")
+                A("    pergunta e menor que o do tipo, porque parte dos itens nao declara o numero.")
+            for div in l["divergencias_com_a_ancora_a_mao"]:
+                A("  - **ANCORA A MAO CAIDA:** %s" % div)
     A("")
     A("## O motivo, nos recortes que nao passam inteiros")
     A("")
@@ -684,7 +856,8 @@ def autoteste():
     # 18. o gerador e IDEMPOTENTE: gerar do proprio texto gerado devolve o mesmo texto
     def confere_idempotente(t, l):
         d = {"id": "x", "minimo_exigido_pela_secao_9": 3, "nivel_maximo_de_fonte_lido_do_esquema": 3,
-             "versao_do_esquema_lida": 9, "recortes": l, "resumo": resumo(l)}
+             "versao_do_esquema_lida": 9, "recortes": l, "resumo": resumo(l),
+             "perguntas": [], "resumo_das_perguntas": resumo_das_perguntas([])}
         um = gerar_md(d, preservado="\n## MINHA SERP\n\nmedido a mao\n")
         dois = gerar_md(d, preservado=um.split(FRONTEIRA, 1)[1])
         tres = gerar_md(d, preservado=dois.split(FRONTEIRA, 1)[1])
@@ -695,11 +868,33 @@ def autoteste():
     # 19. o .md gerado PRESERVA o que esta depois da fronteira
     def confere_preserva(t, l):
         d = {"id": "x", "minimo_exigido_pela_secao_9": 3, "nivel_maximo_de_fonte_lido_do_esquema": 3,
-             "versao_do_esquema_lida": 9, "recortes": l, "resumo": resumo(l)}
+             "versao_do_esquema_lida": 9, "recortes": l, "resumo": resumo(l),
+             "perguntas": [], "resumo_das_perguntas": resumo_das_perguntas([])}
         md = gerar_md(d, preservado="\n## MINHA SERP\n\nmedido a mao\n")
         return "MINHA SERP" in md and "medido a mao" in md
     caso("o .md gerado preserva o trecho de busca",
          _esquema({"cola": ["pva"]}), [_material("a", "cola", "pva")], confere_preserva)
+
+    # 19-b. o .md com PERGUNTA dentro: a secao sai, a consulta-alvo sai, e o gerador continua
+    # idempotente. Sem este caso os dois fixtures acima renderizavam a secao nova VAZIA e a
+    # bancada ficava verde sobre um trecho de documento que ninguem nunca viu escrito.
+    def confere_md_com_pergunta(t, l):
+        perg = medir_perguntas(
+            _esquema({"cola": ["pva", "epoxi"]}),
+            [_material("a", "cola", "pva", {"esp": 1}), _material("b", "cola", "pva", {"esp": 1}),
+             _material("c", "cola", "epoxi", {"esp": 2})],
+            [{"id": "pergunta:esp", "categoria": "cola",
+              "propriedade_que_carrega_o_numero": "esp",
+              "consulta_alvo": "minha consulta de teste", "titulo_candidato": "t"}])
+        d = {"id": "x", "minimo_exigido_pela_secao_9": 3, "nivel_maximo_de_fonte_lido_do_esquema": 3,
+             "versao_do_esquema_lida": 9, "recortes": l, "resumo": resumo(l),
+             "perguntas": perg, "resumo_das_perguntas": resumo_das_perguntas(perg)}
+        um = gerar_md(d, preservado="\n## MINHA SERP\n\nmedido a mao\n")
+        dois = gerar_md(d, preservado=um.split(FRONTEIRA, 1)[1])
+        return ("pergunta:esp" in um and "minha consulta de teste" in um
+                and "forma de PERGUNTA" in um and um == dois)
+    caso("o .md publica a secao das perguntas e segue idempotente com ela",
+         _esquema({"cola": ["pva"]}), [_material("a", "cola", "pva")], confere_md_com_pergunta)
 
     # ---- o portao da tabela do ARVORE.md, com documentos FABRICADOS. Portao que so viu tabela
     # certa nao provou nada: cada caso abaixo escreve uma tabela ERRADA de um jeito diferente e
@@ -750,6 +945,141 @@ def autoteste():
         finally:
             os.unlink(f.name)
 
+    # ----------------------------------------------------------------- as filhas em PERGUNTA
+    #
+    # A regua da pergunta nasceu em 07/10/2026 e estes casos existem para ela poder morder. O
+    # primeiro deles e o que mais importa e e o unico que justifica a pergunta existir: dois tipos
+    # com 2 itens cada, nenhum passando sozinho, e a pergunta reunindo os 4.
+
+    def p(id_, categoria, propriedade, ancora=None):
+        d = {"id": id_, "categoria": categoria,
+             "propriedade_que_carrega_o_numero": propriedade,
+             "consulta_alvo": "c", "titulo_candidato": "t"}
+        if ancora:
+            d["ancora_a_mao"] = ancora
+        return d
+
+    def pcaso(nome, esquema, banco, perguntas, confere):
+        casos.append((nome, esquema, banco, ("PERGUNTA", perguntas, confere)))
+
+    def q(linhas, pergunta):
+        for l in linhas:
+            if l["pergunta"] == pergunta:
+                return l
+        raise AssertionError("pergunta %s nao saiu da medicao" % pergunta)
+
+    pcaso("a PERGUNTA reune 4 itens onde nenhum dos dois tipos reune 3",
+          _esquema({"alicate": ["torques", "cortador"]}),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "torques", {"esp": 5}),
+           _material("c", "alicate", "cortador", {"esp": 10}),
+           _material("d", "alicate", "cortador", {"esp": 10})],
+          [p("pergunta:esp", "alicate", "esp")],
+          lambda l: (q(l, "pergunta:esp")["veredito"] == "passa"
+                     and q(l, "pergunta:esp")["itens_que_declaram_o_numero"] == 4
+                     and q(l, "pergunta:esp")["atravessa_mais_de_um_tipo"]))
+
+    pcaso("DOIS itens declarando o numero NAO passam, e o minimo e o mesmo da secao 9",
+          _esquema({"alicate": ["torques"]}),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "torques", {"esp": 5}),
+           _material("c", "alicate", "torques", {"outra": 1})],
+          [p("pergunta:esp", "alicate", "esp")],
+          lambda l: (q(l, "pergunta:esp")["veredito"] == "nao_passa"
+                     and "2 item" in q(l, "pergunta:esp")["motivo"]))
+
+    pcaso("item cuja fonte e PIOR que o teto do esquema nao conta para a pergunta",
+          _esquema({"alicate": ["torques"]}, teto=3),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "torques", {"esp": 5}),
+           _material("c", "alicate", "torques", {"esp": 5}, nivel=5)],
+          [p("pergunta:esp", "alicate", "esp")],
+          lambda l: q(l, "pergunta:esp")["veredito"] == "nao_passa")
+
+    pcaso("item DESCARTADO nao conta para a pergunta",
+          _esquema({"alicate": ["torques"]}),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "torques", {"esp": 5}),
+           _material("c", "alicate", "torques", {"esp": 5}, status="descartado")],
+          [p("pergunta:esp", "alicate", "esp")],
+          lambda l: q(l, "pergunta:esp")["veredito"] == "nao_passa")
+
+    pcaso("pergunta cujo conjunto de itens e o de UM TIPO sai marcada: e o tipo com outro titulo",
+          _esquema({"alicate": ["torques", "cortador"]}),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "torques", {"esp": 5}),
+           _material("c", "alicate", "torques", {"esp": 5}),
+           _material("d", "alicate", "cortador", {"outra": 1})],
+          [p("pergunta:esp", "alicate", "esp")],
+          lambda l: q(l, "pergunta:esp")["coincide_com_o_recorte_de_tipo"] == "alicate/torques")
+
+    # ESTE CASO E A CORRECAO QUE A PROPRIA REGUA PEDIU NA PRIMEIRA PASSADA. A versao de 15 minutos
+    # antes marcava a pergunta da junta como "coincide com o recorte `rejunte`" — a CATEGORIA — e
+    # lida ao pe da letra ela proibiria justamente a pergunta que atravessa os tres tipos. Mae de
+    # nivel 2 e indice; pergunta e a pagina de nivel 3 que responde. Os dois lendo os mesmos itens
+    # e o esperado, e e assim que a F1 e a F2 desta ilha vivem.
+    pcaso("pergunta que cobre a CATEGORIA inteira nao e coincidencia de tipo",
+          _esquema({"rejunte": ["acrilico", "cimenticio", "epoxi"]}),
+          [_material("a", "rejunte", "acrilico", {"junta": 1}),
+           _material("b", "rejunte", "cimenticio", {"junta": 2}),
+           _material("c", "rejunte", "epoxi", {"junta": 1})],
+          [p("pergunta:junta", "rejunte", "junta")],
+          lambda l: (q(l, "pergunta:junta")["cobre_a_categoria_inteira"]
+                     and q(l, "pergunta:junta")["coincide_com_o_recorte_de_tipo"] is None
+                     and q(l, "pergunta:junta")["veredito"] == "passa"))
+
+    pcaso("ancora a mao com CONTAGEM errada derruba a pergunta",
+          _esquema({"alicate": ["torques"]}),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "torques", {"esp": 5}),
+           _material("c", "alicate", "torques", {"esp": 5})],
+          [p("pergunta:esp", "alicate", "esp", {"itens_que_declaram_o_numero": 9})],
+          lambda l: any("a ancora diz 9" in x
+                        for x in q(l, "pergunta:esp")["divergencias_com_a_ancora_a_mao"]))
+
+    pcaso("ancora a mao com TIPOS errados derruba a pergunta",
+          _esquema({"alicate": ["torques", "cortador"]}),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "torques", {"esp": 5}),
+           _material("c", "alicate", "torques", {"esp": 5})],
+          [p("pergunta:esp", "alicate", "esp", {"tipos_atravessados": ["torques", "cortador"]})],
+          lambda l: any("os tipos" in x
+                        for x in q(l, "pergunta:esp")["divergencias_com_a_ancora_a_mao"]))
+
+    pcaso("ancora a mao CERTA nao derruba nada — a regua tem de aprovar o certo",
+          _esquema({"alicate": ["torques", "cortador"]}),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "cortador", {"esp": 10}),
+           _material("c", "alicate", "cortador", {"esp": 10})],
+          [p("pergunta:esp", "alicate", "esp",
+             {"itens_que_declaram_o_numero": 3, "tipos_atravessados": ["cortador", "torques"]})],
+          lambda l: (not q(l, "pergunta:esp")["divergencias_com_a_ancora_a_mao"]
+                     and q(l, "pergunta:esp")["veredito"] == "passa"))
+
+    pcaso("propriedade que NINGUEM declara nao passa, e o motivo diz qual propriedade era",
+          _esquema({"alicate": ["torques"]}),
+          [_material("a", "alicate", "torques", {"outra": 1}),
+           _material("b", "alicate", "torques", {"outra": 1}),
+           _material("c", "alicate", "torques", {"outra": 1})],
+          [p("pergunta:esp", "alicate", "esp")],
+          lambda l: (q(l, "pergunta:esp")["veredito"] == "nao_passa"
+                     and "`esp`" in q(l, "pergunta:esp")["motivo"]))
+
+    pcaso("pergunta de CATEGORIA que nao existe no banco nao explode: sai nao_passa com zero",
+          _esquema({"alicate": ["torques"]}),
+          [_material("a", "alicate", "torques", {"esp": 5})],
+          [p("pergunta:x", "base", "esp")],
+          lambda l: (q(l, "pergunta:x")["veredito"] == "nao_passa"
+                     and q(l, "pergunta:x")["itens_que_declaram_o_numero"] == 0
+                     and q(l, "pergunta:x")["coincide_com_o_recorte_de_tipo"] is None
+                     and not q(l, "pergunta:x")["cobre_a_categoria_inteira"]))
+
+    pcaso("arquivo de perguntas VAZIO deixa a medicao vazia, e isso nao e falha",
+          _esquema({"alicate": ["torques"]}),
+          [_material("a", "alicate", "torques", {"esp": 5})],
+          [],
+          lambda l: l == [])
+
     esquema_real = carregar_esquema()
     banco_real = carregar_banco()
     d_real = montar(esquema_real, banco_real)
@@ -778,6 +1108,9 @@ def autoteste():
             if isinstance(confere, tuple) and confere and confere[0] == "TABELA":
                 _, falhas_t, deve_aprovar = confere
                 ok = (not falhas_t) if deve_aprovar else bool(falhas_t)
+            elif isinstance(confere, tuple) and confere and confere[0] == "PERGUNTA":
+                _, perguntas_fab, confere_p = confere
+                ok = bool(confere_p(medir_perguntas(esquema, banco, perguntas_fab)))
             else:
                 teto, linhas = medir(esquema, banco)
                 ok = bool(confere(teto, linhas))
@@ -813,6 +1146,13 @@ def main(argv):
                 gravado = json.load(f)
             if gravado.get("recortes") != d["recortes"] or gravado.get("resumo") != d["resumo"]:
                 falhas.append("dados/filhas-do-guia.json esta velho: o banco ou o vocabulario mudou")
+            if (gravado.get("perguntas") != d["perguntas"]
+                    or gravado.get("resumo_das_perguntas") != d["resumo_das_perguntas"]):
+                falhas.append("dados/filhas-do-guia.json esta velho na secao das PERGUNTAS: o banco"
+                              " ou o dados/perguntas-do-guia.json mudou")
+        for l in d["perguntas"]:
+            for div in l["divergencias_com_a_ancora_a_mao"]:
+                falhas.append("a ancora a mao de `%s` caiu: %s" % (l["pergunta"], div))
         if not os.path.exists(SAIDA_MD):
             falhas.append("dados/filhas-do-guia.md nao existe")
         else:
@@ -827,6 +1167,8 @@ def main(argv):
             print("REPROVADO: %d falha(s). Rode sem --conferir para regerar." % len(falhas))
             return 1
         print("  ok   dados/filhas-do-guia.json fecha com o banco de hoje")
+        print("  ok   as %d pergunta(s) declarada(s) fecham com o banco e com a propria ancora a mao"
+              % len(d["perguntas"]))
         print("  ok   dados/filhas-do-guia.md fecha com a propria derivacao")
         print("  ok   a tabela da secao 2 do ARVORE.md fecha com a derivacao, nas duas direcoes")
         print("")

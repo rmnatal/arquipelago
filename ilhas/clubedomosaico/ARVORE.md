@@ -117,6 +117,52 @@ F2 usa com `cdm_ferramentas` desde 11/09/2026 — a casca não sabe o nome de um
 
 **A F2 nasceu em `/materiais/` e não em `/materiais/colas-e-adesivos/`, e a escolha é do bloco que a publicou.** A categoria definitiva dela só pode nascer com três filhas de dado real (16.5), e hoje ela teria uma. Pôr a ferramenta debaixo de uma categoria que ainda não existe criaria um degrau de trilha sem endereço — e, pior, obrigaria a mover a URL no dia em que a categoria nascesse, o que a 12.1 proíbe para página com impressão registrada. A regra que fica para as próximas: **a mãe de hoje é a mãe que já tem endereço**, e a mudança de pai, quando vier, será uma decisão com 301 e sitemap reenviado, tomada olhando a posição da página.
 
+### 2b. A FILHA EM FORMA DE PERGUNTA ENTROU NA RÉGUA, E A 16.5 PASSOU A CONTAR CONSULTA (07/10/2026)
+
+A nota de 30/09 fecha dizendo que *"a régua de contagem é a mesma para a pergunta, e está em
+`ferramentas/filhas-do-guia.py` para ser chamada em vez de reescrita"*. **Por sete dias ninguém a
+chamou.** A fila inteira desta ilha foi escrita contando TIPOS — e as duas filhas que esta ilha já
+publicou, a F1 e a F2, são perguntas. Hoje a pergunta é medida: declarada em
+`dados/perguntas-do-guia.json` (o que se digita é o nome da pergunta, a propriedade que carrega o
+número e a consulta-alvo — nenhum número e nenhum item), e medida pela **mesma** régua, com o mesmo
+mínimo da seção 9 e o mesmo teto de nível de fonte do esquema.
+
+**E a pergunta não afrouxa o portão.** No recorte de tipo a seção 9 cobra três coisas separadas — 3
+itens, 3 com lastro, um número declarado por 3 ao mesmo tempo. Na pergunta as três **coincidem**,
+porque o recorte dela não é um tipo do vocabulário: é o conjunto dos itens que declaram o número com
+lastro. Contar "itens no recorte" ali seria contar a mesma coisa duas vezes.
+
+**A CORREÇÃO QUE ISTO TROUXE PARA A 16.5, E ELA VALE PARA TODA CATEGORIA: filha não se conta por
+RECORTE, e sim por CONSULTA ABERTA.** Duas páginas que miram a mesma consulta não são duas filhas —
+são a mesma página duas vezes, disputando a própria consulta. O caso que forçou a regra está medido
+aqui: `alicate/cortador_de_azulejo` está em `pode_nascer` e a `pergunta:alicate-espessura-de-corte`
+também, **e as duas miram `como cortar pastilha de vidro para mosaico qual ferramenta`** — a consulta
+de 30/09, cujo próprio campo `numero_que_a_serp_nao_publica` nomeia `espessura_maxima_de_corte_mm`.
+Contadas por recorte, a `alicate` teria 2 filhas; contadas por consulta, tem **1**. A consulta da mãe
+não conta: ela é a página de nível 2, não filha de si mesma.
+
+**O quadro de hoje, derivado por `cruzamento-14-9.py` e não escrito à mão:**
+
+| categoria | filhas no DADO | filhas no CRUZAMENTO (tipos) | perguntas | **filhas por CONSULTA** | a mãe pode nascer |
+|---|---|---|---|---|---|
+| `acabamento` | 3 | 3 | 0 | **3** | **SIM** (nasceu em 02/10) |
+| `rejunte` | 1 | 1 | 1 | **2** | não — falta **uma** |
+| `alicate` | 2 | 1 | 1 | **1** | não |
+| `pastilha` | 1 | 0 | 0 | **0** | não |
+| `cola`, `base`, `apoio` | 0 | 0 | 0 | **0** | não |
+
+**A `acabamento` é o controle do experimento:** a régua nova tem de **aprovar** a mãe que já está no
+ar, e aprova — 3 filhas por consulta, três consultas distintas, nenhuma igual à da mãe. Régua que não
+aprova o certo vai reprovar trabalho bom, e esta ilha já pagou isso em 07/10 de manhã.
+
+**E a categoria mais perto da segunda mãe do Guia deixou de ser a `alicate`: é a `rejunte`.** A fila
+dizia que `rejunte` estava a **4 itens de banco** de distância e que a coleta deles estava bloqueada
+por boletim em PDF — verdade por TIPO, e a pergunta passa por fora: `junta_min_mm` e `junta_max_mm`
+são declaradas por **5 de 5** rejuntes do banco, com fonte de **nível 2** nos cinco, e atravessam os
+**três** tipos (acrílico de 1 a 4 mm, epóxi de 1 a 5 mm, cimentício de 2 a 10 mm). Por tipo,
+`acrilico` e `epoxi` têm **um** item cada e não há SKU novo a coletar neste canal. A pergunta reúne
+cinco onde nenhum tipo reúne três, que é literalmente o caso que o `filhas-do-guia.py` descreve.
+
 ## 3. `/loja/` — as peças
 
 Nível 2 pelo tipo de peça, com o nome que a pessoa busca: `/loja/vasos/`, `/loja/colares/`, `/loja/quadros/`, `/loja/espelhos/`, `/loja/cachepos/`.

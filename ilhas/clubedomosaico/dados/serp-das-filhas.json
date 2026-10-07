@@ -13,7 +13,8 @@
     "limite_1_pais": "devolve resultado brasileiro quando a consulta e inequivocamente portuguesa, e desvia para SERP espanhola ou portuguesa quando a frase tambem cabe nelas. Desvio medido fica como NAO_MEDIDA, nunca como consulta sem concorrente",
     "limite_2_ordem": "nao da a ORDEM da SERP brasileira. Este arquivo classifica QUEM OCUPA, que e o que a 14.9 pede com essas palavras, e nao afirma posicao",
     "limite_3_marca": "marca dentro da consulta vicia a medicao e devolve pagina de fabricante. E a trava de coleta da secao 8 aplicada a SERP: nunca por na consulta o valor que se quer confirmar",
-    "limite_4_nome_de_recorte_bilingue": "ACRESCENTADO EM 07/10/2026, depois de TRES passadas falharem no mesmo recorte. Consulta cujo NUCLEO e uma expressao que existe igual em espanhol desvia de pais por mais brasileira que seja a moldura da frase: `cortador de azulejo` e `pastilha` cabem inteiras em espanhol, e as tres passadas (30/09 e duas em 07/10) devolveram Truper e Sears do Mexico, El Corte Ingles e patente do OEPM da Espanha — inclusive a terceira, que foi ancorada de proposito em `caquinho` e `mosaico artesanal`, duas expressoes que so existem no Brasil. Ancora brasileira na MOLDURA nao corrige nucleo bilingue. A prova pelo outro lado esta neste mesmo arquivo: a consulta da mae, `qual alicate usar para cortar pastilha de mosaico artesanal`, mediu ABERTA de primeira em 05/10 — porque `alicate` nao e palavra espanhola (la e `alicate`/`pinza`, e a SERP separa). A REGRA PRATICA: para medir corte nesta ilha, ancore em `alicate`, nunca em `cortador de azulejo`. E a consequencia que custa: o recorte `alicate/cortador_de_azulejo` passa o portao de DADO (3 itens, 4 numeros) e continua SEM SERP medida — ele nao e mensuravel por este canal com o proprio nome, e quem precisar dele mede pela mae ou pede a SERP a outro canal."
+    "limite_4_nome_de_recorte_bilingue": "ACRESCENTADO EM 07/10/2026, depois de TRES passadas falharem no mesmo recorte. Consulta cujo NUCLEO e uma expressao que existe igual em espanhol desvia de pais por mais brasileira que seja a moldura da frase: `cortador de azulejo` e `pastilha` cabem inteiras em espanhol, e as tres passadas (30/09 e duas em 07/10) devolveram Truper e Sears do Mexico, El Corte Ingles e patente do OEPM da Espanha — inclusive a terceira, que foi ancorada de proposito em `caquinho` e `mosaico artesanal`, duas expressoes que so existem no Brasil. Ancora brasileira na MOLDURA nao corrige nucleo bilingue. A prova pelo outro lado esta neste mesmo arquivo: a consulta da mae, `qual alicate usar para cortar pastilha de mosaico artesanal`, mediu ABERTA de primeira em 05/10 — porque `alicate` nao e palavra espanhola (la e `alicate`/`pinza`, e a SERP separa). A REGRA PRATICA: para medir corte nesta ilha, ancore em `alicate`, nunca em `cortador de azulejo`. E a consequencia que custa: o recorte `alicate/cortador_de_azulejo` passa o portao de DADO (3 itens, 4 numeros) e continua SEM SERP medida — ele nao e mensuravel por este canal com o proprio nome, e quem precisar dele mede pela mae ou pede a SERP a outro canal.",
+    "limite_5_consulta_que_pede_a_medida": "ACRESCENTADO EM 07/10/2026 as 19h3xZ, e ele SUBSTITUI a regra pratica do limite 4 por uma causa medida em DUAS categorias. O limite 4, escrito seis horas antes, disse `para medir corte nesta ilha, ancore em alicate, nunca em cortador de azulejo` — e a passada desta execucao fez exatamente isso (`ate quantos milimetros de espessura o ALICATE corta pastilha e CAQUINHO para mosaico artesanal`: a ancora pedida, mais duas expressoes que so existem no Brasil) e desviou igual, para ManoMano e MosaicShop da Espanha, Mercado Livre do Chile, Truper e Sears do Mexico. A variavel nao e a ancora: e PEDIR O NUMERO. A prova vem dos dois lados e de duas categorias. Desviaram as CINCO consultas que pedem a medida (duas de 07/10 de manha em `alicate/cortador_de_azulejo`, uma de 30/09, a de hoje no alicate e a de hoje no rejunte — `rejunte para junta fina de 1 mm`, que trouxe Grupo Puma, Isaval, Anfapa e o Gerador de Precos, todos da Espanha). Mediram no Brasil as TRES que nao pedem medida: a da mae (`qual alicate usar para cortar pastilha de mosaico artesanal`), a de `como cortar pastilha de vidro para mosaico qual ferramenta` e a desta execucao no rejunte (`da para colar os caquinhos bem juntos...`). A CAUSA E ESTRUTURAL e esta escrita neste proprio arquivo, do outro lado: quem publica medida e o fabricante, em documento tecnico, e o corpus de documento tecnico que este canal alcanca e iberico e mexicano. O campo `numero_que_a_serp_nao_publica` e a mesma frase pelo avesso — se o numero NAO esta na SERP brasileira, consulta que o exige sai do Brasil para achar quem o tem. A REGRA PRATICA, e ela vale para toda categoria: a consulta-alvo de uma filha NUNCA pede o numero. Ela faz a pergunta da artesa, e o numero e o que a PAGINA entrega. E as duas filhas vivas desta ilha sao assim: `qual cola usar no mosaico` e `quantas pastilhas para mosaico` nao pedem milimetro nenhum."
   },
   "classificacoes": {
     "ABERTA": "top 10 e forum, video, blog velho ou resposta generica sem numero, E ao menos um deles fala do assunto desta ilha. Alvo da 14.9",
@@ -435,6 +436,88 @@
       "fonte_da_faixa": null,
       "numero_que_a_serp_nao_publica": null,
       "o_que_esta_passada_acrescenta": "E o controle do experimento. Se ancora brasileira resolvesse, esta tinha de medir — ela carrega duas. Nao mediu, e por isso o limite 4 fica escrito como limite do CANAL em vez de recado para quem escrever a proxima consulta. Tres passadas bastam: nao repita este recorte neste canal."
+    },
+    {
+      "recorte": "pergunta:alicate-espessura-de-corte",
+      "consulta": "ate quantos milimetros de espessura o alicate corta pastilha e caquinho para mosaico artesanal",
+      "medida_em": "2026-10-07",
+      "quem_ocupa": [
+        "ManoMano ES",
+        "MosaicShop EU (ES)",
+        "Mercado Livre CL",
+        "Truper MX (2 manuais em PDF)",
+        "Sears MX",
+        "El Corte Ingles ES",
+        "AECweb BR (2 fichas de fabricante)",
+        "Zoom BR (agregador de preco)",
+        "Bondfaro BR (2, agregador de preco)",
+        "TCE-MT (portal de compras publicas)",
+        "Jadever (datasheet)"
+      ],
+      "tipos_que_ocupam": [
+        "fora_do_pais",
+        "agregador",
+        "fabricante"
+      ],
+      "classificacao": "NAO_MEDIDA",
+      "motivo": "Desvio de pais com a ancora que o limite 4 mandava usar. Esta passada e o CONTROLE do limite 4: ela nao nomeia `cortador de azulejo`, ancora em `alicate` e carrega `caquinho` e `mosaico artesanal`, duas expressoes que nao existem em espanhol — e desviou igual. Quem sobra no Brasil e agregador de preco (Zoom, Bondfaro) e portal de compra publica, que nao respondem pergunta nenhuma. Causa: limite 5 do canal, novo neste arquivo. A consulta PEDE A MEDIDA, e quem publica medida e documento tecnico de fabricante — e o corpus de documento tecnico deste canal e iberico e mexicano.",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null,
+      "o_que_esta_passada_acrescenta": "Ela DERRUBA a regra pratica do limite 4 e deixa a causa dele de pe. A ancora em `alicate` nao era a variavel; a prova pelo outro lado e que a consulta-alvo desta mesma pergunta — `como cortar pastilha de vidro para mosaico qual ferramenta`, de 30/09 — mediu ABERTA sem nenhuma ancora especial, e ela nao pede milimetro. Quatro passadas falharam pedindo o numero e tres mediram sem pedir. Nao escreva outra consulta de corte pedindo a medida."
+    },
+    {
+      "recorte": "pergunta:rejunte-largura-da-junta",
+      "consulta": "rejunte para junta fina de 1 mm em peca de mosaico artesanal qual rejunte cobre essa junta",
+      "medida_em": "2026-10-07",
+      "quem_ocupa": [
+        "Grupo Puma ES (4 PDFs)",
+        "Anfapa / Aparejadores Madrid ES (UNE 138002)",
+        "Isaval ES (ficha tecnica)",
+        "Gerador de Precos ES (weber webcol JF)",
+        "Leroy Merlin PT",
+        "Sika (PDF)",
+        "AECweb BR (3 fichas de fabricante)",
+        "Portobello BR (PDF de rejunte para pastilhas metalicas)",
+        "Teses USP",
+        "Cursa.app (curso)",
+        "Calculadora Brasil"
+      ],
+      "tipos_que_ocupam": [
+        "fora_do_pais",
+        "fabricante",
+        "agregador"
+      ],
+      "classificacao": "NAO_MEDIDA",
+      "motivo": "Desvio de pais, e esta e a passada que tira o limite 5 do `alicate` e o torna limite do CANAL: a consulta nao tem uma palavra de ferramenta, nao nomeia marca e o nucleo dela (`rejunte`, `junta`) nao e expressao que o limite 4 acuse. O que ela tem em comum com as quatro que falharam antes dela e PEDIR A MEDIDA — `1 mm` dentro da frase. Voltou ficha tecnica de fabricante espanhol e norma europeia.",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null,
+      "o_que_esta_passada_acrescenta": "E o experimento em OUTRA categoria, que e o que faltava para o limite 4 deixar de ser sobre o nome `cortador de azulejo`. Duas categorias, dois nucleos sem nada em comum, o mesmo desvio, e a unica coisa igual nas duas frases e o numero pedido."
+    },
+    {
+      "recorte": "pergunta:rejunte-largura-da-junta",
+      "consulta": "da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte",
+      "medida_em": "2026-10-07",
+      "quem_ocupa": [
+        "O Antagonista / Lado A (2, materia de decoracao sobre caquinho)",
+        "Revista Oeste (2, materia de decoracao com sobras de piso)",
+        "Portobello BR (2 manuais de assentamento de kit)",
+        "Omni Calculator (calculadora de rejunte)",
+        "Teses USP",
+        "Grupo Puma ES"
+      ],
+      "tipos_que_ocupam": [
+        "resposta_generica",
+        "fabricante",
+        "agregador"
+      ],
+      "classificacao": "ABERTA",
+      "motivo": "O canal devolveu NOVE resultados unicos, nao dez, e a leitura e sobre os nove. Quatro sao materia de decoracao sobre caquinho e mosaico com sobra de piso — falam do assunto desta ilha e sao resposta generica sem numero. Dois sao manual de assentamento de um KIT de fabricante, que da espacamento `de 1 cm a 3 cm` para aquele kit e nao para caquinho. Um e calculadora de consumo, um e tese de doutorado e um e ficha espanhola. NENHUM marketplace e NENHUMA pagina de produto de rejunte. E nenhum dos nove diz de quantos milimetros e a junta que um rejunte de prateleira cobre: a resposta montada pelo proprio canal fecha dizendo `nao encontrei uma recomendacao especifica de espacamento para caquinhos`.",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": "a faixa de junta em milimetros que cada rejunte cobre — `junta_min_mm` e `junta_max_mm`, declaradas por 5 de 5 rejuntes deste banco com fonte de nivel 2 nos cinco, e com as tres faixas separando os tres tipos: acrilico de 1 a 4 mm, epoxi de 1 a 5 mm, cimenticio de 2 a 10 mm. A faixa descoberta que a pagina tem de DIZER, pela 14.3, e o piso de 2 mm dos tres cimenticios: quem encosta os caquinhos nao tem rejunte cimenticio no banco que o atenda, e os dois que chegam a 1 mm sao o acrilico e o epoxi.",
+      "o_que_esta_passada_acrescenta": "E a terceira consulta desta ilha a medir no Brasil, e as tres nao pedem numero. Ela e a consulta-alvo da `pergunta:rejunte-largura-da-junta`, e e a prova de que a pergunta da artesa mede onde a pergunta do engenheiro desvia: a mesma informacao, pedida pelo gesto (`colar bem juntos`) em vez de pela unidade (`junta de 1 mm`)."
     }
   ],
   "a_leitura_que_as_medicoes_pedem": {

@@ -10,30 +10,56 @@ cruzava: uma metade era numero e a outra era prosa.
 
 | veredito | recortes |
 |---|---|
-| `sem_nenhum_dos_dois` | 32 |
+| `sem_nenhum_dos_dois` | 31 |
 | `pode_nascer` | 8 |
-| `espera_autoridade` | 2 |
+| `espera_autoridade` | 3 |
 
 **Podem nascer hoje, pelos DOIS portoes:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `rejunte`, `rejunte/cimenticio`
 
 **Podem nascer, mas sem demanda medida:** nenhum
 
-**Quando houver autoridade:** `pastilha`, `pastilha/vidro`
+**Quando houver autoridade:** `alicate/torques`, `pastilha`, `pastilha/vidro`
 
 **Dado verde e SERP nunca olhada** — o caso que mais custou nesta ilha, porque parece
 passe livre: nenhum
 
-## A 16.5 — a mae de nivel 2 so nasce com 3 filhas, e filha nao e filha no dado: e no cruzamento
+## A 16.5 — a mae de nivel 2 so nasce com 3 filhas, e filha se conta por CONSULTA
 
-| categoria | filhas que o DADO autoriza | filhas que o CRUZAMENTO autoriza | veredito da mae | a mae pode nascer |
-|---|---|---|---|---|
-| `acabamento` | 3 | 3 | `pode_nascer` | **SIM** |
-| `alicate` | 1 | 1 | `pode_nascer` | nao |
-| `apoio` | 0 | 0 | `sem_nenhum_dos_dois` | nao |
-| `base` | 0 | 0 | `sem_nenhum_dos_dois` | nao |
-| `cola` | 0 | 0 | `sem_nenhum_dos_dois` | nao |
-| `pastilha` | 1 | 0 | `espera_autoridade` | nao |
-| `rejunte` | 1 | 1 | `pode_nascer` | nao |
+Duas correcoes de leitura, nesta ordem. **02/10/2026:** 3 filhas que passam no DADO nao sao 3
+filhas que podem nascer — por isso a coluna do cruzamento. **07/10/2026:** filha nao se conta
+por RECORTE, e por **consulta aberta**. As filhas em forma de PERGUNTA entram na conta, e na
+mesma conta pergunta e tipo que miram a MESMA consulta valem **uma** filha: duas paginas na
+mesma consulta nao sao duas filhas, sao a mesma pagina duas vezes. A consulta da mae nao
+conta — ela e a pagina de nivel 2, nao filha de si mesma.
+
+| categoria | filhas no DADO | filhas no CRUZAMENTO (tipos) | perguntas | **filhas por CONSULTA** | veredito da mae | a mae pode nascer |
+|---|---|---|---|---|---|---|
+| `acabamento` | 3 | 3 | 0 | **3** | `pode_nascer` | **SIM** |
+| `alicate` | 2 | 1 | 1 | **1** | `pode_nascer` | nao |
+| `apoio` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
+| `base` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
+| `cola` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
+| `pastilha` | 1 | 0 | 0 | **0** | `espera_autoridade` | nao |
+| `rejunte` | 1 | 1 | 1 | **2** | `pode_nascer` | nao |
+
+**Consultas disputadas por mais de uma candidata** — cada uma delas vale UMA filha, e e
+aqui que a conta por recorte inflava:
+
+- `alicate` — *como cortar pastilha de vidro para mosaico qual ferramenta* e disputada por `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte`
+
+## As filhas em forma de PERGUNTA, cruzadas
+
+Elas vem medidas no portao de DADO por `filhas-do-guia.py`, pela mesma regua dos recortes de
+tipo, e se ligam a SERP pela **consulta**, nao pelo nome do recorte — consulta e consulta, e
+onde ela foi arquivada e acidente de quem mediu primeiro.
+
+| pergunta | categoria | itens | SERP | veredito | consulta-alvo tambem creditada a | o que falta |
+|---|---|---|---|---|---|---|
+| `pergunta:alicate-espessura-de-corte` | `alicate` | 4 | `ABERTA` | **`pode_nascer`** | `alicate/cortador_de_azulejo` | nada: os dois portoes abriram |
+| `pergunta:rejunte-largura-da-junta` | `rejunte` | 5 | `ABERTA` | **`pode_nascer`** | — | nada: os dois portoes abriram |
+
+- **`pergunta:alicate-espessura-de-corte`** — consulta-alvo: *como cortar pastilha de vidro para mosaico qual ferramenta*
+- **`pergunta:rejunte-largura-da-junta`** — consulta-alvo: *da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte*
 
 ## Recorte por recorte
 
@@ -44,10 +70,10 @@ passe livre: nenhum
 | `acabamento/selador` | `passa` | 3 | `ABERTA` | 2 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `acabamento/verniz` | `passa` | 4 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `alicate` | `passa` | 6 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
-| `alicate/cortador_de_azulejo` | `passa` | 3 | `ABERTA` | 3 | **`pode_nascer`** | nada: os dois portoes abriram |
+| `alicate/cortador_de_azulejo` | `passa` | 3 | `ABERTA` | 5 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `alicate/martelinho` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `alicate/pinca_mosaico` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
-| `alicate/torques` | `passa_na_contagem_sem_lastro` | 3 | `TOMADA` | 1 | **`sem_nenhum_dos_dois`** | os dois: 2 item(ns) com fonte que sustente recomendacao primaria, e 1 consulta(s) medida(s) e nenhuma aberta |
+| `alicate/torques` | `passa` | 3 | `TOMADA` | 1 | **`espera_autoridade`** | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
 | `apoio` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `apoio/desempenadeira` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `apoio/espatula` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
@@ -98,6 +124,8 @@ consulta ABERTA entra** — faixa de consulta que nao vai nascer e numero que ni
 | `verniz para peca de mosaico artesanal qual usar` | `acabamento/verniz` | `pode_nascer` |
 | `como cortar pastilha de vidro para mosaico qual ferramenta` | `alicate/cortador_de_azulejo` | `pode_nascer` |
 | `quanto tempo esperar para molhar peca de mosaico depois do rejunte cimenticio` | `rejunte/cimenticio` | `pode_nascer` |
+| `como cortar pastilha de vidro para mosaico qual ferramenta` | `pergunta:alicate-espessura-de-corte` | `pode_nascer` |
+| `da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte` | `pergunta:rejunte-largura-da-junta` | `pode_nascer` |
 
 ## Os numeros que a SERP nao publica e o banco desta ilha publica
 
@@ -114,4 +142,6 @@ por recorte, com o numero na mao em vez do adjetivo.
 - **`pastilha`** — pastilhas por m2 e por peca, por medida de pastilha e largura de junta — que e exatamente o que a F1 desta ilha calcula e serve em /materiais/quantas-pastilhas-para-mosaico/. A SERP de `pastilha` nao publica o numero, mas quem a ocupa vende o produto: aqui o buraco de numero NAO abre a consulta
 - **`rejunte`** — gramas de rejunte por area, por largura de junta e por espessura de pastilha — a F1 desta ilha ja o devolve (264 g para o cilindro 20x30 com junta de 2 mm, conferido na mao em 02/10) — e o cruzamento de tipo de rejunte x ambiente x largura de junta, que a F2 ja resolve e que nenhum dos nove publica
 - **`rejunte/cimenticio`** — liberacao_area_molhada_h POR PRODUTO, da declaracao do fabricante — que e exatamente a propriedade que o portao de dado deste recorte cobra como lastro. A SERP publica numero de obra, de terceiro e contraditorio; a ilha publicaria numero do fabricante, por item, com a frase citada
+- **`pergunta:alicate-espessura-de-corte`** — espessura_maxima_de_corte_mm, declarada em 4 dos 6 itens de `alicate` com fonte de nivel 2 ou 3 — e a faixa descoberta da 7b-bis: o torques de mosaico para em 5 mm e 3 das 13 pastilhas do banco nao cabem
+- **`pergunta:rejunte-largura-da-junta`** — a faixa de junta em milimetros que cada rejunte cobre — `junta_min_mm` e `junta_max_mm`, declaradas por 5 de 5 rejuntes deste banco com fonte de nivel 2 nos cinco, e com as tres faixas separando os tres tipos: acrilico de 1 a 4 mm, epoxi de 1 a 5 mm, cimenticio de 2 a 10 mm. A faixa descoberta que a pagina tem de DIZER, pela 14.3, e o piso de 2 mm dos tres cimenticios: quem encosta os caquinhos nao tem rejunte cimenticio no banco que o atenda, e os dois que chegam a 1 mm sao o acrilico e o epoxi.
 

@@ -1460,8 +1460,11 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    >
    > ---
    >
-   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A TERCEIRA FILHA — E ELA NÃO É UM TIPO, É UMA PERGUNTA. A
-   > AUTORIZAÇÃO ESTÁ ESCRITA NO PRÓPRIO PORTÃO, E NENHUMA EXECUÇÃO TINHA LIDO ESSA LINHA.**
+   > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A TERCEIRA FILHA — E ELA NÃO É UM TIPO, É UMA PERGUNTA. A
+   > AUTORIZAÇÃO ESTÁ ESCRITA NO PRÓPRIO PORTÃO, E NENHUMA EXECUÇÃO TINHA LIDO ESSA LINHA.**~~
+   > **ENTREGUE EM 07/10/2026 às 19h5xZ NA METADE QUE ERA RÉGUA — a pergunta entrou no portão e é
+   > medida pela mesma régua; a metade que prometia a MÃE e 4 URLs estava errada na conta da 16.5, e
+   > a prestação de contas inteira está logo abaixo.**
    >
    > `filhas-do-guia.py`, no campo `o_que_este_arquivo_mede_e_o_que_ele_NAO_alcanca`, diz textualmente:
    > *"Filha de nível 3 também pode ter forma de PERGUNTA em vez de forma de tipo, e as duas que esta
@@ -1506,6 +1509,132 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > hoje), não remedir `alicate/cortador_de_azulejo` na SERP (três passadas, limite 4), e não deixar a
    > mãe repetir a tabela da filha-pergunta — a mãe é **índice de categoria**, e a pergunta é a página
    > que responde, que é como a F1 e a F2 já vivem nesta ilha.
+   >
+   > ---
+   >
+   > **ESTADO DESTE ITEM EM 07/10/2026 ÀS 19h5xZ — A RÉGUA FOI CONSTRUÍDA E CHAMADA, E O ITEM
+   > ERRAVA A CONTA DA 16.5: A PERGUNTA NÃO É A TERCEIRA FILHA DA `alicate`, É A PRIMEIRA — A MESMA
+   > QUE A `alicate/cortador_de_azulejo` JÁ ERA. NENHUMA URL NOVA, E O MOTIVO É UM NÚMERO.**
+   >
+   > **O QUE SAIU, e é o item sendo cumprido no passo (1):** a filha em forma de PERGUNTA deixou de
+   > ser prosa. `dados/perguntas-do-guia.json` declara a pergunta (o nome dela, a propriedade que
+   > carrega o número e a consulta-alvo — **nenhum número e nenhum item**), e
+   > `ferramentas/filhas-do-guia.py` a mede **chamando a própria régua**, como o item mandava:
+   > mesmo `MINIMO_DA_SECAO_9`, mesmo `propriedades_com_lastro`, mesmo teto lido do esquema. A
+   > bancada foi de 27 para **40 casos** (13 novos, 12 só pelo portão novo) e o `--conferir` passou a
+   > cobrar a seção nova e a **âncora à mão** de cada pergunta — sem isso a seção nascia fora do
+   > portão, que é o defeito que esta ilha paga desde a regra 6.
+   >
+   > **E A PERGUNTA NÃO AFROUXOU O PORTÃO — está escrito no código e no documento.** No recorte de
+   > tipo a seção 9 cobra TRÊS coisas separadas (3 itens, 3 com lastro, um número sobre 3); na
+   > pergunta as três **coincidem**, porque o recorte dela é o conjunto dos itens que declaram o
+   > número com lastro. Quem ler "um veredito em vez de três" e achar que o portão ficou mais largo
+   > está lendo a coincidência como afrouxamento.
+   >
+   > **A CORREÇÃO QUE O BLOCO ACHOU, e ela vale para TODA categoria desta ilha: a 16.5 se fecha por
+   > CONSULTA, não por recorte.** O item dizia que `alicate` chegaria a 3 filhas somando `torques`,
+   > `cortador_de_azulejo` e a pergunta. Duas coisas estavam erradas, as duas mensuráveis:
+   >
+   > | o que o item somava | o que o cruzamento diz |
+   > |---|---|
+   > | `alicate/torques` como filha, porque o DADO abriu hoje | a SERP dela é **TOMADA** desde 05/10 (7 de 10 são loja ou fabricante na página do próprio torques) → `espera_autoridade`, e o ARVORE.md já escrevia que *"filha não é filha no dado: é no cruzamento"* |
+   > | a pergunta como uma SEGUNDA filha, ao lado de `cortador_de_azulejo` | as duas miram a **mesma consulta** — `como cortar pastilha de vidro para mosaico qual ferramenta`, de 30/09, cujo próprio campo `numero_que_a_serp_nao_publica` nomeia `espessura_maxima_de_corte_mm`. Duas páginas na mesma consulta não são duas filhas: são a mesma página duas vezes |
+   >
+   > **Então a `alicate` tem UMA filha, não três, e o `cruzamento-14-9.py` passou a dizer isso
+   > sozinho:** ele conta **consultas abertas distintas** por categoria, fora a da mãe, com as
+   > perguntas dentro da conta e com a consulta disputada saindo nomeada. `acabamento` é o controle
+   > do experimento — a régua nova tem de **aprovar** a mãe que já está no ar, e aprova: 3 por
+   > consulta. A bancada do cruzamento foi de 32 para **46 casos** (14 novos), e um deles existe
+   > porque o próprio fixture antigo deixava as quatro medições com a consulta `"c"` do valor padrão
+   > e devolvia zero filha para uma mãe que o caso declara publicável.
+   >
+   > **A SEGUNDA MÃE DO GUIA DEIXOU DE SER A `alicate`: É A `rejunte`, E ELA ESTÁ A UMA FILHA.** A
+   > fila dizia que `rejunte` custava **4 itens de banco** e que a coleta deles estava fechada por
+   > boletim em PDF — verdade por TIPO, e a pergunta passa por fora: `junta_min_mm` e `junta_max_mm`
+   > são declaradas por **5 de 5** rejuntes, com fonte de **nível 2** nos cinco, atravessando os
+   > **três** tipos (acrílico 1–4 mm, epóxi 1–5 mm, cimentício 2–10 mm). `acrilico` e `epoxi` têm
+   > **um** item cada, e é por isso que o tipo não fecha e a pergunta fecha: ela reúne cinco onde
+   > nenhum tipo reúne três. **Nenhum SKU novo, nenhum PDF, nenhuma coleta.**
+   >
+   > **E A CONSULTA DELA FOI MEDIDA HOJE E ABRIU:** *"dá para colar os caquinhos bem juntos no
+   > mosaico ou precisa deixar espaço para o rejunte"* → **ABERTA**. Dos nove resultados, quatro são
+   > matéria de decoração sobre caquinho, dois são manual de assentamento de um **kit** de
+   > fabricante (que dá `1 cm a 3 cm` para aquele kit e não para caquinho), um é calculadora, um é
+   > tese e um é ficha espanhola. **Zero marketplace e zero página de produto de rejunte**, e nenhum
+   > dos nove diz de quantos milímetros é a junta que um rejunte de prateleira cobre.
+   >
+   > **O LIMITE 5 DO CANAL, E ELE DERRUBA A REGRA PRÁTICA QUE O LIMITE 4 ESCREVEU SEIS HORAS ANTES.**
+   > O limite 4 dizia: *"para medir corte nesta ilha, ancore em `alicate`, nunca em `cortador de
+   > azulejo`"*. Esta execução fez exatamente isso — *"até quantos milímetros de espessura o
+   > **alicate** corta pastilha e **caquinho** para **mosaico artesanal**"*, a âncora pedida mais
+   > duas expressões que não existem em espanhol — **e desviou igual** (ManoMano e MosaicShop ES,
+   > Mercado Livre CL, Truper e Sears MX). A variável não é a âncora: é **pedir o número**. A prova
+   > sai dos dois lados e de **duas categorias**: desviaram as **cinco** consultas que pedem a
+   > medida (três no corte e, hoje, *"rejunte para junta fina de **1 mm**"*, que trouxe Grupo Puma,
+   > Isaval, Anfapa e o Gerador de Preços, todos da Espanha); mediram no Brasil as **três** que não
+   > pedem (a da mãe do alicate, a de `como cortar pastilha de vidro` e a do caquinho de hoje). A
+   > causa é estrutural e já estava escrita do outro lado deste mesmo arquivo: quem publica medida é
+   > o fabricante, em documento técnico, e o corpus de documento técnico que este canal alcança é
+   > ibérico e mexicano — o campo `numero_que_a_serp_nao_publica` é essa frase pelo avesso. **A
+   > regra prática que fica, para toda categoria: a consulta-alvo de uma filha NUNCA pede o número.
+   > Ela faz a pergunta da artesã, e o número é o que a PÁGINA entrega** — é assim que as duas
+   > filhas vivas desta ilha são.
+   >
+   > **O QUE ESTE BLOCO NÃO FEZ, E É O ITEM SENDO OBEDECIDO OUTRA VEZ:** não publicou nada. A mãe
+   > `/materiais/alicates-e-corte/` não nasce com 1 filha (16.5), e filha sozinha pendurada em
+   > `/materiais/` é o cluster ralo que a 16.6 proíbe — a decisão é desta ilha e está escrita no
+   > item 3 desta fila desde 02/10. **Quinta execução seguida sem URL nova, e o argumento de
+   > crescimento desta fila continua de pé e agora tem endereço.** Nada no ar mudou: nenhum snippet
+   > foi tocado, o manifest segue em **67** e não houve Sync a acionar.
+   >
+   > **O PDF DO REJUNTE PISCINAS FOI ABERTO E LIDO DE NOVO, E O QUE SE PROCURAVA NÃO ESTÁ LÁ.**
+   > `classificacao_normativa` tem lastro em **2 de 3** registros que a declaram e seria o terceiro
+   > número do `rejunte` a um campo de distância. O boletim no espelho da Telha Norte (3 páginas,
+   > revisão de agosto de 2017) foi baixado e lido: **zero ocorrência de `tipo I`, `tipo II`, `NBR`
+   > ou `14992`**. O campo fica ausente, por medição e não por esquecimento. **Não procure de novo
+   > neste documento.**
+   >
+   > ---
+   >
+   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A TERCEIRA FILHA DA `rejunte` — A CATEGORIA ESTÁ A UMA
+   > CONSULTA DA SEGUNDA MÃE DO GUIA, E AS DUAS QUE ELA JÁ TEM ESTÃO MEDIDAS NOS DOIS PORTÕES.**
+   >
+   > O que a `rejunte` tem hoje, pelo `cruzamento-14-9.py`: a mãe em `pode_nascer` (*"qual rejunte
+   > usar em peça de mosaico artesanal vaso"*, ABERTA), a filha `rejunte/cimenticio` em
+   > `pode_nascer` (*"quanto tempo esperar para molhar peça de mosaico depois do rejunte
+   > cimentício"*, ABERTA, número `liberacao_area_molhada_h`) e a `pergunta:rejunte-largura-da-junta`
+   > em `pode_nascer` (ABERTA, número `junta_min_mm`/`junta_max_mm`). **Duas filhas por consulta.
+   > Falta uma, e ela é uma CONSULTA, não um SKU.**
+   >
+   > **AS TRÊS PORTAS QUE EXISTEM, com o custo medido de cada uma:**
+   >
+   > | porta | o que custa | medido |
+   > |---|---|---|
+   > | **(a) uma terceira PERGUNTA sobre um número que o banco já tem** | nada de coleta, só uma consulta medida | **fechada hoje**: as únicas propriedades com lastro em ≥3 rejuntes são `junta_min_mm`, `junta_max_mm` (as duas são a pergunta da junta) e `liberacao_area_molhada_h` (é a consulta da `cimenticio`). Não há terceiro número |
+   > | **(b) um campo novo num registro que já mora no banco** | um valor, de documento legível | `classificacao_normativa` está em 2 de 3 e o boletim do piscinas **não o traz** (lido hoje). Os outros quatro boletins estão em `www.quartzolit.weber`, **403**, e o espelho da Telha Norte é arquivo por nome conhecido com 14 documentos e nenhum deles é acrílico nem epóxi |
+   > | **(c) `rejunte/acrilico` ou `rejunte/epoxi` como TIPO** | 2 SKUs cada, com faixa de junta | fechada desde 05/10 com nome: *"NÃO REPITA A COLETA"* |
+   >
+   > **ENTÃO O BLOCO NÃO É NA `rejunte`: É MEDIR A SERP DE UMA PERGUNTA DE MÉTODO NA `pastilha`, QUE
+   > É A CATEGORIA COM MAIS BANCO DA ILHA E A ÚNICA COM NÚMERO SOBRANDO.** `m2_por_caixa`,
+   > `peso_caixa_kg` e `placas_por_caixa` têm lastro em **12 dos 13** itens — três números, e nenhum
+   > deles serve a nenhuma página hoje. A `pastilha` está em `espera_autoridade` porque as **duas**
+   > consultas medidas nela são de PRODUTO (*"pastilhas de vidro para mosaico"*, *"qual pastilha
+   > escolher para fazer mosaico artesanal"*) e marketplace ocupa consulta de produto — e a leitura
+   > `as_abertas_sao_pergunta_e_as_tomadas_sao_produto` deste arquivo acertou **cinco** vezes
+   > seguidas. **Nenhuma consulta de MÉTODO foi medida nessa categoria.** O bloco: (1) escrever a
+   > pergunta de `pastilha` em `perguntas-do-guia.json`, com a propriedade e a âncora à mão; (2)
+   > medir a SERP dela **sem pedir número** (limite 5) e **sem nomear marca** (limite 3); (3) se
+   > abrir, a `pastilha` ganha a primeira filha por consulta e o Guia passa a ter DUAS categorias a
+   > uma filha da mãe, em vez de uma; (4) se vier TOMADA, está medido que a `pastilha` não é
+   > alcançável por pergunta neste canal, e isso fecha a última porta barata do Guia — e aí o bloco
+   > seguinte é o snippet do Guia deixar de ser de uma categoria só, que é trabalho de código e não
+   > de medição, e que **toda** segunda mãe vai exigir de qualquer jeito.
+   >
+   > **E O QUE ELE NÃO DEVE FAZER:** não remedir `pastilha` nem `pastilha/vidro` com consulta de
+   > produto (duas passadas, TOMADA nas duas), não escrever consulta pedindo medida (limite 5, cinco
+   > passadas perdidas), não reabrir `martelinho`, `pinca_mosaico` nem `alicate/cortador_de_azulejo`
+   > na SERP, e **não publicar a mãe `/materiais/alicates-e-corte/`**: ela tem uma filha por
+   > consulta e a 16.5 pede três.
 
    > **E uma coisa que o próximo bloco NÃO deve fazer: reaproveitar as funções da cola.** O rejunte tem régua
    > própria **de propósito**, e a razão é de conteúdo antes de método — na cola a lista do fabricante nomeia

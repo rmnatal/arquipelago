@@ -1,0 +1,43 @@
+{
+ "id": "perguntas-do-guia",
+ "ilha": "clubedomosaico",
+ "o_que_este_arquivo_e": "As filhas de nivel 3 do Guia que tem forma de PERGUNTA em vez de forma de tipo. O `ferramentas/filhas-do-guia.py` mede os recortes que o VOCABULARIO nomeia — categoria inteira e cada tipo de `tipo_por_categoria` — e diz de si mesmo, desde 30/09/2026, que por isso ele e um PISO do que pode nascer e nunca um teto: 'Filha de nivel 3 tambem pode ter forma de PERGUNTA, e as duas que esta ilha ja publicou sao assim (a F2 e a F1). Uma pergunta atravessa tipos e pode reunir 3 itens onde nenhum tipo sozinho reune.' Este arquivo e o teto ficando visivel: a pergunta declarada aqui e MEDIDA pela mesma regua, no mesmo arquivo de saida, com o mesmo minimo da secao 9.",
+ "por_que_ele_existe_separado": "Pelo mesmo motivo que `PONTE_SLUG_CATEGORIA` e a unica coisa digitada no `filhas-do-guia.py`: uma pergunta e uma decisao de NOME e de CONSULTA, e nome nao se deriva de banco. O que NAO se digita aqui e nenhum numero, nenhum item e nenhum veredito — a propriedade e apontada pelo nome e quem conta os itens dela e a regua. Derivar a pergunta do banco seria o avesso do problema: o banco diz quais numeros existem, e nao qual pergunta uma artesa faz.",
+ "o_que_este_arquivo_NAO_decide": [
+  "o veredito de DADO da pergunta — e do `filhas-do-guia.py`, pela mesma regua dos recortes de tipo",
+  "o veredito de SERP — e do `serp-das-filhas.json`, e a consulta-alvo declarada aqui e a chave que liga os dois",
+  "se a pergunta ACRESCENTA uma filha a categoria — e do `cruzamento-14-9.py`, porque a 16.5 se fecha por CONSULTA e nao por recorte: pergunta que mira a consulta aberta que ja e creditada a um tipo nao e uma segunda filha, e o mesmo tipo com outro titulo",
+  "o endereco da pagina — quem publica escolhe, e o slug sai da consulta medida"
+ ],
+ "a_ancora_a_mao_e_para_que_ela_sirve": "Cada pergunta carrega `ancora_a_mao`, escrita a mao de proposito e por isso capaz de discordar da derivacao: quantos itens do banco de HOJE declaram o numero e quais tipos eles atravessam. Quando o banco crescer, a ancora cai e o portao reprova — e a lida nao e procurar defeito, e reescrever dois numeros, como o comentario do fixture do `filhas-do-guia.py` ja avisa para a tabela do ARVORE.md. Ancora que nunca cai nao mede nada.",
+ "perguntas": [
+  {
+   "id": "pergunta:alicate-espessura-de-corte",
+   "categoria": "alicate",
+   "propriedade_que_carrega_o_numero": "espessura_maxima_de_corte_mm",
+   "consulta_alvo": "como cortar pastilha de vidro para mosaico qual ferramenta",
+   "titulo_candidato": "Que espessura cada ferramenta de corte alcanca",
+   "por_que_e_pergunta_e_nao_tipo": "O numero atravessa os dois tipos de `alicate` que tem banco: o torques de mosaico com roldanas para em 5 mm e e o UNICO registro desta ilha cuja declaracao nomeia vidro; os tres cortadores Vonder declaram 10 mm e nao nomeiam vidro em lugar nenhum. Nenhum tipo sozinho publica esse contraste, e e o contraste que a pagina responde. Conferido em 07/10/2026: `espessura_maxima_de_corte_mm` e a unica propriedade deste banco que atravessa tipo — `tamanho_polegadas` tem 3 e sao so torques; `dimensoes_mm`, `comprimento_maximo_de_corte_mm` e `diametro_do_rodel_mm` tem 3 e sao so cortadores.",
+   "o_que_a_serp_nao_publica": "o limite em mm por tipo de ferramenta. A medicao da mae (ABERTA, faixa 100-1.000) registra que NENHUM dos dez compara as quatro ferramentas que o nicho nomeia, e a de `alicate/torques` registra que a SERP publica a regra qualitativa (roldana para vidro, videa reta para ceramica) e nenhum dos dez publica o milimetro.",
+   "ancora_a_mao": {
+    "itens_que_declaram_o_numero": 4,
+    "tipos_atravessados": ["cortador_de_azulejo", "torques"],
+    "escrita_em": "2026-10-07"
+   }
+  },
+  {
+   "id": "pergunta:rejunte-largura-da-junta",
+   "categoria": "rejunte",
+   "propriedade_que_carrega_o_numero": "junta_min_mm",
+   "consulta_alvo": "da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte",
+   "titulo_candidato": "Quanta junta deixar entre os caquinhos",
+   "por_que_e_pergunta_e_nao_tipo": "A faixa de junta e declarada por 5 de 5 rejuntes do banco, com fonte de nivel 2 nos cinco, e ela atravessa os TRES tipos da categoria — acrilico de 1 a 4 mm, epoxi de 1 a 5 mm, cimenticio de 2 a 10 mm. Por TIPO a categoria nao chega a lugar nenhum: `acrilico` tem 1 item e `epoxi` tem 1, e a execucao de 05/10/2026 fechou com nome a porta de coletar SKU novo deles (o espelho da Telha Norte e arquivo por nome conhecido, nunca catalogo, e os sete hosts de fabricante dao 000 por DNS). A pergunta reune 5 itens onde nenhum tipo reune 3, que e literalmente o caso que o `filhas-do-guia.py` descreve.",
+   "o_que_a_serp_nao_publica": "a faixa em milimetros que cada rejunte cobre. Medido em 07/10/2026: dos nove resultados que ocupam a consulta, quatro sao materia de decoracao sobre caquinho, dois sao manual de assentamento de um kit de fabricante, um e calculadora de consumo e um e tese — e nenhum diz de quantos milimetros e a junta que um rejunte de prateleira cobre.",
+   "ancora_a_mao": {
+    "itens_que_declaram_o_numero": 5,
+    "tipos_atravessados": ["acrilico", "cimenticio", "epoxi"],
+    "escrita_em": "2026-10-07"
+   }
+  }
+ ]
+}

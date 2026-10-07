@@ -66,6 +66,24 @@ esquema (versao 16): **3**.
 | `rejunte/acrilico` | 1 | 1 | — | `nao_passa` |
 | `rejunte/epoxi` | 1 | 1 | — | `nao_passa` |
 
+## As filhas em forma de PERGUNTA — a mesma regua, declaradas em `dados/perguntas-do-guia.json`
+
+A pergunta **nao afrouxa o portao**: no recorte de tipo a secao 9 cobra tres coisas separadas
+(3 itens, 3 com lastro, um numero sobre 3); na pergunta as tres COINCIDEM, porque o recorte
+dela e o conjunto dos itens que declaram o numero com lastro. Minimo e teto de nivel sao os
+mesmos, lidos dos mesmos lugares. **E ela nao decide se a categoria ganhou filha** — a 16.5 se
+fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.
+
+| pergunta | categoria | numero | itens | tipos que atravessa | veredito |
+|---|---|---|---|---|---|
+| `pergunta:alicate-espessura-de-corte` | `alicate` | `espessura_maxima_de_corte_mm` | 4 | `cortador_de_azulejo`, `torques` | `passa` |
+| `pergunta:rejunte-largura-da-junta` | `rejunte` | `junta_min_mm` | 5 | `acrilico`, `cimenticio`, `epoxi` | `passa` |
+
+- **`pergunta:alicate-espessura-de-corte`** — consulta-alvo: *como cortar pastilha de vidro para mosaico qual ferramenta*
+- **`pergunta:rejunte-largura-da-junta`** — consulta-alvo: *da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte*
+  - cobre a categoria inteira (5 de 5 itens ativos), e isso e o esperado: a mae
+    de nivel 2 e indice e esta pergunta e a pagina de nivel 3 que responde.
+
 ## O motivo, nos recortes que nao passam inteiros
 
 - **`alicate/pinca_mosaico`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
