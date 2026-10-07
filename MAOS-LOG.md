@@ -4163,3 +4163,80 @@ ilhas/clubedomosaico/PROMPT.md          : antes da linha 72  (## DESPACHO ... 20
 **Nenhum passo falhou neste disparo.** Não houve erro de fetch, de push nem de leitura de arquivo; os 12 arquivos da instrução já existiam, então nenhum foi criado.
 
 **O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada — a decisão veio na instrução; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`, que é a exceção obrigatória; não apaguei nem reescrevi seção anterior deste log; não forcei push e não abri PR; não reservei ilha, não escrevi `executando_desde` nem toquei em `piso:` (a edição 4 manda a Fundação passar `piso` a `atingido` no primeiro bloco, e isso é dela, não minha); não executei bloco de fila de ilha nenhuma; não acionei Sync, não publiquei, não marquei `publicar: true` e não verifiquei site; não criei conta em plataforma nenhuma. Nenhum contato pessoal de terceiro entrou — a instrução não trazia nenhum.
+
+---
+
+## Disparo de 07/10/2026, 17:30 BRT (20:30 UTC) — correção de POSIÇÃO das 29 linhas de 2026-10-07 gravadas em 5009f09
+
+Instrução: recortar, em cada um dos seis arquivos de dados, todas as linhas que começam com `| 2026-10-07 |` e colá-las imediatamente depois da última linha que começa com `| 2026-09-23 |`, na mesma ordem relativa e com o texto idêntico byte a byte. É a correção da ressalva que este log registrou no disparo anterior: a regra mecânica de 5009f09 ("depois da última linha do arquivo que comece com `|`") jogou as linhas da série para o fim de tabelas de outro assunto.
+
+**Assunto conferido antes do `git fetch`:** Arquipélago — séries de indexação e posição das ilhas aquametria, robometria e clubedomosaico. Nada de outro projeto na instrução.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, de `36cd117`.
+
+### Dois dos seis já estavam no lugar certo, e não foram tocados
+
+- `ilhas/robometria/dados/indexacao.md` — a linha já era a última do arquivo, logo depois da linha de `| 2026-09-23 |`. É o caso que a própria instrução previu no passo 4.
+- `ilhas/aquametria/dados/posicoes.md` — as 12 linhas já vinham contíguas logo depois da linha 11, a última de `| 2026-09-23 |`. A instrução esperava 12 linhas a mover aqui; elas não precisavam mover.
+
+Nos outros quatro o recorte-e-cola foi feito. Nenhuma outra linha, título ou espaçamento foi alterado.
+
+```
+$ git status --porcelain
+(vazio — árvore limpa depois do commit do trabalho)
+```
+
+```
+$ git diff --stat HEAD~1 HEAD
+ ilhas/aquametria/dados/indexacao.md     |  2 +-
+ ilhas/clubedomosaico/dados/indexacao.md |  2 +-
+ ilhas/clubedomosaico/dados/posicoes.md  | 20 ++++++++++----------
+ ilhas/robometria/dados/posicoes.md      |  8 ++++----
+ 4 files changed, 16 insertions(+), 16 deletions(-)
+```
+
+```
+commit que foi ao main: a20b806e2adc5ee4984d31c3e54df92aec619d35
+origin/main confirmado por git fetch origin main && git log -1 origin/main
+```
+
+### De onde para onde cada bloco foi
+
+```
+ilhas/aquametria/dados/indexacao.md     : linha 228  -> depois da linha 8   (1 linha)
+ilhas/aquametria/dados/posicoes.md      : JÁ NO LUGAR, não tocado           (12 linhas)
+ilhas/robometria/dados/indexacao.md     : JÁ NO LUGAR, não tocado           (1 linha)
+ilhas/robometria/dados/posicoes.md      : linhas 41-44 -> depois da 15      (4 linhas)
+ilhas/clubedomosaico/dados/indexacao.md : linha 126 -> depois da linha 8    (1 linha)
+ilhas/clubedomosaico/dados/posicoes.md  : linhas 75-84 -> depois da 13      (10 linhas)
+```
+
+### Conferência obrigatória, relendo os seis arquivos DEPOIS de gravar
+
+As contagens pedidas pela instrução eram 1, 12, 1, 4, 1, 10. Foi o que os arquivos devolveram:
+
+```
+ilhas/aquametria/dados/indexacao.md        1 linha  | bloco 9..9    | 263 linhas | linha seguinte: EM BRANCO
+ilhas/aquametria/dados/posicoes.md        12 linhas | bloco 12..23  |  31 linhas | linha seguinte: EM BRANCO
+ilhas/robometria/dados/indexacao.md        1 linha  | bloco 10..10  |  10 linhas | bloco é o fim do arquivo
+ilhas/robometria/dados/posicoes.md         4 linhas | bloco 16..19  |  68 linhas | linha seguinte: EM BRANCO
+ilhas/clubedomosaico/dados/indexacao.md    1 linha  | bloco 9..9    | 130 linhas | linha seguinte: EM BRANCO
+ilhas/clubedomosaico/dados/posicoes.md    10 linhas | bloco 14..23  | 121 linhas | linha seguinte: EM BRANCO
+```
+
+Nos seis, a linha imediatamente anterior ao bloco é a última linha de `| 2026-09-23 |` do arquivo, e a primeira linha depois do bloco NÃO começa com `|` — em cinco é linha em branco, e no `robometria/dados/indexacao.md` o bloco é a última linha do arquivo. Nenhuma contagem divergiu, então não houve número para reportar no lugar de conserto.
+
+**Prova de que foi recortar-e-colar e não reescrever:** para cada um dos quatro arquivos alterados, comparei o `md5sum` das linhas `-` do `git diff -U0` com o das linhas `+`. Os quatro pares bateram, idênticos:
+
+```
+ilhas/aquametria/dados/indexacao.md       779ba384d042427d2522eaed5350cf0e == 779ba384d042427d2522eaed5350cf0e
+ilhas/robometria/dados/posicoes.md        e95f2df3878429183e30ab982dfe5345 == e95f2df3878429183e30ab982dfe5345
+ilhas/clubedomosaico/dados/indexacao.md   0f2582a82e22b481c03864e659392e4a == 0f2582a82e22b481c03864e659392e4a
+ilhas/clubedomosaico/dados/posicoes.md    71bda7e6c85b35fb3de2894435d22b09 == 71bda7e6c85b35fb3de2894435d22b09
+```
+
+E a contagem de linhas do diff que NÃO começam com `| 2026-10-07 |` é **zero**: nenhuma outra linha do repositório entrou ou saiu neste disparo. O total de linhas dos seis arquivos é o mesmo de antes (263, 31, 10, 68, 130, 121), como tem de ser num movimento.
+
+**Nenhum passo falhou neste disparo.** Fetch, commit e `git push origin HEAD:main` passaram na primeira tentativa, sem rebase, sem force push e sem PR.
+
+**O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada; não corrigi, reformatei nem "melhorei" o texto das linhas movidas, que é o que a instrução proibiu explicitamente; não escolhi tabela por conta própria — a instrução nomeou a linha de ancoragem desta vez, e foi ela que eu usei; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`; não apaguei nem reescrevi seção anterior deste log, inclusive a ressalva do disparo de 20:08 UTC, que fica onde está como registro de que o erro existiu; não reservei ilha, não escrevi `executando_desde` nem toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; não acionei Sync, não publiquei e não verifiquei site; não criei conta em plataforma nenhuma. Nenhum contato pessoal de terceiro entrou — a instrução não trazia nenhum.
