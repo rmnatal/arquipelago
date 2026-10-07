@@ -3882,3 +3882,75 @@ PAINEL.md linhas: 73 | chars: 13640 | escrito em 07/10: 1
 **Falhas: nenhuma.** As cinco âncoras bateram (uma ocorrência cada), os três YAML parsearam, o push foi aceito de primeira e o commit está em `origin/main`.
 
 **O que eu NÃO fiz, de propósito:** não acionei o Sync, não verifiquei site, não reservei ilha, não escrevi `executando_desde` nem toquei em cabeçalho de estado fora da linha `ultima_ronda:` que a instrução nomeou, não executei bloco de fila de ilha nenhuma, e não mexi em arquivo que a instrução não nomeou — só neste `MAOS-LOG.md`, que é a exceção obrigatória. O texto entrou byte a byte como veio: nada reformatado, nada "melhorado", nenhuma linha acrescentada. Nenhum contato pessoal de terceiro entrou (a instrução não trazia nenhum).
+
+---
+
+## 07/10/2026 16:56 (Brasília) — 19:56 UTC — Leitura Search Console pela nuvem nas três ilhas
+
+**Instrução recebida:** rodar `python3 ferramentas/search-console.py <ilha> 2>&1 | grep -v '^\[notice\]\|WARNING: Running pip'` para `aquametria`, `robometria` e `clubedomosaico`, gravar a saída inteira em `ilhas/<ilha>/dados/search-console-2026-10-07.md` (criar a pasta se faltasse), conferir `grep -c PRIVATE` = 0 em cada arquivo, commitar com `Leitura Search Console pela nuvem — 2026-10-07`, `git push origin HEAD:main` e confirmar com `git log -1 origin/main`.
+
+**Checagem de assunto:** do Arquipélago — três ilhas do arquipélago e ferramenta do próprio repositório. Executada.
+
+**`GOOGLE_SA_B64`:** presente no ambiente (só o comprimento foi verificado). O valor não foi impresso, gravado nem commitado em nenhum momento.
+
+**Execução:** as três rodadas saíram com exit 0.
+
+`git status --porcelain` (depois do `git add`, antes do commit):
+
+```
+A  ilhas/aquametria/dados/search-console-2026-10-07.md
+A  ilhas/clubedomosaico/dados/search-console-2026-10-07.md
+A  ilhas/robometria/dados/search-console-2026-10-07.md
+```
+
+`git diff --stat` (staged):
+
+```
+ ilhas/aquametria/dados/search-console-2026-10-07.md     | 13 +++++++++++++
+ ilhas/clubedomosaico/dados/search-console-2026-10-07.md | 17 +++++++++++++++++
+ ilhas/robometria/dados/search-console-2026-10-07.md     | 13 +++++++++++++
+ 3 files changed, 43 insertions(+)
+```
+
+**Conferência de vazamento, arquivo por arquivo (`grep -c PRIVATE`):**
+
+```
+ilhas/aquametria/dados/search-console-2026-10-07.md:0
+ilhas/clubedomosaico/dados/search-console-2026-10-07.md:0
+ilhas/robometria/dados/search-console-2026-10-07.md:0
+```
+
+Os três deram 0. Nada foi apagado e não houve "vazou". Por precaução rodei também `grep -c -iE 'private|BEGIN|service_account|client_email|-----'` nos três: 0 em cada.
+
+**Commit que foi ao `main`:**
+
+```
+f5efafd234c5ba7456ed30283b65198d2951d75f
+Leitura Search Console pela nuvem — 2026-10-07
+```
+
+**Push:** o primeiro `git push origin HEAD:main` foi recusado (non-fast-forward: `origin/main` havia andado de `30a3269` para `43ca1bc` durante a execução). Fiz `git fetch origin main && git rebase origin/main` (rebase de 1 commit, sem conflito) e o segundo push foi aceito: `43ca1bc..f5efafd`. Sem force push, sem PR.
+
+**Confirmação em `origin/main` depois do `git fetch`:**
+
+```
+commit f5efafd234c5ba7456ed30283b65198d2951d75f
+    Leitura Search Console pela nuvem — 2026-10-07
+ ilhas/aquametria/dados/search-console-2026-10-07.md     | 13 +++++++++++++
+ ilhas/clubedomosaico/dados/search-console-2026-10-07.md | 17 +++++++++++++++++
+ ilhas/robometria/dados/search-console-2026-10-07.md     | 13 +++++++++++++
+ 3 files changed, 43 insertions(+)
+```
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar (não pelo que eu acho que escrevi):**
+
+```
+aquametria      13 linhas | 505 chars | indexacao: 1 linha | posicoes: 1 linhas de dados | nao indexadas: 2 | PRIVATE: 0
+robometria      13 linhas | 526 chars | indexacao: 1 linha | posicoes: 0 linhas de dados | nao indexadas: 4 | PRIVATE: 0
+clubedomosaico  17 linhas | 970 chars | indexacao: 1 linha | posicoes: 5 linhas de dados | nao indexadas: 3 | PRIVATE: 0
+arquivos criados: 3 | pastas dados/ criadas: 0 (as tres ja existiam)
+```
+
+**Falhas:** só a recusa do primeiro push, resolvida com rebase e registrada acima. Nada mais falhou.
+
+**O que eu NÃO fiz, de propósito:** não imprimi, gravei nem commitei `GOOGLE_SA_B64`; não reservei ilha, não escrevi `executando_desde` nem toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; não publiquei, não marquei `publicar: true`, não acionei Sync nem verifiquei site; não criei conta em plataforma nenhuma; e não mexi em arquivo que a instrução não nomeou — só neste `MAOS-LOG.md`, que é a exceção obrigatória. As saídas entraram byte a byte como a ferramenta devolveu: nada reformatado, nada "melhorado", nenhuma linha acrescentada. Nenhum contato pessoal de terceiro entrou nos arquivos.
