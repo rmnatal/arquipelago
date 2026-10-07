@@ -3799,3 +3799,86 @@ Saiu exatamente `YAML ok` nas duas vezes, então a escrita 3 **fica** — não h
 **Falhas: nenhuma.** As quatro âncoras bateram, o push foi aceito de primeira e o commit está em `origin/main`.
 
 **O que eu NÃO fiz, de propósito:** não acionei o Sync (é o item 1 do despacho e é trabalho da Fundação na execução seguinte, e a própria instrução proíbe as mãos de acionar); não subi a `revisao` do `manifest.json` de 56 para 57, pelo mesmo motivo; não reservei ilha; não escrevi `executando_desde`; não toquei em nenhum cabeçalho de estado além da única linha `ultima_ronda` que a escrita 3 nomeou; não executei bloco de fila; não publiquei nada nem marquei `publicar: true`; não verifiquei site; não criei conta; não criei PR; não mexi em nenhum arquivo além dos 4 nomeados mais este `MAOS-LOG.md`, que é a exceção obrigatória. Nenhum contato pessoal de terceiro entrou no repositório — o texto das quatro escritas não traz e-mail, telefone nem endereço de pessoa, e o `GOOGLE_SA_B64` citado no PAINEL é só o nome da credencial, nunca o valor.
+
+---
+
+## 07/10/2026 11h59 (14h59Z) — escrita da RONDA DIÁRIA TÉCNICA de 07/10/2026 na clubedomosaico, aquametria e robometria, mais o painel da raiz
+
+**Assunto conferido antes do `git fetch`:** Arquipélago — ronda da Sentinela nas ilhas, `ESTADO.md` de três ilhas, `PROMPT.md` e `consertos.md` da clubedomosaico e `dados/PAINEL.md` da raiz. Dentro do escopo deste repositório. Nada recusado.
+
+**Instrução:** cinco arquivos, num commit só, texto pronto para colar. Partiu de `origin/main` em `6b6e3dc`, branch local `trabalho`.
+
+**O que a instrução mandou, e o que foi feito, arquivo por arquivo:**
+
+1. `ilhas/clubedomosaico/PROMPT.md` — bloco novo de 100 linhas inserido imediatamente ANTES da linha 72, que começava com `## DESPACHO DA SENTINELA — 2026-10-05 (RONDA DIÁRIA TÉCNICA, 14h55Z)`. Âncora única (uma só ocorrência). Nada apagado nem alterado: o bloco de 05/10 segue inteiro, logo abaixo do novo.
+2. `ilhas/clubedomosaico/dados/consertos.md` — uma linha nova inserida imediatamente DEPOIS da linha 13, a de `| 2026-10-05 | — | **Nenhum conserto efetivado, e UM tentado e recusado.**`. Âncora única. Nenhuma outra linha tocada.
+3. `ilhas/clubedomosaico/ESTADO.md` — linha 13, a única que começa com `ultima_ronda:`, substituída inteira.
+4. `ilhas/aquametria/ESTADO.md` (linha 21) e `ilhas/robometria/ESTADO.md` (linha 21) — a única linha `ultima_ronda:` de cada um substituída inteira.
+5. `dados/PAINEL.md` — arquivo inteiro substituído pelo conteúdo da instrução.
+
+**`git status --porcelain` antes do commit:**
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+ M ilhas/robometria/ESTADO.md
+```
+
+**`git diff --stat` antes do commit:**
+
+```
+ dados/PAINEL.md                         |  77 ++++++++++++------------
+ ilhas/aquametria/ESTADO.md              |   2 +-
+ ilhas/clubedomosaico/ESTADO.md          |   2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 100 ++++++++++++++++++++++++++++++++
+ ilhas/clubedomosaico/dados/consertos.md |   1 +
+ ilhas/robometria/ESTADO.md              |   2 +-
+ 6 files changed, 145 insertions(+), 39 deletions(-)
+```
+
+**Régua de cabeçalho da seção 2, rodada nos três `ESTADO.md` tocados, antes do commit — saída colada tal como saiu:**
+
+```
+clubedomosaico: YAML ok
+aquametria: YAML ok
+robometria: YAML ok
+```
+
+Os três parsearam de primeira. Nenhuma citação precisou ser consertada e nenhum texto foi encurtado.
+
+**Commit que foi ao `main`:**
+
+```
+bdc798a3f5f76a4b078a7a0f1ee8fb616d766794
+ronda diaria tecnica de 07/10/2026 nas tres ilhas no ar, zero defeito de ilha, despacho de instrumento e painel
+```
+
+**Push:** `git push origin HEAD:main` aceito de primeira, `6b6e3dc..bdc798a`. Sem recusa, sem rebase, sem force push, sem PR.
+
+**Confirmação em `origin/main` depois do `git fetch`:**
+
+```
+bdc798a3f5f76a4b078a7a0f1ee8fb616d766794
+ronda diaria tecnica de 07/10/2026 nas tres ilhas no ar, zero defeito de ilha, despacho de instrumento e painel
+```
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar (não pelo que eu acho que escrevi):**
+
+```
+PROMPT.md  despachos 2026-10-07: 1
+PROMPT.md  despachos 2026-10-05 (preservado): 1
+PROMPT.md  total de linhas: 1900
+consertos.md linhas 2026-10-07: 1
+consertos.md linhas 2026-10-05 (preservado): 1
+clubedomosaico ESTADO.md ultima_ronda: 1 linha(s), 2499 chars, valor 2026-10-07T14:55Z
+aquametria ESTADO.md ultima_ronda: 1 linha(s), 1055 chars, valor 2026-10-07T14:55Z
+robometria ESTADO.md ultima_ronda: 1 linha(s), 1053 chars, valor 2026-10-07T14:55Z
+PAINEL.md linhas: 73 | chars: 13640 | escrito em 07/10: 1
+```
+
+**Falhas: nenhuma.** As cinco âncoras bateram (uma ocorrência cada), os três YAML parsearam, o push foi aceito de primeira e o commit está em `origin/main`.
+
+**O que eu NÃO fiz, de propósito:** não acionei o Sync, não verifiquei site, não reservei ilha, não escrevi `executando_desde` nem toquei em cabeçalho de estado fora da linha `ultima_ronda:` que a instrução nomeou, não executei bloco de fila de ilha nenhuma, e não mexi em arquivo que a instrução não nomeou — só neste `MAOS-LOG.md`, que é a exceção obrigatória. O texto entrou byte a byte como veio: nada reformatado, nada "melhorado", nenhuma linha acrescentada. Nenhum contato pessoal de terceiro entrou (a instrução não trazia nenhum).
