@@ -69,6 +69,106 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-07 (RONDA DIÁRIA TÉCNICA, 14h5xZ) — ZERO DEFEITO DE ILHA; O ÚNICO ACHADO É DE INSTRUMENTO E É DO RAPHAEL
+
+> **ESTA RONDA ESCOLHEU A clubedomosaico PELA REGRA DA DÍVIDA (seção 12):** ela é a única ilha com publicação
+> nova desde a última ronda — o `ultima_execucao` do cabeçalho é de **hoje, 14h16Z**, com o bloco do balde
+> próprio da regra 3 do rejunte, manifest e `/status` na **revisão 66**. O sitemap segue em **21 URLs**. A
+> aquametria e a robometria receberam a **ronda técnica inteira** (não só sonda de vida), pela decisão do
+> Raphael de 28/09 registrada no ponteiro da 1.2, e as duas passaram.
+
+**RECONFERÊNCIA DA 19.4(c), ANTES DE QUALQUER OUTRA COISA.** As **nove** entradas de `dados/consertos.md` foram
+abertas primeiro e reconferidas no ar, com quebra de cache e `Accept-Encoding: identity`:
+
+- **24/09 — a porta de entrada (29.2): PASSOU pela quinta ronda seguida.** 21 de 21 URLs do `wp-sitemap.xml` em
+  **200**; `/wp-sitemap.xml` em 200 com `application/xml` e XML de sitemap de verdade; `/robots.txt` em 200 e
+  `text/plain`; `/wp-json/` em 200 e `application/json`; caminho inexistente em **404 na página desta ilha**.
+- **05/10 — o reparo do `.htaccess` das 10h17Z: PASSOU.** É a mesma medição acima. **Pela 19.4(b), uma terceira
+  queda é chamado na HostGator, não um terceiro reparo** — e o chamado já está em `dados/despachos.md`.
+- **25/09 — os links regerados: PASSARAM, e em número maior.** **39** links de loja servidos nas 21 URLs e nos
+  dois estados de ferramenta medidos (eram 35 em 05/10), **todos** presentes no banco (`url` ou `url_busca`),
+  **zero** encurtador desconhecido e **zero** link cru de Shopee ou Mercado Livre.
+- **25/09 — a etiqueta de robô: PASSOU, hoje nos SEIS alvos.** `/author/mosaico_gestor/`, `/author/artesa/`,
+  `/materiais/como-sabemos/`, `/?s=mosaico`, o estado com parâmetro da **F2** e o estado com parâmetro da **F1**
+  servem, cada um, **uma** `<meta name='robots' content='noindex, follow' />`; e a URL canônica
+  `/materiais/qual-cola-usar-no-mosaico/` segue indexável, com `max-image-preview:large`. **Zero** `noindex`
+  indevido nas 21 do sitemap e nenhuma `<meta robots>` duplicada em página nenhuma.
+- **29/09 — o soft 404 na borda: CONTINUA**, e segue sendo do Raphael. Sonda virgem hoje: **404 · 200 · 200 ·
+  200** nesta ilha, **404 · 404 · 200 · 200** na robometria, e **404 nas quatro** na aquametria.
+- **28/09 — os cinco itens CONTINUAM fechados**, remedidos hoje: zero `cm cm` nas 21, estados da F1 com
+  `noindex`, `description` nas 21 e nenhuma acima de 160, **zero** `afiliado.degrau` em `null` em 41 de 41, e o
+  `alt` de `/loja/` certo. **Zero `<img>` sem atributo `alt` nas 21.**
+- **30/09 — o item 1 CONTINUA cumprido:** **17 de 17** itens de degrau 4 com `motivo_sem_ficha` na forma da
+  25.4-b.3, com a causa separada da última tentativa pelo marcador.
+
+**OS DOIS ITENS QUE A RONDA DE 05/10 DEIXOU PARA A FUNDAÇÃO ESTÃO FECHADOS, E ESTA RONDA OS CONFERIU NO AR
+CONTRA O CRITÉRIO DE PRONTO QUE ELES MESMOS DECLARARAM (18.4):**
+
+- **Item 1 — o banco sabia e o site não: FECHADO.** `/status` e `manifest.json` na **revisão 66**, aplicada hoje
+  às 14h10Z. A célula de `junta=6` em `contato_permanente_agua`, que estava **vazia**, agora serve *"o rejunte é
+  **Rejunte Piscinas Quartzolit**"*, com *"Cobre junta de 2 a 10 mm"* e a declaração de uso submerso em água
+  tratada citada; `junta=3` e `junta=5` servem *"Rejunte Epóxi Quartzolit **e** Rejunte Piscinas Quartzolit — o
+  fabricante nomeia este lugar nos dois"*; e a frase *"a gente não conseguiu a faixa de junta"* tem **zero**
+  ocorrência nos três estados.
+- **Item 2 — o degrau errado: FECHADO.** `quartzolit-rejunte-acrilico` saiu do **degrau 2** para o **degrau 3**,
+  que é o lugar certo de anúncio de vendedor da Shopee pela 25.1, e os **4** registros que ficaram no degrau 2
+  são todos `/p/MLB...` do Mercado Livre. Degraus hoje: 1 / 4 / 19 / 17.
+
+**O QUE ESTA RONDA MEDIU E PASSOU, NAS TRÊS ILHAS NO AR, para a Fundação não remedir:** todas as URLs do
+sitemap em **200** (21 na clubedomosaico, 52 na aquametria, 14 na robometria); porta de entrada da 29.2 inteira
+e 404 virgem na página da própria ilha **nas três**; `/status` igual ao `manifest.json` **nas três** (66, 117,
+81); **zero** `&#038;` dentro de `<script>`; **zero** página órfã (mínimo de 2 links internos na clubedomosaico,
+3 na aquametria, 4 na robometria); `description` em todas e nenhuma acima de 160; JSON-LD e `BreadcrumbList`;
+breadcrumb visível; **zero** `<img>` sem `width`/`height` e **zero** sem `alt`; `aria-expanded` e
+`aria-controls`; nenhuma palavra da lista "Proibidas" do `VOZ.md` de cada ilha em `<title>`, `<h1>` ou primeiro
+parágrafo. **Console sem uma mensagem**, com recarga, em `/materiais/qual-cola-usar-no-mosaico/` com parâmetro
+real e em `/materiais/acabamento/impermeabilizar-peca-de-mosaico/`.
+
+**AS DUAS FERRAMENTAS FORAM EXECUTADAS COM ENTRADA REAL E A CONTA REFEITA NA MÃO:**
+
+- **F1 (quantas pastilhas)**, entrada nova — `forma=cilindro&d=15&h=20&pastilha=p20&esp=4&junta=3&sobra=10&rejunte=cimenticio&onde=interno_molhado`
+  → **942 cm² (0,094 m²)**, **passo 2,3 cm**, **1.890 pastilhas/m²**, **196 pastilhas para comprar**, **198 g de
+  rejunte cimentício**. Confere: π × 15 × 20 = 942,48 cm²; 2,0 + 0,3 = 2,3 cm; 10.000 ÷ 2,3² = 1.890,4;
+  942,48 ÷ 5,29 = 178,16 pastilhas, com 10% de sobra = 195,98, arredondado para cima = **196**; e
+  0,0942 m² × 2,10 kg/m² = 0,1979 kg = **198 g**. **Os cinco números batem.**
+- **F2 (qual cola)**, `base=espelho&onde=externo_exposto&caco=caco_espelho&junta=3` → **Tekbond Silicone
+  Neutro**, com `espelhos` em `indicado_para` e `chuva` e `raios UV` em `resistencias_declaradas`, e o
+  recomendado **fora** da própria lista de "o que não usar", que nomeia o Acético Construção pelo motivo
+  publicado. E a seção de rejunte desse estado diz, sem maquiar, que não há rejunte para indicar, com o motivo
+  de cada um dos cinco escrito. **Coerência da recomendação: passa nas duas**, lida como leitor leria.
+
+---
+
+### 1. O TESTE DE VIDA DA 25.4 PAROU DE FUNCIONAR POR INTEIRO — NÃO É DA FUNDAÇÃO, É DO RAPHAEL
+
+**É o item 3 do despacho de 05/10, e ele piorou.** Em 05/10 a API de ficha da Shopee ainda respondia nos
+primeiros **4 a 6** chamados de cada contexto de aba. Hoje responde **zero**. Medido em três passadas, em dois
+contextos de aba limpos, sem sessão e sem clicar em link de afiliado nenhum:
+
+- `https://shopee.com.br/product/<shop_id>/<item_id>` — a ficha crua, que é o que a 25.4-b manda abrir — é
+  **redirecionada para `shopee.com.br/verify/traffic/error?...&type=4` já na primeira leitura**, em aba nova.
+- `api/v4/pdp/get_pc?shop_id=...&item_id=...&detail_level=0` devolve **HTTP 200 com `error: 90309999` e
+  `redirect_to_error_page: true` na PRIMEIRA chamada de cada contexto**, inclusive aberta direto na barra de
+  endereço, sem `fetch`.
+- **A Sentinela é proibida de resolver CAPTCHA (25.4)**, então a ronda parou aqui, como a regra manda.
+
+**O número honesto de hoje: 4 de 24 itens com `url_produto` medidos — os 4 do Mercado Livre `/p/MLB...`, os
+quatro VIVOS com preço — e 20 NÃO MEDIDOS, todos da Shopee.** Em 05/10 foram 10 de 24. **"Não medido" não é
+"vivo", e esta ronda não escreve que é.**
+
+**POR QUE ISTO NÃO SE CONSERTA DAQUI, E O QUE PRECISA DE DECISÃO:** a 25.4 escreve, com todas as letras, que o
+caminho certo é essa API chamada **de dentro de uma aba de navegador** e que "quem escrever bloco de nuvem para
+isso vai perder a execução descobrindo de novo o que está escrito aqui". **Esse caminho acabou.** Escolher o
+próximo é escolher entre opções defensáveis — Open API de Afiliados com credencial, aceitar a cobertura parcial
+e declará-la, ou trocar o critério de vida — e isso é **19.2**, não da Sentinela. Enquanto não houver decisão,
+toda ronda vai relatar cobertura perto de zero na Shopee, e o banco desta ilha tem **20 de 24** fichas lá.
+
+**pronto quando:** existir, escrito no `ARQUIPELAGO.md` ou no `PROMPT.md` desta ilha, um método de teste de vida
+que uma ronda consiga executar inteiro sem resolver CAPTCHA — e uma ronda conseguir publicar "N de 24 medidos"
+com N igual a 24.
+
+---
+
 ## DESPACHO DA SENTINELA — 2026-10-05 (RONDA DIÁRIA TÉCNICA, 14h55Z) — TRÊS ITENS; OS DOIS DA FUNDAÇÃO ESTÃO FECHADOS, SÓ O 3 FICOU
 
 > **ESTA RONDA ESCOLHEU A clubedomosaico PELA REGRA DA DÍVIDA (seção 12):** ela é a única ilha com publicação
