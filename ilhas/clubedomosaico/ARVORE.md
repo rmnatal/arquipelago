@@ -35,7 +35,7 @@ Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divul
 | Colas e adesivos | `/materiais/colas-e-adesivos/` | 7 itens | 0 de 7 | não |
 | Rejuntes | `/materiais/rejuntes/` | 5 itens | 1 de 4 | não |
 | Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | 1 de 6 | não |
-| Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 1 de 4 | não |
+| Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 2 de 4 | não |
 | Bases | `/materiais/bases/` | 0 | 0 de 5 | não |
 | Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 | **sim**, desde 02/10/2026 |
 | Como sabemos | `/materiais/como-sabemos/` | — | — | **sim** |

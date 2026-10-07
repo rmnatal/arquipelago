@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 66,
+  "revisao": 67,
   "atualizado_em": "2026-10-07",
   "estado": "nascendo",
   "desembarque": {
@@ -195,7 +195,7 @@
       "verificado_em": "2026-10-02",
       "registros": 10,
       "publicar": false,
-      "sha256": "ef7bb13d438ad13027b105b07392e64a226bbd2a91e54af73b784865ff20b1e8",
+      "sha256": "a95d9d4018f0fc48bbe9f4a7bf4816e737078e816763fc19eefe563f72309cfb",
       "descricao": "A metade COLETADA do cruzamento da 14.9: quem ocupa o top 10 da consulta-alvo de cada recorte do Guia, escrito pelo nome. Cinco classificacoes, e a quinta nasceu desta coleta — ABERTA_SEM_INTENCAO_NA_SERP, para a consulta em que ninguem ocupa porque NENHUM resultado fala da pergunta desta ilha (o selador mediu uma SERP inteira de pintura de parede). Guarda tambem o numero que a SERP nao publica e o banco desta ilha publica, recorte por recorte, que e a resposta da 14.9 a pergunta 'por que ela chega as 10 primeiras'."
     },
     {
@@ -281,7 +281,7 @@
       "verificado_em": "2026-09-25",
       "registros": 6,
       "publicar": true,
-      "sha256": "c6d8a9efca9fa70e834e9e6d7f968ab5fae5bc0dbce769cfc087240a6a29472f",
+      "sha256": "980302f23ac05d7c6dc71d84ed35bb17e124d119f5cffe22e2e7b4ac202a4d06",
       "descricao": "A categoria ALICATE do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de quatro para tres (restam base, acabamento e apoio). Tres torqueses Cortag e tres cortadores manuais Vonder (VDEC 51, 75 e 90), cada campo tecnico dentro de `propriedades`, que e o unico container com portao no validar-banco: todo valor aponta fonte, todo null escreve motivo. O ACHADO E UM TETO DE 5 MM QUE CRUZA COM O BANCO DE PASTILHAS. O torques de mosaico da Cortag e a unica ferramenta do arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm; os tres cortadores de bancada declaram 'pisos ceramicos e porcelanatos ate 10 mm' e nao nomeiam vidro em lugar nenhum. Medido contra materiais-pastilhas.json: das 13 pastilhas do banco, todas de vidro, 10 cabem no teto e TRES nao — st5102 (6 mm), af1500 (8 mm) e ic02 (8 mm). Para esses tres a F1 calcula quantidade e o banco de ferramentas nao tem uma declaracao de fabricante que sustente o corte: faixa DESCOBERTA no sentido da 14.3, para a tela dizer em vez de calar. A outra metade vale para as duas paginas de tecnica no ar: a frase do torques nomeia PASTILHA de vidro e de ceramica e NAO nomeia caco de louca (picassiete) nem caco de azulejo (trencadis) — estado `nao_declarado`, nem recomendar nem proibir. NASCEU `publicar: false` E O PORTAO DESMENTIU: o cartao 'Alicates e corte' do Guia existe desde que a casca nasceu e o mapa G-ALICATES => materiais-alicates ja estava escrito dentro do teste-casca, esperando o arquivo. Casca 1.14.0 liga os dois, e a frase de prova do Guia passou a nomear a quarta categoria — ate aqui ela anunciava o total do banco e enumerava so tres, o que teria posto no ar 'o banco tem 31 itens, sendo 7 colas, 5 rejuntes e 13 pastilhas'.",
       "pendencias": 3,
       "pendencias_que_bloqueiam_publicacao": []
@@ -347,7 +347,7 @@
       "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
       "registros": 42,
       "publicar": false,
-      "sha256": "0a7dee599b8c04f06085880d41253349481a68d116cbc8dd49912e7991cf3855"
+      "sha256": "f1e3dd271d8b943334ae4298d6131dcc5ecb3a54382f444033dc4b0fe6d46c7f"
     },
     {
       "id": "filhas-do-guia-md",
@@ -357,7 +357,7 @@
       "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira era a classificacao de SERP da 14.9 em PROSA, e em 02/10/2026 ela saiu daqui e virou dado em dados/serp-das-filhas.json, com o cruzamento em dados/cruzamento-14-9.md: prosa que o gerador preserva sem ler nao cruza com numero. O que ficou abaixo da fronteira e o ponteiro para os dois arquivos novos e o motivo da mudanca.",
       "verificado_em": "2026-10-02",
       "publicar": false,
-      "sha256": "438281b06b19be958d2e5c1566977bacb6076626324fd37b3a242c129f6cdaed"
+      "sha256": "782968630636667820cfb96fa67db9f5cef7a8e832d73e6546b35368a64e13c5"
     }
   ],
   "ferramentas": [
@@ -436,7 +436,7 @@
     {
       "id": "filhas-do-guia",
       "arquivo": "ferramentas/filhas-do-guia.py",
-      "sha256": "181668a6f9ec6ab4abbe4e93e4e48c5aa178c36ccc63626b1d9568e0fd1fcfe9",
+      "sha256": "58a6e55110f511cbb0731041d44893f9ffb5f5aab3e12f382afaa5fda74beace",
       "descricao": "Aplica o portao INTEIRO da secao 9 (3 itens de banco reais E um numero calculado proprio) a cada recorte que o vocabulario do esquema admite no Guia, e diz a que DISTANCIA esta o que nao passa. Os recortes saem de vocabularios.tipo_por_categoria e o teto de nivel de fonte sai de escada_de_fontes: nada digitado. Tres vereditos e nunca um booleano (passa, passa_na_contagem_sem_lastro, nao_passa), pela licao do medir-egresso.py — os dois vereditos saem juntos ou nenhum dos dois serve. Separa SKU novo de campo vazio em registro que ja mora no banco, e so promete 'completar registro' quando o recorte esta a UM. Gera dados/filhas-do-guia.json e o .md, preservando o trecho de SERP que e busca e nao derivacao; --conferir regera e compara e tambem confere a tabela da secao 2 do ARVORE.md nas duas direcoes; --autoteste roda 27 casos fabricados."
     },
     {

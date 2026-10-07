@@ -5,17 +5,17 @@ Nao edite este trecho a mao: `--conferir` regera e compara, e uma edicao manual 
 portao. O que se escreve a mao esta depois da fronteira, no fim do arquivo.
 
 Minimo da secao 9: **3** itens. Nivel maximo de fonte para recomendacao primaria, lido do
-esquema (versao 14): **3**.
+esquema (versao 16): **3**.
 
 ## O numero que manda
 
 | veredito | recortes |
 |---|---|
-| `passa` | 10 |
-| `passa_na_contagem_sem_lastro` | 2 |
+| `passa` | 11 |
+| `passa_na_contagem_sem_lastro` | 1 |
 | `nao_passa` | 30 |
 
-**Podem nascer hoje:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `pastilha`, `pastilha/vidro`, `rejunte`, `rejunte/cimenticio`.
+**Podem nascer hoje:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `pastilha`, `pastilha/vidro`, `rejunte`, `rejunte/cimenticio`.
 
 **Categorias que alcancam as 3 filhas da 16.5:** `acabamento`.
 
@@ -27,8 +27,8 @@ esquema (versao 14): **3**.
 | `acabamento/verniz` | 4 | 4 | `acabamento_visual` (3), `pelicula` (3) | `passa` |
 | `acabamento/impermeabilizante` | 3 | 3 | `base_quimica` (3) | `passa` |
 | `acabamento/selador` | 3 | 3 | `tempo_de_secagem_h` (3) | `passa` |
-| `alicate` | 6 | 4 | `espessura_maxima_de_corte_mm` (4), `comprimento_maximo_de_corte_mm` (3), `diametro_do_rodel_mm` (3), e mais 1 | `passa` |
-| `alicate/torques` | 3 | 1 | — | `passa_na_contagem_sem_lastro` |
+| `alicate` | 6 | 6 | `espessura_maxima_de_corte_mm` (4), `comprimento_maximo_de_corte_mm` (3), `diametro_do_rodel_mm` (3), e mais 2 | `passa` |
+| `alicate/torques` | 3 | 3 | `tamanho_polegadas` (3) | `passa` |
 | `alicate/cortador_de_azulejo` | 3 | 3 | `comprimento_maximo_de_corte_mm` (3), `diametro_do_rodel_mm` (3), `dimensoes_mm` (3), e mais 1 | `passa` |
 | `alicate/pinca_mosaico` | 0 | 0 | — | `nao_passa` |
 | `alicate/martelinho` | 0 | 0 | — | `nao_passa` |
@@ -68,7 +68,6 @@ esquema (versao 14): **3**.
 
 ## O motivo, nos recortes que nao passam inteiros
 
-- **`alicate/torques`** — 1 dos 3 itens sustentam recomendacao primaria (fonte de nivel <= 3); a secao 9 exige 3
 - **`alicate/pinca_mosaico`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`alicate/martelinho`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`apoio`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3

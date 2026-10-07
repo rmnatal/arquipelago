@@ -711,9 +711,18 @@ def autoteste():
         linhas = ["| nivel 2 | slug | banco hoje | tipos que passam o portao da 9 | existe |",
                   "|---|---|---|---|---|"]
         alvo = {"/materiais/colas-e-adesivos/": ("cola", banco_cola, passam_cola),
-                "/materiais/rejuntes/": ("rejunte", "5 itens", "0 de 4"),
+                # `rejunte` foi de "0 de 4" para "1 de 4" em 05/10/2026, quando a faixa de junta do
+                # rejunte piscinas chegou pelo boletim tecnico, e ESTE FIXTURE NAO FOI ACERTADO JUNTO:
+                # a autoteste ficou vermelha no main por dois dias em DOIS casos (o que exige APROVAR a
+                # tabela certa e o do slug fora da ponte, que monta a mesma tabela), com uma causa so.
+                # Ninguem viu porque `filhas-do-guia.py --autoteste` nao esta na lista de bancadas que
+                # a ronda diaria roda — a mesma tabela do ARVORE.md tinha sido corrigida no dia, pelo
+                # `--conferir`, e esta copia a mao nao tem quem a confira. Corrigido em 07/10/2026.
+                "/materiais/rejuntes/": ("rejunte", "5 itens", "1 de 4"),
                 "/materiais/pastilhas/": ("pastilha", "13 itens", "1 de 6"),
-                "/materiais/alicates-e-corte/": ("alicate", "6 itens", "1 de 4"),
+                # `alicate` foi de "1 de 4" para "2 de 4" em 07/10/2026: `alicate/torques` passou o
+                # portao quando os dois torqueses que faltavam ganharam `tamanho_polegadas` de nivel 3.
+                "/materiais/alicates-e-corte/": ("alicate", "6 itens", "2 de 4"),
                 "/materiais/bases/": ("base", "0", "0 de 5"),
                 # 10 itens e 3 de 3 desde 02/10/2026: a coleta de um
                 # impermeabilizante e dois seladores fez `acabamento` ser a

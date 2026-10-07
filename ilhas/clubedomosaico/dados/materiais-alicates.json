@@ -7,7 +7,7 @@
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria ALICATE do banco MATERIAL. E a segunda das cinco categorias que a varredura da secao 14.3 encontrou com ZERO itens em 12/09/2026 a ser enchida (a primeira foi PASTILHA), e vem antes de `base`, `acabamento` e `apoio` por um motivo escrito no proprio esquema-banco: 'as categorias rejunte, pastilha e alicate podem ser enchidas em qualquer execucao, SEM DECISAO NOVA — o esquema ja diz que campo cada uma exige'. As outras tres nao tem essa linha. O bloco NAO publica pagina nenhuma: a secao 16.5 continua exigindo 3 filhas de dado real por categoria, e /materiais/alicates/ continua sem pagina.",
   "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3, 3c e 3d. O egresso foi REMEDIDO nesta execucao como a secao 20.2 manda: cortag.com.br, www.cortag.com.br, vonder.com.br, www.vonder.com.br, tramontina.com.br, rubi.com, www.starrett.com.br e montolit.com todos em 000 por curl, e cortag.com e cortag.com.br em EGRESS_BLOCKED por WebFetch, com clubedomosaico.com.br em 200 na mesma passada. E politica de egresso, nao intermitencia. Por isso todo campo daqui carrega conferir_no_pdf: true. DUAS PASSADAS POR SKU, escritas de forma diferente, e nenhuma delas carregando um valor: as consultas pediram os ROTULOS da ficha ('codigo do produto', 'peso', 'dimensoes', 'capacidade', 'indicado para'), nunca um numero. UMA PASSADA VIOLOU ISSO E ESTA REGISTRADA NO PROPRIO DADO, porque ela e a licao mais util deste bloco: a consulta escrita com o prefixo '68.51' devolveu 68.51.075.000 e 68.51.090.000 — exatamente o que ela plantou. A passada limpa seguinte nao devolveu referencia nenhuma, e por isso os dois codigos ficaram NULL com o motivo escrito. O codigo do VDEC 51 (68.51.050.000) ficou porque veio de uma consulta que nao o carregava, e foi depois corroborado por um canal independente: o titulo de um anuncio lido pela Open API da Shopee, '... VDEC 51, VONDER 6851050000'.",
-  "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "O ACHADO E UM TETO DE 5 MM, E ELE CRUZA COM O BANCO DE PASTILHAS QUE JA EXISTE. O torques de mosaico da Cortag e a UNICA ferramenta deste arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm de espessura. Os tres cortadores de bancada da Vonder declaram 'pisos ceramicos e porcelanatos ate 10 mm' e NAO nomeiam vidro em lugar nenhum — nem na indicacao, nem no rodel de carboneto de tungstenio. Medido contra dados/materiais-pastilhas.json nesta execucao: das 13 pastilhas do banco, TODAS de vidro, 10 tem espessura declarada de 3 ou 4 mm e cabem no teto; TRES nao cabem — glassmosaic-st5102 (6 mm), pastilhart-af1500 (8 mm) e glassmosaic-ic02 (8 mm). Ou seja: para 3 dos 13 produtos que a F1 ja calcula quantidade, o banco de ferramentas nao tem UMA declaracao de fabricante que sustente o corte. Isso nao e falta de coleta de ferramenta — os quatro fabricantes alcancados publicam o teto deles —, e uma faixa DESCOBERTA no sentido da secao 14.3, e e o tipo de coisa que a pagina tem de dizer na tela em vez de calar. A SEGUNDA METADE, que vale para as duas paginas de tecnica que ja estao no ar: a frase do torques nomeia PASTILHA de vidro e de ceramica e NAO nomeia caco de azulejo, caco de louca, caco de espelho nem pedra — e caco de louca e o material do picassiete e caco de azulejo o do trencadis, as duas paginas de /como-fazer/ da ilha. Pelo principio dos tres estados, para esses quatro materiais o estado e `nao_declarado`: nem recomendar, nem proibir, e dizer que ninguem declarou.",
+  "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "O ACHADO E UM TETO DE 5 MM, E ELE CRUZA COM O BANCO DE PASTILHAS QUE JA EXISTE. O torques de mosaico da Cortag e a UNICA ferramenta deste arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm de espessura. Os tres cortadores de bancada da Vonder declaram 'pisos ceramicos e porcelanatos ate 10 mm' e NAO nomeiam vidro em lugar nenhum — nem na indicacao, nem no rodel de carboneto de tungstenio. Medido contra dados/materiais-pastilhas.json nesta execucao: das 13 pastilhas do banco, TODAS de vidro, 10 tem espessura declarada de 3 ou 4 mm e cabem no teto; TRES nao cabem — glassmosaic-st5102 (6 mm), pastilhart-af1500 (8 mm) e glassmosaic-ic02 (8 mm). Ou seja: para 3 dos 13 produtos que a F1 ja calcula quantidade, o banco de ferramentas nao tem UMA declaracao de fabricante que sustente o corte. Isso nao e falta de coleta de ferramenta — os quatro fabricantes alcancados publicam o teto deles —, e uma faixa DESCOBERTA no sentido da secao 14.3, e e o tipo de coisa que a pagina tem de dizer na tela em vez de calar. A SEGUNDA METADE, que vale para as duas paginas de tecnica que ja estao no ar: a frase do torques nomeia PASTILHA de vidro e de ceramica e NAO nomeia caco de azulejo, caco de louca, caco de espelho nem pedra — e caco de louca e o material do picassiete e caco de azulejo o do trencadis, as duas paginas de /como-fazer/ da ilha. Pelo principio dos tres estados, para esses quatro materiais o estado e `nao_declarado`: nem recomendar, nem proibir, e dizer que ninguem declarou. || 07/10/2026 — O QUE DESTRAVOU `alicate/torques` NAO FOI SKU NOVO, FOI OUTRO TIPO DE LEITURA DA MESMA PAGINA. O recorte tinha 3 itens e 1 com lastro, e a fila desta ilha previa coletar 2 SKUs novos. Nao foi preciso: os dois registros que faltavam ganharam `tamanho_polegadas` de nivel 3 lido na TABELA de especificacao, que a busca restrita devolve por SKU, enquanto a DESCRICAO — a unica coisa que as passadas de 25/09 tentaram — ela mistura entre os irmaos. A licao, e ela vale para toda categoria de FERRAMENTA deste banco: quando o egresso fecha a pagina do fabricante, a tabela de especificacao ainda passa, e ela e por produto; a prosa, nao.",
   "afiliado": {
     "itens_esperando_link": 1,
     "itens_sem_saida_de_compra": 0,
@@ -86,9 +86,10 @@
           "declarado_como": "acompanha chave hexagonal 'Allen' para manutencao e ajuste"
         },
         "tamanho_polegadas": {
-          "valor": null,
+          "valor": 8,
           "unidade": "pol",
-          "motivo": "8\" aparece no TITULO de anuncio de varejo e de marketplace (nivel 5/6), nunca numa linha da pagina do fabricante que a busca tenha devolvido. Nivel 6 sustenta preco, e so."
+          "fonte_id": "pagina-produto-torques-mosaico-roldanas",
+          "declarado_como": "8\""
         },
         "dimensoes_mm": {
           "valor": null,
@@ -149,10 +150,11 @@
       "fontes": {
         "pagina-produto-torques-mosaico-roldanas": {
           "url": "https://cortag.com/pt-br/produto/torques-para-mosaico-com-roldanas-de-metal-duro/",
-          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução) || TABELA DE ESPECIFICACAO LIDA EM 07/10/2026, por busca restrita ao dominio (a pagina continua NAO aberta: cortag.com segue EGRESS_BLOCKED, remedido nesta execucao por curl (000) e por WebFetch (EGRESS_BLOCKED)). O que foi colhido desta vez NAO e a descricao e sim a TABELA de especificacao do SKU (Referencia, EAN, Tamanho), e a distincao e o metodo: a descricao desta linha de produto a busca MISTURA entre os tres torqueses irmaos — foi isso que derrubou as passadas de 25/09 e esta registrado em `corte.observacao` —, enquanto a tabela e por SKU e se autoconfere, porque cada EAN fecha com a sua propria referencia (60857 -> 7897451468571, 60858 -> 7897451468588, 61341 -> 7897451413410). Tres leituras consistentes: duas passadas no dominio escritas de formas diferentes e uma corroboracao independente de canal de varejo (nivel 6) que escreve as MESMAS duas medidas, 8\" e 7,5\", sem que nenhuma passada tenha perguntado por elas juntas.",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "tabela_de_especificacao_lida_em": "2026-10-07"
         },
         "anuncio-shopee-61341": {
           "url": "https://shopee.com.br/search?keyword=torques%20para%20mosaico%20cortag",
@@ -164,7 +166,7 @@
       },
       "divergencias": [],
       "status": "ativo",
-      "nota_do_codigo": "61341 nao veio da pagina do fabricante: veio de DOIS canais independentes de nivel 6 que escrevem o mesmo numero no titulo — uma busca sem restricao de dominio (paginas de revendedor) e o titulo do anuncio lido pela Open API da Shopee nesta execucao, 'Torques Para Mosaico Com Roldanas de Metal Duro - 61341 - Cortag'. Dois canais fracos concordando nao viram nivel 3, e por isso o codigo NAO sustenta campo tecnico nenhum aqui: ele serve para achar o produto e para a proxima passada conferir na pagina."
+      "nota_do_codigo": "A referencia 61341 estava gravada desde 25/09/2026 vinda de DOIS canais de nivel 6 que a escrevem no titulo (busca sem restricao de dominio e Open API da Shopee), e a nota dizia que ela nao sustentava campo tecnico nenhum e que a proxima passada deveria conferi-la na pagina. CONFERIDA EM 07/10/2026: a tabela de especificacao do fabricante escreve a mesma referencia 61341, com EAN 7897451413410. Os dois canais fracos estavam certos — e isto nao os promove: o que promove o campo e a tabela."
     },
     {
       "id": "cortag-torques-azulejista-corte-reto",
@@ -173,8 +175,8 @@
       "marca": "Cortag",
       "fabricante": "Cortag",
       "nome_comercial": "Torques - Azulejista Corte Reto",
-      "codigo_fabricante": null,
-      "motivo_sem_codigo": "A passada restrita a cortag.com devolveu a pagina do produto e nao devolveu referencia. O titulo do anuncio da Shopee ('Torques Alicate Azulejista Corte Reto Cortag - 8 polegadas') tambem nao traz numero. Sem codigo em canal nenhum, o campo fica null em vez de receber o codigo do irmao.",
+      "codigo_fabricante": "60857",
+      "motivo_sem_codigo": null,
       "declaracoes": {
         "indicado_para": [],
         "nao_usar_em": [],
@@ -198,9 +200,10 @@
           "motivo": "Os 5 mm aparecem na descricao do modelo de CORTE CURVO e do modelo de mosaico com roldanas. Nenhuma passada atribuiu espessura a este SKU. Copiar do irmao seria inventar restricao de fabricante."
         },
         "tamanho_polegadas": {
-          "valor": null,
+          "valor": 8,
           "unidade": "pol",
-          "motivo": "8\" so aparece em titulo de anuncio (nivel 6), que nao sustenta campo tecnico."
+          "fonte_id": "pagina-produto-torques-azulejista-corte-reto",
+          "declarado_como": "8\""
         }
       },
       "venda": [
@@ -251,14 +254,16 @@
       "fontes": {
         "pagina-produto-torques-azulejista-corte-reto": {
           "url": "https://cortag.com/pt-br/produto/torques-azulejista-corte-reto/",
-          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução) || TABELA DE ESPECIFICACAO LIDA EM 07/10/2026, por busca restrita ao dominio (a pagina continua NAO aberta: cortag.com segue EGRESS_BLOCKED, remedido nesta execucao por curl (000) e por WebFetch (EGRESS_BLOCKED)). O que foi colhido desta vez NAO e a descricao e sim a TABELA de especificacao do SKU (Referencia, EAN, Tamanho), e a distincao e o metodo: a descricao desta linha de produto a busca MISTURA entre os tres torqueses irmaos — foi isso que derrubou as passadas de 25/09 e esta registrado em `corte.observacao` —, enquanto a tabela e por SKU e se autoconfere, porque cada EAN fecha com a sua propria referencia (60857 -> 7897451468571, 60858 -> 7897451468588, 61341 -> 7897451413410). Tres leituras consistentes: duas passadas no dominio escritas de formas diferentes e uma corroboracao independente de canal de varejo (nivel 6) que escreve as MESMAS duas medidas, 8\" e 7,5\", sem que nenhuma passada tenha perguntado por elas juntas.",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "tabela_de_especificacao_lida_em": "2026-10-07"
         }
       },
       "divergencias": [],
-      "status": "ativo"
+      "status": "ativo",
+      "nota_do_codigo": "A referencia 60857 veio da TABELA DE ESPECIFICACAO da pagina do fabricante (nivel 3), lida em 07/10/2026, e nao do titulo de anuncio. O campo era null com o motivo 'sem codigo em canal nenhum', escrito em 25/09/2026, quando as passadas procuravam DESCRICAO e nao tabela — o motivo ficou obsoleto por coleta, nao por decisao."
     },
     {
       "id": "cortag-torques-azulejista-corte-curvo",
@@ -267,8 +272,8 @@
       "marca": "Cortag",
       "fabricante": "Cortag",
       "nome_comercial": "Torques - Azulejista Corte Curvo",
-      "codigo_fabricante": null,
-      "motivo_sem_codigo": "Nenhum dos canais alcancados nesta execucao escreve referencia para este SKU.",
+      "codigo_fabricante": "60858",
+      "motivo_sem_codigo": null,
       "declaracoes": {
         "indicado_para": [],
         "nao_usar_em": [],
@@ -290,6 +295,12 @@
           "valor": null,
           "unidade": "mm",
           "motivo": "Ver `corte.observacao`: a unica frase disponivel pode pertencer ao SKU irmao. Campo tecnico so nasce de declaracao atribuida ao proprio produto."
+        },
+        "tamanho_polegadas": {
+          "valor": 7.5,
+          "unidade": "pol",
+          "fonte_id": "pagina-produto-torques-azulejista-corte-curvo",
+          "declarado_como": "7.1/2\""
         }
       },
       "venda": [
@@ -321,14 +332,16 @@
       "fontes": {
         "pagina-produto-torques-azulejista-corte-curvo": {
           "url": "https://cortag.com/pt-br/produto/torques-azulejista-corte-curvo/",
-          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
+          "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução) || TABELA DE ESPECIFICACAO LIDA EM 07/10/2026, por busca restrita ao dominio (a pagina continua NAO aberta: cortag.com segue EGRESS_BLOCKED, remedido nesta execucao por curl (000) e por WebFetch (EGRESS_BLOCKED)). O que foi colhido desta vez NAO e a descricao e sim a TABELA de especificacao do SKU (Referencia, EAN, Tamanho), e a distincao e o metodo: a descricao desta linha de produto a busca MISTURA entre os tres torqueses irmaos — foi isso que derrubou as passadas de 25/09 e esta registrado em `corte.observacao` —, enquanto a tabela e por SKU e se autoconfere, porque cada EAN fecha com a sua propria referencia (60857 -> 7897451468571, 60858 -> 7897451468588, 61341 -> 7897451413410). Tres leituras consistentes: duas passadas no dominio escritas de formas diferentes e uma corroboracao independente de canal de varejo (nivel 6) que escreve as MESMAS duas medidas, 8\" e 7,5\", sem que nenhuma passada tenha perguntado por elas juntas.",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "tabela_de_especificacao_lida_em": "2026-10-07"
         }
       },
       "divergencias": [],
-      "status": "ativo"
+      "status": "ativo",
+      "nota_do_codigo": "A referencia 60858 veio da TABELA DE ESPECIFICACAO da pagina do fabricante (nivel 3), lida em 07/10/2026, e nao do titulo de anuncio. O campo era null com o motivo 'sem codigo em canal nenhum', escrito em 25/09/2026, quando as passadas procuravam DESCRICAO e nao tabela — o motivo ficou obsoleto por coleta, nao por decisao."
     },
     {
       "id": "vonder-vdec-51",
@@ -728,11 +741,13 @@
   "pendencias_desta_categoria": [
     {
       "id": "torques-curvo-e-roldanas-podem-ser-o-mesmo",
-      "estado": "ABERTA, e e a mais importante deste arquivo",
+      "estado": "FECHADA EM 07/10/2026 — SAO DOIS PRODUTOS, e a prova veio da tabela de especificacao, nao da descricao",
       "o_que_falta": "Saber se `cortag-torques-azulejista-corte-curvo` e `cortag-torques-mosaico-roldanas` sao dois produtos ou duas entradas de catalogo do mesmo.",
       "o_que_este_bloco_apurou": "As duas paginas existem com URLs distintas em cortag.com e as duas foram devolvidas na MESMA listagem de resultados, o que torna improvavel que sejam a mesma pagina. Mas a frase de 5 mm atribuida ao 'modelo de corte curvo' e palavra por palavra a mesma que tres passadas atribuem ao modelo com roldanas, e a busca por SKU do corte curvo na Shopee devolveu ZERO oferta enquanto a do modelo com roldanas devolveu tres. Nenhuma das duas paginas pode ser aberta desta nuvem.",
       "consequencia_ja_aplicada": "O registro do corte curvo nasce com `corte.literal_do_fabricante: null` e sem nenhuma propriedade tecnica preenchida. Se a resposta for 'e o mesmo produto', o registro vira `descartado` com motivo, e a categoria cai de 6 para 5 itens sem perder um so campo verificado — que e a diferenca entre um banco que se corrige e um que se remenda.",
-      "onde_buscar": "As duas paginas de produto em cortag.com, ou o catalogo em PDF em conteudo.cortag.com.br/catalogo. O egresso barra as duas hoje."
+      "onde_buscar": "As duas paginas de produto em cortag.com, ou o catalogo em PDF em conteudo.cortag.com.br/catalogo. O egresso barra as duas hoje.",
+      "como_fechou": "A pendencia pedia saber se `cortag-torques-azulejista-corte-curvo` e `cortag-torques-mosaico-roldanas` eram duas entradas de catalogo do mesmo produto, e dizia que a suspeita vinha de a frase de 5 mm ser palavra por palavra a mesma nos dois. A tabela de especificacao do fabricante separa os dois por TRES campos independentes: referencia 60858 contra 61341, EAN 7897451468588 contra 7897451413410, e TAMANHO 7.1/2\" contra 8\". EAN distinto e, por definicao, unidade comercial distinta — nao e inferencia nossa, e a funcao do codigo. E a suspeita se explica em vez de so cair: a frase de 5 mm E a mesma nos dois porque e texto de LINHA, e era exatamente por isso que ela nao podia ser gravada em nenhum dos dois. A pendencia e o defeito de coleta de 25/09 tinham a MESMA causa — a busca mistura a prosa dos irmaos — e as duas se resolvem pelo mesmo lado: lendo a tabela em vez da prosa.",
+      "o_que_isto_sustenta": "Esta pendencia era LOAD-BEARING para o portao da secao 9 e ninguem tinha notado: se a resposta fosse 'e o mesmo produto', o registro do curvo viraria `descartado` e `alicate/torques` cairia para 2 itens — abaixo do minimo de 3 — e o portao que este bloco acabou de abrir estaria aberto sobre um registro duplicado. Fechar a pendencia ANTES de contar os 3 e o que separa portao medido de portao que deu sorte."
     },
     {
       "id": "alicate-nao-tem-portao-proprio",
@@ -749,6 +764,16 @@
       "o_que_este_bloco_apurou": "A coleta foi por marca de ferramenta de azulejista (Cortag, Vonder), que e onde o torques e o cortador moram. Pinca de mosaico e martelinho de picassiete sao de outro corredor de loja — artesanato — e provavelmente de fabricante sem pagina de produto com ficha, que foi exatamente o que a pendencia `pastilha-1x1-nao-tem-fabricante` encontrou do outro lado do banco.",
       "consequencia_ja_aplicada": "A categoria fecha com 2 dos 4 tipos cobertos, e e assim que a cobertura tem de reporta-la.",
       "onde_buscar": "Fabricantes de ferramenta de artesanato, nao de obra. A busca alcanca os dominios; o egresso, nao."
+    },
+    {
+      "id": "martelinho-e-pinca-nao-tem-fabricante-neste-canal",
+      "estado": "FECHADA COMO 'NAO EXISTE POR AQUI' EM 07/10/2026 — nao repita a busca",
+      "o_que_falta": "Nada que este canal alcance. Fica escrito para a proxima execucao nao gastar bloco redescobrindo.",
+      "por_que_isto_foi_medido": "A fila desta ilha mandava coletar 3 itens de `alicate/martelinho` para `alicate` alcancar as 3 filhas da 16.5, com o argumento de que ferramenta nao precisa de boletim em PDF: *'o dado real de um alicate e medida, material e mecanismo, que pagina de fabricante e ficha de marketplace publicam'*. O argumento esta certo sobre o TIPO de dado e errado sobre a existencia da pagina.",
+      "o_que_foi_medido": "Os dois fabricantes que este banco usa foram varridos por busca restrita ao dominio. CORTAG: nenhum martelinho de mosaico e nenhuma pinca. O que ela faz e `Martelo de Borracha` (declarado para porcelanato, ceramicas e pedras naturais — e martelo de ASSENTAR, nao de cortar) e `Martelo Tipo Unha` (declarado para carpintaria e marcenaria). VONDER: nenhum dos dois. E o unico resultado com a palavra martelinho e ARMADILHA — `Pino rebatedor para martelinho de ouro com 8 pontas`, que e funilaria de automovel, nao mosaico.",
+      "a_causa, e ela nao e de coleta": "O martelinho de mosaico e a martellina com o tagliolo, ferramenta artesanal de mosaiquista, nao produto de industria de ferramenta de construcao. No Brasil ele circula por marketplace e por ateliê — canal de nivel 6, que pela escada de fontes sustenta preco, unidade de venda, peso e imagem, e NUNCA campo tecnico. Entao nao e que a pagina nao foi achada: e que a declaracao de fabricante que o portao exige nao e publicada por ninguem nesse mercado.",
+      "a_consequencia_para_a_16_5": "`alicate/martelinho` e `alicate/pinca_mosaico` nao viram filha por coleta neste canal, e com isso a terceira filha de `alicate` nao sai por TIPO. O caminho que sobra esta medido e escrito na fila do PROMPT.md: filha em forma de PERGUNTA, que o proprio filhas-do-guia.py autoriza.",
+      "o_que_mudaria_isto": "Um fabricante NOVO no banco. Nao vale buscar outra vez em Cortag e Vonder."
     }
   ],
   "o_que_este_bloco_deixa_desbloqueado": [

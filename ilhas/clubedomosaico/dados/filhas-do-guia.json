@@ -10,7 +10,7 @@
  "a_pergunta": "quais filhas de nivel 3 do Guia passam HOJE o portao da secao 9 — 3 itens de banco reais E um numero calculado proprio — e, para as que nao passam, qual das duas metades falta",
  "minimo_exigido_pela_secao_9": 3,
  "nivel_maximo_de_fonte_lido_do_esquema": 3,
- "versao_do_esquema_lida": 14,
+ "versao_do_esquema_lida": 16,
  "o_que_conta_como_numero_calculavel": "propriedade com valor nao nulo e fonte de nivel <= 3 declarada por pelo menos 3 itens DO MESMO recorte. Propriedade que so um item declara nao e numero da pagina: e numero de um produto, e a pagina que a publicasse compararia um item com dois silencios.",
  "o_que_este_arquivo_mede_e_o_que_ele_NAO_alcanca": "Ele mede os recortes que o VOCABULARIO nomeia — categoria inteira e cada tipo de `tipo_por_categoria`. Filha de nivel 3 tambem pode ter forma de PERGUNTA em vez de forma de tipo, e as duas que esta ilha ja publicou sao assim: a F2 ('qual cola usar no mosaico') e a F1 ('quantas pastilhas'). Uma pergunta atravessa tipos e pode reunir 3 itens onde nenhum tipo sozinho reune. Portanto este arquivo e um PISO do que pode nascer hoje, nunca um teto — e um `nao_passa` aqui nao proibe a pergunta, proibe o tipo. Quem escrever a pergunta conta os 3 itens dela pela mesma regua, e a regua esta nesta ferramenta para ser chamada em vez de reescrita.",
  "o_que_este_arquivo_NAO_decide": [
@@ -288,10 +288,7 @@
     "itens_com_lastro_que_faltam_para_3": 0,
     "itens_que_faltam_para_o_numero_mais_perto": 0,
     "propriedade_mais_perto_de_ser_numero": "espessura_maxima_de_corte_mm",
-    "itens_sem_nenhum_numero_com_lastro": [
-     "cortag-torques-azulejista-corte-curvo",
-     "cortag-torques-azulejista-corte-reto"
-    ],
+    "itens_sem_nenhum_numero_com_lastro": [],
     "pode_fechar_completando_registro_existente": {
      "propriedade": null,
      "registros_que_nao_a_declaram": [],
@@ -309,8 +306,10 @@
     "vonder-vdec-75",
     "vonder-vdec-90"
    ],
-   "itens_que_sustentam_recomendacao": 4,
+   "itens_que_sustentam_recomendacao": 6,
    "quais_sustentam": [
+    "cortag-torques-azulejista-corte-curvo",
+    "cortag-torques-azulejista-corte-reto",
     "cortag-torques-mosaico-roldanas",
     "vonder-vdec-51",
     "vonder-vdec-75",
@@ -353,6 +352,15 @@
       "vonder-vdec-75",
       "vonder-vdec-90"
      ]
+    },
+    {
+     "propriedade": "tamanho_polegadas",
+     "em_quantos_itens": 3,
+     "itens": [
+      "cortag-torques-azulejista-corte-curvo",
+      "cortag-torques-azulejista-corte-reto",
+      "cortag-torques-mosaico-roldanas"
+     ]
     }
    ],
    "veredito": "passa",
@@ -362,13 +370,10 @@
    "recorte": "alicate/torques",
    "a_que_distancia_esta": {
     "itens_que_faltam_para_3": 0,
-    "itens_com_lastro_que_faltam_para_3": 2,
-    "itens_que_faltam_para_o_numero_mais_perto": 2,
-    "propriedade_mais_perto_de_ser_numero": "material_do_corpo",
-    "itens_sem_nenhum_numero_com_lastro": [
-     "cortag-torques-azulejista-corte-curvo",
-     "cortag-torques-azulejista-corte-reto"
-    ],
+    "itens_com_lastro_que_faltam_para_3": 0,
+    "itens_que_faltam_para_o_numero_mais_perto": 0,
+    "propriedade_mais_perto_de_ser_numero": "tamanho_polegadas",
+    "itens_sem_nenhum_numero_com_lastro": [],
     "pode_fechar_completando_registro_existente": {
      "propriedade": null,
      "registros_que_nao_a_declaram": [],
@@ -383,13 +388,25 @@
     "cortag-torques-azulejista-corte-reto",
     "cortag-torques-mosaico-roldanas"
    ],
-   "itens_que_sustentam_recomendacao": 1,
+   "itens_que_sustentam_recomendacao": 3,
    "quais_sustentam": [
+    "cortag-torques-azulejista-corte-curvo",
+    "cortag-torques-azulejista-corte-reto",
     "cortag-torques-mosaico-roldanas"
    ],
-   "numeros_calculaveis_sobre_o_recorte": [],
-   "veredito": "passa_na_contagem_sem_lastro",
-   "motivo": "1 dos 3 itens sustentam recomendacao primaria (fonte de nivel <= 3); a secao 9 exige 3"
+   "numeros_calculaveis_sobre_o_recorte": [
+    {
+     "propriedade": "tamanho_polegadas",
+     "em_quantos_itens": 3,
+     "itens": [
+      "cortag-torques-azulejista-corte-curvo",
+      "cortag-torques-azulejista-corte-reto",
+      "cortag-torques-mosaico-roldanas"
+     ]
+    }
+   ],
+   "veredito": "passa",
+   "motivo": null
   },
   {
    "recorte": "alicate/cortador_de_azulejo",
@@ -1603,8 +1620,8 @@
  ],
  "resumo": {
   "vereditos": {
-   "passa": 10,
-   "passa_na_contagem_sem_lastro": 2,
+   "passa": 11,
+   "passa_na_contagem_sem_lastro": 1,
    "nao_passa": 30
   },
   "filhas_que_podem_nascer_hoje": [
@@ -1614,6 +1631,7 @@
    "acabamento/verniz",
    "alicate",
    "alicate/cortador_de_azulejo",
+   "alicate/torques",
    "pastilha",
    "pastilha/vidro",
    "rejunte",
@@ -1631,19 +1649,16 @@
     "caminho_mais_barato_para_as_3_filhas": "ja alcancada"
    },
    "alicate": {
-    "tipos_que_passam": 1,
+    "tipos_que_passam": 2,
     "tipos_no_vocabulario": 4,
     "tipos_que_passam_quais": [
+     "alicate/torques",
      "alicate/cortador_de_azulejo"
     ],
     "caminho_mais_barato_para_as_3_filhas": {
-     "faltam_filhas": 2,
-     "itens_de_banco_a_coletar": 5,
+     "faltam_filhas": 1,
+     "itens_de_banco_a_coletar": 3,
      "em_quais_tipos": [
-      {
-       "tipo": "alicate/torques",
-       "itens_a_coletar": 2
-      },
       {
        "tipo": "alicate/martelinho",
        "itens_a_coletar": 3

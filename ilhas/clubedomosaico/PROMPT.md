@@ -1301,9 +1301,15 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > `ambientes_declarados`, a ordem escrita, âncoras à mão e bateria com as duas direções e trava de falso
    > positivo. **Sai inteiro numa execução só.**
    >
-   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É O PRIMEIRO DE CRESCIMENTO DEPOIS DE QUATRO DE PORTÃO: A
+   > **ESTADO EM 07/10/2026 16h5xZ — ESTE ITEM SAIU PELA METADE E A OUTRA METADE ESTÁ MORTA: a
+   > `alicate/torques` passou o portão (sem nenhum SKU novo) e o `martelinho` NÃO É COLETÁVEL —
+   > Cortag e Vonder não o fabricam, medido e fechado. A mãe não foi publicada, pela 16.5, e a
+   > terceira filha virou PERGUNTA. A prestação de contas inteira e o bloco novo estão no fim
+   > deste item.**
+   >
+   > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É O PRIMEIRO DE CRESCIMENTO DEPOIS DE QUATRO DE PORTÃO: A
    > SEGUNDA CATEGORIA DO GUIA, PELO `alicate` — COLETA DE 5 ITENS DE BANCO, COM O QUADRO INTEIRO MEDIDO
-   > EM 07/10/2026 ÀS 14h2xZ.**
+   > EM 07/10/2026 ÀS 14h2xZ.**~~
    >
    > **E A PRIMEIRA COISA A DIZER É QUE DUAS FRASES DESTA FILA ESTAVAM ERRADAS PELO MESMO MOTIVO — a 16.5,
    > que ninguém tinha contado.** O item 3, de 02/10, diz que a `alicate/cortador_de_azulejo` ficou de fora
@@ -1366,6 +1372,140 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > **três** produtos com `ambientes_declarados` e **os três literais traduzem hoje**, então o buraco é
    > **latente, não ativo**. É uma linha de código e uma mutação, não um bloco — e não vale abrir execução
    > só para ela.
+   >
+   > ---
+   >
+   > **ESTADO DESTE ITEM EM 07/10/2026 ÀS 16h5xZ — A PRIMEIRA METADE SAIU E CUSTOU MUITO MENOS DO QUE
+   > ESTAVA ESCRITO; A SEGUNDA NÃO SAI POR ESTE CAMINHO, E ISSO ESTÁ MEDIDO, NÃO SUPOSTO.**
+   >
+   > **`alicate/torques` PASSOU O PORTÃO, E NÃO FOI PRECISO UM ÚNICO SKU NOVO.** O item mandava coletar
+   > **2** itens de `torques` e dizia que o custo era contagem de item. Era outra coisa: os 3 registros
+   > de `torques` já existiam desde 25/09, e o que faltava era **lastro** — 1 dos 3 sustentava
+   > recomendação. Os dois que faltavam ganharam `tamanho_polegadas` de **nível 3** (8" no
+   > `corte-reto`, 7,5" no `corte-curvo`) e o recorte passou a ter 3 de 3 com lastro e uma propriedade
+   > declarada pelos três. `alicate` foi de **1 de 4** para **2 de 4** tipos.
+   >
+   > **A LIÇÃO É SOBRE O QUE SE PEDE À BUSCA, e ela vale para toda categoria de FERRAMENTA deste
+   > banco.** `cortag.com` continua `EGRESS_BLOCKED` (remedido hoje por `curl`, que dá 000, e por
+   > WebFetch, que dá `EGRESS_BLOCKED` — a parede é a mesma para os dois). O que mudou não foi a porta,
+   > foi **o que foi pedido pela fresta**: até hoje toda passada pedia a **DESCRIÇÃO** do produto, e a
+   > busca **mistura a prosa dos três torqueses irmãos** — foi isso que derrubou as passadas de 25/09 e
+   > está escrito em `corte.observacao` daqueles registros. A **TABELA DE ESPECIFICAÇÃO** é outra coisa:
+   > ela é por SKU e **se autoconfere**, porque cada EAN fecha com a própria referência (60857 →
+   > 7897451468571, 60858 → 7897451468588, 61341 → 7897451413410). Três leituras consistentes: duas
+   > passadas no domínio escritas de formas diferentes e uma corroboração independente de canal de
+   > varejo (nível 6) que escreve as **mesmas** duas medidas sem ter sido perguntada por elas juntas.
+   > **Quando o egresso fecha a página do fabricante, a tabela ainda passa; a prosa, não.**
+   >
+   > **E ELA FECHOU DE CARONA A PENDÊNCIA MAIS IMPORTANTE DESTE BANCO, QUE ERA LOAD-BEARING PARA O
+   > PRÓPRIO PORTÃO QUE ESTE BLOCO ABRIU.** A pendência `torques-curvo-e-roldanas-podem-ser-o-mesmo`
+   > estava **ABERTA** desde 25/09 e perguntava se os dois registros eram duas entradas de catálogo do
+   > mesmo produto. **São dois**, separados por três campos independentes: referência, EAN e tamanho
+   > (7,5" contra 8"). Isso não é detalhe de arquivo: **se fossem o mesmo, o registro do curvo viraria
+   > `descartado` e `alicate/torques` cairia para 2 itens — abaixo do mínimo de 3 —, e o portão que
+   > este bloco abriu estaria aberto sobre um registro duplicado.** Fechar a pendência antes de contar
+   > os três é o que separa portão medido de portão que deu sorte. E a suspeita se **explicou** em vez
+   > de só cair: a frase de 5 mm é igual nos dois porque é texto de **linha**, que é exatamente a razão
+   > pela qual ela não podia ser gravada em nenhum dos dois.
+   >
+   > **A SEGUNDA METADE — `martelinho` — NÃO É COLETA DIFÍCIL: É COLETA IMPOSSÍVEL NESTE CANAL, E O
+   > ARGUMENTO DO ITEM ERA O ERRADO.** O item dizia que os 5 itens eram baratos porque *"o dado real de
+   > um alicate é medida, material e mecanismo, que página de fabricante e ficha de marketplace
+   > publicam — nenhum deles precisa de PDF"*. **O argumento acerta o tipo do dado e erra a existência
+   > da página.** Os dois fabricantes deste banco foram varridos por busca restrita ao domínio:
+   > **Cortag** não faz martelinho de mosaico nem pinça — faz `Martelo de Borracha` (declarado para
+   > porcelanato, cerâmica e pedra natural, e é martelo de **assentar**, não de cortar) e `Martelo Tipo
+   > Unha` (carpintaria); **Vonder** não faz nenhum dos dois, e o único resultado dela com a palavra é
+   > **armadilha**: `Pino rebatedor para martelinho de ouro`, que é funilaria de automóvel. **A causa
+   > não é de coleta:** o martelinho de mosaico é a martellina com o tagliolo, ferramenta artesanal de
+   > mosaiquista, e no Brasil ele circula por marketplace e ateliê — **nível 6**, que sustenta preço,
+   > embalagem, peso e imagem e **nunca** campo técnico. Não é que a página não foi achada: é que a
+   > declaração de fabricante que o portão exige **não é publicada por ninguém nesse mercado**. Está
+   > gravado em `pendencias_desta_categoria` com o nome `martelinho-e-pinca-nao-tem-fabricante-neste-canal`.
+   > **Não busque outra vez em Cortag e Vonder.** O que mudaria isto é **fabricante novo no banco**.
+   >
+   > **ENTÃO A MÃE NÃO FOI PUBLICADA, E ISSO É O ITEM SENDO OBEDECIDO, NÃO ABANDONADO.** Ele manda, com
+   > todas as letras: *"confere que `alicate` passou a 3 filhas — se não passou, para aí e escreve
+   > quanto faltou, porque publicar categoria com 2 filhas é o que a 16.5 proíbe"*. Faltou **uma**, e o
+   > caminho dela não é mais coleta.
+   >
+   > **AS DUAS CONSULTAS DE SERP EM `NAO_MEDIDA` FORAM MEDIDAS E CONTINUAM `NAO_MEDIDA` — mas a causa
+   > mudou de dono, e agora é LIMITE DO CANAL em vez de recado para quem escreve consulta.** Duas
+   > passadas novas em `alicate/cortador_de_azulejo`: uma sem marca, pedindo o milímetro, e uma ancorada
+   > de propósito em **`caquinho`** e **`mosaico artesanal`**, duas expressões que só existem no Brasil.
+   > **As duas desviaram de país** — Truper e Sears do México, El Corte Inglés e patente do OEPM da
+   > Espanha. A segunda é o **controle do experimento**: se âncora brasileira resolvesse, ela tinha de
+   > medir, porque carrega duas. Entrou no arquivo como **`limite_4_nome_de_recorte_bilingue`**: consulta
+   > cujo **núcleo** cabe inteiro em espanhol desvia por mais brasileira que seja a moldura, e `cortador
+   > de azulejo` e `pastilha` cabem. **A prova pelo outro lado está no mesmo arquivo:** a consulta da
+   > mãe, `qual alicate usar para cortar pastilha de mosaico artesanal`, mediu **ABERTA de primeira** em
+   > 05/10 — porque `alicate` não é palavra espanhola. **Regra prática: para medir corte nesta ilha,
+   > ancore em `alicate`, nunca em `cortador de azulejo`.** E a consequência que custa: o recorte
+   > `alicate/cortador_de_azulejo` passa o portão de **dado** (3 itens, 4 números) e segue **sem SERP
+   > medida** — ele não é mensurável por este canal com o próprio nome. **Três passadas bastam; não
+   > repita este recorte aqui.**
+   >
+   > **E UMA BANCADA QUE ESTAVA VERMELHA NO `main` HÁ DOIS DIAS, ACHADA DE PASSAGEM E CONSERTADA.**
+   > `filhas-do-guia.py --autoteste` fechava **REPROVADO, 2 falhas de 27**, e uma delas era o caso que
+   > exige que o portão **APROVE a tabela certa** — régua que não aprova o certo é régua que vai
+   > reprovar trabalho bom. **Causa única:** o fixture da bancada é escrito **à mão de propósito**
+   > (para não chamar a função que ele mede) e carregava `rejunte: 0 de 4`, defasado desde **05/10**,
+   > quando a faixa de junta do rejunte piscinas chegou pelo boletim. A segunda falha era o mesmo
+   > fixture, montado pelo caso do slug fora da ponte. **O comentário do próprio arquivo previu isto**
+   > — *"quem mudar o banco e vir este caso falhar não tem defeito para procurar: tem dois números para
+   > reescrever"* — e ninguém viu porque **`filhas-do-guia.py --autoteste` não está na lista de
+   > bancadas que a ronda diária roda**, e a tabela do `ARVORE.md`, que tem a mesma informação, tem
+   > quem a confira (`--conferir`) e foi corrigida no dia. **A cópia à mão não tinha.** Hoje:
+   > **APROVADO, 27 de 27.** Fica a pergunta para a ronda: esta bancada precisa entrar na lista dela.
+   >
+   > ---
+   >
+   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A TERCEIRA FILHA — E ELA NÃO É UM TIPO, É UMA PERGUNTA. A
+   > AUTORIZAÇÃO ESTÁ ESCRITA NO PRÓPRIO PORTÃO, E NENHUMA EXECUÇÃO TINHA LIDO ESSA LINHA.**
+   >
+   > `filhas-do-guia.py`, no campo `o_que_este_arquivo_mede_e_o_que_ele_NAO_alcanca`, diz textualmente:
+   > *"Filha de nível 3 também pode ter forma de PERGUNTA em vez de forma de tipo, e as duas que esta
+   > ilha já publicou são assim: a F2 e a F1. Uma pergunta atravessa tipos e pode reunir 3 itens onde
+   > nenhum tipo sozinho reúne. Portanto este arquivo é um PISO do que pode nascer hoje, nunca um teto —
+   > e um `nao_passa` aqui não proíbe a pergunta, proíbe o tipo."* **As duas filhas vivas desta ilha são
+   > perguntas. A fila inteira de `alicate` foi escrita contando tipos.**
+   >
+   > **O NÚMERO DA PERGUNTA JÁ ESTÁ NO BANCO E ELE ATRAVESSA OS DOIS TIPOS:**
+   > `espessura_maxima_de_corte_mm` é declarada com fonte de nível ≤ 3 por **4 itens** — o
+   > `cortag-torques-mosaico-roldanas` (5 mm, e é o único do banco cuja declaração nomeia **vidro**) e
+   > os três cortadores Vonder (10 mm, que **não nomeiam vidro em lugar nenhum**). Quatro é maior que
+   > três, então a pergunta passa a régua, e ela é a **única** propriedade deste banco que atravessa
+   > tipo — conferido: `tamanho_polegadas` tem 3 e são só torques; `dimensoes_mm`,
+   > `comprimento_maximo_de_corte_mm` e `diametro_do_rodel_mm` têm 3 e são só cortadores.
+   >
+   > **E A SERP DIZ QUE ESSA É EXATAMENTE A PÁGINA QUE FALTA NO NICHO, nas duas medições que existem:**
+   > a da mãe (**ABERTA**, faixa **100–1.000/mês**) registra que *"NENHUM dos dez compara as quatro
+   > ferramentas que o próprio nicho nomeia"* e que o número que a SERP não publica é
+   > *"`espessura_maxima_de_corte_mm` por TIPO de alicate"*; e a de `alicate/torques` registra que a
+   > SERP publica a regra **qualitativa** (roldana para vidro, reta para cerâmica) e que **nenhum dos
+   > dez publica o limite em mm**. É o mesmo buraco medido por dois lados, e é o pedido da linha 92 do
+   > `corpus-buscas.md` que ninguém publicou.
+   >
+   > **O ACHADO JÁ ESTÁ PAGO E A PÁGINA EXISTE PARA SERVIR ELE:** o teto de 5 mm do único torques que
+   > declara vidro cruza com `materiais-pastilhas.json` e **3 das 13 pastilhas do banco não cabem** —
+   > `st5102` (6 mm), `af1500` (8 mm) e `ic02` (8 mm). Isso é **faixa descoberta** no sentido da 14.3,
+   > para a tela **dizer** em vez de calar, e hoje está escrito só no banco. A outra metade vale para as
+   > duas páginas de técnica no ar: a frase do torques nomeia **pastilha** de vidro e de cerâmica e
+   > **não** nomeia caco de louça (picassiete) nem caco de azulejo (trencadís) — estado
+   > `nao_declarado`, que não é recomendar nem proibir, e a tela é **proibida de dizer que o fabricante
+   > classificou** (26.3).
+   >
+   > **O QUE O BLOCO FAZ, na ordem:** (1) escreve a pergunta e conta os 3 itens dela **chamando** a
+   > régua de `filhas-do-guia.py` em vez de reescrevê-la, como o próprio arquivo manda; (2) mede a SERP
+   > da consulta da pergunta **ancorada em `alicate`**, nunca em `cortador de azulejo` (limite 4); (3)
+   > publica a mãe `/materiais/alicates-e-corte/` e as **3** filhas pela ordem de leva da 16.6 — **4
+   > URLs, e a ilha vai de 21 para 25**; (4) a tela serve a faixa descoberta das 3 pastilhas que não
+   > cabem no teto de 5 mm e o estado `nao_declarado` dos cacos, com a atribuição vindo do banco.
+   >
+   > **E O QUE ELE NÃO DEVE FAZER:** não reabrir `martelinho` nem `pinca_mosaico` (medidos e fechados
+   > hoje), não remedir `alicate/cortador_de_azulejo` na SERP (três passadas, limite 4), e não deixar a
+   > mãe repetir a tabela da filha-pergunta — a mãe é **índice de categoria**, e a pergunta é a página
+   > que responde, que é como a F1 e a F2 já vivem nesta ilha.
 
    > **E uma coisa que o próximo bloco NÃO deve fazer: reaproveitar as funções da cola.** O rejunte tem régua
    > própria **de propósito**, e a razão é de conteúdo antes de método — na cola a lista do fabricante nomeia
