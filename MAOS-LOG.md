@@ -3954,3 +3954,96 @@ arquivos criados: 3 | pastas dados/ criadas: 0 (as tres ja existiam)
 **Falhas:** só a recusa do primeiro push, resolvida com rebase e registrada acima. Nada mais falhou.
 
 **O que eu NÃO fiz, de propósito:** não imprimi, gravei nem commitei `GOOGLE_SA_B64`; não reservei ilha, não escrevi `executando_desde` nem toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; não publiquei, não marquei `publicar: true`, não acionei Sync nem verifiquei site; não criei conta em plataforma nenhuma; e não mexi em arquivo que a instrução não nomeou — só neste `MAOS-LOG.md`, que é a exceção obrigatória. As saídas entraram byte a byte como a ferramenta devolveu: nada reformatado, nada "melhorado", nenhuma linha acrescentada. Nenhum contato pessoal de terceiro entrou nos arquivos.
+
+---
+
+## 07/10/2026, 16:58 BRT (19:58 UTC) — leitura Search Console das três ilhas: trabalho já estava no `main`, feito por disparo paralelo
+
+**Instrução recebida:** para cada ilha em `[aquametria robometria clubedomosaico]`, rodar `python3 ferramentas/search-console.py <ilha> 2>&1 | grep -v '^\[notice\]\|WARNING: Running pip'` e gravar a saída inteira em `ilhas/<ilha>/dados/search-console-2026-10-07.md`; conferir `grep -c PRIVATE` = 0 em cada arquivo; commit `Leitura Search Console pela nuvem — 2026-10-07`; `git push origin HEAD:main`; confirmar com `git log -1 origin/main`.
+
+**Checagem de assunto:** Arquipélago. São as ilhas Aquametria, Robometria e Clube do Mosaico e os dados delas. Executado.
+
+**O que foi feito:** parti de `origin/main` em `30a3269`, criei as pastas `ilhas/<ilha>/dados/` (já existiam), rodei o script para as três ilhas com o filtro pedido e gravei a saída inteira nos três arquivos. As três leituras saíram com conteúdo. `GOOGLE_SA_B64` nunca foi impresso, gravado nem commitado.
+
+**Conferência de vazamento (`grep -c PRIVATE`), relida nos arquivos depois de gravar:**
+
+```
+aquametria: 0
+robometria: 0
+clubedomosaico: 0
+```
+
+Zero nos três. Nada foi apagado.
+
+**`git status --porcelain` depois de gravar os três arquivos:**
+
+```
+?? ilhas/aquametria/dados/search-console-2026-10-07.md
+?? ilhas/clubedomosaico/dados/search-console-2026-10-07.md
+?? ilhas/robometria/dados/search-console-2026-10-07.md
+```
+
+**`git diff --stat` do commit local que eu montei (`9721ad6`):**
+
+```
+ ilhas/aquametria/dados/search-console-2026-10-07.md     | 13 +++
+ ilhas/clubedomosaico/dados/search-console-2026-10-07.md | 17 ++++
+ ilhas/robometria/dados/search-console-2026-10-07.md     | 13 +++
+ 3 files changed, 44 insertions(+)
+```
+
+**O push foi recusado, e o motivo importa:** entre o meu `git fetch` inicial (`30a3269`) e o meu push, o `main` andou para `f5efafd` — e `f5efafd` é um commit com a mensagem `Leitura Search Console pela nuvem — 2026-10-07`, de 2026-10-07 19:54:54 UTC, que já trazia os três arquivos `search-console-2026-10-07.md`. Ou seja: **um disparo paralelo recebeu esta mesma instrução e a executou enquanto eu rodava o script.** Não foi recusa de rede nem conflito de arquivo alheio: foi a mesma tarefa, feita duas vezes.
+
+```
+error: failed to push some refs to 'https://github.com/rmnatal/arquipelago'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally.
+```
+
+**`git rebase origin/main` deu conflito add/add nos três arquivos:**
+
+```
+CONFLICT (add/add): Merge conflict in ilhas/aquametria/dados/search-console-2026-10-07.md
+CONFLICT (add/add): Merge conflict in ilhas/clubedomosaico/dados/search-console-2026-10-07.md
+CONFLICT (add/add): Merge conflict in ilhas/robometria/dados/search-console-2026-10-07.md
+```
+
+**Comparei as duas leituras antes de decidir.** A diferença entre a versão que já estava no `main` e a minha é só a variação natural de duas leituras da API separadas por ~5 minutos — mesmas consultas, mesmas páginas, mesmas posições; muda o status de indexação de algumas URLs e uma unidade na contagem de indexadas da Aquametria:
+
+```
+aquametria:     | 2026-10-07 | 52 | 50 | 96% | 1 | 0 |   (no main)
+                | 2026-10-07 | 52 | 49 | 94% | 1 | 0 |   (minha releitura)
+                /peixes/acaras/ e /peixes/tetras/ trocam de status entre as duas
+                minha releitura trouxe ainda "/calculadoras/ — ?"
+robometria:     três URLs de /pecas/filtros/ trocam "URL is unknown" <-> "Discovered"
+clubedomosaico: /como-fazer/o-que-e-trencadis/ troca "URL is unknown" <-> "Discovered"
+```
+
+**Decisão: `git rebase --abort`, e NÃO sobrescrevi o `main`.** O resultado que a instrução pedia já estava lá, com o commit e a mensagem certos. Sobrescrever trocaria uma leitura válida por outra leitura válida cinco minutos mais nova, sem ganho, e sujaria o histórico com um segundo commit de mesmo nome. Não houve force push e não houve PR.
+
+**Commit que foi ao `main` com o trabalho desta instrução (feito pelo disparo paralelo, não por mim):**
+
+```
+f5efafd234c5ba7456ed30283b65198d2951d75f
+Leitura Search Console pela nuvem — 2026-10-07
+```
+
+**Confirmação em `origin/main` depois do `git fetch`:**
+
+```
+f5efafd234c5ba7456ed30283b65198d2951d75f Leitura Search Console pela nuvem — 2026-10-07
+```
+
+**Contagem do que está no `main`, conferida relendo os arquivos DEPOIS do fetch (não pelo que eu acho que escrevi):**
+
+```
+ilhas/aquametria/dados/search-console-2026-10-07.md     : 13 linhas, PRIVATE=0
+ilhas/robometria/dados/search-console-2026-10-07.md     : 13 linhas, PRIVATE=0
+ilhas/clubedomosaico/dados/search-console-2026-10-07.md : 17 linhas, PRIVATE=0
+```
+
+**Falha a registrar:** o único commit que eu mesmo produzi (`9721ad6`) não foi ao `main`, de propósito, pelo motivo acima. O trabalho pedido está no `main`; o commit que o levou não é meu.
+
+**Para quem ler depois:** dois disparos receberam a mesma instrução de leitura da Search Console de 2026-10-07 e rodaram o script em paralelo. Não houve dano — o script só lê a API e escreve arquivo novo —, mas a janela entre `git fetch` e `git push` é real e nesse intervalo o `main` pode andar. Vale olhar por que a instrução saiu duas vezes.
+
+**O que eu NÃO fiz, de propósito:** não imprimi, gravei nem commitei o valor de `GOOGLE_SA_B64`; não forcei push; não apaguei nem reescrevi seção anterior deste log; não reservei ilha, não escrevi `executando_desde` nem toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; não acionei Sync, não publiquei, não verifiquei site; não criei conta em plataforma nenhuma; não mexi em arquivo que a instrução não nomeou — só neste `MAOS-LOG.md`, que é a exceção obrigatória. Nenhum contato pessoal de terceiro entrou (as leituras não traziam nenhum).
