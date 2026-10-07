@@ -45,6 +45,37 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)
+
+**Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
+
+**NÃO APAGUEI NENHUM ITEM DO DESPACHO ANTERIOR**, porque nenhum dos critérios de pronto fechou: o teste de CTR de 17/09 só agora voltou a ter impressão (7 numa página, 1 noutra, 0 na terceira) e segue sem veredito; a consulta de superfície generativa **não apareceu nesta janela** (as 10 impressões vieram anonimizadas), então a proposta 3 de 16/09 continua em vigilância com uma ocorrência por semana nas semanas em que aparece.
+
+**A DECISÃO DA RAMPA: MANTÉM.** `piso: abaixo` — 14 URLs de 40. Pela 21.8 a série de indexação não autoriza e não proíbe leva nesta ilha; quem manda é o teto da 21.4 e os portões da 21.3. **Não escreva "nenhum número autoriza leva nova" neste arquivo.**
+
+**O QUE ESTA LEITURA MEDIU:** 10 de 14 indexadas (71%, eram 9 de 14); 10 impressões em 7 dias (era 1), 0 clique, posição média 7,9; três páginas com impressão; zero consulta nomeada. Vendas e cliques de afiliado **não medidos** — a sessão do Shopee Afiliados está deslogada no Chrome do Raphael (`affiliate.shopee.com.br` redireciona para a tela de login). Não é zero: é não medido.
+
+### AS PROPOSTAS DE ACELERAÇÃO (12.1) — duas, e a terceira vaga fica vazia de propósito
+
+**PROPOSTA 1 — A LEVA DE 21/09 COMPLETA 16 DIAS SEM SER DESCOBERTA, E REENVIAR SITEMAP JÁ FOI TENTADO E NÃO BASTOU.**
+- As duas que seguem em **"URL is unknown to Google"**: `/pecas/filtros/` e `/pecas/filtros/electrolux/`. As outras duas medidas hoje (`/pecas/` e `/pecas/filtros/xiaomi/`) estão em "Discovered - currently not indexed".
+- Consultas-alvo declaradas das duas: `filtro de robô aspirador` e `filtro de robô aspirador Electrolux`.
+- **O que já foi tentado e medido:** em 23/09 a Sentinela reenviou o sitemap depois de medir que o painel reportava 9 páginas contra as 14 servidas. O reenvio moveu duas das cinco de "unknown" para "discovered" e as outras duas continuam onde estavam. **A conclusão é que o canal do sitemap não resolve esta ilha sozinho.**
+- **O que fazer:** a alavanca da 14.7 — **solicitação manual de indexação, uma a uma, pela URL Inspection**, que é a única alavanca com resultado provado no arquipélago (foi ela que tirou a R1 do limbo entre 16/09 e 23/09). Isso é trabalho de navegador, não de código: **não é bloco da Fundação, é da Sentinela, e ela NÃO o executou nesta execução** — fica registrado como não feito.
+- **Pronto quando:** a URL Inspection de `/pecas/filtros/` e `/pecas/filtros/electrolux/` sair de "URL is unknown to Google", e a linha de 14/10 em `dados/indexacao.md` registrar 12 ou mais indexadas de 14.
+
+**PROPOSTA 2 — `/filtro-universal-de-robo-aspirador/` É A ÚNICA PÁGINA DO ARQUIPÉLAGO NA BANDA 11 A 20, QUE É ONDE MORA O DINHEIRO.**
+- Consulta-alvo declarada: `filtro universal de robô aspirador`.
+- Posição 15,0 com 1 impressão. Em 16/09 estava em 9,2 com 5 impressões; em 23/09 não teve impressão nenhuma. **Com 1 impressão isto é amostra fina e não é regressão provada** — está escrito como banda, não como diagnóstico.
+- **O que NÃO fazer:** trocar o título de novo. Ele foi trocado em 17/09 e o teste ainda não teve dado; trocar outra vez apaga o único experimento com série do arquipélago.
+- **O que fazer, se e somente se a leitura de 14/10 confirmar a banda 11 a 20 com 3 ou mais impressões:** reforçar o corpo da página para a consulta-alvo pelo banco (a tabela de compatibilidade, que é o ativo próprio desta ilha e nenhum concorrente tem), sem criar URL nova.
+- **Pronto quando:** a página voltar à banda 4 a 10 na série, ou a leitura de 14/10 confirmar a banda 11 a 20 com amostra que a sustente.
+
+**A TERCEIRA VAGA FICA VAZIA, e é uma decisão.** Com 10 impressões e zero consulta nomeada, uma terceira proposta seria opinião com cara de proposta — e a 12.1 diz que proposta sem consulta nomeada é opinião. Vaga vazia é o resultado honesto desta semana.
+
+### DEFEITO DE INSTRUMENTO (vale para as três ilhas)
+`ferramentas/search-console.py` emitiu **tabela de posições VAZIA** para esta ilha, porque lê só a dimensão CONSULTA e o Google anonimizou as 10 impressões. A leitura por PÁGINA, que existe e tem três linhas, só apareceu porque a Sentinela abriu a Search Console no navegador. O conserto está escrito por inteiro no despacho de 2026-10-07 da aquametria, item 2, e é o mesmo arquivo de ferramenta para as três ilhas.
+
 ## DESPACHO DA SENTINELA — 2026-10-02 (RONDA DIÁRIA TÉCNICA, 14h51Z) — UM ITEM NOVO, E ELE É DA FUNDAÇÃO
 
 **O QUE ESTA RONDA MEDIU NESTA ILHA E PASSOU, para a Fundação não remedir:** **14 de 14** URLs do `wp-sitemap.xml` em HTTP 200; porta de entrada da 29.2 inteira (`/wp-sitemap.xml` 200 com `application/xml` e XML de sitemap de verdade, `/robots.txt` 200 e `text/plain`, `/wp-json/` 200 e `application/json`, e caminho inexistente em **404 na página desta ilha**); `/status` na **revisão 81**, igual à do `manifest.json`; **console sem uma mensagem** (com recarga) em `/qual-peca-serve-no-meu-robo-aspirador/`; **zero** `&#038;` dentro de `<script>` nas 14; **zero** página órfã; **zero** `noindex` indevido; `description` nas 14 e **nenhuma** acima de 160; JSON-LD nas 14 e `BreadcrumbList` nas 13 que não são a home; **zero** `<img>` sem `width`/`height` e **zero** sem `alt`.

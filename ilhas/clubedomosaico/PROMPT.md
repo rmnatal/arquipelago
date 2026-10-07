@@ -69,6 +69,59 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)
+
+**Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
+
+**O QUE APAGUEI DO DESPACHO ANTERIOR: NADA — mas o DEFEITO 1 de 23/09 está FECHADO e medido.** `/author/mosaico_gestor/`, que em 23/09 estava indexada e tomava impressão na **posição 1,0**, sumiu da tabela de páginas da Search Console. Quem fechar o próximo bloco risca aquele item no mesmo commit. **O DEFEITO 2 (o `sub_id` da Shopee deslocado uma casa) NÃO pôde ser reconferido**: a sessão do Shopee Afiliados está deslogada e o Relatório de cliques não abriu. Continua aberto, e continua sendo o item que impede o painel de responder "qual ilha vendeu".
+
+**A DECISÃO DA RAMPA: MANTÉM.** `piso: abaixo` — 21 URLs de 40. Pela 21.8 a série não autoriza e não proíbe leva nesta ilha.
+
+**O QUE ESTA LEITURA MEDIU:** 18 de 21 indexadas (86%, eram 12 de 17); **81 impressões** em 7 dias (eram 30), 0 clique, posição média 8,0; quatro páginas com impressão; cinco consultas nomeadas. **A leitura pela nuvem passou a funcionar nesta ilha** — o acesso da conta de serviço que faltava em 23/09 foi dado.
+
+### 1. TRÊS PÁGINAS NA PRIMEIRA PÁGINA DO GOOGLE, 77 IMPRESSÕES, ZERO CLIQUE — PELA TERCEIRA SEMANA SEGUIDA
+
+Este é o item de maior ROI do arquipélago inteiro e já não é amostra fina: **77 impressões, posições 4,7 · 6,3 · 7,1, e nenhum clique.** As três posições **melhoraram** desde 23/09 (7,8 → 7,1 · 9,1 → 6,3 · 7,0 → 4,7). Ou seja: o Google está subindo as páginas e as pessoas não estão clicando. Não é ranqueamento, é a promessa do resultado.
+
+**Não se mexe em URL** (12.1) e **não se mexe em `/como-fazer/o-que-e-mosaico-picassiete/`** — ela é a parada do experimento desde 23/09 e é o que permite atribuir.
+
+### AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — na ordem de ROI
+
+**PROPOSTA 1 — `/materiais/qual-cola-usar-no-mosaico/`: 43 impressões, posição 7,1, zero clique.**
+- Consulta nomeada: `cola para mosaico`, 3 impressões na posição **8,7** (era 10,0 em 23/09).
+- É a página de maior impressão da ilha, três semanas seguidas na primeira página sem um clique.
+- O que fazer: `<title>` e `<meta name="description">` que entreguem **a resposta** na SERP em vez do nome da página — no padrão que a Robometria estreou em 17/09. O número ou o nome da cola sai do banco, não é digitado. Nenhuma URL muda, nenhum H1 muda.
+- **Pronto quando:** a linha de 14/10 em `dados/posicoes.md` registrar **1 ou mais cliques em 7 dias** nesta página, com o `<title>` servido no dia copiado para a série.
+
+**PROPOSTA 2 — `/materiais/quantas-pastilhas-para-mosaico/`: 19 impressões, posição 6,3, zero clique.**
+- Consulta-alvo declarada: `quantas pastilhas para mosaico`. A posição subiu 2,8 pontos em duas semanas sem que nada fosse feito.
+- Mesma ação da proposta 1, no mesmo commit, para as duas serem medidas juntas contra a parada.
+- **Pronto quando:** a leitura de 14/10 registrar 1 ou mais cliques, **ou** registrar zero clique nas duas trocadas E zero na parada — o que também é resultado, e manda procurar a causa na SERP e não no título.
+
+**PROPOSTA 3 — DEMANDA NOVA DESCOBERTA: "quadro do Divino Espírito Santo", e a ilha está na posição 22 a 50.**
+- Consultas nomeadas, as três novas nesta série: `quadro divino espirito santo` (1 impressão, **22,0**), `quadros do espirito santo` (1, **34,0**), `quadros espirito santo` (2, **50,5**). As três caem na mesma página, `/loja/quadro-divino-espirito-santo/`, que soma 4 impressões na posição média 39,2.
+- **Por que isto é proposta e não curiosidade:** é a primeira vez que o Arquipélago encontra uma consulta de **produto**, com intenção de compra explícita, que a ilha já toca e atende mal. Banda 21+ com página existente é o caso que a 12.1 manda tratar por conteúdo, e é a única linha de receita direta que esta leitura achou.
+- O que fazer: **uma página de conteúdo própria** para o tema (o que é, como se faz, quanto custa, quanto tempo leva), ligada à peça da loja — não mais uma ficha de loja. Isso é URL nova e **gasta cota da 21.4**; entra na fila como bloco, não como correção.
+- **Pronto quando:** `quadro divino espirito santo` entrar na **banda 11 a 20** na série de `dados/posicoes.md`.
+
+### 2. CORREÇÃO — 6 URLs RESPONDEM 404 PARA O GOOGLE, E A RONDA DIÁRIA NÃO AS VÊ
+
+A Search Console reporta **6 páginas em "Não encontrado (404)"**. A ronda diária mede 21 de 21 URLs do sitemap em 200 — então estas 6 **não estão no sitemap**: são endereços que o Google aprendeu em algum momento e que hoje morrem. O Pente Fino de 05/10 registra, pendente desde 21/09, **"dois desenhos de URL e dois eixos de categoria para a mesma camada"** nesta ilha. A hipótese mais simples é que endereços do desenho antigo foram abandonados sem `301`.
+
+**404 em endereço que já teve posição é posição jogada fora** — é o único defeito desta lista que destrói ativo em vez de só atrasar.
+
+- **O que fazer:** abrir a lista das 6 URLs na Search Console (Indexação das páginas → "Não encontrado (404)"), decidir uma a uma entre **`301` para o endereço vivo equivalente** e **deixar morrer de propósito, com o motivo escrito**, e registrar a decisão em `dados/`. A Sentinela **não abriu essa lista nesta execução** — a página da Search Console travou. Fica como não feito.
+- **Pronto quando:** existir em `ilhas/clubedomosaico/dados/` um arquivo datado com as 6 URLs nomeadas e a decisão de cada uma, e a leitura de 14/10 registrar 3 ou menos em "Não encontrado (404)".
+
+### 3. CORREÇÃO — AS TRÊS URLs MAIS NOVAS SÃO DESCONHECIDAS DO GOOGLE
+
+`/como-fazer/o-que-e-trencadis/`, `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` e `/materiais/acabamento/verniz-para-peca-de-mosaico/` voltam **"URL is unknown to Google"**. As duas de acabamento estão no ar desde **02/10**. É o mesmo padrão que a Robometria vive desde 21/09 — e lá já está medido que reenviar sitemap move pouco. A alavanca é a da 14.7, solicitação manual pela URL Inspection, e é trabalho de navegador da Sentinela, **não executado nesta execução**.
+- **Pronto quando:** as três saírem de "URL is unknown to Google" na leitura de 14/10.
+
+### 4. O CANO DE LINKS NÃO ANDOU, E A CAUSA É A MESMA DAS TRÊS ILHAS
+**Zero link de afiliado gerado nesta execução.** `affiliate.shopee.com.br` redireciona para `shopee.com.br/buyer/login` — a sessão está deslogada no Chrome do Raphael, e sem ela não há gerador, não há relatório de cliques e não há reconferência do DEFEITO 2 (o `sub_id` deslocado). O Mercado Livre, além do reCAPTCHA, não está liberado na extensão do navegador. **A contagem de itens sem piso e sem `url_produto` NÃO foi feita e não será estimada**; o último número medido é o do Pente Fino de 05/10/2026, que registra 4 registros sem motivo declarado nesta ilha e não traz contagem de `url_busca` nem de `url_produto`.
+- **Pronto quando:** existir em `ilhas/clubedomosaico/dados/` um arquivo de contagem datado de 2026-10-14 ou depois, com total de publicáveis, quantos sem `url_busca`, quantos sem `url_produto` e a distribuição por `degrau`.
+
 ## DESPACHO DA SENTINELA — 2026-10-07 (RONDA DIÁRIA TÉCNICA, 14h5xZ) — ZERO DEFEITO DE ILHA; O ÚNICO ACHADO É DE INSTRUMENTO E É DO RAPHAEL
 
 > **ESTA RONDA ESCOLHEU A clubedomosaico PELA REGRA DA DÍVIDA (seção 12):** ela é a única ilha com publicação

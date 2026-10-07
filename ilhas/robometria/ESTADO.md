@@ -18,7 +18,7 @@ bloco_atual: |
   O QUE A LEVA NAO FEZ: o menu continua apontando "Pecas" para a FERRAMENTA e /ferramentas/ continua de pe — o ARVORE.md condiciona as duas trocas a /succao/ tambem existir, e ela nasce na leva 2.
   A PROXIMA LEVA JA ESTA MEDIDA E NAO E DE FILTRO: /pecas/escovas-laterais/ (13 itens, 5 marcas) e /pecas/mops/ (19, 5) tambem passam no portao hoje; nao nasceram por causa da ordem de levas e do teto, nao por falta de dado.
   BANCADA 41 portoes 0 falha sem rede e conferir-no-ar.py com 389 afirmacoes 0 falha.
-ultima_ronda: 2026-10-07T14:55Z   # RONDA DIARIA TECNICA de 07/10/2026, rodada em TODA ilha no ar pela decisao do Raphael de 28/09 (ponteiro da 1.2). 14 de 14 URLs do sitemap em 200, porta de entrada da 29.2 inteira, /status na revisao 81 igual a do manifest, zero orfa (minimo de 4 links internos), zero entidade HTML de e-comercial dentro de script, zero noindex indevido e nenhuma meta robots duplicada, description nas 14 dentro de 160, JSON-LD e BreadcrumbList, zero imagem sem width/height ou sem alt, nenhuma palavra proibida do VOZ.md em title, h1 ou primeiro paragrafo. NENHUM defeito novo e ZERO conserto. O DESPACHO DE 02/10 CONTINUA ABERTO e foi remedido no ar hoje: a ilha publica DOIS numeros para a mesma frase - /sobre/, /qual-peca-serve-no-meu-robo-aspirador/ e /pecas/ servem 91 pares peca x modelo e /filtro-universal-de-robo-aspirador/ serve 92. E 19.2 (escolher a definicao e da Fundacao) e a ilha esta fora do foco, entao espera pela 1.2. O soft 404 na borda remedido e CONTINUA (404 404 200 200 em sonda virgem); segue do Raphael.
+ultima_ronda: 2026-10-07T20:35Z   # LEITURA SEMANAL da Sentinela (a ronda diária técnica desta data foi às 14h55Z)
 bloqueada_por: null
 ---
 

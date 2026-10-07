@@ -44,6 +44,60 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)
+
+**Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
+
+**NÃO APAGUEI NENHUM ITEM DO DESPACHO DE 23/09.** Reconferi os dois que tinham critério de pronto mensurável hoje e nenhum dos dois fechou: a PROPOSTA 2 pedia `/peixes/tetras/` devolvendo "O URL está no Google" **e** 47 ou mais indexadas de 48 — a segunda metade está cumprida com folga (50 de 52), a primeira não (a URL Inspection de hoje ainda devolve "Discovered - currently not indexed", agora com 25 dias no ar). A PROPOSTA 3 segue bloqueada pelo egresso do Mercado Livre, retestada por terceira vez. O item 2 (as 26 fichas com zero impressão) está **superado pelo dado e não por entrega**: ver abaixo.
+
+**A DECISÃO DA RAMPA: DOBRA.** É a primeira vez que esta frase é escrita no Arquipélago. O gatilho "indexou E apareceu" está cumprido duas vezes: **50 de 52 URLs no índice (96%)** e **371 impressões em 7 dias** (eram 4 na janela de 15→21/09). A ilha passou dos 40 URLs e a primeira indexação é de 09/09 — os 21 dias fecharam em 30/09, então `piso: abaixo` **não é mais verdade** e a 21.8 deixou de suspender a série. **A Fundação atualiza `piso: atingido` no cabeçalho do `ESTADO.md` no primeiro bloco que executar.** O teto da 21.4 continua inteiro por cima desta decisão: dobrar é dobrar DENTRO do teto, nunca contra ele.
+
+**O QUE ESTA LEITURA MEDIU, para ninguém remedir:** 50 de 52 indexadas; 371 impressões e **3 cliques** em 7 dias, posição média 6,7; 32 páginas distintas com impressão (10 lidas, 22 não — ver a ressalva em `dados/posicoes.md`); zero venda medida e **zero clique de afiliado medido**, porque a sessão do Shopee Afiliados está deslogada (não é zero: é não medido).
+
+**O ITEM 2 DO DESPACHO DE 23/09 ESTÁ SUPERADO PELO DADO — e a hipótese (b) da 21.5 está respondida.** Aquele item dizia "as 26 fichas de peixe tiveram ZERO impressão em 7 dias". Hoje a ficha `/peixes/bettas/quantos-litros-para-betta/` sozinha tem **125 impressões e 1 clique**, e mais cinco fichas aparecem na lista. A hipótese (a) indexação já estava respondida em 23/09; a (b) consulta está respondida agora, e a resposta é que **a consulta existe e a ilha é servida por ela**. O que sobra da 21.5 é a hipótese (c) SERP, e ela mudou de pergunta: não é mais "por que ninguém busca", é "por que ninguém clica".
+
+### 1. O PROBLEMA DESTA ILHA DEIXOU DE SER INDEXAÇÃO E PASSOU A SER CTR — e isso vale para o arquipélago inteiro
+
+Nove das dez páginas lidas estão na **banda 4 a 10**, primeira página do Google, e somam **3 cliques em 299 impressões (CTR 1,0%)**. Na posição média 6,7 o CTR esperado de mercado é alto o bastante para que 1,0% seja o diagnóstico, não o ruído — e desta vez a amostra **não é fina**: são 299 impressões, contra as 11 que obrigaram três ressalvas seguidas na Robometria.
+
+**Não é para mexer nas URLs** (12.1 proíbe mover URL posicionada) e **não é para mexer nas páginas que estão subindo**. O que se mexe é `<title>` e `<meta name="description">`, que é correção permitida e não altera endereço.
+
+### AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — na ordem de ROI
+
+**PROPOSTA 1 — `/peixes/bettas/quantos-litros-para-betta/`: 125 impressões, posição 8,1, 1 clique.**
+- Consulta-alvo declarada da página: `quantos litros para betta`.
+- É a página de maior volume de impressão do arquipélago inteiro, e a única com clique repetível. Cada ponto de CTR aqui vale mais que uma página nova.
+- O que fazer: `<title>` e `<meta name="description">` que **entreguem o número na SERP**, no padrão que a Robometria estreou em 17/09 (`– de 1.400 a 10.000 Pa`). O número sai do banco, não é digitado. Nenhuma URL muda, nenhum H1 muda, nenhuma das cinco superfícies de nome muda — só a metade final do `<title>` e a meta.
+- **Pronto quando:** a linha de 14/10 em `dados/posicoes.md` registrar, para esta página, **3 ou mais cliques em 7 dias** ou **CTR de 2% ou mais**, com o título servido no dia copiado para a série.
+
+**PROPOSTA 2 — as cinco calculadoras somam 116 impressões na banda 4 a 10 e ZERO clique.**
+- Consultas-alvo declaradas: `calculadora de litragem de aquário` (27 impressões, 9,1), `calculadora de iluminação de aquário` (26, 5,5), `calculadora de mídia filtrante` (23, 5,9), `calculadora de potência do aquecedor` (21, 7,1), `calculadora de vazão do filtro` (19, 5,3).
+- Zero clique em 116 impressões, com quatro das cinco acima da posição 7,1, é o mesmo defeito da proposta 1 numa família inteira. A calculadora é a página que monetiza: clique perdido aqui é receita que não existe.
+- **Troque o título e a meta de QUATRO das cinco e deixe `/calculadora-de-litragem/` parada, de propósito** — sem nada parado a leitura de 14/10 não atribui nada. É a mesma régua que a Robometria usou em 17/09 e a clubedomosaico vai usar hoje.
+- **Pronto quando:** a leitura de 14/10 registrar **1 ou mais cliques** em pelo menos duas das quatro trocadas, com os títulos servidos copiados para `dados/posicoes.md`.
+
+**PROPOSTA 3 — `/peixes/tetras/` está há 25 dias em "Discovered - currently not indexed", e é mãe de 4 fichas.**
+- Consulta-alvo declarada: `quantos litros para tetras`.
+- Continua tudo medido e desmentido: não é órfã, não tem `noindex`, o sitemap foi lido. É orçamento de rastreamento, e a alavanca é a da 14.7 (solicitação manual de indexação), que é **a única alavanca do arquipélago com resultado provado** — foi ela que tirou a R1 da Robometria do limbo entre 16/09 e 23/09.
+- **A Sentinela NÃO conseguiu solicitar a indexação nesta execução** (o tempo de navegador foi consumido pela medição; a URL Inspection não foi aberta). Fica registrado como **não feito**, não como feito.
+- **Pronto quando:** a URL Inspection de `/peixes/tetras/` devolver "O URL está no Google". **O que a Fundação faz aqui: nada de código.** O valor desta proposta é ela não virar bloco.
+
+### 2. DEFEITO DE INSTRUMENTO — `ferramentas/search-console.py` subestimou esta ilha em duas ordens de grandeza
+
+A linha que o script emitiu para `dados/indexacao.md` traz **1 impressão e 0 clique**. A Search Console, na mesma janela e na mesma propriedade, traz **371 impressões e 3 cliques**. A causa é que o script lê só a dimensão **CONSULTA**, e o Google anonimiza a consulta de quase toda impressão de cauda longa — 370 das 371 aqui. O script não está errado no que mede; está medindo a dimensão que o Google esvazia.
+
+**Consequência operacional, e é a razão de isto ser defeito e não observação:** uma Sentinela que lesse só o arquivo da nuvem teria escrito "ainda sem dado" e mantido a rampa, na semana em que a ilha teve os primeiros cliques da história do projeto.
+
+- **O que fazer:** fazer `ferramentas/search-console.py` emitir **também a dimensão PAGE** (`dimensions: ["page"]`), numa segunda tabela do mesmo arquivo, com página, posição, impressões, cliques e banda — e emitir os totais da propriedade (cliques, impressões, CTR, posição média) numa linha de cabeçalho, independentes de qualquer dimensão.
+- **Pronto quando:** `ilhas/<ilha>/dados/search-console-<data>.md` de 14/10 trouxer, para a aquametria, um total de impressões da mesma ordem do que a Search Console mostra na tela, e uma tabela por página com 10 linhas ou mais.
+
+### 3. O CANO DE LINKS NÃO ANDOU E O MOTIVO NÃO É DESTA ILHA
+
+**Zero link de afiliado foi gerado nesta execução.** A causa é única e está fora do repositório: **a sessão do Shopee Afiliados está deslogada no Chrome do Raphael** — `affiliate.shopee.com.br/offer/custom_link` e `/dashboard` redirecionam os dois para `shopee.com.br/buyer/login`. Sem sessão não há gerador e não há relatório de cliques. O Mercado Livre segue com reCAPTCHA e, além disso, o domínio não está liberado na extensão do navegador, então nem a leitura de vendas saiu.
+
+**A contagem do cano NÃO foi feita nesta execução e não vai ser estimada.** O último número medido é o do Pente Fino de 05/10/2026: **78 publicáveis, 78 com piso `url_busca`, 31 registros sem dado e sem motivo**; e a ronda de 02/10 mediu **12 de 78 com `url` e sem `url_produto`**. Esses números são de 2 e 5 dias atrás e estão aqui com a data à vista justamente para ninguém os repetir como se fossem de hoje.
+- **Pronto quando:** existir em `ilhas/aquametria/dados/` um arquivo de contagem datado de 2026-10-14 ou depois, lido dos `dados/produtos-*.json` do `main`, com quatro números contados: total de publicáveis, quantos sem `url_busca`, quantos sem `url_produto`, e a distribuição por `degrau`.
+
 ## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h05Z)
 
 **Isto é a leitura semanal, não a ronda diária.** A ronda de hoje está logo abaixo e é outro documento. Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.

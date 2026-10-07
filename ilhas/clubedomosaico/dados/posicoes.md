@@ -72,6 +72,16 @@ cartão e degrau da trilha continuam dizendo exatamente o mesmo de ontem.
 | `/materiais/quantas-pastilhas-para-mosaico/` | Quantas pastilhas e quanto rejunte comprar – 12 peças calculadas | 64 | Quantas pastilhas e quanto rejunte a sua peça precisa: 12 peças já calculadas, de 23 a 960 pastilhas, pela medida que o fabricante publica. | 139 |
 | `/como-fazer/o-que-e-mosaico-picassiete/` | O que é mosaico Picassiete, e como colar – 7 colas em 45 casos | 62 | Mosaico Picassiete: o mosaico de louça quebrada, e com o que colar o caquinho em cada superfície — 7 colas em 45 casos, pela declaração do fabricante. | 150 |
 | `/como-fazer/o-que-e-trencadis/` | **O que é trencadís, e com o que colar o caco – Clube do Mosaico** (INTOCADO) | 62 | Trencadís: o mosaico de caco quebrado a martelo, o nome ligado a Gaudí, e com o que colar o caco de azulejo ou de louça em cada superfície. | 139 |
+| 2026-10-07 | cola para mosaico | https://clubedomosaico.com.br/materiais/qual-cola-usar-no-mosaico/ | 8,7 | 10,0 | **–1,3** | 3 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | picassiete | https://clubedomosaico.com.br/como-fazer/o-que-e-mosaico-picassiete/ | 3,7 | 6,0 | **–2,3, a melhor posição do arquipélago** | 3 | 0 | 1 a 3 / 4 a 10 — fronteira. **NÃO TOQUE: está subindo (12.1).** |
+| 2026-10-07 | quadros espirito santo | https://clubedomosaico.com.br/loja/quadro-divino-espirito-santo/ | 50,5 | — (consulta nova na série) | — | 2 | 0 | 21+ |
+| 2026-10-07 | quadro divino espirito santo | https://clubedomosaico.com.br/loja/quadro-divino-espirito-santo/ | 22,0 | — (consulta nova) | — | 1 | 0 | 21+ |
+| 2026-10-07 | quadros do espirito santo | https://clubedomosaico.com.br/loja/quadro-divino-espirito-santo/ | 34,0 | — (consulta nova) | — | 1 | 0 | 21+ |
+| 2026-10-07 | anonimizada pela Search Console (71 das 81 impressões) | https://clubedomosaico.com.br/materiais/qual-cola-usar-no-mosaico/ | 7,1 | 7,8 | **–0,7** | 43 | 0 | 4 a 10 — CTR. **A página de maior impressão desta ilha, três semanas seguidas na primeira página com CTR zero.** |
+| 2026-10-07 | anonimizada pela Search Console | https://clubedomosaico.com.br/materiais/quantas-pastilhas-para-mosaico/ | 6,3 | 9,1 | **–2,8** | 19 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://clubedomosaico.com.br/como-fazer/o-que-e-mosaico-picassiete/ | 4,7 | 7,0 | **–2,3** | 15 | 0 | 4 a 10 — CTR. É a página deixada PARADA de propósito em 23/09, para haver com o que comparar. **Continua parada.** |
+| 2026-10-07 | anonimizada pela Search Console | https://clubedomosaico.com.br/loja/quadro-divino-espirito-santo/ | 39,2 | — (página nova na série) | — | 4 | 0 | 21+ |
+| 2026-10-07 | — | https://clubedomosaico.com.br/author/mosaico_gestor/ | SAIU DA TABELA | 1,0 | **DEFEITO 1 DE 23/09 FECHADO** | 0 | 0 | A página de autor não aparece mais entre as páginas com impressão. O `noindex` pegou. |
 
 **Contagem em caracteres decodificados**, a mesma régua de 29/09: `&#8211;` conta 1 e não 7.
 

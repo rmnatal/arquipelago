@@ -9,6 +9,18 @@ Uma linha por leitura semanal, por consulta ou por página. **Nunca sobrescrever
 | 2026-09-23 | ciclideo anão | /peixes/ciclideos-anoes/ | 13,0 | — (série nova) | — | 1 | 0 | **11 a 20 — é aqui que mora o dinheiro** |
 | 2026-09-23 | ciclideos anões | /peixes/ciclideos-anoes/ | 35,0 | — (série nova) | — | 1 | 0 | 21+ — lacuna de cobertura de intenção |
 | 2026-09-23 | — | as outras 45 URLs do sitemap, as 26 fichas de peixe incluídas | sem impressão | — | — | 0 | 0 | sem impressão nenhuma — é indexação ou é consulta, não é ranqueamento (12.1). Não mexa no texto delas. |
+| 2026-10-07 | peixe bandeira | https://aquametria.com.br/peixes/acaras/quantos-litros-para-acara-bandeira/ | 2,0 | — (consulta nova na série) | — | 1 | 0 | 1 a 3 — NÃO TOQUE |
+| 2026-10-07 | anonimizada pela Search Console (370 das 371 impressões) | https://aquametria.com.br/peixes/bettas/quantos-litros-para-betta/ | 8,1 | — (página nova na série) | — | 125 | 1 | 4 a 10 — CTR. **A página de maior tráfego da ilha e o maior volume de impressão do arquipélago inteiro.** |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/peixes/acaras/quantos-litros-para-acara-bandeira/ | 5,3 | — | — | 23 | 1 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/calculadora-de-litragem/ | 9,1 | — | — | 27 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/calculadora-de-iluminacao/ | 5,5 | — | — | 26 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/calculadora-de-midia-filtrante/ | 5,9 | — | — | 23 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/ | 7,1 | — | — | 21 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/calculadora-de-vazao-do-filtro/ | 5,3 | — | — | 19 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/peixes/tetras/quantos-litros-para-tetra-neon/ | 5,1 | — | — | 17 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 5,4 | — | — | 14 | 0 | 4 a 10 — CTR |
+| 2026-10-07 | anonimizada pela Search Console | https://aquametria.com.br/peixes/danios-e-rasboras/quantos-litros-para-paulistinha/ | 5,5 | — | — | 4 | 1 | 4 a 10 — CTR |
+| 2026-10-07 | — | RESSALVA DA MEDIÇÃO | — | — | — | — | — | A Search Console lista **32 páginas** com impressão nesta janela e a Sentinela leu as **10 primeiras** (299 das 371 impressões). As 22 restantes não foram lidas: a página da Search Console travou ao trocar o número de linhas por página. Não é que não existam — é que não foram medidas. A leitura de 14/10 lê as 32. |
 
 ## Notas da primeira medição (2026-09-23)
 
