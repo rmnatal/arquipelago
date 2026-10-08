@@ -134,7 +134,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.13.1' );
+	define( 'CDM_F2_VERSAO', '1.13.2' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -2387,7 +2387,18 @@ function cdm_f2_cobertura() {
 		'bases'       => count( $bases ),
 		'ambientes'   => count( $ambs ),
 		'tesselas'    => count( $tess ),
-		'colas'       => cdm_f2_quantas_colas(),
+		/* A CHAVE `colas` SAIU EM 08/10/2026, e quem a mandou sair foi a bancada de
+		   mutacoes. Ela era lida por UM lugar so — a `description` desta pagina,
+		   que citava "7 colas em 270 casos" — e nesta mesma execucao a frase
+		   passou a nomear A COLA LIDER em vez do inventario. A chave ficou sem
+		   leitor nenhum, e a mutacao `as colas contadas com o banco inteiro`
+		   PASSOU por causa disso: ela mutava um numero que nada publica.
+		      O CONSERTO CERTO NAO ERA UM PORTAO NOVO. Portao sobre numero que
+		   ninguem serve e verde sobre nada, e "mutacao que nao morde e teste verde
+		   com outro nome" (secao 8). Entao a chave e a `cdm_f2_quantas_colas()`
+		   sairam juntas, e a mutacao foi RETIRADA com o motivo escrito no proprio
+		   arquivo dela. Se um dia a tela voltar a publicar quantas colas o banco
+		   tem, o numero volta CONTADO e a mutacao volta com ele. */
 	);
 
 	return $conta;
@@ -2534,27 +2545,6 @@ function cdm_f2_cola_mais_indicada() {
 	);
 
 	return $lider;
-}
-}
-
-if ( ! function_exists( 'cdm_f2_quantas_colas' ) ) {
-/**
- * QUANTAS COLAS O BANCO TEM — varrido do banco, nunca digitado.
- *
- * A categoria é lida de cada registro, e não o tamanho da lista inteira: o
- * mesmo banco traz os rejuntes, e a frase "10 dos 5 itens" que esta ilha já
- * serviu no ar em 12/09/2026 nasceu exatamente de contar um denominador que
- * não era o da afirmação.
- */
-function cdm_f2_quantas_colas() {
-	$n = 0;
-	foreach ( cdm_f2_banco()['materiais'] as $m ) {
-		if ( 'cola' === ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
-			$n++;
-		}
-	}
-
-	return $n;
 }
 }
 

@@ -30,6 +30,22 @@ promessa que nomeia produto tem uma superficie de erro que promessa de contagem
 nao tinha: o nome pode ser digitado, o lider pode ser contado errado, e o empate
 pode ser desempatado por acidente de ordenacao.
 
+A MUTACAO `as colas contadas com o banco inteiro` FOI RETIRADA EM 08/10/2026, e o
+motivo e o resultado de um teste, nao uma opiniao: ela PASSOU na passada limpa
+daquele dia. Ela mutava `cdm_f2_quantas_colas()`, e o unico lugar que lia aquele
+numero era a `description` desta pagina, que citava "7 colas em 270 casos". Na
+mesma execucao a frase passou a nomear A COLA LIDER, e a contagem ficou sem
+leitor nenhum — a mutacao passou a mutar um numero que nada publica.
+
+O CONSERTO NAO FOI UM PORTAO NOVO: portao sobre numero que ninguem serve e verde
+sobre nada. A chave `colas` e a funcao sairam da F2, e esta mutacao saiu com
+elas. Se um dia a tela voltar a publicar quantas colas o banco tem, o numero
+volta CONTADO e esta mutacao volta com ele. A regra que ela guardava — "contar
+um denominador que nao e o da afirmacao", a frase "10 dos 5 itens" que esta ilha
+serviu no ar em 12/09/2026 — continua guardada pela prestacao de contas da secao
+7 na `teste-f2.php`, que conta as colas ATIVAS do arquivo e cobra cada uma em
+exatamente um lado da pagina, nos 270 estados.
+
 AS MUTACOES QUE MAIS VALEM AQUI NAO SAO AS OBVIAS. Sao estas:
 
   * o NUMERO DIGITADO no lugar do contado — a frase continua bonita, continua na
@@ -235,14 +251,6 @@ def m_faixa_da_f1_invertida(raiz):
            "'{min} a {max} pastilhas', array( 'min' => $f['max'], 'max' => $f['min'] )")
 
 
-def m_colas_contadas_com_o_banco_inteiro(raiz):
-    """As colas passam a ser o tamanho do banco inteiro — e o banco traz os
-    rejuntes. E a frase "10 dos 5 itens" que esta ilha serviu no ar em 12/09."""
-    trocar(raiz, F2,
-           "\t\tif ( 'cola' === ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {\n\t\t\t$n++;\n\t\t}",
-           "\t\t$n++;\n\t\tif ( false ) {\n\t\t\t$n++;\n\t\t}")
-
-
 def m_frase_sem_numero_curta(raiz):
     """A saida da TRAVA 2 vira uma frase de 50 caracteres — o Google descarta a
     curta e escreve a dele, e a linha que decide o clique deixa de ser nossa."""
@@ -286,7 +294,6 @@ MUTACOES = [
     ("a faixa da F1 sai de outra conta que nao a da tabela", m_faixa_da_f1_de_outra_conta),
     ("a promessa da F1 volta ao inventario de pecas", m_promessa_da_f1_volta_ao_inventario),
     ("o minimo e o maximo trocam de lugar na faixa da F1", m_faixa_da_f1_invertida),
-    ("as colas contadas com o banco inteiro, rejuntes dentro", m_colas_contadas_com_o_banco_inteiro),
     ("a frase sem numero da TRAVA 2 fica curta demais", m_frase_sem_numero_curta),
     ("sem banco, a pagina fica sem description nenhuma", m_sem_banco_fica_sem_etiqueta),
     ("a F1 promete a fonte do fabricante sem o banco do fabricante", m_f1_promete_fonte_sem_banco),

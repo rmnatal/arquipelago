@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 69,
+  "revisao": 70,
   "atualizado_em": "2026-10-08",
   "estado": "nascendo",
   "desembarque": {
@@ -31,9 +31,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.13.1",
-      "sha256": "90fd1a80c3e7ccbd2de52b687a50a08f63a842b132ec1594964c250a40791874",
-      "descricao": "F2 1.13.1 — A RECUSA DO EMPATE SAI DA VARREDURA E VIRA FUNCAO PURA, `cdm_f2_lider_do_mapa()`. A pagina serve exatamente o mesmo texto; o que muda e que a recusa passou a ser TESTAVEL. A bancada de mutacoes de 08/10/2026 mediu que, com 162 casos contra 28, nao existe empate no banco de hoje — entao arrancar a recusa nao mudava uma letra e nenhuma trava a via (a mutacao PASSOU). Agora a bancada FABRICA a borda, chamando a funcao com mapa empatado, mapa vazio, empate entre dois, primeiro lugar a um caso de distancia e candidato unico. A regra geral esta na secao 8 do ARQUIPELAGO.md, uma vez, para todas as ilhas. A PROMESSA DA SERP PASSA A SER A RESPOSTA, E NAO O INVENTARIO. `cdm_f2_cola_mais_indicada()` (nova) varre os mesmos 270 casos da `cdm_f2_cobertura()` e elege a cola que o banco recomenda em mais deles, contando SO os `recomendados_topo`; o `<title>` passa de 'Qual cola usar no mosaico, e qual rejunte - 7 colas para 9 bases' para '... - Silicone Neutro, 80%' e a `description` passa a comecar pelo nome da cola, com 162 dos 202 casos respondidos e os 68 sem resposta. O nome sai do banco (`nome_comercial` no titulo, nome com marca na meta): no dia em que outra cola liderar, as duas frases mudam juntas. Falha fechada em tres pontos — banco que nao chegou, empate no topo, e frase fora da faixa de 120 a 160. Causa: leitura semanal de 07/10/2026, 43 impressoes na posicao 7,1 e ZERO clique pela terceira semana seguida, Proposta 1."
+      "versao": "1.13.2",
+      "sha256": "b0c9c98a9a6e9c051078cc13c9e17552184fae235e0db10680328a88d149d178",
+      "descricao": "F2 1.13.2 — CODIGO MORTO REMOVIDO, e quem o apontou foi a bancada de mutacoes. A chave `colas` da `cdm_f2_cobertura()` e a `cdm_f2_quantas_colas()` tinham UM leitor so — a `description` que citava '7 colas em 270 casos' — e na 1.13.0 a frase passou a nomear a cola LIDER. A mutacao `as colas contadas com o banco inteiro` PASSOU na passada limpa de 08/10/2026 porque mutava um numero que nada publica. O conserto nao foi um portao novo (portao sobre numero que ninguem serve e verde sobre nada): a chave, a funcao e a mutacao sairam juntas, com o motivo escrito nos dois arquivos. A regra que ela guardava continua guardada pela prestacao de contas da secao 7, que conta as colas ATIVAS do arquivo e cobra cada uma em exatamente um lado da pagina, nos 270 estados. Nenhuma linha do HTML servido muda."
     },
     {
       "id": "tecnicas",
@@ -604,7 +604,7 @@
     {
       "id": "mutacoes-promessa-do-titulo",
       "arquivo": "ferramentas/mutacoes-promessa-do-titulo.py",
-      "sha256": "03bdcb74fd32a49a7854dea73c88c07ea6001edee5a2af6e7c2266d6a685fe1f",
+      "sha256": "a935b84f2c7b3012d45d9fdbd08fc7352c5e156fc52d7aebbc52b492d3238dad",
       "descricao": "Quebra de proposito a promessa numerica do <title> e as quatro description de SERP, uma mutacao por vez, e exige que as quatro bancadas reprovem cada uma. 19 mutacoes. Duas das tres travas sao silenciosas por desenho (teto e banco que nao chegou), e trava silenciosa que ninguem viu disparar nao mediu nada.",
       "publicar": false
     },

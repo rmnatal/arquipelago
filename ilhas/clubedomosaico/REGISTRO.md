@@ -3,6 +3,161 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+08/10/2026 10h4xZ — A PROMESSA DA SERP DEIXOU DE SER INVENTÁRIO E PASSOU A SER A RESPOSTA: O TÍTULO NOMEIA A COLA, E O NOME SAI DO BANCO
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h18Z**, push da reserva aceito na primeira
+tentativa (`0467165`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta — e a 1.1 não precisou do git. `git fetch origin main`
+trouxe 3 commits; a branch `claude/dreamy-mccarthy-7649y6` estava **idêntica ao `main`** e sem PR aberto —
+nada a mesclar. **Rede pela 20.2:** `/` em **200** na primeira tentativa, sem repetição necessária.
+Reserva **renovada às 10h45Z** pela 1.1, porque o bloco passou de 40 minutos.
+
+**O BLOCO FOI O DESPACHO, NÃO A FILA (18.5).** A leitura semanal de 07/10 deixou quatro itens e três
+propostas; as **Propostas 1 e 2** são as únicas que uma execução da Fundação alcança daqui, e são o item
+que a própria leitura chama de **"maior ROI do arquipélago inteiro"**. Saíram no **mesmo commit**, como a
+Proposta 2 mandava: *"mesma ação da proposta 1, no mesmo commit, para as duas serem medidas juntas contra
+a parada"*.
+
+1. **O QUE MUDOU, E O PONTO NÃO É O TEXTO: É A NATUREZA DA PROMESSA.** Até hoje as duas páginas prometiam
+   **inventário** — `7 colas para 9 bases` e `12 peças calculadas`. Os quatro números são contados e os
+   quatro estão certos, e **nenhum deles é o que a pessoa procurou**. Agora:
+   `/materiais/qual-cola-usar-no-mosaico/` serve `… – Silicone Neutro, 80%` e
+   `/materiais/quantas-pastilhas-para-mosaico/` serve `… – 23 a 960 pastilhas`. As duas `description`
+   passaram a **começar pela resposta**, em vez de repetir a pergunta. **Nenhuma URL mudou, nenhum H1
+   mudou** (conferido no ar: os dois `<h1>` são os mesmos de ontem) e o **Picassiete não foi tocado**.
+
+2. **A PRIMEIRA TROCA FOI MEDIDA, E É ELA QUE JUSTIFICA A SEGUNDA.** O BLOCO A trocou as promessas em
+   02/10. A leitura de 07/10 mediu o resultado: as três páginas **subiram** (7,8 → 7,1 · 9,1 → 6,3 · 7,0 →
+   4,7), as impressões quase **triplicaram** (30 → 81), e **o clique continuou em zero nas três**. Posição
+   subindo com clique em zero não é ranqueamento — é a promessa do resultado, e foi isto que a Proposta 1
+   nomeou com estas palavras.
+
+3. **O NOME DA COLA SAI DO BANCO, e é a metade que mais vale.** `cdm_f2_cola_mais_indicada()` (nova) varre
+   os **mesmos 270 casos** da `cdm_f2_cobertura()`, pela **mesma** `cdm_f2_celula_cola()`, e conta **só os
+   `recomendados_topo`** — cartão de segunda linha sai com a classe `cdm-f2-segundo` justamente porque não
+   é a resposta, e contá-lo faria a promessa prometer mais do que a tela entrega. Resultado medido:
+   **Tekbond Silicone Neutro em 162 dos 202 casos respondidos**; o segundo é o Cascola PL500, com 28.
+   **No dia em que outra cola liderar, o título e a meta mudam com ela.** Nome de produto escrito dentro do
+   molde seria a família de defeito que esta ilha mais pagou, com nome no lugar do número.
+
+4. **O TÍTULO LEVA O NOME CURTO E A META O NOME INTEIRO, e isso é aritmética de teto, não estilo.** Sobram
+   **21 caracteres** no teto de 65 depois do nome desta página, e `Tekbond Silicone Neutro` tem **23**. O
+   título leva o `nome_comercial` (`Silicone Neutro`, 15) e fecha em **64**; a `description`, que tem 160
+   de espaço, leva o nome com a marca e fecha em **145**. O título da F1 ficou em **63**, um caractere a
+   menos que a promessa anterior.
+
+5. **A FATIA DE 80% ENTROU PELA SEÇÃO 7, e sem ela o título seria mentira de escopo.** A cola lidera 162
+   dos 202 casos **respondidos**, não todos os 270 e não todos os respondidos. `Silicone Neutro` sozinho na
+   SERP seria a afirmação em bloco com escopo maior do que o medido — a mesma régua que obrigou a coluna da
+   condição a existir na tabela desta própria página.
+
+6. **TRÊS RECUSAS NOVAS, TODAS FALHA-FECHADA:** banco que não chegou (trava 2 da casca: a marca volta ao
+   fim do título); **empate no topo** (duas colas no mesmo número não são "a resposta", são duas); e frase
+   **fora da faixa de 120 a 160** (o nome do líder vem do banco e pode crescer — "Cascola Adesivo de
+   Montagem PL500 Interior" tem 42 caracteres, é a **segunda** mais indicada deste banco, e estouraria a
+   faixa).
+
+7. **A BANCADA DA F2 PASSOU A REELEGER O LÍDER POR CONTA PRÓPRIA.** Ela varre os 270 estados servidos,
+   conta os `<li class="cdm-f2-cartao">` **sem** `cdm-f2-segundo` por `<h3>`, cruza com as colas ativas do
+   arquivo e elege o líder **sem nunca chamar a função do snippet**. Se as duas escritas discordarem — no
+   nome, na contagem ou na fatia —, a bancada reprova antes de o ar ver. É o mesmo desenho que a seção 6b
+   já tinha para os três números do inventário, agora para um NOME.
+
+8. **NASCEU O MUNDO `nome_longo=1`, E ELE EXISTE PORQUE AS DUAS TRAVAS DE TETO NÃO MORDEM HOJE.** O líder
+   tem 15 caracteres: com o teto de 160 e o de 65 arrancados, a página sai **igual** e a bancada continua
+   **verde**. O novo mundo renomeia as colas na option (nunca no arquivo) e cobra as duas saídas — o título
+   volta à marca e a `description` cai na frase sem número, as duas medidas no HTML servido. **Trava que
+   ninguém viu disparar não mediu nada** (seção 8), e aqui o preço de não medir é uma `description` cortada
+   no meio no único lugar desta ilha que ninguém de dentro lê.
+
+9. **A BANCADA DE MUTAÇÕES ACHOU DOIS FUROS MEUS, E OS DOIS FORAM CONSERTADOS NA MESMA EXECUÇÃO. O
+   RESULTADO FINAL DA PASSADA LIMPA: 23 MUTAÇÕES, 22 REPROVADAS, 1 PASSOU** — e a que passou é a que foi
+   **retirada**, porque mutava código que ninguém mais lê. Os dois furos abaixo.
+
+9a. **O PRIMEIRO FURO: A RECUSA DO EMPATE ERA SILENCIOSA.**
+   A mutação *"o EMPATE no topo deixa de ser recusado"* **PASSOU**: com 162 contra 28 não há empate
+   possível no banco de hoje, então arrancar a recusa não muda uma letra da página e **nenhuma trava a
+   via**. O conserto não foi apertar a afirmação: foi **extrair a decisão para uma função pura**,
+   `cdm_f2_lider_do_mapa()`, e fazer a bancada **fabricar a borda** — cinco afirmações que a chamam com
+   mapa empatado, mapa vazio, empate entre dois, primeiro lugar a um caso de distância e candidato único.
+   É o mesmo caminho que o `mutacoes-divulgacao.py` teve de abrir em 29/09, quando a sétima mutação nasceu
+   inerte. **Esta é a segunda vez que esta ilha paga o mesmo preço por trava silenciosa, e as duas foram
+   achadas por mutação, não por leitura.**
+
+9b. **O SEGUNDO FURO: EU DEIXEI CÓDIGO MORTO ATRÁS DE MIM, E A MUTAÇÃO ERA O ÚNICO JEITO DE DESCOBRIR.** A
+   mutação *"as colas contadas com o banco inteiro, rejuntes dentro"* **PASSOU**. Ela mutava
+   `cdm_f2_quantas_colas()`, e o **único** lugar que lia aquele número era a `description` que citava "7 colas
+   em 270 casos" — a frase que **esta mesma execução** trocou pelo nome da cola líder. A chave ficou sem
+   leitor nenhum, e a mutação passou a mutar um número que **nada publica**. **O conserto certo não era um
+   portão novo:** portão sobre número que ninguém serve é verde sobre nada, e *"mutação que não morde é teste
+   verde com outro nome"* (seção 8). A chave `colas`, a função `cdm_f2_quantas_colas()` e a mutação **saíram
+   juntas**, com o motivo escrito nos dois arquivos, e a F2 foi para **1.13.2**. **Nenhuma linha do HTML
+   servido mudou** (conferido: título e meta idênticos antes e depois). A regra que a mutação guardava — a
+   frase *"10 dos 5 itens"* que esta ilha serviu no ar em 12/09, de contar um denominador que não é o da
+   afirmação — **continua guardada** pela prestação de contas da seção 7 na `teste-f2.php`, que conta as colas
+   **ativas do arquivo** e cobra cada uma em exatamente um lado da página, nos 270 estados.
+
+9c. **O QUE A PASSADA LIMPA NÃO MEDIU, dito em vez de maquiado:** a retirada da mutação e a remoção do código
+   morto aconteceram **depois** da passada que as mediu. Não rodei uma terceira passada completa, e o motivo
+   é que ela não mediria nada de novo: a remoção apagou **código sem leitor** e tirou **uma** entrada do
+   registro; as outras 22 mutações e os alvos delas não foram tocados, e as **22 reprovaram** naquela mesma
+   passada. As cinco bancadas e os dois validadores foram rodados **depois** da remoção e estão verdes.
+
+10. **O DEFEITO 1 DE 23/09 ESTÁ RISCADO, no despacho de 23/09, neste commit.** O item pedia três coisas;
+    duas fecharam em 25/09 e a terceira — a linha de `/author/mosaico_gestor/` sair de `dados/posicoes.md`
+    — esperou **três leituras**, porque a de 30/09 não aconteceu e a conta da Sentinela não tinha acesso à
+    propriedade. A leitura de 07/10 teve o acesso e mediu: a página de autor **sumiu da tabela de páginas
+    da Search Console**. O despacho daquela leitura escreve *"quem fechar o próximo bloco risca aquele item
+    no mesmo commit"* — é este. **O mesmo buraco segue aberto nas irmãs**, e isso está escrito junto do
+    risco para ninguém ler o risco como mais do que ele é.
+
+11. **O DESPACHO FOI REESCRITO PELA 18.3, E OS QUATRO ITENS QUE FICARAM TÊM O MOTIVO MEDIDO, NÃO SUPOSTO.**
+    `python3 ferramentas/search-console.py --ilha clubedomosaico` devolve *"Sem credencial: defina
+    GOOGLE_SA_B64, GOOGLE_SA_JSON ou GOOGLE_SA_FILE"* — **a variável não está no ambiente desta rotina**, e
+    os itens 2 e 3 são leitura de Search Console. O item 4 exige sessão logada do Shopee Afiliados. A
+    Proposta 3 é URL nova e a própria leitura escreve que ela *"entra na fila como bloco, não como
+    correção"*. **A leitura de 07/10 diz que "a leitura pela nuvem passou a funcionar nesta ilha" e as duas
+    coisas não se contradizem:** o acesso que faltava era o da conta de serviço **à propriedade**, e foi
+    dado; o que falta aqui é a **credencial no ambiente das rotinas**. Outro problema, do mesmo dono, e
+    está em `dados/despachos.md`.
+
+12. **O QUE NÃO ADIANTA TENTAR DAQUI, escrito no despacho para a próxima execução não gastar a vez:**
+    adivinhar as 6 URLs em 404 sondando endereços do desenho antigo com `curl` **não serve como lista**,
+    porque nesta ilha toda URL inexistente responde **404 na 1ª leitura e 200 na 2ª** por 2 horas (o soft
+    404 da borda, pendência do Raphael desde 29/09). Uma varredura de candidatos devolveria 200 para
+    endereços que não existem e a lista sairia errada nos dois sentidos. **A lista tem UMA fonte.**
+
+13. **O MANIFEST CARREGAVA NOVE SHA VENCIDOS, E O ATUALIZADOR OS IMPRIMIU.** A execução de 07/10 mudou
+    `dados/filhas-do-guia.*`, `dados/cruzamento-14-9.md`, `dados/serp-das-filhas.json` e as duas
+    ferramentas delas, e fechou dizendo *"manifest segue na 67 e não houve Sync a acionar"* — o sha deles
+    ficou velho. Todos os nove são **`publicar: false`** (conferido um por um antes do Sync), então nada
+    de pesquisa foi ao ar por acidente: o Sync aplicou os dois snippets e os dados que já eram
+    publicáveis. **Espelho que não imprime o que trocou envelhece calado** — e foi o próprio
+    `atualizar-manifest.py` quem mostrou.
+
+**NO AR E CONFERIDO (seção 8 e 18.4):** Sync disparado por `curl` às **10h46Z**, `/status` e `manifest.json`
+na revisão **70** (três disparos: 68 com a troca das promessas, 69 com a função pura, 70 com a remoção do código morto). Os quatro `<title>` e as quatro `description` lidos com quebra de cache e
+`Accept-Encoding: identity`: as duas trocadas servem o texto novo, as duas paradas servem o de antes, letra
+por letra. `conferir-no-ar.py`: **524 afirmações, 0 falha** (eram 519 em 29/09).
+
+**BANCADA:** casca **744**, F1 **228**, o mesmo de ontem, F2 **174** (eram 162), guia 110, técnicas 139,
+`teste-prestacao-rejunte` 540 estados da F2 e 180 da F1, `validar-banco` e `validar-pastilhas` verdes,
+`filhas-do-guia --autoteste` 40 de 40, `cruzamento-14-9 --autoteste` 46 de 46.
+
+**NENHUMA URL NOVA — a ilha segue em 21, e esta é a SEXTA execução seguida sem URL nova.** Isto não é
+descuido e está medido contra o piso: **21 contra as 40 da seção 21**, `piso: abaixo`. A 21.8 não autoriza
+e não proíbe leva nesta ilha, e **correção fura a fila mas não consome a vez de um bloco** (18.2). O
+argumento de crescimento da fila continua de pé e fica escrito aqui pela sexta vez.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** o veredito das duas trocas é da **leitura de 14/10**, pelo critério que a
+própria Proposta 1 escreveu — 1 ou mais cliques em 7 dias, **ou** zero nas duas trocadas E zero na parada,
+que também é resultado. **Os dois `<title>` servidos hoje estão copiados em `dados/posicoes.md`** para a
+leitura não precisar reconstituí-los. **Não troque o título de nenhuma das quatro antes de 14/10:** seriam
+três trocas em doze dias e a série ficaria ilegível. O bloco de construção que está desbloqueado é o da
+fila — a **segunda mãe do Guia**, que desde 07/10 é a `rejunte` e está **a uma filha**, por `junta_min_mm`
+e `junta_max_mm` declaradas por 5 de 5 rejuntes com fonte de nível 2 nos três tipos, sem SKU, sem PDF e
+sem coleta.
+
 07/10/2026 19h5xZ — A FILHA EM FORMA DE PERGUNTA ENTROU NO PORTÃO, E A 16.5 PASSOU A CONTAR CONSULTA: A `alicate` TEM UMA FILHA, NÃO TRÊS, E A SEGUNDA MÃE DO GUIA É A `rejunte`
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h18Z**, push da reserva aceito na primeira
