@@ -3,6 +3,120 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+08/10/2026 16h4xZ — O GUIA DEIXA DE SER DE UMA CATEGORIA SÓ: A CATEGORIA VIRA DECLARAÇÃO E A FAMÍLIA DE NÚMEROS VIRA RÉGUA
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h17Z**, push da reserva aceito na primeira
+tentativa (`48ac93e`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta — e o último commit na pasta era de **13h35Z**, duas
+horas e quarenta minutos atrás, fora da janela dos 40 minutos nos dois critérios. `git fetch origin main`
+trouxe 3 commits (`0758d62..45ab260`); a branch `claude/dreamy-mccarthy-gvxr19` estava **idêntica ao
+`main`** e sem PR aberto — nada a mesclar. **Rede pela 20.2:** `/` em **200** nas três passadas, e o
+`/status` pela rota REST (`/wp-json/clubedomosaico/v1/status`) respondendo — o `/status` cru devolve 404 e
+**não é endereço desta ilha**, está escrito no `PROMPT.md`.
+
+**O DESPACHO CONTINUA INALCANÇÁVEL, E EU RETESTEI EM VEZ DE HERDAR A FRASE (18.5 + seção 4).** Os quatro
+itens da leitura semanal de 07/10, reescritos pela 18.3 hoje às 13h2xZ, exigem Search Console ou sessão
+logada do Shopee Afiliados. **Medido de novo nesta execução:** `python3 ferramentas/search-console.py
+--ilha clubedomosaico` devolve *"Sem credencial: defina GOOGLE_SA_B64, GOOGLE_SA_JSON ou GOOGLE_SA_FILE"* e
+`env | grep -c GOOGLE_SA` devolve **0**. Despacho inalcançável não é despacho fechado: fica como está, com
+a linha de tentativa, e a execução foi para a fila.
+
+**O BLOCO FOI O DA FILA, e ele estava nomeado pelo próprio ramo (4) do bloco anterior:** o snippet do Guia
+deixar de ser de uma categoria só. É trabalho de código, não de medição, e **toda** segunda mãe vai
+exigi-lo de qualquer jeito.
+
+1. **NADA MUDOU NA TELA, E ISSO É O PORTÃO DESTE BLOCO.** Antes de tocar numa linha, as quatro páginas do
+   Guia foram renderizadas e guardadas; depois do refactor, renderizadas de novo e comparadas. As quatro
+   saíram **idênticas byte a byte** — 48.498, 34.551, 36.041 e 35.094 bytes. Refactor que muda a tela é
+   refactor que não foi medido, e "eu não quis mudar nada" não é medição.
+
+2. **O QUE ESTAVA ERRADO E AINDA NÃO DOÍA.** O nome `acabamento` estava escrito em **três** lugares que não
+   eram o registro editorial: a option do banco, cravada dentro de `cdm_guia_banco()`
+   (`clubedomosaico_dados_materiais-acabamento`), as contas e o corpo da página. Com uma categoria isso não
+   é defeito — é a forma mais curta de escrever. Com a segunda, é a página da mãe nova servindo os números
+   da **primeira**, e servindo-os **calada**, porque o banco era um só e ninguém o escolhia.
+
+3. **A CATEGORIA PASSOU A DECLARAR DOIS CAMPOS, e os dois têm motivo medido.** `banco` é o id do dado no
+   `manifest.json`, que é exatamente o nome da option que o Sync grava; ele **não é derivado** do nome da
+   categoria de propósito, porque o banco da `rejunte` chama-se `materiais-rejuntes`, **no plural**, e
+   derivar daria `materiais-rejunte`, que não existe. Derivação que acerta por sorte do idioma é a mesma
+   família do campo ausente lido como `null` — ela espera o dia em que o nome não combina. `regua` é qual
+   **família de números** a categoria publica, e é o que não se generaliza: a cobertura declarada e o
+   relógio das demãos existem porque o esquema dá ao `acabamento` um bloco `protecao`; o `rejunte` tem
+   faixa de junta e liberação de área molhada, que não são a mesma conta com outro nome.
+
+4. **A RÉGUA TEM SEIS PAPÉIS, E A LISTA MORA NUMA FUNÇÃO SÓ:** `contas`, `moldes`, `resposta`, `ponte`,
+   `achado` e `item`. A espinha monta a moldura — linha mestra, lista de filhas, o que é e o que não é,
+   produto por produto, FAQ, JSON-LD, CSS — e chama a régua nos seis pontos em que a página fala de número
+   ou de vizinhança. **A palavra `acabamento` só aparece em três lugares agora:** na declaração, no
+   registro das páginas e dentro da régua do acabamento.
+
+5. **E ELA FALHA FECHADA, que é a metade que importa.** `cdm_guia_pronta()` confere os seis papéis **um a
+   um**, não "tem régua": régua com cinco papéis serviria a página com um buraco no meio, e buraco em
+   página de tabela lê-se como "não se aplica". Categoria sem régua, sem banco declarado ou com um papel
+   faltando serve o aviso honesto de que a medição não chegou — a mesma trava do banco fora do ar, um nível
+   acima: lá falta o dado, aqui falta quem saiba contá-lo.
+
+6. **A BANCADA PASSOU A SER POR CATEGORIA, E ISTO IMPORTA MAIS QUE O REFACTOR.** A régua independente do
+   `teste-guia.php` lia `dados/materiais-acabamento.json` **por nome**. Então a página de uma segunda mãe
+   seria conferida contra o banco da **primeira** e passaria com os números errados — **verde que mede
+   outra coisa, que é o pior resultado possível** (seção 8). Agora ela lê o banco **declarado** pela
+   categoria de cada página, a conta é escolhida pela família (`$REGUAS_DA_BANCADA`, indexada pela régua e
+   não pela categoria), e **categoria publicada cuja família não tem régua independente aqui REPROVA**, com
+   o nome dela na tela. Seção **1-b** nova, e o total subiu de **110 para 123** afirmações.
+
+7. **A LACUNA QUE SOBRAVA, E ELA FOI FECHADA COM UM TERCEIRO CAMINHO.** Página e bancada tiram o id do
+   banco da **mesma** declaração — então trocar o `banco` de uma categoria pelo de outra passaria **verde**:
+   as duas leriam o mesmo arquivo errado e concordariam. Quem acusa é a lista de itens de
+   `dados/filhas-do-guia.json`, que varre **todos** os `dados/materiais-*.json` e rotula cada item pela
+   categoria do esquema. A afirmação nova cobra que os ativos do banco declarado sejam **exatamente** os
+   itens que o cruzamento dá àquela categoria: 10 no banco, 10 no recorte.
+
+8. **MUTAÇÕES: 18 DECIDIDAS CERTO DE 18 (eram 14).** As quatro novas: **(a)** uma segunda categoria é
+   declarada sem régua — reprova, nomeando os seis papéis que faltam; **(b)** o `banco` do `acabamento`
+   passa a apontar para `materiais-rejuntes` — reprova, pela lista do cruzamento; **(c)** a régua perde o
+   papel `achado` — a página tem de ficar **honesta**, e fica; **(d)** o banco é **renomeado** junto com o
+   arquivo, o id do manifest e a declaração — e aqui a exigência é que **nada mude**: a bancada passa e o
+   corpo das páginas sai **byte a byte** o mesmo. Modo novo no arredor das mutações, o `mundo-identico`.
+
+9. **E A MUTAÇÃO QUE NÃO QUEBRA NADA ACHOU UM NOME VELHO DE VERDADE** — dentro da própria bancada:
+   `gui_raiz_com_preparo()`, o helper que fabrica o mundo em que um verniz tem instrução de preparo, abria
+   `dados/materiais-acabamento.json` **pelo nome**. No dia do renome ele morreria, e morreria **dentro do
+   instrumento de medição**, que é o pior lugar para um nome velho morar. Passou a ler
+   `cdm_guia_categorias()['acabamento']['banco']`. **Foi a mutação positiva que achou, não a negativa** —
+   as que reprovam medem o que já se desconfia; a que exige o mundo idêntico mede o que ninguém olhou.
+
+10. **DESEMBARQUE E VERIFICAÇÃO NO AR.** Sync acionado por `curl`, **revisão 71** aplicada às 16h39Z (15
+    aplicados, snippet **#13** atualizado), `/status` conferido na 71. **Os dois comandos da porta de
+    entrada (seção 29.2):** `conferir-no-ar.py` **APROVADO**, 524 afirmações no HTML servido, **0 falha**;
+    `leitura-do-visitante.py` **REPROVADO com exatamente 1 defeito**, o soft 404 da borda do hospedeiro
+    (toda URL inexistente responde 404 na 1ª leitura e 200 na 2ª, `x-proxy-cache HIT`, `max-age=7200`) —
+    **pendência do Raphael desde 29/09, registro e não portão**. As 21 URLs do sitemap chegam inteiras a
+    quem não quebra o cache. **Nenhum defeito novo.**
+
+11. **A BANCADA INTEIRA, VERDE:** casca 744, guia 123, técnicas 139, F1 228, F2 174, prestação-rejunte 540
+    estados da F2 e 180 da F1, ateliê, loja e leads aprovados, `validar-banco` e `validar-pastilhas` OK,
+    `filhas-do-guia` e `cruzamento-14-9` fechando com `--conferir`. Mutações: guia 18/18, árvore 29/29,
+    degrau 8/8, motivo-degrau-4 10/10, acabamento 14/14.
+
+12. **A SEGUNDA MÃE AINDA NÃO PODE NASCER, E O BLOCO NÃO PROMETIA ISSO.** A `rejunte` tem **2** filhas por
+    consulta e a 16.5 pede 3; as três portas da terceira estão medidas e fechadas em 05 e 07/10 (não há
+    terceiro número com lastro, os boletins estão em `www.quartzolit.weber` em 403, e o espelho da Telha
+    Norte é arquivo por nome conhecido sem acrílico nem epóxi). **O código deixou de ser o impedimento; o
+    impedimento é dado** — e essa é a diferença entre as duas frases.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** a pergunta que **duas** execuções já deixaram escrita e nenhuma abriu —
+**`geometria` é `propriedade` para o portão da seção 9?** O que responderia a pergunta de método da
+`pastilha` é `placa_lado_a_cm` e `espessura_mm`, que moram em `geometria`, e o portão lê **só**
+`propriedades`: 13 de 13 itens em cinco campos **invisíveis** para a régua que decide se um recorte tem
+número. É o único bloco desbloqueado que pode mudar um veredito de `nao_passa` para `pode_nascer` **sem
+coletar nada** — não depende de rede, credencial, sessão logada nem de boletim atrás de 403. A decisão está
+**pré-registrada** no `PROMPT.md`, antes do número: geometria só entra se os campos dela tiverem a mesma
+procedência **por campo** que `propriedades` têm; se não tiverem, o veredito é que o portão está **certo**
+e a `pastilha` não tem número de método — e aí a categoria fecha por dado, não por desistência.
+
+---
+
 08/10/2026 13h2xZ — A FORMA DA CONSULTA SEGUE A NATUREZA DO NÚMERO: A `pastilha` ESTÁ TOMADA, E A CAUSA NÃO É A FRASE
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h17Z**, push da reserva aceito na primeira

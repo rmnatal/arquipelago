@@ -89,6 +89,10 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 > aqui é a **credencial da conta de serviço no ambiente desta rotina** — outro problema, do mesmo dono. Enquanto
 > `GOOGLE_SA_B64` não estiver no ambiente das rotinas, **nenhuma execução da Fundação fecha os itens 2 e 3**, por
 > mais vezes que eles sejam reescritos. Está em `dados/despachos.md`.
+>
+> **Tentativa em 08/10/2026 às 16h2xZ (18.4): a credencial continua ausente.** Retestado, não herdado —
+> `search-console.py` devolve *"Sem credencial"* e `env | grep -c GOOGLE_SA` devolve **0**. Segunda execução do dia
+> a medir o mesmo, e as duas mediram em vez de copiar a frase.
 
 **O QUE APAGUEI DO DESPACHO ANTERIOR: NADA — mas o DEFEITO 1 de 23/09 está FECHADO e medido.** `/author/mosaico_gestor/`, que em 23/09 estava indexada e tomava impressão na **posição 1,0**, sumiu da tabela de páginas da Search Console. ~~Quem fechar o próximo bloco risca aquele item no mesmo commit.~~ **RISCADO EM 08/10/2026**, no despacho de 23/09, neste commit. **O DEFEITO 2 (o `sub_id` da Shopee deslocado uma casa) NÃO pôde ser reconferido**: a sessão do Shopee Afiliados está deslogada e o Relatório de cliques não abriu. Continua aberto, e continua sendo o item que impede o painel de responder "qual ilha vendeu".
 
@@ -1734,18 +1738,91 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    >
    > ---
    >
-   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E É O QUE O PRÓPRIO RAMO (4) NOMEOU: O SNIPPET DO GUIA DEIXAR DE SER
-   > DE UMA CATEGORIA SÓ.** É trabalho de código, não de medição, e **toda** segunda mãe vai exigi-lo de
-   > qualquer jeito. O `Clube do Mosaico Guia` 1.0.0 nasceu em 02/10 servindo `acabamento` e as três filhas
-   > dela, e `acabamento` é a única categoria que passa a 16.5 hoje. Depois dele a segunda mãe é a
-   > `rejunte`, que está a UMA filha (2 por consulta, a 16.5 pede 3) e cujas três portas estão medidas e
-   > fechadas na tabela abaixo — então o código vem primeiro, porque ele não espera dado nenhum.
+   > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E É O QUE O PRÓPRIO RAMO (4) NOMEOU: O SNIPPET DO GUIA DEIXAR DE
+   > SER DE UMA CATEGORIA SÓ.**~~ **ENTREGUE EM 08/10/2026 às 16h3xZ — `Clube do Mosaico Guia` 1.2.0,
+   > manifest e `/status` na revisão 71, snippet #13 atualizado no ar.**
    >
-   > **E O QUE O PRÓXIMO BLOCO NÃO DEVE FAZER:** não escrever uma quinta consulta de `pastilha` em cima dos
-   > números de caixa (quatro TOMADA, e a causa é o número e não a frase); não reescrever a pergunta de
-   > método da `pastilha` achando que outra âncora brasileira corrige núcleo bilíngue (o limite 4 já foi
-   > controlado três vezes, em três categorias); e não mexer em `geometria` de passagem — se o portão
-   > passar a ler geometria, isso muda o veredito de TODO recorte desta ilha e é bloco próprio.
+   > **NADA MUDOU NA TELA, E ISSO É O PORTÃO DESTE BLOCO:** as quatro páginas foram renderizadas antes e
+   > depois e saíram **IDÊNTICAS byte a byte** (48.498, 34.551, 36.041 e 35.094 bytes). Refactor que muda a
+   > tela é refactor que não foi medido.
+   >
+   > **O QUE ESTAVA ERRADO E AINDA NÃO DOÍA:** o nome `acabamento` estava escrito em três lugares que não
+   > eram o registro editorial — a option do banco, cravada dentro de `cdm_guia_banco()`, as contas e o
+   > corpo da página. Com uma categoria isso não é defeito; com a segunda, é a página da mãe nova servindo
+   > os números da primeira, **calada**, porque o banco era um só e ninguém o escolhia.
+   >
+   > **O QUE A CATEGORIA DECLARA AGORA, e são dois campos** (`cdm_guia_categorias()`): `banco`, o id do dado
+   > no `manifest.json` — que é exatamente o nome da option que o Sync grava, e **não é derivado** do nome
+   > da categoria de propósito, porque o banco da `rejunte` é `materiais-rejuntes`, no plural; e `regua`,
+   > qual **família de números** a categoria publica, com **seis papéis** (`contas`, `moldes`, `resposta`,
+   > `ponte`, `achado`, `item`). A espinha do arquivo não conhece categoria nenhuma pelo nome.
+   >
+   > **E ELA FALHA FECHADA:** categoria sem régua, sem banco declarado ou com **um** papel faltando não
+   > publica número — a página serve o aviso honesto de que a medição não chegou, e a bancada reprova com o
+   > nome dela na tela.
+   >
+   > **A BANCADA PASSOU A SER POR CATEGORIA, e isto importa mais que o refactor:** a régua independente de
+   > `teste-guia.php` lia `materiais-acabamento.json` **por nome**, então a página de uma segunda mãe seria
+   > conferida contra o banco da primeira e passaria com os números errados — verde que mede outra coisa.
+   > Agora ela lê o banco DECLARADO, a conta é escolhida pela família, e **categoria publicada sem régua
+   > independente aqui REPROVA**. 123 afirmações (eram 110), com a seção 1-b nova.
+   >
+   > **A LACUNA QUE SOBRAVA, fechada com um TERCEIRO caminho:** página e bancada tiram o id do banco da
+   > **mesma** declaração, então trocar o `banco` de uma categoria pelo de outra passaria verde — as duas
+   > leriam o mesmo arquivo errado e concordariam. Quem acusa é a lista de itens de `filhas-do-guia.json`,
+   > que varre todos os `materiais-*.json` e rotula pela categoria do esquema.
+   >
+   > **MUTAÇÕES: 18 de 18 (eram 14).** Quatro novas: a segunda categoria declarada sem régua (reprova), o
+   > banco apontando para o arquivo de outra categoria (reprova), a régua perdendo um dos seis papéis
+   > (página honesta) e — a que **não quebra nada de propósito** — o banco renomeado junto com a declaração,
+   > que exige a página idêntica byte a byte. **Essa última achou um nome velho de verdade**, e ele estava
+   > dentro da própria bancada: `gui_raiz_com_preparo()` abria `dados/materiais-acabamento.json` pelo nome.
+   >
+   > **E A SEGUNDA MÃE CONTINUA SEM PODER NASCER, o que este bloco não prometia resolver:** a `rejunte` tem
+   > **2** filhas por consulta e a 16.5 pede 3, com as três portas da terceira medidas e fechadas na tabela
+   > abaixo. O código deixou de ser o impedimento; o impedimento é dado.
+   >
+   > ---
+   >
+   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É A PERGUNTA QUE DUAS EXECUÇÕES JÁ DEIXARAM ESCRITA E NENHUMA
+   > ABRIU: `geometria` É `propriedade` PARA O PORTÃO DA SEÇÃO 9?**
+   >
+   > **A causa, medida em 08/10 às 13h2xZ:** o que responderia a pergunta de método da `pastilha` — *"soltar
+   > as pastilhas da tela ou colar a placa inteira"* — é `placa_lado_a_cm` e `espessura_mm`, que moram em
+   > **`geometria`**, e o portão da seção 9 lê **só `propriedades`**. A `pastilha` tem **13 de 13** itens em
+   > **cinco** campos de geometria, e eles são **invisíveis** para a régua que decide se um recorte tem
+   > número. O registro daquele bloco escreveu, com estas palavras, que isto *"não é defeito do portão nem
+   > conserto de passagem"* e que *"muda o veredito de TODO recorte desta ilha"*.
+   >
+   > **POR QUE ELE É O PRÓXIMO, e não mais uma medição de SERP:** esta ilha está na **sétima execução sem
+   > URL nova** (21 contra as 40 do piso da seção 21), e as quatro portas baratas do Guia que viravam URL
+   > sem código estão **todas medidas e fechadas**. O código do Guia acabou de deixar de ser impedimento.
+   > O que sobra entre a ilha e uma URL nova é **o portão não ver número que o banco tem** — e isso não
+   > depende de rede, de credencial, de sessão logada nem de boletim atrás de 403. É o único bloco
+   > desbloqueado que pode mudar um veredito de `nao_passa` para `pode_nascer` sem coletar nada.
+   >
+   > **O bloco, em quatro passos, e o terceiro é o que decide:**
+   > 1. **MEDIR PRIMEIRO, DECIDIR DEPOIS.** Rodar a régua da seção 9 num mundo em que `geometria` conta como
+   >    propriedade e **contar quantos recortes mudam de veredito**, categoria por categoria. O número vem
+   >    antes da decisão: se ele for grande, a mudança não é um portão mais frouxo, é um portão diferente.
+   > 2. **SEPARAR AS DUAS PERGUNTAS, que não são a mesma** (seção 7): *"geometria tem lastro de fonte?"* —
+   >    cada campo de geometria declara `fonte_id`, como as propriedades? — e *"geometria responde pergunta
+   >    de pessoa?"*. Campo sem fonte não vira número publicável, por mais cheio que esteja.
+   > 3. **A DECISÃO, escrita antes do resultado:** `geometria` entra no portão **só** se os campos dela
+   >    tiverem a mesma procedência por campo que `propriedades` têm. Se não tiverem, o veredito é que o
+   >    portão está **certo** e a `pastilha` não tem número de método — e isso fecha a categoria por dado,
+   >    não por desistência.
+   > 4. **O QUE A MUDANÇA EXIGE SE PASSAR:** `filhas-do-guia.py` e `cruzamento-14-9.py` são GERADOS e têm
+   >    `--conferir`; os dois regeneram no mesmo commit, e o `teste-guia.php` cobra o veredito do
+   >    cruzamento para toda página registrada. Mudar a régua sem regerar os dois deixaria a ilha com duas
+   >    respostas para a mesma pergunta.
+   >
+   > **E O QUE ELE NÃO DEVE FAZER:** não publicar página nenhuma nesta passada — mudar a régua de
+   > elegibilidade e publicar em cima dela no mesmo bloco é medir o portão com a página que ele autorizou;
+   > não escrever uma quinta consulta de `pastilha` em cima dos números de caixa (quatro TOMADA, e a causa
+   > é o número e não a frase); não reescrever a pergunta de método da `pastilha` achando que outra âncora
+   > brasileira corrige núcleo bilíngue (o limite 4 já foi controlado três vezes, em três categorias); e
+   > não tentar a terceira filha da `rejunte` por coleta (*"NÃO REPITA A COLETA"*, medido em 05/10).
    >
    > ---
    >
