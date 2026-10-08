@@ -134,7 +134,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.13.0' );
+	define( 'CDM_F2_VERSAO', '1.13.1' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -2394,6 +2394,48 @@ function cdm_f2_cobertura() {
 }
 }
 
+if ( ! function_exists( 'cdm_f2_lider_do_mapa' ) ) {
+/**
+ * O PRIMEIRO LUGAR SOZINHO DE UM MAPA id => casos, ou '' (08/10/2026).
+ *
+ * POR QUE ISTO E UMA FUNCAO PURA SEPARADA, e nao quatro linhas dentro da
+ * varredura: a recusa do EMPATE nao tem como ser medida pelo banco de hoje. O
+ * lider atual tem 162 casos contra 28 do segundo, entao com a recusa ARRANCADA
+ * a pagina sai exatamente igual e toda bancada continua verde. Foi o que a
+ * `mutacoes-promessa-do-titulo.py` mediu em 08/10/2026: a mutacao "o EMPATE no
+ * topo deixa de ser recusado" PASSOU — nenhuma trava a viu.
+ *
+ * Com a decisao numa funcao pura, a bancada FABRICA A BORDA: ela chama esta
+ * funcao com um mapa empatado, que o banco nao produz hoje, e cobra o ''. E o
+ * mesmo caminho que o `mutacoes-divulgacao.py` teve de abrir em 29/09, quando a
+ * setima mutacao nascera inerte porque `piso_nao_rastreavel` era 0.
+ *
+ * EMPATE E '' DE PROPOSITO: duas colas no mesmo numero de casos nao sao "a
+ * resposta", sao duas. Devolver uma delas seria escolher, por acidente de
+ * ordenacao, uma afirmacao que a pagina nao faz — e ela iria para o resultado
+ * da busca, que e a unica afirmacao desta ilha que ninguem de dentro le.
+ */
+function cdm_f2_lider_do_mapa( $casos ) {
+	$casos = (array) $casos;
+	if ( ! $casos ) {
+		return '';
+	}
+
+	arsort( $casos );
+	$ids  = array_keys( $casos );
+	$topo = $casos[ $ids[0] ];
+
+	$quantos_no_topo = 0;
+	foreach ( $casos as $n ) {
+		if ( $n === $topo ) {
+			$quantos_no_topo++;
+		}
+	}
+
+	return $quantos_no_topo > 1 ? '' : (string) $ids[0];
+}
+}
+
 if ( ! function_exists( 'cdm_f2_cola_mais_indicada' ) ) {
 /**
  * A COLA QUE O BANCO INDICA EM MAIS CASOS — a RESPOSTA da página, varrida, nunca
@@ -2460,28 +2502,14 @@ function cdm_f2_cola_mais_indicada() {
 		}
 	}
 
-	if ( ! $casos ) {
+	$id = cdm_f2_lider_do_mapa( $casos );
+	if ( '' === $id ) {
 		$lider = array();
 
 		return $lider;
 	}
 
-	arsort( $casos );
-	$ids   = array_keys( $casos );
-	$topo  = $casos[ $ids[0] ];
-	$quantos_no_topo = 0;
-	foreach ( $casos as $n ) {
-		if ( $n === $topo ) {
-			$quantos_no_topo++;
-		}
-	}
-	if ( $quantos_no_topo > 1 ) {
-		$lider = array();
-
-		return $lider;
-	}
-
-	$id    = $ids[0];
+	$topo  = $casos[ $id ];
 	$banco = cdm_f2_banco();
 	$curto = isset( $banco['materiais'][ $id ]['nome_comercial'] )
 		? trim( (string) $banco['materiais'][ $id ]['nome_comercial'] )

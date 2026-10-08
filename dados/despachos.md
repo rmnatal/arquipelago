@@ -245,6 +245,26 @@ if ( ! is_string( $pasta ) || ! is_string( $raiz ) || '' === $pasta || '' === $r
 
 ### prioridade NORMAL — duas linhas de configuração que destravam a medição inteira
 
+> **A PRIORIDADE DO ITEM 2 SUBIU DE FATO EM 08/10/2026, E O MOTIVO É OUTRO: ELE DEIXOU DE SER "AMPLIA O QUE A
+> NUVEM VERIFICA" E PASSOU A SER "DOIS ITENS DE DESPACHO QUE NENHUMA EXECUÇÃO FECHA".** O texto abaixo é de
+> 12/09 e diz, com estas palavras, que *"nenhuma das duas bloqueia bloco"* e que elas só ampliam a verificação.
+> Para o GA4 isso continua verdade. Para a **Search Console**, não: `ferramentas/search-console.py` usa a
+> **mesma** variável, e a leitura semanal de 07/10 deixou dois itens de correção na ilha em foco cuja única
+> fonte é a Search Console — as **6 URLs que respondem 404 para o Google** (*"404 em endereço que já teve
+> posição é posição jogada fora"*, e é o único defeito daquela lista que destrói ativo em vez de só atrasar) e
+> as **3 URLs novas desconhecidas do Google**. Medido às 10h3xZ de 08/10/2026 de dentro de uma rotina:
+> `python3 ferramentas/search-console.py --ilha clubedomosaico` devolve *"Sem credencial: defina GOOGLE_SA_B64,
+> GOOGLE_SA_JSON ou GOOGLE_SA_FILE"*.
+>
+> **E o acesso à propriedade já foi dado** — a própria leitura de 07/10 registra que *"a leitura pela nuvem
+> passou a funcionar nesta ilha"*, porque o acesso da conta de serviço que faltava em 23/09 chegou. **As duas
+> coisas são diferentes e as duas são necessárias:** permissão na propriedade (feito) e a credencial no
+> ambiente das rotinas (falta). Enquanto faltar, esses dois itens vão ser **reescritos pela 18.3 em toda
+> execução** sem nunca fechar — e despacho que não fecha é o que esta lista existe para impedir.
+>
+> **Acrescente ao "pronto quando" abaixo:** `python3 ferramentas/search-console.py --ilha clubedomosaico`
+> devolver uma leitura em vez da linha "Sem credencial".
+
 12/09/2026 — RAPHAEL — Nada aqui é código, e nenhuma das duas bloqueia bloco: as duas ampliam o que a nuvem consegue **verificar sozinha**, em toda ilha presente e futura.
 
 1. **`www.googletagmanager.com` e `*.google-analytics.com` na rede Personalizada** dos ambientes das rotinas ("Arquipélago — Fundação" e "Arquipélago — Mãos no repositório", em claude.ai/code → seletor de ambiente → engrenagem), junto com os domínios das ilhas que já estão lá. Sem isso, a Fundação prova que a tag **está** na página e nunca que a visita **chega** na propriedade — e essas duas coisas falham por motivos diferentes. A ferramenta que fecha isso já existe e está commitada: `ilhas/clubedomosaico/ferramentas/conferir-tag-no-navegador.mjs`, escrita em 12/09 e **nunca vista aprovando**, exatamente por causa deste 403.

@@ -295,22 +295,25 @@ f1_ok( '' !== $titulo_f1 && mb_strlen( $titulo_f1 ) <= CDM_CASCA_TITULO_TETO,
 	'e ele cabe no teto de ' . CDM_CASCA_TITULO_TETO, mb_strlen( $titulo_f1 ) . ' caracteres' );
 f1_ok( 0 === strpos( $titulo_f1, CDM_F1_TITULO ),
 	'o nome da pagina nao foi tocado — ele continua sendo o mesmo do H1 e da trilha' );
-/* A CONTAGEM DE PECAS SAIU DA SERP E CONTINUA COBRADA DA TELA. Sem esta linha,
-   tirar `$quantas_mao` das duas frases teria tirado tambem o unico lugar em que
-   a bancada confere que a tabela traz as doze pecas do arquivo — e e assim que
-   um numero deixa de ser medido sem ninguem decidir que ele nao importa mais. */
-$linhas_tabela = preg_match_all( '#<tr#is', $html_ancora ) ;
-f1_ok( false !== mb_strpos( f1_texto( $html_ancora ), number_format_i18n( $quantas_mao ) . ' peças' )
-	|| $linhas_tabela > $quantas_mao,
-	'a tabela da tela continua trazendo as ' . $quantas_mao . ' pecas do arquivo',
-	$linhas_tabela . ' linhas de tabela no HTML' );
+/* A CONTAGEM DE PECAS SAIU DA SERP E NAO PERDEU PORTAO NENHUM, e vale escrever
+   onde ela continua medida para ninguem reacrescentar um portao que nao morde.
+   Esta execucao chegou a escrever um, com `strpos` de "12 pecas" no texto mais
+   um `||` contando `<tr>` — e ele passava pelo lado fraco, porque a pagina NAO
+   diz "12 pecas" em digito. Afirmacao que so pode passar pelo ramo folgado e
+   verde sem medir, e foi retirada.
+      ONDE `$quantas_mao` CONTINUA COBRADO DA TELA, as duas acima de qualquer
+   troca de promessa: a afirmacao "as doze linhas estao no HTML SERVIDO, com os
+   numeros certos" (que cobra peca por peca, pastilhas e gramas) e a do `<h2>`
+   escrito em PALAVRA ("Doze pecas ja calculadas"), que reprova no dia em que a
+   lista mudar. O numero saiu da SERP; da tela, nao. */
 
 /* O MUNDO EM QUE O BANCO NAO CHEGOU. Aqui a divisao e diferente da F2 de
    proposito, e a razao esta escrita no snippet: a FAIXA desta pagina sai da
    aritmetica das doze pecas, que e dela e sobrevive ao desembarque falhar; a
    FONTE prometida — "a medida que o fabricante publica" — mora no banco. Entao
-   sem banco o <title> CONTINUA prometendo (12 pecas calculadas e verdade com a
-   tabela no ar) e a description cai na frase sem procedencia. Prometer uma
+   sem banco o <title> CONTINUA prometendo (a faixa de 23 a 960 pastilhas e
+   verdade com a tabela no ar, porque ela sai da aritmetica das doze pecas) e a
+   description cai na frase sem procedencia. Prometer uma
    fonte que nao chegou e a unica das duas que seria mentira. */
 $html_sem_banco = f1_render( $raiz, 'sem_banco=1' );
 $titulo_sb = '';

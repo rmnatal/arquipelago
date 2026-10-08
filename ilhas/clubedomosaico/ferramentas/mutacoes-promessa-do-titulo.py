@@ -104,10 +104,16 @@ def m_lider_conta_os_segundos(raiz):
 def m_empate_nao_e_recusado(raiz):
     """A recusa do EMPATE sai. Com duas colas no mesmo numero de casos, a pagina
     passa a nomear uma delas por desempate de ordenacao — uma afirmacao que ela
-    nao faz, escolhida por acidente de `arsort`."""
+    nao faz, escolhida por acidente de `arsort`.
+
+    ESTA MUTACAO PASSOU NA PRIMEIRA PASSADA DE 08/10/2026, e e por isso que
+    `cdm_f2_lider_do_mapa()` existe. O banco de hoje tem 162 contra 28: sem
+    empate possivel, a recusa era silenciosa e a mutacao saia invisivel. A
+    decisao foi extraida para uma funcao pura e a bancada passou a FABRICAR a
+    borda, chamando-a com um mapa empatado. Agora a mutacao e vista."""
     trocar(raiz, F2,
-           "\tif ( $quantos_no_topo > 1 ) {\n\t\t$lider = array();\n\n\t\treturn $lider;\n\t}",
-           "\tif ( $quantos_no_topo > 99 ) {\n\t\t$lider = array();\n\n\t\treturn $lider;\n\t}")
+           "\treturn $quantos_no_topo > 1 ? '' : (string) $ids[0];",
+           "\treturn $quantos_no_topo > 99 ? '' : (string) $ids[0];")
 
 
 def m_lider_sem_fatia(raiz):

@@ -1648,6 +1648,23 @@ f2_ok( '' !== $lider_nome && 1 === $lider_empates,
 	'a varredura elege UMA cola mais indicada, sem empate no topo',
 	$lider_nome . ' em ' . $lider_casos . ' dos ' . ( $total_combinacoes - $descobertos_varridos ) . ' casos respondidos' );
 
+/* A BORDA DO EMPATE, FABRICADA — porque o banco de hoje nao a produz.
+   O lider tem 162 casos contra 28 do segundo, entao a recusa do empate e
+   SILENCIOSA: arrancada, a pagina sai igual e tudo continua verde. Foi
+   exatamente isto que a `mutacoes-promessa-do-titulo.py` mediu em 08/10/2026 —
+   a mutacao "o EMPATE no topo deixa de ser recusado" PASSOU, e nenhuma trava a
+   viu. `cdm_f2_lider_do_mapa()` foi extraida para esta borda poder ser
+   chamada. */
+f2_ok( '' === cdm_f2_lider_do_mapa( array( 'a' => 10, 'b' => 10, 'c' => 3 ) ),
+	'EMPATE no topo nao elege ninguem — a promessa desaparece em vez de desempatar por ordenacao' );
+f2_ok( '' === cdm_f2_lider_do_mapa( array( 'a' => 7, 'b' => 7 ) ),
+	'e o empate entre DOIS, sem terceiro, tambem nao elege' );
+f2_ok( '' === cdm_f2_lider_do_mapa( array() ), 'mapa vazio nao elege ninguem' );
+f2_ok( 'b' === cdm_f2_lider_do_mapa( array( 'a' => 4, 'b' => 9, 'c' => 9 - 1 ) ),
+	'e o primeiro lugar SOZINHO e eleito, mesmo com o segundo a um caso de distancia' );
+f2_ok( 'so' === cdm_f2_lider_do_mapa( array( 'so' => 1 ) ),
+	'um unico candidato e eleito — "empate" com um nao e empate' );
+
 $lider_marca = '';
 foreach ( $por_id as $m_t ) {
 	if ( (string) $m_t['nome_comercial'] === $lider_nome ) {

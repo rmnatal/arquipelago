@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 68,
+  "revisao": 69,
   "atualizado_em": "2026-10-08",
   "estado": "nascendo",
   "desembarque": {
@@ -31,9 +31,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.13.0",
-      "sha256": "87d540d135a35d397ce4cace994b201e1df4d3f251f17e90cfbc184fc9264a5f",
-      "descricao": "F2 1.13.0 — A PROMESSA DA SERP PASSA A SER A RESPOSTA, E NAO O INVENTARIO. `cdm_f2_cola_mais_indicada()` (nova) varre os mesmos 270 casos da `cdm_f2_cobertura()` e elege a cola que o banco recomenda em mais deles, contando SO os `recomendados_topo`; o `<title>` passa de 'Qual cola usar no mosaico, e qual rejunte - 7 colas para 9 bases' para '... - Silicone Neutro, 80%' e a `description` passa a comecar pelo nome da cola, com 162 dos 202 casos respondidos e os 68 sem resposta. O nome sai do banco (`nome_comercial` no titulo, nome com marca na meta): no dia em que outra cola liderar, as duas frases mudam juntas. Falha fechada em tres pontos — banco que nao chegou, empate no topo, e frase fora da faixa de 120 a 160. Causa: leitura semanal de 07/10/2026, 43 impressoes na posicao 7,1 e ZERO clique pela terceira semana seguida, Proposta 1."
+      "versao": "1.13.1",
+      "sha256": "90fd1a80c3e7ccbd2de52b687a50a08f63a842b132ec1594964c250a40791874",
+      "descricao": "F2 1.13.1 — A RECUSA DO EMPATE SAI DA VARREDURA E VIRA FUNCAO PURA, `cdm_f2_lider_do_mapa()`. A pagina serve exatamente o mesmo texto; o que muda e que a recusa passou a ser TESTAVEL. A bancada de mutacoes de 08/10/2026 mediu que, com 162 casos contra 28, nao existe empate no banco de hoje — entao arrancar a recusa nao mudava uma letra e nenhuma trava a via (a mutacao PASSOU). Agora a bancada FABRICA a borda, chamando a funcao com mapa empatado, mapa vazio, empate entre dois, primeiro lugar a um caso de distancia e candidato unico. A regra geral esta na secao 8 do ARQUIPELAGO.md, uma vez, para todas as ilhas. A PROMESSA DA SERP PASSA A SER A RESPOSTA, E NAO O INVENTARIO. `cdm_f2_cola_mais_indicada()` (nova) varre os mesmos 270 casos da `cdm_f2_cobertura()` e elege a cola que o banco recomenda em mais deles, contando SO os `recomendados_topo`; o `<title>` passa de 'Qual cola usar no mosaico, e qual rejunte - 7 colas para 9 bases' para '... - Silicone Neutro, 80%' e a `description` passa a comecar pelo nome da cola, com 162 dos 202 casos respondidos e os 68 sem resposta. O nome sai do banco (`nome_comercial` no titulo, nome com marca na meta): no dia em que outra cola liderar, as duas frases mudam juntas. Falha fechada em tres pontos — banco que nao chegou, empate no topo, e frase fora da faixa de 120 a 160. Causa: leitura semanal de 07/10/2026, 43 impressoes na posicao 7,1 e ZERO clique pela terceira semana seguida, Proposta 1."
     },
     {
       "id": "tecnicas",
@@ -604,7 +604,7 @@
     {
       "id": "mutacoes-promessa-do-titulo",
       "arquivo": "ferramentas/mutacoes-promessa-do-titulo.py",
-      "sha256": "b08b96d130cb24a15267a8fe3391e088c3e251f88aa99285157a9b71cd15a455",
+      "sha256": "03bdcb74fd32a49a7854dea73c88c07ea6001edee5a2af6e7c2266d6a685fe1f",
       "descricao": "Quebra de proposito a promessa numerica do <title> e as quatro description de SERP, uma mutacao por vez, e exige que as quatro bancadas reprovem cada uma. 19 mutacoes. Duas das tres travas sao silenciosas por desenho (teto e banco que nao chegou), e trava silenciosa que ninguem viu disparar nao mediu nada.",
       "publicar": false
     },
@@ -695,13 +695,13 @@
     {
       "id": "teste-f1",
       "arquivo": "ferramentas/teste-f1.php",
-      "sha256": "8d405a1946c2c6c9094da4f70a6473321b0418cfa1400632b0ba77f12c2395f7",
+      "sha256": "532d15d71c72becc963e303c9fa075b058a0812d48ca3e6a4eee03b7e14bb7ef",
       "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
     },
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "cc8ab82ebc696ad0e08e55806513042e962510dae83b7c6a26b0623ff9b1c8c8",
+      "sha256": "7694679cf5f55b5caa758162adb33c74ea6fd19cf1855c41509b2a07d5cd2a16",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
     },
     {
