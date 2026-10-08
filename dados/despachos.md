@@ -11,9 +11,10 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
-### prioridade ALTA — a porta de entrada da ilha com MAIS TRÁFEGO caiu DUAS vezes na mesma raiz, e pela 19.4(b) o próximo passo é chamado, não reparo
+### prioridade ALTA — a porta de entrada da ilha com MAIS TRÁFEGO caiu TRÊS vezes na mesma raiz, e o intervalo entre quedas encurtou de 11 dias para 3; pela 19.4(b) o próximo passo é chamado, não reparo
 
-**2026-10-05 — Raphael — abrir chamado na HostGator sobre o `.htaccess` da raiz de `/clubedomosaico.com.br`.** A
+**2026-10-05 — Raphael — abrir chamado na HostGator sobre o `.htaccess` da raiz de `/clubedomosaico.com.br`.**
+*(ABERTO E MAIS CARO: a **terceira** queda foi medida e reparada em 08/10/2026 — ver a tabela e o ponteiro abaixo.)* A
 Fundação não abre conta, não contrata e não fala com fornecedor: este é o único desfecho que não é dela, e foi
 **pré-registrado** pela própria ilha em 24/09, em `ilhas/clubedomosaico/dados/consertos.md`, com estas palavras —
 *"Se o defeito voltar, a 19.4(b) vale com força dobrada (...) e aí o caminho é chamado na HostGator sobre o
@@ -26,13 +27,28 @@ WordPress deixa de receber toda URL que não seja arquivo em disco. Resultado: *
 `/wp-sitemap.xml`, o `/robots.txt`, o `/wp-json/` e as TRÊS páginas que estão na primeira página do Google
 respondem 404.** Só a home responde.
 
-| | 1ª queda | 2ª queda |
-|---|---|---|
-| medida em | 24/09/2026 19h20Z | **05/10/2026 10h17Z** |
-| tempo fora do ar | ao menos 9 dias | **até 2 dias e 14 horas** |
-| `.htaccess` | 1.057 bytes, só `NFD EPC` | **1.057 bytes, só `NFD EPC`** |
-| reparo | `flush_rewrite_rules(true)` | o mesmo, pela rota da 29.3 |
-| depois do reparo | 1.580 bytes, 2 blocos | **1.580 bytes, 2 blocos** |
+| | 1ª queda | 2ª queda | 3ª queda |
+|---|---|---|---|
+| medida em | 24/09/2026 19h20Z | 05/10/2026 10h17Z | **08/10/2026 19h2xZ** |
+| tempo fora do ar | ao menos 9 dias | até 2 dias e 14 horas | **até 22h49, desde a ronda de 07/10 20h35Z** |
+| `.htaccess` | 1.057 bytes, só `NFD EPC` | 1.057 bytes, só `NFD EPC` | **1.057 bytes, só `NFD EPC`** |
+| linhas de reescrita | 8 | 8 | **8** |
+| reparo | `flush_rewrite_rules(true)` | o mesmo, pela rota da 29.3 | **o mesmo, pela rota da 29.3** |
+| depois do reparo | 1.580 bytes, 2 blocos | 1.580 bytes, 2 blocos | **1.580 bytes, 2 blocos, 15 linhas** |
+
+> **TERCEIRA QUEDA MEDIDA EM 08/10/2026, e ela não é uma repetição: é o que torna este chamado urgente.**
+> Três dias depois da segunda, com **20 das 21 URLs do sitemap em 404** mais as três da 29.2, e com a
+> **assinatura idêntica nas seis grandezas da tabela acima** — nenhum sintoma novo. Isso fecha a última
+> hipótese barata que sobrava, a de que as duas primeiras fossem acidente de uma transição que já passou: o
+> intervalo entre quedas **encurtou de 11 dias para 3**, e a ilha agora cai mais rápido do que qualquer ronda
+> a pega. Reparada pela 29.3 na hora, porque ilha caída esperando fornecedor é pior que ilha reparada três
+> vezes, e conferida no ar depois (`conferir-no-ar.py` **APROVADO, 524 afirmações, 0 falha**). A terceira linha
+> da série está em `ilhas/clubedomosaico/dados/consertos.md`.
+>
+> **E UM DADO NOVO PARA O ITEM 4, de graça:** a janela desta queda é a mais estreita das três — entre
+> **07/10 20h35Z** (ronda que passou) e **08/10 19h2xZ**. Vale perguntar à HostGator o que aconteceu nesse
+> intervalo de 23 horas, além das duas datas que o item 4 já nomeia; é a primeira vez que a pergunta cabe num
+> dia e não num intervalo de dias.
 
 **O QUE DIZER NO CHAMADO, já medido de dentro do servidor — eles não vão precisar investigar nada disso:**
 

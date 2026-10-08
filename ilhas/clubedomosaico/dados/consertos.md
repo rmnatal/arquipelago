@@ -145,3 +145,57 @@ evento que escreveu o arquivo sem o bloco, não um processo que o corrói. Está
 de entrada da 29.2 reprova se qualquer uma das três cair). Se reprovar **antes** de o chamado da HostGator ter
 resposta, repare pela 29.3 para a ilha não ficar caída, **e escreva a terceira linha aqui** — a série é o que vai
 sustentar o chamado.
+
+---
+
+## 08/10/2026 — A TERCEIRA QUEDA DA MESMA PORTA, REPARADA PORQUE A ILHA ESTAVA CAÍDA AGORA — E A LINHA QUE A ENTRADA DE 05/10 MANDOU ESCREVER
+
+**Medido às 19h2xZ de 08/10/2026 pela Fundação, no começo do bloco, pelo comando que a entrada de 05/10
+pré-registrou com estas palavras:** *"O que a próxima ronda reconfere, e é um comando: `python3
+ferramentas/conferir-no-ar.py .`"*. Ele **REPROVOU com 349 falhas em 513 afirmações**, e a causa era uma só.
+
+**O SINTOMA:** **20 das 21 URLs do sitemap em 404**, mais `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/` — as
+três da 29.2 — também em 404. Só a raiz respondia 200, porque ela é o documento raiz e não depende de reescrita.
+Medido em **três passadas** com `aquametria.com.br` em 200 nas mesmas três (seção 20.2: falha de rede só vira
+diagnóstico depois de repetir).
+
+**A ASSINATURA É IDÊNTICA ÀS DUAS ANTERIORES, byte por byte**, lida pela rota da 29.3 antes de qualquer reparo:
+`.htaccess` da raiz com **1.057 bytes**, **um bloco só (`NFD EPC`)**, `tem_wordpress: false`, **8 linhas de
+reescrita**, arquivo existente, legível e gravável, `mod_rewrite: true`, `regras_no_banco: 115`,
+`permalink_structure` inalterado (`/%year%/%monthnum%/%day%/%postname%/`, o mesmo que o `REGISTRO.md` já
+registrava). **Nada no retrato é novo** — e isso é o achado desta linha: a terceira queda não trouxe sintoma
+novo nenhum, o que fecha a porta para a hipótese de que as duas primeiras fossem acidente de configuração em
+transição.
+
+**O REPARO, e por que ele foi feito mesmo sendo a terceira vez:** a 29.5 escreve, com todas as letras, que *"o
+reparo da 29.3 continua valendo enquanto o chamado não tiver resposta — ilha caída esperando fornecedor é pior
+que ilha reparada duas vezes —, e cada reparo novo escreve uma linha na série"*. A ilha estava fora do ar
+**agora**, com 21 URLs em 404 para o Google, três delas em primeira página. `&reparar=1` devolveu o antes e o
+depois: **1.057 → 1.580 bytes**, **8 → 15 linhas de reescrita**, blocos `NFD EPC` → `NFD EPC` + **`WordPress`**,
+`tem_wordpress` **false → true**.
+
+**CONFERIDO NO AR DEPOIS, pela 19.4(a), e não só pelas sete URLs do diagnóstico:** duas passadas com quebra de
+cache deram 200 em `/`, `/loja/`, `/materiais/`, `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/`, e **404 em
+caminho inexistente** — que é o 404 que tem de ser 404 da 29.2. Em seguida o `conferir-no-ar.py` inteiro passou
+a **APROVADO: 524 afirmações, 0 falha**, e o `leitura-do-visitante.py` fechou **REPROVADO com EXATAMENTE 1
+defeito**, o soft 404 da borda — a pendência do Raphael desde 29/09, vermelho esperado e com dono escrito. **Zero
+defeito novo.**
+
+**O QUE ESTA LINHA NÃO É:** não é solução, e não substitui o chamado. Pela **19.4(b)** — defeito que volta não é
+defeito, é sintoma de causa que ninguém enxergou — **a terceira queda na mesma raiz é chamado na HostGator sobre
+o `.htaccess` da raiz de `/clubedomosaico.com.br`**, e o chamado é do Raphael: a Fundação não abre conta, não
+contrata e não fala com fornecedor. Ele está em `dados/despachos.md` desde 05/10 e **continua sem resposta** —
+esta queda é a prova de que ele não envelheceu, ficou mais caro.
+
+**E A METADE DO ACHADO QUE É SOBRE QUEM OLHA, outra vez, com o número desta queda:** a 29.5 escreveu em 05/10 que
+*"as duas quedas têm a mesma causa de demora: ninguém rodou o comando"* — nove dias na primeira, até 2 dias e 14
+horas na segunda. **Desta vez quem achou foi a própria Fundação, no começo do bloco, e não a ronda.** O
+`ultima_ronda` do cabeçalho era de **07/10 20h35Z** (leitura semanal; a ronda técnica daquele dia foi às 14h55Z),
+e a queda está entre aquela ronda e agora. A diferença não é que a regra passou a rodar sozinha: é que o
+`PROMPT.md` desta ilha manda rodar os dois comandos **antes de qualquer bloco**, e foi essa linha, e não a ronda,
+que pegou a terceira queda. **Portão que mora no caminho do trabalho roda; portão que depende de alguém lembrar,
+não.**
+
+**O que a próxima passada reconfere, e continua sendo um comando:** `python3 ferramentas/conferir-no-ar.py .`.
+Se reprovar de novo **antes** de o chamado ter resposta, repare pela 29.3 e escreva a **quarta** linha aqui. A
+série é o que sustenta o chamado, e ela agora tem três eventos com a mesma assinatura.

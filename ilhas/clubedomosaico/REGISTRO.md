@@ -3,6 +3,163 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+08/10/2026 19h4xZ — A ILHA ESTAVA FORA DO AR PELA TERCEIRA VEZ, E O BLOCO DO PORTÃO RESPONDEU A PERGUNTA COM UM ZERO QUE DERRUBA A PRÓPRIA PREMISSA
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h17Z**, push da reserva aceito na primeira
+tentativa (`9f53306`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com `executando_desde:
+null`, que pela **1.1** já basta, e o último commit na pasta era de **16h46Z**, duas horas e meia atrás.
+`git fetch origin main` trouxe a atualização do `main` (`0758d62..13508f4`, forçada do lado do remoto); a
+branch `claude/dreamy-mccarthy-zoowz1` estava **idêntica ao `main`** e sem PR aberto — nada a mesclar.
+Pela **18.1** li o topo do `PROMPT.md` antes de qualquer coisa: nenhuma outra ilha tem despacho **ALTO** em
+ilha no ar e quebrada, que é a única coisa que fura o foco.
+
+## A PORTA DE ENTRADA CAIU PELA TERCEIRA VEZ, E QUEM A PEGOU FOI O COMANDO QUE MORA NO CAMINHO DO BLOCO
+
+**O `PROMPT.md` desta ilha manda rodar os dois comandos da 29 ANTES de qualquer bloco, e foi essa linha que
+pegou a queda — não a ronda.** `python3 ferramentas/conferir-no-ar.py .` **REPROVOU com 349 falhas em 513
+afirmações**: **20 das 21 URLs do sitemap em 404**, mais `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/`, as
+três da **29.2**. Só a raiz respondia 200, porque ela é o documento raiz e não depende de reescrita. Medido
+em **três passadas** com `aquametria.com.br` em 200 nas mesmas três, como a **20.2** manda antes de chamar
+rede de diagnóstico.
+
+**A ASSINATURA É IDÊNTICA ÀS DUAS ANTERIORES, nas seis grandezas**, lida pela rota da **29.3** antes de
+qualquer reparo: `.htaccess` da raiz com **1.057 bytes**, **um bloco só (`NFD EPC`)**, `tem_wordpress:
+false`, **8 linhas de reescrita**, arquivo gravável, `mod_rewrite: true`, `regras_no_banco: 115`. O
+`permalink_structure` também estava **inalterado** — conferi contra a linha que este mesmo `REGISTRO.md` já
+guardava, em vez de achar que `/%year%/%monthnum%/%day%/%postname%/` fosse sintoma novo. **Nenhum sintoma
+novo é o achado:** fecha a última hipótese barata, a de que as duas primeiras quedas fossem acidente de uma
+transição já passada.
+
+**REPARADA pela 29.3**, porque a **29.5** escreve que *"o reparo continua valendo enquanto o chamado não
+tiver resposta — ilha caída esperando fornecedor é pior que ilha reparada duas vezes"*: **1.057 → 1.580
+bytes**, **8 → 15 linhas de reescrita**, `tem_wordpress` **false → true**. **Conferido no ar depois, pela
+19.4(a):** duas passadas com quebra de cache em 200 nas seis URLs e **404 em caminho inexistente**, e então
+o `conferir-no-ar.py` inteiro em **APROVADO, 524 afirmações, 0 falha**. O `leitura-do-visitante.py` fechou
+**REPROVADO com EXATAMENTE 1 defeito**, o soft 404 da borda — pendência do Raphael desde 29/09, vermelho
+esperado e com dono escrito. **Zero defeito novo.**
+
+**O QUE NÃO É MEU, E ESTÁ ESCRITO ONDE ELE OLHA:** pela **19.4(b)** a terceira queda na mesma raiz é
+**chamado na HostGator**, não um quarto reparo. O chamado está em `dados/despachos.md` desde 05/10 e
+**continua sem resposta**; acrescentei a terceira coluna da tabela, a janela nova (entre **07/10 20h35Z** e
+**08/10 19h2xZ**, a mais estreita das três, e a primeira que cabe num dia) e o fato que torna o chamado
+urgente: **o intervalo entre quedas encurtou de 11 dias para 3**. A terceira linha da série está em
+`dados/consertos.md`, como a entrada de 05/10 pré-registrou com estas palavras. **Avisei o Raphael.**
+
+## O BLOCO: `geometria` É `propriedade` PARA O PORTÃO DA SEÇÃO 9? A RESPOSTA É ZERO, E O ZERO É MAIOR QUE A PERGUNTA
+
+**A pergunta estava escrita por duas execuções e nenhuma a tinha aberto.** A decisão foi **pré-registrada no
+`PROMPT.md` antes de qualquer número** — *"`geometria` entra no portão SÓ se os campos dela tiverem a mesma
+procedência por campo que `propriedades` têm"* —, e o passo 1 mandava **medir primeiro e decidir depois**.
+Medi, e o número responde mais do que a decisão perguntava.
+
+**`geometria` NÃO ENTRA, e por dois motivos independentes, não por um:**
+1. **Procedência: 0 de 52.** Os 13 itens de `pastilha` têm **52 números de geometria preenchidos** e
+   **nenhum** declara `fonte_id`. E não é desleixo de coleta: o esquema declara os subcampos como escalares
+   (`number|null`), então **não existe onde escrever a fonte**. `propriedades` tem
+   `formato_de_cada_campo: "{valor, unidade, fonte_id, declarado_como}"`; `geometria` não tem nada disso.
+2. **Consequência: 0 de 42.** Rodei a régua da seção 9 num mundo em que `geometria` conta como propriedade e
+   **nenhum dos 42 recortes muda de veredito**. `pastilha` e `pastilha/vidro` **já passam** — eles ganhariam
+   cinco números e nenhum veredito.
+
+**E ISSO DERRUBA A PREMISSA QUE ESCOLHEU O BLOCO, escrita duas vezes no `PROMPT.md`:** que este era *"o único
+bloco desbloqueado que pode mudar um veredito de `nao_passa` para `pode_nascer` sem coletar nada"*. **Não
+pode.** A razão é aritmética e vale para qualquer campo futuro: os campos fora de `propriedades` só existem
+em categorias cujos recortes **já passam**, e os **30 recortes em `nao_passa` reprovam por falta de ITEM** —
+que promover campo nenhum cria. **O portão desta ilha nunca foi travado por QUAL campo ele lê; ele é travado
+por QUANTOS itens o banco tem.** É o mesmo tipo de descoberta que o `medir-egresso.py` desta ilha pagou em
+30/09: a pergunta estava bem formulada e mirava o lugar errado.
+
+**A SURPRESA, e ela não estava na pergunta:** generalizei a régua para **todo** campo de `MATERIAL` que
+carrega número fora de `propriedades`, derivado do registro e não de uma lista de nomes — e apareceram
+**seis**. `venda[].quantidade` tem **22 de 23 números com procedência por campo dentro do teto de nível 3**:
+é o **único** campo fora de `propriedades` que já cumpre o critério pré-registrado, e **muda 0 vereditos**
+também. Admiti-lo custaria nada e renderia nada.
+
+**E O ACHADO QUE FAZ O FILTRO DE PROCEDÊNCIA SER CARGA E NÃO ENFEITE, com número:** `afiliado` e `imagem`
+**virariam** a `cola` de `passa_na_contagem_sem_lastro` para `passa`. O único obstáculo entre eles e o portão
+é a exigência de fonte por campo — e os números deles são `afiliado.degrau` e `imagem.largura`/`altura`,
+**números que a ilha produziu, não que o fabricante declarou**. Sem o filtro, a `cola` nasceria publicando
+como "número calculado próprio" o degrau de afiliado ou a largura em pixels da foto. **O filtro não estava
+protegendo `geometria` de nada; estava segurando a `cola`.**
+
+**E A `cola` ENSINOU A TERCEIRA COISA, dentro do próprio banco:** ela é o único recorte a um número de
+passar, e as **três ofertas de `saco`** que parecem três declarações são **três embalagens do MESMO
+produto** (`quartzolit-cimentcola-externo-acii`). A régua conta **ITEM**, nunca oferta — contar oferta
+publicaria uma página comparando um produto com ele mesmo três vezes. Virou mutação com esse nome.
+
+## POR QUE ISSO É RÉGUA E NÃO UM ARQUIVO DATADO EM `dados/`
+
+A resposta de hoje depende do banco de hoje, e o banco cresce toda semana. **Medição escrita à mão envelhece
+calada** — a família de defeito que esta ilha já pagou no `urls_publicadas` e no manifest com SHA mentiroso.
+Então a medição virou seção **derivada** do `filhas-do-guia.json`/`.md`,
+`os_numeros_que_o_portao_NAO_VE`, e `--conferir` reprova quando o número muda.
+
+**Três decisões de desenho, e as três têm motivo medido:**
+- **O mundo medido é o mais permissivo que existe**, de propósito: **todo** número entra com fonte
+  **fabricada** no nível do teto, inclusive quem já tem `fonte_id` de verdade. Usar a fonte real aqui daria a
+  leitura mais errada possível — campo com fonte nível 6 mudaria **menos** vereditos que campo sem fonte
+  nenhuma, e "o portão não vê" passaria a depender de quão ruim é a fonte que ele também não vê. Mundo mais
+  permissivo nunca muda **menos** vereditos que o real, então **zero aqui é zero em toda leitura mais
+  estreita** — por unidade, por tipo ou por nível. Conferi à mão nas duas variantes de `venda` (cega à
+  unidade e por unidade) antes de escolher: zero nas duas.
+- **As duas perguntas saem separadas** (seção 7, nunca misturar causas): "quanto o portão não vê" e "esse
+  campo tem procedência" são colunas diferentes, e o **cruzamento** é o veredito. É o que faz
+  `afiliado`/`imagem` (mudam, sem procedência) e `venda` (não muda, com procedência) terem vereditos
+  diferentes em vez de um booleano.
+- **Falha-fechada com gatilho estreito:** `--conferir` reprova quando um campo tiver procedência por campo
+  dentro do teto **E** mudar algum veredito — exatamente o mundo em que a decisão de hoje deixa de valer.
+  Campo que ganha procedência e não muda nada **não** reprova: alarme sem consequência é o que faz portão ser
+  ignorado.
+
+**O caminho colapsa o índice da lista** (`venda[].quantidade`), **booleano não é número** (`True` é `1` em
+Python, e contar bandeira mediria outra coisa), e `fontes` fica fora porque os números dela são o **nível**,
+isto é, a régua, não o dado.
+
+## O QUE A BANCADA ACHOU, E ELA ACHOU ALGO QUE EU NÃO IA VER
+
+**46 casos fabricados, 0 falha** (eram 40). **Seis mutações novas**, e a mais importante é a que prova que a
+régua **sabe responder diferente de zero**: o mesmo campo que fica fora sem procedência **REPROVA o mundo**
+quando ganha procedência dentro do teto. Régua que responde "0 de 42" sem essa mutação é indistinguível de
+uma função que soma nada — é a família do bloco 3d desta ilha, *"função de portão que nunca rodou é função
+morta"*. As outras cinco: campo sem procedência que mudaria veredito fica fora com o veredito dizendo isso;
+**procedência pior que o teto não conta** (o teto do esquema morde fora de `propriedades` também); campo com
+procedência que não muda nada **não** reprova; três ofertas do mesmo item não são três declarações; e
+booleano não entra na medição.
+
+**E A BANCADA ACHOU UM DEFEITO MEU, pelo caso 19-b:** os três fixtures de `.md` montavam o `d` **à mão**, e
+por isso renderizavam a seção nova **vazia** — a bancada ficaria verde sobre um trecho de documento que
+ninguém nunca viu escrito. **O próprio comentário do caso 19-b já avisava disso, por escrito, desde 07/10**,
+sobre a seção das perguntas. Os três passaram a montar o `d` por uma função única que chama o `montar()`, e o
+19-b passou a cobrar a seção nova **na tela**. Com isso, seção nova no `montar()` quebra os três fixtures de
+uma vez, que é o alarme certo.
+
+## O QUE ESTE BLOCO NÃO FEZ, e os quatro estavam escritos como proibição
+
+**Nenhuma URL nova** (a ilha segue em **21**), **nenhuma leva do teto da 21.4 gasta**, **nada publicado no
+site** — este bloco é régua de repositório, não option: mudar a régua de elegibilidade e publicar em cima
+dela na mesma passada seria medir o portão com a página que ele autorizou. Não escrevi quinta consulta de
+`pastilha`, não reescrevi a pergunta de método dela e não tentei a terceira filha da `rejunte` por coleta.
+O `cruzamento-14-9.py` foi regerado no mesmo commit, como o passo 4 do bloco exige, e **saiu idêntico** —
+que é a confirmação de que nenhum veredito mudou.
+
+**O DESPACHO DE 07/10 FICA INTEIRO, retestado e não herdado (18.5 + seção 4):** `search-console.py` devolve
+*"Sem credencial"* e `env | grep -c GOOGLE_SA` devolve **0**. Terceira execução do dia a medir o mesmo em vez
+de copiar a frase. Os quatro itens exigem Search Console ou sessão logada do Shopee Afiliados.
+
+**BANCADA INTEIRA VERDE:** casca **744**, guia **123**, técnicas **139**, F1 **228**, F2 **174**,
+prestação-rejunte 540 estados da F2 e 180 da F1, atelie, loja **208** e leads **211** aprovados,
+`validar-banco` e `validar-pastilhas` OK, `filhas-do-guia --conferir` e `cruzamento-14-9 --conferir`
+fechando. Mutações: **filhas-do-guia 46/46**, guia 18/18, árvore 29/29, degrau 8/8, motivo-degrau-4 10/10,
+acabamento 14/14.
+
+## O PRÓXIMO BLOCO, e a medição de hoje decidiu qual ele é
+
+**NÃO é mais régua: é ITEM DE BANCO.** A pergunta do portão está respondida e a resposta diz onde o gargalo
+mora — **30 dos 42 recortes reprovam por falta de item**, e nenhuma mudança de régua move isso. O caminho
+mais barato já está derivado no próprio arquivo, em `caminho_mais_barato_para_as_3_filhas`: a `alicate` está
+a **1 filha** das 3 da 16.5, e essa filha é `alicate/martelinho` com **3 itens a coletar**. É o único lugar
+onde três registros novos viram uma **mãe de nível 2** — que é URL nova de verdade, e não mais uma régua.
+
 08/10/2026 16h4xZ — O GUIA DEIXA DE SER DE UMA CATEGORIA SÓ: A CATEGORIA VIRA DECLARAÇÃO E A FAMÍLIA DE NÚMEROS VIRA RÉGUA
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **16h17Z**, push da reserva aceito na primeira

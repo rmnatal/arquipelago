@@ -1881,5 +1881,343 @@
    "pergunta:rejunte-largura-da-junta"
   ],
   "ancoras_a_mao_que_cairam": []
+ },
+ "os_numeros_que_o_portao_NAO_VE": {
+  "a_pergunta": "`geometria` e `propriedade` para o portao da secao 9? E, generalizada, a unica pergunta que vale a pena: QUAL campo do item o portao nao le, e o que mudaria se lesse. A primeira forma foi escrita por duas execucoes e aberta em 08/10/2026.",
+  "a_decisao_pre_registrada": "escrita no PROMPT.md desta ilha ANTES de qualquer numero: `geometria` entra no portao SO se os campos dela tiverem a mesma procedencia POR CAMPO que `propriedades` tem. Se nao tiverem, o veredito e que o portao esta CERTO e a `pastilha` nao tem numero de metodo — e isso fecha a categoria por dado, nao por desistencia.",
+  "o_mundo_que_esta_regua_mede": "o mais permissivo que existe: campo sem procedencia entra com uma fonte FABRICADA no nivel do teto, e o caminho colapsa o indice da lista. Mundo mais permissivo que o real nunca muda MENOS vereditos que ele — entao zero aqui e zero em toda leitura mais estreita, por unidade, por tipo ou por nivel de fonte.",
+  "quando_esta_secao_REPROVA": "quando um campo tiver procedencia por campo dentro do teto E mudar algum veredito. Campo que ganha procedencia e nao muda veredito nenhum nao reprova: alarme sem consequencia e o que faz portao ser ignorado.",
+  "campos": [
+   {
+    "campo": "afiliado",
+    "itens_com_pelo_menos_um_numero": 41,
+    "itens_ativos_com_pelo_menos_um_numero": 41,
+    "numeros_preenchidos_no_banco": 83,
+    "com_procedencia_dentro_do_teto": 0,
+    "com_procedencia_pior_que_o_teto": 0,
+    "sem_nenhuma_procedencia": 83,
+    "subcampos_preenchidos": {
+     "afiliado.casamento.degrau_da_palavra_chave": 14,
+     "afiliado.casamento.item_id": 14,
+     "afiliado.casamento.shop_id": 14,
+     "afiliado.degrau": 41
+    },
+    "se_contasse_como_propriedade": {
+     "recortes_que_mudam_de_veredito": 1,
+     "quais_mudam": [
+      {
+       "recorte": "cola",
+       "de": "passa_na_contagem_sem_lastro",
+       "para": "passa"
+      }
+     ],
+     "recortes_que_ganham_numero_sem_mudar_de_veredito": [
+      {
+       "recorte": "acabamento",
+       "numeros_novos": [
+        "afiliado.casamento.degrau_da_palavra_chave",
+        "afiliado.casamento.item_id",
+        "afiliado.casamento.shop_id",
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "acabamento/impermeabilizante",
+       "numeros_novos": [
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "acabamento/selador",
+       "numeros_novos": [
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "acabamento/verniz",
+       "numeros_novos": [
+        "afiliado.casamento.degrau_da_palavra_chave",
+        "afiliado.casamento.item_id",
+        "afiliado.casamento.shop_id",
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "alicate",
+       "numeros_novos": [
+        "afiliado.casamento.degrau_da_palavra_chave",
+        "afiliado.casamento.item_id",
+        "afiliado.casamento.shop_id",
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "alicate/cortador_de_azulejo",
+       "numeros_novos": [
+        "afiliado.casamento.degrau_da_palavra_chave",
+        "afiliado.casamento.item_id",
+        "afiliado.casamento.shop_id",
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "alicate/torques",
+       "numeros_novos": [
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "cola",
+       "numeros_novos": [
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "pastilha",
+       "numeros_novos": [
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "pastilha/vidro",
+       "numeros_novos": [
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "rejunte",
+       "numeros_novos": [
+        "afiliado.degrau"
+       ]
+      },
+      {
+       "recorte": "rejunte/cimenticio",
+       "numeros_novos": [
+        "afiliado.degrau"
+       ]
+      }
+     ]
+    },
+    "veredito": "o_portao_esta_certo_por_falta_de_procedencia",
+    "motivo": "`afiliado` mudaria o veredito de 1 recorte(s), e nenhum dos 83 numero(s) dele declara fonte por campo: 83 sem procedencia nenhuma e 0 com fonte pior que o nivel 3. Pela decisao pre-registrada ele fica FORA do portao, e o recorte fecha por dado, nao por desistencia."
+   },
+   {
+    "campo": "divergencias",
+    "itens_com_pelo_menos_um_numero": 3,
+    "itens_ativos_com_pelo_menos_um_numero": 3,
+    "numeros_preenchidos_no_banco": 6,
+    "com_procedencia_dentro_do_teto": 2,
+    "com_procedencia_pior_que_o_teto": 0,
+    "sem_nenhuma_procedencia": 4,
+    "subcampos_preenchidos": {
+     "divergencias[].lado_a.nivel": 1,
+     "divergencias[].lado_b.nivel": 1,
+     "divergencias[].nivel_a": 2,
+     "divergencias[].nivel_b": 2
+    },
+    "se_contasse_como_propriedade": {
+     "recortes_que_mudam_de_veredito": 0,
+     "quais_mudam": [],
+     "recortes_que_ganham_numero_sem_mudar_de_veredito": []
+    },
+    "veredito": "nao_muda_nada_no_portao",
+    "motivo": "`divergencias` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 2 de 6."
+   },
+   {
+    "campo": "fonte_localizada_nao_lida",
+    "itens_com_pelo_menos_um_numero": 1,
+    "itens_ativos_com_pelo_menos_um_numero": 1,
+    "numeros_preenchidos_no_banco": 1,
+    "com_procedencia_dentro_do_teto": 0,
+    "com_procedencia_pior_que_o_teto": 0,
+    "sem_nenhuma_procedencia": 1,
+    "subcampos_preenchidos": {
+     "fonte_localizada_nao_lida.nivel": 1
+    },
+    "se_contasse_como_propriedade": {
+     "recortes_que_mudam_de_veredito": 0,
+     "quais_mudam": [],
+     "recortes_que_ganham_numero_sem_mudar_de_veredito": []
+    },
+    "veredito": "nao_muda_nada_no_portao",
+    "motivo": "`fonte_localizada_nao_lida` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 1."
+   },
+   {
+    "campo": "geometria",
+    "itens_com_pelo_menos_um_numero": 13,
+    "itens_ativos_com_pelo_menos_um_numero": 13,
+    "numeros_preenchidos_no_banco": 52,
+    "com_procedencia_dentro_do_teto": 0,
+    "com_procedencia_pior_que_o_teto": 0,
+    "sem_nenhuma_procedencia": 52,
+    "subcampos_preenchidos": {
+     "geometria.espessura_mm": 13,
+     "geometria.lado_anunciado_cm": 13,
+     "geometria.placa_lado_a_cm": 13,
+     "geometria.placa_lado_b_cm": 13
+    },
+    "se_contasse_como_propriedade": {
+     "recortes_que_mudam_de_veredito": 0,
+     "quais_mudam": [],
+     "recortes_que_ganham_numero_sem_mudar_de_veredito": [
+      {
+       "recorte": "pastilha",
+       "numeros_novos": [
+        "geometria.espessura_mm",
+        "geometria.lado_anunciado_cm",
+        "geometria.placa_lado_a_cm",
+        "geometria.placa_lado_b_cm"
+       ]
+      },
+      {
+       "recorte": "pastilha/vidro",
+       "numeros_novos": [
+        "geometria.espessura_mm",
+        "geometria.lado_anunciado_cm",
+        "geometria.placa_lado_a_cm",
+        "geometria.placa_lado_b_cm"
+       ]
+      }
+     ]
+    },
+    "veredito": "nao_muda_nada_no_portao",
+    "motivo": "`geometria` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e acrescenta numero a 2 recorte(s) que JA passam (`pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 52."
+   },
+   {
+    "campo": "imagem",
+    "itens_com_pelo_menos_um_numero": 17,
+    "itens_ativos_com_pelo_menos_um_numero": 17,
+    "numeros_preenchidos_no_banco": 34,
+    "com_procedencia_dentro_do_teto": 0,
+    "com_procedencia_pior_que_o_teto": 0,
+    "sem_nenhuma_procedencia": 34,
+    "subcampos_preenchidos": {
+     "imagem.altura": 17,
+     "imagem.largura": 17
+    },
+    "se_contasse_como_propriedade": {
+     "recortes_que_mudam_de_veredito": 1,
+     "quais_mudam": [
+      {
+       "recorte": "cola",
+       "de": "passa_na_contagem_sem_lastro",
+       "para": "passa"
+      }
+     ],
+     "recortes_que_ganham_numero_sem_mudar_de_veredito": [
+      {
+       "recorte": "acabamento",
+       "numeros_novos": [
+        "imagem.altura",
+        "imagem.largura"
+       ]
+      },
+      {
+       "recorte": "acabamento/verniz",
+       "numeros_novos": [
+        "imagem.altura",
+        "imagem.largura"
+       ]
+      },
+      {
+       "recorte": "alicate",
+       "numeros_novos": [
+        "imagem.altura",
+        "imagem.largura"
+       ]
+      },
+      {
+       "recorte": "alicate/cortador_de_azulejo",
+       "numeros_novos": [
+        "imagem.altura",
+        "imagem.largura"
+       ]
+      },
+      {
+       "recorte": "cola",
+       "numeros_novos": [
+        "imagem.altura",
+        "imagem.largura"
+       ]
+      }
+     ]
+    },
+    "veredito": "o_portao_esta_certo_por_falta_de_procedencia",
+    "motivo": "`imagem` mudaria o veredito de 1 recorte(s), e nenhum dos 34 numero(s) dele declara fonte por campo: 34 sem procedencia nenhuma e 0 com fonte pior que o nivel 3. Pela decisao pre-registrada ele fica FORA do portao, e o recorte fecha por dado, nao por desistencia."
+   },
+   {
+    "campo": "venda",
+    "itens_com_pelo_menos_um_numero": 21,
+    "itens_ativos_com_pelo_menos_um_numero": 21,
+    "numeros_preenchidos_no_banco": 23,
+    "com_procedencia_dentro_do_teto": 22,
+    "com_procedencia_pior_que_o_teto": 1,
+    "sem_nenhuma_procedencia": 0,
+    "subcampos_preenchidos": {
+     "venda[].quantidade": 23
+    },
+    "se_contasse_como_propriedade": {
+     "recortes_que_mudam_de_veredito": 0,
+     "quais_mudam": [],
+     "recortes_que_ganham_numero_sem_mudar_de_veredito": [
+      {
+       "recorte": "alicate",
+       "numeros_novos": [
+        "venda[].quantidade"
+       ]
+      },
+      {
+       "recorte": "alicate/cortador_de_azulejo",
+       "numeros_novos": [
+        "venda[].quantidade"
+       ]
+      },
+      {
+       "recorte": "alicate/torques",
+       "numeros_novos": [
+        "venda[].quantidade"
+       ]
+      },
+      {
+       "recorte": "pastilha",
+       "numeros_novos": [
+        "venda[].quantidade"
+       ]
+      },
+      {
+       "recorte": "pastilha/vidro",
+       "numeros_novos": [
+        "venda[].quantidade"
+       ]
+      }
+     ]
+    },
+    "veredito": "nao_muda_nada_no_portao",
+    "motivo": "`venda` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e acrescenta numero a 5 recorte(s) que JA passam (`alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 22 de 23."
+   }
+  ],
+  "resumo": {
+   "campos_medidos": 6,
+   "recortes_que_algum_campo_mudaria": [
+    "cola"
+   ],
+   "campos_que_mudariam_veredito_E_TEM_procedencia": [],
+   "campos_que_mudariam_veredito_e_NAO_tem_procedencia": [
+    "afiliado",
+    "imagem"
+   ],
+   "campos_que_exigem_refazer_a_decisao": [],
+   "campos_que_ficam_fora_por_falta_de_procedencia": [
+    "afiliado",
+    "imagem"
+   ],
+   "campos_sem_consequencia_no_portao": [
+    "divergencias",
+    "fonte_localizada_nao_lida",
+    "geometria",
+    "venda"
+   ],
+   "a_leitura": "nenhum campo COM procedencia muda veredito nenhum dos 42 recortes. Os 2 campo(s) que mudariam (`afiliado`, `imagem`) nao declaram fonte por campo em numero nenhum — entao o filtro de procedencia e o que esta segurando o(s) recorte(s) `cola`, e nao a contagem de itens. Tirar o filtro publicaria pagina cujo 'numero calculado proprio' seria um numero que a ilha produziu, nao um que o fabricante declarou."
+  }
  }
 }

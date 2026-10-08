@@ -122,6 +122,36 @@ fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.
 - **`rejunte/acrilico`** — o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`rejunte/epoxi`** — o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 
+## Os numeros que o portao NAO VE — e o que mudaria se visse
+
+**A pergunta:** `geometria` e `propriedade` para o portao da secao 9? E, generalizada, a unica pergunta que vale a pena: QUAL campo do item o portao nao le, e o que mudaria se lesse. A primeira forma foi escrita por duas execucoes e aberta em 08/10/2026.
+
+**A decisao, pre-registrada antes de qualquer numero:** escrita no PROMPT.md desta ilha ANTES de qualquer numero: `geometria` entra no portao SO se os campos dela tiverem a mesma procedencia POR CAMPO que `propriedades` tem. Se nao tiverem, o veredito e que o portao esta CERTO e a `pastilha` nao tem numero de metodo — e isso fecha a categoria por dado, nao por desistencia.
+
+**O mundo medido:** o mais permissivo que existe: campo sem procedencia entra com uma fonte FABRICADA no nivel do teto, e o caminho colapsa o indice da lista. Mundo mais permissivo que o real nunca muda MENOS vereditos que ele — entao zero aqui e zero em toda leitura mais estreita, por unidade, por tipo ou por nivel de fonte.
+
+| campo | itens | numeros | com fonte no teto | sem fonte | vereditos que mudariam | veredito |
+|---|---|---|---|---|---|---|
+| `afiliado` | 41 | 83 | 0 | 83 | 1 | `o_portao_esta_certo_por_falta_de_procedencia` |
+| `divergencias` | 3 | 6 | 2 | 4 | 0 | `nao_muda_nada_no_portao` |
+| `fonte_localizada_nao_lida` | 1 | 1 | 0 | 1 | 0 | `nao_muda_nada_no_portao` |
+| `geometria` | 13 | 52 | 0 | 52 | 0 | `nao_muda_nada_no_portao` |
+| `imagem` | 17 | 34 | 0 | 34 | 1 | `o_portao_esta_certo_por_falta_de_procedencia` |
+| `venda` | 21 | 23 | 22 | 0 | 0 | `nao_muda_nada_no_portao` |
+
+**A leitura:** nenhum campo COM procedencia muda veredito nenhum dos 42 recortes. Os 2 campo(s) que mudariam (`afiliado`, `imagem`) nao declaram fonte por campo em numero nenhum — entao o filtro de procedencia e o que esta segurando o(s) recorte(s) `cola`, e nao a contagem de itens. Tirar o filtro publicaria pagina cujo 'numero calculado proprio' seria um numero que a ilha produziu, nao um que o fabricante declarou.
+
+- **`afiliado`** — `afiliado` mudaria o veredito de 1 recorte(s), e nenhum dos 83 numero(s) dele declara fonte por campo: 83 sem procedencia nenhuma e 0 com fonte pior que o nivel 3. Pela decisao pre-registrada ele fica FORA do portao, e o recorte fecha por dado, nao por desistencia.
+  - **mudaria `cola`**: `passa_na_contagem_sem_lastro` -> `passa`
+- **`divergencias`** — `divergencias` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 2 de 6.
+- **`fonte_localizada_nao_lida`** — `fonte_localizada_nao_lida` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 1.
+- **`geometria`** — `geometria` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e acrescenta numero a 2 recorte(s) que JA passam (`pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 52.
+- **`imagem`** — `imagem` mudaria o veredito de 1 recorte(s), e nenhum dos 34 numero(s) dele declara fonte por campo: 34 sem procedencia nenhuma e 0 com fonte pior que o nivel 3. Pela decisao pre-registrada ele fica FORA do portao, e o recorte fecha por dado, nao por desistencia.
+  - **mudaria `cola`**: `passa_na_contagem_sem_lastro` -> `passa`
+- **`venda`** — `venda` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e acrescenta numero a 5 recorte(s) que JA passam (`alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 22 de 23.
+
+**Quando esta secao reprova:** quando um campo tiver procedencia por campo dentro do teto E mudar algum veredito. Campo que ganha procedencia e nao muda veredito nenhum nao reprova: alarme sem consequencia e o que faz portao ser ignorado.
+
 <!-- DAQUI PARA BAIXO E BUSCA, NAO DERIVACAO: o gerador preserva. -->
 
 ## A classificação de SERP da 14.9 — ELA SAIU DAQUI EM 02/10/2026, E VIROU DADO

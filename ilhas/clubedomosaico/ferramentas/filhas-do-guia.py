@@ -309,6 +309,7 @@ def montar(esquema, banco, perguntas=None):
     teto, linhas = medir(esquema, banco)
     perguntas = carregar_perguntas() if perguntas is None else perguntas
     linhas_de_pergunta = medir_perguntas(esquema, banco, perguntas)
+    linhas_de_fora = medir_fora_do_portao(esquema, banco)
     return {
         "id": "filhas-do-guia",
         "ilha": "clubedomosaico",
@@ -349,6 +350,29 @@ def montar(esquema, banco, perguntas=None):
         "resumo": resumo(linhas),
         "perguntas": linhas_de_pergunta,
         "resumo_das_perguntas": resumo_das_perguntas(linhas_de_pergunta),
+        "os_numeros_que_o_portao_NAO_VE": {
+            "a_pergunta": (
+                "`geometria` e `propriedade` para o portao da secao 9? E, generalizada, a unica"
+                " pergunta que vale a pena: QUAL campo do item o portao nao le, e o que mudaria se"
+                " lesse. A primeira forma foi escrita por duas execucoes e aberta em 08/10/2026."),
+            "a_decisao_pre_registrada": (
+                "escrita no PROMPT.md desta ilha ANTES de qualquer numero: `geometria` entra no"
+                " portao SO se os campos dela tiverem a mesma procedencia POR CAMPO que"
+                " `propriedades` tem. Se nao tiverem, o veredito e que o portao esta CERTO e a"
+                " `pastilha` nao tem numero de metodo — e isso fecha a categoria por dado, nao por"
+                " desistencia."),
+            "o_mundo_que_esta_regua_mede": (
+                "o mais permissivo que existe: campo sem procedencia entra com uma fonte FABRICADA"
+                " no nivel do teto, e o caminho colapsa o indice da lista. Mundo mais permissivo"
+                " que o real nunca muda MENOS vereditos que ele — entao zero aqui e zero em toda"
+                " leitura mais estreita, por unidade, por tipo ou por nivel de fonte."),
+            "quando_esta_secao_REPROVA": (
+                "quando um campo tiver procedencia por campo dentro do teto E mudar algum veredito."
+                " Campo que ganha procedencia e nao muda veredito nenhum nao reprova: alarme sem"
+                " consequencia e o que faz portao ser ignorado."),
+            "campos": linhas_de_fora,
+            "resumo": resumo_de_fora_do_portao(linhas_de_fora, len(linhas)),
+        },
     }
 
 
@@ -478,6 +502,268 @@ def resumo_das_perguntas(linhas):
                                            if l["divergencias_com_a_ancora_a_mao"]),
     }
 
+
+# ------------------------- OS NUMEROS QUE O PORTAO NAO VE (08/10/2026)
+#
+# A PERGUNTA, escrita por duas execucoes antes desta e nunca aberta: `geometria` e `propriedade`
+# para o portao da secao 9? A causa de ela existir esta medida em 08/10/2026 as 13h2xZ — o que
+# responderia a pergunta de metodo da `pastilha` ("soltar as pastilhas da tela ou colar a placa
+# inteira") e `placa_lado_a_cm` e `espessura_mm`, que moram em `geometria`, e `propriedades_com_lastro`
+# le SO `propriedades`. A `pastilha` tem 13 de 13 itens com cinco campos de geometria preenchidos, e
+# eles sao invisiveis para a regua que decide se um recorte tem numero.
+#
+# A DECISAO FOI PRE-REGISTRADA NO PROMPT.md ANTES DE QUALQUER NUMERO, e esta secao e ela virando
+# regua: "`geometria` entra no portao SO se os campos dela tiverem a mesma procedencia por campo que
+# `propriedades` tem. Se nao tiverem, o veredito e que o portao esta CERTO e a `pastilha` nao tem
+# numero de metodo — e isso fecha a categoria por dado, nao por desistencia."
+#
+# E A MEDICAO DERRUBOU A PREMISSA QUE ESCOLHEU O BLOCO, o que e mais do que a decisao pedia. O
+# PROMPT.md justificou a passada dizendo que este era "o unico bloco desbloqueado que pode mudar um
+# veredito de `nao_passa` para `pode_nascer` sem coletar nada". Medido no banco de 08/10, nos quatro
+# mundos abaixo: ZERO recortes de 42 mudam de veredito. A razao e aritmetica e vale para qualquer
+# campo futuro — os campos fora de `propriedades` so existem em categorias cujos recortes JA passam
+# (`pastilha`, `alicate`), e os 30 recortes em `nao_passa` reprovam por falta de ITEM, que promover
+# campo nenhum cria. O portao desta ilha nunca foi travado por QUAL campo ele le; ele e travado por
+# QUANTOS itens o banco tem.
+#
+# POR QUE ISTO E REGUA E NAO UM ARQUIVO DATADO EM `dados/`: a resposta de hoje depende do banco de
+# hoje, e o banco cresce toda semana. Medicao escrita a mao envelhece calada — e envelhecer calada
+# e exatamente o defeito desta familia, que esta ilha ja pagou no `urls_publicadas` e no manifest
+# com SHA mentiroso. Aqui o numero se regenera com o banco, e `--conferir` reprova quando ele muda.
+#
+# O MUNDO MEDIDO E O MAIS PERMISSIVO QUE EXISTE, de proposito. Para campo sem procedencia a regua
+# FABRICA uma fonte no nivel do teto, so para medir o tamanho do que o portao nao ve. Um mundo mais
+# permissivo que o real nunca muda MENOS vereditos que ele — entao zero aqui e zero em toda leitura
+# mais estreita, e a conta nao precisa ser refeita por unidade, por tipo nem por nivel de fonte.
+#
+# QUANDO ESTA SECAO REPROVA, e ela e falha-fechada: quando um campo fora de `propriedades` tiver
+# procedencia por campo DENTRO do teto **e** mudar algum veredito. Ai a decisao de 08/10 foi tomada
+# num mundo que nao existe mais, e quem publicar precisa refaze-la com este numero na mao. Campo que
+# ganha procedencia e nao muda veredito nenhum NAO reprova: seria alarme sem consequencia, e alarme
+# sem consequencia e o que faz portao ser ignorado.
+
+
+def _numeros_do_item(material):
+    """Todo numero do item que NAO mora em `propriedades`, com o `fonte_id` vizinho dele.
+
+    Derivado do registro, nunca de uma lista de nomes: campo novo no esquema aparece aqui
+    sozinho, no dia em que o primeiro registro o preencher. `fontes` fica fora porque os
+    numeros dela sao o NIVEL da fonte, isto e, a regua, nao o dado medido; e booleano fica
+    fora porque `True` e `1` em Python e contar bandeira como numero mediria outra coisa.
+
+    O caminho colapsa o indice da lista (`venda[].quantidade`), e isso e a leitura mais
+    permissiva de proposito: duas ofertas do mesmo item viram o MESMO numero e o portao
+    continua contando ITEM, nunca oferta. Medido em 08/10/2026 na `cola`, que e o unico
+    recorte a um numero de passar: as tres ofertas de `saco` que parecem tres declaracoes
+    sao tres embalagens do MESMO produto, e contar oferta publicaria uma pagina comparando
+    um produto com ele mesmo tres vezes.
+    """
+    def andar(o, caminho, fonte_vizinha):
+        if isinstance(o, bool):
+            return
+        if isinstance(o, (int, float)):
+            yield caminho, fonte_vizinha
+            return
+        if isinstance(o, dict):
+            vizinha = o.get("fonte_id") or fonte_vizinha
+            for k, v in o.items():
+                if k == "fonte_id":
+                    continue
+                for x in andar(v, caminho + "." + k, vizinha):
+                    yield x
+        elif isinstance(o, list):
+            for v in o:
+                for x in andar(v, caminho + "[]", fonte_vizinha):
+                    yield x
+
+    for campo, valor in material.items():
+        if campo in ("propriedades", "fontes") or campo.startswith("_"):
+            continue
+        for caminho, fonte_id in andar(valor, campo, None):
+            yield campo, caminho, fonte_id
+
+
+FONTE_FABRICADA = "_procedencia-fabricada-pela-regua"
+
+
+def _promover(banco, campo, teto):
+    """Copia do banco com os numeros de `campo` promovidos a propriedade — mundo permissivo.
+
+    TODO numero entra com uma fonte FABRICADA no nivel do teto, inclusive o que ja tem
+    `fonte_id` de verdade. Isso e deliberado e e o que mantem as duas perguntas separadas: aqui
+    se mede SO o tamanho do que o portao nao ve, e a procedencia de verdade se conta na linha do
+    campo, nos tres contadores. Usar a fonte real aqui misturaria as duas e produziria a leitura
+    mais errada que esta regua poderia dar — campo com fonte de nivel 6 mudaria MENOS vereditos
+    que campo sem fonte nenhuma, e "o portao nao ve" passaria a depender de quao ruim e a fonte
+    que ele tambem nao ve. Mundo mais permissivo que o real nunca muda MENOS vereditos que ele,
+    e e so isso que a conta precisa garantir.
+    """
+    saida = []
+    for m in banco:
+        m = dict(m)
+        props = dict(m.get("propriedades") or {})
+        fontes = dict(m.get("fontes") or {})
+        promoveu = False
+        for c, caminho, _fonte_id in _numeros_do_item(m):
+            if c != campo:
+                continue
+            promoveu = True
+            props[caminho] = {"valor": 1, "unidade": "x", "fonte_id": FONTE_FABRICADA}
+        if promoveu:
+            fontes[FONTE_FABRICADA] = {
+                "url": "x",
+                "tipo": "procedencia FABRICADA pela regua de `os_numeros_que_o_portao_NAO_VE`",
+                "nivel": teto}
+            m["propriedades"] = props
+            m["fontes"] = fontes
+        saida.append(m)
+    return saida
+
+
+def medir_fora_do_portao(esquema, banco):
+    """Campo por campo, o que o portao da secao 9 nao le — e o que mudaria se lesse."""
+    teto = teto_de_nivel(esquema)
+    _, base = medir(esquema, banco)
+    antes = {l["recorte"]: l for l in base}
+
+    por_campo = {}
+    for m in banco:
+        se_conta = m.get("status") == "ativo"
+        for campo, caminho, fonte_id in _numeros_do_item(m):
+            c = por_campo.setdefault(campo, {
+                "campo": campo, "itens": set(), "itens_ativos": set(),
+                "numeros_preenchidos": 0, "com_procedencia_dentro_do_teto": 0,
+                "sem_nenhuma_procedencia": 0, "com_procedencia_pior_que_o_teto": 0,
+                "subcampos": {}})
+            c["itens"].add(m["id"])
+            if se_conta:
+                c["itens_ativos"].add(m["id"])
+            c["numeros_preenchidos"] += 1
+            c["subcampos"][caminho] = c["subcampos"].get(caminho, 0) + 1
+            fonte = (m.get("fontes") or {}).get(fonte_id) if fonte_id else None
+            if not isinstance(fonte, dict):
+                c["sem_nenhuma_procedencia"] += 1
+            elif isinstance(fonte.get("nivel"), int) and fonte["nivel"] <= teto:
+                c["com_procedencia_dentro_do_teto"] += 1
+            else:
+                c["com_procedencia_pior_que_o_teto"] += 1
+
+    linhas = []
+    for campo in sorted(por_campo):
+        c = por_campo[campo]
+        depois = {l["recorte"]: l for l in medir(esquema, _promover(banco, campo, teto))[1]}
+        mudam = sorted(r for r in antes if antes[r]["veredito"] != depois[r]["veredito"])
+        ganham = []
+        for r in sorted(antes):
+            a = {n["propriedade"] for n in antes[r]["numeros_calculaveis_sobre_o_recorte"]}
+            b = {n["propriedade"] for n in depois[r]["numeros_calculaveis_sobre_o_recorte"]}
+            if b - a:
+                ganham.append({"recorte": r, "numeros_novos": sorted(b - a)})
+
+        if mudam and c["com_procedencia_dentro_do_teto"]:
+            veredito = "A_DECISAO_PRECISA_SER_REFEITA"
+            motivo = ("`%s` tem %d numero(s) com procedencia por campo dentro do teto de nivel %d E"
+                      " mudaria o veredito de %d recorte(s) (%s). A decisao de 08/10/2026 foi"
+                      " tomada num mundo em que nenhum campo fora de `propriedades` fazia as duas"
+                      " coisas; ela precisa ser refeita com este numero na mao."
+                      % (campo, c["com_procedencia_dentro_do_teto"], teto, len(mudam),
+                         ", ".join("`%s`" % x for x in mudam)))
+        elif mudam:
+            veredito = "o_portao_esta_certo_por_falta_de_procedencia"
+            motivo = ("`%s` mudaria o veredito de %d recorte(s), e nenhum dos %d numero(s) dele"
+                      " declara fonte por campo: %d sem procedencia nenhuma e %d com fonte pior que"
+                      " o nivel %d. Pela decisao pre-registrada ele fica FORA do portao, e o recorte"
+                      " fecha por dado, nao por desistencia."
+                      % (campo, len(mudam), c["numeros_preenchidos"],
+                         c["sem_nenhuma_procedencia"], c["com_procedencia_pior_que_o_teto"], teto))
+        else:
+            veredito = "nao_muda_nada_no_portao"
+            motivo = ("`%s` nao muda o veredito de nenhum dos %d recortes, nem no mundo mais"
+                      " permissivo, e %s. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia"
+                      " para a elegibilidade — o que nao quer dizer que o numero seja publicavel:"
+                      " para ir a tela ele ainda precisa de fonte por campo, e este campo tem %d"
+                      " de %d."
+                      % (campo, len(antes),
+                         ("acrescenta numero a %d recorte(s) que JA passam (%s)"
+                          % (len(ganham), ", ".join("`%s`" % g["recorte"] for g in ganham)))
+                         if ganham else "nao acrescenta numero a recorte nenhum",
+                         c["com_procedencia_dentro_do_teto"], c["numeros_preenchidos"]))
+
+        linhas.append({
+            "campo": campo,
+            "itens_com_pelo_menos_um_numero": len(c["itens"]),
+            "itens_ativos_com_pelo_menos_um_numero": len(c["itens_ativos"]),
+            "numeros_preenchidos_no_banco": c["numeros_preenchidos"],
+            "com_procedencia_dentro_do_teto": c["com_procedencia_dentro_do_teto"],
+            "com_procedencia_pior_que_o_teto": c["com_procedencia_pior_que_o_teto"],
+            "sem_nenhuma_procedencia": c["sem_nenhuma_procedencia"],
+            "subcampos_preenchidos": dict(sorted(c["subcampos"].items())),
+            "se_contasse_como_propriedade": {
+                "recortes_que_mudam_de_veredito": len(mudam),
+                "quais_mudam": [{"recorte": r, "de": antes[r]["veredito"],
+                                 "para": depois[r]["veredito"]} for r in mudam],
+                "recortes_que_ganham_numero_sem_mudar_de_veredito": ganham,
+            },
+            "veredito": veredito,
+            "motivo": motivo,
+        })
+    return linhas
+
+
+def resumo_de_fora_do_portao(linhas, total_de_recortes):
+    """As duas perguntas separadas, porque misturar as duas e o que faz esta regua mentir.
+
+    "Qual campo mudaria veredito" e uma pergunta; "qual campo tem procedencia por campo" e
+    outra. O cruzamento delas e o veredito, e e por isso que as quatro listas abaixo existem
+    em vez de um booleano: o campo que mudaria veredito e NAO tem procedencia e a prova de
+    que o filtro de procedencia e carga, nao enfeite.
+    """
+    muda = [l for l in linhas if l["se_contasse_como_propriedade"]["recortes_que_mudam_de_veredito"]]
+    com = sorted(l["campo"] for l in muda if l["com_procedencia_dentro_do_teto"])
+    sem = sorted(l["campo"] for l in muda if not l["com_procedencia_dentro_do_teto"])
+    recortes = sorted({q["recorte"] for l in muda
+                       for q in l["se_contasse_como_propriedade"]["quais_mudam"]})
+    if com:
+        leitura = ("ha campo com procedencia por campo dentro do teto que MUDA veredito (%s): a"
+                   " decisao de 08/10/2026 foi tomada num mundo em que nenhum campo fazia as duas"
+                   " coisas e precisa ser refeita. O portao abaixo reprova."
+                   % ", ".join("`%s`" % x for x in com))
+    elif sem:
+        leitura = ("nenhum campo COM procedencia muda veredito nenhum dos %d recortes. Os %d"
+                   " campo(s) que mudariam (%s) nao declaram fonte por campo em numero nenhum —"
+                   " entao o filtro de procedencia e o que esta segurando o(s) recorte(s) %s, e"
+                   " nao a contagem de itens. Tirar o filtro publicaria pagina cujo 'numero"
+                   " calculado proprio' seria um numero que a ilha produziu, nao um que o"
+                   " fabricante declarou."
+                   % (total_de_recortes, len(sem), ", ".join("`%s`" % x for x in sem),
+                      ", ".join("`%s`" % x for x in recortes)))
+    else:
+        leitura = ("o portao desta ilha nao e travado por QUAL campo ele le, e sim por QUANTOS"
+                   " itens o banco tem: dos %d recortes medidos, nenhum muda de veredito por campo"
+                   " nenhum fora de `propriedades`, com procedencia ou sem." % total_de_recortes)
+    return {
+        "campos_medidos": len(linhas),
+        "recortes_que_algum_campo_mudaria": recortes,
+        "campos_que_mudariam_veredito_E_TEM_procedencia": com,
+        "campos_que_mudariam_veredito_e_NAO_tem_procedencia": sem,
+        "campos_que_exigem_refazer_a_decisao": sorted(
+            l["campo"] for l in linhas if l["veredito"] == "A_DECISAO_PRECISA_SER_REFEITA"),
+        "campos_que_ficam_fora_por_falta_de_procedencia": sorted(
+            l["campo"] for l in linhas
+            if l["veredito"] == "o_portao_esta_certo_por_falta_de_procedencia"),
+        "campos_sem_consequencia_no_portao": sorted(
+            l["campo"] for l in linhas if l["veredito"] == "nao_muda_nada_no_portao"),
+        "a_leitura": leitura,
+    }
+
+
+def conferir_fora_do_portao(d):
+    """Falha-fechada: campo com procedencia dentro do teto QUE MUDA veredito para o mundo."""
+    falhas = []
+    for l in d.get("os_numeros_que_o_portao_NAO_VE", {}).get("campos", []):
+        if l["veredito"] == "A_DECISAO_PRECISA_SER_REFEITA":
+            falhas.append(l["motivo"])
+    return falhas
 
 # ------------------------------------------------- o portao da tabela do ARVORE.md (secao 2)
 
@@ -659,6 +945,32 @@ def gerar_md(d, preservado=""):
         if l["veredito"] == "passa":
             continue
         A("- **`%s`** — %s" % (l["recorte"], l["motivo"]))
+    A("")
+    fora = d["os_numeros_que_o_portao_NAO_VE"]
+    A("## Os numeros que o portao NAO VE — e o que mudaria se visse")
+    A("")
+    A("**A pergunta:** %s" % fora["a_pergunta"])
+    A("")
+    A("**A decisao, pre-registrada antes de qualquer numero:** %s" % fora["a_decisao_pre_registrada"])
+    A("")
+    A("**O mundo medido:** %s" % fora["o_mundo_que_esta_regua_mede"])
+    A("")
+    A("| campo | itens | numeros | com fonte no teto | sem fonte | vereditos que mudariam | veredito |")
+    A("|---|---|---|---|---|---|---|")
+    for l in fora["campos"]:
+        A("| `%s` | %d | %d | %d | %d | %d | `%s` |"
+          % (l["campo"], l["itens_com_pelo_menos_um_numero"], l["numeros_preenchidos_no_banco"],
+             l["com_procedencia_dentro_do_teto"], l["sem_nenhuma_procedencia"],
+             l["se_contasse_como_propriedade"]["recortes_que_mudam_de_veredito"], l["veredito"]))
+    A("")
+    A("**A leitura:** %s" % fora["resumo"]["a_leitura"])
+    A("")
+    for l in fora["campos"]:
+        A("- **`%s`** — %s" % (l["campo"], l["motivo"]))
+        for q in l["se_contasse_como_propriedade"]["quais_mudam"]:
+            A("  - **mudaria `%s`**: `%s` -> `%s`" % (q["recorte"], q["de"], q["para"]))
+    A("")
+    A("**Quando esta secao reprova:** %s" % fora["quando_esta_secao_REPROVA"])
     A("")
     A(FRONTEIRA)
     A("")
@@ -853,11 +1165,27 @@ def autoteste():
          lambda t, l: v(l, "cola/pva")["a_que_distancia_esta"][
              "pode_fechar_completando_registro_existente"]["registros_que_nao_a_declaram"] == [])
 
+    # O `d` que os fixtures de .md usam. Ele existe como funcao por uma cicatriz escrita no caso
+    # 19-b: fixture que monta o dicionario a mao renderiza a secao NOVA vazia, e a bancada fica
+    # verde sobre um trecho de documento que ninguem nunca viu escrito. Com a funcao, secao nova
+    # no `montar()` quebra os tres fixtures de uma vez, que e o alarme certo.
+    def _d_para_md(linhas, perguntas=None, fora=None):
+        perguntas = perguntas or []
+        fora = fora if fora is not None else medir_fora_do_portao(
+            _esquema({"cola": ["pva"]}),
+            [_com_geo(_material("a", "cola", "pva", {"p1": 1}), espessura_mm=4),
+             _com_geo(_material("b", "cola", "pva", {"p2": 1}), espessura_mm=4),
+             _com_geo(_material("c", "cola", "pva", {"p3": 1}), espessura_mm=4)])
+        d = montar(_esquema({"cola": ["pva"]}), [], perguntas=[])
+        d.update({"recortes": linhas, "resumo": resumo(linhas),
+                  "perguntas": perguntas, "resumo_das_perguntas": resumo_das_perguntas(perguntas)})
+        d["os_numeros_que_o_portao_NAO_VE"]["campos"] = fora
+        d["os_numeros_que_o_portao_NAO_VE"]["resumo"] = resumo_de_fora_do_portao(fora, len(linhas))
+        return d
+
     # 18. o gerador e IDEMPOTENTE: gerar do proprio texto gerado devolve o mesmo texto
     def confere_idempotente(t, l):
-        d = {"id": "x", "minimo_exigido_pela_secao_9": 3, "nivel_maximo_de_fonte_lido_do_esquema": 3,
-             "versao_do_esquema_lida": 9, "recortes": l, "resumo": resumo(l),
-             "perguntas": [], "resumo_das_perguntas": resumo_das_perguntas([])}
+        d = _d_para_md(l)
         um = gerar_md(d, preservado="\n## MINHA SERP\n\nmedido a mao\n")
         dois = gerar_md(d, preservado=um.split(FRONTEIRA, 1)[1])
         tres = gerar_md(d, preservado=dois.split(FRONTEIRA, 1)[1])
@@ -867,9 +1195,7 @@ def autoteste():
 
     # 19. o .md gerado PRESERVA o que esta depois da fronteira
     def confere_preserva(t, l):
-        d = {"id": "x", "minimo_exigido_pela_secao_9": 3, "nivel_maximo_de_fonte_lido_do_esquema": 3,
-             "versao_do_esquema_lida": 9, "recortes": l, "resumo": resumo(l),
-             "perguntas": [], "resumo_das_perguntas": resumo_das_perguntas([])}
+        d = _d_para_md(l)
         md = gerar_md(d, preservado="\n## MINHA SERP\n\nmedido a mao\n")
         return "MINHA SERP" in md and "medido a mao" in md
     caso("o .md gerado preserva o trecho de busca",
@@ -886,13 +1212,13 @@ def autoteste():
             [{"id": "pergunta:esp", "categoria": "cola",
               "propriedade_que_carrega_o_numero": "esp",
               "consulta_alvo": "minha consulta de teste", "titulo_candidato": "t"}])
-        d = {"id": "x", "minimo_exigido_pela_secao_9": 3, "nivel_maximo_de_fonte_lido_do_esquema": 3,
-             "versao_do_esquema_lida": 9, "recortes": l, "resumo": resumo(l),
-             "perguntas": perg, "resumo_das_perguntas": resumo_das_perguntas(perg)}
+        d = _d_para_md(l, perguntas=perg)
         um = gerar_md(d, preservado="\n## MINHA SERP\n\nmedido a mao\n")
         dois = gerar_md(d, preservado=um.split(FRONTEIRA, 1)[1])
         return ("pergunta:esp" in um and "minha consulta de teste" in um
-                and "forma de PERGUNTA" in um and um == dois)
+                and "forma de PERGUNTA" in um
+                and "NAO VE" in um and "`geometria`" in um
+                and um == dois)
     caso("o .md publica a secao das perguntas e segue idempotente com ela",
          _esquema({"cola": ["pva"]}), [_material("a", "cola", "pva")], confere_md_com_pergunta)
 
@@ -1080,6 +1406,115 @@ def autoteste():
           [],
           lambda l: l == [])
 
+    # ---- os NUMEROS QUE O PORTAO NAO VE (08/10/2026)
+    #
+    # A regua nova diz "zero recortes mudam de veredito". Regua que responde zero precisa provar
+    # que ela sabe responder diferente de zero — senao "0 de 42" e indistinguivel de uma funcao
+    # que soma nada. E a mesma licao do bloco 3d desta ilha: funcao de portao que nunca rodou e
+    # funcao morta. Os quatro casos abaixo separam as duas perguntas que o veredito cruza, e o
+    # terceiro e o unico que REPROVA o mundo.
+
+    def fcaso(nome, esquema, banco, confere):
+        casos.append((nome, esquema, banco, ("FORA", confere)))
+
+    def campo(linhas, nome):
+        for l in linhas:
+            if l["campo"] == nome:
+                return l
+        raise AssertionError("campo %s nao saiu da medicao" % nome)
+
+    def _com_geo(m, **numeros):
+        """O item ganha um campo de numero SEM procedencia, na forma crua da `geometria`."""
+        m = dict(m)
+        m["geometria"] = dict(numeros)
+        return m
+
+    def _com_oferta(m, quantidade, nivel):
+        """O item ganha um numero em lista COM `fonte_id` vizinho, na forma da `venda`."""
+        m = dict(m)
+        m["fontes"] = dict(m.get("fontes") or {})
+        m["fontes"]["oferta"] = {"url": "x", "tipo": "x", "nivel": nivel}
+        m["venda"] = [{"unidade": "caixa", "quantidade": quantidade, "fonte_id": "oferta"}]
+        return m
+
+    # Um recorte que NAO passa por falta de numero comum (tres itens, cada um com a sua
+    # propriedade) e o unico mundo em que promover campo pode mudar veredito. E ele existe de
+    # verdade no banco desta ilha: e a `cola`, medida em 08/10/2026.
+    def _tres_sem_numero_comum(extra=None):
+        banco = [_material("a", "cola", "pva", {"p1": 1}),
+                 _material("b", "cola", "pva", {"p2": 1}),
+                 _material("c", "cola", "pva", {"p3": 1})]
+        return [extra(m) for m in banco] if extra else banco
+
+    fcaso("campo de numero SEM procedencia que mudaria veredito fica FORA, e o veredito diz isso",
+          _esquema({"cola": ["pva"]}),
+          _tres_sem_numero_comum(lambda m: _com_geo(m, espessura_mm=4)),
+          lambda l: (campo(l, "geometria")["veredito"]
+                     == "o_portao_esta_certo_por_falta_de_procedencia"
+                     and campo(l, "geometria")["sem_nenhuma_procedencia"] == 3
+                     and campo(l, "geometria")["com_procedencia_dentro_do_teto"] == 0
+                     and campo(l, "geometria")["se_contasse_como_propriedade"][
+                         "recortes_que_mudam_de_veredito"] == 2))
+
+    fcaso("MESMO campo COM procedencia dentro do teto REPROVA o mundo — a regua sabe dizer"
+          " diferente de zero",
+          _esquema({"cola": ["pva"]}),
+          _tres_sem_numero_comum(lambda m: _com_oferta(m, 5, nivel=3)),
+          lambda l: (campo(l, "venda")["veredito"] == "A_DECISAO_PRECISA_SER_REFEITA"
+                     and campo(l, "venda")["com_procedencia_dentro_do_teto"] == 3
+                     and conferir_fora_do_portao(
+                         {"os_numeros_que_o_portao_NAO_VE": {"campos": l}})))
+
+    fcaso("procedencia PIOR que o teto nao conta: o teto do esquema morde fora de `propriedades`"
+          " tambem",
+          _esquema({"cola": ["pva"]}, teto=3),
+          _tres_sem_numero_comum(lambda m: _com_oferta(m, 5, nivel=6)),
+          lambda l: (campo(l, "venda")["veredito"]
+                     == "o_portao_esta_certo_por_falta_de_procedencia"
+                     and campo(l, "venda")["com_procedencia_pior_que_o_teto"] == 3
+                     and campo(l, "venda")["com_procedencia_dentro_do_teto"] == 0
+                     and not conferir_fora_do_portao(
+                         {"os_numeros_que_o_portao_NAO_VE": {"campos": l}})))
+
+    fcaso("campo COM procedencia que NAO muda veredito nenhum nao reprova — alarme sem"
+          " consequencia e o que faz portao ser ignorado",
+          _esquema({"cola": ["pva"]}),
+          [_com_oferta(_material("a", "cola", "pva", {"p": 1}), 5, nivel=3),
+           _com_oferta(_material("b", "cola", "pva", {"p": 1}), 5, nivel=3),
+           _com_oferta(_material("c", "cola", "pva", {"p": 1}), 5, nivel=3)],
+          lambda l: (campo(l, "venda")["veredito"] == "nao_muda_nada_no_portao"
+                     and campo(l, "venda")["com_procedencia_dentro_do_teto"] == 3
+                     and not conferir_fora_do_portao(
+                         {"os_numeros_que_o_portao_NAO_VE": {"campos": l}})))
+
+    # O caso medido no banco de verdade em 08/10/2026: a `cola` e o unico recorte a UM numero de
+    # passar, e as tres ofertas de `saco` que parecem tres declaracoes sao tres embalagens do
+    # MESMO produto. Contar oferta publicaria uma pagina comparando um produto com ele mesmo
+    # tres vezes — e o veredito tem de continuar `passa_na_contagem_sem_lastro`.
+    def _tres_ofertas_num_item(m):
+        m = dict(m)
+        m["fontes"] = dict(m.get("fontes") or {})
+        m["fontes"]["oferta"] = {"url": "x", "tipo": "x", "nivel": 3}
+        m["venda"] = [{"unidade": "saco", "quantidade": q, "fonte_id": "oferta"}
+                      for q in (5, 15, 20)]
+        return m
+
+    fcaso("TRES ofertas do MESMO item nao sao tres declaracoes: o portao conta ITEM, nunca oferta",
+          _esquema({"cola": ["pva"]}),
+          [_tres_ofertas_num_item(_material("a", "cola", "pva", {"p1": 1})),
+           _material("b", "cola", "pva", {"p2": 1}),
+           _material("c", "cola", "pva", {"p3": 1})],
+          lambda l: (campo(l, "venda")["itens_com_pelo_menos_um_numero"] == 1
+                     and campo(l, "venda")["numeros_preenchidos_no_banco"] == 3
+                     and campo(l, "venda")["subcampos_preenchidos"] == {"venda[].quantidade": 3}
+                     and campo(l, "venda")["se_contasse_como_propriedade"][
+                         "recortes_que_mudam_de_veredito"] == 0))
+
+    fcaso("booleano NAO e numero: bandeira do item nao entra na medicao",
+          _esquema({"cola": ["pva"]}),
+          [dict(_material("a", "cola", "pva", {"p": 1}), bandeira=True)],
+          lambda l: all(c["campo"] != "bandeira" for c in l))
+
     esquema_real = carregar_esquema()
     banco_real = carregar_banco()
     d_real = montar(esquema_real, banco_real)
@@ -1108,6 +1543,8 @@ def autoteste():
             if isinstance(confere, tuple) and confere and confere[0] == "TABELA":
                 _, falhas_t, deve_aprovar = confere
                 ok = (not falhas_t) if deve_aprovar else bool(falhas_t)
+            elif isinstance(confere, tuple) and confere and confere[0] == "FORA":
+                ok = bool(confere[1](medir_fora_do_portao(esquema, banco)))
             elif isinstance(confere, tuple) and confere and confere[0] == "PERGUNTA":
                 _, perguntas_fab, confere_p = confere
                 ok = bool(confere_p(medir_perguntas(esquema, banco, perguntas_fab)))
@@ -1150,6 +1587,10 @@ def main(argv):
                     or gravado.get("resumo_das_perguntas") != d["resumo_das_perguntas"]):
                 falhas.append("dados/filhas-do-guia.json esta velho na secao das PERGUNTAS: o banco"
                               " ou o dados/perguntas-do-guia.json mudou")
+            if (gravado.get("os_numeros_que_o_portao_NAO_VE")
+                    != d["os_numeros_que_o_portao_NAO_VE"]):
+                falhas.append("dados/filhas-do-guia.json esta velho na secao dos NUMEROS QUE O"
+                              " PORTAO NAO VE: o banco ganhou campo, numero ou procedencia")
         for l in d["perguntas"]:
             for div in l["divergencias_com_a_ancora_a_mao"]:
                 falhas.append("a ancora a mao de `%s` caiu: %s" % (l["pergunta"], div))
@@ -1160,6 +1601,7 @@ def main(argv):
                 if f.read() != md:
                     falhas.append("dados/filhas-do-guia.md nao fecha com a propria derivacao")
         falhas += conferir_tabela_da_arvore(d)
+        falhas += conferir_fora_do_portao(d)
         for f_ in falhas:
             print("  FALHA %s" % f_)
         if falhas:
@@ -1171,6 +1613,12 @@ def main(argv):
               % len(d["perguntas"]))
         print("  ok   dados/filhas-do-guia.md fecha com a propria derivacao")
         print("  ok   a tabela da secao 2 do ARVORE.md fecha com a derivacao, nas duas direcoes")
+        _f = d["os_numeros_que_o_portao_NAO_VE"]["resumo"]
+        print("  ok   os %d campo(s) de numero fora de `propriedades` estao medidos; %d mudaria(m)"
+              " veredito e nenhum deles tem procedencia por campo (%s)"
+              % (len(d["os_numeros_que_o_portao_NAO_VE"]["campos"]),
+                 len(_f["campos_que_mudariam_veredito_e_NAO_tem_procedencia"]),
+                 ", ".join(_f["campos_que_mudariam_veredito_e_NAO_tem_procedencia"]) or "nenhum"))
         print("")
         print("APROVADO: o arquivo gerado fecha com a derivacao.")
         return 0

@@ -20,6 +20,17 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 > responde 404 na 1ª leitura e **200 na 2ª**, por 2 horas, com o corpo do 404 (soft 404). **Vermelho
 > esperado, com dono escrito no `ESTADO.md`** — não é regressão sua, e não se conserta daqui. O que
 > **não** pode acontecer é ele ficar vermelho por **outro** motivo: aí é defeito novo.
+>
+> **E A PORTA JÁ CAIU TRÊS VEZES — 24/09, 05/10 e 08/10 —, COM A ASSINATURA IDÊNTICA NAS SEIS GRANDEZAS, E O
+> INTERVALO ENTRE QUEDAS ENCURTOU DE 11 DIAS PARA 3.** Em 08/10 às 19h2xZ quem pegou a queda foi **este
+> aviso**, no começo do bloco, e não a ronda: 20 das 21 URLs em 404. **Rode os dois comandos antes de
+> qualquer coisa, sempre** — portão que mora no caminho do trabalho roda, portão que depende de alguém
+> lembrar não roda. Se `conferir-no-ar.py` reprovar com 404 em massa, a causa quase certamente é esta:
+> repare pela **29.3** (a ilha caída esperando fornecedor é pior que reparada de novo), confira no ar, e
+> **escreva a quarta linha em `dados/consertos.md`** — a série é o que sustenta o chamado. **O chamado na
+> HostGator é do Raphael**, está em `dados/despachos.md` desde 05/10 e segue sem resposta; pela **19.4(b)**
+> a terceira queda já era chamado e não reparo, e o reparo só continua valendo porque o chamado não foi
+> respondido.
 
 ## O que esta ilha tem de diferente (leia antes de tudo)
 Esta é a **terceira ilha** e a primeira que **não veio da Bússola**: é um projeto pessoal do Raphael. A mãe dele faz mosaico artesanal (vasos, colares, quadros). O site tem **três motores num domínio só**, e a malha fecha um ciclo comercial completo:
@@ -1784,8 +1795,10 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    >
    > ---
    >
-   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É A PERGUNTA QUE DUAS EXECUÇÕES JÁ DEIXARAM ESCRITA E NENHUMA
-   > ABRIU: `geometria` É `propriedade` PARA O PORTÃO DA SEÇÃO 9?**
+   > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E ELE É A PERGUNTA QUE DUAS EXECUÇÕES JÁ DEIXARAM ESCRITA E NENHUMA
+   > ABRIU: `geometria` É `propriedade` PARA O PORTÃO DA SEÇÃO 9?**~~ **RESPONDIDA EM 08/10/2026 às 19h4xZ.
+   > A RESPOSTA É NÃO, POR DOIS MOTIVOS INDEPENDENTES — E O SEGUNDO DERRUBA A PREMISSA QUE ESCOLHEU ESTE
+   > BLOCO. Leia a resposta abaixo ANTES de reler a justificativa riscada.**
    >
    > **A causa, medida em 08/10 às 13h2xZ:** o que responderia a pergunta de método da `pastilha` — *"soltar
    > as pastilhas da tela ou colar a placa inteira"* — é `placa_lado_a_cm` e `espessura_mm`, que moram em
@@ -1825,6 +1838,92 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > não tentar a terceira filha da `rejunte` por coleta (*"NÃO REPITA A COLETA"*, medido em 05/10).
    >
    > ---
+   >
+   >
+   > ---
+   >
+   > **A RESPOSTA, MEDIDA EM 08/10/2026 ÀS 19h3xZ — E ELA VIROU RÉGUA, NÃO ARQUIVO DATADO.** A medição mora na
+   > seção derivada `os_numeros_que_o_portao_NAO_VE` de `dados/filhas-do-guia.json`/`.md`, se regenera com o
+   > banco e `--conferir` reprova quando o número muda. **Não releia esta prosa para saber o número: rode
+   > `python3 ferramentas/filhas-do-guia.py --conferir`.**
+   >
+   > **1. `geometria` NÃO ENTRA, e os dois motivos são independentes:**
+   > - **Procedência: 0 de 52.** Os 13 itens de `pastilha` têm **52 números de geometria preenchidos** e
+   >   **nenhum** declara `fonte_id`. E não é desleixo de coleta — o esquema declara os subcampos como
+   >   escalares (`number|null`), então **não existe onde escrever a fonte**. `propriedades` tem
+   >   `formato_de_cada_campo: "{valor, unidade, fonte_id, declarado_como}"`; `geometria` não tem nada disso.
+   >   É exatamente o que a decisão pré-registrada exigia, e ela está cumprida: o portão está **certo**.
+   > - **Consequência: 0 de 42.** Num mundo em que `geometria` conta como propriedade, **nenhum** dos 42
+   >   recortes muda de veredito. `pastilha` e `pastilha/vidro` **já passavam** — ganhariam cinco números e
+   >   nenhum veredito.
+   >
+   > **2. E A PREMISSA QUE ESCOLHEU ESTE BLOCO ESTÁ ERRADA, com número.** A justificativa riscada acima diz,
+   > com estas palavras, que este era *"o único bloco desbloqueado que pode mudar um veredito de `nao_passa`
+   > para `pode_nascer` sem coletar nada"*. **Não pode, e nenhum campo pode.** A razão é aritmética e vale
+   > para todo campo futuro: os campos fora de `propriedades` só existem em categorias cujos recortes **já
+   > passam**, e os **30 recortes em `nao_passa` reprovam por falta de ITEM** — que promover campo nenhum
+   > cria. **O portão desta ilha nunca foi travado por QUAL campo ele lê; ele é travado por QUANTOS itens o
+   > banco tem.** Quem for escrever "o portão está apertado" de novo rode a régua primeiro.
+   >
+   > **3. A SURPRESA, que não estava na pergunta:** a régua foi generalizada para **todo** campo de `MATERIAL`
+   > que carrega número fora de `propriedades`, derivado do registro e não de uma lista de nomes — e são
+   > **seis**. `venda[].quantidade` tem **22 de 23 números com procedência por campo dentro do teto de nível
+   > 3**: é o **único** campo que já cumpre o critério pré-registrado, e **muda 0 vereditos** também.
+   > Admiti-lo custaria nada e renderia nada.
+   >
+   > **4. O ACHADO QUE FAZ O FILTRO DE PROCEDÊNCIA SER CARGA E NÃO ENFEITE:** `afiliado` e `imagem`
+   > **virariam** a `cola` de `passa_na_contagem_sem_lastro` para `passa`, e o único obstáculo entre eles e o
+   > portão é a exigência de fonte por campo. Os números deles são `afiliado.degrau` e
+   > `imagem.largura`/`altura` — **números que a ilha produziu, não que o fabricante declarou**. Sem o filtro,
+   > a `cola` nasceria publicando como "número calculado próprio" o degrau de afiliado ou a largura em pixels
+   > da foto. **O filtro não estava protegendo `geometria` de nada; estava segurando a `cola`.**
+   >
+   > **5. E A `cola` ENSINOU A TERCEIRA COISA, dentro do próprio banco:** as **três ofertas de `saco`** que
+   > parecem três declarações são **três embalagens do MESMO produto**. A régua conta **ITEM**, nunca oferta.
+   > Virou mutação com esse nome.
+   >
+   > **O QUE A PERGUNTA DEIXA DECIDIDO PARA SEMPRE, e é o que poupa a próxima execução:** `geometria` fica
+   > fora do portão; a `pastilha` **não tem número de método**, e isso fecha a categoria **por dado**, não por
+   > desistência — como a decisão pré-registrada mandava. Se alguém der procedência por campo à `geometria` no
+   > esquema, **não precisa reabrir esta discussão de cabeça**: a régua reprova sozinha, nomeando o campo, e
+   > aí a decisão se refaz com o número na mão.
+   >
+   > ---
+   >
+   > **O PRÓXIMO BLOCO NÃO É MAIS RÉGUA, E FOI A MEDIÇÃO DE HOJE QUE O ESCOLHEU: É ITEM DE BANCO —
+   > `alicate/martelinho`, TRÊS REGISTROS, E ELE É O ÚNICO LUGAR ONDE TRÊS REGISTROS VIRAM UMA MÃE DE NÍVEL 2.**
+   >
+   > **Por que ele, e o número não é escolha minha:** está derivado em
+   > `resumo.por_categoria_do_guia.alicate.caminho_mais_barato_para_as_3_filhas` de
+   > `dados/filhas-do-guia.json` — `faltam_filhas: 1`, `itens_de_banco_a_coletar: 3`, em
+   > `alicate/martelinho`. A `alicate` já tem **duas** filhas que passam (`torques` e
+   > `cortador_de_azulejo`) e a **16.5** pede três. Todas as outras categorias estão a duas ou três filhas:
+   > `rejunte` a 2 (4 itens), `pastilha` a 2 (6), `cola` a 3 (6), `base` e `apoio` a 3 (9 cada).
+   > **A `alicate` é a mais barata do arquipélago e a única a UMA filha.**
+   >
+   > **E por que isto é o próximo e não mais uma medição:** esta ilha está na **oitava execução sem URL
+   > nova** (21 contra as 40 do piso da seção 21), o código do Guia deixou de ser impedimento em 08/10 às
+   > 16h3xZ, e a régua do portão acabou de dizer, com 0 de 42, que **nenhuma mudança de régua move isso**.
+   > O que falta é dado, e está nomeado.
+   >
+   > **O que o bloco tem de fazer, na ordem:**
+   > 1. **Coletar os 3 registros de `alicate/martelinho`** pelo método desta ilha — busca restrita ao domínio
+   >    do fabricante, duas passadas por SKU com consultas escritas de forma diferente, **nenhuma delas
+   >    carregando o valor que se quer confirmar** (seção 8), pedindo os RÓTULOS da ficha. O egresso aos
+   >    domínios de fabricante está fechado por política desde 12/09: remeça pela **20.2** antes de concluir
+   >    qualquer coisa, e todo campo técnico nasce com `conferir_no_pdf: true`.
+   > 2. **Passar pelo `validar-banco.py`** e conferir que a `alicate` fecha as **3 filhas da 16.5** na régua,
+   >    regerando `filhas-do-guia` e `cruzamento-14-9` no mesmo commit.
+   > 3. **Só então** a mãe de nível 2 `/materiais/alicates-e-corte/` entra na fila — e ela precisa da
+   >    classificação de SERP da **14.9** por consulta, que é busca e não contagem de banco. **Não publique
+   >    na mesma passada que coletou:** é a mesma razão pela qual este bloco não publicou em cima da régua
+   >    que mudou.
+   >
+   > **E O QUE ELE NÃO DEVE FAZER:** não coletar `apoio`, `base` nem `cola` "de passagem" — as três estão a
+   > duas ou três filhas e nenhuma delas vira mãe com três registros; não inventar fabricante de martelinho
+   > sem fonte de nível 3 (a `pastilha` já pagou essa conta com o 1x1, que não existe em catálogo nenhum e
+   > travou uma faixa inteira da F1); e não tentar a terceira filha da `rejunte` por coleta
+   > (*"NÃO REPITA A COLETA"*, medido em 05/10).
    >
    > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A TERCEIRA FILHA DA `rejunte` — A CATEGORIA ESTÁ A UMA
    > CONSULTA DA SEGUNDA MÃE DO GUIA, E AS DUAS QUE ELA JÁ TEM ESTÃO MEDIDAS NOS DOIS PORTÕES.**~~
