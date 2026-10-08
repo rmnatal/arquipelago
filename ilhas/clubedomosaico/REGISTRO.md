@@ -3,6 +3,129 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+08/10/2026 13h2xZ — A FORMA DA CONSULTA SEGUE A NATUREZA DO NÚMERO: A `pastilha` ESTÁ TOMADA, E A CAUSA NÃO É A FRASE
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **13h17Z**, push da reserva aceito na primeira
+tentativa (`9b1543e`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com
+`executando_desde: null`, que pela **1.1** já basta — e o último commit na pasta era de **11h03Z**, duas
+horas e catorze minutos atrás, fora da janela dos 40 minutos nos dois critérios. `git fetch origin main`
+trouxe 3 commits; a branch `claude/dreamy-mccarthy-j8tuu5` estava **idêntica ao `main`** e sem PR aberto —
+nada a mesclar. **Rede pela 20.2:** `/` em **200** na primeira tentativa. Reserva **renovada às 13h32Z**
+pela 1.1, porque o bloco passou de 40 minutos.
+
+**O DESPACHO NÃO ERA ALCANÇÁVEL, E EU CONFERI ISSO EM VEZ DE HERDAR A FRASE (18.5 + seção 4).** A leitura
+semanal de 07/10 deixou quatro itens, reescritos pela 18.3 em 08/10 com um motivo só para os quatro: a
+ferramenta que cada um exige não está aqui. **Retestei antes de respeitar:** `python3
+ferramentas/search-console.py --ilha clubedomosaico` devolve *"Sem credencial: defina GOOGLE_SA_B64,
+GOOGLE_SA_JSON ou GOOGLE_SA_FILE"* e `env | grep -c GOOGLE_SA` devolve **0**. Os itens 2 e 3 são leitura de
+Search Console, o 4 é sessão do Shopee Afiliados, e a Proposta 3 é URL nova que a própria leitura manda
+entrar como bloco. **Despacho inalcançável não é despacho fechado**: ele fica como está, e esta execução
+foi para a fila.
+
+**O BLOCO FOI O DA FILA**, escrito em 07/10 às 19h5xZ, e ele tinha quatro passos e dois ramos. Antes de
+começar, medi o estado real em vez de ler a prosa — o `REGISTRO.md` de 10h4xZ fecha dizendo que o bloco
+desbloqueado era *"a segunda mãe do Guia, que desde 07/10 é a `rejunte` e está a uma filha, por
+`junta_min_mm` e `junta_max_mm`"*, e isso **não bate** com a fila: aquela pergunta da junta JÁ é uma das
+duas filhas que a `rejunte` tem. O `cruzamento-14-9.py` deu o número: `rejunte` com **2** filhas por
+consulta e a 16.5 pede 3, com as três portas da terceira medidas e fechadas em 07/10. A fila estava certa,
+o resumo do registro estava solto, e é a lição que esta ilha já escreveu com outras palavras —
+**relatório velho também mente**.
+
+1. **A PERGUNTA ESTÁ DECLARADA E PASSOU O PORTÃO DE DADO.** `pergunta:pastilha-placa-ou-caixa` em
+   `dados/perguntas-do-guia.json`, apontando `placas_por_caixa`, com a consulta-alvo e a `ancora_a_mao`
+   escritas à mão. A régua contou **12 dos 13** itens ativos declarando o número com fonte de nível 3, o
+   conjunto **não coincide** com o recorte de tipo (a `pastilhart-af1500` é a única sem número de caixa
+   nenhum, os três campos nulos) e a âncora **não caiu**. `veredito: passa`.
+
+2. **E ELA É A PRIMEIRA PERGUNTA DESTA ILHA QUE NÃO EXISTE POR ATRAVESSAR TIPOS.** A `pastilha` tem um tipo
+   só com banco (`vidro`, 13 itens), então a justificativa dela é a outra metade da 14.9: o recorte de
+   TIPO `pastilha/vidro` **passa** o portão de dado e **reprova** no de SERP, com duas consultas de produto
+   TOMADAS, e a mãe também. A pergunta troca o recorte sem trocar o banco — era a única forma que restava.
+
+3. **A SERP VOLTOU TOMADA, E A FORMA NÃO SALVOU A CONSULTA.** A frase foi escrita na forma exata que abriu
+   o `rejunte` seis dias antes (*"dá para … ou precisa …"*), sem pedir medida (limite 5) e sem nomear marca
+   (limite 3). **Mediu no Brasil** — zero desvio, o limite 1 não tem parte nisto — e **nove dos dez
+   resultados são página de produto da mesma pastilha de vidro**, em Telha Norte, Extra e MadeiraMadeira; o
+   décimo é item de licitação de portal de compra pública. Zero fórum, zero vídeo, zero blog, zero resposta
+   genérica. Quarta consulta TOMADA na categoria, **primeira em forma de pergunta**.
+
+4. **A CAUSA ESTÁ NO NÚMERO, NÃO NA FRASE, e é o achado desta execução.** As únicas propriedades que passam
+   o portão da seção 9 na `pastilha` são `placas_por_caixa`, `m2_por_caixa` e `peso_caixa_kg` — **os três
+   são números de CAIXA, isto é, comerciais** —, e não existe frase honesta que um número de caixa responda
+   e que não seja uma pergunta de compra. Quem vende já ocupa a consulta de compra. No `rejunte` o número é
+   `junta_min_mm`, que é número de **gesto**, e é por isso que a pergunta do gesto cabia nele. Está escrito
+   como leitura no `serp-das-filhas.json`, em `a_forma_da_consulta_segue_a_natureza_do_numero`, com a regra
+   prática: **antes de escrever a próxima pergunta de qualquer categoria, olhe o número primeiro.**
+
+5. **ISTO DERRUBA UMA LEITURA QUE TINHA CINCO ACERTOS SEGUIDOS.** `as_abertas_sao_pergunta_e_as_tomadas_sao_produto`
+   diz que a forma da consulta decide: produto fecha, pergunta abre. Acertou cinco vezes e **errou na
+   sexta**, e o erro ensina mais que os cinco acertos — a forma não é livre, ela segue a natureza do número
+   que a página tem para entregar. A leitura antiga fica **sem uma palavra alterada** no arquivo, com a
+   nova ao lado: foi ela que escolheu o experimento, e o que ela mediu continua certo.
+
+6. **UMA SEGUNDA MEDIÇÃO, DE PROPÓSITO, PARA SEPARAR DUAS CAUSAS (seção 7 do `ARQUIPELAGO.md`).** Se a
+   `pastilha` fosse tomada só por a pergunta ser de compra, uma pergunta de MÉTODO limpa deveria abrir.
+   Medi *"preciso soltar as pastilhas da tela para fazer mosaico em vaso redondo ou cola a placa inteira"*
+   — nenhuma palavra de compra, nenhum número, nenhuma marca. Voltou **NAO_MEDIDA por desvio PARCIAL de
+   país**, forma nova neste arquivo: 1stDibs italiano, patente da OEPM espanhola, patente americana,
+   fabricante francês e três páginas de um fórum inglês, junto de dois brasileiros genéricos (um artigo de
+   2009) e duas páginas de produto. O núcleo é bilíngue pelo **limite 4** — `mosaico`, `placa` e `vaso`
+   cabem inteiros em italiano e em espanhol —, e a consulta **não pede medida**, então não é caso do limite
+   5. **São DUAS portas com DOIS motivos diferentes**, e nenhuma se abre reescrevendo a frase.
+
+7. **E A TERCEIRA COISA, QUE É DE ESQUEMA E NÃO CONSERTEI DE PASSAGEM:** o que responderia *"soltar da tela
+   ou não"* é `placa_lado_a_cm` e `espessura_mm`, que moram em **`geometria`** — e o portão da seção 9 lê
+   **só `propriedades`**. A `pastilha` tem **13 de 13** em cinco campos de geometria, invisíveis para a
+   régua. Não é defeito do portão: é a pergunta *"geometria é propriedade?"*, e ela muda o veredito de TODO
+   recorte desta ilha. Fica escrita na fila como bloco próprio, não como linha de carona.
+
+8. **DOIS DEFEITOS DE ESPELHO ACHADOS E FECHADOS DE CARONA, e os dois são a mesma família do que a execução
+   de 10h4xZ nomeou nos nove sha vencidos.** (a) `dados/perguntas-do-guia.json` **não estava no
+   manifest**: nasceu em 07/10 fora do espelho, e duas execuções o mudaram sem o atualizador imprimir uma
+   linha — **arquivo fora do manifest não tem sha para vencer**, e envelhece sem nem a chance de ser
+   acusado. Entrou, com `publicar: false` e o motivo escrito na própria entrada. (b) O campo `registros` do
+   `serp-das-filhas` dizia **10** havendo **22** medições: seis passadas de 07/10 e 08/10 entraram sem que
+   ninguém o reescrevesse, e o atualizador confere sha e **não contagem**. Corrigido, com a correção
+   escrita no campo `fonte` e com a razão: resumo velho lido como fato é o defeito que este repositório
+   mais paga (seção 4).
+
+9. **O QUE EU REESCREVI COM A INDENTAÇÃO ERRADA E DESFIZ ANTES DE COMMITAR, porque diff de 1.101 linhas
+   para 2 registros não é revisável.** A primeira gravação do `serp-das-filhas.json` saiu com `indent=1` e
+   o arquivo era `indent=2`: 1.101 linhas mudadas, das quais 56 reais. Conferi que nada havia sido perdido
+   comparando o JSON antigo com o novo campo por campo, repus a indentação original e regravei o sha. O
+   diff final é **144 inserções e 14 remoções** nos seis arquivos.
+
+**NADA FOI AO AR, E ISSO NÃO É OMISSÃO:** os cinco arquivos mudados são `publicar: false`, nenhum HTML e
+nenhum snippet foram tocados, o manifest segue na **revisão 70** e **não houve Sync a acionar**. Bloco de
+medição não produz desembarque.
+
+**PORTA DE ENTRADA (seção 29), os dois comandos:** `conferir-no-ar.py` **APROVADO, 524 afirmações, 0
+falha** — as 21 URLs do sitemap chegam inteiras também a quem não quebra o cache, e o sitemap serve XML
+pela borda. E `leitura-do-visitante.py` fechou **REPROVADO com exatamente 1 defeito**: 22 URLs lidas sem
+quebra de cache, 0 em janela de cache, e o único vermelho é o **soft 404 da borda** (origem 404, borda 404
+na 1ª leitura e 200 na 2ª, `max-age=7200`). É o **vermelho esperado, com dono escrito** — pendência do
+Raphael desde 29/09, registro e não portão —, e o que importava conferir era que ele não ficasse vermelho
+por **outro** motivo: não ficou.
+
+**BANCADA:** casca **744**, F1 **228**, F2 **174**, guia **110**, técnicas **139**,
+`teste-prestacao-rejunte` 5 afirmações com 540 estados da F2 e 180 da F1, `validar-banco` e
+`validar-pastilhas` verdes, `filhas-do-guia --autoteste` **40 de 40** e `--conferir` aprovado (inclusive a
+tabela da seção 2 do `ARVORE.md` nas duas direções), `cruzamento-14-9 --autoteste` **46 de 46** e
+`--conferir` aprovado. **Nenhuma bancada de mutação rodou, e o motivo é que nenhuma linha de código foi
+tocada** — mutação sobre código intocado não mede nada (seção 8).
+
+**NENHUMA URL NOVA — a ilha segue em 21, e esta é a SÉTIMA execução seguida sem URL nova.** Está medido
+contra o piso: **21 contra as 40 da seção 21**, `piso: abaixo`. A 21.8 não autoriza e não proíbe leva nesta
+ilha. O argumento de crescimento da fila fica escrito pela sétima vez, e agora com um número atrás dele: as
+quatro portas baratas do Guia que podiam virar URL sem código estão **todas medidas e fechadas** — é por
+isso que o próximo bloco é código.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** o **snippet do Guia deixar de ser de uma categoria só**, que é o ramo (4)
+que o próprio bloco de 07/10 escreveu para o caso TOMADA. É trabalho de código, não espera dado nenhum, e
+**toda** segunda mãe vai exigi-lo. Depois dele a segunda mãe é a `rejunte`, a uma filha da 16.5. E o
+veredito das duas trocas de promessa de 08/10 continua sendo da **leitura de 14/10**, pelo critério que a
+Proposta 1 escreveu — **não troque o título de nenhuma das quatro antes disso**.
+
 08/10/2026 10h4xZ — A PROMESSA DA SERP DEIXOU DE SER INVENTÁRIO E PASSOU A SER A RESPOSTA: O TÍTULO NOMEIA A COLA, E O NOME SAI DO BANCO
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h18Z**, push da reserva aceito na primeira
