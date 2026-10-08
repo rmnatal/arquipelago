@@ -21,7 +21,10 @@
    "o_que_a_serp_nao_publica": "o limite em mm por tipo de ferramenta. A medicao da mae (ABERTA, faixa 100-1.000) registra que NENHUM dos dez compara as quatro ferramentas que o nicho nomeia, e a de `alicate/torques` registra que a SERP publica a regra qualitativa (roldana para vidro, videa reta para ceramica) e nenhum dos dez publica o milimetro.",
    "ancora_a_mao": {
     "itens_que_declaram_o_numero": 4,
-    "tipos_atravessados": ["cortador_de_azulejo", "torques"],
+    "tipos_atravessados": [
+     "cortador_de_azulejo",
+     "torques"
+    ],
     "escrita_em": "2026-10-07"
    }
   },
@@ -35,8 +38,28 @@
    "o_que_a_serp_nao_publica": "a faixa em milimetros que cada rejunte cobre. Medido em 07/10/2026: dos nove resultados que ocupam a consulta, quatro sao materia de decoracao sobre caquinho, dois sao manual de assentamento de um kit de fabricante, um e calculadora de consumo e um e tese — e nenhum diz de quantos milimetros e a junta que um rejunte de prateleira cobre.",
    "ancora_a_mao": {
     "itens_que_declaram_o_numero": 5,
-    "tipos_atravessados": ["acrilico", "cimenticio", "epoxi"],
+    "tipos_atravessados": [
+     "acrilico",
+     "cimenticio",
+     "epoxi"
+    ],
     "escrita_em": "2026-10-07"
+   }
+  },
+  {
+   "id": "pergunta:pastilha-placa-ou-caixa",
+   "categoria": "pastilha",
+   "propriedade_que_carrega_o_numero": "placas_por_caixa",
+   "consulta_alvo": "da para comprar so uma placa de pastilha de vidro para mosaico ou precisa levar a caixa fechada",
+   "titulo_candidato": "Placa avulsa ou caixa fechada: quanto vem em cada uma",
+   "por_que_e_pergunta_e_nao_tipo": "A `pastilha` tem UM tipo com banco (`vidro`, 13 itens ativos), entao esta pergunta NAO existe por atravessar tipos — e a primeira desta ilha cuja justificativa e a outra metade da 14.9. O recorte de TIPO `pastilha/vidro` PASSA o portao de dado (13 itens) e REPROVA no de SERP: as duas consultas medidas nele sao de PRODUTO (`pastilhas de vidro para mosaico`, `quantas pastilhas vem na caixa placa telada mosaico vidro medida`) e as duas voltaram TOMADA, com marketplace e fabricante ocupando. A mae tambem: `qual pastilha escolher para fazer mosaico artesanal`, TOMADA. Sao TRES passadas de consulta de produto na mesma categoria, e a leitura `as_abertas_sao_pergunta_e_as_tomadas_sao_produto` deste arquivo ja acertou cinco vezes seguidas. A pergunta e a unica forma que resta: ela troca o recorte sem trocar o banco. E o conjunto dela NAO coincide com o do tipo — 12 dos 13, porque a `pastilhart-af1500` nao declara numero de caixa nenhum (os tres campos nulos, conferido em 08/10/2026).",
+   "o_que_a_serp_nao_publica": "quanto vem numa caixa de pastilha de vidro e se existe caixa pequena. Medido no banco em 08/10/2026 e e o que a pagina entrega: a caixa vai de 10 a 22 placas e de 0,85 a 2,09 m2 nos 12 itens que declaram, ou seja NAO existe caixa pequena neste catalogo — a menor e 0,85 m2, e um vaso leva uma fracao disso. O numero que falta na SERP nao e o preco da placa: e o tamanho do menor lote que o fabricante fecha.",
+   "ancora_a_mao": {
+    "itens_que_declaram_o_numero": 12,
+    "tipos_atravessados": [
+     "vidro"
+    ],
+    "escrita_em": "2026-10-08"
    }
   }
  ]

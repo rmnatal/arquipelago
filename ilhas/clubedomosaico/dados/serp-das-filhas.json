@@ -518,11 +518,66 @@
       "fonte_da_faixa": null,
       "numero_que_a_serp_nao_publica": "a faixa de junta em milimetros que cada rejunte cobre — `junta_min_mm` e `junta_max_mm`, declaradas por 5 de 5 rejuntes deste banco com fonte de nivel 2 nos cinco, e com as tres faixas separando os tres tipos: acrilico de 1 a 4 mm, epoxi de 1 a 5 mm, cimenticio de 2 a 10 mm. A faixa descoberta que a pagina tem de DIZER, pela 14.3, e o piso de 2 mm dos tres cimenticios: quem encosta os caquinhos nao tem rejunte cimenticio no banco que o atenda, e os dois que chegam a 1 mm sao o acrilico e o epoxi.",
       "o_que_esta_passada_acrescenta": "E a terceira consulta desta ilha a medir no Brasil, e as tres nao pedem numero. Ela e a consulta-alvo da `pergunta:rejunte-largura-da-junta`, e e a prova de que a pergunta da artesa mede onde a pergunta do engenheiro desvia: a mesma informacao, pedida pelo gesto (`colar bem juntos`) em vez de pela unidade (`junta de 1 mm`)."
+    },
+    {
+      "recorte": "pergunta:pastilha-placa-ou-caixa",
+      "consulta": "da para comprar so uma placa de pastilha de vidro para mosaico ou precisa levar a caixa fechada",
+      "medida_em": "2026-10-08",
+      "quem_ocupa": [
+        "Telha Norte BR (4 paginas de produto de pastilha de vidro)",
+        "Extra BR (3 paginas de produto da mesma linha, uma por cor)",
+        "MadeiraMadeira BR (2 paginas de produto)",
+        "TCE-MT (portal de compras publicas, item de licitacao)"
+      ],
+      "tipos_que_ocupam": [
+        "loja",
+        "marketplace",
+        "agregador"
+      ],
+      "classificacao": "TOMADA",
+      "motivo": "SEM DESVIO DE PAIS — as dez sao brasileiras, e o limite 1 nao tem parte nisto. O que ocupa e loja: nove das dez sao PAGINA DE PRODUTO da mesma pastilha de vidro, em tres varejistas (Telha Norte, Extra, MadeiraMadeira), e a decima e item de licitacao de um portal de compras publicas. ZERO forum, ZERO video, ZERO blog, ZERO resposta generica. Nenhum dos dez responde quanto vem na caixa nem se existe caixa pequena; eles vendem a placa e deixam a unidade no rotulo do anuncio.",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": "quanto vem numa caixa de pastilha de vidro e qual e o menor lote que o fabricante fecha. Medido no banco em 08/10/2026: `placas_por_caixa` de 10 a 22 e `m2_por_caixa` de 0,85 a 2,09, declarados por 12 dos 13 itens ativos com fonte de nivel 3. O numero nao foi servido porque a SERP e TOMADA, e ele fica escrito aqui para quem for publicar nao recoletar.",
+      "o_que_esta_passada_acrescenta": "E A QUARTA CONSULTA TOMADA NA `pastilha`, E A PRIMEIRA EM FORMA DE PERGUNTA — e por isso ela nao repete as tres: as tres anteriores nomeavam o produto, esta faz uma pergunta de dois caminhos, na forma que mediu ABERTA no `rejunte` seis dias antes (`da para ... ou precisa ...`). A forma nao salvou a consulta. A CAUSA ESTA NO NUMERO, NAO NA FRASE: as unicas propriedades que passam o portao da secao 9 nesta categoria sao `placas_por_caixa`, `m2_por_caixa` e `peso_caixa_kg` — as tres sao numeros de CAIXA, isto e, numeros comerciais —, e pergunta que um numero comercial responde e pergunta de compra, por mais gesto que tenha a frase. Quem vende ja ocupa a consulta de compra. Nao escreva uma quinta consulta de `pastilha` em cima dos numeros de caixa."
+    },
+    {
+      "recorte": "pastilha",
+      "consulta": "preciso soltar as pastilhas da tela para fazer mosaico em vaso redondo ou cola a placa inteira",
+      "medida_em": "2026-10-08",
+      "quem_ocupa": [
+        "1stDibs IT (painel de micromosaico antigo)",
+        "OEPM ES (patente ES 0304982 A1, PDF)",
+        "Justia Patents US (patente de tesselas)",
+        "Emaux de Briare FR (fabricante, linha Pastilles)",
+        "Accio (agregador)",
+        "Tilers Forums UK (3 paginas da MESMA discussao `sheet-mounted glass mosaics`)",
+        "Flooring Clarity US (como cortar placa telada)",
+        "CycleChat UK (irrelevante)",
+        "Catraca Livre BR (materia de peca de jardim com resto de azulejo)",
+        "Acessa.com BR (2 paginas do mesmo artigo de decoracao de 2009)",
+        "Extra BR e Telha Norte BR (pagina de produto)"
+      ],
+      "tipos_que_ocupam": [
+        "fora_do_pais",
+        "forum",
+        "fabricante",
+        "blog",
+        "loja",
+        "irrelevante"
+      ],
+      "classificacao": "NAO_MEDIDA",
+      "motivo": "Desvio de pais pelo limite 1, e ele e PARCIAL, que e uma forma nova neste arquivo: vieram brasileiros (Catraca Livre, Acessa de 2009, Extra, Telha Norte) junto de italiano, patente espanhola, patente americana, fabricante frances e tres paginas de um forum ingles. O nucleo e bilingue pelo limite 4 — `mosaico`, `placa` e `vaso` cabem inteiros em italiano e em espanhol, e `micromosaico` e `vetrate a mosaico` sao exatamente o que voltou. Esta consulta NAO pede medida, entao ela nao e caso do limite 5: e o limite 4 mordendo a TERCEIRA categoria, agora sem nenhuma palavra de ferramenta na frase. O que veio do Brasil nao sustenta veredito: duas materias genericas (uma de 2009) e duas paginas de produto.",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null,
+      "o_que_esta_passada_acrescenta": "ELA EXISTE PARA SEPARAR DUAS CAUSAS, e separou. A passada de compra desta mesma data mediu TOMADA sem desvio nenhum; esta, que e pergunta de METODO limpa (nenhuma palavra de compra, nenhum numero, nenhuma marca), nao chegou a ser medida no Brasil. Entao o que fecha a `pastilha` neste canal NAO e uma coisa so: a pergunta de COMPRA mede no Brasil e e tomada pelo varejo, e a pergunta de METODO desvia de pais antes de ser medida. Duas portas, dois motivos diferentes, e nenhuma das duas se abre escrevendo outra frase. A terceira leitura que isto deixa: o metodo desta categoria tambem nao tem numero no banco — o que responderia `soltar da tela ou nao` e `placa_lado_a_cm` e `espessura_mm`, que moram em `geometria` e NAO sao lidas pelo portao da secao 9, que le so `propriedades`."
     }
   ],
   "a_leitura_que_as_medicoes_pedem": {
     "as_abertas_sao_pergunta_e_as_tomadas_sao_produto": "As consultas que a SERP recusa nomeiam o PRODUTO (`pastilhas de vidro para mosaico`, `quantas pastilhas vem na caixa`); as que ela abre fazem a PERGUNTA (`como cortar`, `verniz para peca de`, `como impermeabilizar`). A causa esta no proprio resultado: quem vende produto ja ocupa a consulta de produto, e ninguem ocupa a consulta de metodo, onde o que existe e blogspot de 2010 e resposta sem numero. Medido em 30/09 em dois recortes e reconfirmado em 02/10 em tres.",
     "o_piso_mede_a_forma_errada_e_isso_nao_e_defeito_dele": "dados/filhas-do-guia.json mede os recortes que o VOCABULARIO nomeia, que sao recortes de TIPO, e se declara um piso. A SERP diz que as filhas publicaveis desta ilha tem forma de PERGUNTA. A regua de contagem da secao 9 continua a mesma; o que muda e o recorte em que ela se aplica — e nenhum dos dois arquivos sozinho ve isso.",
-    "a_contradicao_com_o_corpus_de_10_09_fica_escrita": "O corpus classificou `pastilhas de vidro para mosaico` como ABERTA com a MESMA evidencia que 30/09 leu como TOMADA. A diferenca nao e de dado, e de regua: o corpus chamou de aberta porque ninguem responde a pergunta tecnica, e a 14.9 manda classificar QUEM OCUPA. As duas leituras cabem na mesma SERP, e a 14.9 e a que decide se a pagina nasce. Quem for mexer no corpus le este campo primeiro: o que esta velho la e o rotulo daquela linha, nao a evidencia."
+    "a_contradicao_com_o_corpus_de_10_09_fica_escrita": "O corpus classificou `pastilhas de vidro para mosaico` como ABERTA com a MESMA evidencia que 30/09 leu como TOMADA. A diferenca nao e de dado, e de regua: o corpus chamou de aberta porque ninguem responde a pergunta tecnica, e a 14.9 manda classificar QUEM OCUPA. As duas leituras cabem na mesma SERP, e a 14.9 e a que decide se a pagina nasce. Quem for mexer no corpus le este campo primeiro: o que esta velho la e o rotulo daquela linha, nao a evidencia.",
+    "a_forma_da_consulta_segue_a_natureza_do_numero": "ACRESCENTADO EM 08/10/2026, e e o refinamento que a `pastilha` cobrou da leitura `as_abertas_sao_pergunta_e_as_tomadas_sao_produto`. Aquela leitura diz que a forma da consulta decide: produto fecha, pergunta abre. Ela acertou cinco vezes e ERROU na sexta, e o erro ensina mais que os acertos. A `pergunta:pastilha-placa-ou-caixa` foi escrita na forma exata que abriu o `rejunte` (`da para ... ou precisa ...`), sem numero e sem marca, e mediu TOMADA com nove paginas de produto brasileiras em dez. A CAUSA: a forma da consulta nao e livre, ela segue a NATUREZA DO NUMERO que a pagina tem para entregar. Na `pastilha` as unicas propriedades que passam o portao da secao 9 sao `placas_por_caixa`, `m2_por_caixa` e `peso_caixa_kg` — tres numeros de CAIXA, comerciais —, e nao existe frase honesta que um numero de caixa responda e que nao seja uma pergunta de compra. No `rejunte` o numero e `junta_min_mm`, que e numero de GESTO, e por isso a pergunta do gesto cabia nele. A REGRA PRATICA, antes de escrever a proxima pergunta de qualquer categoria: olhe o numero primeiro. Numero comercial so responde consulta comercial, e consulta comercial desta ilha e sempre tomada pelo varejo."
   }
 }

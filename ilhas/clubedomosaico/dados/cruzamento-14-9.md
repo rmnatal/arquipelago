@@ -57,9 +57,11 @@ onde ela foi arquivada e acidente de quem mediu primeiro.
 |---|---|---|---|---|---|---|
 | `pergunta:alicate-espessura-de-corte` | `alicate` | 4 | `ABERTA` | **`pode_nascer`** | `alicate/cortador_de_azulejo` | nada: os dois portoes abriram |
 | `pergunta:rejunte-largura-da-junta` | `rejunte` | 5 | `ABERTA` | **`pode_nascer`** | — | nada: os dois portoes abriram |
+| `pergunta:pastilha-placa-ou-caixa` | `pastilha` | 12 | `TOMADA` | **`espera_autoridade`** | — | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
 
 - **`pergunta:alicate-espessura-de-corte`** — consulta-alvo: *como cortar pastilha de vidro para mosaico qual ferramenta*
 - **`pergunta:rejunte-largura-da-junta`** — consulta-alvo: *da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte*
+- **`pergunta:pastilha-placa-ou-caixa`** — consulta-alvo: *da para comprar so uma placa de pastilha de vidro para mosaico ou precisa levar a caixa fechada*
 
 ## Recorte por recorte
 
@@ -95,7 +97,7 @@ onde ela foi arquivada e acidente de quem mediu primeiro.
 | `cola/pva` | `nao_passa` | 2 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 1 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `cola/silicone_acetico` | `nao_passa` | 2 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 1 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `cola/silicone_neutro` | `nao_passa` | 1 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 2 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
-| `pastilha` | `passa` | 13 | `TOMADA` | 1 | **`espera_autoridade`** | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
+| `pastilha` | `passa` | 13 | `TOMADA` | 2 | **`espera_autoridade`** | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
 | `pastilha/caco_azulejo` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `pastilha/caco_espelho` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `pastilha/ceramica` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
@@ -144,4 +146,5 @@ por recorte, com o numero na mao em vez do adjetivo.
 - **`rejunte/cimenticio`** — liberacao_area_molhada_h POR PRODUTO, da declaracao do fabricante — que e exatamente a propriedade que o portao de dado deste recorte cobra como lastro. A SERP publica numero de obra, de terceiro e contraditorio; a ilha publicaria numero do fabricante, por item, com a frase citada
 - **`pergunta:alicate-espessura-de-corte`** — espessura_maxima_de_corte_mm, declarada em 4 dos 6 itens de `alicate` com fonte de nivel 2 ou 3 — e a faixa descoberta da 7b-bis: o torques de mosaico para em 5 mm e 3 das 13 pastilhas do banco nao cabem
 - **`pergunta:rejunte-largura-da-junta`** — a faixa de junta em milimetros que cada rejunte cobre — `junta_min_mm` e `junta_max_mm`, declaradas por 5 de 5 rejuntes deste banco com fonte de nivel 2 nos cinco, e com as tres faixas separando os tres tipos: acrilico de 1 a 4 mm, epoxi de 1 a 5 mm, cimenticio de 2 a 10 mm. A faixa descoberta que a pagina tem de DIZER, pela 14.3, e o piso de 2 mm dos tres cimenticios: quem encosta os caquinhos nao tem rejunte cimenticio no banco que o atenda, e os dois que chegam a 1 mm sao o acrilico e o epoxi.
+- **`pergunta:pastilha-placa-ou-caixa`** — quanto vem numa caixa de pastilha de vidro e qual e o menor lote que o fabricante fecha. Medido no banco em 08/10/2026: `placas_por_caixa` de 10 a 22 e `m2_por_caixa` de 0,85 a 2,09, declarados por 12 dos 13 itens ativos com fonte de nivel 3. O numero nao foi servido porque a SERP e TOMADA, e ele fica escrito aqui para quem for publicar nao recoletar.
 

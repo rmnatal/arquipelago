@@ -78,11 +78,15 @@ fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.
 |---|---|---|---|---|---|
 | `pergunta:alicate-espessura-de-corte` | `alicate` | `espessura_maxima_de_corte_mm` | 4 | `cortador_de_azulejo`, `torques` | `passa` |
 | `pergunta:rejunte-largura-da-junta` | `rejunte` | `junta_min_mm` | 5 | `acrilico`, `cimenticio`, `epoxi` | `passa` |
+| `pergunta:pastilha-placa-ou-caixa` | `pastilha` | `placas_por_caixa` | 12 | `vidro` | `passa` |
 
 - **`pergunta:alicate-espessura-de-corte`** — consulta-alvo: *como cortar pastilha de vidro para mosaico qual ferramenta*
 - **`pergunta:rejunte-largura-da-junta`** — consulta-alvo: *da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte*
   - cobre a categoria inteira (5 de 5 itens ativos), e isso e o esperado: a mae
     de nivel 2 e indice e esta pergunta e a pagina de nivel 3 que responde.
+- **`pergunta:pastilha-placa-ou-caixa`** — consulta-alvo: *da para comprar so uma placa de pastilha de vidro para mosaico ou precisa levar a caixa fechada*
+  - atravessa um tipo so, e ainda assim nao coincide com ele: o recorte da
+    pergunta e menor que o do tipo, porque parte dos itens nao declara o numero.
 
 ## O motivo, nos recortes que nao passam inteiros
 

@@ -1685,8 +1685,74 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    >
    > ---
    >
-   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A TERCEIRA FILHA DA `rejunte` — A CATEGORIA ESTÁ A UMA
-   > CONSULTA DA SEGUNDA MÃE DO GUIA, E AS DUAS QUE ELA JÁ TEM ESTÃO MEDIDAS NOS DOIS PORTÕES.**
+   > **O BLOCO FOI EXECUTADO EM 08/10/2026 ÀS 13h2xZ, E O VEREDITO É O DO RAMO (4): TOMADA. A `pastilha`
+   > NÃO É ALCANÇÁVEL POR PERGUNTA NESTE CANAL, E A ÚLTIMA PORTA BARATA DO GUIA ESTÁ FECHADA — COM UMA
+   > CAUSA QUE O PRÓPRIO BLOCO NÃO PREVIA.**
+   >
+   > Os quatro passos saíram: **(1)** `pergunta:pastilha-placa-ou-caixa` está declarada em
+   > `dados/perguntas-do-guia.json`, com `placas_por_caixa` e a âncora à mão; **(2)** o portão de dado
+   > **PASSA** — 12 dos 13 itens ativos declaram o número com fonte de nível 3, o conjunto **não coincide**
+   > com o recorte de tipo (a `pastilhart-af1500` não declara número de caixa nenhum) e a âncora não caiu;
+   > **(3)** a SERP foi medida com *"da para comprar so uma placa de pastilha de vidro para mosaico ou
+   > precisa levar a caixa fechada"*, sem número e sem marca; **(4)** voltou **TOMADA**.
+   >
+   > **A FORMA NÃO SALVOU A CONSULTA, E ISSO É O ACHADO.** A frase foi escrita na forma exata que abriu o
+   > `rejunte` seis dias antes — *"dá para … ou precisa …"*. Mediu **no Brasil** (zero desvio: o limite 1
+   > não tem parte nisto) e **nove dos dez resultados são página de produto da mesma pastilha**, em Telha
+   > Norte, Extra e MadeiraMadeira; o décimo é item de licitação de portal de compra pública. Zero fórum,
+   > zero vídeo, zero blog, zero resposta genérica. É a **quarta** consulta TOMADA nesta categoria e a
+   > **primeira em forma de pergunta**.
+   >
+   > **A CAUSA ESTÁ NO NÚMERO, NÃO NA FRASE — e virou leitura no `serp-das-filhas.json`, no campo
+   > `a_forma_da_consulta_segue_a_natureza_do_numero`.** As únicas propriedades que passam o portão da
+   > seção 9 na `pastilha` são `placas_por_caixa`, `m2_por_caixa` e `peso_caixa_kg`: **os três são números
+   > de CAIXA, isto é, comerciais**, e não existe frase honesta que um número de caixa responda e que não
+   > seja uma pergunta de compra. Quem vende já ocupa a consulta de compra. No `rejunte` o número é
+   > `junta_min_mm`, que é número de GESTO, e é por isso que a pergunta do gesto cabia nele. **A regra
+   > prática, antes de escrever a próxima pergunta de qualquer categoria: olhe o NÚMERO primeiro.** Isto
+   > derruba, pela primeira vez em seis passadas, a leitura `as_abertas_sao_pergunta_e_as_tomadas_sao_produto`
+   > lida como se a forma decidisse sozinha — ela acertou cinco vezes e errou na sexta, e o erro ensinou
+   > mais que os cinco acertos.
+   >
+   > **E UMA SEGUNDA MEDIÇÃO, FEITA DE PROPÓSITO PARA SEPARAR DUAS CAUSAS (seção 7 do `ARQUIPELAGO.md`:
+   > nunca misturar causas).** Se a `pastilha` fosse tomada só por a pergunta ser de compra, uma pergunta
+   > de MÉTODO limpa deveria abrir. Medi *"preciso soltar as pastilhas da tela para fazer mosaico em vaso
+   > redondo ou cola a placa inteira"* — nenhuma palavra de compra, nenhum número, nenhuma marca — e ela
+   > voltou **NAO_MEDIDA por desvio PARCIAL de país**, forma nova neste arquivo: 1stDibs italiano, patente
+   > da OEPM espanhola, patente americana, fabricante francês e três páginas de um fórum inglês, junto de
+   > dois brasileiros genéricos (um de 2009) e duas páginas de produto. O núcleo é bilíngue pelo **limite
+   > 4** (`mosaico`, `placa` e `vaso` cabem inteiros em italiano e em espanhol) e a consulta **não pede
+   > medida**, então não é caso do limite 5. **São DUAS portas com DOIS motivos diferentes:** a pergunta de
+   > compra mede no Brasil e é tomada pelo varejo; a de método desvia de país antes de ser medida. Nenhuma
+   > das duas se abre reescrevendo a frase.
+   >
+   > **E A TERCEIRA COISA QUE A SEGUNDA MEDIÇÃO DEIXOU, e ela é de esquema:** o que responderia *"soltar da
+   > tela ou não"* é `placa_lado_a_cm` e `espessura_mm`, que moram em **`geometria`** — e o portão da seção
+   > 9 lê **só `propriedades`**. A `pastilha` tem **13 de 13** em cinco campos de geometria e eles são
+   > invisíveis para a régua. Não é defeito do portão nem conserto de passagem: é a pergunta *"geometria é
+   > propriedade?"*, e ela decide se esta categoria tem número de método ou não tem nenhum.
+   >
+   > ---
+   >
+   > **O PRÓXIMO BLOCO ESTÁ ESCOLHIDO, E É O QUE O PRÓPRIO RAMO (4) NOMEOU: O SNIPPET DO GUIA DEIXAR DE SER
+   > DE UMA CATEGORIA SÓ.** É trabalho de código, não de medição, e **toda** segunda mãe vai exigi-lo de
+   > qualquer jeito. O `Clube do Mosaico Guia` 1.0.0 nasceu em 02/10 servindo `acabamento` e as três filhas
+   > dela, e `acabamento` é a única categoria que passa a 16.5 hoje. Depois dele a segunda mãe é a
+   > `rejunte`, que está a UMA filha (2 por consulta, a 16.5 pede 3) e cujas três portas estão medidas e
+   > fechadas na tabela abaixo — então o código vem primeiro, porque ele não espera dado nenhum.
+   >
+   > **E O QUE O PRÓXIMO BLOCO NÃO DEVE FAZER:** não escrever uma quinta consulta de `pastilha` em cima dos
+   > números de caixa (quatro TOMADA, e a causa é o número e não a frase); não reescrever a pergunta de
+   > método da `pastilha` achando que outra âncora brasileira corrige núcleo bilíngue (o limite 4 já foi
+   > controlado três vezes, em três categorias); e não mexer em `geometria` de passagem — se o portão
+   > passar a ler geometria, isso muda o veredito de TODO recorte desta ilha e é bloco próprio.
+   >
+   > ---
+   >
+   > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A TERCEIRA FILHA DA `rejunte` — A CATEGORIA ESTÁ A UMA
+   > CONSULTA DA SEGUNDA MÃE DO GUIA, E AS DUAS QUE ELA JÁ TEM ESTÃO MEDIDAS NOS DOIS PORTÕES.**~~
+   > **EXECUTADO EM 08/10/2026 — o veredito está acima. A tabela das três portas abaixo continua
+   > válida e medida, e é ela que mantém a `rejunte` como a segunda mãe depois do código.**
    >
    > O que a `rejunte` tem hoje, pelo `cruzamento-14-9.py`: a mãe em `pode_nascer` (*"qual rejunte
    > usar em peça de mosaico artesanal vaso"*, ABERTA), a filha `rejunte/cimenticio` em

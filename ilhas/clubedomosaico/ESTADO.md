@@ -9,7 +9,7 @@ urls_publicadas: 21        # 17 -> 21 em 02/10/2026 19h51Z: o BLOCO 4c publicou 
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-10-08T11:0xZ
-executando_desde: 2026-10-08T13:17Z
+executando_desde: 2026-10-08T13:32Z
 ultima_ronda: 2026-10-07T20:35Z   # LEITURA SEMANAL da Sentinela (a ronda diária técnica desta data foi às 14h55Z)
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo

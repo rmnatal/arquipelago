@@ -157,9 +157,9 @@
       "formato": "md",
       "entidade": "constante",
       "fonte": "GERADO por ferramentas/cruzamento-14-9.py a partir de dados/filhas-do-guia.json e dados/serp-das-filhas.json. Nada aqui e digitado: --conferir regera e compara, e edicao a mao reprova o portao.",
-      "verificado_em": "2026-10-02",
+      "verificado_em": "2026-10-08",
       "publicar": false,
-      "sha256": "4fc18e92406dd217c75ac95fc87ab863d38fb92a3fe4f03d8945889eac830d07",
+      "sha256": "87595800f2a8b2c03ba71a2464a28a683e935161791f387abc434585dc48e329",
       "descricao": "O veredito cruzado dos dois portoes, recorte por recorte, com a tabela da 16.5 lado a lado — filhas que o DADO autoriza contra filhas que o CRUZAMENTO autoriza — e o pedido de faixa de volume derivado. No primeiro dia em que existiu: acabamento e a primeira categoria do Guia a passar os dois portoes na mae e nas tres filhas (o 4c liberado ali), pastilha/vidro saiu espera_autoridade, e alicate, pastilha e rejunte ficaram com dado verde e SERP nunca olhada, que e o caso que parece passe livre."
     },
     {
@@ -191,11 +191,11 @@
       "arquivo": "dados/serp-das-filhas.json",
       "formato": "json",
       "entidade": "constante",
-      "fonte": "Coleta propria por busca web desta nuvem, consulta a consulta, com a data POR MEDICAO: seis em 30/09/2026 (movidas sem uma palavra alterada da secao de prosa de dados/filhas-do-guia.md) e quatro em 02/10/2026. Os tres limites do canal estao declarados no proprio arquivo — desvio de pais, ausencia de ORDEM e vicio de marca na consulta — e duas medicoes estao marcadas NAO_MEDIDA por causa deles, nunca como consulta sem concorrente. Faixa de volume NAO foi coletada: ela e do Planejador na conta do Raphael, esta null nos dez registros e pedida em dados/despachos.md com a lista derivada.",
-      "verificado_em": "2026-10-02",
-      "registros": 10,
+      "fonte": "Coleta propria por busca web desta nuvem, consulta a consulta, com a data POR MEDICAO: seis em 30/09/2026 (movidas sem uma palavra alterada da secao de prosa de dados/filhas-do-guia.md) e quatro em 02/10/2026. Os tres limites do canal estao declarados no proprio arquivo — desvio de pais, ausencia de ORDEM e vicio de marca na consulta — e duas medicoes estao marcadas NAO_MEDIDA por causa deles, nunca como consulta sem concorrente. Faixa de volume NAO foi coletada: ela e do Planejador na conta do Raphael, esta null nos 22 registros e pedida em dados/despachos.md com a lista derivada. ACRESCENTADO EM 08/10/2026: o campo `registros` dizia 10 e havia 22 medicoes — seis passadas de 07/10 e 08/10 entraram sem que ninguem o reescrevesse, e o atualizador de manifest confere sha e nao contagem. Corrigido para 22, e as datas por medicao continuam sendo a fonte da verdade: o campo e resumo, e resumo velho lido como fato e o defeito que este repositorio mais paga (secao 4 do ARQUIPELAGO.md). Duas passadas novas de 08/10 na `pastilha`: a pergunta de compra TOMADA sem desvio nenhum, e a pergunta de metodo NAO_MEDIDA por desvio PARCIAL de pais, forma nova neste arquivo.",
+      "verificado_em": "2026-10-08",
+      "registros": 22,
       "publicar": false,
-      "sha256": "6cb6160bd6949920c562841cbd9d3d2f79a3179dc06294c479d511c7eb639d7e",
+      "sha256": "25755251e3cd54a5326147553be74aaaceea4813c74119cd60218a3c66060da7",
       "descricao": "A metade COLETADA do cruzamento da 14.9: quem ocupa o top 10 da consulta-alvo de cada recorte do Guia, escrito pelo nome. Cinco classificacoes, e a quinta nasceu desta coleta — ABERTA_SEM_INTENCAO_NA_SERP, para a consulta em que ninguem ocupa porque NENHUM resultado fala da pergunta desta ilha (o selador mediu uma SERP inteira de pintura de parede). Guarda tambem o numero que a SERP nao publica e o banco desta ilha publica, recorte por recorte, que e a resposta da 14.9 a pergunta 'por que ela chega as 10 primeiras'."
     },
     {
@@ -347,7 +347,8 @@
       "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
       "registros": 42,
       "publicar": false,
-      "sha256": "3e3f0b81c5d889b398780cec9031c1d6375fc116f75e34eb6fb591aea32b8949"
+      "sha256": "38b6725085fc961247e8a73e397ab2c9768f4d78a3ae629fa9adf5659b90079d",
+      "verificado_em": "2026-10-08"
     },
     {
       "id": "filhas-do-guia-md",
@@ -355,9 +356,21 @@
       "formato": "md",
       "entidade": "constante",
       "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira era a classificacao de SERP da 14.9 em PROSA, e em 02/10/2026 ela saiu daqui e virou dado em dados/serp-das-filhas.json, com o cruzamento em dados/cruzamento-14-9.md: prosa que o gerador preserva sem ler nao cruza com numero. O que ficou abaixo da fronteira e o ponteiro para os dois arquivos novos e o motivo da mudanca.",
-      "verificado_em": "2026-10-02",
+      "verificado_em": "2026-10-08",
       "publicar": false,
-      "sha256": "cf0294e1f541c11788d7805a5337e8426ee8eaa3d7bdb8c34e498a8cd78898ac"
+      "sha256": "9995dc4cf529c12ffab484a13fa821d9924ef756c00a01e4eea220f7327f3f7a"
+    },
+    {
+      "id": "perguntas-do-guia",
+      "arquivo": "dados/perguntas-do-guia.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "Escrito A MAO, e e o unico arquivo de dado desta ilha que e decisao de NOME em vez de derivacao: a categoria, a propriedade que carrega o numero e a consulta-alvo. Nenhum numero, nenhum item e nenhum veredito se digita aqui — quem conta os itens e ferramentas/filhas-do-guia.py pela regua da secao 9, e quem diz se a pergunta acrescenta filha e ferramentas/cruzamento-14-9.py pela 16.5. A `ancora_a_mao` de cada pergunta e o unico numero escrito por pessoa, e ela existe para CAIR quando o banco crescer.",
+      "verificado_em": "2026-10-08",
+      "registros": 3,
+      "publicar": false,
+      "sha256": "acdd09266566e3df33adaeef7fa6ca3b3c183c3a6d080abf9711b998b48715fe",
+      "descricao": "As filhas de nivel 3 do Guia que tem forma de PERGUNTA em vez de forma de tipo — a forma das duas filhas que esta ilha ja publicou (a F1 e a F2). ACRESCENTADO AO MANIFEST EM 08/10/2026: o arquivo nasceu em 07/10 e ficou DE FORA do espelho, entao duas execucoes o mudaram sem que o atualizador imprimisse uma linha. E o mesmo defeito que a execucao de 08/10 as 10h4xZ nomeou nos nove sha vencidos, um andar acima: arquivo fora do manifest nao tem sha para vencer, e envelhece sem nem a chance de ser acusado."
     }
   ],
   "ferramentas": [

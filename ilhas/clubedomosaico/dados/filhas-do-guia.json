@@ -1832,12 +1832,44 @@
    "veredito": "passa",
    "motivo": null,
    "divergencias_com_a_ancora_a_mao": []
+  },
+  {
+   "pergunta": "pergunta:pastilha-placa-ou-caixa",
+   "categoria": "pastilha",
+   "propriedade_que_carrega_o_numero": "placas_por_caixa",
+   "consulta_alvo": "da para comprar so uma placa de pastilha de vidro para mosaico ou precisa levar a caixa fechada",
+   "titulo_candidato": "Placa avulsa ou caixa fechada: quanto vem em cada uma",
+   "itens_que_declaram_o_numero": 12,
+   "itens": [
+    "glassmosaic-102",
+    "glassmosaic-a11",
+    "glassmosaic-a37",
+    "glassmosaic-a61",
+    "glassmosaic-ic02",
+    "glassmosaic-k117",
+    "glassmosaic-k2501",
+    "glassmosaic-k2502",
+    "glassmosaic-k66",
+    "glassmosaic-k77",
+    "glassmosaic-mix2510",
+    "glassmosaic-st5102"
+   ],
+   "tipos_atravessados": [
+    "vidro"
+   ],
+   "atravessa_mais_de_um_tipo": false,
+   "coincide_com_o_recorte_de_tipo": null,
+   "cobre_a_categoria_inteira": false,
+   "veredito": "passa",
+   "motivo": null,
+   "divergencias_com_a_ancora_a_mao": []
   }
  ],
  "resumo_das_perguntas": {
-  "perguntas_medidas": 2,
+  "perguntas_medidas": 3,
   "passam_o_portao_de_dado": [
    "pergunta:alicate-espessura-de-corte",
+   "pergunta:pastilha-placa-ou-caixa",
    "pergunta:rejunte-largura-da-junta"
   ],
   "atravessam_mais_de_um_tipo": [
