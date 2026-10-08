@@ -13,6 +13,19 @@ que tanto faz se o portao mede alguma coisa (secao 8 do ARQUIPELAGO.md). Cada
 mutacao abaixo e uma forma plausivel de uma destas paginas ficar errada em
 silencio.
 
+AS MUTACOES DE ESTRUTURA (08/10/2026, snippet 1.2.0). O Guia deixou de ser de
+uma categoria so, e com isso nasceram formas novas de ele ficar errado em
+silencio: a categoria que publica sem regua, o banco de uma categoria apontando
+para o arquivo de outra, e a regua com um papel faltando. As tres estao abaixo,
+e a terceira nao reprova — ela tem de ficar HONESTA, que e a falha fechada que
+a 1.2.0 existe para garantir.
+
+E UMA DELAS NAO QUEBRA NADA, de proposito: o `banco` da categoria e renomeado
+junto com o arquivo e o id do manifest, e a pagina tem de sair IDENTICA, byte a
+byte. E a prova de que o nome `materiais-acabamento` nao esta escrito em lugar
+nenhum fora da declaracao — sem ela, "a categoria agora e declarada" seria uma
+frase sobre o codigo e nao uma medicao dele.
+
 OS TRES CASOS QUE NAO SAO "REPROVA":
 
   1. COM O BANCO DE ACABAMENTO FORA DO AR, a pagina TEM de dizer que nao mediu
@@ -129,8 +142,8 @@ def m_um_produto_some_da_mae(raiz):
     que cada item da categoria consultada aparece exatamente uma vez — ou na
     frase que o recomenda, ou numa linha que diz por que ele nao esta."""
     trocar(raiz, SNIPPET,
-           "\t\t\tforeach ( $cf['itens'] as $chave ) {\n\t\t\t\t$html .= cdm_guia_ficha_do_produto_html( $banco['itens'][ $chave ] );",
-           "\t\t\tforeach ( array_slice( $cf['itens'], 1 ) as $chave ) {\n\t\t\t\t$html .= cdm_guia_ficha_do_produto_html( $banco['itens'][ $chave ] );")
+           "\t\t\tforeach ( $cf['itens'] as $chave ) {\n\t\t\t\t$html .= cdm_guia_ficha_do_produto_html( $banco['itens'][ $chave ], $cat );",
+           "\t\t\tforeach ( array_slice( $cf['itens'], 1 ) as $chave ) {\n\t\t\t\t$html .= cdm_guia_ficha_do_produto_html( $banco['itens'][ $chave ], $cat );")
 
 
 def m_ancora_vira_saiba_mais(raiz):
@@ -191,6 +204,11 @@ def m_uma_pagina_a_mais_sem_autorizacao(raiz):
            "\t\t'selador' => array(\n\t\t\t'tipo'     => 'selador',",
            "\t\t'pastilha_vidro' => array(\n"
            "\t\t\t'tipo'     => 'pastilha_vidro',\n"
+           # A CATEGORIA ENTRA CERTA DE PROPOSITO: sem ela a pagina reprovaria
+           # pelo portao da declaracao (1-b) e nao pelo do cruzamento, que e o
+           # que esta mutacao quer medir. Mutacao que reprova pelo motivo errado
+           # mede a regua errada e ninguem percebe.
+           "\t\t\t'categoria' => 'acabamento',\n"
            "\t\t\t'slug'     => 'materiais/acabamento/pastilhas-de-vidro',\n"
            "\t\t\t'titulo'   => 'Pastilhas de vidro para mosaico',\n"
            "\t\t\t'curto'    => 'Pastilhas',\n"
@@ -214,6 +232,68 @@ def m_uma_filha_some_do_registro(raiz):
     ini = texto.index("\t\t'verniz' => array(")
     fim = texto.index("\t\t'impermeabilizante' => array(")
     gravar(raiz, SNIPPET, texto[:ini] + texto[fim:])
+
+
+def m_categoria_nova_sem_regua(raiz):
+    """Uma segunda categoria e DECLARADA e nao tem regua. E o caminho mais curto
+    para a segunda mae do Guia: alguem aponta o banco do rejunte e espera que o
+    resto saia por conta. Sem portao, a declaracao sozinha nao quebra nada hoje
+    — e no dia em que a primeira pagina dela nascer, ela sai servindo numero
+    nenhum ou o numero da vizinha."""
+    trocar(raiz, SNIPPET,
+           "\t\t'acabamento' => array(\n\t\t\t'banco' => 'materiais-acabamento',\n\t\t\t'regua' => 'acabamento',\n\t\t),",
+           "\t\t'acabamento' => array(\n\t\t\t'banco' => 'materiais-acabamento',\n\t\t\t'regua' => 'acabamento',\n\t\t),\n"
+           "\t\t'rejunte' => array(\n\t\t\t'banco' => 'materiais-rejuntes',\n\t\t\t'regua' => 'rejunte',\n\t\t),")
+
+
+def m_banco_da_categoria_trocado(raiz):
+    """A categoria `acabamento` passa a declarar o banco do REJUNTE. E a troca
+    que as duas metades leriam juntas: a pagina e a bancada pegam o id da mesma
+    declaracao, contam o mesmo arquivo errado e concordam. Quem acusa e a lista
+    de itens do cruzamento, que varre os `materiais-*.json` e rotula pela
+    categoria do esquema — um terceiro caminho."""
+    trocar(raiz, SNIPPET,
+           "\t\t\t'banco' => 'materiais-acabamento',",
+           "\t\t\t'banco' => 'materiais-rejuntes',")
+
+
+def m_regua_sem_um_papel(raiz):
+    """A regua perde UM dos seis papeis — o `achado`, que e o bloco do que
+    nenhum fabricante diz.
+
+    ESTA NAO REPROVA POR REPROVAR: o que se exige e a pagina HONESTA. Meia regua
+    serviria a pagina com um buraco no meio, e buraco em pagina de tabela le-se
+    como "nao se aplica". A pagina tem de dizer que nao mediu e nao servir ficha
+    nenhuma, igual ao banco fora do ar — um nivel acima, porque la falta o dado
+    e aqui falta quem saiba conta-lo."""
+    trocar(raiz, SNIPPET,
+           "\t\t\t'achado'   => 'cdm_guia_achado_do_acabamento',\n",
+           "")
+
+
+def m_banco_renomeado(raiz):
+    """O arquivo do banco, o id do manifest e a declaracao da categoria mudam de
+    nome JUNTOS, de `materiais-acabamento` para `materiais-protecao`.
+
+    NADA PODE MUDAR NA TELA. E a unica mutacao deste arquivo que mede uma
+    afirmacao sobre o CODIGO e nao sobre o dado: se o nome antigo estiver escrito
+    em qualquer lugar fora da declaracao — na option, nas contas, na bancada —
+    a pagina sai diferente ou vazia, e a comparacao byte a byte acusa."""
+    velho = os.path.join(raiz, "dados", "materiais-acabamento.json")
+    novo = os.path.join(raiz, "dados", "materiais-protecao.json")
+    shutil.move(velho, novo)
+
+    p = os.path.join(raiz, "manifest.json")
+    m = json.load(open(p, encoding="utf-8"))
+    for d in m["dados"]:
+        if d["id"] == "materiais-acabamento":
+            d["id"] = "materiais-protecao"
+            d["arquivo"] = "dados/materiais-protecao.json"
+    json.dump(m, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+
+    trocar(raiz, SNIPPET,
+           "\t\t\t'banco' => 'materiais-acabamento',",
+           "\t\t\t'banco' => 'materiais-protecao',")
 
 
 def m_banco_fora_do_ar(raiz):
@@ -260,6 +340,10 @@ MUTACOES = [
     ("a busca CRUA passa a se declarar patrocinada", m_busca_crua_vira_patrocinada, "reprova"),
     ("nasce uma pagina que o cruzamento NAO autoriza", m_uma_pagina_a_mais_sem_autorizacao, "reprova"),
     ("uma filha autorizada some do registro", m_uma_filha_some_do_registro, "reprova"),
+    ("uma segunda categoria e declarada sem regua", m_categoria_nova_sem_regua, "reprova"),
+    ("o banco da categoria aponta para o arquivo de outra", m_banco_da_categoria_trocado, "reprova"),
+    ("a regua perde um dos seis papeis", m_regua_sem_um_papel, "pagina-honesta"),
+    ("o banco e renomeado junto com a declaracao", m_banco_renomeado, "mundo-identico"),
     ("o banco de acabamento sai do ar", m_banco_fora_do_ar, "pagina-honesta"),
     ("o snippet da F2 sai do ar", m_sem_o_snippet_da_f2, "pagina-sem-loja"),
     ("um fabricante passa a nomear vidro", m_um_fabricante_passa_a_nomear_vidro, "mundo-que-passa"),
@@ -319,6 +403,18 @@ def main():
                 else:
                     erradas.append(nome + " (inteira=%s avisa=%s sem_botao=%s)" % (inteira, avisa, sem_botao))
                     print("  DEGRADOU ERRADO: %s" % nome)
+                continue
+
+            if esperado == "mundo-identico":
+                rc, saida = rodar(copia, "teste-guia.php")
+                iguais = []
+                for tag in (TAG_DA_MAE, TAG_DE_UMA_FILHA):
+                    iguais.append(corpo_da_pagina(ILHA, tag) == corpo_da_pagina(copia, tag))
+                if 0 == rc and all(iguais) and corpo_da_pagina(copia, TAG_DA_MAE):
+                    print("  ficou identica como devia: %-47s | a bancada passa e o corpo e byte a byte o mesmo" % nome)
+                else:
+                    erradas.append(nome + " (rc=%d, corpos iguais=%s)" % (rc, iguais))
+                    print("  MUDOU A TELA (o nome estava escrito fora da declaracao): %s" % nome)
                 continue
 
             if esperado == "mundo-que-passa":

@@ -1,6 +1,19 @@
 <?php
 /**
- * Verificacao MEDIDA das paginas do GUIA — a mae e as tres filhas do bloco 4c.
+ * Verificacao MEDIDA das paginas do GUIA — toda mae e toda filha registrada.
+ *
+ * DESDE A 1.2.0 DO SNIPPET (08/10/2026) ESTE ARQUIVO E POR CATEGORIA, e a
+ * mudanca nao e de arrumacao: a regua independente abaixo le o banco da
+ * categoria DECLARADA por cada pagina (`cdm_guia_categorias()`), nunca o
+ * `materiais-acabamento.json` por nome. Antes, a pagina de uma segunda mae
+ * seria conferida contra o banco do acabamento e passaria com os numeros
+ * errados — verde que mede outra coisa, que e o pior resultado possivel.
+ *
+ * E A BANCADA FALHA FECHADA: categoria publicada cuja FAMILIA DE NUMEROS nao
+ * tem regua independente aqui REPROVA, com o nome dela na tela. Nao e zelo —
+ * a familia do Guia cresce por categoria, e a regua que nao acompanha deixa a
+ * pagina nova sem nenhuma afirmacao sobre numero. Reprovar e o que obriga quem
+ * publica a segunda mae a escrever a regua dela no mesmo bloco.
  *
  *   php ferramentas/teste-guia.php .
  *
@@ -119,7 +132,13 @@ function gui_raiz_com_preparo( $raiz, $literal ) {
 	}
 	copy( $raiz . '/manifest.json', $destino . '/manifest.json' );
 
-	$arq   = $destino . '/dados/materiais-acabamento.json';
+	/* O ARQUIVO DO BANCO VEM DA DECLARACAO DA CATEGORIA, nunca do nome: este
+	   helper fabrica um mundo dentro da categoria `acabamento`, e o id do dado
+	   dela e o que `cdm_guia_categorias()` diz que e. Escrito a mao aqui, este
+	   caminho quebraria no dia em que o banco fosse renomeado — e quebraria
+	   dentro da bancada, que e o pior lugar para um nome velho morar. */
+	$id_do_banco = cdm_guia_categorias()['acabamento']['banco'];
+	$arq   = $destino . '/dados/' . $id_do_banco . '.json';
 	$banco = json_decode( (string) file_get_contents( $arq ), true );
 	$achou = false;
 	foreach ( $banco['materiais'] as &$m ) {
@@ -160,13 +179,34 @@ $GLOBALS['__paginas'] = cdm_teste_paginas_no_ar( 'hoje' );
 echo "Clube do Mosaico — verificacao das paginas do GUIA\n";
 echo "  (guia " . CDM_GUIA_VERSAO . ", casca " . CDM_CASCA_VERSAO . ", F2 " . CDM_F2_VERSAO . ")\n\n";
 
-$banco_cru = json_decode( (string) @file_get_contents( $raiz . '/dados/materiais-acabamento.json' ), true );
 $esquema   = json_decode( (string) @file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
 $filhas_do_guia = json_decode( (string) @file_get_contents( $raiz . '/dados/filhas-do-guia.json' ), true );
 $cruzamento_md  = (string) @file_get_contents( $raiz . '/dados/cruzamento-14-9.md' );
-if ( ! $banco_cru || ! $esquema || ! $filhas_do_guia || '' === $cruzamento_md ) {
-	echo "ERRO: nao consegui ler o banco, o esquema, as filhas-do-guia ou o cruzamento.\n";
+$manifest  = json_decode( (string) @file_get_contents( $raiz . '/manifest.json' ), true );
+if ( ! $esquema || ! $filhas_do_guia || '' === $cruzamento_md || ! $manifest ) {
+	echo "ERRO: nao consegui ler o esquema, as filhas-do-guia, o cruzamento ou o manifest.\n";
 	exit( 1 );
+}
+
+/* O BANCO DE CADA CATEGORIA, LIDO PELO ID QUE ELA DECLARA — que e o mesmo id
+   do `manifest.json` e, portanto, o mesmo nome de option que o Sync grava. Ler
+   por nome de arquivo aqui seria a segunda lista que envelhece calada. */
+$banco_por_cat = array();
+$ativos_por_cat = array();
+foreach ( cdm_guia_categorias() as $cat => $decl ) {
+	$id_dado = isset( $decl['banco'] ) ? (string) $decl['banco'] : '';
+	$bruto   = ( '' === $id_dado )
+		? null
+		: json_decode( (string) @file_get_contents( $raiz . '/dados/' . $id_dado . '.json' ), true );
+	$banco_por_cat[ $cat ] = is_array( $bruto ) ? $bruto : array( 'materiais' => array() );
+	$ativos = array();
+	foreach ( (array) $banco_por_cat[ $cat ]['materiais'] as $m ) {
+		if ( 'ativo' === $m['status'] ) {
+			$ativos[ $m['id'] ] = $m;
+		}
+	}
+	ksort( $ativos );
+	$ativos_por_cat[ $cat ] = $ativos;
 }
 
 /* ---------------------------------------------------------------------------
@@ -177,16 +217,15 @@ $BASES    = $esquema['vocabularios']['base'];
 $TESSELAS = $esquema['vocabularios']['material_tessela'];
 $N_SUP    = count( $BASES ) + count( $TESSELAS );
 
-$ativos = array();
-foreach ( $banco_cru['materiais'] as $m ) {
-	if ( 'ativo' === $m['status'] ) {
-		$ativos[ $m['id'] ] = $m;
-	}
-}
-ksort( $ativos );
+/* A REGUA INDEPENDENTE DE CADA FAMILIA DE NUMEROS, pelo nome da regua do
+   snippet — nao pelo da categoria. A categoria diz QUAL BANCO ler; a regua diz
+   QUE CONTA fazer com ele. Se um dia duas categorias publicarem a mesma familia
+   de numeros, elas compartilham esta linha; se uma publicar familia nova, a
+   ausencia aqui REPROVA com o nome dela. */
+$REGUAS_DA_BANCADA = array( 'acabamento' => 'gui_regua_do_acabamento' );
 
-/** O esperado de um recorte, por um caminho que nao passa pelo snippet. */
-function gui_regua( $tipo, $ativos, $bases, $tesselas ) {
+/** O esperado de um recorte de ACABAMENTO, por um caminho que nao passa pelo snippet. */
+function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas ) {
 	$itens = array();
 	$nomeadas = 0;
 	$relogios = 0;
@@ -249,24 +288,42 @@ gui_ok( count( $pode_nascer ) > 0, 'a lista `pode_nascer` foi lida do cruzamento
 
 $recortes_publicados = array();
 foreach ( cdm_guia_registro() as $id => $ficha ) {
-	$recorte = ( null === $ficha['tipo'] ) ? 'acabamento' : 'acabamento/' . $ficha['tipo'];
+	/* O RECORTE SAI DA CATEGORIA DA PROPRIA PAGINA. Com `acabamento` escrito
+	   aqui, a pagina de uma segunda mae seria conferida contra o recorte da
+	   primeira e passaria por coincidencia de nome. */
+	$cat     = $ficha['categoria'];
+	$recorte = ( null === $ficha['tipo'] ) ? $cat : $cat . '/' . $ficha['tipo'];
 	$recortes_publicados[ $id ] = $recorte;
 	gui_ok( in_array( $recorte, $pode_nascer, true ),
 		"[$id] o recorte esta em pode_nascer (os dois portoes abriram)", $recorte );
 }
 
 /* A SEGUNDA DIRECAO, e e ela que impede a familia de crescer calada: recorte
-   de `acabamento` autorizado e nao publicado e uma pagina que deveria existir
-   e nao existe — exatamente o estado em que esta ilha passou quatro execucoes. */
-$autorizados_de_acabamento = array_values( array_filter( $pode_nascer, function ( $r ) {
-	return 'acabamento' === $r || 0 === strpos( $r, 'acabamento/' );
-} ) );
-sort( $autorizados_de_acabamento );
-$publicados = array_values( $recortes_publicados );
-sort( $publicados );
-gui_ok( $autorizados_de_acabamento === $publicados,
-	'todo recorte de acabamento autorizado tem pagina, e nenhuma pagina sem autorizacao',
-	'autorizados: ' . implode( ', ', $autorizados_de_acabamento ) );
+   autorizado e nao publicado e uma pagina que deveria existir e nao existe —
+   exatamente o estado em que esta ilha passou quatro execucoes com o 4c.
+   A conferencia e POR CATEGORIA PUBLICADA: categoria que ainda nao tem mae
+   nenhuma nao e cobrada aqui (a 14.9 autoriza, quem publica e a fila), e
+   categoria que ja tem pagina e cobrada INTEIRA. */
+$cats_publicadas = array();
+foreach ( cdm_guia_registro() as $ficha ) {
+	$cats_publicadas[ $ficha['categoria'] ] = true;
+}
+foreach ( array_keys( $cats_publicadas ) as $cat ) {
+	$autorizados = array_values( array_filter( $pode_nascer, function ( $r ) use ( $cat ) {
+		return $cat === $r || 0 === strpos( $r, $cat . '/' );
+	} ) );
+	sort( $autorizados );
+	$publicados = array();
+	foreach ( $recortes_publicados as $id => $recorte ) {
+		if ( $cat === cdm_guia_registro()[ $id ]['categoria'] ) {
+			$publicados[] = $recorte;
+		}
+	}
+	sort( $publicados );
+	gui_ok( $autorizados === $publicados,
+		"[$cat] todo recorte autorizado tem pagina, e nenhuma pagina sem autorizacao",
+		'autorizados: ' . implode( ', ', $autorizados ) );
+}
 
 /* E O PORTAO DE DADO DA SECAO 9, lido do arquivo que o deriva. */
 foreach ( $recortes_publicados as $id => $recorte ) {
@@ -278,6 +335,103 @@ foreach ( $recortes_publicados as $id => $recorte ) {
 		&& ! empty( $achou['numeros_calculaveis_sobre_o_recorte'] ),
 		"[$id] 3 itens de banco E um numero calculavel (secao 9)",
 		$achou ? $achou['itens_no_banco'] . ' itens, ' . count( $achou['numeros_calculaveis_sobre_o_recorte'] ) . ' numeros' : 'recorte ausente' );
+}
+
+/* ---------------------------------------------------------------------------
+ * 1-b. A ESTRUTURA DE N CATEGORIAS — os portoes que so existem porque o Guia
+ * deixou de ser de uma categoria so (snippet 1.2.0, 08/10/2026)
+ *
+ * Cada afirmacao aqui e um jeito de a segunda mae nascer errada em silencio.
+ * Hoje todas passam com uma categoria, e isso nao as torna decorativas: elas
+ * sao o portao do dia em que a segunda entrar, e portao escrito depois do
+ * defeito e portao escrito tarde.
+ * ------------------------------------------------------------------------- */
+
+echo "\n1-b. A estrutura por categoria\n";
+
+$ids_dos_dados = array();
+foreach ( (array) $manifest['dados'] as $d ) {
+	$ids_dos_dados[ $d['id'] ] = ! empty( $d['publicar'] );
+}
+
+foreach ( cdm_guia_registro() as $id => $ficha ) {
+	gui_ok( ! empty( $ficha['categoria'] ) && isset( cdm_guia_categorias()[ $ficha['categoria'] ] ),
+		"[$id] a pagina declara uma categoria que existe em cdm_guia_categorias()",
+		isset( $ficha['categoria'] ) ? (string) $ficha['categoria'] : 'AUSENTE' );
+}
+
+foreach ( cdm_guia_categorias() as $cat => $decl ) {
+	/* O BANCO DA CATEGORIA E UM DADO DO MANIFEST, E PUBLICADO. Id que nao esta
+	   no manifest nunca chega ao site como option, e a pagina sairia com o
+	   aviso de "sem medicao" para sempre, sem ninguem saber por que. */
+	$id_dado = isset( $decl['banco'] ) ? (string) $decl['banco'] : '';
+	gui_ok( '' !== $id_dado && isset( $ids_dos_dados[ $id_dado ] ) && $ids_dos_dados[ $id_dado ],
+		"[$cat] o banco declarado esta no manifest com publicar=true", $id_dado );
+	gui_ok( ! empty( $banco_por_cat[ $cat ]['materiais'] ),
+		"[$cat] o arquivo do banco declarado existe e tem material",
+		count( (array) $banco_por_cat[ $cat ]['materiais'] ) . ' no arquivo, '
+		. count( $ativos_por_cat[ $cat ] ) . ' ativos' );
+
+	/* OS SEIS PAPEIS DA REGUA, um a um: meia regua serve meia pagina. */
+	$faltando = array();
+	foreach ( cdm_guia_papeis_da_regua() as $papel ) {
+		if ( '' === cdm_guia_regua_da_categoria( $cat, $papel ) ) {
+			$faltando[] = $papel;
+		}
+	}
+	gui_ok( empty( $faltando ), "[$cat] a regua declara os " . count( cdm_guia_papeis_da_regua() ) . ' papeis, e todos existem',
+		empty( $faltando ) ? $decl['regua'] : 'faltam: ' . implode( ', ', $faltando ) );
+
+	/* E O BANCO DECLARADO E O DA CATEGORIA, nao so um banco que existe. A lista
+	   de itens vem de `filhas-do-guia.json`, que varre TODOS os
+	   `dados/materiais-*.json` e rotula cada item pela categoria do esquema —
+	   caminho que nao passa pela declaracao. Sem esta afirmacao, trocar o
+	   `banco` de uma categoria pelo de outra passaria VERDE: a pagina e esta
+	   bancada leriam o mesmo arquivo errado e concordariam. E a lacuna que
+	   sobra quando as duas metades leem a mesma declaracao. */
+	$itens_do_recorte = null;
+	foreach ( $filhas_do_guia['recortes'] as $r ) {
+		if ( $r['recorte'] === $cat ) {
+			$itens_do_recorte = $r['itens'];
+		}
+	}
+	$do_banco  = array_keys( $ativos_por_cat[ $cat ] );
+	$esperados = (array) $itens_do_recorte;
+	sort( $do_banco );
+	sort( $esperados );
+	gui_ok( null !== $itens_do_recorte && $do_banco === $esperados,
+		"[$cat] o banco declarado traz exatamente os itens que o cruzamento da a esta categoria",
+		count( $do_banco ) . ' no banco, ' . count( $esperados ) . ' no recorte' );
+
+	/* E A BANCADA TEM REGUA INDEPENDENTE PARA ESTA FAMILIA. Sem isto a pagina
+	   nova nao teria NENHUMA afirmacao de numero conferida — verde por ausencia. */
+	$nome_regua = isset( $decl['regua'] ) ? (string) $decl['regua'] : '';
+	gui_ok( isset( $REGUAS_DA_BANCADA[ $nome_regua ] ) && function_exists( $REGUAS_DA_BANCADA[ $nome_regua ] ),
+		"[$cat] esta bancada tem regua independente para a familia `$nome_regua`",
+		isset( $REGUAS_DA_BANCADA[ $nome_regua ] ) ? $REGUAS_DA_BANCADA[ $nome_regua ] : 'NENHUMA' );
+}
+
+/* O `tipo` DE CADA FILHA E DO VOCABULARIO DA PROPRIA CATEGORIA. Tipo de outra
+   categoria daria recorte que o cruzamento nem conhece, e a mensagem de erro
+   sairia sobre o portao errado. */
+$tipo_por_cat = $esquema['vocabularios']['tipo_por_categoria'];
+foreach ( cdm_guia_registro() as $id => $ficha ) {
+	if ( null === $ficha['tipo'] ) {
+		continue;
+	}
+	$cat = $ficha['categoria'];
+	gui_ok( isset( $tipo_por_cat[ $cat ] ) && in_array( $ficha['tipo'], (array) $tipo_por_cat[ $cat ], true ),
+		"[$id] o tipo esta no vocabulario da categoria `$cat`", (string) $ficha['tipo'] );
+}
+
+/* TODA CATEGORIA COM FILHA PUBLICADA TEM A MAE DELA PUBLICADA. Filha pendurada
+   em `/materiais/` sem a mae e o cluster ralo da 16.6 — e, no codigo, e o
+   `$pai` caindo para `materiais` sem nenhum erro de PHP. */
+foreach ( array_keys( $cats_publicadas ) as $cat ) {
+	$filhas = cdm_guia_filhas( $cat );
+	gui_ok( '' !== cdm_guia_mae( $cat ) || empty( $filhas ),
+		"[$cat] a mae da categoria esta publicada, e as filhas penduram nela",
+		'mae: ' . ( cdm_guia_mae( $cat ) ?: 'NENHUMA' ) . ', filhas: ' . count( $filhas ) );
 }
 
 /* ---------------------------------------------------------------------------
@@ -299,7 +453,13 @@ foreach ( cdm_guia_registro() as $id => $ficha ) {
 	$corpo = gui_corpo( $html );
 	$texto = gui_texto( $corpo );
 	$textos[ $id ] = $texto;
-	$regua = gui_regua( $ficha['tipo'], $ativos, $BASES, $TESSELAS );
+
+	/* A REGUA DESTA PAGINA: o banco e o da categoria dela, e a conta e a da
+	   familia de numeros que a categoria declara. */
+	$cat        = $ficha['categoria'];
+	$ativos     = $ativos_por_cat[ $cat ];
+	$nome_regua = cdm_guia_categorias()[ $cat ]['regua'];
+	$regua      = call_user_func( $REGUAS_DA_BANCADA[ $nome_regua ], $ficha['tipo'], $ativos, $BASES, $TESSELAS );
 
 	gui_ok( '' !== $corpo, 'a pagina montou em processo proprio', strlen( $html ) . ' bytes' );
 
@@ -469,9 +629,9 @@ foreach ( cdm_guia_registro() as $id => $ficha ) {
 
 echo "\n4. A malha da 16.4 — a mae lista as filhas, a filha linka a mae\n";
 
-$mae_id    = cdm_guia_mae();
+foreach ( cdm_guia_maes() as $cat_da_mae => $mae_id ) {
 $corpo_mae = gui_corpo( $html_por_id[ $mae_id ] );
-foreach ( cdm_guia_filhas() as $fid => $f ) {
+foreach ( cdm_guia_filhas( $cat_da_mae ) as $fid => $f ) {
 	$url = 'https://clubedomosaico.com.br/' . $f['slug'] . '/';
 	$ancora = '#<a href="' . preg_quote( $url, '#' ) . '">' . preg_quote( htmlspecialchars( $f['consulta'], ENT_QUOTES ), '#' ) . '</a>#';
 	gui_ok( 1 === preg_match( $ancora, $corpo_mae ),
@@ -484,6 +644,7 @@ foreach ( cdm_guia_filhas() as $fid => $f ) {
 	$so_secoes = preg_replace( '#<nav\b.*?</nav>#s', ' ', $corpo_filha );
 	gui_ok( false !== strpos( $so_secoes, 'href="' . $url_mae . '"' ),
 		"16.4(b) [$fid] linka a mae numa frase do corpo" );
+}
 }
 
 /* ---------------------------------------------------------------------------
@@ -536,14 +697,18 @@ gui_ok( empty( $iguais ), 'nenhum par de paginas passa de 70% de texto em comum'
 echo "\n" . "PREPARO NA FICHA — hoje dormente, medido no mundo fabricado\n";
 
 $com_preparo_hoje = 0;
-foreach ( (array) $banco_cru['materiais'] as $_m ) {
-	if ( ! empty( $_m['preparo']['literal_do_fabricante'] ) ) {
-		$com_preparo_hoje++;
+$total_de_itens   = 0;
+foreach ( $banco_por_cat as $_cat => $_b ) {
+	foreach ( (array) $_b['materiais'] as $_m ) {
+		$total_de_itens++;
+		if ( ! empty( $_m['preparo']['literal_do_fabricante'] ) ) {
+			$com_preparo_hoje++;
+		}
 	}
 }
 gui_ok( 0 === $com_preparo_hoje,
-	'nenhum item de acabamento tem literal de preparo — o bloco esta dormente por falta de DADO',
-	$com_preparo_hoje . ' de ' . count( $banco_cru['materiais'] ) );
+	'nenhum item das categorias publicadas tem literal de preparo — o bloco esta dormente por falta de DADO',
+	$com_preparo_hoje . ' de ' . $total_de_itens );
 
 $vazou_preparo = array();
 foreach ( $html_por_id as $id => $html ) {
@@ -558,7 +723,7 @@ foreach ( $html_por_id as $id => $html ) {
 		$vazou_preparo[] = $id . ' (saida degradada com a F2 de pe)';
 	}
 }
-gui_ok( empty( $vazou_preparo ), 'as quatro paginas no ar nao servem bloco de preparo nenhum',
+gui_ok( empty( $vazou_preparo ), 'as paginas no ar nao servem bloco de preparo nenhum',
 	empty( $vazou_preparo ) ? count( $html_por_id ) . ' paginas' : implode( ', ', $vazou_preparo ) );
 
 $LITERAL_FABRICADO = 'Lixe a peça e remova o pó antes da primeira demão, e aguarde a cura do rejunte.';

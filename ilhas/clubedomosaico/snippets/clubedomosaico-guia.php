@@ -2,6 +2,26 @@
  * CLUBE DO MOSAICO — O GUIA DE MATERIAIS, CATEGORIA POR CATEGORIA (bloco 4c)
  * Snippet "Clube do Mosaico Guia", registrado pelo Sync.
  *
+ * Versão 1.2.0 (08/10/2026) — O GUIA DEIXA DE SER DE UMA CATEGORIA SÓ. Até aqui
+ * o nome `acabamento` estava escrito em três lugares que não eram o registro
+ * editorial: na option do banco (`clubedomosaico_dados_materiais-acabamento`,
+ * cravada dentro de `cdm_guia_banco()`), nas contas e no corpo da página. Com
+ * UMA categoria isso não é defeito; com a segunda, é a página da nova mãe
+ * servindo os números da primeira — e servindo-os calada, porque o banco era
+ * um só e ninguém o escolhia. Agora a categoria é DECLARADA (seção 0-a), o
+ * banco dela vem do id do `manifest.json`, e a família de números que ela
+ * publica é uma RÉGUA com seis papéis. O corpo deste arquivo não conhece
+ * nenhuma categoria pelo nome: a palavra `acabamento` só aparece na seção 0-a,
+ * no registro das páginas e dentro da régua do acabamento. A segunda mãe entra
+ * com uma linha na seção 0-a, uma régua nova e as fichas dela — sem tocar na
+ * espinha, que é o que esta versão existe para provar.
+ *
+ * E ELA FALHA FECHADA, o que é a metade que importa: categoria sem régua, sem
+ * banco declarado ou com um papel faltando não publica número nenhum — a
+ * página serve o aviso honesto de que a medição não chegou, e a bancada
+ * reprova. O contrário (publicar o que der e omitir o resto) é a página pela
+ * metade com cara de medida, que é a cicatriz que esta ilha mais pagou.
+ *
  * Versão 1.1.0 (06/10/2026) — a ficha do produto passa a servir o `preparo` do
  * fabricante, logo abaixo da frase de onde ele vai. A régua é da F2
  * (`cdm_f2_preparo`), como já era a do bloco de compra, e por um motivo que não
@@ -81,7 +101,76 @@
  */
 
 if ( ! defined( 'CDM_GUIA_VERSAO' ) ) {
-	define( 'CDM_GUIA_VERSAO', '1.1.0' );
+	define( 'CDM_GUIA_VERSAO', '1.2.0' );
+}
+
+/* ---------------------------------------------------------------------------
+ * 0-a. AS CATEGORIAS DO GUIA — e a régua que lê o banco de cada uma
+ *
+ * O que uma categoria declara é o mínimo, e os dois campos existem por motivo
+ * medido:
+ *
+ *   `banco` — o id do dado no `manifest.json`, que é exatamente a option que o
+ *             Sync grava (`clubedomosaico_dados_<id>`). NÃO é derivado do nome
+ *             da categoria, de propósito: o banco do `rejunte` chama-se
+ *             `materiais-rejuntes`, no plural, e derivar daria
+ *             `materiais-rejunte`, que não existe. Derivação que acerta por
+ *             sorte do idioma é a mesma família do campo ausente lido como
+ *             `null` — ela espera o dia em que o nome não combina.
+ *   `regua` — QUAL FAMÍLIA DE NÚMEROS a categoria publica, e é o que não se
+ *             generaliza. A cobertura declarada e o relógio das demãos são do
+ *             `acabamento` porque o esquema dá a ele um bloco `protecao`; o
+ *             `rejunte` tem faixa de junta e liberação de área molhada, que
+ *             não são a mesma conta com outro nome. Uma régua por família de
+ *             número, e a espinha deste arquivo não conhece nenhuma delas.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_guia_categorias' ) ) {
+function cdm_guia_categorias() {
+	return array(
+		'acabamento' => array(
+			'banco' => 'materiais-acabamento',
+			'regua' => 'acabamento',
+		),
+	);
+}
+}
+
+if ( ! function_exists( 'cdm_guia_papeis_da_regua' ) ) {
+/**
+ * OS PAPÉIS DE UMA RÉGUA, E SÃO SEIS. Falta um e a categoria não publica:
+ * meia régua serviria meia página, que é pior do que nenhuma.
+ *
+ *   `contas`   — os números do recorte, contados do banco da categoria
+ *   `moldes`   — quais `{chaves}` o FAQ e a `description` podem usar
+ *   `resposta` — a frase de resposta, com os números dentro
+ *   `ponte`    — o parágrafo que liga esta categoria às vizinhas da casa
+ *   `achado`   — o bloco do que os fabricantes NÃO dizem, contado
+ *   `item`     — o miolo do cartão: o que o produto declara e os números dele
+ *
+ * A lista mora numa função só porque ela é lida em dois lugares — o portão de
+ * `cdm_guia_pronta()` e a bancada. Duas listas divergiriam caladas, e a que
+ * divergisse para menos deixaria passar a régua incompleta.
+ */
+function cdm_guia_papeis_da_regua() {
+	return array( 'contas', 'moldes', 'resposta', 'ponte', 'achado', 'item' );
+}
+}
+
+if ( ! function_exists( 'cdm_guia_reguas' ) ) {
+/** Cada régua, papel por papel. Hoje uma; a segunda entra como outra linha. */
+function cdm_guia_reguas() {
+	return array(
+		'acabamento' => array(
+			'contas'   => 'cdm_guia_contas_do_acabamento',
+			'moldes'   => 'cdm_guia_moldes_do_acabamento',
+			'resposta' => 'cdm_guia_resposta_do_acabamento',
+			'ponte'    => 'cdm_guia_ponte_do_acabamento',
+			'achado'   => 'cdm_guia_achado_do_acabamento',
+			'item'     => 'cdm_guia_item_do_acabamento',
+		),
+	);
+}
 }
 
 /* ---------------------------------------------------------------------------
@@ -115,6 +204,7 @@ function cdm_guia_registro() {
 		   11/09/2026. */
 		'acabamento' => array(
 			'tipo'     => null,
+			'categoria' => 'acabamento',
 			'slug'     => 'materiais/acabamento',
 			'titulo'   => 'Acabamento: o que passar depois do rejunte',
 			'curto'    => 'Acabamento',
@@ -124,6 +214,11 @@ function cdm_guia_registro() {
 			'description'  => 'O que passar na peça de mosaico depois do rejunte: verniz, impermeabilizante e selador, com a frase do próprio fabricante de cada produto.',
 			'o_que_e'  => 'Acabamento, aqui, é o que se passa na peça depois de ela estar montada e rejuntada — verniz e impermeabilizante — mais o selador, que é o contrário: vai na base antes de colar. Os três andam juntos porque são a mesma etapa da conversa, a de proteger, e separados porque entram em horas diferentes do trabalho.',
 			'o_que_nao_e' => 'O que acabamento não é: cola, que une o caquinho à base, e rejunte, que preenche a junta entre eles. Esses dois têm ferramenta própria nesta casa e a resposta deles muda com a superfície e com o lugar.',
+			/* O TÍTULO DA LISTA DE FILHAS É EDITORIAL, e por isso mora aqui e
+			   não no corpo do arquivo: "as três etapas" é verdade do
+			   acabamento, e seria mentira numa categoria de quatro filhas ou
+			   numa em que as filhas não sejam etapas de um relógio. */
+			'titulo_das_filhas' => 'As três etapas, e a hora de cada uma',
 			'faq_propria' => array(
 				array(
 					'pergunta' => 'Preciso passar alguma coisa na peça depois do rejunte?',
@@ -143,6 +238,7 @@ function cdm_guia_registro() {
 		   linha do tempo do trabalho, que é como a pessoa entende. */
 		'selador' => array(
 			'tipo'     => 'selador',
+			'categoria' => 'acabamento',
 			'slug'     => 'materiais/acabamento/selar-a-base-antes-de-fazer-mosaico',
 			'titulo'   => 'Selar a base antes de fazer mosaico',
 			'curto'    => 'Selador',
@@ -165,6 +261,7 @@ function cdm_guia_registro() {
 		),
 		'verniz' => array(
 			'tipo'     => 'verniz',
+			'categoria' => 'acabamento',
 			'slug'     => 'materiais/acabamento/verniz-para-peca-de-mosaico',
 			'titulo'   => 'Verniz para peça de mosaico',
 			'curto'    => 'Verniz',
@@ -187,6 +284,7 @@ function cdm_guia_registro() {
 		),
 		'impermeabilizante' => array(
 			'tipo'     => 'impermeabilizante',
+			'categoria' => 'acabamento',
 			'slug'     => 'materiais/acabamento/impermeabilizar-peca-de-mosaico',
 			'titulo'   => 'Impermeabilizar a peça de mosaico',
 			'curto'    => 'Impermeabilizante',
@@ -239,11 +337,51 @@ function cdm_guia_id_do_slug( $slug ) {
 }
 }
 
+if ( ! function_exists( 'cdm_guia_categoria_do_id' ) ) {
+/** A categoria desta página, lida do registro. '' quando a página não existe. */
+function cdm_guia_categoria_do_id( $id ) {
+	$ficha = cdm_guia_ficha( $id );
+
+	return ( $ficha && ! empty( $ficha['categoria'] ) ) ? (string) $ficha['categoria'] : '';
+}
+}
+
+if ( ! function_exists( 'cdm_guia_regua_da_categoria' ) ) {
+/**
+ * A FUNÇÃO QUE FAZ ESTE PAPEL NESTA CATEGORIA, ou '' quando não existe — e o
+ * '' é o que faz a página falhar fechada em vez de servir número de outra
+ * categoria. Categoria não declarada, régua não declarada e papel que aponta
+ * para função que não existe dão o mesmo '': são três maneiras de a mesma
+ * coisa faltar, e tratar uma delas como "quase pronta" seria publicar meia
+ * página.
+ */
+function cdm_guia_regua_da_categoria( $categoria, $papel ) {
+	$cats = cdm_guia_categorias();
+	if ( '' === (string) $categoria || empty( $cats[ $categoria ]['regua'] ) ) {
+		return '';
+	}
+	$reguas = cdm_guia_reguas();
+	$nome   = $cats[ $categoria ]['regua'];
+	if ( empty( $reguas[ $nome ][ $papel ] ) || ! function_exists( $reguas[ $nome ][ $papel ] ) ) {
+		return '';
+	}
+
+	return $reguas[ $nome ][ $papel ];
+}
+}
+
+if ( ! function_exists( 'cdm_guia_regua' ) ) {
+/** O mesmo, pela página: é por aqui que o corpo do arquivo chama a régua. */
+function cdm_guia_regua( $id, $papel ) {
+	return cdm_guia_regua_da_categoria( cdm_guia_categoria_do_id( $id ), $papel );
+}
+}
+
 if ( ! function_exists( 'cdm_guia_mae' ) ) {
-/** O id da mãe desta família — a página cujo recorte é a categoria inteira. */
-function cdm_guia_mae() {
+/** O id da mãe DESTA categoria — a página cujo recorte é a categoria inteira. */
+function cdm_guia_mae( $categoria ) {
 	foreach ( cdm_guia_registro() as $id => $ficha ) {
-		if ( null === $ficha['tipo'] ) {
+		if ( null === $ficha['tipo'] && (string) $categoria === cdm_guia_categoria_do_id( $id ) ) {
 			return $id;
 		}
 	}
@@ -252,12 +390,26 @@ function cdm_guia_mae() {
 }
 }
 
+if ( ! function_exists( 'cdm_guia_maes' ) ) {
+/** A mãe de cada categoria que já tem página, na ordem do registro. */
+function cdm_guia_maes() {
+	$maes = array();
+	foreach ( cdm_guia_registro() as $id => $ficha ) {
+		if ( null === $ficha['tipo'] ) {
+			$maes[ cdm_guia_categoria_do_id( $id ) ] = $id;
+		}
+	}
+
+	return $maes;
+}
+}
+
 if ( ! function_exists( 'cdm_guia_filhas' ) ) {
-/** As filhas, na ordem do registro. */
-function cdm_guia_filhas() {
+/** As filhas DESTA categoria, na ordem do registro. */
+function cdm_guia_filhas( $categoria ) {
 	$filhas = array();
 	foreach ( cdm_guia_registro() as $id => $ficha ) {
-		if ( null !== $ficha['tipo'] ) {
+		if ( null !== $ficha['tipo'] && (string) $categoria === cdm_guia_categoria_do_id( $id ) ) {
 			$filhas[ $id ] = $ficha;
 		}
 	}
@@ -281,7 +433,17 @@ add_filter( 'cdm_paginas', function ( $paginas ) {
 		return $paginas;
 	}
 	foreach ( cdm_guia_registro() as $id => $ficha ) {
-		$pai = ( null === $ficha['tipo'] ) ? 'materiais' : cdm_guia_registro()[ cdm_guia_mae() ]['slug'];
+		/* O PAI DA FILHA É A MÃE DA PRÓPRIA CATEGORIA DELA. Com uma categoria a
+		   diferença não aparecia; com duas, a filha do `rejunte` penduraria na
+		   mãe do `acabamento` e a árvore sairia errada sem nenhum erro de PHP.
+		   Filha de categoria sem mãe registrada volta para `materiais` — estado
+		   que a bancada proíbe, porque filha pendurada no nível 2 sem a mãe
+		   dela é o cluster ralo da 16.6. */
+		$pai = 'materiais';
+		if ( null !== $ficha['tipo'] ) {
+			$f_mae = cdm_guia_ficha( cdm_guia_mae( cdm_guia_categoria_do_id( $id ) ) );
+			$pai   = empty( $f_mae['slug'] ) ? 'materiais' : $f_mae['slug'];
+		}
 		$paginas[ $ficha['slug'] ] = array(
 			'titulo'    => $ficha['titulo'],
 			'conteudo'  => '[cdm_guia_' . $id . ']',
@@ -303,14 +465,16 @@ add_filter( 'cdm_categorias_do_guia', function ( $lista ) {
 	if ( ! is_array( $lista ) ) {
 		return $lista;
 	}
-	$mae = cdm_guia_ficha( cdm_guia_mae() );
-	if ( ! $mae ) {
-		return $lista;
-	}
-	foreach ( $lista as $i => $c ) {
-		if ( isset( $c['slug'] ) && $mae['slug'] === $c['slug'] ) {
-			$lista[ $i ]['titulo'] = $mae['titulo'];
-			$lista[ $i ]['resumo'] = $mae['resumo'];
+	foreach ( cdm_guia_maes() as $mae_id ) {
+		$mae = cdm_guia_ficha( $mae_id );
+		if ( ! $mae ) {
+			continue;
+		}
+		foreach ( $lista as $i => $c ) {
+			if ( isset( $c['slug'] ) && $mae['slug'] === $c['slug'] ) {
+				$lista[ $i ]['titulo'] = $mae['titulo'];
+				$lista[ $i ]['resumo'] = $mae['resumo'];
+			}
 		}
 	}
 
@@ -326,14 +490,14 @@ add_filter( 'cdm_arvore', function ( $mapa ) {
 	if ( ! is_array( $mapa ) ) {
 		return $mapa;
 	}
-	$mae = cdm_guia_ficha( cdm_guia_mae() );
-	foreach ( cdm_guia_filhas() as $ficha ) {
-		if ( isset( $mapa[ $ficha['slug'] ] ) ) {
+	foreach ( cdm_guia_registro() as $id => $ficha ) {
+		if ( null === $ficha['tipo'] || isset( $mapa[ $ficha['slug'] ] ) ) {
 			continue;
 		}
+		$mae = cdm_guia_ficha( cdm_guia_mae( cdm_guia_categoria_do_id( $id ) ) );
 		$mapa[ $ficha['slug'] ] = array(
 			'nivel'  => 3,
-			'mae'    => $mae ? $mae['slug'] : 'materiais',
+			'mae'    => empty( $mae['slug'] ) ? 'materiais' : $mae['slug'],
 			'rotulo' => $ficha['titulo'],
 		);
 	}
@@ -350,14 +514,46 @@ add_filter( 'cdm_arvore', function ( $mapa ) {
  * (`sem_banco=1`), que é o que faz a trava ser medida em vez de suposta.
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'cdm_guia_esquema' ) ) {
+/**
+ * O ESQUEMA DO BANCO, que é do arquipélago e não de uma categoria.
+ *
+ * Mora numa função só porque ele é lido por dois caminhos — o banco de cada
+ * categoria e as superfícies do vocabulário — e, antes desta versão, o segundo
+ * lia o esquema ATRAVÉS do banco do acabamento. Com duas categorias isso faria
+ * o vocabulário sumir no dia em que o banco da primeira categoria saísse do
+ * ar, e a página da segunda publicaria uma fração com denominador zero.
+ */
+function cdm_guia_esquema() {
+	static $esquema = null;
+	if ( null !== $esquema ) {
+		return $esquema;
+	}
+	$bruto = get_option( 'clubedomosaico_dados_esquema-banco' );
+	if ( is_string( $bruto ) ) {
+		$bruto = json_decode( $bruto, true );
+	}
+	$esquema = is_array( $bruto ) ? $bruto : array();
+
+	return $esquema;
+}
+}
+
 if ( ! function_exists( 'cdm_guia_banco' ) ) {
-function cdm_guia_banco() {
-	static $banco = null;
-	if ( null !== $banco ) {
-		return $banco;
+function cdm_guia_banco( $categoria ) {
+	static $cache = array();
+	$categoria = (string) $categoria;
+	if ( isset( $cache[ $categoria ] ) ) {
+		return $cache[ $categoria ];
 	}
 
-	$arquivo = get_option( 'clubedomosaico_dados_materiais-acabamento' );
+	/* O ID DO DADO VEM DA DECLARAÇÃO, nunca do nome da categoria: é ele que o
+	   Sync usa como nome da option. Categoria não declarada não lê option
+	   nenhuma — e por isso sai com `completo` falso, que é a falha fechada. */
+	$cats = cdm_guia_categorias();
+	$id   = isset( $cats[ $categoria ]['banco'] ) ? (string) $cats[ $categoria ]['banco'] : '';
+
+	$arquivo = ( '' === $id ) ? null : get_option( 'clubedomosaico_dados_' . $id );
 	if ( is_string( $arquivo ) ) {
 		$arquivo = json_decode( $arquivo, true );
 	}
@@ -373,16 +569,15 @@ function cdm_guia_banco() {
 	}
 	ksort( $itens );
 
-	$esquema = get_option( 'clubedomosaico_dados_esquema-banco' );
-	if ( is_string( $esquema ) ) {
-		$esquema = json_decode( $esquema, true );
-	}
+	$esquema = cdm_guia_esquema();
 
 	$banco = array(
 		'itens'    => $itens,
-		'esquema'  => is_array( $esquema ) ? $esquema : array(),
+		'esquema'  => $esquema,
 		'completo' => ( $itens && is_array( $esquema ) && ! empty( $esquema['vocabularios'] ) ),
 	);
+
+	$cache[ $categoria ] = $banco;
 
 	return $banco;
 }
@@ -399,8 +594,8 @@ if ( ! function_exists( 'cdm_guia_superficies' ) ) {
  * segunda lista aqui seria a cópia que envelhece calada.
  */
 function cdm_guia_superficies() {
-	$banco = cdm_guia_banco();
-	$v     = isset( $banco['esquema']['vocabularios'] ) ? $banco['esquema']['vocabularios'] : array();
+	$esquema = cdm_guia_esquema();
+	$v       = isset( $esquema['vocabularios'] ) ? $esquema['vocabularios'] : array();
 	$bases = ( isset( $v['base'] ) && is_array( $v['base'] ) ) ? array_values( $v['base'] ) : array();
 	$tess  = ( isset( $v['material_tessela'] ) && is_array( $v['material_tessela'] ) ) ? array_values( $v['material_tessela'] ) : array();
 
@@ -478,44 +673,19 @@ function cdm_guia_valor( $item, $propriedade ) {
 }
 }
 
-if ( ! function_exists( 'cdm_guia_relogio' ) ) {
-/**
- * A ESPERA INTEIRA, da primeira demão até a peça pronta, em horas.
- *
- *   (demãos − 1) × intervalo entre demãos + secagem final
- *
- * Aritmética desta ilha sobre três declarações do fabricante, no mesmo desenho
- * dos gramas de rejunte da F1. Devolve null quando QUALQUER uma das parcelas
- * falta — e esse null é o produto, não a falha: é ele que faz a página escrever
- * "o fabricante não declara" em vez de emprestar o número do irmão de banco.
- *
- * Com uma demão só não há intervalo a somar, e aí a espera é a secagem final.
- */
-function cdm_guia_relogio( $item ) {
-	$demaos   = cdm_guia_valor( $item, 'demaos_minimas' );
-	$secagem  = cdm_guia_valor( $item, 'tempo_de_secagem_h' );
-	$intervalo = cdm_guia_valor( $item, 'intervalo_entre_demaos_min' );
-
-	if ( ! is_numeric( $demaos ) || ! is_numeric( $secagem ) ) {
-		return null;
-	}
-	$demaos  = (int) $demaos;
-	$secagem = (float) $secagem;
-	if ( $demaos < 1 ) {
-		return null;
-	}
-	if ( 1 === $demaos ) {
-		return $secagem;
-	}
-	if ( ! is_numeric( $intervalo ) ) {
-		return null;
-	}
-
-	return ( $demaos - 1 ) * ( (float) $intervalo / 60.0 ) + $secagem;
-}
-}
-
 if ( ! function_exists( 'cdm_guia_contas' ) ) {
+/**
+ * OS NÚMEROS DA PÁGINA — a parte que é de TODA categoria, e só ela.
+ *
+ * O recorte é o mesmo em qualquer categoria: a mãe é a categoria inteira, a
+ * filha é um `tipo` do vocabulário dela. Isso a espinha sabe contar. O que ela
+ * NÃO sabe é que número aquela família publica, e é por isso que o resto vem
+ * da régua — que recebe os itens já recortados e devolve as contas dela.
+ *
+ * A régua não devolve `itens` nem `n_itens`: esses dois são da espinha, e duas
+ * contagens do mesmo recorte divergiriam caladas no dia em que uma das duas
+ * passasse a filtrar por outra coisa.
+ */
 function cdm_guia_contas( $id ) {
 	static $cache = array();
 	if ( isset( $cache[ $id ] ) ) {
@@ -523,8 +693,8 @@ function cdm_guia_contas( $id ) {
 	}
 
 	$ficha = cdm_guia_ficha( $id );
-	$banco = cdm_guia_banco();
-	$sup   = cdm_guia_superficies();
+	$cat   = cdm_guia_categoria_do_id( $id );
+	$banco = cdm_guia_banco( $cat );
 	$tipo  = isset( $ficha['tipo'] ) ? $ficha['tipo'] : null;
 
 	$itens = array();
@@ -534,6 +704,104 @@ function cdm_guia_contas( $id ) {
 		}
 		$itens[ $chave ] = $m;
 	}
+
+	$contas = array(
+		'itens'   => array_keys( $itens ),
+		'n_itens' => count( $itens ),
+		/* SEM RÉGUA A PÁGINA NÃO TEM NÚMERO, e `pronta` falso é o que a faz
+		   dizer isso na tela em vez de servir a metade que sobrou. */
+		'pronta'  => false,
+	);
+
+	$regua = cdm_guia_regua( $id, 'contas' );
+	if ( '' !== $regua ) {
+		$da_regua = (array) call_user_func( $regua, $itens, $cat );
+		unset( $da_regua['itens'], $da_regua['n_itens'] );
+		$contas = array_merge( $contas, $da_regua );
+	}
+
+	$cache[ $id ] = $contas;
+
+	return $contas;
+}
+}
+
+if ( ! function_exists( 'cdm_guia_pronta' ) ) {
+/**
+ * A PÁGINA SÓ SE SERVE INTEIRA COM BANCO, VOCABULÁRIO E RÉGUA COMPLETA.
+ *
+ * Os seis papéis são conferidos um a um, e não "tem régua": régua com cinco
+ * papéis serviria a página com um buraco no meio, e buraco em página de tabela
+ * lê-se como "não se aplica". É a mesma trava do banco fora do ar, um nível
+ * acima — lá falta o dado, aqui falta quem saiba contá-lo.
+ */
+function cdm_guia_pronta( $id ) {
+	$cat = cdm_guia_categoria_do_id( $id );
+	if ( '' === $cat ) {
+		return false;
+	}
+	foreach ( cdm_guia_papeis_da_regua() as $papel ) {
+		if ( '' === cdm_guia_regua( $id, $papel ) ) {
+			return false;
+		}
+	}
+	$banco = cdm_guia_banco( $cat );
+	if ( ! $banco['completo'] ) {
+		return false;
+	}
+	$c = cdm_guia_contas( $id );
+
+	return ( $c['n_itens'] > 0 && ! empty( $c['pronta'] ) );
+}
+}
+
+if ( ! function_exists( 'cdm_guia_preencher' ) ) {
+/**
+ * Troca as chaves de um molde pelas contas da própria página.
+ *
+ * `{itens}` é da espinha porque todo recorte tem quantidade de produto; as
+ * outras chaves são da régua, e é ela que decide o que cabe num molde desta
+ * família. Chave que a régua não declara fica no texto como `{assim}` — e a
+ * bancada reprova molde não preenchido na tela, que é o alarme certo: o molde
+ * está falando de um número que esta categoria não tem.
+ */
+function cdm_guia_preencher( $texto, $id ) {
+	$contas = cdm_guia_contas( $id );
+	$mapa   = array( 'itens' => $contas['n_itens'] );
+
+	$regua = cdm_guia_regua( $id, 'moldes' );
+	if ( '' !== $regua ) {
+		$mapa = array_merge( $mapa, (array) call_user_func( $regua, $contas ) );
+	}
+
+	$troca = array();
+	foreach ( $mapa as $chave => $valor ) {
+		$troca[ '{' . $chave . '}' ] = number_format_i18n( (float) $valor );
+	}
+
+	return strtr( (string) $texto, $troca );
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 3-b. A RÉGUA DO ACABAMENTO — a família de números DESTA categoria
+ *
+ * Tudo o que está daqui para baixo nesta seção é do `acabamento` e de mais
+ * nenhuma categoria: a COBERTURA DECLARADA (das 15 superfícies do vocabulário,
+ * quantas a frase do fabricante nomeia) e o RELÓGIO das demãos. As duas contas
+ * só existem porque o esquema dá a esta categoria um bloco `protecao` e as
+ * propriedades de demão, intervalo e secagem — o `rejunte` não tem nenhuma das
+ * duas coisas, e a régua dele vai contar outra coisa, não esta com outro nome.
+ *
+ * A ESPINHA NÃO CHAMA NENHUMA DESTAS FUNÇÕES PELO NOME: ela as alcança pelos
+ * seis papéis de `cdm_guia_reguas()`. É isso que faz a segunda mãe ser uma
+ * régua nova em vez de uma cirurgia no corpo do arquivo.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_guia_contas_do_acabamento' ) ) {
+/** As contas desta família, sobre os itens que a espinha já recortou. */
+function cdm_guia_contas_do_acabamento( $itens, $categoria ) {
+	$sup = cdm_guia_superficies();
 
 	$n_sup      = count( $sup['base'] ) + count( $sup['tessela'] );
 	$nomeadas   = 0;
@@ -564,7 +832,7 @@ function cdm_guia_contas( $id ) {
 		}
 		$momentos[ $momento ][] = $chave;
 
-		$h = cdm_guia_relogio( $m );
+		$h = cdm_guia_relogio_do_acabamento( $m );
 		if ( null !== $h ) {
 			$relogios[ $chave ] = $h;
 		}
@@ -584,8 +852,11 @@ function cdm_guia_contas( $id ) {
 	}
 
 	$contas = array(
-		'itens'                 => array_keys( $itens ),
-		'n_itens'               => count( $itens ),
+		/* `pronta` É O VEREDITO DESTA RÉGUA sobre si mesma: sem vocabulário não
+		   há denominador, e fração com denominador zero não vai à tela. Quem
+		   decide é a régua porque é ela que sabe de que número a página vive —
+		   a espinha só sabe que tem produto. */
+		'pronta'                => ( $n_sup > 0 ),
 		'bases_no_vocabulario'  => count( $sup['base'] ),
 		'tesselas_no_vocabulario' => count( $sup['tessela'] ),
 		'superficies'           => $n_sup,
@@ -601,44 +872,232 @@ function cdm_guia_contas( $id ) {
 		'nomeiam_rejunte'       => $nomeia_rej,
 	);
 
-	$cache[ $id ] = $contas;
-
 	return $contas;
 }
 }
 
-if ( ! function_exists( 'cdm_guia_pronta' ) ) {
-/** A página só se serve inteira com banco e vocabulário no site, e com item. */
-function cdm_guia_pronta( $id ) {
-	$banco = cdm_guia_banco();
-	if ( ! $banco['completo'] ) {
-		return false;
-	}
-	$c = cdm_guia_contas( $id );
-
-	return ( $c['n_itens'] > 0 && $c['superficies'] > 0 );
+if ( ! function_exists( 'cdm_guia_moldes_do_acabamento' ) ) {
+/**
+ * AS CHAVES QUE UM MOLDE DESTA FAMÍLIA PODE USAR.
+ *
+ * É a lista de números que esta régua sabe contar, e nada além: molde que pede
+ * `{junta_minima}` numa página de acabamento fica na tela como `{junta_minima}`
+ * e a bancada reprova. Preferir o molde vazio ao número emprestado é a mesma
+ * decisão do relógio que não soma sem as três parcelas.
+ */
+function cdm_guia_moldes_do_acabamento( $c ) {
+	return array(
+		'celulas'              => $c['celulas'],
+		'superficies'          => $c['superficies'],
+		'nomeadas'             => $c['nomeadas'],
+		'com_momento'          => $c['com_momento'],
+		'sem_momento'          => $c['sem_momento'],
+		'com_relogio'          => $c['com_relogio'],
+		'bases_cobertas'       => count( $c['bases_cobertas'] ),
+		'bases_no_vocabulario' => $c['bases_no_vocabulario'],
+	);
 }
 }
 
-if ( ! function_exists( 'cdm_guia_preencher' ) ) {
-/** Troca as chaves de um molde pelas contas da própria página. */
-function cdm_guia_preencher( $texto, $contas ) {
-	$troca = array();
-	foreach ( array(
-		'itens'                => $contas['n_itens'],
-		'celulas'              => $contas['celulas'],
-		'superficies'          => $contas['superficies'],
-		'nomeadas'             => $contas['nomeadas'],
-		'com_momento'          => $contas['com_momento'],
-		'sem_momento'          => $contas['sem_momento'],
-		'com_relogio'          => $contas['com_relogio'],
-		'bases_cobertas'       => count( $contas['bases_cobertas'] ),
-		'bases_no_vocabulario' => $contas['bases_no_vocabulario'],
-	) as $chave => $valor ) {
-		$troca[ '{' . $chave . '}' ] = number_format_i18n( (float) $valor );
+if ( ! function_exists( 'cdm_guia_resposta_do_acabamento' ) ) {
+/** A frase de resposta desta família, com os números dela dentro. */
+function cdm_guia_resposta_do_acabamento( $c, $e_mae ) {
+	$html = '';
+	if ( $e_mae ) {
+		$html .= 'São <strong>' . (int) $c['n_itens'] . ' produtos</strong> no nosso banco para esta etapa, em três grupos. '
+			. 'Deles, <strong>' . (int) $c['com_momento'] . '</strong> dizem com todas as letras em que momento entram, e '
+			. (int) $c['sem_momento'] . ' não dizem — e a gente não deduz pelo mecanismo. ';
+	} else {
+		$html .= 'São <strong>' . (int) $c['n_itens'] . ' produtos</strong> deste tipo no nosso banco, '
+			. 'e o que cada um atende sai da frase do próprio fabricante, não da nossa opinião. ';
+	}
+	$html .= 'Das <strong>' . (int) $c['celulas'] . '</strong> combinações de produto e superfície desta página — '
+		. (int) $c['n_itens'] . ' produtos vezes as ' . (int) $c['superficies'] . ' superfícies que a gente nomeia —, '
+		. '<strong>' . (int) $c['nomeadas'] . '</strong> estão escritas na frase de algum fabricante.';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_guia_ponte_do_acabamento' ) ) {
+/** O parágrafo que liga esta categoria às vizinhas da casa. */
+function cdm_guia_ponte_do_acabamento( $e_mae, $mae ) {
+	$html = '';
+	if ( $e_mae ) {
+		$html .= '<p>Quem está escolhendo cola ou rejunte está uma etapa antes: o '
+			. cdm_casca_link_html( 'materiais/qual-cola-usar-no-mosaico', 'seletor de cola e rejunte' )
+			. ' pergunta a superfície e o lugar, e a '
+			. cdm_casca_link_html( 'materiais/quantas-pastilhas-para-mosaico', 'conta de quantas pastilhas e quanto rejunte' )
+			. ' diz quanto comprar. Esta página fica com o que vem depois deles.</p>';
+	} else {
+		/* 16.4(b): a filha linka a mãe no breadcrumb E numa frase do corpo. */
+		$html .= '<p>Esta é uma das três etapas do '
+			. cdm_casca_link_html( $mae['slug'], 'acabamento da peça de mosaico' )
+			. ', que é a página onde as três aparecem lado a lado. Um passo antes dela, o '
+			. cdm_casca_link_html( 'materiais/qual-cola-usar-no-mosaico', 'seletor de cola e rejunte' )
+			. ' responde o que une o caquinho à base.</p>';
 	}
 
-	return strtr( (string) $texto, $troca );
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_guia_achado_do_acabamento' ) ) {
+/** O bloco do que nenhum fabricante desta família diz — contado, nunca escrito. */
+function cdm_guia_achado_do_acabamento( $id, $c, $e_mae ) {
+	$html = '<div class="cdm-secao"><h2>O que nenhum destes fabricantes diz</h2>';
+	$lac   = cdm_guia_lacunas_do_acabamento( $id );
+	$faltam = count( $lac['base'] ) + count( $lac['tessela'] );
+	$html .= '<p>A gente nomeia ' . (int) $c['superficies'] . ' superfícies — ' . (int) $c['bases_no_vocabulario']
+		. ' bases e ' . (int) $c['tesselas_no_vocabulario'] . ' tipos de caquinho. '
+		. 'As frases ' . ( $e_mae ? 'destes ' . (int) $c['n_itens'] . ' produtos' : 'destes ' . (int) $c['n_itens'] . ' produtos' )
+		. ' alcançam <strong>' . ( (int) $c['superficies'] - $faltam ) . '</strong> delas, e deixam <strong>'
+		. (int) $faltam . '</strong> de fora. ' . esc_html( cdm_guia_frase_da_lacuna_do_acabamento( $id ) ) . '</p>';
+	$html .= '<p class="cdm-nao-fazemos">Não vamos escolher por semelhança o que o fabricante não escreveu. '
+		. 'Enquanto a frase dele não nomear a superfície da sua peça, esta página diz que não sabe — '
+		. 'e isso vale inclusive quando a química parece óbvia.</p>';
+	$html .= '</div>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_guia_relogio' ) ) {
+/**
+ * A ESPERA INTEIRA, da primeira demão até a peça pronta, em horas.
+ *
+ *   (demãos − 1) × intervalo entre demãos + secagem final
+ *
+ * Aritmética desta ilha sobre três declarações do fabricante, no mesmo desenho
+ * dos gramas de rejunte da F1. Devolve null quando QUALQUER uma das parcelas
+ * falta — e esse null é o produto, não a falha: é ele que faz a página escrever
+ * "o fabricante não declara" em vez de emprestar o número do irmão de banco.
+ *
+ * Com uma demão só não há intervalo a somar, e aí a espera é a secagem final.
+ */
+function cdm_guia_relogio_do_acabamento( $item ) {
+	$demaos   = cdm_guia_valor( $item, 'demaos_minimas' );
+	$secagem  = cdm_guia_valor( $item, 'tempo_de_secagem_h' );
+	$intervalo = cdm_guia_valor( $item, 'intervalo_entre_demaos_min' );
+
+	if ( ! is_numeric( $demaos ) || ! is_numeric( $secagem ) ) {
+		return null;
+	}
+	$demaos  = (int) $demaos;
+	$secagem = (float) $secagem;
+	if ( $demaos < 1 ) {
+		return null;
+	}
+	if ( 1 === $demaos ) {
+		return $secagem;
+	}
+	if ( ! is_numeric( $intervalo ) ) {
+		return null;
+	}
+
+	return ( $demaos - 1 ) * ( (float) $intervalo / 60.0 ) + $secagem;
+}
+}
+
+if ( ! function_exists( 'cdm_guia_numeros_do_item' ) ) {
+/**
+ * OS NÚMEROS DECLARADOS DE UM PRODUTO, na ordem em que a pessoa os usa.
+ *
+ * A lista de propriedades é fixa porque o esquema a fixa — ela é
+ * `as_propriedades_tem_NOME_FIXO_e_esta_e_a_lista` de
+ * `regras_da_categoria_acabamento`. O que NÃO é fixo é quais delas cada
+ * produto declara: propriedade sem valor não vira linha, e é esse silêncio que
+ * a coluna da tabela mostra.
+ */
+function cdm_guia_numeros_do_item_do_acabamento( $item ) {
+	$mapa = array(
+		'demaos_minimas'            => array( 'demãos', '' ),
+		'intervalo_entre_demaos_min' => array( 'entre demãos', 'min' ),
+		'tempo_de_secagem_h'        => array( 'secagem final', 'h' ),
+		'consumo_ml_m2'             => array( 'consumo', 'mL/m²' ),
+		'liberacao_trafego_leve_h'  => array( 'liberação para uso leve', 'h' ),
+		'liberacao_total_dias'      => array( 'liberação total', 'dias' ),
+		'elasticidade_pct'          => array( 'elasticidade', '%' ),
+		'temperatura_min_c'         => array( 'aplicar acima de', '°C' ),
+		'temperatura_max_c'         => array( 'aplicar abaixo de', '°C' ),
+		'acabamento_visual'         => array( 'acabamento', '' ),
+		'pelicula'                  => array( 'deixa película', '' ),
+		'base_quimica'              => array( 'feito de', '' ),
+		'pigmentado'                => array( 'pigmentado', '' ),
+		'forma_de_aplicacao'        => array( 'aplicação', '' ),
+		'diluicao'                  => array( 'diluição', '' ),
+	);
+
+	$linhas = array();
+	foreach ( $mapa as $propriedade => $par ) {
+		$valor = cdm_guia_valor( $item, $propriedade );
+		if ( null === $valor ) {
+			continue;
+		}
+		$texto = is_numeric( $valor ) ? cdm_guia_numero( $valor ) : (string) $valor;
+		if ( '' !== $par[1] ) {
+			$texto .= ' ' . $par[1];
+		}
+		$linhas[] = array( 'rotulo' => $par[0], 'valor' => $texto );
+	}
+
+	return $linhas;
+}
+}
+
+if ( ! function_exists( 'cdm_guia_item_do_acabamento' ) ) {
+/**
+ * O MIOLO DO CARTÃO DE PRODUTO desta família: sobre o que o fabricante escreveu
+ * que ele vai, os números declarados dele e o relógio.
+ *
+ * A moldura do cartão — foto, marca, nome, a frase literal, o preparo, o bloco
+ * de compra e a fonte — é da espinha, porque é igual em toda categoria. O que
+ * muda de família para família é exatamente o que está aqui: a cobertura sai do
+ * bloco `protecao`, que só o acabamento tem, e o relógio das demãos é uma conta
+ * que o `rejunte` não faz.
+ */
+function cdm_guia_item_do_acabamento( $item ) {
+	$p   = isset( $item['protecao'] ) && is_array( $item['protecao'] ) ? $item['protecao'] : array();
+	$sup = cdm_guia_superficies();
+
+	$html = '';
+
+	/* SOBRE O QUE O FABRICANTE ESCREVEU QUE ELE VAI, no vocabulário desta ilha.
+	   Quando a frase não encosta em nenhuma das nossas superfícies, a página
+	   diz isso — é a informação, não a falta dela. */
+	$nomeia = array();
+	foreach ( array_intersect( (array) ( isset( $p['bases_do_vocabulario_que_a_frase_nomeia'] ) ? $p['bases_do_vocabulario_que_a_frase_nomeia'] : array() ), $sup['base'] ) as $b ) {
+		$nomeia[] = cdm_guia_rotulo( 'base', $b );
+	}
+	foreach ( array_intersect( (array) ( isset( $p['tesselas_do_vocabulario_que_a_frase_nomeia'] ) ? $p['tesselas_do_vocabulario_que_a_frase_nomeia'] : array() ), $sup['tessela'] ) as $t ) {
+		$nomeia[] = cdm_guia_rotulo( 'tessela', $t );
+	}
+	if ( $nomeia ) {
+		$html .= '<p class="cdm-guia-nomeia">Das superfícies que a gente lista, a frase dele nomeia <strong>'
+			. esc_html( cdm_guia_lista_humana( $nomeia ) ) . '</strong>.</p>';
+	} else {
+		$html .= '<p class="cdm-guia-nomeia">A frase dele não nomeia nenhuma das superfícies que a gente lista.</p>';
+	}
+
+	$numeros = cdm_guia_numeros_do_item_do_acabamento( $item );
+	if ( $numeros ) {
+		$html .= '<dl class="cdm-guia-numeros">';
+		foreach ( $numeros as $linha ) {
+			$html .= '<dt>' . esc_html( $linha['rotulo'] ) . '</dt><dd>' . esc_html( $linha['valor'] ) . '</dd>';
+		}
+		$html .= '</dl>';
+	}
+
+	$relogio = cdm_guia_relogio_do_acabamento( $item );
+	if ( null !== $relogio ) {
+		$html .= '<p class="cdm-guia-relogio">Da primeira demão até a peça pronta, pela conta do próprio fabricante: <strong>'
+			. esc_html( cdm_guia_numero( $relogio ) ) . ' horas</strong>.</p>';
+	} else {
+		$html .= '<p class="cdm-guia-relogio cdm-guia-sem-conta">O fabricante não declara as três partes da espera, então a gente não soma — '
+			. 'emprestar o número do vizinho de prateleira seria inventar o que falta.</p>';
+	}
+
+	return $html;
 }
 }
 
@@ -651,7 +1110,7 @@ if ( ! function_exists( 'cdm_guia_lacunas' ) ) {
  * um fabricante novo nomear vidro, a frase do vidro some sozinha da página. Foi
  * para isso que ela não foi escrita à mão: frase cravada envelhece calada.
  */
-function cdm_guia_lacunas( $id ) {
+function cdm_guia_lacunas_do_acabamento( $id ) {
 	$c   = cdm_guia_contas( $id );
 	$sup = cdm_guia_superficies();
 
@@ -670,9 +1129,9 @@ if ( ! function_exists( 'cdm_guia_frase_da_lacuna' ) ) {
  * uma peça de mosaico expõe: a pastilha é de vidro e a junta é de rejunte. Mas
  * quem decide se eles entram na frase é a conta, não este comentário.
  */
-function cdm_guia_frase_da_lacuna( $id ) {
+function cdm_guia_frase_da_lacuna_do_acabamento( $id ) {
 	$c    = cdm_guia_contas( $id );
-	$lac  = cdm_guia_lacunas( $id );
+	$lac  = cdm_guia_lacunas_do_acabamento( $id );
 	$nomes = array();
 
 	foreach ( array( 'vidro', 'espelho' ) as $chave ) {
@@ -731,52 +1190,6 @@ function cdm_guia_fonte_principal( $item ) {
 }
 }
 
-if ( ! function_exists( 'cdm_guia_numeros_do_item' ) ) {
-/**
- * OS NÚMEROS DECLARADOS DE UM PRODUTO, na ordem em que a pessoa os usa.
- *
- * A lista de propriedades é fixa porque o esquema a fixa — ela é
- * `as_propriedades_tem_NOME_FIXO_e_esta_e_a_lista` de
- * `regras_da_categoria_acabamento`. O que NÃO é fixo é quais delas cada
- * produto declara: propriedade sem valor não vira linha, e é esse silêncio que
- * a coluna da tabela mostra.
- */
-function cdm_guia_numeros_do_item( $item ) {
-	$mapa = array(
-		'demaos_minimas'            => array( 'demãos', '' ),
-		'intervalo_entre_demaos_min' => array( 'entre demãos', 'min' ),
-		'tempo_de_secagem_h'        => array( 'secagem final', 'h' ),
-		'consumo_ml_m2'             => array( 'consumo', 'mL/m²' ),
-		'liberacao_trafego_leve_h'  => array( 'liberação para uso leve', 'h' ),
-		'liberacao_total_dias'      => array( 'liberação total', 'dias' ),
-		'elasticidade_pct'          => array( 'elasticidade', '%' ),
-		'temperatura_min_c'         => array( 'aplicar acima de', '°C' ),
-		'temperatura_max_c'         => array( 'aplicar abaixo de', '°C' ),
-		'acabamento_visual'         => array( 'acabamento', '' ),
-		'pelicula'                  => array( 'deixa película', '' ),
-		'base_quimica'              => array( 'feito de', '' ),
-		'pigmentado'                => array( 'pigmentado', '' ),
-		'forma_de_aplicacao'        => array( 'aplicação', '' ),
-		'diluicao'                  => array( 'diluição', '' ),
-	);
-
-	$linhas = array();
-	foreach ( $mapa as $propriedade => $par ) {
-		$valor = cdm_guia_valor( $item, $propriedade );
-		if ( null === $valor ) {
-			continue;
-		}
-		$texto = is_numeric( $valor ) ? cdm_guia_numero( $valor ) : (string) $valor;
-		if ( '' !== $par[1] ) {
-			$texto .= ' ' . $par[1];
-		}
-		$linhas[] = array( 'rotulo' => $par[0], 'valor' => $texto );
-	}
-
-	return $linhas;
-}
-}
-
 if ( ! function_exists( 'cdm_guia_ficha_do_produto_html' ) ) {
 /**
  * A FICHA DE UM PRODUTO: o que o fabricante escreveu, os números dele e o
@@ -788,10 +1201,9 @@ if ( ! function_exists( 'cdm_guia_ficha_do_produto_html' ) ) {
  * quatro estados". Sem a F2 carregada, o bloco diz que a lista está fora do ar
  * — é a saída degradada que a F1 já tem em duas vitrines.
  */
-function cdm_guia_ficha_do_produto_html( $item ) {
+function cdm_guia_ficha_do_produto_html( $item, $categoria ) {
 	$p     = isset( $item['protecao'] ) && is_array( $item['protecao'] ) ? $item['protecao'] : array();
 	$fonte = cdm_guia_fonte_principal( $item );
-	$sup   = cdm_guia_superficies();
 
 	$html = '<li class="cdm-guia-cartao">';
 
@@ -806,39 +1218,9 @@ function cdm_guia_ficha_do_produto_html( $item ) {
 	$html .= '<span class="cdm-guia-marca">' . esc_html( isset( $item['marca'] ) ? $item['marca'] : '' ) . '</span>';
 	$html .= '<h3>' . esc_html( $item['nome_comercial'] ) . '</h3>';
 
-	/* SOBRE O QUE O FABRICANTE ESCREVEU QUE ELE VAI, no vocabulário desta ilha.
-	   Quando a frase não encosta em nenhuma das nossas superfícies, a página
-	   diz isso — é a informação, não a falta dela. */
-	$nomeia = array();
-	foreach ( array_intersect( (array) ( isset( $p['bases_do_vocabulario_que_a_frase_nomeia'] ) ? $p['bases_do_vocabulario_que_a_frase_nomeia'] : array() ), $sup['base'] ) as $b ) {
-		$nomeia[] = cdm_guia_rotulo( 'base', $b );
-	}
-	foreach ( array_intersect( (array) ( isset( $p['tesselas_do_vocabulario_que_a_frase_nomeia'] ) ? $p['tesselas_do_vocabulario_que_a_frase_nomeia'] : array() ), $sup['tessela'] ) as $t ) {
-		$nomeia[] = cdm_guia_rotulo( 'tessela', $t );
-	}
-	if ( $nomeia ) {
-		$html .= '<p class="cdm-guia-nomeia">Das superfícies que a gente lista, a frase dele nomeia <strong>'
-			. esc_html( cdm_guia_lista_humana( $nomeia ) ) . '</strong>.</p>';
-	} else {
-		$html .= '<p class="cdm-guia-nomeia">A frase dele não nomeia nenhuma das superfícies que a gente lista.</p>';
-	}
-
-	$numeros = cdm_guia_numeros_do_item( $item );
-	if ( $numeros ) {
-		$html .= '<dl class="cdm-guia-numeros">';
-		foreach ( $numeros as $linha ) {
-			$html .= '<dt>' . esc_html( $linha['rotulo'] ) . '</dt><dd>' . esc_html( $linha['valor'] ) . '</dd>';
-		}
-		$html .= '</dl>';
-	}
-
-	$relogio = cdm_guia_relogio( $item );
-	if ( null !== $relogio ) {
-		$html .= '<p class="cdm-guia-relogio">Da primeira demão até a peça pronta, pela conta do próprio fabricante: <strong>'
-			. esc_html( cdm_guia_numero( $relogio ) ) . ' horas</strong>.</p>';
-	} else {
-		$html .= '<p class="cdm-guia-relogio cdm-guia-sem-conta">O fabricante não declara as três partes da espera, então a gente não soma — '
-			. 'emprestar o número do vizinho de prateleira seria inventar o que falta.</p>';
+	$miolo = cdm_guia_regua_da_categoria( $categoria, 'item' );
+	if ( '' !== $miolo ) {
+		$html .= call_user_func( $miolo, $item );
 	}
 
 	/* A FRASE DO FABRICANTE, INTEIRA E ENTRE ASPAS. É a camada de prova desta
@@ -915,8 +1297,9 @@ function cdm_guia_html( $id ) {
 	}
 
 	$c     = cdm_guia_contas( $id );
-	$banco = cdm_guia_banco();
-	$mae   = cdm_guia_ficha( cdm_guia_mae() );
+	$cat   = cdm_guia_categoria_do_id( $id );
+	$banco = cdm_guia_banco( $cat );
+	$mae   = cdm_guia_ficha( cdm_guia_mae( $cat ) );
 	$e_mae = ( null === $ficha['tipo'] );
 
 	$html = '<div class="cdm-bloco cdm-guia">';
@@ -925,19 +1308,12 @@ function cdm_guia_html( $id ) {
 	   sem fabricante, sem data e sem a palavra "substrato". */
 	$html .= '<p class="cdm-linha-mestra">' . esc_html( $ficha['linha_mestra'] ) . '</p>';
 
-	/* A RESPOSTA ANTES DA EXPLICAÇÃO, com o número contado do banco. */
+	/* A RESPOSTA ANTES DA EXPLICAÇÃO, com o número contado do banco. A frase é
+	   da régua: ela fala dos números daquela família, e é por isso que ela não
+	   cabe aqui — "combinações de produto e superfície" é verdade do
+	   acabamento e seria invenção no rejunte. */
 	$html .= '<div class="cdm-guia-resposta"><p class="cdm-guia-frase">';
-	if ( $e_mae ) {
-		$html .= 'São <strong>' . (int) $c['n_itens'] . ' produtos</strong> no nosso banco para esta etapa, em três grupos. '
-			. 'Deles, <strong>' . (int) $c['com_momento'] . '</strong> dizem com todas as letras em que momento entram, e '
-			. (int) $c['sem_momento'] . ' não dizem — e a gente não deduz pelo mecanismo. ';
-	} else {
-		$html .= 'São <strong>' . (int) $c['n_itens'] . ' produtos</strong> deste tipo no nosso banco, '
-			. 'e o que cada um atende sai da frase do próprio fabricante, não da nossa opinião. ';
-	}
-	$html .= 'Das <strong>' . (int) $c['celulas'] . '</strong> combinações de produto e superfície desta página — '
-		. (int) $c['n_itens'] . ' produtos vezes as ' . (int) $c['superficies'] . ' superfícies que a gente nomeia —, '
-		. '<strong>' . (int) $c['nomeadas'] . '</strong> estão escritas na frase de algum fabricante.';
+	$html .= call_user_func( cdm_guia_regua( $id, 'resposta' ), $c, $e_mae );
 	$html .= '</p>';
 	$html .= '<p class="cdm-prova cdm-guia-prova">Cada número desta página é lido do que o fabricante publicou, '
 		. 'com o endereço e a data da leitura na ficha de cada produto. Onde ele não declara, está escrito que não declara.</p>';
@@ -946,9 +1322,9 @@ function cdm_guia_html( $id ) {
 	/* A MÃE LISTA TODAS AS FILHAS, com o texto-âncora igual à consulta-alvo de
 	   cada uma — 16.4(a) ao pé da letra, e nunca "saiba mais". */
 	if ( $e_mae ) {
-		$html .= '<div class="cdm-secao"><h2>As três etapas, e a hora de cada uma</h2>';
+		$html .= '<div class="cdm-secao"><h2>' . esc_html( $ficha['titulo_das_filhas'] ) . '</h2>';
 		$html .= '<ul class="cdm-guia-filhas">';
-		foreach ( cdm_guia_filhas() as $fid => $f ) {
+		foreach ( cdm_guia_filhas( $cat ) as $fid => $f ) {
 			$cf    = cdm_guia_contas( $fid );
 			$html .= '<li><h3>' . cdm_casca_link_html( $f['slug'], $f['consulta'] ) . '</h3>'
 				. '<p>' . esc_html( $f['resumo'] ) . '</p>'
@@ -961,27 +1337,18 @@ function cdm_guia_html( $id ) {
 	$html .= '<div class="cdm-secao"><h2>O que é, e o que não é</h2>';
 	$html .= '<p>' . esc_html( $ficha['o_que_e'] ) . '</p>';
 	$html .= '<p>' . esc_html( $ficha['o_que_nao_e'] ) . '</p>';
-	if ( $e_mae ) {
-		$html .= '<p>Quem está escolhendo cola ou rejunte está uma etapa antes: o '
-			. cdm_casca_link_html( 'materiais/qual-cola-usar-no-mosaico', 'seletor de cola e rejunte' )
-			. ' pergunta a superfície e o lugar, e a '
-			. cdm_casca_link_html( 'materiais/quantas-pastilhas-para-mosaico', 'conta de quantas pastilhas e quanto rejunte' )
-			. ' diz quanto comprar. Esta página fica com o que vem depois deles.</p>';
-	} else {
-		/* 16.4(b): a filha linka a mãe no breadcrumb E numa frase do corpo. */
-		$html .= '<p>Esta é uma das três etapas do '
-			. cdm_casca_link_html( $mae['slug'], 'acabamento da peça de mosaico' )
-			. ', que é a página onde as três aparecem lado a lado. Um passo antes dela, o '
-			. cdm_casca_link_html( 'materiais/qual-cola-usar-no-mosaico', 'seletor de cola e rejunte' )
-			. ' responde o que une o caquinho à base.</p>';
-	}
+	/* A PONTE PARA AS VIZINHAS DA CASA é da régua, e o motivo é de conteúdo: o
+	   acabamento vem DEPOIS do seletor de cola e rejunte, e o rejunte É o
+	   assunto daquele seletor. A mesma frase nas duas mandaria a pessoa uma
+	   etapa para trás quando ela já está no lugar certo. */
+	$html .= call_user_func( cdm_guia_regua( $id, 'ponte' ), $e_mae, $mae );
 	$html .= '</div>';
 
 	/* PRODUTO POR PRODUTO. Na mãe, agrupado pelos três tipos, para os dez
 	   aparecerem exatamente uma vez — que é a prestação de contas da seção 7. */
 	$html .= '<div class="cdm-secao"><h2>Produto por produto, com a frase do fabricante</h2>';
 	if ( $e_mae ) {
-		foreach ( cdm_guia_filhas() as $fid => $f ) {
+		foreach ( cdm_guia_filhas( $cat ) as $fid => $f ) {
 			$cf = cdm_guia_contas( $fid );
 			if ( ! $cf['itens'] ) {
 				continue;
@@ -989,32 +1356,23 @@ function cdm_guia_html( $id ) {
 			$html .= '<h3 class="cdm-guia-grupo">' . cdm_casca_link_html( $f['slug'], $f['titulo'] ) . '</h3>';
 			$html .= '<ul class="cdm-guia-cartoes">';
 			foreach ( $cf['itens'] as $chave ) {
-				$html .= cdm_guia_ficha_do_produto_html( $banco['itens'][ $chave ] );
+				$html .= cdm_guia_ficha_do_produto_html( $banco['itens'][ $chave ], $cat );
 			}
 			$html .= '</ul>';
 		}
 	} else {
 		$html .= '<ul class="cdm-guia-cartoes">';
 		foreach ( $c['itens'] as $chave ) {
-			$html .= cdm_guia_ficha_do_produto_html( $banco['itens'][ $chave ] );
+			$html .= cdm_guia_ficha_do_produto_html( $banco['itens'][ $chave ], $cat );
 		}
 		$html .= '</ul>';
 	}
 	$html .= '</div>';
 
-	/* O QUE NINGUÉM DECLARA — o achado desta família, contado. */
-	$html .= '<div class="cdm-secao"><h2>O que nenhum destes fabricantes diz</h2>';
-	$lac   = cdm_guia_lacunas( $id );
-	$faltam = count( $lac['base'] ) + count( $lac['tessela'] );
-	$html .= '<p>A gente nomeia ' . (int) $c['superficies'] . ' superfícies — ' . (int) $c['bases_no_vocabulario']
-		. ' bases e ' . (int) $c['tesselas_no_vocabulario'] . ' tipos de caquinho. '
-		. 'As frases ' . ( $e_mae ? 'destes ' . (int) $c['n_itens'] . ' produtos' : 'destes ' . (int) $c['n_itens'] . ' produtos' )
-		. ' alcançam <strong>' . ( (int) $c['superficies'] - $faltam ) . '</strong> delas, e deixam <strong>'
-		. (int) $faltam . '</strong> de fora. ' . esc_html( cdm_guia_frase_da_lacuna( $id ) ) . '</p>';
-	$html .= '<p class="cdm-nao-fazemos">Não vamos escolher por semelhança o que o fabricante não escreveu. '
-		. 'Enquanto a frase dele não nomear a superfície da sua peça, esta página diz que não sabe — '
-		. 'e isso vale inclusive quando a química parece óbvia.</p>';
-	$html .= '</div>';
+	/* O QUE NINGUÉM DECLARA — o achado desta família, contado, e a régua é a
+	   dona dele: o achado do acabamento é a cobertura que falta; o de outra
+	   categoria será outra ausência, medida de outro jeito. */
+	$html .= call_user_func( cdm_guia_regua( $id, 'achado' ), $id, $c, $e_mae );
 
 	/* AS PERGUNTAS, com os números da própria página. */
 	$html .= '<div class="cdm-secao cdm-guia-faq"><h2>Perguntas</h2><dl>';
@@ -1036,12 +1394,11 @@ function cdm_guia_faq( $id ) {
 	if ( empty( $ficha['faq_propria'] ) ) {
 		return array();
 	}
-	$c    = cdm_guia_contas( $id );
 	$saida = array();
 	foreach ( $ficha['faq_propria'] as $p ) {
 		$saida[] = array(
-			'pergunta' => cdm_guia_preencher( $p['pergunta'], $c ),
-			'resposta' => cdm_guia_preencher( $p['resposta'], $c ),
+			'pergunta' => cdm_guia_preencher( $p['pergunta'], $id ),
+			'resposta' => cdm_guia_preencher( $p['resposta'], $id ),
 		);
 	}
 

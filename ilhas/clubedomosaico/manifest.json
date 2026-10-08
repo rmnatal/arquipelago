@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 70,
+  "revisao": 71,
   "atualizado_em": "2026-10-08",
   "estado": "nascendo",
   "desembarque": {
@@ -97,9 +97,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.1.0",
-      "sha256": "24ed8f1413fecbee91f6ae8c9ab98aa82a27485a6f2fc6ee09f9621d53708651",
-      "descricao": "Guia 1.1.0 — a ficha do produto passa a servir o `preparo` do fabricante, logo abaixo da frase de onde ele vai. A regua dos tres estados e da F2 (`cdm_f2_preparo`), como ja era a do bloco de compra, e por um motivo que nao e economia de linha: duas implementacoes da mesma decisao divergem caladas. Hoje nenhum dos dez itens de `acabamento` tem o campo, entao este cartao e CODIGO DORMENTE em `/materiais/acabamento/` — e por isso `teste-guia.php` o mede num MUNDO FABRICADO, com duas afirmacoes que precisam uma da outra: a pagina real nao serve nada (falta dado) e a do mundo fabricado serve (o caminho existe). Uma sozinha nao distingue dormente de quebrado."
+      "versao": "1.2.0",
+      "sha256": "3b97d810e31be6490a12f7f7d26659030b2b1393d98814894e5d165a0122a120",
+      "descricao": "Guia 1.2.0 — o Guia deixa de ser de UMA categoria so. A categoria de cada pagina passa a ser DECLARADA (`cdm_guia_categorias()`): o banco dela vem do id do dado no manifest, que e o mesmo nome da option que o Sync grava, e a familia de numeros que ela publica vem de uma REGUA de seis papeis (contas, moldes, resposta, ponte, achado, item). A espinha do arquivo nao conhece categoria nenhuma pelo nome; `acabamento` so aparece na declaracao, no registro das paginas e dentro da regua do acabamento. Falha fechada: categoria sem regua, sem banco declarado ou com um papel faltando nao publica numero — a pagina serve o aviso honesto e a bancada reprova. As quatro paginas no ar sairam IDENTICAS byte a byte (medido nas quatro antes e depois), e a mutacao que renomeia o banco junto com a declaracao mede que o nome antigo nao esta escrito em lugar nenhum fora dela. Bancada: teste-guia 123 afirmacoes (eram 110) e mutacoes-guia 18 de 18 (eram 14)."
     }
   ],
   "conteudo": [],
@@ -774,13 +774,13 @@
     {
       "id": "teste-guia",
       "arquivo": "ferramentas/teste-guia.php",
-      "sha256": "7532dfdd57aa001abb6173f4b391e87e8299071470a97fa16849592d76ec5e5e",
+      "sha256": "e71b0cd5db55a7300d27c5195eb96f3c0abca8e7330f85ecd2b2a897efd5f97b",
       "descricao": "Bancada das quatro paginas do Guia (bloco 4c), com o que e SO desta familia — os portoes gerais ja rodam no teste-casca.php, que passou a montar as quatro. Mede: (1) o portao da 14.9 NOS DOIS SENTIDOS, lendo a lista `pode_nascer` de dados/cruzamento-14-9.md — nenhuma pagina sem autorizacao E nenhum recorte autorizado sem pagina, que e a metade que impede a familia de parar calada; (2) a cobertura e o relogio recontados do JSON cru por um caminho que nao chama uma linha do snippet, conferidos contra o numero NA TELA; (3) a prestacao de contas da secao 7, cada produto uma vez; (4) a 16.4(a) com a consulta-alvo como texto-ancora e a 16.4(b) com a mae linkada no CORPO, fora dos <nav>; (5) o rel de cada link derivado do que o link E, par a par com o banco; (6) a frase da lacuna nomeando exatamente o que falta e nada do que sobra; (7) as quatro nao sendo a mesma pagina. Bancada."
     },
     {
       "id": "mutacoes-guia",
       "arquivo": "ferramentas/mutacoes-guia.py",
-      "sha256": "5ef898dfa95f734b518df1bd9625bf98959fea045873c91bd90985057f047d3b",
+      "sha256": "0e509520493b0de0bb2c28925cb45ad0b7c17bcf2912a04131ee7dcbac2b660f",
       "descricao": "Quebra as paginas do GUIA de proposito, 14 mutacoes, numa copia da pasta da ilha. 11 precisam reprovar (cobertura cravada, denominador digitado, relogio emprestando o intervalo que falta, produto que fica mudo em vez de recusar, produto que some da mae, ancora que vira nome curto, filha que perde a frase que linka a mae, frase da lacuna virando lista escrita, busca CRUA declarada patrocinada, pagina que nasce sem autorizacao do cruzamento, filha autorizada que some do registro), 1 precisa ficar HONESTA (banco fora do ar: diz que nao mediu e nao serve ficha), 1 precisa DEGRADAR (F2 fora do ar: pagina inteira, sem botao, com o aviso) e 1 precisa PASSAR (um fabricante passa a nomear vidro e a lacuna do vidro some sozinha). As TRES ultimas sao mundos que o banco de hoje nao pisa. Na primeira passada ela achou tres buracos na bancada recem-escrita, e os tres viraram portao. Bancada."
     },
     {
