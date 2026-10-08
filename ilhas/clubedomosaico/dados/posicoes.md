@@ -119,3 +119,48 @@ misturada, com dois dias de título velho e cinco de novo. **Quem ler, escreva a
 **O VEREDITO CONTINUA SENDO DE 08/10**, como o BLOCO A manda, e nem a leitura de 30/09 nem esta linha declaram
 vitória ou derrota. E a 12.1 pede comparar o CTR com a média das outras na mesma posição: com **30 impressões**
 não há com o que comparar, e isso continua **escrito** em vez de estimado.
+
+## O RETRATO "DEPOIS" DA SEGUNDA TROCA — A PROMESSA DEIXOU DE SER INVENTÁRIO E PASSOU A SER A RESPOSTA (2026-10-08)
+
+**Isto é a Proposta 1 e a Proposta 2 da leitura semanal de 07/10 cumpridas no MESMO commit**, como a Proposta 2
+mandava — *"mesma ação da proposta 1, no mesmo commit, para as duas serem medidas juntas contra a parada"*. F2
+**1.13.0**, F1 **1.8.0**, manifest e `/status` na revisão **68**. **Nenhuma URL mudou e nenhum H1 mudou.**
+
+**POR QUE TROCAR DE NOVO, dezessete dias depois da primeira troca:** porque a primeira troca foi medida e o
+resultado dela está na linha de 2026-10-07 acima. As três páginas **subiram** (7,8 → 7,1 · 9,1 → 6,3 · 7,0 → 4,7)
+e as impressões quase **triplicaram** (30 → 81), com **zero clique nas três**. Posição subindo com clique em zero
+não é ranqueamento: é a promessa do resultado. E a promessa de 02/10 era **inventário** — "7 colas para 9 bases" e
+"12 peças calculadas" dizem o TAMANHO da página, não o que ela responde.
+
+| URL | `<title>` servido em 08/10 | car. | `description` servida em 08/10 | car. |
+|---|---|---|---|---|
+| `/materiais/qual-cola-usar-no-mosaico/` | Qual cola usar no mosaico, e qual rejunte – Silicone Neutro, 80% | 64 | Na maioria dos casos a cola é o Tekbond Silicone Neutro: 162 dos 202 casos de base, lugar e caquinho que o fabricante declara, e 68 sem resposta. | 145 |
+| `/materiais/quantas-pastilhas-para-mosaico/` | Quantas pastilhas e quanto rejunte comprar – 23 a 960 pastilhas | 63 | De 23 a 960 pastilhas, pela medida que o fabricante publica: diga a forma e o tamanho da sua peça e veja quantas comprar e quanto rejunte. | 138 |
+| `/como-fazer/o-que-e-mosaico-picassiete/` | **O que é mosaico Picassiete, e como colar – 7 colas em 45 casos** (INTOCADO desde 02/10) | 62 | **Mosaico Picassiete: o mosaico de louça quebrada, e com o que colar o caquinho em cada superfície — 7 colas em 45 casos, pela declaração do fabricante.** (INTOCADA) | 150 |
+| `/como-fazer/o-que-e-trencadis/` | **O que é trencadís, e com o que colar o caco – Clube do Mosaico** (INTOCADO) | 62 | **Trencadís: o mosaico de caco quebrado a martelo, o nome ligado a Gaudí, e com o que colar o caco de azulejo ou de louça em cada superfície.** (INTOCADA) | 139 |
+
+**Contagem em caracteres decodificados**, a mesma régua de 29/09: `&#8211;` conta 1 e não 7.
+
+**A PARADA CONTINUA PARADA, E AGORA ELA VALE MAIS QUE ANTES.** O Picassiete é a página de melhor posição do
+arquipélago (4,7, e 3,7 na consulta nomeada `picassiete`) e **não foi tocada nem em 02/10 nem hoje**: ela é o único
+lado parado de um experimento que já tem duas trocas. Trocá-la agora apagaria a única referência que existe.
+
+**O QUE O EXPERIMENTO PASSA A PODER SEPARAR, e é por isso que as duas trocas no mesmo commit não se atrapalham:**
+as duas páginas trocadas mudaram de **inventário para resposta**; a parada nunca saiu do inventário. Se o clique
+aparecer nas duas e não na parada, a variável é a natureza da promessa, não o fato de ter promessa — que foi o que
+a janela de 23/09→07/10 já respondeu com um "não" para o inventário.
+
+**NENHUM NÚMERO É DIGITADO, e agora NENHUM NOME TAMBÉM NÃO É.** O nome da cola sai de
+`cdm_f2_cola_mais_indicada()`, que varre os mesmos 270 casos da `cdm_f2_cobertura()` e conta só os
+`recomendados_topo`; a faixa da F1 sai da mesma conta que monta a tabela das doze peças. **No dia em que outra cola
+liderar, o título e a meta mudam com ela** — e a bancada da F2 reelege o líder por conta própria, varrendo os 270
+estados servidos e contando os cartões de topo no HTML, sem nunca chamar a função do snippet. Se as duas escritas
+discordarem, a bancada reprova antes de o ar ver.
+
+**A FATIA DE 80% ESTÁ NO TÍTULO POR FORÇA DA SEÇÃO 7.** A cola lidera 162 dos 202 casos respondidos — 80%, não
+todos. "Silicone Neutro" sozinho na SERP seria afirmação em bloco com escopo maior do que o medido, e esta ilha já
+pagou por isso na tabela de declaração desta mesma página.
+
+**O VEREDITO É DE 14/10**, pelo critério que a própria leitura de 07/10 escreveu: 1 ou mais cliques em 7 dias nestas
+páginas, **ou** zero nas duas trocadas E zero na parada — o que também é resultado, e manda procurar a causa na SERP
+e não no título. **Não conclua nada antes dessa linha, em nenhuma direção.**

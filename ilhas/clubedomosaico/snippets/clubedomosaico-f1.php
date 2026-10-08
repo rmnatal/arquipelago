@@ -177,7 +177,7 @@
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.7.0' );
+	define( 'CDM_F1_VERSAO', '1.8.0' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -2415,9 +2415,22 @@ add_filter( 'cdm_descricao', function ( $d ) {
 	   desembarque do dado falhou, esta frase cai na versão SEM fonte, e a do
 	   título continua — porque "12 peças calculadas" continua verdadeiro com a
 	   tabela no ar, e prometer uma procedência que não chegou não. */
+	/* A RESPOSTA PRIMEIRO (08/10/2026, Proposta 2 da leitura semanal de 07/10).
+	   A frase anterior comecava pela PERGUNTA — "Quantas pastilhas e quanto
+	   rejunte a sua peca precisa" — que e o nome da pagina repetido, e so depois
+	   dizia a faixa. Esta pagina fechou 19 impressoes na posicao 6,3 com ZERO
+	   clique, e a posicao SUBIU 2,8 pontos em duas semanas sem que nada fosse
+	   feito: o que falta nao e ranqueamento, e a linha da SERP comecar pela
+	   resposta. Agora o primeiro caractere ja e o numero.
+	      A CONTAGEM DE PECAS SAIU DA FRASE, e isso e o ponto: "12 pecas ja
+	   calculadas" e inventario, diz o tamanho da tabela e nao o que ela
+	   responde. A FAIXA e a resposta, e e o mesmo padrao que a Robometria serve
+	   em `/quantos-pa-o-robo-aspirador-precisa/` desde 17/09 ("de 1.400 a 22.000
+	   Pa" no titulo e na meta). Os dois numeros continuam saindo da mesma
+	   varredura que monta a tabela da tela. */
 	$com_numero = cdm_f1_banco_chegou() ? cdm_casca_preencher_promessa(
-		'Quantas pastilhas e quanto rejunte a sua peça precisa: {pecas} peças já calculadas, de {min} a {max} pastilhas, pela medida que o fabricante publica.',
-		array( 'pecas' => $f['quantas'], 'min' => $f['min'], 'max' => $f['max'] )
+		'De {min} a {max} pastilhas, pela medida que o fabricante publica: diga a forma e o tamanho da sua peça e veja quantas comprar e quanto rejunte.',
+		array( 'min' => $f['min'], 'max' => $f['max'] )
 	) : '';
 
 	/* A FRASE SEM NÚMERO cabe na mesma faixa, pelo motivo escrito na F2: no
@@ -2475,8 +2488,22 @@ function cdm_f1_faixa_das_pecas() {
 }
 
 /* A PROMESSA DO `<title>`, declarada e não impressa — quem monta é a casca
-   1.19.0, uma vez. O número é a contagem das peças da tabela, e com nome de 42
-   caracteres mais o separador o título fica em 64, abaixo do teto de 65. */
+   1.19.0, uma vez.
+      A PROMESSA PASSOU A SER A FAIXA EM 08/10/2026, e não mais a contagem de
+   peças. "12 peças calculadas" é inventário: diz quantas linhas a tabela tem, e
+   quem busca `quantas pastilhas para mosaico` quer um número de pastilhas. A
+   leitura semanal de 07/10 mediu esta página em 19 impressões, posição 6,3 e
+   ZERO clique, com a posição subindo 2,8 pontos em duas semanas — a Proposta 2
+   dela manda entregar a resposta na SERP, no mesmo commit da Proposta 1, para as
+   duas serem medidas juntas contra a parada do Picassiete.
+      É O MESMO PADRÃO DA ROBOMETRIA desde 17/09/2026, que serve "de 1.400 a
+   22.000 Pa" no título de `/quantos-pa-o-robo-aspirador-precisa/`: a faixa é a
+   resposta, e ela cabe onde a contagem cabia. Com nome de 42 caracteres mais o
+   separador o título fica em 63, abaixo do teto de 65 — um a menos que antes.
+      OS DOIS NÚMEROS CONTINUAM SENDO ARITMÉTICA DESTA PÁGINA, não do banco: é
+   por isso que o título continua prometendo no mundo em que o desembarque do
+   dado falhou, e a `description` não — ela promete a FONTE, e fonte que não
+   chegou é a única das duas que seria mentira. */
 add_filter( 'cdm_promessa', function ( $p, $slug ) {
 	if ( CDM_F1_SLUG !== $slug ) {
 		return $p;
@@ -2484,7 +2511,7 @@ add_filter( 'cdm_promessa', function ( $p, $slug ) {
 
 	$f = cdm_f1_faixa_das_pecas();
 
-	return cdm_casca_preencher_promessa( '{pecas} peças calculadas', array( 'pecas' => $f['quantas'] ) );
+	return cdm_casca_preencher_promessa( '{min} a {max} pastilhas', array( 'min' => $f['min'], 'max' => $f['max'] ) );
 }, 10, 2 );
 
 if ( ! function_exists( 'cdm_f1_parametros' ) ) {

@@ -69,56 +69,88 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)
+## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z) — **REESCRITO PELA 18.3 EM 08/10/2026**
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
 
-**O QUE APAGUEI DO DESPACHO ANTERIOR: NADA — mas o DEFEITO 1 de 23/09 está FECHADO e medido.** `/author/mosaico_gestor/`, que em 23/09 estava indexada e tomava impressão na **posição 1,0**, sumiu da tabela de páginas da Search Console. Quem fechar o próximo bloco risca aquele item no mesmo commit. **O DEFEITO 2 (o `sub_id` da Shopee deslocado uma casa) NÃO pôde ser reconferido**: a sessão do Shopee Afiliados está deslogada e o Relatório de cliques não abriu. Continua aberto, e continua sendo o item que impede o painel de responder "qual ilha vendeu".
+> **REESCRITO PELA 18.3 EM 08/10/2026 pela execução que fechou as Propostas 1 e 2.** A 18.2 manda despacho sair
+> inteiro; a 18.3 manda, quando um item não couber, resolver os que couberem e **reescrever o despacho deixando
+> só os que faltam, com o motivo em uma linha**. É o que está abaixo. **O que saiu:** as Propostas 1 e 2 (o item
+> de maior ROI do arquipélago), fechadas no mesmo commit como a Proposta 2 mandava, e o **DEFEITO 1 de 23/09**,
+> riscado no despacho de 23/09 como esta leitura mandou. **O que ficou, e o motivo é um só para os quatro:
+> ESTA EXECUÇÃO NÃO ALCANÇA A FERRAMENTA QUE CADA UM EXIGE.** Medido, não suposto:
+> `python3 ferramentas/search-console.py --ilha clubedomosaico` devolve *"Sem credencial: defina GOOGLE_SA_B64,
+> GOOGLE_SA_JSON ou GOOGLE_SA_FILE"* — a variável **não está no ambiente desta rotina**, e os itens 2 e 3 são
+> leitura de Search Console. O item 4 é sessão do Shopee Afiliados no Chrome do Raphael. A Proposta 3 é URL nova
+> e a própria leitura escreve que ela *"entra na fila como bloco, não como correção"*.
+>
+> **A LEITURA DE 07/10 DIZ QUE A LEITURA PELA NUVEM "PASSOU A FUNCIONAR NESTA ILHA", E AS DUAS COISAS NÃO SE
+> CONTRADIZEM:** o acesso que faltava era o da **conta de serviço à propriedade**, e ele foi dado. O que falta
+> aqui é a **credencial da conta de serviço no ambiente desta rotina** — outro problema, do mesmo dono. Enquanto
+> `GOOGLE_SA_B64` não estiver no ambiente das rotinas, **nenhuma execução da Fundação fecha os itens 2 e 3**, por
+> mais vezes que eles sejam reescritos. Está em `dados/despachos.md`.
+
+**O QUE APAGUEI DO DESPACHO ANTERIOR: NADA — mas o DEFEITO 1 de 23/09 está FECHADO e medido.** `/author/mosaico_gestor/`, que em 23/09 estava indexada e tomava impressão na **posição 1,0**, sumiu da tabela de páginas da Search Console. ~~Quem fechar o próximo bloco risca aquele item no mesmo commit.~~ **RISCADO EM 08/10/2026**, no despacho de 23/09, neste commit. **O DEFEITO 2 (o `sub_id` da Shopee deslocado uma casa) NÃO pôde ser reconferido**: a sessão do Shopee Afiliados está deslogada e o Relatório de cliques não abriu. Continua aberto, e continua sendo o item que impede o painel de responder "qual ilha vendeu".
 
 **A DECISÃO DA RAMPA: MANTÉM.** `piso: abaixo` — 21 URLs de 40. Pela 21.8 a série não autoriza e não proíbe leva nesta ilha.
 
-**O QUE ESTA LEITURA MEDIU:** 18 de 21 indexadas (86%, eram 12 de 17); **81 impressões** em 7 dias (eram 30), 0 clique, posição média 8,0; quatro páginas com impressão; cinco consultas nomeadas. **A leitura pela nuvem passou a funcionar nesta ilha** — o acesso da conta de serviço que faltava em 23/09 foi dado.
+**O QUE ESTA LEITURA MEDIU:** 18 de 21 indexadas (86%, eram 12 de 17); **81 impressões** em 7 dias (eram 30), 0 clique, posição média 8,0; quatro páginas com impressão; cinco consultas nomeadas.
 
-### 1. TRÊS PÁGINAS NA PRIMEIRA PÁGINA DO GOOGLE, 77 IMPRESSÕES, ZERO CLIQUE — PELA TERCEIRA SEMANA SEGUIDA
+### ~~1. TRÊS PÁGINAS NA PRIMEIRA PÁGINA DO GOOGLE, 77 IMPRESSÕES, ZERO CLIQUE~~ — **AS PROPOSTAS 1 E 2 ESTÃO CUMPRIDAS E CONFERIDAS NO AR EM 08/10/2026**
 
-Este é o item de maior ROI do arquipélago inteiro e já não é amostra fina: **77 impressões, posições 4,7 · 6,3 · 7,1, e nenhum clique.** As três posições **melhoraram** desde 23/09 (7,8 → 7,1 · 9,1 → 6,3 · 7,0 → 4,7). Ou seja: o Google está subindo as páginas e as pessoas não estão clicando. Não é ranqueamento, é a promessa do resultado.
+**As duas saíram no MESMO commit, como a Proposta 2 mandava** — *"mesma ação da proposta 1, no mesmo commit, para as duas serem medidas juntas contra a parada"*. F2 **1.13.0**, F1 **1.8.0**, manifest e `/status` na revisão **68**. **Nenhuma URL mudou, nenhum H1 mudou, e `/como-fazer/o-que-e-mosaico-picassiete/` NÃO foi tocada** — ela é a parada do experimento desde 23/09 e continua servindo a promessa de 02/10.
 
-**Não se mexe em URL** (12.1) e **não se mexe em `/como-fazer/o-que-e-mosaico-picassiete/`** — ela é a parada do experimento desde 23/09 e é o que permite atribuir.
+**O que mudou, e é o ponto inteiro:** as duas promessas eram **inventário**. "7 colas para 9 bases" e "12 peças calculadas" são números contados, os dois certos, e **nenhum deles é o que a pessoa procurou**. Agora:
 
-### AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — na ordem de ROI
+| página | antes | agora |
+|---|---|---|
+| `/materiais/qual-cola-usar-no-mosaico/` | `… – 7 colas para 9 bases` | `… – Silicone Neutro, 80%` |
+| `/materiais/quantas-pastilhas-para-mosaico/` | `… – 12 peças calculadas` | `… – 23 a 960 pastilhas` |
 
-**PROPOSTA 1 — `/materiais/qual-cola-usar-no-mosaico/`: 43 impressões, posição 7,1, zero clique.**
-- Consulta nomeada: `cola para mosaico`, 3 impressões na posição **8,7** (era 10,0 em 23/09).
-- É a página de maior impressão da ilha, três semanas seguidas na primeira página sem um clique.
-- O que fazer: `<title>` e `<meta name="description">` que entreguem **a resposta** na SERP em vez do nome da página — no padrão que a Robometria estreou em 17/09. O número ou o nome da cola sai do banco, não é digitado. Nenhuma URL muda, nenhum H1 muda.
-- **Pronto quando:** a linha de 14/10 em `dados/posicoes.md` registrar **1 ou mais cliques em 7 dias** nesta página, com o `<title>` servido no dia copiado para a série.
+E as duas `description` passaram a **começar pela resposta**: *"Na maioria dos casos a cola é o Tekbond Silicone Neutro: 162 dos 202 casos de base, lugar e caquinho que o fabricante declara, e 68 sem resposta."* e *"De 23 a 960 pastilhas, pela medida que o fabricante publica: diga a forma e o tamanho da sua peça e veja quantas comprar e quanto rejunte."*
 
-**PROPOSTA 2 — `/materiais/quantas-pastilhas-para-mosaico/`: 19 impressões, posição 6,3, zero clique.**
-- Consulta-alvo declarada: `quantas pastilhas para mosaico`. A posição subiu 2,8 pontos em duas semanas sem que nada fosse feito.
-- Mesma ação da proposta 1, no mesmo commit, para as duas serem medidas juntas contra a parada.
-- **Pronto quando:** a leitura de 14/10 registrar 1 ou mais cliques, **ou** registrar zero clique nas duas trocadas E zero na parada — o que também é resultado, e manda procurar a causa na SERP e não no título.
+**O NOME DA COLA SAI DO BANCO, e é a metade que mais vale.** `cdm_f2_cola_mais_indicada()` (nova) varre os mesmos 270 casos da `cdm_f2_cobertura()`, pela mesma `cdm_f2_celula_cola()`, e conta **só os `recomendados_topo`** — o que a página de fato recomenda; cartão de segunda linha sai com a classe `cdm-f2-segundo` justamente porque não é a resposta. **No dia em que outra cola liderar, as duas frases mudam com ela.** Nome de produto digitado dentro do molde seria a família de defeito que esta ilha mais pagou, com nome de produto no lugar do número.
 
-**PROPOSTA 3 — DEMANDA NOVA DESCOBERTA: "quadro do Divino Espírito Santo", e a ilha está na posição 22 a 50.**
+**A FATIA ENTRA PELA SEÇÃO 7, e não por enfeite:** a cola lidera **80% dos casos respondidos, não todos**. "Silicone Neutro" sozinho no resultado da busca seria a afirmação em bloco com escopo maior do que o medido — a mesma régua que obrigou a coluna da condição a existir na tabela desta página.
+
+**TRÊS RECUSAS NOVAS, todas falha-fechada:** banco que não chegou (a marca volta ao fim do título, trava 2 da casca); **empate no topo** (duas colas no mesmo número não são "a resposta" — prometer uma seria escolher por acidente de `arsort`); e frase **fora da faixa de 120 a 160** (o nome do líder vem do banco e pode crescer — "Cascola Adesivo de Montagem PL500 Interior" tem 42 caracteres e estouraria a faixa, e `description` cortada no meio é pior que uma sem número).
+
+**A FAIXA DA F1 É O PADRÃO DA ROBOMETRIA desde 17/09/2026**, que a própria proposta citou: `/quantos-pa-o-robo-aspirador-precisa/` serve *"de 1.400 a 22.000 Pa"* no título. A faixa é a resposta, e ela cabe onde a contagem cabia — o título ficou em **63** caracteres, um a menos que antes.
+
+**Pronto quando** (o critério é o que a própria leitura declarou, e ele é de 14/10): a linha de 14/10 em `dados/posicoes.md` registrar **1 ou mais cliques em 7 dias** nestas páginas, com o `<title>` servido no dia copiado para a série — **ou** registrar zero clique nas duas trocadas E zero na parada, que também é resultado e manda procurar a causa na SERP e não no título. **Os dois `<title>` servidos em 08/10 estão copiados em `dados/posicoes.md` para a leitura de 14/10 não precisar reconstituí-los.**
+
+### PROPOSTA 3 — DEMANDA NOVA: "quadro do Divino Espírito Santo", e a ilha está na posição 22 a 50
+
+**FICA, e o motivo em uma linha: ela é URL nova, e a própria leitura escreve que "isso é URL nova e gasta cota da 21.4; entra na fila como bloco, não como correção".** Correção fura a fila; bloco não. Esta execução fechou o despacho, não abriu bloco novo.
+
 - Consultas nomeadas, as três novas nesta série: `quadro divino espirito santo` (1 impressão, **22,0**), `quadros do espirito santo` (1, **34,0**), `quadros espirito santo` (2, **50,5**). As três caem na mesma página, `/loja/quadro-divino-espirito-santo/`, que soma 4 impressões na posição média 39,2.
 - **Por que isto é proposta e não curiosidade:** é a primeira vez que o Arquipélago encontra uma consulta de **produto**, com intenção de compra explícita, que a ilha já toca e atende mal. Banda 21+ com página existente é o caso que a 12.1 manda tratar por conteúdo, e é a única linha de receita direta que esta leitura achou.
-- O que fazer: **uma página de conteúdo própria** para o tema (o que é, como se faz, quanto custa, quanto tempo leva), ligada à peça da loja — não mais uma ficha de loja. Isso é URL nova e **gasta cota da 21.4**; entra na fila como bloco, não como correção.
+- O que fazer: **uma página de conteúdo própria** para o tema (o que é, como se faz, quanto custa, quanto tempo leva), ligada à peça da loja — não mais uma ficha de loja.
 - **Pronto quando:** `quadro divino espirito santo` entrar na **banda 11 a 20** na série de `dados/posicoes.md`.
 
 ### 2. CORREÇÃO — 6 URLs RESPONDEM 404 PARA O GOOGLE, E A RONDA DIÁRIA NÃO AS VÊ
+
+**FICA, e o motivo em uma linha: a lista das 6 só existe na Search Console, e esta rotina não tem credencial para lê-la (`GOOGLE_SA_B64` ausente, medido em 08/10/2026).**
 
 A Search Console reporta **6 páginas em "Não encontrado (404)"**. A ronda diária mede 21 de 21 URLs do sitemap em 200 — então estas 6 **não estão no sitemap**: são endereços que o Google aprendeu em algum momento e que hoje morrem. O Pente Fino de 05/10 registra, pendente desde 21/09, **"dois desenhos de URL e dois eixos de categoria para a mesma camada"** nesta ilha. A hipótese mais simples é que endereços do desenho antigo foram abandonados sem `301`.
 
 **404 em endereço que já teve posição é posição jogada fora** — é o único defeito desta lista que destrói ativo em vez de só atrasar.
 
 - **O que fazer:** abrir a lista das 6 URLs na Search Console (Indexação das páginas → "Não encontrado (404)"), decidir uma a uma entre **`301` para o endereço vivo equivalente** e **deixar morrer de propósito, com o motivo escrito**, e registrar a decisão em `dados/`. A Sentinela **não abriu essa lista nesta execução** — a página da Search Console travou. Fica como não feito.
+- **O QUE NÃO ADIANTA TENTAR DAQUI, escrito para a próxima execução não gastar a vez:** adivinhar as 6 sondando endereços do desenho antigo com `curl` **não serve como lista**, e o motivo é medido e está no `ESTADO.md` — nesta ilha **toda URL inexistente responde 404 na 1ª leitura e 200 na 2ª**, por 2 horas (soft 404 da borda do hospedeiro). Uma varredura de candidatos devolveria 200 para endereços que não existem, e a lista sairia errada nos dois sentidos. **A lista tem UMA fonte: a Search Console.**
 - **Pronto quando:** existir em `ilhas/clubedomosaico/dados/` um arquivo datado com as 6 URLs nomeadas e a decisão de cada uma, e a leitura de 14/10 registrar 3 ou menos em "Não encontrado (404)".
 
 ### 3. CORREÇÃO — AS TRÊS URLs MAIS NOVAS SÃO DESCONHECIDAS DO GOOGLE
+
+**FICA, e o motivo em uma linha: a alavanca é a URL Inspection pelo navegador (14.7), que é trabalho da Sentinela, e a leitura pela API também exige a credencial ausente.**
 
 `/como-fazer/o-que-e-trencadis/`, `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` e `/materiais/acabamento/verniz-para-peca-de-mosaico/` voltam **"URL is unknown to Google"**. As duas de acabamento estão no ar desde **02/10**. É o mesmo padrão que a Robometria vive desde 21/09 — e lá já está medido que reenviar sitemap move pouco. A alavanca é a da 14.7, solicitação manual pela URL Inspection, e é trabalho de navegador da Sentinela, **não executado nesta execução**.
 - **Pronto quando:** as três saírem de "URL is unknown to Google" na leitura de 14/10.
 
 ### 4. O CANO DE LINKS NÃO ANDOU, E A CAUSA É A MESMA DAS TRÊS ILHAS
+
+**FICA, e o motivo em uma linha: exige sessão logada do Shopee Afiliados no Chrome do Raphael, e o próprio critério de pronto é datado de 14/10 ou depois.**
+
 **Zero link de afiliado gerado nesta execução.** `affiliate.shopee.com.br` redireciona para `shopee.com.br/buyer/login` — a sessão está deslogada no Chrome do Raphael, e sem ela não há gerador, não há relatório de cliques e não há reconferência do DEFEITO 2 (o `sub_id` deslocado). O Mercado Livre, além do reCAPTCHA, não está liberado na extensão do navegador. **A contagem de itens sem piso e sem `url_produto` NÃO foi feita e não será estimada**; o último número medido é o do Pente Fino de 05/10/2026, que registra 4 registros sem motivo declarado nesta ilha e não traz contagem de `url_busca` nem de `url_produto`.
 - **Pronto quando:** existir em `ilhas/clubedomosaico/dados/` um arquivo de contagem datado de 2026-10-14 ou depois, com total de publicáveis, quantos sem `url_busca`, quantos sem `url_produto` e a distribuição por `degrau`.
 
@@ -615,7 +647,11 @@ quatro, e **imprime o número delas** para ele não ser esquecido. Fechar isto �
 
 **A DECISÃO DA RAMPA: MANTÉM.** `piso: abaixo` — 17 URLs de 40. Pela 21.8 a série não autoriza nem proíbe.
 
-### 1. `/author/mosaico_gestor/` ESTÁ INDEXADA E TOMOU IMPRESSÃO NA POSIÇÃO 1,0 — E NÃO É PÁGINA DESTA ILHA
+### ~~1. `/author/mosaico_gestor/` ESTÁ INDEXADA E TOMOU IMPRESSÃO NA POSIÇÃO 1,0 — E NÃO É PÁGINA DESTA ILHA~~ — **FECHADO E RISCADO EM 08/10/2026**
+
+> **A TERCEIRA CONDIÇÃO FECHOU, E QUEM A MEDIU FOI A LEITURA SEMANAL DE 07/10/2026.** O item pedia três coisas; duas fecharam em 25/09 (a etiqueta `noindex, follow` servida e as URLs do sitemap sem `noindex`, as duas direções por portão) e a terceira — *"a leitura semanal seguinte registrar que a linha de `/author/` **saiu** de `dados/posicoes.md`"* — ficou **três leituras** esperando, porque a de 30/09 não aconteceu e a conta da Sentinela não tinha acesso à propriedade. A leitura de 07/10 teve o acesso e mediu: **`/author/mosaico_gestor/` sumiu da tabela de páginas da Search Console.** O despacho daquela leitura escreve, com estas palavras, *"quem fechar o próximo bloco risca aquele item no mesmo commit"* — é este commit, e está riscado.
+>
+> **O que isto NÃO fecha, dito para ninguém ler o risco como mais do que ele é:** nas irmãs o mesmo buraco continua aberto. `/author/aquametria_gestor/` responde 200 sem `noindex` na aquametria, e `/?s=<termo>` também — as duas não foram tocadas por força do foco, e isso segue verdadeiro hoje.
 
 Medido hoje: responde **HTTP 200**, **não tem `<meta name="robots">`**, **não tem `rel="canonical"`**, **não está no sitemap** e **nenhuma página da ilha aponta para ela** (conferido na home e em `/materiais/qual-cola-usar-no-mosaico/`: zero ocorrências de `/author/`). Mesmo assim o Google a indexou e a serviu **uma vez, na posição 1,0**, nesta janela.
 

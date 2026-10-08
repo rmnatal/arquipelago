@@ -134,7 +134,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.12.0' );
+	define( 'CDM_F2_VERSAO', '1.13.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -2394,6 +2394,121 @@ function cdm_f2_cobertura() {
 }
 }
 
+if ( ! function_exists( 'cdm_f2_cola_mais_indicada' ) ) {
+/**
+ * A COLA QUE O BANCO INDICA EM MAIS CASOS — a RESPOSTA da página, varrida, nunca
+ * digitada (08/10/2026).
+ *
+ * POR QUE ESTA FUNÇÃO EXISTE, e o número que a pediu: a leitura semanal de
+ * 07/10/2026 mediu esta página com **43 impressões, posição 7,1 e ZERO clique,
+ * pela terceira semana seguida** — e a posição MELHOROU (7,8 → 7,1) nas três
+ * semanas. A Proposta 1 daquela leitura nomeia a causa com todas as letras:
+ * "não é ranqueamento, é a promessa do resultado". E nomeia o conserto: título
+ * e meta que entreguem **a resposta** em vez do nome da página.
+ *
+ * O QUE MUDA, e é o ponto inteiro: até 07/10 a promessa desta página era um
+ * INVENTÁRIO — "7 colas para 9 bases" diz o TAMANHO da página, não o que ela
+ * responde. Quem busca `cola para mosaico` (3 impressões na posição 8,7) quer o
+ * nome de uma cola. Agora ele está no resultado da busca.
+ *
+ * O NOME SAI DO BANCO, e é por isso que esta função varre em vez de devolver uma
+ * constante: no dia em que uma cola nova entrar e passar a liderar, a promessa
+ * muda com ela. Nome de produto escrito dentro do molde seria a família de
+ * defeito que esta ilha mais pagou — o número digitado no lugar do contado.
+ *
+ * A VARREDURA É A MESMA DA `cdm_f2_cobertura()`: os mesmos 270 casos, a mesma
+ * `cdm_f2_celula_cola()`, e contam-se só os `recomendados_topo` — o que a página
+ * de fato RECOMENDA. Cartão de segunda linha (`elegiveis_abaixo_do_topo`) não
+ * entra: ele é servido com a classe `cdm-f2-segundo` justamente porque não é a
+ * resposta, e contá-lo aqui faria a promessa prometer mais do que a tela entrega.
+ *
+ * FALHA FECHADA, de propósito, em DOIS casos:
+ *
+ *   1. BANCO QUE NÃO CHEGOU — sem recomendação nenhuma não há líder, e quem
+ *      chama recebe `array()`. É a trava 2 da casca chegando até aqui.
+ *   2. EMPATE NO TOPO — duas colas no mesmo número de casos não são "a
+ *      resposta", são duas. Prometer uma delas no resultado da busca seria
+ *      escolher por desempate alfabético uma afirmação que a página não faz.
+ *      Empate devolve `array()`, a promessa desaparece e a marca volta ao fim do
+ *      título — que é sempre válido.
+ *
+ * O `curto` É O `nome_comercial` DO BANCO, e não o nome de tela: `cdm_f2_nome()`
+ * acrescenta a marca quando o nome não a carrega, e "Tekbond Silicone Neutro"
+ * tem 23 caracteres contra os 21 que sobram no teto de 65 depois do nome desta
+ * página. O título leva o `curto`; a `description`, que tem 160 caracteres de
+ * espaço, leva o nome inteiro com a marca.
+ */
+function cdm_f2_cola_mais_indicada() {
+	static $lider = null;
+	if ( null !== $lider ) {
+		return $lider;
+	}
+
+	$rot   = cdm_f2_rotulos();
+	$casos = array();
+	foreach ( array_keys( $rot['base_curto'] ) as $b ) {
+		foreach ( array_keys( $rot['ambiente_curto'] ) as $a ) {
+			foreach ( array_keys( $rot['tessela'] ) as $t ) {
+				$c = cdm_f2_celula_cola( $b, $a, $t );
+				foreach ( $c['recomendados_topo'] as $id ) {
+					if ( ! isset( $casos[ $id ] ) ) {
+						$casos[ $id ] = 0;
+					}
+					$casos[ $id ]++;
+				}
+			}
+		}
+	}
+
+	if ( ! $casos ) {
+		$lider = array();
+
+		return $lider;
+	}
+
+	arsort( $casos );
+	$ids   = array_keys( $casos );
+	$topo  = $casos[ $ids[0] ];
+	$quantos_no_topo = 0;
+	foreach ( $casos as $n ) {
+		if ( $n === $topo ) {
+			$quantos_no_topo++;
+		}
+	}
+	if ( $quantos_no_topo > 1 ) {
+		$lider = array();
+
+		return $lider;
+	}
+
+	$id    = $ids[0];
+	$banco = cdm_f2_banco();
+	$curto = isset( $banco['materiais'][ $id ]['nome_comercial'] )
+		? trim( (string) $banco['materiais'][ $id ]['nome_comercial'] )
+		: '';
+	if ( '' === $curto ) {
+		$lider = array();
+
+		return $lider;
+	}
+
+	$cob = cdm_f2_cobertura();
+
+	$lider = array(
+		'id'          => $id,
+		'curto'       => $curto,
+		'nome'        => cdm_f2_nome( $id ),
+		'casos'       => $topo,
+		'respondidos' => $cob['respondidos'],
+		/* A FATIA É ARREDONDADA PARA BAIXO, e é o único jeito honesto: 80,2%
+		   arredondado para 80 nunca promete mais do que a varredura contou. */
+		'fatia'       => (int) floor( $topo * 100 / max( 1, $cob['respondidos'] ) ),
+	);
+
+	return $lider;
+}
+}
+
 if ( ! function_exists( 'cdm_f2_quantas_colas' ) ) {
 /**
  * QUANTAS COLAS O BANCO TEM — varrido do banco, nunca digitado.
@@ -2900,10 +3015,39 @@ add_filter( 'cdm_descricao', function ( $d ) {
 
 	$c = cdm_f2_cobertura();
 
-	$com_numero = cdm_casca_preencher_promessa(
-		'Qual cola e qual rejunte pela declaração do fabricante: {colas} colas em {casos} casos de base, lugar e caquinho, e os {sem} que a gente ainda não responde.',
-		array( 'colas' => $c['colas'], 'casos' => $c['total'], 'sem' => $c['descobertos'] )
-	);
+	/* A RESPOSTA PRIMEIRO, E O NOME DA COLA SAI DO BANCO (08/10/2026, Proposta 1
+	   da leitura semanal de 07/10). A frase anterior era um INVENTÁRIO — "7 colas
+	   em 270 casos" diz o tamanho da página, não o que ela responde — e esta
+	   página fechou TRÊS semanas na primeira página do Google com ZERO clique,
+	   subindo de 7,8 para 7,1 de posição. Quem busca `cola para mosaico` quer o
+	   nome de uma cola, e agora ele está na linha que decide o clique.
+	      O NOME ENTRA NO MOLDE ANTES DOS NÚMEROS, de propósito: assim a recusa de
+	   `cdm_casca_preencher_promessa()` continua valendo para a frase INTEIRA — se
+	   o líder não existir, ou um dos três números faltar, nada disto vai ao ar e a
+	   frase sem número ocupa o lugar. */
+	$lider = cdm_f2_cola_mais_indicada();
+
+	$com_numero = '';
+	if ( $lider ) {
+		$com_numero = cdm_casca_preencher_promessa(
+			strtr(
+				'Na maioria dos casos a cola é o {nome}: {casos} dos {resp} casos de base, lugar e caquinho que o fabricante declara, e {sem} sem resposta.',
+				array( '{nome}' => $lider['nome'] )
+			),
+			array( 'casos' => $lider['casos'], 'resp' => $lider['respondidos'], 'sem' => $c['descobertos'] )
+		);
+
+		/* O TETO DE 160 É PORTÃO, NÃO RECOMENDAÇÃO, e aqui ele morde de verdade:
+		   o nome do líder vem do banco e pode crescer. "Cascola Adesivo de
+		   Montagem PL500 Interior" tem 42 caracteres e estouraria a faixa — e
+		   `description` cortada no meio é pior que uma sem número. Então a frase
+		   que não cabe na faixa de 120 a 160 NÃO vai ao ar: é a mesma trava 1 do
+		   `<title>`, aplicada à etiqueta que o Google corta. */
+		$n = mb_strlen( $com_numero, 'UTF-8' );
+		if ( $n < 120 || $n > 160 ) {
+			$com_numero = '';
+		}
+	}
 
 	/* A FRASE SEM NUMERO E A SAIDA DO BANCO QUE NAO CHEGOU, e ela tambem cabe na
 	   faixa de 120 a 160: servir o molde cru, ou uma frase de 40 caracteres,
@@ -2916,21 +3060,39 @@ add_filter( 'cdm_descricao', function ( $d ) {
 /* A PROMESSA DO `<title>`, declarada e nao impressa — quem monta o titulo e a
    casca 1.19.0, uma vez, pelo mesmo contrato que a `description` tem desde
    28/09 e a etiqueta de robo desde 25/09.
-      OS DOIS NUMEROS SAO CONTADOS: as colas, do banco; as bases, do vocabulario
-   que a propria ferramenta oferece no formulario. Com nome de 41 caracteres e
-   separador de 3, o titulo fica em 64 — abaixo do teto de 65 — e a marca sai do
-   fim. Se o banco crescer e a frase estourar o teto, a casca devolve a marca e
-   a promessa desaparece sozinha: e a trava 1, e e de proposito. */
+      A PROMESSA PASSOU A SER A RESPOSTA EM 08/10/2026, e nao mais o inventario.
+   Ate aqui ela dizia "7 colas para 9 bases": dois numeros contados, os dois
+   certos, e nenhum deles e o que a pessoa procurou. A leitura semanal de 07/10
+   mediu esta pagina em 43 impressoes, posicao 7,1 e ZERO clique pela TERCEIRA
+   semana seguida, com a posicao MELHORANDO — e a Proposta 1 dela nomeia a causa
+   ("nao e ranqueamento, e a promessa do resultado") e o conserto (entregar a
+   resposta em vez do nome da pagina). Agora o titulo diz o nome da cola.
+      O NOME E O `nome_comercial` DO BANCO, NAO O DE TELA. Sobram 21 caracteres
+   no teto de 65 depois do nome desta pagina, e "Tekbond Silicone Neutro" tem
+   23: o titulo leva "Silicone Neutro" e a `description`, que tem 160, leva o
+   nome inteiro com a marca. Quem escolhe o lider e a varredura dos 270 casos,
+   entao no dia em que outra cola liderar as duas frases mudam juntas.
+      A FATIA ENTRA PELO MESMO MOTIVO QUE A COLUNA DA CONDICAO EXISTE NA TABELA:
+   a resposta vale em 80% dos casos respondidos, nao em todos, e "Silicone
+   Neutro" sozinho no resultado da busca seria a afirmacao em bloco com escopo
+   maior do que o medido que a secao 7 do contrato nomeia.
+      O NOME DA PAGINA NAO FOI TOCADO: ele continua sendo o mesmo do H1 e da
+   trilha, e quem cede o lugar continua sendo a marca. Se o banco crescer e a
+   frase estourar o teto, a casca devolve a marca e a promessa desaparece
+   sozinha: e a trava 1, e e de proposito. */
 add_filter( 'cdm_promessa', function ( $p, $slug ) {
 	if ( CDM_F2_SLUG !== $slug ) {
 		return $p;
 	}
 
-	$c = cdm_f2_cobertura();
+	$lider = cdm_f2_cola_mais_indicada();
+	if ( ! $lider ) {
+		return $p;
+	}
 
 	return cdm_casca_preencher_promessa(
-		'{colas} colas para {bases} bases',
-		array( 'colas' => $c['colas'], 'bases' => $c['bases'] )
+		strtr( '{nome}, {fatia}%', array( '{nome}' => $lider['curto'] ) ),
+		array( 'fatia' => $lider['fatia'] )
 	);
 }, 10, 2 );
 

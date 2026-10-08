@@ -1500,6 +1500,16 @@ $descobertos_varridos = 0;
 $varridos             = 0;
 $sem_resposta_mudos   = array();
 $nao_prestados        = array();
+/* QUANTAS VEZES CADA COLA E RECOMENDADA DE VERDADE, contado do HTML SERVIDO e
+   nao da funcao do snippet (08/10/2026). E a regua independente da promessa
+   nova: desde hoje o <title> e a `description` nomeiam A COLA que o banco
+   indica em mais casos, e "a cola mais indicada" e uma afirmacao que ninguem de
+   dentro le — quem a ve e quem decide clicar.
+      O LADO SE MEDE PELO MARKUP, como em toda esta secao: cartao de topo sai em
+   `<li class="cdm-f2-cartao">` e cartao de segunda linha sai com
+   `cdm-f2-segundo`, e so o topo e recomendacao. Contar os dois juntos faria a
+   bancada aprovar uma promessa que promete mais do que a tela entrega. */
+$topo_por_nome = array();
 foreach ( $esquema['vocabularios']['base'] as $b_ ) {
 	foreach ( $esquema['vocabularios']['ambiente'] as $a_ ) {
 		foreach ( $esquema['vocabularios']['material_tessela'] as $t_ ) {
@@ -1550,6 +1560,16 @@ foreach ( $esquema['vocabularios']['base'] as $b_ ) {
 			$regiao_resposta = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '', $resposta_html ) );
 			$regiao_fora = preg_match( '#<div class="cdm-f2-secao cdm-f2-fora">(.*?)</div>#is', $corpo_, $mf_ )
 				? f2_texto( $recusa_html . ' ' . $mf_[1] ) : f2_texto( $recusa_html );
+			if ( preg_match_all( '#<li class="cdm-f2-cartao">.*?<h3>(.*?)</h3>#is', $corpo_, $mtopo_, PREG_SET_ORDER ) ) {
+				foreach ( $mtopo_ as $um_ ) {
+					$nome_topo_ = html_entity_decode( $um_[1], ENT_QUOTES, 'UTF-8' );
+					if ( ! isset( $topo_por_nome[ $nome_topo_ ] ) ) {
+						$topo_por_nome[ $nome_topo_ ] = 0;
+					}
+					$topo_por_nome[ $nome_topo_ ]++;
+				}
+			}
+
 			foreach ( $por_id as $id_c => $m_c ) {
 				if ( 'cola' !== $m_c['categoria'] || 'ativo' !== $m_c['status'] ) {
 					continue;
@@ -1598,23 +1618,72 @@ f2_ok( false !== mb_strpos( $texto_faltas, 'Em ' . number_format_i18n( $descober
  * unica afirmacao desta ilha que ninguem de dentro le. Quem a ve e quem decide
  * clicar, e ele nao tem como conferir nada.
  * ------------------------------------------------------------------------- */
-$desc_esperada_f2 = 'Qual cola e qual rejunte pela declaração do fabricante: '
-	. number_format_i18n( $colas_ativas ) . ' colas em ' . number_format_i18n( $total_combinacoes )
-	. ' casos de base, lugar e caquinho, e os ' . number_format_i18n( $descobertos_varridos )
-	. ' que a gente ainda não responde.';
+/* O LIDER, ELEITO PELA BANCADA, do mapa que ela montou varrendo as 270 paginas
+   servidas. Nada aqui chama `cdm_f2_cola_mais_indicada()`: se o snippet
+   escolher outra cola, ou contar outro numero de casos, as duas escritas
+   discordam exatamente aqui — que e o proposito desta secao.
+      O EMPATE E MEDIDO, nao suposto: a bancada confere que existe UM primeiro
+   lugar sozinho, porque "a cola mais indicada" com dois primeiros lugares e uma
+   afirmacao que a pagina nao faz. */
+$topo_colas = array();
+foreach ( $topo_por_nome as $nome_t => $n_t ) {
+	foreach ( $por_id as $m_t ) {
+		if ( 'cola' === $m_t['categoria'] && 'ativo' === $m_t['status']
+			&& (string) $m_t['nome_comercial'] === $nome_t ) {
+			$topo_colas[ $nome_t ] = $n_t;
+		}
+	}
+}
+arsort( $topo_colas );
+$nomes_lider   = array_keys( $topo_colas );
+$lider_nome    = $nomes_lider ? $nomes_lider[0] : '';
+$lider_casos   = $lider_nome ? $topo_colas[ $lider_nome ] : 0;
+$lider_empates = 0;
+foreach ( $topo_colas as $n_t ) {
+	if ( $n_t === $lider_casos ) {
+		$lider_empates++;
+	}
+}
+f2_ok( '' !== $lider_nome && 1 === $lider_empates,
+	'a varredura elege UMA cola mais indicada, sem empate no topo',
+	$lider_nome . ' em ' . $lider_casos . ' dos ' . ( $total_combinacoes - $descobertos_varridos ) . ' casos respondidos' );
+
+$lider_marca = '';
+foreach ( $por_id as $m_t ) {
+	if ( (string) $m_t['nome_comercial'] === $lider_nome ) {
+		$lider_marca = (string) $m_t['marca'];
+	}
+}
+$lider_respondidos = $total_combinacoes - $descobertos_varridos;
+$lider_fatia       = (int) floor( $lider_casos * 100 / max( 1, $lider_respondidos ) );
+
+$desc_esperada_f2 = 'Na maioria dos casos a cola é o ' . trim( $lider_marca . ' ' . $lider_nome )
+	. ': ' . number_format_i18n( $lider_casos ) . ' dos ' . number_format_i18n( $lider_respondidos )
+	. ' casos de base, lugar e caquinho que o fabricante declara, e '
+	. number_format_i18n( $descobertos_varridos ) . ' sem resposta.';
 f2_ok( $desc === $desc_esperada_f2,
-	'a description serve os TRES numeros que esta bancada contou sozinha',
+	'a description nomeia a cola LIDER e serve os tres numeros que esta bancada contou sozinha',
 	$desc === $desc_esperada_f2 ? 'igual' : 'servida: ' . $desc );
+f2_ok( mb_strlen( $desc ) >= 120 && mb_strlen( $desc ) <= 160,
+	'e a description com o nome do lider continua na faixa de 120 a 160',
+	mb_strlen( $desc ) . ' caracteres' );
 
 $titulo_f2 = '';
 if ( preg_match( '#<title>(.*?)</title>#is', $ancora, $mt_f2 ) ) {
 	$titulo_f2 = html_entity_decode( $mt_f2[1], ENT_QUOTES, 'UTF-8' );
 }
-$titulo_esperado_f2 = CDM_F2_TITULO . ' – ' . number_format_i18n( $colas_ativas )
-	. ' colas para ' . number_format_i18n( count( $esquema['vocabularios']['base'] ) ) . ' bases';
+/* O TITULO LEVA O NOME CURTO — o `nome_comercial` SEM a marca —, e a bancada
+   cobra exatamente isso: "Tekbond Silicone Neutro" tem 23 caracteres contra os
+   21 que sobram no teto depois do nome desta pagina, e a promessa desapareceria
+   sozinha pela trava 1 se o snippet usasse o nome de tela. A `description`, que
+   tem 160 de espaco, leva o nome inteiro com a marca — medido na afirmacao
+   acima. */
+$titulo_esperado_f2 = CDM_F2_TITULO . ' – ' . $lider_nome . ', ' . number_format_i18n( $lider_fatia ) . '%';
 f2_ok( $titulo_f2 === $titulo_esperado_f2,
-	'o <title> e o NOME da pagina mais a promessa contada, e a marca saiu do fim',
+	'o <title> nomeia a cola LIDER com a fatia contada, e a marca saiu do fim',
 	$titulo_f2 );
+f2_ok( 1 === preg_match( '/\d/', $titulo_f2 ),
+	'TRAVA 3: a pagina que DECLARA promessa serve titulo com digito', $titulo_f2 );
 f2_ok( '' !== $titulo_f2 && mb_strlen( $titulo_f2 ) <= CDM_CASCA_TITULO_TETO,
 	'e ele cabe no teto de ' . CDM_CASCA_TITULO_TETO, mb_strlen( $titulo_f2 ) . ' caracteres' );
 f2_ok( 0 === strpos( $titulo_f2, CDM_F2_TITULO ),
@@ -1640,6 +1709,36 @@ f2_ok( '' !== $desc_sb && 0 === preg_match( '/\d/', $desc_sb ),
 	'e a description cai na frase SEM numero', $desc_sb );
 f2_ok( mb_strlen( $desc_sb ) >= 120 && mb_strlen( $desc_sb ) <= 160,
 	'e a frase sem numero cabe na mesma faixa de 120 a 160', mb_strlen( $desc_sb ) . ' caracteres' );
+
+/* O MUNDO EM QUE O NOME DO LIDER E LONGO — as DUAS travas de teto exercidas na
+   pagina (08/10/2026).
+      POR QUE ISTO E UMA SECAO E NAO UMA LINHA: desde hoje a promessa desta
+   pagina NOMEIA um produto, e o nome vem do banco. As duas travas que impedem a
+   frase de estourar — o teto de 65 do `<title>` e o de 160 da `description` —
+   so mordem quando o nome e comprido, e o lider de hoje tem 15 caracteres. Com
+   as duas arrancadas, a pagina continuaria VALIDA e esta bancada continuaria
+   VERDE: a frase sairia em 186 caracteres e o Google a cortaria no meio, no
+   unico lugar desta ilha que ninguem de dentro le.
+      E NAO E HIPOTETICO: "Cascola Adesivo de Montagem PL500 Interior" tem 42
+   caracteres e e a SEGUNDA cola mais indicada deste banco. */
+$html_nome_longo = f2_render( $raiz, 'nome_longo=1' );
+$titulo_nl = '';
+if ( preg_match( '#<title>(.*?)</title>#is', $html_nome_longo, $mt_nl ) ) {
+	$titulo_nl = html_entity_decode( $mt_nl[1], ENT_QUOTES, 'UTF-8' );
+}
+$desc_nl = '';
+if ( preg_match( '#<meta name="description" content="([^"]*)"#', $html_nome_longo, $md_nl ) ) {
+	$desc_nl = html_entity_decode( $md_nl[1], ENT_QUOTES, 'UTF-8' );
+}
+f2_ok( $titulo_nl === CDM_F2_TITULO . ' – ' . CDM_CASCA_NOME_SITE,
+	'TRAVA 1 no ar: com nome de lider longo, a promessa desaparece e a marca volta', $titulo_nl );
+f2_ok( '' !== $titulo_nl && mb_strlen( $titulo_nl ) <= CDM_CASCA_TITULO_TETO,
+	'e o titulo continua cabendo no teto de ' . CDM_CASCA_TITULO_TETO,
+	mb_strlen( $titulo_nl ) . ' caracteres' );
+f2_ok( '' !== $desc_nl && false === mb_strpos( $desc_nl, 'Na maioria dos casos' ),
+	'e a description cai na frase SEM numero em vez de estourar os 160', $desc_nl );
+f2_ok( mb_strlen( $desc_nl ) >= 120 && mb_strlen( $desc_nl ) <= 160,
+	'e essa frase tambem cabe na faixa de 120 a 160', mb_strlen( $desc_nl ) . ' caracteres' );
 
 f2_ok( $descobertos_varridos > 0 && $descobertos_varridos < $total_combinacoes,
 	'a contagem nao e vacuidade: nem tudo descoberto, nem tudo coberto',

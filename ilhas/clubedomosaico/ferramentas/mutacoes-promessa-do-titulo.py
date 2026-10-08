@@ -18,6 +18,18 @@ devolvem a marca e a pagina continua valida. Quem nao exercita as duas nao tem
 como saber se a promessa saiu do ar — e promessa que desaparece sozinha e
 exatamente o defeito que a Robometria nomeou ao escrever a mesma trava em 17/09.
 
+A PROMESSA MUDOU DE NATUREZA EM 08/10/2026, E ESTE ARQUIVO COM ELA. Ate 07/10
+as duas promessas eram INVENTARIO — "7 colas para 9 bases", "12 pecas
+calculadas": numeros contados, numeros certos, e nenhum deles e o que a pessoa
+procurou. A leitura semanal de 07/10 mediu as duas paginas na primeira pagina do
+Google com ZERO clique pela TERCEIRA semana seguida, com as posicoes
+MELHORANDO, e as Propostas 1 e 2 dela mandaram entregar A RESPOSTA. Agora o
+titulo da F2 nomeia a COLA que o banco indica em mais casos e o da F1 serve a
+FAIXA de pastilhas. As seis mutacoes novas da F2 e as duas da F1 existem porque
+promessa que nomeia produto tem uma superficie de erro que promessa de contagem
+nao tinha: o nome pode ser digitado, o lider pode ser contado errado, e o empate
+pode ser desempatado por acidente de ordenacao.
+
 AS MUTACOES QUE MAIS VALEM AQUI NAO SAO AS OBVIAS. Sao estas:
 
   * o NUMERO DIGITADO no lugar do contado — a frase continua bonita, continua na
@@ -68,26 +80,57 @@ def trocar(raiz, rel, antigo, novo, vezes=1):
 
 # ------------------------------------------------------------------ mutacoes
 
-def m_numero_digitado_na_f2(raiz):
-    """A promessa da F2 passa a trazer um numero escrito a mao."""
+def m_nome_do_lider_digitado(raiz):
+    """O NOME DA COLA escrito a mao dentro do molde, em vez de vir do banco. E a
+    mutacao que importa na promessa nova: a frase continua bonita, continua na
+    faixa, e no dia em que outra cola liderar ela mente — exatamente a familia
+    de defeito que esta ilha mais pagou, agora com nome de produto no lugar do
+    numero."""
     trocar(raiz, F2,
-           "\t\t'{colas} colas para {bases} bases',\n\t\tarray( 'colas' => $c['colas'], 'bases' => $c['bases'] )",
-           "\t\t'9 colas para 9 bases',\n\t\tarray( 'bases' => $c['bases'] )")
+           "\t\tstrtr( '{nome}, {fatia}%', array( '{nome}' => $lider['curto'] ) ),",
+           "\t\tstrtr( '{nome}, {fatia}%', array( '{nome}' => 'Silicone Neutro' ) ),")
 
 
-def m_numero_digitado_na_description_da_f2(raiz):
-    """A description da F2 passa a prometer 300 casos em vez dos 270 contados."""
+def m_lider_conta_os_segundos(raiz):
+    """O lider passa a contar tambem os cartoes de SEGUNDA LINHA. A tela serve
+    `cdm-f2-segundo` justamente porque aquilo nao e a recomendacao — contar os
+    dois faz a promessa do resultado da busca prometer mais do que a pagina
+    entrega, e e invisivel para quem le a frase."""
     trocar(raiz, F2,
-           "{colas} colas em {casos} casos de base, lugar e caquinho",
-           "{colas} colas em 300 casos de base, lugar e caquinho")
+           "\t\t\t\tforeach ( $c['recomendados_topo'] as $id ) {\n\t\t\t\t\tif ( ! isset( $casos[ $id ] ) ) {",
+           "\t\t\t\tforeach ( array_merge( $c['recomendados_topo'], $c['elegiveis_abaixo_do_topo'] ) as $id ) {\n\t\t\t\t\tif ( ! isset( $casos[ $id ] ) ) {")
 
 
-def m_descobertos_viram_o_total(raiz):
-    """A description da F2 troca as descobertas pelo total — dois numeros certos
-    numa frase errada, que e o defeito real que esta ilha serviu no ar."""
+def m_empate_nao_e_recusado(raiz):
+    """A recusa do EMPATE sai. Com duas colas no mesmo numero de casos, a pagina
+    passa a nomear uma delas por desempate de ordenacao — uma afirmacao que ela
+    nao faz, escolhida por acidente de `arsort`."""
     trocar(raiz, F2,
-           "array( 'colas' => $c['colas'], 'casos' => $c['total'], 'sem' => $c['descobertos'] )",
-           "array( 'colas' => $c['colas'], 'casos' => $c['total'], 'sem' => $c['total'] )")
+           "\tif ( $quantos_no_topo > 1 ) {\n\t\t$lider = array();\n\n\t\treturn $lider;\n\t}",
+           "\tif ( $quantos_no_topo > 99 ) {\n\t\t$lider = array();\n\n\t\treturn $lider;\n\t}")
+
+
+def m_lider_sem_fatia(raiz):
+    """A FATIA sai do titulo e sobra "Silicone Neutro" sozinho — a afirmacao em
+    bloco com escopo maior do que o medido que a secao 7 do contrato nomeia. A
+    cola lidera 80% dos casos respondidos, nao todos."""
+    trocar(raiz, F2,
+           "\t\tstrtr( '{nome}, {fatia}%', array( '{nome}' => $lider['curto'] ) ),\n\t\tarray( 'fatia' => $lider['fatia'] )",
+           "\t\tstrtr( '{nome} em {fatia} casos', array( '{nome}' => $lider['curto'] ) ),\n\t\tarray( 'fatia' => $lider['casos'] )")
+
+
+def m_fatia_arredonda_para_cima(raiz):
+    """A fatia passa a arredondar para CIMA: 80,2% viraria 81%, e a promessa do
+    resultado da busca diria um numero que a varredura nao contou."""
+    trocar(raiz, F2, "'fatia'       => (int) floor(", "'fatia'       => (int) ceil(")
+
+
+def m_faixa_da_description_sem_portao(raiz):
+    """O teto de 160 da description da F2 deixa de ser portao. Com nome de lider
+    longo a frase estoura, o Google corta no meio, e nada acusa."""
+    trocar(raiz, F2,
+           "\t\tif ( $n < 120 || $n > 160 ) {\n\t\t\t$com_numero = '';\n\t\t}",
+           "\t\tif ( $n < 0 ) {\n\t\t\t$com_numero = '';\n\t\t}")
 
 
 def m_teto_ignorado(raiz):
@@ -167,12 +210,23 @@ def m_faixa_da_f1_de_outra_conta(raiz):
            "\t\t$r = cdm_f1_calcular( $p['forma'], $p['medidas'], $p['lado_mm'], $p['junta_mm'], $p['espessura_mm'], 0, 'cimenticio' );\n\t\tif ( empty( $r['pastilhas'] ) ) {")
 
 
-def m_promessa_da_f1_conta_outra_lista(raiz):
-    """A promessa da F1 conta o banco de pastilhas em vez das pecas da tabela —
-    13 em vez de 12, e a frase promete o que a tabela nao entrega."""
+def m_promessa_da_f1_volta_ao_inventario(raiz):
+    """A promessa da F1 volta a contar PECAS em vez de prometer a faixa. O numero
+    continua contado e continua certo — e volta a dizer o tamanho da tabela em
+    vez do que a pagina responde, que e o defeito que a Proposta 2 de 07/10
+    mandou consertar."""
     trocar(raiz, F1,
-           "\treturn cdm_casca_preencher_promessa( '{pecas} peças calculadas', array( 'pecas' => $f['quantas'] ) );",
-           "\treturn cdm_casca_preencher_promessa( '{pecas} peças calculadas', array( 'pecas' => count( cdm_f1_banco_pastilhas()['materiais'] ) ) );")
+           "\treturn cdm_casca_preencher_promessa( '{min} a {max} pastilhas', array( 'min' => $f['min'], 'max' => $f['max'] ) );",
+           "\treturn cdm_casca_preencher_promessa( '{pecas} peças calculadas', array( 'pecas' => $f['quantas'] ) );")
+
+
+def m_faixa_da_f1_invertida(raiz):
+    """O minimo e o maximo trocam de lugar na promessa da F1: "960 a 23
+    pastilhas". Os dois numeros sao contados, os dois estao certos, e a frase e
+    impossivel — e nenhuma trava que olha SO para digito a pegaria."""
+    trocar(raiz, F1,
+           "'{min} a {max} pastilhas', array( 'min' => $f['min'], 'max' => $f['max'] )",
+           "'{min} a {max} pastilhas', array( 'min' => $f['max'], 'max' => $f['min'] )")
 
 
 def m_colas_contadas_com_o_banco_inteiro(raiz):
@@ -207,9 +261,12 @@ def m_f1_promete_fonte_sem_banco(raiz):
 
 
 MUTACOES = [
-    ("numero digitado na promessa da F2", m_numero_digitado_na_f2),
-    ("numero digitado na description da F2", m_numero_digitado_na_description_da_f2),
-    ("as descobertas viram o total (dois numeros certos, frase errada)", m_descobertos_viram_o_total),
+    ("o NOME da cola digitado no molde em vez de vir do banco", m_nome_do_lider_digitado),
+    ("o lider conta os cartoes de SEGUNDA linha", m_lider_conta_os_segundos),
+    ("o EMPATE no topo deixa de ser recusado", m_empate_nao_e_recusado),
+    ("a FATIA sai do titulo e a cola sobra sozinha", m_lider_sem_fatia),
+    ("a fatia arredonda para CIMA", m_fatia_arredonda_para_cima),
+    ("o teto de 160 da description da F2 deixa de ser portao", m_faixa_da_description_sem_portao),
     ("TRAVA 1 desligada: promessa entra estourando o teto", m_teto_ignorado),
     ("TRAVA 1 afrouxada de 65 para 120", m_teto_afrouxado),
     ("TRAVA 2 desligada: zero vira promessa", m_zero_vira_promessa),
@@ -221,7 +278,8 @@ MUTACOES = [
     ("a home ganha promessa que ninguem mediu", m_a_home_ganha_promessa),
     ("uma segunda camada monta o proprio <title>", m_segundo_montador_de_titulo),
     ("a faixa da F1 sai de outra conta que nao a da tabela", m_faixa_da_f1_de_outra_conta),
-    ("a promessa da F1 conta o banco em vez das pecas da tabela", m_promessa_da_f1_conta_outra_lista),
+    ("a promessa da F1 volta ao inventario de pecas", m_promessa_da_f1_volta_ao_inventario),
+    ("o minimo e o maximo trocam de lugar na faixa da F1", m_faixa_da_f1_invertida),
     ("as colas contadas com o banco inteiro, rejuntes dentro", m_colas_contadas_com_o_banco_inteiro),
     ("a frase sem numero da TRAVA 2 fica curta demais", m_frase_sem_numero_curta),
     ("sem banco, a pagina fica sem description nenhuma", m_sem_banco_fica_sem_etiqueta),

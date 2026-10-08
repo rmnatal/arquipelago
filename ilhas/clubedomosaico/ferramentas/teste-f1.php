@@ -264,11 +264,16 @@ $desc_f1 = '';
 if ( preg_match( '#<meta name="description" content="([^"]*)"#', $html_ancora, $md_f1 ) ) {
 	$desc_f1 = html_entity_decode( $md_f1[1], ENT_QUOTES, 'UTF-8' );
 }
-$desc_esperada_f1 = 'Quantas pastilhas e quanto rejunte a sua peça precisa: '
-	. number_format_i18n( $quantas_mao ) . ' peças já calculadas, de ' . number_format_i18n( $min_mao )
-	. ' a ' . number_format_i18n( $max_mao ) . ' pastilhas, pela medida que o fabricante publica.';
+/* A FRASE COMECA PELA RESPOSTA desde 08/10/2026 (Proposta 2 da leitura semanal
+   de 07/10), e a contagem de pecas SAIU dela: "12 pecas ja calculadas" e
+   inventario. A faixa continua medida aqui contra `dados/pecas-tipicas.json`, e
+   `$quantas_mao` segue contado logo abaixo — ele deixou de ser prometido na
+   SERP e NAO deixou de ser cobrado da tela. */
+$desc_esperada_f1 = 'De ' . number_format_i18n( $min_mao ) . ' a ' . number_format_i18n( $max_mao )
+	. ' pastilhas, pela medida que o fabricante publica: diga a forma e o tamanho da sua peça'
+	. ' e veja quantas comprar e quanto rejunte.';
 f1_ok( $desc_f1 === $desc_esperada_f1,
-	'a description serve a faixa e a fonte, com os numeros escritos a mao',
+	'a description comeca pela FAIXA e diz a fonte, com os numeros escritos a mao',
 	$desc_f1 === $desc_esperada_f1 ? 'igual' : 'servida: ' . $desc_f1 );
 f1_ok( mb_strlen( $desc_f1 ) >= 120 && mb_strlen( $desc_f1 ) <= 160,
 	'e ela cabe na faixa de 120 a 160 (item 4 do despacho de 28/09)',
@@ -279,13 +284,26 @@ $titulo_f1 = '';
 if ( preg_match( '#<title>(.*?)</title>#is', $html_ancora, $mt_f1 ) ) {
 	$titulo_f1 = html_entity_decode( $mt_f1[1], ENT_QUOTES, 'UTF-8' );
 }
-$titulo_esperado_f1 = CDM_F1_TITULO . ' – ' . number_format_i18n( $quantas_mao ) . ' peças calculadas';
+/* O TITULO LEVA A FAIXA, nao a contagem — o mesmo padrao que a Robometria serve
+   em `/quantos-pa-o-robo-aspirador-precisa/` desde 17/09/2026. Os dois numeros
+   saem do mesmo arquivo escrito a mao que a description cobra acima. */
+$titulo_esperado_f1 = CDM_F1_TITULO . ' – ' . number_format_i18n( $min_mao )
+	. ' a ' . number_format_i18n( $max_mao ) . ' pastilhas';
 f1_ok( $titulo_f1 === $titulo_esperado_f1,
 	'o <title> e o NOME da pagina mais a promessa contada, e a marca saiu do fim', $titulo_f1 );
 f1_ok( '' !== $titulo_f1 && mb_strlen( $titulo_f1 ) <= CDM_CASCA_TITULO_TETO,
 	'e ele cabe no teto de ' . CDM_CASCA_TITULO_TETO, mb_strlen( $titulo_f1 ) . ' caracteres' );
 f1_ok( 0 === strpos( $titulo_f1, CDM_F1_TITULO ),
 	'o nome da pagina nao foi tocado — ele continua sendo o mesmo do H1 e da trilha' );
+/* A CONTAGEM DE PECAS SAIU DA SERP E CONTINUA COBRADA DA TELA. Sem esta linha,
+   tirar `$quantas_mao` das duas frases teria tirado tambem o unico lugar em que
+   a bancada confere que a tabela traz as doze pecas do arquivo — e e assim que
+   um numero deixa de ser medido sem ninguem decidir que ele nao importa mais. */
+$linhas_tabela = preg_match_all( '#<tr#is', $html_ancora ) ;
+f1_ok( false !== mb_strpos( f1_texto( $html_ancora ), number_format_i18n( $quantas_mao ) . ' peças' )
+	|| $linhas_tabela > $quantas_mao,
+	'a tabela da tela continua trazendo as ' . $quantas_mao . ' pecas do arquivo',
+	$linhas_tabela . ' linhas de tabela no HTML' );
 
 /* O MUNDO EM QUE O BANCO NAO CHEGOU. Aqui a divisao e diferente da F2 de
    proposito, e a razao esta escrita no snippet: a FAIXA desta pagina sai da

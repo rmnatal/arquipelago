@@ -1222,6 +1222,36 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 		unset($_GET['sem_banco']);
 	}
 
+	/* PRODUZ O MUNDO EM QUE O NOME DA COLA LIDER E LONGO. `nome_longo=1`.
+	 *
+	 * NASCEU EM 08/10/2026, com a promessa que passou a ser A RESPOSTA, e existe
+	 * porque a promessa nova tem uma trava que o mundo de hoje NAO exercita: o
+	 * teto de 160 da `description` da F2 e o teto de 65 do `<title>` so mordem
+	 * quando o nome do lider e comprido. Hoje o lider e "Silicone Neutro", 15
+	 * caracteres, e a frase fica em 145 — com a trava arrancada, a pagina
+	 * continuaria valida e verde. Trava que ninguem viu disparar nao mediu nada
+	 * (secao 8 do ARQUIPELAGO.md), e aqui o preco de nao medir e uma
+	 * `description` cortada no meio no lugar onde o clique se decide.
+	 *
+	 * E NAO E HIPOTETICO: "Cascola Adesivo de Montagem PL500 Interior" tem 42
+	 * caracteres e e a SEGUNDA cola mais indicada deste banco. Basta ela passar
+	 * a liderar.
+	 *
+	 * Ele renomeia as colas na option — o que o Sync entrega —, nunca o arquivo
+	 * do repositorio. */
+	if (!empty($_GET['nome_longo'])) {
+		$chave_colas = 'clubedomosaico_dados_materiais-colas';
+		if (isset($GLOBALS['__options'][$chave_colas]['materiais'])) {
+			foreach ($GLOBALS['__options'][$chave_colas]['materiais'] as $i => $m) {
+				if (isset($m['nome_comercial'])) {
+					$GLOBALS['__options'][$chave_colas]['materiais'][$i]['nome_comercial'] =
+						$m['nome_comercial'] . ' Adesivo de Montagem Interior Extraforte';
+				}
+			}
+		}
+		unset($_GET['nome_longo']);
+	}
+
 	/* O MUNDO SEM O SNIPPET DE LEADS. `sem_leads=1` na consulta. */
 	$fora = array();
 	if (!empty($_GET['sem_leads'])) {
