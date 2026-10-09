@@ -4538,3 +4538,47 @@ Push direto `git push origin HEAD:main`, aceito de primeira, sem rebase e sem fo
 - `dados/PAINEL.md`: reescrito inteiro, como a instrução mandou. Passou a ter **71 linhas** e **13.084 caracteres** (o diff conta 81 inserções contra 42 remoções porque é reescrita integral).
 
 **Nenhum passo falhou** nos três arquivos gravados. Nenhum arquivo além desses três e deste log foi tocado. Nenhum dado pessoal de terceiro apareceu na instrução — só o primeiro nome do Raphael, que já consta dos arquivos, e a menção de que faltam "nome, foto e perfis da artesã", sem nenhum contato.
+
+---
+
+## Disparo de 09/10/2026, 11h55 BRT (14h55Z) — SEGUNDO disparo da Sentinela de 09/10: o `PROMPT.md` da clubedomosaico que havia faltado
+
+Instrução: inserir o despacho da ronda diária técnica da Sentinela de 09/10 no **topo da fila de despachos** de `ilhas/clubedomosaico/PROMPT.md`, imediatamente ANTES da linha-âncora, seguido de uma linha em branco. Arquivo único, mais este log.
+
+**Checagem de assunto:** Clube do Mosaico é ilha do Arquipélago. Assunto aceito.
+
+**Âncora usada: a PRINCIPAL, a que a instrução passou — ela existia e casou byte a byte.** Não foi preciso o caminho alternativo (inserir depois do cabeçalho). A linha real no `main` antes da gravação, na linha 114, era exatamente:
+
+```
+## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO — **REESCRITO PELA 18.3 EM 09/10/2026 às 15h4xZ**
+```
+
+```
+$ git status --porcelain
+ M ilhas/clubedomosaico/PROMPT.md
+```
+
+```
+$ git diff --stat
+ ilhas/clubedomosaico/PROMPT.md | 60 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+
+$ git diff --numstat
+60	0	ilhas/clubedomosaico/PROMPT.md
+```
+
+**Commit que foi ao `main`:**
+
+```
+9c8d8681eaf921003d8528282682356144a70603 Sentinela 09/10: despacho da ronda tecnica no topo da fila do PROMPT.md da clubedomosaico
+```
+
+Push direto `git push origin HEAD:main`, aceito de primeira (`c325045..9c8d868`), sem rebase e sem force. Conferido: `git fetch origin main && git log -1 origin/main` mostra **9c8d868**.
+
+**Contagem, conferida relendo o arquivo DEPOIS de gravar (não pelo que foi escrito):**
+
+- `ilhas/clubedomosaico/PROMPT.md`: **+60 linhas, 0 removidas** — 59 linhas do bloco novo mais a linha em branco que a instrução pediu depois dele. O arquivo passou de **2.783** para **2843** linhas e tem **279276** caracteres.
+- Cabeçalhos `## DESPACHO` no arquivo: passaram de **14** para **15**. Nenhum despacho anterior foi apagado ou alterado.
+- Posição conferida no `origin/main`, não só na cópia local: o bloco novo começa na **linha 114** (`## DESPACHO DA SENTINELA — 2026-10-09 (RONDA DIÁRIA TÉCNICA, 14h5xZ) — ...`) e a **linha-âncora do DESPACHO DO RAPHAEL — 2026-10-09 (3) continua intacta, agora na linha 174**, logo abaixo do bloco novo. O bloco novo é o **primeiro** `## DESPACHO` do arquivo, isto é, está no topo da fila.
+
+**Nenhum passo falhou.** Nenhum arquivo além do `PROMPT.md` e deste log foi tocado: nenhum `ESTADO.md`, nenhum `executando_desde`, nenhuma reserva de ilha, nenhum bloco de fila executado. Nenhum dado pessoal de terceiro apareceu na instrução — só o primeiro nome do Raphael, que já consta dos arquivos.
