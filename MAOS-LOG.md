@@ -4440,3 +4440,47 @@ e3c5cd6c78b324dcf3f17607687e340cf16c7368 Paginas pelo nome do produto: secao 30 
 - Total do commit: **3 arquivos, 32 inserções, 0 remoções**.
 
 **Nenhum passo falhou.** O push foi aceito de primeira (`cc7368d..e3c5cd6  HEAD -> main`), sem rejeição, sem rebase e sem force push. Nenhum dado pessoal de terceiro apareceu na instrução, então nada foi omitido.
+
+## DISPARO 09/10/2026 10:52 (horário de Brasília) — 13:52 UTC — FILA DE FOCO REGISTRADA NO `foco.md`
+
+Assunto conferido antes do `git fetch`: Projeto Arquipélago, fila de foco das ilhas (clubedomosaico, aquametria, jornadafly) no `foco.md` da raiz. Passou a checagem — ilhas do Arquipélago, arquivo de estado do Arquipélago. Uma escrita, um commit, push em `origin/main`, confirmado com `git log -1 origin/main`.
+
+**Instrução:** inserir a linha `fila_decidida_pelo_raphael: ...`, literal, imediatamente DEPOIS da linha que começa com `historico:`. Não alterar a linha `ilha:` nem nenhuma outra linha — o foco de hoje continua `clubedomosaico`.
+
+**Ponto de inserção:** havia exatamente UMA linha começando com `historico:` no arquivo (linha 7, `historico: aquametria em foco de 2026-09-21 a 2026-09-24; robometria de 2026-09-16 a 2026-09-21.`), conferido por script antes de gravar. A linha nova ficou na linha 8.
+
+**Partida:** `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `7bbd259`. Push aceito de primeira (`7bbd259..09e49b9  HEAD -> main`) — sem rejeição, sem rebase, sem force push, sem PR.
+
+**`git status --porcelain` (antes do commit do trabalho):**
+
+```
+ M foco.md
+```
+
+**`git diff --stat` (do commit do trabalho, `git diff --stat 09e49b9^ 09e49b9`):**
+
+```
+ foco.md | 1 +
+ 1 file changed, 1 insertion(+)
+```
+
+**Hash do commit que foi ao `main`:**
+
+```
+09e49b9623710dfcdc8907c7f42c2312e4564148 foco.md: registra a fila decidida pelo Raphael em 09/10/2026
+```
+
+**Confirmação em `origin/main` (`git fetch origin main && git log -1 origin/main`):**
+
+```
+09e49b9 foco.md: registra a fila decidida pelo Raphael em 09/10/2026
+```
+
+**Contagem, conferida relendo o `foco.md` DEPOIS de gravar:**
+
+- `foco.md`: +1 linha, 0 remoções. O arquivo passou de 9 para **10 linhas**.
+- `grep -c '^fila_decidida_pelo_raphael:' foco.md` = **1**; `grep -n` devolve a linha **8** — exatamente depois da `historico:` (linha 7), como pedido.
+- A linha tem **488 bytes** (`awk 'NR==8' foco.md | wc -c`), com os acentos de MEDIÇÃO, títulos, páginas e é preservados.
+- A linha `ilha: clubedomosaico` (linha 3) está intacta, byte a byte, igual ao `origin/main` de partida — o foco NÃO foi trocado. Nenhum cabeçalho de estado, nenhuma reserva de ilha, nenhum `executando_desde`, nenhum bloco de fila de ilha foi tocado.
+
+**Nenhum passo falhou.** Nenhum dado pessoal de terceiro apareceu na instrução (só o primeiro nome do Raphael, que já consta do arquivo), então nada foi omitido.
