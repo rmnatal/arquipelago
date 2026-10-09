@@ -111,6 +111,18 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DO RAPHAEL — 2026-10-09
+
+Decisão do Raphael em 09/10/2026, 10h36 de Brasília: "vamos acabar o Clube do Mosaico hoje". Este despacho tem a prioridade da 18.1 (despacho aberto do Raphael vem antes de tudo) e sai inteiro pela 18.2. Nenhum portão afrouxa (seção 13): dado, SERP da 14.9, verificação no ar, voz e árvore continuam valendo, e o teto da 21.4 também.
+
+1. O bloco do quadro do Divino Espírito Santo (PROPOSTA 3 da leitura semanal de 07/10) sai HOJE. Começa pela classificação de SERP da 14.9. Se a SERP vier ABERTA: publica, aciona o Sync e confere a URL no ar. Se vier TOMADA: escreve o veredito medido no ESTADO.md e passa ao item 2 na mesma execução. Pronto quando: a URL responde 200 no ar com title e description mirando a consulta, OU o veredito TOMADA está escrito com as URLs do top 10 que o sustentam.
+
+2. Os 6 endereços que a Search Console reporta em "Não encontrado (404)" (leitura semanal de 07/10): identificar cada um e servir 301 para a URL atual equivalente desta ilha. Endereço sem equivalente fica em 404 e é nomeado. Pronto quando: cada um dos 6 responde 301 seguido de 200, ou está nomeado como sem equivalente, com a lista escrita no ESTADO.md.
+
+3. Enquanto houver item deste despacho aberto, nenhuma execução desta ilha fecha só com régua, bancada ou ferramenta de repositório: ou ela muda algo no ar (página publicada ou correção servida), ou escreve no ESTADO.md a causa medida de não ter mudado.
+
+4. Ao fechar os itens 1 e 2, escrever no topo do ESTADO.md a lista curta "O QUE FALTA PARA ESTA ILHA ESTAR COMPLETA", uma linha por item, cada uma dizendo se depende da Fundação, do Raphael (ex.: domínios curinga de fabricante na rede do ambiente) ou do relógio do Google.
+
 ## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z) — **REESCRITO PELA 18.3 EM 08/10/2026**
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
