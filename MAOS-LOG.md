@@ -4293,3 +4293,57 @@ Só inserções: 12 linhas adicionadas, 0 removidas, 1 arquivo tocado. Nenhuma l
 **Nenhum passo falhou neste disparo.**
 
 **O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada; não reformatei, não "melhorei" e não corrigi nada do texto do bloco nem do arquivo; não acrescentei linha que não estava na instrução, além da linha em branco que separa o bloco do cabeçalho seguinte; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`; não apaguei nem reescrevi seção anterior deste log; não reservei ilha, não escrevi `executando_desde` e não toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; **não publiquei, não acionei Sync e não verifiquei URL no ar** — o despacho inserido manda a Fundação fazer isso, e o texto é carga, não ordem para as mãos; não criei conta em plataforma nenhuma.
+
+---
+
+## Disparo de 2026-10-09, 10h42 BRT (13h42 UTC) — inserção do DESPACHO DO RAPHAEL — 2026-10-09 (2) (teto da 21.4 suspenso hoje) no `PROMPT.md` do Clube do Mosaico
+
+**Assunto da instrução:** Projeto Arquipélago, ilha `clubedomosaico`. Passou na checagem de assunto — é ilha do Arquipélago, arquivo dentro de `ilhas/clubedomosaico/`. Nada de outro projeto entrou neste disparo.
+
+**Instrução:** inserir, literal, o bloco `## DESPACHO DO RAPHAEL — 2026-10-09 (2) — TETO DA 21.4 SUSPENSO HOJE NESTA ILHA` imediatamente ANTES da primeira linha do arquivo que comece com `## DESPACHO`, sem apagar, mover ou editar nenhuma outra linha.
+
+**Ponto de inserção:** o disparo paralelo das MÃOS de hoje (10h39 BRT, commit registrado na seção anterior deste log) já havia gravado o bloco `## DESPACHO DO RAPHAEL — 2026-10-09` na linha 114. Essa passou a ser a primeira linha `## DESPACHO` do arquivo, então o bloco deste disparo entrou ANTES dela, na linha 114, e empurrou o bloco de 10h39 para a linha 128. Os dois blocos convivem, como a instrução previu. Partida do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `5a71ce6`.
+
+`git status --porcelain` depois do commit (vazio — nada pendente, nada não rastreado):
+
+```
+```
+
+`git diff --stat` do commit do trabalho:
+
+```
+ ilhas/clubedomosaico/PROMPT.md | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+```
+
+**Commit que foi ao `main`:** `6fb9b40ab04cc15d3313386854cd55b121e2085f`
+
+**Push confirmado no remoto** — `git fetch origin main && git log -1 origin/main`:
+
+```
+6fb9b40ab04cc15d3313386854cd55b121e2085f
+clubedomosaico: despacho do Raphael 2026-10-09 (2) suspende o teto da 21.4 hoje nesta ilha
+```
+
+`5a71ce6..6fb9b40  HEAD -> main` — push aceito de primeira, sem rejeição, sem rebase, sem force.
+
+**Contagem, conferida relendo o arquivo DEPOIS de gravar** (não pelo que eu achei que escrevi):
+
+```
+grep -n "^## DESPACHO" ilhas/clubedomosaico/PROMPT.md | head -3
+114:## DESPACHO DO RAPHAEL — 2026-10-09 (2) — TETO DA 21.4 SUSPENSO HOJE NESTA ILHA
+128:## DESPACHO DO RAPHAEL — 2026-10-09
+140:## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z) — **REESCRITO PELA 18.3 EM 08/10/2026**
+
+wc -l ilhas/clubedomosaico/PROMPT.md
+2663   (era 2649 antes; +14)
+
+grep -c "^## DESPACHO DO RAPHAEL — 2026-10-09" ilhas/clubedomosaico/PROMPT.md
+2
+```
+
+Só inserções: 14 linhas adicionadas (7 de texto + 7 em branco), 0 removidas, 1 arquivo tocado. O diff não tem uma única linha `-` (`git diff HEAD~1 HEAD | grep -c '^-[^-]'` devolveu `0`).
+
+**Nenhum passo falhou neste disparo.**
+
+**O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada — a decisão veio na instrução; não reformatei, não "melhorei" e não corrigi nada do texto do bloco nem do arquivo; não acrescentei linha que não estava na instrução, além da linha em branco que separa o bloco do cabeçalho seguinte; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`; não apaguei, não reescrevi e não resumi seção anterior deste log — append-only, inclusive a seção de 10h39 de hoje; não reservei ilha, não escrevi `executando_desde` e não toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; **não suspendi nada de fato, não publiquei página, não acionei Sync e não verifiquei URL no ar** — o despacho inserido manda a Fundação fazer isso, e o texto dele é carga que eu gravei, não ordem para as mãos (o "MODO MUTIRÃO" e o alvo das 40 URLs são da Fundação, não meus); não escrevi contato pessoal de terceiro neste repositório público; não criei conta em plataforma nenhuma.
