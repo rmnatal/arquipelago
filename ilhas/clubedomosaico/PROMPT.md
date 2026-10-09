@@ -111,6 +111,24 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO
+
+Decisão do Raphael em 09/10/2026, 10h41 de Brasília: "a gente está ranqueando para cola para mosaico. Mas tem inúmeras ferramentas para mosaico. Tem pastilha, tem [torquês]... Eu gostaria de ranquear quando a pessoa procurar por esses produtos. Eu não sei qual é a malha que tem que ser construída, categoria, subcategoria. Eu quero ser um dos primeiros quando alguém digitar isso. A galera que faz isso é ruim na internet, eu quero que você seja o melhor de todos." O desenho da malha foi delegado; é o que segue. Este bloco é o que enche o alvo de 40 URLs do despacho (2) de hoje.
+
+1. O QUE NASCE: uma página por CONSULTA DE PRODUTO, com o slug igual à consulta, filha direta de /materiais/ (nível 2). Ela é página-folha de produto, não mãe de categoria: a 16.5 não se aplica a ela, pela mesma leitura que deixou /como-fazer/o-que-e-mosaico-picassiete/ nascer filha direta. Quando uma delas ganhar 3 filhas, vira mãe sem trocar de URL.
+
+2. A LISTA DE PARTIDA, em ordem de intenção de compra (a Fundação acrescenta o que o corpus-buscas.md e a Search Console mostrarem e tira o que a medição derrubar): pastilhas para mosaico · pastilha de vidro para mosaico · alicate para mosaico · torquês para mosaico · cortador de vidro para mosaico · rejunte para mosaico · base para mosaico (MDF) · kit mosaico · material para mosaico · azulejo para mosaico · espelho para mosaico · tela para mosaico · pinça para mosaico · vaso de mosaico · colar de mosaico · mandala de mosaico. NÃO criar página para "cola para mosaico": /materiais/qual-cola-usar-no-mosaico/ já está na primeira página por essa consulta e uma segunda URL a canibalizaria; em vez disso, toda página nova linka para ela com essa âncora.
+
+3. O DADO QUE ABRE O PORTÃO É O COMERCIAL, e isto destrava o que os boletins de fabricante travavam: pela regra das duas camadas de procedência, anúncio de Shopee e de Mercado Livre é fonte válida de dado COMERCIAL (título, preço, foto, medida e quantidade declaradas no anúncio), com fonte "anuncio-shopee" ou "anuncio-mercadolivre" e data. Página de consulta de produto nasce com 3 ou mais produtos reais colhidos assim, mais 1 número próprio (faixa de preço medida, preço por unidade ou por 100 g, quantidade por embalagem). Dado TÉCNICO (faixa de junta, resistência, substrato) continua só de fabricante; onde ele faltar a página diz que falta e não inventa. Nenhuma página desta lista espera boletim de fabricante para nascer.
+
+4. O QUE CADA PÁGINA ENTREGA para ser melhor que as lojinhas que ocupam a busca hoje: title e h1 com a consulta exata; a resposta em duas frases antes de qualquer explicação (o que comprar e quanto custa); tabela comparando os produtos (tipo, medida, quantidade, preço, para que serve); bloco de compra com afiliado antes da procedência; "qual escolher" por uso (iniciante, peça pequena, área externa); perguntas frequentes com FAQPage; JSON-LD ItemList; breadcrumb; links para as ferramentas F1 e F2, para as irmãs e para as peças da /loja/ que usam aquele material. Voz do VOZ.md.
+
+5. SERP DA 14.9, com a calibração desta ilha decidida hoje pelo Raphael: lojinha pequena de artesanato, anúncio solto de marketplace, Pinterest, YouTube e blog antigo NÃO tornam a busca tomada, sozinhos nem somados. Tomada é quando o top 10 é dominado por varejo grande ou fabricante forte com página dedicada àquela consulta. Os vereditos TOMADA já escritos para consulta de produto nesta ilha (inclusive torquês, 05/10) são remedidos por esta régua antes de valerem. Cada veredito continua escrito com as URLs do top 10 que o sustentam.
+
+6. MALHA: /materiais/ lista todas as páginas novas com âncora igual à consulta; cada página linka a mãe, 3 irmãs e as duas ferramentas; a home ganha o bloco "Materiais para mosaico" com as de maior intenção. Nenhuma órfã.
+
+7. Pronto quando, por página: responde 200 no ar, title e description mirando a consulta, 3 ou mais produtos com link, Sync acionado e URL conferida. Ao fim da execução, a lista das consultas que não nasceram, cada uma com a causa medida.
+
 ## DESPACHO DO RAPHAEL — 2026-10-09 (2) — TETO DA 21.4 SUSPENSO HOJE NESTA ILHA
 
 Decisão do Raphael em 09/10/2026, 10h40 de Brasília: "a gente vai ter que aumentar esse limite... Essa regra vale para hoje. Três levas por semana, esquece. Eu quero acabar hoje. Depois, nas próximas ilhas, pode voltar à regra normal."
