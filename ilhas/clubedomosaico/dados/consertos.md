@@ -199,3 +199,51 @@ não.**
 **O que a próxima passada reconfere, e continua sendo um comando:** `python3 ferramentas/conferir-no-ar.py .`.
 Se reprovar de novo **antes** de o chamado ter resposta, repare pela 29.3 e escreva a **quarta** linha aqui. A
 série é o que sustenta o chamado, e ela agora tem três eventos com a mesma assinatura.
+
+---
+
+## 09/10/2026 — RONDA SEM CONSERTO, E A RECONFERÊNCIA DA QUARTA QUEDA QUE NÃO VEIO
+
+**Nenhum conserto nesta ronda, e nenhum tentado:** nenhum defeito da lista fechada 19.1 apareceu nas três ilhas
+no ar. O teto de 5 da 19.5 não foi tocado.
+
+**RECONFERÊNCIA DA 19.4(c) — as dez entradas deste arquivo foram abertas antes de qualquer outra coisa.** O que
+foi medido no ar às 14h3xZ–14h5xZ de 09/10/2026, com quebra de cache e `Accept-Encoding: identity`:
+
+- **A entrada de 08/10 (terceira queda do `.htaccess`) PASSOU.** Era esta a reconferência pré-registrada por ela
+  com estas palavras: *"O que a próxima passada reconfere, e continua sendo um comando"*. **21 de 21 URLs do
+  `wp-sitemap.xml` em 200**; `/wp-sitemap.xml` em 200 com `application/xml`; `/robots.txt` em 200 e `text/plain`;
+  `/wp-json/` em 200 e `application/json`; caminho inexistente em **404 na página desta ilha**. **A quarta linha
+  desta série NÃO precisou ser escrita** — o reparo de 08/10 está de pé e o chamado na HostGator continua sendo o
+  caminho, pela 19.4(b).
+- **A mesma porta de entrada medida nas outras duas ilhas no ar e inteira nas duas:** aquametria (52 de 52 URLs em
+  200) e robometria (14 de 14 em 200), com as três rotas da 29.2 em 200 e 404 em caminho virgem nas duas.
+- **24/09 e 05/10 (as duas quedas anteriores): PASSARAM** — é a mesma medição acima, sexta ronda seguida com a
+  porta de pé.
+- **25/09 (links regerados): PASSOU, e em número maior.** **78** ocorrências de link de loja servidas nas 21 URLs
+  e nos dois estados de ferramenta medidos, **100% encurtador de afiliado** (73 `s.shopee.com.br` + 5 `meli.la`),
+  **zero link cru** de ficha de Shopee ou Mercado Livre e **zero encurtador desconhecido**. Os únicos endereços
+  externos fora do banco são tipografia (`fonts.googleapis.com`, `fonts.gstatic.com`) e as **quatro** fontes
+  editoriais das páginas de picassiete e trencadís — legítimos, não são link de loja.
+- **25/09 (etiqueta de robô): PASSOU.** Zero `noindex` indevido nas 21 e nenhuma `<meta robots>` duplicada.
+- **28/09 (os cinco itens): CONTINUAM fechados.** `description` nas 21 e nenhuma acima de 160; zero `<img>` sem
+  `alt` e zero sem `width`/`height`; `afiliado.degrau` em `null` em **zero de 41**.
+- **29/09 (soft 404 na borda): CONTINUA**, e segue sendo do Raphael. Sonda virgem hoje: clubedomosaico
+  **404 · 200 · 200 · 200**, robometria **404 · 404 · 200 · 200**, aquametria **404 nas quatro**.
+- **30/09 (item 1, degrau 4): CONTINUA cumprido.**
+
+**O QUE ESTA RONDA MEDIU DE NOVO, E É O NÚMERO QUE DEVE SER RECONFERIDO NA PRÓXIMA:** o teste de vida da 25.4
+fechou em **4 de 24 itens medidos**. Os **4** são os de catálogo `/p/MLB...` do Mercado Livre e os quatro estão
+**VIVOS com preço** (Tekbond Silicone Neutro R$ 59, Argamassa Quartzolit AC-II R$ 81, Durepoxi Loctite R$ 19,
+Rejunte Epóxi Quartzolit R$ 76), medidos no navegador porque `www.mercadolivre.com.br` segue em **000 nas três
+passadas** da nuvem. Os **20 restantes são da Shopee e NÃO foram medidos** — terceira ronda seguida: a ficha é
+redirecionada para `shopee.com.br/verify/captcha?...&scene=crawler_item` e a `api/v4/pdp/get_pc` devolve **403 com
+`error: 90309999` já na primeira chamada de cada contexto**, inclusive com a sessão do Raphael logada
+(`is_login: true`) e inclusive aberta direto na barra de endereço; `api/v4/item/get` devolve o mesmo 403. A página
+da ficha renderiza o quebra-cabeça *"Arraste para completar"* — e a 25.4 proíbe a Sentinela de resolver CAPTCHA.
+**"Não medido" não é "vivo".** Isto é achado de INSTRUMENTO, não de ilha, e está na lista do Raphael.
+
+**O que a próxima ronda reconfere:** (1) a porta de entrada, pelos dois comandos da 29; (2) os 4 links de catálogo
+do Mercado Livre; (3) se o caminho do teste de vida da Shopee voltou, e se não voltou, **não tentar de novo pelos
+mesmos dois endpoints** — a medição de hoje é a terceira igual e a decisão de qual passa a ser o método é do
+Raphael.

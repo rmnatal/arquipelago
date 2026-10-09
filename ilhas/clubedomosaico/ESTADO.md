@@ -10,7 +10,7 @@ urls_publicadas: 21        # 17 -> 21 em 02/10/2026 19h51Z: o BLOCO 4c publicou 
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-10-09T15:5xZ
 executando_desde: null
-ultima_ronda: 2026-10-07T20:35Z   # LEITURA SEMANAL da Sentinela (a ronda diária técnica desta data foi às 14h55Z)
+ultima_ronda: 2026-10-09T14:55Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente é de 07/10 20h35Z). ZERO defeito de ilha; o reparo do .htaccess de 08/10 reconferido no ar e DE PÉ.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
