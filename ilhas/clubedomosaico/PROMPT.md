@@ -379,7 +379,95 @@ Decisão do Raphael em 09/10/2026, 10h40 de Brasília: "a gente vai ter que aume
 
 5. Ao fim de cada execução de hoje, escrever no topo do ESTADO.md: quantas URLs a ilha tem, quantas faltam para 40, e para CADA página que não nasceu, a causa medida em uma linha (dado de fabricante inalcançável, SERP tomada, categoria sem 3 filhas) e de quem depende.
 
-## DESPACHO DO RAPHAEL — 2026-10-09
+## DESPACHO DO RAPHAEL — 2026-10-09 — **REESCRITO PELA 18.3 EM 09/10/2026 às 19h4xZ: SÓ A LISTA DAS 6 FICOU**
+
+> **A 18.2 manda despacho sair inteiro; a 18.3 manda, quando um item não couber, resolver os que
+> couberem e reescrever o despacho deixando só os que faltam, com o motivo em uma linha. É o que
+> está aqui.**
+>
+> **O QUE SAIU:**
+>
+> - **Item 1 — FECHADO em 09/10 às 13h1xZ.** O bloco do quadro do Divino Espírito Santo começou pela
+>   classificação de SERP da 14.9, veio **TOMADA**, e parou ali — exatamente o desfecho que o item
+>   previa. O veredito está escrito com quem ocupa o top 10 pelo nome, em `dados/corpus-buscas.md`,
+>   cluster 2, e a linha que decide é a Casas Bahia vendendo um *Mosaico do Espírito Santo com anjos
+>   120x140cm* na primeira página, por R$ 6.872,40.
+> - **Item 3 — CUMPRIDO nesta execução.** Ele exigia que nenhuma execução fechasse só com régua,
+>   bancada ou ferramenta de repositório enquanto houvesse item aberto: **mudou coisa no ar** — treze
+>   endereços que serviam 404 passam a servir **301 para `/loja/`**, casca **1.22.0**, revisão **74**,
+>   conferidos um a um no ar e com a cadeia terminando em 200.
+> - **Item 4 — CUMPRIDO.** A lista "O QUE FALTA PARA ESTA ILHA ESTAR COMPLETA" está no topo do
+>   `ESTADO.md`, uma linha por item, cada uma dizendo se depende da Fundação, do Raphael ou do
+>   relógio do Google. Ele a condicionava a fechar os itens 1 e **2**; ela saiu com o 2 fechado pela
+>   metade, porque esperar o item 2 para escrevê-la é esperar o Raphael para dizer a ele o que ele
+>   precisa fazer.
+> - **Item 2 — SAIU A METADE QUE NÃO DEPENDE DA LISTA, e ela não era pequena.** O mecanismo de
+>   apelido desta ilha **recusava todo caminho com barra numa linha** — e os endereços abandonados
+>   desta ilha têm nível. Antes desta execução, **nenhum endereço com nível podia ser redirecionado
+>   aqui, por mais que a lista chegasse.** Agora pode, e os treze endereços que o M9 do Pente Fino de
+>   21/09 nomeou (os três desenhos escritos para a camada de coleção da Loja, um publicado) estão
+>   nomeados com a decisão de cada um em `dados/enderecos-404-2026-10-09.md` e servindo 301 no ar.
+
+### 2. O QUE FICA: A LISTA DAS 6 URLs EM 404 — e o motivo em uma linha
+
+**FICA, e o motivo em uma linha: a lista tem três fontes possíveis e esta execução mediu as TRÊS
+mortas daqui; nenhuma é da Fundação.** O despacho declarava uma.
+
+| fonte | medida em 09/10/2026 | dono |
+|---|---|---|
+| Search Console | `env \| grep -c GOOGLE_SA` = **0**; `search-console.py` devolve *"Sem credencial"*. **Sexta** execução a medir | Raphael — `GOOGLE_SA_B64` no ambiente das rotinas |
+| `web.archive.org` (daria a vida anterior do domínio, que o `PROMPT.md` manda conferir desde o nascimento) | **TRÊS passadas em `000`, com `connect_rejected` do proxy de egresso** — política de rede, não túnel. **Medição NOVA** | Raphael — a 20.3: `web.archive.org` na lista de Domínios permitidos |
+| sitemap legado servido pelo domínio | **NÃO EXISTE.** `/sitemap.xml` é **301** para o atual; `sitemap_index`, `sitemap-index`, `post-sitemap` e `page-sitemap` em 404; o `robots.txt` anuncia **um só**. **Medição NOVA, e ela fecha a hipótese** | ninguém: a fonte não existe |
+
+**A armadilha continua valendo e por isso não há varredura:** nesta ilha toda URL inexistente responde
+404 na 1ª leitura e **200** na 2ª, por 2 horas. Sondar candidatos devolveria 200 para endereço que não
+existe, e a lista sairia errada nos dois sentidos. **Nada do que foi entregue hoje veio de sondagem.**
+
+**O que a próxima execução encontra pronto:** o mecanismo (casca 1.22.0, duas tabelas, portão de
+sombreamento contra o caminho real, 14 mutações reprovando) e as treze linhas já decididas. Com a
+credencial, ela lê a lista, compara, e decide o que sobrar entre `301` e morrer de propósito com o
+motivo escrito. **Pronto quando, inalterado:** as 6 nomeadas com a decisão de cada uma, e a leitura de
+14/10 registrando **3 ou menos** em "Não encontrado (404)".
+
+---
+
+## CRITÉRIO DE SAÍDA DO FOCO — pré-registrado em 09/10/2026 às 19h4xZ, pela 1.2-b.4
+
+> **Esta seção existe porque a 1.2-b.4 a exige e ninguém a havia escrito para esta ilha**, e o
+> `foco.md` diz que o foco passa à aquametria em **10/10/2026**. A regra: *"Ilha que termina o foco
+> não fica no limbo: recebe, no `PROMPT.md` dela, um critério **pré-registrado** — qual série, quais
+> datas, e os três desfechos possíveis."* E a frase que a torna séria: **"critério escrito depois do
+> dado é critério dobrado para caber no dado que veio."** Está escrito **antes** de a leitura de
+> 14/10 existir.
+
+**QUAL SÉRIE:** `dados/posicoes.md` e `dados/indexacao.md`, as duas da leitura semanal (12.1).
+**QUAIS DATAS:** a linha de **14/10/2026** e a de **21/10/2026**. Duas leituras, não uma — esta ilha
+publicou 8 URLs em 09/10 e a de 14/10 pega o índice ainda se mexendo.
+
+**O estado de partida, congelado aqui para não ser reconstituído depois:** 29 URLs, 18 de 21
+indexadas em 07/10 (86%), **81 impressões em 7 dias**, **0 clique**, posição média **8,0**, três
+páginas na primeira página do Google, e os dois `<title>` trocados em 08/10 já copiados em
+`dados/posicoes.md`.
+
+**OS TRÊS DESFECHOS:**
+
+1. **VOLTA AO FOCO** se a linha de 21/10 registrar **1 ou mais cliques em 7 dias**. Clique é a única
+   coisa que esta ilha nunca teve, e tê-lo prova que o caminho da impressão até a visita existe —
+   aí o que falta é volume de página, que é trabalho de Fundação e paga.
+2. **FICA EM MANUTENÇÃO** (modo de medição da 1.2-b.1, série crescendo, nenhuma URL nova) se as duas
+   linhas registrarem **zero clique com as impressões subindo** — de 81 para mais. Impressão que
+   cresce sem clique com três páginas na primeira página é diagnóstico de **SERP**, não de falta de
+   página, e a alavanca passa a ser a da 14.7 (sinal externo), que é da Sentinela e do Raphael.
+3. **ARQUIVADA, com o aprendizado indo para a `BUSSOLA.md`**, se as duas linhas registrarem **zero
+   clique E impressões caindo** — de 81 para menos. Seria o nicho dizendo que a demanda medida em
+   10/09 não se sustenta, e o aprendizado que vai para a Bússola tem nome: *nicho de artesanato com
+   cauda exata de 100 a 1.000 buscas/mês pode render impressão e não render visita*.
+
+**O QUE NENHUM DOS TRÊS DESFECHOS ALCANÇA, e está dito para não ser confundido com fracasso da
+ilha:** a Loja. Ela tem **5 peças publicadas e 0 rascunho**, é o único motor com margem cheia, e só a
+artesã a alimenta pelo `/atelie/`. Peça nova nesta ilha não depende de foco nenhum.
+
+## DESPACHO DO RAPHAEL — 2026-10-09 (ORIGINAL, guardado) — ~~item 1~~, ~~3~~ e ~~4~~ fechados; só o 2 ficou
 
 Decisão do Raphael em 09/10/2026, 10h36 de Brasília: "vamos acabar o Clube do Mosaico hoje". Este despacho tem a prioridade da 18.1 (despacho aberto do Raphael vem antes de tudo) e sai inteiro pela 18.2. Nenhum portão afrouxa (seção 13): dado, SERP da 14.9, verificação no ar, voz e árvore continuam valendo, e o teto da 21.4 também.
 

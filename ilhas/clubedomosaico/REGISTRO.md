@@ -3,6 +3,123 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+09/10/2026 19h19Z–19h5xZ — O APELIDO DE ENDEREÇO APRENDE NÍVEL, E OS TRÊS DESENHOS DE URL DA LOJA PARAM DE MORRER EM 404
+
+**O despacho do Raphael de 09/10 fecha com três dos quatro itens cumpridos e o quarto reescrito pela
+18.3.** Casca **1.22.0**, manifest e `/status` na **revisão 74**, **treze endereços** que serviam 404
+passam a servir **301 para `/loja/`**. **Nenhuma URL nova** — a ilha segue em 29, 11 abaixo do piso de
+40 da 21.1 — e **nenhuma leva da 21.4 gasta**: 301 não é página.
+
+1. **OS DOIS COMANDOS DA 29 RODARAM ANTES DE TUDO, E DE NOVO DEPOIS DO SYNC.** Antes:
+   `conferir-no-ar.py` **APROVADO, 524 afirmações, 0 falha**; `leitura-do-visitante.py` **REPROVADO
+   com EXATAMENTE 1 defeito** — o soft 404 da borda, de 29/09, do Raphael. Depois do desembarque: os
+   dois no **mesmo estado**, 524/0 e o mesmo 1 defeito. **ZERO defeito novo.** Rede pela 20.2: 200 nas
+   TRÊS passadas, com `aquametria.com.br` em 200 nas mesmas.
+
+2. **A ESCOLHA DA ILHA NÃO FOI ESCOLHA: `foco.md` nomeia a clubedomosaico.** `executando_desde` estava
+   `null`, que pela 1.1 já significa que não há bloco da Fundação vivo — não houve reserva vencida
+   para o git desempatar. Reserva aceita às 19h19Z na primeira tentativa, sem corrida perdida. Nenhum
+   PR aberto e nenhuma branch `claude/*` à frente do `main`. *(O `main` havia sido reescrito: o fetch
+   trouxe `798e812` como forced update.)*
+
+3. **POR QUE ESTE BLOCO: a 18.5 e o item 3 do despacho, nessa ordem.** O despacho do Raphael de 09/10
+   estava aberto e tem a prioridade da 18.1; a 18.5 manda fechar despacho antes de começar bloco. E o
+   item 3 dele proibia fechar a execução só com régua, bancada ou ferramenta de repositório: *"ou ela
+   muda algo no ar, ou escreve no `ESTADO.md` a causa medida de não ter mudado"*. Mudou.
+
+4. **O MECANISMO RECUSAVA A FAMÍLIA INTEIRA NUMA LINHA, E ISSO SÓ APARECEU MEDINDO NO AR.** A seção 1b
+   da casca existe desde 11/09 e serve 301 para apelido de endereço; `cdm_casca_apelido_para_slug()`
+   devolvia `''` para **todo caminho com barra**, antes de olhar o mapa. Medido às 19h3xZ: `/guia/`,
+   `/escola/`, `/pecas/` e `/quem-somos/` em **301**; `/loja/vasos/`, `/loja/quadros/` e
+   `/loja/colecao/vasos/` em **404**. **Os três últimos são exatamente a forma dos endereços
+   abandonados desta ilha** — o M9 do Pente Fino de 21/09 nomeia **três** desenhos escritos para a
+   camada de coleção da Loja (`/loja/colecao/<termo>/` e as coleções por uso no `PROMPT.md`, o tipo de
+   peça no `ARVORE.md` e no `VOZ.md`) e **um** publicado. Enquanto o apelido só sabia um segmento,
+   **nenhum endereço abandonado desta ilha era alcançável pelo único mecanismo que existe para
+   alcançá-lo** — por mais que a lista da Search Console chegasse.
+
+5. **A RECUSA ERA DELIBERADA, E A BANCADA A COBRAVA.** Havia uma afirmação verde dizendo *"caminho com
+   nível não é tratado como apelido"*. Ela **não foi apagada em silêncio**: virou a afirmação
+   contrária, com a trava que faltava, e o parágrafo acima dela no `teste-casca.php` conta por que a
+   direção mudou. Trava que se apaga sem deixar o motivo é a trava que volta.
+
+6. **DUAS TABELAS E NÃO UMA, e isso é régua, não arrumação.** Apelido de um segmento só pode colidir
+   com a **raiz**, e a bancada já cobrava isso. Apelido com nível pode sombrear **qualquer degrau da
+   árvore — inclusive o de página que ainda não nasceu**, e o caso tem nome: `materiais/pastilhas` é
+   slug **reservado** da categoria G-PASTILHAS do Guia, que a 16.5 ainda não autoriza. Um apelido ali
+   ficaria **verde hoje** e tiraria a categoria do ar **no dia em que ela nascesse** — a família de
+   defeito mais paciente que existe, a mesma do campo ausente que se comporta como o valor certo.
+
+7. **O PORTÃO MEDE CONTRA O CAMINHO REAL, NUNCA CONTRA O SLUG — E FOI A BANCADA QUE DISSE EM QUE
+   DIREÇÃO OS DOIS DIVERGEM.** `cdm_casca_ferramentas()` declara `qual-cola-usar-no-mosaico` e a
+   árvore conhece `materiais/qual-cola-usar-no-mosaico`. **A primeira versão da afirmação supôs a
+   divergência ao contrário e saiu VERMELHA**, e isso é o teste fazendo o trabalho dele: eu teria
+   escrito um portão que compara slug com slug e deixa passar justamente o apelido que sombreia a
+   ferramenta da cola — **a página que mais ranqueia nesta ilha**.
+   `cdm_casca_caminho_de_slug()` resolve as duas formas e devolve `''` quando mais de uma casa, em vez
+   de escolher por acidente de ordem.
+
+8. **A NORMALIZAÇÃO É POR SEGMENTO**, nunca pela string inteira: `sanitize_title( 'loja/vasos' )`
+   devolve `lojavasos`, e um mapa normalizado assim nunca casaria com nada. O sintoma seria silencioso
+   — nenhum erro, só 404 de volta.
+
+9. **O QUE NÃO MUDOU, e é o que torna isto seguro:** o redirecionamento continua acontecendo **só em
+   `is_404()`** (página que existe é servida, nunca redirecionada) e **só para destino publicado**.
+   301 para 404 continua proibido pela mesma trava de 11/09. Conferido no ar: `/loja/`, `/materiais/`,
+   `/materiais/acabamento/`, a ferramenta da cola, a filha de três degraus do verniz e uma peça da
+   Loja seguem em **200**.
+
+10. **O QUE DELIBERADAMENTE NÃO ENTROU, e a diferença é inventar ou não:** o eixo de categoria do Guia
+    no **singular**. `/materiais/cola/` foi medido em **404** nesta execução — mas o eixo existe e
+    está **reservado no plural** (`materiais/colas-e-adesivos`, `materiais/pastilhas`,
+    `materiais/rejuntes`…), e **nenhum documento desta ilha escreveu a forma singular**. Endereço que
+    nenhum documento escreveu não é endereço abandonado; é palpite com cara de conserto.
+
+11. **AS TRÊS FONTES DA LISTA DAS 6, E AS TRÊS MEDIDAS MORTAS DAQUI — o despacho declarava UMA.**
+    (a) Search Console: `env | grep -c GOOGLE_SA` = **0**, sexta execução a medir. (b)
+    **`web.archive.org`: TRÊS passadas em `000` com `connect_rejected` do proxy de egresso** — é
+    política de rede e não túnel, e viraram item da 20.3 para o Raphael; era a única outra fonte dos
+    endereços da **vida anterior do domínio**. (c) **Sitemap legado servido pelo domínio: NÃO
+    EXISTE** — `/sitemap.xml` é 301 para o atual, quatro nomes clássicos em 404, e o `robots.txt`
+    anuncia um só. **A terceira é a que vale mais, porque FECHA uma hipótese** que o `PROMPT.md`
+    carregava desde o nascimento da ilha em vez de deixá-la viva para a próxima execução remedir.
+
+12. **O SYNC FOI ACIONADO SEM `forcar=1`, E O LOG FOI LIDO ITEM POR ITEM** — as duas coisas que o
+    aviso de topo manda depois do estrago de 09/10 de manhã. **10 aplicados**, e a linha que importa
+    é `snippets/casca: ok (snippet #6 atualizado)`. **Nenhuma linha do log deixou de começar com
+    `ok`**, e os oito snippets que não mudaram **não foram tocados** — que é exatamente o que o
+    `forcar=1` fez de errado ao derrubar o Guia.
+
+13. **BANCADA: 1024 → 1040 verificações no `teste-casca.php`, 0 falha.** Os dez testes PHP verdes e o
+    `validar-banco.py` OK. **MUTAÇÕES: `mutacoes-apelido.py` nasce com 14 de 14 reprovando**, em
+    `mkdtemp`, mais `mutacoes-arvore` com 29 de 29. Quatro das catorze são de **sombreamento**, que é
+    o jeito de um 301 ficar pior que o 404 que ele substitui. `git status` conferido depois das
+    baterias e **a bancada rodada DE NOVO**, pela regra que a `mutacoes-par.py` escreveu com sangue
+    hoje de manhã.
+
+14. **O ITEM 4 DO DESPACHO SAIU COM O ITEM 2 PELA METADE, de propósito.** Ele condicionava a lista "O
+    QUE FALTA PARA ESTA ILHA ESTAR COMPLETA" a fechar os itens 1 e 2 — e esperar o item 2 para
+    escrevê-la é **esperar o Raphael para dizer a ele o que ele precisa fazer**. Ela está no topo do
+    `ESTADO.md`, com os números medidos nesta execução e não herdados: **13 baterias em cima da
+    árvore sem `restaura_em_sinal()`** (contadas uma a uma), **5 peças publicadas e 0 rascunho** na
+    rota pública da Loja, e **`identidade/artesa/` que não existe**.
+
+15. **E O QUE A 1.2-b.4 EXIGIA E NINGUÉM HAVIA ESCRITO: o critério de saída do foco.** O `foco.md`
+    põe a aquametria em foco em 10/10, e esta ilha ia sair **sem critério pré-registrado**, o que a
+    1.2-b.4 proíbe com uma frase que é o ponto inteiro: *"critério escrito depois do dado é critério
+    dobrado para caber no dado que veio."* Está no `PROMPT.md`, com a série (`posicoes.md` e
+    `indexacao.md`), as datas (**14/10 e 21/10**, duas e não uma, porque a de 14/10 pega o índice
+    ainda se mexendo depois das 8 URLs de hoje), o estado de partida congelado (29 URLs, 81
+    impressões, 0 clique, posição 8,0) e os **três** desfechos, cada um amarrado a um número: clique
+    ≥ 1 volta ao foco; zero clique com impressão subindo fica em manutenção; zero clique com
+    impressão caindo arquiva, e o aprendizado que vai para a `BUSSOLA.md` já está escrito.
+
+**O PRÓXIMO PASSO DESBLOQUEADO:** as 11 URLs do piso da 21.1, e a fila delas **não passa por medir
+SERP** — `dados/cruzamento-14-9.md` mede que as três mães do Guia estão a 1 (`alicate`), 2
+(`pastilha`) e 1 (`rejunte`) filha da 16.5 e que o custo de cada filha é **item de banco ou pergunta
+nova**. Com o foco passando à aquametria em 10/10, quem voltar a esta ilha começa por ali ou pelo
+critério de saída acima, não por reabrir o item 2 — que é do Raphael e está escrito.
+
 09/10/2026 16h16Z–17h0xZ — AS OITO PÁGINAS PELO NOME DO PRODUTO ESTÃO NO AR, E OS PORTÕES ACHARAM TRÊS DEFEITOS DE RÉGUA E NENHUM DE PÁGINA
 
 **A ilha foi de 21 para 29 URLs**, `/status` e manifest na **revisão 72**, casca **1.21.0** e um snippet
