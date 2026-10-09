@@ -111,6 +111,20 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DO RAPHAEL — 2026-10-09 (2) — TETO DA 21.4 SUSPENSO HOJE NESTA ILHA
+
+Decisão do Raphael em 09/10/2026, 10h40 de Brasília: "a gente vai ter que aumentar esse limite... Essa regra vale para hoje. Três levas por semana, esquece. Eu quero acabar hoje. Depois, nas próximas ilhas, pode voltar à regra normal."
+
+1. O teto da 21.4 (10 URLs por leva, 3 levas por semana) está SUSPENSO nesta ilha durante o dia 09/10/2026 (horário de Brasília). Vale só para clubedomosaico e só hoje; a partir de 10/10/2026 a 21.4 volta inteira, aqui e em toda ilha. Aquametria e Robometria não são alcançadas por esta exceção.
+
+2. Alvo: o piso da 21.1, 40 URLs publicadas. A ilha está em 21; faltam 19.
+
+3. O que NÃO está suspenso, pela seção 13: o portão de dado (3 itens reais + 1 número por página), a classificação de SERP da 14.9 antes de cada página, a 16.5 (categoria só publica com 3 filhas ou mais), a voz, a árvore e a verificação da URL no ar. Página que não passa no portão não nasce hoje, com ou sem teto.
+
+4. MODO MUTIRÃO nesta ilha hoje: cada execução publica TODAS as páginas que passarem no portão com o dado que o banco já tem (colas, rejuntes, pastilhas, acabamento, técnicas, peças da loja), em sequência, verificando cada uma no ar antes da próxima. Não parar em uma página por execução.
+
+5. Ao fim de cada execução de hoje, escrever no topo do ESTADO.md: quantas URLs a ilha tem, quantas faltam para 40, e para CADA página que não nasceu, a causa medida em uma linha (dado de fabricante inalcançável, SERP tomada, categoria sem 3 filhas) e de quem depende.
+
 ## DESPACHO DO RAPHAEL — 2026-10-09
 
 Decisão do Raphael em 09/10/2026, 10h36 de Brasília: "vamos acabar o Clube do Mosaico hoje". Este despacho tem a prioridade da 18.1 (despacho aberto do Raphael vem antes de tudo) e sai inteiro pela 18.2. Nenhum portão afrouxa (seção 13): dado, SERP da 14.9, verificação no ar, voz e árvore continuam valendo, e o teto da 21.4 também.
