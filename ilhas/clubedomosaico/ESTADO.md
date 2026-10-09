@@ -9,7 +9,7 @@ urls_publicadas: 21        # 17 -> 21 em 02/10/2026 19h51Z: o BLOCO 4c publicou 
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-10-09T15:5xZ
-executando_desde: 2026-10-09T16:16Z   # RESERVA desta execucao (ilha em foco, 1.2)
+executando_desde: 2026-10-09T16:52Z   # RESERVA RENOVADA pela 1.1 — o bloco passou de 40 minutos (reserva original 16:16Z)
 ultima_ronda: 2026-10-09T14:55Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente é de 07/10 20h35Z). ZERO defeito de ilha; o reparo do .htaccess de 08/10 reconferido no ar e DE PÉ.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo

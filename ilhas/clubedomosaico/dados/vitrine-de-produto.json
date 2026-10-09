@@ -1,0 +1,784 @@
+{
+ "id": "vitrine-de-produto",
+ "ilha": "clubedomosaico",
+ "gerado_em": "2026-10-09",
+ "gerado_por": "ferramentas/gerar-vitrine-de-produto.py",
+ "o_que_este_arquivo_e": "O recorte COMERCIAL que as paginas de consulta de produto servem no ar: so as consultas que publicam, so os anuncios que a regra de relevancia aprovou, so os campos que a pagina mostra, e o link de afiliado COM sub_id desta ilha. Nao editar a mao: o portao regera e compara.",
+ "de_onde_ele_vem": "dados/anuncios-por-consulta.json (a coleta datada da API de afiliado da Shopee) cruzado com dados/consultas-de-produto.json (a declaracao e a regra de relevancia). O numero proprio de cada pagina e RECALCULADO das ofertas que entram e conferido contra o resumo da coleta.",
+ "a_fonte_e_uma_so_e_a_pagina_diz_isso": "Todo dado comercial destas paginas vem da SHOPEE. O Mercado Livre respondeu 403 nas tres passadas de 09/10/2026 (CONNECT aceito pelo proxy, 403 do balanceador deles). Nenhuma pagina pode dizer \"o mercado\" querendo dizer \"a Shopee\".",
+ "o_preco_e_de_UMA_coleta_datada": "A API devolve conjuntos diferentes entre chamadas, entao a faixa de cada consulta e a de UMA coleta, na data de gerado_em, e nunca o catalogo da Shopee. A pagina publica a data junto com o numero.",
+ "duas_nascem_no_limite": "base-para-mosaico-mdf e rejunte-para-mosaico tem exatamente 3 ofertas, que e o minimo da 30.2 e nao uma folga. A proxima coleta que perder uma oferta derruba a pagina, e este gerador sai com codigo 1 em vez de publicar menos.",
+ "publicar": true,
+ "piso_da_30_2": 3,
+ "n_paginas": 8,
+ "n_ofertas": 58,
+ "paginas": [
+  {
+   "id": "torques-para-mosaico",
+   "consulta": "torquês para mosaico",
+   "slug": "materiais/torques-para-mosaico",
+   "colhido_em": "2026-10-09",
+   "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
+   "n_ofertas": 19,
+   "numero_proprio": {
+    "tipo": "faixa_de_preco",
+    "de": 68.99,
+    "ate": 248.25,
+    "sobre_quantas_ofertas": 19,
+    "conta": null
+   },
+   "ofertas": [
+    {
+     "item_id": 22798358459,
+     "titulo": "Torques Mosaico Com Mola Corneta Berg 5649609",
+     "preco": 68.99,
+     "loja": " Saga ",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-7ren5-m80xgw806v4lc6",
+     "url_afiliado": "https://s.shopee.com.br/6VOVKtlgQJ",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 22394431334,
+     "titulo": "Torques Para Mosaico 8´´ Corneta Berg",
+     "preco": 69.99,
+     "loja": " Saga ",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8258i-mew4wza2fnr99b",
+     "url_afiliado": "https://s.shopee.com.br/5At7kRvE9v",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 58219515319,
+     "titulo": "Torquês Mosaico 8\" Cabo Antiderrapante",
+     "preco": 77.23,
+     "loja": "LOJA 22 MAQUINAS E FERRAMENTAS",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-820lv-mtzkn0zbusqo2c",
+     "url_afiliado": "https://s.shopee.com.br/3qNkA0MImh",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 22494338006,
+     "titulo": "Torquês Mosaico Berg Corneta 200mm Corte Pastilha Vidro Cerâmica 1, 2 ou 4 Unidades",
+     "preco": 79.9,
+     "loja": "MAIS UTIL DISTRIBUIDORA",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-820lc-mt4bayotgjk5af",
+     "url_afiliado": "https://s.shopee.com.br/6AlewHMch1",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 6469616940,
+     "titulo": "Torques Para Mosaico 8 203mm - Berg",
+     "preco": 85.15,
+     "loja": "SF ACABAMENTOS",
+     "imagem_url": "https://cf.shopee.com.br/file/048a798b5e42db5cb8fe2762cc3dfcb7",
+     "url_afiliado": "https://s.shopee.com.br/5fpOLMg3Yx",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 57256498107,
+     "titulo": "Torquês para Mosaico 8 Pol com Roldanas Vonder",
+     "preco": 100.42,
+     "loja": "Deend",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8261m-ml6rx9o1a39f5d",
+     "url_afiliado": "https://s.shopee.com.br/LnrzYw66A",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 58263206974,
+     "titulo": "Alicate Torquês Mosaico 8\" 49609 Berg",
+     "preco": 105.76,
+     "loja": "Mix Shop3D",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-824gx-mpwmbs2ifb4da6",
+     "url_afiliado": "https://s.shopee.com.br/40hAMJQ8Ya",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 58267747021,
+     "titulo": "Torquês para Mosaico 8 Pol com Roldanas Vídea Vonder",
+     "preco": 109.9,
+     "loja": "Light haus",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8259w-msvlscmfjbid17",
+     "url_afiliado": "https://s.shopee.com.br/6L558avKAQ",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 22099696384,
+     "titulo": "Torquês para Mosaico 8\" com Roldanas VONDER",
+     "preco": 109.91,
+     "loja": "austinferramentas",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8258j-mt2mg3fol81w3c",
+     "url_afiliado": "https://s.shopee.com.br/2qVCyAYq9T",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 58203592688,
+     "titulo": "Torques Para Mosaico 8'' Com Roldanas Vonder Aço Forjado",
+     "preco": 117.9,
+     "loja": "GUIMEPA",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8260x-mjoaaf2f5g5ea6",
+     "url_afiliado": "https://s.shopee.com.br/1VzpNiZiqW",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 58200405163,
+     "titulo": "Torquês para Mosaico 8\" com Roldanas para Cortes Retos e Curvos Vonder",
+     "preco": 119.9,
+     "loja": "Bwinx",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-821f3-mgqyd9cdveh564",
+     "url_afiliado": "https://s.shopee.com.br/6VOVKtuYEd",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 58215866357,
+     "titulo": "TORQUÊS PARA MOSAICO 8 POL COM ROLDANAS VONDER",
+     "preco": 133.9,
+     "loja": "Netfer",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134275-820li-mrnnhfeorqpx25",
+     "url_afiliado": "https://s.shopee.com.br/AKbDtwt5Zw",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 23394144085,
+     "titulo": "Torquês para mosaico 8\", com roldanas, VONDER",
+     "preco": 149.0,
+     "loja": "Rodofer Comércio",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-7r98o-mavk9tkjv6d5d5",
+     "url_afiliado": "https://s.shopee.com.br/1LgPBPN5ac",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 58219499181,
+     "titulo": "Kit Torquês Alicate Para Mosaico Com Pinça",
+     "preco": 168.08,
+     "loja": "LOJA 22 MAQUINAS E FERRAMENTAS",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-820m8-mts957cyzh8hac",
+     "url_afiliado": "https://s.shopee.com.br/5VVy947E6i",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 18097492946,
+     "titulo": "Torquês Com Roldanas Para Mosaico Profissional 8 Polegadas Com Cortes Retos E Curvos - Cortag",
+     "preco": 185.16,
+     "loja": "OWL PARTS",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-7rbl8-lnrf5cdfk079de",
+     "url_afiliado": "https://s.shopee.com.br/6L558aQJrH",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 22697139425,
+     "titulo": "Torquês Com Roldanas Profissional Para Mosaico 8 Polegadas Pastilha Vidro Cerâmica",
+     "preco": 188.32,
+     "loja": "PEÇA SCAP OFICIAL",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-7rbn2-lnrf5cd5kenl3c",
+     "url_afiliado": "https://s.shopee.com.br/60SEjyWC6T",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 13356960528,
+     "titulo": "Torquês Para Azulejista Para Cerâmica E Mosaico 8\" 60857 CORTAG",
+     "preco": 227.23,
+     "loja": "Só Aqui Ferramentas",
+     "imagem_url": "https://cf.shopee.com.br/file/a660733807685f22ea0e46f61747a8a6",
+     "url_afiliado": "https://s.shopee.com.br/3LRTZ4p0Wu",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 23193538814,
+     "titulo": "Torques Para Mosaico Com Videa 10",
+     "preco": 237.84,
+     "loja": "Statron Ferramentas",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-7reng-m2pcc1ag22uz2b",
+     "url_afiliado": "https://s.shopee.com.br/6AlewI0Di8",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 23597448753,
+     "titulo": "Torquês Para Mosaico Com Roldanas de Metal Duro - 61341 - Cortag",
+     "preco": 248.25,
+     "loja": "Royal Máquinas",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-7rd5s-ltza5nusg5bldb",
+     "url_afiliado": "https://s.shopee.com.br/9pexJ1UfAP",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    }
+   ]
+  },
+  {
+   "id": "alicate-para-mosaico",
+   "consulta": "alicate para mosaico",
+   "slug": "materiais/alicate-para-mosaico",
+   "colhido_em": "2026-10-09",
+   "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
+   "n_ofertas": 5,
+   "numero_proprio": {
+    "tipo": "faixa_de_preco",
+    "de": 80.0,
+    "ate": 356.28,
+    "sobre_quantas_ofertas": 5,
+    "conta": null
+   },
+   "ofertas": [
+    {
+     "item_id": 55710200286,
+     "titulo": "Alicate Cortador de Mosaico 8\" Boca Redonda/Plana Para Vidro Cerâmica DIY",
+     "preco": 80.0,
+     "loja": "chineselxm.br",
+     "imagem_url": "https://cf.shopee.com.br/file/cn-11134207-820l4-mpb09oaqg55866",
+     "url_afiliado": "https://s.shopee.com.br/9zyNVLGMCE",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 52968090164,
+     "titulo": "Kit Profissional De Alicate De Corte E Quebra De Vidro De 2 Peças Para Vitrais Mosaicos",
+     "preco": 125.36,
+     "loja": "SzOPb6CI3.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-82598-mtbwf4ponq4k3f",
+     "url_afiliado": "https://s.shopee.com.br/6q1LjWX19N",
+     "quantidade_declarada": 2,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 18097492946,
+     "titulo": "Torquês Com Roldanas Para Mosaico Profissional 8 Polegadas Com Cortes Retos E Curvos - Cortag",
+     "preco": 185.16,
+     "loja": "OWL PARTS",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-7rbl8-lnrf5cdfk079de",
+     "url_afiliado": "https://s.shopee.com.br/5fpOLNfeW2",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 22697139425,
+     "titulo": "Torquês Com Roldanas Profissional Para Mosaico 8 Polegadas Pastilha Vidro Cerâmica",
+     "preco": 188.32,
+     "loja": "PEÇA SCAP OFICIAL",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-7rbn2-lnrf5cd5kenl3c",
+     "url_afiliado": "https://s.shopee.com.br/1BMyz6wmfl",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 48565883392,
+     "titulo": "Ferramenta De Corte De Mosaico De Ferro , Controle De Precisão , Pinças De Azulejo De Vidro , Suave , Alicate Cortador P",
+     "preco": 356.28,
+     "loja": "umjhjsd.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8258t-mrs7qnaooo3r10",
+     "url_afiliado": "https://s.shopee.com.br/2LYwNFwk4H",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    }
+   ]
+  },
+  {
+   "id": "cortador-de-vidro-para-mosaico",
+   "consulta": "cortador de vidro para mosaico",
+   "slug": "materiais/cortador-de-vidro-para-mosaico",
+   "colhido_em": "2026-10-09",
+   "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
+   "n_ofertas": 9,
+   "numero_proprio": {
+    "tipo": "faixa_de_preco",
+    "de": 19.37,
+    "ate": 356.28,
+    "sobre_quantas_ofertas": 9,
+    "conta": null
+   },
+   "ofertas": [
+    {
+     "item_id": 55168082212,
+     "titulo": "Cortador De Vidro Diamante Com Cabo De Madeira Vermelho 2-15mm Para Azulejo Espelho Aquário Janela Mosaico DIY",
+     "preco": 19.37,
+     "loja": "CraftroveQ",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-825as-mtc2sgbl5b0g3b",
+     "url_afiliado": "https://s.shopee.com.br/1VzpNjUv5F",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 56318266763,
+     "titulo": "Dwbr 2 Em 1 Cortador Manual de Vidro E Azulejo , Liga Resistente À Ferrugem , Portátil Para Processamento de Mosaico de ",
+     "preco": 68.65,
+     "loja": "desertwater.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-825b6-mtf26cif13pee7",
+     "url_afiliado": "https://s.shopee.com.br/9fLX6jiEJi",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 55710200286,
+     "titulo": "Alicate Cortador de Mosaico 8\" Boca Redonda/Plana Para Vidro Cerâmica DIY",
+     "preco": 80.0,
+     "loja": "chineselxm.br",
+     "imagem_url": "https://cf.shopee.com.br/file/cn-11134207-820l4-mpb09oaqg55866",
+     "url_afiliado": "https://s.shopee.com.br/2gBmls4PV8",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 52703825345,
+     "titulo": "Cortador De Telha De Mosaico Com Alicate De Nariz Redondo , Ferramenta Manual De Divisão De Cerâmica De Vidro Para Telha",
+     "preco": 83.1,
+     "loja": "beautyartisan01.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-81ztw-mir85vicysch65",
+     "url_afiliado": "https://s.shopee.com.br/5VVy956gYU",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 53317651281,
+     "titulo": "Cortador De Boca Redondo Em Mosaico De 8 Polegadas Com Mandíbula Reforçada Para Vidro",
+     "preco": 98.53,
+     "loja": "Acessórios Móveis Inteligentes",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-825aw-msxax2e9qolc71",
+     "url_afiliado": "https://s.shopee.com.br/2qVCyBCRBe",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 53066841032,
+     "titulo": "[Htong] Cortador De Vidro Com Rodas Ferramenta Manual Alicate Separador De Azulejos Pinças Estreitas De Mosaico Ergonômi",
+     "preco": 120.99,
+     "loja": "Htong Healthy Lives",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8259u-msdzkfhjsg7825",
+     "url_afiliado": "https://s.shopee.com.br/BURnHVO9V",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 42434491708,
+     "titulo": "[Brbaosity2] Cortador De Vidro Com Rodas Ferramenta Manual Alicate Separador De Azulejos Pinças Estreitas De Mosaico Erg",
+     "preco": 123.59,
+     "loja": "brbaosity2.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8259z-mt7r6y6atvr96c",
+     "url_afiliado": "https://s.shopee.com.br/6q1LjXAXuK",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 46767976249,
+     "titulo": "[Freneci] Alicate Separador De Azulejo Compacto , De Vidro De Mosaico Com Mola , Corpo De Metal , Cortador Rodas , Ferra",
+     "preco": 126.31,
+     "loja": "freneci.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8259g-mt7rdg0kv56wdd",
+     "url_afiliado": "https://s.shopee.com.br/8fSzuu82Ij",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 48565883392,
+     "titulo": "Ferramenta De Corte De Mosaico De Ferro , Controle De Precisão , Pinças De Azulejo De Vidro , Suave , Alicate Cortador P",
+     "preco": 356.28,
+     "loja": "umjhjsd.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8258t-mrs7qnaooo3r10",
+     "url_afiliado": "https://s.shopee.com.br/70KlvpwZi3",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    }
+   ]
+  },
+  {
+   "id": "pastilhas-para-mosaico",
+   "consulta": "pastilhas para mosaico",
+   "slug": "materiais/pastilhas-para-mosaico",
+   "colhido_em": "2026-10-09",
+   "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
+   "n_ofertas": 5,
+   "numero_proprio": {
+    "tipo": "preco_por_pastilha",
+    "de": 0.0358,
+    "ate": 0.111,
+    "sobre_quantas_ofertas": 5,
+    "conta": [
+     {
+      "item_id": 19298315740,
+      "preco": 32.22,
+      "quantidade": 900,
+      "por_unidade": 0.0358,
+      "procedencia_da_quantidade": "kit-com-n"
+     },
+     {
+      "item_id": 18499887037,
+      "preco": 41.9,
+      "quantidade": 1000,
+      "por_unidade": 0.0419,
+      "procedencia_da_quantidade": "kit-com-n"
+     },
+     {
+      "item_id": 23998898112,
+      "preco": 51.9,
+      "quantidade": 1250,
+      "por_unidade": 0.0415,
+      "procedencia_da_quantidade": "kit-com-n"
+     },
+     {
+      "item_id": 23398903133,
+      "preco": 73.9,
+      "quantidade": 2000,
+      "por_unidade": 0.037,
+      "procedencia_da_quantidade": "kit-com-n"
+     },
+     {
+      "item_id": 19298320391,
+      "preco": 74.9,
+      "quantidade": 675,
+      "por_unidade": 0.111,
+      "procedencia_da_quantidade": "kit-com-n"
+     }
+    ]
+   },
+   "ofertas": [
+    {
+     "item_id": 19298315740,
+     "titulo": "Kit com 900 Pastilhas para Mosaico, Artesanato – Escolha",
+     "preco": 32.22,
+     "loja": "Cellsystem Informática",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-824id-merkn7d7l6o123",
+     "url_afiliado": "https://s.shopee.com.br/2BFWAxjlzg",
+     "quantidade_declarada": 900,
+     "procedencia_da_quantidade": "kit-com-n"
+    },
+    {
+     "item_id": 18499887037,
+     "titulo": "Kit com 1000 Pastilhas para Mosaico – Escolha",
+     "preco": 41.9,
+     "loja": "Cellsystem Informática",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-824jg-merkk0xj2olj1e",
+     "url_afiliado": "https://s.shopee.com.br/W7IBu3WX1",
+     "quantidade_declarada": 1000,
+     "procedencia_da_quantidade": "kit-com-n"
+    },
+    {
+     "item_id": 23998898112,
+     "titulo": "Kit com 1250 Pastilhas para Mosaico 2x2cm – Escolha",
+     "preco": 51.9,
+     "loja": "Cellsystem Informática",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-824gf-merkh9fo93wg6a",
+     "url_afiliado": "https://s.shopee.com.br/3B83MngAmS",
+     "quantidade_declarada": 1250,
+     "procedencia_da_quantidade": "kit-com-n"
+    },
+    {
+     "item_id": 23398903133,
+     "titulo": "Kit com 2000 Pastilhas para Mosaico 2x2cm – Escolha",
+     "preco": 73.9,
+     "loja": "Cellsystem Informática",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-824h0-merk28i07q4hf7",
+     "url_afiliado": "https://s.shopee.com.br/1VzpNjqqfl",
+     "quantidade_declarada": 2000,
+     "procedencia_da_quantidade": "kit-com-n"
+    },
+    {
+     "item_id": 19298320391,
+     "titulo": "Kit com 675 Pastilhas para Mosaico – Escolha ",
+     "preco": 74.9,
+     "loja": "Cellsystem Informática",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-824g2-merkrvuo72f633",
+     "url_afiliado": "https://s.shopee.com.br/20w5yetHCH",
+     "quantidade_declarada": 675,
+     "procedencia_da_quantidade": "kit-com-n"
+    }
+   ]
+  },
+  {
+   "id": "pastilha-de-vidro-para-mosaico",
+   "consulta": "pastilha de vidro para mosaico",
+   "slug": "materiais/pastilha-de-vidro-para-mosaico",
+   "colhido_em": "2026-10-09",
+   "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
+   "n_ofertas": 5,
+   "numero_proprio": {
+    "tipo": "faixa_de_preco",
+    "de": 15.0,
+    "ate": 135.7,
+    "sobre_quantas_ofertas": 5,
+    "conta": null
+   },
+   "ofertas": [
+    {
+     "item_id": 58206218451,
+     "titulo": "Pastilhas de vidro para Mosaico ( Pacote com 100 peças)",
+     "preco": 15.0,
+     "loja": "Costumi Camargo",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134201-820m9-mqyhoe34hudg15",
+     "url_afiliado": "https://s.shopee.com.br/7VH2Wlq4el",
+     "quantidade_declarada": 100,
+     "procedencia_da_quantidade": "pacote-com-n"
+    },
+    {
+     "item_id": 58267684795,
+     "titulo": "Pastilhas de Vidro Texturizadas Metalizadas para Artesanato Mosaico  Decoração DIY Natal - 50 Peças i",
+     "preco": 35.0,
+     "loja": "BIJU ESPELHOS",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-820lr-msu129sn0r2e4e",
+     "url_afiliado": "https://s.shopee.com.br/1gJFa37fye",
+     "quantidade_declarada": 50,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 22398222899,
+     "titulo": "Kit 5 Plaquinhas de Pastilhas de vidro para mosaico 2 x 2 cm - 245pçs - Escolha Seu Kit",
+     "preco": 37.9,
+     "loja": "CRIARTE ARTESANATO OFICIAL",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-820l9-mmke9a36ivwgd2",
+     "url_afiliado": "https://s.shopee.com.br/8V9ZibqfT7",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "dois moldes leem quantidades diferentes no mesmo titulo (kit-n=5, n-pecas=245) — escolher uma seria decidir por ordem de lista"
+    },
+    {
+     "item_id": 58204922208,
+     "titulo": "Kit 5 Plaquinhas de Pastilhas de vidro para mosaico 2 x 2 cm - 245pçs - Escolha Seu Kit",
+     "preco": 39.9,
+     "loja": "CRIARTE ARTESANATO OFICIAL",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-820mg-mmkex51kmsxye6",
+     "url_afiliado": "https://s.shopee.com.br/7faSj4tdJM",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "dois moldes leem quantidades diferentes no mesmo titulo (kit-n=5, n-pecas=245) — escolher uma seria decidir por ordem de lista"
+    },
+    {
+     "item_id": 11021278408,
+     "titulo": "Pastilha De Vidro Mosaico Pedra Água Marinha Coral",
+     "preco": 135.7,
+     "loja": "Home Vitae Ltda",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-820mh-ms0afxrlgflycb",
+     "url_afiliado": "https://s.shopee.com.br/1VzpNk3uY6",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    }
+   ]
+  },
+  {
+   "id": "base-para-mosaico-mdf",
+   "consulta": "base de MDF para mosaico",
+   "slug": "materiais/base-de-mdf-para-mosaico",
+   "colhido_em": "2026-10-09",
+   "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
+   "n_ofertas": 3,
+   "numero_proprio": {
+    "tipo": "preco_por_plaquinha",
+    "de": 0.228,
+    "ate": 0.26,
+    "sobre_quantas_ofertas": 2,
+    "conta": [
+     {
+      "item_id": 23498032596,
+      "preco": 22.8,
+      "quantidade": 100,
+      "por_unidade": 0.228,
+      "procedencia_da_quantidade": "kit-n"
+     },
+     {
+      "item_id": 58252012234,
+      "preco": 26.0,
+      "quantidade": 100,
+      "por_unidade": 0.26,
+      "procedencia_da_quantidade": "kit-n"
+     }
+    ]
+   },
+   "ofertas": [
+    {
+     "item_id": 58263756387,
+     "titulo": "Kit plaquinhas mdf Branco 7x5 cm base para artesanato biscuit imã geladeira jogo memoria mosaico arte em mdf",
+     "preco": 17.9,
+     "loja": "JM.Personalizado",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-820m2-mqbxjjiretj507",
+     "url_afiliado": "https://s.shopee.com.br/1B1azeYYC",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 23498032596,
+     "titulo": "Kit 100 plaquinhas mdf cru 5x5 cm base para artesanato biscuit imã jogo memoria mosaico arte em mdf",
+     "preco": 22.8,
+     "loja": "Genitori Laser",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134201-820m7-mqxx1cd0m0hy02",
+     "url_afiliado": "https://s.shopee.com.br/2gBmltQ0MW",
+     "quantidade_declarada": 100,
+     "procedencia_da_quantidade": "kit-n"
+    },
+    {
+     "item_id": 58252012234,
+     "titulo": "Kit 100 plaquinhas mdf cru 5x5 cm base para artesanato biscuit imã jogo memoria mosaico arte em mdf",
+     "preco": 26.0,
+     "loja": "MULLER LASER",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134201-820lx-mt9lhl8jlkw3a4",
+     "url_afiliado": "https://s.shopee.com.br/9Kigi8w9ow",
+     "quantidade_declarada": 100,
+     "procedencia_da_quantidade": "kit-n"
+    }
+   ]
+  },
+  {
+   "id": "espelho-para-mosaico",
+   "consulta": "espelho para mosaico",
+   "slug": "materiais/espelho-para-mosaico",
+   "colhido_em": "2026-10-09",
+   "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
+   "n_ofertas": 9,
+   "numero_proprio": {
+    "tipo": "faixa_de_preco",
+    "de": 24.69,
+    "ate": 150.35,
+    "sobre_quantas_ofertas": 9,
+    "conta": null
+   },
+   "ofertas": [
+    {
+     "item_id": 22495191033,
+     "titulo": "Mosaico adesivo espelho de vidro 5x5mm kit 1/2/3 conjuntos 1600 peças 1m para artesanato e decoração faça você mesmo",
+     "preco": 24.69,
+     "loja": "Brenquali",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8258r-ms5f7o73oetg68",
+     "url_afiliado": "https://s.shopee.com.br/5VVy96SPut",
+     "quantidade_declarada": 1600,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 53361751619,
+     "titulo": "1 rolo autoadesivo espelho de vidro mosaico adesivo prata Total 1600 peças adequado para amantes artesanais conveniente",
+     "preco": 24.69,
+     "loja": "JinBelle",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-823rt-mp4i8zcewr9e57",
+     "url_afiliado": "https://s.shopee.com.br/9fLX6lPp7T",
+     "quantidade_declarada": 1600,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 46961728520,
+     "titulo": "1 rolo autoadesivo espelho de vidro mosaico adesivo prata Total 1600 peças adequado para decoração de casa conveniente",
+     "preco": 25.24,
+     "loja": "GinMega",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-823r9-mp3ea0ri8b2a81",
+     "url_afiliado": "https://s.shopee.com.br/1B1azw9gW",
+     "quantidade_declarada": 1600,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 22194398146,
+     "titulo": "Rolo De Espelhos Artesanato Fitas 4mm x 4mm 1 metro C/ Adesivo espelhos de mosaico",
+     "preco": 25.99,
+     "loja": "NVK Materiais para Artesanato",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-824g1-me91h4th1rt32a",
+     "url_afiliado": "https://s.shopee.com.br/905qJXJUau",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 44560915571,
+     "titulo": "3 rolos DIY auto-adesivo espelho de vidro mosaico adesivos ouro Total 1200 peças adequadas para decoração de casa",
+     "preco": 44.54,
+     "loja": "HsVibe",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-823pd-mohnidru26mh57",
+     "url_afiliado": "https://s.shopee.com.br/70KlvrihpP",
+     "quantidade_declarada": 1200,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 48611767978,
+     "titulo": "3 rolos autoadesivos espelho de vidro mosaico adesivos ouro Total 1200 peças adequadas para Layout de decoração de casa",
+     "preco": 44.54,
+     "loja": "JinBelle",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-823ov-mp4ib1n8n40dd2",
+     "url_afiliado": "https://s.shopee.com.br/BURnIqz1i",
+     "quantidade_declarada": 1200,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 56514026147,
+     "titulo": "3 rolos DIY auto-adesivo espelho de vidro mosaico adesivos ouro Total 1200 peças adequadas para férias vestir-se",
+     "preco": 44.54,
+     "loja": "haoshchb2.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8258v-mqodkxzpruha01",
+     "url_afiliado": "https://s.shopee.com.br/50ZhYBlzLV",
+     "quantidade_declarada": 1200,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 55511708167,
+     "titulo": "3 rolos autoadesivos espelho de vidro mosaico adesivos ouro Total 1200 peças adequadas para criação artesanal DIY",
+     "preco": 45.53,
+     "loja": "GinMega",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-823ok-mp3e0g7n9wjk2d",
+     "url_afiliado": "https://s.shopee.com.br/1BMyz8w74L",
+     "quantidade_declarada": 1200,
+     "procedencia_da_quantidade": "n-pecas"
+    },
+    {
+     "item_id": 26645780565,
+     "titulo": "Conjunto Autoadesivo De Mosaico De Espelho , 18 Peças De Azulejos Para DIY Decoração , Prata",
+     "preco": 150.35,
+     "loja": "a54vogmxm2.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8257w-msyudtfl8lje26",
+     "url_afiliado": "https://s.shopee.com.br/2gBmlu3bMZ",
+     "quantidade_declarada": 18,
+     "procedencia_da_quantidade": "n-pecas"
+    }
+   ]
+  },
+  {
+   "id": "rejunte-para-mosaico",
+   "consulta": "rejunte para mosaico",
+   "slug": "materiais/rejunte-para-mosaico",
+   "colhido_em": "2026-10-09",
+   "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
+   "n_ofertas": 3,
+   "numero_proprio": {
+    "tipo": "faixa_de_preco",
+    "de": 53.5,
+    "ate": 313.09,
+    "sobre_quantas_ofertas": 3,
+    "conta": null
+   },
+   "ofertas": [
+    {
+     "item_id": 43533838875,
+     "titulo": "[Asiyy] Enchimento De Rejunte Cozinha Cerâmica Mosaico Linhas De Azulejo Selador De Argamassa Marcador Branqueador Conta",
+     "preco": 53.5,
+     "loja": "asiyy.br",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-8259v-msa7cu3o5rsx3c",
+     "url_afiliado": "https://s.shopee.com.br/1LgPBSLwgF",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 54565633242,
+     "titulo": "Grout De Mosaico Para Artesanato , Agentes De Reparo De Enchimento De Reboco À Prova D'água , Rejunte De Azulejo Banheir",
+     "preco": 69.2,
+     "loja": "Thirza Casa e Decoração Loja",
+     "imagem_url": "https://cf.shopee.com.br/file/sg-11134201-825aq-mrmbwgyfun7o7b",
+     "url_afiliado": "https://s.shopee.com.br/9Kigi9iYPo",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    },
+    {
+     "item_id": 9619273523,
+     "titulo": "Rejunte p/ Mosaico Ouro Metálico 1 Kg Rejuntamento Dourado Altezza",
+     "preco": 313.09,
+     "loja": "Altezza Indústria",
+     "imagem_url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lvp2dti9ukymd0",
+     "url_afiliado": "https://s.shopee.com.br/BURnJLmVM",
+     "quantidade_declarada": null,
+     "procedencia_da_quantidade": "o titulo nao declara quantidade de pecas"
+    }
+   ]
+  }
+ ]
+}

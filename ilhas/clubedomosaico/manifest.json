@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 71,
+  "revisao": 72,
   "atualizado_em": "2026-10-09",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.20.0",
-      "sha256": "ada8edc90d32ccb5b2cde8a9940344dd830bea4cc90fc9e690bb4a417289a621",
-      "descricao": "Casca 1.20.0 — `cdm_casca_numeros()` passa a CONTAR os documentos que o banco cita e quantos deles foram abertos e lidos pagina a pagina (hoje 2 de 53). Os dois numeros nasceram porque uma frase de PROSA mentiu: a camada de prova da F2 publicava, desde 11/09, que 'nenhum PDF de fabricante foi aberto linha a linha', e em 05 e 06/10 dois boletins tecnicos foram abertos pelo canal de espelho — um deles e a fonte da instrucao de preparo que a F2 agora serve. Prosa nao tem regua; numero tem. O marcador de 'aberto' e a presenca de `tipo_de_origem` na fonte, nunca a frase do `tipo`. Os dois entram no instantaneo com ZERO e so saem a tela pela via viva — estatistica velha envelhece, disclosure velho mente."
+      "versao": "1.21.0",
+      "sha256": "23069c07caa491f37d62dbebe1f9d0d869d7d03eb1a21acf8bf82ab188653cbb",
+      "descricao": "Casca 1.21.0 — DOIS PONTOS DE EXTENSAO novos, `cdm_materiais_secoes` e `cdm_home_secoes`, pelo mesmo desenho de `cdm_ferramentas` e `cdm_categorias_do_guia`: quem publica uma familia de paginas mora no proprio arquivo e se lista sozinho. Nasceram para as oito paginas de consulta de produto do despacho de 09/10/2026 (3), que a 16.4(f) obriga a receber um link DA MAE — e a alternativa era a casca listar as oito a mao, que e o que ela mesma proibiu em 1.5.0 (\"casca editada por bloco de ferramenta e casca que sai do ar por defeito de ferramenta\"). O ponto da /materiais/ entra ANTES dos seis cartoes \"em breve\" que nao abrem: o que termina em recomendacao de compra vem antes do que nao abre, que e a ordem da secao 9."
     },
     {
       "id": "f2",
@@ -100,6 +100,17 @@
       "versao": "1.2.0",
       "sha256": "3b97d810e31be6490a12f7f7d26659030b2b1393d98814894e5d165a0122a120",
       "descricao": "Guia 1.2.0 — o Guia deixa de ser de UMA categoria so. A categoria de cada pagina passa a ser DECLARADA (`cdm_guia_categorias()`): o banco dela vem do id do dado no manifest, que e o mesmo nome da option que o Sync grava, e a familia de numeros que ela publica vem de uma REGUA de seis papeis (contas, moldes, resposta, ponte, achado, item). A espinha do arquivo nao conhece categoria nenhuma pelo nome; `acabamento` so aparece na declaracao, no registro das paginas e dentro da regua do acabamento. Falha fechada: categoria sem regua, sem banco declarado ou com um papel faltando nao publica numero — a pagina serve o aviso honesto e a bancada reprova. As quatro paginas no ar sairam IDENTICAS byte a byte (medido nas quatro antes e depois), e a mutacao que renomeia o banco junto com a declaracao mede que o nome antigo nao esta escrito em lugar nenhum fora dela. Bancada: teste-guia 123 afirmacoes (eram 110) e mutacoes-guia 18 de 18 (eram 14)."
+    },
+    {
+      "id": "produto",
+      "nome": "Clube do Mosaico Produto",
+      "arquivo": "snippets/clubedomosaico-produto.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "versao": "1.0.0",
+      "sha256": "88abc72686bc02926c7f0f7676eb1331eab44f7931f3273ab2304c0356f90ddc",
+      "descricao": "Produto 1.0.0 — o motor das OITO paginas de consulta de produto do despacho do Raphael de 09/10/2026 (3): uma pagina por consulta, slug igual a consulta, filha direta de /materiais/ no nivel 2. Ele casa as duas metades pelo id — a voz declarada em dados/paginas-de-produto.json e o numero e o link gerados em dados/vitrine-de-produto.json — e NAO registra pagina que falhe em qualquer uma delas ou que chegue com menos de tres ofertas, que e o piso da 30.2. Nenhum preco e digitado na prosa: ela traz moldes ({MIN}, {MAX}, {N}, {UNIDADE}, {SOBRE}, {DATA}) que cdm_produto_preencher() enche da vitrine, nos dois modos — com espaco inquebravel na tela e com espaco normal no JSON-LD, porque &nbsp; publicado como texto da resposta e diferenca que nenhuma revisao humana ve. A tabela serve o que o anuncio sustenta (titulo, preco, foto e a quantidade quando ele a declara) e DIZ que ele nao declara medida nem para que serve, em vez de preencher coluna com palavra tirada do titulo."
     }
   ],
   "conteudo": [],
@@ -395,6 +406,24 @@
       "verificado_em": "2026-10-09",
       "descricao": "O dado COMERCIAL que a secao 30.2 pede: os anuncios de cada consulta de produto com o veredito da regra ao lado de cada um, o preco, a loja, a foto, a quantidade declarada no titulo (ou o motivo de ela faltar) e o link de afiliado com sub-id, gerado SO para o que serve e SO em consulta que publica. Dado de UMA fonte: o Mercado Livre respondeu 403 nas tres passadas de 09/10, pelo anti-robo dele e nao pela rede da secao 20, e o arquivo diz isso para nenhuma pagina escrever `o mercado` querendo dizer `a Shopee`.",
       "sha256": "f5e15d2f2560e257ce6d985918f199afd7cc1d52e70b7c5f84773abd389dfb54"
+    },
+    {
+      "id": "paginas-de-produto",
+      "arquivo": "dados/paginas-de-produto.json",
+      "formato": "json",
+      "entidade": "conteudo",
+      "fonte": "DECLARADO e escrito a mao, na voz do VOZ.md: titulo, description, a resposta em duas frases, o que e e o que nao e, o qual escolher por uso, o dado fino e as perguntas das oito paginas de consulta de produto. Nenhum portao o regera — numero nao mora aqui, mora na vitrine.",
+      "publicar": true,
+      "sha256": "3bd8154c5eba93bf842213aca8c6751e69f69b45f5a329ef6a4706f040f1649f"
+    },
+    {
+      "id": "vitrine-de-produto",
+      "arquivo": "dados/vitrine-de-produto.json",
+      "formato": "json",
+      "entidade": "oferta",
+      "fonte": "GERADO por ferramentas/gerar-vitrine-de-produto.py de dados/anuncios-por-consulta.json cruzado com dados/consultas-de-produto.json. O numero proprio de cada pagina e RECALCULADO das ofertas que entram e conferido contra o resumo da coleta; consulta que chegue com menos de tres ofertas que servem, ou com oferta sem link de afiliado, derruba a geracao com codigo 1. Nao editar a mao: o portao regera e compara (--conferir).",
+      "publicar": true,
+      "sha256": "4f92e9574a090f21525e2962b3aab5c1a307b094f920dc14faee7fe3a03c77c0"
     }
   ],
   "ferramentas": [
@@ -684,7 +713,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "15428cf4b59afb9626c8d3f2fc059ff2f4c0771bce418bad4479fe4c00aea568",
+      "sha256": "f6de5feea60d037ec2c669d85ec3a4e46bbb0dbc028086544b6a9dd804d61280",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -726,7 +755,7 @@
     {
       "id": "teste-casca",
       "arquivo": "ferramentas/teste-casca.php",
-      "sha256": "07ad31b8ba2e22fffa6e99a4d236b4a5fccde9cc2ff8e45126e83ab5bc481d09",
+      "sha256": "700515603d751f5d507fc9cdda9f477721942bc31905860e0a33578f30932d56",
       "descricao": "347 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; dentro de <script>, corpo que nao comeca por metadado, JSON-LD que decodifica, a arvore da secao 16 nas duas direcoes contra o ARVORE.md, a Loja nos dois estados, a camada de prova pela ESTRUTURA e nao pela vizinhanca da palavra, e o piso de 1.500 caracteres de corpo. UM PROCESSO POR PAGINA: o static que impede logotipo e rodape em dobro na mesma pagina faria a bancada medir oito paginas sem eles. SECAO 7 REESCRITA EM 1.4.0 — ate 1.3.0 ela afirmava o CONTRARIO do que o site tem que servir (que o logo nao podia entrar no cabecalho por ter fundo preto, o que era falso). Agora cobra o logo do Raphael em <img>, o src igual ao arquivo que ele subiu, ZERO texto dentro da marca, alt com o nome, width/height na proporcao 3:2, o srcset servindo so o MESMO arquivo menor, os 52 px no CSS, a folga da barra e o logo uma vez em CADA uma das nove paginas. A REGUA E DESTE ARQUIVO: a URL e a medida estao literais aqui, copiadas do despacho, nunca lidas da constante da casca."
     },
     {
@@ -860,6 +889,24 @@
       "arquivo": "ferramentas/recalibrar-30-5.py",
       "sha256": "4c09c45dc1d39bbf7daedf70f502e6b347477d40df578da4d1bb5d95c50e0799",
       "descricao": "A regua da secao 30.5 do ARQUIPELAGO.md: remede o veredito de SERP das consultas de PRODUTO classificando cada OCUPANTE do top 10 ja medido em `varejo_grande`, `fabricante_forte` e `fazenda_de_conteudo` (que CONTAM) contra lojinha do nicho, anuncio de marketplace, video, forum, blog antigo, agregador, obra, fora do pais e institucional (que NAO contam), e calcula `tomada` quando 6 ou mais das 10 vagas sao de quem conta. O veredito e CALCULADO da classificacao e `--conferir` reprova se o gravado discordar — remedir veredito a mao sao tantas chances de puxar o resultado para o lado de quem quer publicar quantos forem os vereditos. Nao mede SERP, nao alcanca consulta nunca medida e nao decide se a pagina nasce. Bancada."
+    },
+    {
+      "id": "gerar-vitrine-de-produto",
+      "arquivo": "ferramentas/gerar-vitrine-de-produto.py",
+      "sha256": "702ad576e3746637d0930d22a52c13d04f11b96fcad7e0383de810d337298951",
+      "descricao": "GERA dados/vitrine-de-produto.json das duas fontes (a coleta datada da Shopee e a declaracao da regra), recalculando o numero proprio das ofertas que entram e conferindo-o contra o resumo da coleta; sai com codigo 1 se discordar, se uma consulta que publica chegar com menos de tres ofertas que servem (o piso da 30.2) ou se uma oferta vier sem link de afiliado com o sub_id desta ilha. --conferir regera e compara, e e por ele que o arquivo nao pode ser editado a mao."
+    },
+    {
+      "id": "teste-produto",
+      "arquivo": "ferramentas/teste-produto.php",
+      "sha256": "342a5600a654d38c6a53bb82a8f4058dec2fd1ff87cdc7627bd0670faa4f87cd",
+      "descricao": "Bancada das oito paginas de consulta de produto: 306 afirmacoes medidas no HTML servido, uma pagina por processo. Reconta o numero proprio do JSON cru por um caminho que nao chama uma linha do snippet, cobra a ordem que o despacho pede (resposta em duas frases antes de qualquer explicacao, bloco de compra antes da procedencia), o link de afiliado por oferta com rel=sponsored e encurtado, o ItemList igual a tela, o FAQPage sem entidade HTML no texto, a data DENTRO da resposta, a Shopee nomeada DENTRO da procedencia, o link da mae pela 16.4(f) e o piso de tres ofertas num mundo FABRICADO com duas."
+    },
+    {
+      "id": "mutacoes-produto",
+      "arquivo": "ferramentas/mutacoes-produto.py",
+      "sha256": "09997d7cd362f9866e5f72670cd49da87eac7e6e277e986bf37407405196f879",
+      "descricao": "25 mutacoes da familia de produto, 25 reprovando. Roda em mkdtemp e nao pode sujar a arvore. Tres delas acharam LACUNA DE PORTAO e nao defeito de pagina, e os tres portoes nasceram por causa delas: a data era procurada em qualquer lugar da tela quando a procedencia a imprime por fora do molde; a Shopee era procurada em qualquer frase quando a 30.2 a quer na procedencia; e a contagem de orfa ficava verde sem o link da mae, porque as sete irmas ja davam sete."
     }
   ],
   "esquema": {

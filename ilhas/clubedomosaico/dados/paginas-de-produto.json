@@ -1,0 +1,347 @@
+{
+ "id": "paginas-de-produto",
+ "ilha": "clubedomosaico",
+ "declarado_em": "2026-10-09",
+ "o_que_este_arquivo_e": "A camada EDITORIAL das oito paginas de consulta de produto: titulo, description, a resposta em duas frases, o que e e o que nao e, o qual escolher por uso e as perguntas. Escrito a mao, na voz do VOZ.md. Nao e gerado e nenhum portao o regera.",
+ "por_que_ele_existe_separado": "O numero e o link moram em dados/vitrine-de-produto.json, que e GERADO da coleta e tem portao que regera e compara. Prosa num arquivo gerado seria reescrita pela proxima coleta; numero num arquivo escrito a mao envelhece calado. Os dois erros ja foram pagos nesta ilha, e a separacao e o conserto.",
+ "como_o_numero_entra_na_prosa": "Por molde, nunca digitado: {MIN}, {MAX}, {FAIXA}, {N}, {UNIDADE}, {SOBRE} e {DATA} sao preenchidos pelo snippet a partir da vitrine. Numero digitado na prosa e numero que mente na coleta seguinte.",
+ "a_fonte_e_dita_na_pagina": "Todo dado comercial destas oito vem da Shopee, e a pagina diz isso com essas palavras. O Mercado Livre respondeu 403 nas tres passadas de 09/10/2026. Nenhuma pagina pode dizer o mercado querendo dizer a Shopee.",
+ "publicar": true,
+ "paginas": [
+  {
+   "id": "torques-para-mosaico",
+   "titulo": "Torquês para mosaico",
+   "description": "Qual torquês de roldanas corta pastilha e azulejo em curva sem estilhaçar, quanto ele custa hoje e como escolher o primeiro.",
+   "resposta": [
+    "Para cortar pastilha e azulejo em curva, o que a gente usa é o torquês de roldanas de 8 polegadas — é ele que faz o corte redondo sem lascar a peça.",
+    "Hoje ele sai de {MIN} a {MAX} na Shopee, em {N} ofertas que a gente conferiu uma a uma em {DATA}."
+   ],
+   "o_que_e": "O torquês de mosaico tem duas rodinhas de metal duro na ponta. Você aperta devagar e o caquinho parte na linha que você quis, em curva ou reto. É a ferramenta que separa o corte de quem está começando do corte de quem já pegou o jeito.",
+   "o_que_nao_e": "Não é a roldana de reposição. Essa é a enxurrada dessa busca: aparece anúncio de roda solta com as palavras carboneto e substituir no título, mais barato, e quem compra sem a ferramenta fica com uma peça que não serve para nada. A gente tirou todas elas daqui.",
+   "qual_escolher": [
+    {
+     "uso": "Está começando",
+     "frase": "Pegue o de 8 polegadas mais barato da lista. Nessa faixa as marcas que aparecem são as mesmas que a gente já guarda no banco, e o corte é o mesmo; o que muda é o cabo e a mola."
+    },
+    {
+     "uso": "Peça pequena, de caquinho miúdo",
+     "frase": "Procure o modelo com mola e boca de corneta. Ele volta sozinho e deixa a sua mão livre para girar a pastilha entre um aperto e outro, que é o que você faz centenas de vezes num quadro pequeno."
+    },
+    {
+     "uso": "Vai cortar muito, toda semana",
+     "frase": "Aí vale subir de preço. Os mais caros da lista são os de roldana de metal duro, e a roldana é a peça que gasta — no de entrada ela redonda antes, e o corte começa a esmagar em vez de partir."
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "Torquês e alicate de mosaico são a mesma coisa?",
+     "resposta": "Não. O torquês tem roldanas e corta por pressão em linha; o alicate de boca redonda belisca e quebra o caquinho. Quem faz mosaico acaba com os dois, mas o torquês é o primeiro."
+    },
+    {
+     "pergunta": "Quanto custa um torquês para mosaico?",
+     "resposta": "Na coleta de {DATA}, de {MIN} a {MAX} na Shopee, sobre {N} ofertas. Preço de uma leitura só: ele muda, e a gente republica a faixa quando mede de novo."
+    },
+    {
+     "pergunta": "Dá para cortar azulejo comum com ele?",
+     "resposta": "Dá, e é para isso que ele foi feito. Azulejo de parede e pastilha de vidro partem bem; porcelanato de piso é outra história, e aí a ferramenta é de obra, não de artesanato."
+    }
+   ],
+   "na_home": false
+  },
+  {
+   "id": "alicate-para-mosaico",
+   "titulo": "Alicate para mosaico",
+   "description": "Qual alicate de mosaico corta vidro e cerâmica sem estilhaçar, quanto custa hoje e a diferença entre ele, o torquês e a pinça.",
+   "resposta": [
+    "Para beliscar o caquinho e tirar lasca fina, o que serve é o alicate cortador de boca redonda ou plana — e para vitral existe o kit de duas peças, que corta e quebra.",
+    "Hoje a faixa é de {MIN} a {MAX} na Shopee, sobre {N} ofertas que passaram pela nossa regra em {DATA}."
+   ],
+   "o_que_e": "O alicate de mosaico tem a boca curta e forte. Ele não corta em linha: ele belisca a borda e tira um pedaço, que é o jeito de arredondar um caquinho ou encaixar a última peça num canto apertado.",
+   "o_que_nao_e": "Não é o alicate da caixa de ferramenta de casa. E não é a roldana de reposição, que domina essa busca: de cada vinte anúncios, catorze eram roda solta de carboneto vendida como se fosse a ferramenta inteira. A gente deixou de fora.",
+   "qual_escolher": [
+    {
+     "uso": "Está começando",
+     "frase": "O cortador de boca redonda da faixa de baixo resolve. Ele é o que mais perdoa mão sem prática, porque belisca pouco de cada vez."
+    },
+    {
+     "uso": "Peça pequena, com encaixe apertado",
+     "frase": "Boca plana. Ela entra entre duas pastilhas já coladas e tira a lasca que está sobrando, sem bater nas vizinhas."
+    },
+    {
+     "uso": "Vai trabalhar com vidro de vitral",
+     "frase": "O kit de duas peças é o que aparece aqui com essa finalidade: uma corta o risco, a outra abre a quebra. Vidro de vitral é mais fino e quebra diferente do azulejo."
+    }
+   ],
+   "secao_extra": {
+    "id": "pinca-para-mosaico",
+    "titulo": "E a pinça para mosaico?",
+    "frases": [
+     "A gente mediu a busca por pinça para mosaico e ela devolve o mesmo alicate que está nesta página — a mesma ferramenta, com outro nome no anúncio.",
+     "Por isso não existe uma página separada para ela aqui: seria a mesma lista em dois endereços, e isso só faz as duas perderem força na busca. O que a pinça costuma nomear é o modelo de ponta fina da lista acima, usado para posicionar o caquinho em vez de cortar."
+    ]
+   },
+   "faq": [
+    {
+     "pergunta": "Alicate ou torquês: qual comprar primeiro?",
+     "resposta": "O torquês. Ele corta em linha, que é a maior parte do trabalho. O alicate entra depois, para ajustar borda e encaixe."
+    },
+    {
+     "pergunta": "Quanto custa um alicate para mosaico?",
+     "resposta": "De {MIN} a {MAX} na Shopee, na leitura de {DATA}, sobre {N} ofertas. A ponta de cima da faixa é ferramenta de precisão com pinça, não alicate simples."
+    },
+    {
+     "pergunta": "Serve para cortar espelho?",
+     "resposta": "Para beliscar borda de espelho já cortado, sim. Para abrir o corte no espelho inteiro, o que serve é o cortador de vidro, que é outra ferramenta."
+    }
+   ],
+   "na_home": true
+  },
+  {
+   "id": "cortador-de-vidro-para-mosaico",
+   "titulo": "Cortador de vidro para mosaico",
+   "description": "Qual cortador de vidro serve para mosaico, quanto ele custa hoje e quando usar o de ponta de diamante em vez do alicate separador de azulejo.",
+   "resposta": [
+    "Para abrir o corte no vidro e no espelho, o que serve é o cortador de rodinha ou o de ponta de diamante com cabo — e depois dele vem o alicate separador, que abre a quebra na linha riscada.",
+    "A faixa hoje vai de {MIN} a {MAX} na Shopee, sobre {N} ofertas lidas em {DATA}, e é a mais larga das nossas páginas porque junta ferramenta de riscar e ferramenta de separar."
+   ],
+   "o_que_e": "São duas coisas que a mesma busca devolve. O cortador risca o vidro: uma rodinha ou uma ponta de diamante passa com pressão e deixa a linha. O separador parte o vidro nessa linha. Sem o primeiro, o segundo esmaga; sem o segundo, a linha fica lá e o vidro não abre.",
+   "o_que_nao_e": "Não é a cortadora de piso de bancada, aquela de obra com régua e alavanca. Ela aparece na mesma busca, custa dez vezes mais e não faz o corte pequeno de artesanato.",
+   "qual_escolher": [
+    {
+     "uso": "Está começando",
+     "frase": "O cortador de diamante com cabo de madeira é o mais barato da lista e o que menos erra: você risca, apoia na borda da mesa e parte com a mão."
+    },
+    {
+     "uso": "Peça pequena, muito caquinho de vidro",
+     "frase": "Vale o alicate separador com mola. Ele faz a quebra ficar igual vez após vez, e em peça pequena a diferença entre um corte limpo e um lascado aparece na foto."
+    },
+    {
+     "uso": "Vai cortar espelho",
+     "frase": "Espelho pede o de rodinha, passado do lado do vidro e não do lado espelhado. A tinta de trás lasca se você riscar do lado errado."
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "Quanto custa um cortador de vidro para mosaico?",
+     "resposta": "De {MIN} a {MAX} na Shopee, na coleta de {DATA}, sobre {N} ofertas. A ponta de baixo é o de diamante com cabo; a de cima é ferramenta de corte com pinça de precisão."
+    },
+    {
+     "pergunta": "Dá para fazer mosaico de vidro sem cortador?",
+     "resposta": "Dá, usando pastilha de vidro que já vem no tamanho. O cortador entra quando você quer caquinho de formato próprio ou quer aproveitar vidro e espelho que você já tem."
+    },
+    {
+     "pergunta": "A rodinha do cortador gasta?",
+     "resposta": "Gasta, e quando gasta ela para de riscar e começa a arranhar. É a peça de troca dessa ferramenta, do mesmo jeito que a roldana é a do torquês."
+    }
+   ],
+   "na_home": false
+  },
+  {
+   "id": "pastilhas-para-mosaico",
+   "titulo": "Pastilhas para mosaico",
+   "description": "Quanto custa a pastilha para mosaico por unidade, como os kits são vendidos por contagem e quantas levar para a sua peça.",
+   "resposta": [
+    "Pastilha para mosaico se compra em kit por contagem — de 675 a 2.000 peças por pacote — e é assim que dá para comparar preço de verdade.",
+    "Na nossa conta de {DATA}, sai de {UNIDADE} na Shopee, sobre {SOBRE} kits que declaram quantas peças vêm dentro."
+   ],
+   "o_que_e": "É o caquinho pronto, cortado em quadradinho, quase sempre de 2x2 cm. Vem solto no saco, misturado ou por cor, e é com ele que a maior parte das peças desta casa é feita. O kit é vendido pelo número de peças, não por peso nem por metro.",
+   "o_que_nao_e": "Não é a placa de pastilha de revestimento, aquela colada em tela para parede de banheiro. Essa é de obra, vem por metro quadrado e o caquinho é maior. E não é o kit mosaico que a busca devolve: esse quase sempre é quadro decorativo de várias placas, pronto para pendurar.",
+   "qual_escolher": [
+    {
+     "uso": "Está começando",
+     "frase": "Pegue o kit de 900 ou 1.000 peças misturado. Dá para duas ou três peças pequenas e você descobre quais cores você usa de verdade antes de comprar cor separada."
+    },
+    {
+     "uso": "Peça pequena, uma só",
+     "frase": "O kit de 675 é o menor da lista, mas olhe o preço por peça: ele é o mais caro por unidade de todos. Em pastilha, pacote pequeno custa mais caro por caquinho."
+    },
+    {
+     "uso": "Vai fazer várias peças",
+     "frase": "O de 2.000 tem o melhor preço por pastilha da nossa leitura. A conta por unidade está na tabela abaixo, kit por kit, para você conferir."
+    }
+   ],
+   "unidade_singular": "por pastilha",
+   "faq": [
+    {
+     "pergunta": "Quanto custa uma pastilha para mosaico?",
+     "resposta": "De {UNIDADE}, na coleta de {DATA}, sobre {SOBRE} kits da Shopee que dizem a quantidade no anúncio. A conta é o preço do kit dividido pelas peças declaradas."
+    },
+    {
+     "pergunta": "Quantas pastilhas a minha peça precisa?",
+     "resposta": "Depende da área e da folga entre elas. A nossa ferramenta pergunta a forma e as medidas e devolve o número já com sobra, pela conta da pastilha pequena."
+    },
+    {
+     "pergunta": "Por que os kits têm números tão diferentes?",
+     "resposta": "Porque cada vendedor monta o pacote como quer: 675, 900, 1.000, 1.250, 2.000. É justamente por isso que o preço do pacote não compara nada e o preço por pastilha compara."
+    }
+   ],
+   "na_home": true
+  },
+  {
+   "id": "pastilha-de-vidro-para-mosaico",
+   "titulo": "Pastilha de vidro para mosaico",
+   "description": "Como a pastilha de vidro para mosaico é vendida, quanto custa hoje e a diferença entre o pacote de peças e a plaquinha em tela.",
+   "resposta": [
+    "Pastilha de vidro para artesanato vem de três jeitos: pacote de 100 peças soltas, plaquinha de 2x2 cm montada em tela e a texturizada metalizada, vendida por lote pequeno.",
+    "A faixa hoje é de {MIN} a {MAX} na Shopee, sobre {N} ofertas lidas em {DATA} — e a diferença entre as pontas é o jeito de vender, não a qualidade do vidro."
+   ],
+   "o_que_e": "É o caquinho de vidro colorido, que deixa a luz passar e muda de cor conforme o dia. É o material que mais aparece em peça de parede e em espelho emoldurado, porque brilha sem precisar de verniz.",
+   "o_que_nao_e": "Não é a pastilha de vidro de piscina e de banheiro. Essa busca, sozinha, devolve revestimento de obra das grandes lojas — vem por metro quadrado, em placa de 30x30, e é feita para aguentar pisada e cloro. A gente só traz aqui o que é vendido para artesanato.",
+   "qual_escolher": [
+    {
+     "uso": "Está começando",
+     "frase": "O pacote de 100 peças é o mais barato da lista e o jeito mais simples de testar vidro antes de comprar quantidade."
+    },
+    {
+     "uso": "Peça pequena, com desenho",
+     "frase": "A plaquinha em tela de 2x2 cm ajuda: você corta a tela no formato que quiser e as pastilhas já vêm alinhadas, com a folga pronta."
+    },
+    {
+     "uso": "Quer brilho de presente",
+     "frase": "A texturizada metalizada é a que dá esse efeito. Vem em lote pequeno e custa mais por peça, então costuma entrar como detalhe, não como fundo inteiro."
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "Quanto custa pastilha de vidro para mosaico?",
+     "resposta": "De {MIN} a {MAX} na Shopee, na leitura de {DATA}, sobre {N} ofertas. A ponta de baixo é o pacote de 100 peças; a de cima é pastilha de pedra e vidro vendida por tipo."
+    },
+    {
+     "pergunta": "Que cola usar em pastilha de vidro?",
+     "resposta": "Em vidro, o que não aparece por trás da pastilha é o adesivo transparente. A nossa ferramenta pergunta a base e o lugar da peça e diz qual cola e qual rejunte servem."
+    },
+    {
+     "pergunta": "Pastilha de vidro serve em peça que fica no sol?",
+     "resposta": "O vidro aguenta sol. Quem decide é a cola e o rejunte, que mudam quando a peça sai de dentro de casa."
+    }
+   ],
+   "na_home": true
+  },
+  {
+   "id": "base-para-mosaico-mdf",
+   "titulo": "Base de MDF para mosaico",
+   "description": "Qual base de MDF serve para mosaico, quanto custa a plaquinha hoje e por que a madeira precisa ser selada antes do caquinho.",
+   "resposta": [
+    "Para peça pequena, a base de MDF que se usa é a plaquinha crua de 5x5 cm, vendida em kit de 100, ou a branca de 7x5 cm.",
+    "Sai de {UNIDADE} na Shopee, na nossa conta de {DATA}, sobre {SOBRE} kits que declaram quantas plaquinhas vêm."
+   ],
+   "o_que_e": "É a madeirinha lisa que serve de chão para o mosaico: ímã de geladeira, porta-copo, lembrancinha, jogo de memória. Em kit de 100 ela sai por centavos a unidade, e é por isso que é a base de quem faz muita peça pequena igual.",
+   "o_que_nao_e": "Não é base para peça que vai tomar chuva. MDF bebe água, incha e solta o caquinho — e essa é a parte que a maioria dos anúncios não conta.",
+   "qual_escolher": [
+    {
+     "uso": "Está começando",
+     "frase": "A crua de 5x5 cm em kit de 100. É a mais barata por plaquinha das que a gente mediu, e errar numa delas não custa quase nada."
+    },
+    {
+     "uso": "Lembrancinha, muitas iguais",
+     "frase": "Também a de kit de 100, e vale comparar as duas ofertas de 5x5: elas trazem a mesma coisa com preço diferente, e a conta por plaquinha está na tabela."
+    },
+    {
+     "uso": "A peça vai para a varanda ou o jardim",
+     "frase": "Então não é MDF. Aqui a gente diz não em vez de vender: para fora de casa a base é cerâmica, cimento ou vidro, e a plaquinha de madeira não vai durar uma estação."
+    }
+   ],
+   "unidade_singular": "por plaquinha",
+   "dado_fino": "a nossa conta por plaquinha sai sobre {SOBRE} das {N} ofertas, e não sobre as três: a terceira não declara quantas plaquinhas vêm no kit, então ela entra na lista com o preço do anúncio e fica fora da conta por unidade. Preço por peça sem a contagem declarada seria número inventado.",
+   "faq": [
+    {
+     "pergunta": "Quanto custa uma plaquinha de MDF para mosaico?",
+     "resposta": "De {UNIDADE}, na coleta de {DATA}, sobre {SOBRE} kits da Shopee que declaram a quantidade. É o preço do kit dividido pelas plaquinhas do anúncio."
+    },
+    {
+     "pergunta": "Precisa selar o MDF antes de colar o caquinho?",
+     "resposta": "Precisa, e é o passo que mais gente pula. A madeira crua bebe a água da cola e do rejunte; a gente tem uma página só sobre selar a base antes de fazer mosaico."
+    },
+    {
+     "pergunta": "Dá para usar madeira de caixote em vez de MDF?",
+     "resposta": "Dá, se estiver lisa e seca. O que importa é a superfície não ser porosa ao ponto de beber a cola, e selar resolve isso nas duas."
+    }
+   ],
+   "na_home": false
+  },
+  {
+   "id": "espelho-para-mosaico",
+   "titulo": "Espelho para mosaico",
+   "description": "Qual espelho para mosaico comprar, quanto custa o rolo autoadesivo e o mini espelho hoje, e onde cada um funciona melhor.",
+   "resposta": [
+    "Para mosaico, o espelho que se compra pronto vem em mini quadradinho de vidro, em rolo autoadesivo de centenas de peças ou em fita de 4 mm para detalhe.",
+    "Hoje a faixa é de {MIN} a {MAX} na Shopee, sobre {N} ofertas que passaram pela nossa regra em {DATA}."
+   ],
+   "o_que_e": "É o caquinho espelhado já cortado, no tamanho de artesanato. O rolo autoadesivo é o que mais aparece: as peças vêm presas numa folha com cola atrás, e você corta o pedaço da folha que precisa. Dá brilho sem precisar cortar espelho em casa.",
+   "o_que_nao_e": "Não é o espelho de mosaico pronto para pendurar, nem o painel decorativo de parede. Essa busca devolve muito disso, e peça acabada é outra conversa — se é peça pronta que você quer, as nossas são feitas uma a uma aqui.",
+   "qual_escolher": [
+    {
+     "uso": "Está começando",
+     "frase": "Rolo autoadesivo. Ele é o mais fácil: não precisa cortar, não precisa de cola por baixo e o alinhamento já vem feito."
+    },
+    {
+     "uso": "Peça pequena, com detalhe fino",
+     "frase": "A fita de 4 por 4 mm é para isso. Ela faz contorno e linha brilhante no meio do caquinho colorido, onde uma peça de 2 cm não cabe."
+    },
+    {
+     "uso": "Vai cobrir área grande",
+     "frase": "Compare o preço pelo número de peças, não pelo pacote: os rolos aqui vão de 1.200 a 1.600 peças com preços parecidos, e a diferença por peça é grande."
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "Quanto custa espelho para mosaico?",
+     "resposta": "De {MIN} a {MAX} na Shopee, na coleta de {DATA}, sobre {N} ofertas. A ponta de cima é um conjunto de 18 azulejos espelhados maiores, de outra finalidade."
+    },
+    {
+     "pergunta": "O adesivo do rolo segura sozinho?",
+     "resposta": "Em peça de enfeite, dentro de casa, costuma segurar. Em peça que vai ser pegada na mão ou que vai para área molhada, a gente cola de novo por baixo — e aí a cola depende da base."
+    },
+    {
+     "pergunta": "Dá para quebrar um espelho velho e usar?",
+     "resposta": "Dá, e sai de graça. Só use luva, risque com cortador de vidro em vez de bater, e lixe a borda antes de colar."
+    }
+   ],
+   "na_home": false
+  },
+  {
+   "id": "rejunte-para-mosaico",
+   "titulo": "Rejunte para mosaico",
+   "description": "Qual rejunte usar entre os caquinhos do mosaico, quanto ele custa hoje e por que a faixa de preço desta busca é bem mais larga do que parece.",
+   "resposta": [
+    "Para preencher entre os caquinhos, o que a gente usa é rejunte de junta fina — e nesta busca aparecem três produtos bem diferentes entre si, de enchimento comum a rejunte metálico de acabamento.",
+    "A faixa vai de {MIN} a {MAX} na Shopee, sobre {N} ofertas lidas em {DATA}, e vale ler o aviso abaixo antes de olhar o preço."
+   ],
+   "o_que_e": "Rejunte é a massa que entra nas frestas depois que a cola secou. Ele é o que faz a peça virar uma superfície só, em vez de caquinho colado lado a lado. Em mosaico a junta é fina, e isso muda o rejunte e muda o quanto dele você gasta.",
+   "o_que_nao_e": "Não é o rejunte de piso de banheiro em saco de 5 kg. Esse serve na emergência, mas é feito para junta larga de obra, e a conta de consumo que vem na embalagem erra feio na pastilha pequena.",
+   "dado_fino": "esta faixa é larga por um motivo que não é o preço do rejunte comum: das {N} ofertas, uma é rejunte metálico dourado de 1 kg, que é produto de acabamento de especialidade, e duas são anúncio de revendedor sem marca de fabricante no título. Então {MAX} não é o teto do rejunte de mosaico: é o preço de um produto de outra categoria que cai nesta busca. Quem quer o comum olha a ponta de baixo da faixa.",
+   "qual_escolher": [
+    {
+     "uso": "Está começando",
+     "frase": "A ponta de baixo da lista resolve: enchimento de junta fina, branco ou cinza. Rejunte é das poucas coisas em mosaico onde o barato faz o trabalho."
+    },
+    {
+     "uso": "Peça pequena, junta de 1 a 4 mm",
+     "frase": "Olhe a faixa de junta que o próprio fabricante publica, e não o preço. A nossa ferramenta cruza a sua junta com o que cada rejunte declara e mostra quais cobrem a sua medida de verdade."
+    },
+    {
+     "uso": "Quer o brilho dourado entre os caquinhos",
+     "frase": "Aí é o metálico, e é ele que puxa o teto da faixa. É escolha de acabamento, não de necessidade — a peça fica de pé sem ele."
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "Quanto custa rejunte para mosaico?",
+     "resposta": "De {MIN} a {MAX} na Shopee, na leitura de {DATA}, sobre {N} ofertas. A ponta de cima é rejunte metálico de especialidade; o comum fica na de baixo."
+    },
+    {
+     "pergunta": "Quanto rejunte a minha peça gasta?",
+     "resposta": "Menos do que a embalagem sugere, porque a conta dela é de azulejo de obra. A nossa ferramenta faz a conta pela pastilha pequena, com a sua junta e a sua área."
+    },
+    {
+     "pergunta": "Pode usar rejunte de banheiro no mosaico?",
+     "resposta": "Pode, se a faixa de junta dele cobrir a sua. O que não dá é confiar na conta de consumo da embalagem, nem usar junta larga de obra em caquinho de 2 cm."
+    }
+   ],
+   "na_home": false
+  }
+ ],
+ "um_nome_por_pagina": "O campo titulo e O nome da pagina: ele sai no H1, na primeira metade do <title>, no cartao de /materiais/ e no degrau da trilha. E a consulta exata, que e o que o despacho pede. A casca acrescenta a cauda da marca no <title>, uma vez, e nenhuma camada escreve um segundo nome para o mesmo endereco — a cicatriz de 11/09/2026 na Aquametria foi o <title> e o H1 dizendo nomes diferentes a uma linha de distancia.",
+ "sem_promessa_no_titulo": "Nenhuma destas oito declara cdm_promessa, e a ausencia e a decisao: a alavanca da 12.1 e para pagina que JA esta na banda de 4 a 10 e nao e clicada. Estas nascem com zero impressao, e prometer um numero antes de existir o problema gasta o teto de 65 caracteres com o que ainda nao se sabe se ajuda. Quando a leitura semanal der posicao a alguma, a promessa entra e sera medida contra uma leitura anterior.",
+ "quem_vai_para_a_home": "na_home e true nas TRES consultas que a medicao de 10/09/2026 (Planejador de palavras-chave, conta do Raphael) poe na faixa de 100 a 1.000 buscas/mes, escrita no PROMPT.md desta ilha: `pastilhas para mosaico`, `pastilhas de vidro para mosaico` e `alicate para mosaico`. As outras cinco estao na faixa de 10 a 100 ou nao foram medidas por nome. O despacho pede na home as de MAIOR INTENCAO, e intencao aqui tem numero medido — escolher por gosto seria inventar a regua depois do dado."
+}

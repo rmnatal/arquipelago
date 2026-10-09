@@ -272,7 +272,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.20.0' );
+	define( 'CDM_CASCA_VERSAO', '1.21.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2038,6 +2038,11 @@ add_shortcode( 'cdm_home', function () {
 	$html .= cdm_casca_cards_ferramentas_html();
 	$html .= '</div>';
 
+	/* 1.21.0 — O MESMO PONTO DE EXTENSÃO DA /materiais/, na home. O despacho do
+	   Raphael de 09/10/2026 (3) pede "a home ganha o bloco de materiais com as
+	   de maior intenção", e quem sabe quais são é a família, não a casca. */
+	$html .= apply_filters( 'cdm_home_secoes', '' );
+
 	/* AS TÉCNICAS NA HOME, 1.11.0 — e a razão não é de vitrine, é da 16.4(f): a
 	   home é o segundo link interno que tira a página de técnica da condição de
 	   órfã. Com um link só, vindo da mãe, o portão desta ilha reprova, e ele está
@@ -2149,6 +2154,19 @@ add_shortcode( 'cdm_materiais', function () {
 	$html .= '<p>Não precisa ler tudo: escolha a sua peça e a resposta sai pronta, com o motivo e com o que não usar.</p>';
 	$html .= cdm_casca_cards_ferramentas_html();
 	$html .= '</div>';
+
+	/* 1.21.0 — UM PONTO DE EXTENSÃO PARA AS FAMÍLIAS QUE SE PUBLICAM SOZINHAS.
+	   Pelo mesmo desenho de `cdm_ferramentas` e `cdm_categorias_do_guia`: quem
+	   publica uma família mora no próprio arquivo e chega pelo próprio item do
+	   manifest. A alternativa seria a casca listar as oito páginas de produto a
+	   mão, e casca editada a cada família nova é casca que sai do ar por defeito
+	   de família — está escrito seis linhas acima, em 1.5.0.
+
+	   E ELE ENTRA AQUI, não no fim: as seções seguintes são os seis cartões "em
+	   breve" que não abrem (16.5) e dois blocos de método. O que termina numa
+	   recomendação de compra vem antes do que não abre, que é a ordem que a
+	   seção 9 do contrato manda — a mesma razão escrita no comentário acima. */
+	$html .= apply_filters( 'cdm_materiais_secoes', '' );
 
 	$html .= '<div class="cdm-secao">';
 	$html .= '<h2>As seis prateleiras</h2>';

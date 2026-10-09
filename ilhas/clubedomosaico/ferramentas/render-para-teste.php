@@ -888,6 +888,19 @@ function cdm_teste_paginas_no_ar($modo = 'hoje') {
 			if (!empty($ficha['slug'])) { $hoje[$ficha['slug']] = true; }
 		}
 	}
+	/* AS OITO PAGINAS DE CONSULTA DE PRODUTO, pelo mesmo desenho das duas
+	   familias acima: quem publica ja declara o endereco no registro do snippet.
+	   Sem esta linha as oito irmas linkam umas para as outras como TEXTO em vez
+	   de link — medido em 09/10/2026, 6 `cdm-sem-link` por pagina —, e a malha
+	   que o despacho pede sairia verde na bancada e orfa no ar. No site de
+	   verdade quem responde e o `get_posts` do `cdm_casca_url_se_existir()`,
+	   contra as paginas que o Sync criou; aqui ele e de mentira, e esta lista e
+	   o que faz as duas metades concordarem. */
+	if (function_exists('cdm_produto_registro')) {
+		foreach (cdm_produto_registro() as $p) {
+			if (!empty($p['slug'])) { $hoje[$p['slug']] = true; }
+		}
+	}
 	if ('todas' !== $modo) { return $hoje; }
 	foreach (cdm_casca_categorias_do_guia() as $c) {
 		if (!empty($c['slug'])) { $hoje[$c['slug']] = true; }

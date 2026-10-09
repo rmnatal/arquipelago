@@ -101,6 +101,26 @@ $paginas = array(
 	'cdm_guia_acabamento', 'cdm_guia_selador', 'cdm_guia_verniz', 'cdm_guia_impermeabilizante',
 );
 
+/* AS PAGINAS DE CONSULTA DE PRODUTO (secao 30, 09/10/2026) entram DERIVADAS do
+   registro do snippet, e nao escritas a mao: a familia cresce por coleta, e
+   lista copiada envelhece calada. Elas entram pelos dois motivos que o
+   comentario do Guia acima ja nomeia, e o segundo foi MEDIDO nesta mesma
+   execucao: sem as oito nesta lista, a contagem de pagina orfa da secao 26
+   acusou QUATRO delas com UM unico link interno — orfas no numero e linkadas no
+   site —, porque a unica fonte de link que a bancada enxergava era a mae. Com as
+   oito aqui, as sete irmas de cada uma passam a contar, que e a malha que o
+   despacho pediu.
+
+   O QUE E SO DELAS (o numero proprio recontado do JSON cru, o piso de tres
+   ofertas, a ordem do bloco de compra, o ItemList) mora em
+   ferramentas/teste-produto.php, separado — aqui valem os trinta e tantos
+   portoes que sao de TODA pagina desta ilha. */
+foreach ( cdm_produto_registro() as $cdm_pid => $cdm_pp ) {
+	$GLOBALS['__paginas'][ $cdm_pp['slug'] ] = true;
+	$paginas[] = 'cdm_produto_' . $cdm_pid;
+}
+unset( $cdm_pid, $cdm_pp );
+
 echo "Clube do Mosaico — verificacao da casca " . CDM_CASCA_VERSAO . "\n\n";
 
 /* ---------------------------------------------------------------------------
@@ -2295,8 +2315,18 @@ foreach ( cdm_casca_definicao_paginas() as $caminho => $def ) {
 	   VAZIO — a trilha dela, o BreadcrumbList dela e o cluster dela passavam a
 	   ser medidos contra o nada, e duas das tres afirmacoes reprovavam sem que a
 	   pagina tivesse defeito nenhum. Regua estreita demais nao e regua frouxa: e
-	   regua que mede outra coisa. */
-	if ( preg_match( '#^\[([a-z0-9_]+)\]$#', (string) $def['conteudo'], $mt ) ) {
+	   regua que mede outra coisa.
+
+	   E O HIFEN FEZ FALTA DEPOIS, pela TERCEIRA vez na mesma regua (09/10/2026):
+	   as oito paginas de consulta de produto tem id com hifen
+	   (`cdm_produto_rejunte-para-mosaico`, que e um nome de shortcode legitimo —
+	   o WordPress so proibe `& / < > [ ] =` e espaco). Sem o hifen aqui, as oito
+	   entravam nesta tabela com caminho VAZIO e 48 afirmacoes reprovavam sem que
+	   as paginas tivessem defeito nenhum: a trilha medida contra o mapa do nada,
+	   o degrau atual sem rotulo, as irmas comparadas com mae "". O mesmo defeito
+	   da nota acima, e a licao dela e justamente esta — regua que mede outra
+	   coisa passa por defeito de pagina. */
+	if ( preg_match( '#^\[([a-z0-9_-]+)\]$#', (string) $def['conteudo'], $mt ) ) {
 		$tag_para_caminho[ $mt[1] ] = $caminho;
 	}
 }
