@@ -4484,3 +4484,57 @@ Assunto conferido antes do `git fetch`: Projeto Arquipélago, fila de foco das i
 - A linha `ilha: clubedomosaico` (linha 3) está intacta, byte a byte, igual ao `origin/main` de partida — o foco NÃO foi trocado. Nenhum cabeçalho de estado, nenhuma reserva de ilha, nenhum `executando_desde`, nenhum bloco de fila de ilha foi tocado.
 
 **Nenhum passo falhou.** Nenhum dado pessoal de terceiro apareceu na instrução (só o primeiro nome do Raphael, que já consta do arquivo), então nada foi omitido.
+
+---
+
+## 09/10/2026 — 11h50 (Brasília) / 14h50Z — RONDA DIÁRIA TÉCNICA DA SENTINELA DE 09/10: TRÊS ARQUIVOS GRAVADOS, UM NÃO CASOU
+
+**Checagem de assunto:** do Arquipélago (ilhas clubedomosaico/aquametria/robometria/jornadafly/ohmetria, Sentinela, painel, `ARQUIPELAGO.md`). Executado.
+
+**A instrução eram QUATRO arquivos. Três foram gravados; o arquivo 3 NÃO foi tocado porque a âncora de busca não casou exatamente**, e a própria instrução manda não adivinhar nesse caso.
+
+**O que não casou — `ilhas/clubedomosaico/PROMPT.md`:** a instrução mandava inserir imediatamente antes da linha *exatamente* igual a
+
+```
+## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO
+```
+
+A linha que existe no `main` (linha 114) é
+
+```
+## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO — **REESCRITO PELA 18.3 EM 09/10/2026 às 15h4xZ**
+```
+
+`grep -nxF` da âncora pedida devolveu zero linhas. O `PROMPT.md` ficou **intacto**, e o despacho da Sentinela de 09/10 (ronda diária técnica) **NÃO foi inserido**. Precisa de nova instrução com a âncora real.
+
+```
+$ git status --porcelain
+ M dados/PAINEL.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/dados/consertos.md
+```
+
+```
+$ git diff --stat
+ dados/PAINEL.md                         | 81 ++++++++++++++++-----------------
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/dados/consertos.md | 48 +++++++++++++++++++
+ 3 files changed, 89 insertions(+), 42 deletions(-)
+```
+
+**Commit que foi ao `main`:**
+
+```
+25562f6aa58ca4324c49a5e1b9af7026790b8725 Sentinela 09/10: ronda tecnica nas tres ilhas no ar, zero defeito, painel e ultima_ronda
+```
+
+Push direto `git push origin HEAD:main`, aceito de primeira, sem rebase e sem force. Conferido: `git fetch origin main && git log -1 origin/main` mostra **25562f6**.
+
+**Contagem, conferida relendo os arquivos DEPOIS de gravar:**
+
+- `ilhas/clubedomosaico/ESTADO.md`: 1 linha trocada, 0 acrescentadas, 0 removidas. A linha 13 agora é `ultima_ronda: 2026-10-09T14:55Z   # RONDA DIÁRIA TÉCNICA da Sentinela (...)`. Nada mais do arquivo foi tocado — nenhum `executando_desde`, nenhuma reserva de ilha.
+- Conferência de YAML pedida na instrução: **`YAML ok`** (os oito campos `ilha`, `estado`, `prioridade`, `ultima_execucao`, `executando_desde`, `bloco_atual`, `ultima_ronda`, `bloqueada_por` estão todos presentes).
+- `ilhas/clubedomosaico/dados/consertos.md`: **+48 linhas**, 0 removidas. O arquivo passou a ter **249 linhas** e **34.188 caracteres**, com **8** seções de nível `##`. A seção nova é a última do arquivo (append-only respeitado: nenhuma seção anterior foi apagada, reescrita ou resumida).
+- `dados/PAINEL.md`: reescrito inteiro, como a instrução mandou. Passou a ter **71 linhas** e **13.084 caracteres** (o diff conta 81 inserções contra 42 remoções porque é reescrita integral).
+
+**Nenhum passo falhou** nos três arquivos gravados. Nenhum arquivo além desses três e deste log foi tocado. Nenhum dado pessoal de terceiro apareceu na instrução — só o primeiro nome do Raphael, que já consta dos arquivos, e a menção de que faltam "nome, foto e perfis da artesã", sem nenhum contato.
