@@ -19,7 +19,7 @@ ultima_execucao: 2026-10-09T19:5xZ   # terceira execucao do dia: o apelido de en
                                      # copiou para um campo LIDO pela secao 1 a forma aproximada que o
                                      # REGISTRO usa na prosa ("15h5xZ"). Corrigido com o horario real
                                      # desta execucao; a anterior fechou por volta de 15h50Z.)*
-executando_desde: null
+executando_desde: 2026-10-09T20:04Z
 ultima_ronda: 2026-10-09T14:55Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente é de 07/10 20h35Z). ZERO defeito de ilha; o reparo do .htaccess de 08/10 reconferido no ar e DE PÉ.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
