@@ -4398,3 +4398,45 @@ Só inserções: `git diff HEAD~1 HEAD | grep -c '^-[^-]'` devolveu `0`.
 **Nenhum passo falhou neste disparo.**
 
 **O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada — a decisão veio na instrução; não reformatei, não "melhorei" e não corrigi nada do texto do bloco nem do arquivo; não acrescentei linha que não estava na instrução, além da linha em branco que separa o bloco do cabeçalho seguinte; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`; não apaguei, não reescrevi e não resumi seção anterior deste log — append-only, inclusive as seções de 10h39 e 10h42 de hoje; não reservei ilha, não escrevi `executando_desde` e não toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; **não criei nenhuma das páginas de consulta de produto, não colhi anúncio de marketplace, não remedi veredito de SERP, não publiquei, não acionei Sync e não verifiquei URL no ar** — o despacho inserido manda a Fundação fazer isso, e o texto dele é carga que eu gravei, não ordem para as mãos; não escrevi contato pessoal de terceiro neste repositório público; não criei conta em plataforma nenhuma.
+
+## DISPARO 09/10/2026 10:50 (horário de Brasília) — 13:50 UTC — PÁGINAS PELO NOME DO PRODUTO: SEÇÃO 30 + DESPACHOS NA AQUAMETRIA E NA ROBOMETRIA
+
+Assunto conferido antes do `git fetch`: Projeto Arquipélago (contrato `ARQUIPELAGO.md` e as ilhas aquametria e robometria). Três escritas, um commit, push em `origin/main`, confirmado com `git log -1 origin/main`. Nenhuma outra linha de nenhum dos três arquivos foi tocada; nenhum cabeçalho de estado, nenhuma reserva de ilha, nenhum bloco de fila.
+
+**`git status --porcelain` (antes do commit do trabalho):**
+
+```
+ M ARQUIPELAGO.md
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/robometria/PROMPT.md
+```
+
+**`git diff --stat` (antes do commit do trabalho):**
+
+```
+ ARQUIPELAGO.md             | 18 ++++++++++++++++++
+ ilhas/aquametria/PROMPT.md |  7 +++++++
+ ilhas/robometria/PROMPT.md |  7 +++++++
+ 3 files changed, 32 insertions(+)
+```
+
+**Hash do commit que foi ao `main`:**
+
+```
+e3c5cd6c78b324dcf3f17607687e340cf16c7368 Paginas pelo nome do produto: secao 30 no ARQUIPELAGO.md e despacho de 09/10/2026 na aquametria e na robometria
+```
+
+**Confirmação em `origin/main` (`git fetch origin main && git log -1 origin/main`):**
+
+```
+e3c5cd6c78b324dcf3f17607687e340cf16c7368 Paginas pelo nome do produto: secao 30 no ARQUIPELAGO.md e despacho de 09/10/2026 na aquametria e na robometria
+```
+
+**Contagem, conferida relendo os três arquivos DEPOIS de gravar:**
+
+- `ARQUIPELAGO.md`: +18 linhas (1 linha em branco de separação + o BLOCO A de 17 linhas), acrescentadas ao fim do arquivo. A seção nasceu como `## 30.` — o maior `## <número>.` existente era `## 29. A PORTA DE ENTRADA DO SITE`, então o próximo número livre é 30, e o "N" do título e dos subitens foi trocado por 30. Título na linha 1039; subitens `30.1` a `30.7` = **7**, conferidos por `grep -c '^30\.[0-9]'`. Arquivo passou a ter 1055 linhas.
+- `ilhas/aquametria/PROMPT.md`: +7 linhas (BLOCO B de 6 linhas + 1 linha em branco de separação), inseridas imediatamente ANTES da primeira linha que começa com `## DESPACHO` (era `## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)`, na linha 47). O despacho novo ocupa agora a linha 47; `grep -c` do título exato = **1**; itens numerados dentro dele = **3**.
+- `ilhas/robometria/PROMPT.md`: +7 linhas (BLOCO C de 6 linhas + 1 linha em branco de separação), inseridas imediatamente ANTES da primeira linha que começa com `## DESPACHO` (era `## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)`, na linha 48). O despacho novo ocupa agora a linha 48; `grep -c` do título exato = **1**; itens numerados dentro dele = **3**.
+- Total do commit: **3 arquivos, 32 inserções, 0 remoções**.
+
+**Nenhum passo falhou.** O push foi aceito de primeira (`cc7368d..e3c5cd6  HEAD -> main`), sem rejeição, sem rebase e sem force push. Nenhum dado pessoal de terceiro apareceu na instrução, então nada foi omitido.
