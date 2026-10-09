@@ -331,6 +331,8 @@ def main():
     p.add_argument('--so', default=None, help='so esta consulta, pelo id')
     p.add_argument('--sem-link', action='store_true',
                    help='nao gera link de afiliado (poupa chamada e nao cria link)')
+    p.add_argument('--descartar-links', action='store_true',
+                   help='permite que --sem-link apague links de afiliado JA gravados')
     a = p.parse_args()
 
     if a.conferir:
@@ -375,6 +377,24 @@ def main():
     if os.path.exists(BANCO) and a.so:
         with open(BANCO, encoding='utf-8') as f:
             anterior = {b['id']: b for b in json.load(f)['consultas']}
+
+        # FALHA FECHADA CONTRA O PROPRIO PE, e ela nasceu de eu ter pisado nele:
+        # em 09/10/2026, `--gravar --so torques-para-mosaico --sem-link` SUBSTITUIU
+        # o bloco daquela consulta por uma coleta nova sem link, e os 19 links de
+        # afiliado que a passada anterior havia gerado sumiram do banco em silencio.
+        # Foi uma contagem que pegou, nao um portao. Agora e portao: recoleta de
+        # consulta que JA TEM link exige dizer, com todas as letras, que os links
+        # vao ser descartados.
+        for bloco in (anterior.get(d['id']) for d in alvos):
+            if not bloco:
+                continue
+            com_link = sum(1 for l in bloco['anuncios'] if l.get('url_afiliado'))
+            if com_link and a.sem_link and not a.descartar_links:
+                raise SystemExit(
+                    'RECUSADO: %s ja tem %d anuncio(s) com link de afiliado gravado, e '
+                    '--sem-link apagaria todos. Rode sem --sem-link para regerar os links, '
+                    'ou com --descartar-links para apagar de proposito.'
+                    % (bloco['id'], com_link))
     for b in blocos:
         anterior[b['id']] = b
     ordem = [d['id'] for d in doc['consultas']]
@@ -390,6 +410,17 @@ def main():
             'ilha, com o veredito da regra de relevancia ao lado de cada um. '
             'ARQUIVO GERADO — nao edite a mao. `--conferir` reaplica a regra sobre '
             'os titulos gravados e reprova se algum veredito ou numero discordar.'),
+        'abre_o_portao_NAO_e_o_mesmo_que_publica': (
+            'LEIA ANTES DE CONTAR: `resumo.abre_o_portao_da_30_2` e SO o portao de DADO '
+            '(3 ou mais anuncios que servem). Ele diz TRUE em ONZE consultas e apenas '
+            'OITO publicam. As tres diferencas sao `pinca-para-mosaico`, que tem dado de '
+            'sobra e sai por CANIBALIZACAO da 30.4 (devolve o mesmo alicate de duas '
+            'consultas irmas), e `azulejo-para-mosaico` e `colar-de-mosaico`, que tem '
+            'dado e sao intencao de LOJA — o que serve nelas e PECA PRONTA de mosaico, '
+            'que e o que a artesa vende. Uma pagina publica quando `abre_o_portao_da_30_2` '
+            'E `publicar_declarado` sao os DOIS verdadeiros; o motivo de cada `false` esta '
+            'em `nao_publica_porque`, na declaracao. Contar so o portao e publicar tres '
+            'paginas que a propria ilha decidiu nao ter.'),
         'o_que_decide_o_veredito': (
             'ferramentas/relevancia-do-anuncio.py, sobre a declaracao daquela '
             'consulta em dados/consultas-de-produto.json. Nenhum anuncio desta '

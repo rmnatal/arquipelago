@@ -394,7 +394,7 @@
       "publicar": false,
       "verificado_em": "2026-10-09",
       "descricao": "O dado COMERCIAL que a secao 30.2 pede: os anuncios de cada consulta de produto com o veredito da regra ao lado de cada um, o preco, a loja, a foto, a quantidade declarada no titulo (ou o motivo de ela faltar) e o link de afiliado com sub-id, gerado SO para o que serve e SO em consulta que publica. Dado de UMA fonte: o Mercado Livre respondeu 403 nas tres passadas de 09/10, pelo anti-robo dele e nao pela rede da secao 20, e o arquivo diz isso para nenhuma pagina escrever `o mercado` querendo dizer `a Shopee`.",
-      "sha256": "482c9f3835828b625195c8380b8ac1afa79995d2f96e54c75e2aa5a813e7abec"
+      "sha256": "f5e15d2f2560e257ce6d985918f199afd7cc1d52e70b7c5f84773abd389dfb54"
     }
   ],
   "ferramentas": [
@@ -841,7 +841,7 @@
       "id": "coletar-por-consulta",
       "arquivo": "ferramentas/coletar-por-consulta.py",
       "descricao": "Colhe o dado comercial das consultas de produto da secao 30, consulta por consulta, aplica a regra de relevancia e calcula o numero proprio de cada pagina (faixa de preco, preco por pastilha, preco por plaquinha) — sempre da quantidade DECLARADA no titulo, nunca estimada. `--ensaio` nao grava, `--conferir` refaz veredito e contas sobre o banco gravado sem rede. Gera link de afiliado so para o que serve e so em consulta que publica.",
-      "sha256": "ec8bab09076d3156c67517528384227b0cc6e2b355aafb2401ed7d8946794ae6"
+      "sha256": "b467fa14e2a0bedc2b4865602f69f28d4549ce1ffcd62a2baa672585fc95778e"
     },
     {
       "id": "teste-relevancia",
