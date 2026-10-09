@@ -1,0 +1,515 @@
+{
+  "id": "consultas-de-produto",
+  "ilha": "clubedomosaico",
+  "gerado_em": "2026-10-09",
+  "o_que_este_arquivo_e": "A DECLARACAO das consultas de produto da secao 30 do ARQUIPELAGO.md: a lista do item 2 do despacho do Raphael de 09/10/2026, uma linha por consulta, com a regra que decide quais anuncios servem aquela consulta. O que e EDITORIAL mora aqui (a consulta, o slug, o destino, os termos da regra e o motivo de cada um). O que e COLHIDO mora em `dados/anuncios-por-consulta.json`, que e GERADO por `ferramentas/coletar-por-consulta.py` e nunca editado a mao.",
+  "por_que_ele_existe_separado": "A regra de relevancia e `ferramentas/relevancia-do-anuncio.py`, e ela nao conhece consulta nenhuma: recebe um titulo e uma declaracao e decide. A declaracao mora aqui porque e a parte que uma pessoa escreve e revisa; a regra mora na ferramenta porque e a parte que `ferramentas/mutacoes-relevancia.py` ataca. Lista de termos dentro do codigo da ferramenta seria regra e dado no mesmo arquivo, e a bancada passaria a medir a si mesma.",
+  "o_que_este_arquivo_NAO_decide": [
+    "se a pagina nasce — isso e o cruzamento dos dois portoes (dado da secao 9 e SERP da 14.9), em `ferramentas/cruzamento-14-9.py`",
+    "a classificacao de SERP — ela e de `dados/serp-das-filhas.json`, medida por busca e nunca deduzida do anuncio",
+    "o preco de nada — preco e do anuncio, colhido com data, e a faixa que a pagina publica se CALCULA dele"
+  ],
+  "como_a_regra_se_le": "`exige` e uma lista de GRUPOS: OU dentro do grupo, E entre os grupos. `[[\"torques\",\"alicate\"],[\"mosaico\"]]` quer dizer (torques OU alicate) E mosaico. `recusa` e uma lista de termos, e UM deles no titulo derruba o anuncio por mais exigencia que ele atenda — a assimetria da secao 10 do contrato, escrita no cabecalho da ferramenta: anuncio que nao e o produto estraga a pagina de quem chegou pela consulta, anuncio bom deixado de fora custa um anuncio.",
+  "o_que_a_primeira_coleta_mediu_e_e_a_metade_que_mais_vale": "Em 09/10/2026, com a API da Shopee (credencial no ambiente desta rotina), as 16 consultas do despacho foram colhidas uma a uma, 20 ofertas por consulta. CINCO delas nao devolveram material de artesanato NENHUM, e as cinco falham pela MESMA causa: no vocabulario da Shopee a palavra `mosaico` pertence ao QUADRO DECORATIVO de varias placas e ao PAPEL DE PAREDE que imita azulejo, nao ao caquinho. `azulejo para mosaico` devolveu 20 de 20 em papel de parede adesivo; `tela para mosaico` e `mandala de mosaico`, 20 de 20 em quadro decorativo; `kit mosaico`, 20 de 20 em kit de quadro; `material para mosaico`, quadro decorativo mais FORMA 3D de gesso. Duas das cinco — `azulejo` e `quadro mosaico` — ja estavam escritas como armadilha no PROMPT.md desta ilha desde 10/09/2026, medidas no Google; esta coleta mostra que a armadilha e a MESMA dentro da Shopee, e as outras tres sao novas. Armadilha medida nao vira pagina: vira termo negativo, e e por isso que elas estao aqui com `publicar: false` e a causa escrita, em vez de fora do arquivo.",
+  "consultas": [
+    {
+      "id": "torques-para-mosaico",
+      "consulta": "torquês para mosaico",
+      "slug": "materiais/torques-para-mosaico",
+      "destino": "guia",
+      "publicar": true,
+      "exige": [
+        [
+          "torques",
+          "torque",
+          "torquesa"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "carboneto",
+        "metal duro para alicate",
+        "substituir",
+        "reposicao",
+        "quadro",
+        "papel de parede",
+        "adesivo"
+      ],
+      "motivo_da_recusa": "A enxurrada desta familia e a RODA DE REPOSICAO vendida como se fosse a ferramenta: `Carboneto de Para Alicate de Telha 22 * 6 * 2mm Mosaico Substituir Corte` apareceu 14 vezes em 20 na consulta irma (`alicate para mosaico`), cada vez de um vendedor diferente e sempre com `carboneto` e `substituir` no titulo. Quem procura torques quer a ferramenta inteira; roldana solta e outra compra, e serve-la aqui seria entregar peca de reposicao a quem nao tem a ferramenta. `reposicao` entra pelo mesmo motivo, por `Roldanas para reposicao no torques para mosaico, VONDER`, que e anuncio honesto da peca errada para esta pagina.",
+      "numero_proprio": "faixa_de_preco",
+      "o_que_a_coleta_mediu": "20 de 20 ofertas sao torques de mosaico de verdade, e as marcas sao as TRES que o banco de fabricante desta ilha ja guarda: Vonder (VDEC), Cortag (61341, 60857) e Berg. E a consulta mais limpa das dezesseis."
+    },
+    {
+      "id": "alicate-para-mosaico",
+      "consulta": "alicate para mosaico",
+      "slug": "materiais/alicate-para-mosaico",
+      "destino": "guia",
+      "publicar": true,
+      "exige": [
+        [
+          "alicate",
+          "torques",
+          "cortador",
+          "pinca",
+          "nipper"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "carboneto",
+        "substituir",
+        "reposicao",
+        "quadro",
+        "papel de parede",
+        "diamond art",
+        "5d"
+      ],
+      "motivo_da_recusa": "Mesma enxurrada de roldana de reposicao da consulta acima, e aqui ela foi MEDIDA: 14 das 20 ofertas eram o mesmo `Carboneto ... 22 * 6 * 2mm Mosaico Substituir`, de 14 vendedores diferentes, com preco entre R$ 12,53 e R$ 14,46. `diamond art` e `5d` saem porque a consulta irma `pinca para mosaico` devolveu kit de pintura com diamante, que usa pinca e nao e ferramenta de corte.",
+      "numero_proprio": "faixa_de_preco",
+      "o_que_a_coleta_mediu": "6 de 20 servem depois da regra: alicate cortador de mosaico, kit de corte e quebra de vidro para vitral, torques com roldanas e ferramenta de corte com pinca. As outras 14 sao a roda de reposicao."
+    },
+    {
+      "id": "cortador-de-vidro-para-mosaico",
+      "consulta": "cortador de vidro para mosaico",
+      "slug": "materiais/cortador-de-vidro-para-mosaico",
+      "destino": "guia",
+      "publicar": true,
+      "exige": [
+        [
+          "cortador",
+          "alicate",
+          "pinca",
+          "nipper"
+        ],
+        [
+          "vidro",
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "carboneto",
+        "substituir",
+        "reposicao",
+        "quadro",
+        "papel de parede"
+      ],
+      "motivo_da_recusa": "A mesma roda de reposicao, e nada mais: esta consulta e curta (9 ofertas) e quase toda ela e ferramenta de verdade.",
+      "numero_proprio": "faixa_de_preco",
+      "o_que_a_coleta_mediu": "9 ofertas, a maioria cortador ou alicate separador de vidro e azulejo. E a consulta mais curta das que servem — e 3 e o minimo da 30.2, nao uma folga."
+    },
+    {
+      "id": "pastilhas-para-mosaico",
+      "consulta": "pastilhas para mosaico",
+      "slug": "materiais/pastilhas-para-mosaico",
+      "destino": "guia",
+      "publicar": true,
+      "exige": [
+        [
+          "pastilha",
+          "tessela",
+          "caquinho"
+        ],
+        [
+          "mosaico",
+          "artesanato"
+        ]
+      ],
+      "recusa": [
+        "adesiva",
+        "adesivo",
+        "autoadesivo",
+        "auto adesivo",
+        "papel de parede",
+        "placa para numero",
+        "numero de casa",
+        "numero para casa",
+        "numero residencial",
+        "quadro",
+        "lavabo",
+        "piscina",
+        "porcelanato",
+        "rodape",
+        "stickers",
+        "espelhada",
+        "torques",
+        "alicate"
+      ],
+      "motivo_da_recusa": "Tres familias, todas medidas nesta coleta. (1) A PLACA DE NUMERO DE CASA da loja `Crie Casa`, 7 ofertas em 20, que USA mosaico de pastilha e nao E pastilha — quem procura material e recebe peca pronta. (2) O ADESIVO que imita pastilha, 6 ofertas, que a 30.2 nao salva: ele tem preco, foto e medida declarada e nao e o produto. (3) O REVESTIMENTO DE OBRA em placa 30x30 para lavabo e piscina, que e a armadilha que o PROMPT.md desta ilha nomeia desde 10/09/2026 (`pastilha de vidro` sozinho e tudo com piso/piscina/cozinha/banheiro). `espelhada` sai porque a unica oferta com essa palavra era placa adesiva de espelho, e espelho de verdade para mosaico tem consulta propria.",
+      "numero_proprio": "preco_por_pastilha",
+      "o_que_a_coleta_mediu": "5 de 20 servem, e os cinco sao da mesma familia util: kit vendido POR CONTAGEM (`Kit com 900 Pastilhas para Mosaico, Artesanato`, 675, 1000, 2000 e 3388 pecas, de R$ 32,22 a R$ 181,90). E a unica consulta das dezesseis em que o anuncio declara a QUANTIDADE, e por isso e a unica em que o numero proprio pode ser o preco por pastilha em vez da faixa."
+    },
+    {
+      "id": "pastilha-de-vidro-para-mosaico",
+      "consulta": "pastilha de vidro para mosaico",
+      "slug": "materiais/pastilha-de-vidro-para-mosaico",
+      "destino": "guia",
+      "publicar": true,
+      "exige": [
+        [
+          "pastilha",
+          "tessela"
+        ],
+        [
+          "vidro"
+        ],
+        [
+          "mosaico",
+          "artesanato"
+        ]
+      ],
+      "recusa": [
+        "adesiva",
+        "adesivo",
+        "autoadesivo",
+        "auto adesivo",
+        "papel de parede",
+        "placa para numero",
+        "numero de casa",
+        "numero para casa",
+        "numero residencial",
+        "quadro",
+        "lavabo",
+        "piscina",
+        "porcelanato",
+        "stickers",
+        "espelhada",
+        "torques",
+        "alicate"
+      ],
+      "motivo_da_recusa": "A mesma lista da consulta mae, e por um motivo que nao e preguica: as duas consultas devolveram em grande parte as MESMAS ofertas, porque `pastilha de vidro` e um recorte de `pastilhas` e a busca da Shopee nao separa as duas intencoes. Onde a lista precisa divergir e no `exige`, que aqui cobra a palavra `vidro`.",
+      "numero_proprio": "faixa_de_preco",
+      "o_que_a_coleta_mediu": "14 ofertas, e as que servem sao pastilha de vidro de artesanato de verdade, vendida por pacote de 100 pecas (R$ 15), por plaquinha de 2x2 cm (R$ 37,90 a R$ 39,90, 245 pecas) e texturizada para artesanato (R$ 35)."
+    },
+    {
+      "id": "base-para-mosaico-mdf",
+      "consulta": "base de MDF para mosaico",
+      "slug": "materiais/base-de-mdf-para-mosaico",
+      "destino": "guia",
+      "publicar": true,
+      "exige": [
+        [
+          "mdf"
+        ],
+        [
+          "base",
+          "plaquinha",
+          "placa"
+        ],
+        [
+          "mosaico",
+          "artesanato"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "papel de parede",
+        "adesivo",
+        "full hd",
+        "decorativo"
+      ],
+      "motivo_da_recusa": "`quadro`, `decorativo` e `full hd` saem juntos e pela mesma causa: o `quadro mosaico` de varias placas e impresso EM MDF, entao ele atende `mdf` e `mosaico` e nao e base para nada — e a familia que ocupou 20 de 20 em `tela para mosaico` e em `mandala de mosaico`. Sem estes tres termos esta consulta devolveria quadro pronto a quem procura a chapa crua.",
+      "numero_proprio": "preco_por_plaquinha",
+      "o_que_a_coleta_mediu": "3 ofertas, e as tres servem: plaquinha de MDF cru 5x5 cm em kit de 100 (R$ 22,80 e R$ 26) e plaquinha branca 7x5 cm (R$ 17,90). TRES e exatamente o minimo da 30.2 — esta pagina nasce no limite, e a proxima coleta que perder uma oferta a derruba. Esta escrito aqui para a execucao seguinte nao descobrir no ar."
+    },
+    {
+      "id": "espelho-para-mosaico",
+      "consulta": "espelho para mosaico",
+      "slug": "materiais/espelho-para-mosaico",
+      "destino": "guia",
+      "publicar": true,
+      "exige": [
+        [
+          "espelho",
+          "espelhos"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "papel de parede",
+        "discoteca",
+        "estatua",
+        "cacto",
+        "full hd",
+        "painel",
+        "autocolante",
+        "sala",
+        "quarto",
+        "parede",
+        "banheiro",
+        "box",
+        "estante"
+      ],
+      "motivo_da_recusa": "Tres familias medidas, e a terceira so apareceu no ENSAIO da regra, nao na primeira leitura da lista. (1) O ESPELHO DECORATIVO PRONTO em kit (`Kit 5 Espelhos Decorativos Retangular Mosaico Cristal Para Sala Quarto`), que e peca acabada de parede e nao caquinho de espelho — a mesma confusao da placa de numero de casa, uma categoria acima. (2) A ESTATUA de cacto bola de discoteca, que e enfeite coberto de espelho. (3) O PAINEL AUTOCOLANTE 3D (`Espelho Decorativo 3D Vidro Autocolante Kit Painel Mosaico para Sala Quarto`, R$ 159,90), que e revestimento de parede vendido pronto. Os termos de LUGAR — `sala`, `quarto`, `parede`, `banheiro`, `box` — sao o que separa as duas intencoes nesta consulta, e a separacao e real: espelho que a artesa COLA e anunciado por quantidade de pecas e por medida do caquinho (`100 Pcs 2x2cm`, `Rolo De Espelhos Artesanato Fitas 4mm`), e espelho que o comprador PENDURA e anunciado pelo ambiente onde ele vai. Aqui o ADESIVO passa de proposito, ao contrario da pagina de pastilhas: no espelho o adesivo e o proprio produto que a artesa cola, nao uma imitacao do material.",
+      "numero_proprio": "faixa_de_preco",
+      "o_que_a_coleta_mediu": "20 ofertas. Depois do ensaio da regra sobram as que sao material de verdade: mini espelho de vidro 2x2 cm em lote de 100 (R$ 22,15), rolo de fitas de espelho para artesanato 4x4 mm (R$ 25,99) e os rolos autoadesivos de 1.200 e 1.600 pecas (R$ 24,69 a R$ 45,53). Esta consulta foi a que mais mudou entre a leitura crua e a regra, e por isso ela e o caso que a bancada de mutacao guarda."
+    },
+    {
+      "id": "rejunte-para-mosaico",
+      "consulta": "rejunte para mosaico",
+      "slug": "materiais/rejunte-para-mosaico",
+      "destino": "guia",
+      "publicar": true,
+      "exige": [
+        [
+          "rejunte",
+          "grout",
+          "rejuntamento"
+        ],
+        [
+          "mosaico",
+          "artesanato"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "papel de parede",
+        "piso",
+        "porcelanato"
+      ],
+      "motivo_da_recusa": "Lista curta porque a consulta e curta. `piso` e `porcelanato` saem pelo mesmo motivo de sempre nesta ilha: rejunte de obra tem conta por metro quadrado e a peca de artesanato tem conta por grama.",
+      "numero_proprio": "faixa_de_preco",
+      "o_que_a_coleta_mediu": "3 ofertas lidas e 3 que SERVEM — e esta linha corrige o que a primeira versao deste arquivo dizia, escrita antes do ensaio da regra: ela afirmava que so 2 passavam e que por isso a consulta nao abria o portao da 30.2. Passam tres: `Rejunte p/ Mosaico Ouro Metalico 1 Kg Altezza` (R$ 313,09), `Grout De Mosaico Para Artesanato` (R$ 69,20) e `Enchimento De Rejunte Cozinha Ceramica Mosaico` (R$ 53,50). O portao da 30.2 pede 3 e tem 3, entao a consulta e elegivel — mas o dado e FINO e a pagina nasce no limite, como a da base de MDF: duas das tres ofertas sao anuncio de revendedor sem marca de fabricante, e a faixa de preco que elas sustentam (R$ 53,50 a R$ 313,09) e larga porque uma delas e rejunte metalico de especialidade. A pagina tem de dizer isso com estas palavras em vez de servir a faixa como se fosse a do rejunte comum. O numero FORTE desta consulta nao esta na Shopee e sim no banco de fabricante desta ilha: 5 rejuntes com faixa de junta declarada, que e o que `/materiais/quantas-pastilhas-para-mosaico/` ja publica."
+    },
+    {
+      "id": "pinca-para-mosaico",
+      "consulta": "pinça para mosaico",
+      "slug": "materiais/pinca-para-mosaico",
+      "destino": "guia",
+      "publicar": false,
+      "nao_publica_porque": "CANIBALIZACAO, pela 30.4, e ela foi medida e nao suposta: das ofertas que passam a regra nesta consulta, a maioria e o MESMO produto que passa em `alicate para mosaico` e em `cortador de vidro para mosaico` — `Pincas De Corte De Vidro, Alicate De Telha De Rolo Duplo Profissional Mosaico` atende as tres. Tres URLs para o mesmo alicate seriam a ilha competindo consigo mesma em tres enderecos, que e exatamente o que a 30.4 proibe. A decisao: `pinca` entra como ANCORA e como secao dentro de `/materiais/alicate-para-mosaico/`, nao como URL propria. Se a Search Console mostrar impressao propria para `pinca para mosaico` sem a pagina do alicate pegar, a decisao se revisa com numero.",
+      "exige": [
+        [
+          "pinca",
+          "pincas",
+          "nipper"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "papel de parede",
+        "diamond art",
+        "5d",
+        "sobrancelha",
+        "full hd",
+        "suprimento",
+        "costura",
+        "fuxico"
+      ],
+      "motivo_da_recusa": "`diamond art` e `5d` saem porque a consulta devolveu kit de pintura com diamante, que vem com pinca e nao corta nada; `sobrancelha` e `full hd` saem porque um quadro decorativo de designer de sobrancelhas apareceu com a palavra mosaico no titulo. `suprimento` saiu no ENSAIO, por `Kit De Arte Em Mosaico De Vidro Do Mar Ocean Sea Animal DIY Craft Suprimentos Completos`, que e kit de artesanato pronto e nao ferramenta; e `costura` e `fuxico` por `Jogo 04 Pincas Costura Mosaico Fuxico Artesanato Uso Geral`, que e pinca de costureira. Esta consulta NAO publica, e a regra foi afinada do mesmo jeito: banco sujo em consulta que nao nasce hoje e banco sujo no dia em que ela nascer.",
+      "numero_proprio": "faixa_de_preco",
+      "o_que_a_coleta_mediu": "20 ofertas, com ferramenta de corte de verdade em boa parte delas — o problema desta consulta nao e dado, e endereco."
+    },
+    {
+      "id": "kit-mosaico",
+      "consulta": "kit mosaico",
+      "slug": null,
+      "destino": "nenhum",
+      "publicar": false,
+      "nao_publica_porque": "ARMADILHA MEDIDA: 20 de 20 ofertas sao KIT DE QUADRO DECORATIVO de varias placas (`Kit 3 Quadros Decorativos Mosaico Jesus e Maria`, `Kit 3 Quadros Santorini Rose`, `Quadro Mosaico Londres e Dubai`), de R$ 17,99 a R$ 229,52. ZERO kit de material de artesanato. E a armadilha `quadro mosaico` que o PROMPT.md desta ilha nomeia desde 10/09/2026 — *`quadro mosaico` e quadro impresso em 5 paineis, outra intencao* —, agora medida DENTRO da Shopee e na consulta que a lista do despacho trazia como item. Pagina aqui levaria quem procura quadro pronto para uma pagina de material, e a ilha pagaria com rejeicao.",
+      "exige": [
+        [
+          "kit"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "quadros",
+        "decorativo",
+        "full hd",
+        "papel de parede"
+      ],
+      "motivo_da_recusa": "A regra existe mesmo na consulta que nao publica, e e de proposito: e ela que PROVA a armadilha. Com `quadro` e `decorativo` na recusa, esta consulta sai da coleta com ZERO oferta que serve — e zero medido e a causa escrita, nao um palpite sobre o mercado.",
+      "numero_proprio": null,
+      "o_que_a_coleta_mediu": "20 ofertas, 0 servem. Entra como TERMO NEGATIVO da ilha."
+    },
+    {
+      "id": "material-para-mosaico",
+      "consulta": "material para mosaico",
+      "slug": null,
+      "destino": "nenhum",
+      "publicar": false,
+      "nao_publica_porque": "ARMADILHA MEDIDA, e com uma familia nova que nenhum documento desta ilha tinha visto: das 20 ofertas, a maior parte e FORMA 3D DE GESSO — `Forma Para Gesso 3d Mosaico de Pedra Sao Tome 28x28cm`, `Forma 3d Molde Mosaico Liso 40x40cm`, `Kit 9 Molde Formas 3d Mosaico Liso` —, que e molde de ABS para fundir placa de gesso ou cimento com DESENHO de mosaico. Nao e material de mosaico: e o molde de um revestimento que imita mosaico. O resto e quadro decorativo. ZERO material de artesanato. A consulta tem faixa 100-1.000 no Planejador e mede ABERTA no Google (`dados/corpus-buscas.md`, secao 1A) — entao a intencao existe LA e nao existe na Shopee, e isso e informacao sobre o canal de dado, nao sobre a consulta. Ela volta a ser candidata quando houver outra fonte comercial.",
+      "exige": [
+        [
+          "material",
+          "materiais"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "quadros",
+        "decorativo",
+        "forma 3d",
+        "molde",
+        "gesso",
+        "full hd",
+        "papel de parede"
+      ],
+      "motivo_da_recusa": "`forma 3d`, `molde` e `gesso` nasceram nesta medicao e sao a familia nova descrita acima.",
+      "numero_proprio": null,
+      "o_que_a_coleta_mediu": "20 ofertas, 0 servem."
+    },
+    {
+      "id": "azulejo-para-mosaico",
+      "consulta": "azulejo para mosaico",
+      "slug": null,
+      "destino": "loja",
+      "publicar": false,
+      "nao_publica_porque": "NAO E PAGINA DE MATERIAL, e a causa mudou entre a primeira leitura e a coleta gravada — as duas estao escritas porque as duas sao verdade sobre o canal. (1) PRIMEIRA LEITURA: 20 de 20 em PAPEL DE PAREDE ADESIVO que imita azulejo portugues, todas a R$ 30,99, zero azulejo de verdade. (2) COLETA GRAVADA: tres ofertas passam a regra, e as tres sao MOSAICO PRONTO — `Mosaico Garrafa De Uisque Para Area Gourmet - 100% Azulejo` (R$ 1.455), `Mosaico Sagrada Familia Com Nome 100x100cm Em Azulejo` (R$ 999,99) e `Mosaico azulejo Aparecida 30 x 30 cm` (R$ 129,99). Nenhuma das duas leituras devolveu AZULEJO para a artesa cortar, que e o que a consulta pedia. E o que a segunda leitura mostrou e mais util que a primeira: nesta consulta a Shopee vende a PECA ACABADA, pelo preco de uma peca acabada, e e exatamente o que a artesa desta ilha faz — entao uma vitrine de afiliado aqui mandaria o visitante comprar de um concorrente dela. Vai para a fila da `/loja/`, como o vaso e o colar.",
+      "exige": [
+        [
+          "azulejo",
+          "azulejos",
+          "caquinho"
+        ],
+        [
+          "mosaico",
+          "artesanato"
+        ]
+      ],
+      "recusa": [
+        "papel de parede",
+        "adesivo",
+        "adesiva",
+        "autoadesivo",
+        "quadro",
+        "decorativo",
+        "piso",
+        "porcelanato",
+        "lavavel"
+      ],
+      "motivo_da_recusa": "`papel de parede`, `adesivo` e `lavavel` sao as tres palavras que aparecem nas 20 ofertas desta consulta.",
+      "numero_proprio": null,
+      "o_que_a_coleta_mediu": "20 ofertas na coleta gravada, 3 que servem, e as tres sao peca pronta. O PROMPT.md desta ilha ja listava `azulejo para mosaico` com faixa 100-1.000 e SERP ABERTA no Google (`dados/corpus-buscas.md`, secao 1A, com a observacao de que *a SERP nao separa as duas intencoes*) — e nao separa mesmo: a consulta carrega material, papel de parede e peca acabada ao mesmo tempo."
+    },
+    {
+      "id": "tela-para-mosaico",
+      "consulta": "tela para mosaico",
+      "slug": null,
+      "destino": "nenhum",
+      "publicar": false,
+      "nao_publica_porque": "ARMADILHA MEDIDA, por COLISAO DE PALAVRA e nao por intencao vizinha: `tela` no Brasil e a malha onde a pastilha vem presa (o que esta consulta queria) e tambem o quadro impresso em tecido. A Shopee devolveu 20 de 20 em `Quadro Decorativo Mosaico 5 Pecas` de filme e serie (Star Wars, Harry Potter, Deadpool), de R$ 29,90 a R$ 55,02. ZERO tela de mosaico. E a colisao mais barata de todas de evitar e a mais cara de descobrir no ar: a pagina pareceria certa para quem a escreveu e erraria para todo visitante.",
+      "exige": [
+        [
+          "tela",
+          "malha"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "quadros",
+        "decorativo",
+        "full hd",
+        "papel de parede",
+        "pecas"
+      ],
+      "motivo_da_recusa": "`pecas` entra aqui e em nenhuma outra consulta, porque `5 Pecas` e a assinatura do quadro de varios paineis e foi ela que ocupou as 20.",
+      "numero_proprio": null,
+      "o_que_a_coleta_mediu": "20 ofertas, 0 servem."
+    },
+    {
+      "id": "mandala-de-mosaico",
+      "consulta": "mandala de mosaico",
+      "slug": null,
+      "destino": "loja",
+      "publicar": false,
+      "nao_publica_porque": "ARMADILHA PARA O GUIA e candidata da LOJA: a coleta gravada tem 20 ofertas e 2 que servem, e nenhuma das duas e material — um ima marcador de pagina (R$ 24,99) e uma `Mandala de Porcelana Elefante Mosaico Colorido 16cm` (R$ 37,70), que e peca acabada. O resto e quadro decorativo de mandala. A mandala de mosaico EXISTE como peca da artesa, e e por isso que esta consulta nao morre: ela e candidata da LOJA e de um tutorial da ESCOLA, nunca de uma pagina de material com afiliado.",
+      "exige": [
+        [
+          "mandala"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "quadros",
+        "decorativo",
+        "full hd",
+        "livro",
+        "anel"
+      ],
+      "motivo_da_recusa": "`livro` e `anel` sao as duas ofertas que nao eram quadro.",
+      "numero_proprio": null,
+      "o_que_a_coleta_mediu": "20 ofertas, 2 servem, e as duas sao peca pronta. Zero material."
+    },
+    {
+      "id": "vaso-de-mosaico",
+      "consulta": "vaso de mosaico",
+      "slug": null,
+      "destino": "loja",
+      "publicar": false,
+      "nao_publica_porque": "NAO E PAGINA DE MATERIAL, e a medicao mostrou por que: as ofertas que nao sao quadro decorativo sao VASO PRONTO de mosaico (`Vaso de Parede Delta Mosaico` R$ 22, `Vaso de Plantas Decorativo Mosaico` R$ 69,90, `Arranjo Artificial Vasinho Mosaico com Cactus` R$ 45). Isso e exatamente o que a artesa desta ilha VENDE, e a secao 30.2 pede bloco de compra com afiliado — entao uma pagina de material aqui mandaria o visitante comprar o vaso de um concorrente da propria artesa, com a ilha ganhando comissao em vez da margem cheia da peca dela. A 30.3 e a secao 7 do contrato nao se encontram nesta consulta: ela pertence a `/loja/`, com `Product` e `Offer` da peca propria, e entra na fila da LOJA e nao na desta lista.",
+      "exige": [
+        [
+          "vaso",
+          "vasinho",
+          "cachepo"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "quadros",
+        "decorativo",
+        "full hd",
+        "pintura diamante",
+        "papel de parede"
+      ],
+      "motivo_da_recusa": "A familia do quadro decorativo de novo, mais a pintura com diamante.",
+      "numero_proprio": null,
+      "o_que_a_coleta_mediu": "20 ofertas na coleta gravada, 2 que servem: `Vaso de Parede Delta Mosaico` (R$ 22) e `Arranjo Artificial Vasinho Mosaico c/ Cactus` (R$ 45). A primeira leitura tinha visto tres, com um `Vaso de Plantas Decorativo Mosaico` a R$ 69,90 que a coleta gravada nao trouxe — o conjunto varia entre chamadas, e a linha do topo deste arquivo diz por que. O dado existe; o endereco e outro."
+    },
+    {
+      "id": "colar-de-mosaico",
+      "consulta": "colar de mosaico",
+      "slug": null,
+      "destino": "loja",
+      "publicar": false,
+      "nao_publica_porque": "NAO E PAGINA DE MATERIAL, pelo mesmo motivo do vaso e com uma agravante de vocabulario: a palavra `mosaico` nestas ofertas e quase sempre o PADRAO da joia (`Colar Elegante Com Pingente De Borboleta ... Mosaico`, `Colar Folheado A Ouro Mosaico Madreperola`), nao a tecnica. A artesa desta ilha FAZ colares de mosaico; a pagina desta consulta e peca da `/loja/`, com margem cheia, e nao vitrine de afiliado de bijuteria.",
+      "exige": [
+        [
+          "colar",
+          "colares"
+        ],
+        [
+          "mosaico"
+        ]
+      ],
+      "recusa": [
+        "quadro",
+        "quadros",
+        "decorativo",
+        "full hd",
+        "anel",
+        "pingente de borboleta"
+      ],
+      "motivo_da_recusa": "A familia do quadro, mais as joias em que mosaico e so o desenho.",
+      "numero_proprio": null,
+      "o_que_a_coleta_mediu": "20 ofertas, nenhuma que sustente pagina de material."
+    }
+  ],
+  "o_conjunto_que_a_api_devolve_VARIA_entre_chamadas": "MEDIDO em 09/10/2026, e e uma propriedade do canal que muda como este arquivo tem de ser lido: duas chamadas da MESMA consulta, minutos uma da outra, devolvem conjuntos de ofertas DIFERENTES. `azulejo para mosaico` devolveu 20 de 20 em papel de parede adesivo na primeira leitura e, na coleta que gravou o banco, trouxe tres MOSAICOS PRONTOS que a primeira nao tinha. `espelho para mosaico` trocou metade das ofertas entre a leitura e o ensaio. Consequencia pratica, e ela vale para quem ler este arquivo depois: o numero de ofertas de uma consulta e o de UMA coleta datada, nunca o catalogo da Shopee, e a prosa daqui cita a coleta GRAVADA em `dados/anuncios-por-consulta.json` em vez de afirmar um total sobre o mercado. Um `0 servem` medido tres vezes continua sendo a prova da armadilha; um `0 servem` medido uma vez e uma coleta, nao um veredito sobre o que existe."
+}

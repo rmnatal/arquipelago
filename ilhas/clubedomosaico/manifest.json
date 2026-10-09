@@ -5,7 +5,7 @@
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
   "revisao": 71,
-  "atualizado_em": "2026-10-08",
+  "atualizado_em": "2026-10-09",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -131,7 +131,7 @@
       "verificado_em": "2026-10-02",
       "registros": 36,
       "publicar": false,
-      "sha256": "24a92678d0a874bac017d9006ba5f3b5edbeeaecc296073753868af5d9274dba",
+      "sha256": "d32407a97bac70ba41b686165ccc17d3ab139606299bcaecd3461983a4de75af",
       "descricao": "Corpus de buscas do mosaico artesanal BR nos tres motores da ilha (materiais/ferramentas, pecas prontas, aprender), com a SERP classificada por consulta em aberta/tomada/armadilha pela regra da secao 14.9. Tres achados medidos decidem a ordem da fila: a SERP de rejunte responde a pergunta de OBRA (0,2-0,4 kg/m2 com azulejo grande) e portanto esta errada para peca de artesanato com pastilha de 1x1 cm, o que faz da F1 numero proprio sem concorrente; a regra de cola x base circula em blog sem fabricante, codigo nem data, o que abre a F2 mas proibe usar a SERP como fonte dela; e 'mosaico bizantino', de faixa 1k-100k, tem a primeira pagina em portugues ocupada por resultado em espanhol. Tomadas: 'curso de mosaico' (escolas reais, a ilha nao disputa), 'presente artesanal' (Elo7) e 'vaso centro de mesa' (Leroy)."
     },
     {
@@ -159,7 +159,7 @@
       "fonte": "GERADO por ferramentas/cruzamento-14-9.py a partir de dados/filhas-do-guia.json e dados/serp-das-filhas.json. Nada aqui e digitado: --conferir regera e compara, e edicao a mao reprova o portao.",
       "verificado_em": "2026-10-08",
       "publicar": false,
-      "sha256": "87595800f2a8b2c03ba71a2464a28a683e935161791f387abc434585dc48e329",
+      "sha256": "5c011fdc8cc3e203ec3eba2a8288cd08521a54077d1e80d3892d17ec909d862a",
       "descricao": "O veredito cruzado dos dois portoes, recorte por recorte, com a tabela da 16.5 lado a lado — filhas que o DADO autoriza contra filhas que o CRUZAMENTO autoriza — e o pedido de faixa de volume derivado. No primeiro dia em que existiu: acabamento e a primeira categoria do Guia a passar os dois portoes na mae e nas tres filhas (o 4c liberado ali), pastilha/vidro saiu espera_autoridade, e alicate, pastilha e rejunte ficaram com dado verde e SERP nunca olhada, que e o caso que parece passe livre."
     },
     {
@@ -195,7 +195,7 @@
       "verificado_em": "2026-10-08",
       "registros": 22,
       "publicar": false,
-      "sha256": "25755251e3cd54a5326147553be74aaaceea4813c74119cd60218a3c66060da7",
+      "sha256": "9961c93af562d0b3b840a38e9835fc083733da56c87a2715df3cd71884c9c5c2",
       "descricao": "A metade COLETADA do cruzamento da 14.9: quem ocupa o top 10 da consulta-alvo de cada recorte do Guia, escrito pelo nome. Cinco classificacoes, e a quinta nasceu desta coleta — ABERTA_SEM_INTENCAO_NA_SERP, para a consulta em que ninguem ocupa porque NENHUM resultado fala da pergunta desta ilha (o selador mediu uma SERP inteira de pintura de parede). Guarda tambem o numero que a SERP nao publica e o banco desta ilha publica, recorte por recorte, que e a resposta da 14.9 a pergunta 'por que ela chega as 10 primeiras'."
     },
     {
@@ -233,7 +233,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "68500e038cddba1d219b2d3a0fc650704fd1964472342cf391a292f3772bf0fe",
+      "sha256": "2d861ff9039ec53cd76c44ca0e926f778c60e124aebbe744022d4fc764c5c275",
       "descricao": "A categoria REJUNTE do banco MATERIAL: cinco rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas) com faixa de junta, prazo de liberacao e ambiente declarado campo a campo. Sem ela a F2 — que se chama 'seletor de cola E REJUNTE' — respondia metade do que promete, com a metade do rejunte cravada na prosa do snippet em vez de recomputada da declaracao. O arquivo descobriu uma coisa sobre o proprio banco: REJUNTE NAO E COLA. Na cola, a lista do fabricante nomeia a BASE sobre a qual se cola; no rejunte, a mesma lista nomeia a TESSELA que sera rejuntada, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. Achado de maior valor: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso, e mesmo assim ele NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua tratada quimicamente, que e piscina e nao a agua parada de um vaso de jardim."
     },
     {
@@ -281,7 +281,7 @@
       "verificado_em": "2026-09-25",
       "registros": 6,
       "publicar": true,
-      "sha256": "980302f23ac05d7c6dc71d84ed35bb17e124d119f5cffe22e2e7b4ac202a4d06",
+      "sha256": "e9ebb3c09ce8915727b0856be28c50308aa46f321f82c2c57af6e95a22299861",
       "descricao": "A categoria ALICATE do banco MATERIAL, e com ela a lista de categorias do vocabulario sem um unico item cai de quatro para tres (restam base, acabamento e apoio). Tres torqueses Cortag e tres cortadores manuais Vonder (VDEC 51, 75 e 90), cada campo tecnico dentro de `propriedades`, que e o unico container com portao no validar-banco: todo valor aponta fonte, todo null escreve motivo. O ACHADO E UM TETO DE 5 MM QUE CRUZA COM O BANCO DE PASTILHAS. O torques de mosaico da Cortag e a unica ferramenta do arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm; os tres cortadores de bancada declaram 'pisos ceramicos e porcelanatos ate 10 mm' e nao nomeiam vidro em lugar nenhum. Medido contra materiais-pastilhas.json: das 13 pastilhas do banco, todas de vidro, 10 cabem no teto e TRES nao — st5102 (6 mm), af1500 (8 mm) e ic02 (8 mm). Para esses tres a F1 calcula quantidade e o banco de ferramentas nao tem uma declaracao de fabricante que sustente o corte: faixa DESCOBERTA no sentido da 14.3, para a tela dizer em vez de calar. A outra metade vale para as duas paginas de tecnica no ar: a frase do torques nomeia PASTILHA de vidro e de ceramica e NAO nomeia caco de louca (picassiete) nem caco de azulejo (trencadis) — estado `nao_declarado`, nem recomendar nem proibir. NASCEU `publicar: false` E O PORTAO DESMENTIU: o cartao 'Alicates e corte' do Guia existe desde que a casca nasceu e o mapa G-ALICATES => materiais-alicates ja estava escrito dentro do teste-casca, esperando o arquivo. Casca 1.14.0 liga os dois, e a frase de prova do Guia passou a nomear a quarta categoria — ate aqui ela anunciava o total do banco e enumerava so tres, o que teria posto no ar 'o banco tem 31 itens, sendo 7 colas, 5 rejuntes e 13 pastilhas'.",
       "pendencias": 3,
       "pendencias_que_bloqueiam_publicacao": []
@@ -347,7 +347,7 @@
       "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
       "registros": 42,
       "publicar": false,
-      "sha256": "38b6725085fc961247e8a73e397ab2c9768f4d78a3ae629fa9adf5659b90079d",
+      "sha256": "3403da56038c61e8a5d0329167f5109dd98fc8c2c6205195d31e649c9783a17d",
       "verificado_em": "2026-10-08"
     },
     {
@@ -358,7 +358,7 @@
       "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira era a classificacao de SERP da 14.9 em PROSA, e em 02/10/2026 ela saiu daqui e virou dado em dados/serp-das-filhas.json, com o cruzamento em dados/cruzamento-14-9.md: prosa que o gerador preserva sem ler nao cruza com numero. O que ficou abaixo da fronteira e o ponteiro para os dois arquivos novos e o motivo da mudanca.",
       "verificado_em": "2026-10-08",
       "publicar": false,
-      "sha256": "9995dc4cf529c12ffab484a13fa821d9924ef756c00a01e4eea220f7327f3f7a"
+      "sha256": "b3be7c907d95d7df3facf2ea8bc9ce3b9b754489b613fe3b60ea19eb8d5c2e22"
     },
     {
       "id": "perguntas-do-guia",
@@ -371,6 +371,30 @@
       "publicar": false,
       "sha256": "acdd09266566e3df33adaeef7fa6ca3b3c183c3a6d080abf9711b998b48715fe",
       "descricao": "As filhas de nivel 3 do Guia que tem forma de PERGUNTA em vez de forma de tipo — a forma das duas filhas que esta ilha ja publicou (a F1 e a F2). ACRESCENTADO AO MANIFEST EM 08/10/2026: o arquivo nasceu em 07/10 e ficou DE FORA do espelho, entao duas execucoes o mudaram sem que o atualizador imprimisse uma linha. E o mesmo defeito que a execucao de 08/10 as 10h4xZ nomeou nos nove sha vencidos, um andar acima: arquivo fora do manifest nao tem sha para vencer, e envelhece sem nem a chance de ser acusado."
+    },
+    {
+      "id": "consultas-de-produto",
+      "arquivo": "dados/consultas-de-produto.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "Escrito A MAO, e e o segundo arquivo de dado desta ilha que e decisao de NOME em vez de derivacao (o outro e dados/perguntas-do-guia.json): a consulta, o slug, o destino e os termos da regra de relevancia, com o motivo de cada termo. Nenhum anuncio, nenhum preco e nenhum veredito de oferta se digita aqui — quem decide oferta por oferta e ferramentas/relevancia-do-anuncio.py sobre esta declaracao, e o resultado e GERADO em dados/anuncios-por-consulta.json.",
+      "registros": 16,
+      "publicar": false,
+      "verificado_em": "2026-10-09",
+      "descricao": "As 16 consultas de produto da secao 30 do ARQUIPELAGO.md — a lista do item 2 do despacho do Raphael de 09/10/2026 — com a regra que decide quais anuncios servem cada uma. OITO publicam; as outras OITO nao, e cada uma diz por que com a coleta ao lado: CINCO sao armadilha medida dentro da Shopee (`kit mosaico`, `material`, `tela` e `mandala` devolvem quadro decorativo; `azulejo` devolve papel de parede e peca pronta), TRES sao intencao de LOJA e nao de material (`vaso`, `colar` e o proprio `azulejo`), e UMA sai por canibalizacao da 30.4 (`pinca`, que e o mesmo alicate de duas consultas irmas).",
+      "sha256": "cf3da4e4123ec4b0e8df4b6bd155436de5f3d9b25696aeccb7bd28d801d24fb9"
+    },
+    {
+      "id": "anuncios-por-consulta",
+      "arquivo": "dados/anuncios-por-consulta.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "GERADO por ferramentas/coletar-por-consulta.py em 09/10/2026 a partir da API de afiliado da Shopee (productOfferV2, credencial no ambiente) e da declaracao de dados/consultas-de-produto.json. Fotografia de UMA coleta datada, nao serie e nao catalogo: o conjunto que a API devolve VARIA entre chamadas, e o proprio arquivo registra isso. `--conferir` reaplica a regra sobre os titulos gravados e refaz os numeros proprios, sem rede.",
+      "registros": 16,
+      "publicar": false,
+      "verificado_em": "2026-10-09",
+      "descricao": "O dado COMERCIAL que a secao 30.2 pede: os anuncios de cada consulta de produto com o veredito da regra ao lado de cada um, o preco, a loja, a foto, a quantidade declarada no titulo (ou o motivo de ela faltar) e o link de afiliado com sub-id, gerado SO para o que serve e SO em consulta que publica. Dado de UMA fonte: o Mercado Livre respondeu 403 nas tres passadas de 09/10, pelo anti-robo dele e nao pela rede da secao 20, e o arquivo diz isso para nenhuma pagina escrever `o mercado` querendo dizer `a Shopee`.",
+      "sha256": "482c9f3835828b625195c8380b8ac1afa79995d2f96e54c75e2aa5a813e7abec"
     }
   ],
   "ferramentas": [
@@ -437,7 +461,7 @@
     {
       "id": "cruzamento-14-9",
       "arquivo": "ferramentas/cruzamento-14-9.py",
-      "sha256": "5a5ec6d8ec6d9f07c8f714b15d893bf4b7be9e41a5f58a092e8264d91e6a19d1",
+      "sha256": "ce9f73bed4ea8ebb803ef0390919b0bba2e97037bfc2453f86a798b8b04e1831",
       "descricao": "O CRUZAMENTO DA SECAO 14.9: le o portao de DADO da secao 9 (dados/filhas-do-guia.json, derivado do banco) e o portao de SERP (dados/serp-das-filhas.json, coletado por busca) e devolve UM veredito por recorte, porque a 14.9 manda cruzar intencao com chance 'nunca de uma so'. Seis vereditos calculados, nunca escritos: pode_nascer, pode_nascer_sem_demanda_medida, espera_autoridade, espera_dado, espera_serp e nunca. Conta a 16.5 pelas filhas que o CRUZAMENTO autoriza, que nao sao as que o dado autoriza — e foi assim que pastilha saiu de 1 filha para 0. Deriva o pedido de faixa de volume ao Raphael, so de consulta ABERTA sem faixa, em vez de estimar o numero. Acusa medicao de SERP em recorte que o portao de dado nao conhece. Bancada: --autoteste com 32 casos fabricados e --conferir que regera e compara."
     },
     {
@@ -449,7 +473,7 @@
     {
       "id": "filhas-do-guia",
       "arquivo": "ferramentas/filhas-do-guia.py",
-      "sha256": "f1ddb4e367c8017c97eebe172ce81ba8eaf61b766de81d51ae1a0edbda49c9df",
+      "sha256": "b07cfecc19de1995a1d2561d6acf5435ceedaf3afa1015f7f3e218853ab201f2",
       "descricao": "Aplica o portao INTEIRO da secao 9 (3 itens de banco reais E um numero calculado proprio) a cada recorte que o vocabulario do esquema admite no Guia, e diz a que DISTANCIA esta o que nao passa. Os recortes saem de vocabularios.tipo_por_categoria e o teto de nivel de fonte sai de escada_de_fontes: nada digitado. Tres vereditos e nunca um booleano (passa, passa_na_contagem_sem_lastro, nao_passa), pela licao do medir-egresso.py — os dois vereditos saem juntos ou nenhum dos dois serve. Separa SKU novo de campo vazio em registro que ja mora no banco, e so promete 'completar registro' quando o recorte esta a UM. Gera dados/filhas-do-guia.json e o .md, preservando o trecho de SERP que e busca e nao derivacao; --conferir regera e compara e tambem confere a tabela da secao 2 do ARVORE.md nas duas direcoes; --autoteste roda 27 casos fabricados."
     },
     {
@@ -545,7 +569,7 @@
     {
       "id": "mutacoes-cobertura",
       "arquivo": "ferramentas/mutacoes-cobertura.py",
-      "sha256": "529b3d554d5cf997918122bfa9682bf7ddc8e2e8f6c415d629d4b9f7d22e23b5",
+      "sha256": "f1c68b9760bd732ca3feef797d8b8e353ea67832c24e100565d2cf9049fa1111",
       "descricao": "Quebra a varredura de proposito, uma mutacao por vez, e exige que cobertura.py --conferir ou conferir-cobertura.php reprove cada uma. Mede uma segunda coisa, que e a razao de o bloco existir: para cada mutacao roda TAMBEM os portoes anteriores (validar-banco.py e teste-f2.php) e marca as que so a varredura viu — mutacao que qualquer portao antigo pega ja estava coberta e nao justificaria arquivo novo. A mais importante afrouxa a faixa de junta SO em 7, 8 e 9 mm, que e o vao onde a grade escrita a mao do esquema nao pisa. Bancada: nunca vai para o site."
     },
     {
@@ -792,7 +816,7 @@
     {
       "id": "mutacoes-par",
       "arquivo": "ferramentas/mutacoes-par.py",
-      "sha256": "bc9728e8a158be277d1933a0f555525f43bad64048993bece73f5700b41bad7e",
+      "sha256": "0d46076337d28a01bfca72c47673197e4a0593bb60baebd39dc8ac252b18e8d9",
       "descricao": "Quebra o par substrato x ambiente da REGRA 8 de proposito, 17 mutacoes de forma + 5 de tela, e mede quais SO o portao novo do esquema v14 pega (13 das 17). O que torna esta bateria diferente das irmas e que os DOIS erros possiveis apontam para lados OPOSTOS e so um deles e caro: IGNORAR o qualificador publica MAIS do que o fabricante declarou (a argamassa de assentamento recomendada para muro de mosaico ao ar livre) e INTERSECTAR publica MENOS (a mesma argamassa saindo de `cimento_concreto`, que ela declara sem qualificador). As duas direcoes tem mutacao propria, na forma e na tela. Ha mutacao que PRODUZ O MUNDO: a frase LARGA ganhando qualificador, o segundo produto com frase qualificada, e uma frase de PROIBICAO ganhando qualificador — esta ultima PASSOU na primeira rodada e virou trava, porque do lado da proibicao a leitura e ampliativa de proposito e o campo ficava gravado, sem efeito e sem uma palavra. E a de tela que troca a ORDEM da regra 8 com a 2: a lista nao muda e a CAUSA muda de nome, que e a frase que esta pagina vende. 4 travas de falso positivo, e a primeira versao de uma delas foi REPROVADA com razao — ela alargava o qualificador para os cinco ambientes, mundo em que a regra 8 nunca morde, e chamava de falso positivo a trava que impede uma tabela de ancoras que nao mede nada. 17 de 17 de forma, 5 de 5 de tela, 4 de 4 falsos positivos. Bancada."
     },
     {
@@ -806,6 +830,30 @@
       "arquivo": "ferramentas/mutacoes-ambiente-do-produto-do-rejunte.py",
       "sha256": "1dcfb7fd487a6497bb4662a301a0a0e15253b4f647a1e264c7ccf12a7ce72a6f",
       "descricao": "Quebra o balde do ambiente DO PRODUTO DO REJUNTE de proposito, 21 mutacoes de forma + 7 de tela, e mede quais SO o portao novo do esquema v16 pega. E o mesmo defeito da bateria irma um andar abaixo, e o molde esta construido QUATRO vezes (regras 7, 8, 3 da cola e 3 do rejunte): a regra 3 do rejunte sempre eliminou CERTO e por 27 dias mandou quem eliminava para o balde `eliminados_por_ambiente`, que era TAMBEM o da regra 2 e serve na tela 'Fora porque o fabricante nao declara este lugar' — sobre o rejunte acrilico, que escreve `areas internas e externas` em `ambientes_declarados`, e e justamente essa frase que o fecha. Varrido nos 60 estados: 8 entradas em 8 estados pela regra 3 com a frase ERRADA, 59 em 28 pela regra 2 com a frase certa, e 7 estados carregando as duas no mesmo paragrafo. DUAS COISAS QUE A BATERIA DA COLA NAO TINHA: a t06, porque sao DUAS telas lendo a mesma celula (a F2 e a F1, que dizia 'o que ele nao declara e peca <lugar>'), e a t05, porque a fusao mais provavel aqui nao e com o silencio e com a FAIXA DE JUNTA — de 5 mm para cima o acrilico sai por folga, nao por lugar, e trocar as duas causas certas uma pela outra e este bloco virado ao contrario. TRES MUTACOES PASSARAM NA PRIMEIRA RODADA, as tres antes do commit: a m15 mostrou que a trava da 'ancora que passa' aceitava a ancora anti-fusao no lugar dela, porque balde vazio nao prova que a regra deixa passar — prova que ela nao morde ali; a m17 nasceu `areas internas`, PASSOU por o literal nao estar no mapa do rejunte, e com isso achou que `ambientes_declarados` ilegivel DESLIGA a regra 3 em silencio (virou erro no validador e a m21 nasceu dela); e a t01 e a t03 mutavam a regua da COLA, porque as duas linhas que elas procuravam existem identicas nas duas reguas e a da cola vem antes — marcador que existe nas duas nao mede nenhuma. 5 travas de falso positivo. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "relevancia-do-anuncio",
+      "arquivo": "ferramentas/relevancia-do-anuncio.py",
+      "descricao": "A REGRA que decide se um anuncio SERVE a consulta de produto, sozinha num arquivo pelo mesmo motivo de casar-anuncio.py: e a regra que mutacoes-relevancia.py ataca. Grupos de `exige` (OU dentro, E entre) e termos de `recusa`, com a recusa vencendo sempre, e o plural cortado nos DOIS lados da comparacao. Nao julga preco, nao casa com registro de fabricante e nao decide se a pagina nasce.",
+      "sha256": "365e763ec0ce9c09d9b99f7ccd30789ea33d612cf17e68a72a52ca1de5e714ed"
+    },
+    {
+      "id": "coletar-por-consulta",
+      "arquivo": "ferramentas/coletar-por-consulta.py",
+      "descricao": "Colhe o dado comercial das consultas de produto da secao 30, consulta por consulta, aplica a regra de relevancia e calcula o numero proprio de cada pagina (faixa de preco, preco por pastilha, preco por plaquinha) — sempre da quantidade DECLARADA no titulo, nunca estimada. `--ensaio` nao grava, `--conferir` refaz veredito e contas sobre o banco gravado sem rede. Gera link de afiliado so para o que serve e so em consulta que publica.",
+      "sha256": "ec8bab09076d3156c67517528384227b0cc6e2b355aafb2401ed7d8946794ae6"
+    },
+    {
+      "id": "teste-relevancia",
+      "arquivo": "ferramentas/teste-relevancia.py",
+      "descricao": "Bancada da regra de relevancia, sobre as declaracoes reais e titulos REAIS colhidos em 09/10/2026. Mede as duas direcoes — o que tem de servir e o que tem de ser recusado, com o termo certo — mais a leitura de quantidade, a falha fechada da declaracao sem exigencia e o corte de plural nas duas pontas. Bancada.",
+      "sha256": "78f30d6c68e97d06d1205e8311caa6d47bfe213686726e1be8295a46812d8718"
+    },
+    {
+      "id": "mutacoes-relevancia",
+      "arquivo": "ferramentas/mutacoes-relevancia.py",
+      "descricao": "10 mutacoes da regra de relevancia e da leitura de quantidade; toda uma tem de REPROVAR a teste-relevancia.py. Duas APERTAM a regra em vez de afrouxar, porque regua que recusa o certo custa tanto quanto regua que aceita o errado. Trabalha em mkdtemp e por isso nao tem como sujar a arvore, nem morta por sinal — o defeito que a mutacoes-par.py cometeu em 09/10/2026. Na primeira rodada TRES mutacoes passaram e as tres viraram afirmacao nova na bancada; uma delas (m05) mostrou que um ramo da regra era redundante, e o conserto foi dar a ele um diagnostico proprio em vez de apagar o ramo. Bancada.",
+      "sha256": "58553bb2246a9dde792d76f1a2c0ac148171d023e9101688fce8afcb36e3c9d0"
     }
   ],
   "esquema": {
