@@ -4347,3 +4347,54 @@ Só inserções: 14 linhas adicionadas (7 de texto + 7 em branco), 0 removidas, 
 **Nenhum passo falhou neste disparo.**
 
 **O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada — a decisão veio na instrução; não reformatei, não "melhorei" e não corrigi nada do texto do bloco nem do arquivo; não acrescentei linha que não estava na instrução, além da linha em branco que separa o bloco do cabeçalho seguinte; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`; não apaguei, não reescrevi e não resumi seção anterior deste log — append-only, inclusive a seção de 10h39 de hoje; não reservei ilha, não escrevi `executando_desde` e não toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; **não suspendi nada de fato, não publiquei página, não acionei Sync e não verifiquei URL no ar** — o despacho inserido manda a Fundação fazer isso, e o texto dele é carga que eu gravei, não ordem para as mãos (o "MODO MUTIRÃO" e o alvo das 40 URLs são da Fundação, não meus); não escrevi contato pessoal de terceiro neste repositório público; não criei conta em plataforma nenhuma.
+
+---
+
+## Disparo de 2026-10-09, 10h45 BRT (13h45 UTC) — inserção do despacho (3) no `PROMPT.md` do Clube do Mosaico
+
+**Assunto:** Projeto Arquipélago, ilha `clubedomosaico`. Passou a checagem de assunto — ilha do Arquipélago, arquivo de ilha do Arquipélago. Executado.
+
+**Instrução:** inserir, literal, o bloco `## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO` em `ilhas/clubedomosaico/PROMPT.md`, imediatamente antes da primeira linha do arquivo que começa com `## DESPACHO`, sem apagar, mover ou editar nenhuma outra linha.
+
+**Ponto de inserção:** a primeira linha `^## DESPACHO` era a linha 114, `## DESPACHO DO RAPHAEL — 2026-10-09 (2) — TETO DA 21.4 SUSPENSO HOJE NESTA ILHA` (bloco do disparo de 10h41/10h42 de hoje, commit `6fb9b40`, já em `origin/main` quando eu parti). O bloco novo entrou nas linhas 114–131; a `(2)` passou a começar na linha 132. Os três blocos de hoje convivem, nesta ordem no arquivo: (3), (2), e o sem número.
+
+**Partida:** `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `80c5f6c` ("MAOS-LOG: registro do disparo de 2026-10-09 10h42 BRT"). Push aceito de primeira — não houve rejeição, não houve rebase, não houve force push, não houve PR.
+
+`git status --porcelain` depois do commit do trabalho (árvore limpa, nada solto):
+
+```
+```
+
+`git diff --stat` do trabalho (antes do commit):
+
+```
+ ilhas/clubedomosaico/PROMPT.md | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+```
+
+**Commit que foi ao `main`:** `e4cb57f8cdbaa3fabf14ec4e8594e5607ce29f8c`
+
+Confirmado no remoto, não só localmente:
+
+```
+$ git fetch origin main && git log -1 origin/main --format='%H %s'
+e4cb57f8cdbaa3fabf14ec4e8594e5607ce29f8c Clube do Mosaico: despacho (3) de 2026-10-09 — paginas por consulta de produto
+```
+
+**Contagem, conferida relendo `ilhas/clubedomosaico/PROMPT.md` DEPOIS de gravar:**
+
+```
+linhas do arquivo ........................ 2681 (eram 2663)
+cabeçalhos ^## DESPACHO .................. 14 (eram 13)
+blocos ^## DESPACHO DO RAPHAEL — 2026-10-09  3
+itens numerados do bloco novo (1 a 7) .... 7
+linhas adicionadas ....................... 18 (9 de texto + 9 em branco)
+linhas removidas ......................... 0
+arquivos tocados neste commit ............ 1
+```
+
+Só inserções: `git diff HEAD~1 HEAD | grep -c '^-[^-]'` devolveu `0`.
+
+**Nenhum passo falhou neste disparo.**
+
+**O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada — a decisão veio na instrução; não reformatei, não "melhorei" e não corrigi nada do texto do bloco nem do arquivo; não acrescentei linha que não estava na instrução, além da linha em branco que separa o bloco do cabeçalho seguinte; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`; não apaguei, não reescrevi e não resumi seção anterior deste log — append-only, inclusive as seções de 10h39 e 10h42 de hoje; não reservei ilha, não escrevi `executando_desde` e não toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; **não criei nenhuma das páginas de consulta de produto, não colhi anúncio de marketplace, não remedi veredito de SERP, não publiquei, não acionei Sync e não verifiquei URL no ar** — o despacho inserido manda a Fundação fazer isso, e o texto dele é carga que eu gravei, não ordem para as mãos; não escrevi contato pessoal de terceiro neste repositório público; não criei conta em plataforma nenhuma.
