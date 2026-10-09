@@ -56,13 +56,26 @@ conta da 16.5 mora aqui; a fila dela passa a morar aqui tambem.
 |---|---|---|---|
 | `acabamento` | 3 | **0** | nada: a 16.5 esta fechada por consulta |
 | `rejunte` | 2 | **1** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 1 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
-| `alicate` | 1 | **2** | CONSULTA MEDIDA, nao item de banco: `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` ja tem dado verde e nao tem consulta aberta propria. Medir uma consulta nova para uma delas e a coisa mais barata que existe nesta categoria. |
+| `alicate` | 1 | **2** | MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 8 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 2 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5). |
 | `apoio` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `base` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `cola` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `pastilha` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 
 **A proxima mae do Guia e a `rejunte`**, a 1 filha(s) por consulta. ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 1 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho.
+
+### O QUE JA FOI MEDIDO E FALHOU — nao repita a consulta
+
+Tentativa de consulta propria classificada `NAO_MEDIDA` em `serp-das-filhas.json`, por
+candidata. Ate 09/10/2026 a fila acima nao as contava, e por isso prometia `a coisa mais
+barata que existe nesta categoria` para candidata cuja consulta propria ja havia falhado
+cinco vezes. Antes de escrever consulta nova, leia `o_canal_e_os_limites_dele` naquele
+arquivo: a consulta-alvo de uma filha **nunca pede o numero** (limite 5).
+
+| categoria | candidata | tentativas | consultas que falharam |
+|---|---|---|---|
+| `alicate` | `alicate/cortador_de_azulejo` | **4** | cortador de azulejo manual para mosaico (2026-09-30) · torques cortador de azulejo para mosaico Vonder Cortag (2026-09-30) · ate quantos milimetros o cortador manual de azulejo corta pastilha de mosaico (2026-10-07) · qual ferramenta corta caquinho de azulejo e pastilha para mosaico artesanal espessura (2026-10-07) |
+| `alicate` | `pergunta:alicate-espessura-de-corte` | **4** | ate quantos milimetros de espessura o alicate corta pastilha e caquinho para mosaico artesanal (2026-10-07) · alicate de mosaico artesanal ate quantos milimetros de caquinho ele corta vidro ceramica (2026-10-09) · alicate de mosaico corta pastilha de quantos milimetros de espessura (2026-10-09) · alicate de mosaico ou torques espessura maxima de azulejo que corta mm artesanato (2026-10-09) |
 
 **Consultas disputadas por mais de uma candidata** — cada uma delas vale UMA filha, e e
 aqui que a conta por recorte inflava:
@@ -167,6 +180,7 @@ por recorte, com o numero na mao em vez do adjetivo.
 - **`rejunte`** — gramas de rejunte por area, por largura de junta e por espessura de pastilha — a F1 desta ilha ja o devolve (264 g para o cilindro 20x30 com junta de 2 mm, conferido na mao em 02/10) — e o cruzamento de tipo de rejunte x ambiente x largura de junta, que a F2 ja resolve e que nenhum dos nove publica
 - **`rejunte/cimenticio`** — liberacao_area_molhada_h POR PRODUTO, da declaracao do fabricante — que e exatamente a propriedade que o portao de dado deste recorte cobra como lastro. A SERP publica numero de obra, de terceiro e contraditorio; a ilha publicaria numero do fabricante, por item, com a frase citada
 - **`pergunta:alicate-espessura-de-corte`** — espessura_maxima_de_corte_mm, declarada em 4 dos 6 itens de `alicate` com fonte de nivel 2 ou 3 — e a faixa descoberta da 7b-bis: o torques de mosaico para em 5 mm e 3 das 13 pastilhas do banco nao cabem
+- **`pergunta:alicate-espessura-de-corte`** — o limite em mm por TIPO de ferramenta, declarado pelo FABRICANTE. O que a SERP devolveu foi numero de VENDEDOR e de grandeza trocada: Rubi 15 mm de `capacidade de corte` (loja espanhola), Mejix 19 mm de ABERTURA DA GARRA (que nao e espessura de corte), Sumer 8 mm de revestimento e vidro (pagina de produto brasileira). Tres numeros, tres grandezas, nenhum fabricante brasileiro.
 - **`pergunta:rejunte-largura-da-junta`** — a faixa de junta em milimetros que cada rejunte cobre — `junta_min_mm` e `junta_max_mm`, declaradas por 5 de 5 rejuntes deste banco com fonte de nivel 2 nos cinco, e com as tres faixas separando os tres tipos: acrilico de 1 a 4 mm, epoxi de 1 a 5 mm, cimenticio de 2 a 10 mm. A faixa descoberta que a pagina tem de DIZER, pela 14.3, e o piso de 2 mm dos tres cimenticios: quem encosta os caquinhos nao tem rejunte cimenticio no banco que o atenda, e os dois que chegam a 1 mm sao o acrilico e o epoxi.
 - **`pergunta:pastilha-placa-ou-caixa`** — quanto vem numa caixa de pastilha de vidro e qual e o menor lote que o fabricante fecha. Medido no banco em 08/10/2026: `placas_por_caixa` de 10 a 22 e `m2_por_caixa` de 0,85 a 2,09, declarados por 12 dos 13 itens ativos com fonte de nivel 3. O numero nao foi servido porque a SERP e TOMADA, e ele fica escrito aqui para quem for publicar nao recoletar.
 

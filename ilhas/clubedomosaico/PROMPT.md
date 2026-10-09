@@ -135,6 +135,14 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 > **Tentativa em 08/10/2026 às 16h2xZ (18.4): a credencial continua ausente.** Retestado, não herdado —
 > `search-console.py` devolve *"Sem credencial"* e `env | grep -c GOOGLE_SA` devolve **0**. Segunda execução do dia
 > a medir o mesmo, e as duas mediram em vez de copiar a frase.
+>
+> **Tentativa em 09/10/2026 às 13h2xZ (18.4): continua ausente, e esta é a QUINTA execução a medir em vez de
+> copiar a frase.** `env | grep -c GOOGLE_SA` devolve **0** e `search-console.py --ilha clubedomosaico` devolve
+> *"Sem credencial: defina GOOGLE_SA_B64 (base64), GOOGLE_SA_JSON (conteúdo) ou GOOGLE_SA_FILE (caminho)"*. Os
+> itens 2 e 3 seguem intocáveis daqui, e o 4 segue dependendo da sessão do Shopee Afiliados no Chrome do Raphael.
+> **O despacho está em `dados/despachos.md` desde 07/10 e é a mesma linha há três dias: `GOOGLE_SA_B64` no
+> ambiente das rotinas.** Cinco medições idênticas não são cinco informações — a partir daqui, reescrever esta
+> linha é mais barato que remedir, e a próxima execução pode medir uma vez e seguir sem detalhar de novo.
 
 **O QUE APAGUEI DO DESPACHO ANTERIOR: NADA — mas o DEFEITO 1 de 23/09 está FECHADO e medido.** `/author/mosaico_gestor/`, que em 23/09 estava indexada e tomava impressão na **posição 1,0**, sumiu da tabela de páginas da Search Console. ~~Quem fechar o próximo bloco risca aquele item no mesmo commit.~~ **RISCADO EM 08/10/2026**, no despacho de 23/09, neste commit. **O DEFEITO 2 (o `sub_id` da Shopee deslocado uma casa) NÃO pôde ser reconferido**: a sessão do Shopee Afiliados está deslogada e o Relatório de cliques não abriu. Continua aberto, e continua sendo o item que impede o painel de responder "qual ilha vendeu".
 
@@ -165,14 +173,44 @@ E as duas `description` passaram a **começar pela resposta**: *"Na maioria dos 
 
 **Pronto quando** (o critério é o que a própria leitura declarou, e ele é de 14/10): a linha de 14/10 em `dados/posicoes.md` registrar **1 ou mais cliques em 7 dias** nestas páginas, com o `<title>` servido no dia copiado para a série — **ou** registrar zero clique nas duas trocadas E zero na parada, que também é resultado e manda procurar a causa na SERP e não no título. **Os dois `<title>` servidos em 08/10 estão copiados em `dados/posicoes.md` para a leitura de 14/10 não precisar reconstituí-los.**
 
-### PROPOSTA 3 — DEMANDA NOVA: "quadro do Divino Espírito Santo", e a ilha está na posição 22 a 50
+### ~~PROPOSTA 3 — DEMANDA NOVA: "quadro do Divino Espírito Santo"~~ — **FECHADA EM 09/10/2026 PELO PORTÃO DA 14.9: A CONSULTA É TOMADA, E A PÁGINA NÃO NASCE AGORA**
 
-**FICA, e o motivo em uma linha: ela é URL nova, e a própria leitura escreve que "isso é URL nova e gasta cota da 21.4; entra na fila como bloco, não como correção".** Correção fura a fila; bloco não. Esta execução fechou o despacho, não abriu bloco novo.
+**O critério foi pré-registrado ANTES da medição e foi cumprido ao pé da letra.** O `ESTADO.md`
+de 09/10 às 11h5xZ escolheu esta proposta como o próximo bloco e escreveu, no mesmo campo:
+*"começa pela classificação de SERP da 14.9 — e se vier TOMADA, para aí e escreve isso, porque
+consulta de produto mediu TOMADA quatro vezes nesta ilha."* O bloco de 13h1xZ rodou o portão,
+veio TOMADA, e parou. **Nenhuma URL nova, nenhuma leva da 21.4 gasta, nenhum Sync.**
 
-- Consultas nomeadas, as três novas nesta série: `quadro divino espirito santo` (1 impressão, **22,0**), `quadros do espirito santo` (1, **34,0**), `quadros espirito santo` (2, **50,5**). As três caem na mesma página, `/loja/quadro-divino-espirito-santo/`, que soma 4 impressões na posição média 39,2.
-- **Por que isto é proposta e não curiosidade:** é a primeira vez que o Arquipélago encontra uma consulta de **produto**, com intenção de compra explícita, que a ilha já toca e atende mal. Banda 21+ com página existente é o caso que a 12.1 manda tratar por conteúdo, e é a única linha de receita direta que esta leitura achou.
-- O que fazer: **uma página de conteúdo própria** para o tema (o que é, como se faz, quanto custa, quanto tempo leva), ligada à peça da loja — não mais uma ficha de loja.
-- **Pronto quando:** `quadro divino espirito santo` entrar na **banda 11 a 20** na série de `dados/posicoes.md`.
+**A medição inteira — três passadas, com quem ocupa escrito pelo nome — está em
+`dados/corpus-buscas.md`, no cluster 2.** O resumo, e a linha que decide é a terceira:
+
+- **`quadro divino espirito santo mosaico artesanal`** (a de compra, ancorada no nicho): **TOMADA.**
+  OLX, Mercado Livre, Magazine Luiza, Casas Bahia, Extra, agregador de Shopee, Holyart IT. Zero
+  página editorial em dez.
+- **`quadro divino espirito santo`** (a consulta NUA, a que tem as 4 impressões): **NÃO MEDIDA.** O
+  núcleo é liturgia antes de ser produto — voltaram PDF de reza da UNEMAT, iconografia da UFMG,
+  lição de EBD, Scripta Theologica ES, EWTN ES, coromoto.it, arquidiocese de Toronto. Nenhum
+  resultado comercial e nenhum de mosaico.
+- **E o que fecha a decisão: a Casas Bahia vende um `Mosaico do Espírito Santo com anjos
+  120x140cm` na primeira página, por R$ 6.872,40.** Não é o caso de `vaso de mosaico`, em que a
+  SERP devolve cerâmica lisa e sobra brecha. Aqui o varejo já serve **exatamente** o produto, com
+  preço e parcela. Domínio de 30 dias não disputa isso, e a 14.9 manda ir para "quando houver
+  autoridade".
+
+**O que a 2ª passada acrescenta, e vale mais que o "não":** as 4 impressões em 39,2 vêm de uma
+consulta cuja primeira página **não é de compra, é de devoção**. Subir nela levaria a peça da
+artesã para uma SERP de reza. O endereço não é difícil de alcançar — é o lugar errado.
+
+**O QUE SOBRA VIVO, E NÃO É ESTA PROPOSTA.** A terceira passada mediu a consulta de **método** —
+`como fazer quadro do divino espirito santo em mosaico de caquinho passo a passo` — e ela é
+**ABERTA**, pela razão de sempre nesta ilha: o top 10 é PDF escolar, matéria de 2026 sobre piso
+de caquinho e tutorial sem número. **Mas ela é outra consulta**, sem faixa medida e sem impressão
+nenhuma, e o critério de pronto desta proposta era `quadro divino espirito santo` entrar na banda
+11 a 20 — página de método não entrega isso. Chamá-la de Proposta 3 cumprida seria critério
+dobrado para caber no dado que veio (1.2-b.4). **Ela vira duas coisas, nenhuma delas um bloco
+hoje:** um **pedido de faixa ao Raphael** no Planejador, e uma candidata do **bloco 5** da fila
+(os doze tutoriais-âncora, que já têm *quadro* na lista) — e só nasce quando a faixa chegar e o
+portão de dado da seção 9 fechar sobre ela.
 
 ### 2. CORREÇÃO — 6 URLs RESPONDEM 404 PARA O GOOGLE, E A RONDA DIÁRIA NÃO AS VÊ
 

@@ -114,6 +114,39 @@ def cruzar(veredito_de_dado, classe_de_serp):
     return "sem_nenhum_dos_dois"
 
 
+def tentativas_que_falharam(medicoes_proprias):
+    """As consultas que ALGUEM JA TENTOU medir para esta candidata e que falharam por INSTRUMENTO.
+
+    ACRESCENTADA EM 09/10/2026, e a causa tem data, nome e custo. A fila da 16.5 abaixo decidia o
+    custo da proxima filha por UMA pergunta — "esta candidata tem consulta aberta propria?" — e,
+    quando a resposta era nao, imprimia que `medir uma consulta nova para ela e a coisa mais barata
+    que existe nesta categoria`. No dia em que essa frase nasceu, a `alicate` tinha CINCO medicoes
+    `NAO_MEDIDA` de consulta propria guardadas em `serp-das-filhas.json`, com o motivo escrito em
+    cada uma — quatro do `cortador_de_azulejo` (30/09 e 07/10) e uma da pergunta da espessura. A
+    fila LIA esse arquivo e nao contava essas cinco: `NAO_MEDIDA` custava zero.
+
+    E o arquivo ja dizia POR QUE elas falham. O `limite_5_consulta_que_pede_a_medida`, escrito em
+    07/10, fecha assim: "a consulta-alvo de uma filha NUNCA pede o numero". A pergunta desta
+    categoria carrega como ASSUNTO exatamente o numero (`espessura_maxima_de_corte_mm`), e as
+    tentativas dela pedem o milimetro na frase. Em 09/10 tres passadas novas desviaram do mesmo
+    jeito — a oitava, a nona e a decima desta categoria — e uma delas achou um limite que nao
+    existia (`pastilha` + `corte` e o inserto de usinagem, no mesmo idioma).
+
+    E a MESMA familia do defeito de 08/10, uma camada acima: custo infinito escrito em PROSA entra
+    numa lista ordenada por custo como se fosse zero. Ali a prosa era a pendencia de canal do
+    banco; aqui e o motivo de uma medicao falhada. A diferenca boa e que aqui nao se digita nada:
+    a tentativa falhada JA e dado, com data e motivo, no arquivo que esta regua le.
+    """
+    saida = []
+    for m in medicoes_proprias:
+        if m["classificacao"] != "NAO_MEDIDA":
+            continue
+        saida.append({"consulta": m["consulta"],
+                      "medida_em": m.get("medida_em", ""),
+                      "motivo": (m.get("motivo") or "").strip()})
+    return sorted(saida, key=lambda t: (t["medida_em"], t["consulta"]))
+
+
 def falta_no_dado(recorte_dado):
     """O que falta do lado do BANCO, derivado da distancia que o portao de dado ja mediu.
 
@@ -205,6 +238,8 @@ def cruzar_perguntas(perguntas, medicoes):
             "consultas_medidas": len(minhas),
             "consulta_alvo_creditada_a": creditada_a,
             "coincide_com_o_recorte_de_tipo": p["coincide_com_o_recorte_de_tipo"],
+            "tentativas_de_consulta_que_falharam": tentativas_que_falharam(
+                [m for m in minhas if m.get("recorte") == p["pergunta"]]),
             "veredito": veredito,
             "o_que_falta": o_que_falta_na_pergunta(veredito, p, minhas),
             "consultas_abertas_sem_faixa": sem_faixa,
@@ -264,6 +299,7 @@ def montar(dado, serp):
             "consultas_medidas": len(medicoes),
             "veredito": veredito,
             "consulta_que_autoriza": consulta_que_autoriza(medicoes),
+            "tentativas_de_consulta_que_falharam": tentativas_que_falharam(medicoes),
             "o_que_falta": o_que_falta(veredito, r, medicoes),
             "consultas_abertas_sem_faixa": sem_faixa,
             "numeros_que_a_serp_nao_publica": [m["numero_que_a_serp_nao_publica"] for m in medicoes
@@ -352,6 +388,15 @@ def mae_pode_nascer(c, categorias_do_dado):
     for l in c.get("perguntas", []):
         perguntas_por_categoria.setdefault(l["categoria"], []).append(l)
 
+    # Quantas vezes JA se tentou medir uma consulta propria para cada candidata, e falhou por
+    # instrumento. E derivado, nao declarado: sai das medicoes `NAO_MEDIDA` do proprio
+    # `serp-das-filhas.json`. Ver `tentativas_que_falharam()` para a causa e o custo.
+    falhas_por_candidata = {}
+    for l in c["recortes"]:
+        falhas_por_candidata[l["recorte"]] = l.get("tentativas_de_consulta_que_falharam", [])
+    for l in c.get("perguntas", []):
+        falhas_por_candidata[l["pergunta"]] = l.get("tentativas_de_consulta_que_falharam", [])
+
     saida = {}
     for cat, info in sorted(categorias_do_dado.items()):
         filhas_no_dado = info["tipos_que_passam_quais"]
@@ -400,13 +445,38 @@ def mae_pode_nascer(c, categorias_do_dado):
             nome for nome, consulta in candidatas
             if not consulta or consulta == consulta_da_mae
             or len(consultas.get(consulta, [])) > 1)
+        # E O TERCEIRO ANDAR DESTA CONTA, DE 09/10/2026: "candidata sem consulta propria" NAO e
+        # o mesmo que "consulta propria barata de medir". A candidata cuja consulta propria JA foi
+        # medida e falhou por instrumento nao e caminho barato — e caminho MEDIDO E FECHADO neste
+        # canal, e prometer medi-la de novo e mandar a proxima execucao repetir o que falhou. A
+        # divisao abaixo e por isso, e ela e derivada de `tentativas_de_consulta_que_falharam`.
+        ja_tentadas = [x for x in candidatas_sem_consulta_propria if falhas_por_candidata.get(x)]
+        nunca_tentadas = [x for x in candidatas_sem_consulta_propria
+                          if not falhas_por_candidata.get(x)]
+        quantas_tentativas = sum(len(falhas_por_candidata.get(x, [])) for x in ja_tentadas)
+
         if faltam == 0:
             custo = "nada: a 16.5 esta fechada por consulta"
-        elif candidatas_sem_consulta_propria:
+        elif nunca_tentadas:
             custo = ("CONSULTA MEDIDA, nao item de banco: %s ja tem dado verde e nao tem consulta"
-                     " aberta propria. Medir uma consulta nova para %s e a coisa mais barata que"
-                     " existe nesta categoria." % (", ".join("`%s`" % x for x in candidatas_sem_consulta_propria),
-                                                   "ela" if len(candidatas_sem_consulta_propria) == 1 else "uma delas"))
+                     " aberta propria, e NENHUMA tentativa de consulta propria falhada. Medir uma"
+                     " consulta nova para %s e a coisa mais barata que existe nesta categoria."
+                     % (", ".join("`%s`" % x for x in nunca_tentadas),
+                        "ela" if len(nunca_tentadas) == 1 else "uma delas"))
+            if ja_tentadas:
+                custo += (" E NAO TENTE %s: a consulta propria dela(s) ja foi medida e falhou por"
+                          " instrumento %d vez(es), com o motivo escrito em"
+                          " `serp-das-filhas.json`."
+                          % (", ".join("`%s`" % x for x in ja_tentadas), quantas_tentativas))
+        elif ja_tentadas:
+            custo = ("MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s)"
+                     " candidata(s) com dado verde e sem consulta propria — %s — ja teve(ram) %d"
+                     " tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento,"
+                     " com o motivo de cada uma em `serp-das-filhas.json`. A %d filha(s) que"
+                     " falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever"
+                     " consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta"
+                     " de uma filha nunca pede o numero (limite 5)."
+                     % (", ".join("`%s`" % x for x in ja_tentadas), quantas_tentativas, faltam))
         else:
             custo = ("ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria"
                      " ja tem consulta aberta propria, entao a %d filha(s) que falta(m) nao sai(em)"
@@ -418,6 +488,9 @@ def mae_pode_nascer(c, categorias_do_dado):
             "filhas_que_faltam_por_consulta": faltam,
             "o_que_a_proxima_filha_custa": custo,
             "candidatas_com_dado_verde_e_sem_consulta_propria": candidatas_sem_consulta_propria,
+            "candidatas_cuja_consulta_propria_ja_foi_medida_e_falhou": {
+                x: falhas_por_candidata.get(x, []) for x in ja_tentadas},
+            "tentativas_de_consulta_propria_falhadas_nesta_categoria": quantas_tentativas,
             "filhas_que_o_dado_autoriza": len(filhas_no_dado),
             "filhas_que_o_cruzamento_autoriza": len(filhas_no_cruzamento),
             "quais_o_cruzamento_autoriza": filhas_no_cruzamento,
@@ -510,6 +583,31 @@ def gerar_md(c, maes):
     else:
         A("**Toda categoria do Guia fechou as 3 filhas por consulta.**")
     A("")
+    # AS TENTATIVAS FALHADAS, NO .md E NAO SO NO JSON (09/10/2026). A licao e a mesma do
+    # `o_que_este_caminho_NAO_decide` de ontem: ressalva que mora so no JSON nao viaja com o
+    # numero, e quem escolhe bloco le o .md. Aqui vale mais ainda, porque o que estas linhas
+    # dizem e justamente "nao tente de novo".
+    tentadas = [(cat, m) for cat, m in maes.items()
+                if m["candidatas_cuja_consulta_propria_ja_foi_medida_e_falhou"]]
+    if tentadas:
+        A("### O QUE JA FOI MEDIDO E FALHOU — nao repita a consulta")
+        A("")
+        A("Tentativa de consulta propria classificada `NAO_MEDIDA` em `serp-das-filhas.json`, por")
+        A("candidata. Ate 09/10/2026 a fila acima nao as contava, e por isso prometia `a coisa mais")
+        A("barata que existe nesta categoria` para candidata cuja consulta propria ja havia falhado")
+        A("cinco vezes. Antes de escrever consulta nova, leia `o_canal_e_os_limites_dele` naquele")
+        A("arquivo: a consulta-alvo de uma filha **nunca pede o numero** (limite 5).")
+        A("")
+        A("| categoria | candidata | tentativas | consultas que falharam |")
+        A("|---|---|---|---|")
+        for cat, m in tentadas:
+            for cand, falhas in sorted(m["candidatas_cuja_consulta_propria_ja_foi_medida_e_falhou"].items()):
+                A("| `%s` | `%s` | **%d** | %s |"
+                  % (cat, cand, len(falhas),
+                     " · ".join("%s (%s)" % (t["consulta"], t["medida_em"] or "sem data")
+                                for t in falhas)))
+        A("")
+
     disputa = [(cat, m) for cat, m in maes.items()
                if m["consultas_disputadas_por_mais_de_uma_candidata"]]
     if disputa:
@@ -597,9 +695,15 @@ def _recorte(nome, veredito, itens=3, faltam=0, lastro=0, prop=None):
                                      "propriedade_mais_perto_de_ser_numero": prop}}
 
 
-def _medicao(recorte, classe, faixa=None, numero=None, consulta="c"):
+def _medicao(recorte, classe, faixa=None, numero=None, consulta="c", motivo=None):
+    """O `motivo` entrou em 09/10/2026 junto com a fila que LE tentativa falhada. Fixture sem o
+    campo que o real tem foi o defeito que a bancada de ontem achou nos tres .md: mundo fabricado
+    tem de ter a mesma FORMA do mundo medido, senao o portao verde nao diz nada sobre o disco."""
     return {"recorte": recorte, "consulta": consulta, "classificacao": classe,
-            "faixa_de_volume": faixa, "numero_que_a_serp_nao_publica": numero}
+            "faixa_de_volume": faixa, "numero_que_a_serp_nao_publica": numero,
+            "medida_em": "2026-01-01",
+            "motivo": motivo if motivo is not None
+                      else ("desvio de pais medido" if classe == "NAO_MEDIDA" else "")}
 
 
 def autoteste():
@@ -845,6 +949,101 @@ def autoteste():
           % ("ok  " if ok else "FALHA", "entrada SEM a chave perguntas nao explode", ok))
 
     print("")
+    print("O CUSTO DA PROXIMA FILHA — a frase que ESCOLHE o bloco, e que nada media ate hoje:")
+
+    # O mundo base das quatro: uma mae com dado verde, UM tipo autorizado e UMA pergunta
+    # autorizada, as duas presas a MESMA consulta. E o retrato da `alicate` real: 1 filha por
+    # consulta, faltam 2, e as duas candidatas sem consulta propria.
+    def _mundo_do_custo(medicoes):
+        dado = {"ilha": "x",
+                "recortes": [_recorte("ali", "passa"), _recorte("ali/cortador", "passa")],
+                "perguntas": [_pergunta("pergunta:espessura", "ali", consulta="como cortar")],
+                "resumo": {"por_categoria_do_guia": {}}}
+        c = montar(dado, {"medicoes": medicoes})
+        return mae_pode_nascer(c, {"ali": {"tipos_que_passam_quais": ["ali/cortador"]}})["ali"]
+
+    compartilhada = [_medicao("ali", "ABERTA", consulta="a mae"),
+                     _medicao("ali/cortador", "ABERTA", consulta="como cortar")]
+
+    # (1) O MUNDO SEM TENTATIVA FALHADA — o controle do experimento. Aqui a frase antiga e a
+    # CERTA, e se ela desaparecesse o conserto teria virado uma trava sobre tudo.
+    m = _mundo_do_custo(compartilhada)
+    ok = ("coisa mais barata" in m["o_que_a_proxima_filha_custa"]
+          and m["tentativas_de_consulta_propria_falhadas_nesta_categoria"] == 0
+          and m["filhas_que_faltam_por_consulta"] == 2)
+    falhas += 0 if ok else 1
+    print("  %s %-44s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "sem tentativa falhada, a promessa barata FICA", ok))
+
+    # (2) UMA DAS DUAS JA FALHOU: a promessa continua, para a OUTRA, e a que falhou sai nomeada
+    # com um "nao tente". Meio-mundo e o caso que mais engana, porque a frase antiga estava
+    # metade certa.
+    m = _mundo_do_custo(compartilhada + [
+        _medicao("ali/cortador", "NAO_MEDIDA", consulta="quantos mm o cortador corta")])
+    texto = m["o_que_a_proxima_filha_custa"]
+    ok = ("coisa mais barata" in texto and "`pergunta:espessura`" in texto
+          and "NAO TENTE" in texto and "`ali/cortador`" in texto
+          and m["tentativas_de_consulta_propria_falhadas_nesta_categoria"] == 1)
+    falhas += 0 if ok else 1
+    print("  %s %-44s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "uma falhou: promete a outra e nomeia a fechada", ok))
+
+    # (3) AS DUAS JA FALHARAM — e e o retrato da `alicate` de 09/10/2026. A frase NAO pode mais
+    # dizer "a coisa mais barata que existe nesta categoria": foi exatamente isso que ela disse
+    # com CINCO tentativas falhadas no mesmo arquivo que ela le.
+    m = _mundo_do_custo(compartilhada + [
+        _medicao("ali/cortador", "NAO_MEDIDA", consulta="quantos mm o cortador corta"),
+        _medicao("pergunta:espessura", "NAO_MEDIDA", consulta="espessura em mm do alicate")])
+    texto = m["o_que_a_proxima_filha_custa"]
+    ok = ("coisa mais barata" not in texto
+          and "MEDIR SERP NAO E CAMINHO AQUI" in texto
+          and "ITEM DE BANCO ou PERGUNTA NOVA" in texto
+          and "limite 5" in texto
+          and m["tentativas_de_consulta_propria_falhadas_nesta_categoria"] == 2
+          and sorted(m["candidatas_cuja_consulta_propria_ja_foi_medida_e_falhou"])
+              == ["ali/cortador", "pergunta:espessura"])
+    falhas += 0 if ok else 1
+    print("  %s %-44s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "as duas falharam: a promessa barata MORRE", ok))
+
+    # (4) E A TENTATIVA DO VIZINHO NAO E TENTATIVA DELA. A pergunta herda a CLASSE da consulta
+    # compartilhada, e ela nao pode herdar a FALHA de uma consulta que nao e dela — senao o
+    # conserto fecharia caminho por contagio e o erro teria trocado de lado.
+    m = _mundo_do_custo(compartilhada + [
+        _medicao("ali/cortador", "NAO_MEDIDA", consulta="quantos mm o cortador corta")])
+    ok = sorted(m["candidatas_cuja_consulta_propria_ja_foi_medida_e_falhou"]) == ["ali/cortador"]
+    falhas += 0 if ok else 1
+    print("  %s %-44s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "falha do vizinho NAO conta como da pergunta", ok))
+
+    # (5) E A 16.5 FECHADA CONTINUA DIZENDO "nada", com ou sem tentativa falhada no meio: o
+    # conserto mexe no CUSTO do que falta, nunca no veredito de quem nao tem o que fazer.
+    dado = {"ilha": "x", "recortes": [_recorte("ac", "passa")] +
+            [_recorte("ac/%s" % t, "passa") for t in ("a", "b", "c")],
+            "perguntas": [], "resumo": {"por_categoria_do_guia": {}}}
+    c = montar(dado, {"medicoes": [_medicao("ac", "ABERTA", consulta="mae")] +
+                      [_medicao("ac/%s" % t, "ABERTA", consulta=t) for t in ("a", "b", "c")] +
+                      [_medicao("ac/a", "NAO_MEDIDA", consulta="uma que falhou")]})
+    m = mae_pode_nascer(c, {"ac": {"tipos_que_passam_quais": ["ac/a", "ac/b", "ac/c"]}})["ac"]
+    ok = (m["o_que_a_proxima_filha_custa"] == "nada: a 16.5 esta fechada por consulta"
+          and m["a_mae_pode_nascer"] is True)
+    falhas += 0 if ok else 1
+    print("  %s %-44s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "16.5 fechada ignora tentativa falhada", ok))
+
+    # (6) A DERIVACAO E ORDENADA E CARREGA O MOTIVO — porque a linha do .md que diz "nao repita"
+    # vale pelo motivo, nao pela contagem.
+    t = tentativas_que_falharam([
+        _medicao("x", "NAO_MEDIDA", consulta="segunda", motivo="limite 5"),
+        _medicao("x", "ABERTA", consulta="aberta"),
+        _medicao("x", "NAO_MEDIDA", consulta="primeira", motivo="limite 6")])
+    ok = ([i["consulta"] for i in t] == ["primeira", "segunda"]
+          and [i["motivo"] for i in t] == ["limite 6", "limite 5"])
+    falhas += 0 if ok else 1
+    print("  %s %-44s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "so NAO_MEDIDA entra, ordenada, com motivo", ok))
+
+    print("")
     print("A MEDICAO ORFA — consulta num recorte que o portao de dado nao conhece:")
     orfas = montar({"ilha": "x", "recortes": [_recorte("a", "passa")]},
                    {"medicoes": [_medicao("a", "ABERTA"), _medicao("inventado/x", "ABERTA")]})
@@ -857,7 +1056,8 @@ def autoteste():
     # 07/10/2026 com 14 afirmacoes e o total continuou em 32 na primeira passada, dizendo
     # verde sobre menos do que media. 3+2+1 = a 16.5; 1 = pedido de faixa; 1 = orfa;
     # 3+6+1+1+1+1+1 = as sete pecas da bancada das perguntas, na ordem em que saem.
-    total = len(casos) + len(prec) + 3 + 2 + 1 + 1 + 1 + (3 + 6 + 1 + 1 + 1 + 1 + 1)
+    # Os SEIS de 09/10/2026 sao os da fila do custo, e a conta continua a mao de proposito.
+    total = len(casos) + len(prec) + 3 + 2 + 1 + 1 + 1 + (3 + 6 + 1 + 1 + 1 + 1 + 1) + 6
     print("")
     if falhas:
         print("REPROVADO: %d de %d casos falharam." % (falhas, total))
@@ -889,6 +1089,17 @@ def main(argv):
             with io.open(SAIDA_MD, encoding="utf-8") as f:
                 if f.read() != md:
                     falhas.append("dados/cruzamento-14-9.md nao fecha com a propria derivacao")
+        # FALHA-FECHADA DE 09/10/2026: `NAO_MEDIDA` sem motivo escrito seria tentativa falhada
+        # que nao ensina nada — e desde hoje ela e o que FECHA um caminho na fila da 16.5. Fechar
+        # caminho sem dizer por que e pior que nao fechar: a execucao seguinte nao tem como saber
+        # se a consulta era ruim ou se o canal nao alcanca.
+        sem_motivo = sorted("%s / %s" % (m["recorte"], m["consulta"])
+                            for m in serp["medicoes"]
+                            if m["classificacao"] == "NAO_MEDIDA"
+                            and not (m.get("motivo") or "").strip())
+        if sem_motivo:
+            falhas.append("medicao NAO_MEDIDA sem motivo escrito, e ela fecha caminho na fila "
+                          "da 16.5: %s" % ", ".join(sem_motivo))
         if c["medicoes_de_serp_orfas"]:
             falhas.append("dados/serp-das-filhas.json mede recorte que o portao de dado nao conhece: %s"
                           % ", ".join(c["medicoes_de_serp_orfas"]))
@@ -900,6 +1111,8 @@ def main(argv):
             return 1
         print("  ok   dados/cruzamento-14-9.md fecha com as duas entradas de hoje")
         print("  ok   nenhuma medicao de SERP em recorte que o portao de dado nao conhece")
+        print("  ok   toda medicao NAO_MEDIDA diz por que falhou (%d medida(s))"
+              % sum(1 for m in serp["medicoes"] if m["classificacao"] == "NAO_MEDIDA"))
         print("")
         print("APROVADO: o cruzamento fecha com a derivacao.")
         return 0

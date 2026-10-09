@@ -3,6 +3,121 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+09/10/2026 13h1xZ — O PORTÃO DA 14.9 FECHOU A PROPOSTA 3 NA PRIMEIRA PERGUNTA, E A MESMA PASSADA ACHOU A FILA PROMETENDO, OUTRA VEZ, UM CAMINHO QUE A PRÓPRIA ILHA JÁ MEDIU E FECHOU
+
+Nenhuma URL nova (a ilha segue em **21**), nenhuma leva do teto da 21.4 gasta, nenhum Sync e nenhuma
+revisão nova (o `/status` segue na **71**) — este bloco é régua e dado de repositório, não option.
+**Cinco arquivos mudaram e o `git status` não nomeou nenhum sexto.**
+
+1. **OS DOIS COMANDOS DA 29 RODARAM ANTES DE TUDO, e a porta está de pé.** `conferir-no-ar.py`
+   **APROVADO com 524 afirmações e 0 falha** (21 de 21 URLs do sitemap em 200, as três da 29.2 em
+   200, caminho inexistente em 404 na página desta ilha). `leitura-do-visitante.py` **REPROVADO com
+   EXATAMENTE 1 defeito**: o soft 404 da borda — origem 404, borda 1ª leitura 404 e 2ª 200, com
+   `x-proxy-cache HIT` e `max-age=7200`. É a pendência do Raphael desde 29/09, vermelho esperado com
+   dono escrito. **Zero defeito novo.** Rede pela 20.2: `clubedomosaico.com.br` em 200 nas TRÊS
+   passadas, com `aquametria.com.br` em 200 na mesma.
+2. **A PROPOSTA 3 FOI AO PORTÃO E PAROU NA PRIMEIRA PERGUNTA — E O CRITÉRIO ERA PRÉ-REGISTRADO.** O
+   `ESTADO.md` de 11h5xZ escolheu o bloco e escreveu, **antes de qualquer medição**, que se a SERP
+   viesse TOMADA a execução pararia ali. Veio TOMADA. **Parou ali.** Três passadas, com quem ocupa
+   escrito pelo nome, em `dados/corpus-buscas.md` (cluster 2).
+3. **A LINHA QUE DECIDIU NÃO É O TERMO GORDO: É O MOSAICO.** `quadro divino espirito santo mosaico
+   artesanal` devolveu OLX, Mercado Livre, Magazine Luiza, Casas Bahia, Extra, agregador de Shopee e
+   Holyart IT — e a **Casas Bahia vende um `Mosaico do Espírito Santo com anjos 120x140cm` por
+   R$ 6.872,40, na primeira página**. Não é o caso de `vaso de mosaico`, em que a SERP devolve
+   cerâmica lisa e sobra brecha; aqui o varejo já serve **exatamente** o produto, com preço e
+   parcela. Zero página editorial em dez.
+4. **E A CONSULTA NUA — A QUE TEM AS 4 IMPRESSÕES — NÃO PÔDE SER MEDIDA, e isso vale mais que o
+   "não".** `quadro divino espirito santo` devolveu PDF de reza da UNEMAT, iconografia da UFMG, lição
+   de EBD, Scripta Theologica ES, EWTN ES, coromoto.it e a arquidiocese de Toronto. **Nenhum
+   resultado comercial e nenhum de mosaico.** As 4 impressões em 39,2 vêm de uma consulta cuja
+   primeira página é de **devoção, não de compra** — subir nela levaria a peça da artesã para uma
+   SERP de reza. O endereço não é difícil: é o lugar errado.
+5. **O QUE SOBROU VIVO NÃO É A PROPOSTA 3, E NÃO FOI CHAMADO DE PROPOSTA 3 CUMPRIDA.** A consulta de
+   **método** (`como fazer quadro do divino espirito santo em mosaico de caquinho passo a passo`)
+   mediu **ABERTA** — top 10 de PDF escolar, matéria de 2026 sobre piso de caquinho e tutorial sem
+   número. Mas é **outra consulta**, sem faixa e sem impressão, e o critério de pronto da proposta era
+   `quadro divino espirito santo` entrar na banda 11 a 20. Chamá-la de cumprida seria critério dobrado
+   para caber no dado que veio (1.2-b.4). Virou pedido de faixa ao Raphael e candidata do bloco 5 (os
+   doze tutoriais-âncora, que já têm *quadro* na lista).
+6. **DEPOIS DE PARAR, A MESMA RÉGUA FOI APONTADA PARA A FILA — E A FILA ESTAVA MENTINDO DE NOVO, 24
+   HORAS DEPOIS DE SER CONSERTADA.** A tabela de 09/10 manhã imprimia, para a `alicate`:
+   *"Medir uma consulta nova para uma delas é a coisa mais barata que existe nesta categoria."* No dia
+   em que essa frase nasceu, o **mesmo arquivo que a régua lê** já guardava **CINCO** medições
+   `NAO_MEDIDA` de consulta própria nessa categoria — quatro do `alicate/cortador_de_azulejo` (30/09 e
+   07/10) e uma da `pergunta:alicate-espessura-de-corte`. **`NAO_MEDIDA` custava ZERO na conta do
+   custo.** É a mesma família de ontem, uma camada acima: lá o custo infinito estava em prosa numa
+   pendência de banco; aqui estava em dado, no arquivo que a régua abre, e a régua não o somava.
+7. **E O ARQUIVO JÁ DIZIA POR QUE ELAS FALHAM, COM DOIS DIAS DE IDADE.** O
+   `limite_5_consulta_que_pede_a_medida`, de 07/10, fecha com todas as letras: *"a consulta-alvo de
+   uma filha NUNCA pede o número."* A pergunta desta categoria carrega como **assunto** exatamente o
+   número (`espessura_maxima_de_corte_mm`). **ESTA EXECUÇÃO GASTOU TRÊS PASSADAS PARA REDESCOBRIR
+   ISSO** — as três pediam o milímetro na frase e as três desviaram. Está escrito aqui porque é o
+   mesmo defeito que a 20.2 nomeia: **bloqueio herdado de DOCUMENTO também se reteste antes de ser
+   respeitado — e também se LEIA antes de ser repetido.** Quatro execuções já anotaram "esbarra no
+   egresso" sem abrir a fonte que estava em casa; esta anotou o avesso, e abriu a fonte depois de
+   gastar a medição.
+8. **MAS AS TRÊS PASSADAS NÃO FORAM PERDIDAS: UMA DELAS ACHOU UM LIMITE QUE NÃO EXISTIA, E ELE NÃO É
+   DESVIO DE PAÍS.** Nasceu o **`limite_6_homonimo_intra_portugues`**: `pastilha` ao lado de `corte`
+   ou `espessura` é, em português do Brasil, o **inserto de usinagem** — `pastilha de corte por
+   fresagem`. A SERP saiu ferramentaria industrial, com Hoffmann Group e RS Online publicando mm de
+   capacidade de corte de **fio de eletrônica**. **Nenhuma âncora de artesanato desfaz isso, porque
+   não há país errado a consertar:** o resultado é brasileiro e português e é de outro assunto. Os
+   limites 4 e 5 não cobriam este caso. A regra prática que fica: para medir corte nesta ilha a
+   consulta nomeia `caquinho`, `azulejo` ou `tessela`, **nunca `pastilha`**, e não pede milímetro.
+9. **A FECHADURA É DERIVADA, E AQUI NÃO SE DIGITOU UM NÚMERO.** Ontem a fechadura precisou de dois
+   campos novos escritos à mão (`fechada_por_canal`, `recortes_fechados`). Hoje não precisou de
+   nenhum: a tentativa falhada **já é dado**, com data e motivo, no arquivo que a régua abre.
+   `tentativas_que_falharam()` deriva e `mae_pode_nascer()` divide o custo em **três** ramos — ninguém
+   tentou (a promessa barata fica), uma tentou (promete a outra e **nomeia a fechada com um "não
+   tente"**), todas tentaram (a promessa barata **morre** e sobra ITEM DE BANCO ou PERGUNTA NOVA,
+   apontando o limite 5). A `alicate` saiu de *"a coisa mais barata que existe"* para **8 tentativas
+   medidas e falhadas, nomeadas uma a uma com data**.
+10. **FALHA-FECHADA NOVA, e ela é sobre o próprio conserto:** `NAO_MEDIDA` **sem motivo escrito**
+    passa a reprovar o `--conferir`. Fechar caminho sem dizer por que é pior que não fechar — a
+    execução seguinte não teria como saber se a consulta era ruim ou se o canal não alcança. Medido:
+    apagando um motivo em memória, o portão acha 1; no disco, 10 de 10 têm motivo.
+11. **E A TENTATIVA DO VIZINHO NÃO CONTA COMO DA PERGUNTA.** A pergunta herda a **classe** da consulta
+    compartilhada (é o que a correção de 07/10 estabeleceu), e não pode herdar a **falha** de uma
+    consulta que não é dela — senão o conserto fecharia caminho por contágio e o erro teria só trocado
+    de lado. Tem caso próprio na bancada.
+12. **NENHUM VEREDITO MUDOU, e isso é a confirmação e não um consolo.** O diff do
+    `cruzamento-14-9.md` tem **zero** linha de `veredito`, zero linha de recorte e zero linha de
+    pergunta alterada: 42 recortes, `pode_nascer` 8, `espera_autoridade` 3, `sem_nenhum_dos_dois` 31,
+    iguais aos de manhã. **A próxima mãe do Guia continua sendo a `rejunte`**, a 1 filha. A régua não
+    afrouxou nem apertou portão nenhum — ela parou de **recomendar** o caminho que a ilha já mediu
+    como fechado. Mesma assinatura do 0 de 42 de ontem.
+13. **O CUSTO DA PRÓXIMA FILHA NUNCA TINHA SIDO MEDIDO POR NADA, e era a frase que ESCOLHE o bloco.**
+    Os 46 casos do autoteste cobriam as 4×5 combinações do veredito, a 16.5 e as perguntas — **e nem
+    um deles tocava `o_que_a_proxima_filha_custa`**. É por isso que ela mentiu duas vezes em dois dias
+    sem nada acusar. Agora tem **6 casos**, e o primeiro deles é o **mundo sem tentativa falhada como
+    controle do experimento**: lá a frase antiga é a certa e tem de continuar saindo, senão o conserto
+    teria virado uma trava sobre tudo. Bancada em **52 casos, 0 falha** (eram 46).
+14. **O FIXTURE GANHOU O CAMPO QUE O REAL TEM.** `_medicao()` não escrevia `motivo` nem `medida_em`, e
+    o portão novo lê os dois. Mundo fabricado sem a forma do mundo medido é verde sobre nada — foi
+    exatamente o defeito que a bancada de ontem achou nos três `.md`.
+15. **A RESSALVA SAIU DO JSON PARA O `.md`, DENTRO DO QUE O `--conferir` COMPARA.** Nasceu a seção
+    **"O QUE JÁ FOI MEDIDO E FALHOU — não repita a consulta"**, com categoria, candidata, contagem e
+    **a consulta de cada tentativa com a data**. A lição é a do item 7 de ontem: ressalva que mora só
+    no JSON não viaja com o número, e quem escolhe bloco lê o `.md`. Aqui vale mais ainda, porque o
+    que essas linhas dizem é literalmente "não tente de novo".
+16. **O DESPACHO DE 07/10 FICA INTEIRO, retestado e não herdado (18.4).** `env | grep -c GOOGLE_SA`
+    devolve **0** e `search-console.py --ilha clubedomosaico` devolve *"Sem credencial"*. **Quinta
+    execução a medir em vez de copiar a frase** — e está escrito no `PROMPT.md` que, daqui em diante,
+    cinco medições idênticas não são cinco informações: a próxima mede uma vez e segue.
+17. **BANCADA.** `cruzamento-14-9.py --autoteste` **52 de 52**; `--conferir` **aprovado**, com a
+    afirmação nova ("toda medição NAO_MEDIDA diz por que falhou", 10 medidas);
+    `filhas-do-guia.py --autoteste` **53 de 53** e `--conferir` aprovado nas quatro afirmações;
+    `validar-banco.py` **OK** e `validar-pastilhas.py` **OK, 0 item com falha**. Nenhum snippet PHP
+    foi tocado e nenhum arquivo de banco mudou — `teste-f2`, `teste-tecnicas`, `teste-casca` e
+    `teste-guia` foram rodados de todo jeito, pela lição do item 13 de hoje (a bancada roda DEPOIS,
+    nunca só antes), e o `git status` nomeou **exatamente** os cinco arquivos deste bloco.
+18. **O QUE ESTE BLOCO DEIXA DESBLOQUEADO, e é a fila consertada que decide.** A `rejunte` continua a
+    **1 filha por consulta**, e o custo dela é **ITEM DE BANCO ou PERGUNTA NOVA** — não é medir SERP,
+    porque toda candidata com dado verde dela já tem consulta aberta própria, e `acrilico` e `epoxi`
+    estão fechados por canal desde 08/10. A `alicate` **não é mais o caminho barato** e agora diz por
+    quê, com oito datas. Antes de escrever consulta nova em qualquer categoria: a consulta-alvo de uma
+    filha **não pede o número** (limite 5) e **não diz `pastilha` perto de `corte`** (limite 6).
+
 09/10/2026 10h5xZ — A RÉGUA QUE ESCOLHE O BLOCO ESTAVA MENTINDO, E ELA JÁ TINHA MANDADO UMA EXECUÇÃO COLETAR O QUE ESTA ILHA MEDIU COMO IMPOSSÍVEL
 
 *(Esta entrada tem uma SEGUNDA METADE, fechada às 11h5xZ e commitada depois do primeiro push: a

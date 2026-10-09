@@ -14,7 +14,8 @@
     "limite_2_ordem": "nao da a ORDEM da SERP brasileira. Este arquivo classifica QUEM OCUPA, que e o que a 14.9 pede com essas palavras, e nao afirma posicao",
     "limite_3_marca": "marca dentro da consulta vicia a medicao e devolve pagina de fabricante. E a trava de coleta da secao 8 aplicada a SERP: nunca por na consulta o valor que se quer confirmar",
     "limite_4_nome_de_recorte_bilingue": "ACRESCENTADO EM 07/10/2026, depois de TRES passadas falharem no mesmo recorte. Consulta cujo NUCLEO e uma expressao que existe igual em espanhol desvia de pais por mais brasileira que seja a moldura da frase: `cortador de azulejo` e `pastilha` cabem inteiras em espanhol, e as tres passadas (30/09 e duas em 07/10) devolveram Truper e Sears do Mexico, El Corte Ingles e patente do OEPM da Espanha — inclusive a terceira, que foi ancorada de proposito em `caquinho` e `mosaico artesanal`, duas expressoes que so existem no Brasil. Ancora brasileira na MOLDURA nao corrige nucleo bilingue. A prova pelo outro lado esta neste mesmo arquivo: a consulta da mae, `qual alicate usar para cortar pastilha de mosaico artesanal`, mediu ABERTA de primeira em 05/10 — porque `alicate` nao e palavra espanhola (la e `alicate`/`pinza`, e a SERP separa). A REGRA PRATICA: para medir corte nesta ilha, ancore em `alicate`, nunca em `cortador de azulejo`. E a consequencia que custa: o recorte `alicate/cortador_de_azulejo` passa o portao de DADO (3 itens, 4 numeros) e continua SEM SERP medida — ele nao e mensuravel por este canal com o proprio nome, e quem precisar dele mede pela mae ou pede a SERP a outro canal.",
-    "limite_5_consulta_que_pede_a_medida": "ACRESCENTADO EM 07/10/2026 as 19h3xZ, e ele SUBSTITUI a regra pratica do limite 4 por uma causa medida em DUAS categorias. O limite 4, escrito seis horas antes, disse `para medir corte nesta ilha, ancore em alicate, nunca em cortador de azulejo` — e a passada desta execucao fez exatamente isso (`ate quantos milimetros de espessura o ALICATE corta pastilha e CAQUINHO para mosaico artesanal`: a ancora pedida, mais duas expressoes que so existem no Brasil) e desviou igual, para ManoMano e MosaicShop da Espanha, Mercado Livre do Chile, Truper e Sears do Mexico. A variavel nao e a ancora: e PEDIR O NUMERO. A prova vem dos dois lados e de duas categorias. Desviaram as CINCO consultas que pedem a medida (duas de 07/10 de manha em `alicate/cortador_de_azulejo`, uma de 30/09, a de hoje no alicate e a de hoje no rejunte — `rejunte para junta fina de 1 mm`, que trouxe Grupo Puma, Isaval, Anfapa e o Gerador de Precos, todos da Espanha). Mediram no Brasil as TRES que nao pedem medida: a da mae (`qual alicate usar para cortar pastilha de mosaico artesanal`), a de `como cortar pastilha de vidro para mosaico qual ferramenta` e a desta execucao no rejunte (`da para colar os caquinhos bem juntos...`). A CAUSA E ESTRUTURAL e esta escrita neste proprio arquivo, do outro lado: quem publica medida e o fabricante, em documento tecnico, e o corpus de documento tecnico que este canal alcanca e iberico e mexicano. O campo `numero_que_a_serp_nao_publica` e a mesma frase pelo avesso — se o numero NAO esta na SERP brasileira, consulta que o exige sai do Brasil para achar quem o tem. A REGRA PRATICA, e ela vale para toda categoria: a consulta-alvo de uma filha NUNCA pede o numero. Ela faz a pergunta da artesa, e o numero e o que a PAGINA entrega. E as duas filhas vivas desta ilha sao assim: `qual cola usar no mosaico` e `quantas pastilhas para mosaico` nao pedem milimetro nenhum."
+    "limite_5_consulta_que_pede_a_medida": "ACRESCENTADO EM 07/10/2026 as 19h3xZ, e ele SUBSTITUI a regra pratica do limite 4 por uma causa medida em DUAS categorias. O limite 4, escrito seis horas antes, disse `para medir corte nesta ilha, ancore em alicate, nunca em cortador de azulejo` — e a passada desta execucao fez exatamente isso (`ate quantos milimetros de espessura o ALICATE corta pastilha e CAQUINHO para mosaico artesanal`: a ancora pedida, mais duas expressoes que so existem no Brasil) e desviou igual, para ManoMano e MosaicShop da Espanha, Mercado Livre do Chile, Truper e Sears do Mexico. A variavel nao e a ancora: e PEDIR O NUMERO. A prova vem dos dois lados e de duas categorias. Desviaram as CINCO consultas que pedem a medida (duas de 07/10 de manha em `alicate/cortador_de_azulejo`, uma de 30/09, a de hoje no alicate e a de hoje no rejunte — `rejunte para junta fina de 1 mm`, que trouxe Grupo Puma, Isaval, Anfapa e o Gerador de Precos, todos da Espanha). Mediram no Brasil as TRES que nao pedem medida: a da mae (`qual alicate usar para cortar pastilha de mosaico artesanal`), a de `como cortar pastilha de vidro para mosaico qual ferramenta` e a desta execucao no rejunte (`da para colar os caquinhos bem juntos...`). A CAUSA E ESTRUTURAL e esta escrita neste proprio arquivo, do outro lado: quem publica medida e o fabricante, em documento tecnico, e o corpus de documento tecnico que este canal alcanca e iberico e mexicano. O campo `numero_que_a_serp_nao_publica` e a mesma frase pelo avesso — se o numero NAO esta na SERP brasileira, consulta que o exige sai do Brasil para achar quem o tem. A REGRA PRATICA, e ela vale para toda categoria: a consulta-alvo de uma filha NUNCA pede o numero. Ela faz a pergunta da artesa, e o numero e o que a PAGINA entrega. E as duas filhas vivas desta ilha sao assim: `qual cola usar no mosaico` e `quantas pastilhas para mosaico` nao pedem milimetro nenhum.",
+    "limite_6_homonimo_intra_portugues": "ACRESCENTADO EM 09/10/2026. Os limites 4 e 5 falam de palavra que existe IGUAL em outra lingua e de consulta que pede o numero. Este e um terceiro, e ele nao tem desvio de pais para corrigir: a palavra do vocabulario desta ilha e HOMONIMA de um produto de outro setor NO MESMO IDIOMA. Medido: `pastilha` ao lado de `corte` ou `espessura` devolve `pastilha de corte por fresagem` — o inserto de usinagem —, e a SERP sai ferramentaria industrial, com Hoffmann Group e RS Online publicando mm de capacidade de corte de FIO. Nenhuma ancora de artesanato desfaz isso, porque nao ha pais errado a consertar: o resultado e brasileiro e portugues e e de outro assunto. A REGRA PRATICA: para medir corte nesta ilha a consulta nomeia `caquinho`, `azulejo` ou `tessela`, nunca `pastilha`, e nao pede milimetro (limite 5)."
   },
   "classificacoes": {
     "ABERTA": "top 10 e forum, video, blog velho ou resposta generica sem numero, E ao menos um deles fala do assunto desta ilha. Alvo da 14.9",
@@ -572,12 +573,94 @@
       "fonte_da_faixa": null,
       "numero_que_a_serp_nao_publica": null,
       "o_que_esta_passada_acrescenta": "ELA EXISTE PARA SEPARAR DUAS CAUSAS, e separou. A passada de compra desta mesma data mediu TOMADA sem desvio nenhum; esta, que e pergunta de METODO limpa (nenhuma palavra de compra, nenhum numero, nenhuma marca), nao chegou a ser medida no Brasil. Entao o que fecha a `pastilha` neste canal NAO e uma coisa so: a pergunta de COMPRA mede no Brasil e e tomada pelo varejo, e a pergunta de METODO desvia de pais antes de ser medida. Duas portas, dois motivos diferentes, e nenhuma das duas se abre escrevendo outra frase. A terceira leitura que isto deixa: o metodo desta categoria tambem nao tem numero no banco — o que responderia `soltar da tela ou nao` e `placa_lado_a_cm` e `espessura_mm`, que moram em `geometria` e NAO sao lidas pelo portao da secao 9, que le so `propriedades`."
+    },
+    {
+      "recorte": "pergunta:alicate-espessura-de-corte",
+      "consulta": "alicate de mosaico corta pastilha de quantos milimetros de espessura",
+      "medida_em": "2026-10-09",
+      "quem_ocupa": [
+        "Hoffmann Group PT (`Pastilha de corte reversivel por fresagem XDHW 060210` — INSERTO DE USINAGEM)",
+        "Hoffmann Group PT (ST1400, o mesmo setor)",
+        "RS Online PT e ES (3 paginas de `alicates de corte` de eletronica, capacidade 1 / 1,2 / 2,5 mm de FIO)",
+        "Leroy Merlin PT (alicate de corte de chapa Dexter 300 mm)",
+        "Dentaltix PT (alicate de corte de arame odontologico Aesculap)",
+        "Easy AR (alicate corta aco e aluminio)",
+        "AECweb BR (pagina de produto do `Alicate Facil` da Sumer: revestimento e vidro ate 8 mm, pedaco de ate 3 mm, 'util para mosaicistas')"
+      ],
+      "tipos_que_ocupam": [
+        "fora_do_pais",
+        "outro_setor",
+        "loja",
+        "fabricante"
+      ],
+      "classificacao": "NAO_MEDIDA",
+      "motivo": "DUAS causas, e a segunda e NOVA neste arquivo. (1) O limite 5: a consulta PEDE A MEDIDA ('quantos milimetros de espessura'), e as cinco consultas que pediram medida ja desviaram antes — esta e a sexta. (2) E o limite 6, que nasce desta passada e NAO e desvio de pais: `pastilha` + `corte`/`espessura` e, em portugues do Brasil, o INSERTO DE USINAGEM — `pastilha de corte por fresagem`. A SERP respondeu ferramentaria industrial, nao mosaico, e os tres numeros em mm que voltaram (1, 1,2 e 2,5 mm) sao capacidade de corte de FIO de eletronica. UM resultado brasileiro falou de mosaico, e e pagina de produto: o `Alicate Facil` da Sumer no AECweb.",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null,
+      "o_que_esta_passada_acrescenta": "O HOMONIMO INTRA-PORTUGUES, que nenhum limite anterior cobria. O limite 4 fala de nucleo que existe IGUAL em outra lingua e o 5 fala de consulta que pede o numero; este caso e um terceiro: a palavra e brasileira, a consulta e brasileira, e `pastilha de corte` e um produto de OUTRO SETOR no mesmo idioma. Escrever `pastilha` ao lado de `corte` ou `espessura` compra a ferramentaria junto, e nenhuma ancora de artesanato desfaz isso porque nao ha desvio de pais a corrigir."
+    },
+    {
+      "recorte": "pergunta:alicate-espessura-de-corte",
+      "consulta": "alicate de mosaico ou torques espessura maxima de azulejo que corta mm artesanato",
+      "medida_em": "2026-10-09",
+      "quem_ocupa": [
+        "ArchiExpo PT (fabricante, linha residencial de pastilhas)",
+        "Cofan ES (ficha tecnica em PDF)",
+        "ManoMano ES (alicate Mejix, abertura maxima 19 mm)",
+        "Obramat ES (tenaza para mosaico Rubi)",
+        "Sears MX (cortador manual de ceramica)",
+        "Leroy Merlin PT (cortador VEVOR 1200 mm, 6 a 15 mm)",
+        "Mercado Libre MX (`mosaicos artesanales`)",
+        "PacoArtCenter GR (tessela 10x10 cm, 4 mm)",
+        "Rossello PE (ficha tecnica em PDF)",
+        "clubmitsubishiasx.com (irrelevante)"
+      ],
+      "tipos_que_ocupam": [
+        "fora_do_pais",
+        "fabricante",
+        "loja",
+        "irrelevante"
+      ],
+      "classificacao": "NAO_MEDIDA",
+      "motivo": "Desvio de pais INTEIRO pelos limites 4 e 5: ZERO resultado brasileiro em dez. A consulta pede a medida ('espessura maxima ... mm') e o corpo tecnico que este canal alcanca para medida de ferramenta de mosaico e iberico, mexicano e peruano — exatamente o que o limite 5 escreveu em 07/10. A ancora `artesanato` na moldura nao corrigiu nada, e nem devia: o limite 5 ja diz que a variavel nao e a ancora.",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": null,
+      "o_que_esta_passada_acrescenta": "Nada de novo sobre o canal, e e por isso que ela esta aqui: e a confirmacao limpa do limite 5 na forma mais desfavoravel possivel (duas ancoras brasileiras e a palavra `artesanato`), e sem ela as outras duas passadas desta data ficariam sem controle."
+    },
+    {
+      "recorte": "pergunta:alicate-espessura-de-corte",
+      "consulta": "alicate de mosaico artesanal ate quantos milimetros de caquinho ele corta vidro ceramica",
+      "medida_em": "2026-10-09",
+      "quem_ocupa": [
+        "AECweb BR (pagina de produto do `Alicate Facil` da Sumer)",
+        "Bondfaro BR (comparador de preco, pagina 12 da categoria `alicates`)",
+        "Zoom BR (comparador de preco, pagina 10 da categoria `alicates`)",
+        "Mercado Libre CL (video curto de alicate pico de pato)",
+        "Obramat ES (tenaza para mosaico Rubi, capacidade de corte 15 mm)",
+        "MosaicShop EU/ES (2 paginas: Creator's Brier e Seabell, alicates de roda)",
+        "ManoMano ES (Mejix, abertura 19 mm)",
+        "Sears MX (cortador manual)"
+      ],
+      "tipos_que_ocupam": [
+        "fora_do_pais",
+        "loja",
+        "fabricante"
+      ],
+      "classificacao": "NAO_MEDIDA",
+      "motivo": "Desvio PARCIAL pelos limites 4 e 5, com a ancora `caquinho` — expressao que so existe no Brasil — DENTRO da consulta e sem efeito, que e a terceira vez que isso e medido nesta ilha. Os tres brasileiros que voltaram nao sustentam veredito: duas paginas FUNDAS de comparador de preco (pagina 12 do Bondfaro, pagina 10 do Zoom) e a mesma pagina de produto do AECweb. Nenhum dos dez compara as ferramentas, e nenhum publica o mm por TIPO de ferramenta.",
+      "faixa_de_volume": null,
+      "fonte_da_faixa": null,
+      "numero_que_a_serp_nao_publica": "o limite em mm por TIPO de ferramenta, declarado pelo FABRICANTE. O que a SERP devolveu foi numero de VENDEDOR e de grandeza trocada: Rubi 15 mm de `capacidade de corte` (loja espanhola), Mejix 19 mm de ABERTURA DA GARRA (que nao e espessura de corte), Sumer 8 mm de revestimento e vidro (pagina de produto brasileira). Tres numeros, tres grandezas, nenhum fabricante brasileiro.",
+      "o_que_esta_passada_acrescenta": "ELA FECHA A CONTA DESTA CANDIDATA EM OITO: `alicate/cortador_de_azulejo` tem QUATRO tentativas NAO_MEDIDA de consulta propria (duas em 30/09 e duas em 07/10) e `pergunta:alicate-espessura-de-corte` passa a ter QUATRO (uma em 07/10 e as tres de hoje). Oito tentativas, zero consulta propria aberta, e a fila da 16.5 continuava imprimindo que medir uma consulta nova para uma delas era 'a coisa mais barata que existe nesta categoria'. O conserto desta passada e na REGUA, nao na consulta."
     }
   ],
   "a_leitura_que_as_medicoes_pedem": {
     "as_abertas_sao_pergunta_e_as_tomadas_sao_produto": "As consultas que a SERP recusa nomeiam o PRODUTO (`pastilhas de vidro para mosaico`, `quantas pastilhas vem na caixa`); as que ela abre fazem a PERGUNTA (`como cortar`, `verniz para peca de`, `como impermeabilizar`). A causa esta no proprio resultado: quem vende produto ja ocupa a consulta de produto, e ninguem ocupa a consulta de metodo, onde o que existe e blogspot de 2010 e resposta sem numero. Medido em 30/09 em dois recortes e reconfirmado em 02/10 em tres.",
     "o_piso_mede_a_forma_errada_e_isso_nao_e_defeito_dele": "dados/filhas-do-guia.json mede os recortes que o VOCABULARIO nomeia, que sao recortes de TIPO, e se declara um piso. A SERP diz que as filhas publicaveis desta ilha tem forma de PERGUNTA. A regua de contagem da secao 9 continua a mesma; o que muda e o recorte em que ela se aplica — e nenhum dos dois arquivos sozinho ve isso.",
     "a_contradicao_com_o_corpus_de_10_09_fica_escrita": "O corpus classificou `pastilhas de vidro para mosaico` como ABERTA com a MESMA evidencia que 30/09 leu como TOMADA. A diferenca nao e de dado, e de regua: o corpus chamou de aberta porque ninguem responde a pergunta tecnica, e a 14.9 manda classificar QUEM OCUPA. As duas leituras cabem na mesma SERP, e a 14.9 e a que decide se a pagina nasce. Quem for mexer no corpus le este campo primeiro: o que esta velho la e o rotulo daquela linha, nao a evidencia.",
-    "a_forma_da_consulta_segue_a_natureza_do_numero": "ACRESCENTADO EM 08/10/2026, e e o refinamento que a `pastilha` cobrou da leitura `as_abertas_sao_pergunta_e_as_tomadas_sao_produto`. Aquela leitura diz que a forma da consulta decide: produto fecha, pergunta abre. Ela acertou cinco vezes e ERROU na sexta, e o erro ensina mais que os acertos. A `pergunta:pastilha-placa-ou-caixa` foi escrita na forma exata que abriu o `rejunte` (`da para ... ou precisa ...`), sem numero e sem marca, e mediu TOMADA com nove paginas de produto brasileiras em dez. A CAUSA: a forma da consulta nao e livre, ela segue a NATUREZA DO NUMERO que a pagina tem para entregar. Na `pastilha` as unicas propriedades que passam o portao da secao 9 sao `placas_por_caixa`, `m2_por_caixa` e `peso_caixa_kg` — tres numeros de CAIXA, comerciais —, e nao existe frase honesta que um numero de caixa responda e que nao seja uma pergunta de compra. No `rejunte` o numero e `junta_min_mm`, que e numero de GESTO, e por isso a pergunta do gesto cabia nele. A REGRA PRATICA, antes de escrever a proxima pergunta de qualquer categoria: olhe o numero primeiro. Numero comercial so responde consulta comercial, e consulta comercial desta ilha e sempre tomada pelo varejo."
+    "a_forma_da_consulta_segue_a_natureza_do_numero": "ACRESCENTADO EM 08/10/2026, e e o refinamento que a `pastilha` cobrou da leitura `as_abertas_sao_pergunta_e_as_tomadas_sao_produto`. Aquela leitura diz que a forma da consulta decide: produto fecha, pergunta abre. Ela acertou cinco vezes e ERROU na sexta, e o erro ensina mais que os acertos. A `pergunta:pastilha-placa-ou-caixa` foi escrita na forma exata que abriu o `rejunte` (`da para ... ou precisa ...`), sem numero e sem marca, e mediu TOMADA com nove paginas de produto brasileiras em dez. A CAUSA: a forma da consulta nao e livre, ela segue a NATUREZA DO NUMERO que a pagina tem para entregar. Na `pastilha` as unicas propriedades que passam o portao da secao 9 sao `placas_por_caixa`, `m2_por_caixa` e `peso_caixa_kg` — tres numeros de CAIXA, comerciais —, e nao existe frase honesta que um numero de caixa responda e que nao seja uma pergunta de compra. No `rejunte` o numero e `junta_min_mm`, que e numero de GESTO, e por isso a pergunta do gesto cabia nele. A REGRA PRATICA, antes de escrever a proxima pergunta de qualquer categoria: olhe o numero primeiro. Numero comercial so responde consulta comercial, e consulta comercial desta ilha e sempre tomada pelo varejo.",
+    "NAO_MEDIDA_custava_zero_na_fila_e_isso_era_o_defeito": "ACRESCENTADO EM 09/10/2026, e e a razao do bloco desta data. Este arquivo guarda tentativa falhada com o motivo escrito — e a fila da 16.5, em `cruzamento-14-9.md`, nao a lia. Ela olhava se a candidata tem consulta aberta PROPRIA e, quando nao tem, imprimia que `medir uma consulta nova para ela e a coisa mais barata que existe nesta categoria`. Em 09/10, quando essa frase foi escrita, a `alicate` tinha CINCO tentativas NAO_MEDIDA de consulta propria guardadas aqui (quatro do `cortador_de_azulejo` e uma da pergunta); hoje tem OITO. E mais: o limite 5, de 07/10, ja dizia por que elas falham e que `a consulta-alvo de uma filha NUNCA pede o numero` — e a pergunta desta categoria carrega como assunto exatamente o numero (`espessura_maxima_de_corte_mm`). Era a mesma familia do defeito de 08/10: custo infinito escrito em PROSA entra numa lista ordenada por custo como se fosse zero. Desde 09/10 o `cruzamento-14-9.py` DERIVA as tentativas falhadas de cada candidata deste arquivo e a fila para de prometer o que ja foi medido e falhou."
   }
 }

@@ -205,6 +205,54 @@ onde o leitor já está.
 vende espelho em mosaico artesanal (Olho de Ísis, 80 cm) e também curso — é o
 concorrente mais parecido com esta ilha inteira encontrado na coleta.
 
+### A PROPOSTA 3 DA LEITURA DE 07/10 FOI AO PORTÃO DA 14.9 EM 09/10/2026, E O PORTÃO FECHOU
+
+A leitura semanal de 07/10 propôs uma página de conteúdo para **"quadro do Divino
+Espírito Santo"** — a primeira consulta de **produto com intenção de compra** que o
+Arquipélago inteiro já encontrou com tráfego medido: três consultas, 4 impressões,
+posição média 39,2, todas caindo em `/loja/quadro-divino-espirito-santo/`. O
+`ESTADO.md` de 09/10 às 11h5xZ pré-registrou o critério **antes** de medir, e ele
+está cumprido ao pé da letra: *"começa pela classificação de SERP da 14.9 — e se
+vier TOMADA, para aí e escreve isso, porque consulta de produto mediu TOMADA quatro
+vezes nesta ilha."*
+
+**Mediu TOMADA. Então parou aqui, e esta é a quinta vez.**
+
+| Consulta | Passada | SERP em 09/10/2026 | Classe |
+|---|---|---|---|
+| quadro divino espirito santo **mosaico artesanal** (a de compra, ancorada no nicho) | 1ª | OLX, Mercado Livre (categoria `quadrodecoracao` e a loja `Divinas Artes`), Magazine Luiza (2 buscas), Casas Bahia (**`Mosaico do Espírito Santo com anjos 120x140cm`, R$ 6.872,40**), Extra, agregador de Shopee, Holyart IT. **Zero página editorial** | **TOMADA** |
+| quadro divino espirito santo (a consulta nua, a que tem as impressões) | 2ª | Desvio: PDF de reza da UNEMAT, artigo de iconografia da UFMG, lição de EBD, Scripta Theologica ES, coromoto.it, EWTN ES, semana.com CO, arquidiocese de Toronto. **Nenhum resultado comercial e nenhum de mosaico** | **NÃO MEDIDA** |
+| como fazer quadro do divino espirito santo em mosaico **de caquinho** passo a passo (a de método) | 3ª | Ninguém responde: reformedworship US, palaisdurosaire FR, Portinari, PDF da UFPA, PDF do Exército, PDF de Taubaté, 3 matérias de 2026 sobre **piso de caquinho** (Revista Oeste, O Antagonista, Tribuna de Jundiaí), 1 site AR. Mercado Livre e OLX aparecem **uma vez cada** | **ABERTA** |
+
+**O que o varejo ocupa não é só o termo gordo: é o mosaico também.** A linha que
+decide é a Casas Bahia — ela vende um **mosaico** do Espírito Santo de 120×140 cm na
+primeira página. Não é o caso de "a SERP devolve cerâmica lisa", como em
+`vaso de mosaico`; aqui o marketplace já serve exatamente o produto, com preço e
+parcela. É a definição literal de TOMADA da seção 14.9, e domínio de 30 dias não
+disputa isso.
+
+**E a consulta nua, a que tem as 4 impressões, não pôde ser medida** — o núcleo
+`espirito santo` é liturgia antes de ser produto, e a SERP respondeu devoção e
+iconografia em três idiomas. Isso tem uma leitura prática: as 4 impressões em 39,2
+vêm de uma consulta cuja primeira página **não é de compra**, e subir nela levaria a
+peça da artesã para uma SERP de reza. Não é só difícil — é o lugar errado.
+
+**O que sobra vivo, e não é a Proposta 3:** a consulta de **método** mediu ABERTA, e
+pela razão de sempre nesta ilha — o top 10 é PDF escolar, matéria de 2026 sobre piso
+de caquinho e tutorial sem número. **Mas ela é outra consulta**, sem faixa medida e
+sem impressão nenhuma, e o critério de pronto da Proposta 3 é
+`quadro divino espirito santo` entrar na banda 11 a 20. Página de método não entrega
+esse critério, e chamá-la de Proposta 3 cumprida seria critério dobrado para caber no
+dado que veio (1.2-b.4). Ela entra como **pedido de faixa ao Raphael**, na fila do
+cluster 3 (Escola), ao lado de `como fazer mosaico em vaso` — e o bloco 5 da fila do
+`PROMPT.md` já tem **quadro** entre os doze tutoriais-âncora, que é onde ela mora.
+
+*(Ressalva de vocabulário, para ninguém confundir com a armadilha do cluster 4:
+`quadro mosaico` está na lista de armadilhas desde 10/09 porque devolve quadro
+**impresso em 5 painéis**. `quadro do Divino Espírito Santo` é outra intenção — peça
+devocional de parede — e não é armadilha: é TOMADA, que é coisa diferente. Armadilha
+nunca nasce; TOMADA vai para "quando houver autoridade".)*
+
 ---
 
 ## 3. Cluster APRENDER — o motor de tráfego (Escola)
