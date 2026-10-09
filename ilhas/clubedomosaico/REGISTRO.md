@@ -96,6 +96,25 @@ arquivos de dado nascem `publicar: false` e por isso não viraram option.
     anti-robô deles.** Está escrito no banco para nenhuma página dizer "o mercado" querendo dizer "a
     Shopee".
 
+13. **DEPOIS DE FECHAR A EXECUÇÃO EU PISEI NO PRÓPRIO PÉ, e quem viu foi uma CONTAGEM e não um
+    portão.** Rodei `--gravar --so torques-para-mosaico --sem-link` para atualizar uma linha de prosa
+    do arquivo gerado, e isso **substituiu o bloco daquela consulta por uma coleta nova sem link**: os
+    **19 links de afiliado** da página de maior intenção de compra da ilha sumiram do banco **em
+    silêncio**. Se eu não tivesse contado por outro motivo, o despacho reescrito estaria prometendo à
+    próxima execução que *"o link de afiliado já está gerado nas oito"* — e na do torquês não estaria.
+    **Promessa de banco escrita em prosa e desmentida pelo banco é a família de defeito que esta ilha
+    mais paga.** Links restaurados (58 no total, as oito consultas com link em todos os anúncios que
+    servem), e o conserto é **falha fechada e não cuidado**: recoleta de consulta que já tem link
+    agora **RECUSA** `--sem-link`, nomeando quantos links seriam apagados, e exige escolher entre
+    regerar e `--descartar-links`. Provado que morde — a mesma linha que causou o estrago agora sai com
+    `RECUSADO` e o banco fica intacto.
+
+14. **E A MESMA CONTAGEM MOSTROU UMA AMBIGUIDADE que ia enganar a próxima execução:**
+    `resumo.abre_o_portao_da_30_2` diz TRUE em **ONZE** consultas e apenas **OITO** publicam, porque
+    ele é só o portão de **DADO**. As três diferenças são `pinça` (canibalização da 30.4), `azulejo` e
+    `colar` (intenção de LOJA). O arquivo gerado passa a dizer isso no próprio cabeçalho, com os três
+    nomes: **contar só o portão é publicar três páginas que a própria ilha decidiu não ter.**
+
 **O QUE NÃO SAIU, e o despacho (3) foi REESCRITO pela 18.3 deixando só isto: a CASCA.** Faltam os itens
 1, 4, 6 e 7 do original, e os quatro são a **mesma obra** — uma régua nova no motor do Guia que
 renderize página de consulta de produto, com bancada e mutação. Esta passada abriu os dois portões e
