@@ -3,6 +3,112 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+09/10/2026 14h05Z–15h5xZ — OS DOIS PORTÕES DA SEÇÃO 30 ABRIRAM NA MESMA PASSADA, E A MEDIÇÃO DERRUBOU METADE DA LISTA DO PRÓPRIO DESPACHO
+
+Nenhuma URL nova (a ilha segue em **21**), nenhuma leva do teto da 21.4 gasta, nenhum Sync e nenhuma
+revisão nova (o `/status` segue na **71**) — este bloco é portão, regra e dado de repositório. Os dois
+arquivos de dado nascem `publicar: false` e por isso não viraram option.
+
+1. **OS DOIS COMANDOS DA 29 RODARAM ANTES DE TUDO, e a porta está de pé.** `conferir-no-ar.py`
+   **APROVADO com 524 afirmações e 0 falha** (21 de 21 URLs do sitemap em 200, as três da 29.2 em 200,
+   caminho inexistente em 404 na página desta ilha). `leitura-do-visitante.py` **REPROVADO com
+   EXATAMENTE 1 defeito**: o soft 404 da borda, pendência do Raphael desde 29/09 — vermelho esperado,
+   com dono escrito. **Zero defeito novo.** Rede pela 20.2: 200 nas TRÊS passadas, com
+   `aquametria.com.br` em 200 nas mesmas.
+
+2. **A ESCOLHA DA ILHA: FOCO, SEM CORRIDA.** `foco.md` nomeia a **clubedomosaico** desde 24/09, então
+   pela 1.2 não houve rotação a aplicar. `executando_desde` estava **null**, que pela 1.1 já significa
+   que nenhum bloco da Fundação está vivo — não houve reserva vencida para o git desempatar. Os
+   commits de 13h40Z a 13h44Z na pasta da ilha eram **inserção de despacho**, não bloco. Reserva
+   escrita às **14h05Z** e aceita de primeira.
+
+3. **O PORTÃO COMERCIAL DA 30.2 ABRIU, E ERA ELE QUE TRANCAVA AS OITO PÁGINAS.** As 16 consultas do
+   item 2 foram colhidas uma a uma na **API de afiliado da Shopee** — a credencial **já estava** no
+   ambiente desta rotina, ao contrário da `GOOGLE_SA_B64` —, 20 ofertas por consulta. **OITO abrem o
+   portão** com 3+ produtos reais e número próprio **calculado**: torques 19 ofertas (R$ 68,99 a
+   R$ 248,25), cortador de vidro 9, espelho 9, alicate 5, **pastilhas 5 com PREÇO POR PASTILHA** (a
+   única consulta em que o anúncio declara quantidade), pastilha de vidro 5, base de MDF 3, rejunte 3.
+
+4. **A MEDIÇÃO DERRUBOU OITO DAS DEZESSEIS — e isso é o item 2 obedecido, não contrariado**, porque ele
+   mandava *"tira o que a medição derrubar"*. **CINCO são ARMADILHA dentro da Shopee**, e é sempre a
+   mesma causa: no vocabulário de lá a palavra `mosaico` pertence ao **quadro decorativo de várias
+   placas** e ao **papel de parede que imita azulejo**, não ao caquinho. `tela`, `mandala` e `kit
+   mosaico` devolveram 20 de 20 em quadro; `azulejo`, 20 de 20 em papel de parede na primeira leitura;
+   `material`, quadro mais **FORMA 3D de gesso** — molde de ABS para fundir placa que *imita* mosaico,
+   família que nenhum documento desta ilha tinha visto. **Duas delas o PROMPT.md já listava como
+   armadilha desde 10/09, medidas no Google: a armadilha é a MESMA dentro da loja.** **TRÊS são
+   intenção de LOJA** (`vaso`, `colar` e o próprio `azulejo` devolvem peça acabada, que é o que a
+   artesã vende — afiliado ali mandaria o visitante comprar de um concorrente dela). **UMA sai por
+   canibalização da 30.4** (`pinça` devolve o mesmo alicate de duas consultas irmãs).
+
+5. **O ENSAIO DA 25.3 ACHOU O DEFEITO, E ELE ERRAVA NOS DOIS SENTIDOS NA MESMA CONSULTA.** A regra não
+   cortava **plural**: `exige: pastilha` não casava com *"Kit com 900 **Pastilhas**"* e `recusa:
+   adesivo` não casava com *"Kit 5 **Adesivos**"*. Em `pastilhas para mosaico` os **CINCO kits de
+   verdade eram recusados** e **DUAS ofertas — uma de obra, uma de adesivo — eram aceitas**. Corrigido
+   com o corte nos **dois lados** da comparação. Gravar sem ensaiar faria a página de maior intenção de
+   compra nascer servindo revestimento de lavabo.
+
+6. **A COLETA CONTRADISSE O QUE EU JÁ TINHA ESCRITO, e a prosa cedeu ao número em três lugares.** Eu
+   havia declarado o `rejunte` fora do portão por ter só 2 ofertas e **servem 3** — passou a publicar,
+   com o dado **FINO** dito com essas palavras. E `azulejo`, `mandala` e `vaso` tiveram a prosa
+   reescrita porque a coleta gravada trouxe outro conjunto que a primeira leitura. A causa está medida
+   e virou linha no topo da declaração: **a API devolve conjuntos DIFERENTES entre chamadas**, então o
+   número de uma consulta é o de **uma coleta datada** e nunca o catálogo da Shopee.
+
+7. **O PORTÃO DA SERP ABRIU PELA RÉGUA DA 30.5, E FOI CALCULADO EM VEZ DE REESCRITO.**
+   `recalibrar-30-5.py` classifica cada **ocupante** do top 10 já medido nos três tipos que a 30.5
+   manda contar contra os dez que ela manda não contar, e chama `dominado` **6 ou mais das 10 vagas**.
+   `pastilha/vidro` **TOMADA → ABERTA** (1 de 10 contam), `pastilha` → **ABERTA** (2 de 10),
+   `alicate/torques` → **ABERTA** (1 de 10). O cruzamento foi de `espera_autoridade` **3 para ZERO** e
+   `pode_nascer` **8 para 11**. Remedir cinco vereditos à mão seriam cinco chances de puxar o resultado
+   para o lado de quem quer publicar — e quem remedia era a mesma execução que queria as páginas.
+
+8. **QUEM FAZ O "ANTES DE VALER" ACONTECER É UMA FUNÇÃO, e sem ela nada disso valeria.**
+   `classe_que_vale()` no cruzamento prefere `classificacao_30_5` quando ela existe; `classificacao`
+   fica **intacta** e é procedência. Sem essa função a recalibração seria um campo bonito que nenhum
+   portão lê — a família de defeito mais paciente desta ilha.
+
+9. **A PARTE QUE NÃO ME BENEFICIA, escrita de propósito.** **DUAS** das cinco medições TOMADA **não**
+   foram remedidas: são **pergunta de embalagem com intenção de obra**, não nome de produto, e a 30.5
+   fala de consulta de produto. Uma delas continuaria TOMADA de todo jeito — Telhanorte com 4 páginas,
+   Extra com 3 e MadeiraMadeira com 2 são **nove vagas de varejo grande**. Na mesma disciplina,
+   `Pastilhart` foi classificado como fabricante que **CONTA** mesmo sendo de nicho, e `Culturamix`
+   como **fazenda de conteúdo**: as duas leituras pesam **contra** publicar.
+
+10. **A BATERIA DE MUTAÇÃO ACHOU TRÊS TRAVAS QUE A BANCADA NÃO MEDIA, e uma era um ramo REDUNDANTE da
+    própria regra.** A **m05** mostrou que tirar o ramo do grupo de exigência vazio **não mudava o
+    veredito**, porque o ramo seguinte derrubava igual. O conserto **não foi apagar o ramo**: foi dar a
+    ele um **diagnóstico próprio** — grupo vazio é **declaração quebrada**, não anúncio que não casou, e
+    as duas coisas não podem sair com a mesma cara. A **m06** pegou uma fixação que **parecia medir e
+    não media**: `tela` dentro de `telha` não é substring; `cola` dentro de `colar` é. **BANCADA 72
+    afirmações, 0 falha. MUTAÇÕES 10 de 10 reprovando.** E a bateria trabalha em `mkdtemp` — o aviso do
+    topo do `PROMPT.md` obedecido no mesmo dia em que foi escrito.
+
+11. **ONZE SHA VENCIDOS NO MANIFEST**, achados de passagem e consertados, **com os nomes gravados
+    porque escrever o sha novo apaga o sinal**: `corpus-buscas`, `cruzamento-14-9` (dado e ferramenta),
+    `serp-das-filhas`, `materiais-rejuntes`, `materiais-alicates`, `filhas-do-guia` (dado, md e
+    ferramenta), `filhas-do-guia-md`, `mutacoes-cobertura` e `mutacoes-par`. Mesma família que a entrada
+    de `perguntas-do-guia` nomeou em 08/10 com **nove**.
+
+12. **DADO DE UMA FONTE SÓ, dito na cara.** O Mercado Livre respondeu **403 nas TRÊS passadas**, com o
+    CONNECT aceito pelo proxy e o 403 vindo do balanceador dele (`awselb/2.0`, `rps: w403`), enquanto
+    `clubedomosaico.com.br` e `shopee.com.br` deram 200 nas mesmas. **Não é a rede da seção 20: é o
+    anti-robô deles.** Está escrito no banco para nenhuma página dizer "o mercado" querendo dizer "a
+    Shopee".
+
+**O QUE NÃO SAIU, e o despacho (3) foi REESCRITO pela 18.3 deixando só isto: a CASCA.** Faltam os itens
+1, 4, 6 e 7 do original, e os quatro são a **mesma obra** — uma régua nova no motor do Guia que
+renderize página de consulta de produto, com bancada e mutação. Esta passada abriu os dois portões e
+**não alcançou `snippets/`**. A tabela das **oito páginas elegíveis**, com faixa de preço e número
+próprio de cada uma, está no `PROMPT.md` para a próxima execução não remedir nada.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** a régua de página de consulta de produto no motor do Guia, e ela começa
+sem nenhuma pergunta aberta de dado — as oito páginas têm os dois portões verdes, o número próprio
+calculado e o link de afiliado já gerado. **Duas delas (`base-de-mdf` e `rejunte`) nascem no limite,
+com exatamente 3 ofertas**, e isso está escrito para não ser descoberto no ar.
+
+---
+
 09/10/2026 13h1xZ — O PORTÃO DA 14.9 FECHOU A PROPOSTA 3 NA PRIMEIRA PERGUNTA, E A MESMA PASSADA ACHOU A FILA PROMETENDO, OUTRA VEZ, UM CAMINHO QUE A PRÓPRIA ILHA JÁ MEDIU E FECHOU
 
 Nenhuma URL nova (a ilha segue em **21**), nenhuma leva do teto da 21.4 gasta, nenhum Sync e nenhuma

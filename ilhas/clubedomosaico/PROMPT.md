@@ -111,23 +111,125 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO
+## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO — **REESCRITO PELA 18.3 EM 09/10/2026 às 15h4xZ**
 
-Decisão do Raphael em 09/10/2026, 10h41 de Brasília: "a gente está ranqueando para cola para mosaico. Mas tem inúmeras ferramentas para mosaico. Tem pastilha, tem [torquês]... Eu gostaria de ranquear quando a pessoa procurar por esses produtos. Eu não sei qual é a malha que tem que ser construída, categoria, subcategoria. Eu quero ser um dos primeiros quando alguém digitar isso. A galera que faz isso é ruim na internet, eu quero que você seja o melhor de todos." O desenho da malha foi delegado; é o que segue. Este bloco é o que enche o alvo de 40 URLs do despacho (2) de hoje.
+Decisão do Raphael em 09/10/2026, 10h41 de Brasília: "a gente está ranqueando para cola para mosaico. Mas tem inúmeras ferramentas para mosaico. Tem pastilha, tem [torquês]... Eu gostaria de ranquear quando a pessoa procurar por esses produtos. Eu não sei qual é a malha que tem que ser construída, categoria, subcategoria. Eu quero ser um dos primeiros quando alguém digitar isso. A galera que faz isso é ruim na internet, eu quero que você seja o melhor de todos."
 
-1. O QUE NASCE: uma página por CONSULTA DE PRODUTO, com o slug igual à consulta, filha direta de /materiais/ (nível 2). Ela é página-folha de produto, não mãe de categoria: a 16.5 não se aplica a ela, pela mesma leitura que deixou /como-fazer/o-que-e-mosaico-picassiete/ nascer filha direta. Quando uma delas ganhar 3 filhas, vira mãe sem trocar de URL.
+> **REESCRITO PELA 18.3 PELA EXECUÇÃO DAS 14h05Z–15h4xZ.** A 18.2 manda despacho sair inteiro; a
+> 18.3 manda, quando um item não couber, resolver os que couberem e **reescrever o despacho deixando
+> só os que faltam, com o motivo em uma linha**. É o que está abaixo.
+>
+> **O QUE SAIU, e são os dois PORTÕES — a parte que estava trancando todas as oito páginas:**
+>
+> - **Item 3 (o dado comercial) — CUMPRIDO.** As 16 consultas do item 2 foram colhidas uma a uma na
+>   API de afiliado da Shopee, 20 ofertas por consulta. **OITO abrem o portão da 30.2** com 3 ou mais
+>   produtos reais e número próprio calculado; as outras oito não, e cada uma sai com a causa
+>   medida. Dado em `dados/anuncios-por-consulta.json` (GERADO), declaração e regra em
+>   `dados/consultas-de-produto.json`, regra sozinha em `ferramentas/relevancia-do-anuncio.py`, com
+>   bancada (72 afirmações) e 10 mutações reprovando.
+> - **Item 5 (a SERP pela régua nova) — CUMPRIDO.** `ferramentas/recalibrar-30-5.py` remediu os
+>   vereditos TOMADA de consulta de produto classificando cada ocupante do top 10, e os três que
+>   valiam viraram **ABERTA**: `alicate/torques` (1 de 10 vagas contam), `pastilha` (2 de 10) e
+>   `pastilha/vidro` (1 de 10). O cruzamento foi de `espera_autoridade` **3 para ZERO** e de
+>   `pode_nascer` **8 para 11**.
+> - **Item 2 (a lista) — CUMPRIDO E REDUZIDO PELA MEDIÇÃO**, que é o que ele mesmo pedia ("a Fundação
+>   acrescenta o que o corpus mostrar e **tira o que a medição derrubar**"). Das 16, oito saíram:
+>   **CINCO são armadilha medida dentro da Shopee** (`kit mosaico`, `material para mosaico`, `tela
+>   para mosaico` e `mandala de mosaico` devolvem quadro decorativo de várias placas; `azulejo para
+>   mosaico` devolve papel de parede adesivo e peça pronta), **TRÊS são intenção de LOJA e não de
+>   material** (`vaso`, `colar` e o próprio `azulejo` devolvem peça acabada, que é o que a artesã
+>   vende — vitrine de afiliado ali mandaria o visitante comprar de um concorrente dela), e **UMA sai
+>   por canibalização da 30.4** (`pinça` devolve o MESMO alicate de duas consultas irmãs; vira âncora
+>   e seção dentro de `/materiais/alicate-para-mosaico/`).
+>
+> **O QUE FICA, e o motivo em uma linha: ESTA EXECUÇÃO ABRIU OS DOIS PORTÕES E NÃO ALCANÇOU A CASCA.**
+> Falta o item 1 (a malha), o 4 (o que cada página entrega), o 6 (interlinkagem) e o 7 (a verificação
+> no ar) — e os quatro são a MESMA obra: uma régua nova no motor do Guia que renderize página de
+> consulta de produto, que é trabalho de `snippets/` com bancada e mutação, não de dado. **Nenhuma URL
+> nova nesta passada, nenhum Sync, nenhuma revisão (segue 71), e a ilha segue em 21 URLs.**
 
-2. A LISTA DE PARTIDA, em ordem de intenção de compra (a Fundação acrescenta o que o corpus-buscas.md e a Search Console mostrarem e tira o que a medição derrubar): pastilhas para mosaico · pastilha de vidro para mosaico · alicate para mosaico · torquês para mosaico · cortador de vidro para mosaico · rejunte para mosaico · base para mosaico (MDF) · kit mosaico · material para mosaico · azulejo para mosaico · espelho para mosaico · tela para mosaico · pinça para mosaico · vaso de mosaico · colar de mosaico · mandala de mosaico. NÃO criar página para "cola para mosaico": /materiais/qual-cola-usar-no-mosaico/ já está na primeira página por essa consulta e uma segunda URL a canibalizaria; em vez disso, toda página nova linka para ela com essa âncora.
+### O QUE A PRÓXIMA EXECUÇÃO ENCONTRA PRONTO (para não remedir nada)
 
-3. O DADO QUE ABRE O PORTÃO É O COMERCIAL, e isto destrava o que os boletins de fabricante travavam: pela regra das duas camadas de procedência, anúncio de Shopee e de Mercado Livre é fonte válida de dado COMERCIAL (título, preço, foto, medida e quantidade declaradas no anúncio), com fonte "anuncio-shopee" ou "anuncio-mercadolivre" e data. Página de consulta de produto nasce com 3 ou mais produtos reais colhidos assim, mais 1 número próprio (faixa de preço medida, preço por unidade ou por 100 g, quantidade por embalagem). Dado TÉCNICO (faixa de junta, resistência, substrato) continua só de fabricante; onde ele faltar a página diz que falta e não inventa. Nenhuma página desta lista espera boletim de fabricante para nascer.
+**AS OITO PÁGINAS ELEGÍVEIS, com os dois portões abertos e o número próprio já calculado.** Preços
+de 09/10/2026, uma coleta datada — `--conferir` refaz as contas sem rede:
 
-4. O QUE CADA PÁGINA ENTREGA para ser melhor que as lojinhas que ocupam a busca hoje: title e h1 com a consulta exata; a resposta em duas frases antes de qualquer explicação (o que comprar e quanto custa); tabela comparando os produtos (tipo, medida, quantidade, preço, para que serve); bloco de compra com afiliado antes da procedência; "qual escolher" por uso (iniciante, peça pequena, área externa); perguntas frequentes com FAQPage; JSON-LD ItemList; breadcrumb; links para as ferramentas F1 e F2, para as irmãs e para as peças da /loja/ que usam aquele material. Voz do VOZ.md.
+| slug a nascer | ofertas que servem | faixa medida | número próprio |
+|---|---|---|---|
+| `materiais/torques-para-mosaico` | **19** de 20 | R$ 68,99 a R$ 248,25 | faixa de preço |
+| `materiais/cortador-de-vidro-para-mosaico` | **9** de 9 | R$ 19,37 a R$ 356,28 | faixa de preço |
+| `materiais/espelho-para-mosaico` | **9** de 20 | R$ 24,69 a R$ 150,35 | faixa de preço |
+| `materiais/alicate-para-mosaico` | **5** de 20 | R$ 80,00 a R$ 356,28 | faixa de preço |
+| `materiais/pastilhas-para-mosaico` | **5** de 20 | R$ 32,22 a R$ 74,90 | **preço por pastilha** |
+| `materiais/pastilha-de-vidro-para-mosaico` | **5** de 14 | R$ 15,00 a R$ 135,70 | faixa de preço |
+| `materiais/base-de-mdf-para-mosaico` | **3** de 3 | R$ 17,90 a R$ 26,00 | preço por plaquinha |
+| `materiais/rejunte-para-mosaico` | **3** de 3 | R$ 53,50 a R$ 313,09 | faixa de preço |
 
-5. SERP DA 14.9, com a calibração desta ilha decidida hoje pelo Raphael: lojinha pequena de artesanato, anúncio solto de marketplace, Pinterest, YouTube e blog antigo NÃO tornam a busca tomada, sozinhos nem somados. Tomada é quando o top 10 é dominado por varejo grande ou fabricante forte com página dedicada àquela consulta. Os vereditos TOMADA já escritos para consulta de produto nesta ilha (inclusive torquês, 05/10) são remedidos por esta régua antes de valerem. Cada veredito continua escrito com as URLs do top 10 que o sustentam.
+**AS DUAS QUE NASCEM NO LIMITE, e está escrito para não ser descoberto no ar:** `base-de-mdf` e
+`rejunte` têm **exatamente 3** ofertas — o mínimo da 30.2, não uma folga. A próxima coleta que perder
+uma oferta derruba a página. E o `rejunte` tem o dado **FINO**: duas das três são anúncio de
+revendedor sem marca de fabricante, e a faixa é larga porque uma delas é rejunte metálico de
+especialidade — a página tem de dizer isso com essas palavras em vez de servir a faixa como se fosse
+a do rejunte comum.
 
-6. MALHA: /materiais/ lista todas as páginas novas com âncora igual à consulta; cada página linka a mãe, 3 irmãs e as duas ferramentas; a home ganha o bloco "Materiais para mosaico" com as de maior intenção. Nenhuma órfã.
+**O LINK DE AFILIADO JÁ ESTÁ GERADO** com `sub_id_1: clubedomosaico` e `sub_id_2` derivado do id da
+consulta, só para o que serve e só nas oito que publicam.
 
-7. Pronto quando, por página: responde 200 no ar, title e description mirando a consulta, 3 ou mais produtos com link, Sync acionado e URL conferida. Ao fim da execução, a lista das consultas que não nasceram, cada uma com a causa medida.
+### 1. A MALHA, E O QUE CADA PÁGINA ENTREGA (itens 1, 4 e 6 do despacho original)
+
+Uma página por consulta, slug igual à consulta, filha direta de `/materiais/` (nível 2), página-folha
+de produto — a 16.5 não se aplica a ela, pela mesma leitura que deixou
+`/como-fazer/o-que-e-mosaico-picassiete/` nascer filha direta. Quando uma ganhar 3 filhas, vira mãe
+sem trocar de URL.
+
+Cada página entrega: `title` e `h1` com a consulta exata; **a resposta em duas frases antes de
+qualquer explicação** (o que comprar e quanto custa); tabela comparando os produtos (tipo, medida,
+quantidade, preço, para que serve); bloco de compra com afiliado **antes** da procedência; "qual
+escolher" por uso (iniciante, peça pequena, área externa); perguntas frequentes com `FAQPage`;
+`JSON-LD ItemList`; breadcrumb; links para a F1 e a F2, para as irmãs e para as peças da `/loja/` que
+usam aquele material. Voz do `VOZ.md`.
+
+`/materiais/` lista todas com âncora igual à consulta; a home ganha o bloco "Materiais para mosaico"
+com as de maior intenção. **Nenhuma órfã.**
+
+**NÃO criar página para "cola para mosaico":** `/materiais/qual-cola-usar-no-mosaico/` já está na
+primeira página por essa consulta e uma segunda URL a canibalizaria (30.4). Toda página nova linka
+para ela com essa âncora.
+
+**O DADO TÉCNICO CONTINUA SÓ DE FABRICANTE** (faixa de junta, resistência, substrato), e onde ele
+faltar a página **diz que falta e não inventa**. O que o anúncio sustenta é título, preço, foto,
+medida e quantidade declaradas — e o banco separa os dois por campo.
+
+**E A FONTE É UMA SÓ, dito na página e não só no banco:** todo dado comercial destas oito vem da
+Shopee. O Mercado Livre respondeu **403 nas três passadas** de 09/10 (CONNECT aceito pelo proxy, 403
+do balanceador deles — `awselb/2.0`, `rps: w403`), com `clubedomosaico.com.br` e `shopee.com.br` em
+200 nas mesmas. Não é a rede da seção 20: é o anti-robô deles. **Nenhuma página pode dizer "o
+mercado" querendo dizer "a Shopee".**
+
+### 2. A SERP DE CADA SLUG NOVO NÃO FOI MEDIDA, e o canal é o motivo — não a pressa
+
+O que a recalibração entregou é o veredito do **RECORTE** a que cada página pertence, e os três que
+importavam viraram ABERTA. O que falta é a SERP de cada **consulta nova**, e ela não foi medida hoje
+por limite **MEDIDO**: `torques para mosaico comprar` devolveu, nesta nuvem, três páginas de **busca
+interna** da Loja do Mecânico, quatro de **busca interna** do Magazine Luiza e duas de fora do país
+(`etoffe.com` US, `mosaicshop.eu` ES). **Página de busca de varejista não é o top 10 orgânico**, e
+classificar ocupante a partir dela seria medir o instrumento. É o limite 2 de `dados/serp-das-filhas.json`
+(o canal não dá a ORDEM) chegando ao ponto em que ele também não dá a LISTA.
+
+- **O que isso NÃO autoriza:** inventar veredito, ou tratar o veredito do recorte como se fosse o da
+  consulta nova sem dizer que é herdado.
+- **O que isso autoriza:** publicar pelo veredito do recorte, **escrevendo no `ESTADO.md` que a SERP
+  da consulta exata é herdada do recorte e por quê** — os ocupantes medidos nos recortes são
+  exatamente a lista que a 30.5 declara que não toma a busca, e nenhum dos três tem varejo grande.
+- **O caminho que fecha isto de verdade** é a Search Console (que dá impressão por consulta real) e
+  ela continua inalcançável daqui: `GOOGLE_SA_B64` ausente do ambiente desta rotina, medido pela
+  SEXTA execução seguida em 09/10. Está em `dados/despachos.md` desde 07/10.
+
+### 3. Pronto quando (item 7, inalterado)
+
+Por página: responde **200 no ar**, `title` e `description` mirando a consulta, **3 ou mais produtos
+com link**, Sync acionado e URL conferida. Ao fim da execução, a lista das consultas que não nasceram,
+cada uma com a causa medida — **essa lista já está escrita em `dados/consultas-de-produto.json`, uma
+linha por consulta, e não precisa ser refeita.**
 
 ## DESPACHO DO RAPHAEL — 2026-10-09 (2) — TETO DA 21.4 SUSPENSO HOJE NESTA ILHA
 
