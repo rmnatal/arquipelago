@@ -841,7 +841,128 @@ cdm_ok( 'privada' === ( $def_atelie['atelie']['camada'] ?? '' ),
 /* O apelido resolve de verdade, e so para o que conhece. */
 cdm_ok( 'materiais' === cdm_casca_apelido_para_slug( '/guia/' ), 'apelido com barra resolve para o slug canonico' );
 cdm_ok( '' === cdm_casca_apelido_para_slug( 'qualquer-coisa' ), 'caminho desconhecido nao vira redirecionamento' );
-cdm_ok( '' === cdm_casca_apelido_para_slug( 'loja/vaso' ), 'caminho com nivel nao e tratado como apelido' );
+
+/* ---------------------------------------------------------------------------
+ * 13b. APELIDO DE ENDERECO COM NIVEL (casca 1.22.0)
+ *
+ * A afirmacao que estava aqui era a CONTRARIA — `'' === apelido_para_slug(
+ * 'loja/vaso' )`, com o rotulo "caminho com nivel nao e tratado como apelido".
+ * Ela cobrava uma recusa DELIBERADA, e a recusa estava errada por um motivo
+ * medido: os enderecos abandonados desta ilha TEM nivel. O M9 do Pente Fino de
+ * 21/09/2026 nomeia tres desenhos de endereco escritos para a camada de colecao
+ * da Loja e um publicado; `/loja/vasos/` e `/loja/colecao/vasos/` foram medidos
+ * em 404 no ar em 09/10/2026, e o unico mecanismo da ilha para alcanca-los
+ * recusava a familia inteira numa linha.
+ *
+ * Ela nao foi apagada: virou a afirmacao contraria, com a trava que faltava.
+ * ------------------------------------------------------------------------- */
+
+cdm_ok( 'loja' === cdm_casca_apelido_para_slug( '/loja/vasos/' ),
+	'apelido COM NIVEL resolve para o slug canonico (1.22.0)', cdm_casca_apelido_para_slug( '/loja/vasos/' ) );
+cdm_ok( 'loja' === cdm_casca_apelido_para_slug( 'loja/colecao/quadros' ),
+	'e resolve com tres degraus, que e o desenho do PROMPT.md' );
+cdm_ok( '' === cdm_casca_apelido_para_slug( 'loja/vaso' ),
+	'caminho com nivel DESCONHECIDO continua sem redirecionamento (vaso, singular)' );
+cdm_ok( '' === cdm_casca_apelido_para_slug( 'loja/vasos/mais/um/degrau' ),
+	'nem um caminho que COMECA por apelido conhecido e redirecionado' );
+
+/* A normalizacao e por SEGMENTO. `sanitize_title( 'loja/vasos' )` devolve
+   `lojavasos`, e um mapa normalizado pela string inteira nunca casaria. */
+cdm_ok( 'loja' === cdm_casca_apelido_para_slug( 'LOJA/Vasos' ),
+	'a normalizacao e por segmento, nao pela string inteira' );
+cdm_ok( 'loja/vasos' === cdm_casca_normalizar_caminho( '//loja///vasos//' ),
+	'degrau vazio nao entra no caminho normalizado', cdm_casca_normalizar_caminho( '//loja///vasos//' ) );
+
+/* As duas tabelas nao se misturam: cada uma tem a sua regua. */
+$com_nivel = cdm_casca_apelidos_de_caminho();
+$sem_barra = array();
+foreach ( $com_nivel as $apelido => $destino ) {
+	if ( false === strpos( $apelido, '/' ) ) { $sem_barra[] = $apelido; }
+}
+cdm_ok( empty( $sem_barra ), 'todo apelido da tabela COM NIVEL tem pelo menos uma barra',
+	empty( $sem_barra ) ? count( $com_nivel ) . ' apelidos' : implode( ' ', $sem_barra ) );
+$com_barra = array();
+foreach ( cdm_casca_apelidos() as $apelido => $destino ) {
+	if ( false !== strpos( $apelido, '/' ) ) { $com_barra[] = $apelido; }
+}
+cdm_ok( empty( $com_barra ), 'e nenhum apelido da tabela de UM SEGMENTO tem barra',
+	empty( $com_barra ) ? count( cdm_casca_apelidos() ) . ' apelidos' : implode( ' ', $com_barra ) );
+
+/* Todo apelido com nivel aponta para pagina conhecida — a mesma cobranca da
+   tabela de cima, pelo mesmo motivo: 301 para 404 e pior que o 404. */
+$orfaos_n = array();
+foreach ( $com_nivel as $apelido => $destino ) {
+	if ( ! in_array( $destino, $destinos, true ) ) { $orfaos_n[] = $apelido . '->' . $destino; }
+}
+cdm_ok( empty( $orfaos_n ), 'todo apelido COM NIVEL aponta para pagina conhecida',
+	empty( $orfaos_n ) ? count( $com_nivel ) . ' apelidos' : implode( ', ', $orfaos_n ) );
+
+/* ---------------------------------------------------------------------------
+ * A TRAVA QUE A TABELA DE UM SEGMENTO NAO PRECISAVA.
+ *
+ * Apelido de um segmento so pode colidir com a RAIZ, e a afirmacao "apelido
+ * igual a slug real" ja cobria isso. Apelido com nivel pode sombrear QUALQUER
+ * degrau da arvore, inclusive o de uma pagina que ainda NAO NASCEU — e o caso
+ * tem nome: `materiais/pastilhas` e slug reservado da categoria G-PASTILHAS do
+ * Guia, que a 16.5 ainda nao autoriza. Um apelido ali ficaria verde hoje e
+ * tiraria a categoria do ar no dia em que ela nascesse.
+ *
+ * A comparacao e contra o CAMINHO REAL, nunca contra o slug: o slug da
+ * ferramenta da cola e `qual-cola-usar-no-mosaico` e o caminho dela e
+ * `materiais/qual-cola-usar-no-mosaico`. Comparar com slug deixaria passar o
+ * apelido que sombreia a ferramenta — e a ferramenta da cola e a pagina que
+ * mais ranqueia nesta ilha.
+ * ------------------------------------------------------------------------- */
+
+/* A divergencia e REAL e foi medida nesta bancada: `cdm_casca_ferramentas()`
+   declara `qual-cola-usar-no-mosaico` e a arvore conhece
+   `materiais/qual-cola-usar-no-mosaico`. A primeira versao desta afirmacao
+   supos a divergencia na direcao contraria e saiu VERMELHA — e foi a bancada,
+   nao o olho, que disse em que direcao ela e. */
+cdm_ok( 'materiais/qual-cola-usar-no-mosaico' === cdm_casca_caminho_de_slug( 'qual-cola-usar-no-mosaico' ),
+	'o CAMINHO REAL se remonta pela arvore mesmo quando so o ultimo degrau e dado',
+	cdm_casca_caminho_de_slug( 'qual-cola-usar-no-mosaico' ) );
+cdm_ok( 'materiais/acabamento/verniz-para-peca-de-mosaico' === cdm_casca_caminho_de_slug( 'verniz-para-peca-de-mosaico' ),
+	'e remonta tres degraus a partir do ultimo', cdm_casca_caminho_de_slug( 'verniz-para-peca-de-mosaico' ) );
+cdm_ok( 'materiais/acabamento/verniz-para-peca-de-mosaico' === cdm_casca_caminho_de_slug( 'materiais/acabamento/verniz-para-peca-de-mosaico' ),
+	'e o caminho bate consigo mesmo quando o caminho inteiro e dado' );
+cdm_ok( '' === cdm_casca_caminho_de_slug( 'pagina-que-nao-existe' ),
+	'slug que a arvore nao conhece nao tem caminho' );
+
+/* O conjunto de caminhos reais vem da ARVORE, que e quem os conhece, mais o
+   slug declarado de cada destino — pagina da casca na raiz tem caminho igual ao
+   slug e pode nao estar na arvore. */
+$caminhos_reais = array_keys( cdm_casca_arvore() );
+foreach ( $destinos as $slug_real ) {
+	$c = cdm_casca_caminho_de_slug( $slug_real );
+	if ( '' !== $c ) { $caminhos_reais[] = $c; }
+	$caminhos_reais[] = trim( (string) $slug_real, '/' );
+}
+$caminhos_reais = array_values( array_unique( $caminhos_reais ) );
+$sombras = array();
+foreach ( $com_nivel as $apelido => $destino ) {
+	if ( in_array( $apelido, $caminhos_reais, true ) ) { $sombras[] = $apelido; }
+}
+cdm_ok( empty( $sombras ), 'nenhum apelido COM NIVEL sombreia o caminho real de pagina registrada',
+	empty( $sombras ) ? count( $caminhos_reais ) . ' caminhos reais medidos' : implode( ' ', $sombras ) );
+
+/* O caso nomeado, cobrado por nome e nao so pela varredura acima: se alguem
+   acrescentar a categoria reservada ao mapa, esta linha fica vermelha. */
+cdm_ok( ! isset( $com_nivel['materiais/pastilhas'] ),
+	'`materiais/pastilhas` NAO e apelido (e slug reservado da categoria do Guia)' );
+cdm_ok( ! isset( $com_nivel['materiais/acabamento'] ),
+	'`materiais/acabamento` NAO e apelido (e a unica categoria do Guia no ar)' );
+
+/* Os tres desenhos de endereco do M9 estao cobertos, e a conta e a dos seis
+   termos: 6 pelo tipo/uso + 6 com o segmento `colecao` + a camada sozinha. */
+$termos_m9 = array( 'vasos', 'colares', 'quadros', 'centro-de-mesa', 'presentes', 'jardim' );
+$faltam_m9 = array();
+foreach ( $termos_m9 as $t ) {
+	if ( 'loja' !== ( $com_nivel[ 'loja/' . $t ] ?? '' ) )         { $faltam_m9[] = 'loja/' . $t; }
+	if ( 'loja' !== ( $com_nivel[ 'loja/colecao/' . $t ] ?? '' ) ) { $faltam_m9[] = 'loja/colecao/' . $t; }
+}
+cdm_ok( empty( $faltam_m9 ), 'os tres desenhos de endereco do M9 estao no mapa, nos seis termos',
+	empty( $faltam_m9 ) ? count( $termos_m9 ) * 2 + 1 . ' enderecos' : implode( ' ', $faltam_m9 ) );
 
 /* ---------------------------------------------------------------------------
  * 14. O QUE A ILHA PROMETEU NAO PUBLICAR.

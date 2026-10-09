@@ -1,6 +1,43 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
  *
+ * Versão 1.22.0 (09/10/2026) — O APELIDO DE ENDEREÇO APRENDE NÍVEL, E A CAUSA É
+ *   O ITEM 2 DO DESPACHO DO RAPHAEL DE 09/10: servir 301 para endereço que o
+ *   Google aprendeu e que hoje morre em 404.
+ *   O mecanismo da seção 1b existia desde o nascimento da ilha e recusava, numa
+ *   linha, todo caminho com barra — `false !== strpos( $caminho, '/' )` devolvia
+ *   '' antes de olhar o mapa. MEDIDO NO AR em 09/10 às 19h3xZ: `/guia/`,
+ *   `/escola/`, `/pecas/` e `/quem-somos/` servem **301** para o endereço
+ *   canônico, e `/loja/vasos/`, `/loja/quadros/` e `/loja/colecao/vasos/`
+ *   servem **404** — e os três últimos são exatamente a forma dos endereços que
+ *   o M9 do Pente Fino de 21/09 nomeou: esta ilha DECLAROU três desenhos de
+ *   endereço para a camada de coleção da Loja e publicou um. Enquanto o apelido
+ *   só sabia um segmento, a família inteira de endereço abandonado desta ilha
+ *   era inalcançável pelo único mecanismo que existe para alcançá-la.
+ *   A RECUSA ERA DELIBERADA, e a bancada a cobrava numa afirmação
+ *   (`'loja/vaso' não é tratado como apelido`) — então ela não se apaga em
+ *   silêncio: ela vira a afirmação contrária, com a trava que faltava.
+ *   POR QUE SÃO DUAS TABELAS E NÃO UMA, e isto é a régua e não arrumação:
+ *   apelido de um segmento só pode colidir com a RAIZ, e a bancada já cobrava
+ *   isso ("apelido igual a slug real"); apelido com nível pode sombrear
+ *   QUALQUER degrau da árvore, inclusive o de uma página que ainda não nasceu.
+ *   `materiais/pastilhas` é slug RESERVADO da categoria G-PASTILHAS do Guia, que
+ *   a 16.5 ainda não autoriza — um apelido ali ficaria verde hoje e tiraria a
+ *   categoria do ar no dia em que ela nascesse. As duas réguas são diferentes,
+ *   então as duas tabelas são diferentes, e o portão novo mede o apelido com
+ *   nível contra o CAMINHO REAL de toda página registrada, nunca contra o slug.
+ *   `cdm_casca_caminho_de_slug()` nasce para isso: o slug da ferramenta é
+ *   `qual-cola-usar-no-mosaico` e o caminho dela é
+ *   `materiais/qual-cola-usar-no-mosaico` — comparar apelido com slug deixaria
+ *   passar o apelido que sombreia a ferramenta.
+ *   A NORMALIZAÇÃO É POR SEGMENTO, nunca pela string inteira:
+ *   `sanitize_title( 'loja/vasos' )` devolve `lojavasos`, e um mapa normalizado
+ *   assim nunca casaria com nada.
+ *   O QUE NÃO MUDA, e é o que torna isto seguro: o redirecionamento continua
+ *   acontecendo **só em `is_404()`** (página que existe é servida, nunca
+ *   redirecionada) e **só para destino publicado** (`cdm_casca_url_se_existir`).
+ *   Redirecionar para outro 404 continua proibido pela mesma trava de sempre.
+ *
  * Versão 1.20.0 (06/10/2026) — `cdm_casca_numeros()` passa a CONTAR os
  *   documentos que o banco cita e quantos deles foram abertos e lidos página a
  *   página. Os dois números nasceram porque uma frase de prosa mentiu: a camada
@@ -272,7 +309,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.21.0' );
+	define( 'CDM_CASCA_VERSAO', '1.22.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -549,20 +586,157 @@ function cdm_casca_apelidos() {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * 1b-2. Apelidos de endereço COM NÍVEL (1.22.0)
+ *
+ * Tabela separada da de cima de propósito, e o motivo é régua, não arrumação:
+ * apelido de um segmento só pode colidir com a raiz; apelido com nível pode
+ * sombrear qualquer degrau da árvore — inclusive o de página que ainda não
+ * nasceu. A bancada mede os dois com portões diferentes.
+ *
+ * O QUE ESTÁ AQUI, e cada linha é endereço que ESTA ILHA DECLAROU nos próprios
+ * documentos e nunca publicou — não é palpite sobre o que o Google aprendeu.
+ * O M9 do Pente Fino de 21/09/2026 nomeia o achado: "o Clube do Mosaico tem
+ * dois desenhos de URL e dois eixos de categoria para a mesma camada", com as
+ * citações lado a lado —
+ *   `PROMPT.md`:  "coleções `/loja/colecao/<termo>/`"
+ *   `PROMPT.md`:  "Coleções por uso (/loja/centro-de-mesa, /loja/presentes, /loja/jardim)"
+ *   `ARVORE.md`:  "Nível 2 pelo tipo de peça: `/loja/vasos/`, `/loja/colares/`, `/loja/quadros/`"
+ *   `VOZ.md`:     "na loja: `vasos`, `colares`, `quadros`"
+ * TRÊS desenhos escritos, UM publicado: a Loja serve as peças direto em
+ * `/loja/<peça>/`. Os outros dois morrem em 404, medido no ar em 09/10/2026.
+ *
+ * TODOS APONTAM PARA `loja`, e não para uma peça: a coleção não existe, então o
+ * endereço vivo equivalente é a própria Loja. 301 para a mãe é o que recupera o
+ * sinal sem prometer uma página que ninguém escreveu.
+ *
+ * O QUE DELIBERADAMENTE NÃO ESTÁ AQUI: o eixo de CATEGORIA do Guia no singular
+ * (`materiais/cola`, `materiais/pastilha`, `materiais/rejunte`). Ele morre em
+ * 404 hoje — `/materiais/cola/` foi medido — mas é PALPITE: o eixo de categoria
+ * do Guia existe, está reservado em `cdm_casca_categorias_do_guia()` no plural
+ * (`materiais/colas-e-adesivos`, `materiais/pastilhas`, `materiais/rejuntes`) e
+ * a 16.5 ainda não autorizou essas mães a nascer. Endereço que nenhum documento
+ * desta ilha escreveu não é endereço abandonado, e inventar apelido para ele é
+ * a mesma família de defeito que preencher coluna de tabela com palavra tirada
+ * do título.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_casca_apelidos_de_caminho' ) ) {
+function cdm_casca_apelidos_de_caminho() {
+	$mapa = array();
+
+	/* Os seis termos de coleção que os três desenhos compartilham. */
+	$termos = array( 'vasos', 'colares', 'quadros', 'centro-de-mesa', 'presentes', 'jardim' );
+	foreach ( $termos as $termo ) {
+		/* Desenho do ARVORE.md e do VOZ.md (tipo de peça) e do PROMPT.md (por uso). */
+		$mapa[ 'loja/' . $termo ]           = 'loja';
+		/* Desenho do PROMPT.md com o segmento `colecao`. */
+		$mapa[ 'loja/colecao/' . $termo ]   = 'loja';
+	}
+	/* A própria camada, sem termo — o desenho citado tem o segmento. */
+	$mapa['loja/colecao'] = 'loja';
+
+	return apply_filters( 'cdm_apelidos_de_caminho', $mapa );
+}
+}
+
 /**
- * Slug canônico de um caminho pedido, ou '' se ele não for apelido conhecido.
- * Isolada da requisição de propósito, para o teste poder exercitá-la sozinha.
+ * O CAMINHO REAL de uma página registrada, remontado pela árvore — nunca o
+ * slug declarado. Os dois divergem, e a divergência é a razão desta função
+ * existir: `cdm_casca_ferramentas()` declara a ferramenta da cola como
+ * `qual-cola-usar-no-mosaico` e a árvore a conhece como
+ * `materiais/qual-cola-usar-no-mosaico`. Um portão que comparasse apelido com o
+ * slug declarado deixaria passar o apelido que sombreia a ferramenta — e a
+ * ferramenta da cola é a página que mais ranqueia nesta ilha.
+ *
+ * AS DUAS FORMAS ENTRAM, porque as duas circulam no código: o registro da
+ * casca usa o último degrau e o filtro `cdm_arvore` dos snippets usa o caminho.
+ * Quando o slug não é chave da árvore, procura-se a chave cujo último degrau é
+ * ele; achando mais de uma, devolve '' em vez de escolher por acidente de
+ * ordem, porque a casca já cobra em outro portão que nenhum último degrau se
+ * repita.
+ *
+ * Devolve '' para slug que a árvore não conhece de nenhuma das duas formas.
  */
-if ( ! function_exists( 'cdm_casca_apelido_para_slug' ) ) {
-function cdm_casca_apelido_para_slug( $caminho ) {
-	$caminho = trim( (string) $caminho );
-	$caminho = trim( $caminho, '/' );
-	if ( '' === $caminho || false !== strpos( $caminho, '/' ) ) {
+if ( ! function_exists( 'cdm_casca_caminho_de_slug' ) ) {
+function cdm_casca_caminho_de_slug( $slug ) {
+	$mapa = cdm_casca_arvore();
+	$slug = trim( (string) $slug, '/' );
+	if ( '' === $slug ) {
 		return '';
 	}
 
-	$caminho = sanitize_title( $caminho );
-	$mapa    = cdm_casca_apelidos();
+	if ( ! isset( $mapa[ $slug ] ) ) {
+		$achadas = array();
+		foreach ( array_keys( $mapa ) as $chave ) {
+			if ( cdm_casca_slug_final( $chave ) === $slug ) {
+				$achadas[] = $chave;
+			}
+		}
+		if ( 1 !== count( $achadas ) ) {
+			return '';
+		}
+		$slug = $achadas[0];
+	}
+
+	/* Sobe pela mãe até a raiz, com o mesmo limite de giros da
+	   `cdm_casca_degraus()` — e pelo mesmo motivo: 'mae' escrito em círculo
+	   por engano não trava a página inteira. */
+	$degraus = array( cdm_casca_slug_final( $slug ) );
+	$passo   = $mapa[ $slug ]['mae'];
+	$giros   = 0;
+	while ( '' !== $passo && isset( $mapa[ $passo ] ) && $giros < 8 ) {
+		array_unshift( $degraus, cdm_casca_slug_final( $passo ) );
+		$passo = $mapa[ $passo ]['mae'];
+		$giros++;
+	}
+
+	return implode( '/', $degraus );
+}
+}
+
+/**
+ * Normaliza um caminho pedido degrau por degrau.
+ *
+ * POR SEGMENTO, nunca pela string inteira: `sanitize_title( 'loja/vasos' )`
+ * devolve `lojavasos`, e um mapa normalizado assim nunca casaria com nada.
+ */
+if ( ! function_exists( 'cdm_casca_normalizar_caminho' ) ) {
+function cdm_casca_normalizar_caminho( $caminho ) {
+	$partes = explode( '/', trim( (string) $caminho, '/' ) );
+	$limpas = array();
+	foreach ( $partes as $parte ) {
+		$parte = sanitize_title( $parte );
+		if ( '' !== $parte ) {
+			$limpas[] = $parte;
+		}
+	}
+
+	return implode( '/', $limpas );
+}
+}
+
+/**
+ * Slug canônico de um caminho pedido, ou '' se ele não for apelido conhecido.
+ * Isolada da requisição de propósito, para o teste poder exercitá-la sozinha.
+ *
+ * Resolve as DUAS tabelas: a de um segmento (1b) e a com nível (1b-2). A trava
+ * de segurança não está aqui e sim em quem chama — o redirecionamento só roda
+ * em `is_404()` e só para destino publicado.
+ */
+if ( ! function_exists( 'cdm_casca_apelido_para_slug' ) ) {
+function cdm_casca_apelido_para_slug( $caminho ) {
+	$caminho = cdm_casca_normalizar_caminho( $caminho );
+	if ( '' === $caminho ) {
+		return '';
+	}
+
+	if ( false === strpos( $caminho, '/' ) ) {
+		$mapa = cdm_casca_apelidos();
+		return isset( $mapa[ $caminho ] ) ? $mapa[ $caminho ] : '';
+	}
+
+	$mapa = cdm_casca_apelidos_de_caminho();
 
 	return isset( $mapa[ $caminho ] ) ? $mapa[ $caminho ] : '';
 }
