@@ -1060,6 +1060,24 @@ for _nome in sorted(os.listdir(_DADOS_DIR)):
             if "s.shopee.com.br" in _u:
                 _do_banco.add(_u)
 
+# A VITRINE DAS PAGINAS DE PRODUTO E A SEGUNDA FONTE DE LINK DESTA ILHA, desde
+# 09/10/2026. Ate aqui o banco era so `materiais-*.json`, e as oito paginas de
+# consulta de produto servem 58 links que vem de `vitrine-de-produto.json` — este
+# portao as acusou de "estranhas" na primeira medicao depois do desembarque, e
+# estava CERTO em acusar: ele nao conhecia a fonte. A fonte entra aqui e nao a
+# exigencia sai, que e a diferenca entre ensinar o portao e afrouxa-lo. O arquivo
+# e GERADO e tem portao proprio (`gerar-vitrine-de-produto.py --conferir`), entao
+# link que chega nele passou pela regra de relevancia e tem `sub_id_1` desta ilha.
+_vitrine_json = os.path.join(_DADOS_DIR, "vitrine-de-produto.json")
+if os.path.exists(_vitrine_json):
+    with open(_vitrine_json, encoding="utf-8") as _fh:
+        _vit = json.load(_fh)
+    for _pag_v in _vit.get("paginas", []):
+        for _of in _pag_v.get("ofertas", []):
+            _u = _of.get("url_afiliado") or ""
+            if "s.shopee.com.br" in _u or "meli.la" in _u:
+                _do_banco.add(_u)
+
 _sm_indice, _ = buscar(BASE + "/wp-sitemap.xml")
 _paginas = []
 for _sub in re.findall(r"<loc>([^<]+)</loc>", _sm_indice):

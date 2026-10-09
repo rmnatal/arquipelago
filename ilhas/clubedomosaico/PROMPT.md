@@ -32,6 +32,40 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 > a terceira queda já era chamado e não reparo, e o reparo só continua valendo porque o chamado não foi
 > respondido.
 
+> **`forcar=1` NO SYNC PODE DERRUBAR UM SNIPPET QUE ESTAVA DE PÉ — MEDIDO EM 09/10/2026, E A VÍTIMA FOI O
+> GUIA.** O desembarque das oito páginas de produto foi feito com `forcar=1`, que reaplica **todos** os
+> snippets e não só os que mudaram. O Sync grava cada um **inativo** e depois chama `activate_snippet()`
+> — e o comentário dele próprio (linha 326) diz o porquê: *"o Code Snippets executa o código ao gravar
+> snippet ativo (`test_snippet_code`) e, se o snippet já estiver carregado nesta requisição, isso vira
+> erro"*. Oito dos nove reativaram; o Guia não:
+>
+> ```
+> snippets/guia: gravado (#13) mas NÃO ativado: o código não passou na validação
+> ```
+>
+> **O QUE ISSO FAZ NO AR, e é pior do que parece:** as quatro páginas do Guia continuaram respondendo
+> **200**, com `<title>`, trilha e `canonical` certos — e no lugar do corpo, o shortcode **CRU**
+> `[cdm_guia_acabamento]`, sem `<meta name="description">`. Casca sem miolo. **200 não é sinal de página
+> viva**, e esta é a terceira vez que esta ilha paga por isso.
+>
+> **O CÓDIGO DO GUIA NÃO TEM DEFEITO:** os nove snippets passam no `php -l`, passam no wrap
+> `if(false){...}` que o Code Snippets usa para validar, e as funções dos nove estão **todas** guardadas
+> por `function_exists`. O que falhou foi a **reativação de um snippet já carregado**.
+>
+> **COMO CONSERTAR, e por que não é outro `forcar=1` às cegas:** na falha de ativação o Sync faz `return`
+> **antes** de gravar o sha do item (linha 342 contra 355), então o item fica **sem sha registrado** — e é
+> exatamente isso que um sync comum reaplica. Com o snippet já **inativo**, `activate_snippet()` executa o
+> código num mundo em que as funções dele não estão carregadas, que é o caso em que a validação passa.
+> **Mas o sync comum sai cedo quando a revisão do manifest é igual à gravada** (linha 472), então é
+> preciso **subir a revisão** — foi a revisão **73** que consertou isto. Se a revisão nova ainda não tiver
+> propagado no `raw.githubusercontent.com` (leva alguns minutos, e foi o que aconteceu), `forcar=1`
+> resolve, porque o snippet caído não está mais carregado.
+>
+> **A REGRA, para a próxima execução:** depois de todo desembarque, **leia o log do Sync item por item**
+> — não só o `N aplicado(s)` do resumo. O log guarda 40 linhas, e o `/status` as devolve; a linha que
+> importa é a que **não** começa com `ok`. E rode `conferir-no-ar.py` depois do Sync, sempre: foi ele que
+> pegou isto, com duas falhas em 524 afirmações.
+
 > **BATERIA DE MUTAÇÃO MORTA POR SINAL DEIXA O ARQUIVO MUTADO NO REPOSITÓRIO — MEDIDO EM 09/10/2026, E A
 > CULPADA TEM NOME: `mutacoes-par.py`, MUTAÇÃO `t03`.** Ela deixou
 > `snippets/clubedomosaico-f2.php` com a **regra 8 movida para depois da regra 2 e devolvendo `silencio`

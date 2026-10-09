@@ -113,6 +113,39 @@ abriu os dois portões e não alcançou a casca; ela está de pé agora.
     ambiente desta rotina, pela **sétima** execução seguida, e está em `dados/despachos.md` desde
     07/10.
 
+14. **O DESEMBARQUE DERRUBOU O GUIA, E O PORTÃO PEGOU — o defeito mais caro desta execução foi meu, não
+    do despacho.** O Sync foi acionado com `forcar=1`, que reaplica **todos** os snippets e não só os que
+    mudaram. O Sync grava cada um inativo e reativa em seguida, e o Code Snippets **recusou reativar o
+    Guia**: `gravado (#13) mas NÃO ativado: o código não passou na validação`. A causa está escrita no
+    próprio Sync, linha 326 — `activate_snippet()` executa o código, e o snippet **já estava carregado
+    naquela requisição**. Oito dos nove reativaram.
+    **O EFEITO NO AR era casca sem miolo:** `/materiais/acabamento/` e as três filhas seguiram
+    respondendo **200**, com `<title>`, trilha e `canonical` certos, e no lugar do corpo o shortcode
+    **CRU** `[cdm_guia_acabamento]`, sem `<meta name="description">`. **200 não é sinal de página viva**,
+    e esta é a terceira vez que esta ilha paga por isso — as duas anteriores foram a página de
+    estacionamento da HostGator.
+    **QUEM PEGOU: o `conferir-no-ar.py`**, com **2 falhas em 524 afirmações**, e a segunda nomeou as
+    quatro URLs. Se eu tivesse fechado a execução no `200` das oito páginas novas, quatro páginas do Guia
+    ficariam vazias no ar sem ninguém ver.
+    **O CONSERTO:** manifest à revisão **73** e Sync acionado. Na falha de ativação o Sync faz `return`
+    **antes** de gravar o sha do item (linha 342 contra 355), então `snippet:guia` ficou **sem sha** — e é
+    isso que um sync comum reaplica; com o Guia já **inativo**, `activate_snippet()` executa num mundo em
+    que as funções dele não estão carregadas, e a validação passa. O sync comum não rodou de primeira
+    porque ele sai cedo quando a revisão do manifest é igual à gravada (linha 472) e a revisão 73 ainda
+    não havia propagado no `raw.githubusercontent.com`; com o Guia já caído, `forcar=1` resolveu.
+    **CONFERIDO NO AR:** as quatro servem `cdm-guia` no corpo, **uma** `description` cada e **zero**
+    shortcode cru. **O código do Guia não foi tocado** — os nove snippets passam no `php -l`, passam no
+    wrap `if(false){...}` que o Code Snippets usa para validar, e as funções dos nove estão **todas**
+    guardadas por `function_exists`. Está em `dados/consertos.md` para a ronda seguinte reconferir, e
+    virou **aviso de topo** no `PROMPT.md`.
+
+15. **O SEGUNDO VERMELHO DO MESMO PORTÃO ERA FONTE NOVA, NÃO LINK ESTRANHO:** `[afiliado] todo encurtador
+    de Shopee servido está no banco` acusou **58 estranhos de 76 servidos**. Ele montava o banco de links
+    **só** de `materiais-*.json`, e os 58 vêm de `vitrine-de-produto.json`, que nasceu hoje. **O portão
+    estava certo em acusar** — ele não conhecia a fonte. A fonte entrou nele; **a exigência não saiu**,
+    que é a diferença entre ensinar o portão e afrouxá-lo. O arquivo é GERADO e tem portão próprio, então
+    link que chega nele passou pela regra de relevância e tem `sub_id_1` desta ilha.
+
 **PRÓXIMO PASSO DESBLOQUEADO:** a ilha está em **29 URLs** e o piso da 21.1 pede **40** — faltam
 **11**. O teto da 21.4 estava **SUSPENSO só em 09/10** pelo despacho (2) do Raphael e **volta inteiro
 a partir de 10/10**, aqui e em toda ilha. O caminho natural é a **leva de malha** que o Guia já sabe
