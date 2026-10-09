@@ -171,7 +171,38 @@ navegador consiga executar sem resolver CAPTCHA, e uma ronda medir **≥ 10** it
 escolha do método é do Raphael** — a Fundação não deve escrever bloco de nuvem para isso (a própria 25.4 já
 registra que a nuvem recebe 403), e a Sentinela já mediu três vezes que o caminho escrito acabou.
 
-## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO — **REESCRITO PELA 18.3 EM 09/10/2026 às 15h4xZ**
+## ~~DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO~~ — **FECHADO INTEIRO EM 09/10/2026 às 17h0xZ**
+
+> **FECHADO, E A VERIFICAÇÃO DA 18.4 ESTÁ FEITA — não apaguei nada antes de abrir as URLs no ar.**
+> As **OITO** páginas respondem **200** no ar (lidas com quebra de cache e também pela borda, sem
+> ela), cada uma com `title` e `description` mirando a consulta exata, **3 ou mais produtos com link
+> de afiliado** encurtado e rastreável, Sync acionado e `/status` na **revisão 72**. A ilha foi de
+> **21 para 29 URLs**. Os quatro itens que faltavam — o 1 (a malha), o 4 (o que cada página entrega),
+> o 6 (interlinkagem) e o 7 (a verificação) — saíram juntos, porque eram a mesma obra: o snippet
+> `produto` 1.0.0, mais os dois pontos de extensão da casca 1.21.0.
+>
+> **O QUE FICOU DIFERENTE DO QUE O DESPACHO PEDIU, e está dito em vez de escondido:**
+>
+> - **A tabela não tem as colunas `tipo`, `medida` e `para que serve`.** Elas não existem como campo
+>   em nenhum anúncio da coleta — e o próprio despacho escreve, duas linhas abaixo do pedido, que o
+>   que o anúncio sustenta é "título, preço, foto, medida e quantidade declaradas". A tabela serve o
+>   que foi medido, **diz na tela que o anúncio não declara os outros**, e o "para que serve" sai no
+>   "qual escolher", escrito por quem leu os anúncios. Preencher coluna com palavra tirada do título
+>   seria inventar dado comercial com cara de tabela.
+> - **O `nivel` da árvore é 3, não 2.** O despacho diz "nível 2" contando segmentos de URL; nesta
+>   casca `nivel` é o lugar na **árvore final**, e o precedente que o próprio despacho cita
+>   (`/como-fazer/o-que-e-mosaico-picassiete/`) é `nivel => 3`. Declarar 2 custou **48 afirmações
+>   vermelhas** antes de ser corrigido. A URL é a que o despacho pediu; só o número do mapa mudou.
+> - **A SERP de cada consulta nova continua NÃO medida**, e as oito publicam pelo veredito **herdado
+>   do recorte** — exatamente o que a seção 2 deste despacho autoriza, e está escrito no `ESTADO.md`
+>   com o motivo.
+>
+> **O QUE ESTE DESPACHO DEIXOU PARA TRÁS, e não é dele:** `GOOGLE_SA_B64` segue ausente do ambiente
+> desta rotina (sétima execução seguida), então o Search Console não foi avisado das oito URLs novas.
+> Está em `dados/despachos.md` desde 07/10 e é do Raphael.
+
+### O que ele pediu, guardado para a próxima coleta não reinventar a régua
+
 
 Decisão do Raphael em 09/10/2026, 10h41 de Brasília: "a gente está ranqueando para cola para mosaico. Mas tem inúmeras ferramentas para mosaico. Tem pastilha, tem [torquês]... Eu gostaria de ranquear quando a pessoa procurar por esses produtos. Eu não sei qual é a malha que tem que ser construída, categoria, subcategoria. Eu quero ser um dos primeiros quando alguém digitar isso. A galera que faz isso é ruim na internet, eu quero que você seja o melhor de todos."
 
@@ -291,7 +322,16 @@ com link**, Sync acionado e URL conferida. Ao fim da execução, a lista das con
 cada uma com a causa medida — **essa lista já está escrita em `dados/consultas-de-produto.json`, uma
 linha por consulta, e não precisa ser refeita.**
 
-## DESPACHO DO RAPHAEL — 2026-10-09 (2) — TETO DA 21.4 SUSPENSO HOJE NESTA ILHA
+## ~~DESPACHO DO RAPHAEL — 2026-10-09 (2) — TETO DA 21.4 SUSPENSO HOJE NESTA ILHA~~ — **GASTO E EXPIRANDO SOZINHO EM 09/10/2026**
+
+> **A SUSPENSÃO FOI USADA e morre com o dia, como ele escreveu.** As OITO páginas de consulta de
+> produto saíram numa execução só, às 16h16Z–17h0xZ — uma leva de 8 URLs, que o teto normal da 21.4
+> (10 por leva, 3 por semana) teria permitido como leva única, mas que viria depois das três levas da
+> semana. A ilha foi de **21 para 29**; o alvo de 40 do piso da 21.1 pede **11** URLs ainda.
+> **A partir de 10/10/2026 a 21.4 volta inteira**, aqui e em toda ilha, como ele mesmo disse — então
+> a leva seguinte obedece ao teto normal. Fica riscado e não apagado para a próxima execução não ler
+> a suspensão como se ela ainda valesse.
+
 
 Decisão do Raphael em 09/10/2026, 10h40 de Brasília: "a gente vai ter que aumentar esse limite... Essa regra vale para hoje. Três levas por semana, esquece. Eu quero acabar hoje. Depois, nas próximas ilhas, pode voltar à regra normal."
 

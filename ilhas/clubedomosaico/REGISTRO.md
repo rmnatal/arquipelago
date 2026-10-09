@@ -3,6 +3,123 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+09/10/2026 16h16Z–17h0xZ — AS OITO PÁGINAS PELO NOME DO PRODUTO ESTÃO NO AR, E OS PORTÕES ACHARAM TRÊS DEFEITOS DE RÉGUA E NENHUM DE PÁGINA
+
+**A ilha foi de 21 para 29 URLs**, `/status` e manifest na **revisão 72**, casca **1.21.0** e um snippet
+novo (`produto` 1.0.0). É o item que faltava do despacho do Raphael de 09/10 (3): a passada das 14h05Z
+abriu os dois portões e não alcançou a casca; ela está de pé agora.
+
+1. **OS DOIS COMANDOS DA 29 RODARAM ANTES DE TUDO.** `conferir-no-ar.py` **APROVADO, 524 afirmações,
+   0 falha** (21 de 21 URLs em 200, as três da 29.2 em 200, caminho virgem em 404).
+   `leitura-do-visitante.py` **REPROVADO com EXATAMENTE 1 defeito**: o soft 404 da borda, pendência do
+   Raphael desde 29/09 — vermelho esperado, com dono escrito. **Zero defeito novo.** Rede pela 20.2:
+   200 nas TRÊS passadas, com `aquametria.com.br` em 200 nas mesmas.
+
+2. **A ESCOLHA DA ILHA: FOCO, SEM CORRIDA.** `foco.md` nomeia a **clubedomosaico**, então pela 1.2 não
+   houve rotação. `executando_desde` estava `null`, que pela 1.1 já significa que nenhum bloco da
+   Fundação está vivo — os commits de 14h50Z e 14h54Z são **de ronda da Sentinela**, e a 1.1 diz com
+   essas palavras que commit de ronda **não reserva nada**. Reserva aceita às 16h16Z no primeiro push,
+   e **renovada às 16h52Z** porque o bloco passou de 40 minutos (a 1.1 manda reescrever o campo).
+   O despacho da Sentinela de hoje não tinha nada para a Fundação cumprir.
+
+3. **AS DUAS METADES, E POR QUE ELAS NÃO PODEM SER UM ARQUIVO SÓ.** `dados/paginas-de-produto.json` é
+   **DECLARADO** e escrito à mão — título, `description`, a resposta em duas frases, o que é e o que
+   não é, o "qual escolher" por uso, o dado fino e as perguntas, na voz do `VOZ.md`.
+   `dados/vitrine-de-produto.json` é **GERADO** por `ferramentas/gerar-vitrine-de-produto.py`. Prosa
+   dentro de arquivo gerado é reescrita pela coleta seguinte; número dentro de arquivo escrito à mão
+   envelhece calado. **Os dois erros já foram pagos nesta ilha, e a separação é o conserto.**
+
+4. **NENHUM PREÇO É DIGITADO NA PROSA.** A camada declarada traz moldes — `{MIN}`, `{MAX}`, `{N}`,
+   `{UNIDADE}`, `{SOBRE}`, `{DATA}` — e quem os enche é o snippet, da vitrine. A bancada **reprova se a
+   camada declarada trouxer "R$" em lugar nenhum**, e a mutação 16 prova que ela morde. E o
+   preenchimento tem **DOIS modos**: espaço inquebrável na tela, espaço normal no JSON-LD. `&nbsp;`
+   publicado como texto da resposta é diferença que **nenhuma revisão humana vê** — na tela as duas
+   saem idênticas.
+
+5. **O GERADOR RECALCULA O NÚMERO PRÓPRIO DAS OFERTAS QUE ENTRAM** e o confere contra o resumo da
+   coleta; discordando, ele **não grava**. Sai com código 1 também quando uma consulta que publica
+   chega com menos de **TRÊS** ofertas (o piso da 30.2) ou com oferta sem link de afiliado com o
+   `sub_id` desta ilha. `--conferir` regera e compara, e é por ele que o arquivo não pode ser editado
+   à mão (mutação 18).
+
+6. **O CAMPO `nota` NÃO VAI AO AR, e a ausência é MEDIDA.** Das 58 ofertas que servem, **31 vêm com
+   `"0"`** e uma com `"1"`, e **nenhum arquivo desta ilha diz o que o campo significa** — não se sabe
+   se é estrela de 1 a 5 nem se `0` quer dizer "sem avaliação". Servido na tela, isso publica "produto
+   péssimo" em mais da metade da lista e **"nota 1" num produto que a própria página recomenda**. A
+   30.2 lista o que o anúncio sustenta — título, preço, foto, medida e quantidade declaradas — e
+   `nota` não está nela. **Número cuja régua ninguém escreveu é significado inventado**, então ele não
+   chega nem à vitrine. Quando alguém medir o campo, ele entra na tabela de uma vez.
+
+7. **A TABELA NÃO TEM AS COLUNAS QUE O DESPACHO PEDIU, E A DIFERENÇA É HONESTIDADE.** Ele pede "tipo,
+   medida, quantidade, preço, para que serve". **`tipo`, `medida` e `para que serve` não existem como
+   campo em nenhum anúncio da coleta** — e o próprio despacho escreve, duas linhas abaixo, que o que o
+   anúncio sustenta é "título, preço, foto, medida e quantidade declaradas". Então a tabela serve o que
+   foi medido, **diz na tela que o anúncio não declara os outros**, e o "para que serve" sai no "qual
+   escolher", escrito por quem leu os anúncios. Preencher coluna com palavra tirada do título seria
+   inventar dado comercial com cara de tabela.
+
+8. **TRÊS DEFEITOS DE RÉGUA, achados pelos portões, e NENHUM era de página:**
+   - **o `nivel` da árvore.** Declarei **2**, lendo "nível 2" do despacho como contagem de barras — e
+     nesta casca `nivel` é o lugar na **ÁRVORE FINAL**, escrito com essas palavras no registro das
+     ferramentas. Resultado: **48 afirmações vermelhas**, com as oito entrando como irmãs dos seis
+     cartões de prateleira e da camada de prova, a trilha com três degraus contra dois do mapa e cada
+     página se listando como irmã de si mesma. **O precedente que o próprio despacho cita** —
+     `/como-fazer/o-que-e-mosaico-picassiete/` — é `nivel => 3`. Corrigido para 3.
+   - **a régua de shortcode do `teste-casca.php` não aceitava HÍFEN**, pela **TERCEIRA vez na mesma
+     linha** (o dígito faltou em 14/09, com `[cdm_f2]`). As oito entravam na tabela de caminhos com
+     caminho **VAZIO**, e trilha, `BreadcrumbList` e cluster eram medidos contra o nada. A nota que já
+     estava ali dizia a lição: *"régua estreita demais não é régua frouxa: é régua que mede outra
+     coisa"*.
+   - **TRÊS LACUNAS DE PORTÃO, e quem as achou foram mutações que PASSARAM.** A bancada procurava a
+     data em **qualquer lugar** da tela, e a procedência imprime a data por fora do molde — então a
+     resposta podia perder a dela e o verde continuava. Procurava "Shopee" em **qualquer frase**,
+     quando a 30.2 a quer na **procedência**. E a contagem de órfã ficava verde **sem o link da mãe**,
+     porque as sete irmãs já davam sete — e a 16.4(f) nomeia justamente o link **da mãe**. Os três
+     portões nasceram por causa delas.
+
+9. **A MALHA, e nenhuma órfã.** `/materiais/` lista **as oito** com a âncora igual à consulta (16.4-a,
+   nunca "saiba mais"); a home leva **TRÊS**, e quem as escolheu foi a **faixa de volume medida** em
+   10/09/2026 — `pastilhas para mosaico`, `pastilhas de vidro para mosaico` e `alicate para mosaico`
+   são as únicas das oito na faixa de 100 a 1.000 buscas/mês. **Intenção aqui tem número medido, não
+   gosto.** As duas listas entram por **pontos de extensão novos da casca 1.21.0**
+   (`cdm_materiais_secoes` e `cdm_home_secoes`), e não por a casca listar as oito à mão: foi ela mesma
+   que escreveu em 1.5.0 que *"casca editada por bloco de ferramenta é casca que sai do ar por defeito
+   de ferramenta"*. Cada página linka as **sete irmãs**, a F1, a **cola que JÁ ranqueia** (sem segunda
+   URL, pela 30.4) e a loja do ateliê. **A pinça virou ÂNCORA dentro do alicate**, não página — a
+   30.4 aplicada, porque ela devolve o mesmo alicate de duas consultas irmãs.
+
+10. **O PISO DA 30.2 É PORTÃO DE VERDADE, medido num mundo FABRICADO.** `base-de-mdf` e `rejunte`
+    nascem com **exatamente três** ofertas — o mínimo, não uma folga. Num mundo com duas, a bancada
+    mede que a página do rejunte **sai do ar**, que **as outras sete continuam de pé** (portão que
+    derruba demais é tão ruim quanto o que não derruba) e que **a mãe deixa de linká-la**, sem link
+    para 404. Está escrito aqui para a próxima coleta não descobrir isso no ar.
+
+11. **O DADO FINO DO REJUNTE SAI ANTES DA TABELA**, porque a resposta dele diz "vale ler o aviso abaixo
+    antes de olhar o preço": das três ofertas, **uma é rejunte metálico dourado de 1 kg**, de outra
+    categoria, e **duas são anúncio de revendedor sem marca de fabricante**. A página diz com essas
+    palavras que **R$ 313,09 não é o teto do rejunte de mosaico**. Aviso depois do número é aviso
+    perdido, e a mutação 23 prova que o portão vê.
+
+12. **BANCADA E MUTAÇÃO.** `teste-produto.php`: **306 afirmações, 0 falha**, uma página por processo.
+    `teste-casca.php` foi de **744 para 1024** verificações — as oito entraram nos trinta e tantos
+    portões que valem para toda página da ilha. `mutacoes-produto.py`: **25 de 25 reprovando**, em
+    `mkdtemp`. **`git status` conferido e a bancada rodada DE NOVO depois da bateria**, pela regra que
+    a `mutacoes-par.py` escreveu com sangue hoje de manhã.
+
+13. **O QUE ESTE BLOCO NÃO FEZ, dito para ninguém procurar depois:** não mediu a SERP de cada consulta
+    nova — o canal devolve página de **busca interna** de varejista em vez do top 10 orgânico, e as
+    oito publicam pelo veredito **herdado do recorte**, o que está escrito no `ESTADO.md` como a
+    seção 2 do despacho autoriza. E não avisou o Search Console: `GOOGLE_SA_B64` segue **ausente** do
+    ambiente desta rotina, pela **sétima** execução seguida, e está em `dados/despachos.md` desde
+    07/10.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** a ilha está em **29 URLs** e o piso da 21.1 pede **40** — faltam
+**11**. O teto da 21.4 estava **SUSPENSO só em 09/10** pelo despacho (2) do Raphael e **volta inteiro
+a partir de 10/10**, aqui e em toda ilha. O caminho natural é a **leva de malha** que o Guia já sabe
+servir (as categorias `rejuntes`, `pastilhas`, `alicates-e-corte` e `bases` têm banco e esperam a
+16.5), e **não** mais páginas de consulta de produto: das 16 consultas, oito publicaram e as outras
+oito saíram com causa medida, então esta família está **fechada** até a próxima coleta.
+
 09/10/2026 14h05Z–15h5xZ — OS DOIS PORTÕES DA SEÇÃO 30 ABRIRAM NA MESMA PASSADA, E A MEDIÇÃO DERRUBOU METADE DA LISTA DO PRÓPRIO DESPACHO
 
 Nenhuma URL nova (a ilha segue em **21**), nenhuma leva do teto da 21.4 gasta, nenhum Sync e nenhuma
