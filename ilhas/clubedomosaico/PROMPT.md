@@ -80,22 +80,55 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 > um comando, porque arquivo novo nasce toda semana:
 >
 > ```
-> grep -L 'mkdtemp\|copytree' ferramentas/mutacoes-*.py
+> python3 ferramentas/teste-rede-de-sinal.py .
 > ```
+>
+> **O COMANDO ACIMA ERA UM `grep -L 'mkdtemp\|copytree'` ATÉ 09/10/2026 às 20h4xZ, e ele ESCONDIA
+> justamente a `mutacoes-par.py` — a bateria que causou o estrago que este aviso descreve.** Ela
+> trabalha em cima da árvore e sumia da lista porque o **comentário** dela cita `mkdtemp` para explicar
+> que ela *não* usa. O comando prometia **treze** e a verdade eram **catorze**, e foi essa lista de
+> treze que foi para o `ESTADO.md` como dívida — com a que provou o defeito de fora. **Classificação se
+> faz por CHAMADA, nunca por menção:** hoje o portão procura `mkdtemp(` com parêntese, e a conta medida
+> é **34** baterias, **20** em cópia e **14** em cima da árvore. (A outra metade da frase deste aviso
+> também estava incompleta: ela nomeava `cobertura`, `-f1`, `-f2` e `-rejunte` como as que trabalham em
+> `mkdtemp`, e são **vinte**.)
 >
 > *(A primeira versão deste aviso, escrita horas antes no mesmo dia, culpava a `mutacoes-f1.py` — e ela
 > roda em `mkdtemp`, então não podia ter sido. A `t03` da `mutacoes-par.py` é a mutação idêntica byte a
 > byte ao que estava no disco. Corrigido no mesmo dia: causa errada no registro permanente é o defeito
 > que esta ilha mais paga, e escrevê-la num aviso de topo seria pagá-lo de propósito.)*
 >
-> **O CONSERTO DE CÓDIGO JÁ ESTÁ NA `mutacoes-par.py` e cabe em seis linhas:** `restaura_em_sinal()`
-> captura SIGTERM, SIGINT e SIGHUP e restaura **antes** de sair — provado matando a bateria de propósito
-> no estágio do snippet, com a árvore voltando limpa e a bancada em 0 falha. **As outras treze baterias
-> em cima da árvore ainda não têm isso**, e está escrito como item da fila.
+> **O CONSERTO DE CÓDIGO ESTÁ NAS CATORZE DESDE 09/10/2026 às 20h4xZ, e ele é UM MÓDULO e não catorze
+> cópias:** `ferramentas/rede-de-sinal.py` guarda `retrato()` (bytes, nunca o objeto desserializado),
+> `restaura()`, `limpa_sobras()` e `restaura_em_sinal()`, que captura SIGTERM, SIGINT e SIGHUP e
+> restaura **antes** de sair. A `mutacoes-par.py`, que tinha as seis linhas próprias desde a manhã,
+> passou a usar o módulo — **cópia que diverge é pior que `importlib`**, e a prova disso é que a
+> primeira cópia já tinha aprendido algo que as outras treze não saberiam: a sobra de
+> `<arquivo>.original`. Sete das catorze copiam o arquivo para esse nome antes de mutar e desfazem com
+> `shutil.move` no `finally`; morrer no meio deixava **duas** coisas erradas, e só uma delas o
+> `git status` mostra como `M`.
+>
+> **E DUAS COISAS QUE O MÓDULO SABE PORQUE FORAM MEDIDAS, não porque alguém as imaginou:** arquivo que
+> **não existia** entra no retrato como `None` e restaurar é **apagá-lo** — é o mundo fabricado da
+> `apoio` e da `base`, que se recusam a rodar se o arquivo já existir; e o retrato é de **bytes** porque
+> re-serializar o objeto deixa conteúdo idêntico com **`sha256` trocado**, e o manifest guarda esse sha.
+>
+> **O PORTÃO É `ferramentas/teste-rede-de-sinal.py`, e ele mata as catorze de propósito** — mede que o
+> sinal chegou com a bateria **viva** (a linha `INTERROMPIDA por sinal`, que só o handler imprime), que
+> a árvore voltou **igual** ao estado de antes, e que não sobrou backup. Ele não exige árvore limpa: ele
+> compara, então serve à passada que acabou de escrever o conserto e quer prova **antes** de commitar.
 >
 > **E A METADE QUE NENHUM CÓDIGO RESOLVE, porque SIGKILL não é capturável:** depois de rodar bateria de
 > mutação, **confira `git status` e rode a bancada DE NOVO — nunca só antes.** Foi esse portão, e não o
 > `finally`, que pegou o estrago de 09/10.
+>
+> **E UM TERCEIRO "DEPOIS, NUNCA DURANTE", medido às 20h2xZ de 09/10/2026: `atualizar-manifest.py`
+> rodado enquanto uma bateria está viva grava o `sha256` de um arquivo MUTADO.** Aconteceu com
+> `snippets/clubedomosaico-f2.php`: a `mutacoes-ambiente-do-produto` o tinha mutado naquele segundo, e a
+> etiqueta do manifest passou a descrever uma versão que não existe. A segunda passada corrigiu, e a
+> conferência que prova é dupla — **nenhum** item do manifest divergindo do disco, e a comparação com o
+> `HEAD` mostrando **só** os `sha` que a execução realmente mudou. **O manifest é etiqueta, e etiqueta
+> tirada no meio da mutação mente sem quebrar nada** — que é o defeito, não a consequência.
 
 ## O que esta ilha tem de diferente (leia antes de tudo)
 Esta é a **terceira ilha** e a primeira que **não veio da Bússola**: é um projeto pessoal do Raphael. A mãe dele faz mosaico artesanal (vasos, colares, quadros). O site tem **três motores num domínio só**, e a malha fecha um ciclo comercial completo:

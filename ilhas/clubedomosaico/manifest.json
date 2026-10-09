@@ -556,13 +556,13 @@
     {
       "id": "mutacoes-acabamento",
       "arquivo": "ferramentas/mutacoes-acabamento.py",
-      "sha256": "883929ae84e7d230f7cef5207a38b844b91d74a0f6eed93d06a217ceb5d8235e",
+      "sha256": "b48655f01041ff629c6fb4ebde5e244d1161ffb89c56abec5c5ba22f45e7dceb",
       "descricao": "Catorze defeitos escritos de volta no banco de acabamento, cada um rodando o validar-banco DUAS vezes — com e sem o bloco da categoria, pela variavel CDM_SEM_PORTAO_ACABAMENTO — para separar o que SO o portao novo ve. TREZE dos catorze so o portao novo pegou. Duas mutacoes acharam buraco real ANTES do primeiro commit e as duas viraram regra: a 05 (momento de uso deduzido do mecanismo passava com cara de declaracao, porque o portao so cobrava motivo no SILENCIO e nada na AFIRMACAO — agora momento declarado exige o TRECHO da frase literal que o declara) e a 13 (a matriz base x ambiente preenchida num verniz, que a regra proibia em prosa desde que nasceu e nenhuma regua media — verniz dentro dela viraria candidato a colar peca na F2). A mutacao 07 e a que PRODUZ O MUNDO: faz um verniz NOMEAR vidro, que e o estado que nenhum dos sete tem hoje e do qual o achado central do arquivo depende. Bancada."
     },
     {
       "id": "mutacoes-apoio",
       "arquivo": "ferramentas/mutacoes-apoio.py",
-      "sha256": "e881c3f5ce9a6937791996b864037faf4b6273dbcee8105380b639c561fa0287",
+      "sha256": "bceab5c69b582b6f81a65644b2693b1035536f6e72c1460f92de9bfe1f319c85",
       "descricao": "Vinte e quatro defeitos escritos contra a decisao de campo da categoria APOIO, e e a SEGUNDA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-apoio.json nao existe, porque a regra nasceu antes do primeiro SKU. Quatorze mutacoes no mundo fabricado (quatro registros, um por ramo e por estado), SEIS no banco de VERDADE — a AF1500, a Cascorez e o verniz de pisos, restaurados byte a byte no fim — e quatro no esquema. As seis do banco real sao a novidade: esta e a unica categoria cuja declaracao que mais importa vem DO OUTRO LADO DO BALCAO, porque quem diz qual desempenadeira usar e o fabricante da PASTILHA. Duas mutacoes acharam buraco real ANTES do commit e as duas viraram portao: a 15 (a varredura comparava por registro e a AF1500 nomeia a desempenadeira em DOIS campos, entao apagar uma das duas linhas passava verde — a prosa da secao ja dizia 'mede CAMPO, nao registro' e o codigo nao cumpria) e a 20 (trocar o estado de `aerossol` para buraco de vocabulario passava verde, e a proxima execucao criaria um tipo de apoio chamado aerossol, que e EMBALAGEM; o conserto e que proposta de valor novo tem de vir de FRASE de fabricante e nao de um campo de valor do nosso proprio esquema). A 21 e a que PRODUZ O MUNDO: executa a decisao pendente, poe `pincel` em tipo_por_categoria.apoio e mede se o indice acusa que envelheceu no mesmo commit em que o vocabulario cresceu. 24 de 24, as 24 so o portao novo viu. Bancada."
     },
     {
@@ -586,19 +586,19 @@
     {
       "id": "mutacoes-base",
       "arquivo": "ferramentas/mutacoes-base.py",
-      "sha256": "1683d83b76e74c1bc3b8ba0d075d7a7a275649bc05c5c4863caeab24f3bf7c81",
+      "sha256": "c54c2db4ef716f19c40def97ff162d3eb640e430b974de161cfdd9f0159345cf",
       "descricao": "Vinte defeitos escritos contra a decisao de campo da categoria BASE (28/09/2026, 10h16Z). PRIMEIRA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-base.json nao existe, porque a regra nasceu antes do primeiro SKU — entao ela escreve cinco registros de bancada, um por tipo, cobrindo os tres estados da ponte, confere que o mundo certo passa, muta treze vezes no registro e SETE NO ESQUEMA (a ponte e documento que mede documento), restaura e apaga o arquivo fabricado. A mutacao 05 PASSOU na primeira rodada e e o defeito mais caro da categoria: vaso de barro cru gravado como ceramica_esmaltada_porcelana, que nao deixa rastro — some a faixa descoberta e nasce uma recomendacao sobre uma superficie que absorve ao contrario da que foi respondida. A 14 e a que PRODUZ O MUNDO: executa a ponte, poe isopor_eps em vocabularios.base e mede se o esquema acusa que a ponte envelheceu no mesmo commit em que o vocabulario cresceu. 20 de 20, 19 so os portoes novos viram. Bancada. ENTROU NO MANIFEST EM 28/09/2026 as 13h4xZ, pela execucao seguinte: ela nasceu de manha e ficou fora, e quem a achou foi o portao 'FERRAMENTA NO DISCO FORA DO MANIFEST' do proprio atualizar-manifest, que se recusou a gravar enquanto a linha nao existisse."
     },
     {
       "id": "mutacoes-batismo",
       "arquivo": "ferramentas/mutacoes-batismo.py",
-      "sha256": "3ebc30141d930e7c86050ea31efa6afb53fa4d0d50195b11d6e51013beaa7ac2",
+      "sha256": "a30c0def8640bde8171b28e91ed98b201dd3e426348015d0498dc25cee8d9bd7",
       "descricao": "Bateria da trava do batismo: 14 mutacoes, 14 reprovadas. Dez atacam a REGRA (duas delas APERTANDO a regua, porque a tolerancia ao nome de arquivo mutilado e folga deliberada e folga que ninguem mede alguem aperta por zelo) e quatro atacam o ESQUEMA e o BANCO, entre elas a que a 26.2 exige por escrito: apagar a chave da lista."
     },
     {
       "id": "mutacoes-casamento",
       "arquivo": "ferramentas/mutacoes-casamento.py",
-      "sha256": "9792d5e277f3f9c280ed49d8a08645261503ec0c623442659fbdf9cf2a23ec2c",
+      "sha256": "54150ab3e6ab93112637b24170a6682e4088d9337d4ff566559af41ad70220cc",
       "descricao": "Dezessete mutacoes em duas metades, 17 de 17 reprovadas. Doze atacam a REGRA (cada trava cai uma vez, e uma delas APERTA em vez de afrouxar, pondo `manual` nas armadilhas — tres registros do banco trazem a palavra no nome). Cinco atacam o BANCO e medem o portao novo do validar-banco.py, que reconfere o titulo gravado passando-o pela regra viva: o titulo vira o do irmao, fica vazio, a ficha some, um campo de procedencia some e — a que mais importa — o BANCO muda e a prova caduca sem ninguem tocar no campo. Bancada: nunca vai ao site."
     },
     {
@@ -610,7 +610,7 @@
     {
       "id": "mutacoes-degrau",
       "arquivo": "ferramentas/mutacoes-degrau.py",
-      "sha256": "434636dba1f1f73d8c6422cd18c5f67aa1dafda65f7bda20506dc8462ce7ddfb",
+      "sha256": "c58e0f5c68ee9fbf64414e686d39f33271a571f5cfd46e6ccd86105e586de160",
       "descricao": "Oito mutacoes do portao do degrau da escada da 25.1, escritas nos CINCO bancos de material e nao em um so — porque o buraco era do portao e nao do arquivo. O portao antigo cobrava `afiliado.degrau` de quem tinha `afiliado.url` (a ficha de produto) e o esquema dizia o mesmo; item que serve BUSCA nao tem `url`, entao 13 dos 38 itens do banco serviam degrau 4 na tela com `degrau: null` no arquivo, e o validador aprovava — medido pela ronda da Sentinela em 28/09/2026. Cada mutacao roda o validar-banco.py duas vezes e separa o que SO o portao novo viu, desligando-o com CDM_SEM_PORTAO_DEGRAU=1, que restaura exatamente a regra velha. Duas delas PRODUZEM mundo que o banco ainda nao tem (item de acabamento fora do degrau 4; item servindo so a busca crua), porque portao que so funciona enquanto todos os itens estiverem no mesmo degrau mede o acaso e nao a regra. Bancada: nunca vai para o site."
     },
     {
@@ -652,19 +652,19 @@
     {
       "id": "mutacoes-motivo-degrau-4",
       "arquivo": "ferramentas/mutacoes-motivo-degrau-4.py",
-      "sha256": "af03eb2f89b5b3400f689d26f02a49b5101f01bc1941c363d8034146cc594c66",
+      "sha256": "20d858aca8c3935c2d5d82aeba7a734322466e5e4ff546970e63e2bc82aec163",
       "descricao": "Dez mutacoes do portao do motivo do degrau 4, escritas nos CINCO bancos, 10 de 10 reprovadas e as 10 SO pelo portao novo (desligado por CDM_SEM_PORTAO_MOTIVO_DEGRAU_4=1). Atacam a forma da 25.4-b.3 uma metade por vez: o campo ausente (o defeito exato de 30/09), a prosa de uma metade so que era a forma de 29/09 e passava, a causa sem classe, a classe escrita em prosa com maiuscula (duas grafias da mesma causa viram duas causas e a reparticao soma errado sem reprovar), a tentativa sem data — que e a que a 25.4-b.3 nomeia, porque motivo sem data manda a execucao seguinte nem tentar —, a data em formato brasileiro, que nao e ordenavel, e a causa vazia dentro da forma certa. Duas PRODUZEM O MUNDO que o banco nao tem: ficha achada com link nao encurtado, e item que CAI do degrau 3 de volta para o 4 quando o anuncio sai do ar — as duas recontam `itens_esperando_link` do cabecalho, senao era o portao do CABECALHO que as pegava, e mutacao pega pelo portao errado nao prova portao nenhum. Bancada: nunca vai para o site."
     },
     {
       "id": "mutacoes-forma-do-degrau",
       "arquivo": "ferramentas/mutacoes-forma-do-degrau.py",
-      "sha256": "a7a2c28f834209d4a256bbf316c7f9e3fc4bca31ceefb93e8ce37d3aa67f0658",
+      "sha256": "c2ba8400dde00a182df3be2ee0126b6dba6afd68a4798e9d5c1f7e7128d41793",
       "descricao": "Cinco mutacoes do TERCEIRO portao da familia do degrau, o de 05/10/2026: o de 28/09 cobra que o degrau esteja ESCRITO, o de 30/09 cobra que o degrau 4 diga POR QUE parou ali, e nenhum dos dois olhava se o numero gravado DESCREVE a URL ao lado dele. Por esse buraco o quartzolit-rejunte-acrilico passou dez dias com degrau 2 carregando shopee.com.br/product/1462074750/58262414865, que e anuncio de vendedor — degrau 3 da 25.1 —, e a MESMA loja estava classificada degrau 3 noutro registro, com o nome dela escrito no campo. Atacam a forma da URL (ficha de anuncio da Shopee num degrau 2; o produto.mercadolivre.com.br/MLB-..._JM que a 25.1 nomeia com todas as letras; a forma -i.<shop>.<item>, que um portao lendo so /product/ nao veria), o requisito que a 25.1 escreve dentro do degrau 3 (url_busca, sem a qual o leitor que cai num anuncio morto cai num beco) e a loja com DOIS degraus, que nenhuma forma de URL pega porque ser loja oficial do fabricante e propriedade da LOJA e nao do produto. 5 de 5 reprovadas, 4 SO pelo portao novo (desligado por CDM_SEM_PORTAO_FORMA_DO_DEGRAU=1). ELA TAMBEM MEDE O FALSO POSITIVO, e nisso e a primeira entre as irmas: as duas formas legitimas de catalogo do Mercado Livre — com rotulo no caminho e na curta sem rotulo — tem de PASSAR, porque portao que reprova o link certo e desligado pela primeira pessoa com pressa, e ai deixa de medir qualquer coisa. Bancada: nunca vai para o site."
     },
     {
       "id": "mutacoes-pastilhas",
       "arquivo": "ferramentas/mutacoes-pastilhas.py",
-      "sha256": "94f34f4d1a1a364ab0bc06b5b3743133802fa3798956e45c739ca40b6317069c",
+      "sha256": "791cace8f529035c2064a98a5fa2c1ad703594e84f3f47828c4461245224119e",
       "descricao": "Doze defeitos escritos de volta no banco de pastilhas, cada um rodando os DOIS portoes (esquema e regua da categoria) e marcando os que SO a regua nova ve — porque mutacao que o portao antigo ja pegava nao justifica arquivo novo. Bancada."
     },
     {
@@ -689,7 +689,7 @@
     {
       "id": "mutacoes-sobra",
       "arquivo": "ferramentas/mutacoes-sobra.py",
-      "sha256": "f9bc1985ff44320f6755fdd39688079bea52b7abfe20b12758b1f3db7bb07c21",
+      "sha256": "9be52c76e54a43ece3eb306b8bf40a2780da6886d88fd5b7f269ad7737a531c4",
       "descricao": "Bateria de mutacao da sobra declarada (esquema v13). Treze mutacoes de FORMA, medidas pelo validar-banco.py com o portao novo ligado e desligado — entre elas a que restaura a promessa que o repositorio tinha escrito, o mesmo numero ganhando uma SEGUNDA chave. E cinco de TELA, medidas pelo HTML servido: mundo que muda nao e defeito, entao a cobranca e a bancada continuar verde E a pagina mudar — tela que repete texto fixo parecido com o dado fica identica, e foi esse o estado de 30/09 a 06/10/2026. Tres estados legitimos tem de passar, entre eles o de 12 dos 13 itens, que e nao declarar sobra. Bancada."
     },
     {
@@ -845,25 +845,25 @@
     {
       "id": "mutacoes-preparo",
       "arquivo": "ferramentas/mutacoes-preparo.py",
-      "sha256": "a6f2fd7eade2b323906aa7901c8fddf7a0029fcc097d0fe8e9ad7a3b2035310d",
+      "sha256": "b82789bb7b401034ddb39f2465fa9b2790cf3ed51ab63d07379b77cf1208c4fa",
       "descricao": "Quebra o campo `preparo` de proposito, 16 mutacoes, e mede quais SO o portao novo do esquema v12 pega. A mais importante nao fabrica nada: ela restaura o campo como STRING, que e como ele esteve por 26 dias, sem fonte e sem nenhuma tela servindo-o. Ha mutacao que PRODUZ O MUNDO (uma cola nascendo sem o campo, que e como os 32 registros de hoje nasceram), duas que apagam a chave do ESQUEMA pela 26.2 (regua que le a propria lista aprova tudo em silencio no dia em que o arquivo perder a chave), duas sobre o rotulo que a tela usa para nomear o documento (vocabulario do repositorio na tela, e a preposicao que faltava quando o primeiro render serviu 'Esta escrito em a pagina de produto dele'), uma que cega a varredura de apoio e uma que a SILENCIA com prefixo generico — o defeito oposto e o pior dos dois. E TRES travas de falso positivo, porque portao que reprova o banco certo e desligado pela primeira pessoa com pressa. 16 de 16 reprovadas, 12 so pelo portao novo, 0 falso positivo. Bancada."
     },
     {
       "id": "mutacoes-par",
       "arquivo": "ferramentas/mutacoes-par.py",
-      "sha256": "0d46076337d28a01bfca72c47673197e4a0593bb60baebd39dc8ac252b18e8d9",
+      "sha256": "2a4473135c20e99ed4a5a9135a691619488d1b5dc42662660a4950582ce0a97e",
       "descricao": "Quebra o par substrato x ambiente da REGRA 8 de proposito, 17 mutacoes de forma + 5 de tela, e mede quais SO o portao novo do esquema v14 pega (13 das 17). O que torna esta bateria diferente das irmas e que os DOIS erros possiveis apontam para lados OPOSTOS e so um deles e caro: IGNORAR o qualificador publica MAIS do que o fabricante declarou (a argamassa de assentamento recomendada para muro de mosaico ao ar livre) e INTERSECTAR publica MENOS (a mesma argamassa saindo de `cimento_concreto`, que ela declara sem qualificador). As duas direcoes tem mutacao propria, na forma e na tela. Ha mutacao que PRODUZ O MUNDO: a frase LARGA ganhando qualificador, o segundo produto com frase qualificada, e uma frase de PROIBICAO ganhando qualificador — esta ultima PASSOU na primeira rodada e virou trava, porque do lado da proibicao a leitura e ampliativa de proposito e o campo ficava gravado, sem efeito e sem uma palavra. E a de tela que troca a ORDEM da regra 8 com a 2: a lista nao muda e a CAUSA muda de nome, que e a frase que esta pagina vende. 4 travas de falso positivo, e a primeira versao de uma delas foi REPROVADA com razao — ela alargava o qualificador para os cinco ambientes, mundo em que a regra 8 nunca morde, e chamava de falso positivo a trava que impede uma tabela de ancoras que nao mede nada. 17 de 17 de forma, 5 de 5 de tela, 4 de 4 falsos positivos. Bancada."
     },
     {
       "id": "mutacoes-ambiente-do-produto",
       "arquivo": "ferramentas/mutacoes-ambiente-do-produto.py",
-      "sha256": "3f90dc619ec7ec78740c611780f2f5e9cfd52837eddd0d79514a5843ad6acf99",
+      "sha256": "b525355967de1d3ce03a699ede34fb6abcf0c01c1243e94df3e9e90080be59be",
       "descricao": "Quebra o balde do ambiente DO PRODUTO da REGRA 3 de proposito, 16 mutacoes de forma + 6 de tela, e mede quais SO o portao novo do esquema v15 pega (12 das 16). O que torna esta bateria diferente das irmas e que a regra que ela guarda NUNCA ERROU a elegibilidade: a regra 3 existe desde o bloco 3, sempre eliminou certo, e por 27 dias mandou quem eliminava para o balde do SILENCIO, que serve na tela 'O fabricante simplesmente nao fala desta superficie' sobre produtos cujos fabricantes declaram a superficie em indicado_para e apenas delimitaram o ambiente do produto inteiro. Foram 29 entradas em 24 das 45 celulas, 28 delas no ar desde 10/09/2026, e nenhuma regua desta ilha as viu porque todas mediam CONCORDANCIA entre o banco e a pagina e as duas concordavam dizendo a mesma coisa errada. Por isso a metade de TELA aqui e maior que a de forma, ao contrario das irmas: trocar de balde nao muda numero nenhum, e so portao que compara FRASES pega — a t01 e o defeito exato que o bloco consertou, um `return` so. Ha mutacao que PRODUZ O MUNDO (o QUARTO delimitador no banco; a delimitacao do PL500 desaparecendo, que devolve 24 celulas a recomendacao; e ela alargando, que tira uma do balde) e a que junta os dois baldes de ambiente num so, que e a mistura de causas que a secao 7 do contrato proibe. DUAS MUTACOES PASSARAM NA PRIMEIRA RODADA E AS DUAS VIRARAM COISA DIFERENTE: a m01 achou uma trava escrita onde `materiais` ainda nao existe, que ficou sem ninguem do outro lado quando a lista foi movida — apagar o bloco do esquema nao reprovava nada; e a m14, que acrescentava ao mapa um termo de ambiente novo, nao era defeito (termo que registro nenhum cita nao delimita nada) e virou a fp5. Mutacao que passa com razao nao se conserta para reprovar: ela troca de lado. 5 travas de falso positivo. Bancada: nunca vai para o site."
     },
     {
       "id": "mutacoes-ambiente-do-produto-do-rejunte",
       "arquivo": "ferramentas/mutacoes-ambiente-do-produto-do-rejunte.py",
-      "sha256": "1dcfb7fd487a6497bb4662a301a0a0e15253b4f647a1e264c7ccf12a7ce72a6f",
+      "sha256": "0bb140970080c3cecf22c4879cefde98c79392029fde2789b11d299aa4080dc9",
       "descricao": "Quebra o balde do ambiente DO PRODUTO DO REJUNTE de proposito, 21 mutacoes de forma + 7 de tela, e mede quais SO o portao novo do esquema v16 pega. E o mesmo defeito da bateria irma um andar abaixo, e o molde esta construido QUATRO vezes (regras 7, 8, 3 da cola e 3 do rejunte): a regra 3 do rejunte sempre eliminou CERTO e por 27 dias mandou quem eliminava para o balde `eliminados_por_ambiente`, que era TAMBEM o da regra 2 e serve na tela 'Fora porque o fabricante nao declara este lugar' — sobre o rejunte acrilico, que escreve `areas internas e externas` em `ambientes_declarados`, e e justamente essa frase que o fecha. Varrido nos 60 estados: 8 entradas em 8 estados pela regra 3 com a frase ERRADA, 59 em 28 pela regra 2 com a frase certa, e 7 estados carregando as duas no mesmo paragrafo. DUAS COISAS QUE A BATERIA DA COLA NAO TINHA: a t06, porque sao DUAS telas lendo a mesma celula (a F2 e a F1, que dizia 'o que ele nao declara e peca <lugar>'), e a t05, porque a fusao mais provavel aqui nao e com o silencio e com a FAIXA DE JUNTA — de 5 mm para cima o acrilico sai por folga, nao por lugar, e trocar as duas causas certas uma pela outra e este bloco virado ao contrario. TRES MUTACOES PASSARAM NA PRIMEIRA RODADA, as tres antes do commit: a m15 mostrou que a trava da 'ancora que passa' aceitava a ancora anti-fusao no lugar dela, porque balde vazio nao prova que a regra deixa passar — prova que ela nao morde ali; a m17 nasceu `areas internas`, PASSOU por o literal nao estar no mapa do rejunte, e com isso achou que `ambientes_declarados` ilegivel DESLIGA a regra 3 em silencio (virou erro no validador e a m21 nasceu dela); e a t01 e a t03 mutavam a regua da COLA, porque as duas linhas que elas procuravam existem identicas nas duas reguas e a da cola vem antes — marcador que existe nas duas nao mede nenhuma. 5 travas de falso positivo. Bancada: nunca vai para o site."
     },
     {
@@ -871,6 +871,12 @@
       "arquivo": "ferramentas/relevancia-do-anuncio.py",
       "descricao": "A REGRA que decide se um anuncio SERVE a consulta de produto, sozinha num arquivo pelo mesmo motivo de casar-anuncio.py: e a regra que mutacoes-relevancia.py ataca. Grupos de `exige` (OU dentro, E entre) e termos de `recusa`, com a recusa vencendo sempre, e o plural cortado nos DOIS lados da comparacao. Nao julga preco, nao casa com registro de fabricante e nao decide se a pagina nasce.",
       "sha256": "365e763ec0ce9c09d9b99f7ccd30789ea33d612cf17e68a72a52ca1de5e714ed"
+    },
+    {
+      "id": "rede-de-sinal",
+      "arquivo": "ferramentas/rede-de-sinal.py",
+      "sha256": "e8a272b27af6a30c599edbd0b433ec629c94a3f9e958ae3a4c44eb39bac5646f",
+      "descricao": "A REDE DE SINAL DAS BATERIAS DE MUTACAO, uma copia so para as catorze que trabalham EM CIMA da arvore do git. `retrato()` guarda os BYTES (nunca o objeto desserializado: re-serializar troca o sha256 que o manifest guarda), `restaura()` devolve byte a byte e APAGA o arquivo que nao existia antes (o mundo fabricado da apoio e da base), `limpa_sobras()` remove o `<arquivo>.original` que sete baterias criam antes de mutar, e `restaura_em_sinal()` captura SIGTERM, SIGINT e SIGHUP para restaurar ANTES de sair. O `finally` nao roda quando o processo morre por sinal, e foi assim que a mutacao `t03` da mutacoes-par.py deixou o snippet da F2 mutado no repositorio em 09/10/2026. Modulo, nao ferramenta de linha de comando; o portao dele e o teste-rede-de-sinal.py."
     },
     {
       "id": "coletar-por-consulta",
@@ -907,6 +913,12 @@
       "arquivo": "ferramentas/teste-produto.php",
       "sha256": "342a5600a654d38c6a53bb82a8f4058dec2fd1ff87cdc7627bd0670faa4f87cd",
       "descricao": "Bancada das oito paginas de consulta de produto: 306 afirmacoes medidas no HTML servido, uma pagina por processo. Reconta o numero proprio do JSON cru por um caminho que nao chama uma linha do snippet, cobra a ordem que o despacho pede (resposta em duas frases antes de qualquer explicacao, bloco de compra antes da procedencia), o link de afiliado por oferta com rel=sponsored e encurtado, o ItemList igual a tela, o FAQPage sem entidade HTML no texto, a data DENTRO da resposta, a Shopee nomeada DENTRO da procedencia, o link da mae pela 16.4(f) e o piso de tres ofertas num mundo FABRICADO com duas."
+    },
+    {
+      "id": "teste-rede-de-sinal",
+      "arquivo": "ferramentas/teste-rede-de-sinal.py",
+      "sha256": "6c9ed3e602071912c2ca80476b004001e8dcb01951eb3c4e8d3ae00cf044a44b",
+      "descricao": "O PORTAO DA REDE DE SINAL: mata cada bateria de mutacao no meio do trabalho, com SIGTERM, e mede tres coisas por bateria — que o sinal chegou com ela VIVA (a linha `INTERROMPIDA por sinal`, que so o handler imprime), que a arvore da ilha voltou IGUAL ao estado de antes (git status, sha do git diff e sha dos nao rastreados, porque nenhum dos tres sozinho pega as tres formas de estrago) e que nao sobrou nenhum `<arquivo>.original`. E mede uma quarta que nao e por bateria: que TODA mutacoes-*.py desta pasta esta classificada, ou chamando `mkdtemp(` ou declarando a rede — bateria nova sem nenhum dos dois reprova no dia em que nasce. A classificacao e por CHAMADA e nunca por mencao, porque o `grep -L mkdtemp` que o PROMPT.md mandava usar escondia justamente a par.py, que cita mkdtemp num comentario para dizer que nao usa. Bancada."
     },
     {
       "id": "mutacoes-produto",

@@ -481,56 +481,31 @@ def serve(estado):
     return r.stdout
 
 
-# O RETRATO E DE BYTES, NUNCA DE CONTEUDO. Cicatriz medida em 06/10/2026 nas
-# `mutacoes-apoio.py` e `mutacoes-base.py`: elas restauravam re-serializando o
-# objeto guardado em memoria, e os arquivos que tocavam nao terminavam em quebra
-# de linha. Passada verde, conteudo identico, `sha256` TROCADO — e o manifest
-# guarda esse sha e o Sync o compara.
-def retrato(caminhos):
-    return {c: open(c, "rb").read() for c in caminhos}
+# A REDE DE SINAL E O RETRATO DE BYTES MORAM EM `ferramentas/rede-de-sinal.py`.
+# Estas tres funcoes nasceram AQUI em 09/10/2026, no dia em que esta bateria foi
+# morta por sinal e deixou `snippets/clubedomosaico-f2.php` mutado no
+# repositorio. No dia seguinte as outras treze baterias que trabalham em cima da
+# arvore precisaram da mesma rede, e a escolha foi entre catorze copias de seis
+# linhas e um modulo. Copia que divirja e pior que modulo que exija `importlib`:
+# a primeira copia que aprendesse algo novo — e a sobra de `<arquivo>.original`
+# foi exatamente isso — ensinaria so a si mesma. O historico das duas cicatrizes
+# (bytes e nao objeto; sinal e nao `finally`) esta inteiro no modulo, e o portao
+# que mata as catorze de proposito e `ferramentas/teste-rede-de-sinal.py`.
+def _rede_de_sinal():
+    import importlib.util
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "rede-de-sinal.py")
+    spec = importlib.util.spec_from_file_location("cdm_rede_de_sinal", caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
-def restaura(bytes_de):
-    for caminho, b in bytes_de.items():
-        with open(caminho, "wb") as fh:
-            fh.write(b)
+_REDE = _rede_de_sinal()
+retrato = _REDE.retrato
+restaura = _REDE.restaura
+restaura_em_sinal = _REDE.restaura_em_sinal
 
-
-# O `finally` NAO RODA QUANDO A BATERIA E MORTA POR SINAL, E ISSO CUSTOU UM ARQUIVO
-# MUTADO NO REPOSITORIO EM 09/10/2026. Esta bateria trabalha EM CIMA da arvore do git
-# (nao em `mkdtemp`, como a da cobertura, da F1 e da F2), e restaura no `finally`. Mas
-# `timeout` e `pkill` mandam SIGTERM, e o SIGTERM encerra o processo SEM passar pelo
-# `finally` — entao o arquivo fica mutado no disco. Foi exatamente o que aconteceu: a
-# mutacao `t03` desta bateria ("a ordem troca: a regra 8 passa a rodar DEPOIS da 2")
-# ficou no `snippets/clubedomosaico-f2.php`, e quem a pegou foi a bancada remedida
-# DEPOIS das mutacoes — `teste-f2.php` de 0 para 3 falhas e `teste-tecnicas.php` de
-# APROVADO para REPROVADO. Se a passada tivesse commitado sem remedir, a troca de causa
-# teria ido ao ar no proximo Sync.
-#
-# O conserto cabe em seis linhas e vale para todo sinal capturavel: SIGTERM e SIGINT
-# passam a restaurar ANTES de sair. SIGKILL continua fora de alcance — nada em processo
-# nenhum o alcanca —, e por isso a outra metade da regra continua valendo e esta escrita
-# no PROMPT.md: conferir `git status` e rodar a bancada DE NOVO depois das mutacoes.
-def restaura_em_sinal(bytes_originais):
-    import signal
-
-    def ao_morrer(numero, _quadro):
-        restaura(bytes_originais)
-        print("")
-        print("INTERROMPIDA por sinal %d — os %d arquivo(s) foram RESTAURADOS byte a byte"
-              " antes de sair." % (numero, len(bytes_originais)))
-        sys.stdout.flush()
-        # 128+N e a convencao de saida por sinal, e e o que o `timeout` ja devolveria.
-        os._exit(128 + numero)
-
-    for numero in (signal.SIGTERM, signal.SIGINT, signal.SIGHUP):
-        try:
-            signal.signal(numero, ao_morrer)
-        except (ValueError, OSError, AttributeError):
-            # Sinal que esta plataforma nao tem, ou thread que nao e a principal: o
-            # `finally` continua sendo a rede de baixo. Falhar aqui seria trocar uma
-            # protecao parcial por nenhuma.
-            pass
 
 
 def main():

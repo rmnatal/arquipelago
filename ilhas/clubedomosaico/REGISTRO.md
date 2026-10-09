@@ -3,6 +3,144 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+09/10/2026 20h04Z–21h2xZ — A REDE DE SINAL DAS BATERIAS DE MUTAÇÃO: DE UMA PROTEGIDA PARA AS CATORZE, COM PORTÃO QUE MATA CADA UMA DE PROPÓSITO
+
+**A dívida que o `ESTADO.md` chamava de "13 baterias" está paga, e eram CATORZE.** Módulo
+`ferramentas/rede-de-sinal.py` — uma cópia para as catorze —, portão `ferramentas/teste-rede-de-sinal.py`
+**APROVADO com 14 de 14 medidas, 0 não medida e 0 falha**, e as duas ferramentas novas registradas no
+manifest. **Nenhuma URL nova** — a ilha segue em **29**, 11 abaixo do piso de 40 da 21.1 —, **nenhuma
+leva da 21.4 gasta** e **nada no ar mudou**: snippet, conteúdo e dado saíram desta execução byte a byte
+como entraram, a `revisão` do manifest continua **74** e igual ao `/status`, e por isso o Sync **não**
+foi acionado. Esta execução é de régua e de ferramenta de repositório, e o parágrafo 11 abaixo diz por
+que isso é legítimo hoje e não era na passada anterior.
+
+1. **OS DOIS COMANDOS DA 29 RODARAM ANTES DE TUDO, E DE NOVO NO FIM, no MESMO estado nas duas vezes:**
+   `conferir-no-ar.py` **APROVADO com 524 afirmações e 0 falha**; `leitura-do-visitante.py`
+   **REPROVADO com EXATAMENTE 1 defeito** — o soft 404 da borda, de 29/09, do hospedeiro, com dono
+   escrito. **ZERO defeito novo.** Rede pela 20.2: `clubedomosaico.com.br` em **200 nas três passadas**.
+
+2. **A ESCOLHA DA ILHA NÃO FOI ESCOLHA: `foco.md` nomeia a clubedomosaico**, e a linha
+   `fila_decidida_pelo_raphael` diz que ela fecha **hoje** e o foco passa à aquametria em 10/10.
+   `executando_desde` estava `null`, que pela 1.1 já significa que não havia bloco da Fundação vivo —
+   não houve reserva vencida para o git desempatar, embora o último commit da ilha fosse de **9
+   minutos** antes. Reserva aceita às **20h04Z** na primeira tentativa. Nenhuma branch `claude/*` à
+   frente do `main` e nenhum PR aberto.
+
+3. **O DESPACHO DO RAPHAEL DE 09/10 CONTINUA ABERTO NUM ITEM SÓ, E ELE NÃO É DA FUNDAÇÃO.** O item 2 —
+   a lista das 6 URLs em "Não encontrado (404)" — tem três fontes, e a passada das 19h19Z mediu as três
+   mortas daqui. Remedi a única que custa um comando: `env | grep -c GOOGLE_SA` = **0**, **sétima**
+   execução seguida a medir isso. Pela 18.5 não havia o que fechar, e pela 18.3 o despacho já está
+   reescrito com só o que falta. **Não refiz as outras duas medições** (`web.archive.org` em
+   `connect_rejected` e o sitemap legado que não existe): a de 19h19Z é de uma hora antes e remedir o
+   que não mudou é gastar execução para reescrever a mesma linha.
+
+4. **POR QUE ESTE BLOCO, e a razão está no `ESTADO.md` e não no meu gosto:** a lista "O QUE FALTA PARA
+   ESTA ILHA ESTAR COMPLETA", escrita 20 minutos antes de eu começar, tem cinco linhas em "DEPENDE DA
+   FUNDAÇÃO — e só dela". Quatro delas são URL ou dado, e **todas as quatro param num canal medido
+   morto**: as 11 URLs do piso custam ITEM DE BANCO ou PERGUNTA NOVA e a SERP de consulta nova não é
+   mensurável nesta nuvem (está em `serp-das-filhas.json`, `a_recalibracao_da_30_5`, com os cinco
+   desvios de país medidos); as três técnicas em zero são de FONTE; os doze tutoriais-âncora esperam
+   faixa de volume do Raphael. **A quinta linha não dependia de canal nenhum**, e era a única.
+
+5. **O DEFEITO ERA DE FORMA, NÃO DAQUELA BATERIA.** Esta ilha tem **34** baterias de mutação: **20**
+   trabalham em `mkdtemp` e não podem sujar nada (o aviso de topo nomeava **quatro**, e são vinte —
+   corrigido hoje); as outras **14** trabalham em cima da árvore do git e restauram no `finally`. E o
+   `finally` **não roda** quando o processo morre por sinal: `timeout` e `pkill` mandam SIGTERM, que
+   encerra sem passar por ele. Foi assim que a `t03` da `mutacoes-par.py` deixou o snippet da F2 mutado
+   no repositório hoje de manhã, com a regra 8 rodando depois da regra 2.
+
+6. **O CONSERTO É UM MÓDULO E NÃO CATORZE CÓPIAS, e a prova de que essa escolha é a certa já existia
+   antes de eu escolhê-la:** a cópia da `par`, escrita de manhã, **não sabia** da sobra de
+   `<arquivo>.original`. **Sete** das catorze copiam o arquivo para esse nome antes de mutar e desfazem
+   com `shutil.move` no `finally`; morrer no meio deixa **duas** coisas erradas, e só uma delas o
+   `git status` mostra como `M`. Treze cópias de seis linhas teriam treze oportunidades de divergir, e a
+   primeira já havia divergido. A `par` passou a usar o módulo, então a cópia única é **uma de verdade**
+   e não "uma mais a antiga".
+
+7. **DUAS COISAS QUE O MÓDULO SABE PORQUE FORAM MEDIDAS NESTE BLOCO.** (a) **Arquivo que não existia
+   entra no retrato como `None`, e restaurar é apagá-lo.** A `apoio` e a `base` FABRICAM o mundo delas
+   (`dados/materiais-apoio.json`, `dados/materiais-base.json`) e se recusam a rodar se o arquivo já
+   existir — um `retrato()` ingênuo quebraria em `FileNotFoundError` nas duas, e um restore ingênuo
+   deixaria no repositório um banco inventado. As duas passam no portão. (b) **O retrato é de bytes**,
+   não do objeto desserializado: re-serializar deixa conteúdo idêntico com `sha256` **trocado**, e o
+   manifest guarda esse sha. A cicatriz é de 06/10 e estava escrita na `par`; agora vale para as catorze.
+
+8. **O PORTÃO MEDE QUATRO COISAS, E A QUARTA É A QUE ENVELHECE PIOR.** Por bateria: que o sinal chegou
+   com ela **viva** (a linha `INTERROMPIDA por sinal`, que só o handler imprime — kill que chega depois
+   do fim não prova nada, e o portão chama isso de **NÃO MEDIDO** em vez de aprovado), que a árvore
+   voltou **igual** ao estado de antes, e que não sobrou backup. A quarta não é por bateria: **toda
+   `mutacoes-*.py` está classificada**, ou chamando `mkdtemp(` ou declarando a rede. Bateria nova sem
+   nenhum dos dois reprova **no dia em que nasce**, não no dia em que alguém a matar.
+
+9. **O PORTÃO NASCEU ERRADO DUAS VEZES, E AS DUAS CORREÇÕES SÃO RÉGUA.** (a) A primeira versão **se
+   recusava a rodar com a árvore suja** — e isso a tornava inútil exatamente na passada que acaba de
+   escrever o conserto e quer prova ANTES de commitar. Hoje ela compara o estado de antes com o de
+   depois, em três partes, porque nenhuma sozinha pega as três formas de estrago: as linhas do
+   `git status` (arquivo novo, apagado e não rastreado), o sha do `git diff` (conteúdo de arquivo que
+   JÁ estava modificado, que o `git status` mostra como ` M` nos dois casos) e o sha dos não rastreados
+   (mundo fabricado reescrito). (b) A segunda versão esperava a bateria **imprimir** uma palavra
+   (`REPROVOU|PASSOU|INERTE`) para saber que ela estava no meio — e media o **vocabulário** de cada
+   bateria, que não é igual: a `ambiente-do-produto-do-rejunte` imprime `so o portao novo` e
+   `ja pegava`, nenhuma das duas casava, e o portão atravessou **dez minutos** da fase de 45 células
+   esperando uma palavra que não vinha. Hoje ele espreita **a árvore do git mudar**, que é o instante
+   exato em que existe arquivo mutado no disco. **Portão que depende do texto da coisa medida envelhece
+   a cada bateria nova.**
+
+10. **O ESTRAGO FOI REPRODUZIDO TRÊS VEZES SEM EU PEDIR, e é a melhor prova que este bloco tem.** A
+    `ambiente-do-produto-do-rejunte` passa de 300s e bateu no `timeout` que eu havia posto na passada de
+    conferência: `exit=124`, SIGTERM, e a linha *"INTERROMPIDA por sinal 15 — os 4 arquivo(s) foram
+    RESTAURADOS byte a byte antes de sair"*. Depois eu a matei de propósito com `pkill -TERM` para
+    trocar o portão, e a árvore voltou limpa. E a terceira vez foi o portão, nas catorze. **O defeito de
+    hoje de manhã, nas mesmas condições, deixava arquivo mutado no disco.**
+
+11. **E UMA ARMADILHA QUE ESTE BLOCO ENCONTROU NO INSTRUMENTO, não no código: `atualizar-manifest.py`
+    rodado enquanto uma bateria está viva grava o sha de um arquivo MUTADO.** Aconteceu: a primeira
+    passada dele registrou para `snippets/clubedomosaico-f2.php` o sha da mutação que a
+    `mutacoes-ambiente-do-produto` tinha no disco naquele segundo. A segunda passada o corrigiu, e a
+    prova de que ficou certo é dupla — nenhum item do manifest diverge do disco, e a comparação com
+    `HEAD` mostra **só** os shas das ferramentas que eu mudei, com o do `f2` de volta ao valor dele.
+    **A regra que fica: `atualizar-manifest.py` depois das baterias, nunca durante** — é a mesma
+    família do `git status` da 09/10 de manhã, e cabe no mesmo aviso de topo.
+
+12. **BANCADA INTEIRA REMEDIDA DEPOIS DAS MUTAÇÕES, que é a metade que nenhum código resolve
+    (SIGKILL não é capturável).** Dez bancadas PHP verdes: `casca` **1040** verificações / 0 falha,
+    `f1` **228** / 0, `f2` **174** / 0, `guia` **123** / 0, `produto` **306** / 0, `tecnicas` **139** /
+    0, `prestacao-rejunte` **5** / 0 (540 estados da F2 e 180 da F1), mais `loja`, `atelie` e `leads`
+    APROVADAS. Três bancadas Python verdes: `batismo` **62** / 0, `casamento` **42** / 0, `relevancia`
+    **72** / 0. `validar-banco.py` **OK**. E as **catorze** baterias rodadas inteiras, cada uma com
+    todas as mutações reprovando.
+
+13. **O QUE MAIS SAIU, e não é conserto de código: duas linhas erradas na lista que o Raphael vai ler.**
+    (a) A linha dos "dois bloqueios do substrato que sobraram na F2" estava **ao contrário**: os **três**
+    fecharam em 06/10, e o próprio banco os lista um a um com `fechou_em` e `com_o_que` em campo lido por
+    máquina (`materiais-colas.json`, na fonte `bt-cimentcola-externo-2016-05`). Conferido **no ar**: a F2
+    serve o bloco de `preparo`. (b) A linha das baterias dizia **13** porque veio do comando que o
+    `PROMPT.md` mandava usar — `grep -L 'mkdtemp\|copytree'` —, e esse comando esconde a `par`, cujo
+    **comentário** cita `mkdtemp` para dizer que ela não usa. **A bateria que causou o estrago ficou fora
+    da lista da dívida que ela criou.** Classificação se faz por CHAMADA, nunca por menção.
+
+14. **E UMA COISA QUE ACONTECEU COM A EXECUÇÃO E NÃO COM A ILHA, escrita porque a próxima pode pagá-la:
+    o container foi REINICIADO no meio desta passada, com todo o trabalho ainda sem commit.** Nada se
+    perdeu — os dois arquivos novos e as 17 modificações estavam no disco e sobreviveram —, mas isso foi
+    sorte de volume reaproveitado, não garantia. **A causa é minha: entre a reserva das 20h04Z e o
+    fechamento eu não fiz NENHUM commit intermediário**, e a 1.1 pede o contrário com todas as letras
+    para bloco que passa de 40 minutos (*"quem executa bloco que passa de 40 minutos reescreve
+    `executando_desde` no próximo commit que fizer"*). Eu não tinha "próximo commit" porque não fiz
+    nenhum. **A lição tem duas metades e as duas são regra:** bloco longo commita no meio — e o commit
+    do meio **não pode sair enquanto uma bateria estiver viva**, pelo parágrafo 11 acima. A janela certa
+    é entre o fim de uma bateria e o começo da outra, e ela existe sempre.
+
+**O PRÓXIMO PASSO DESBLOQUEADO.** Com `foco.md` passando à aquametria em 10/10, esta ilha entra em
+**MODO DE MEDIÇÃO** (1.2-b.1) com o critério de saída já pré-registrado no `PROMPT.md` pela 1.2-b.4 —
+as linhas de **14/10** e **21/10** de `dados/posicoes.md`, e os três desfechos. **Para a Fundação, o
+que resta nesta ilha sem canal novo é zero**: as quatro linhas de URL e dado da lista param todas em
+porta medida fechada, e a quinta foi paga hoje. **O que destrava a próxima construção é do Raphael**, e
+está nomeado na lista: `GOOGLE_SA_B64` no ambiente, o curinga `*.quartzolit.weber`, `web.archive.org`
+na lista de rede, o método de teste de vida da Shopee sem CAPTCHA, e o M9 (o desenho de URL da camada
+de coleção da Loja). **E a rede de sinal vale para toda ilha que copiar este desenho de bateria** — é
+candidata a seção do `ARQUIPELAGO.md`, não a regra desta pasta; não a escrevi lá porque regra nova no
+contrato é decisão, e esta execução não mediu nenhuma outra ilha.
+
 09/10/2026 19h19Z–19h5xZ — O APELIDO DE ENDEREÇO APRENDE NÍVEL, E OS TRÊS DESENHOS DE URL DA LOJA PARAM DE MORRER EM 404
 
 **O despacho do Raphael de 09/10 fecha com três dos quatro itens cumpridos e o quarto reescrito pela

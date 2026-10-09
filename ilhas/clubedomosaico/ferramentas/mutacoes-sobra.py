@@ -393,7 +393,26 @@ def escreve_e_roda(arquivo, mutado, como):
         shutil.move(backup, arquivo)
 
 
+# A REDE DE SINAL — `ferramentas/rede-de-sinal.py`, uma copia para as catorze
+# baterias que trabalham EM CIMA da arvore do git. O `finally` desta bateria nao
+# roda quando ela morre por sinal, e foi assim que a `mutacoes-par.py` deixou um
+# snippet mutado no repositorio em 09/10/2026. Nome com hifen nao se importa
+# direto; renomear a ferramenta por conveniencia de sintaxe seria romper a
+# convencao de nome desta pasta.
+def _rede_de_sinal():
+    import importlib.util
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "rede-de-sinal.py")
+    spec = importlib.util.spec_from_file_location("cdm_rede_de_sinal", caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def main():
+    # A rede de sinal ANTES da primeira mutacao: a janela entre o retrato e o
+    # handler e a unica que fica descoberta, e aqui ela tem zero linha.
+    _rede_de_sinal().arma(list(ARQUIVOS.values()))
     originais = {k: json.load(open(v, encoding="utf-8")) for k, v in ARQUIVOS.items()}
 
     if roda_validador():
