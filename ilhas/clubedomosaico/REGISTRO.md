@@ -5,6 +5,11 @@ proximo passo desbloqueado.
 
 09/10/2026 10h5xZ — A RÉGUA QUE ESCOLHE O BLOCO ESTAVA MENTINDO, E ELA JÁ TINHA MANDADO UMA EXECUÇÃO COLETAR O QUE ESTA ILHA MEDIU COMO IMPOSSÍVEL
 
+*(Esta entrada tem uma SEGUNDA METADE, fechada às 11h5xZ e commitada depois do primeiro push: a
+verificação do próprio bloco — as baterias de mutação rodadas depois do commit — achou DOIS defeitos
+que não eram do bloco, e um deles ia para o ar. A reserva foi reescrita para 11h30Z pela 1.1 antes de
+mexer em qualquer coisa. As duas metades estão abaixo, na ordem em que aconteceram.)*
+
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h16Z**, push da reserva aceito na primeira
 tentativa (`232c0a1`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com `executando_desde:
 null`, que pela **1.1** já basta — e o último commit na pasta era de **19h47Z de ontem**, quinze horas
@@ -161,13 +166,22 @@ mede fica verde sobre um mundo que ninguém escreveu.
 
 ## O DEFEITO MAIS CARO QUE ESTA PASSADA ACHOU NÃO É DELA, E ESTAVA NO SNIPPET QUE O SITE SERVE
 
-**Uma bateria de mutações morta por tempo deixa o arquivo MUTADO no disco, e eu peguei isso acontecendo.**
-`mutacoes-f1.py` foi encerrada por timeout (SIGTERM) no meio de uma mutação, e quando a bancada foi
-remedida o `teste-f2.php` passou de **0 falhas para 3** e o `teste-tecnicas.php` de **APROVADO para
-REPROVADO** — sem eu ter tocado em nenhum dos dois. O `git diff` mostrou a causa em quatro linhas:
-`snippets/clubedomosaico-f2.php` estava com a **regra 8 movida para depois da regra 2 e devolvendo
-`silencio` no lugar de `ambiente_do_substrato`**. É exatamente a troca de causa que esta ilha mais paga, e
-é a que o bloco de 07/10 consertou em 29 células.
+**Uma bateria de mutações morta por sinal deixa o arquivo MUTADO no repositório, e eu peguei isso
+acontecendo.** Quando a bancada foi remedida, o `teste-f2.php` passou de **0 falhas para 3** e o
+`teste-tecnicas.php` de **APROVADO para REPROVADO** — sem eu ter tocado em nenhum dos dois. O `git diff`
+mostrou a causa em quatro linhas: `snippets/clubedomosaico-f2.php` estava com a **regra 8 movida para
+depois da regra 2 e devolvendo `silencio` no lugar de `ambiente_do_substrato`**. É exatamente a troca de
+causa que esta ilha mais paga, e é a que o bloco de 07/10 consertou em 29 células.
+
+> **A CULPADA QUE ESTA ENTRADA NOMEOU PRIMEIRO ESTAVA ERRADA, E A CORREÇÃO É DO MESMO DIA.** As duas
+> frases acima diziam `mutacoes-f1.py`, porque foi ela que imprimiu "Terminated". **Ela roda em
+> `mkdtemp` e não pode sujar a árvore.** Quem sujou foi a **`mutacoes-par.py`, mutação `t03`** — cujo
+> docstring é, literalmente, *"A ORDEM TROCA: a regra 8 passa a rodar DEPOIS da 2 … a página passa a
+> dizer `o fabricante não fala desta superfície` sobre uma superfície que ele declara"* —, e o texto
+> `velho`/`novo` dela é **idêntico byte a byte** ao que estava no disco. Ela está entre as **catorze**
+> que trabalham em cima do repositório; `cobertura`, `f1`, `f2` e `rejunte` são as **quatro** que usam
+> `mkdtemp`. **A lição é a correção, não o erro:** "toda bateria de mutação é perigosa" é falso e a
+> frase verdadeira é derivada — `grep -L 'mkdtemp\|copytree' ferramentas/mutacoes-*.py`.
 
 **O que isso custaria se eu não tivesse remedido:** o arquivo entraria no commit, e o próximo bloco
 publicável chamaria o Sync e o site passaria a dizer *"o fabricante não fala desta superfície"* em células
@@ -175,10 +189,51 @@ em que ele fala. **O portão que o pegou foi rodar a bancada DE NOVO depois das 
 o `git status` foi quem nomeou o arquivo. Restaurado por `git checkout`, e as duas bancadas voltaram a
 **0 falha** e **APROVADO**.
 
-**A regra que fica, e ela não é desta ilha, é do método:** bateria de mutação altera arquivo de verdade e
-restaura no fim; **morta no meio, ela não restaura**. Quem a rodar sob limite de tempo confere o `git
-status` depois — e o mais barato é rodá-la numa **cópia fora da árvore do git**, que foi o que esta
-passada fez na segunda tentativa. Está escrito no `PROMPT.md` desta ilha, no aviso do topo.
+**E A CAUSA DE CÓDIGO É DE UMA LINHA: `finally` NÃO RODA QUANDO O PROCESSO MORRE POR SINAL.** A
+`mutacoes-par.py` restaura num `finally` e restaura **byte a byte** (ela até confere isso no fim, por
+causa da cicatriz de 06/10 sobre o `sha256` do manifest). Mas `timeout` e `pkill` mandam **SIGTERM**, e
+SIGTERM encerra o processo sem passar pelo `finally`. **Consertado nesta passada:**
+`restaura_em_sinal()` captura SIGTERM, SIGINT e SIGHUP, restaura e sai com `128+N`, que é a convenção
+que o `timeout` devolveria.
+
+**E FOI MEDIDO MATANDO A BATERIA DE PROPÓSITO**, no estágio em que ela mexe no snippet (*"A TELA E A
+FRASE — quem pega e o render da F2"*): ela imprimiu *"INTERROMPIDA por sinal 15 — os 3 arquivo(s) foram
+RESTAURADOS byte a byte antes de sair"*, o `git status` voltou **limpo**, e `teste-f2` (174),
+`teste-tecnicas` (139) e `teste-casca` (744) voltaram verdes. **Handler que ninguém viu restaurar não
+restaurou nada**, e é por isso que o item da fila para as outras treze manda matar cada uma.
+
+**A METADE QUE NENHUM CÓDIGO RESOLVE fica como regra, porque SIGKILL não é capturável:** depois de rodar
+bateria de mutação, **confira `git status` e rode a bancada DE NOVO, nunca só antes**. Foi esse portão —
+e não o `finally` — que pegou o estrago de hoje. Está no aviso do topo do `PROMPT.md`, com a lista
+derivada em vez de decorada.
+
+## E A MESMA VERIFICAÇÃO ACHOU UM GUARDA MORTO HÁ TRÊS DIAS, O PIOR DOS QUINZE PARA ESTAR MORTO
+
+**`mutacoes-cobertura.py` devolveu `mutacao INERTE` na mutação `silencio do fabricante vira recomendacao
+(regra 2 da cola cai)`** — a âncora que ela procura no snippet não existe mais, então a mutação não
+mutava nada e a bateria passava sem medir. E o docstring dela diz o que estava desprotegido: *"É o
+defeito mais caro que esta ilha pode ter — silêncio do fabricante virando 'pode' — e ele infla a
+cobertura exatamente onde ela é zero."*
+
+**DESDE QUANDO, com commit:** `ec97792`, **06/10/2026 às 20h37Z** — o commit que trouxe a **REGRA 8**
+acrescentou `&& ! isset( $p['bases_indicadas_so_em'][ $base ] )` ao `if` da regra 2 e o partiu em duas
+linhas. A âncora era a versão de uma linha. **Três dias e quinze horas inerte.**
+
+**O GUARDA CAIU EXATAMENTE SOBRE O CÓDIGO QUE ESTAVA SENDO MEXIDO, e isso é o achado:** a regra 8 é a
+regra que separa `ambiente_do_substrato` de `silencio`, e foi a mesma edição que a trouxe que matou a
+mutação que vigia o silêncio. **E o estrago que eu peguei hoje era nesse mesmo trecho.** O guarda estava
+no chão enquanto o código que ele vigia era editado.
+
+**POR QUE NINGUÉM VIU, e não é desatenção:** `editar()` **levanta** `mutacao INERTE` — a bateria
+detecta sozinha. O que falta é alguém rodando: ela leva **mais de quinze minutos** e **não está na lista
+que a ronda diária roda**. O `REGISTRO.md` de 08/10 lista `guia`, `arvore`, `degrau`, `motivo-degrau-4` e
+`acabamento`, e a `cobertura` não está em nenhuma lista desde 06/10. **Bancada lenta que ninguém roda é
+bancada que não existe**, e a desta é a que vigia o defeito mais caro da ilha.
+
+**CONSERTADO E CONFERIDO:** a âncora passou a ser as **duas** linhas inteiras com o `&&` dentro, e a
+bateria devolve *"reprovou como devia: silencio do fabricante vira recomendacao (regra 2 da cola cai)"*,
+com **zero** ocorrência de `INERTE` na passada. Se a condição crescer outra vez, a âncora quebra outra
+vez e `editar()` acusa — o que está certo; o que não pode é a acusação não ser lida.
 
 ## PRESTAÇÃO DE CONTAS
 

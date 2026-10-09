@@ -32,16 +32,36 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 > a terceira queda já era chamado e não reparo, e o reparo só continua valendo porque o chamado não foi
 > respondido.
 
-> **BATERIA DE MUTAÇÃO MORTA POR TEMPO DEIXA O ARQUIVO MUTADO NO DISCO — MEDIDO EM 09/10/2026.**
-> As `ferramentas/mutacoes-*.py` desta ilha **alteram arquivo de verdade** e restauram no fim. Mortas no
-> meio (timeout, SIGTERM), **não restauram**. Em 09/10 a `mutacoes-f1.py` foi encerrada por limite de
-> tempo e deixou `snippets/clubedomosaico-f2.php` com a **regra 8 movida para depois da regra 2 e
-> devolvendo `silencio` no lugar de `ambiente_do_substrato`** — a troca de causa que esta ilha mais paga.
-> O `teste-f2.php` foi de 0 para **3 falhas** e o `teste-tecnicas.php` de APROVADO para **REPROVADO**, e
-> quem nomeou o arquivo foi o `git status`. **Duas regras, as duas baratas:** rode as baterias longas
-> numa **cópia fora da árvore do git** (`cp -r` da pasta da ilha para o scratchpad), e **confira `git
-> status` e rode a bancada DE NOVO depois delas, nunca só antes** — senão o arquivo mutado entra no
-> commit e o Sync o leva para o ar.
+> **BATERIA DE MUTAÇÃO MORTA POR SINAL DEIXA O ARQUIVO MUTADO NO REPOSITÓRIO — MEDIDO EM 09/10/2026, E A
+> CULPADA TEM NOME: `mutacoes-par.py`, MUTAÇÃO `t03`.** Ela deixou
+> `snippets/clubedomosaico-f2.php` com a **regra 8 movida para depois da regra 2 e devolvendo `silencio`
+> no lugar de `ambiente_do_substrato`** — a troca de causa que esta ilha mais paga. O `teste-f2.php` foi
+> de 0 para **3 falhas** e o `teste-tecnicas.php` de APROVADO para **REPROVADO**, e quem nomeou o arquivo
+> foi o `git status`. Se a passada tivesse commitado sem remedir, a frase errada ia ao ar no Sync
+> seguinte.
+>
+> **NÃO É "TODA BATERIA": SÃO AS QUE RODAM EM CIMA DA ÁRVORE, E A LISTA É DERIVADA, NUNCA DECORADA.**
+> `mutacoes-cobertura.py`, `-f1.py`, `-f2.py` e `-rejunte.py` trabalham em `mkdtemp` e **não podem**
+> sujar nada; as outras **catorze** trabalham em cima do repositório. Quem quiser a lista de hoje roda
+> um comando, porque arquivo novo nasce toda semana:
+>
+> ```
+> grep -L 'mkdtemp\|copytree' ferramentas/mutacoes-*.py
+> ```
+>
+> *(A primeira versão deste aviso, escrita horas antes no mesmo dia, culpava a `mutacoes-f1.py` — e ela
+> roda em `mkdtemp`, então não podia ter sido. A `t03` da `mutacoes-par.py` é a mutação idêntica byte a
+> byte ao que estava no disco. Corrigido no mesmo dia: causa errada no registro permanente é o defeito
+> que esta ilha mais paga, e escrevê-la num aviso de topo seria pagá-lo de propósito.)*
+>
+> **O CONSERTO DE CÓDIGO JÁ ESTÁ NA `mutacoes-par.py` e cabe em seis linhas:** `restaura_em_sinal()`
+> captura SIGTERM, SIGINT e SIGHUP e restaura **antes** de sair — provado matando a bateria de propósito
+> no estágio do snippet, com a árvore voltando limpa e a bancada em 0 falha. **As outras treze baterias
+> em cima da árvore ainda não têm isso**, e está escrito como item da fila.
+>
+> **E A METADE QUE NENHUM CÓDIGO RESOLVE, porque SIGKILL não é capturável:** depois de rodar bateria de
+> mutação, **confira `git status` e rode a bancada DE NOVO — nunca só antes.** Foi esse portão, e não o
+> `finally`, que pegou o estrago de 09/10.
 
 ## O que esta ilha tem de diferente (leia antes de tudo)
 Esta é a **terceira ilha** e a primeira que **não veio da Bússola**: é um projeto pessoal do Raphael. A mãe dele faz mosaico artesanal (vasos, colares, quadros). O site tem **três motores num domínio só**, e a malha fecha um ciclo comercial completo:
@@ -1983,6 +2003,16 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    >
    > **Pronto quando** — o critério é o da própria leitura, não um novo: `quadro divino espirito santo`
    > entrar na **banda 11 a 20** na série de `dados/posicoes.md`.
+   >
+   > **ITEM DE CORREÇÃO ABERTO, nascido em 09/10/2026 e pequeno de propósito:** **treze** das catorze
+   > baterias que rodam em cima da árvore do git ainda **não** têm `restaura_em_sinal()` — só a
+   > `mutacoes-par.py` tem, porque foi ela que causou o estrago. São `acabamento`,
+   > `ambiente-do-produto-do-rejunte`, `ambiente-do-produto`, `apoio`, `base`, `batismo`, `casamento`,
+   > `degrau`, `forma-do-degrau`, `motivo-degrau-4`, `pastilhas`, `preparo` e `sobra`. **Não é um
+   > copiar-colar de treze:** só quatro delas têm a função `restaura()` que o handler precisa, e as
+   > outras nove restauram de outro jeito (ou re-serializam, que é a cicatriz de 06/10 sobre o `sha256`
+   > do manifest). Quem fizer este item lê o `retrato()`/`restaura()` da `par` primeiro, e mede
+   > **matando cada uma de propósito** — handler que ninguém viu restaurar não restaurou nada.
    >
    > **E O QUE ELE NÃO DEVE FAZER:** não reabrir `alicate/martelinho` nem `alicate/pinca_mosaico` — os
    > dois agora estão fechados **por campo lido por máquina** (`fechada_por_canal` +

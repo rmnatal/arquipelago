@@ -496,9 +496,47 @@ def restaura(bytes_de):
             fh.write(b)
 
 
+# O `finally` NAO RODA QUANDO A BATERIA E MORTA POR SINAL, E ISSO CUSTOU UM ARQUIVO
+# MUTADO NO REPOSITORIO EM 09/10/2026. Esta bateria trabalha EM CIMA da arvore do git
+# (nao em `mkdtemp`, como a da cobertura, da F1 e da F2), e restaura no `finally`. Mas
+# `timeout` e `pkill` mandam SIGTERM, e o SIGTERM encerra o processo SEM passar pelo
+# `finally` — entao o arquivo fica mutado no disco. Foi exatamente o que aconteceu: a
+# mutacao `t03` desta bateria ("a ordem troca: a regra 8 passa a rodar DEPOIS da 2")
+# ficou no `snippets/clubedomosaico-f2.php`, e quem a pegou foi a bancada remedida
+# DEPOIS das mutacoes — `teste-f2.php` de 0 para 3 falhas e `teste-tecnicas.php` de
+# APROVADO para REPROVADO. Se a passada tivesse commitado sem remedir, a troca de causa
+# teria ido ao ar no proximo Sync.
+#
+# O conserto cabe em seis linhas e vale para todo sinal capturavel: SIGTERM e SIGINT
+# passam a restaurar ANTES de sair. SIGKILL continua fora de alcance — nada em processo
+# nenhum o alcanca —, e por isso a outra metade da regra continua valendo e esta escrita
+# no PROMPT.md: conferir `git status` e rodar a bancada DE NOVO depois das mutacoes.
+def restaura_em_sinal(bytes_originais):
+    import signal
+
+    def ao_morrer(numero, _quadro):
+        restaura(bytes_originais)
+        print("")
+        print("INTERROMPIDA por sinal %d — os %d arquivo(s) foram RESTAURADOS byte a byte"
+              " antes de sair." % (numero, len(bytes_originais)))
+        sys.stdout.flush()
+        # 128+N e a convencao de saida por sinal, e e o que o `timeout` ja devolveria.
+        os._exit(128 + numero)
+
+    for numero in (signal.SIGTERM, signal.SIGINT, signal.SIGHUP):
+        try:
+            signal.signal(numero, ao_morrer)
+        except (ValueError, OSError, AttributeError):
+            # Sinal que esta plataforma nao tem, ou thread que nao e a principal: o
+            # `finally` continua sendo a rede de baixo. Falhar aqui seria trocar uma
+            # protecao parcial por nenhuma.
+            pass
+
+
 def main():
     todos = list(ARQUIVOS.values()) + [SNIPPET]
     bytes_originais = retrato(todos)
+    restaura_em_sinal(bytes_originais)
     originais = {k: json.load(open(v, encoding="utf-8")) for k, v in ARQUIVOS.items()}
     snippet_original = open(SNIPPET, encoding="utf-8").read()
 

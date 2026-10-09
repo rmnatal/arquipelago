@@ -87,10 +87,31 @@ def m_junta_afrouxa_so_no_vao_da_grade(raiz):
 def m_silencio_vira_recomendacao(raiz):
     """A regra 2 da cola cai: base sem declaracao passa a valer como indicada. E o
     defeito mais caro que esta ilha pode ter — silencio do fabricante virando 'pode' —
-    e ele infla a cobertura exatamente onde ela e zero."""
+    e ele infla a cobertura exatamente onde ela e zero.
+
+    ESTA MUTACAO FICOU INERTE DE 06/10/2026 AS 20h37Z A 09/10/2026, E E A PIOR DAS 15
+    PARA FICAR. A ancora dela era o `if` da regra 2 em UMA linha; o commit `ec97792`,
+    que trouxe a REGRA 8, acrescentou `&& ! isset( $p['bases_indicadas_so_em'][ $base ] )`
+    aquele `if` e o partiu em duas linhas. A ancora parou de casar, `editar()` passou a
+    levantar `mutacao INERTE` — e NINGUEM leu, porque esta bateria leva mais de quinze
+    minutos e nao esta na lista que a ronda diaria roda: o `REGISTRO.md` de 08/10 lista
+    guia, arvore, degrau, motivo-degrau-4 e acabamento, e nao esta.
+
+    **O guarda caiu exatamente sobre o codigo que estava sendo mexido**: a regra 8 e a
+    regra que separa `ambiente_do_substrato` de `silencio`, e foi a mesma edicao que a
+    trouxe que matou a mutacao que vigia o silencio. Guarda que cai no commit que muda o
+    que ele vigia e a forma mais barata de perder uma regua sem ninguem ver.
+
+    A ancora nova e as DUAS linhas inteiras, com o `&&` dentro: se a condicao crescer de
+    novo, a ancora quebra de novo e `editar()` acusa — o que esta certo. O que nao pode
+    e a acusacao nao ser lida."""
     editar(raiz, F2,
-           "\tif ( ! isset( $p['bases_indicadas'][ $base ] ) ) {\n\t\treturn array( 'silencio', 0 );",
-           "\tif ( false && ! isset( $p['bases_indicadas'][ $base ] ) ) {\n\t\treturn array( 'silencio', 0 );")
+           "\tif ( ! isset( $p['bases_indicadas'][ $base ] )\n"
+           "\t\t&& ! isset( $p['bases_indicadas_so_em'][ $base ] ) ) {\n"
+           "\t\treturn array( 'silencio', 0 );",
+           "\tif ( false && ! isset( $p['bases_indicadas'][ $base ] )\n"
+           "\t\t&& ! isset( $p['bases_indicadas_so_em'][ $base ] ) ) {\n"
+           "\t\treturn array( 'silencio', 0 );")
 
 
 def m_ambiente_critico_do_rejunte_cai(raiz):
