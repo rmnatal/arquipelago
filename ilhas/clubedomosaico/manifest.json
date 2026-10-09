@@ -159,7 +159,7 @@
       "fonte": "GERADO por ferramentas/cruzamento-14-9.py a partir de dados/filhas-do-guia.json e dados/serp-das-filhas.json. Nada aqui e digitado: --conferir regera e compara, e edicao a mao reprova o portao.",
       "verificado_em": "2026-10-08",
       "publicar": false,
-      "sha256": "5c011fdc8cc3e203ec3eba2a8288cd08521a54077d1e80d3892d17ec909d862a",
+      "sha256": "eac1ceaaa02bb3d3a016579f05a85b83e0bbe2f4029944adef762076498e8a3c",
       "descricao": "O veredito cruzado dos dois portoes, recorte por recorte, com a tabela da 16.5 lado a lado — filhas que o DADO autoriza contra filhas que o CRUZAMENTO autoriza — e o pedido de faixa de volume derivado. No primeiro dia em que existiu: acabamento e a primeira categoria do Guia a passar os dois portoes na mae e nas tres filhas (o 4c liberado ali), pastilha/vidro saiu espera_autoridade, e alicate, pastilha e rejunte ficaram com dado verde e SERP nunca olhada, que e o caso que parece passe livre."
     },
     {
@@ -195,7 +195,7 @@
       "verificado_em": "2026-10-08",
       "registros": 22,
       "publicar": false,
-      "sha256": "9961c93af562d0b3b840a38e9835fc083733da56c87a2715df3cd71884c9c5c2",
+      "sha256": "790a68874142010c02739fdbacb935104d2bce24d4a912cc21d67f3dd64fcce0",
       "descricao": "A metade COLETADA do cruzamento da 14.9: quem ocupa o top 10 da consulta-alvo de cada recorte do Guia, escrito pelo nome. Cinco classificacoes, e a quinta nasceu desta coleta — ABERTA_SEM_INTENCAO_NA_SERP, para a consulta em que ninguem ocupa porque NENHUM resultado fala da pergunta desta ilha (o selador mediu uma SERP inteira de pintura de parede). Guarda tambem o numero que a SERP nao publica e o banco desta ilha publica, recorte por recorte, que e a resposta da 14.9 a pergunta 'por que ela chega as 10 primeiras'."
     },
     {
@@ -461,7 +461,7 @@
     {
       "id": "cruzamento-14-9",
       "arquivo": "ferramentas/cruzamento-14-9.py",
-      "sha256": "ce9f73bed4ea8ebb803ef0390919b0bba2e97037bfc2453f86a798b8b04e1831",
+      "sha256": "85442ff6b7b3ece80e37a8f155c640876b085ee31d6823d0a8cb8435698d8f9b",
       "descricao": "O CRUZAMENTO DA SECAO 14.9: le o portao de DADO da secao 9 (dados/filhas-do-guia.json, derivado do banco) e o portao de SERP (dados/serp-das-filhas.json, coletado por busca) e devolve UM veredito por recorte, porque a 14.9 manda cruzar intencao com chance 'nunca de uma so'. Seis vereditos calculados, nunca escritos: pode_nascer, pode_nascer_sem_demanda_medida, espera_autoridade, espera_dado, espera_serp e nunca. Conta a 16.5 pelas filhas que o CRUZAMENTO autoriza, que nao sao as que o dado autoriza — e foi assim que pastilha saiu de 1 filha para 0. Deriva o pedido de faixa de volume ao Raphael, so de consulta ABERTA sem faixa, em vez de estimar o numero. Acusa medicao de SERP em recorte que o portao de dado nao conhece. Bancada: --autoteste com 32 casos fabricados e --conferir que regera e compara."
     },
     {
@@ -854,6 +854,12 @@
       "arquivo": "ferramentas/mutacoes-relevancia.py",
       "descricao": "10 mutacoes da regra de relevancia e da leitura de quantidade; toda uma tem de REPROVAR a teste-relevancia.py. Duas APERTAM a regra em vez de afrouxar, porque regua que recusa o certo custa tanto quanto regua que aceita o errado. Trabalha em mkdtemp e por isso nao tem como sujar a arvore, nem morta por sinal — o defeito que a mutacoes-par.py cometeu em 09/10/2026. Na primeira rodada TRES mutacoes passaram e as tres viraram afirmacao nova na bancada; uma delas (m05) mostrou que um ramo da regra era redundante, e o conserto foi dar a ele um diagnostico proprio em vez de apagar o ramo. Bancada.",
       "sha256": "58553bb2246a9dde792d76f1a2c0ac148171d023e9101688fce8afcb36e3c9d0"
+    },
+    {
+      "id": "recalibrar-30-5",
+      "arquivo": "ferramentas/recalibrar-30-5.py",
+      "sha256": "4c09c45dc1d39bbf7daedf70f502e6b347477d40df578da4d1bb5d95c50e0799",
+      "descricao": "A regua da secao 30.5 do ARQUIPELAGO.md: remede o veredito de SERP das consultas de PRODUTO classificando cada OCUPANTE do top 10 ja medido em `varejo_grande`, `fabricante_forte` e `fazenda_de_conteudo` (que CONTAM) contra lojinha do nicho, anuncio de marketplace, video, forum, blog antigo, agregador, obra, fora do pais e institucional (que NAO contam), e calcula `tomada` quando 6 ou mais das 10 vagas sao de quem conta. O veredito e CALCULADO da classificacao e `--conferir` reprova se o gravado discordar — remedir veredito a mao sao tantas chances de puxar o resultado para o lado de quem quer publicar quantos forem os vereditos. Nao mede SERP, nao alcanca consulta nunca medida e nao decide se a pagina nasce. Bancada."
     }
   ],
   "esquema": {

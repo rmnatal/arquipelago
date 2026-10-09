@@ -11,14 +11,13 @@ cruzava: uma metade era numero e a outra era prosa.
 | veredito | recortes |
 |---|---|
 | `sem_nenhum_dos_dois` | 31 |
-| `pode_nascer` | 8 |
-| `espera_autoridade` | 3 |
+| `pode_nascer` | 11 |
 
-**Podem nascer hoje, pelos DOIS portoes:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `rejunte`, `rejunte/cimenticio`
+**Podem nascer hoje, pelos DOIS portoes:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `pastilha`, `pastilha/vidro`, `rejunte`, `rejunte/cimenticio`
 
 **Podem nascer, mas sem demanda medida:** nenhum
 
-**Quando houver autoridade:** `alicate/torques`, `pastilha`, `pastilha/vidro`
+**Quando houver autoridade:** nenhum
 
 **Dado verde e SERP nunca olhada** — o caso que mais custou nesta ilha, porque parece
 passe livre: nenhum
@@ -35,11 +34,11 @@ conta — ela e a pagina de nivel 2, nao filha de si mesma.
 | categoria | filhas no DADO | filhas no CRUZAMENTO (tipos) | perguntas | **filhas por CONSULTA** | veredito da mae | a mae pode nascer |
 |---|---|---|---|---|---|---|
 | `acabamento` | 3 | 3 | 0 | **3** | `pode_nascer` | **SIM** |
-| `alicate` | 2 | 1 | 1 | **1** | `pode_nascer` | nao |
+| `alicate` | 2 | 2 | 1 | **2** | `pode_nascer` | nao |
 | `apoio` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
 | `base` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
 | `cola` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
-| `pastilha` | 1 | 0 | 0 | **0** | `espera_autoridade` | nao |
+| `pastilha` | 1 | 1 | 0 | **1** | `pode_nascer` | nao |
 | `rejunte` | 1 | 1 | 1 | **2** | `pode_nascer` | nao |
 
 ### A FILA DAS MAES, ordenada por quanto FALTA e nao por quantos tipos tem dado verde
@@ -55,14 +54,14 @@ conta da 16.5 mora aqui; a fila dela passa a morar aqui tambem.
 | categoria | filhas por CONSULTA | faltam | o que a proxima filha custa |
 |---|---|---|---|
 | `acabamento` | 3 | **0** | nada: a 16.5 esta fechada por consulta |
+| `alicate` | 2 | **1** | MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 8 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 1 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5). |
 | `rejunte` | 2 | **1** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 1 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
-| `alicate` | 1 | **2** | MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 8 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 2 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5). |
+| `pastilha` | 1 | **2** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 2 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `apoio` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `base` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `cola` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
-| `pastilha` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 
-**A proxima mae do Guia e a `rejunte`**, a 1 filha(s) por consulta. ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 1 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho.
+**A proxima mae do Guia e a `alicate`**, a 1 filha(s) por consulta. MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 8 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 1 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5).
 
 ### O QUE JA FOI MEDIDO E FALHOU — nao repita a consulta
 
@@ -110,7 +109,7 @@ onde ela foi arquivada e acidente de quem mediu primeiro.
 | `alicate/cortador_de_azulejo` | `passa` | 3 | `ABERTA` | 5 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `alicate/martelinho` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `alicate/pinca_mosaico` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
-| `alicate/torques` | `passa` | 3 | `TOMADA` | 1 | **`espera_autoridade`** | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
+| `alicate/torques` | `passa` | 3 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `apoio` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `apoio/desempenadeira` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `apoio/espatula` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
@@ -132,13 +131,13 @@ onde ela foi arquivada e acidente de quem mediu primeiro.
 | `cola/pva` | `nao_passa` | 2 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 1 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `cola/silicone_acetico` | `nao_passa` | 2 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 1 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `cola/silicone_neutro` | `nao_passa` | 1 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 2 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
-| `pastilha` | `passa` | 13 | `TOMADA` | 2 | **`espera_autoridade`** | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
+| `pastilha` | `passa` | 13 | `ABERTA` | 2 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `pastilha/caco_azulejo` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `pastilha/caco_espelho` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `pastilha/ceramica` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `pastilha/pedra` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `pastilha/resina` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
-| `pastilha/vidro` | `passa` | 13 | `TOMADA` | 2 | **`espera_autoridade`** | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
+| `pastilha/vidro` | `passa` | 13 | `ABERTA` | 2 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `rejunte` | `passa` | 5 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `rejunte/acrilico` | `nao_passa` | 1 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 2 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `rejunte/cimenticio` | `passa` | 3 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |

@@ -70,6 +70,22 @@ SAIDA_MD = os.path.join(DADOS, "cruzamento-14-9.md")
 # fora desta escada de proposito: ela nao e chance pior, e outra intencao.
 ESCADA_DA_SERP = ["ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP", "TOMADA", "NAO_MEDIDA"]
 
+
+def classe_que_vale(m):
+    """A classificacao de SERP que DECIDE, que nem sempre e a que foi medida.
+
+    A secao 30.5 do ARQUIPELAGO.md (09/10/2026) manda que veredito TOMADA antigo de
+    CONSULTA DE PRODUTO seja remedido pela regua nova *"antes de valer"* — e e esta
+    funcao que faz o "antes de valer" acontecer no cruzamento. `classificacao`
+    continua sendo o que a medicao daquele dia disse, intacto, porque e procedencia;
+    `classificacao_30_5`, quando existe, e o que vale hoje.
+
+    Quem escreve `classificacao_30_5` e ferramentas/recalibrar-30-5.py, calculando-a
+    da classificacao de cada OCUPANTE — nunca a mao. Medicao sem o campo passa por
+    aqui sem mudar nada, que e o caso das 22 que a 30.5 nao alcanca.
+    """
+    return m.get("classificacao_30_5") or m["classificacao"]
+
 VEREDITOS_QUE_AUTORIZAM = ("pode_nascer", "pode_nascer_sem_demanda_medida")
 
 
@@ -81,7 +97,7 @@ def serp_do_recorte(medicoes):
     Vale a MELHOR, porque a 14.9 pergunta se existe UM caminho para a primeira pagina.
     `ARMADILHA` vence tudo: construir em consulta de outra intencao e erro mesmo com dado.
     """
-    classes = [m["classificacao"] for m in medicoes]
+    classes = [classe_que_vale(m) for m in medicoes]
     if not classes:
         return "SEM_MEDICAO"
     if "ARMADILHA" in classes:
@@ -139,7 +155,7 @@ def tentativas_que_falharam(medicoes_proprias):
     """
     saida = []
     for m in medicoes_proprias:
-        if m["classificacao"] != "NAO_MEDIDA":
+        if classe_que_vale(m) != "NAO_MEDIDA":
             continue
         saida.append({"consulta": m["consulta"],
                       "medida_em": m.get("medida_em", ""),
@@ -226,7 +242,7 @@ def cruzar_perguntas(perguntas, medicoes):
                                  if m.get("consulta") == p["consulta_alvo"]
                                  and m.get("recorte") != p["pergunta"]))
         sem_faixa = [m["consulta"] for m in minhas
-                     if m["classificacao"] in ("ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP")
+                     if classe_que_vale(m) in ("ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP")
                      and not m.get("faixa_de_volume")]
         linhas.append({
             "pergunta": p["pergunta"],
@@ -289,7 +305,7 @@ def montar(dado, serp):
         classe = serp_do_recorte(medicoes)
         veredito = cruzar(r["veredito"], classe)
         sem_faixa = [m["consulta"] for m in medicoes
-                     if m["classificacao"] in ("ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP")
+                     if classe_que_vale(m) in ("ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP")
                      and not m.get("faixa_de_volume")]
         linhas.append({
             "recorte": nome,
@@ -357,12 +373,12 @@ def consulta_que_autoriza(medicoes):
     filhas — sao a mesma pagina duas vezes, disputando a propria consulta.
     """
     abertas = [m for m in medicoes
-               if m["classificacao"] in ("ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP")]
+               if classe_que_vale(m) in ("ABERTA", "ABERTA_SEM_INTENCAO_NA_SERP")]
     if not abertas:
         return ""
     # A melhor primeiro, pela mesma escada do recorte, e depois em ordem alfabetica para a
     # derivacao nao depender da ordem em que alguem gravou as medicoes.
-    abertas.sort(key=lambda m: (ESCADA_DA_SERP.index(m["classificacao"]), m["consulta"]))
+    abertas.sort(key=lambda m: (ESCADA_DA_SERP.index(classe_que_vale(m)), m["consulta"]))
     return abertas[0]["consulta"]
 
 
@@ -1095,7 +1111,7 @@ def main(argv):
         # se a consulta era ruim ou se o canal nao alcanca.
         sem_motivo = sorted("%s / %s" % (m["recorte"], m["consulta"])
                             for m in serp["medicoes"]
-                            if m["classificacao"] == "NAO_MEDIDA"
+                            if classe_que_vale(m) == "NAO_MEDIDA"
                             and not (m.get("motivo") or "").strip())
         if sem_motivo:
             falhas.append("medicao NAO_MEDIDA sem motivo escrito, e ela fecha caminho na fila "
@@ -1112,7 +1128,7 @@ def main(argv):
         print("  ok   dados/cruzamento-14-9.md fecha com as duas entradas de hoje")
         print("  ok   nenhuma medicao de SERP em recorte que o portao de dado nao conhece")
         print("  ok   toda medicao NAO_MEDIDA diz por que falhou (%d medida(s))"
-              % sum(1 for m in serp["medicoes"] if m["classificacao"] == "NAO_MEDIDA"))
+              % sum(1 for m in serp["medicoes"] if classe_que_vale(m) == "NAO_MEDIDA"))
         print("")
         print("APROVADO: o cruzamento fecha com a derivacao.")
         return 0
