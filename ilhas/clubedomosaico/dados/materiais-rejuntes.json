@@ -40,6 +40,22 @@
       "o_que_falta": "Embalagem e unidade de venda dos quatro rejuntes que nao sao o acrilico (o do acrilico veio: pote de 1 kg).",
       "por_que_importa": "Sem embalagem a F1 calcula gramas e nao consegue dizer QUANTOS pacotes comprar, que e a pergunta que a pessoa realmente tem na loja.",
       "onde_buscar": "Pagina de produto de cada rejunte; na falta dela, varejo oficial (nivel 5)."
+    },
+    {
+      "id": "rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal",
+      "estado": "FECHADA COMO 'NAO E COLETAVEL POR AQUI' EM 05/10/2026 — declarada em campo lido por maquina em 09/10/2026",
+      "fechada_por_canal": true,
+      "recortes_fechados": [
+        "rejunte/acrilico",
+        "rejunte/epoxi"
+      ],
+      "o_que_falta": "Nada que este canal alcance. Fica escrito para a proxima execucao nao gastar bloco redescobrindo.",
+      "por_que_esta_pendencia_NASCEU_EM_09_10_2026_SOBRE_UM_FATO_DE_05_10": "Porque o fato existia e NAO estava em lugar nenhum que uma regua pudesse ler. A medicao e de 05/10/2026 as 19h3xZ e esta escrita no PROMPT.md com estas palavras: *'AS DUAS FILHAS QUE FALTAM NO rejunte NAO ESTAO A UMA COLETA DE SKU, E O BLOQUEIO TEM NOME NOVO: E INDICE DE BUSCA, NAO EGRESSO. NAO REPITA A COLETA.'* Em 08/10 a tabela das tres portas da `rejunte` repetiu a mesma conclusao na porta (c). E apesar disso, o `caminho_mais_barato_para_as_3_filhas` de dados/filhas-do-guia.json continuava anunciando `rejunte` com `itens_de_banco_a_coletar: 4` em `rejunte/acrilico` (2) e `rejunte/epoxi` (2) — o SEGUNDO menor numero do arquipelago, logo atras do `alicate/martelinho` que ja mandou uma execucao coletar o impossivel em 08/10. Esta pendencia existe para o mesmo defeito nao acontecer na categoria seguinte: a execucao que consertou a regua em 09/10 olhou a tabela que ela mesma acabara de gerar e viu `rejunte` no topo dela.",
+      "o_que_foi_medido": "Tres passadas em 05/10/2026, registradas no PROMPT.md: `www.quartzolit.weber` responde 403 (e isso MUDOU desde 30/09, quando era connect_rejected); `www.portokoll.com.br`, `rejuntamix.com.br`, `bautech`, `kerakoll`, `mapei`, `votomassa` e `eucatex` dao 000 por falha de DNS, inclusive por WebFetch (ENOTFOUND); `web.archive.org`, `r.jina.ai` e `docs.google.com` — as tres escapatorias — fechadas; e nao ha como NAVEGAR o espelho da Telha Norte, que e arquivo por nome conhecido e nao catalogo, com inventario de 14 documentos listados em dados/canal-de-espelho.md, nenhum deles de acrilico nem de epoxi.",
+      "a_causa_e_ela_nao_e_de_coleta": "A declaracao que o portao exige para rejunte e a FAIXA DE JUNTA, e ela mora em BOLETIM TECNICO — nao em pagina de produto. Foi essa a diferenca medida contra a `acabamento`, que saiu de zero por busca porque Acrilex, Coral e Suvinil publicam a declaracao na pagina do produto e nenhuma delas entra em formula de junta. O rejunte entra. Entao nao e que o SKU nao foi achado: e que o documento que sustenta o campo nao e indexado por este canal.",
+      "a_consequencia_para_a_16_5": "`rejunte/acrilico` e `rejunte/epoxi` nao viram filha por coleta neste canal, e a terceira filha da `rejunte` nao sai por TIPO. As outras duas portas tambem estao medidas e fechadas desde 08/10: nao existe terceiro numero com lastro em >=3 rejuntes (as unicas sao junta_min_mm e junta_max_mm, que SAO a pergunta da junta, e liberacao_area_molhada_h, que e a consulta da cimenticio), e a `classificacao_normativa` esta em 2 de 3 e o boletim do piscinas foi aberto e lido e NAO a traz.",
+      "onde_buscar": "Boletins tecnicos do rejunte acrilico (arquivo 2023-04) e do epoxi (arquivo 2018-01) da Quartzolit, campo de faixa de junta. Nenhum dos dois esta no espelho da Telha Norte.",
+      "o_que_mudaria_isto": "O egresso a `www.quartzolit.weber` abrindo (hoje 403), um boletim de acrilico ou de epoxi aparecendo no inventario do espelho, ou um fabricante NOVO que publique faixa de junta em pagina de produto. Nao vale repetir as sete portas medidas em 05/10."
     }
   ],
   "materiais": [

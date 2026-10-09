@@ -378,7 +378,46 @@ def mae_pode_nascer(c, categorias_do_dado):
                 continue
             consultas.setdefault(consulta, []).append(nome)
 
+        # QUANTO FALTA, E O QUE A PROXIMA FILHA CUSTA (09/10/2026).
+        #
+        # Este bloco existe porque a pergunta "qual e o proximo bloco" nao tinha resposta honesta
+        # em arquivo nenhum. O `filhas-do-guia.json` respondia por TIPO COM DADO VERDE — e em
+        # 08/10/2026 a execucao do dia leu dali que a `alicate` estava a UMA filha com TRES itens
+        # a coletar, o menor numero do arquipelago, e escolheu esse bloco. Os dois numeros estavam
+        # errados: a filha que faltava era 2, nao 1 (por consulta a `alicate` tem uma, porque o
+        # `torques` esta em `espera_autoridade` e a pergunta disputa a consulta do cortador), e os
+        # tres itens eram de `alicate/martelinho`, que a propria ilha fechara no dia anterior como
+        # nao coletavel neste canal. **A conta da 16.5 mora aqui, entao o custo da proxima filha
+        # tem de morar aqui tambem.**
+        #
+        # E o custo nao e um numero so, de proposito: filha que falta pode custar UMA CONSULTA
+        # MEDIDA (quando ja existe candidata com dado verde esperando SERP, ou presa a uma
+        # consulta disputada) ou ITEM DE BANCO (quando nao existe candidata nenhuma). As duas sao
+        # trabalho de tamanho muito diferente, e chamar as duas de "falta uma filha" foi o que
+        # mandou uma execucao coletar o impossivel.
+        faltam = max(0, 3 - len(consultas))
+        candidatas_sem_consulta_propria = sorted(
+            nome for nome, consulta in candidatas
+            if not consulta or consulta == consulta_da_mae
+            or len(consultas.get(consulta, [])) > 1)
+        if faltam == 0:
+            custo = "nada: a 16.5 esta fechada por consulta"
+        elif candidatas_sem_consulta_propria:
+            custo = ("CONSULTA MEDIDA, nao item de banco: %s ja tem dado verde e nao tem consulta"
+                     " aberta propria. Medir uma consulta nova para %s e a coisa mais barata que"
+                     " existe nesta categoria." % (", ".join("`%s`" % x for x in candidatas_sem_consulta_propria),
+                                                   "ela" if len(candidatas_sem_consulta_propria) == 1 else "uma delas"))
+        else:
+            custo = ("ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria"
+                     " ja tem consulta aberta propria, entao a %d filha(s) que falta(m) nao sai(em)"
+                     " de medir SERP. Qual tipo ainda e coletavel esta em"
+                     " `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria —"
+                     " tipo fechado por canal NAO e caminho." % faltam)
+
         saida[cat] = {
+            "filhas_que_faltam_por_consulta": faltam,
+            "o_que_a_proxima_filha_custa": custo,
+            "candidatas_com_dado_verde_e_sem_consulta_propria": candidatas_sem_consulta_propria,
             "filhas_que_o_dado_autoriza": len(filhas_no_dado),
             "filhas_que_o_cruzamento_autoriza": len(filhas_no_cruzamento),
             "quais_o_cruzamento_autoriza": filhas_no_cruzamento,
@@ -444,6 +483,32 @@ def gerar_md(c, maes):
           % (cat, m["filhas_que_o_dado_autoriza"], m["filhas_que_o_cruzamento_autoriza"],
              len(m["perguntas_que_o_cruzamento_autoriza"]), m["filhas_contadas_por_consulta"],
              m["veredito_da_mae"], "**SIM**" if m["a_mae_pode_nascer"] else "nao"))
+    A("")
+    A("### A FILA DAS MAES, ordenada por quanto FALTA e nao por quantos tipos tem dado verde")
+    A("")
+    A("Esta tabela nasceu em 09/10/2026, e a causa dela tem data e custo. Ate 08/10 a pergunta")
+    A("\"qual e o proximo bloco\" era respondida pelo `caminho_mais_barato_para_as_3_filhas` de")
+    A("`filhas-do-guia.json`, que conta **tipo com dado verde**. A execucao de 08/10 leu dali que a")
+    A("`alicate` estava a UMA filha com TRES itens a coletar e escolheu o bloco por isso. Pela conta")
+    A("que decide a 16.5 — a desta pagina — a `alicate` estava a **duas**, e os tres itens eram de um")
+    A("tipo que a propria ilha havia fechado no dia anterior como **nao coletavel neste canal**. A")
+    A("conta da 16.5 mora aqui; a fila dela passa a morar aqui tambem.")
+    A("")
+    fila = sorted(maes.items(), key=lambda kv: (kv[1]["filhas_que_faltam_por_consulta"], kv[0]))
+    A("| categoria | filhas por CONSULTA | faltam | o que a proxima filha custa |")
+    A("|---|---|---|---|")
+    for cat, m in fila:
+        A("| `%s` | %d | **%d** | %s |"
+          % (cat, m["filhas_contadas_por_consulta"], m["filhas_que_faltam_por_consulta"],
+             m["o_que_a_proxima_filha_custa"]))
+    A("")
+    proximas = [(cat, m) for cat, m in fila if m["filhas_que_faltam_por_consulta"] > 0]
+    if proximas:
+        cat, m = proximas[0]
+        A("**A proxima mae do Guia e a `%s`**, a %d filha(s) por consulta. %s"
+          % (cat, m["filhas_que_faltam_por_consulta"], m["o_que_a_proxima_filha_custa"]))
+    else:
+        A("**Toda categoria do Guia fechou as 3 filhas por consulta.**")
     A("")
     disputa = [(cat, m) for cat, m in maes.items()
                if m["consultas_disputadas_por_mais_de_uma_candidata"]]

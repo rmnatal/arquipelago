@@ -89,6 +89,71 @@ def carregar_banco(dados=DADOS):
     return itens
 
 
+def recortes_fechados_por_canal(dados=DADOS):
+    """Os recortes que esta ilha MEDIU como nao coletaveis por este canal, lidos do banco.
+
+    POR QUE ISTO EXISTE, e a causa tem data e custo medido. Em 07/10/2026 a execucao que varreu
+    Cortag e Vonder fechou `alicate/martelinho` e `alicate/pinca_mosaico` como "coleta impossivel
+    neste canal" — nao e que a pagina nao foi achada, e que a declaracao de fabricante que o portao
+    exige nao e publicada por ninguem nesse mercado. Escreveu isso em prosa, dentro de
+    `pendencias_desta_categoria`, com a instrucao "nao reabrir". **E no dia seguinte o
+    `caminho_mais_barato_para_as_3_filhas` deste proprio arquivo continuou anunciando
+    `alicate/martelinho` com `itens_de_banco_a_coletar: 3`** — o caminho mais barato do arquipelago
+    inteiro —, e a execucao de 08/10 escolheu esse bloco citando o campo derivado como razao de
+    nao ter escolhido nada de cabeca. O campo estava derivado e estava errado: o custo nao e 3
+    itens, e INFINITO neste canal.
+
+    A licao, e ela nao e sobre martelinho: **regua que recomenda caminho tem de ler as fechaduras
+    que a ilha ja mediu, ou ela recomenda o caminho que ja foi medido como fechado.** Prosa nao e
+    lida por maquina nenhuma. Por isso a pendencia passou a declarar `fechada_por_canal: true` e
+    `recortes_fechados: [...]`, e e isto que esta funcao le.
+
+    FALHA-FECHADA, nas duas direcoes: pendencia que declara `fechada_por_canal` sem nomear recorte
+    nenhum ERRA, porque fechadura que nao diz o que fecha nao fecha nada; e recorte nomeado aqui
+    que nao existe no vocabulario do esquema ERRA tambem (conferido em `montar`, que tem o
+    esquema), porque um `alicate/martelino` com typo deixaria de proteger em silencio — que e
+    exatamente a familia de defeito que esta funcao existe para fechar.
+    """
+    arquivos = {}
+    for nome in sorted(os.listdir(dados)):
+        if not (nome.startswith("materiais-") and nome.endswith(".json")):
+            continue
+        with io.open(os.path.join(dados, nome), encoding="utf-8") as f:
+            arquivos[nome] = json.load(f)
+    return fechados_de_bancos(arquivos)
+
+
+def fechados_de_bancos(arquivos):
+    """A metade PURA da funcao acima: recebe {nome do arquivo: conteudo} e devolve as fechaduras.
+
+    Separada do disco de proposito, para a bancada poder fabricar a pendencia malformada. Regra
+    desta ilha desde o bloco 4: portao que so roda sobre o banco real e portao com metade do mundo
+    desligada, e a mutacao que PRODUZ o mundo e a unica que o enxerga.
+    """
+    fechados = {}
+    for nome in sorted(arquivos):
+        d = arquivos[nome]
+        for pend in d.get("pendencias_desta_categoria", []):
+            if not pend.get("fechada_por_canal"):
+                continue
+            quais = pend.get("recortes_fechados") or []
+            if not quais:
+                raise ValueError(
+                    "%s: a pendencia `%s` declara fechada_por_canal e NAO nomeia recorte nenhum em"
+                    " `recortes_fechados`. Fechadura que nao diz o que fecha nao protege ninguem —"
+                    " foi o silencio dessa fechadura que gastou a execucao de 08/10/2026."
+                    % (nome, pend.get("id")))
+            for recorte in quais:
+                fechados[recorte] = {
+                    "recorte": recorte,
+                    "pendencia": pend.get("id"),
+                    "arquivo": "dados/" + nome,
+                    "estado_da_pendencia": pend.get("estado"),
+                    "o_que_mudaria_isto": pend.get("o_que_mudaria_isto"),
+                }
+    return fechados
+
+
 def teto_de_nivel(esquema):
     """O nivel maximo de fonte que sustenta recomendacao primaria, LIDO do esquema."""
     escada = esquema["escada_de_fontes"]
@@ -256,7 +321,26 @@ def custo_para_passar(l):
                d["itens_que_faltam_para_o_numero_mais_perto"])
 
 
-def resumo(linhas):
+# A frase que acompanha TODO caminho mais barato deste arquivo, e ela nao e disclaimer: e a
+# correcao de 07/10/2026 colada no numero que ela corrige. Em 08/10 uma execucao leu
+# `caminho_mais_barato_para_as_3_filhas` -> `faltam_filhas: 1` e escolheu o bloco por isso,
+# somando `torques` e `cortador_de_azulejo` como duas filhas. Pelo cruzamento, naquele mesmo dia,
+# a `alicate` tinha UMA filha: o `torques` esta em `espera_autoridade` (a SERP dele e TOMADA) e a
+# pergunta mira a MESMA consulta do `cortador_de_azulejo`. O numero daqui conta TIPO COM DADO
+# VERDE; o numero da 16.5 conta CONSULTA ABERTA. Sao perguntas diferentes, e so uma delas decide
+# se a mae nasce. Quem le o campo tem de ler isto no mesmo lugar, nao sete secoes acima.
+O_QUE_O_CAMINHO_NAO_DECIDE = (
+    "ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos"
+    " desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a"
+    " eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e"
+    " `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP"
+    " TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha."
+    " Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026."
+)
+
+
+def resumo(linhas, fechados=None):
+    fechados = {} if fechados is None else fechados
     conta = {"passa": 0, "passa_na_contagem_sem_lastro": 0, "nao_passa": 0}
     for l in linhas:
         conta[l["veredito"]] += 1
@@ -266,15 +350,23 @@ def resumo(linhas):
             continue
         c = por_categoria.setdefault(l["categoria"], {
             "tipos_que_passam": 0, "tipos_no_vocabulario": 0,
-            "tipos_que_passam_quais": [], "caminho_mais_barato_para_as_3_filhas": None})
+            "tipos_que_passam_quais": [], "tipos_fechados_por_canal": [],
+            "caminho_mais_barato_para_as_3_filhas": None,
+            "o_que_este_caminho_NAO_decide": O_QUE_O_CAMINHO_NAO_DECIDE})
         c["tipos_no_vocabulario"] += 1
         if l["veredito"] == "passa":
             c["tipos_que_passam"] += 1
             c["tipos_que_passam_quais"].append(l["recorte"])
+        elif l["recorte"] in fechados:
+            c["tipos_fechados_por_canal"].append(fechados[l["recorte"]])
 
     # O caminho mais barato: entre os tipos que AINDA nao passam, os que faltam para chegar a 3,
     # ordenados pelo que custa menos item novo. Se a categoria nao tem 3 tipos no vocabulario, a
     # 16.5 nao se fecha por coleta nenhuma — e isso tem de sair escrito, nao deduzido.
+    #
+    # E O TIPO FECHADO POR CANAL SAI DOS CANDIDATOS (09/10/2026). Ele nao custa "3 itens": custa
+    # infinito, porque a declaracao que o portao exige nao e publicada por ninguem neste mercado.
+    # Deixa-lo na lista ordenada por custo o poe no TOPO dela, que foi exatamente o que aconteceu.
     for cat, c in por_categoria.items():
         faltam = MINIMO_DA_SECAO_9 - c["tipos_que_passam"]
         if faltam <= 0:
@@ -286,15 +378,27 @@ def resumo(linhas):
                 " %d filhas. So filha em forma de PERGUNTA (como a F2 e a F1 sao) fecha esta"
                 " categoria." % (c["tipos_no_vocabulario"], MINIMO_DA_SECAO_9))
             continue
-        candidatos = sorted(
-            (l for l in linhas
-             if l["categoria"] == cat and l["tipo"] is not None and l["veredito"] != "passa"),
-            key=lambda l: (custo_para_passar(l), l["recorte"]))[:faltam]
+        abertos = [l for l in linhas
+                   if l["categoria"] == cat and l["tipo"] is not None
+                   and l["veredito"] != "passa" and l["recorte"] not in fechados]
+        if len(abertos) < faltam:
+            c["caminho_mais_barato_para_as_3_filhas"] = (
+                "IMPOSSIVEL por tipo NESTE CANAL: faltam %d filha(s) e sobram %d tipo(s) que esta"
+                " ilha ainda pode coletar, porque %s. So filha em forma de PERGUNTA fecha esta"
+                " categoria, ou um canal de coleta novo."
+                % (faltam, len(abertos),
+                   "; ".join("`%s` esta fechado pela pendencia `%s` (%s)"
+                             % (f["recorte"], f["pendencia"], f["arquivo"])
+                             for f in c["tipos_fechados_por_canal"]) or "o vocabulario acabou"))
+            continue
+        candidatos = sorted(abertos, key=lambda l: (custo_para_passar(l), l["recorte"]))[:faltam]
         c["caminho_mais_barato_para_as_3_filhas"] = {
             "faltam_filhas": faltam,
             "itens_de_banco_a_coletar": sum(custo_para_passar(l) for l in candidatos),
             "em_quais_tipos": [{"tipo": l["recorte"], "itens_a_coletar": custo_para_passar(l)}
                                for l in candidatos],
+            "tipos_que_NAO_entraram_porque_o_canal_esta_fechado":
+                [f["recorte"] for f in c["tipos_fechados_por_canal"]],
         }
     return {
         "vereditos": conta,
@@ -305,8 +409,20 @@ def resumo(linhas):
     }
 
 
-def montar(esquema, banco, perguntas=None):
+def montar(esquema, banco, perguntas=None, fechados=None):
     teto, linhas = medir(esquema, banco)
+    fechados = recortes_fechados_por_canal() if fechados is None else fechados
+    # FALHA-FECHADA: recorte nomeado numa pendencia tem de existir no vocabulario. Sem isto, um
+    # `alicate/martelino` com typo nao protege nada E NAO ACUSA — a fechadura fica muda, que e a
+    # mesma coisa que ela nao existir, e foi assim que a execucao de 08/10 foi mandada ao martelinho.
+    nomes = {l["recorte"] for l in linhas}
+    for recorte, f in sorted(fechados.items()):
+        if recorte not in nomes:
+            raise ValueError(
+                "%s: a pendencia `%s` fecha o recorte `%s`, que NAO existe no vocabulario do"
+                " esquema (versao %s). Ou o nome tem typo, ou o vocabulario mudou e a pendencia"
+                " ficou para tras. Fechadura muda nao fecha nada."
+                % (f["arquivo"], f["pendencia"], recorte, esquema.get("versao_esquema")))
     perguntas = carregar_perguntas() if perguntas is None else perguntas
     linhas_de_pergunta = medir_perguntas(esquema, banco, perguntas)
     linhas_de_fora = medir_fora_do_portao(esquema, banco)
@@ -346,8 +462,23 @@ def montar(esquema, banco, perguntas=None):
             "a chance de primeira pagina — e a 14.9, e ela se mede na SERP, nao no banco",
             "a ordem das levas — e a secao 9, por intencao de compra, e ela olha a SERP tambem",
         ],
+        "recortes_fechados_por_canal": {
+            "o_que_e": (
+                "os recortes que esta ilha MEDIU como nao coletaveis por este canal, lidos de"
+                " `pendencias_desta_categoria` dos `dados/materiais-*.json` por"
+                " `recortes_fechados_por_canal()`. Eles saem do caminho mais barato: nao custam"
+                " N itens, custam infinito enquanto o canal for este."),
+            "por_que_este_campo_existe": (
+                "porque a prosa da pendencia nao e lida por maquina nenhuma. `alicate/martelinho`"
+                " foi fechado em 07/10/2026 com a instrucao 'nao reabrir', e em 08/10 o caminho"
+                " mais barato deste mesmo arquivo continuava anunciando `itens_de_banco_a_coletar:"
+                " 3` nele — o menor numero do arquipelago —, e a execucao daquele dia escolheu o"
+                " bloco por esse numero, dizendo que era derivado e nao escolhido de cabeca. Era"
+                " derivado e estava errado."),
+            "quais": [fechados[k] for k in sorted(fechados)],
+        },
         "recortes": linhas,
-        "resumo": resumo(linhas),
+        "resumo": resumo(linhas, fechados),
         "perguntas": linhas_de_pergunta,
         "resumo_das_perguntas": resumo_das_perguntas(linhas_de_pergunta),
         "os_numeros_que_o_portao_NAO_VE": {
@@ -887,6 +1018,43 @@ def gerar_md(d, preservado=""):
         A("**Nenhuma categoria do Guia alcanca as 3 filhas que a 16.5 exige** — nem somando todos os")
         A("tipos que o vocabulario admite. A mae de nivel 2 continua fechada, e agora por um numero.")
     A("")
+    A("## O caminho mais barato por categoria — E O QUE ELE NAO DECIDE")
+    A("")
+    A("Esta secao estava SO no JSON ate 09/10/2026, e foi lida de la sem a ressalva ao lado. O")
+    A("texto abaixo e o mesmo campo `o_que_este_caminho_NAO_decide` que o JSON carrega agora em")
+    A("cada categoria:")
+    A("")
+    A("> %s" % O_QUE_O_CAMINHO_NAO_DECIDE)
+    A("")
+    A("| categoria | tipos com dado verde | de | fechados por canal | caminho mais barato POR TIPO |")
+    A("|---|---|---|---|---|")
+    for cat in sorted(r["por_categoria_do_guia"]):
+        c = r["por_categoria_do_guia"][cat]
+        cam = c["caminho_mais_barato_para_as_3_filhas"]
+        if isinstance(cam, dict):
+            txt = "faltam %d filha(s), %d item(ns) a coletar em %s" % (
+                cam["faltam_filhas"], cam["itens_de_banco_a_coletar"],
+                ", ".join("`%s` (%d)" % (t["tipo"], t["itens_a_coletar"])
+                          for t in cam["em_quais_tipos"]))
+        else:
+            txt = str(cam)
+        A("| `%s` | %d | %d | %s | %s |"
+          % (cat, c["tipos_que_passam"], c["tipos_no_vocabulario"],
+             ", ".join("`%s`" % f["recorte"] for f in c["tipos_fechados_por_canal"]) or "—", txt))
+    A("")
+    fech = d["recortes_fechados_por_canal"]["quais"]
+    if fech:
+        A("**Os recortes fechados por canal, e por que eles NAO aparecem no caminho acima:**")
+        A("")
+        for f in fech:
+            A("- **`%s`** — pendencia `%s`, em `%s`. %s"
+              % (f["recorte"], f["pendencia"], f["arquivo"], f["estado_da_pendencia"]))
+            if f["o_que_mudaria_isto"]:
+                A("  - o que mudaria isto: %s" % f["o_que_mudaria_isto"])
+    else:
+        A("**Nenhum recorte fechado por canal.** Nenhuma pendencia dos `materiais-*.json` declara")
+        A("`fechada_por_canal`, entao todo tipo que falta e, pelo que esta ilha mediu, coletavel.")
+    A("")
     A("## Recorte por recorte")
     A("")
     A("| recorte | itens | com lastro | numeros calculaveis | veredito |")
@@ -1176,8 +1344,12 @@ def autoteste():
             [_com_geo(_material("a", "cola", "pva", {"p1": 1}), espessura_mm=4),
              _com_geo(_material("b", "cola", "pva", {"p2": 1}), espessura_mm=4),
              _com_geo(_material("c", "cola", "pva", {"p3": 1}), espessura_mm=4)])
-        d = montar(_esquema({"cola": ["pva"]}), [], perguntas=[])
-        d.update({"recortes": linhas, "resumo": resumo(linhas),
+        # `fechados={}` e `fechados` no resumo nao sao detalhe: sem eles o fixture le as
+        # pendencias REAIS do disco contra um vocabulario FABRICADO, e os tres casos de .md
+        # explodem na falha-fechada de `montar` — que e a regua nova acusando o fixture, e nao o
+        # contrario. Mundo fabricado tem fechadura fabricada.
+        d = montar(_esquema({"cola": ["pva"]}), [], perguntas=[], fechados={})
+        d.update({"recortes": linhas, "resumo": resumo(linhas, {}),
                   "perguntas": perguntas, "resumo_das_perguntas": resumo_das_perguntas(perguntas)})
         d["os_numeros_que_o_portao_NAO_VE"]["campos"] = fora
         d["os_numeros_que_o_portao_NAO_VE"]["resumo"] = resumo_de_fora_do_portao(fora, len(linhas))
@@ -1414,6 +1586,97 @@ def autoteste():
     # funcao morta. Os quatro casos abaixo separam as duas perguntas que o veredito cruza, e o
     # terceiro e o unico que REPROVA o mundo.
 
+    # ---- O CANAL FECHADO (09/10/2026)
+    #
+    # A regua do caminho mais barato recomendou, por um dia inteiro, o UNICO tipo que esta ilha ja
+    # tinha medido como nao coletavel — e recomendou porque custo infinito, escrito em prosa numa
+    # pendencia, entra numa lista ordenada por custo como se fosse o menor numero. Os casos abaixo
+    # medem as quatro direcoes: a fechadura exclui, a fechadura NAO exclui o que ninguem fechou, a
+    # fechadura muda explode, e a ressalva esta colada no numero.
+
+    def ccaso(nome, esquema, banco, fechados, confere):
+        casos.append((nome, esquema, banco, ("CANAL", fechados, confere)))
+
+    def _cat(r, cat):
+        return r["por_categoria_do_guia"][cat]
+
+    def _fech(recorte, pend="pend-x", arq="dados/materiais-x.json"):
+        return {recorte: {"recorte": recorte, "pendencia": pend, "arquivo": arq,
+                          "estado_da_pendencia": "FECHADA", "o_que_mudaria_isto": "canal novo"}}
+
+    # UM tipo verde, tres no vocabulario, e um dos dois que faltam esta fechado: por tipo a
+    # categoria fica IMPOSSIVEL, e a frase tem de nomear a pendencia e o arquivo dela.
+    _tres_tipos = _esquema({"alicate": ["torques", "martelinho", "pinca"]})
+    _um_verde = [_material("a", "alicate", "torques", {"esp": 5}),
+                 _material("b", "alicate", "torques", {"esp": 5}),
+                 _material("c", "alicate", "torques", {"esp": 5})]
+
+    ccaso("tipo fechado por canal SAI do caminho mais barato, e a frase nomeia a pendencia",
+          _tres_tipos, _um_verde, _fech("alicate/martelinho"),
+          lambda r: (isinstance(_cat(r, "alicate")["caminho_mais_barato_para_as_3_filhas"], str)
+                     and "IMPOSSIVEL por tipo NESTE CANAL"
+                     in _cat(r, "alicate")["caminho_mais_barato_para_as_3_filhas"]
+                     and "`pend-x`" in _cat(r, "alicate")["caminho_mais_barato_para_as_3_filhas"]
+                     and [f["recorte"] for f in _cat(r, "alicate")["tipos_fechados_por_canal"]]
+                     == ["alicate/martelinho"]))
+
+    # O MESMO mundo SEM fechadura nenhuma tem de dar caminho de 2 filhas e 6 itens. E o controle do
+    # experimento: regua que exclui sempre exclui o certo tambem, e o caminho real pararia de sair.
+    ccaso("o MESMO mundo sem fechadura nenhuma continua dando caminho — a regua nao exclui o certo",
+          _tres_tipos, _um_verde, {},
+          lambda r: (_cat(r, "alicate")["caminho_mais_barato_para_as_3_filhas"]["faltam_filhas"] == 2
+                     and _cat(r, "alicate")["caminho_mais_barato_para_as_3_filhas"]
+                     ["itens_de_banco_a_coletar"] == 6
+                     and _cat(r, "alicate")["tipos_fechados_por_canal"] == []))
+
+    # QUATRO tipos, um verde, um fechado: sobram dois abertos para duas filhas, entao o caminho SAI
+    # — e tem de sair SEM o fechado dentro e DIZENDO que ele ficou de fora. E o caso exato da
+    # `alicate` real, e o que 08/10 leu ao contrario.
+    ccaso("com tipo aberto suficiente o caminho sai, sem o fechado e dizendo que ele ficou fora",
+          _esquema({"alicate": ["torques", "cortador", "martelinho", "pinca"]}),
+          [_material("a", "alicate", "torques", {"esp": 5}),
+           _material("b", "alicate", "torques", {"esp": 5}),
+           _material("c", "alicate", "torques", {"esp": 5})],
+          _fech("alicate/martelinho"),
+          lambda r: (_cat(r, "alicate")["caminho_mais_barato_para_as_3_filhas"]["em_quais_tipos"]
+                     == [{"tipo": "alicate/cortador", "itens_a_coletar": 3},
+                         {"tipo": "alicate/pinca", "itens_a_coletar": 3}]
+                     and _cat(r, "alicate")["caminho_mais_barato_para_as_3_filhas"]
+                     ["tipos_que_NAO_entraram_porque_o_canal_esta_fechado"] == ["alicate/martelinho"]))
+
+    # A RESSALVA VIAJA COM O NUMERO. Foi a ausencia dela, no JSON, que deixou "faltam_filhas: 1"
+    # ser lido como "a 16.5 esta a uma filha" — e nao estava: por consulta a `alicate` tinha UMA.
+    ccaso("todo numero de caminho carrega a ressalva de que ele NAO e a conta da 16.5",
+          _tres_tipos, _um_verde, {},
+          lambda r: all("cruzamento-14-9" in c["o_que_este_caminho_NAO_decide"]
+                        and "PISO" in c["o_que_este_caminho_NAO_decide"]
+                        for c in r["por_categoria_do_guia"].values()))
+
+    # A categoria JA ALCANCADA nao muda de forma por causa da fechadura: `acabamento` e o controle.
+    ccaso("categoria ja alcancada segue 'ja alcancada' mesmo com fechadura no vocabulario dela",
+          _esquema({"acabamento": ["verniz", "selador", "impermeabilizante"]}),
+          [_material("%s%d" % (t, i), "acabamento", t, {"esp": 5})
+           for t in ("verniz", "selador", "impermeabilizante") for i in (1, 2, 3)],
+          _fech("acabamento/verniz"),
+          lambda r: _cat(r, "acabamento")["caminho_mais_barato_para_as_3_filhas"] == "ja alcancada")
+
+    # AS DUAS FALHA-FECHADAS. Sem elas a fechadura fica muda, e fechadura muda e igual a nenhuma.
+    casos.append((
+        "pendencia que declara fechada_por_canal SEM nomear recorte EXPLODE",
+        None, None,
+        ("EXPLODE",
+         lambda: fechados_de_bancos({"materiais-x.json": {"pendencias_desta_categoria": [
+             {"id": "p1", "fechada_por_canal": True}]}}),
+         "NAO nomeia recorte nenhum")))
+
+    casos.append((
+        "recorte fechado que NAO existe no vocabulario EXPLODE no montar",
+        None, None,
+        ("EXPLODE",
+         lambda: montar(_esquema({"alicate": ["torques"]}), [], perguntas=[],
+                        fechados=_fech("alicate/martelino")),
+         "NAO existe no vocabulario")))
+
     def fcaso(nome, esquema, banco, confere):
         casos.append((nome, esquema, banco, ("FORA", confere)))
 
@@ -1545,6 +1808,17 @@ def autoteste():
                 ok = (not falhas_t) if deve_aprovar else bool(falhas_t)
             elif isinstance(confere, tuple) and confere and confere[0] == "FORA":
                 ok = bool(confere[1](medir_fora_do_portao(esquema, banco)))
+            elif isinstance(confere, tuple) and confere and confere[0] == "CANAL":
+                _, fechados_fab, confere_c = confere
+                _, linhas_c = medir(esquema, banco)
+                ok = bool(confere_c(resumo(linhas_c, fechados_fab)))
+            elif isinstance(confere, tuple) and confere and confere[0] == "EXPLODE":
+                _, chamar, fragmento = confere
+                try:
+                    chamar()
+                    ok = False  # nao explodiu: a falha-fechada nao fechou
+                except ValueError as erro:
+                    ok = fragmento in str(erro)
             elif isinstance(confere, tuple) and confere and confere[0] == "PERGUNTA":
                 _, perguntas_fab, confere_p = confere
                 ok = bool(confere_p(medir_perguntas(esquema, banco, perguntas_fab)))

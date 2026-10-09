@@ -32,6 +32,17 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 > a terceira queda já era chamado e não reparo, e o reparo só continua valendo porque o chamado não foi
 > respondido.
 
+> **BATERIA DE MUTAÇÃO MORTA POR TEMPO DEIXA O ARQUIVO MUTADO NO DISCO — MEDIDO EM 09/10/2026.**
+> As `ferramentas/mutacoes-*.py` desta ilha **alteram arquivo de verdade** e restauram no fim. Mortas no
+> meio (timeout, SIGTERM), **não restauram**. Em 09/10 a `mutacoes-f1.py` foi encerrada por limite de
+> tempo e deixou `snippets/clubedomosaico-f2.php` com a **regra 8 movida para depois da regra 2 e
+> devolvendo `silencio` no lugar de `ambiente_do_substrato`** — a troca de causa que esta ilha mais paga.
+> O `teste-f2.php` foi de 0 para **3 falhas** e o `teste-tecnicas.php` de APROVADO para **REPROVADO**, e
+> quem nomeou o arquivo foi o `git status`. **Duas regras, as duas baratas:** rode as baterias longas
+> numa **cópia fora da árvore do git** (`cp -r` da pasta da ilha para o scratchpad), e **confira `git
+> status` e rode a bancada DE NOVO depois delas, nunca só antes** — senão o arquivo mutado entra no
+> commit e o Sync o leva para o ar.
+
 ## O que esta ilha tem de diferente (leia antes de tudo)
 Esta é a **terceira ilha** e a primeira que **não veio da Bússola**: é um projeto pessoal do Raphael. A mãe dele faz mosaico artesanal (vasos, colares, quadros). O site tem **três motores num domínio só**, e a malha fecha um ciclo comercial completo:
 1. **LOJA** — venda direta das peças da mãe (margem cheia, produto próprio, sem afiliado).
@@ -1890,8 +1901,15 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    >
    > ---
    >
-   > **O PRÓXIMO BLOCO NÃO É MAIS RÉGUA, E FOI A MEDIÇÃO DE HOJE QUE O ESCOLHEU: É ITEM DE BANCO —
-   > `alicate/martelinho`, TRÊS REGISTROS, E ELE É O ÚNICO LUGAR ONDE TRÊS REGISTROS VIRAM UMA MÃE DE NÍVEL 2.**
+   > ~~**O PRÓXIMO BLOCO NÃO É MAIS RÉGUA, E FOI A MEDIÇÃO DE HOJE QUE O ESCOLHEU: É ITEM DE BANCO —
+   > `alicate/martelinho`, TRÊS REGISTROS, E ELE É O ÚNICO LUGAR ONDE TRÊS REGISTROS VIRAM UMA MÃE DE NÍVEL 2.**~~
+   > **NÃO EXECUTADO, E NÃO POR FALTA DE FÔLEGO: EM 09/10/2026 A PREMISSA FOI MEDIDA E ESTÁ ERRADA NAS
+   > DUAS METADES. O corpo abaixo fica como está, porque é ele que explica o defeito.** O item manda
+   > coletar três registros de `alicate/martelinho` — o recorte que esta mesma ilha havia fechado
+   > **no dia anterior**, 07/10, como *"coleta IMPOSSÍVEL neste canal"*, com a instrução **"não
+   > reabrir"** escrita três vezes neste arquivo. E ele conta duas filhas onde a 16.5 conta uma. O
+   > relato inteiro está na entrada de 09/10 do `REGISTRO.md`; o essencial é que **nem o item nem a
+   > execução que o escreveu erraram de desatenção**: os dois leram um campo derivado que mentia.
    >
    > **Por que ele, e o número não é escolha minha:** está derivado em
    > `resumo.por_categoria_do_guia.alicate.caminho_mais_barato_para_as_3_filhas` de
@@ -1924,6 +1942,58 @@ E-mail do Search Console de qua., 23/09/2026, 14h26 BRT, propriedade **clubedomo
    > sem fonte de nível 3 (a `pastilha` já pagou essa conta com o 1x1, que não existe em catálogo nenhum e
    > travou uma faixa inteira da F1); e não tentar a terceira filha da `rejunte` por coleta
    > (*"NÃO REPITA A COLETA"*, medido em 05/10).
+   >
+   > ---
+   >
+   > **O PRÓXIMO BLOCO, ESCOLHIDO EM 09/10/2026 DEPOIS DE A FILA SER CONSERTADA: É A PROPOSTA 3 DA
+   > LEITURA SEMANAL — `quadro do Divino Espírito Santo` —, E ELA É A ÚNICA URL DESTA ILHA QUE NÃO
+   > DEPENDE DA 16.5 DO GUIA.**
+   >
+   > **Por que ela, e os três números não são escolha de quem escreve:**
+   >
+   > 1. **O Guia não tem URL barata, e agora isso está derivado em vez de suposto.** A fila das mães de
+   >    `dados/cruzamento-14-9.md` (nova, desta passada) ordena as sete categorias por quanto falta
+   >    **por consulta**: `acabamento` 0 (a mãe está no ar), **`rejunte` 1**, **`alicate` 2**, e
+   >    `apoio`, `base`, `cola` e `pastilha` em 3. A `rejunte` é a próxima mãe — e as **três** portas
+   >    dela estão medidas e fechadas desde 08/10 (não há terceiro número com lastro; o boletim do
+   >    piscinas não traz a `classificacao_normativa` e os outros quatro estão em 403; e a coleta por
+   >    tipo é *"NÃO REPITA A COLETA"* de 05/10). A `alicate` precisa de **duas** consultas novas
+   >    medidas, não de item de banco — e os dois tipos que faltariam nela estão fechados por canal.
+   > 2. **A Proposta 3 tem a única demanda de COMPRA medida que esta ilha já encontrou**, e está escrita
+   >    na leitura de 07/10 com estas palavras: *"é a primeira vez que o Arquipélago encontra uma
+   >    consulta de produto, com intenção de compra explícita, que a ilha já toca e atende mal"*. Três
+   >    consultas, 4 impressões, posição média 39,2, todas caindo em `/loja/quadro-divino-espirito-santo/`.
+   > 3. **O teto da 21.4 está livre.** A última leva publicada foi o 4c, em 02/10 — sete dias atrás —,
+   >    então não há leva gasta na semana e nenhuma URL nova desta ilha está travada pelo teto. O que
+   >    travava era a 16.5, e a 16.5 não alcança esta página: ela não é filha de nível 3 do Guia.
+   >
+   > **O que o bloco tem de fazer, na ordem:**
+   > 1. **A classificação de SERP da 14.9 ANTES de escrever página**, pela consulta `quadro divino
+   >    espirito santo` — e pelos limites já medidos deste canal: **não pedir número** (limite 5), **não
+   >    nomear marca** (limite 3) e saber que núcleo que cabe em espanhol desvia de país (limites 1 e 4).
+   >    Esta consulta é de **produto**, e nesta ilha consulta de produto mediu TOMADA quatro vezes — se
+   >    vier TOMADA, o bloco para aí e escreve isso, porque a leitura semanal já disse que o que falta
+   >    é *"uma página de conteúdo própria"*, não mais uma ficha de loja, e página de conteúdo numa SERP
+   >    de varejo é a quinta repetição do mesmo erro.
+   > 2. **Se abrir:** a página de conteúdo (o que é, como se faz, quanto custa, quanto tempo leva),
+   >    ligada à peça da Loja pelos dois lados, com o número vindo do banco — nunca digitado no molde.
+   > 3. **Fechar pela 19.4(a):** Sync, `/status` igual ao `manifest.json`, `conferir-no-ar.py` e
+   >    `leitura-do-visitante.py` (este último reprova no soft 404 do hospedeiro, e esse vermelho é
+   >    esperado e tem dono — qualquer OUTRO defeito nele é regressão sua).
+   >
+   > **Pronto quando** — o critério é o da própria leitura, não um novo: `quadro divino espirito santo`
+   > entrar na **banda 11 a 20** na série de `dados/posicoes.md`.
+   >
+   > **E O QUE ELE NÃO DEVE FAZER:** não reabrir `alicate/martelinho` nem `alicate/pinca_mosaico` — os
+   > dois agora estão fechados **por campo lido por máquina** (`fechada_por_canal` +
+   > `recortes_fechados` em `dados/materiais-alicates.json`), e `filhas-do-guia.py` os exclui do
+   > caminho mais barato nomeando a pendência; não gravar o **Kit Mosaico** da Cortag como se fosse um
+   > tipo do vocabulário (kit não é tipo, e o achado está registrado na pendência); não gravar a
+   > `Espessura de Corte 8 mm` da página de **linha** `Tenazas` em nenhum dos três torques (é número de
+   > linha, contradiz os 5 mm que o fabricante declara por produto, e é a mesma armadilha que a
+   > pendência do corte curvo fechou em 07/10); e **não escolher bloco lendo
+   > `caminho_mais_barato_para_as_3_filhas` sozinho** — ele conta tipo com dado verde, é um PISO, e o
+   > campo `o_que_este_caminho_NAO_decide`, ao lado dele, diz isso com estas palavras desde hoje.
    >
    > ~~**O PRÓXIMO BLOCO ESTÁ ESCOLHIDO E É A TERCEIRA FILHA DA `rejunte` — A CATEGORIA ESTÁ A UMA
    > CONSULTA DA SEGUNDA MÃE DO GUIA, E AS DUAS QUE ELA JÁ TEM ESTÃO MEDIDAS NOS DOIS PORTÕES.**~~

@@ -19,6 +19,35 @@ esquema (versao 16): **3**.
 
 **Categorias que alcancam as 3 filhas da 16.5:** `acabamento`.
 
+## O caminho mais barato por categoria — E O QUE ELE NAO DECIDE
+
+Esta secao estava SO no JSON ate 09/10/2026, e foi lida de la sem a ressalva ao lado. O
+texto abaixo e o mesmo campo `o_que_este_caminho_NAO_decide` que o JSON carrega agora em
+cada categoria:
+
+> ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha. Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026.
+
+| categoria | tipos com dado verde | de | fechados por canal | caminho mais barato POR TIPO |
+|---|---|---|---|---|
+| `acabamento` | 3 | 3 | — | ja alcancada |
+| `alicate` | 2 | 4 | `alicate/pinca_mosaico`, `alicate/martelinho` | IMPOSSIVEL por tipo NESTE CANAL: faltam 1 filha(s) e sobram 0 tipo(s) que esta ilha ainda pode coletar, porque `alicate/pinca_mosaico` esta fechado pela pendencia `martelinho-e-pinca-nao-tem-fabricante-neste-canal` (dados/materiais-alicates.json); `alicate/martelinho` esta fechado pela pendencia `martelinho-e-pinca-nao-tem-fabricante-neste-canal` (dados/materiais-alicates.json). So filha em forma de PERGUNTA fecha esta categoria, ou um canal de coleta novo. |
+| `apoio` | 0 | 6 | — | faltam 3 filha(s), 9 item(ns) a coletar em `apoio/desempenadeira` (3), `apoio/espatula` (3), `apoio/luva` (3) |
+| `base` | 0 | 5 | — | faltam 3 filha(s), 9 item(ns) a coletar em `base/ceramica_crua` (3), `base/cimento` (3), `base/isopor_estrutural` (3) |
+| `cola` | 0 | 7 | — | faltam 3 filha(s), 6 item(ns) a coletar em `cola/cimentcola_acii` (2), `cola/pva` (2), `cola/silicone_acetico` (2) |
+| `pastilha` | 1 | 6 | — | faltam 2 filha(s), 6 item(ns) a coletar em `pastilha/caco_azulejo` (3), `pastilha/caco_espelho` (3) |
+| `rejunte` | 1 | 4 | `rejunte/acrilico`, `rejunte/epoxi` | IMPOSSIVEL por tipo NESTE CANAL: faltam 2 filha(s) e sobram 1 tipo(s) que esta ilha ainda pode coletar, porque `rejunte/acrilico` esta fechado pela pendencia `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal` (dados/materiais-rejuntes.json); `rejunte/epoxi` esta fechado pela pendencia `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal` (dados/materiais-rejuntes.json). So filha em forma de PERGUNTA fecha esta categoria, ou um canal de coleta novo. |
+
+**Os recortes fechados por canal, e por que eles NAO aparecem no caminho acima:**
+
+- **`alicate/martelinho`** — pendencia `martelinho-e-pinca-nao-tem-fabricante-neste-canal`, em `dados/materiais-alicates.json`. FECHADA COMO 'NAO EXISTE POR AQUI' EM 07/10/2026 — nao repita a busca
+  - o que mudaria isto: Um fabricante NOVO no banco. Nao vale buscar outra vez em Cortag e Vonder.
+- **`alicate/pinca_mosaico`** — pendencia `martelinho-e-pinca-nao-tem-fabricante-neste-canal`, em `dados/materiais-alicates.json`. FECHADA COMO 'NAO EXISTE POR AQUI' EM 07/10/2026 — nao repita a busca
+  - o que mudaria isto: Um fabricante NOVO no banco. Nao vale buscar outra vez em Cortag e Vonder.
+- **`rejunte/acrilico`** — pendencia `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal`, em `dados/materiais-rejuntes.json`. FECHADA COMO 'NAO E COLETAVEL POR AQUI' EM 05/10/2026 — declarada em campo lido por maquina em 09/10/2026
+  - o que mudaria isto: O egresso a `www.quartzolit.weber` abrindo (hoje 403), um boletim de acrilico ou de epoxi aparecendo no inventario do espelho, ou um fabricante NOVO que publique faixa de junta em pagina de produto. Nao vale repetir as sete portas medidas em 05/10.
+- **`rejunte/epoxi`** — pendencia `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal`, em `dados/materiais-rejuntes.json`. FECHADA COMO 'NAO E COLETAVEL POR AQUI' EM 05/10/2026 — declarada em campo lido por maquina em 09/10/2026
+  - o que mudaria isto: O egresso a `www.quartzolit.weber` abrindo (hoje 403), um boletim de acrilico ou de epoxi aparecendo no inventario do espelho, ou um fabricante NOVO que publique faixa de junta em pagina de produto. Nao vale repetir as sete portas medidas em 05/10.
+
 ## Recorte por recorte
 
 | recorte | itens | com lastro | numeros calculaveis | veredito |

@@ -18,6 +18,40 @@
   "a chance de primeira pagina — e a 14.9, e ela se mede na SERP, nao no banco",
   "a ordem das levas — e a secao 9, por intencao de compra, e ela olha a SERP tambem"
  ],
+ "recortes_fechados_por_canal": {
+  "o_que_e": "os recortes que esta ilha MEDIU como nao coletaveis por este canal, lidos de `pendencias_desta_categoria` dos `dados/materiais-*.json` por `recortes_fechados_por_canal()`. Eles saem do caminho mais barato: nao custam N itens, custam infinito enquanto o canal for este.",
+  "por_que_este_campo_existe": "porque a prosa da pendencia nao e lida por maquina nenhuma. `alicate/martelinho` foi fechado em 07/10/2026 com a instrucao 'nao reabrir', e em 08/10 o caminho mais barato deste mesmo arquivo continuava anunciando `itens_de_banco_a_coletar: 3` nele — o menor numero do arquipelago —, e a execucao daquele dia escolheu o bloco por esse numero, dizendo que era derivado e nao escolhido de cabeca. Era derivado e estava errado.",
+  "quais": [
+   {
+    "recorte": "alicate/martelinho",
+    "pendencia": "martelinho-e-pinca-nao-tem-fabricante-neste-canal",
+    "arquivo": "dados/materiais-alicates.json",
+    "estado_da_pendencia": "FECHADA COMO 'NAO EXISTE POR AQUI' EM 07/10/2026 — nao repita a busca",
+    "o_que_mudaria_isto": "Um fabricante NOVO no banco. Nao vale buscar outra vez em Cortag e Vonder."
+   },
+   {
+    "recorte": "alicate/pinca_mosaico",
+    "pendencia": "martelinho-e-pinca-nao-tem-fabricante-neste-canal",
+    "arquivo": "dados/materiais-alicates.json",
+    "estado_da_pendencia": "FECHADA COMO 'NAO EXISTE POR AQUI' EM 07/10/2026 — nao repita a busca",
+    "o_que_mudaria_isto": "Um fabricante NOVO no banco. Nao vale buscar outra vez em Cortag e Vonder."
+   },
+   {
+    "recorte": "rejunte/acrilico",
+    "pendencia": "rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal",
+    "arquivo": "dados/materiais-rejuntes.json",
+    "estado_da_pendencia": "FECHADA COMO 'NAO E COLETAVEL POR AQUI' EM 05/10/2026 — declarada em campo lido por maquina em 09/10/2026",
+    "o_que_mudaria_isto": "O egresso a `www.quartzolit.weber` abrindo (hoje 403), um boletim de acrilico ou de epoxi aparecendo no inventario do espelho, ou um fabricante NOVO que publique faixa de junta em pagina de produto. Nao vale repetir as sete portas medidas em 05/10."
+   },
+   {
+    "recorte": "rejunte/epoxi",
+    "pendencia": "rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal",
+    "arquivo": "dados/materiais-rejuntes.json",
+    "estado_da_pendencia": "FECHADA COMO 'NAO E COLETAVEL POR AQUI' EM 05/10/2026 — declarada em campo lido por maquina em 09/10/2026",
+    "o_que_mudaria_isto": "O egresso a `www.quartzolit.weber` abrindo (hoje 403), um boletim de acrilico ou de epoxi aparecendo no inventario do espelho, ou um fabricante NOVO que publique faixa de junta em pagina de produto. Nao vale repetir as sete portas medidas em 05/10."
+   }
+  ]
+ },
  "recortes": [
   {
    "recorte": "acabamento",
@@ -1646,7 +1680,9 @@
      "acabamento/impermeabilizante",
      "acabamento/selador"
     ],
-    "caminho_mais_barato_para_as_3_filhas": "ja alcancada"
+    "tipos_fechados_por_canal": [],
+    "caminho_mais_barato_para_as_3_filhas": "ja alcancada",
+    "o_que_este_caminho_NAO_decide": "ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha. Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026."
    },
    "alicate": {
     "tipos_que_passam": 2,
@@ -1655,21 +1691,30 @@
      "alicate/torques",
      "alicate/cortador_de_azulejo"
     ],
-    "caminho_mais_barato_para_as_3_filhas": {
-     "faltam_filhas": 1,
-     "itens_de_banco_a_coletar": 3,
-     "em_quais_tipos": [
-      {
-       "tipo": "alicate/martelinho",
-       "itens_a_coletar": 3
-      }
-     ]
-    }
+    "tipos_fechados_por_canal": [
+     {
+      "recorte": "alicate/pinca_mosaico",
+      "pendencia": "martelinho-e-pinca-nao-tem-fabricante-neste-canal",
+      "arquivo": "dados/materiais-alicates.json",
+      "estado_da_pendencia": "FECHADA COMO 'NAO EXISTE POR AQUI' EM 07/10/2026 — nao repita a busca",
+      "o_que_mudaria_isto": "Um fabricante NOVO no banco. Nao vale buscar outra vez em Cortag e Vonder."
+     },
+     {
+      "recorte": "alicate/martelinho",
+      "pendencia": "martelinho-e-pinca-nao-tem-fabricante-neste-canal",
+      "arquivo": "dados/materiais-alicates.json",
+      "estado_da_pendencia": "FECHADA COMO 'NAO EXISTE POR AQUI' EM 07/10/2026 — nao repita a busca",
+      "o_que_mudaria_isto": "Um fabricante NOVO no banco. Nao vale buscar outra vez em Cortag e Vonder."
+     }
+    ],
+    "caminho_mais_barato_para_as_3_filhas": "IMPOSSIVEL por tipo NESTE CANAL: faltam 1 filha(s) e sobram 0 tipo(s) que esta ilha ainda pode coletar, porque `alicate/pinca_mosaico` esta fechado pela pendencia `martelinho-e-pinca-nao-tem-fabricante-neste-canal` (dados/materiais-alicates.json); `alicate/martelinho` esta fechado pela pendencia `martelinho-e-pinca-nao-tem-fabricante-neste-canal` (dados/materiais-alicates.json). So filha em forma de PERGUNTA fecha esta categoria, ou um canal de coleta novo.",
+    "o_que_este_caminho_NAO_decide": "ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha. Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026."
    },
    "apoio": {
     "tipos_que_passam": 0,
     "tipos_no_vocabulario": 6,
     "tipos_que_passam_quais": [],
+    "tipos_fechados_por_canal": [],
     "caminho_mais_barato_para_as_3_filhas": {
      "faltam_filhas": 3,
      "itens_de_banco_a_coletar": 9,
@@ -1686,13 +1731,16 @@
        "tipo": "apoio/luva",
        "itens_a_coletar": 3
       }
-     ]
-    }
+     ],
+     "tipos_que_NAO_entraram_porque_o_canal_esta_fechado": []
+    },
+    "o_que_este_caminho_NAO_decide": "ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha. Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026."
    },
    "base": {
     "tipos_que_passam": 0,
     "tipos_no_vocabulario": 5,
     "tipos_que_passam_quais": [],
+    "tipos_fechados_por_canal": [],
     "caminho_mais_barato_para_as_3_filhas": {
      "faltam_filhas": 3,
      "itens_de_banco_a_coletar": 9,
@@ -1709,13 +1757,16 @@
        "tipo": "base/isopor_estrutural",
        "itens_a_coletar": 3
       }
-     ]
-    }
+     ],
+     "tipos_que_NAO_entraram_porque_o_canal_esta_fechado": []
+    },
+    "o_que_este_caminho_NAO_decide": "ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha. Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026."
    },
    "cola": {
     "tipos_que_passam": 0,
     "tipos_no_vocabulario": 7,
     "tipos_que_passam_quais": [],
+    "tipos_fechados_por_canal": [],
     "caminho_mais_barato_para_as_3_filhas": {
      "faltam_filhas": 3,
      "itens_de_banco_a_coletar": 6,
@@ -1732,8 +1783,10 @@
        "tipo": "cola/silicone_acetico",
        "itens_a_coletar": 2
       }
-     ]
-    }
+     ],
+     "tipos_que_NAO_entraram_porque_o_canal_esta_fechado": []
+    },
+    "o_que_este_caminho_NAO_decide": "ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha. Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026."
    },
    "pastilha": {
     "tipos_que_passam": 1,
@@ -1741,6 +1794,7 @@
     "tipos_que_passam_quais": [
      "pastilha/vidro"
     ],
+    "tipos_fechados_por_canal": [],
     "caminho_mais_barato_para_as_3_filhas": {
      "faltam_filhas": 2,
      "itens_de_banco_a_coletar": 6,
@@ -1753,8 +1807,10 @@
        "tipo": "pastilha/caco_espelho",
        "itens_a_coletar": 3
       }
-     ]
-    }
+     ],
+     "tipos_que_NAO_entraram_porque_o_canal_esta_fechado": []
+    },
+    "o_que_este_caminho_NAO_decide": "ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha. Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026."
    },
    "rejunte": {
     "tipos_que_passam": 1,
@@ -1762,20 +1818,24 @@
     "tipos_que_passam_quais": [
      "rejunte/cimenticio"
     ],
-    "caminho_mais_barato_para_as_3_filhas": {
-     "faltam_filhas": 2,
-     "itens_de_banco_a_coletar": 4,
-     "em_quais_tipos": [
-      {
-       "tipo": "rejunte/acrilico",
-       "itens_a_coletar": 2
-      },
-      {
-       "tipo": "rejunte/epoxi",
-       "itens_a_coletar": 2
-      }
-     ]
-    }
+    "tipos_fechados_por_canal": [
+     {
+      "recorte": "rejunte/acrilico",
+      "pendencia": "rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal",
+      "arquivo": "dados/materiais-rejuntes.json",
+      "estado_da_pendencia": "FECHADA COMO 'NAO E COLETAVEL POR AQUI' EM 05/10/2026 — declarada em campo lido por maquina em 09/10/2026",
+      "o_que_mudaria_isto": "O egresso a `www.quartzolit.weber` abrindo (hoje 403), um boletim de acrilico ou de epoxi aparecendo no inventario do espelho, ou um fabricante NOVO que publique faixa de junta em pagina de produto. Nao vale repetir as sete portas medidas em 05/10."
+     },
+     {
+      "recorte": "rejunte/epoxi",
+      "pendencia": "rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal",
+      "arquivo": "dados/materiais-rejuntes.json",
+      "estado_da_pendencia": "FECHADA COMO 'NAO E COLETAVEL POR AQUI' EM 05/10/2026 — declarada em campo lido por maquina em 09/10/2026",
+      "o_que_mudaria_isto": "O egresso a `www.quartzolit.weber` abrindo (hoje 403), um boletim de acrilico ou de epoxi aparecendo no inventario do espelho, ou um fabricante NOVO que publique faixa de junta em pagina de produto. Nao vale repetir as sete portas medidas em 05/10."
+     }
+    ],
+    "caminho_mais_barato_para_as_3_filhas": "IMPOSSIVEL por tipo NESTE CANAL: faltam 2 filha(s) e sobram 1 tipo(s) que esta ilha ainda pode coletar, porque `rejunte/acrilico` esta fechado pela pendencia `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal` (dados/materiais-rejuntes.json); `rejunte/epoxi` esta fechado pela pendencia `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal` (dados/materiais-rejuntes.json). So filha em forma de PERGUNTA fecha esta categoria, ou um canal de coleta novo.",
+    "o_que_este_caminho_NAO_decide": "ESTE NUMERO E POR RECORTE DE TIPO E E UM PISO, NUNCA A CONTA DA 16.5. Ele diz quantos tipos desta categoria ainda nao tem DADO verde, e o que custaria em item de banco dar dado verde a eles. A 16.5 se fecha por CONSULTA ABERTA (correcao de 07/10/2026), e quem conta isso e `dados/cruzamento-14-9.md` — unico arquivo com as duas metades. Tipo com dado verde e SERP TOMADA nao e filha, e pergunta que mira a consulta de um tipo nao e uma SEGUNDA filha. Escolher bloco so com o numero daqui ja custou a execucao de 08/10/2026."
    }
   },
   "categorias_que_alcancam_as_3_filhas_da_16_5": [

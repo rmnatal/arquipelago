@@ -42,6 +42,28 @@ conta — ela e a pagina de nivel 2, nao filha de si mesma.
 | `pastilha` | 1 | 0 | 0 | **0** | `espera_autoridade` | nao |
 | `rejunte` | 1 | 1 | 1 | **2** | `pode_nascer` | nao |
 
+### A FILA DAS MAES, ordenada por quanto FALTA e nao por quantos tipos tem dado verde
+
+Esta tabela nasceu em 09/10/2026, e a causa dela tem data e custo. Ate 08/10 a pergunta
+"qual e o proximo bloco" era respondida pelo `caminho_mais_barato_para_as_3_filhas` de
+`filhas-do-guia.json`, que conta **tipo com dado verde**. A execucao de 08/10 leu dali que a
+`alicate` estava a UMA filha com TRES itens a coletar e escolheu o bloco por isso. Pela conta
+que decide a 16.5 — a desta pagina — a `alicate` estava a **duas**, e os tres itens eram de um
+tipo que a propria ilha havia fechado no dia anterior como **nao coletavel neste canal**. A
+conta da 16.5 mora aqui; a fila dela passa a morar aqui tambem.
+
+| categoria | filhas por CONSULTA | faltam | o que a proxima filha custa |
+|---|---|---|---|
+| `acabamento` | 3 | **0** | nada: a 16.5 esta fechada por consulta |
+| `rejunte` | 2 | **1** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 1 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
+| `alicate` | 1 | **2** | CONSULTA MEDIDA, nao item de banco: `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` ja tem dado verde e nao tem consulta aberta propria. Medir uma consulta nova para uma delas e a coisa mais barata que existe nesta categoria. |
+| `apoio` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
+| `base` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
+| `cola` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
+| `pastilha` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
+
+**A proxima mae do Guia e a `rejunte`**, a 1 filha(s) por consulta. ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 1 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho.
+
 **Consultas disputadas por mais de uma candidata** — cada uma delas vale UMA filha, e e
 aqui que a conta por recorte inflava:
 

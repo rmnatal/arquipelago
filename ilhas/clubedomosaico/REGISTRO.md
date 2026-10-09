@@ -3,6 +3,219 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+09/10/2026 10h5xZ — A RÉGUA QUE ESCOLHE O BLOCO ESTAVA MENTINDO, E ELA JÁ TINHA MANDADO UMA EXECUÇÃO COLETAR O QUE ESTA ILHA MEDIU COMO IMPOSSÍVEL
+
+**Ilha em foco** (`foco.md`, desde 24/09), reservada às **10h16Z**, push da reserva aceito na primeira
+tentativa (`232c0a1`). Pela **1.2** não houve escolha a fazer. O cabeçalho estava com `executando_desde:
+null`, que pela **1.1** já basta — e o último commit na pasta era de **19h47Z de ontem**, quinze horas
+atrás. `git fetch origin main` trouxe `0758d62..1245e2a` (forçada do lado do remoto); a branch
+`claude/dreamy-mccarthy-vevxx3` estava **idêntica ao `main`**, zero commits de diferença, e não havia PR
+aberto — nada a mesclar. Pela **18.1** nenhuma outra ilha tem despacho **ALTO** em ilha no ar e quebrada,
+que é a única coisa que fura o foco.
+
+**A REDE PELA 20.2, retestada e não herdada:** `clubedomosaico.com.br` em **200 nas três passadas**, com
+`aquametria.com.br` em 200 na mesma passada.
+
+**A PORTA DE ENTRADA ESTÁ DE PÉ, e os dois comandos da 29 rodaram antes de qualquer coisa, como o
+`PROMPT.md` manda.** `conferir-no-ar.py` **APROVADO: 524 afirmações, 0 falha** — 21 de 21 URLs do sitemap
+em 200, as três da 29.2 em 200 e caminho inexistente em 404 na página desta ilha. O reparo de ontem às
+19h2xZ **segurou**. `leitura-do-visitante.py` fechou **REPROVADO com EXATAMENTE 1 defeito**, o soft 404 da
+borda do hospedeiro — pendência do Raphael desde 29/09, vermelho esperado e com dono escrito. **Zero
+defeito novo.**
+
+**Nenhuma URL nova** (a ilha segue em **21**), **nenhuma leva do teto da 21.4 gasta** e **nada publicado no
+site**: este bloco é régua e dado de repositório, não option, então não houve Sync nem revisão nova — o
+`/status` segue na **71**.
+
+## O BLOCO QUE A FILA MANDAVA FAZER ERA PROIBIDO POR ESTE MESMO ARQUIVO, E A CONTRADIÇÃO TEM UM DIA DE IDADE
+
+O item 14 do `bloco_atual` de ontem diz, com todas as letras, que o próximo bloco é **ITEM DE BANCO**:
+*"a `alicate` está a UMA filha das três da 16.5, e essa filha é `alicate/martelinho` com TRÊS itens a
+coletar — derivado em `caminho_mais_barato_para_as_3_filhas`, **não escolhido por mim**"*. O `PROMPT.md`
+repete isso em três lugares.
+
+**E o `PROMPT.md` também diz, três vezes, para NÃO fazer isso.** Em **07/10/2026** — um dia antes — a
+execução que varreu Cortag e Vonder fechou `alicate/martelinho` e `alicate/pinca_mosaico` como
+*"coleta IMPOSSÍVEL neste canal"*, com a pendência `martelinho-e-pinca-nao-tem-fabricante-neste-canal`, a
+frase *"Não busque outra vez em Cortag e Vonder"* e a instrução *"não reabrir `martelinho` nem
+`pinca_mosaico` (medidos e fechados hoje)"*.
+
+**NENHUMA DAS DUAS EXECUÇÕES FOI DESATENTA, E É ISSO QUE IMPORTA.** A de 08/10 fez exatamente o que esta
+ilha manda fazer: em vez de escolher de cabeça, leu um campo **derivado** —
+`resumo.por_categoria_do_guia.alicate.caminho_mais_barato_para_as_3_filhas` de
+`dados/filhas-do-guia.json` — e o campo respondia `faltam_filhas: 1`, `itens_de_banco_a_coletar: 3`, em
+`alicate/martelinho`. **O menor número do arquipélago inteiro.** O campo estava derivado e estava errado,
+porque custo infinito escrito em PROSA entra numa lista ordenada por custo como se fosse zero.
+
+## AS DUAS METADES ERRADAS, as duas com número
+
+**(1) O CUSTO NÃO É 3 ITENS, É INFINITO NESTE CANAL — e ficou medido por um canal a mais do que em 07/10.**
+Duas passadas novas, escritas de forma diferente, nenhuma carregando o valor que se queria confirmar
+(seção 8): a primeira pediu os **rótulos** da ficha em `cortag.com`, `cortag.com.br`, `vonder.com.br` e
+**`tramontina.com.br`** — e a Tramontina é um fabricante que a varredura de 07/10 **não tinha olhado**, ou
+seja é exatamente o *"fabricante NOVO"* que o campo `o_que_mudaria_isto` pedia. O que ela publica é
+`Martelo Pedreiro 2 Cortes 500 g` (SKU 40458000), que não nomeia mosaico, pastilha nem tessela. A segunda
+pediu os nomes da ferramenta de verdade — `martelina`, `tagliolo`, `bigorna`, `tessela` — nos dois
+fabricantes do banco mais Tramontina, Starrett, Lee Tools e Momfort: **zero produto com qualquer um desses
+nomes nos seis domínios**. E uma terceira, **sem restrição de domínio**, procurando fabricante brasileiro
+de martelina para mosaico, devolveu ateliê de mosaico, matéria de jornal e vendedor italiano de eBay —
+**nenhum fabricante brasileiro, nenhuma ficha**. A causa de 07/10 fica medida por um canal a mais e por
+dois nomes a mais, e **não é de coleta**: a martellina com o tagliolo é ferramenta artesanal de
+mosaiquista, e a declaração de fabricante que o portão exige não é publicada por ninguém nesse mercado.
+
+**(2) A `alicate` NÃO ESTAVA A UMA FILHA, ESTAVA A DUAS — e quem já dizia isso era o outro arquivo.** A
+correção de **07/10** está escrita no `cruzamento-14-9.md`: *"a 16.5 se fecha por CONSULTA, não por
+recorte"*. Contado por consulta, a `alicate` tem **UMA** filha, não duas: `alicate/torques` está em
+`espera_autoridade` (a SERP dele é **TOMADA** desde 05/10) e a `pergunta:alicate-espessura-de-corte` mira
+a **mesma** consulta do `alicate/cortador_de_azulejo`. **Duas páginas na mesma consulta não são duas
+filhas.** O `caminho_mais_barato` contava **tipo com dado verde**; a 16.5 conta **consulta aberta**. São
+perguntas diferentes, e só uma delas decide se a mãe nasce.
+
+## O CONSERTO: A FECHADURA DEIXOU DE SER PROSA, E A FILA MUDOU DE ARQUIVO
+
+**`dados/materiais-alicates.json`** — a pendência de 07/10 ganhou dois campos **lidos por máquina**:
+`fechada_por_canal: true` e `recortes_fechados: ["alicate/martelinho", "alicate/pinca_mosaico"]`, com o
+motivo de os dois existirem escrito ao lado deles. Prosa não é lida por máquina nenhuma, e foi o silêncio
+dessa fechadura que gastou a execução de ontem.
+
+**`ferramentas/filhas-do-guia.py`** — `recortes_fechados_por_canal()` varre os `materiais-*.json` e lê as
+fechaduras; `fechados_de_bancos()` é a metade **pura** dela, separada do disco para a bancada poder
+fabricar a pendência malformada. O caminho mais barato **exclui** os recortes fechados e, quando sobram
+menos tipos abertos do que filhas faltando, responde `IMPOSSIVEL por tipo NESTE CANAL` **nomeando a
+pendência e o arquivo dela**. **FALHA-FECHADA nas duas direções:** pendência que declara
+`fechada_por_canal` sem nomear recorte **explode**, e recorte nomeado que não existe no vocabulário do
+esquema **explode no `montar`** — porque um `alicate/martelino` com typo deixaria de proteger **em
+silêncio**, que é a mesma família de defeito que a função existe para fechar.
+
+**E A RESSALVA PASSOU A VIAJAR COLADA NO NÚMERO.** Todo `caminho_mais_barato_para_as_3_filhas` agora tem,
+ao lado, `o_que_este_caminho_NAO_decide`: *"ESTE NÚMERO É POR RECORTE DE TIPO E É UM PISO, NUNCA A CONTA
+DA 16.5 … Escolher bloco só com o número daqui já custou a execução de 08/10/2026."* Era a **ausência**
+dessa frase, no JSON, que deixou `faltam_filhas: 1` ser lido como "a 16.5 está a uma filha". **E a seção
+inteira do caminho mais barato, que até hoje morava SÓ no JSON, passou a sair no `.md`** — com a ressalva
+em citação em cima da tabela, dentro do que `--conferir` regera e compara.
+
+**`ferramentas/cruzamento-14-9.py`** — a pergunta *"qual é o próximo bloco"* não tinha resposta honesta em
+arquivo nenhum, e passou a ter no único arquivo com as **duas** metades. Cada categoria ganhou
+`filhas_que_faltam_por_consulta` e `o_que_a_proxima_filha_custa`, e o `.md` ganhou **A FILA DAS MÃES**,
+ordenada por quanto falta. **O custo não é um número só, de propósito:** filha que falta pode custar **uma
+CONSULTA MEDIDA** (quando já existe candidata com dado verde sem consulta própria) ou **ITEM DE BANCO**
+(quando toda candidata já tem a sua). Chamar as duas de "falta uma filha" foi o que mandou uma execução
+coletar o impossível.
+
+## E A RÉGUA NOVA ACHOU A MESMA ARMADILHA NA CATEGORIA SEGUINTE, NO MESMO COMMIT
+
+**Com o `martelinho` fora do caminho, a tabela que a própria régua acabou de gerar pôs a `rejunte` no
+topo: "faltam 2 filhas, 4 itens a coletar em `rejunte/acrilico` (2) e `rejunte/epoxi` (2)". E essa coleta
+também está medida e fechada, desde 05/10.** Está no `PROMPT.md` com estas palavras: *"AS DUAS FILHAS QUE
+FALTAM NO `rejunte` NÃO ESTÃO A UMA COLETA DE SKU, E O BLOQUEIO TEM NOME NOVO: É ÍNDICE DE BUSCA, NÃO
+EGRESSO. **NÃO REPITA A COLETA.**"* — com sete portas medidas em três passadas: `www.quartzolit.weber` em
+**403**, sete domínios de fabricante em `000` por falha de **DNS** (inclusive por WebFetch, `ENOTFOUND`),
+as três escapatórias (`web.archive.org`, `r.jina.ai`, `docs.google.com`) fechadas, e o espelho da Telha
+Norte sem como ser navegado — arquivo por nome conhecido, 14 documentos, nenhum de acrílico nem de epóxi.
+**A causa não é de coleta:** a faixa de junta mora em **boletim técnico**, e boletim técnico é o que este
+canal não indexa. Foi essa a diferença medida contra a `acabamento`, que saiu de zero por busca porque
+Acrilex, Coral e Suvinil publicam a declaração na própria página de produto.
+
+**Então os DOIS menores números do arquipélago eram canais fechados, não um.** `alicate/martelinho` (3
+itens) e `rejunte/acrilico` + `rejunte/epoxi` (4) — o primeiro e o segundo lugar da lista ordenada por
+custo. Nasceu a pendência `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal` em
+`dados/materiais-rejuntes.json`, com `fechada_por_canal` e `recortes_fechados`, e a `rejunte` passou a
+responder `IMPOSSIVEL por tipo NESTE CANAL` também. **Uma régua que só tivesse consertado o martelinho
+teria mandado a próxima execução coletar rejunte.**
+
+## A FILA QUE SAIU DA RÉGUA NOVA, E ELA DESMENTE A FILA ANTIGA EM TODAS AS LINHAS
+
+| categoria | filhas por CONSULTA | faltam | o que a próxima filha custa |
+|---|---|---|---|
+| `acabamento` | 3 | **0** | nada: a mãe está no ar desde 02/10 |
+| `rejunte` | 2 | **1** | ITEM DE BANCO ou PERGUNTA NOVA — e as **três** portas estão medidas e fechadas (a coleta por tipo desde 05/10, agora em campo lido por máquina) |
+| `alicate` | 1 | **2** | **CONSULTA MEDIDA, não item de banco**: `cortador_de_azulejo` e a pergunta têm dado verde e disputam uma consulta só |
+| `apoio`, `base`, `cola`, `pastilha` | 0 | **3** | item de banco ou pergunta nova |
+
+**A `alicate` era anunciada como "a mais barata do arquipélago e a única a UMA filha". Ela é a terceira da
+fila, está a duas filhas, e o que ela precisa é de BUSCA, não de coleta.** O tipo que a fila mandava
+coletar não aparece mais em caminho nenhum.
+
+## O QUE A PASSADA ACHOU DE PASSAGEM E NÃO GRAVOU, as duas registradas na pendência
+
+**(1) A Cortag publica um `Kit Mosaico` com tabela de especificação** (SKU 61363, EAN 7897451413632, corte
+diagonal 11 × 11 cm, espessura de corte 6 mm, largura 15 cm). **Kit não é tipo do vocabulário**, então ele
+não fecha filha nenhuma — e quem o gravar um dia lê primeiro o que a Robometria aprendeu com os kits de
+filtro: kit declara a composição e não substitui o item avulso.
+
+**(2) A ARMADILHA DE 07/10 FOI RECONFIRMADA PELO AVESSO.** A página de **linha** `Tenazas` serve uma tabela
+com *"Espessura de Corte 8 mm"* ao lado dos **três** SKUs 60857, 60858 e 61341 de uma vez, e a própria
+leitura devolveu que *"a tabela não deixa claro se os 8 mm valem para os três modelos"*. É número de
+**linha**, exatamente como a frase de 5 mm que a pendência `torques-curvo-e-roldanas-podem-ser-o-mesmo`
+fechou em 07/10 — e gravar 8 mm no `cortag-torques-mosaico-roldanas` **contradiria** os 5 mm que o mesmo
+fabricante declara **por produto**. Não foi gravado.
+
+## O QUE A BANCADA ACHOU DE MIM, E ERA O MESMO DEFEITO QUE A RÉGUA NOVA CONSERTA
+
+Os **três** fixtures de `.md` do `filhas-do-guia.py` **explodiram** na primeira passada, e com a mensagem
+certa: eles montam um vocabulário **fabricado** e chamavam `montar()` sem fechadura, então a função ia ler
+as pendências **reais do disco** contra um mundo fabricado e a falha-fechada mordia. **A régua nova acusou
+o fixture, não o contrário** — mundo fabricado tem fechadura fabricada, e os três passaram a receber
+`fechados={}`. É a mesma lição do bloco de ontem, pelo caso 19-b: fixture que não chama a função que ele
+mede fica verde sobre um mundo que ninguém escreveu.
+
+## O DEFEITO MAIS CARO QUE ESTA PASSADA ACHOU NÃO É DELA, E ESTAVA NO SNIPPET QUE O SITE SERVE
+
+**Uma bateria de mutações morta por tempo deixa o arquivo MUTADO no disco, e eu peguei isso acontecendo.**
+`mutacoes-f1.py` foi encerrada por timeout (SIGTERM) no meio de uma mutação, e quando a bancada foi
+remedida o `teste-f2.php` passou de **0 falhas para 3** e o `teste-tecnicas.php` de **APROVADO para
+REPROVADO** — sem eu ter tocado em nenhum dos dois. O `git diff` mostrou a causa em quatro linhas:
+`snippets/clubedomosaico-f2.php` estava com a **regra 8 movida para depois da regra 2 e devolvendo
+`silencio` no lugar de `ambiente_do_substrato`**. É exatamente a troca de causa que esta ilha mais paga, e
+é a que o bloco de 07/10 consertou em 29 células.
+
+**O que isso custaria se eu não tivesse remedido:** o arquivo entraria no commit, e o próximo bloco
+publicável chamaria o Sync e o site passaria a dizer *"o fabricante não fala desta superfície"* em células
+em que ele fala. **O portão que o pegou foi rodar a bancada DE NOVO depois das mutações, não antes** — e
+o `git status` foi quem nomeou o arquivo. Restaurado por `git checkout`, e as duas bancadas voltaram a
+**0 falha** e **APROVADO**.
+
+**A regra que fica, e ela não é desta ilha, é do método:** bateria de mutação altera arquivo de verdade e
+restaura no fim; **morta no meio, ela não restaura**. Quem a rodar sob limite de tempo confere o `git
+status` depois — e o mais barato é rodá-la numa **cópia fora da árvore do git**, que foi o que esta
+passada fez na segunda tentativa. Está escrito no `PROMPT.md` desta ilha, no aviso do topo.
+
+## PRESTAÇÃO DE CONTAS
+
+**NENHUM VEREDITO MUDOU, e isso é a confirmação e não um consolo:** o `git diff` do
+`filhas-do-guia.json` não tem uma linha de `veredito` nem de `itens_no_banco`. A régua não afrouxou nem
+apertou o portão — ela parou de **recomendar** o caminho que a própria ilha já havia medido como fechado.
+É coerente com o que o bloco de ontem mediu com 0 de 42: *"o portão desta ilha nunca foi travado por QUAL
+campo ele lê; ele é travado por QUANTOS itens o banco tem"*.
+
+**BANCADA:** `filhas-do-guia --autoteste` **53 casos, 0 falha** (eram 46 — **SETE casos novos**, e os sete
+sobre a fechadura: o tipo fechado sai do caminho e a frase nomeia a pendência; o **mesmo mundo sem
+fechadura continua dando caminho**, que é o controle do experimento, porque régua que exclui sempre
+excluiria o certo também; com tipo aberto suficiente o caminho sai sem o fechado dentro e **dizendo** que
+ele ficou fora; todo número carrega a ressalva; categoria já alcançada não muda de forma; e as **duas
+falha-fechadas** explodindo). `cruzamento-14-9 --autoteste` **46 casos, 0 falha**. `--conferir` nos dois,
+**aprovado**. `validar-banco` e `validar-pastilhas` OK. `teste-casca.php` **744**, `teste-guia.php`
+**123**, `teste-tecnicas.php` **139**, `teste-f2.php` **174**, `teste-prestacao-rejunte.php` 540 estados da
+F2 e 180 da F1, `teste-atelie`, `teste-loja` e `teste-leads` aprovados. Mutações: `guia` 18/18, `arvore`
+29/29, `degrau` 8/8, `motivo-degrau-4` 10/10, `acabamento` 14/14.
+
+**O DESPACHO DE 07/10 FICA INTEIRO, retestado e não herdado:** `search-console.py --ilha clubedomosaico`
+devolve *"Sem credencial"* e `env | grep -c GOOGLE_SA` devolve **0**. Quarta execução a medir em vez de
+copiar a frase. Os itens 2 e 3 são leitura de Search Console, o 4 é sessão do Shopee Afiliados no Chrome
+do Raphael, e a Proposta 3 é bloco e não correção.
+
+## O PRÓXIMO PASSO DESBLOQUEADO — E ELE NÃO É DO GUIA
+
+**É a PROPOSTA 3 da leitura semanal: `quadro do Divino Espírito Santo`.** Com a fila consertada, o Guia
+não tem URL barata: a `rejunte` está a uma filha com as três portas fechadas, a `alicate` a duas consultas
+medidas, e as outras quatro a três filhas. **A Proposta 3 é a única URL desta ilha que não depende da
+16.5** — ela não é filha de nível 3 do Guia —, tem a **única demanda de COMPRA medida** que o Arquipélago
+já encontrou (três consultas, 4 impressões, posição média 39,2, todas caindo em
+`/loja/quadro-divino-espirito-santo/`) e **o teto da 21.4 está livre**: a última leva foi o 4c em 02/10,
+sete dias atrás. O bloco começa pela classificação de SERP da **14.9**, e se ela vier **TOMADA** o bloco
+para aí e escreve isso — consulta de produto mediu TOMADA quatro vezes nesta ilha. O critério de pronto é
+o da própria leitura: a consulta entrar na **banda 11 a 20** em `dados/posicoes.md`.
+
 08/10/2026 19h4xZ — A ILHA ESTAVA FORA DO AR PELA TERCEIRA VEZ, E O BLOCO DO PORTÃO RESPONDEU A PERGUNTA COM UM ZERO QUE DERRUBA A PRÓPRIA PREMISSA
 
 **Ilha em foco** (`foco.md`, desde 24/09), reservada às **19h17Z**, push da reserva aceito na primeira
