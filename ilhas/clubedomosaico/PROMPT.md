@@ -111,6 +111,66 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-09 (RONDA DIÁRIA TÉCNICA, 14h5xZ) — NADA PARA A FUNDAÇÃO FAZER; UM ITEM, E ELE É DO RAPHAEL
+
+> **ESCOLHA DA ILHA PELA REGRA DA DÍVIDA (seção 12):** a clubedomosaico é a única ilha com execução nova desde a
+> última ronda (duas execuções da Fundação em 09/10; o cabeçalho registra `ultima_execucao: 2026-10-09T15:5xZ`), e
+> segue em foco. A aquametria e a robometria receberam a **ronda técnica inteira**, pela decisão do Raphael de
+> 28/09 registrada no ponteiro da 1.2, e as duas passaram.
+
+**ZERO DEFEITO DE ILHA NAS TRÊS NO AR, E ZERO CONSERTO FEITO.** Nenhum defeito da lista 19.1 apareceu, então o
+teto de 5 da 19.5 não foi tocado. A Fundação **não tem nada a cumprir deste despacho** — ele existe para que a
+próxima execução não remeça o que já foi medido.
+
+**O QUE PASSOU, PARA NÃO SER REMEDIDO:** 21 de 21 URLs da clubedomosaico, 52 de 52 da aquametria e 14 de 14 da
+robometria em **200**; as três rotas da 29.2 em 200 e 404 em caminho virgem **nas três**; `/status` igual ao
+`manifest.json` **nas três** (clubedomosaico **71**, aquametria **117**, robometria **81**); **zero** `&#038;`
+dentro de `<script>`; **zero** página órfã (mínimo de 2 links internos na clubedomosaico, 3 na aquametria, 4 na
+robometria); `description` em todas e nenhuma acima de 160; JSON-LD em todas e `BreadcrumbList` em todas as que
+não são home; breadcrumb visível; **zero** `<img>` sem `alt` e **zero** sem `width`/`height`; `aria-expanded` e
+`aria-controls`; nenhuma palavra da lista "Proibidas" do `VOZ.md` de cada ilha em `<title>`, `<h1>` ou primeiro
+parágrafo. **Console sem uma mensagem**, com recarga, nos dois estados com parâmetro da F1 e da F2.
+
+**AS DUAS FERRAMENTAS COM ENTRADA REAL E A CONTA REFEITA NA MÃO, EM ESTADO QUE NENHUMA RONDA ANTERIOR MEDIU:**
+**F1** em `forma=cilindro, d=22, h=30, p15, esp=4, junta=5, sobra=15, rejunte=acrilico, onde=externo_exposto` →
+**2.073 cm² (0,207 m²), passo 2,0 cm, 2.500 pastilhas/m², 597 pastilhas**. Confere: π × 22 × 30 = 2.073,45;
+1,5 + 0,5 = 2,0 cm; 10.000 ÷ 4 = 2.500; 2.073,45 ÷ 4 = 518,36, com 15% = 596,12 → **597** arredondando para cima.
+**Os quatro números batem.** E a página **se recusa** a calcular o rejunte acrílico, com o motivo publicado (o
+coeficiente de consumo que a ilha tem é do cimentício em pó) — recusa honesta, não célula vazia. **F2** em
+`base=mdf_madeira, onde=interno_molhado, caco=caco_azulejo, junta=4` → **Tekbond Silicone Neutro**, com `madeira`
+declarada pelo fabricante, e **quatro** rejuntes cujas faixas publicadas cobrem de fato 4 mm (Acrílico 1–4,
+Cerâmicas 2–10, Epóxi 1–5, Porcelanatos 2–10), com o **Piscinas** fora e o motivo escrito. **Coerência da
+recomendação: passa nas duas**, lida como leitor leria.
+
+**O PISO DA 25.2 NO BANCO INTEIRO DESTA ILHA:** **41 de 41** itens com bloco de afiliado têm `url_busca` **e**
+`url_busca_produto`. **Itens intestáveis (com `url` e sem `url_produto`): ZERO.** **Degrau nulo: ZERO.** Degraus:
+**1** no 1, **4** no 2 (todos `/p/MLB...`), **19** no 3, **17** no 4. **78** ocorrências de link de loja servidas
+nas 21 URLs e nos dois estados de ferramenta, **todas** encurtadas e rastreáveis (73 `s.shopee.com.br` + 5
+`meli.la`), **zero link cru** — então a ordenação da **25.2-b** não tem como ser violada nesta ilha hoje. Os
+únicos endereços externos fora do banco são tipografia e as quatro fontes editoriais das páginas de picassiete e
+trencadís.
+
+### 1. O ÚNICO ITEM, E ELE NÃO É DA FUNDAÇÃO: O TESTE DE VIDA DA 25.4 CONTINUA MORTO, PELA TERCEIRA RONDA SEGUIDA
+
+**Medido em 09/10, em dois contextos de aba e com a sessão do Raphael logada:** `api/v4/pdp/get_pc` devolve
+**HTTP 403 com `error: 90309999` na primeira chamada**, inclusive aberta direto na barra de endereço e inclusive
+com `is_login: true` no corpo da resposta; `api/v4/item/get` devolve o mesmo 403; a ficha
+`shopee.com.br/product/<shop>/<item>` é redirecionada para `verify/captcha?...&scene=crawler_item` e renderiza o
+quebra-cabeça *"Arraste para completar"*; e até a **home** `shopee.com.br/` cai no mesmo CAPTCHA. A 25.4 proíbe a
+Sentinela de resolver CAPTCHA.
+
+**O resultado honesto: 4 de 24 itens medidos.** Os 4 de catálogo `/p/MLB...` do Mercado Livre estão **vivos com
+preço** (Tekbond Silicone Neutro R$ 59, Argamassa Quartzolit AC-II R$ 81, Durepoxi Loctite R$ 19, Rejunte Epóxi
+Quartzolit R$ 76), medidos no navegador porque `www.mercadolivre.com.br` segue em **000 nas três passadas** da
+nuvem. Os **20** da Shopee estão **NÃO MEDIDOS**, e "não medido" não é "vivo" — são 20 dos 41 itens desta ilha com
+a saúde do link desconhecida há três dias. Em 05/10 ainda saíam 4 a 6 leituras por aba; em 07/10 e em 09/10 saem
+**zero**.
+
+**pronto quando:** existir no `ARQUIPELAGO.md` (seção 25.4) um método de teste de vida da Shopee que uma rotina de
+navegador consiga executar sem resolver CAPTCHA, e uma ronda medir **≥ 10** itens Shopee desta ilha por ele. **A
+escolha do método é do Raphael** — a Fundação não deve escrever bloco de nuvem para isso (a própria 25.4 já
+registra que a nuvem recebe 403), e a Sentinela já mediu três vezes que o caminho escrito acabou.
+
 ## DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO — **REESCRITO PELA 18.3 EM 09/10/2026 às 15h4xZ**
 
 Decisão do Raphael em 09/10/2026, 10h41 de Brasília: "a gente está ranqueando para cola para mosaico. Mas tem inúmeras ferramentas para mosaico. Tem pastilha, tem [torquês]... Eu gostaria de ranquear quando a pessoa procurar por esses produtos. Eu não sei qual é a malha que tem que ser construída, categoria, subcategoria. Eu quero ser um dos primeiros quando alguém digitar isso. A galera que faz isso é ruim na internet, eu quero que você seja o melhor de todos."
