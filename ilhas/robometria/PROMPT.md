@@ -45,6 +45,13 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DO RAPHAEL — 2026-10-09 — PÁGINAS PELO NOME DO PRODUTO
+
+Decisão do Raphael em 09/10/2026: a regra das páginas por consulta de produto vale para toda ilha. A regra inteira está na última seção do ARQUIPELAGO.md ("PÁGINAS PELO NOME DO PRODUTO"). Nesta ilha:
+1. Montar em dados/consultas-de-produto.md a lista das consultas de produto de robô aspirador (filtro, escova lateral, escova central, bateria, mop, saco coletor, base, por marca e modelo quando a consulta existir), em ordem de intenção de compra, cada uma com a SERP classificada pela régua nova e as URLs do top 10.
+2. Não canibalizar /qual-peca-serve-no-meu-robo-aspirador/ nem as páginas de /pecas/ já publicadas: consulta já servida por elas não ganha URL nova.
+3. Publicar respeitando o foco, o teto da 21.4 e o modo de medição desta ilha: enquanto ela não receber construção, este despacho entrega só a lista do item 1.
+
 ## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.

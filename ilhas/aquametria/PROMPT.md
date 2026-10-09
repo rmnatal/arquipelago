@@ -44,6 +44,13 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DO RAPHAEL — 2026-10-09 — PÁGINAS PELO NOME DO PRODUTO
+
+Decisão do Raphael em 09/10/2026: a regra das páginas por consulta de produto vale para toda ilha. A regra inteira está na última seção do ARQUIPELAGO.md ("PÁGINAS PELO NOME DO PRODUTO"). Nesta ilha:
+1. Montar em dados/consultas-de-produto.md a lista das consultas de produto do aquarismo (filtro, aquecedor, luminária, mídia, bomba, termostato, substrato, CO2, teste de água e o que o corpus-buscas e a Search Console mostrarem), em ordem de intenção de compra, cada uma com a SERP classificada pela régua nova e as URLs do top 10.
+2. Não canibalizar as calculadoras nem as páginas "quantos litros para", que já têm impressão: consulta já servida por elas não ganha URL nova.
+3. Publicar respeitando o foco, o teto da 21.4 e o modo de medição desta ilha: enquanto ela não receber construção, este despacho entrega só a lista do item 1.
+
 ## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z)
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
