@@ -4240,3 +4240,56 @@ E a contagem de linhas do diff que NÃO começam com `| 2026-10-07 |` é **zero*
 **Nenhum passo falhou neste disparo.** Fetch, commit e `git push origin HEAD:main` passaram na primeira tentativa, sem rebase, sem force push e sem PR.
 
 **O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada; não corrigi, reformatei nem "melhorei" o texto das linhas movidas, que é o que a instrução proibiu explicitamente; não escolhi tabela por conta própria — a instrução nomeou a linha de ancoragem desta vez, e foi ela que eu usei; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`; não apaguei nem reescrevi seção anterior deste log, inclusive a ressalva do disparo de 20:08 UTC, que fica onde está como registro de que o erro existiu; não reservei ilha, não escrevi `executando_desde` nem toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; não acionei Sync, não publiquei e não verifiquei site; não criei conta em plataforma nenhuma. Nenhum contato pessoal de terceiro entrou — a instrução não trazia nenhum.
+
+---
+
+## Disparo de 2026-10-09, 10h41 BRT (13h41 UTC) — inserção do DESPACHO DO RAPHAEL — 2026-10-09 no `PROMPT.md` do Clube do Mosaico
+
+**Assunto:** Projeto Arquipélago, ilha `clubedomosaico`. Passou na checagem de assunto: ilha do Arquipélago, arquivo dentro de `ilhas/clubedomosaico/`. Nenhum contato pessoal de terceiro vinha na instrução, então nada foi omitido por esse motivo.
+
+**Instrução:** inserir um bloco literal, de 12 linhas, IMEDIATAMENTE ANTES da primeira linha do arquivo que comece com `## DESPACHO`, sem apagar, mover ou editar nenhuma outra linha. Uma única escrita, um commit, push em `origin/main`, confirmação por `git log -1 origin/main`.
+
+**Ponto de inserção:** a primeira linha `^## DESPACHO` do arquivo era a linha 114, `## DESPACHO DA SENTINELA — 2026-10-07 (LEITURA SEMANAL, 20h35Z) — **REESCRITO PELA 18.3 EM 08/10/2026**`. O bloco entrou antes dela. Depois de gravar, o bloco ocupa as linhas 114 a 125, e a linha 126 é o cabeçalho da Sentinela de 07/10, intacto.
+
+**Base:** `git fetch origin main && git checkout -B trabalho origin/main`, partindo de `39d2b2d`. Push aceito na primeira tentativa, sem rebase, sem force push e sem PR.
+
+`git status --porcelain` depois do commit (vazio = árvore limpa):
+
+```
+```
+
+`git diff --stat` do commit:
+
+```
+ ilhas/clubedomosaico/PROMPT.md | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+```
+
+**Commit que foi ao `main`:**
+
+```
+e62ffaa6cc8debb7d2690850f9452ac0f78f4af3 clubedomosaico: insere DESPACHO DO RAPHAEL — 2026-10-09 antes do primeiro despacho do PROMPT.md
+```
+
+**Confirmação em `origin/main`** (`git fetch origin main && git log -1 origin/main`):
+
+```
+39d2b2d..e62ffaa  HEAD -> main
+e62ffaa6cc8debb7d2690850f9452ac0f78f4af3 clubedomosaico: insere DESPACHO DO RAPHAEL — 2026-10-09 antes do primeiro despacho do PROMPT.md
+```
+
+**Contagem, conferida relendo `ilhas/clubedomosaico/PROMPT.md` DEPOIS de gravar, não pelo que eu achava ter escrito:**
+
+```
+114:## DESPACHO DO RAPHAEL — 2026-10-09
+linhas totais do arquivo: 2649   (eram 2637; +12)
+linhas do bloco (114-125): 12
+itens numerados no bloco: 4
+ocorrencias de '^## DESPACHO' no arquivo: 12   (eram 11; +1)
+```
+
+Só inserções: 12 linhas adicionadas, 0 removidas, 1 arquivo tocado. Nenhuma linha preexistente mudou de conteúdo — o diff não tem uma única linha `-`.
+
+**Nenhum passo falhou neste disparo.**
+
+**O que eu NÃO fiz, de propósito:** não li o `ARQUIPELAGO.md` para decidir nada; não reformatei, não "melhorei" e não corrigi nada do texto do bloco nem do arquivo; não acrescentei linha que não estava na instrução, além da linha em branco que separa o bloco do cabeçalho seguinte; não mexi em arquivo que a instrução não nomeou, só neste `MAOS-LOG.md`; não apaguei nem reescrevi seção anterior deste log; não reservei ilha, não escrevi `executando_desde` e não toquei em cabeçalho de estado; não executei bloco de fila de ilha nenhuma; **não publiquei, não acionei Sync e não verifiquei URL no ar** — o despacho inserido manda a Fundação fazer isso, e o texto é carga, não ordem para as mãos; não criei conta em plataforma nenhuma.
