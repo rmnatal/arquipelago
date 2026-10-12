@@ -73,7 +73,7 @@ ultima_execucao: 2026-10-12T16:20Z   # A TERCEIRA PERGUNTA DA MESMA CATEGORIA, e
                                      # de consulta de produto) e 19h19Z (o apelido de endereco com
                                      # NIVEL e os treze 301). O horario aqui e o da RESERVA, que e o
                                      # que a secao 1 compara; o bloco fechou perto de 21hZ.
-executando_desde: null
+executando_desde: 2026-10-12T19:16Z   # reserva da execucao de 12/10/2026 19h16Z (secao 1.2, passo 2)
 ultima_ronda: 2026-10-12T15:00Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente segue sendo a de 07/10 20h35Z). ZERO defeito de ilha nas 31 URLs; o TESTE DE VIDA DA 25.4 VOLTOU A FUNCIONAR — 24 de 24 itens medidos, 0 morto, 0 esgotado, depois de tres rondas em zero.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
