@@ -4582,3 +4582,43 @@ Push direto `git push origin HEAD:main`, aceito de primeira (`c325045..9c8d868`)
 - Posição conferida no `origin/main`, não só na cópia local: o bloco novo começa na **linha 114** (`## DESPACHO DA SENTINELA — 2026-10-09 (RONDA DIÁRIA TÉCNICA, 14h5xZ) — ...`) e a **linha-âncora do DESPACHO DO RAPHAEL — 2026-10-09 (3) continua intacta, agora na linha 174**, logo abaixo do bloco novo. O bloco novo é o **primeiro** `## DESPACHO` do arquivo, isto é, está no topo da fila.
 
 **Nenhum passo falhou.** Nenhum arquivo além do `PROMPT.md` e deste log foi tocado: nenhum `ESTADO.md`, nenhum `executando_desde`, nenhuma reserva de ilha, nenhum bloco de fila executado. Nenhum dado pessoal de terceiro apareceu na instrução — só o primeiro nome do Raphael, que já consta dos arquivos.
+
+---
+
+## DISPARO — 12/10/2026 05h57 (BRT) · 08h57Z (UTC) — PENTE FINO DE 12/10, PARTE 1 DE 2: O RELATÓRIO
+
+Instrução: criar o arquivo novo `AUDITORIA-PENTE-FINO-2026-10-12.md` na raiz, com o conteúdo verbatim do relatório que vinha depois da linha de marcação do disparo. Commit único com mensagem exata. Arquivo único, mais este log. A entrega veio por aqui porque o push direto da sessão de conversa foi recusado com 403 de autorização (o repositório não estava no conjunto autorizado daquela sessão), não por conflito.
+
+**Checagem de assunto:** auditoria de coerência do contrato do Arquipélago — `ARQUIPELAGO.md`, `foco.md`, `bussola/`, `dados/PAINEL.md` e as cinco ilhas (aquametria, robometria, clubedomosaico, ohmetria, jornadafly). Assunto aceito.
+
+**Dado pessoal de terceiro:** nenhum. O relatório cita a pendência do e-mail da artesã como item herdado, sem transcrever o endereço. **Valor de segredo:** nenhum. O relatório nomeia arquivos e linhas onde o token do Sync e o `google-site-verification` estão em texto puro, sem transcrever valor nenhum — conferido rodando `grep -nE '[A-Za-z0-9]{32}|google-site-verification=' AUDITORIA-PENTE-FINO-2026-10-12.md`: zero ocorrências.
+
+```
+$ git status --porcelain
+?? AUDITORIA-PENTE-FINO-2026-10-12.md
+```
+
+```
+$ git diff --stat (contra 57d6759, o main de partida)
+ AUDITORIA-PENTE-FINO-2026-10-12.md | 374 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 374 insertions(+)
+
+$ git diff --numstat
+374	0	AUDITORIA-PENTE-FINO-2026-10-12.md
+```
+
+**Commit que foi ao `main`:**
+
+```
+4358fa10653570b7a661ef0b125729515749437d pente fino: auditoria de coerencia do contrato (relatorio, 1 de 2)
+```
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de **57d6759**. Push direto `git push origin HEAD:main`, aceito de primeira (`57d6759..4358fa1`), sem rebase e sem force. Conferido: `git fetch origin main && git log -1 origin/main` mostra **4358fa1**.
+
+**Contagem, conferida relendo o arquivo DEPOIS de gravar (não pelo que foi escrito):**
+
+- `AUDITORIA-PENTE-FINO-2026-10-12.md`: arquivo **novo**, **374 linhas, 32.534 bytes**, 0 removidas. Tamanho conferido no próprio `origin/main` e não só na cópia local (`git cat-file -s origin/main:AUDITORIA-PENTE-FINO-2026-10-12.md` = **32534**).
+- Estrutura relida: **1** título `# AUDITORIA PENTE FINO`, **9** seções `##`, **9** separadores `---` e **26** achados numerados (`**1.` a `**26.`) — que é o que o próprio relatório declara no resumo (1 GRAVE + 13 MÉDIO corrigidos + 7 MÉDIO registrados + 5 BAIXO corrigidos = 26).
+- Conteúdo gravado verbatim, da primeira linha `# AUDITORIA PENTE FINO — 12/10/2026` até a última, `Não inserido: regra nova de política é decisão do Raphael.` Nada acrescentado, nada resumido, nada reformatado.
+
+**Nenhum passo falhou.** Nenhum arquivo além do relatório novo e deste log foi tocado: nenhum `ESTADO.md`, nenhum `foco.md`, nenhum `executando_desde`, nenhuma reserva de ilha, nenhum bloco de fila executado, nenhuma das 13 correções do relatório aplicada — **as correções nos 11 arquivos são a parte 2 de 2 e não chegaram neste disparo**. O relatório ficou gravado no `main` sozinho, como a instrução previu.
