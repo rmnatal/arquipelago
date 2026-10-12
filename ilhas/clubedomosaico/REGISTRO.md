@@ -11220,3 +11220,130 @@ o próximo passo ficou escrito.
   `GOOGLE_SA_B64`), que trava o BLOCO A e a faixa de `description` das quatro páginas, e o **curinga**
   de egresso, que trava `base` e `apoio`. Os dois estão na lista do Raphael e nenhum dos dois é
   pré-requisito do passo acima.
+
+---
+
+## 2026-10-12, 13h5xZ — A SEGUNDA PERGUNTA NA MESMA CATEGORIA, E O MECANISMO DEIXA DE SER SINGULAR
+
+**Uma URL nova: `/materiais/acabamento/diluir-o-verniz-do-mosaico/`**, conferida no ar em 200 com os
+números dela batendo com o banco. A ilha vai de **30 para 31 URLs** (26 em `posts-page` e 5 em
+`posts-peca`, contados no `wp-sitemap` no ar); faltam **9** para o piso de 40 da 21.1. **Leva 2 de 3**
+da semana da 21.4. Guia **1.4.0**, manifest e `/status` na **revisão 78**.
+
+**1. OS DOIS PORTÕES DA 29 RODARAM ANTES DE TUDO E DE NOVO NO FIM.** Antes: `conferir-no-ar.py`
+APROVADO com 524 afirmações e 0 falha; `leitura-do-visitante.py` REPROVADO com EXATAMENTE 1 defeito, o
+soft 404 da borda, que é do hospedeiro e tem dono escrito. Depois do desembarque, com 31 URLs:
+`leitura-do-visitante` REPROVADO com **exatamente o MESMO 1 defeito**, 32 URLs lidas, e a página nova
+lida **pela BORDA em 200**, sem quebra de cache. Rede pela 20.2: 200 na raiz. A porta de entrada estava
+DE PÉ antes e depois — nada de 404 em massa.
+
+**1-b. E ELA NÃO É ÓRFÃ, medido no ar e não suposto** (a 16.4(f) pede 2 links internos, um da mãe):
+**CINCO** páginas apontam para ela — 1 da mãe, pela lista de filhas com a consulta-alvo como âncora
+(16.4(a)), e 4 das irmãs, pelo bloco de irmãs da casca.
+
+**2. O QUE ESTA EXECUÇÃO ACHOU ANTES DE ESCREVER UMA LINHA DE CÓDIGO, e é o que decidiu o bloco.** O
+`ESTADO.md` de manhã dizia que a próxima pergunta do acabamento precisava de "uma propriedade com 3
+itens de lastro e consulta própria ainda não tomada", e apontava duas candidatas em pé:
+`tempo_de_secagem_h` (4 itens) e `intervalo_entre_demaos_min` (3). **As duas estão CANIBALIZADAS, e a
+prova está no código da casca que está no ar, não numa opinião:**
+
+| propriedade | itens com lastro | onde ela JÁ é publicada |
+|---|---|---|
+| `acabamento_visual` | 5 | título, resumo, linha mestra, description **e** 1º FAQ da filha `verniz` |
+| `pelicula` | 4 | resumo e `o_que_nao_e` da filha `verniz` |
+| `tempo_de_secagem_h` | 4 | FAQ da filha `selador` ("Quanto tempo preciso esperar depois de selar?") |
+| `intervalo_entre_demaos_min` | 3 | resumo, linha mestra, `o_que_nao_e` e 2º FAQ da própria página das demãos |
+| **`diluicao`** | **3** | **nenhuma — só na tabela de rótulos** |
+| `pigmentado` | 3 | nenhuma — mas SEM SERP medida (as duas passadas de hoje desviaram) |
+
+**A regra que fica: LASTRO NÃO É VAGA LIVRE.** Contar itens do banco diz que a página *pode* existir
+pela seção 9; ela só *acrescenta* uma filha se a consulta dela não for respondida por uma página que já
+está no ar. Quem for escrever a sexta confere o que as cinco publicam **antes** de contar itens.
+
+**3. `diluicao` É A PRIMEIRA GRANDEZA DESTA ILHA QUE NÃO É UM NÚMERO**, e isso mudou o desenho da
+régua. O fabricante declara uma **frase**, e as três do banco são **incompatíveis entre si**: *não
+diluir e não agitar* (verniz de piso Quartzolit), *thinner para laca nitrocelulose em até 30%*
+(seladora de madeira Suvinil) e *diluível em água* (selador acrílico Coral). **Então a régua conta e
+NUNCA classifica (26.3):** dizer na tela qual é à base de água e qual é de solvente seria a gente
+arbitrando pelo fabricante — e aqui isso é pior que em qualquer outro campo, porque trocar água por
+thinner estraga a peça. O que a página entrega é o **espalhamento**, e ele é derivado: 3 declaram,
+saem **3 respostas diferentes** (por igualdade de string, nunca por juízo), e **7 dos 10** produtos da
+etapa não dizem nada. Se o banco crescer e dois passarem a declarar a mesma frase, o número cai sozinho
+e a frase continua verdadeira.
+
+**4. O MECANISMO DE PERGUNTA ERA SINGULAR, E ELE FOI ESCRITO HOJE DE MANHÃ.** Na 1.3.0 "a pergunta" e
+"a pergunta das demãos" eram a mesma coisa em três lugares: a resposta e a ponte decidiam por
+`'pergunta' === $forma`, e a frase da ponte dizia *"as três etapas"* com a palavra **três digitada**.
+Com a segunda pergunta aquele ramo responderia demãos numa página de diluição e diria três onde são
+duas. **É o MESMO defeito que o campo `tipo` tinha quando fazia dois trabalhos — uma volta acima e seis
+horas depois.** O recorte agora diz qual propriedade o define (`recorte_propriedade`, nas contas da
+espinha e protegido do `array_merge` da régua), a resposta despacha por ela, e quantos tipos a pergunta
+atravessa é **contado** (`n_tipos_do_recorte`), com os nomes saindo do banco — a página no ar diz
+*"atravessa duas das três etapas"*.
+
+**5. A BANCADA TAMBÉM ERA SINGULAR, E ELA ACUSOU ISSO SOZINHA.** O ramo de pergunta do `teste-guia`
+cobrava faixa de demão e intervalo na tela de **qualquer** recorte de pergunta, e a página da diluição
+reprovou em **três** afirmações por não falar de demão — que é exatamente o que ela não deve falar. O
+portão estava certo e a suposição dele estava velha: `'pergunta' === $forma` diz a **forma** e não a
+**grandeza**. Agora ele despacha pela propriedade, e **propriedade sem ramo REPROVA** em vez de passar
+calada.
+
+**6. DUAS DAS QUATRO MUTAÇÕES NOVAS PASSARAM NA PRIMEIRA RODADA, e é o resultado mais útil do bloco.**
+Elas fizeram nascer duas afirmações que não existiam:
+- **a ponte cravando "as três etapas"** onde o recorte atravessa duas;
+- **o denominador do "os outros N não dizem nada" medindo o RECORTE em vez do banco** — que dá **ZERO**,
+  porque na página-pergunta o recorte *é* quem declara. Este foi um defeito que esta execução escreveu e
+  corrigiu antes de rodar, e a mutação provou que a bancada não o veria.
+
+**As duas publicam número falso e passavam em tudo, porque 3 e 0 são inteiros válidos e só a LEITURA é
+falsa.** É a família de defeito mais barata de escrever e mais cara de achar.
+
+**7. A SERP FOI MEDIDA ANTES DO CÓDIGO (14.9), em CINCO passadas**, e `dados/serp-das-filhas.json` vai
+de **29 para 34** medições. Duas foram da candidata `acabamento_visual` (descartada por canibalização,
+não por SERP), uma da `pigmentado` e duas da que ficou. **O LIMITE 9 do canal nasceu daí, e ele é o
+primeiro que a âncora `rejunte` NÃO corrigiu:** `brilhante` e `fosco` são **nome comercial** de linhas
+de pastilha de mosaico lá fora (`Brillante 210`, `Shining 730`), então `brilhante` + `mosaico` compra
+catálogo da trend-uk — 8 de 10 vagas numa passada, e ela **piorou** contra a anterior, que tinha 6 de
+10 brasileiros. A ressalva que isso põe no limite 8: **âncora brasileira conserta desvio de PAÍS e não
+conserta colisão com NOME DE PRODUTO** — ela diz ao canal em que mercado procurar e não muda o que a
+palavra compra dentro dele.
+
+**8. A LEITURA DE SERP QUE ESTA EXECUÇÃO ESCREVEU PARA SER CONTESTADA.** As duas passadas da consulta
+que ficou deram **4 de 9 brasileiros**, nas duas — o primeiro caso desta ilha a cair **no meio** entre
+6 de 9 (que ela leu como medido) e 2 de 9 (que ela leu como desvio). O veredito é **ABERTA**, e a régua
+usada não é contagem, é **quem ocupa**: os casos classificados `NAO_MEDIDA` por desvio tinham **varejo
+do mercado desviado respondendo a pergunta** (ManoMano, MosaicShop, Mercado Livre do Chile, Truper,
+Sears); aqui as vagas de fora são um PDF de catálogo dos EUA, conservação de mosaico arqueológico do
+Getty, um PDF espanhol de argamassa e um fórum português sobre **remover** verniz seco — vagas soltas,
+não um mercado. E o teste do limite 1 é se a frase **cabe** em espanhol ou em Portugal: `caquinho` não
+cabe em nenhum dos dois e `rejunte` em Portugal se diz `betumar`. **Esta ilha não tem régua NUMÉRICA de
+desvio escrita, e esta execução não inventou uma** — os nove hosts estão na lista da medição para quem
+discordar.
+
+**9. A ARMADILHA DA ATIVAÇÃO PEGOU DE NOVO, TERCEIRA VEZ EM QUATRO DIAS, E O LOG ITEM POR ITEM A
+ACHOU.** O sync comum da revisão 77 devolveu `snippets/guia: gravado (#13) mas NÃO ativado: o código
+não passou na validação`, e as cinco páginas do Guia passaram a servir o **shortcode CRU** com HTTP
+200 — conferido na mãe. O resumo do Sync dizia *"9 aplicado(s)"* e **estava correto**; a linha que
+importava era a décima-primeira, e não começava com `ok`. **Foi a regra do `PROMPT.md` que pegou isto:
+ler o log item por item, nunca só o `N aplicado(s)`.** O conserto foi o dos dois passos: revisão **78**
+(nenhum byte de PHP mudou) e sync — e como o `raw.githubusercontent` não havia propagado a 78 depois de
+seis passadas em dois minutos, com o snippet **já caído**, `forcar=1` resolveu, que é exatamente a
+condição em que o `PROMPT.md` o autoriza. Os nove snippets voltaram `ok`.
+
+**10. E UMA MEDIÇÃO QUE FECHA UMA HIPÓTESE ABERTA NO `cruzamento-14-9.md`.** A tabela da fila das mães
+diz que a filha que falta à `alicate` custa *"ITEM DE BANCO ou PERGUNTA NOVA"*. **A metade da pergunta
+está fechada, e é derivável do banco:** toda propriedade de `alicate` com 3 ou mais itens de lastro
+coincide **exatamente** com o conjunto de um tipo — `tamanho_polegadas` (3) são os 3 torques,
+`comprimento_maximo_de_corte_mm`, `diametro_do_rodel_mm` e `dimensoes_mm` (3 cada) são os 3 cortadores
+—, e a régua reprova pergunta que coincide com um tipo, porque ela não reuniu nada. A única que
+atravessa (`espessura_maxima_de_corte_mm`) já é a pergunta declarada. **Então a filha que falta à
+`alicate` custa ITEM DE BANCO, e só.**
+
+**O QUE FICA DESBLOQUEADO PARA A PRÓXIMA EXECUÇÃO.** O mecanismo plural está construído e medido: a
+sexta filha do acabamento é uma linha no registro mais um ramo na régua e um na bancada. **Mas o
+acabamento só tem UMA candidata sobrando** — `pigmentado` (3 itens, 2 tipos, sem canibalização) —, e o
+que a destrava é uma consulta cujo núcleo **não** seja `selador`: a passada de hoje
+(`precisa de selador transparente ou pode ser branco embaixo do mosaico de caquinho`) deu **zero
+brasileiros em dez**, com as duas primeiras vagas sendo **dicionário** de espanhol e inglês —
+`selador`/`sellador`/`sealer`, `transparente` e `branco`/`blanco` são três cognatos no núcleo. O motivo
+está escrito na medição; quem tentar lê antes de escrever.

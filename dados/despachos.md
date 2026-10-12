@@ -335,6 +335,23 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **O que continua NÃO mudando:** nenhuma dessas recusas foi convertida em número. A regra da congênere vale com ou sem este despacho, e foi ela que recusou os cinco valores que a busca ofereceu sozinha nesta passada.
 
+### prioridade NORMAL — DOIS fabricantes BRASILEIROS que a própria SERP entregou e o egresso nega, e um deles é o único do país que publica o número que faltava
+
+12/10/2026 — RAPHAEL — Da mesma família dos dois blocos acima, e por isso fica junto deles em vez de abrir despacho novo. **Não bloqueia bloco nenhum:** a clubedomosaico publicou a 31ª URL nesta mesma execução. O que isto destrava é a camada de prova de uma família de campo, e a medição é de hoje.
+
+**O pedido, e é uma linha:** acrescentar `maza.com.br` e `media.portobello.com.br` à lista "Domínios permitidos" dos ambientes das rotinas (claude.ai/code → seletor de ambiente → Nuvem → engrenagem), junto com os domínios das ilhas que já estão lá.
+
+**O que os dois respondem hoje, medido em 12/10/2026 às 13h3xZ e conferido no status do proxy, não suposto:** `000` com `connect_rejected` — *the egress proxy denied the CONNECT (organization policy)*. É política de rede, igual aos dois blocos acima, e não intermitência de túnel (seção 20.2).
+
+**POR QUE ESTES DOIS, E A DIFERENÇA CONTRA OS PEDIDOS ANTERIORES DE DOMÍNIO:** eles não foram escolhidos de uma lista de fabricantes que alguém imaginou úteis. **Foi a própria SERP que os entregou**, nas duas passadas de busca que mediram a consulta-alvo da página publicada hoje (`dados/serp-das-filhas.json`, recorte `pergunta:acabamento-diluir-ou-puro`). Quer dizer: são os domínios que ocupam a primeira página do Google para uma consulta em que esta ilha acabou de publicar — e a Fundação não consegue abrir nenhum dos dois.
+
+- **`maza.com.br`** — é o **ÚNICO fabricante brasileiro** que apareceu em nove vagas publicando a instrução de diluição de verniz acrílico (`Verniz_Acrilico_Incolor.pdf` e `boletim/verniz-acrilico.pdf`, com diluição em água potável declarada). O banco desta ilha tem `diluicao` em **3** produtos; a página de hoje diz na tela que os outros **7** não declaram. Cada um destes dois documentos é candidato a tirar um item daquele silêncio — e `diluicao` é a propriedade que acabou de virar o recorte de uma URL, então o número dela passou a aparecer na tela.
+- **`media.portobello.com.br`** — o manual de assentamento do kit Ipanema, que ocupou vaga nas duas passadas. Já é citado como fonte em `dados/cruzamento-14-9.md` *pelo que a busca resumiu dele*, não pelo que a ilha leu: o `conferir_no_pdf` desta ilha tem **46** fontes marcadas "confira no PDF" e este é mais um documento alcançável que não se alcança.
+
+**Pronto quando:** de dentro de uma rotina, `curl -s -o /dev/null -w "%{http_code}" https://maza.com.br/upls/fichas/Verniz_Acrilico_Incolor.pdf` devolver 200.
+
+**O que NÃO se faz enquanto isso, e vale para toda ilha:** gravar no banco o número que o RESUMO da busca atribuiu ao documento. O resumo de hoje diz que a Maza declara diluição em água potável *para parede e pedra* — e é justamente esse tipo de frase, lida de segunda mão, que a trava de coleta da seção 8 existe para recusar. Fonte citada por resumo é pista; fonte lida é dado.
+
 ### prioridade NORMAL — as ilhas não têm caixa de e-mail, e é o único elo que falta na página de privacidade
 
 13/09/2026 — RAPHAEL — Atravessa ilha, e por isso está aqui e não no `PROMPT.md` de nenhuma: **nenhuma das três tem um endereço de e-mail próprio.** A clubedomosaico já registrava isso como pendência (`contato@clubedomosaico.com.br` não existe como caixa) e a aquametria acabou de esbarrar no mesmo buraco por outro caminho.

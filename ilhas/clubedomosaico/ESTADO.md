@@ -3,7 +3,14 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 30        # 29 -> 30 em 12/10/2026 10h5xZ: a QUARTA filha de /materiais/acabamento/,
+urls_publicadas: 31        # 30 -> 31 em 12/10/2026 13h5xZ: a QUINTA filha de /materiais/acabamento/,
+                           # e a SEGUNDA desta ilha em forma de PERGUNTA — a primeira vez que uma
+                           # categoria tem DUAS perguntas sob a mesma mae, e foi isso que obrigou o
+                           # mecanismo de pergunta (e a bancada) a deixar de ser singular. O recorte
+                           # dela e `diluicao`, a primeira grandeza desta ilha que NAO E UM NUMERO.
+                           # Contado no wp-sitemap no ar: 26 em posts-page e 5 em posts-peca.
+                           # O piso da 21.1 pede 40 — faltam 9. Leva 2 de 3 da semana da 21.4.
+                           # 29 -> 30 em 12/10/2026 10h5xZ: a QUARTA filha de /materiais/acabamento/,
                            # e a primeira desta ilha em forma de PERGUNTA — o recorte dela e a
                            # propriedade `demaos_minimas` e nao um tipo. Contado no wp-sitemap no ar:
                            # 25 em posts-page e 5 em posts-peca. O piso da 21.1 pede 40 — faltam 10.
@@ -17,7 +24,19 @@ urls_publicadas: 30        # 29 -> 30 em 12/10/2026 10h5xZ: a QUARTA filha de /m
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-12T10:19Z   # A FILHA EM FORMA DE PERGUNTA, e com ela o campo `tipo` do
+ultima_execucao: 2026-10-12T13:18Z   # A SEGUNDA PERGUNTA NA MESMA CATEGORIA, e com ela o mecanismo
+                                     # de pergunta deixou de ser SINGULAR — a 1.3.0, de manha,
+                                     # despachava por `'pergunta' === $forma` em tres lugares e a
+                                     # ponte dizia "as tres etapas" com a palavra TRES digitada.
+                                     # Uma URL nova (/materiais/acabamento/diluir-o-verniz-do-mosaico/).
+                                     # O recorte dela e `diluicao`, a primeira grandeza desta ilha
+                                     # que NAO E UM NUMERO: a regua conta e nunca classifica (26.3).
+                                     # O sync de 77 gravou o snippet do Guia INATIVO de novo (3a vez
+                                     # em 4 dias) e as 5 paginas serviram shortcode CRU por ~4 min;
+                                     # consertado pela revisao 78, e com o snippet ja caido o
+                                     # forcar=1 foi a saida que o PROMPT.md autoriza nesse caso.
+                                     # O horario aqui e o da RESERVA, que e o que a secao 1 compara.
+                                     # 2026-10-12T10:19Z — A FILHA EM FORMA DE PERGUNTA, e o campo `tipo` do
                                      # registro do Guia parou de fazer dois trabalhos. Uma URL nova.
                                      # O Sync de 75 gravou o snippet do Guia INATIVO (mesma falha de
                                      # 09/10) e as quatro paginas serviram shortcode CRU por ~5 min;
@@ -30,13 +49,93 @@ ultima_execucao: 2026-10-12T10:19Z   # A FILHA EM FORMA DE PERGUNTA, e com ela o
                                      # de consulta de produto) e 19h19Z (o apelido de endereco com
                                      # NIVEL e os treze 301). O horario aqui e o da RESERVA, que e o
                                      # que a secao 1 compara; o bloco fechou perto de 21hZ.
-executando_desde: 2026-10-12T13:18Z   # reserva da execucao de 12/10/2026 (secao 1.2, passo 2 + secao 1, passo 5)
+executando_desde: null
 ultima_ronda: 2026-10-09T14:55Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente é de 07/10 20h35Z). ZERO defeito de ilha; o reparo do .htaccess de 08/10 reconferido no ar e DE PÉ.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
+  A SEGUNDA PERGUNTA NA MESMA CATEGORIA, E O MECANISMO DE PERGUNTA DEIXA DE SER SINGULAR. Uma URL
+  nova: /materiais/acabamento/diluir-o-verniz-do-mosaico/, conferida no ar em 200 com os numeros
+  dela batendo com o banco. A ilha vai de 30 para 31 URLs; faltam 9 para o piso de 40 da 21.1.
+  Leva 2 de 3 da semana da 21.4. Guia 1.4.0, manifest e /status na revisao 78.
+  1. OS DOIS PORTOES DA 29 RODARAM ANTES DE TUDO E DE NOVO NO FIM. Antes: conferir-no-ar.py
+     APROVADO com 524 afirmacoes e 0 falha; leitura-do-visitante.py REPROVADO com EXATAMENTE 1
+     defeito, o soft 404 da borda, do hospedeiro, com dono escrito. Depois do desembarque, com 31
+     URLs: leitura-do-visitante REPROVADO com EXATAMENTE o MESMO 1 defeito, 32 URLs lidas, e a
+     pagina nova lida pela BORDA em 200, sem quebra de cache. Rede pela 20.2: 200 na raiz. A porta
+     de entrada estava DE PE antes e depois — nada de 404 em massa.
+  1-b. E ELA NAO E ORFA, medido no ar e nao suposto (16.4(f) pede 2 links internos, um da mae):
+     CINCO apontam para ela — 1 da mae, pela lista de filhas com a consulta-alvo como ancora, e 4
+     das irmas, pelo bloco de irmas da casca.
+  2. O QUE DECIDIU ESTE BLOCO FOI UMA MEDICAO, E ELA CONTRADIZ O QUE ESTE CAMPO DIZIA DE MANHA.
+     O bloco anterior apontou `tempo_de_secagem_h` (4 itens) e `intervalo_entre_demaos_min` (3)
+     como as candidatas "em pe". AS DUAS ESTAO CANIBALIZADAS (30.4), e a prova esta no codigo da
+     casca que esta no ar: a de secagem no FAQ da filha `selador`, a do intervalo no resumo, na
+     linha mestra, no `o_que_nao_e` E no 2o FAQ da propria pagina das demaos. `acabamento_visual`
+     (5 itens) e `pelicula` (4) estao no titulo, resumo, linha mestra, description E FAQ da filha
+     `verniz`. A REGRA QUE FICA: LASTRO NAO E VAGA LIVRE — contar itens diz que a pagina PODE
+     existir pela secao 9; ela so ACRESCENTA uma filha se a consulta dela nao for respondida por
+     uma pagina que ja esta no ar. Quem for escrever a sexta confere as cinco ANTES de contar.
+  3. `diluicao` E A PRIMEIRA GRANDEZA DESTA ILHA QUE NAO E UM NUMERO, e isso mudou a regua. O
+     fabricante declara uma FRASE, e as tres do banco sao INCOMPATIVEIS entre si: nao diluir e nao
+     agitar (verniz de piso Quartzolit), thinner para laca em ate 30% (seladora Suvinil) e
+     diluivel em agua (selador acrilico Coral). Entao a regua CONTA e NUNCA CLASSIFICA (26.3) —
+     dizer na tela qual e base de agua e qual e de solvente seria a gente arbitrando pelo
+     fabricante, e trocar agua por thinner estraga a peca. A pagina entrega o ESPALHAMENTO,
+     derivado: 3 declaram, saem 3 respostas diferentes (por igualdade de string), 7 dos 10 nao
+     dizem nada.
+  4. O DEFEITO DO `tipo` QUE FAZIA DOIS TRABALHOS REAPARECEU UMA VOLTA ACIMA, EM SEIS HORAS. Na
+     1.3.0 "a pergunta" e "a pergunta das demaos" eram a mesma coisa em tres lugares. Agora o
+     recorte diz qual propriedade o define (`recorte_propriedade`, na espinha e protegido do
+     array_merge da regua), a resposta despacha por ela, e quantos tipos a pergunta atravessa e
+     CONTADO — a pagina no ar diz "atravessa duas das tres etapas".
+  5. A BANCADA TAMBEM ERA SINGULAR E ACUSOU ISSO SOZINHA: o ramo de pergunta cobrava faixa de
+     demao na tela de QUALQUER recorte de pergunta, e a pagina da diluicao reprovou em tres
+     afirmacoes por nao falar de demao, que e o que ela nao deve falar. Agora ele despacha pela
+     propriedade, e propriedade SEM ramo REPROVA em vez de passar calada.
+  6. DUAS DAS QUATRO MUTACOES NOVAS PASSARAM NA PRIMEIRA RODADA, e e o resultado mais util do
+     bloco: a ponte cravando "as tres etapas" onde sao duas, e o denominador do "os outros N nao
+     dizem nada" medindo o RECORTE em vez do banco — que da ZERO, porque na pagina-pergunta o
+     recorte E quem declara. As duas publicam numero falso e passavam em tudo, porque 3 e 0 sao
+     inteiros validos e so a LEITURA e falsa. As duas viraram afirmacao nova.
+  7. A SERP FOI MEDIDA ANTES DO CODIGO, em CINCO passadas (serp-das-filhas.json vai de 29 para
+     34), e o LIMITE 9 do canal nasceu dai: `brilhante` e `fosco` sao NOME COMERCIAL de linhas de
+     pastilha la fora (Brillante 210, Shining 730), entao `brilhante` + `mosaico` compra catalogo
+     da trend-uk — 8 de 10 numa passada, PIOR que a anterior. A ressalva que isso poe no limite 8:
+     ancora brasileira conserta desvio de PAIS e nao conserta colisao com NOME DE PRODUTO.
+  8. A LEITURA DE SERP ESCRITA PARA SER CONTESTADA: as duas passadas da consulta que ficou deram
+     4 de 9 brasileiros, o primeiro caso desta ilha a cair NO MEIO entre 6 de 9 (medido) e 2 de 9
+     (desvio). Veredito ABERTA, e a regua nao e contagem e sim QUEM OCUPA — os casos NAO_MEDIDA
+     tinham varejo do mercado desviado RESPONDENDO a pergunta; aqui as vagas de fora sao PDF de
+     catalogo dos EUA, Getty, um PDF espanhol de argamassa e um forum portugues sobre REMOVER
+     verniz seco. Esta ilha nao tem regua NUMERICA de desvio escrita e esta execucao nao inventou
+     uma: os nove hosts estao na medicao para quem discordar.
+  9. A ARMADILHA DA ATIVACAO PEGOU DE NOVO (3a vez em 4 dias) E O LOG ITEM POR ITEM A ACHOU. O
+     sync comum da 77 devolveu `snippets/guia: gravado (#13) mas NAO ativado`, e as cinco paginas
+     do Guia serviram shortcode CRU com HTTP 200 por ~4 minutos. O RESUMO dizia "9 aplicado(s)" e
+     ESTAVA CORRETO; a linha que importava era a 11a e nao comecava com `ok`. Conserto em dois
+     passos: revisao 78 (nenhum byte de PHP mudou) e sync. O raw.githubusercontent nao propagou a
+     78 em seis passadas / dois minutos, e com o snippet JA CAIDO o forcar=1 e a saida que o
+     PROMPT.md autoriza nesse caso exato. Os nove snippets voltaram `ok`.
+  10. UMA HIPOTESE DO cruzamento-14-9.md FECHOU, e e derivavel do banco: a tabela da fila das maes
+     diz que a filha que falta a `alicate` custa "ITEM DE BANCO ou PERGUNTA NOVA". A metade da
+     pergunta esta FECHADA — toda propriedade de `alicate` com 3+ itens de lastro coincide
+     EXATAMENTE com o conjunto de um tipo (`tamanho_polegadas` sao os 3 torques;
+     `comprimento_maximo_de_corte_mm`, `diametro_do_rodel_mm` e `dimensoes_mm` sao os 3
+     cortadores), e a regua reprova pergunta que coincide com um tipo. A unica que atravessa ja e
+     a pergunta declarada. Entao a filha que falta a `alicate` custa ITEM DE BANCO, e so.
+  11. PARA A PROXIMA: o mecanismo plural esta construido e medido, e a sexta filha do acabamento e
+     uma linha no registro mais um ramo na regua e um na bancada. MAS O ACABAMENTO SO TEM UMA
+     CANDIDATA SOBRANDO — `pigmentado` (3 itens, 2 tipos, sem canibalizacao) —, e o que a destrava
+     e uma consulta cujo NUCLEO nao seja `selador`: a passada de hoje deu ZERO brasileiros em dez,
+     com as duas primeiras vagas sendo DICIONARIO de espanhol e ingles, porque `selador`,
+     `transparente` e `branco` sao tres cognatos no nucleo. O motivo esta na medicao.
+  BANCADA: teste-guia 197 afirmacoes (eram 160), teste-casca 1040, validar-banco OK,
+  mutacoes-guia 27 de 27 (eram 23) com quatro mutacoes novas.
+
+bloco_anterior_12_10_manha: |
   A FILHA EM FORMA DE PERGUNTA EXISTE, E O ACABAMENTO VAI DE 3 PARA 4 FILHAS. Uma URL nova:
   /materiais/acabamento/camadas-de-verniz-depois-do-rejunte/, conferida no ar em 200 com os cinco
   numeros dela batendo com o banco. A ilha vai de 29 para 30 URLs; faltam 10 para o piso de 40 da
@@ -135,14 +234,25 @@ aberto na metade que depende dela**, com três fontes medidas mortas daqui. Pela
 reescrito no `PROMPT.md` deixando só o que falta. A lista abaixo sai mesmo assim, porque esperar o
 item 2 para escrevê-la é esperar o Raphael para dizer a ele o que ele precisa fazer.
 
-**A ilha tem 30 URLs. Faltam 10 para o piso de 40 da 21.1.** *(29 → 30 em 12/10/2026: a quarta filha
-do acabamento, a primeira em forma de PERGUNTA.)*
+**A ilha tem 31 URLs. Faltam 9 para o piso de 40 da 21.1.** *(30 → 31 em 12/10/2026 13h5xZ: a quinta
+filha do acabamento, a SEGUNDA em forma de PERGUNTA — e com ela o mecanismo de pergunta deixou de ser
+singular. 29 → 30 no mesmo dia, de manhã: a quarta filha, a primeira em forma de PERGUNTA.)*
+
+> **A LINHA DA FUNDAÇÃO ABAIXO FOI REESCRITA EM 12/10/2026 às 13h5xZ, e a razão é uma medição que
+> contradiz a versão de manhã.** Ela dizia que o quarto caminho — filha nova em categoria que já tem
+> mãe no ar — tinha duas propriedades "em pé" no `acabamento`: `tempo_de_secagem_h` (4 itens) e
+> `intervalo_entre_demaos_min` (3). **As duas estão CANIBALIZADAS (30.4)**, conferido contra o título,
+> o resumo, a linha mestra, a description e o FAQ das quatro irmãs no ar: a de secagem já é o FAQ da
+> `selador`, e a do intervalo está no resumo, na linha mestra, no `o_que_nao_e` E no segundo FAQ da
+> própria página das demãos. **A regra que fica: LASTRO NÃO É VAGA LIVRE.** Contar itens do banco diz
+> que a página *pode* existir pela seção 9; ela só *acrescenta* uma filha se a consulta dela não for
+> respondida por uma página que já está no ar.
 
 ### DEPENDE DA FUNDAÇÃO — e só dela
 
 | o que falta | onde está medido |
 |---|---|
-| **10 URLs para o piso da 21.1.** As três mães do Guia estão a 1 (`alicate`), 2 (`pastilha`) e 1 (`rejunte`) filha da 16.5, e **o custo de cada filha é ITEM DE BANCO ou PERGUNTA NOVA — nunca medir SERP**. **E desde 12/10/2026 existe um quarto caminho, mais barato que os três: FILHA NOVA EM CATEGORIA QUE JÁ TEM MÃE NO AR.** Ela não passa pela 16.5 (a mãe já nasceu), reusa a régua que existe, e o mecanismo dela está construído e medido — foi assim que a 30ª URL nasceu hoje. Hoje só o `acabamento` tem mãe no ar, e a próxima pergunta dele precisa de uma propriedade com 3 itens de lastro e consulta própria ainda não tomada: `tempo_de_secagem_h` (4 itens) e `intervalo_entre_demaos_min` (3) estão em pé, mas a consulta de secagem **já é creditada** à filha `selador` — quem for escrever lê a tabela de consultas do `cruzamento-14-9.md` antes | `dados/cruzamento-14-9.md`, a fila das mães |
+| **9 URLs para o piso da 21.1.** As três mães do Guia estão a 1 (`alicate`), 2 (`pastilha`) e 1 (`rejunte`) filha da 16.5, e **o custo de cada filha é ITEM DE BANCO ou PERGUNTA NOVA — nunca medir SERP**. **E desde 12/10/2026 existe um quarto caminho, mais barato que os três: FILHA NOVA EM CATEGORIA QUE JÁ TEM MÃE NO AR.** Ela não passa pela 16.5 (a mãe já nasceu), reusa a régua que existe, e o mecanismo dela está construído e medido — foi assim que a 30ª URL nasceu hoje. Hoje só o `acabamento` tem mãe no ar, e a próxima pergunta dele precisa de uma propriedade com 3 itens de lastro e consulta própria ainda não tomada: **o `acabamento` está quase esgotado, e isso é medido e não impressão: de SEIS propriedades com 3+ itens de lastro, CINCO já são publicadas por uma das cinco páginas no ar** (`acabamento_visual` e `pelicula` pela `verniz`, `tempo_de_secagem_h` pela `selador`, `intervalo_entre_demaos_min` e `demaos_minimas` pela página das demãos). **Sobra UMA: `pigmentado`** (3 itens, 2 tipos), e o que a destrava não é dado — é uma consulta cujo NÚCLEO não seja `selador`, porque a passada de 12/10 deu **zero brasileiros em dez** com as duas primeiras vagas em DICIONÁRIO de espanhol e inglês. **E a `alicate` deixou de ter caminho de pergunta, também por derivação:** toda propriedade dela com 3+ itens coincide exatamente com o conjunto de um tipo, e a régua reprova isso — a filha que falta lá custa **ITEM DE BANCO, e só**. Quem for escrever a sexta lê a tabela de consultas do `cruzamento-14-9.md` **e o que as cinco páginas publicam**, antes de contar itens | `dados/cruzamento-14-9.md`, a fila das mães |
 | **As três técnicas em zero** (direto, indireto, bizantino) — e elas não são trabalho de texto, são de FONTE; o indireto tem a lacuna com nome: a cola hidrossolúvel que o método exige não existe nos 7 itens do banco de colas | fila de blocos, item 2 |
 | **Os doze tutoriais-âncora do bloco 5**, onde mora a candidata que sobrou da Proposta 3: `como fazer quadro do divino espirito santo em mosaico de caquinho passo a passo`, medida **ABERTA** — e ela só nasce quando a faixa de volume chegar (pedido ao Raphael) e o portão de dado da seção 9 fechar | despacho de 07/10, Proposta 3 |
 | ~~**Os dois bloqueios do substrato que sobraram na F2**~~ — **ESTA LINHA ESTAVA AO CONTRÁRIO, e a medição está no próprio banco.** Os **TRÊS** bloqueios fecharam em **06/10/2026**, e `dados/materiais-colas.json` os lista um a um em `fontes/bt-cimentcola-externo-2016-05/substratos_que_o_documento_declara/os_tres_bloqueios_e_o_que_fechou_cada_um`, com `fechou_em` e `com_o_que` em campo lido por máquina: a peça pela **regra 7**, o ambiente colado ao substrato pela **regra 8** (`ambiente_que_qualifica_a_base`, esquema v14, `mutacoes-par.py`), e a **cura** sem campo novo, pela citação, com a F2 servindo `preparo` — conferido **no ar** em 09/10 às 20h1xZ, na URL da F2 com `base=cimento_concreto&onde=externo_abrigado`. **Nada aqui depende da Fundação** | `dados/materiais-colas.json`, campo citado, e a F2 no ar |
