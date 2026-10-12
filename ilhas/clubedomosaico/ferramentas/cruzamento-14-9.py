@@ -284,6 +284,28 @@ def o_que_falta_na_pergunta(veredito, p, medicoes):
                else "a SERP da consulta-alvo nunca foi olhada"))
 
 
+# -------------------------------------------- a moldura descartada NAO e medicao orfa (12/10/2026)
+#
+# ESTE PORTAO ESTAVA VERMELHO NO `main` E IA FICAR, e portao permanentemente vermelho deixa de ser
+# lido — que e a familia de defeito que esta ilha mais paga. A causa: a 14.9 manda guardar a
+# consulta que FALHOU para ninguem a repetir (`O QUE JA FOI MEDIDO E FALHOU` e uma secao inteira do
+# `cruzamento-14-9.md`, e o `serp-das-filhas.json` guarda a moldura descartada com o motivo), e o
+# `--conferir` contava essas mesmas linhas como MEDICAO ORFA. A pratica escrita da ilha e o veredito
+# da ferramenta diziam o contrario um do outro, e o resultado era um vermelho que ninguem podia
+# apagar sem jogar fora o registro.
+#
+# A REGRA, e ela mede o ROTULO e nao a intencao de quem escreveu: medicao cujo nome de recorte
+# carrega a marca de descarte por extenso e DELIBERADA — ela aparece na lista de descartadas, com
+# nome, e nao reprova. Medicao orfa de verdade — nome de recorte que ninguem declarou e ninguem
+# marcou — continua REPROVANDO, que e o que o portao existe para pegar.
+MARCAS_DE_DESCARTE = ("MOLDURA DESCARTADA", "CANDIDATA DESCARTADA", "CANDIDATA SEM SERP")
+
+
+def moldura_descartada_de_proposito(nome):
+    """`True` quando o nome do recorte declara, por extenso, que a medicao foi descartada."""
+    return any(marca in nome for marca in MARCAS_DE_DESCARTE)
+
+
 def montar(dado, serp):
     por_recorte = {r["recorte"]: r for r in dado["recortes"]}
     perguntas = dado.get("perguntas", [])
@@ -296,7 +318,10 @@ def montar(dado, serp):
     # que decide o que nasce. Desde 07/10/2026 o id de uma PERGUNTA tambem e um lugar valido:
     # sem esta linha, a primeira medicao de consulta de pergunta sairia como orfa.
     conhecidos = set(por_recorte) | set(p["pergunta"] for p in perguntas)
-    orfas = sorted(set(medicoes_por_recorte) - conhecidos)
+    orfas = sorted(n for n in set(medicoes_por_recorte) - conhecidos
+                   if not moldura_descartada_de_proposito(n))
+    descartadas = sorted(n for n in set(medicoes_por_recorte) - conhecidos
+                         if moldura_descartada_de_proposito(n))
 
     linhas = []
     for nome in sorted(por_recorte):
@@ -347,6 +372,7 @@ def montar(dado, serp):
         "recortes": linhas,
         "perguntas": linhas_de_pergunta,
         "medicoes_de_serp_orfas": orfas,
+        "molduras_descartadas_de_proposito": descartadas,
         "resumo": {
             "vereditos": contagem,
             "podem_nascer": [l["recorte"] for l in linhas if l["veredito"] == "pode_nascer"],
@@ -693,6 +719,17 @@ def gerar_md(c, maes):
         for n in l["numeros_que_a_serp_nao_publica"]:
             A("- **`%s`** — %s" % (l["pergunta"], n))
     A("")
+    if c.get("molduras_descartadas_de_proposito"):
+        A("## AS MOLDURAS DESCARTADAS DE PROPOSITO — guardadas para ninguem repetir a consulta")
+        A("")
+        A("Medicao cujo nome de recorte declara, por extenso, que a moldura foi descartada. Ela")
+        A("**nao** e medicao orfa e **nao** reprova o `--conferir`: a 14.9 manda guardar a consulta")
+        A("que falhou, e ate 12/10/2026 este portao contava essas mesmas linhas como orfas — o que")
+        A("o deixava vermelho no `main` sem que ninguem pudesse apaga-lo sem jogar fora o registro.")
+        A("")
+        for o in c["molduras_descartadas_de_proposito"]:
+            A("- `%s`" % o)
+        A("")
     if c["medicoes_de_serp_orfas"]:
         A("## MEDICOES DE SERP ORFAS — consulta medida em recorte que o portao de dado nao conhece")
         A("")
@@ -1067,6 +1104,21 @@ def autoteste():
     ok = obtido == ["inventado/x"]
     falhas += 0 if ok else 1
     print("  %s orfas -> %s (esperado ['inventado/x'])" % ("ok  " if ok else "FALHA", obtido))
+
+    # A MOLDURA DESCARTADA DE PROPOSITO NAO E ORFA, e a regua tem de morder dos DOIS lados no
+    # mesmo mundo fabricado: a linha marcada sai da lista de orfas e entra na de descartadas, e a
+    # nao marcada continua reprovando. Sem o segundo lado, a marca viraria um jeito de calar o
+    # portao escrevendo tres palavras no nome do recorte.
+    mundo = montar({"ilha": "x", "recortes": [_recorte("a", "passa")]},
+                   {"medicoes": [_medicao("a", "ABERTA"),
+                                 _medicao("a (MOLDURA DESCARTADA, 1a de hoje)", "NAO_MEDIDA",
+                                          consulta="falhou", motivo="desvio de pais"),
+                                 _medicao("inventado/x", "ABERTA")]})
+    ok = (mundo["medicoes_de_serp_orfas"] == ["inventado/x"]
+          and mundo["molduras_descartadas_de_proposito"] == ["a (MOLDURA DESCARTADA, 1a de hoje)"])
+    falhas += 0 if ok else 1
+    print("  %s %-44s -> %-6s (esperado True)"
+          % ("ok  " if ok else "FALHA", "moldura marcada sai de orfa; a nao marcada fica", ok))
 
     # A conta e a mao e por isso ela erra calada: a bancada das PERGUNTAS entrou em
     # 07/10/2026 com 14 afirmacoes e o total continuou em 32 na primeira passada, dizendo

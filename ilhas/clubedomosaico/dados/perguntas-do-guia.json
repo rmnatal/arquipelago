@@ -96,6 +96,23 @@
     ],
     "escrita_em": "2026-10-12"
    }
+  },
+  {
+   "id": "pergunta:acabamento-pigmentado",
+   "categoria": "acabamento",
+   "propriedade_que_carrega_o_numero": "pigmentado",
+   "consulta_alvo": "a peca de mosaico de caquinho fica esbranquicada depois do acabamento",
+   "titulo_candidato": "O acabamento deixa a peca esbranquicada",
+   "por_que_e_pergunta_e_nao_tipo": "A pigmentacao atravessa dois dos tres tipos de `acabamento` e nao e a mesma dentro de nenhum deles: dos tres produtos que declaram, DOIS sao `selador` e declaram-se pigmentados (`selador pigmentado`, da Quartzolit, e `fundo de cor branco fosco`, da Coral) e UM e `impermeabilizante` e declara `pelicula brilhante e transparente` (resina acrilica da Coral). Dentro do `selador` as duas respostas sao iguais, e por isso o tipo sozinho nao publica o CONTRASTE — que e o que a pagina responde. O conjunto {coral-resina-acrilica, coral-selador-acrilico, quartzolit-fundo-selador} tambem NAO coincide com o conjunto de nenhum tipo: o recorte `acabamento/selador` tem tres itens e um deles e a seladora de madeira da Suvinil, que nao declara pigmentacao. CONFERIDO EM 12/10/2026 as 16h5xZ CONTRA O QUE AS CINCO IRMAS JA PUBLICAM, pela regra que a quinta filha deixou escrita (LASTRO NAO E VAGA LIVRE): `acabamento_visual` (5) e `pelicula` (4) estao no titulo, resumo, linha mestra, description e FAQ da filha `verniz`; `tempo_de_secagem_h` (4) no FAQ da `selador`; `intervalo_entre_demaos_min` (3) no resumo, na linha mestra, no `o_que_nao_e` e no 2o FAQ da pagina das demaos; `demaos_minimas` (5) e `diluicao` (3) sao o recorte da quarta e da quinta filha. `pigmentado` era a ULTIMA propriedade com 3 itens de lastro sem pagina, e o proprio comentario da quinta filha, escrito seis horas antes neste repositorio, a nomeia como a outra das duas.",
+   "o_que_a_serp_nao_publica": "se o produto muda a cor do que esta por baixo. As TRES passadas de 12/10/2026 estao em `dados/serp-das-filhas.json`: a adotada mediu NOVE de dez brasileiros e nenhuma vaga responde a pergunta — materia de entretenimento sobre piso de caquinho, catalogo de acabamentos de ceramica, manual de assentamento de porcelanato, ficha de revestimento da Casas Bahia e uma pagina de ENEM explicando o que e mosaico. Varejo grande e fabricante aparecem e nenhum com pagina DEDICADA a consulta, que e o que a 30.5 exige para TOMADA.",
+   "ancora_a_mao": {
+    "itens_que_declaram_o_numero": 3,
+    "tipos_atravessados": [
+     "impermeabilizante",
+     "selador"
+    ],
+    "escrita_em": "2026-10-12"
+   }
   }
  ]
 }

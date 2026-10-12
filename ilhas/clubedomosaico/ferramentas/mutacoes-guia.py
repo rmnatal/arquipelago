@@ -448,6 +448,55 @@ def m_o_denominador_da_diluicao_mede_o_recorte(raiz):
            "\t\t\t. 'Os outros <strong>' . ( (int) $c['n_itens'] - (int) $c['com_diluicao'] ) . '</strong> produtos desta etapa não dizem nada, '")
 
 
+def m_a_resposta_do_pigmentado_cai_no_ramo_vizinho(raiz):
+    """O despacho da TERCEIRA pergunta sai, e a pagina do pigmentado cai no ramo
+    das demaos — que e o ramo final de `'pergunta' === $forma`. E o mesmo defeito
+    que a 1.4.0 consertou para a segunda pergunta, agora no andar da terceira: a
+    pagina serviria a frase das demaos, com os numeros das demaos, sob um titulo
+    que pergunta se o produto deixa a peca esbranquicada. Esta mutacao existe
+    porque o conserto da 1.4.0 e por GRANDEZA: ele protege a diluicao
+    explicitamente e nao protege sozinho a que vier depois."""
+    trocar(raiz, SNIPPET,
+           "\t} elseif ( 'pergunta' === $forma && 'pigmentado' === $c['recorte_propriedade'] ) {",
+           "\t} elseif ( false ) {")
+
+
+def m_o_pigmentado_conta_o_complemento(raiz):
+    """`pigmentados` passa a ser a SUBTRACAO, e a tela ganha a frase "nao
+    pigmentados". E a mutacao mais importante das quatro, e ela nao muda NENHUM
+    numero neste banco: com tres declaracoes e duas em `'sim'`, a subtracao da 1
+    e a contagem estrita tambem daria 1 para o complemento. O que ela muda e o
+    que a pagina AFIRMA — ela passa a chamar de nao pigmentado o produto que so
+    nao disse `'sim'`. Num banco com um `parcialmente` ou um `pigmentavel` ela
+    publicaria o contrario do que o fabricante declarou, e passaria em qualquer
+    portao de numero, porque um inteiro valido sai dos dois lados."""
+    trocar(raiz, SNIPPET,
+           "\t\t\t. 'Saem <strong>' . (int) $c['pigmentos_distintos'] . ' respostas diferentes</strong> no total, '",
+           "\t\t\t. 'e os outros <strong>' . ( (int) $c['com_pigmento'] - (int) $c['pigmentados'] ) . '</strong> não pigmentados, '")
+
+
+def m_o_pigmentado_promete_transparencia_de_quem_nao_declarou(raiz):
+    """A frase que diz "nao dizer nada nao e dizer que e transparente" vira o
+    contrario: os que nao declaram passam a ser servidos como transparentes.
+    E a leitura que a SERP inteira faz e que esta pagina existe para desfazer —
+    sete dos dez produtos desta etapa nao dizem nada, e servi-los como
+    transparentes manda a artesa passar por cima de caquinho de vidro um produto
+    sobre o qual ninguem afirmou nada."""
+    trocar(raiz, SNIPPET,
+           "\t\t\t. 'não dizem nada — e não dizer nada não é dizer que é transparente. ';",
+           "\t\t\t. 'não dizem nada, então são transparentes. ';")
+
+
+def m_o_denominador_do_pigmentado_mede_o_recorte(raiz):
+    """`fora_do_recorte` vira a conta contra o proprio recorte, que na
+    pagina-pergunta da ZERO. A mesma familia da mutacao da diluicao, repetida
+    aqui de proposito: a trava e por PAGINA, nao por mecanismo, enquanto cada
+    ramo escrever a sua frase."""
+    trocar(raiz, SNIPPET,
+           "\t\t\t. 'Os outros <strong>' . (int) $c['fora_do_recorte'] . '</strong> produtos desta etapa '",
+           "\t\t\t. 'Os outros <strong>' . ( (int) $c['n_itens'] - (int) $c['com_pigmento'] ) . '</strong> produtos desta etapa '")
+
+
 MUTACOES = [
     ("o numero da cobertura e cravado no codigo", m_cobertura_cravada, "reprova"),
     ("o denominador (15 superficies) e digitado", m_denominador_digitado, "reprova"),
@@ -479,6 +528,15 @@ MUTACOES = [
     ("a ponte crava as tres etapas onde sao duas", m_a_ponte_crava_as_tres_etapas, "reprova"),
     ("a resposta classifica o solvente pelo fabricante", m_a_resposta_classifica_o_solvente, "reprova"),
     ("o denominador da diluicao mede o recorte e da zero", m_o_denominador_da_diluicao_mede_o_recorte, "reprova"),
+    # AS QUATRO DA TERCEIRA PERGUNTA (12/10/2026, 17h2xZ). A trava do ramo
+    # vizinho e a do denominador sao irmas das da diluicao, e estao aqui
+    # repetidas de proposito: enquanto cada grandeza escrever a sua frase, a
+    # protecao e por PAGINA e nao por mecanismo. A do complemento e nova e e a
+    # que mais vale: ela nao muda numero nenhum neste banco.
+    ("a resposta do pigmentado cai no ramo vizinho", m_a_resposta_do_pigmentado_cai_no_ramo_vizinho, "reprova"),
+    ("o pigmentado conta o complemento e chama de nao pigmentado", m_o_pigmentado_conta_o_complemento, "reprova"),
+    ("o pigmentado promete transparencia de quem nao declarou", m_o_pigmentado_promete_transparencia_de_quem_nao_declarou, "reprova"),
+    ("o denominador do pigmentado mede o recorte e da zero", m_o_denominador_do_pigmentado_mede_o_recorte, "reprova"),
 ]
 
 

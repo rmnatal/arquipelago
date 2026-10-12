@@ -33,7 +33,7 @@ conta — ela e a pagina de nivel 2, nao filha de si mesma.
 
 | categoria | filhas no DADO | filhas no CRUZAMENTO (tipos) | perguntas | **filhas por CONSULTA** | veredito da mae | a mae pode nascer |
 |---|---|---|---|---|---|---|
-| `acabamento` | 3 | 3 | 2 | **5** | `pode_nascer` | **SIM** |
+| `acabamento` | 3 | 3 | 3 | **6** | `pode_nascer` | **SIM** |
 | `alicate` | 2 | 2 | 1 | **2** | `pode_nascer` | nao |
 | `apoio` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
 | `base` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
@@ -53,7 +53,7 @@ conta da 16.5 mora aqui; a fila dela passa a morar aqui tambem.
 
 | categoria | filhas por CONSULTA | faltam | o que a proxima filha custa |
 |---|---|---|---|
-| `acabamento` | 5 | **0** | nada: a 16.5 esta fechada por consulta |
+| `acabamento` | 6 | **0** | nada: a 16.5 esta fechada por consulta |
 | `alicate` | 2 | **1** | MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 10 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 1 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5). |
 | `rejunte` | 2 | **1** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 1 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `pastilha` | 1 | **2** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 2 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
@@ -94,12 +94,14 @@ onde ela foi arquivada e acidente de quem mediu primeiro.
 | `pergunta:pastilha-placa-ou-caixa` | `pastilha` | 12 | `TOMADA` | **`espera_autoridade`** | — | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
 | `pergunta:acabamento-demaos-do-verniz` | `acabamento` | 5 | `ABERTA` | **`pode_nascer`** | — | nada: os dois portoes abriram |
 | `pergunta:acabamento-diluir-ou-puro` | `acabamento` | 3 | `ABERTA` | **`pode_nascer`** | — | nada: os dois portoes abriram |
+| `pergunta:acabamento-pigmentado` | `acabamento` | 3 | `ABERTA` | **`pode_nascer`** | — | nada: os dois portoes abriram |
 
 - **`pergunta:alicate-espessura-de-corte`** — consulta-alvo: *como cortar pastilha de vidro para mosaico qual ferramenta*
 - **`pergunta:rejunte-largura-da-junta`** — consulta-alvo: *da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte*
 - **`pergunta:pastilha-placa-ou-caixa`** — consulta-alvo: *da para comprar so uma placa de pastilha de vidro para mosaico ou precisa levar a caixa fechada*
 - **`pergunta:acabamento-demaos-do-verniz`** — consulta-alvo: *a peca de mosaico precisa de mais de uma camada de verniz depois do rejunte*
 - **`pergunta:acabamento-diluir-ou-puro`** — consulta-alvo: *o verniz do mosaico de caquinho vai puro ou misturado com agua depois do rejunte*
+- **`pergunta:acabamento-pigmentado`** — consulta-alvo: *a peca de mosaico de caquinho fica esbranquicada depois do acabamento*
 
 ## Recorte por recorte
 
@@ -169,6 +171,7 @@ consulta ABERTA entra** — faixa de consulta que nao vai nascer e numero que ni
 | `a peca de mosaico precisa de mais de uma camada de verniz depois do rejunte` | `pergunta:acabamento-demaos-do-verniz` | `pode_nascer` |
 | `precisa diluir o verniz da peca de mosaico antes de passar em cima do rejunte` | `pergunta:acabamento-diluir-ou-puro` | `pode_nascer` |
 | `o verniz do mosaico de caquinho vai puro ou misturado com agua depois do rejunte` | `pergunta:acabamento-diluir-ou-puro` | `pode_nascer` |
+| `a peca de mosaico de caquinho fica esbranquicada depois do acabamento` | `pergunta:acabamento-pigmentado` | `pode_nascer` |
 
 ## Os numeros que a SERP nao publica e o banco desta ilha publica
 
@@ -192,10 +195,18 @@ por recorte, com o numero na mao em vez do adjetivo.
 - **`pergunta:acabamento-demaos-do-verniz`** — quantas demaos a peca de mosaico pede, e por produto. O UNICO numero de demao em dez vagas e de GRANDEZA TROCADA: os dois manuais da Portobello mandam `3 demaos` de SELADOR DE REJUNTE num kit de porcelanato — nao e verniz, nao e peca artesanal e nao e a camada final. O banco desta ilha declara 1, 2, 2, 3 e 3 demaos em cinco produtos, com o intervalo entre elas de 30 min a 4 h em tres deles.
 - **`pergunta:acabamento-diluir-ou-puro`** — se o produto se dilui e em que. Nenhuma das nove vagas diz isso para peca de mosaico. O banco desta ilha declara `diluicao` em 3 produtos, e as tres respostas sao DIFERENTES e nao sao trocaveis: nao diluir e nao agitar (verniz de piso Quartzolit), thinner para laca nitrocelulose em ate 30% (seladora de madeira Suvinil) e diluivel em agua (selador acrilico Coral).
 - **`pergunta:acabamento-diluir-ou-puro`** — a instrucao de diluicao do produto que a artesa tem na mao, para peca de mosaico. O unico brasileiro que a publica (Maza) a publica para outro uso, e o host dele responde `connect_rejected` deste ambiente — medido nesta execucao, com `media.portobello.com.br`, e os dois foram para dados/despachos.md pela 20.3.
+- **`pergunta:acabamento-pigmentado`** — se o produto que a artesa vai passar e PIGMENTADO ou nao — e portanto se ele muda a cor do que esta por baixo. Nenhuma das dez vagas diz isso para peca de mosaico. O banco desta ilha declara `pigmentado` em 3 dos 10 produtos de acabamento, com a frase do fabricante em cada um: `selador pigmentado` (Quartzolit fundo selador), `fundo de cor branco fosco` (Coral selador acrilico) e `pelicula brilhante e transparente` (Coral resina acrilica). DOIS dos tres sao pigmentados e os dois sao SELADOR, que e a camada que vai POR BAIXO do caquinho; o unico que declara pelicula transparente e IMPERMEABILIZANTE, que vai por cima. Nenhum dos 7 restantes diz nada, e nao dizer nada nao e dizer que e transparente.
 
-## MEDICOES DE SERP ORFAS — consulta medida em recorte que o portao de dado nao conhece
+## AS MOLDURAS DESCARTADAS DE PROPOSITO — guardadas para ninguem repetir a consulta
+
+Medicao cujo nome de recorte declara, por extenso, que a moldura foi descartada. Ela
+**nao** e medicao orfa e **nao** reprova o `--conferir`: a 14.9 manda guardar a consulta
+que falhou, e ate 12/10/2026 este portao contava essas mesmas linhas como orfas — o que
+o deixava vermelho no `main` sem que ninguem pudesse apaga-lo sem jogar fora o registro.
 
 - `pergunta:acabamento-acabamento-visual (CANDIDATA DESCARTADA, 2a moldura)`
 - `pergunta:acabamento-acabamento-visual (CANDIDATA DESCARTADA, nao declarada em perguntas-do-guia.json)`
-- `pergunta:acabamento-pigmentado (CANDIDATA SEM SERP, nao declarada)`
+- `pergunta:acabamento-pigmentado (MOLDURA DESCARTADA, 1a de 12/10 as 16h3xZ)`
+- `pergunta:acabamento-pigmentado (MOLDURA DESCARTADA, 3a de 12/10 as 16h4xZ)`
+- `pergunta:acabamento-pigmentado (MOLDURA DESCARTADA, de manha em 12/10)`
 

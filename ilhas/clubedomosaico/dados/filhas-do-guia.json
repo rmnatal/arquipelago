@@ -1972,13 +1972,37 @@
    "veredito": "passa",
    "motivo": null,
    "divergencias_com_a_ancora_a_mao": []
+  },
+  {
+   "pergunta": "pergunta:acabamento-pigmentado",
+   "categoria": "acabamento",
+   "propriedade_que_carrega_o_numero": "pigmentado",
+   "consulta_alvo": "a peca de mosaico de caquinho fica esbranquicada depois do acabamento",
+   "titulo_candidato": "O acabamento deixa a peca esbranquicada",
+   "itens_que_declaram_o_numero": 3,
+   "itens": [
+    "coral-resina-acrilica",
+    "coral-selador-acrilico",
+    "quartzolit-fundo-selador"
+   ],
+   "tipos_atravessados": [
+    "impermeabilizante",
+    "selador"
+   ],
+   "atravessa_mais_de_um_tipo": true,
+   "coincide_com_o_recorte_de_tipo": null,
+   "cobre_a_categoria_inteira": false,
+   "veredito": "passa",
+   "motivo": null,
+   "divergencias_com_a_ancora_a_mao": []
   }
  ],
  "resumo_das_perguntas": {
-  "perguntas_medidas": 5,
+  "perguntas_medidas": 6,
   "passam_o_portao_de_dado": [
    "pergunta:acabamento-demaos-do-verniz",
    "pergunta:acabamento-diluir-ou-puro",
+   "pergunta:acabamento-pigmentado",
    "pergunta:alicate-espessura-de-corte",
    "pergunta:pastilha-placa-ou-caixa",
    "pergunta:rejunte-largura-da-junta"
@@ -1986,6 +2010,7 @@
   "atravessam_mais_de_um_tipo": [
    "pergunta:acabamento-demaos-do-verniz",
    "pergunta:acabamento-diluir-ou-puro",
+   "pergunta:acabamento-pigmentado",
    "pergunta:alicate-espessura-de-corte",
    "pergunta:rejunte-largura-da-junta"
   ],

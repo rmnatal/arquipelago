@@ -2,6 +2,32 @@
  * CLUBE DO MOSAICO — O GUIA DE MATERIAIS, CATEGORIA POR CATEGORIA (bloco 4c)
  * Snippet "Clube do Mosaico Guia", registrado pelo Sync.
  *
+ * Versão 1.5.0 (12/10/2026) — A TERCEIRA PERGUNTA DA MESMA CATEGORIA, E ELA
+ * FECHA O `acabamento` POR PROPRIEDADE. O recorte dela é `pigmentado`, que era
+ * a ÚLTIMA propriedade do banco de acabamento com 3 itens de lastro sem página
+ * no ar — e quem a nomeou como tal foi o comentário da quinta filha, escrito
+ * seis horas antes neste mesmo arquivo. Com ela não sobra propriedade livre
+ * nesta categoria, e isso é medido: das NOVE propriedades com 3+ itens de
+ * lastro, as seis canibalizadas (30.4) estão no título, no resumo, na linha
+ * mestra, na description ou no FAQ de uma das cinco irmãs, e as três restantes
+ * são o recorte da quarta (`demaos_minimas`), da quinta (`diluicao`) e desta.
+ *
+ * O MECANISMO NÃO PRECISOU MUDAR DE FORMA, e é a prova de que a 1.4.0 acertou:
+ * a 1.3.0 tinha a pergunta SINGULAR e a segunda obrigou `recorte_propriedade`
+ * a existir; a terceira entrou com um `elseif` que despacha pela MESMA chave e
+ * mais nada. Estrutura que aceita a terceira sem se reescrever é estrutura, e
+ * não a segunda cópia de um caso especial.
+ *
+ * A RÉGUA DO ACABAMENTO GANHOU AS CONTAS DE PIGMENTAÇÃO, e com uma trava
+ * escrita: `pigmentados` conta `'sim'` por igualdade ESTRITA e NADA conta o
+ * complemento. `com_pigmento - pigmentados` chamaria de transparente um
+ * "parcialmente" ou um "pigmentável" que algum fabricante futuro declare — é a
+ * mesma família do `demaos_min + 1` que esta régua já pagou. O que a tela
+ * publica é o espalhamento (`pigmentos_distintos`) e a frase de cada um na
+ * tabela; e a frase da resposta diz, com essas palavras, que NÃO DIZER NADA
+ * NÃO É DIZER QUE É TRANSPARENTE — que é a metade que a SERP inteira deixa de
+ * fora.
+ *
  * Versão 1.4.0 (12/10/2026) — A SEGUNDA PERGUNTA NA MESMA CATEGORIA, e com ela
  * o mecanismo de pergunta deixou de ser SINGULAR. A 1.3.0 saiu de manhã com a
  * primeira, e nela "a pergunta" e "a pergunta das demãos" eram a mesma coisa:
@@ -131,7 +157,7 @@
  */
 
 if ( ! defined( 'CDM_GUIA_VERSAO' ) ) {
-	define( 'CDM_GUIA_VERSAO', '1.4.0' );
+	define( 'CDM_GUIA_VERSAO', '1.5.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -456,6 +482,65 @@ function cdm_guia_registro() {
 				array(
 					'pergunta' => 'E se o meu não disser nada?',
 					'resposta' => '{fora_do_recorte} dos produtos desta etapa não falam de diluição em lugar nenhum que a gente tenha achado. Nesse caso a gente não empresta a instrução do vizinho de prateleira: passa como vem, numa parte pequena primeiro.',
+				),
+			),
+		),
+
+		/* A SEXTA FILHA, A TERCEIRA EM FORMA DE PERGUNTA — E ELA FECHA A
+		   CATEGORIA `acabamento` POR PROPRIEDADE (12/10/2026 às 17h2xZ).
+
+		   O RECORTE É `pigmentado`, e ele era a ÚLTIMA propriedade do banco de
+		   acabamento com 3 itens de lastro que nenhuma página no ar usava —
+		   nomeada como tal pelo comentário da quinta filha, escrito seis horas
+		   antes neste mesmo arquivo. Conferido de novo contra as CINCO irmãs no
+		   ar antes de escrever uma linha, pela regra que a quinta deixou:
+		   LASTRO NÃO É VAGA LIVRE. Com ela, `acabamento` não tem mais
+		   propriedade livre, e isso é medido e não impressão.
+
+		   O CONJUNTO DELA NÃO COINCIDE COM TIPO NENHUM, e é isso que a faz
+		   pergunta e não tipo: são `coral-resina-acrilica` (impermeabilizante),
+		   `coral-selador-acrilico` e `quartzolit-fundo-selador` (seladores). O
+		   recorte `acabamento/selador` tem três itens e o terceiro é a seladora
+		   de madeira da Suvinil, que não declara pigmentação. Dentro do
+		   `selador` as duas respostas são iguais; o CONTRASTE só existe
+		   atravessando os dois tipos, e é o contraste que a página responde.
+
+		   A CONSULTA FOI MEDIDA TRÊS VEZES NESTE DIA e só a terceira mediu no
+		   Brasil — as três estão em `dados/serp-das-filhas.json`. A primeira
+		   (`seca transparente ou deixa branco`) deu DEZ de dez fora do país, e
+		   a terceira descartada (`caquinho de VIDRO`) mediu no Brasil e trouxe a
+		   Telha Norte em quatro vagas com ficha de placa de pastilha: é o
+		   LIMITE 10 do canal, escrito nesta execução — nome de MATERIAL dentro
+		   da pergunta troca SERP de pergunta por SERP de compra. A adotada não
+		   nomeia material e mediu nove brasileiros em dez, nenhum com página
+		   dedicada à consulta. */
+		'pigmentado' => array(
+			'papel'    => 'filha',
+			'tipo'     => null,
+			'propriedade' => 'pigmentado',
+			'recorte'  => 'pergunta:acabamento-pigmentado',
+			'categoria' => 'acabamento',
+			'slug'     => 'materiais/acabamento/peca-de-mosaico-esbranquicada',
+			'titulo'   => 'O acabamento deixa a peça esbranquiçada?',
+			'curto'    => 'Peça esbranquiçada',
+			'consulta' => 'a peça de mosaico de caquinho fica esbranquiçada depois do acabamento',
+			'resumo'   => 'Quais produtos desta etapa têm cor própria, quais declaram o contrário — e quantos não dizem nada.',
+			'linha_mestra' => 'Você passou o produto e a peça ficou com um véu claro, ou você está com o pote na mão e quer saber antes. Aqui está o que cada produto desta etapa declara sobre ter cor própria, com a frase dele.',
+			'description'  => 'O acabamento deixa a peça de mosaico esbranquiçada? Quais produtos desta etapa declaram ter cor própria, quais não, e quantos não dizem nada.',
+			'o_que_e'  => 'Produto pigmentado é o que tem cor dentro dele. Ele não só protege: ele cobre. Numa base crua isso é o que se quer, porque uniformiza antes de o caquinho encostar; por cima de caquinho de vidro ou de espelho é o contrário, porque o que estava translúcido deixa de ser.',
+			'o_que_nao_e' => 'O que isso não é: o véu branco que aparece dias depois, subindo do rejunte com a umidade. Esse é outro assunto e não está nesta página — aqui a pergunta é se o produto já sai do pote com cor, pela declaração de quem o fabricou.',
+			'faq_propria' => array(
+				array(
+					/* A FRASE NÃO DIZ "OS OUTROS SÃO TRANSPARENTES", e é o
+					   ponto inteiro: `pigmentos_distintos` conta respostas
+					   diferentes, e nada aqui chama de transparente o produto
+					   que só não disse `sim`. */
+					'pergunta' => 'Como eu sei se o meu produto tem cor própria?',
+					'resposta' => 'Olhando o que o fabricante escreveu, e a gente juntou isso: dos {com_pigmento} produtos desta página, {pigmentados} se declaram pigmentados, e no total saem {pigmentos_distintos} respostas diferentes. A frase de cada um está na tabela, com o endereço onde a gente leu.',
+				),
+				array(
+					'pergunta' => 'E se o meu não disser nada?',
+					'resposta' => '{fora_do_recorte} dos produtos desta etapa não falam de pigmentação em lugar nenhum que a gente tenha achado, e por isso ficaram de fora desta página. Nesse caso a gente não deduz pela cor do pote nem pelo nome do produto: passe numa parte escondida da peça e olhe depois de seco, porque molhado quase tudo parece transparente.',
 				),
 			),
 		),
@@ -1066,6 +1151,7 @@ function cdm_guia_contas_do_acabamento( $itens, $categoria ) {
 	$intervalos = array();
 	$mais_de_uma = array();
 	$diluicoes  = array();
+	$pigmentos  = array();
 	$tipos_rec  = array();
 
 	foreach ( $itens as $chave => $m ) {
@@ -1131,6 +1217,23 @@ function cdm_guia_contas_do_acabamento( $itens, $categoria ) {
 		$dl = cdm_guia_valor( $m, 'diluicao' );
 		if ( null !== $dl ) {
 			$diluicoes[ $chave ] = (string) $dl;
+		}
+
+		/* A PIGMENTAÇÃO, grandeza da filha-pergunta de 12/10/2026 às 17h2xZ — a
+		   SEXTA página do acabamento e a TERCEIRA pergunta da categoria. Como a
+		   diluição, ela não é um número: o fabricante declara se o produto tem
+		   cor própria, e a frase dele está no cartão. A régua CONTA e nunca
+		   classifica (26.3), e aqui isso tem uma consequência de implementação
+		   que vale escrita: `pigmentados` conta `'sim'` por igualdade ESTRITA, e
+		   os que não são `'sim'` NÃO são chamados de "não pigmentados" em
+		   lugar nenhum — eles entram em `pigmentos_distintos`, que é contagem de
+		   respostas diferentes. Se um fabricante futuro declarar "parcialmente"
+		   ou "pigmentável", a subtração `com_pigmento - pigmentados` chamaria
+		   isso de transparente e a tela mentiria calada. É a mesma família do
+		   `demaos_min + 1` que esta régua já pagou uma vez. */
+		$pg = cdm_guia_valor( $m, 'pigmentado' );
+		if ( null !== $pg ) {
+			$pigmentos[ $chave ] = (string) $pg;
 		}
 	}
 
@@ -1212,6 +1315,12 @@ function cdm_guia_contas_do_acabamento( $itens, $categoria ) {
 		   declarar a mesma frase, o número cai sozinho e a frase continua
 		   verdadeira. */
 		'diluicoes_distintas'   => count( array_unique( array_values( $diluicoes ) ) ),
+		'pigmentos'             => $pigmentos,
+		'com_pigmento'          => count( $pigmentos ),
+		/* `'sim'` POR IGUALDADE ESTRITA, e nada conta o complemento. Ver o
+		   comentário na coleta, acima: o que falta não é "não pigmentado". */
+		'pigmentados'           => count( array_keys( $pigmentos, 'sim', true ) ),
+		'pigmentos_distintos'   => count( array_unique( array_values( $pigmentos ) ) ),
 		/* OS TIPOS QUE ESTE RECORTE ATRAVESSA. Na mãe são os três; na filha de
 		   tipo é um; na filha-pergunta é o que o banco der — e a ponte precisa
 		   deste número porque a frase da primeira pergunta dizia "as três
@@ -1250,6 +1359,9 @@ function cdm_guia_moldes_do_acabamento( $c ) {
 		'com_intervalo'        => $c['com_intervalo'],
 		'com_diluicao'         => $c['com_diluicao'],
 		'diluicoes_distintas'  => $c['diluicoes_distintas'],
+		'com_pigmento'         => $c['com_pigmento'],
+		'pigmentados'          => $c['pigmentados'],
+		'pigmentos_distintos'  => $c['pigmentos_distintos'],
 		'n_tipos_do_recorte'   => $c['n_tipos_do_recorte'],
 		/* Molde de grandeza que pode não existir no recorte: `-1` nunca é um
 		   número de demão nem de minuto, então ele aparece na tela como texto
@@ -1285,6 +1397,22 @@ function cdm_guia_resposta_do_acabamento( $c, $forma ) {
 			. 'um manda aplicar como vem, e os outros mandam diluir em coisas distintas. '
 			. 'Os outros <strong>' . (int) $c['fora_do_recorte'] . '</strong> produtos desta etapa não dizem nada, '
 			. 'e a gente não empresta a instrução do vizinho de prateleira. ';
+	} elseif ( 'pergunta' === $forma && 'pigmentado' === $c['recorte_propriedade'] ) {
+		/* A TERCEIRA FILHA-PERGUNTA DO ACABAMENTO, 12/10/2026 às 17h2xZ. A
+		   resposta dela é "para a maioria dos produtos o fabricante não diz" —
+		   e isso só vale escrito porque é CONTADO contra o BANCO da categoria
+		   (`fora_do_recorte`) e não contra o recorte, que por definição é só
+		   quem declara. A frase não diz "transparente" de nenhum produto que
+		   não tenha declarado: não dizer nada não é dizer que é transparente, e
+		   essa é a metade da resposta que a SERP inteira deixa de fora. */
+		$html .= 'Alguns deixam, sim, e é o próprio fabricante que escreve isso: dos <strong>'
+			. (int) $c['com_pigmento'] . '</strong> produtos desta etapa que dizem se têm cor própria, '
+			. '<strong>' . (int) $c['pigmentados'] . '</strong> se declaram pigmentados — '
+			. 'pigmentado quer dizer que o produto tem cor e cobre o que está embaixo dele. '
+			. 'Saem <strong>' . (int) $c['pigmentos_distintos'] . ' respostas diferentes</strong> no total, '
+			. 'e a frase de cada um está na tabela, com o endereço onde a gente leu. '
+			. 'Os outros <strong>' . (int) $c['fora_do_recorte'] . '</strong> produtos desta etapa '
+			. 'não dizem nada — e não dizer nada não é dizer que é transparente. ';
 	} elseif ( 'pergunta' === $forma ) {
 		/* A PÁGINA DE PERGUNTA RESPONDE ANTES DE EXPLICAR, e o que ela responde
 		   é a grandeza do recorte dela — não "quantos produtos deste tipo",

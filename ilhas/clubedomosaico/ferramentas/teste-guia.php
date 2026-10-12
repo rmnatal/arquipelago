@@ -234,6 +234,7 @@ function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas, $propriedad
 	$demaos = array();
 	$intervalos = array();
 	$diluicoes = array();
+	$pigmentos = array();
 	$tipos_rec = array();
 	foreach ( $ativos as $id => $m ) {
 		if ( null !== $tipo && $m['tipo'] !== $tipo ) {
@@ -285,6 +286,13 @@ function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas, $propriedad
 		   conferi-la, e seria a bancada arbitrando pelo fabricante. */
 		$dl = $v( 'diluicao' );
 		if ( null !== $dl && '' !== (string) $dl ) { $diluicoes[] = (string) $dl; }
+		/* A PIGMENTACAO, contada aqui do zero pelo mesmo motivo da diluicao, e
+		   com a MESMA trava que a regua do snippet: o que se conta e quantos
+		   declaram, quantos declaram `'sim'` por igualdade ESTRITA e quantas
+		   respostas diferentes saem. A bancada NAO conta o complemento, para
+		   nao ser ela a chamar de transparente o que so nao disse `sim`. */
+		$pg = $v( 'pigmentado' );
+		if ( null !== $pg && '' !== (string) $pg ) { $pigmentos[] = (string) $pg; }
 	}
 	$acima_de_uma = array_values( array_filter( $demaos, function ( $x ) { return $x > 1; } ) );
 
@@ -305,6 +313,9 @@ function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas, $propriedad
 		'n_ativos'       => count( $ativos ),
 		'com_diluicao'   => count( $diluicoes ),
 		'diluicoes_distintas' => count( array_unique( $diluicoes ) ),
+		'com_pigmento'   => count( $pigmentos ),
+		'pigmentados'    => count( array_keys( $pigmentos, 'sim', true ) ),
+		'pigmentos_distintos' => count( array_unique( $pigmentos ) ),
 		'com_intervalo'  => count( $intervalos ),
 		'intervalo_min'  => $intervalos ? min( $intervalos ) : null,
 		'intervalo_max'  => $intervalos ? max( $intervalos ) : null,
@@ -670,6 +681,37 @@ foreach ( cdm_guia_registro() as $id => $ficha ) {
 			gui_ok( false !== mb_strpos( $texto, 'Os outros ' . ( $regua['n_ativos'] - $regua['com_diluicao'] ) . ' produtos desta etapa não dizem nada' ),
 				'quem ficou de fora e contado contra o BANCO da categoria, nao contra o recorte',
 				( $regua['n_ativos'] - $regua['com_diluicao'] ) . ' de ' . $regua['n_ativos'] );
+		} elseif ( 'pigmentado' === $prop ) {
+			gui_ok( false !== mb_strpos( $texto, 'dos ' . $regua['com_pigmento'] . ' produtos desta etapa que dizem se têm cor própria' ),
+				'a tela publica o numero de produtos do recorte (frase da pergunta)',
+				$regua['com_pigmento'] . ' produtos' );
+			gui_ok( $regua['com_pigmento'] === $regua['n'],
+				'o recorte da pergunta E o conjunto que declara o numero — as duas contagens coincidem',
+				$regua['n'] . ' = ' . $regua['com_pigmento'] );
+			gui_ok( false !== mb_strpos( $texto, $regua['pigmentados'] . ' se declaram pigmentados' ),
+				'quantos se declaram pigmentados bate com a contagem independente',
+				(string) $regua['pigmentados'] );
+			gui_ok( false !== mb_strpos( $texto, $regua['pigmentos_distintos'] . ' respostas diferentes' ),
+				'quantas respostas diferentes saem das frases bate com a contagem',
+				(string) $regua['pigmentos_distintos'] );
+
+			/* A TELA NAO PODE CHAMAR DE TRANSPARENTE O QUE SO NAO DISSE `sim`,
+			   e isto mede isso na TELA. A frase que a pagina serve e o
+			   contrario — ela diz, com essas palavras, que nao dizer nada nao e
+			   dizer que e transparente. A afirmacao existe porque a subtracao
+			   `com_pigmento - pigmentados` passaria em toda bancada de numero:
+			   ela devolve um inteiro valido, e so a leitura e falsa. */
+			gui_ok( false === mb_strpos( $texto, 'não pigmentados' )
+				&& false !== mb_strpos( $texto, 'não dizer nada não é dizer que é transparente' ),
+				'a tela NAO chama de transparente quem so nao declarou, e diz isso por extenso',
+				'frase presente e complemento ausente' );
+
+			/* O DENOMINADOR DO "OS OUTROS N" MEDE O BANCO E NAO O RECORTE, a
+			   mesma trava da pagina da diluicao: na pagina-pergunta o recorte E
+			   quem declara, e a conta contra ele daria ZERO. */
+			gui_ok( false !== mb_strpos( $texto, 'Os outros ' . ( $regua['n_ativos'] - $regua['com_pigmento'] ) . ' produtos desta etapa' ),
+				'quem ficou de fora e contado contra o BANCO da categoria, nao contra o recorte',
+				( $regua['n_ativos'] - $regua['com_pigmento'] ) . ' de ' . $regua['n_ativos'] );
 		} else {
 			gui_ok( false, 'a grandeza desta pergunta tem ramo de conferencia na bancada',
 				'SEM RAMO para `' . (string) $prop . '`' );
