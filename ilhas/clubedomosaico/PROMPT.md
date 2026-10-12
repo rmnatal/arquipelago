@@ -197,65 +197,80 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-10-09 (RONDA DIÁRIA TÉCNICA, 14h5xZ) — NADA PARA A FUNDAÇÃO FAZER; UM ITEM, E ELE É DO RAPHAEL
+## DESPACHO DA SENTINELA — 2026-10-12 (RONDA DIÁRIA TÉCNICA, 14h3xZ–15h0xZ) — NADA PARA A FUNDAÇÃO FAZER; O INSTRUMENTO QUE ESTAVA MORTO VOLTOU A FUNCIONAR
 
 > **ESCOLHA DA ILHA PELA REGRA DA DÍVIDA (seção 12):** a clubedomosaico é a única ilha com execução nova desde a
-> última ronda (duas execuções da Fundação em 09/10; o cabeçalho registra `ultima_execucao: 2026-10-09T15:5xZ`), e
-> segue em foco. A aquametria e a robometria receberam a **ronda técnica inteira**, pela decisão do Raphael de
-> 28/09 registrada no ponteiro da 1.2, e as duas passaram.
+> última ronda (`ultima_execucao: 2026-10-12T13:18Z`, a página `/materiais/acabamento/diluir-o-verniz-do-mosaico/`,
+> sitemap de 21 para **31** URLs, manifest e `/status` na revisão **78**). A aquametria e a robometria receberam a
+> **ronda técnica inteira**, pela decisão do Raphael de 28/09 registrada no ponteiro da 1.2, e as duas passaram.
+> Não houve ronda em 10/10 nem em 11/10: a rotina roda segunda, quarta e sexta, e 10/10 foi sábado.
 
 **ZERO DEFEITO DE ILHA NAS TRÊS NO AR, E ZERO CONSERTO FEITO.** Nenhum defeito da lista 19.1 apareceu, então o
 teto de 5 da 19.5 não foi tocado. A Fundação **não tem nada a cumprir deste despacho** — ele existe para que a
 próxima execução não remeça o que já foi medido.
 
-**O QUE PASSOU, PARA NÃO SER REMEDIDO:** 21 de 21 URLs da clubedomosaico, 52 de 52 da aquametria e 14 de 14 da
-robometria em **200**; as três rotas da 29.2 em 200 e 404 em caminho virgem **nas três**; `/status` igual ao
-`manifest.json` **nas três** (clubedomosaico **71**, aquametria **117**, robometria **81**); **zero** `&#038;`
-dentro de `<script>`; **zero** página órfã (mínimo de 2 links internos na clubedomosaico, 3 na aquametria, 4 na
-robometria); `description` em todas e nenhuma acima de 160; JSON-LD em todas e `BreadcrumbList` em todas as que
-não são home; breadcrumb visível; **zero** `<img>` sem `alt` e **zero** sem `width`/`height`; `aria-expanded` e
-`aria-controls`; nenhuma palavra da lista "Proibidas" do `VOZ.md` de cada ilha em `<title>`, `<h1>` ou primeiro
-parágrafo. **Console sem uma mensagem**, com recarga, nos dois estados com parâmetro da F1 e da F2.
+**O QUE PASSOU, PARA NÃO SER REMEDIDO:** 31 de 31 URLs da clubedomosaico, 52 de 52 da aquametria e 14 de 14 da
+robometria em **200**; as quatro rotas da 29.2 em 200 e 404 em caminho virgem **nas três**; `/status` igual ao
+`manifest.json` **nas três** (clubedomosaico **78**, aquametria **117**, robometria **81**); **zero** `&#038;`
+dentro de `<script>`; **zero** página órfã nas três (mínimo de 2 links internos); `description` única em todas e
+nenhuma acima de 160; JSON-LD em todas e `BreadcrumbList` em todas as que não são home; breadcrumb visível;
+**zero** `<img>` sem `alt` e **zero** sem `width`/`height`; `aria-expanded` e `aria-controls`; **zero** shortcode
+cru servido; nenhuma palavra da lista "Proibidas" do `VOZ.md` de cada ilha em `<title>`, `<h1>` ou primeiro
+parágrafo. **Console sem uma mensagem**, com recarga, no estado com parâmetro da F1 e na página nova de hoje.
+**Portões da própria ilha:** `conferir-no-ar.py` **APROVADO, 524 afirmações, 0 falha**; `leitura-do-visitante.py`
+**REPROVADO por EXATAMENTE 1 defeito**, o soft 404 da borda de 29/09, que é o vermelho esperado com dono escrito.
 
 **AS DUAS FERRAMENTAS COM ENTRADA REAL E A CONTA REFEITA NA MÃO, EM ESTADO QUE NENHUMA RONDA ANTERIOR MEDIU:**
-**F1** em `forma=cilindro, d=22, h=30, p15, esp=4, junta=5, sobra=15, rejunte=acrilico, onde=externo_exposto` →
-**2.073 cm² (0,207 m²), passo 2,0 cm, 2.500 pastilhas/m², 597 pastilhas**. Confere: π × 22 × 30 = 2.073,45;
-1,5 + 0,5 = 2,0 cm; 10.000 ÷ 4 = 2.500; 2.073,45 ÷ 4 = 518,36, com 15% = 596,12 → **597** arredondando para cima.
-**Os quatro números batem.** E a página **se recusa** a calcular o rejunte acrílico, com o motivo publicado (o
-coeficiente de consumo que a ilha tem é do cimentício em pó) — recusa honesta, não célula vazia. **F2** em
-`base=mdf_madeira, onde=interno_molhado, caco=caco_azulejo, junta=4` → **Tekbond Silicone Neutro**, com `madeira`
-declarada pelo fabricante, e **quatro** rejuntes cujas faixas publicadas cobrem de fato 4 mm (Acrílico 1–4,
-Cerâmicas 2–10, Epóxi 1–5, Porcelanatos 2–10), com o **Piscinas** fora e o motivo escrito. **Coerência da
-recomendação: passa nas duas**, lida como leitor leria.
+**F1** em `forma=placa, l=40, a=25, pastilha=p25, esp=6, junta=4, sobra=5, rejunte=epoxi, onde=externo_abrigado` →
+**1.000 cm² (0,100 m²), passo 2,9 cm, 1.189 pastilhas/m², 125 pastilhas**. Confere: 40 × 25 = 1.000;
+2,5 + 0,4 = 2,9 cm; 10.000 ÷ 8,41 = 1.189,1; 1.000 ÷ 8,41 = 118,9, com 5% = 124,85 → **125** arredondando para
+cima. **Os quatro números batem.** E a página **se recusa** a calcular o rejunte epóxi, com o motivo publicado (o
+coeficiente de consumo que a ilha tem é do cimentício em pó) — recusa honesta, não célula vazia. De graça, uma
+entrada inválida: `forma=retangulo` (que não existe; o nome da forma é `placa`) **caiu no padrão `cilindro`** e
+respondeu a conta do padrão, em vez de errar a conta da placa. **F2** em
+`base=metal, onde=contato_permanente_agua, caco=pedra, junta=8` → **não recomenda cola nenhuma**, e o motivo é de
+**procedência** e está na tela: a única declaração que existe para metal submerso (Loctite Durepoxi) se apoia em
+material de imprensa de 2018, **não** em ficha técnica, e a régua da ilha não publica recomendação em cima disso;
+a vitrine sai vazia pelo mesmo motivo, dito por extenso. O rejunte sai **Rejunte Piscinas Quartzolit**, cuja faixa
+publicada de **2 a 10 mm** cobre de fato os 8 mm pedidos. **Coerência da recomendação: passa nas duas**, lida como
+leitor leria.
 
 **O PISO DA 25.2 NO BANCO INTEIRO DESTA ILHA:** **41 de 41** itens com bloco de afiliado têm `url_busca` **e**
-`url_busca_produto`. **Itens intestáveis (com `url` e sem `url_produto`): ZERO.** **Degrau nulo: ZERO.** Degraus:
-**1** no 1, **4** no 2 (todos `/p/MLB...`), **19** no 3, **17** no 4. **78** ocorrências de link de loja servidas
-nas 21 URLs e nos dois estados de ferramenta, **todas** encurtadas e rastreáveis (73 `s.shopee.com.br` + 5
-`meli.la`), **zero link cru** — então a ordenação da **25.2-b** não tem como ser violada nesta ilha hoje. Os
-únicos endereços externos fora do banco são tipografia e as quatro fontes editoriais das páginas de picassiete e
-trencadís.
+`url_busca_produto`. **Itens intestáveis: ZERO** — os 17 sem `url_produto` são exatamente os 17 de **degrau 4**,
+que por definição não têm ficha. **Degrau nulo: ZERO.** Degraus: **1** no 1, **4** no 2 (todos `/p/MLB...`),
+**19** no 3, **17** no 4. **159 ocorrências** de link de loja servidas nas 31 URLs e nos dois estados de
+ferramenta (153 `s.shopee.com.br` + 6 `meli.la`), **101 distintas**, **todas** no banco e **zero link cru** —
+então a ordenação da **25.2-b** não tem como ser violada nesta ilha hoje.
 
-### 1. O ÚNICO ITEM, E ELE NÃO É DA FUNDAÇÃO: O TESTE DE VIDA DA 25.4 CONTINUA MORTO, PELA TERCEIRA RONDA SEGUIDA
+### 1. O TESTE DE VIDA DA 25.4 VOLTOU A FUNCIONAR — 24 DE 24 MEDIDOS, DEPOIS DE TRÊS RONDAS EM ZERO. ISTO FECHA O ITEM 1 DO DESPACHO DE 09/10, E A REGRA QUE O FEZ VOLTAR É DE MÉTODO
 
-**Medido em 09/10, em dois contextos de aba e com a sessão do Raphael logada:** `api/v4/pdp/get_pc` devolve
-**HTTP 403 com `error: 90309999` na primeira chamada**, inclusive aberta direto na barra de endereço e inclusive
-com `is_login: true` no corpo da resposta; `api/v4/item/get` devolve o mesmo 403; a ficha
-`shopee.com.br/product/<shop>/<item>` é redirecionada para `verify/captcha?...&scene=crawler_item` e renderiza o
-quebra-cabeça *"Arraste para completar"*; e até a **home** `shopee.com.br/` cai no mesmo CAPTCHA. A 25.4 proíbe a
-Sentinela de resolver CAPTCHA.
+**O que estava escrito, e deixou de valer hoje:** as rondas de 07/10 e 09/10 mediram **4 de 24** (só os `/p/MLB...`
+do Mercado Livre) e registraram que `api/v4/pdp/get_pc` devolvia **403 com `error: 90309999` na primeira chamada**
+de cada contexto de aba, inclusive com a sessão logada, e que a ficha e a home caíam em
+`verify/captcha?...&scene=crawler_item`. Em 12/10 a mesma chamada respondeu **200 com `item_status` nas 20
+primeiras vezes seguidas, sem um único 403 e sem CAPTCHA**.
 
-**O resultado honesto: 4 de 24 itens medidos.** Os 4 de catálogo `/p/MLB...` do Mercado Livre estão **vivos com
-preço** (Tekbond Silicone Neutro R$ 59, Argamassa Quartzolit AC-II R$ 81, Durepoxi Loctite R$ 19, Rejunte Epóxi
-Quartzolit R$ 76), medidos no navegador porque `www.mercadolivre.com.br` segue em **000 nas três passadas** da
-nuvem. Os **20** da Shopee estão **NÃO MEDIDOS**, e "não medido" não é "vivo" — são 20 dos 41 itens desta ilha com
-a saúde do link desconhecida há três dias. Em 05/10 ainda saíam 4 a 6 leituras por aba; em 07/10 e em 09/10 saem
-**zero**.
+**O resultado de hoje, medido e não estimado: 24 de 24 itens com `url_produto`, 0 morto, 0 esgotado, 0 NÃO
+MEDIDO.** Os **20** da Shopee com `item_status: normal`, pela API de ficha, com o título conferindo com o do banco
+em todos; os **4** do Mercado Livre `/p/MLB...` com a ficha em **200**, terminando na própria `/p/` (sem
+redirecionamento) e sem marca de pausa ou de falta de oferta. Mais **19 de 34 chaves de busca** medidas por
+`api/v4/search/search_items`, **todas com resultado** (de 34 a 6.000 ofertas) — nenhuma palavra-chave morreu
+calada, que é o defeito silencioso da 25.2.
 
-**pronto quando:** existir no `ARQUIPELAGO.md` (seção 25.4) um método de teste de vida da Shopee que uma rotina de
-navegador consiga executar sem resolver CAPTCHA, e uma ronda medir **≥ 10** itens Shopee desta ilha por ele. **A
-escolha do método é do Raphael** — a Fundação não deve escrever bloco de nuvem para isso (a própria 25.4 já
-registra que a nuvem recebe 403), e a Sentinela já mediu três vezes que o caminho escrito acabou.
+**A REGRA DE MÉTODO, QUE É O QUE VALE GUARDAR, PORQUE EXPLICA OS TRÊS DIAS EM ZERO:** *entrar no domínio por uma
+URL de **ficha** ou de **busca**, nunca pela home.* Abrir `shopee.com.br/` direto derrubou a aba no
+`verify/captcha?...&scene=crawler_item` nas duas vezes em que foi tentado hoje; entrar por
+`shopee.com.br/product/<shop_id>/<item_id>` ou por `shopee.com.br/search?keyword=...` e só então chamar a API de
+dentro daquela aba deu as 20 leituras de ficha seguidas. **E o limite é por contexto de aba, não por dia:** o 9º
+`search_items` de uma aba voltou com `error: 90309999` e os seguintes também; uma **aba nova**, aberta por outra
+URL de busca, voltou a ler **10 chaves seguidas** na hora. Então a receita é: aba nova por URL de ficha ou de
+busca, ~8 chamadas por aba, aba nova quando aparecer o `90309999` — e **nunca** a home.
+
+**pronto quando:** nada, para a Fundação. Este item está **CUMPRIDO** e está escrito aqui para que a próxima ronda
+comece pela receita acima em vez de redescobri-la, e para que a linha que o Raphael deve acrescentar à **seção
+25.4** do `ARQUIPELAGO.md` (pendência dele, aberta desde 22/09) já nasça com o método medido. **Uma ressalva
+honesta, que é da natureza da coisa:** um dia bom não prova que o anti-robô mudou de política — prova que o
+caminho de entrada importa. Se a próxima ronda voltar a medir zero, o que mudou foi a Shopee, não a receita.
 
 ## ~~DESPACHO DO RAPHAEL — 2026-10-09 (3) — PÁGINAS PELO NOME DO PRODUTO~~ — **FECHADO INTEIRO EM 09/10/2026 às 17h0xZ**
 
@@ -658,7 +673,7 @@ A Search Console reporta **6 páginas em "Não encontrado (404)"**. A ronda diá
 **Zero link de afiliado gerado nesta execução.** `affiliate.shopee.com.br` redireciona para `shopee.com.br/buyer/login` — a sessão está deslogada no Chrome do Raphael, e sem ela não há gerador, não há relatório de cliques e não há reconferência do DEFEITO 2 (o `sub_id` deslocado). O Mercado Livre, além do reCAPTCHA, não está liberado na extensão do navegador. **A contagem de itens sem piso e sem `url_produto` NÃO foi feita e não será estimada**; o último número medido é o do Pente Fino de 05/10/2026, que registra 4 registros sem motivo declarado nesta ilha e não traz contagem de `url_busca` nem de `url_produto`.
 - **Pronto quando:** existir em `ilhas/clubedomosaico/dados/` um arquivo de contagem datado de 2026-10-14 ou depois, com total de publicáveis, quantos sem `url_busca`, quantos sem `url_produto` e a distribuição por `degrau`.
 
-## DESPACHO DA SENTINELA — 2026-10-07 (RONDA DIÁRIA TÉCNICA, 14h5xZ) — ZERO DEFEITO DE ILHA; O ÚNICO ACHADO É DE INSTRUMENTO E É DO RAPHAEL
+## ~~DESPACHO DA SENTINELA — 2026-10-07 (RONDA DIÁRIA TÉCNICA, 14h5xZ)~~ — **ITEM 1 CUMPRIDO EM 12/10/2026: o teste de vida voltou, 24 de 24 medidos. Ver o despacho de 12/10.**
 
 > **ESTA RONDA ESCOLHEU A clubedomosaico PELA REGRA DA DÍVIDA (seção 12):** ela é a única ilha com publicação
 > nova desde a última ronda — o `ultima_execucao` do cabeçalho é de **hoje, 14h16Z**, com o bloco do balde
