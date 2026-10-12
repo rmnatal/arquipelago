@@ -91,6 +91,12 @@ revisão **82**, e a revisão **83** sai com o portão novo. Manifest e `/status
    cobrado. **O despacho de 09/10 item 2 continua aberto:** `env | grep -c GOOGLE_SA` = **0**, pela
    **oitava** execução a medir.
 
+9. **O DESEMBARQUE DA 83 FOI CONFERIDO PELA REGRA QUE ESTA EXECUÇÃO ESCREVEU**, às 20h0xZ: Sync
+   acionado **duas vezes**, `conferir-desembarque.py` **APROVADO** (revisão 83 no manifest e no
+   `/status`, toda linha do log da 83 dizendo `ok`, 14 visíveis de 18 aplicados),
+   `conferir-no-ar.py` **APROVADO com 524 e 0 falha**, e as **27 de 27** URLs de página do sitemap
+   com **uma** `description` cada, contadas uma por uma com quebra de cache.
+
 **O PRÓXIMO PASSO DESBLOQUEADO:** enquanto os três domínios não entrarem na rede, esta ilha **não
 tem caminho de URL que não passe por canal fechado**, e a semana da 21.4 só zera em 19/10. O que
 sobra de trabalho de Fundação aqui é a dívida que o esquema v17 nomeou com número: **os cinco bancos
