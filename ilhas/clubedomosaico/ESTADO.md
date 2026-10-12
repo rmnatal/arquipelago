@@ -3,7 +3,12 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 29        # 21 -> 29 em 09/10/2026 17h0xZ: as OITO paginas de consulta de produto
+urls_publicadas: 30        # 29 -> 30 em 12/10/2026 10h5xZ: a QUARTA filha de /materiais/acabamento/,
+                           # e a primeira desta ilha em forma de PERGUNTA — o recorte dela e a
+                           # propriedade `demaos_minimas` e nao um tipo. Contado no wp-sitemap no ar:
+                           # 25 em posts-page e 5 em posts-peca. O piso da 21.1 pede 40 — faltam 10.
+                           # Leva 1 de 3 da semana da 21.4 (a semana virou hoje, 12/10, segunda).
+                           # 21 -> 29 em 09/10/2026 17h0xZ: as OITO paginas de consulta de produto
                            # (secao 30) foram ao ar numa leva so, pelo teto da 21.4 SUSPENSO naquele dia
                            # pelo despacho (2) do Raphael. Contado no wp-sitemap no ar: 24 em posts-page
                            # e 5 em posts-peca. O piso da 21.1 pede 40 — faltam 11.
@@ -12,33 +17,108 @@ urls_publicadas: 29        # 21 -> 29 em 09/10/2026 17h0xZ: as OITO paginas de c
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-09T20:04Z   # QUARTA execucao do dia, e a unica que nao mexeu no ar: a rede
+ultima_execucao: 2026-10-12T10:19Z   # A FILHA EM FORMA DE PERGUNTA, e com ela o campo `tipo` do
+                                     # registro do Guia parou de fazer dois trabalhos. Uma URL nova.
+                                     # O Sync de 75 gravou o snippet do Guia INATIVO (mesma falha de
+                                     # 09/10) e as quatro paginas serviram shortcode CRU por ~5 min;
+                                     # consertado pela revisao 76 com sync COMUM, nao com forcar=1.
+                                     # O horario aqui e o da RESERVA, que e o que a secao 1 compara.
+                                     # 2026-10-09T20:04Z foi a QUARTA execucao daquele dia: a rede
                                      # de sinal das baterias de mutacao, de UMA protegida para as
                                      # CATORZE, com portao que mata cada uma de proposito. As tres
                                      # anteriores foram 14h05Z (os dois portoes), 16h16Z (as 8 paginas
                                      # de consulta de produto) e 19h19Z (o apelido de endereco com
                                      # NIVEL e os treze 301). O horario aqui e o da RESERVA, que e o
                                      # que a secao 1 compara; o bloco fechou perto de 21hZ.
-executando_desde: 2026-10-12T11:05Z   # reserva RENOVADA pela 1.1: o bloco passou de 40 min
+executando_desde: null
 ultima_ronda: 2026-10-09T14:55Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente é de 07/10 20h35Z). ZERO defeito de ilha; o reparo do .htaccess de 08/10 reconferido no ar e DE PÉ.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  A REDE DE SINAL DAS BATERIAS DE MUTACAO: DE UMA PROTEGIDA PARA AS CATORZE, COM PORTAO QUE MATA CADA UMA DE PROPOSITO. A divida que a lista deste arquivo chamava de "13 baterias" esta PAGA, e eram CATORZE. NENHUMA URL nova — a ilha segue em 29, 11 abaixo do piso de 40 da 21.1 —, NENHUMA leva da 21.4 gasta, e NADA NO AR MUDOU: snippet, conteudo e dado sairam byte a byte como entraram, a revisao do manifest continua 74 e igual ao /status, e por isso o Sync NAO foi acionado.
-  1. OS DOIS COMANDOS DA 29 RODARAM ANTES DE TUDO E DE NOVO NO FIM, no MESMO estado nas duas vezes: conferir-no-ar.py APROVADO com 524 afirmacoes e 0 falha; leitura-do-visitante.py REPROVADO com EXATAMENTE 1 defeito, o soft 404 da borda, de 29/09, do hospedeiro. ZERO defeito novo. Rede pela 20.2: 200 nas TRES passadas.
-  2. O DESPACHO DO RAPHAEL DE 09/10 CONTINUA ABERTO NUM ITEM SO E ELE NAO E DA FUNDACAO: a lista das 6 URLs em 404 depende da credencial, e `env | grep -c GOOGLE_SA` = 0 pela SETIMA execucao seguida. As outras duas fontes foram medidas mortas uma hora antes, pela passada das 19h19Z, e remedir o que nao mudou e gastar execucao para reescrever a mesma linha.
-  3. POR QUE ESTE BLOCO, e a razao esta na lista deste arquivo: das cinco linhas de "DEPENDE DA FUNDACAO", QUATRO param em canal medido fechado (as 11 URLs do piso custam ITEM DE BANCO ou PERGUNTA NOVA e a SERP de consulta nova nao e mensuravel nesta nuvem; as tres tecnicas sao de FONTE; os doze tutoriais esperam faixa de volume do Raphael). A QUINTA nao dependia de canal nenhum, e era a unica.
-  4. O DEFEITO ERA DE FORMA: esta ilha tem 34 baterias de mutacao — 20 em `mkdtemp`, que nao podem sujar nada, e 14 em cima da arvore do git, que restauram no `finally`. E o `finally` NAO roda quando o processo morre por sinal. Foi assim que a `t03` da mutacoes-par.py deixou o snippet da F2 mutado no repositorio hoje de manha.
-  5. O CONSERTO E UM MODULO E NAO CATORZE COPIAS, e a prova de que a escolha e certa ja existia: a copia da `par`, escrita de manha, NAO sabia da sobra de `<arquivo>.original`, que SETE das catorze criam antes de mutar. Treze copias de seis linhas teriam treze chances de divergir, e a primeira ja havia divergido. A `par` passou a usar o modulo.
-  6. DUAS COISAS QUE O MODULO SABE PORQUE FORAM MEDIDAS: arquivo que NAO existia entra no retrato como `None` e restaurar e APAGA-LO (a apoio e a base fabricam o mundo delas e se recusam a rodar se o arquivo existir); e o retrato e de BYTES, porque re-serializar deixa conteudo identico com sha256 TROCADO, e o manifest guarda esse sha.
-  7. O PORTAO MEDE QUATRO COISAS, e a quarta e a que envelhece pior: por bateria, que o sinal chegou com ela VIVA (a linha `INTERROMPIDA por sinal`, que so o handler imprime — kill depois do fim e NAO MEDIDO, nunca aprovado), que a arvore voltou IGUAL e que nao sobrou backup. A quarta: TODA mutacoes-*.py esta classificada, ou chamando `mkdtemp(` ou declarando a rede. Bateria nova sem nenhum dos dois reprova no dia em que nasce.
-  8. O PORTAO NASCEU ERRADO DUAS VEZES, e as duas correcoes sao regua. (a) A primeira versao se RECUSAVA a rodar com a arvore suja, e isso a tornava inutil na passada que acaba de escrever o conserto e quer prova ANTES de commitar; hoje ela COMPARA, em tres partes, porque nenhuma sozinha pega as tres formas de estrago. (b) A segunda esperava a bateria IMPRIMIR uma palavra, e media o VOCABULARIO de cada uma: a ambiente-do-produto-do-rejunte diz `so o portao novo` e `ja pegava`, nenhuma casava, e o portao atravessou dez minutos esperando palavra que nao vinha. Hoje ele espreita a ARVORE mudar.
-  9. O ESTRAGO FOI REPRODUZIDO QUATRO VEZES SEM EU PEDIR, e e a melhor prova deste bloco: a ambiente-do-produto-do-rejunte passa de 300s e bateu duas vezes em `timeout` (exit 124 e 143), uma vez num `pkill -TERM` meu, e uma vez no portao — e nas quatro a linha saiu e os 4 arquivos voltaram byte a byte. Nas mesmas condicoes, hoje de manha, ficava arquivo mutado no disco.
-  10. UMA ARMADILHA NO INSTRUMENTO, nao no codigo: `atualizar-manifest.py` rodado enquanto uma bateria esta VIVA grava o sha de um arquivo MUTADO. Aconteceu com o f2; a segunda passada corrigiu, e a prova e dupla — nenhum item do manifest diverge do disco, e a comparacao com HEAD mostra SO os sha das ferramentas que esta execucao mudou. A regra entrou no aviso de topo do PROMPT.md: depois das baterias, nunca durante.
-  11. BANCADA INTEIRA REMEDIDA DEPOIS DAS MUTACOES, que e a metade que nenhum codigo resolve porque SIGKILL nao e capturavel: dez bancadas PHP verdes (casca 1040/0, f1 228/0, f2 174/0, guia 123/0, produto 306/0, tecnicas 139/0, prestacao-rejunte 5/0, mais loja, atelie e leads APROVADAS), tres Python verdes (batismo 62/0, casamento 42/0, relevancia 72/0), validar-banco.py OK, e as CATORZE baterias rodadas INTEIRAS com todas as mutacoes reprovando.
-  12. E DUAS LINHAS ERRADAS DA LISTA QUE O RAPHAEL VAI LER FORAM CORRIGIDAS, as duas medidas: a dos "dois bloqueios do substrato da F2" estava AO CONTRARIO (os TRES fecharam em 06/10, e o banco os lista com `fechou_em` em campo lido por maquina; a F2 serve `preparo` no ar), e a das baterias dizia 13 porque veio do `grep -L 'mkdtemp\|copytree'` que o PROMPT.md mandava usar — e esse comando esconde a `par`, cujo COMENTARIO cita mkdtemp para dizer que ela nao usa. A bateria que causou o estrago ficou fora da lista da divida que ela criou.
+  A FILHA EM FORMA DE PERGUNTA EXISTE, E O ACABAMENTO VAI DE 3 PARA 4 FILHAS. Uma URL nova:
+  /materiais/acabamento/camadas-de-verniz-depois-do-rejunte/, conferida no ar em 200 com os cinco
+  numeros dela batendo com o banco. A ilha vai de 29 para 30 URLs; faltam 10 para o piso de 40 da
+  21.1. Leva 1 de 3 da semana da 21.4. Snippet do Guia 1.3.0, manifest e /status na revisao 76.
+  1. OS DOIS PORTOES DA 29 RODARAM ANTES DE TUDO E DE NOVO NO FIM. Antes: conferir-no-ar.py APROVADO
+     com 524 afirmacoes e 0 falha; leitura-do-visitante.py REPROVADO com EXATAMENTE 1 defeito, o soft
+     404 da borda, do hospedeiro, com dono escrito. Depois do desembarque, com 30 URLs: conferir-no-ar
+     APROVADO com 524 afirmacoes e 0 falha e as contagens por URL em 30 de 30; leitura-do-visitante
+     REPROVADO com EXATAMENTE 1 defeito, o MESMO soft 404. ZERO defeito novo, e a pagina nova lida pela
+     BORDA em 200, sem quebra de cache. Rede pela 20.2: 200 nas TRES passadas. A porta de entrada estava
+     DE PE antes e depois — nada de 404 em massa.
+  1-b. E ELA NAO E ORFA, medido no ar e nao suposto (16.4(f) pede 2 links internos, um da mae): QUATRO
+     apontam para ela — 1 da mae, pela lista de filhas com a consulta-alvo como ancora (16.4(a)), e 3
+     das irmas, pelo bloco de irmas da casca.
+  2. O RECORTE DESTA PAGINA NAO E UM TIPO: e a propriedade `demaos_minimas`, declarada por 5 dos 10
+     produtos do acabamento e atravessando os TRES tipos (verniz 1, impermeabilizante 2, selador 2).
+     Nenhum tipo sozinho reune os 3 itens que a secao 9 exige nela, que e o caso que o
+     filhas-do-guia.py descreve quando diz que a pergunta reune onde o tipo nao reune.
+  3. A SERP FOI MEDIDA ANTES DO CODIGO, e as QUATRO passadas estao em dados/serp-das-filhas.json,
+     que vai de 25 para 29 medicoes. Duas eram tentativa de uma terceira filha para `alicate` e as
+     duas deram NAO_MEDIDA; duas eram desta pergunta, e a diferenca entre elas e UMA palavra.
+  4. DOIS LIMITES NOVOS DO CANAL, e os dois sao medicao e nao palpite. LIMITE 7: `maquina` +
+     `mosaico` compra a PRENSA INDUSTRIAL de ladrilho — quatro patentes do OEPM da Espanha e uma do
+     Google Patents, zero resultado brasileiro em nove, com `caquinho` dentro da consulta e SEM
+     pedir medida. E ele separa limpo do limite 5: a consulta obedeceu ao 5 e desviou assim mesmo,
+     entao `nao pedir a medida` e condicao necessaria e nao suficiente. LIMITE 8: o desvio para
+     PORTUGAL tem causa propria — `verniz` e `demao` sao PT-BR E PT-PT, entao a consulta inteira
+     cabe em Portugal (forumdacasa, leroymerlin.pt, archiexpo/pt). A prova pelo outro lado e a
+     passada seguinte, do mesmo dia: trocando a moldura para `depois do rejunte` a mesma pergunta
+     mediu ABERTA com SEIS brasileiros em nove. `rejunte` e a ancora mais forte desta ilha — nao
+     existe em espanhol (`lechada`) e em Portugal se diz `betumar`.
+  5. O LIMITE 4 FOI AMPLIADO: ele dizia `nome de recorte bilingue` e nomeava `cortador de azulejo`.
+     Uma das passadas de hoje nao usa o nome do recorte — usa o VERBO com o objeto, `cortar o
+     azulejo` — e desviou igual (Truper MX, OEPM ES). O nucleo bilingue e `azulejo` ao lado de
+     `cortar` em QUALQUER arranjo, e as tres consultas de corte que mediram no Brasil nesta ilha
+     dizem `pastilha`, nunca `azulejo`.
+  6. A TERCEIRA FILHA DA `alicate` CONTINUA FECHADA, e agora com DEZ tentativas medidas (eram oito).
+     O caminho dela e PERGUNTA NOVA ou ITEM DE BANCO, nunca medir SERP de novo.
+  7. O QUE O MOTOR PRECISOU APRENDER, e e a metade que custou: o campo `tipo` fazia DOIS trabalhos —
+     dizia se a pagina era mae (`tipo === null`, em SEIS lugares do arquivo) e recortava o banco. Com
+     mae e filha-de-tipo os dois davam a mesma resposta; a filha de pergunta os separa, porque nao e
+     mae e tambem nao tem tipo. Lida pelo `tipo`, ela virava a SEGUNDA MAE do acabamento: penduraria
+     em /materiais/ em vez da mae, sairia da arvore de nivel 3 e listaria as irmas como indice de
+     categoria. NENHUM dos tres erros da erro de PHP. Entrou `'papel' => 'mae'|'filha'` no registro,
+     mais cdm_guia_papel() e cdm_guia_forma(), e a bancada confere o recorte DECLARADO contra a forma.
+  8. E A PRESTACAO DE CONTAS DA MAE GANHOU UMA LISTA SEPARADA: cdm_guia_filhas() devolve TODAS as
+     filhas (e a lista da 16.4(a)) e cdm_guia_filhas_de_tipo() so as de tipo. Os tipos PARTEM o banco
+     da categoria; a pergunta ATRAVESSA os tipos, entao soma-la ao agrupamento publicaria os cinco
+     produtos que declaram demao DUAS VEZES na mesma pagina — e o comentario daquele trecho cobra,
+     desde 02/10, que "os dez aparecam exatamente uma vez".
+  9. DOIS DEFEITOS PAGOS DE PASSAGEM, OS DOIS PREVISTOS POR ESCRITO PELO PROPRIO CODIGO. O titulo da
+     lista de filhas da mae dizia "As tres etapas, e a hora de cada uma", e o comentario do campo
+     avisava em 02/10 que a frase "seria mentira numa categoria de quatro filhas": ficou mentira hoje
+     e virou "As tres etapas, e a conta que vale para as tres". E o ternario do papel `achado` tinha
+     os dois lados IGUAIS byte a byte — codigo morto que so ficou visivel quando o booleano $e_mae
+     virou $forma.
+  10. UMA CONTA MINHA QUE ESTAVA CERTA POR ACIDENTE DO DADO. A primeira versao da frase imprimia
+     `minimo + 1` para a faixa de quem pede mais de uma demao: acerta no banco de hoje porque existe
+     um produto de UMA demao, e mente no dia em que nao houver. `demaos_min_acima_de_uma` passou a
+     ser DERIVADO, e ha mutacao que FABRICA esse mundo apagando a demao unica do banco.
+  11. O SYNC DE 75 DERRUBOU O SNIPPET DO GUIA, pela mesma falha que o PROMPT.md desta ilha descreve
+     desde 09/10: ele grava o snippet inativo e depois chama activate_snippet(), que executa o codigo
+     — e com o snippet AINDA carregado na requisicao a validacao reprova. As quatro paginas do Guia
+     responderam 200 servindo o shortcode CRU, medido no ar. O conserto NAO foi forcar=1: na falha de
+     ativacao o Sync da return ANTES de gravar o sha do item, entao o guia ficou sem sha e um sync
+     COMUM o reaplica, sem tocar nos outros oito que estao de pe. Revisao 76, log lido item por item,
+     ZERO linha fora de `ok`, e `snippets/guia: ok (snippet #13 atualizado)`.
+  12. REGISTRO NOVO NA CASCA, E NAO E PORTAO: o ARVORE.md declara 19 paginas e o mapa da casca traz
+     13 que ele nao conhece — as 8 de consulta de produto de 09/10 e as 5 categorias do Guia que
+     vivem no mapa sem pagina. A conferencia que existia so ia do DOCUMENTO para o codigo, e e no
+     outro sentido que a tabela envelhece calada (foi assim que a linha da peca ficou 14 dias fora).
+     Fica medido e impresso a cada corrida. Virar portao pede uma decisao que NAO e desta passada: o
+     snippet de produto declara as oito como `nivel 3` com mae `/materiais/`, que e nivel 1, e a 16.1
+     pede os tres degraus na URL.
+  13. BANCADA: teste-guia 160 afirmacoes (eram 156) e mutacoes-guia 23 de 23 (eram 18), com CINCO
+     mutacoes novas, uma por erro possivel do mecanismo. teste-casca 1040, 0 falha; os dez teste-*.php
+     verdes; validar-banco OK; filhas-do-guia e cruzamento-14-9 APROVADOS em --conferir; e as 14
+     baterias que trabalham em cima da arvore passam no teste-rede-de-sinal.
+  14. O FOCO NAO E DESTA ILHA DESDE 10/10 PELA FILA DO RAPHAEL, E A LINHA `ilha:` NAO FOI EDITADA.
+     Trabalhei aqui porque a secao 1.2, passo 1, manda ler a linha `ilha:` e ela diz clubedomosaico.
+     NAO troquei a linha: a fila e decisao do Raphael e o proprio foco.md diz que quem troca e a
+     linha editada na data. O Pente Fino de 12/10 marcou isto como GRAVE e tambem nao a trocou.
 ---
 
 ## O QUE FALTA PARA ESTA ILHA ESTAR COMPLETA — 09/10/2026, 19h4xZ
@@ -55,13 +135,14 @@ aberto na metade que depende dela**, com três fontes medidas mortas daqui. Pela
 reescrito no `PROMPT.md` deixando só o que falta. A lista abaixo sai mesmo assim, porque esperar o
 item 2 para escrevê-la é esperar o Raphael para dizer a ele o que ele precisa fazer.
 
-**A ilha tem 29 URLs. Faltam 11 para o piso de 40 da 21.1.**
+**A ilha tem 30 URLs. Faltam 10 para o piso de 40 da 21.1.** *(29 → 30 em 12/10/2026: a quarta filha
+do acabamento, a primeira em forma de PERGUNTA.)*
 
 ### DEPENDE DA FUNDAÇÃO — e só dela
 
 | o que falta | onde está medido |
 |---|---|
-| **11 URLs para o piso da 21.1.** Os caminhos existem e nenhum é "escrever texto": as três mães do Guia estão a 1 (`alicate`), 2 (`pastilha`) e 1 (`rejunte`) filha da 16.5, e **o custo de cada filha é ITEM DE BANCO ou PERGUNTA NOVA — nunca medir SERP** | `dados/cruzamento-14-9.md`, a fila das mães |
+| **10 URLs para o piso da 21.1.** As três mães do Guia estão a 1 (`alicate`), 2 (`pastilha`) e 1 (`rejunte`) filha da 16.5, e **o custo de cada filha é ITEM DE BANCO ou PERGUNTA NOVA — nunca medir SERP**. **E desde 12/10/2026 existe um quarto caminho, mais barato que os três: FILHA NOVA EM CATEGORIA QUE JÁ TEM MÃE NO AR.** Ela não passa pela 16.5 (a mãe já nasceu), reusa a régua que existe, e o mecanismo dela está construído e medido — foi assim que a 30ª URL nasceu hoje. Hoje só o `acabamento` tem mãe no ar, e a próxima pergunta dele precisa de uma propriedade com 3 itens de lastro e consulta própria ainda não tomada: `tempo_de_secagem_h` (4 itens) e `intervalo_entre_demaos_min` (3) estão em pé, mas a consulta de secagem **já é creditada** à filha `selador` — quem for escrever lê a tabela de consultas do `cruzamento-14-9.md` antes | `dados/cruzamento-14-9.md`, a fila das mães |
 | **As três técnicas em zero** (direto, indireto, bizantino) — e elas não são trabalho de texto, são de FONTE; o indireto tem a lacuna com nome: a cola hidrossolúvel que o método exige não existe nos 7 itens do banco de colas | fila de blocos, item 2 |
 | **Os doze tutoriais-âncora do bloco 5**, onde mora a candidata que sobrou da Proposta 3: `como fazer quadro do divino espirito santo em mosaico de caquinho passo a passo`, medida **ABERTA** — e ela só nasce quando a faixa de volume chegar (pedido ao Raphael) e o portão de dado da seção 9 fechar | despacho de 07/10, Proposta 3 |
 | ~~**Os dois bloqueios do substrato que sobraram na F2**~~ — **ESTA LINHA ESTAVA AO CONTRÁRIO, e a medição está no próprio banco.** Os **TRÊS** bloqueios fecharam em **06/10/2026**, e `dados/materiais-colas.json` os lista um a um em `fontes/bt-cimentcola-externo-2016-05/substratos_que_o_documento_declara/os_tres_bloqueios_e_o_que_fechou_cada_um`, com `fechou_em` e `com_o_que` em campo lido por máquina: a peça pela **regra 7**, o ambiente colado ao substrato pela **regra 8** (`ambiente_que_qualifica_a_base`, esquema v14, `mutacoes-par.py`), e a **cura** sem campo novo, pela citação, com a F2 servindo `preparo` — conferido **no ar** em 09/10 às 20h1xZ, na URL da F2 com `base=cimento_concreto&onde=externo_abrigado`. **Nada aqui depende da Fundação** | `dados/materiais-colas.json`, campo citado, e a F2 no ar |
@@ -75,6 +156,7 @@ item 2 para escrevê-la é esperar o Raphael para dizer a ele o que ele precisa 
 | **Sessão logada do Shopee Afiliados no Chrome dele** | Trava o gerador de link, o relatório de cliques e a reconferência do DEFEITO 2 de 23/09 — o `sub_id` deslocado uma casa. **Enquanto ele estiver deslocado, a primeira venda que esta ilha gerar não saberá de onde veio** |
 | **Um método de teste de vida da Shopee que rode sem resolver CAPTCHA (25.4)** — a escolha do método é dele, e a Sentinela já mediu três vezes que o caminho escrito acabou | **20 dos 41 itens** desta ilha estão com a saúde do link **NÃO MEDIDA**, e não medido não é vivo |
 | **O chamado na HostGator**, aberto em `dados/despachos.md` desde 05/10 e sem resposta | Duas coisas, não uma: o **soft 404 da borda** (toda URL inexistente responde 404 na 1ª leitura e **200** na 2ª, por 2 horas) e a **porta de entrada que caiu três vezes** — 24/09, 05/10 e 08/10, assinatura idêntica, e o intervalo entre quedas encurtou de 11 dias para 3 |
+| **Trocar a linha `ilha:` do `foco.md`, ou dizer que a fila mudou.** A `fila_decidida_pelo_raphael` diz `aquametria em foco de 10/10 a 16/10`, hoje é 12/10 e a linha `ilha:` ainda diz `clubedomosaico`. O Pente Fino de 12/10 marcou como **GRAVE** e não a trocou; esta execução também não | Duas coisas param: o despacho de 07/10 da aquametria marca **14/10** para o veredito das Propostas 1 e 2, e a dívida da 25.4-b dela está parada em "entra em foco em 10/10" há 26 dias. Pela 1.2 nenhuma execução pode tocar nelas enquanto o foco nomear outra ilha. **Três linhas resolvem:** `ilha: aquametria`, `desde: 2026-10-10`, e o histórico da clubedomosaico |
 | **`web.archive.org` na lista de Domínios permitidos (§20.3)** — medido hoje em `connect_rejected` nas três passadas, que é política de rede e não túnel | É a única fonte, fora a Search Console, dos endereços da **vida anterior do domínio** (o `sitemap.xml` de 2019 que o `PROMPT.md` registra na propriedade). Com as duas fechadas, a lista das 6 não tem de onde sair |
 | **O curinga `*.quartzolit.weber` na lista de rede** — com a ressalva medida em 05/10 de que o `www.` já responde **403**, que é decisão do fabricante e não da rede dele | Destrava `rejunte/acrilico` e `rejunte/epoxi`, que são 2 das 11 URLs do piso. O espelho de CDN é arquivo por nome conhecido e **não** catálogo: os 14 documentos dele estão listados e nenhum é acrílico nem epóxi |
 | **Nome, foto e perfis da artesã**, para `identidade/artesa/` — **a pasta não existe**, conferido hoje | Ele confirmou em 11/09 que a artesã aparece com nome e foto no Sobre e na assinatura das peças. Até chegar, a página Sobre diz "a artesã" e o bloco de foto fica pronto e vazio. **Não trava nada** |

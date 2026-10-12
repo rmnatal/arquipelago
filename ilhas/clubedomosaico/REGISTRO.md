@@ -3,6 +3,171 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+12/10/2026 10h19Z–11h3xZ — A FILHA EM FORMA DE PERGUNTA EXISTE, E COM ELA O CAMPO `tipo` PAROU DE FAZER DOIS TRABALHOS
+
+**Uma URL nova, a 30ª da ilha:** `/materiais/acabamento/camadas-de-verniz-depois-do-rejunte/`, a **quarta
+filha** de `/materiais/acabamento/` e a **primeira desta ilha em forma de PERGUNTA**. Conferida no ar em
+**200**, com os cinco números dela batendo com o banco e **zero molde não preenchido**. A ilha vai de **29
+para 30 URLs** — **faltam 10** para o piso de 40 da 21.1 —, **leva 1 de 3** da semana da 21.4 (a semana
+virou hoje, segunda), snippet do Guia **1.3.0**, manifest e `/status` na revisão **76**.
+
+1. **OS DOIS COMANDOS DA 29 RODARAM ANTES DE TUDO:** `conferir-no-ar.py` **APROVADO com 524 afirmações e
+   0 falha**; `leitura-do-visitante.py` **REPROVADO com EXATAMENTE 1 defeito** — o soft 404 da borda, de
+   29/09, do hospedeiro, com dono escrito. **A porta de entrada estava DE PÉ**, nada de 404 em massa.
+   Rede pela 20.2: `clubedomosaico.com.br` em **200 nas três passadas**, com `aquametria.com.br` em 200
+   nas mesmas três.
+
+2. **A ESCOLHA DA ILHA, E ELA TEM UMA RESSALVA QUE NÃO É PEQUENA.** `foco.md` nomeia a clubedomosaico na
+   linha `ilha:`, e a 1.2, passo 1, manda ler essa linha e parar — não comparar `ultima_execucao`, não
+   olhar prioridade. Foi o que fiz. **Mas a `fila_decidida_pelo_raphael` do mesmo arquivo diz
+   `aquametria em foco de 10/10/2026 a 16/10/2026`, e hoje é 12/10.** O Pente Fino de hoje às 09h01Z
+   marcou isso como **GRAVE — PRECISA DO RAPHAEL** e **não trocou a linha**, escrevendo que *"o Pente
+   Fino não reserva ilha e não muda a ordem da fila — e três dias de atraso podem ser decisão dele,
+   não esquecimento"*. **Esta execução também não trocou**, pelo mesmo motivo: o próprio `foco.md` diz
+   que quem troca o foco é a linha `ilha:` "editada na data", e a fila é decisão do Raphael. O custo
+   está medido e está na lista do `ESTADO.md`: o despacho de 07/10 da aquametria marca **14/10** para o
+   veredito das Propostas 1 e 2, e a dívida da 25.4-b dela está parada em "entra em foco em 10/10" há
+   26 dias. `executando_desde` estava `null`, que pela 1.1 já significa que não havia bloco da Fundação
+   vivo. Reserva aceita às **10h19Z** na primeira tentativa, nenhuma branch `claude/*` à frente do
+   `main` e nenhum PR aberto.
+
+3. **OS DESPACHOS ABERTOS NÃO TÊM ITEM DA FUNDAÇÃO, e isso foi conferido antes de abrir bloco.** O da
+   Sentinela de 09/10 diz de si mesmo que *"a Fundação não tem nada a cumprir deste despacho"*; o do
+   Raphael de 09/10 ficou com o item 2 (a lista das 6 URLs em 404), e as **três** fontes dele estão
+   medidas mortas daqui — `GOOGLE_SA_B64` ausente do ambiente, `web.archive.org` em `connect_rejected`,
+   e sitemap legado que **não existe**. Pela 18.5 fecharia despacho antes de construir; não havia o que
+   fechar.
+
+4. **A SERP FOI MEDIDA ANTES DO CÓDIGO, QUATRO PASSADAS, e `dados/serp-das-filhas.json` vai de 25 para
+   29 medições.** Duas eram tentativa de uma **terceira filha para a `alicate`** — que é a próxima mãe
+   da fila — e as duas deram `NAO_MEDIDA`; duas eram desta pergunta, e **a diferença entre elas é uma
+   palavra**.
+
+5. **DOIS LIMITES NOVOS DO CANAL, e os dois são medição.** **LIMITE 7:** `maquina` ao lado de `mosaico`
+   compra a **prensa industrial de ladrilho** — quatro patentes do OEPM da Espanha, uma do Google
+   Patents (*"Máquina para perforar losetas de mosaico o de cerámica"*), lojas dos EUA e da Áustria:
+   **zero resultado brasileiro em nove**, com `caquinho` dentro da consulta e **sem pedir medida**. Ele
+   separa limpo do limite 5: a consulta obedeceu ao 5 e desviou assim mesmo, então *"não pedir a
+   medida"* é condição **necessária e não suficiente**. **LIMITE 8:** o desvio para **Portugal** tem
+   causa própria — `verniz` e `demão` são PT-BR **e** PT-PT, então a consulta inteira cabe em Portugal
+   (forumdacasa, leroymerlin.pt, archiexpo/pt, mais três lojas dos EUA). A prova pelo outro lado é a
+   passada seguinte, do mesmo dia e do mesmo recorte: trocando a moldura para `depois do rejunte`, a
+   mesma pergunta mediu **ABERTA com SEIS brasileiros em nove**. **`rejunte` é a âncora mais forte
+   desta ilha** — não existe em espanhol (`lechada`, `junta`) e em Portugal se diz `betumar`.
+
+6. **O LIMITE 4 FOI AMPLIADO, e ele estava estreito.** Ele dizia "nome de recorte bilíngue" e nomeava
+   `cortador de azulejo`. Uma das passadas de hoje **não usa o nome do recorte** — usa o verbo com o
+   objeto, `cortar o azulejo` — e desviou igual (Truper MX, OEPM ES, Irwin BR). O núcleo bilíngue é
+   **`azulejo` ao lado de `cortar` em qualquer arranjo**, e a prova está no próprio arquivo: as três
+   consultas de corte que mediram no Brasil nesta ilha dizem **`pastilha`**, nunca `azulejo`.
+
+7. **A TERCEIRA FILHA DA `alicate` SEGUE FECHADA, COM DEZ TENTATIVAS MEDIDAS** (eram oito). A fila das
+   mães do `cruzamento-14-9.md` já imprime o número novo. O caminho dela continua sendo **PERGUNTA NOVA
+   ou ITEM DE BANCO** — medir SERP outra vez não é caminho, e agora com dez medições dizendo isso.
+
+8. **POR QUE A PÁGINA QUE NASCEU FOI OUTRA, e é a descoberta de método desta passada.** A fila das mães
+   responde *"qual é a próxima MÃE"*, e eu estava lendo essa pergunta como *"qual é a próxima PÁGINA"*.
+   São diferentes: **filha nova em categoria que já tem mãe no ar não passa pela 16.5** — a mãe já
+   nasceu —, reusa a régua que existe e é o caminho **mais barato** de URL desta ilha. Hoje só o
+   `acabamento` tem mãe no ar, e foi dele que a 30ª URL saiu. Está escrito na lista do `ESTADO.md` como
+   o **quarto caminho**, com a ressalva de que a próxima pergunta do acabamento precisa de propriedade
+   com 3 itens de lastro **e** consulta própria ainda não creditada: `tempo_de_secagem_h` tem 4 itens,
+   mas a consulta de secagem **já é da filha `selador`**.
+
+9. **O RECORTE DESTA PÁGINA NÃO É UM TIPO:** é a propriedade `demaos_minimas`, declarada por **5 dos 10**
+   produtos do acabamento, atravessando os **três** tipos — verniz 1, impermeabilizante 2, selador 2.
+   Nenhum tipo sozinho reúne os 3 itens que a seção 9 exige nela, que é literalmente o caso que o
+   `filhas-do-guia.py` descreve. A âncora à mão (5 itens, três tipos) **bate com a derivação**, e a
+   bancada reprova se cair.
+
+10. **O QUE O MOTOR PRECISOU APRENDER, E É A METADE QUE CUSTOU.** O campo `tipo` fazia **dois
+    trabalhos**: dizia se a página era mãe (`tipo === null`, em **seis** lugares do arquivo) e recortava
+    o banco. Com mãe e filha-de-tipo os dois davam a mesma resposta; **a filha de pergunta os separa**,
+    porque ela não é mãe e também não tem tipo. Lida pelo `tipo`, ela virava a **segunda mãe** do
+    `acabamento`: penduraria em `/materiais/` em vez da mãe, sairia da árvore de nível 3 e listaria as
+    irmãs como índice de categoria. **Nenhum dos três erros dá erro de PHP** — e é por isso que o papel
+    passou a ser **escrito** (`'papel' => 'mae'|'filha'`), com `cdm_guia_papel()` e `cdm_guia_forma()`,
+    e a bancada confere o **recorte declarado contra a forma da página**.
+
+11. **E A PRESTAÇÃO DE CONTAS DA MÃE GANHOU UMA LISTA SEPARADA.** `cdm_guia_filhas()` devolve **todas**
+    as filhas (é a lista da 16.4(a)) e `cdm_guia_filhas_de_tipo()` **só as de tipo**. Os tipos **partem**
+    o banco da categoria; a pergunta **atravessa** os tipos, então somá-la ao agrupamento publicaria os
+    cinco produtos que declaram demãos **duas vezes na mesma página** — e o comentário daquele trecho
+    cobra, desde 02/10, que *"os dez apareçam exatamente uma vez"*.
+
+12. **DOIS DEFEITOS PAGOS DE PASSAGEM, OS DOIS PREVISTOS POR ESCRITO PELO PRÓPRIO CÓDIGO.** O título da
+    lista de filhas da mãe dizia *"As três etapas, e a hora de cada uma"*, e o comentário do campo
+    avisava em 02/10 que a frase *"seria mentira numa categoria de quatro filhas ou numa em que as
+    filhas não sejam etapas de um relógio"*. **Ficou mentira hoje**, e virou *"As três etapas, e a conta
+    que vale para as três"* — nomeando as etapas e a conta, em vez de contar filhas. E o ternário do
+    papel `achado` tinha os **dois lados iguais byte a byte**: código morto que só ficou visível quando
+    o booleano `$e_mae` virou `$forma`.
+
+13. **UMA CONTA MINHA QUE ESTAVA CERTA POR ACIDENTE DO DADO, e ela está registrada com o erro ao lado.**
+    A primeira versão da frase imprimia `mínimo + 1` para a faixa de quem pede mais de uma demão. Isso
+    **acerta no banco de hoje**, porque existe um produto de uma demão, e **mente** no dia em que o
+    mínimo for 2: diria *"de 3 a 3"* onde a verdade é *"de 2 a 3"*. `demaos_min_acima_de_uma` passou a
+    ser **derivado**, e há mutação que **fabrica esse mundo** apagando a demão única do banco — porque
+    com o dado de hoje as duas fórmulas coincidem, e mutação que não muda resultado não mede nada.
+
+14. **O SYNC DA REVISÃO 75 DERRUBOU O SNIPPET DO GUIA, pela falha que o `PROMPT.md` desta ilha descreve
+    desde 09/10 — e o aviso no topo dele é que me fez ler o log item por item.** O Sync grava o snippet
+    **inativo** e depois chama `activate_snippet()`, que executa o código; com o snippet **ainda
+    carregado** na requisição, a validação reprova: `snippets/guia: gravado (#13) mas NÃO ativado`. **As
+    quatro páginas do Guia responderam 200 servindo o shortcode CRU**, medido no ar — casca sem miolo, e
+    é a quarta vez que esta ilha paga por "200 não é sinal de página viva".
+
+15. **O CONSERTO NÃO FOI `forcar=1`, E A ESCOLHA TEM CAUSA LIDA NO CÓDIGO DO SYNC.** Na falha de ativação
+    a função dá `return` **antes** da linha que grava o sha do item — então o `guia` ficou **sem sha
+    registrado**, e é exatamente isso que um sync **comum** reaplica, sem tocar nos outros oito, que
+    estão de pé e com sha batendo. `forcar=1` reaplicaria os nove, e **é ele que causou este estrago em
+    09/10**: reativar snippet já carregado é o caso que falha. O que o sync comum precisava era não sair
+    cedo (ele sai quando a revisão do manifest é igual à gravada), e por isso a revisão subiu: **75 →
+    76**. O `raw.githubusercontent.com` levou ~6 minutos para propagar (`source-age: 269` de `max-age:
+    300`, medido no cabeçalho), e **esperar foi a decisão certa**, porque `forcar=1` no meio disso
+    poderia derrubar os oito que estavam no ar. Resultado: **revisão 76, 10 aplicados, ZERO linha fora
+    de `ok`**, com `snippets/guia: ok (snippet #13 atualizado)`.
+
+16. **REGISTRO NOVO NA CASCA, E ELE É REGISTRO E NÃO PORTÃO.** A conferência de árvore do
+    `teste-casca.php` só ia do **documento para o código**: página escrita no `ARVORE.md` que o código
+    não conhece reprova. **O outro sentido não existia**, e é nele que a tabela envelhece calada — foi
+    assim que a linha da peça ficou quatorze dias de fora, como o comentário de lá conta. Medido hoje: o
+    documento declara **19** páginas e o mapa da casca traz **13 que ele não conhece** — as **8** de
+    consulta de produto de 09/10 e as **5** categorias do Guia que vivem no mapa sem página (os cartões
+    "em breve" da 16.5). **Por que registro:** as duas famílias vêm de outros blocos, e documentar a
+    árvore delas pede uma decisão que não é desta passada — o snippet de produto declara as oito como
+    `nível 3` com mãe `/materiais/`, que é **nível 1**, e a 16.1 pede os três degraus na URL. Portão
+    vermelho por dívida de outro bloco é portão que a próxima passada aprende a ignorar; número impresso
+    a cada corrida é o que faz a dívida não sumir.
+
+17. **E UMA TABELA QUE SE DECLARAVA DERIVADA ESTAVA ESCRITA À MÃO.** O quadro da 16.5 no `ARVORE.md` diz
+    de si mesmo que é *"derivado por `cruzamento-14-9.py` e não escrito à mão"*, e **três linhas estavam
+    defasadas**: `alicate` tinha 1 no cruzamento e 1 por consulta onde o gerador diz **2 e 2**, e
+    `pastilha` tinha 0 e 0 onde ele diz **1 e 1**. Os vereditos mudaram em **05/10**, quando as SERPs das
+    mães `alicate` e `rejunte` foram medidas, e ninguém reescreveu as linhas. Hoje elas são cópia da
+    saída do comando.
+
+18. **BANCADA, e os números são os de hoje:** `teste-guia` **160 afirmações** (eram 156) e
+    `mutacoes-guia` **23 de 23 decididas certo** (eram 18), com **cinco mutações novas** — uma por erro
+    possível do mecanismo: a pergunta se declarando mãe, a pergunta recortando a categoria inteira, o
+    recorte ignorando a `fonte_id` do valor, a mãe agrupando a pergunta junto, e a conta voltando a ser
+    somada na frase. Cada uma foi pega por uma afirmação **diferente**. `teste-casca` **1040, 0 falha**;
+    os dez `teste-*.php` verdes; `validar-banco` OK; `filhas-do-guia` e `cruzamento-14-9` **APROVADOS**
+    em `--conferir`; e as **14** baterias que trabalham em cima da árvore passam no
+    `teste-rede-de-sinal`.
+
+**O PRÓXIMO PASSO DESBLOQUEADO.** O mecanismo da filha de pergunta está construído e medido, e ele é o
+caminho mais barato de URL que esta ilha tem — mas **só serve categoria com mãe no ar**, e hoje isso é
+só o `acabamento`. As duas pontas da próxima passada, na ordem: **(a)** se o foco continuar nesta ilha,
+a próxima pergunta do `acabamento` sai de uma propriedade com 3 itens de lastro **e** consulta própria
+ainda não creditada — leia a tabela de consultas do `cruzamento-14-9.md` antes de escrever, porque
+`tempo_de_secagem_h` tem os 4 itens e a consulta **já é da filha `selador`**; **(b)** para a `rejunte`
+nascer como mãe ainda falta **1 filha** e para a `alicate` falta **1**, e nos dois casos o custo é ITEM
+DE BANCO ou PERGUNTA NOVA — na `alicate`, com **dez** tentativas de SERP medidas e falhadas, só sobra
+pergunta nova, e ela tem de evitar `azulejo`+`cortar` (limite 4 ampliado), `maquina` (limite 7) e pedir
+a medida (limite 5). **E a pendência que não é da Fundação continua sendo a primeira da lista:** a linha
+`ilha:` do `foco.md` contra a fila do Raphael, que o Pente Fino de hoje marcou como GRAVE.
+
 09/10/2026 20h04Z–21h2xZ — A REDE DE SINAL DAS BATERIAS DE MUTAÇÃO: DE UMA PROTEGIDA PARA AS CATORZE, COM PORTÃO QUE MATA CADA UMA DE PROPÓSITO
 
 **A dívida que o `ESTADO.md` chamava de "13 baterias" está paga, e eram CATORZE.** Módulo

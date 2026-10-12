@@ -65,6 +65,25 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 > — não só o `N aplicado(s)` do resumo. O log guarda 40 linhas, e o `/status` as devolve; a linha que
 > importa é a que **não** começa com `ok`. E rode `conferir-no-ar.py` depois do Sync, sempre: foi ele que
 > pegou isto, com duas falhas em 524 afirmações.
+>
+> **ACONTECEU DE NOVO EM 12/10/2026, E DESTA VEZ SEM `forcar=1` — ENTÃO A CAUSA NÃO É A FLAG.** O sync
+> **comum** da revisão 75 devolveu `snippets/guia: gravado (#13) mas NÃO ativado`, e as quatro páginas do
+> Guia voltaram a servir o shortcode **cru** com HTTP 200. A flag só **amplia** o estrago (reaplica os
+> nove em vez de um); o que falha é **reativar snippet já carregado**, e isso acontece em qualquer sync
+> que reaplique um snippet ativo — inclusive porque o código dele mudou, que é o caso normal de um bloco.
+> **Conte com isto a cada desembarque que mexa em snippet**, não como exceção.
+>
+> **E O CONSERTO ESTÁ MEDIDO, em dois passos e sem `forcar=1`:** o `return` da falha de ativação acontece
+> **antes** de gravar o sha do item (medido no `snippets/clubedomosaico-sync.php`: a linha
+> `$estado['itens']['snippet:'...]` fica depois de todos os `return` de erro), então o item fica **sem sha**
+> e um sync **comum** o reaplica — **sem tocar nos outros oito**, que estão de pé e com sha batendo. Só
+> falta ele não sair cedo, e para isso **suba a revisão** do manifest e empurre. **Espere o
+> `raw.githubusercontent.com` propagar antes de acionar o Sync:** em 12/10 levou **~6 minutos**
+> (`cache-control: max-age=300` e `source-age` subindo até 300, lidos com `curl -sI`), e sincronizar antes
+> disso só repete a leitura da revisão velha. **Não troque a espera por `forcar=1`** — no meio da espera os
+> oito que estão no ar é que correm risco. Resultado em 12/10: revisão **76**, 10 aplicados, **zero linha
+> fora de `ok`**, `snippets/guia: ok (snippet #13 atualizado)`, e as cinco páginas do acabamento em 200
+> com miolo.
 
 > **BATERIA DE MUTAÇÃO MORTA POR SINAL DEIXA O ARQUIVO MUTADO NO REPOSITÓRIO — MEDIDO EM 09/10/2026, E A
 > CULPADA TEM NOME: `mutacoes-par.py`, MUTAÇÃO `t03`.** Ela deixou
