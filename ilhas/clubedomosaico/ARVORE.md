@@ -37,7 +37,7 @@ Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divul
 | Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | 1 de 6 | não |
 | Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 2 de 4 | não |
 | Bases | `/materiais/bases/` | 0 | 0 de 5 | não |
-| Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 | **sim**, desde 02/10/2026 |
+| Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 tipos, **+1 pergunta** | **sim**, desde 02/10/2026 |
 | Como sabemos | `/materiais/como-sabemos/` | — | — | **sim** |
 
 *(A linha dos **Rejuntes** foi de `0 de 4` para `1 de 4` em 05/10/2026 às 19h4xZ. Não é dado novo: a
@@ -75,6 +75,33 @@ primeiro que não precisa do estado de transição:
 | Selar a base antes de fazer mosaico | `/materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/` | `/materiais/acabamento/` | selar a base antes de fazer mosaico: precisa de selador? |
 | Verniz para peça de mosaico | `/materiais/acabamento/verniz-para-peca-de-mosaico/` | `/materiais/acabamento/` | verniz para peça de mosaico artesanal: qual usar |
 | Impermeabilizar a peça de mosaico | `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` | `/materiais/acabamento/` | como impermeabilizar peça de mosaico para ficar no jardim, na chuva |
+| Uma camada de verniz basta na peça? | `/materiais/acabamento/camadas-de-verniz-depois-do-rejunte/` | `/materiais/acabamento/` | a peça de mosaico precisa de mais de uma camada de verniz depois do rejunte |
+
+> **A QUARTA LINHA ENTROU EM 12/10/2026, E ELA NÃO É UM TIPO.** As três de cima são os três tipos do
+> vocabulário de `acabamento`; a quarta é uma filha em **forma de pergunta**, e o recorte dela é a
+> propriedade `demaos_minimas` — declarada por **5 dos 10** produtos da categoria, atravessando os três
+> tipos (verniz 1, impermeabilizante 2, selador 2). Nenhum tipo sozinho reúne os 3 itens que a seção 9
+> exige nessa propriedade, que é exatamente o caso que o `filhas-do-guia.py` descreve.
+>
+> **O que o snippet precisou aprender para ela existir, e é a metade que custou:** até 12/10 o campo
+> `tipo` do registro fazia DOIS trabalhos — dizia se a página era mãe (`tipo === null`, em seis lugares
+> do arquivo) e recortava o banco. Com mãe e filha-de-tipo os dois davam a mesma resposta; a filha de
+> pergunta separa os dois, porque ela não é mãe e também não tem tipo. Lida pelo `tipo`, ela virava a
+> **segunda mãe** do `acabamento`: penduraria em `/materiais/` em vez da mãe, sairia da árvore de nível
+> 3 e listaria as irmãs como índice de categoria. **Nenhum dos três erros dá erro de PHP**, e é por isso
+> que o papel passou a ser escrito no registro (`'papel' => 'mae'|'filha'`) e conferido pela bancada
+> contra a forma do recorte. Cinco mutações novas matam o mecanismo, uma por erro possível.
+>
+> **E a prestação de contas da mãe ganhou uma lista separada:** `cdm_guia_filhas()` devolve TODAS as
+> filhas (é a lista da 16.4(a)) e `cdm_guia_filhas_de_tipo()` só as de tipo. Os tipos **partem** o banco
+> da categoria; a pergunta **atravessa** os tipos, então somá-la ao agrupamento publicaria os cinco
+> produtos que declaram demãos **duas vezes na mesma página** — e o comentário daquele trecho cobra,
+> desde 02/10, que "os dez apareçam exatamente uma vez".
+>
+> **O título da lista de filhas da mãe também mudou, e a mudança estava prevista por escrito.** Ele
+> dizia *"As três etapas, e a hora de cada uma"*, e o comentário do campo avisava em 02/10 que a frase
+> *"seria mentira numa categoria de quatro filhas"*. Ficou mentira em 12/10, e passou a ser **"As três
+> etapas, e a conta que vale para as três"** — nomeando as etapas e a conta, em vez de contar filhas.
 
 O nome da categoria na tela deixou de ser "Acabamento" e passou a ser **"Acabamento: o que passar depois do
 rejunte"** — o mesmo nome no cartão do Guia, no degrau da trilha e no H1, que é a regra de UM NOME POR PÁGINA.
@@ -145,11 +172,18 @@ não conta: ela é a página de nível 2, não filha de si mesma.
 
 | categoria | filhas no DADO | filhas no CRUZAMENTO (tipos) | perguntas | **filhas por CONSULTA** | a mãe pode nascer |
 |---|---|---|---|---|---|
-| `acabamento` | 3 | 3 | 0 | **3** | **SIM** (nasceu em 02/10) |
+| `acabamento` | 3 | 3 | 1 | **4** | **SIM** (nasceu em 02/10) |
 | `rejunte` | 1 | 1 | 1 | **2** | não — falta **uma** |
-| `alicate` | 2 | 1 | 1 | **1** | não |
-| `pastilha` | 1 | 0 | 0 | **0** | não |
+| `alicate` | 2 | 2 | 1 | **2** | não — falta **uma** |
+| `pastilha` | 1 | 1 | 0 | **1** | não |
 | `cola`, `base`, `apoio` | 0 | 0 | 0 | **0** | não |
+
+*(Quadro refeito em 12/10/2026 pela saída de hoje do `cruzamento-14-9.py`. Além da pergunta nova do
+`acabamento`, três linhas estavam defasadas em relação ao gerador: `alicate` tem 2 no cruzamento e 2 por
+consulta — não 1 e 1 —, e `pastilha` tem 1 e 1 — não 0 e 0. A tabela diz de si mesma que é derivada e
+não escrita à mão, e estava escrita à mão: o gerador mudou de veredito nessas duas em 05/10, quando a
+SERP da mãe `alicate` e a da `rejunte` foram medidas, e ninguém reescreveu estas linhas. Hoje elas são a
+cópia da saída do comando.)*
 
 **A `acabamento` é o controle do experimento:** a régua nova tem de **aprovar** a mãe que já está no
 ar, e aprova — 3 filhas por consulta, três consultas distintas, nenhuma igual à da mãe. Régua que não
@@ -437,6 +471,7 @@ artesã já marca o termo no ateliê.
 | `/materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Selar a base antes de fazer mosaico |
 | `/materiais/acabamento/verniz-para-peca-de-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Verniz para peça de mosaico |
 | `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Impermeabilizar a peça de mosaico |
+| `/materiais/acabamento/camadas-de-verniz-depois-do-rejunte/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Uma camada de verniz basta na peça? |
 | `/materiais/qual-cola-usar-no-mosaico/` | 3 | `/materiais/` | Início › Materiais › Qual cola usar no mosaico, e qual rejunte |
 | `/materiais/quantas-pastilhas-para-mosaico/` | 3 | `/materiais/` | Início › Materiais › Quantas pastilhas e quanto rejunte comprar |
 | `/como-fazer/o-que-e-mosaico-picassiete/` | 3 | `/como-fazer/` | Início › Como fazer › O que é mosaico Picassiete, e como colar |

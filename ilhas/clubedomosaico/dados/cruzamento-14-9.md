@@ -33,7 +33,7 @@ conta — ela e a pagina de nivel 2, nao filha de si mesma.
 
 | categoria | filhas no DADO | filhas no CRUZAMENTO (tipos) | perguntas | **filhas por CONSULTA** | veredito da mae | a mae pode nascer |
 |---|---|---|---|---|---|---|
-| `acabamento` | 3 | 3 | 0 | **3** | `pode_nascer` | **SIM** |
+| `acabamento` | 3 | 3 | 1 | **4** | `pode_nascer` | **SIM** |
 | `alicate` | 2 | 2 | 1 | **2** | `pode_nascer` | nao |
 | `apoio` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
 | `base` | 0 | 0 | 0 | **0** | `sem_nenhum_dos_dois` | nao |
@@ -53,15 +53,15 @@ conta da 16.5 mora aqui; a fila dela passa a morar aqui tambem.
 
 | categoria | filhas por CONSULTA | faltam | o que a proxima filha custa |
 |---|---|---|---|
-| `acabamento` | 3 | **0** | nada: a 16.5 esta fechada por consulta |
-| `alicate` | 2 | **1** | MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 8 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 1 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5). |
+| `acabamento` | 4 | **0** | nada: a 16.5 esta fechada por consulta |
+| `alicate` | 2 | **1** | MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 10 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 1 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5). |
 | `rejunte` | 2 | **1** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 1 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `pastilha` | 1 | **2** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 2 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `apoio` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `base` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 | `cola` | 0 | **3** | ITEM DE BANCO ou PERGUNTA NOVA: toda candidata com dado verde desta categoria ja tem consulta aberta propria, entao a 3 filha(s) que falta(m) nao sai(em) de medir SERP. Qual tipo ainda e coletavel esta em `filhas-do-guia.json`, no campo `tipos_fechados_por_canal` da categoria — tipo fechado por canal NAO e caminho. |
 
-**A proxima mae do Guia e a `alicate`**, a 1 filha(s) por consulta. MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 8 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 1 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5).
+**A proxima mae do Guia e a `alicate`**, a 1 filha(s) por consulta. MEDIR SERP NAO E CAMINHO AQUI, e isto e medido e nao suposto: a(s) unica(s) candidata(s) com dado verde e sem consulta propria — `alicate/cortador_de_azulejo`, `pergunta:alicate-espessura-de-corte` — ja teve(ram) 10 tentativa(s) de consulta propria medida(s) e falhada(s) por instrumento, com o motivo de cada uma em `serp-das-filhas.json`. A 1 filha(s) que falta(m) custa(m) ITEM DE BANCO ou PERGUNTA NOVA, e antes de escrever consulta nova leia `o_canal_e_os_limites_dele` naquele arquivo — a consulta de uma filha nunca pede o numero (limite 5).
 
 ### O QUE JA FOI MEDIDO E FALHOU — nao repita a consulta
 
@@ -73,7 +73,7 @@ arquivo: a consulta-alvo de uma filha **nunca pede o numero** (limite 5).
 
 | categoria | candidata | tentativas | consultas que falharam |
 |---|---|---|---|
-| `alicate` | `alicate/cortador_de_azulejo` | **4** | cortador de azulejo manual para mosaico (2026-09-30) · torques cortador de azulejo para mosaico Vonder Cortag (2026-09-30) · ate quantos milimetros o cortador manual de azulejo corta pastilha de mosaico (2026-10-07) · qual ferramenta corta caquinho de azulejo e pastilha para mosaico artesanal espessura (2026-10-07) |
+| `alicate` | `alicate/cortador_de_azulejo` | **6** | cortador de azulejo manual para mosaico (2026-09-30) · torques cortador de azulejo para mosaico Vonder Cortag (2026-09-30) · ate quantos milimetros o cortador manual de azulejo corta pastilha de mosaico (2026-10-07) · qual ferramenta corta caquinho de azulejo e pastilha para mosaico artesanal espessura (2026-10-07) · para fazer caquinho de mosaico precisa de maquina ou o alicate da conta (2026-10-12) · precisa cortar o azulejo em tiras antes de quebrar em caquinho para mosaico (2026-10-12) |
 | `alicate` | `pergunta:alicate-espessura-de-corte` | **4** | ate quantos milimetros de espessura o alicate corta pastilha e caquinho para mosaico artesanal (2026-10-07) · alicate de mosaico artesanal ate quantos milimetros de caquinho ele corta vidro ceramica (2026-10-09) · alicate de mosaico corta pastilha de quantos milimetros de espessura (2026-10-09) · alicate de mosaico ou torques espessura maxima de azulejo que corta mm artesanato (2026-10-09) |
 
 **Consultas disputadas por mais de uma candidata** — cada uma delas vale UMA filha, e e
@@ -92,10 +92,12 @@ onde ela foi arquivada e acidente de quem mediu primeiro.
 | `pergunta:alicate-espessura-de-corte` | `alicate` | 4 | `ABERTA` | **`pode_nascer`** | `alicate/cortador_de_azulejo` | nada: os dois portoes abriram |
 | `pergunta:rejunte-largura-da-junta` | `rejunte` | 5 | `ABERTA` | **`pode_nascer`** | — | nada: os dois portoes abriram |
 | `pergunta:pastilha-placa-ou-caixa` | `pastilha` | 12 | `TOMADA` | **`espera_autoridade`** | — | autoridade de dominio: quem ocupa a SERP e marketplace, loja ou fabricante |
+| `pergunta:acabamento-demaos-do-verniz` | `acabamento` | 5 | `ABERTA` | **`pode_nascer`** | — | nada: os dois portoes abriram |
 
 - **`pergunta:alicate-espessura-de-corte`** — consulta-alvo: *como cortar pastilha de vidro para mosaico qual ferramenta*
 - **`pergunta:rejunte-largura-da-junta`** — consulta-alvo: *da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte*
 - **`pergunta:pastilha-placa-ou-caixa`** — consulta-alvo: *da para comprar so uma placa de pastilha de vidro para mosaico ou precisa levar a caixa fechada*
+- **`pergunta:acabamento-demaos-do-verniz`** — consulta-alvo: *a peca de mosaico precisa de mais de uma camada de verniz depois do rejunte*
 
 ## Recorte por recorte
 
@@ -106,7 +108,7 @@ onde ela foi arquivada e acidente de quem mediu primeiro.
 | `acabamento/selador` | `passa` | 3 | `ABERTA` | 2 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `acabamento/verniz` | `passa` | 4 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `alicate` | `passa` | 6 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
-| `alicate/cortador_de_azulejo` | `passa` | 3 | `ABERTA` | 5 | **`pode_nascer`** | nada: os dois portoes abriram |
+| `alicate/cortador_de_azulejo` | `passa` | 3 | `ABERTA` | 7 | **`pode_nascer`** | nada: os dois portoes abriram |
 | `alicate/martelinho` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `alicate/pinca_mosaico` | `nao_passa` | 0 | `SEM_MEDICAO` | 0 | **`sem_nenhum_dos_dois`** | os dois: 3 item(ns) de banco neste recorte, e a SERP nunca foi olhada |
 | `alicate/torques` | `passa` | 3 | `ABERTA` | 1 | **`pode_nascer`** | nada: os dois portoes abriram |
@@ -162,6 +164,7 @@ consulta ABERTA entra** — faixa de consulta que nao vai nascer e numero que ni
 | `quanto tempo esperar para molhar peca de mosaico depois do rejunte cimenticio` | `rejunte/cimenticio` | `pode_nascer` |
 | `como cortar pastilha de vidro para mosaico qual ferramenta` | `pergunta:alicate-espessura-de-corte` | `pode_nascer` |
 | `da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte` | `pergunta:rejunte-largura-da-junta` | `pode_nascer` |
+| `a peca de mosaico precisa de mais de uma camada de verniz depois do rejunte` | `pergunta:acabamento-demaos-do-verniz` | `pode_nascer` |
 
 ## Os numeros que a SERP nao publica e o banco desta ilha publica
 
@@ -182,4 +185,5 @@ por recorte, com o numero na mao em vez do adjetivo.
 - **`pergunta:alicate-espessura-de-corte`** — o limite em mm por TIPO de ferramenta, declarado pelo FABRICANTE. O que a SERP devolveu foi numero de VENDEDOR e de grandeza trocada: Rubi 15 mm de `capacidade de corte` (loja espanhola), Mejix 19 mm de ABERTURA DA GARRA (que nao e espessura de corte), Sumer 8 mm de revestimento e vidro (pagina de produto brasileira). Tres numeros, tres grandezas, nenhum fabricante brasileiro.
 - **`pergunta:rejunte-largura-da-junta`** — a faixa de junta em milimetros que cada rejunte cobre — `junta_min_mm` e `junta_max_mm`, declaradas por 5 de 5 rejuntes deste banco com fonte de nivel 2 nos cinco, e com as tres faixas separando os tres tipos: acrilico de 1 a 4 mm, epoxi de 1 a 5 mm, cimenticio de 2 a 10 mm. A faixa descoberta que a pagina tem de DIZER, pela 14.3, e o piso de 2 mm dos tres cimenticios: quem encosta os caquinhos nao tem rejunte cimenticio no banco que o atenda, e os dois que chegam a 1 mm sao o acrilico e o epoxi.
 - **`pergunta:pastilha-placa-ou-caixa`** — quanto vem numa caixa de pastilha de vidro e qual e o menor lote que o fabricante fecha. Medido no banco em 08/10/2026: `placas_por_caixa` de 10 a 22 e `m2_por_caixa` de 0,85 a 2,09, declarados por 12 dos 13 itens ativos com fonte de nivel 3. O numero nao foi servido porque a SERP e TOMADA, e ele fica escrito aqui para quem for publicar nao recoletar.
+- **`pergunta:acabamento-demaos-do-verniz`** — quantas demaos a peca de mosaico pede, e por produto. O UNICO numero de demao em dez vagas e de GRANDEZA TROCADA: os dois manuais da Portobello mandam `3 demaos` de SELADOR DE REJUNTE num kit de porcelanato — nao e verniz, nao e peca artesanal e nao e a camada final. O banco desta ilha declara 1, 2, 2, 3 e 3 demaos em cinco produtos, com o intervalo entre elas de 30 min a 4 h em tres deles.
 

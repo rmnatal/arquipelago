@@ -2159,6 +2159,36 @@ foreach ( $doc_arvore as $caminho => $esperado_linha ) {
 cdm_ok( empty( $divergem ), 'nivel e mae de cada pagina batem entre ARVORE.md e a casca',
 	empty( $divergem ) ? count( $doc_arvore ) . ' paginas conferidas' : implode( ' | ', $divergem ) );
 
+/* (a-bis) A DIRECAO QUE FALTAVA, E ELA E REGISTRO E NAO PORTAO (12/10/2026).
+   A conferencia de cima vai do DOCUMENTO para o codigo: pagina escrita no
+   ARVORE.md que o codigo nao conhece reprova. O outro sentido nao existia, e e
+   nele que a tabela envelhece calada — foi assim que a linha da peca ficou
+   quatorze dias de fora, como o comentario acima conta. Medido hoje: o
+   documento declara 19 paginas e o mapa da casca traz 13 que ele nao conhece —
+   e o numero sai do proprio portao, nao de uma conta de cabeca. As 13 sao de
+   DUAS familias: as OITO de consulta de produto da secao 30, publicadas em
+   09/10/2026, e as CINCO categorias do Guia que vivem no mapa sem pagina
+   (`alicates-e-corte`, `bases`, `colas-e-adesivos`, `pastilhas`, `rejuntes`),
+   que sao os cartoes "em breve" da 16.5.
+   POR QUE REGISTRO: as duas familias vem de outros blocos e documentar a arvore
+   delas pede uma decisao que nao e desta passada — o snippet de produto declara
+   as oito como `nivel 3` com mae `/materiais/`, que e nivel 1, e a 16.1 pede os
+   tres degraus na URL; e as cinco categorias nao tem pagina para ter trilha.
+   Portao vermelho por divida de outro bloco e portao que a proxima passada
+   aprende a ignorar; numero impresso a cada corrida e o que faz a divida nao
+   sumir. Quando a decisao sair, esta linha vira `cdm_ok`. */
+$fora_do_documento = array();
+foreach ( $mapa_codigo as $caminho => $linha ) {
+	if ( '' === $caminho || 'inicio' === $caminho || isset( $doc_arvore[ $caminho ] )
+		|| isset( $doc_pecas[ $caminho ] ) || 0 === strpos( $caminho, 'loja/' ) ) {
+		continue;
+	}
+	$fora_do_documento[] = $caminho;
+}
+sort( $fora_do_documento );
+printf( "  %-6s %-70s %s\n", 'reg', 'paginas que a casca serve e o ARVORE.md nao declara (registro)',
+	count( $fora_do_documento ) . ( $fora_do_documento ? ': ' . implode( ', ', $fora_do_documento ) : '' ) );
+
 /* E o outro sentido: pagina que a ilha PUBLICA e que o mapa nao conhece nao tem
    trilha, e pagina sem trilha e pagina sem lugar na arvore. A home e a unica
    excecao, e ela e nomeada. */

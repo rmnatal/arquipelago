@@ -225,15 +225,28 @@ $N_SUP    = count( $BASES ) + count( $TESSELAS );
 $REGUAS_DA_BANCADA = array( 'acabamento' => 'gui_regua_do_acabamento' );
 
 /** O esperado de um recorte de ACABAMENTO, por um caminho que nao passa pelo snippet. */
-function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas ) {
+function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas, $propriedade = null ) {
 	$itens = array();
 	$nomeadas = 0;
 	$relogios = 0;
 	$com_momento = 0;
 	$cobertas = array();
+	$demaos = array();
+	$intervalos = array();
 	foreach ( $ativos as $id => $m ) {
 		if ( null !== $tipo && $m['tipo'] !== $tipo ) {
 			continue;
+		}
+		/* A TERCEIRA FORMA DE RECORTE (12/10/2026): os itens que DECLARAM uma
+		   propriedade com fonte. Escrita aqui do zero, sem chamar nada do
+		   snippet — se as duas metades lessem a mesma funcao, a bancada passaria
+		   a confirmar o recorte em vez de conferi-lo, que e o defeito que esta
+		   ilha mede com mutacao. */
+		if ( null !== $propriedade ) {
+			$pp = isset( $m['propriedades'][ $propriedade ] ) ? $m['propriedades'][ $propriedade ] : array();
+			if ( ! isset( $pp['valor'] ) || null === $pp['valor'] || empty( $pp['fonte_id'] ) ) {
+				continue;
+			}
 		}
 		$itens[] = $id;
 		$p = $m['protecao'];
@@ -259,11 +272,21 @@ function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas ) {
 		if ( is_numeric( $d ) && is_numeric( $s ) && ( 1 === (int) $d || is_numeric( $i ) ) ) {
 			$relogios++;
 		}
+		if ( is_numeric( $d ) ) { $demaos[] = (int) $d; }
+		if ( is_numeric( $i ) ) { $intervalos[] = (int) $i; }
 	}
+	$acima_de_uma = array_values( array_filter( $demaos, function ( $x ) { return $x > 1; } ) );
 
 	return array(
 		'itens'          => $itens,
 		'n'              => count( $itens ),
+		'com_demaos'     => count( $demaos ),
+		'com_uma_demao'  => count( array_keys( $demaos, 1, true ) ),
+		'demaos_max'     => $demaos ? max( $demaos ) : null,
+		'demaos_min_acima_de_uma' => $acima_de_uma ? min( $acima_de_uma ) : null,
+		'com_intervalo'  => count( $intervalos ),
+		'intervalo_min'  => $intervalos ? min( $intervalos ) : null,
+		'intervalo_max'  => $intervalos ? max( $intervalos ) : null,
 		'nomeadas'       => $nomeadas,
 		'cobertas'       => count( array_unique( $cobertas ) ),
 		'quais_cobertas' => array_values( array_unique( $cobertas ) ),
@@ -286,15 +309,57 @@ if ( isset( $mp[1] ) && preg_match_all( '#`([^`]+)`#u', $mp[1], $mr ) ) {
 gui_ok( count( $pode_nascer ) > 0, 'a lista `pode_nascer` foi lida do cruzamento',
 	implode( ', ', $pode_nascer ) );
 
+/* AS PERGUNTAS NÃO ESTÃO NAQUELA LISTA, E NÃO É ESQUECIMENTO DO CRUZAMENTO: a
+   linha `Podem nascer hoje, pelos DOIS portoes` enumera RECORTES DE TIPO, e a
+   filha em forma de pergunta tem tabela própria naquele arquivo. Até 12/10/2026
+   esta bancada só sabia da primeira, e derivava o recorte de cada página como
+   `categoria` ou `categoria/tipo` — com a página de pergunta, cujo `tipo` é
+   null, a derivação devolvia o recorte da MÃE e a página passava no lugar dela,
+   calada. As duas listas entram, cada uma lida de onde ela mora. */
+$pode_nascer_pergunta = array();
+if ( preg_match_all( '#^\|\s*`(pergunta:[^`]+)`\s*\|[^|]*\|[^|]*\|[^|]*\|\s*\*\*`([a-z_]+)`\*\*#um',
+		$cruzamento_md, $mq, PREG_SET_ORDER ) ) {
+	foreach ( $mq as $linha ) {
+		if ( 'pode_nascer' === $linha[2] ) {
+			$pode_nascer_pergunta[] = $linha[1];
+		}
+	}
+}
+gui_ok( count( $pode_nascer_pergunta ) > 0,
+	'a tabela das perguntas do cruzamento foi lida, e ao menos uma esta em pode_nascer',
+	implode( ', ', $pode_nascer_pergunta ) );
+
 $recortes_publicados = array();
 foreach ( cdm_guia_registro() as $id => $ficha ) {
 	/* O RECORTE SAI DA CATEGORIA DA PROPRIA PAGINA. Com `acabamento` escrito
 	   aqui, a pagina de uma segunda mae seria conferida contra o recorte da
 	   primeira e passaria por coincidencia de nome. */
 	$cat     = $ficha['categoria'];
-	$recorte = ( null === $ficha['tipo'] ) ? $cat : $cat . '/' . $ficha['tipo'];
+	$forma   = cdm_guia_forma( $id );
+	$recorte = isset( $ficha['recorte'] ) ? (string) $ficha['recorte'] : '';
+
+	/* O RECORTE É DECLARADO NA FICHA, E AQUI ELE É CONFERIDO CONTRA A FORMA —
+	   campo escrito a mão que ninguem confere e campo que nao existe custam o
+	   mesmo. Mae tem o nome da categoria, filha de tipo tem `cat/tipo`, filha de
+	   pergunta tem um id que comeca com `pergunta:`. */
+	$esperado = '';
+	if ( 'mae' === $forma ) {
+		$esperado = $cat;
+	} elseif ( 'tipo' === $forma ) {
+		$esperado = $cat . '/' . $ficha['tipo'];
+	}
+	if ( 'pergunta' === $forma ) {
+		gui_ok( 0 === strpos( $recorte, 'pergunta:' ),
+			"[$id] o recorte declarado e um id de pergunta", $recorte );
+	} else {
+		gui_ok( '' !== $esperado && $recorte === $esperado,
+			"[$id] o recorte declarado bate com a forma da pagina",
+			$recorte . ' (esperado ' . $esperado . ')' );
+	}
+
 	$recortes_publicados[ $id ] = $recorte;
-	gui_ok( in_array( $recorte, $pode_nascer, true ),
+	$lista = ( 'pergunta' === $forma ) ? $pode_nascer_pergunta : $pode_nascer;
+	gui_ok( in_array( $recorte, $lista, true ),
 		"[$id] o recorte esta em pode_nascer (os dois portoes abriram)", $recorte );
 }
 
@@ -312,6 +377,17 @@ foreach ( array_keys( $cats_publicadas ) as $cat ) {
 	$autorizados = array_values( array_filter( $pode_nascer, function ( $r ) use ( $cat ) {
 		return $cat === $r || 0 === strpos( $r, $cat . '/' );
 	} ) );
+	/* E AS PERGUNTAS DESTA CATEGORIA TAMBÉM, pelo mesmo motivo da direção: a
+	   pergunta que os dois portões autorizam e que ninguem publicou e uma pagina
+	   que devia existir. A categoria da pergunta e lida do proprio cruzamento,
+	   nunca do nome dela — `pergunta:alicate-...` e da `alicate` por declaracao
+	   e nao por prefixo. */
+	foreach ( $pode_nascer_pergunta as $pid ) {
+		if ( preg_match( '#^\|\s*`' . preg_quote( $pid, '#' ) . '`\s*\|\s*`([^`]+)`#um',
+				$cruzamento_md, $mc ) && $cat === $mc[1] ) {
+			$autorizados[] = $pid;
+		}
+	}
 	sort( $autorizados );
 	$publicados = array();
 	foreach ( $recortes_publicados as $id => $recorte ) {
@@ -327,6 +403,39 @@ foreach ( array_keys( $cats_publicadas ) as $cat ) {
 
 /* E O PORTAO DE DADO DA SECAO 9, lido do arquivo que o deriva. */
 foreach ( $recortes_publicados as $id => $recorte ) {
+	if ( 'pergunta' === cdm_guia_forma( $id ) ) {
+		/* NA PERGUNTA AS TRES AFIRMACOES COINCIDEM, e e o proprio
+		   `filhas-do-guia.py` que explica por que: o recorte dela E o conjunto
+		   dos itens que declaram o numero com lastro, entao "3 itens", "3 com
+		   lastro" e "um numero sobre 3" sao a mesma contagem. Cobrar aqui a
+		   coluna `numeros_calculaveis_sobre_o_recorte`, que so existe na tabela
+		   dos tipos, reprovaria pagina certa. */
+		$achou = null;
+		foreach ( $filhas_do_guia['perguntas'] as $p ) {
+			if ( $p['pergunta'] === $recorte ) { $achou = $p; }
+		}
+		gui_ok( $achou && 'passa' === $achou['veredito']
+			&& $achou['itens_que_declaram_o_numero'] >= 3
+			&& empty( $achou['divergencias_com_a_ancora_a_mao'] ),
+			"[$id] 3 itens declaram o numero com lastro, e a ancora a mao nao caiu (secao 9)",
+			$achou ? $achou['itens_que_declaram_o_numero'] . ' itens, '
+				. count( $achou['divergencias_com_a_ancora_a_mao'] ) . ' divergencia(s)' : 'pergunta ausente' );
+
+		/* E O RECORTE DO PHP TEM DE SER O MESMO QUE O PORTAO MEDIU, item por
+		   item. As duas metades contam o lastro por caminhos diferentes — o
+		   Python por `propriedades_com_lastro`, o PHP por `cdm_guia_valor()` — e
+		   e exatamente o par de contagens que divergiria calado. */
+		if ( $achou ) {
+			$do_php = cdm_guia_contas( $id )['itens'];
+			sort( $do_php );
+			$do_portao = $achou['itens'];
+			sort( $do_portao );
+			gui_ok( $do_php === $do_portao,
+				"[$id] o recorte do PHP traz exatamente os itens que o portao de dado mediu",
+				implode( ', ', $do_php ) );
+		}
+		continue;
+	}
 	$achou = null;
 	foreach ( $filhas_do_guia['recortes'] as $r ) {
 		if ( $r['recorte'] === $recorte ) { $achou = $r; }
@@ -459,13 +568,41 @@ foreach ( cdm_guia_registro() as $id => $ficha ) {
 	$cat        = $ficha['categoria'];
 	$ativos     = $ativos_por_cat[ $cat ];
 	$nome_regua = cdm_guia_categorias()[ $cat ]['regua'];
-	$regua      = call_user_func( $REGUAS_DA_BANCADA[ $nome_regua ], $ficha['tipo'], $ativos, $BASES, $TESSELAS );
+	$prop       = isset( $ficha['propriedade'] ) ? $ficha['propriedade'] : null;
+	$regua      = call_user_func( $REGUAS_DA_BANCADA[ $nome_regua ], $ficha['tipo'], $ativos, $BASES, $TESSELAS, $prop );
 
 	gui_ok( '' !== $corpo, 'a pagina montou em processo proprio', strlen( $html ) . ' bytes' );
 
-	/* 2. AS CONTAS, conferidas NA TELA contra a regua independente. */
-	gui_ok( false !== mb_strpos( $texto, 'São ' . $regua['n'] . ' produtos' ),
-		'a tela publica o numero de produtos do recorte', $regua['n'] . ' produtos' );
+	/* 2. AS CONTAS, conferidas NA TELA contra a regua independente.
+	   A PAGINA DE PERGUNTA ABRE COM OUTRA FRASE, e de proposito: ela responde a
+	   pergunta antes de contar produto, e dizer "Sao N produtos deste tipo" numa
+	   pagina que nao tem tipo seria a mentira que o campo `papel` existe para
+	   impedir. O numero do recorte continua sendo cobrado NA TELA, na frase que
+	   ela usa. */
+	if ( 'pergunta' === cdm_guia_forma( $id ) ) {
+		gui_ok( false !== mb_strpos( $texto, 'dos ' . $regua['com_demaos'] . ' produtos desta página' ),
+			'a tela publica o numero de produtos do recorte (frase da pergunta)',
+			$regua['com_demaos'] . ' produtos' );
+		gui_ok( $regua['com_demaos'] === $regua['n'],
+			'o recorte da pergunta E o conjunto que declara o numero — as duas contagens coincidem',
+			$regua['n'] . ' = ' . $regua['com_demaos'] );
+
+		/* OS NUMEROS DA PERGUNTA, UM A UM, CONTRA A CONTAGEM INDEPENDENTE. Sem
+		   isto a pagina poderia publicar qualquer faixa de demao e passar, que e
+		   o estado em que a `cola` ficou por quatro blocos: portao verde e
+		   numero nao conferido. */
+		gui_ok( false !== mb_strpos( $texto, 'de ' . $regua['demaos_min_acima_de_uma'] . ' a ' . $regua['demaos_max'] . ' demãos' ),
+			'a faixa de demaos de quem pede mais de uma bate com a contagem',
+			$regua['demaos_min_acima_de_uma'] . ' a ' . $regua['demaos_max'] );
+		gui_ok( false !== mb_strpos( $texto, 'de ' . $regua['intervalo_min'] . ' minutos a ' . $regua['intervalo_max'] ),
+			'o intervalo entre demaos na tela bate com a contagem',
+			$regua['intervalo_min'] . ' a ' . $regua['intervalo_max'] );
+		gui_ok( false !== mb_strpos( $texto, 'Em ' . $regua['com_intervalo'] . ' dos ' . $regua['com_demaos'] . ' dá para somar' ),
+			'quantos declaram o intervalo bate com a contagem', (string) $regua['com_intervalo'] );
+	} else {
+		gui_ok( false !== mb_strpos( $texto, 'São ' . $regua['n'] . ' produtos' ),
+			'a tela publica o numero de produtos do recorte', $regua['n'] . ' produtos' );
+	}
 	gui_ok( false !== mb_strpos( $texto, 'Das ' . number_format_i18n( $regua['n'] * $N_SUP ) . ' combinações' ),
 		'a tela publica as combinacoes (produtos x superficies)', ( $regua['n'] * $N_SUP ) . ' celulas' );
 	gui_ok( false !== mb_strpos( $texto, $regua['nomeadas'] . ' estão escritas na frase de algum fabricante' ),

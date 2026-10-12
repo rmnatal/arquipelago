@@ -201,9 +201,12 @@ def m_uma_pagina_a_mais_sem_autorizacao(raiz):
     autoriza. E a forma mais provavel de esta familia crescer errado: o banco
     tem itens, o recorte parece pronto, e ninguem abre o veredito."""
     trocar(raiz, SNIPPET,
-           "\t\t'selador' => array(\n\t\t\t'tipo'     => 'selador',",
+           "\t\t'selador' => array(\n\t\t\t'papel'    => 'filha',",
            "\t\t'pastilha_vidro' => array(\n"
+           "\t\t\t'papel'    => 'filha',\n"
            "\t\t\t'tipo'     => 'pastilha_vidro',\n"
+           "\t\t\t'propriedade' => null,\n"
+           "\t\t\t'recorte'  => 'acabamento/pastilha_vidro',\n"
            # A CATEGORIA ENTRA CERTA DE PROPOSITO: sem ela a pagina reprovaria
            # pelo portao da declaracao (1-b) e nao pelo do cruzamento, que e o
            # que esta mutacao quer medir. Mutacao que reprova pelo motivo errado
@@ -220,7 +223,71 @@ def m_uma_pagina_a_mais_sem_autorizacao(raiz):
            "\t\t\t'o_que_nao_e' => 'O que ela nao e: caco de espelho.',\n"
            "\t\t\t'faq_propria' => array(),\n"
            "\t\t),\n"
-           "\t\t'selador' => array(\n\t\t\t'tipo'     => 'selador',")
+           "\t\t'selador' => array(\n\t\t\t'papel'    => 'filha',")
+
+
+def m_pergunta_se_declara_mae(raiz):
+    """A filha em forma de PERGUNTA passa a se declarar `mae`. E o defeito que o
+    campo `papel` existe para impedir, e ele nao da erro de PHP nenhum: a pagina
+    vira a segunda mae do `acabamento`, pendura em /materiais/ em vez da mae,
+    sai da arvore de nivel 3 e passa a listar as irmas como se fosse indice de
+    categoria. Ate 12/10/2026 a resposta de `e mae?` era `tipo === null`, e por
+    ela esta pagina JA era mae."""
+    trocar(raiz, SNIPPET,
+           "\t\t'demaos' => array(\n\t\t\t'papel'    => 'filha',",
+           "\t\t'demaos' => array(\n\t\t\t'papel'    => 'mae',")
+
+
+def m_pergunta_recorta_a_categoria_inteira(raiz):
+    """A pergunta perde a `propriedade` e passa a recortar a categoria inteira —
+    os dez produtos em vez dos cinco que declaram demao. E a pagina publicando
+    uma faixa de demaos sobre um conjunto em que metade nao declara demao
+    nenhuma, que e a invencao mais barata desta familia."""
+    trocar(raiz, SNIPPET,
+           "\t\t\t'propriedade' => 'demaos_minimas',",
+           "\t\t\t'propriedade' => null,")
+
+
+def m_recorte_da_pergunta_ignora_a_fonte(raiz):
+    """O recorte da pergunta passa a aceitar valor SEM `fonte_id`. O numero vai a
+    tela sem procedencia e as duas metades divergem calado: o portao de dado em
+    Python conta `propriedades_com_lastro` e o PHP contaria so `valor`."""
+    trocar(raiz, SNIPPET,
+           "\t\tif ( null !== $prop && null === cdm_guia_valor( $m, $prop ) ) {",
+           "\t\tif ( null !== $prop && ! isset( $m['propriedades'][ $prop ] ) ) {")
+
+
+def m_a_mae_agrupa_a_pergunta_junto(raiz):
+    """A prestacao de contas da mae volta a agrupar TODAS as filhas, pergunta
+    inclusive — e os cinco produtos que declaram demao aparecem duas vezes na
+    mesma pagina. E o estado anterior a 12/10/2026, quando `cdm_guia_filhas()`
+    era a unica lista que existia."""
+    trocar(raiz, SNIPPET,
+           "\t\tforeach ( cdm_guia_filhas_de_tipo( $cat ) as $fid => $f ) {",
+           "\t\tforeach ( cdm_guia_filhas( $cat ) as $fid => $f ) {")
+
+
+def m_minimo_acima_de_uma_volta_a_ser_somado(raiz):
+    """`demaos_min_acima_de_uma` volta a ser `minimo + 1`, que foi a primeira
+    versao desta regua em 12/10/2026. Ela ACERTA no banco de hoje, porque existe
+    um produto de uma demao — e e exatamente por isso que a mutacao importa: ela
+    produz o mundo em que a conta erra, apagando a demao unica do banco, e mede
+    se a bancada o enxerga."""
+    trocar(raiz, SNIPPET,
+           "\t\t'demaos_min_acima_de_uma' => $mais_de_uma ? min( $mais_de_uma ) : null,",
+           "\t\t'demaos_min_acima_de_uma' => $demaos ? min( $demaos ) + 1 : null,")
+    # E O MUNDO QUE FAZ A CONTA ERRAR: sem nenhum produto de UMA demao, o
+    # `minimo + 1` passa a mentir. Com o banco de hoje as duas formulas
+    # coincidem, e mutacao que nao muda resultado nao mede nada.
+    banco = "dados/materiais-acabamento.json"
+    import json as _json
+    d = _json.loads(ler(raiz, banco))
+    for m in d["materiais"]:
+        p = (m.get("propriedades") or {}).get("demaos_minimas")
+        if p and p.get("valor") == 1:
+            p["valor"] = 2
+            p["declarado_como"] = "2 demaos"
+    gravar(raiz, banco, _json.dumps(d, ensure_ascii=False, indent=1) + "\n")
 
 
 def m_uma_filha_some_do_registro(raiz):
@@ -340,6 +407,14 @@ MUTACOES = [
     ("a busca CRUA passa a se declarar patrocinada", m_busca_crua_vira_patrocinada, "reprova"),
     ("nasce uma pagina que o cruzamento NAO autoriza", m_uma_pagina_a_mais_sem_autorizacao, "reprova"),
     ("uma filha autorizada some do registro", m_uma_filha_some_do_registro, "reprova"),
+    # AS CINCO DO MECANISMO DA FILHA EM FORMA DE PERGUNTA (12/10/2026). As
+    # quatro primeiras matam o campo `papel` e o recorte por propriedade; a
+    # quinta fabrica o mundo em que a conta `minimo + 1` erra.
+    ("a pergunta se declara mae", m_pergunta_se_declara_mae, "reprova"),
+    ("a pergunta recorta a categoria inteira", m_pergunta_recorta_a_categoria_inteira, "reprova"),
+    ("o recorte da pergunta ignora a fonte do valor", m_recorte_da_pergunta_ignora_a_fonte, "reprova"),
+    ("a mae agrupa a pergunta junto e repete cinco produtos", m_a_mae_agrupa_a_pergunta_junto, "reprova"),
+    ("o minimo acima de uma demao volta a ser somado na frase", m_minimo_acima_de_uma_volta_a_ser_somado, "reprova"),
     ("uma segunda categoria e declarada sem regua", m_categoria_nova_sem_regua, "reprova"),
     ("o banco da categoria aponta para o arquivo de outra", m_banco_da_categoria_trocado, "reprova"),
     ("a regua perde um dos seis papeis", m_regua_sem_um_papel, "pagina-honesta"),

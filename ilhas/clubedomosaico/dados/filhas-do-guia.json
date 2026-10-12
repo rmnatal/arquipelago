@@ -1923,16 +1923,44 @@
    "veredito": "passa",
    "motivo": null,
    "divergencias_com_a_ancora_a_mao": []
+  },
+  {
+   "pergunta": "pergunta:acabamento-demaos-do-verniz",
+   "categoria": "acabamento",
+   "propriedade_que_carrega_o_numero": "demaos_minimas",
+   "consulta_alvo": "a peca de mosaico precisa de mais de uma camada de verniz depois do rejunte",
+   "titulo_candidato": "Uma demao ou mais: quantas camadas cada produto pede",
+   "itens_que_declaram_o_numero": 5,
+   "itens": [
+    "coral-resina-acrilica",
+    "coral-selador-acrilico",
+    "quartzolit-protetor-para-fachadas",
+    "quartzolit-verniz-protetor-para-pisos",
+    "suvinil-seladora-para-madeira"
+   ],
+   "tipos_atravessados": [
+    "impermeabilizante",
+    "selador",
+    "verniz"
+   ],
+   "atravessa_mais_de_um_tipo": true,
+   "coincide_com_o_recorte_de_tipo": null,
+   "cobre_a_categoria_inteira": false,
+   "veredito": "passa",
+   "motivo": null,
+   "divergencias_com_a_ancora_a_mao": []
   }
  ],
  "resumo_das_perguntas": {
-  "perguntas_medidas": 3,
+  "perguntas_medidas": 4,
   "passam_o_portao_de_dado": [
+   "pergunta:acabamento-demaos-do-verniz",
    "pergunta:alicate-espessura-de-corte",
    "pergunta:pastilha-placa-ou-caixa",
    "pergunta:rejunte-largura-da-junta"
   ],
   "atravessam_mais_de_um_tipo": [
+   "pergunta:acabamento-demaos-do-verniz",
    "pergunta:alicate-espessura-de-corte",
    "pergunta:rejunte-largura-da-junta"
   ],

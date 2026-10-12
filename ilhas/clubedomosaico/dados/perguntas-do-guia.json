@@ -61,6 +61,24 @@
     ],
     "escrita_em": "2026-10-08"
    }
+  },
+  {
+   "id": "pergunta:acabamento-demaos-do-verniz",
+   "categoria": "acabamento",
+   "propriedade_que_carrega_o_numero": "demaos_minimas",
+   "consulta_alvo": "a peca de mosaico precisa de mais de uma camada de verniz depois do rejunte",
+   "titulo_candidato": "Uma demao ou mais: quantas camadas cada produto pede",
+   "por_que_e_pergunta_e_nao_tipo": "`demaos_minimas` e declarada por 5 dos 10 itens de `acabamento` e atravessa os TRES tipos da categoria — verniz (1), impermeabilizante (2) e selador (2). Nenhum tipo sozinho reune os 3 itens que a secao 9 exige nesta propriedade, e e literalmente o caso que o cabecalho do `filhas-do-guia.py` descreve: a pergunta reune onde o tipo nao reune. E ela NAO coincide com nenhum recorte de tipo nem com a categoria inteira (5 de 10), entao nao e o piso com outro titulo. O contraste que a pagina responde e o espalhamento: 1, 2, 2, 3 e 3 demaos declaradas, com o intervalo entre elas indo de 30 minutos a 4 horas em 3 dos 5 — dois numeros que se somam e que nenhum dos tres tipos publica inteiro.",
+   "o_que_a_serp_nao_publica": "quantas demaos a peca de mosaico pede, e por produto. Medido em 12/10/2026: dos 9 resultados, 6 sao brasileiros e NENHUM responde a pergunta — 4 deles (oantagonista x2 e revistaoeste x2) sao materia de entretenimento sobre fazer mosaico com sobra de piso, do assunto desta ilha e sem numero nenhum. O UNICO numero de demao na SERP e de GRANDEZA TROCADA: os dois manuais de assentamento da Portobello mandam 3 demaos de SELADOR DE REJUNTE num kit de porcelanato, que nao e verniz e nao e peca artesanal.",
+   "ancora_a_mao": {
+    "itens_que_declaram_o_numero": 5,
+    "tipos_atravessados": [
+     "impermeabilizante",
+     "selador",
+     "verniz"
+    ],
+    "escrita_em": "2026-10-12"
+   }
   }
  ]
 }
