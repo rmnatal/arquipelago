@@ -19,7 +19,7 @@ ultima_execucao: 2026-10-09T20:04Z   # QUARTA execucao do dia, e a unica que nao
                                      # de consulta de produto) e 19h19Z (o apelido de endereco com
                                      # NIVEL e os treze 301). O horario aqui e o da RESERVA, que e o
                                      # que a secao 1 compara; o bloco fechou perto de 21hZ.
-executando_desde: null
+executando_desde: 2026-10-12T10:19Z   # reserva desta execucao (secao 1, passo 5)
 ultima_ronda: 2026-10-09T14:55Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente é de 07/10 20h35Z). ZERO defeito de ilha; o reparo do .htaccess de 08/10 reconferido no ar e DE PÉ.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
