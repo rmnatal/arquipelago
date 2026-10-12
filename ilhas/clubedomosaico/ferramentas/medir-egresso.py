@@ -86,6 +86,48 @@ NAO_SE_PEDE = {
 }
 
 
+# ---------------------------------------------------------------- quem trava coleta
+#
+# O PEDIDO E RESTRITO A QUEM TRAVA COLETA. Host de referencia de conteudo JA LIDA (enciclopedia,
+# tese, museu) esta bloqueado do mesmo jeito e nao se pede: nenhum trabalho pendente depende
+# dele, e pedido longo e pedido que nao se atende.
+#
+# SAO DOIS CAMINHOS, e o segundo nasceu em 12/10/2026 porque o primeiro, sozinho, mentiu por
+# 12 dias seguidos:
+#
+# (1) O NOME DO ARQUIVO QUE CITA O HOST (`GATILHOS`). Funciona para os cinco bancos de material,
+#     que ainda respondem "este documento foi aberto?" em PROSA, dentro do campo `tipo`.
+#     `fontes-pedidas.json` entra aqui porque e, por definicao, o arquivo onde uma fonte EXIGIDA
+#     e declarada: ficou de fora na passada das 10h4xZ de 30/09 e o efeito foi absurdo —
+#     `loctite.com.br`, o dominio que motivou o arquivo, saiu listado em "bloqueado e nao
+#     pedido". Portao que nao le o arquivo escrito para ele ler nao mede nada.
+#
+# (2) A DECLARACAO DO PROPRIO REGISTRO DE FONTE (`documento_aberto: false`, esquema v17). Este
+#     caminho existe porque o (1) decide por NOME e nome envelhece calado. `dados/tecnicas.json`
+#     e um banco — ele diz isso de si mesmo na primeira linha — e nasceu em 14/09/2026, DEPOIS
+#     da lista de gatilhos, entao nunca entrou nela. Resultado medido em 12/10/2026: os oito
+#     hosts das fontes de tecnica sairam 12 dias na secao "BLOQUEADO E NAO PEDIDO — porque
+#     nenhum trabalho pendente depende dele", com a frase gerada ao lado jurando que sao
+#     referencia "JA LIDA e ja citada". As duas metades sao falsas no arquivo que as cita:
+#     `tecnicas.json` declara "NENHUM documento foi aberto", as dez fontes repetem isso em
+#     `leitura`, e a pendencia `tecnica-fonte-nunca-aberta` esta ABERTA desde 14/09 pedindo
+#     "abrir ao menos uma fonte por tecnica" — com TRES tecnicas de campos todos em null por
+#     causa dela. O pedido que decide por nome de arquivo nao pedia os unicos hosts que
+#     destravam tres das URLs que faltam para o piso.
+#
+# A assimetria e de proposito: `documento_aberto: true` NAO tira host nenhum do pedido pelo
+# caminho (1). Fonte aberta uma vez nao prova que o host entrega a proxima, e o (1) mede
+# necessidade de COLETA, nao de leitura.
+GATILHOS = ("materiais-", "esquema-banco.json", "cobertura.json", "fontes-pedidas.json")
+
+
+def trava_coleta(r):
+    """O host e necessario a trabalho de coleta PENDENTE? (os dois caminhos acima)"""
+    if r.get("fonte_nao_aberta"):
+        return True
+    return any(g in arq for arq in r.get("citado_por", ()) for g in GATILHOS)
+
+
 # Sufixos publicos de mais de um rotulo que aparecem nas fontes desta ilha. A lista e curta
 # de proposito: dominio registravel adivinhado por "penultimo rotulo" erra em `.com.br` e
 # em `.leg.br`, e errar aqui produz um PEDIDO errado — que e o defeito que esta ferramenta
@@ -129,6 +171,23 @@ def hosts_dos_bancos(raiz):
 
     def andar(obj, arq, caminho):
         if isinstance(obj, dict):
+            # A DECLARACAO E DO REGISTRO DE FONTE, NAO DA URL, e por isso ela se le aqui e
+            # nao no ramo da string: `documento_aberto` e irmao de `url` dentro do mesmo
+            # objeto (esquema v17, `escada_de_fontes.documento_aberto`). Ler `false` como
+            # "este host nao entrega a fonte que o banco precisa" e o que faz o PEDIDO sair
+            # da declaracao do dado em vez de uma lista de nomes de arquivo dentro desta
+            # ferramenta — a mesma razao pela qual `fontes-pedidas.json` existe.
+            url = obj.get("url")
+            if (isinstance(url, str) and url.startswith(("http://", "https://"))
+                    and obj.get("documento_aberto") is False):
+                m = re.match(r"https?://([^/]+)", url)
+                if m:
+                    h = m.group(1).lower()
+                    achados.setdefault(h, {"urls": set(), "citado_por": set(),
+                                           "fonte_nao_aberta": False, "declarada_por": set()})
+                    achados[h]["fonte_nao_aberta"] = True
+                    achados[h]["declarada_por"].add(
+                        os.path.basename(arq) + " (fonte `" + "/".join(caminho[-1:]) + "`)")
             for k, v in obj.items():
                 andar(v, arq, caminho + [str(k)])
         elif isinstance(obj, list):
@@ -139,7 +198,8 @@ def hosts_dos_bancos(raiz):
             if not m:
                 return
             h = m.group(1).lower()
-            achados.setdefault(h, {"urls": set(), "citado_por": set()})
+            achados.setdefault(h, {"urls": set(), "citado_por": set(),
+                                   "fonte_nao_aberta": False, "declarada_por": set()})
             achados[h]["urls"].add(obj)
             achados[h]["citado_por"].add(os.path.basename(arq))
         elif isinstance(obj, str) and caminho and RE_CAMPO_DE_DOMINIO.search(caminho[-1]):
@@ -154,7 +214,8 @@ def hosts_dos_bancos(raiz):
                 if not parece_host(d):
                     continue
                 h = d.lower().strip(".")
-                achados.setdefault(h, {"urls": set(), "citado_por": set()})
+                achados.setdefault(h, {"urls": set(), "citado_por": set(),
+                                       "fonte_nao_aberta": False, "declarada_por": set()})
                 achados[h]["citado_por"].add(os.path.basename(arq) + " (campo `" + caminho[-1] + "`)")
 
     for arq in sorted(glob.glob(os.path.join(raiz, "dados", "*.json"))):
@@ -187,7 +248,8 @@ def hosts_dos_bancos(raiz):
             if not linha.get("exigido_por"):
                 sys.exit("`%s` esta em fontes-pedidas.json sem `exigido_por` — recusado, "
                          "porque dominio sem quem o exija e lista de desejo, nao medicao." % d)
-            achados.setdefault(d, {"urls": set(), "citado_por": set()})
+            achados.setdefault(d, {"urls": set(), "citado_por": set(),
+                                   "fonte_nao_aberta": False, "declarada_por": set()})
             achados[d]["citado_por"].add("fontes-pedidas.json (exigido em prosa)")
 
     return achados
@@ -363,6 +425,69 @@ def autoteste():
             falhas += 1
         print("  %s irmaos de    %-26s -> %s (esperado %s)" % (marca, host, obtido, esperado))
 
+    # QUEM TRAVA COLETA, e cada caso mata um dos dois caminhos de proposito. Sem estes
+    # casos o portao do pedido nao tem bancada nenhuma — e foi um portao sem bancada que
+    # deixou os oito hosts de tecnica 12 dias fora do pedido.
+    print()
+    trava_casos = [
+        # (nome, registro do host, esperado)
+        ("banco de material pelo NOME do arquivo",
+         {"citado_por": ["materiais-colas.json"], "fonte_nao_aberta": False}, True),
+        ("fonte declarada NAO ABERTA em arquivo fora dos GATILHOS",
+         {"citado_por": ["tecnicas.json"], "fonte_nao_aberta": True}, True),
+        ("O CASO QUE FALHAVA ATE 12/10/2026: tecnicas.json SEM a declaracao",
+         {"citado_por": ["tecnicas.json"], "fonte_nao_aberta": False}, False),
+        ("referencia ja lida em arquivo fora dos GATILHOS",
+         {"citado_por": ["corpus-buscas.json"], "fonte_nao_aberta": False}, False),
+        ("declaracao vence o nome tambem quando o arquivo nao e banco nenhum",
+         {"citado_por": ["consultas-de-produto.json"], "fonte_nao_aberta": True}, True),
+        ("irmao medido que nenhum arquivo cita",
+         {"citado_por": [], "fonte_nao_aberta": False}, False),
+        ("fonte ABERTA em banco de material continua travando pelo caminho (1)",
+         {"citado_por": ["materiais-rejuntes.json"], "fonte_nao_aberta": False}, True),
+        ("registro sem as chaves novas nao explode e cai no caminho (1)",
+         {"citado_por": ["esquema-banco.json"]}, True),
+    ]
+    for i, (nome, reg, esperado) in enumerate(trava_casos, 1):
+        obtido = trava_coleta(reg)
+        marca = "ok  " if obtido == esperado else "FALHA"
+        if obtido != esperado:
+            falhas += 1
+        print("  %s trava %2d  %-62s -> %s (esperado %s)" % (marca, i, nome[:62], obtido, esperado))
+
+    # E O EXTRATOR LENDO A DECLARACAO NO LUGAR CERTO: ela e irma de `url` dentro do
+    # registro de fonte, e um `documento_aberto` solto em outro nivel nao marca nada.
+    print()
+    import tempfile, shutil
+    extrator_casos = [
+        ("fonte com documento_aberto false marca o host",
+         {"tecnicas": [{"fontes": {"f": {"url": "https://exemplo-a.edu.br/x.pdf",
+                                         "documento_aberto": False}}}]},
+         "exemplo-a.edu.br", True),
+        ("fonte com documento_aberto true NAO marca",
+         {"tecnicas": [{"fontes": {"f": {"url": "https://exemplo-b.edu.br/x.pdf",
+                                         "documento_aberto": True}}}]},
+         "exemplo-b.edu.br", False),
+        ("fonte sem o campo NAO marca (ausencia nao e false)",
+         {"tecnicas": [{"fontes": {"f": {"url": "https://exemplo-c.edu.br/x.pdf"}}}]},
+         "exemplo-c.edu.br", False),
+        ("documento_aberto solto fora do registro da URL nao marca o host",
+         {"documento_aberto": False, "tecnicas": [{"fontes": {"f": {"url": "https://exemplo-d.edu.br/x.pdf"}}}]},
+         "exemplo-d.edu.br", False),
+    ]
+    for i, (nome, banco, host, esperado) in enumerate(extrator_casos, 1):
+        tmp = tempfile.mkdtemp()
+        try:
+            os.makedirs(os.path.join(tmp, "dados"))
+            json.dump(banco, open(os.path.join(tmp, "dados", "tecnicas.json"), "w", encoding="utf-8"))
+            obtido = bool(hosts_dos_bancos(tmp).get(host, {}).get("fonte_nao_aberta"))
+        finally:
+            shutil.rmtree(tmp)
+        marca = "ok  " if obtido == esperado else "FALHA"
+        if obtido != esperado:
+            falhas += 1
+        print("  %s extrator %d  %-58s -> %s (esperado %s)" % (marca, i, nome[:58], obtido, esperado))
+
     # O EXTRATOR DE PROSA, cuja primeira versao pediu rede para `validar-banco.py`.
     print()
     prosa = ("dexco.com.br, duratex.com.br e termotecnica.ind.br — com clubedomosaico.com.br "
@@ -376,7 +501,8 @@ def autoteste():
     print("       (esperado %s — nem `validar-banco.py` nem `1.13.0` entram)" % esperado)
     prosa_casos = 1
 
-    total = len(casos) + len(cod_casos) + len(reg_casos) + len(irmao_casos) + prosa_casos
+    total = (len(casos) + len(cod_casos) + len(reg_casos) + len(irmao_casos) + prosa_casos
+             + len(trava_casos) + len(extrator_casos))
     print()
     if falhas:
         sys.exit("AUTOTESTE REPROVADO: %d de %d" % (falhas, total))
@@ -471,19 +597,52 @@ def montar_md(resultado, quando):
         A("A **20.1** manda acrescentar o dominio **e o curinga**. Caminho: `claude.ai/code` -> seletor de")
         A("ambiente -> Nuvem -> engrenagem -> Dominios permitidos. As linhas, uma por linha:")
         A("")
+        # O PEDIDO SAI EM DOIS GRUPOS, E A ORDEM E DERIVADA, NAO ESCOLHIDA. Esta ferramenta
+        # diz de si mesma que "pedido longo e pedido que nao se atende" e que "linha
+        # desnecessaria enfraquece a linha que decide" — e em 12/10/2026 o caminho (2) do
+        # `trava_coleta` acrescentou 18 linhas de uma vez. Nenhuma delas e precaucao, mas
+        # elas nao custam o mesmo: as de fonte declarada NAO ABERTA destravam trabalho que
+        # esta PARADO com os campos em null, e as de banco de material destravam a frase
+        # literal de um registro que ja existe e ja serve pagina. Grupo, e nao prosa ao
+        # lado, porque quem le isto esta numa tela de configuracao copiando linha.
+        nao_abertas = {r["dominio_registravel"] for r in hosts.values() if r.get("fonte_nao_aberta")}
+        grupo_a = [l for l in pedir if l.lstrip("*.") in nao_abertas]
+        grupo_b = [l for l in pedir if l not in grupo_a]
+        if grupo_a:
+            A("**PRIMEIRO — as %d linhas que destravam trabalho PARADO** (fonte declarada nao aberta," % len(grupo_a))
+            A("esquema v17). Sem elas a entidade TECNICA nao sai do lugar:")
+            A("")
+            A("```")
+            for linha in grupo_a:
+                A(linha)
+            A("```")
+            A("")
+            A("**DEPOIS — as %d linhas dos bancos de material**, que destravam a frase literal do" % len(grupo_b))
+            A("fabricante em registro que ja existe e ja serve pagina:")
+            A("")
         A("```")
-        for linha in pedir:
+        for linha in (grupo_b if grupo_a else pedir):
             A(linha)
         A("```")
         A("")
         A("**Por que cada um esta na lista** — e nenhum esta por precaucao:")
         A("")
         for reg, arquivos in sorted(resultado.get("por_que_se_pede", {}).items()):
-            A("- `%s` — citado por %s." % (reg, ", ".join("`%s`" % a for a in arquivos)))
+            declarada = sorted({d for r in hosts.values()
+                                if r["dominio_registravel"] == reg for d in r.get("declarada_por", ())})
+            caminho = ("**fonte declarada NAO ABERTA** em %s (esquema v17)"
+                       % ", ".join("`%s`" % d for d in declarada)) if declarada else None
+            A("- `%s` — citado por %s.%s" % (
+                reg, ", ".join("`%s`" % a for a in arquivos),
+                (" " + caminho + ".") if caminho else ""))
         A("")
         A("**Enquanto essas linhas nao entrarem, nenhuma execucao da Fundacao le a frase literal do")
         A("fabricante** nesses dominios — e insistir e gastar bloco para reescrever o mesmo motivo, que")
-        A("foi o que aconteceu quatro vezes entre 26/09 e 29/09.")
+        A("foi o que aconteceu quatro vezes entre 26/09 e 29/09. Para as fontes marcadas **nao aberta**")
+        A("o custo e outro e maior: sem elas a entidade TECNICA nao sai do lugar — a pendencia")
+        A("`tecnica-fonte-nunca-aberta` esta aberta desde 14/09/2026 e TRES tecnicas (direto, indireto,")
+        A("bizantino) seguem com todos os campos em `null`, que sao tres das URLs que faltam para o piso")
+        A("da 21.1. **UMA fonte por tecnica fecha a pendencia**, nao todas.")
     A("")
 
     nao_pedidos = sorted(h for h, r in hosts.items()
@@ -492,9 +651,19 @@ def montar_md(resultado, quando):
     if nao_pedidos:
         A("## BLOQUEADO E NAO PEDIDO — porque nenhum trabalho pendente depende dele")
         A("")
-        A("Estes hosts tambem nao chegam. Sao **referencia de conteudo ja lida e ja citada** (a fonte esta")
-        A("gravada no banco com a data em que foi lida), nao fonte de coleta em aberto. Entram aqui para")
-        A("ninguem os confundir com os de cima, e **pedido longo e pedido que nao se atende**:")
+        # ESTA FRASE JA FOI FALSA UMA VEZ, e e por isso que ela agora diz os DOIS casos em vez
+        # de um. De 30/09 a 12/10/2026 ela afirmava, sozinha, que todo host desta secao e
+        # "referencia de conteudo JA LIDA e ja citada (a fonte esta gravada no banco com a data
+        # em que foi lida)" — e os oito hosts das fontes de tecnica estavam aqui embaixo com
+        # `documento_aberto: false` e uma pendencia aberta pedindo que fossem lidos. Afirmacao
+        # gerada tem a mesma forca de fato que afirmacao escrita a mao, e envelhece igual.
+        A("Estes hosts tambem nao chegam, e nenhum trabalho pendente depende deles. Sao de dois")
+        A("tipos: **irmao medido que nenhum arquivo cita** (o apex ou o `www.` que entra na medicao")
+        A("so para o diagnostico sair inteiro) e **referencia de conteudo ja lida e ja citada**, com a")
+        A("fonte gravada no banco e a leitura declarada. O que NAO cabe aqui e fonte que algum banco")
+        A("declare nao aberta — essa trava coleta e sai no pedido acima, pelo caminho (2) do")
+        A("`trava_coleta`. Entram nesta lista para ninguem os confundir com os de cima, e porque")
+        A("**pedido longo e pedido que nao se atende**:")
         A("")
         for h in nao_pedidos:
             r = hosts[h]
@@ -528,7 +697,8 @@ def main():
     a_medir = dict(achados)
     for h in list(achados):
         for irmao in irmaos(h):
-            a_medir.setdefault(irmao, {"urls": set(), "citado_por": set()})
+            a_medir.setdefault(irmao, {"urls": set(), "citado_por": set(),
+                                       "fonte_nao_aberta": False, "declarada_por": set()})
 
     medidas = {}
     for h in sorted(a_medir):
@@ -569,21 +739,12 @@ def main():
                         dominio_registravel=dominio_registravel(h),
                         citado_pelo_banco=h in achados,
                         n_urls=len(a_medir[h]["urls"]),
+                        fonte_nao_aberta=bool(a_medir[h].get("fonte_nao_aberta")),
+                        declarada_por=sorted(a_medir[h].get("declarada_por", ())),
                         citado_por=sorted(a_medir[h]["citado_por"]))
 
-    # O PEDIDO SAI DA MEDICAO E E RESTRITO A QUEM TRAVA COLETA. Host de referencia de conteudo
-    # ja lida (enciclopedia, tese, museu) esta bloqueado do mesmo jeito e nao se pede: nenhum
-    # trabalho pendente depende dele, e pedido longo e pedido que nao se atende. Quem decide e
-    # o arquivo que cita o host, nao uma lista escrita a mao.
-    # `fontes-pedidas.json` entra nos gatilhos porque e, por definicao, o arquivo onde uma fonte
-    # EXIGIDA e declarada. Ficou de fora na passada das 10h4xZ de 30/09 e o efeito foi absurdo:
-    # `loctite.com.br` — o quarto dominio meio-aberto, o que motivou o arquivo — saiu listado em
-    # "bloqueado e nao pedido". Portao que nao le o arquivo escrito para ele ler nao mede nada.
-    GATILHOS = ("materiais-", "esquema-banco.json", "cobertura.json", "fontes-pedidas.json")
-
-    def trava_coleta(r):
-        return any(g in arq for arq in r["citado_por"] for g in GATILHOS)
-
+    # O PEDIDO SAI DA MEDICAO E E RESTRITO A QUEM TRAVA COLETA — e quem decide isso e
+    # `trava_coleta()`, no alto deste arquivo, com os dois caminhos e a cicatriz de cada um.
     nao_se_pede_por_dominio = {dominio_registravel(h) for h in NAO_SE_PEDE}
 
     pedir, pedir_por_que = [], {}
@@ -617,6 +778,13 @@ def main():
     quando = time.strftime("%Y-%m-%d %H:%MZ", time.gmtime())
     resultado = {"medido_em": quando, "passadas": PASSADAS, "controle": CONTROLE,
                  "hosts": hosts, "o_que_pedir": pedir,
+                 # A LISTA PLANA CONTINUA SENDO A LISTA: quem ja leia `o_que_pedir` nao muda.
+                 # Esta e a fatia que o caminho (2) do `trava_coleta` acrescentou, separada
+                 # porque ela destrava trabalho PARADO e as outras destravam frase literal.
+                 "o_que_pedir_que_destrava_fonte_nao_aberta": [
+                     l for l in pedir
+                     if l.lstrip("*.") in {r["dominio_registravel"] for r in hosts.values()
+                                           if r.get("fonte_nao_aberta")}],
                  "por_que_se_pede": resultado_pedir_por_que}
 
     print("\nVEREDITOS: " + "  ".join(

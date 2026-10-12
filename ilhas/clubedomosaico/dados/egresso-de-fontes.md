@@ -2,7 +2,7 @@
 
 **GERADO por `ferramentas/medir-egresso.py` — nao edite a mao.** A lista de hosts e derivada de
 `dados/*.json` (mais o apex e o `www.` de cada um, que nenhum banco cita e sem os quais nao ha
-diagnostico); medido em **2026-10-05 19:43Z**, 3 passadas por host, com `clubedomosaico.com.br` como controle.
+diagnostico); medido em **2026-10-12 19:37Z**, 3 passadas por host, com `clubedomosaico.com.br` como controle.
 
 > **A PERGUNTA QUE ESTE ARQUIVO RESPONDE NAO E "o dominio esta liberado": e "a fonte chega".**
 > As duas discordaram em 30/09/2026 e a diferenca custou quatro blocos. Apex liberado que
@@ -48,7 +48,7 @@ diagnostico); medido em **2026-10-05 19:43Z**, 3 passadas por host, com `clubedo
 | `mercadolivre.com.br` | alcanca | responde, sem entrega | **sim** | 4 |
 | `pastilhart.com.br` | recusado | alcanca | **sim** | 2 |
 | `quartzolit.weber` | alcanca | responde, sem entrega | **sim** | 19 |
-| `shopee.com.br` | alcanca | alcanca | **sim** | 132 |
+| `shopee.com.br` | alcanca | alcanca | **sim** | 940 |
 | `tekbond.com.br` | alcanca | responde, sem entrega | **sim** | 5 |
 | `vteximg.com.br` | recusado | alcanca | **sim** | 14 |
 
@@ -127,17 +127,17 @@ diagnostico); medido em **2026-10-05 19:43Z**, 3 passadas por host, com `clubedo
 | `www.quartzolit.weber` | **liberado_mas_sem_entrega** | o CONNECT passa e o servidor responde **403** na propria URL que o banco cita — o host atende e a fonte nao chega | constantes.json, materiais-acabamento.json, materiais-colas.json, materiais-rejuntes.json |
 | `www.tekbond.com.br` | **liberado_mas_sem_entrega** | o CONNECT passa e o servidor responde **403** na propria URL que o banco cita — o host atende e a fonte nao chega | constantes.json, materiais-colas.json |
 | `cascola.com.br` | **alcancavel** | responde 301 e redireciona para `www.cascola.com.br`, que tambem e alcancavel | _nenhum banco o cita (irmao medido)_ |
-| `cf.shopee.com.br` | **alcancavel** | responde 200 com 277608 bytes | materiais-acabamento.json, materiais-alicates.json, materiais-colas.json, materiais-rejuntes.json |
+| `cf.shopee.com.br` | **alcancavel** | responde 200 com 3962 bytes | anuncios-por-consulta.json, materiais-acabamento.json, materiais-alicates.json, materiais-colas.json, materiais-rejuntes.json, vitrine-de-produto.json |
 | `clubedomosaico.com.br` | **alcancavel** | responde 200 com 112283 bytes | esquema-banco.json (campo `dominios_em_000`), pecas.json |
 | `mercadolivre.com.br` | **alcancavel** | responde 403 com 2585 bytes | _nenhum banco o cita (irmao medido)_ |
 | `quartzolit.weber` | **alcancavel** | responde 301 e redireciona para `www.quartzolit.weber`, que tambem e alcancavel | _nenhum banco o cita (irmao medido)_ |
-| `s.shopee.com.br` | **alcancavel** | responde 301 e redireciona para `shopee.com.br`, que tambem e alcancavel | materiais-acabamento.json, materiais-alicates.json, materiais-colas.json, materiais-pastilhas.json, materiais-rejuntes.json |
-| `shopee.com.br` | **alcancavel** | responde 200 com 198615 bytes | materiais-acabamento.json, materiais-alicates.json, materiais-colas.json, materiais-pastilhas.json, materiais-rejuntes.json |
+| `s.shopee.com.br` | **alcancavel** | responde 301 e redireciona para `shopee.com.br`, que tambem e alcancavel | anuncios-por-consulta.json, materiais-acabamento.json, materiais-alicates.json, materiais-colas.json, materiais-pastilhas.json, materiais-rejuntes.json, vitrine-de-produto.json |
+| `shopee.com.br` | **alcancavel** | responde 200 com 198689 bytes | anuncios-por-consulta.json, materiais-acabamento.json, materiais-alicates.json, materiais-colas.json, materiais-pastilhas.json, materiais-rejuntes.json |
 | `tekbond.com.br` | **alcancavel** | responde 301 e redireciona para `www.tekbond.com.br`, que tambem e alcancavel | _nenhum banco o cita (irmao medido)_ |
 | `telhanorte.vteximg.com.br` | **alcancavel** | responde 200 com 534710 bytes | canal-de-espelho.json, materiais-colas.json, materiais-rejuntes.json |
 | `www.cascola.com.br` | **alcancavel** | responde 200 com 238588 bytes | constantes.json, materiais-colas.json |
-| `www.clubedomosaico.com.br` | **alcancavel** | responde 301 e redireciona para `clubedomosaico.com.br`, que tambem e alcancavel | _nenhum banco o cita (irmao medido)_ |
-| `www.pastilhart.com.br` | **alcancavel** | responde 200 com 100659 bytes | materiais-pastilhas.json |
+| `www.clubedomosaico.com.br` | **alcancavel** | responde 200 com 97499 bytes | _nenhum banco o cita (irmao medido)_ |
+| `www.pastilhart.com.br` | **alcancavel** | responde 200 com 99897 bytes | materiais-pastilhas.json |
 | `www.shopee.com.br` | **alcancavel** | responde 302 e redireciona para `shopee.com.br`, que tambem e alcancavel | _nenhum banco o cita (irmao medido)_ |
 | `www.vteximg.com.br` | **alcancavel** | responde 400 com 1771 bytes | _nenhum banco o cita (irmao medido)_ |
 
@@ -145,6 +145,33 @@ diagnostico); medido em **2026-10-05 19:43Z**, 3 passadas por host, com `clubedo
 
 A **20.1** manda acrescentar o dominio **e o curinga**. Caminho: `claude.ai/code` -> seletor de
 ambiente -> Nuvem -> engrenagem -> Dominios permitidos. As linhas, uma por linha:
+
+**PRIMEIRO — as 18 linhas que destravam trabalho PARADO** (fonte declarada nao aberta,
+esquema v17). Sem elas a entidade TECNICA nao sai do lugar:
+
+```
+sagradafamilia.org
+*.sagradafamilia.org
+camara.leg.br
+*.camara.leg.br
+cultura.gob.es
+*.cultura.gob.es
+wikipedia.org
+*.wikipedia.org
+faecpr.edu.br
+*.faecpr.edu.br
+fasbam.edu.br
+*.fasbam.edu.br
+unl.pt
+*.unl.pt
+sarasa.com.br
+*.sarasa.com.br
+spacesarchives.org
+*.spacesarchives.org
+```
+
+**DEPOIS — as 42 linhas dos bancos de material**, que destravam a frase literal do
+fabricante em registro que ja existe e ja serve pagina:
 
 ```
 acrilex.com.br
@@ -197,11 +224,15 @@ tekbond.com.br
 - `arauco.com.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
 - `berneck.com.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
 - `brasilit.com.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
+- `camara.leg.br` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `camara-ciranda-do-mosaico`)` (esquema v17).
 - `coral.com.br` — citado por `materiais-acabamento.json`.
 - `cortag.com` — citado por `materiais-alicates.json`.
+- `cultura.gob.es` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `mnceramica-gaudi-trencadis`)` (esquema v17).
 - `dexco.com.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
 - `duratex.com.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
 - `eternit.com.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
+- `faecpr.edu.br` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `faecpr-manual-assentamento`)` (esquema v17).
+- `fasbam.edu.br` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `fasbam-mosaicos-bizantinos`)` (esquema v17).
 - `glassmosaic.com.br` — citado por `materiais-pastilhas.json`.
 - `guararapes.com.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
 - `henkel-adhesives.com` — citado por `fontes-pedidas.json (campo `dominio`)`, `fontes-pedidas.json (exigido em prosa)`.
@@ -210,47 +241,37 @@ tekbond.com.br
 - `leroymerlin.com.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
 - `loctite.com.br` — citado por `fontes-pedidas.json (campo `dominio`)`, `fontes-pedidas.json (exigido em prosa)`.
 - `quartzolit.weber` — citado por `constantes.json`, `materiais-acabamento.json`, `materiais-colas.json`, `materiais-rejuntes.json`.
+- `sagradafamilia.org` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `sagrada-familia-trencadis`)` (esquema v17).
+- `sarasa.com.br` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `sarasa-metodo-indireto`)` (esquema v17).
+- `spacesarchives.org` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `spaces-maison-picassiette`)` (esquema v17).
 - `suvinil.com.br` — citado por `materiais-acabamento.json`.
 - `tekbond.com.br` — citado por `constantes.json`, `materiais-colas.json`.
 - `termotecnica.ind.br` — citado por `esquema-banco.json (campo `dominios_em_000`)`.
+- `unl.pt` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `run-unl-santos-2025`)` (esquema v17).
 - `vonder.com.br` — citado por `materiais-alicates.json`.
+- `wikipedia.org` — citado por `tecnicas.json`. **fonte declarada NAO ABERTA** em `tecnicas.json (fonte `wikipedia-maison-picassiette`)`, `tecnicas.json (fonte `wikipedia-mosaicos-bizantinos`)` (esquema v17).
 
 **Enquanto essas linhas nao entrarem, nenhuma execucao da Fundacao le a frase literal do
 fabricante** nesses dominios — e insistir e gastar bloco para reescrever o mesmo motivo, que
-foi o que aconteceu quatro vezes entre 26/09 e 29/09.
+foi o que aconteceu quatro vezes entre 26/09 e 29/09. Para as fontes marcadas **nao aberta**
+o custo e outro e maior: sem elas a entidade TECNICA nao sai do lugar — a pendencia
+`tecnica-fonte-nunca-aberta` esta aberta desde 14/09/2026 e TRES tecnicas (direto, indireto,
+bizantino) seguem com todos os campos em `null`, que sao tres das URLs que faltam para o piso
+da 21.1. **UMA fonte por tecnica fecha a pendencia**, nao todas.
 
 ## BLOQUEADO E NAO PEDIDO — porque nenhum trabalho pendente depende dele
 
-Estes hosts tambem nao chegam. Sao **referencia de conteudo ja lida e ja citada** (a fonte esta
-gravada no banco com a data em que foi lida), nao fonte de coleta em aberto. Entram aqui para
-ninguem os confundir com os de cima, e **pedido longo e pedido que nao se atende**:
+Estes hosts tambem nao chegam, e nenhum trabalho pendente depende deles. Sao de dois
+tipos: **irmao medido que nenhum arquivo cita** (o apex ou o `www.` que entra na medicao
+so para o diagnostico sair inteiro) e **referencia de conteudo ja lida e ja citada**, com a
+fonte gravada no banco e a leitura declarada. O que NAO cabe aqui e fonte que algum banco
+declare nao aberta — essa trava coleta e sai no pedido acima, pelo caminho (2) do
+`trava_coleta`. Entram nesta lista para ninguem os confundir com os de cima, e porque
+**pedido longo e pedido que nao se atende**:
 
-- `blog.sagradafamilia.org` — tecnicas.json.
-- `camara.leg.br` — nenhum banco o cita (irmao medido).
-- `cultura.gob.es` — nenhum banco o cita (irmao medido).
-- `en.wikipedia.org` — tecnicas.json.
-- `faecpr.edu.br` — nenhum banco o cita (irmao medido).
-- `fasbam.edu.br` — tecnicas.json.
 - `pastilhart.com.br` — nenhum banco o cita (irmao medido).
-- `pt.wikipedia.org` — tecnicas.json.
-- `run.unl.pt` — tecnicas.json.
-- `sagradafamilia.org` — nenhum banco o cita (irmao medido).
-- `sarasa.com.br` — tecnicas.json.
-- `spacesarchives.org` — tecnicas.json.
-- `unl.pt` — nenhum banco o cita (irmao medido).
 - `vteximg.com.br` — nenhum banco o cita (irmao medido).
-- `wikipedia.org` — nenhum banco o cita (irmao medido).
-- `www.camara.leg.br` — nenhum banco o cita (irmao medido).
-- `www.cultura.gob.es` — tecnicas.json.
-- `www.faecpr.edu.br` — tecnicas.json.
-- `www.fasbam.edu.br` — nenhum banco o cita (irmao medido).
 - `www.meli.la` — nenhum banco o cita (irmao medido).
-- `www.sagradafamilia.org` — nenhum banco o cita (irmao medido).
-- `www.sarasa.com.br` — nenhum banco o cita (irmao medido).
-- `www.spacesarchives.org` — nenhum banco o cita (irmao medido).
-- `www.unl.pt` — nenhum banco o cita (irmao medido).
-- `www.wikipedia.org` — nenhum banco o cita (irmao medido).
-- `www2.camara.leg.br` — tecnicas.json.
 
 ## O QUE NAO SE PEDE POR DESENHO
 

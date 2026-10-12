@@ -308,6 +308,30 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **A metade que a Fundação já fez sozinha:** a seção **1.1** do `ARQUIPELAGO.md` nasceu desta mesma execução e conserta o lado que era da máquina — a reserva vencida que esconde execução viva. Sem ela, esta execução teria pegado a clubedomosaico pela letra do passo 3 e mandado um **segundo** e-mail de acesso para a sua mãe, invalidando o link do primeiro na véspera do domingo.
 
+### prioridade NORMAL — TRÊS domínios que destravam TRÊS páginas da ilha em foco, e eles ficaram 12 dias fora do pedido porque o portão decidia por nome de arquivo
+
+12/10/2026 — RAPHAEL — **Não bloqueia bloco nenhum** e não é código: a clubedomosaico fechou a 32ª URL nesta mesma segunda-feira. O que isto destrava são **três páginas que estão paradas com todos os campos em `null` desde 14/09/2026**, e a medição é de hoje.
+
+**O pedido, e ele é curto de propósito — três domínios, com o curinga, pela 20.1:**
+
+```
+unl.pt            *.unl.pt            (ou faecpr.edu.br  *.faecpr.edu.br)
+camara.leg.br     *.camara.leg.br     (ou sarasa.com.br  *.sarasa.com.br)
+fasbam.edu.br     *.fasbam.edu.br     (ou wikipedia.org  *.wikipedia.org)
+```
+
+Caminho: `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → Domínios permitidos. **Uma linha de cada par basta** — a pendência pede *uma* fonte aberta por técnica, não as duas.
+
+**O que está parado.** `ilhas/clubedomosaico/dados/tecnicas.json` tem cinco técnicas e **três delas — direto, indireto e bizantino — estão com `como_se_executa`, `bases_compativeis`, `materiais_tipicos` e `junta_tipica_mm` todos em `null`**, cada campo com o motivo escrito, e o motivo é sempre o mesmo: *"nenhuma das fontes colhidas foi ABERTA"*. O banco diz isso de si mesmo em `metodo_de_coleta`: **"NENHUM documento foi aberto"**. As dez URLs de fonte dele foram remedidas em 12/10/2026 às 19h2xZ, uma passada por URL com `clubedomosaico.com.br` em 200 na mesma janela, e as **dez** devolveram `000`; a medição de três passadas por host, com controle e veredito, está em `ilhas/clubedomosaico/dados/egresso-de-fontes.md`.
+
+**O que elas valem em número:** três das **8 URLs que faltam para o piso de 40 da 21.1** nesta ilha — e o piso é a condição que a seção 21 põe para "zero impressão" voltar a ser sinal. O bizantino é, pelo registro de 14/09, *"o de maior valor de indexação da ilha e o mais distante"*, e o eixo dos doze tutoriais-âncora do bloco 5 se apoia no mesmo lastro. Hoje **todos os outros caminhos de URL desta ilha estão fechados por canal**: `alicate/martelinho` e `alicate/pinca_mosaico` não têm fabricante neste canal (medido em 07/10), `rejunte/acrilico` e `rejunte/epoxi` dependem do curinga `*.quartzolit.weber` (seu, no bloco acima), a `pastilha` mediu SERP **TOMADA** nas quatro consultas, e a trilha de consulta de produto da seção 30 esgotou as 22 consultas tentadas. **Estas três técnicas são o caminho mais curto que sobrou que não depende de um canal novo.**
+
+**E A METADE DESTE DESPACHO QUE É DE MÉTODO, porque ela explica por que você só está lendo isto hoje.** O pedido de rede desta ilha é **derivado** por `ferramentas/medir-egresso.py` — e até hoje ele decidia quem "trava coleta" por uma lista de **nomes de arquivo** (`materiais-`, `esquema-banco.json`, `cobertura.json`, `fontes-pedidas.json`). `dados/tecnicas.json` é um banco — ele diz isso na primeira linha — e **nasceu em 14/09, depois da lista**, então nunca entrou nela. Efeito: por **12 dias** os oito hosts das fontes de técnica saíram na seção *"BLOQUEADO E NÃO PEDIDO — porque nenhum trabalho pendente depende dele"*, com a frase gerada ao lado afirmando que são referência **"JÁ LIDA e já citada"**. As duas metades eram falsas no mesmo arquivo que as citava. **Consertado hoje, e não com uma linha nova na lista:** a pergunta "este documento foi aberto?" virou campo lido por máquina (`documento_aberto`, esquema v17), as dez fontes de técnica o declaram `false`, `validar-banco.py` o cobra por **presença e tipo** (porque `false` é valor legítimo e um teste de verdade o leria como campo faltando), e a bancada mata o portão de propósito — `medir-egresso.py --autoteste` em **48 de 48** e `mutacoes-tecnicas.py` em **17 de 17**, com o caso que reprovava até hoje escrito pelo nome. Lista de nome de arquivo dentro de ferramenta envelhece calada; era exatamente o que `fontes-pedidas.json` já dizia de si mesmo em 30/09.
+
+**Pronto quando:** de dentro de uma rotina, `curl -s -o /dev/null -w "%{http_code}"` devolver 200 em **uma** URL de cada par, e a próxima execução da Fundação na clubedomosaico fechar a pendência `tecnica-fonte-nunca-aberta` com a fonte lida e `documento_aberto: true`.
+
+**O que NÃO se faz enquanto isso, e isso o banco já cumpre:** escrever passo a passo de técnica a partir de resumo de busca. O próprio arquivo chama isso de **paráfrase, não fonte**, e numa ilha que ensina a fazer peça com as mãos um passo a passo errado estraga a peça de quem leu. Campo nulo com motivo é dado.
+
 ### prioridade NORMAL — dois domínios de fonte que a Aquametria já perdeu campo por não alcançar
 
 13/09/2026 — RAPHAEL — Nada aqui é código e isto **não bloqueia bloco nenhum**: a Aquametria constrói normalmente e o banco dela cresce. O que trava é uma família específica de campo, e ela já custou quatro passadas medidas.

@@ -10,7 +10,8 @@
   "metodo_de_coleta": {
     "definicao_e_origem": "Busca web da nuvem, em 14/09/2026, no mesmo canal em que o bloco 1 colheu a SERP deste corpus. NENHUM documento foi aberto: o egresso da nuvem barra pt.wikipedia.org, britannica.com e google.com por politica da organizacao (medido as 17h30Z de 14/09/2026, connect_rejected nos tres). Portanto a LEITURA e o elo mais fraco de toda fonte deste arquivo, e cada uma declara isso no campo `leitura` — e a regra do elo mais fraco da secao 10 do contrato, aplicada a uma entidade que nao tem fabricante.",
     "o_que_isso_proibe": "Nenhum campo deste arquivo entra em formula publicada, e o esquema ja dizia isso antes de existir dado: `junta_tipica_mm` seria valor sugerido de campo de entrada da F1 e mesmo assim nasce null em 5 de 5 registros, porque nenhuma fonte colhida declara folga em milimetro.",
-    "serp": "Leitura propria, busca web da nuvem, 14/09/2026, uma consulta por tecnica, em portugues do Brasil. Cada registro cita quem apareceu, por dominio. NAO e a SERP do navegador do Raphael e nao substitui a leitura semanal: e o mesmo canal e a mesma ressalva que o `dados/corpus-buscas.md` carrega desde 10/09/2026."
+    "serp": "Leitura propria, busca web da nuvem, 14/09/2026, uma consulta por tecnica, em portugues do Brasil. Cada registro cita quem apareceu, por dominio. NAO e a SERP do navegador do Raphael e nao substitui a leitura semanal: e o mesmo canal e a mesma ressalva que o `dados/corpus-buscas.md` carrega desde 10/09/2026.",
+    "a_leitura_agora_E_CAMPO_e_nao_so_prosa": "12/10/2026 — a frase acima ('NENHUM documento foi aberto') passou a existir tambem como campo lido por maquina: cada uma das dez fontes deste arquivo declara `documento_aberto: false`, pelo `escada_de_fontes.documento_aberto` do esquema (versao 17). Nada aqui mudou de conteudo; o que mudou e que o portao do pedido de rede (`ferramentas/medir-egresso.py`) passa a LER esta declaracao em vez de decidir pelo nome do arquivo. Enquanto ele decidia pelo nome, os oito hosts destas fontes sairam 12 dias na secao 'BLOQUEADO E NAO PEDIDO — porque nenhum trabalho pendente depende dele' do `dados/egresso-de-fontes.md`, com a frase gerada afirmando que sao referencia 'JA LIDA' — o contrario do que este campo sempre disse."
   },
   "publicacao": {
     "publicar": true,
@@ -56,6 +57,7 @@
           "origem": "instituicao-de-ensino-ou-museu",
           "o_que_e": "Dissertação depositada no repositório da Universidade Nova de Lisboa (RUN), 2025, que trata dos métodos direto e indireto de assentamento de mosaico.",
           "leitura": "Colhido por busca; o documento não foi aberto, porque o egresso da nuvem barra o domínio.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         },
         "faecpr-manual-assentamento": {
@@ -63,6 +65,7 @@
           "origem": "instituicao-de-ensino-ou-museu",
           "o_que_e": "Manual de assentamento de azulejos e mosaicos hospedado por instituição de ensino.",
           "leitura": "Colhido por busca; o documento não foi aberto.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         }
       },
@@ -109,6 +112,7 @@
           "origem": "instituicao-de-ensino-ou-museu",
           "o_que_e": "Página da exposição “Diálogo entre tesselas” no portal da Câmara dos Deputados, que descreve o método indireto (“veneziano”) como composição preparada sobre papel, às avessas.",
           "leitura": "Colhido por busca; a página não foi aberta.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         },
         "sarasa-metodo-indireto": {
@@ -116,6 +120,7 @@
           "origem": "editorial-da-ilha",
           "o_que_e": "Atelier Artístico Sarasa, página “Técnicas de Mosaico: Método Indireto”. NÃO é enciclopédia nem instituição: é ateliê, e por isso entra como apoio e nunca sozinha.",
           "leitura": "Colhido por busca; a página não foi aberta.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         }
       },
@@ -158,6 +163,7 @@
           "origem": "enciclopedico",
           "o_que_e": "Verbete “Mosaicos bizantinos” da Wikipédia em português.",
           "leitura": "Colhido por busca; o verbete não foi aberto, porque o egresso barra pt.wikipedia.org.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         },
         "fasbam-mosaicos-bizantinos": {
@@ -165,6 +171,7 @@
           "origem": "instituicao-de-ensino-ou-museu",
           "o_que_e": "Faculdade São Basílio Magno, texto sobre mosaicos bizantinos.",
           "leitura": "Colhido por busca; a página não foi aberta.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         }
       },
@@ -212,6 +219,7 @@
           "origem": "instituicao-de-ensino-ou-museu",
           "o_que_e": "Museo Nacional de Cerámica y Artes Suntuarias González Martí (Ministério de Cultura da Espanha), exposição “Gaudí & trencadís”.",
           "leitura": "Colhido por busca; a página não foi aberta.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         },
         "sagrada-familia-trencadis": {
@@ -219,6 +227,7 @@
           "origem": "instituicao-de-ensino-ou-museu",
           "o_que_e": "Blog oficial da Basílica da Sagrada Família sobre o trencadís de Gaudí.",
           "leitura": "Colhido por busca; a página não foi aberta.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         }
       },
@@ -267,6 +276,7 @@
           "origem": "enciclopedico",
           "o_que_e": "Verbete “Maison Picassiette” da Wikipédia em inglês, sobre a casa de Raymond Isidore em Chartres.",
           "leitura": "Colhido por busca; o verbete não foi aberto.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         },
         "spaces-maison-picassiette": {
@@ -274,6 +284,7 @@
           "origem": "instituicao-de-ensino-ou-museu",
           "o_que_e": "SPACES Archives, acervo dedicado a ambientes de arte construídos; ficha da Maison Picassiette.",
           "leitura": "Colhido por busca; a página não foi aberta.",
+          "documento_aberto": false,
           "data_leitura": "2026-09-14"
         }
       },
@@ -311,8 +322,10 @@
     {
       "id": "tecnica-fonte-nunca-aberta",
       "estado": "ABERTA, e ela nao e desta ilha: e de rede",
-      "o_que_falta": "Abrir ao menos uma fonte por tecnica.",
-      "o_que_este_bloco_apurou": "Os 5 registros tem 10 fontes e as 10 foram colhidas por busca, sem o documento ser aberto: pt.wikipedia.org, britannica.com e google.com devolveram connect_rejected as 17h30Z de 14/09/2026. E o mesmo buraco que a escada de fontes ja registra para os fabricantes (nivel 1 bloqueado), agora medido do lado das tecnicas. Se o Raphael acrescentar pt.wikipedia.org e os dominios de museu a rede Personalizada do ambiente, as 10 fontes sobem de leitura por busca para leitura direta sem coleta nova."
+      "o_que_falta": "Abrir ao menos uma fonte por tecnica. MEDIDO DE NOVO EM 12/10/2026 as 19h2xZ, uma passada por URL com `clubedomosaico.com.br` em 200 na mesma janela: as DEZ URLs deste arquivo devolvem 000, as oito do egresso incluidas. A medicao de tres passadas por host, com controle e com veredito, esta em `dados/egresso-de-fontes.md` e `dados/egresso-de-fontes.json`.",
+      "o_que_este_bloco_apurou": "Os 5 registros tem 10 fontes e as 10 foram colhidas por busca, sem o documento ser aberto: pt.wikipedia.org, britannica.com e google.com devolveram connect_rejected as 17h30Z de 14/09/2026. E o mesmo buraco que a escada de fontes ja registra para os fabricantes (nivel 1 bloqueado), agora medido do lado das tecnicas. Se o Raphael acrescentar pt.wikipedia.org e os dominios de museu a rede Personalizada do ambiente, as 10 fontes sobem de leitura por busca para leitura direta sem coleta nova.",
+      "quem_fecha": "O RAPHAEL, e agora com a lista de dominios escrita: `claude.ai/code` -> seletor de ambiente -> Nuvem -> engrenagem -> Dominios permitidos, acrescentando o dominio E o curinga (a 20.1 manda os dois) de `unl.pt` e `faecpr.edu.br` (direto), `camara.leg.br` e `sarasa.com.br` (indireto) e `fasbam.edu.br` e `wikipedia.org` (bizantino). UMA fonte por tecnica fecha esta pendencia: tres dominios, nao seis. Os outros quatro — `cultura.gob.es`, `sagradafamilia.org`, `spacesarchives.org` e a parte de `wikipedia.org` do picassiete — nao destravam URL nova; eles destravam `como_se_executa` nas DUAS paginas de tecnica que ja estao no ar, que e por isso que entram no pedido depois dos tres primeiros e nunca na frente deles.",
+      "o_que_ela_destrava_em_numero": "TRES tecnicas com todos os campos em null (direto, indireto, bizantino), que sao tres das 8 URLs que faltam para o piso de 40 da 21.1, e o eixo dos doze tutoriais-ancora do bloco 5 depende do mesmo lastro. O bizantino e, pelo proprio registro de 14/09, 'o de maior valor de indexacao da ilha e o mais distante'."
     },
     {
       "id": "tecnica-revisao-da-artesa",

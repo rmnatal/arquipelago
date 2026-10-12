@@ -3386,6 +3386,18 @@ else:
             if isinstance(f, dict) and ORIGENS_ACEITAS and f.get("origem") not in ORIGENS_ACEITAS:
                 erro("%s / fonte %s: origem %r fora das aceitas pelo esquema para TECNICA (%s)"
                      % (onde, fid, f.get("origem"), ", ".join(ORIGENS_ACEITAS)))
+            # `documento_aberto` SE COBRA POR PRESENCA E POR TIPO, NUNCA POR VERDADE
+            # (esquema v17, 12/10/2026). `false` e o valor legitimo das dez fontes deste
+            # banco, entao um teste de verdade — o `if not f.get(campo)` do laco acima —
+            # leria todas elas como campo FALTANDO. E a mesma armadilha que o cabecalho do
+            # ESTADO.md pagou em 30/09: campo ausente que se comporta como o valor certo
+            # espera o dia em que o valor certo muda. Aqui o campo decide o PEDIDO DE REDE
+            # (medir-egresso.py, `trava_coleta`), e o dia em que uma fonte for aberta de
+            # verdade e o dia em que a diferenca entre `false` e ausente importa.
+            if isinstance(f, dict) and not isinstance(f.get("documento_aberto"), bool):
+                erro("%s / fonte %s: falta `documento_aberto` (ou nao e booleano). O esquema v17 o "
+                     "exige em toda fonte de TECNICA: e ele que diz se o documento foi ABERTO, e e "
+                     "ele que o pedido de rede le. Prosa no campo `leitura` nenhum portao le" % (onde, fid))
 
         # (1) e (4): todo campo com fonte obrigatoria aponta para uma fonte que existe.
         for campo, chave in (("definicao", "definicao_fonte_id"),

@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 81,
+  "revisao": 82,
   "atualizado_em": "2026-10-12",
   "estado": "nascendo",
   "desembarque": {
@@ -194,7 +194,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "b9ca42da39e651aea710cb0b0b703874b9d3ba44a4cd5b2bf479e9900bb85276",
+      "sha256": "5ac8df41344976ebd71e859999e69ff28f59dc70ddb06154654c9e5616333af5",
       "descricao": "Esquema v15 — a REGRA 3 ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`) sem campo novo no banco: a regra virou dicionario com o balde, a ordem e a trava, nasceu `regras_do_balde_do_ambiente_do_produto` com os tres produtos que delimitam ambiente e cinco ancoras ponta a ponta, e 24 das 45 celulas da `matriz_esperada_da_F2` foram reescritas a mao movendo 29 entradas do balde do silencio para o novo. Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -218,7 +218,7 @@
       "verificado_em": "2026-09-14",
       "registros": 5,
       "publicar": true,
-      "sha256": "c77b010464854ab37714ae01d0447ef3681380f7f94535ca60882053f09da456",
+      "sha256": "7b4dd6f4cc5a48c932d2d1975cdcb3f574e520bee84011c0d8e49733027372ab",
       "descricao": "O banco da entidade TECNICA, que o esquema do bloco 3 previu em 12/09/2026 e que nasceu em 14/09. Cinco tecnicas — direto, indireto, bizantino, trencadis e picassiette —, as mesmas cinco que a artesa pode marcar no atelie, cada uma com definicao sustentada por fonte de enciclopedia, museu ou instituicao de ensino, consulta-alvo, SERP lida e `revisao_tecnica: pendente`, porque a revisora existe e e ela. PASSOU A `publicar` true as 21h17Z de 14/09/2026, porque agora existe snippet que o le: a pagina do Picassiete tira dali a definicao, as fontes e a data de leitura, em vez de carregar uma copia do texto dentro do PHP. O QUE ESTE CAMPO DIZIA E DEIXOU DE VALER: que o portao de 3 itens da secao 9 ficava em ZERO para 5 de 5. Ele contava caco, que nao tem fabricante; a pagina de uma tecnica recomenda a COLA do caco, e nisso trencadis e picassiette tem 5 itens cada. Ver ARVORE.md secao 4b e dados/tecnica-x-material.json."
     },
     {
@@ -330,7 +330,7 @@
       "entidade": "medicao",
       "fonte": "GERADO por ferramentas/medir-egresso.py. Medicao de egresso de 30/09/2026, tres passadas por host, com clubedomosaico.com.br como controle. Nao editar a mao: o portao regera e compara.",
       "publicar": false,
-      "sha256": "27bcfdac858ed4bbbe97c97014e75ec41c7f581d040135ee23236e829296e54d"
+      "sha256": "fa75bc504483ae67e0c80b10e0483ba445f7f4e5ad109cef0ebe4902dc1c4239"
     },
     {
       "id": "egresso-de-fontes-json",
@@ -339,7 +339,7 @@
       "entidade": "medicao",
       "fonte": "GERADO por ferramentas/medir-egresso.py, no mesmo passo do .md. E a fonte que a proxima execucao le por maquina em vez de reler prosa.",
       "publicar": false,
-      "sha256": "0d3ed462159679e2b4bca5b3b291827bef2777c2b9e52e0feb86e82124172a8b"
+      "sha256": "2e3f0c4aa6e5f75ac2f1b42a833a002db375161d7407eb7c94e1601a172903d1"
     },
     {
       "id": "fontes-pedidas",
@@ -358,7 +358,7 @@
       "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
       "registros": 42,
       "publicar": false,
-      "sha256": "399503304f56310e4ef5c0fe164610bfec83b39c23cdfc59a897c3ec62312c79",
+      "sha256": "8609c45efacdfeab9b744b2803bde65fa831f7bb680892edfcbfbcd7bd1fd71b",
       "verificado_em": "2026-10-08"
     },
     {
@@ -369,7 +369,7 @@
       "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira era a classificacao de SERP da 14.9 em PROSA, e em 02/10/2026 ela saiu daqui e virou dado em dados/serp-das-filhas.json, com o cruzamento em dados/cruzamento-14-9.md: prosa que o gerador preserva sem ler nao cruza com numero. O que ficou abaixo da fronteira e o ponteiro para os dois arquivos novos e o motivo da mudanca.",
       "verificado_em": "2026-10-08",
       "publicar": false,
-      "sha256": "d405b2905d457d813ae34768e5e7ddf259a8259bdc90e7a0b0d360607cda2146"
+      "sha256": "4346bd36941b91bcbb17a39cd5fa0377dc59a5b9af862f4b6a1083d9a2b5e4f9"
     },
     {
       "id": "perguntas-do-guia",
@@ -538,7 +538,7 @@
     {
       "id": "medir-egresso",
       "arquivo": "ferramentas/medir-egresso.py",
-      "sha256": "90e1650dd8f10e6cd5d96e2d6eac19761bfe862ce2596ae0507690697ff84f9b",
+      "sha256": "145f526e20b15d82fcac319d6659160ec2e33e32367037fd50f19e619d5ef120",
       "descricao": "Mede, host por host, o que esta nuvem alcanca das fontes que os bancos desta ilha citam — e separa CONNECT de ENTREGA, que e a distincao que faltava: apex liberado que redireciona para `www.` recusado entrega zero. Deriva a lista de dados/*.json, dos campos cujo nome fala de dominio, do apex e do `www.` de cada host, e de dados/fontes-pedidas.json; tres passadas por host (20.2), com controle obrigatorio que torna a medicao VOID se cair. Gera dados/egresso-de-fontes.md e .json, e o PEDIDO de rede sai da medicao com quem exige cada dominio. `--autoteste` com 29 casos fabricados. Bancada."
     },
     {
@@ -701,7 +701,7 @@
     {
       "id": "mutacoes-tecnicas",
       "arquivo": "ferramentas/mutacoes-tecnicas.py",
-      "sha256": "62d1f331eaf700deca6b19bb0b6afe9f6e03ce55cb9882d5e36bc7ec52cc79c9",
+      "sha256": "98b1cc855380a08304bf6e54033436684031682163623a758e947dcff78c36d1",
       "descricao": "Quebra o banco de TECNICA de proposito, 14 mutacoes, e exige que o validar-banco.py decida certo em cada uma. Nasceu junto com dados/tecnicas.json porque a regua daquela entidade estava escrita desde 12/09 e NUNCA tinha rodado — verde por ausencia do arquivo que ela media. TEM OS DOIS LADOS DA FRONTEIRA: 13 mutacoes que precisam reprovar (id fora do vocabulario, definicao sem fonte, blog sustentando definicao, folga em milimetro inventada, pagina de tecnica declarada com zero item de banco) e UMA que precisa PASSAR — a mesma pagina com o lado do material resolvido —, porque portao que reprova tudo nunca deixaria a familia nascer. Bancada."
     },
     {
@@ -815,7 +815,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "8e3c6946504acf95b14a9c4c4a1ea668b382252d5b09f3554594d6d6e6f5efd5",
+      "sha256": "30bd0a8556d7323294a321f2fef60511b861641534a79a1e6a98ec5b2b3069b6",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {

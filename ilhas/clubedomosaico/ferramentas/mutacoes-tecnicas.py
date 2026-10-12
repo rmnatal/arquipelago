@@ -103,6 +103,40 @@ def m_fonte_perde_a_leitura(raiz):
     gravar(raiz, "tecnicas.json", b)
 
 
+def m_fonte_perde_a_declaracao_de_documento_aberto(raiz):
+    """O campo que o PEDIDO DE REDE le (esquema v17). Sumir com ele deixa a prosa
+    do `leitura` dizendo a verdade e o portao sem nada para ler — que foi
+    exatamente o estado do dia 14/09 ao dia 12/10 de 2026, quando os oito hosts
+    destas fontes sairam do pedido por 12 dias com a frase 'nenhum trabalho
+    pendente depende dele' ao lado."""
+    b = carregar(raiz, "tecnicas.json")
+    del tecnica(b, "bizantino")["fontes"]["fasbam-mosaicos-bizantinos"]["documento_aberto"]
+    gravar(raiz, "tecnicas.json", b)
+
+
+def m_documento_aberto_em_texto_no_lugar_do_booleano(raiz):
+    """A mutacao que mede a diferenca entre PRESENCA e VERDADE. `"false"` em
+    texto e verdadeiro em Python, `""` e falso, e as duas formas atravessariam um
+    teste escrito como `if not f.get(campo)`. O portao cobra o TIPO."""
+    b = carregar(raiz, "tecnicas.json")
+    t = tecnica(b, "direto")
+    t["fontes"]["run-unl-santos-2025"]["documento_aberto"] = "nao"
+    gravar(raiz, "tecnicas.json", b)
+
+
+def m_fonte_declarada_aberta_sem_ter_sido(raiz):
+    """A MENTIRA QUE O CAMPO PERMITE, e por isso ela entra na bancada: declarar
+    `true` numa fonte cuja propria prosa diz que o documento nao foi aberto. O
+    validador do banco NAO tem como reprovar isso — `true` e booleano e e valor
+    legitimo — e e por isso que este caso espera `aprova`. Quem o pega e o olho
+    de quem le o `leitura` ao lado, e esta mutacao existe para que a proxima
+    execucao saiba que o portao nao cobre esta metade."""
+    b = carregar(raiz, "tecnicas.json")
+    t = tecnica(b, "indireto")
+    t["fontes"]["sarasa-metodo-indireto"]["documento_aberto"] = True
+    gravar(raiz, "tecnicas.json", b)
+
+
 def m_campo_vazio_sem_motivo(raiz):
     """Some o motivo de `junta_tipica_mm` estar vazia. O valor continua null e
     ninguem mais sabe se ele foi medido e nao existe, ou se foi esquecido."""
@@ -186,6 +220,12 @@ MUTACOES = [
     ("definicao apontando para fonte inexistente", m_definicao_aponta_para_fonte_que_nao_existe, "reprova"),
     ("blog de artesanato sustentando a definicao", m_fonte_de_blog_sustentando_definicao, "reprova"),
     ("fonte perde o campo que declara como foi lida", m_fonte_perde_a_leitura, "reprova"),
+    ("fonte perde `documento_aberto`, que e o campo que o pedido de rede le",
+     m_fonte_perde_a_declaracao_de_documento_aberto, "reprova"),
+    ("`documento_aberto` em texto no lugar do booleano",
+     m_documento_aberto_em_texto_no_lugar_do_booleano, "reprova"),
+    ("fonte declarada ABERTA sem ter sido (o portao NAO cobre, e o caso diz isso)",
+     m_fonte_declarada_aberta_sem_ter_sido, "aprova"),
     ("campo vazio perde o motivo de estar vazio", m_campo_vazio_sem_motivo, "reprova"),
     ("folga em milimetro inventada, sem fonte", m_junta_inventada_sem_fonte, "reprova"),
     ("material fora do vocabulario (caco de vidro)", m_material_fora_do_vocabulario, "reprova"),
