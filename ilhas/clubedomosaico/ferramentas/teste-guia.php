@@ -233,6 +233,8 @@ function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas, $propriedad
 	$cobertas = array();
 	$demaos = array();
 	$intervalos = array();
+	$diluicoes = array();
+	$tipos_rec = array();
 	foreach ( $ativos as $id => $m ) {
 		if ( null !== $tipo && $m['tipo'] !== $tipo ) {
 			continue;
@@ -249,6 +251,7 @@ function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas, $propriedad
 			}
 		}
 		$itens[] = $id;
+		if ( ! empty( $m['tipo'] ) ) { $tipos_rec[ (string) $m['tipo'] ] = true; }
 		$p = $m['protecao'];
 		$b = array_intersect( $p['bases_do_vocabulario_que_a_frase_nomeia'], $bases );
 		$t = array_intersect( $p['tesselas_do_vocabulario_que_a_frase_nomeia'], $tesselas );
@@ -274,6 +277,14 @@ function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas, $propriedad
 		}
 		if ( is_numeric( $d ) ) { $demaos[] = (int) $d; }
 		if ( is_numeric( $i ) ) { $intervalos[] = (int) $i; }
+		/* A DILUICAO, contada aqui do zero como tudo nesta regua. Ela nao e
+		   numero: e frase do fabricante, e por isso o que se conta e QUANTOS
+		   declaram e QUANTAS RESPOSTAS DIFERENTES saem disso — por igualdade
+		   de string, nunca por juizo sobre o que elas querem dizer. Classificar
+		   aqui seria a bancada repetindo a decisao do snippet em vez de
+		   conferi-la, e seria a bancada arbitrando pelo fabricante. */
+		$dl = $v( 'diluicao' );
+		if ( null !== $dl && '' !== (string) $dl ) { $diluicoes[] = (string) $dl; }
 	}
 	$acima_de_uma = array_values( array_filter( $demaos, function ( $x ) { return $x > 1; } ) );
 
@@ -284,6 +295,16 @@ function gui_regua_do_acabamento( $tipo, $ativos, $bases, $tesselas, $propriedad
 		'com_uma_demao'  => count( array_keys( $demaos, 1, true ) ),
 		'demaos_max'     => $demaos ? max( $demaos ) : null,
 		'demaos_min_acima_de_uma' => $acima_de_uma ? min( $acima_de_uma ) : null,
+		/* OS TIPOS DO RECORTE E O TOTAL DA CATEGORIA, contados aqui porque
+		   duas mutacoes de 12/10/2026 PASSARAM sem eles: a ponte podia cravar
+		   "as tres etapas" numa pergunta que atravessa duas, e o denominador
+		   do "os outros N nao dizem nada" podia medir o recorte em vez do
+		   banco e sair ZERO. As duas publicam numero falso e passavam em tudo,
+		   porque 3 e 0 sao inteiros validos. */
+		'n_tipos'        => count( $tipos_rec ),
+		'n_ativos'       => count( $ativos ),
+		'com_diluicao'   => count( $diluicoes ),
+		'diluicoes_distintas' => count( array_unique( $diluicoes ) ),
 		'com_intervalo'  => count( $intervalos ),
 		'intervalo_min'  => $intervalos ? min( $intervalos ) : null,
 		'intervalo_max'  => $intervalos ? max( $intervalos ) : null,
@@ -580,25 +601,79 @@ foreach ( cdm_guia_registro() as $id => $ficha ) {
 	   impedir. O numero do recorte continua sendo cobrado NA TELA, na frase que
 	   ela usa. */
 	if ( 'pergunta' === cdm_guia_forma( $id ) ) {
-		gui_ok( false !== mb_strpos( $texto, 'dos ' . $regua['com_demaos'] . ' produtos desta página' ),
-			'a tela publica o numero de produtos do recorte (frase da pergunta)',
-			$regua['com_demaos'] . ' produtos' );
-		gui_ok( $regua['com_demaos'] === $regua['n'],
-			'o recorte da pergunta E o conjunto que declara o numero — as duas contagens coincidem',
-			$regua['n'] . ' = ' . $regua['com_demaos'] );
+		/* A BANCADA TAMBEM ERA SINGULAR, e ela acusou isso sozinha em
+		   12/10/2026. Este ramo inteiro supunha que TODA pagina-pergunta
+		   publica demaos: ele cobrava a faixa de demao e o intervalo na tela
+		   de qualquer recorte de pergunta, e a segunda pergunta do acabamento
+		   — a da diluicao — reprovou em tres afirmacoes por nao falar de
+		   demao, que e exatamente o que ela nao deve falar. O portao estava
+		   certo e a suposicao dele estava velha: `'pergunta' === $forma` diz a
+		   FORMA e nao a GRANDEZA, e a grandeza e que decide o numero cobrado.
+		   Agora o despacho e pela propriedade do recorte, igual ao da regua, e
+		   propriedade sem ramo aqui REPROVA em vez de passar calada — pagina
+		   com numero nao conferido e o estado em que a `cola` ficou por quatro
+		   blocos. */
+		gui_ok( null !== $prop, 'a pagina de pergunta declara a propriedade do recorte', (string) $prop );
 
-		/* OS NUMEROS DA PERGUNTA, UM A UM, CONTRA A CONTAGEM INDEPENDENTE. Sem
-		   isto a pagina poderia publicar qualquer faixa de demao e passar, que e
-		   o estado em que a `cola` ficou por quatro blocos: portao verde e
-		   numero nao conferido. */
-		gui_ok( false !== mb_strpos( $texto, 'de ' . $regua['demaos_min_acima_de_uma'] . ' a ' . $regua['demaos_max'] . ' demãos' ),
-			'a faixa de demaos de quem pede mais de uma bate com a contagem',
-			$regua['demaos_min_acima_de_uma'] . ' a ' . $regua['demaos_max'] );
-		gui_ok( false !== mb_strpos( $texto, 'de ' . $regua['intervalo_min'] . ' minutos a ' . $regua['intervalo_max'] ),
-			'o intervalo entre demaos na tela bate com a contagem',
-			$regua['intervalo_min'] . ' a ' . $regua['intervalo_max'] );
-		gui_ok( false !== mb_strpos( $texto, 'Em ' . $regua['com_intervalo'] . ' dos ' . $regua['com_demaos'] . ' dá para somar' ),
-			'quantos declaram o intervalo bate com a contagem', (string) $regua['com_intervalo'] );
+		/* QUANTAS ETAPAS A PONTE DIZ QUE A PERGUNTA ATRAVESSA, contra a contagem
+		   independente. A frase da 1.3.0 dizia "as tres etapas" com a palavra
+		   digitada, e a segunda pergunta atravessa DUAS — mutacao de 12/10/2026
+		   que PASSOU por falta desta linha. A afirmacao vale para as duas
+		   perguntas: e a ponte que nao pode mentir, qualquer que seja a grandeza. */
+		$esperado_ponte = ( 3 === $regua['n_tipos'] )
+			? 'atravessa as três etapas'
+			: ( ( 2 === $regua['n_tipos'] ) ? 'atravessa duas das três etapas' : 'atravessa as etapas' );
+		gui_ok( false !== mb_strpos( $texto, $esperado_ponte ),
+			'a ponte diz quantas etapas a pergunta atravessa, e bate com a contagem',
+			$regua['n_tipos'] . ' tipo(s): ' . $esperado_ponte );
+
+		if ( 'demaos_minimas' === $prop ) {
+			gui_ok( false !== mb_strpos( $texto, 'dos ' . $regua['com_demaos'] . ' produtos desta página' ),
+				'a tela publica o numero de produtos do recorte (frase da pergunta)',
+				$regua['com_demaos'] . ' produtos' );
+			gui_ok( $regua['com_demaos'] === $regua['n'],
+				'o recorte da pergunta E o conjunto que declara o numero — as duas contagens coincidem',
+				$regua['n'] . ' = ' . $regua['com_demaos'] );
+			gui_ok( false !== mb_strpos( $texto, 'de ' . $regua['demaos_min_acima_de_uma'] . ' a ' . $regua['demaos_max'] . ' demãos' ),
+				'a faixa de demaos de quem pede mais de uma bate com a contagem',
+				$regua['demaos_min_acima_de_uma'] . ' a ' . $regua['demaos_max'] );
+			gui_ok( false !== mb_strpos( $texto, 'de ' . $regua['intervalo_min'] . ' minutos a ' . $regua['intervalo_max'] ),
+				'o intervalo entre demaos na tela bate com a contagem',
+				$regua['intervalo_min'] . ' a ' . $regua['intervalo_max'] );
+			gui_ok( false !== mb_strpos( $texto, 'Em ' . $regua['com_intervalo'] . ' dos ' . $regua['com_demaos'] . ' dá para somar' ),
+				'quantos declaram o intervalo bate com a contagem', (string) $regua['com_intervalo'] );
+		} elseif ( 'diluicao' === $prop ) {
+			gui_ok( false !== mb_strpos( $texto, 'dos ' . $regua['com_diluicao'] . ' que dizem algo sobre diluição' ),
+				'a tela publica o numero de produtos do recorte (frase da pergunta)',
+				$regua['com_diluicao'] . ' produtos' );
+			gui_ok( $regua['com_diluicao'] === $regua['n'],
+				'o recorte da pergunta E o conjunto que declara o numero — as duas contagens coincidem',
+				$regua['n'] . ' = ' . $regua['com_diluicao'] );
+			gui_ok( false !== mb_strpos( $texto, $regua['diluicoes_distintas'] . ' respostas diferentes' ),
+				'quantas respostas diferentes saem das frases bate com a contagem',
+				(string) $regua['diluicoes_distintas'] );
+			/* A PAGINA NAO PODE ESCOLHER PELO FABRICANTE (26.3), e isto mede
+			   isso na TELA e nao na intencao de quem escreveu: a frase da
+			   resposta nao nomeia solvente. Quem nomeia e a tabela, item por
+			   item, com a fonte — e e por isso que a palavra pode existir no
+			   corpo e nao pode existir na resposta. */
+			$resp = mb_substr( $texto, 0, false !== mb_strpos( $texto, 'Das ' ) ? mb_strpos( $texto, 'Das ' ) : 400 );
+			gui_ok( false === mb_stripos( $resp, 'thinner' ) && false === mb_stripos( $resp, 'base de água' ),
+				'a frase de resposta NAO classifica o solvente — quem nomeia e a tabela, com fonte (26.3)', 'limpa' );
+
+			/* O DENOMINADOR DO "OS OUTROS N NAO DIZEM NADA" MEDE O BANCO, NAO O
+			   RECORTE. Na pagina-pergunta o recorte E quem declara, entao a conta
+			   contra o recorte da ZERO e a frase mente dizendo que a etapa inteira
+			   declara. Mutacao de 12/10/2026 que PASSOU por falta desta linha. */
+			gui_ok( false !== mb_strpos( $texto, 'Os outros ' ) || false !== mb_strpos( $texto, 'produtos desta etapa não dizem nada' ),
+				'a tela publica o numero dos que ficaram de fora do recorte', 'frase presente' );
+			gui_ok( false !== mb_strpos( $texto, 'Os outros ' . ( $regua['n_ativos'] - $regua['com_diluicao'] ) . ' produtos desta etapa não dizem nada' ),
+				'quem ficou de fora e contado contra o BANCO da categoria, nao contra o recorte',
+				( $regua['n_ativos'] - $regua['com_diluicao'] ) . ' de ' . $regua['n_ativos'] );
+		} else {
+			gui_ok( false, 'a grandeza desta pergunta tem ramo de conferencia na bancada',
+				'SEM RAMO para `' . (string) $prop . '`' );
+		}
 	} else {
 		gui_ok( false !== mb_strpos( $texto, 'São ' . $regua['n'] . ' produtos' ),
 			'a tela publica o numero de produtos do recorte', $regua['n'] . ' produtos' );

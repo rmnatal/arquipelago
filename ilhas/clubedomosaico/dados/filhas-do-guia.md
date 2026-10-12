@@ -109,6 +109,7 @@ fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.
 | `pergunta:rejunte-largura-da-junta` | `rejunte` | `junta_min_mm` | 5 | `acrilico`, `cimenticio`, `epoxi` | `passa` |
 | `pergunta:pastilha-placa-ou-caixa` | `pastilha` | `placas_por_caixa` | 12 | `vidro` | `passa` |
 | `pergunta:acabamento-demaos-do-verniz` | `acabamento` | `demaos_minimas` | 5 | `impermeabilizante`, `selador`, `verniz` | `passa` |
+| `pergunta:acabamento-diluir-ou-puro` | `acabamento` | `diluicao` | 3 | `selador`, `verniz` | `passa` |
 
 - **`pergunta:alicate-espessura-de-corte`** — consulta-alvo: *como cortar pastilha de vidro para mosaico qual ferramenta*
 - **`pergunta:rejunte-largura-da-junta`** — consulta-alvo: *da para colar os caquinhos bem juntos no mosaico ou precisa deixar espaco para o rejunte*
@@ -118,6 +119,7 @@ fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.
   - atravessa um tipo so, e ainda assim nao coincide com ele: o recorte da
     pergunta e menor que o do tipo, porque parte dos itens nao declara o numero.
 - **`pergunta:acabamento-demaos-do-verniz`** — consulta-alvo: *a peca de mosaico precisa de mais de uma camada de verniz depois do rejunte*
+- **`pergunta:acabamento-diluir-ou-puro`** — consulta-alvo: *o verniz do mosaico de caquinho vai puro ou misturado com agua depois do rejunte*
 
 ## O motivo, nos recortes que nao passam inteiros
 

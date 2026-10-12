@@ -37,7 +37,7 @@ Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divul
 | Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | 1 de 6 | não |
 | Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 2 de 4 | não |
 | Bases | `/materiais/bases/` | 0 | 0 de 5 | não |
-| Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 tipos, **+1 pergunta** | **sim**, desde 02/10/2026 |
+| Acabamento | `/materiais/acabamento/` | 10 itens | 3 de 3 tipos, **+2 perguntas** | **sim**, desde 02/10/2026 |
 | Como sabemos | `/materiais/como-sabemos/` | — | — | **sim** |
 
 *(A linha dos **Rejuntes** foi de `0 de 4` para `1 de 4` em 05/10/2026 às 19h4xZ. Não é dado novo: a
@@ -76,6 +76,7 @@ primeiro que não precisa do estado de transição:
 | Verniz para peça de mosaico | `/materiais/acabamento/verniz-para-peca-de-mosaico/` | `/materiais/acabamento/` | verniz para peça de mosaico artesanal: qual usar |
 | Impermeabilizar a peça de mosaico | `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` | `/materiais/acabamento/` | como impermeabilizar peça de mosaico para ficar no jardim, na chuva |
 | Uma camada de verniz basta na peça? | `/materiais/acabamento/camadas-de-verniz-depois-do-rejunte/` | `/materiais/acabamento/` | a peça de mosaico precisa de mais de uma camada de verniz depois do rejunte |
+| Dá para passar o verniz como ele vem? | `/materiais/acabamento/diluir-o-verniz-do-mosaico/` | `/materiais/acabamento/` | o verniz do mosaico de caquinho vai puro ou misturado com agua depois do rejunte |
 
 > **A QUARTA LINHA ENTROU EM 12/10/2026, E ELA NÃO É UM TIPO.** As três de cima são os três tipos do
 > vocabulário de `acabamento`; a quarta é uma filha em **forma de pergunta**, e o recorte dela é a
@@ -472,6 +473,7 @@ artesã já marca o termo no ateliê.
 | `/materiais/acabamento/verniz-para-peca-de-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Verniz para peça de mosaico |
 | `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Impermeabilizar a peça de mosaico |
 | `/materiais/acabamento/camadas-de-verniz-depois-do-rejunte/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Uma camada de verniz basta na peça? |
+| `/materiais/acabamento/diluir-o-verniz-do-mosaico/` | 3 | `/materiais/acabamento/` | Início › Materiais › Acabamento: o que passar depois do rejunte › Dá para passar o verniz como ele vem? |
 | `/materiais/qual-cola-usar-no-mosaico/` | 3 | `/materiais/` | Início › Materiais › Qual cola usar no mosaico, e qual rejunte |
 | `/materiais/quantas-pastilhas-para-mosaico/` | 3 | `/materiais/` | Início › Materiais › Quantas pastilhas e quanto rejunte comprar |
 | `/como-fazer/o-que-e-mosaico-picassiete/` | 3 | `/como-fazer/` | Início › Como fazer › O que é mosaico Picassiete, e como colar |

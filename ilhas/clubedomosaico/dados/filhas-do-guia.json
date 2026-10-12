@@ -1949,18 +1949,43 @@
    "veredito": "passa",
    "motivo": null,
    "divergencias_com_a_ancora_a_mao": []
+  },
+  {
+   "pergunta": "pergunta:acabamento-diluir-ou-puro",
+   "categoria": "acabamento",
+   "propriedade_que_carrega_o_numero": "diluicao",
+   "consulta_alvo": "o verniz do mosaico de caquinho vai puro ou misturado com agua depois do rejunte",
+   "titulo_candidato": "Da para passar o verniz como ele vem",
+   "itens_que_declaram_o_numero": 3,
+   "itens": [
+    "coral-selador-acrilico",
+    "quartzolit-verniz-protetor-para-pisos",
+    "suvinil-seladora-para-madeira"
+   ],
+   "tipos_atravessados": [
+    "selador",
+    "verniz"
+   ],
+   "atravessa_mais_de_um_tipo": true,
+   "coincide_com_o_recorte_de_tipo": null,
+   "cobre_a_categoria_inteira": false,
+   "veredito": "passa",
+   "motivo": null,
+   "divergencias_com_a_ancora_a_mao": []
   }
  ],
  "resumo_das_perguntas": {
-  "perguntas_medidas": 4,
+  "perguntas_medidas": 5,
   "passam_o_portao_de_dado": [
    "pergunta:acabamento-demaos-do-verniz",
+   "pergunta:acabamento-diluir-ou-puro",
    "pergunta:alicate-espessura-de-corte",
    "pergunta:pastilha-placa-ou-caixa",
    "pergunta:rejunte-largura-da-junta"
   ],
   "atravessam_mais_de_um_tipo": [
    "pergunta:acabamento-demaos-do-verniz",
+   "pergunta:acabamento-diluir-ou-puro",
    "pergunta:alicate-espessura-de-corte",
    "pergunta:rejunte-largura-da-junta"
   ],

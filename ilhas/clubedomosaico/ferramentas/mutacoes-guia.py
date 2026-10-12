@@ -395,6 +395,59 @@ def m_um_fabricante_passa_a_nomear_vidro(raiz):
     gravar_banco(raiz, b)
 
 
+# AS QUATRO DO MECANISMO PLURAL (12/10/2026, snippet 1.4.0). A 1.3.0 saiu de
+# manha com UMA filha-pergunta, e nela "a pergunta" e "a pergunta das demaos"
+# eram a mesma coisa: a resposta e a ponte decidiam por `'pergunta' === $forma`.
+# Com a SEGUNDA pergunta na mesma categoria aquele ramo passou a estar errado de
+# quatro jeitos diferentes, e cada um deles tem mutacao aqui. Nenhuma delas e
+# hipotetica: as quatro sao erros que a execucao de 12/10 cometeu ou quase
+# cometeu antes de a bancada acusar.
+
+def m_a_resposta_da_pergunta_volta_a_ser_singular(raiz):
+    """O despacho por propriedade sai da resposta, e TODA pagina-pergunta volta
+    a responder demaos. E literalmente o estado da 1.3.0, e e o defeito que a
+    bancada pegou primeiro nesta execucao: a pagina da diluicao servia a frase
+    das demaos, com os numeros das demaos, sob um titulo que pergunta de
+    diluicao."""
+    trocar(raiz, SNIPPET,
+           "\t} elseif ( 'pergunta' === $forma && 'diluicao' === $c['recorte_propriedade'] ) {",
+           "\t} elseif ( false ) {")
+
+
+def m_a_ponte_crava_as_tres_etapas(raiz):
+    """A ponte volta a dizer "as tres etapas" com a palavra digitada, que era o
+    texto da 1.3.0. A pergunta da diluicao atravessa DUAS (verniz e selador), e
+    a frase cravada afirma na tela uma cobertura que o recorte nao tem — a
+    familia do "denominador digitado" que a primeira mutacao deste arquivo ja
+    mede num outro lugar."""
+    trocar(raiz, SNIPPET,
+           "\t\t$quantas = ( 3 === $n_tipos ) ? 'as três etapas' : ( ( 2 === $n_tipos ) ? 'duas das três etapas' : 'as etapas' );",
+           "\t\t$quantas = 'as três etapas';")
+
+
+def m_a_resposta_classifica_o_solvente(raiz):
+    """A frase de resposta passa a dizer QUAL e agua e QUAL e thinner. A 26.3
+    proibe a tela dizer que o fabricante classificou, e aqui quem classificaria
+    e a gente: as tres frases do banco nao dizem "base de agua" nem "base de
+    solvente", dizem o que dizem. E a mutacao mais importante das quatro, porque
+    o texto sairia plausivel e util — e trocar agua por thinner estraga a peca."""
+    trocar(raiz, SNIPPET,
+           "\t\t\t. 'um manda aplicar como vem, e os outros mandam diluir em coisas distintas. '",
+           "\t\t\t. 'um manda aplicar como vem, um e base de água e o outro pede thinner. '")
+
+
+def m_o_denominador_da_diluicao_mede_o_recorte(raiz):
+    """`fora_do_recorte` volta a ser `com_diluicao` contra o proprio recorte, que
+    e o defeito que esta execucao escreveu e corrigiu antes de rodar: na pagina
+    da diluicao o recorte E quem declara, entao "os outros N nao dizem nada" sai
+    com N igual a ZERO. Ele passa em qualquer portao de tipo — zero e um inteiro
+    valido — e so a LEITURA e falsa, o que o torna a familia de defeito mais
+    barata de escrever e mais cara de achar."""
+    trocar(raiz, SNIPPET,
+           "\t\t\t. 'Os outros <strong>' . (int) $c['fora_do_recorte'] . '</strong> produtos desta etapa não dizem nada, '",
+           "\t\t\t. 'Os outros <strong>' . ( (int) $c['n_itens'] - (int) $c['com_diluicao'] ) . '</strong> produtos desta etapa não dizem nada, '")
+
+
 MUTACOES = [
     ("o numero da cobertura e cravado no codigo", m_cobertura_cravada, "reprova"),
     ("o denominador (15 superficies) e digitado", m_denominador_digitado, "reprova"),
@@ -422,6 +475,10 @@ MUTACOES = [
     ("o banco de acabamento sai do ar", m_banco_fora_do_ar, "pagina-honesta"),
     ("o snippet da F2 sai do ar", m_sem_o_snippet_da_f2, "pagina-sem-loja"),
     ("um fabricante passa a nomear vidro", m_um_fabricante_passa_a_nomear_vidro, "mundo-que-passa"),
+    ("a resposta da pergunta volta a ser singular", m_a_resposta_da_pergunta_volta_a_ser_singular, "reprova"),
+    ("a ponte crava as tres etapas onde sao duas", m_a_ponte_crava_as_tres_etapas, "reprova"),
+    ("a resposta classifica o solvente pelo fabricante", m_a_resposta_classifica_o_solvente, "reprova"),
+    ("o denominador da diluicao mede o recorte e da zero", m_o_denominador_da_diluicao_mede_o_recorte, "reprova"),
 ]
 
 

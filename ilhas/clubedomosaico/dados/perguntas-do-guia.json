@@ -79,6 +79,23 @@
     ],
     "escrita_em": "2026-10-12"
    }
+  },
+  {
+   "id": "pergunta:acabamento-diluir-ou-puro",
+   "categoria": "acabamento",
+   "propriedade_que_carrega_o_numero": "diluicao",
+   "consulta_alvo": "o verniz do mosaico de caquinho vai puro ou misturado com agua depois do rejunte",
+   "titulo_candidato": "Da para passar o verniz como ele vem",
+   "por_que_e_pergunta_e_nao_tipo": "A instrucao de diluicao atravessa dois dos tres tipos de `acabamento` e nao e a mesma dentro de nenhum deles: o verniz de piso da Quartzolit manda NAO diluir e NAO agitar, a seladora de madeira da Suvinil manda thinner para laca em ate 30%, e o selador acrilico da Coral diz diluivel em agua. Nenhum tipo sozinho publica esse contraste, e e o contraste que a pagina responde — dentro do `selador` as duas respostas ja sao incompativeis entre si. CONFERIDO EM 12/10/2026 CONTRA O QUE AS QUATRO IRMAS JA PUBLICAM, e e por isso que esta e a propriedade escolhida e nao outra: `acabamento_visual` (5 itens) e `pelicula` (4) estao no titulo, no resumo, na linha mestra, na description E no FAQ da filha `verniz`; `tempo_de_secagem_h` (4) esta no FAQ da filha `selador`; `intervalo_entre_demaos_min` (3) esta no resumo, na linha mestra, no `o_que_nao_e` e no segundo FAQ da propria pagina das demaos. Todas tem lastro e todas estao canibalizadas (30.4). `diluicao` e `pigmentado` sao as DUAS unicas propriedades com 3 itens de lastro que nenhuma pagina no ar usa como recorte, e a de `pigmentado` nao tem SERP medida — as duas passadas dela em 12/10 deram desvio total de pais. Lastro nao e vaga livre.",
+   "o_que_a_serp_nao_publica": "se o produto que a artesa comprou se dilui, e em que. As duas passadas de 12/10/2026 nao devolveram nenhuma pagina dedicada a isso para peca de mosaico: o que ocupa e verniz para VINIL, limpeza de azulejo, conservacao de mosaico arqueologico (Getty) e um forum portugues sobre REMOVER verniz seco. O unico fabricante brasileiro que aparece declarando diluicao (Maza, verniz acrilico incolor, diluicao com agua potavel) a declara para parede e pedra, nao para peca de mosaico — e o host dele nem abre deste ambiente.",
+   "ancora_a_mao": {
+    "itens_que_declaram_o_numero": 3,
+    "tipos_atravessados": [
+     "selador",
+     "verniz"
+    ],
+    "escrita_em": "2026-10-12"
+   }
   }
  ]
 }

@@ -2,6 +2,22 @@
  * CLUBE DO MOSAICO — O GUIA DE MATERIAIS, CATEGORIA POR CATEGORIA (bloco 4c)
  * Snippet "Clube do Mosaico Guia", registrado pelo Sync.
  *
+ * Versão 1.4.0 (12/10/2026) — A SEGUNDA PERGUNTA NA MESMA CATEGORIA, e com ela
+ * o mecanismo de pergunta deixou de ser SINGULAR. A 1.3.0 saiu de manhã com a
+ * primeira, e nela "a pergunta" e "a pergunta das demãos" eram a mesma coisa:
+ * a resposta e a ponte decidiam por `'pergunta' === $forma`, e a frase da ponte
+ * dizia "as três etapas" com a palavra "três" digitada. Com a segunda aquele
+ * ramo responderia demãos numa página de diluição e diria três onde são duas —
+ * é o mesmo defeito que o campo `tipo` tinha quando fazia dois trabalhos, uma
+ * volta acima, e ele reapareceu em seis horas no andar de cima. Agora o recorte
+ * diz qual propriedade o define (`recorte_propriedade`, nas contas da espinha),
+ * a resposta despacha por ela, e quantos tipos a pergunta atravessa é CONTADO
+ * (`n_tipos_do_recorte`), com os nomes saindo do banco. A régua do acabamento
+ * ganhou as contas de diluição — a primeira grandeza desta ilha que não é um
+ * número, e por isso a régua conta e nunca classifica (26.3): dizer na tela
+ * qual é à base de água e qual é de solvente seria a gente arbitrando pelo
+ * fabricante, e trocar água por thinner estraga a peça.
+ *
  * Versão 1.3.0 (12/10/2026) — A FILHA EM FORMA DE PERGUNTA EXISTE, e com ela o
  * campo `tipo` parou de fazer dois trabalhos. Ele dizia se a página era mãe
  * (`tipo === null`, em seis lugares deste arquivo) E recortava o banco; com mãe
@@ -115,7 +131,7 @@
  */
 
 if ( ! defined( 'CDM_GUIA_VERSAO' ) ) {
-	define( 'CDM_GUIA_VERSAO', '1.3.0' );
+	define( 'CDM_GUIA_VERSAO', '1.4.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -379,6 +395,67 @@ function cdm_guia_registro() {
 				array(
 					'pergunta' => 'Quanto tempo leva a espera inteira?',
 					'resposta' => 'Em {com_intervalo} dos {com_demaos} dá para somar: até {demaos_max} demãos, com {intervalo_min} a {intervalo_max} minutos entre uma e a seguinte, mais a secagem final que está na tabela. Nos outros o fabricante não declara o intervalo, e a gente não empresta o do vizinho.',
+				),
+			),
+		),
+
+		/* A QUINTA FILHA, E A SEGUNDA EM FORMA DE PERGUNTA NA MESMA CATEGORIA.
+		   É ela que fez o mecanismo de pergunta deixar de ser singular: até
+		   12/10/2026 de manhã "a pergunta" e "a pergunta das demãos" eram a
+		   mesma coisa em três lugares da régua, e um `elseif ( 'pergunta' ===
+		   $forma )` bastava. Com duas, aquele ramo responderia demãos numa
+		   página de diluição — o mesmo defeito que o campo `tipo` tinha quando
+		   fazia dois trabalhos, uma volta acima. O recorte agora diz qual
+		   propriedade o define (`recorte_propriedade` nas contas da espinha).
+
+		   O RECORTE DELA É `diluicao`, e ela é a PRIMEIRA grandeza desta ilha
+		   que NÃO É UM NÚMERO: o fabricante declara uma frase. Três produtos
+		   ativos a declaram com fonte, atravessando dois dos três tipos
+		   (verniz 1, selador 2) — e `diluicao` é, com `pigmentado`, a única
+		   propriedade do banco de acabamento com 3 itens de lastro que NENHUMA
+		   página no ar usa como recorte, medido em 12/10/2026 contra o título,
+		   o resumo, a linha mestra, a description e o FAQ das quatro irmãs.
+		   `acabamento_visual`, `pelicula`, `tempo_de_secagem_h` e
+		   `intervalo_entre_demaos_min` têm lastro e estão TODAS canibalizadas
+		   (30.4) — a de brilho e película pelo título e pelo FAQ da `verniz`, a
+		   de secagem pelo FAQ da `selador`, a do intervalo pela própria página
+		   das demãos. Lastro não é vaga livre, e quem for escrever a sexta
+		   confere o que as cinco já publicam antes de contar itens.
+
+		   A SERP está em `dados/serp-das-filhas.json`, medida em DUAS molduras
+		   nesta data, e o veredito é ABERTA com a ressalva escrita lá: 4 de 9
+		   brasileiros nas duas, e os 5 de fora são vagas soltas (PDF dos EUA,
+		   conservação arqueológica, um fórum português sobre REMOVER verniz
+		   seco), não um mercado respondendo a consulta — `caquinho` e `rejunte`
+		   não existem em espanhol nem em português de Portugal. */
+		'diluir' => array(
+			'papel'    => 'filha',
+			'tipo'     => null,
+			'propriedade' => 'diluicao',
+			'recorte'  => 'pergunta:acabamento-diluir-ou-puro',
+			'categoria' => 'acabamento',
+			'slug'     => 'materiais/acabamento/diluir-o-verniz-do-mosaico',
+			'titulo'   => 'Dá para passar o verniz como ele vem?',
+			'curto'    => 'Diluir ou não',
+			'consulta' => 'o verniz do mosaico de caquinho vai puro ou misturado com agua depois do rejunte',
+			'resumo'   => 'Quem manda aplicar como vem, quem manda diluir, em que — e os que não dizem nada.',
+			'linha_mestra' => 'Você abriu o pote e ele está grosso. A dúvida é se pode misturar água antes de passar na peça. Aqui está o que cada produto desta etapa manda fazer, com a frase dele.',
+			'description'  => 'Dá para diluir o verniz da peça de mosaico? O que cada produto do acabamento manda fazer antes de passar, com a frase do fabricante e a fonte.',
+			'o_que_e'  => 'Diluir é misturar alguma coisa no produto antes de passar, para ele espalhar mais fino. Alguns vêm prontos e pedem para não mexer; outros pedem para diluir, e aí o que entra na mistura muda de produto para produto.',
+			'o_que_nao_e' => 'O que isso não é: uma regra da etapa. Não existe "o verniz de mosaico se dilui assim" — e é por isso que esta página mostra a frase de cada um em vez de dar uma resposta só. Misturar o que o fabricante não mandou é o jeito mais rápido de perder a camada que ia proteger a peça.',
+			'faq_propria' => array(
+				array(
+					'pergunta' => 'Posso misturar água?',
+					/* A FRASE NÃO RESPONDE SIM NEM NÃO, e é de propósito: dos
+					   {com_diluicao} que declaram, as respostas são
+					   incompatíveis entre si, e escolher uma aqui seria a gente
+					   arbitrando pelo fabricante. A tela manda para a tabela, que
+					   é onde a frase e a fonte de cada um moram (26.3). */
+					'resposta' => 'Depende do pote que você comprou, e a gente não vai escolher por ele: dos {com_diluicao} produtos desta página que dizem algo, saem {diluicoes_distintas} instruções diferentes, e elas não são trocáveis entre si. A frase de cada um está na tabela, com o endereço onde a gente leu.',
+				),
+				array(
+					'pergunta' => 'E se o meu não disser nada?',
+					'resposta' => '{fora_do_recorte} dos produtos desta etapa não falam de diluição em lugar nenhum que a gente tenha achado. Nesse caso a gente não empresta a instrução do vizinho de prateleira: passa como vem, numa parte pequena primeiro.',
 				),
 			),
 		),
@@ -869,6 +946,15 @@ function cdm_guia_contas( $id ) {
 	$contas = array(
 		'itens'   => array_keys( $itens ),
 		'n_itens' => count( $itens ),
+		/* QUAL PROPRIEDADE DEFINE ESTE RECORTE, e ela entra nas contas porque é
+		   PARTE DO RECORTE e não da prosa da página. Entrou em 12/10/2026, na
+		   SEGUNDA filha em forma de pergunta: a primeira pôde ser atendida por
+		   um `elseif ( 'pergunta' === $forma )`, porque havia uma só e "a
+		   pergunta" e "a pergunta das demãos" eram a mesma coisa. Com duas na
+		   mesma categoria aquele ramo passaria a responder demãos numa página
+		   de diluição — é o mesmo defeito que o `tipo` tinha quando fazia dois
+		   trabalhos, uma volta acima. `null` na mãe e na filha de tipo. */
+		'recorte_propriedade' => $prop,
 		/* SEM RÉGUA A PÁGINA NÃO TEM NÚMERO, e `pronta` falso é o que a faz
 		   dizer isso na tela em vez de servir a metade que sobrou. */
 		'pronta'  => false,
@@ -877,7 +963,12 @@ function cdm_guia_contas( $id ) {
 	$regua = cdm_guia_regua( $id, 'contas' );
 	if ( '' !== $regua ) {
 		$da_regua = (array) call_user_func( $regua, $itens, $cat );
-		unset( $da_regua['itens'], $da_regua['n_itens'] );
+		/* O RECORTE É DA ESPINHA E A RÉGUA NÃO O REESCREVE. `array_merge` deixa
+		   a régua ganhar, então as três chaves que DEFINEM o recorte saem da
+		   mão dela antes da mistura — `recorte_propriedade` entrou nesta lista
+		   no mesmo dia em que nasceu, pelo motivo pelo qual as outras duas já
+		   estavam aqui. */
+		unset( $da_regua['itens'], $da_regua['n_itens'], $da_regua['recorte_propriedade'] );
 		$contas = array_merge( $contas, $da_regua );
 	}
 
@@ -974,8 +1065,13 @@ function cdm_guia_contas_do_acabamento( $itens, $categoria ) {
 	$demaos     = array();
 	$intervalos = array();
 	$mais_de_uma = array();
+	$diluicoes  = array();
+	$tipos_rec  = array();
 
 	foreach ( $itens as $chave => $m ) {
+		if ( isset( $m['tipo'] ) && '' !== (string) $m['tipo'] ) {
+			$tipos_rec[ (string) $m['tipo'] ] = true;
+		}
 		$p = isset( $m['protecao'] ) && is_array( $m['protecao'] ) ? $m['protecao'] : array();
 
 		$b = isset( $p['bases_do_vocabulario_que_a_frase_nomeia'] ) ? (array) $p['bases_do_vocabulario_que_a_frase_nomeia'] : array();
@@ -1020,6 +1116,21 @@ function cdm_guia_contas_do_acabamento( $itens, $categoria ) {
 		$iv = cdm_guia_valor( $m, 'intervalo_entre_demaos_min' );
 		if ( null !== $iv ) {
 			$intervalos[ $chave ] = (int) $iv;
+		}
+
+		/* A DILUIÇÃO, e ela é a grandeza da filha-pergunta de 12/10/2026 que
+		   NÃO É UM NÚMERO: o fabricante declara uma frase ("não diluir",
+		   "diluível em água", "thinner para laca em até 30%"). Por isso esta
+		   régua conta e NUNCA classifica. Dizer na tela que um é à base de água
+		   e o outro de solvente seria a gente classificando e a página
+		   parecendo declaração de fabricante, que é o que a 26.3 proíbe — e
+		   seria pior aqui do que em qualquer outro campo, porque trocar água
+		   por thinner estraga a peça. O que a página entrega é o ESPALHAMENTO:
+		   quantos dizem algo, quantas respostas diferentes saem disso, e a
+		   frase de cada um na tabela, com fonte. */
+		$dl = cdm_guia_valor( $m, 'diluicao' );
+		if ( null !== $dl ) {
+			$diluicoes[ $chave ] = (string) $dl;
 		}
 	}
 
@@ -1083,6 +1194,30 @@ function cdm_guia_contas_do_acabamento( $itens, $categoria ) {
 		'com_intervalo'         => count( $intervalos ),
 		'intervalo_min'         => $intervalos ? min( $intervalos ) : null,
 		'intervalo_max'         => $intervalos ? max( $intervalos ) : null,
+		'diluicoes'             => $diluicoes,
+		'com_diluicao'          => count( $diluicoes ),
+		/* NAO EXISTE `sem_diluicao` DE PROPOSITO. Ele seria
+		   `count($itens) - count($diluicoes)`, que na pagina-pergunta da
+		   diluicao e SEMPRE ZERO — o recorte dela e justamente quem declara
+		   —, e a frase "os outros nao dizem nada" leria zero como se todo
+		   produto da etapa declarasse. Quem conta os que ficaram de fora e
+		   `fora_do_recorte`, que mede contra o BANCO da categoria e nao
+		   contra o recorte, e e o mesmo molde que a pagina das demaos ja
+		   usa com essa frase. Escrito aqui porque o numero errado passaria
+		   em toda bancada: ele e um inteiro valido, e so a leitura e falsa. */
+		/* RESPOSTAS DIFERENTES, contadas por igualdade de string e não por
+		   juízo nosso sobre o que elas querem dizer. É a conta que sustenta a
+		   frase da página: três produtos e três respostas é "não existe regra
+		   da etapa", e isso é derivado. Se o banco crescer e dois passarem a
+		   declarar a mesma frase, o número cai sozinho e a frase continua
+		   verdadeira. */
+		'diluicoes_distintas'   => count( array_unique( array_values( $diluicoes ) ) ),
+		/* OS TIPOS QUE ESTE RECORTE ATRAVESSA. Na mãe são os três; na filha de
+		   tipo é um; na filha-pergunta é o que o banco der — e a ponte precisa
+		   deste número porque a frase da primeira pergunta dizia "as três
+		   etapas" com a palavra "três" digitada, e a segunda atravessa duas. */
+		'tipos_do_recorte'      => array_keys( $tipos_rec ),
+		'n_tipos_do_recorte'    => count( $tipos_rec ),
 		'fora_do_recorte'       => max( 0, $n_banco - count( $itens ) ),
 	);
 
@@ -1113,6 +1248,9 @@ function cdm_guia_moldes_do_acabamento( $c ) {
 		'sem_demaos'           => $c['sem_demaos'],
 		'com_uma_demao'        => $c['com_uma_demao'],
 		'com_intervalo'        => $c['com_intervalo'],
+		'com_diluicao'         => $c['com_diluicao'],
+		'diluicoes_distintas'  => $c['diluicoes_distintas'],
+		'n_tipos_do_recorte'   => $c['n_tipos_do_recorte'],
 		/* Molde de grandeza que pode não existir no recorte: `-1` nunca é um
 		   número de demão nem de minuto, então ele aparece na tela como texto
 		   impossível e a bancada o pega. O certo é a página não ter molde de um
@@ -1135,6 +1273,18 @@ function cdm_guia_resposta_do_acabamento( $c, $forma ) {
 		$html .= 'São <strong>' . (int) $c['n_itens'] . ' produtos</strong> no nosso banco para esta etapa, em três grupos. '
 			. 'Deles, <strong>' . (int) $c['com_momento'] . '</strong> dizem com todas as letras em que momento entram, e '
 			. (int) $c['sem_momento'] . ' não dizem — e a gente não deduz pelo mecanismo. ';
+	} elseif ( 'pergunta' === $forma && 'diluicao' === $c['recorte_propriedade'] ) {
+		/* A SEGUNDA FILHA-PERGUNTA DO ACABAMENTO, 12/10/2026. A resposta dela
+		   é "depende, e não existe regra da etapa" — e isso só vale escrito
+		   porque é CONTADO: três produtos dizem algo e saem três respostas
+		   diferentes. A frase não nomeia água nem thinner de propósito; quem
+		   nomeia é a tabela, com a frase e a fonte de cada fabricante. */
+		$html .= 'Depende do produto, e não existe uma regra da etapa: dos <strong>'
+			. (int) $c['com_diluicao'] . '</strong> que dizem algo sobre diluição, saem <strong>'
+			. (int) $c['diluicoes_distintas'] . ' respostas diferentes</strong> — '
+			. 'um manda aplicar como vem, e os outros mandam diluir em coisas distintas. '
+			. 'Os outros <strong>' . (int) $c['fora_do_recorte'] . '</strong> produtos desta etapa não dizem nada, '
+			. 'e a gente não empresta a instrução do vizinho de prateleira. ';
 	} elseif ( 'pergunta' === $forma ) {
 		/* A PÁGINA DE PERGUNTA RESPONDE ANTES DE EXPLICAR, e o que ela responde
 		   é a grandeza do recorte dela — não "quantos produtos deste tipo",
@@ -1161,7 +1311,7 @@ function cdm_guia_resposta_do_acabamento( $c, $forma ) {
 
 if ( ! function_exists( 'cdm_guia_ponte_do_acabamento' ) ) {
 /** O parágrafo que liga esta categoria às vizinhas da casa. */
-function cdm_guia_ponte_do_acabamento( $forma, $mae ) {
+function cdm_guia_ponte_do_acabamento( $forma, $mae, $c = array() ) {
 	$html = '';
 	if ( 'mae' === $forma ) {
 		$html .= '<p>Quem está escolhendo cola ou rejunte está uma etapa antes: o '
@@ -1171,11 +1321,21 @@ function cdm_guia_ponte_do_acabamento( $forma, $mae ) {
 			. ' diz quanto comprar. Esta página fica com o que vem depois deles.</p>';
 	} elseif ( 'pergunta' === $forma ) {
 		/* 16.4(b) vale igual aqui, e a frase é outra de propósito: esta página
-		   NÃO é uma das três etapas — ela atravessa as três, e dizer que é uma
-		   delas seria a mesma mentira de chamá-la de tipo. */
-		$html .= '<p>Esta pergunta atravessa as três etapas do '
+		   NÃO é uma das três etapas — ela atravessa mais de uma, e dizer que é
+		   uma delas seria a mesma mentira de chamá-la de tipo.
+		   QUANTAS ela atravessa é CONTADO desde 12/10/2026 (a segunda pergunta
+		   desta categoria atravessa duas, não três), e os nomes saem do
+		   registro das filhas de tipo — nunca digitados aqui. */
+		$n_tipos = isset( $c['n_tipos_do_recorte'] ) ? (int) $c['n_tipos_do_recorte'] : 0;
+		$nomes   = array();
+		foreach ( (array) ( isset( $c['tipos_do_recorte'] ) ? $c['tipos_do_recorte'] : array() ) as $t ) {
+			$nomes[] = str_replace( '_', ' ', (string) $t );
+		}
+		$quantas = ( 3 === $n_tipos ) ? 'as três etapas' : ( ( 2 === $n_tipos ) ? 'duas das três etapas' : 'as etapas' );
+		$html .= '<p>Esta pergunta atravessa ' . esc_html( $quantas ) . ' do '
 			. cdm_casca_link_html( $mae['slug'], 'acabamento da peça de mosaico' )
-			. ': verniz, impermeabilizante e selador declaram demãos, e é por isso que a conta '
+			. ': ' . esc_html( cdm_guia_lista_humana( $nomes ) ) . ' declaram o que esta página conta, '
+			. 'e é por isso que ela '
 			. 'aparece aqui e não dentro de um deles. Um passo antes de todos, o '
 			. cdm_casca_link_html( 'materiais/qual-cola-usar-no-mosaico', 'seletor de cola e rejunte' )
 			. ' responde o que une o caquinho à base.</p>';
@@ -1596,7 +1756,12 @@ function cdm_guia_html( $id ) {
 	   acabamento vem DEPOIS do seletor de cola e rejunte, e o rejunte É o
 	   assunto daquele seletor. A mesma frase nas duas mandaria a pessoa uma
 	   etapa para trás quando ela já está no lugar certo. */
-	$html .= call_user_func( cdm_guia_regua( $id, 'ponte' ), $forma, $mae );
+	/* A PONTE RECEBE AS CONTAS desde 12/10/2026, e o motivo e o mesmo da
+	   resposta: a frase da ponte da filha-pergunta dizia "as tres etapas"
+	   com a palavra "tres" digitada, e a segunda pergunta atravessa DUAS.
+	   Frase que so esta certa por causa do recorte de ontem e a familia de
+	   defeito que esta ilha mais paga. */
+	$html .= call_user_func( cdm_guia_regua( $id, 'ponte' ), $forma, $mae, $c );
 	$html .= '</div>';
 
 	/* PRODUTO POR PRODUTO. Na mãe, agrupado pelos três tipos, para os dez
