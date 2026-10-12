@@ -3,6 +3,170 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+12/10/2026 16h20Z–18h1xZ — A TERCEIRA PERGUNTA DO ACABAMENTO FECHA A CATEGORIA, E TRÊS PORTÕES ESTAVAM VERMELHOS — DOIS DELES ANTES DESTA EXECUÇÃO
+
+**Uma URL nova, a 32ª da ilha:** `/materiais/acabamento/peca-de-mosaico-esbranquicada/`, a **sexta
+filha** de `/materiais/acabamento/` e a **terceira desta ilha em forma de PERGUNTA**. Conferida no ar
+em **200**, com os números dela batendo com o banco e **zero molde não preenchido**. A ilha vai de
+**31 para 32 URLs** — **faltam 8** para o piso de 40 da 21.1 —, **leva 3 de 3** da semana da 21.4 (a
+semana está GASTA e zera em 19/10), snippet do Guia **1.5.0**, casca **1.23.0**, manifest e `/status`
+na revisão **81**.
+
+1. **OS DOIS COMANDOS DA 29 RODARAM ANTES DE TUDO:** `conferir-no-ar.py` **APROVADO com 524
+   afirmações e 0 falha**; `leitura-do-visitante.py` **REPROVADO com EXATAMENTE 1 defeito** — o soft
+   404 da borda, de 29/09, do hospedeiro, com dono escrito. Rede pela 20.2: `clubedomosaico.com.br`
+   em **200 nas duas passadas**. **A porta de entrada estava DE PÉ.** Depois do desembarque, com 32
+   URLs: `leitura-do-visitante` **REPROVADO com EXATAMENTE o MESMO 1 defeito**, **33 URLs lidas, 0
+   em janela de cache**, e a página nova lida **pela BORDA em 200, sem quebra de cache**.
+
+2. **O RECORTE É `pigmentado`, E ERA O ÚLTIMO LIVRE DESTA CATEGORIA — medido, não escolhido.** Das
+   **nove** propriedades do banco de acabamento com 3+ itens de lastro, **seis** já são publicadas
+   por uma das páginas no ar (`acabamento_visual` e `pelicula` pela `verniz`, `tempo_de_secagem_h`
+   pela `selador`, `intervalo_entre_demaos_min` pela página das demãos, `base_quimica` pela
+   `impermeabilizante`) e **três** são recorte de filha-pergunta: `demaos_minimas` (a quarta, de
+   manhã), `diluicao` (a quinta, à tarde) e `pigmentado` (esta). Quem nomeou `pigmentado` como a
+   última livre foi **o comentário da quinta filha, escrito seis horas antes neste mesmo arquivo** —
+   e esta execução conferiu de novo contra o que as cinco publicam **antes** de escrever uma linha,
+   pela regra que a quinta deixou: **LASTRO NÃO É VAGA LIVRE**. Com isso **o quarto caminho — filha
+   nova em categoria que já tem mãe no ar, o mais barato dos quatro — está FECHADO**, e a próxima URL
+   desta ilha volta a custar item de banco ou pergunta nova em outra categoria.
+
+3. **O QUE A PÁGINA ENTREGA, e nenhum número é digitado:** dos 10 produtos do acabamento, **3**
+   declaram se têm cor própria — **2** se declaram pigmentados (*selador pigmentado*, da Quartzolit,
+   e *fundo de cor branco fosco*, da Coral) e **1** declara *película brilhante e transparente* (a
+   resina acrílica da Coral). Saem **2 respostas diferentes**; **7 não dizem nada**. E a observação
+   que a derivação carrega sozinha, pela ponte: os dois pigmentados são **selador**, a camada que vai
+   **por baixo** do caquinho, e o único de película transparente é **impermeabilizante**, que vai por
+   cima — a página diz que a pergunta atravessa *duas das três etapas*, e o número vem contado.
+
+4. **A TRAVA DA RÉGUA É O QUE MAIS VALE AQUI, E ELA NÃO MUDA NENHUM NÚMERO DESTE BANCO.**
+   `pigmentados` conta `'sim'` por **igualdade estrita** e **nada** conta o complemento. Com três
+   declarações e duas em `sim`, a subtração `com_pigmento - pigmentados` daria **o mesmo 1** que a
+   contagem estrita daria — então nenhuma conferência de número pegaria a diferença. O que muda é o
+   que a página **afirma**: a subtração chamaria de *não pigmentado* um `parcialmente` ou um
+   `pigmentável` que algum fabricante futuro declare, e publicaria o contrário do que ele escreveu.
+   É a mesma família do `demaos_min + 1` que esta régua já pagou. A tela diz, com essas palavras, que
+   **não dizer nada não é dizer que é transparente** — e é essa a metade que a SERP inteira deixa de
+   fora.
+
+5. **A SERP FOI MEDIDA TRÊS VEZES NO MESMO DIA E SÓ A TERCEIRA MEDIU NO BRASIL**, e disso nasceu o
+   **LIMITE 10** do canal de `serp-das-filhas.json`: **nome de MATERIAL dentro da pergunta troca a
+   SERP de pergunta pela SERP de COMPRA daquele material**. A moldura descartada *o que passo por
+   baixo do caquinho de **vidro** do mosaico aparece branco na peça* mediu **8 de 10 no Brasil** — e
+   trouxe a **Telha Norte em QUATRO das dez vagas**, com ficha de placa de pastilha de vidro 29,2×29,2
+   cm, que é revestimento de obra. A primeira moldura (*seca transparente ou deixa branco*) deu **dez
+   de dez fora do país**, pelo limite 4 — núcleo bilíngue. A adotada (*a peça de mosaico de caquinho
+   fica esbranquiçada depois do acabamento*) mediu **nove de dez no Brasil** e **nenhuma vaga
+   respondendo a pergunta**: matéria de entretenimento sobre piso de caquinho, catálogo de
+   acabamentos de cerâmica, manual de assentamento de porcelanato, uma ficha de revestimento da Casas
+   Bahia e uma página de ENEM explicando o que é mosaico. Varejo grande e fabricante aparecem, e
+   **nenhum com página dedicada à consulta**, que é o que a 30.5 exige para chamar de TOMADA. **Os
+   limites 4 e 5 falam de país e de pedir o número; este fala de INTENÇÃO.** As três passadas ficaram
+   gravadas, as duas descartadas com o motivo, para ninguém repetir.
+
+6. **TRÊS DEFEITOS ACHADOS E CONSERTADOS, E DOIS JÁ ESTAVAM NO `main` ANTES DESTA EXECUÇÃO.**
+
+   **(a) `filhas-do-guia.py --conferir` reprovava DESDE AS 10h19Z DE HOJE**, atravessando duas
+   execuções inteiras no vermelho. A coluna *"tipos que passam"* da tabela da seção 2 do `ARVORE.md`
+   tinha virado `3 de 3 tipos, **+1 pergunta**` às 10h19Z e `+2` às 13h18Z, e o portão a lê com a
+   régua `N de M`. **Não era número errado: era fato verdadeiro na coluna de outro dono.** Restaurada
+   para `3 de 3`, e **a contagem de perguntas não voltou para lá** — quem conta filha por CONSULTA é
+   `dados/cruzamento-14-9.md`, que é GERADO e tem portão que regera e compara. A nota de 05/10 que
+   está logo abaixo da tabela descreve exatamente este acidente, na direção do valor; agora ele tem
+   a versão dele na direção do **formato**.
+
+   **(b) `cruzamento-14-9.py --conferir` reprovava e IA FICAR VERMELHO PARA SEMPRE.** Ele contava a
+   **moldura descartada** como *medição órfã* — e a 14.9 manda guardar a consulta que falhou para
+   ninguém a repetir, com uma seção inteira do `cruzamento-14-9.md` dedicada a isso. **A prática
+   escrita da ilha e o veredito da ferramenta diziam o contrário um do outro**, e ninguém podia apagar
+   o vermelho sem jogar fora o registro — e portão permanentemente vermelho deixa de ser lido. Agora
+   a régua lê o **rótulo**: nome de recorte com marca de descarte por extenso sai da lista de órfãs e
+   entra numa seção própria do `.md`; **órfã de verdade continua reprovando**. O autoteste novo morde
+   os **dois** lados, para a marca não virar um jeito de calar o portão.
+
+   **(c) A JANELA DE IRMÃS DA CASCA NÃO ROTACIONAVA, e este é o grande — achado MEDINDO A PÁGINA NOVA
+   NO AR, não lendo código.** A página respondeu 200, com os números batendo, e com **UM único link de
+   entrada** — o da mãe — contra os **dois** que a 16.4(f) exige. A causa: `cdm_casca_irmas()`
+   devolvia `array_slice( $irmas, 0, 4 )`, as quatro **primeiras** da ordem do mapa, **iguais para
+   todas as irmãs**. Com até cinco filhas aquilo bastava; da **sexta** em diante as quatro primeiras
+   são as mesmas em todas as páginas e a quinta e a sexta não recebem link de irmã nenhuma. **E O
+   DEFEITO ERA MAIOR QUE A PÁGINA QUE O REVELOU:** `/materiais/` tem **onze** filhas desde 09/10 —
+   `qual-cola`, `quantas-pastilhas`, `acabamento` e as **oito páginas de consulta de produto** —, então
+   **sete** estavam no ar com um link de entrada só, e as oito de produto são justamente as que foram
+   publicadas para ranquear por nome de produto. A **janela cíclica** conserta por construção: cada
+   página leva as quatro irmãs que vêm **depois** dela na ordem do mapa, dando a volta no fim. O grafo
+   que sai é **circulante**, então o grau de ENTRADA de toda filha é igual ao de SAÍDA — `min(4,
+   irmãs)` — qualquer que seja o número de filhas, hoje e quando a categoria tiver dez. **Trava que
+   depende de a categoria ser pequena é trava que um dia para de valer, e esta era.**
+
+   **E A BANCADA MEDIA SÓ UMA DIREÇÃO — é por isso que o defeito viveu três dias.** O bloco 24 do
+   `teste-casca.php` conta quantas irmãs **cada página lista** (2 a 4, todas no ar, todas da mesma
+   mãe) e ficava **verde nos dois mundos**. A 16.4(f) é uma afirmação sobre **quem aponta**, e portão
+   que só conta o que sai não a mede. Nasceu o **bloco 24-b**, que refaz a conta na direção de
+   ENTRADA a partir do HTML servido de todas as páginas, mais a mutação `a janela de irmãs para de
+   rotacionar`, que restaura o `array_slice` e **reprova nela** — acusando
+   `materiais/alicate-para-mosaico`, que é página de 09/10 e não de hoje. **Conferido no ar depois do
+   conserto:** a página nova tem **5 links de entrada** (1 da mãe, 4 de irmãs) e a `alicate` voltou a
+   receber link de irmã.
+
+7. **A FALHA DE ATIVAÇÃO DO GUIA ACONTECEU PELA QUARTA VEZ EM QUATRO DIAS (79 → 80), e desta vez ela
+   SEPARA DUAS CAUSAS que o `PROMPT.md` trazia juntas.** A revisão 79 foi sincronizada em sync
+   **COMUM**, sem `forcar=1`, e falhou assim mesmo: `snippets/guia: gravado (#13) mas NÃO ativado`.
+   Então o `forcar=1` de 09/10 **agrava** — ele reaplica os nove snippets em vez de só o que mudou —
+   e **não é a causa**. A causa é **reativar um snippet já carregado na requisição**, e isso acontece
+   em sync comum sempre que o PHP do Guia muda. As seis páginas do Guia serviram **shortcode cru**
+   (`[cdm_guia_acabamento]`), **sem `<meta name="description">`**, por cerca de cinco minutos —
+   medido no ar, não suposto. O conserto é o que o próprio `PROMPT.md` descreve: subir a revisão para
+   o sync comum não sair cedo e reaplicar o item que ficou sem sha. **A consequência prática, para a
+   próxima execução:** toda revisão que muda o PHP do Guia nasce com a revisão seguinte reservada, e
+   o bloco não fecha antes do segundo sync. A casca, na revisão 81, **ativou de primeira**.
+
+8. **E UMA TRILHA FECHADA COM NÚMERO, que é o outro resultado desta passada.** Seis consultas de
+   produto novas da seção 30 foram declaradas e colhidas na API da Shopee **numa passada só**, e as
+   **seis** ficaram em `publicar: false`, cada uma com a causa medida em
+   `dados/consultas-de-produto.json`. **Três** devolveram **zero** oferta — `caquinho de azulejo`,
+   `tesselas` e `tela de fibra de vidro` —, que é **ausência de dado comercial e não armadilha: a
+   palavra existe no vocabulário do assunto e não no da compra**. **Duas** ficaram abaixo do mínimo de
+   3 da 30.2 e com o pouco que veio sendo outra coisa: `pastilha de ceramica` devolveu **o torquês que
+   corta pastilha de cerâmica** (achado de régua: `exige` com dois grupos não separa o material da
+   ferramenta que o corta, porque o título da ferramenta nomeia os materiais) e `murano` devolveu peça
+   acabada. **Uma** — `moldura` — **atingiu o mínimo e é a MESMA armadilha do quadro decorativo de
+   várias placas** medida em 09/10: as quatro ofertas que passaram eram *Quadro Abstrato*, *Quadro
+   Jesus*, *Trio de Quadros* e *Quadro Santa Ceia*. A `recusa` dela foi **apertada na mesma passada**
+   (o termo era `quadro pronto`, e a régua compara palavra por palavra, então `Quadro Abstrato` não
+   casava), e o contador foi de **4 que servem para 0** — **portão que conta certo e lê errado é pior
+   que portão que reprova**. Com as 16 de 09/10 são **22 consultas tentadas**, todas escritas uma a
+   uma: consulta de produto nova nesta ilha pede **canal novo**, e o Mercado Livre responde 403 desde
+   09/10.
+
+9. **O DESPACHO ABERTO NÃO ANDOU, E A MEDIÇÃO FOI FEITA UMA VEZ EM VEZ DE COPIADA.** O único item de
+   despacho aberto para a Fundação nesta ilha é o **item 2 do despacho do Raphael de 09/10** — a lista
+   das 6 URLs em "Não encontrado (404)" —, e as três fontes dele estão medidas mortas daqui.
+   `env | grep -c GOOGLE_SA` devolve **0** nesta execução, pela **sétima** vez seguida; o próprio
+   despacho já autoriza medir uma vez e seguir sem detalhar de novo. O despacho da Sentinela de hoje
+   (12/10, ronda técnica) declara, com essas palavras, que **a Fundação não tem nada a cumprir dele**.
+
+10. **BANCADA:** `teste-guia` **232** afirmações (eram 227 — a nova reprovou primeiro por *falta de
+    ramo*, porque propriedade sem ramo de conferência REPROVA em vez de passar calada),
+    `mutacoes-guia` **31 de 31** (eram 27, com quatro mutações novas), `teste-casca` **1041** (eram
+    1040), `mutacoes-arvore` **30 de 30** (eram 29, com **três alvos retargeados** porque o código que
+    elas matavam mudou de lugar — a exclusão da própria página, por exemplo, deixou de ser um
+    `$caminho === $slug` no filtro e passou a ser o `$i = 1` da janela), `coletar-por-consulta
+    --conferir` **554 afirmações**, `validar-banco` OK, `cruzamento-14-9 --autoteste` **52 casos
+    fabricados**, e as **nove bancadas PHP da ilha rodadas inteiras depois da mudança da casca** —
+    `teste-produto` 306, `teste-tecnicas` 139, `teste-f2` 174, mais loja, f1, ateliê, leads e
+    prestação-rejunte, todas APROVADAS.
+
+**O PRÓXIMO PASSO DESBLOQUEADO, e ele é mais estreito do que era hoje de manhã:** a semana da 21.4
+está em **3 de 3 levas** e zera em **19/10**, então nenhuma leva de malha nasce nesta ilha antes
+disso. E o quarto caminho fechou: o `acabamento` não tem mais propriedade livre, e as três mães que
+faltam estão medidas como fechadas por canal ou por derivação (a `alicate` precisa de **fabricante
+novo no banco**; a `rejunte` tem a última propriedade canibalizada pela consulta da `cimenticio` e os
+dois tipos restantes dependem do curinga `*.quartzolit.weber`, que é do Raphael; a `pastilha` tem as
+três propriedades no mesmo conjunto de 12 itens e a pergunta dela mediu SERP **TOMADA**). **O que
+sobra de Fundação nesta ilha não é malha:** é ferramenta, régua e banco — e a lista de quem destrava
+o resto está no topo do `ESTADO.md`, item por item, com o dono de cada um.
+
 12/10/2026 10h19Z–11h3xZ — A FILHA EM FORMA DE PERGUNTA EXISTE, E COM ELA O CAMPO `tipo` PAROU DE FAZER DOIS TRABALHOS
 
 **Uma URL nova, a 30ª da ilha:** `/materiais/acabamento/camadas-de-verniz-depois-do-rejunte/`, a **quarta

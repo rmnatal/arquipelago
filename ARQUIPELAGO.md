@@ -579,6 +579,17 @@ Decisão do Raphael em 11/09/2026: toda ilha nasce com hierarquia visível na UR
 
 16.6 **Ordem das levas (seção 9) dentro da árvore:** primeiro a mãe e suas 3 primeiras filhas de maior intenção de compra, depois as irmãs, depois a próxima categoria. Nunca uma filha de cada categoria espalhada — cluster ralo não passa autoridade.
 
+16.9 **A 16.4(f) SE MEDE NA DIREÇÃO DE QUEM APONTA, E PORTÃO QUE CONTA SÓ O QUE SAI NÃO A MEDE (12/10/2026).** Escrito depois de a Clube do Mosaico publicar a sexta filha de uma categoria e ela nascer no ar com **um único link de entrada** — o da mãe — contra os dois que a 16.4(f) exige, com o portão de cluster da ilha **verde**.
+
+**A causa, e ela não é dessa ilha: é de qualquer cluster com janela fixa.** O bloco "Veja também" daquela casca devolvia as **quatro primeiras** irmãs da ordem do mapa, iguais para todas as páginas. Com até cinco filhas isso é invisível, porque cada página vê no máximo quatro candidatas e a lista sai inteira; **da sexta em diante as quatro primeiras são as mesmas em todas as páginas, e a quinta e a sexta não recebem link de irmã nenhuma.** O estrago medido foi maior que a página que o revelou: `/materiais/` daquela ilha tem onze filhas, e **sete** estavam no ar com um link de entrada só — as oito páginas de consulta de produto da seção 30 entre elas, que são justamente as que existem para ranquear.
+
+**A regra, em duas metades:**
+
+- **(a) A janela de irmãs ROTACIONA.** Cada página leva as até-quatro irmãs que vêm **depois** dela na ordem do mapa, dando a volta no fim. O grafo que sai é circulante, então o grau de **entrada** de toda filha é igual ao de **saída** — `min(4, irmãs)` — qualquer que seja o número de filhas, hoje e quando a categoria tiver dez. Janela fixa é uma trava que depende de a categoria ser pequena, e trava que depende do tamanho de hoje é trava que um dia para de valer.
+- **(b) A bancada de cluster de toda ilha mede as DUAS direções.** Contar quantas irmãs cada página **lista** (2 a 4, todas no ar, todas da mesma mãe) fica verde nos dois mundos. A 16.4(f) é uma afirmação sobre **quem aponta**: a conta tem de ser refeita na direção de entrada, a partir do HTML servido de todas as páginas, cobrando que toda filha no ar cuja mãe tenha duas ou mais filhas no ar receba **ao menos uma irmã** apontando para ela. Somado ao link da mãe, que a 16.4(a) já cobra, isso fecha os dois.
+
+**Por que isto está aqui e não no `PROMPT.md` de uma ilha:** toda ilha tem cluster de irmãs, toda ilha vai passar de cinco filhas numa categoria, e o defeito é silencioso nas duas pontas — a página responde 200, o portão fica verde, e o que se perde é autoridade interna, que não aparece em nenhuma leitura de HTTP.
+
 16.7 **Entre ilhas não há link** (decisão de 09/09/2026): cada ilha é um silo próprio; a autoridade cresce dentro do domínio.
 
 16.8 **Transição das ilhas vivas.** Aquametria, Robometria e Clube do Mosaico: no bloco de reescrita da home e do header (seção 15.5), a Fundação também (i) define a árvore da ilha em `ilhas/<ilha>/ARVORE.md` (níveis 1 e 2 com slugs, e a lista das páginas existentes com o pai de cada uma); (ii) muda o pai e o slug das páginas existentes SOMENTE se ainda não estiverem posicionadas (seção 12.1: página com impressão registrada não troca URL — recebe breadcrumb e links no lugar onde está, e o pai passa a apontar para ela); (iii) publica breadcrumb e blocos "Veja também" em tudo; (iv) toda URL que mudar recebe 301 da antiga e o sitemap é reenviado.

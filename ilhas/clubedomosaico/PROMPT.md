@@ -32,6 +32,24 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 > a terceira queda já era chamado e não reparo, e o reparo só continua valendo porque o chamado não foi
 > respondido.
 
+> **CORRIGIDO EM 12/10/2026 às 16h5xZ, NA QUARTA OCORRÊNCIA EM QUATRO DIAS — O `forcar=1` AGRAVA E NÃO É
+> A CAUSA.** O aviso abaixo é de 09/10 e atribuía a falha de ativação ao `forcar=1`. A revisão **79** foi
+> sincronizada em sync **COMUM**, sem `forcar=1`, e falhou **igual**: `snippets/guia: gravado (#13) mas NÃO
+> ativado`. Então o que o `forcar=1` faz é **ampliar o alvo** — ele reaplica os nove snippets em vez de só
+> o que mudou —, e a causa é a que o próprio aviso já nomeia na parte do mecanismo: **reativar um snippet
+> JÁ CARREGADO na requisição**. Isso acontece em sync comum **sempre que o PHP do Guia muda**.
+>
+> **AS QUATRO OCORRÊNCIAS:** 09/10 (revisão 72 → 73, com `forcar=1`), 12/10 10h5xZ (75 → 76, sync comum),
+> 12/10 13h5xZ (77 → 78, sync comum) e 12/10 16h4xZ (79 → 80, sync comum). **A CONSEQUÊNCIA PRÁTICA, e é
+> ela que poupa a próxima execução:** toda revisão que muda o PHP do Guia **nasce com a revisão seguinte
+> reservada**, e o bloco **não fecha antes do segundo sync**. Conte duas revisões, não uma. A casca mudou
+> na revisão 81 e **ativou de primeira** — o problema é do Guia, não do mecanismo de sync.
+>
+> **E ELE NÃO É SILENCIOSO SE ALGUÉM OLHAR:** entre a 79 e a 80 as SEIS páginas do Guia serviram o
+> shortcode **cru** (`[cdm_guia_acabamento]`) e **sem `<meta name="description">`**, respondendo **200**,
+> por cerca de cinco minutos. **Confira uma página do Guia no ar depois de cada sync que mexa nele** —
+> `grep -c '\[cdm_guia' ` na URL servida é o comando, e ele custa um segundo.
+
 > **`forcar=1` NO SYNC PODE DERRUBAR UM SNIPPET QUE ESTAVA DE PÉ — MEDIDO EM 09/10/2026, E A VÍTIMA FOI O
 > GUIA.** O desembarque das oito páginas de produto foi feito com `forcar=1`, que reaplica **todos** os
 > snippets e não só os que mudaram. O Sync grava cada um **inativo** e depois chama `activate_snippet()`
@@ -495,6 +513,13 @@ sombreamento contra o caminho real, 14 mutações reprovando) e as treze linhas 
 credencial, ela lê a lista, compara, e decide o que sobrar entre `301` e morrer de propósito com o
 motivo escrito. **Pronto quando, inalterado:** as 6 nomeadas com a decisão de cada uma, e a leitura de
 14/10 registrando **3 ou menos** em "Não encontrado (404)".
+
+**tentativa em 12/10/2026 às 16h2xZ (18.4): `GOOGLE_SA_B64` continua ausente.** `env | grep -c
+GOOGLE_SA` devolve **0**, pela **sétima** execução a medir. Medido uma vez e seguido em frente, como a
+linha de 09/10 deste mesmo despacho autoriza — *"reescrever esta linha é mais barato que remedir"*. As
+outras duas fontes (`web.archive.org` e sitemap legado) não foram remedidas: a primeira é política de
+rede do Raphael e a segunda está fechada como **não existe**. **A casca já não é a 1.22.0: é a 1.23.0**
+(a janela de irmãs passou a rotacionar, pela 16.9 do contrato), e o mecanismo de apelido não foi tocado.
 
 ---
 

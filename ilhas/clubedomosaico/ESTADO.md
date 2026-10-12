@@ -3,7 +3,14 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 31        # 30 -> 31 em 12/10/2026 13h5xZ: a QUINTA filha de /materiais/acabamento/,
+urls_publicadas: 32        # 31 -> 32 em 12/10/2026 17h5xZ: a SEXTA filha de /materiais/acabamento/,
+                           # a TERCEIRA desta ilha em forma de PERGUNTA, e ela FECHA a categoria por
+                           # PROPRIEDADE: o recorte dela e `pigmentado`, a ultima das nove
+                           # propriedades com 3+ itens de lastro que nenhuma pagina no ar usava.
+                           # Contado no wp-sitemap no ar com quebra de cache: 27 em posts-page e
+                           # 5 em posts-peca. O piso da 21.1 pede 40 — faltam 8.
+                           # Leva 3 de 3 da semana da 21.4: A SEMANA ESTA GASTA e zera em 19/10.
+                           # 30 -> 31 em 12/10/2026 13h5xZ: a QUINTA filha de /materiais/acabamento/,
                            # e a SEGUNDA desta ilha em forma de PERGUNTA — a primeira vez que uma
                            # categoria tem DUAS perguntas sob a mesma mae, e foi isso que obrigou o
                            # mecanismo de pergunta (e a bancada) a deixar de ser singular. O recorte
@@ -24,7 +31,24 @@ urls_publicadas: 31        # 30 -> 31 em 12/10/2026 13h5xZ: a QUINTA filha de /m
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-12T13:18Z   # A SEGUNDA PERGUNTA NA MESMA CATEGORIA, e com ela o mecanismo
+ultima_execucao: 2026-10-12T16:20Z   # A TERCEIRA PERGUNTA DA MESMA CATEGORIA, e ela FECHA o
+                                     # `acabamento` por propriedade. Uma URL nova
+                                     # (/materiais/acabamento/peca-de-mosaico-esbranquicada/),
+                                     # recorte `pigmentado`, SERP medida em TRES molduras e so a
+                                     # terceira mediu no Brasil — de onde saiu o LIMITE 10 do canal.
+                                     # TRES DEFEITOS ACHADOS E CONSERTADOS NESTA PASSADA, e dois
+                                     # deles ja estavam no `main` antes dela: (1) o
+                                     # `filhas-do-guia --conferir` reprovava DESDE AS 10h19Z, por
+                                     # formato na coluna do ARVORE.md; (2) o `cruzamento --conferir`
+                                     # reprovava e IA FICAR, porque contava moldura descartada como
+                                     # medicao orfa; (3) a janela de irmas da casca nao rotacionava, e
+                                     # SETE filhas de /materiais/ estavam no ar com UM link de entrada
+                                     # so — as oito paginas de produto de 09/10 entre elas.
+                                     # A falha de ativacao do Guia aconteceu pela QUARTA vez em
+                                     # quatro dias (79 -> 80) e desta vez em sync COMUM, o que separa
+                                     # as duas causas: `forcar=1` AGRAVA e nao e a causa.
+                                     # O horario aqui e o da RESERVA, que e o que a secao 1 compara.
+                                     # 2026-10-12T13:18Z — A SEGUNDA PERGUNTA NA MESMA CATEGORIA, e com ela o mecanismo
                                      # de pergunta deixou de ser SINGULAR — a 1.3.0, de manha,
                                      # despachava por `'pergunta' === $forma` em tres lugares e a
                                      # ponte dizia "as tres etapas" com a palavra TRES digitada.
@@ -49,13 +73,89 @@ ultima_execucao: 2026-10-12T13:18Z   # A SEGUNDA PERGUNTA NA MESMA CATEGORIA, e 
                                      # de consulta de produto) e 19h19Z (o apelido de endereco com
                                      # NIVEL e os treze 301). O horario aqui e o da RESERVA, que e o
                                      # que a secao 1 compara; o bloco fechou perto de 21hZ.
-executando_desde: 2026-10-12T17:55Z   # RENOVADA pela 1.1 (segunda vez): o bloco achou um defeito de 16.4(f) no ar
+executando_desde: null
 ultima_ronda: 2026-10-12T15:00Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente segue sendo a de 07/10 20h35Z). ZERO defeito de ilha nas 31 URLs; o TESTE DE VIDA DA 25.4 VOLTOU A FUNCIONAR — 24 de 24 itens medidos, 0 morto, 0 esgotado, depois de tres rondas em zero.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
+  A TERCEIRA PERGUNTA DO ACABAMENTO, E ELA FECHA A CATEGORIA POR PROPRIEDADE. Uma URL nova:
+  /materiais/acabamento/peca-de-mosaico-esbranquicada/, conferida no ar em 200 com os numeros dela
+  batendo com o banco e ZERO molde nao preenchido. A ilha vai de 31 para 32 URLs; faltam 8 para o
+  piso de 40 da 21.1. Leva 3 de 3 da semana da 21.4 — A SEMANA ESTA GASTA e zera em 19/10. Guia
+  1.5.0, casca 1.23.0, manifest e /status na revisao 81.
+  1. OS DOIS PORTOES DA 29 RODARAM ANTES DE TUDO E DE NOVO NO FIM. Antes: conferir-no-ar.py
+     APROVADO com 524 afirmacoes e 0 falha; leitura-do-visitante.py REPROVADO com EXATAMENTE 1
+     defeito, o soft 404 da borda, do hospedeiro, com dono escrito. Depois do desembarque, com 32
+     URLs: leitura-do-visitante REPROVADO com EXATAMENTE o MESMO 1 defeito, 33 URLs lidas, 0 em
+     janela de cache, e a pagina nova lida pela BORDA em 200 sem quebra de cache. Rede pela 20.2:
+     200 na raiz, duas passadas. A porta de entrada estava DE PE antes e depois.
+  2. O RECORTE E `pigmentado`, E ERA O ULTIMO LIVRE DA CATEGORIA. Das NOVE propriedades do banco de
+     acabamento com 3+ itens de lastro, SEIS estao publicadas por uma das paginas no ar e tres sao
+     recorte de filha-pergunta: `demaos_minimas` (a quarta), `diluicao` (a quinta) e `pigmentado`
+     (esta). Quem nomeou `pigmentado` como a ultima livre foi o comentario da QUINTA filha, escrito
+     seis horas antes no mesmo arquivo, e esta execucao conferiu de novo contra o que as cinco
+     publicam ANTES de escrever uma linha — pela regra que a quinta deixou: LASTRO NAO E VAGA LIVRE.
+     COM ISSO O QUARTO CAMINHO (filha nova em categoria com mae no ar) ESTA FECHADO, e a proxima URL
+     desta ilha volta a custar ITEM DE BANCO ou PERGUNTA NOVA em outra categoria.
+  3. O QUE A PAGINA PUBLICA, e nenhum numero e digitado: dos 10 produtos do acabamento, 3 declaram
+     se tem cor propria — 2 se declaram pigmentados (`selador pigmentado`, da Quartzolit, e `fundo
+     de cor branco fosco`, da Coral) e 1 declara `pelicula brilhante e transparente` (resina
+     acrilica da Coral). Saem 2 respostas diferentes; 7 nao dizem nada. A TRAVA DA REGUA E O QUE
+     MAIS VALE AQUI: `pigmentados` conta `'sim'` por igualdade ESTRITA e NADA conta o complemento —
+     a subtracao chamaria de transparente um `parcialmente` que algum fabricante futuro declare, e
+     passaria em toda bancada de numero, porque um inteiro valido sai dos dois lados. A tela diz,
+     com essas palavras, que NAO DIZER NADA NAO E DIZER QUE E TRANSPARENTE, que e a metade que a
+     SERP inteira deixa de fora.
+  4. A SERP FOI MEDIDA TRES VEZES E SO A TERCEIRA MEDIU NO BRASIL (9 de 10), e disso nasceu o
+     LIMITE 10 do canal: nome de MATERIAL dentro da pergunta troca SERP de pergunta por SERP de
+     COMPRA daquele material. `o que passo por baixo do caquinho de VIDRO...` mediu no Brasil e
+     trouxe a Telha Norte em QUATRO das dez vagas, com ficha de placa de pastilha 29,2x29,2 cm. A
+     moldura adotada nao nomeia material. A primeira (`seca transparente ou deixa branco`) deu DEZ
+     de dez fora do pais, pelo limite 4 — nucleo bilingue. As tres estao gravadas, as duas
+     descartadas com o motivo, para ninguem repetir.
+  5. TRES DEFEITOS CONSERTADOS, E DOIS JA ESTAVAM NO `main` ANTES DESTA EXECUCAO.
+     (a) `filhas-do-guia --conferir` reprovava DESDE AS 10h19Z DE HOJE, atravessando duas execucoes:
+     a coluna "tipos que passam" do ARVORE.md tinha virado `3 de 3 tipos, +1 pergunta` (depois
+     `+2`), e o portao a le com a regua `N de M`. Nao era numero errado — era fato verdadeiro na
+     coluna de outro dono. Restaurada para `3 de 3`, e a contagem de perguntas NAO voltou para la:
+     quem conta filha por CONSULTA e o cruzamento-14-9.md, que e GERADO e tem portao.
+     (b) `cruzamento-14-9 --conferir` reprovava e IA FICAR: contava MOLDURA DESCARTADA como medicao
+     orfa, e a 14.9 manda guardar a consulta que falhou. Ninguem podia apagar o vermelho sem jogar
+     fora o registro. Agora a regua le o ROTULO; orfa de verdade continua reprovando, e o autoteste
+     novo morde os dois lados, para a marca nao virar um jeito de calar o portao.
+     (c) A JANELA DE IRMAS DA CASCA NAO ROTACIONAVA, e este e o grande. `cdm_casca_irmas()` devolvia
+     as QUATRO PRIMEIRAS da ordem do mapa, iguais para todas as irmas — e com SEIS filhas a quinta e
+     a sexta nao recebem link de irma nenhuma. A pagina nova nasceu com UM link de entrada, o da
+     mae, contra os DOIS da 16.4(f). E O DEFEITO ERA MAIOR QUE ELA: /materiais/ tem ONZE filhas
+     desde 09/10, entao SETE estavam no ar com um link so — as oito paginas de consulta de produto
+     entre elas. Janela ciclica (grafo circulante: grau de entrada = grau de saida = min(4, irmas)),
+     bloco 24-b novo no teste-casca medindo a direcao de ENTRADA no HTML servido, e mutacao que
+     restaura o `array_slice` e reprova nele. Conferido no ar: a pagina nova tem 5 links de entrada
+     (1 da mae e 4 de irmas), e `materiais/alicate-para-mosaico` voltou a receber link de irma.
+  6. A FALHA DE ATIVACAO DO GUIA ACONTECEU PELA QUARTA VEZ EM QUATRO DIAS (79 -> 80), e desta vez
+     ela separa duas causas que o PROMPT.md trazia juntas: a 79 foi sincronizada em sync COMUM, sem
+     `forcar=1`, e falhou assim mesmo. Entao o `forcar=1` de 09/10 AGRAVA (reaplica os nove
+     snippets) e NAO e a causa; a causa e reativar um snippet JA CARREGADO na requisicao, e isso
+     acontece em sync comum sempre que o PHP do Guia muda. As seis paginas do Guia serviram
+     shortcode CRU, sem description, por cerca de cinco minutos. A CONSEQUENCIA PRATICA: toda
+     revisao que muda o PHP do Guia nasce com a revisao seguinte reservada, e o bloco nao fecha
+     antes do segundo sync. A casca na revisao 81 ativou de primeira.
+  7. E UMA TRILHA FECHADA COM NUMERO: seis consultas de produto novas (secao 30) declaradas e
+     colhidas na API da Shopee numa passada so, e as SEIS em `publicar: false` com a causa medida.
+     TRES devolveram ZERO oferta (ausencia de dado comercial, nao armadilha), DUAS ficaram abaixo do
+     minimo de 3 com o pouco que veio sendo outra coisa, e UMA (`moldura`) atingiu o minimo e e a
+     MESMA armadilha do quadro decorativo de 09/10 — a `recusa` dela foi apertada na mesma passada
+     para o contador parar de dizer ABRE, porque portao que conta certo e le errado e pior que
+     portao que reprova. Com as 16 de 09/10 sao 22 consultas tentadas, todas escritas uma a uma.
+  8. BANCADA: teste-guia 232 (eram 227, com a nova reprovando por falta de ramo), mutacoes-guia
+     31 de 31 (eram 27), teste-casca 1041 (eram 1040), mutacoes-arvore 30 de 30 (eram 29) com TRES
+     alvos retargeados porque o codigo que elas matavam mudou de lugar, coletar-por-consulta
+     --conferir 554 afirmacoes, validar-banco OK, e as nove bancadas PHP da ilha rodadas inteiras
+     depois da mudanca da casca — todas APROVADAS.
+
+bloco_anterior_12_10_tarde: |
   A SEGUNDA PERGUNTA NA MESMA CATEGORIA, E O MECANISMO DE PERGUNTA DEIXA DE SER SINGULAR. Uma URL
   nova: /materiais/acabamento/diluir-o-verniz-do-mosaico/, conferida no ar em 200 com os numeros
   dela batendo com o banco. A ilha vai de 30 para 31 URLs; faltam 9 para o piso de 40 da 21.1.
@@ -252,8 +352,9 @@ singular. 29 → 30 no mesmo dia, de manhã: a quarta filha, a primeira em forma
 
 | o que falta | onde está medido |
 |---|---|
-| **9 URLs para o piso da 21.1.** As três mães do Guia estão a 1 (`alicate`), 2 (`pastilha`) e 1 (`rejunte`) filha da 16.5, e **o custo de cada filha é ITEM DE BANCO ou PERGUNTA NOVA — nunca medir SERP**. **E desde 12/10/2026 existe um quarto caminho, mais barato que os três: FILHA NOVA EM CATEGORIA QUE JÁ TEM MÃE NO AR.** Ela não passa pela 16.5 (a mãe já nasceu), reusa a régua que existe, e o mecanismo dela está construído e medido — foi assim que a 30ª URL nasceu hoje. Hoje só o `acabamento` tem mãe no ar, e a próxima pergunta dele precisa de uma propriedade com 3 itens de lastro e consulta própria ainda não tomada: **o `acabamento` está quase esgotado, e isso é medido e não impressão: de SEIS propriedades com 3+ itens de lastro, CINCO já são publicadas por uma das cinco páginas no ar** (`acabamento_visual` e `pelicula` pela `verniz`, `tempo_de_secagem_h` pela `selador`, `intervalo_entre_demaos_min` e `demaos_minimas` pela página das demãos). **Sobra UMA: `pigmentado`** (3 itens, 2 tipos), e o que a destrava não é dado — é uma consulta cujo NÚCLEO não seja `selador`, porque a passada de 12/10 deu **zero brasileiros em dez** com as duas primeiras vagas em DICIONÁRIO de espanhol e inglês. **E a `alicate` deixou de ter caminho de pergunta, também por derivação:** toda propriedade dela com 3+ itens coincide exatamente com o conjunto de um tipo, e a régua reprova isso — a filha que falta lá custa **ITEM DE BANCO, e só**. Quem for escrever a sexta lê a tabela de consultas do `cruzamento-14-9.md` **e o que as cinco páginas publicam**, antes de contar itens | `dados/cruzamento-14-9.md`, a fila das mães |
+| **8 URLs para o piso da 21.1, e o QUARTO CAMINHO — o mais barato dos quatro — ACABOU DE SER FECHADO.** Ele era *filha nova em categoria que já tem mãe no ar*: não passa pela 16.5, reusa a régua que existe, e foi assim que a 30ª, a 31ª e a 32ª URL nasceram em 12/10. **Só o `acabamento` tem mãe no ar, e desde as 17h5xZ de 12/10 ele não tem mais propriedade livre** — a sexta filha nasceu com o recorte `pigmentado`, que era a última das NOVE propriedades com 3+ itens de lastro sem página: `acabamento_visual` e `pelicula` são publicadas pela `verniz`, `tempo_de_secagem_h` pela `selador`, `intervalo_entre_demaos_min` pela página das demãos, `base_quimica` pela `impermeabilizante`, e `demaos_minimas`, `diluicao` e `pigmentado` são o recorte da quarta, da quinta e da sexta filha. **Então a próxima URL desta ilha volta a custar o que custava antes de 12/10: ITEM DE BANCO ou PERGUNTA NOVA em outra categoria, e nunca medir SERP.** As três mães do Guia estão a 1 (`alicate`), 2 (`pastilha`) e 1 (`rejunte`) filha da 16.5. **E as três estão medidas como fechadas por canal ou por derivação, não por falta de trabalho:** a `alicate` não tem caminho de pergunta (toda propriedade dela com 3+ itens coincide exatamente com o conjunto de um tipo, e a régua reprova isso) e os dois tipos que faltam — `pinca_mosaico` e `martelinho` — estão fechados como *não existe por aqui* desde 07/10, só destraváveis por **fabricante novo no banco**; a `rejunte` tem `liberacao_area_molhada_h` com 4 itens, e a consulta dela é a MESMA de `rejunte/cimenticio` (*quanto tempo esperar para molhar*), o que a canibaliza pela 30.4, e `acrilico` e `epoxi` dependem do curinga `*.quartzolit.weber`, que é do Raphael; a `pastilha` tem as três propriedades no MESMO conjunto de 12 itens e a pergunta dela mediu SERP **TOMADA**. **Quem for abrir o próximo bloco de malha nesta ilha começa por aqui e não por contar itens** | `dados/cruzamento-14-9.md`, a fila das mães |
 | **As três técnicas em zero** (direto, indireto, bizantino) — e elas não são trabalho de texto, são de FONTE; o indireto tem a lacuna com nome: a cola hidrossolúvel que o método exige não existe nos 7 itens do banco de colas | fila de blocos, item 2 |
+| **A TRILHA DE CONSULTA DE PRODUTO (seção 30) ESTÁ FECHADA NESTE CANAL, medida em 12/10/2026 às 16h4xZ.** Seis consultas novas foram declaradas e colhidas na API da Shopee numa passada só, e as **seis** ficaram em `publicar: false` com a causa medida: TRÊS devolveram **zero** oferta (`caquinho de azulejo`, `tesselas`, `tela de fibra de vidro`) — ausência de dado comercial, não armadilha; DUAS ficaram abaixo do mínimo de 3 da 30.2 com o pouco que veio sendo outra coisa (`pastilha de cerâmica` devolveu o TORQUÊS que corta pastilha de cerâmica; `murano` devolveu peça acabada); e UMA (`moldura`) atingiu o mínimo e é a MESMA armadilha do quadro decorativo de 09/10. Com as 16 de 09/10, são **22 consultas tentadas**, todas escritas uma a uma. **Consulta de produto nova aqui pede CANAL novo** — o Mercado Livre responde 403 desde 09/10 — **e isso é do Raphael**, não trabalho de Fundação | `dados/consultas-de-produto.json` |
 | **Os doze tutoriais-âncora do bloco 5**, onde mora a candidata que sobrou da Proposta 3: `como fazer quadro do divino espirito santo em mosaico de caquinho passo a passo`, medida **ABERTA** — e ela só nasce quando a faixa de volume chegar (pedido ao Raphael) e o portão de dado da seção 9 fechar | despacho de 07/10, Proposta 3 |
 | ~~**Os dois bloqueios do substrato que sobraram na F2**~~ — **ESTA LINHA ESTAVA AO CONTRÁRIO, e a medição está no próprio banco.** Os **TRÊS** bloqueios fecharam em **06/10/2026**, e `dados/materiais-colas.json` os lista um a um em `fontes/bt-cimentcola-externo-2016-05/substratos_que_o_documento_declara/os_tres_bloqueios_e_o_que_fechou_cada_um`, com `fechou_em` e `com_o_que` em campo lido por máquina: a peça pela **regra 7**, o ambiente colado ao substrato pela **regra 8** (`ambiente_que_qualifica_a_base`, esquema v14, `mutacoes-par.py`), e a **cura** sem campo novo, pela citação, com a F2 servindo `preparo` — conferido **no ar** em 09/10 às 20h1xZ, na URL da F2 com `base=cimento_concreto&onde=externo_abrigado`. **Nada aqui depende da Fundação** | `dados/materiais-colas.json`, campo citado, e a F2 no ar |
 | ~~**As 13 baterias de mutação que rodam em cima da árvore e não têm `restaura_em_sinal()`**~~ — **PAGO em 09/10/2026 às 20h4xZ, e eram CATORZE e não treze.** A rede virou um módulo (`ferramentas/rede-de-sinal.py`), as catorze passaram a usá-la — a `par` inclusive, que tinha cópia própria — e o portão `ferramentas/teste-rede-de-sinal.py` mata cada uma de propósito e mede a árvore voltando igual. **O 13 era do comando que o `PROMPT.md` mandava usar** (`grep -L 'mkdtemp\|copytree'`), que escondia a `par` por causa de um comentário: a bateria que causou o estrago ficou fora da lista da dívida que ela criou | o portão, rodado |
