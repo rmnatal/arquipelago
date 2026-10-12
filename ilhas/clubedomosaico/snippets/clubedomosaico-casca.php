@@ -309,7 +309,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.22.0' );
+	define( 'CDM_CASCA_VERSAO', '1.23.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2042,18 +2042,50 @@ function cdm_casca_irmas( $slug ) {
 
 	$minha = $mapa[ $slug ]['mae'];
 	$irmas = array();
+	$eu    = -1;
 	foreach ( $mapa as $caminho => $def ) {
-		if ( $caminho === $slug || $def['mae'] !== $minha || 0 === (int) $def['nivel'] ) {
+		if ( $def['mae'] !== $minha || 0 === (int) $def['nivel'] ) {
 			continue;
 		}
 		$url = cdm_casca_url_se_existir( $caminho );
 		if ( '' === $url ) {
 			continue;
 		}
+		/* A PAGINA ENTRA NA LISTA PARA DIZER ONDE ELA ESTA, e sai dela logo
+		   abaixo. Sem a posicao dela a janela nao tem de onde comecar. */
+		if ( $caminho === $slug ) {
+			$eu = count( $irmas );
+		}
 		$irmas[] = array( 'slug' => $caminho, 'rotulo' => $def['rotulo'], 'url' => $url );
 	}
+	if ( $eu < 0 ) {
+		return array();
+	}
 
-	return array_slice( $irmas, 0, 4 );
+	/* A JANELA DE QUATRO ROTACIONA, E ISSO E 16.4(f) E NAO ESTETICA — MEDIDO NO
+	   AR EM 12/10/2026 às 17h5xZ, pela SEXTA filha de `/materiais/acabamento/`.
+	   Até aqui esta função devolvia `array_slice( $irmas, 0, 4 )`: as QUATRO
+	   PRIMEIRAS da ordem do mapa, iguais para todas as irmãs. Com até cinco
+	   filhas aquilo bastava, porque cada página via no máximo quatro candidatas
+	   e a lista saía inteira. Com a sexta, a conta virou: as quatro primeiras
+	   são as mesmas em todas as páginas, então a quinta e a sexta NÃO RECEBEM
+	   LINK DE IRMÃ NENHUMA. A sexta nasceu no ar com UM único link de entrada —
+	   o da mãe — contra os DOIS que a 16.4(f) exige, e foi assim que o defeito
+	   apareceu: não por leitura de código, por contagem de links na página
+	   servida.
+	   A JANELA CÍCLICA conserta isso por construção, não por escolha: cada
+	   página leva as quatro irmãs que vêm DEPOIS dela na ordem do mapa, dando a
+	   volta no fim. O grafo que sai é circulante, então o grau de ENTRADA de
+	   toda filha é igual ao de SAÍDA — `min(4, irmãs)` — qualquer que seja o
+	   número de filhas, hoje e quando a categoria tiver dez. Trava que depende
+	   de a categoria ser pequena é trava que um dia para de valer, e esta era. */
+	$total = count( $irmas );
+	$saida = array();
+	for ( $i = 1; $i < $total && count( $saida ) < 4; $i++ ) {
+		$saida[] = $irmas[ ( $eu + $i ) % $total ];
+	}
+
+	return $saida;
 }
 }
 

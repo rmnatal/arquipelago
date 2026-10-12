@@ -2669,6 +2669,66 @@ foreach ( $paginas as $tag ) {
 	}
 }
 
+/* ---------------------------------------------------------------------------
+ * 24-b. O GRAU DE ENTRADA, e nao so o de saida — a trava que FALTAVA
+ *
+ * ESTE PORTAO MEDIA SO UMA DIRECAO, e o custo apareceu no ar em 12/10/2026 as
+ * 17h5xZ. O bloco 24 conta quantas irmas CADA PAGINA LISTA (2 a 4, todas no ar,
+ * todas da mesma mae) — e com isso ele ficava verde num mundo em que
+ * `cdm_casca_irmas()` devolvia `array_slice( $irmas, 0, 4 )`: as quatro
+ * PRIMEIRAS da ordem do mapa, iguais para todas as irmas. Toda pagina listava
+ * quatro, nenhuma listava a si mesma, nenhuma apontava para pagina morta — e a
+ * QUINTA e a SEXTA filha de uma categoria nao recebiam link de irma NENHUMA.
+ * A sexta filha do `acabamento` nasceu no ar com UM link de entrada, o da mae,
+ * contra os DOIS que a 16.4(f) exige.
+ *
+ * A 16.4(f) e uma afirmacao sobre quem APONTA, e portao que so conta o que sai
+ * nao a mede. Esta secao refaz a conta na outra direcao, a partir do HTML
+ * servido de todas as paginas, e cobra: toda filha no ar cuja mae tenha duas ou
+ * mais filhas no ar recebe ao menos UMA irma apontando para ela. Somada ao link
+ * da mae, que a 16.4(a) ja cobra, isso fecha os dois da 16.4(f).
+ * ------------------------------------------------------------------------- */
+
+echo "\n24-b. Grau de ENTRADA do cluster (16.4f), medido no HTML servido\n";
+$entradas = array();
+foreach ( $paginas as $tag_de ) {
+	$corpo_de = cdm_corpo( $html_por_pagina[ $tag_de ] );
+	if ( ! preg_match( '#<nav class="cdm-veja".*?</nav>#s', $corpo_de, $mb ) ) {
+		continue;
+	}
+	preg_match_all( '#<li><a href="([^"]+)"#', $mb[0], $ml );
+	foreach ( $ml[1] as $url_irma ) {
+		$c = trim( str_replace( 'https://clubedomosaico.com.br/', '', $url_irma ), '/' );
+		$entradas[ $c ] = isset( $entradas[ $c ] ) ? $entradas[ $c ] + 1 : 1;
+	}
+}
+$no_ar_entrada = cdm_teste_paginas_no_ar( 'hoje' );
+$sem_irma = array();
+foreach ( $paginas as $tag_para ) {
+	$c = isset( $tag_para_caminho[ $tag_para ] ) ? $tag_para_caminho[ $tag_para ] : '';
+	if ( '' === $c || ! isset( $mapa_codigo[ $c ] ) || 0 === (int) $mapa_codigo[ $c ]['nivel'] ) {
+		continue;
+	}
+	/* Quantas irmas EXISTEM no ar, recontado aqui como no bloco 24. */
+	$n_irmas = 0;
+	foreach ( $mapa_codigo as $outro => $def ) {
+		if ( $outro === $c || 0 === (int) $def['nivel'] ) {
+			continue;
+		}
+		if ( $def['mae'] === $mapa_codigo[ $c ]['mae'] && ! empty( $no_ar_entrada[ $outro ] ) ) {
+			$n_irmas++;
+		}
+	}
+	if ( $n_irmas < 2 ) {
+		continue;
+	}
+	if ( empty( $entradas[ $c ] ) ) {
+		$sem_irma[] = $c . ' (' . $n_irmas . ' irmas no ar, 0 apontando)';
+	}
+}
+cdm_ok( empty( $sem_irma ), 'toda filha no ar recebe ao menos UMA irma apontando (16.4f)',
+	empty( $sem_irma ) ? count( $entradas ) . ' caminho(s) com entrada' : implode( ' | ', $sem_irma ) );
+
 /* A BORDA FABRICADA: com as seis categorias no ar, /materiais/como-sabemos/
    passa a ter seis irmas candidatas e o teto de 4 tem o que cortar. */
 $corpo_todas = cdm_corpo( cdm_render_em_processo_proprio_modo( $raiz, 'cdm_como_sabemos', 'todas' ) );

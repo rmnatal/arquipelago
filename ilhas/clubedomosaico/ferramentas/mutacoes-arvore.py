@@ -135,8 +135,8 @@ def m_teto_de_irmas_vira_cinco(raiz):
     tem candidatas suficientes para o teto cortar.
     """
     trocar(raiz, CASCA,
-           "\treturn array_slice( $irmas, 0, 4 );",
-           "\treturn array_slice( $irmas, 0, 5 );")
+           "\tfor ( $i = 1; $i < $total && count( $saida ) < 4; $i++ ) {",
+           "\tfor ( $i = 1; $i < $total && count( $saida ) < 5; $i++ ) {")
 
 
 def m_cluster_com_uma_irma_so(raiz):
@@ -149,15 +149,21 @@ def m_cluster_com_uma_irma_so(raiz):
 def m_irma_de_outra_mae(raiz):
     """Irma escolhida por qualquer mae — cluster ralo, que nao passa autoridade."""
     trocar(raiz, CASCA,
-           "\t\tif ( $caminho === $slug || $def['mae'] !== $minha || 0 === (int) $def['nivel'] ) {",
-           "\t\tif ( $caminho === $slug || 0 === (int) $def['nivel'] ) {")
+           "\t\tif ( $def['mae'] !== $minha || 0 === (int) $def['nivel'] ) {",
+           "\t\tif ( 0 === (int) $def['nivel'] ) {")
 
 
 def m_pagina_se_lista_como_irma(raiz):
-    """A pagina entra na propria lista de irmas."""
+    """A pagina entra na propria lista de irmas.
+
+    O ALVO MUDOU EM 12/10/2026, com a janela ciclica: antes quem excluia a
+    pagina era um `$caminho === $slug` no filtro do laco; agora e o `$i = 1` da
+    janela, que faz a volta comecar na irma SEGUINTE. Comecar em zero devolve a
+    propria pagina como primeira irma — mesmo defeito, outro lugar.
+    """
     trocar(raiz, CASCA,
-           "\t\tif ( $caminho === $slug || $def['mae'] !== $minha || 0 === (int) $def['nivel'] ) {",
-           "\t\tif ( $def['mae'] !== $minha || 0 === (int) $def['nivel'] ) {")
+           "\tfor ( $i = 1; $i < $total && count( $saida ) < 4; $i++ ) {",
+           "\tfor ( $i = 0; $i < $total && count( $saida ) < 4; $i++ ) {")
 
 
 def m_mae_diverge_do_documento(raiz):
@@ -416,6 +422,35 @@ def m_uma_peca_da_copia_fica_de_fora(raiz):
            "\t$caminho = cdm_loja_caminho_da_peca( $peca );\n\tif ( 'quadro-flores-do-campo' !== (string) $peca->post_name ) {\n\t\treturn $mapa;\n\t}\n\tif ( '' === $caminho || isset( $mapa[ $caminho ] ) ) {")
 
 
+def m_janela_de_irmas_para_de_rotacionar(raiz):
+    """A janela volta a ser FIXA: as quatro primeiras da ordem do mapa, iguais
+    para todas as irmas. E literalmente o codigo que estava no ar ate 12/10/2026
+    as 17h5xZ, e ele passava na bancada inteira — porque a bancada contava so o
+    que SAIA de cada pagina. Com cinco filhas ou menos a janela fixa e a ciclica
+    devolvem o mesmo conjunto, e a mutacao fica INERTE; com seis, a quinta e a
+    sexta filha param de receber link de irma e a 16.4(f) cai para UM link de
+    entrada, o da mae. O `acabamento` tem seis desde hoje, entao esta mutacao
+    morde no site de verdade e nao so na borda fabricada.
+    """
+    trocar(raiz, CASCA,
+           "\t$total = count( $irmas );\n"
+           "\t$saida = array();\n"
+           "\tfor ( $i = 1; $i < $total && count( $saida ) < 4; $i++ ) {\n"
+           "\t\t$saida[] = $irmas[ ( $eu + $i ) % $total ];\n"
+           "\t}\n"
+           "\n"
+           "\treturn $saida;",
+           "\t$saida = array();\n"
+           "\tforeach ( $irmas as $i => $irma ) {\n"
+           "\t\tif ( $i === $eu ) {\n"
+           "\t\t\tcontinue;\n"
+           "\t\t}\n"
+           "\t\t$saida[] = $irma;\n"
+           "\t}\n"
+           "\n"
+           "\treturn array_slice( $saida, 0, 4 );")
+
+
 MUTACOES = [
     ("a chave de remontagem volta a ser so a versao da casca", m_chave_de_remontagem_volta_a_ser_a_versao),
     ("a home ganha trilha (16.3)", m_home_ganha_trilha),
@@ -427,6 +462,7 @@ MUTACOES = [
     ("cluster publicado com uma irma so", m_cluster_com_uma_irma_so),
     ("irma escolhida fora da mae", m_irma_de_outra_mae),
     ("a pagina se lista como irma de si mesma", m_pagina_se_lista_como_irma),
+    ("a janela de irmas para de rotacionar (16.4f)", m_janela_de_irmas_para_de_rotacionar),
     ("ARVORE.md e codigo divergem na mae", m_mae_diverge_do_documento),
     ("ARVORE.md e codigo divergem no nivel", m_nivel_diverge_do_documento),
     ("slug de categoria foge do VOZ.md", m_slug_de_categoria_foge_da_voz),
