@@ -39,6 +39,7 @@ bloco_atual: |
   10. UMA ARMADILHA NO INSTRUMENTO, nao no codigo: `atualizar-manifest.py` rodado enquanto uma bateria esta VIVA grava o sha de um arquivo MUTADO. Aconteceu com o f2; a segunda passada corrigiu, e a prova e dupla — nenhum item do manifest diverge do disco, e a comparacao com HEAD mostra SO os sha das ferramentas que esta execucao mudou. A regra entrou no aviso de topo do PROMPT.md: depois das baterias, nunca durante.
   11. BANCADA INTEIRA REMEDIDA DEPOIS DAS MUTACOES, que e a metade que nenhum codigo resolve porque SIGKILL nao e capturavel: dez bancadas PHP verdes (casca 1040/0, f1 228/0, f2 174/0, guia 123/0, produto 306/0, tecnicas 139/0, prestacao-rejunte 5/0, mais loja, atelie e leads APROVADAS), tres Python verdes (batismo 62/0, casamento 42/0, relevancia 72/0), validar-banco.py OK, e as CATORZE baterias rodadas INTEIRAS com todas as mutacoes reprovando.
   12. E DUAS LINHAS ERRADAS DA LISTA QUE O RAPHAEL VAI LER FORAM CORRIGIDAS, as duas medidas: a dos "dois bloqueios do substrato da F2" estava AO CONTRARIO (os TRES fecharam em 06/10, e o banco os lista com `fechou_em` em campo lido por maquina; a F2 serve `preparo` no ar), e a das baterias dizia 13 porque veio do `grep -L 'mkdtemp\|copytree'` que o PROMPT.md mandava usar — e esse comando esconde a `par`, cujo COMENTARIO cita mkdtemp para dizer que ela nao usa. A bateria que causou o estrago ficou fora da lista da divida que ela criou.
+---
 
 ## O QUE FALTA PARA ESTA ILHA ESTAR COMPLETA — 09/10/2026, 19h4xZ
 

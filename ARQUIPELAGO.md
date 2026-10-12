@@ -6,8 +6,8 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 
 | Papel | Seções |
 |---|---|
-| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, 26, 29 |
-| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, 29 |
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30** |
+| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, **25**, 29 |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
 | **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29 |
 | **Bússola** | **7**, 10, 11, **12.2**, 14, **15**, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
@@ -15,6 +15,8 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 | **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
 
 *(A **29** entrou nas três linhas em 24/09/2026: ela é sobre a porta de entrada do site cair sem nenhum portão acusar, e quem não a lê continua lendo "o repositório está verde" como "o site está no ar".)*
+
+*(A **25** e a **30** entraram pelo Pente Fino em 12/10/2026, pelo mesmo motivo que a 1.2 entrou em 16/09, a 1.2-b em 21/09 e as três seções da Bússola em 05/10 — **a seção que decide não estava na linha de quem decide.** A **25** não estava na linha de papel NENHUM, e a **7**, que está na linha da Fundação e da Bússola, termina dizendo com todas as letras: *"Onde esta seção e a 25 divergirem, **manda a 25**"*. É a 25 que põe o piso de `url_busca` em todo item publicável (25.2), que proíbe registro publicável sem encurtamento tentado (25.2-b), que exige `url_produto` para o teste de vida existir (25.4-b) e que proíbe gerar link de afiliado à mão (25.8) — tudo trabalho da Fundação no banco —, e é a 25.4 que manda a **ronda diária** conferir os links dos itens publicados e tratar link morto como defeito da 19.1. A **30** é de 09/10/2026, nasceu dizendo "vale para toda ilha" por decisão do Raphael no mesmo dia, e também não entrou em linha nenhuma: a Fundação é quem cria as páginas que ela manda criar. O desempate continua sendo o desta própria seção: "errar por ler a mais é barato; errar por não saber a regra custa uma leva inteira".)*
 
 **Sempre, para todo papel:** seções **1.2** (foco único — enquanto `foco.md` nomear uma ilha, ela manda em quem trabalha em quê), **2** (cabeçalho de estado), **3** (o repositório é o lugar do trabalho), **4** (o site fica para trás em silêncio), **10** (regras que valem sempre) e **18** (correção fura a fila).
 
@@ -1042,7 +1044,7 @@ Decidido pelo Raphael em 09/10/2026 para o Clube do Mosaico ("eu gostaria de ran
 
 30.1 Toda ilha tem uma página por CONSULTA DE PRODUTO do seu nicho — o nome que a pessoa digita para comprar ("pastilhas para mosaico", "filtro canister para aquário", "escova lateral para robô aspirador"). O slug é a consulta. Ela nasce filha direta da seção de materiais/produtos da ilha (nível 2), como página-folha: a 16.5 não se aplica a ela. Quando ganhar 3 filhas, vira mãe sem trocar de URL.
 
-30.2 O dado que abre o portão desta página é o COMERCIAL. Pela regra das duas camadas de procedência, anúncio de Shopee e de Mercado Livre é fonte válida de dado comercial (título, preço, foto, medida e quantidade declaradas), com fonte "anuncio-shopee" ou "anuncio-mercadolivre" e data. A página nasce com 3 ou mais produtos reais colhidos assim, mais 1 número próprio (faixa de preço medida, preço por unidade, quantidade por embalagem). Dado TÉCNICO continua só de fabricante; onde faltar, a página diz que falta e não inventa. Página de consulta de produto não espera boletim de fabricante para nascer.
+30.2 O dado que abre o portão desta página é o COMERCIAL. *(**PONTEIRO DO PENTE FINO, 12/10/2026 — "a regra das duas camadas de procedência" NÃO EXISTE como seção deste contrato, e quem a for procurar não acha.** `git grep` em 12/10/2026: a expressão aparece neste arquivo só aqui, e no resto do repositório só em `ilhas/aquametria/ESTADO.md` e `REGISTRO.md`, onde é a formulação de uma passada daquela ilha. **As duas camadas estão declaradas nesta própria 30.2, nas duas frases seguintes** — comercial pode vir de anúncio com fonte e data; técnico continua só de fabricante, pela §10 ("nunca invente dado técnico (…) citam a fonte do fabricante e levam data") e pela §25.3, que já autoriza a imagem do anúncio como fonte legítima. Leia a citação como ponteiro para esta regra, não para uma seção que falta.)* Pela regra das duas camadas de procedência, anúncio de Shopee e de Mercado Livre é fonte válida de dado comercial (título, preço, foto, medida e quantidade declaradas), com fonte "anuncio-shopee" ou "anuncio-mercadolivre" e data. A página nasce com 3 ou mais produtos reais colhidos assim, mais 1 número próprio (faixa de preço medida, preço por unidade, quantidade por embalagem). Dado TÉCNICO continua só de fabricante; onde faltar, a página diz que falta e não inventa. Página de consulta de produto não espera boletim de fabricante para nascer.
 
 30.3 O que a página entrega: title e h1 com a consulta exata; a resposta em duas frases antes de qualquer explicação (o que comprar e quanto custa); tabela comparando os produtos; bloco de compra com afiliado antes da procedência; "qual escolher" por uso; perguntas frequentes com FAQPage; JSON-LD ItemList; breadcrumb; links para as ferramentas da ilha e para as irmãs. Voz do VOZ.md da ilha.
 

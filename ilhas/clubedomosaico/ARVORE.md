@@ -422,6 +422,9 @@ artesã já marca o termo no ateliê.
 
 ## 5. Onde mora cada página que existe HOJE
 
+> **PONTEIRO DO PENTE FINO, 12/10/2026 — A TABELA ABAIXO PAROU EM 02/10 E A ILHA ANDOU: ELA NÃO TEM AS OITO PÁGINAS DE CONSULTA DE PRODUTO.** O `ESTADO.md` traz `urls_publicadas: 29` ("21 -> 29 em 09/10/2026 17h0xZ"), e as **oito** URLs que nasceram naquele dia pela §30 do `ARQUIPELAGO.md` — `torques-para-mosaico`, `alicate-para-mosaico`, `cortador-de-vidro-para-mosaico`, `pastilhas-para-mosaico`, `pastilha-de-vidro-para-mosaico`, `base-de-mdf-para-mosaico`, `espelho-para-mosaico` e `rejunte-para-mosaico`, todas filhas diretas de `/materiais/` como página-folha (30.1) — **não estão nesta tabela**. A declaração delas está em `dados/consultas-de-produto.json` (campo `slug`) e o dado comercial em `dados/anuncios-por-consulta.json`. **Isto importa porque a linha 5 deste arquivo diz que "breadcrumb, cluster de interlinkagem e leva de malha saem daqui, nunca da cabeça de quem executa"** — quem abrir a próxima leva lendo só esta tabela decide a malha de um site de 29 URLs olhando 19. Escrever as oito linhas (nível, mãe e trilha de cada uma) é **bloco da Fundação**, não conserto de documento: o Pente Fino não inventa a trilha que a casca serve. Até isso acontecer, esta tabela não é o inventário da ilha.
+
+
 | página | nível | mãe | trilha na tela |
 |---|---|---|---|
 | `/` (home) | — | — | nenhuma (16.3) |
