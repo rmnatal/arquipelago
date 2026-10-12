@@ -4624,3 +4624,89 @@ Partida: `git fetch origin main && git checkout -B trabalho origin/main`, a part
 **Nenhum passo falhou.** Nenhum arquivo além do relatório novo e deste log foi tocado: nenhum `ESTADO.md`, nenhum `foco.md`, nenhum `executando_desde`, nenhuma reserva de ilha, nenhum bloco de fila executado, nenhuma das 13 correções do relatório aplicada — **as correções nos 11 arquivos são a parte 2 de 2 e não chegaram neste disparo**. O relatório ficou gravado no `main` sozinho, como a instrução previu.
 
 **Retificação deste mesmo disparo, 09h02Z, por acréscimo (o log é append-only, inclusive para a seção de quem está escrevendo):** acima ficou escrito que a varredura `grep -nE '[A-Za-z0-9]{32}|google-site-verification='` sobre o relatório deu "zero ocorrências". Rerodada e conferida, ela dá **1**: a linha 298, onde a expressão `google-site-verification=` aparece como **nome do padrão varrido** na seção SEGREDO, sem valor nenhum depois do sinal de igual. Nenhum literal de 32 caracteres e nenhum valor de verificação existem no arquivo — a conclusão não muda, só o número que eu havia escrito.
+
+---
+
+## Disparo de 12/10/2026, 06h01 BRT (09h01Z) — pente fino de 12/10, PARTE 2 DE 2: as 23 correções nos 11 arquivos
+
+**Assunto conferido antes do `git fetch`: é do Arquipélago.** `ARQUIPELAGO.md`, `bussola/` e os `ESTADO.md`/`PROMPT.md`/`ARVORE.md` de três ilhas. Nada de outro projeto entrou.
+
+**A instrução chegou com os 23 blocos literais (arquivo + ANTES/ÂNCORA + DEPOIS/INSERIR). Apliquei 23. Nenhuma deixou de casar.** O main do momento era `f49b116`, não o `57d6759` que a instrução citava — a parte 1 e duas retificações do log entraram no intervalo —, e mesmo assim **cada um dos 23 textos ANTES/ÂNCORA apareceu EXATAMENTE UMA VEZ** no arquivo dele. A conferência de unicidade rodou como passada seca ANTES de qualquer gravação, uma contagem por bloco:
+
+```
+ok          1  ARQUIPELAGO.md  (sub)        ok         13  bussola/rodadas/005.md  (sub)
+ok          2  ARQUIPELAGO.md  (ins)        ok         14  ilhas/aquametria/ARVORE.md  (sub)
+ok          3  ARQUIPELAGO.md  (sub)        ok         15  ilhas/aquametria/ESTADO.md  (sub)
+ok          4  bussola/fila.md  (sub)       ok         16  ilhas/aquametria/PROMPT.md  (sub)
+ok          5  bussola/fila.md  (sub)       ok         17  ilhas/clubedomosaico/ARVORE.md  (ins)
+ok          6  bussola/fila.md  (ins)       ok         18  ilhas/clubedomosaico/ESTADO.md  (ins)
+ok          7  bussola/fila.md  (ins)       ok         19  ilhas/robometria/ESTADO.md  (insb)
+ok          8  bussola/rodadas/004.md  (sub)  ok       20  ilhas/robometria/PROMPT.md  (sub)
+ok          9  bussola/rodadas/004.md  (sub)  ok       21  ilhas/robometria/PROMPT.md  (sub)
+ok         10  bussola/rodadas/004.md  (sub)  ok       22  ilhas/robometria/PROMPT.md  (sub)
+ok         11  bussola/rodadas/005.md  (sub)  ok       23  ilhas/robometria/PROMPT.md  (sub)
+ok         12  bussola/rodadas/005.md  (sub)
+---
+aplicadas: 23   nao casaram: 0
+```
+
+**A CORREÇÃO 18 ERA REAL, E O PORTÃO DA SEÇÃO 2 ESTAVA MORTO.** Conferido ANTES de aplicar: `ilhas/clubedomosaico/ESTADO.md` tinha `---` só nas linhas 1 e 98, então o cabeçalho YAML engolia 96 linhas de prosa e o parse estourava —
+
+```
+expected alphabetic or numeric character, but found '*'
+  in "<unicode string>", line 45, column 2:
+    **Item 4 do despacho do Raphael d ...
+```
+
+Devolvido o `---` depois da linha 41, a linha da seção 2 que a instrução mandou rodar imprime:
+
+```
+YAML ok
+```
+
+**A trava da CORREÇÃO 19 foi respeitada: a linha 221/222 do `ilhas/robometria/ESTADO.md` não foi reescrita nem transcrita.** O diff desse arquivo é `1 inserção, 0 deleções` — a linha do `google-site-verification` aparece ali só como **contexto não alterado** do diff. Na linha nova, a expressão existe uma vez, entre crases, como **nome do campo** e sem nada depois dele; conferido por `git diff | grep "^+" | grep -o "google-site-verification[^ ]\{0,25\}"`, que devolve `google-site-verification\`` e nada mais. Nenhum valor de verificação entrou no commit.
+
+**Estado da árvore depois do commit — `git status --porcelain`, vazio:**
+
+```
+```
+
+**`git diff --stat` do commit que foi ao `main`:**
+
+```
+ ARQUIPELAGO.md                 |  8 +++++---
+ bussola/fila.md                | 10 +++++++---
+ bussola/rodadas/004.md         |  6 +++---
+ bussola/rodadas/005.md         |  6 +++---
+ ilhas/aquametria/ARVORE.md     |  2 +-
+ ilhas/aquametria/ESTADO.md     |  2 +-
+ ilhas/aquametria/PROMPT.md     |  2 +-
+ ilhas/clubedomosaico/ARVORE.md |  3 +++
+ ilhas/clubedomosaico/ESTADO.md |  1 +
+ ilhas/robometria/ESTADO.md     |  1 +
+ ilhas/robometria/PROMPT.md     | 10 +++++-----
+ 11 files changed, 31 insertions(+), 20 deletions(-)
+```
+
+**Hash do commit que está em `origin/main`:**
+
+```
+e25f9dc16d02b099d36dd6a482dc7e5c6aacc374
+pente fino: auditoria de coerencia do contrato (correcoes, 2 de 2)
+```
+
+**O PRIMEIRO PUSH FOI RECUSADO, E A MENSAGEM COMPLETA ENTRA AQUI** — não foi autorização como na sessão da parte 1 (que tomou 403 do proxy), foi avanço não-rápido, porque o `main` andou de `dc85613` para `f49b116` enquanto eu aplicava:
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+`git fetch origin main && git rebase origin/main` rebasou 1 de 1 sem conflito, e a segunda tentativa passou: `f49b116..e25f9dc  HEAD -> main`. **Uma recusa, uma retentativa, nenhum force push.** Confirmado com `git fetch origin main && git log -1 origin/main`, que mostra o hash acima.
+
+**Contagem conferida relendo os arquivos DEPOIS de gravar, não pelo que eu acho que escrevi:** 23 correções pedidas, **23 aplicadas, 0 não casaram**, em **11 arquivos** — 3 em `ARQUIPELAGO.md`, 4 em `bussola/fila.md`, 3 em `bussola/rodadas/004.md`, 3 em `bussola/rodadas/005.md`, 1 em cada um dos três arquivos da aquametria, 1 em cada um dos dois do clubedomosaico, 1 em `ilhas/robometria/ESTADO.md` e 4 em `ilhas/robometria/PROMPT.md`. Soma: 3+4+3+3+1+1+1+1+1+1+4 = 23, e os 11 nomes são exatamente os 11 do `--stat`.
+
+**Nenhum arquivo além dos 11 nomeados e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado fora do `---` que a correção 18 mandou devolver, nenhum bloco de fila executado, nada publicado, nenhum Sync, nenhuma conta criada. Nenhum passo falhou além da recusa de push acima, que foi resolvida na retentativa.
