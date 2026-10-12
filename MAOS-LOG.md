@@ -4710,3 +4710,84 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 **Contagem conferida relendo os arquivos DEPOIS de gravar, não pelo que eu acho que escrevi:** 23 correções pedidas, **23 aplicadas, 0 não casaram**, em **11 arquivos** — 3 em `ARQUIPELAGO.md`, 4 em `bussola/fila.md`, 3 em `bussola/rodadas/004.md`, 3 em `bussola/rodadas/005.md`, 1 em cada um dos três arquivos da aquametria, 1 em cada um dos dois do clubedomosaico, 1 em `ilhas/robometria/ESTADO.md` e 4 em `ilhas/robometria/PROMPT.md`. Soma: 3+4+3+3+1+1+1+1+1+1+4 = 23, e os 11 nomes são exatamente os 11 do `--stat`.
 
 **Nenhum arquivo além dos 11 nomeados e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado fora do `---` que a correção 18 mandou devolver, nenhum bloco de fila executado, nada publicado, nenhum Sync, nenhuma conta criada. Nenhum passo falhou além da recusa de push acima, que foi resolvida na retentativa.
+
+---
+
+## Disparo de 12/10/2026, 12h01 em Brasília (15h01Z) — RONDA DIÁRIA TÉCNICA DA SENTINELA: 6 edições em 5 arquivos, um commit só
+
+Instrução literal da Sentinela (ronda diária técnica de 2026-10-12, 14h3xZ–15h0xZ). Assunto do Arquipélago:
+cabeçalho de três ilhas no ar, registro de conserto, fila de blocos da clubedomosaico e painel. Executada ao pé
+da letra, byte a byte, sem acrescentar nem reformatar nada. Partiu do `main` real (`55b57d4`).
+
+**`git status --porcelain` antes do commit:**
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+ M ilhas/robometria/ESTADO.md
+```
+
+**`git diff --stat`:**
+
+```
+ dados/PAINEL.md                         |  85 +++++++++++-------------
+ ilhas/aquametria/ESTADO.md              |   2 +-
+ ilhas/clubedomosaico/ESTADO.md          |   2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 113 ++++++++++++++++++--------------
+ ilhas/clubedomosaico/dados/consertos.md |   1 +
+ ilhas/robometria/ESTADO.md              |   2 +-
+ 6 files changed, 106 insertions(+), 99 deletions(-)
+```
+
+**Commit que foi ao `main`:**
+
+```
+59573068775b97d989428e3689be63023e7aaf45
+ronda diaria tecnica de 12/10/2026: ultima_ronda nas tres ilhas no ar, despacho novo
+da clubedomosaico, conserto registrado e PAINEL reescrito
+```
+
+Push direto em `origin/main`, aceito de primeira, sem rebase e sem force:
+`55b57d4..5957306  HEAD -> main`. Confirmado com `git fetch origin main && git log -1 origin/main`, que devolve
+`5957306` — o commit está no `main` remoto.
+
+**Contagem conferida relendo os arquivos DEPOIS de gravar, não pelo que eu acho que escrevi:**
+
+```
+ilhas/clubedomosaico/ESTADO.md   ultima_ronda: 2026-10-12T15:00Z  -> 1 ocorrencia (linha 53)
+ilhas/aquametria/ESTADO.md       ultima_ronda: 2026-10-12T15:00Z  -> 1 ocorrencia (linha 21)
+ilhas/robometria/ESTADO.md       ultima_ronda: 2026-10-12T15:00Z  -> 1 ocorrencia (linha 21)
+  as tres linhas sem aspas duplas e sem barra invertida: 0 ocorrencias de ["\] em cada
+
+ilhas/clubedomosaico/dados/consertos.md
+  linhas de tabela que comecam com "| 2026-": 10 (eram 9)
+  ultima linha da tabela: "| 2026-10-12 |", 4 colunas
+  linha nova inserida logo depois da de 2026-10-09 (agora linha 16)
+
+ilhas/clubedomosaico/PROMPT.md
+  3072 linhas, 27 secoes de nivel "## "
+  despacho de 09/10 (RONDA DIARIA TECNICA, 14h5xZ ... UM ITEM): 0 ocorrencias (apagado, 60 linhas)
+  despacho de 12/10 no topo da fila: 1 ocorrencia, na linha 200, logo depois de "## Memoria a carregar"
+    e imediatamente antes de "## ~~DESPACHO DO RAPHAEL — 2026-10-09 (3)"
+  titulo de 07/10 riscado com "ITEM 1 CUMPRIDO EM 12/10/2026": 1 ocorrencia (linha 676), corpo intocado
+
+dados/PAINEL.md
+  arquivo reescrito inteiro: 62 linhas, 12469 bytes (antes: 71 linhas)
+```
+
+**Portão de YAML da seção 2, rodado nas três ilhas depois das edições 1, 2 e 3:**
+
+```
+clubedomosaico:  YAML ok
+aquametria:      YAML ok
+robometria:      YAML ok
+```
+
+Nenhuma das três devolveu erro, então nenhuma edição precisou ser desfeita.
+
+**Nenhum arquivo além dos 5 nomeados e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de
+ilha, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação. Nenhum contato pessoal de
+terceiros entrou no repositório. Nenhum passo falhou — não há mensagem de erro para registrar neste disparo.
