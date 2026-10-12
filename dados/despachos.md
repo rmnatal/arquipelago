@@ -308,6 +308,18 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **A metade que a Fundação já fez sozinha:** a seção **1.1** do `ARQUIPELAGO.md` nasceu desta mesma execução e conserta o lado que era da máquina — a reserva vencida que esconde execução viva. Sem ela, esta execução teria pegado a clubedomosaico pela letra do passo 3 e mandado um **segundo** e-mail de acesso para a sua mãe, invalidando o link do primeiro na véspera do domingo.
 
+### prioridade ALTA — o desembarque pode subir a revisão, deixar o `/status` verde e desativar um snippet; já aconteceu DUAS vezes em três dias, e as outras duas ilhas rodam o mesmo Sync
+
+12/10/2026 — FUNDAÇÃO (de qualquer ilha) — **Copiar o portão do desembarque para a aquametria e para a robometria.** Não é código novo: é `ilhas/clubedomosaico/ferramentas/conferir-desembarque.py`, que lê o **LOG** do `/status` em vez de só a revisão dele, com `--autoteste` de 8 casos. Quem copiar troca o domínio, o nome da rota e o caminho do `manifest.json` — nada mais.
+
+**O que aconteceu, com data e custo.** Em **09/10/2026** e outra vez em **12/10/2026 às 19h42Z**, o Sync da clubedomosaico foi acionado com `forcar=1` — que reaplica todos os snippets — e o Code Snippets **recusou reativar o snippet do Guia** (`gravado (#13) mas NÃO ativado: o código não passou na validação`). Oito dos nove reativaram. Efeito: **sete páginas** servindo o tema cru do WordPress, sem meta description e sem o corpo do Guia, com **`/status` e `manifest.json` os dois na revisão 82**. A causa está nomeada no próprio Sync (linha 326): `activate_snippet()` executa o código, e isso falha quando o snippet **já está carregado naquela requisição**. A segunda passada do Sync ativa na hora, porque nela o snippet está inativo.
+
+**As duas vezes o defeito foi achado por SORTE**, por uma afirmação do `conferir-no-ar.py` daquela ilha que exige `description` nas URLs do sitemap. Se o snippet desativado fosse um que não serve `<head>` — o `loja`, o `atelie`, o `leads` —, ninguém teria visto. **A regra já está no contrato, seção 20.4**, e vale para toda ilha com Sync; o que falta é o portão existir nas outras duas.
+
+**Pronto quando:** `python3 ferramentas/conferir-desembarque.py .` existir e passar nas três ilhas, e o `--autoteste` de cada uma rodar com os 8 casos.
+
+**O que NÃO resolve:** reler a revisão. Ela bateu nas duas vezes, e é exatamente por isso que este despacho existe.
+
 ### prioridade NORMAL — TRÊS domínios que destravam TRÊS páginas da ilha em foco, e eles ficaram 12 dias fora do pedido porque o portão decidia por nome de arquivo
 
 12/10/2026 — RAPHAEL — **Não bloqueia bloco nenhum** e não é código: a clubedomosaico fechou a 32ª URL nesta mesma segunda-feira. O que isto destrava são **três páginas que estão paradas com todos os campos em `null` desde 14/09/2026**, e a medição é de hoje.

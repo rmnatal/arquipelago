@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 82,
+  "revisao": 83,
   "atualizado_em": "2026-10-12",
   "estado": "nascendo",
   "desembarque": {
@@ -468,6 +468,12 @@
       "arquivo": "ferramentas/conferir-cobertura.php",
       "sha256": "b4ca13a2bd3762fa1ef21e372624a1b761d7cfbd5b703845ac94133673d0308a",
       "descricao": "Cruza o censo com o que o site SERVE, estado a estado, um processo por estado. dados/cobertura.json e escrito pela regua Python; quem serve a pagina e o snippet PHP: duas implementacoes da mesma regra que, ate este bloco, so se cruzavam nas 27 celulas escritas a mao do esquema, de 105 que as ferramentas servem. Confere tambem que a faixa do censo e a que o snippet serve hoje, que o censo tem um estado por par e nenhum repetido, que toda contagem do resumo BATE com a recontagem feita das listas (numero de tela nasce contado, nunca digitado), que toda faixa descoberta nomeia a causa que o calculo separou, e que nenhuma categoria declarada vazia tem item no banco. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "conferir-desembarque",
+      "arquivo": "ferramentas/conferir-desembarque.py",
+      "sha256": "ff93ced115ce1211d0c78333ae2d52c57447e4662ff070ad8508acbe8ee41e5b",
+      "descricao": "Le o LOG do /status, nao so a revisao dele: reprova quando alguma linha da revisao corrente deixa de dizer ok, e diz quantas linhas a janela do log cortou. Nasceu em 12/10/2026, depois de o Sync forcado desativar o snippet do Guia pela SEGUNDA vez em tres dias com a revisao batendo nos dois lados. Bancada: --autoteste, 8 casos. Secao 20.4 do ARQUIPELAGO.md."
     },
     {
       "id": "conferir-no-ar",

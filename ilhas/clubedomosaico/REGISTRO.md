@@ -3,6 +3,102 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+12/10/2026 19h16Z–20h0xZ — O PEDIDO DE REDE DEIXA DE DECIDIR POR NOME DE ARQUIVO, E O DESEMBARQUE DESTE BLOCO QUEBROU SETE PÁGINAS PELA SEGUNDA VEZ EM TRÊS DIAS
+
+**NENHUMA URL NOVA, e a causa é medida e não é falta de trabalho:** a leva **3 de 3** da semana da
+21.4 está GASTA desde as 17h5xZ de hoje e zera em 19/10, então não havia leva para gastar. A ilha
+segue em **32 URLs** — faltam 8 para o piso de 40 da 21.1. O que foi ao ar são as options da
+revisão **82**, e a revisão **83** sai com o portão novo. Manifest e `/status` conferidos.
+
+1. **POR QUE ESTE BLOCO, e ele não foi escolhido por gosto.** Com a leva gasta e com o quarto
+   caminho (filha nova em categoria que já tem mãe no ar) fechado às 17h5xZ, **todo caminho de URL
+   desta ilha está travado por canal**: `alicate/martelinho` e `alicate/pinca_mosaico` sem
+   fabricante neste canal (07/10), `rejunte/acrilico` e `rejunte/epoxi` no curinga do Raphael, a
+   `pastilha` com SERP **TOMADA** nas quatro consultas, e a trilha da seção 30 com as 22 consultas
+   tentadas. Sobraram as **três técnicas em zero** (direto, indireto, bizantino), que a lista
+   "DEPENDE DA FUNDAÇÃO" do `ESTADO.md` nomeia e que a fila chama de trabalho **de FONTE**, não de
+   texto. **A fonte delas é de REDE** — as dez URLs do banco de técnicas em `000`, remedidas hoje.
+
+2. **O ACHADO É DE PORTÃO, NÃO DE COLETA.** O pedido de rede desta ilha é **derivado** por
+   `ferramentas/medir-egresso.py`, e o teste `trava_coleta` decidia quem trava coleta por uma lista
+   de **NOMES DE ARQUIVO** (`materiais-`, `esquema-banco.json`, `cobertura.json`,
+   `fontes-pedidas.json`). `dados/tecnicas.json` é um banco — ele diz isso na primeira linha — e
+   **nasceu em 14/09/2026, depois da lista**, então nunca entrou nela. Por **12 dias** os oito hosts
+   das fontes de técnica saíram na seção *"BLOQUEADO E NÃO PEDIDO — porque nenhum trabalho pendente
+   depende dele"*, com a frase gerada ao lado jurando que são referência **"JÁ LIDA e já citada"**.
+   As duas metades eram falsas no mesmo arquivo que as cita: `tecnicas.json` declara *"NENHUM
+   documento foi aberto"*, as dez fontes repetem isso em `leitura`, e a pendência
+   `tecnica-fonte-nunca-aberta` está **ABERTA desde 14/09** pedindo "abrir ao menos uma fonte por
+   técnica". **O pedido que decidia por nome de arquivo não pedia os únicos hosts que destravam três
+   das 8 URLs que faltam para o piso.**
+
+3. **O CONSERTO NÃO FOI UMA LINHA NOVA NA LISTA**, porque lista dentro de ferramenta envelhece
+   calada — e isso o próprio `fontes-pedidas.json` já dizia de si mesmo em 30/09. A pergunta *"este
+   documento foi aberto?"* virou **campo lido por máquina**: `escada_de_fontes.documento_aberto`
+   (**esquema v17**), declarado `false` nas dez fontes de técnica, que é a transcrição do que aquele
+   arquivo já afirmava em prosa. `trava_coleta` saiu de dentro de `main()` e passou a ter dois
+   caminhos, com a assimetria escrita: **`documento_aberto: true` NÃO tira host nenhum do pedido**
+   pelo caminho do nome, porque fonte aberta uma vez não prova que o host entrega a próxima.
+
+4. **O CAMPO SE COBRA POR PRESENÇA E POR TIPO, NUNCA POR VERDADE.** `false` é o valor legítimo das
+   dez fontes, então o `if not f.get(campo)` que o validador usa nos outros cinco campos as leria
+   **todas** como campo faltando. É a mesma armadilha que o cabeçalho do `ESTADO.md` pagou em 30/09
+   com `bloqueada_por` ausente. **Bancadas:** `medir-egresso.py --autoteste` em **48 de 48**, com 12
+   casos novos — oito matando `trava_coleta` e quatro matando o extrator —, e um deles é o caso que
+   **reprovava até hoje**, escrito pelo nome; `mutacoes-tecnicas.py` em **17 de 17**, com três
+   mutações novas, e uma delas espera **APROVA de propósito**: declarar `documento_aberto: true`
+   numa fonte nunca aberta é mentira que o portão **não** cobre, e o caso existe para a próxima
+   execução saber disso em vez de descobrir.
+
+5. **A MEDIÇÃO, 19h37Z, três passadas por host com `clubedomosaico.com.br` em 200:** 14 alcançáveis,
+   5 liberados sem entrega, **65 bloqueados**; as **dez** URLs de fonte de técnica em `000`. O
+   pedido passou de **42 para 60 linhas** e sai em **dois grupos derivados** — 18 que destravam
+   trabalho PARADO e 42 dos bancos de material —, porque esta ferramenta diz de si mesma que *"linha
+   desnecessária enfraquece a linha que decide"*. A seção "bloqueado e não pedido" caiu para **três**
+   hosts, todos irmãos que nenhum arquivo cita, e **a frase dela deixou de afirmar sozinha** que
+   todo host dali é referência já lida. O despacho ao Raphael (`dados/despachos.md`) pede **três**
+   domínios, não nove: a pendência pede UMA fonte por técnica.
+
+6. **E O DESEMBARQUE QUEBROU SETE PÁGINAS — PELA SEGUNDA VEZ EM TRÊS DIAS, COM A MESMA
+   ASSINATURA.** O Sync da revisão 82 (19h42Z) foi acionado com `forcar=1`, que reaplica todos os
+   snippets; o Code Snippets **recusou reativar** o do Guia (`gravado (#13) mas NÃO ativado: o
+   código não passou na validação`), oito dos nove reativaram, e as **sete** páginas de
+   `/materiais/acabamento/` passaram a servir o tema cru do WordPress, sem `cdm-guia` no corpo e sem
+   `<meta name="description">`. **As outras 20 URLs ficaram intactas, e `/status` e `manifest.json`
+   ficaram os DOIS na revisão 82: resumo verde, site quebrado.** Consertado às 19h52Z acionando o
+   Sync outra vez — com o Guia já inativo e portanto não carregado na requisição, a validação passa
+   — e conferido no ar: as sete servem `cdm-guia` e **uma** `description` cada,
+   `conferir-tecnica-no-ar.py` **APROVADO com 54 afirmações**, `conferir-no-ar.py` de volta a
+   **APROVADO com 524 e 0 falha**.
+
+7. **O QUE SE FEZ PARA NÃO HAVER UMA TERCEIRA VEZ, e é o que esta execução mais paga.** A mesma
+   assinatura está escrita em `dados/consertos.md` na linha de **09/10/2026** — mesmo `forcar=1`,
+   mesmo snippet, mesmo *"oito dos nove reativaram"*, mesmo conserto. **O que ficou escrito foi o
+   conserto e não a regra**, e três dias depois o mesmo desembarque quebrou as mesmas páginas; nas
+   duas vezes o defeito foi pego **por sorte**, pela afirmação que exige `description` nas 32 URLs.
+   Então nasceram duas coisas: a **seção 20.4 do `ARQUIPELAGO.md`** — quem aciona o Sync lê o LOG do
+   `/status` linha por linha, e `forcar=1` se aciona **duas vezes por desenho** —, que vale para as
+   três ilhas porque o Sync é o mesmo código nas três; e **`ferramentas/conferir-desembarque.py`**,
+   o portão que lê o log em vez da revisão, com `--autoteste` de **8 casos** (o primeiro é o mundo
+   medido às 19h42Z) e com a honestidade de dizer que o log é uma **janela** — 14 linhas visíveis de
+   18 aplicados — e que item fora da janela **não foi conferido**. O código do Guia **não** foi
+   tocado, nem hoje nem em 09/10.
+
+8. **OS DOIS PORTÕES DA 29, ANTES E DEPOIS, IGUAIS:** `conferir-no-ar.py` **APROVADO 524/0** (antes
+   do desembarque e depois do conserto) e `leitura-do-visitante.py` **REPROVADO com EXATAMENTE 1
+   defeito**, o soft 404 da borda de 29/09, que é do hospedeiro e tem dono escrito. Rede pela 20.2:
+   `clubedomosaico.com.br` em **200**, sitemap em 200. `validar-banco.py` **OK** com o campo novo
+   cobrado. **O despacho de 09/10 item 2 continua aberto:** `env | grep -c GOOGLE_SA` = **0**, pela
+   **oitava** execução a medir.
+
+**O PRÓXIMO PASSO DESBLOQUEADO:** enquanto os três domínios não entrarem na rede, esta ilha **não
+tem caminho de URL que não passe por canal fechado**, e a semana da 21.4 só zera em 19/10. O que
+sobra de trabalho de Fundação aqui é a dívida que o esquema v17 nomeou com número: **os cinco bancos
+de material têm 41 registros e NENHUM declara `documento_aberto`** — lá a pergunta ainda é
+respondida em prosa, dentro do campo `tipo`. Um banco por vez, no próximo bloco que mexer em cada
+um. **E a `foco.md` continua nomeando esta ilha com a fila dizendo aquametria desde 10/10** — é do
+Raphael, e esta é a sétima execução a registrar isso.
+
 12/10/2026 16h20Z–18h1xZ — A TERCEIRA PERGUNTA DO ACABAMENTO FECHA A CATEGORIA, E TRÊS PORTÕES ESTAVAM VERMELHOS — DOIS DELES ANTES DESTA EXECUÇÃO
 
 **Uma URL nova, a 32ª da ilha:** `/materiais/acabamento/peca-de-mosaico-esbranquicada/`, a **sexta
