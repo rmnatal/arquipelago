@@ -2028,6 +2028,27 @@ foreach ( $alvos_peca as $chave7 => $esperados ) {
 			$erros_peca[] = $chave7 . ': "' . $nome7 . '" saiu pela proibicao de peca e nao esta no bloco dela';
 			continue;
 		}
+		/* O PARAGRAFO DESTE PRODUTO, E NAO O BLOCO INTEIRO — e esta linha nasceu
+		   de uma REGUA REPROVANDO PAGINA CERTA, em 13/10/2026, no dia em que o
+		   banco ganhou o SEGUNDO produto com proibicao de peca. O comentario da
+		   saida, trinta linhas abaixo, conta que a primeira versao daquela
+		   afirmacao media a saida contra a uniao dos grupos de TODOS os produtos
+		   e foi consertada do lado do GRUPO (`$proibidos_deste`, por produto) —
+		   e o lado do TEXTO ficou como estava, porque enquanto so UM produto do
+		   banco tinha proibicao de peca a uniao e o individuo davam o mesmo
+		   texto. Com dois saindo pela regra 7 na MESMA celula, o bloco passou a
+		   carregar as duas saidas, e a afirmacao acusou a AC-II de oferecer
+		   `pastilha de ceramica` — que quem oferece e o `pastilhas fachadas`, no
+		   paragrafo seguinte, e que ele pode oferecer porque nao a proibe. A
+		   pagina estava certa nos dois paragrafos. Meia correcao envelhece
+		   calada ate o mundo que falta chegar: aqui foram sete dias. */
+		$texto_deste = '';
+		foreach ( $blocos_peca as $bloco_um ) {
+			$um = f2_texto( $bloco_um );
+			if ( false !== mb_strpos( $um, $nome7 ) ) {
+				$texto_deste .= ' ' . $um;
+			}
+		}
 		if ( '' !== $blocos_cond7 && false !== mb_strpos( $blocos_cond7, $nome7 ) ) {
 			/* Causa se mede pelo BLOCO em que o produto sai. Proibicao de peca
 			   lida como condicao de superficie troca a frase inteira que o
@@ -2041,11 +2062,11 @@ foreach ( $alvos_peca as $chave7 => $esperados ) {
 		foreach ( f2_peca_proibida_no_banco( $m7, $t7, $grupos_esq ) as $g7 ) {
 			$lit7 = isset( $m7['condicoes']['proibe_grupos_de_tessela']['literais'][ $g7 ] )
 				? $m7['condicoes']['proibe_grupos_de_tessela']['literais'][ $g7 ] : '';
-			if ( '' === $lit7 || false === mb_strpos( $texto_peca, $lit7 ) ) {
+			if ( '' === $lit7 || false === mb_strpos( $texto_deste, $lit7 ) ) {
 				$erros_peca[] = $chave7 . ': o bloco nao cita a frase do fabricante do grupo ' . $g7;
 			}
 		}
-		if ( false === mb_strpos( $texto_peca, 'somos nós, não ela' ) ) {
+		if ( false === mb_strpos( $texto_deste, 'somos nós, não ela' ) ) {
 			$graves_peca[] = $chave7 . ': o bloco nao separa a classificacao nossa da declaracao dela (26.3)';
 		}
 		/* A SAIDA OFERECIDA, nas duas direcoes, igual a da regra 6: todo caquinho
@@ -2070,11 +2091,11 @@ foreach ( $alvos_peca as $chave7 => $esperados ) {
 		foreach ( $esquema['vocabularios']['material_tessela'] as $tl ) {
 			$nome_tl = $rot['tessela'][ $tl ];
 			if ( isset( $proibidos_deste[ $tl ] ) ) {
-				if ( $tl !== $t7 && false !== mb_stripos( $texto_peca, $nome_tl ) ) {
+				if ( $tl !== $t7 && false !== mb_stripos( $texto_deste, $nome_tl ) ) {
 					$erros_peca[] = $chave7 . ': a saida oferece ' . $nome_tl
 						. ', que este mesmo produto proibe';
 				}
-			} elseif ( false === mb_stripos( $texto_peca, $nome_tl ) ) {
+			} elseif ( false === mb_stripos( $texto_deste, $nome_tl ) ) {
 				$erros_peca[] = $chave7 . ': a saida nao oferece ' . $nome_tl;
 			}
 		}

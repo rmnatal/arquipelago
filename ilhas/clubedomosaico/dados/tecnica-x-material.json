@@ -86,21 +86,23 @@
         "caco_azulejo",
         "caco_louca"
       ],
-      "itens_de_banco": 6,
+      "itens_de_banco": 8,
       "portao_da_secao_9": "ABERTO",
       "pastilhas_do_banco": [],
       "colas_elegiveis": [
         "cascola-cascorez-extra",
         "cascola-pl500-adesivo-de-montagem",
         "quartzolit-cimentcola-externo-acii",
+        "quartzolit-pastilhas-fachadas",
+        "quartzolit-pastilhas-interiores",
         "tekbond-silicone-acetico-construcao",
         "tekbond-silicone-acetico-maxx",
         "tekbond-silicone-neutro"
       ],
       "estados_varridos": 90,
-      "estados_com_o_minimo": 11,
+      "estados_com_o_minimo": 18,
       "estados_sem_nenhum_elegivel": 22,
-      "maior_numero_de_elegiveis_em_um_estado": 4,
+      "maior_numero_de_elegiveis_em_um_estado": 5,
       "estados": [
         {
           "tessela": "caco_azulejo",
@@ -388,9 +390,11 @@
           "elegiveis": [
             "cascola-pl500-adesivo-de-montagem",
             "quartzolit-cimentcola-externo-acii",
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 3,
+          "quantos_elegiveis": 5,
           "com_ressalva": []
         },
         {
@@ -399,9 +403,11 @@
           "ambiente": "interno_molhado",
           "elegiveis": [
             "quartzolit-cimentcola-externo-acii",
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 2,
+          "quantos_elegiveis": 4,
           "com_ressalva": []
         },
         {
@@ -410,9 +416,10 @@
           "ambiente": "externo_abrigado",
           "elegiveis": [
             "quartzolit-cimentcola-externo-acii",
+            "quartzolit-pastilhas-fachadas",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 2,
+          "quantos_elegiveis": 3,
           "com_ressalva": []
         },
         {
@@ -421,9 +428,10 @@
           "ambiente": "externo_exposto",
           "elegiveis": [
             "quartzolit-cimentcola-externo-acii",
+            "quartzolit-pastilhas-fachadas",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 2,
+          "quantos_elegiveis": 3,
           "com_ressalva": []
         },
         {
@@ -440,9 +448,11 @@
           "ambiente": "interno_seco",
           "elegiveis": [
             "quartzolit-cimentcola-externo-acii",
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 2,
+          "quantos_elegiveis": 4,
           "com_ressalva": [
             "loctite-durepoxi"
           ]
@@ -875,6 +885,31 @@
           "ambiente": "interno_seco",
           "elegiveis": [
             "cascola-pl500-adesivo-de-montagem",
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 4,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "quartzolit-pastilhas-fachadas",
             "tekbond-silicone-neutro"
           ],
           "quantos_elegiveis": 2,
@@ -883,31 +918,12 @@
         {
           "tessela": "caco_louca",
           "base": "cimento_concreto",
-          "ambiente": "interno_molhado",
-          "elegiveis": [
-            "tekbond-silicone-neutro"
-          ],
-          "quantos_elegiveis": 1,
-          "com_ressalva": []
-        },
-        {
-          "tessela": "caco_louca",
-          "base": "cimento_concreto",
-          "ambiente": "externo_abrigado",
-          "elegiveis": [
-            "tekbond-silicone-neutro"
-          ],
-          "quantos_elegiveis": 1,
-          "com_ressalva": []
-        },
-        {
-          "tessela": "caco_louca",
-          "base": "cimento_concreto",
           "ambiente": "externo_exposto",
           "elegiveis": [
+            "quartzolit-pastilhas-fachadas",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 1,
+          "quantos_elegiveis": 2,
           "com_ressalva": []
         },
         {
@@ -923,9 +939,11 @@
           "base": "alvenaria_tijolo",
           "ambiente": "interno_seco",
           "elegiveis": [
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 1,
+          "quantos_elegiveis": 3,
           "com_ressalva": [
             "loctite-durepoxi"
           ]
@@ -1083,18 +1101,20 @@
       "tesselas_declaradas": [
         "caco_louca"
       ],
-      "itens_de_banco": 5,
+      "itens_de_banco": 7,
       "portao_da_secao_9": "ABERTO",
       "pastilhas_do_banco": [],
       "colas_elegiveis": [
         "cascola-cascorez-extra",
         "cascola-pl500-adesivo-de-montagem",
+        "quartzolit-pastilhas-fachadas",
+        "quartzolit-pastilhas-interiores",
         "tekbond-silicone-acetico-construcao",
         "tekbond-silicone-acetico-maxx",
         "tekbond-silicone-neutro"
       ],
       "estados_varridos": 45,
-      "estados_com_o_minimo": 5,
+      "estados_com_o_minimo": 8,
       "estados_sem_nenhum_elegivel": 11,
       "maior_numero_de_elegiveis_em_um_estado": 4,
       "estados": [
@@ -1383,6 +1403,31 @@
           "ambiente": "interno_seco",
           "elegiveis": [
             "cascola-pl500-adesivo-de-montagem",
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 4,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "quartzolit-pastilhas-fachadas",
             "tekbond-silicone-neutro"
           ],
           "quantos_elegiveis": 2,
@@ -1391,31 +1436,12 @@
         {
           "tessela": "caco_louca",
           "base": "cimento_concreto",
-          "ambiente": "interno_molhado",
-          "elegiveis": [
-            "tekbond-silicone-neutro"
-          ],
-          "quantos_elegiveis": 1,
-          "com_ressalva": []
-        },
-        {
-          "tessela": "caco_louca",
-          "base": "cimento_concreto",
-          "ambiente": "externo_abrigado",
-          "elegiveis": [
-            "tekbond-silicone-neutro"
-          ],
-          "quantos_elegiveis": 1,
-          "com_ressalva": []
-        },
-        {
-          "tessela": "caco_louca",
-          "base": "cimento_concreto",
           "ambiente": "externo_exposto",
           "elegiveis": [
+            "quartzolit-pastilhas-fachadas",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 1,
+          "quantos_elegiveis": 2,
           "com_ressalva": []
         },
         {
@@ -1431,9 +1457,11 @@
           "base": "alvenaria_tijolo",
           "ambiente": "interno_seco",
           "elegiveis": [
+            "quartzolit-pastilhas-fachadas",
+            "quartzolit-pastilhas-interiores",
             "tekbond-silicone-neutro"
           ],
-          "quantos_elegiveis": 1,
+          "quantos_elegiveis": 3,
           "com_ressalva": [
             "loctite-durepoxi"
           ]

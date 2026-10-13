@@ -5,17 +5,17 @@ Nao edite este trecho a mao: `--conferir` regera e compara, e uma edicao manual 
 portao. O que se escreve a mao esta depois da fronteira, no fim do arquivo.
 
 Minimo da secao 9: **3** itens. Nivel maximo de fonte para recomendacao primaria, lido do
-esquema (versao 20): **3**.
+esquema (versao 21): **3**.
 
 ## O numero que manda
 
 | veredito | recortes |
 |---|---|
-| `passa` | 11 |
-| `passa_na_contagem_sem_lastro` | 1 |
+| `passa` | 12 |
+| `passa_na_contagem_sem_lastro` | 0 |
 | `nao_passa` | 31 |
 
-**Podem nascer hoje:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `pastilha`, `pastilha/vidro`, `rejunte`, `rejunte/cimenticio`.
+**Podem nascer hoje:** `acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `cola`, `pastilha`, `pastilha/vidro`, `rejunte`, `rejunte/cimenticio`.
 
 **Categorias que alcancam as 3 filhas da 16.5:** `acabamento`.
 
@@ -33,7 +33,7 @@ cada categoria:
 | `alicate` | 2 | 4 | `alicate/pinca_mosaico`, `alicate/martelinho` | IMPOSSIVEL por tipo NESTE CANAL: faltam 1 filha(s) e sobram 0 tipo(s) que esta ilha ainda pode coletar, porque `alicate/pinca_mosaico` esta fechado pela pendencia `martelinho-e-pinca-nao-tem-fabricante-neste-canal` (dados/materiais-alicates.json); `alicate/martelinho` esta fechado pela pendencia `martelinho-e-pinca-nao-tem-fabricante-neste-canal` (dados/materiais-alicates.json). So filha em forma de PERGUNTA fecha esta categoria, ou um canal de coleta novo. |
 | `apoio` | 0 | 6 | — | faltam 3 filha(s), 9 item(ns) a coletar em `apoio/desempenadeira` (3), `apoio/espatula` (3), `apoio/luva` (3) |
 | `base` | 0 | 5 | — | faltam 3 filha(s), 9 item(ns) a coletar em `base/ceramica_crua` (3), `base/cimento` (3), `base/isopor_estrutural` (3) |
-| `cola` | 0 | 8 | — | faltam 3 filha(s), 6 item(ns) a coletar em `cola/argamassa_colorida_assenta_e_rejunta` (2), `cola/cimentcola_acii` (2), `cola/pva` (2) |
+| `cola` | 0 | 8 | — | faltam 3 filha(s), 5 item(ns) a coletar em `cola/argamassa_colorida_assenta_e_rejunta` (1), `cola/cimentcola_acii` (2), `cola/pva` (2) |
 | `pastilha` | 1 | 6 | — | faltam 2 filha(s), 6 item(ns) a coletar em `pastilha/caco_azulejo` (3), `pastilha/caco_espelho` (3) |
 | `rejunte` | 1 | 4 | `rejunte/acrilico`, `rejunte/epoxi` | IMPOSSIVEL por tipo NESTE CANAL: faltam 2 filha(s) e sobram 1 tipo(s) que esta ilha ainda pode coletar, porque `rejunte/acrilico` esta fechado pela pendencia `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal` (dados/materiais-rejuntes.json); `rejunte/epoxi` esta fechado pela pendencia `rejunte-acrilico-e-epoxi-por-tipo-nao-fecham-neste-canal` (dados/materiais-rejuntes.json). So filha em forma de PERGUNTA fecha esta categoria, ou um canal de coleta novo. |
 
@@ -74,7 +74,7 @@ cada categoria:
 | `base/cimento` | 0 | 0 | — | `nao_passa` |
 | `base/isopor_estrutural` | 0 | 0 | — | `nao_passa` |
 | `base/moldura` | 0 | 0 | — | `nao_passa` |
-| `cola` | 8 | 4 | — | `passa_na_contagem_sem_lastro` |
+| `cola` | 9 | 5 | `consumo_por_area` (3), `tempo_em_aberto` (3) | `passa` |
 | `cola/pva` | 2 | 1 | — | `nao_passa` |
 | `cola/silicone_acetico` | 2 | 1 | — | `nao_passa` |
 | `cola/silicone_neutro` | 1 | 0 | — | `nao_passa` |
@@ -82,7 +82,7 @@ cada categoria:
 | `cola/cimentcola_aciii` | 0 | 0 | — | `nao_passa` |
 | `cola/epoxi` | 1 | 0 | — | `nao_passa` |
 | `cola/adesivo_para_espelho` | 0 | 0 | — | `nao_passa` |
-| `cola/argamassa_colorida_assenta_e_rejunta` | 1 | 1 | — | `nao_passa` |
+| `cola/argamassa_colorida_assenta_e_rejunta` | 2 | 2 | — | `nao_passa` |
 | `pastilha` | 13 | 12 | `m2_por_caixa` (12), `peso_caixa_kg` (12), `placas_por_caixa` (12) | `passa` |
 | `pastilha/vidro` | 13 | 12 | `m2_por_caixa` (12), `peso_caixa_kg` (12), `placas_por_caixa` (12) | `passa` |
 | `pastilha/ceramica` | 0 | 0 | — | `nao_passa` |
@@ -141,7 +141,6 @@ fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.
 - **`base/cimento`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`base/isopor_estrutural`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`base/moldura`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
-- **`cola`** — 4 dos 8 itens sustentam recomendacao, e NENHUMA propriedade e declarada por 3 deles ao mesmo tempo — nao ha numero que a pagina calcule sobre o recorte inteiro
 - **`cola/pva`** — o banco tem 2 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`cola/silicone_acetico`** — o banco tem 2 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`cola/silicone_neutro`** — o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3
@@ -149,7 +148,7 @@ fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.
 - **`cola/cimentcola_aciii`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`cola/epoxi`** — o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`cola/adesivo_para_espelho`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
-- **`cola/argamassa_colorida_assenta_e_rejunta`** — o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3
+- **`cola/argamassa_colorida_assenta_e_rejunta`** — o banco tem 2 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`pastilha/ceramica`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`pastilha/pedra`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
 - **`pastilha/caco_azulejo`** — o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3
@@ -169,23 +168,21 @@ fecha por CONSULTA, e isso e do `cruzamento-14-9.py`.
 
 | campo | itens | numeros | com fonte no teto | sem fonte | vereditos que mudariam | veredito |
 |---|---|---|---|---|---|---|
-| `afiliado` | 42 | 84 | 0 | 84 | 1 | `o_portao_esta_certo_por_falta_de_procedencia` |
+| `afiliado` | 43 | 85 | 0 | 85 | 0 | `nao_muda_nada_no_portao` |
 | `divergencias` | 3 | 6 | 2 | 4 | 0 | `nao_muda_nada_no_portao` |
 | `fonte_localizada_nao_lida` | 1 | 1 | 0 | 1 | 0 | `nao_muda_nada_no_portao` |
 | `geometria` | 13 | 52 | 0 | 52 | 0 | `nao_muda_nada_no_portao` |
-| `imagem` | 17 | 34 | 0 | 34 | 1 | `o_portao_esta_certo_por_falta_de_procedencia` |
-| `venda` | 22 | 25 | 24 | 0 | 0 | `nao_muda_nada_no_portao` |
+| `imagem` | 17 | 34 | 0 | 34 | 0 | `nao_muda_nada_no_portao` |
+| `venda` | 23 | 26 | 25 | 0 | 0 | `nao_muda_nada_no_portao` |
 
-**A leitura:** nenhum campo COM procedencia muda veredito nenhum dos 43 recortes. Os 2 campo(s) que mudariam (`afiliado`, `imagem`) nao declaram fonte por campo em numero nenhum — entao o filtro de procedencia e o que esta segurando o(s) recorte(s) `cola`, e nao a contagem de itens. Tirar o filtro publicaria pagina cujo 'numero calculado proprio' seria um numero que a ilha produziu, nao um que o fabricante declarou.
+**A leitura:** o portao desta ilha nao e travado por QUAL campo ele le, e sim por QUANTOS itens o banco tem: dos 43 recortes medidos, nenhum muda de veredito por campo nenhum fora de `propriedades`, com procedencia ou sem.
 
-- **`afiliado`** — `afiliado` mudaria o veredito de 1 recorte(s), e nenhum dos 84 numero(s) dele declara fonte por campo: 84 sem procedencia nenhuma e 0 com fonte pior que o nivel 3. Pela decisao pre-registrada ele fica FORA do portao, e o recorte fecha por dado, nao por desistencia.
-  - **mudaria `cola`**: `passa_na_contagem_sem_lastro` -> `passa`
+- **`afiliado`** — `afiliado` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e acrescenta numero a 12 recorte(s) que JA passam (`acabamento`, `acabamento/impermeabilizante`, `acabamento/selador`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `cola`, `pastilha`, `pastilha/vidro`, `rejunte`, `rejunte/cimenticio`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 85.
 - **`divergencias`** — `divergencias` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 2 de 6.
 - **`fonte_localizada_nao_lida`** — `fonte_localizada_nao_lida` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 1.
 - **`geometria`** — `geometria` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e acrescenta numero a 2 recorte(s) que JA passam (`pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 52.
-- **`imagem`** — `imagem` mudaria o veredito de 1 recorte(s), e nenhum dos 34 numero(s) dele declara fonte por campo: 34 sem procedencia nenhuma e 0 com fonte pior que o nivel 3. Pela decisao pre-registrada ele fica FORA do portao, e o recorte fecha por dado, nao por desistencia.
-  - **mudaria `cola`**: `passa_na_contagem_sem_lastro` -> `passa`
-- **`venda`** — `venda` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e acrescenta numero a 5 recorte(s) que JA passam (`alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 24 de 25.
+- **`imagem`** — `imagem` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e acrescenta numero a 5 recorte(s) que JA passam (`acabamento`, `acabamento/verniz`, `alicate`, `alicate/cortador_de_azulejo`, `cola`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 34.
+- **`venda`** — `venda` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e acrescenta numero a 6 recorte(s) que JA passam (`alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `cola`, `pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 25 de 26.
 
 **Quando esta secao reprova:** quando um campo tiver procedencia por campo dentro do teto E mudar algum veredito. Campo que ganha procedencia e nao muda veredito nenhum nao reprova: alarme sem consequencia e o que faz portao ser ignorado.
 
