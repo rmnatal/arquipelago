@@ -31,72 +31,46 @@ urls_publicadas: 32        # 31 -> 32 em 12/10/2026 17h5xZ: a SEXTA filha de /ma
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-13T10:20Z   # A DIVIDA DO `documento_aberto` ESTA PAGA NOS CINCO BANCOS.
-                                     # Nenhuma URL nova (a ilha segue em 32) e a causa e a mesma
-                                     # de ontem: a leva 3 de 3 da semana da 21.4 foi gasta em
-                                     # 12/10 e zera em 19/10. O que foi ao ar sao as options das
-                                     # revisoes 84 e 85, as duas conferidas pela 20.4 no LOG do
-                                     # /status e nao na revisao: 9 de 9 linhas dizendo ok em cada,
-                                     # 9 visiveis de 9 aplicados — nada rolou fora da janela.
-                                     # AS 53 FONTES dos cinco bancos declaram, e o numero da
-                                     # divida estava na unidade errada: ela dizia 41, que e o de
-                                     # MATERIAIS, e o campo e de REGISTRO DE FONTE. Subestimada em
-                                     # 12 registros. NENHUM valor e coleta nova — cinco caminhos
-                                     # de prova (A tipo 35, B leitura 1, C reaberta 2, D o banco
-                                     # responde 14, E escolha escrita 1), 5 em true e 48 em false.
-                                     # O PEDIDO DE REDE NAO MUDOU DE TAMANHO e isso e o resultado
-                                     # certo: 40 hosts travando coleta antes e depois, zero
-                                     # entraram, zero sairam; marcados pela DECLARACAO de 10 para
-                                     # 21, e os 11 que entraram ja travavam pelo nome.
+ultima_execucao: 2026-10-13T13:18Z   # A IDENTIDADE DO DOCUMENTO NAO E O CABECALHO DELE. Nenhuma URL
+                                     # nova (a ilha segue em 32) e a causa e a mesma das duas
+                                     # passadas de hoje: a leva 3 de 3 da semana da 21.4 foi gasta
+                                     # em 12/10 e zera em 19/10. O que foi ao ar e a option da
+                                     # revisao 86 (`dados/esquema-banco`, v19), conferida pela 20.4
+                                     # no LOG do /status e nao na revisao: 9 de 9 linhas dizendo ok,
+                                     # 9 visiveis de 9 aplicados, nada fora da janela, em sync
+                                     # COMUM — nenhum snippet mudou neste bloco.
+                                     # DUAS DAS QUATRO TRAVAS do `medir-espelho.py` estavam furadas
+                                     # POR ELE MESMO, e as duas da mesma familia: a coluna que
+                                     # decide era lida da LINHA errada e do ARQUIVO errado.
+                                     # (1) A trava 4 manda ler "o titulo da pagina 1" e o codigo lia
+                                     # "a primeira linha" — o CABECALHO CORRIDO. Em 6 dos 14
+                                     # documentos do espelho ele nao nomeia o produto do documento:
+                                     # 3 nomeiam OUTRO produto (`1338838.pdf` diz `pastilhas
+                                     # exteriores` e e de `pastilhas interiores`) e as 3 FISPQ
+                                     # nomeiam uma NORMA.
+                                     # (2) A trava 1 separa derivado de digitado, e a derivacao
+                                     # varria o proprio `canal-de-espelho.json` que ela gera: 14 de
+                                     # 14 saiam `derivada dos bancos`. Medido nos dois mundos sobre
+                                     # os mesmos JSON: 14 contra 2.
+                                     # NENHUM valor de banco mudou, e isso foi conferido: o
+                                     # `filhas-do-guia` regerado mudou UMA linha, a versao do
+                                     # esquema de 18 para 19.
                                      # O horario aqui e o da RESERVA, que e o que a secao 1 compara.
-ultima_execucao_anterior: 2026-10-12T19:16Z   # O PEDIDO DE REDE DEIXA DE DECIDIR POR NOME DE ARQUIVO:
-                                     # nasce `escada_de_fontes.documento_aberto` (esquema v17), as dez
-                                     # fontes de tecnica declaram, e o desembarque da 82 quebrou SETE
-                                     # paginas pela segunda vez em tres dias — de onde saiu a secao
-                                     # 20.4 do contrato e o `conferir-desembarque.py`. Revisoes 82 e 83.
-                                     # 2026-10-12T16:20Z — A TERCEIRA PERGUNTA DA MESMA CATEGORIA, e ela FECHA o
-                                     # `acabamento` por propriedade. Uma URL nova
-                                     # (/materiais/acabamento/peca-de-mosaico-esbranquicada/),
-                                     # recorte `pigmentado`, SERP medida em TRES molduras e so a
-                                     # terceira mediu no Brasil — de onde saiu o LIMITE 10 do canal.
-                                     # TRES DEFEITOS ACHADOS E CONSERTADOS NESTA PASSADA, e dois
-                                     # deles ja estavam no `main` antes dela: (1) o
-                                     # `filhas-do-guia --conferir` reprovava DESDE AS 10h19Z, por
-                                     # formato na coluna do ARVORE.md; (2) o `cruzamento --conferir`
-                                     # reprovava e IA FICAR, porque contava moldura descartada como
-                                     # medicao orfa; (3) a janela de irmas da casca nao rotacionava, e
-                                     # SETE filhas de /materiais/ estavam no ar com UM link de entrada
-                                     # so — as oito paginas de produto de 09/10 entre elas.
-                                     # A falha de ativacao do Guia aconteceu pela QUARTA vez em
-                                     # quatro dias (79 -> 80) e desta vez em sync COMUM, o que separa
-                                     # as duas causas: `forcar=1` AGRAVA e nao e a causa.
-                                     # O horario aqui e o da RESERVA, que e o que a secao 1 compara.
-                                     # 2026-10-12T13:18Z — A SEGUNDA PERGUNTA NA MESMA CATEGORIA, e com ela o mecanismo
-                                     # de pergunta deixou de ser SINGULAR — a 1.3.0, de manha,
-                                     # despachava por `'pergunta' === $forma` em tres lugares e a
-                                     # ponte dizia "as tres etapas" com a palavra TRES digitada.
-                                     # Uma URL nova (/materiais/acabamento/diluir-o-verniz-do-mosaico/).
-                                     # O recorte dela e `diluicao`, a primeira grandeza desta ilha
-                                     # que NAO E UM NUMERO: a regua conta e nunca classifica (26.3).
-                                     # O sync de 77 gravou o snippet do Guia INATIVO de novo (3a vez
-                                     # em 4 dias) e as 5 paginas serviram shortcode CRU por ~4 min;
-                                     # consertado pela revisao 78, e com o snippet ja caido o
-                                     # forcar=1 foi a saida que o PROMPT.md autoriza nesse caso.
-                                     # O horario aqui e o da RESERVA, que e o que a secao 1 compara.
-                                     # 2026-10-12T10:19Z — A FILHA EM FORMA DE PERGUNTA, e o campo `tipo` do
-                                     # registro do Guia parou de fazer dois trabalhos. Uma URL nova.
-                                     # O Sync de 75 gravou o snippet do Guia INATIVO (mesma falha de
-                                     # 09/10) e as quatro paginas serviram shortcode CRU por ~5 min;
-                                     # consertado pela revisao 76 com sync COMUM, nao com forcar=1.
-                                     # O horario aqui e o da RESERVA, que e o que a secao 1 compara.
-                                     # 2026-10-09T20:04Z foi a QUARTA execucao daquele dia: a rede
-                                     # de sinal das baterias de mutacao, de UMA protegida para as
-                                     # CATORZE, com portao que mata cada uma de proposito. As tres
-                                     # anteriores foram 14h05Z (os dois portoes), 16h16Z (as 8 paginas
-                                     # de consulta de produto) e 19h19Z (o apelido de endereco com
-                                     # NIVEL e os treze 301). O horario aqui e o da RESERVA, que e o
-                                     # que a secao 1 compara; o bloco fechou perto de 21hZ.
-executando_desde: 2026-10-13T13:45Z   # RENOVADA pela 1.1 (bloco que passa de 40 minutos reescreve o campo). A anterior
+ultima_execucao_anterior: 2026-10-13T10:20Z   # A DIVIDA DO `documento_aberto` PAGA NOS CINCO BANCOS:
+                                     # as 53 fontes declaram, e o numero da divida estava na unidade
+                                     # errada — ela dizia 41, que e o de MATERIAIS, e o campo e de
+                                     # REGISTRO DE FONTE, logo subestimada em 12 registros. Nenhum
+                                     # valor e coleta nova: cinco caminhos de prova, 5 em true e 48
+                                     # em false. Revisoes 84 e 85, as duas conferidas pela 20.4.
+                                     # A de 12/10 19h16Z, que estava aqui, NAO foi perdida: esta
+                                     # inteira no `REGISTRO.md`, que e o log append-only.
+executando_desde: null   # limpo as 13h4xZ de 13/10/2026 pela propria execucao que reservou as 13h18Z.
+                         # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: no commit
+                         # do bloco este campo saiu com `2026-10-13T13:45Z`, apresentado como renovacao da
+                         # 1.1. Nao era — o bloco tinha 23 minutos, e 13h45Z ainda nao tinha chegado. A 1.1
+                         # manda renovar o campo quando o bloco PASSA de 40 minutos, e este nao passou. A
+                         # reserva que vale e a de 13h18Z, que e a que ficou em `ultima_execucao`. A
+                         # anterior
                                       # reservou as 10h20Z e limpou as 11h0xZ, e o ultimo commit na pasta da ilha
                                       # e de 10h59Z — mais de 40 minutos atras, entao a 1.1 nao tinha o que desempatar.
 ultima_ronda: 2026-10-12T15:00Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente segue sendo a de 07/10 20h35Z). ZERO defeito de ilha nas 31 URLs; o TESTE DE VIDA DA 25.4 VOLTOU A FUNCIONAR — 24 de 24 itens medidos, 0 morto, 0 esgotado, depois de tres rondas em zero.
@@ -105,6 +79,24 @@ bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabeca
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
+  A IDENTIDADE DO DOCUMENTO NAO E O CABECALHO DELE, E 6 DOS 14 DOCUMENTOS DO ESPELHO ESTAVAM CATALOGADOS PELA LINHA ERRADA. NENHUMA URL NOVA (a ilha segue em 32) e a causa e a mesma das duas passadas de hoje, medida e nao suposta: a leva 3 de 3 da semana da 21.4 foi gasta em 12/10 e zera em 19/10. O que foi ao ar e a option da revisao 86 — `dados/esquema-banco`, agora na v19.
+  POR QUE ESTE BLOCO, e ele NAO era o que o bloco_atual de 10h20Z nomeava. Aquele deixou escrito que o proximo passo desbloqueado e o item 4 do despacho de 07/10 — e o criterio de pronto DELE pede "um arquivo de contagem datado de 2026-10-14 ou depois". Hoje e 13/10: escrever esse arquivo hoje seria fechar um despacho contra um criterio que ele mesmo nao cumpre, que a 18.4 proibe com todas as letras. Aquele bloco tambem fechou dizendo que "nada de Fundacao sobra aqui" sem 19/10 ou sem os tres dominios de rede; esta execucao procurou e ACHOU, e o que ela achou nao custava URL nem leva: 46 das 54 fontes de material seguem marcadas `conferir_no_pdf: true`, o canal de espelho esta ABERTO e tem 14 documentos alcancaveis, e foi abrindo os 14 — um comando — que o defeito apareceu. Despacho aberto desta ilha continua sem item de Fundacao: as 6 URLs em 404 (credencial), as tres desconhecidas do Google (credencial e navegador), o cano de links (sessao da Shopee) e os tres dominios de fonte de tecnica (rede) sao TODOS do Raphael.
+  DUAS DAS QUATRO TRAVAS QUE O `medir-espelho.py` DECLARA NO PROPRIO TOPO ESTAVAM FURADAS POR ELE MESMO, e as duas sao da mesma familia: a coluna que decide era lida da LINHA errada e do ARQUIVO errado. Autoteste verde em 24 de 24 sobre a metade que ele media.
+  (1) A TRAVA 4 MANDA LER "O TITULO DA PAGINA 1" E O CODIGO LIA "A PRIMEIRA LINHA COM TEXTO DA PAGINA 1" — que no molde da Quartzolit e o CABECALHO CORRIDO, texto de molde que envelhece sozinho e nao acompanha o produto. Em 3 dos 14 ele nomeia OUTRO produto: `1338838.pdf` tem cabecalho `pastilhas exteriores quartzolit` e o documento e de `pastilhas interiores quartzolit`; `1430424.pdf` diz `porcelanato interno cinza` e e de `porcelanato e piso sobre piso externo`; `298182.pdf` diz `chapix sbr` e e de `Cimentcola Cozinhas e Banheiros`. E nas 3 FISPQ o cabecalho nomeia uma NORMA (`Em conformidade com NBR 14725...`), com o produto na linha `Produto:` que o codigo nunca alcancava — OSMOCOLOR ST, PISO SOBRE PISO INTERNO e Pentox Cupim, tres produtos que o inventario simplesmente nao nomeava.
+  O CUSTO NESTA ILHA TEM NOME, e por isso o defeito nao e de catalogo: `pastilhas interiores quartzolit` declara, na secao 1 do boletim, pastilha de VIDRO para AREAS INTERNAS. A F2 desta ilha decide por `ambiente`. Quem fosse buscar no inventario a declaracao de um produto "para exteriores" acharia um documento que diz o contrario e publicaria o numero na boca de quem nao o publicou, que e a 26.3 ao contrario — e e o mesmo falso positivo do batismo que esta ilha ja pagou duas vezes em 05/10, um andar acima.
+  (2) A TRAVA 1 SEPARA DERIVADO DE DIGITADO, E A DERIVACAO COMIA O PROPRIO RABO. `urls_de_espelho_dos_bancos` varria `dados/*.json` INCLUSIVE o `canal-de-espelho.json` que ela mesma gera, entao toda URL do inventario voltava na passada seguinte como `derivada dos bancos`, com `citado_por: ["canal-de-espelho.json"]`. MEDIDO NOS DOIS MUNDOS, sobre os mesmos 22 JSON de `dados/`: 14 contra 2, e os 12 que sairam eram citados por UM arquivo so, o gerado. A derivacao real sao `1200003.pdf` (materiais-rejuntes.json) e `908487.pdf` (materiais-colas.json). Um terceiro, `27073.pdf`, aparece em `constantes.json` dentro de um NOME DE CHAVE e nao num campo `url` — a derivacao le campo `url` por desenho, e isso ficou escrito no .md para ninguem ler a coluna `entrada` como "nenhum banco conhece este arquivo".
+  O QUE MANTEM AS DUAS PAGAS NAO E O CONSERTO, E O PORTAO. `identidade_do_texto` nasceu PURA — texto da pagina 1 entra, identidade sai — justamente para poder ser mutada; a versao anterior misturava download e leitura, e a unica regua possivel era abrir a rede. O autoteste foi de 24 para 39 casos: 12 de identidade (os tres moldes, a armadilha de ordem da FISPQ, cabecalho de molde puro, marca de pagina na mesma linha e na ultima, pagina sem texto) e 3 de derivacao num `dados/` fabricado. Cada caso de identidade imprime, ao lado do veredito, A LINHA QUE A REGRA VELHA DEVOLVIA — em 7 dos 12 era a linha errada, e isso e a prova de que a bateria nao e inerte.
+  E NASCEU `ferramentas/mutacoes-espelho.py`, 9 de 9: 8 quebras que TEM de reprovar e 1 mundo que TEM de passar (mexer num comentario). Ela copia a ferramenta para um `mkdtemp(` e muta a COPIA — nunca a arvore, que e a cicatriz do `mutacoes-par.py` de 09/10 — e a chamada e `mkdtemp(` e nao `TemporaryDirectory()` por um motivo que nao e de gosto: o `teste-rede-de-sinal.py` classifica as baterias por CHAMADA de `mkdtemp(`, e bateria que trabalha em copia sem falar a palavra da regua entra na lista errada. Cada quebra declara A FRASE que tem de ouvir de volta, porque reprovar nao e a mesma coisa que reprovar PELO MOTIVO CERTO.
+  E UMA DAS MUTACOES ACHOU UM BURACO NO PROPRIO AUTOTESTE, antes do commit: a que baixa o corte de linha util de 8 para 0 saiu VERDE na primeira tentativa. O motivo nao era a mutacao — era o autoteste, que cobrava familia, produto e veredito do cabecalho e NAO cobrava o `cabecalho_corrido`. Com a quarta coluna cobrada, a mutacao passou a morder. Mutacao que sai verde e, antes de tudo, uma pergunta sobre a regua.
+  A REDE E A PORTA DE ENTRADA, ANTES DE QUALQUER COISA (20.2 e 29): raiz em 200 nas tres passadas; `conferir-no-ar.py` APROVADO com 524 afirmacoes e 0 falha; `leitura-do-visitante.py` REPROVADO por EXATAMENTE 1 defeito, o soft 404 da borda de 29/09, que e do hospedeiro e tem dono escrito. A medicao do canal reproduziu a de 05/10 host por host: 9 de 9 da familia abertos, os 3 de descoberta e os 3 de escapatoria fechados, `www.quartzolit.weber` em 403 nas tres e o apex em 301.
+  O DESEMBARQUE, PELA 20.4 E NAO PELA REVISAO: sync COMUM, sem `forcar=1`, porque nenhum snippet mudou. `conferir-desembarque.py` APROVADO — revisao 86 no manifest e no /status, 9 de 9 linhas do log dizendo ok, 9 visiveis de 9 aplicados, nada fora da janela. De graca, as duas paginas do Guia conferidas no ar com `grep -c '\[cdm_guia'`: zero shortcode cru. Depois do desembarque: `conferir-no-ar.py` APROVADO com 524 e 0 falha, `conferir-tecnica-no-ar.py` APROVADO com 54, `leitura-do-visitante.py` REPROVADO com EXATAMENTE o mesmo 1 defeito, 33 URLs lidas, 0 em janela de cache.
+  BANCADA, 0 falha: `medir-espelho --autoteste` 39 de 39, `mutacoes-espelho` 9 de 9, `validar-banco` OK, `medir-egresso --autoteste` 50 de 50, `filhas-do-guia --conferir` APROVADO depois de regerado, `cruzamento-14-9 --conferir` APROVADO, `coletar-por-consulta --conferir` 554 e 0 defeito, as DEZ bancadas PHP aprovadas (casca 1041, guia 232, produto 306, tecnicas 139, F1 228, F2 174, leads, loja, prestacao 5, atelie) e `teste-rede-de-sinal` com as 14 baterias e a arvore devolvida IGUAL — a bateria nova entrou no grupo das 22 que trabalham em copia, que e onde ela pertence.
+  O QUE ESTE BLOCO NAO FEZ, dito para ninguem reabrir: nao pagou nenhuma das 46 fontes `conferir_no_pdf` (nenhum dos 14 documentos do espelho corresponde a uma delas — os dois que correspondiam foram lidos em 05/10 e 06/10, e `rejunte acrilico` e `rejunte epoxi` continuam fora do inventario, que e falta de INDICE e nao de egresso); nao criou registro de banco (os produtos novos que os boletins trazem — `pastilhas interiores`, `pastilhas fachadas`, `bloco de vidro`, `Cimentcola Cozinhas e Banheiros` — seriam registros PUBLICAVEIS, e a 25.2-b proibe registro publicavel sem encurtamento tentado, que depende da sessao da Shopee do Raphael); nao publicou URL; nao mexeu em snippet (por isso o sync foi COMUM, sem `forcar=1`); e NAO tocou no `foco.md` — a troca para a aquametria e do Raphael, e esta e a NONA execucao a registrar isso.
+  O PROXIMO PASSO DESBLOQUEADO, E ELE TEM DATA: amanha, 14/10, o item 4 do despacho de 07/10 fica elegivel e sai numa passada so — a metade da CONTAGEM e derivavel do banco e o `validar-banco.py` ja imprime os quatro numeros que o criterio pede (41 de 41 com `url_busca` e `url_busca_produto`, 17 sem `url_produto` que sao exatamente os 17 de degrau 4, e a escada 1:1 2:4 3:19 4:17). A outra metade do item 4, gerar link, segue do Raphael. Depois dela, o que sobra sem os tres dominios de rede e sem 19/10 e trabalho de PORTAO como o de hoje: a divida das 46 fontes `conferir_no_pdf` nao fecha daqui porque os documentos nao estao alcancaveis, mas quem for abrir o proximo PDF de fabricante — por qualquer canal — le a identidade pela regra nova, que agora mora no esquema e tem bancada.
+  --- o bloco abaixo e da execucao de 13/10/2026 10h20Z e fica sem uma palavra alterada. A de
+  12/10/2026 16h20Z, que estava aqui ate hoje, saiu deste arquivo e NAO foi perdida: ela esta
+  inteira no `REGISTRO.md`, que e o log append-only, e resumida no comentario de
+  `ultima_execucao_anterior` no cabecalho ---
   A DIVIDA DO `documento_aberto` ESTA PAGA NOS CINCO BANCOS DE MATERIAL, E O NUMERO QUE ELA TRAZIA ESTAVA NA UNIDADE ERRADA. NENHUMA URL NOVA (a ilha segue em 32) e a causa e a mesma de ontem, medida e nao suposta: a leva 3 de 3 da semana da 21.4 foi gasta em 12/10 e zera em 19/10. O que foi ao ar sao as options das revisoes 84 e 85.
   POR QUE ESTE BLOCO, e ele estava escrito antes desta execucao abrir: o `bloco_atual` de 12/10 fecha nomeando o proximo passo desbloqueado com todas as letras — 'o que SOBRA de trabalho de Fundacao aqui e a divida que o esquema v17 nomeou com numero'. E nenhum despacho aberto desta ilha e da Fundacao: as 6 URLs em 404 (credencial), as tres desconhecidas do Google (credencial e navegador), o cano de links (sessao da Shopee no Chrome dele) e os tres dominios de fonte de tecnica (rede) sao TODOS do Raphael, e o item 4 pede arquivo datado de 14/10 ou depois. Pela 18.5 nao havia despacho para fechar; pela 21.4 nao havia leva para gastar.
   O NUMERO ESTAVA ERRADO POR UMA UNIDADE DE CONTAGEM, e e o tipo de erro que se repete: a divida dizia 41 REGISTROS. Os 41 sao os MATERIAIS; o campo e de REGISTRO DE FONTE, e as fontes dos cinco bancos sao 53 (12 acabamento, 7 alicates, 9 colas, 14 pastilhas, 11 rejuntes). Contada na unidade errada ela ficou subestimada em 12 registros — e quem a pagasse 'um banco por vez', como o esquema mandava, pararia 12 fontes antes do fim sem nada acusar.
@@ -123,247 +115,6 @@ bloco_atual: |
   O DESEMBARQUE, PELA 20.4 E NAO PELA REVISAO: duas revisoes, 84 e 85, as duas em sync COMUM e nao com `forcar=1` — nenhum snippet mudou, e e `forcar=1` que reaplica os nove e derruba o do Guia. `conferir-desembarque.py` APROVADO nas duas, com 9 de 9 linhas do log dizendo `ok` e 9 visiveis de 9 aplicados: nada rolou fora da janela. Os portoes da 29 ANTES e DEPOIS, iguais: `conferir-no-ar.py` APROVADO com 524 afirmacoes e 0 falha; `conferir-tecnica-no-ar.py` APROVADO com 54; `leitura-do-visitante.py` REPROVADO com EXATAMENTE 1 defeito, o soft 404 da borda de 29/09, que e do hospedeiro e tem dono escrito. Rede pela 20.2: 200 na raiz no comeco.
   O QUE ESTA EXECUCAO NAO FEZ, dito para ninguem reabrir: nao publicou URL (a leva da semana esta gasta), nao coletou item de banco, nao mediu SERP, nao abriu nenhuma fonte de tecnica (as dez em 000, e a porta e do Raphael), nao remediu egresso (a medicao de 12/10 as 19h37Z continua valendo e nenhuma decisao de hoje dependeu dela) e NAO tocou no `foco.md` — a troca para a aquametria e do Raphael, e esta e a OITAVA execucao a registrar isso.
   O PROXIMO PASSO DESBLOQUEADO, E ELE TEM DATA: o item 4 do despacho de 07/10 pede 'um arquivo de contagem datado de 2026-10-14 ou depois, com total de publicaveis, quantos sem `url_busca`, quantos sem `url_produto` e a distribuicao por `degrau`'. Essa metade e DERIVAVEL DO BANCO e nao depende da sessao da Shopee: o `validar-banco.py` ja imprime os numeros (41 de 41 com `url_busca` e `url_busca_produto`, 17 sem `url_produto` que sao exatamente os 17 de degrau 4, e a escada 1:1 2:4 3:19 4:17). De 14/10 em diante ela sai numa passada, e e a unica linha de despacho desta ilha que a Fundacao pode fechar sozinha. A outra metade do item 4 — gerar link — segue do Raphael. Depois dela, nada de Fundacao sobra aqui sem os tres dominios de fonte de tecnica ou sem 19/10, quando a semana da 21.4 zera.
-  --- o bloco abaixo e da execucao de 12/10/2026 16h20Z e fica sem uma palavra alterada. A de 19h16Z,
-  que estava aqui ate hoje, saiu deste arquivo e NAO foi perdida: ela esta inteira no `REGISTRO.md`,
-  que e o log append-only, e resumida no comentario de `ultima_execucao_anterior` no cabecalho ---
-  A TERCEIRA PERGUNTA DO ACABAMENTO, E ELA FECHA A CATEGORIA POR PROPRIEDADE. Uma URL nova:
-  /materiais/acabamento/peca-de-mosaico-esbranquicada/, conferida no ar em 200 com os numeros dela
-  batendo com o banco e ZERO molde nao preenchido. A ilha vai de 31 para 32 URLs; faltam 8 para o
-  piso de 40 da 21.1. Leva 3 de 3 da semana da 21.4 — A SEMANA ESTA GASTA e zera em 19/10. Guia
-  1.5.0, casca 1.23.0, manifest e /status na revisao 81.
-  1. OS DOIS PORTOES DA 29 RODARAM ANTES DE TUDO E DE NOVO NO FIM. Antes: conferir-no-ar.py
-     APROVADO com 524 afirmacoes e 0 falha; leitura-do-visitante.py REPROVADO com EXATAMENTE 1
-     defeito, o soft 404 da borda, do hospedeiro, com dono escrito. Depois do desembarque, com 32
-     URLs: leitura-do-visitante REPROVADO com EXATAMENTE o MESMO 1 defeito, 33 URLs lidas, 0 em
-     janela de cache, e a pagina nova lida pela BORDA em 200 sem quebra de cache. Rede pela 20.2:
-     200 na raiz, duas passadas. A porta de entrada estava DE PE antes e depois.
-  2. O RECORTE E `pigmentado`, E ERA O ULTIMO LIVRE DA CATEGORIA. Das NOVE propriedades do banco de
-     acabamento com 3+ itens de lastro, SEIS estao publicadas por uma das paginas no ar e tres sao
-     recorte de filha-pergunta: `demaos_minimas` (a quarta), `diluicao` (a quinta) e `pigmentado`
-     (esta). Quem nomeou `pigmentado` como a ultima livre foi o comentario da QUINTA filha, escrito
-     seis horas antes no mesmo arquivo, e esta execucao conferiu de novo contra o que as cinco
-     publicam ANTES de escrever uma linha — pela regra que a quinta deixou: LASTRO NAO E VAGA LIVRE.
-     COM ISSO O QUARTO CAMINHO (filha nova em categoria com mae no ar) ESTA FECHADO, e a proxima URL
-     desta ilha volta a custar ITEM DE BANCO ou PERGUNTA NOVA em outra categoria.
-  3. O QUE A PAGINA PUBLICA, e nenhum numero e digitado: dos 10 produtos do acabamento, 3 declaram
-     se tem cor propria — 2 se declaram pigmentados (`selador pigmentado`, da Quartzolit, e `fundo
-     de cor branco fosco`, da Coral) e 1 declara `pelicula brilhante e transparente` (resina
-     acrilica da Coral). Saem 2 respostas diferentes; 7 nao dizem nada. A TRAVA DA REGUA E O QUE
-     MAIS VALE AQUI: `pigmentados` conta `'sim'` por igualdade ESTRITA e NADA conta o complemento —
-     a subtracao chamaria de transparente um `parcialmente` que algum fabricante futuro declare, e
-     passaria em toda bancada de numero, porque um inteiro valido sai dos dois lados. A tela diz,
-     com essas palavras, que NAO DIZER NADA NAO E DIZER QUE E TRANSPARENTE, que e a metade que a
-     SERP inteira deixa de fora.
-  4. A SERP FOI MEDIDA TRES VEZES E SO A TERCEIRA MEDIU NO BRASIL (9 de 10), e disso nasceu o
-     LIMITE 10 do canal: nome de MATERIAL dentro da pergunta troca SERP de pergunta por SERP de
-     COMPRA daquele material. `o que passo por baixo do caquinho de VIDRO...` mediu no Brasil e
-     trouxe a Telha Norte em QUATRO das dez vagas, com ficha de placa de pastilha 29,2x29,2 cm. A
-     moldura adotada nao nomeia material. A primeira (`seca transparente ou deixa branco`) deu DEZ
-     de dez fora do pais, pelo limite 4 — nucleo bilingue. As tres estao gravadas, as duas
-     descartadas com o motivo, para ninguem repetir.
-  5. TRES DEFEITOS CONSERTADOS, E DOIS JA ESTAVAM NO `main` ANTES DESTA EXECUCAO.
-     (a) `filhas-do-guia --conferir` reprovava DESDE AS 10h19Z DE HOJE, atravessando duas execucoes:
-     a coluna "tipos que passam" do ARVORE.md tinha virado `3 de 3 tipos, +1 pergunta` (depois
-     `+2`), e o portao a le com a regua `N de M`. Nao era numero errado — era fato verdadeiro na
-     coluna de outro dono. Restaurada para `3 de 3`, e a contagem de perguntas NAO voltou para la:
-     quem conta filha por CONSULTA e o cruzamento-14-9.md, que e GERADO e tem portao.
-     (b) `cruzamento-14-9 --conferir` reprovava e IA FICAR: contava MOLDURA DESCARTADA como medicao
-     orfa, e a 14.9 manda guardar a consulta que falhou. Ninguem podia apagar o vermelho sem jogar
-     fora o registro. Agora a regua le o ROTULO; orfa de verdade continua reprovando, e o autoteste
-     novo morde os dois lados, para a marca nao virar um jeito de calar o portao.
-     (c) A JANELA DE IRMAS DA CASCA NAO ROTACIONAVA, e este e o grande. `cdm_casca_irmas()` devolvia
-     as QUATRO PRIMEIRAS da ordem do mapa, iguais para todas as irmas — e com SEIS filhas a quinta e
-     a sexta nao recebem link de irma nenhuma. A pagina nova nasceu com UM link de entrada, o da
-     mae, contra os DOIS da 16.4(f). E O DEFEITO ERA MAIOR QUE ELA: /materiais/ tem ONZE filhas
-     desde 09/10, entao SETE estavam no ar com um link so — as oito paginas de consulta de produto
-     entre elas. Janela ciclica (grafo circulante: grau de entrada = grau de saida = min(4, irmas)),
-     bloco 24-b novo no teste-casca medindo a direcao de ENTRADA no HTML servido, e mutacao que
-     restaura o `array_slice` e reprova nele. Conferido no ar: a pagina nova tem 5 links de entrada
-     (1 da mae e 4 de irmas), e `materiais/alicate-para-mosaico` voltou a receber link de irma.
-  6. A FALHA DE ATIVACAO DO GUIA ACONTECEU PELA QUARTA VEZ EM QUATRO DIAS (79 -> 80), e desta vez
-     ela separa duas causas que o PROMPT.md trazia juntas: a 79 foi sincronizada em sync COMUM, sem
-     `forcar=1`, e falhou assim mesmo. Entao o `forcar=1` de 09/10 AGRAVA (reaplica os nove
-     snippets) e NAO e a causa; a causa e reativar um snippet JA CARREGADO na requisicao, e isso
-     acontece em sync comum sempre que o PHP do Guia muda. As seis paginas do Guia serviram
-     shortcode CRU, sem description, por cerca de cinco minutos. A CONSEQUENCIA PRATICA: toda
-     revisao que muda o PHP do Guia nasce com a revisao seguinte reservada, e o bloco nao fecha
-     antes do segundo sync. A casca na revisao 81 ativou de primeira.
-  7. E UMA TRILHA FECHADA COM NUMERO: seis consultas de produto novas (secao 30) declaradas e
-     colhidas na API da Shopee numa passada so, e as SEIS em `publicar: false` com a causa medida.
-     TRES devolveram ZERO oferta (ausencia de dado comercial, nao armadilha), DUAS ficaram abaixo do
-     minimo de 3 com o pouco que veio sendo outra coisa, e UMA (`moldura`) atingiu o minimo e e a
-     MESMA armadilha do quadro decorativo de 09/10 — a `recusa` dela foi apertada na mesma passada
-     para o contador parar de dizer ABRE, porque portao que conta certo e le errado e pior que
-     portao que reprova. Com as 16 de 09/10 sao 22 consultas tentadas, todas escritas uma a uma.
-  8. BANCADA: teste-guia 232 (eram 227, com a nova reprovando por falta de ramo), mutacoes-guia
-     31 de 31 (eram 27), teste-casca 1041 (eram 1040), mutacoes-arvore 30 de 30 (eram 29) com TRES
-     alvos retargeados porque o codigo que elas matavam mudou de lugar, coletar-por-consulta
-     --conferir 554 afirmacoes, validar-banco OK, e as nove bancadas PHP da ilha rodadas inteiras
-     depois da mudanca da casca — todas APROVADAS.
-
-bloco_anterior_12_10_tarde: |
-  A SEGUNDA PERGUNTA NA MESMA CATEGORIA, E O MECANISMO DE PERGUNTA DEIXA DE SER SINGULAR. Uma URL
-  nova: /materiais/acabamento/diluir-o-verniz-do-mosaico/, conferida no ar em 200 com os numeros
-  dela batendo com o banco. A ilha vai de 30 para 31 URLs; faltam 9 para o piso de 40 da 21.1.
-  Leva 2 de 3 da semana da 21.4. Guia 1.4.0, manifest e /status na revisao 78.
-  1. OS DOIS PORTOES DA 29 RODARAM ANTES DE TUDO E DE NOVO NO FIM. Antes: conferir-no-ar.py
-     APROVADO com 524 afirmacoes e 0 falha; leitura-do-visitante.py REPROVADO com EXATAMENTE 1
-     defeito, o soft 404 da borda, do hospedeiro, com dono escrito. Depois do desembarque, com 31
-     URLs: leitura-do-visitante REPROVADO com EXATAMENTE o MESMO 1 defeito, 32 URLs lidas, e a
-     pagina nova lida pela BORDA em 200, sem quebra de cache. Rede pela 20.2: 200 na raiz. A porta
-     de entrada estava DE PE antes e depois — nada de 404 em massa.
-  1-b. E ELA NAO E ORFA, medido no ar e nao suposto (16.4(f) pede 2 links internos, um da mae):
-     CINCO apontam para ela — 1 da mae, pela lista de filhas com a consulta-alvo como ancora, e 4
-     das irmas, pelo bloco de irmas da casca.
-  2. O QUE DECIDIU ESTE BLOCO FOI UMA MEDICAO, E ELA CONTRADIZ O QUE ESTE CAMPO DIZIA DE MANHA.
-     O bloco anterior apontou `tempo_de_secagem_h` (4 itens) e `intervalo_entre_demaos_min` (3)
-     como as candidatas "em pe". AS DUAS ESTAO CANIBALIZADAS (30.4), e a prova esta no codigo da
-     casca que esta no ar: a de secagem no FAQ da filha `selador`, a do intervalo no resumo, na
-     linha mestra, no `o_que_nao_e` E no 2o FAQ da propria pagina das demaos. `acabamento_visual`
-     (5 itens) e `pelicula` (4) estao no titulo, resumo, linha mestra, description E FAQ da filha
-     `verniz`. A REGRA QUE FICA: LASTRO NAO E VAGA LIVRE — contar itens diz que a pagina PODE
-     existir pela secao 9; ela so ACRESCENTA uma filha se a consulta dela nao for respondida por
-     uma pagina que ja esta no ar. Quem for escrever a sexta confere as cinco ANTES de contar.
-  3. `diluicao` E A PRIMEIRA GRANDEZA DESTA ILHA QUE NAO E UM NUMERO, e isso mudou a regua. O
-     fabricante declara uma FRASE, e as tres do banco sao INCOMPATIVEIS entre si: nao diluir e nao
-     agitar (verniz de piso Quartzolit), thinner para laca em ate 30% (seladora Suvinil) e
-     diluivel em agua (selador acrilico Coral). Entao a regua CONTA e NUNCA CLASSIFICA (26.3) —
-     dizer na tela qual e base de agua e qual e de solvente seria a gente arbitrando pelo
-     fabricante, e trocar agua por thinner estraga a peca. A pagina entrega o ESPALHAMENTO,
-     derivado: 3 declaram, saem 3 respostas diferentes (por igualdade de string), 7 dos 10 nao
-     dizem nada.
-  4. O DEFEITO DO `tipo` QUE FAZIA DOIS TRABALHOS REAPARECEU UMA VOLTA ACIMA, EM SEIS HORAS. Na
-     1.3.0 "a pergunta" e "a pergunta das demaos" eram a mesma coisa em tres lugares. Agora o
-     recorte diz qual propriedade o define (`recorte_propriedade`, na espinha e protegido do
-     array_merge da regua), a resposta despacha por ela, e quantos tipos a pergunta atravessa e
-     CONTADO — a pagina no ar diz "atravessa duas das tres etapas".
-  5. A BANCADA TAMBEM ERA SINGULAR E ACUSOU ISSO SOZINHA: o ramo de pergunta cobrava faixa de
-     demao na tela de QUALQUER recorte de pergunta, e a pagina da diluicao reprovou em tres
-     afirmacoes por nao falar de demao, que e o que ela nao deve falar. Agora ele despacha pela
-     propriedade, e propriedade SEM ramo REPROVA em vez de passar calada.
-  6. DUAS DAS QUATRO MUTACOES NOVAS PASSARAM NA PRIMEIRA RODADA, e e o resultado mais util do
-     bloco: a ponte cravando "as tres etapas" onde sao duas, e o denominador do "os outros N nao
-     dizem nada" medindo o RECORTE em vez do banco — que da ZERO, porque na pagina-pergunta o
-     recorte E quem declara. As duas publicam numero falso e passavam em tudo, porque 3 e 0 sao
-     inteiros validos e so a LEITURA e falsa. As duas viraram afirmacao nova.
-  7. A SERP FOI MEDIDA ANTES DO CODIGO, em CINCO passadas (serp-das-filhas.json vai de 29 para
-     34), e o LIMITE 9 do canal nasceu dai: `brilhante` e `fosco` sao NOME COMERCIAL de linhas de
-     pastilha la fora (Brillante 210, Shining 730), entao `brilhante` + `mosaico` compra catalogo
-     da trend-uk — 8 de 10 numa passada, PIOR que a anterior. A ressalva que isso poe no limite 8:
-     ancora brasileira conserta desvio de PAIS e nao conserta colisao com NOME DE PRODUTO.
-  8. A LEITURA DE SERP ESCRITA PARA SER CONTESTADA: as duas passadas da consulta que ficou deram
-     4 de 9 brasileiros, o primeiro caso desta ilha a cair NO MEIO entre 6 de 9 (medido) e 2 de 9
-     (desvio). Veredito ABERTA, e a regua nao e contagem e sim QUEM OCUPA — os casos NAO_MEDIDA
-     tinham varejo do mercado desviado RESPONDENDO a pergunta; aqui as vagas de fora sao PDF de
-     catalogo dos EUA, Getty, um PDF espanhol de argamassa e um forum portugues sobre REMOVER
-     verniz seco. Esta ilha nao tem regua NUMERICA de desvio escrita e esta execucao nao inventou
-     uma: os nove hosts estao na medicao para quem discordar.
-  9. A ARMADILHA DA ATIVACAO PEGOU DE NOVO (3a vez em 4 dias) E O LOG ITEM POR ITEM A ACHOU. O
-     sync comum da 77 devolveu `snippets/guia: gravado (#13) mas NAO ativado`, e as cinco paginas
-     do Guia serviram shortcode CRU com HTTP 200 por ~4 minutos. O RESUMO dizia "9 aplicado(s)" e
-     ESTAVA CORRETO; a linha que importava era a 11a e nao comecava com `ok`. Conserto em dois
-     passos: revisao 78 (nenhum byte de PHP mudou) e sync. O raw.githubusercontent nao propagou a
-     78 em seis passadas / dois minutos, e com o snippet JA CAIDO o forcar=1 e a saida que o
-     PROMPT.md autoriza nesse caso exato. Os nove snippets voltaram `ok`.
-  10. UMA HIPOTESE DO cruzamento-14-9.md FECHOU, e e derivavel do banco: a tabela da fila das maes
-     diz que a filha que falta a `alicate` custa "ITEM DE BANCO ou PERGUNTA NOVA". A metade da
-     pergunta esta FECHADA — toda propriedade de `alicate` com 3+ itens de lastro coincide
-     EXATAMENTE com o conjunto de um tipo (`tamanho_polegadas` sao os 3 torques;
-     `comprimento_maximo_de_corte_mm`, `diametro_do_rodel_mm` e `dimensoes_mm` sao os 3
-     cortadores), e a regua reprova pergunta que coincide com um tipo. A unica que atravessa ja e
-     a pergunta declarada. Entao a filha que falta a `alicate` custa ITEM DE BANCO, e so.
-  11. PARA A PROXIMA: o mecanismo plural esta construido e medido, e a sexta filha do acabamento e
-     uma linha no registro mais um ramo na regua e um na bancada. MAS O ACABAMENTO SO TEM UMA
-     CANDIDATA SOBRANDO — `pigmentado` (3 itens, 2 tipos, sem canibalizacao) —, e o que a destrava
-     e uma consulta cujo NUCLEO nao seja `selador`: a passada de hoje deu ZERO brasileiros em dez,
-     com as duas primeiras vagas sendo DICIONARIO de espanhol e ingles, porque `selador`,
-     `transparente` e `branco` sao tres cognatos no nucleo. O motivo esta na medicao.
-  BANCADA: teste-guia 197 afirmacoes (eram 160), teste-casca 1040, validar-banco OK,
-  mutacoes-guia 27 de 27 (eram 23) com quatro mutacoes novas.
-
-bloco_anterior_12_10_manha: |
-  A FILHA EM FORMA DE PERGUNTA EXISTE, E O ACABAMENTO VAI DE 3 PARA 4 FILHAS. Uma URL nova:
-  /materiais/acabamento/camadas-de-verniz-depois-do-rejunte/, conferida no ar em 200 com os cinco
-  numeros dela batendo com o banco. A ilha vai de 29 para 30 URLs; faltam 10 para o piso de 40 da
-  21.1. Leva 1 de 3 da semana da 21.4. Snippet do Guia 1.3.0, manifest e /status na revisao 76.
-  1. OS DOIS PORTOES DA 29 RODARAM ANTES DE TUDO E DE NOVO NO FIM. Antes: conferir-no-ar.py APROVADO
-     com 524 afirmacoes e 0 falha; leitura-do-visitante.py REPROVADO com EXATAMENTE 1 defeito, o soft
-     404 da borda, do hospedeiro, com dono escrito. Depois do desembarque, com 30 URLs: conferir-no-ar
-     APROVADO com 524 afirmacoes e 0 falha e as contagens por URL em 30 de 30; leitura-do-visitante
-     REPROVADO com EXATAMENTE 1 defeito, o MESMO soft 404. ZERO defeito novo, e a pagina nova lida pela
-     BORDA em 200, sem quebra de cache. Rede pela 20.2: 200 nas TRES passadas. A porta de entrada estava
-     DE PE antes e depois — nada de 404 em massa.
-  1-b. E ELA NAO E ORFA, medido no ar e nao suposto (16.4(f) pede 2 links internos, um da mae): QUATRO
-     apontam para ela — 1 da mae, pela lista de filhas com a consulta-alvo como ancora (16.4(a)), e 3
-     das irmas, pelo bloco de irmas da casca.
-  2. O RECORTE DESTA PAGINA NAO E UM TIPO: e a propriedade `demaos_minimas`, declarada por 5 dos 10
-     produtos do acabamento e atravessando os TRES tipos (verniz 1, impermeabilizante 2, selador 2).
-     Nenhum tipo sozinho reune os 3 itens que a secao 9 exige nela, que e o caso que o
-     filhas-do-guia.py descreve quando diz que a pergunta reune onde o tipo nao reune.
-  3. A SERP FOI MEDIDA ANTES DO CODIGO, e as QUATRO passadas estao em dados/serp-das-filhas.json,
-     que vai de 25 para 29 medicoes. Duas eram tentativa de uma terceira filha para `alicate` e as
-     duas deram NAO_MEDIDA; duas eram desta pergunta, e a diferenca entre elas e UMA palavra.
-  4. DOIS LIMITES NOVOS DO CANAL, e os dois sao medicao e nao palpite. LIMITE 7: `maquina` +
-     `mosaico` compra a PRENSA INDUSTRIAL de ladrilho — quatro patentes do OEPM da Espanha e uma do
-     Google Patents, zero resultado brasileiro em nove, com `caquinho` dentro da consulta e SEM
-     pedir medida. E ele separa limpo do limite 5: a consulta obedeceu ao 5 e desviou assim mesmo,
-     entao `nao pedir a medida` e condicao necessaria e nao suficiente. LIMITE 8: o desvio para
-     PORTUGAL tem causa propria — `verniz` e `demao` sao PT-BR E PT-PT, entao a consulta inteira
-     cabe em Portugal (forumdacasa, leroymerlin.pt, archiexpo/pt). A prova pelo outro lado e a
-     passada seguinte, do mesmo dia: trocando a moldura para `depois do rejunte` a mesma pergunta
-     mediu ABERTA com SEIS brasileiros em nove. `rejunte` e a ancora mais forte desta ilha — nao
-     existe em espanhol (`lechada`) e em Portugal se diz `betumar`.
-  5. O LIMITE 4 FOI AMPLIADO: ele dizia `nome de recorte bilingue` e nomeava `cortador de azulejo`.
-     Uma das passadas de hoje nao usa o nome do recorte — usa o VERBO com o objeto, `cortar o
-     azulejo` — e desviou igual (Truper MX, OEPM ES). O nucleo bilingue e `azulejo` ao lado de
-     `cortar` em QUALQUER arranjo, e as tres consultas de corte que mediram no Brasil nesta ilha
-     dizem `pastilha`, nunca `azulejo`.
-  6. A TERCEIRA FILHA DA `alicate` CONTINUA FECHADA, e agora com DEZ tentativas medidas (eram oito).
-     O caminho dela e PERGUNTA NOVA ou ITEM DE BANCO, nunca medir SERP de novo.
-  7. O QUE O MOTOR PRECISOU APRENDER, e e a metade que custou: o campo `tipo` fazia DOIS trabalhos —
-     dizia se a pagina era mae (`tipo === null`, em SEIS lugares do arquivo) e recortava o banco. Com
-     mae e filha-de-tipo os dois davam a mesma resposta; a filha de pergunta os separa, porque nao e
-     mae e tambem nao tem tipo. Lida pelo `tipo`, ela virava a SEGUNDA MAE do acabamento: penduraria
-     em /materiais/ em vez da mae, sairia da arvore de nivel 3 e listaria as irmas como indice de
-     categoria. NENHUM dos tres erros da erro de PHP. Entrou `'papel' => 'mae'|'filha'` no registro,
-     mais cdm_guia_papel() e cdm_guia_forma(), e a bancada confere o recorte DECLARADO contra a forma.
-  8. E A PRESTACAO DE CONTAS DA MAE GANHOU UMA LISTA SEPARADA: cdm_guia_filhas() devolve TODAS as
-     filhas (e a lista da 16.4(a)) e cdm_guia_filhas_de_tipo() so as de tipo. Os tipos PARTEM o banco
-     da categoria; a pergunta ATRAVESSA os tipos, entao soma-la ao agrupamento publicaria os cinco
-     produtos que declaram demao DUAS VEZES na mesma pagina — e o comentario daquele trecho cobra,
-     desde 02/10, que "os dez aparecam exatamente uma vez".
-  9. DOIS DEFEITOS PAGOS DE PASSAGEM, OS DOIS PREVISTOS POR ESCRITO PELO PROPRIO CODIGO. O titulo da
-     lista de filhas da mae dizia "As tres etapas, e a hora de cada uma", e o comentario do campo
-     avisava em 02/10 que a frase "seria mentira numa categoria de quatro filhas": ficou mentira hoje
-     e virou "As tres etapas, e a conta que vale para as tres". E o ternario do papel `achado` tinha
-     os dois lados IGUAIS byte a byte — codigo morto que so ficou visivel quando o booleano $e_mae
-     virou $forma.
-  10. UMA CONTA MINHA QUE ESTAVA CERTA POR ACIDENTE DO DADO. A primeira versao da frase imprimia
-     `minimo + 1` para a faixa de quem pede mais de uma demao: acerta no banco de hoje porque existe
-     um produto de UMA demao, e mente no dia em que nao houver. `demaos_min_acima_de_uma` passou a
-     ser DERIVADO, e ha mutacao que FABRICA esse mundo apagando a demao unica do banco.
-  11. O SYNC DE 75 DERRUBOU O SNIPPET DO GUIA, pela mesma falha que o PROMPT.md desta ilha descreve
-     desde 09/10: ele grava o snippet inativo e depois chama activate_snippet(), que executa o codigo
-     — e com o snippet AINDA carregado na requisicao a validacao reprova. As quatro paginas do Guia
-     responderam 200 servindo o shortcode CRU, medido no ar. O conserto NAO foi forcar=1: na falha de
-     ativacao o Sync da return ANTES de gravar o sha do item, entao o guia ficou sem sha e um sync
-     COMUM o reaplica, sem tocar nos outros oito que estao de pe. Revisao 76, log lido item por item,
-     ZERO linha fora de `ok`, e `snippets/guia: ok (snippet #13 atualizado)`.
-  12. REGISTRO NOVO NA CASCA, E NAO E PORTAO: o ARVORE.md declara 19 paginas e o mapa da casca traz
-     13 que ele nao conhece — as 8 de consulta de produto de 09/10 e as 5 categorias do Guia que
-     vivem no mapa sem pagina. A conferencia que existia so ia do DOCUMENTO para o codigo, e e no
-     outro sentido que a tabela envelhece calada (foi assim que a linha da peca ficou 14 dias fora).
-     Fica medido e impresso a cada corrida. Virar portao pede uma decisao que NAO e desta passada: o
-     snippet de produto declara as oito como `nivel 3` com mae `/materiais/`, que e nivel 1, e a 16.1
-     pede os tres degraus na URL.
-  13. BANCADA: teste-guia 160 afirmacoes (eram 156) e mutacoes-guia 23 de 23 (eram 18), com CINCO
-     mutacoes novas, uma por erro possivel do mecanismo. teste-casca 1040, 0 falha; os dez teste-*.php
-     verdes; validar-banco OK; filhas-do-guia e cruzamento-14-9 APROVADOS em --conferir; e as 14
-     baterias que trabalham em cima da arvore passam no teste-rede-de-sinal.
-  14. O FOCO NAO E DESTA ILHA DESDE 10/10 PELA FILA DO RAPHAEL, E A LINHA `ilha:` NAO FOI EDITADA.
-     Trabalhei aqui porque a secao 1.2, passo 1, manda ler a linha `ilha:` e ela diz clubedomosaico.
-     NAO troquei a linha: a fila e decisao do Raphael e o proprio foco.md diz que quem troca e a
-     linha editada na data. O Pente Fino de 12/10 marcou isto como GRAVE e tambem nao a trocou.
 ---
 
 ## O QUE FALTA PARA ESTA ILHA ESTAR COMPLETA — 09/10/2026, 19h4xZ

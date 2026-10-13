@@ -3,6 +3,139 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+13/10/2026 13h18Z–14h0xZ — A IDENTIDADE DO DOCUMENTO NÃO É O CABEÇALHO DELE: 6 DOS 14 DOCUMENTOS DO ESPELHO ESTAVAM CATALOGADOS PELA LINHA ERRADA, E A DERIVAÇÃO DO INVENTÁRIO COMIA O PRÓPRIO RABO
+
+**NENHUMA URL NOVA, e a causa é a mesma das duas passadas de hoje, medida e não suposta:** a leva
+**3 de 3** da semana da 21.4 foi gasta em 12/10 e **zera em 19/10**. A ilha segue em **32 URLs** —
+faltam 8 para o piso de 40 da 21.1. O que foi ao ar é a option da revisão **86**:
+`dados/esquema-banco`, agora na **v19**.
+
+**POR QUE ESTE BLOCO, E ELE NÃO ERA O QUE O `bloco_atual` DE 10h20Z NOMEAVA.** Aquele deixou escrito
+que o próximo passo desbloqueado é o item 4 do despacho de 07/10 — e o critério de pronto **dele**
+pede *"um arquivo de contagem datado de 2026-10-14 ou depois"*. Hoje é 13/10: escrever esse arquivo
+hoje seria fechar um despacho contra um critério que ele mesmo não cumpre, e a **18.4** proíbe isso
+com todas as letras. Aquele bloco também fechou dizendo que *"nada de Fundação sobra aqui"* sem 19/10
+ou sem os três domínios de rede. **Esta execução procurou e achou — e o que achou não custava URL nem
+leva:** 46 das 54 fontes de material seguem marcadas `conferir_no_pdf: true`, o canal de espelho está
+**aberto** e tem 14 documentos alcançáveis, e foi **abrindo os 14** — um comando — que o defeito
+apareceu. Despacho aberto desta ilha continua sem item de Fundação: as 6 URLs em 404 (credencial), as
+três desconhecidas do Google (credencial e navegador), o cano de links (sessão da Shopee) e os três
+domínios de fonte de técnica (rede) são **todos do Raphael**.
+
+**DUAS DAS QUATRO TRAVAS QUE O `medir-espelho.py` DECLARA NO PRÓPRIO TOPO ESTAVAM FURADAS POR ELE
+MESMO**, e as duas são da mesma família: a coluna que decide era lida da **linha** errada e do
+**arquivo** errado. Autoteste verde em 24 de 24, sobre a metade que ele media.
+
+1. **A TRAVA 4 MANDA LER "O TÍTULO DA PÁGINA 1" E O CÓDIGO LIA "A PRIMEIRA LINHA COM TEXTO DA PÁGINA
+   1"** — que no molde da Quartzolit é o **cabeçalho corrido**, texto de molde que envelhece sozinho e
+   não acompanha o produto. Em **3 dos 14** ele nomeia **outro** produto:
+
+   | arquivo | o cabeçalho diz | o documento é de |
+   |---|---|---|
+   | `1338838.pdf` | Boletim Técnico – pastilhas **exteriores** quartzolit | **pastilhas interiores quartzolit** |
+   | `1430424.pdf` | Boletim Técnico – porcelanato **interno cinza** quartzolit | **porcelanato e piso sobre piso externo quartzolit** |
+   | `298182.pdf` | Boletim Técnico / **chapix sbr** quartzolit | **Cimentcola Cozinhas e Banheiros quartzolit** |
+
+   E nas **3 FISPQ** o cabeçalho nomeia uma **norma** (`Em conformidade com NBR 14725...`), com o
+   produto na linha `Produto:` que o código nunca alcançava — **OSMOCOLOR ST**, **PISO SOBRE PISO
+   INTERNO** e **Pentox Cupim**, três produtos que o inventário simplesmente não nomeava.
+
+   **O CUSTO NESTA ILHA TEM NOME, e por isso o defeito não é de catálogo:** `pastilhas interiores
+   quartzolit` declara, na seção 1 do boletim, pastilha **de vidro** para **áreas internas**. A F2
+   desta ilha decide por `ambiente`. Quem fosse buscar no inventário a declaração de um produto "para
+   exteriores" acharia um documento que diz o contrário, e publicaria o número na boca de quem não o
+   publicou — a 26.3 ao contrário, e o mesmo falso positivo do batismo que esta ilha já pagou duas
+   vezes em 05/10, um andar acima.
+
+2. **A TRAVA 1 SEPARA DERIVADO DE DIGITADO, E A DERIVAÇÃO COMIA O PRÓPRIO RABO.**
+   `urls_de_espelho_dos_bancos` varria `dados/*.json` **inclusive o `canal-de-espelho.json` que ela
+   mesma gera**, então toda URL do inventário voltava na passada seguinte como `derivada dos bancos`,
+   com `citado_por: ["canal-de-espelho.json"]`. **Medido nos dois mundos**, sobre os mesmos 22 JSON de
+   `dados/`: **14 contra 2**, e os 12 que saíram eram citados por **um** arquivo só, o gerado. A
+   derivação real são `1200003.pdf` (`materiais-rejuntes.json`) e `908487.pdf`
+   (`materiais-colas.json`). Um terceiro, `27073.pdf`, aparece em `constantes.json` dentro de um
+   **nome de chave** e não num campo `url` — a derivação lê campo `url` por desenho, e isso ficou
+   escrito no `.md` para ninguém ler a coluna `entrada` como "nenhum banco conhece este arquivo".
+
+**O QUE MANTÉM AS DUAS PAGAS NÃO É O CONSERTO, É O PORTÃO.** `identidade_do_texto` nasceu **pura** —
+texto da página 1 entra, identidade sai — justamente para poder ser mutada; a versão anterior
+misturava download e leitura, e a única régua possível era abrir a rede. O autoteste foi de **24 para
+39** casos: **12 de identidade** (os três moldes, a armadilha de ordem da FISPQ, cabeçalho de molde
+puro, marca de página na mesma linha e na última, página sem texto) e **3 de derivação** num `dados/`
+fabricado. Cada caso de identidade imprime, ao lado do veredito, **a linha que a regra velha
+devolvia** — em 7 dos 12 era a linha errada, e é essa coluna que prova que a bateria não é inerte.
+
+**E NASCEU `ferramentas/mutacoes-espelho.py`, 9 de 9:** 8 quebras que **têm** de reprovar e 1 mundo
+que **tem** de passar (mexer num comentário). Ela copia a ferramenta para um `mkdtemp(` e muta a
+**cópia** — nunca a árvore, que é a cicatriz do `mutacoes-par.py` de 09/10 — e a chamada é `mkdtemp(`
+e não `TemporaryDirectory()` por um motivo que não é de gosto: o `teste-rede-de-sinal.py` classifica
+as baterias **por chamada** de `mkdtemp(`, e bateria que trabalha em cópia sem falar a palavra da
+régua entra na lista errada. Cada quebra declara **a frase** que tem de ouvir de volta, porque
+reprovar não é a mesma coisa que reprovar **pelo motivo certo**.
+
+**E UMA DAS MUTAÇÕES ACHOU UM BURACO NO PRÓPRIO AUTOTESTE, antes do commit:** a que baixa o corte de
+linha útil de 8 para 0 saiu **verde** na primeira tentativa. O motivo não era a mutação — era o
+autoteste, que cobrava família, produto e veredito do cabeçalho e **não** cobrava o
+`cabecalho_corrido`. Com a quarta coluna cobrada, a mutação passou a morder. **Mutação que sai verde
+é, antes de tudo, uma pergunta sobre a régua.**
+
+**NENHUM VALOR DE BANCO MUDOU, E ISSO FOI CONFERIDO E NÃO AFIRMADO:** o `filhas-do-guia` regerado
+mudou **uma** linha — `versao_do_esquema_lida` de 18 para 19 —, que é a prova independente de que
+nenhuma propriedade, nenhum valor e nenhuma elegibilidade se moveu.
+
+**A REDE E A PORTA DE ENTRADA, ANTES DE QUALQUER COISA (seção 20.2 e 29):** `clubedomosaico.com.br`
+em **200** nas três passadas; `conferir-no-ar.py` **APROVADO, 524 afirmações, 0 falha**;
+`leitura-do-visitante.py` **REPROVADO por exatamente 1 defeito**, o soft 404 da borda de 29/09, que é
+do hospedeiro e tem dono escrito. A medição do canal de espelho reproduziu a de 05/10 host por host:
+9 de 9 da família **abertos** (400 na raiz, que é o CDN reclamando de caminho), os 3 de descoberta e
+os 3 de escapatória **fechados**, `www.quartzolit.weber` em **403** nas três e o apex em 301.
+
+**O DESEMBARQUE, PELA 20.4 E NÃO PELA REVISÃO:** sync **COMUM**, sem `forcar=1` — nenhum snippet
+mudou neste bloco, e é o `forcar=1` que reaplica os nove e derruba o do Guia.
+`conferir-desembarque.py` **APROVADO**: revisão 86 no manifest e no `/status`, **9 de 9** linhas do
+log dizendo `ok`, **9 visíveis de 9** aplicados — nada rolou fora da janela. De graça, as duas páginas
+do Guia conferidas no ar com `grep -c '\[cdm_guia'`: **zero** shortcode cru nas duas. Os portões da 29
+**depois** do desembarque: `conferir-no-ar.py` **APROVADO com 524 afirmações e 0 falha**,
+`conferir-tecnica-no-ar.py` **APROVADO com 54**, `leitura-do-visitante.py` **REPROVADO com exatamente
+o mesmo 1 defeito**, 33 URLs lidas, 0 em janela de cache.
+
+**BANCADA, 0 falha:** `medir-espelho --autoteste` **39 de 39**, `mutacoes-espelho` **9 de 9**,
+`validar-banco` OK, `medir-egresso --autoteste` **50 de 50**, `filhas-do-guia --conferir` APROVADO
+depois de regerado, `cruzamento-14-9 --conferir` APROVADO, `cobertura` escrito,
+`coletar-por-consulta --conferir` **554 afirmações, 0 defeito**, as **dez** bancadas PHP aprovadas
+(casca 1041, guia 232, produto 306, técnicas 139, F1 228, F2 174, leads, loja, prestação 5, ateliê) e
+`teste-rede-de-sinal` com as **14** baterias mortas no meio e a árvore devolvida **igual** — a nova
+bateria entrou no grupo das 22 que trabalham em cópia, que é onde ela pertence.
+
+**UMA CORREÇÃO DE HONESTIDADE, porque ela foi para o `main` num commit:** o commit do bloco levou
+`executando_desde: 2026-10-13T13:45Z`, apresentado como renovação da 1.1. **Não era** — o bloco tinha
+23 minutos e 13h45Z ainda não tinha chegado. A 1.1 manda renovar o campo quando o bloco **passa** de
+40 minutos, e este não passou. A reserva que vale é a de **13h18Z**, que é a que ficou em
+`ultima_execucao`, e o campo fechou em `null` com o motivo escrito no próprio cabeçalho.
+
+**O QUE ESTE BLOCO NÃO FEZ, dito para ninguém reabrir:** não pagou nenhuma das 46 fontes
+`conferir_no_pdf` — **nenhum** dos 14 documentos do espelho corresponde a uma delas; os dois que
+correspondiam foram lidos em 05/10 e 06/10, e `rejunte acrílico` e `rejunte epóxi` continuam fora do
+inventário, que é falta de **índice** e não de egresso. Não criou registro de banco: os produtos novos
+que os boletins trazem (`pastilhas interiores`, `pastilhas fachadas`, `bloco de vidro`, `Cimentcola
+Cozinhas e Banheiros`) seriam registros **publicáveis**, e a 25.2-b proíbe registro publicável sem
+encurtamento tentado, que depende da sessão do Shopee Afiliados do Raphael. Não publicou URL, não
+mexeu em snippet, não mediu SERP, não abriu fonte de técnica (as dez em 000, e a porta é do Raphael) e
+**não tocou no `foco.md`** — a troca para a aquametria é do Raphael, e esta é a **nona** execução a
+registrar isso.
+
+**O PRÓXIMO PASSO DESBLOQUEADO, E ELE TEM DATA: amanhã.** Em 14/10 o item 4 do despacho de 07/10 fica
+elegível e sai numa passada só — a metade da **contagem** é derivável do banco e o `validar-banco.py`
+já imprime os quatro números que o critério pede: **41 de 41** com `url_busca` e `url_busca_produto`,
+**17** sem `url_produto` (que são exatamente os 17 de degrau 4) e a escada **1:1 2:4 3:19 4:17**. A
+outra metade do item 4 — gerar link — segue do Raphael. Depois dela, o que sobra sem os três domínios
+de rede e sem 19/10 é trabalho de **portão** como o de hoje: a dívida das 46 fontes `conferir_no_pdf`
+não fecha daqui porque os documentos não estão alcançáveis, mas **quem for abrir o próximo PDF de
+fabricante, por qualquer canal, lê a identidade pela regra nova** — que agora mora no esquema, no
+`.md` gerado e em duas bancadas.
+
+---
+
 13/10/2026 10h20Z–11h0xZ — A DÍVIDA DO `documento_aberto` ESTÁ PAGA NOS CINCO BANCOS DE MATERIAL, E O NÚMERO QUE ELA TRAZIA ESTAVA NA UNIDADE ERRADA
 
 **NENHUMA URL NOVA, e a causa é a mesma de ontem, medida e não suposta:** a leva **3 de 3** da
