@@ -1,1055 +1,1261 @@
 {
-  "id": "materiais-colas",
-  "ilha": "clubedomosaico",
-  "categoria": "cola",
-  "bloco": "3 (criado) + 3e (os dois produtos das faixas de zero e a condicao de superficie)",
-  "gerado_em": "2026-09-13",
-  "esquema": "dados/esquema-banco.json",
-  "o_que_este_arquivo_e": "A categoria COLA do banco MATERIAL, escrita no formato do esquema do bloco 3. NENHUM dado novo foi coletado nesta execucao: cada declaracao abaixo e a transposicao campo a campo do que o bloco 2 ja tinha colhido em dados/constantes.json, com a mesma fonte, o mesmo tipo de documento e a mesma data. O que este arquivo acrescenta e ESTRUTURA — a lista literal do fabricante virou campo com peso (indicado, proibido, nao recomendado, delimita, resiste), e por isso a matriz da F2 pode ser recomputada em vez de lida.",
-  "de_onde_saiu_o_documento_aberto": {
-    "o_que_este_bloco_e": "A proveniencia POR FONTE do campo `documento_aberto` (esquema v17), escrita em 13/10/2026 quando as fontes deste banco passaram a declara-lo. NENHUM valor aqui e coleta nova: cada um e a transcricao de uma afirmacao que este arquivo (ou, no caso do banco de colas, o arquivo de que ele se declara transposicao) ja fazia em PROSA. O bloco existe porque prosa nao e lida por portao e porque a proxima execucao nao deve precisar remedir de onde o valor saiu.",
-    "os_caminhos_de_prova": {
-      "A": "o campo `tipo` da propria fonte diz",
-      "B": "o campo `leitura` da propria fonte diz",
-      "C": "`reaberta_em` e `o_que_a_abertura_mudou` da propria fonte dizem que abriu",
-      "D": "a fonte CALA e quem responde e a declaracao de coleta do banco: dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada constante abaixo veio do texto da pagina do fabricante lido pela ferramenta de busca'. Este banco declara, em `o_que_este_arquivo_e`, ser a transposicao campo a campo daquele arquivo.",
-      "E": "nenhum dos quatro responde e a escolha foi FEITA, com o motivo dentro da propria fonte. Uma ocorrencia em 53, no banco de alicates."
-    },
-    "por_fonte": {
-      "ficha-brsa004": {
-        "valor": false,
-        "caminho": "D",
-        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
-      },
-      "pagina-produto-acetico": {
-        "valor": false,
-        "caminho": "D",
-        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
-      },
-      "pagina-produto-neutro": {
-        "valor": false,
-        "caminho": "D",
-        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
-      },
-      "pagina-produto-cascorez": {
-        "valor": true,
-        "caminho": "C",
-        "a_frase": "2026-10-06 — Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 241 KB de HTML."
-      },
-      "pagina-produto-cimentcola": {
-        "valor": false,
-        "caminho": "D",
-        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
-      },
-      "bt-cimentcola-externo-2016-05": {
-        "valor": true,
-        "caminho": "A",
-        "a_frase": "boletim tecnico do fabricante, ABERTO E LIDO pagina a pagina (3 paginas) pelo canal de espelho da escada_de_fontes; o documento se identifica como 'Boletim Tecnico - cimentcola externo quartzolit' e f"
-      },
-      "press-release-durepoxi": {
-        "valor": false,
-        "caminho": "D",
-        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
-      },
-      "pagina-produto-maxx": {
-        "valor": false,
-        "caminho": "B",
-        "a_frase": "busca restrita ao dominio do fabricante. O egresso desta nuvem NAO abre tekbond.com.br — remedido em 13/09/2026 em duas passadas, 000 nas duas, com clubedomosaico.com.br em 200 como controle. Por isso"
-      },
-      "pagina-produto-pl500": {
-        "valor": true,
-        "caminho": "C",
-        "a_frase": "2026-10-06 — Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 238 KB de HTML."
-      }
-    }
+ "id": "materiais-colas",
+ "ilha": "clubedomosaico",
+ "categoria": "cola",
+ "bloco": "3 (criado) + 3e (os dois produtos das faixas de zero e a condicao de superficie) + o boletim de `pastilhas interiores` (13/10/2026)",
+ "gerado_em": "2026-09-13",
+ "esquema": "dados/esquema-banco.json",
+ "o_que_este_arquivo_e": "A categoria COLA do banco MATERIAL, escrita no formato do esquema do bloco 3. NENHUM dado novo foi coletado nesta execucao: cada declaracao abaixo e a transposicao campo a campo do que o bloco 2 ja tinha colhido em dados/constantes.json, com a mesma fonte, o mesmo tipo de documento e a mesma data. O que este arquivo acrescenta e ESTRUTURA — a lista literal do fabricante virou campo com peso (indicado, proibido, nao recomendado, delimita, resiste), e por isso a matriz da F2 pode ser recomputada em vez de lida.",
+ "de_onde_saiu_o_documento_aberto": {
+  "o_que_este_bloco_e": "A proveniencia POR FONTE do campo `documento_aberto` (esquema v17), escrita em 13/10/2026 quando as fontes deste banco passaram a declara-lo. NENHUM valor aqui e coleta nova: cada um e a transcricao de uma afirmacao que este arquivo (ou, no caso do banco de colas, o arquivo de que ele se declara transposicao) ja fazia em PROSA. O bloco existe porque prosa nao e lida por portao e porque a proxima execucao nao deve precisar remedir de onde o valor saiu.",
+  "os_caminhos_de_prova": {
+   "A": "o campo `tipo` da propria fonte diz",
+   "B": "o campo `leitura` da propria fonte diz",
+   "C": "`reaberta_em` e `o_que_a_abertura_mudou` da propria fonte dizem que abriu",
+   "D": "a fonte CALA e quem responde e a declaracao de coleta do banco: dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada constante abaixo veio do texto da pagina do fabricante lido pela ferramenta de busca'. Este banco declara, em `o_que_este_arquivo_e`, ser a transposicao campo a campo daquele arquivo.",
+   "E": "nenhum dos quatro responde e a escolha foi FEITA, com o motivo dentro da propria fonte. Uma ocorrencia em 53, no banco de alicates."
   },
-  "afiliado": {
-    "itens_esperando_link": 1,
-    "itens_sem_saida_de_compra": 0,
-    "itens_com_piso_nao_rastreavel": 0,
-    "observacao": "Os SETE tem piso encurtado desde 25/09/2026: a Open API (25.6) encurtou a busca dos dois que esperavam sessao de painel desde 13/09 — Silicone Acetico Maxx e Cascola PL500 — e REGEROU os cinco que ja tinham. Cinco tem ficha de produto, conferida viva em 13/09; as duas fichas de Shopee (silicone acetico construcao e cascorez) tambem foram regeradas, porque os links de 13/09 nasceram com os `sub_id` DESLOCADOS UMA CASA (`-clubedomosaico-F2--`, campo 1 vazio) e o painel nao conseguia dizer qual ilha vendeu. Os tres do Mercado Livre nao foram tocados: e outro programa, com `etiqueta_ml` propria. A palavra-chave dos cinco que tinham busca encurtada e sem endereco cru foi REESCOLHIDA inteira pela 25.4-b.1, nunca grampeada ao link velho, e cada uma foi medida contra a API antes de virar link. EM 29/09/2026 O SILICONE ACETICO MAXX SUBIU DO DEGRAU 4 PARA O 3: a Open API (25.6) devolveu um anuncio que a regra de ferramentas/casar-anuncio.py identificou como este registro e mais nenhum, e ele ganhou `url`, `url_produto` e foto medida. O CASCOLA PL500 NAO subiu, e a causa e de uma letra: o anuncio se chama 'Cola Adesiva Montagem Cascola Monta E Fixa Interior Pl500 360g' e o nome comercial do registro diz 'Adesivo', com o. A trava que cobra o nome comercial inteiro no titulo nao conhece genero, e afrouxa-la para deixar este passar seria dobrar o criterio para caber no dado que veio (1.2-b.4). Fica o motivo escrito em `afiliado.motivo_sem_ficha` e o piso da 25.2 intacto."
+  "por_fonte": {
+   "ficha-brsa004": {
+    "valor": false,
+    "caminho": "D",
+    "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+   },
+   "pagina-produto-acetico": {
+    "valor": false,
+    "caminho": "D",
+    "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+   },
+   "pagina-produto-neutro": {
+    "valor": false,
+    "caminho": "D",
+    "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+   },
+   "pagina-produto-cascorez": {
+    "valor": true,
+    "caminho": "C",
+    "a_frase": "2026-10-06 — Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 241 KB de HTML."
+   },
+   "pagina-produto-cimentcola": {
+    "valor": false,
+    "caminho": "D",
+    "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+   },
+   "bt-cimentcola-externo-2016-05": {
+    "valor": true,
+    "caminho": "A",
+    "a_frase": "boletim tecnico do fabricante, ABERTO E LIDO pagina a pagina (3 paginas) pelo canal de espelho da escada_de_fontes; o documento se identifica como 'Boletim Tecnico - cimentcola externo quartzolit' e f"
+   },
+   "press-release-durepoxi": {
+    "valor": false,
+    "caminho": "D",
+    "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+   },
+   "pagina-produto-maxx": {
+    "valor": false,
+    "caminho": "B",
+    "a_frase": "busca restrita ao dominio do fabricante. O egresso desta nuvem NAO abre tekbond.com.br — remedido em 13/09/2026 em duas passadas, 000 nas duas, com clubedomosaico.com.br em 200 como controle. Por isso"
+   },
+   "pagina-produto-pl500": {
+    "valor": true,
+    "caminho": "C",
+    "a_frase": "2026-10-06 — Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 238 KB de HTML."
+   },
+   "bt-pastilhas-interiores-2018-01": {
+    "valor": true,
+    "caminho": "A",
+    "a_frase": "boletim tecnico do fabricante, ABERTO E LIDO pagina a pagina (3 paginas) pelo canal de espelho da escada_de_fontes; o documento se identifica, no titulo da pagina 1, como `pastilhas interiores q"
+   }
+  }
+ },
+ "afiliado": {
+  "itens_esperando_link": 2,
+  "itens_sem_saida_de_compra": 0,
+  "itens_com_piso_nao_rastreavel": 0,
+  "observacao": "Os SETE tem piso encurtado desde 25/09/2026: a Open API (25.6) encurtou a busca dos dois que esperavam sessao de painel desde 13/09 — Silicone Acetico Maxx e Cascola PL500 — e REGEROU os cinco que ja tinham. Cinco tem ficha de produto, conferida viva em 13/09; as duas fichas de Shopee (silicone acetico construcao e cascorez) tambem foram regeradas, porque os links de 13/09 nasceram com os `sub_id` DESLOCADOS UMA CASA (`-clubedomosaico-F2--`, campo 1 vazio) e o painel nao conseguia dizer qual ilha vendeu. Os tres do Mercado Livre nao foram tocados: e outro programa, com `etiqueta_ml` propria. A palavra-chave dos cinco que tinham busca encurtada e sem endereco cru foi REESCOLHIDA inteira pela 25.4-b.1, nunca grampeada ao link velho, e cada uma foi medida contra a API antes de virar link. EM 29/09/2026 O SILICONE ACETICO MAXX SUBIU DO DEGRAU 4 PARA O 3: a Open API (25.6) devolveu um anuncio que a regra de ferramentas/casar-anuncio.py identificou como este registro e mais nenhum, e ele ganhou `url`, `url_produto` e foto medida. O CASCOLA PL500 NAO subiu, e a causa e de uma letra: o anuncio se chama 'Cola Adesiva Montagem Cascola Monta E Fixa Interior Pl500 360g' e o nome comercial do registro diz 'Adesivo', com o. A trava que cobra o nome comercial inteiro no titulo nao conhece genero, e afrouxa-la para deixar este passar seria dobrar o criterio para caber no dado que veio (1.2-b.4). Fica o motivo escrito em `afiliado.motivo_sem_ficha` e o piso da 25.2 intacto."
+ },
+ "imagens": {
+  "itens_sem_imagem": 5,
+  "observacao": "TRES DAS SETE TEM FOTO. Duas vieram do FEED DE AFILIADO DA SHOPEE (secao 25.3) em 13/09/2026 e a terceira — o Silicone Acetico Maxx — veio do anuncio CASADO na Open API em 29/09/2026 (25.6), quando ele subiu do degrau 4 para o 3. Nos tres casos largura e altura foram LIDAS do arquivo servido por ferramentas/medir-imagens.py, nunca estimadas, porque nem o feed nem a API declaram dimensao e caixa sem medida e o salto de layout da 22.4. As QUATRO sem foto seguem sem: tekbond.com.br, quartzolit.weber, cascola.com.br e henkel.com.br respondem 000 por politica de egresso, e o Cascola PL500 nao teve anuncio casado. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque."
+ },
+ "pendencias_desta_categoria": [
+  {
+   "id": "cimentcola-substrato-declarado",
+   "o_que_falta": "Nao e mais a declaracao de substrato: ela esta no banco, literal, na secao 4.1 do boletim lido em 05/10/2026 (emboco, alvenaria, contrapiso, paredes de concreto, alvenarias de blocos e gesso acartonado). O que falta e a regra 7 de elegibilidade — proibicao declarada sobre a PECA que se cola —, sem a qual gravar o substrato faz a F2 recomendar esta argamassa para pastilha de vidro, que a secao 3 do MESMO boletim proibe como `revestimento especial`.",
+   "onde_buscar": "Em nenhum lugar: a coleta acabou. O proximo passo e esquema + validar-banco.py + snippet da F2 + matriz esperada + bateria.",
+   "por_que_importa": "ACHADO DESTE BLOCO. A secao 1.3 da especificacao recomenda a cimentcola para base de cimento citando que ela e declarada para 'area interna e externa' — mas isso e ambiente, nao substrato. As unicas superficies que a coleta do bloco 2 nomeou ('ceramicas e placas de pedra natural de ate 120 x 120 cm') sao a PECA ASSENTADA. Sem a declaracao de substrato, a cimentcola nao pode ser recomendacao primaria em base nenhuma, e quem responde a base de cimento e o silicone neutro, que declara concreto e alvenaria com todas as letras.",
+   "bloqueia_publicacao": false,
+   "bloqueia_o_que": "a cimentcola AC-II aparecer como recomendada na F2 e na ficha /materiais/colas — e e bom que bloqueie, porque sem a regra 7 a recomendacao sairia errada",
+   "estado": "FECHADA em 06/10/2026 — os TRES bloqueios sairam. A declaracao de substrato chegou em 05/10 (secao 4.1 do boletim); a regra 7 (proibicao sobre a PECA) nasceu em 06/10 as 11h4xZ; o campo `preparo` passou a ser servido em 06/10 as 14h10Z; e a REGRA 8, com o par substrato x ambiente, fechou o ultimo em 06/10 a noite, que foi quando as tres frases entraram em `declaracoes.indicado_para`. O que esta pendencia pedia — a AC-II poder ser recomendada sem a F2 mandar colar pastilha de vidro com argamassa que proibe revestimento especial — esta medido na `matriz_esperada_da_F2` (10 celulas reescritas), na `matriz_esperada_do_par_substrato_ambiente` e na ancora `cimento_concreto` x `interno_seco` x `pastilha_vidro` da matriz da regra 7, que mudou de lado.",
+   "o_que_ficou_de_fora_e_NAO_e_desta_pendencia": "`gesso acartonado (drywall)`: o boletim o declara e `vocabularios.base` nao tem valor para gesso. E a quarta ocorrencia da mesma lacuna de vocabulario e a decisao e do Raphael, porque mexer na lista suspensa da F2 mexe em pagina com impressao."
   },
-  "imagens": {
-    "itens_sem_imagem": 4,
-    "observacao": "TRES DAS SETE TEM FOTO. Duas vieram do FEED DE AFILIADO DA SHOPEE (secao 25.3) em 13/09/2026 e a terceira — o Silicone Acetico Maxx — veio do anuncio CASADO na Open API em 29/09/2026 (25.6), quando ele subiu do degrau 4 para o 3. Nos tres casos largura e altura foram LIDAS do arquivo servido por ferramentas/medir-imagens.py, nunca estimadas, porque nem o feed nem a API declaram dimensao e caixa sem medida e o salto de layout da 22.4. As QUATRO sem foto seguem sem: tekbond.com.br, quartzolit.weber, cascola.com.br e henkel.com.br respondem 000 por politica de egresso, e o Cascola PL500 nao teve anuncio casado. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque."
+  {
+   "id": "colas-sem-imagem-e-sem-oferta",
+   "o_que_falta": "Foto de produto, unidade de venda de varejo e faixa de preco com data para os cinco itens.",
+   "onde_buscar": "Loja oficial da marca (nivel 5) para embalagem e foto; Shopee e Mercado Livre (nivel 6) para preco e unidade de venda.",
+   "por_que_importa": "A vitrine funciona sem foto e sem preco, mas a faixa de preco datada e o que faz o cartao ser util. Preco NUNCA entra em criterio de ordem.",
+   "bloqueia_publicacao": false
+  }
+ ],
+ "materiais": [
+  {
+   "id": "tekbond-silicone-acetico-construcao",
+   "categoria": "cola",
+   "tipo": "silicone_acetico",
+   "marca": "Tekbond",
+   "fabricante": "Tekbond",
+   "nome_comercial": "Silicone Acético Construção",
+   "codigo_fabricante": "BRSA004",
+   "motivo_sem_codigo": null,
+   "declaracoes": {
+    "indicado_para": [
+     "vedação de esquadria de alumínio com vidro",
+     "vidro não laminado",
+     "alumínio comum e anodizado",
+     "granito",
+     "cerâmica",
+     "azulejo"
+    ],
+    "nao_usar_em": [
+     "espelhos",
+     "vidro laminado",
+     "metal corrosível",
+     "superfícies pintadas",
+     "superfícies porosas",
+     "superfícies alcalinas",
+     "concreto",
+     "cimento",
+     "tijolo",
+     "calcário",
+     "zinco",
+     "chapa galvanizada",
+     "aquários",
+     "acrílico"
+    ],
+    "nao_recomendado_em": [
+     "polietileno",
+     "polipropileno",
+     "policarbonato"
+    ],
+    "nao_indicado_para": [
+     "fachada de vidro",
+     "colagem estrutural que exija resistência",
+     "contato com alimento",
+     "imersão contínua em meio líquido",
+     "ambiente completamente fechado"
+    ],
+    "ambientes_declarados": [],
+    "resistencias_declaradas": []
+   },
+   "propriedades": {
+    "cura_apos_24h": {
+     "valor": 3,
+     "unidade": "mm",
+     "comparador": ">=",
+     "fonte_id": "ficha-brsa004",
+     "declarado_como": "cura de no minimo 3 mm em 24 h a 23 graus C e 55% de umidade relativa"
+    },
+    "formacao_de_pelicula": {
+     "valor": [
+      5,
+      15
+     ],
+     "unidade": "min",
+     "fonte_id": "pagina-produto-acetico",
+     "declarado_como": "5 a 15 minutos"
+    },
+    "temperatura_de_aplicacao": {
+     "valor": [
+      5,
+      35
+     ],
+     "unidade": "C",
+     "fonte_id": "pagina-produto-acetico",
+     "declarado_como": "+5 a 35 graus C"
+    },
+    "temperatura_de_trabalho": {
+     "valor": [
+      -50,
+      150
+     ],
+     "unidade": "C",
+     "fonte_id": "pagina-produto-acetico",
+     "declarado_como": "-50 a 150 graus C"
+    },
+    "alongamento_a_ruptura": {
+     "valor": 800,
+     "unidade": "%",
+     "comparador": ">=",
+     "fonte_id": "pagina-produto-acetico",
+     "declarado_como": "maior ou igual a 800%"
+    },
+    "dureza_shore_A": {
+     "valor": 25,
+     "unidade": "Shore A",
+     "fonte_id": "pagina-produto-acetico",
+     "declarado_como": "25"
+    },
+    "rendimento_por_area": {
+     "valor": null,
+     "unidade": "kg/m2",
+     "fonte_id": null,
+     "motivo": "O fabricante declara rendimento por CORDAO (metros de cordao de X mm por cartucho), nao por area colada. Converter isso em gramas por metro quadrado seria palpite — e por isso a coluna de cola da F1 nasce vazia com essa frase na tela."
+    }
+   },
+   "preparo": {
+    "literal_do_fabricante": null,
+    "fonte_id": "pagina-produto-acetico",
+    "lido_em": null,
+    "recorte_do_documento": null,
+    "nossa_leitura": "Limpar a superficie com alcool ou acetona; superficie seca e firme. Cortar a ponta do cartucho e o bico a 45 graus.",
+    "motivo_sem_literal": "CAUSA (host-recusa): o documento esta em www.tekbond.com.br e o servidor responde 403 nas tres passadas de 06/10/2026 (o apex redireciona 301 para o www, e a ficha BRSA004 em PDF tambem da 403). Nao e o egresso: o egresso conversou. Sem reler, a frase gravada nao pode ir a tela como frase dele — e o documento de onde ela saiu ESTA nomeado desde 06/10, derivado da constante (ver `como_a_fonte_foi_derivada`), entao o que falta e o 403 cair, nao descobrir a procedencia.",
+    "como_a_fonte_foi_derivada": "A parafrase nao trazia procedencia. Ela e, palavra por palavra, o campo `preparo` da constante `tekbond-silicone-acetico-indicacoes` em dados/constantes.json, cujo `fonte_url` e a URL de `pagina-produto-acetico` deste registro. Derivacao, nao palpite — a mesma que fechou o `quartzolit-rejunte-ceramicas`. Com ela, DUAS das cinco parafrases sem literal tem documento nomeado, e o que falta nelas e reler, nao descobrir de onde saiu."
+   },
+   "geometria": null,
+   "venda": [
+    {
+     "unidade": "cartucho",
+     "quantidade": null,
+     "embalagem_declarada": null,
+     "loja": null,
+     "fonte_id": "pagina-produto-acetico",
+     "coletado_em": "2026-09-10",
+     "observacao": "Formato de cartucho confirmado pelo preparo declarado (cortar a ponta do cartucho). Volume e peso da embalagem NAO foram coletados."
+    }
+   ],
+   "afiliado": {
+    "programa": "shopee",
+    "url": "https://s.shopee.com.br/AUuHVPFDqG",
+    "url_produto": "https://shopee.com.br/product/727184858/23097607614",
+    "sub_id_1": "clubedomosaico",
+    "sub_id_2": "F2",
+    "etiqueta_ml": "clubedomosaicof2",
+    "gerado_em": "2026-09-25",
+    "url_busca": "https://s.shopee.com.br/6VO8k3UNg1",
+    "degrau": 3,
+    "conferido_em": "2026-09-13",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20acetico%20construcao%20tekbond",
+    "url_busca_gerada_em": "2026-09-25",
+    "motivo_da_chave": "marca + linha + uso"
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lx03nvf7r5bzf2",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "feed de afiliado da Shopee, 13/09/2026",
+    "coletado_em": "2026-09-13",
+    "alt": "Silicone acetico Tekbond branco 256 g"
+   },
+   "fontes": {
+    "ficha-brsa004": {
+     "url": "https://www.tekbond.com.br/sites/Tekbond.com.br/files/media/downloadable/2025-10/Silicone_Acetico_Construcao-BRSA004-ficha_tecnica_01.pdf",
+     "tipo": "ficha técnica BRSA004 do fabricante, revisada em 10/2025",
+     "nivel": 2,
+     "coletado_em": "2026-09-10",
+     "conferir_no_pdf": true,
+     "documento_aberto": false
+    },
+    "pagina-produto-acetico": {
+     "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico",
+     "tipo": "página de produto do fabricante",
+     "nivel": 3,
+     "coletado_em": "2026-09-10",
+     "conferir_no_pdf": true,
+     "documento_aberto": false
+    }
+   },
+   "constantes_relacionadas": [
+    "tekbond-silicone-acetico-restricoes",
+    "tekbond-silicone-acetico-indicacoes"
+   ],
+   "divergencias": [],
+   "resolucao": null,
+   "status": "ativo",
+   "motivo_do_descarte": null,
+   "usada_por": [
+    "F2",
+    "G-COLAS"
+   ],
+   "observacao": "O registro mais importante do banco, e o unico cuja lista NEGATIVA vale mais que a positiva. Duas declaracoes do mesmo fabricante colidem em METAL — indicado para aluminio anodizado, proibido em metal corrosivel, zinco e chapa galvanizada — e a regra 1 do esquema resolve pela proibicao: quem monta mosaico nao sabe dizer se a chapa dela e galvanizada. Colisao parecida em pedra: granito indicado, calcario e superficie alcalina proibidos.",
+   "condicoes": {
+    "proibe_grupos_de_tessela": {
+     "valor": [
+      "espelho"
+     ],
+     "literais": {
+      "espelho": "espelhos"
+     },
+     "onde_o_fabricante_escreve": "declaracoes.nao_usar_em",
+     "fonte_id": "ficha-brsa004",
+     "quem_classifica_o_grupo": "a ilha, em esquema-banco.json / grupos_de_tessela_proibidos — nunca o fabricante, que declarou a PROIBICAO e nao a lista de quais caquinhos do nosso vocabulario caem nela (secao 26.3 do ARQUIPELAGO.md)",
+     "o_que_este_campo_CONSERTOU": "Um defeito que estava no ar. `espelhos` sempre esteve nesta lista e sempre eliminou o produto na BASE `espelho` — e a F2 pergunta o caquinho desde a 1.0.0. Em `ceramica` + `caco de espelho` + `externo abrigado` a pagina servia este silicone no TOPO da recomendacao, empatado com o Maxx e com o neutro. O acido acetico da cura ataca a prata e a pintura de protecao do espelho, e e por isso que a MESMA Tekbond vende um silicone neutro declarando `espelhos` entre os usos dele: os dois produtos dela se separam exatamente neste ponto, e o banco tinha as duas metades desde 10/09/2026 sem nenhuma regra para junta-las."
+    }
+   }
   },
-  "pendencias_desta_categoria": [
-    {
-      "id": "cimentcola-substrato-declarado",
-      "o_que_falta": "Nao e mais a declaracao de substrato: ela esta no banco, literal, na secao 4.1 do boletim lido em 05/10/2026 (emboco, alvenaria, contrapiso, paredes de concreto, alvenarias de blocos e gesso acartonado). O que falta e a regra 7 de elegibilidade — proibicao declarada sobre a PECA que se cola —, sem a qual gravar o substrato faz a F2 recomendar esta argamassa para pastilha de vidro, que a secao 3 do MESMO boletim proibe como `revestimento especial`.",
-      "onde_buscar": "Em nenhum lugar: a coleta acabou. O proximo passo e esquema + validar-banco.py + snippet da F2 + matriz esperada + bateria.",
-      "por_que_importa": "ACHADO DESTE BLOCO. A secao 1.3 da especificacao recomenda a cimentcola para base de cimento citando que ela e declarada para 'area interna e externa' — mas isso e ambiente, nao substrato. As unicas superficies que a coleta do bloco 2 nomeou ('ceramicas e placas de pedra natural de ate 120 x 120 cm') sao a PECA ASSENTADA. Sem a declaracao de substrato, a cimentcola nao pode ser recomendacao primaria em base nenhuma, e quem responde a base de cimento e o silicone neutro, que declara concreto e alvenaria com todas as letras.",
-      "bloqueia_publicacao": false,
-      "bloqueia_o_que": "a cimentcola AC-II aparecer como recomendada na F2 e na ficha /materiais/colas — e e bom que bloqueie, porque sem a regra 7 a recomendacao sairia errada",
-      "estado": "FECHADA em 06/10/2026 — os TRES bloqueios sairam. A declaracao de substrato chegou em 05/10 (secao 4.1 do boletim); a regra 7 (proibicao sobre a PECA) nasceu em 06/10 as 11h4xZ; o campo `preparo` passou a ser servido em 06/10 as 14h10Z; e a REGRA 8, com o par substrato x ambiente, fechou o ultimo em 06/10 a noite, que foi quando as tres frases entraram em `declaracoes.indicado_para`. O que esta pendencia pedia — a AC-II poder ser recomendada sem a F2 mandar colar pastilha de vidro com argamassa que proibe revestimento especial — esta medido na `matriz_esperada_da_F2` (10 celulas reescritas), na `matriz_esperada_do_par_substrato_ambiente` e na ancora `cimento_concreto` x `interno_seco` x `pastilha_vidro` da matriz da regra 7, que mudou de lado.",
-      "o_que_ficou_de_fora_e_NAO_e_desta_pendencia": "`gesso acartonado (drywall)`: o boletim o declara e `vocabularios.base` nao tem valor para gesso. E a quarta ocorrencia da mesma lacuna de vocabulario e a decisao e do Raphael, porque mexer na lista suspensa da F2 mexe em pagina com impressao."
-    },
-    {
-      "id": "colas-sem-imagem-e-sem-oferta",
-      "o_que_falta": "Foto de produto, unidade de venda de varejo e faixa de preco com data para os cinco itens.",
-      "onde_buscar": "Loja oficial da marca (nivel 5) para embalagem e foto; Shopee e Mercado Livre (nivel 6) para preco e unidade de venda.",
-      "por_que_importa": "A vitrine funciona sem foto e sem preco, mas a faixa de preco datada e o que faz o cartao ser util. Preco NUNCA entra em criterio de ordem.",
-      "bloqueia_publicacao": false
+  {
+   "id": "tekbond-silicone-neutro",
+   "categoria": "cola",
+   "tipo": "silicone_neutro",
+   "marca": "Tekbond",
+   "fabricante": "Tekbond",
+   "nome_comercial": "Silicone Neutro",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "A coleta do bloco 2 chegou pela pagina de produto e por ficha tecnica de 09/2020 sem numero de documento visivel na busca. O codigo existe e fica pendente de leitura direta.",
+   "declaracoes": {
+    "indicado_para": [
+     "cerâmica",
+     "madeira",
+     "metais",
+     "vidro comum e temperado",
+     "laminados",
+     "vidro aramado",
+     "espelhos",
+     "concreto",
+     "alvenaria",
+     "pedras",
+     "certos tipos de plástico"
+    ],
+    "nao_usar_em": [],
+    "nao_recomendado_em": [],
+    "nao_indicado_para": [],
+    "ambientes_declarados": [],
+    "resistencias_declaradas": [
+     "agentes ácidos",
+     "metais corrosíveis",
+     "variação de temperatura",
+     "chuva",
+     "raios UV"
+    ]
+   },
+   "propriedades": {},
+   "preparo": {
+    "literal_do_fabricante": null,
+    "fonte_id": null,
+    "lido_em": null,
+    "recorte_do_documento": null,
+    "nossa_leitura": null,
+    "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo. A fonte e www.tekbond.com.br, em 403 nas tres passadas de 06/10/2026. E o registro mais caro desta lista: ele e a recomendacao de TOPO da F2 para caco de espelho, e e justamente dele que o leitor nao recebe preparo nenhum."
+   },
+   "geometria": null,
+   "venda": [],
+   "afiliado": {
+    "programa": "mercadolivre",
+    "url": "https://meli.la/2nKnsA9",
+    "url_produto": "https://www.mercadolivre.com.br/cola-adesivo-silicone-transparente-neutro-280g-tekbond/p/MLB38691363",
+    "sub_id_1": "clubedomosaico",
+    "sub_id_2": "F2",
+    "etiqueta_ml": "clubedomosaicof2",
+    "gerado_em": "2026-09-13",
+    "url_busca": "https://s.shopee.com.br/6AlILRaFv9",
+    "degrau": 2,
+    "conferido_em": "2026-09-13",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20neutro%20tekbond",
+    "url_busca_gerada_em": "2026-09-25",
+    "motivo_da_chave": "marca + linha"
+   },
+   "imagem": null,
+   "fontes": {
+    "pagina-produto-neutro": {
+     "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-neutro",
+     "tipo": "página de produto do fabricante + ficha técnica de 09/2020",
+     "nivel": 3,
+     "coletado_em": "2026-09-10",
+     "conferir_no_pdf": true,
+     "documento_aberto": false
     }
-  ],
-  "materiais": [
-    {
-      "id": "tekbond-silicone-acetico-construcao",
-      "categoria": "cola",
-      "tipo": "silicone_acetico",
-      "marca": "Tekbond",
-      "fabricante": "Tekbond",
-      "nome_comercial": "Silicone Acético Construção",
-      "codigo_fabricante": "BRSA004",
-      "motivo_sem_codigo": null,
-      "declaracoes": {
-        "indicado_para": [
-          "vedação de esquadria de alumínio com vidro",
-          "vidro não laminado",
-          "alumínio comum e anodizado",
-          "granito",
-          "cerâmica",
-          "azulejo"
-        ],
-        "nao_usar_em": [
-          "espelhos",
-          "vidro laminado",
-          "metal corrosível",
-          "superfícies pintadas",
-          "superfícies porosas",
-          "superfícies alcalinas",
-          "concreto",
-          "cimento",
-          "tijolo",
-          "calcário",
-          "zinco",
-          "chapa galvanizada",
-          "aquários",
-          "acrílico"
-        ],
-        "nao_recomendado_em": [
-          "polietileno",
-          "polipropileno",
-          "policarbonato"
-        ],
-        "nao_indicado_para": [
-          "fachada de vidro",
-          "colagem estrutural que exija resistência",
-          "contato com alimento",
-          "imersão contínua em meio líquido",
-          "ambiente completamente fechado"
-        ],
-        "ambientes_declarados": [],
-        "resistencias_declaradas": []
-      },
-      "propriedades": {
-        "cura_apos_24h": {
-          "valor": 3,
-          "unidade": "mm",
-          "comparador": ">=",
-          "fonte_id": "ficha-brsa004",
-          "declarado_como": "cura de no minimo 3 mm em 24 h a 23 graus C e 55% de umidade relativa"
-        },
-        "formacao_de_pelicula": {
-          "valor": [
-            5,
-            15
-          ],
-          "unidade": "min",
-          "fonte_id": "pagina-produto-acetico",
-          "declarado_como": "5 a 15 minutos"
-        },
-        "temperatura_de_aplicacao": {
-          "valor": [
-            5,
-            35
-          ],
-          "unidade": "C",
-          "fonte_id": "pagina-produto-acetico",
-          "declarado_como": "+5 a 35 graus C"
-        },
-        "temperatura_de_trabalho": {
-          "valor": [
-            -50,
-            150
-          ],
-          "unidade": "C",
-          "fonte_id": "pagina-produto-acetico",
-          "declarado_como": "-50 a 150 graus C"
-        },
-        "alongamento_a_ruptura": {
-          "valor": 800,
-          "unidade": "%",
-          "comparador": ">=",
-          "fonte_id": "pagina-produto-acetico",
-          "declarado_como": "maior ou igual a 800%"
-        },
-        "dureza_shore_A": {
-          "valor": 25,
-          "unidade": "Shore A",
-          "fonte_id": "pagina-produto-acetico",
-          "declarado_como": "25"
-        },
-        "rendimento_por_area": {
-          "valor": null,
-          "unidade": "kg/m2",
-          "fonte_id": null,
-          "motivo": "O fabricante declara rendimento por CORDAO (metros de cordao de X mm por cartucho), nao por area colada. Converter isso em gramas por metro quadrado seria palpite — e por isso a coluna de cola da F1 nasce vazia com essa frase na tela."
-        }
-      },
-      "preparo": {
-        "literal_do_fabricante": null,
-        "fonte_id": "pagina-produto-acetico",
-        "lido_em": null,
-        "recorte_do_documento": null,
-        "nossa_leitura": "Limpar a superficie com alcool ou acetona; superficie seca e firme. Cortar a ponta do cartucho e o bico a 45 graus.",
-        "motivo_sem_literal": "CAUSA (host-recusa): o documento esta em www.tekbond.com.br e o servidor responde 403 nas tres passadas de 06/10/2026 (o apex redireciona 301 para o www, e a ficha BRSA004 em PDF tambem da 403). Nao e o egresso: o egresso conversou. Sem reler, a frase gravada nao pode ir a tela como frase dele — e o documento de onde ela saiu ESTA nomeado desde 06/10, derivado da constante (ver `como_a_fonte_foi_derivada`), entao o que falta e o 403 cair, nao descobrir a procedencia.",
-        "como_a_fonte_foi_derivada": "A parafrase nao trazia procedencia. Ela e, palavra por palavra, o campo `preparo` da constante `tekbond-silicone-acetico-indicacoes` em dados/constantes.json, cujo `fonte_url` e a URL de `pagina-produto-acetico` deste registro. Derivacao, nao palpite — a mesma que fechou o `quartzolit-rejunte-ceramicas`. Com ela, DUAS das cinco parafrases sem literal tem documento nomeado, e o que falta nelas e reler, nao descobrir de onde saiu."
-      },
-      "geometria": null,
-      "venda": [
-        {
-          "unidade": "cartucho",
-          "quantidade": null,
-          "embalagem_declarada": null,
-          "loja": null,
-          "fonte_id": "pagina-produto-acetico",
-          "coletado_em": "2026-09-10",
-          "observacao": "Formato de cartucho confirmado pelo preparo declarado (cortar a ponta do cartucho). Volume e peso da embalagem NAO foram coletados."
-        }
-      ],
-      "afiliado": {
-        "programa": "shopee",
-        "url": "https://s.shopee.com.br/AUuHVPFDqG",
-        "url_produto": "https://shopee.com.br/product/727184858/23097607614",
-        "sub_id_1": "clubedomosaico",
-        "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-25",
-        "url_busca": "https://s.shopee.com.br/6VO8k3UNg1",
-        "degrau": 3,
-        "conferido_em": "2026-09-13",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20acetico%20construcao%20tekbond",
-        "url_busca_gerada_em": "2026-09-25",
-        "motivo_da_chave": "marca + linha + uso"
-      },
-      "imagem": {
-        "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lx03nvf7r5bzf2",
-        "largura": 1024,
-        "altura": 1024,
-        "fonte": "feed de afiliado da Shopee, 13/09/2026",
-        "coletado_em": "2026-09-13",
-        "alt": "Silicone acetico Tekbond branco 256 g"
-      },
-      "fontes": {
-        "ficha-brsa004": {
-          "url": "https://www.tekbond.com.br/sites/Tekbond.com.br/files/media/downloadable/2025-10/Silicone_Acetico_Construcao-BRSA004-ficha_tecnica_01.pdf",
-          "tipo": "ficha técnica BRSA004 do fabricante, revisada em 10/2025",
-          "nivel": 2,
-          "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true,
-          "documento_aberto": false
-        },
-        "pagina-produto-acetico": {
-          "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico",
-          "tipo": "página de produto do fabricante",
-          "nivel": 3,
-          "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true,
-          "documento_aberto": false
-        }
-      },
-      "constantes_relacionadas": [
-        "tekbond-silicone-acetico-restricoes",
-        "tekbond-silicone-acetico-indicacoes"
-      ],
-      "divergencias": [],
-      "resolucao": null,
-      "status": "ativo",
-      "motivo_do_descarte": null,
-      "usada_por": [
-        "F2",
-        "G-COLAS"
-      ],
-      "observacao": "O registro mais importante do banco, e o unico cuja lista NEGATIVA vale mais que a positiva. Duas declaracoes do mesmo fabricante colidem em METAL — indicado para aluminio anodizado, proibido em metal corrosivel, zinco e chapa galvanizada — e a regra 1 do esquema resolve pela proibicao: quem monta mosaico nao sabe dizer se a chapa dela e galvanizada. Colisao parecida em pedra: granito indicado, calcario e superficie alcalina proibidos.",
-      "condicoes": {
-        "proibe_grupos_de_tessela": {
-          "valor": [
-            "espelho"
-          ],
-          "literais": {
-            "espelho": "espelhos"
-          },
-          "onde_o_fabricante_escreve": "declaracoes.nao_usar_em",
-          "fonte_id": "ficha-brsa004",
-          "quem_classifica_o_grupo": "a ilha, em esquema-banco.json / grupos_de_tessela_proibidos — nunca o fabricante, que declarou a PROIBICAO e nao a lista de quais caquinhos do nosso vocabulario caem nela (secao 26.3 do ARQUIPELAGO.md)",
-          "o_que_este_campo_CONSERTOU": "Um defeito que estava no ar. `espelhos` sempre esteve nesta lista e sempre eliminou o produto na BASE `espelho` — e a F2 pergunta o caquinho desde a 1.0.0. Em `ceramica` + `caco de espelho` + `externo abrigado` a pagina servia este silicone no TOPO da recomendacao, empatado com o Maxx e com o neutro. O acido acetico da cura ataca a prata e a pintura de protecao do espelho, e e por isso que a MESMA Tekbond vende um silicone neutro declarando `espelhos` entre os usos dele: os dois produtos dela se separam exatamente neste ponto, e o banco tinha as duas metades desde 10/09/2026 sem nenhuma regra para junta-las."
-        }
-      }
-    },
-    {
-      "id": "tekbond-silicone-neutro",
-      "categoria": "cola",
-      "tipo": "silicone_neutro",
-      "marca": "Tekbond",
-      "fabricante": "Tekbond",
-      "nome_comercial": "Silicone Neutro",
-      "codigo_fabricante": null,
-      "motivo_sem_codigo": "A coleta do bloco 2 chegou pela pagina de produto e por ficha tecnica de 09/2020 sem numero de documento visivel na busca. O codigo existe e fica pendente de leitura direta.",
-      "declaracoes": {
-        "indicado_para": [
-          "cerâmica",
-          "madeira",
-          "metais",
-          "vidro comum e temperado",
-          "laminados",
-          "vidro aramado",
-          "espelhos",
-          "concreto",
-          "alvenaria",
-          "pedras",
-          "certos tipos de plástico"
-        ],
-        "nao_usar_em": [],
-        "nao_recomendado_em": [],
-        "nao_indicado_para": [],
-        "ambientes_declarados": [],
-        "resistencias_declaradas": [
-          "agentes ácidos",
-          "metais corrosíveis",
-          "variação de temperatura",
-          "chuva",
-          "raios UV"
-        ]
-      },
-      "propriedades": {},
-      "preparo": {
-        "literal_do_fabricante": null,
-        "fonte_id": null,
-        "lido_em": null,
-        "recorte_do_documento": null,
-        "nossa_leitura": null,
-        "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo. A fonte e www.tekbond.com.br, em 403 nas tres passadas de 06/10/2026. E o registro mais caro desta lista: ele e a recomendacao de TOPO da F2 para caco de espelho, e e justamente dele que o leitor nao recebe preparo nenhum."
-      },
-      "geometria": null,
-      "venda": [],
-      "afiliado": {
-        "programa": "mercadolivre",
-        "url": "https://meli.la/2nKnsA9",
-        "url_produto": "https://www.mercadolivre.com.br/cola-adesivo-silicone-transparente-neutro-280g-tekbond/p/MLB38691363",
-        "sub_id_1": "clubedomosaico",
-        "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/6AlILRaFv9",
-        "degrau": 2,
-        "conferido_em": "2026-09-13",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20neutro%20tekbond",
-        "url_busca_gerada_em": "2026-09-25",
-        "motivo_da_chave": "marca + linha"
-      },
-      "imagem": null,
-      "fontes": {
-        "pagina-produto-neutro": {
-          "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-neutro",
-          "tipo": "página de produto do fabricante + ficha técnica de 09/2020",
-          "nivel": 3,
-          "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true,
-          "documento_aberto": false
-        }
-      },
-      "constantes_relacionadas": [
-        "tekbond-silicone-neutro-substratos"
-      ],
-      "divergencias": [],
-      "resolucao": null,
-      "status": "ativo",
-      "motivo_do_descarte": null,
-      "usada_por": [
-        "F2",
-        "G-COLAS"
-      ],
-      "observacao": "E a saida declarada pelo MESMO fabricante para quase tudo que o acetico proibe — espelho, vidro laminado, concreto, alvenaria, pedra, metal. Par acetico/neutro de uma fonte so e o que permite a F2 dizer 'nao use A, use B' sem trocar de fabricante no meio da frase. As resistencias declaradas (chuva e raios UV) sao o que o faz passar na regra 4 em area externa exposta, onde o silencio do acetico o tira da lista."
-    },
-    {
-      "id": "cascola-cascorez-extra",
-      "categoria": "cola",
-      "tipo": "pva",
-      "marca": "Cascola",
-      "fabricante": "Henkel",
-      "nome_comercial": "Cascola Cascorez Cola Branca PVA Extra / Extraforte",
-      "codigo_fabricante": null,
-      "motivo_sem_codigo": "A pagina de produto identifica por SKU interno do site (SAP_0201FTC20WQ5), que nao e codigo de ficha tecnica.",
-      "declaracoes": {
-        "indicado_para": [
-          "madeira de alta, média e baixa densidade",
-          "MDF",
-          "compensado",
-          "couro",
-          "tela",
-          "gesso",
-          "laminados plásticos (Formica, Formiplac, Perstop)",
-          "poliestireno expandido",
-          "outros materiais porosos",
-          "papel, papelão, tecido e cortiça",
-          "encadernação",
-          "molduras, rodapés e revestimentos decorativos em ambientes internos"
-        ],
-        "nao_usar_em": [],
-        "nao_recomendado_em": [],
-        "nao_indicado_para": [],
-        "ambientes_declarados": [
-          "ambientes internos"
-        ],
-        "resistencias_declaradas": []
-      },
-      "propriedades": {
-        "tempo_de_secagem": {
-          "valor": null,
-          "unidade": "h",
-          "fonte_id": null,
-          "motivo": "Nao coletado. Esta em pendentes de dados/constantes.json como `cascorez-tempo-de-secagem` — a F2 hoje indica o PVA para MDF interno sem dizer quanto tempo esperar."
-        }
-      },
-      "preparo": {
-        "literal_do_fabricante": "Antes de aplicar, prepare as superfícies a serem coladas, que devem estar limpas, firmes, niveladas e secas. Lixe-as quando necessário para torna-las mais ásperas. A aplicação poderá ser feita por meio de passadeiras automáticas ou manualmente, utilizando pincel, rolo, etc.",
-        "fonte_id": "pagina-produto-cascorez",
-        "como_a_tela_chama_o_documento": "na página de produto dele",
-        "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
-        "lido_em": "2026-10-06",
-        "recorte_do_documento": "Passos 1 e 2 de \"Como utilizar o produto?\", na pagina de produto, inteiros. Os passos 3 e 4 ficaram fora: eles descrevem o GESTO de colar (aplicar em uma das superficies, juntar as partes, pressionar ate secar), nao o preparo.",
-        "nossa_leitura": "Superficies limpas, firmes, niveladas e secas; lixar quando necessario para deixar aspero. Aplicacao com pincel ou rolo.",
-        "motivo_sem_literal": null,
-        "o_que_a_parafrase_perdia": "A parafrase FECHAVA uma lista que o fabricante deixou aberta. Ele escreve \"passadeiras automaticas ou manualmente, utilizando pincel, rolo, etc.\" e o gravado dizia \"Aplicacao com pincel ou rolo\" — duas formas de aplicar viraram as unicas duas.",
-        "observacao_sobre_a_grafia": "O fabricante publica `torna-las` sem acento. A frase vai ao ar como ele a publicou: corrigir a grafia dele dentro das aspas seria editar a citacao."
-      },
-      "geometria": null,
-      "venda": [],
-      "afiliado": {
-        "programa": "shopee",
-        "url": "https://s.shopee.com.br/7ptWKVTuYa",
-        "url_produto": "https://shopee.com.br/product/1270088146/19497747157",
-        "sub_id_1": "clubedomosaico",
-        "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-25",
-        "url_busca": "https://s.shopee.com.br/AKarJ6KOTI",
-        "degrau": 1,
-        "conferido_em": "2026-09-13",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=cascorez%20extra%20cola%20branca%20pva%20cascola",
-        "url_busca_gerada_em": "2026-09-25",
-        "motivo_da_chave": "marca + linha + tipo"
-      },
-      "imagem": {
-        "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-mdasbwbuzm0i23",
-        "largura": 1024,
-        "altura": 1024,
-        "fonte": "feed de afiliado da Shopee, 13/09/2026",
-        "coletado_em": "2026-09-13",
-        "alt": "Cola branca PVA Cascorez Extra 1 kg"
-      },
-      "fontes": {
-        "pagina-produto-cascorez": {
-          "url": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-cascorez-cola-branca-pva-extraforte/SAP_0201FTC20WQ5.html",
-          "tipo": "página de produto do fabricante",
-          "nivel": 3,
-          "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true,
-          "documento_aberto": true,
-          "reaberta_em": "2026-10-06",
-          "o_que_a_abertura_mudou": {
-            "por_que_foi_reaberta": "Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 241 KB de HTML.",
-            "o_que_a_leitura_trouxe": "O bloco \"Como utilizar o produto?\", passo a passo. Os passos 1 e 2 sao o preparo e estao agora em `preparo.literal_do_fabricante`, inteiros.",
-            "a_divergencia_que_ela_achou": "A parafrase que o banco carregava desde 10/09 — \"Aplicacao com pincel ou rolo\" — FECHAVA uma lista que o fabricante deixou aberta: ele escreve \"passadeiras automaticas ou manualmente, utilizando pincel, rolo, etc.\". E uma das quatro parafrases conferidas em 06/10, e as quatro perderam informacao do documento.",
-            "o_nivel_NAO_subiu_e_por_que": "Continua 3. Nivel e natureza da fonte, nunca alcance dela — abrir a pagina mede o que ela DIZ, nao o que ela E. Mesma razao escrita na reabertura da AF1500 em 05/10."
-          }
-        }
-      },
-      "constantes_relacionadas": [
-        "cascorez-extra-substratos"
-      ],
-      "divergencias": [],
-      "resolucao": null,
-      "status": "ativo",
-      "motivo_do_descarte": null,
-      "usada_por": [
-        "F2",
-        "G-COLAS"
-      ],
-      "observacao": "O caso que obrigou os tres estados do esquema. O fabricante nao proibe area molhada nem externa: ele simplesmente DELIMITA o uso a 'revestimentos decorativos em ambientes internos' e nao declara resistencia a agua. A ilha nao transforma esse silencio em proibicao inventada — a regra 3 tira o produto dos ambientes que ele nao declara, e a tela diz literalmente 'o fabricante nao declara uso externo nem resistencia a agua para este produto'."
-    },
-    {
-      "id": "quartzolit-cimentcola-externo-acii",
-      "categoria": "cola",
-      "tipo": "cimentcola_acii",
-      "marca": "Quartzolit",
-      "fabricante": "Saint-Gobain Weber",
-      "nome_comercial": "Argamassa Cimentcola Externo AC-II Quartzolit",
-      "codigo_fabricante": null,
-      "motivo_sem_codigo": "Identificada pela classificacao normativa (AC II conforme NBR 14.081) e pelo nome do produto como o proprio fabricante o escreve no boletim ('cimentcola externo quartzolit', em minusculas). O boletim NAO imprime codigo de produto. A frase anterior deste campo dizia que 'o Boletim Tecnico 2024-09 nao foi aberto' — um boletim deste produto FOI aberto e lido em 05/10/2026, e e o de maio de 2016; o 2024-09 segue sem canal.",
-      "declaracoes": {
-        "indicado_para": [
-          "assentar revestimentos cerâmicos de até 60x60 cm em pisos e paredes de áreas internas e externas, bem como superfícies de gesso acartonado (drywall)",
-          "assentar revestimentos cerâmicos de até 20x20 cm e de absorção de água de 3% a 6% em fachadas e em piscinas residenciais não aquecidas",
-          "placas de pedras naturais, arenitos, quartzitos, como miracema, são tomé, mineira, goiás e ardósia, de até 60x60 cm, com espessura irregular de até 3 cm, em pisos e paredes de áreas internas e externas",
-          "em camada grossa com espessuras de até 3 cm de argamassa colante",
-          "cerâmicas principalmente quando se deseja regularizar desníveis de planeza da base",
-          "Emboço, alvenaria e contrapiso em áreas internas, curados há pelo menos 14 dias, conforme NBR 13.754.",
-          "Paredes de concreto curado há 180 dias.",
-          "Alvenarias de blocos vazados de concreto, de blocos silicocalcários e de blocos de concreto celular em paredes internas, conforme a Norma Técnica NBR 13.754."
-        ],
-        "nao_usar_em": [],
-        "nao_recomendado_em": [],
-        "nao_indicado_para": [
-          "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigoríficos e revestimentos especiais",
-          "cerâmicas do tipo porcelanato ou com absorção de água menor que 3%",
-          "bases com pintura ou quaisquer materiais que possam impedir a aderência da argamassa cimentcola externo quartzolit"
-        ],
-        "ambientes_declarados": [
-          "área interna e externa"
-        ],
-        "resistencias_declaradas": []
-      },
-      "propriedades": {
-        "classificacao": {
-          "valor": "AC-II",
-          "unidade": null,
-          "fonte_id": "pagina-produto-cimentcola",
-          "declarado_como": "cimentcola de secagem rapida para assentamento ceramico em area interna e externa, tipo AC-II segundo a NBR 14.081"
-        },
-        "espessura_maxima_de_camada": {
-          "valor": 3,
-          "unidade": "cm",
-          "fonte_id": "pagina-produto-cimentcola",
-          "declarado_como": "pode ser aplicada em camada grossa, com ate 3 cm de espessura de argamassa"
-        },
-        "liberacao_para_agua_em_piscina": {
-          "valor": 7,
-          "unidade": "dias",
-          "fonte_id": "pagina-produto-cimentcola",
-          "declarado_como": "em piscina, encher com agua somente 7 dias depois"
-        },
-        "consumo_por_area": {
-          "valor": 3.5,
-          "unidade": "kg/m2",
-          "fonte_id": "bt-cimentcola-externo-2016-05",
-          "declarado_como": "secao 6 do boletim, tres faixas por area da peca assentada: 'Ceramica ate 400 cm2 +/- 3,5 kg/m2', 'Ceramica de 400 a 900 cm2 +/- 4,5 kg/m2', 'Ceramica maior que 900 cm2 +/- 8 kg/m2'",
-          "por_que_a_faixa_de_ate_400_cm2": "O valor gravado e o da PRIMEIRA faixa porque e a unica que alcanca peca de mosaico: a pastilha desta ilha tem de 1,2 a 3 cm de lado, e as outras duas faixas falam de revestimento de 20x20 cm para cima. As tres ficam escritas em declarado_como para quem publicar numero nao ter de reabrir o PDF.",
-          "nao_publicavel_sem_decisao": "Este numero NAO liga sozinho a coluna de gramas de cola da F1, e nenhuma linha de codigo o le hoje (conferido por varredura em 05/10/2026). Ligar a coluna exige decidir que consumo de argamassa colante de obra vale para peca de artesanato, o que e decisao e nao coleta."
-        },
-        "tempo_em_aberto": {
-          "valor": 20,
-          "unidade": "min",
-          "fonte_id": "bt-cimentcola-externo-2016-05",
-          "declarado_como": "'Tempo em aberto >=20 minutos', na tabela de propriedades e caracteristicas (secao 5)"
-        }
-      },
-      "preparo": {
-        "literal_do_fabricante": "Emboço, alvenaria e contrapiso em áreas internas, curados há pelo menos 14 dias, conforme NBR 13.754. Paredes de concreto curado há 180 dias. Se curado há 28 dias, utilize cimentcola flexível quartzolit. Alvenarias de blocos vazados de concreto, de blocos silicocalcários e de blocos de concreto celular em paredes internas, conforme a Norma Técnica NBR 13.754. O assentamento de placas cerâmicas com argamassa colante sobre alvenarias somente deve ocorrer quando elas tiverem, no mínimo, 14 dias. A superfície das bases não deve apresentar desvios de prumo e de planeza, conforme a Norma Técnica NBR 13.749, e deve estar firme, seca e sem pó. Certifique-se de que a base e o verso das placas estão secos, limpos e livres de resíduos. A superfície da base não deve apresentar deformações, e precisa estar firme, seca, curada e limpa (NBR 13.749). Certifique-se de que retrações do cimento e possíveis fissuras estão estabilizadas. Impermeabilize bases que tenham problemas de umidade. Obs.: quando os dentes da desempenadeira se desgastarem em mais de 1 mm de altura, substitua-a ou refaça os dentes.",
-        "fonte_id": "bt-cimentcola-externo-2016-05",
-        "como_a_tela_chama_o_documento": "no boletim técnico dele, revisado em maio de 2016",
-        "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
-        "lido_em": "2026-10-06",
-        "recorte_do_documento": "Da secao 4.1 \"Bases para aplicacao\" as TRES frases de substrato, inteiras, mais as que exigem CURA e ESTADO da base; da 4.2 \"Antes de aplicar\" a frase sobre a base e o verso das placas; e da 4.3 \"Preparo da base\" a prosa inteira, incluindo a obs. do desgaste dos dentes da desempenadeira e EXCLUINDO apenas a tabela de dentes por formato de ceramica e a linha que a introduz, que sem a tabela nao e frase. Ficaram fora, nomeadas: as juntas estruturais do projetista, a protecao das pecas de aluminio, a conferencia de ferramentas, a temperatura do ambiente e a lista de EPI — todas da 4.2 e todas sobre a obra e a seguranca do aplicador, nao sobre o preparo da base. A obs. da desempenadeira NAO ficou fora de proposito: ela e declaracao de fabricante que nomeia ferramenta de apoio, e cortar frase assim e justamente o que `exigencias_de_apoio_ja_declaradas_no_banco` existe para impedir — a varredura daquela secao le o literal e cobra a linha.",
-        "nossa_leitura": null,
-        "motivo_sem_literal": null,
-        "por_que_este_registro_entra_sem_parafrase_anterior": "Este registro tinha `preparo: null`. O campo foi preenchido em 06/10/2026 porque o proprio banco pedia: em `fontes / bt-cimentcola-externo-2016-05 / substratos_que_o_documento_declara_e_que_NAO_foram_gravados / os_outros_dois_bloqueios_medidos_em_06_10_2026` esta escrito, com estas palavras, que a cura dos 180 dias nao podia ser gravada porque \"o campo `preparo` nao resolve: ele existe neste esquema e a F2 NAO o serve em lugar nenhum\". A F2 passou a servir. A CURA DE 180 DIAS ESTA GRAVADA E NAO ESTA NA TELA, e isto foi MEDIDO em 06/10/2026 nos 45 estados de cola, um render por estado: ZERO servem a frase `Paredes de concreto curado ha 180 dias`. O motivo e que a cadeia tem um elo que o campo de 05/10 nao viu: este produto e `eliminado por silencio` em TODAS as 45 celulas, porque `declaracoes.indicado_para` nao nomeia nenhuma base do vocabulario — e nao nomeia justamente porque o substrato nao foi gravado. O bloco de preparo so alcanca quem a pagina RECOMENDA, e instrucao sem indicacao seria receita de usar o que a gente acabou de dizer que nao serve. Entao a F2 servir `preparo` era NECESSARIO e nao suficiente: o terceiro bloqueio e JUSANTE do segundo, nao irmao dele. A frase de 05/10 — `ou a F2 passa a servir preparo na resposta, e a cura vira texto na tela` — acertou o mecanismo e errou a ordem.",
-        "o_que_este_literal_NAO_destrava": "NADA MAIS, e esta frase ficou aqui invertida de proposito. Ate 06/10/2026 ela dizia que o substrato continuava fora de `declaracoes.indicado_para` e que por isso o literal nao chegava a tela, com a medicao ao lado (zero dos 45 estados serviam `Paredes de concreto curado ha 180 dias`). O substrato entrou na mesma data, pela REGRA 8, e com ele o literal passou a sair nas celulas em que esta argamassa e recomendada. O que ele continua nao destravando e `gesso acartonado (drywall)`, que nao tem valor em `vocabularios.base` — decisao do Raphael, na fila do PROMPT.md desde 28/09.",
-        "o_recorte_anterior_dizia_uma_coisa_que_metade_dele_desmentia": "ACHADO EM 06/10/2026, lendo este campo antes de mexer nele. A versao de 14h10Z afirmava que as duas frases de alvenaria que qualificam o ambiente — `em areas internas` e `em paredes internas` — `ficaram fora`, com o motivo escrito: `cita-lo pela metade na tela seria decidi-lo sem campo`. O motivo estava certo e a afirmacao estava METADE errada: a frase `em areas internas` NUNCA ficou fora. Ela e a PRIMEIRA sentenca do literal servido desde aquela hora, com o qualificador dentro, na tela, para quem a pagina recomendasse — e a pagina nao recomendava ninguem ali, o que fez a frase falsa ser invisivel em vez de inofensiva. So a terceira frase (`em paredes internas`) tinha de fato ficado fora. Entrou agora, porque a v14 deu o campo que faltava; e a prosa foi corrigida para dizer o que o recorte faz, nao o que se pretendia que ele fizesse. Mesma familia do defeito da sobra em 06/10: prosa de registro copiada da anterior sem ninguem abrir o campo ao lado."
-      },
-      "geometria": null,
-      "venda": [
-        {
-          "unidade": "saco",
-          "quantidade": 5,
-          "embalagem_declarada": "saco plastico de 5 kg",
-          "loja": null,
-          "fonte_id": "bt-cimentcola-externo-2016-05",
-          "coletado_em": "2026-10-05",
-          "por_que_esta_entrada_importa": "A secao 7 do boletim declara 'sacos plasticos de 5, 15 ou 20kg', e o banco so tinha 15 e 20. O 5 kg e o unico formato deste produto que nao e formato de obra — e a propria observacao deste registro dizia que recomendar 15 kg para um vaso destroi confianca."
-        },
-        {
-          "unidade": "saco",
-          "quantidade": 15,
-          "embalagem_declarada": "saco de papel ou plastico de 15 kg",
-          "loja": null,
-          "fonte_id": "pagina-produto-cimentcola",
-          "coletado_em": "2026-09-10"
-        },
-        {
-          "unidade": "saco",
-          "quantidade": 20,
-          "embalagem_declarada": "saco de papel ou plastico de 20 kg",
-          "loja": null,
-          "fonte_id": "pagina-produto-cimentcola",
-          "coletado_em": "2026-09-10"
-        }
-      ],
-      "afiliado": {
-        "programa": "mercadolivre",
-        "url": "https://meli.la/13fPigD",
-        "url_produto": "https://www.mercadolivre.com.br/argamassa-externa-quartzolit-ac-ii-saco-20kg-cinza-weber/p/MLB27315078",
-        "sub_id_1": "clubedomosaico",
-        "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/7KxFjaa94c",
-        "degrau": 2,
-        "conferido_em": "2026-09-13",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=argamassa%20cimentcola%20externo%20quartzolit",
-        "url_busca_gerada_em": "2026-09-25",
-        "motivo_da_chave": "a chave com `ac-ii` devolvia ZERO em 25/09/2026: a Shopee anuncia AC-2/AC-3 e quase nunca escreve a numeracao romana. Um degrau abaixo na escada da 25.6 — marca + linha + uso"
-      },
-      "imagem": null,
-      "fontes": {
-        "pagina-produto-cimentcola": {
-          "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-para-ceramicas-externas-quartzolit/argamassa-cimentcola-externo-acii-quartzolit",
-          "tipo": "página de produto do fabricante",
-          "nivel": 3,
-          "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true,
-          "documento_aberto": false
-        },
-        "bt-cimentcola-externo-2016-05": {
-          "url": "https://telhanorte.vteximg.com.br/arquivos/908487.pdf",
-          "tipo": "boletim tecnico do fabricante, ABERTO E LIDO pagina a pagina (3 paginas) pelo canal de espelho da escada_de_fontes; o documento se identifica como 'Boletim Tecnico - cimentcola externo quartzolit' e fecha com 'Documento revisado em maio de 2016'",
-          "nivel": 2,
-          "coletado_em": "2026-10-05",
-          "conferir_no_pdf": false,
-          "documento_aberto": true,
-          "por_que_nivel_2_e_nao_1": "O PDF foi lido inteiro, mas em ESPELHO (CDN de varejista), nao no servidor do fabricante. Do espelho sai o documento, nao a garantia de que a revisao e a vigente — e aqui isso nao e detalhe: a pendencia que este documento fecha aponta para o arquivo 2024-09 e o documento lido e de MAIO DE 2016. Ver escada_de_fontes.canal_de_espelho.",
-          "revisao_declarada_no_documento": "maio de 2016",
-          "documento": "Boletim Tecnico - cimentcola externo quartzolit, 3 paginas; titulo da pagina 1 em minusculas ('cimentcola externo quartzolit') e subtitulo 'argamassa colante para ceramicas em areas internas e externas'",
-          "revisao_declarada": "Documento revisado em maio de 2016",
-          "espelho": "O PDF NAO foi obtido no dominio do fabricante: www.quartzolit.weber segue em 403 e o apex so redireciona para ele (egresso remedido nesta execucao). Este arquivo esta no CDN da Telha Norte e o conteudo e o boletim do fabricante, com cabecalho, rodape e data de revisao proprios. Fica no nivel 2 e nao no 1 pelo motivo de sempre: por espelho de terceiro nao da para afirmar que esta e a revisao vigente — e aqui a duvida tem nome, porque a pendencia aponta para o arquivo 2024-09 e este e de maio de 2016.",
-          "tipo_de_origem": "documento-pdf-do-fabricante-em-espelho-de-terceiro",
-          "por_que_esta_origem_nao_batiza": "Segunda aplicacao da linha escrita hoje em batismo_do_fabricante.origens_que_NAO_batizam_e_por_que, e ela se provou sozinha: ao entrar sem este campo, a trava do batismo leu o nome do arquivo (`908487.pdf`, codigo do varejista) e reprovou `Argamassa Cimentcola Externo AC-II Quartzolit` dizendo que o fabricante nao escreve essas palavras. Falso positivo pelo mesmo mecanismo do rejunte piscinas. O fabricante batiza DENTRO do documento, no titulo da pagina 1 — e o que ele escreve ali esta medido em `o_que_o_documento_diz_sobre_o_proprio_nome`, abaixo, porque desta vez o nome do documento e o nome do banco NAO sao a mesma coisa.",
-          "o_que_o_documento_diz_sobre_o_proprio_nome": "O titulo da pagina 1 e `cimentcola externo quartzolit`, em minusculas, e o subtitulo e `argamassa colante para ceramicas em areas internas e externas`. O banco grava `Argamassa Cimentcola Externo AC-II Quartzolit`. As duas pontas que SOBRAM no banco sao `Argamassa`, que no documento e o subtitulo (a categoria do produto, nao o nome), e `AC-II`, que no documento e a linha da tabela de propriedades (`Classificacao normativa (NBR 14.081)  AC II`). Pela 26.1 as duas sao classificacao colada no batismo — o fabricante batiza pela posicao e nos classificamos pela funcao. O nome NAO foi corrigido nesta execucao de proposito, e o motivo e medido: `nome_comercial` e entrada da regra de casamento de anuncio (ferramentas/casar-anuncio.py), este registro esta no degrau 2 com `url_produto` de catalogo do Mercado Livre casado pelo nome, e trocar o nome sem reconferir os 14 casamentos e mexer no que paga comissao para ganhar tipografia. Fica como item nomeado, com o documento em casa.",
-          "substratos_que_o_documento_declara": {
-            "o_nome_deste_campo_mudou_em_06_10_2026_e_o_nome_velho_era": "`substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. Ele nasceu em 05/10/2026 para a declaracao nao ficar LIDA E DESCARTADA EM SILENCIO, e cumpriu: foi lendo este campo que a execucao de 06/10 as 14h10Z descobriu que a proibicao de peca era UM de TRES bloqueios, e nao o unico. Os tres fecharam — a regra 7 em 06/10, o campo `preparo` servido na mesma data, e a regra 8 com o par substrato x ambiente na v14 do esquema. Com o substrato GRAVADO, o nome velho passou a afirmar o contrario do que o arquivo faz, e nome que mente e o defeito que esta ilha pagou em 06/10/2026 no campo da sobra: `relatorio velho tambem mente`, um andar abaixo. Renomeado, nao apagado.",
-            "por_que_este_campo_continua_existindo": "Porque ele guarda a LEITURA do documento, que e o que torna a traducao auditavel: as frases literais da secao 4.1, onde cada uma pousa no vocabulario, e o que o documento declara e esta ilha NAO tem valor para receber. Apagar o campo no dia em que o dado entra deixaria o `indicado_para` com tres frases novas e nenhum registro de como elas foram lidas.",
-            "literal_do_documento": [
-              "Emboco, alvenaria e contrapiso em areas internas, curados ha pelo menos 14 dias, conforme NBR 13.754.",
-              "Paredes de concreto curado ha 180 dias. Se curado ha 28 dias, utilize cimentcola flexivel quartzolit.",
-              "Alvenarias de blocos vazados de concreto, de blocos silicocalcarios e de blocos de concreto celular em paredes internas, conforme a Norma Tecnica NBR 13.754.",
-              "(da secao 2) bem como superficies de gesso acartonado (drywall)"
-            ],
-            "onde_isso_pousa_no_vocabulario": {
-              "cimento_concreto": "emboco, contrapiso e paredes de concreto. GRAVADO em 06/10/2026, em DUAS frases: a de emboco/alvenaria/contrapiso, que vem com `em areas internas` colado, e a de paredes de concreto, que nao qualifica lugar. Pela regra da uniao do mapa, a frase sem qualificador manda: esta base fica declarada em todo ambiente que o produto delimita.",
-              "alvenaria_tijolo": "alvenaria e alvenarias de blocos vazados, silicocalcarios e de concreto celular. GRAVADO em 06/10/2026, e as DUAS frases que a declaram vem com o lugar colado (`em areas internas` e `em paredes internas`). Entao esta base e declarada SO em `interno_seco`, e nos outros quatro ambientes o produto sai pela REGRA 8, com secao e frase proprias na tela — nunca pelo silencio.",
-              "sem_valor_no_vocabulario": "gesso acartonado (drywall) — QUARTA ocorrencia da mesma lacuna, e a UNICA das quatro que continua aberta depois de 06/10/2026: `vocabularios.base` nao tem valor para gesso, e dois vernizes do banco ja carregavam `gesso` e `isopor` na frase literal do fabricante. Acrescentar valor a `vocabularios.base` muda a lista suspensa da F2, que e pagina com impressao, e a decisao e do Raphael (esta escrita na fila do PROMPT.md desde 28/09)."
-            },
-            "ESTADO_EM_06_10_2026": "OS TRES BLOQUEIOS FECHARAM, E O SUBSTRATO ENTROU. O campo de 05/10 dizia que faltava `uma regra 7` e que, com ela, o substrato entraria; a execucao de 14h10Z mediu que ela era um de TRES. O terceiro (a cura) era JUSANTE do segundo, nao irmao: enquanto o produto fosse eliminado por silencio nas 45 celulas, nenhum bloco de `preparo` o alcancava, porque o bloco so alcanca quem a pagina RECOMENDA. A ordem medida foi obedecida — primeiro o par substrato x ambiente, e a cura entrou na tela JUNTO com a recomendacao, em DOIS lugares: na citacao da declaracao que fez o produto entrar (`Paredes de concreto curado ha 180 dias`) e no bloco de preparo, que serve a frase do documento inteira, com o produto que o fabricante manda usar abaixo dos 180 dias.",
-            "os_tres_bloqueios_e_o_que_fechou_cada_um": [
-              {
-                "bloqueio": "proibicao declarada sobre a PECA que se cola",
-                "fechou_em": "2026-10-06",
-                "com_o_que": "REGRA 7 e `condicoes.proibe_grupos_de_tessela`, nas duas implementacoes, com `matriz_esperada_da_proibicao_sobre_a_peca` e 20 mutacoes.",
-                "e_ela_mordeu_hoje": "Com o substrato gravado, a ancora `cimento_concreto` x `interno_seco` x `pastilha_vidro` mudou de lado: a AC-II entra na camada de declaracao com score 4 e a regra 7 a tira, por `baixa_absorcao_de_agua` e `revestimento_especial`. A ancora foi escrita em 06/10 justamente para medir este dia, e ela dizia: `com ele, o dia em que o substrato entrar nao sera o dia em que a F2 passar a mandar colar pastilha de vidro com argamassa que proibe revestimento especial`."
-              },
-              {
-                "bloqueio": "o qualificador de AMBIENTE vem colado no substrato, e o banco decidia ambiente por PRODUTO",
-                "fechou_em": "2026-10-06",
-                "com_o_que": "REGRA 8 e `ambiente_que_qualifica_a_base` no mapa de termos, com `regras_do_par_substrato_ambiente`, `matriz_esperada_do_par_substrato_ambiente` e `ferramentas/mutacoes-par.py`.",
-                "o_que_ele_custava": "As duas saidas que existiam sem o campo mentiam em direcoes opostas: deixar as tres frases fora de `indicado_para` manteve o produto em silencio nas 45 celulas de 10/09 a 06/10, com a cura gravada e invisivel; grava-las sem o qualificador faria a F2 recomendar argamassa de assentamento para `alvenaria_tijolo` + `externo_abrigado`, que e muro de mosaico ao ar livre, caso em que o documento nao declara nada."
-              },
-              {
-                "bloqueio": "o substrato sem qualificador de ambiente tem qualificador de CURA (180 dias), e ele e o pior dos tres para esta ilha",
-                "fechou_em": "2026-10-06",
-                "com_o_que": "NENHUM campo novo, e e por isso que ele era jusante e nao irmao: a cura chega ao leitor pela CITACAO da declaracao que fez o produto entrar, que a F2 ja servia desde a 1.0.0, e pelo bloco de `preparo`, que a F2 passou a servir na mesma data. Os dois so alcancam produto RECOMENDADO.",
-                "o_que_o_leitor_ve_hoje": "Na base `cimento_concreto`, que nesta ilha e o vaso e o tampo que a artesa acabou de fazer, a pagina recomenda a argamassa e no mesmo bloco cita, com o nome do fabricante, `Paredes de concreto curado ha 180 dias` e a instrucao inteira dele, que nomeia OUTRO produto abaixo disso. A recomendacao e a ressalva saem juntas, que e o que a ordem medida pedia.",
-                "o_que_NAO_foi_feito_e_por_que": "A cura NAO virou regra de elegibilidade. Ela nao tem valor em vocabulario nenhum e a F2 nao pergunta a idade da peca; transformar isso em regra exigiria uma pergunta nova na ferramenta, que e decisao de interface e bloco proprio. Enquanto nao for, a cura e TEXTO — e texto citado do fabricante, no mesmo bloco da recomendacao, e o que esta ilha tem de mais honesto para oferecer sobre uma condicao que ela nao mede."
-              }
-            ]
-          }
-        }
-      },
-      "constantes_relacionadas": [
-        "cimentcola-externo-acii-quartzolit"
-      ],
-      "divergencias": [
-        {
-          "campo": "declaracoes.indicado_para — tamanho maximo da peca assentada",
-          "lado_a": {
-            "fonte_id": "pagina-produto-cimentcola",
-            "nivel": 3,
-            "coletado_em": "2026-09-10",
-            "diz": "ceramicas e placas de pedra natural de ate 120 x 120 cm em area interna e 100 x 100 cm em area externa"
-          },
-          "lado_b": {
-            "fonte_id": "bt-cimentcola-externo-2016-05",
-            "nivel": 2,
-            "coletado_em": "2026-10-05",
-            "diz": "assentar revestimentos ceramicos de ate 60x60 cm em pisos e paredes de areas internas e externas; placas de pedras naturais (...) de ate 60x60 cm; e, em fachadas e piscinas residenciais nao aquecidas, ate 20x20 cm com absorcao de agua de 3% a 6%"
-          },
-          "resolucao": "VALE O LADO B, e por DOIS motivos que apontam para o mesmo lado. Pela escada_de_fontes o nivel mais alto vence, e boletim tecnico (2) vence pagina de produto (3). E pela regra_de_divergencia.compatibilidade_de_adesivo o campo grava o conjunto MAIS ESTREITO, que tambem e o lado B: 60x60 e menos que 120x120. Os dois criterios concordam, entao nao houve escolha a fazer.",
-          "o_que_isto_NAO_resolve": "O boletim lido e de maio de 2016 e a pagina de produto foi colhida em setembro de 2026. E possivel que a Quartzolit tenha ampliado o formato num boletim mais novo (a pendencia aponta para o arquivo 2024-09) e que o lado A seja o atual. O espelho nao prova vigencia. Mas o erro de gravar 120x120 vindo de uma linha de pagina de produto e o erro CARO (peca descolada), e o de gravar 60x60 e o barato (recomendacao mais estreita do que precisava).",
-          "por_que_nenhum_dos_dois_mudou_a_tela": "Este campo nomeia a PECA ASSENTADA, nao a base, e nenhuma regra de elegibilidade da F2 le o tamanho da peca. A matriz de 45 celulas nao se move por esta correcao — conferido recomputando as 45 com validar-banco.py depois da escrita."
-        }
-      ],
-      "resolucao": "Divergencia de tamanho resolvida pelo boletim (nivel 2), que e tambem o conjunto mais estreito. O texto de indicado_para foi reescrito com a frase do boletim e a frase da pagina de produto ficou em divergencias[], com data, como a regra manda.",
-      "status": "ativo",
-      "motivo_do_descarte": null,
-      "usada_por": [
-        "F2",
-        "G-COLAS"
-      ],
-      "observacao": "Registro que saiu da lacuna em 06/10/2026, e ele e a historia de tres bloqueios e nao de um: de 10/09 a 06/10 nenhuma declaracao GRAVADA aqui nomeava SUBSTRATO, e por isso ele era eliminado por silencio nas 45 celulas da matriz. Ate 05/10 isso era falta de dado; de 05/10 a 06/10 foi falta de REGRA, com o dado lido e gravado no campo `substratos_que_o_documento_declara` da fonte do boletim. Desde 06/10 as tres frases de substrato da secao 4.1 estao em `declaracoes.indicado_para`, e a argamassa e recomendacao primaria em `cimento_concreto` nos quatro ambientes que ela delimita e em `alvenaria_tijolo` so em `interno_seco` — nos outros quatro desta base ela sai pela REGRA 8, porque as duas frases que declaram alvenaria vem com o lugar colado nelas. A embalagem tambem diz algo a esta ilha, e o boletim melhorou a resposta: alem dos sacos de 15 e 20 kg que o banco ja tinha, a secao 7 declara `sacos plasticos de 5, 15 ou 20kg`, e o de 5 kg e o unico formato deste produto que nao e formato de obra. Validade declarada: 8 meses em embalagem de papel e 12 meses em plastico.",
-      "condicoes": {
-        "proibe_grupos_de_tessela": {
-          "valor": [
-            "baixa_absorcao_de_agua",
-            "revestimento_especial"
-          ],
-          "literais": {
-            "baixa_absorcao_de_agua": "cerâmicas do tipo porcelanato ou com absorção de água menor que 3%",
-            "revestimento_especial": "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigoríficos e revestimentos especiais"
-          },
-          "onde_o_fabricante_escreve": "declaracoes.nao_indicado_para",
-          "fonte_id": "bt-cimentcola-externo-2016-05",
-          "quem_classifica_o_grupo": "a ilha, em esquema-banco.json / grupos_de_tessela_proibidos — nunca o fabricante, que declarou a PROIBICAO e nao a lista de quais caquinhos do nosso vocabulario caem nela (secao 26.3 do ARQUIPELAGO.md)",
-          "o_que_este_campo_NAO_destrava": "Ele NAO torna esta argamassa recomendavel — quem a tornou foi a REGRA 8, em 06/10/2026, ao gravar o substrato com o lugar que o documento cola nele. A regra 7 roda DEPOIS das cinco e DEPOIS da 8, sobre quem sobreviveu a elas, e desde 06/10 ela morde de verdade: em `pastilha_vidro`, `caco_louca` e `caco_espelho` esta argamassa sai da recomendacao com a frase da proibicao, e nao com a do silencio. Esta frase dizia, ate 06/10, que o registro caia na regra 2 em TODA base porque nenhuma declaracao gravada nomeava substrato; era verdade quando foi escrita e deixou de ser no mesmo dia, pela entrega que este campo existia para esperar."
-        }
-      }
-    },
-    {
-      "id": "loctite-durepoxi",
-      "categoria": "cola",
-      "tipo": "epoxi",
-      "marca": "Loctite",
-      "fabricante": "Henkel",
-      "nome_comercial": "Loctite Durepoxi",
-      "codigo_fabricante": null,
-      "motivo_sem_codigo": "A fonte e material de imprensa, que nao cita codigo de ficha tecnica.",
-      "declaracoes": {
-        "indicado_para": [
-          "vidro",
-          "madeira",
-          "metal",
-          "porcelana",
-          "borracha",
-          "pedra",
-          "alguns tipos de plástico",
-          "couro",
-          "alumínio",
-          "ferro",
-          "cobre",
-          "prata",
-          "ouro",
-          "latão",
-          "mármore",
-          "fibras naturais"
-        ],
-        "nao_usar_em": [],
-        "nao_recomendado_em": [],
-        "nao_indicado_para": [],
-        "ambientes_declarados": [],
-        "resistencias_declaradas": [
-          "condição submersa"
-        ]
-      },
-      "propriedades": {
-        "secagem_versao_extraforte": {
-          "valor": 10,
-          "unidade": "min",
-          "fonte_id": "press-release-durepoxi",
-          "declarado_como": "versao extraforte seca em 10 minutos"
-        }
-      },
-      "preparo": {
-        "literal_do_fabricante": null,
-        "fonte_id": null,
-        "lido_em": null,
-        "recorte_do_documento": null,
-        "nossa_leitura": null,
-        "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo. A fonte dele e material do fabricante de nivel que ja o mantem fora de recomendacao (ele vive em `mencionados_com_ressalva`), e releitura dele nao muda nenhuma celula da F2 — por isso nao foi pedida nesta execucao."
-      },
-      "geometria": null,
-      "venda": [],
-      "afiliado": {
-        "programa": "mercadolivre",
-        "url": "https://meli.la/2ujbpEQ",
-        "url_produto": "https://www.mercadolivre.com.br/durepoxi-branco-adesivo-epoxi-massa-loctite-50g-henkel/p/MLB27690478",
-        "sub_id_1": "clubedomosaico",
-        "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-13",
-        "url_busca": "https://s.shopee.com.br/1VzSmrwQBH",
-        "degrau": 2,
-        "conferido_em": "2026-09-13",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=durepoxi%20loctite",
-        "url_busca_gerada_em": "2026-09-25",
-        "motivo_da_chave": "marca + linha"
-      },
-      "imagem": null,
-      "fontes": {
-        "press-release-durepoxi": {
-          "url": "https://www.henkel.com.br/imprensa-midia/press-releases-e-kits/2018-09-11-familia-loctite-durepoxi-possibilita-diferentes-reparos-e-aplicacoes-875598",
-          "tipo": "material de imprensa do fabricante (2018) — NÃO é ficha técnica",
-          "nivel": 4,
-          "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true,
-          "documento_aberto": false
-        }
-      },
-      "constantes_relacionadas": [
-        "loctite-durepoxi-substratos"
-      ],
-      "divergencias": [],
-      "resolucao": null,
-      "status": "ativo",
-      "motivo_do_descarte": null,
-      "usada_por": [
-        "F2"
-      ],
-      "observacao": "O registro que criou o nivel 4 da escada de fontes. Ele e o unico do banco que declara aderir em condicao submersa — exatamente a faixa descoberta da F2 — e mesmo assim NAO vira recomendacao, porque a unica declaracao vem de press release de 2018. Aparece so como mencao com ressalva, com a frase 'segundo material do proprio fabricante (2018)'. Troca-se pela ficha tecnica assim que ela for aberta, e ai a faixa deixa de ser descoberta."
-    },
-    {
-      "id": "tekbond-silicone-acetico-maxx",
-      "categoria": "cola",
-      "tipo": "silicone_acetico",
-      "marca": "Tekbond",
-      "fabricante": "Tekbond",
-      "nome_comercial": "Silicone Acético Maxx",
-      "codigo_fabricante": "BRSA005",
-      "declaracoes": {
-        "indicado_para": [
-          "cerâmicas vitrificadas",
-          "superfícies lisas em geral",
-          "terrários",
-          "vitrines de alimentos",
-          "bebedouros",
-          "embarcações",
-          "aplicações tradicionais no mercado da construção civil"
-        ],
-        "nao_usar_em": [],
-        "nao_recomendado_em": [],
-        "nao_indicado_para": [],
-        "ambientes_declarados": [],
-        "resistencias_declaradas": [
-          "aquários",
-          "piscinas",
-          "variação de temperatura"
-        ]
-      },
-      "propriedades": {
-        "rendimento_por_area": {
-          "valor": null,
-          "unidade": "kg/m2",
-          "fonte_id": null,
-          "motivo": "Mesmo caso do Silicone Acetico Construcao: silicone rende por CORDAO, nao por area colada. Converter seria palpite."
-        }
-      },
-      "preparo": {
-        "literal_do_fabricante": null,
-        "fonte_id": null,
-        "lido_em": null,
-        "recorte_do_documento": null,
-        "nossa_leitura": null,
-        "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo e a fonte e www.tekbond.com.br, em 403 nas tres passadas de 06/10/2026."
-      },
-      "geometria": null,
-      "condicoes": {},
-      "venda": [
-        {
-          "unidade": "cartucho",
-          "quantidade": null,
-          "embalagem_declarada": null,
-          "loja": null,
-          "fonte_id": "pagina-produto-maxx",
-          "coletado_em": "2026-09-13",
-          "observacao": "O fabricante cita as versoes blister e cartucho. Peso e volume da embalagem NAO foram coletados."
-        }
-      ],
-      "afiliado": {
-        "programa": "shopee",
-        "url": "https://s.shopee.com.br/5AsrvyZtmH",
-        "sub_id_1": "clubedomosaico",
-        "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": "2026-09-29",
-        "url_busca": "https://s.shopee.com.br/3g3xMqny08",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20acetico%20maxx%20tekbond",
-        "degrau": 3,
-        "motivo_da_troca_da_palavra_chave": "A palavra-chave era 'silicone maxx tekbond AQUARIO', e aquario e o nicho da Aquametria: a chave veio copiada de la e mandaria quem faz mosaico para a prateleira de aquario. Trocada em 14/09/2026 por 'silicone acetico maxx tekbond'. O que esta errado e a chave, nunca o metodo: chave de busca se confere abrindo a busca crua, e e por isso que a 25.4-b manda guardar a URL crua.",
-        "url_busca_gerada_em": "2026-09-25",
-        "url_produto": "https://shopee.com.br/product/1098293603/21297997810",
-        "conferido_em": "2026-09-29",
-        "casamento": {
-          "casado_em": "2026-09-29",
-          "regra": "ferramentas/casar-anuncio.py (cinco travas mais unicidade)",
-          "degrau_da_palavra_chave": 2,
-          "palavra_chave": "Tekbond Silicone Acético Maxx",
-          "titulo_do_anuncio": "Adesivo Silicone Acético Maxx Transparente 280g Tekbond",
-          "loja": "BSB Distribuidora",
-          "item_id": 21297997810,
-          "shop_id": 1098293603,
-          "por_que_este_degrau_da_25_1": "a loja \"BSB Distribuidora\" e vendedor comum (25.1, degrau 3)",
-          "prova_de_vida": "a API devolveu este anuncio em 2026-09-29. Nao foi clicado: o salto do encurtador e onde a Shopee conta o clique e autoclique com a etiqueta da ilha apaga o primeiro clique organico (25.8)."
-        }
-      },
-      "imagem": {
-        "url": "https://cf.shopee.com.br/file/sg-11134201-7rfhw-m4abblfhnfdu31",
-        "largura": 1024,
-        "altura": 1024,
-        "fonte": "Open API de Afiliados da Shopee (25.6), anuncio casado",
-        "coletado_em": "2026-09-29",
-        "alt": "Silicone Acético Maxx"
-      },
-      "fontes": {
-        "pagina-produto-maxx": {
-          "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico-maxx",
-          "tipo": "página de produto do fabricante",
-          "nivel": 3,
-          "coletado_em": "2026-09-13",
-          "conferir_no_pdf": false,
-          "documento_aberto": false,
-          "leitura": "busca restrita ao dominio do fabricante. O egresso desta nuvem NAO abre tekbond.com.br — remedido em 13/09/2026 em duas passadas, 000 nas duas, com clubedomosaico.com.br em 200 como controle. Por isso a fonte e nivel 3 e nao nivel 1: o elo mais fraco e a leitura (secao 10 do ARQUIPELAGO.md)."
-        }
-      },
-      "constantes_relacionadas": [],
-      "divergencias": [],
-      "resolucao": null,
-      "status": "ativo",
-      "motivo_do_descarte": null,
-      "usada_por": [
-        "F2"
-      ],
-      "observacao": "O PRIMEIRO PRODUTO DO BANCO QUE PODE SER RECOMENDADO EM CONTATO PERMANENTE COM AGUA. Ate 13/09/2026 essa faixa tinha ZERO elegiveis nas nove bases, e a unica declaracao de colagem submersa da ilha era press release de 2018 (loctite-durepoxi, nivel 4, abaixo do minimo). Aqui a declaracao e da pagina de produto do fabricante, nivel 3, e a regra 4 (ambiente critico exige declaracao EXPLICITA) e cumprida por 'aquarios' e 'piscinas'. O QUE ELE NAO FECHA, E ESTA ESCRITO EM VEZ DE ESCONDIDO: das nove bases, ele so entra em ceramica_esmaltada_porcelana, porque 'ceramicas vitrificadas' e a UNICA superficie que o fabricante nomeia. VIDRO nao esta na lista dele — e um silicone de aquario, e aquario e de vidro, e a tentacao de traduzir 'fabricacao e reparo de aquarios' em base VIDRO e exatamente a heuristica por vizinhanca que a secao 8 do contrato proibe. 'Aquarios' e aplicacao e entra como AMBIENTE, que e o que ela mede. O dia em que a ficha BRSA005 for aberta, a lista de substratos dela decide — nao a nossa leitura do que um aquario e.",
-      "fonte_localizada_nao_lida": {
-        "url": "https://www.tekbond.com.br/sites/Tekbond.com.br/files/media-library/product/BRSA005/documents/technical_sheet/downloadable_file/Silicone_Acetico_Maxx-BRSA005-ficha_tecnica_01.pdf",
-        "tipo": "ficha tecnica do fabricante — LOCALIZADA, NAO LIDA",
-        "nivel": 2,
-        "coletado_em": "2026-09-13",
-        "conferir_no_pdf": true,
-        "leitura": "A ficha EXISTE e o endereco dela esta aqui, mas NENHUM campo deste registro veio dela: o PDF nao abre desta nuvem. Ela esta gravada para que a proxima execucao que tiver canal saiba exatamente onde ir — e para que ninguem a colha de novo.",
-        "sustenta_algum_campo": false,
-        "por_que_ela_NAO_esta_em_fontes": "Porque `fontes` e o que SUSTENTA este registro, e ela nao sustenta uma linha dele. Gravada dentro de `fontes` ela fez duas coisas erradas de uma vez, e as duas foram pegas por portao em 13/09/2026, antes do commit: (1) o nivel do produto virou 2, o da ficha tecnica, quando toda declaracao deste registro veio da pagina de produto, nivel 3 — e a secao 10 do ARQUIPELAGO.md diz que o nivel e o do elo MAIS FRACO, entao inflar aqui e o defeito mais caro que existe numa fabrica que vende procedencia; (2) a linha de prova da tela passou a atribuir a declaracao a um documento que ninguem abriu. Ficha localizada e endereco guardado, nao fonte."
-      },
-      "pendencia_nomeada_em_06_10_2026": {
-        "id": "maxx-nao-declara-nada-sobre-espelho",
-        "o_que_e": "A REGRA 7 nasceu hoje e tirou o Tekbond Silicone Acetico Construcao de todo caso com caco de espelho, porque a Tekbond escreve `espelhos` na lista do que ele nao deve tocar. ESTE registro e acetico tambem, da MESMA Tekbond, e tem `nao_usar_em` VAZIO. Entao ele continua podendo ser recomendado para caco de espelho.",
-        "por_que_a_ilha_NAO_estendeu_a_proibicao": "Porque seria inventar declaracao. A regra 2 do esquema proibe transformar silencio de fabricante em recomendacao; estender a proibicao de um produto para o irmao dele e o avesso exato do mesmo defeito, do outro lado do balcao. A regra 7 le `condicoes.proibe_grupos_de_tessela`, que e campo POR PRODUTO, e esta escrito no esquema em `grupos_de_tessela_proibidos.o_grupo_e_do_PRODUTO_e_nao_do_CAQUINHO`.",
-        "o_que_a_ilha_SABE_e_o_que_ela_NAO_sabe": "SABE que a unica fonte deste registro e pagina de produto (nivel 3) e que ela nao traz lista de proibicao nenhuma — nem de espelho nem de qualquer outra superficie. NAO SABE se o boletim tecnico do Maxx proibe espelho, porque esse documento nunca foi aberto: `www.tekbond.com.br` responde 403 desta nuvem, remedido em 06/10/2026 nas DUAS URLs do registro do acetico (pagina de produto e ficha BRSA004). Silencio de documento nao lido nao e silencio de fabricante.",
-        "o_que_destrava": "O boletim tecnico ou a FISPQ do Maxx, numa fonte alcancavel. As duas portas do fabricante estao em 403; o canal de espelho de `dados/canal-de-espelho.md` e arquivo por NOME CONHECIDO e o inventario dele sao 14 documentos, nenhum da Tekbond. Enquanto nao houver documento, nada muda aqui — e a frase que NAO se pode escrever e `o Maxx pode em espelho`, porque disso nao se mediu nada.",
-        "custo_de_deixar_aberta": "Uma recomendacao de acetico para caco de espelho continua possivel em `ceramica_esmaltada_porcelana`, que e a unica base que este produto declara. Nao e hipotese confortavel e nao esta escondida: o mecanismo e o mesmo que tirou o irmao dele — o acido acetico da cura ataca a prata do espelho —, e o que falta nao e raciocinio, e documento."
-      }
-    },
-    {
-      "id": "cascola-pl500-adesivo-de-montagem",
-      "categoria": "cola",
-      "tipo": "pva",
-      "marca": "Cascola",
-      "fabricante": "Henkel",
-      "nome_comercial": "Cascola Adesivo de Montagem PL500 Interior",
-      "codigo_fabricante": "PL500",
-      "declaracoes": {
-        "indicado_para": [
-          "metal",
-          "porcelana",
-          "plásticos",
-          "madeira",
-          "concreto",
-          "vidro",
-          "poliestireno expandido",
-          "drywall"
-        ],
-        "nao_usar_em": [],
-        "nao_recomendado_em": [],
-        "nao_indicado_para": [],
-        "ambientes_declarados": [
-          "uso interno"
-        ],
-        "resistencias_declaradas": []
-      },
-      "propriedades": {
-        "tempo_de_ajuste": {
-          "valor": 5,
-          "unidade": "min",
-          "fonte_id": "pagina-produto-pl500",
-          "declarado_como": "o tempo para ajustes e de 5 minutos"
-        },
-        "rendimento_por_area": {
-          "valor": null,
-          "unidade": "kg/m2",
-          "fonte_id": null,
-          "motivo": "O fabricante nao publica rendimento por area colada para este produto. A coluna de cola da F1 continua vazia com a frase na tela."
-        }
-      },
-      "preparo": {
-        "literal_do_fabricante": "Prepare as superfícies a serem coladas, deixando-as limpas, firmes e niveladas. Superfícies ou paredes pintadas ou com tintas em más condições, devem ser lixadas previamente. Importante destacar que ao menos uma das superfícies deve ser porosa, já que o produto seca por evaporação da água. Corte a ponta do cartucho e rosqueie o bico nele. Feito isso, destampe o bico e corte-o na diagonal, conforme o diâmetro desejado, e insira o cartucho na pistola. Para peças pesadas ou que receberão esforço, utilize um suporte, mantendo-o até a cura total do adesivo. O excesso de adesivo deverá ser retirado imediatamente com um pano umedecido com água ou álcool doméstico antes da secagem.",
-        "fonte_id": "pagina-produto-pl500",
-        "como_a_tela_chama_o_documento": "na página de produto dele",
-        "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
-        "lido_em": "2026-10-06",
-        "recorte_do_documento": "Passos 1 e 2 de \"Como utilizar o produto?\" inteiros, mais as duas frases finais do Passo 4 (o suporte da peca pesada e a retirada do excesso). Ficaram fora o Passo 3 e a primeira frase do 4, que sao o gesto de aplicar e juntar.",
-        "nossa_leitura": "Superficies limpas, firmes e niveladas. Parede pintada ou com tinta em mau estado deve ser lixada antes. Excesso sai com pano umido em agua ou alcool domestico ANTES de secar. Peca pesada ou que va receber esforco pede escora ate a cura completa.",
-        "motivo_sem_literal": null,
-        "o_que_a_parafrase_perdia": "Tres coisas. (1) A condicao da superficie porosa, que o fabricante escreve DENTRO do preparo e que o banco guarda em `condicoes.exige_superficie_porosa` — a tela dizia a condicao pela nossa regra e nao pela frase dele. (2) O motivo da condicao, que e dele: \"ja que o produto seca por evaporacao da agua\". (3) O preparo do cartucho, que era o Passo 2 inteiro.",
-        "divergencia_lida_no_proprio_documento": "A mesma pagina publica DOIS tempos de ajuste: a lista de caracteristicas, no topo, diz \"Tempo para ajustes de 10 minutos\" e o Passo 4 diz \"O tempo para ajustes e de 05 minutos\". Nenhum dos dois esta gravado no banco e nenhum vai a tela — este campo e preparo, nao propriedade. Fica escrito aqui porque quem for gravar `tempo_para_ajustes_min` precisa saber que a fonte se contradiz antes de escolher um numero."
-      },
-      "geometria": null,
-      "condicoes": {
-        "exige_superficie_porosa": {
-          "valor": true,
-          "literal": "ao menos uma das superfícies deve ser porosa, já que o produto seca por evaporação da água",
-          "fonte_id": "pagina-produto-pl500",
-          "quem_classifica_a_porosidade": "a ilha, em esquema-banco.json / superficies_porosas — nunca o fabricante, que declarou a condicao e nao a lista (secao 26.3 do ARQUIPELAGO.md)"
-        }
-      },
-      "venda": [
-        {
-          "unidade": "cartucho",
-          "quantidade": null,
-          "embalagem_declarada": null,
-          "loja": null,
-          "fonte_id": "pagina-produto-pl500",
-          "coletado_em": "2026-09-13",
-          "observacao": "Adesivo de montagem da linha DIY. Peso e volume da embalagem NAO foram coletados."
-        }
-      ],
-      "afiliado": {
-        "programa": "shopee",
-        "url": "",
-        "sub_id_1": "clubedomosaico",
-        "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaicof2",
-        "gerado_em": null,
-        "url_busca": "https://s.shopee.com.br/70KPKybPmg",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=cascola%20adesivo%20de%20montagem%20pl500",
-        "degrau": 4,
-        "url_busca_gerada_em": "2026-09-25",
-        "motivo_sem_ficha": "CAUSA (candidato-barrado-variante): ha anuncio COM a marca (34 de 34 ofertas) e um irmao do banco disputou o titulo em 4 deles: a divida e da regra de casamento ou de um registro de variante que falta, nao do mercado || ULTIMA TENTATIVA 2026-09-30: 1 \"Cascola PL500\" -> 12 ofertas, 12 com a marca, a mais proxima barrada por: o titulo nao traz ['adesivo'], que esta no nome comercial deste registro; 2 \"Cascola Cascola Adesivo de Montagem PL500 Interior\" -> 4 ofertas, 4 com a marca, a mais proxima barrada por: o titulo nao traz ['adesivo'], que esta no nome comercial deste registro; 3 \"cascola adesivo de montagem pl500\" -> 6 ofertas, 6 com a marca, a mais proxima barrada por: o titulo nao traz ['adesivo'], que esta no nome comercial deste registro; 4 \"Cascola adesivo montagem\" -> 12 ofertas, 12 com a marca, a mais proxima barrada por: o titulo traz a palavra de armadilha \"kit\""
-      },
-      "imagem": null,
-      "fontes": {
-        "pagina-produto-pl500": {
-          "url": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-adesivo-de-montagem---pl500-interior/SAP_0201C8I05EAB.html",
-          "tipo": "página de produto do fabricante",
-          "nivel": 3,
-          "coletado_em": "2026-09-13",
-          "conferir_no_pdf": false,
-          "documento_aberto": true,
-          "leitura": "busca restrita ao dominio do fabricante. cascola.com.br tambem nao abre desta nuvem (000, medido em 13/09/2026). Duas buscas independentes, com perguntas diferentes e SEM o valor dentro da pergunta (secao 8), devolveram a mesma lista de materiais, a mesma condicao de porosidade e o mesmo tempo de ajuste.",
-          "reaberta_em": "2026-10-06",
-          "o_que_a_abertura_mudou": {
-            "por_que_foi_reaberta": "Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 238 KB de HTML.",
-            "o_que_a_leitura_trouxe": "Os passos 1, 2 e as duas frases finais do 4 de \"Como utilizar o produto?\", agora em `preparo.literal_do_fabricante`. Entre eles, a frase que o fabricante escreve DENTRO do preparo: \"ao menos uma das superficies deve ser porosa, ja que o produto seca por evaporacao da agua\" — a condicao que o banco ja guardava em `condicoes.exige_superficie_porosa` e que a tela, ate hoje, dizia so pela nossa regra.",
-            "a_divergencia_DENTRO_do_documento": "A mesma pagina publica DOIS tempos de ajuste: a lista de caracteristicas, no topo, diz \"Tempo para ajustes de 10 minutos\" e o passo 4 diz \"O tempo para ajustes e de 05 minutos\". Nenhum dos dois esta gravado como propriedade e nenhum vai a tela; quem for gravar `tempo_para_ajustes_min` precisa saber que a fonte se contradiz ANTES de escolher um numero. Fica escrito aqui pela 19.6, nao em `divergencias`, porque `divergencias` pede resolucao e nao ha o que resolver num campo que nao existe.",
-            "o_nivel_NAO_subiu_e_por_que": "Continua 3, pela mesma razao do Cascorez."
-          }
-        }
-      },
-      "constantes_relacionadas": [],
-      "divergencias": [],
-      "resolucao": null,
-      "status": "ativo",
-      "motivo_do_descarte": null,
-      "usada_por": [
-        "F2"
-      ],
-      "observacao": "O PRIMEIRO PRODUTO DO BANCO INDICADO SOBRE PLASTICO, e o primeiro que traz uma CONDICAO que nao fala de base nem de ambiente. Ate hoje a base plastico saia com zero elegiveis nos cinco ambientes: o unico que falava de plastico era o Silicone Neutro, com 'certos tipos de plastico', que nao nomeia tipo nenhum. Aqui o fabricante lista 'plasticos' numa lista de materiais que o produto adere, sem qualificador — e isso indica. A CONDICAO E A METADE QUE IMPORTA: o produto seca por evaporacao de agua, entao ao menos uma das duas superficies tem de ser porosa. Sobre plastico, quem tem de ser poroso e o CAQUINHO — e por isso este registro obrigou a regra 6 do esquema, a primeira regra de cola que olha a tessela. Com pastilha de vidro sobre vaso de plastico ele NAO e recomendado, e a pagina diz isso com a causa certa, em grupo proprio: nao e proibicao (ele nao proibe) e nao e silencio (ele falou). O QUE FOI RECUSADO DE PROPOSITO: a frase 'ideal para adesao de rodapes, pecas decorativas, azulejos, ladrilhos, molduras, canaletas, cantoneiras, maquetes, mosaicos' NAO entrou em indicado_para, embora contenha 'azulejos', que o mapa traduz como base. E a lista do que se COLA, nunca a do que se cola SOBRE — o mesmo erro que este banco ja pegou na cimentcola AC-II. 'Mosaicos' esta escrito la pelo proprio fabricante, e mesmo assim nao vira declaracao de substrato: vira citacao."
+   },
+   "constantes_relacionadas": [
+    "tekbond-silicone-neutro-substratos"
+   ],
+   "divergencias": [],
+   "resolucao": null,
+   "status": "ativo",
+   "motivo_do_descarte": null,
+   "usada_por": [
+    "F2",
+    "G-COLAS"
+   ],
+   "observacao": "E a saida declarada pelo MESMO fabricante para quase tudo que o acetico proibe — espelho, vidro laminado, concreto, alvenaria, pedra, metal. Par acetico/neutro de uma fonte so e o que permite a F2 dizer 'nao use A, use B' sem trocar de fabricante no meio da frase. As resistencias declaradas (chuva e raios UV) sao o que o faz passar na regra 4 em area externa exposta, onde o silencio do acetico o tira da lista."
+  },
+  {
+   "id": "cascola-cascorez-extra",
+   "categoria": "cola",
+   "tipo": "pva",
+   "marca": "Cascola",
+   "fabricante": "Henkel",
+   "nome_comercial": "Cascola Cascorez Cola Branca PVA Extra / Extraforte",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "A pagina de produto identifica por SKU interno do site (SAP_0201FTC20WQ5), que nao e codigo de ficha tecnica.",
+   "declaracoes": {
+    "indicado_para": [
+     "madeira de alta, média e baixa densidade",
+     "MDF",
+     "compensado",
+     "couro",
+     "tela",
+     "gesso",
+     "laminados plásticos (Formica, Formiplac, Perstop)",
+     "poliestireno expandido",
+     "outros materiais porosos",
+     "papel, papelão, tecido e cortiça",
+     "encadernação",
+     "molduras, rodapés e revestimentos decorativos em ambientes internos"
+    ],
+    "nao_usar_em": [],
+    "nao_recomendado_em": [],
+    "nao_indicado_para": [],
+    "ambientes_declarados": [
+     "ambientes internos"
+    ],
+    "resistencias_declaradas": []
+   },
+   "propriedades": {
+    "tempo_de_secagem": {
+     "valor": null,
+     "unidade": "h",
+     "fonte_id": null,
+     "motivo": "Nao coletado. Esta em pendentes de dados/constantes.json como `cascorez-tempo-de-secagem` — a F2 hoje indica o PVA para MDF interno sem dizer quanto tempo esperar."
     }
-  ]
+   },
+   "preparo": {
+    "literal_do_fabricante": "Antes de aplicar, prepare as superfícies a serem coladas, que devem estar limpas, firmes, niveladas e secas. Lixe-as quando necessário para torna-las mais ásperas. A aplicação poderá ser feita por meio de passadeiras automáticas ou manualmente, utilizando pincel, rolo, etc.",
+    "fonte_id": "pagina-produto-cascorez",
+    "como_a_tela_chama_o_documento": "na página de produto dele",
+    "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
+    "lido_em": "2026-10-06",
+    "recorte_do_documento": "Passos 1 e 2 de \"Como utilizar o produto?\", na pagina de produto, inteiros. Os passos 3 e 4 ficaram fora: eles descrevem o GESTO de colar (aplicar em uma das superficies, juntar as partes, pressionar ate secar), nao o preparo.",
+    "nossa_leitura": "Superficies limpas, firmes, niveladas e secas; lixar quando necessario para deixar aspero. Aplicacao com pincel ou rolo.",
+    "motivo_sem_literal": null,
+    "o_que_a_parafrase_perdia": "A parafrase FECHAVA uma lista que o fabricante deixou aberta. Ele escreve \"passadeiras automaticas ou manualmente, utilizando pincel, rolo, etc.\" e o gravado dizia \"Aplicacao com pincel ou rolo\" — duas formas de aplicar viraram as unicas duas.",
+    "observacao_sobre_a_grafia": "O fabricante publica `torna-las` sem acento. A frase vai ao ar como ele a publicou: corrigir a grafia dele dentro das aspas seria editar a citacao."
+   },
+   "geometria": null,
+   "venda": [],
+   "afiliado": {
+    "programa": "shopee",
+    "url": "https://s.shopee.com.br/7ptWKVTuYa",
+    "url_produto": "https://shopee.com.br/product/1270088146/19497747157",
+    "sub_id_1": "clubedomosaico",
+    "sub_id_2": "F2",
+    "etiqueta_ml": "clubedomosaicof2",
+    "gerado_em": "2026-09-25",
+    "url_busca": "https://s.shopee.com.br/AKarJ6KOTI",
+    "degrau": 1,
+    "conferido_em": "2026-09-13",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=cascorez%20extra%20cola%20branca%20pva%20cascola",
+    "url_busca_gerada_em": "2026-09-25",
+    "motivo_da_chave": "marca + linha + tipo"
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-mdasbwbuzm0i23",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "feed de afiliado da Shopee, 13/09/2026",
+    "coletado_em": "2026-09-13",
+    "alt": "Cola branca PVA Cascorez Extra 1 kg"
+   },
+   "fontes": {
+    "pagina-produto-cascorez": {
+     "url": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-cascorez-cola-branca-pva-extraforte/SAP_0201FTC20WQ5.html",
+     "tipo": "página de produto do fabricante",
+     "nivel": 3,
+     "coletado_em": "2026-09-10",
+     "conferir_no_pdf": true,
+     "documento_aberto": true,
+     "reaberta_em": "2026-10-06",
+     "o_que_a_abertura_mudou": {
+      "por_que_foi_reaberta": "Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 241 KB de HTML.",
+      "o_que_a_leitura_trouxe": "O bloco \"Como utilizar o produto?\", passo a passo. Os passos 1 e 2 sao o preparo e estao agora em `preparo.literal_do_fabricante`, inteiros.",
+      "a_divergencia_que_ela_achou": "A parafrase que o banco carregava desde 10/09 — \"Aplicacao com pincel ou rolo\" — FECHAVA uma lista que o fabricante deixou aberta: ele escreve \"passadeiras automaticas ou manualmente, utilizando pincel, rolo, etc.\". E uma das quatro parafrases conferidas em 06/10, e as quatro perderam informacao do documento.",
+      "o_nivel_NAO_subiu_e_por_que": "Continua 3. Nivel e natureza da fonte, nunca alcance dela — abrir a pagina mede o que ela DIZ, nao o que ela E. Mesma razao escrita na reabertura da AF1500 em 05/10."
+     }
+    }
+   },
+   "constantes_relacionadas": [
+    "cascorez-extra-substratos"
+   ],
+   "divergencias": [],
+   "resolucao": null,
+   "status": "ativo",
+   "motivo_do_descarte": null,
+   "usada_por": [
+    "F2",
+    "G-COLAS"
+   ],
+   "observacao": "O caso que obrigou os tres estados do esquema. O fabricante nao proibe area molhada nem externa: ele simplesmente DELIMITA o uso a 'revestimentos decorativos em ambientes internos' e nao declara resistencia a agua. A ilha nao transforma esse silencio em proibicao inventada — a regra 3 tira o produto dos ambientes que ele nao declara, e a tela diz literalmente 'o fabricante nao declara uso externo nem resistencia a agua para este produto'."
+  },
+  {
+   "id": "quartzolit-cimentcola-externo-acii",
+   "categoria": "cola",
+   "tipo": "cimentcola_acii",
+   "marca": "Quartzolit",
+   "fabricante": "Saint-Gobain Weber",
+   "nome_comercial": "Argamassa Cimentcola Externo AC-II Quartzolit",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "Identificada pela classificacao normativa (AC II conforme NBR 14.081) e pelo nome do produto como o proprio fabricante o escreve no boletim ('cimentcola externo quartzolit', em minusculas). O boletim NAO imprime codigo de produto. A frase anterior deste campo dizia que 'o Boletim Tecnico 2024-09 nao foi aberto' — um boletim deste produto FOI aberto e lido em 05/10/2026, e e o de maio de 2016; o 2024-09 segue sem canal.",
+   "declaracoes": {
+    "indicado_para": [
+     "assentar revestimentos cerâmicos de até 60x60 cm em pisos e paredes de áreas internas e externas, bem como superfícies de gesso acartonado (drywall)",
+     "assentar revestimentos cerâmicos de até 20x20 cm e de absorção de água de 3% a 6% em fachadas e em piscinas residenciais não aquecidas",
+     "placas de pedras naturais, arenitos, quartzitos, como miracema, são tomé, mineira, goiás e ardósia, de até 60x60 cm, com espessura irregular de até 3 cm, em pisos e paredes de áreas internas e externas",
+     "em camada grossa com espessuras de até 3 cm de argamassa colante",
+     "cerâmicas principalmente quando se deseja regularizar desníveis de planeza da base",
+     "Emboço, alvenaria e contrapiso em áreas internas, curados há pelo menos 14 dias, conforme NBR 13.754.",
+     "Paredes de concreto curado há 180 dias.",
+     "Alvenarias de blocos vazados de concreto, de blocos silicocalcários e de blocos de concreto celular em paredes internas, conforme a Norma Técnica NBR 13.754."
+    ],
+    "nao_usar_em": [],
+    "nao_recomendado_em": [],
+    "nao_indicado_para": [
+     "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigoríficos e revestimentos especiais",
+     "cerâmicas do tipo porcelanato ou com absorção de água menor que 3%",
+     "bases com pintura ou quaisquer materiais que possam impedir a aderência da argamassa cimentcola externo quartzolit"
+    ],
+    "ambientes_declarados": [
+     "área interna e externa"
+    ],
+    "resistencias_declaradas": []
+   },
+   "propriedades": {
+    "classificacao": {
+     "valor": "AC-II",
+     "unidade": null,
+     "fonte_id": "pagina-produto-cimentcola",
+     "declarado_como": "cimentcola de secagem rapida para assentamento ceramico em area interna e externa, tipo AC-II segundo a NBR 14.081"
+    },
+    "espessura_maxima_de_camada": {
+     "valor": 3,
+     "unidade": "cm",
+     "fonte_id": "pagina-produto-cimentcola",
+     "declarado_como": "pode ser aplicada em camada grossa, com ate 3 cm de espessura de argamassa"
+    },
+    "liberacao_para_agua_em_piscina": {
+     "valor": 7,
+     "unidade": "dias",
+     "fonte_id": "pagina-produto-cimentcola",
+     "declarado_como": "em piscina, encher com agua somente 7 dias depois"
+    },
+    "consumo_por_area": {
+     "valor": 3.5,
+     "unidade": "kg/m2",
+     "fonte_id": "bt-cimentcola-externo-2016-05",
+     "declarado_como": "secao 6 do boletim, tres faixas por area da peca assentada: 'Ceramica ate 400 cm2 +/- 3,5 kg/m2', 'Ceramica de 400 a 900 cm2 +/- 4,5 kg/m2', 'Ceramica maior que 900 cm2 +/- 8 kg/m2'",
+     "por_que_a_faixa_de_ate_400_cm2": "O valor gravado e o da PRIMEIRA faixa porque e a unica que alcanca peca de mosaico: a pastilha desta ilha tem de 1,2 a 3 cm de lado, e as outras duas faixas falam de revestimento de 20x20 cm para cima. As tres ficam escritas em declarado_como para quem publicar numero nao ter de reabrir o PDF.",
+     "nao_publicavel_sem_decisao": "Este numero NAO liga sozinho a coluna de gramas de cola da F1, e nenhuma linha de codigo o le hoje (conferido por varredura em 05/10/2026). Ligar a coluna exige decidir que consumo de argamassa colante de obra vale para peca de artesanato, o que e decisao e nao coleta."
+    },
+    "tempo_em_aberto": {
+     "valor": 20,
+     "unidade": "min",
+     "fonte_id": "bt-cimentcola-externo-2016-05",
+     "declarado_como": "'Tempo em aberto >=20 minutos', na tabela de propriedades e caracteristicas (secao 5)"
+    }
+   },
+   "preparo": {
+    "literal_do_fabricante": "Emboço, alvenaria e contrapiso em áreas internas, curados há pelo menos 14 dias, conforme NBR 13.754. Paredes de concreto curado há 180 dias. Se curado há 28 dias, utilize cimentcola flexível quartzolit. Alvenarias de blocos vazados de concreto, de blocos silicocalcários e de blocos de concreto celular em paredes internas, conforme a Norma Técnica NBR 13.754. O assentamento de placas cerâmicas com argamassa colante sobre alvenarias somente deve ocorrer quando elas tiverem, no mínimo, 14 dias. A superfície das bases não deve apresentar desvios de prumo e de planeza, conforme a Norma Técnica NBR 13.749, e deve estar firme, seca e sem pó. Certifique-se de que a base e o verso das placas estão secos, limpos e livres de resíduos. A superfície da base não deve apresentar deformações, e precisa estar firme, seca, curada e limpa (NBR 13.749). Certifique-se de que retrações do cimento e possíveis fissuras estão estabilizadas. Impermeabilize bases que tenham problemas de umidade. Obs.: quando os dentes da desempenadeira se desgastarem em mais de 1 mm de altura, substitua-a ou refaça os dentes.",
+    "fonte_id": "bt-cimentcola-externo-2016-05",
+    "como_a_tela_chama_o_documento": "no boletim técnico dele, revisado em maio de 2016",
+    "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
+    "lido_em": "2026-10-06",
+    "recorte_do_documento": "Da secao 4.1 \"Bases para aplicacao\" as TRES frases de substrato, inteiras, mais as que exigem CURA e ESTADO da base; da 4.2 \"Antes de aplicar\" a frase sobre a base e o verso das placas; e da 4.3 \"Preparo da base\" a prosa inteira, incluindo a obs. do desgaste dos dentes da desempenadeira e EXCLUINDO apenas a tabela de dentes por formato de ceramica e a linha que a introduz, que sem a tabela nao e frase. Ficaram fora, nomeadas: as juntas estruturais do projetista, a protecao das pecas de aluminio, a conferencia de ferramentas, a temperatura do ambiente e a lista de EPI — todas da 4.2 e todas sobre a obra e a seguranca do aplicador, nao sobre o preparo da base. A obs. da desempenadeira NAO ficou fora de proposito: ela e declaracao de fabricante que nomeia ferramenta de apoio, e cortar frase assim e justamente o que `exigencias_de_apoio_ja_declaradas_no_banco` existe para impedir — a varredura daquela secao le o literal e cobra a linha.",
+    "nossa_leitura": null,
+    "motivo_sem_literal": null,
+    "por_que_este_registro_entra_sem_parafrase_anterior": "Este registro tinha `preparo: null`. O campo foi preenchido em 06/10/2026 porque o proprio banco pedia: em `fontes / bt-cimentcola-externo-2016-05 / substratos_que_o_documento_declara_e_que_NAO_foram_gravados / os_outros_dois_bloqueios_medidos_em_06_10_2026` esta escrito, com estas palavras, que a cura dos 180 dias nao podia ser gravada porque \"o campo `preparo` nao resolve: ele existe neste esquema e a F2 NAO o serve em lugar nenhum\". A F2 passou a servir. A CURA DE 180 DIAS ESTA GRAVADA E NAO ESTA NA TELA, e isto foi MEDIDO em 06/10/2026 nos 45 estados de cola, um render por estado: ZERO servem a frase `Paredes de concreto curado ha 180 dias`. O motivo e que a cadeia tem um elo que o campo de 05/10 nao viu: este produto e `eliminado por silencio` em TODAS as 45 celulas, porque `declaracoes.indicado_para` nao nomeia nenhuma base do vocabulario — e nao nomeia justamente porque o substrato nao foi gravado. O bloco de preparo so alcanca quem a pagina RECOMENDA, e instrucao sem indicacao seria receita de usar o que a gente acabou de dizer que nao serve. Entao a F2 servir `preparo` era NECESSARIO e nao suficiente: o terceiro bloqueio e JUSANTE do segundo, nao irmao dele. A frase de 05/10 — `ou a F2 passa a servir preparo na resposta, e a cura vira texto na tela` — acertou o mecanismo e errou a ordem.",
+    "o_que_este_literal_NAO_destrava": "NADA MAIS, e esta frase ficou aqui invertida de proposito. Ate 06/10/2026 ela dizia que o substrato continuava fora de `declaracoes.indicado_para` e que por isso o literal nao chegava a tela, com a medicao ao lado (zero dos 45 estados serviam `Paredes de concreto curado ha 180 dias`). O substrato entrou na mesma data, pela REGRA 8, e com ele o literal passou a sair nas celulas em que esta argamassa e recomendada. O que ele continua nao destravando e `gesso acartonado (drywall)`, que nao tem valor em `vocabularios.base` — decisao do Raphael, na fila do PROMPT.md desde 28/09.",
+    "o_recorte_anterior_dizia_uma_coisa_que_metade_dele_desmentia": "ACHADO EM 06/10/2026, lendo este campo antes de mexer nele. A versao de 14h10Z afirmava que as duas frases de alvenaria que qualificam o ambiente — `em areas internas` e `em paredes internas` — `ficaram fora`, com o motivo escrito: `cita-lo pela metade na tela seria decidi-lo sem campo`. O motivo estava certo e a afirmacao estava METADE errada: a frase `em areas internas` NUNCA ficou fora. Ela e a PRIMEIRA sentenca do literal servido desde aquela hora, com o qualificador dentro, na tela, para quem a pagina recomendasse — e a pagina nao recomendava ninguem ali, o que fez a frase falsa ser invisivel em vez de inofensiva. So a terceira frase (`em paredes internas`) tinha de fato ficado fora. Entrou agora, porque a v14 deu o campo que faltava; e a prosa foi corrigida para dizer o que o recorte faz, nao o que se pretendia que ele fizesse. Mesma familia do defeito da sobra em 06/10: prosa de registro copiada da anterior sem ninguem abrir o campo ao lado."
+   },
+   "geometria": null,
+   "venda": [
+    {
+     "unidade": "saco",
+     "quantidade": 5,
+     "embalagem_declarada": "saco plastico de 5 kg",
+     "loja": null,
+     "fonte_id": "bt-cimentcola-externo-2016-05",
+     "coletado_em": "2026-10-05",
+     "por_que_esta_entrada_importa": "A secao 7 do boletim declara 'sacos plasticos de 5, 15 ou 20kg', e o banco so tinha 15 e 20. O 5 kg e o unico formato deste produto que nao e formato de obra — e a propria observacao deste registro dizia que recomendar 15 kg para um vaso destroi confianca."
+    },
+    {
+     "unidade": "saco",
+     "quantidade": 15,
+     "embalagem_declarada": "saco de papel ou plastico de 15 kg",
+     "loja": null,
+     "fonte_id": "pagina-produto-cimentcola",
+     "coletado_em": "2026-09-10"
+    },
+    {
+     "unidade": "saco",
+     "quantidade": 20,
+     "embalagem_declarada": "saco de papel ou plastico de 20 kg",
+     "loja": null,
+     "fonte_id": "pagina-produto-cimentcola",
+     "coletado_em": "2026-09-10"
+    }
+   ],
+   "afiliado": {
+    "programa": "mercadolivre",
+    "url": "https://meli.la/13fPigD",
+    "url_produto": "https://www.mercadolivre.com.br/argamassa-externa-quartzolit-ac-ii-saco-20kg-cinza-weber/p/MLB27315078",
+    "sub_id_1": "clubedomosaico",
+    "sub_id_2": "F2",
+    "etiqueta_ml": "clubedomosaicof2",
+    "gerado_em": "2026-09-13",
+    "url_busca": "https://s.shopee.com.br/7KxFjaa94c",
+    "degrau": 2,
+    "conferido_em": "2026-09-13",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=argamassa%20cimentcola%20externo%20quartzolit",
+    "url_busca_gerada_em": "2026-09-25",
+    "motivo_da_chave": "a chave com `ac-ii` devolvia ZERO em 25/09/2026: a Shopee anuncia AC-2/AC-3 e quase nunca escreve a numeracao romana. Um degrau abaixo na escada da 25.6 — marca + linha + uso"
+   },
+   "imagem": null,
+   "fontes": {
+    "pagina-produto-cimentcola": {
+     "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-para-ceramicas-externas-quartzolit/argamassa-cimentcola-externo-acii-quartzolit",
+     "tipo": "página de produto do fabricante",
+     "nivel": 3,
+     "coletado_em": "2026-09-10",
+     "conferir_no_pdf": true,
+     "documento_aberto": false
+    },
+    "bt-cimentcola-externo-2016-05": {
+     "url": "https://telhanorte.vteximg.com.br/arquivos/908487.pdf",
+     "tipo": "boletim tecnico do fabricante, ABERTO E LIDO pagina a pagina (3 paginas) pelo canal de espelho da escada_de_fontes; o documento se identifica como 'Boletim Tecnico - cimentcola externo quartzolit' e fecha com 'Documento revisado em maio de 2016'",
+     "nivel": 2,
+     "coletado_em": "2026-10-05",
+     "conferir_no_pdf": false,
+     "documento_aberto": true,
+     "por_que_nivel_2_e_nao_1": "O PDF foi lido inteiro, mas em ESPELHO (CDN de varejista), nao no servidor do fabricante. Do espelho sai o documento, nao a garantia de que a revisao e a vigente — e aqui isso nao e detalhe: a pendencia que este documento fecha aponta para o arquivo 2024-09 e o documento lido e de MAIO DE 2016. Ver escada_de_fontes.canal_de_espelho.",
+     "revisao_declarada_no_documento": "maio de 2016",
+     "documento": "Boletim Tecnico - cimentcola externo quartzolit, 3 paginas; titulo da pagina 1 em minusculas ('cimentcola externo quartzolit') e subtitulo 'argamassa colante para ceramicas em areas internas e externas'",
+     "revisao_declarada": "Documento revisado em maio de 2016",
+     "espelho": "O PDF NAO foi obtido no dominio do fabricante: www.quartzolit.weber segue em 403 e o apex so redireciona para ele (egresso remedido nesta execucao). Este arquivo esta no CDN da Telha Norte e o conteudo e o boletim do fabricante, com cabecalho, rodape e data de revisao proprios. Fica no nivel 2 e nao no 1 pelo motivo de sempre: por espelho de terceiro nao da para afirmar que esta e a revisao vigente — e aqui a duvida tem nome, porque a pendencia aponta para o arquivo 2024-09 e este e de maio de 2016.",
+     "tipo_de_origem": "documento-pdf-do-fabricante-em-espelho-de-terceiro",
+     "por_que_esta_origem_nao_batiza": "Segunda aplicacao da linha escrita hoje em batismo_do_fabricante.origens_que_NAO_batizam_e_por_que, e ela se provou sozinha: ao entrar sem este campo, a trava do batismo leu o nome do arquivo (`908487.pdf`, codigo do varejista) e reprovou `Argamassa Cimentcola Externo AC-II Quartzolit` dizendo que o fabricante nao escreve essas palavras. Falso positivo pelo mesmo mecanismo do rejunte piscinas. O fabricante batiza DENTRO do documento, no titulo da pagina 1 — e o que ele escreve ali esta medido em `o_que_o_documento_diz_sobre_o_proprio_nome`, abaixo, porque desta vez o nome do documento e o nome do banco NAO sao a mesma coisa.",
+     "o_que_o_documento_diz_sobre_o_proprio_nome": "O titulo da pagina 1 e `cimentcola externo quartzolit`, em minusculas, e o subtitulo e `argamassa colante para ceramicas em areas internas e externas`. O banco grava `Argamassa Cimentcola Externo AC-II Quartzolit`. As duas pontas que SOBRAM no banco sao `Argamassa`, que no documento e o subtitulo (a categoria do produto, nao o nome), e `AC-II`, que no documento e a linha da tabela de propriedades (`Classificacao normativa (NBR 14.081)  AC II`). Pela 26.1 as duas sao classificacao colada no batismo — o fabricante batiza pela posicao e nos classificamos pela funcao. O nome NAO foi corrigido nesta execucao de proposito, e o motivo e medido: `nome_comercial` e entrada da regra de casamento de anuncio (ferramentas/casar-anuncio.py), este registro esta no degrau 2 com `url_produto` de catalogo do Mercado Livre casado pelo nome, e trocar o nome sem reconferir os 14 casamentos e mexer no que paga comissao para ganhar tipografia. Fica como item nomeado, com o documento em casa.",
+     "substratos_que_o_documento_declara": {
+      "o_nome_deste_campo_mudou_em_06_10_2026_e_o_nome_velho_era": "`substratos_que_o_documento_declara_e_que_NAO_foram_gravados`. Ele nasceu em 05/10/2026 para a declaracao nao ficar LIDA E DESCARTADA EM SILENCIO, e cumpriu: foi lendo este campo que a execucao de 06/10 as 14h10Z descobriu que a proibicao de peca era UM de TRES bloqueios, e nao o unico. Os tres fecharam — a regra 7 em 06/10, o campo `preparo` servido na mesma data, e a regra 8 com o par substrato x ambiente na v14 do esquema. Com o substrato GRAVADO, o nome velho passou a afirmar o contrario do que o arquivo faz, e nome que mente e o defeito que esta ilha pagou em 06/10/2026 no campo da sobra: `relatorio velho tambem mente`, um andar abaixo. Renomeado, nao apagado.",
+      "por_que_este_campo_continua_existindo": "Porque ele guarda a LEITURA do documento, que e o que torna a traducao auditavel: as frases literais da secao 4.1, onde cada uma pousa no vocabulario, e o que o documento declara e esta ilha NAO tem valor para receber. Apagar o campo no dia em que o dado entra deixaria o `indicado_para` com tres frases novas e nenhum registro de como elas foram lidas.",
+      "literal_do_documento": [
+       "Emboco, alvenaria e contrapiso em areas internas, curados ha pelo menos 14 dias, conforme NBR 13.754.",
+       "Paredes de concreto curado ha 180 dias. Se curado ha 28 dias, utilize cimentcola flexivel quartzolit.",
+       "Alvenarias de blocos vazados de concreto, de blocos silicocalcarios e de blocos de concreto celular em paredes internas, conforme a Norma Tecnica NBR 13.754.",
+       "(da secao 2) bem como superficies de gesso acartonado (drywall)"
+      ],
+      "onde_isso_pousa_no_vocabulario": {
+       "cimento_concreto": "emboco, contrapiso e paredes de concreto. GRAVADO em 06/10/2026, em DUAS frases: a de emboco/alvenaria/contrapiso, que vem com `em areas internas` colado, e a de paredes de concreto, que nao qualifica lugar. Pela regra da uniao do mapa, a frase sem qualificador manda: esta base fica declarada em todo ambiente que o produto delimita.",
+       "alvenaria_tijolo": "alvenaria e alvenarias de blocos vazados, silicocalcarios e de concreto celular. GRAVADO em 06/10/2026, e as DUAS frases que a declaram vem com o lugar colado (`em areas internas` e `em paredes internas`). Entao esta base e declarada SO em `interno_seco`, e nos outros quatro ambientes o produto sai pela REGRA 8, com secao e frase proprias na tela — nunca pelo silencio.",
+       "sem_valor_no_vocabulario": "gesso acartonado (drywall) — QUARTA ocorrencia da mesma lacuna, e a UNICA das quatro que continua aberta depois de 06/10/2026: `vocabularios.base` nao tem valor para gesso, e dois vernizes do banco ja carregavam `gesso` e `isopor` na frase literal do fabricante. Acrescentar valor a `vocabularios.base` muda a lista suspensa da F2, que e pagina com impressao, e a decisao e do Raphael (esta escrita na fila do PROMPT.md desde 28/09)."
+      },
+      "ESTADO_EM_06_10_2026": "OS TRES BLOQUEIOS FECHARAM, E O SUBSTRATO ENTROU. O campo de 05/10 dizia que faltava `uma regra 7` e que, com ela, o substrato entraria; a execucao de 14h10Z mediu que ela era um de TRES. O terceiro (a cura) era JUSANTE do segundo, nao irmao: enquanto o produto fosse eliminado por silencio nas 45 celulas, nenhum bloco de `preparo` o alcancava, porque o bloco so alcanca quem a pagina RECOMENDA. A ordem medida foi obedecida — primeiro o par substrato x ambiente, e a cura entrou na tela JUNTO com a recomendacao, em DOIS lugares: na citacao da declaracao que fez o produto entrar (`Paredes de concreto curado ha 180 dias`) e no bloco de preparo, que serve a frase do documento inteira, com o produto que o fabricante manda usar abaixo dos 180 dias.",
+      "os_tres_bloqueios_e_o_que_fechou_cada_um": [
+       {
+        "bloqueio": "proibicao declarada sobre a PECA que se cola",
+        "fechou_em": "2026-10-06",
+        "com_o_que": "REGRA 7 e `condicoes.proibe_grupos_de_tessela`, nas duas implementacoes, com `matriz_esperada_da_proibicao_sobre_a_peca` e 20 mutacoes.",
+        "e_ela_mordeu_hoje": "Com o substrato gravado, a ancora `cimento_concreto` x `interno_seco` x `pastilha_vidro` mudou de lado: a AC-II entra na camada de declaracao com score 4 e a regra 7 a tira, por `baixa_absorcao_de_agua` e `revestimento_especial`. A ancora foi escrita em 06/10 justamente para medir este dia, e ela dizia: `com ele, o dia em que o substrato entrar nao sera o dia em que a F2 passar a mandar colar pastilha de vidro com argamassa que proibe revestimento especial`."
+       },
+       {
+        "bloqueio": "o qualificador de AMBIENTE vem colado no substrato, e o banco decidia ambiente por PRODUTO",
+        "fechou_em": "2026-10-06",
+        "com_o_que": "REGRA 8 e `ambiente_que_qualifica_a_base` no mapa de termos, com `regras_do_par_substrato_ambiente`, `matriz_esperada_do_par_substrato_ambiente` e `ferramentas/mutacoes-par.py`.",
+        "o_que_ele_custava": "As duas saidas que existiam sem o campo mentiam em direcoes opostas: deixar as tres frases fora de `indicado_para` manteve o produto em silencio nas 45 celulas de 10/09 a 06/10, com a cura gravada e invisivel; grava-las sem o qualificador faria a F2 recomendar argamassa de assentamento para `alvenaria_tijolo` + `externo_abrigado`, que e muro de mosaico ao ar livre, caso em que o documento nao declara nada."
+       },
+       {
+        "bloqueio": "o substrato sem qualificador de ambiente tem qualificador de CURA (180 dias), e ele e o pior dos tres para esta ilha",
+        "fechou_em": "2026-10-06",
+        "com_o_que": "NENHUM campo novo, e e por isso que ele era jusante e nao irmao: a cura chega ao leitor pela CITACAO da declaracao que fez o produto entrar, que a F2 ja servia desde a 1.0.0, e pelo bloco de `preparo`, que a F2 passou a servir na mesma data. Os dois so alcancam produto RECOMENDADO.",
+        "o_que_o_leitor_ve_hoje": "Na base `cimento_concreto`, que nesta ilha e o vaso e o tampo que a artesa acabou de fazer, a pagina recomenda a argamassa e no mesmo bloco cita, com o nome do fabricante, `Paredes de concreto curado ha 180 dias` e a instrucao inteira dele, que nomeia OUTRO produto abaixo disso. A recomendacao e a ressalva saem juntas, que e o que a ordem medida pedia.",
+        "o_que_NAO_foi_feito_e_por_que": "A cura NAO virou regra de elegibilidade. Ela nao tem valor em vocabulario nenhum e a F2 nao pergunta a idade da peca; transformar isso em regra exigiria uma pergunta nova na ferramenta, que e decisao de interface e bloco proprio. Enquanto nao for, a cura e TEXTO — e texto citado do fabricante, no mesmo bloco da recomendacao, e o que esta ilha tem de mais honesto para oferecer sobre uma condicao que ela nao mede."
+       }
+      ]
+     }
+    }
+   },
+   "constantes_relacionadas": [
+    "cimentcola-externo-acii-quartzolit"
+   ],
+   "divergencias": [
+    {
+     "campo": "declaracoes.indicado_para — tamanho maximo da peca assentada",
+     "lado_a": {
+      "fonte_id": "pagina-produto-cimentcola",
+      "nivel": 3,
+      "coletado_em": "2026-09-10",
+      "diz": "ceramicas e placas de pedra natural de ate 120 x 120 cm em area interna e 100 x 100 cm em area externa"
+     },
+     "lado_b": {
+      "fonte_id": "bt-cimentcola-externo-2016-05",
+      "nivel": 2,
+      "coletado_em": "2026-10-05",
+      "diz": "assentar revestimentos ceramicos de ate 60x60 cm em pisos e paredes de areas internas e externas; placas de pedras naturais (...) de ate 60x60 cm; e, em fachadas e piscinas residenciais nao aquecidas, ate 20x20 cm com absorcao de agua de 3% a 6%"
+     },
+     "resolucao": "VALE O LADO B, e por DOIS motivos que apontam para o mesmo lado. Pela escada_de_fontes o nivel mais alto vence, e boletim tecnico (2) vence pagina de produto (3). E pela regra_de_divergencia.compatibilidade_de_adesivo o campo grava o conjunto MAIS ESTREITO, que tambem e o lado B: 60x60 e menos que 120x120. Os dois criterios concordam, entao nao houve escolha a fazer.",
+     "o_que_isto_NAO_resolve": "O boletim lido e de maio de 2016 e a pagina de produto foi colhida em setembro de 2026. E possivel que a Quartzolit tenha ampliado o formato num boletim mais novo (a pendencia aponta para o arquivo 2024-09) e que o lado A seja o atual. O espelho nao prova vigencia. Mas o erro de gravar 120x120 vindo de uma linha de pagina de produto e o erro CARO (peca descolada), e o de gravar 60x60 e o barato (recomendacao mais estreita do que precisava).",
+     "por_que_nenhum_dos_dois_mudou_a_tela": "Este campo nomeia a PECA ASSENTADA, nao a base, e nenhuma regra de elegibilidade da F2 le o tamanho da peca. A matriz de 45 celulas nao se move por esta correcao — conferido recomputando as 45 com validar-banco.py depois da escrita."
+    }
+   ],
+   "resolucao": "Divergencia de tamanho resolvida pelo boletim (nivel 2), que e tambem o conjunto mais estreito. O texto de indicado_para foi reescrito com a frase do boletim e a frase da pagina de produto ficou em divergencias[], com data, como a regra manda.",
+   "status": "ativo",
+   "motivo_do_descarte": null,
+   "usada_por": [
+    "F2",
+    "G-COLAS"
+   ],
+   "observacao": "Registro que saiu da lacuna em 06/10/2026, e ele e a historia de tres bloqueios e nao de um: de 10/09 a 06/10 nenhuma declaracao GRAVADA aqui nomeava SUBSTRATO, e por isso ele era eliminado por silencio nas 45 celulas da matriz. Ate 05/10 isso era falta de dado; de 05/10 a 06/10 foi falta de REGRA, com o dado lido e gravado no campo `substratos_que_o_documento_declara` da fonte do boletim. Desde 06/10 as tres frases de substrato da secao 4.1 estao em `declaracoes.indicado_para`, e a argamassa e recomendacao primaria em `cimento_concreto` nos quatro ambientes que ela delimita e em `alvenaria_tijolo` so em `interno_seco` — nos outros quatro desta base ela sai pela REGRA 8, porque as duas frases que declaram alvenaria vem com o lugar colado nelas. A embalagem tambem diz algo a esta ilha, e o boletim melhorou a resposta: alem dos sacos de 15 e 20 kg que o banco ja tinha, a secao 7 declara `sacos plasticos de 5, 15 ou 20kg`, e o de 5 kg e o unico formato deste produto que nao e formato de obra. Validade declarada: 8 meses em embalagem de papel e 12 meses em plastico.",
+   "condicoes": {
+    "proibe_grupos_de_tessela": {
+     "valor": [
+      "baixa_absorcao_de_agua",
+      "revestimento_especial"
+     ],
+     "literais": {
+      "baixa_absorcao_de_agua": "cerâmicas do tipo porcelanato ou com absorção de água menor que 3%",
+      "revestimento_especial": "saunas, estufas, lareiras, churrasqueiras, pisos aquecidos, frigoríficos e revestimentos especiais"
+     },
+     "onde_o_fabricante_escreve": "declaracoes.nao_indicado_para",
+     "fonte_id": "bt-cimentcola-externo-2016-05",
+     "quem_classifica_o_grupo": "a ilha, em esquema-banco.json / grupos_de_tessela_proibidos — nunca o fabricante, que declarou a PROIBICAO e nao a lista de quais caquinhos do nosso vocabulario caem nela (secao 26.3 do ARQUIPELAGO.md)",
+     "o_que_este_campo_NAO_destrava": "Ele NAO torna esta argamassa recomendavel — quem a tornou foi a REGRA 8, em 06/10/2026, ao gravar o substrato com o lugar que o documento cola nele. A regra 7 roda DEPOIS das cinco e DEPOIS da 8, sobre quem sobreviveu a elas, e desde 06/10 ela morde de verdade: em `pastilha_vidro`, `caco_louca` e `caco_espelho` esta argamassa sai da recomendacao com a frase da proibicao, e nao com a do silencio. Esta frase dizia, ate 06/10, que o registro caia na regra 2 em TODA base porque nenhuma declaracao gravada nomeava substrato; era verdade quando foi escrita e deixou de ser no mesmo dia, pela entrega que este campo existia para esperar."
+    }
+   }
+  },
+  {
+   "id": "loctite-durepoxi",
+   "categoria": "cola",
+   "tipo": "epoxi",
+   "marca": "Loctite",
+   "fabricante": "Henkel",
+   "nome_comercial": "Loctite Durepoxi",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "A fonte e material de imprensa, que nao cita codigo de ficha tecnica.",
+   "declaracoes": {
+    "indicado_para": [
+     "vidro",
+     "madeira",
+     "metal",
+     "porcelana",
+     "borracha",
+     "pedra",
+     "alguns tipos de plástico",
+     "couro",
+     "alumínio",
+     "ferro",
+     "cobre",
+     "prata",
+     "ouro",
+     "latão",
+     "mármore",
+     "fibras naturais"
+    ],
+    "nao_usar_em": [],
+    "nao_recomendado_em": [],
+    "nao_indicado_para": [],
+    "ambientes_declarados": [],
+    "resistencias_declaradas": [
+     "condição submersa"
+    ]
+   },
+   "propriedades": {
+    "secagem_versao_extraforte": {
+     "valor": 10,
+     "unidade": "min",
+     "fonte_id": "press-release-durepoxi",
+     "declarado_como": "versao extraforte seca em 10 minutos"
+    }
+   },
+   "preparo": {
+    "literal_do_fabricante": null,
+    "fonte_id": null,
+    "lido_em": null,
+    "recorte_do_documento": null,
+    "nossa_leitura": null,
+    "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo. A fonte dele e material do fabricante de nivel que ja o mantem fora de recomendacao (ele vive em `mencionados_com_ressalva`), e releitura dele nao muda nenhuma celula da F2 — por isso nao foi pedida nesta execucao."
+   },
+   "geometria": null,
+   "venda": [],
+   "afiliado": {
+    "programa": "mercadolivre",
+    "url": "https://meli.la/2ujbpEQ",
+    "url_produto": "https://www.mercadolivre.com.br/durepoxi-branco-adesivo-epoxi-massa-loctite-50g-henkel/p/MLB27690478",
+    "sub_id_1": "clubedomosaico",
+    "sub_id_2": "F2",
+    "etiqueta_ml": "clubedomosaicof2",
+    "gerado_em": "2026-09-13",
+    "url_busca": "https://s.shopee.com.br/1VzSmrwQBH",
+    "degrau": 2,
+    "conferido_em": "2026-09-13",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=durepoxi%20loctite",
+    "url_busca_gerada_em": "2026-09-25",
+    "motivo_da_chave": "marca + linha"
+   },
+   "imagem": null,
+   "fontes": {
+    "press-release-durepoxi": {
+     "url": "https://www.henkel.com.br/imprensa-midia/press-releases-e-kits/2018-09-11-familia-loctite-durepoxi-possibilita-diferentes-reparos-e-aplicacoes-875598",
+     "tipo": "material de imprensa do fabricante (2018) — NÃO é ficha técnica",
+     "nivel": 4,
+     "coletado_em": "2026-09-10",
+     "conferir_no_pdf": true,
+     "documento_aberto": false
+    }
+   },
+   "constantes_relacionadas": [
+    "loctite-durepoxi-substratos"
+   ],
+   "divergencias": [],
+   "resolucao": null,
+   "status": "ativo",
+   "motivo_do_descarte": null,
+   "usada_por": [
+    "F2"
+   ],
+   "observacao": "O registro que criou o nivel 4 da escada de fontes. Ele e o unico do banco que declara aderir em condicao submersa — exatamente a faixa descoberta da F2 — e mesmo assim NAO vira recomendacao, porque a unica declaracao vem de press release de 2018. Aparece so como mencao com ressalva, com a frase 'segundo material do proprio fabricante (2018)'. Troca-se pela ficha tecnica assim que ela for aberta, e ai a faixa deixa de ser descoberta."
+  },
+  {
+   "id": "tekbond-silicone-acetico-maxx",
+   "categoria": "cola",
+   "tipo": "silicone_acetico",
+   "marca": "Tekbond",
+   "fabricante": "Tekbond",
+   "nome_comercial": "Silicone Acético Maxx",
+   "codigo_fabricante": "BRSA005",
+   "declaracoes": {
+    "indicado_para": [
+     "cerâmicas vitrificadas",
+     "superfícies lisas em geral",
+     "terrários",
+     "vitrines de alimentos",
+     "bebedouros",
+     "embarcações",
+     "aplicações tradicionais no mercado da construção civil"
+    ],
+    "nao_usar_em": [],
+    "nao_recomendado_em": [],
+    "nao_indicado_para": [],
+    "ambientes_declarados": [],
+    "resistencias_declaradas": [
+     "aquários",
+     "piscinas",
+     "variação de temperatura"
+    ]
+   },
+   "propriedades": {
+    "rendimento_por_area": {
+     "valor": null,
+     "unidade": "kg/m2",
+     "fonte_id": null,
+     "motivo": "Mesmo caso do Silicone Acetico Construcao: silicone rende por CORDAO, nao por area colada. Converter seria palpite."
+    }
+   },
+   "preparo": {
+    "literal_do_fabricante": null,
+    "fonte_id": null,
+    "lido_em": null,
+    "recorte_do_documento": null,
+    "nossa_leitura": null,
+    "motivo_sem_literal": "CAUSA (nao-coletado): o registro nasceu sem o campo e a fonte e www.tekbond.com.br, em 403 nas tres passadas de 06/10/2026."
+   },
+   "geometria": null,
+   "condicoes": {},
+   "venda": [
+    {
+     "unidade": "cartucho",
+     "quantidade": null,
+     "embalagem_declarada": null,
+     "loja": null,
+     "fonte_id": "pagina-produto-maxx",
+     "coletado_em": "2026-09-13",
+     "observacao": "O fabricante cita as versoes blister e cartucho. Peso e volume da embalagem NAO foram coletados."
+    }
+   ],
+   "afiliado": {
+    "programa": "shopee",
+    "url": "https://s.shopee.com.br/5AsrvyZtmH",
+    "sub_id_1": "clubedomosaico",
+    "sub_id_2": "F2",
+    "etiqueta_ml": "clubedomosaicof2",
+    "gerado_em": "2026-09-29",
+    "url_busca": "https://s.shopee.com.br/3g3xMqny08",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20acetico%20maxx%20tekbond",
+    "degrau": 3,
+    "motivo_da_troca_da_palavra_chave": "A palavra-chave era 'silicone maxx tekbond AQUARIO', e aquario e o nicho da Aquametria: a chave veio copiada de la e mandaria quem faz mosaico para a prateleira de aquario. Trocada em 14/09/2026 por 'silicone acetico maxx tekbond'. O que esta errado e a chave, nunca o metodo: chave de busca se confere abrindo a busca crua, e e por isso que a 25.4-b manda guardar a URL crua.",
+    "url_busca_gerada_em": "2026-09-25",
+    "url_produto": "https://shopee.com.br/product/1098293603/21297997810",
+    "conferido_em": "2026-09-29",
+    "casamento": {
+     "casado_em": "2026-09-29",
+     "regra": "ferramentas/casar-anuncio.py (cinco travas mais unicidade)",
+     "degrau_da_palavra_chave": 2,
+     "palavra_chave": "Tekbond Silicone Acético Maxx",
+     "titulo_do_anuncio": "Adesivo Silicone Acético Maxx Transparente 280g Tekbond",
+     "loja": "BSB Distribuidora",
+     "item_id": 21297997810,
+     "shop_id": 1098293603,
+     "por_que_este_degrau_da_25_1": "a loja \"BSB Distribuidora\" e vendedor comum (25.1, degrau 3)",
+     "prova_de_vida": "a API devolveu este anuncio em 2026-09-29. Nao foi clicado: o salto do encurtador e onde a Shopee conta o clique e autoclique com a etiqueta da ilha apaga o primeiro clique organico (25.8)."
+    }
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rfhw-m4abblfhnfdu31",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "Open API de Afiliados da Shopee (25.6), anuncio casado",
+    "coletado_em": "2026-09-29",
+    "alt": "Silicone Acético Maxx"
+   },
+   "fontes": {
+    "pagina-produto-maxx": {
+     "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico-maxx",
+     "tipo": "página de produto do fabricante",
+     "nivel": 3,
+     "coletado_em": "2026-09-13",
+     "conferir_no_pdf": false,
+     "documento_aberto": false,
+     "leitura": "busca restrita ao dominio do fabricante. O egresso desta nuvem NAO abre tekbond.com.br — remedido em 13/09/2026 em duas passadas, 000 nas duas, com clubedomosaico.com.br em 200 como controle. Por isso a fonte e nivel 3 e nao nivel 1: o elo mais fraco e a leitura (secao 10 do ARQUIPELAGO.md)."
+    }
+   },
+   "constantes_relacionadas": [],
+   "divergencias": [],
+   "resolucao": null,
+   "status": "ativo",
+   "motivo_do_descarte": null,
+   "usada_por": [
+    "F2"
+   ],
+   "observacao": "O PRIMEIRO PRODUTO DO BANCO QUE PODE SER RECOMENDADO EM CONTATO PERMANENTE COM AGUA. Ate 13/09/2026 essa faixa tinha ZERO elegiveis nas nove bases, e a unica declaracao de colagem submersa da ilha era press release de 2018 (loctite-durepoxi, nivel 4, abaixo do minimo). Aqui a declaracao e da pagina de produto do fabricante, nivel 3, e a regra 4 (ambiente critico exige declaracao EXPLICITA) e cumprida por 'aquarios' e 'piscinas'. O QUE ELE NAO FECHA, E ESTA ESCRITO EM VEZ DE ESCONDIDO: das nove bases, ele so entra em ceramica_esmaltada_porcelana, porque 'ceramicas vitrificadas' e a UNICA superficie que o fabricante nomeia. VIDRO nao esta na lista dele — e um silicone de aquario, e aquario e de vidro, e a tentacao de traduzir 'fabricacao e reparo de aquarios' em base VIDRO e exatamente a heuristica por vizinhanca que a secao 8 do contrato proibe. 'Aquarios' e aplicacao e entra como AMBIENTE, que e o que ela mede. O dia em que a ficha BRSA005 for aberta, a lista de substratos dela decide — nao a nossa leitura do que um aquario e.",
+   "fonte_localizada_nao_lida": {
+    "url": "https://www.tekbond.com.br/sites/Tekbond.com.br/files/media-library/product/BRSA005/documents/technical_sheet/downloadable_file/Silicone_Acetico_Maxx-BRSA005-ficha_tecnica_01.pdf",
+    "tipo": "ficha tecnica do fabricante — LOCALIZADA, NAO LIDA",
+    "nivel": 2,
+    "coletado_em": "2026-09-13",
+    "conferir_no_pdf": true,
+    "leitura": "A ficha EXISTE e o endereco dela esta aqui, mas NENHUM campo deste registro veio dela: o PDF nao abre desta nuvem. Ela esta gravada para que a proxima execucao que tiver canal saiba exatamente onde ir — e para que ninguem a colha de novo.",
+    "sustenta_algum_campo": false,
+    "por_que_ela_NAO_esta_em_fontes": "Porque `fontes` e o que SUSTENTA este registro, e ela nao sustenta uma linha dele. Gravada dentro de `fontes` ela fez duas coisas erradas de uma vez, e as duas foram pegas por portao em 13/09/2026, antes do commit: (1) o nivel do produto virou 2, o da ficha tecnica, quando toda declaracao deste registro veio da pagina de produto, nivel 3 — e a secao 10 do ARQUIPELAGO.md diz que o nivel e o do elo MAIS FRACO, entao inflar aqui e o defeito mais caro que existe numa fabrica que vende procedencia; (2) a linha de prova da tela passou a atribuir a declaracao a um documento que ninguem abriu. Ficha localizada e endereco guardado, nao fonte."
+   },
+   "pendencia_nomeada_em_06_10_2026": {
+    "id": "maxx-nao-declara-nada-sobre-espelho",
+    "o_que_e": "A REGRA 7 nasceu hoje e tirou o Tekbond Silicone Acetico Construcao de todo caso com caco de espelho, porque a Tekbond escreve `espelhos` na lista do que ele nao deve tocar. ESTE registro e acetico tambem, da MESMA Tekbond, e tem `nao_usar_em` VAZIO. Entao ele continua podendo ser recomendado para caco de espelho.",
+    "por_que_a_ilha_NAO_estendeu_a_proibicao": "Porque seria inventar declaracao. A regra 2 do esquema proibe transformar silencio de fabricante em recomendacao; estender a proibicao de um produto para o irmao dele e o avesso exato do mesmo defeito, do outro lado do balcao. A regra 7 le `condicoes.proibe_grupos_de_tessela`, que e campo POR PRODUTO, e esta escrito no esquema em `grupos_de_tessela_proibidos.o_grupo_e_do_PRODUTO_e_nao_do_CAQUINHO`.",
+    "o_que_a_ilha_SABE_e_o_que_ela_NAO_sabe": "SABE que a unica fonte deste registro e pagina de produto (nivel 3) e que ela nao traz lista de proibicao nenhuma — nem de espelho nem de qualquer outra superficie. NAO SABE se o boletim tecnico do Maxx proibe espelho, porque esse documento nunca foi aberto: `www.tekbond.com.br` responde 403 desta nuvem, remedido em 06/10/2026 nas DUAS URLs do registro do acetico (pagina de produto e ficha BRSA004). Silencio de documento nao lido nao e silencio de fabricante.",
+    "o_que_destrava": "O boletim tecnico ou a FISPQ do Maxx, numa fonte alcancavel. As duas portas do fabricante estao em 403; o canal de espelho de `dados/canal-de-espelho.md` e arquivo por NOME CONHECIDO e o inventario dele sao 14 documentos, nenhum da Tekbond. Enquanto nao houver documento, nada muda aqui — e a frase que NAO se pode escrever e `o Maxx pode em espelho`, porque disso nao se mediu nada.",
+    "custo_de_deixar_aberta": "Uma recomendacao de acetico para caco de espelho continua possivel em `ceramica_esmaltada_porcelana`, que e a unica base que este produto declara. Nao e hipotese confortavel e nao esta escondida: o mecanismo e o mesmo que tirou o irmao dele — o acido acetico da cura ataca a prata do espelho —, e o que falta nao e raciocinio, e documento."
+   }
+  },
+  {
+   "id": "cascola-pl500-adesivo-de-montagem",
+   "categoria": "cola",
+   "tipo": "pva",
+   "marca": "Cascola",
+   "fabricante": "Henkel",
+   "nome_comercial": "Cascola Adesivo de Montagem PL500 Interior",
+   "codigo_fabricante": "PL500",
+   "declaracoes": {
+    "indicado_para": [
+     "metal",
+     "porcelana",
+     "plásticos",
+     "madeira",
+     "concreto",
+     "vidro",
+     "poliestireno expandido",
+     "drywall"
+    ],
+    "nao_usar_em": [],
+    "nao_recomendado_em": [],
+    "nao_indicado_para": [],
+    "ambientes_declarados": [
+     "uso interno"
+    ],
+    "resistencias_declaradas": []
+   },
+   "propriedades": {
+    "tempo_de_ajuste": {
+     "valor": 5,
+     "unidade": "min",
+     "fonte_id": "pagina-produto-pl500",
+     "declarado_como": "o tempo para ajustes e de 5 minutos"
+    },
+    "rendimento_por_area": {
+     "valor": null,
+     "unidade": "kg/m2",
+     "fonte_id": null,
+     "motivo": "O fabricante nao publica rendimento por area colada para este produto. A coluna de cola da F1 continua vazia com a frase na tela."
+    }
+   },
+   "preparo": {
+    "literal_do_fabricante": "Prepare as superfícies a serem coladas, deixando-as limpas, firmes e niveladas. Superfícies ou paredes pintadas ou com tintas em más condições, devem ser lixadas previamente. Importante destacar que ao menos uma das superfícies deve ser porosa, já que o produto seca por evaporação da água. Corte a ponta do cartucho e rosqueie o bico nele. Feito isso, destampe o bico e corte-o na diagonal, conforme o diâmetro desejado, e insira o cartucho na pistola. Para peças pesadas ou que receberão esforço, utilize um suporte, mantendo-o até a cura total do adesivo. O excesso de adesivo deverá ser retirado imediatamente com um pano umedecido com água ou álcool doméstico antes da secagem.",
+    "fonte_id": "pagina-produto-pl500",
+    "como_a_tela_chama_o_documento": "na página de produto dele",
+    "por_que_a_tela_nao_usa_o_tipo_da_fonte": "POR QUE ESTE CAMPO EXISTE, e ele nasceu de um render e nao de uma ideia: a primeira versao deste bloco servia o campo `tipo` da fonte, como o bloco de prova da cola ja fazia. Nas colas passou — o `tipo` delas e \"pagina de produto do fabricante\", curto e acentuado. Nos dois boletins NAO: o do rejunte piscinas chega a tela como \"boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina\", sem acento nenhum, e o da cimentcola traz a palavra `escada_de_fontes` e o nome de um arquivo do repositorio dentro da frase. E a mesma cicatriz que a Ohmetria pagou em 15/09/2026, quando a regua de acento pegou um defeito que nao era de acento: um caminho de arquivo do repositorio servido ao visitante. O `tipo` e prosa de arquivo, escrita para quem le o banco; este campo e o nome que o LEITOR ouve. Sao dois leitores diferentes e por isso sao dois campos.",
+    "lido_em": "2026-10-06",
+    "recorte_do_documento": "Passos 1 e 2 de \"Como utilizar o produto?\" inteiros, mais as duas frases finais do Passo 4 (o suporte da peca pesada e a retirada do excesso). Ficaram fora o Passo 3 e a primeira frase do 4, que sao o gesto de aplicar e juntar.",
+    "nossa_leitura": "Superficies limpas, firmes e niveladas. Parede pintada ou com tinta em mau estado deve ser lixada antes. Excesso sai com pano umido em agua ou alcool domestico ANTES de secar. Peca pesada ou que va receber esforco pede escora ate a cura completa.",
+    "motivo_sem_literal": null,
+    "o_que_a_parafrase_perdia": "Tres coisas. (1) A condicao da superficie porosa, que o fabricante escreve DENTRO do preparo e que o banco guarda em `condicoes.exige_superficie_porosa` — a tela dizia a condicao pela nossa regra e nao pela frase dele. (2) O motivo da condicao, que e dele: \"ja que o produto seca por evaporacao da agua\". (3) O preparo do cartucho, que era o Passo 2 inteiro.",
+    "divergencia_lida_no_proprio_documento": "A mesma pagina publica DOIS tempos de ajuste: a lista de caracteristicas, no topo, diz \"Tempo para ajustes de 10 minutos\" e o Passo 4 diz \"O tempo para ajustes e de 05 minutos\". Nenhum dos dois esta gravado no banco e nenhum vai a tela — este campo e preparo, nao propriedade. Fica escrito aqui porque quem for gravar `tempo_para_ajustes_min` precisa saber que a fonte se contradiz antes de escolher um numero."
+   },
+   "geometria": null,
+   "condicoes": {
+    "exige_superficie_porosa": {
+     "valor": true,
+     "literal": "ao menos uma das superfícies deve ser porosa, já que o produto seca por evaporação da água",
+     "fonte_id": "pagina-produto-pl500",
+     "quem_classifica_a_porosidade": "a ilha, em esquema-banco.json / superficies_porosas — nunca o fabricante, que declarou a condicao e nao a lista (secao 26.3 do ARQUIPELAGO.md)"
+    }
+   },
+   "venda": [
+    {
+     "unidade": "cartucho",
+     "quantidade": null,
+     "embalagem_declarada": null,
+     "loja": null,
+     "fonte_id": "pagina-produto-pl500",
+     "coletado_em": "2026-09-13",
+     "observacao": "Adesivo de montagem da linha DIY. Peso e volume da embalagem NAO foram coletados."
+    }
+   ],
+   "afiliado": {
+    "programa": "shopee",
+    "url": "",
+    "sub_id_1": "clubedomosaico",
+    "sub_id_2": "F2",
+    "etiqueta_ml": "clubedomosaicof2",
+    "gerado_em": null,
+    "url_busca": "https://s.shopee.com.br/70KPKybPmg",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=cascola%20adesivo%20de%20montagem%20pl500",
+    "degrau": 4,
+    "url_busca_gerada_em": "2026-09-25",
+    "motivo_sem_ficha": "CAUSA (candidato-barrado-variante): ha anuncio COM a marca (34 de 34 ofertas) e um irmao do banco disputou o titulo em 4 deles: a divida e da regra de casamento ou de um registro de variante que falta, nao do mercado || ULTIMA TENTATIVA 2026-09-30: 1 \"Cascola PL500\" -> 12 ofertas, 12 com a marca, a mais proxima barrada por: o titulo nao traz ['adesivo'], que esta no nome comercial deste registro; 2 \"Cascola Cascola Adesivo de Montagem PL500 Interior\" -> 4 ofertas, 4 com a marca, a mais proxima barrada por: o titulo nao traz ['adesivo'], que esta no nome comercial deste registro; 3 \"cascola adesivo de montagem pl500\" -> 6 ofertas, 6 com a marca, a mais proxima barrada por: o titulo nao traz ['adesivo'], que esta no nome comercial deste registro; 4 \"Cascola adesivo montagem\" -> 12 ofertas, 12 com a marca, a mais proxima barrada por: o titulo traz a palavra de armadilha \"kit\""
+   },
+   "imagem": null,
+   "fontes": {
+    "pagina-produto-pl500": {
+     "url": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-adesivo-de-montagem---pl500-interior/SAP_0201C8I05EAB.html",
+     "tipo": "página de produto do fabricante",
+     "nivel": 3,
+     "coletado_em": "2026-09-13",
+     "conferir_no_pdf": false,
+     "documento_aberto": true,
+     "leitura": "busca restrita ao dominio do fabricante. cascola.com.br tambem nao abre desta nuvem (000, medido em 13/09/2026). Duas buscas independentes, com perguntas diferentes e SEM o valor dentro da pergunta (secao 8), devolveram a mesma lista de materiais, a mesma condicao de porosidade e o mesmo tempo de ajuste.",
+     "reaberta_em": "2026-10-06",
+     "o_que_a_abertura_mudou": {
+      "por_que_foi_reaberta": "Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 238 KB de HTML.",
+      "o_que_a_leitura_trouxe": "Os passos 1, 2 e as duas frases finais do 4 de \"Como utilizar o produto?\", agora em `preparo.literal_do_fabricante`. Entre eles, a frase que o fabricante escreve DENTRO do preparo: \"ao menos uma das superficies deve ser porosa, ja que o produto seca por evaporacao da agua\" — a condicao que o banco ja guardava em `condicoes.exige_superficie_porosa` e que a tela, ate hoje, dizia so pela nossa regra.",
+      "a_divergencia_DENTRO_do_documento": "A mesma pagina publica DOIS tempos de ajuste: a lista de caracteristicas, no topo, diz \"Tempo para ajustes de 10 minutos\" e o passo 4 diz \"O tempo para ajustes e de 05 minutos\". Nenhum dos dois esta gravado como propriedade e nenhum vai a tela; quem for gravar `tempo_para_ajustes_min` precisa saber que a fonte se contradiz ANTES de escolher um numero. Fica escrito aqui pela 19.6, nao em `divergencias`, porque `divergencias` pede resolucao e nao ha o que resolver num campo que nao existe.",
+      "o_nivel_NAO_subiu_e_por_que": "Continua 3, pela mesma razao do Cascorez."
+     }
+    }
+   },
+   "constantes_relacionadas": [],
+   "divergencias": [],
+   "resolucao": null,
+   "status": "ativo",
+   "motivo_do_descarte": null,
+   "usada_por": [
+    "F2"
+   ],
+   "observacao": "O PRIMEIRO PRODUTO DO BANCO INDICADO SOBRE PLASTICO, e o primeiro que traz uma CONDICAO que nao fala de base nem de ambiente. Ate hoje a base plastico saia com zero elegiveis nos cinco ambientes: o unico que falava de plastico era o Silicone Neutro, com 'certos tipos de plastico', que nao nomeia tipo nenhum. Aqui o fabricante lista 'plasticos' numa lista de materiais que o produto adere, sem qualificador — e isso indica. A CONDICAO E A METADE QUE IMPORTA: o produto seca por evaporacao de agua, entao ao menos uma das duas superficies tem de ser porosa. Sobre plastico, quem tem de ser poroso e o CAQUINHO — e por isso este registro obrigou a regra 6 do esquema, a primeira regra de cola que olha a tessela. Com pastilha de vidro sobre vaso de plastico ele NAO e recomendado, e a pagina diz isso com a causa certa, em grupo proprio: nao e proibicao (ele nao proibe) e nao e silencio (ele falou). O QUE FOI RECUSADO DE PROPOSITO: a frase 'ideal para adesao de rodapes, pecas decorativas, azulejos, ladrilhos, molduras, canaletas, cantoneiras, maquetes, mosaicos' NAO entrou em indicado_para, embora contenha 'azulejos', que o mapa traduz como base. E a lista do que se COLA, nunca a do que se cola SOBRE — o mesmo erro que este banco ja pegou na cimentcola AC-II. 'Mosaicos' esta escrito la pelo proprio fabricante, e mesmo assim nao vira declaracao de substrato: vira citacao."
+  },
+  {
+   "id": "quartzolit-pastilhas-interiores",
+   "categoria": "cola",
+   "tipo": "argamassa_colorida_assenta_e_rejunta",
+   "marca": "Quartzolit",
+   "fabricante": "Saint-Gobain Weber",
+   "nome_comercial": "pastilhas interiores quartzolit",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "O boletim nao imprime codigo de produto, e o nome gravado e EXATAMENTE o titulo da pagina 1 do documento, em minusculas, como o fabricante o escreve (26.1: ele batiza pela posicao). ATENCAO, e isto e o achado de 13/10/2026: o CABECALHO CORRIDO deste mesmo PDF diz `Boletim Tecnico - pastilhas exteriores quartzolit`, que e OUTRO produto. Quem batizar este registro pelo cabecalho erra o nome; a identidade esta no titulo da pagina 1 e em `dados/canal-de-espelho.json`, campo `produto_declarado`.",
+   "declaracoes": {
+    "indicado_para": [
+     "Assentar e rejuntar simultaneamente pastilhas de vidro, porcelana, coco, fibras e madeiras.",
+     "Indicado para áreas internas, banheiros e cozinhas.",
+     "Produto também indicado para rejunte de revestimentos assentados sobre bases de drywall.",
+     "Emboços ou argamassas de contrapiso sarrafeados ou desempenados, curados há pelo menos 14 dias.",
+     "Alvenarias com mais de 14 dias, de blocos vazados de concreto, de blocos silico-calcários ou de concreto celular, desde que utilizadas para o revestimentos de áreas internas, conforme Norma Técnica NBR 13.754.",
+     "Paredes de concreto com, no mínimo, 28 dias."
+    ],
+    "nao_usar_em": [],
+    "nao_recomendado_em": [],
+    "nao_indicado_para": [
+     "Áreas externas.",
+     "Churrasqueiras, lareiras, frigoríficos, estufas, pisos aquecidos, bases com pintura, piscinas, espelhos d’água, áreas submersas, saunas úmidas e secas e outros revestimentos especiais.",
+     "Uso com pastilhas de resina e metálicas."
+    ],
+    "ambientes_declarados": [
+     "áreas internas, banheiros e cozinhas"
+    ],
+    "resistencias_declaradas": []
+   },
+   "propriedades": {
+    "cores": {
+     "valor": 20,
+     "unidade": null,
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "tabela da secao 5, linha `Cores`: 20"
+    },
+    "aderencia_cura_normal": {
+     "valor": 0.5,
+     "unidade": "MPa",
+     "comparador": ">",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 5: `Desempenho de aderencia em cura normal > 0,5 MPa`"
+    },
+    "aderencia_cura_submersa": {
+     "valor": 0.5,
+     "unidade": "MPa",
+     "comparador": ">",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 5: `Desempenho de aderencia em cura submersa > 0,5 MPa`",
+     "o_que_este_numero_NAO_autoriza": "Ele NAO e declaracao de uso submerso: a secao 3 do mesmo documento proibe piscinas, espelhos d agua e areas submersas com todas as letras. Cura submersa e ensaio de laboratorio da NBR; ambiente e a secao 3. Ler o ensaio como indicacao de ambiente seria publicar na boca do fabricante o contrario do que ele escreveu uma pagina antes."
+    },
+    "aderencia_cura_em_estufa": {
+     "valor": 0.5,
+     "unidade": "MPa",
+     "comparador": ">",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 5: `Desempenho de aderencia em cura em estufa > 0,5 MPa`"
+    },
+    "tempo_em_aberto": {
+     "valor": 15,
+     "unidade": "min",
+     "comparador": ">",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 5: `Tempo em aberto > 15 minutos`"
+    },
+    "consumo_por_area": {
+     "valor": 6,
+     "unidade": "kg/m2",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 6: `Aplicacao para assentar e rejuntar: aproximadamente 6 kg/m2.`",
+     "nao_publicavel_sem_decisao": "Mesma ressalva da AC-II, e aqui ela e mais forte: o numero e de assentamento E rejuntamento SIMULTANEOS de placa telada de pastilha, nao de caquinho colado um a um. Ligar isto a coluna de gramas da F1 exigiria decidir que consumo de obra vale para peca de artesanato, que e decisao e nao coleta. Nenhuma linha de codigo o le hoje."
+    },
+    "temperatura_do_ar_na_aplicacao": {
+     "valor": [
+      5,
+      40
+     ],
+     "unidade": "C",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 4.2: `do ar ambiente: de 5 C a 40 C`"
+    },
+    "temperatura_da_base_na_aplicacao": {
+     "valor": [
+      5,
+      27
+     ],
+     "unidade": "C",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 4.2: `da superficie da base: de 5 C a 27 C`"
+    },
+    "espessura_da_camada_depois_do_assentamento": {
+     "valor": [
+      3,
+      5
+     ],
+     "unidade": "mm",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 4.5: `Espessura da camada de argamassa depois do assentamento das ceramicas: minimo 3 mm, maximo 5 mm`"
+    },
+    "tempo_de_uso_depois_da_mistura": {
+     "valor": 150,
+     "unidade": "min",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 4.4: `Use a argamassa em ate 2h30 apos a mistura`"
+    },
+    "liberacao_para_todo_trafego": {
+     "valor": 7,
+     "unidade": "dias",
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "declarado_como": "secao 4.6: `Todo trafego: 7 dias` (e `Pessoal da obra e execucao de rejuntamento: 72 h (com cuidado)`)"
+    }
+   },
+   "preparo": {
+    "literal_do_fabricante": "Emboços ou argamassas de contrapiso sarrafeados ou desempenados, curados há pelo menos 14 dias. Alvenarias com mais de 14 dias, de blocos vazados de concreto, de blocos silico-calcários ou de concreto celular, desde que utilizadas para o revestimentos de áreas internas, conforme Norma Técnica NBR 13.754. Paredes de concreto com, no mínimo, 28 dias. Verifique a temperatura de trabalho: do ar ambiente: de 5 °C a 40 °C; da superfície da base: de 5 °C a 27 °C. O verso das pastilhas a serem aplicadas deve estar seco, limpo, livre de poeiras, resíduos ou películas que impeçam o contato de pastilhas interiores quartzolit. A superfície da base não deve apresentar deformações, e precisa estar firme, seca, curada e limpa (NBR 13.749). Certifique-se de que retrações do cimento e possíveis fissuras estão estabilizadas. Impermeabilize bases que tenham problemas de umidade. Em áreas internas, use desempenadeira de 6 x 6 x 6 mm. Em um recipiente limpo, misture o produto com a proporção de água limpa indicada na embalagem até obter consistência pastosa, firme e sem grumos. Deixe repousar por 15 minutos e remisture antes do uso. Use a argamassa em até 2h30 após a mistura.",
+    "fonte_id": "bt-pastilhas-interiores-2018-01",
+    "como_a_tela_chama_o_documento": "no boletim técnico dele, revisado em janeiro de 2018",
+    "lido_em": "2026-10-13",
+    "recorte_do_documento": "Da secao 4.1 `Bases para aplicacao` as TRES frases de substrato, inteiras, com a cura de cada uma; da 4.2 `Antes de aplicar` a temperatura de trabalho (ar e base) e a frase do VERSO DA PASTILHA, que e a unica da secao que fala do preparo da peca e nao da obra; da 4.3 `Preparo da base` as quatro frases inteiras, a desempenadeira de 6 x 6 x 6 mm incluida; e da 4.4 `Mistura` a prosa inteira. FICARAM FORA, nomeadas: as juntas de assentamento, movimentacao, dessolidarizacao e estruturais do projetista, a protecao das pecas de aluminio, a conferencia de ferramentas e a lista de EPI (todas da 4.2, todas sobre a obra e a seguranca do aplicador); o paragrafo da liberacao de cal e sais soluveis, que e aviso de APARENCIA do resultado e nao instrucao de preparo; e a 4.5 e a 4.6 inteiras, que sao aplicacao e acabamento. A desempenadeira NAO ficou fora de proposito, pelo mesmo motivo escrito na AC-II: ela e declaracao de fabricante que nomeia ferramenta de apoio, e a varredura de `exigencias_de_apoio_ja_declaradas_no_banco` le este campo e cobra a linha.",
+    "nossa_leitura": null,
+    "motivo_sem_literal": null
+   },
+   "condicoes": {},
+   "geometria": null,
+   "venda": [
+    {
+     "unidade": "saco",
+     "quantidade": 5,
+     "embalagem_declarada": "saco plástico de 5 kg",
+     "loja": null,
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "coletado_em": "2026-10-13",
+     "por_que_esta_entrada_importa": "E o unico formato deste produto que nao e formato de obra, e e o que o anuncio achado na Shopee em 13/10/2026 vende (R$ 90,71 nas duas lojas que o anunciam). A validade declarada do saco plastico e 18 meses; a do saco de papel, 8."
+    },
+    {
+     "unidade": "saco",
+     "quantidade": 20,
+     "embalagem_declarada": "saco de papel de 20 kg, apenas para a cor branca",
+     "loja": null,
+     "fonte_id": "bt-pastilhas-interiores-2018-01",
+     "coletado_em": "2026-10-13"
+    }
+   ],
+   "afiliado": {
+    "programa": "shopee",
+    "url": "",
+    "url_produto": null,
+    "sub_id_1": "clubedomosaico",
+    "sub_id_2": "F2",
+    "url_busca": "https://s.shopee.com.br/9pf3pRlphi",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=argamassa%20pastilhas%20interiores%20quartzolit",
+    "url_busca_gerada_em": "2026-10-13",
+    "degrau": 4,
+    "motivo_da_chave": "Primeiro degrau util da escada da 25.6: `argamassa pastilhas interiores quartzolit` devolve oferta (2 anuncios em 13/10/2026). A chave NAO leva `cimentcola`, que o fabricante nao usa no nome deste produto, nem `5kg`, que fecharia a busca num formato so.",
+    "encurtamento_tentado_em": "2026-10-13",
+    "como_o_encurtamento_foi_feito": "Open API de Afiliados da Shopee (25.6), `generateShortLink` por `ferramentas/shopee-api.py link --sub-id clubedomosaico --sub-id-2 F2`, com as credenciais do ambiente do processo. NAO dependeu de sessao de navegador de ninguem — e isto esta escrito aqui porque o motivo contrario, `depende da sessao do Shopee Afiliados do Raphael`, e o que impediu este registro de nascer em 13/10/2026 as 13h4xZ, quando o documento foi aberto. E a 25.4-b.3 em acao: motivo velho manda a execucao seguinte nem tentar.",
+    "motivo_sem_ficha": "CAUSA (anuncio-cobre-o-irmao-fora-do-banco): os DOIS anuncios que a Open API devolve para este produto se intitulam `Argamassa 5kg Pastilha Interiores/exterior Branco Quartzolit` — um anuncio so vendendo ESTE produto e o `pastilhas fachadas quartzolit`, que e o exterior. Anuncio que cobre dois registros nao identifica nenhum (armadilha 5 da 25.7). O `medir-degrau-4.py` devolveu `casou` em 2026-10-13, e o `casou` dele e CERTO pela regra e INSUFICIENTE pelo mundo: a segunda metade de `casar-anuncio.py` cobra que o titulo nao traga o que separa os IRMAOS do registro, e ela compara com os irmaos QUE ESTAO NO BANCO. O irmao deste existe no mundo e nao esta no banco — o boletim dele foi lido no mesmo dia, `telhanorte.vteximg.com.br/arquivos/1458361.pdf` —, entao nao ha com que barrar. Subir ao degrau 3 em cima dessa lacuna seria pendurar a saude de um link numa ficha que pode ser do outro produto, e seria plantar o defeito para o dia em que o irmao nascer. Pela assimetria de custo da secao 10, fica no piso. Degrau 1 (loja oficial na Shopee) depende do feed de afiliado, que exige a sessao do Raphael; degrau 2 (catalogo /p/MLB do Mercado Livre) responde 403 a esta nuvem desde 09/10/2026 || ULTIMA TENTATIVA 2026-10-13: `medir-degrau-4.py --ensaio` nas duas chaves da escada da 25.6 — `Quartzolit pastilhas interiores quartzolit` devolveu 2 ofertas e `argamassa pastilhas interiores quartzolit` devolveu 3; as duas trazem `Interiores/exterior` no titulo. Reabre no dia em que aparecer anuncio que nomeie um dos dois sozinho, ou no dia em que o irmao entrar no banco e a regra passar a ter com que barrar",
+    "o_que_este_degrau_4_ACHOU_na_propria_regra": "A PRIMEIRA CEGUEIRA MEDIDA DE `casar-anuncio.py`, e ela nao e da regra, e do que a regra tem para comparar. A segunda metade dela — a que o proprio cabecalho da ferramenta chama de `a que vale mais` — exige que o titulo do anuncio NAO traga o que separa os irmaos do registro. Irmao, ali, e registro do BANCO. Logo: quanto MAIS incompleto o banco, MAIS facil um anuncio ambiguo passar — a trava afrouxa justamente quando ha menos dado, que e o avesso do que ela promete. Aqui isso ficou visivel porque o anuncio escreve os dois nomes na mesma linha (`Interiores/exterior`); num anuncio que escrevesse so `Pastilha Branco Quartzolit` a mesma cegueira passaria sem deixar rastro. NAO foi consertado nesta passada de proposito: mexer na regra de casamento e mexer no que paga comissao em 14 casamentos reconferidos, e o conserto provavel nao e na regra e sim no BANCO — registrar o irmao, que e trabalho de coleta com o documento ja aberto e nomeado. Fica escrito aqui e no REGISTRO.md."
+   },
+   "imagem": null,
+   "fontes": {
+    "bt-pastilhas-interiores-2018-01": {
+     "url": "https://telhanorte.vteximg.com.br/arquivos/1338838.pdf",
+     "tipo": "boletim técnico do fabricante, aberto e lido página a página (3 páginas) pelo canal de espelho da escada de fontes; o documento se identifica, no título da página 1, como \"pastilhas interiores quartzolit\" e fecha com \"Documento revisado em Janeiro de 2018\"",
+     "nivel": 2,
+     "coletado_em": "2026-10-13",
+     "conferir_no_pdf": false,
+     "documento_aberto": true,
+     "por_que_nivel_2_e_nao_1": "O PDF foi lido inteiro, mas em ESPELHO (CDN da Telha Norte), nao no servidor do fabricante: `www.quartzolit.weber` responde 403 nas tres passadas de 13/10/2026 e o apex so redireciona para ele. Do espelho sai o documento, nao a garantia de que a revisao e a vigente.",
+     "revisao_declarada_no_documento": "Janeiro de 2018",
+     "revisao_declarada": "Documento revisado em Janeiro de 2018",
+     "documento": "Boletim Tecnico, 3 paginas; titulo da pagina 1 `pastilhas interiores quartzolit`, subtitulo `argamassa colorida para assentamento e rejuntamento simultaneos de pastilhas`",
+     "tipo_de_origem": "documento-pdf-do-fabricante-em-espelho-de-terceiro",
+     "por_que_esta_origem_nao_batiza": "Terceira aplicacao da linha de `batismo_do_fabricante.origens_que_NAO_batizam_e_por_que`: o nome do arquivo (`1338838.pdf`) e codigo do varejista. E, desde 13/10/2026, o CABECALHO CORRIDO tampouco batiza — neste documento ele nomeia `pastilhas exteriores quartzolit`, que e outro produto. Quem batiza e o titulo da pagina 1.",
+     "o_que_o_documento_diz_sobre_o_proprio_nome": "O titulo da pagina 1 e `pastilhas interiores quartzolit`, em minusculas, e e exatamente o que o banco grava em `nome_comercial` — sem `Argamassa` e sem classe normativa colada, porque o documento nao declara nenhuma das duas (26.1).",
+     "o_que_o_documento_declara_sobre_a_PECA_e_NAO_foi_gravado_como_base": {
+      "literal": "Assentar e rejuntar simultaneamente pastilhas de vidro, porcelana, coco, fibras e madeiras.",
+      "por_que_nao_virou_base": "A frase nomeia a PECA QUE SE ASSENTA — pastilha de vidro, de porcelana, de coco, de fibras, de madeira —, nunca a superficie sobre a qual se assenta. Traduzir `porcelana` para `ceramica_esmaltada_porcelana` ou `madeiras` para `mdf_madeira` aqui faria a F2 recomendar esta argamassa para colar mosaico EM CIMA de vidro e de MDF, que e o contrario do que o documento diz: as bases dele estao na secao 4.1 e sao emboco, contrapiso, alvenaria e concreto. Mesma leitura que `ceramicas` e `placas de pedra natural` ja recebem em `termos_que_nao_traduzem`.",
+      "E_O_BURACO_QUE_ELA_REVELA": "Este e o PRIMEIRO produto deste banco em que o fabricante INDICA, por escrito e por nome, a tessela canonica desta ilha — pastilha de vidro. E o esquema tem casa para o fabricante PROIBIR uma peca (`condicoes.proibe_grupos_de_tessela`, regra 7, nascida em 06/10/2026) e NAO tem casa para ele INDICAR uma. A declaracao fica aqui, nomeada, em vez de lida e descartada em silencio; transformar indicacao de peca em regra de elegibilidade MUDA a recomendacao da F2 e por isso e bloco proprio, com mutacao propria, e nao linha de passagem."
+     },
+     "substratos_que_o_documento_declara": {
+      "literal_do_documento": [
+       "Emboços ou argamassas de contrapiso sarrafeados ou desempenados, curados há pelo menos 14 dias.",
+       "Alvenarias com mais de 14 dias, de blocos vazados de concreto, de blocos silico-calcários ou de concreto celular, desde que utilizadas para o revestimentos de áreas internas, conforme Norma Técnica NBR 13.754.",
+       "Paredes de concreto com, no mínimo, 28 dias.",
+       "(da secao 2) bases de drywall"
+      ],
+      "onde_isso_pousa_no_vocabulario": {
+       "cimento_concreto": "emboco, argamassa de contrapiso e paredes de concreto. Declarada em DUAS frases e NENHUMA das duas traz lugar colado — ao contrario da AC-II, cuja frase de emboco diz `em areas internas`. Entao esta base fica declarada em todo ambiente que o PRODUTO delimita, e quem a estreita e a regra 3 (`areas internas, banheiros e cozinhas`), nunca a regra 8.",
+       "alvenaria_tijolo": "alvenarias de blocos vazados de concreto, silico-calcarios e de concreto celular. A frase traz o lugar colado (`de areas internas`), entao esta base sai pela REGRA 8 nos ambientes que ela nao nomeia, com secao e frase propria na tela.",
+       "sem_valor_no_vocabulario": "drywall — QUINTA ocorrencia da mesma lacuna, e a decisao segue sendo do Raphael (esta na fila do PROMPT.md desde 28/09/2026). Aqui ela e MENOR que na AC-II: o documento indica drywall so para REJUNTE de revestimento ja assentado, nao para assentar sobre drywall."
+      }
+     },
+     "por_que_este_tipo_vem_ACENTUADO_e_o_da_AC_II_nao": "ACHADO PELA BANCADA EM 13/10/2026, antes do commit, e o achado e sobre a TELA e nao sobre este registro. O `teste-f2.php` varre os 45 estados procurando formas que so existem sem acento por erro de digitacao, e as TRES celulas em que este produto e recomendado reprovaram na palavra `pagina`. A causa: a camada de prova da F2 serve `fonte[tipo]` CRU na tela (`o fabricante declara <...> (<tipo>, lido em <data>)`), e o `tipo` e, pelo esquema, \"descricao humana do documento\" — prosa de arquivo, que nesta ilha se escreve sem acento. Os dois leitores desse campo sao diferentes e e exatamente o que o campo `como_a_tela_chama_o_documento` do bloco `preparo` existe para resolver desde 06/10/2026 — SO que ele resolve o bloco de preparo, e a camada de PROVA continua servindo o `tipo`. Enquanto nenhum produto com fonte de boletim chegava a `recomendados_topo`, isso nao aparecia na tela de ninguem. Este e o primeiro, e por isso o `tipo` dele ja nasce acentuado e pronto para ser lido em voz alta. O da AC-II segue sem acento e e bloco proprio: dar ao `tipo` da camada de prova o mesmo tratamento do preparo e campo novo na fonte mais portao, nao conserto de dado."
+    }
+   },
+   "constantes_relacionadas": [],
+   "divergencias": [],
+   "status": "ativo",
+   "observacao": "PRIMEIRO registro deste banco cujo fabricante escreve `pastilha de vidro` no proprio `indicado_para`. Ele NAO e cimentcola comum: o documento o chama de `argamassa colorida para assentamento e rejuntamento simultaneos de pastilhas`, assenta e rejunta na mesma passada e nao declara classe AC nenhuma — por isso o `tipo` dele nao e `cimentcola_acii` nem `cimentcola_aciii`, que seriam a ilha classificando pela NBR no lugar de um fabricante que ficou calado (26.1 e 26.3). Para a artesa, o uso realista e peca de parede interna sobre emboco, contrapiso ou concreto — vaso e tampo de cimento entram pela base, e banheiro e cozinha entram porque o fabricante os nomeia."
+  }
+ ]
 }

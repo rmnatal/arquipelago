@@ -419,14 +419,30 @@ def fp2(e):
     e["matriz_esperada_do_par_substrato_ambiente"]["pares_qualificados_hoje"][0][
         "vale_so_em"] = ["interno_molhado", "interno_seco"]
     # e a ancora que muda de lado: com area molhada declarada, a AC-II passa pela
-    # regra 8 ali e quem a tira passa a ser a regra 7, pelo caquinho
+    # regra 8 ali e quem a tira passa a ser a regra 7, pelo caquinho.
+    #
+    # ESTA FIXTURE TIRAVA A AC-II ZERANDO O BALDE, E ISSO VALIA ENQUANTO ELA FOSSE O
+    # UNICO PRODUTO COM FRASE QUALIFICADA (13/10/2026). Com a entrada da
+    # `quartzolit-pastilhas-interiores` — segunda argamassa com `alvenaria_tijolo`
+    # declarada so em area interna seca — zerar o balde passou a afirmar que NINGUEM
+    # sai pela regra 8 ali, e a recomputacao devolve o produto novo, que continua
+    # saindo. O falso positivo reprovava por uma fixture velha e nao por defeito de
+    # regua: e a mesma familia do mundo fabricado da `mutacoes-apoio.py`, consertada
+    # no mesmo dia. A fixture passa a RETIRAR a AC-II do balde em vez de esvazia-lo,
+    # que e o que ela sempre quis dizer — e assim ela acompanha qualquer produto
+    # qualificado que entre depois, sem precisar ser reescrita de novo.
     for a in e["matriz_esperada_do_par_substrato_ambiente"]["ancoras_ponta_a_ponta"]:
         if a["base"] == "alvenaria_tijolo" and a["ambiente"] == "interno_molhado":
-            a["eliminados_por_ambiente_do_substrato"] = []
-    # e a celula de alvenaria em area molhada: a argamassa assume o topo
+            a["eliminados_por_ambiente_do_substrato"] = [
+                x for x in (a.get("eliminados_por_ambiente_do_substrato") or []) if x != AC
+            ]
+    # e a celula de alvenaria em area molhada: a argamassa assume o topo, e quem
+    # continuar qualificado so no seco continua no balde da regra 8
     for c in e["matriz_esperada_da_F2"]["celulas"]:
         if c["base"] == "alvenaria_tijolo" and c["ambiente"] == "interno_molhado":
-            c.pop("eliminados_por_ambiente_do_substrato", None)
+            c["eliminados_por_ambiente_do_substrato"] = sorted(
+                x for x in (c.get("eliminados_por_ambiente_do_substrato") or []) if x != AC
+            )
             c["recomendados_topo"] = [AC]
             c["elegiveis_abaixo_do_topo"] = [NE]
 

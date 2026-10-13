@@ -32,7 +32,7 @@ Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divul
 
 | nível 2 | slug | banco hoje | tipos que passam o portão da 9 | existe |
 |---|---|---|---|---|
-| Colas e adesivos | `/materiais/colas-e-adesivos/` | 7 itens | 0 de 7 | não |
+| Colas e adesivos | `/materiais/colas-e-adesivos/` | 8 itens | 0 de 8 | não |
 | Rejuntes | `/materiais/rejuntes/` | 5 itens | 1 de 4 | não |
 | Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | 1 de 6 | não |
 | Alicates e corte | `/materiais/alicates-e-corte/` | 6 itens | 2 de 4 | não |

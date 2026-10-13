@@ -60,6 +60,15 @@ TESSELAS = ["pastilha_vidro", "pastilha_ceramica", "caco_azulejo",
 
 
 def fonte(fid, nivel=3):
+    # `documento_aberto` ENTROU AQUI EM 13/10/2026, e nao por gosto: o esquema v17,
+    # escrito mais cedo no mesmo dia, passou a exigir o campo em TODA fonte de
+    # material, e esta bateria fabrica um banco de material. Sem ele o mundo
+    # FABRICADO nascia reprovado e a bateria morria antes da primeira mutacao,
+    # dizendo "Portao que reprova o mundo certo nao mede nada" — e ela e justamente
+    # a que guarda a varredura de `exigencias_de_apoio_ja_declaradas_no_banco`.
+    # Medido na execucao de 13/10/2026 as 17h: a bancada daquela manha nao a rodou,
+    # entao o portao novo derrubou a bateria sem ninguem ver. `False` e o valor
+    # certo para este mundo: a fonte e FABRICADA e nenhum documento foi aberto.
     return {
         fid: {
             "url": "https://exemplo-de-bancada.invalido/%s" % fid,
@@ -67,6 +76,7 @@ def fonte(fid, nivel=3):
             "nivel": nivel,
             "coletado_em": "2026-09-28",
             "conferir_no_pdf": False,
+            "documento_aberto": False,
         }
     }
 
@@ -253,6 +263,23 @@ def mundo():
             "itens_com_piso_nao_rastreavel": 0,
         },
         "imagens": {"itens_sem_imagem": len(itens)},
+        # A PROCEDENCIA DE CADA `documento_aberto`, que o esquema v18 exige em todo
+        # banco de material. Fabricada como o resto deste mundo, e com o caminho de
+        # prova dizendo a verdade dele: a fonte CALA porque nao existe.
+        "de_onde_saiu_o_documento_aberto": {
+            "o_que_este_bloco_e": AVISO_DE_BANCADA,
+            "os_caminhos_de_prova": {
+                "F": "mundo FABRICADO para a bancada: nenhuma fonte existe e nenhum documento foi aberto",
+            },
+            "por_fonte": {
+                ("ficha-%s" % m["id"]): {
+                    "valor": False,
+                    "caminho": "F",
+                    "a_frase": "fonte FABRICADA para a bancada de mutacao; nao existe documento para abrir",
+                }
+                for m in itens
+            },
+        },
         "materiais": itens,
     }
 

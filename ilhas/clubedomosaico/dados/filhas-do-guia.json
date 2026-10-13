@@ -10,7 +10,7 @@
  "a_pergunta": "quais filhas de nivel 3 do Guia passam HOJE o portao da secao 9 — 3 itens de banco reais E um numero calculado proprio — e, para as que nao passam, qual das duas metades falta",
  "minimo_exigido_pela_secao_9": 3,
  "nivel_maximo_de_fonte_lido_do_esquema": 3,
- "versao_do_esquema_lida": 19,
+ "versao_do_esquema_lida": 20,
  "o_que_conta_como_numero_calculavel": "propriedade com valor nao nulo e fonte de nivel <= 3 declarada por pelo menos 3 itens DO MESMO recorte. Propriedade que so um item declara nao e numero da pagina: e numero de um produto, e a pagina que a publicasse compararia um item com dois silencios.",
  "o_que_este_arquivo_mede_e_o_que_ele_NAO_alcanca": "Ele mede os recortes que o VOCABULARIO nomeia — categoria inteira e cada tipo de `tipo_por_categoria` — e, desde 07/10/2026, tambem as filhas em forma de PERGUNTA declaradas em `dados/perguntas-do-guia.json`, pela MESMA regua e com o mesmo minimo. De 30/09 a 07/10 esta frase dizia que a pergunta ficava fora e que o arquivo era um PISO; a pergunta entrou, e o piso de hoje e outro: o que continua fora e a pergunta que ninguem declarou. Uma pergunta atravessa tipos e pode reunir 3 itens onde nenhum tipo sozinho reune, e e por isso que `nao_passa` num tipo nao proibe a pergunta — proibe o tipo. O que esta regua NAO faz pela pergunta e dizer se ela ACRESCENTA uma filha a categoria: isso e do `cruzamento-14-9.py`, porque a 16.5 se fecha por CONSULTA, e pergunta que mira a consulta aberta de um tipo e o tipo com outro titulo.",
  "o_que_este_arquivo_NAO_decide": [
@@ -876,7 +876,7 @@
    "a_que_distancia_esta": {
     "itens_que_faltam_para_3": 0,
     "itens_com_lastro_que_faltam_para_3": 0,
-    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 1,
     "propriedade_mais_perto_de_ser_numero": "tempo_em_aberto",
     "itens_sem_nenhum_numero_com_lastro": [
      "cascola-cascorez-extra",
@@ -885,32 +885,41 @@
      "tekbond-silicone-neutro"
     ],
     "pode_fechar_completando_registro_existente": {
-     "propriedade": null,
-     "registros_que_nao_a_declaram": [],
-     "leitura": null
+     "propriedade": "tempo_em_aberto",
+     "registros_que_nao_a_declaram": [
+      "cascola-cascorez-extra",
+      "cascola-pl500-adesivo-de-montagem",
+      "loctite-durepoxi",
+      "tekbond-silicone-acetico-construcao",
+      "tekbond-silicone-acetico-maxx",
+      "tekbond-silicone-neutro"
+     ],
+     "leitura": "a propriedade `tempo_em_aberto` falta em 6 registro(s) que JA estao no banco: o recorte fecha coletando esse valor, nao um produto novo"
     }
    },
    "categoria": "cola",
    "tipo": null,
-   "itens_no_banco": 7,
+   "itens_no_banco": 8,
    "itens": [
     "cascola-cascorez-extra",
     "cascola-pl500-adesivo-de-montagem",
     "loctite-durepoxi",
     "quartzolit-cimentcola-externo-acii",
+    "quartzolit-pastilhas-interiores",
     "tekbond-silicone-acetico-construcao",
     "tekbond-silicone-acetico-maxx",
     "tekbond-silicone-neutro"
    ],
-   "itens_que_sustentam_recomendacao": 3,
+   "itens_que_sustentam_recomendacao": 4,
    "quais_sustentam": [
     "cascola-pl500-adesivo-de-montagem",
     "quartzolit-cimentcola-externo-acii",
+    "quartzolit-pastilhas-interiores",
     "tekbond-silicone-acetico-construcao"
    ],
    "numeros_calculaveis_sobre_o_recorte": [],
    "veredito": "passa_na_contagem_sem_lastro",
-   "motivo": "3 dos 7 itens sustentam recomendacao, e NENHUMA propriedade e declarada por 3 deles ao mesmo tempo — nao ha numero que a pagina calcule sobre o recorte inteiro"
+   "motivo": "4 dos 8 itens sustentam recomendacao, e NENHUMA propriedade e declarada por 3 deles ao mesmo tempo — nao ha numero que a pagina calcule sobre o recorte inteiro"
   },
   {
    "recorte": "cola/pva",
@@ -1105,6 +1114,34 @@
    "numeros_calculaveis_sobre_o_recorte": [],
    "veredito": "nao_passa",
    "motivo": "o banco tem 0 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
+  },
+  {
+   "recorte": "cola/argamassa_colorida_assenta_e_rejunta",
+   "a_que_distancia_esta": {
+    "itens_que_faltam_para_3": 2,
+    "itens_com_lastro_que_faltam_para_3": 2,
+    "itens_que_faltam_para_o_numero_mais_perto": 2,
+    "propriedade_mais_perto_de_ser_numero": "tempo_em_aberto",
+    "itens_sem_nenhum_numero_com_lastro": [],
+    "pode_fechar_completando_registro_existente": {
+     "propriedade": null,
+     "registros_que_nao_a_declaram": [],
+     "leitura": null
+    }
+   },
+   "categoria": "cola",
+   "tipo": "argamassa_colorida_assenta_e_rejunta",
+   "itens_no_banco": 1,
+   "itens": [
+    "quartzolit-pastilhas-interiores"
+   ],
+   "itens_que_sustentam_recomendacao": 1,
+   "quais_sustentam": [
+    "quartzolit-pastilhas-interiores"
+   ],
+   "numeros_calculaveis_sobre_o_recorte": [],
+   "veredito": "nao_passa",
+   "motivo": "o banco tem 1 item(ns) ativo(s) neste recorte e a secao 9 exige 3"
   },
   {
    "recorte": "pastilha",
@@ -1656,7 +1693,7 @@
   "vereditos": {
    "passa": 11,
    "passa_na_contagem_sem_lastro": 1,
-   "nao_passa": 30
+   "nao_passa": 31
   },
   "filhas_que_podem_nascer_hoje": [
    "acabamento",
@@ -1764,7 +1801,7 @@
    },
    "cola": {
     "tipos_que_passam": 0,
-    "tipos_no_vocabulario": 7,
+    "tipos_no_vocabulario": 8,
     "tipos_que_passam_quais": [],
     "tipos_fechados_por_canal": [],
     "caminho_mais_barato_para_as_3_filhas": {
@@ -1772,15 +1809,15 @@
      "itens_de_banco_a_coletar": 6,
      "em_quais_tipos": [
       {
+       "tipo": "cola/argamassa_colorida_assenta_e_rejunta",
+       "itens_a_coletar": 2
+      },
+      {
        "tipo": "cola/cimentcola_acii",
        "itens_a_coletar": 2
       },
       {
        "tipo": "cola/pva",
-       "itens_a_coletar": 2
-      },
-      {
-       "tipo": "cola/silicone_acetico",
        "itens_a_coletar": 2
       }
      ],
@@ -2028,17 +2065,17 @@
   "campos": [
    {
     "campo": "afiliado",
-    "itens_com_pelo_menos_um_numero": 41,
-    "itens_ativos_com_pelo_menos_um_numero": 41,
-    "numeros_preenchidos_no_banco": 83,
+    "itens_com_pelo_menos_um_numero": 42,
+    "itens_ativos_com_pelo_menos_um_numero": 42,
+    "numeros_preenchidos_no_banco": 84,
     "com_procedencia_dentro_do_teto": 0,
     "com_procedencia_pior_que_o_teto": 0,
-    "sem_nenhuma_procedencia": 83,
+    "sem_nenhuma_procedencia": 84,
     "subcampos_preenchidos": {
      "afiliado.casamento.degrau_da_palavra_chave": 14,
      "afiliado.casamento.item_id": 14,
      "afiliado.casamento.shop_id": 14,
-     "afiliado.degrau": 41
+     "afiliado.degrau": 42
     },
     "se_contasse_como_propriedade": {
      "recortes_que_mudam_de_veredito": 1,
@@ -2137,7 +2174,7 @@
      ]
     },
     "veredito": "o_portao_esta_certo_por_falta_de_procedencia",
-    "motivo": "`afiliado` mudaria o veredito de 1 recorte(s), e nenhum dos 83 numero(s) dele declara fonte por campo: 83 sem procedencia nenhuma e 0 com fonte pior que o nivel 3. Pela decisao pre-registrada ele fica FORA do portao, e o recorte fecha por dado, nao por desistencia."
+    "motivo": "`afiliado` mudaria o veredito de 1 recorte(s), e nenhum dos 84 numero(s) dele declara fonte por campo: 84 sem procedencia nenhuma e 0 com fonte pior que o nivel 3. Pela decisao pre-registrada ele fica FORA do portao, e o recorte fecha por dado, nao por desistencia."
    },
    {
     "campo": "divergencias",
@@ -2159,7 +2196,7 @@
      "recortes_que_ganham_numero_sem_mudar_de_veredito": []
     },
     "veredito": "nao_muda_nada_no_portao",
-    "motivo": "`divergencias` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 2 de 6."
+    "motivo": "`divergencias` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 2 de 6."
    },
    {
     "campo": "fonte_localizada_nao_lida",
@@ -2178,7 +2215,7 @@
      "recortes_que_ganham_numero_sem_mudar_de_veredito": []
     },
     "veredito": "nao_muda_nada_no_portao",
-    "motivo": "`fonte_localizada_nao_lida` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 1."
+    "motivo": "`fonte_localizada_nao_lida` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e nao acrescenta numero a recorte nenhum. Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 1."
    },
    {
     "campo": "geometria",
@@ -2219,7 +2256,7 @@
      ]
     },
     "veredito": "nao_muda_nada_no_portao",
-    "motivo": "`geometria` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e acrescenta numero a 2 recorte(s) que JA passam (`pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 52."
+    "motivo": "`geometria` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e acrescenta numero a 2 recorte(s) que JA passam (`pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 0 de 52."
    },
    {
     "campo": "imagem",
@@ -2285,14 +2322,14 @@
    },
    {
     "campo": "venda",
-    "itens_com_pelo_menos_um_numero": 21,
-    "itens_ativos_com_pelo_menos_um_numero": 21,
-    "numeros_preenchidos_no_banco": 23,
-    "com_procedencia_dentro_do_teto": 22,
+    "itens_com_pelo_menos_um_numero": 22,
+    "itens_ativos_com_pelo_menos_um_numero": 22,
+    "numeros_preenchidos_no_banco": 25,
+    "com_procedencia_dentro_do_teto": 24,
     "com_procedencia_pior_que_o_teto": 1,
     "sem_nenhuma_procedencia": 0,
     "subcampos_preenchidos": {
-     "venda[].quantidade": 23
+     "venda[].quantidade": 25
     },
     "se_contasse_como_propriedade": {
      "recortes_que_mudam_de_veredito": 0,
@@ -2331,7 +2368,7 @@
      ]
     },
     "veredito": "nao_muda_nada_no_portao",
-    "motivo": "`venda` nao muda o veredito de nenhum dos 42 recortes, nem no mundo mais permissivo, e acrescenta numero a 5 recorte(s) que JA passam (`alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 22 de 23."
+    "motivo": "`venda` nao muda o veredito de nenhum dos 43 recortes, nem no mundo mais permissivo, e acrescenta numero a 5 recorte(s) que JA passam (`alicate`, `alicate/cortador_de_azulejo`, `alicate/torques`, `pastilha`, `pastilha/vidro`). Le-lo ou nao le-lo e, hoje, pergunta sem consequencia para a elegibilidade — o que nao quer dizer que o numero seja publicavel: para ir a tela ele ainda precisa de fonte por campo, e este campo tem 24 de 25."
    }
   ],
   "resumo": {
@@ -2355,7 +2392,7 @@
     "geometria",
     "venda"
    ],
-   "a_leitura": "nenhum campo COM procedencia muda veredito nenhum dos 42 recortes. Os 2 campo(s) que mudariam (`afiliado`, `imagem`) nao declaram fonte por campo em numero nenhum — entao o filtro de procedencia e o que esta segurando o(s) recorte(s) `cola`, e nao a contagem de itens. Tirar o filtro publicaria pagina cujo 'numero calculado proprio' seria um numero que a ilha produziu, nao um que o fabricante declarou."
+   "a_leitura": "nenhum campo COM procedencia muda veredito nenhum dos 43 recortes. Os 2 campo(s) que mudariam (`afiliado`, `imagem`) nao declaram fonte por campo em numero nenhum — entao o filtro de procedencia e o que esta segurando o(s) recorte(s) `cola`, e nao a contagem de itens. Tirar o filtro publicaria pagina cujo 'numero calculado proprio' seria um numero que a ilha produziu, nao um que o fabricante declarou."
   }
  }
 }

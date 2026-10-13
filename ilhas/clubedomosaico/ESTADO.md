@@ -64,7 +64,7 @@ ultima_execucao_anterior: 2026-10-13T10:20Z   # A DIVIDA DO `documento_aberto` P
                                      # em false. Revisoes 84 e 85, as duas conferidas pela 20.4.
                                      # A de 12/10 19h16Z, que estava aqui, NAO foi perdida: esta
                                      # inteira no `REGISTRO.md`, que e o log append-only.
-executando_desde: 2026-10-13T16:17Z   # reserva da execucao de 13/10/2026 16h17Z (secao 1.2, passo 2). A anterior foi limpa as 13h4xZ pela propria execucao que reservou as 13h18Z.
+executando_desde: 2026-10-13T19:4xZ   # RENOVADO pela 1.1: o bloco passou de 40 minutos e a reserva se reescreve no commit do meio, para a proxima execucao nao precisar do git para saber. A reserva que vale e a de 16h17Z, que e a que vai para `ultima_execucao` no fechamento.
                          # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: no commit
                          # do bloco este campo saiu com `2026-10-13T13:45Z`, apresentado como renovacao da
                          # 1.1. Nao era — o bloco tinha 23 minutos, e 13h45Z ainda nao tinha chegado. A 1.1

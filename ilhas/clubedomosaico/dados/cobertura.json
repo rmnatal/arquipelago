@@ -25,7 +25,7 @@
     "por_categoria": {
       "acabamento": 10,
       "alicate": 6,
-      "cola": 7,
+      "cola": 8,
       "pastilha": 13,
       "rejunte": 5
     },
@@ -37,8 +37,8 @@
   "resumo": {
     "cola": {
       "estados_varridos": 270,
-      "estados_com_o_minimo": 27,
-      "estados_descobertos": 243,
+      "estados_com_o_minimo": 35,
+      "estados_descobertos": 235,
       "estados_sem_nenhum_elegivel": 68,
       "maior_numero_de_elegiveis_em_um_estado": 4,
       "menor_numero_de_elegiveis_em_um_estado": 0
@@ -64,6 +64,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -90,6 +91,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -116,6 +118,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -142,6 +145,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -168,6 +172,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -194,6 +199,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -222,6 +228,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -249,6 +256,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -276,6 +284,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -303,6 +312,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -330,6 +340,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -357,6 +368,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -382,6 +394,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -408,6 +421,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -434,6 +448,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -460,6 +475,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -486,6 +502,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -512,6 +529,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -550,7 +568,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -577,7 +596,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -604,7 +624,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -631,7 +652,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -658,7 +680,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -685,7 +708,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -693,9 +717,9 @@
       {
         "base": "alvenaria_tijolo",
         "ambiente": "interno_seco",
-        "tessela": "caco_azulejo",
+        "tessela": "caco_espelho",
         "elegiveis": [
-          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -711,31 +735,6 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns e nao declara os outros"
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "interno_seco",
-        "tessela": "caco_espelho",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [
           "quartzolit-cimentcola-externo-acii"
         ],
@@ -748,88 +747,7 @@
         "ambiente": "interno_seco",
         "tessela": "caco_louca",
         "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "interno_seco",
-        "tessela": "pastilha_ceramica",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "interno_seco",
-        "tessela": "pastilha_vidro",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "interno_seco",
-        "tessela": "pedra",
-        "elegiveis": [
-          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -845,10 +763,68 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
         "eliminados_por_ambiente_do_substrato": [],
         "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns e nao declara os outros"
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_ceramica",
+        "elegiveis": [
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": [],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_vidro",
+        "elegiveis": [
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": [],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -862,6 +838,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -889,6 +866,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -916,6 +894,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -943,6 +922,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -970,6 +950,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -997,6 +978,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1024,7 +1006,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
@@ -1048,7 +1032,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -1062,7 +1048,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1073,7 +1059,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -1087,7 +1075,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1098,7 +1086,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -1112,7 +1102,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1123,7 +1113,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -1137,7 +1129,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1148,7 +1140,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -1162,7 +1156,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1173,7 +1167,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -1187,7 +1183,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1204,7 +1200,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [
@@ -1231,7 +1228,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
@@ -1251,6 +1249,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1276,6 +1275,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1301,6 +1301,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1326,6 +1327,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1351,6 +1353,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1376,6 +1379,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1404,6 +1408,7 @@
         "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1429,6 +1434,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1456,6 +1462,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1483,6 +1490,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1510,6 +1518,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1538,6 +1547,7 @@
         "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1564,6 +1574,7 @@
         "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1589,6 +1600,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1616,6 +1628,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1643,6 +1656,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1670,6 +1684,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1698,32 +1713,7 @@
         "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns e nao declara os outros"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "caco_azulejo",
-        "elegiveis": [
-          "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -1744,141 +1734,7 @@
         "ambiente": "interno_molhado",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "caco_louca",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "pastilha_ceramica",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "pastilha_vidro",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "pedra",
-        "elegiveis": [
-          "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns e nao declara os outros"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_seco",
-        "tessela": "caco_espelho",
-        "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -1896,15 +1752,17 @@
           "quartzolit-cimentcola-externo-acii"
         ],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
         "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "cimento_concreto",
-        "ambiente": "interno_seco",
+        "ambiente": "interno_molhado",
         "tessela": "caco_louca",
         "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -1922,15 +1780,17 @@
           "quartzolit-cimentcola-externo-acii"
         ],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
         "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "cimento_concreto",
-        "ambiente": "interno_seco",
+        "ambiente": "interno_molhado",
         "tessela": "pastilha_ceramica",
         "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -1948,15 +1808,17 @@
           "quartzolit-cimentcola-externo-acii"
         ],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
         "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "cimento_concreto",
-        "ambiente": "interno_seco",
+        "ambiente": "interno_molhado",
         "tessela": "pastilha_vidro",
         "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -1974,7 +1836,9 @@
           "quartzolit-cimentcola-externo-acii"
         ],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
         "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
@@ -1985,6 +1849,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2009,6 +1874,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2033,6 +1899,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2057,6 +1924,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2081,6 +1949,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2105,6 +1974,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2131,6 +2001,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2156,6 +2027,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2181,6 +2053,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2206,6 +2079,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2231,6 +2105,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2256,6 +2131,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2281,6 +2157,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2306,6 +2183,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2331,6 +2209,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2356,6 +2235,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2381,6 +2261,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2406,6 +2287,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2438,6 +2320,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2463,6 +2346,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2488,6 +2372,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2513,6 +2398,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2538,6 +2424,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2563,6 +2450,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2588,6 +2476,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2613,6 +2502,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2638,6 +2528,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2663,6 +2554,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2688,6 +2580,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2713,6 +2606,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -2731,6 +2625,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2757,6 +2652,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2783,6 +2679,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2809,6 +2706,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2835,6 +2733,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2861,6 +2760,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2889,6 +2789,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2916,6 +2817,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2943,6 +2845,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2970,6 +2873,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -2997,6 +2901,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3024,6 +2929,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3049,6 +2955,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3075,6 +2982,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3101,6 +3009,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3127,6 +3036,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3153,6 +3063,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3179,6 +3090,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3211,6 +3123,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3238,6 +3151,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3265,6 +3179,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3292,6 +3207,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3319,6 +3235,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3346,6 +3263,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3367,6 +3285,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3393,6 +3312,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3419,6 +3339,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3445,6 +3366,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3471,6 +3393,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3497,6 +3420,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3525,6 +3449,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3552,6 +3477,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3579,6 +3505,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3606,6 +3533,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3633,6 +3561,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3660,6 +3589,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3685,6 +3615,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3711,6 +3642,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3737,6 +3669,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3763,6 +3696,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3789,6 +3723,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3815,6 +3750,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -3848,6 +3784,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3875,6 +3812,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3902,6 +3840,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3929,6 +3868,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3956,6 +3896,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -3983,6 +3924,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -4011,6 +3953,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -4036,6 +3979,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [
@@ -4064,6 +4008,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -4090,6 +4035,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -4115,6 +4061,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [
@@ -4143,6 +4090,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -4159,6 +4107,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4184,6 +4133,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4209,6 +4159,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4234,6 +4185,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4259,6 +4211,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4284,6 +4237,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4309,6 +4263,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4334,6 +4289,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4359,6 +4315,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4384,6 +4341,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4409,6 +4367,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4434,6 +4393,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4459,6 +4419,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4484,6 +4445,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4509,6 +4471,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4534,6 +4497,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4559,6 +4523,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4584,6 +4549,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4615,6 +4581,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4640,6 +4607,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4665,6 +4633,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4690,6 +4659,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4715,6 +4685,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4740,6 +4711,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4767,6 +4739,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4790,6 +4763,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4817,6 +4791,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4842,6 +4817,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4865,6 +4841,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4892,6 +4869,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -4911,6 +4889,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4937,6 +4916,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4963,6 +4943,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -4989,6 +4970,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5015,6 +4997,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5041,6 +5024,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5069,7 +5053,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -5081,7 +5067,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5094,7 +5080,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -5122,7 +5110,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -5134,7 +5124,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5148,7 +5138,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -5160,7 +5152,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5174,7 +5166,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -5186,7 +5180,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5200,7 +5194,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -5212,7 +5208,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5223,7 +5219,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -5237,7 +5235,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5248,7 +5246,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -5262,7 +5262,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5273,7 +5273,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -5287,7 +5289,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5298,7 +5300,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -5312,7 +5316,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5323,7 +5327,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -5337,7 +5343,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5348,7 +5354,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -5362,7 +5370,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -5380,6 +5388,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -5405,6 +5414,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -5433,6 +5443,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -5459,6 +5470,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -5485,6 +5497,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -5511,6 +5524,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -5536,6 +5550,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [
@@ -5564,6 +5579,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [
@@ -5582,6 +5598,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5606,6 +5623,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5630,6 +5648,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5654,6 +5673,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5678,6 +5698,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5702,6 +5723,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5728,6 +5750,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5753,6 +5776,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5778,6 +5802,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5803,6 +5828,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5828,6 +5854,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5853,6 +5880,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5878,6 +5906,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5903,6 +5932,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5928,6 +5958,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5953,6 +5984,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -5978,6 +6010,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -6003,6 +6036,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -6035,6 +6069,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6060,6 +6095,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6085,6 +6121,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6110,6 +6147,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6135,6 +6173,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6160,6 +6199,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6185,6 +6225,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6210,6 +6251,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6235,6 +6277,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6260,6 +6303,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6285,6 +6329,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -6310,6 +6355,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -7024,6 +7070,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7050,6 +7097,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7076,6 +7124,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7102,6 +7151,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7128,6 +7178,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7154,6 +7205,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7182,6 +7234,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7209,6 +7262,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7236,6 +7290,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7263,6 +7318,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7290,6 +7346,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7317,6 +7374,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7342,6 +7400,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7368,6 +7427,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7394,6 +7454,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7420,6 +7481,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7446,6 +7508,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7472,6 +7535,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7510,7 +7574,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -7537,7 +7602,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -7564,7 +7630,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -7591,7 +7658,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -7618,7 +7686,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -7645,7 +7714,8 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_ambiente_do_produto": [],
         "por_que": "o fabricante proibe uns e nao declara os outros"
@@ -7656,6 +7726,32 @@
         "tessela": "caco_azulejo",
         "elegiveis": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": []
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "tessela": "caco_espelho",
+        "elegiveis": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -7671,31 +7767,6 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns e nao declara os outros"
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "interno_seco",
-        "tessela": "caco_espelho",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [
           "quartzolit-cimentcola-externo-acii"
         ],
@@ -7708,88 +7779,7 @@
         "ambiente": "interno_seco",
         "tessela": "caco_louca",
         "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "interno_seco",
-        "tessela": "pastilha_ceramica",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "interno_seco",
-        "tessela": "pastilha_vidro",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "cascola-pl500-adesivo-de-montagem",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "interno_seco",
-        "tessela": "pedra",
-        "elegiveis": [
-          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -7805,10 +7795,94 @@
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
         "eliminados_por_ambiente_do_substrato": [],
         "eliminados_por_ambiente_do_produto": [],
-        "por_que": "o fabricante proibe uns e nao declara os outros"
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_ceramica",
+        "elegiveis": [
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": [],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_vidro",
+        "elegiveis": [
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": [],
+        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "tessela": "pedra",
+        "elegiveis": [
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": []
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -7822,6 +7896,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7849,6 +7924,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7876,6 +7952,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7903,6 +7980,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7930,6 +8008,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7957,6 +8036,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -7985,7 +8065,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
@@ -8009,7 +8091,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
@@ -8037,7 +8121,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
@@ -8062,7 +8148,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
@@ -8087,7 +8175,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
@@ -8112,7 +8202,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii"
@@ -8133,7 +8225,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -8147,7 +8241,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -8158,7 +8252,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -8172,7 +8268,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -8183,7 +8279,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -8197,7 +8295,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -8208,7 +8306,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -8222,7 +8322,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -8233,7 +8333,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -8247,7 +8349,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -8258,7 +8360,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -8272,7 +8376,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -8290,7 +8394,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8314,7 +8419,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [
@@ -8342,7 +8448,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8367,7 +8474,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8392,7 +8500,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8417,7 +8526,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8443,7 +8553,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8465,7 +8576,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
@@ -8494,7 +8606,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8518,7 +8631,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8541,7 +8655,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [
           "cascola-pl500-adesivo-de-montagem"
@@ -8567,7 +8682,8 @@
         "eliminados_por_proibicao": [],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores"
         ],
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
@@ -8582,6 +8698,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8607,6 +8724,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8632,6 +8750,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8657,6 +8776,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8682,6 +8802,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8707,6 +8828,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8735,6 +8857,7 @@
         "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8760,6 +8883,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8787,6 +8911,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8814,6 +8939,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8841,6 +8967,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8869,6 +8996,7 @@
         "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8895,6 +9023,7 @@
         "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8920,6 +9049,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8947,6 +9077,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -8974,6 +9105,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9001,6 +9133,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9029,6 +9162,7 @@
         "quantos_elegiveis": 2,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9050,167 +9184,7 @@
         "tessela": "caco_azulejo",
         "elegiveis": [
           "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns e nao declara os outros"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "caco_espelho",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "caco_louca",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "pastilha_ceramica",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "pastilha_vidro",
-        "elegiveis": [
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 1,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_molhado",
-        "tessela": "pedra",
-        "elegiveis": [
-          "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-neutro"
-        ],
-        "quantos_elegiveis": 2,
-        "com_ressalva": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "loctite-durepoxi",
-          "tekbond-silicone-acetico-maxx"
-        ],
-        "eliminados_por_condicao": [],
-        "eliminados_por_proibicao_da_peca": [],
-        "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [
-          "cascola-pl500-adesivo-de-montagem"
-        ],
-        "por_que": "o fabricante proibe uns e nao declara os outros"
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_seco",
-        "tessela": "caco_azulejo",
-        "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
-          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 3,
@@ -9226,14 +9200,16 @@
         "eliminados_por_condicao": [],
         "eliminados_por_proibicao_da_peca": [],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": []
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
       },
       {
         "base": "cimento_concreto",
-        "ambiente": "interno_seco",
+        "ambiente": "interno_molhado",
         "tessela": "caco_espelho",
         "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -9251,15 +9227,17 @@
           "quartzolit-cimentcola-externo-acii"
         ],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
         "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "cimento_concreto",
-        "ambiente": "interno_seco",
+        "ambiente": "interno_molhado",
         "tessela": "caco_louca",
         "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -9277,15 +9255,17 @@
           "quartzolit-cimentcola-externo-acii"
         ],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
         "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "cimento_concreto",
-        "ambiente": "interno_seco",
+        "ambiente": "interno_molhado",
         "tessela": "pastilha_ceramica",
         "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -9303,15 +9283,17 @@
           "quartzolit-cimentcola-externo-acii"
         ],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
         "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
       },
       {
         "base": "cimento_concreto",
-        "ambiente": "interno_seco",
+        "ambiente": "interno_molhado",
         "tessela": "pastilha_vidro",
         "elegiveis": [
-          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
         "quantos_elegiveis": 2,
@@ -9329,8 +9311,165 @@
           "quartzolit-cimentcola-externo-acii"
         ],
         "eliminados_por_ambiente_do_substrato": [],
-        "eliminados_por_ambiente_do_produto": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ],
         "por_que": "o fabricante proibe uns no proprio caquinho, e os outros ele proibe na base, nao declara, ou poe condicao que nao fecha"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_molhado",
+        "tessela": "pedra",
+        "elegiveis": [
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": [
+          "cascola-pl500-adesivo-de-montagem"
+        ]
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_seco",
+        "tessela": "caco_azulejo",
+        "elegiveis": [
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": []
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_seco",
+        "tessela": "caco_espelho",
+        "elegiveis": [
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": []
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_seco",
+        "tessela": "caco_louca",
+        "elegiveis": [
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": []
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_ceramica",
+        "elegiveis": [
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": []
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_seco",
+        "tessela": "pastilha_vidro",
+        "elegiveis": [
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-pastilhas-interiores",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_condicao": [],
+        "eliminados_por_proibicao_da_peca": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "eliminados_por_ambiente_do_substrato": [],
+        "eliminados_por_ambiente_do_produto": []
       },
       {
         "base": "cimento_concreto",
@@ -9339,9 +9478,10 @@
         "elegiveis": [
           "cascola-pl500-adesivo-de-montagem",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-neutro"
         ],
-        "quantos_elegiveis": 3,
+        "quantos_elegiveis": 4,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
           "tekbond-silicone-acetico-construcao"
@@ -9364,6 +9504,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9388,6 +9529,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9412,6 +9554,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9436,6 +9579,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9460,6 +9604,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9484,6 +9629,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9510,6 +9656,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9535,6 +9682,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9560,6 +9708,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9585,6 +9734,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9610,6 +9760,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9635,6 +9786,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9660,6 +9812,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9685,6 +9838,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9710,6 +9864,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9735,6 +9890,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9760,6 +9916,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9785,6 +9942,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -9817,6 +9975,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -9842,6 +10001,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -9867,6 +10027,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -9892,6 +10053,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -9917,6 +10079,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -9942,6 +10105,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -9967,6 +10131,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -9992,6 +10157,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10017,6 +10183,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10042,6 +10209,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10067,6 +10235,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10092,6 +10261,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10110,6 +10280,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10136,6 +10307,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10162,6 +10334,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10188,6 +10361,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10214,6 +10388,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10240,6 +10415,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10268,6 +10444,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10295,6 +10472,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10322,6 +10500,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10349,6 +10528,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10376,6 +10556,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10403,6 +10584,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10428,6 +10610,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10454,6 +10637,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10480,6 +10664,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10506,6 +10691,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10532,6 +10718,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10558,6 +10745,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10590,6 +10778,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10617,6 +10806,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10644,6 +10834,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10671,6 +10862,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10698,6 +10890,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10725,6 +10918,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10754,6 +10948,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10779,6 +10974,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10804,6 +11000,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10829,6 +11026,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10854,6 +11052,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10879,6 +11078,7 @@
         ],
         "eliminados_por_silencio": [
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -10896,6 +11096,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10922,6 +11123,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10948,6 +11150,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -10974,6 +11177,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11000,6 +11204,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11026,6 +11231,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11054,6 +11260,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11081,6 +11288,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11108,6 +11316,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11135,6 +11344,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11162,6 +11372,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11189,6 +11400,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11214,6 +11426,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11240,6 +11453,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11266,6 +11480,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11292,6 +11507,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11318,6 +11534,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11344,6 +11561,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11377,6 +11595,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11404,6 +11623,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11431,6 +11651,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11458,6 +11679,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11485,6 +11707,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11512,6 +11735,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11540,6 +11764,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11565,6 +11790,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [
@@ -11593,6 +11819,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11619,6 +11846,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11644,6 +11872,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [
@@ -11672,6 +11901,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -11688,6 +11918,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11713,6 +11944,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11738,6 +11970,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11763,6 +11996,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11788,6 +12022,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11813,6 +12048,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11838,6 +12074,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11863,6 +12100,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11888,6 +12126,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11913,6 +12152,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11938,6 +12178,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11963,6 +12204,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -11988,6 +12230,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12013,6 +12256,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12038,6 +12282,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12063,6 +12308,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12088,6 +12334,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12113,6 +12360,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12144,6 +12392,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12169,6 +12418,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12194,6 +12444,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12219,6 +12470,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12244,6 +12496,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12269,6 +12522,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12296,6 +12550,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12319,6 +12574,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12346,6 +12602,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12371,6 +12628,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12394,6 +12652,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12421,6 +12680,7 @@
           "cascola-cascorez-extra",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx",
           "tekbond-silicone-neutro"
         ],
@@ -12440,6 +12700,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12466,6 +12727,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12492,6 +12754,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12518,6 +12781,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12544,6 +12808,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12570,6 +12835,7 @@
           "loctite-durepoxi"
         ],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -12598,7 +12864,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -12610,7 +12878,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12623,7 +12891,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -12651,7 +12921,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -12663,7 +12935,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12677,7 +12949,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -12689,7 +12963,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12703,7 +12977,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -12715,7 +12991,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12729,7 +13005,9 @@
         "com_ressalva": [
           "loctite-durepoxi"
         ],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
@@ -12741,7 +13019,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12752,7 +13030,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -12766,7 +13046,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12777,7 +13057,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -12791,7 +13073,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12802,7 +13084,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -12816,7 +13100,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12827,7 +13111,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -12841,7 +13127,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12852,7 +13138,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -12866,7 +13154,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12877,7 +13165,9 @@
         ],
         "quantos_elegiveis": 1,
         "com_ressalva": [],
-        "eliminados_por_proibicao": [],
+        "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores"
+        ],
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "loctite-durepoxi",
@@ -12891,7 +13181,7 @@
         "eliminados_por_ambiente_do_produto": [
           "cascola-pl500-adesivo-de-montagem"
         ],
-        "por_que": "o fabricante nao declara esta base em uns, e noutros ele a declara e delimita o lugar"
+        "por_que": "o fabricante proibe uns e nao declara os outros"
       },
       {
         "base": "vidro",
@@ -12909,6 +13199,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -12934,6 +13225,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -12962,6 +13254,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -12988,6 +13281,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13014,6 +13308,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13040,6 +13335,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13067,6 +13363,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13089,6 +13386,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [
@@ -13118,6 +13416,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13142,6 +13441,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13165,6 +13465,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [
@@ -13192,6 +13493,7 @@
         "eliminados_por_silencio": [
           "cascola-cascorez-extra",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13207,6 +13509,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13231,6 +13534,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13255,6 +13559,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13279,6 +13584,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13303,6 +13609,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13327,6 +13634,7 @@
         "quantos_elegiveis": 0,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13353,6 +13661,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13378,6 +13687,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13403,6 +13713,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13428,6 +13739,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13453,6 +13765,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13478,6 +13791,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13503,6 +13817,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13528,6 +13843,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13553,6 +13869,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13578,6 +13895,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13603,6 +13921,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13628,6 +13947,7 @@
         "quantos_elegiveis": 1,
         "com_ressalva": [],
         "eliminados_por_proibicao": [
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
@@ -13660,6 +13980,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13685,6 +14006,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13710,6 +14032,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13735,6 +14058,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13760,6 +14084,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13785,6 +14110,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13810,6 +14136,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13835,6 +14162,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13860,6 +14188,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13885,6 +14214,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13910,6 +14240,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
@@ -13935,6 +14266,7 @@
           "cascola-pl500-adesivo-de-montagem",
           "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
+          "quartzolit-pastilhas-interiores",
           "tekbond-silicone-acetico-maxx"
         ],
         "eliminados_por_condicao": [],
