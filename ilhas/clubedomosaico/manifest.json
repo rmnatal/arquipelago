@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 84,
-  "atualizado_em": "2026-10-13T11:00Z",
+  "revisao": 85,
+  "atualizado_em": "2026-10-13T11:05Z",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -194,7 +194,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "7eb06e065628df09f03d53de4f130c946086d4f98947bc95e914f354f9219005",
+      "sha256": "9c6597218ad9912daf629308e15012ed12775f51afcf35f2904b729d6159333d",
       "descricao": "Esquema v15 — a REGRA 3 ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`) sem campo novo no banco: a regra virou dicionario com o balde, a ordem e a trava, nasceu `regras_do_balde_do_ambiente_do_produto` com os tres produtos que delimitam ambiente e cinco ancoras ponta a ponta, e 24 das 45 celulas da `matriz_esperada_da_F2` foram reescritas a mao movendo 29 entradas do balde do silencio para o novo. Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {

@@ -1395,6 +1395,11 @@
             "conferir_no_pdf": {
               "tipo": "boolean",
               "obrigatorio": true
+            },
+            "documento_aberto": {
+              "tipo": "boolean",
+              "obrigatorio": true,
+              "observacao": "Desde 13/10/2026, e a especificacao deste subcampo entrou na MESMA passada que o portao que o cobra — de proposito. A versao 17 declarou o campo em `escada_de_fontes.documento_aberto` e escreveu em prosa, no `obrigatorio_hoje_em` dele, onde ele e exigido; esta lista de `subcampos` e onde quem abre o esquema procura 'o que uma fonte tem', e ela nao o trazia. Portao que cobra um campo que a especificacao nao declara e a mesma familia do nome de arquivo dentro de ferramenta: as duas metades envelhecem em arquivos diferentes e ninguem ve. `true` = o documento foi ABERTO e lido; `false` = colhido por busca, documento nao aberto. Cobrado por PRESENCA e TIPO, nunca por verdade — `false` e o valor de 48 das 53 fontes de material. NAO se confunde com `conferir_no_pdf`, que diz que a fonte MERECE segunda leitura, nem com `nivel`, que e a natureza da fonte. Endereco de documento que nunca foi lido NAO mora aqui: mora em `fonte_localizada_nao_lida`, fora de `fontes`, e o nome dele ja responde a pergunta — por isso aquele bloco nao carrega este campo e nao e divida."
             }
           }
         },
