@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 86,
+  "revisao": 87,
   "atualizado_em": "2026-10-13",
   "estado": "nascendo",
   "desembarque": {
@@ -194,7 +194,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "b923376a414e143c3c1377beeed84330dbdf4ad10c55bc522110aae25857b1c6",
+      "sha256": "81b6c19949d1031d3df5a9205224e06c6dcfc77c1cd13d93197f6ee73323f067",
       "descricao": "Esquema v15 — a REGRA 3 ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`) sem campo novo no banco: a regra virou dicionario com o balde, a ordem e a trava, nasceu `regras_do_balde_do_ambiente_do_produto` com os tres produtos que delimitam ambiente e cinco ancoras ponta a ponta, e 24 das 45 celulas da `matriz_esperada_da_F2` foram reescritas a mao movendo 29 entradas do balde do silencio para o novo. Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -230,7 +230,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "c0e1f5f20ccb0ecc510bd47cd50e3eda04d6dbbae998e3635a92b6a97ede407a",
+      "sha256": "bb2b440d5cef4116e6b96af1636f233969f3f4a596bc550be6ec158f41ec5a37",
       "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
       "pendencias": 2,
       "pendencias_que_bloqueiam_publicacao": []
@@ -268,7 +268,7 @@
       "verificado_em": "2026-09-12",
       "registros": 105,
       "publicar": false,
-      "sha256": "0aaf37afde8bd1dd46d5409466590c226c5922c6fb0f5381ba71dc4b5fc195c5",
+      "sha256": "8134736a609d3eebc405555c00ac8f74ffba63fffa71f4bb7fdde8fc185a6989",
       "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
     },
     {
@@ -358,7 +358,7 @@
       "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
       "registros": 42,
       "publicar": false,
-      "sha256": "912e6cf87b9340d9516333a9307ed843e49a2d01cda2be2cd15f4ab75fdf9453",
+      "sha256": "a019ccd2a3096a6c96278a6dee957e02d8ac21c875a66ece9f57adb2d48039d2",
       "verificado_em": "2026-10-08"
     },
     {
@@ -369,7 +369,7 @@
       "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira era a classificacao de SERP da 14.9 em PROSA, e em 02/10/2026 ela saiu daqui e virou dado em dados/serp-das-filhas.json, com o cruzamento em dados/cruzamento-14-9.md: prosa que o gerador preserva sem ler nao cruza com numero. O que ficou abaixo da fronteira e o ponteiro para os dois arquivos novos e o motivo da mudanca.",
       "verificado_em": "2026-10-08",
       "publicar": false,
-      "sha256": "f6ec583e1c832fbc96c5571408550007b2ea8a6c9df08abb880ccf1f9316adfe"
+      "sha256": "4212e30f75d0857ec45a91c4488e2ce8331c35c1b1119c46bbb86b228536052a"
     },
     {
       "id": "perguntas-do-guia",
@@ -568,7 +568,7 @@
     {
       "id": "mutacoes-apoio",
       "arquivo": "ferramentas/mutacoes-apoio.py",
-      "sha256": "bceab5c69b582b6f81a65644b2693b1035536f6e72c1460f92de9bfe1f319c85",
+      "sha256": "7de4d7d4b3c7308be9e8b694ee0b0a66f3516f725c045cb1bb5808c32e2eefaa",
       "descricao": "Vinte e quatro defeitos escritos contra a decisao de campo da categoria APOIO, e e a SEGUNDA bateria desta ilha que FABRICA O PROPRIO MUNDO: dados/materiais-apoio.json nao existe, porque a regra nasceu antes do primeiro SKU. Quatorze mutacoes no mundo fabricado (quatro registros, um por ramo e por estado), SEIS no banco de VERDADE — a AF1500, a Cascorez e o verniz de pisos, restaurados byte a byte no fim — e quatro no esquema. As seis do banco real sao a novidade: esta e a unica categoria cuja declaracao que mais importa vem DO OUTRO LADO DO BALCAO, porque quem diz qual desempenadeira usar e o fabricante da PASTILHA. Duas mutacoes acharam buraco real ANTES do commit e as duas viraram portao: a 15 (a varredura comparava por registro e a AF1500 nomeia a desempenadeira em DOIS campos, entao apagar uma das duas linhas passava verde — a prosa da secao ja dizia 'mede CAMPO, nao registro' e o codigo nao cumpria) e a 20 (trocar o estado de `aerossol` para buraco de vocabulario passava verde, e a proxima execucao criaria um tipo de apoio chamado aerossol, que e EMBALAGEM; o conserto e que proposta de valor novo tem de vir de FRASE de fabricante e nao de um campo de valor do nosso proprio esquema). A 21 e a que PRODUZ O MUNDO: executa a decisao pendente, poe `pincel` em tipo_por_categoria.apoio e mede se o indice acusa que envelheceu no mesmo commit em que o vocabulario cresceu. 24 de 24, as 24 so o portao novo viu. Bancada."
     },
     {
@@ -863,7 +863,7 @@
     {
       "id": "mutacoes-par",
       "arquivo": "ferramentas/mutacoes-par.py",
-      "sha256": "2a4473135c20e99ed4a5a9135a691619488d1b5dc42662660a4950582ce0a97e",
+      "sha256": "cbb8985b1d2ec2c2f7ddf81dd1788289808223a89987f568ffa55b81444cf029",
       "descricao": "Quebra o par substrato x ambiente da REGRA 8 de proposito, 17 mutacoes de forma + 5 de tela, e mede quais SO o portao novo do esquema v14 pega (13 das 17). O que torna esta bateria diferente das irmas e que os DOIS erros possiveis apontam para lados OPOSTOS e so um deles e caro: IGNORAR o qualificador publica MAIS do que o fabricante declarou (a argamassa de assentamento recomendada para muro de mosaico ao ar livre) e INTERSECTAR publica MENOS (a mesma argamassa saindo de `cimento_concreto`, que ela declara sem qualificador). As duas direcoes tem mutacao propria, na forma e na tela. Ha mutacao que PRODUZ O MUNDO: a frase LARGA ganhando qualificador, o segundo produto com frase qualificada, e uma frase de PROIBICAO ganhando qualificador — esta ultima PASSOU na primeira rodada e virou trava, porque do lado da proibicao a leitura e ampliativa de proposito e o campo ficava gravado, sem efeito e sem uma palavra. E a de tela que troca a ORDEM da regra 8 com a 2: a lista nao muda e a CAUSA muda de nome, que e a frase que esta pagina vende. 4 travas de falso positivo, e a primeira versao de uma delas foi REPROVADA com razao — ela alargava o qualificador para os cinco ambientes, mundo em que a regra 8 nunca morde, e chamava de falso positivo a trava que impede uma tabela de ancoras que nao mede nada. 17 de 17 de forma, 5 de 5 de tela, 4 de 4 falsos positivos. Bancada."
     },
     {
