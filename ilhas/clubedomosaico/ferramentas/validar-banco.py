@@ -562,6 +562,53 @@ for nome in arquivos_material:
     if categoria_arquivo not in VOC["categoria_material"]:
         erro("%s: categoria '%s' fora do vocabulario" % (nome, categoria_arquivo))
 
+    # O VALOR TEM DE CONCORDAR COM A JUSTIFICATIVA ESCRITA AO LADO DELE (13/10/2026).
+    #
+    # Isto cobre a metade que a cobranca por presenca e tipo nao alcanca, e a outra
+    # metade fica dita aqui com todas as letras: NENHUM portao desta ilha sabe se um
+    # documento foi aberto de verdade. `mutacoes-tecnicas.py` ja registra isso para as
+    # dez fontes de tecnica — declarar `documento_aberto: true` numa fonte que ninguem
+    # abriu e mentira que o portao nao cobre, e la existe um caso que espera APROVA de
+    # proposito para a proxima execucao saber disso em vez de descobrir.
+    #
+    # O QUE DA PARA COBRAR, e e o defeito realista: o valor e a prosa que o sustenta
+    # saindo de sincronia. Cada banco carrega, desde 13/10/2026, o bloco
+    # `de_onde_saiu_o_documento_aberto.por_fonte`, com o caminho de prova e a frase que
+    # sustenta cada valor. Quem virar o booleano e deixar a frase velha vira a mesma
+    # familia do "resumo velho lido como fato" da secao 4 do ARQUIPELAGO.md — e aqui o
+    # resumo velho e a PROVA. O portao exige as tres coisas: o bloco existe, ele cobre
+    # EXATAMENTE as fontes do banco (nem a menos, nem fonte que nao existe mais), e o
+    # `valor` de cada linha e identico ao `documento_aberto` da fonte.
+    prov = (arq.get("de_onde_saiu_o_documento_aberto") or {}).get("por_fonte")
+    fontes_do_banco = {}
+    for _m in arq.get("materiais", []):
+        for _fid, _f in (_m.get("fontes") or {}).items():
+            fontes_do_banco[_fid] = (_m.get("id", "<sem id>"), _f)
+    if not isinstance(prov, dict):
+        erro("%s: falta `de_onde_saiu_o_documento_aberto.por_fonte`. O esquema v18 o exige em "
+             "todo banco de material: e onde mora a PROCEDENCIA de cada `documento_aberto`, "
+             "fonte por fonte, com o caminho de prova e a frase que o sustenta" % nome)
+    else:
+        for _fid in sorted(set(fontes_do_banco) - set(prov)):
+            erro("%s / fonte %s: declara `documento_aberto` e NAO esta em "
+                 "`de_onde_saiu_o_documento_aberto.por_fonte`. Valor sem procedencia escrita e "
+                 "exatamente o que o campo nasceu para substituir" % (nome, _fid))
+        for _fid in sorted(set(prov) - set(fontes_do_banco)):
+            erro("%s: `de_onde_saiu_o_documento_aberto.por_fonte` nomeia a fonte %s, que nao "
+                 "existe mais neste banco. Procedencia de fonte morta envelhece calada"
+                 % (nome, _fid))
+        for _fid in sorted(set(prov) & set(fontes_do_banco)):
+            _ident, _f = fontes_do_banco[_fid]
+            _linha = prov[_fid] if isinstance(prov[_fid], dict) else {}
+            for _campo in ("valor", "caminho", "a_frase"):
+                if _campo not in _linha:
+                    erro("%s / fonte %s: a procedencia nao traz `%s`" % (nome, _fid, _campo))
+            if "valor" in _linha and _linha["valor"] != _f.get("documento_aberto"):
+                erro("%s / %s / fonte %s: `documento_aberto` e %r e a procedencia dela diz %r. "
+                     "O valor e a prova sairam de sincronia — um dos dois esta velho, e quem "
+                     "mudar o valor muda a frase na mesma passada"
+                     % (nome, _ident, _fid, _f.get("documento_aberto"), _linha["valor"]))
+
     for m in arq.get("materiais", []):
         ident = m.get("id", "<sem id>")
         onde = "%s / %s" % (nome, ident)
@@ -756,6 +803,30 @@ for nome in arquivos_material:
                      "nenhum. Fonte que nao sustenta nada nao e fonte: ela empresta o nivel "
                      "dela ao produto inteiro. Mova para `fonte_localizada_nao_lida`."
                      % (onde, fid))
+            # `documento_aberto` SE COBRA POR PRESENCA E POR TIPO, NUNCA POR VERDADE —
+            # a mesma regra que vale para as fontes de TECNICA desde o esquema v17, e
+            # pelo mesmo motivo: `false` e o valor de 48 das 53 fontes destes cinco
+            # bancos, entao o `if campo not in f` do laco acima e a unica forma de
+            # cobranca que nao le o valor legitimo como campo faltando.
+            #
+            # COBRADO AQUI DESDE 13/10/2026, e e isto que mantem a divida paga. Ate
+            # 12/10 a pergunta "este documento foi aberto?" era respondida em PROSA
+            # dentro do campo `tipo` ("pagina NAO aberta (000 em acrilex.com.br em tres
+            # passadas)"), e prosa nenhum portao le: o esquema v17 nasceu com a divida
+            # escrita com numero e com o plano de paga-la "um banco por vez". As 53
+            # fontes declaram desde hoje, e a proveniencia de cada valor esta no bloco
+            # `de_onde_saiu_o_documento_aberto` de cada banco, por fonte, com o caminho
+            # de prova que a sustenta. SEM ESTA LINHA a divida volta calada no primeiro
+            # SKU novo — que e exatamente como ela nasceu: `dados/tecnicas.json` surgiu
+            # DEPOIS da lista de `GATILHOS` do medir-egresso.py e ficou 12 dias fora do
+            # pedido de rede sem nada acusar.
+            if not isinstance(f.get("documento_aberto"), bool):
+                erro("%s / fonte %s: falta `documento_aberto` (ou nao e booleano). O esquema "
+                     "v17 o exige em TODA fonte, de material tambem: e ele que diz se o "
+                     "documento foi ABERTO, e e ele que o pedido de rede le "
+                     "(ferramentas/medir-egresso.py, `trava_coleta`). Prosa no campo `tipo` "
+                     "nenhum portao le — escreva o valor e registre de onde ele saiu em "
+                     "`de_onde_saiu_o_documento_aberto.por_fonte` deste banco" % (onde, fid))
 
         # toda propriedade com valor precisa apontar fonte; toda propriedade nula, motivo
         for pnome, prop in (m.get("propriedades") or {}).items():

@@ -6,6 +6,63 @@
   "gerado_em": "2026-09-13",
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria COLA do banco MATERIAL, escrita no formato do esquema do bloco 3. NENHUM dado novo foi coletado nesta execucao: cada declaracao abaixo e a transposicao campo a campo do que o bloco 2 ja tinha colhido em dados/constantes.json, com a mesma fonte, o mesmo tipo de documento e a mesma data. O que este arquivo acrescenta e ESTRUTURA — a lista literal do fabricante virou campo com peso (indicado, proibido, nao recomendado, delimita, resiste), e por isso a matriz da F2 pode ser recomputada em vez de lida.",
+  "de_onde_saiu_o_documento_aberto": {
+    "o_que_este_bloco_e": "A proveniencia POR FONTE do campo `documento_aberto` (esquema v17), escrita em 13/10/2026 quando as fontes deste banco passaram a declara-lo. NENHUM valor aqui e coleta nova: cada um e a transcricao de uma afirmacao que este arquivo (ou, no caso do banco de colas, o arquivo de que ele se declara transposicao) ja fazia em PROSA. O bloco existe porque prosa nao e lida por portao e porque a proxima execucao nao deve precisar remedir de onde o valor saiu.",
+    "os_caminhos_de_prova": {
+      "A": "o campo `tipo` da propria fonte diz",
+      "B": "o campo `leitura` da propria fonte diz",
+      "C": "`reaberta_em` e `o_que_a_abertura_mudou` da propria fonte dizem que abriu",
+      "D": "a fonte CALA e quem responde e a declaracao de coleta do banco: dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada constante abaixo veio do texto da pagina do fabricante lido pela ferramenta de busca'. Este banco declara, em `o_que_este_arquivo_e`, ser a transposicao campo a campo daquele arquivo.",
+      "E": "nenhum dos quatro responde e a escolha foi FEITA, com o motivo dentro da propria fonte. Uma ocorrencia em 53, no banco de alicates."
+    },
+    "por_fonte": {
+      "ficha-brsa004": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+      },
+      "pagina-produto-acetico": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+      },
+      "pagina-produto-neutro": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+      },
+      "pagina-produto-cascorez": {
+        "valor": true,
+        "caminho": "C",
+        "a_frase": "2026-10-06 — Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 241 KB de HTML."
+      },
+      "pagina-produto-cimentcola": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+      },
+      "bt-cimentcola-externo-2016-05": {
+        "valor": true,
+        "caminho": "A",
+        "a_frase": "boletim tecnico do fabricante, ABERTO E LIDO pagina a pagina (3 paginas) pelo canal de espelho da escada_de_fontes; o documento se identifica como 'Boletim Tecnico - cimentcola externo quartzolit' e f"
+      },
+      "press-release-durepoxi": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "dados/constantes.json, metodo_de_coleta: 'curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada "
+      },
+      "pagina-produto-maxx": {
+        "valor": false,
+        "caminho": "B",
+        "a_frase": "busca restrita ao dominio do fabricante. O egresso desta nuvem NAO abre tekbond.com.br — remedido em 13/09/2026 em duas passadas, 000 nas duas, com clubedomosaico.com.br em 200 como controle. Por isso"
+      },
+      "pagina-produto-pl500": {
+        "valor": true,
+        "caminho": "C",
+        "a_frase": "2026-10-06 — Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 238 KB de HTML."
+      }
+    }
+  },
   "afiliado": {
     "itens_esperando_link": 1,
     "itens_sem_saida_de_compra": 0,
@@ -190,14 +247,16 @@
           "tipo": "ficha técnica BRSA004 do fabricante, revisada em 10/2025",
           "nivel": 2,
           "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "pagina-produto-acetico": {
           "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico",
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [
@@ -296,7 +355,8 @@
           "tipo": "página de produto do fabricante + ficha técnica de 09/2020",
           "nivel": 3,
           "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [
@@ -396,6 +456,7 @@
           "nivel": 3,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true,
+          "documento_aberto": true,
           "reaberta_em": "2026-10-06",
           "o_que_a_abertura_mudou": {
             "por_que_foi_reaberta": "Para colher o `preparo` na palavra do fabricante. www.cascola.com.br respondeu 200 nas tres passadas de 06/10/2026, e a pagina veio com 241 KB de HTML.",
@@ -547,7 +608,8 @@
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "bt-cimentcola-externo-2016-05": {
           "url": "https://telhanorte.vteximg.com.br/arquivos/908487.pdf",
@@ -555,6 +617,7 @@
           "nivel": 2,
           "coletado_em": "2026-10-05",
           "conferir_no_pdf": false,
+          "documento_aberto": true,
           "por_que_nivel_2_e_nao_1": "O PDF foi lido inteiro, mas em ESPELHO (CDN de varejista), nao no servidor do fabricante. Do espelho sai o documento, nao a garantia de que a revisao e a vigente — e aqui isso nao e detalhe: a pendencia que este documento fecha aponta para o arquivo 2024-09 e o documento lido e de MAIO DE 2016. Ver escada_de_fontes.canal_de_espelho.",
           "revisao_declarada_no_documento": "maio de 2016",
           "documento": "Boletim Tecnico - cimentcola externo quartzolit, 3 paginas; titulo da pagina 1 em minusculas ('cimentcola externo quartzolit') e subtitulo 'argamassa colante para ceramicas em areas internas e externas'",
@@ -726,7 +789,8 @@
           "tipo": "material de imprensa do fabricante (2018) — NÃO é ficha técnica",
           "nivel": 4,
           "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [
@@ -840,6 +904,7 @@
           "nivel": 3,
           "coletado_em": "2026-09-13",
           "conferir_no_pdf": false,
+          "documento_aberto": false,
           "leitura": "busca restrita ao dominio do fabricante. O egresso desta nuvem NAO abre tekbond.com.br — remedido em 13/09/2026 em duas passadas, 000 nas duas, com clubedomosaico.com.br em 200 como controle. Por isso a fonte e nivel 3 e nao nivel 1: o elo mais fraco e a leitura (secao 10 do ARQUIPELAGO.md)."
         }
       },
@@ -965,6 +1030,7 @@
           "nivel": 3,
           "coletado_em": "2026-09-13",
           "conferir_no_pdf": false,
+          "documento_aberto": true,
           "leitura": "busca restrita ao dominio do fabricante. cascola.com.br tambem nao abre desta nuvem (000, medido em 13/09/2026). Duas buscas independentes, com perguntas diferentes e SEM o valor dentro da pergunta (secao 8), devolveram a mesma lista de materiais, a mesma condicao de porosidade e o mesmo tempo de ajuste.",
           "reaberta_em": "2026-10-06",
           "o_que_a_abertura_mudou": {

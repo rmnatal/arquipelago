@@ -7,6 +7,78 @@
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria ACABAMENTO do banco MATERIAL: o que se passa na peca DEPOIS que ela esta montada e rejuntada, e o que se passa na base ANTES de colar. E a terceira das cinco categorias vazias a ser enchida (depois de pastilha e de alicate) e a PRIMEIRA que nao tinha a linha do esquema dizendo que campo ela exige — as tres que sobravam em 25/09/2026 (base, acabamento, apoio) comecam por essa decisao, e ela esta escrita em `regras_da_categoria_acabamento` do esquema-banco, nao aqui. O bloco NAO publica pagina nenhuma: a 16.5 continua exigindo 3 filhas de nivel 3 por categoria e /materiais/acabamento/ continua sem pagina.",
   "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3, 3c, 3d e no da categoria alicate. O egresso foi REMEDIDO nesta execucao como a 20.2 manda, em TRES passadas: acrilex.com.br, www.acrilex.com.br, corfix.com.br, www.quartzolit.weber, suvinil.com.br e vedacit.com.br em 000 nas tres, com clubedomosaico.com.br em 200 nas tres. E politica de egresso, nao intermitencia, e por isso todo campo daqui carrega conferir_no_pdf: true. DUAS PASSADAS POR SKU, escritas de forma diferente e nenhuma delas carregando um valor: as consultas pediram os ROTULOS da ficha ('indicado para', 'demaos', 'consumo', 'rendimento', 'secagem', 'nao indicado para'), nunca um numero. A segunda passada do verniz protetor para pisos acrescentou o intervalo de temperatura e o tipo de rolo, e a segunda do impermeabilizante confirmou palavra por palavra a frase do que ele NAO atende — duas passadas concordando e o unico jeito de saber que a frase e do fabricante e nao do resumo.",
+  "de_onde_saiu_o_documento_aberto": {
+    "o_que_este_bloco_e": "A proveniencia POR FONTE do campo `documento_aberto` (esquema v17), escrita em 13/10/2026 quando as fontes deste banco passaram a declara-lo. NENHUM valor aqui e coleta nova: cada um e a transcricao de uma afirmacao que este arquivo (ou, no caso do banco de colas, o arquivo de que ele se declara transposicao) ja fazia em PROSA. O bloco existe porque prosa nao e lida por portao e porque a proxima execucao nao deve precisar remedir de onde o valor saiu.",
+    "os_caminhos_de_prova": {
+      "A": "o campo `tipo` da propria fonte diz",
+      "B": "o campo `leitura` da propria fonte diz",
+      "C": "`reaberta_em` e `o_que_a_abertura_mudou` da propria fonte dizem que abriu",
+      "D": "a fonte CALA e quem responde e a declaracao de coleta do banco: metodo_de_coleta deste banco: 'acrilex.com.br, www.acrilex.com.br, corfix.com.br, www.quartzolit.weber, suvinil.com.br e vedacit.com.br em 000 nas tres, com clubedomosaico.com.br em 200 nas tres. E politica de egresso, nao intermitencia'.",
+      "E": "nenhum dos quatro responde e a escolha foi FEITA, com o motivo dentro da propria fonte. Uma ocorrencia em 53, no banco de alicates."
+    },
+    "por_fonte": {
+      "pagina-produto-verniz-acrilico-brilhante": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)"
+      },
+      "pagina-produto-verniz-acrilico-fosco": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)"
+      },
+      "pagina-produto-acrilfix-brilhante": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)"
+      },
+      "bt-verniz-protetor-pisos-2024-05": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "boletim técnico do fabricante (arquivo 2024-05), lido por busca no domínio dele; PDF não aberto"
+      },
+      "pagina-produto-verniz-protetor-pisos": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'acrilex.com.br, www.acrilex.com.br, corfix.com.br, www.quartzolit.weber, suvinil.com.br e vedacit.com.br em 000 nas tres, com clubedomosaico.com.br em 200 nas tres. E po"
+      },
+      "bt-borracha-liquida-elastica-2024-07": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "boletim técnico do fabricante (arquivo 2024-07, revisão REV110624), lido por busca no domínio dele; PDF não aberto"
+      },
+      "pagina-produto-borracha-liquida-elastica": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'acrilex.com.br, www.acrilex.com.br, corfix.com.br, www.quartzolit.weber, suvinil.com.br e vedacit.com.br em 000 nas tres, com clubedomosaico.com.br em 200 nas tres. E po"
+      },
+      "pagina-produto-protetor-para-fachadas": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (000 em www.quartzolit.weber em três passadas nesta execução)"
+      },
+      "pagina-produto-fundo-selador": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (000 em www.quartzolit.weber em três passadas nesta execução)"
+      },
+      "pagina-produto-seladora-para-madeira": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (loja.suvinil.com.br e suvinil.com.br em 000 por curl e EGRESS_BLOCKED por fetch nesta execução)"
+      },
+      "pagina-produto-selador-acrilico": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (www.coral.com.br em 000 nesta execução)"
+      },
+      "pagina-produto-resina-acrilica": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (www.coral.com.br em 000 nesta execução)"
+      }
+    }
+  },
   "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "NENHUM DOS SETE PRODUTOS NOMEIA O QUE A PECA DESTA ILHA EXPOE. A peca de mosaico, depois de pronta, tem duas superficies a vista: a PASTILHA (as 13 do banco sao todas de vidro) e o REJUNTE. Os quatro vernizes e os dois impermeabilizantes alcancados declaram substrato — e nenhuma das seis frases nomeia vidro, e nenhuma nomeia rejunte. Os tres vernizes de artesanato da Acrilex nomeiam tela, madeira, papel, cortica, ceramica, gesso e isopor; o verniz protetor da Quartzolit e de PISO, com liberacao de trafego de carro e maquina; a borracha liquida elastica e para fachada, telha e laje SEM transito; o protetor para fachadas e um hidrofugante para revestimento mineral, churrasqueira de tijolo, telha ceramica e pedra natural. Pelo principio dos TRES ESTADOS, para vidro e para rejunte o estado e `nao_declarado` nos sete: nem recomendar, nem proibir, e dizer que ninguem declarou. E a mesma faixa DESCOBERTA da 14.3 que a categoria alicate encontrou em 25/09 pela espessura, agora encontrada pela SUPERFICIE — e as duas apontam para o mesmo buraco de mercado, que e o motivo desta ilha existir: fabricante de obra nao escreve sobre peca de artesanato, e fabricante de artesanato nao escreve sobre mosaico. A SEGUNDA METADE, e ela e sobre a BASE: o unico selador alcancado (fundo selador quartzolit) nomeia concreto, emboco, reboco, pintura PVA ou acrilica e construcao a seco, e NAO nomeia MDF nem madeira — e MDF e a base mais comum da peca de ateliê e um dos cinco valores de `tipo_por_categoria.base` deste proprio esquema. A categoria selador nasce com o registro que menos serve a ilha, e isso esta dito aqui em vez de escondido atras de uma frase generica.",
   "afiliado": {
     "itens_esperando_link": 2,
@@ -143,7 +215,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "fonte_localizada_nao_lida": {
@@ -285,7 +358,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "fonte_localizada_nao_lida": {
@@ -427,7 +501,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (000 em acrilex.com.br em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "fonte_localizada_nao_lida": {
@@ -594,14 +669,16 @@
           "tipo": "boletim técnico do fabricante (arquivo 2024-05), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "pagina-produto-verniz-protetor-pisos": {
           "url": "https://www.quartzolit.weber/pisos/revestimentos-de-alto-desempenho/verniz-protetor-para-pisos-quartzolit",
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "fonte_localizada_nao_lida": {
@@ -739,14 +816,16 @@
           "tipo": "boletim técnico do fabricante (arquivo 2024-07, revisão REV110624), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "pagina-produto-borracha-liquida-elastica": {
           "url": "https://www.quartzolit.weber/impermeabilizantes-quartzolit/impermeabilizantes-para-paredes-externas-e-fachadas/impermeabilizante-borracha-liquida-elastica-quartzolit",
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "divergencias": [
@@ -867,7 +946,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (000 em www.quartzolit.weber em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "divergencias": [],
@@ -981,7 +1061,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (000 em www.quartzolit.weber em três passadas nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "fonte_localizada_nao_lida": {
@@ -1141,7 +1222,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (loja.suvinil.com.br e suvinil.com.br em 000 por curl e EGRESS_BLOCKED por fetch nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-10-02",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "divergencias": [],
@@ -1304,7 +1386,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (www.coral.com.br em 000 nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-10-02",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "divergencias": [],
@@ -1469,7 +1552,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em duas passadas; página NÃO aberta (www.coral.com.br em 000 nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-10-02",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "fonte_localizada_nao_lida": {

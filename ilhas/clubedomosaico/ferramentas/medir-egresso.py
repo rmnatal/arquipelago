@@ -95,8 +95,15 @@ NAO_SE_PEDE = {
 # SAO DOIS CAMINHOS, e o segundo nasceu em 12/10/2026 porque o primeiro, sozinho, mentiu por
 # 12 dias seguidos:
 #
-# (1) O NOME DO ARQUIVO QUE CITA O HOST (`GATILHOS`). Funciona para os cinco bancos de material,
-#     que ainda respondem "este documento foi aberto?" em PROSA, dentro do campo `tipo`.
+# (1) O NOME DO ARQUIVO QUE CITA O HOST (`GATILHOS`). Mede necessidade de COLETA pendente, e
+#     por isso FICA mesmo depois de 13/10/2026 — ver a nota do fim deste bloco.
+#     *(ESTA FRASE DIZIA, ate 13/10/2026, que o caminho (1) existia porque os cinco bancos de
+#     material "ainda respondem 'este documento foi aberto?' em PROSA, dentro do campo `tipo`".
+#     Deixou de ser verdade: as 53 fontes dos cinco bancos declaram `documento_aberto` desde
+#     13/10/2026, e `validar-banco.py` cobra o campo nelas. Fica corrigida aqui em vez de
+#     apagada, porque o motivo pelo qual o caminho (1) continua existindo MUDOU, e quem ler a
+#     frase velha vai achar que ele e restolho de uma divida ja paga — e apagar o (1) troca
+#     "preciso coletar" por "ja li", que sao coisas diferentes.)*
 #     `fontes-pedidas.json` entra aqui porque e, por definicao, o arquivo onde uma fonte EXIGIDA
 #     e declarada: ficou de fora na passada das 10h4xZ de 30/09 e o efeito foi absurdo —
 #     `loctite.com.br`, o dominio que motivou o arquivo, saiu listado em "bloqueado e nao
@@ -118,6 +125,18 @@ NAO_SE_PEDE = {
 # A assimetria e de proposito: `documento_aberto: true` NAO tira host nenhum do pedido pelo
 # caminho (1). Fonte aberta uma vez nao prova que o host entrega a proxima, e o (1) mede
 # necessidade de COLETA, nao de leitura.
+#
+# E E ESSA ASSIMETRIA QUE FAZ O PEDIDO DE HOJE NAO MUDAR DE TAMANHO, o que e o resultado
+# certo e nao um anticlimax: ao declararem, os cinco bancos de material passaram a marcar
+# os hosts deles pelos DOIS caminhos em vez de um. O (1) ja acertava para eles — `materiais-`
+# esta em `GATILHOS` desde 30/09 —, entao nenhuma linha entrou nem saiu do pedido em
+# 13/10/2026. MEDIDO, nao presumido, rodando `hosts_dos_bancos` e `trava_coleta` sobre os
+# 22 JSON do `dados/` do HEAD e sobre os 22 de depois: 40 hosts travando coleta nos dois
+# mundos, ZERO entraram, ZERO sairam; marcados pela DECLARACAO de 10 para 21, e os 11 que
+# entraram ja travavam pelo nome — nenhum host passou a travar SO pela declaracao. O que mudou e de onde a resposta vem: antes, de uma lista de nomes de arquivo
+# dentro desta ferramenta; agora, da declaracao do proprio dado. Banco de material novo que
+# nao se chame `materiais-*` ja nasce coberto, e foi exatamente esse buraco que deixou
+# `dados/tecnicas.json` 12 dias fora do pedido sem nada acusar.
 GATILHOS = ("materiais-", "esquema-banco.json", "cobertura.json", "fontes-pedidas.json")
 
 
@@ -475,11 +494,28 @@ def autoteste():
          {"documento_aberto": False, "tecnicas": [{"fontes": {"f": {"url": "https://exemplo-d.edu.br/x.pdf"}}}]},
          "exemplo-d.edu.br", False),
     ]
-    for i, (nome, banco, host, esperado) in enumerate(extrator_casos, 1):
+    # ACRESCENTADOS EM 13/10/2026, e eles tapam um buraco de cobertura real: os quatro casos
+    # acima fabricam `tecnicas.json`, e desde hoje os maiores usuarios do caminho (2) sao os
+    # CINCO BANCOS DE MATERIAL — 53 fontes contra 10. Nada provava que o andador chega neles,
+    # e a forma do registro e outra (`materiais[]` com `fontes{}`, nao `tecnicas[]`). O nome do
+    # arquivo entra como terceiro item da tupla para o caso dizer em qual banco ele mede.
+    extrator_casos += [
+        ("fonte de BANCO DE MATERIAL com false marca o host (materiais[])",
+         {"materiais": [{"fontes": {"f": {"url": "https://exemplo-e.com.br/p",
+                                         "documento_aberto": False}}}]},
+         "exemplo-e.com.br", True, "materiais-rejuntes.json"),
+        ("fonte de BANCO DE MATERIAL com true NAO marca",
+         {"materiais": [{"fontes": {"f": {"url": "https://exemplo-f.com.br/p",
+                                         "documento_aberto": True}}}]},
+         "exemplo-f.com.br", False, "materiais-rejuntes.json"),
+    ]
+    for i, caso in enumerate(extrator_casos, 1):
+        nome, banco, host, esperado = caso[:4]
+        arquivo = caso[4] if len(caso) > 4 else "tecnicas.json"
         tmp = tempfile.mkdtemp()
         try:
             os.makedirs(os.path.join(tmp, "dados"))
-            json.dump(banco, open(os.path.join(tmp, "dados", "tecnicas.json"), "w", encoding="utf-8"))
+            json.dump(banco, open(os.path.join(tmp, "dados", arquivo), "w", encoding="utf-8"))
             obtido = bool(hosts_dos_bancos(tmp).get(host, {}).get("fonte_nao_aberta"))
         finally:
             shutil.rmtree(tmp)

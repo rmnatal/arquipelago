@@ -7,6 +7,73 @@
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria REJUNTE do banco MATERIAL. Sem ela a F2 respondia so metade do que o proprio nome dela promete — 'seletor de cola E REJUNTE' com zero rejuntes no banco significa que a metade do rejunte sairia cravada na prosa do snippet em vez de recomputada da declaracao, que e exatamente o que o esquema do bloco 3 existe para impedir.",
   "metodo_de_coleta": "Busca restrita ao dominio quartzolit.weber, como nos blocos 2 e 3. Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido), igual ao bloco 2. Por isso todo campo tecnico daqui e nivel 2 ou 3 da escada e carrega conferir_no_pdf: true.",
+  "de_onde_saiu_o_documento_aberto": {
+    "o_que_este_bloco_e": "A proveniencia POR FONTE do campo `documento_aberto` (esquema v17), escrita em 13/10/2026 quando as fontes deste banco passaram a declara-lo. NENHUM valor aqui e coleta nova: cada um e a transcricao de uma afirmacao que este arquivo (ou, no caso do banco de colas, o arquivo de que ele se declara transposicao) ja fazia em PROSA. O bloco existe porque prosa nao e lida por portao e porque a proxima execucao nao deve precisar remedir de onde o valor saiu.",
+    "os_caminhos_de_prova": {
+      "A": "o campo `tipo` da propria fonte diz",
+      "B": "o campo `leitura` da propria fonte diz",
+      "C": "`reaberta_em` e `o_que_a_abertura_mudou` da propria fonte dizem que abriu",
+      "D": "a fonte CALA e quem responde e a declaracao de coleta do banco: metodo_de_coleta deste banco: 'Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido)'.",
+      "E": "nenhum dos quatro responde e a escolha foi FEITA, com o motivo dentro da propria fonte. Uma ocorrencia em 53, no banco de alicates."
+    },
+    "por_fonte": {
+      "bt-rejunte-ceramicas-2018-08": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "boletim técnico do fabricante (arquivo 2018-08), lido por busca no domínio dele; PDF não aberto"
+      },
+      "pagina-produto-rejunte-ceramicas": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido)'."
+      },
+      "pagina-dicas-rejuntes": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido)'."
+      },
+      "bt-rejunte-porcelanatos-2024": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "boletim técnico do fabricante (arquivo 2024-02), lido por busca no domínio dele; PDF não aberto"
+      },
+      "pagina-produto-rejunte-porcelanatos": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido)'."
+      },
+      "bt-rejunte-acrilico-2023-04": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "boletim técnico do fabricante (arquivo 2023-04), lido por busca no domínio dele; PDF não aberto"
+      },
+      "pagina-produto-rejunte-acrilico": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido)'."
+      },
+      "bt-rejunte-epoxi-2018-01": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "boletim técnico do fabricante (arquivo 2018-01), lido por busca no domínio dele; PDF não aberto"
+      },
+      "blog-fabricante-rejunte-epoxi": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido)'."
+      },
+      "pagina-produto-rejunte-piscinas": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido)'."
+      },
+      "bt-rejunte-piscinas-2017-08": {
+        "valor": true,
+        "caminho": "A",
+        "a_frase": "boletim tecnico do fabricante, PDF ABERTO E LIDO pagina a pagina"
+      }
+    }
+  },
   "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "REJUNTE NAO E COLA, E O ESQUEMA DO BLOCO 3 SO TINHA OLHADO COLA. Na cola, a lista do fabricante nomeia a BASE — a superficie sobre a qual se cola. No rejunte, a mesma lista nomeia a TESSELA e o AMBIENTE: 'ceramicas, pastilhas de porcelana e de vidro' e o que vai ser rejuntado, nunca o vaso de cimento embaixo. Um rejunte no vocabulario de base nao quer dizer nada, porque rejunte nao toca a base. Por isso este bloco criou um mapa de termos e um conjunto de regras proprios para rejunte, em vez de enfiar os cinco registros na matriz da F2 — ver `regras_de_elegibilidade_do_rejunte` e `matriz_esperada_do_rejunte` no esquema.",
   "afiliado": {
     "itens_esperando_link": 0,
@@ -154,21 +221,24 @@
           "tipo": "boletim técnico do fabricante (arquivo 2018-08), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-11",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "pagina-produto-rejunte-ceramicas": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-ceramicas-quartzolit",
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-10",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "pagina-dicas-rejuntes": {
           "url": "https://www.quartzolit.weber/ajuda-e-dicas-para-construir/tudo-sobre-os-tipos-de-rejuntes-e-suas-funcoes/dicas-importantes-sobre-rejuntes",
           "tipo": "página de ajuda do fabricante, onde a fórmula de consumo e o exemplo com CR 1,75 são publicados",
           "nivel": 3,
           "coletado_em": "2026-09-10",
-          "conferir_no_pdf": false
+          "conferir_no_pdf": false,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [
@@ -285,14 +355,16 @@
           "tipo": "boletim técnico do fabricante (arquivo 2024-02), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-11",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "pagina-produto-rejunte-porcelanatos": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-porcelanatos-e-ceramicas-quartzolit",
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-11",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [
@@ -429,14 +501,16 @@
           "tipo": "boletim técnico do fabricante (arquivo 2023-04), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-11",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "pagina-produto-rejunte-acrilico": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-acrilico-quartzolit",
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-11",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -537,14 +611,16 @@
           "tipo": "boletim técnico do fabricante (arquivo 2018-01), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-11",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "blog-fabricante-rejunte-epoxi": {
           "url": "https://www.quartzolit.weber/blog/rejuntes/rejunte-epoxi-por-que-quando-e-como-usar",
           "tipo": "matéria do blog do próprio fabricante — é onde aparece a menção a PASTILHAS entre os revestimentos, que o boletim não trouxe",
           "nivel": 4,
           "coletado_em": "2026-09-11",
-          "conferir_no_pdf": false
+          "conferir_no_pdf": false,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [
@@ -672,7 +748,8 @@
           "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-11",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         },
         "bt-rejunte-piscinas-2017-08": {
           "url": "https://telhanorte.vteximg.com.br/arquivos/1200003.pdf",
@@ -680,6 +757,7 @@
           "nivel": 2,
           "coletado_em": "2026-10-05",
           "conferir_no_pdf": false,
+          "documento_aberto": true,
           "documento": "Boletim Tecnico - rejunte piscinas quartzolit, 3 paginas, rodape 'Saint-Gobain do Brasil Produtos Industriais e para Construcao Ltda.'",
           "revisao_declarada": "Documento revisado em agosto de 2017",
           "espelho": "O PDF NAO foi obtido no dominio do fabricante: www.quartzolit.weber continua em 403 e o apex so redireciona para ele (egresso medido em 30/09 e remedido nesta execucao). Este arquivo esta hospedado no CDN da Telha Norte, varejista do proprio grupo Saint-Gobain, e o conteudo e o boletim do fabricante com cabecalho, rodape e data de revisao proprios. POR ISSO FICA NO NIVEL 2 E NAO NO 1: o nivel 1 do esquema e a ficha lida NO fabricante, e por espelho de terceiro nao da para afirmar que esta e a revisao vigente — a de agosto de 2017 e a que existe aqui.",

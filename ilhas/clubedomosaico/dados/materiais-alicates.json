@@ -7,6 +7,53 @@
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria ALICATE do banco MATERIAL. E a segunda das cinco categorias que a varredura da secao 14.3 encontrou com ZERO itens em 12/09/2026 a ser enchida (a primeira foi PASTILHA), e vem antes de `base`, `acabamento` e `apoio` por um motivo escrito no proprio esquema-banco: 'as categorias rejunte, pastilha e alicate podem ser enchidas em qualquer execucao, SEM DECISAO NOVA — o esquema ja diz que campo cada uma exige'. As outras tres nao tem essa linha. O bloco NAO publica pagina nenhuma: a secao 16.5 continua exigindo 3 filhas de dado real por categoria, e /materiais/alicates/ continua sem pagina.",
   "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3, 3c e 3d. O egresso foi REMEDIDO nesta execucao como a secao 20.2 manda: cortag.com.br, www.cortag.com.br, vonder.com.br, www.vonder.com.br, tramontina.com.br, rubi.com, www.starrett.com.br e montolit.com todos em 000 por curl, e cortag.com e cortag.com.br em EGRESS_BLOCKED por WebFetch, com clubedomosaico.com.br em 200 na mesma passada. E politica de egresso, nao intermitencia. Por isso todo campo daqui carrega conferir_no_pdf: true. DUAS PASSADAS POR SKU, escritas de forma diferente, e nenhuma delas carregando um valor: as consultas pediram os ROTULOS da ficha ('codigo do produto', 'peso', 'dimensoes', 'capacidade', 'indicado para'), nunca um numero. UMA PASSADA VIOLOU ISSO E ESTA REGISTRADA NO PROPRIO DADO, porque ela e a licao mais util deste bloco: a consulta escrita com o prefixo '68.51' devolveu 68.51.075.000 e 68.51.090.000 — exatamente o que ela plantou. A passada limpa seguinte nao devolveu referencia nenhuma, e por isso os dois codigos ficaram NULL com o motivo escrito. O codigo do VDEC 51 (68.51.050.000) ficou porque veio de uma consulta que nao o carregava, e foi depois corroborado por um canal independente: o titulo de um anuncio lido pela Open API da Shopee, '... VDEC 51, VONDER 6851050000'.",
+  "de_onde_saiu_o_documento_aberto": {
+    "o_que_este_bloco_e": "A proveniencia POR FONTE do campo `documento_aberto` (esquema v17), escrita em 13/10/2026 quando as fontes deste banco passaram a declara-lo. NENHUM valor aqui e coleta nova: cada um e a transcricao de uma afirmacao que este arquivo (ou, no caso do banco de colas, o arquivo de que ele se declara transposicao) ja fazia em PROSA. O bloco existe porque prosa nao e lida por portao e porque a proxima execucao nao deve precisar remedir de onde o valor saiu.",
+    "os_caminhos_de_prova": {
+      "A": "o campo `tipo` da propria fonte diz",
+      "B": "o campo `leitura` da propria fonte diz",
+      "C": "`reaberta_em` e `o_que_a_abertura_mudou` da propria fonte dizem que abriu",
+      "D": "a fonte CALA e quem responde e a declaracao de coleta do banco: metodo_de_coleta deste banco: 'cortag.com.br, www.cortag.com.br, vonder.com.br, www.vonder.com.br, tramontina.com.br, rubi.com, www.starrett.com.br e montolit.com todos em 000 por curl, e cortag.com e cortag.com.br em EGRESS_BLOCKED por WebFetch'.",
+      "E": "nenhum dos quatro responde e a escolha foi FEITA, com o motivo dentro da propria fonte. Uma ocorrencia em 53, no banco de alicates."
+    },
+    "por_fonte": {
+      "pagina-produto-torques-mosaico-roldanas": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução) || TABELA DE ESPECIFICACAO L"
+      },
+      "anuncio-shopee-61341": {
+        "valor": false,
+        "caminho": "E",
+        "a_frase": "A fonte FOI lida — o `tipo` dela diz 'lido pela Open API da Shopee nesta execucao' —, mas a URL gravada aqui e uma URL de BUSCA e essa pagina nunca foi aberta. O campo `documento_aberto` pergunta pelo"
+      },
+      "pagina-produto-torques-azulejista-corte-reto": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução) || TABELA DE ESPECIFICACAO L"
+      },
+      "pagina-produto-torques-azulejista-corte-curvo": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução) || TABELA DE ESPECIFICACAO L"
+      },
+      "pagina-produto-vonder-vdec-51": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)"
+      },
+      "pagina-produto-vonder-vdec-75": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)"
+      },
+      "pagina-produto-vonder-vdec-90": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)"
+      }
+    }
+  },
   "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "O ACHADO E UM TETO DE 5 MM, E ELE CRUZA COM O BANCO DE PASTILHAS QUE JA EXISTE. O torques de mosaico da Cortag e a UNICA ferramenta deste arquivo cuja declaracao nomeia VIDRO, e ela para em 5 mm de espessura. Os tres cortadores de bancada da Vonder declaram 'pisos ceramicos e porcelanatos ate 10 mm' e NAO nomeiam vidro em lugar nenhum — nem na indicacao, nem no rodel de carboneto de tungstenio. Medido contra dados/materiais-pastilhas.json nesta execucao: das 13 pastilhas do banco, TODAS de vidro, 10 tem espessura declarada de 3 ou 4 mm e cabem no teto; TRES nao cabem — glassmosaic-st5102 (6 mm), pastilhart-af1500 (8 mm) e glassmosaic-ic02 (8 mm). Ou seja: para 3 dos 13 produtos que a F1 ja calcula quantidade, o banco de ferramentas nao tem UMA declaracao de fabricante que sustente o corte. Isso nao e falta de coleta de ferramenta — os quatro fabricantes alcancados publicam o teto deles —, e uma faixa DESCOBERTA no sentido da secao 14.3, e e o tipo de coisa que a pagina tem de dizer na tela em vez de calar. A SEGUNDA METADE, que vale para as duas paginas de tecnica que ja estao no ar: a frase do torques nomeia PASTILHA de vidro e de ceramica e NAO nomeia caco de azulejo, caco de louca, caco de espelho nem pedra — e caco de louca e o material do picassiete e caco de azulejo o do trencadis, as duas paginas de /como-fazer/ da ilha. Pelo principio dos tres estados, para esses quatro materiais o estado e `nao_declarado`: nem recomendar, nem proibir, e dizer que ninguem declarou. || 07/10/2026 — O QUE DESTRAVOU `alicate/torques` NAO FOI SKU NOVO, FOI OUTRO TIPO DE LEITURA DA MESMA PAGINA. O recorte tinha 3 itens e 1 com lastro, e a fila desta ilha previa coletar 2 SKUs novos. Nao foi preciso: os dois registros que faltavam ganharam `tamanho_polegadas` de nivel 3 lido na TABELA de especificacao, que a busca restrita devolve por SKU, enquanto a DESCRICAO — a unica coisa que as passadas de 25/09 tentaram — ela mistura entre os irmaos. A licao, e ela vale para toda categoria de FERRAMENTA deste banco: quando o egresso fecha a pagina do fabricante, a tabela de especificacao ainda passa, e ela e por produto; a prosa, nao.",
   "afiliado": {
     "itens_esperando_link": 1,
@@ -154,6 +201,7 @@
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true,
+          "documento_aberto": false,
           "tabela_de_especificacao_lida_em": "2026-10-07"
         },
         "anuncio-shopee-61341": {
@@ -161,7 +209,9 @@
           "tipo": "anúncio de marketplace lido pela Open API da Shopee nesta execução; sustenta SO o código do fabricante por corroboração de canal, nunca campo técnico",
           "nivel": 6,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false,
+          "por_que_documento_aberto_false_apesar_de_lido": "A fonte FOI lida — o `tipo` dela diz 'lido pela Open API da Shopee nesta execucao' —, mas a URL gravada aqui e uma URL de BUSCA e essa pagina nunca foi aberta. O campo `documento_aberto` pergunta pelo documento DAQUELA URL, e nao se o dado chegou por algum canal; entao ele fica `false`, com a leitura registrada em `tipo`. Decidido em 13/10/2026, entre duas leituras defensaveis, pelo lado que nao afrouxa portao: `false` SOMA host ao pedido de rede e `true` nunca subtrai nenhum (a assimetria esta escrita em ferramentas/medir-egresso.py). Esta e a UNICA das 53 fontes dos cinco bancos cujo valor nao e transcricao de uma afirmacao anterior."
         }
       },
       "divergencias": [],
@@ -258,6 +308,7 @@
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true,
+          "documento_aberto": false,
           "tabela_de_especificacao_lida_em": "2026-10-07"
         }
       },
@@ -336,6 +387,7 @@
           "nivel": 3,
           "coletado_em": "2026-09-25",
           "conferir_no_pdf": true,
+          "documento_aberto": false,
           "tabela_de_especificacao_lida_em": "2026-10-07"
         }
       },
@@ -468,7 +520,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "divergencias": [],
@@ -600,7 +653,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "divergencias": [],
@@ -731,7 +785,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página NÃO aberta (EGRESS_BLOCKED em cortag.com, cortag.com.br e vonder.com.br, medido nesta execução)",
           "nivel": 3,
           "coletado_em": "2026-09-25",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "divergencias": [],

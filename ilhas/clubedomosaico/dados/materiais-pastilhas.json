@@ -7,6 +7,88 @@
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria PASTILHA do banco MATERIAL — a primeira das cinco categorias que a varredura da secao 14.3 encontrou com ZERO itens em 12/09/2026, e a primeira da ordem porque a F1 responde 'quantas pastilhas comprar' e ate aqui a ferramenta de maior intencao de compra da ilha calculava uma quantidade sem ter o que vender. O bloco NAO publica pagina nenhuma: ele traz o dado que faltava, e diz por escrito o que os fabricantes brasileiros de pastilha nao declaram. ACRESCENTADO EM 13/09/2026: as tres fichas que o bloco 3d tinha deixado abertas na pendencia `pastilha-fichas-colhidas-pela-metade` foram colhidas inteiras — A37, 102 e IC02 —, e o arquivo vai de 10 para 13 itens. O motivo de a A37 vir primeiro na ordem e um so: ela e o terceiro elegivel de 2x2, e com ela o tamanho passa a cumprir o minimo de 3 da secao 14.3, que era o unico buraco de cobertura que dependia de coleta e nao de decisao.",
   "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3 e 3c. WebFetch e curl para glassmosaic.com.br, pastilhart.com.br, vidrotil.com.br, colormix.com.br e jatoba.ind.br devolveram EGRESS_BLOCKED / 000 nesta execucao, medido em DUAS passadas com clubedomosaico.com.br em 200 nas duas (secao 20.2 do ARQUIPELAGO.md) — e politica de egresso, nao intermitencia de tunel. Por isso todo campo tecnico daqui carrega conferir_no_pdf: true. Nenhuma consulta plantou o valor que se queria confirmar (secao 8): as buscas pediram os ROTULOS da ficha ('tamanho, espessura, tamanho placa, placas caixa, peso caixa'), nunca um numero. LEVA DE 13/09/2026: mesma busca restrita ao dominio, DUAS passadas por SKU com consultas escritas de forma diferente, e nenhuma delas carregando um valor — as duas pediram os ROTULOS da ficha. As tres fichas voltaram identicas nas duas passadas. O egresso foi remedido nesta execucao, como manda a secao 20.2: glassmosaic.com.br e www.pastilhart.com.br em 000 por connect_rejected (politica) em duas passadas, com clubedomosaico.com.br em 200 nas mesmas duas.",
+  "de_onde_saiu_o_documento_aberto": {
+    "o_que_este_bloco_e": "A proveniencia POR FONTE do campo `documento_aberto` (esquema v17), escrita em 13/10/2026 quando as fontes deste banco passaram a declara-lo. NENHUM valor aqui e coleta nova: cada um e a transcricao de uma afirmacao que este arquivo (ou, no caso do banco de colas, o arquivo de que ele se declara transposicao) ja fazia em PROSA. O bloco existe porque prosa nao e lida por portao e porque a proxima execucao nao deve precisar remedir de onde o valor saiu.",
+    "os_caminhos_de_prova": {
+      "A": "o campo `tipo` da propria fonte diz",
+      "B": "o campo `leitura` da propria fonte diz",
+      "C": "`reaberta_em` e `o_que_a_abertura_mudou` da propria fonte dizem que abriu",
+      "D": "a fonte CALA e quem responde e a declaracao de coleta do banco: metodo_de_coleta deste banco: 'WebFetch e curl para glassmosaic.com.br, pastilhart.com.br, vidrotil.com.br, colormix.com.br e jatoba.ind.br devolveram EGRESS_BLOCKED / 000 nesta execucao'.",
+      "E": "nenhum dos quatro responde e a escolha foi FEITA, com o motivo dentro da propria fonte. Uma ocorrencia em 53, no banco de alicates."
+    },
+    "por_fonte": {
+      "pagina-produto-k2501": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-k2502": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-mix2510": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-k117": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-k77": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-k66": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-a11": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-a61": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-a37": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09"
+      },
+      "pagina-produto-st5102": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)"
+      },
+      "pagina-produto-af1500": {
+        "valor": true,
+        "caminho": "A",
+        "a_frase": "pagina de produto do importador e distribuidor da marca, ABERTA E LIDA (167 KB de HTML) em 05/10/2026"
+      },
+      "pagina-sobre-pastilhart": {
+        "valor": false,
+        "caminho": "D",
+        "a_frase": "metodo_de_coleta deste banco: 'WebFetch e curl para glassmosaic.com.br, pastilhart.com.br, vidrotil.com.br, colormix.com.br e jatoba.ind.br devolveram EGRESS_BLOCKED / 000 nesta execucao'."
+      },
+      "pagina-produto-102": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09"
+      },
+      "pagina-produto-ic02": {
+        "valor": false,
+        "caminho": "A",
+        "a_frase": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09"
+      }
+    }
+  },
   "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": [
     "NENHUM FABRICANTE DECLARA PECAS POR PLACA, que e exatamente o numero de que a F1 precisa para converter placa em peca. A ficha declara o lado da pastilha e o lado da placa, e a SERP inteira preenche o buraco dividindo um pelo outro. A divisao nao fecha: 29,2 / 3,0 = 9,73 e 32,3 / 2,0 = 16,15 nao sao inteiros. Onde ela fecha, fecha errado por outro motivo: 30,0 / 2,5 = 12 exige junta ZERO entre as pastilhas da placa, e placa telada sem junta e placa que nao se rejunta. As duas leituras possiveis do numero anunciado — lado da PECA e passo do MODULO — nao podem valer ao mesmo tempo no catalogo de um mesmo fabricante, e e por isso que pastilhas_por_placa e passo_de_fabrica_cm nascem null aqui, com o motivo escrito, em vez de calculados.",
     "O PESO DA CAIXA NAO E O PESO DO PRODUTO, e o proprio catalogo prova. Dividindo peso da caixa pela metragem da caixa sai um kg/m2 que pode ser comparado com o teto fisico do vidro macico (espessura x 2,5 g/cm3). A linha Cristal de 4 mm da 8,9 e 9,4 kg/m2 contra um teto de 10,0 — cabe, e a folga e a junta. A linha Strip de 6 mm da 16,9 kg/m2 contra um teto de 15,0: PASSA DO TETO, o que so pode ser embalagem, tela e papel contados junto. Portanto peso da caixa nao vira peso de produto em nenhuma tela, e peso_unitario_g continua null.",
@@ -111,7 +193,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -208,7 +291,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -305,7 +389,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -402,7 +487,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -499,7 +585,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -596,7 +683,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -693,7 +781,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -790,7 +879,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -887,7 +977,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09/2026, seção 20.2)",
           "nivel": 3,
           "coletado_em": "2026-09-13",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -984,7 +1075,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio; página não aberta (EGRESS_BLOCKED)",
           "nivel": 3,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -1103,6 +1195,7 @@
           "nivel": 5,
           "coletado_em": "2026-09-12",
           "conferir_no_pdf": false,
+          "documento_aberto": true,
           "reaberta_em": "2026-10-06",
           "o_que_a_abertura_mudou": {
             "o_que_dizia_antes": "`pagina nao aberta (EGRESS_BLOCKED)`. O egresso de `www.pastilhart.com.br` foi remedido nesta execucao e deu **200 nas tres passadas** — o registro de 28/09/2026 dizia que este dominio `nao entrou nem no apex`. A 20.2 manda retestar bloqueio herdado antes de respeita-lo, e aqui o bloqueio herdado tinha sumido.",
@@ -1129,7 +1222,8 @@
           "tipo": "página institucional, onde a própria empresa se declara importadora e distribuidora",
           "nivel": 5,
           "coletado_em": "2026-09-12",
-          "conferir_no_pdf": false
+          "conferir_no_pdf": false,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -1226,7 +1320,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09/2026, seção 20.2)",
           "nivel": 3,
           "coletado_em": "2026-09-13",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
@@ -1323,7 +1418,8 @@
           "tipo": "página de produto do fabricante, lida por busca restrita ao domínio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; página não aberta (EGRESS_BLOCKED reconferido em 13/09/2026, seção 20.2)",
           "nivel": 3,
           "coletado_em": "2026-09-13",
-          "conferir_no_pdf": true
+          "conferir_no_pdf": true,
+          "documento_aberto": false
         }
       },
       "constantes_relacionadas": [],
