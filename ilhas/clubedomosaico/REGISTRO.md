@@ -3,6 +3,164 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+13/10/2026 19h17Z–20h2xZ — O IRMÃO EXTERNO ENTRA NO BANCO, E O MOTIVO PELO QUAL ELE IA ENTRAR ESTAVA ERRADO
+
+**NENHUMA URL NOVA, e a causa é a mesma das quatro passadas anteriores:** a leva **3 de 3** da semana
+da 21.4 foi gasta em 12/10 e **zera em 19/10**. A ilha segue em **32 URLs** — faltam 8 para o piso de
+40. O que mudou no ar é a **RESPOSTA DA F2**, e pela primeira vez em célula **EXTERNA**: o banco vai de
+**42 para 43** materiais, o esquema para a **v21**, e a revisão desembarcada é a **88**.
+
+**A ESCOLHA DA ILHA:** `foco.md` nomeia a **clubedomosaico** desde 24/09, então pela **1.2** não houve
+escolha a fazer — a rotação da seção 1 está suspensa. O campo `executando_desde` estava **null**, que
+pela **1.1** já significa que nenhum bloco da Fundação estava vivo: não havia reserva vencida para o git
+desempatar. Reserva aceita às **19h17Z** na primeira tentativa, commit `942b05d`. Nenhuma branch
+`claude/*` por mesclar (a do repositório estava idêntica ao `main`) e nenhum PR aberto.
+
+**POR QUE ESTE BLOCO, e ele estava escrito antes de eu abrir:** o `bloco_atual` de 18h1xZ fechou
+nomeando **três** próximos passos desbloqueados, e o **(c)** era este registro, com o PDF já nomeado.
+O **(b)** — o item 4 do despacho de 07/10 — continua **inelegível**: o critério de pronto dele pede
+*"um arquivo de contagem datado de 2026-10-14 ou depois"*, e hoje é 13/10; escrevê-lo hoje seria fechar
+um despacho contra um critério que ele mesmo não cumpre, o que a **18.4** proíbe com todas as letras. O
+**(a)** saiu, e está mais abaixo. **Nenhum despacho aberto desta ilha tem item de Fundação:** as 6 URLs
+em 404 (credencial), as três desconhecidas do Google (credencial e navegador), o cano de links (sessão
+da Shopee) e os três domínios de fonte de técnica (rede) são **todos do Raphael**, e o despacho de
+12/10 diz com essas palavras que *"a Fundação não tem nada a cumprir"* dele.
+
+**1. OS DOIS PORTÕES DA 29 RODARAM ANTES DE TUDO.** Rede pela **20.2**: `clubedomosaico.com.br` e
+`www.` em **200** nas três passadas, com `aquametria.com.br` em 200 nas mesmas três.
+`conferir-no-ar.py` **APROVADO, 524 afirmações, 0 falha**, nas 32 URLs; `leitura-do-visitante.py`
+**REPROVADO por EXATAMENTE 1 defeito** — o soft 404 da borda de 29/09, que é do hospedeiro, tem dono
+escrito e é o vermelho esperado (33 URLs lidas, 0 em janela de cache, **nenhum motivo NOVO de
+vermelho**). A porta de entrada estava de pé antes do trabalho.
+
+**2. O REGISTRO: `quartzolit-pastilhas-fachadas`, do boletim `1458361.pdf` do espelho, revisado em
+SETEMBRO DE 2015 — a revisão mais antiga do banco.** É o **irmão externo** do
+`quartzolit-pastilhas-interiores`, que nasceu três horas antes, e com ele a ilha passa a ter, com
+declaração de fabricante nas **duas** pontas, a resposta da pergunta que ela existe para responder: a
+mesma marca **indica** pastilha de vidro dentro de casa e a **PROÍBE** na peça de fora. Doze
+propriedades declaradas (7 cores contra as 20 do irmão, tempo em aberto > 20 min contra > 15, as três
+aderências > 0,5 MPa, camada de 3 a 4 mm, 2h30 de uso depois da mistura, 1 h para remover o papel, 7
+dias para todo tráfego) e a **primeira temperatura de serviço declarada do banco**: 70 °C.
+
+**3. O QUARTO GRUPO DE TESSELA PROIBIDA, e é o primeiro NOMINAL.** Os três anteriores nasceram de
+frases que proíbem uma **classe** — `espelhos`, `revestimentos especiais`, `cerâmicas do tipo
+porcelanato ou com absorção de água menor que 3%` — e exigiram que a ilha decidisse quais caquinhos
+caem nelas. Este nasce da única frase do banco em que um fabricante proíbe **POR NOME** a tessela
+canônica desta ilha: *"Assentamento e rejuntamento de pastilhas de vidro ou fibras naturais."* Grupo
+`vidro_ou_fibra_natural`, com `pastilha_vidro` **dentro sem dúvida nenhuma** (o documento a nomeia) e
+`caco_espelho` dentro pela `regra_da_direcao` e pelo precedente escrito em 06/10. Os pares da regra 7
+vão de **18 para 24**. E `pastilha_ceramica` ficou **FORA, e não por tolerância**: o MESMO documento
+indica `pastilhas de porcelana` na seção 1 e na 2.
+
+**4. AS 45 CÉLULAS FORAM DERIVADAS A MÃO ANTES DE O VALIDADOR RODAR UMA VEZ, e bateram sem uma
+divergência:** 9 por **PROIBIÇÃO** (as 9 bases × `contato_permanente_agua`, e a frase que as dá é
+`piscinas` — versão **curta** da do irmão, que proibia também áreas externas e sauna), **5
+RECOMENDADAS** com score 4 (`cimento_concreto` nos quatro ambientes que não são imersão, mais
+`alvenaria_tijolo` × `interno_seco`), 3 por **AMBIENTE DO SUBSTRATO** (regra 8: a frase da alvenaria
+traz `em paredes internas` colado) e 28 por **SILÊNCIO**. 9+5+3+28 = 45. **Ninguém saiu do topo de
+nenhuma célula e nenhum score mudou.**
+
+**5. A DIFERENÇA QUE MAIS VALE PARA O LEITOR ESTÁ NAS DUAS CÉLULAS EXTERNAS DE `cimento_concreto`:** o
+irmão de área interna está nelas em `eliminados_por_proibicao` (a seção 3 dele diz `Áreas externas.`) e
+este entra nelas **no topo**. Conferido no ar, com quebra de cache: *"Para colar em cimento, numa peça
+que vai ficar no sol e na chuva, use Argamassa Cimentcola Externo AC-II Quartzolit, **pastilhas
+fachadas quartzolit** e Tekbond Silicone Neutro"*. **É a primeira vez que esta ilha recomenda, com
+declaração de fabricante, uma argamassa de assentar-e-rejuntar pastilha para peça de parede externa** —
+e recomenda em `externo_exposto` sem depender de `resistencias_declaradas`, porque `ambientes_cobertos`
+soma também o que `indicado_para` declara, e a seção 2 declara `áreas internas e externas` e
+`Fachadas.` por extenso. Regra 4 satisfeita por declaração, não por silêncio.
+
+**6. E AGORA O ACHADO QUE DESMENTE A EXPECTATIVA HERDADA, porque ele é o motivo pelo qual este bloco
+não é "mais um item".** O `bloco_atual` de 18h1xZ deixou escrito que registrar este irmão *"é o que dá
+a regra de casamento com que barrar o anúncio ambíguo"* — os dois anúncios de 5 kg que seguram o
+`pastilhas interiores` no degrau 4. **MEDIDO COM O CÓDIGO REAL, antes de o registro ser gravado: NÃO
+BARRA.** `casar-anuncio.py` aprova o irmão de área interna nos **dois** títulos, **com** o novo
+registro no banco e **sem** ele, e o motivo é de uma palavra: a trava 4 cobra que o título não traga
+token que seja do irmão e não meu, e o único token que separa os dois registros é **`fachada`** — que
+não está no título. O título escreve **`exterior`**, e `exterior` não é o nome que o fabricante deu a
+nenhum dos dois.
+
+**ENTÃO O ANÚNCIO AMBÍGUO APONTA PARA UM TERCEIRO DOCUMENTO, E ELE TEM NOME:** `pastilhas exteriores
+quartzolit` — que é como o **cabeçalho corrido** do boletim do irmão se intitula e como a **seção 4.5
+deste** boletim chama o produto na instrução de uso. Dois documentos desta família nomeiam `exteriores`
+**fora do título** e nenhum dos dois se chama assim na página 1. O conserto não é mexer na trava: é o
+documento que falta. **E o custo de não ter feito a conta antes era gravar este registro dizendo que
+ele consertava algo que ele não conserta.**
+
+**7. E HÁ UM DISCRIMINADOR QUE O BANCO TEM E A TRAVA NÃO LÊ.** A seção 7 deste boletim declara **um
+formato só**: saco de papel de 20 kg, validade 8 meses. Os dois anúncios vendem **5 kg** — que é
+formato do irmão (saco plástico de 5 kg, 18 meses). Um anúncio de 5 kg **não pode ser este produto**, e
+a prova não é de régua, é do boletim. `casar-anuncio.py` compara `nome_comercial`, `marca` e
+`codigo_fabricante`, e **nunca `venda`**. Não foi consertado nesta passada de propósito, pelo mesmo
+motivo escrito às 17h4xZ: mexer na regra de casamento é mexer no que paga comissão em 14 casamentos
+reconferidos. Fica medido e nomeado no registro.
+
+**8. O PISO DE COMPRA, E UMA CHAVE QUE DEVOLVE ZERO — ESCRITA EM VEZ DE ESCONDIDA.** A escada da 25.6
+foi descida inteira e **medida**: **oito** chaves pela Open API, **sete em zero oferta**. A única que
+devolve produto é `argamassa pastilhas exteriores quartzolit`, e são os **mesmos** dois anúncios de 5 kg
+do irmão. E `pastilhas fachadas` sem a marca devolve 5 ofertas e **nenhuma é isto** — um livro sobre uma
+fachada de pastilhas, uma arandela, um limpa-fachada e uma cola Pulvitec. **Chave larga que devolve
+número é pior que chave estreita que devolve zero, porque manda o leitor a um livro.** Então a chave
+gravada é o **nome do produto**, e o zero está escrito com a data e com o que o reabre. O piso saiu
+**encurtado na primeira tentativa** pela Open API (25.2-b cumprida), e foi **conferido no 301 sem
+clicar no link da ilha** (25.8): `s.shopee.com.br/5VW4rZ7kk7` responde 301 com
+`utm_content=clubedomosaico-F2---` e a `keyword` intacta — os dois `sub_id` na casa certa. A causa
+nova do degrau 4 é `nenhum-anuncio-deste-produto`, e ela é diferente das outras cinco: **os outros
+esperam um anúncio que a trava barrou; este espera um anúncio que não existe.**
+
+**9. UMA RÉGUA REPROVOU PÁGINA CERTA, e a meia correção dela tinha sete dias.** Com **DOIS** produtos
+saindo pela regra 7 na mesma célula — coisa que nunca tinha acontecido —, o `teste-f2.php` media a
+saída de cada um contra o texto do bloco **INTEIRO** e acusou a AC-II de oferecer `pastilha de
+cerâmica`. Quem oferece é o registro novo, no parágrafo seguinte, e ele **pode** oferecer porque não a
+proíbe. **A página estava certa nos dois parágrafos — conferido na bancada e depois no ar.** O mais
+fino é o que o próprio comentário da afirmação já contava: em 06/10 ela *"reprovou a página e a página
+estava certa"* pela mesma razão, e foi consertada do lado do **GRUPO** (`$proibidos_deste`, por
+produto) e **não do lado do TEXTO** — porque enquanto só um produto do banco tinha proibição de peça, a
+união e o indivíduo davam o mesmo texto. **Meia correção envelhece calada até o mundo que falta
+chegar.** O portão passa a medir por **parágrafo do produto**, nas três afirmações que são sobre o
+produto (a citação do literal, o `somos nós, não ela` e a saída nas duas direções) — e o conserto é
+mais **estrito**, não mais frouxo: do lado do "tem de oferecer", a união deixava passar o parágrafo que
+omitia um caquinho se outro o mencionasse.
+
+**10. O (a) DO BLOCO ANTERIOR SAIU, E A VARREDURA ANTERIOR ESTAVA MEDINDO O MEIO DO MEU TRABALHO.** O
+`teste-rede-de-sinal.py` de 18h1xZ fechou **REPROVADO** com duas baterias "não medidas", e as duas
+disseram o motivo na própria linha: *"a bancada da F2 já está vermelha ANTES de qualquer mutação"*. Era
+o conserto do item 9 ainda não feito. Rodado de novo com a árvore consistente: ****APROVADO — 14 baterias medidas, 0 não medidas, 0 falhas**, todas mortas no meio e devolvendo a árvore IGUAL ao estado de antes (era 12 medidas e 2 não medidas). **Com isso o (a) fecha inteiro**, nas duas metades**.
+
+**11. A BANCADA.** `validar-banco.py` **OK** — 43 materiais, 45 células da F2, 9 do rejunte, 54 pares
+da regra 6, **24 pares da regra 7 com 4 grupos**, 3 pares da regra 8, 29 entradas do balde do ambiente
+do produto em 24 células com **5** produtos que delimitam, escada **1:1 · 2:4 · 3:19 · 4:19** (soma
+43), degrau 4 com motivo **19 de 19**, 15 lojas da Shopee com 0 em mais de um degrau, 14 casamentos
+reconferidos, 7 batismos. `teste-f2` **174 afirmações, 0 falha** (era 174 com **1** falha antes do
+conserto do item 9), `teste-f1` 228, `teste-casca` 1041, `teste-guia` 232, `teste-tecnicas` 139,
+`teste-produto` 306, `teste-prestacao-rejunte` 5 (540 estados da F2 e 180 da F1), `teste-casamento` 42,
+`teste-batismo` 64, `teste-relevancia` 72, `conferir-cobertura.php` 353, `teste-loja`, `teste-atelie` e
+`teste-leads` APROVADOS, `validar-pastilhas` OK, `cobertura --conferir` OK, `filhas-do-guia --conferir`
+APROVADO, `tecnica-x-material` regerado e conferido. **MUTAÇÕES: a bateria inteira da F2 tem **71** mutações e cada uma re-renderiza as 45 células num processo próprio — cerca de duas horas nesta máquina. Rodou o **RECORTE das 13 que tocam a regra 7 e a saída**, que é a régua que esta passada mudou: **13 de 13 reprovaram como deviam, 0 passaram**. Entre elas, duas que são exatamente sobre hoje: *"PRODUZ O MUNDO: um segundo produto ganha proibição de peça, mudo"* — escrita em 06/10 à espera de um mundo que chegou agora — e *"a saída `troque o caquinho` volta a ser digitada"*, que é a afirmação consertada no item 9. A varredura das 71 numa execução só segue sendo o que ela era: não cabe, e o recorte está escrito em vez de o verde ser dado por inteiro**
+
+**12. O DESEMBARQUE, LIDO LINHA POR LINHA COMO A 20.4 MANDA.** Sync **comum, sem `forcar=1`** — e sem
+`forcar=1` de propósito: **nenhum byte de snippet mudou** nesta passada, então a armadilha de reativar
+snippet já carregado não tinha como aparecer, e ampliar o alvo seria risco de graça. Revisão **88**, 9
+aplicados, e **nenhuma das 9 linhas deixou de dizer `ok`**. `conferir-desembarque.py` **APROVADO**:
+`/status` 88 = manifest 88, cabeçalho do log na 88, nenhuma linha fora de `ok`, e **9 linhas visíveis
+de 9 aplicados** — a janela do log cobriu o desembarque inteiro, o que o portão registra em vez de
+supor. Depois do Sync, `conferir-no-ar.py` ****APROVADO, 524 afirmações medidas no HTML servido, 0 falha****.
+
+**O PRÓXIMO PASSO DESBLOQUEADO, E AGORA SÃO DOIS, porque o (c) de 18h1xZ é este bloco.** (a) **Amanhã,
+14/10**, o item 4 do despacho de 07/10 fica elegível e sai numa passada só: a metade da contagem é
+derivável do banco e o `validar-banco.py` já imprime os quatro números, agora com 43 materiais e a
+escada **1:1 2:4 3:19 4:19**. É a única linha de despacho desta ilha que a Fundação pode fechar
+sozinha; a outra metade do item 4, gerar link, segue do Raphael. (b) **O documento que falta, e ele
+agora tem nome e motivo:** `pastilhas exteriores quartzolit`. Os dois boletins desta família o nomeiam
+fora do título — o do irmão no cabeçalho corrido, este na seção 4.5 — e é ele que o anúncio ambíguo de
+5 kg mais provavelmente é. Achá-lo no canal de espelho (`dados/canal-de-espelho.json`, 14 documentos
+alcançáveis, e nenhum deles é este) ou por busca é trabalho de uma passada, não custa URL nem leva, e é
+o que pode destravar o degrau 3 de dois registros ao mesmo tempo. **O que NÃO está desbloqueado:** a
+varredura inteira das 71 mutações da F2 numa execução só (cerca de duas horas nesta máquina — o recorte
+de 13 que esta passada rodou é o que mede a régua consertada, e o recorte está escrito), a casa para o
+fabricante **INDICAR** uma peça (buraco nomeado às 17h4xZ, segue aberto), e `venda` na regra de
+casamento (item 7).
+
 13/10/2026 16h17Z–18h0xZ — O MOTIVO VELHO CUSTOU UM REGISTRO DE BANCO, E O REGISTRO É O PRIMEIRO EM QUE O FABRICANTE ESCREVE "PASTILHA DE VIDRO"
 
 **NENHUMA URL NOVA, e a causa é a mesma das três passadas anteriores:** a leva **3 de 3** da semana da
