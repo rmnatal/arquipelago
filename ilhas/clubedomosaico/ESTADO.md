@@ -66,7 +66,7 @@ ultima_execucao_anterior: 2026-10-13T10:20Z   # A DIVIDA DO `documento_aberto` P
                                      # em false. Revisoes 84 e 85, as duas conferidas pela 20.4.
                                      # A de 12/10 19h16Z, que estava aqui, NAO foi perdida: esta
                                      # inteira no `REGISTRO.md`, que e o log append-only.
-executando_desde: null   # limpo as 18h1xZ de 13/10/2026 pela propria execucao que reservou as 16h17Z. Ele foi RENOVADO no meio, pela 1.1, porque o bloco passou de 40 minutos.
+executando_desde: 2026-10-13T19:17Z   # reserva da execucao de 13/10/2026 19h17Z (secao 1.2, passo 2). O campo estava null, que pela 1.1 ja significa que nenhum bloco da Fundacao estava vivo — nao houve reserva vencida para o git desempatar.
                          # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: no commit
                          # do bloco este campo saiu com `2026-10-13T13:45Z`, apresentado como renovacao da
                          # 1.1. Nao era — o bloco tinha 23 minutos, e 13h45Z ainda nao tinha chegado. A 1.1
