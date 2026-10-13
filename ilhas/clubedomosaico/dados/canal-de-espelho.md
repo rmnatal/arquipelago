@@ -1,6 +1,6 @@
 # O canal de espelho — por onde esta nuvem abre documento de fabricante
 
-**GERADO por `ferramentas/medir-espelho.py`. Nao edite a mao.** Medido em 2026-10-05 19:41Z.
+**GERADO por `ferramentas/medir-espelho.py`. Nao edite a mao.** Medido em 2026-10-13 13:35Z.
 
 ## O numero que manda
 
@@ -38,24 +38,50 @@
 ## O inventario, e cada linha se confere lendo o documento
 
 O nome do arquivo no espelho e codigo do varejista e **nao diz que produto e** — por isso a
-coluna que vale e a ultima, lida na pagina 1 do PDF.
+coluna que vale e a do PRODUTO DECLARADO, lida na linha com que o documento nomeia o
+proprio produto. **A coluna do cabecalho esta ao lado de proposito**: ate 13/10/2026 era ela
+que entrava aqui como identidade, e em 6 dos 14 documentos ela nao nomeia o produto do
+documento — em 3 nomeia OUTRO produto, e nas 3 FISPQ nomeia uma norma.
 
-| arquivo | codigo | tipo | bytes | entrada | identidade lida DENTRO do documento |
-|---|---|---|---|---|---|
-| `101494.pdf` | 200 | application/pdf | 534710 | derivada | Em conformidade com NBR 14725 - parte 4: 2012 |
-| `1156527.pdf` | 200 | application/pdf | 645889 | derivada | Boletim Técnico – porcelanato interno branco quartzolit |
-| `1200003.pdf` | 200 | application/pdf | 860391 | derivada | Boletim Técnico – rejunte piscinas quartzolit |
-| `1338838.pdf` | 200 | application/pdf | 776108 | derivada | Boletim Técnico – pastilhas exteriores quartzolit |
-| `1399250.pdf` | 200 | application/pdf | 523376 | derivada | Em conformidade com NBR 14725:2014 |
-| `1430424.pdf` | 200 | application/pdf | 647329 | derivada | Boletim Técnico – porcelanato interno cinza quartzolit |
-| `1458361.pdf` | 200 | application/pdf | 640748 | derivada | Boletim Técnico – pastilhas fachadas quartzolit |
-| `1463217.pdf` | 200 | application/pdf | 644245 | derivada | Boletim Técnico – super formatos quartzolit |
-| `1463705.pdf` | 200 | application/pdf | 470229 | derivada | Boletim Técnico – piso sobre piso externo branco quartzolit |
-| `27073.pdf` | 200 | application/pdf | 649692 | derivada | Boletim Técnico - cimentcola flexível quartzolit |
-| `298182.pdf` | 200 | application/pdf | 370039 | derivada | Boletim Técnico |
-| `59668.pdf` | 200 | application/pdf | 526065 | derivada | Boletim Técnico – bloco de vidro quartzolit |
-| `90387.pdf` | 200 | application/pdf | 433226 | derivada | Em conformidade com NBR 14725 - parte 4: 2014 |
-| `908487.pdf` | 200 | application/pdf | 648452 | derivada | Boletim Técnico - cimentcola externo quartzolit |
+| arquivo | codigo | tipo | bytes | entrada | molde | cabecalho corrido (molde do topo) | PRODUTO DECLARADO no documento | o cabecalho |
+|---|---|---|---|---|---|---|---|---|
+| `101494.pdf` | 200 | application/pdf | 534710 | busca | fispq | Em conformidade com NBR 14725 - parte 4: 2012 | **OSMOCOLOR ST CORES / TRANSPARENTE / NATURAL UV GOLD** | `nao_nomeia_produto` |
+| `1156527.pdf` | 200 | application/pdf | 645889 | busca | boletim | Boletim Técnico – porcelanato interno branco quartzolit | **porcelanato interno branco quartzolit** | `nomeia_o_mesmo_produto` |
+| `1200003.pdf` | 200 | application/pdf | 860391 | derivada | boletim | Boletim Técnico – rejunte piscinas quartzolit | **Rejunte piscinas quartzolit** | `nomeia_o_mesmo_produto` |
+| `1338838.pdf` | 200 | application/pdf | 776108 | busca | boletim | Boletim Técnico – pastilhas exteriores quartzolit | **pastilhas interiores quartzolit** | `nomeia_OUTRO_produto` |
+| `1399250.pdf` | 200 | application/pdf | 523376 | busca | fispq | Em conformidade com NBR 14725:2014 | **PISO SOBRE PISO INTERNO QUARTZOLIT** | `nao_nomeia_produto` |
+| `1430424.pdf` | 200 | application/pdf | 647329 | busca | boletim | Boletim Técnico – porcelanato interno cinza quartzolit | **porcelanato e piso sobre piso externo quartzolit** | `nomeia_OUTRO_produto` |
+| `1458361.pdf` | 200 | application/pdf | 640748 | busca | boletim | Boletim Técnico – pastilhas fachadas quartzolit | **pastilhas fachadas quartzolit** | `nomeia_o_mesmo_produto` |
+| `1463217.pdf` | 200 | application/pdf | 644245 | busca | boletim | Boletim Técnico – super formatos quartzolit | **super formatos quartzolit** | `nomeia_o_mesmo_produto` |
+| `1463705.pdf` | 200 | application/pdf | 470229 | busca | boletim | Boletim Técnico – piso sobre piso externo branco quartzolit | **piso sobre piso externo branco quartzolit** | `nomeia_o_mesmo_produto` |
+| `27073.pdf` | 200 | application/pdf | 649692 | busca | boletim | Boletim Técnico - cimentcola flexível quartzolit | **cimentcola flexível quartzolit** | `nomeia_o_mesmo_produto` |
+| `298182.pdf` | 200 | application/pdf | 370039 | busca | boletim | Boletim Técnico / chapix sbr quartzolit | **Cimentcola Cozinhas e Banheiros quartzolit** | `nomeia_OUTRO_produto` |
+| `59668.pdf` | 200 | application/pdf | 526065 | busca | boletim | Boletim Técnico – bloco de vidro quartzolit | **bloco de vidro quartzolit** | `nomeia_o_mesmo_produto` |
+| `90387.pdf` | 200 | application/pdf | 433226 | busca | fispq | Em conformidade com NBR 14725 - parte 4: 2014 | **Pentox Cupim 0,9L – Base água** | `nao_nomeia_produto` |
+| `908487.pdf` | 200 | application/pdf | 648452 | derivada | boletim | Boletim Técnico - cimentcola externo quartzolit | **cimentcola externo quartzolit** | `nomeia_o_mesmo_produto` |
+
+### Onde o cabecalho nomeia OUTRO produto — 3 de 14 documentos lidos
+
+| arquivo | o cabecalho diz | o documento e de |
+|---|---|---|
+| `1338838.pdf` | Boletim Técnico – pastilhas exteriores quartzolit | **pastilhas interiores quartzolit** |
+| `1430424.pdf` | Boletim Técnico – porcelanato interno cinza quartzolit | **porcelanato e piso sobre piso externo quartzolit** |
+| `298182.pdf` | Boletim Técnico / chapix sbr quartzolit | **Cimentcola Cozinhas e Banheiros quartzolit** |
+
+### Quanto deste inventario sai dos bancos, e quanto e lista digitada
+
+**Derivado de banco: 2 de 14.** O resto e `ACHADOS_POR_BUSCA`, digitado, e a trava 1 existe
+para que isso fique dito. *(Ate 13/10/2026 este numero saia 14 de 14, porque a derivacao varria
+o proprio `canal-de-espelho.json` que ela gera — a lista digitada voltava como derivada, citada
+pelo arquivo gerado. Medido nos dois mundos sobre os mesmos JSON de `dados/`: 14 contra 2.)*
+
+E um terceiro documento, `27073.pdf`, e citado em `constantes.json` dentro de um **nome de
+chave** e nao num campo `url`. A derivacao le campo `url`, por desenho: chave e prosa de quem
+escreveu, campo e dado com nome. Fica dito aqui para ninguem ler a coluna `entrada` como
+"nenhum banco conhece este arquivo".
+
+- `1200003.pdf` — citado por `materiais-rejuntes.json`
+- `908487.pdf` — citado por `materiais-colas.json`
 
 ## O que esta medicao NAO autoriza
 
@@ -65,6 +91,11 @@ coluna que vale e a ultima, lida na pagina 1 do PDF.
 - **Espelho nao batiza** (26.2). O nome do arquivo e do varejista, e a trava do batismo leu
   `1200003.pdf` e `908487.pdf` como se fossem o fabricante escrevendo o nome do produto — duas
   vezes em 05/10/2026, nos dois casos acusando um campo certo.
+- **E o CABECALHO CORRIDO nao batiza tampouco — isto e novo em 13/10/2026.** A coluna do
+  cabecalho esta nesta tabela para ser LIDA CONTRA o produto, nunca para ser copiada: em 3 dos
+  14 documentos ela nomeia outro produto, e nas 3 FISPQ nomeia uma norma. Quem precisar do nome
+  comercial de um produto continua indo ao `batismo_do_fabricante`; o que este inventario
+  responde e **qual produto este arquivo descreve**, que e outra pergunta.
 - **Conversar nao e entregar, e o grupo `fabricante` e o exemplo vivo.** `www.quartzolit.weber`
   responde **403 nas tres passadas** — o egresso deixou conversar e o SERVIDOR recusa. O
   repositorio registrava este host como `connect_rejected` desde 30/09/2026; isso deixou de

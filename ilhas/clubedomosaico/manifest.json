@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 85,
-  "atualizado_em": "2026-10-13T11:05Z",
+  "revisao": 86,
+  "atualizado_em": "2026-10-13",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -120,18 +120,18 @@
       "arquivo": "dados/canal-de-espelho.md",
       "formato": "md",
       "entidade": "medicao",
-      "fonte": "GERADO por ferramentas/medir-espelho.py. Medicao do canal de espelho de 05/10/2026, tres passadas por host, com clubedomosaico.com.br como controle. Nao editar a mao: o portao regera e compara.",
+      "fonte": "GERADO por ferramentas/medir-espelho.py. Medicao do canal de espelho de 13/10/2026, tres passadas por host, com clubedomosaico.com.br como controle. A identidade de cada documento e o PRODUTO QUE ELE DECLARA, lido na linha em que o documento se nomeia — nunca o cabecalho corrido, que em 3 dos 14 nomeia OUTRO produto. Nao editar a mao: o portao regera e compara.",
       "publicar": false,
-      "sha256": "cac96cccac1960962f980a94252256c034a68caa7292df0439c71252d1c743be"
+      "sha256": "652f328f124acfb112157f096e946eb51a9a9fcbd9a6638b1497c5ec5f677915"
     },
     {
       "id": "canal-de-espelho-json",
       "arquivo": "dados/canal-de-espelho.json",
       "formato": "json",
       "entidade": "medicao",
-      "fonte": "GERADO por ferramentas/medir-espelho.py, no mesmo passo do .md. E a fonte que a proxima execucao le por maquina em vez de reler prosa — e e onde esta o inventario dos 14 documentos de fabricante que este canal alcanca, com a identidade de cada um lida na pagina 1 do PDF.",
+      "fonte": "GERADO por ferramentas/medir-espelho.py. Medicao do canal de espelho de 13/10/2026, tres passadas por host, com clubedomosaico.com.br como controle. A identidade de cada documento e o PRODUTO QUE ELE DECLARA, lido na linha em que o documento se nomeia — nunca o cabecalho corrido, que em 3 dos 14 nomeia OUTRO produto. Nao editar a mao: o portao regera e compara.",
       "publicar": false,
-      "sha256": "77138a5fc21528fc3f8562e1a24107d5477b9da5fa5b7458c06ebe2b1ae1113e"
+      "sha256": "d6828cba4886d869b8e49cd95003b40a84303be94a3cb0c8acdac55f9808bcf7"
     },
     {
       "id": "corpus-buscas",
@@ -194,7 +194,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "9c6597218ad9912daf629308e15012ed12775f51afcf35f2904b729d6159333d",
+      "sha256": "b923376a414e143c3c1377beeed84330dbdf4ad10c55bc522110aae25857b1c6",
       "descricao": "Esquema v15 — a REGRA 3 ganha BALDE PROPRIO (`eliminados_por_ambiente_do_produto`) sem campo novo no banco: a regra virou dicionario com o balde, a ordem e a trava, nasceu `regras_do_balde_do_ambiente_do_produto` com os tres produtos que delimitam ambiente e cinco ancoras ponta a ponta, e 24 das 45 celulas da `matriz_esperada_da_F2` foram reescritas a mao movendo 29 entradas do balde do silencio para o novo. Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -358,7 +358,7 @@
       "fonte": "GERADO por ferramentas/filhas-do-guia.py em 30/09/2026 a partir de dados/esquema-banco.json (versao 8) e dos dados/materiais-*.json. Fotografia do banco de hoje, nao serie: se regenera a cada mudanca de banco ou de vocabulario, e --conferir reprova se estiver velho.",
       "registros": 42,
       "publicar": false,
-      "sha256": "f48dec4ed391806adf03c3ae3d9a7051d71a460628bcd2b81e2702b7ecd1d24f",
+      "sha256": "912e6cf87b9340d9516333a9307ed843e49a2d01cda2be2cd15f4ab75fdf9453",
       "verificado_em": "2026-10-08"
     },
     {
@@ -369,7 +369,7 @@
       "fonte": "Duas metades declaradas separadamente no proprio arquivo, com fronteira marcada. (a) O trecho de cima e GERADO de dados/filhas-do-guia.json e o portao o regera e compara. (b) O trecho abaixo da fronteira era a classificacao de SERP da 14.9 em PROSA, e em 02/10/2026 ela saiu daqui e virou dado em dados/serp-das-filhas.json, com o cruzamento em dados/cruzamento-14-9.md: prosa que o gerador preserva sem ler nao cruza com numero. O que ficou abaixo da fronteira e o ponteiro para os dois arquivos novos e o motivo da mudanca.",
       "verificado_em": "2026-10-08",
       "publicar": false,
-      "sha256": "6cd4fac2f593db771d7e1b50c0d6c5b14e39e13caf67b766ad7e0ae54d746d32"
+      "sha256": "f6ec583e1c832fbc96c5571408550007b2ea8a6c9df08abb880ccf1f9316adfe"
     },
     {
       "id": "perguntas-do-guia",
@@ -550,7 +550,7 @@
     {
       "id": "medir-espelho",
       "arquivo": "ferramentas/medir-espelho.py",
-      "sha256": "a864112058f5e7a4731c5473c5dd0d6c7680ac5f94fe7fbd94d2483eb81c2e27",
+      "sha256": "b6dd1c3997d9a11bfc71f09e1fee3bbcadb2178741f06d3f156f99c5732af79b",
       "descricao": "Mede o CANAL DE ESPELHO: por onde esta nuvem abre documento de fabricante quando o fabricante esta fechado. Nasceu porque o achado de 05/10/2026 as 13h2xZ estava certo e a EXPLICACAO dele errada — nomeava a Telha Norte e a relacao de grupo Saint-Gobain, quando o que esta liberado e o SUFIXO do CDN: `*.vteximg.com.br` e `*.vtexassets.com`, nove hosts sondados e nove conversando, varejistas que nao sao do grupo entre eles. Sonda quatro grupos e nao um — a familia de espelho, os hosts de DESCOBERTA (loja, API de catalogo VTEX e painel: os tres fechados, e e por isso que o canal e arquivo por nome conhecido e nunca catalogo), as escapatorias (archive.org, r.jina.ai, docs.google.com: as tres fechadas) e o fabricante. Dois vereditos por host, pela licao do medir-egresso.py: conversar nao e entregar, e `www.quartzolit.weber` e o caso vivo (403 nas tres passadas, onde o registro de 30/09 dizia connect_rejected). O inventario e DERIVADO dos `fontes[].url` dos bancos, e a parte que a busca achou vem declarada como digitada, com o motivo; cada PDF alcancado e aberto e a identidade sai da PAGINA 1, nunca do nome do arquivo, que no espelho e codigo do varejista e foi exatamente o que fez a trava do batismo acusar dois campos certos. Tres passadas por host (20.2) e controle obrigatorio que torna a medicao VOID se cair. `--autoteste`: 24 casos fabricados. Bancada: nunca vai para o site."
     },
     {
@@ -937,6 +937,12 @@
       "arquivo": "ferramentas/mutacoes-produto.py",
       "sha256": "09997d7cd362f9866e5f72670cd49da87eac7e6e277e986bf37407405196f879",
       "descricao": "25 mutacoes da familia de produto, 25 reprovando. Roda em mkdtemp e nao pode sujar a arvore. Tres delas acharam LACUNA DE PORTAO e nao defeito de pagina, e os tres portoes nasceram por causa delas: a data era procurada em qualquer lugar da tela quando a procedencia a imprime por fora do molde; a Shopee era procurada em qualquer frase quando a 30.2 a quer na procedencia; e a contagem de orfa ficava verde sem o link da mae, porque as sete irmas ja davam sete."
+    },
+    {
+      "id": "mutacoes-espelho",
+      "arquivo": "ferramentas/mutacoes-espelho.py",
+      "sha256": "891e7f707d4859cf1599e4736c7043537053f1ce0c51326e106845b61e3c3b93",
+      "descricao": "9 mutacoes de medir-espelho.py, 8 reprovando e 1 que TEM de passar. Muta uma COPIA da ferramenta em mkdtemp e nunca a arvore. Nasceu em 13/10/2026 porque o autoteste da ferramenta saia 24 de 24 enquanto DUAS das quatro travas que ela declara no proprio topo estavam furadas: a identidade do documento vinha do cabecalho corrido (em 6 de 14 documentos ele nao nomeia o produto do documento) e a derivacao do inventario varria o arquivo que ela mesma gera (14 de 14 saiam como derivadas, e a derivacao real era 2). Cada quebra declara a FRASE que tem de ouvir de volta, porque reprovar nao e a mesma coisa que reprovar pelo motivo certo."
     }
   ],
   "esquema": {

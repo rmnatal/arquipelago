@@ -217,22 +217,26 @@
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 534710,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Em conformidade com NBR 14725 - parte 4: 2012"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "fispq",
+      "cabecalho_corrido": "Em conformidade com NBR 14725 - parte 4: 2012",
+      "produto_declarado": "OSMOCOLOR ST CORES / TRANSPARENTE / NATURAL UV GOLD",
+      "o_que_o_cabecalho_e": "nao_nomeia_produto",
+      "identidade_lida_no_documento": "OSMOCOLOR ST CORES / TRANSPARENTE / NATURAL UV GOLD"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/1156527.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 645889,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico – porcelanato interno branco quartzolit"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico – porcelanato interno branco quartzolit",
+      "produto_declarado": "porcelanato interno branco quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_o_mesmo_produto",
+      "identidade_lida_no_documento": "porcelanato interno branco quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/1200003.pdf",
@@ -240,121 +244,144 @@
       "content_type": "application/pdf",
       "bytes": 860391,
       "citado_por": [
-        "canal-de-espelho.json",
         "materiais-rejuntes.json"
       ],
       "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico – rejunte piscinas quartzolit"
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico – rejunte piscinas quartzolit",
+      "produto_declarado": "Rejunte piscinas quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_o_mesmo_produto",
+      "identidade_lida_no_documento": "Rejunte piscinas quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/1338838.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 776108,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico – pastilhas exteriores quartzolit"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico – pastilhas exteriores quartzolit",
+      "produto_declarado": "pastilhas interiores quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_OUTRO_produto",
+      "identidade_lida_no_documento": "pastilhas interiores quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/1399250.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 523376,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Em conformidade com NBR 14725:2014"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "fispq",
+      "cabecalho_corrido": "Em conformidade com NBR 14725:2014",
+      "produto_declarado": "PISO SOBRE PISO INTERNO QUARTZOLIT",
+      "o_que_o_cabecalho_e": "nao_nomeia_produto",
+      "identidade_lida_no_documento": "PISO SOBRE PISO INTERNO QUARTZOLIT"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/1430424.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 647329,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico – porcelanato interno cinza quartzolit"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico – porcelanato interno cinza quartzolit",
+      "produto_declarado": "porcelanato e piso sobre piso externo quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_OUTRO_produto",
+      "identidade_lida_no_documento": "porcelanato e piso sobre piso externo quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/1458361.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 640748,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico – pastilhas fachadas quartzolit"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico – pastilhas fachadas quartzolit",
+      "produto_declarado": "pastilhas fachadas quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_o_mesmo_produto",
+      "identidade_lida_no_documento": "pastilhas fachadas quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/1463217.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 644245,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico – super formatos quartzolit"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico – super formatos quartzolit",
+      "produto_declarado": "super formatos quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_o_mesmo_produto",
+      "identidade_lida_no_documento": "super formatos quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/1463705.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 470229,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico – piso sobre piso externo branco quartzolit"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico – piso sobre piso externo branco quartzolit",
+      "produto_declarado": "piso sobre piso externo branco quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_o_mesmo_produto",
+      "identidade_lida_no_documento": "piso sobre piso externo branco quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/27073.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 649692,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico - cimentcola flexível quartzolit"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico - cimentcola flexível quartzolit",
+      "produto_declarado": "cimentcola flexível quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_o_mesmo_produto",
+      "identidade_lida_no_documento": "cimentcola flexível quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/298182.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 370039,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico / chapix sbr quartzolit",
+      "produto_declarado": "Cimentcola Cozinhas e Banheiros quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_OUTRO_produto",
+      "identidade_lida_no_documento": "Cimentcola Cozinhas e Banheiros quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/59668.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 526065,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico – bloco de vidro quartzolit"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico – bloco de vidro quartzolit",
+      "produto_declarado": "bloco de vidro quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_o_mesmo_produto",
+      "identidade_lida_no_documento": "bloco de vidro quartzolit"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/90387.pdf",
       "codigo": "200",
       "content_type": "application/pdf",
       "bytes": 433226,
-      "citado_por": [
-        "canal-de-espelho.json"
-      ],
-      "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Em conformidade com NBR 14725 - parte 4: 2014"
+      "citado_por": [],
+      "procedencia_da_entrada": "achada por busca (digitada)",
+      "familia_do_documento": "fispq",
+      "cabecalho_corrido": "Em conformidade com NBR 14725 - parte 4: 2014",
+      "produto_declarado": "Pentox Cupim 0,9L – Base água",
+      "o_que_o_cabecalho_e": "nao_nomeia_produto",
+      "identidade_lida_no_documento": "Pentox Cupim 0,9L – Base água"
     },
     {
       "url": "https://telhanorte.vteximg.com.br/arquivos/908487.pdf",
@@ -362,13 +389,16 @@
       "content_type": "application/pdf",
       "bytes": 648452,
       "citado_por": [
-        "canal-de-espelho.json",
         "materiais-colas.json"
       ],
       "procedencia_da_entrada": "derivada dos bancos",
-      "identidade_lida_no_documento": "Boletim Técnico - cimentcola externo quartzolit"
+      "familia_do_documento": "boletim",
+      "cabecalho_corrido": "Boletim Técnico - cimentcola externo quartzolit",
+      "produto_declarado": "cimentcola externo quartzolit",
+      "o_que_o_cabecalho_e": "nomeia_o_mesmo_produto",
+      "identidade_lida_no_documento": "cimentcola externo quartzolit"
     }
   ],
-  "gerado_em": "2026-10-05 19:41Z",
+  "gerado_em": "2026-10-13 13:35Z",
   "gerado_por": "ferramentas/medir-espelho.py"
 }
