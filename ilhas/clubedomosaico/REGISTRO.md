@@ -3,6 +3,199 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+13/10/2026 16h17Z–18h0xZ — O MOTIVO VELHO CUSTOU UM REGISTRO DE BANCO, E O REGISTRO É O PRIMEIRO EM QUE O FABRICANTE ESCREVE "PASTILHA DE VIDRO"
+
+**NENHUMA URL NOVA, e a causa é a mesma das três passadas anteriores:** a leva **3 de 3** da semana da
+21.4 foi gasta em 12/10 e **zera em 19/10**. A ilha segue em **32 URLs** — faltam 8 para o piso de 40.
+O que mudou no ar é a **RESPOSTA DA F2** em três estados, e o banco vai de **41 para 42** materiais.
+
+**O QUE ESTA EXECUÇÃO ACHOU ANTES DE ESCREVER UMA LINHA, e é por isso que o bloco existe.** O
+`REGISTRO.md` da passada de 13h18Z fechou dizendo, sobre os quatro produtos que os boletins do espelho
+trouxeram: *"seriam registros publicáveis, e a 25.2-b proíbe registro publicável sem encurtamento
+tentado, que depende da sessão do Shopee Afiliados do Raphael"*. **O motivo está errado, e a prova é de
+duas linhas do próprio repositório.** A 25.2-b exige que o encurtamento seja **TENTADO pela API** — e
+a seção 25.6 do contrato diz, com todas as letras, que desde 16/09/2026 o link da Shopee *"sai pela API
+de afiliado na própria coleta, na nuvem, já encurtado e com o sub-id da ilha — sem navegador, sem portal
+de afiliado aberto"*, e que *"o portal de afiliado da Shopee aberto no Chrome do Raphael não é mais
+pré-requisito de nenhuma rotina (decisão registrada em 22/09/2026)"*. O cabeçalho de
+`ferramentas/gerar-links-afiliado.py` diz a mesma coisa com um título: **"O CAMINHO, e ele não depende
+de sessão de ninguém"** — e diz por que esse erro se repete: *"motivo velho manda a execução seguinte
+nem tentar"*, que é a 25.4-b.3.
+
+**MEDIDO, não argumentado:** `SHOPEE_APP_ID` e `SHOPEE_SECRET` estão no ambiente do processo, e
+`shopee-api.py link` devolveu `https://s.shopee.com.br/9pf3pRlphi` na primeira tentativa, com
+`sub_id_1=clubedomosaico` e `sub_id_2=F2`. **Nenhuma sessão de ninguém foi aberta.** O custo do motivo
+velho foi um registro de banco que não nasceu no dia em que o documento foi lido — e item de banco é
+uma das duas únicas coisas que a próxima URL desta ilha custa.
+
+**1. OS DOIS PORTÕES DA 29 RODARAM ANTES DE TUDO.** Rede pela 20.2: `clubedomosaico.com.br` em **200**
+nas quatro passadas. `conferir-no-ar.py` **APROVADO, 524 afirmações, 0 falha**;
+`leitura-do-visitante.py` **REPROVADO por EXATAMENTE 1 defeito**, o soft 404 da borda de 29/09, que é do
+hospedeiro e tem dono escrito. A porta de entrada estava de pé antes do trabalho.
+
+**2. O REGISTRO: `quartzolit-pastilhas-interiores`, do boletim `1338838.pdf` do espelho, revisado em
+janeiro de 2018.** É a *argamassa colorida para assentamento e rejuntamento simultâneos de pastilhas de
+vidro, porcelana, coco, fibras e madeira para áreas internas* — e com ela o banco tem, pela primeira
+vez, um fabricante escrevendo **pastilha de vidro** dentro do próprio `indicado_para`. Onze propriedades
+declaradas (consumo de 6 kg/m², tempo em aberto > 15 min, as três aderências > 0,5 MPa, as duas
+temperaturas de trabalho, a camada de 3 a 5 mm, as 2h30 de uso depois da mistura, a liberação de
+tráfego), `preparo` com o literal do fabricante de quatro seções, duas unidades de venda (saco de 5 kg e
+de 20 kg) e o piso de compra encurtado pela API.
+
+**3. O `tipo` DELE NÃO É `cimentcola_acii`, E ISSO É A 26.1 E NÃO FRESCURA.** O boletim **não declara
+classe AC nenhuma** — não há linha de classificação normativa na tabela da seção 5, ao contrário da
+AC-II, que a tem. Gravar `cimentcola_acii` seria a ilha classificando pela NBR 14.081 no lugar de um
+fabricante que ficou calado. Nasceu o valor `argamassa_colorida_assenta_e_rejunta` em
+`vocabularios.tipo_por_categoria.cola` (esquema **v20**), e ele descreve a FUNÇÃO, que é o que esta
+ilha classifica.
+
+**4. AS 45 CÉLULAS DA F2 FORAM DERIVADAS À MÃO ANTES DE O VALIDADOR RODAR UMA VEZ, E BATERAM SEM UMA
+DIVERGÊNCIA.** A derivação ficou escrita antes (27 por proibição, 3 recomendadas com score 4, 1 por
+ambiente do substrato, 14 por silêncio = 45) e a recomputação independente do `validar-banco.py` deu
+exatamente isso. **Nenhum produto saiu do topo de nenhuma célula e nenhum score de ninguém mudou:** as
+três células recomendadas eram empate em 4 e passaram a ser empate em 4 com um a mais.
+
+**5. O QUE O LEITOR PASSA A VER, lido no HTML servido e não suposto.** Em `cimento_concreto` x
+`interno_seco` x `pastilha_vidro` — que é a pergunta mais própria desta ilha, o vaso ou o tampo de
+cimento com pastilha de vidro, dentro de casa — a página agora diz: *"use Cascola Adesivo de Montagem
+PL500 Interior e pastilhas interiores quartzolit — os dois servem aqui, e a gente não escolhe por você o
+que o fabricante não separou."* Antes dizia só o PL500. A AC-II continua fora dessa célula pela **regra
+7**, porque o grupo `revestimento_especial` carrega `pastilha_vidro`; a argamassa de pastilha **não
+declara** aquele grupo, e o porquê é o item 6.
+
+**6. O GRUPO `revestimento_especial` NÃO FOI DECLARADO POR ESTE PRODUTO, E A DECISÃO ESTÁ ESCRITA ANTES
+DE DOER.** O fragmento `outros revestimentos especiais` — que é o `literal_que_o_origina` daquele grupo,
+nascido em 06/10 da AC-II — aparece **também** na seção 3 deste boletim. Declará-lo aqui faria a regra 7
+eliminar, do único produto que o fabricante escreveu PARA pastilha de vidro, exatamente a pastilha de
+vidro. A saída não foi inventada: é a mesma régua que já põe `caco_azulejo` FORA do grupo na AC-II — *"o
+MESMO documento indica"* —, e aqui o mesmo documento indica `pastilhas de vidro, porcelana, coco, fibras
+e madeiras` por nome. **E o que isso deixa aberto ficou medido:** `tesselas_no_grupo` é lista do GRUPO e
+a justificativa de cada caquinho nela foi escrita lendo UM documento. Hoje resolve-se sem tocar na
+régua, porque quem declara o grupo é o PRODUTO. O dia em que um terceiro documento trouxer o fragmento
+**e** precisar do grupo com outra lista, a lista terá de passar a ser por declaração — e isso é bloco
+próprio, com mutação.
+
+**7. O BURACO QUE O REGISTRO REVELOU: HÁ CASA PARA O FABRICANTE PROIBIR UMA PEÇA E NÃO HÁ PARA ELE
+INDICAR UMA.** A regra 7 e `condicoes.proibe_grupos_de_tessela` nasceram em 06/10 para a PROIBIÇÃO de
+peça. A frase `Assentar e rejuntar simultaneamente pastilhas de vidro, porcelana, coco, fibras e
+madeiras` é uma INDICAÇÃO de peça, e não tem campo. Ela **não** entrou em `indicado_para` — traduzir
+`porcelana` para `ceramica_esmaltada_porcelana` ou `madeiras` para `mdf_madeira` ali faria a F2
+recomendar esta argamassa para colar mosaico EM CIMA de cerâmica e de MDF, e as bases dela estão na
+seção 4.1 e são emboço, contrapiso, alvenaria e concreto. Foi para `termos_que_nao_traduzem` com o
+motivo, e para um campo nomeado da fonte com o buraco escrito. **Transformar indicação de peça em regra
+de elegibilidade MUDA a recomendação da F2, então é bloco próprio e não linha de passagem.**
+
+**8. O DEGRAU 4 FOI MEDIDO E O `casou` DA FERRAMENTA FOI RECUSADO COM O MOTIVO — E É ESSE O ACHADO MAIS
+FINO DO DIA.** `medir-degrau-4.py --ensaio` devolveu **`casou`**: há anúncio que a regra de
+`casar-anuncio.py` identifica. **E o `casou` está certo pela regra e insuficiente pelo mundo.** Os dois
+anúncios se intitulam `Argamassa 5kg Pastilha Interiores/exterior Branco Quartzolit` — um anúncio só
+vendendo ESTE produto e o `pastilhas fachadas quartzolit`, que é o exterior. Anúncio que cobre dois
+registros não identifica nenhum (armadilha 5 da 25.7). A regra passa porque a segunda metade dela — a
+que o próprio cabeçalho da ferramenta chama de *"a que vale mais"* — cobra que o título não traga o que
+separa os **IRMÃOS** do registro, e irmão ali é registro **DO BANCO**. O irmão deste existe no mundo e
+não está no banco (o boletim dele foi lido no mesmo dia, `1458361.pdf`), então não há com que barrar.
+**A cegueira, dita por extenso: quanto MAIS incompleto o banco, MAIS fácil um anúncio ambíguo passar —
+a trava afrouxa justamente quando há menos dado, que é o avesso do que ela promete.** Aqui ficou visível
+porque o anúncio escreve os dois nomes na mesma linha; num anúncio que escrevesse só `Pastilha Branco
+Quartzolit` a mesma cegueira passaria sem deixar rastro. Pela assimetria de custo da seção 10 o registro
+**fica no piso**, com a causa nova `anuncio-cobre-o-irmao-fora-do-banco` e a última tentativa datada. O
+conserto provável **não é na regra** — é no BANCO: registrar o irmão, que é coleta com o documento já
+aberto e nomeado.
+
+**9. O PORTÃO DA VOZ PEGOU PROSA MINHA CHEGANDO À TELA, ANTES DO COMMIT, E O QUE ELE EXPÔS É DO CÓDIGO.**
+`teste-f2.php` reprovou as **três** células recomendadas na palavra `pagina`, sem acento. A causa: a
+camada de PROVA da F2 serve `fonte[tipo]` **cru** na tela (*"o fabricante declara X (<tipo>, lido em
+<data>)"*), e o `tipo` é, pelo esquema, "descrição humana do documento" — prosa de arquivo, que nesta
+ilha se escreve sem acento. É exatamente o problema que o campo `como_a_tela_chama_o_documento` resolveu
+em 06/10 **para o bloco de preparo**, e a camada de prova ficou de fora. **Por que ninguém viu, e o número é maior do que parecia:** varrendo os cinco bancos à procura de
+`fonte.tipo` com palavra que só existe sem acento por erro de digitação, **SEIS registros** carregam uma —
+os três torques da Cortag, a AC-II, a AF1500 da Pastilhart e o Rejunte Piscinas. Nenhuma chega à tela hoje,
+e o motivo não é um portão: é **quais produtos a régua por acaso serve**. A AC-II, a única das seis que é
+cola, é tirada de toda célula com tessela pela regra 7. **Defeito que depende de qual produto é
+recomendado para aparecer é defeito que espera** — e este bloco é o dia em que ele apareceu. Este é o primeiro produto com boletim que chega a
+`recomendados_topo`, e por isso o `tipo` dele já nasce acentuado e pronto para ser lido em voz alta. Dar
+à camada de prova o mesmo tratamento do preparo é campo novo na fonte mais portão: **bloco próprio**,
+nomeado no registro.
+
+**10. UMA BATERIA DE MUTAÇÃO ESTAVA MORTA DESDE A MANHÃ DE HOJE, E É A QUE GUARDA A LINHA QUE ESTE BLOCO
+ACRESCENTOU.** `mutacoes-apoio.py` fechava em *"o mundo FABRICADO já está reprovado antes de qualquer
+mutação. Portão que reprova o mundo certo não mede nada"*: o esquema **v17**, escrito hoje de manhã,
+passou a exigir `documento_aberto` em TODA fonte de material, e o mundo fabricado dela — que é um banco
+de material — nasceu sem o campo. **Isolado em worktree do `HEAD`**, para a culpa não ficar na conta
+deste bloco: ela já estava vermelha antes de eu tocar em nada, e ficou verde com o campo acrescentado ao
+mundo fabricado (24 de 24 mutações reprovando). Não é detalhe de bancada: a varredura de
+`exigencias_de_apoio_ja_declaradas_no_banco` é o que cobra que declaração de fabricante sobre ferramenta
+não seja lida e jogada fora — e este bloco acrescentou uma linha a ela, a **segunda** da ilha que vem do
+outro lado do balcão com MEDIDA (a primeira, a AF1500, declara o MATERIAL da desempenadeira; esta
+declara a GEOMETRIA: dente de 6 x 6 x 6 mm). Sem o conserto, a linha nova nasceria guardada por uma
+bateria que não roda. **A bancada da manhã não rodou essa bateria, e foi por isso que o portão novo a
+derrubou sem ninguém ver.**
+
+**11. E UMA REGRA DE MÉTODO QUE ESTA EXECUÇÃO PAGOU PARA APRENDER: AS BATERIAS QUE MUTAM A ÁRVORE NÃO
+PODEM RODAR EM PARALELO.** Duas delas foram disparadas em lotes concorrentes, e a `mutacoes-apoio`
+passou a acusar sete erros que não existiam — entre eles o qualificador da AC-II valendo em
+`externo_exposto`, que é **uma mutação da `mutacoes-par` lida como se fosse o mundo**. Nenhuma das duas
+estava errada: elas mutam o MESMO `dados/esquema-banco.json`, e o `teste-rede-de-sinal.py` já separa as
+que trabalham em cópia (`mkdtemp`) das que trabalham na árvore exatamente por isso. A leitura dos lotes
+concorrentes foi **descartada** e tudo foi re-rodado em fila. A árvore foi conferida byte a byte depois:
+os três qualificadores de volta em `interno_seco`, e `git status` com só os arquivos deste bloco.
+
+**12. O QUE ESTE BLOCO NÃO FEZ, dito para ninguém reabrir.** Não publicou URL (a leva da semana está
+gasta até 19/10) e não mexeu em snippet nenhum — **zero byte de PHP** —, por isso o sync foi COMUM e
+não com `forcar=1`. Não registrou os outros três produtos que os boletins do espelho trouxeram
+(`pastilhas fachadas`, `bloco de vidro`, `Cimentcola Cozinhas e Banheiros`): o `bloco de vidro` **não é
+material de mosaico** — é argamassa para assentar bloco de vidro como alvenaria, com junta mínima de 10
+mm, e entra como decisão escrita e não como esquecimento; os outros dois são coleta de verdade, cada um
+com 45 células a derivar à mão, e **um registro por passada é o que cabe com portão**. Não mediu SERP,
+não abriu fonte de técnica (as dez em 000, e a porta é do Raphael), não gerou link de ficha (o degrau 3
+foi recusado com motivo, item 8) e **não tocou no `foco.md`** — a troca para a aquametria é do Raphael,
+e esta é a **DÉCIMA** execução a registrar isso.
+
+**13. O PRÓXIMO PASSO DESBLOQUEADO, E AGORA SÃO DOIS.** (a) **Amanhã, 14/10**, o item 4 do despacho de
+07/10 fica elegível e sai numa passada só — a metade da contagem é derivável do banco e o
+`validar-banco.py` já imprime os quatro números que o critério pede, agora com **42** materiais e a
+escada **1:1 2:4 3:19 4:18**. (b) **`pastilhas fachadas quartzolit`**, e ele deixou de ser só "mais um
+item": é o IRMÃO deste registro, o boletim dele já foi lido e está nomeado
+(`telhanorte.vteximg.com.br/arquivos/1458361.pdf`, revisado em setembro de 2015), e registrá-lo é o que
+dá à regra de casamento com que barrar o anúncio ambíguo do item 8 — **conserto de banco, não de
+régua**. Ele é o espelho técnico deste: indica pastilha de **porcelana** em área interna E externa, em
+fachada, em sauna úmida e em piso aquecido até 70 °C, e **proíbe por escrito** pastilha de vidro e de
+fibras naturais. Os dois juntos respondem, com declaração de fabricante nos dois lados, a pergunta que
+esta ilha existe para responder: *qual argamassa para pastilha de vidro, e qual para pastilha de
+porcelana, dentro e fora de casa.* O caminho inteiro já está medido nesta passada — documento aberto,
+termos de mapa, derivação das 45 células, encurtamento pela Open API — e a próxima execução o repete em
+vez de o descobrir.
+
+**14. O DESEMBARQUE, PELA 20.4 E NÃO PELA REVISÃO.** Sync **COMUM**, sem `forcar=1`, porque nenhum
+snippet mudou — e é o `forcar=1` que reaplica os nove e derruba o do Guia. `conferir-desembarque.py`
+**APROVADO**: revisão **87** no manifest e no `/status`, **9 de 9** linhas do log dizendo `ok`, **9
+visíveis de 9** aplicados, nada fora da janela. Os portões da 29 **depois** do desembarque:
+`conferir-no-ar.py` **APROVADO com 524 afirmações e 0 falha**; `conferir-tecnica-no-ar.py` **APROVADO
+com 54**; `leitura-do-visitante.py` **REPROVADO com exatamente o MESMO 1 defeito**, 33 URLs lidas, 0 em
+janela de cache. E a entrega foi lida no ar, não suposta: as duas células mudadas, abertas com quebra de
+cache em `/materiais/qual-cola-usar-no-mosaico/`, dizem **"os dois servem aqui"** — a argamassa de
+pastilha ao lado do PL500 em cimento, e ao lado da AC-II em alvenaria.
+
+**15. BANCADA, 0 falha:** `validar-banco` OK (também com `CDM_SEM_PORTAO_PAR=1`), as **dez** bancadas
+PHP (casca 1041, guia 232, produto 306, técnicas 139, F1 228, F2 174, leads, loja, prestação 5, ateliê),
+`filhas-do-guia --conferir` APROVADO depois de regerado, `cruzamento-14-9 --conferir` APROVADO,
+`cobertura` escrito, `validar-pastilhas` OK, `medir-egresso --autoteste` **50 de 50**,
+`medir-espelho --autoteste` **39 de 39**, `mutacoes-espelho` **9 de 9**,
+`coletar-por-consulta --conferir` **554 afirmações, 0 defeito**, e as baterias **apoio 24**, batismo 16,
+casamento 5, degrau 8, documento-aberto 11, forma-do-degrau 5, motivo-degrau-4 10, preparo 16,
+ambiente-do-produto 16+6+5 e **par 17 de forma + 5 de tela + 4 falsos positivos**.
+
+**16. O QUE NÃO FOI MEDIDO ATÉ O FIM, dito em vez de omitido.** A varredura de mutação da
+`mutacoes-f2.py` e as **13 restantes** do `teste-rede-de-sinal.py`. Da `mutacoes-f2` ficou medida a
+**BASE em árvore limpa** — *"F2 intacta: APROVADA"*, *"Banco intacto: APROVADO"* — e as duas primeiras
+mutações pegas como devia; cada mutação dela renderiza a F2 inteira e custa cerca de **25 minutos**, e
+ela **não consta da bancada padrão desta ilha** (nenhuma entrada anterior deste arquivo a lista) porque
+o que ela guarda é a **régua** da F2, e este bloco não mudou um byte de PHP. Do `teste-rede-de-sinal`
+ficou medida a metade que este bloco podia quebrar — a **CLASSIFICAÇÃO**: 22 em cópia, 14 na árvore com
+rede, **0 sem rede**, com as duas baterias editadas no grupo certo —, mais **1 de 14** mortas no meio
+com a árvore voltando igual; as outras 13 exigem **INICIAR** cada bateria para matá-la no meio, e com as
+duas mais lentas na lista isso são horas. As duas ficam como primeiro item da próxima execução.
+
 13/10/2026 13h18Z–14h0xZ — A IDENTIDADE DO DOCUMENTO NÃO É O CABEÇALHO DELE: 6 DOS 14 DOCUMENTOS DO ESPELHO ESTAVAM CATALOGADOS PELA LINHA ERRADA, E A DERIVAÇÃO DO INVENTÁRIO COMIA O PRÓPRIO RABO
 
 **NENHUMA URL NOVA, e a causa é a mesma das duas passadas de hoje, medida e não suposta:** a leva
