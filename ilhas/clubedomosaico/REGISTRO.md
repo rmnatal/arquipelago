@@ -3,6 +3,156 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+13/10/2026 10h20Z–11h0xZ — A DÍVIDA DO `documento_aberto` ESTÁ PAGA NOS CINCO BANCOS DE MATERIAL, E O NÚMERO QUE ELA TRAZIA ESTAVA NA UNIDADE ERRADA
+
+**NENHUMA URL NOVA, e a causa é a mesma de ontem, medida e não suposta:** a leva **3 de 3** da
+semana da 21.4 foi gasta em 12/10 e **zera em 19/10**. A ilha segue em **32 URLs** — faltam 8 para o
+piso de 40 da 21.1. O que foi ao ar são as options da revisão **84**: os cinco bancos de material, o
+esquema (**v18**), o `filhas-do-guia` regerado, e as duas ferramentas de portão.
+
+**POR QUE ESTE BLOCO, e ele estava escrito antes desta execução abrir.** O `bloco_atual` de 12/10
+fecha nomeando o próximo passo desbloqueado com todas as letras: *"o que SOBRA de trabalho de
+Fundação aqui é a dívida que o esquema v17 nomeou com número: os cinco bancos de material têm 41
+registros e NENHUM declara `documento_aberto`."* Nenhum despacho aberto desta ilha é da Fundação —
+os três que restam (as 6 URLs em 404, as três desconhecidas do Google, o cano de links) estão
+travados em credencial, sessão de navegador e domínio de rede, todos do Raphael, e o item 4 pede um
+arquivo datado de **14/10 ou depois**. Pela 18.5 não havia despacho para fechar; pela 21.4 não havia
+leva para gastar.
+
+1. **O NÚMERO DA DÍVIDA ESTAVA ERRADO POR UMA UNIDADE DE CONTAGEM, e é o tipo de erro que se
+   repete.** Ela dizia **41 registros**. Os 41 são os **MATERIAIS**; o campo é de **registro de
+   fonte**, e as fontes dos cinco bancos são **53** (12 no acabamento, 7 nos alicates, 9 nas colas,
+   14 nas pastilhas, 11 nos rejuntes). Contar a dívida na unidade errada a subestimou em **12
+   registros** — e quem fosse pagá-la "um banco por vez" pararia 12 fontes antes do fim sem nada
+   acusar.
+
+2. **AS 53 DECLARAM, E NENHUM VALOR É COLETA NOVA.** Cada um é transcrição de uma afirmação que o
+   próprio arquivo já fazia em prosa, por um de **cinco caminhos de prova**, escritos fonte por
+   fonte no bloco novo `de_onde_saiu_o_documento_aberto` de cada banco: **A** — o campo `tipo` da
+   própria fonte diz (**35** fontes); **B** — o campo `leitura` diz (**1**); **C** — `reaberta_em`
+   mais `o_que_a_abertura_mudou` dizem que abriu (**2**); **D** — a fonte **cala** e quem responde é
+   a declaração de coleta do banco (**14**); **E** — nenhum dos quatro responde e a escolha foi
+   **feita**, com o motivo dentro da própria fonte (**1**). Resultado: **5 em `true`, 48 em
+   `false`**.
+
+3. **A ORDEM DOS CAMINHOS É O QUE IMPEDE O ERRO, e uma fonte prova isso sozinha.** O PL500 da
+   Cascola responde nas **duas**: o `leitura` dele, de 13/09, afirma *"cascola.com.br também não
+   abre desta nuvem"*; o `reaberta_em`, de 06/10, afirma que a página abriu com **238 KB de HTML** e
+   trouxe os passos do preparo na palavra do fabricante. Ler o `leitura` primeiro gravaria `false`
+   numa fonte lida inteira — a família do *"resumo velho lido como fato"* da seção 4. A regra ficou
+   escrita no derivador: **a afirmação mais nova do mesmo registro vence**.
+
+4. **O BANCO DE COLAS NÃO TEM `metodo_de_coleta`, E A RESPOSTA DELE ESTÁ EM OUTRO ARQUIVO — POR
+   DECLARAÇÃO DELE MESMO.** Os outros quatro bancos respondem no próprio `metodo_de_coleta` pelas
+   fontes que calam. O de colas declara, em `o_que_este_arquivo_e`, ser *"a transposição campo a
+   campo do que o bloco 2 já tinha colhido em `dados/constantes.json`"* — e é lá que está a frase
+   que decide **5** das 9 fontes dele: *"curl e WebFetch para domínio de fabricante voltaram
+   EGRESS_BLOCKED / connect_rejected, então os PDFs de boletim técnico NÃO foram abertos linha a
+   linha."*
+
+5. **O ÚNICO VALOR QUE NÃO É TRANSCRIÇÃO É UM EM 53, e está escrito como escolha.** O anúncio da
+   Shopee do torquês da Cortag (`anuncio-shopee-61341`): o `tipo` dele diz que a fonte foi *"lido
+   pela Open API da Shopee nesta execução"* — então **foi lida** — e a URL gravada nela é uma URL de
+   **busca**, cuja página nunca abriu. As duas leituras são defensáveis. Ficou **`false`**, porque o
+   campo pergunta pelo documento **daquela URL** e não por qual canal o dado chegou, e porque `false`
+   é o lado que não afrouxa portão: ele **soma** host ao pedido de rede e `true` nunca subtrai
+   nenhum. O motivo mora dentro da própria fonte, em
+   `por_que_documento_aberto_false_apesar_de_lido`, na forma que esta ilha já usa em
+   `por_que_nivel_2_e_nao_1` — para a próxima execução **ler** a decisão em vez de refazê-la.
+
+6. **O PEDIDO DE REDE NÃO MUDOU DE TAMANHO, E ISSO É O RESULTADO CERTO — MEDIDO, NÃO PRESUMIDO.**
+   Rodando `hosts_dos_bancos` e `trava_coleta` sobre os 22 JSON do `dados/` do HEAD e sobre os 22 de
+   depois: **40 hosts travando coleta nos dois mundos, ZERO entraram, ZERO saíram.** Marcados pela
+   **declaração** foram de **10 para 21**, e os 11 que entraram **já travavam pelo nome** — nenhum
+   host passou a travar só pela declaração. O caminho do NOME (`materiais-` em `GATILHOS`) acertava
+   para estes bancos. **O que mudou é de onde a resposta vem:** da declaração do dado, não de uma
+   lista de nomes de arquivo dentro de uma ferramenta. Banco de material novo que não se chame
+   `materiais-*` já nasce coberto — que era exatamente o buraco pelo qual `dados/tecnicas.json`
+   passou **12 dias** fora do pedido.
+
+7. **O QUE MANTÉM A DÍVIDA PAGA NÃO É O SCRIPT QUE A PAGOU: É O PORTÃO.** `validar-banco.py` passa
+   a cobrar o campo nas fontes de MATERIAL, **por presença e por tipo, nunca por verdade** — `false`
+   é o valor de 48 das 53, e um `if not f.get(campo)` as leria todas como campo faltando. É a mesma
+   armadilha que o cabeçalho do `ESTADO.md` pagou em 30/09 com `bloqueada_por` ausente. **Conferido
+   nos dois lados:** campo apagado → reprova; `"sim"` no lugar do booleano → reprova; `false`
+   legítimo → passa.
+
+8. **E UM PORTÃO QUE NÃO EXISTIA ANTES DE HOJE: O VALOR TEM DE BATER COM A PROVA ESCRITA AO LADO
+   DELE.** O bloco de procedência deu ao validador algo que ele não tinha como conferir: cada banco
+   precisa trazer o bloco, ele precisa cobrir **exatamente** as fontes daquele banco (nem a menos,
+   nem fonte que não existe mais), e o `valor` de cada linha precisa ser idêntico ao
+   `documento_aberto` da fonte. Isso cobre o defeito **realista** — alguém vira o booleano e deixa a
+   frase velha. **O QUE NENHUM PORTÃO DAQUI COBRE, e fica escrito em vez de sugerido:** nenhum deles
+   sabe se um documento foi aberto **de verdade**. Declarar `true` numa fonte que ninguém abriu é
+   mentira que não se mede de dentro do repositório, e `mutacoes-tecnicas.py` já registrava isso com
+   um caso que espera **APROVA de propósito**.
+
+9. **BANCADA.** `ferramentas/mutacoes-documento-aberto.py`, nova, **11 de 11 reprovaram**, em três
+   famílias: o campo some (de uma fonte, de um banco inteiro, ou nascendo ausente num **SKU novo** —
+   que é como a dívida nasceu); o campo mente de tipo (string, `null`, e o **número 1**, porque
+   `isinstance(True, int)` é verdadeiro em Python e o contrário não); e o valor saindo de sincronia
+   com a prova (o booleano vira e a frase fica velha, a procedência desaparece, perde uma linha,
+   nomeia fonte morta, perde `a_frase`). Ela trabalha em `mkdtemp` **de propósito**, para ficar fora
+   da lista de catorze do `teste-rede-de-sinal.py`. O resto da bancada inteira, depois da mudança:
+   `validar-banco` OK, `medir-egresso --autoteste` **50 de 50** (dois casos novos, que tapam um
+   buraco real — os quatro antigos fabricavam só `tecnicas.json`, e desde hoje os maiores usuários
+   do caminho (2) são os cinco bancos, 53 fontes contra 10), `filhas-do-guia --conferir` APROVADO,
+   `cruzamento-14-9 --conferir` APROVADO, `cobertura --conferir` OK, as **dez** bancadas PHP da ilha
+   APROVADAS (casca 1041, guia 232, produto 306, técnicas 139, F1 228, F2 174, leads 211, loja 208,
+   prestação 5, ateliê), e `teste-rede-de-sinal` com as **14** baterias e a árvore devolvida igual.
+
+10. **NENHUM CAMPO TÉCNICO MUDOU, E ISSO FOI CONFERIDO E NÃO AFIRMADO.** Comparando os cinco bancos
+    com os do HEAD depois de remover as três chaves novas: **IGUAIS nos cinco.** E o `filhas-do-guia`
+    regerado mudou **uma linha** — `versao_do_esquema_lida` de 17 para 18 —, que é a prova
+    independente de que nenhuma propriedade, nenhum valor e nenhuma elegibilidade se moveu.
+
+11. **E UM ACHADO DE DENTRO DO PRÓPRIO BLOCO: O PORTÃO COBRAVA UM CAMPO QUE A ESPECIFICAÇÃO NÃO
+    DECLARAVA.** Varrendo **só registros de fonte** — os que vivem dentro de um bloco `fontes{}`, que
+    é o que o esquema chama de registro de fonte —, a ilha tem **63** e as 63 declaram: 10 em
+    `tecnicas.json` e 53 nos cinco bancos. A única ocorrência sem o campo **não era um registro**:
+    era a **especificação** dele, em `entidades.MATERIAL.campos.fontes.subcampos`, que lista `url`,
+    `tipo`, `nivel`, `coletado_em` e `conferir_no_pdf` e não listava este. Portão que cobra o que a
+    especificação não declara é a mesma família do nome de arquivo dentro de ferramenta: as duas
+    metades envelhecem em arquivos diferentes e ninguém vê a divergência. Corrigido na revisão
+    **85**, na mesma execução que criou o portão — de propósito.
+
+12. **E O QUE NÃO É DÍVIDA, dito para a próxima execução não pagar o que não deve:**
+    `fonte_localizada_nao_lida` (6 ocorrências no banco de acabamento, 1 no de colas) **não** carrega
+    este campo e **não** é pendência — o esquema manda endereço de documento nunca lido morar ali,
+    **fora** de `fontes`, justamente porque o nome do bloco já responde à pergunta. O mesmo vale para
+    `url_busca`, `url_produto`, imagem de produto, foto de peça e sonda do `canal-de-espelho`: têm
+    `url` e não são fonte. *(A primeira varredura desta execução contou **89** registros "sem o
+    campo" por casar qualquer objeto com uma chave `url`. O número certo é **zero** — e fica escrito
+    porque varredura larga produzindo número grande é como uma dívida inventada entra num
+    documento.)*
+
+13. **O DESEMBARQUE, PELA 20.4 E NÃO PELA REVISÃO.** Duas revisões, **84** e **85**, as duas em sync
+    **COMUM** e não com `forcar=1` — nenhum snippet mudou, e é o `forcar=1` que reaplica os nove e
+    derruba o do Guia (quatro ocorrências em quatro dias, de 09/10 a 12/10).
+    `conferir-desembarque.py` **APROVADO nas duas**, com **9 de 9** linhas do log dizendo `ok` e **9
+    visíveis de 9 aplicados** — nada rolou fora da janela, que é a única coisa que aquele portão se
+    recusa a prometer. Os portões da 29 **antes e depois, iguais**: `conferir-no-ar.py` APROVADO com
+    **524** afirmações e **0** falha; `conferir-tecnica-no-ar.py` APROVADO com **54**;
+    `leitura-do-visitante.py` REPROVADO com **exatamente 1** defeito, o soft 404 da borda de 29/09,
+    que é do hospedeiro e tem dono escrito. Rede pela 20.2: **200** na raiz no começo da execução.
+
+**O QUE ESTA EXECUÇÃO NÃO FEZ, dito para ninguém reabrir:** não publicou URL (a leva da semana está
+gasta), não coletou item de banco, não mediu SERP, não abriu nenhuma fonte de técnica (as dez em
+`000`, e a porta é do Raphael), não remediu egresso — a medição de 12/10 às 19h37Z continua valendo e
+**nenhuma decisão de hoje dependeu dela** — e **não tocou no `foco.md`**: a troca para a aquametria é
+do Raphael, e esta é a **oitava** execução a registrar isso.
+
+**O PRÓXIMO PASSO DESBLOQUEADO, E ELE TEM DATA.** O item 4 do despacho de 07/10 pede *"um arquivo de
+contagem datado de 2026-10-14 ou depois, com total de publicáveis, quantos sem `url_busca`, quantos
+sem `url_produto` e a distribuição por `degrau`"*. **Essa metade é derivável do banco e não depende da
+sessão da Shopee:** o `validar-banco.py` já imprime os números — 41 de 41 com `url_busca` e
+`url_busca_produto`, 17 sem `url_produto` que são exatamente os 17 de degrau 4, e a escada
+1:1 2:4 3:19 4:17. De **14/10** em diante ela sai numa passada, e é **a única linha de despacho desta
+ilha que a Fundação pode fechar sozinha**. A outra metade do item 4 — gerar link — segue do Raphael.
+Depois dela, nenhum trabalho de Fundação sobra aqui sem os três domínios de fonte de técnica ou sem
+**19/10**, quando a semana da 21.4 zera.
+
+
 12/10/2026 19h16Z–20h0xZ — O PEDIDO DE REDE DEIXA DE DECIDIR POR NOME DE ARQUIVO, E O DESEMBARQUE DESTE BLOCO QUEBROU SETE PÁGINAS PELA SEGUNDA VEZ EM TRÊS DIAS
 
 **NENHUMA URL NOVA, e a causa é medida e não é falta de trabalho:** a leva **3 de 3** da semana da
