@@ -223,9 +223,11 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ### 1. A RAMPA PARA. É A DECISÃO DESTA LEITURA, E ELA É DA 14.6.
 
-**Os dois números, lado a lado:** 07/10 → 21 URLs, 18 indexadas (**86%**). 14/10 → **32 URLs, 20 indexadas (63%)**. A ilha publicou **11 URLs em uma semana** e o Google indexou **2**.
+**Os dois números, lado a lado, já com a correção da nuvem:** 07/10 → 21 URLs, 18 indexadas (**86%**). 14/10 → **32 URLs, 24 indexadas (75%)**. A ilha publicou **11 URLs em uma semana** e o Google indexou **6**. *(A primeira gravação deste bloco dizia 20 e 63%, lendo o agregado da tela. A nuvem mede URL a URL pela URL Inspection e é a medida certa; a decisão de parar não muda, e o diagnóstico melhora.)*
 
-E o estado das 11 é pior que "não indexadas": **nenhuma delas aparece no relatório como "Detectada" nem como "Rastreada"**. As duas únicas que entraram na disputa foram `/materiais/acabamento/` (13 impressões, posição 5,6) e `/materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/` (1). As outras nove o Google **não conhece**.
+**E O ESTADO DAS OITO FORA DO ÍNDICE É O QUE DECIDE A AÇÃO, nomeado uma a uma:** **duas** em "URL is unknown to Google" — `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` e `/materiais/acabamento/verniz-para-peca-de-mosaico/`, no ar desde 02/10 — e **seis** em "Discovered - currently not indexed": `/materiais/alicate-para-mosaico/`, `/materiais/cortador-de-vidro-para-mosaico/`, `/materiais/espelho-para-mosaico/`, `/materiais/pastilha-de-vidro-para-mosaico/`, `/materiais/pastilhas-para-mosaico/` e `/materiais/torques-para-mosaico/`.
+
+**As duas causas são opostas e pedem coisas opostas:** "unknown" é falha de DESCOBERTA e se ataca com link interno e sitemap; **"Discovered - currently not indexed" é o Google tendo achado a página e decidido que não vale o rastreamento** — e contra isso só existem duas alavancas, a solicitação manual da 14.7 (hoje esgotada por cota) e **parar de publicar**, que é a 14.1 em pessoa. **Seis das oito estão no segundo caso. Publicar mais página nesta ilha hoje é gastar orçamento que as seis estão esperando.**
 
 **A 14.6 é textual:** *"Se a leva anterior ficou em 'descoberta — não indexada', não publique mais nenhuma página de malha até descobrir por quê: mais páginas nesse estado pioram o problema em vez de compensá-lo."* E a 14.1 explica a física: cada URL que o Google não volta a buscar gasta orçamento de rastreamento de um domínio que ainda não tem autoridade.
 
