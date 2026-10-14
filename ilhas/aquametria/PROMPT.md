@@ -44,6 +44,53 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DA SENTINELA — 2026-10-14 (RONDA DIÁRIA TÉCNICA, 14h5xZ, medida no Chrome do Raphael)
+
+**Isto tem prioridade sobre a fila.** Nesta ronda, porém, **não há item a aplicar: zero defeito novo e zero conserto.** O que está escrito aqui é medição, para a Fundação não remedir, duas reconferências que fecharam, e **um** item que continua aberto (a dívida da 25.4-b, no fim).
+
+**RECONFERÊNCIA DA 19.4(c).** A última linha de `dados/consertos.md` era a de 23/09 e registra **zero conserto**, então não havia conserto de ronda anterior a reabrir. O que esta ronda reconferiu foi o **despacho de 07/10**, no ar e no repositório, pelos critérios que ele mesmo declarou.
+
+**O ITEM 3 DO DESPACHO DE 07/10 (o cano de links) ESTÁ FECHADO E RECONFERIDO, número por número.** A ronda recontou os quatro `dados/produtos-*.json` do `main` por conta própria: **78** registros, **0** sem `url_busca`, **43** sem `url_produto`, `degrau` em **35** no 3, **31** no 4 e **12** nulo, e **12** com `url` e sem `url_produto`. Bate com `dados/cano-de-links-2026-10-14.md` em todos os campos. O bloco riscado dele foi apagado deste arquivo nesta passada, pela 18.4.
+
+**O ITEM 3 DO DESPACHO DE RONDA DE 23/09 TAMBÉM FECHOU.** Ele deixava escrito que a chave `Chihiros A361 luminaria aquario` tinha caído no desvio do CAPTCHA e **não** tinha sido medida, e mandava a ronda seguinte começar por ela. Esta ronda começou por ela: **200, sem erro, 5 itens**. O bloco foi apagado.
+
+**AS CINCO PROMESSAS DE `<title>` QUE A EXECUÇÃO DAS 13h16Z PUBLICOU ESTÃO CONFERIDAS CONTRA O TEXTO DA PRÓPRIA PÁGINA, UMA A UMA — AS CINCO SUSTENTADAS.** Não é conferência de tamanho: é conferência de procedência do número, que é o que a 19.1 chama de "número que não bate com a fonte já citada na própria página".
+- `/calculadora-de-vazao-do-filtro/` — "de 1,76 a 10 renovações/h". A página publica o piso do fabricante (Eheim classic 250, 440 L/h para até 250 L = 1,76 ×/h) e o teto de bolso do comunitário (5 a 10 ×/h, Aquarismo Paulista e AquaOnline). Os dois extremos estão na tela.
+- `/calculadora-de-potencia-do-aquecedor/` — "de 1 a 2 W por litro". 1,0 W/L é a regra brasileira que o próprio catálogo Eheim Jäger reproduz, e 2,0 W/L é a leitura do Sul, que está na tela como opção marcável. Os dois extremos estão na tela.
+- `/calculadora-de-midia-filtrante/` — "de 1,25 a 12,5 mL/L". São o piso Seachem e o teto Ocean Tech, as duas dosagens declaradas no banco e impressas no resultado.
+- `/calculadora-de-iluminacao/` — "de 10 a 60 lm por litro". São os extremos da tabela das três fontes brasileiras servida na página (10 no piso do aquarioturbinado, 60 no topo de peixeseaquarismo e aquariosplantados).
+- `/peixes/bettas/quantos-litros-para-betta/` — "de 40,5 a 54 litros". A frase "essa base dá de 40,5 litros a 54 litros de lâmina, conforme a altura do aquário ser 30 ou 40 cm" está no corpo da ficha.
+- **E o controle está intacto:** a `/calculadora-de-litragem/` continua servindo `<title>` "Quantos litros tem o seu aquário? – Aquametria", **sem promessa**, como a Proposta 2 pediu para a medição de CTR ter com o que comparar. **Quem der promessa a ela antes da leitura semanal destrói o controle das outras cinco.**
+
+**O QUE ESTA RONDA MEDIU E PASSOU, para a Fundação não refazer:** **52 de 52** URLs do sitemap em HTTP 200; `/status` na **revisão 120**, igual à do `manifest.json`; as três URLs da porta de entrada da 29.2 (`/wp-sitemap.xml` 200 `application/xml` com XML de sitemap de verdade, `/robots.txt` 200 `text/plain`, `/wp-json/` 200 `application/json`) e caminho virgem em **404 na página da própria ilha**; zero `&#038;` dentro de `<script>` nas 52 (contado só nos blocos `<script>`, nunca na página inteira); **zero página com menos de 2 links internos de ENTRADA** — contado na direção de quem aponta, pela 16.9, sobre o HTML servido das 52, nav e rodapé incluídos; zero `noindex` em URL do sitemap; `<title>` de 64 caracteres ou menos nas 52, medido depois de decodificar as entidades; `<meta name="description">` presente nas 52 e nenhuma acima de 160 caracteres; JSON-LD nas 52 e `BreadcrumbList` nas 51 que não são a home; breadcrumb visível; zero `<img>` sem `alt` e zero sem `width`/`height`; nenhuma palavra da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>` ou primeiro parágrafo; corpo nunca começa por metadado YAML; nenhum shortcode cru servido. **Console sem uma mensagem**, com recarga, na calculadora de aquecedor em estado com parâmetro.
+
+**AS CINCO CALCULADORAS FORAM EXECUTADAS COM ENTRADAS INÉDITAS E A CONTA FOI REFEITA NA MÃO, TODAS CERTAS:**
+- **C1**, 60 × 30 × 35 cm externas, sem espessura de vidro → **63,0 L brutos**, **volume interno "sem número"** com o motivo publicado, e **57,6 L reais**. Confere: 60 × 30 × 35 ÷ 1000 = 63,0; lâmina 32,0 = 35 − 3 cm de borda livre, e 60 × 30 × 32 ÷ 1000 = 57,6. A página avisa, sem ser perguntada, que sem a espessura o volume real sai superestimado.
+- **C3**, 200 L plantado carga pesada, tipo canister → **350 a 1.000 L/h**. Confere: 1,76 × 200 = 352, arredondado ao degrau de 5; 3 × 200 = 600 e 5 × 200 = 1.000; e o "mire o topo" em 1.000 porque a carga é pesada, declarado como convenção da ilha e não como constante com fonte.
+- **C5**, 120 L, mínima do cômodo 14 °C, acará-bandeira (alvo 26,0 °C), tampado, 110 V → **120 a 155 W**, degrau comercial 200 W, e o ramo da ReefFlow aparecendo rotulado **"REGRA COM DELTA DECLARADO — NÃO SE APLICA"** porque a diferença é de 12,0 °C e a fonte declara até 10. Confere: 1,00 e 1,30 W/L. **Conferido em quatro volumes** — 90 L → 90 a 115 (1,30 × 90 = 117), 100 L → 100 a 130, 120 L → 120 a 155 (1,30 × 120 = 156) e 160 L → 160 a 210 (1,30 × 160 = 208): o arredondamento é ao **múltiplo de 5 mais próximo**, consistente nos quatro, e por isso o 117 vira 115 e o 208 vira 210.
+- **C12**, 80 L → **100 mL a 1,00 L**. Confere: 1,25 × 80 = 100 e 12,50 × 80 = 1.000.
+- **C15**, 150 L exigência média → **3.000 a 6.000 lm**, na faixa consolidada de 20 a 40 lm/L. Confere, e as **nove células** da tabela das três fontes batem uma a uma (20 → 3.000; 10 a 20 → 1.500 a 3.000; 15 → 2.250; 30 a 40 → 4.500 a 6.000; 60 → 9.000).
+
+**Coerência da recomendação conferida lendo como leitor leria, não por regra:** nenhum cartão de produto afirma atender número que não atende, e na C5 o degrau comercial vem rotulado como degrau comercial, acima do topo da faixa.
+
+**TESTE DE VIDA DA 25.4 — 35 DE 35 ITENS TESTÁVEIS, 0 MORTO, 0 ESGOTADO.** Os 35 itens com `afiliado.url_produto` são todos Shopee de degrau 3, e os 35 devolveram `item_status: normal` pela API de ficha `api/v4/pdp/get_pc`, com o título do anúncio conferido contra o nome do registro. **Nenhum clique de afiliado foi gasto:** o teste abriu a `url_produto` crua, nunca o encurtado. Mais **10 chaves de `url_busca_produto`** medidas pela API de busca, **todas com resultado**. **Piso da 25.2 recontado no repositório: 78 de 78 com `url_busca`, zero sem.**
+
+### 1. A DÍVIDA DA 25.4-b NÃO ANDOU, E É O ÚNICO ITEM ABERTO DESTE DESPACHO
+
+Continuam **12** itens com `afiliado.url` e **sem** `afiliado.url_produto`, todos com `intestavel: true` e `degrau` nulo: `iluminacao/ista-i-401-45`, `iluminacao/chihiros-a-series-a451m`, `iluminacao/chihiros-wrgb-ii-pro-60`, `filtro/eheim-classic-250-2213`, `midia/seachem-matrix-1l`, `midia/eheim-substrat-pro-1l`, `aquecedor/roxin-ht-1300-q3-50w`, `aquecedor/rs-50-50w`, `aquecedor/roxin-ht-1300-q3-100w`, `aquecedor/sicce-scuba-contactless-150w`, `aquecedor/roxin-ht-1300-q3-200w`, `aquecedor/roxin-ht-1300-q3-300w`. **É o mesmo número de 13/09, de 02/10 e de 12/10 — um mês sem mover.**
+
+**Por que isto é despacho e não conserto:** 19.2, dado do banco, e preencher exige **ESCOLHER** o anúncio. A Sentinela não escolhe produto.
+
+**Pronto quando:** os 12 tiverem `afiliado.url_produto` com a URL crua da ficha escolhida e `intestavel: false`, e a ronda seguinte conseguir ler `item_status` nos 12 pela API de ficha. É a única coisa que impede o teste de vida desta ilha de ser **47 de 47** em vez de 35 de 35.
+
+### 2. NÃO É DEFEITO — É O ACHADO DE MÉTODO DA RONDA, COM NÚMERO, E VALE PARA O ARQUIPÉLAGO INTEIRO
+
+Chamada de **ficha** e chamada de **busca** não custam a mesma coisa para o anti-robô da Shopee. Numa aba entrada por URL de ficha, **39 chamadas de `api/v4/pdp/get_pc` passaram em sequência sem um único `error: 90309999`**. Na mesma aba, a **7ª** chamada de `api/v4/search/search_items` derrubou a sessão no `verify/captcha?...&scene=crawler_item`; em aba nova entrada por URL de busca, a **4ª** derrubou.
+
+**O orçamento escasso é o da busca, não o da ficha.** Quem medir primeiro as fichas — que são o que diz se o link morreu — e deixar a busca para o fim mede tudo numa ronda; quem começar pela busca perde a aba antes de chegar às fichas. A nota de 23/09 estimava "cerca de 15 chamadas por sessão" tratando as duas como o mesmo recurso: subestimava a ficha por quase três vezes e superestimava a busca por quatro. Resolver CAPTCHA continua proibido.
+
+**O QUE ESTA RONDA NÃO MEDIU, dito como não medido e não como zero:** clique de afiliado e venda por `Sub_id`, porque a sessão do Shopee Afiliados está deslogada; e qualquer número de Search Console, porque a credencial `GOOGLE_SA_B64` não existe neste ambiente. As duas estão no `dados/PAINEL.md`, na lista do Raphael.
+
 ## DESPACHO DO RAPHAEL — 2026-10-09 — PÁGINAS PELO NOME DO PRODUTO
 
 Decisão do Raphael em 09/10/2026: a regra das páginas por consulta de produto vale para toda ilha. A regra inteira está na última seção do ARQUIPELAGO.md ("PÁGINAS PELO NOME DO PRODUTO"). Nesta ilha:
@@ -93,10 +140,6 @@ A causa está medida e não mudou: o script lia só a dimensão **CONSULTA**, e 
 - **Feito em 14/10/2026:** o script passou a emitir os **totais da propriedade sem dimensão nenhuma** (cliques, impressões, CTR, posição média) e a **tabela por `page`**, que o Google não anonimiza — e imprime a soma da dimensão `query` **ao lado** do total, para a comparação ficar à vista. As duas contas novas (`totais()` e `por_pagina()`) são funções puras e têm portão sem rede: `ferramentas/teste-search-console.py`, 19 afirmações, 0 falha, com o mundo de 07/10 encenado como caso 1.
 - **FALTA, e é só isto:** a passada com credencial. **Não havia credencial neste ambiente** em 14/10/2026 — `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` ausentes, conferidos —, e o critério abaixo só fecha com uma leitura de verdade.
 - **Pronto quando:** `ilhas/<ilha>/dados/search-console-<data>.md` de 14/10 ou depois trouxer, para a aquametria, um total de impressões da mesma ordem do que a Search Console mostra na tela, e uma tabela por página com 10 linhas ou mais.
-
-### ~~3. O CANO DE LINKS NÃO ANDOU~~ — **FECHADO EM 14/10/2026. A contagem existe, é datada e não abriu rede.**
-
-`dados/cano-de-links-2026-10-14.md`, contado por `ferramentas/contar-cano-de-links.py` sobre os quatro `dados/produtos-*.json` do `main`: **78** registros, **0** sem `url_busca` (o piso da 25.2 está inteiro), **43** sem `url_produto`, e o `degrau` em 35 no 3, 31 no 4 e 12 com o campo nulo. Os **12** com `url` e sem `url_produto` batem exatamente com o que a ronda de 02/10 mediu. A causa de o cano não andar **continua fora do repositório e não é desta ilha**: a sessão do Shopee Afiliados está deslogada no Chrome do Raphael, e o Mercado Livre segue com reCAPTCHA e domínio não liberado.
 
 ## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h05Z)
 
@@ -187,10 +230,6 @@ Medido no HTML servido às 10h5xZ, revisão 111, com quebra de cache e depois de
 Coerencia da recomendacao conferida lendo como leitor leria, nao por regra: na C5 com 96 L os cartoes dizem "100 W — dentro dos 95 a 145" e "150 W — degrau comercial", e nenhum cartao afirma atender um numero que nao atende.
 
 ~~**ITEM 5 DO DESPACHO DE 13/09 — RECEITA, o topo da lista de produto sem link de loja**~~ — **FECHADO EM 23/09/2026, RECONFERIDO NO AR.** Em 13/09 eram **1 de 5** cartoes com link de loja, e os quatro sem link vinham antes na ordem. Medido hoje na C5 em `?v=96&min=20&esp=acara-disco&tp=sim&volt=220`: **24 links de loja servidos, zero cartao sem porta de compra, zero ocorrencia de "link de loja em breve"**, todos com `rel="sponsored noopener"`. O piso da 25.2 esta inteiro e foi contado no banco: **78 de 78** itens com `url_busca` E `url_busca_produto`, **78 de 78** com `sub_id_1`, **78 de 78** com `encurtamento_tentado_em` (a trava da 25.2-b). O desbloqueio que o item 5 esperava do Raphael aconteceu por outro caminho — a Open API — e nao ha mais o que reportar por bloco.
-
-### 3. NAO E DEFEITO, E REGISTRO PARA A RONDA SEGUINTE NAO RECOMECAR DO ZERO
-
-O teste de vida desta ronda gastou **8 chamadas de ficha + 8 de busca** na mesma sessao de navegador e a Shopee desviou para `verify/captcha?...&scene=crawler_item` na decima sexta. A chave `Chihiros A361 luminaria aquario` foi a que caiu no desvio e **nao foi medida** — ela NAO e link morto, e a ronda seguinte comeca por ela. Quem for medir: cerca de 15 chamadas por sessao e o que passou hoje; acima disso, espace ou abra sessao nova. Resolver CAPTCHA e proibido.
 
 ## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz
 
