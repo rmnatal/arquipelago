@@ -75,13 +75,27 @@ Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado �
 
 **TESTE DE VIDA DA 25.4 — 35 DE 35 ITENS TESTÁVEIS, 0 MORTO, 0 ESGOTADO.** Os 35 itens com `afiliado.url_produto` são todos Shopee de degrau 3, e os 35 devolveram `item_status: normal` pela API de ficha `api/v4/pdp/get_pc`, com o título do anúncio conferido contra o nome do registro. **Nenhum clique de afiliado foi gasto:** o teste abriu a `url_produto` crua, nunca o encurtado. Mais **10 chaves de `url_busca_produto`** medidas pela API de busca, **todas com resultado**. **Piso da 25.2 recontado no repositório: 78 de 78 com `url_busca`, zero sem.**
 
-### 1. A DÍVIDA DA 25.4-b NÃO ANDOU, E É O ÚNICO ITEM ABERTO DESTE DESPACHO
+### 1. A DÍVIDA DA 25.4-b — **REMEDIDA PELA FUNDAÇÃO ÀS 17h0xZ DE 14/10/2026, E ELA NÃO É 12 ITENS DE UM TIPO: É 9 + 2 + 1. FALTA UM.**
 
-Continuam **12** itens com `afiliado.url` e **sem** `afiliado.url_produto`, todos com `intestavel: true` e `degrau` nulo: `iluminacao/ista-i-401-45`, `iluminacao/chihiros-a-series-a451m`, `iluminacao/chihiros-wrgb-ii-pro-60`, `filtro/eheim-classic-250-2213`, `midia/seachem-matrix-1l`, `midia/eheim-substrat-pro-1l`, `aquecedor/roxin-ht-1300-q3-50w`, `aquecedor/rs-50-50w`, `aquecedor/roxin-ht-1300-q3-100w`, `aquecedor/sicce-scuba-contactless-150w`, `aquecedor/roxin-ht-1300-q3-200w`, `aquecedor/roxin-ht-1300-q3-300w`. **É o mesmo número de 13/09, de 02/10 e de 12/10 — um mês sem mover.**
+A medição inteira, item por item, degrau por degrau, está em **`dados/divida-25-4-b-2026-10-14.md`**. Feita com `ferramentas/coletar-shopee.py --ensaio` nos 12, com `SHOPEE_APP_ID` e `SHOPEE_SECRET` presentes e a Open API respondendo nas 12 passadas — **nada gravado no banco**, que é o que a 25.3 manda.
 
-**Por que isto é despacho e não conserto:** 19.2, dado do banco, e preencher exige **ESCOLHER** o anúncio. A Sentinela não escolhe produto.
+**POR QUE A FUNDAÇÃO REMEDIU em vez de herdar o motivo:** a **25.4-b.3** diz que *"motivo envelhece calado, e motivo velho manda não tentar"*. O motivo escrito nos 12 era de **23/09**, e o número 12 apareceu igual em 13/09, 02/10, 12/10 e na ronda de hoje. **Quatro medições do mesmo número não são a mesma medição repetida — são a mesma pergunta mal feita quatro vezes.**
 
-**Pronto quando:** os 12 tiverem `afiliado.url_produto` com a URL crua da ficha escolhida e `intestavel: false`, e a ronda seguinte conseguir ler `item_status` nos 12 pela API de ficha. É a única coisa que impede o teste de vida desta ilha de ser **47 de 47** em vez de 35 de 35.
+**A separação que a 25.4-b.4 exige, com o dado de hoje:**
+
+- **9 itens: o produto NÃO ESTÁ ANUNCIADO** — zero resultado em **todos** os degraus, nenhuma trava acionada. São os quatro Roxin HT-1300 (50/100/200/300 W), o Sicce Scuba Contactless 150, o Ista I-401 45, a Chihiros A451M, a Chihiros WRGB II Pro 60 e o Eheim SUBSTRAT pro 1 L. Confirma, medido, o que a seção 7 já dizia das marcas que a Shopee brasileira não vende. **Os quatro Roxin são UM evento, não quatro:** no dia em que o HT-1300 aparecer, os quatro fecham na mesma passada. **Não há trabalho a fazer nestes nove.**
+- **2 itens: a trava barrou, e barrou CERTO.** O `seachem-matrix-1l` só tem anúncio do **Matrix Carbon**, que é carvão ativado e é **irmão declarado no banco** — casar os dois poria filtragem química na vitrine da C12, que dimensiona mídia biológica. O `rs-50-50w` é `marca: null` (o banco o chama de *"o pior caso do banco"*), e sem marca a busca devolve moto da Aprilia, Porsche e Rio Grande do Sul; a 25.3 está certa em não deixar casar. **Este não casa por mais que o mercado mude:** precisa de decisão sobre o registro, não de coleta.
+- **1 item: a dívida é NOSSA**, e é só este — ver abaixo.
+
+#### O único item em que a fábrica deve algo: `eheim-classic-250-2213`
+
+**O anúncio certo existe e a API o devolveu hoje:** `"Filtro Canister Classic 250 440lh Eheim - 2213"` — tem a marca, a linha e o código de catálogo. A trava o barrou dizendo *"o título não traz o código (classic 250 2213)"*, porque `token_no_titulo()` exige as partes **contíguas** e o `codigo_base` deste registro tem três, já que o campo `modelo` é `"classic 250 (2213)"` e **empacota dois identificadores num campo só** — o nome da linha e o código do fabricante. O varejo brasileiro escreve os dois separados, com a vazão e a marca no meio. *(O segundo candidato, `"Filtro Canister Ehein Classic 250..."`, ficou barrado com razão: o vendedor grafou a marca errada.)*
+
+**NÃO AFROUXE A TRAVA PARA RESOLVER ISTO.** Exigir os tokens soltos em vez de contíguos afrouxa a trava para os 78 registros por causa de um, e há um caso em que isso é perigoso e está nomeado no `ARVORE.md`: a Chihiros tem **WRGB II**, **WRGB II Pro** e **WRGB II Slim**, e o `codigo_base` da Pro é `wrgb ii pro` — com tokens soltos, um título `"WRGB II Slim ... versão Pro"` passaria, e a 25.4-b.1 é explícita de que casamento errado é pior que casamento nenhum porque parece dado.
+
+**Pronto quando:** o código de catálogo do fabricante tiver **campo próprio** no `esquema-produtos.json` (ao lado do `gtin`, que já existe), o `codigo_base` deste registro render `classic 250` contíguo e verdadeiro com o `2213` entrando como confirmação **opcional**, e o `--ensaio` deste item casar no degrau 1 — **com `mutacoes-coleta-shopee.py` provando que a Chihiros WRGB II Pro e o SunSun HW-303B continuam barrando o irmão.** É bloco de esquema, com portão e mutação, não efeito colateral de uma coleta.
+
+**E O NÚMERO QUE A RONDA PUBLICA MUDA DE SENTIDO, não de valor:** o teste de vida segue em **35 de 35 testáveis**, teto 47. Mas o teto **realista com o mercado de hoje é 36**, não 47 — e "faltam 12" sugere trabalho que existe para doze e faz o prazo parecer recuperável por esforço. **Falta um.**
 
 ### 2. NÃO É DEFEITO — É O ACHADO DE MÉTODO DA RONDA, COM NÚMERO, E VALE PARA O ARQUIPÉLAGO INTEIRO
 
