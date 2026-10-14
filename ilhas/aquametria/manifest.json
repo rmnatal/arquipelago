@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 119,
+  "revisao": 120,
   "atualizado_em": "2026-10-14",
   "estado": "fundacao",
   "desembarque": {
@@ -1241,6 +1241,13 @@
       "publicar": false,
       "descricao": "Conta o cano de links sobre os quatro dados/produtos-*.json commitados e grava dados/cano-de-links-<data>.md. Nenhuma rede, nenhum link testado. Fecha o item 3 do despacho de 07/10/2026, que pedia arquivo DATADO em vez dos numeros de 02 e 05/10 repetidos como se fossem de hoje.",
       "sha256": "6d99451553197fc659af3b137eb1f03a9102d9ca52782ab26146d45723fb4eda"
+    },
+    {
+      "id": "conferir-desembarque",
+      "arquivo": "ferramentas/conferir-desembarque.py",
+      "publicar": false,
+      "descricao": "O PORTAO DO DESEMBARQUE: le o LOG do /status, nao so a revisao dele. Copiado da clubedomosaico em 14/10/2026 porque a 20.4 manda toda ilha com Sync copia-lo, trocando so o dominio e a rota. 10 casos de autoteste; o 1 e o defeito de 12/10 na ilha irma (revisao verde com o snippet de SETE paginas desativado) e os 9 e 10 sao o desembarque desta ilha em 14/10, em que a janela do log cortou CINCO das vinte linhas — tres delas de snippet mudado naquele bloco. Item fora da janela NAO foi conferido, e o portao diz isso como registro em vez de aprovar com cara de completo.",
+      "sha256": "6a666b61de462ba00978ad1c467bcbb45e59492fb022a0706a6ff7d2830a2c51"
     }
   ]
 }
