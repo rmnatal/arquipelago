@@ -5153,3 +5153,66 @@ ilhas/clubedomosaico/ESTADO.md             "ultima_ronda: 2026-10-14T19:58Z": 1 
 Os 12 textos também foram conferidos por comparação byte a byte: o texto de cada operação, como veio na instrução, está presente de forma exata no arquivo correspondente — 12 de 12 `True`. **1 linha de tabela por arquivo de indexação, 13 + 5 + 8 = 26 linhas de posições, 3 blocos de despacho, 3 linhas `ultima_ronda:` trocadas. Total: 156 inserções e 3 remoções, e as 3 remoções são as `ultima_ronda:` antigas.**
 
 **Nenhum arquivo além destes 12 e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum link de afiliado gerado e nada gravado em banco de produto — a própria instrução registra que o painel do Shopee Afiliados desviou para CAPTCHA e que resolver CAPTCHA é proibido; não tentei contornar. Nenhum contato pessoal de terceiros entrou no repositório. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
+
+---
+
+## 14/10/2026 17h20 BRT (20h20 UTC) — ERRATA DA LEITURA SEMANAL DE 14/10: 11 SUBSTITUIÇÕES EXATAS EM 6 ARQUIVOS DE 3 ILHAS
+
+Instrução recebida pelo disparo manual: errata escrita pela própria Sentinela que assinou o despacho das 20h11Z, corrigindo a afirmação de que "a leitura pela nuvem FALHOU em dois disparos" — ela funcionou, commit `af889ba` às 19h57Z — e corrigindo dois números de indexação que a tela media de forma agregada e a URL Inspection mede URL a URL. Assunto conferido antes de qualquer `git fetch`: Arquipélago, ilhas `aquametria`, `robometria` e `clubedomosaico`. Nada de outro projeto entrou.
+
+**As 11 substituições foram aplicadas como troca de trecho EXATO por trecho EXATO, por script, sem reformatar, sem acrescentar linha e sem tocar em arquivo que a instrução não nomeou. As 11 foram encontradas literalmente: ZERO falhas, nada pulado, nada adivinhado.**
+
+`git status --porcelain` antes do commit:
+
+```
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/aquametria/dados/indexacao.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/indexacao.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/dados/indexacao.md
+```
+
+`git diff --stat` do commit:
+
+```
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/aquametria/PROMPT.md              | 12 ++++++++----
+ ilhas/aquametria/dados/indexacao.md     |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          |  6 ++++--
+ ilhas/clubedomosaico/dados/indexacao.md |  2 +-
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/dados/indexacao.md     |  2 +-
+ 7 files changed, 17 insertions(+), 11 deletions(-)
+```
+
+Commit que foi ao `main`: **`b890c437861b16deb2e21bf54d31428e50a1608f`**
+
+```
+b890c43 Errata da leitura semanal 14/10: a nuvem leu (af889ba) — indexacao corrigida para 49/52 na aquametria e 24/32 na clubedomosaico, com as fora do indice nomeadas
+```
+
+Push: `git push origin HEAD:main` aceito de primeira, `659f6ef..b890c43`, sem rebase e sem force. Confirmado por `git fetch origin main && git log -1 origin/main`, que devolveu exatamente o hash acima — **o push está em `origin/main`, não é push de branch que ninguém vê.**
+
+**CONTAGEM CONFERIDA RELENDO OS ARQUIVOS DEPOIS DE GRAVAR, não pelo que eu acho que escrevi.** Para cada uma das 11, contei no arquivo em disco quantas vezes aparece o texto NOVO e quantas ainda aparece o texto ANTIGO. O esperado é novo 1 / antigo 0 em todas as 11, e foi o que saiu:
+
+```
+01 ilhas/aquametria/dados/indexacao.md        novo:1 antigo:0 linhas:265
+02 ilhas/aquametria/dados/indexacao.md        novo:1 antigo:0 linhas:265
+03 ilhas/aquametria/PROMPT.md                 novo:1 antigo:0 linhas:580
+04 ilhas/aquametria/PROMPT.md                 novo:1 antigo:0 linhas:580
+05 ilhas/aquametria/ESTADO.md                 novo:1 antigo:0 linhas:695
+06 ilhas/aquametria/ESTADO.md                 novo:1 antigo:0 linhas:695
+07 ilhas/robometria/dados/indexacao.md        novo:1 antigo:0 linhas:12
+08 ilhas/robometria/ESTADO.md                 novo:1 antigo:0 linhas:664
+09 ilhas/clubedomosaico/dados/indexacao.md    novo:1 antigo:0 linhas:132
+10 ilhas/clubedomosaico/dados/indexacao.md    novo:1 antigo:0 linhas:132
+11 ilhas/clubedomosaico/PROMPT.md             novo:1 antigo:0 linhas:3189
+```
+
+O que mudou, em contagem: **11 trechos trocados, em 6 arquivos distintos (`aquametria/dados/indexacao.md` 2, `aquametria/PROMPT.md` 2, `aquametria/ESTADO.md` 2, `robometria/dados/indexacao.md` 1, `robometria/ESTADO.md` 1, `clubedomosaico/dados/indexacao.md` 2, `clubedomosaico/PROMPT.md` 1 — sete entradas porque `robometria` tem dois arquivos e as 11 se distribuem por 7 arquivos), 17 inserções e 11 remoções.** As 11 remoções são exatamente as 11 linhas que carregavam os trechos antigos; as 17 inserções são essas mesmas linhas reescritas mais as linhas de parágrafo novo que os trechos de substituição 03 e 11 trazem dentro de si.
+
+Nenhum passo falhou. Nenhum erro a registrar neste disparo.
+
+**Nenhum arquivo além destes 7 e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada. Nenhum contato pessoal de terceiros entrou no repositório — este repositório é público e a instrução não trazia nenhum. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo, e eu só troquei os trechos que ela nomeou.
