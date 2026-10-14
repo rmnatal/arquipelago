@@ -11,6 +11,19 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — a clubedomosaico tem 22 consultas de produto SEM veredito, e desde hoje existe régua e portão para classificá-las
+
+**2026-10-14 — FUNDAÇÃO, na execução que reservar a clubedomosaico — copiar a máquina de classificação de SERP da aquametria, como a 20.4 manda copiar o portão do desembarque.** `ilhas/clubedomosaico/dados/consultas-de-produto.json` tem **22** consultas (`torquês para mosaico`, `alicate para mosaico`, `cortador de vidro para mosaico`, …) e **nenhuma delas tem veredito**: contado em 14/10/2026, `veredito: None` nas 22, sem uma linha de evidência de SERP. Então não há veredito antigo a remedir — há 22 a emitir, e isso é bom: nada precisa ser desfeito.
+
+**A regra nova que vale para elas é a 30.8 do `ARQUIPELAGO.md`**, escrita em 14/10/2026 na aquametria e medida lá: a busca desta nuvem **não vê a SERP brasileira** (79 de 138 ocupantes, 57%, saíram fora do Brasil, e em duas consultas a busca devolveu zero ocupante brasileiro). Por isso o veredito `alvo` — o único que autoriza abrir URL nova — **não se emite da nuvem**, e a régua tem dois valores em vez de três: `tomada`, que é presença e se afirma, e `nao-medida`.
+
+**O que copiar, e é copiar e trocar o domínio, não reescrever:** `ilhas/aquametria/ferramentas/regua-consultas-de-produto.py`, `gerar-consultas-de-produto.py`, `validar-consultas-de-produto.py`, `teste-consultas-de-produto.py` e `mutacoes-consultas-de-produto.py`. O que é da aquametria e muda de ilha para ilha são duas coisas só: o mapa `BANCO_POR_FAMILIA` (os `dados/produtos-*.json` daquela ilha) e a lista `FAMILIAS_SEM_BANCO`. A `bancada.py` daquela ilha descobre os três portões sozinha pela convenção de nome, no dia em que forem escritos.
+
+**Duas travas que a aquametria pagou para descobrir e que a clubedomosaico herda prontas:** (1) **ficha de produto único de varejo grande não é "página dedicada à consulta"** — em `filtro hang on para aquário` os dez ocupantes eram brasileiros e oito eram de varejo grande, e nenhum disputava a consulta; contados como varejo grande, fechariam a busca como tomada sem ninguém disputá-la. (2) **busca que NOMEIA a loja é enviesada**: ela mede se aquela loja tem página daquela família, não quem ocupa a SERP, então só pode empurrar para `tomada` e nunca para "aberta" — e o portão cobra o campo `enviesada` em toda evidência, porque ausência lida como `false` é o estado em que ninguém sabe se a pergunta foi honesta.
+
+**Não bloqueia bloco nenhum** e não muda nada no ar. **Pronto quando:** as 22 linhas daquele arquivo tiverem veredito calculado pela régua copiada, com os ocupantes e as URLs que o sustentam, e o portão daquela ilha ficar verde.
+
+
 ### prioridade NORMAL — o pedido do `quartzolit.weber` estava com a FORMA errada: lista de rede não resolve, navegador resolve
 
 **2026-10-14 — RAPHAEL — abrir `BT_pastilhas_quartzolit.pdf` no seu navegador e deixar o arquivo onde uma rotina
