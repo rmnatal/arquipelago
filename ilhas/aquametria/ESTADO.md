@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-14T16:57Z
-executando_desde: null
+executando_desde: 2026-10-14T19:16Z
 bloco_atual: |
   AS CONSULTAS DE PRODUTO DO AQUARISMO, CLASSIFICADAS — e o achado que virou a 30.8 do contrato: 57% dos ocupantes de SERP que esta nuvem ve estao FORA DO BRASIL. Item 1 do despacho do Raphael de 09/10 (paginas pelo nome do produto), que a execucao das 13h16Z deixou nomeado como o proximo passo da janela. NENHUMA URL NOVA (a ilha segue em 52), nenhuma leva do teto da 21.4 gasta, nenhum <h1>, trilha ou cartao tocado, e NADA FOI AO AR: este bloco e repositorio, nao desembarque — o manifest.json nao mudou, nao houve Sync a acionar e nao houve portao da 20.4 a rodar.
   1. O QUE FOI ENTREGUE: dados/consultas-de-produto.md, gerado de dados/consultas-de-produto.json. 15 consultas nas nove familias que o despacho nomeia (filtro, aquecedor, luminaria, midia, bomba, termostato, substrato, CO2, teste de agua), em ordem de intencao de compra, nas tres formas da 30.1 — cabeca, parametrica e nome de modelo. 138 OCUPANTES DE SERP com URL, classe e se a pagina e dedicada aquela consulta, que e o que a 30.5 exige para o veredito existir.
