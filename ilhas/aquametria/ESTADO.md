@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-14T14:10Z
-executando_desde: null
+executando_desde: 2026-10-14T16:17Z
 bloco_atual: |
   A PROMESSA DO TITULO: a marca cede 13 caracteres a um numero que sai do banco, em CINCO paginas da banda 4 a 10 — e a quinta calculadora ficou parada de proposito. Nenhuma URL nova (a ilha segue em 52), nenhuma leva do teto da 21.4 gasta e nenhum <h1>, trilha ou cartao tocado. Manifest 120, /status conferido na 120 pelo portao novo conferir-desembarque.py (copiado pela 20.4) e o log lido linha por linha. ATENCAO para a 20.5, escrita nesta execucao: o Sync le o manifest pelo cache do GitHub, e o /status ficou quatro minutos dizendo 119 com o log timbrado de agora — isso e cache, nao e commit sem Sync, e o conserto e reacionar.
   1. POR QUE ESTE BLOCO: a ilha nao recebia execucao desde 24/09 (vinte dias) e a janela de foco que o Raphael abriu hoje nomeia o trabalho dela em ordem — "titulos e descriptions das calculadoras, paginas pelo nome do produto e uso da rampa dobrada". Isso resolve por decisao escrita e mais nova a unica ambiguidade que havia: o PROMPT.md tem DOIS despachos abertos, um do Raphael (09/10) e um da Sentinela (07/10), e a 18.1 prefere o do Raphael — mas a ordem que ele mesmo escreveu hoje poe os titulos das calculadoras antes. A 18.5 manda o mesmo por outro caminho.
