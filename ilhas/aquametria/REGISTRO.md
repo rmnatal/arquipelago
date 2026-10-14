@@ -14,6 +14,66 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-14 16h17Z–17h0xZ — AS CONSULTAS DE PRODUTO DO AQUARISMO, CLASSIFICADAS — E O ACHADO QUE VIROU A 30.8 DO CONTRATO: 57% DOS OCUPANTES DE SERP QUE ESTA NUVEM VÊ ESTÃO FORA DO BRASIL
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael das 09h58 BRT, então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null` — pela **1.1** isso já significa que não há bloco da Fundação vivo —, e o último commit na pasta da ilha era de **15h02Z**, 75 minutos antes, mas é commit de **ronda da Sentinela**, e a 1.1 diz com todas as letras que *"commit de ronda da Sentinela (…) não reserva nada"*. Reserva aceita às **16h17Z**, commit `c9ba22d`, na primeira tentativa. Nenhum PR aberto e a branch designada em sincronia com o `main`, conferido antes de qualquer coisa (passo 1).
+
+**Rede pela 20.2, retestada e não herdada:** `https://aquametria.com.br/` em **200** e o `/status` em **200** na primeira passada, revisão **120**, igual à do `manifest.json`. Não houve `000` nem 403 de proxy, então não houve o que repetir.
+
+**POR QUE ESTE BLOCO, e a escolha estava escrita por duas vias que concordam.** A ronda das 14h5xZ de hoje fechou com **zero defeito e zero conserto**, então não havia correção furando a fila (18.5). Dos despachos abertos, a **18.1** prefere o do Raphael ao da Sentinela, e a ordem que o próprio Raphael escreveu no `foco.md` hoje — *"títulos e descriptions das calculadoras, páginas pelo nome do produto e uso da rampa dobrada"* — põe **páginas pelo nome do produto** logo depois dos títulos, que saíram na execução das 13h16Z. Era o item 1 do despacho de 09/10, e a execução anterior o deixou nomeado como *"o próximo passo da janela"*.
+
+### O QUE FOI ENTREGUE
+
+**`dados/consultas-de-produto.md`**, gerado de `dados/consultas-de-produto.json`: **15 consultas** de produto do aquarismo, nas nove famílias que o despacho nomeia por escrito (filtro, aquecedor, luminária, mídia, bomba, termostato, substrato, CO2, teste de água), em ordem de intenção de compra, nas três formas que a 30.1 nomeia — **cabeça** (`aquecedor para aquário`), **paramétrica** (`filtro para aquário de 100 litros`) e **nome de modelo** (`eheim classic 250 2213`). **138 ocupantes de SERP registrados com URL, classe e se a página é dedicada àquela consulta**, que é o que a 30.5 exige para o veredito poder existir.
+
+**E a máquina que impede a lista de envelhecer calada**, no mesmo desenho de quatro peças que esta ilha usa desde a prospecção de 24/09: `ferramentas/regua-consultas-de-produto.py` (a régua, compartilhada), `gerar-consultas-de-produto.py` (a produção), `validar-consultas-de-produto.py` (o portão sobre o arquivo de verdade) e a bancada `teste-consultas-de-produto.py` com `mutacoes-consultas-de-produto.py`. **O veredito, o `nasce_agora` e o lastro de banco de cada linha são CALCULADOS; a lista diz o número e o portão o recalcula.** O `.md` é gerado e o portão o regera em memória e compara: `.md` editado à mão fica vermelho.
+
+### O ACHADO, QUE É MAIOR QUE A LISTA E POR ISSO VIROU SEÇÃO DO CONTRATO (30.8)
+
+**O instrumento desta nuvem não vê a SERP brasileira, e isso estava passando por "busca aberta".** Dos **138** ocupantes colhidos, **79 — 57% — estão fora do Brasil**. Em `kit de CO2 para aquário plantado` e em `eheim classic 250 2213` a busca devolveu **zero** ocupante brasileiro, em dez e em nove. Em `luminária para aquário de 60 cm`, **um** em nove.
+
+**O caso que decidiu a regra foi a `luminária de LED para aquário plantado`:** a busca neutra devolveu nove ocupantes e **oito eram estrangeiros** (ukaps.org, três fichas da greenaqua.hu, charterhouse-aquatics, natureaquariums, aquariumsupplyonline e um domínio de spam). Lido como SERP brasileira, aquilo é uma busca vazia pedindo página nova. Perguntado de outro jeito — uma busca que **nomeia** as lojas —, a Cobasi tem `/c/peixes/equipamentos-e-acessorios/iluminacao`, página de **categoria dedicada**, e o Mercado Livre tem **cinco** listagens. **A consulta que mais parecia aberta das quinze era a que o varejo grande já ocupa.** Essa é a linha de maior lastro de banco da ilha (26 registros de iluminação) e seria a primeira a virar página.
+
+**A regra que saiu disso, e ela é uma assimetria:** a 30.5 define TOMADA como fato **positivo** e a 14.9 define ALVO como **ausência** de ocupante forte. Busca sabe afirmar presença, nunca ausência — é a regra 1 da `regua-prospeccao.py`, de 24/09. Então a régua emite **dois** vereditos e não três: `tomada`, que se afirma, e `nao-medida`, que é tudo o mais. **`alvo` não existe nesta régua, e a ausência dele é o conteúdo:** é o veredito que autoriza gastar rastreamento, e a 14.9 diz o que custa errar nele — *"estacionar na página 4"*. Quem quiser `alvo` abre a SERP com os olhos e escreve `serp_vista_por` e `serp_vista_em` na linha. **Os dois erros não custam o mesmo: errar para o lado de não publicar custa uma página; errar para o lado de publicar custa a leva.**
+
+### A SEGUNDA METADE DA 30.5, QUE SÓ APARECE QUANDO SE APLICA: "PÁGINA DEDICADA" É O QUE FAZ A CONTA
+
+Em `filtro hang on para aquário` os **dez** ocupantes são brasileiros e **oito** são de varejo grande — cinco fichas Soma na Cobasi e três fichas Leecom na Petz. **Nenhuma delas disputa a consulta:** são páginas de um modelo. Contadas como "varejo grande", fechariam a consulta como tomada sem que ninguém a dispute; contadas pela letra da 30.5 — *"com página dedicada àquela consulta"* —, não contam. Daí a coluna `dedicada_a_consulta` em todo ocupante, com valor `sim` ou `não medido` e **nunca `não`**: dizer que uma página não é dedicada é leitura de slug, e leitura de slug erra. A mutação 4 da bancada prova que a coluna decide algo — promover as oito a dedicadas vira `tomada`.
+
+### O ÚNICO VEREDITO AFIRMADO, E É DECISÃO FINAL E BARATA
+
+**`aquecedor para aquário` está TOMADA e não nasce.** Quatro dos sete ocupantes brasileiros são página de **categoria dedicada**: `cobasi.com.br/c/peixes/equipamentos-e-acessorios/aquecedores` (duas variantes), `petz.com.br/peixes/equipamentos-e-acessorios/aquecedores` e `petz.com.br/peixe/aquarios/aquecimento` — as quatro na busca **neutra**. É a família de maior lastro de banco da ilha (27 registros), e a lista a fecha sem gastar uma URL.
+
+**Nenhuma das 15 nasce agora**, e cada motivo nomeia o portão que fechou: uma pela **30.5** (tomada), três **suspensas pela 30.4** e as demais pela **14.9** (ninguém viu a SERP brasileira). Quatro famílias que o despacho nomeia — **bomba, substrato, CO2 e teste de água** — têm **zero** registro no banco desta ilha e dependem de coleta antes de dependerem de SERP, pela 30.2.
+
+### DOIS ACHADOS MENORES QUE VALEM PARA TODA ILHA, E ESTÃO NA 30.8
+
+1. **A 30.2 não fecha para página por nome de modelo com produtos diferentes.** Ela pede *"3 ou mais produtos reais colhidos assim"*; uma página de `eheim classic 250 2213` tem **um** produto. Cumpri-la exige três **anúncios do mesmo modelo**, de vendedores diferentes, e esta ilha tem um. O `sunsun-hw-303b` existe no banco e **não tem anúncio colhido**, então o lastro dele é **zero** e não um.
+2. **No Brasil `termostato` e `aquecedor` nomeiam o mesmo objeto na prateleira** (a Cobasi vende "Termostato M-100 100W para Aquário"), e o banco desta ilha já sabia disso sem ninguém notar: os 27 registros de `produtos-aquecedor.json` têm um campo `termostato`. É a seção 26 em pessoa — o vocabulário da ilha classifica pela função e o varejo batiza pela posição.
+
+### A BANCADA, E AS DUAS MUTAÇÕES QUE SOBREVIVERAM À PRIMEIRA PASSADA
+
+`teste-consultas-de-produto.py`: **206 afirmações, 0 falha**, com o mundo medido hoje na luminária encenado como **caso 1**. `mutacoes-consultas-de-produto.py`: **16 de 16 reprovadas, zero inerte**.
+
+**E as duas sobreviventes importam mais que as catorze que reprovaram de primeira**, porque as duas eram buracos de verdade:
+
+- **A mutação 11** inflava `produtos_reais_no_banco` de 0 para 9 e **nada acusava**: o lastro era um número **digitado** no meio de um arquivo cujo cabeçalho inteiro existe para dizer que número de tela nasce contado. Agora a régua **reconta** dos `dados/produtos-*.json` — contando só registro com `afiliado.anuncio_shopee`, porque registro sem anúncio é dado **técnico** pela própria 30.2 e não produto real a vender — e `forma: modelo` passou a exigir `registro_do_banco` para o lastro poder ser recontado do registro certo em vez da família.
+- **A mutação 15** apagava a lista inteira do `o_que_nao_foi_medido` e o portão ficava verde. "Não medido" apagado é lido como zero, que é a doença que a seção 4 nomeia. O campo entrou na régua de cabeçalho.
+
+**Uma afirmação da bancada nasceu errada e está registrada:** a do caso 11 media se a palavra `alvo` aparecia no `.md`, e reprovou o arquivo **correto** — o `.md` diz "consulta-alvo declarada", que é o nome do campo das páginas da ilha, e o cabeçalho explica por que o VEREDITO `alvo` não existe. Trocada por uma que mede a **linha de veredito**, que era o que ela queria medir.
+
+### O QUE ESTE BLOCO NÃO É, dito como não feito
+
+- **Não publicou nenhuma página de consulta de produto**, e não por timidez: pela 30.8 que ele mesmo escreveu, nenhuma pode nascer sem a SERP brasileira vista com os olhos. **Nenhuma URL nova** (a ilha segue em 52), **nenhuma leva do teto da 21.4 gasta**, nenhum `<h1>`, trilha ou cartão tocado, e **nada foi ao ar** — este bloco é repositório, não desembarque, então o `manifest.json` não mudou e não houve Sync a acionar nem portão da 20.4 a rodar.
+- **Não usou a rampa dobrada** (terceiro item da janela do Raphael), e a razão é a mesma de 13h16Z: dobrar leva somaria variáveis à medição de CTR das cinco promessas de `<title>`, que começou hoje e só vale isolada.
+- **Não mexeu na dívida da 25.4-b** — os 12 itens com `afiliado.url` e sem `url_produto`, único item aberto do despacho da ronda de hoje. Pela 18.1 o despacho do Raphael vem antes do da Sentinela, e é o que a ordem do `foco.md` manda.
+- **Não trouxe nenhuma consulta do corpus de buscas:** `/areas/aquametria-corpus-buscas.md` é memória e não existe neste ambiente, conferido. As 15 consultas saem das nove famílias que o despacho nomeia por escrito, das quatro que o banco sustenta e das três formas da 30.1.
+- **Não mediu Search Console:** `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` seguem ausentes, conferidos — mesmo estado de 13h16Z. É isso que mantém as três linhas suspensas pela 30.4 em vez de decididas.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+**A SERP brasileira de 14 consultas, vista com os olhos — e não é bloco, é uma sessão de Chrome.** Está escrito como item 1 do despacho reescrito no `PROMPT.md`, com a ordem por onde começar (as quatro de maior lastro e maior intenção), o que escrever no JSON (`serp_vista_por` e `serp_vista_em` mais os ocupantes do top 10 de verdade), os dois comandos a rodar depois, e o critério de pronto. Feito isso, a página nasce na execução seguinte **sem remedir nada**.
+
 ## 2026-10-14 13h16Z–14h10Z — A MARCA CEDE 13 CARACTERES DO `<title>` A UM NÚMERO QUE SAI DO BANCO, EM CINCO PÁGINAS DA BANDA 4 A 10 (nenhuma URL nova, nenhuma leva do teto, a /calculadora-de-litragem/ parada de propósito)
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael das 09h58 BRT, então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null` — pela **1.1** isso já significa que não há bloco da Fundação vivo — e o último commit na pasta da ilha era da ronda de **12/10 às 15h00Z**, muito fora da janela dos 40 minutos. Reserva aceita às 13h16Z, commit `d009062`, na primeira tentativa. Nenhum PR aberto; a branch designada estava em sincronia com o `main`, conferido antes de qualquer coisa. **Nenhum despacho ALTO aberto em `dados/despachos.md`** — a única coisa que furaria o foco (1.2) — conferido.

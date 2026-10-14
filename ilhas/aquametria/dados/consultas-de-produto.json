@@ -1,0 +1,1402 @@
+{
+  "esquema": "consultas-de-produto",
+  "versao": "1.0.0",
+  "ilha": "aquametria",
+  "atualizado_em": "2026-10-14",
+  "publicar": false,
+  "o_que_este_arquivo_e": "A lista das consultas de produto do aquarismo, item 1 do DESPACHO DO RAPHAEL de 09/10/2026, que estende a secao 30 do `ARQUIPELAGO.md` a esta ilha. Cada linha traz a consulta como a pessoa a digita, a familia de produto, a forma (cabeca, parametrica ou nome de modelo), a intencao de compra com o juizo escrito, o lastro de banco que a 30.2 cobra, a pagina da ilha que ja serve a consulta quando houver (30.4), e os ocupantes de SERP com URL, classe e se a pagina e dedicada aquela consulta — que e o que a 30.5 exige para o veredito poder existir. O veredito e o `nasce_agora` NAO sao escritos: saem dos campos medidos, e o portao `validar-consultas-de-produto.py` os recalcula e fica vermelho se discordarem.",
+  "o_instrumento_desta_passada": "**BUSCA, e so busca.** O egresso desta nuvem responde 403 no CONNECT para todo dominio fora da lista de permitidos — medido tres vezes em 24/09/2026 e registrado na `regua-prospeccao.py` —, entao ninguem abre o site de ninguem daqui e **ninguem viu a SERP brasileira do Google**. O que esta medido sao os ocupantes que a ferramenta de busca devolveu para a consulta, com a consulta do instrumento copiada em cada linha. Isso **nao e o top 10 do Google no Brasil**, e a diferenca ficou medida nesta propria passada: em `luminaria de LED para aquario plantado` a busca neutra devolveu nove ocupantes, **oito deles estrangeiros**, e nos dois nomes de modelo (`sunsun hw-303b`, `eheim classic 250 2213`) devolveu loja indiana, britanica e canadense com UM ocupante brasileiro. Quem lesse aquilo como SERP brasileira concluiria que as tres consultas estao livres. Duas delas o varejo grande brasileiro ja ocupa com pagina dedicada, e isso tambem esta medido aqui, pela busca enviesada.",
+  "por_que_alvo_nao_existe": "A 30.5 define TOMADA como fato positivo — *\"o top 10 e dominado por varejo grande, fabricante forte ou fazenda de conteudo com pagina dedicada aquela consulta\"* — e a 14.9 define ALVO como a **ausencia** desses ocupantes. **Busca sabe afirmar presenca, nunca ausencia** (e a regra 1 da `regua-prospeccao.py`, de 24/09/2026, e vale igual aqui). Entao esta lista emite dois vereditos: `tomada`, que se afirma porque e presenca, e `nao-medida`, que e tudo o mais. **`alvo` nao aparece uma vez neste arquivo, e a ausencia dele e o conteudo:** `alvo` e o veredito que autoriza gastar rastreamento e abrir URL nova, e a 14.9 diz o que custa errar nele — *\"publicar ali e gastar rastreamento de dominio novo para estacionar na pagina 4\"*. Quem quiser `alvo` abre a SERP com os olhos, no Chrome do Raphael, que e o unico instrumento do arquipelago que ve a SERP brasileira, e escreve `serp_vista_por` e `serp_vista_em` na linha. Enquanto nao escrever, nenhuma consulta desta lista diz que pode nascer.",
+  "o_que_nao_foi_medido": [
+    "**A SERP brasileira do Google, de nenhuma das quinze consultas.** Nao e zero e nao e \"aberta\": e nao medida, pelo motivo do instrumento acima. As quinze linhas estao com `serp_vista_por` vazio, e e esse campo que o `nasce_agora` cobra.",
+    "**Qual consulta cada pagina da ilha realmente toma.** A leitura de 07/10 registrou que a Search Console **anonimizou 370 das 371 impressoes** da janela, entao a atribuicao consulta-a-pagina nao existe hoje. As tres linhas que declaram `pagina_da_ilha_que_ja_serve` o fazem pela consulta-alvo DECLARADA daquela pagina, nao por impressao medida — e por isso cada uma traz a ressalva escrita. Fechar isso depende do item 2 do despacho de 07/10, que espera a credencial `GOOGLE_SA_B64`, ausente neste ambiente.",
+    "**O volume de busca de qualquer uma das quinze.** Nenhuma regua de volume foi aplicada nesta passada; a ordem da lista e por **intencao de compra**, que e o que o despacho pediu, e intencao de compra e juizo escrito, nao numero medido. A 14.9 manda cruzar intencao com chance real de primeira pagina, e a segunda metade desse cruzamento e exatamente a que falta.",
+    "**Preco, foto e medida declarada dos anuncios.** A 30.2 autoriza anuncio de Shopee e de Mercado Livre como fonte de dado comercial, e esta passada nao colheu nenhum: ela classificou SERP, nao montou pagina. O lastro contado em `produtos_reais_no_banco` e de anuncio JA colhido e guardado em `dados/produtos-*.json`, nao de coleta nova.",
+    "**Nenhuma consulta do corpus de buscas entrou por memoria.** `/areas/aquametria-corpus-buscas.md` e a memoria que o `PROMPT.md` manda carregar e nao existe neste ambiente (conferido). As quinze consultas saem das nove familias que o despacho nomeia por escrito, das quatro familias que o banco desta ilha sustenta, e das duas formas que a 30.1 nomeia (nome de produto e consulta parametrica)."
+  ],
+  "consultas": [
+    {
+      "id": "aquecedor-para-aquario",
+      "consulta": "aquecedor para aquário",
+      "familia": "aquecedor",
+      "forma": "cabeca",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "nome da familia com a preposicao de uso, sem termo informativo: quem digita isto quer comprar um, nao entender o que e. E a familia com o maior lastro de banco desta ilha (27 registros).",
+      "produtos_reais_no_banco": 15,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": true,
+      "onde_o_varejo_tem_pagina": "`cobasi.com.br/c/peixes/equipamentos-e-acessorios/aquecedores` e `petz.com.br/peixes/equipamentos-e-acessorios/aquecedores`, as duas paginas de categoria dedicadas, mais `petz.com.br/peixe/aquarios/aquecimento`. As tres sairam na busca NEUTRA, e e por isso que esta consulta e a unica da lista com veredito afirmado.",
+      "veredito": "tomada",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "Esta e a unica das quinze em que a busca neutra, por si, ja sustenta `tomada`: QUATRO dos sete ocupantes brasileiros sao pagina de categoria dedicada de varejo grande. A `/calculadora-de-potencia-do-aquecedor/` da ilha mira a pergunta de watts, que e outra consulta — por isso a 30.4 nao fecha esta linha, e sim a 30.5.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "aquecedor para aquário",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://www.cobasi.com.br/c/peixes/equipamentos-e-acessorios/aquecedores",
+          "titulo": "Aquecedor para aquário",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "aquecedor para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/c/peixes/equipamentos-e-acessorios/aquecedores?PS=20",
+          "titulo": "Aquecedor para aquário",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "aquecedor para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/peixe/aquarios/aquecimento",
+          "titulo": "www.petz.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "aquecedor para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/peixes/equipamentos-e-acessorios/aquecedores",
+          "titulo": "www.petz.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "aquecedor para aquário"
+        },
+        {
+          "url": "https://lista.mercadolivre.com.br/aquecedor-aquario-1000-litros",
+          "titulo": "Pular para o conteúdo",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário"
+        },
+        {
+          "url": "https://www.mercadolivre.com.br/loja/aquarismo-total",
+          "titulo": "Aquarismo Total",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário"
+        },
+        {
+          "url": "https://www.zoom.com.br/aquecedor-ambiente-ar/termostato-regulavel?page=13",
+          "titulo": "Termostato Com Aquecedor Hopar K-50 200w 220v P/ Aquarios — Magazine Luiza",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário"
+        },
+        {
+          "url": "https://www.olx.pt/d/anuncio/aquecedor-termostato-submersvel-para-aqurio-marca-jger-eheim-IDJgg7U.html",
+          "titulo": "aquecedor termostato submersivel para aquario marca jager eheim",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário"
+        },
+        {
+          "url": "https://www.worten.pt/produtos/mini-aquecedor-usb-gokoco-para-aquarios-com-haste-de-aquecimento-e-termostato-mrkean-4503660451220",
+          "titulo": "Grandes Eletrodomésticos",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário"
+        }
+      ]
+    },
+    {
+      "id": "termostato-para-aquario",
+      "consulta": "termostato para aquário",
+      "familia": "aquecedor",
+      "forma": "cabeca",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "e a palavra que a loja brasileira usa na prateleira para o MESMO produto da linha de cima: a Cobasi vende 'Termostato M-100 100W para Aquario' e a Petz vende 'Termostato Roxin HT-1900 100W'. Intencao igual a do aquecedor, com a vantagem de ser a palavra do varejo e nao a do manual.",
+      "produtos_reais_no_banco": 15,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "ACHADO DE VOCABULARIO, e ele e da secao 26 desta fabrica: no Brasil `termostato` e `aquecedor` nomeiam o mesmo objeto na prateleira, e o banco desta ilha ja sabia disso sem ninguem notar — os 27 registros de `produtos-aquecedor.json` tem um campo `termostato`. Nove dos nove ocupantes sao brasileiros e CINCO sao pagina de produto unico de varejo grande, nenhuma dedicada a consulta: a busca mostrou a prateleira e nao a categoria. Veredito nao afirmado por isso, nao por ausencia de varejo.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "termostato para aquário",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://www.cobasi.com.br/termostato-m-025-25w-para-aquario-maxxi-31201476/p",
+          "titulo": "Termostato M-025 25W para Aquário Maxxi",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "termostato para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/termostato-m-100-100w-para-aquario-maxxi-31201514/p",
+          "titulo": "Termostato M-100 100W para Aquário Maxxi",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "termostato para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/blog/bem-estar/para-que-serve-o-termostato-no-aquario/",
+          "titulo": "para que serve o termostato no aquario",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "termostato para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/produto/termostato-roxin-para-aquarios-ht-1900-100w",
+          "titulo": "termostato roxin para aquarios ht 1900 100w",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "termostato para aquário"
+        },
+        {
+          "url": "https://www.casasbahia.com.br/aquecedor-com-termostato-para-aquarios-de-30-a-50-litros-vigoar-50w-t50/p/1566591120",
+          "titulo": "Aquecedor com Termostato para Aquários de 30 a 50 Litros Vigoar 50W",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "termostato para aquário"
+        },
+        {
+          "url": "https://www.zoom.com.br/aquecedor-ambiente-ar/termostato-regulavel?page=11",
+          "titulo": "termostato regulavel",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "termostato para aquário"
+        },
+        {
+          "url": "https://www.zoom.com.br/aquecedor-ambiente-ar/termostato-regulavel?page=10",
+          "titulo": "termostato regulavel",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "termostato para aquário"
+        },
+        {
+          "url": "https://www.mercadolivre.com.br/loja/aquarismo-total",
+          "titulo": "Aquarismo Total",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "termostato para aquário"
+        },
+        {
+          "url": "https://www.extra.com.br/termostato-com-aquecedor-ocean-tech-warmer-x-6-200w-aquario/p/1572524757",
+          "titulo": "Termostato com Aquecedor Ocean Tech Warmer X-6 200W Aquário",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "termostato para aquário"
+        }
+      ]
+    },
+    {
+      "id": "filtro-canister-para-aquario",
+      "consulta": "filtro canister para aquário",
+      "familia": "filtro",
+      "forma": "cabeca",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "o tipo de filtro ja escolhido mais a preposicao de uso: quem digita `canister` ja sabe o que e e esta decidindo marca e vazao. Doze dos 19 filtros do banco desta ilha sao canister.",
+      "produtos_reais_no_banco": 14,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "Oito dos nove ocupantes sao brasileiros e NENHUM e pagina dedicada a consulta: duas fichas do Hopar com UV na Cobasi, duas listagens do Mercado Livre por outro termo, dois agregadores de oferta e um artigo de jornal de 2015. A unica pagina que fala desta consulta inteira e o artigo do Diario de Pernambuco, de **onze anos atras**, que a 30.5 nomeia por escrito como ocupante que NAO toma a busca.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "filtro canister para aquário",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://lista.mercadolivre.com.br/canister-sunsun-filtros",
+          "titulo": "Pular para o conteúdo",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        },
+        {
+          "url": "https://lista.mercadolivre.com.br/bomba%C3%BEsubmersa%C3%BEcom%C3%BEfiltro-canister",
+          "titulo": "Pular para o conteúdo",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/filtro-canister-com-uv-1800-l-h-hopar-3696617/p",
+          "titulo": "www.cobasi.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/filtro-canister-com-uv-1200-l-h-hopar-3696609/p",
+          "titulo": "Filtro Canister com Uv 1200 L/H Hopar Lateral",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        },
+        {
+          "url": "https://www.diariodepernambuco.com.br/noticia/pecao/2015/10/um-tipo-de-filtro-para-cada-objetivo.html",
+          "titulo": "um tipo de filtro para cada objetivo",
+          "classe": "blog-antigo",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        },
+        {
+          "url": "https://escorregaopreco.com.br/ofertas/magazineluiza/5296922",
+          "titulo": "escorregaopreco.com.br",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        },
+        {
+          "url": "https://escorregaopreco.com.br/ofertas/shopee/4296309",
+          "titulo": "escorregaopreco.com.br",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        },
+        {
+          "url": "https://www.mercadolivre.com.br/pagina/rmbaquarium",
+          "titulo": "RMB AQUARIUM",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        },
+        {
+          "url": "https://www.wayfair.com/pdp/-W009865863.html",
+          "titulo": "www.wayfair.com",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro canister para aquário"
+        }
+      ]
+    },
+    {
+      "id": "filtro-hang-on-para-aquario",
+      "consulta": "filtro hang on para aquário",
+      "familia": "filtro",
+      "forma": "cabeca",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "mesmo desenho da linha do canister, na faixa de preco de entrada — e a 30.5 e sobre quem ocupa, nao sobre quanto custa. Cinco dos 19 filtros do banco sao hang-on.",
+      "produtos_reais_no_banco": 14,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "A consulta com a SERP mais brasileira das quinze — DEZ de dez ocupantes no Brasil — e ainda assim nao medida, porque OITO deles sao ficha de produto unico (cinco Soma na Cobasi, tres Leecom na Petz) e ficha de um modelo nao e pagina dedicada a consulta de familia. E o caso que mais mostra para que serve a coluna `dedicada_a_consulta`: sem ela, oito paginas de varejo grande fechariam esta linha como tomada sem que nenhuma delas dispute a consulta.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "filtro hang on para aquário",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://www.cobasi.com.br/filtro-externo-hang-on-soma-hf-250-31148362/p",
+          "titulo": "www.cobasi.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/filtro-externo-hang-on-soma-hf-350-31148389/p",
+          "titulo": "Filtro Externo Hang-on Soma HF-350 lateral",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/filtro-externo-hang-on-soma-hf450-450l-h-4w-31198530/p",
+          "titulo": "www.cobasi.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/filtro-externo-hang-on-soma-hf-500-31148400/p",
+          "titulo": "Filtro Externo Hang-on Soma HF-500 lateral",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/filtro-externo-hang-on-soma-hf-750-31148427/p",
+          "titulo": "Filtro Externo Hang-on Soma HF-750 lateral frente",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/produto/filtro-ext-leecom-para-aquarios-hang-on-hi-530-500-l-h",
+          "titulo": "filtro ext leecom para aquarios hang on hi 530 500 l h",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/produto/filtro-ext-leecom-para-aquarios-hang-on-hi-530-500-l-h-146062",
+          "titulo": "filtro ext leecom para aquarios hang on hi 530 500 l h 146062",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/produto/filtro-ext-leecom-para-aquarios-hang-on-hi-530-500-l-h-146063",
+          "titulo": "filtro ext leecom para aquarios hang on hi 530 500 l h 146063",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.mercadolivre.com.br/pagina/lepianecarol",
+          "titulo": "www.mercadolivre.com.br",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        },
+        {
+          "url": "https://www.buscape.com.br/utensilios-decoracao-aquario/filtro-ext-leecom-para-aquarios-hang-on-hi-530-500-l-h",
+          "titulo": "Filtro Ext Leecom para Aquários Hang - On HI-530 - 500 L/H",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro hang on para aquário"
+        }
+      ]
+    },
+    {
+      "id": "luminaria-led-para-aquario-plantado",
+      "consulta": "luminária de LED para aquário plantado",
+      "familia": "iluminacao",
+      "forma": "cabeca",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "`plantado` e o qualificador que separa quem vai gastar de quem vai olhar: luminaria de aquario plantado e o item mais caro desta prateleira, e e onde o espectro e o lumen por litro decidem a compra. Vinte e seis registros no banco, 22 deles barra de LED.",
+      "produtos_reais_no_banco": 14,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": true,
+      "onde_o_varejo_tem_pagina": "`cobasi.com.br/c/peixes/equipamentos-e-acessorios/iluminacao` (categoria dedicada) e `cobasi.com.br/pesquisa?terms=Luminaria+Para+Aquario`, mais CINCO listagens do Mercado Livre (`/luminaria-aquario`, `/luz-para-aquario`, `/led-para-aquario`, `/animais/peixes/luminaria-aquario-80-cm`, `/peixes-acessorios-aquarios-iluminacao/luminaria-aquario`). **Colhido por busca ENVIESADA**, que nomeia as lojas: so afirma presenca e nao entra na contagem de dominancia.",
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "ESTA E A LINHA QUE JUSTIFICA A ASSIMETRIA DA REGUA. A busca neutra devolveu NOVE ocupantes e OITO sao estrangeiros (ukaps.org, tres fichas da greenaqua.hu, charterhouse-aquatics, natureaquariums, aquariumsupplyonline e um dominio de spam) — um unico ocupante brasileiro, abaixo do piso de quatro. Lida como SERP brasileira, essa busca pediria pagina nova numa consulta em que a Cobasi tem **categoria dedicada** e o Mercado Livre tem **cinco listagens**, as sete medidas na passada enviesada logo depois. A consulta que mais parecia aberta das quinze era a que o varejo grande ja ocupa.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "luminária de LED para aquário plantado",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        },
+        {
+          "consulta_do_instrumento": "luminária LED para aquário comprar Cobasi Petz Mercado Livre",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": true
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://www.mercadolivre.com.br/blog/mais-vendidos/lampadas-aquarios",
+          "titulo": "lampadas aquarios",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        },
+        {
+          "url": "https://www.ukaps.org/forum/goto/post?id=343064",
+          "titulo": "www.ukaps.org",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        },
+        {
+          "url": "https://greenaqua.hu/en/eheim-powerled-fresh-plants-led-light-14-9-w-487-mm.html",
+          "titulo": "eheim powerled fresh plants led light 14 9 w 487 mm",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        },
+        {
+          "url": "https://greenaqua.hu/en/eheim-powerled-fresh-plants-led-light-39-7-w-1226-mm.html",
+          "titulo": "eheim powerled fresh plants led light 39 7 w 1226 mm",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        },
+        {
+          "url": "https://greenaqua.hu/en/eheim-powerled-fresh-plants-led-light-44-7-w-1349-mm.html",
+          "titulo": "eheim powerled fresh plants led light 44 7 w 1349 mm",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        },
+        {
+          "url": "https://charterhouse-aquatics.com/collections/fluval-plant-3-0",
+          "titulo": "Collection: Fluval Plant 3.0",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        },
+        {
+          "url": "https://m.fightcancer.org/?p=1364699",
+          "titulo": "Best Planted Aquarium Light for a Thriving Aquarium",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        },
+        {
+          "url": "https://natureaquariums.com/collections/aquarium-lights.oembed?page=11",
+          "titulo": "aquarium lights.oembed",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        },
+        {
+          "url": "https://aquariumsupplyonline.com/shop-aquarium-supplies-online/jbj-zenglow-10-5w-rgb-led/",
+          "titulo": "JBJ ZenGlow – 10.5w RGB LED – AZ-030",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária de LED para aquário plantado"
+        }
+      ]
+    },
+    {
+      "id": "bomba-submersa-para-aquario",
+      "consulta": "bomba submersa para aquário",
+      "familia": "bomba",
+      "forma": "cabeca",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "nome da familia com a preposicao de uso, igual as linhas de cima. A diferenca nao e a intencao, e o lastro: esta ilha nao tem UM registro de bomba no banco.",
+      "produtos_reais_no_banco": 0,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "Familia que o despacho do Raphael nomeia e o banco desta ilha NAO sustenta: zero registro de bomba nos quatro `dados/produtos-*.json`. Pela 30.2 a pagina nasceria com tres produtos reais colhidos de anuncio, entao esta linha depende de COLETA antes de depender de SERP — e a coleta e bloco, nao item de lista. Oito dos dez ocupantes sao brasileiros e so UM e pagina dedicada (a fazenda de conteudo `br.my-best.com`).",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "bomba submersa para aquário",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://br.my-best.com/19944",
+          "titulo": "Bombinhas de Aquário — Te Ajudando a Fazer a Melhor Escolha",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/bomba-submersa-para-aquario-sobo-3858706/p",
+          "titulo": "www.cobasi.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/bomba-submersa-am-mini-amicus-31003763/p",
+          "titulo": "www.cobasi.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.cobasi.com.br/bomba-submersa-am-nano-amicus-31003763/p",
+          "titulo": "www.cobasi.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/produto/bomba-submersa-ocean-tech-xt-pump-2000l-h-25w-para-aquarios",
+          "titulo": "bomba submersa ocean tech xt pump 2000l h 25w para aquarios",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/produto/bomba-submersa-ocean-tech-xt-pump-2000l-h-25w-para-aquarios-158186",
+          "titulo": "bomba submersa ocean tech xt pump 2000l h 25w para aquarios 158186",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.petz.com.br/resun",
+          "titulo": "www.petz.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.buscape.com.br/utensilios-decoracao-aquario/bomba-submersa-para-aquario-sarlo-better-mini-c-sarlo-better-para-peixes",
+          "titulo": "Bomba Submersa para Aquário Sarlo Better Mini C",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.jbl.de/pt/produtos/detail/6125/jbl-proflow-t500?country=pt",
+          "titulo": "JBL ProFlow t500",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        },
+        {
+          "url": "https://www.jbl.de/pt/produtos/detail/6123/jbl-proflow-t300?country=pt",
+          "titulo": "JBL ProFlow t300",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "bomba submersa para aquário"
+        }
+      ]
+    },
+    {
+      "id": "filtro-para-aquario-de-100-litros",
+      "consulta": "filtro para aquário de 100 litros",
+      "familia": "filtro",
+      "forma": "parametrica",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "a forma PARAMETRICA e a de maior intencao desta ilha e a que ela sabe responder melhor que qualquer ocupante: a pessoa chega com o numero do aquario dela na mao. E tambem a forma em que a 30.4 morde, porque e o que as calculadoras miram.",
+      "produtos_reais_no_banco": 14,
+      "pagina_da_ilha_que_ja_serve": "/calculadora-de-vazao-do-filtro/",
+      "ressalva_da_30_4": "e a consulta-alvo DECLARADA daquela pagina (`Qual filtro da conta do seu aquario? – de 1,76 a 10 renovacoes/h`), nao uma consulta medida: a Search Console anonimizou 370 das 371 impressoes da janela de 07/10, e a pagina tomou 19 impressoes em posicao media 5,3 sem que se saiba por qual consulta. Enquanto o item 2 do despacho de 07/10 nao fechar, esta linha e **suspensa pela 30.4** e nao negada por ela.",
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "So TRES dos nove ocupantes sao brasileiros — abaixo do piso de quatro — e um deles e uma fazenda de conteudo com pagina dedicada a esta consulta exata (`buscamelhores.com.br/melhor-filtro-para-aquario-de-100-litros`), que e o ocupante que a 30.5 manda contar. Os outros seis sao OASE e lojas britanicas e canadenses, porque `FiltoSmart 100` casa com `100 litros` em ingles. A deriva do instrumento aqui tem causa nomeada: o numero da consulta e o numero do modelo estrangeiro.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "filtro para aquário de 100 litros",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://buscamelhores.com.br/melhor-filtro-para-aquario-de-100-litros",
+          "titulo": "Melhor Filtro para Aquário de 100 Litros: Guia Essencial",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        },
+        {
+          "url": "https://www.cobasi.com.br/filtro-sobo-wp-606h-500l-h-127v-3858897/p",
+          "titulo": "Filtro Sobo WP-606H-500L/H 127V",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        },
+        {
+          "url": "https://escorregaopreco.com.br/ofertas/shopee/4939542",
+          "titulo": "Filtro Externo Para Aquários Hang On Sunsun Hbl-801 500l/h Aquário Até 100 Litros ( Mini Canister )",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        },
+        {
+          "url": "https://www.water-garden.co.uk/prod/filtosmart-100-aquarium-external-filter",
+          "titulo": "OASE FiltoSmart 100 External Filter | Aquariums - Water Garden UK",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        },
+        {
+          "url": "https://www.water-garden.co.uk/prod/filtosmart-thermo-100-external-filter",
+          "titulo": "OASE FiltoSmart Thermo 100 External Filter | Water Garden Ltd",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        },
+        {
+          "url": "https://www.gardensite.co.uk/aquatics/oase-filtosmart-100-aquarium-external-filter.htm",
+          "titulo": "oase filtosmart 100 aquarium external filter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        },
+        {
+          "url": "https://www.oase.com/en-AU/aquarium/filtosmart-100",
+          "titulo": "filtosmart 100",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        },
+        {
+          "url": "https://www.oase.com/en-US/aquarium/filtosmart-thermo-100",
+          "titulo": "filtosmart thermo 100",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        },
+        {
+          "url": "https://fishyhub.com/product-detail/oase-filtosmart-100-multistage-filter-23995",
+          "titulo": "oase filtosmart 100 multistage filter 23995",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "filtro para aquário de 100 litros"
+        }
+      ]
+    },
+    {
+      "id": "aquecedor-para-aquario-de-50-litros-quantos-watts",
+      "consulta": "aquecedor para aquário de 50 litros quantos watts",
+      "familia": "aquecedor",
+      "forma": "parametrica",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "pergunta parametrica com a unidade de compra dentro dela (`watts`): a resposta e um numero que vira um produto na prateleira. E a consulta que a C5 desta ilha existe para responder.",
+      "produtos_reais_no_banco": 15,
+      "pagina_da_ilha_que_ja_serve": "/calculadora-de-potencia-do-aquecedor/",
+      "ressalva_da_30_4": "consulta-alvo DECLARADA daquela pagina (`Quantos watts de aquecedor voce precisa? – de 1 a 2 W por litro`), nao medida: 21 impressoes em posicao media 7,1 em 07/10, todas anonimizadas. Suspensa pela 30.4, nao negada.",
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "ACHADO QUE VALE MAIS QUE O VEREDITO: esta e a unica das quinze com uma **calculadora concorrente** na SERP — `miniwebtool.com/br/calculadora-de-watts-do-aquecedor-de-aquario/`, em portugues do Brasil, com pagina dedicada a conta que a C5 faz. A classe `calculadora-concorrente` nasceu nesta passada por causa dela: a 30.5 nao a lista, mas e exatamente o ocupante que a 14.9 manda olhar antes de publicar. Dois dos sete ocupantes brasileiros tomam (ela e a ficha da Casas Bahia dedicada a faixa de 30 a 50 litros), abaixo da metade.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "aquecedor para aquário de 50 litros quantos watts",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://miniwebtool.com/br/calculadora-de-watts-do-aquecedor-de-aquario/",
+          "titulo": "calculadora de watts do aquecedor de aquario",
+          "classe": "calculadora-concorrente",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        },
+        {
+          "url": "https://www.casasbahia.com.br/aquecedor-com-termostato-para-aquarios-de-30-a-50-litros-vigoar-50w-t50/p/1566591120",
+          "titulo": "Aquecedor com Termostato para Aquários de 30 a 50 Litros Vigoar 50W",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        },
+        {
+          "url": "https://buscamelhores.com.br/melhores-aquecedores-com-termostato-para-aquario",
+          "titulo": "Busca Melhores",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        },
+        {
+          "url": "https://www.petz.com.br/peixes/equipamentos-e-acessorios/aquecedores",
+          "titulo": "www.petz.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        },
+        {
+          "url": "https://www.petz.com.br/peixe/aquarios/aquecimento",
+          "titulo": "www.petz.com.br",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        },
+        {
+          "url": "https://lista.mercadolivre.com.br/aquecedor-aquario-1000-litros",
+          "titulo": "Pular para o conteúdo",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        },
+        {
+          "url": "https://www.zoom.com.br/busca/aquario+redondo+37+litros",
+          "titulo": "Você buscou",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        },
+        {
+          "url": "https://www.olx.pt/d/anuncio/aquecedor-termostato-submersvel-para-aqurio-marca-jger-eheim-IDJgg7U.html",
+          "titulo": "aquecedor termostato submersivel para aquario marca jager eheim",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        },
+        {
+          "url": "https://www.garnelio.de/en/aquat-heater-25-500-watts",
+          "titulo": "AquaT heater 25-500 watts",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "aquecedor para aquário de 50 litros quantos watts"
+        }
+      ]
+    },
+    {
+      "id": "luminaria-para-aquario-de-60-cm",
+      "consulta": "luminária para aquário de 60 cm",
+      "familia": "iluminacao",
+      "forma": "parametrica",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "o parametro aqui e o COMPRIMENTO, nao o volume, e ele e o que decide se a luminaria cabe: 22 dos 26 registros do banco declaram `comprimento_aquario_cm`. Quem digita `60 cm` ja mediu o movel.",
+      "produtos_reais_no_banco": 14,
+      "pagina_da_ilha_que_ja_serve": null,
+      "ressalva_da_30_4": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "A pior deriva das quinze: UM ocupante brasileiro em nove (a ficha da Nano Light Ocean Tech na Petz) e oito lojas de fora — Reino Unido, Australia, Letonia, Africa do Sul, Hungria e Alemanha —, porque `60 cm` e medida universal e as luminarias premium se vendem por comprimento. **A 30.4 nao fecha esta linha e isso e deliberado:** a `/calculadora-de-iluminacao/` desta ilha mira lumen por litro, que e VOLUME, e esta consulta e COMPRIMENTO. Sao a mesma prateleira e nao a mesma pergunta — mas as duas sem atribuicao medida, entao quem for publicar confere antes com a Search Console.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "luminária para aquário de 60 cm",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://www.petz.com.br/produto/luminaria-nano-light-ocean-tech-40-fresh-black-para-aquarios",
+          "titulo": "luminaria nano light ocean tech 40 fresh black para aquarios",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        },
+        {
+          "url": "https://www.completeaquatics.co.uk/aquaone-strip-glo-marine-60cm-9325136170542",
+          "titulo": "AquaOne Strip Glo Marine 60cm",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        },
+        {
+          "url": "https://www.natureaquariums.com.au/products/bioscape-led-plant-60cm-24w",
+          "titulo": "Bioscape LED Plant 60cm 24w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        },
+        {
+          "url": "https://aio.lv/en/product--happet-lc26--10619299",
+          "titulo": "HAPPET AquaLED Max Color 26 W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        },
+        {
+          "url": "https://mcmerwe.co.za/?p=26549",
+          "titulo": "ADA – Aquasky RGB 60",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        },
+        {
+          "url": "https://greenaqua.hu/en/skylight-hyperbar-fl-60nh-60-cm-64-w-5400-lm.html",
+          "titulo": "skylight hyperbar fl 60nh 60 cm 64 w 5400 lm",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        },
+        {
+          "url": "https://www.garnelio.de/en/aqualighter-aquascape-led-60-cm",
+          "titulo": "Aqualighter Aquascape LED - 60 cm",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        },
+        {
+          "url": "https://www.horizonaquatics.co.uk/products/skylight-hyperbar-fl-60-60cm",
+          "titulo": "Skylight Hyperbar FL 60 60cm",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        },
+        {
+          "url": "https://www.horizonaquatics.co.uk/collections/60cm/products/skylight-hyperbar-fl-60-60cm",
+          "titulo": "Skylight Hyperbar FL 60 60cm (coleção 60cm)",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "luminária para aquário de 60 cm"
+        }
+      ]
+    },
+    {
+      "id": "midia-filtrante-biologica-para-aquario",
+      "consulta": "mídia filtrante biológica para filtro de aquário",
+      "familia": "midia",
+      "forma": "cabeca",
+      "intencao_de_compra": "media",
+      "por_que_a_intencao": "intencao de compra real, mas abaixo das linhas de cima por duas razoes escritas: o ticket e o menor da prateleira, e a palavra `midia filtrante` e de dentro do hobby — quem esta comecando digita `bolinha de ceramica para filtro` ou nao digita nada. Seis registros no banco, o menor lastro das quatro familias.",
+      "produtos_reais_no_banco": 4,
+      "pagina_da_ilha_que_ja_serve": "/calculadora-de-midia-filtrante/",
+      "ressalva_da_30_4": "consulta-alvo DECLARADA daquela pagina (`Quanta midia biologica cabe no seu filtro? – de 1,25 a 12,5 mL/L`), nao medida: 23 impressoes em posicao media 5,9 em 07/10, todas anonimizadas. Suspensa pela 30.4, nao negada.",
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "UM ocupante brasileiro em nove, e ele e uma revisao academica de filtracao em aquaponia na SciELO — nao e varejo, nao e conteudo de nicho e nao disputa a consulta. Os outros oito sao Reino Unido, Japao, Polonia, Espanha e uma patente do escritorio americano. A deriva aqui e de VOCABULARIO: `filter media` e termo tecnico internacional, e a busca prefere o corpus em ingles.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "mídia filtrante biológica para filtro de aquário",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://new.scielo.br/j/bip/a/9RKDyMDSNXWN9GRQnSjv3mr/?lang=en",
+          "titulo": "Filters and media used in aquaponic system filtration: A systematic review",
+          "classe": "desconhecido",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        },
+        {
+          "url": "https://aquasabi.com/aquarium-filtration-filter-media-biological",
+          "titulo": "aquarium filtration filter media biological",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        },
+        {
+          "url": "https://aquasabi.com/aquarium-filtration-filter-media-biological?ed=1",
+          "titulo": "aquarium filtration filter media biological",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        },
+        {
+          "url": "https://www.aquael.com/?p=142131",
+          "titulo": "NatureMax Bio",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        },
+        {
+          "url": "https://www.webbsdirect.co.uk/fluval-biomax-1100g/",
+          "titulo": "Fluval Biomax 1100g is a biological filter media for aquariums",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        },
+        {
+          "url": "https://www.adana.co.jp/en/contents/products/na_filter/detail03.html",
+          "titulo": "FILTRATION SYSTEM - Filtration Media",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        },
+        {
+          "url": "https://www.manomano.es/p/500-ml-de-medio-filtrante-biologico-para-acuarios-fibra-infrarroja-anillos-filtrantes-para-agua-dulce-y-salada-94655254",
+          "titulo": "500 ml de medio filtrante biologico para acuarios",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        },
+        {
+          "url": "https://podyourreef.com/collections/marinepure",
+          "titulo": "podyourreef.com",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        },
+        {
+          "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8845891",
+          "titulo": "Aquarium filter media including nanofibers",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "mídia filtrante biológica para filtro de aquário"
+        }
+      ]
+    },
+    {
+      "id": "substrato-fertil-para-aquario-plantado",
+      "consulta": "substrato fértil para aquário plantado",
+      "familia": "substrato",
+      "forma": "cabeca",
+      "intencao_de_compra": "media",
+      "por_que_a_intencao": "compra de consumo que se repete e de ticket medio, mas e decisao de montagem e nao de equipamento: quem procura substrato esta montando o aquario, nao consertando um problema. Zero registro no banco.",
+      "produtos_reais_no_banco": 0,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "Familia que o despacho nomeia e o banco nao sustenta (zero registro), entao depende de coleta antes de SERP. Dois ocupantes brasileiros em nove — a ficha do Maxxi BioFertil na Cobasi, que a propria busca leu como **sem estoque**, e o blog da Petz com pagina dedicada a como usar substrato fertil. Os sete restantes sao Australia, Suica e Reino Unido.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "substrato fértil para aquário plantado comprar",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://petz.com.br/blog/especies/como-usar-substrato-fertil-para-aquario/amp",
+          "titulo": "como usar substrato fertil para aquario",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        },
+        {
+          "url": "https://www.cobasi.com.br/substrato-fertilizante-maxxi-biofertil-para-aquario-31174274/p",
+          "titulo": "Substrato Fertilizante Maxxi BioFértil para Aquário",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        },
+        {
+          "url": "https://petstock.com.au/products/oliver-knott-aqua-earth-substrate-6l",
+          "titulo": "Oliver Knott AquaEarth Substrate 6L",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        },
+        {
+          "url": "https://checkout.petstock.com.au/products/oliver-knott-aqua-earth-substrate-6l",
+          "titulo": "oliver knott aqua earth substrate 6l",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        },
+        {
+          "url": "https://www.olibetta.ch/en-CH/sera/aquarium-gravel-floredepot-substrate",
+          "titulo": "Sera Aquarium Gravel Floredepot Substrate, 2,40 kg",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        },
+        {
+          "url": "https://www.olibetta.ch/en-CH/sand-gravel-substrate-soil-for-your-aquarium/natural-substrate",
+          "titulo": "Natural substrate for aquariums",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        },
+        {
+          "url": "https://petcity.com.au/aquaearth-plant-soil-7l",
+          "titulo": "AquaEarth Plant Soil 6L by Oliver Knott",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        },
+        {
+          "url": "https://www.perfectpondsandkoi.co.uk/products/betta-choice-aqua-soil-10lt",
+          "titulo": "Betta Choice Aqua Soil 10lt",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        },
+        {
+          "url": "https://aquasabi.com/Substrate?ed=1",
+          "titulo": "aquasabi.com",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "substrato fértil para aquário plantado comprar"
+        }
+      ]
+    },
+    {
+      "id": "teste-de-agua-para-aquario",
+      "consulta": "teste de água para aquário",
+      "familia": "teste-de-agua",
+      "forma": "cabeca",
+      "intencao_de_compra": "media",
+      "por_que_a_intencao": "consumivel de recompra, o que e bom, mas de ticket baixo e de intencao frequentemente informativa (`como testar a agua`). Zero registro no banco.",
+      "produtos_reais_no_banco": 0,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "UM ocupante brasileiro em nove (a ficha do teste de dureza KH da Alcon na Petz). Os oito restantes sao Reino Unido, Australia e dois dominios de spam que repetem a mesma pagina `Best Aquarium Test Kit`. Familia sem lastro de banco: depende de coleta antes de SERP.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "teste de água para aquário kit",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://www.petz.com.br/produto/teste-alcon-peixes-dureza-kh",
+          "titulo": "teste alcon peixes dureza kh",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        },
+        {
+          "url": "https://www.bulkreefsupply.com/aquarium-lab-multi-test-kit-nt-labs.html",
+          "titulo": "aquarium lab multi test kit nt labs",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        },
+        {
+          "url": "https://fresh.bulkreefsupply.com/aquarium-lab-multi-test-kit-nt-labs.html",
+          "titulo": "aquarium lab multi test kit nt labs",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        },
+        {
+          "url": "https://2024.radiookapi.net/?p=38602",
+          "titulo": "6+ Must-Have: Best Aquarium Test Kit [2024]",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        },
+        {
+          "url": "https://assfinet.acturis.com/?p=13448",
+          "titulo": "6+ Must-Have: Best Aquarium Test Kit [2024]",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        },
+        {
+          "url": "https://www.ypc.co.uk/product/tetra-7in1-aquarium-water-testing-kit-50-strips/",
+          "titulo": "tetra 7in1 aquarium water testing kit 50 strips",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        },
+        {
+          "url": "https://www.petcity.com.au/freshwater/water-testing/",
+          "titulo": "Freshwater Test Kits",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        },
+        {
+          "url": "https://swelluk.dev82.magecloud.net/aquarium/food-testing-and-treatments/aquarium-test-kits?p=4",
+          "titulo": "Aquarium Test Kits",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        },
+        {
+          "url": "https://zelpio.com/pt/blog/best-water-test-kits-2026/",
+          "titulo": "Português · Home Testing Equipment",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "teste de água para aquário kit"
+        }
+      ]
+    },
+    {
+      "id": "kit-de-co2-para-aquario-plantado",
+      "consulta": "kit de CO2 para aquário plantado",
+      "familia": "co2",
+      "forma": "cabeca",
+      "intencao_de_compra": "media",
+      "por_que_a_intencao": "o ticket mais alto do aquarismo plantado depois da luminaria, mas o publico e o menor: CO2 e decisao de aquarista avancado. Zero registro no banco.",
+      "produtos_reais_no_banco": 0,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "**ZERO ocupante brasileiro em dez.** E a unica das quinze em que a busca nao devolveu um unico dominio do Brasil: Estados Unidos, Canada, Australia, Argentina e dois dominios de spam francesa. Isso nao diz que a consulta esta livre no Brasil — diz que esta nuvem nao tem instrumento para olha-la. Familia sem lastro de banco.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "kit de CO2 para aquário plantado",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://www.liveaquaria.com/products/fluval-pressurized-45-g-co2-kit-for-aquariums-up-to-30-gallons",
+          "titulo": "fluval pressurized 45 g co2 kit for aquariums up to 30 gallons",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://www.bulkreefsupply.com/neo-co2-diy-co2-kit-aquario.html",
+          "titulo": "neo co2 diy co2 kit aquario",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://www.natureaquariums.com.au/products/fluval-mini-pressurized-20g-co2-kit",
+          "titulo": "Fluval Mini Pressurized 20g Co2 Kit",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://www.aquariumdepot.ca/products/fluval-pressurized-95-g-co2-kit-for-aquariums-up-to-190-l-50-us-gal",
+          "titulo": "fluval pressurized 95 g co2 kit for aquariums up to 190 l 50 us gal",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://aquariumdepot.ca/products/fluval-pressurized-45-g-co2-kit-for-aquariums-up-to-115-l-30-us-gal",
+          "titulo": "Fluval Pressurized 45 g CO2 Kit - For aquariums up to 115 L (30 US gal)",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://aquascaperoom.ca/ista-disposable-co2-can-kit/",
+          "titulo": "ista disposable co2 can kit",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://www.castledawnaquatics.com/products/diy-aquarium-co2-generator-kit-for-planted-aquarium-fish-tanks-chemical-reaction-co2-system",
+          "titulo": "diy aquarium co2 generator kit for planted aquarium fish tanks",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://www.desertcart.com.ar/products/175103891",
+          "titulo": "www.desertcart.com.ar",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://annoncesclassees.lequotidiendumedecin.fr/products/nano-co2-kit/234743893/",
+          "titulo": "Nano CO2 Kit",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        },
+        {
+          "url": "https://transportdesigninternational.com/products/nano-co2-kit/234743893/",
+          "titulo": "Nano CO2 Kit",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "kit de CO2 para aquário plantado"
+        }
+      ]
+    },
+    {
+      "id": "eheim-classic-250-2213",
+      "consulta": "eheim classic 250 2213",
+      "familia": "filtro",
+      "forma": "modelo",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "nome e codigo de modelo e a forma de maior intencao que existe: ninguem digita `2213` sem ter decidido o produto. E a forma que a 30.1 nomeia primeiro — *\"o nome que a pessoa digita para comprar\"*.",
+      "produtos_reais_no_banco": 1,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "ACHADO QUE VALE PARA TODA ILHA, e e sobre a 30.2 e nao sobre a SERP: a pagina por nome de MODELO nao consegue cumprir *\"3 ou mais produtos reais colhidos assim\"* com produtos diferentes — ela tem um produto. Cumpri-la exigiria tres ANUNCIOS do mesmo modelo, de vendedores diferentes, e esta ilha tem **um** (o `eheim-classic-250-2213`, com `anuncio_shopee` guardado e sem `url_produto`, um dos 12 da divida da 25.4-b). **Zero ocupante brasileiro em nove:** eheim.com em en_GB, Reino Unido, Canada, India, Grecia e um dominio de spam. O proprio fabricante aparece sem versao brasileira.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "eheim classic 250 2213 aquário",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://eheim.com/en_GB/aquatics/technology/external-filters/classic/classic-250",
+          "titulo": "EHEIM classic 250",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        },
+        {
+          "url": "https://www.completeaquatics.co.uk/eheim-classic-250-2213",
+          "titulo": "Eheim Classic External Filter 250 / 2213 with Taps and Media",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        },
+        {
+          "url": "https://aquariadise.com/review-eheim-classic-250-external-canister-filter/",
+          "titulo": "review eheim classic 250 external canister filter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        },
+        {
+          "url": "https://aquariumdepot.ca/products/eheim-classic-canister-filter-250-2213",
+          "titulo": "Eheim Classic Canister Filter 250 - 2213",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        },
+        {
+          "url": "https://www.skroutz.eu/s/24688315/Eheim-Classic-250-External-Filter-for-Aquariums-up-to-250lt-with-Performance-440lt-h.html",
+          "titulo": "Eheim Classic 250 External Filter for Aquariums up to 250lt",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        },
+        {
+          "url": "https://aquazones.in/eheim-classic-250-external-canister-filter-2213",
+          "titulo": "Eheim Classic 250 External Canister Filter – 2213",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        },
+        {
+          "url": "https://www.aquazones.in/?p=4516",
+          "titulo": "Eheim Classic 250 External Canister Filter – 2213",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        },
+        {
+          "url": "https://clone.aquazones.in/?p=4516",
+          "titulo": "Eheim Classic 250 External Canister Filter – 2213",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        },
+        {
+          "url": "https://cpanel.citizenactionwi.org/next-level-from-internal-filters-eheim-classic-250-2213-external-filter-review.html",
+          "titulo": "Next level from internal filters? Eheim Classic 250/2213 External Filter Review",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "eheim classic 250 2213 aquário"
+        }
+      ],
+      "registro_do_banco": "eheim-classic-250-2213"
+    },
+    {
+      "id": "sunsun-hw-303b",
+      "consulta": "sunsun hw-303b",
+      "familia": "filtro",
+      "forma": "modelo",
+      "intencao_de_compra": "alta",
+      "por_que_a_intencao": "mesma forma da linha de cima, na marca que o banco desta ilha tem em maior numero (seis SunSun entre os 19 filtros). Intencao maxima, lastro minimo.",
+      "produtos_reais_no_banco": 0,
+      "pagina_da_ilha_que_ja_serve": null,
+      "varejo_grande_com_pagina_dedicada": null,
+      "onde_o_varejo_tem_pagina": null,
+      "veredito": "nao-medida",
+      "nasce_agora": false,
+      "serp_vista_por": null,
+      "serp_vista_em": null,
+      "observacao": "O registro `sunsun-hw-303b` EXISTE no banco e **nao tem anuncio colhido** (`anuncio_shopee` ausente), entao o lastro da 30.2 e zero e nao um. UM ocupante brasileiro em nove, e ele e uma listagem do Mercado Livre por outro termo (`canister sunsun filtros`); os oito restantes sao India, Alemanha e Filipinas, e a propria busca registrou que **nao achou preco em reais**. Modelo vendido no Brasil cuja SERP, por este instrumento, e inteiramente estrangeira.",
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "sunsun hw-303b filtro canister preço",
+          "medido_como": "busca",
+          "medido_em": "2026-10-14",
+          "enviesada": false
+        }
+      ],
+      "ocupantes": [
+        {
+          "url": "https://lista.mercadolivre.com.br/canister-sunsun-filtros",
+          "titulo": "Pular para o conteúdo",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        },
+        {
+          "url": "https://www.flipkart.com/sunsun-canister-aquarium-filter/p/itmesuzgtbzkhjeb",
+          "titulo": "SUNSUN HW 303B EXTERNAL FILTER Canister Aquarium Filter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        },
+        {
+          "url": "https://www.aquazones.in/sunsun-hw-303b-external-filter-with-uv/",
+          "titulo": "SunSun HW 303B External Filter with UV",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        },
+        {
+          "url": "https://www.aquazones.in/?p=2484",
+          "titulo": "SunSun HW 303B External Filter with UV",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        },
+        {
+          "url": "https://clone.aquazones.in/?p=2484",
+          "titulo": "SunSun HW 303B External Filter with UV",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        },
+        {
+          "url": "https://take.app/fincrediblefish/p/cmfha0b1d0036jo04s91xm65p",
+          "titulo": "take.app",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        },
+        {
+          "url": "https://take.app/fishyph/p/cmc6gtte0015ejv04m8yq66s4",
+          "titulo": "SunSun HW-304B External Canister Filter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        },
+        {
+          "url": "https://www.ebay.de/itm/305464363786",
+          "titulo": "SunSun Ersatzlaufrad für HW-303, 403, 703 Aquarium Kanister Filter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        },
+        {
+          "url": "https://theunderwatertherapy.odoo.com/shop/sunsun-hw-303a-ex-filter-3",
+          "titulo": "sunsun hw 303a ex filter 3",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null,
+          "vinda_da_consulta": "sunsun hw-303b filtro canister preço"
+        }
+      ],
+      "registro_do_banco": "sunsun-hw-303b"
+    }
+  ]
+}
