@@ -514,6 +514,12 @@ credencial, ela lê a lista, compara, e decide o que sobrar entre `301` e morrer
 motivo escrito. **Pronto quando, inalterado:** as 6 nomeadas com a decisão de cada uma, e a leitura de
 14/10 registrando **3 ou menos** em "Não encontrado (404)".
 
+**tentativa em 14/10/2026 às 10h1xZ (18.4): `GOOGLE_SA_B64` continua ausente, e esta é a OITAVA execução a
+medir.** `env | grep -c GOOGLE_SA` devolve **0**. Medido uma vez e seguido em frente. **E hoje a linha
+do critério de pronto deste item chegou:** ele pede *"a leitura de 14/10 registrando 3 ou menos em 'Não
+encontrado (404)'"*, e **a leitura de 14/10 é da Sentinela, não da Fundação** — sem a credencial, nem
+ela a faz. O item continua aberto com o mesmo dono.
+
 **tentativa em 12/10/2026 às 16h2xZ (18.4): `GOOGLE_SA_B64` continua ausente.** `env | grep -c
 GOOGLE_SA` devolve **0**, pela **sétima** execução a medir. Medido uma vez e seguido em frente, como a
 linha de 09/10 deste mesmo despacho autoriza — *"reescrever esta linha é mais barato que remedir"*. As
@@ -691,12 +697,52 @@ A Search Console reporta **6 páginas em "Não encontrado (404)"**. A ronda diá
 `/como-fazer/o-que-e-trencadis/`, `/materiais/acabamento/impermeabilizar-peca-de-mosaico/` e `/materiais/acabamento/verniz-para-peca-de-mosaico/` voltam **"URL is unknown to Google"**. As duas de acabamento estão no ar desde **02/10**. É o mesmo padrão que a Robometria vive desde 21/09 — e lá já está medido que reenviar sitemap move pouco. A alavanca é a da 14.7, solicitação manual pela URL Inspection, e é trabalho de navegador da Sentinela, **não executado nesta execução**.
 - **Pronto quando:** as três saírem de "URL is unknown to Google" na leitura de 14/10.
 
-### 4. O CANO DE LINKS NÃO ANDOU, E A CAUSA É A MESMA DAS TRÊS ILHAS
+### ~~4. O CANO DE LINKS NÃO ANDOU, E A CAUSA É A MESMA DAS TRÊS ILHAS~~ — **CUMPRIDO EM 14/10/2026 às 10h2xZ, NO PRIMEIRO DIA EM QUE O CRITÉRIO DELE PERMITIA**
 
-**FICA, e o motivo em uma linha: exige sessão logada do Shopee Afiliados no Chrome do Raphael, e o próprio critério de pronto é datado de 14/10 ou depois.**
-
-**Zero link de afiliado gerado nesta execução.** `affiliate.shopee.com.br` redireciona para `shopee.com.br/buyer/login` — a sessão está deslogada no Chrome do Raphael, e sem ela não há gerador, não há relatório de cliques e não há reconferência do DEFEITO 2 (o `sub_id` deslocado). O Mercado Livre, além do reCAPTCHA, não está liberado na extensão do navegador. **A contagem de itens sem piso e sem `url_produto` NÃO foi feita e não será estimada**; o último número medido é o do Pente Fino de 05/10/2026, que registra 4 registros sem motivo declarado nesta ilha e não traz contagem de `url_busca` nem de `url_produto`.
-- **Pronto quando:** existir em `ilhas/clubedomosaico/dados/` um arquivo de contagem datado de 2026-10-14 ou depois, com total de publicáveis, quantos sem `url_busca`, quantos sem `url_produto` e a distribuição por `degrau`.
+> **A VERIFICAÇÃO DA 18.4 ESTÁ FEITA, e ela é a própria leitura do critério:** o arquivo
+> `dados/contagem-piso-de-compra-2026-10-14.json` existe, é datado de **2026-10-14**, e traz os
+> **quatro** números que o item pede — total de publicáveis, quantos sem `url_busca`, quantos sem
+> `url_produto` e a distribuição por `degrau`. **Nada aqui foi estimado**, que era a condição que o
+> próprio item impunha.
+>
+> | o que o item pediu | medido em 14/10/2026 |
+> |---|---|
+> | total de **publicáveis** | **43 de 43** registros do banco têm bloco de afiliado (eram 41 em 12/10; o banco cresceu dois) |
+> | quantos **sem `url_busca`** | **0** — o piso encurtado da 25.2 está em todos os 43 |
+> | quantos **sem `url_produto`** | **19** — e são exatamente os 19 do degrau 4 |
+> | distribuição por **`degrau`** | **1:1 · 2:4 · 3:19 · 4:19** (soma 43) |
+>
+> **ESTE ITEM FICOU SEIS DIAS PARADO POR UM MOTIVO QUE NÃO ERA O ESCRITO NELE, E A LIÇÃO É DE MÉTODO.**
+> A linha que o manteve aberto dizia duas coisas colidas numa: *"exige sessão logada do Shopee Afiliados
+> no Chrome do Raphael, **e** o próprio critério de pronto é datado de 14/10 ou depois"*. A primeira
+> metade é verdade para **gerar** link e **falsa** para **contar**: os quatro números que o critério pede
+> estão todos em campo lido por máquina nos cinco `dados/materiais-*.json`, e nenhum deles precisa de
+> sessão, de navegador ou de rede. **O que de fato o bloqueou foi só a data** — e a data era um portão
+> legítimo, que as execuções de 09/10 a 13/10 respeitaram escrevendo o motivo em vez de fechar o item
+> antes da hora (18.4). **A causa real ficou escondida atrás de uma causa maior que não se aplicava**, e
+> é a mesma família de defeito que esta ilha já paga em outro lugar: dependência de terceiro escrita num
+> item mais larga do que ela é faz a execução seguinte nem tentar.
+>
+> **O QUE O ITEM DIZIA E CONTINUA VERDADE, e é do Raphael:** zero link de afiliado gerado, porque
+> `affiliate.shopee.com.br` redireciona para `shopee.com.br/buyer/login` — sem a sessão não há gerador,
+> não há relatório de cliques e não há reconferência do **DEFEITO 2** de 23/09 (o `sub_id` deslocado uma
+> casa). Está em `dados/despachos.md`. **Mas isso não é mais este item:** é a linha do Raphael na lista
+> do `ESTADO.md`, onde já estava.
+>
+> **O QUE A CONTAGEM ACHOU DE GRAÇA, e não estava pedido:** `sem url_produto` e `degrau 4` **têm de ser
+> o mesmo conjunto** — degrau 4 é, pela 25.1, o degrau de quem não casou com ficha nenhuma. Hoje são, 19
+> a 19. Os dois jeitos de essa igualdade quebrar são defeito de dado que **nenhum portão desta ilha
+> pegava**: degrau 4 **com** ficha é degrau que não subiu, e item sem ficha **fora** do degrau 4 é degrau
+> mentido. O `validar-banco.py` cobra que o degrau esteja escrito (28/09) e que o 4 traga motivo (30/09),
+> nunca que ele **descreva** o link ao lado. A afirmação nasceu dentro de
+> `ferramentas/contar-piso-de-compra.py`, com os dois casos reprovando no `--autoteste` (8 casos, 0
+> falha), e o número dela bate com a escada que o `validar-banco.py` imprime por **outro caminho** sobre
+> o mesmo dado.
+>
+> **COMO REFAZER A CONTAGEM EM QUALQUER DIA:** `python3 ferramentas/contar-piso-de-compra.py .` imprime,
+> e `--gravar` escreve o arquivo com a data de hoje. **Contagem digitada à mão envelhece calada** — o
+> próprio item citava, como último número medido, o do Pente Fino de 05/10, que já estava errado quando
+> foi citado em 07/10.
 
 ## ~~DESPACHO DA SENTINELA — 2026-10-07 (RONDA DIÁRIA TÉCNICA, 14h5xZ)~~ — **ITEM 1 CUMPRIDO EM 12/10/2026: o teste de vida voltou, 24 de 24 medidos. Ver o despacho de 12/10.**
 

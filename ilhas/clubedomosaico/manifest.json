@@ -458,6 +458,12 @@
       "descricao": "Sobe o degrau da escada da 25.1: desce uma escada de palavra-chave de quatro degraus na Open API (25.6), passa cada anuncio pela regra de casar-anuncio.py, e so grava quando UM registro casa. Grava `url` com sub_id nas casas certas, `url_produto` para o teste de vida da 25.4-b, o degrau da 25.1 (1 so quando a loja traz a marca do fabricante E palavra de loja oficial; 3 em todo o resto) e a foto com largura e altura LIDAS do arquivo servido, nunca estimadas. Nunca clica no link da ilha (25.8) e nunca toca nas pastilhas, que dependem de decisao do Raphael. Com --ensaio nao grava nada."
     },
     {
+      "id": "contar-piso-de-compra",
+      "arquivo": "ferramentas/contar-piso-de-compra.py",
+      "sha256": "c13f750dc8ab29338b0769a05a96a79151a869cbaa920698b316a4342bc24f2b",
+      "descricao": "A CONTAGEM DO PISO DE COMPRA, derivada dos cinco `dados/materiais-*.json` e de mais nada: total de publicaveis, quantos sem `url_busca` (25.2, o piso que rende comissao), quantos sem `url_busca_produto` (25.4-b, o piso cru), quantos sem `url_produto` (25.4, sem ficha nao ha teste de vida) e a escada da 25.1 por degrau. Nasceu pelo item 4 do despacho de 07/10/2026, que pede um arquivo DATADO; `--gravar` escreve `dados/contagem-piso-de-compra-<hoje>.json`. Carrega a afirmacao que nenhum portao desta ilha fazia: `sem url_produto` e `degrau 4` TEM de ser o mesmo conjunto — degrau 4 com ficha e degrau que nao subiu, e item sem ficha fora do degrau 4 e degrau mentido. `--autoteste` com 8 casos, os dois defeitos entre eles. Bancada."
+    },
+    {
       "id": "conferir-atelie-no-ar",
       "arquivo": "ferramentas/conferir-atelie-no-ar.py",
       "sha256": "0ebb924c0a5de97bbd018f3d2e820ebfad192a6647d16a55ac28f0e841775d40",

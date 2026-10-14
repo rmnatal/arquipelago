@@ -11,6 +11,44 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — o pedido do `quartzolit.weber` estava com a FORMA errada: lista de rede não resolve, navegador resolve
+
+**2026-10-14 — RAPHAEL — abrir `BT_pastilhas_quartzolit.pdf` no seu navegador e deixar o arquivo onde uma rotina
+alcance.** Página do produto:
+`quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-para-pastilhas-quartzolit/argamassa-pastilhas-quartzolit`
+— o boletim está listado nela, ao lado da FISPQ, com cerca de 867 KB. **Não bloqueia bloco nenhum** e não é código.
+
+**ESTE DESPACHO SUBSTITUI A FORMA DO PEDIDO ANTERIOR, e é o único conteúdo novo dele.** O pedido que estava de pé
+era *"o curinga `*.quartzolit.weber` na lista de Domínios permitidos"*, com uma ressalva de 05/10/2026 dizendo que
+o `www.` já respondia **403**, *"que é decisão do fabricante e não da rede dele"*. **Hoje a ressalva virou o
+veredito: pôr o domínio na lista não destrava nada.** Medido em 14/10/2026 por **dois canais que não compartilham
+egresso** — o `curl` de uma rotina e o leitor da nuvem — os dois em **403**, três passadas por URL, em quatro URLs:
+a raiz, o `/search-document`, e **dois PDFs de `/files/`**. Era essa a dúvida que sobrava, porque um host que
+bloqueia navegação e serve estático liberaria o PDF: não libera. Seu navegador passa onde nenhuma rotina passa.
+
+**O QUE O DOCUMENTO DESTRAVA, em número.** Ele é o boletim de um **terceiro** produto da família das pastilhas da
+Quartzolit, que o banco da clubedomosaico não tem — e é o único caminho medido para **dois** registros saírem do
+degrau 4 de uma vez (`quartzolit-pastilhas-interiores`, causa `anuncio-cobre-o-irmao-fora-do-banco`, e
+`quartzolit-pastilhas-fachadas`, causa `nenhum-anuncio-deste-produto`). São 2 dos **19** itens no degrau 4 dessa
+ilha, contados em 14/10 em `ilhas/clubedomosaico/dados/contagem-piso-de-compra-2026-10-14.json`. Ele também
+explica, sem trava nova, os dois anúncios de 5 kg da Shopee que hoje não casam com nenhum dos dois irmãos: existe
+um produto cujo nome de varejo traz `interno` e `externo` juntos, em 5 kg, e é dele que o anúncio provavelmente é.
+
+**E A METADE DE MÉTODO, porque ela é o motivo de o documento ter levado um dia a mais para ser achado.** O nome
+pelo qual ele estava sendo procurado — `pastilhas exteriores quartzolit` — **não é o batismo do fabricante**: é o
+nome que o varejo lhe dá, e o fabricante o chama de `argamassa pastilhas quartzolit`. É a seção **26** do contrato
+ao pé da letra, e foi por isso que oito chaves de busca na Open API devolveram sete zeros em 13/10. Documento
+procurado pelo nome da loja não é achado pelo nome do fabricante.
+
+**O que NÃO resolve:** o canal de espelho. Os quatro SKUs novos do produto (`1614525`, `1614606`, `1614657`,
+`750131`) deram **404** em três hosts de espelho, com `1458361.pdf` devolvendo **200 e 640 KB** na mesma janela —
+o canal está vivo, o arquivo não está lá. A medição inteira está em
+`ilhas/clubedomosaico/dados/documento-que-falta-pastilhas-2026-10-14.md`.
+
+**Pronto quando:** `BT_pastilhas_quartzolit.pdf` estiver legível por uma rotina e o terceiro registro da família
+nascer no banco com a declaração lida, não parafraseada.
+
+
 ### prioridade ALTA — a porta de entrada da ilha com MAIS TRÁFEGO caiu TRÊS vezes na mesma raiz, e o intervalo entre quedas encurtou de 11 dias para 3; pela 19.4(b) o próximo passo é chamado, não reparo
 
 **2026-10-05 — Raphael — abrir chamado na HostGator sobre o `.htaccess` da raiz de `/clubedomosaico.com.br`.**

@@ -3,6 +3,124 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+14/10/2026 10h16Z–10h3xZ — O ITEM 4 DO DESPACHO DE 07/10 FECHA NO PRIMEIRO DIA EM QUE O CRITÉRIO DELE PERMITIA, E O QUE O MANTINHA FECHADO NÃO ERA O QUE ESTAVA ESCRITO NELE
+
+**NENHUMA URL NOVA, nenhum byte no ar, nenhum Sync, revisão parada na 88.** A ilha segue em **32 URLs**
+— faltam 8 para o piso de 40 da 21.1 — e a causa é a de sempre nesta semana: a leva **3 de 3** da
+semana da 21.4 foi gasta em 12/10 e **zera em 19/10**. Nada publicável mudou nesta passada, e é por
+isso que não houve desembarque a conferir pela 20.4.
+
+**A ESCOLHA DA ILHA:** `foco.md` nomeia a **clubedomosaico** desde 24/09, então pela **1.2** não houve
+escolha a fazer — a rotação da seção 1 está suspensa. `executando_desde` estava **null**, que pela
+**1.1** já significa que nenhum bloco da Fundação estava vivo: não havia reserva vencida para o git
+desempatar. Reserva aceita às **10h16Z** na primeira tentativa, commit `5a19e24`. Nenhuma branch
+`claude/*` por mesclar (a do repositório estava idêntica ao `main`) e nenhum PR aberto.
+
+**POR QUE ESTE BLOCO:** o `bloco_atual` de 13/10 às 20h2xZ fechou nomeando **dois** próximos passos, e
+o **(a)** era literal — *"amanhã, 14/10, o item 4 do despacho de 07/10 fica elegível e sai numa passada
+só"*. Hoje é 14/10. Pela **18.5** verificação vem antes de construção, e pela **18.2** o despacho sai
+inteiro; sobrou fôlego depois dele e a passada seguiu para o **(b)**, que também saiu.
+
+**1. OS DOIS PORTÕES DA 29 RODARAM ANTES DE TUDO.** Raiz em **200** pela 20.2.
+`conferir-no-ar.py` **APROVADO, 524 afirmações, 0 falha**, nas 32 URLs. `leitura-do-visitante.py`
+**REPROVADO por EXATAMENTE 1 defeito** — o soft 404 da borda de 29/09, que é do hospedeiro, tem dono
+escrito e é o vermelho esperado (33 URLs lidas, 0 em janela de cache, **nenhum motivo NOVO de
+vermelho**). A porta de entrada estava de pé antes do trabalho.
+
+**2. A CONTAGEM, E ELA FECHA O ITEM 4 COM A VERIFICAÇÃO DA 18.4 FEITA.** O critério era literal e
+datado: *"existir em `ilhas/clubedomosaico/dados/` um arquivo de contagem datado de 2026-10-14 ou
+depois, com total de publicáveis, quantos sem `url_busca`, quantos sem `url_produto` e a distribuição
+por `degrau`"*. Saiu `dados/contagem-piso-de-compra-2026-10-14.json`:
+
+| o que o item pediu | medido |
+|---|---|
+| total de **publicáveis** | **43 de 43** registros com bloco de afiliado (eram 41 em 12/10; o banco cresceu dois) |
+| sem **`url_busca`** | **0** — o piso encurtado da 25.2 está em todos |
+| sem **`url_produto`** | **19** |
+| por **`degrau`** | **1:1 · 2:4 · 3:19 · 4:19** (soma 43) |
+
+De graça, porque as quatro perguntas da seção 25 não são a mesma: **0** sem `url_busca_produto` (o piso
+cru da 25.4-b) e **0** sem nenhuma saída de compra (seção 7). As causas dos 19 do degrau 4:
+`marca-nao-anunciada` 13, `candidato-barrado-nome` 2, `candidato-barrado-variante` 2,
+`anuncio-cobre-o-irmao-fora-do-banco` 1, `nenhum-anuncio-deste-produto` 1.
+
+**A CAUSA DE O ITEM TER FICADO SEIS DIAS PARADO, e ela é de método.** A linha que o mantinha aberto
+colava duas coisas numa: *"exige sessão logada do Shopee Afiliados no Chrome do Raphael, **e** o próprio
+critério de pronto é datado de 14/10 ou depois"*. **A primeira metade é verdade para GERAR link e falsa
+para CONTAR** — os quatro números moram em campo lido por máquina nos cinco `dados/materiais-*.json` e
+não dependem de sessão, de navegador nem de rede. **Só a data o bloqueava**, e a data era portão
+legítimo, que as execuções de 09/10 a 13/10 respeitaram escrevendo o motivo em vez de fechar o item
+antes da hora (18.4). **Dependência de terceiro escrita mais larga do que é faz a execução seguinte nem
+tentar.**
+
+**A AFIRMAÇÃO QUE NASCEU DE GRAÇA, e nenhum portão desta ilha a fazia:** `sem url_produto` e `degrau 4`
+**têm de ser o mesmo conjunto**, porque degrau 4 é, pela 25.1, o degrau de quem não casou com ficha
+nenhuma. Hoje são, **19 a 19**. Os dois jeitos de quebrar são defeito de dado: **degrau 4 com ficha** é
+degrau que não subiu, **item sem ficha fora do degrau 4** é degrau mentido. O `validar-banco.py` cobra
+que o degrau esteja **escrito** (28/09) e que o 4 traga **motivo** (30/09), nunca que ele **descreva** o
+link ao lado. A afirmação mora em `ferramentas/contar-piso-de-compra.py`, com os dois casos reprovando
+no `--autoteste` (**8 casos, 0 falha**), e o número dela bate com a escada que o `validar-banco.py`
+imprime por **outro caminho** sobre o mesmo dado.
+
+**3. O DOCUMENTO QUE FALTA FOI ACHADO — E O NOME ESCRITO ONTEM ERA O DO VAREJO, NÃO O DO FABRICANTE.**
+Não é `pastilhas exteriores quartzolit`. O fabricante o chama **`argamassa pastilhas quartzolit`** e o
+boletim é **`BT_pastilhas_quartzolit.pdf`** (~867 KB), listado na página do produto ao lado da FISPQ. É a
+**seção 26** ao pé da letra — o varejo batiza pela posição, o fabricante pelo nome — e é por isso que
+oito chaves de busca na Open API devolveram **sete zeros** em 13/10: a chave estava certa para a loja e
+errada para o fabricante.
+
+**Ele é um TERCEIRO produto, de 5 kg, e isso explica o anúncio ambíguo sem trava nova.** Quatro lojas o
+vendem em 5 kg com quatro nomes — Telha Norte `externo e interno 5Kg` (SKUs 1614525, 1614606, 1614657),
+Armazém Coral `Pastilhas Exteriores Branca 5kg` (750131), Tupan `Assenta e Rejunta Pastilhas 5kg`, Joli
+`Pastilhas Interno e Externo`. O `motivo_sem_ficha` do irmão interno lê os dois anúncios da Shopee como
+*"um anúncio só vendendo ESTE produto e o `pastilhas fachadas`"* — armadilha 5 da 25.7. **A leitura de
+hoje é mais barata: o anúncio não cobre dois registros, ele nomeia UM produto que o banco não tem.** E a
+ressalva que mantém isto honesto: *mais provável* não é *medido* — o irmão interno **também** tem 5 kg, e
+enquanto o boletim não for lido nada entra no banco.
+
+**4. O PEDIDO DO `quartzolit.weber` MUDOU DE FORMA, e é o achado que muda trabalho de verdade.** A lista
+"DEPENDE DO RAPHAEL" pedia *"o curinga `*.quartzolit.weber` na lista de rede"*, com uma ressalva de 05/10
+dizendo que o `www.` já respondia 403. **Hoje a ressalva virou o veredito: pôr o domínio na lista de
+Domínios permitidos NÃO destrava nada.** Medido em **403** em três passadas, em quatro URLs — a raiz, o
+`/search-document` e **dois PDFs de `/files/`** —, por **dois canais que não compartilham egresso**: o
+`curl` desta rotina e o leitor da nuvem. **Quem recusa é o servidor do fabricante, não a política de
+egresso**, e o 403 cobre o estático, que era a dúvida que sobrava. O pedido virou **navegador**, reescrito
+em `dados/despachos.md` e na lista do topo do `ESTADO.md`.
+
+**O ESPELHO NÃO TEM O DOCUMENTO, e isso é medido e não suposto:** os quatro SKUs novos deram **404** nos
+três hosts de espelho tentados, com `1458361.pdf` devolvendo **200 e 640.748 bytes** na **mesma janela**.
+Canal vivo, arquivo ausente — não é túnel e não é a borda (seção 4). Confirma com dado novo o que o
+`PROMPT.md` já dizia: espelho de CDN é arquivo por nome conhecido, **não** catálogo. A medição inteira
+está em `dados/documento-que-falta-pastilhas-2026-10-14.md`, com uma segunda coisa achada de graça e sem
+ação: o boletim das **fachadas** existe no site do fabricante numa revisão de **2018-01**, e a do banco é
+de **setembro de 2015** — mas ler a nova depende do mesmo 403, e trocar fonte sem ler a nova é pior que a
+antiga lida.
+
+**5. A CREDENCIAL, OITAVA MEDIÇÃO (18.4):** `env | grep -c GOOGLE_SA` devolve **0**. Medida uma vez e
+seguida em frente, como a linha de 09/10 do próprio despacho autoriza. **E hoje chegou a data do critério
+dos itens 2 e 3 do despacho de 07/10** — mas ele pede *"a leitura de 14/10"*, e **a leitura de 14/10 é da
+Sentinela, não da Fundação**; sem a credencial nem ela a faz. Os dois seguem abertos com o mesmo dono.
+
+**A BANCADA, E O QUE NÃO RODOU COM O MOTIVO.** Rodou: `conferir-no-ar.py` 524/0,
+`leitura-do-visitante.py` 1 defeito esperado, `validar-banco.py` **OK** (43 materiais, 45 células da F2,
+escada 1:1 2:4 3:19 4:19, degrau 4 com motivo 19 de 19), `atualizar-manifest.py` **limpo** — 1 sha
+gravado, o da ferramenta nova, e nenhum arquivo publicável ou ferramenta no disco fora do manifest —, e
+`contar-piso-de-compra.py --autoteste` **8 de 8**. **Não rodou:** a bancada de snippet (f1, f2, casca,
+guia, técnicas, produto, loja, ateliê, leads) e as 14 baterias de mutação. **Nenhum byte de snippet e
+nenhum registro de banco mudou nesta passada** — o que mudou é uma ferramenta nova, dois arquivos de
+medição e prosa —, então duas horas de bateria mediriam o mundo de ontem, que a passada de ontem já
+mediu verde. **Nenhum Sync foi acionado pelo mesmo motivo**, e a 20.4 não tem o que conferir onde não
+houve desembarque.
+
+**O PRÓXIMO PASSO DESBLOQUEADO, E ELE É UM SÓ**, porque os dois de ontem saíram hoje. O caminho mais
+curto que não depende de ninguém era *pergunta nova em categoria com mãe no ar* — e o `acabamento`, a
+única mãe no ar, **não tem mais propriedade livre desde 12/10**; as três mães do Guia estão fechadas por
+canal ou por canibalização. Então **a próxima URL desta ilha custa ITEM DE BANCO**, e item de banco novo
+hoje depende de documento: `BT_pastilhas_quartzolit.pdf` (pedido de navegador, acima), o curinga que não
+é curinga, ou fabricante novo. **Quem abrir a próxima execução antes de 19/10 não tem leva da 21.4 para
+gastar** — a semana zera em 19/10 — e faz bem em começar por `dados/cruzamento-14-9.md` e pela lista do
+topo do `ESTADO.md`, nunca por contar itens do banco: **lastro não é vaga livre.**
+
 13/10/2026 19h17Z–20h2xZ — O IRMÃO EXTERNO ENTRA NO BANCO, E O MOTIVO PELO QUAL ELE IA ENTRAR ESTAVA ERRADO
 
 **NENHUMA URL NOVA, e a causa é a mesma das quatro passadas anteriores:** a leva **3 de 3** da semana
