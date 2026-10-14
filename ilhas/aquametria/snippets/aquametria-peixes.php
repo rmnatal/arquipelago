@@ -669,7 +669,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.15.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.16.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -4725,6 +4725,87 @@ function aquametria_peixes_volume_bruto( $comprimento_cm, $largura_cm, $altura_c
 		return null;
 	}
 	return ( (float) $comprimento_cm * (float) $largura_cm * (float) $altura_cm ) / 1000.0;
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * A PROMESSA DO <title> (14/10/2026)
+ *
+ * Proposta 1 da leitura semanal de 07/10/2026, e ela é a de maior ROI do
+ * arquipélago: `/peixes/bettas/quantos-litros-para-betta/` tinha 125 impressões
+ * na posição 8,1 e UM clique — é a página de maior volume de impressão do
+ * projeto inteiro e a única com clique repetível. A promessa ocupa o lugar de
+ * " – Aquametria" no `<title>`; o desenho está na seção 3c do
+ * aquametria-seo-tecnico.php.
+ *
+ * UMA PÁGINA SÓ RECEBE PROMESSA, e isso é escolha de medição, não esquecimento:
+ * trocar o título das 38 páginas do eixo de uma vez tornaria a leitura seguinte
+ * ilegível, porque nada ficaria como estava para comparar.
+ *
+ * O NÚMERO É O MESMO QUE A PÁGINA JÁ PUBLICA NO PRIMEIRO PARÁGRAFO — "essa base
+ * dá de 40,5 litros a 54 litros de lâmina" —, e ele sai daqui pela MESMA
+ * cadeia: a frente e o fundo declarados pela fonte da espécie, varridos pelas
+ * três alturas de aquametria_peixes_alturas(). Nada é digitado, nada é uma
+ * segunda conta ao lado da primeira, e a promessa muda sozinha no dia em que a
+ * base declarada mudar.
+ *
+ * E ELA RESPONDE A CONSULTA NA MOEDA DA CONSULTA. Quem digita "quantos litros
+ * para betta" quer litro, e o eixo inteiro existe para dizer que o que manda é
+ * a base em centímetros — mas a linha do resultado da busca não é o lugar de
+ * ganhar essa discussão. Lá a ilha entrega o litro, com fonte, e a conversa
+ * sobre a base acontece na página, que é onde ela cabe.
+ * ------------------------------------------------------------------------- */
+
+/** As páginas do eixo que declararam promessa, e o que cada uma promete. */
+if ( ! function_exists( 'aquametria_peixes_promessas' ) ) {
+function aquametria_peixes_promessas() {
+	return array(
+		'quantos-litros-para-betta' => 'litros-da-base',
+	);
+}
+}
+
+add_filter( 'aquametria_promessa_do_titulo', 'aquametria_peixes_promessa_do_titulo', 10, 2 );
+if ( ! function_exists( 'aquametria_peixes_promessa_do_titulo' ) ) {
+function aquametria_peixes_promessa_do_titulo( $promessa, $slug ) {
+	$declaradas = aquametria_peixes_promessas();
+	if ( ! isset( $declaradas[ $slug ] ) || 'litros-da-base' !== $declaradas[ $slug ] ) {
+		return $promessa;
+	}
+
+	$registro = aquametria_peixes_registro();
+	if ( ! isset( $registro[ $slug ]['especie'] ) ) {
+		return $promessa;
+	}
+	$catalogo = aquametria_peixes_catalogo();
+	$id       = $registro[ $slug ]['especie'];
+	if ( ! isset( $catalogo[ $id ] ) ) {
+		return $promessa;
+	}
+	$e      = $catalogo[ $id ];
+	$frente = aquametria_peixes_frente_faixa( $e );
+	$larg   = aquametria_peixes_fundo( $e );
+	if ( ! isset( $frente[1] ) || null === $larg ) {
+		return $promessa;
+	}
+
+	$litros = array();
+	foreach ( aquametria_peixes_alturas() as $altura ) {
+		$v = aquametria_peixes_volume_bruto( $frente[1], $larg, $altura );
+		if ( null !== $v ) {
+			$litros[] = $v;
+		}
+	}
+	if ( count( $litros ) < 2 ) {
+		return $promessa;
+	}
+	$piso = min( $litros );
+	$teto = max( $litros );
+	if ( $teto <= $piso ) {
+		return $promessa;
+	}
+	return 'de ' . aquametria_seo_promessa_num( $piso ) . ' a '
+		. aquametria_seo_promessa_num( $teto ) . ' litros';
 }
 }
 

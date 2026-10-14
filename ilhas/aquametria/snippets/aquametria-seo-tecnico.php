@@ -1,6 +1,8 @@
 /**
  * Aquametria SEO Técnico — sitemap curado, diretiva de robôs e meta description
- * Versão: 1.1.0 (10/09/2026)
+ * Versão: 1.2.0 (14/10/2026) — a seção 3c: a promessa numérica do <title>,
+ *          que ocupa o lugar da marca nas cinco páginas que a leitura semanal
+ *          de 07/10/2026 mediu na banda 4 a 10 com CTR perto de zero.
  *
  * v1.1.0 (10/09/2026) — despacho da Sentinela de 10/09, item 1: NENHUMA das 13
  * URLs do sitemap servia `<meta name="description">`, e nenhuma página tinha uma
@@ -86,7 +88,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_SEO_VERSAO' ) ) {
-	define( 'AQUAMETRIA_SEO_VERSAO', '1.1.0' );
+	define( 'AQUAMETRIA_SEO_VERSAO', '1.2.0' );
 	define( 'AQUAMETRIA_SEO_CATEGORIA_SLUG', 'metodos' );
 	define( 'AQUAMETRIA_SEO_CATEGORIA_NOME', 'Métodos' );
 	define( 'AQUAMETRIA_SEO_NOME_DO_SITE', 'Aquametria' );
@@ -236,19 +238,19 @@ function aquametria_seo_metas_por_slug() {
 		),
 		'calculadora-de-vazao-do-filtro' => array(
 			'titulo'    => 'Qual filtro dá conta do seu aquário?',
-			'descricao' => 'Qual a vazão de filtro para o seu aquário, em L/h? A faixa vai de 1,76 a 10 renovações por hora, e cada extremo aparece com a fonte dele.',
+			'descricao' => 'Qual a vazão de filtro para o seu aquário, em L/h? De 1,76 renovação por hora, que a Eheim declara, a 10, da regra de bolso brasileira.',
 		),
 		'calculadora-de-potencia-do-aquecedor' => array(
 			'titulo'    => 'Quantos watts de aquecedor você precisa?',
-			'descricao' => 'Quantos watts de aquecedor o seu aquário pede? A conta parte da mínima do seu cômodo, não do genérico 1 W por litro, e filtra pela sua voltagem.',
+			'descricao' => 'Quantos watts de aquecedor o seu aquário pede? De 1 a 2 W por litro, conforme a fonte e a diferença de temperatura — e a conta sai pelo seu cômodo.',
 		),
 		'calculadora-de-midia-filtrante' => array(
 			'titulo'    => 'Quanta mídia biológica cabe no seu filtro?',
-			'descricao' => 'Quanta mídia filtrante o seu aquário pede, em mililitros? Quatro fabricantes declaram dosagens que variam dez vezes; aqui estão as quatro.',
+			'descricao' => 'Quanta mídia filtrante o seu aquário pede, em mililitros? De 1,25 a 12,5 mL por litro: é o que quatro fabricantes declaram, cada um com o nome.',
 		),
 		'calculadora-de-iluminacao' => array(
 			'titulo'    => 'Quanta luz o seu aquário precisa?',
-			'descricao' => 'Quantos lúmens o seu aquário plantado precisa? A faixa pelas três leituras brasileiras que discordam, mais fotoperíodo, Kelvin e consumo por mês.',
+			'descricao' => 'Quantos lúmens o seu aquário plantado precisa? De 10 a 60 lm por litro pelas três leituras brasileiras, cada faixa com o nome de quem a declara.',
 		),
 		'divulgacao-de-afiliados' => array(
 			'titulo'    => 'Como a Aquametria ganha dinheiro',
@@ -324,7 +326,7 @@ function aquametria_seo_metas_por_slug() {
 		),
 		'quantos-litros-para-betta' => array(
 			'titulo'    => 'Quantos litros para um betta?',
-			'descricao' => 'Quantos litros para um betta? A base de 45 × 30 cm que a ficha da espécie declara, com nome da fonte e data — e por que o litro sozinho engana.',
+			'descricao' => 'Quantos litros para um betta? De 40,5 a 54 litros, que é o que a base de 45 × 30 cm declarada pelo Seriously Fish dá — e o pote de 2 L não é aquário.',
 		),
 		'quantos-litros-para-colisa-anao' => array(
 			'titulo'    => 'Quantos litros para um casal de colisa-anão?',
@@ -530,6 +532,182 @@ function aquametria_seo_imprimir_metas() {
 		echo '<meta ' . ( 'property' === $tag['tipo'] ? 'property' : 'name' ) . '="'
 			. esc_attr( $tag['chave'] ) . '" content="' . $valor . '">' . "\n";
 	}
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 3c. A PROMESSA DO TÍTULO — a marca cede o lugar ao número (14/10/2026)
+ *
+ * Nasce da Proposta 1 e da Proposta 2 da leitura semanal de 07/10/2026, e o
+ * diagnóstico delas é de CTR e não de indexação: 50 de 52 URLs no índice, 371
+ * impressões em 7 dias e **3 cliques**. As cinco calculadoras somavam 116
+ * impressões na banda 4 a 10 com ZERO clique; a ficha do betta, 125 impressões
+ * e 1 clique na posição 8,1. A seção 12.1 do ARQUIPELAGO.md nomeia a alavanca
+ * dessa banda com todas as letras: "título que promete o número, meta que
+ * promete a faixa e a fonte".
+ *
+ * O QUE CEDE O LUGAR É A MARCA, NÃO O NOME DA PÁGINA. O `<title>` tem 65
+ * caracteres antes de o Google cortar, e " – Aquametria" come 13. O nome
+ * canônico continua um só, nas superfícies em que aparece (`<h1>`, `og:title`,
+ * trilha, cartão e a primeira metade daqui) — e continua sendo decidido pelo
+ * `VOZ.md`, que proíbe pelo nome "qualquer título que comece com 'Calculadora
+ * de' seguido de termo técnico que a pessoa não digitaria". Esta seção não
+ * reescreve nome nenhum: ela troca o carimbo da marca por um número. É a mesma
+ * decisão que a Robometria estreou em 17/09/2026, e está escrita lá com o custo
+ * na mesa: ninguém procura esta ilha pelo nome dela.
+ *
+ * O NÚMERO NÃO É DIGITADO AQUI, E É ESSA A PARTE QUE IMPORTA. Cada página
+ * responde ao filtro `aquametria_promessa_do_titulo` de dentro do próprio
+ * snippet que a desenha, chamando a MESMA função de banco que a tabela da
+ * página usa — as bandas de turnover da C3, as âncoras de mídia da C12, os
+ * níveis de lúmen da C15, as regras de W/L da C5 e a base declarada da espécie
+ * na ficha do betta. Mudou o banco, mudou o título, sem ninguém reescrever
+ * nada. O `VOZ.md` manda o número morar "na camada de prova, nunca na voz", e
+ * as duas regras não se contradizem porque falam de superfícies diferentes: o
+ * resultado da busca não é a voz da página, e quem lê a página continua
+ * achando o número na tabela e no "como sabemos".
+ *
+ * AS TRÊS TRAVAS, porque promessa que estoura o teto é pior que promessa
+ * nenhuma:
+ *
+ *   1. só entra se o título INTEIRO couber em 65. O banco cresce e o número
+ *      cresce com ele; no dia em que não couber, o título volta a ser nome mais
+ *      marca, que é sempre válido;
+ *   2. só entra se a função do banco respondeu. Sem número não há promessa, e a
+ *      marca fica onde estava;
+ *   3. as duas travas acima são SILENCIOSAS por desenho, então quem as conta é
+ *      a bancada: `ferramentas/teste-promessa-do-titulo.py` reprova a página que
+ *      declarou promessa e não serve dígito, reprova a página de controle que
+ *      ganhar promessa por acidente, e reprova a meta description cujo número
+ *      divergir do que o banco resolve.
+ * ------------------------------------------------------------------------ */
+
+if ( ! defined( 'AQUAMETRIA_TITULO_MARCA' ) ) {
+	define( 'AQUAMETRIA_TITULO_MARCA', 'Aquametria' );
+}
+/* O travessão com espaços dos dois lados: é o que o site já serve hoje (o
+   `wptexturize` do núcleo transforma " - " em " – "), e escrevê-lo aqui deixa a
+   conta do teto determinística em vez de depender daquele filtro de texto. */
+if ( ! defined( 'AQUAMETRIA_TITULO_SEPARADOR' ) ) {
+	define( 'AQUAMETRIA_TITULO_SEPARADOR', ' – ' );
+}
+if ( ! defined( 'AQUAMETRIA_TITULO_TETO' ) ) {
+	define( 'AQUAMETRIA_TITULO_TETO', 65 );
+}
+
+/**
+ * O número como ele aparece na linha do resultado da busca: vírgula decimal,
+ * sem zero à direita inútil, milhar com ponto.
+ *
+ * Mora aqui, e não em cada calculadora, porque a grafia do número da promessa é
+ * o que a bancada compara contra a meta description — e duas grafias para o
+ * mesmo valor fariam o portão reprovar uma página correta. Quem o chama são os
+ * provedores de promessa de cada snippet, e eles só rodam através do
+ * `apply_filters()` logo abaixo: se este arquivo não estiver carregado, nenhum
+ * deles é chamado, então não há dependência a proteger.
+ */
+if ( ! function_exists( 'aquametria_seo_promessa_num' ) ) {
+function aquametria_seo_promessa_num( $v, $casas = 2 ) {
+	if ( null === $v || ! is_numeric( $v ) ) {
+		return '';
+	}
+	$v = (float) $v;
+	if ( abs( $v - round( $v ) ) < 0.0001 ) {
+		return number_format_i18n( round( $v ), 0 );
+	}
+	$texto = number_format_i18n( $v, $casas );
+	/* Tira o zero à direita que a casa fixa acrescenta: 12,50 vira 12,5. */
+	$texto = rtrim( rtrim( $texto, '0' ), ',' );
+	return $texto;
+}
+}
+
+/**
+ * O pedaço numérico do `<title>` desta página, ou '' quando ela não declarou
+ * promessa nenhuma — que é o caso da esmagadora maioria e o caso da página de
+ * controle. Quem decide se ele CABE é aquametria_seo_titulo_do_documento().
+ */
+if ( ! function_exists( 'aquametria_seo_promessa_do_titulo' ) ) {
+function aquametria_seo_promessa_do_titulo( $slug ) {
+	$slug = (string) $slug;
+	if ( '' === $slug ) {
+		return '';
+	}
+	return trim( (string) apply_filters( 'aquametria_promessa_do_titulo', '', $slug ) );
+}
+}
+
+/**
+ * O `<title>` inteiro, decidido UMA vez: nome + promessa quando ela existe e
+ * cabe, nome + marca em todo o resto. Função pura — recebe o nome já resolvido
+ * e não pergunta nada ao WordPress —, pelo mesmo motivo da seção 2: é o que
+ * deixa a bancada medir a frase sem subir site nenhum.
+ */
+if ( ! function_exists( 'aquametria_seo_titulo_do_documento' ) ) {
+function aquametria_seo_titulo_do_documento( $nome, $slug ) {
+	$nome = trim( (string) $nome );
+	if ( '' === $nome ) {
+		return '';
+	}
+
+	$promessa = aquametria_seo_promessa_do_titulo( $slug );
+	if ( '' !== $promessa ) {
+		$com_promessa = $nome . AQUAMETRIA_TITULO_SEPARADOR . $promessa;
+		if ( mb_strlen( $com_promessa, 'UTF-8' ) <= AQUAMETRIA_TITULO_TETO ) {
+			return $com_promessa;
+		}
+	}
+
+	return $nome . AQUAMETRIA_TITULO_SEPARADOR . AQUAMETRIA_TITULO_MARCA;
+}
+}
+
+/* As duas metades do título, DERIVADAS da decisão acima em vez de a repetirem:
+   repetir a regra nos dois lugares é como o `<title>` e o `og:title` passam a
+   dizer coisas diferentes, que é o defeito que o
+   `teste-titulos-das-duas-fontes.py` nasceu para pegar em 24/09/2026.
+
+   Página que esta ilha não conhece sai do filtro intocada: inventar título para
+   endereço que não é nosso é pior do que não ter. */
+add_filter( 'document_title_parts', 'aquametria_seo_partes_do_titulo', 10 );
+if ( ! function_exists( 'aquametria_seo_partes_do_titulo' ) ) {
+function aquametria_seo_partes_do_titulo( $partes ) {
+	if ( is_admin() || ! function_exists( 'aquametria_seo_metas_por_slug' ) ) {
+		return $partes;
+	}
+	$slug = aquametria_seo_slug_atual();
+	if ( '' === $slug ) {
+		return $partes;
+	}
+	$promessa = aquametria_seo_promessa_do_titulo( $slug );
+	if ( '' === $promessa ) {
+		return $partes;
+	}
+
+	/* O nome vem do que o WordPress já resolveu, não do mapa de SEO: na página
+	   de conteúdo quem manda no `<h1>` é o `post_title`, e tirar o nome de outra
+	   fonte aqui criaria a segunda cópia que esta seção existe para não ter. */
+	$nome = isset( $partes['title'] ) ? trim( (string) $partes['title'] ) : '';
+	if ( '' === $nome ) {
+		return $partes;
+	}
+
+	$titulo = aquametria_seo_titulo_do_documento( $nome, $slug );
+	$cauda  = $nome . AQUAMETRIA_TITULO_SEPARADOR;
+	if ( 0 !== strpos( $titulo, $cauda ) ) {
+		return $partes;
+	}
+	$resto = substr( $titulo, strlen( $cauda ) );
+	if ( AQUAMETRIA_TITULO_MARCA === $resto ) {
+		/* A trava 1 ou a 2 fechou: o título de volta é o que o WordPress já
+		   montaria sozinho, então não se mexe em nada. */
+		return $partes;
+	}
+
+	$partes['title'] = $nome;
+	$partes['site']  = $resto;
+	unset( $partes['tagline'] );
+	return $partes;
 }
 }
 

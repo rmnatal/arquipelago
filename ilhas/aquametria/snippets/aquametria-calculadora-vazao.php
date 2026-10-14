@@ -143,7 +143,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C3_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C3_VERSAO', '1.7.0' );
+	define( 'AQUAMETRIA_C3_VERSAO', '1.8.0' );
 	define( 'AQUAMETRIA_C3_SLUG', 'calculadora-de-vazao-do-filtro' );
 	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '09/09/2026' );
 	/* Constante 'eheim-classic-250-2213' (dados/constantes-calculadoras.json):
@@ -691,6 +691,44 @@ function aquametria_c3_banda_bolso( $perfil ) {
 	$bandas = aquametria_c3_bandas();
 	$lista  = isset( $bandas[ $perfil ] ) ? $bandas[ $perfil ] : $bandas['comunitario'];
 	return $lista[ count( $lista ) - 1 ];
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 2b-bis. A PROMESSA DO <title> (14/10/2026)
+ *
+ * Proposta 2 da leitura semanal de 07/10/2026: esta página tinha 19 impressões
+ * na posição 5,3 e ZERO clique. A promessa ocupa o lugar de " – Aquametria" no
+ * `<title>`, e o desenho está na seção 3c do aquametria-seo-tecnico.php.
+ *
+ * OS DOIS EXTREMOS SÃO OS MESMOS QUE A PÁGINA PUBLICA, e nenhum é digitado: o
+ * piso é a declaração do FABRICANTE (AQUAMETRIA_C3_FABRICANTE_XH, o Eheim
+ * classic 250 com 1,76 renovação por hora), e o teto é o maior x/h das bandas
+ * brasileiras de aquametria_c3_bandas(). É a distância entre o fabricante e a
+ * regra de bolso que esta calculadora existe para mostrar — então ela é a
+ * promessa, e ela muda sozinha no dia em que uma banda mudar.
+ * ------------------------------------------------------------------------- */
+add_filter( 'aquametria_promessa_do_titulo', 'aquametria_c3_promessa_do_titulo', 10, 2 );
+if ( ! function_exists( 'aquametria_c3_promessa_do_titulo' ) ) {
+function aquametria_c3_promessa_do_titulo( $promessa, $slug ) {
+	if ( AQUAMETRIA_C3_SLUG !== $slug ) {
+		return $promessa;
+	}
+	$teto = null;
+	foreach ( aquametria_c3_bandas() as $lista ) {
+		foreach ( $lista as $banda ) {
+			if ( ! isset( $banda['faixa'][1] ) || ! is_numeric( $banda['faixa'][1] ) ) {
+				continue;
+			}
+			$teto = ( null === $teto ) ? $banda['faixa'][1] : max( $teto, $banda['faixa'][1] );
+		}
+	}
+	$piso = defined( 'AQUAMETRIA_C3_FABRICANTE_XH' ) ? AQUAMETRIA_C3_FABRICANTE_XH : null;
+	if ( null === $teto || null === $piso || $teto <= $piso ) {
+		return $promessa;
+	}
+	return 'de ' . aquametria_seo_promessa_num( $piso ) . ' a '
+		. aquametria_seo_promessa_num( $teto ) . ' renovações/h';
 }
 }
 

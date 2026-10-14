@@ -3,7 +3,7 @@ id: calculadora-de-midia-filtrante
 tipo: pagina
 titulo: "Quanta mídia biológica cabe no seu filtro?"
 slug: calculadora-de-midia-filtrante
-meta_descricao: "Quanta mídia filtrante o seu aquário pede, em mililitros? Quatro fabricantes declaram dosagens que variam dez vezes; aqui estão as quatro."
+meta_descricao: "Quanta mídia filtrante o seu aquário pede, em mililitros? De 1,25 a 12,5 mL por litro: é o que quatro fabricantes declaram, cada um com o nome."
 cluster: C12
 calculadora: c12-midia-filtrante
 fontes:

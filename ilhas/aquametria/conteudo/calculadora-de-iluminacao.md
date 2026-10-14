@@ -3,7 +3,7 @@ id: calculadora-de-iluminacao
 tipo: pagina
 titulo: "Quanta luz o seu aquário precisa?"
 slug: calculadora-de-iluminacao
-meta_descricao: "Quantos lúmens o seu aquário plantado precisa? A faixa pelas três leituras brasileiras que discordam, mais fotoperíodo, Kelvin e consumo por mês."
+meta_descricao: "Quantos lúmens o seu aquário plantado precisa? De 10 a 60 lm por litro pelas três leituras brasileiras, cada faixa com o nome de quem a declara."
 cluster: C15
 calculadora: c15-iluminacao
 fontes:

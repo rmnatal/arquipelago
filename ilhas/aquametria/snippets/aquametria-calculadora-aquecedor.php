@@ -148,7 +148,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C5_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C5_VERSAO', '1.7.0' );
+	define( 'AQUAMETRIA_C5_VERSAO', '1.8.0' );
 	define( 'AQUAMETRIA_C5_SLUG', 'calculadora-de-potencia-do-aquecedor' );
 	define( 'AQUAMETRIA_C5_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C5_ARTIGO', 'quantos-watts-de-aquecedor-para-aquario' );
@@ -189,6 +189,42 @@ add_filter( 'aquametria_calculadoras', 'aquametria_c5_registrar_no_hub' );
  * 'sempre' quer dizer que ele não declarou nenhuma, que é exatamente o problema
  * que esta calculadora existe para expor.
  * ------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+ * A PROMESSA DO <title> (14/10/2026)
+ *
+ * Proposta 2 da leitura semanal de 07/10/2026: esta página tinha 21 impressões
+ * na posição 7,1 e ZERO clique. A promessa ocupa o lugar de " – Aquametria" no
+ * `<title>`; o desenho está na seção 3c do aquametria-seo-tecnico.php.
+ *
+ * A FAIXA É A DAS QUATRO REGRAS BRASILEIRAS, varrida de
+ * aquametria_c5_regras() — de 1 a 2 W/L hoje —, e não um número escolhido. É a
+ * discordância entre elas que esta calculadora publica: a regra genérica diz
+ * 1 W/L sem dizer para qual diferença de temperatura, e a leitura do Sul diz 2.
+ * Regra nova no array muda a promessa sem ninguém reescrever o título.
+ * ------------------------------------------------------------------------- */
+add_filter( 'aquametria_promessa_do_titulo', 'aquametria_c5_promessa_do_titulo', 10, 2 );
+if ( ! function_exists( 'aquametria_c5_promessa_do_titulo' ) ) {
+function aquametria_c5_promessa_do_titulo( $promessa, $slug ) {
+	if ( AQUAMETRIA_C5_SLUG !== $slug ) {
+		return $promessa;
+	}
+	$piso = null;
+	$teto = null;
+	foreach ( aquametria_c5_regras() as $regra ) {
+		if ( ! isset( $regra['wl'][0], $regra['wl'][1] ) ) {
+			continue;
+		}
+		$piso = ( null === $piso ) ? $regra['wl'][0] : min( $piso, $regra['wl'][0] );
+		$teto = ( null === $teto ) ? $regra['wl'][1] : max( $teto, $regra['wl'][1] );
+	}
+	if ( null === $piso || null === $teto || $teto <= $piso ) {
+		return $promessa;
+	}
+	return 'de ' . aquametria_seo_promessa_num( $piso ) . ' a '
+		. aquametria_seo_promessa_num( $teto ) . ' W por litro';
+}
+}
 
 if ( ! function_exists( 'aquametria_c5_regras' ) ) {
 function aquametria_c5_regras() {

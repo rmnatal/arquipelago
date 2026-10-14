@@ -107,7 +107,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C12_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C12_VERSAO', '1.5.0' );
+	define( 'AQUAMETRIA_C12_VERSAO', '1.6.0' );
 	define( 'AQUAMETRIA_C12_SLUG', 'calculadora-de-midia-filtrante' );
 	define( 'AQUAMETRIA_C12_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C12_ARTIGO', 'quanta-midia-biologica-o-aquario-precisa' );
@@ -2120,6 +2120,45 @@ function aquametria_c12_pct( $n ) {
 /* Espelho em PHP do ancorasBio(). As âncoras NÃO são digitadas aqui: saem do
    catálogo embutido, que sai do banco. Mídia nova com dosagem declarada entra
    na tabela servida sozinha, no próximo gerador de catálogo. */
+/* ---------------------------------------------------------------------------
+ * A PROMESSA DO <title> (14/10/2026)
+ *
+ * Proposta 2 da leitura semanal de 07/10/2026: esta página tinha 23 impressões
+ * na posição 5,9 e ZERO clique. A promessa ocupa o lugar de " – Aquametria" no
+ * `<title>`; o desenho está na seção 3c do aquametria-seo-tecnico.php.
+ *
+ * OS DOIS EXTREMOS SÃO AS ÂNCORAS DE FABRICANTE, varridas de
+ * aquametria_c12_ancoras_bio() — que já vem ordenada por mL/L e já inclui as
+ * duas leituras que a Seachem faz da própria embalagem. De 1,25 a 12,5 mL/L
+ * hoje: DEZ VEZES de diferença para a mesma função, e é essa distância que a
+ * página existe para publicar em vez de escolher um lado. Dosagem nova no
+ * catálogo muda a promessa sem ninguém reescrever o título.
+ * ------------------------------------------------------------------------- */
+add_filter( 'aquametria_promessa_do_titulo', 'aquametria_c12_promessa_do_titulo', 10, 2 );
+if ( ! function_exists( 'aquametria_c12_promessa_do_titulo' ) ) {
+function aquametria_c12_promessa_do_titulo( $promessa, $slug ) {
+	if ( AQUAMETRIA_C12_SLUG !== $slug ) {
+		return $promessa;
+	}
+	$valores = array();
+	foreach ( aquametria_c12_ancoras_bio() as $ancora ) {
+		if ( isset( $ancora['mlL'] ) && is_numeric( $ancora['mlL'] ) ) {
+			$valores[] = (float) $ancora['mlL'];
+		}
+	}
+	if ( count( $valores ) < 2 ) {
+		return $promessa;
+	}
+	$piso = min( $valores );
+	$teto = max( $valores );
+	if ( $teto <= $piso ) {
+		return $promessa;
+	}
+	return 'de ' . aquametria_seo_promessa_num( $piso ) . ' a '
+		. aquametria_seo_promessa_num( $teto ) . ' mL/L';
+}
+}
+
 if ( ! function_exists( 'aquametria_c12_ancoras_bio' ) ) {
 function aquametria_c12_ancoras_bio() {
 	$out = array();

@@ -156,7 +156,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C15_VERSAO', '1.6.0' );
+	define( 'AQUAMETRIA_C15_VERSAO', '1.7.0' );
 	define( 'AQUAMETRIA_C15_SLUG', 'calculadora-de-iluminacao' );
 	define( 'AQUAMETRIA_C15_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C15_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -2485,6 +2485,44 @@ function aquametria_c15_litros( $n ) {
 /* Espelho em PHP do NIVEIS do script. Se um número divergir entre os dois, a
    página passa a afirmar duas coisas — por isso o teste de navegador compara a
    tabela servida com o que a calculadora devolve para a mesma entrada. */
+/* ---------------------------------------------------------------------------
+ * A PROMESSA DO <title> (14/10/2026)
+ *
+ * Proposta 2 da leitura semanal de 07/10/2026: esta página tinha 26 impressões
+ * na posição 5,5 e ZERO clique — a melhor posição das cinco calculadoras e
+ * nenhum clique. A promessa ocupa o lugar de " – Aquametria" no `<title>`; o
+ * desenho está na seção 3c do aquametria-seo-tecnico.php.
+ *
+ * A FAIXA É A CONSOLIDADA DOS TRÊS NÍVEIS, varrida de aquametria_c15_niveis()
+ * — de 10 a 60 lm/L hoje. O nível 'alta' é declarado ABERTO pela fonte ("acima
+ * de 40 lm/L", sem teto), e a promessa usa o teto consolidado que a própria
+ * página publica na tabela: prometer "60+" na linha do resultado seria prometer
+ * um número que a página não entrega como número. A ressalva de que o topo não
+ * tem teto declarado é da meta description e da tabela, que é onde ela cabe.
+ * ------------------------------------------------------------------------- */
+add_filter( 'aquametria_promessa_do_titulo', 'aquametria_c15_promessa_do_titulo', 10, 2 );
+if ( ! function_exists( 'aquametria_c15_promessa_do_titulo' ) ) {
+function aquametria_c15_promessa_do_titulo( $promessa, $slug ) {
+	if ( AQUAMETRIA_C15_SLUG !== $slug ) {
+		return $promessa;
+	}
+	$piso = null;
+	$teto = null;
+	foreach ( aquametria_c15_niveis() as $nivel ) {
+		if ( ! isset( $nivel['consolidado'][0], $nivel['consolidado'][1] ) ) {
+			continue;
+		}
+		$piso = ( null === $piso ) ? $nivel['consolidado'][0] : min( $piso, $nivel['consolidado'][0] );
+		$teto = ( null === $teto ) ? $nivel['consolidado'][1] : max( $teto, $nivel['consolidado'][1] );
+	}
+	if ( null === $piso || null === $teto || $teto <= $piso ) {
+		return $promessa;
+	}
+	return 'de ' . aquametria_seo_promessa_num( $piso ) . ' a '
+		. aquametria_seo_promessa_num( $teto ) . ' lm por litro';
+}
+}
+
 if ( ! function_exists( 'aquametria_c15_niveis' ) ) {
 function aquametria_c15_niveis() {
 	return array(

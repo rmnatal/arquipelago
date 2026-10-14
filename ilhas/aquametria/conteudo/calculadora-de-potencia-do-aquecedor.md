@@ -3,7 +3,7 @@ id: calculadora-de-potencia-do-aquecedor
 tipo: pagina
 titulo: "Quantos watts de aquecedor você precisa?"
 slug: calculadora-de-potencia-do-aquecedor
-meta_descricao: "Quantos watts de aquecedor o seu aquário pede? A conta parte da mínima do seu cômodo, não do genérico 1 W por litro, e filtra pela sua voltagem."
+meta_descricao: "Quantos watts de aquecedor o seu aquário pede? De 1 a 2 W por litro, conforme a fonte e a diferença de temperatura — e a conta sai pelo seu cômodo."
 cluster: C5
 calculadora: c5-aquecedor-delta
 fontes:

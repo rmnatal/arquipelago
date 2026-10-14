@@ -13,8 +13,25 @@ uma linha só — é o que a caixa de variáveis do ambiente aceita); alternativ
 (conteúdo cru) ou GOOGLE_SA_FILE (caminho). Nunca no repositório.
 
 Saída (markdown pronto para colar nas séries da ilha):
+    0) TOTAIS DA PROPRIEDADE, sem dimensão nenhuma (cliques, impressões, CTR, posição média)
     1) linha para dados/indexacao.md  (URLs no sitemap × URLs indexadas)
     2) linhas para dados/posicoes.md  (consulta, página, posição, impressões, cliques, banda)
+    3) TABELA POR PÁGINA, dimensão `page` sozinha (página, posição, impressões, cliques, banda)
+
+POR QUE AS SAÍDAS 0 E 3 EXISTEM, e a lição é de 07/10/2026. Até aquela data este
+script lia SÓ a dimensão `query`, e somava as linhas dela para dizer quantas
+impressões a ilha teve. O Google ANONIMIZA a consulta da esmagadora maioria das
+impressões de cauda longa: na aquametria, naquela janela, 370 das 371. O script
+emitiu "1 impressão, 0 clique" para uma ilha que a Search Console mostrava com
+**371 impressões e 3 cliques** — duas ordens de grandeza a menos, na semana dos
+primeiros cliques da história do projeto.
+
+E o custo não era de relatório: uma Sentinela que lesse só o arquivo da nuvem
+teria escrito "ainda sem dado" e mantido a rampa. O script não estava errado no
+que media; estava medindo a dimensão que o Google esvazia. **Total de propriedade
+não depende de dimensão nenhuma, e a dimensão `page` não é anonimizada** — então
+as duas passaram a sair, e a soma da dimensão `query` deixou de ser a medida da
+ilha. Despacho da Sentinela de 07/10/2026, item 2.
 
 Dependência: google-auth — instalado num venv próprio (~/.venv-search-console) na 1ª execução.
 """
@@ -79,6 +96,63 @@ def banda(pos, impressoes):
     return "1-3"
 
 
+def totais(resposta):
+    """Os totais da propriedade, lidos da consulta SEM dimensão.
+
+    Função pura e separada de propósito: ela é a metade do item 2 do despacho de
+    07/10/2026 que NÃO pode depender de dimensão, e separá-la é o que deixa a
+    bancada medi-la sem rede (ver ferramentas/teste-search-console.py).
+
+    Resposta sem linha nenhuma devolve zeros e `medido: False` — e essa é a
+    diferença que custou a leitura de 07/10: "zero medido" e "não medido" não são
+    o mesmo número, e quem some com a distinção publica o primeiro no lugar do
+    segundo.
+    """
+    linhas = (resposta or {}).get("rows") or []
+    if not linhas:
+        return {"cliques": 0, "impressoes": 0, "ctr": 0.0, "posicao": 0.0, "medido": False}
+    linha = linhas[0]
+    impressoes = int(linha.get("impressions", 0))
+    cliques = int(linha.get("clicks", 0))
+    return {
+        "cliques": cliques,
+        "impressoes": impressoes,
+        # O CTR vem da API, mas é recalculado quando ela não o manda: dois campos
+        # para o mesmo quociente divergem, e aqui o que manda é a divisão.
+        "ctr": float(linha.get("ctr", (cliques / impressoes) if impressoes else 0.0)),
+        "posicao": float(linha.get("position", 0.0)),
+        "medido": True,
+    }
+
+
+def por_pagina(resposta, dominio):
+    """As linhas da dimensão `page`, já ordenadas por impressão e com a banda.
+
+    A dimensão `page` não é anonimizada pelo Google, então esta é a tabela que
+    diz quais páginas da ilha estão sendo vistas — a informação que a soma da
+    dimensão `query` esconde quando a consulta é esvaziada.
+    """
+    saida = []
+    for linha in (resposta or {}).get("rows") or []:
+        chaves = linha.get("keys") or []
+        if not chaves:
+            continue
+        pagina = chaves[0]
+        if dominio:
+            pagina = pagina.replace("https://%s" % dominio, "")
+        impressoes = int(linha.get("impressions", 0))
+        pos = float(linha.get("position", 0.0))
+        saida.append({
+            "pagina": pagina,
+            "posicao": pos,
+            "impressoes": impressoes,
+            "cliques": int(linha.get("clicks", 0)),
+            "banda": banda(pos, impressoes),
+        })
+    saida.sort(key=lambda x: (-x["impressoes"], x["pagina"]))
+    return saida
+
+
 def urls_do_sitemap(dominio):
     """Lê o sitemap do site com o mesmo cliente HTTP que fala com a API (requests, que respeita
     o proxy e a CA do ambiente). Devolve (urls, erro) — erro é texto quando nada foi lido."""
@@ -136,14 +210,30 @@ def main():
     fim = hoje - dt.timedelta(days=2)          # SC atrasa ~2 dias
     ini = fim - dt.timedelta(days=dias - 1)
 
+    rota = f"{API}/webmasters/v3/sites/{urllib.parse.quote(prop, safe='')}/searchAnalytics/query"
+    janela = {"startDate": ini.isoformat(), "endDate": fim.isoformat()}
+
     # 1) posições por consulta+página
-    body = {"startDate": ini.isoformat(), "endDate": fim.isoformat(),
-            "dimensions": ["query", "page"], "rowLimit": 500}
-    r = sess.post(f"{API}/webmasters/v3/sites/{urllib.parse.quote(prop, safe='')}/searchAnalytics/query",
-                  json=body).json()
+    r = sess.post(rota, json=dict(janela, dimensions=["query", "page"], rowLimit=500)).json()
     linhas = r.get("rows", [])
-    impressoes_total = sum(int(x["impressions"]) for x in linhas)
-    cliques_total = sum(int(x["clicks"]) for x in linhas)
+
+    # 1b) OS TOTAIS DA PROPRIEDADE, sem dimensão nenhuma (item 2 do despacho de
+    #     07/10/2026). A soma da dimensão `query` NÃO serve para isto: o Google
+    #     anonimiza a consulta da cauda longa e aquela soma deu 1 impressão numa
+    #     janela de 371. O que vale como medida da ilha é esta linha.
+    t = totais(sess.post(rota, json=dict(janela, dimensions=[])).json())
+    impressoes_total = t["impressoes"]
+    cliques_total = t["cliques"]
+
+    # 1c) a dimensão `page` sozinha, que o Google não anonimiza
+    paginas = por_pagina(sess.post(rota, json=dict(janela, dimensions=["page"], rowLimit=500)).json(),
+                         dominio)
+
+    # A soma da dimensão `query`, guardada SÓ para a comparação aparecer no
+    # relatório: é ela que mentia, e deixá-la à vista ao lado do total é o que
+    # impede o defeito de 07/10 de voltar sem sintoma.
+    impressoes_por_consulta = sum(int(x["impressions"]) for x in linhas)
+    cliques_por_consulta = sum(int(x["clicks"]) for x in linhas)
 
     # 2) indexação: URL Inspection por URL do sitemap (cota 2000/dia — ok para ilhas pequenas)
     urls, erro_sitemap, avisos = urls_do_sitemap(dominio)
@@ -161,11 +251,25 @@ def main():
         print(json.dumps({"ilha": ilha, "propriedade": prop, "periodo": [ini.isoformat(), fim.isoformat()],
                           "urls_sitemap": len(urls), "indexadas": indexadas,
                           "impressoes": impressoes_total, "cliques": cliques_total,
+                          "totais_da_propriedade": t, "por_pagina": paginas,
+                          "impressoes_por_consulta": impressoes_por_consulta,
+                          "cliques_por_consulta": cliques_por_consulta,
                           "posicoes": linhas, "inspecao": detalhes, "erro_sitemap": erro_sitemap, "avisos": avisos}, ensure_ascii=False, indent=1))
         return
 
     pct = f"{100*indexadas/len(urls):.0f}%" if urls else "n/d"
     print(f"## {ilha} — leitura Search Console {hoje.isoformat()} (janela {ini}→{fim})")
+    print()
+    print("### totais da propriedade (sem dimensão nenhuma)")
+    if t["medido"]:
+        print(f"- **{t['cliques']} clique(s)**, **{t['impressoes']} impressão(ões)**, "
+              f"CTR {100*t['ctr']:.1f}%, posição média {t['posicao']:.1f}")
+    else:
+        print("- a API não devolveu linha para a janela: NÃO MEDIDO (não é zero)")
+    print(f"- a soma da dimensão `query` nesta mesma janela dá "
+          f"{impressoes_por_consulta} impressão(ões) e {cliques_por_consulta} clique(s). "
+          f"A diferença é a anonimização da consulta pelo Google, não defeito do site — "
+          f"e é por isso que o número de cima é o que vale.")
     print()
     print("### linha para dados/indexacao.md")
     print(f"| {hoje.isoformat()} | {len(urls) or 'n/d'} | {indexadas if urls else 'n/d'} | {pct} | {impressoes_total} | {cliques_total} |")
@@ -181,6 +285,14 @@ def main():
         pos = float(x["position"])
         pg = pg.replace(f"https://{dominio}", "")
         print(f"| {q} | {pg} | {pos:.1f} | {int(x['impressions'])} | {int(x['clicks'])} | {banda(pos, int(x['impressions']))} |")
+    print()
+    print("### linhas por PÁGINA para dados/posicoes.md (dimensão `page`, não anonimizada)")
+    print("| página | posição hoje | impressões | cliques | banda |")
+    if not paginas:
+        print("(a API não devolveu página nenhuma nesta janela)")
+    for x in paginas[:60]:
+        print(f"| {x['pagina']} | {x['posicao']:.1f} | {x['impressoes']} | {x['cliques']} | {x['banda']} |")
+
     if urls:
         print()
         print("### URLs não indexadas (URL Inspection)")
