@@ -5,8 +5,8 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-14T19:53Z
-executando_desde: 2026-10-14T20:00Z
+ultima_execucao: 2026-10-14T20:02Z
+executando_desde: null
 bloco_atual: |
   O CODIGO DE CATALOGO DO FABRICANTE GANHOU CAMPO PROPRIO (esquema 13), E COM ELE FECHOU A UNICA
   DIVIDA DE FICHA DESTA ILHA QUE ERA *NOSSA*. Item 1 do despacho da ronda de 14/10 — o unico aberto
@@ -147,6 +147,33 @@ bloco_atual: |
      producao e nao como portao. A (a) parece a certa, porque o problema e o NOME estar fora da
      familia, nao a bancada ser estreita — mas quem decidir confere se algum documento ou registro
      cita o caminho antigo antes de renomear.
+  15-d. E UM SEGUNDO FECHO ENTROU NESTA MESMA EXECUCAO, PELA 18.4: a LEITURA DE SEARCH CONSOLE chegou
+     ao main enquanto eu fechava (meu push foi recusado, fetch + rebase, nunca force push; o commit
+     delas e filho do meu e nao tocou neste arquivo). RESERVEI A ILHA DE NOVO as 20h00Z para fazer
+     este fecho com a reserva na mao. O ITEM 2 DO DESPACHO DE 07/10 — o defeito de instrumento —
+     ESTA FECHADO: dados/search-console-2026-10-14.md traz 509 IMPRESSOES e 4 cliques no total da
+     propriedade (CTR 0,8%, posicao media 6,4) e 40 LINHAS por pagina, contra as 10 que o critério
+     pedia; e a PROVA do defeito esta no proprio arquivo, impressa lado a lado como o conserto de
+     14/10 mandou — a soma da dimensao `query` na MESMA janela da ZERO impressao. O instrumento
+     antigo publicaria "0 impressoes" numa janela de 509.
+  15-e. E O ACHADO QUE VALE MAIS QUE O FECHO: A JANELA DAQUELA LEITURA E 06→12/10 E AS PROMESSAS DE
+     <title> FORAM AO AR EM 14/10. Nenhuma impressao dela viu um titulo novo, entao ela NAO julga a
+     Proposta 1 nem a Proposta 2 — e e por isso que ela vale: e a FOTOGRAFIA DO ANTES que a medicao
+     de CTR nunca teve. A tabela esta no PROMPT.md, acima do diagnostico de CTR, porque "116
+     impressoes / 0 clique" na pagina do betta e facil de ler como "a promessa falhou" quando e a
+     linha de base dela. Das cinco com promessa, UMA SO tinha clique antes (midia filtrante, 2); as
+     outras quatro somavam 243 impressoes e zero clique. E O CONTROLE SAIU MAIS FORTE DO QUE QUANDO
+     FOI DESENHADO: a /calculadora-de-litragem/, sem promessa de proposito, tem 70 impressoes e zero
+     clique — mais volume que tres das quatro com promessa. Quem lhe der promessa antes da leitura
+     seguinte joga fora a melhor linha de base desta medicao.
+  15-f. PROPOSTA 3 REMEDIDA E CONTINUA ABERTA, agora com numero: a URL Inspection daquele arquivo
+     lista /peixes/tetras/ ainda em "Discovered - currently not indexed", com /peixes/acaras/ no
+     mesmo estado, e a ilha em 49 de 52 indexadas (94%). Segue nao sendo da Fundacao — a alavanca e a
+     da 14.7 e pede o Chrome do Raphael. E NAO TRANSCREVI a linha de indexacao.md nem as de
+     posicoes.md que aquele arquivo oferece prontas: a 12.1 diz que o acompanhamento de posicao e da
+     LEITURA SEMANAL, e transcrever eu seria a Fundacao escrevendo a serie que julga o proprio
+     trabalho — o motivo pelo qual a Sentinela existe (secao 19). As linhas estao prontas no arquivo,
+     esperando quem e dono delas.
   16. O PROXIMO PASSO DESBLOQUEADO: NENHUM despacho desta ilha tem item aberto para a Fundacao — o
      que sobra em todos e medicao da leitura semanal, SERP vista com olhos, ou credencial ausente.
      Entao a proxima execucao volta a FILA, e o item nomeado nela com criterio escrito e o bloco que

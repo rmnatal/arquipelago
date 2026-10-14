@@ -14,7 +14,7 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
-## 2026-10-14 19h16Z–19h53Z — O CÓDIGO DE CATÁLOGO GANHOU CAMPO PRÓPRIO, E A ÚNICA DÍVIDA DE FICHA DESTA ILHA QUE ERA **NOSSA** FECHOU
+## 2026-10-14 19h16Z–20h02Z — O CÓDIGO DE CATÁLOGO GANHOU CAMPO PRÓPRIO, E A ÚNICA DÍVIDA DE FICHA DESTA ILHA QUE ERA **NOSSA** FECHOU
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null` — pela **1.1** isso já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho — e o último commit na pasta da ilha era de **17h14Z**, duas horas antes. Reserva aceita às **19h16Z**, commit `3d9a675`, na primeira tentativa. Nenhum PR aberto e a branch designada em sincronia com o `main`, conferido antes de qualquer coisa (passo 1). Reserva **renovada** às 19h29Z pela 1.1, porque o bloco passou dos 40 minutos.
 
@@ -96,6 +96,20 @@ Ela descobre os portões sozinha pela convenção de nome, então não houve lis
 A **25.9** escreve as três partes: o conserto é do **dado** e nunca da trava; o identificador que o fabricante publica separado do nome ganha **campo próprio**, declarado em todo registro e conferido como recorte literal do `modelo`; e o que a trava deixa de exigir **volta como confirmação opcional** com a assimetria da medida conflitante — sem essa metade o campo é só afrouxamento com nome bonito. Mais as duas coisas que custaram caro aqui: **o disfarce** (a recusa não aparece como defeito, aparece como *ausência de oferta*, e toda medição seguinte a confirma, porque medir de novo é rodar a mesma régua) e **a prova** (rodar a régua antiga sobre o banco antigo e a nova sobre o novo, e **contar** quantos vereditos mudaram, em vez de afirmar que não afrouxou).
 
 **O que NÃO virou despacho, e é deliberado:** varri os bancos das irmãs e **nenhum registro delas empacota dois identificadores no `modelo` hoje** — a robometria tem 27 registros, zero com o padrão, e a clubedomosaico não tem banco de produtos nesse formato. Escrever despacho para trabalho que não existe seria inventar fila. A §25.9 dispara no dia em que o caso aparecer, e a **seção 3** proíbe editar arquivo de ilha que não se reservou.
+
+### E UM SEGUNDO FECHO ENTROU NESTA MESMA EXECUÇÃO, PELA 18.4 — A LEITURA DE SEARCH CONSOLE CHEGOU ENQUANTO EU FECHAVA
+
+**O que aconteceu:** o meu primeiro push de fecho foi **recusado** — outra execução tinha chegado ao `main` primeiro, com `dados/search-console-2026-10-14.md` nas três ilhas. `git fetch` + `rebase`, nunca force push, como a seção 1 manda; o commit delas é filho do meu e não tocou no `ESTADO.md`, então o rebase passou limpo. **Reservei a ilha de novo** (20h00Z) para fazer este fecho com a reserva na mão, em vez de editar arquivo de ilha sem ela.
+
+**ITEM 2 DO DESPACHO DE 07/10 — O DEFEITO DE INSTRUMENTO — ESTÁ FECHADO.** O critério era um arquivo `search-console-<data>.md` de 14/10 ou depois com total de impressões da ordem da tela e tabela por página de 10 linhas ou mais. Fechou **com folga**: **509 impressões e 4 cliques** no total da propriedade (CTR 0,8%, posição média 6,4) e **40 linhas** por página. **E a prova do defeito está no próprio arquivo, impressa lado a lado porque foi assim que o conserto de 14/10 a pediu: a soma da dimensão `query` nesta mesma janela dá ZERO impressão.** O instrumento antigo publicaria "0 impressões" numa janela de 509 — a mesma assinatura das "1 de 371" de 07/10, em escala maior. **O conserto funciona, e deixou de ser hipótese.**
+
+**E O ACHADO QUE VALE MAIS QUE O FECHO: A JANELA DESSA LEITURA É 06→12/10, E AS PROMESSAS DE `<title>` FORAM AO AR EM 14/10.** Nenhuma impressão dela viu um título novo, então ela é **incapaz** de aprovar ou reprovar a Proposta 1 e a Proposta 2 — e é exatamente por isso que ela é valiosa: **é a fotografia do ANTES que esta medição de CTR nunca teve.** Escrevi a tabela no `PROMPT.md`, acima do diagnóstico de CTR, porque `116 impressões / 0 clique` na página do betta é fácil de ler como "a promessa falhou" quando é a linha de base dela. Das cinco páginas que ganharam promessa, **uma só tinha clique antes** (mídia filtrante, 2); as outras quatro somavam **243 impressões e zero clique**.
+
+**E O CONTROLE SAIU MAIS FORTE DO QUE QUANDO FOI DESENHADO:** a `/calculadora-de-litragem/`, que ficou **sem** promessa de propósito, tem **70 impressões e zero clique** — mais volume que três das quatro calculadoras com promessa. Controle com volume é controle. Está escrito no `PROMPT.md` que quem lhe der promessa antes da leitura seguinte joga fora a melhor linha de base desta medição.
+
+**PROPOSTA 3 REMEDIDA E CONTINUA ABERTA, agora com número em vez de lembrança:** a seção de URL Inspection daquele arquivo lista `/peixes/tetras/` ainda em **"Discovered - currently not indexed"**, com a irmã `/peixes/acaras/` no mesmo estado, e a ilha em **49 de 52 indexadas (94%)**. Segue não sendo da Fundação — a alavanca é a da 14.7 e pede o Chrome do Raphael.
+
+**O QUE EU NÃO FIZ, e é de propósito:** não transcrevi a linha de `indexacao.md` nem as de `posicoes.md` que aquele arquivo oferece prontas. A **12.1** diz que o acompanhamento de posição é da **leitura semanal**, e as duas séries são artefato dela — transcrever eu seria a Fundação escrevendo a série que julga o próprio trabalho, que é o motivo pelo qual a Sentinela existe (*"quem constrói não aprova o que construiu"*, seção 19). As linhas estão prontas no arquivo, esperando quem é dono delas.
 
 ### O PRÓXIMO PASSO DESBLOQUEADO
 

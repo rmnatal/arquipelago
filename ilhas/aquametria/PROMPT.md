@@ -136,6 +136,25 @@ Decisão do Raphael em 09/10/2026: a regra das páginas por consulta de produto 
 
 **O QUE ESTA LEITURA MEDIU, para ninguém remedir:** 50 de 52 indexadas; 371 impressões e **3 cliques** em 7 dias, posição média 6,7; 32 páginas distintas com impressão (10 lidas, 22 não — ver a ressalva em `dados/posicoes.md`); zero venda medida e **zero clique de afiliado medido**, porque a sessão do Shopee Afiliados está deslogada (não é zero: é não medido).
 
+> **A LINHA DE BASE DE *ANTES* CHEGOU EM 14/10/2026 ÀS 20h0xZ, E ELA NÃO JULGA AS PROPOSTAS — A JANELA DELA ANTECEDE AS PROMESSAS. Lido e escrito aqui para ninguém ler o `0 clique` como veredito.**
+>
+> `dados/search-console-2026-10-14.md` traz a janela **06→12/10**. As promessas de `<title>` da Proposta 1 e da Proposta 2 foram ao ar em **14/10**. **Nenhuma impressão dessa janela viu um título novo**, então ela é incapaz de aprovar ou reprovar as duas — e é *por isso* que ela vale: é a fotografia do **antes** que esta medição nunca teve, e que a Proposta 2 pediu quando mandou deixar a `/calculadora-de-litragem/` sem promessa.
+>
+> | página | promessa em 14/10? | posição | impressões | cliques |
+> |---|---|---|---|---|
+> | `/peixes/bettas/quantos-litros-para-betta/` | sim (Proposta 1) | 7,8 | **116** | **0** |
+> | `/calculadora-de-iluminacao/` | sim (Proposta 2) | 6,6 | 65 | 0 |
+> | `/calculadora-de-midia-filtrante/` | sim (Proposta 2) | 5,6 | 36 | **2** |
+> | `/calculadora-de-potencia-do-aquecedor/` | sim (Proposta 2) | 5,0 | 25 | 0 |
+> | `/calculadora-de-vazao-do-filtro/` | sim (Proposta 2) | 6,1 | 17 | 0 |
+> | `/calculadora-de-litragem/` | **não — é o controle** | 8,1 | **70** | **0** |
+>
+> **O que esta tabela estabelece, e é o que a leitura seguinte vai comparar contra:** das cinco páginas que ganharam promessa, **uma só tinha clique antes** (a mídia filtrante, 2), e as outras quatro estavam em **zero clique com 243 impressões somadas**. O controle estava em **70 impressões e zero clique**. Então o critério da Proposta 1 (*3 ou mais cliques, ou CTR de 2%*) e o da Proposta 2 (*1 ou mais clique em pelo menos duas das quatro*) partem, os dois, de um chão medido e não suposto.
+>
+> **E o controle ficou mais forte do que quando foi desenhado:** a `/calculadora-de-litragem/` tem **70 impressões**, mais que três das quatro calculadoras com promessa. Um controle com volume é controle; um controle de 4 impressões não seria. **Quem der promessa a ela antes da leitura seguinte joga fora a melhor linha de base que esta medição tem.**
+>
+> **A medição das duas propostas continua ABERTA e continua sendo da leitura semanal**, com a janela que *começa* em 14/10. Esta leitura não a adianta em um dia.
+
 ### 1. O PROBLEMA DESTA ILHA DEIXOU DE SER INDEXAÇÃO E PASSOU A SER CTR — e isso vale para o arquipélago inteiro
 
 Nove das dez páginas lidas estão na **banda 4 a 10**, primeira página do Google, e somam **3 cliques em 299 impressões (CTR 1,0%)**. Na posição média 6,7 o CTR esperado de mercado é alto o bastante para que 1,0% seja o diagnóstico, não o ruído — e desta vez a amostra **não é fina**: são 299 impressões.
@@ -160,14 +179,17 @@ Nove das dez páginas lidas estão na **banda 4 a 10**, primeira página do Goog
 - Consulta-alvo declarada: `quantos litros para tetras`. Tudo medido e desmentido: não é órfã, não tem `noindex`, o sitemap foi lido. É orçamento de rastreamento, e a alavanca é a da 14.7 (solicitação manual de indexação), a única alavanca do arquipélago com resultado provado.
 - **O que a Fundação faz aqui: nada de código.** O valor desta proposta é ela não virar bloco. Em 07/10 a Sentinela não conseguiu solicitar a indexação, e isso ficou registrado como **não feito**.
 - **Pronto quando:** a URL Inspection de `/peixes/tetras/` devolver "O URL está no Google".
+- **REMEDIDO EM 14/10/2026 ÀS 20h0xZ e CONTINUA ABERTO, agora com número em vez de lembrança:** a seção de URL Inspection de `dados/search-console-2026-10-14.md` lista `/peixes/tetras/` ainda em **"Discovered - currently not indexed"** — e a irmã `/peixes/acaras/` no mesmo estado. São **49 de 52** indexadas (94%), e as duas mães são duas das três que faltam. **A proposta não se cumpriu e não se desmentiu: ela segue esperando a alavanca da 14.7**, que é solicitação manual de indexação e pede o Chrome do Raphael. Continua **não sendo da Fundação**, e o valor dela continua sendo não virar bloco — o que mudou é que agora o estado está medido na mesma leitura que mediu todo o resto, e não herdado de 07/10.
 
-### 2. DEFEITO DE INSTRUMENTO — `ferramentas/search-console.py` subestimou esta ilha em duas ordens de grandeza — **METADE DE CÓDIGO ENTREGUE EM 14/10/2026; FALTA A PASSADA COM CREDENCIAL**
+### ~~2. DEFEITO DE INSTRUMENTO — `ferramentas/search-console.py` subestimou esta ilha em duas ordens de grandeza~~ — **FECHADO EM 14/10/2026 ÀS 20h0xZ: A PASSADA COM CREDENCIAL ACONTECEU E O CRITÉRIO FECHOU COM FOLGA**
 
 A causa está medida e não mudou: o script lia só a dimensão **CONSULTA**, e o Google anonimiza a consulta de quase toda impressão de cauda longa — 370 das 371 aqui. Ele emitiu "1 impressão, 0 clique" numa janela de 371 e 3.
 
 - **Feito em 14/10/2026:** o script passou a emitir os **totais da propriedade sem dimensão nenhuma** (cliques, impressões, CTR, posição média) e a **tabela por `page`**, que o Google não anonimiza — e imprime a soma da dimensão `query` **ao lado** do total, para a comparação ficar à vista. As duas contas novas (`totais()` e `por_pagina()`) são funções puras e têm portão sem rede: `ferramentas/teste-search-console.py`, 19 afirmações, 0 falha, com o mundo de 07/10 encenado como caso 1.
 - **FALTA, e é só isto:** a passada com credencial. **Não havia credencial neste ambiente** em 14/10/2026 — `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` ausentes, conferidos —, e o critério abaixo só fecha com uma leitura de verdade.
 - **Pronto quando:** `ilhas/<ilha>/dados/search-console-<data>.md` de 14/10 ou depois trouxer, para a aquametria, um total de impressões da mesma ordem do que a Search Console mostra na tela, e uma tabela por página com 10 linhas ou mais.
+- **CUMPRIDO E CONFERIDO ÀS 20h0xZ DE 14/10/2026, pela 18.4.** O arquivo existe — `dados/search-console-2026-10-14.md`, janela **06→12/10** — e o critério fechou nas duas metades, com folga: **509 impressões e 4 cliques** no total da propriedade (CTR 0,8%, posição média 6,4) e **40 linhas** na tabela por página, contra as 10 que o critério pedia. **E a prova do defeito está no próprio arquivo, lado a lado como o conserto mandou imprimir: a soma da dimensão `query` nesta mesma janela dá ZERO impressão.** O instrumento antigo teria publicado "0 impressões" numa janela de 509 — a mesma assinatura das "1 de 371" de 07/10, agora em escala maior. O conserto de 14/10 funciona, e isto não é mais hipótese.
+- **Um detalhe de leitura, para ninguém tratar como defeito:** a soma das 40 linhas por página dá **515** e o total da propriedade dá **509**. Em Search Console a soma de uma dimensão não fecha com o total sem dimensão (amostragem e arredondamento por linha), e a diferença de 6 em 509 é dessa natureza — **quem manda é o total sem dimensão**, que é exatamente o que o conserto passou a emitir.
 
 ## DESPACHO DA SENTINELA — 2026-09-23 (LEITURA SEMANAL, 20h05Z)
 
