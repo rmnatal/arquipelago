@@ -4791,3 +4791,40 @@ Nenhuma das três devolveu erro, então nenhuma edição precisou ser desfeita.
 **Nenhum arquivo além dos 5 nomeados e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de
 ilha, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação. Nenhum contato pessoal de
 terceiros entrou no repositório. Nenhum passo falhou — não há mensagem de erro para registrar neste disparo.
+
+## Disparo de 14/10/2026, 10h03 BRT (13h03 UTC) — troca do foco para a aquametria
+
+**Instrução recebida:** editar SÓ o `foco.md` na raiz — seis linhas (`ilha:`, `desde:`, `decidido_por:`,
+`motivo:`, `historico:`, `fila_decidida_pelo_raphael:`), com o texto dado byte a byte. Assunto do Arquipélago
+(ilha em foco), checagem de assunto passou. Nenhum outro arquivo nomeado.
+
+**Checagem de assunto:** APROVADA. Trata de qual ilha do Arquipélago está em foco (aquametria, clubedomosaico,
+jornadafly) e da fila decidida pelo Raphael. Nada de outro projeto entrou.
+
+`git status --porcelain` (depois do commit do trabalho, antes deste log):
+
+```
+(vazio — árvore limpa)
+```
+
+`git show --stat` do commit que foi ao `main`:
+
+```
+ foco.md | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+```
+
+**Hash que chegou ao `main`:** `044de40bfb42039df4ffa1399d2c9bada39bf38b`
+Confirmado com `git fetch origin main && git log -1 origin/main` → mostra este hash e a mensagem
+"foco: aquametria de 14/10 a 21/10/2026 (decisão do Raphael em 14/10; a troca de 10/10 não tinha sido feita)".
+Push direto em `HEAD:main` aceito na primeira tentativa (83b04d8..044de40), sem rebase e sem force push.
+
+**Contagem do que mudou, conferida relendo o `foco.md` DEPOIS de gravar:** 1 arquivo, 6 linhas trocadas
+(6 inserções, 6 remoções). `ilha: clubedomosaico` → `ilha: aquametria`; `desde: 2026-09-24` →
+`desde: 2026-10-14`; as linhas `decidido_por:`, `motivo:`, `historico:` e `fila_decidida_pelo_raphael:`
+substituídas inteiras pelo texto da instrução. O cabeçalho `# ILHA EM FOCO` e o parágrafo final sobre
+`ilha: nenhuma` ficaram intactos.
+
+**Nenhum arquivo além do `foco.md` e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de
+ilha, nenhum bloco de Fundação executado, nenhum Sync acionado, nenhuma publicação. Nenhum contato pessoal de
+terceiros entrou no repositório. Nenhum passo falhou — não há mensagem de erro para registrar neste disparo.
