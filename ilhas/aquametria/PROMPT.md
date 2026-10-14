@@ -44,6 +44,49 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael)
+
+**Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
+
+**O QUE ESTA LEITURA MEDIU, para ninguém remedir:** 580 impressões e 4 cliques em 7 dias (05→11/10), CTR 0,7%, posição média 6,5, **40 páginas distintas com impressão, as 40 lidas**; "Indexados 52 / Não indexadas 8" no relatório de Indexação; **consulta anonimizada em 100%** (aba CONSULTAS: "Nenhum dado"); venda e clique de afiliado **NÃO medidos** — o painel do Shopee Afiliados desviou para `verify/captcha?...&scene=crawler_item` e resolver CAPTCHA é proibido (12.1 e 25.4). Mercado Livre medido e é **zero de verdade**: 0 clique, 0 pedido, R$ 0 na janela 07→14/10, na conta inteira.
+
+**A RAMPA: a série AUTORIZA dobrar, e não é a rampa que limita esta ilha.** Não gaste bloco perguntando isso de novo — o que trava a URL nova aqui é a seção 30 (SERP brasileira não vista), não a 14.6.
+
+### 1. O PROBLEMA DESTA ILHA CONTINUA SENDO CTR, E AGORA ELE TEM FORMA: NÃO EXISTE BANDA 11 A 20
+
+As 40 páginas com impressão estão entre a posição **2,0 e 10,0**. **Nenhuma** está na banda 11 a 20 — a banda que a 12.1 manda priorizar simplesmente não existe nesta ilha. Ela já está na primeira página e não é clicada: 580 impressões, 4 cliques.
+
+**Consequência prática, e é ela que poupa a próxima execução:** não há lacuna de cobertura de intenção a despachar e não há página de 11–20 a empurrar. **A única alavanca é título e meta, ela já foi puxada em 14/10, e mexer nela de novo antes de 21/10 destrói a medição.** Nenhum item desta seção é trabalho de código.
+
+### 2. ~~PROPOSTA 1 (betta)~~ e ~~PROPOSTA 2 (as cinco calculadoras)~~ de 07/10 — **NÃO FECHARAM E NÃO FORAM REPROVADAS: A JANELA MEDIDA É ANTERIOR À TROCA. ROLAM PARA 21/10.**
+
+A janela desta leitura é **05→11/10**. As promessas de `<title>` subiram em **14/10**. Os números abaixo são, portanto, a **linha de base** do teste, não o resultado dele — e quem os ler como resultado vai concluir o contrário do que eles dizem.
+
+- **Betta:** 125/1 → **129 impressões, 0 clique**, posição 8,1 → 7,8. Critério ainda aberto: 3+ cliques em 7 dias **ou** CTR ≥ 2%.
+- **As quatro trocadas:** mídia filtrante 23/0 → **37/2** (CTR 5,4%, os únicos 2 cliques da semana, **anteriores à troca**); iluminação 26/0 → **70/0**; aquecedor 21/0 → **27/0** (posição 7,1 → 5,1, **a maior subida da ilha — não toque**); vazão 19/0 → **22/0**. Critério ainda aberto: 1+ clique em pelo menos duas das quatro.
+- **O CONTROLE É O ACHADO QUE SALVA O TESTE:** a `/calculadora-de-litragem/`, **parada de propósito**, foi de **27 para 82 impressões** sem ser tocada. O crescimento de +56% da ilha é de mercado, não de título. **Sem este controle, a leitura de 21/10 creditaria às promessas um ganho que elas não produziram.** Quem der promessa a esta página antes de 21/10 destrói o único controle do arquipélago.
+- **Pronto quando:** a leitura de 21/10 registrar os dois critérios acima **com o `<title>` servido no dia copiado para `dados/posicoes.md`**, que aí passa a significar alguma coisa.
+
+### 3. ~~PROPOSTA 3 — `/peixes/tetras/`~~ — **CONTINUA ABERTA, E A ALAVANCA DA 14.7 ESTÁ ESGOTADA HOJE. MEDIDO, NÃO SUPOSTO.**
+
+- A URL Inspection de hoje devolve **"O URL não está no Google — Detectada, mas não indexada no momento"**, com **Último rastreamento N/D**: o Google nunca a rastreou. Está no `wp-sitemap.xml` e nenhuma página de referência foi detectada.
+- **A Sentinela clicou em SOLICITAR INDEXAÇÃO e o Google recusou: "A cota foi excedida — não foi possível processar a solicitação porque sua cota diária foi excedida."** Não é bloqueio da ilha e não é defeito do site.
+- **E A MESMA RECUSA VEIO NA ROBOMETRIA, numa propriedade diferente, na primeira tentativa do dia** (ver o despacho daquela ilha). **Duas propriedades, duas recusas de cota na primeira tentativa** — compatível com cota de CONTA e não de propriedade. **Não afirmo a causa: afirmo as duas recusas.** Se for cota de conta, a 14.7 chama de "a única alavanca com resultado provado" um recurso que as três ilhas DISPUTAM entre si, e isso muda como ela se gasta.
+- **Pronto quando:** a URL Inspection de `/peixes/tetras/` devolver "O URL está no Google".
+
+### 4. ITEM 2 DE 07/10 (a credencial da Search Console) — **CONTINUA ABERTO, E A NUVEM FALHOU DUAS VEZES HOJE**
+
+A Sentinela disparou as MÃOS NO REPOSITÓRIO às **19h42Z** e de novo às **19h47Z** pedindo `python3 ferramentas/search-console.py <ilha>` nas três ilhas no ar. **Nenhum dos dois produziu commit em `origin/main` nem seção no `MAOS-LOG.md`** — conferido no raw com quebra de cache em sete passadas entre 19h43Z e 19h55Z. Toda a medição desta leitura foi feita no Chrome do Raphael.
+
+- **Pronto quando:** existir `ilhas/aquametria/dados/search-console-<data>.md` trazendo total de impressões da mesma ordem da tela (centenas, não unidades) e tabela por página com 10 linhas ou mais.
+- **E ELE GANHOU UM REQUISITO NOVO, medido hoje:** a aba CONSULTAS desta ilha devolve **"Nenhum dado"** nas 580 impressões. O script **não pode** emitir a dimensão `query` como se fosse a medição — ela é vazia aqui. A leitura por `page` é a única que existe nesta ilha, e o conserto de 14/10 acertou em cheio.
+
+### 5. AS TRÊS PROPOSTAS DE ACELERAÇÃO DESTA SEMANA (12.1) — **SÃO ZERO, E O ZERO É A PROPOSTA**
+
+A 12.1 permite até três. **Esta leitura propõe nenhuma, de propósito, e o motivo é ROI:** toda alavanca desta ilha está ou puxada e não medida (título e meta, 14/10), ou esgotada por cota de terceiro (solicitação de indexação), ou travada por falta de SERP brasileira vista com os olhos (seção 30). **Propor um quarto trabalho em cima de três medições em curso é somar variáveis a quem já não consegue atribuir nada.** A semana de 14→21/10 tem um trabalho só: deixar quieto e medir.
+
+**O ÚNICO TRABALHO QUE VALE DINHEIRO AQUI E NÃO É DA FUNDAÇÃO** continua sendo o item 1 do despacho do Raphael de 09/10: abrir a SERP brasileira das 14 consultas `nao-medida`, começando por `luminária de LED para aquário plantado`. Com 580 impressões e 4 cliques, URL nova em consulta aprovada vale mais que qualquer ajuste de página existente.
+
 ## DESPACHO DA SENTINELA — 2026-10-14 (RONDA DIÁRIA TÉCNICA, 14h5xZ, medida no Chrome do Raphael)
 
 **Isto tem prioridade sobre a fila.** Nesta ronda, porém, **não há item a aplicar: zero defeito novo e zero conserto.** O que está escrito aqui é medição, para a Fundação não remedir, e duas reconferências que fecharam.

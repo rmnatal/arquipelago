@@ -124,7 +124,7 @@ executando_desde: null   # limpo as 10h3xZ de 14/10/2026 pela propria execucao q
                          # anterior
                                       # reservou as 10h20Z e limpou as 11h0xZ, e o ultimo commit na pasta da ilha
                                       # e de 10h59Z — mais de 40 minutos atras, entao a 1.1 nao tinha o que desempatar.
-ultima_ronda: 2026-10-12T15:00Z   # RONDA DIÁRIA TÉCNICA da Sentinela (a leitura semanal mais recente segue sendo a de 07/10 20h35Z). ZERO defeito de ilha nas 31 URLs; o TESTE DE VIDA DA 25.4 VOLTOU A FUNCIONAR — 24 de 24 itens medidos, 0 morto, 0 esgotado, depois de tres rondas em zero.
+ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela, medida no Chrome do Raphael (a leitura pela nuvem falhou em dois disparos, 19h42Z e 19h47Z, sem commit e sem MAOS-LOG). 101 impressoes e 3 CLIQUES em 7 dias, CTR 3,0% — a melhor conversao do arquipelago — e posicao media 7,2. A RAMPA ESTA PARADA pela 14.6: 21 URLs/18 indexadas (86%) em 07/10 contra 32/20 (63%) hoje; 11 URLs publicadas na semana e 2 indexadas, e nove delas o Google nem conhece. Nenhuma leva nova ate a leitura de 21/10. Cano de links contado e limpo: 43 publicaveis, 0 sem url_busca, 19 sem url_produto, todos degrau 4 com causa escrita. Venda da Shopee NAO medida (painel em CAPTCHA); Mercado Livre em zero. A ronda diaria tecnica mais recente e de 12/10 15h00Z.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor

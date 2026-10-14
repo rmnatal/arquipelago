@@ -45,6 +45,44 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael)
+
+**Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
+
+**O QUE ESTA LEITURA MEDIU:** 11 impressões e 0 clique em 7 dias (05→11/10), CTR 0%, posição média 8,6; 10 de 14 indexadas; consulta anonimizada em 100%. Venda **não medida** (painel do Shopee Afiliados desviou para `verify/captcha`, e resolver CAPTCHA é proibido); Mercado Livre medido em **zero de verdade** na conta inteira.
+
+### 1. DEFEITO DE RECEITA — **3 REGISTROS DO BANCO ESTÃO SEM O PISO DA 25.2, E É O DEFEITO MAIS GRAVE DA SEÇÃO 25. CONTADO E NOMEADO, NÃO ESTIMADO.**
+
+Contei os 57 registros com bloco `afiliado` de `dados/pecas.json` do `main`. **Três estão com `url_busca` e `url` em string VAZIA**, e com `degrau`, `plataforma`, `coletado_em` e `motivo_sem_url_busca` todos `null`:
+
+- **`multi-pr684`** (marca `multi`, tipo `filtro`)
+- **`multi-pr550`** (marca `multi`, tipo `filtro`)
+- **`xiaomi-s20-acessorios`** (marca `xiaomi`, tipo `kit`)
+
+**Por que isto é o pior item desta lista, e não um detalhe de preenchimento:** a 25.2 diz, textual, que *"item sem `url_busca` é defeito da 19.1, sempre, em qualquer degrau"* e que *"não existe item publicável sem piso"*. Um item sem piso é o único que faz a página ficar **sem saída de compra** — não um link ruim: nenhum. E a 25.2-b criou, em 18/09, uma **trava no gerador do banco** justamente para isto: registro publicável não entra sem que o encurtamento tenha sido TENTADO, e *"ausente é diferente de tentado-e-falhou, e essa distinção é a regra inteira"*. Nestes três o campo de tentativa é **ausente**: `coletado_em: null` e `motivo_sem_url_busca: null`. **A trava existe e estes três passaram por ela.** É exatamente a cicatriz que a própria 25.2-b registra nesta ilha em 18/09 ("de 73 publicáveis e zero sem piso para 95 e 22 sem") — portão que não cobre o caminho novo deixa passar sempre.
+
+**A Sentinela NÃO consertou e explica por quê:** conserto aqui é rodar o coletor e gravar no banco, e a seção 12 proíbe a Sentinela de acrescentar ou mexer em dado de catálogo; e o conserto de verdade não é preencher três campos à mão, é descobrir **por onde** eles entraram sem passar pela trava.
+
+- **Pronto quando:** (a) os três registros tiverem `url_busca` e `url_busca_produto` preenchidos pelo gerador, com `degrau`, `plataforma` e `coletado_em` gravados — ou, se a Open API não devolver nada, `motivo_sem_url_busca` escrito com a causa E a última tentativa separadas pelo marcador, como a 25.4-b.3 manda; (b) existir um portão sem rede que **reprove** registro publicável com `url_busca` vazia ou ausente, com mutação provando que ele não é inerte; (c) `python3 ferramentas/bancada.py` verde com esse portão dentro.
+- **E A PERGUNTA QUE O BLOCO TEM DE RESPONDER POR ESCRITO, porque ela vale mais que os três registros:** por onde eles entraram? Se foi carga manual, a trava precisa cobrir a carga manual. Se o gerador aceita string vazia como "preenchido", a trava está medindo presença de campo e não presença de link — e aí ela está verde em todo o banco pelo motivo errado.
+
+### 2. INDEXAÇÃO — A LEVA DE 21/09 ANDOU UM DEGRAU EM 23 DIAS, E A ALAVANCA DA 14.7 ESTÁ ESGOTADA
+
+- `/pecas/filtros/` saiu de **"URL is unknown to Google"** e hoje é **"Detectada, mas não indexada no momento"**, com **Último rastreamento N/D**. É progresso real e é lento: 23 dias para o Google admitir que a URL existe.
+- **A Sentinela clicou em SOLICITAR INDEXAÇÃO e o Google recusou: "A cota foi excedida".** A mesma recusa veio na aquametria, propriedade diferente, na primeira tentativa do dia. **Duas propriedades, duas recusas** — compatível com cota de CONTA, não de propriedade. A causa não foi medida; as duas recusas foram.
+- **Se a cota for de conta, a 14.7 precisa de uma frase que não tem:** qual ilha gasta a cota do dia. Hoje as três disputam o mesmo recurso sem ninguém decidir, e a ilha que mais precisa dela — esta — é a que menos tem quem peça por ela.
+- **Nada disto é bloco de código.** Não escreva bloco para "melhorar a indexação das páginas de peça": elas não têm defeito medido.
+
+### 3. O QUE **NÃO** É PARA FAZER NESTA ILHA, e cada um tem o número que o proíbe
+
+- **Não mexa em `/qual-peca-serve-no-meu-robo-aspirador/`** — terceira melhora seguida (9,0 → 7,3 → 7,0). 12.1.
+- **Não mexa no `<title>` de `/quantos-pa-o-robo-aspirador-precisa/`** — é o único teste de CTR com série do arquipélago e a página está subindo. 12.1.
+- **Não trabalhe as duas linhas da banda 11 a 20** (`/quantos-m2-.../` em 11,0 e `/filtro-universal-.../` em 13,0): elas têm **1 impressão cada**. A banda do dinheiro existe aqui e não tem amostra. Trabalhar 1 impressão é gastar execução em ruído.
+
+### 4. AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — **UMA SÓ, E ELA É O ITEM 1**
+
+Com 11 impressões na semana, nenhuma consulta nomeada e duas linhas de 1 impressão na banda do dinheiro, **não há consulta a nomear** — e a 12.1 é explícita de que proposta sem consulta nomeada é opinião. A única coisa desta ilha que move dinheiro hoje é o **item 1**: três páginas servindo peça sem nenhuma porta de compra. Isso não precisa de tráfego para valer: o leitor que chega hoje já não consegue comprar.
+
 ## DESPACHO DO RAPHAEL — 2026-10-09 — PÁGINAS PELO NOME DO PRODUTO
 
 Decisão do Raphael em 09/10/2026: a regra das páginas por consulta de produto vale para toda ilha. A regra inteira está na última seção do ARQUIPELAGO.md ("PÁGINAS PELO NOME DO PRODUTO"). Nesta ilha:

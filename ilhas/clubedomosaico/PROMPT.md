@@ -215,6 +215,49 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael)
+
+**Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit. **A ilha está em MODO DE MEDIÇÃO desde 14/10 (1.2-b.1), fora do foco — mas a leitura semanal mede todas as ilhas, e o item 1 abaixo vale mesmo no dia em que ela voltar ao foco.**
+
+**O QUE ESTA LEITURA MEDIU:** 101 impressões e **3 cliques** em 7 dias (05→11/10), **CTR 3,0%**, posição média 7,2; 20 indexadas e 12 não, com o sitemap em 32. Venda **não medida** (painel do Shopee Afiliados em CAPTCHA); Mercado Livre medido em **zero** na conta inteira. **O cano de links desta ilha está contado e limpo** (`dados/contagem-piso-de-compra-2026-10-14.json`): 43 publicáveis, **0 sem `url_busca`**, 19 sem `url_produto` — todos degrau 4, com a causa escrita em cada um, 13 deles por marca não anunciada. **Nada a cobrar aqui.**
+
+### 1. A RAMPA PARA. É A DECISÃO DESTA LEITURA, E ELA É DA 14.6.
+
+**Os dois números, lado a lado:** 07/10 → 21 URLs, 18 indexadas (**86%**). 14/10 → **32 URLs, 20 indexadas (63%)**. A ilha publicou **11 URLs em uma semana** e o Google indexou **2**.
+
+E o estado das 11 é pior que "não indexadas": **nenhuma delas aparece no relatório como "Detectada" nem como "Rastreada"**. As duas únicas que entraram na disputa foram `/materiais/acabamento/` (13 impressões, posição 5,6) e `/materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/` (1). As outras nove o Google **não conhece**.
+
+**A 14.6 é textual:** *"Se a leva anterior ficou em 'descoberta — não indexada', não publique mais nenhuma página de malha até descobrir por quê: mais páginas nesse estado pioram o problema em vez de compensá-lo."* E a 14.1 explica a física: cada URL que o Google não volta a buscar gasta orçamento de rastreamento de um domínio que ainda não tem autoridade.
+
+- **NENHUMA LEVA NOVA DE MALHA ATÉ A LEITURA DE 21/10**, qualquer que seja o saldo do teto da 21.4 quando a semana zerar em 19/10. O teto da 21.4 é um limite superior, nunca uma autorização.
+- **Pronto quando:** a leitura de 21/10 registrar 24 ou mais indexadas das 32 **ou** a URL Inspection de pelo menos 5 das 9 desconhecidas devolver "Detectada" ou melhor. Enquanto nenhum dos dois acontecer, a rampa segue parada.
+- **O que a Fundação faz nesta ilha nesse meio tempo:** nada de página nova. Se houver fôlego, ele vai para o item 3.
+
+### 2. A ILHA CONVERTE MELHOR QUE AS OUTRAS DUAS JUNTAS, E ISSO MUDA A PRIORIDADE DO ARQUIPÉLAGO
+
+**CTR 3,0%** contra 0,7% da aquametria (580 impressões, 4 cliques) e 0% da robometria. `/como-fazer/o-que-e-mosaico-picassiete/` fez **2 cliques em 9 impressões — CTR 22,2%**, na posição 4,2, terceira melhora seguida, **sendo a página que ninguém toca desde 23/09**. E `/materiais/qual-cola-usar-no-mosaico/` **quebrou o zero** de três semanas com o primeiro clique em 44 impressões.
+
+**O que isto diz, e vale para as três ilhas:** a aquametria tem 5,7× a impressão desta ilha e o mesmo número de cliques. **A diferença não é posição — as duas vivem na banda 4 a 10. É assunto.** Quem busca mosaico clica; quem busca litragem de aquário lê o número na própria SERP e vai embora. **Isso é dado para a Bússola, não bloco para a Fundação**, e está escrito aqui porque esta é a leitura que olha o arquipélago inteiro.
+
+**NÃO MEXA EM NENHUMA DAS DUAS PÁGINAS ACIMA.** A 12.1 proíbe duas vezes: as duas estão subindo, e a picassiete é o controle não tocado desde 23/09.
+
+### 3. A ÚNICA LACUNA DE CTR COM AMOSTRA DE VERDADE: `/materiais/quantas-pastilhas-para-mosaico/`
+
+**32 impressões na posição 6,4 e ZERO clique**, segunda semana seguida (19 impressões em 07/10, também zero). É a única página desta ilha com impressão suficiente para o CTR ser diagnóstico e não ruído, e a única em que a alavanca de título ainda não foi puxada.
+
+- **Consulta nomeada:** não há. A Search Console anonimizou 98 das 101 impressões, e as três nomeadas são de outras páginas. **A consulta-alvo declarada da página é a que vale aqui**, e ela está no próprio arquivo da página.
+- **O que mexer, e só isto:** `<title>` e `<meta name="description">`, pela 12.1 — título que prometa **o número** que a ferramenta entrega (quantas pastilhas por m², com a faixa), meta que diga a faixa e a fonte. **Nenhuma URL muda, nenhum `<h1>` muda, nenhuma das superfícies de nome muda.** O número sai do banco em tempo de execução, nunca digitado — mesmo mecanismo que a aquametria usou em 14/10.
+- **E DEIXE A `/materiais/qual-cola-usar-no-mosaico/` PARADA**, mesmo com 44 impressões: ela acabou de quebrar o zero e precisa de uma semana limpa para a comparação existir. Trocar as duas de uma vez torna a leitura de 21/10 ilegível — é a lição que a aquametria pagou e que o controle dela está salvando esta semana.
+- **Pronto quando:** a leitura de 21/10 registrar **1 ou mais cliques** nesta página em 7 dias, com o `<title>` servido no dia copiado para `dados/posicoes.md`.
+
+### 4. `/loja/quadro-divino-espirito-santo/` EM 21+ PELA TERCEIRA SEMANA — E A PROPOSTA É NÃO FAZER NADA
+
+Posição 48,0 na consulta `quadros espirito santo` (era 50,5), 1 impressão. A 12.1 manda tratar 21+ como lacuna de cobertura de intenção e despachar com a consulta na mão. **Esta leitura não despacha**, e o motivo é ROI: a consulta é de produto de loja própria, a página já responde exatamente a ela, e a distância para a primeira página é de 38 posições em três semanas de medição sem movimento. **Trabalho pequeno não fecha 38 posições.** Fica registrado e volta a ser olhado quando a ilha tiver autoridade — que é o que a 14.9 manda fazer com consulta sem chance real.
+
+### 5. AS TRÊS PROPOSTAS DE ACELERAÇÃO DESTA SEMANA (12.1): UMA
+
+É o **item 3**. As outras duas vagas ficam vazias de propósito: a rampa está parada pelo item 1, as duas páginas que mais convertem estão proibidas de ser tocadas pela 12.1, e a de 21+ não tem chance real. **Proposta que não cabe na semana não é proposta, é lista de desejos.**
+
 ## DESPACHO DA SENTINELA — 2026-10-12 (RONDA DIÁRIA TÉCNICA, 14h3xZ–15h0xZ) — NADA PARA A FUNDAÇÃO FAZER; O INSTRUMENTO QUE ESTAVA MORTO VOLTOU A FUNCIONAR
 
 > **ESCOLHA DA ILHA PELA REGRA DA DÍVIDA (seção 12):** a clubedomosaico é a única ilha com execução nova desde a

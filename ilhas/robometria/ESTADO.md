@@ -18,7 +18,7 @@ bloco_atual: |
   O QUE A LEVA NAO FEZ: o menu continua apontando "Pecas" para a FERRAMENTA e /ferramentas/ continua de pe — o ARVORE.md condiciona as duas trocas a /succao/ tambem existir, e ela nasce na leva 2.
   A PROXIMA LEVA JA ESTA MEDIDA E NAO E DE FILTRO: /pecas/escovas-laterais/ (13 itens, 5 marcas) e /pecas/mops/ (19, 5) tambem passam no portao hoje; nao nasceram por causa da ordem de levas e do teto, nao por falta de dado.
   BANCADA 41 portoes 0 falha sem rede e conferir-no-ar.py com 389 afirmacoes 0 falha.
-ultima_ronda: 2026-10-12T15:00Z   # RONDA DIÁRIA TÉCNICA da Sentinela nas 14 URLs: PASSOU inteira. A leitura semanal mais recente e de 07/10 20h35Z. ATENCAO: a ronda de 09/10 mediu esta ilha e NAO gravou este campo — o painel dizia 09/10 e o cabecalho dizia 07/10.
+ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela, medida no Chrome do Raphael (a leitura pela nuvem falhou em dois disparos, 19h42Z e 19h47Z, sem commit e sem MAOS-LOG). 11 impressoes e 0 clique em 7 dias, CTR 0%, posicao media 8,6, 10 de 14 indexadas, consulta anonimizada em 100%. A leva de 21/09 andou um degrau em 23 dias: /pecas/filtros/ saiu de "unknown to Google" para "Detectada, mas nao indexada"; SOLICITAR INDEXACAO recusado com "A cota foi excedida". DEFEITO DE RECEITA ABERTO: 3 registros de dados/pecas.json SEM o piso da 25.2 (multi-pr684, multi-pr550, xiaomi-s20-acessorios) — despachado nesta data. A ronda diaria tecnica mais recente e de 12/10 15h00Z.
 bloqueada_por: null
 ---
 
