@@ -4891,3 +4891,86 @@ nenhuma reserva de ilha, nenhum cabeçalho de estado fora da linha pedida, nenhu
 nenhum Sync acionado, nenhuma publicação, nenhuma conta criada. Nenhum contato pessoal de terceiros entrou no
 repositório. Nada foi reformatado, corrigido ou acrescentado além do texto que veio na instrução. Nenhum passo
 falhou — não há mensagem de erro para registrar neste disparo.
+
+---
+
+## Disparo de 14/10/2026 17:00 Brasília (19:57 UTC) — leitura da Search Console pela nuvem, três ilhas
+
+**Assunto conferido antes do `git fetch`:** as três ilhas nomeadas (aquametria, robometria, clubedomosaico),
+a pasta `dados/` de cada uma e `ferramentas/search-console.py` são do Arquipélago. Instrução executada.
+
+**O que a instrução mandou:** para cada ilha em `[aquametria robometria clubedomosaico]`, rodar
+`python3 ferramentas/search-console.py <ilha> 2>&1 | grep -v '^\[notice\]\|WARNING: Running pip'` e gravar a
+saída inteira em `ilhas/<ilha>/dados/search-console-2026-10-14.md` (criando a pasta se faltasse); conferir
+`grep -c PRIVATE` = 0 em cada arquivo; commit `Leitura Search Console pela nuvem — 2026-10-14`;
+`git push origin HEAD:main`; confirmar com `git log -1 origin/main`. O valor de `GOOGLE_SA_B64` nunca foi
+impresso, gravado nem commitado — a variável só foi lida pelo próprio script, e a única checagem feita sobre
+ela aqui foi se estava definida (o comprimento, não o conteúdo).
+
+```
+$ git status --porcelain
+A  ilhas/aquametria/dados/search-console-2026-10-14.md
+A  ilhas/clubedomosaico/dados/search-console-2026-10-14.md
+A  ilhas/robometria/dados/search-console-2026-10-14.md
+```
+(nenhuma pasta precisou ser criada: as três `ilhas/<ilha>/dados/` já existiam; `mkdir -p` rodou e não mexeu em nada)
+
+```
+$ git diff --stat
+ .../aquametria/dados/search-console-2026-10-14.md  | 60 ++++++++++++++++++++++
+ .../dados/search-console-2026-10-14.md             | 34 ++++++++++++
+ .../robometria/dados/search-console-2026-10-14.md  | 24 +++++++++
+ 3 files changed, 118 insertions(+)
+```
+
+**Hash que chegou ao `main`:** `af889ba12f49264a349fcdc008787c7e8771d760`
+O primeiro `git push origin HEAD:main` foi recusado (non-fast-forward: o `main` tinha andado de `4216f5d` para
+`d0b71b0` enquanto as leituras rodavam). `git fetch origin main && git rebase origin/main` rebaseou o commit
+único sem conflito, e o segundo push foi aceito (`d0b71b0..af889ba`). **Nenhum force push.** Confirmado com
+`git fetch origin main && git log -1 origin/main` → mostra `af889ba` e a mensagem
+"Leitura Search Console pela nuvem — 2026-10-14", com os três arquivos no `git show --stat`.
+
+**A checagem de vazamento, feita relendo cada arquivo DEPOIS de gravar:** `grep -c PRIVATE` devolveu **0** nos
+três; por segurança também `grep -c 'GOOGLE_SA\|BEGIN\|service_account'` devolveu **0** nos três. Nenhum
+arquivo foi apagado, e não houve "vazou" a responder.
+
+**Contagem do que mudou, conferida relendo os três arquivos no disco depois de gravar** (`git show --numstat`
+mais `wc` em cada arquivo): 3 arquivos, **118 inserções e 0 remoções** (os três são novos), assim repartidas —
+`ilhas/aquametria/.../search-console-2026-10-14.md` 60 linhas e 3.603 bytes, com 40 linhas de página e 3 URLs
+não indexadas (totais da propriedade: 4 cliques, 509 impressões, posição média 6,4);
+`ilhas/clubedomosaico/.../search-console-2026-10-14.md` 34 linhas e 2.116 bytes, com 7 linhas de página e 8
+URLs não indexadas (2 cliques, 86 impressões, posição média 7,5); e
+`ilhas/robometria/.../search-console-2026-10-14.md` 24 linhas e 1.294 bytes, com 4 linhas de página e 4 URLs
+não indexadas (0 clique, 11 impressões, posição média 8,6).
+
+**UM PASSO FALHOU NA PRIMEIRA TENTATIVA, e a mensagem inteira fica registrada aqui.** A primeira execução de
+`clubedomosaico` saiu com código 1 e gravou 3.945 bytes de traceback em vez de leitura. O erro, na chamada da
+URL Inspection:
+
+```
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='searchconsole.googleapis.com', port=443):
+Max retries exceeded with url: /v1/urlInspection/index:inspect
+(Caused by ProxyError('Unable to connect to proxy',
+RemoteDisconnected('Remote end closed connection without response')))
+...
+  File "/home/user/arquipelago/ferramentas/search-console.py", line 242, in main
+    ins = sess.post(f"{API}/v1/urlInspection/index:inspect",
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='searchconsole.googleapis.com', port=443):
+Max retries exceeded with url: /v1/urlInspection/index:inspect
+(Caused by ProxyError('Unable to connect to proxy',
+RemoteDisconnected('Remote end closed connection without response')))
+```
+
+Era queda do proxy de saída da nuvem no meio da chamada, não defeito do script nem da credencial:
+`aquametria` e `robometria` tinham rodado limpas no mesmo disparo, com a mesma credencial, minutos antes.
+O MESMO comando foi repetido uma vez, sem nenhuma alteração, e saiu com código 0 e leitura completa
+(2.116 bytes), que é o que está no `main`. O traceback NÃO foi commitado — o arquivo da ilha tem a leitura,
+não o erro. Fica o registro de que a leitura de 14/10 de `clubedomosaico` custou duas execuções, e de que
+uma queda de proxy nesse ponto do script derruba o disparo inteiro daquela ilha: quem ler só o arquivo não
+vê isso, e é para isso que esta seção existe.
+
+**Nenhum arquivo além dos três que a instrução nomeou e deste log foi tocado.** Nenhum `executando_desde`,
+nenhuma reserva de ilha, nenhum cabeçalho de estado, nenhum bloco de fila executado, nenhum Sync acionado,
+nenhuma publicação, nenhuma conta criada, nenhum `ARQUIPELAGO.md` lido para decidir o que fazer. Nenhum
+contato pessoal de terceiros entrou no repositório. As saídas foram gravadas como vieram, sem reformatar,
+corrigir nem acrescentar linha.
