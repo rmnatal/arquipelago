@@ -20,6 +20,7 @@
         "Canister Eheim 2213"
       ],
       "gtin": null,
+      "codigo_catalogo": "2213",
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110"
@@ -55,20 +56,19 @@
       },
       "afiliado": {
         "plataforma": "shopee",
-        "url": "https://s.shopee.com.br/6fh6u1wYls",
+        "url": "https://s.shopee.com.br/AUumPW1G1m",
         "sub_id_1": "aquametria",
         "sub_id_2": "C3",
         "rel": "sponsored",
-        "verificado_em": "2026-09-07",
+        "verificado_em": "2026-10-14",
         "anuncio_shopee": "Filtro Canister Classic 250 440lh Eheim - 2213",
-        "degrau": null,
-        "url_produto": null,
-        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina. || ULTIMA TENTATIVA PELA OPEN API em 2026-10-14: a escada de palavra-chave da 25.6 foi percorrida inteira pela Open API (degraus 1, 2, 4) e nenhum candidato passou nas travas de casamento da 25.7 mais a da variante desta ilha. As recusas de hoje, na ordem em que sairam: degrau 1: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213) | degrau 1: \"Filtro Canister Ehein Classic 250 - 440 L/h ( 2213 ) 110v\" — o titulo nao traz a marca Eheim | degrau 1: \"Filtro Canister Ehein Classic 250 - 440 L/h ( 2213 ) 110v\" — o titulo nao traz a marca Eheim | degrau 2: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213) | degrau 4: \"Filtro Canister Classic 250 440lh Eheim - 2213\" — o titulo nao traz o codigo (classic 250 2213)",
+        "degrau": 3,
+        "url_produto": "https://shopee.com.br/product/523885308/19098113085",
         "url_busca": "https://s.shopee.com.br/2qUnDcMDf0",
-        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
+        "observacao": "Link curto gerado pela Open API de afiliado da Shopee (25.6) em 14/10/2026, no mesmo ato em que a url_produto crua foi colhida — o par inteiro da mesma oferta, como a 25.4-b.1 exige. SUBSTITUIU o link de 07/09/2026, gerado no painel e cuja url crua se perdeu: a saude daquele era desconhecida e permaneceria desconhecida, porque a 25.4 proibe conferir link de afiliado clicando nele. O que destravou a reescolha foi o campo codigo_catalogo (esquema 13, 14/10/2026): o codigo 2213 saiu de dentro de modelo e o portao de casamento parou de exigir no titulo um codigo que o varejo brasileiro escreve separado. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
         "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20250%20%282213%29%20filtro%20aquario",
         "piso_conferido_em": "2026-09-14",
-        "intestavel": true,
+        "intestavel": false,
         "encurtamento_tentado_em": "2026-10-14"
       },
       "fontes": [
@@ -120,6 +120,7 @@
         "Canister Sunsun 303B"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -214,6 +215,7 @@
         "Filtro Canister Atman AT-3338 1200 L/h"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -316,6 +318,7 @@
         "Filtro Canister Atman AT-3338S 1500 L/h"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "220"
@@ -413,6 +416,7 @@
         "Tidal 55 HOB"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -526,6 +530,7 @@
         "Atman Hang On HF-0400"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -648,6 +653,7 @@
         "Atman Hang On HF-0600"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -747,6 +753,7 @@
         "Atman Hang On HF-0800"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -867,6 +874,7 @@
         "Atman AT3336"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -951,6 +959,7 @@
         "Filtro externo mini canister Sunsun HW-603B"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -1087,6 +1096,7 @@
         "Canister Sunsun HW-302"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "canister",
@@ -1155,6 +1165,7 @@
         "Ocean Tech Canister 1000 L/h"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "canister",
@@ -1234,6 +1245,7 @@
         "Sunsun HW 702 A"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "canister",
@@ -1324,6 +1336,7 @@
         "Filtro Canister HW-702-B"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "220"
@@ -1440,6 +1453,7 @@
         "Mini canister hang-on Maxxi MP-600"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": null,
@@ -1513,6 +1527,7 @@
         "Filtro externo SunSun XBL-600"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "hang-on",
@@ -1593,6 +1608,7 @@
         "Canister de pendurar Aquaverso APK-600"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": null,
@@ -1667,6 +1683,7 @@
         "Eheim classic 2217 plus"
       ],
       "gtin": null,
+      "codigo_catalogo": "2217",
       "disponibilidade_br": "vendido",
       "voltagem": [
         "220"
@@ -1770,6 +1787,7 @@
         "Eheim classic 2217 plus"
       ],
       "gtin": null,
+      "codigo_catalogo": "2217",
       "disponibilidade_br": "vendido",
       "voltagem": [
         "127"

@@ -137,6 +137,43 @@ CASOS = [
      'Filtro Canister Eheim Classic 250 2213 220v', True),
     ('eheim-classic-250-2213', 'Filtro Canister Eheim Classic 600 2217', False),
 
+    # ---------------------------------------------------------------------
+    # O CODIGO DE CATALOGO GANHOU CAMPO PROPRIO (14/10/2026, esquema 13), E
+    # ESTES SEIS CASOS SAO A DIVIDA QUE ELE PAGOU. O anuncio da primeira linha e
+    # REAL, esta guardado em `afiliado.anuncio_shopee` deste registro desde
+    # 07/09/2026, e foi RECUSADO por doze dias com o motivo "o titulo nao traz o
+    # codigo (classic 250 2213)": o campo `modelo` empacotava o nome da linha e
+    # o codigo do fabricante num campo so, o portao os exigia CONTIGUOS, e o
+    # varejo brasileiro escreve os dois separados com a vazao e a marca no meio.
+    # Era a UNICA divida de ficha desta ilha que era nossa (as outras 11 sao
+    # mercado, medidas em dados/divida-25-4-b-2026-10-14.md).
+    ('eheim-classic-250-2213',
+     'Filtro Canister Classic 250 440lh Eheim - 2213', True),
+    # O TITULO QUE CALA O CODIGO NAO BARRA, e e esta metade que faz o campo ser
+    # confirmacao OPCIONAL em vez de exigencia nova. Se esta afirmacao cair, o
+    # conserto virou outro jeito de escrever o mesmo defeito.
+    ('eheim-classic-250-2213', 'Filtro Canister Eheim Classic 250 440 L/h', True),
+    # E A OUTRA METADE, que e o que paga o afrouxamento: o codigo de um IRMAO no
+    # titulo barra sempre. "Classic 250 ... 2217" nao e um anuncio incompleto do
+    # 2213, e um anuncio do 2217 — e essa protecao nao existia antes de o campo
+    # existir, porque antes nenhum registro declarava codigo nenhum.
+    ('eheim-classic-250-2213',
+     'Filtro Canister Eheim Classic 250 - 2217 1000l/h', False),
+    # A GRAFIA DA MARCA CONTINUA BARRANDO. Este titulo tambem e real, foi o
+    # segundo candidato do ensaio de hoje, e foi recusado com razao: o vendedor
+    # escreveu "Ehein".
+    ('eheim-classic-250-2213',
+     'Filtro Canister Ehein Classic 250 - 440 L/h ( 2213 ) 110v', False),
+    # OS DOIS CLASSIC 600 JA CASAVAM EM 24/09/2026 E TEM DE CONTINUAR CASANDO:
+    # o conserto de hoje encurta o codigo base deles de "classic 600 2217" para
+    # "classic 600", e um conserto que quebra o que estava verde nao e conserto.
+    ('eheim-classic-600-2217-220v',
+     'Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v', True),
+    # E A VOLTAGEM CONTINUA SEPARANDO OS GEMEOS com o codigo base mais curto:
+    # os dois 2217 dividem o mesmo codigo, entao quem os separa e a medida.
+    ('eheim-classic-600-2217-127v',
+     'Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v', False),
+
     # A MIDIA E CONSUMIVEL, entao "refil" no titulo dela e o produto — nao uma
     # peca de outro aparelho.
     ('seachem-matrix-1l', 'Seachem Matrix 1L midia biologica refil', True),
@@ -287,6 +324,109 @@ ok('main() monta os registros com os irmaos do mesmo banco',
    'for caminho, r, irmaos in registros' in fonte_main,
    'o laco de main() nao carrega irmaos')
 
+# ---------------------------------------------------------------------------
+# O CODIGO DE CATALOGO DO FABRICANTE (14/10/2026, esquema 13)
+# ---------------------------------------------------------------------------
+# O campo existe porque `modelo` empacotava dois identificadores num campo so, e
+# o portao exige as partes do codigo contiguas no titulo. Ele e lido em dois
+# lugares de sentido oposto, e as duas direcoes sao afirmadas aqui:
+#   `codigo_base()`   TIRA o codigo do que o portao exige  -> afrouxa
+#   `codigo_catalogo_conflitante()` barra o codigo do irmao -> aperta
+# Medir so a primeira deixaria um afrouxamento verde.
+CATALOGO_ESPERADO = {
+    'eheim-classic-250-2213': '2213',
+    'eheim-classic-600-2217-220v': '2217',
+    'eheim-classic-600-2217-127v': '2217',
+}
+for ident, esperado in CATALOGO_ESPERADO.items():
+    reg, _ = registro(ident)
+    ok('%s: codigo de catalogo declarado = %r' % (ident, esperado),
+       reg.get('codigo_catalogo') == esperado,
+       'obtido=%r' % reg.get('codigo_catalogo'))
+
+# A CHAVE EXISTE EM TODO REGISTRO, e null e a declaracao de que o fabricante nao
+# publica codigo separado do nome do modelo. Chave ausente nao declara nada — e
+# a mesma razao do `afiliado.intestavel`: divida escrita em observacao nao se
+# conta. E a regra executavel disto e a V28 do validador; aqui ela e afirmada de
+# novo porque a coleta LE este campo, e campo que a coleta le e portao da coleta.
+for nome, irmaos in BANCO.items():
+    for p in irmaos:
+        ok('%s: declara a chave codigo_catalogo' % p.get('id'),
+           'codigo_catalogo' in p, 'chave ausente no banco de %s' % nome)
+        # E O CODIGO DECLARADO E UM RECORTE DO MODELO, nunca identidade nova.
+        # Esta e a metade que impede o afrouxamento pela porta do DADO: um
+        # codigo que nao esta no modelo tiraria do codigo base um pedaco que
+        # ninguem escreveu, e o portao ficaria folgado sem uma linha de regua
+        # mudar.
+        codigo = p.get('codigo_catalogo')
+        if codigo:
+            ok('%s: o codigo de catalogo esta dentro do modelo' % p.get('id'),
+               coletor.token_no_titulo(codigo, p.get('modelo') or ''),
+               'codigo=%r modelo=%r' % (codigo, p.get('modelo')))
+            ok('%s: e o codigo de catalogo nao e o modelo inteiro' % p.get('id'),
+               bool(coletor.codigo_base(p)),
+               'o registro ficaria sem codigo base')
+
+# O BANCO TEM DE TER O CASO (se deixar de ter, esta afirmacao avisa). Sem um
+# registro que declare codigo de catalogo, as duas regras acima ficam verdes
+# sem exercer nada — e o campo vira decoracao no esquema.
+com_codigo = [p for irmaos in BANCO.values() for p in irmaos if p.get('codigo_catalogo')]
+ok('o banco tem registro com codigo de catalogo declarado',
+   bool(com_codigo), 'nenhum registro declara codigo de catalogo')
+
+# A FUNCAO DO CONFLITO, afirmada nos tres mundos dela. O do meio e o que torna
+# o campo opcional, e e o unico que, se virar False->True, desfaz o conserto.
+_reg_250, _irmaos_f = registro('eheim-classic-250-2213')
+ok('codigo proprio no titulo: confirmacao positiva, nenhum irmao e conferido',
+   coletor.codigo_catalogo_conflitante(
+       _reg_250, _irmaos_f, 'Filtro Canister Classic 250 440lh Eheim - 2213') is None,
+   'o portao achou conflito num titulo que declara o codigo DESTE registro')
+ok('codigo calado no titulo: nao ha conflito',
+   coletor.codigo_catalogo_conflitante(
+       _reg_250, _irmaos_f, 'Filtro Canister Eheim Classic 250 440 L/h') is None,
+   'o portao inventou conflito num titulo que nao declara codigo nenhum')
+ok('codigo do irmao no titulo: o portao devolve o codigo do irmao',
+   coletor.codigo_catalogo_conflitante(
+       _reg_250, _irmaos_f, 'Filtro Canister Eheim Classic 250 - 2217') == '2217',
+   'obtido=%r' % coletor.codigo_catalogo_conflitante(
+       _reg_250, _irmaos_f, 'Filtro Canister Eheim Classic 250 - 2217'))
+# SO IRMAO DA MESMA MARCA: digito igual em outra marca e coincidencia, nao
+# conflito, e barrar por isso seria inventar defeito onde ha so um numero.
+#
+# ESTE CASO E CONSTRUIDO, E A CONSTRUCAO E O PONTO: hoje os TRES registros que
+# declaram codigo de catalogo sao Eheim e moram no mesmo banco, entao a regra da
+# marca nao e exercida por dado nenhum — uma afirmacao tirada do banco de hoje
+# ficaria verde sem medir nada, que e o que esta ilha chama de INERTE. O mundo
+# abaixo e o de amanha: o dia em que outra marca declarar codigo. Quem apagar a
+# regra da marca ve esta linha cair; quem a mantiver, nao.
+_outra_marca = {'id': 'marca-vizinha-fingida', 'marca': 'Atman',
+                'modelo': 'AT-9999', 'codigo_catalogo': '9999'}
+ok('o conflito nao atravessa a marca',
+   coletor.codigo_catalogo_conflitante(
+       _reg_250, list(_irmaos_f) + [_outra_marca],
+       'Filtro Canister Eheim Classic 250 440 L/h 9999') is None,
+   'o portao barrou o Eheim pelo codigo de catalogo de uma Atman')
+# E A DIRECAO OPOSTA, para a afirmacao de cima nao passar por acidente: o mesmo
+# codigo, na mesma marca, BARRA.
+ok('o conflito acontece dentro da marca',
+   coletor.codigo_catalogo_conflitante(
+       _reg_250, list(_irmaos_f) + [dict(_outra_marca, marca='Eheim')],
+       'Filtro Canister Eheim Classic 250 440 L/h 9999') == '9999',
+   'o portao nao barrou com o codigo de um irmao da mesma marca no titulo')
+
+# A FIACAO: o portao do conflito tem de ser CHAMADO por `casa()`. Sem esta
+# afirmacao a funcao pode ficar escrita, testada e nunca executada — que e a
+# mesma armadilha do `main() passa a lista de irmaos` logo acima.
+fonte_casa = inspect.getsource(coletor.casa)
+ok('casa() chama o portao do codigo de catalogo',
+   'codigo_catalogo_conflitante(registro, irmaos, titulo)' in fonte_casa,
+   'o portao do codigo de catalogo nao e chamado dentro de casa()')
+# E ELE RODA FORA DO `if base:`, senao registro sem codigo base perde a trava.
+ok('o portao do codigo de catalogo nao depende de haver codigo base',
+   coletor.casa({'titulo': 'Filtro Canister Eheim Classic 250 - 2217'},
+                dict(_reg_250, modelo='', linha=None), _irmaos_f)[0] is False,
+   'um registro sem codigo base passou com o codigo do irmao no titulo')
+
 # O CODIGO BASE, afirmado valor a valor. E ele que decide as duas coisas acima.
 ESPERADO_BASE = {
     'roxin-ht-1300-q3-25w': 'ht-1300',
@@ -294,7 +434,13 @@ ESPERADO_BASE = {
     'chihiros-wrgb-ii-pro-60': 'wrgb ii pro',
     'seachem-matrix-1l': 'matrix',
     'ista-i-401-45': 'i-401',
-    'eheim-classic-250-2213': 'classic 250 2213',
+    # ERA 'classic 250 2213' ATE 14/10/2026, e o valor antigo e o defeito em
+    # pessoa: ele exigia no titulo um codigo que o varejo brasileiro nunca
+    # escreve contiguo. O `2213` saiu daqui para o campo `codigo_catalogo` e
+    # voltou como confirmacao opcional — ver o bloco do codigo de catalogo logo
+    # abaixo e o cabecalho de `codigo_base()`.
+    'eheim-classic-250-2213': 'classic 250',
+    'eheim-classic-600-2217-220v': 'classic 600',
 }
 for ident, esperado in ESPERADO_BASE.items():
     reg, _ = registro(ident)

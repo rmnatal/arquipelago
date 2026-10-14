@@ -243,7 +243,7 @@ function aquametria_c3_catalogo() {
 			'fonte_url' => 'https://eheim.com/en_GB/aquatics/aquarium-technology/filter/external-filter/classic-250',
 			'fonte_status' => 'fabricante-via-busca',
 			'verificado_em' => '2026-09-07',
-			'link' => 'https://s.shopee.com.br/6fh6u1wYls',
+			'link' => 'https://s.shopee.com.br/AUumPW1G1m',
 			'busca' => 'https://s.shopee.com.br/2qUnDcMDf0',
 			'busca_afiliada' => true,
 			'anuncio' => 'Filtro Canister Classic 250 440lh Eheim - 2213',

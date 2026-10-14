@@ -215,6 +215,50 @@ MUTACOES = [
     ('o separador afrouxa ate engolir palavra',
      troca(COLETOR, "SEPARADOR = r'[\\s\\-/_.,:()\\[\\]]'",
            "SEPARADOR = r'[^0-9]'")),
+
+    # 21. O CODIGO DE CATALOGO VOLTA A SER EXIGIDO DENTRO DO CODIGO BASE
+    #     (14/10/2026). Esta mutacao reproduz o mundo de ANTES de hoje, e ela e
+    #     a mais barata de todas: desliga UMA linha e o anuncio certo do Eheim
+    #     classic 250 volta a ser recusado por "o titulo nao traz o codigo
+    #     (classic 250 2213)" — a recusa que ficou doze dias de pe, foi medida
+    #     quatro vezes e era a unica divida de ficha desta ilha que era nossa.
+    #     Se ela sobreviver, a bancada voltou a nao medir o lado que custou
+    #     aquela ficha.
+    ('o codigo de catalogo volta a ser exigido contiguo no titulo',
+     troca(COLETOR, "        if t in catalogo:\n            continue",
+           "        if False:\n            continue")),
+
+    # 22. A PORTA DOS FUNDOS DA 21, E ELA E A MAIS PERIGOSA DAS DUAS: em vez de
+    #     reproduzir o defeito antigo, alguem fica com a METADE QUE AFROUXA e
+    #     joga fora a que aperta. O `codigo_base()` continua tirando o codigo
+    #     (entao "classic 250" basta) e o portao do conflito para de barrar —
+    #     e ai "Eheim Classic 250 ... 2217" casa com o 2213. O conserto de hoje
+    #     e um par: sem esta mutacao, metade dele podia cair sem nada acusar.
+    ('o conflito de codigo de catalogo deixa de barrar',
+     troca(COLETOR, "    alheio = codigo_catalogo_conflitante(registro, irmaos, titulo)\n"
+                    "    if alheio:",
+           "    alheio = codigo_catalogo_conflitante(registro, irmaos, titulo)\n"
+           "    if False and alheio:")),
+
+    # 23. PORTA DOS FUNDOS DO CONFLITO, no mesmo desenho da mutacao 5: a funcao
+    #     fica inteira de pe, o `casa()` continua a chamando, e os codigos dos
+    #     IRMAOS param de chegar. O portao passa a responder "nenhum conflito"
+    #     para todo mundo com o codigo intacto, que e como uma refatoracao
+    #     distraida causaria o mesmo estrago da 22 sem apagar uma linha.
+    ('os codigos dos irmaos param de chegar ao portao do conflito',
+     troca(COLETOR, "        if not alheio or alheio == proprio:\n            continue",
+           "        if True:\n            continue")),
+
+    # 24. O CONFLITO ATRAVESSA A MARCA. O estrago e o oposto dos outros — barrar
+    #     anuncio CERTO — e hoje nenhum dado do banco o exerce, porque os tres
+    #     registros com codigo de catalogo sao todos Eheim. A afirmacao que a
+    #     mede constroi o mundo de amanha de proposito (ver o comentario dela em
+    #     teste-coleta-shopee.py): sem ela e sem esta mutacao, a regra da marca
+    #     seria uma linha que ninguem nunca executou.
+    ('o conflito de codigo de catalogo atravessa a marca',
+     troca(COLETOR, "        if (outro.get('marca') or '') != marca:\n            continue\n"
+                    "        alheio = sem_acento(outro.get('codigo_catalogo') or '')",
+           "        alheio = sem_acento(outro.get('codigo_catalogo') or '')")),
 ]
 
 

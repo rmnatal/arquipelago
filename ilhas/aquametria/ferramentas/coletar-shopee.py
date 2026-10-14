@@ -335,12 +335,42 @@ def codigo_base(registro):
     `l`) e o token numerico cujo valor E UMA DAS MEDIDAS DECLARADAS do proprio
     registro — o `25` de "HT-1300 25 W" cai porque `potencia_w` e 25, e o
     `2213` fica porque nenhuma medida do registro vale 2213.
+
+    E SAI TAMBEM O `codigo_catalogo` QUE O REGISTRO DECLARA (14/10/2026), que e
+    a TERCEIRA tentativa e e de outra familia: as duas de cima perguntam o que o
+    token significa, esta le o que o BANCO declara que ele e. O caso que a
+    escreveu: `modelo` do Eheim classic 250 e "classic 250 (2213)" e empacota
+    DOIS identificadores num campo so — o nome da linha e o codigo do
+    fabricante. O varejo brasileiro escreve os dois SEPARADOS, com a vazao e a
+    marca no meio ("Filtro Canister Classic 250 440lh Eheim - 2213"), e como o
+    portao exige as partes do codigo CONTIGUAS o anuncio CERTO era reprovado por
+    "o titulo nao traz o codigo (classic 250 2213)" — doze dias, quatro
+    medicoes, a unica divida de ficha desta ilha que era NOSSA.
+
+    O CONSERTO E DO DADO E NAO DA TRAVA, e a diferenca e a razao de este
+    comentario existir: aceitar as partes do codigo SOLTAS no titulo afrouxaria
+    o portao dos 78 registros por causa de um, e o `ARVORE.md` nomeia o caso em
+    que isso machuca — a Chihiros tem WRGB II, WRGB II Pro e WRGB II Slim, e com
+    tokens soltos um titulo "WRGB II Slim ... versao Pro" passaria pelo codigo
+    base `wrgb ii pro`. Entao o codigo do fabricante ganhou CAMPO PROPRIO no
+    esquema (V28, ao lado do `gtin`), sai daqui, e volta como confirmacao
+    OPCIONAL em `codigo_catalogo_conflitante()`. O que o registro perde em
+    exigencia — `classic 250` em vez de `classic 250 2213` — ele recupera ali:
+    a ausencia do codigo no titulo nao barra, o codigo de um IRMAO barra sempre.
+
+    E quando o codigo de catalogo for o modelo INTEIRO, nada e descartado: o
+    `or modelo` do fim desta funcao devolve o modelo normalizado, porque
+    registro sem codigo base casa com qualquer anuncio da marca.
     """
     modelo = sem_acento(registro.get('modelo') or '').replace('(', ' ').replace(')', ' ')
     valores = {v for _, v in medidas_do_registro(registro)}
+    catalogo = {p for p in re.split(SEPARADOR + '+',
+                                    sem_acento(registro.get('codigo_catalogo') or '')) if p}
     guardados = []
     for t in re.split(r'\s+', modelo):
         if not t:
+            continue
+        if t in catalogo:
             continue
         if re.fullmatch(r'(?:cm|l|ml|w)', t):
             continue
@@ -406,6 +436,52 @@ def sufixos_irmaos(registro, irmaos):
         elif outra_base.startswith(base) and len(outra_base) > len(base):
             palavras.add(outra_base[len(base):].split()[0])
     return palavras
+
+
+def codigo_catalogo_conflitante(registro, irmaos, titulo):
+    """O titulo declara o codigo de catalogo de OUTRO registro desta marca?
+
+    Devolve o codigo do irmao que o titulo nomeia, ou None.
+
+    A ASSIMETRIA E A MESMA DA `medida_conflitante`, e e ela que torna o
+    `codigo_catalogo` uma confirmacao OPCIONAL em vez de uma exigencia — que e a
+    metade sem a qual tirar o codigo do `codigo_base()` seria so afrouxar:
+
+    - o titulo que CALA o codigo nao barra nada. O varejo escreve "Filtro
+      Canister Eheim Classic 250 440 L/h" sem o 2213 e o anuncio e o certo;
+      exigir o codigo foi exatamente o defeito que esta familia consertou.
+    - o titulo que declara o codigo de um IRMAO barra sempre. Ai o anuncio nao
+      esta calado sobre o codigo: esta dizendo OUTRO, e isso e o sinal mais
+      forte de casamento errado que existe. "Eheim Classic 250 ... 2217" nao e
+      um anuncio incompleto do 2213, e um anuncio do 2217.
+    - e o codigo PROPRIO escrito no titulo encerra a pergunta: nenhum irmao e
+      conferido depois dele, porque o anuncio ja se identificou.
+
+    A LISTA DE CODIGOS SAI DO BANCO, nunca de uma lista escrita aqui, pelo mesmo
+    motivo de `sufixos_irmaos` e de `medida_discrimina`: lista dentro da regua
+    envelhece calada, e registro novo entraria sem regra nenhuma.
+
+    So conta irmao da MESMA marca, como no portao da armadilha 5: "2213" dentro
+    do titulo de uma luminaria Chihiros nao fala do Eheim, fala de outra coisa, e
+    barrar por isso seria inventar conflito onde ha coincidencia de digito.
+    """
+    proprio = sem_acento(registro.get('codigo_catalogo') or '')
+    if proprio and token_no_titulo(proprio, titulo):
+        return None
+    marca = registro.get('marca') or ''
+    if not marca:
+        return None
+    for outro in irmaos:
+        if outro.get('id') == registro.get('id'):
+            continue
+        if (outro.get('marca') or '') != marca:
+            continue
+        alheio = sem_acento(outro.get('codigo_catalogo') or '')
+        if not alheio or alheio == proprio:
+            continue
+        if token_no_titulo(alheio, titulo):
+            return alheio
+    return None
 
 
 def unidades_discriminantes(registro, irmaos):
@@ -674,6 +750,19 @@ def casa(oferta, registro, irmaos=()):
         if variante_depois_do_codigo(base, titulo, extras):
             return False, ('o codigo vem seguido de sufixo que faz outro aparelho'
                            + (' (irmao no banco: %s)' % ', '.join(sorted(extras)) if extras else ''))
+
+    # O CODIGO DE CATALOGO DO FABRICANTE — a outra metade do portao de cima
+    # (14/10/2026). Ele NAO e exigido: a ausencia dele no titulo nao diz nada,
+    # porque a loja brasileira escreve o nome da linha e cala o codigo. O que
+    # barra e o codigo de um IRMAO desta marca aparecer, que e o anuncio dizendo
+    # OUTRO aparelho — a mesma assimetria de `medida_conflitante`, e e o que
+    # paga o que o `codigo_base()` deixou de exigir ao separar os dois
+    # identificadores. Fora do `if base:` de proposito: o conflito vale tambem
+    # para registro sem codigo base nenhum.
+    alheio = codigo_catalogo_conflitante(registro, irmaos, titulo)
+    if alheio:
+        return False, ('o titulo declara o codigo de catalogo %s, que neste banco e de '
+                       'outro registro da marca %s' % (alheio, marca))
 
     # A MEDIDA — o portao desta ilha. Ver o cabecalho do arquivo.
     medidas = medidas_do_registro(registro)

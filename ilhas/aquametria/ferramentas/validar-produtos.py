@@ -24,6 +24,7 @@ import json
 import math
 import os
 import re
+import unicodedata
 import sys
 from datetime import date, datetime
 from urllib.parse import unquote
@@ -69,6 +70,17 @@ def aviso(regra, produto, texto):
 def carregar(caminho):
     with open(os.path.join(RAIZ, caminho), encoding="utf-8") as fp:
         return json.load(fp)
+
+
+def sem_acento_simples(texto):
+    """Minusculas sem acento, para comparar texto colhido com texto colhido.
+
+    Existe para a V28, que compara `codigo_catalogo` com `modelo`: os dois vem
+    da mesma fonte e podem chegar grafados com acento ou caixa diferente, e uma
+    comparacao crua reprovaria o recorte certo.
+    """
+    return "".join(c for c in unicodedata.normalize("NFD", texto or "")
+                   if unicodedata.category(c) != "Mn").lower()
 
 
 def preenchido(valor):
@@ -311,6 +323,43 @@ def valida_produto(esquema, entidade, produto, vistos):
     if produto.get("entidade") != entidade:
         erro("V1", pid, "campo entidade ('%s') nao bate com o arquivo (%s)"
              % (produto.get("entidade"), entidade))
+
+    # V28 - o codigo de catalogo nao inventa identidade, ele separa a que ja
+    # esta escrita. As duas metades tem dono, e as duas sao erro e nao aviso:
+    #   (a) o campo esta LITERALMENTE dentro do modelo. Quem le este campo e o
+    #       codigo_base() da coleta, para TIRAR o codigo do que o portao exige
+    #       contiguo no titulo do anuncio — entao codigo que nao esta no modelo
+    #       tiraria dele um pedaco que ninguem escreveu, e o portao afrouxaria
+    #       em silencio. Seria o afrouxamento que o campo existe para evitar,
+    #       entrando pela porta do dado em vez da porta da regua.
+    #   (b) o campo nao e o modelo INTEIRO, senao o registro fica sem codigo
+    #       base e casa com qualquer anuncio da marca.
+    # A ausencia da CHAVE tambem e erro: 'null' quer dizer "o fabricante nao
+    # publica codigo separado do nome", que e uma declaracao, e campo ausente
+    # nao declara nada. Mesma razao do afiliado.intestavel — divida escrita em
+    # observacao nao se conta.
+    if "codigo_catalogo" not in produto:
+        erro("V28", pid, "sem a chave 'codigo_catalogo': null e a declaracao de que o "
+                         "fabricante nao publica codigo separado do nome do modelo, e "
+                         "chave ausente nao declara nada")
+    codigo = produto.get("codigo_catalogo")
+    if preenchido(codigo):
+        if not isinstance(codigo, str):
+            erro("V28", pid, "'codigo_catalogo' nao e string (%r)" % (codigo,))
+        else:
+            modelo = sem_acento_simples(produto.get("modelo") or "")
+            alvo = sem_acento_simples(codigo)
+            partes = [re.escape(p) for p in re.split(r"[\s\-/_.,:()\[\]]+", alvo) if p]
+            padrao = r"(?<![a-z0-9])%s(?![a-z0-9])" % r"[\s\-/_.,:()\[\]]*".join(partes)
+            if not partes or not re.search(padrao, modelo):
+                erro("V28", pid, "'codigo_catalogo' (%r) nao aparece como token dentro de "
+                                 "'modelo' (%r): o campo recorta o que ja esta escrito, nunca "
+                                 "acrescenta identidade" % (codigo, produto.get("modelo")))
+            elif re.sub(r"[\s\-/_.,:()\[\]]+", " ", modelo).strip() == \
+                    re.sub(r"[\s\-/_.,:()\[\]]+", " ", alvo).strip():
+                erro("V28", pid, "'codigo_catalogo' (%r) e o modelo INTEIRO: o registro ficaria "
+                                 "sem codigo base, e registro sem identidade casa com qualquer "
+                                 "anuncio da marca" % (codigo,))
 
     tecnicos = campos_tecnicos_da_entidade(esquema, entidade)
     derivados = derivados_da_entidade(esquema, entidade)

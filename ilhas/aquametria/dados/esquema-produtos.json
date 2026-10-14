@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 12,
+  "versao_esquema": 13,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -136,6 +136,13 @@
       "obrigatorio": false,
       "origem": "varejo",
       "observacao": "EAN-13 quando publicado. Chave util para casar cotacoes entre lojas."
+    },
+    {
+      "campo": "codigo_catalogo",
+      "tipo": "string|null",
+      "obrigatorio": false,
+      "origem": "fabricante",
+      "observacao": "O CODIGO DE CATALOGO DO FABRICANTE, quando ele existe SEPARADO do nome da linha e nomeia o MESMO aparelho. Nasceu em 14/10/2026 (esquema 13) por um defeito medido, nao por previsao: o campo 'modelo' do Eheim classic 250 e 'classic 250 (2213)' e EMPACOTA DOIS IDENTIFICADORES NUM CAMPO SO — o nome da linha, que e como a loja escreve, e o codigo do fabricante, que a loja escreve no fim do titulo, com a vazao e a marca no meio. O portao de casamento da coleta exige as partes do codigo CONTIGUAS (ver token_no_titulo em ferramentas/coletar-shopee.py), e por isso ele reprovava, por doze dias, o anuncio CERTO deste filtro: 'Filtro Canister Classic 250 440lh Eheim - 2213'. SEPARAR OS DOIS IDENTIFICADORES E O CONSERTO DO DADO; afrouxar a trava para aceitar as partes soltas seria o conserto da REGUA, e afrouxaria o portao dos 78 registros por causa de um — com um caso perigoso nomeado no ARVORE.md, que e a Chihiros WRGB II / WRGB II Pro / WRGB II Slim. O campo e CONFIRMACAO OPCIONAL, nunca exigencia: o titulo que cala o codigo nao e barrado (o varejo escreve 'Eheim Classic 250' sem o 2213 e o anuncio e o certo), e o titulo que declara o codigo de um IRMAO desta marca e barrado sempre — a mesma assimetria da medida_conflitante. null quer dizer 'o fabricante nao publica codigo separado do nome', que e o caso de 75 dos 78 registros de hoje: o 'HT-1300' da Roxin e o 'HW-303B' da SunSun JA SAO o modelo, nao um codigo ao lado dele. NAO E O gtin, que e do varejo e identifica a embalagem; este e do fabricante e identifica o aparelho."
     },
     {
       "campo": "disponibilidade_br",
@@ -1288,7 +1295,12 @@
       "id": "V27",
       "regra": "MARCA SEM CONTEXTO E ARMADILHA (25.3). A palavra-chave de 'url_busca_produto' carrega a marca do produto E o termo de contexto da entidade declarado em escada_de_compra.termo_de_contexto_por_entidade. Busca so por marca traz a JBL de caixa de som e a 'Aquario' de roteador — erro ja cometido e pego antes de commitar, em 13/09/2026.",
       "severidade": "erro"
+    },
+    {
+      "id": "V28",
+      "regra": "O CODIGO DE CATALOGO NAO INVENTA IDENTIDADE, ELE SEPARA A QUE JA ESTA ESCRITA (14/10/2026, esquema 13). Todo registro declara 'codigo_catalogo' — null quando o fabricante nao publica codigo separado do nome do modelo. Quando preenchido, ele aparece LITERALMENTE dentro de 'modelo', como token, e NAO e o modelo inteiro. As duas metades tem dono: a primeira porque este campo e lido por codigo_base() para TIRAR o codigo do que o portao de casamento exige contiguo no titulo — e campo que nao esta no modelo tiraria dele um pedaco que ninguem escreveu, afrouxando a trava em silencio, que e exatamente o afrouxamento que o campo existe para evitar; a segunda porque codigo que e o modelo inteiro deixaria o registro SEM codigo base, e registro sem identidade casa com qualquer anuncio da marca. E a mesma disciplina de clausula literal do E22 e do E23 do esquema de especies: o campo nao e texto novo, e um recorte conferivel do que ja estava la.",
+      "severidade": "erro"
     }
   ],
-  "atualizado_em": "2026-09-23"
+  "atualizado_em": "2026-10-14"
 }

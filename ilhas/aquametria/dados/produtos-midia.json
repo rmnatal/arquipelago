@@ -19,6 +19,7 @@
         "Matrix Bio-Media 1L"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "biologica",
@@ -131,6 +132,7 @@
         "Ehfisubstrat pro"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "biologica",
@@ -197,6 +199,7 @@
         "Ceramica JBL Micromec esferas"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "biologica",
@@ -268,6 +271,7 @@
         "Ceramica Bio Glass Ocean Tech"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "biologica",
@@ -352,6 +356,7 @@
         "MatrixCarbon"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "quimica",
@@ -419,6 +424,7 @@
         "Purigen sache 100 mL"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "tipo": "quimica",

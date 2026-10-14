@@ -20,6 +20,7 @@
         "Termostato Roxin HT-1300 25w"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -130,6 +131,7 @@
         "Termostato Eheim Jager 50W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -222,6 +224,7 @@
         "Termostato com aquecedor Maxxi 50 W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 50,
@@ -294,6 +297,7 @@
         "Termostato Roxin HT-1300 50w"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -421,6 +425,7 @@
         "RS 50W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 50,
@@ -495,6 +500,7 @@
         "Aquecedor com termostato Atman 100w AT-100"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -586,6 +592,7 @@
         "Termostato Eheim Jager 100W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -678,6 +685,7 @@
         "Termostato com aquecedor Maxxi 100 W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 100,
@@ -750,6 +758,7 @@
         "Termostato Roxin HT-1300 100w"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -866,6 +875,7 @@
         "Aquecedor com termostato Atman 150w AT-150"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -957,6 +967,7 @@
         "Termostato Eheim Jager 150W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -1076,6 +1087,7 @@
         "Termostato com aquecedor Maxxi 150 W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 150,
@@ -1149,6 +1161,7 @@
         "Aquecedor com Termostato Warmer X-5 OceanTech"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -1288,6 +1301,7 @@
         "Sicce Scuba Contactless 150"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 150,
@@ -1385,6 +1399,7 @@
         "Aquecedor com termostato Atman 200w AT-200"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -1498,6 +1513,7 @@
         "Eheim Thermocontrol 200 W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -1608,6 +1624,7 @@
         "Termostato com aquecedor Maxxi 200 W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 200,
@@ -1680,6 +1697,7 @@
         "Termostato com aquecedor Maxxi 200 W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 200,
@@ -1752,6 +1770,7 @@
         "Termostato Roxin HT-1300 200w"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -1867,6 +1886,7 @@
         "Termostato para aquario com aquecedor Ocean Tech Warmer X-5 250W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -1950,6 +1970,7 @@
         "Aquecedor com termostato Atman 300w AT-300"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -2040,6 +2061,7 @@
         "Termostato com aquecedor Maxxi 300 W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 300,
@@ -2112,6 +2134,7 @@
         "Termostato com aquecedor Maxxi 300 W"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
       "potencia_w": 300,
@@ -2184,6 +2207,7 @@
         "Termostato Roxin HT-1300 300w"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -2299,6 +2323,7 @@
         "Aquecedor com Termostato Hopar J-226 400w"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -2416,6 +2441,7 @@
         "Hopar J226 500w"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
@@ -2497,6 +2523,7 @@
         "Termostato Aquecedor X-5 500w Ocean Tech"
       ],
       "gtin": null,
+      "codigo_catalogo": null,
       "disponibilidade_br": "vendido",
       "voltagem": [
         "110",
