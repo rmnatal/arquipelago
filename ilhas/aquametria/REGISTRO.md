@@ -94,6 +94,14 @@ A 18.2 diz que *"se sobrar fôlego na execução depois de fechar o despacho, el
 
 **O TETO REALISTA DESTA DÍVIDA, dito na cara:** com o mercado de hoje é **36 de 47**, não 47 de 47 — e chegar a 36 custa um bloco de esquema, não uma coleta. Escrever "faltam 12" sugere trabalho que existe para doze e faz o prazo parecer recuperável por esforço. **Falta um.**
 
+### A BANCADA COMPLETA FICOU EM CURSO NO FECHAMENTO, e está escrito como não concluído
+
+A `bancada.py` descobre os portões sozinha pela convenção de nome, e **os três novos entraram nela no dia em que foram escritos** — conferido por `bancada.py --lista`, que passou a listar **46** portões. A passada completa **não terminou antes do fecho desta execução**: ela parou dentro da `mutacoes-peixes.py`, que gera uma ilha inteira por mutação e passa de dez minutos.
+
+**O que está verificado, direto e verde:** os 12 portões que ela alcançou antes do fecho, com `mutacoes-consultas-de-produto.py` entre eles; os três portões novos rodados à mão (`validar-` APROVADO, `teste-` 206/0, `mutacoes-` 16/16); e os seis portões que leem o banco, rodados **depois** da mudança do segundo bloco. **Nenhum portão reprovou em nenhuma passada desta execução.**
+
+**O que não está:** o veredito da passada completa. Ela cobre código que esta execução **não tocou**, e quem a rodar na próxima passada fecha esta ponta. Fica escrito assim e não como "bancada verde", porque resumo verde que ninguém leu até o fim é exatamente o que a 20.4 existe para impedir.
+
 ### OS PRÓXIMOS PASSOS DESBLOQUEADOS, e os dois estão escritos no `PROMPT.md` com critério de pronto
 
 **1. A SERP brasileira de 14 consultas, vista com os olhos — e não é bloco, é uma sessão de Chrome.** Item 1 do despacho do Raphael, reescrito pela 18.3, com a ordem por onde começar (as quatro de maior lastro e maior intenção), o que escrever no JSON (`serp_vista_por` e `serp_vista_em` mais os ocupantes do top 10 de verdade), os dois comandos a rodar depois e o critério de pronto. Feito isso, a página nasce na execução seguinte **sem remedir nada**.
