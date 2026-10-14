@@ -4974,3 +4974,88 @@ nenhuma reserva de ilha, nenhum cabeçalho de estado, nenhum bloco de fila execu
 nenhuma publicação, nenhuma conta criada, nenhum `ARQUIPELAGO.md` lido para decidir o que fazer. Nenhum
 contato pessoal de terceiros entrou no repositório. As saídas foram gravadas como vieram, sem reformatar,
 corrigir nem acrescentar linha.
+
+---
+
+## Disparo de 14/10/2026, 17h18 de Brasília (20h18 UTC) — leitura Search Console das três ilhas
+
+**Instrução recebida:** segundo disparo do dia (o primeiro, de 19h42Z, não produziu commit em `origin/main`
+nem seção neste log). Para cada ilha em `aquametria robometria clubedomosaico`: rodar
+`python3 ferramentas/search-console.py <ilha>` filtrando as linhas de `[notice]` e `WARNING: Running pip`, e
+gravar a saída inteira em `ilhas/<ilha>/dados/search-console-2026-10-14.md`; conferir `grep -c PRIVATE` = 0 em
+cada arquivo; commit "Leitura Search Console pela nuvem — 2026-10-14" e `git push origin HEAD:main`.
+
+**Assunto conferido antes de qualquer `git fetch`:** ilhas do Arquipélago (Aquametria, Robometria, Clube do
+Mosaico) e dados de Search Console delas. É do Arquipélago — executado.
+
+**`GOOGLE_SA_B64` PRESENTE neste ambiente**, conferido com `python3 -c "import os;print('GOOGLE_SA_B64' in
+os.environ)"` → `True`, sem imprimir valor nenhum. Portanto não se aplica a linha de ausência que a instrução
+previa, e o script rodou com credencial de verdade.
+
+**O que aconteceu na execução do script.** Na primeira passada, `robometria` completou; `aquametria` e
+`clubedomosaico` abortaram no passo de URL Inspection com erro de proxy transitório, gravado inteiro nos
+arquivos naquele momento:
+
+```
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='searchconsole.googleapis.com', port=443): Max
+retries exceeded with url: /v1/urlInspection/index:inspect (Caused by ProxyError('Unable to connect to
+proxy', RemoteDisconnected('Remote end closed connection without response')))
+  File "/home/user/arquipelago/ferramentas/search-console.py", line 242, in main
+    ins = sess.post(f"{API}/v1/urlInspection/index:inspect",
+```
+
+Como `robometria` passou pelo mesmo proxy no mesmo minuto, a falha era transitória e não defeito de
+credencial: as duas ilhas foram repetidas e **completaram na primeira tentativa da repetição**, e o conteúdo
+de erro foi substituído pela leitura boa antes de qualquer commit. `grep -c PRIVATE` = **0** nos três
+arquivos, conferido relendo os três arquivos do disco DEPOIS de gravar. Nada do valor da credencial foi
+impresso, gravado ou commitado em momento nenhum.
+
+**PUSH RECUSADO — a leitura já estava no `main`, posta por outra sessão.** O commit local
+`a3f7bad4883fa55f15cf1a028cbef411497de4e7` (3 arquivos, 116 inserções) foi recusado por não-fast-forward;
+`git fetch origin main && git rebase origin/main` então parou com conflito `AA` nos três arquivos, porque
+`origin/main` avançou de `4216f5d` para **`36f567ef6373192ec3c4d9addf49124b039b5ed8`** ("aquametria: fecha
+pela 18.4 o item que esperava credencial, e a leitura que chegou e a LINHA DE BASE DE ANTES") e esse commit
+já criou os três arquivos com a leitura do mesmo script, da mesma data e da mesma janela
+(2026-10-06→2026-10-12).
+
+```
+$ git status --porcelain   (durante o rebase)
+AA ilhas/aquametria/dados/search-console-2026-10-14.md
+AA ilhas/clubedomosaico/dados/search-console-2026-10-14.md
+AA ilhas/robometria/dados/search-console-2026-10-14.md
+```
+
+Comparadas as duas corridas, os números que importam batem — `aquametria` 509 impressões e 4 cliques,
+`robometria` 11 impressões e 0 cliques, `clubedomosaico` 86 impressões e 2 cliques, e as tabelas por página
+idênticas. As únicas diferenças são voláteis, do próprio Search Console entre duas chamadas a minutos de
+distância: os veredictos de URL Inspection trocam entre "Discovered - currently not indexed" e "URL is
+unknown to Google" em algumas URLs, `robometria` saiu byte a byte igual nessa parte, e a linha de indexação da
+`aquametria` marca 49/94% na corrida que está no `main` contra 50/96% na minha, uma página de diferença na
+contagem de indexadas.
+
+**Decisão: o rebase foi abortado e o `main` ficou com a versão que já estava lá.** Sobrescrever a leitura de
+outra sessão por uma segunda corrida equivalente não acrescenta dado nenhum e só trocaria veredictos voláteis
+de URL Inspection no histórico. Nenhum force push. O arquivo de trabalho local voltou para `origin/main`
+(`git checkout -B trabalho origin/main`), e os três arquivos conferidos NA VERSÃO QUE ESTÁ NO `main`, relidos
+do disco depois do reset, têm `grep -c PRIVATE` = **0** e 60, 24 e 34 linhas respectivamente.
+
+```
+$ git status --porcelain   (depois de abortar o rebase, antes deste log)
+(vazio)
+
+$ git diff --stat
+(vazio — nenhuma mudança de arquivo de dados neste disparo)
+```
+
+**Hash que chegou ao `main` por este disparo:** apenas o deste log. O commit `a3f7bad` da leitura foi
+descartado sem chegar ao `main` pelo motivo acima, e o trabalho que ele carregava já está no `main` dentro de
+`36f567e`.
+
+**Contagem do que mudou neste disparo, conferida relendo o arquivo DEPOIS de gravar:** 1 arquivo,
+`MAOS-LOG.md`, só esta seção acrescentada ao fim. Nenhuma seção anterior apagada, reescrita ou resumida —
+o arquivo continua append-only. Nenhum dos três arquivos de dados foi alterado por mim no `main`.
+
+**Nenhum arquivo além deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum
+cabeçalho de estado, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhuma conta
+criada. Nenhum contato pessoal de terceiros entrou no repositório. O valor de `GOOGLE_SA_B64` nunca foi
+impresso nem gravado.
