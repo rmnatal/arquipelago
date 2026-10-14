@@ -5,8 +5,8 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-14T16:57Z
-executando_desde: 2026-10-14T19:29Z
+ultima_execucao: 2026-10-14T19:53Z
+executando_desde: null
 bloco_atual: |
   O CODIGO DE CATALOGO DO FABRICANTE GANHOU CAMPO PROPRIO (esquema 13), E COM ELE FECHOU A UNICA
   DIVIDA DE FICHA DESTA ILHA QUE ERA *NOSSA*. Item 1 do despacho da ronda de 14/10 — o unico aberto
@@ -127,16 +127,26 @@ bloco_atual: |
      e deliberado: varri os bancos delas e NENHUM registro empacota dois identificadores hoje — a
      robometria tem 27 registros, zero com o padrao, e a clubedomosaico nao tem banco nesse formato.
      Despacho para trabalho que nao existe e fila inventada; a 25.9 dispara quando o caso aparecer.
-  15-b. BANCADA COMPLETA: EM CURSO NO MOMENTO DESTE COMMIT, e escrito assim porque este campo JA
-     CARREGA essa cicatriz — a execucao de 14/10 as 16h17Z fechou o cabecalho com a passada em curso
-     e teve de corrigir o campo depois. O que JA FECHOU, rodado um por um e nao pela bancada: os seis
-     portoes que leem o banco DEPOIS da mudanca (validar-produtos 78 produtos 0 erro,
-     teste-coleta-shopee 279/0, teste-escada-compra 703/0, teste-dimensao-imagem 42/0,
-     mutacoes-escada 26/26, mutacoes-dimensao 14/14, mutacoes-coleta-shopee 26/26) e os tres do ar
-     (conferir-desembarque APROVADO, conferir-escada-no-ar 130/0, e a varredura das 52 URLs). A
-     bancada.py esta na mutacoes-peixes.py, que tem 100 mutacoes e copia o repositorio em cada uma —
-     e ela NAO toca no que este bloco mudou: o eixo /peixes/ nao le o banco de produtos. O veredito
-     dela entra no commit do fecho desta execucao, com o numero, seja ele qual for.
+  15-b. A BANCADA COMPLETA FECHOU: **APROVADO, 46 PORTOES, 0 FALHA.** Ela descobre os portoes sozinha
+     pela convencao de nome, entao nao houve lista a lembrar. Os numeros dos que este bloco mexeu:
+     teste-coleta-shopee 279 afirmacoes 0 falha e mutacoes-coleta-shopee 26 de 26 reprovadas 0
+     sobrevivente; e os vizinhos que leem o mesmo banco seguem verdes — teste-escada-compra 703/0,
+     mutacoes-escada 26/26, teste-dimensao-imagem 42/0, mutacoes-dimensao 14/14, teste-peixes 4299/0
+     e mutacoes-peixes 100 de 100. Zero linha fora de `ok` no log inteiro. Ficam fora dela, por
+     desenho, os 10 portoes que abrem o site (rodados a mao nesta execucao: conferir-desembarque
+     APROVADO e conferir-escada-no-ar 130/0) e os 18 de Chromium.
+  15-c. E A BANCADA DENUNCIOU UMA FERRAMENTA, QUE NAO E DESTA EXECUCAO E FICA NOMEADA EM VEZ DE
+     CONSERTADA: `contar-cano-de-links.py` sai na linha "SEM CONVENCAO, ninguem roda". Ela nasceu
+     hoje as 17h0xZ e o nome dela nao casa com nenhuma das convencoes que a bancada conhece
+     (teste-, testar-, mutacoes-, validar-, conferir-), entao a bancada a denuncia e vai denunciar
+     para sempre — e denuncia que nao se resolve e denuncia que ensina a ignorar denuncia, que e o
+     oposto do que a bancada existe para fazer. NAO CONSERTEI porque sao DUAS OPCOES DEFENSAVEIS e
+     escolher entre elas e bloco e nao conserto: (a) renomear a ferramenta para `gerar-` , que e a
+     familia a que ela pertence de verdade (ela gera um .md de um banco, como os quatro
+     gerar-catalogo-*), e arrumar quem a chama; ou (b) ensinar a bancada a conhecer `contar-` como
+     producao e nao como portao. A (a) parece a certa, porque o problema e o NOME estar fora da
+     familia, nao a bancada ser estreita — mas quem decidir confere se algum documento ou registro
+     cita o caminho antigo antes de renomear.
   16. O PROXIMO PASSO DESBLOQUEADO: NENHUM despacho desta ilha tem item aberto para a Fundacao — o
      que sobra em todos e medicao da leitura semanal, SERP vista com olhos, ou credencial ausente.
      Entao a proxima execucao volta a FILA, e o item nomeado nela com criterio escrito e o bloco que

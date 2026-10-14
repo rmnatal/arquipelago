@@ -14,7 +14,7 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
-## 2026-10-14 19h16Z–19h4xZ — O CÓDIGO DE CATÁLOGO GANHOU CAMPO PRÓPRIO, E A ÚNICA DÍVIDA DE FICHA DESTA ILHA QUE ERA **NOSSA** FECHOU
+## 2026-10-14 19h16Z–19h53Z — O CÓDIGO DE CATÁLOGO GANHOU CAMPO PRÓPRIO, E A ÚNICA DÍVIDA DE FICHA DESTA ILHA QUE ERA **NOSSA** FECHOU
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null` — pela **1.1** isso já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho — e o último commit na pasta da ilha era de **17h14Z**, duas horas antes. Reserva aceita às **19h16Z**, commit `3d9a675`, na primeira tentativa. Nenhum PR aberto e a branch designada em sincronia com o `main`, conferido antes de qualquer coisa (passo 1). Reserva **renovada** às 19h29Z pela 1.1, porque o bloco passou dos 40 minutos.
 
@@ -80,6 +80,14 @@ Sync acionado **duas vezes** com `forcar=1`, como a 20.4 manda por desenho. `con
 ### O QUE ESTE BLOCO NÃO É
 
 **Nenhuma URL nova** (a ilha segue em **52**), **nenhuma leva do teto da 21.4 gasta** — ele continua **zerado** nesta semana, a última leva de malha foi a 9 de 23/09 —, nenhum `<h1>`, trilha, cartão ou `<title>` tocado, e **a `/calculadora-de-litragem/` continua sem promessa**, que é o controle da medição de CTR. Não usei a rampa dobrada: dobrar leva somaria variáveis à medição de CTR das cinco promessas, que começou hoje. Não trouxe consulta do `corpus-buscas`, que é memória e não existe neste ambiente, conferido. Não medi Search Console, por falta de credencial, conferido. E **não mexi na SERP brasileira do despacho do Raphael**, porque a 30.8 diz que esta nuvem não emite o veredito que autoriza abrir URL.
+
+### A BANCADA COMPLETA — **APROVADO, 46 PORTÕES, 0 FALHA**
+
+Ela descobre os portões sozinha pela convenção de nome, então não houve lista a lembrar. Os dos que este bloco mexeu: `teste-coleta-shopee.py` **279/0** e `mutacoes-coleta-shopee.py` **26 de 26 reprovadas, 0 sobrevivente**. Os vizinhos que leem o mesmo banco seguem verdes: `teste-escada-compra.py` 703/0, `mutacoes-escada.py` 26/26, `teste-dimensao-imagem.py` 42/0, `mutacoes-dimensao.py` 14/14, `teste-peixes.py` **4299/0** e `mutacoes-peixes.py` **100 de 100**. **Zero linha fora de `ok` no log inteiro.** Ficam fora dela, por desenho, os 10 portões que abrem o site — e os dois que importam aqui foram rodados à mão (`conferir-desembarque.py` APROVADO, `conferir-escada-no-ar.py` 130/0) — e os 18 de Chromium.
+
+**E A BANCADA DENUNCIOU UMA FERRAMENTA, que não é desta execução e fica NOMEADA em vez de consertada.** `contar-cano-de-links.py` sai na linha *"SEM CONVENCAO, ninguem roda"*: ela nasceu hoje às 17h0xZ e o nome dela não casa com nenhuma convenção que a bancada conhece (`teste-`, `testar-`, `mutacoes-`, `validar-`, `conferir-`). Então a bancada a denuncia, e vai denunciar **para sempre** — e **denúncia que não se resolve é denúncia que ensina a ignorar denúncia**, que é o oposto do que a bancada existe para fazer. É a mesma família do portão INERTE que ela também sabe acusar.
+
+**Não consertei porque são duas opções defensáveis, e escolher entre elas é bloco e não conserto:** (a) **renomear** a ferramenta para a família `gerar-`, a que ela pertence de verdade — ela gera um `.md` a partir de um banco, exatamente como os quatro `gerar-catalogo-*` —, arrumando quem a chama; ou (b) **ensinar a bancada** a conhecer `contar-` como produção e não como portão. A (a) me parece a certa, porque o defeito é o **nome estar fora da família**, não a bancada ser estreita. Quem decidir confere antes se algum documento ou registro cita o caminho antigo.
 
 ### E UMA REGRA NOVA FOI ESCRITA NO CONTRATO, NÃO NO REGISTRO DESTA ILHA — **`ARQUIPELAGO.md` §25.9**
 
