@@ -4828,3 +4828,66 @@ substituídas inteiras pelo texto da instrução. O cabeçalho `# ILHA EM FOCO` 
 **Nenhum arquivo além do `foco.md` e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de
 ilha, nenhum bloco de Fundação executado, nenhum Sync acionado, nenhuma publicação. Nenhum contato pessoal de
 terceiros entrou no repositório. Nenhum passo falhou — não há mensagem de erro para registrar neste disparo.
+
+## Disparo de 14/10/2026, 12h02 BRT (15h02Z) — RONDA DIÁRIA TÉCNICA DA SENTINELA: 5 operações em 4 arquivos, um commit só
+
+Disparo da Sentinela (ronda diária técnica de 14/10, 14h5xZ). Assunto conferido antes do `git fetch`: ilha
+aquametria, Sentinela, `PROMPT.md`/`ESTADO.md`/`consertos.md` de ilha e o painel do Arquipélago — **é do
+Arquipélago**, instrução executada. Parti do `main` real (`4afa438`) com
+`git fetch origin main && git checkout -B trabalho origin/main`.
+
+**As cinco operações, todas com o trecho "ENCONTRE" casando exatamente — nenhuma precisou ser deixada de fora:**
+
+1. `ilhas/aquametria/ESTADO.md` — a linha única que começava em `ultima_ronda: 2026-10-12T15:00Z` (linha 22,
+   casou 1 vez e só 1) substituída inteira pela linha de `ultima_ronda: 2026-10-14T14:53Z`.
+2. `ilhas/aquametria/dados/consertos.md` — linha nova da tabela acrescentada como última linha, depois da que
+   começa em `| 2026-09-23 |` (conferido que era mesmo a última linha não vazia antes de inserir).
+3. `ilhas/aquametria/PROMPT.md` — bloco riscado `### ~~3. O CANO DE LINKS NÃO ANDOU~~` apagado (título, linha
+   em branco, parágrafo e a linha em branco seguinte; 719 bytes, casou 1 vez).
+4. `ilhas/aquametria/PROMPT.md` — bloco `### 3. NAO E DEFEITO, E REGISTRO PARA A RONDA SEGUINTE NAO RECOMECAR
+   DO ZERO` apagado do mesmo jeito (549 bytes, casou 1 vez).
+5. `ilhas/aquametria/PROMPT.md` — `## DESPACHO DA SENTINELA — 2026-10-14` (46 linhas, 9.537 bytes com a linha
+   em branco final) inserido imediatamente antes de `## DESPACHO DO RAPHAEL — 2026-10-09 — PÁGINAS PELO NOME
+   DO PRODUTO`, que casou 1 vez e passou a ser a segunda seção do arquivo.
+
+E a operação extra: `dados/PAINEL.md` (na raiz, não dentro de `ilhas/`) teve o conteúdo apagado e substituído
+inteiro pelo texto da instrução.
+
+```
+$ git status --porcelain
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/aquametria/dados/consertos.md
+```
+
+```
+$ git diff --stat
+ dados/PAINEL.md                     | 87 +++++++++++++++++++++----------------
+ ilhas/aquametria/ESTADO.md          |  2 +-
+ ilhas/aquametria/PROMPT.md          | 55 +++++++++++++++++++----
+ ilhas/aquametria/dados/consertos.md |  1 +
+ 4 files changed, 99 insertions(+), 46 deletions(-)
+```
+
+**Hash que chegou ao `main`:** `d228d9d4113449a931f4572e58d6e599cc52a702`
+Confirmado com `git fetch origin main && git log -1 origin/main` → mostra este hash e a mensagem
+"ronda da Sentinela 14/10: zero defeito nas tres ilhas no ar, teste de vida 35/35, despacho da divida da
+25.4-b, painel reescrito". Push direto em `HEAD:main` aceito na primeira tentativa (4afa438..d228d9d), sem
+rebase e sem force push.
+
+**Contagem do que mudou, conferida relendo os quatro arquivos DEPOIS de gravar** (`git show --numstat`, mais
+releitura de cada arquivo no disco): 4 arquivos, **99 inserções e 46 remoções**, assim repartidas —
+`dados/PAINEL.md` 50/37 (o arquivo relido tem 75 linhas e 16.684 bytes, começando em `# PAINEL DO
+ARQUIPÉLAGO`); `ilhas/aquametria/ESTADO.md` 1/1 (a linha 22 relida tem 965 caracteres e começa em
+`ultima_ronda: 2026-10-14T14:53Z   # RONDA DIARIA TECNICA da`); `ilhas/aquametria/PROMPT.md` 47/8 (o arquivo
+foi de 443 para 482 linhas: +46 do despacho novo e +1 da linha em branco, −4 e −4 dos dois blocos apagados;
+relido, nenhuma das duas frases apagadas aparece mais — `grep -c` devolve 0 nas duas); e
+`ilhas/aquametria/dados/consertos.md` 1/0 (relido, a tabela tem 3 linhas de dados e a última começa em
+`| 2026-10-14 | — | **Nenhum conserto.**`).
+
+**Nenhum arquivo além dos quatro que a instrução nomeou e deste log foi tocado.** Nenhum `executando_desde`,
+nenhuma reserva de ilha, nenhum cabeçalho de estado fora da linha pedida, nenhum bloco de fila executado,
+nenhum Sync acionado, nenhuma publicação, nenhuma conta criada. Nenhum contato pessoal de terceiros entrou no
+repositório. Nada foi reformatado, corrigido ou acrescentado além do texto que veio na instrução. Nenhum passo
+falhou — não há mensagem de erro para registrar neste disparo.
