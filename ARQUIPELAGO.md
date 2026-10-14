@@ -667,6 +667,12 @@ Escrito em 11/09/2026 depois de três execuções seguidas travadas em silêncio
 
 **O que o portão NÃO promete, e está escrito nele:** o log do `/status` é uma **janela** (15 linhas na medição de hoje, contra 18 itens aplicados). Item que rolou para fora da janela **não foi conferido**, e o portão diz isso como registro em vez de aprovar com cara de completo.
 
+20.5 **O SYNC LÊ O MANIFEST PELO CACHE DO GITHUB, E REVISÃO ATRASADA LOGO DEPOIS DO PUSH NÃO É DEFEITO — É CACHE, E O CONSERTO É REACIONAR (14/10/2026).** Medido na aquametria entre 14h15Z e 14h19Z de 14/10/2026, com o portão da 20.4 na mão. A execução empurrou o manifest na **revisão 120**, acionou o Sync **duas vezes** e o `/status` respondeu **119** — com o timestamp do log de **14h15**, ou seja o Sync RODOU, e rodou lendo um manifest velho. Na mesma passada, `raw.githubusercontent.com` já servia 120. Foram **quatro** rodadas de duas acionadas, ao longo de quatro minutos, até o `/status` virar 120; aí o portão da 20.4 aprovou.
+
+**Por que isto está no contrato e não no registro de uma ilha:** o Sync é o mesmo código nas três, e o portão da 20.4 **reprova** com a mensagem "commit sem Sync" — que é a leitura certa para o defeito que ele existe para pegar e a leitura **errada** para este. Quem não souber disto vai ler "REPROVADO" logo depois de um push correto e procurar defeito onde há cache; e o perigo maior é o contrário, que é concluir que o portão mente e passar a ignorá-lo.
+
+**A régua, e ela cabe em duas frases:** `/status` com revisão **menor** que a do manifest, **log com timestamp de agora** e `raw.githubusercontent.com` já servindo a revisão nova = **cache, reacione**. Revisão menor **com log antigo** = o Sync não rodou, e aí sim é entrega que não aconteceu. Reacionar de dois em dois (a 20.4 manda duas por desenho), com alguns minutos entre as rodadas; se depois de ~10 minutos o `/status` não subir, pare de reacionar e trate como defeito de verdade, porque aí não é mais cache.
+
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
 
 ## 21. O PISO DA RAMPA — antes de 40 páginas e 21 dias, zero impressão não é sinal (11/09/2026)
