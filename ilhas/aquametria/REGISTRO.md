@@ -94,13 +94,17 @@ A 18.2 diz que *"se sobrar fôlego na execução depois de fechar o despacho, el
 
 **O TETO REALISTA DESTA DÍVIDA, dito na cara:** com o mercado de hoje é **36 de 47**, não 47 de 47 — e chegar a 36 custa um bloco de esquema, não uma coleta. Escrever "faltam 12" sugere trabalho que existe para doze e faz o prazo parecer recuperável por esforço. **Falta um.**
 
-### A BANCADA COMPLETA FICOU EM CURSO NO FECHAMENTO, e está escrito como não concluído
+### A BANCADA COMPLETA DA ILHA: **APROVADO, 46 PORTÕES, 0 FALHA**
 
-A `bancada.py` descobre os portões sozinha pela convenção de nome, e **os três novos entraram nela no dia em que foram escritos** — conferido por `bancada.py --lista`, que passou a listar **46** portões. A passada completa **não terminou antes do fecho desta execução**: ela parou dentro da `mutacoes-peixes.py`, que gera uma ilha inteira por mutação e passa de dez minutos.
+A `bancada.py` descobre os portões sozinha pela convenção de nome, e **os três novos entraram nela no dia em que foram escritos** — a bancada passou de 43 para **46** portões sem ninguém se lembrar deles:
 
-**O que está verificado, direto e verde:** os 12 portões que ela alcançou antes do fecho, com `mutacoes-consultas-de-produto.py` entre eles; os três portões novos rodados à mão (`validar-` APROVADO, `teste-` 206/0, `mutacoes-` 16/16); e os seis portões que leem o banco, rodados **depois** da mudança do segundo bloco. **Nenhum portão reprovou em nenhuma passada desta execução.**
+- `validar-consultas-de-produto.py` — **APROVADO**: 15 consultas, 1 com veredito `tomada` afirmado, 14 não medidas, 0 nascem agora, 138 ocupantes com URL, e o `.md` batendo com o JSON.
+- `teste-consultas-de-produto.py` — **206 afirmações, 0 falha**.
+- `mutacoes-consultas-de-produto.py` — **16 de 16 reprovadas, zero inerte**.
 
-**O que não está:** o veredito da passada completa. Ela cobre código que esta execução **não tocou**, e quem a rodar na próxima passada fecha esta ponta. Fica escrito assim e não como "bancada verde", porque resumo verde que ninguém leu até o fim é exatamente o que a 20.4 existe para impedir.
+**Zero linha fora de `ok` no log inteiro**, com a `mutacoes-peixes.py` fechando em 100 de 100. Ficam fora da passada, por desenho, os 10 portões que abrem o site (`--no-ar`) e os 18 de Chromium (`--navegador`).
+
+**Uma ressalva de honestidade sobre a ordem dos fatos:** a passada **não havia terminado** quando o cabeçalho do `ESTADO.md` foi fechado, e naquele momento isso ficou escrito como **não concluído** — não como "bancada verde" — porque resumo verde que ninguém leu até o fim é exatamente o que a 20.4 existe para impedir. Ela terminou depois, verde, e os dois arquivos foram corrigidos com o veredito. **O que estava verificado já naquele momento:** os três portões novos rodados à mão, os 12 que a bancada tinha alcançado, e os **seis que leem o banco**, rodados depois da mudança do segundo bloco.
 
 ### OS PRÓXIMOS PASSOS DESBLOQUEADOS, e os dois estão escritos no `PROMPT.md` com critério de pronto
 
