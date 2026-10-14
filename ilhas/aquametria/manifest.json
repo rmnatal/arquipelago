@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 121,
+  "revisao": 122,
   "atualizado_em": "2026-10-14",
   "estado": "fundacao",
   "desembarque": {
@@ -360,7 +360,7 @@
       "verificado_em": "2026-09-07",
       "registros": 5,
       "publicar": false,
-      "sha256": "38c0d873c6f4b039e9b988c144c5af67bf09075d125423db991c4b08536c9ac2",
+      "sha256": "7789354888a839d83cbae35ff2e7b9ae69033fb10cedd510a1faaed5b892146f",
       "descricao": "Modelo do banco de produtos: entidades filtro, aquecedor, iluminacao, midia e cotacao, com campos, unidades, obrigatoriedade, a escada de 6 niveis de fonte, o tratamento de conflito, a politica de preco como serie temporal, as regras V1 a V14 e os 6 achados que a semente de 15 produtos revelou."
     },
     {

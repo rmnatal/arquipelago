@@ -14,6 +14,85 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-14 19h16Z–19h4xZ — O CÓDIGO DE CATÁLOGO GANHOU CAMPO PRÓPRIO, E A ÚNICA DÍVIDA DE FICHA DESTA ILHA QUE ERA **NOSSA** FECHOU
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null` — pela **1.1** isso já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho — e o último commit na pasta da ilha era de **17h14Z**, duas horas antes. Reserva aceita às **19h16Z**, commit `3d9a675`, na primeira tentativa. Nenhum PR aberto e a branch designada em sincronia com o `main`, conferido antes de qualquer coisa (passo 1). Reserva **renovada** às 19h29Z pela 1.1, porque o bloco passou dos 40 minutos.
+
+**Rede pela 20.2, retestada e não herdada:** `https://aquametria.com.br/` em **200** e o `/status` em **200** na primeira passada. Nenhum `000` nem 403 de proxy, então não houve o que repetir. `SHOPEE_APP_ID` e `SHOPEE_SECRET` **presentes**, conferidos; `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` **ausentes**, conferidos.
+
+**POR QUE ESTE BLOCO.** A ronda das 14h5xZ fechou com zero defeito, então não havia correção furando a fila (18.5). Dos despachos abertos, o do **Raphael** vem antes pela 18.1 — e o que resta dele é a SERP brasileira vista com os olhos, que a **30.8** diz que esta nuvem não emite (57% dos ocupantes que ela vê estão fora do Brasil) e que o próprio despacho declara *"não é trabalho da Fundação"*. O mesmo valia para as duas metades de medição do despacho de 07/10 (são da leitura semanal) e para o item do Search Console (sem credencial neste ambiente). **O único item aberto que era trabalho da Fundação era o item 1 da ronda de hoje**, e ele vinha com critério de pronto escrito em cinco partes.
+
+### O QUE FOI ENTREGUE
+
+**`codigo_catalogo`, campo próprio no `dados/esquema-produtos.json` (versão 13), ao lado do `gtin`**, declarado nos **78** registros — `null` em 75, que é a declaração de que o fabricante não publica código separado do nome do modelo, e **não** a ausência de declaração. Os três Eheim classic declaram `2213`, `2217` e `2217`. A regra **V28** é executável no `validar-produtos.py` nas duas metades que têm dono: o código declarado aparece **literalmente** dentro do `modelo`, como token, e **não é o modelo inteiro**.
+
+**O DEFEITO, reproduzido antes de uma linha ser escrita.** O campo `modelo` do `eheim-classic-250-2213` é `"classic 250 (2213)"` e **empacota dois identificadores num campo só** — o nome da linha, que é como a loja escreve, e o código do fabricante, que a loja escreve no fim do título com a vazão e a marca no meio. `token_no_titulo()` exige as partes do código **contíguas**, e por isso o portão recusou, por **doze dias e quatro medições**, o anúncio CERTO: `"Filtro Canister Classic 250 440lh Eheim - 2213"`, com o motivo `o titulo nao traz o codigo (classic 250 2213)`.
+
+**O CONSERTO É DO DADO E NÃO DA RÉGUA, e é um PAR de metades opostas:**
+- `codigo_base()` passou a tirar do código exigido o que o banco declara como código de catálogo. O deste registro foi de `classic 250 2213` para **`classic 250`** — contíguo e verdadeiro. Os dois Classic 600 foram de `classic 600 2217` para `classic 600`, e **continuam casando**, separados pela voltagem como antes.
+- e o que ele deixou de exigir voltou como **confirmação opcional** em `codigo_catalogo_conflitante()`, com a assimetria da `medida_conflitante`: título que **cala** o código não barra nada (o varejo escreve "Eheim Classic 250 440 L/h" e o anúncio é o certo), título que declara o código de um **irmão da mesma marca** barra sempre. **Essa proteção não existia antes** — antes nenhum registro declarava código nenhum. E a lista de códigos sai do **banco**, nunca de lista escrita na régua.
+
+**POR QUE NÃO AFROUXEI A TRAVA, e a decisão fica escrita para poder ser contestada:** aceitar as partes do código soltas afrouxaria o portão dos **78** registros por causa de **um**, e o `ARVORE.md` nomeia o caso em que isso machuca — a Chihiros tem WRGB II, WRGB II Pro e WRGB II Slim, e com tokens soltos um título `"WRGB II Slim ... versão Pro"` passaria pelo código base `wrgb ii pro`. A 25.4-b.1 é explícita de que **casamento errado é pior que casamento nenhum, porque parece dado**.
+
+### O CRITÉRIO DE PRONTO, PARTE POR PARTE, MEDIDO
+
+Campo próprio no esquema ao lado do `gtin` ✓ · `codigo_base` rendendo `classic 250` ✓ · `2213` como confirmação opcional ✓ · **`--ensaio` casando no DEGRAU 1**, com o anúncio certo e a loja (Aquasam) ✓ · `mutacoes-coleta-shopee.py` provando que a **Chihiros WRGB II Pro** e o **SunSun HW-303B** continuam barrando o irmão ✓.
+
+**A BANCADA:**
+- `teste-coleta-shopee.py`: **279 afirmações, 0 falha** (eram 177). As **duas direções** do campo são afirmadas — a que afrouxa (`codigo_base` tira o código) e a que aperta (o conflito barra) —, porque medir só a primeira deixaria um afrouxamento verde. Mais a **fiação**: `casa()` TEM de chamar o portão novo, e ele roda **fora** do `if base:`, senão registro sem código base perde a trava.
+- `mutacoes-coleta-shopee.py`: **26 de 26 reprovadas, 0 sobrevivente, 0 inerte** (eram 22). As quatro novas: (21) o código volta a ser exigido contíguo, que **reproduz o defeito dos doze dias**; (22) o conflito deixa de barrar — a porta dos fundos mais perigosa, que ficaria com a metade que afrouxa e sem a que aperta; (23) os códigos dos irmãos param de chegar ao portão, com a função inteira de pé, no desenho da mutação 5; (24) o conflito atravessa a marca.
+- **UMA AFIRMAÇÃO MINHA IA NASCER INERTE e foi reescrita:** os três registros com código de catálogo são todos Eheim e moram no mesmo banco, então a regra da marca não é exercida por dado nenhum. A afirmação **constrói** o mundo de amanhã (um irmão de outra marca com código declarado) e tem a direção oposta ao lado — mesmo código, mesma marca, barra. Sem isso a regra da marca seria linha que ninguém nunca executou.
+- Os seis portões que leem o banco foram rodados **depois** da mudança: `validar-produtos.py` 78 produtos **0 erro** (8 avisos, os mesmos V11/V14/V20 de antes), `teste-escada-compra.py` 703/0, `teste-dimensao-imagem.py` 42/0, `mutacoes-escada.py` 26/26, `mutacoes-dimensao.py` 14/14, `mutacoes-coleta-shopee.py` 26/26.
+
+### A PROVA DE QUE O CONSERTO É CIRÚRGICO, MEDIDA CONTRA O COMMIT ANTERIOR
+
+Não basta dizer "não afrouxei a trava": isso se mede. Rodei a régua **antiga** sobre o banco **antigo** e a régua **nova** sobre o banco **novo**, registro por registro:
+
+- **O código base mudou em 3 de 78 registros** — e são exatamente os três Eheim classic, os únicos que declaram código de catálogo (`classic 250 2213` → `classic 250`, e os dois `classic 600 2217` → `classic 600`). **Nos outros 75 o código exigido é byte a byte o mesmo**, então para eles a trava não mudou de aperto.
+- **O veredito de `casa()` mudou em 1 dos 47 registros que guardam o título do próprio anúncio** — o `eheim-classic-250-2213`, de **False para True**. Os outros **46 mantiveram o veredito**, os dois Classic 600 inclusive, que já casavam e continuam casando.
+
+Uma régua afrouxada apareceria aqui como verdadeiro novo em registro que não tinha nada a ganhar. Apareceu um, e é o que a medição de 17h0xZ havia nomeado como o único que era nosso.
+
+### E O PAR FOI GRAVADO — PELA RÉGUA DA ILHA, NÃO POR ESCOLHA DESTA EXECUÇÃO
+
+`preserva_ficha_existente()` diz, com **duas mutações** guardando as duas direções desde 23/09, que registro com `url` e sem `url_produto` *"se reescolhe INTEIRO, os dois campos da mesma oferta"* (25.4-b.1). Gravados juntos, conferidos campo por campo no `git diff`: `url` novo, `url_produto` **crua**, `degrau: 3` declarado (a 25.1 reserva o 1 para loja oficial e a API não diz se a loja é oficial), `intestavel: false`, e o `motivo_sem_url_produto` **apagado porque a causa deixou de existir**. O `sub_id_2` segue **C3** — sai da mesma tabela de onde o antigo saiu, então a calculadora que vende continua nomeada. **A FOTO NÃO FOI TOCADA:** a procedência dela não é desta ferramenta (`fonte: anuncio-shopee`, medida no Chrome pela Sentinela), então o `alt` escrito por quem **viu** a imagem sobreviveu — era o risco que a própria fila nomeia como "escolha entre duas opções defensáveis".
+
+**E UMA FRASE DO BANCO QUE FICOU FALSA FOI CORRIGIDA NA MESMA PASSADA:** o `afiliado.observacao` deste registro dizia *"Link curto gerado no painel Shopee Afiliados em 07/09/2026"*, e o link é de hoje, gerado pela Open API. Reescrita com a procedência nova, o que ela substituiu e por que.
+
+### O NÚMERO, RECONTADO DO BANCO E NÃO DIGITADO
+
+`contar-cano-de-links.py` regerou `dados/cano-de-links-2026-10-14.md`: itens com link e **sem** `url_produto` de **12 para 11**; `intestavel: true` de 12 para **11**; **degrau 3 de 35 para 36**; sem `url_produto` de 43 para **42**; `url_busca` segue em **78 de 78**. O teste de vida da próxima ronda tem **36 itens testáveis** — que é exatamente o **teto realista** que a medição das 17h0xZ nomeou. **Não faltavam doze: faltava um, e era este.**
+
+**OS ONZE QUE SOBRAM NÃO SÃO TRABALHO DA FUNDAÇÃO**, e a separação da 25.4-b.4 fica inteira no `PROMPT.md`: **9** em que o produto não está anunciado (os quatro Roxin HT-1300 são **um** evento, não quatro) e **2** barrados com a trava **certa** — o `seachem-matrix-1l`, cujo único anúncio é o Matrix **Carbon**, irmão declarado e filtragem química, e o `rs-50-50w`, `marca: null`, que **não casa por mais que o mercado mude** e precisa de decisão sobre o registro.
+
+### O DESEMBARQUE — UMA LINHA CHEGOU À TELA, E ELA FOI CONFERIDA NO AR
+
+**O portão pegou o que o olho não pegaria:** depois de gravar o banco, `teste-escada-compra.py` **reprovou** com 4 falhas — o snippet da C3 ainda servia o link velho, *"que nao e ficha nem piso de nenhum item do banco"*. Regenerados os quatro catálogos, **só um byte de tela mudou**: o `link` do classic 250 em `aquametria-calculadora-vazao.php`. Manifest na **revisão 121**, com os 10 arquivos que esta execução tocou e nenhum outro, conferido item por item contra o manifest do `HEAD`.
+
+Sync acionado **duas vezes** com `forcar=1`, como a 20.4 manda por desenho. `conferir-desembarque.py`: **APROVADO** — `/status` 121 e manifest 121, cabeçalho do log na 121, e **nenhuma linha da revisão deixa de dizer `ok`** (14 linhas de item lidas). O portão registra, em vez de aprovar com cara de completo, que a **janela do log cortou 6** dos 20 itens aplicados, e o que não está na janela **não foi conferido**. Não houve o caso da **20.5**: a revisão subiu na primeira leitura, sem atraso de cache.
+
+**E OS 6 QUE A JANELA CORTOU FORAM COBERTOS POR MEDIÇÃO, não por suposição** — é o que a 20.4 manda, e é barato: varri as **52 URLs do sitemap** com quebra de cache. **52 de 52 em HTTP 200** e **52 de 52 servindo `<meta name="description">`**. Esse par é exatamente o que denuncia o defeito do qual a 20.4 nasceu: na clubedomosaico, em 12/10, sete páginas serviram o **tema cru do WordPress** — sem meta description — com o `/status` e o `manifest.json` os dois na mesma revisão, porque um snippet foi gravado e não ativado e o Sync seguiu em frente. Revisão verde nos dois lados não prova página inteira; a meta nas 52, sim.
+
+**No ar, com quebra de cache:** o HTML servido da `/calculadora-de-vazao-do-filtro/` traz o link novo **2 vezes** e o velho **0**, com `rel="sponsored noopener"`. `conferir-escada-no-ar.py`: **130 afirmações, 0 falha**, e a conta do relatório fecha — **7 cartões na C3, 7 pela ficha, 0 sem saída**.
+
+**E NENHUMA PALAVRA QUE O LEITOR VÊ MUDOU, o que é metade do ponto deste desenho.** O campo `modelo` **não** foi tocado: a tela continua dizendo `classic 250 (2213)`, com os dois identificadores juntos, que é como a pessoa reconhece o filtro na prateleira e na busca. Quem ganhou o campo separado foi a **máquina**. Lido no cartão servido: `"Ver na Shopee"` com o selo `"link patrocinado"`, o link do piso (`Ver todas as ofertas`) ao lado, e a procedência do Eheim intacta. **Separar identificador para o portão sem partir o nome na tela era o requisito escondido do item, e é por isso que o conserto foi um campo novo e não uma reescrita do `modelo`** — reescrever o `modelo` teria mudado o nome em cinco superfícies e exigido uma leva de verificação de voz e título.
+
+### O QUE ESTE BLOCO NÃO É
+
+**Nenhuma URL nova** (a ilha segue em **52**), **nenhuma leva do teto da 21.4 gasta** — ele continua **zerado** nesta semana, a última leva de malha foi a 9 de 23/09 —, nenhum `<h1>`, trilha, cartão ou `<title>` tocado, e **a `/calculadora-de-litragem/` continua sem promessa**, que é o controle da medição de CTR. Não usei a rampa dobrada: dobrar leva somaria variáveis à medição de CTR das cinco promessas, que começou hoje. Não trouxe consulta do `corpus-buscas`, que é memória e não existe neste ambiente, conferido. Não medi Search Console, por falta de credencial, conferido. E **não mexi na SERP brasileira do despacho do Raphael**, porque a 30.8 diz que esta nuvem não emite o veredito que autoriza abrir URL.
+
+### E UMA REGRA NOVA FOI ESCRITA NO CONTRATO, NÃO NO REGISTRO DESTA ILHA — **`ARQUIPELAGO.md` §25.9**
+
+**Por que no contrato:** as **três** ilhas rodam a mesma `coletar-shopee.py` e a mesma trava `token_no_titulo()`. É o motivo exato que fez a **20.4** e a **30.8** nascerem lá — *"conserto escrito em registro de ilha conserta aquele dia; regra escrita aqui vale para as três ilhas"*.
+
+A **25.9** escreve as três partes: o conserto é do **dado** e nunca da trava; o identificador que o fabricante publica separado do nome ganha **campo próprio**, declarado em todo registro e conferido como recorte literal do `modelo`; e o que a trava deixa de exigir **volta como confirmação opcional** com a assimetria da medida conflitante — sem essa metade o campo é só afrouxamento com nome bonito. Mais as duas coisas que custaram caro aqui: **o disfarce** (a recusa não aparece como defeito, aparece como *ausência de oferta*, e toda medição seguinte a confirma, porque medir de novo é rodar a mesma régua) e **a prova** (rodar a régua antiga sobre o banco antigo e a nova sobre o novo, e **contar** quantos vereditos mudaram, em vez de afirmar que não afrouxou).
+
+**O que NÃO virou despacho, e é deliberado:** varri os bancos das irmãs e **nenhum registro delas empacota dois identificadores no `modelo` hoje** — a robometria tem 27 registros, zero com o padrão, e a clubedomosaico não tem banco de produtos nesse formato. Escrever despacho para trabalho que não existe seria inventar fila. A §25.9 dispara no dia em que o caso aparecer, e a **seção 3** proíbe editar arquivo de ilha que não se reservou.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+**Nenhum despacho desta ilha tem item aberto para a Fundação.** O que sobra em todos eles é medição da leitura semanal, SERP vista com olhos, ou credencial ausente. Então a próxima execução volta à **fila**, e o item que está nomeado nela com critério escrito é o **bloco que a leva 9 apontou e não fez**: o campo `porte_e_maximo_registrado`, irmão do `temperatura_e_tolerancia`, com a mesma regra de cláusula literal do E22 e do E23. O `porte_adulto_cm` de quase todo o eixo `/peixes/` vem de *max length* da base científica, e a página não diz isso — no barbo rosado a diferença é de **14,0 cm (TL, máximo registrado)** contra **65 a 75 mm** que o compêndio publica como o tamanho da maioria dos adultos, e as tabelas de lotação dimensionam pelo número maior. **Não é leva de malha e não gasta o teto da 21.4.** É varrer as transcrições das 34 do catálogo, gravar o campo onde a fonte disser *max*, deixar ausente onde ela não disser, e fechar com portão nas duas direções mais mutação — exatamente o desenho que o bloco de hoje usou.
+
 ## 2026-10-14 16h17Z–17h0xZ — AS CONSULTAS DE PRODUTO DO AQUARISMO, CLASSIFICADAS — E O ACHADO QUE VIROU A 30.8 DO CONTRATO: 57% DOS OCUPANTES DE SERP QUE ESTA NUVEM VÊ ESTÃO FORA DO BRASIL
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael das 09h58 BRT, então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null` — pela **1.1** isso já significa que não há bloco da Fundação vivo —, e o último commit na pasta da ilha era de **15h02Z**, 75 minutos antes, mas é commit de **ronda da Sentinela**, e a 1.1 diz com todas as letras que *"commit de ronda da Sentinela (…) não reserva nada"*. Reserva aceita às **16h17Z**, commit `c9ba22d`, na primeira tentativa. Nenhum PR aberto e a branch designada em sincronia com o `main`, conferido antes de qualquer coisa (passo 1).

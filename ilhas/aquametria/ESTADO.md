@@ -8,32 +8,154 @@ primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 i
 ultima_execucao: 2026-10-14T16:57Z
 executando_desde: 2026-10-14T19:29Z
 bloco_atual: |
-  AS CONSULTAS DE PRODUTO DO AQUARISMO, CLASSIFICADAS — e o achado que virou a 30.8 do contrato: 57% dos ocupantes de SERP que esta nuvem ve estao FORA DO BRASIL. Item 1 do despacho do Raphael de 09/10 (paginas pelo nome do produto), que a execucao das 13h16Z deixou nomeado como o proximo passo da janela. NENHUMA URL NOVA (a ilha segue em 52), nenhuma leva do teto da 21.4 gasta, nenhum <h1>, trilha ou cartao tocado, e NADA FOI AO AR: este bloco e repositorio, nao desembarque — o manifest.json nao mudou, nao houve Sync a acionar e nao houve portao da 20.4 a rodar.
-  1. O QUE FOI ENTREGUE: dados/consultas-de-produto.md, gerado de dados/consultas-de-produto.json. 15 consultas nas nove familias que o despacho nomeia (filtro, aquecedor, luminaria, midia, bomba, termostato, substrato, CO2, teste de agua), em ordem de intencao de compra, nas tres formas da 30.1 — cabeca, parametrica e nome de modelo. 138 OCUPANTES DE SERP com URL, classe e se a pagina e dedicada aquela consulta, que e o que a 30.5 exige para o veredito existir.
-  2. A MAQUINA, no mesmo desenho de quatro pecas da prospeccao de 24/09: regua-consultas-de-produto.py (a regua, compartilhada), gerar- (producao), validar- (o portao sobre o arquivo de verdade) e a bancada teste- com mutacoes-. VEREDITO, nasce_agora E LASTRO DE BANCO SAO CALCULADOS: a lista diz o numero e o portao recalcula. O .md e gerado e o portao o regera e compara — .md editado a mao fica vermelho.
-  3. O ACHADO QUE VIROU SECAO DO CONTRATO (30.8, escrita nesta passada porque o instrumento e o mesmo nas quatro ilhas): esta nuvem NAO VE A SERP BRASILEIRA. 79 dos 138 ocupantes estao fora do Brasil; em `kit de CO2` e em `eheim classic 250 2213` a busca devolveu ZERO ocupante brasileiro. O caso que decidiu: em `luminaria de LED para aquario plantado` a busca neutra devolveu 8 estrangeiros em 9 — e a busca que NOMEIA as lojas achou categoria dedicada da Cobasi e CINCO listagens do Mercado Livre. A consulta que mais parecia aberta era a que o varejo grande ja ocupa.
-  4. A REGRA, E ELA E UMA ASSIMETRIA: `tomada` e fato positivo e se afirma da nuvem; `alvo` e AUSENCIA e NAO se afirma, porque busca sabe afirmar presenca e nunca ausencia (regra 1 da regua-prospeccao, de 24/09). A regua emite DOIS vereditos: `tomada` e `nao-medida`. `alvo` nao existe nela, e a ausencia dele e o conteudo — e o veredito que autoriza gastar rastreamento, e a 14.9 diz o que custa errar nele. Quem quiser `alvo` abre a SERP com os olhos e escreve serp_vista_por e serp_vista_em na linha.
-  5. O UNICO VEREDITO AFIRMADO, e e decisao final e barata: `aquecedor para aquario` esta TOMADA e nao nasce — quatro dos sete ocupantes brasileiros sao pagina de CATEGORIA DEDICADA (duas da Cobasi e duas da Petz), na busca neutra. E a familia de maior lastro da ilha (27 registros) e a lista a fecha sem gastar uma URL.
-  6. NENHUMA DAS 15 NASCE AGORA, e cada motivo nomeia o portao: uma pela 30.5, TRES SUSPENSAS pela 30.4 (filtro de 100 litros, aquecedor de 50 litros e midia biologica — as tres sao consulta-alvo DECLARADA de uma calculadora, nao medida, porque a Search Console anonimizou 370 das 371 impressoes), e as demais pela 14.9. Quatro familias que o despacho nomeia — bomba, substrato, CO2 e teste de agua — tem ZERO registro no banco e dependem de coleta antes de SERP (30.2).
-  7. A SEGUNDA METADE DA 30.5, que so aparece quando se aplica: "pagina dedicada" e o que faz a conta. Em `filtro hang on para aquario` os DEZ ocupantes sao brasileiros e OITO sao de varejo grande — e nenhum disputa a consulta, porque sao fichas de UM modelo. Contadas como varejo grande fechariam a consulta como tomada sem ninguem a disputar. Por isso dedicada_a_consulta e `sim` ou `nao medido`, NUNCA `nao`: dizer que uma pagina nao e dedicada e leitura de slug, e leitura de slug erra.
-  8. A BANCADA: teste-consultas-de-produto.py 206 afirmacoes 0 falha; mutacoes-consultas-de-produto.py 16 de 16 reprovadas, zero inerte. AS DUAS QUE SOBREVIVERAM A PRIMEIRA PASSADA VALEM MAIS QUE AS CATORZE: a 11 inflava produtos_reais_no_banco e nada acusava — o lastro era numero DIGITADO —, e agora a regua RECONTA dos dados/produtos-*.json (so registro com afiliado.anuncio_shopee, porque registro sem anuncio e dado tecnico pela 30.2, nao produto a vender), com forma `modelo` exigindo registro_do_banco; a 15 apagava a lista inteira do o_que_nao_foi_medido e o portao ficava verde.
-  8-b. A BANCADA COMPLETA DA ILHA FECHOU: **APROVADO, 46 PORTOES, 0 FALHA.** Ela descobre os portoes sozinha pela convencao de nome, e os TRES NOVOS entraram nela no dia em que foram escritos — `validar-consultas-de-produto.py` APROVADO (15 consultas, 1 veredito `tomada` afirmado, 138 ocupantes, .md batendo com o JSON), `teste-consultas-de-produto.py` 206 afirmacoes 0 falha, `mutacoes-consultas-de-produto.py` 16 de 16 reprovadas zero inerte. A `mutacoes-peixes.py` fechou em 100 de 100. Zero linha fora de `ok` no log inteiro. (A passada ficou EM CURSO no momento em que o cabecalho foi fechado, e isso ficou escrito como nao concluido; ela terminou depois, verde, e este campo foi corrigido com o veredito. Ficam fora dela, por desenho, os 10 portoes que abrem o site e os 18 de Chromium.) Os SEIS portoes que leem o banco tambem foram rodados a mao DEPOIS da mudanca do segundo bloco, e passaram.
-  9. DOIS ACHADOS MENORES NA 30.8: a 30.2 NAO FECHA para pagina por nome de modelo — ela pede 3 produtos reais e a pagina do eheim-classic-250-2213 tem UM; cumpri-la exige tres ANUNCIOS do mesmo modelo, de vendedores diferentes. E no Brasil `termostato` e `aquecedor` nomeiam o mesmo objeto na prateleira, e o banco ja sabia: os 27 registros de produtos-aquecedor.json tem um campo `termostato` (secao 26 em pessoa).
-  10. O QUE ESTE BLOCO NAO E: nao mexeu na divida da 25.4-b (os 12 sem url_produto, unico item aberto do despacho da ronda de hoje) porque a 18.1 poe o despacho do Raphael antes do da Sentinela e a ordem do foco.md manda o mesmo; nao usou a rampa dobrada, pelo mesmo motivo de 13h16Z (dobrar leva somaria variaveis a medicao de CTR das cinco promessas, que comecou hoje); nao trouxe consulta do corpus-buscas, que e memoria e nao existe neste ambiente, conferido; e nao mediu Search Console — GOOGLE_SA_B64, GOOGLE_SA_JSON e GOOGLE_SA_FILE seguem ausentes, conferidos.
-  11. E A EXECUCAO SEGUIU PARA UM SEGUNDO BLOCO, pela 18.2 ("se sobrar folego depois de fechar o despacho, segue para o proximo"): A DIVIDA DA 25.4-b, REMEDIDA — E ELA NAO E 12 ITENS DE UM TIPO, E 9 + 2 + 1. FALTA UM. Medicao inteira em dados/divida-25-4-b-2026-10-14.md, feita com coletar-shopee.py --ensaio nos 12, um por um. SHOPEE_APP_ID e SHOPEE_SECRET PRESENTES neste ambiente, conferido, e a Open API respondeu nas 12 passadas. Motivo da remedicao: a 25.4-b.3 diz que motivo velho manda nao tentar, e o motivo dos 12 era de 23/09 — o numero 12 apareceu igual em 13/09, 02/10, 12/10 e hoje, e quatro medicoes do mesmo numero nao sao a mesma medicao repetida, sao a mesma pergunta mal feita quatro vezes.
-  12. A SEPARACAO QUE A 25.4-b.4 EXIGE, com o dado de hoje: NOVE itens com ZERO resultado em todos os degraus (os quatro Roxin HT-1300, o Sicce Scuba Contactless 150, o Ista I-401 45, a Chihiros A451M, a Chihiros WRGB II Pro 60 e o Eheim SUBSTRAT pro 1 L) — nenhuma trava acionada, so o mercado destrava, e OS QUATRO ROXIN SAO UM EVENTO E NAO QUATRO. DOIS barrados com a trava CERTA: o seachem-matrix-1l so tem anuncio do Matrix CARBON, que e irmao declarado no banco e e filtragem quimica (casar poria carvao ativado na vitrine da C12, que dimensiona midia biologica), e o rs-50-50w e `marca: null` e a busca devolve moto da Aprilia, Porsche e Rio Grande do Sul — este NAO casa por mais que o mercado mude, precisa de decisao sobre o registro. E UM em que a divida e NOSSA.
-  13. O UNICO QUE E NOSSO: eheim-classic-250-2213. O anuncio certo existe e a API o devolveu hoje — "Filtro Canister Classic 250 440lh Eheim - 2213", com marca, linha e codigo de catalogo. A trava o barrou porque token_no_titulo() exige as partes do codigo CONTIGUAS e o codigo_base deste registro tem tres, ja que o campo `modelo` e "classic 250 (2213)" e EMPACOTA DOIS IDENTIFICADORES NUM CAMPO SO — o nome da linha e o codigo do fabricante —, e o varejo brasileiro escreve os dois separados, com a vazao e a marca no meio. (O segundo candidato ficou barrado com razao: o vendedor grafou "Ehein".)
-  14. NAO AFROUXEI A TRAVA, E A DECISAO ESTA ESCRITA PARA PODER SER CONTESTADA: exigir os tokens soltos afrouxa a trava dos 78 registros por causa de um, e ha um caso perigoso nomeado no ARVORE.md — a Chihiros tem WRGB II, WRGB II Pro e WRGB II Slim, e o codigo_base da Pro e `wrgb ii pro`; com tokens soltos um titulo "WRGB II Slim ... versao Pro" passaria, e a 25.4-b.1 e explicita de que casamento errado e pior que casamento nenhum porque PARECE DADO. O conserto proposto e do DADO e nao da trava: codigo de catalogo em campo proprio no esquema, ao lado do gtin que ja existe. E bloco de esquema com portao e mutacao, nao efeito colateral de coleta. Esta escrito como criterio de pronto no PROMPT.md.
-  15. O QUE O SEGUNDO BLOCO GRAVOU NO BANCO, e so isto, conferido pelo git diff campo por campo: `motivo_sem_url_produto` nos 12 (causa PRESERVADA antes do marcador `||`, so a ULTIMA TENTATIVA reescrita de 2026-09-24 para 2026-10-14 com as recusas de hoje, que e exatamente o que a 25.4-b.3 manda), `encurtamento_tentado_em` nos 12, e `atualizado_em` nos quatro bancos. NENHUM link tocado, NENHUM url_produto grampeado (25.4-b.1), `intestavel` segue true nos 12. As contagens NAO mudaram: contar-cano-de-links.py regerou dados/cano-de-links-2026-10-14.md BYTE A BYTE IDENTICO, o que confirma de forma independente os numeros da ronda de hoje — 78 registros, 0 sem url_busca, 43 sem url_produto.
-  16. E NADA FOI AO AR NO SEGUNDO BLOCO TAMBEM, verificado e nao suposto: rodei os quatro gerar-catalogo-*.py depois de mexer no banco e os snippets e o manifest.json sairam SEM UM BYTE DE DIFERENCA — os tres campos sao escrituracao interna e nao chegam a tela. Manifest segue 120, nao houve Sync a acionar e nao houve portao da 20.4 a rodar. Os seis portoes que leem o banco foram rodados DEPOIS da mudanca: teste-coleta-shopee 177/0, teste-escada-compra 703/0, teste-dimensao-imagem 42/0, mutacoes-dimensao 14/14, mutacoes-escada 26/26, mutacoes-coleta-shopee 22/22, mais validar-produtos.py sem erro (so os avisos V11/V20 que ja existiam).
-  17. O TETO REALISTA DESTA DIVIDA, dito na cara: com o mercado de hoje e 36 de 47, nao 47 de 47 — e chegar a 36 custa um bloco de esquema, nao uma coleta. "Faltam 12" sugere trabalho que existe para doze e faz o prazo parecer recuperavel por esforco. FALTA UM.
+  O CODIGO DE CATALOGO DO FABRICANTE GANHOU CAMPO PROPRIO (esquema 13), E COM ELE FECHOU A UNICA
+  DIVIDA DE FICHA DESTA ILHA QUE ERA *NOSSA*. Item 1 do despacho da ronda de 14/10 — o unico aberto
+  dele, e o unico item aberto de qualquer despacho desta ilha que era trabalho da Fundacao. NENHUMA
+  URL NOVA (a ilha segue em 52), nenhuma leva do teto da 21.4 gasta (ele continua ZERADO nesta
+  semana), nenhum <h1>, trilha, cartao ou <title> tocado, e a /calculadora-de-litragem/ segue sem
+  promessa, que e o controle da medicao de CTR. UMA LINHA chegou a tela e foi conferida no ar.
+  1. O DEFEITO, reproduzido antes de uma linha ser escrita: o campo `modelo` do
+     eheim-classic-250-2213 e "classic 250 (2213)" e EMPACOTAVA DOIS IDENTIFICADORES NUM CAMPO SO —
+     o nome da linha e o codigo do fabricante. token_no_titulo() exige as partes do codigo
+     CONTIGUAS, e o varejo brasileiro escreve as duas separadas com a vazao e a marca no meio. O
+     anuncio CERTO ("Filtro Canister Classic 250 440lh Eheim - 2213") foi recusado por DOZE DIAS, em
+     QUATRO medicoes, com o motivo "o titulo nao traz o codigo (classic 250 2213)".
+  2. O CONSERTO E DO DADO E NAO DA REGUA, e e um PAR de metades opostas: `codigo_catalogo` entra no
+     esquema-produtos.json (versao 13) ao lado do gtin, declarado nos 78 registros (null em 75, que e
+     a declaracao de que o fabricante nao publica codigo separado do nome — chave ausente nao
+     declara nada); `codigo_base()` passou a TIRAR do codigo exigido o que o banco declara como
+     codigo de catalogo, e o deste registro foi de `classic 250 2213` para `classic 250`; e o que ele
+     deixou de exigir VOLTOU como confirmacao OPCIONAL em `codigo_catalogo_conflitante()`, com a
+     assimetria da medida_conflitante — titulo que CALA o codigo nao barra, titulo que declara o
+     codigo de um IRMAO da mesma marca barra sempre. Essa segunda protecao NAO EXISTIA ANTES.
+  3. A TRAVA NAO FOI AFROUXADA, e isso esta MEDIDO contra o commit anterior em vez de afirmado:
+     rodando a regua antiga sobre o banco antigo e a nova sobre o novo, o codigo base mudou em 3 DE
+     78 registros (so os tres Eheim classic, os unicos que declaram codigo) e o veredito de casa()
+     mudou em 1 DE 47 registros que guardam o titulo do proprio anuncio — o eheim-classic-250-2213,
+     de False para True. Os outros 46 mantiveram o veredito, os dois Classic 600 inclusive. Regua
+     afrouxada apareceria como verdadeiro novo em registro que nao tinha nada a ganhar.
+  4. POR QUE NAO AFROUXAR: aceitar as partes do codigo soltas afrouxaria o portao dos 78 por causa
+     de UM, e o ARVORE.md nomeia o caso que machuca — a Chihiros tem WRGB II, WRGB II Pro e WRGB II
+     Slim, e com tokens soltos um titulo "WRGB II Slim ... versao Pro" passaria pelo codigo base
+     `wrgb ii pro`. A 25.4-b.1 e explicita: casamento errado e pior que casamento nenhum, porque
+     PARECE DADO.
+  5. O CRITERIO DE PRONTO, PARTE POR PARTE: campo proprio no esquema ao lado do gtin OK; codigo_base
+     rendendo `classic 250` OK; 2213 como confirmacao opcional OK; `--ensaio` casando no DEGRAU 1
+     (anuncio certo, loja Aquasam) OK; mutacoes-coleta-shopee.py provando que a Chihiros WRGB II Pro
+     e o SunSun HW-303B continuam barrando o irmao OK (mutacoes 8, 10 e 11).
+  6. A BANCADA DO PORTAO: teste-coleta-shopee.py 279 afirmacoes 0 falha (eram 177), com as DUAS
+     direcoes do campo afirmadas — a que afrouxa e a que aperta, porque medir so a primeira deixaria
+     um afrouxamento verde — mais a FIACAO (casa() TEM de chamar o portao novo, e ele roda FORA do
+     `if base:`, senao registro sem codigo base perde a trava). mutacoes-coleta-shopee.py 26 de 26
+     reprovadas, 0 sobrevivente, 0 inerte (eram 22): as quatro novas sao o codigo voltando a ser
+     exigido contiguo (reproduz o defeito dos doze dias), o conflito deixando de barrar (a porta dos
+     fundos mais perigosa: ficaria com a metade que afrouxa e sem a que aperta), os codigos dos
+     irmaos parando de chegar com a funcao de pe, e o conflito atravessando a marca.
+  6-b. UMA AFIRMACAO MINHA IA NASCER INERTE E FOI REESCRITA: os tres registros com codigo de
+     catalogo sao todos Eheim e moram no mesmo banco, entao a regra da marca nao e exercida por dado
+     nenhum. A afirmacao CONSTROI o mundo de amanha (um irmao de outra marca com codigo declarado) e
+     tem a direcao oposta ao lado. Sem isso, a regra da marca seria linha que ninguem executou.
+  7. V28, executavel no validar-produtos.py nas duas metades que tem dono: o codigo declarado aparece
+     LITERALMENTE dentro do modelo, como token (senao o campo tiraria do codigo base um pedaco que
+     ninguem escreveu, e o portao afrouxaria em silencio — o afrouxamento entrando pela porta do
+     DADO), e NAO e o modelo inteiro (senao o registro fica sem identidade e casa com qualquer
+     anuncio da marca). 78 produtos, 0 erro, 8 avisos — os mesmos V11/V14/V20 de antes.
+  8. E O PAR FOI GRAVADO PELA REGUA DA ILHA, nao por escolha desta execucao:
+     preserva_ficha_existente() diz, com duas mutacoes guardando as duas direcoes desde 23/09, que
+     registro com `url` e sem `url_produto` "se reescolhe INTEIRO, os dois campos da mesma oferta"
+     (25.4-b.1). Gravados juntos, conferidos campo por campo no git diff: url novo, url_produto
+     CRUA, degrau 3 declarado, intestavel false, motivo_sem_url_produto apagado porque a causa
+     deixou de existir. O sub_id_2 segue C3 (mesma tabela de onde o antigo saiu) e A FOTO NAO FOI
+     TOCADA — a procedencia dela nao e desta ferramenta, entao o alt escrito por quem VIU a imagem
+     sobreviveu. E o afiliado.observacao, que dizia "link gerado no painel em 07/09", foi corrigido:
+     o link e de hoje, pela Open API.
+  9. O NUMERO, RECONTADO DO BANCO por contar-cano-de-links.py e nao digitado: itens com link e sem
+     url_produto de 12 para 11; intestavel: true de 12 para 11; degrau 3 de 35 para 36; sem
+     url_produto de 43 para 42; url_busca segue 78 de 78. O teste de vida da proxima ronda tem 36
+     ITENS TESTAVEIS, que e exatamente o teto realista que a medicao das 17h0xZ nomeou. Nao faltavam
+     doze: faltava um, e era este. E O CAMPO ultima_ronda DESTE CABECALHO CONTINUA DIZENDO 12, de
+     proposito: a secao 2 diz que quem escreve aquele campo e a Sentinela e nao a Fundacao, e o
+     numero dela estava certo as 14h53Z. A correcao por baixo esta no PROMPT.md, logo abaixo da
+     linha do teste de vida, e no ponteiro do dados/divida-25-4-b-2026-10-14.md.
+  10. OS ONZE QUE SOBRAM NAO SAO TRABALHO DA FUNDACAO, e a separacao da 25.4-b.4 fica inteira no
+     PROMPT.md: 9 em que o produto nao esta anunciado (os quatro Roxin HT-1300 sao UM evento, nao
+     quatro) e 2 barrados com a trava CERTA — o seachem-matrix-1l, cujo unico anuncio e o Matrix
+     CARBON, irmao declarado e filtragem quimica, e o rs-50-50w, marca: null, que nao casa por mais
+     que o mercado mude e precisa de decisao sobre o REGISTRO, nao de coleta.
+  11. O DESEMBARQUE, e O PORTAO PEGOU O QUE O OLHO NAO PEGARIA: depois de gravar o banco,
+     teste-escada-compra.py REPROVOU com 4 falhas — o snippet da C3 ainda servia o link velho, "que
+     nao e ficha nem piso de nenhum item do banco". Regenerados os quatro catalogos, SO UM BYTE DE
+     TELA mudou: o `link` do classic 250 em aquametria-calculadora-vazao.php. Manifest na revisao
+     121, com os 10 arquivos que esta execucao tocou e nenhum outro, conferido item por item contra o
+     manifest do HEAD. Sync acionado DUAS vezes com forcar=1 (20.4), conferir-desembarque.py
+     APROVADO: /status 121 e manifest 121, cabecalho do log na 121, e NENHUMA linha da revisao deixa
+     de dizer ok (14 linhas lidas; o portao registra que a janela cortou 6 dos 20 aplicados, e o que
+     nao esta na janela NAO foi conferido). E COMO A 20.4 MANDA NAO LER ISSO COMO CONFERIDO, OS 6 QUE
+     A JANELA CORTOU FORAM COBERTOS POR MEDICAO E NAO POR SUPOSICAO: varri as 52 URLs do sitemap com
+     quebra de cache — 52 de 52 em HTTP 200 e 52 de 52 servindo <meta name="description">, que e
+     exatamente o par que denuncia o defeito do qual a 20.4 nasceu (pagina servindo o tema cru do
+     WordPress depois de um snippet gravado e nao ativado). Nao houve o caso da 20.5 — a revisao
+     subiu na primeira leitura, sem atraso de cache. No ar, com quebra de cache: link novo 2 vezes, link velho 0 vezes;
+     conferir-escada-no-ar.py 130 afirmacoes 0 falha com a conta fechando (7 cartoes na C3, 7 pela
+     ficha, 0 sem saida).
+  12. E NENHUMA PALAVRA QUE O LEITOR VE MUDOU, o que e metade do ponto deste desenho: o campo
+     `modelo` NAO foi tocado, a tela continua dizendo "classic 250 (2213)" com os dois
+     identificadores juntos, que e como a pessoa reconhece o filtro na prateleira. Quem ganhou campo
+     separado foi a MAQUINA. Reescrever o modelo teria mudado o nome em cinco superficies e exigido
+     uma leva de verificacao de voz e titulo — e por isso o conserto foi campo novo, nao reescrita.
+  13. O DOCUMENTO E O ESQUEMA NAO PODEM DIVERGIR NESTA ILHA, entao dados/modelo-banco-produtos.md
+     ganhou a linha do campo e a explicacao dele. E ficou anotada, sem ser consertada inteira, uma
+     divergencia que NAO e desta execucao: a tabela de regras daquele documento para na V14 e o
+     esquema ja tem 28. Copiar as treze para la criaria uma SEGUNDA lista escrita a mao para
+     envelhecer calada, que e o defeito que esta ilha ja pagou tres vezes (o teste-voz.mjs, a tabela
+     de levas do indexacao.md e o "Seis, e so estas" do ARVORE.md). A fonte e o array validacoes do
+     esquema, e o documento passou a dizer isso.
+  14. O QUE ESTE BLOCO NAO FEZ, e por que: nao mexi na SERP brasileira do despacho do Raphael, porque
+     a 30.8 diz que esta nuvem nao emite o veredito que autoriza abrir URL (57% dos ocupantes que ela
+     ve estao fora do Brasil); nao usei a rampa dobrada, porque dobrar leva somaria variaveis a
+     medicao de CTR das cinco promessas, que comecou hoje; nao medi Search Console — GOOGLE_SA_B64,
+     GOOGLE_SA_JSON e GOOGLE_SA_FILE seguem AUSENTES, conferidos; e nao trouxe consulta do
+     corpus-buscas, que e memoria e nao existe neste ambiente, conferido.
+  15. E UMA REGRA NOVA FOI ESCRITA NO CONTRATO, NAO NO REGISTRO DESTA ILHA: ARQUIPELAGO.md secao 25.9,
+     "campo que empacota dois identificadores recusa o anuncio certo para sempre, e a recusa se
+     disfarca de mercado". Esta la e nao aqui porque as TRES ilhas rodam a mesma coletar-shopee.py e
+     a mesma trava token_no_titulo() — o motivo exato que fez a 20.4 e a 30.8 nascerem no contrato. A
+     secao escreve o conserto (campo proprio + confirmacao opcional, nunca afrouxar a trava), o
+     DISFARCE (a recusa aparece como ausencia de oferta, e toda medicao seguinte a confirma porque
+     medir de novo e rodar a mesma regua) e a PROVA (rodar a regua antiga sobre o banco antigo e a
+     nova sobre o novo, e contar quantos vereditos mudaram). NAO virou despacho para as irmas, e isso
+     e deliberado: varri os bancos delas e NENHUM registro empacota dois identificadores hoje — a
+     robometria tem 27 registros, zero com o padrao, e a clubedomosaico nao tem banco nesse formato.
+     Despacho para trabalho que nao existe e fila inventada; a 25.9 dispara quando o caso aparecer.
+  15-b. BANCADA COMPLETA: EM CURSO NO MOMENTO DESTE COMMIT, e escrito assim porque este campo JA
+     CARREGA essa cicatriz — a execucao de 14/10 as 16h17Z fechou o cabecalho com a passada em curso
+     e teve de corrigir o campo depois. O que JA FECHOU, rodado um por um e nao pela bancada: os seis
+     portoes que leem o banco DEPOIS da mudanca (validar-produtos 78 produtos 0 erro,
+     teste-coleta-shopee 279/0, teste-escada-compra 703/0, teste-dimensao-imagem 42/0,
+     mutacoes-escada 26/26, mutacoes-dimensao 14/14, mutacoes-coleta-shopee 26/26) e os tres do ar
+     (conferir-desembarque APROVADO, conferir-escada-no-ar 130/0, e a varredura das 52 URLs). A
+     bancada.py esta na mutacoes-peixes.py, que tem 100 mutacoes e copia o repositorio em cada uma —
+     e ela NAO toca no que este bloco mudou: o eixo /peixes/ nao le o banco de produtos. O veredito
+     dela entra no commit do fecho desta execucao, com o numero, seja ele qual for.
+  16. O PROXIMO PASSO DESBLOQUEADO: NENHUM despacho desta ilha tem item aberto para a Fundacao — o
+     que sobra em todos e medicao da leitura semanal, SERP vista com olhos, ou credencial ausente.
+     Entao a proxima execucao volta a FILA, e o item nomeado nela com criterio escrito e o bloco que
+     a leva 9 apontou e nao fez: o campo `porte_e_maximo_registrado`, irmao do
+     temperatura_e_tolerancia, com a mesma regra de clausula literal do E22 e do E23. O
+     porte_adulto_cm de quase todo o eixo /peixes/ vem de *max length* da base cientifica e a pagina
+     nao diz isso — no barbo rosado sao 14,0 cm (TL, maximo registrado) contra 65 a 75 mm que o
+     compendio publica como o tamanho da maioria dos adultos, e as tabelas de lotacao dimensionam
+     pelo numero maior. Varrer as transcricoes das 34 do catalogo, gravar o campo onde a fonte disser
+     *max*, deixar ausente onde ela nao disser, e fechar com portao nas duas direcoes mais mutacao —
+     o mesmo desenho que o bloco de hoje usou. NAO e leva de malha e nao gasta o teto da 21.4.
 ultima_ronda: 2026-10-14T14:53Z   # RONDA DIARIA TECNICA da Sentinela nas 52 URLs, depois do bloco das 13h16Z/14h10Z: PASSOU inteira, zero defeito novo e zero conserto. As cinco promessas novas de <title> foram conferidas contra o texto da propria pagina, uma a uma, e as cinco se sustentam; a /calculadora-de-litragem/ continua SEM promessa, que e o controle da medicao de CTR e nao deve ganhar promessa antes da leitura semanal. As cinco calculadoras rodaram com entradas ineditas e a conta foi refeita na mao (C5 conferida em quatro volumes). Teste de vida da 25.4: 35 de 35 itens testaveis vivos, 0 morto, 0 esgotado, mais 10 chaves de busca com resultado; continuam 12 itens com link e sem url_produto, o mesmo numero de 13/09, 02/10 e 12/10. A leitura semanal mais recente e de 07/10 20h35Z. ACHADO DE METODO no despacho de hoje: chamada de ficha aguenta ~39 por aba e chamada de busca derruba a aba na 4a a 7a, logo mede-se ficha primeiro e busca por ultimo.
 bloqueada_por: null
 congelamento: |
   ATUALIZADO EM 14/10/2026: o campo `piso` deste cabecalho passou a `atingido`, entao TODO o paragrafo
   abaixo e historico de quando a ilha estava ABAIXO do piso e nao descreve a regra de hoje. O teto da 21.4
   (3 levas por semana) continua inteiro e esta ZERADO: a ultima leva de malha desta ilha foi a 9, em
-  23/09/2026, e nenhuma execucao criou URL desde entao — a de 24/09 e a de 14/10 nao criaram nenhuma. O que
+  23/09/2026, e nenhuma execucao criou URL desde entao — a de 24/09 e as QUATRO de 14/10 (13h16Z,
+  16h17Z, 17h0xZ e 19h16Z) nao criaram nenhuma. O que
   decide o tamanho da proxima leva deixou de ser o piso e passou a ser a serie, pela 14.6 e pela 14.8, e a
   leitura de 07/10 ja escreveu a decisao: a rampa DOBRA, dentro do teto e nunca contra ele.
   --- historico, de quando a ilha estava abaixo do piso ---

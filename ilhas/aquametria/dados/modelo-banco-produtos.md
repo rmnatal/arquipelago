@@ -88,6 +88,7 @@ cotações entre lojas — o registro fica `parcial` e a limitação está escri
 | `linha`, `variante` | string \| null | não | fabricante |
 | `nomes_alternativos` | lista | não | varejo |
 | `gtin` | EAN-13 \| null | não | varejo |
+| `codigo_catalogo` | string \| null | não (a **chave** é obrigatória, o valor não) | fabricante |
 | `disponibilidade_br` | vendido/importado/descontinuado/desconhecido | sim | varejo |
 | `voltagem` | lista de 110/127/220/bivolt \| null | não na ficha, **sim para sugerir** | fabricante ou varejo |
 | `volume_atendido_declarado_L` | `{min, max}` | sim (não para iluminação) | fabricante, senão varejo |
@@ -95,6 +96,23 @@ cotações entre lojas — o registro fica `parcial` e a limitação está escri
 | `conflitos[]` | lista | não | editorial |
 | `verificado_em` | data ISO | sim | editorial |
 | `status_registro` | completo/parcial/conflito/revalidar/rascunho | sim | editorial |
+
+`codigo_catalogo` (esquema **13**, 14/10/2026) é o código de catálogo do
+fabricante **quando ele existe separado do nome da linha e nomeia o mesmo
+aparelho** — não é o `gtin`, que é do varejo e identifica a embalagem. Ele nasceu
+de um defeito medido: o `modelo` do Eheim classic 250 é `classic 250 (2213)` e
+**empacotava dois identificadores num campo só**, o nome da linha e o código do
+fabricante, e como o portão de casamento da coleta exige as partes do código
+contíguas no título do anúncio, ele recusou por doze dias o anúncio certo
+(`Filtro Canister Classic 250 440lh Eheim - 2213`). Separar os dois é o conserto
+do **dado**; afrouxar a trava para aceitar as partes soltas seria o conserto da
+**régua**, e afrouxaria o portão dos 78 registros por causa de um. O campo é
+**confirmação opcional**: título que cala o código não é barrado, título que
+declara o código de um **irmão da mesma marca** é barrado sempre. `null` quer
+dizer "o fabricante não publica código separado do nome", que é o caso de **75
+dos 78** — o `HT-1300` da Roxin e o `HW-303B` da SunSun **já são** o modelo. A
+chave existe em todo registro, porque `null` é uma declaração e chave ausente
+não declara nada (**V28**).
 
 `volume_atendido_declarado_L` é sempre **o que o fabricante declara**, nunca uma
 recomendação da Aquametria; `min` pode ser `null` quando a ficha só publica o
@@ -411,6 +429,19 @@ de diferença que ninguém no Brasil discute.
 | V12 | registro com `conflitos[]` tem status `conflito` | erro |
 | V13 | iluminação com lúmen e sem comprimento não pode ser sugerida | aviso |
 | V14 | status `parcial` sem obrigatório faltante: status errado ou motivo não escrito | aviso |
+
+> **ESTA TABELA PARA NA V14 E O ESQUEMA JÁ TEM 28 REGRAS — anotado em 14/10/2026,
+> e de propósito não consertado inteiro aqui.** As regras **V15 a V28** nasceram
+> entre 07/09 e hoje (o link de afiliado, a escada da seção 25, o vocabulário
+> cobrado, o volume da dosagem, a dimensão da imagem, o código de catálogo) e
+> nunca entraram nesta tabela. Quem precisa da lista completa lê
+> `dados/esquema-produtos.json`, no array `validacoes`, que é a **fonte**: cada
+> regra tem `id`, `regra` e `severidade` lá, e é de lá que o
+> `validar-produtos.py` as implementa. Copiar as treze para cá agora criaria uma
+> segunda lista escrita à mão para envelhecer calada — que é exatamente o defeito
+> que esta ilha já pagou três vezes (o `teste-voz.mjs`, a tabela de levas do
+> `indexacao.md` e o "Seis, e só estas" do `ARVORE.md`). **A V28 está documentada
+> na seção 3, junto do campo que ela protege.**
 
 Rodar antes de cada commit que toque o banco:
 
