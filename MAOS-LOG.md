@@ -5059,3 +5059,97 @@ o arquivo continua append-only. Nenhum dos três arquivos de dados foi alterado 
 cabeçalho de estado, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhuma conta
 criada. Nenhum contato pessoal de terceiros entrou no repositório. O valor de `GOOGLE_SA_B64` nunca foi
 impresso nem gravado.
+
+---
+
+## Disparo de 14/10/2026, 17h11 de Brasília (20h11 UTC) — DESPACHO DA LEITURA SEMANAL DA SENTINELA: 12 operações em 12 arquivos, três ilhas
+
+**Assunto conferido antes de tudo:** Arquipélago — ilhas aquametria, robometria e clubedomosaico (série de indexação, série de posições, `PROMPT.md` e `ESTADO.md` de cada uma). Nada de outro projeto chegou neste disparo.
+
+**Instrução:** executar as 12 operações literais do despacho da leitura semanal da Sentinela de 14/10/2026, em um commit só, sem reformatar, sem corrigir e sem acrescentar linha nenhuma.
+
+**O que foi feito, operação por operação, byte a byte como veio:**
+
+1. `ilhas/aquametria/dados/indexacao.md` — 1 linha de tabela `| 2026-10-14 |` acrescentada depois da última linha `| 2026-` do arquivo (que era a de `2026-10-07`).
+2. `ilhas/aquametria/dados/posicoes.md` — 13 linhas acrescentadas depois da última linha da tabela que começa com `| 2026-10-07 |`.
+3. `ilhas/aquametria/PROMPT.md` — bloco `## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ...)` inserido imediatamente antes de `## DESPACHO DA SENTINELA — 2026-10-14 (RONDA DIÁRIA TÉCNICA`, com uma linha em branco depois do bloco.
+4. `ilhas/aquametria/ESTADO.md` — linha `ultima_ronda:` (única no arquivo, era `2026-10-14T14:53Z`) substituída inteira pela de `2026-10-14T19:58Z`.
+5. `ilhas/robometria/dados/indexacao.md` — 1 linha de tabela `| 2026-10-14 |` acrescentada como última linha de tabela.
+6. `ilhas/robometria/dados/posicoes.md` — 5 linhas acrescentadas depois da última linha `| 2026-10-07 |`.
+7. `ilhas/robometria/PROMPT.md` — bloco da leitura semanal inserido imediatamente antes de `## DESPACHO DO RAPHAEL — 2026-10-09 — PÁGINAS PELO NOME DO PRODUTO`, com linha em branco depois.
+8. `ilhas/robometria/ESTADO.md` — linha `ultima_ronda:` (era `2026-10-12T15:00Z`) substituída inteira.
+9. `ilhas/clubedomosaico/dados/indexacao.md` — 1 linha de tabela `| 2026-10-14 |` acrescentada como última linha de tabela.
+10. `ilhas/clubedomosaico/dados/posicoes.md` — 8 linhas acrescentadas depois da última linha `| 2026-10-07 |`.
+11. `ilhas/clubedomosaico/PROMPT.md` — bloco da leitura semanal inserido imediatamente antes de `## DESPACHO DA SENTINELA — 2026-10-12 (RONDA DIÁRIA TÉCNICA`, com linha em branco depois.
+12. `ilhas/clubedomosaico/ESTADO.md` — linha `ultima_ronda:` (era `2026-10-12T15:00Z`) substituída inteira.
+
+**`git status --porcelain` (depois do commit e do push do trabalho, antes de gravar este log):**
+
+```
+(vazio — árvore limpa)
+```
+
+**`git diff --stat` do commit que foi ao `main`:**
+
+```
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/aquametria/PROMPT.md              | 43 +++++++++++++++++++++++++++++++++
+ ilhas/aquametria/dados/indexacao.md     |  1 +
+ ilhas/aquametria/dados/posicoes.md      | 13 ++++++++++
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 43 +++++++++++++++++++++++++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md  |  8 ++++++
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 38 +++++++++++++++++++++++++++++
+ ilhas/robometria/dados/indexacao.md     |  1 +
+ ilhas/robometria/dados/posicoes.md      |  5 ++++
+ 12 files changed, 156 insertions(+), 3 deletions(-)
+```
+
+**As 3 únicas linhas removidas no commit inteiro, conferidas no `git diff -U0`, são as três `ultima_ronda:` que a instrução mandou substituir:**
+
+```
+-ultima_ronda: 2026-10-14T14:53Z   # RONDA DIARIA TECNICA da Sentinela ... (aquametria)
+-ultima_ronda: 2026-10-12T15:00Z   # RONDA DIÁRIA TÉCNICA da Sentinela ... (robometria)
+-ultima_ronda: 2026-10-12T15:00Z   # RONDA DIÁRIA TÉCNICA da Sentinela ... (clubedomosaico)
+```
+
+**Hash do commit que foi ao `main`:**
+
+```
+1834767b16fc6011564fc33d6829115ca202626f
+Leitura semanal da Sentinela 14/10: rampa para na clubedomosaico, 3 registros sem piso na robometria, aquametria sem banda 11-20
+```
+
+**Confirmação em `origin/main`, pedida pelo procedimento:**
+
+```
+$ git fetch origin main && git log -1 origin/main
+1834767b16fc6011564fc33d6829115ca202626f
+Leitura semanal da Sentinela 14/10: rampa para na clubedomosaico, 3 registros sem piso na robometria, aquametria sem banda 11-20
+Claude  Wed Oct 14 20:10:25 2026 +0000
+```
+
+**O primeiro push foi RECUSADO e isto fica registrado porque é rastro de disparo:** `git push origin HEAD:main` voltou com não-fast-forward (`origin/main` tinha andado de `36f567e` para `66bfa6a` entre o `fetch` inicial e o push). Fiz `git fetch origin main && git rebase origin/main` — rebase limpo, sem conflito, commit reescrito de `ea6bda7` para `1834767` — reconferi o `--stat` e as 3 remoções depois do rebase (idênticos) e o segundo push passou: `66bfa6a..1834767  HEAD -> main`. **Nenhum force push foi usado.**
+
+**Contagem do que mudou, conferida RELENDO os arquivos gravados (não pelo que eu acho que escrevi):**
+
+```
+ilhas/aquametria/dados/indexacao.md        linhas "| 2026-10-14 |": 1    (arquivo com 265 linhas)
+ilhas/aquametria/dados/posicoes.md         linhas "| 2026-10-14 |": 13   (arquivo com  66 linhas)
+ilhas/robometria/dados/indexacao.md        linhas "| 2026-10-14 |": 1    (arquivo com  12 linhas)
+ilhas/robometria/dados/posicoes.md         linhas "| 2026-10-14 |": 5    (arquivo com  74 linhas)
+ilhas/clubedomosaico/dados/indexacao.md    linhas "| 2026-10-14 |": 1    (arquivo com 132 linhas)
+ilhas/clubedomosaico/dados/posicoes.md     linhas "| 2026-10-14 |": 8    (arquivo com 175 linhas)
+ilhas/aquametria/PROMPT.md                 blocos "LEITURA SEMANAL" 14/10: 1  (arquivo com  576 linhas)
+ilhas/robometria/PROMPT.md                 blocos "LEITURA SEMANAL" 14/10: 1  (arquivo com 1456 linhas)
+ilhas/clubedomosaico/PROMPT.md             blocos "LEITURA SEMANAL" 14/10: 1  (arquivo com 3187 linhas)
+ilhas/aquametria/ESTADO.md                 "ultima_ronda: 2026-10-14T19:58Z": 1 (arquivo com 695 linhas)
+ilhas/robometria/ESTADO.md                 "ultima_ronda: 2026-10-14T19:58Z": 1 (arquivo com 664 linhas)
+ilhas/clubedomosaico/ESTADO.md             "ultima_ronda: 2026-10-14T19:58Z": 1 (arquivo com 731 linhas)
+```
+
+Os 12 textos também foram conferidos por comparação byte a byte: o texto de cada operação, como veio na instrução, está presente de forma exata no arquivo correspondente — 12 de 12 `True`. **1 linha de tabela por arquivo de indexação, 13 + 5 + 8 = 26 linhas de posições, 3 blocos de despacho, 3 linhas `ultima_ronda:` trocadas. Total: 156 inserções e 3 remoções, e as 3 remoções são as `ultima_ronda:` antigas.**
+
+**Nenhum arquivo além destes 12 e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum link de afiliado gerado e nada gravado em banco de produto — a própria instrução registra que o painel do Shopee Afiliados desviou para CAPTCHA e que resolver CAPTCHA é proibido; não tentei contornar. Nenhum contato pessoal de terceiros entrou no repositório. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
