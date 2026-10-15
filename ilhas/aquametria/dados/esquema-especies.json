@@ -3,7 +3,7 @@
  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E16 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
  "gerado_em": "2026-09-09",
  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16; revisado na versao 5 (22/09/2026): chao_declarado_para e as regras E20 a E22 — o arranjo para quem a fonte declarou a base",
- "versao_esquema": 6,
+ "versao_esquema": 7,
  "depende_de": [
   "dados/esquema-produtos.json",
   "dados/especificacao-calculadoras.md"
@@ -209,6 +209,17 @@
     "nao-sexado"
    ],
    "nota": "Em vivipara a femea e maior e e ela que define a carga. Quando a fonte separa, o banco guarda o valor da femea."
+  },
+  {
+   "campo": "porte_e_maximo_registrado",
+   "tipo": "objeto {frase, comum?}",
+   "obrigatorio": false,
+   "dominio": "biologia",
+   "nota": "O PORTE QUE AS TABELAS USAM E O MAXIMO REGISTRADO, E A PAGINA NAO DIZIA ISSO (versao 7, 15/10/2026). porte_adulto_cm e um numero sobre um INDIVIDUO EXTREMO, e ate esta data o esquema nao tinha onde dizer isso. O defeito foi nomeado pela leva 9 em 23/09/2026 ao ler a ficha do barbo rosado antes de publicar, e estava escrito na `observacao` do proprio registro — 'a ficha tem de publicar o numero da fonte COM a medida dele E dizer que porte maximo registrado nao e porte esperado em cativeiro, senao a C8 dimensiona para um peixe que ninguem tem' —, e PROSA NAO BARRA PAGINA, pela terceira vez neste eixo (o chao_declarado_para na versao 5 e as restricoes_de_companhia na versao 6 nasceram do mesmo jeito). O custo esta medido: o porte do pethia-conchonius e 14,0 cm TL, que a base cientifica publica como `max length`, e o compendio do MESMO registro publica 65 a 75 mm como o tamanho da maioria dos adultos — as tabelas de lotacao dimensionam pelo numero maior, e 8 exemplares dao de 112 L a 448 L contra 56 a 224 L se o porte fosse 7 cm. A FORMA E A DO temperatura_e_tolerancia, que marca quando uma faixa e tolerancia e nao manutencao, com UMA diferenca que e a licao das versoes 5 e 6: aquele campo e um boolean isento de fonte, e este carrega a CLAUSULA, porque boolean nao se confere contra a fonte e clausula se confere (E24). `frase` e a clausula copiada AO PE DA LETRA da transcricao de uma fonte que declare este campo em `campos`, e ela tem de trazer a palavra de maximo E o proprio numero de porte_adulto_cm — o numero esta na regra porque sem ele a clausula do danio_margaritatus sobre lagoas de 'no maximo 30 cm de profundidade' passaria como se falasse do peixe. O CAMPO E OPCIONAL E A AUSENCIA E 'NAO DECLARADO', como no chao_declarado_para: 37 dos 40 registros deste banco tem clausula de maximo e TRES nao tem — poecilia-reticulata, poecilia-sphenops e xiphophorus-hellerii dizem 'ate' e nao 'max', e no poecilia-sphenops o numero publicado (12,0) e o da femea pelo compendio e NAO o max de 7,5 da base cientifica, que esta em `conflitos`. A distincao e real e foi varrida, nao suposta: quem a quiser de novo roda ferramentas/varrer-porte-maximo.py. O que este campo NAO e: um segundo porte. Ele nao substitui porte_adulto_cm e nao corrige o numero — o numero maior continua sendo o extremo seguro que esta ilha declara escolher ('errar espaco para cima nao machuca ninguem'). Ele diz o ESCOPO do numero, que e a mesma familia do chao_declarado_para (de quem se fala) e da regra da leva 7 (com que regua se mede).",
+   "subcampos": {
+    "frase": "Clausula literal da fonte que sustenta porte_adulto_cm. Obrigatoria.",
+    "comum": "OPCIONAL, e e ele que faz a frase da pagina valer a tela: o tamanho que a fonte declara para a MAIORIA dos adultos. {de, ate, unidade, medida, frase}. `de` e obrigatorio e `ate` e null quando a fonte declara um valor so. `unidade` e 'cm' ou 'mm' e e a unidade QUE A CLAUSULA USA, nunca convertida na digitacao — o compendio do barbo rosado escreve milimetro e converter ao digitar tiraria o numero do campo do texto da fonte, que e justamente o que o E16 confere. A conversao para centimetro e DERIVADA, em uma funcao so. `medida` e 'SL', 'TL' ou null, e null e o caso comum: o compendio quase nunca declara a regua. QUANDO `medida` E null OU DIFERE DE porte_medida OS DOIS NUMEROS ESTAO EM REGUAS DIFERENTES E A PAGINA NAO PODE COMPARA-LOS — e a regra que a leva 7 escreveu ('numero de medidas diferentes nao se compara'), e quem a cobra na tela e o E25, que e AVISO e nao erro pelo mesmo desenho do E21: o dado esta certo e quem tem de obedecer e a pagina."
+   }
   },
   {
    "campo": "expectativa_vida_anos",
@@ -580,6 +591,14 @@
   {
    "id": "E23",
    "regra": "Todo item de restricoes_de_companhia tem `tipo` do vocabulario fechado (nadadeiras-longas, comunitario-geral) e `frase` que e trecho LITERAL da referencia de alguma fonte que declare `restricoes_de_companhia` em `campos` — clausula copiada, nunca reescrita. A clausula tem de sustentar o tipo por palavra: 'nadadeiras-longas' pede nadadeira na clausula; 'comunitario-geral' pede comunitario. Campo ausente nao e erro: restricao que a fonte nao declarou nao se inventa. Lista presente e vazia E erro, porque lista vazia afirma que a fonte foi lida e nao declarou nada, e isso se escreve deixando o campo fora."
+  },
+  {
+   "id": "E24",
+   "regra": "porte_e_maximo_registrado, quando presente, e objeto com `frase` nao vazia, e a `frase` tem de ser trecho LITERAL da referencia de alguma fonte que declare porte_e_maximo_registrado em `campos` — clausula copiada, nunca reescrita. A clausula tem de sustentar o campo por DUAS coisas ao mesmo tempo: uma palavra de maximo (max, maximo, maxima) E o proprio valor de porte_adulto_cm, no algarismo da fonte. As duas, porque so a palavra deixaria passar clausula de maximo que fala de outra coisa — o danio_margaritatus transcreve lagoas de 'no maximo 30 cm de profundidade' — e so o numero deixaria passar a clausula que traz o porte sem dizer que ele e maximo, que e exatamente o caso dos tres registros que escrevem 'ate'. Campo ausente NAO e erro: a fonte que nao disse que o numero e maximo nao se corrige de cabeca. Campo presente sem porte_adulto_cm e erro, porque o escopo sem o numero nao qualifica nada. O `comum`, quando presente, tem `de` maior que zero, `ate` null ou maior que `de`, `unidade` em (cm, mm) nomeada na propria clausula, `medida` null ou em (SL, TL), `frase` literal de alguma fonte que declare este campo, e o `de` convertido para centimetro tem de ser MENOR que porte_adulto_cm — tamanho comum que alcanca o maximo nao e tamanho comum, e a mesma aritmetica do E18 (teto que nao passa do piso nao e faixa)."
+  },
+  {
+   "id": "E25",
+   "regra": "AVISO, e nao erro, pelo mesmo desenho do E21: o registro declara um tamanho comum em regua DIFERENTE da de porte_adulto_cm (comum.medida null, ou diferente de porte_medida), e a pagina nao pode servir os dois numeros como comparacao. A regra da leva 7 — 'numero de medidas diferentes nao se compara' — vale contra a frase mais forte que a pagina poderia publicar: no barbo rosado o maximo e 14,0 cm TL e o comum e 65 a 75 mm sem regua declarada, e dizer 'menos da metade' seria medicao inventada. A ficha publica os dois numeros com o dono de cada um e DIZ que a fonte do comum nao declarou a regua, em vez de calar o numero ou de compara-lo. E aviso porque o DADO esta certo — a fonte declarou o que declarou — e quem tem de obedecer e a PAGINA. Quem executa essa metade e ferramentas/teste-peixes.py, contra o HTML servido, e ela NAO foi escrita em 15/10/2026: a leitura semanal de 14/10 proibe mexer na superficie das paginas desta ilha antes de 21/10, porque e o que destroi a medicao de CTR em curso."
   }
  ],
  "o_que_nao_entra": [

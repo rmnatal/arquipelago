@@ -115,14 +115,26 @@ def numeros_no_texto(texto):
 
 
 def valores_numericos(campo, valor):
-    """Os numeros que um campo publica: ele mesmo, ou cada lado do intervalo/base."""
+    """Os numeros que um campo publica: ele mesmo, ou cada lado do intervalo/base.
+
+    DESCE EM OBJETO DENTRO DE OBJETO desde 15/10/2026, e o motivo e um mundo que
+    o esquema passou a permitir na versao 7: o `comum` de porte_e_maximo_registrado
+    e um objeto com dois numeros DENTRO de um campo que e objeto. Enquanto esta
+    funcao olhava um nivel so, o E16 — que e quem confere que o numero do campo
+    esta escrito no texto da fonte — passava por cima deles em silencio, dando
+    por conferido o unico par de numeros do banco que ninguem tinha conferido.
+    E a familia da regua que nao alcanca o mundo novo: ela nao errava, ela nao
+    chegava — e portao que nao chega aprova por falta de evidencia.
+    """
     if isinstance(valor, bool) or valor is None:
         return []
     if isinstance(valor, (int, float)):
         return [(campo, valor)]
     if isinstance(valor, dict):
-        return [("%s.%s" % (campo, chave), v) for chave, v in valor.items()
-                if isinstance(v, (int, float)) and not isinstance(v, bool)]
+        achados = []
+        for chave, v in valor.items():
+            achados.extend(valores_numericos("%s.%s" % (campo, chave), v))
+        return achados
     return []
 
 
@@ -166,6 +178,21 @@ PALAVRAS_DA_RESTRICAO = {
     "nadadeiras-longas": ("nadadeira",),
     "comunitario-geral": ("comunitario",),
 }
+
+# O PORTE QUE AS TABELAS USAM E O MAXIMO REGISTRADO (regra E24, esquema versao 7,
+# 15/10/2026). A palavra que a clausula tem de trazer para sustentar o campo — a
+# base cientifica escreve "max length" e "max", o compendio escreve "maximo", e
+# "max" cobre os tres sem casar com mais nada neste banco. Ela NAO basta sozinha:
+# o E24 exige tambem o proprio numero de porte_adulto_cm na clausula, porque a
+# transcricao do danio_margaritatus traz "lagoas rasas de no maximo 30 cm de
+# profundidade" — clausula de maximo que fala da agua e nao do peixe.
+PALAVRAS_DE_MAXIMO = ("max",)
+
+# A unidade do tamanho COMUM e a da clausula, nunca convertida na digitacao: o
+# compendio do barbo rosado escreve milimetro, e converter ao digitar tiraria o
+# numero do campo do texto da fonte, que e justamente o que o E16 confere. A
+# conversao mora aqui, num lugar so.
+EM_CENTIMETRO = {"cm": 1.0, "mm": 0.1}
 
 
 def sem_acento(texto):
@@ -531,6 +558,100 @@ def main():
                         if not any(w in texto for w in PALAVRAS_DA_RESTRICAO[tipo]):
                             erro("E23", rid, "restricoes_de_companhia diz '%s' e a clausula da fonte "
                                              "nao traz nenhuma palavra que sustente isso" % tipo)
+
+        # E24 / E25 - O ESCOPO DO PORTE: o numero que as tabelas usam e o maximo
+        # registrado, e ate a versao 7 do esquema a pagina nao tinha onde dizer isso.
+        #
+        # E A TERCEIRA VEZ NESTE EIXO que a proibicao morava em prosa: o
+        # chao_declarado_para (versao 5) nasceu de uma proibicao escrita na
+        # `observacao` do apistogramma, as restricoes_de_companhia (versao 6) de
+        # uma escrita na transcricao que a propria pagina cita, e esta de uma
+        # escrita na `observacao` do barbo rosado em 23/09/2026 — "a ficha tem de
+        # publicar o numero da fonte COM a medida dele E dizer que porte maximo
+        # registrado nao e porte esperado em cativeiro, senao a C8 dimensiona para
+        # um peixe que ninguem tem". PROSA NAO BARRA PAGINA.
+        pmr = r.get("porte_e_maximo_registrado")
+        if pmr is not None:
+            if not isinstance(pmr, dict):
+                erro("E24", rid, "porte_e_maximo_registrado tem de ser objeto {frase, comum?}")
+            else:
+                porte = r.get("porte_adulto_cm")
+                refs = [f.get("referencia") or "" for f in r.get("fontes", [])
+                        if "porte_e_maximo_registrado" in (f.get("campos") or [])]
+                frase = str(pmr.get("frase") or "").strip()
+                if not preenchido(porte):
+                    erro("E24", rid, "porte_e_maximo_registrado sem porte_adulto_cm: o escopo sem "
+                                     "o numero nao qualifica nada")
+                if not frase:
+                    erro("E24", rid, "porte_e_maximo_registrado sem frase: o escopo sem a clausula "
+                                     "da fonte e palpite de quem digitou")
+                else:
+                    if not any(frase in ref for ref in refs):
+                        erro("E24", rid, "a frase de porte_e_maximo_registrado nao e trecho literal "
+                                         "de nenhuma fonte que declare porte_e_maximo_registrado em campos")
+                    texto = sem_acento(frase)
+                    if not any(w in texto for w in PALAVRAS_DE_MAXIMO):
+                        erro("E24", rid, "a clausula de porte_e_maximo_registrado nao traz nenhuma "
+                                         "palavra de maximo: sem ela o campo afirma o que a fonte nao disse")
+                    # O NUMERO, e ele e a metade que pega a clausula de maximo que
+                    # fala de outra coisa. So a palavra deixaria passar a lagoa de
+                    # "no maximo 30 cm de profundidade" do danio_margaritatus.
+                    if preenchido(porte) and round(float(porte), 4) not in numeros_no_texto(frase):
+                        erro("E24", rid, "a clausula de porte_e_maximo_registrado nao traz o proprio "
+                                         "porte_adulto_cm (%s): clausula de maximo que nao fala deste "
+                                         "numero nao o qualifica" % porte)
+
+                comum = pmr.get("comum")
+                if comum is not None:
+                    if not isinstance(comum, dict):
+                        erro("E24", rid, "porte_e_maximo_registrado.comum tem de ser objeto "
+                                         "{de, ate, unidade, medida, frase}")
+                    else:
+                        de, ate = comum.get("de"), comum.get("ate")
+                        unidade = comum.get("unidade")
+                        medida = comum.get("medida")
+                        fr_comum = str(comum.get("frase") or "").strip()
+                        if not isinstance(de, (int, float)) or isinstance(de, bool) or de <= 0:
+                            erro("E24", rid, "comum.de tem de ser numero maior que zero")
+                        if ate is not None:
+                            if not isinstance(ate, (int, float)) or isinstance(ate, bool):
+                                erro("E24", rid, "comum.ate tem de ser numero ou null")
+                            elif isinstance(de, (int, float)) and ate <= de:
+                                erro("E24", rid, "comum.ate (%s) nao e maior que comum.de (%s): "
+                                                 "teto que nao passa do piso nao e faixa" % (ate, de))
+                        if unidade not in EM_CENTIMETRO:
+                            erro("E24", rid, "comum.unidade '%s' fora de (cm, mm)" % unidade)
+                        elif fr_comum and unidade not in sem_acento(fr_comum):
+                            erro("E24", rid, "comum.unidade e '%s' e a clausula nao usa essa unidade: "
+                                             "a unidade e a DA FONTE, nunca convertida na digitacao"
+                                 % unidade)
+                        if medida is not None and medida not in ("SL", "TL"):
+                            erro("E24", rid, "comum.medida '%s' fora de (SL, TL, null)" % medida)
+                        if not fr_comum:
+                            erro("E24", rid, "comum sem frase: o numero do tamanho comum sem a "
+                                             "clausula da fonte e palpite de quem digitou")
+                        elif not any(fr_comum in ref for ref in refs):
+                            erro("E24", rid, "a frase de comum nao e trecho literal de nenhuma fonte "
+                                             "que declare porte_e_maximo_registrado em campos")
+                        # TAMANHO COMUM QUE ALCANCA O MAXIMO NAO E TAMANHO COMUM.
+                        # Mesma aritmetica do E18, e ela so fecha depois de
+                        # converter — por isso a conversao mora numa funcao so.
+                        if (isinstance(de, (int, float)) and not isinstance(de, bool)
+                                and unidade in EM_CENTIMETRO and preenchido(porte)):
+                            if de * EM_CENTIMETRO[unidade] >= float(porte):
+                                erro("E24", rid, "o tamanho comum (%s %s) alcanca ou passa o porte "
+                                                 "maximo (%s cm): nao e tamanho comum"
+                                     % (de, unidade, porte))
+                        # E25 - AS DUAS REGUAS, e ela e AVISO pelo mesmo desenho do
+                        # E21: o dado esta certo e quem tem de obedecer e a PAGINA.
+                        if medida is None or medida != r.get("porte_medida"):
+                            aviso("E25", rid, "o maximo esta em %s e o tamanho comum em %s: os dois "
+                                              "numeros estao em reguas diferentes e a ficha NAO pode "
+                                              "servi-los como comparacao — ela publica os dois com o "
+                                              "dono de cada um e diz que a regua do comum nao foi "
+                                              "declarada (quem executa essa metade e "
+                                              "ferramentas/teste-peixes.py, contra o HTML servido)"
+                                  % (r.get("porte_medida"), medida if medida else "regua nao declarada"))
 
         # E13 - tolerancia disfarcada de recomendacao
         t = r.get("temperatura_C")

@@ -5,88 +5,94 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-15T10:32Z
-executando_desde: 2026-10-15T13:19Z
+ultima_execucao: 2026-10-15T13:46Z
+executando_desde: null
 bloco_atual: |
-  A CONTA DE INDEXACAO DESTA FABRICA PASSA A TER TRES ESTADOS: "NAO SEI" DEIXA DE SER CONTADO COMO
-  "NAO INDEXADA". Sub-item do item 4 da leitura semanal de 14/10 — o unico item de despacho desta
-  ilha que era trabalho da Fundacao. NENHUMA URL NOVA (a ilha segue em 52), nenhum byte no ar,
-  nenhum Sync acionado, revisao parada na 122, e NENHUMA leva do teto da 21.4 gasta (ele continua
-  ZERADO nesta semana). Nada tocado em <title>, em <meta description> nem na
-  /calculadora-de-litragem/: a leitura de 14/10 proibe mexer nessas superficies antes de 21/10,
+  O PORTE QUE AS TABELAS DE LOTACAO USAM E O MAXIMO REGISTRADO, E AGORA ISSO E CAMPO CONTAVEL E NAO
+  PROSA NA observacao. E o bloco que a leva 9 apontou em 23/09/2026 e nao fez, nomeado com critERio
+  escrito pela execucao das 10h16Z de hoje como o proximo da fila. ZERO BYTE NO AR, de proposito: a
+  ilha segue em 52 URLs, nenhum Sync acionado, revisao parada na 122, nenhuma leva do teto da 21.4
+  gasta (ele continua ZERADO nesta semana), e nada tocado em title, em meta description nem na
+  /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer nessas superficies antes de 21/10
   porque e o que destroi a medicao de CTR em curso e o unico controle do arquipelago.
-  1. O DEFEITO, e a causa cabe numa linha: `ok = verdict == "PASS"` em ferramentas/search-console.py.
-     DOIS estados para tres mundos possiveis. Veredito negativo e veredito AUSENTE caiam no mesmo
-     saco, e a URL Inspection nao devolveu indexStatusResult nenhum para a raiz do dominio. O script
-     imprimiu `- / — ?` na lista de NAO INDEXADAS e fechou a leitura de 14/10 com 49 de 52, quando o
-     numero honesto era 50. Status desconhecido lido como status negativo subestima a ilha em
-     silencio — mesma familia do defeito de 07/10 neste mesmo arquivo, em que a dimensao que o
-     Google esvazia era lida como a medida da ilha.
-  2. A PROVA DA HOME JA ESTAVA DENTRO DA MESMA LEITURA, e e isso que faz o conserto nao ser palpite:
-     a dimensao `page` da MESMA janela da a home 4 impressoes na posicao 2,3, e impressao em busca e
-     prova de que o Google serve a URL. Faltava cruzar duas medicoes que o script ja fazia lado a
-     lado — como em 20.4, onde a linha que acusava o defeito ja estava escrita dentro do /status.
-  3. O QUE ENTROU NO SCRIPT (arquivo de RAIZ: o mesmo script serve as tres ilhas, o conserto vale
-     para as tres). veredito_de_indexacao(): tres estados. Veredito ausente, vazio, "?" ou
-     VERDICT_UNSPECIFIED e DESCONHECIDO; desconhecido COM impressao na janela conta como INDEXADA,
-     com a procedencia escrita na linha; desconhecido SEM impressao fica FORA das duas contas.
-     Veredito presente e diferente de PASS continua NOMEADO com o coverageState — /peixes/acaras/ e
-     /peixes/tetras/ seguem fora do indice, e o conserto do desconhecido NAO as absolve. O campo
-     `divergencia` acusa o CONTRARIO do defeito consertado (veredito negativo em URL com impressao),
-     nao muda conta nenhuma e sai impresso: instrumento discordando de si mesmo tem de sair escrito.
-     resumo_de_indexacao(): a conta das tres listas, com PISO e TETO da taxa quando sobra
-     desconhecido — taxa unica sobre denominador com desconhecido afirma o que nao se mediu.
-     caminho_de() e impressoes_por_caminho(): o cruzamento sitemap x dimensao `page`, com a chave nas
-     DUAS grafias de barra final, porque um cruzamento que falha por uma barra falharia justamente na
-     home. relatorio_de_indexacao(): as linhas da parte de indexacao como FUNCAO PURA, em duas partes
-     (serie e urls) — existe porque metade do critERIO de pronto era sobre o que o script IMPRIME, e
-     print solto dentro do main() so se confere com credencial na mao.
-  4. O PORTAO SEM REDE QUE O ITEM PEDIU: ferramentas/teste-search-console.py, de 19 para 86
-     afirmacoes, 0 falha. O mundo de 14/10 encenado INTEIRO (52 URLs, 49 PASS, a home sem veredito
-     com 4 impressoes, as duas maes em Discovered). Afirma a conta (50 indexadas, 2 nao indexadas, 0
-     sem veredito, e que as tres somam 52 sem perder URL), afirma O QUE SE IMPRIME (a linha
-     '| 52 | 50 | 96% | 509 | 4 |', a home em secao propria de "sem veredito", e a home FORA da
-     lista de nao indexadas) e roda o main() INTEIRO com a API encenada — conta certa com fiacao
-     errada foi exatamente como este defeito nasceu. NAO E INERTE: tres mutacoes (desligar o
-     cruzamento por impressao, 30 reprovacoes; devolver o desconhecido a nao indexada, 26; estreitar
-     a lista de vereditos desconhecidos, 4), as tres com codigo de saida 1 e zero traceback.
-  5. DOIS ACHADOS DE METODO, os dois medidos e os dois consertados no portao. (a) O PORTAO MORRIA NO
-     DEFEITO QUE EXISTE PARA PEGAR: a primeira mutacao apagava uma secao e a afirmacao que a
-     procurava fazia split(marca)[1] — IndexError, traceback no lugar de reprovacao. Entrou
-     depois_de(), que devolve vazio quando a marca nao existe, e as tres afirmacoes do tipo "a home
-     NAO aparece aqui" passaram a EXIGIR que a secao exista: bloco ausente satisfazia o `not in` por
-     acidente, que e aprovar por falta de evidencia. (b) O PORTAO RELATOU UM MUNDO QUE NAO EXISTIA EM
-     DISCO: depois de restaurar o fonte bom, 13 afirmacoes reprovaram contra um arquivo correto. O
-     culpado era o .pyc — a mutacao trocava "sem_veredito" por "nao_indexada", DOZE caracteres pelos
-     mesmos doze, e o cp caiu no mesmo segundo; a validacao do Python e mtime + tamanho e as duas
-     bateram. Diagnosticado com diff identico e portao vermelho, confirmado apagando o __pycache__.
-     Conserto: sys.dont_write_bytecode = True e importlib.invalidate_caches() no portao, com o
-     motivo escrito nelas. E a familia do "resumo velho lido como fato" da secao 4, um andar abaixo:
-     aqui o resumo velho e o bytecode.
-  6. O ITEM NAO FOI APAGADO DO PROMPT.md, E ISSO E A 18.4 FUNCIONANDO. Foi REESCRITO pela 18.3, com
-     a metade de codigo riscada e o que falta em uma linha: A PASSADA COM CREDENCIAL. GOOGLE_SA_B64,
-     GOOGLE_SA_JSON e GOOGLE_SA_FILE ausentes neste ambiente, conferidos as 10h2xZ. O numero 50 esta
-     provado contra o mundo que a leitura de 14/10 mediu, NAO contra uma leitura nova — o mesmo
-     precedente que esta ilha criou em 14/10, quando o item 2 de 07/10 so morreu depois de a nuvem
-     ler de verdade. O critErio reescrito e mais honesto que o original: a proxima leitura com
-     credencial pode receber veredito para a home, e ai o caso nao se reproduz; entao o que ele
-     exige e a AUSENCIA de '— ?' na lista de nao indexadas, que e o que o conserto garante em
-     qualquer janela.
-  7. UM ACHADO NAO CONSERTADO, DE PROPOSITO (19.2): o teste-search-console.py e portao de arquivo de
-     RAIZ e NADA no repositorio o roda automaticamente. A bancada.py varre ilhas/<ilha>/ferramentas/
-     e por desenho nao alcanca a raiz, onde moram quatro ferramentas compartilhadas pelas tres ilhas
-     (search-console.py, ga4.py, shopee-api.py, conferir-sub-id.py). O unico lugar que cita o portao
-     e um comentario dentro do proprio script que ele vigia. Portao que ninguem roda e portao que
-     envelhece sem avisar. NAO foi consertado porque o conserto exige ESCOLHER entre opcoes
-     defensaveis (bancada de ilha rodando portao de raiz, bancada de raiz propria, ou o portao
-     entrando na rotina que dispara a leitura), e pela 19.2 escolha assim se despacha.
-  PROXIMO PASSO DESBLOQUEADO: nada de codigo nesta ilha ate 21/10. A semana de 14 a 21/10 tem um
-  trabalho so, e e deixar quieto e medir (item 5 da leitura semanal: tres propostas de aceleracao =
-  zero, de proposito). O que vale dinheiro continua NAO sendo da Fundacao: abrir a SERP brasileira
-  das 14 consultas nao-medida de dados/consultas-de-produto.md no Chrome do Raphael, comecando por
-  'luminaria de LED para aquario plantado', e solicitar indexacao de /peixes/tetras/ quando a cota
-  do Google virar. A leitura de 21/10 e quem julga as duas propostas de <title>, com a
-  /calculadora-de-litragem/ como controle intacto.
+  1. O DEFEITO, e e a TERCEIRA vez neste eixo que a proibicao morava em prosa. O porte_adulto_cm de
+     quase todo o eixo /peixes/ vem de 'max length' da base cientifica — o maior individuo ja
+     registrado — e as tabelas dimensionam aquario por ele. No pethia-conchonius o campo e 14,0 cm
+     TL e o compendio do MESMO registro publica 65 a 75 mm como o tamanho da maioria dos adultos:
+     oito exemplares dao de 112 L a 448 L pelo numero grande contra 56 a 224 L pelo pequeno. A
+     proibicao estava escrita por extenso na observacao do registro desde 23/09 — 'a ficha tem de
+     publicar o numero da fonte COM a medida dele E dizer que porte maximo registrado nao e porte
+     esperado em cativeiro' — e PROSA NAO BARRA PAGINA. O chao_declarado_para (versao 5) e as
+     restricoes_de_companhia (versao 6) nasceram do mesmo jeito: tres versoes seguidas, uma causa.
+  2. O CAMPO: porte_e_maximo_registrado, esquema de especies VERSAO 7, com a regra E24 executavel e
+     o aviso E25. A forma e a do temperatura_e_tolerancia com UMA diferenca, que e a licao das
+     versoes 5 e 6: aquele e boolean ISENTO de fonte e este carrega a CLAUSULA, porque boolean nao
+     se confere contra a fonte e clausula se confere. A clausula tem de trazer a palavra de maximo
+     E o proprio valor de porte_adulto_cm, as duas juntas, e nenhuma metade e enfeite: so a palavra
+     deixaria passar a transcricao do danio-margaritatus, que traz 'lagoas rasas de no maximo 30 cm
+     de profundidade' (maximo da AGUA, nao do peixe), e so o numero deixaria passar a clausula que
+     traz o porte sem dizer que ele e maximo.
+  3. 37 DOS 40 RECEBEM O CAMPO E TRES NAO, VARRIDO E NAO SUPOSTO. Os tres — poecilia-reticulata,
+     poecilia-sphenops e xiphophorus-hellerii — escrevem 'ate' e nao max, e a diferenca e real e nao
+     de transcricao: no poecilia-sphenops o numero publicado (12,0) e o da FEMEA pelo compendio e
+     nao o maximo de 7,5 da base cientifica, que esta em conflitos. Ausencia e 'nao declarado', como
+     no chao_declarado_para: fonte que nao disse nao se corrige de cabeca. E O CAMPO NAO E UM
+     SEGUNDO PORTE — o numero maior segue sendo o extremo seguro que esta ilha declara escolher.
+  4. O ESCOPO SOZINHO NAO MUDA DECISAO NENHUMA, e por isso o campo tem segunda metade. O `comum`
+     carrega o tamanho que a fonte declara para a MAIORIA dos adultos e existe em TRES registros:
+     barbo rosado (65 a 75 mm), barbo cereja (2,5 cm TL, metade do maximo de 5,0) e plati variatus
+     (3,9 cm TL). A UNIDADE E A DA FONTE, NUNCA CONVERTIDA NA DIGITACAO: converter tiraria o numero
+     do campo do texto da fonte, que e justamente o que o E16 confere; a conversao para centimetro
+     e derivada, numa funcao so. O E24 cobra a unidade dentro da propria clausula e cobra que o
+     comum convertido seja MENOR que o maximo — comum que alcanca o maximo nao e comum, mesma
+     aritmetica do E18.
+  5. A REGRA DA LEVA 7 GANHOU PORTAO, E E O E25: regua do comum null ou diferente de porte_medida
+     quer dizer duas reguas, e a pagina NAO pode servir os dois numeros como comparacao. No barbo
+     rosado e esse o caso (14,0 cm TL contra 65 a 75 mm sem regua declarada) e dizer 'menos da
+     metade' seria medicao inventada. E AVISO e nao erro, pelo desenho do E21: o dado esta certo e
+     quem obedece e a PAGINA. Sai em UM registro hoje e cala nos dois que declaram TL dos dois lados.
+  6. O PORTAO, NAS DUAS DIRECOES. varrer-porte-maximo.py (serie em dados/porte-maximo.md) acusa
+     divergencia nos DOIS sentidos — campo escrito sem clausula, e clausula sem campo escrito — e
+     sai com codigo 1: acusou as 37 que existiam antes da gravacao e ZERO depois. A regua de maximo
+     mora nela e NAO e importada do validador, pelo motivo da secao 8: regua importada faz as duas
+     metades errarem juntas e concordando. testar-validador-especies.py foi de 41 para 51 casos
+     negativos, 0 falha, com DEZ casos novos. mutacoes-porte-maximo.py: 8 mutacoes, 0
+     sobrevivente, cada uma afrouxando UMA metade da regra.
+  7. E ELE NAO FECHOU DE PRIMEIRA: DUAS MUTACOES SOBREVIVERAM E A CULPA ERA DO TESTE, NAO DA REGRA.
+     O portao perguntava so 'a marca da regra apareceu na saida?', e isso APROVA POR ACIDENTE quando
+     a mesma regra ja reprova OUTRO registro do banco. Na mutacao do E25 o aviso continuava saindo
+     no barbo rosado (regua null) enquanto deixava de sair no barbo cereja, que era o corrompido; na
+     da unidade, corromper o barbo rosado de mm para cm fazia 65 'cm' alcancarem o maximo de 14,0, e
+     a linha saia pela CONTA do comum e nao pela unidade. CORRUPCAO QUE DISPARA DUAS REGRAS NAO MEDE
+     NENHUMA. Dois consertos: cada caso aceita um ALVO e exige a linha DAQUELE registro, e o caso da
+     unidade mudou de alvo para o plati variatus, onde 3,9 mm sao 0,39 cm e so a regra medida pode
+     reprovar. E a familia do 'bloco ausente satisfazia o not in por acidente' que o portao do
+     search-console.py achou na vespera: aprovar por falta de evidencia.
+  8. UMA REGUA QUE NAO ERRAVA — ELA NAO CHEGAVA. valores_numericos(), de que o E16 depende para
+     conferir que todo numero de campo esta escrito no texto da fonte, olhava UM nivel so de objeto.
+     O `comum` e objeto DENTRO de objeto, e os dois numeros dele passavam batidos em silencio: o E16
+     dava por conferido o unico par do banco que ninguem conferia. Agora ela desce, e a mutacao que
+     desliga a recursao reprova.
+  9. ZERO BYTE NO AR FOI CONFERIDO ANTES DE COMECAR, NAO DEPOIS: o gerar-catalogo-especies.py
+     escolhe o que vai para o catalogo por LISTA EXPLICITA (porte_cm, chao_para, restricoes...), nao
+     copiando o registro inteiro, entao campo novo no banco nao alcanca a pagina por acidente.
+  10. UM ACHADO NAO CONSERTADO, DE PROPOSITO (19.2): o ALVO que nasceu hoje e OPCIONAL e os 40 casos
+     antigos do testar-validador-especies.py nao o tem. Continuam medindo o que sempre mediram e
+     continuam expostos ao mesmo 'aprovar por acidente' que as duas mutacoes de hoje mediram —
+     nenhum esta errado hoje, e isso e diferente de estar protegido. O retrofit e mecanico mas NAO e
+     de cabeca: pede ler cada corrupcao, nomear o registro que ela toca e descobrir quantas disparam
+     mais de uma regra. E bloco, nao conserto, e protege as 25 regras do banco em vez de uma.
+  PROXIMO PASSO DESBLOQUEADO: a ORACAO NA FICHA, e ela e de 21/10 ou depois — a metade de pagina
+  deste mesmo bloco, que esta passada nao fez porque a leitura semanal de 14/10 proibe mexer na
+  superficie das paginas desta ilha antes de 21/10. O teste-peixes.py ainda NAO cobra nada do campo
+  novo contra o HTML servido; quem escrever a oracao cobra as duas coisas no portao da pagina: que a
+  ficha diga que o numero e maximo registrado e nao porte esperado em cativeiro, e que onde houver
+  comum em regua diferente ela publique os dois numeros COM O DONO DE CADA UM e diga que a regua do
+  comum nao foi declarada, em vez de comparar ou de calar. O campo nasceu contavel e calado
+  justamente para a oracao nascer depois sem passada de coleta nenhuma. A alternativa, de valor mais
+  alto e mesmo custo, e o retrofit do item 10. O que vale dinheiro continua NAO sendo da Fundacao:
+  abrir a SERP brasileira das 14 consultas nao-medida no Chrome do Raphael e solicitar indexacao de
+  /peixes/tetras/ quando a cota do Google virar.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |

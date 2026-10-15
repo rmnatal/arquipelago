@@ -31,6 +31,9 @@
    "porte_adulto_cm": 2.0,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie: max length 2,0 cm SL macho/nao-sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 20,
@@ -80,7 +83,8 @@
       "porte_adulto_cm",
       "porte_medida",
       "porte_sexo",
-      "temperatura_C"
+      "temperatura_C",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -155,6 +159,9 @@
    "porte_adulto_cm": 2.1,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie (publicada tambem como Celestichthys margaritatus): max length 2,1 cm SL para macho e para femea"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": null,
@@ -196,7 +203,8 @@
       "familia",
       "porte_adulto_cm",
       "porte_medida",
-      "porte_sexo"
+      "porte_sexo",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     }
@@ -221,6 +229,9 @@
    "porte_adulto_cm": 2.2,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie: max 2,2 cm SL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 20,
@@ -273,7 +284,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -325,6 +337,9 @@
    "porte_adulto_cm": 3.0,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "alto Orinoco e rio Negro. Max 2,5 cm SL na busca restrita de 09/09/2026 e 3,0 cm SL na busca aberta do mesmo dia (ver conflitos)."
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 23,
@@ -376,7 +391,8 @@
       "ph",
       "dureza_dgh",
       "nivel_natacao",
-      "origem_geografica"
+      "origem_geografica",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -449,6 +465,9 @@
    "porte_adulto_cm": 3.3,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 3,3 cm TL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 24,
@@ -501,7 +520,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -595,6 +615,9 @@
    "porte_adulto_cm": 3.3,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie: max 3,3 cm TL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 20,
@@ -635,7 +658,8 @@
       "porte_sexo",
       "temperatura_C",
       "ph",
-      "dureza_dgh"
+      "dureza_dgh",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -688,6 +712,9 @@
    "porte_adulto_cm": 3.8,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 3,8 cm SL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 20,
@@ -738,7 +765,8 @@
       "porte_sexo",
       "temperatura_C",
       "ph",
-      "dureza_dgh"
+      "dureza_dgh",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -781,6 +809,9 @@
    "porte_adulto_cm": 3.8,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie: max 3,8 cm SL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 18,
@@ -832,7 +863,8 @@
       "ph",
       "dureza_dgh",
       "cardume_minimo",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -908,6 +940,9 @@
    "porte_adulto_cm": 4.0,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 4 cm SL macho/nao sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 22,
@@ -960,7 +995,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comportamento",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -1052,6 +1088,9 @@
    "porte_adulto_cm": 4.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie: max length 4,0 cm TL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 14,
@@ -1100,7 +1139,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha. ORDEM DOS NOMES POPULARES TROCADA EM 22/09/2026, pela leva 7, e nenhum fato declarado mudou: os quatro nomes continuam os mesmos, na mesma lista, e nenhuma fonte foi tocada. O PRIMEIRO da lista e o nome de tela em toda superficie (aquametria_peixes_nome), e com peixe-neve na frente a tabela da categoria dizia peixe-neve na mesma linha em que o link dizia tanictis - dois nomes para um peixe a uma coluna de distancia, que e o defeito que a leva de 11/09 chamou de um nome por pagina em toda superficie. Nenhuma regua pegava, porque as duas palavras estao certas: o achado veio de LER a pagina. Quem decidiu o vencedor foi a medicao de SERP de 22/09/2026 e nao o gosto - a prateleira brasileira vende esta especie como TANICTIS (Pro-Aquarista, Kauar, Fazenda Submersa, Barretos, Aquarium Crystal) -, e e por esse nome que a pagina se chama. Os outros tres ficam porque a especie e vendida com os quatro, e e isso que reparte a propria SERP dela."
     },
@@ -1195,6 +1235,9 @@
    "porte_adulto_cm": 4.2,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 4,2 cm SL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 27,
@@ -1238,7 +1281,8 @@
       "ph",
       "dureza_dgh",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -1277,6 +1321,9 @@
    "porte_adulto_cm": 5.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 5,0 cm TL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 26.5,
@@ -1318,7 +1365,8 @@
       "porte_sexo",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -1482,6 +1530,9 @@
    "porte_adulto_cm": 5.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie: max 5,0 cm TL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 22,
@@ -1536,7 +1587,8 @@
       "comprimento_minimo_aquario_cm",
       "origem_geografica",
       "nivel_natacao",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -1615,6 +1667,9 @@
    "porte_adulto_cm": 6.0,
    "porte_medida": "TL",
    "porte_sexo": "femea",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie: max 4,0 cm TL macho e 6,0 cm TL femea"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 18,
@@ -1656,7 +1711,8 @@
       "temperatura_C",
       "ph",
       "dureza_dgh",
-      "comprimento_minimo_aquario_cm"
+      "comprimento_minimo_aquario_cm",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -1706,6 +1762,9 @@
    "porte_adulto_cm": 6.5,
    "porte_medida": "TL",
    "porte_sexo": "macho",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie: max 6,5 cm TL para o macho"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 24,
@@ -1755,7 +1814,8 @@
       "porte_medida",
       "porte_sexo",
       "temperatura_C",
-      "dureza_dgh"
+      "dureza_dgh",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -1810,6 +1870,9 @@
    "porte_adulto_cm": 6.5,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie: max length 6,5 cm SL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 24,
@@ -1857,7 +1920,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -1895,6 +1959,9 @@
    "porte_adulto_cm": 6.6,
    "porte_medida": "SL",
    "porte_sexo": "macho",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie (publicada tambem como Hoplisoma paleatum): max length 6,6 cm SL macho/nao-sexado e 7,1 cm SL femea"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 18,
@@ -1947,7 +2014,8 @@
       "ph",
       "dureza_dgh",
       "cardume_minimo",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -2006,6 +2074,9 @@
    "porte_adulto_cm": 6.8,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie (publicada tambem como Hoplisoma sterbai): max length 6,8 cm SL macho/nao-sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 21,
@@ -2057,7 +2128,8 @@
       "porte_sexo",
       "temperatura_C",
       "ph",
-      "dureza_dgh"
+      "dureza_dgh",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -2113,6 +2185,9 @@
    "porte_adulto_cm": 7.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie (barbo-de-sumatra): max 7,0 cm TL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 20,
@@ -2164,7 +2239,8 @@
       "ph",
       "dureza_dgh",
       "convivencia",
-      "restricoes_de_companhia"
+      "restricoes_de_companhia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -2247,6 +2323,9 @@
    "porte_adulto_cm": 7.5,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie (publicada tambem como Osteogaster aenea): max 7,5 cm SL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 25,
@@ -2299,7 +2378,8 @@
       "dureza_dgh",
       "nivel_natacao",
       "origem_geografica",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -2392,6 +2472,9 @@
    "porte_adulto_cm": 7.5,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 7,5 cm SL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 20,
@@ -2444,7 +2527,8 @@
       "ph",
       "dureza_dgh",
       "comportamento",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -2516,6 +2600,9 @@
    "porte_adulto_cm": 8.9,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 8,9 cm SL macho/nao sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": null,
    "temperatura_e_tolerancia": false,
@@ -2556,7 +2643,8 @@
       "origem_geografica",
       "porte_adulto_cm",
       "porte_medida",
-      "porte_sexo"
+      "porte_sexo",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -2595,6 +2683,9 @@
    "porte_adulto_cm": 9.0,
    "porte_medida": "SL",
    "porte_sexo": "macho",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie: max length 9,0 cm SL macho/nao-sexado e 7,0 cm SL femea"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 27,
@@ -2647,7 +2738,8 @@
       "temperatura_C",
       "ph",
       "dureza_dgh",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -2725,6 +2817,9 @@
    "porte_adulto_cm": 9.5,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 9,5 cm TL macho/nao sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 25,
@@ -2776,7 +2871,8 @@
       "porte_sexo",
       "temperatura_C",
       "ph",
-      "dureza_dgh"
+      "dureza_dgh",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -2916,6 +3012,9 @@
    "porte_adulto_cm": 12.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie: max length 12,0 cm TL macho/nao-sexado"
+   },
    "expectativa_vida_anos": 8,
    "temperatura_C": {
     "min": 24,
@@ -2962,7 +3061,8 @@
       "temperatura_C",
       "ph",
       "dureza_dgh",
-      "comprimento_minimo_aquario_cm"
+      "comprimento_minimo_aquario_cm",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -2999,6 +3099,9 @@
    "porte_adulto_cm": 13.7,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie: max length 13,7 cm SL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 26,
@@ -3054,7 +3157,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -3115,6 +3219,16 @@
    "porte_adulto_cm": 14.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie: max length 14,0 cm TL macho/nao-sexado",
+    "comum": {
+     "de": 65,
+     "ate": 75,
+     "unidade": "mm",
+     "medida": null,
+     "frase": "a maioria esta adulta com 65 a 75 mm"
+    }
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 18,
@@ -3163,7 +3277,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -3180,7 +3295,8 @@
       "cardume_minimo",
       "cardume_recomendado_ate",
       "convivencia",
-      "comportamento"
+      "comportamento",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 23/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconferido nesta data por curl e por WebFetch. A clausula da base e a do grupo voltaram em DUAS buscas independentes, com o mesmo numero; a linha de temperatura da ficha NAO voltou em nenhuma e por isso nao foi gravada. A confirmar na ficha."
     }
@@ -3254,6 +3370,9 @@
    "porte_adulto_cm": 15.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie: max 15 cm TL"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 24,
@@ -3306,7 +3425,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -3359,6 +3479,9 @@
    "porte_adulto_cm": 15.0,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 15,0 cm SL macho/nao sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 24,
@@ -3400,7 +3523,8 @@
       "porte_sexo",
       "ph",
       "dureza_dgh",
-      "comprimento_minimo_aquario_cm"
+      "comprimento_minimo_aquario_cm",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -3575,6 +3699,9 @@
    "porte_adulto_cm": 30.5,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 30,5 cm TL macho/nao sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 25,
@@ -3628,7 +3755,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -3691,6 +3819,9 @@
    "porte_adulto_cm": 45.7,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 45,7 cm TL"
+   },
    "expectativa_vida_anos": 20,
    "temperatura_C": {
     "min": 22,
@@ -3741,7 +3872,8 @@
       "porte_sexo",
       "temperatura_C",
       "ph",
-      "dureza_dgh"
+      "dureza_dgh",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
     },
@@ -3781,6 +3913,9 @@
    "porte_adulto_cm": 48.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase — ficha da especie: max 48,0 cm TL"
+   },
    "expectativa_vida_anos": 30,
    "temperatura_C": {
     "min": 0,
@@ -3824,7 +3959,8 @@
       "dureza_dgh",
       "cardume_minimo",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
     },
@@ -3895,6 +4031,9 @@
    "porte_adulto_cm": 5.5,
    "porte_medida": "SL",
    "porte_sexo": null,
+   "porte_e_maximo_registrado": {
+    "frase": "Seriously Fish - ficha da especie: comprimento padrao maximo de 55 mm SL, ou 5,5 cm"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 22,
@@ -3973,7 +4112,8 @@
       "porte_medida",
       "cardume_minimo",
       "cardume_recomendado_ate",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 13/09/2026, em DUAS passadas independentes para cada um dos dois numeros, nenhuma delas carregando o numero dentro da consulta - a cicatriz da sterbai. O porte voltou igual nas duas (55 mm), e a frase do grupo voltou igual nas duas, a segunda com a hierarquia de quebra. E a MESMA ficha da fonte de 09/09, outras sentencas dela. Segue sem leitura direta: o egresso da nuvem devolve connect_rejected por politica para seriouslyfish.com e fishbase.se, reconferido nesta data com curl. A confirmar na ficha."
     }
@@ -3997,6 +4137,16 @@
    "porte_adulto_cm": 7.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 7,0 cm TL macho/nao sexado, comprimento comum 3,9 cm TL",
+    "comum": {
+     "de": 3.9,
+     "ate": null,
+     "unidade": "cm",
+     "medida": "TL",
+     "frase": "comprimento comum 3,9 cm TL"
+    }
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 15,
@@ -4031,7 +4181,8 @@
       "porte_medida",
       "porte_sexo",
       "temperatura_C",
-      "comprimento_minimo_aquario_cm"
+      "comprimento_minimo_aquario_cm",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 13/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve connect_rejected para fishbase.se, fishbase.org e seriouslyfish.com, reconferido por curl nesta data. A confirmar na ficha. CADA NUMERO DESTE REGISTRO VOLTOU EM DUAS PASSADAS INDEPENDENTES, nenhuma delas carregando o valor dentro da consulta (secao 8 do contrato): o porte em duas, a frente minima em duas e a faixa de manutencao em duas. A passada intermediaria que NAO devolveu a frente ofereceu no lugar a da especie congenere ('may be similar for the Variable platyfish as well') e foi descartada, porque parametro de especie vizinha e chute com cara de dado."
     },
@@ -4068,6 +4219,9 @@
    "porte_adulto_cm": 4.2,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 4,2 cm SL macho/nao sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 26,
@@ -4121,7 +4275,8 @@
       "ph",
       "dureza_dgh",
       "comprimento_minimo_aquario_cm",
-      "convivencia"
+      "convivencia",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org/fishbase.us em 14/09/2026. A pagina nao foi lida direto: o egresso da nuvem barra a base, e e a mesma politica registrada desde 09/09/2026 na nota de procedencia deste arquivo. A confirmar na ficha. CADA NUMERO DESTE REGISTRO VOLTOU EM DUAS PASSADAS INDEPENDENTES, nenhuma delas carregando o valor dentro da consulta (secao 8 do contrato): o porte e a faixa de manutencao em duas, a frente minima em duas, e o pH e a dureza em duas. A CONSULTA QUE DEVOLVEU A FRENTE MINIMA NAO PERGUNTAVA POR ESTA ESPECIE: ela perguntava pela A. cacatuoides, e a resposta ofereceu o valor desta como referencia para a congenere — o sentido do vazamento foi o inverso do perigoso, e foi recusado do lado da cacatuoides (ver a observacao do registro)."
     },
@@ -4159,6 +4314,9 @@
    "porte_adulto_cm": 5.6,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
+   "porte_e_maximo_registrado": {
+    "frase": "max 5,6 cm SL macho/nao sexado"
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 22,
@@ -4199,7 +4357,8 @@
       "porte_adulto_cm",
       "porte_medida",
       "porte_sexo",
-      "temperatura_C"
+      "temperatura_C",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org/fishbase.us em 14/09/2026, sem leitura da pagina, pelo mesmo egresso da nota de procedencia. A confirmar na ficha. O PORTE E A FAIXA DE MANUTENCAO VOLTARAM EM DUAS PASSADAS INDEPENDENTES, nenhuma carregando o valor na consulta. O CONTROLE DE VAZAMENTO ERA OBRIGATORIO AQUI: as duas passadas trouxeram, na mesma lista de resultados, a ficha do congenere M. ramirezi, que ESTA no banco desta ilha desde 09/09/2026 com 27 a 30 C e 4,2 cm SL. Os numeros devolvidos para esta especie sao DIFERENTES dos do vizinho nos dois campos (22 a 26 C e 5,6 cm SL), o que e a prova de que a leitura era desta ficha e nao da que veio junto."
     },
@@ -4247,6 +4406,16 @@
    "porte_adulto_cm": 5.0,
    "porte_medida": "TL",
    "porte_sexo": null,
+   "porte_e_maximo_registrado": {
+    "frase": "FishBase - ficha da especie (cherry barb), servida tambem pelo endereco de sinonimo Barbus-titteya: max 5,0 cm TL, comprimento comum 2,5 cm TL",
+    "comum": {
+     "de": 2.5,
+     "ate": null,
+     "unidade": "cm",
+     "medida": "TL",
+     "frase": "comprimento comum 2,5 cm TL"
+    }
+   },
    "expectativa_vida_anos": null,
    "temperatura_C": {
     "min": 23,
@@ -4297,7 +4466,8 @@
       "porte_medida",
       "temperatura_C",
       "ph",
-      "dureza_dgh"
+      "dureza_dgh",
+      "porte_e_maximo_registrado"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 23/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org e seriouslyfish.com, reconferido nesta data por curl E por WebFetch. A confirmar na ficha."
     },
