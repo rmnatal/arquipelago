@@ -16,6 +16,7 @@ Codigo de saida: 0 se todas as regras reprovarem o que deviam, 1 se alguma passa
 import copy
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -384,8 +385,14 @@ def c_e25_duas_reguas(b):
     pega(b, "puntius-titteya")["porte_e_maximo_registrado"]["comum"]["medida"] = "SL"
 
 
+# O ALVO E OBRIGATORIO EM TODO CASO desde 15/10/2026, e o que esta entre parenteses
+# nao e o registro que a corrupcao EDITA: e o registro que a linha do validador
+# NOMEIA. Os dois coincidem em 50 dos 51 casos e NAO coincidem no E1, que corrompe
+# o proprio `id` — ali a corrupcao edita o danio-rerio e a linha sai em
+# `peixe-zebra`. Por isso o retrofit de 15/10 foi MEDIDO caso a caso, rodando o
+# validador contra cada corrupcao e lendo que linha saiu, e nao deduzido do codigo.
 TESTES = [
-    ("E1", "id que nao corresponde ao nome cientifico", c_e1, "erro"),
+    ("E1", "id que nao corresponde ao nome cientifico", c_e1, "erro", "peixe-zebra"),
     ("E24", "clausula do maximo que a fonte nao escreveu", c_e24_frase_inventada, "erro",
      "pethia-conchonius"),
     ("E24", "clausula literal que nao diz que o numero e maximo",
@@ -406,47 +413,108 @@ TESTES = [
      c_e16_comum_numero, "erro", "puntius-titteya"),
     ("E25", "maximo e comum em reguas declaradas diferentes", c_e25_duas_reguas, "aviso",
      "puntius-titteya"),
-    ("E20", "base dos dois lados sem chao_declarado_para", c_e20_sem_chao, "erro"),
-    ("E20", "chao_declarado_para sem base dos dois lados", c_e20_chao_sem_base, "erro"),
-    ("E20", "'nao-declarado' misturado com outro termo", c_e20_mistura_nao_declarado, "erro"),
-    ("E20", "arranjo fora do vocabulario fechado", c_e20_arranjo_fora_do_vocabulario, "erro"),
-    ("E22", "frase do chao que a fonte nao escreveu", c_e22_frase_inventada, "erro"),
-    ("E22", "termo que a clausula da fonte nao sustenta", c_e22_termo_sem_palavra, "erro"),
-    ("E22", "'nao-declarado' com clausula que nomeia populacao", c_e22_nao_declarado_que_nomeia, "erro"),
-    ("E21", "arranjo publicado acima do chao declarado", c_e21_arranjo_acima_do_chao, "aviso"),
-    ("E23", "clausula da recusa que a fonte nao escreveu", c_e23_frase_inventada, "erro"),
-    ("E23", "tipo de restricao fora do vocabulario fechado", c_e23_tipo_fora_do_vocabulario, "erro"),
-    ("E23", "tipo que a clausula da fonte nao sustenta", c_e23_tipo_sem_palavra, "erro"),
-    ("E23", "lista de restricoes presente e vazia", c_e23_lista_vazia, "erro"),
-    ("E23", "recusa sem fonte que a declare em campos", c_e23_sem_fonte_que_declare, "erro"),
-    ("E2", "campo obrigatorio faltando sem status parcial", c_e2, "erro"),
-    ("E3", "campo tecnico preenchido sem fonte", c_e3, "erro"),
-    ("E4", "fonte com status incoerente com a origem", c_e4, "erro"),
-    ("E5", "campo de manutencao sustentado so por varejo", c_e5, "erro"),
-    ("E6", "porte sem SL ou TL do lado", c_e6, "erro"),
-    ("E7", "litro derivado da base gravado a mao", c_e7, "erro"),
-    ("E8", "intervalo com min maior que max", c_e8, "erro"),
-    ("E9", "conflito de bem-estar com conservador que nao e o maior", c_e9, "erro"),
-    ("E10", "conflito declarado com status completo", c_e10, "erro"),
-    ("E11", "registro verificado ha mais de 365 dias", c_e11, "aviso"),
-    ("E12", "convivencia solitario com cardume_minimo preenchido", c_e12, "erro"),
-    ("E13", "tolerancia termica disfarcada de recomendacao", c_e13, "erro"),
-    ("E14", "status completo com um corpo de fonte so", c_e14, "erro"),
-    ("E15", "duas urls do mesmo corpo passando por duas fontes", c_e15, "aviso"),
-    ("E16", "campo com numero que a fonte citada nao diz", c_e16_numero, "erro"),
-    ("E16", "um lado do intervalo fora do texto da fonte", c_e16_intervalo, "erro"),
-    ("E16", "largura da base fora do texto da fonte", c_e16_base, "erro"),
-    ("E16", "numero por extenso na fonte, campo trocado", c_e16_extenso, "erro"),
-    ("E18", "teto de faixa sem piso: cardume_recomendado_ate sem cardume_minimo", c_e18_sem_piso, "erro"),
-    ("E18", "faixa invertida: teto igual ao piso", c_e18_invertida, "erro"),
-    ("E19", "coleta recusada sem motivo escrito", c_e19_sem_motivo, "erro"),
-    ("E19", "coleta recusada que nomeia campo fora do esquema", c_e19_campo_inventado, "erro"),
-    ("E19", "coleta recusada com data no futuro", c_e19_data_no_futuro, "erro"),
-    ("E19", "campo recusado agora preenchido, sem dizer quem superou", c_e19_campo_recusado_preenchido, "erro"),
-    ("E17", "nome de tela sem acento (o nome que vira titulo)", c_e17_acento, "erro"),
-    ("E17", "nome de tela sem acento depois do hifen", c_e17_acento_no_meio, "erro"),
-    ("E17", "nome de tela sem acento em token separado por espaco", c_e17_acento_token_solto, "erro"),
+    ("E20", "base dos dois lados sem chao_declarado_para", c_e20_sem_chao, "erro",
+     "apistogramma-agassizii"),
+    ("E20", "chao_declarado_para sem base dos dois lados", c_e20_chao_sem_base, "erro",
+     "poecilia-reticulata"),
+    ("E20", "'nao-declarado' misturado com outro termo", c_e20_mistura_nao_declarado, "erro",
+     "paracheirodon-innesi"),
+    ("E20", "arranjo fora do vocabulario fechado", c_e20_arranjo_fora_do_vocabulario, "erro",
+     "corydoras-panda"),
+    ("E22", "frase do chao que a fonte nao escreveu", c_e22_frase_inventada, "erro",
+     "apistogramma-agassizii"),
+    ("E22", "termo que a clausula da fonte nao sustenta", c_e22_termo_sem_palavra, "erro",
+     "apistogramma-agassizii"),
+    ("E22", "'nao-declarado' com clausula que nomeia populacao", c_e22_nao_declarado_que_nomeia, "erro",
+     "corydoras-panda"),
+    # O ALVO DESTE CASO E O QUE O FAZ MEDIR ALGUMA COISA: a linha de base do banco
+    # LIMPO ja traz dois `aviso [E21]` (symphysodon-aequifasciatus e
+    # apistogramma-agassizii), entao sem o alvo este caso passava com a corrupcao
+    # ANULADA. Medido em 15/10/2026, nao suposto.
+    ("E21", "arranjo publicado acima do chao declarado", c_e21_arranjo_acima_do_chao, "aviso",
+     "trichogaster-lalius"),
+    ("E23", "clausula da recusa que a fonte nao escreveu", c_e23_frase_inventada, "erro",
+     "puntigrus-tetrazona"),
+    ("E23", "tipo de restricao fora do vocabulario fechado", c_e23_tipo_fora_do_vocabulario, "erro",
+     "puntigrus-tetrazona"),
+    ("E23", "tipo que a clausula da fonte nao sustenta", c_e23_tipo_sem_palavra, "erro",
+     "mikrogeophagus-altispinosus"),
+    ("E23", "lista de restricoes presente e vazia", c_e23_lista_vazia, "erro", "puntius-titteya"),
+    ("E23", "recusa sem fonte que a declare em campos", c_e23_sem_fonte_que_declare, "erro",
+     "puntigrus-tetrazona"),
+    ("E2", "campo obrigatorio faltando sem status parcial", c_e2, "erro", "danio-rerio"),
+    ("E3", "campo tecnico preenchido sem fonte", c_e3, "erro", "corydoras-panda"),
+    ("E4", "fonte com status incoerente com a origem", c_e4, "erro", "betta-splendens"),
+    ("E5", "campo de manutencao sustentado so por varejo", c_e5, "erro", "xiphophorus-hellerii"),
+    ("E6", "porte sem SL ou TL do lado", c_e6, "erro", "astronotus-ocellatus"),
+    ("E7", "litro derivado da base gravado a mao", c_e7, "erro", "corydoras-panda"),
+    ("E8", "intervalo com min maior que max", c_e8, "erro", "hemigrammus-erythrozonus"),
+    ("E9", "conflito de bem-estar com conservador que nao e o maior", c_e9, "erro",
+     "chromobotia-macracanthus"),
+    ("E10", "conflito declarado com status completo", c_e10, "erro", "hemigrammus-rhodostomus"),
+    ("E11", "registro verificado ha mais de 365 dias", c_e11, "aviso", "betta-splendens"),
+    ("E12", "convivencia solitario com cardume_minimo preenchido", c_e12, "erro",
+     "astronotus-ocellatus"),
+    ("E13", "tolerancia termica disfarcada de recomendacao", c_e13, "erro",
+     "trichopodus-trichopterus"),
+    ("E14", "status completo com um corpo de fonte so", c_e14, "erro", "mikrogeophagus-ramirezi"),
+    # MESMO CASO DO E21, SEGUNDO REGISTRO: a linha de base ja traz
+    # `aviso [E15] poecilia-reticulata`, e sem o alvo este caso tambem passava com a
+    # corrupcao anulada.
+    ("E15", "duas urls do mesmo corpo passando por duas fontes", c_e15, "aviso",
+     "corydoras-panda"),
+    ("E16", "campo com numero que a fonte citada nao diz", c_e16_numero, "erro",
+     "tanichthys-albonubes"),
+    ("E16", "um lado do intervalo fora do texto da fonte", c_e16_intervalo, "erro",
+     "hyphessobrycon-amandae"),
+    ("E16", "largura da base fora do texto da fonte", c_e16_base, "erro",
+     "hyphessobrycon-amandae"),
+    ("E16", "numero por extenso na fonte, campo trocado", c_e16_extenso, "erro",
+     "corydoras-panda"),
+    ("E18", "teto de faixa sem piso: cardume_recomendado_ate sem cardume_minimo", c_e18_sem_piso,
+     "erro", "astronotus-ocellatus"),
+    ("E18", "faixa invertida: teto igual ao piso", c_e18_invertida, "erro", "trichogaster-chuna"),
+    ("E19", "coleta recusada sem motivo escrito", c_e19_sem_motivo, "erro",
+     "symphysodon-aequifasciatus"),
+    ("E19", "coleta recusada que nomeia campo fora do esquema", c_e19_campo_inventado, "erro",
+     "symphysodon-aequifasciatus"),
+    ("E19", "coleta recusada com data no futuro", c_e19_data_no_futuro, "erro",
+     "symphysodon-aequifasciatus"),
+    ("E19", "campo recusado agora preenchido, sem dizer quem superou",
+     c_e19_campo_recusado_preenchido, "erro", "symphysodon-aequifasciatus"),
+    ("E17", "nome de tela sem acento (o nome que vira titulo)", c_e17_acento, "erro",
+     "hemigrammus-rhodostomus"),
+    ("E17", "nome de tela sem acento depois do hifen", c_e17_acento_no_meio, "erro",
+     "astronotus-ocellatus"),
+    ("E17", "nome de tela sem acento em token separado por espaco", c_e17_acento_token_solto,
+     "erro", "trichopodus-leerii"),
 ]
+
+
+LINHA_DO_VALIDADOR = re.compile(r"^\s*(ERRO  |aviso )\[([^\]]+)\] ([^:]+):")
+
+
+def linhas_emitidas(caminho):
+    """Roda o validador e devolve (codigo, [(tipo, regra, registro), ...]).
+
+    O portao precisa das linhas DESMONTADAS, e nao do texto inteiro, por um motivo
+    so: e assim que ele consegue perguntar "esta linha ja existia antes de eu
+    corromper nada?". Perguntar isso no texto inteiro nao da, porque a mesma regra
+    sai em registros diferentes.
+    """
+    saida = subprocess.run([sys.executable, VALIDADOR, caminho],
+                           capture_output=True, text=True)
+    linhas = []
+    for ln in saida.stdout.splitlines():
+        m = LINHA_DO_VALIDADOR.match(ln)
+        if m:
+            linhas.append((m.group(1).strip(), m.group(2), m.group(3).strip()))
+    return saida.returncode, linhas, saida.stdout
+
+
+def grava(banco, caminho):
+    with open(caminho, "w", encoding="utf-8") as fp:
+        json.dump(banco, fp, ensure_ascii=False, indent=2)
 
 
 def main():
@@ -454,36 +522,94 @@ def main():
     tmp = tempfile.mkdtemp(prefix="aqm-especies-")
     falhas = []
 
-    print("== testes negativos do validador de especies ==")
+    # ---------------------------------------------------------------- a linha de base
+    # O BANCO LIMPO JA EMITE AVISO, E ISSO E O QUE FAZIA ESTE PORTAO APROVAR POR
+    # ACIDENTE (medido em 15/10/2026). Sao quatro hoje: aviso [E15] em
+    # poecilia-reticulata, aviso [E21] em symphysodon-aequifasciatus e em
+    # apistogramma-agassizii, e aviso [E25] em pethia-conchonius. Enquanto o portao
+    # procurava so a MARCA da regra, dois casos passavam com a corrupcao ANULADA,
+    # emprestando a linha de um vizinho. A linha de base e medida aqui, do banco de
+    # hoje, e NAO digitada: lista digitada de estado esperado envelhece calada (secao
+    # 8 do ARQUIPELAGO.md), e no dia em que o banco ganhar ou perder um aviso esta
+    # medicao acompanha sozinha.
+    limpo = os.path.join(tmp, "banco-limpo.json")
+    grava(copy.deepcopy(original), limpo)
+    codigo_limpo, base, _ = linhas_emitidas(limpo)
+    print("== linha de base: o que o banco LIMPO ja emite ==")
+    if codigo_limpo != 0:
+        print("  !! o banco real nao passa no validador (codigo %d) — nenhum caso abaixo"
+              " mede o que promete" % codigo_limpo)
+        falhas.append("banco-limpo-reprovado")
+    for tipo, regra, rid in base:
+        print("  %-5s [%-3s] %s" % (tipo, regra, rid))
+    if not base:
+        print("  (nenhuma)")
+    base_set = set(base)
+
+    print("\n== testes negativos do validador de especies ==")
     for caso in TESTES:
-        # O ALVO E OPCIONAL E DEVERIA SER OBRIGATORIO (15/10/2026). Sem ele este
-        # portao pergunta so "a marca da regra apareceu na saida?", e isso APROVA
-        # POR ACIDENTE quando a mesma regra ja reprova OUTRO registro do banco: a
-        # corrupcao pode nao ter sido vista e o teste passa com a linha de um
-        # vizinho. Nao e hipotese — foi medido por duas mutacoes do
-        # mutacoes-porte-maximo.py que SOBREVIVERAM em 15/10/2026, uma delas a do
-        # E25, cujo aviso continua saindo no barbo rosado quando o do barbo
-        # cereja deixa de sair. E a mesma familia do "bloco ausente satisfazia o
-        # `not in` por acidente" que o portao do search-console.py achou na
-        # vespera: aprovar por falta de evidencia.
         regra, descricao, corromper, esperado = caso[:4]
-        alvo = caso[4] if len(caso) > 4 else None
+
+        # O ALVO E OBRIGATORIO (15/10/2026). Sem ele este portao pergunta so "a marca
+        # da regra apareceu na saida?", e isso APROVA POR ACIDENTE quando a mesma
+        # regra ja reprova OUTRO registro — a corrupcao pode nao ter sido vista e o
+        # teste passa com a linha de um vizinho. Nao e hipotese: duas mutacoes do
+        # mutacoes-porte-maximo.py SOBREVIVERAM por isto em 15/10/2026, e no mesmo dia
+        # as duas corrupcoes de `aviso` deste arquivo foram anuladas e o portao disse
+        # "pegou" nas duas, com codigo de saida 0. Caso sem alvo e reprovacao do
+        # PORTAO, nao da regra: regra nao medida nao se distingue de regra que passa.
+        if len(caso) < 5 or not caso[4]:
+            print("  %-4s %-56s CASO SEM ALVO" % (regra, descricao))
+            falhas.append("%s/sem-alvo" % regra)
+            continue
+        alvo = caso[4]
+
+        tipo_esperado = "ERRO" if esperado == "erro" else "aviso"
+        procurada = (tipo_esperado, regra, alvo)
+
+        # E A SEGUNDA METADE, QUE O ALVO SOZINHO NAO ALCANCA: se a linha procurada JA
+        # EXISTE no banco limpo, o caso aprovaria sem corrupcao nenhuma, alvo e tudo.
+        # Hoje nenhum caso cai aqui — e cairia no dia em que alguem escrevesse um caso
+        # de E25 apontando para o pethia-conchonius, que e o registro que o aviso ja
+        # acusa de pe.
+        if procurada in base_set:
+            print("  %-4s %-56s LINHA JA EXISTE NO BANCO LIMPO" % (regra, descricao))
+            falhas.append("%s/linha-de-base" % regra)
+            continue
+
         banco = copy.deepcopy(original)
         corromper(banco)
         caminho = os.path.join(tmp, "banco-%s.json" % regra.lower())
-        with open(caminho, "w", encoding="utf-8") as fp:
-            json.dump(banco, fp, ensure_ascii=False, indent=2)
+        grava(banco, caminho)
 
-        saida = subprocess.run([sys.executable, VALIDADOR, caminho],
-                               capture_output=True, text=True)
-        marca = "ERRO  [%s]" % regra if esperado == "erro" else "aviso [%s]" % regra
-        # Com alvo, a linha tem de ser a DAQUELE registro: a regra certa reprovando
-        # o registro que foi corrompido, e nao a mesma regra reprovando um vizinho.
-        procurado = "%s %s:" % (marca, alvo) if alvo else marca
-        pegou = procurado in saida.stdout
-        codigo_certo = (saida.returncode == 1) if esperado == "erro" else True
+        codigo, linhas, _ = linhas_emitidas(caminho)
+
+        # A AFIRMACAO E SOBRE AS LINHAS **NOVAS**, E ESSA SUBTRACAO E ESTRUTURAL.
+        # A primeira escrita do retrofit montava a string "ERRO  [E20] <alvo>:" e a
+        # procurava no texto da saida. Funcionava — e uma mutacao mostrou, em
+        # 15/10/2026, que ela devolvia a brecha inteira a quem trocasse a string
+        # montada pela marca pelada: a linha do vizinho voltava a aprovar a corrupcao
+        # anulada, e nada reprovava (`mutacoes-alvo-dos-casos.py`, mutacao 7,
+        # SOBREVIVEU). Com a linha de base SUBTRAIDA, a linha de um vizinho que o
+        # banco limpo ja acusa nao pode satisfazer caso nenhum, nem mesmo se alguem
+        # afrouxar esta afirmacao para cobrar so a regra — e a mesma mutacao passou a
+        # reprovar. Afirmacao que depende de uma string montada se desfaz trocando a
+        # string; afirmacao que depende da subtracao nao tem string para trocar.
+        novas = [x for x in linhas if x not in base_set]
+        pegou = procurada in novas
+        codigo_certo = (codigo == 1) if esperado == "erro" else True
         ok = pegou and codigo_certo
-        print("  %-4s %-56s %s" % (regra, descricao, "pegou" if ok else "PASSOU BATIDO"))
+
+        # O CO-DISPARO SAI COMO INFORMACAO E NUNCA COMO CRITERIO. Varrido em
+        # 15/10/2026: 12 dos 51 casos acordam mais de uma regra, e isso NAO e defeito
+        # — o alvo ja garante que a linha cobrada e a da regra que o caso mede. Virar
+        # criterio seria escrever aqui uma tabela digitada de estado esperado, que e
+        # exatamente a regua que a secao 8 do ARQUIPELAGO.md diz que envelhece calada:
+        # no dia em que o banco mudar, ela reprova um banco certo.
+        outras = sorted({"%s/%s" % (r, rid) for _, r, rid in novas if r != regra})
+        extra = ("  (+ %s)" % ", ".join(outras)) if outras else ""
+        print("  %-4s %-56s %s%s" % (regra, descricao,
+                                     "pegou" if ok else "PASSOU BATIDO", extra))
         if not ok:
             falhas.append(regra)
 
@@ -494,7 +620,8 @@ def main():
         falhas.append("banco-intacto")
 
     print("\n== resultado ==")
-    print("  %d teste(s), %d falha(s)" % (len(TESTES), len(falhas)))
+    com_alvo = sum(1 for c in TESTES if len(c) > 4 and c[4])
+    print("  %d teste(s), %d com alvo, %d falha(s)" % (len(TESTES), com_alvo, len(falhas)))
     if falhas:
         print("  regras que nao reprovaram o defeito: %s" % ", ".join(falhas))
     return 1 if falhas else 0
