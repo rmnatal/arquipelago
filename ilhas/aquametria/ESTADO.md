@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-14T20:02Z
-executando_desde: null
+executando_desde: 2026-10-15T10:16Z
 bloco_atual: |
   O CODIGO DE CATALOGO DO FABRICANTE GANHOU CAMPO PROPRIO (esquema 13), E COM ELE FECHOU A UNICA
   DIVIDA DE FICHA DESTA ILHA QUE ERA *NOSSA*. Item 1 do despacho da ronda de 14/10 — o unico aberto
