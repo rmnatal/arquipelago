@@ -72,7 +72,18 @@ O portão passou a **imprimir** o co-disparo ao lado de cada caso (`pegou  (+ E3
 
 **E `mutacoes-porte-maximo.py` FOI RERRODADO COMO REGRESSÃO, porque ele roda o arquivo que mudou: 8 de 8 reprovadas, 0 sobrevivente.** Mutação que deixa de morder quando a bancada troca de forma é o defeito que esta ilha pagou em 11/09 (18 de 20 inertes de uma vez) e em 23/09 (seis no `mutacoes-escada.py`). Não aconteceu aqui, e isso foi **medido** e não presumido.
 
-**A BANCADA COMPLETA ESTÁ RODANDO NESTE MOMENTO, e o resultado dela entra em COMMIT PRÓPRIO** — a passada sem rede desta ilha leva ~25 minutos, medido em 15/10 pela manhã, e o que ela já imprimiu no cabeçalho é o desenho dela funcionando: **48 portões**, contra os 47 da passada das 13h45Z. O `mutacoes-alvo-dos-casos.py` **entrou pela convenção de nome no dia em que foi escrito**, sem ninguém a alimentar, exatamente como o cabeçalho do `bancada.py` promete — e já saiu `ok`, com 7 mutações e 0 sobrevivente.
+**A BANCADA FECHOU APROVADO: 48 PORTÕES, 0 FALHA, sem rede.** Ela foi de **47 para 48** sem ninguém a alimentar: o `mutacoes-alvo-dos-casos.py` **entrou pela convenção de nome no dia em que foi escrito**, exatamente como o cabeçalho do `bancada.py` promete. As quatro linhas que importam deste bloco:
+
+| portão | resultado |
+|---|---|
+| `testar-validador-especies.py` | **51 testes, 51 com alvo, 0 falha** (eram 11 com alvo) |
+| `mutacoes-alvo-dos-casos.py` | **7 mutações, 0 sobrevivente** |
+| `mutacoes-porte-maximo.py` | **8 mutações, 0 sobrevivente** (regressão: ele roda o arquivo que mudou) |
+| `teste-peixes.py` | **4299 afirmações, 0 falha** |
+
+**E a confirmação mais valiosa dela não é o portão novo: é o `teste-peixes.py` em 4299 afirmações, o MESMO número da passada das 14h10Z.** Ele mede as fichas do eixo `/peixes/` contra o HTML servido, e passou sem uma linha mudada — é a prova, por portão e não por leitura, de que este bloco **não alcançou a página**, que era a condição inteira para ele poder sair nesta semana.
+
+**No fecho, o ar conferido e não presumido:** `https://aquametria.com.br/` em **HTTP 200** e `/status` na **revisão 122**, igual à do `manifest.json` — a mesma de quando a execução começou. Nenhum desembarque aconteceu, e nenhum era esperado.
 
 ### 7. O QUE ESTA PASSADA NÃO FEZ, de propósito, e por quê
 

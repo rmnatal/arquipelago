@@ -5,8 +5,8 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-15T16:27Z
-executando_desde: 2026-10-15T16:28Z
+ultima_execucao: 2026-10-15T17:17Z
+executando_desde: null
 bloco_atual: |
   O ALVO DOS CASOS DO PORTAO DO BANCO DE ESPECIES PASSOU DE 11 EM 51 PARA 51 EM 51, E A
   AFIRMACAO DEIXOU DE SER UMA STRING MONTADA. E o bloco que a execucao das 13h19Z de hoje
@@ -43,7 +43,10 @@ bloco_atual: |
      mais de uma regra, sete deles o E3, que e estrutural (tirar um campo de `campos` orfana
      o campo). Virar criterio seria digitar aqui a tabela de estado esperado que a secao 8
      diz que envelhece calada.
-  6. O PORTAO DO PORTAO: ferramentas/mutacoes-alvo-dos-casos.py, 7 mutacoes, 0 sobrevivente —
+  6. BANCADA APROVADO: 48 portoes, 0 falha — de 47 para 48 sem ninguem a alimentar. E o
+     teste-peixes.py deu 4299 afirmacoes, 0 falha, o MESMO numero da passada das 14h10Z: e a
+     prova por portao de que este bloco nao alcancou a pagina.
+  7. O PORTAO DO PORTAO: ferramentas/mutacoes-alvo-dos-casos.py, 7 mutacoes, 0 sobrevivente —
      o primeiro arquivo desta ilha que mutila o PORTAO e nao o codigo. E o mutacoes-porte-
      maximo.py foi rerrodado como regressao, porque ele roda o arquivo que mudou: 8 de 8
      reprovadas, 0 sobrevivente.
