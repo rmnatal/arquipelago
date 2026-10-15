@@ -82,6 +82,12 @@ bloco_atual: |
      nenhum esta errado hoje, e isso e diferente de estar protegido. O retrofit e mecanico mas NAO e
      de cabeca: pede ler cada corrupcao, nomear o registro que ela toca e descobrir quantas disparam
      mais de uma regra. E bloco, nao conserto, e protege as 25 regras do banco em vez de uma.
+  11. BANCADA APROVADO as 14h10Z: 47 PORTOES, 0 FALHA, sem rede, em 25 minutos. Ela foi de 46 para 47
+     sem ninguem a alimentar — mutacoes-porte-maximo.py entrou pela convencao de nome no dia em que
+     foi escrito. E a confirmacao que mais vale nela nao e o portao novo: e o teste-peixes.py, 4299
+     afirmacoes 0 falha, que mede as fichas contra o HTML SERVIDO e passou sem uma linha mudada
+     depois de 37 registros ganharem campo novo. E a prova por portao, e nao por leitura do gerador,
+     de que este bloco NAO alcancou a pagina — que era a condicao inteira para ele sair nesta semana.
   PROXIMO PASSO DESBLOQUEADO: a ORACAO NA FICHA, e ela e de 21/10 ou depois — a metade de pagina
   deste mesmo bloco, que esta passada nao fez porque a leitura semanal de 14/10 proibe mexer na
   superficie das paginas desta ilha antes de 21/10. O teste-peixes.py ainda NAO cobra nada do campo
