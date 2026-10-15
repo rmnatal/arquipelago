@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-15T17:17Z
-executando_desde: 2026-10-15T19:16Z
+executando_desde: 2026-10-15T19:52Z
 bloco_atual: |
   O ALVO DOS CASOS DO PORTAO DO BANCO DE ESPECIES PASSOU DE 11 EM 51 PARA 51 EM 51, E A
   AFIRMACAO DEIXOU DE SER UMA STRING MONTADA. E o bloco que a execucao das 13h19Z de hoje
