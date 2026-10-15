@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-15T13:46Z
-executando_desde: null
+executando_desde: 2026-10-15T16:17Z
 bloco_atual: |
   O PORTE QUE AS TABELAS DE LOTACAO USAM E O MAXIMO REGISTRADO, E AGORA ISSO E CAMPO CONTAVEL E NAO
   PROSA NA observacao. E o bloco que a leva 9 apontou em 23/09/2026 e nao fez, nomeado com critERio
