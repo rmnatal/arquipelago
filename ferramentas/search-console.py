@@ -17,6 +17,9 @@ Saída (markdown pronto para colar nas séries da ilha):
     1) linha para dados/indexacao.md  (URLs no sitemap × URLs indexadas)
     2) linhas para dados/posicoes.md  (consulta, página, posição, impressões, cliques, banda)
     3) TABELA POR PÁGINA, dimensão `page` sozinha (página, posição, impressões, cliques, banda)
+    4) as URLs NÃO INDEXADAS, nomeadas com o `coverageState` da URL Inspection
+    5) as URLs SEM VEREDITO, em seção própria — fora da conta de indexadas E fora
+       da conta de não indexadas (ver `veredito_de_indexacao()`)
 
 POR QUE AS SAÍDAS 0 E 3 EXISTEM, e a lição é de 07/10/2026. Até aquela data este
 script lia SÓ a dimensão `query`, e somava as linhas dela para dizer quantas
@@ -32,6 +35,17 @@ que media; estava medindo a dimensão que o Google esvazia. **Total de proprieda
 não depende de dimensão nenhuma, e a dimensão `page` não é anonimizada** — então
 as duas passaram a sair, e a soma da dimensão `query` deixou de ser a medida da
 ilha. Despacho da Sentinela de 07/10/2026, item 2.
+
+POR QUE A SAÍDA 5 EXISTE, e a lição é de 14/10/2026 (item 4 da leitura semanal da
+aquametria). A conta de indexação tinha DOIS estados — `verdict == "PASS"` ou não —
+e a URL Inspection não devolveu veredito nenhum para a home da aquametria. O script
+imprimiu `- / — ?` na lista de NÃO INDEXADAS, e a ilha saiu da leitura com 49 de 52
+quando o número honesto era 50: a home estava indexada, com 4 impressões na posição
+2,3 na mesma janela. **Status desconhecido lido como status negativo subestima a ilha
+em silêncio** — é a mesma família do defeito da saída 0, onde a dimensão que o Google
+esvazia era lida como a medida da ilha. Agora são três estados, o desconhecido tem
+seção própria, e a dimensão `page` da mesma janela é o que prova indexação quando a
+URL Inspection não dá veredito: impressão em busca é prova de que o Google serve a URL.
 
 Dependência: google-auth — instalado num venv próprio (~/.venv-search-console) na 1ª execução.
 """
@@ -153,6 +167,195 @@ def por_pagina(resposta, dominio):
     return saida
 
 
+def caminho_de(url, dominio):
+    """O caminho de uma URL, sem o domínio, sem query e sem âncora, com a raiz como `/`.
+
+    Existe para a lista do sitemap (URLs inteiras) e a tabela da dimensão `page`
+    (caminhos) poderem ser cruzadas por chave igual. Sem isto o cruzamento falha
+    exatamente na home, que é a URL em que o domínio é a string inteira.
+    """
+    for prefixo in ("https://%s" % dominio, "http://%s" % dominio):
+        if url.startswith(prefixo):
+            url = url[len(prefixo):]
+            break
+    url = url.split("?")[0].split("#")[0]
+    return url or "/"
+
+
+def impressoes_por_caminho(paginas):
+    """Mapa caminho -> impressões, a partir da saída de `por_pagina()`.
+
+    A chave é guardada nas duas grafias de barra final, porque a Search Console e
+    o sitemap discordam nisso com frequência e um cruzamento que falha por uma
+    barra produz exatamente o defeito que esta medição existe para evitar.
+    """
+    mapa = {}
+    for x in paginas or []:
+        c = x["pagina"] or "/"
+        for chave in {c, c.rstrip("/") or "/", (c if c.endswith("/") else c + "/")}:
+            mapa[chave] = max(mapa.get(chave, 0), int(x["impressoes"]))
+    return mapa
+
+
+def veredito_de_indexacao(inspecao, impressoes=0):
+    """Classifica UMA URL em TRÊS estados, e é por isso que esta função existe.
+
+    O defeito, medido na aquametria em 14/10/2026 e nomeado pelo item 4 da leitura
+    semanal daquele dia: a conta era `ok = verdict == "PASS"`, com dois estados
+    só. A URL Inspection não devolveu veredito nenhum para a home da aquametria —
+    `indexStatusResult` ausente, `verdict` ausente — e o script imprimiu `?` na
+    lista de **não indexadas**. A home estava indexada: 4 impressões na posição
+    2,3 na mesma janela. A ilha saiu subestimada em uma URL (49 em vez de 50), e
+    o `?` passou por conta em vez de passar por "não soube".
+
+    **Status desconhecido não é status negativo.** Os três estados:
+      - `indexada`      — a URL Inspection deu `PASS`; ou não deu veredito e a
+                          dimensão `page` da MESMA janela registra impressão para
+                          a URL, o que é prova de que o Google a serve em busca.
+      - `nao_indexada`  — veredito presente e diferente de `PASS`. Fica NOMEADA,
+                          com o `coverageState` que a API devolveu.
+      - `sem_veredito`  — nenhum veredito e nenhuma impressão. Fora das duas
+                          contas, impresso como desconhecido.
+
+    O campo `divergencia` acusa o contrário do defeito de cima: veredito negativo
+    em URL com impressão na mesma janela. Não muda conta nenhuma — a medição de
+    quem tem veredito manda —, mas o instrumento discordando de si mesmo tem de
+    sair escrito em vez de passar em silêncio.
+    """
+    st = ((inspecao or {}).get("inspectionResult") or {}).get("indexStatusResult") or {}
+    verdict = (st.get("verdict") or "").strip()
+    cobertura = st.get("coverageState") or ""
+    impressoes = int(impressoes or 0)
+    desconhecido = verdict in ("", "?", "VERDICT_UNSPECIFIED")
+
+    if desconhecido:
+        if impressoes > 0:
+            return {"estado": "indexada", "cobertura": cobertura,
+                    "fonte": "impressão medida (%d na janela) — a URL Inspection não deu veredito" % impressoes,
+                    "impressoes": impressoes, "divergencia": ""}
+        return {"estado": "sem_veredito", "cobertura": cobertura or "sem veredito",
+                "fonte": "a URL Inspection não devolveu veredito e a janela não tem impressão desta URL",
+                "impressoes": 0, "divergencia": ""}
+
+    if verdict == "PASS":
+        return {"estado": "indexada", "cobertura": cobertura, "fonte": "URL Inspection",
+                "impressoes": impressoes, "divergencia": ""}
+
+    return {"estado": "nao_indexada", "cobertura": cobertura or verdict, "fonte": "URL Inspection",
+            "impressoes": impressoes,
+            "divergencia": ("veredito %s com %d impressão(ões) medidas na mesma janela" % (verdict, impressoes))
+                           if impressoes > 0 else ""}
+
+
+def resumo_de_indexacao(detalhes, total_urls=None):
+    """A conta das três listas, com o piso e o teto da taxa quando há desconhecido.
+
+    `indexadas` é o número que vai para a série de `dados/indexacao.md`, e ele NÃO
+    inclui as URLs sem veredito — elas não são indexadas nem não indexadas. Por
+    isso a taxa sai como faixa quando existe desconhecido: `pct` é o piso (o que
+    está provado) e `pct_teto` é o que ela seria se todo desconhecido estivesse no
+    índice. Uma taxa única sobre denominador que contém desconhecido é a mesma
+    família de defeito que esta função conserta — afirmar o que não se mediu.
+    """
+    total = len(detalhes) if total_urls is None else int(total_urls)
+    ind = [d for d in detalhes if d["estado"] == "indexada"]
+    nao = [d for d in detalhes if d["estado"] == "nao_indexada"]
+    sem = [d for d in detalhes if d["estado"] == "sem_veredito"]
+    return {
+        "total": total,
+        "indexadas": len(ind),
+        "nao_indexadas": len(nao),
+        "sem_veredito": len(sem),
+        "por_impressao": len([d for d in ind if d["fonte"].startswith("impressão")]),
+        "divergencias": [d for d in detalhes if d.get("divergencia")],
+        "pct": (100.0 * len(ind) / total) if total else None,
+        "pct_teto": (100.0 * (len(ind) + len(sem)) / total) if total else None,
+        "lista_indexadas": ind,
+        "lista_nao_indexadas": nao,
+        "lista_sem_veredito": sem,
+    }
+
+
+def relatorio_de_indexacao(hoje, urls, resumo, impressoes_total, cliques_total,
+                           erro_sitemap="", avisos=()):
+    """As LINHAS da parte de indexação do relatório, como lista de texto.
+
+    Por que isto é função e não `print` solto dentro do `main()`: metade do
+    critério de pronto do item 4 da leitura semanal de 14/10/2026 é sobre o que o
+    script **imprime** — "imprimir a home numa seção própria de sem veredito" —, e
+    `print` dentro do `main()` só se confere com credencial e rede. Com as linhas
+    devolvidas, o portão sem rede confere as seções e os números do mesmo mundo que
+    a leitura mediu. É a mesma razão de `totais()` e `por_pagina()` existirem.
+
+    Devolve `{"serie": [...], "urls": [...]}` — duas partes porque elas saem em
+    lugares diferentes do relatório: a linha da série vai no topo, perto dos
+    totais, e as listas de URL vão no fim, depois das tabelas de posição.
+    """
+    linhas = []
+    pct = f"{resumo['pct']:.0f}%" if urls else "n/d"
+    linhas.append("### linha para dados/indexacao.md")
+    linhas.append(f"| {hoje.isoformat()} | {len(urls) or 'n/d'} | "
+                  f"{resumo['indexadas'] if urls else 'n/d'} | {pct} | "
+                  f"{impressoes_total} | {cliques_total} |")
+    if not urls:
+        linhas.append(f"(sitemap não lido: {erro_sitemap or 'vazio'})")
+    else:
+        # As três contas somam o total, e dizer isso por extenso é o que impede
+        # alguém de ler `indexadas` como "o resto não está no índice".
+        linhas.append(f"- a conta é de TRÊS estados: **{resumo['indexadas']} indexada(s)**, "
+                      f"**{resumo['nao_indexadas']} não indexada(s)** e "
+                      f"**{resumo['sem_veredito']} sem veredito**, em {resumo['total']} URL(s) do sitemap.")
+        if resumo["por_impressao"]:
+            linhas.append(f"- {resumo['por_impressao']} delas conta(m) como indexada(s) por "
+                          f"**impressão medida nesta mesma janela**, sem veredito da URL Inspection — "
+                          f"ver a seção abaixo. Impressão em busca é prova de que o Google serve a URL.")
+        if resumo["sem_veredito"]:
+            linhas.append(f"- a taxa de indexação está **entre {resumo['pct']:.0f}% e {resumo['pct_teto']:.0f}%**: "
+                          f"o piso é o que está provado, o teto é o que seria se todas as sem veredito "
+                          f"estivessem no índice. **Status desconhecido fica fora das duas contas** — "
+                          f"nunca somado às não indexadas.")
+    for a in avisos or ():
+        linhas.append(f"- {a}")
+    serie, linhas = linhas, []
+    if not urls:
+        return {"serie": serie, "urls": []}
+
+    linhas += ["### URLs não indexadas (URL Inspection)"]
+    if not resumo["lista_nao_indexadas"]:
+        linhas.append("(nenhuma — toda URL do sitemap com veredito deu `PASS`)")
+    for d in resumo["lista_nao_indexadas"]:
+        linhas.append(f"- {d['caminho']} — {d['cobertura']}")
+
+    linhas += ["", "### URLs sem veredito da URL Inspection — NÃO são não indexadas"]
+    if not resumo["lista_sem_veredito"]:
+        # A frase precisa distinguir "todas tiveram veredito" de "as sem veredito
+        # foram resolvidas por impressão". As duas dão lista vazia aqui, e dizer a
+        # primeira quando valia a segunda é a mesma imprecisão que esta função
+        # conserta um andar acima.
+        linhas.append("(nenhuma sobrou sem conta: %d sem veredito resolvida(s) por impressão medida — ver a seção abaixo)"
+                      % resumo["por_impressao"] if resumo["por_impressao"]
+                      else "(nenhuma — a URL Inspection deu veredito para toda URL do sitemap)")
+    for d in resumo["lista_sem_veredito"]:
+        linhas.append(f"- {d['caminho']} — **desconhecido**: {d['fonte']}")
+    if resumo["lista_sem_veredito"]:
+        linhas.append("- estas ficam FORA da conta de indexadas e FORA da conta de não indexadas. "
+                      "O instrumento não soube, e não saber é o que está escrito aqui.")
+
+    if resumo["por_impressao"]:
+        linhas += ["", "### URLs SEM VEREDITO da URL Inspection, mas INDEXADAS por impressão medida"]
+        for d in resumo["lista_indexadas"]:
+            if d["fonte"].startswith("impressão"):
+                linhas.append(f"- {d['caminho']} — {d['fonte']}")
+
+    if resumo["divergencias"]:
+        linhas += ["", "### DIVERGÊNCIA DO INSTRUMENTO — veredito negativo em URL com impressão na janela"]
+        for d in resumo["divergencias"]:
+            linhas.append(f"- {d['caminho']} — {d['divergencia']} (cobertura: {d['cobertura']})")
+        linhas.append("- a conta mantém o veredito da URL Inspection; a linha existe para a contradição "
+                      "não passar em silêncio, que é como o defeito de 14/10/2026 durou uma semana.")
+    return {"serie": serie, "urls": linhas}
+
+
 def urls_do_sitemap(dominio):
     """Lê o sitemap do site com o mesmo cliente HTTP que fala com a API (requests, que respeita
     o proxy e a CA do ambiente). Devolve (urls, erro) — erro é texto quando nada foi lido."""
@@ -236,20 +439,27 @@ def main():
     cliques_por_consulta = sum(int(x["clicks"]) for x in linhas)
 
     # 2) indexação: URL Inspection por URL do sitemap (cota 2000/dia — ok para ilhas pequenas)
+    #    A classificação é de TRÊS estados e mora em `veredito_de_indexacao()`: status
+    #    desconhecido não entra na conta das não indexadas (item 4 da leitura semanal
+    #    de 14/10/2026). O mapa de impressões da dimensão `page` entra aqui porque é
+    #    ele que prova indexação quando a URL Inspection não dá veredito.
     urls, erro_sitemap, avisos = urls_do_sitemap(dominio)
-    indexadas, detalhes = 0, []
+    impressoes_pagina = impressoes_por_caminho(paginas)
+    detalhes = []
     for u in urls:
+        caminho = caminho_de(u, dominio)
         ins = sess.post(f"{API}/v1/urlInspection/index:inspect",
                         json={"inspectionUrl": u, "siteUrl": prop}).json()
-        st = ins.get("inspectionResult", {}).get("indexStatusResult", {})
-        verdict, cov = st.get("verdict", "?"), st.get("coverageState", "?")
-        ok = verdict == "PASS"
-        indexadas += ok
-        detalhes.append((u, "indexada" if ok else "NÃO", cov))
+        v = veredito_de_indexacao(ins, impressoes_pagina.get(caminho, 0))
+        v["url"], v["caminho"] = u, caminho
+        detalhes.append(v)
+    resumo = resumo_de_indexacao(detalhes, len(urls))
+    indexadas = resumo["indexadas"]
 
     if "--json" in sys.argv:
         print(json.dumps({"ilha": ilha, "propriedade": prop, "periodo": [ini.isoformat(), fim.isoformat()],
                           "urls_sitemap": len(urls), "indexadas": indexadas,
+                          "indexacao": {k: v for k, v in resumo.items() if not k.startswith("lista_")},
                           "impressoes": impressoes_total, "cliques": cliques_total,
                           "totais_da_propriedade": t, "por_pagina": paginas,
                           "impressoes_por_consulta": impressoes_por_consulta,
@@ -257,7 +467,6 @@ def main():
                           "posicoes": linhas, "inspecao": detalhes, "erro_sitemap": erro_sitemap, "avisos": avisos}, ensure_ascii=False, indent=1))
         return
 
-    pct = f"{100*indexadas/len(urls):.0f}%" if urls else "n/d"
     print(f"## {ilha} — leitura Search Console {hoje.isoformat()} (janela {ini}→{fim})")
     print()
     print("### totais da propriedade (sem dimensão nenhuma)")
@@ -271,12 +480,13 @@ def main():
           f"A diferença é a anonimização da consulta pelo Google, não defeito do site — "
           f"e é por isso que o número de cima é o que vale.")
     print()
-    print("### linha para dados/indexacao.md")
-    print(f"| {hoje.isoformat()} | {len(urls) or 'n/d'} | {indexadas if urls else 'n/d'} | {pct} | {impressoes_total} | {cliques_total} |")
-    if not urls:
-        print(f"(sitemap não lido: {erro_sitemap or 'vazio'})")
-    for a in avisos:
-        print(f"- {a}")
+    # A parte de indexação sai de `relatorio_de_indexacao()`, que é função pura e
+    # tem portão sem rede: metade do critério do item 4 de 14/10/2026 é sobre o que
+    # se IMPRIME, e `print` solto só se confere com credencial na mão.
+    rel_indexacao = relatorio_de_indexacao(hoje, urls, resumo, impressoes_total,
+                                           cliques_total, erro_sitemap, avisos)
+    for l in rel_indexacao["serie"]:
+        print(l)
     print()
     print("### linhas para dados/posicoes.md")
     print("| consulta | página | posição hoje | impressões | cliques | banda |")
@@ -293,12 +503,10 @@ def main():
     for x in paginas[:60]:
         print(f"| {x['pagina']} | {x['posicao']:.1f} | {x['impressoes']} | {x['cliques']} | {x['banda']} |")
 
-    if urls:
+    if rel_indexacao["urls"]:
         print()
-        print("### URLs não indexadas (URL Inspection)")
-        for u, st, cov in detalhes:
-            if st != "indexada":
-                print(f"- {u.replace('https://'+dominio, '')} — {cov}")
+        for l in rel_indexacao["urls"]:
+            print(l)
 
 
 if __name__ == "__main__":
