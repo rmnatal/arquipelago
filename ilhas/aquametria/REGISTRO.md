@@ -14,6 +14,97 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-15 19h16Z–20h0xZ — "CORPO DE FONTE DISTINTO" ERA DECIDIDO PELO **HOSTNAME**, E HOSTNAME NÃO PROVA PROCEDÊNCIA: O REGISTRO DE CORPOS PASSOU A MORAR NO ESQUEMA
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não havia reserva vencida para o git desempatar. O último commit na pasta da ilha era de **17h17Z**, 119 minutos antes, da execução das 16h17Z que **fechou**. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-z57vpw` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mergear. Reserva aceita às **19h16Z**, commit `7ec4529`, na primeira tentativa, e **renovada às 19h31Z** pela 1.1, porque o bloco passa de 40 minutos (a bancada sem rede leva ~22).
+
+> **E A RENOVAÇÃO SAIU ERRADA E FOI CORRIGIDA POR CIMA, no commit seguinte:** o commit `b342946` gravou `executando_desde: 2026-10-15T19:52Z` e o relógio era **19h31Z**. Reserva com hora no FUTURO se lê como mais fresca do que é, e teria protegido esta ilha por 21 minutos que não existiram. Corrigido em `7d1a68c` para a hora de verdade. Fica escrito porque é a família do "resumo velho lido como fato" da seção 4, invertida: resumo NOVO demais.
+
+**A REDE DA ILHA, PELA 20.2, RETESTADA E NÃO HERDADA:** `https://aquametria.com.br/` em **HTTP 200**, repetido e 200 de novo. `/wp-json/aquametria/v1/status` respondeu com a **revisão 122**, igual à do `manifest.json` do repositório — nada preso no desembarque e nada a reacionar pela 20.5. *(De passagem, para a próxima não repetir: o endpoint de status desta ilha é `/wp-json/aquametria/v1/status` e não `/wp-json/arq/v1/status`, que devolve 404.)*
+
+**O BLOCO É O QUE A EXECUÇÃO ANTERIOR NOMEOU — e o que ele achou não é o que ele foi buscar.** Nenhum dos quatro despachos desta ilha tem item aberto para a Fundação, conferidos um a um: a leitura semanal de 14/10 manda *"deixar quieto e medir"* até 21/10 e declara que **nenhum item dela é trabalho de código**; as duas propostas de 07/10 rolaram para 21/10; a Proposta 3 e o item 1 do despacho do Raphael de 09/10 pedem o Chrome do Raphael; o sub-item do item 4 espera **credencial** — `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` seguem **ausentes neste ambiente**, reconferidos hoje; e o despacho da ronda de 14/10 está fechado. Sobrou o passo que a entrada das 16h17Z deixou nomeado, com critério escrito: fechar o **`aviso [E15] poecilia-reticulata`** — *"é aviso de BANCO, de um registro só, e cabe nesta semana porque não põe byte no ar"*.
+
+**ZERO BYTE NO AR, E MEDIDO NO FIM E NÃO SUPOSTO NO COMEÇO.** Nenhuma URL nova (a ilha segue em **52**), **nenhum Sync acionado**, revisão parada na **122**, **nenhuma leva do teto da 21.4 gasta** (continua **ZERADO** nesta semana), e nada tocado em `<title>`, em `<meta name="description">` nem na `/calculadora-de-litragem/` — a leitura de 14/10 proíbe mexer nessas superfícies antes de 21/10 porque é o que destrói a medição de CTR em curso e o único controle do arquipélago. **Nenhum snippet e nenhum `manifest.json` estão no diff desta passada.**
+
+### 1. O QUE O BLOCO FOI BUSCAR, E POR QUE NÃO ACHOU — A RECUSA ESTÁ MEDIDA, NÃO SUPOSTA
+
+O critério herdado era *"o `poecilia-reticulata` tiver dois corpos de fonte de verdade"*. As duas saídas que a própria `observacao` do registro escrevia desde 11/09 foram testadas, nesta ordem:
+
+- **A leitura direta, quando o egresso abrir: NÃO ABRIU.** Retestado e não herdado (20.3): `fishbase.org`, `fishbase.se`, `seriouslyfish.com` e `en.wikipedia.org` em **000** (`connect_rejected` do proxy de egresso, nomeado na mensagem), com `aquametria.com.br` em **200 na mesma passada**. Quatro hosts diferentes recusados contra o domínio da ilha em 200 é política de egresso, não intermitência (seção 4).
+- **Um segundo corpo por busca restrita: APARECEU UM DE VERDADE, E FOI RECUSADO.** A ficha de *Poecilia reticulata* do **Nonindigenous Aquatic Species Database do USGS** (`nas.er.usgs.gov`, SpeciesID=863) publica **"males to 2.5 cm SL; females to 6 cm SL"** atribuído à espécie **pelo nome**, colhido por busca **RESTRITA** ao domínio. Isso passa na `regra_de_atribuicao_por_busca` e na `regra_da_congenere` da escada — ele seria o segundo corpo que falta.
+
+**A recusa não é por atribuição, é por PROCEDÊNCIA, e é o achado da passada:** a ficha **não nomeia o estudo primário do número**. Medido em duas buscas restritas, a segunda perguntando exatamente isso, que devolveram a citação sugerida da própria USGS e a data de revisão por pares (26/04/2013) e **nenhuma fonte primária**. Corpo cuja procedência não se mede **pode estar REPRODUZINDO a FishBase**, que é o único corpo que esse registro tem — e admiti-lo faria um registro de corpo único passar por conferido, que é exatamente o que o E15 existe para impedir. **E o 6 cm SL contra o 5 cm SL daqui não desfaz a dúvida**, embora pareça: a FishBase publica o porte da fêmea em régua diferente da do macho, e trocar TL por SL produz exatamente essa divergência — a família do **E25**, que esta ilha fechou na véspera. A leitura direta decidiria, e o egresso a `nas.er.usgs.gov` também devolve **000 em três passadas**.
+
+A recusa foi escrita na `observacao` do registro, que é onde a escada manda escrevê-la: *"na dúvida o campo fica null e a observação do registro diz que número foi oferecido e recusado — e isso é que impede a próxima coleta de cair na mesma oferta"*. **O `aviso [E15]` continua de pé, e continua de pé de propósito.**
+
+### 2. O DEFEITO DE VERDADE ESTÁ NO PORTÃO, E SÓ APARECEU PORQUE ALGUÉM TENTOU FECHAR O AVISO
+
+Até hoje quem decidia **"corpo de fonte distinto"** era o **HOSTNAME**. A contagem do E14 e do E15 saía de uma tabela de espelhos escrita no **código** — `ESPELHOS` em `validar-especies.py` — que conhecia `fishbase.se`, `fishbase.org` e `seriouslyfish.com` e mais nada.
+
+**Espelho ela pegava; REPRODUTOR não.** O corpo que republica o número de outro mora em **outro host**, então a tabela não o vê. Se a fonte da USGS tivesse entrado — e ela passa nas duas regras de atribuição da escada, então entraria —, o `aviso [E15]` ficaria **MUDO** e o **E14 deixaria o guppy virar `completo` sobre um corpo só**. Não é hipótese: é o caso que estava na mesa nesta execução, e a régua não tinha como dizer não.
+
+**E a mesma tabela estava COPIADA A MÃO num segundo arquivo**, `varrer-categorias-possiveis.py` — e as duas cópias **já nem tinham a mesma forma**: lá as variantes com `www.` eram listadas uma a uma, aqui o `www.` era removido do host. **Nada acusava a divergência.**
+
+### 3. O CONSERTO: A RÉGUA SAIU DO CÓDIGO E FOI PARA O ESQUEMA, COM A PROCEDÊNCIA DECLARADA CORPO POR CORPO
+
+`dados/esquema-especies.json` vai à **versão 8** e ganha `corpos_de_fonte`: cada corpo com `nome`, `hosts`, `procedencia` e `reproduz`, mais o vocabulário fechado de procedência e a `regra_de_contagem` escrita por extenso.
+
+- **`propria`** conta como si. FishBase e Seriously Fish, com o motivo escrito em cada um.
+- **`reproduz`** colapsa no corpo que reproduz — duas urls de hosts diferentes continuam sendo **um corpo só**.
+- **`indeterminada`** **não conta como corpo nenhum**: fonte que não diz de onde veio o número dela não é o próprio corpo (não se sabe se é dele) nem o de outro (não se sabe de quem é). Entra no banco como leitura e nunca como segundo corpo.
+
+**E a recusa de hoje ficou EXECUTÁVEL e não só escrita:** o `usgs-nas` está **declarado** no esquema como `indeterminada`, com a medição inteira no campo `por_que`, **embora nenhuma fonte do banco o use**. É a diferença que importa: com ele declarado assim, no dia em que alguém acrescentar uma fonte dele, ela entra como leitura e **não promove registro nenhum a dois corpos**. Antes de hoje ela promoveria, calada.
+
+**A regra E26** cobra as duas metades, e cada uma sozinha aprova um mundo errado diferente: só a **declaração** obrigatória deixaria um reprodutor declarado contar como corpo próprio; só a **contagem** por procedência não impediria um corpo novo de entrar sem ninguém decidir o que ele é. Corpo não declarado **reprova**, e o erro é o ponto — ele obriga quem acrescenta fonte de corpo novo a decidir a procedência dela antes de ela contar.
+
+**O `varrer-categorias-possiveis.py` passou a LER o registro do esquema, e isso é uma exceção deliberada à regra daquele arquivo**, que escreve a própria régua duas vezes de propósito. A diferença está escrita lá: `CAMPOS_DE_PAGINA` é uma **decisão** (que campos uma ficha precisa ter), e decisão se escreve duas vezes e se confere, senão apagar um campo no esquema faz as duas metades errarem juntas. Registro de corpos é **fato externo** (quais hosts são a FishBase, de onde vem o número de cada um) — ninguém o redescobre de forma independente, então a segunda escrita dele não confere nada e só cria duas verdades. Era o que havia, e as duas verdades já discordavam.
+
+### 4. OS PORTÕES, E O BANCO REAL NÃO MUDOU DE VEREDITO
+
+- **`testar-validador-especies.py`: de 51 para 54 casos, 54 com alvo, 0 falha.** Os três novos, e a divisão deles é o cuidado de método da passada: um mede a **declaração** (fonte de corpo que ninguém declarou → **E26**) e dois medem a **contagem**, com a marca de outra regra de propósito — corpo declarado como `indeterminada` ocupando o segundo corpo de um registro `completo` reprova pelo **E14**, e ao lado de um corpo só emite o **E15**. Cobrar os dois pela marca do E26 aprovaria justamente o mundo em que a declaração é cobrada e a contagem continua saindo do hostname.
+- **`ferramentas/mutacoes-corpos-de-fonte.py`: 5 mutações, 0 sobrevivente.** A primeira **é o código de ontem em pessoa** — a contagem volta a sair do hostname — e morde as três travas de uma vez. As outras: `indeterminada` passando a contar; a cobrança do E26 removida; `reproduz` contando como si em vez de colapsar; e o `www.` deixando de ser normalizado, que não é detalhe (as urls deste banco são escritas com `www.` e os `hosts` do esquema sem — era por isso que a cópia à mão listava as variantes uma a uma).
+- **A mutação do `reproduz` tem DUAS edições, e a segunda é o MUNDO, nunca uma segunda regra** (seção 8, a mesma autorização que a mutação 7 do `mutacoes-alvo-dos-casos.py` usou): nenhum corpo do esquema de hoje é reprodutor, então afrouxar aquele ramo não quebra nada enquanto o mundo não existir. A primeira edição declara o `usgs-nas` como reprodutor da FishBase; a segunda afrouxa a regra. **E isso foi CONFERIDO como mutação válida e não presumido:** com **só** a edição do mundo, sem afrouxar regra nenhuma, o portão fecha em **código 0, 54 testes, 0 falha** — ou seja a edição do mundo não mata o mutante, e o que a mutação mede é a regra.
+- **O banco real continua em 40 espécies, 0 erro e os MESMOS 4 avisos**, com o `aviso [E15] poecilia-reticulata` entre eles. Todos os corpos de todas as fontes já estavam declarados — isso foi **medido** rodando o validador, não suposto ao escrever o registro.
+
+### 5. ZERO BYTE NO AR, CONFERIDO POR REGENERAÇÃO E NÃO POR PROMESSA — E A MEDIÇÃO ACHOU UMA DERIVA QUE NÃO É DESTA PASSADA
+
+O `gerar-catalogo-especies.py` foi rodado contra o banco novo e o snippet resultante foi comparado byte a byte com o do `main`. **O catálogo regerado acrescentaria 34 linhas — e as 34 são `'porte_e_maximo_registrado',`, zero delas desta passada.** É a deriva que a execução das 13h19Z deixou de propósito: ela acrescentou o campo ao índice `campos` das fontes do banco e **não** regerou o snippet, porque o bloco dela também era de zero byte no ar. O snippet foi **revertido ao estado do `main`** e nada foi publicado.
+
+**O que isso deixa escrito, e não é defeito desta passada nem conserto a fazer agora:** o snippet carrega uma cópia do índice `campos` do banco que está **34 linhas atrás**, por decisão de quem a deixou assim, e **nenhum portão da bancada diz isso** — o `teste-peixes.py` constrói do banco e compara contra o HTML servido, e esse índice não chega à tela. A deriva desembarca junto com a primeira leva que regerar o catálogo depois de 21/10. Está aqui para quem regerar não ler as 34 linhas como surpresa.
+
+### 6. O QUE ESTA PASSADA NÃO FEZ, DE PROPÓSITO
+
+- **Não entrou com a fonte da USGS.** É a decisão central do bloco e está medida no item 1. Entrar com ela fecharia o aviso de hoje e abriria um registro de corpo único passando por conferido.
+- **Não promoveu o guppy a `completo`, e não mexeu em `porte_adulto_cm`.** O registro segue `parcial` com os 12 campos obrigatórios todos preenchidos — ele é `parcial` **só** pelo corpo único, e é o único registro do banco nessa situação. Por isso continua **fora** da tabela da `/peixes/vivaparos/`, com nome e causa, e continua sem ficha própria.
+- **Não escreveu arquivo em `dados/`.** A medição desta passada (o egresso, a recusa, a contagem) é impressa pelos próprios portões a cada rodada ou está na `observacao` do registro e no `por_que` do corpo. Copiá-la para um `.md` datado criaria a tabela digitada de estado esperado que a seção 8 condena.
+
+### 7. A BANCADA, E A LINHA QUE MAIS IMPORTA NÃO É O PORTÃO NOVO
+
+**APROVADO: 49 portões, 0 falha**, sem rede. Ela foi de **48 para 49** sem ninguém a alimentar: o `mutacoes-corpos-de-fonte.py` entrou pela **convenção de nome no dia em que foi escrito**, como o cabeçalho do `bancada.py` promete.
+
+| portão | resultado |
+|---|---|
+| `testar-validador-especies.py` | **54 testes, 54 com alvo, 0 falha** (eram 51) |
+| `mutacoes-corpos-de-fonte.py` | **5 mutações, 0 sobrevivente** |
+| `mutacoes-alvo-dos-casos.py` | **7 mutações, 0 sobrevivente** (regressão: ele mutila o portão que mudou) |
+| `teste-peixes.py` | **4299 afirmações, 0 falha** |
+
+**E a confirmação mais valiosa é a última linha, não o portão novo:** o `teste-peixes.py` deu **4299 afirmações, o MESMO número das passadas das 14h10Z e das 16h4xZ**. Ele mede as fichas do eixo `/peixes/` contra o HTML servido, e passou sem uma linha mudada — é a prova, **por portão e não por leitura**, de que este bloco não alcançou a página, que era a condição inteira para ele poder sair nesta semana.
+
+**No fecho, o ar conferido e não presumido:** `https://aquametria.com.br/` em **HTTP 200** e `/status` na **revisão 122**, igual à do `manifest.json` — a mesma de quando a execução começou. Nenhum desembarque aconteceu, e nenhum era esperado.
+
+> **UMA ERRATA DE MENSAGEM DE COMMIT, e ela fica escrita aqui porque não se conserta de outro jeito.** No commit `6a479a7` o shell expandiu um acento grave da mensagem e comeu a palavra na linha *"A do ___ tem duas edicoes"* — era **`reproduz`**. O commit já estava no `main` e force push é proibido (seção 1, passo 5), então a correção mora neste registro, onde a mutação está descrita por inteiro no item 4. **A lição é de ferramenta e não de conteúdo:** mensagem de commit com acento grave entra por arquivo, nunca por string entre aspas duplas.
+
+### 8. O PRÓXIMO PASSO DESBLOQUEADO, E ELE É DE BANCO, CABE NESTA SEMANA E TEM CRITÉRIO ESCRITO
+
+Os quatro avisos da linha de base continuam quatro, e três deles seguem **congelados até 21/10** por serem superfície de página (os dois `aviso [E21]` e o `aviso [E25]`, que dizem no próprio texto que quem os executa é o `teste-peixes.py` contra o HTML servido). O quarto, o `aviso [E15] poecilia-reticulata`, **esta passada mediu e não pôde fechar** — e o que ela deixou no lugar é melhor que o fecho: a régua que impede fechá-lo errado.
+
+**O que sobrou, medido hoje e não suposto:** o `danio-margaritatus` é o **outro** registro de corpo único desta ilha, e ele não emite `aviso [E15]` — porque tem **uma** url só, e o E15 pede duas. O aviso mede o SINTOMA (duas urls fingindo dois corpos) e não a CONDIÇÃO (um corpo só sustentando o registro). O `danio-margaritatus` está barrado do catálogo por quatro motivos ao mesmo tempo (`comprimento_minimo_aquario_cm`, `convivencia`, `temperatura_C` e `duas fontes distintas`), então hoje a lacuna não custa página nenhuma — mas ela é a mesma família do que esta passada acabou de consertar um andar acima: **régua que pergunta pelo sintoma aprova o mundo em que o sintoma não aparece.**
+
+- **Pronto quando:** existir no `validar-especies.py` uma régua que diga, por registro, **quantos corpos sustentam cada campo obrigatório** — e não só quantos corpos o registro tem no total —, com caso no `testar-validador-especies.py` e mutação que a mutile; e o `danio-margaritatus` e o `poecilia-reticulata` saírem nomeados por ela, **sem que o número total de avisos da linha de base seja digitado em lugar nenhum**.
+- **Por que ele cabe nesta semana:** é banco e portão, põe **zero byte no ar**, e não toca em `<title>`, `<meta description>` nem na `/calculadora-de-litragem/`. A oração na ficha e qualquer superfície de página continuam sendo **de 21/10 ou depois**, por ordem da leitura semanal de 14/10.
+- **Atenção de método, e é a lição desta passada:** o número de corpos de um registro agora depende da **procedência declarada**, não do hostname. Quem escrever a régua por campo tem de contar pelo `corpo_contavel()`, nunca pelo host — senão reintroduz exatamente o buraco que o E26 tapou.
+
 ## 2026-10-15 16h17Z–16h4xZ — O PORTÃO QUE VIGIA AS 25 REGRAS DO BANCO APROVAVA DOIS CASOS **EMPRESTANDO A LINHA DE UM VIZINHO**, E AGORA A AFIRMAÇÃO DELE NÃO TEM STRING PARA TROCAR
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não havia reserva vencida para o git desempatar. O último commit na pasta da ilha era de **14h11Z**, 126 minutos antes, da execução das 13h19Z que **fechou**. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-ytzwrj` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mergear. Reserva aceita às **16h17Z**, commit `4f13a71`, na primeira tentativa.

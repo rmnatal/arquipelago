@@ -5,51 +5,57 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-15T17:17Z
-executando_desde: 2026-10-15T19:31Z
+ultima_execucao: 2026-10-15T20:00Z
+executando_desde: null
 bloco_atual: |
-  O ALVO DOS CASOS DO PORTAO DO BANCO DE ESPECIES PASSOU DE 11 EM 51 PARA 51 EM 51, E A
-  AFIRMACAO DEIXOU DE SER UMA STRING MONTADA. E o bloco que a execucao das 13h19Z de hoje
-  nomeou no REGISTRO.md como o proximo desbloqueado ("e bloco, nao conserto, e vale mais que
-  a oracao da ficha em uma coisa: ele protege as 25 regras do banco, nao uma"). ZERO BYTE NO
-  AR: a ilha segue em 52 URLs, nenhum Sync acionado, revisao parada na 122, nenhuma leva do
-  teto da 21.4 gasta (continua ZERADO nesta semana), e nada tocado em title, em meta
-  description nem na /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer nessas
-  superficies antes de 21/10 porque e o que destroi a medicao de CTR em curso e o unico
-  controle do arquipelago.
-  1. O DEFEITO, MEDIDO E NAO SUPOSTO. O banco LIMPO ja emite quatro avisos de pe: E15 em
-     poecilia-reticulata, E21 em symphysodon-aequifasciatus e em apistogramma-agassizii, e
-     E25 em pethia-conchonius. Enquanto o portao procurava so a MARCA da regra, dois casos
-     aprovavam emprestando a linha de um vizinho. Prova: com as corrupcoes do E21 e do E15
-     COMPLETAMENTE ANULADAS, o portao imprimiu "pegou" nas duas e saiu com codigo 0, 51
-     testes, 0 falhas. Foi essa a brecha que fez duas mutacoes do mutacoes-porte-maximo.py
-     sobreviverem em 15/10 pela manha.
-  2. O RETROFIT FOI MEDIDO CASO A CASO, rodando o validador contra cada uma das 51
-     corrupcoes e lendo que linha saiu — nao deduzido do codigo. E a diferenca apareceu em
-     um caso: no E1 a corrupcao edita o danio-rerio e a linha sai em peixe-zebra, porque o
-     que ela corrompe e o proprio `id`. Ler o codigo daria o alvo errado ali.
-  3. DUAS RECUSAS ESTRUTURAIS NOVAS. Caso sem `alvo` reprova o PORTAO (regra nao medida nao
-     se distingue de regra que passa). E linha procurada que JA EXISTE na linha de base
-     reprova, porque o caso aprovaria sem corrupcao nenhuma — a metade que o alvo sozinho
-     nao alcanca. A linha de base e MEDIDA do banco de hoje, nunca digitada: lista digitada
-     de estado esperado envelhece calada (secao 8).
-  4. A AFIRMACAO FOI REESCRITA PORQUE UMA MUTACAO SOBREVIVEU. A primeira escrita montava a
-     string "ERRO  [E20] <alvo>:" e a procurava no texto; a mutacao que a trocava pela marca
-     pelada devolvia a brecha inteira e nada reprovava. Agora a afirmacao e sobre as linhas
-     NOVAS — medidas menos a linha de base —, e a linha de um vizinho nao pode satisfazer
-     caso nenhum nem com a cobranca do registro afrouxada. Afirmacao que depende de string
-     montada se desfaz trocando a string.
-  5. O CO-DISPARO SAI COMO INFORMACAO, NUNCA COMO CRITERIO. Varrido: 12 dos 51 casos acordam
-     mais de uma regra, sete deles o E3, que e estrutural (tirar um campo de `campos` orfana
-     o campo). Virar criterio seria digitar aqui a tabela de estado esperado que a secao 8
-     diz que envelhece calada.
-  6. BANCADA APROVADO: 48 portoes, 0 falha — de 47 para 48 sem ninguem a alimentar. E o
-     teste-peixes.py deu 4299 afirmacoes, 0 falha, o MESMO numero da passada das 14h10Z: e a
-     prova por portao de que este bloco nao alcancou a pagina.
-  7. O PORTAO DO PORTAO: ferramentas/mutacoes-alvo-dos-casos.py, 7 mutacoes, 0 sobrevivente —
-     o primeiro arquivo desta ilha que mutila o PORTAO e nao o codigo. E o mutacoes-porte-
-     maximo.py foi rerrodado como regressao, porque ele roda o arquivo que mudou: 8 de 8
-     reprovadas, 0 sobrevivente.
+  "CORPO DE FONTE DISTINTO" ERA DECIDIDO PELO HOSTNAME, E HOSTNAME NAO PROVA PROCEDENCIA:
+  O REGISTRO DE CORPOS PASSOU A MORAR NO ESQUEMA (versao 8, regra E26). O bloco que a
+  execucao das 16h17Z nomeou era fechar o `aviso [E15] poecilia-reticulata`, e ele NAO
+  fechou — o que fechou foi o buraco no portao que a tentativa de fechar o aviso revelou.
+  ZERO BYTE NO AR, conferido por regeneracao: a ilha segue em 52 URLs, nenhum Sync
+  acionado, revisao parada na 122, nenhuma leva do teto da 21.4 gasta (continua ZERADO
+  nesta semana), e nada tocado em title, em meta description nem na
+  /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer nessas superficies antes de
+  21/10 porque e o que destroi a medicao de CTR em curso e o unico controle do arquipelago.
+  1. O QUE O BLOCO FOI BUSCAR E NAO ACHOU, MEDIDO E NAO SUPOSTO. As duas saidas que a
+     propria observacao do registro escrevia desde 11/09 foram testadas. A leitura direta:
+     egresso em 000 (connect_rejected) para fishbase.org, fishbase.se, seriouslyfish.com e
+     en.wikipedia.org, com aquametria.com.br em 200 na mesma passada — quatro hosts
+     recusados contra o dominio da ilha em 200 e politica de egresso, nao intermitencia.
+  2. UM SEGUNDO CORPO APARECEU DE VERDADE E FOI RECUSADO. A ficha de Poecilia reticulata
+     do Nonindigenous Aquatic Species Database do USGS publica "males to 2.5 cm SL; females
+     to 6 cm SL" atribuido a especie PELO NOME, por busca RESTRITA ao dominio — passa nas
+     duas regras de atribuicao da escada. A RECUSA E POR PROCEDENCIA: a ficha nao nomeia o
+     estudo primario do numero, medido em duas buscas restritas. Corpo cuja procedencia nao
+     se mede pode estar REPRODUZINDO a FishBase, que e o unico corpo desse registro. E o
+     6 contra o 5 cm SL nao desfaz a duvida: trocar TL por SL produz exatamente essa
+     divergencia, que e a familia do E25.
+  3. O DEFEITO DE VERDADE ESTAVA NO PORTAO. A contagem de corpos distintos do E14 e do E15
+     saia de uma tabela de ESPELHOS escrita no codigo e COPIADA A MAO num segundo arquivo —
+     as duas ja com formas diferentes, e nada acusava a divergencia. Espelho ela pegava;
+     REPRODUTOR nao, porque o corpo que republica o numero de outro mora em outro host. Se
+     a fonte da USGS tivesse entrado, o aviso [E15] ficaria MUDO e o E14 deixaria o guppy
+     virar `completo` sobre um corpo so.
+  4. O CONSERTO: a regua saiu do codigo e foi para o esquema. `corpos_de_fonte` declara
+     cada corpo, os hosts dele e a procedencia do numero: `propria` conta como si,
+     `reproduz` COLAPSA no corpo que reproduz, `indeterminada` NAO conta. Corpo nao
+     declarado reprova, e o erro e o ponto — obriga quem acrescenta fonte de corpo novo a
+     decidir a procedencia antes de ela contar. A recusa de hoje ficou EXECUTAVEL: o
+     usgs-nas esta declarado como `indeterminada`, com a medicao no campo por_que, embora
+     nenhuma fonte do banco o use.
+  5. OS PORTOES. testar-validador-especies.py de 51 para 54 casos, 54 com alvo, 0 falha —
+     um mede a DECLARACAO (E26) e dois medem a CONTAGEM com a marca de outra regra de
+     proposito (E14 num `completo`, E15 ao lado de um corpo so). mutacoes-corpos-de-fonte.py
+     novo: 5 mutacoes, 0 sobrevivente, e a primeira E o codigo de ontem em pessoa. A do
+     `reproduz` tem duas edicoes e a segunda e o MUNDO (secao 8), conferido: com SO a edicao
+     do mundo o portao fecha em codigo 0, 54 testes, 0 falha.
+  6. BANCADA APROVADO: 49 portoes, 0 falha — de 48 para 49 sem ninguem a alimentar. E o
+     teste-peixes.py deu 4299 afirmacoes, o MESMO numero das passadas das 14h10Z e das
+     16h4xZ: e a prova por portao de que este bloco nao alcancou a pagina.
+  7. O BANCO REAL nao mudou de veredito: 40 especies, 0 erro e os MESMOS 4 avisos, o E15 do
+     guppy entre eles. O guppy segue `parcial` com os 12 campos obrigatorios preenchidos —
+     ele e parcial SO pelo corpo unico —, segue fora da tabela da /peixes/vivaparos/ com
+     nome e causa, e segue sem ficha propria.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |
