@@ -124,6 +124,38 @@ def c_e15(b):
     r["fontes"][1]["url"] = "https://fishbase.org/summary/12188"
 
 
+def c_e26_corpo_nao_declarado(b):
+    # UM CORPO QUE NINGUEM DECLAROU entra como se host diferente fosse corpo diferente.
+    # Era assim que a contagem funcionava ate 15/10/2026, e e por isso que agora reprova:
+    # quem acrescenta fonte de corpo novo tem de DECLARAR a procedencia do numero dela em
+    # corpos_de_fonte antes de ela contar.
+    r = pega(b, "nannostomus-beckfordi")
+    r["fontes"][1]["url"] = "https://www.peixes-do-mundo.example/nannostomus-beckfordi"
+
+
+def c_e26_indeterminada_nao_conta(b):
+    # O CASO DE VERDADE, O QUE ESTA EXECUCAO RECUSOU: um corpo DECLARADO cuja procedencia
+    # e `indeterminada` — a fonte nao diz de onde veio o numero dela — ocupando o lugar do
+    # segundo corpo de um registro `completo`. O corpo esta declarado, entao nao ha E26; o
+    # que tem de reprovar e a CONTAGEM, pelo E14. Antes da versao 8 do esquema isto passava
+    # batido, porque host diferente contava como corpo diferente.
+    r = pega(b, "corydoras-sterbai")
+    for f in r["fontes"]:
+        if "seriouslyfish.com" in (f.get("url") or ""):
+            f["url"] = "https://nas.er.usgs.gov/queries/FactSheet.aspx?SpeciesID=863"
+
+
+def c_e26_indeterminada_no_aviso(b):
+    # A MESMA TROCA num registro que nao e `completo`: ali o E14 nao fala, e quem tem de
+    # falar e o E15 — duas urls, um corpo so. As duas metades sao testadas porque cada uma
+    # sozinha deixaria metade do banco sem regua: a maioria dos registros desta ilha nao e
+    # `completo`.
+    r = pega(b, "danio-rerio")
+    for f in r["fontes"]:
+        if "seriouslyfish.com" in (f.get("url") or ""):
+            f["url"] = "https://nas.er.usgs.gov/queries/FactSheet.aspx?SpeciesID=863"
+
+
 def c_e16_numero(b):
     # o campo passa a dizer um numero que a fonte citada nao diz
     pega(b, "tanichthys-albonubes")["cardume_minimo"] = 12
@@ -463,6 +495,16 @@ TESTES = [
     # corrupcao anulada.
     ("E15", "duas urls do mesmo corpo passando por duas fontes", c_e15, "aviso",
      "corydoras-panda"),
+    ("E26", "fonte de corpo que ninguem declarou no esquema", c_e26_corpo_nao_declarado,
+     "erro", "nannostomus-beckfordi"),
+    # OS DOIS ABAIXO MEDEM A CONTAGEM E NAO A DECLARACAO, e por isso a regra que reprova
+    # nao e a E26: o corpo ESTA declarado, com procedencia `indeterminada`, e o que tem de
+    # acontecer e ele nao contar. Testar isso pela marca do E26 aprovaria o mundo em que a
+    # declaracao e cobrada e a contagem continua saindo do hostname.
+    ("E14", "corpo de procedencia indeterminada ocupando o segundo corpo de um completo",
+     c_e26_indeterminada_nao_conta, "erro", "corydoras-sterbai"),
+    ("E15", "corpo de procedencia indeterminada ao lado de um corpo so",
+     c_e26_indeterminada_no_aviso, "aviso", "danio-rerio"),
     ("E16", "campo com numero que a fonte citada nao diz", c_e16_numero, "erro",
      "tanichthys-albonubes"),
     ("E16", "um lado do intervalo fora do texto da fonte", c_e16_intervalo, "erro",

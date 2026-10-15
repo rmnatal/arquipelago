@@ -62,9 +62,27 @@ STATUS_QUE_NUNCA_SUGERE = ("rascunho", "revalidar")
 CONVIVENCIA_SEM_CARDUME = ("solitario", "casal", "harem")
 MINIMO_DO_16_5 = 3
 
-# Espelhos do mesmo corpo de conhecimento (regra E15 do esquema).
-CORPOS = {"fishbase.se": "fishbase", "fishbase.org": "fishbase",
-          "www.fishbase.se": "fishbase", "www.fishbase.org": "fishbase"}
+# OS CORPOS DE FONTE SAO LIDOS DO ESQUEMA, E ESTA E A UNICA COISA DESTE ARQUIVO QUE NAO
+# E ESCRITA DUAS VEZES — de proposito, e a diferenca importa. A CAMPOS_DE_PAGINA e uma
+# DECISAO (que campos uma ficha precisa ter), e decisao se escreve duas vezes e se confere,
+# senao apagar um campo no esquema faz as duas metades errarem juntas. O registro de corpos
+# e um FATO EXTERNO (quais hosts sao a FishBase, de onde vem o numero de cada corpo), e
+# ninguem redescobre isso de forma independente: a segunda escrita dele nao confere nada e
+# so cria duas verdades. Medido em 15/10/2026 — a tabela estava copiada a mao aqui e no
+# validar-especies.py, as duas ja com FORMAS diferentes (aqui as variantes "www." eram
+# listadas a mao, la o "www." era removido do host), nada acusava a divergencia, e nenhuma
+# das duas sabia o que e um REPRODUTOR. Agora a regua mora em `corpos_de_fonte` do esquema,
+# com a procedencia declarada corpo por corpo, e a regra E26 a cobra.
+CORPOS = {}      # host sem www -> (nome, procedencia, reproduz); preenchido no main()
+
+
+def carregar_corpos():
+    caminho = os.path.join(RAIZ, "dados", "esquema-especies.json")
+    esquema = json.load(io.open(caminho, encoding="utf-8"))
+    CORPOS.clear()
+    for corpo in esquema["corpos_de_fonte"]["corpos"]:
+        for host in corpo["hosts"]:
+            CORPOS[host.lower()] = (corpo["nome"], corpo["procedencia"], corpo.get("reproduz"))
 
 
 def preenchido(v):
@@ -77,16 +95,36 @@ def preenchido(v):
     return True
 
 
-def corpo_da_fonte(url):
+def host_da_fonte(url):
     dominio = (url or "").split("/")[2] if "//" in (url or "") else (url or "")
     dominio = dominio.lower()
-    if dominio in CORPOS:
-        return CORPOS[dominio]
     return dominio[4:] if dominio.startswith("www.") else dominio
 
 
+def corpo_contavel(url):
+    """O nome com que a url CONTA, ou None se ela nao conta como corpo nenhum.
+
+    Quem decide e a PROCEDENCIA declarada no esquema, nunca o host: `propria` conta
+    como si, `reproduz` colapsa no corpo que ela reproduz — duas urls de hosts
+    diferentes continuam sendo um corpo so —, e `indeterminada` nao conta, porque
+    fonte que nao diz de onde veio o numero dela nao e o proprio corpo nem o de outro.
+    Corpo nao declarado tambem nao conta, e o validador reprova o banco pelo E26.
+    """
+    declarado = CORPOS.get(host_da_fonte(url))
+    if declarado is None:
+        return None
+    nome, procedencia, reproduz = declarado
+    if procedencia == "reproduz":
+        return reproduz
+    if procedencia == "indeterminada":
+        return None
+    return nome
+
+
 def corpos_de(registro):
-    return {corpo_da_fonte(f.get("url")) for f in (registro.get("fontes") or [])}
+    nomes = {corpo_contavel(f.get("url")) for f in (registro.get("fontes") or [])}
+    nomes.discard(None)
+    return nomes
 
 
 def falta_para_pagina(registro):
@@ -148,6 +186,7 @@ def main():
     alvo = args[0] if args else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     RAIZ = os.path.abspath(alvo)
 
+    carregar_corpos()
     if not conferir_regua_com_esquema():
         return 1
 

@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E23 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E26 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -61,30 +61,59 @@ def intervalo(valor):
     return isinstance(valor, dict) and "min" in valor and "max" in valor
 
 
-# Espelhos do MESMO corpo de conhecimento. Regra E15: url diferente nao e fonte
-# diferente quando as duas leem a mesma base. fishbase.se e fishbase.org sao a
-# mesma FishBase; sem esta tabela, acrescentar o espelho faria um registro de
-# fonte unica passar por conferido.
-ESPELHOS = {
-    "fishbase.se": "fishbase",
-    "fishbase.org": "fishbase",
-    "seriouslyfish.com": "seriouslyfish",
-}
+# O REGISTRO DE CORPOS DE FONTE MORA NO ESQUEMA, NUNCA AQUI (regra E26, 15/10/2026).
+# Ate hoje esta tabela era escrita no codigo e conhecia so os ESPELHOS — mesmo corpo
+# servido por dois dominios. Espelho ela pegava; REPRODUTOR nao, porque o corpo que
+# republica o numero de outro mora num host que a tabela nao tem, e assim ele faria um
+# registro de corpo unico passar por conferido, que e o que o E15 existe para impedir.
+# Pior: a mesma tabela estava COPIADA A MAO em varrer-categorias-possiveis.py, e as duas
+# copias ja nem tinham a mesma forma. Agora a regua e uma so e e lida de
+# `corpos_de_fonte` do esquema, com a procedencia declarada corpo por corpo.
+CORPOS_DECLARADOS = {}      # host sem www -> registro do corpo
+PROCEDENCIAS = ("propria", "reproduz", "indeterminada")
 
 
-def corpo_da_fonte(url):
-    """Corpo de conhecimento por tras da url, com espelhos colapsados."""
+def carregar_corpos(esquema):
+    """Indexa `corpos_de_fonte` do esquema por host. Chamado uma vez, no main()."""
+    CORPOS_DECLARADOS.clear()
+    for corpo in esquema["corpos_de_fonte"]["corpos"]:
+        for host in corpo["hosts"]:
+            CORPOS_DECLARADOS[host.lower()] = corpo
+
+
+def host_da_fonte(url):
     host = (urlparse(url or "").netloc or "").lower()
-    if host.startswith("www."):
-        host = host[4:]
-    if host in ESPELHOS:
-        return ESPELHOS[host]
-    partes = host.split(".")
-    return ".".join(partes[-2:]) if len(partes) > 1 else host
+    return host[4:] if host.startswith("www.") else host
+
+
+def corpo_declarado(url):
+    """O registro do corpo desta url, ou None se o corpo nao esta declarado."""
+    return CORPOS_DECLARADOS.get(host_da_fonte(url))
+
+
+def corpo_contavel(url):
+    """O nome com que esta url CONTA na contagem de corpos distintos, ou None.
+
+    E aqui que a procedencia decide, e nao o hostname: `propria` conta como si,
+    `reproduz` colapsa no corpo que ela reproduz — duas urls de hosts diferentes
+    continuam sendo um corpo so —, e `indeterminada` nao conta como corpo nenhum,
+    porque fonte que nao diz de onde veio o numero dela nao e o proprio corpo (nao se
+    sabe se e dele) nem o de outro (nao se sabe de quem e).
+    """
+    corpo = corpo_declarado(url)
+    if corpo is None:
+        return None
+    if corpo["procedencia"] == "reproduz":
+        return corpo.get("reproduz")
+    if corpo["procedencia"] == "indeterminada":
+        return None
+    return corpo["nome"]
 
 
 def corpos_de(registro):
-    return {corpo_da_fonte(f.get("url")) for f in registro.get("fontes", []) if f.get("url")}
+    nomes = {corpo_contavel(f.get("url")) for f in registro.get("fontes", []) if f.get("url")}
+    nomes.discard(None)
+    return nomes
 
 
 # Numero por extenso conta como numero (regra E16). A fonte costuma escrever
@@ -223,6 +252,7 @@ def main():
     campos_esq = {c["campo"]: c for c in esquema["campos"]}
     obrigatorios = [c["campo"] for c in esquema["campos"] if c.get("obrigatorio")]
     isentos = set(esquema["campos_sem_fonte_exigida"]["lista"])
+    carregar_corpos(esquema)
     origens = {n["origem"] for n in esquema["escada_de_fontes"]["niveis"]}
     status_por_origem = {n["origem"]: n["status"] for n in esquema["escada_de_fontes"]["niveis"]}
     dominio = esquema["dominio_por_campo"]
@@ -265,6 +295,24 @@ def main():
             elif not r.get("observacao"):
                 erro("E2", rid, "registro parcial sem observacao dizendo o que falta")
 
+        # E26 - corpo de fonte nao declarado no esquema REPROVA, em vez de a contagem
+        # herdar o palpite de que host diferente e corpo diferente. Vem ANTES do E14 e do
+        # E15 de proposito: sem ele os dois contam um corpo que ninguem decidiu o que e.
+        for f in r.get("fontes", []):
+            if not f.get("url"):
+                continue        # fonte sem url ja e erro E4; nao se cobra o corpo dela
+            corpo = corpo_declarado(f["url"])
+            ref = f.get("referencia", "<sem referencia>")[:40]
+            if corpo is None:
+                erro("E26", rid, "fonte '%s' tem corpo nao declarado em corpos_de_fonte do "
+                                 "esquema (host %s)" % (ref, host_da_fonte(f["url"]) or "?"))
+            elif corpo.get("procedencia") not in PROCEDENCIAS:
+                erro("E26", rid, "corpo '%s' com procedencia fora do vocabulario: %s"
+                     % (corpo.get("nome"), corpo.get("procedencia")))
+            elif corpo["procedencia"] == "reproduz" and not corpo.get("reproduz"):
+                erro("E26", rid, "corpo '%s' declarado como reprodutor sem dizer o que reproduz"
+                     % corpo.get("nome"))
+
         # E14 / E15 - completo exige duas fontes de CORPOS distintos, nao so de urls distintas
         urls_fonte = {f.get("url") for f in r.get("fontes", []) if f.get("url")}
         corpos = corpos_de(r)
@@ -272,7 +320,7 @@ def main():
             erro("E14", rid, "status completo com %d corpo(s) de fonte distinto(s)" % len(corpos))
         if len(urls_fonte) >= 2 and len(corpos) < 2:
             aviso("E15", rid, "tem %d urls mas um corpo de fonte so (%s): espelho nao confere "
-                              "espelho" % (len(urls_fonte), ", ".join(sorted(corpos))))
+                              "espelho" % (len(urls_fonte), ", ".join(sorted(corpos)) or "nenhum"))
 
         # E4 - fontes bem formadas, e o indice campo -> origens
         sustentado = {}
