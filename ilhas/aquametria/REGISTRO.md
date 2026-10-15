@@ -14,6 +14,82 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-15 16h17Z–16h4xZ — O PORTÃO QUE VIGIA AS 25 REGRAS DO BANCO APROVAVA DOIS CASOS **EMPRESTANDO A LINHA DE UM VIZINHO**, E AGORA A AFIRMAÇÃO DELE NÃO TEM STRING PARA TROCAR
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não havia reserva vencida para o git desempatar. O último commit na pasta da ilha era de **14h11Z**, 126 minutos antes, da execução das 13h19Z que **fechou**. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-ytzwrj` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mergear. Reserva aceita às **16h17Z**, commit `4f13a71`, na primeira tentativa.
+
+**A REDE DA ILHA, PELA 20.2, RETESTADA E NÃO HERDADA:** `https://aquametria.com.br/` em **HTTP 200** na primeira tentativa, repetido e 200 de novo. `/wp-json/aquametria/v1/status` respondeu com a **revisão 122**, igual à do `manifest.json` do repositório — nada preso no desembarque e nada a reacionar pela 20.5.
+
+**O BLOCO: O QUE A EXECUÇÃO ANTERIOR NOMEOU, E NÃO O QUE ESTA ESCOLHEU.** Nenhum dos quatro despachos desta ilha tem item aberto para a Fundação — conferidos um a um: a leitura semanal de 14/10 manda *"deixar quieto e medir"* até 21/10 e declara que **nenhum item dela é trabalho de código**; as duas propostas de 07/10 rolaram para 21/10; a Proposta 3 e o item 1 do despacho do Raphael de 09/10 pedem o Chrome do Raphael (cota de indexação esgotada, SERP brasileira não vista); o sub-item do item 4 espera **credencial** — `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` seguem **ausentes neste ambiente**, reconferidos hoje; e o despacho da ronda de 14/10 está fechado. O que sobrou foi o bloco que a entrada das 13h19Z deixou nomeado, com critério escrito: **o retrofit do `alvo` nos 40 casos antigos do `testar-validador-especies.py`** — *"é bloco, não conserto, e vale mais que a oração da ficha em uma coisa: ele protege as 25 regras do banco, não uma"*. A oração na ficha, que é o outro candidato, é **de 21/10 ou depois** por ordem da leitura semanal.
+
+**ZERO BYTE NO AR, E ISSO É A CONDIÇÃO INTEIRA PARA O BLOCO PODER SAIR NESTA SEMANA.** Nenhuma URL nova (a ilha segue em **52**), **nenhum Sync acionado**, revisão parada na **122**, **nenhuma leva do teto da 21.4 gasta** (continua **ZERADO** nesta semana), e nada tocado em `<title>`, em `<meta name="description">` nem na `/calculadora-de-litragem/` — a leitura de 14/10 proíbe mexer nessas superfícies antes de 21/10 porque é o que destrói a medição de CTR em curso e **o único controle do arquipélago**. O trabalho foi todo em portão de bancada, que não publica nada.
+
+### 1. O DEFEITO, PROVADO ANTES DE SER CONSERTADO — E A PROVA É UM PORTÃO VERDE SOBRE DUAS CORRUPÇÕES ANULADAS
+
+O `alvo` nasceu **opcional** em 15/10 pela manhã e só **11 dos 51** casos o tinham. Sem ele o portão perguntava apenas *"a marca da regra apareceu na saída?"* — e **o banco LIMPO já emite quatro avisos de pé**, medidos nesta passada e não lembrados:
+
+| tipo | regra | registro |
+|---|---|---|
+| aviso | E15 | `poecilia-reticulata` |
+| aviso | E21 | `symphysodon-aequifasciatus` |
+| aviso | E25 | `pethia-conchonius` |
+| aviso | E21 | `apistogramma-agassizii` |
+
+Dois casos do arquivo são de `aviso` em regras que a linha de base já acusa noutro registro. **A prova:** com as corrupções do **E21** (`c_e21_arranjo_acima_do_chao`) e do **E15** (`c_e15`) **completamente anuladas** — `return` na primeira linha, nada corrompido —, o portão imprimiu **"pegou" nas duas** e fechou em **código de saída 0, 51 testes, 0 falhas**. Os dois casos mediam a linha de um vizinho, não a corrupção deles.
+
+**E é a mesma brecha que custou as duas mutações sobreviventes da manhã**, agora com a causa nomeada no lugar certo: lá o conserto foi dar `alvo` aos onze casos novos, e o diagnóstico escrito foi *"corrupção que dispara duas regras não mede nenhuma"*. Faltava a outra metade da frase — **corrupção cujo vizinho já reprova também não mede nenhuma** —, e ela valia para 40 casos e não para dois.
+
+### 2. O RETROFIT FOI MEDIDO CASO A CASO, E EM UM DELES LER O CÓDIGO DAVA O ALVO ERRADO
+
+A execução anterior avisou que o retrofit *"é mecânico mas não é de cabeça"*. Foi feito rodando o validador contra cada uma das **51** corrupções e lendo **qual linha saiu**, em vez de deduzir do código qual registro a corrupção edita. Os dois coincidem em **50** casos e **não coincidem no E1**: `c_e1` edita o `danio-rerio` e a linha sai em **`peixe-zebra`**, porque o que ela corrompe é o próprio `id`. Um único caso, e é exatamente o que separa medir de supor — e está escrito no comentário da lista, para a próxima leitura não o "consertar" de volta.
+
+**51 de 51 casos têm `alvo`** (eram 11).
+
+### 3. DUAS RECUSAS ESTRUTURAIS NOVAS, E A SEGUNDA É A METADE QUE O ALVO SOZINHO NÃO ALCANÇA
+
+- **Caso sem `alvo` reprova o PORTÃO**, não a regra. Regra não medida não se distingue de regra que passa, e deixar o campo opcional é o que permitiu 40 casos ficarem sem ele por um dia.
+- **Linha procurada que JÁ EXISTE na linha de base reprova.** O `alvo` impede emprestar a linha de um vizinho; não impede apontar para o registro que o banco limpo **já acusa de pé**. Hoje nenhum caso cai aqui — cairia no dia em que alguém escrevesse um caso de E25 apontando para o `pethia-conchonius`. **A linha de base é MEDIDA do banco de hoje, nunca digitada:** lista digitada de estado esperado envelhece calada (seção 8), e no dia em que o banco ganhar ou perder um aviso esta medição acompanha sozinha.
+
+### 4. A AFIRMAÇÃO FOI REESCRITA PORQUE UMA MUTAÇÃO SOBREVIVEU — E ELA É O ACHADO DE MÉTODO DA PASSADA
+
+A primeira escrita do retrofit montava a string `"ERRO  [E20] apistogramma-agassizii:"` e a procurava no texto da saída. **Funcionava, e a mutação 7 do portão novo mostrou que ela devolvia a brecha inteira a quem trocasse a string montada pela marca pelada:** a linha do vizinho voltava a aprovar a corrupção anulada e **nada reprovava** — `SOBREVIVEU`, código de saída 0.
+
+O conserto não foi apertar a afirmação, foi **tirar dela a string**: a afirmação passou a ser sobre as **linhas NOVAS**, que são as linhas medidas **menos a linha de base**, comparadas como tupla `(tipo, regra, registro)` e não como texto. Com a subtração, a linha de um vizinho **não pode satisfazer caso nenhum** nem mesmo se alguém afrouxar a cobrança do registro — porque ela foi subtraída antes de a afirmação olhar. A mesma mutação passou a **reprovar**.
+
+**A regra, e ela vale para toda afirmação desta fábrica:** afirmação que depende de uma string montada se desfaz trocando a string; afirmação que depende de uma subtração não tem string para trocar. É a avó do *"afirmação sobre o que a página diz se mede no CORPO, nunca no HTML completo"* da seção 8, um andar acima: lá o problema era **onde** se procura, aqui é **o que conta como achado**.
+
+### 5. O CO-DISPARO SAI IMPRESSO, COMO INFORMAÇÃO E NUNCA COMO CRITÉRIO
+
+A execução anterior pediu para "descobrir de passagem quantos deles disparam mais de uma regra". **São 12 dos 51**, varridos e não estimados: E24/escopo-sem-fonte, E24/comum-que-alcança-o-máximo, E20/chão-sem-base, E23/recusa-sem-fonte, E2, E6, E7, E12, E13, E14, E15 e E18/sem-piso. **Sete deles acordam o E3**, e isso é **estrutural e não defeito**: tirar um campo de `campos` órfa o campo, então a regra que cobra fonte dispara junto por construção.
+
+O portão passou a **imprimir** o co-disparo ao lado de cada caso (`pegou  (+ E3/pethia-conchonius)`), e **não** a cobrá-lo. Virar critério seria escrever ali a tabela digitada de estado esperado que a seção 8 diz que envelhece calada — no dia em que o banco mudar, ela reprovaria um banco certo, que é exatamente o que o `conferir-kits-no-ar.py` da Robometria fez em 16/09. **O alvo já garante que a linha cobrada é a da regra que o caso mede; o co-disparo é contexto para quem lê, não régua.**
+
+### 6. O PORTÃO DO PORTÃO, E ELE É O PRIMEIRO DESTA ILHA QUE MUTILA O PORTÃO E NÃO O CÓDIGO
+
+`ferramentas/mutacoes-alvo-dos-casos.py` — **7 mutações, 0 sobrevivente**, cada uma com código de saída 1 e zero traceback. Uma afrouxa a obrigatoriedade do `alvo`; uma aponta o `alvo` para o registro que a linha de base já acusa; uma troca o `alvo` por um vizinho que a MESMA regra acusa noutro caso; duas anulam as corrupções do E21 e do E15, que são **as que sobreviviam**; uma anula a corrupção de um caso de `erro` sem vizinho, como **controle** (ela já reprovava antes do retrofit, e está ali para provar que anular uma corrupção morde por si — o que as mutações 4 e 5 mediram foi o **alvo**); e a sétima é a da subtração da linha de base.
+
+**A sétima é a única de DUAS edições, e a segunda é o mundo.** Afrouxar a cobrança do registro não quebra nada enquanto as 51 corrupções forem reais, então a mutação **produz o mundo** em que a primeira edição importa, que é o que a seção 8 autoriza com todas as letras (*"a maneira de provar que ela o trata é a mutação que PRODUZ o mundo"*). A segunda edição é o mundo, nunca uma segunda regra — a distinção que a manhã de hoje pagou para aprender.
+
+**E `mutacoes-porte-maximo.py` FOI RERRODADO COMO REGRESSÃO, porque ele roda o arquivo que mudou: 8 de 8 reprovadas, 0 sobrevivente.** Mutação que deixa de morder quando a bancada troca de forma é o defeito que esta ilha pagou em 11/09 (18 de 20 inertes de uma vez) e em 23/09 (seis no `mutacoes-escada.py`). Não aconteceu aqui, e isso foi **medido** e não presumido.
+
+**A BANCADA COMPLETA ESTÁ RODANDO NESTE MOMENTO, e o resultado dela entra em COMMIT PRÓPRIO** — a passada sem rede desta ilha leva ~25 minutos, medido em 15/10 pela manhã, e o que ela já imprimiu no cabeçalho é o desenho dela funcionando: **48 portões**, contra os 47 da passada das 13h45Z. O `mutacoes-alvo-dos-casos.py` **entrou pela convenção de nome no dia em que foi escrito**, sem ninguém a alimentar, exatamente como o cabeçalho do `bancada.py` promete — e já saiu `ok`, com 7 mutações e 0 sobrevivente.
+
+### 7. O QUE ESTA PASSADA NÃO FEZ, de propósito, e por quê
+
+- **Nenhum arquivo em `dados/`**, e é decisão e não esquecimento: a medição desta passada (a linha de base e o co-disparo) é **impressa pelo próprio portão a cada rodada**. Copiá-la para um `.md` datado seria criar a tabela digitada de estado esperado que a seção 8 condena e que o item 5 acima recusou virar critério. A série que faltaria não existe: o que há a medir aqui não é um número que anda, é a configuração do portão, e ela se lê no portão.
+- **Nada na página.** O `teste-peixes.py` não foi tocado e continua **não** cobrando nada do `porte_e_maximo_registrado` contra o HTML servido. Essa é a oração na ficha, e ela é de **21/10 ou depois**.
+- **O retrofit não mudou nenhuma corrupção.** As 51 continuam corrompendo o que corrompiam; o que mudou é o que o portão exige ver.
+
+### 8. UM ACHADO NÃO CONSERTADO, DE PROPÓSITO (19.2), E ELE É O PRÓXIMO PASSO DESBLOQUEADO DESTA SEMANA
+
+A linha de base deste portão não é só instrumento: **são quatro avisos que o banco de hoje emite sobre si mesmo, de pé, e ninguém os acompanha.** Dois deles — os dois `aviso [E21]` e o `aviso [E25]` — dizem, no próprio texto, que *"quem executa essa metade é `ferramentas/teste-peixes.py`, contra o HTML servido"*, então são **superfície de página** e estão **congelados até 21/10** pela leitura semanal. **O quarto não é:**
+
+> `aviso [E15] poecilia-reticulata: tem 2 urls mas um corpo de fonte so (fishbase): espelho nao confere espelho`
+
+**É aviso de BANCO, de um registro só, e cabe nesta semana porque não põe byte no ar.** O que ele diz é que o `poecilia-reticulata` tem duas fontes que são **o mesmo corpo** — e a regra E14 exige dois corpos para `status: completo`, então o aviso é a antessala de um erro. **Pronto quando:** o `poecilia-reticulata` tiver dois corpos de fonte de verdade (ou o `status_registro` disser o que ele é), o `aviso [E15]` sair da linha de base do portão **sem ninguém editar o portão**, e a bancada seguir APROVADO. **Atenção de método, e ela é a lição deste bloco:** ao fechar esse aviso, a linha de base do portão muda sozinha — e tem de mudar sozinha, porque é medida. Quem precisar editar o portão para fechar o aviso editou a medição, não o dado.
+
+O retrofit do `alvo` que a execução das 13h19Z nomeou está **fechado**, e com ele a dívida que ela deixou escrita: *"nenhum deles está errado hoje, e isso é diferente de estar protegido"*. Agora os 51 estão protegidos.
+
 ## 2026-10-15 13h19Z–13h4xZ — O PORTE QUE AS TABELAS USAM É O MÁXIMO REGISTRADO, E AGORA ISSO É **CAMPO CONTÁVEL** E NÃO PROSA NA `observacao`
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10, então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null` — pela **1.1** isso já significa que não há bloco da Fundação vivo, e não houve reserva vencida para o git desempatar. O último commit na pasta da ilha era de **11h09Z**, 130 minutos antes, da execução das 10h32Z que **fechou** (gravou `ultima_execucao` e limpou a reserva). Reserva aceita às **13h19Z**, commit `f75c875`, na primeira tentativa. Nenhum PR aberto, e a branch `claude/dreamy-mccarthy-1dknzq` estava idêntica ao `main` — conferido antes de qualquer coisa (passo 1). **Rede pela 20.2, retestada e não herdada:** três passadas, `aquametria.com.br` em **200** nas três, com `robometria.com.br` em 200 nas mesmas três.
