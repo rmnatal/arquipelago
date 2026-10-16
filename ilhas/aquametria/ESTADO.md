@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-15T20:00Z
-executando_desde: 2026-10-16T10:29Z   # reserva RENOVADA pela 1.1: o bloco passa de 40 minutos (bancada sem rede leva ~22)
+executando_desde: 2026-10-16T11:06Z   # reserva RENOVADA pela 1.1: bloco em andamento, bancada completa rodando
 bloco_atual: |
   "CORPO DE FONTE DISTINTO" ERA DECIDIDO PELO HOSTNAME, E HOSTNAME NAO PROVA PROCEDENCIA:
   O REGISTRO DE CORPOS PASSOU A MORAR NO ESQUEMA (versao 8, regra E26). O bloco que a
