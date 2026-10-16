@@ -5216,3 +5216,75 @@ O que mudou, em contagem: **11 trechos trocados, em 6 arquivos distintos (`aquam
 Nenhum passo falhou. Nenhum erro a registrar neste disparo.
 
 **Nenhum arquivo além destes 7 e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada. Nenhum contato pessoal de terceiros entrou no repositório — este repositório é público e a instrução não trazia nenhum. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo, e eu só troquei os trechos que ela nomeou.
+
+---
+
+## 16/10/2026 — 11h55 de Brasília (14h55Z) — RONDA DIÁRIA TÉCNICA DA SENTINELA DE 16/10, ILHA DA RONDA: ROBOMETRIA — CINCO EDIÇÕES, UM COMMIT
+
+Disparo manual com a instrução pronta: cinco edições, todas no Arquipélago (ilha robometria, `dados/PAINEL.md` da raiz), num commit só. **Checagem de assunto: passou** — ilha do Arquipélago, Sentinela, PAINEL; nada de outro projeto. Nenhum contato pessoal de terceiros vinha na instrução, e nenhum foi escrito (este repositório é público).
+
+**As cinco âncoras foram encontradas LITERALMENTE antes de qualquer escrita. Nenhuma falhou, nenhuma foi adivinhada:**
+
+```
+ED1  ilhas/robometria/PROMPT.md           "## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL"  achada na linha 48 (1 ocorrencia)
+ED2  ilhas/robometria/PROMPT.md           "### 1. DEFEITO DE RECEITA — **3 REGISTROS ..."           achada na linha 54 (1 ocorrencia)
+ED3  ilhas/robometria/dados/consertos.md  "| 2026-10-02 |"                                          achada na linha 11 (1 ocorrencia)
+ED4  ilhas/robometria/ESTADO.md           "ultima_ronda: 2026-10-14T19:58Z"                         achada na linha 21 (1 ocorrencia)
+ED5  dados/PAINEL.md                      arquivo inteiro substituido                               existia, 16684 bytes
+```
+
+Ponto de partida: `git fetch origin main && git checkout -B trabalho origin/main`, de `7bd01b2`. Nunca da branch da sessão.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+```
+
+`git diff --stat`:
+
+```
+ dados/PAINEL.md                     | 90 +++++++++++++++++++------------------
+ ilhas/robometria/ESTADO.md          |  2 +-
+ ilhas/robometria/PROMPT.md          | 58 +++++++++++++++++++++++-
+ ilhas/robometria/dados/consertos.md |  1 +
+ 4 files changed, 105 insertions(+), 46 deletions(-)
+```
+
+Commit que foi ao `main`: **`98fcb0f1bf8d002dca65092c1ce2a3cf7757dac3`**
+
+```
+98fcb0f ronda da Sentinela 16/10: despacho da robometria (Article sem author), anulação da errata de 14/10, ultima_ronda e PAINEL
+```
+
+Push: `git push origin HEAD:main` aceito de primeira, `7bd01b2..98fcb0f`, sem rebase e sem force. Confirmado por `git fetch origin main && git log -1 origin/main`, que devolveu exatamente o hash acima — **o push está em `origin/main`, não é push de branch que ninguém vê.**
+
+**CONTAGEM CONFERIDA RELENDO OS ARQUIVOS DEPOIS DE GRAVAR, não pelo que eu acho que escrevi:**
+
+```
+ED1  PROMPT.md       titulo "## DESPACHO DA SENTINELA — 2026-10-16" novo:1   | bloco inserido nas linhas 48..103 = 56 linhas (55 de texto + 1 em branco)
+ED2  PROMPT.md       titulo "### 1. ~~DEFEITO DE RECEITA" novo:1  | titulo antigo "### 1. DEFEITO DE RECEITA —" antigo:0
+ED3  consertos.md    linhas "| 2026-10-16 |" novo:1  | inserida na linha 12, logo depois da de 02/10 e antes da linha em branco que precede "## 14/09/2026"
+ED4  ESTADO.md       "ultima_ronda: 2026-10-16T14:43Z" novo:1  | "ultima_ronda: 2026-10-14T19:58Z" antigo:0  | "^bloqueada_por:" conta 1, NAO foi duplicada
+ED5  PAINEL.md       "**Escrito em:** 16/10/2026 14h4xZ" novo:1  | arquivo com 77 linhas e 15229 bytes (antes: 16684)
+```
+
+Tamanhos relidos em disco depois de gravar: `PROMPT.md` 1511 linhas / 229100 bytes; `consertos.md` 16 linhas / 10435 bytes; `ESTADO.md` 663 linhas / 51242 bytes; `PAINEL.md` 77 linhas / 15229 bytes.
+
+O que mudou, em contagem: **5 edições em 4 arquivos distintos, 105 inserções e 46 remoções.** Dessas, 56 linhas inseridas são o despacho novo da ED1, 1 é a linha de tabela da ED3, 1 troca de linha é a ED4, 1 troca de linha é a ED2, e o resto é o `PAINEL.md` reescrito inteiro na ED5.
+
+**Régua da seção 2 rodada depois do commit, como a instrução mandou:**
+
+```
+$ python3 -c "import io,yaml;d=yaml.safe_load(...ilhas/robometria/ESTADO.md...);..."
+YAML ok
+```
+
+Imprimiu `YAML ok`, então a ED4 ficou de pé e não houve o que desfazer. Nenhum conserto inventado no cabeçalho.
+
+Nenhum passo falhou. Nenhum erro a registrar neste disparo.
+
+**Nenhum arquivo além destes 4 e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo, e eu só apliquei o que ela nomeou, byte a byte.
