@@ -34,6 +34,7 @@ decidiram cada escolha:
 
 import decimal
 import html
+import importlib.util
 import json
 import math
 import os
@@ -1596,6 +1597,21 @@ def dominio(url):
     return achado.group(1).lower().replace("www.", "") if achado else ""
 
 
+def carregar_regua(nome):
+    """Carrega uma regua compartilhada de ferramentas/ pelo nome do arquivo."""
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)), nome)
+    spec = importlib.util.spec_from_file_location(nome.replace("-", "_")[:-3], caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+regua_corpos = carregar_regua("regua-corpos-de-fonte.py")
+regua_corpos.carregar_do_arquivo(
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                 "dados", "esquema-especies.json"))
+
+
 def corpos_por_dominio(banco):
     """dominio -> nome do corpo, aprendido das referencias do proprio banco."""
     mapa = {}
@@ -1618,10 +1634,14 @@ def motivos_do_portao(e, mapa_dominio):
                 codigos.append(campo)
         elif not e.get(campo):
             codigos.append(campo)
-    corpos = set()
-    for f in e.get("fontes", []):
-        corpos.add(corpo_da_referencia(f.get("referencia")) or f.get("origem") or "")
-    if len(corpos) < 2:
+    # A CONTAGEM SAI DA REGUA, NAO DO PREFIXO DA REFERENCIA (16/10/2026). Este portao e
+    # o UNICO que compara o banco com o HTML servido, e ate hoje ele contava corpo pelo
+    # texto da referencia — a mesma regua cega do gerador, e por isso ele CONCORDAVA com
+    # o gerador no mundo errado em vez de o acusar. Medido no banco real: com uma fonte
+    # `indeterminada` (o usgs-nas, recusado em 15/10 para o guppy) os dois contavam 2
+    # corpos e punham o registro na tela, enquanto o validador contava 1 e o barrava, e
+    # nada reprovava. O cabecalho de `regua-corpos-de-fonte.py` traz a medicao inteira.
+    if len(regua_corpos.corpos_de(e)) < 2:
         codigos.append("duas fontes distintas")
     if e.get("status_registro") in ("rascunho", "revalidar"):
         codigos.append("status_registro " + str(e.get("status_registro")))

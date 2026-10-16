@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E26 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E28 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -12,6 +12,7 @@ consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
 Codigo de saida: 0 se nao houver erro (avisos nao reprovam), 1 se houver.
 """
 
+import importlib.util
 import json
 import os
 import re
@@ -25,6 +26,20 @@ ESQUEMA = os.path.join(RAIZ, "dados", "esquema-especies.json")
 # Aceita um caminho no argv para que ferramentas/testar-validador-especies.py possa
 # rodar as regras contra bancos deliberadamente corrompidos sem tocar no arquivo real.
 ARQUIVO = sys.argv[1] if len(sys.argv) > 1 else "dados/especies-agua-doce.json"
+
+def carregar_regua(nome):
+    """Carrega uma regua compartilhada de ferramentas/ pelo nome do arquivo.
+
+    Regua com travessao no nome nao e importavel por `import`, e renomea-la tiraria o
+    arquivo da convencao que a bancada varre — entao o caminho e este, o mesmo que
+    `teste-robots.py` e `conferir-robots-no-ar.py` usam desde 24/09/2026.
+    """
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)), nome)
+    spec = importlib.util.spec_from_file_location(nome.replace("-", "_")[:-3], caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
 
 ID_VALIDO = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 LIMITE_DIAS_REVALIDAR = 365
@@ -61,83 +76,31 @@ def intervalo(valor):
     return isinstance(valor, dict) and "min" in valor and "max" in valor
 
 
-# O REGISTRO DE CORPOS DE FONTE MORA NO ESQUEMA, NUNCA AQUI (regra E26, 15/10/2026).
-# Ate hoje esta tabela era escrita no codigo e conhecia so os ESPELHOS — mesmo corpo
-# servido por dois dominios. Espelho ela pegava; REPRODUTOR nao, porque o corpo que
-# republica o numero de outro mora num host que a tabela nao tem, e assim ele faria um
-# registro de corpo unico passar por conferido, que e o que o E15 existe para impedir.
-# Pior: a mesma tabela estava COPIADA A MAO em varrer-categorias-possiveis.py, e as duas
-# copias ja nem tinham a mesma forma. Agora a regua e uma so e e lida de
-# `corpos_de_fonte` do esquema, com a procedencia declarada corpo por corpo.
-CORPOS_DECLARADOS = {}      # host sem www -> registro do corpo
-PROCEDENCIAS = ("propria", "reproduz", "indeterminada")
-
-
-def carregar_corpos(esquema):
-    """Indexa `corpos_de_fonte` do esquema por host. Chamado uma vez, no main()."""
-    CORPOS_DECLARADOS.clear()
-    for corpo in esquema["corpos_de_fonte"]["corpos"]:
-        for host in corpo["hosts"]:
-            CORPOS_DECLARADOS[host.lower()] = corpo
-
-
-def host_da_fonte(url):
-    host = (urlparse(url or "").netloc or "").lower()
-    return host[4:] if host.startswith("www.") else host
-
-
-def corpo_declarado(url):
-    """O registro do corpo desta url, ou None se o corpo nao esta declarado."""
-    return CORPOS_DECLARADOS.get(host_da_fonte(url))
-
-
-def corpo_contavel(url):
-    """O nome com que esta url CONTA na contagem de corpos distintos, ou None.
-
-    E aqui que a procedencia decide, e nao o hostname: `propria` conta como si,
-    `reproduz` colapsa no corpo que ela reproduz — duas urls de hosts diferentes
-    continuam sendo um corpo so —, e `indeterminada` nao conta como corpo nenhum,
-    porque fonte que nao diz de onde veio o numero dela nao e o proprio corpo (nao se
-    sabe se e dele) nem o de outro (nao se sabe de quem e).
-    """
-    corpo = corpo_declarado(url)
-    if corpo is None:
-        return None
-    if corpo["procedencia"] == "reproduz":
-        return corpo.get("reproduz")
-    if corpo["procedencia"] == "indeterminada":
-        return None
-    return corpo["nome"]
-
-
-def corpos_de(registro):
-    nomes = {corpo_contavel(f.get("url")) for f in registro.get("fontes", []) if f.get("url")}
-    nomes.discard(None)
-    return nomes
-
-
-def corpos_por_campo(registro):
-    """Campo -> conjunto de corpos CONTAVEIS que o sustentam (regra E27, 16/10/2026).
-
-    O `corpos_de()` acima responde quantos corpos o REGISTRO cita; este responde
-    quantos corpos sustentam CADA CAMPO. Sao perguntas diferentes e a segunda e a que
-    decide se o numero publicado foi conferido: um registro pode citar dois corpos e
-    ter todo o nucleo obrigatorio apoiado em um so, porque o segundo corpo sustenta
-    campo opcional. O E14 e o E15 nao enxergam isso — eles perguntam pelo SINTOMA
-    (quantas urls, quantos corpos no total) e aprovam o mundo em que o sintoma nao
-    aparece.
-
-    A contagem sai do `corpo_contavel()`, nunca do host: quem decide e a procedencia
-    declarada no esquema, senao esta regua reintroduz o buraco que o E26 tapou.
-    """
-    por_campo = {}
-    for f in registro.get("fontes", []):
-        nome = corpo_contavel(f.get("url"))
-        for campo in f.get("campos", []):
-            por_campo.setdefault(campo, set())
-            if nome:
-                por_campo[campo].add(nome)
-    return por_campo
+# A CONTAGEM DE CORPOS DE FONTE MORA EM `ferramentas/regua-corpos-de-fonte.py`,
+# NUNCA AQUI (regra E26; a regua virou arquivo proprio em 16/10/2026).
+#
+# Em 15/10/2026 esta tabela saiu do hostname e passou a ser lida de `corpos_de_fonte`
+# do esquema, e o cabecalho daquela mudanca diz "agora a regua e uma so". NAO ERA: ela
+# era QUATRO, e so as DUAS QUE MEDEM foram consertadas. As duas que DECIDEM O QUE VAI A
+# TELA — `gerar-catalogo-especies.py` e `teste-peixes.py` — continuaram contando corpo
+# pelo prefixo da referencia, cegas a procedencia. Medido em 16/10/2026 no banco real:
+# com uma fonte `indeterminada` (o usgs-nas, recusado em 15/10 para este mesmo
+# registro) acrescentada ao `poecilia-reticulata`, ESTE validador contava 1 corpo e
+# BARRAVA, e os outros dois contavam 2 e PUBLICAVAM. O cabecalho da regua traz a
+# medicao inteira.
+regua_corpos = carregar_regua("regua-corpos-de-fonte.py")
+PROCEDENCIAS = regua_corpos.PROCEDENCIAS
+carregar_corpos = regua_corpos.carregar
+corpo_declarado = regua_corpos.corpo_declarado
+corpos_de = regua_corpos.corpos_de
+corpos_por_campo = regua_corpos.corpos_por_campo
+# O `host_da_fonte` entra nesta lista porque a MENSAGEM do E26 o usa para nomear o host
+# que nao esta declarado — e essa linha e o UNICO lugar do validador que o chama. Em
+# banco limpo ela nunca roda, entao esquece-lo nao reprovava nada aqui: quem o pegou foi
+# o `testar-validador-especies.py`, que corrompe o banco de proposito e exige que a regra
+# reprove. Ele acusou NameError no caminho do E26, e nenhuma passada sobre o banco real
+# teria acusado.
+host_da_fonte = regua_corpos.host_da_fonte
 
 
 # Numero por extenso conta como numero (regra E16). A fonte costuma escrever

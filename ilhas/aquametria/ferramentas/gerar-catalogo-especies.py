@@ -90,6 +90,7 @@ CINCO DECISOES, e nenhuma e de estilo:
      tela, que seria regua escrita para um mundo que nao pode acontecer.
 """
 
+import importlib.util
 import json
 import os
 import re
@@ -255,9 +256,35 @@ def nome_do_valor(v, mapa_host):
     return mapa_host.get(host(v.get("url")), "")
 
 
+def carregar_regua(nome):
+    """Carrega uma regua compartilhada de ferramentas/ pelo nome do arquivo."""
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)), nome)
+    spec = importlib.util.spec_from_file_location(nome.replace("-", "_")[:-3], caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+# A CONTAGEM DE CORPOS SAI DA REGUA, E NAO DO PREFIXO DA REFERENCIA (16/10/2026).
+# Ate hoje este script contava corpo distinto por `nome_do_corpo(referencia)`, que le o
+# TEXTO que a fonte traz e nao sabe nada sobre de onde vem o numero dela. O validador foi
+# consertado em 15/10 e passou a ler `corpos_de_fonte` do esquema; ESTE script nao, e e
+# ele que decide quem entra no snippet que o site serve. O resultado, medido no banco real
+# em 16/10/2026: acrescentando ao `poecilia-reticulata` uma fonte do usgs-nas, que o
+# esquema declara `indeterminada` porque foi OFERECIDO E RECUSADO em 15/10 para este mesmo
+# registro, o validador contava 1 corpo e BARRAVA e este script contava 2 e PUBLICAVA. O
+# mesmo valia para um corpo declarado `reproduz`, que colapsa no esquema e nao colapsava
+# aqui. A recusa de 15/10 vivia so como prosa, e este era o portao que ela nao alcancava.
+#
+# O NOME NA TELA CONTINUA SAINDO DA REFERENCIA, e as duas coisas sao diferentes: a tela
+# precisa dizer "FishBase" e "Seriously Fish" (decisao 2 do cabecalho), e a CONTAGEM
+# precisa saber que `indeterminada` nao e corpo. Misturar as duas foi o defeito.
+regua_corpos = carregar_regua("regua-corpos-de-fonte.py")
+
+
 def corpos_distintos(especie):
-    """Dois corpos, nao duas urls (regra E15 do esquema)."""
-    return {nome_do_corpo(f.get("referencia", "")) or f.get("origem", "") for f in especie.get("fontes", [])}
+    """Dois corpos, nao duas urls, e a procedencia decide (regras E15 e E26)."""
+    return regua_corpos.corpos_de(especie)
 
 
 def passa_no_portao(e):
@@ -322,6 +349,7 @@ def escrever_bloco(php, inicio, fim, corpo):
 
 def main():
     conferir_esquema()
+    regua_corpos.carregar_do_arquivo(ESQUEMA)
     with open(BANCO, encoding="utf-8") as f:
         banco = json.load(f)
     mapa_host = mapa_de_hosts(banco)
@@ -341,6 +369,24 @@ def main():
             if not corpo:
                 sem_nome.append("fonte sem nome de corpo: " + str(f.get("url")))
                 continue
+            # CORPO NAO DECLARADO EM `corpos_de_fonte` PARA O SCRIPT, e nao vira motivo
+            # de tela. A primeira versao disto o escrevia em `sem_nome`, como mais um
+            # barrado — e o VOCABULARIO FECHADO da decisao 6 reprovou, com razao, em vez
+            # de deixar passar. A causa certa e a da propria decisao 6: o codigo na tela e
+            # "o que o leitor precisa entender", e "alguem gravou fonte de um corpo que
+            # ninguem declarou" nao e fato sobre o PEIXE, e fato sobre a FABRICA. O leitor
+            # nao tem o que fazer com ele e a especie nao tem culpa nenhuma.
+            #
+            # E o caso nao chega aqui por um caminho normal: o validador ja o reprova pelo
+            # E26, entao banco nesse estado nao passa na bancada. Esta parada existe para o
+            # dia em que alguem rodar o gerador sem o validador — regerar o catalogo com
+            # uma fonte cuja procedencia ninguem decidiu publicaria numero sem dono.
+            if regua_corpos.corpo_declarado(f.get("url")) is None:
+                raise SystemExit(
+                    "ERRO: fonte com corpo nao declarado em corpos_de_fonte: %s\n"
+                    "  (registro %s). Declare o corpo no esquema, com os hosts e a\n"
+                    "  procedencia, antes de regerar o catalogo. A regra e a E26 e o\n"
+                    "  validador tambem a cobra." % (f.get("url"), e.get("id")))
             fontes.append({
                 "corpo": corpo,
                 "url": f.get("url") or "",

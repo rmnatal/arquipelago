@@ -48,6 +48,14 @@ import tempfile
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORTAO = "ferramentas/testar-validador-especies.py"
 VALIDADOR = "ferramentas/validar-especies.py"
+# A CONTAGEM MUDOU DE ARQUIVO EM 16/10/2026 e as mutacoes a seguiram: ela saiu do
+# validar-especies.py e virou ferramentas/regua-corpos-de-fonte.py, chamada pelos
+# QUATRO portoes que contam corpo. Quem descobriu a mudanca foi a trava de mutacao
+# inerte do troca() logo abaixo — as cinco mutacoes apontavam para um texto que nao
+# existia mais, e ela parou a bateria em vez de deixar cinco mutacoes passarem por
+# engano. As que mutam a CONTAGEM agora apontam para a regua; a 3, que muta a
+# COBRANCA do E26, continua no validador, porque e la que o erro e emitido.
+REGUA = "ferramentas/regua-corpos-de-fonte.py"
 ESQUEMA = "dados/esquema-especies.json"
 
 
@@ -90,7 +98,7 @@ MUTACOES = [
   "a regra inteira, e esta mutacao E o codigo de ontem em pessoa: host diferente "
   "contando como corpo diferente, sem olhar declaracao nem procedencia. Ela mede as "
   "tres travas de uma vez",
-  troca(VALIDADOR, [
+  troca(REGUA, [
       ('    corpo = corpo_declarado(url)\n    if corpo is None:\n        return None\n'
        '    if corpo["procedencia"] == "reproduz":',
        '    return host_da_fonte(url)  # MUTACAO\n'
@@ -102,7 +110,7 @@ MUTACOES = [
   "diz de onde veio o numero dela nao e o proprio corpo (nao se sabe se e dele) nem o "
   "de outro (nao se sabe de quem e). Contando, ela promove um registro de corpo unico a "
   "conferido",
-  troca(VALIDADOR, [
+  troca(REGUA, [
       ('    if corpo["procedencia"] == "indeterminada":\n        return None\n', '')])),
 
  ("3. a cobranca do E26 e removida: corpo nao declarado deixa de reprovar",
@@ -117,15 +125,15 @@ MUTACOES = [
   "de hosts diferentes servindo o numero do mesmo corpo continuam sendo UM corpo; sem o "
   "colapso, acrescentar um reprodutor faz o E15 calar e o E14 aprovar",
   duas(DECLARA_REPRODUTOR,
-       troca(VALIDADOR, [('        return corpo.get("reproduz")',
-                          '        return corpo["nome"]  # MUTACAO')]))),
+       troca(REGUA, [('        return corpo.get("reproduz")',
+                      '        return corpo["nome"]  # MUTACAO')]))),
 
  ("5. o host deixa de ser normalizado (o 'www.' nao e removido)",
   "a normalizacao do host, que nao e detalhe: as urls deste banco sao escritas com "
   "`www.` e os `hosts` do esquema sem. Sem ela nenhum corpo e encontrado, todo registro "
   "cai no E26 e o banco REAL para de passar — e era por isto que a copia a mao do "
   "varrer-categorias-possiveis.py listava as variantes com `www.` uma a uma",
-  troca(VALIDADOR, [
+  troca(REGUA, [
       ('    return host[4:] if host.startswith("www.") else host',
        '    return host  # MUTACAO')])),
 ]
