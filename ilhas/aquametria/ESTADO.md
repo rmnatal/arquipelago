@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-16T11:25Z
-executando_desde: 2026-10-16T13:58Z   # reserva RENOVADA pela 1.1 (bancada de 61 portoes rodando); a primeira foi as 13h24Z
+executando_desde: 2026-10-16T14:19Z   # reserva RENOVADA pela 1.1 (bancada de 61 portoes rodando); a primeira foi as 13h24Z
 bloco_atual: |
   O E15 PERGUNTA QUANTOS CORPOS O REGISTRO **CITA**; A PERGUNTA QUE DECIDE E QUANTOS
   CORPOS SUSTENTAM CADA CAMPO OBRIGATORIO — E SEIS REGISTROS ESTAVAM NO VAO ENTRE AS
