@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-16T18:08Z
-executando_desde: 2026-10-16T19:36Z
+executando_desde: 2026-10-16T19:44Z
 bloco_atual: |
   "AGORA A REGUA E UMA SO" ERA FALSO NO DIA EM QUE FOI ESCRITO: ELA ERA QUATRO, e as duas
   consertadas em 15/10 sao as que MEDEM o banco — as duas que DECIDEM O QUE VAI A TELA

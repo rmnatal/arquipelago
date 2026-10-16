@@ -81,9 +81,20 @@ def limites_dos_blocos(texto):
     return achados
 
 
-def bloco_da_linha(limites, n):
+def bloco_da_linha(limites, n, lado="+"):
+    """Em que bloco do gerador cai a mudanca ancorada na linha `n` do ANTES.
+
+    OS DOIS LADOS NAO SE MEDEM COM A MESMA FRONTEIRA, e isto nao e detalhe: foi
+    o `teste-deriva-do-catalogo.py` que reprovou a primeira versao desta funcao,
+    que usava `i <= n <= j` para os dois. Linha ACRESCENTADA entra ANTES de
+    `a[n]`, entao com `n` igual a linha do marcador de abertura ela nasce FORA
+    do bloco — e a primeira versao a chamava de dentro, o que apagaria a unica
+    deriva que nunca e legitima. Linha REMOVIDA e a propria `a[n]`, e os dois
+    marcadores nao sao conteudo gerado: remover um deles e deriva de fora.
+    """
     for nome, (i, j) in limites.items():
-        if i <= n <= j:
+        dentro = (i < n <= j) if lado == "+" else (i < n < j)
+        if dentro:
             return nome
     return None
 
@@ -142,22 +153,30 @@ def diferencas(antes, depois):
     return saida
 
 
-def medir(raiz, **encenado):
-    """A medicao inteira. Nunca escreve no snippet de verdade."""
-    c = caminhos(raiz)
-    antes = ler(c["snippet"])
-    depois, saida, codigo = gerar_na_sombra(raiz, **encenado)
+def medir_textos(antes, depois):
+    """A metade ARITMETICA da medicao, sobre dois textos — e e por aqui que o
+    teste encena mundo que o banco de hoje nao tem, sem precisar de gerador."""
     limites = limites_dos_blocos(antes)
     mudancas = diferencas(antes, depois)
     for m in mudancas:
-        m["bloco"] = bloco_da_linha(limites, m["ancora"])
+        m["bloco"] = bloco_da_linha(limites, m["ancora"], m["lado"])
     return {
-        "gerador_codigo": codigo,
-        "gerador_saida": saida,
         "mudancas": mudancas,
         "blocos_achados": sorted(limites),
         "fora_de_bloco": [m for m in mudancas if m["bloco"] is None],
     }
+
+
+def medir(raiz, **encenado):
+    """A medicao inteira. LE o snippet de verdade e NUNCA o abre para escrita:
+    o gerador so recebe a raiz de sombra, e quem afirma isso e o portao."""
+    c = caminhos(raiz)
+    antes = ler(c["snippet"])
+    depois, saida, codigo = gerar_na_sombra(raiz, **encenado)
+    medicao = medir_textos(antes, depois)
+    medicao["gerador_codigo"] = codigo
+    medicao["gerador_saida"] = saida
+    return medicao
 
 
 def assinatura(mudancas):
