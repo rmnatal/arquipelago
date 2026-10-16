@@ -38,6 +38,15 @@ import tempfile
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORTAO = "ferramentas/testar-validador-especies.py"
 VALIDADOR = "ferramentas/validar-especies.py"
+# DUAS DESTAS SEIS MUTACOES MUDARAM DE ARQUIVO EM 16/10/2026, e quem acusou foi a trava
+# de mutacao inerte do troca() — na BANCADA, depois de as outras cinco mutacoes desta
+# familia (mutacoes-corpos-de-fonte.py) ja terem sido religadas e alguem ter achado que
+# a mudanca estava fechada. A `corpos_por_campo()` saiu do validador e virou
+# ferramentas/regua-corpos-de-fonte.py, chamada pelos quatro portoes que contam corpo:
+# as mutacoes 2 e 4, que mutam o CORPO da contagem, apontam para a regua; as 1, 3, 5 e 6,
+# que mutam a regra E27 (o nucleo, o limiar, o recorte), continuam no validador, porque e
+# la que a regra mora. Terceiro arquivo da mesma familia a precisar disso num dia.
+REGUA = "ferramentas/regua-corpos-de-fonte.py"
 
 
 def troca(arquivo, pares, vezes=1):
@@ -74,7 +83,7 @@ MUTACOES = [
   "o colapso de duas urls do mesmo corpo. Contando fonte, as duas fichas da FishBase do "
   "mesmo registro viram dois, e o nucleo apoiado numa base so passa por conferido — e "
   "duas urls do mesmo corpo e exatamente o defeito que o E15 nasceu para pegar",
-  troca(VALIDADOR, [
+  troca(REGUA, [
       ('            if nome:\n                por_campo[campo].add(nome)',
        '            if nome:\n                por_campo[campo].add(f.get("url"))  # MUTACAO')])),
 
@@ -90,7 +99,7 @@ MUTACOES = [
   "a procedencia, que e quem decide o que conta. Fonte que nao diz de onde veio o numero "
   "dela nao e o proprio corpo nem o de outro; contando, ela sustenta campo obrigatorio "
   "sozinha e a regua nova herda o palpite que o E26 tirou do hostname",
-  troca(VALIDADOR, [
+  troca(REGUA, [
       ('        nome = corpo_contavel(f.get("url"))',
        '        nome = (corpo_declarado(f.get("url")) or {}).get("nome")  # MUTACAO')])),
 
