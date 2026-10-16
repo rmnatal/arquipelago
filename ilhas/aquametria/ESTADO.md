@@ -5,67 +5,65 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-16T14:31Z
-executando_desde: 2026-10-16T17:28Z
+ultima_execucao: 2026-10-16T18:08Z
+executando_desde: null
 bloco_atual: |
-  "COLETA DE BANCO POE ZERO BYTE NO AR" E VERDADE PARA O REGISTRO QUE PASSA NO PORTAO E
-  FALSA PARA O BARRADO — e quem mediu isso foi o PORTAO, depois de o validador ficar
-  verde. O bloco e o proximo passo que a entrada de 16/10 10h17Z deixou nomeado: dar
-  SEGUNDO CORPO aos oito registros do aviso E27, colhendo a Seriously Fish para os campos
-  obrigatorios. ZERO BYTE NO AR: a ilha segue em 52 URLs, nenhum Sync acionado, revisao
-  parada na 122 na abertura e no fecho, nenhuma leva do teto da 21.4 gasta (continua
-  ZERADO nesta semana), e nada tocado em title, em meta description nem na
-  /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer nessas superficies antes de
-  21/10. Nenhum snippet no diff: o aquametria-peixes.php foi regerado TRES vezes para
-  medir e restaurado byte a byte nas tres.
-  1. O AVISO E27 FOI DE OITO PARA QUATRO. Receberam segundo corpo em campo obrigatorio:
-     paracheirodon-innesi (frente minima e convivencia), trigonostigma-heteromorpha
-     (frente minima e convivencia), symphysodon-aequifasciatus (convivencia) e
-     pterophyllum-scalare (temperatura, frente minima e convivencia). So entrou campo em
-     que o numero da Seriously Fish e IGUAL ao que o registro ja publica — nenhum valor
-     mudou, nenhum conflito foi declarado.
-  2. O ACHADO, E ELE DESMENTE A FRASE QUE AUTORIZAVA O BLOCO. Dar segundo corpo ao
-     danio-margaritatus era o caso mais facil: a fonte declara 21 mm SL, que e o mesmo
-     2,1 cm SL do registro. A fonte entrou, o validador ficou VERDE e o teste-peixes.py
-     REPROVOU — a pagina /peixes/ publica a lista dos registros BARRADOS COM A CAUSA de
-     cada um, e dar segundo corpo a um barrado apaga uma causa da tela. Coleta de banco
-     e superficie quando o registro esta barrado. A fonte do danio saiu do banco.
-  3. A REGRA NOVA E A E28, esquema versao 10, com o campo segundo_corpo_nao_entrou. O
-     coletas_recusadas (22/09) e da coleta que nao entrou em campo VAZIO, e a E19 reprova
-     recusa de campo preenchido — foi ela que reprovou a primeira versao desta passada,
-     nove vezes, e estava certa. A FRONTEIRA ENTRE AS DUAS LISTAS passa a ser escrita uma
-     vez, nas duas direcoes: a E19 reprova recusa de campo preenchido e a E28 reprova
-     segundo corpo de campo vazio.
-  4. O DESFECHO E VOCABULARIO FECHADO EM CINCO TERMOS, porque "nao deu certo" nao se
-     conta e as causas pedem coisas diferentes: divergiu (5 entradas) pede decisao com
-     data, regua-diferente (3) pede outra leitura, escopo (1) pede fonte da mesma
-     populacao, nao-cobre (1) pede outro corpo, e confirmou-espera-data (1) — o quinto,
-     descoberto pelo portao — pede so o calendario. 11 entradas em 8 registros, e
-     divergiu e confirmou-espera-data exigem decidir_em: decidir_em vencido vira AVISO,
-     que e a 25.4-b.3 do contrato do lado do banco.
-  5. OS QUATRO QUE CONTINUAM NO AVISO, E NENHUM E "PRECISA DE OUTRA BUSCA". O guppy e o
-     registro deste banco mais perto de ganhar ficha: e barrado por UM motivo so, duas
-     fontes de corpos distintos, entao acrescentar a Seriously Fish por QUALQUER campo o
-     poe nas tabelas de /peixes/ — e ela diverge nos tres campos (6,0 contra 5,0 cm SL;
-     45 contra 60 cm; 17 a 28 contra 18 a 28 C). O gurami perola achou um conflito entre
-     DUAS REGUAS DA PROPRIA CASA na frente minima: dominio_por_campo poe o compendio
-     acima da base cientifica e mandaria publicar 90, e a E9 manda o conservador ser o
-     MAIOR, que e 120. O kinguio e o unico que data nenhuma resolve: a Seriously Fish
-     PUBLICA que nao tem ficha de kinguio.
-  6. OS PORTOES. BANCADA APROVADO: 61 portoes (os 51 sem rede mais os 10 do ar), 0 falha
-     — de 50 para 51 sem ninguem a alimentar. testar-validador-especies.py de 57 para 66
-     casos, 66 com alvo, 0 falha. mutacoes-segundo-corpo.py novo: 8 mutacoes, 0
-     sobrevivente, e UMA sobreviveu antes de virar caso — estreitar PEDEM_DATA para
-     divergiu sozinho, tirando a data do desfecho silencioso, nao era reprovado por nada.
-     teste-peixes.py deu 4299 afirmacoes, o MESMO numero de ontem: a prova por portao de
-     que este bloco nao alcancou a pagina — e ele nao esta mudo, porque foi ele que
-     reprovou a primeira versao.
-  7. A DERIVA DO CATALOGO FOI MEDIDA: o snippet do main difere em 74 linhas do que o
-     gerador produz do banco de hoje — 34 sao a deriva de 15/10, inalterada, e 40 sao
-     desta passada (as quatro fontes novas, que a ficha serve na tabela "De onde vem").
-     Nenhuma foi ao ar; todas desembarcam na primeira leva que regerar o catalogo depois
-     de 21/10.
-  8. O BANCO REAL continua em 40 especies e 0 erro; os avisos foram de 12 para 8.
+  "AGORA A REGUA E UMA SO" ERA FALSO NO DIA EM QUE FOI ESCRITO: ELA ERA QUATRO, e as duas
+  consertadas em 15/10 sao as que MEDEM o banco — as duas que DECIDEM O QUE VAI A TELA
+  continuavam cegas. ZERO BYTE NO AR: 52 URLs contadas no sitemap servido (3 em posts-post
+  e 49 em posts-page), nenhum Sync acionado, revisao 122 no manifest e no /status na
+  abertura e no fecho, home em 200, nenhuma leva do teto da 21.4 gasta (segue ZERADO nesta
+  semana), e nada tocado em title, em meta description nem na /calculadora-de-litragem/ —
+  a leitura de 14/10 proibe mexer nessas superficies antes de 21/10. Nenhum snippet no
+  diff e o banco de especies INTOCADO: o diff de dados/ e so prosa de esquema.
+  1. O BURACO, MEDIDO NO BANCO REAL E NAO LIDO NO CODIGO. As quatro reguas que contam
+     "duas fontes de corpos distintos" dao a MESMA resposta nos 40 registros de hoje —
+     zero divergencia —, e e por isso que nada acusava. O que as separa e o mundo que o
+     esquema PERMITE e o banco ainda nao tem, e ele tem nome e data: acrescentando ao
+     poecilia-reticulata a fonte do usgs-nas, declarada `indeterminada` porque foi
+     OFERECIDA E RECUSADA em 15/10 para este mesmo registro, o validador contava 1 corpo e
+     BARRAVA, o gerador contava 2 e PUBLICAVA, e o teste-peixes CONCORDAVA COM O GERADOR.
+     O guppy e, por escrito, o registro deste banco mais perto de ganhar ficha.
+  2. O CONSERTO: ferramentas/regua-corpos-de-fonte.py, regua compartilhada pela convencao
+     que esta pasta ja tinha (regua-robots.py, 24/09), chamada pelos QUATRO. O validador
+     perdeu 112 linhas e o varrer-categorias-possiveis 75, porque as duas copias do codigo
+     sairam. A fronteira que autoriza isso estava escrita na propria pasta: lista de campos
+     e DECISAO (se escreve duas vezes e se confere), registro de corpos e FATO EXTERNO
+     (mora num arquivo so, porque a segunda escrita dele nao confere nada).
+  3. CORPO NAO DECLARADO PARA O GERADOR e NAO vira motivo de tela. A primeira versao o
+     escrevia na lista de barrados e o VOCABULARIO FECHADO de motivos a reprovou, com
+     razao, antes de ela chegar a tela: o codigo que a pagina publica e "o que o leitor
+     precisa entender", e "alguem gravou fonte de um corpo que ninguem declarou" nao e
+     fato sobre o PEIXE, e fato sobre a FABRICA.
+  4. A BANCADA ACHOU QUATRO COISAS CONTRA ESTA PASSADA, nenhuma por leitura de codigo. (a)
+     A trava de mutacao inerte parou o mutacoes-corpos-de-fonte.py. (b) A mutacao 2 da
+     bateria nova SOBREVIVEU e achou defeito no portao novo: ela devolve a contagem propria
+     ao teste-peixes.py definindo-a DENTRO da funcao que a usa, e a metade estrutural
+     ancorava `def` na coluna zero — copia aninhada e copia. (c) O
+     testar-validador-especies.py acusou NameError no caminho do E26: `host_da_fonte` nao
+     foi religado, e essa linha e a UNICA do validador que o chama, entao em banco limpo
+     ela nunca roda. (d) A bancada COMPLETA achou o TERCEIRO arquivo de mutacoes da
+     familia a religar (mutacoes-corpos-por-campo.py), depois de uma varredura por alvo
+     ja ter passado.
+  5. A DECISAO DA E27 ESTA MEDIDA, e o esquema dizia ter o numero que nao tinha: levar a
+     contagem por campo ao minimo_para_sugerir custa UM registro (carassius-auratus,
+     catalogo e pagina de 34 para 33) e ao E14 custa ZERO. O zero desmente o texto da
+     propria E27, que e da manha deste dia e diz TRES — a passada das 13h24Z deu segundo
+     corpo aos tres. Corrigido por baixo. A decisao continua de 21/10, nao por falta de
+     numero: tirar o kinguio do catalogo e mexer na superficie.
+  6. REGRA NOVA NO CONTRATO (secao 8), porque as tres ilhas rodam o mesmo Sync e tem
+     gerador que escreve o snippet a partir do banco: "quem confere escreve a propria
+     regua" vale para a DECISAO e nao para o FATO EXTERNO; o conserto de uma regua so esta
+     feito quando alcanca o portao que DECIDE, nao so o que MEDE; e a prova disto e
+     ESTRUTURAL e nunca comportamental.
+  7. OS PORTOES. BANCADA APROVADO: 63 portoes (os 53 sem rede mais os 10 do ar), 0 falha —
+     de 61 para 63 sem ninguem a alimentar. teste-regua-de-corpos.py novo: 27 afirmacoes
+     em tres metades. mutacoes-regua-de-corpos.py novo: 8 mutacoes, 0 sobrevivente, todas
+     cobradas pela FRASE. Religados: mutacoes-corpos-de-fonte.py 5 de 5 e
+     mutacoes-corpos-por-campo.py 6 de 6. testar-validador-especies.py 66 casos 0 falha.
+     teste-peixes.py 4299 afirmacoes, o MESMO numero da manha — a prova por portao de que
+     este bloco nao alcancou a pagina.
+  8. O BANCO REAL continua em 40 especies, 0 erro e 8 avisos, os mesmos 8 da manha.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |

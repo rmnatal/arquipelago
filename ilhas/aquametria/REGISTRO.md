@@ -14,6 +14,111 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-16 16h17Z–18h08Z — "AGORA A RÉGUA É UMA SÓ" ERA FALSO NO DIA EM QUE FOI ESCRITO: ELA ERA **QUATRO**, E AS DUAS CONSERTADAS EM 15/10 SÃO AS QUE **MEDEM** — AS DUAS QUE **DECIDEM O QUE VAI À TELA** CONTINUAVAM CEGAS
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). Os cinco `ESTADO.md` do `main` parseiam em `yaml.safe_load` e os cinco traziam `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho — não houve reserva vencida para o git desempatar. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-7m8vzb` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mesclar; o `main` havia recebido reescrita de história (`fetch` acusou *forced update*) e o trabalho saiu do estado real dele. Reserva aceita às **16h17Z** (`9bc4dd9`), na primeira tentativa, e **renovada** às 16h41Z pela 1.1.
+
+**A RENOVAÇÃO SAIU ERRADA E FOI CORRIGIDA NO COMMIT SEGUINTE, e o erro é o mesmo de hoje de manhã:** escrevi `executando_desde: 2026-10-16T17:05Z` quando o relógio dizia 16h41Z — reserva **no futuro**, que faz a próxima execução respeitar uma janela que nem começou. O commit `2a3db24`, desta mesma ilha e deste mesmo dia, corrigiu exatamente isso às 13h41Z. Corrigido em `9ebeaba`.
+
+**A SEÇÃO 18 ANTES DA FILA, E NENHUM DESPACHO FURA O FOCO.** A ronda da Sentinela de hoje (14h43Z) abriu despacho na **robometria** — `Article` sem `author` em `/quantos-m2-o-robo-aspirador-limpa-por-carga/` —, e ele **não fura o foco**: a 1.2 só o permite para despacho **ALTO** em ilha no ar e **quebrada** (página servindo erro, ferramenta devolvendo número errado, site fora do ar), e dado estruturado faltando não é nenhum dos três. Despacho NORMAL de ilha fora do foco espera, por mais antigo que seja. Nesta ilha os despachos abertos são os de 14/10 e 09/10, e o que resta deles **não é trabalho desta nuvem**: a SERP brasileira de 14 consultas pede o Chrome do Raphael (30.8), a medição das Propostas 1 e 2 é da leitura semanal de 21/10, e a Proposta 3 pede a alavanca da 14.7.
+
+**REDE PELA 20.2, MEDIDA E NÃO HERDADA:** `https://aquametria.com.br/` em **HTTP 200** nas três passadas de abertura, `www.` em 301 nas três (redirecionamento, não falha), com `robometria.com.br` em **200** nas mesmas três como controle.
+
+**ZERO BYTE NO AR, e cada metade conferida:** a ilha segue em **52 URLs** — contadas no sitemap servido com quebra de cache, 3 em `posts-post` e 49 em `posts-page`, nenhum Sync acionado, `/status` na **revisão 122** na abertura e no fecho — igual à do `manifest.json` do repositório —, home em 200, nenhuma leva do teto da 21.4 gasta (continua **ZERADO** nesta semana) e nada tocado em `<title>`, em meta description nem na `/calculadora-de-litragem/`: a leitura de 14/10 proíbe mexer nessas superfícies antes de 21/10. **Nenhum snippet no diff** — o `aquametria-peixes.php` foi regerado **duas vezes para medir** e restaurado **byte a byte** nas duas (`sha256` igual ao do `main` nas duas).
+
+### 1. O BLOCO NÃO ERA O PRÓXIMO PASSO ESCRITO, PORQUE O PRÓXIMO PASSO ESCRITO É DE 21/10 — E O QUE SOBRAVA PARA ESTA SEMANA ESTAVA NO CAMINHO DA PÁGINA, NÃO NO BANCO
+
+A entrada de 16/10 14h31Z deixou o passo nomeado e **datado**: declarar os cinco `divergiu`, gravar a fonte do danio e a do guppy, decidir os três `regua-diferente`, regerar o catálogo e desembarcar as 74 linhas de deriva — tudo **"em 21/10 ou depois"**, porque mover valor publicado é mexer na superfície. Sobrava, sem data, a decisão que a E27 deixou na mesa, e ela **também** mexe na superfície (medida abaixo, item 4).
+
+**Procurando o que caberia nesta semana, a pergunta virou: quem mais conta corpo de fonte?** E a resposta estava escrita no cabeçalho da própria mudança de ontem. Em 15/10/2026 a regra **E26** tirou a contagem do hostname e a pôs em `corpos_de_fonte` do esquema, com esta frase: *"a mesma tabela estava COPIADA A MAO em varrer-categorias-possiveis.py, e as duas copias ja nem tinham a mesma forma. Agora a regua e uma so."*
+
+**Ela não era uma só. Era QUATRO, e só as DUAS QUE MEDEM foram consertadas:**
+
+| quem conta corpo | régua, antes de hoje | o que ele decide |
+|---|---|---|
+| `validar-especies.py` | lia `corpos_de_fonte` | mede o banco |
+| `varrer-categorias-possiveis.py` | lia `corpos_de_fonte` (2ª cópia **do código**, à mão) | mede o banco |
+| `gerar-catalogo-especies.py` | `nome_do_corpo(referencia)` — **cega** | **escreve o snippet que o site serve** |
+| `teste-peixes.py` | `corpo_da_referencia(ref)` — **cega** | **único portão que compara banco com HTML servido** |
+
+### 2. O BURACO, MEDIDO NO BANCO REAL E NÃO LIDO NO CÓDIGO
+
+As quatro réguas dão a **mesma** resposta no banco de hoje: **zero divergência em 40 registros**, medido registro a registro. É por isso que nada acusava. O que as separa é o mundo que o esquema **permite** e o banco ainda não tem — e esse mundo tem nome, data e dono: o **usgs-nas** foi **oferecido e RECUSADO em 15/10/2026** para o `poecilia-reticulata`, e está declarado no esquema como `indeterminada` por causa dessa recusa. Acrescentando essa fonte ao guppy:
+
+| régua | corpos | veredito |
+|---|---|---|
+| `validar-especies.py` | 1 (fishbase) | **BARRA** |
+| `gerar-catalogo-especies.py` | 2 (FishBase, USGS NAS) | **PUBLICA** |
+| `teste-peixes.py` | 2 (FishBase, USGS NAS) | **PUBLICA** |
+
+**O validador barrava o guppy e o gerador o punha na tela com UM corpo real** — e o `teste-peixes.py`, o único portão que olha o HTML servido, **concordava com o gerador** em vez de o acusar. O dissenso ficava só na saída informativa do `minimo_para_sugerir`, que não tem código de erro. O mesmo valia para um corpo declarado `reproduz` noutro host, que colapsa no esquema e não colapsava lá.
+
+**E o custo não era hipotético:** o guppy é, por escrito na entrada de hoje de manhã, *"o registro deste banco mais perto de ganhar ficha, e o único cuja entrada no catálogo depende de uma linha de fonte e de mais nada"*. A recusa de 15/10 vivia **só como prosa no esquema**. Se a execução seguinte reoferecesse a mesma fonte e a gravasse, nada no caminho da página a barraria.
+
+### 3. O CONSERTO: A CONTAGEM VIROU **UM ARQUIVO**, E O PORTÃO NOVO TEM TRÊS METADES
+
+`ferramentas/regua-corpos-de-fonte.py` — régua compartilhada, pela convenção que esta pasta já tinha (`regua-robots.py`, 24/09). Os **quatro** consumidores a chamam; o `validar-especies.py` perdeu 112 linhas e o `varrer-categorias-possiveis.py` 75, porque as duas cópias do código saíram.
+
+**A autorização está escrita na própria pasta, e é ela que separa este caso do que a decisão 1 do gerador proíbe.** O gerador manda a **lista de campos** do portão ser escrita nele e só *conferida* contra o esquema, "senão apagar um campo lá faria as duas metades errarem juntas". Isso continua valendo e não mudou: lista de campos é **DECISÃO**. O registro de corpos não é decisão — é **FATO EXTERNO** (quais hosts são a FishBase, de onde vem o número de cada corpo), e o comentário do `varrer-categorias-possiveis.py` já dizia isso com todas as letras antes de hoje: *"ninguem redescobre isso de forma independente: a segunda escrita dele nao confere nada e so cria duas verdades."*
+
+`ferramentas/teste-regua-de-corpos.py` — **27 afirmações, 0 falha**, em três metades, e cada uma pega o que as outras duas não veem:
+- **(A) a régua, caso a caso:** `propria` conta como si, espelho colapsa, `www.` não cria corpo, `reproduz` colapsa, `indeterminada` não conta, host não declarado não conta e é **nomeado**, e o vocabulário da régua é o do esquema e não uma cópia dele. O ramo `reproduz` não tem ocupante no esquema de hoje, então a afirmação **produz** o mundo em vez de o supor.
+- **(B) nenhum consumidor conta por conta própria:** lê os quatro arquivos e cobra que cada um carregue a régua e que nenhum redefina a contagem. Esta metade **não mede comportamento**, e é de propósito: as quatro réguas davam a mesma resposta no banco de hoje, então comportamento igual não prova régua única.
+- **(C) o mundo que o esquema permite e o banco ainda não tem:** produz o mundo da fonte `indeterminada`, o do `reproduz` (nos dois arquivos ao mesmo tempo, porque ele precisa do esquema) e o do corpo não declarado, e cobra que o **gerador** barre.
+
+### 4. O QUE A PRÓPRIA BANCADA ACHOU CONTRA ESTA PASSADA — **CINCO** VEZES, E NENHUMA FOI LEITURA DE CÓDIGO
+
+- **O VOCABULÁRIO FECHADO REPROVOU A MINHA PRIMEIRA VERSÃO, e estava certo.** Eu havia feito o corpo não declarado virar mais um **barrado**, com motivo próprio. O gerador parou: *"ERRO: motivo sem codigo no vocabulario fechado"*. A causa certa é a da decisão 6 dele mesmo — o código na tela é "o que o leitor precisa entender", e *"alguém gravou fonte de um corpo que ninguém declarou"* **não é fato sobre o PEIXE, é fato sobre a FÁBRICA**: o leitor não tem o que fazer com ele e a espécie não tem culpa nenhuma. Virou **parada do gerador**, com a url e o registro na mensagem, e **nenhum código novo na tela** — portanto nenhuma frase nova no snippet e nenhuma linha a mais de deriva.
+- **A TRAVA DE MUTAÇÃO INERTE PAROU O `mutacoes-corpos-de-fonte.py` em vez de o deixar passar verde.** As cinco mutações dele apontavam para o texto da contagem **dentro do validador**, e a contagem mudou de arquivo. Ela acusou *"MUTACAO INERTE: ... aparece 0 vez(es)"* e abortou a bateria. Religadas à régua, **5 de 5 reprovam** outra vez. Sem essa trava, cinco mutações teriam passado medindo nada — é o defeito que derrubou 18 de 20 mutações desta ilha de uma vez em 11/09.
+- **A MUTAÇÃO 2 DA BATERIA NOVA SOBREVIVEU E ACHOU UM DEFEITO NO MEU PRÓPRIO PORTÃO.** Ela devolve a contagem própria ao `teste-peixes.py` definindo-a **dentro** da função que a usa, indentada — e a metade (B) ancorava `^def` na **coluna zero**. Cópia aninhada é cópia, e o portão não a via. A âncora passou a ser `^[ \t]*def`, e a mutação reprova.
+- **E O PORTÃO ACUSOU AS LINHAS CERTAS DO VALIDADOR, por um escape de backtracking.** A régua do *rebind* era `=\s*(?!regua_corpos\.)`: o `\s*` casa **zero** caracteres, o lookahead olha o **espaço** antes do nome e "não é `regua_corpos.`" passa a ser verdade — então ela reprovava `corpos_de = regua_corpos.corpos_de`, que é exatamente a linha correta. Trocada por asserção **positiva** sobre o lado direito, que custa uma linha e não tem essa fuga.
+- **E A BANCADA COMPLETA ACHOU O TERCEIRO ARQUIVO DE MUTAÇÕES A RELIGAR, depois de uma varredura por alvo já ter passado.** Ela fechou a primeira passada em **1 de 63 reprovado**, e o reprovado era a mesma trava de alvo inerte: o `mutacoes-corpos-por-campo.py` **também** mutava o `validar-especies.py`, e duas das suas seis mutações miram o **corpo** da contagem — `corpos_por_campo()` —, que mudou de arquivo. Religadas (a 2 e a 4 para a régua; a 1, 3, 5 e 6 ficam no validador, porque é lá que a regra E27 mora), **6 de 6** reprovam. **O corolário que esta mesma passada escreveu na seção 8 do contrato — *"quando a régua muda de arquivo, toda mutação que editava o arquivo antigo vira inerte"* — cobrou de quem o escreveu, no mesmo dia e depois de ele ter declarado a varredura feita.** Varredura por alvo conhecido acha o que se procura; a bancada completa acha o que não se lembrou de procurar. Depois do conserto, os outros três arquivos que mutam o validador (`mutacoes-alvo-dos-casos.py`, `mutacoes-porte-maximo.py`, `mutacoes-segundo-corpo.py`) foram conferidos e miram alvos que **não** mudaram de arquivo — 7, 8 e 8 mutações, 0 sobrevivente.
+
+### 5. A DECISÃO QUE A E27 DEIXOU NA MESA ESTÁ MEDIDA, E O ESQUEMA DIZIA TER O NÚMERO QUE NÃO TINHA
+
+A entrada de hoje de manhã deixou escrito que o custo *"se remede no dia, rodando o validador — não está digitado em lugar nenhum de propósito"*, e o texto da regra E27 no esquema terminava dizendo que a decisão ficava para 21/10 **"com o numero ja na mesa"**. O número **não estava na mesa**. Agora está, rodando a regra promovida contra o banco real **sem escrever nada nele**:
+
+- **`minimo_para_sugerir`: custa UM registro.** Catálogo e portão de página vão de **34 para 33** aptos, e quem cai é o **`carassius-auratus`**, por "duas fontes distintas (por campo)". Nenhum outro se move.
+- **E14: custa ZERO hoje.** Nenhum registro é `completo` com o núcleo obrigatório apoiado num corpo só.
+- **E o zero desmente o próprio texto da E27**, que é da manhã deste mesmo dia: ele diz que **TRÊS** registros `completo` estão nesse estado (`paracheirodon-innesi`, `symphysodon-aequifasciatus`, `pterophyllum-scalare`), e eram três às 10h17Z. A passada das 13h24Z deu segundo corpo em campo obrigatório aos três. **São zero desde então**, e o parágrafo ficou escrito com a correção por baixo, porque ele conta por que a regra nasceu.
+- **A decisão continua de 21/10**, e não por falta de número: tirar o `carassius-auratus` do catálogo **é** mexer na superfície (ele sai das tabelas e entra na lista de barrados com a causa), e a leitura de 14/10 proíbe isso antes de 21/10. O que mudou é que ela não precisa mais de medição — precisa de escolha. E a escolha tem um lado cruel já medido: o kinguio é justamente o registro para o qual a Seriously Fish **publica que não tem ficha** (desfecho `nao-cobre`), então o segundo corpo dele não chega por data nenhuma.
+
+### 6. OS PORTÕES, E O QUE ELES PROVAM
+
+**BANCADA APROVADO: 63 portões, 0 falha** (os 53 sem rede mais os 10 que abrem o site), rodada com `--no-ar` sobre esta mesma árvore. **É a SEGUNDA passada dela**, e isso está dito porque a primeira fechou em **1 de 63 reprovado** — a mutação inerte do item 4, que é o achado e não um tropeço a esconder. A segunda rodou inteira depois do religamento, e não só o portão consertado: régua que muda de arquivo pode ter quebrado o que ninguém pensou em olhar. Ela foi de **61 para 63** sem ninguém a alimentar: o `teste-regua-de-corpos.py` e o `mutacoes-regua-de-corpos.py` entraram pela convenção de nome no dia em que foram escritos, e o `regua-corpos-de-fonte.py` é reconhecido como **régua exercitada** porque quatro arquivos a carregam — régua que ninguém importa a bancada denuncia.
+
+| portão | resultado |
+|---|---|
+| `validar-especies.py` | **40 espécies, 0 erro, 8 avisos** — os mesmos 8 da manhã |
+| `testar-validador-especies.py` | **66 casos, 66 com alvo, 0 falha** |
+| `teste-regua-de-corpos.py` (novo) | **27 afirmações, 0 falha**, nas três metades |
+| `mutacoes-regua-de-corpos.py` (novo) | **8 mutações, 0 sobrevivente**, todas cobradas pela frase |
+| `mutacoes-corpos-de-fonte.py` (religado) | **5 mutações, 0 sobrevivente** |
+| `mutacoes-corpos-por-campo.py` (religado) | **6 mutações, 0 sobrevivente** |
+| `mutacoes-segundo-corpo.py` | 8 mutações, 0 sobrevivente |
+| `teste-peixes.py` | **4299 afirmações, 0 falha** — o **mesmo número** da manhã |
+| `conferir-peixes-no-ar.py` | 1012 afirmações, 0 falha |
+| `conferir-desembarque.py` | APROVADO: revisão **122** no manifest e no `/status` |
+
+**A LINHA QUE MAIS IMPORTA É A MESMA DE ONTEM E DE HOJE DE MANHÃ, e pelo mesmo motivo:** o `teste-peixes.py` deu **4299 afirmações**, sem uma linha mudada. Ele mede as fichas do eixo `/peixes/` contra o HTML servido — é a prova, **por portão e não por leitura**, de que este bloco não alcançou a página. E ele não está mudo: foi ele que, nesta mesma família, reprovou a passada da manhã.
+
+**A COBRANÇA POR FRASE, herdada do `mutacoes-segundo-corpo.py` de hoje de manhã:** cada uma das 8 mutações declara a frase que a quebra tem de **ouvir de volta**, e a bateria só aceita a reprovação se a linha `FALHA` do portão disser aquela frase. Reprovar não é a mesma coisa que reprovar **pelo motivo certo** — sem isso, uma mutação pode disparar outra trava do mesmo portão, voltar vermelha e nunca ter medido a sua.
+
+### 7. O QUE ESTA PASSADA NÃO FEZ, DE PROPÓSITO
+
+- **Não promoveu a contagem por campo**, pelo que está no item 5: mede-se sem mexer, decide-se em 21/10.
+- **Não regerou o catálogo e não acionou o Sync.** Revisão 122 na abertura e no fecho; a deriva do `aquametria-peixes.php` continua em **74 linhas**, as mesmas de hoje de manhã, e o gerador novo produz o `php` **byte a byte igual** ao que o gerador antigo produzia.
+- **Não tocou no banco de espécies.** Nenhum registro, nenhuma fonte, nenhum campo: o diff do `dados/` é só prosa de esquema. O `teste-peixes.py` deu **4299 afirmações**, o **mesmo número** de hoje de manhã e de ontem — a prova por portão de que este bloco não alcançou a página.
+- **Não escreveu arquivo em `dados/`**, pelo mesmo motivo das duas passadas anteriores: a medição desta passada mora no portão e é impressa a cada rodada. Copiá-la para um `.md` datado criaria a tabela digitada de estado esperado que a seção 8 condena.
+- **Não mexeu no `contar-cano-de-links.py`**, que a bancada denuncia como "sem convenção, ninguém roda". É achado anterior a esta passada e não é desta família; fica dito para a próxima não procurar de onde saiu.
+
+### 8. O PRÓXIMO PASSO DESBLOQUEADO
+
+- **Em 21/10 ou depois, numa passada só, e a lista não mudou — ganhou um item e perdeu uma medição:** declarar os **cinco `divergiu`** como conflitos (E9 e `dominio_por_campo`), gravar a fonte do **danio** e a do **guppy**, decidir o que fazer com os **três `regua-diferente`**, regerar o catálogo, desembarcar as **74 linhas** de deriva — **e decidir a promoção da contagem por campo**, que agora está medida: `minimo_para_sugerir` custa **um** registro (o `carassius-auratus`, catálogo e página de 34 para 33) e o E14 custa **zero**. A E28 vai **cobrar sozinha** a partir de 21/10: os sete `decidir_em` daquela data viram aviso no primeiro `validar-especies.py` que rodar.
+- **O `carassius-auratus` é o nó dos dois assuntos ao mesmo tempo, e isso é novo.** Ele é o único registro que a promoção da E27 derruba, e é o único dos oito cujo segundo corpo **nenhuma data resolve**: a Seriously Fish publica que não tem ficha de kinguio (desfecho `nao-cobre`). Promover a régua em 21/10 tira o kinguio do catálogo **enquanto ele não tiver outro corpo**, e o candidato mais próximo (USGS-NAS) está `indeterminada` por decisão escrita e **por desenho não promove ninguém**. As duas decisões de 21/10 são, na prática, uma: ou aparece um terceiro corpo que fale do kinguio, ou a promoção custa a ficha dele.
+- **E a pergunta que esta passada deixa para as outras ilhas, e não é desta:** a Robometria e o Clube do Mosaico rodam o mesmo Sync e têm gerador que escreve o snippet servido a partir do banco. A pergunta que achou o buraco aqui — *"quem mais implementa esta contagem, e o conserto alcançou o portão que DECIDE ou só o que MEDE?"* — vale nas duas, e a regra geral já subiu para a **seção 8** do `ARQUIPELAGO.md` nesta passada, com a fronteira entre **decisão** (se escreve duas vezes e se confere) e **fato externo** (mora num arquivo só). A seção 3 proíbe editar arquivo de ilha que não se reservou, então aqui fica só a pergunta.
+- **Atenção de método, e é a lição do bloco:** *"agora a régua é uma só"* não se verifica lendo o commit que escreveu a frase — verifica-se **contando quem implementa a conta**. E a contagem não se prova comparando vereditos: as quatro réguas concordavam em **todos** os 40 registros, e um portão que comparasse resultados ficaria verde sobre o buraco. Quem for unificar régua nesta fábrica escreve a afirmação **estrutural** (quem carrega, quem redefine) junto com a de comportamento, e produz o mundo que o esquema permite e o dado ainda não tem.
+
 ## 2026-10-16 13h24Z–14h31Z — "COLETA DE BANCO PÕE ZERO BYTE NO AR" É VERDADE PARA O REGISTRO QUE PASSA NO PORTÃO E **FALSA PARA O BARRADO** — E QUEM MEDIU ISSO FOI O PORTÃO, DEPOIS DE O VALIDADOR FICAR VERDE
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho. O último commit na pasta da ilha era de **11h25Z**, duas horas antes, da execução que fechou. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-s92j2g` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mergear. Reserva aceita às **13h24Z** (`457a540`), na primeira tentativa, e **renovada** às 13h41Z pela 1.1.
