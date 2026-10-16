@@ -196,6 +196,21 @@ def valores_numericos(campo, valor):
 # contrario nao vale. `nao-declarado` fica FORA da ordem de proposito — ele nao e um
 # nivel, e a ausencia de nivel: a fonte publicou a base como o minimo da especie sem
 # nomear populacao nenhuma, e ai ela vale para o arranjo que o registro publica.
+# O DESFECHO DE UM SEGUNDO CORPO QUE NAO ENTROU (E28, esquema versao 10). Fechado
+# de proposito: "nao deu certo" nao se conta e nao se agrupa, e as quatro causas
+# pedem coisas diferentes — `divergiu` pede DECISAO com data, `regua-diferente`
+# pede outra LEITURA, `escopo` pede fonte que fale da MESMA populacao e
+# `nao-cobre` pede OUTRO CORPO. A lista mora aqui e no esquema, e o validador
+# confere as duas contra o banco.
+# OS DOIS DESFECHOS QUE SAO DECISAO ADIADA, e por isso exigem data: `divergiu`
+# (a fonte diz outro numero e alguem tem de escolher) e `confirmou-espera-data`
+# (a fonte diz o mesmo numero e o que impede e o calendario). Os outros tres
+# nao tem data para esperar: pedem outra leitura, outro escopo ou outro corpo.
+PEDEM_DATA = ("divergiu", "confirmou-espera-data")
+
+DESFECHOS_SEGUNDO_CORPO = ("divergiu", "regua-diferente", "escopo", "nao-cobre",
+                           "confirmou-espera-data")
+
 NIVEL_DO_CHAO = {"juvenis": 0, "um-exemplar": 1, "casal": 2, "grupo": 3}
 ARRANJOS_DO_CHAO = tuple(NIVEL_DO_CHAO) + ("nao-declarado",)
 
@@ -291,6 +306,17 @@ def main():
     # ficha — ficou tres dias no ar sem UM acento em 15 de 15 registros, porque
     # a correcao de 12/09 acentuou o que a regra nomeava e mais nada.
     ACENTUACAO_CAMPOS = list(esquema["acentuacao_de_texto_de_tela"]["campos"])
+
+    # AS DUAS COPIAS DO VOCABULARIO DO DESFECHO SE CONFEREM (E28, 16/10/2026).
+    # A lista esta escrita no topo deste arquivo e no esquema, e e por isso que
+    # ela pode ser conferida: regua que IMPORTA a lista do arquivo que ela mede
+    # aprova qualquer palavra que alguem acrescentar la, que e o defeito que a
+    # secao 8 do ARQUIPELAGO.md nomeia.
+    voc_esq = tuple(sorted(esquema["desfechos_de_segundo_corpo"]["vocabulario"]))
+    if voc_esq != tuple(sorted(DESFECHOS_SEGUNDO_CORPO)):
+        erro("E28", "(esquema)", "o vocabulario de desfecho do esquema (%s) nao e o do "
+                                 "validador (%s)" % (", ".join(voc_esq),
+                                                     ", ".join(sorted(DESFECHOS_SEGUNDO_CORPO))))
 
     banco = carregar(ARQUIVO)
     registros = banco["especies"]
@@ -530,6 +556,77 @@ def main():
                     erro("E19", rid, "%s recusou '%s' e o campo esta preenchido, sem "
                                      "superada_em e superada_por: a recusa e o dado "
                                      "dizem coisas contrarias" % (onde, campo))
+
+        # E28 - O SEGUNDO CORPO QUE FOI BUSCADO E NAO ENTROU (esquema versao 10,
+        # 16/10/2026).
+        #
+        # A E19 cuida da coleta que nao entrou em campo VAZIO e tem dentes nisso:
+        # recusa de campo preenchido e erro, porque a recusa e o dado diriam
+        # coisas contrarias. O terceiro caso apareceu inteiro no dia em que a E27
+        # passou a contar corpo POR CAMPO: o campo esta preenchido por UM corpo, a
+        # execucao vai buscar o SEGUNDO e o segundo nao entra. Sem lugar para
+        # isso, o achado vira prosa no REGISTRO.md e a execucao seguinte refaz a
+        # mesma busca e bate na mesma parede.
+        #
+        # A FRONTEIRA ENTRE AS DUAS LISTAS E ESCRITA AQUI, NAS DUAS DIRECOES: a
+        # E19 reprova recusa de campo preenchido e a E28 reprova segundo corpo de
+        # campo vazio. Uma so das duas metades deixaria a execucao escolher a
+        # lista pelo gosto, e duas listas que aceitam o mesmo registro nao contam
+        # duas coisas diferentes — contam a mesma coisa duas vezes.
+        #
+        # E a regra com dentes e a ultima: `divergiu` sem `decidir_em` e decisao
+        # adiada sem data, que e decisao perdida; e `decidir_em` vencido sem
+        # superada_* vira AVISO, porque a divergencia envelhece calada enquanto a
+        # tela continua publicando um numero so. E a mesma licao da 25.4-b.3 do
+        # contrato, do lado do banco de especies.
+        for i, c in enumerate(r.get("segundo_corpo_nao_entrou", []) or []):
+            onde = "segundo_corpo_nao_entrou[%d]" % i
+            for obrig in ("em", "corpo", "url", "metodo", "o_que_a_fonte_declara",
+                          "motivo", "o_que_destravaria"):
+                if not str(c.get(obrig) or "").strip():
+                    erro("E28", rid, "%s sem %s" % (onde, obrig))
+            data = str(c.get("em") or "")
+            if data:
+                try:
+                    if date.fromisoformat(data) > hoje:
+                        erro("E28", rid, "%s com data no futuro (%s)" % (onde, data))
+                except ValueError:
+                    erro("E28", rid, "%s com data fora do formato ISO (%s)" % (onde, data))
+            desfecho = str(c.get("desfecho") or "")
+            if desfecho not in DESFECHOS_SEGUNDO_CORPO:
+                erro("E28", rid, "%s com desfecho '%s' fora do vocabulario (%s)"
+                     % (onde, desfecho, ", ".join(sorted(DESFECHOS_SEGUNDO_CORPO))))
+            alvos = list(c.get("campos") or [])
+            if not alvos:
+                erro("E28", rid, "%s sem campos: segundo corpo que nao diz de qual campo "
+                                 "ele seria nao ensina nada" % onde)
+            for campo in alvos:
+                if campo not in campos_esq:
+                    erro("E28", rid, "%s cita '%s', que nao e campo deste esquema"
+                         % (onde, campo))
+                elif not preenchido(r.get(campo)):
+                    erro("E28", rid, "%s cita '%s' e o campo esta VAZIO: segundo corpo e de "
+                                     "campo que ja tem o primeiro — campo vazio e coleta "
+                                     "recusada, e o lugar dela e coletas_recusadas (E19)"
+                         % (onde, campo))
+            decidir = str(c.get("decidir_em") or "").strip()
+            superada = (str(c.get("superada_em") or "").strip()
+                        and str(c.get("superada_por") or "").strip())
+            if desfecho in PEDEM_DATA and not decidir and not superada:
+                erro("E28", rid, "%s tem desfecho '%s' e nao declara decidir_em: o que nao "
+                                 "entrou hoje por decisao adiada precisa da data da decisao, "
+                                 "senao a decisao se perde" % (onde, desfecho))
+            if decidir:
+                try:
+                    prazo = date.fromisoformat(decidir)
+                except ValueError:
+                    erro("E28", rid, "%s com decidir_em fora do formato ISO (%s)"
+                         % (onde, decidir))
+                else:
+                    if prazo <= hoje and not superada:
+                        aviso("E28", rid, "%s tem decidir_em %s, que ja chegou, e a divergencia "
+                                          "continua nao declarada: a tela segue publicando um "
+                                          "numero so" % (onde, decidir))
 
         # E18 - o teto da faixa de grupo (esquema versao 4, 14/09/2026)
         #

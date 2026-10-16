@@ -1,9 +1,9 @@
 {
  "id": "esquema-especies",
- "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E27 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
+ "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E28 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
  "gerado_em": "2026-09-09",
  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16; revisado na versao 5 (22/09/2026): chao_declarado_para e as regras E20 a E22 — o arranjo para quem a fonte declarou a base",
- "versao_esquema": 9,
+ "versao_esquema": 10,
  "depende_de": [
   "dados/esquema-produtos.json",
   "dados/especificacao-calculadoras.md"
@@ -443,6 +443,13 @@
    "obrigatorio": false,
    "dominio": "metadado",
    "nota": "A COLETA QUE FOI FEITA E NAO ENTROU, escrita onde se conta (22/09/2026). Ate esta data a coleta recusada vivia em prosa: no `observacao` do registro, no `PROMPT.md` ('falta temperatura_C do cascudo, recusada em duas coletas') ou no `REGISTRO.md` da execucao. Prosa nao se conta e prosa nao avisa — a execucao seguinte repete a mesma busca, gasta a mesma passada e chega a mesma recusa, ou pior: acha o numero, nao acha o motivo da recusa e grava. E a mesma familia do `afiliado.intestavel` do banco de produtos, que nasceu em 14/09/2026 pelo mesmo argumento. Cada entrada diz QUANDO, de QUAL corpo, por QUAL metodo, que campos se pretendia preencher, o que a fonte declara de fato e por que aquilo nao entrou. Quando um corpo novo destravar o campo, a entrada NAO e apagada: ganha superada_em e superada_por, porque a serie e o que ensina."
+  },
+  {
+   "campo": "segundo_corpo_nao_entrou",
+   "tipo": "lista de objetos {em, corpo, url, metodo, campos[], desfecho, o_que_a_fonte_declara, motivo, o_que_destravaria, decidir_em?, superada_em?, superada_por?}",
+   "obrigatorio": false,
+   "dominio": "metadado",
+   "nota": "A TENTATIVA DE DAR SEGUNDO CORPO A CAMPO QUE JA ESTA PREENCHIDO, e o que ela achou (16/10/2026). O `coletas_recusadas` nasceu em 22/09 para a coleta que nao entrou em campo VAZIO, e a E19 tem dentes exatamente nisso: recusa de campo preenchido e erro, porque a recusa e o dado diriam coisas contrarias. So que existe um terceiro caso, e ele apareceu inteiro no dia em que a E27 passou a contar corpo POR CAMPO: o campo esta preenchido por UM corpo, a execucao vai buscar o SEGUNDO, e o segundo nao entra — porque diverge no numero, porque fala em outra regua, porque declarou o numero para outro arranjo, ou porque o corpo nem cobre a especie. Sem lugar para isso, o achado vira prosa no REGISTRO.md e a execucao seguinte refaz a mesma busca, gasta a mesma passada e chega a mesma parede — a mesma causa que criou o `coletas_recusadas` e o `afiliado.intestavel`, um andar acima. O `desfecho` e vocabulario fechado: `divergiu` (a fonte publica outro numero para o mesmo campo na mesma regua), `regua-diferente` (o numero ate bate, mas a medida nao — a familia da E25, e coincidencia de algarismo em reguas diferentes nao e confirmacao), `escopo` (a fonte declarou o numero para OUTRO arranjo ou outra populacao, a familia do `chao_declarado_para`) e `nao-cobre` (o corpo declara que nao tem ficha desta especie). Quem declara `divergiu` declara tambem `decidir_em`: divergencia medida e nao declarada como conflito e uma decisao adiada, e decisao adiada sem data e decisao perdida — a E28 avisa quando a data chega."
   }
  ],
  "campos_derivados": {
@@ -607,6 +614,10 @@
   {
    "id": "E27",
    "regra": "Conta os corpos de fonte POR CAMPO OBRIGATORIO, e nao so os corpos que o registro cita no total. ERRO quando um campo obrigatorio tem fonte e nenhum corpo CONTAVEL o sustenta — fonte de procedencia `indeterminada` e leitura e nao corpo (E26), entao esse campo passa no E3, que cobra fonte, e nao tem quem o sustente. AVISO quando NENHUM campo obrigatorio do registro e sustentado por dois corpos, ou seja o nucleo inteiro se apoia num corpo so. Por que ela existe, e a causa esta medida: o E14 e o E15 perguntam pelo SINTOMA (quantas urls, quantos corpos o registro cita) e por isso aprovam o mundo em que o sintoma nao aparece — o registro cita dois corpos, o segundo sustenta so campo opcional, e todo campo obrigatorio continua apoiado no primeiro. Medido no banco em 16/10/2026: OITO registros caem no aviso, e so DOIS deles (danio-margaritatus e poecilia-reticulata) eram visiveis um andar acima; dos outros seis, TRES sao `completo` — paracheirodon-innesi, symphysodon-aequifasciatus e pterophyllum-scalare —, e nos tres o E14 aprovou o status por um corpo que nao sustenta campo obrigatorio nenhum. A contagem sai do `corpo_contavel()` da `regra_de_contagem` de `corpos_de_fonte`, nunca do host, senao reintroduz o buraco que o E26 tapou. E AVISO e nao erro de proposito: promove-la a erro, ou levar a contagem por campo para o `minimo_para_sugerir` e para o E14, muda quem passa no catalogo e portanto muda a SUPERFICIE das paginas — e a leitura semanal de 14/10/2026 proibe mexer na superficie desta ilha antes de 21/10, porque e o que destroi a medicao de CTR em curso. A decisao fica para 21/10 ou depois, com o numero ja na mesa."
+  },
+  {
+   "id": "E28",
+   "regra": "Toda entrada de `segundo_corpo_nao_entrou` declara `em` (data ISO, nunca futura), `corpo`, `url`, `metodo`, `desfecho` do vocabulario fechado (divergiu, regua-diferente, escopo, nao-cobre), `o_que_a_fonte_declara`, `motivo`, `o_que_destravaria` e pelo menos um nome em `campos[]`, todos campos deste esquema. ERRO quando um desses campos esta VAZIO no registro: ali a coleta nao e segundo corpo que nao entrou, e coleta recusada, e o lugar dela e `coletas_recusadas` (E19) — a fronteira entre as duas listas e essa, e ela e escrita UMA vez, aqui, nas duas direcoes: a E19 reprova recusa de campo preenchido e a E28 reprova segundo corpo de campo vazio. ERRO quando `desfecho` e `divergiu` e falta `decidir_em`: divergencia que nao vira conflito hoje e decisao adiada, e decisao adiada sem data e decisao perdida. AVISO quando `decidir_em` ja passou e a entrada nao ganhou `superada_em` e `superada_por` — e o aviso e o ponto, porque a divergencia envelhece calada enquanto a tela continua publicando um numero so. Nasceu em 16/10/2026, no bloco que foi dar segundo corpo aos oito registros do aviso E27 e achou, na mesma passada, divergencia em cinco deles, regua diferente em tres e uma especie que a Seriously Fish declara nao cobrir."
   }
  ],
  "o_que_nao_entra": [
@@ -629,7 +640,8 @@
    "verificado_em",
    "status_registro",
    "observacao",
-   "coletas_recusadas"
+   "coletas_recusadas",
+   "segundo_corpo_nao_entrou"
   ],
   "nota_nome_cientifico": "nome_cientifico e isento porque e a chave do registro e aparece por inteiro na referencia de toda fonte citada; qualquer afirmacao sobre ele (autoria, sinonimia, revisao) e que exige fonte."
  },
@@ -733,5 +745,15 @@
     "por_que": "DECLARADO AQUI PORQUE FOI OFERECIDO E RECUSADO EM 15/10/2026, e nao porque alguma fonte do banco o use: nenhuma usa. A ficha de Poecilia reticulata do Nonindigenous Aquatic Species Database do USGS (SpeciesID=863) publica 'males to 2.5 cm SL; females to 6 cm SL' atribuido a especie PELO NOME, por busca RESTRITA a nas.er.usgs.gov — passa na regra_de_atribuicao_por_busca e seria o segundo corpo que o guppy nao tem. FOI RECUSADO porque a ficha NAO NOMEIA o estudo primario do numero: medido em duas buscas restritas, a segunda perguntando exatamente isso, que devolveram a citacao sugerida da propria USGS e a data de revisao por pares (26/04/2013) e nenhuma fonte primaria. Corpo cuja procedencia nao se mede pode estar REPRODUZINDO a FishBase, que e o unico corpo que esse registro tem — e o 6 cm SL contra o 5 cm SL da FishBase nao desfaz a duvida, porque a FishBase publica o porte da femea em regua diferente da do macho e trocar TL por SL produz exatamente essa divergencia (e a familia do E25). A leitura direta decidiria, e nao existe: o egresso da nuvem devolve 000 para nas.er.usgs.gov em tres passadas de 15/10/2026, com aquametria.com.br em 200 na mesma passada. Enquanto estiver `indeterminada`, fonte deste corpo entra no banco como leitura e NAO promove registro nenhum a dois corpos."
    }
   ]
+ },
+ "desfechos_de_segundo_corpo": {
+  "por_que_existe": "O `desfecho` de uma entrada de segundo_corpo_nao_entrou e vocabulario FECHADO porque 'nao deu certo' nao se conta e nao se agrupa: as quatro causas pedem coisas diferentes de quem for resolve-las, e uma lista aberta deixaria a proxima execucao escrever a quinta palavra para o mesmo caso e perder a serie. A lista mora aqui E no validador, escrita duas vezes de proposito, e a E28 reprova quando as duas discordarem — pela secao 8 do ARQUIPELAGO.md, a regua que importa a lista do lugar que ela deveria conferir erra junto com ele.",
+  "vocabulario": {
+   "divergiu": "a fonte publica OUTRO numero para o mesmo campo, na MESMA regua. Pede DECISAO com data: ou vira conflito declarado (E9, E10), ou a divergencia e resolvida por dominio_por_campo. Por isso `decidir_em` e obrigatorio neste desfecho.",
+   "regua-diferente": "o numero ate bate, mas a medida nao — SL contra TL, por exemplo. E a familia da E25, e e o caso mais perigoso da lista porque o campo PARECE conferido. Pede outra LEITURA, nao uma decisao.",
+   "escopo": "a fonte declarou o numero para OUTRA populacao ou outro arranjo (a familia do chao_declarado_para). Pede uma fonte que fale do arranjo que o registro publica.",
+   "nao-cobre": "o corpo declara que nao tem ficha desta especie. Pede OUTRO CORPO, e nenhuma data resolve.",
+   "confirmou-espera-data": "a fonte CONFIRMA o valor que o registro ja publica, na mesma regua, e mesmo assim o segundo corpo nao entrou: grava-lo hoje mexeria no que a pagina SERVE. Medido em 16/10/2026 no danio-margaritatus, e e o desfecho que ninguem previa: o registro esta BARRADO no portao de pagina, e a pagina /peixes/ publica a lista dos barrados COM A CAUSA de cada um — entao dar a ele o segundo corpo apaga uma causa da tela. 'Coleta de banco poe zero byte no ar' e verdade para registro que ja passa no portao e FALSO para registro barrado, e quem nao rodar o portao que compara banco e HTML servido nao ve a diferenca. Pede DECISAO com data, como o `divergiu`, e por isso `decidir_em` tambem e obrigatorio aqui."
+  }
  }
 }

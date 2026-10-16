@@ -15,6 +15,7 @@ Codigo de saida: 0 se todas as regras reprovarem o que deviam, 1 se alguma passa
 
 import copy
 import json
+from datetime import date
 import os
 import re
 import subprocess
@@ -190,6 +191,80 @@ def c_e26_indeterminada_no_aviso(b):
     for f in r["fontes"]:
         if "seriouslyfish.com" in (f.get("url") or ""):
             f["url"] = "https://nas.er.usgs.gov/queries/FactSheet.aspx?SpeciesID=863"
+
+
+def _entrada_segundo_corpo(r):
+    """A entrada de `segundo_corpo_nao_entrou` do registro, para as corrupcoes do E28."""
+    return r["segundo_corpo_nao_entrou"][0]
+
+
+def c_e28_campo_vazio(b):
+    # A FRONTEIRA ENTRE AS DUAS LISTAS, do lado da E28, e e a metade que faltava: a E19
+    # ja reprova RECUSA de campo preenchido desde 22/09/2026, e ate 16/10 nada reprovava
+    # SEGUNDO CORPO de campo vazio. Sem esta metade a execucao escolhe a lista pelo gosto
+    # e as duas passam a contar a mesma coisa. O alvo precisa de um registro com campo
+    # obrigatorio VAZIO e com entrada de segundo corpo: o gurami perola tem convivencia
+    # nula e uma entrada de 16/10.
+    r = pega(b, "trichopodus-leerii")
+    _entrada_segundo_corpo(r)["campos"] = ["convivencia"]
+
+
+def c_e28_divergiu_sem_data(b):
+    # DECISAO ADIADA SEM DATA E DECISAO PERDIDA. O desfecho continua `divergiu`, o campo
+    # continua preenchido, tudo o mais fica igual — some so a data.
+    r = pega(b, "poecilia-reticulata")
+    _entrada_segundo_corpo(r).pop("decidir_em", None)
+
+
+def c_e28_confirmou_sem_data(b):
+    # O MESMO BURACO NO OUTRO DESFECHO QUE PEDE DATA, e ele e o silencioso: aqui a fonte
+    # CONFIRMA o numero que o registro publica, entao a entrada parece inofensiva — e e
+    # justamente ela que so espera o calendario e some se nao tiver prazo. Caso escrito
+    # porque uma mutacao SOBREVIVEU em 16/10/2026: estreitando PEDEM_DATA para
+    # `divergiu` sozinho, nada reprovava, e a regra continuava no arquivo.
+    r = pega(b, "danio-margaritatus")
+    _entrada_segundo_corpo(r).pop("decidir_em", None)
+
+
+def c_e28_desfecho_fora_do_vocabulario(b):
+    # "nao deu certo" nao se conta: o vocabulario e fechado nos dois lugares.
+    r = pega(b, "pterophyllum-scalare")
+    _entrada_segundo_corpo(r)["desfecho"] = "nao-deu-certo"
+
+
+def c_e28_data_no_futuro(b):
+    r = pega(b, "carassius-auratus")
+    _entrada_segundo_corpo(r)["em"] = "2099-01-01"
+
+
+def c_e28_campo_fora_do_esquema(b):
+    r = pega(b, "carassius-auratus")
+    _entrada_segundo_corpo(r)["campos"] = ["cor_do_peixe"]
+
+
+def c_e28_prazo_vencido(b):
+    # O AVISO QUE COBRA O CALENDARIO. A entrada do guppy marca 21/10/2026; empurrada para
+    # o passado, ela vira a divergencia que envelheceu calada enquanto a tela seguiu
+    # publicando um numero so. E a licao da 25.4-b.3 do contrato, do lado do banco.
+    r = pega(b, "poecilia-reticulata")
+    _entrada_segundo_corpo(r)["decidir_em"] = "2026-01-01"
+
+
+def c_e28_sem_campos(b):
+    # Entrada que nao diz de qual campo ela seria: o mesmo buraco que a E19 fechou em
+    # `campos_pretendidos`, do outro lado da fronteira.
+    r = pega(b, "pterophyllum-scalare")
+    _entrada_segundo_corpo(r)["campos"] = []
+
+
+def c_e28_prazo_vence_hoje(b):
+    # A BORDA DO PRAZO, e ela e o unico caso deste arquivo cuja corrupcao depende da data
+    # de hoje — de proposito. Prazo que vence HOJE ja tem de cobrar: escrito com `<` em
+    # vez de `<=`, o aviso so apareceria amanha, e o dia da decisao e justamente o dia em
+    # que ninguem esta olhando para ela. Caso que so usa data bem no passado nao separa
+    # as duas leituras, que e a licao de metodo de 16/10/2026.
+    r = pega(b, "poecilia-reticulata")
+    _entrada_segundo_corpo(r)["decidir_em"] = date.today().isoformat()
 
 
 def c_e16_numero(b):
@@ -569,6 +644,27 @@ TESTES = [
      c_e27_duas_fontes_do_mesmo_corpo, "aviso", "betta-splendens"),
     ("E27", "campo obrigatorio sustentado so por corpo de procedencia indeterminada",
      c_e27_campo_so_com_corpo_indeterminado, "erro", "xiphophorus-maculatus"),
+    # E28 — o segundo corpo que foi buscado e NAO entrou (esquema versao 10, 16/10/2026).
+    # A primeira e a fronteira com a E19, escrita nas duas direcoes; a ultima e a unica
+    # deste arquivo que corrompe o ESQUEMA e nao um registro.
+    ("E28", "segundo corpo citando campo VAZIO (o lugar dele e coletas_recusadas)",
+     c_e28_campo_vazio, "erro", "trichopodus-leerii"),
+    ("E28", "divergiu sem decidir_em: decisao adiada sem data", c_e28_divergiu_sem_data,
+     "erro", "poecilia-reticulata"),
+    ("E28", "confirmou-espera-data sem decidir_em (o desfecho silencioso)",
+     c_e28_confirmou_sem_data, "erro", "danio-margaritatus"),
+    ("E28", "desfecho fora do vocabulario fechado", c_e28_desfecho_fora_do_vocabulario,
+     "erro", "pterophyllum-scalare"),
+    ("E28", "segundo corpo com data no futuro", c_e28_data_no_futuro, "erro",
+     "carassius-auratus"),
+    ("E28", "segundo corpo citando campo fora do esquema", c_e28_campo_fora_do_esquema,
+     "erro", "carassius-auratus"),
+    ("E28", "decidir_em ja vencido e a divergencia segue nao declarada",
+     c_e28_prazo_vencido, "aviso", "poecilia-reticulata"),
+    ("E28", "segundo corpo que nao diz de qual campo ele seria", c_e28_sem_campos, "erro",
+     "pterophyllum-scalare"),
+    ("E28", "decidir_em que vence HOJE ja cobra (a borda do prazo)", c_e28_prazo_vence_hoje,
+     "aviso", "poecilia-reticulata"),
     ("E17", "nome de tela sem acento (o nome que vira titulo)", c_e17_acento, "erro",
      "hemigrammus-rhodostomus"),
     ("E17", "nome de tela sem acento depois do hifen", c_e17_acento_no_meio, "erro",

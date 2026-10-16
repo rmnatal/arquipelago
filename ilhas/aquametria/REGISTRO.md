@@ -14,6 +14,78 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-16 13h24Z–14h31Z — "COLETA DE BANCO PÕE ZERO BYTE NO AR" É VERDADE PARA O REGISTRO QUE PASSA NO PORTÃO E **FALSA PARA O BARRADO** — E QUEM MEDIU ISSO FOI O PORTÃO, DEPOIS DE O VALIDADOR FICAR VERDE
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho. O último commit na pasta da ilha era de **11h25Z**, duas horas antes, da execução que fechou. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-s92j2g` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mergear. Reserva aceita às **13h24Z** (`457a540`), na primeira tentativa, e **renovada** às 13h41Z pela 1.1.
+
+**REDE PELA 20.2, MEDIDA E NÃO HERDADA:** `https://aquametria.com.br/` em **HTTP 200** nas três passadas de abertura, com `/status` na **revisão 122** nas três — a mesma do `manifest.json`. E o egresso de fonte retestado na mesma passada, porque este bloco depende dele: `www.seriouslyfish.com` e `www.fishbase.se` em **000 nas três**, com `aquametria.com.br` em **200 nas mesmas três**. Seis medições de bloqueio contra três de controle verde. A coleta saiu, como todo este banco saiu, por **busca RESTRITA ao domínio** (níveis 3 e 5 da escada).
+
+**ZERO BYTE NO AR:** a ilha segue em 52 URLs, nenhum Sync acionado, revisão parada na **122**, nenhuma leva do teto da 21.4 gasta (continua **ZERADO** nesta semana), e nada tocado em `<title>`, em meta description nem na `/calculadora-de-litragem/`. Nenhum snippet no diff — o `aquametria-peixes.php` foi regerado **três vezes para medir** e **restaurado byte a byte** nas três.
+
+### 1. O BLOCO ERA O PRÓXIMO PASSO ESCRITO ONTEM, E ELE SAIU PELA METADE QUE A PRÓPRIA FRASE DE ONTEM NÃO VIA
+
+A entrada de 16/10 10h17Z deixou o passo nomeado com todas as letras: *"a saída honesta dos seis não é rebaixá-los, é dar a eles um segundo corpo que sustente campo obrigatório. A Seriously Fish já é fonte dos seis — ela só não foi colhida para porte, temperatura, frente mínima e convivência. **Isso é coleta de banco, põe zero byte no ar.**"* A primeira metade estava certa e foi feita. A segunda é **falsa para parte dos registros**, e quem disse isso não fui eu lendo o código: foi o `teste-peixes.py` reprovando depois de o validador ficar verde.
+
+**O AVISO E27 FOI DE OITO PARA QUATRO.** Os cinco que receberam segundo corpo em campo obrigatório: `paracheirodon-innesi` (frente mínima e convivência), `trigonostigma-heteromorpha` (frente mínima e convivência), `symphysodon-aequifasciatus` (convivência), `pterophyllum-scalare` (temperatura, frente mínima e convivência). Os quatro que continuam no aviso — `danio-margaritatus`, `poecilia-reticulata`, `trichopodus-leerii` e `carassius-auratus` — **não continuam por falta de busca**: cada um tem agora, no próprio registro, a medição de por que não.
+
+### 2. O QUE O PORTÃO MEDIU, E É A LIÇÃO DO BLOCO
+
+Dar segundo corpo ao `danio-margaritatus` era o caso mais fácil da lista: a Seriously Fish declara **21 mm SL**, que é exatamente o **2,1 cm SL** que o registro já publica da FishBase. Mesmo número, mesma régua, nada a decidir. A fonte entrou, o validador ficou **verde** e o `teste-peixes.py` **REPROVOU**, numa afirmação só: *"danio-margaritatus: o motivo gravado é o que a régua daqui calcula"*.
+
+**A causa:** a página `/peixes/` publica a lista dos registros **barrados com a causa de cada um**. O danio é barrado, e dar-lhe o segundo corpo **apaga uma causa da tela** — a tela continuaria dizendo "faltam duas fontes distintas" e o banco já diria o contrário. Ou seja: **coleta de banco põe zero byte no ar para o registro que já passa no portão, e mexe na superfície do registro que está barrado.** A superfície desta ilha está congelada até 21/10/2026 pela leitura semanal de 14/10, então a fonte do danio **saiu do banco** e virou registro de desfecho. **Nenhuma leitura do código diria isso; só o portão que compara banco com HTML servido.**
+
+### 3. A REGRA NOVA: E28, E A FRONTEIRA COM A E19 ESCRITA NAS DUAS DIREÇÕES
+
+O `coletas_recusadas` nasceu em 22/09 para a coleta que não entrou em campo **VAZIO**, e a **E19 tem dentes nisso**: recusa de campo preenchido é erro. Foi ela que reprovou a primeira versão desta passada, nove vezes — e estava certa. Existe um terceiro caso, e ele apareceu inteiro no dia em que a E27 passou a contar corpo por campo: **o campo está preenchido por UM corpo, a execução vai buscar o SEGUNDO, e o segundo não entra.**
+
+- **Campo novo `segundo_corpo_nao_entrou`** (esquema **versão 10**), com `desfecho` de vocabulário fechado em cinco termos, porque *"não deu certo"* não se conta e as causas pedem coisas diferentes: **`divergiu`** pede decisão com data, **`regua-diferente`** pede outra leitura, **`escopo`** pede fonte que fale da mesma população, **`nao-cobre`** pede outro corpo, e **`confirmou-espera-data`** — o quinto, descoberto pelo portão — pede só o calendário.
+- **A fronteira entre as duas listas é escrita UMA vez, nas duas direções:** a E19 reprova recusa de campo preenchido e a **E28 reprova segundo corpo de campo vazio**. Uma só das metades deixaria a execução escolher a lista pelo gosto, e duas listas que aceitam o mesmo registro não contam duas coisas: contam a mesma coisa duas vezes.
+- **A regra com dentes é a última:** `divergiu` e `confirmou-espera-data` exigem `decidir_em`, e **`decidir_em` vencido vira AVISO**. Divergência medida e não declarada é decisão adiada; decisão adiada sem data é decisão perdida. É a 25.4-b.3 do contrato — *"motivo envelhece calado"* — do lado do banco de espécies.
+- **O vocabulário mora no esquema E no validador, escrito duas vezes de propósito, e a E28 reprova quando as duas discordarem** (seção 8: régua que importa a lista do arquivo que ela deveria conferir erra junto com ele).
+
+### 4. OS QUATRO QUE CONTINUAM NO AVISO, UM A UM — E NENHUM DELES É "PRECISA DE OUTRA BUSCA"
+
+- **`danio-margaritatus` — `confirmou-espera-data`, decidir em 21/10.** A fonte confirma 2,1 cm SL, mesma régua. O que impede é o calendário, pelo achado do item 2. A linha de fonte está escrita em prosa dentro do registro e **não precisa de busca nova**.
+- **`poecilia-reticulata` — `divergiu`, decidir em 21/10.** A Seriously Fish **tem** ficha do guppy e discorda nos três campos: **6,0 contra 5,0 cm SL**, **45 contra 60 cm** de frente, **17 a 28 contra 18 a 28 °C**. E aqui a adoção custa mais que nos outros: este registro é barrado hoje por **um motivo só**, *"duas fontes de corpos distintos"* — acrescentar a Seriously Fish **por qualquer campo** o faz passar nos dois portões e entrar nas tabelas de `/peixes/`. **É o registro deste banco mais perto de ganhar ficha, e o único cuja entrada no catálogo depende de uma linha de fonte e de mais nada.**
+- **`trichopodus-leerii` — duas entradas, e uma delas achou um conflito entre duas réguas da própria casa.** O porte é `regua-diferente`: a fonte diz **120 mm SL** e o registro publica **12,0 cm TL** — o mesmo algarismo em réguas diferentes, que é o caso mais perigoso da lista porque o campo **parece** conferido. A temperatura e a frente mínima são `divergiu`: **24 a 30 contra 24 a 28 °C** (e este registro **alimenta a C5**, então trocar a faixa troca a potência que a calculadora serve) e **90 contra 120 cm**. **A frente mínima é o achado de regra:** a tabela `dominio_por_campo` põe o compêndio ACIMA da base científica em campo de manutenção — logo mandaria publicar 90 — e a **E9** manda o `valor_conservador` ser o MAIOR — que é 120. **As duas réguas da casa apontam para lados opostos no mesmo campo, e isso é decisão escrita, não coleta.** A convivência dele foi para `coletas_recusadas`, onde é o lugar dela: o campo está **vazio**, e a frase da fonte descreve temperamento, não arranjo — não cai em nenhum dos cinco termos do vocabulário.
+- **`carassius-auratus` — `nao-cobre`, e é o único que data nenhuma resolve.** A própria Seriously Fish publica que **não tem ficha de kinguio** (nem de carpa, peixe marinho, camarão, caramujo, caranguejo e lagostim). Não é busca mal feita nem número ausente: **não existe ficha para colher.** O único texto dela sobre o kinguio é o artigo de crescimento atrofiado que o registro já cita, e nele o porte sai em **30 cm SL** contra os 48,0 cm TL do registro — outra coisa, em outra régua. **Este é o único dos oito em que a Seriously Fish não pode ser o segundo corpo, hoje nem depois de 21/10.**
+
+E mais três desfechos nos que PASSARAM, porque confirmar quatro campos não apaga os que não bateram: `paracheirodon-innesi` divergiu em porte (3,0 contra 2,2 cm SL) e temperatura (21 a 25 contra 20 a 26 °C); `trigonostigma-heteromorpha` em porte (4,5 cm SL contra 5,0 cm TL, régua diferente) e temperatura (21 a 28 contra 22 a 25 °C); `symphysodon-aequifasciatus` em porte (14,0 contra 13,7 cm SL) e na frente mínima por **escopo** — o 120 da frase foi declarado para juvenis ou casal e o registro publica cardume de cinco, que é a recusa de 22/09 deste mesmo registro, **ainda de pé nesta parte**; `pterophyllum-scalare` em porte, por régua. **Onze entradas de `segundo_corpo_nao_entrou` em oito registros, e nenhuma delas é prosa: todas passam na E28.**
+
+### 5. OS PORTÕES, E O QUE ELES PROVAM
+
+**BANCADA APROVADO: 61 portões, 0 falha**, rodada com `--no-ar` (os 51 sem rede mais os 10 que abrem o site), das 13h42Z às 14h2xZ, sobre esta mesma árvore. Ela foi de **50 para 51** sem ninguém a alimentar: o `mutacoes-segundo-corpo.py` entrou pela convenção de nome no dia em que foi escrito.
+
+| portão | resultado |
+|---|---|
+| `validar-especies.py` | **40 espécies, 0 erro, 8 avisos** (eram 12; os avisos E27 caíram de 8 para 4) |
+| `testar-validador-especies.py` | **66 casos, 66 com alvo, 0 falha** (eram 57) |
+| `mutacoes-segundo-corpo.py` | **8 mutações, 0 sobrevivente** |
+| `mutacoes-corpos-por-campo.py` | **6 mutações, 0 sobrevivente** (regressão da régua de ontem) |
+| `teste-peixes.py` | **4299 afirmações, 0 falha** |
+| `conferir-peixes-no-ar.py` | **1012 afirmações, 0 falha** |
+| `conferir-desembarque.py` | **APROVADO: revisão 122 no manifest e no `/status`, e toda linha do log desta revisão diz `ok`** |
+
+**A linha que mais importa é a mesma de ontem, e pelo mesmo motivo:** o `teste-peixes.py` deu **4299 afirmações, o MESMO número de ontem**. Ele mede as fichas do eixo `/peixes/` contra o HTML servido, e passou sem uma linha mudada — é a prova, **por portão e não por leitura**, de que este bloco não alcançou a página. **E foi ele que reprovou a primeira versão desta passada**, o que é a outra metade da mesma prova: ele não está mudo, ele estava certo.
+
+**UMA MUTAÇÃO SOBREVIVEU E VIROU CASO.** Estreitando `PEDEM_DATA` para `divergiu` sozinho — isto é, tirando a exigência de data só do desfecho `confirmou-espera-data` —, **nada reprovava**. O desfecho silencioso é justamente aquele em que a fonte CONFIRMA o número e a entrada parece inofensiva. Caso escrito, mutação reprovada, 8 de 8.
+
+**A DERIVA DO CATÁLOGO, MEDIDA E NÃO ESTIMADA:** o `aquametria-peixes.php` do `main` difere em **74 linhas** do que o gerador produz do banco de hoje. **34 delas são a deriva de 15/10** (`'porte_e_maximo_registrado',` no índice `campos`), inalterada; **40 são desta passada** — as quatro fontes novas, que a ficha serve na tabela "De onde vem". Nenhuma das 74 foi ao ar: o snippet foi regerado **três vezes para medir** e restaurado byte a byte nas três, e o catálogo **desembarca junto com a primeira leva que o regerar depois de 21/10**.
+
+### 6. O QUE ESTA PASSADA NÃO FEZ, DE PROPÓSITO
+
+- **Não declarou conflito nenhum.** Os cinco `divergiu` são exatamente os casos em que declarar o conflito **move o valor publicado** — pela E9 (o maior) ou pela `dominio_por_campo` (o compêndio manda em manutenção). Mover valor publicado é mexer na superfície, e a superfície está congelada até 21/10.
+- **Não preencheu campo vazio de registro barrado.** O danio tem os quatro campos colhidos e escritos no próprio registro; preenchê-los o põe nas tabelas de `/peixes/`.
+- **Não regerou o catálogo e não acionou o Sync.** Revisão 122 na abertura e no fecho.
+- **Não escreveu arquivo em `dados/`**, pelo mesmo motivo de ontem: a medição desta passada **mora no banco** e é impressa pelo validador a cada rodada. Copiá-la para um `.md` datado criaria a tabela digitada de estado esperado que a seção 8 condena — e, pior, uma segunda cópia da mesma contagem.
+
+### 7. O PRÓXIMO PASSO DESBLOQUEADO
+
+- **Em 21/10 ou depois, numa passada só:** declarar os **cinco `divergiu`** como conflitos (E9 e `dominio_por_campo`), gravar a fonte do **danio** e a do **guppy**, decidir o que fazer com os **três `regua-diferente`**, regerar o catálogo e desembarcar as **74 linhas** de deriva. A E28 vai **cobrar sozinha** a partir de 21/10: os sete `decidir_em` daquela data viram aviso no primeiro `validar-especies.py` que rodar.
+- **E a decisão que a E27 deixou na mesa continua aberta e ficou mais barata:** com o aviso em 4 em vez de 8, promover a contagem por campo ao `minimo_para_sugerir` e ao E14 derruba menos registro. O custo exato se remede no dia, rodando o validador — não está digitado em lugar nenhum de propósito.
+- **O único que nenhuma data resolve é o `carassius-auratus`:** ele precisa de **outro corpo**, declarado em `corpos_de_fonte` antes de contar, e o candidato mais próximo (USGS-NAS) está `indeterminada` desde 15/10 e por desenho não promove ninguém.
+- **Atenção de método, e é a lição de hoje:** *"coleta de banco põe zero byte no ar"* é verdade para o registro que **passa** no portão e falsa para o **barrado**, porque a página publica a lista dos barrados com a causa. Quem for adiantar trabalho de banco durante um congelamento de superfície roda `teste-peixes.py` **antes de acreditar no validador verde** — o validador mede o banco contra si mesmo; só o portão que compara banco com HTML servido sabe o que a tela diz.
+
 ## 2026-10-16 10h17Z–11h2xZ — O E15 PERGUNTA QUANTOS CORPOS O REGISTRO **CITA**; A PERGUNTA QUE DECIDE É QUANTOS CORPOS SUSTENTAM CADA **CAMPO OBRIGATÓRIO** — E SEIS REGISTROS ESTAVAM NO VÃO ENTRE AS DUAS
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não havia reserva vencida para o git desempatar. O último commit na pasta da ilha era de **15/10 às 20h00Z** (`41d6fdb`), catorze horas antes, da execução que **fechou**. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-r683xi` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mergear. Reserva aceita às **10h17Z**, commit `11b3fd0`, na primeira tentativa, e **renovada duas vezes** pela 1.1 (`7e88089` às 10h29Z e `f305d66` às 11h06Z), porque a bancada completa desta ilha leva mais de 20 minutos.

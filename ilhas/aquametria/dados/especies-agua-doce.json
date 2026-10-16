@@ -212,7 +212,41 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "TEMPERATURA RECUSADA de proposito: os 22 a 24 C que a busca devolveu sao a temperatura do HABITAT medida no campo, e a fonte diz isso com essas palavras - nao e faixa de manutencao em aquario, que e o que o campo temperatura_C significa neste banco. Publicar habitat como recomendacao seria trocar uma medida por outra. Faltam tambem comprimento_minimo_aquario_cm, convivencia, pH e dureza: a ficha nao traz secao de aquario na busca restrita ao dominio. COLETA DE 11/09/2026, sem resultado util e registrada para a proxima nao repetir: a busca restrita ao Seriously Fish devolveu a ficha (publicada la sob Celestichthys margaritatus, sinonimo acrescentado nesta data) e NENHUM numero desta especie - ofereceu a base de 80 x 30 cm e a temperatura de 16 a 26 C de congeneres do genero, mais um 'compre 20 ou mais' sem dono claro, e as tres foram recusadas. O registro segue parcial com a mesma falta de 09/09."
+   "observacao": "TEMPERATURA RECUSADA de proposito: os 22 a 24 C que a busca devolveu sao a temperatura do HABITAT medida no campo, e a fonte diz isso com essas palavras - nao e faixa de manutencao em aquario, que e o que o campo temperatura_C significa neste banco. Publicar habitat como recomendacao seria trocar uma medida por outra. Faltam tambem comprimento_minimo_aquario_cm, convivencia, pH e dureza: a ficha nao traz secao de aquario na busca restrita ao dominio. COLETA DE 11/09/2026, sem resultado util e registrada para a proxima nao repetir: a busca restrita ao Seriously Fish devolveu a ficha (publicada la sob Celestichthys margaritatus, sinonimo acrescentado nesta data) e NENHUM numero desta especie - ofereceu a base de 80 x 30 cm e a temperatura de 16 a 26 C de congeneres do genero, mais um 'compre 20 ou mais' sem dono claro, e as tres foram recusadas. O registro segue parcial com a mesma falta de 09/09.",
+   "coletas_recusadas": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/danio-margaritatus",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos_pretendidos": [
+      "temperatura_C",
+      "comprimento_minimo_aquario_cm",
+      "base_minima_cm",
+      "convivencia"
+     ],
+     "o_que_a_fonte_declara": "temperatura de 20 a 26 C; base de 45 x 30 cm como a menor que o compendio aceita para um GRUPO, porque os machos dominantes podem ser combativos; e o manejo em grupo.",
+     "motivo": "SUPERFICIE CONGELADA, e nao falta de numero. Com estes quatro campos o registro passaria no portao de catalogo e no de pagina — ele e barrado hoje exatamente por eles mais a segunda fonte, que esta passada ja deu — e entraria nas tabelas de /peixes/. A leitura semanal de 14/10/2026 proibe mexer na superficie desta ilha antes de 21/10/2026, porque e o que destroi a medicao de CTR em curso e o unico controle do arquipelago. O numero esta colhido e escrito aqui: adota-lo e trabalho de 21/10 ou depois e nao precisa de busca nova.",
+     "o_que_destravaria": "a data, 21/10/2026, e mais nada: a fonte ja declarou os quatro campos, o corpo ja esta declarado em corpos_de_fonte e o porte desta mesma ficha ja entrou hoje."
+    }
+   ],
+   "segundo_corpo_nao_entrou": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/danio-margaritatus",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "porte_adulto_cm",
+      "porte_medida"
+     ],
+     "desfecho": "confirmou-espera-data",
+     "decidir_em": "2026-10-21",
+     "o_que_a_fonte_declara": "comprimento padrao de 21 mm SL, ou 2,1 cm — o MESMO numero e a MESMA regua que o registro ja publica da FishBase.",
+     "motivo": "CONFIRMOU e mesmo assim nao entrou, e o motivo so apareceu porque o portao rodou. A fonte entrou, o validador ficou verde e o `teste-peixes.py` REPROVOU: a pagina /peixes/ publica a lista dos registros barrados COM A CAUSA de cada um, e a causa do danio deixaria de dizer 'duas fontes distintas' no banco enquanto a tela continuaria dizendo. Ou seja: dar segundo corpo a registro BARRADO e mexer na superficie, ao contrario do que vale para registro que ja passa no portao — e a superficie esta congelada ate 21/10/2026. O proprio passo seguinte escrito em 16/10 dizia que esta coleta 'poe zero byte no ar'; a frase e verdadeira para os que passam e falsa para os barrados, e so o portao que compara banco com HTML servido sabia disso.",
+     "o_que_destravaria": "a data, 21/10/2026, e a regeracao do catalogo na mesma passada. A linha de fonte esta escrita neste registro em prosa e nao precisa de busca nova: origem compendio-via-busca, url da ficha da Seriously Fish, campos porte_adulto_cm e porte_medida."
+    }
+   ]
   },
   {
    "id": "paracheirodon-innesi",
@@ -312,12 +346,41 @@
       "familia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish — ficha da especie, releitura de 16/10/2026: base de aquario de 60 x 30 cm (24 x 12 in); peixe de cardume, pacifico e proprio para aquario comunitario.",
+     "url": "https://www.seriouslyfish.com/species/paracheirodon-innesi/",
+     "verificado_em": "2026-10-16",
+     "campos": [
+      "comprimento_minimo_aquario_cm",
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026, para dar SEGUNDO CORPO aos campos obrigatorios deste registro (E27). A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres. So entraram os campos em que o numero da Seriously Fish e IGUAL ao que o registro ja publica; o que nao entrou esta em segundo_corpo_nao_entrou, com o desfecho de cada um. A confirmar na ficha."
     }
    ],
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "completo",
-   "observacao": "A dureza declarada pela FishBase, 1 a 2 dGH, e agua praticamente destilada e nao descreve o neon de criadouro que o Brasil vende ha decadas. O campo entra como esta na fonte, e a ficha precisa dizer que o numero descreve a agua de origem, nao a exigencia do peixe de aquario. E o primeiro caso do banco em que a fonte esta certa e a leitura ingenua estaria errada."
+   "observacao": "A dureza declarada pela FishBase, 1 a 2 dGH, e agua praticamente destilada e nao descreve o neon de criadouro que o Brasil vende ha decadas. O campo entra como esta na fonte, e a ficha precisa dizer que o numero descreve a agua de origem, nao a exigencia do peixe de aquario. E o primeiro caso do banco em que a fonte esta certa e a leitura ingenua estaria errada.",
+   "segundo_corpo_nao_entrou": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/paracheirodon-innesi/",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "porte_adulto_cm",
+      "temperatura_C"
+     ],
+     "desfecho": "divergiu",
+     "o_que_a_fonte_declara": "comprimento padrao de 30 mm SL (3,0 cm) e temperatura de 21 a 25 C.",
+     "motivo": "O registro publica 2,2 cm SL e 20 a 26 C, os dois da FishBase, e a Seriously Fish discorda nos dois na MESMA regua. Declarar o conflito hoje mexeria no valor publicado: o porte iria ao MAIOR pela E9 (3,0 cm, que e o lado que nao lota demais) e a temperatura iria ao compendio pela tabela dominio_por_campo (21 a 25 C, porque manutencao e dominio dele). As duas trocas mudam o que a ficha serve, e a superficie desta ilha esta congelada ate 21/10/2026 pela leitura semanal de 14/10. Os campos em que a Seriously Fish CONFIRMA o que o registro ja publica entraram hoje, na fonte de 16/10: frente minima e convivencia.",
+     "o_que_destravaria": "a decisao de 21/10/2026 ou depois: declarar os dois conflitos com tratamento e valor_conservador, pela E9 e pela dominio_por_campo, na mesma passada que regerar o catalogo.",
+     "decidir_em": "2026-10-21"
+    }
+   ]
   },
   {
    "id": "paracheirodon-axelrodi",
@@ -1511,7 +1574,25 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "Registro sustentado por UMA fonte so, e isso e um achado, nao um descuido: a busca restrita ao Seriously Fish em 09/09/2026 nao encontrou ficha propria de P. reticulata no compendio, so das especies irmas (P. wingei, P. sphenops, P. velifera, P. latipinna). O peixe mais vendido do Brasil e um dos poucos sem ficha no compendio de referencia. Por isso comportamento fica null e o registro fica parcial: entra como conteudo, nao e sugerido pela C8 ate ter a segunda fonte. Faixa de pH declarada de 7,0 a 8,0 e agua dura, o contrario do cardinal — e o par que mostra por que 'peixe comunitario' nao e uma categoria util. RECONFERIDO em 11/09/2026 por uma coleta independente, que chegou a mesma parede: a busca restrita ao seriouslyfish.com tornou a nao devolver ficha de especie do guppy - devolveu a do P. wingei, a do P. sphenops e discussao de FORUM do proprio site. Forum nao e compendio: a escada pede compendio de aquarismo COM BIBLIOGRAFIA, e linha de forum nao sustenta campo nenhum aqui. O aviso E15 deste registro fica de pe de proposito, e a saida dele nao e mais busca: e a leitura direta da ficha quando o egresso abrir, ou um segundo corpo que nao seja o Seriously Fish. OFERECIDO E RECUSADO EM 15/10/2026, e esta escrito aqui porque e isso que impede a proxima coleta de cair na mesma oferta: a ficha de Poecilia reticulata do Nonindigenous Aquatic Species Database do USGS (nas.er.usgs.gov, SpeciesID=863) publica 'males to 2.5 cm SL; females to 6 cm SL' ATRIBUIDO A ESPECIE PELO NOME, colhido por busca RESTRITA ao dominio — ou seja passa na regra_de_atribuicao_por_busca e na regra_da_congenere, e seria o segundo corpo que falta a este registro. A RECUSA NAO E POR ATRIBUICAO, E POR PROCEDENCIA: a ficha nao nomeia o estudo primario do numero. Medido em duas buscas restritas, a segunda perguntando exatamente isso, que devolveram a citacao sugerida da propria USGS e a data de revisao por pares (26/04/2013) e nenhuma fonte primaria. Corpo que pode estar REPRODUZINDO a FishBase nao e um segundo corpo quando a FishBase e o unico corpo que o registro tem — e o 6 cm SL contra o 5 cm SL daqui nao desfaz a duvida, porque a FishBase publica o porte da femea em regua diferente da do macho e trocar TL por SL produz exatamente essa divergencia (a familia do E25). A leitura direta decidiria e nao existe: o egresso da nuvem devolve 000 para nas.er.usgs.gov, fishbase.org, fishbase.se, seriouslyfish.com e en.wikipedia.org, retestado em 15/10/2026 com aquametria.com.br em 200 na mesma passada. O corpo ficou DECLARADO no esquema como `indeterminada` (corpos_de_fonte, regra E26) em vez de so recusado nesta linha: assim, no dia em que alguem acrescentar uma fonte dele, ela entra como leitura e NAO promove este registro a dois corpos — antes de hoje ela promoveria, porque quem contava corpo distinto era o hostname. O aviso E15 continua de pe, e a saida dele continua sendo a leitura direta quando o egresso abrir, ou um corpo cuja procedencia se meca."
+   "observacao": "Registro sustentado por UMA fonte so, e isso e um achado, nao um descuido: a busca restrita ao Seriously Fish em 09/09/2026 nao encontrou ficha propria de P. reticulata no compendio, so das especies irmas (P. wingei, P. sphenops, P. velifera, P. latipinna). O peixe mais vendido do Brasil e um dos poucos sem ficha no compendio de referencia. Por isso comportamento fica null e o registro fica parcial: entra como conteudo, nao e sugerido pela C8 ate ter a segunda fonte. Faixa de pH declarada de 7,0 a 8,0 e agua dura, o contrario do cardinal — e o par que mostra por que 'peixe comunitario' nao e uma categoria util. RECONFERIDO em 11/09/2026 por uma coleta independente, que chegou a mesma parede: a busca restrita ao seriouslyfish.com tornou a nao devolver ficha de especie do guppy - devolveu a do P. wingei, a do P. sphenops e discussao de FORUM do proprio site. Forum nao e compendio: a escada pede compendio de aquarismo COM BIBLIOGRAFIA, e linha de forum nao sustenta campo nenhum aqui. O aviso E15 deste registro fica de pe de proposito, e a saida dele nao e mais busca: e a leitura direta da ficha quando o egresso abrir, ou um segundo corpo que nao seja o Seriously Fish. OFERECIDO E RECUSADO EM 15/10/2026, e esta escrito aqui porque e isso que impede a proxima coleta de cair na mesma oferta: a ficha de Poecilia reticulata do Nonindigenous Aquatic Species Database do USGS (nas.er.usgs.gov, SpeciesID=863) publica 'males to 2.5 cm SL; females to 6 cm SL' ATRIBUIDO A ESPECIE PELO NOME, colhido por busca RESTRITA ao dominio — ou seja passa na regra_de_atribuicao_por_busca e na regra_da_congenere, e seria o segundo corpo que falta a este registro. A RECUSA NAO E POR ATRIBUICAO, E POR PROCEDENCIA: a ficha nao nomeia o estudo primario do numero. Medido em duas buscas restritas, a segunda perguntando exatamente isso, que devolveram a citacao sugerida da propria USGS e a data de revisao por pares (26/04/2013) e nenhuma fonte primaria. Corpo que pode estar REPRODUZINDO a FishBase nao e um segundo corpo quando a FishBase e o unico corpo que o registro tem — e o 6 cm SL contra o 5 cm SL daqui nao desfaz a duvida, porque a FishBase publica o porte da femea em regua diferente da do macho e trocar TL por SL produz exatamente essa divergencia (a familia do E25). A leitura direta decidiria e nao existe: o egresso da nuvem devolve 000 para nas.er.usgs.gov, fishbase.org, fishbase.se, seriouslyfish.com e en.wikipedia.org, retestado em 15/10/2026 com aquametria.com.br em 200 na mesma passada. O corpo ficou DECLARADO no esquema como `indeterminada` (corpos_de_fonte, regra E26) em vez de so recusado nesta linha: assim, no dia em que alguem acrescentar uma fonte dele, ela entra como leitura e NAO promove este registro a dois corpos — antes de hoje ela promoveria, porque quem contava corpo distinto era o hostname. O aviso E15 continua de pe, e a saida dele continua sendo a leitura direta quando o egresso abrir, ou um corpo cuja procedencia se meca.",
+   "segundo_corpo_nao_entrou": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/poecilia-reticulata",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "porte_adulto_cm",
+      "temperatura_C",
+      "comprimento_minimo_aquario_cm"
+     ],
+     "desfecho": "divergiu",
+     "o_que_a_fonte_declara": "comprimento padrao de 60 mm SL (6,0 cm), sem separar macho de femea; base de 45 x 30 cm (18 x 12 in); temperatura de 17 a 28 C, pH 7,0 a 8,5, dureza 8 a 30 dGH.",
+     "motivo": "A Seriously Fish TEM ficha deste peixe e ela diverge do registro nos tres campos: 6,0 contra 5,0 cm SL, 45 contra 60 cm de frente, 17 a 28 contra 18 a 28 C. E aqui a adocao custa mais do que em qualquer outro registro desta lista, porque este e barrado hoje por UM motivo so, 'duas fontes de corpos distintos': acrescentar a Seriously Fish por QUALQUER campo o faz passar no portao de catalogo e no de pagina e entrar nas tabelas de /peixes/, que e superficie, congelada ate 21/10/2026. Por isso nem a fonte entrou — a divergencia fica medida aqui e o registro fica exatamente como estava.",
+     "o_que_destravaria": "a data, 21/10/2026, e na mesma passada a decisao dos tres conflitos. O guppy e o registro deste banco mais perto de ganhar ficha, e o unico cuja entrada no catalogo depende de uma linha de fonte e de mais nada.",
+     "decidir_em": "2026-10-21"
+    }
+   ]
   },
   {
    "id": "trigonostigma-heteromorpha",
@@ -1614,6 +1695,18 @@
       "familia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish — ficha da especie, releitura de 16/10/2026: a base de 60 x 30 cm (24 x 12 in) deve ser a menor considerada, porque a especie tem de ser mantida em numero; peixe de cardume, pacifico e proprio para aquario comunitario.",
+     "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha",
+     "verificado_em": "2026-10-16",
+     "campos": [
+      "comprimento_minimo_aquario_cm",
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026, para dar SEGUNDO CORPO aos campos obrigatorios deste registro (E27). A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres. So entraram os campos em que o numero da Seriously Fish e IGUAL ao que o registro ja publica; o que nao entrou esta em segundo_corpo_nao_entrou, com o desfecho de cada um. A confirmar na ficha."
     }
    ],
    "conflitos": [
@@ -1650,7 +1743,36 @@
    ],
    "verificado_em": "2026-09-09",
    "status_registro": "conflito",
-   "observacao": "Registro com as duas fontes concordando na frente minima de 60 cm, o que e raro no banco e por isso vale registrar. A dureza declarada pelo compendio, 1 a 5 graus, e bem mais mole que os 5 a 12 dGH da base cientifica; os dois numeros ficam, porque descrevem coisas diferentes (o que a especie tolera e onde ela fica bem)."
+   "observacao": "Registro com as duas fontes concordando na frente minima de 60 cm, o que e raro no banco e por isso vale registrar. A dureza declarada pelo compendio, 1 a 5 graus, e bem mais mole que os 5 a 12 dGH da base cientifica; os dois numeros ficam, porque descrevem coisas diferentes (o que a especie tolera e onde ela fica bem).",
+   "segundo_corpo_nao_entrou": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "porte_adulto_cm"
+     ],
+     "desfecho": "regua-diferente",
+     "o_que_a_fonte_declara": "comprimento padrao de 45 mm SL (4,5 cm), com a nota de que o maximo na natureza e 32 mm SL e o de cativeiro cresce um pouco mais.",
+     "motivo": "O registro publica 5,0 cm TL e a fonte declara 4,5 cm SL: os dois numeros estao em REGUAS diferentes e nao se comparam, que e a mesma familia da E25. Nao da nem para chamar de divergencia — antes de saber se os dois discordam e preciso saber em que medida o registro publica.",
+     "o_que_destravaria": "uma leitura que declare o porte em TL, ou a decisao de publicar as duas medidas com o dono de cada uma, como a E25 ja manda fazer com o tamanho comum."
+    },
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "temperatura_C"
+     ],
+     "desfecho": "divergiu",
+     "o_que_a_fonte_declara": "temperatura de 21 a 28 C, pH 5,0 a 7,5, dureza 1 a 12 dGH.",
+     "motivo": "O registro publica 22 a 25 C, da FishBase. A tabela dominio_por_campo poe o compendio ACIMA da base cientifica em campo de manutencao, entao adotar seria publicar 21 a 28 C — e isso muda o que a ficha serve e o que a C5 dimensiona. Superficie congelada ate 21/10/2026.",
+     "o_que_destravaria": "a decisao de 21/10/2026 ou depois, declarando o conflito com tratamento e valor_conservador.",
+     "decidir_em": "2026-10-21"
+    }
+   ]
   },
   {
    "id": "xiphophorus-maculatus",
@@ -3082,7 +3204,51 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "Falta convivencia: nenhuma das duas fontes declarou se a especie se mantem em cardume, grupo, casal ou sozinha, e temperamento nao substitui essa declaracao. Por isso o registro e parcial e nao passa no portao de pagina. A expectativa de 8 anos e um PISO ('8 anos ou mais' na fonte), nao um valor central. O pacifico vale para o aquario comunitario: entre machos a propria fonte declara territorialidade, e a ficha precisa dizer isso. TERCEIRA RECUSA, MEDIDA EM 13/09/2026 E EM DOIS CORPOS: a ficha da propria especie no compendio, perguntada duas vezes com formulacoes diferentes (como manter, e manter sozinho, em casal ou com varias femeas), declara pacifismo, territorialidade entre machos, longevidade e montagem plantada - e nao declara o arranjo social. A FishBase, perguntada pela secao de aquario, declara os 120 cm que o registro ja guarda, o ar obrigatorio e o macho guardando o ninho de bolhas, e tambem nao declara convivencia. A TENTACAO VEIO NOMEADA E FOI RECUSADA: a propria busca ofereceu, sem ser perguntada, o numero das CONGENERES - \"nao menos que 4 a 6\" do Trichogaster chuna e \"nao menos que 6\" do Sphaerichthys osphromenoides - dizendo com todas as letras que a pagina do T. leerii nao traz isso. E o mesmo numero de outra especie que a coridora sterbai recusou duas vezes, e vale aqui exatamente pelo mesmo motivo. Convivencia fica null e o registro fica parcial: a ficha dele nao nasce nesta leva, e nao vai nascer por emprestimo."
+   "observacao": "Falta convivencia: nenhuma das duas fontes declarou se a especie se mantem em cardume, grupo, casal ou sozinha, e temperamento nao substitui essa declaracao. Por isso o registro e parcial e nao passa no portao de pagina. A expectativa de 8 anos e um PISO ('8 anos ou mais' na fonte), nao um valor central. O pacifico vale para o aquario comunitario: entre machos a propria fonte declara territorialidade, e a ficha precisa dizer isso. TERCEIRA RECUSA, MEDIDA EM 13/09/2026 E EM DOIS CORPOS: a ficha da propria especie no compendio, perguntada duas vezes com formulacoes diferentes (como manter, e manter sozinho, em casal ou com varias femeas), declara pacifismo, territorialidade entre machos, longevidade e montagem plantada - e nao declara o arranjo social. A FishBase, perguntada pela secao de aquario, declara os 120 cm que o registro ja guarda, o ar obrigatorio e o macho guardando o ninho de bolhas, e tambem nao declara convivencia. A TENTACAO VEIO NOMEADA E FOI RECUSADA: a propria busca ofereceu, sem ser perguntada, o numero das CONGENERES - \"nao menos que 4 a 6\" do Trichogaster chuna e \"nao menos que 6\" do Sphaerichthys osphromenoides - dizendo com todas as letras que a pagina do T. leerii nao traz isso. E o mesmo numero de outra especie que a coridora sterbai recusou duas vezes, e vale aqui exatamente pelo mesmo motivo. Convivencia fica null e o registro fica parcial: a ficha dele nao nasce nesta leva, e nao vai nascer por emprestimo.",
+   "coletas_recusadas": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/trichopodus-leerii",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos_pretendidos": [
+      "convivencia"
+     ],
+     "o_que_a_fonte_declara": "que e um dos gouramis mais pacificos e um excelente peixe comunitario, com os machos territoriais entre si e duros com as femeas na reproducao.",
+     "motivo": "VOCABULARIO, e nao falta de frase. A fonte descreve TEMPERAMENTO e o campo pede ARRANJO: nenhuma dessas frases cai em cardume, grupo, casal, harem ou solitario, que sao os cinco termos fechados do esquema. Classificar seria julgamento nosso com cara de fonte — a mesma recusa que o disco levou em 22/09/2026 para `comportamento`. E ha um segundo motivo que sozinho ja bastaria hoje: a convivencia e o unico campo que barra este registro no portao de pagina, entao preenche-la o poria nas tabelas de /peixes/, que e superficie, congelada ate 21/10/2026.",
+     "o_que_destravaria": "uma fonte que declare o ARRANJO em que a especie e mantida — quantos exemplares, ou casal, ou harem — e nao o temperamento dela."
+    }
+   ],
+   "segundo_corpo_nao_entrou": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/trichopodus-leerii",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "porte_adulto_cm"
+     ],
+     "desfecho": "regua-diferente",
+     "o_que_a_fonte_declara": "comprimento padrao de 120 mm SL (12,0 cm).",
+     "motivo": "O numero e o MESMO 12,0 que o registro publica, mas a regua nao: a fonte declara SL e o registro publica TL. Coincidencia de algarismo em reguas diferentes nao e confirmacao, e gravar seria fabricar um segundo corpo onde nao ha — e o caso mais perigoso desta lista, porque e o unico em que o campo PARECE conferido.",
+     "o_que_destravaria": "uma leitura que declare o porte na mesma regua em que o registro publica."
+    },
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/trichopodus-leerii",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "temperatura_C",
+      "comprimento_minimo_aquario_cm"
+     ],
+     "desfecho": "divergiu",
+     "o_que_a_fonte_declara": "temperatura de 24 a 30 C, pH 5,5 a 8,0, dureza 2 a 30 dGH; e base de aquario de 90 x 30 cm (36 x 12 in), cerca de 81 litros.",
+     "motivo": "O registro publica 24 a 28 C e 120 cm de frente, os dois da FishBase. A temperatura nao pode mexer hoje porque este registro ALIMENTA a C5 — ele passa no portao c5-aquecedor —, entao trocar a faixa troca a potencia que a calculadora serve. E a frente minima e a divergencia mais interessante deste banco, porque as duas reguas da propria casa apontam para lados opostos no MESMO campo: a tabela dominio_por_campo poe o compendio acima da base cientifica em campo de manutencao, logo mandaria publicar 90, e a E9 manda o valor_conservador ser o MAIOR, que e 120. Isso e decisao escrita, nao coleta.",
+     "o_que_destravaria": "para a temperatura, a decisao de 21/10/2026. Para a frente minima, a mesma data E uma regra nova: quem manda quando dominio_por_campo e E9 discordam no mesmo campo. Enquanto ela nao existir, declarar este conflito e escolher no escuro.",
+     "decidir_em": "2026-10-21"
+    }
+   ]
   },
   {
    "id": "symphysodon-aequifasciatus",
@@ -3175,6 +3341,17 @@
       "volume_minimo_declarado_L"
      ],
      "observacao": "Colhido por busca RESTRITA ao endereco da ficha da especie em 22/09/2026, em cinco formulacoes, sem leitura da pagina: o egresso da nuvem devolve EGRESS_BLOCKED para www.seriouslyfish.com, reconfirmado naquela data. A frase voltou igual em tres formulacoes. ESTA COLETA FOI RECUSADA AS 13h20Z E ENTROU AS 17h25Z DO MESMO DIA, sem uma busca nova: o que mudou foi o esquema, que ganhou chao_declarado_para na versao 5 e passou a ter onde dizer PARA QUEM a base foi declarada. Os tres numeros sao de um aquario dimensionado para juvenis ou um casal reprodutor, e o registro publica cardume de cinco adultos — por isso eles NAO sao o chao desta ficha, e a pagina e proibida de os servir como tal (E21). A entrada em coletas_recusadas continua no registro, com superada_em e superada_por, porque a serie e o que ensina."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish — ficha da especie, releitura de 16/10/2026: o tipo social declarado na ficha e CARDUME (shoal), e o selvagem forma cardume em agua lenta e abrigada, entre raizes e pedras.",
+     "url": "https://www.seriouslyfish.com/species/symphysodon-aequifasciatus/",
+     "verificado_em": "2026-10-16",
+     "campos": [
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026, para dar SEGUNDO CORPO aos campos obrigatorios deste registro (E27). A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres. So entraram os campos em que o numero da Seriously Fish e IGUAL ao que o registro ja publica; o que nao entrou esta em segundo_corpo_nao_entrou, com o desfecho de cada um. A confirmar na ficha."
     }
    ],
    "conflitos": [],
@@ -3199,6 +3376,35 @@
      "o_que_destravaria": "Um segundo corpo que declare campo de manutencao para o ARRANJO que este registro publica (grupo de cinco ou mais), ou um campo de escopo no esquema que deixe a base declarada viajar com o arranjo a que ela se refere. Enquanto nenhum dos dois existir, o registro fica em UM corpo de fonte so e a categoria /peixes/acaras/ nao nasce: ela precisa de tres fichas, e as outras duas (acara-bandeira e oscar) ja passam nos dois portoes.",
      "superada_em": "2026-09-22",
      "superada_por": "chao_declarado_para, campo da versao 5 do esquema, escrito nesta mesma data. A recusa estava certa e continua certa no que ela afirmou: gravar 120 x 45 cm em base_minima_cm SEM dizer para quem faria a ficha publicar como chao do cardume de cinco um numero que a fonte deu para o casal. O que faltava nao era outro numero nem outra busca — era um lugar no esquema para o arranjo viajar junto do chao. Com ele, os tres campos entraram do jeito que a fonte os declarou (base_minima_cm, altura_minima_cm e volume_minimo_declarado_L, com arranjos [juvenis, casal]), e o E21 mais o portao de pagina impedem que a ficha os prometa ao cardume. alimentacao e comportamento SEGUEM RECUSADOS e seguem nulos: aqueles dois nao eram escopo, eram vocabulario, e nada nesta versao os destrava."
+    }
+   ],
+   "segundo_corpo_nao_entrou": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/symphysodon-aequifasciatus/",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "porte_adulto_cm"
+     ],
+     "desfecho": "divergiu",
+     "o_que_a_fonte_declara": "comprimento padrao de 140 mm SL (14,0 cm).",
+     "motivo": "O registro publica 13,7 cm SL, da FishBase, e a fonte declara 14,0 cm SL: mesma regua, numeros diferentes. Declarar o conflito levaria o valor ao maior pela E9, e porte e coluna de tabela — superficie, congelada ate 21/10/2026.",
+     "o_que_destravaria": "a decisao de 21/10/2026 ou depois.",
+     "decidir_em": "2026-10-21"
+    },
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/symphysodon-aequifasciatus/",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "comprimento_minimo_aquario_cm"
+     ],
+     "desfecho": "escopo",
+     "o_que_a_fonte_declara": "a mesma frase de 22/09/2026: um aquario de 120 x 45 x 45 cm, 255 litros, recomendado PARA ALGUNS JUVENIS OU UM CASAL DE ADULTOS REPRODUTORES.",
+     "motivo": "Cai na recusa de 22/09/2026 deste mesmo registro, que continua valendo nesta parte e nao foi superada pelo chao_declarado_para: o 120 da frase foi declarado para juvenis ou casal, e o registro publica cardume de cinco. O numero bate com o que o registro publica, mas ele fala de outra populacao — e gravar seria dar ao cardume uma afirmacao que a fonte fez para o casal.",
+     "o_que_destravaria": "o mesmo que a entrada de 22/09 ja pedia: uma fonte que declare o chao para o arranjo que o registro publica, grupo de cinco ou mais."
     }
    ]
   },
@@ -3455,12 +3661,40 @@
       "familia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish — ficha da especie, releitura de 16/10/2026: base de 100 x 40 cm (39 x 16 in), e um aquario de 100 x 40 x 50 cm deve ser o menor considerado; temperatura de 24 a 30 C, pH 6,0 a 7,4, dureza 0 a 15 dGH; ciclideo em geral pacifico que pode implicar com os da propria especie, por isso melhor mantido em pequenos grupos.",
+     "url": "https://www.seriouslyfish.com/species/pterophyllum-scalare/",
+     "verificado_em": "2026-10-16",
+     "campos": [
+      "temperatura_C",
+      "comprimento_minimo_aquario_cm",
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026, para dar SEGUNDO CORPO aos campos obrigatorios deste registro (E27). A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres. So entraram os campos em que o numero da Seriously Fish e IGUAL ao que o registro ja publica; o que nao entrou esta em segundo_corpo_nao_entrou, com o desfecho de cada um. A confirmar na ficha."
     }
    ],
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "completo",
-   "observacao": "Unico registro da leva com altura minima declarada, e ele existe no banco justamente por isso: e o peixe que prova que litro nao basta. Um aquario de 100 L em formato baixo nao atende um adulto que precisa de 50 cm de coluna. Tambem e o unico com incompatibilidade declarada pela fonte — come tetras pequenos —, o que barra de saida a combinacao com cardinal e neon que o varejo brasileiro vende junto."
+   "observacao": "Unico registro da leva com altura minima declarada, e ele existe no banco justamente por isso: e o peixe que prova que litro nao basta. Um aquario de 100 L em formato baixo nao atende um adulto que precisa de 50 cm de coluna. Tambem e o unico com incompatibilidade declarada pela fonte — come tetras pequenos —, o que barra de saida a combinacao com cardinal e neon que o varejo brasileiro vende junto.",
+   "segundo_corpo_nao_entrou": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/species/pterophyllum-scalare/",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "porte_adulto_cm"
+     ],
+     "desfecho": "regua-diferente",
+     "o_que_a_fonte_declara": "comprimento padrao de 150 mm SL (15,0 cm), com o adulto chegando a 15 cm de corpo e 20 cm ou mais de altura.",
+     "motivo": "Mesma familia da E25 e o mesmo caso do gurami perola: o numero e o MESMO 15,0 que o registro publica, mas a fonte declara SL e o registro publica TL. Os outros tres campos obrigatorios deste registro — temperatura, frente minima e convivencia — a Seriously Fish confirma com o mesmo valor, e os tres entraram hoje.",
+     "o_que_destravaria": "uma leitura que declare o porte em TL, ou a decisao de publicar as duas medidas com o dono de cada uma."
+    }
+   ]
   },
   {
    "id": "trichopodus-trichopterus",
@@ -4012,7 +4246,25 @@
    ],
    "verificado_em": "2026-09-09",
    "status_registro": "conflito",
-   "observacao": "Registro deliberadamente incomodo. A faixa de 0 a 41 C e TOLERANCIA da especie, nao recomendacao de manutencao, e por isso temperatura_e_tolerancia e true: a C5 esta proibida de dimensionar aquecedor a partir dela (regra E13). O kinguio esta no banco porque e o peixe mais vendido em pote no Brasil e o unico da leva cuja fonte de manutencao fala explicitamente de nanismo por aquario pequeno — 100 cm de frente e 30 a 40 anos de vida sao os dois numeros que a ficha precisa publicar de cara."
+   "observacao": "Registro deliberadamente incomodo. A faixa de 0 a 41 C e TOLERANCIA da especie, nao recomendacao de manutencao, e por isso temperatura_e_tolerancia e true: a C5 esta proibida de dimensionar aquecedor a partir dela (regra E13). O kinguio esta no banco porque e o peixe mais vendido em pote no Brasil e o unico da leva cuja fonte de manutencao fala explicitamente de nanismo por aquario pequeno — 100 cm de frente e 30 a 40 anos de vida sao os dois numeros que a ficha precisa publicar de cara.",
+   "segundo_corpo_nao_entrou": [
+    {
+     "em": "2026-10-16",
+     "corpo": "Seriously Fish",
+     "url": "https://www.seriouslyfish.com/not-covered",
+     "metodo": "busca RESTRITA ao dominio seriouslyfish.com em 16/10/2026. A pagina nao foi lida direto: curl devolveu 000 para www.seriouslyfish.com em tres passadas desta data, com aquametria.com.br em 200 nas mesmas tres.",
+     "campos": [
+      "porte_adulto_cm",
+      "temperatura_C",
+      "comprimento_minimo_aquario_cm",
+      "convivencia"
+     ],
+     "desfecho": "nao-cobre",
+     "o_que_a_fonte_declara": "que NAO cobre esta especie: a propria Seriously Fish publica que ainda nao tem ficha de kinguio, carpa, peixe marinho, camarao, caramujo, caranguejo e lagostim. O unico texto dela sobre o kinguio e o artigo de crescimento atrofiado que este registro ja cita para expectativa_vida_anos, e nele o porte aparece como 30 cm SL, contra os 48,0 cm TL que o registro publica da FishBase.",
+     "motivo": "O CORPO DECLARA QUE NAO COBRE A ESPECIE. Nao e busca mal feita nem numero ausente: nao existe ficha para colher, e o unico texto que existe fala de outra coisa e em outra regua. Este e o unico dos oito registros do aviso E27 em que a Seriously Fish nao pode ser o segundo corpo — hoje nem depois de 21/10 —, e por isso ele e o unico cujo aviso nenhuma decisao de data resolve.",
+     "o_que_destravaria": "outro corpo, declarado em corpos_de_fonte antes de contar, e nao a Seriously Fish. O candidato mais proximo, o USGS-NAS, esta declarado com procedencia `indeterminada` desde 15/10/2026 e por desenho nao promove registro nenhum a dois corpos."
+    }
+   ]
   },
   {
    "id": "trichogaster-chuna",
