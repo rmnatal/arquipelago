@@ -45,13 +45,69 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-16 (RONDA DIÁRIA TÉCNICA, 14h4xZ) — UM ITEM NOVO, E UMA ERRATA DA PRÓPRIA SENTINELA
+
+**A ilha segue em MODO DE MEDIÇÃO (1.2-b.1) e este despacho não abre bloco.** O foco é a aquametria até 21/10. A ronda técnica roda em toda ilha no ar (decisão do Raphael de 28/09, seção 1.2), e foi ela que achou o que está abaixo. **Esta ilha foi a escolhida pela regra da dívida da seção 12:** nenhuma ilha publicou nada desde a última ronda (a aquametria executou em 15/10 e 16/10 e as duas foram zero byte no ar; a clubedomosaico não publica desde 12/10), o `ultima_ronda` das três está empatado em 14/10 19h58Z porque é a leitura semanal, e o desempate é a ronda diária técnica PRÓPRIA mais antiga — a última linha de `dados/consertos.md` desta ilha é de **02/10**, contra 14/10 na aquametria e 12/10 na clubedomosaico.
+
+**O QUE ESTA RONDA MEDIU NESTA ILHA E PASSOU, para a Fundação não remedir:** **14 de 14** URLs do `wp-sitemap.xml` em HTTP 200; porta de entrada da 29.2 inteira (`/wp-sitemap.xml` 200 com `application/xml` e XML de sitemap de verdade, `/robots.txt` 200 e `text/plain`, `/wp-json/` 200 e `application/json`, caminho virgem em **404 na página desta ilha**); `/status` na **revisão 81**, igual à do `manifest.json`; **console sem uma mensagem**, com recarga, em `/quantos-m2-o-robo-aspirador-limpa-por-carga/?area=90&referencia=electrolux-erb44` e em `/pecas/filtros/electrolux/`; **zero** `&#038;` dentro de `<script>` nas 14; **zero** página órfã, contado pela **16.9 na direção de quem aponta** sobre o HTML servido das 14 (a menor contagem de entrada é **4**); **zero** `noindex` indevido; `<meta name="description">` única nas 14 e nenhuma acima de 160 (a maior tem 151); JSON-LD nas 14 e `BreadcrumbList` nas 13 que não são a home; **zero** `<img>` sem `alt` e **zero** sem `width`/`height` (22 imagens); botão de menu com `aria-expanded` e `aria-controls` nas 14; favicon próprio nas 14; **nenhuma frase da lista "Proibidas" do `VOZ.md`** em `<title>`, `<h1>` ou primeiro parágrafo — medido pela FRASE inteira, nunca pela palavra solta, conforme a jurisprudência que o despacho de 02/10 deixou escrita.
+
+**AS DUAS FERRAMENTAS COM ENTRADA INÉDITA E A CONTA REFEITA NA MÃO.** **R1** em `?modelo=wap-w400&peca=filtro` → "Não localizamos declaração do fabricante de filtro para este modelo; não vamos supor", **sem bloco de compra**, e a página escreve por que não tem. É a resposta certa e o banco concorda: o `wap-w400` não tem par declarado de filtro. A prestação de contas da mesma página bate: **108 linhas, 97 perguntas, 11 com mais de uma peça para a mesma função** (108 − 11 = 97). **R2** em `?piso=carpete&pelo=longo` com 200 m² → limiar de **4.000 Pa**, o MAIOR dos dois citados (Canaltech contra Mundo Conectado), com autor e data na tela, e **5 modelos** acima dele. **Coerência da recomendação: passa nas duas.** **Receita:** os 5 botões do bloco de compra da R2 são `s.shopee.com.br` rastreáveis — zero link cru, e nenhum item sem comissão acima de item com comissão (25.2-b).
+
+**UM NÚMERO QUE PARECE DEFEITO E NÃO É — fica escrito para ninguém reabrir.** A frase "São **5** modelos que passam no limiar de 4.000 Pa" convive com **15** registros publicáveis de `dados/modelos-robo.json` com `pa_declarado >= 4000`. A regra que separa os dois foi **descoberta no banco, não suposta**: a lista cobra `pa_declarado > 4000` (4.000 não é "acima de 4.000", o que tira `xiaomi-s10`, `xiaomi-e10`, `xiaomi-e12` e `xiaomi-s12`) **e** `canal_brasileiro` não nulo (o que tira `roborock-qrevo-curv`, `xiaomi-s40-pro`, `roborock-qrevo-master`, `roborock-s8-maxv-ultra`, `roborock-q8-max` e `xiaomi-x20`, cada um com o motivo e a data da aferição gravados no próprio registro). Sobram exatamente `roborock-saros-z70`, `xiaomi-h40`, `xiaomi-s40`, `xiaomi-s40c` e `xiaomi-s20`. **A ferramenta está certa.**
+
+**O PISO DA 25.2 ESTÁ 100% NOS DOIS BANCOS, RECONTADO NO REPOSITÓRIO HOJE:** **54 de 54** peças publicáveis e **45 de 45** modelos publicáveis com `url_busca` **e** `url_busca_produto`; **zero** intestável; **zero** registro com `url` de afiliado e sem `url_produto`; `links_sem_degrau: 0`.
+
+### 1. DEFEITO NOVO — `Article` SEM `author` EM `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, E O IRMÃO TEM
+
+**O que está no ar**, lido com quebra de cache e `Accept-Encoding: identity`:
+
+| URL | nó `Article` do JSON-LD | `author` | `publisher` | `datePublished` | `dateModified` |
+|---|---|---|---|---|---|
+| `/filtro-universal-de-robo-aspirador/` | existe | **sim** (`#organizacao`) | sim | 2026-09-10 | 2026-09-21 |
+| `/quantos-m2-o-robo-aspirador-limpa-por-carga/` | existe | **NÃO** | sim | 2026-09-11 | 2026-09-21 |
+
+As duas são páginas de artigo da mesma ilha, servidas pelo mesmo emissor, e só uma declara autor. As outras 12 URLs não têm nó `Article` (a home serve `Organization` + `WebSite`; as duas ferramentas servem `WebApplication` + `FAQPage`; as cinco de malha servem `CollectionPage`), então o defeito é de **uma** página e não da casca inteira.
+
+**POR QUE A SENTINELA NÃO CONSERTOU:** quem emite o JSON-LD é snippet PHP, e código de snippet é item nominal da lista fechada **19.2**, que vale mais que a 19.1. A regra 3 da seção 12 manda parar e despachar, mesmo que a mudança pareça de uma linha. É a mesma família do defeito que a ronda de 13/09 achou na aquametria ("`Article` sem data/autor/publicador nas 11 fichas de peixe").
+
+**PRONTO QUANDO:** `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, lida no ar com quebra de cache e `Accept-Encoding: identity`, servir no nó `Article` um `author` apontando para `https://robometria.com.br/#organizacao`, igual ao que `/filtro-universal-de-robo-aspirador/` já serve; e a bancada desta ilha tiver uma afirmação que **reprova** nó `Article` sem `author` em qualquer URL que tenha `Article`, com mutação provando que ela não é inerte (apagar o `author` do emissor numa cópia tem de fazer a bancada sair com código 1 e imprimir a frase esperada).
+
+### 2. ERRATA DA PRÓPRIA SENTINELA — O ITEM 1 DO DESPACHO DE 14/10 ESTÁ **ANULADO POR MEDIÇÃO**. NÃO EXECUTE AQUELE ITEM.
+
+O item 1 da leitura semanal de 14/10 afirma que **três registros de `dados/pecas.json` estão sem o piso da 25.2** (`multi-pr684`, `multi-pr550`, `xiaomi-s20-acessorios`) e chama isso de "o defeito mais grave da seção 25". **É falso positivo, e a medição de hoje é esta:**
+
+- Os três têm **`status: excluido_do_banco`**, cada um com `motivo_do_status` escrito: `multi-pr684` é filtro de aspirador **vertical e de mão** (HO011/HO012, 127 V/1000 W e 220 V/700 W pelos títulos do próprio fabricante), `multi-pr550` é peça de aspirador **2 em 1**, e `xiaomi-s20-acessorios` foi um registro que leu um **catálogo de variantes** como se fosse um kit, corrigido em 13/09.
+- A 25.2 diz, textual, *"não existe item **publicável** sem piso"*. Os três não são publicáveis.
+- O `contagem` do próprio banco registra `publicavel: 54`, `excluido_do_banco: 3`, **`itens_sem_saida_de_compra: 0`** e `itens_com_piso_nao_rastreavel: 0`.
+- **Os três não aparecem em nenhuma das 14 URLs servidas** — procurei pelo id e pelo código de fabricante (`PR684`, `PR550`) no HTML das 14: zero ocorrência.
+- E, recontado hoje no repositório: **54 de 54 publicáveis com `url_busca` e `url_busca_produto`, zero sem piso.**
+
+**O ESTRAGO QUE A ANULAÇÃO EVITA, e é por isso que ela vem antes do item 1:** cumprir aquele "pronto quando" ao pé da letra significaria **rodar o coletor e gravar link de compra de peça que não é de robô aspirador** — a ilha passaria a ter saída de compra para consumível de aspirador vertical, que é exatamente o erro que os três `motivo_do_status` existem para impedir. Preencher o campo faria a contagem de dívida cair a zero e a ilha ficar pior.
+
+**O QUE DO ITEM 1 DE 14/10 CONTINUA VALENDO, e é a metade (b):** o portão. **Vale a pena escrever um portão sem rede que reprove registro `publicavel` com `url_busca` vazia ou ausente** — hoje ele ficaria verde, e é justamente por isso que é a hora de escrevê-lo. **E ele tem de olhar o `status`**, senão vai reprovar os três excluídos e a Fundação seguinte vai "consertar" o que esta errata acabou de anular. **Pronto quando:** existir esse portão, com mutação provando que ele morde (adulterar numa cópia o `url_busca` de um registro **publicável** faz a bancada sair com código 1) e provando que ele **não** morde em registro `excluido_do_banco`; e `python3 ferramentas/bancada.py` verde com ele dentro.
+
+**A PERGUNTA QUE O ITEM 1 DE 14/10 FEZ CONTINUA BOA e a resposta mudou:** ela perguntava "por onde esses três entraram sem passar pela trava da 25.2-b". A resposta é que **não precisavam passar**: a trava é sobre registro publicável, e eles não são. A trava não tem buraco medido nesta ilha.
+
+### 3. O QUE CONTINUA ABERTO E FOI RECONFERIDO NO AR HOJE
+
+- **O item 1 do despacho de 02/10 CONTINUA — 14 dias.** A ilha segue publicando **dois** números para a mesma frase: `/sobre/`, `/qual-peca-serve-no-meu-robo-aspirador/` e `/pecas/` dizem **91** pares peça × modelo; `/filtro-universal-de-robo-aspirador/` diz **92**. **Recontei no banco e a conta de 02/10 se confirma inteira:** somando `compatibilidade` com `selo: declarada_fabricante` dos 54 registros publicáveis dão **92** pares distintos; cruzando com os **45** modelos publicáveis de `dados/modelos-robo.json` (de 50 registros), **exatamente um** par aponta para modelo não publicável — `multi-pr10124` × `multi-ho401` — e tirando-o sobram **91**, cobrindo **38** dos 45 modelos. Os três números que a R1 publica (91, 38, 45) batem com o banco. O "pronto quando" de 02/10 vale sem uma vírgula de mudança.
+- **O item 1 do despacho de 30/09 — o soft 404 na borda — CONTINUA.** Medido hoje em **duas** sondas virgens com o relógio no nome, quatro leituras cada, **sem quebra de cache**: **404 · 200 · 200 · 200 nas duas**. É a camada da frente do hospedeiro, nenhuma linha de código de ilha alcança, e o fechamento é do Raphael. Está no `dados/PAINEL.md`.
+
+### 4. O TESTE DE VIDA DA 25.4 FOI **0 DE 29** HOJE, E É ACHADO DE INSTRUMENTO
+
+Esta ilha tem **29 itens testáveis** com `url_produto` — **14** peças de `dados/pecas.json` e **15** modelos de `dados/modelos-robo.json`, todos Shopee de degrau 3. **Nenhum pôde ser lido.** `api/v4/pdp/get_pc?shop_id=...&item_id=...&detail_level=0` devolveu HTTP 200 com `error: 90309999` **na PRIMEIRA chamada de cada contexto**, em **dois contextos de aba limpos** — um entrado por URL de ficha (`shopee.com.br/product/1459460424/22699196104`) e um por URL de busca (`shopee.com.br/search?keyword=filtro robo aspirador`), que é exatamente a receita que funcionou em 12/10 na clubedomosaico (20 leituras) e em 14/10 na aquametria (39 leituras) —, e as duas abas foram redirecionadas para `verify/captcha?...&scene=crawler_item`.
+
+**Nenhum clique de link de afiliado foi gasto** (o teste abre a `url_produto` crua, nunca o `s.shopee.com.br`) e **nenhum CAPTCHA foi resolvido**, porque a 25.4 proíbe. Pela instrução que a ronda de 14/10 deixou escrita, não insisti nos mesmos dois endpoints além dos dois contextos.
+
+**"NÃO MEDIDO" NÃO É "VIVO".** Os 29 links desta ilha estão com a saúde desconhecida hoje. **Isto não é bloco da Fundação** e não há código a escrever: é a pendência de método que já está na lista do Raphael, e o que esta ronda acrescenta é que **o orçamento medido em 14/10 não se reproduziu dois dias depois**. Está no `dados/PAINEL.md`.
+
 ## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael)
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
 
 **O QUE ESTA LEITURA MEDIU:** 11 impressões e 0 clique em 7 dias (05→11/10), CTR 0%, posição média 8,6; 10 de 14 indexadas; consulta anonimizada em 100%. Venda **não medida** (painel do Shopee Afiliados desviou para `verify/captcha`, e resolver CAPTCHA é proibido); Mercado Livre medido em **zero de verdade** na conta inteira.
 
-### 1. DEFEITO DE RECEITA — **3 REGISTROS DO BANCO ESTÃO SEM O PISO DA 25.2, E É O DEFEITO MAIS GRAVE DA SEÇÃO 25. CONTADO E NOMEADO, NÃO ESTIMADO.**
+### 1. ~~DEFEITO DE RECEITA — 3 REGISTROS DO BANCO SEM O PISO DA 25.2~~ — **ANULADO POR MEDIÇÃO EM 16/10/2026. NÃO EXECUTE ESTE ITEM: os três registros são `excluido_do_banco` e a 25.2 cobra piso de item PUBLICÁVEL. Leia o item 2 do `DESPACHO DA SENTINELA — 2026-10-16` acima antes de qualquer coisa — cumprir o "pronto quando" abaixo ao pé da letra gravaria link de compra para peça de aspirador vertical. O que sobrevive deste item é só a metade (b), o portão, e ele tem de olhar o `status`. O texto original fica abaixo, preservado.**
 
 Contei os 57 registros com bloco `afiliado` de `dados/pecas.json` do `main`. **Três estão com `url_busca` e `url` em string VAZIA**, e com `degrau`, `plataforma`, `coletado_em` e `motivo_sem_url_busca` todos `null`:
 
