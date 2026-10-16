@@ -5,65 +5,76 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-15T20:00Z
-executando_desde: 2026-10-16T11:06Z   # reserva RENOVADA pela 1.1: bloco em andamento, bancada completa rodando
+ultima_execucao: 2026-10-16T11:25Z
+executando_desde: null
 bloco_atual: |
-  "CORPO DE FONTE DISTINTO" ERA DECIDIDO PELO HOSTNAME, E HOSTNAME NAO PROVA PROCEDENCIA:
-  O REGISTRO DE CORPOS PASSOU A MORAR NO ESQUEMA (versao 8, regra E26). O bloco que a
-  execucao das 16h17Z nomeou era fechar o `aviso [E15] poecilia-reticulata`, e ele NAO
-  fechou — o que fechou foi o buraco no portao que a tentativa de fechar o aviso revelou.
-  ZERO BYTE NO AR, conferido por regeneracao: a ilha segue em 52 URLs, nenhum Sync
+  O E15 PERGUNTA QUANTOS CORPOS O REGISTRO **CITA**; A PERGUNTA QUE DECIDE E QUANTOS
+  CORPOS SUSTENTAM CADA CAMPO OBRIGATORIO — E SEIS REGISTROS ESTAVAM NO VAO ENTRE AS
+  DUAS. O bloco e o proximo passo que a entrada de 15/10 deixou nomeado, com criterio
+  escrito, e ele FECHOU. ZERO BYTE NO AR: a ilha segue em 52 URLs, nenhum Sync
   acionado, revisao parada na 122, nenhuma leva do teto da 21.4 gasta (continua ZERADO
   nesta semana), e nada tocado em title, em meta description nem na
-  /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer nessas superficies antes de
-  21/10 porque e o que destroi a medicao de CTR em curso e o unico controle do arquipelago.
-  1. O QUE O BLOCO FOI BUSCAR E NAO ACHOU, MEDIDO E NAO SUPOSTO. As duas saidas que a
-     propria observacao do registro escrevia desde 11/09 foram testadas. A leitura direta:
-     egresso em 000 (connect_rejected) para fishbase.org, fishbase.se, seriouslyfish.com e
-     en.wikipedia.org, com aquametria.com.br em 200 na mesma passada — quatro hosts
-     recusados contra o dominio da ilha em 200 e politica de egresso, nao intermitencia.
-  2. UM SEGUNDO CORPO APARECEU DE VERDADE E FOI RECUSADO. A ficha de Poecilia reticulata
-     do Nonindigenous Aquatic Species Database do USGS publica "males to 2.5 cm SL; females
-     to 6 cm SL" atribuido a especie PELO NOME, por busca RESTRITA ao dominio — passa nas
-     duas regras de atribuicao da escada. A RECUSA E POR PROCEDENCIA: a ficha nao nomeia o
-     estudo primario do numero, medido em duas buscas restritas. Corpo cuja procedencia nao
-     se mede pode estar REPRODUZINDO a FishBase, que e o unico corpo desse registro. E o
-     6 contra o 5 cm SL nao desfaz a duvida: trocar TL por SL produz exatamente essa
-     divergencia, que e a familia do E25.
-  3. O DEFEITO DE VERDADE ESTAVA NO PORTAO. A contagem de corpos distintos do E14 e do E15
-     saia de uma tabela de ESPELHOS escrita no codigo e COPIADA A MAO num segundo arquivo —
-     as duas ja com formas diferentes, e nada acusava a divergencia. Espelho ela pegava;
-     REPRODUTOR nao, porque o corpo que republica o numero de outro mora em outro host. Se
-     a fonte da USGS tivesse entrado, o aviso [E15] ficaria MUDO e o E14 deixaria o guppy
-     virar `completo` sobre um corpo so.
-  4. O CONSERTO: a regua saiu do codigo e foi para o esquema. `corpos_de_fonte` declara
-     cada corpo, os hosts dele e a procedencia do numero: `propria` conta como si,
-     `reproduz` COLAPSA no corpo que reproduz, `indeterminada` NAO conta. Corpo nao
-     declarado reprova, e o erro e o ponto — obriga quem acrescenta fonte de corpo novo a
-     decidir a procedencia antes de ela contar. A recusa de hoje ficou EXECUTAVEL: o
-     usgs-nas esta declarado como `indeterminada`, com a medicao no campo por_que, embora
-     nenhuma fonte do banco o use.
-  5. OS PORTOES. testar-validador-especies.py de 51 para 54 casos, 54 com alvo, 0 falha —
-     um mede a DECLARACAO (E26) e dois medem a CONTAGEM com a marca de outra regra de
-     proposito (E14 num `completo`, E15 ao lado de um corpo so). mutacoes-corpos-de-fonte.py
-     novo: 5 mutacoes, 0 sobrevivente, e a primeira E o codigo de ontem em pessoa. A do
-     `reproduz` tem duas edicoes e a segunda e o MUNDO (secao 8), conferido: com SO a edicao
-     do mundo o portao fecha em codigo 0, 54 testes, 0 falha.
-  6. BANCADA APROVADO: 49 portoes, 0 falha — de 48 para 49 sem ninguem a alimentar. E o
-     teste-peixes.py deu 4299 afirmacoes, o MESMO numero das passadas das 14h10Z e das
-     16h4xZ: e a prova por portao de que este bloco nao alcancou a pagina.
-  7. O BANCO REAL nao mudou de veredito: 40 especies, 0 erro e os MESMOS 4 avisos, o E15 do
-     guppy entre eles. O guppy segue `parcial` com os 12 campos obrigatorios preenchidos —
-     ele e parcial SO pelo corpo unico —, segue fora da tabela da /peixes/vivaparos/ com
-     nome e causa, e segue sem ficha propria.
+  /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer nessas superficies antes
+  de 21/10 porque e o que destroi a medicao de CTR em curso e o unico controle do
+  arquipelago. Nenhum snippet, nenhum arquivo de conteudo/ e nenhum manifest.json no
+  diff, e o banco de especies nao mudou um byte.
+  1. O QUE A REGUA NOVA MEDIU, E NAO E O QUE ELA FOI BUSCAR. O criterio de ontem pedia
+     uma regua que diga, POR REGISTRO, quantos corpos sustentam cada campo obrigatorio,
+     e que o danio-margaritatus e o poecilia-reticulata saissem nomeados por ela. Os
+     dois sairam — e com eles mais SEIS que nenhuma regua via: paracheirodon-innesi,
+     trigonostigma-heteromorpha, trichopodus-leerii, symphysodon-aequifasciatus,
+     pterophyllum-scalare e carassius-auratus. Nos seis o registro CITA dois corpos de
+     verdade e o segundo sustenta so campo OPCIONAL (base_minima_cm, nivel_natacao,
+     expectativa_vida_anos), entao o nucleo obrigatorio inteiro — porte, medida,
+     temperatura, frente minima e convivencia — fica apoiado na FishBase sozinha.
+  2. E TRES DOS SEIS SAO `completo`: paracheirodon-innesi, symphysodon-aequifasciatus e
+     pterophyllum-scalare. O E14 aprovou o status dos tres por um corpo que nao sustenta
+     campo obrigatorio nenhum, e o minimo_para_sugerir conta a mesma coisa pelo mesmo
+     caminho. E a familia que a entrada de 15/10 nomeou: regua que pergunta pelo SINTOMA
+     (quantas urls, quantos corpos o registro cita) aprova o mundo em que o sintoma nao
+     aparece.
+  3. A REGRA E A E27, esquema versao 9, com as duas metades pelo desenho do E14/E15.
+     ERRO quando campo obrigatorio tem fonte e nenhum corpo CONTAVEL o sustenta — o E3
+     cobra fonte, este cobra corpo, e fonte `indeterminada` e leitura e nao corpo (E26).
+     Nenhum registro cai no erro hoje, e esse e o valor dele: fecha a porta antes de
+     alguem entrar, e quem entraria e o usgs-nas, declarado ontem. AVISO quando NENHUM
+     campo obrigatorio do registro e sustentado por dois corpos — sao os oito acima. A
+     contagem sai do corpo_contavel(), nunca do host, que era a atencao de metodo escrita
+     ontem.
+  4. E AVISO E NAO ERRO POR CALENDARIO, NAO POR RIGOR, e o motivo esta dentro da propria
+     regra no esquema: promove-la a erro, ou levar a contagem por campo para o
+     minimo_para_sugerir e para o E14, derruba os tres `completo` para `parcial` e os
+     tira das tabelas de /peixes/ — superficie de pagina, congelada ate 21/10. A regua
+     mede hoje; a decisao fica para 21/10 com o numero ja na mesa.
+  5. O ACHADO DE METODO E DE UMA MUTACAO QUE SOBREVIVEU, e nao e sobre a regra: e sobre
+     o ALVO do caso. Contar por FONTE em vez de por CORPO passou batido na primeira
+     rodada porque o registro escolhido (otocinclus-vittatus) tem duas fontes da FishBase
+     com a MESMA url, caractere por caractere — contar url dava um igual a contar corpo, e
+     a corrupcao nao distinguia as duas leituras. Trocado para o betta-splendens, que tem
+     duas urls DIFERENTES do mesmo corpo, a mutacao morreu na hora. Caso cujo alvo nao
+     separa as duas hipoteses mede zero, e nenhuma leitura do codigo diz isso.
+  6. OS PORTOES. testar-validador-especies.py de 54 para 57 casos, 57 com alvo, 0 falha —
+     um mede o mundo que so o E27 ve, um mede que a contagem e por CORPO e nao por fonte,
+     e um mede a metade de erro. mutacoes-corpos-por-campo.py novo: 6 mutacoes, 0
+     sobrevivente, e a primeira E a regua de ontem em pessoa. O comentario da linha de
+     base do portao, que digitava o total de avisos ("sao quatro hoje", de 15/10), foi
+     apagado como o criterio exigia — e teria envelhecido hoje mesmo: a linha de base foi
+     de quatro para doze numa passada.
+  7. BANCADA APROVADO: 50 portoes, 0 falha — de 49 para 50 sem ninguem a alimentar. E o
+     teste-peixes.py deu 4299 afirmacoes, o MESMO numero de ontem: a prova por portao de
+     que este bloco nao alcancou a pagina.
+  8. O BANCO REAL continua em 40 especies e 0 erro; os avisos foram de 4 para 12, e os
+     oito novos sao todos E27. A deriva de 34 linhas do catalogo medida em 15/10 continua
+     la, inalterada — esta passada nao a aumentou nem a diminuiu, porque o banco nao mudou.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |
   ATUALIZADO EM 14/10/2026: o campo `piso` deste cabecalho passou a `atingido`, entao TODO o paragrafo
   abaixo e historico de quando a ilha estava ABAIXO do piso e nao descreve a regra de hoje. O teto da 21.4
   (3 levas por semana) continua inteiro e esta ZERADO: a ultima leva de malha desta ilha foi a 9, em
-  23/09/2026, e nenhuma execucao criou URL desde entao — a de 24/09 e as QUATRO de 14/10 (13h16Z,
-  16h17Z, 17h0xZ e 19h16Z) nao criaram nenhuma. O que
+  23/09/2026, e nenhuma execucao criou URL desde entao — a de 24/09, as QUATRO de 14/10 (13h16Z,
+  16h17Z, 17h0xZ e 19h16Z), as TRES de 15/10 (10h2xZ, 13h19Z e 16h17Z), a de 15/10 19h16Z e a de
+  16/10 10h17Z nao criaram nenhuma. O que
   decide o tamanho da proxima leva deixou de ser o piso e passou a ser a serie, pela 14.6 e pela 14.8, e a
   leitura de 07/10 ja escreveu a decisao: a rampa DOBRA, dentro do teto e nunca contra ele.
   --- historico, de quando a ilha estava abaixo do piso ---

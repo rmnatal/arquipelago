@@ -145,6 +145,42 @@ def c_e26_indeterminada_nao_conta(b):
             f["url"] = "https://nas.er.usgs.gov/queries/FactSheet.aspx?SpeciesID=863"
 
 
+def _move_campos(registro, de, para, campos):
+    """Tira `campos` da fonte `de` e poe na fonte `para`, do mesmo registro."""
+    for campo in campos:
+        registro["fontes"][de]["campos"].remove(campo)
+        if campo not in registro["fontes"][para]["campos"]:
+            registro["fontes"][para]["campos"].append(campo)
+
+
+def c_e27_nucleo_num_corpo_so(b):
+    # O MUNDO QUE SO O E27 VE, e ele nao e hipotetico: seis registros do banco estao
+    # nele hoje. O registro continua citando DOIS corpos — entao o E14 aprova o
+    # `completo` e o E15 fica mudo —, e o segundo corpo passa a sustentar so campo
+    # OPCIONAL. Todo campo obrigatorio fica apoiado na FishBase sozinha.
+    r = pega(b, "corydoras-panda")
+    _move_campos(r, 1, 0, ["comprimento_minimo_aquario_cm", "convivencia"])
+
+
+def c_e27_duas_fontes_do_mesmo_corpo(b):
+    # A CONTAGEM E POR CORPO, NUNCA POR FONTE. Este registro tem DUAS urls DIFERENTES da
+    # FishBase (a ficha por nome e a ficha por id). Passando metade do nucleo para a
+    # segunda, um contador que somasse FONTES ou URLs veria dois e aprovaria. Corpo e um
+    # so, e esta e a mesma familia do defeito que o E15 pega um andar acima — por isso o
+    # alvo tem de ser um registro com duas urls do mesmo corpo que NAO sejam a mesma
+    # string, senao a corrupcao nao distingue as duas contagens.
+    r = pega(b, "betta-splendens")
+    _move_campos(r, 1, 2, ["comprimento_minimo_aquario_cm", "convivencia"])
+
+
+def c_e27_campo_so_com_corpo_indeterminado(b):
+    # A METADE DE ERRO. O `usgs-nas` esta declarado no esquema com procedencia
+    # `indeterminada` desde 15/10/2026, entao ele e leitura e nao corpo. O campo
+    # continua tendo FONTE — o E3 passa — e deixa de ter quem o sustente.
+    r = pega(b, "xiphophorus-maculatus")
+    r["fontes"][1]["url"] = "https://nas.er.usgs.gov/queries/FactSheet.aspx?SpeciesID=846"
+
+
 def c_e26_indeterminada_no_aviso(b):
     # A MESMA TROCA num registro que nao e `completo`: ali o E14 nao fala, e quem tem de
     # falar e o E15 — duas urls, um corpo so. As duas metades sao testadas porque cada uma
@@ -524,6 +560,15 @@ TESTES = [
      "symphysodon-aequifasciatus"),
     ("E19", "campo recusado agora preenchido, sem dizer quem superou",
      c_e19_campo_recusado_preenchido, "erro", "symphysodon-aequifasciatus"),
+    # E27 — a contagem de corpos POR CAMPO OBRIGATORIO. O primeiro caso e o unico
+    # mundo que o E14 e o E15 nao alcancam, e por isso ele e a razao da regra existir:
+    # o registro cita dois corpos e o segundo sustenta so campo opcional.
+    ("E27", "nucleo obrigatorio inteiro apoiado num corpo so (o 2o e ocioso)",
+     c_e27_nucleo_num_corpo_so, "aviso", "corydoras-panda"),
+    ("E27", "duas urls DIFERENTES do mesmo corpo sustentando o nucleo contam como um",
+     c_e27_duas_fontes_do_mesmo_corpo, "aviso", "betta-splendens"),
+    ("E27", "campo obrigatorio sustentado so por corpo de procedencia indeterminada",
+     c_e27_campo_so_com_corpo_indeterminado, "erro", "xiphophorus-maculatus"),
     ("E17", "nome de tela sem acento (o nome que vira titulo)", c_e17_acento, "erro",
      "hemigrammus-rhodostomus"),
     ("E17", "nome de tela sem acento depois do hifen", c_e17_acento_no_meio, "erro",
@@ -566,14 +611,16 @@ def main():
 
     # ---------------------------------------------------------------- a linha de base
     # O BANCO LIMPO JA EMITE AVISO, E ISSO E O QUE FAZIA ESTE PORTAO APROVAR POR
-    # ACIDENTE (medido em 15/10/2026). Sao quatro hoje: aviso [E15] em
-    # poecilia-reticulata, aviso [E21] em symphysodon-aequifasciatus e em
-    # apistogramma-agassizii, e aviso [E25] em pethia-conchonius. Enquanto o portao
-    # procurava so a MARCA da regra, dois casos passavam com a corrupcao ANULADA,
-    # emprestando a linha de um vizinho. A linha de base e medida aqui, do banco de
-    # hoje, e NAO digitada: lista digitada de estado esperado envelhece calada (secao
-    # 8 do ARQUIPELAGO.md), e no dia em que o banco ganhar ou perder um aviso esta
-    # medicao acompanha sozinha.
+    # ACIDENTE (medido em 15/10/2026). Enquanto o portao procurava so a MARCA da regra,
+    # dois casos passavam com a corrupcao ANULADA, emprestando a linha de um vizinho. A
+    # linha de base e medida aqui, do banco de hoje, e NAO digitada — nem a lista nem o
+    # TOTAL dela: lista digitada de estado esperado envelhece calada (secao 8 do
+    # ARQUIPELAGO.md), e no dia em que o banco ganhar ou perder um aviso esta medicao
+    # acompanha sozinha. Ela ja acompanhou: o E27, escrito em 16/10/2026, acrescentou
+    # avisos a linha de base de uma vez, e a unica coisa que este bloco precisou fazer
+    # foi deixar de dizer quantos eram — a contagem que estava escrita aqui em 15/10
+    # ("sao quatro hoje") teria envelhecido no dia seguinte. O que o portao imprime
+    # abaixo e a medicao, nao a expectativa.
     limpo = os.path.join(tmp, "banco-limpo.json")
     grava(copy.deepcopy(original), limpo)
     codigo_limpo, base, _ = linhas_emitidas(limpo)

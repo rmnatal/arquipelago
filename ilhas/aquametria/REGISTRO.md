@@ -14,6 +14,80 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-16 10h17Z–11h2xZ — O E15 PERGUNTA QUANTOS CORPOS O REGISTRO **CITA**; A PERGUNTA QUE DECIDE É QUANTOS CORPOS SUSTENTAM CADA **CAMPO OBRIGATÓRIO** — E SEIS REGISTROS ESTAVAM NO VÃO ENTRE AS DUAS
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não havia reserva vencida para o git desempatar. O último commit na pasta da ilha era de **15/10 às 20h00Z** (`41d6fdb`), catorze horas antes, da execução que **fechou**. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-r683xi` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mergear. Reserva aceita às **10h17Z**, commit `11b3fd0`, na primeira tentativa, e **renovada duas vezes** pela 1.1 (`7e88089` às 10h29Z e `f305d66` às 11h06Z), porque a bancada completa desta ilha leva mais de 20 minutos.
+
+**A REDE DA ILHA, PELA 20.2, RETESTADA E NÃO HERDADA:** `https://aquametria.com.br/` em **HTTP 200**, repetido e 200 de novo. `/wp-json/aquametria/v1/status` respondeu com a **revisão 122**, igual à do `manifest.json` do repositório — nada preso no desembarque e nada a reacionar pela 20.5.
+
+**NENHUM DOS QUATRO DESPACHOS DESTA ILHA TEM ITEM ABERTO PARA A FUNDAÇÃO**, conferidos um a um, e isso não mudou desde ontem: a leitura semanal de 14/10 manda *"deixar quieto e medir"* até 21/10 e declara que nenhum item dela é trabalho de código; as duas propostas de 07/10 rolaram para 21/10; a Proposta 3 e o item 1 do despacho do Raphael de 09/10 pedem o Chrome do Raphael; o sub-item do item 4 espera credencial de Search Console, e `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` seguem **ausentes neste ambiente**, reconferidos hoje; o despacho da ronda de 14/10 está fechado. O bloco é o **próximo passo que a entrada de 15/10 deixou nomeado, com critério escrito**.
+
+**ZERO BYTE NO AR, E MEDIDO NO FIM E NÃO SUPOSTO NO COMEÇO.** Nenhuma URL nova (a ilha segue em **52**), **nenhum Sync acionado**, revisão parada na **122**, **nenhuma leva do teto da 21.4 gasta** (continua **ZERADO** nesta semana) e nada tocado em `<title>`, em `<meta name="description">` nem na `/calculadora-de-litragem/` — a leitura de 14/10 proíbe mexer nessas superfícies antes de 21/10 porque é o que destrói a medição de CTR em curso e o único controle do arquipélago. **Nenhum snippet, nenhum arquivo de `conteudo/` e nenhum `manifest.json` estão no diff desta passada**, e o banco de espécies não mudou um byte: o diff são três arquivos tocados (`dados/esquema-especies.json`, `ferramentas/validar-especies.py`, `ferramentas/testar-validador-especies.py`) e um novo (`ferramentas/mutacoes-corpos-por-campo.py`).
+
+### 1. O QUE A RÉGUA NOVA MEDIU, E ELA ACHOU SEIS REGISTROS QUE NINGUÉM VIA
+
+A entrada de 15/10 deixou a condição escrita: o `aviso [E15]` mede o **sintoma** (duas urls fingindo dois corpos) e não a **condição** (um corpo só sustentando o registro), e *"régua que pergunta pelo sintoma aprova o mundo em que o sintoma não aparece"*. O `danio-margaritatus` era a prova barata — um corpo, **uma** url, e por isso E15 mudo. **O que a varredura de hoje achou é mais caro do que isso.**
+
+A pergunta certa não é quantos corpos o registro **cita**; é quantos corpos sustentam **cada campo obrigatório**. As duas se separam exatamente num mundo: o registro cita dois corpos de verdade, e o **segundo sustenta só campo OPCIONAL**. Medido no banco de hoje, registro a registro:
+
+- **OITO registros** têm o núcleo obrigatório inteiro apoiado num corpo só. Dois deles — `danio-margaritatus` e `poecilia-reticulata` — já eram visíveis um andar acima e são os dois que o critério de ontem mandava nomear.
+- **Os outros SEIS não eram vistos por régua nenhuma**: `paracheirodon-innesi`, `trigonostigma-heteromorpha`, `trichopodus-leerii`, `symphysodon-aequifasciatus`, `pterophyllum-scalare` e `carassius-auratus`. Em todos eles a FishBase sustenta porte, medida, temperatura, frente mínima e convivência, e a Seriously Fish sustenta `base_minima_cm`, `nivel_natacao`, `expectativa_vida_anos` — campos opcionais.
+- **E TRÊS desses seis são `completo`**: `paracheirodon-innesi`, `symphysodon-aequifasciatus` e `pterophyllum-scalare`. **O E14 aprovou o status dos três por um corpo que não sustenta campo obrigatório nenhum.** O `minimo_para_sugerir` conta a mesma coisa pelo mesmo caminho (`duas fontes distintas` sai de `corpos_de()`), então os três passam no portão do catálogo pela mesma contagem.
+
+Nada disso é hipótese nem leitura: é a saída do validador sobre o banco real, impressa a cada rodada, com os campos e a contagem de cada um na própria linha do aviso.
+
+### 2. A REGRA: E27, E ELA TEM AS DUAS METADES PELO MESMO DESENHO DO E14/E15
+
+`dados/esquema-especies.json` vai à **versão 9** e ganha a **E27**, que conta os corpos **por campo obrigatório**:
+
+- **ERRO** quando um campo obrigatório tem fonte e **nenhum corpo contável** o sustenta. O E3 cobra que o campo tenha **fonte**; este cobra que ele tenha **corpo**. Fonte de procedência `indeterminada` é leitura e não corpo (E26), então hoje um campo sustentado só por ela passa no E3 e fica sem ninguém que o sustente. **Nenhum registro cai aqui hoje, e esse é o valor da metade:** ela fecha a porta antes de alguém entrar — e quem entraria é exatamente o `usgs-nas`, declarado ontem e ainda sem nenhuma fonte no banco.
+- **AVISO** quando **nenhum** campo obrigatório do registro é sustentado por dois corpos. São os oito acima.
+
+**A contagem sai do `corpo_contavel()`**, nunca do host — é a atenção de método que a entrada de ontem deixou escrita, e ignorá-la reintroduziria o buraco que o E26 tapou na véspera. O helper novo é `corpos_por_campo()`, ao lado do `corpos_de()`, e os dois ficam lado a lado de propósito: um responde pelo registro, o outro pelo campo, e o arquivo diz qual pergunta é qual.
+
+**E27 É AVISO E NÃO ERRO, E A DECISÃO É DE CALENDÁRIO E NÃO DE RIGOR.** Promovê-la a erro, ou levar a contagem por campo para o `minimo_para_sugerir` e para o E14, **muda quem passa no catálogo** — os três `completo` cairiam para `parcial` e sairiam das tabelas das páginas de `/peixes/`. Isso é **superfície de página**, e a leitura semanal de 14/10 a proíbe antes de 21/10, porque é o que destrói a medição de CTR em curso. A régua mede hoje, a decisão fica para 21/10 ou depois, **com o número já na mesa em vez de a descobrir naquele dia** — e o motivo está escrito dentro da própria regra no esquema, não só aqui.
+
+### 3. OS PORTÕES, E O ACHADO DE MÉTODO É DE UMA MUTAÇÃO QUE SOBREVIVEU
+
+- **`testar-validador-especies.py`: de 54 para 57 casos, 57 com alvo, 0 falha.** Os três novos, e a divisão deles é o cuidado da passada: (1) **o mundo que só o E27 vê** — `corydoras-panda` continua citando dois corpos, o segundo passa a sustentar só campo opcional, o E14 e o E15 ficam mudos e o E27 acusa; (2) **duas urls DIFERENTES do mesmo corpo** sustentando o núcleo, no `betta-splendens`, que prova que a contagem é por **corpo** e não por fonte; (3) a metade de **erro**, no `xiphophorus-maculatus`, com o campo obrigatório sustentado só pelo `usgs-nas`.
+- **`ferramentas/mutacoes-corpos-por-campo.py`: 6 mutações, 0 sobrevivente.** A 1 é a régua de ontem em pessoa (contar o registro em vez do campo); a 2 e a 4 são as duas maneiras de a contagem deixar de ser por corpo (por fonte, e com `indeterminada` contando); a 3 tira a metade de erro; a 5 derruba o limiar; e a **6** troca o núcleo obrigatório pelo conjunto de **todos** os campos com fonte — que é o jeito mais silencioso de a regra parar de medir o que promete, porque ela continua rodando e nunca mais acusa.
+
+**O ACHADO, E ELE NÃO É SOBRE A REGRA: É SOBRE O ALVO DO CASO.** Na primeira rodada a **mutação 2 SOBREVIVEU** — contar por FONTE em vez de por CORPO não foi pego por nada. A causa não era a regra e sim o registro escolhido para o caso: o `otocinclus-vittatus` tem duas fontes da FishBase com a **mesma url, caractere por caractere**, então contar urls dava **um** exatamente como contar corpos, e a corrupção não distinguia as duas contagens. Trocado para o `betta-splendens`, que tem duas urls **diferentes** do mesmo corpo (a ficha por nome e a ficha por id), a mutação morreu na hora. **A lição é a mesma família do "caso sem alvo" de 15/10, um andar acima: não basta o caso apontar para um registro — o registro tem de ser um em que as duas leituras da regra DISCORDEM.** Caso cujo alvo não separa as duas hipóteses mede zero, e nenhuma leitura do código diz isso; quem disse foi a mutação.
+
+- **O comentário da linha de base deste portão digitava o total de avisos** (*"são quatro hoje"*, escrito em 15/10) e foi apagado, como o critério de ontem exigia. A medição sempre foi feita do banco; o que estava digitado era o **número**, e ele teria envelhecido hoje mesmo — o E27 levou a linha de base de quatro para doze numa passada. O portão continua imprimindo o que mediu, e agora não promete quantos são.
+
+### 4. A BANCADA, E O QUE ELA PROVA ALÉM DE PASSAR
+
+**APROVADO: 50 portões, 0 falha**, sem rede, rodada completa às **10h27Z–10h48Z** sobre esta mesma árvore — nenhum arquivo de código mudou depois dela, só o `executando_desde` do cabeçalho. Ela foi de **49 para 50** sem ninguém a alimentar: o `mutacoes-corpos-por-campo.py` entrou pela convenção de nome no dia em que foi escrito. *(Uma segunda rodada, lançada só para guardar o log sem buffer, foi interrompida às 11h2xZ pela reinicialização do processo desta sessão; as 20 linhas que ela chegou a imprimir estavam todas verdes, e os quatro portões abaixo foram reconferidos um a um depois da reinicialização.)*
+
+| portão | resultado |
+|---|---|
+| `testar-validador-especies.py` | **57 casos, 57 com alvo, 0 falha** (eram 54) |
+| `mutacoes-corpos-por-campo.py` | **6 mutações, 0 sobrevivente** |
+| `mutacoes-corpos-de-fonte.py` | **5 mutações, 0 sobrevivente** (regressão da regra de ontem) |
+| `mutacoes-alvo-dos-casos.py` | **7 mutações, 0 sobrevivente** (ele mutila o portão que mudou) |
+| `teste-peixes.py` | **4299 afirmações, 0 falha** |
+
+**E a linha que mais importa é a última, de novo:** o `teste-peixes.py` deu **4299 afirmações, o MESMO número de ontem**. Ele mede as fichas do eixo `/peixes/` contra o HTML servido, e passou sem uma linha mudada — é a prova, **por portão e não por leitura**, de que este bloco não alcançou a página, que era a condição inteira para ele poder sair nesta semana.
+
+**No fecho, o ar conferido e não presumido:** `https://aquametria.com.br/` em **HTTP 200** e `/status` na **revisão 122**, igual à do `manifest.json` — a mesma de quando a execução começou. Nenhum desembarque aconteceu, e nenhum era esperado.
+
+### 5. O QUE ESTA PASSADA NÃO FEZ, DE PROPÓSITO
+
+- **Não promoveu nenhum registro a `parcial` e não mexeu em `status_registro` de ninguém.** Os três `completo` que o E27 nomeia continuam `completo` e continuam no catálogo: mexer neles é superfície de página, e a superfície está congelada até 21/10.
+- **Não tocou no `minimo_para_sugerir` nem no E14.** Pelo mesmo motivo, e está escrito na própria regra E27 do esquema para quem a ler em 21/10 não precisar reconstruir o raciocínio.
+- **Não regerou o catálogo de espécies.** A deriva de **34 linhas** que a entrada de 15/10 deixou medida (`'porte_e_maximo_registrado',` no índice `campos` do snippet) **continua lá, inalterada**, e desembarca junto com a primeira leva que regerar o catálogo depois de 21/10. Esta passada não a aumentou nem a diminuiu: o banco não mudou.
+- **Não escreveu arquivo em `dados/`.** A medição desta passada é impressa pelo próprio validador a cada rodada; copiá-la para um `.md` datado criaria a tabela digitada de estado esperado que a seção 8 condena — e seria, literalmente, o defeito que o item 3 acabou de descrever.
+- **Uma correção de uma palavra, fora do bloco e dentro do arquivo que o bloco já abria:** a `descricao` do `esquema-especies.json` dizia *"as regras de validacao E1 a E16"* e o arquivo tem 27. Passou a dizer **E1 a E27**.
+
+### 6. O PRÓXIMO PASSO DESBLOQUEADO, E ELE É O PRIMEIRO DESTA ILHA QUE **PRECISA** DE 21/10
+
+O E27 mede e não decide. A decisão que ele põe na mesa é a primeira desta semana que **não cabe** nesta semana, e é bom que esteja nomeada com antecedência em vez de aparecer no dia:
+
+- **Pronto quando:** em **21/10 ou depois**, com a leitura semanal já registrada, o arquipélago decidir — e a decisão ficar escrita na E27 do esquema — se a contagem por campo entra no `minimo_para_sugerir` e no E14 (e o E27 vira erro), ou se fica como aviso permanente. O que a decisão custa está medido hoje: **três registros `completo`** cairiam para `parcial` e sairiam das tabelas de `/peixes/`, e outros três `conflito`/`parcial` ganhariam mais um motivo de barra.
+- **O que dá para adiantar sem tocar na superfície, e é o caminho que vale mais:** a saída honesta dos seis não é rebaixá-los, é **dar a eles um segundo corpo que sustente campo obrigatório**. A Seriously Fish já é fonte dos seis — ela só não foi colhida para porte, temperatura, frente mínima e convivência. Isso é **coleta de banco**, põe zero byte no ar, e a escada de fontes desta ilha já diz como se faz (busca restrita a domínio, nível 3 e 5). **É bloco de semana que vem e não de hoje**, porque colher seis registros não cabe no que sobrou desta execução — mas é ele que esvazia o aviso pela raiz em vez de rebaixar registro certo.
+- **Atenção de método, e é a lição de hoje:** caso de teste cujo alvo não **separa** as duas leituras da regra não mede nada e não parece com um caso ruim. Quem escrever o caso da coleta acima escolhe o registro em que a hipótese errada e a certa **discordam** — e, se não souber dizer qual é, a mutação diz.
+
 ## 2026-10-15 19h16Z–20h0xZ — "CORPO DE FONTE DISTINTO" ERA DECIDIDO PELO **HOSTNAME**, E HOSTNAME NÃO PROVA PROCEDÊNCIA: O REGISTRO DE CORPOS PASSOU A MORAR NO ESQUEMA
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não havia reserva vencida para o git desempatar. O último commit na pasta da ilha era de **17h17Z**, 119 minutos antes, da execução das 16h17Z que **fechou**. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-z57vpw` **idêntica ao `main`** (zero commit de cada lado), então não havia o que mergear. Reserva aceita às **19h16Z**, commit `7ec4529`, na primeira tentativa, e **renovada às 19h31Z** pela 1.1, porque o bloco passa de 40 minutos (a bancada sem rede leva ~22).

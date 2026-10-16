@@ -1,9 +1,9 @@
 {
  "id": "esquema-especies",
- "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E16 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
+ "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E27 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
  "gerado_em": "2026-09-09",
  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16; revisado na versao 5 (22/09/2026): chao_declarado_para e as regras E20 a E22 — o arranjo para quem a fonte declarou a base",
- "versao_esquema": 8,
+ "versao_esquema": 9,
  "depende_de": [
   "dados/esquema-produtos.json",
   "dados/especificacao-calculadoras.md"
@@ -603,6 +603,10 @@
   {
    "id": "E26",
    "regra": "Toda fonte tem url cujo host, sem o 'www.', aparece em `hosts` de algum corpo de `corpos_de_fonte`. Corpo nao declarado e ERRO, e o erro e o ponto: ele obriga quem acrescenta uma fonte de um corpo novo a DECLARAR a procedencia do numero dela antes de ela contar como corpo, em vez de deixar a contagem herdar o palpite de que host diferente e corpo diferente. E a contagem de corpos distintos do E14 e do E15 passa a sair da `regra_de_contagem` daquele registro e nunca mais de tabela escrita no codigo: `propria` conta como si, `reproduz` colapsa no corpo que reproduz, `indeterminada` nao conta. As duas metades sao a mesma regra porque cada uma sozinha aprova um mundo errado: so a declaracao obrigatoria deixaria o reprodutor declarado contar como corpo proprio, e so a contagem por procedencia nao impediria o corpo novo de entrar sem ninguem decidir o que ele e. Medido em 15/10/2026: a regua vivia em duas copias escritas a mao, no validador e no varrer-categorias-possiveis.py, e nenhuma das duas sabia o que e um reprodutor."
+  },
+  {
+   "id": "E27",
+   "regra": "Conta os corpos de fonte POR CAMPO OBRIGATORIO, e nao so os corpos que o registro cita no total. ERRO quando um campo obrigatorio tem fonte e nenhum corpo CONTAVEL o sustenta — fonte de procedencia `indeterminada` e leitura e nao corpo (E26), entao esse campo passa no E3, que cobra fonte, e nao tem quem o sustente. AVISO quando NENHUM campo obrigatorio do registro e sustentado por dois corpos, ou seja o nucleo inteiro se apoia num corpo so. Por que ela existe, e a causa esta medida: o E14 e o E15 perguntam pelo SINTOMA (quantas urls, quantos corpos o registro cita) e por isso aprovam o mundo em que o sintoma nao aparece — o registro cita dois corpos, o segundo sustenta so campo opcional, e todo campo obrigatorio continua apoiado no primeiro. Medido no banco em 16/10/2026: OITO registros caem no aviso, e so DOIS deles (danio-margaritatus e poecilia-reticulata) eram visiveis um andar acima; dos outros seis, TRES sao `completo` — paracheirodon-innesi, symphysodon-aequifasciatus e pterophyllum-scalare —, e nos tres o E14 aprovou o status por um corpo que nao sustenta campo obrigatorio nenhum. A contagem sai do `corpo_contavel()` da `regra_de_contagem` de `corpos_de_fonte`, nunca do host, senao reintroduz o buraco que o E26 tapou. E AVISO e nao erro de proposito: promove-la a erro, ou levar a contagem por campo para o `minimo_para_sugerir` e para o E14, muda quem passa no catalogo e portanto muda a SUPERFICIE das paginas — e a leitura semanal de 14/10/2026 proibe mexer na superficie desta ilha antes de 21/10, porque e o que destroi a medicao de CTR em curso. A decisao fica para 21/10 ou depois, com o numero ja na mesa."
   }
  ],
  "o_que_nao_entra": [

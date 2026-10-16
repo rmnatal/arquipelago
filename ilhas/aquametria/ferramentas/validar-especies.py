@@ -116,6 +116,30 @@ def corpos_de(registro):
     return nomes
 
 
+def corpos_por_campo(registro):
+    """Campo -> conjunto de corpos CONTAVEIS que o sustentam (regra E27, 16/10/2026).
+
+    O `corpos_de()` acima responde quantos corpos o REGISTRO cita; este responde
+    quantos corpos sustentam CADA CAMPO. Sao perguntas diferentes e a segunda e a que
+    decide se o numero publicado foi conferido: um registro pode citar dois corpos e
+    ter todo o nucleo obrigatorio apoiado em um so, porque o segundo corpo sustenta
+    campo opcional. O E14 e o E15 nao enxergam isso — eles perguntam pelo SINTOMA
+    (quantas urls, quantos corpos no total) e aprovam o mundo em que o sintoma nao
+    aparece.
+
+    A contagem sai do `corpo_contavel()`, nunca do host: quem decide e a procedencia
+    declarada no esquema, senao esta regua reintroduz o buraco que o E26 tapou.
+    """
+    por_campo = {}
+    for f in registro.get("fontes", []):
+        nome = corpo_contavel(f.get("url"))
+        for campo in f.get("campos", []):
+            por_campo.setdefault(campo, set())
+            if nome:
+                por_campo[campo].add(nome)
+    return por_campo
+
+
 # Numero por extenso conta como numero (regra E16). A fonte costuma escrever
 # "grupo de pelo menos SEIS", e cobrar algarismo ali reprovaria transcricao fiel.
 # As referencias do banco sao ASCII sem acento, por isso "tres" e nao "tres".
@@ -345,6 +369,49 @@ def main():
                 continue
             if preenchido(r.get(campo)) and campo not in sustentado:
                 erro("E3", rid, "campo '%s' preenchido sem nenhuma fonte que o sustente" % campo)
+
+        # E27 - QUANTOS CORPOS SUSTENTAM CADA CAMPO OBRIGATORIO (16/10/2026).
+        # O E14 e o E15 contam os corpos que o REGISTRO cita. Essa pergunta e sobre o
+        # sintoma — duas urls fingindo dois corpos — e aprova em silencio o mundo em que
+        # o sintoma nao aparece: o registro cita dois corpos, o segundo sustenta so
+        # campo OPCIONAL, e o nucleo obrigatorio inteiro continua apoiado num corpo so.
+        # Medido no banco em 16/10/2026: seis registros estao nesse estado, e DOIS deles
+        # sao `completo` — o E14 os aprovou por um corpo que nao sustenta campo
+        # obrigatorio nenhum. Os outros dois nomeados (danio-margaritatus e
+        # poecilia-reticulata) ja eram visiveis um andar acima, e e por isso que esta
+        # regua nao substitui aquela: ela mede a CONDICAO onde as duas sao a mesma e
+        # continua medindo onde elas se separam.
+        nucleo = [c for c in obrigatorios if c not in isentos and c in sustentado]
+        corpos_do_campo = corpos_por_campo(r)
+        for campo in nucleo:
+            if not corpos_do_campo.get(campo):
+                # E3 ja cobra que o campo tenha FONTE; aqui se cobra que ele tenha
+                # CORPO. Fonte de procedencia `indeterminada` e leitura e nao corpo
+                # (E26), entao um campo obrigatorio sustentado so por ela passa no E3 e
+                # nao tem quem o sustente. Hoje nenhum registro cai aqui, e o valor da
+                # regra e justamente esse: ela fecha a porta antes de alguem entrar.
+                erro("E27", rid, "campo obrigatorio '%s' tem fonte mas nenhum corpo "
+                                 "contavel o sustenta (procedencia indeterminada nao e "
+                                 "corpo)" % campo)
+        if nucleo:
+            corpos_do_nucleo = set()
+            for campo in nucleo:
+                corpos_do_nucleo |= corpos_do_campo.get(campo, set())
+            if len(corpos_do_nucleo) < 2:
+                detalhe = ", ".join("%s=%d" % (c, len(corpos_do_campo.get(c, ())))
+                                    for c in nucleo)
+                ociosos = sorted(corpos_de(r) - corpos_do_nucleo)
+                cauda = ""
+                if ociosos:
+                    cauda = ("; o corpo %s e citado pelo registro e nao sustenta campo "
+                             "obrigatorio nenhum" % ", ".join(ociosos))
+                    if r.get("status_registro") == "completo":
+                        cauda += (", entao o E14 aprovou 'completo' por um corpo que nao "
+                                  "sustenta o nucleo")
+                aviso("E27", rid, "os %d campo(s) obrigatorio(s) com fonte se apoiam em %d "
+                                  "corpo(s) (%s) — %s%s"
+                      % (len(nucleo), len(corpos_do_nucleo),
+                         ", ".join(sorted(corpos_do_nucleo)) or "nenhum", detalhe, cauda))
 
         # E5 - varejo nao sustenta manutencao
         for campo, ors in sustentado.items():
