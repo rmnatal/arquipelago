@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-16T14:31Z
-executando_desde: 2026-10-16T16:17Z
+executando_desde: 2026-10-16T17:05Z
 bloco_atual: |
   "COLETA DE BANCO POE ZERO BYTE NO AR" E VERDADE PARA O REGISTRO QUE PASSA NO PORTAO E
   FALSA PARA O BARRADO — e quem mediu isso foi o PORTAO, depois de o validador ficar
