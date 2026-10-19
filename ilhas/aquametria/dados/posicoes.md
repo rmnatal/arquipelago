@@ -56,6 +56,14 @@ Escrito pela Fundação no bloco das 13h16Z–14h0xZ de 14/10/2026, que cumpriu 
 
 **O que a leitura seguinte tem de registrar, para os critérios de pronto fecharem:** para a ficha do betta, 3 ou mais cliques em 7 dias **ou** CTR de 2% ou mais; para as calculadoras, 1 ou mais cliques em pelo menos **duas das quatro** trocadas. E o `<title>` servido no dia, copiado para esta série do lado do número — porque promessa que estourar o teto de 65 volta a ser a marca **em silêncio**, e sem o título copiado não há como distinguir "o título não funcionou" de "o título não estava lá".
 
+> **E ESSE TÍTULO SERVIDO NÃO SE COPIA MAIS DA ABA: ELE É MEDIDO. Escrito pela Fundação na execução das 13h27Z de 19/10/2026, dois dias antes de a linha acima ser cobrada.** A linha de 14/10 desta série diz, com todas as letras, que *"a leitura de 21/10 é a primeira em que copiar o título servido significa alguma coisa — e aí é OBRIGATÓRIO"* — e o instrumento era uma aba de navegador. Copiar 52 frases da tela para cá é a **recontagem à mão** que esta ilha mediu em 19/10 um andar abaixo, no cano de links: *"quando existe portão, ninguém reconta"*.
+>
+> **A leitura de 21/10 CITA a seção do dia em `dados/titulos-no-ar.md` em vez de transcrever.** Quem a escreve é `python3 ferramentas/conferir-titulo-no-ar.py --gravar`; quem a confere é o mesmo arquivo sem a opção, e ele compara **página por página**. A seção traz, por URL, o `<title>` e a `<meta name="description">` servidos com as entidades **decodificadas** — que é como a tela e o Google contam —, mais a tabela das promessas que chegaram ao ar e a revisão do `/status` na hora da medição, como procedência do desembarque.
+>
+> **E o portão fecha, do lado do ar, o silêncio que o parágrafo acima nomeia.** A `ferramentas/teste-promessa-do-titulo.py` é BANCADA e mede o REPOSITÓRIO: ela nunca viu o ar. As três travas da promessa são silenciosas por desenho — se o número não couber em 65 ou se a função do banco não responder, o título volta a nome + marca, que é **sempre válido**. A partir de hoje, promessa que não desembarca **reprova um portão**, e o controle que ganhar promessa também: a `/calculadora-de-litragem/` é afirmada sem nenhum algarismo no `<title>` servido, porque é ela que protege a atribuição das outras cinco.
+>
+> **A LINHA DE BASE, medida às 13h46Z de 19/10/2026 e não digitada:** 52 de 52 URLs do sitemap abertas, 0 sem `<title>`, 0 sem meta description, o `<title>` mais longo em **64** de 65, as **cinco** promessas servidas inteiras, o controle sem algarismo, e `/status` e `manifest.json` os dois na **revisão 122** — nenhum byte foi ao ar nesta passada. **São estes os títulos que produziram a janela que a leitura de 21/10 vai ler.**
+
 ## Notas da primeira medição (2026-09-23)
 
 - **A série começa a valer com duas semanas** (12.1). Esta é a linha 1: nenhuma variação existe ainda, e nenhuma decisão de banda deve ser tomada só com ela.
