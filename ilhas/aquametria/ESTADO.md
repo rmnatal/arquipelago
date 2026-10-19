@@ -100,12 +100,19 @@ bloco_atual: |
      13h46Z de hoje: zero deriva, e o conserto nao mexeu no que o portao mede. Rede no
      fecho pela 20.2: home em 200 nas tres passadas, /status e manifest os dois na
      revisao 122.
-  9. ACHADO DE METODO NA CONFERENCIA DA REDE, e vale para quem copiar o passo 20.2: a
-     rota do /status desta ilha NAO e /<ilha>-sync/status, e /wp-json/aquametria/v1/
-     status. O palpite devolve a pagina de 404 do WordPress com HTTP 200 e corpo de
-     HTML — ou seja, 200 numa rota de API NAO prova que a rota existe, e quem le so o
-     codigo le "Sync vivo" numa rota que nao existe. A rota certa esta no PROMPT.md
-     desta pasta, secao "Endpoints desta ilha", e foi lida de la.
+  9. ACHADO DE METODO NA CONFERENCIA DA REDE, E ELE E CONTRA MIM MESMA: A PRIMEIRA
+     VERSAO DESTE ITEM AFIRMAVA UM NUMERO QUE EU NAO MEDI. A rota do /status desta
+     ilha nao e /<ilha>-sync/status, e /wp-json/aquametria/v1/status — essa parte esta
+     certa e a rota certa esta no PROMPT.md desta pasta, secao "Endpoints desta ilha",
+     lida de la e nao adivinhada. O que eu escrevi errado foi o resto: afirmei que o
+     palpite devolvia "HTTP 200 com corpo de HTML", e MEDIDO depois ele devolve 404
+     (rota certa 200, rota errada 404, rota absurda 404). Inferi o 200 porque rodei o
+     curl SEM -w, vi corpo de HTML voltar e li "a requisicao funcionou" — ou seja li o
+     CORPO e nunca pedi o codigo. A licao que sobra e melhor que a que eu tinha
+     escrito, e e sobre quem mede e nao sobre o WordPress: CURL QUE IMPRIME CORPO NAO
+     E MEDICAO DE CODIGO DE STATUS. Quem confere a rede pelo passo 20.2 pede o codigo
+     com -w e afirma sobre ele; quem olha o corpo e conclui o codigo esta adivinhando,
+     e foi exatamente o que esta passada fez antes de se pegar.
   10. PROXIMO PASSO: a lista de 21/10 nao mudou e e a mesma do fecho das 13h27Z —
      declarar os cinco `divergiu` como conflitos (E9 e dominio_por_campo), gravar a
      fonte do danio e a do guppy (que fecha o aviso [E15]), decidir os tres
