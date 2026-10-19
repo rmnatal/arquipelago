@@ -35,14 +35,36 @@ caracteres de ` – Aquametria` que o WordPress acrescenta; 65 e o que o Google
 mostra antes de cortar. Cobrar isto na bancada, sem rede, e o que impede um
 titulo estourado de sair do repositorio.
 """
+import importlib.util
 import json
 import os
 import re
 import sys
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CAUDA = " – Aquametria"   # o que o WordPress acrescenta: 13 caracteres
-TETO = 65                 # o mesmo TITULO_MAXIMO do teste-voz.mjs
+
+# AS TRES CONSTANTES DO TITULO SAO PERGUNTADAS AO SNIPPET, NAO DIGITADAS AQUI
+# (19/10/2026, achado 11 do fecho das 13h27Z desta ilha). Elas moram num lugar
+# so — AQUAMETRIA_TITULO_TETO, _SEPARADOR e _MARCA do aquametria-seo-tecnico.php
+# — e redigita-las faz este portao ficar VERDE no dia em que o snippet mudar,
+# com a promessa caindo do ar em silencio. Quem le e a regua-teto-do-titulo.py.
+def carregar_regua_do_teto():
+    caminho = os.path.join(RAIZ, 'ferramentas', 'regua-teto-do-titulo.py')
+    spec = importlib.util.spec_from_file_location('regua_teto_do_titulo', caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+_teto = carregar_regua_do_teto()
+_c = _teto.perguntar(RAIZ)
+TETO = _c['teto']
+SEPARADOR = _c['separador']
+MARCA = _c['marca']
+# A CAUDA E DERIVADA, NAO DIGITADA: e o que o WordPress acrescenta ao nome, ou
+# seja separador + marca. Ela era uma terceira constante escrita a mao aqui
+# (`CAUDA = " – Aquametria"`), e derivar e o contrario de redigitar.
+CAUDA = _teto.cauda(_c)
 
 contadas = [0]
 falhas = []

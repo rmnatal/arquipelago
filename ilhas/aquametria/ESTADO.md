@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-19T14:20Z
-executando_desde: 2026-10-19T16:17Z
+executando_desde: 2026-10-19T16:38Z
 bloco_atual: |
   O TITULO SERVIDO NO AR ERA A UNICA MEDICAO OBRIGATORIA DESTA ILHA SEM INSTRUMENTO, E
   ELA E COBRADA EM DOIS DIAS. A linha de 14/10 do dados/posicoes.md diz que a leitura de

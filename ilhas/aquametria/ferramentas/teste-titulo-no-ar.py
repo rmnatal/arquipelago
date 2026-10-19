@@ -53,6 +53,7 @@ import importlib.util
 import io
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -60,7 +61,23 @@ import tempfile
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FERRAMENTAS = os.path.join(RAIZ, "ferramentas")
-TETO = 65
+# TETO_ENCENADO ENCENADO, E O NOME E O CONSERTO (19/10/2026)
+# -------------------------------------------------
+# Este numero NAO e o teto da ilha e nao se le do snippet: e dado de teste. A
+# `regua-titulo-no-ar.py` recebe o teto como ARGUMENTO (`acima_do_teto(medido,
+# teto)`), e as afirmacoes daqui montam titulos de exatamente este tamanho e de
+# um a mais para medir a borda da regua. Ler o snippet aqui desligaria a propria
+# medicao: no dia em que o teto mudasse, as cadeias de "a" continuariam do
+# tamanho antigo e a borda deixaria de ser borda.
+# O que estava errado era o NOME. Ele se chamava `TETO`, com o numero digitado ao
+# lado, identico ao dos portoes que afirmam sobre a ILHA, e nenhum leitor
+# distinguia encenacao de divida — foi
+# por isso que o achado 11 do fecho das 13h27Z contou QUATRO arquivos quando a
+# varredura desta passada achou CINCO. A `regua-teto-do-titulo.py` denuncia o nome
+# `TETO` com numero digitado ao lado, e deixa este passar pelo nome: encenacao
+# que se declara
+# encenacao nao e divida, e encenacao disfarcada de decisao e.
+TETO_ENCENADO = 65
 
 contadas = [0]
 falhas = []
@@ -189,7 +206,7 @@ def metade_b():
     ok("promessa que NAO chegou e pega: o titulo voltou a nome + marca",
        not regua.promessa_chegou(caiu, "de 10 a 60 lm por litro"))
     ok("e o titulo do fallback continua VALIDO — e isso que o faz silencioso",
-       caiu["titulo"] and caiu["n"] <= TETO and not caiu["digito"])
+       caiu["titulo"] and caiu["n"] <= TETO_ENCENADO and not caiu["digito"])
 
     # Promessa que chega PELA METADE e promessa que nao chegou: 'de 10 a 60' nao
     # e 'de 10 a 60 lm por litro', e o `in` separa os dois.
@@ -223,7 +240,7 @@ def metade_d():
 
     vazio = regua.medir({})
     ok("medir({}) devolve nada", vazio == {})
-    ok("acima_do_teto sobre nada: lista vazia", regua.acima_do_teto(vazio, TETO) == [])
+    ok("acima_do_teto sobre nada: lista vazia", regua.acima_do_teto(vazio, TETO_ENCENADO) == [])
     ok("sem_titulo sobre nada: lista vazia", regua.sem_titulo(vazio) == [])
     ok("sem_descricao sobre nada: lista vazia", regua.sem_descricao(vazio) == [])
     # O try/except nao e zelo: `max([])` explode, e excecao aqui derruba a
@@ -246,10 +263,10 @@ def metade_d():
     # O teto morde: 66 reprova, 65 passa. A fronteira medida nos dois lados.
     sessenta_e_cinco = regua.medir({"u": pagina(titulo="a" * 65)})
     sessenta_e_seis = regua.medir({"u": pagina(titulo="a" * 66)})
-    ok("titulo de 65 nao esta acima do teto", regua.acima_do_teto(sessenta_e_cinco, TETO) == [])
-    ok("titulo de 66 esta acima do teto", regua.acima_do_teto(sessenta_e_seis, TETO) == ["u"])
+    ok("titulo de 65 nao esta acima do teto", regua.acima_do_teto(sessenta_e_cinco, TETO_ENCENADO) == [])
+    ok("titulo de 66 esta acima do teto", regua.acima_do_teto(sessenta_e_seis, TETO_ENCENADO) == ["u"])
     ok("e a entidade e decodificada ANTES de medir o teto: 65 na tela passa",
-       regua.acima_do_teto(regua.medir({"u": pagina(titulo="a" * 64 + "&#8211;")}), TETO) == [])
+       regua.acima_do_teto(regua.medir({"u": pagina(titulo="a" * 64 + "&#8211;")}), TETO_ENCENADO) == [])
 
     ok("sem_titulo acha a pagina sem <title>",
        regua.sem_titulo(regua.medir({"u": pagina(titulo=None)})) == ["u"])
@@ -344,12 +361,58 @@ def mapa_de_promessas():
 '''
 
 
-def ilha_de_sombra(mundo):
+# O TETO DA ILHA DE SOMBRA, E ELE NAO E 65 DE PROPOSITO (19/10/2026)
+# ------------------------------------------------------------------
+# Desde 19/10 o `conferir-titulo-no-ar.py` nao digita mais o teto: ele pergunta
+# a `regua-teto-do-titulo.py`, que pergunta ao snippet da ilha (achado 11 do
+# fecho das 13h27Z). A ilha de sombra nao tinha snippet nenhum, e por isso o
+# portao parou de subir aqui na primeira passada deste conserto.
+#
+# A SAIDA NAO FOI COPIAR A ILHA DE VERDADE PARA DENTRO DA SOMBRA. Sombra que
+# precisa da ilha inteira deixa de ser encenacao. A saida foi dar a sombra um
+# snippet SEU, com as tres constantes, e com o teto num numero DIFERENTE do da
+# ilha — e isso vira a prova que o conserto precisava: se o portao da sombra
+# relatar 60, o numero viajou do snippet daquela ilha ate a medicao, e nao
+# estava escrito em lugar nenhum do portao. Teto igual a 65 provaria nada,
+# porque e o numero que o codigo teria se continuasse redigitado.
+#
+# 60 cabe na banda crivel da regua e e maior que o titulo mais longo de qualquer
+# mundo encenado aqui (37 caracteres), entao nenhuma afirmacao antiga muda de
+# cor por causa dele. O que muda de cor se o conserto for desfeito e a
+# afirmacao nova da metade (F).
+TETO_DA_SOMBRA = 60
+
+# SEM `<?php` DE PROPOSITO, e e convencao desta ilha e nao descuido: os snippets
+# de `snippets/` sao o que o Code Snippets guarda, ou seja PHP CRU, e o
+# `render-para-teste.php` os carrega com `eval()` — que recusa a tag de abertura
+# com erro de sintaxe. A primeira versao deste texto tinha a tag e o portao da
+# sombra reprovou com "PHP Parse error".
+SNIPPET_DE_SOMBRA = """/* Snippet de sombra escrito pelo teste-titulo-no-ar.py: so as tres constantes
+   do titulo, com o teto de proposito DIFERENTE do da ilha de verdade. */
+if ( ! defined( 'AQUAMETRIA_TITULO_TETO' ) ) {
+	define( 'AQUAMETRIA_TITULO_TETO', %d );
+}
+if ( ! defined( 'AQUAMETRIA_TITULO_SEPARADOR' ) ) {
+	define( 'AQUAMETRIA_TITULO_SEPARADOR', ' – ' );
+}
+if ( ! defined( 'AQUAMETRIA_TITULO_MARCA' ) ) {
+	define( 'AQUAMETRIA_TITULO_MARCA', 'Aquametria' );
+}
+"""
+
+
+def ilha_de_sombra(mundo, teto=None):
     tmp = tempfile.mkdtemp(prefix="aqm-teste-titulo-ar-")
     os.makedirs(os.path.join(tmp, "ferramentas"))
     os.makedirs(os.path.join(tmp, "dados"))
-    for nome in ("regua-titulo-no-ar.py", "conferir-titulo-no-ar.py"):
+    os.makedirs(os.path.join(tmp, "snippets"))
+    for nome in ("regua-titulo-no-ar.py", "conferir-titulo-no-ar.py",
+                 "regua-teto-do-titulo.py", "listar-teto-do-titulo.php",
+                 "render-para-teste.php"):
         shutil.copy(os.path.join(FERRAMENTAS, nome), os.path.join(tmp, "ferramentas", nome))
+    with io.open(os.path.join(tmp, "snippets", "aquametria-teto-de-sombra.php"),
+                 "w", encoding="utf-8") as f:
+        f.write(SNIPPET_DE_SOMBRA % (TETO_DA_SOMBRA if teto is None else teto))
     # A sonda entra NO FIM do portao, depois das definicoes: em Python a ultima
     # definicao do nome e a que vale, e e assim que a rede sai sem eu editar o
     # corpo do portao — que e o que o teste existe para medir intacto.
@@ -413,6 +476,38 @@ def metade_f():
 
         codigo, saida = rodar_portao(ilha)
         ok("com a serie gravada o portao APROVA", codigo == 0, ultima(saida))
+
+        # A PROVA DE QUE O TETO E LIDO E NAO REDIGITADO (19/10/2026)
+        # ---------------------------------------------------------
+        # Esta e a afirmacao que fecha o achado 11, e ela nao olha o codigo do
+        # portao: olha o NUMERO que ele relata. O snippet desta ilha de sombra
+        # declara 60, a ilha de verdade declara 65, e nenhum dos dois numeros
+        # esta escrito no `conferir-titulo-no-ar.py`. Se alguem redigitar o teto
+        # ali dentro, o portao da sombra volta a relatar 65 e esta linha fica
+        # vermelha no mesmo dia — que e exactamente o aviso que nao existia
+        # quando o teto morava a mao em cinco arquivos.
+        # O numero e LIDO da linha do relatorio, nunca procurado como substring:
+        # a pagina encenada serve "de 10 a 60 lm por litro", entao um `in saida`
+        # com "60" poderia ficar verde pelo texto do titulo e nao pelo teto. A
+        # primeira versao desta afirmacao tinha esse furo.
+        relatado = re.search(r"mais longo \d+ de (\d+)", saida)
+        ok("o portao da sombra relata o teto DO SNIPPET DELA, nao um numero escrito nele",
+           bool(relatado) and int(relatado.group(1)) == TETO_DA_SOMBRA,
+           "relatou %s, esperado %d" % (relatado.group(1) if relatado else "(nada)", TETO_DA_SOMBRA))
+        ok("e o teto da sombra nao e o da ilha de verdade — senao a prova acima nao prova nada",
+           TETO_DA_SOMBRA != 65, "sombra=%d" % TETO_DA_SOMBRA)
+    finally:
+        shutil.rmtree(ilha, ignore_errors=True)
+
+    # E A OUTRA DIRECAO: TETO FORA DA BANDA CRIVEL NAO PASSA PELO PORTAO.
+    # Ilha de sombra com teto de 5 — numero que o PHP aceita e que a regua
+    # recusa, porque reprovaria TODO titulo e uma bancada inteira vermelha por
+    # numero fora de faixa e indistinguivel de ilha quebrada.
+    ilha = ilha_de_sombra(mundo_bom(), teto=5)
+    try:
+        codigo, saida = rodar_portao(ilha, "--gravar")
+        ok("teto fora da banda crivel REPROVA o portao em vez de medir contra ele",
+           codigo != 0 and "banda crivel" in saida, ultima(saida))
     finally:
         shutil.rmtree(ilha, ignore_errors=True)
 

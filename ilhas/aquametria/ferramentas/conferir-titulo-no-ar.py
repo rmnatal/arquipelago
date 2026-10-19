@@ -117,24 +117,27 @@ SERIE = os.path.join(RAIZ, "dados", "titulos-no-ar.md")
 SITE = "https://aquametria.com.br"
 SITEMAP = SITE + "/wp-sitemap.xml"
 
-# O teto do que o Google mostra antes de cortar. E o mesmo numero do
-# `teste-promessa-do-titulo.py`, do `teste-titulos-das-duas-fontes.py` e do
-# `teste-voz.mjs` — e nao e uma quarta regua: aqueles tres medem a frase do
-# REPOSITORIO e este mede a frase do AR, que e outra medicao do mesmo teto.
-TETO = 65
-
 GRAVAR = "--gravar" in sys.argv[1:]
 
 
-def carregar_regua():
-    caminho = os.path.join(FERRAMENTAS, "regua-titulo-no-ar.py")
-    spec = importlib.util.spec_from_file_location("regua_titulo_no_ar", caminho)
+def carregar(arquivo, apelido):
+    caminho = os.path.join(FERRAMENTAS, arquivo)
+    spec = importlib.util.spec_from_file_location(apelido, caminho)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
 
 
-regua = carregar_regua()
+regua = carregar("regua-titulo-no-ar.py", "regua_titulo_no_ar")
+
+# O TETO E PERGUNTADO AO SNIPPET, NAO DIGITADO (19/10/2026). Este arquivo
+# nasceu as 13h53Z de hoje com `TETO = 65` escrito a mao e foi o QUINTO a
+# faze-lo; o achado 11 do fecho das 13h27Z nomeou a divida e esta linha e o
+# conserto dela. Os portoes de bancada medem a frase do REPOSITORIO e este mede
+# a frase do AR — sao medicoes diferentes do MESMO teto, e por isso o numero
+# tem de sair do mesmo lugar: o AQUAMETRIA_TITULO_TETO do snippet. Pergunta
+# ANTES de abrir rede: teto que nao se sabe nao adia a medicao, impede ela.
+TETO = carregar("regua-teto-do-titulo.py", "regua_teto_do_titulo").perguntar(RAIZ)["teto"]
 
 falhas = []
 

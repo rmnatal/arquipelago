@@ -36,6 +36,31 @@ import { readFileSync } from 'node:fs';
 
 const RAIZ = process.argv[2] || '.';
 
+/* O TETO E PERGUNTADO, NAO DIGITADO (19/10/2026, achado 11 do fecho das 13h27Z
+   desta ilha). Ele mora num lugar so — o AQUAMETRIA_TITULO_TETO do
+   aquametria-seo-tecnico.php —, e este arquivo o redigitava em DUAS posicoes: a
+   constante abaixo e o literal `65` dentro da propria afirmacao da casca.
+   Portao que mede contra teto redigitado mede contra uma decisao que ninguem
+   mais sustenta: quando o snippet baixar o teto, o site passa a servir nome +
+   marca (as tres travas da promessa sao silenciosas por desenho) e esta linha
+   continua verde contra o numero velho.
+   A OBJECAO DO ITEM 1 DO CABECALHO DESTE ARQUIVO — "quem confere escreve a
+   propria regua" — segue respeitada, e e por isso que a pergunta vai para a
+   regua-teto-do-titulo.py e nao para o PHP direto: a regua le o numero do
+   snippet e recusa teto fora da banda que ELA declara, entao o snippet nao
+   consegue alargar este portao em silencio. A lista de termos proibidos
+   continua escrita a mao aqui, como aquele item manda — ela e o policiado, o
+   teto e a decisao, e sao coisas diferentes. */
+const TITULO_MAXIMO = Number(
+  execFileSync('python3', [RAIZ + '/ferramentas/regua-teto-do-titulo.py', '--teto'], {
+    encoding: 'utf8',
+  }).trim(),
+);
+if (!Number.isInteger(TITULO_MAXIMO) || TITULO_MAXIMO <= 0) {
+  throw new Error('a regua-teto-do-titulo.py nao devolveu um teto utilizavel: ' + TITULO_MAXIMO);
+}
+
+
 /* ======================================================================
  * A LISTA DE PÁGINAS DESTE PORTÃO DEIXOU DE SER DIGITADA (22/09/2026)
  *
@@ -360,7 +385,7 @@ for (const slug of PAGINAS) {
   const aba = texto((html.match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1]);
   ok('tem <title>', aba.length > 0, aba);
   ok('<title> sem termo proibido', acharProibidos(aba).length === 0, acharProibidos(aba).join(', '));
-  ok('<title> com no máximo 65 caracteres', aba.length <= 65, `${aba.length}`);
+  ok(`<title> com no máximo ${TITULO_MAXIMO} caracteres`, aba.length <= TITULO_MAXIMO, `${aba.length} — ${aba}`);
 
   ok('tem H1', h1.length > 0, h1);
   ok('H1 sem termo proibido', acharProibidos(h1).length === 0, acharProibidos(h1).join(', '));
@@ -564,7 +589,6 @@ function restricoesDeclaradas(slug) {
    da régua de atribuição, que passou a usá-la também. */
 const DATA_DE_LEITURA = /\b\d{2}\/\d{2}\/\d{4}\b/;
 
-const TITULO_MAXIMO = 65;   // o que o Google mostra antes de cortar
 
 function renderCompleta(slug) {
   return execFileSync('php', [RAIZ + '/ferramentas/render-pagina-completa.php', RAIZ, slug], {

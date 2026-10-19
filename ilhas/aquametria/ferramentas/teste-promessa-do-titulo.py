@@ -46,6 +46,7 @@ pagina de conteudo/, registro do snippet para a pagina do eixo /peixes/ — e
 depois comparado com o que o mapa gerado diz. Mapa gerado desatualizado reprova
 aqui, e nao no ar.
 """
+import importlib.util
 import io
 import json
 import os
@@ -54,9 +55,25 @@ import subprocess
 import sys
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SEPARADOR = ' – '          # o travessao que o WordPress serve entre as duas metades
-MARCA = 'Aquametria'
-TETO = 65                  # o mesmo TITULO_MAXIMO do teste-voz.mjs
+
+# AS TRES CONSTANTES DO TITULO SAO PERGUNTADAS AO SNIPPET, NAO DIGITADAS AQUI
+# (19/10/2026, achado 11 do fecho das 13h27Z desta ilha). Elas moram num lugar
+# so — AQUAMETRIA_TITULO_TETO, _SEPARADOR e _MARCA do aquametria-seo-tecnico.php
+# — e redigita-las faz este portao ficar VERDE no dia em que o snippet mudar,
+# com a promessa caindo do ar em silencio. Quem le e a regua-teto-do-titulo.py.
+def carregar_regua_do_teto():
+    caminho = os.path.join(RAIZ, 'ferramentas', 'regua-teto-do-titulo.py')
+    spec = importlib.util.spec_from_file_location('regua_teto_do_titulo', caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+_teto = carregar_regua_do_teto()
+_c = _teto.perguntar(RAIZ)
+TETO = _c['teto']
+SEPARADOR = _c['separador']
+MARCA = _c['marca']
 
 # AS PAGINAS QUE DECLARARAM PROMESSA, por decisao escrita, e a pagina que ficou
 # parada para servir de controle. Lista digitada, e cobrada nas DUAS direcoes
