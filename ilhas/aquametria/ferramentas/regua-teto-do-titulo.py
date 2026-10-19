@@ -245,15 +245,40 @@ ACENTO_GRAVE = ("`",)
 ASPAS = ('"', "'")
 
 
+# DELIMITADOR ESCAPADO NAO ABRE NEM FECHA NADA, e esta linha nasceu de um
+# acerto contra este arquivo em 19/10/2026
+# ---------------------------------------------------------------------------
+# A `regua-constantes-de-snippet.py`, que IMPORTA a `onde()` daqui, foi apontada
+# para a propria bancada dela e DENUNCIOU uma linha que era encenacao:
+#
+#     d, a = varrer("d, saida = varrer(\"NIVEL = 'alta'\\n\")\n")
+#
+# O `split` por `"` conta os escapados como se abrissem e fechassem, os pares
+# saem trocados, e o trecho que esta DENTRO da string cai em indice par — ou
+# seja, e lido como codigo. O defeito e desta funcao e nao daquela regua, e e
+# da mesma familia do que as duas existem para pegar: a medicao estava certa no
+# mundo bom e errada no mundo com uma aspa a mais.
+RE_ESCAPADO = re.compile(r"\\.")
+
+
 def entre(nua, trecho, delimitadores):
     """O trecho esta dentro de um par de algum destes delimitadores?
 
     Os pedacos de indice IMPAR de um `split` pelo delimitador sao os de dentro.
     E barato, nao e um analisador de sintaxe, e o limite esta escrito na `onde()`.
+
+    O que e ESCAPADO sai da conta antes do `split`, porque `\\"` nao abre nem
+    fecha string nenhuma. Sai como dois caracteres neutros e nao como nada, para
+    o trecho procurado continuar inteiro no pedaco em que ele estava.
     """
+    limpa = RE_ESCAPADO.sub("\x00\x00", nua)
     for d in delimitadores:
-        for pedaco in nua.split(d)[1::2]:
-            if trecho in pedaco:
+        for i, pedaco in enumerate(limpa.split(d)):
+            if i % 2 == 0:
+                continue
+            # O pedaco vem da linha LIMPA; o trecho procurado vem da linha crua,
+            # entao a comparacao se faz na mesma moeda.
+            if RE_ESCAPADO.sub("\x00\x00", trecho) in pedaco:
                 return True
     return False
 

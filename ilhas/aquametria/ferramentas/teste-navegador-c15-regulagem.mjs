@@ -62,7 +62,10 @@ const NIVEIS = {
   media: { min: 20, max: 40, aberto: false },
   alta:  { min: 40, max: 60, aberto: true  }
 };
-const LARGURA_CM = 40, ALTURA_CM = 40;
+// Nome parecido com AQUAMETRIA_C15_VITRINE_LARGURA_CM (que vale 45), grandeza
+// diferente: aquela e a vitrine servida, esta e a secao com que o teste deriva
+// volume de comprimento.
+const LARGURA_CM = 40, ALTURA_CM = 40;   // REGUA PROPRIA: secao do teste, nao a vitrine servida
 
 const banco = JSON.parse(readFileSync('dados/produtos-iluminacao.json', 'utf8'));
 const esquema = JSON.parse(readFileSync('dados/esquema-produtos.json', 'utf8'));

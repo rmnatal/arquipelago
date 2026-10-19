@@ -14,6 +14,94 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-19 19h16Z–20hZ — "QUANTAS OUTRAS CONSTANTES OS PORTÕES REDIGITAM?" TEM RESPOSTA, E A VARREDURA QUE A ACHARIA PELO VALOR NÃO SERVE: SÃO 66, DÁ PARA PERGUNTAR 58, E A DÍVIDA DE VERDADE ERA A QUINTA — INVISÍVEL PARA QUALQUER VARREDURA POR NOME
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `8d59610` (**atualização forçada** do remoto outra vez), a branch `claude/dreamy-mccarthy-873iqv` **idêntica ao `main`** (zero commit à frente, zero atrás) e **nenhum PR aberto** — não havia o que mergear. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho. Reserva aceita às **19h16Z** (`f8d7f9d`), na primeira tentativa, sem force push.
+
+**REDE PELO PASSO 20.2, NO COMEÇO:** home em **200 nas três passadas**, `/status` na **revisão 122** e `manifest.json` na **122** — iguais. Nenhum Sync acionado nesta passada e nenhum a acionar, porque **ZERO BYTE FOI AO AR**: `git diff --stat` contra `snippets/` e `manifest.json` sai **VAZIO**, conferido com o git e não afirmado de cabeça. Nenhuma leva do teto da 21.4 gasta (segue ZERADO nesta semana). O bloco é de banco e instrumento, e cabe dentro do congelamento de título e meta da leitura de 14/10.
+
+**O DESPACHO NÃO TINHA ITEM PARA A FUNDAÇÃO, e isso foi conferido antes de abrir a fila (18.5).** Os quatro despachos abertos do `PROMPT.md` desta ilha pedem, nesta ordem: SERP brasileira vista com os olhos (não é desta nuvem, pela 30.8), a credencial `GOOGLE_SA_B64` (ausente neste ambiente), `/peixes/tetras/` com a cota de indexação do Google esgotada, e a medição de 21/10 que **não pode** ser antecipada sem destruir o controle da `/calculadora-de-litragem/`. Nenhum deles é código. Então a execução foi para o achado que a passada das 17h04Z deixou aberto de propósito pela 19.2.
+
+### O QUE O ACHADO 11 PEDIA, E ELE PEDIA UMA CONTA, NÃO UMA RÉGUA
+
+Palavra por palavra: *"esta passada mediu UMA constante compartilhada — o teto do título — e não perguntou se há outras. Quantas OUTRAS constantes de snippet os portões desta pasta redigitam hoje é uma pergunta que ninguém fez, e a resposta dela decide se generalizar a varredura vale um bloco. Quem a tomar começa contando, não generalizando."*
+
+**A CONTA: 66 constantes definidas nos snippets, 58 PERGUNTÁVEIS, 8 NÃO MEDIDAS — e as 8 saem nomeadas e não como zero.** O `aquametria_teste_carregar()` pula o `aquametria-sync.php` e o `aquametria-atualizador-sync.php` de propósito, porque os dois falam com o WordPress de verdade. As constantes deles existem no ar e não dá para perguntá-las aqui. O perguntador novo imprime `snippets_lidos` e `snippets_pulados`, e a régua devolve as 8 em `nao_perguntadas` — **zero medido e nada medido saem iguais na tela e não valem o mesmo.**
+
+### 1. A VARREDURA PELO VALOR FOI TENTADA PRIMEIRO E NÃO PRESTA, E O MOTIVO É MEDIDO E NÃO OPINADO
+
+Era o caminho óbvio: pegar os 66 valores e procurá-los em `ferramentas/`. Três medições o derrubaram:
+
+- **46 das 66 não se decidem por texto.** Um `3`, um `10`, um `20`, um `45` nu não se distingue de nenhum outro número da pasta; e `1.2.0` é o valor de **duas** constantes ao mesmo tempo (`C1_VERSAO` e `SEO_VERSAO`), então um acerto nem se atribui a uma delas.
+- **Das 20 decidíveis, deu 23 acertos em posição de código — e os 23 eram PROSA**, lidos um por um. **Quatorze** eram a data `12/09/2026`, que é o valor de `AQUAMETRIA_PEIXES_SERP_EM` e também a data que meia pasta cita contando a própria história em cabeçalho. Isso não é constante redigitada: é uma frase em português que por acidente vale o mesmo que uma constante.
+- **E a `onde()` inverte os dois sentidos quando o alvo é o valor.** Para constante de texto, o redigito de verdade mora DENTRO DE ASPAS (`SLUG = "calculadora-de-iluminacao"`), que ela chama de `dado` e silencia; e a prosa de docstring mora em linha de CONTINUAÇÃO, que não começa por marcador nenhum e por isso ela chama de `codigo` e denuncia. **A varredura por valor erra calada no caso que importa e grita no que não importa.**
+
+**Então a régua varre pelo NOME, que é o mecanismo que já funciona** — o do `regua-teto-do-titulo.py`, que procura `TETO = 65` e não `65` — com o alvo aberto. E a `onde()` é **IMPORTADA** daquele arquivo, não recopiada: recopiá-la seria o defeito que as duas réguas existem para impedir, um andar acima.
+
+### 2. A RESPOSTA AO ACHADO 11 É SIM, HÁ OUTRAS — E LER UMA POR UMA MUDOU TRÊS DOS QUATRO VEREDITOS
+
+A primeira passada da varredura: **4 denúncias e 11 avisos**. As quatro, lidas no código:
+
+- **`teste-peixes.py:54-56` — `CLASSICA = 1.0`, `MEIO = 1.5`, `CONSERVADORA = 4.0`.** São iguais às três `AQUAMETRIA_PEIXES_LOTACAO_*` do snippet, e **não são dívida**: a autoridade delas não é o snippet, é o `dados/constantes-calculadoras.json`, que diz de si *"Nenhuma formula pode citar um valor que nao esteja aqui"* e carrega fonte, status e `verificado_em` (`lotacao-1cm-por-litro` vale 1, `lotacao-litros-por-cm` é a faixa [1.5, 4]). Snippet e portão são dois **copistas do mesmo documento**, e ler o número do snippet poria o policiado escolhendo a lei — o princípio está escrito no cabeçalho do `teste-voz.mjs`. Declaradas com o marcador, **com o preço escrito junto**: se o registro mudar a faixa, mudam-se os dois lados, e nada nesta pasta avisa que um ficou para trás.
+
+  **E ISTO DEIXOU DE SER JUÍZO MEU E PASSOU A SER FATO MEDIDO, pela bancada desta mesma passada:** as mutações **1 e 2** do `mutacoes-peixes.py` trocam o `define` do snippet (`LOTACAO_CONSERVADORA` de 4.0 para 3.0, `LOTACAO_CLASSICA` de 1.0 para 1.2) e exigem que o `teste-peixes.py` **reprove** — e ele reprova, **100 de 100 mutações reprovadas** nesta passada. Ele só consegue reprovar **porque guarda o próprio número**. Se eu tivesse "consertado" as três linhas para lerem o snippet, as duas metades passariam a errar juntas e **essas duas mutações teriam SOBREVIVIDO**. O achado 11 estava certo sobre o teto e estaria errado aqui, e a diferença é a mesma que o `teste-voz.mjs` já tinha escrito: lê-se do snippet o que o snippet DECIDE, nunca o que ele é POLICIADO para cumprir.
+- **`teste-navegador-c15-vitrine.mjs:55` — `NIVEL = 'alta'`.** É a **ENTRADA que o teste digita** no `select` da página, não a vitrine servida: o teste escolhe um aquário de 60 cm justamente porque o servido é de 90 cm, e é a diferença entre os dois que ele mede. O valor coincide com `AQUAMETRIA_C15_VITRINE_NIVEL` por acaso. Mesma família do `TETO_ENCENADO` de 13h53Z: encenação que se declara encenação não é dívida.
+
+**E A DÍVIDA DE VERDADE ERA A QUINTA, QUE A VARREDURA NÃO VÊ NEM VERIA.** Três linhas abaixo do `NIVEL`, no mesmo arquivo: `const COMPRIMENTO_SERVIDO = 90;`, redigitando `AQUAMETRIA_C15_VITRINE_CM` — **com um comentário ao lado dizendo, com todas as letras, *"o caso da vitrine SERVIDA é propriedade do snippet, não do teste"*.** O arquivo declarava de quem era o número e o digitava à mão de todo jeito. No dia em que o `define` virasse 120, a página serviria 120, o portão continuaria cobrando 90, e a falha apareceria no lugar errado.
+
+**A varredura não o pegou porque ela varre por NOME, e `COMPRIMENTO_SERVIDO` não é cauda de `AQUAMETRIA_C15_VITRINE_CM`. Redigito que RENOMEIA escapa de varredura por nome.** Quem o achou foi leitura, não portão — e isso está escrito no arquivo, ao lado do conserto, em vez de virar uma promessa de cobertura que a régua não tem.
+
+**Agora ele é perguntado**, pelo mesmo caminho que o `teste-voz.mjs` usa para o teto: `regua-constantes-de-snippet.py --constante AQUAMETRIA_C15_VITRINE_CM`, sem padrão de consolo — um `|| 90` ali reproduziria o defeito escondido atrás da régua que existe para o fechar. **E o `--constante` NÃO declara faixa, ao contrário do irmão, e a diferença é de natureza:** lá o valor é um LIMITE, e ler o limite de quem é limitado deixaria o snippet alargar o portão em silêncio; aqui é o CASO SERVIDO, e se o snippet trocar o caso a página troca e o portão **tem** de seguir. Caso não se desconfia; limite, sim.
+
+**Provado que é lido, e não de cabeça:** ilha de sombra com o `define` trocado para 118 responde **118** enquanto a ilha de verdade responde **90**, e o portão da vitrine, rodado antes e depois do conserto, deu **55 ok** nas duas vezes, com a afirmação do cartão servido lendo *"o seu tem 90 cm"*.
+
+**E a resposta à pergunta que o achado 11 fazia — "vale um bloco?" — tem as três metades separadas:** pelo VALOR, não vale e não funcionaria; pelo NOME, vale, custou esta passada e está em pé com portão e mutações; e a dívida mais caras das cinco precisava de olhos, não de régua.
+
+### 3. OS 11 AVISOS, E POR QUE AVISO NÃO É DENÚNCIA AQUI
+
+Sete são prosa dos cabeçalhos que a passada das 17h04Z escreveu explicando o conserto do teto — eles citam `TETO = 65` para dizer que aquilo era o defeito, e proibir a prosa seria apagar a explicação para salvar o número. **Quatro são homônimos com valor DIFERENTE:** `LARGURA_CM` e `ALTURA_CM` valendo 40 no `varrer-c15-banco.py` e no `teste-navegador-c15-regulagem.mjs`, contra os 45 da vitrine do snippet. Não são cópia derivada: são a **seção transversal** com que aqueles dois derivam volume de comprimento, e o `.mjs` já dizia *"repetidas de propósito"* em prosa. Agora dizem com marcador. **Nome parecido, grandeza diferente.**
+
+**A prova fraca não vira aviso, e isso é regra escrita e não descuido:** `SITE` é cauda de `AQUAMETRIA_SEO_NOME_DO_SITE`, e seis portões desta pasta escrevem `SITE = "https://aquametria.com.br"`, que não tem parentesco nenhum com o nome do site. Então **valor igual denuncia com qualquer cauda** (duas provas concordando), e **valor diferente só avisa quando o nome é forte** — o nome inteiro, o nome sem o prefixo, ou cauda de dois segmentos ou mais.
+
+**A exenção mora no arquivo que a toma, na MESMA LINHA do número**, nunca numa lista dentro da régua — o desenho da `bancada.py`: a pergunta é feita aos arquivos, e lista escrita à mão envelheceria calada. Marcador na linha é de propósito: quem lê o número lê a razão dele sem procurar. A mutação 11 guarda exatamente isso, trocando o marcador de linha para arquivo — se ele valesse para o arquivo, uma declaração honesta no topo calaria todo redigito dele para sempre.
+
+### 4. TRÊS ACERTOS CONTRA OS MEUS PRÓPRIOS INSTRUMENTOS, E OS TRÊS ERAM REAIS
+
+**(a) A VARREDURA APONTADA PARA A PRÓPRIA BANCADA DELA DENUNCIOU UMA ENCENAÇÃO, E O DEFEITO ERA DA `onde()` QUE EU IMPORTEI.** A linha era `d, a = varrer("d, saida = varrer(\"NIVEL = 'alta'\\n\")\n")`. O `split` por aspa contava as **escapadas** como se abrissem e fechassem string, os pares saíam trocados, e o trecho que está DENTRO caía em índice par — lido como código. Consertado no `entre()` do `regua-teto-do-titulo.py` (o que é escapado sai da conta antes do `split`), e os portões do teto continuaram verdes: `teste-teto-do-titulo.py` **76 afirmações, 0 falha**, `mutacoes-teto-do-titulo.py` **19 mutações, 0 sobrevivente**. A mutação 13 do portão novo desfaz esse conserto e tem de ser pega — sem ela o conserto valeria para hoje e não para a semana que vem.
+
+**(b) A MUTAÇÃO 14 SOBREVIVEU NA PRIMEIRA RODADA, E O FURO ERA DO MEU PORTÃO.** Ela arranca a guarda da frente do padrão (`(?:^|[^0-9A-Za-z_$])`), e a minha afirmação contra ela usava `SUBNIVEL = 'alta'` — que passa **mesmo sem a guarda**, porque um nome todo em maiúscula é consumido inteiro pelo próprio padrão. Quem depende da guarda é o nome com prefixo **minúsculo**: sem ela, `meuNIVEL = 'alta'` vira denúncia falsa, medido. Duas afirmações nasceram daí (`meuNIVEL` e `$NIVEL`). **A mutação 19 sobreviveu por outro motivo** — ela tirava a guarda do perguntador PHP, e esse ramo nunca roda enquanto houver constante para devolver; teve de passar a **produzir** o mundo vazio, cegando também o filtro de prefixo, e aí quem reprova é a régua do outro lado do processo.
+
+**(c) A BANCADA MANDOU O PORTÃO NOVO PARA A CLASSE DE CHROMIUM DUAS VEZES, E A SEGUNDA FOI O COMENTÁRIO QUE EXPLICAVA A PRIMEIRA.** A `bancada.py` decide a classe procurando a marca `teste-navegador-|playwright` no **texto** do arquivo, prosa incluída. Primeiro foi o NOME do portão encenado da metade 6 (renomeado para `portao-encenado-que-redigita.mjs`, porque encenação não se chama como a coisa encenada); depois foi o comentário que contava essa história **citando os nomes**. Medido nas duas vezes pelo `--lista`, e agora o portão está na passada padrão. **Isto importa mais do que parece: portão que não roda na passada padrão fica vermelho sem ninguém ver — e é exatamente o estado em que esta passada encontrou o portão da vitrine da C15 (achado 6 abaixo).**
+
+### 5. OS PORTÕES
+
+**BANCADA: APROVADO em 65 portões, 0 falha — de 63 para 65, e a lista de denunciados continuou VAZIA.**
+- `teste-constantes-de-snippet.py` — **80 afirmações, 0 falha**, em seis metades: as respostas inválidas, o grau de prova do nome, a comparação de valor (`40`/`40.0`/`40.00` iguais, e o separador ` – ` que **não** é `–`, porque apará-lo mudaria a conta do teto), os três vereditos nas três posições, a exenção, e ponta a ponta contra ilha de sombra com o `define` trocado.
+- `mutacoes-constantes-de-snippet.py` — **22 mutações, 0 sobrevivente, 0 inerte, 0 sem a frase**, mais **3 mundos que têm de passar**, e um deles é o que fecha o achado: trocar o `define` de uma constante **não** reprova, porque ela é lida.
+- `listar-constantes-do-snippet.php` e `regua-constantes-de-snippet.py` entraram na bancada **no dia em que foram escritos**, sem ninguém os inscrever, pelos prefixos `listar-` e `regua-` — e a lista de denunciados continuou **VAZIA**.
+- A varredura hoje: **0 denúncia, 7 avisos** (os sete de prosa do conserto do teto; os quatro homônimos da seção 3 ficaram silenciosos com o marcador).
+
+### 6. ACHADO NÃO CONSERTADO, DE PROPÓSITO, PELA 19.2 — UM PORTÃO DE NAVEGADOR ESTÁ VERMELHO, E ESTAVA ANTES DE EU TOCAR EM NADA
+
+O `teste-navegador-c15-vitrine.mjs` reprova **uma** afirmação, e a medição é **anterior** a qualquer mudança desta passada (rodei o portão como linha de base antes de editá-lo, exatamente para poder dizer isso):
+
+```
+FALHOU depois da rolagem o resultado esta na tela — false
+55 ok, 1 FALHA(S)
+```
+
+**Medido, não suposto:** com viewport de 390×700, depois do clique em calcular, `window.scrollY` = **1788** e o `#aqm-c15-saida` tem `top` = **−39 px**, contra a tolerância de **−5 px** da afirmação. O elemento tem **10076 px** de altura, então o leitor vê o resultado — a rolagem passa 39 px do alvo. **Depois do meu conserto o número é o mesmo: 55 ok, a mesma 1 falha.** Não é regressão desta passada e não é do que ela mexeu.
+
+**A CAUSA NÃO ESTÁ AFIRMADA, e a hipótese está escrita como hipótese:** a página rola com `scrollIntoView({ behavior: 'smooth', block: 'start' })` e o portão espera **700 ms**; a vitrine se pinta depois que a rolagem começa, então o documento cresce debaixo da animação. Isso explicaria um `top` negativo pequeno, e eu **não** medi a sequência quadro a quadro para provar.
+
+**POR QUE NINGUÉM VIU: ele é da classe `--navegador`, que leva dezenas de minutos e quase nunca roda** — a mesma condição que a seção 4(c) acabou de achar de outro jeito, e a mesma família da seção 29 do contrato (o portão que acusa já estava escrito e faltava alguém o ler). Não consertei porque escolher entre esperar a animação, desligar o `smooth` no portão e mexer na rolagem da página **no ar** é decisão de superfície da C15, e a superfície está congelada até 21/10 pela leitura de 14/10. **Quem o tomar começa reproduzindo os três números acima**, que são de hoje.
+
+### 7. PRÓXIMO PASSO
+
+1. **A lista de 21/10 não mudou** e segue a mesma dos dois fechos anteriores: declarar os cinco `divergiu` como conflitos (E9 e `dominio_por_campo`), gravar a fonte do dânio e a do guppy (que fecha o aviso [E15]), decidir os três `regua-diferente`, regerar o catálogo, desembarcar as 74 linhas de deriva, e decidir a promoção da contagem por campo. Quem desembarcar roda `conferir-cano-de-links.py --gravar` **e também** `conferir-titulo-no-ar.py --gravar`.
+2. **O portão vermelho da vitrine da C15** (achado 6), com os três números para reproduzir.
+3. **A classificação da bancada por prosa** (achado 4c). O conserto certo não é remendo: a classe deveria sair de *"a linha MEDE alguma coisa ali?"*, que é o que a `onde()` já sabe responder, em vez de procurar a marca no texto inteiro. Quem tomar **começa contando quantos portões estão hoje na classe errada** — a mesma disciplina que esta passada seguiu, e pelo mesmo motivo.
+
 ## 2026-10-19 16h17Z–17h04Z — O TETO DO TÍTULO ESTAVA DIGITADO À MÃO EM CINCO ARQUIVOS, E A DÍVIDA NÃO ERA SÓ DO TETO
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; o último commit na pasta da ilha era de **hoje às 14h21Z**, 115 minutos atrás, e era o fecho da execução das 13h27Z. Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `6e0b159` (**atualização forçada** do remoto outra vez: o `main` foi reescrito entre a passada anterior e esta), a branch `claude/dreamy-mccarthy-jlkyrr` **idêntica ao `main`** (zero commit à frente, zero atrás) e **nenhum PR aberto** — não havia o que mergear. Reserva aceita às **16h17Z** (`9f98aa3`), na primeira tentativa, sem force push. Renovada às **16h38Z** pela 1.1, com o relógio de verdade e não o estimado — o deslize que a passada das 13h27Z corrigiu hoje foi evitado aqui por conferir `date -u` antes de escrever.

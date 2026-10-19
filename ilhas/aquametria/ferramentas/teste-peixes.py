@@ -51,9 +51,20 @@ RENDER = os.path.join(RAIZ, "ferramentas", "render-pagina-completa.php")
 
 # A regua das duas fontes brasileiras de lotacao, escrita AQUI (constante 2 e 3
 # de dados/constantes-calculadoras.json, colhidas em 04/09/2026).
-CLASSICA = 1.0
-MEIO = 1.5
-CONSERVADORA = 4.0
+#
+# OS TRES NUMEROS SAO IGUAIS AOS DO SNIPPET E ISSO E DE PROPOSITO, declarado em
+# 19/10/2026 para a `regua-constantes-de-snippet.py` nao os denunciar. A
+# autoridade deles nao e o `aquametria-peixes.php`: e o
+# `dados/constantes-calculadoras.json`, que diz de si *"Nenhuma formula pode
+# citar um valor que nao esteja aqui"* e carrega fonte, status e
+# `verificado_em`. Snippet e portao sao dois COPISTAS do mesmo documento, e ler
+# o numero do snippet poria o policiado escolhendo a lei — o principio esta
+# escrito no cabecalho do `teste-voz.mjs` e vale igual aqui. O preco disto esta
+# escrito junto, porque ele existe: se o registro mudar a faixa, mudam-se os
+# dois lados, e nada nesta pasta avisa que um ficou para tras.
+CLASSICA = 1.0       # REGUA PROPRIA: lotacao-1cm-por-litro do registro de constantes
+MEIO = 1.5           # REGUA PROPRIA: piso da faixa de lotacao-litros-por-cm
+CONSERVADORA = 4.0   # REGUA PROPRIA: teto da faixa de lotacao-litros-por-cm
 ALTURAS = (30, 35, 40)
 DEGRAUS_EXTRA = (6, 8, 10, 12, 15, 20)
 

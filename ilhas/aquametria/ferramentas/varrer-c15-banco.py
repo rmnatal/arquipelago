@@ -52,8 +52,14 @@ NIVEIS = collections.OrderedDict([
     ("alta", {"rotulo": "exigencia alta", "min": 40, "max": 60, "aberto": True}),
 ])
 
-LARGURA_CM = 40.0
-ALTURA_CM = 40.0
+# A SECAO TRANSVERSAL E DESTE ARQUIVO, e os 40 nao sao os 45 do snippet. A
+# `AQUAMETRIA_C15_VITRINE_LARGURA_CM` vale 45 e e o aquario de referencia que a
+# PAGINA publica; estes 40 sao a secao com que esta varredura deriva volume de
+# comprimento para medir cobertura de faixa no BANCO. Nome parecido, grandeza
+# diferente — declarado em 19/10/2026 para a `regua-constantes-de-snippet.py`
+# nao os ler como copia derivada do snippet.
+LARGURA_CM = 40.0   # REGUA PROPRIA: secao da varredura, nao a vitrine servida
+ALTURA_CM = 40.0    # REGUA PROPRIA: secao da varredura, nao a vitrine servida
 
 PISO_DE_FAIXA = 3   # secao 14.3 do ARQUIPELAGO.md
 

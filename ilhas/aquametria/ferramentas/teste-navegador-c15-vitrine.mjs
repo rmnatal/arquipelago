@@ -38,6 +38,7 @@
 //   node ferramentas/teste-navegador-c15-vitrine.mjs /tmp/c15.html
 
 import { chromium } from 'playwright';
+import { execFileSync } from 'node:child_process';
 
 const ARQUIVO = process.argv[2] || '/tmp/c15.html';
 const CHROME = process.env.AQM_CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
@@ -52,11 +53,32 @@ const VOLUME = '57,6';
 const VOLUME_N = 57.6;
 const COMPRIMENTO = '60';
 const COMPRIMENTO_N = 60;
-const NIVEL = 'alta';
+const NIVEL = 'alta';   // REGUA PROPRIA: a ENTRADA que o teste digita, nao a vitrine servida
 
 // O caso da vitrine SERVIDA e propriedade do snippet, nao do teste: e o aquario
-// de referencia de 90 cm que a pagina publica no HTML.
-const COMPRIMENTO_SERVIDO = 90;
+// de referencia que a pagina publica no HTML.
+//
+// ENTAO ELE E PERGUNTADO, E ATE 19/10/2026 ERA DIGITADO — `90` escrito aqui, ao
+// lado do comentario que diz, com todas as letras, que o numero e do snippet.
+// Era o achado 11 do fecho das 17h04Z desta ilha com outra roupa: no dia em que
+// o `AQUAMETRIA_C15_VITRINE_CM` virasse 120, a pagina serviria 120, este portao
+// continuaria cobrando 90 e a falha apareceria no lugar errado — ou pior,
+// passaria, porque quem monta a frase do cartao e o mesmo numero dos dois lados.
+//
+// A `regua-constantes-de-snippet.py` NAO pegou este caso, e esta escrito aqui
+// porque e o limite dela: ela varre por NOME, e `COMPRIMENTO_SERVIDO` nao e
+// cauda de `AQUAMETRIA_C15_VITRINE_CM`. Redigito que RENOMEIA escapa de
+// varredura por nome. Quem achou este foi leitura, nao portao.
+const COMPRIMENTO_SERVIDO = Number(
+  execFileSync('python3', ['ferramentas/regua-constantes-de-snippet.py', '--constante', 'AQUAMETRIA_C15_VITRINE_CM'], {
+    encoding: 'utf8'
+  }).trim()
+);
+if (!Number.isFinite(COMPRIMENTO_SERVIDO) || COMPRIMENTO_SERVIDO <= 0) {
+  // Sem padrao de consolo: um `|| 90` aqui reproduziria o defeito escondido
+  // atras da regua que existe para o fechar.
+  throw new Error('a regua-constantes-de-snippet.py nao devolveu um comprimento servido utilizavel: ' + COMPRIMENTO_SERVIDO);
+}
 
 let falhas = 0;
 function ok(nome, medida) {
