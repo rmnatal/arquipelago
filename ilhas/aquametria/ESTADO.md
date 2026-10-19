@@ -5,74 +5,82 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-16T20:11Z
-executando_desde: 2026-10-19T10:49Z   # renovada pela 1.1: o bloco passou de 40 minutos
+ultima_execucao: 2026-10-19T10:58Z
+executando_desde: null
 bloco_atual: |
-  A MEDICAO DA DERIVA ESCREVIA NO ARQUIVO QUE SERVE AS 52 URLs E O RESTAURAVA DE MEMORIA,
-  TRES EXECUCOES SEGUIDAS — agora ela sai de uma RAIZ DE SOMBRA e o numero e CONTADO.
-  ZERO BYTE NO AR: 52 URLs contadas no sitemap servido (3 em posts-post e 49 em
-  posts-page), nenhum Sync acionado, revisao 122 no manifest e no /status na abertura e
-  no fecho, home em 200 nas tres passadas da 20.2, nenhuma leva do teto da 21.4 gasta
-  (segue ZERADO nesta semana), e nada tocado em title, em meta description nem na
-  /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer nessas superficies antes de
-  21/10. O snippets/aquametria-peixes.php NAO aparece no diff desta execucao, e isso e o
-  conteudo do bloco: o diff e tres arquivos de ferramentas/ e dois de dados/.
-  1. AS DUAS ALAVANCAS DA FILA FORAM MEDIDAS E AS DUAS ESTAO FECHADAS HOJE. URL nova nao
-     existe: varrer-categorias-possiveis.py sobre o banco de hoje da 40 registros, 34
-     elegiveis, 29 com ficha propria, 5 elegiveis sem categoria nenhuma e "grupos que
-     alcancam o minimo de 3: 0" por familia — o unico agrupamento que alcanca tres e por
-     nome popular e o nome e a palavra "peixe", que nao e prateleira. Pagina por nome de
-     produto segue travada pela 30.8. BANCO tambem nao: os cinco que esperam segundo
-     corpo sao todos BARRADOS, e dar corpo a barrado apaga uma causa da lista de barrados
-     que a /peixes/ publica — e superficie, achado de 16/10 14h31Z. CREDENCIAL da Search
-     Console segue ausente (as tres variaveis conferidas nesta data).
-  2. O QUE SOBRAVA ERA O INSTRUMENTO, e estava a vista nas tres entradas anteriores do
-     REGISTRO. As passadas de 15/10 13h19Z, 16/10 13h24Z e 16/10 16h17Z rodaram o
-     gerar-catalogo-especies.py contra o snippet DE VERDADE e o restauraram "byte a byte"
-     depois. Duas coisas erradas: a medicao tem passo DESTRUTIVO no meio (tres restauros
-     a mao em 36 horas, e o quarto esquecido poe no ar o que o congelamento segura), e
-     "74 linhas de deriva" era PROSA, quando pela secao 8 numero que a ilha publica sobre
-     si mesma nasce contado.
-  3. O CONSERTO: regua-deriva-do-catalogo.py monta RAIZ DE SOMBRA (os dois JSON que o
-     gerador le mais uma COPIA do snippet), roda o gerador nela e compara. NENHUMA linha
-     do gerador mudou — ele ja recebia a raiz em sys.argv[1], e era isso que tornava a
-     sombra possivel. conferir-deriva-do-catalogo.py (BANCADA: sem rede) afirma o sha256
-     do snippet antes e depois (a primeira afirmacao de proposito, e a que torna o portao
-     seguro de rodar no congelamento), que o gerador sai com 0, que os dois blocos
-     existem e que NENHUMA linha de deriva cai FORA deles.
-  4. A DERIVA GANHOU SERIE DECLARADA, dados/deriva-do-catalogo.md, conferida LINHA POR
-     LINHA e com multiplicidade — nao pelo total: 74 linhas podem virar 74 OUTRAS linhas
-     sem o total mudar. Vermelho se o banco muda sem declaracao, e o conserto e um
-     comando (--gravar); zero declarado e fato tao contavel quanto 74. MEDIDO HOJE: 74
-     linhas, todas do bloco CATALOGO, todas do lado +, sendo 34 'porte_e_maximo_registrado'
-     (deriva de 15/10) e 40 as quatro fontes novas do Seriously Fish de 16/10. O numero
-     que tres execucoes escreveram a mao esta, agora, confirmado por caminho independente.
-  5. O PORTAO ACHOU DUAS COISAS CONTRA ESTA PASSADA, nenhuma por leitura de codigo. (a) O
-     teste REPROVOU a primeira versao da regua: bloco_da_linha media os dois lados do diff
-     com a MESMA fronteira, e linha ACRESCENTADA entra ANTES da ancora — com a ancora no
-     marcador de abertura ela nasce FORA do bloco, e a primeira versao a chamava de
-     dentro, o que apagaria a unica deriva que nunca e legitima. Agora + e i < n <= j e -
-     e i < n < j, com o motivo escrito no corpo da funcao. (b) A mutacao da serie ausente
-     SOBREVIVEU: duas afirmacoes guardam a mesma porta, porque com declarado None a
-     comparacao linha por linha tambem acusa. Virou mutacao DUPLA, e o que a bateria mede
-     ali e que para o silencio passar por verde duas afirmacoes tem de cair juntas.
-  6. OS PORTOES. BANCADA APROVADO: 56 portoes, 0 falha — de 53 para 56 sem ninguem a
-     alimentar. teste-deriva-do-catalogo.py novo: 38 afirmacoes em QUATRO metades, e a (B)
-     e ESTRUTURAL de proposito, porque medir comportamento provaria so que o passo
-     destrutivo nao disparou nesta passada e nao que ele saiu. A (D) roda o portao inteiro
-     numa ILHA DE SOMBRA: verde com a serie, vermelho sem ela, vermelho com o banco
-     mexido, verde de novo depois do --gravar. mutacoes-deriva-do-catalogo.py novo: 12
-     mutacoes, 0 sobrevivente, 0 inerte, todas cobradas pela FRASE, com dois mundos que
-     tem de passar; a que mais importa e a 7, o passo destrutivo ressuscitando, e ela
-     reprova pela afirmacao ESTRUTURAL.
-  7. O BANCO REAL continua em 40 especies, 0 erro e 8 avisos — os mesmos 8 da manha.
-  8. PROXIMO PASSO: a lista de 21/10 nao mudou e ganhou uma garantia — quem for
-     desembarcar nao precisa acreditar na prosa: um comando diz quais linhas vao ao ar,
-     sem tocar no arquivo, e --gravar fecha a serie em zero depois. E fica a pergunta para
-     as irmas, que nao e desta ilha: a robometria e a clubedomosaico tem o mesmo desenho
-     (gerador que escreve o snippet servido a partir do banco), logo tem deriva — e se
-     alguma a mede, mede do jeito antigo. A secao 3 proibe editar ilha que nao se
-     reservou, entao aqui fica so a pergunta e o caminho da regua.
+  O CANO DE LINKS DESTA ILHA — O CAMINHO DO DINHEIRO — ERA RELATORIO DATADO QUE NADA
+  COMPARAVA COM O DO DIA ANTERIOR, e a prova disso estava escrita: a bancada denunciava o
+  contar-cano-de-links.py desde 14/10 ("SEM CONVENCAO, ninguem roda") e a ronda da
+  Sentinela de 14/10 RECONTOU os quatro bancos A MAO para conferir o que ele imprimiu.
+  ZERO BYTE NO AR: nenhum Sync acionado, revisao 122 no manifest e no /status na abertura
+  e no fecho, home em 200 nas tres passadas da 20.2 mais uma no fecho, nenhuma leva do
+  teto da 21.4 gasta (segue ZERADO nesta semana), e nada tocado em snippet, em title, em
+  meta description nem na /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer
+  nessas superficies antes de 21/10. O diff e cinco arquivos de ferramentas/ e um de
+  dados/.
+  1. O BLOCO NAO E O PROXIMO PASSO ESCRITO, E O MOTIVO E A DATA. O proximo passo da fila
+     (o aviso [E15] do poecilia-reticulata) esta BARRADO por este mesmo banco: o
+     segundo_corpo_nao_entrou daquele registro diz, de 16/10, que acrescentar a fonte do
+     Seriously Fish o faz passar no portao de catalogo e ENTRAR nas tabelas de /peixes/ —
+     superficie, congelada ate 21/10/2026 e com a decisao marcada para aquela data.
+     Remedido hoje antes de escolher: 40 especies, 0 erro, 8 avisos, os mesmos 8 de 16/10.
+     URL nova segue travada pela 30.8 e a credencial da Search Console segue ausente (as
+     tres variaveis conferidas nesta data).
+  2. O QUE SOBRAVA ERA A UNICA DENUNCIA QUE A BANCADA REPETIA, e ela e de 14/10. A
+     contagem do cano morava DENTRO do contador: por isso nao podia ser rodada contra
+     banco encenado, por isso nao tinha teste, e por isso a Sentinela recontou a mao.
+     Recontagem a mao e a assinatura de instrumento sem portao — quando existe portao,
+     ninguem reconta. E a 25.2-b do contrato ja tinha escrito o preco: na Robometria, em
+     dois dias, o banco foi de 73 publicaveis com ZERO sem piso para 95 com 22 sem, porque
+     "a ilha cresceu mais rapido que os proprios acabamentos". Defeito de PORTAO, nao de
+     codigo.
+  3. O CONSERTO: regua-cano-de-links.py recebe a RAIZ, e e so isso que torna a conta
+     testavel. O portao conferir-cano-de-links.py (BANCADA: sem rede) afirma DUAS coisas
+     que ninguem afirmava: (a) que todos os bancos da pasta foram lidos — "0 sem piso"
+     sobre zero banco lido e VERDE VAZIO, e e a unica forma de este portao mentir sem
+     ninguem editar uma linha; (b) que o cano medido e o DECLARADO sao o mesmo ITEM POR
+     ITEM. A serie e dados/cano-de-links.md e cresce por cima, como a da deriva.
+  4. A DECLARACAO E POR ITEM E NAO POR TOTAL, pela licao de 16/10 um andar abaixo: 42 sem
+     ficha podem virar 42 OUTROS sem o total mudar. O teste encena exatamente isso — dois
+     registros trocando de estado entre si, com TODOS os totais e a distribuicao de degrau
+     identicos — e a comparacao item por item acusa as duas mudancas. MEDIDO HOJE: 78
+     registros, 0 sem url_busca (o piso da 25.2), 42 sem url_produto, 11 com url e sem
+     ficha, 11 intestavel, degrau 3 em 36, degrau 4 em 31 e nulo em 11. Bate com a
+     recontagem da Sentinela de 14/10 corrigida por baixo as 19h3xZ.
+  5. O QUE O PORTAO NAO FAZ, de proposito: nao julga registro um por um. Quem reprova
+     registro publicavel sem piso e a V26 do validar-produtos.py e quem confere a bandeira
+     intestavel e a V25. Terceira regua da mesma regra e a cicatriz de 16/10 ("agora a
+     regua e uma so" era falso no dia em que foi escrito: ela era QUATRO).
+  6. A BANCADA APRENDEU A PERGUNTA, E NAO UMA LISTA: "contar-" e producao SE um PORTAO
+     carregar a conta dele. E a pergunta do "regua-" ficou ESTRITA no mesmo commit, porque
+     ela aceitava arquivo de PRODUCAO citando a regua como prova de exercicio — regua
+     carregada so pelo gerador que a usa escaparia da denuncia sem portao nenhum a
+     exercitar. Medido: as sete reguas desta pasta seguem todas carregadas por portao,
+     entao a regra mais estrita nao denuncia ninguem hoje; ela fecha a porta antes de
+     alguem entrar por ela.
+  7. O TESTE ACHOU UM DEFEITO CONTRA MIM MESMO, E ELE E DA FAMILIA DO ARQUIVO. A metade
+     que cobra a denuncia da bancada escrevia o nome do contador de mentira INTEIRO — e
+     este arquivo e um portao, logo a bancada passava a ver o nome citado por um portao e
+     o chamava de protegido. O teste provava o contrario do que pretendia. Os nomes passam
+     a ser montados por pedaco, com o motivo escrito ao lado. E a mutacao 15 SOBREVIVEU na
+     primeira versao por causa disso: sem um arquivo de producao citando a falsa regua, a
+     metade ficava verde com a pergunta antiga e com a nova.
+  8. OS PORTOES. BANCADA APROVADO: 59 portoes, 0 falha — de 56 para 59 sem ninguem a
+     alimentar. teste-cano-de-links.py: 42 afirmacoes em CINCO metades (aritmetica
+     encenada; estrutural, que cobra que o contador nao conta e que o portao pergunta
+     quais bancos leu; o verde vazio contra raiz sem banco; o portao inteiro numa ilha de
+     sombra, verde com a serie, vermelho sem ela, vermelho na troca de total intacto,
+     vermelho com registro novo e verde depois do --gravar; e a denuncia da bancada nos
+     DOIS sentidos). mutacoes-cano-de-links.py: 15 mutacoes, 0 sobrevivente, 0 inerte,
+     todas cobradas pela FRASE.
+  9. PROXIMO PASSO: a lista de 21/10 nao mudou e e a mesma do fecho de 16/10 — declarar os
+     cinco `divergiu` como conflitos (E9 e dominio_por_campo), gravar a fonte do danio e a
+     do guppy (que fecha o aviso [E15]), decidir os tres `regua-diferente`, regerar o
+     catalogo e desembarcar as 74 linhas de deriva, e decidir a promocao da contagem por
+     campo. O que esta passada acrescenta a ela: depois do desembarque, quem regerar o
+     catalogo roda tambem conferir-cano-de-links.py --gravar, porque leva nova no banco
+     muda o cano e o portao fica vermelho ate alguem declarar — que e exatamente o que ele
+     existe para fazer.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |

@@ -14,6 +14,72 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-19 10h16Z–10h59Z — A ÚNICA DENÚNCIA QUE A BANCADA REPETIA ERA O CAMINHO DO DINHEIRO: O CANO DE LINKS SE CONTAVA SEM PORTÃO, E A PROVA É QUE A SENTINELA O RECONTOU À MÃO
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; o último commit na pasta da ilha era de **16/10 às 20h09Z**. Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `e325c9e`, a branch `claude/dreamy-mccarthy-ue3qp5` com **zero commit** além dele e nenhum PR aberto — não havia o que mergear. Reserva aceita às **10h16Z** (`26176f5`), na primeira tentativa, e **renovada** às 10h49Z pela 1.1.
+
+**REDE PELA 20.2, MEDIDA E NÃO HERDADA:** `https://aquametria.com.br/` em **HTTP 200** nas três passadas de abertura e numa quarta no fecho; `/status` na **revisão 122** na abertura e no fecho, a mesma do `manifest.json`.
+
+**ZERO BYTE NO AR:** nenhum Sync acionado, revisão **122** nos dois lados, nenhuma leva do teto da 21.4 gasta (segue **ZERADO** nesta semana), e nada tocado em snippet, em `<title>`, em meta description nem na `/calculadora-de-litragem/` — a leitura de 14/10 proíbe mexer nessas superfícies antes de 21/10. O diff é **cinco arquivos de `ferramentas/` e um de `dados/`**.
+
+### 1. O BLOCO NÃO É O PRÓXIMO PASSO ESCRITO, E DESTA VEZ O MOTIVO NÃO É FALTA DE ALAVANCA: É O PRÓPRIO BANCO QUE DIZ A DATA
+
+O próximo passo que a fila nomeia — o `aviso [E15] poecilia-reticulata`, "de BANCO e não põe byte no ar" — está **barrado por este mesmo banco, com a data escrita dentro dele**. O campo `segundo_corpo_nao_entrou` daquele registro, escrito em 16/10, diz por quê: a Seriously Fish **tem** ficha do guppy, e este é o único registro do banco "barrado hoje por UM motivo só", então acrescentar a fonte **por qualquer campo** o faz passar no portão de catálogo e **entrar nas tabelas de `/peixes/`** — superfície, congelada até **21/10/2026**, com `decidir_em: 2026-10-21` já gravado. O achado de 16/10 às 14h31Z vale inteiro: *"coleta de banco põe zero byte no ar" é verdade para o registro que passa no portão e FALSA para o barrado.*
+
+Remedido hoje antes de escolher, para não herdar número: **40 espécies, 0 erro, 8 avisos** — os mesmos 8 de 16/10. URL nova segue travada pela **30.8**; a credencial da Search Console segue **ausente** (`GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` conferidas nesta data).
+
+### 2. O QUE SOBRAVA ESTAVA IMPRESSO NO FIM DE TODA PASSADA DA BANCADA, HÁ CINCO DIAS
+
+`SEM CONVENCAO, ninguem roda: contar-cano-de-links.py` — uma linha, a **única** denúncia da bancada, nomeada no `REGISTRO.md` desde 14/10 e deixada "como está" por três entradas. Ela estava certa, e o que ela acusava não era o nome do arquivo:
+
+- **O arquivo que produz os quatro números do cano de links desta ilha não era rodado por portão nenhum, e a contagem dele não tinha teste.** A aritmética morava DENTRO do contador, lendo `dados/produtos-*.json` por caminho fixo — então não havia como contá-la contra um banco encenado, e por isso ela nunca tinha sido medida por nada.
+- **E a consequência está escrita na ronda da Sentinela de 14/10:** ela **RECONTOU os quatro bancos à mão** para conferir o relatório ("a ronda recontou os quatro `dados/produtos-*.json` do `main` por conta própria: 78 registros, 0 sem `url_busca`, 43 sem `url_produto`..."). **Recontagem à mão é a assinatura de instrumento sem portão** — quando existe portão, ninguém reconta.
+- **O preço de não ter esse portão já estava medido, e não nesta ilha.** A **25.2-b** do contrato registra a Robometria indo de **73 publicáveis com ZERO sem piso rastreável** para **95 com 22 sem**, em dois dias: *"ninguém quebrou nada — a ilha cresceu mais rápido que os próprios acabamentos, e cada leva nova entrou pela porta de trás. Isso não é defeito de código, é defeito de PORTÃO, e portão que não existe deixa passar sempre."*
+
+O cano de links é o **caminho do dinheiro**: `url_busca` é o piso da 25.2 ("nunca depende de ninguém"), `url_produto` é a ficha que paga comissão, e o `degrau` diz em que altura da escada da 25.1 cada registro parou.
+
+### 3. O CONSERTO: A CONTA SAI DO CONTADOR, GANHA RAIZ, E O PORTÃO PERGUNTA DUAS COISAS QUE NINGUÉM PERGUNTAVA
+
+`ferramentas/regua-cano-de-links.py` (régua compartilhada) recebe a **RAIZ** em toda função — `bancos(raiz)`, `registros(raiz)`, `contar(raiz)` — e **é só isso que torna a conta testável**: o portão conta a ilha de verdade com ela, o teste conta bancos de mentira com a MESMA conta, e não existe segunda cópia da aritmética para divergir depois. O `contar-cano-de-links.py` continua escrevendo o relatório datado do despacho de 07/10 e **não conta mais nada**.
+
+`ferramentas/conferir-cano-de-links.py` (**BANCADA: sem rede**) afirma:
+
+1. **Que todos os bancos da pasta foram lidos, e que houve registro.** Esta é a primeira de propósito: **"0 sem piso" sobre zero banco lido é VERDE VAZIO**, e verde vazio é a única forma de este portão mentir sem ninguém editar uma linha dele. A régua devolve *quais* arquivos leu justamente para esta afirmação existir.
+2. **Que o cano medido e o DECLARADO são o mesmo ITEM POR ITEM**, em `dados/cano-de-links.md`, série que cresce por cima como a da deriva e a de `dados/posicoes.md`.
+3. **Que os totais da declaração saem dos itens declarados**, e não de um número digitado ao lado.
+
+**E o que ele NÃO faz, de propósito:** não julga registro um por um. Quem reprova registro publicável sem piso é a **V26** do `validar-produtos.py` e quem confere a coerência da bandeira `intestavel` é a **V25**. Reescrever isso aqui seria a terceira régua da mesma regra — a cicatriz que esta pasta mediu em 16/10/2026 (*"agora a régua é uma só" era falso no dia em que foi escrito: ela era QUATRO*). Este portão pergunta o que nenhuma das duas pergunta: **o cano de hoje é o cano que alguém declarou?**
+
+### 4. A DECLARAÇÃO É POR ITEM E NUNCA POR TOTAL, E O TESTE ENCENA EXATAMENTE A TROCA QUE UM TOTAL ESCONDE
+
+A frase de estado de cada registro é `piso:N ficha:N anuncio:N degrau:D intestavel:N`, e a comparação é item por item. O motivo é a lição de 16/10 um andar abaixo: **42 registros sem ficha podem virar 42 OUTROS sem o total mudar.** O teste monta dois bancos em que dois registros **trocam de estado entre si** — todos os totais e a distribuição de degrau ficam **idênticos** — e a comparação acusa as duas mudanças.
+
+**MEDIDO HOJE, contado e não digitado: 78 registros, 0 sem `url_busca`** (o piso da 25.2 inteiro), **42 sem `url_produto`**, **11 com `url` e sem ficha** (a dívida da 25.4-b), **11 `intestavel`**, e por degrau **3 em 36, 4 em 31 e nulo em 11**. Bate com a recontagem da Sentinela de 14/10 **corrigida por baixo às 19h3xZ**, quando o `eheim-classic-250-2213` ganhou ficha — ela mediu 43 e 12 às 14h53Z e estava certa naquele minuto.
+
+### 5. A BANCADA APRENDEU A PERGUNTA, E NÃO UMA LISTA — E A PERGUNTA DO `regua-` FICOU ESTRITA NO MESMO COMMIT
+
+`contar-` passa a ser **produção se um PORTÃO carregar a conta dele** (ele mesmo, ou a régua irmã) — a mesma pergunta que o `regua-` já fazia, feita aos ARQUIVOS e não a uma lista de exceção, porque lista escrita à mão é o que esta bancada existe para acabar.
+
+**E ao escrever isso apareceu que a pergunta do `regua-` era frouxa:** ela aceitava **qualquer** arquivo citando a régua como prova de exercício, inclusive arquivo de **produção**. Régua carregada só pelo gerador que a usa escaparia da denúncia **sem portão nenhum a exercitar**. A pergunta passou a ser "algum PORTÃO carrega?", com os portões se reconhecendo pela mesma convenção de nome que decide o resto do arquivo. **Medido antes de mudar: as sete réguas desta pasta seguem todas carregadas por portão** (`regua-robots.py` era a mais perto da borda — `bancada.py` a cita, e é produção, mas `teste-robots.py` e `conferir-robots-no-ar.py` a carregam). A regra mais estrita **não denuncia ninguém hoje**: ela fecha a porta antes de alguém entrar por ela.
+
+### 6. O TESTE ACHOU DOIS DEFEITOS CONTRA ESTA PASSADA, E OS DOIS SÃO DA FAMÍLIA DO PRÓPRIO ARQUIVO
+
+- **(a) A metade que cobra a denúncia da bancada escrevia o nome do arquivo de mentira INTEIRO — e este teste é um PORTÃO.** A bancada passava a ver o nome citado por um portão e chamava o arquivo de protegido: as duas afirmações falharam na primeira passada, e o teste provava **o contrário** do que pretendia. Os nomes passam a ser montados por pedaço, com o motivo escrito ao lado. *O portão que mede "quem cita quem" não pode citar o que ele quer ver não citado.*
+- **(b) A mutação 15 SOBREVIVEU na primeira versão.** Ela apaga o filtro novo da bancada — a volta à pergunta frouxa — e o teste continuava verde, porque na ilha de sombra a falsa régua **não era citada por ninguém** e ficava denunciada com as duas perguntas. Faltava o terceiro arquivo: um **gerador de mentira**, de produção, citando a falsa régua. É ele que separa a pergunta estrita da antiga, e sem ele a metade media uma diferença que não existia no mundo encenado.
+
+### 7. OS PORTÕES
+
+- **`teste-cano-de-links.py`: 42 afirmações, 0 falha**, em cinco metades. (A) a aritmética caso a caso sobre bancos encenados, com a troca de estado de total intacto e as três naturezas de falha separadas (registro novo, registro sumido, registro mudado). (B) **estrutural e não comportamental**: o contador não abre banco nenhum por conta própria, o portão pergunta à régua quais bancos leu, compara item por item e escreve a fronteira com a V26 — medir comportamento provaria só que a segunda cópia da aritmética não divergiu NESTA passada, não que ela saiu. (C) **o verde vazio**, contra uma raiz sem banco nenhum e contra um banco presente e vazio. (D) o portão inteiro numa **ilha de sombra**: verde com a série, vermelho sem ela, vermelho na troca de total intacto, vermelho com registro novo, verde de novo depois do `--gravar`, e vermelho com total declarado que não fecha com os próprios itens. (E) **a denúncia da bancada nos DOIS sentidos** — o contador de hoje sai da lista, e um contador cuja régua nenhum portão carrega continua denunciado.
+- **`mutacoes-cano-de-links.py`: 15 mutações, 0 sobrevivente, 0 inerte**, todas cobradas pela FRASE, com dois mundos que têm de passar. As que mais importam: a **6** (a declaração voltando a ser por total, que reprova pelo caso da troca e não pelo mundo de hoje), a **7** (o verde vazio ressuscitando), a **8** (o contador voltando a ter contagem própria, que não se pega por comportamento porque hoje as duas cópias dariam o mesmo número) e a **15** (a bancada voltando a aceitar produção como exercício de régua).
+- **BANCADA APROVADO: 59 portões, 0 falha** — de **56 para 59** sem ninguém a alimentar, porque a `bancada.py` varre a pasta e classifica pela convenção de nome. **E a lista de denunciados ficou vazia:** era uma linha com um nome desde 14/10.
+- **O banco real continua em 40 espécies, 0 erro e 8 avisos** (E21 em dois registros, E25 em um, E27 em quatro, mais o V20 do banco de produtos).
+
+### 8. O PRÓXIMO PASSO DESBLOQUEADO
+
+- **A lista de 21/10 não mudou**, e é a mesma do fecho de 16/10: declarar os **cinco `divergiu`** como conflitos (E9 e `dominio_por_campo`), gravar a fonte do **danio** e a do **guppy** (que é o que fecha o `aviso [E15]` e o que o `decidir_em: 2026-10-21` daquele registro espera), decidir os **três `regua-diferente`**, regerar o catálogo, **desembarcar as 74 linhas de deriva** e decidir a promoção da contagem por campo.
+- **O que esta passada acrescenta à lista:** quem regerar o catálogo e desembarcar roda também `conferir-cano-de-links.py --gravar`. Leva nova no banco **muda o cano**, e o portão fica vermelho até alguém declarar — que é exatamente o que ele existe para fazer. O conserto é um comando, e a série passa a mostrar, por data, como o cano desta ilha andou.
+- **Atenção de método, e é a lição do bloco:** **denúncia repetida que ninguém fecha vira paisagem.** Esta ficou cinco dias impressa no fim de toda passada da bancada, nomeada em três entradas deste arquivo como "segue como está" — e o que ela acusava era que o caminho do dinheiro desta ilha se media sem portão. **Instrumento que alguém reconfere à mão não tem portão, tenha o nome que tiver** — e a recontagem à mão é mais barata de ver do que o portão que falta: ela aparece escrita no relatório de quem reconferiu.
+
 ## 2026-10-16 19h17Z–20h0xZ — A MEDIÇÃO DA DERIVA ESCREVIA NO ARQUIVO QUE SERVE 52 URLs E O RESTAURAVA DE MEMÓRIA, TRÊS EXECUÇÕES SEGUIDAS — AGORA ELA SAI DE UMA RAIZ DE SOMBRA E O NÚMERO É CONTADO, NÃO ESCRITO
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; o último commit na pasta da ilha era de **18h09Z**, 67 minutos antes, da execução que fechou. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-gewby6` com **zero commit** além do `main`, então não havia o que mergear. Reserva aceita às **19h17Z** (`4227eab`), na primeira tentativa, e **renovada** às 19h36Z pela 1.1.
