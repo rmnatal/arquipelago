@@ -226,8 +226,20 @@ def lint_dos_snippets():
     return 1 if ruins else 0
 
 
+# QUEM CARREGA UMA REGUA PODE NAO SER PORTAO, E ISSO IMPORTA (19/10/2026). A
+# pergunta era "algum arquivo desta pasta cita este nome?", e arquivo de
+# PRODUCAO citando a regua bastava para ela passar por protegida — uma regua
+# carregada so pelo gerador que a usa escaparia da denuncia sem portao nenhum a
+# exercitar. A pergunta passou a ser "algum PORTAO carrega?", e os portoes se
+# reconhecem pela mesma convencao de nome que decide o resto deste arquivo.
+# Medido na mesma passada: as sete reguas desta pasta continuam todas carregadas
+# por portao, entao a regra mais estrita nao denuncia ninguem hoje — ela fecha a
+# porta antes de alguem entrar por ela.
+E_PORTAO = re.compile(r'^(teste|testar|mutacoes|validar|conferir)-')
+
+
 def regua_exercitada(nome):
-    """Algum arquivo desta pasta importa esta regua pelo nome?
+    """Algum PORTAO desta pasta carrega este arquivo pelo nome?
 
     A pergunta e feita aos ARQUIVOS, nunca a uma lista aqui dentro — pelo mesmo
     motivo que o resto deste arquivo nao tem lista. Regua que nenhum portao
@@ -236,6 +248,8 @@ def regua_exercitada(nome):
     """
     for outro in sorted(os.listdir(PASTA)):
         if outro == nome or not outro.endswith(('.py', '.php', '.mjs')):
+            continue
+        if not E_PORTAO.match(outro):
             continue
         try:
             with open(os.path.join(PASTA, outro), encoding='utf-8') as f:
@@ -252,6 +266,21 @@ def classificar(nome):
         return None, 'producao'
     if nome.startswith('regua-') and nome.endswith('.py'):
         return (None, 'producao') if regua_exercitada(nome) else (None, 'sem_convencao')
+    # `contar-` E PRODUCAO PELA MESMA PERGUNTA QUE O `regua-`, E NAO POR ESTAR
+    # NUMA LISTA (19/10/2026). Arquivo que CONTA imprime relatorio e nao afirma
+    # nada — mas a contagem dele e numero que a ilha publica sobre si mesma
+    # (secao 8), entao ele so escapa da denuncia se algum portao desta pasta o
+    # carregar pelo nome: ou ele mesmo, ou a regua que ele usa. Foi assim que o
+    # `contar-cano-de-links.py` ficou denunciado de 14 a 19/10/2026 com razao —
+    # a contagem morava dentro dele e nada a exercitava, e a ronda da Sentinela
+    # de 14/10 RECONTOU os quatro bancos a mao para conferir o que ele imprimiu.
+    # Recontagem a mao e a assinatura de instrumento sem portao.
+    if nome.startswith('contar-') and nome.endswith('.py'):
+        regua_dele = nome.replace('contar-', 'regua-', 1)
+        exercitado = (regua_exercitada(nome)
+                      or (os.path.exists(os.path.join(PASTA, regua_dele))
+                          and regua_exercitada(regua_dele)))
+        return (None, 'producao') if exercitado else (None, 'sem_convencao')
     if nome.startswith('teste-navegador-') and nome.endswith('.mjs'):
         return ['node', os.path.join('ferramentas', nome), '.'], 'navegador'
     if nome.startswith('conferir-'):
