@@ -14,6 +14,88 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-19 16h17Z–17h04Z — O TETO DO TÍTULO ESTAVA DIGITADO À MÃO EM CINCO ARQUIVOS, E A DÍVIDA NÃO ERA SÓ DO TETO
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; o último commit na pasta da ilha era de **hoje às 14h21Z**, 115 minutos atrás, e era o fecho da execução das 13h27Z. Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `6e0b159` (**atualização forçada** do remoto outra vez: o `main` foi reescrito entre a passada anterior e esta), a branch `claude/dreamy-mccarthy-jlkyrr` **idêntica ao `main`** (zero commit à frente, zero atrás) e **nenhum PR aberto** — não havia o que mergear. Reserva aceita às **16h17Z** (`9f98aa3`), na primeira tentativa, sem force push. Renovada às **16h38Z** pela 1.1, com o relógio de verdade e não o estimado — o deslize que a passada das 13h27Z corrigiu hoje foi evitado aqui por conferir `date -u` antes de escrever.
+
+**REDE PELA 20.2, MEDIDA E NÃO HERDADA:** `https://aquametria.com.br/` em **HTTP 200** nas três passadas; `/status` na **revisão 122**, a mesma do `manifest.json`, com o log da revisão dizendo `20 aplicado(s), 15 aguardando desembarque`. **Achado de método na conferência da rede, e vale para quem copiar o passo 20.2:** a rota do `/status` desta ilha **não** é `/<ilha>-sync/status` — é `/wp-json/aquametria/v1/status`, e o palpite devolve a página de 404 do WordPress com **HTTP 200 e corpo de HTML**. Ou seja: `curl` que devolve 200 numa rota de API **não** prova que a rota existe, e quem lê só o código de status lê "Sync vivo" numa rota que não existe. A rota certa está escrita na própria pasta da ilha (`PROMPT.md`, seção "Endpoints desta ilha") e foi lida de lá, não adivinhada.
+
+**ZERO BYTE NO AR:** nenhum Sync acionado, revisão **122** nos dois lados na abertura e no fecho, nenhuma leva do teto da 21.4 gasta (segue **ZERADO** nesta semana), e nada tocado em snippet, em `<title>`, em meta description nem em página nenhuma. **Conferido com o git e não afirmado de cabeça:** `git diff --name-only` entre a reserva e o fecho lista **só** `ESTADO.md` e nove arquivos de `ferramentas/`, e `git diff --stat` contra `snippets/` e `manifest.json` sai **vazio** — é por isso que não havia Sync a acionar.
+
+### 1. O BLOCO SAIU DA FILA SEM REMEDIR NADA, E ISSO É O PONTEIRO DAS 13h27Z FUNCIONANDO
+
+O próximo passo que a fila nomeia — o `aviso [E15] poecilia-reticulata` — continua **barrado até 21/10** pelo campo `segundo_corpo_nao_entrou`, e a passada das 13h27Z escreveu o ponteiro na própria linha da fila depois de a mesma coisa ter sido redescoberta **três vezes em um dia**. Esta passada leu o ponteiro e **não remediu pela quarta vez**: nenhum `validar-especies` rodado para reconfirmar os 8 avisos, nenhuma credencial reconferida. Custo de método evitado: uma medição inteira. **É a 19.2 lida do lado certo — achado consertado para de cobrar pedágio por execução.**
+
+O bloco é o **achado 11** do fecho das 13h27Z, deixado sem conserto de propósito pela mesma 19.2: *"o teto de 65 está digitado A MÃO em QUATRO arquivos desta pasta (...) o teto é definido num lugar só, o `AQUAMETRIA_TITULO_TETO` do snippet. No dia em que o Google mudar o corte, três arquivos vão continuar dizendo 65 e ninguém vai ser avisado. Quem consertar LÊ o teto do snippet, não o redigita."* Ele é de **banco e instrumento**, não de superfície, então cabe dentro do congelamento da leitura de 14/10.
+
+### 2. A VARREDURA ACHOU MAIS DO QUE O ACHADO DIZIA, E A CONTA ESTÁ AQUI PARA NÃO SER REFEITA DE CABEÇA
+
+- **CINCO arquivos, não quatro.** O `teste-titulo-no-ar.py` também trazia `TETO = 65`, e nasceu com ele às 13h53Z de hoje, na mesma execução que escreveu o achado.
+- **SEIS posições afirmativas, não cinco.** O `teste-voz.mjs` mede o teto **duas vezes**: a constante `TITULO_MAXIMO` (páginas de `conteudo/`) e, na linha 363, o literal **`65` escrito dentro da própria afirmação** das páginas da casca.
+- **A dívida não era só do teto.** O **separador** e a **marca** estavam redigitados do mesmo jeito — `SEPARADOR = ' – '` e `MARCA = 'Aquametria'` no `teste-promessa-do-titulo.py`, e `CAUDA = " – Aquametria"` no `teste-titulos-das-duas-fontes.py`. As três constantes nascem no **mesmo trecho** do `aquametria-seo-tecnico.php` e têm o mesmo defeito. Consertar uma e deixar duas seria reescrever o achado em vez de fechá-lo.
+- **E o `TETO = 65` do `teste-titulo-no-ar.py` NÃO era dívida — era encenação, e o defeito nele era o NOME.** Aquele arquivo passa o teto como **argumento** para a `regua-titulo-no-ar.py` e monta títulos de exatamente aquele tamanho para medir a borda; ler o snippet ali **desligaria** a medição, porque as cadeias de `"a"` continuariam do tamanho antigo. O que estava errado é que ele se chamava igual ao dos portões que afirmam sobre a ilha, e por isso nenhum leitor distinguia os dois — foi exatamente assim que o achado contou quatro. Virou `TETO_ENCENADO`, com o motivo escrito. **Encenação que se declara encenação não é dívida; encenação disfarçada de decisão é.**
+
+### 3. O DESENHO: PERGUNTAR, NÃO REIMPLEMENTAR — E É O CAMINHO (b) QUE ESTA ILHA JÁ TINHA ESCOLHIDO
+
+O `listar-promessas.php` desta pasta já escreveu a regra para o número da promessa, e ela vale igual para o teto: *"(a) reimplementar a conta — e então as DUAS metades erram juntas (...); (b) PERGUNTAR ao snippet"*. Uma expressão regular sobre o texto do `define()` seria o **(a) com outra roupa**: leria o texto do arquivo e não o valor que o site usa, e ficaria verde no dia em que alguém definisse a constante antes, por cima do `if ( ! defined( ... ) )`.
+
+**O que nasceu:**
+- **`ferramentas/listar-teto-do-titulo.php`** — carrega os snippets pelo `render-para-teste.php` e imprime as três constantes **como o PHP as resolve**. Constante não definida **sai 1 e nomeia qual falta**, nunca um JSON com valor de consolo.
+- **`ferramentas/regua-teto-do-titulo.py`** — `perguntar()` abre o processo, `ler_resposta()` recebe o **TEXTO** e decide se presta, `cauda()` é a única derivação (separador + marca, o que o WordPress acrescenta), e `redigitados()` é a **varredura** que impede o conserto de ser desfeito. Mesmo desenho da `regua-titulo-no-ar.py`: dado entra como dado, para a bancada poder encenar.
+- **`ferramentas/teste-teto-do-titulo.py`** (bancada, sem rede) e **`ferramentas/mutacoes-teto-do-titulo.py`**.
+
+**NENHUM CAMINHO DEVOLVE UM PADRÃO, e é a regra central da régua.** Um `except: return 65` ali dentro reproduziria o defeito do achado 11 **escondido atrás de uma régua que parece ser a cura** — e deixaria as afirmações de teto desta ilha verdes para sempre. É por isso que a metade (A) da bancada é quase toda sobre respostas RUINS: o que se mede não é se a régua lê o mundo bom, é se ela **se recusa a inventar um número** no mundo ruim.
+
+### 4. O `teste-voz.mjs` TRAZ A OBJEÇÃO CONTRÁRIA ESCRITA NO PRÓPRIO CABEÇALHO, E ELA TEM RAZÃO NUMA DIREÇÃO
+
+O item 1 daquele arquivo diz, com todas as letras: *"QUEM CONFERE ESCREVE A PRÓPRIA RÉGUA. A lista de termos está AQUI (...) se as duas metades lessem a mesma lista, apagar um termo dela faria as duas errarem juntas e o teste continuaria verde."* Ele e o achado 11 **não se contradizem**: falam de coisas diferentes, e a diferença decide o desenho.
+
+- A **lista de termos proibidos** é o que o portão EXISTE PARA POLICIAR, e a autoridade dela é o `VOZ.md`, que é documento e não código. Lê-la do snippet deixaria o policiado escolher a lei. **Ela continua escrita à mão, intacta.**
+- O **teto** não é o policiado: é a **decisão**, tomada num lugar só. Portão que mede contra teto redigitado mede contra uma decisão que ninguém mais sustenta.
+
+**MAS A OBJEÇÃO VALE NUMA DIREÇÃO, e ela ficou coberta:** perguntar sozinho deixaria o snippet **ALARGAR** os portões em silêncio — subir o teto para 200 faria toda afirmação de teto da ilha passar a aceitar título de 200 caracteres, sem ninguém ser avisado, que é exatamente o "errar juntas". Então o número é **LIDO** e a **faixa é DECLARADA** na régua (`TETO_MINIMO_CRIVEL = 40`, `TETO_MAXIMO_CRIVEL = 120`). Os dois números **não são medição do Google** e a régua diz isso: são o limite fora do qual um teto de `<title>` deixa de ser crível e passa a ser erro de digitação ou alargamento de portão. Quem precisar de um teto fora da banda **muda a linha da régua, no claro**. Pelo mesmo motivo o `.mjs` pergunta à **régua** e não ao PHP direto: perguntar ao PHP por cima dela seria recriar em JavaScript o alargamento que ela impede.
+
+### 5. AS MUTAÇÕES ACHARAM TRÊS FUROS NO MEU PRÓPRIO PORTÃO, E OS TRÊS ERAM REAIS
+
+Primeira passada: **3 sobreviventes de 19**. Nenhum deles era ruído.
+
+**(a) Nenhuma afirmação cobrava o CÓDIGO DE SAÍDA do PHP.** Apagar a checagem sobrevivia, porque com a saída vazia a régua recusava **pela leitura** e não pelo código. Conserto: um mundo encenado em que o PHP imprime **JSON impecável e sai 1** — aí só o código pode reprovar, e é o caso real do PHP que falha no meio e imprime o que já tinha montado.
+
+**(b) "O arquivo menciona a régua" era satisfeito pela PROSA, e a afirmação precisou ser estreitada TRÊS vezes.** (1) "o nome aparece no arquivo" — satisfeito pelo comentário que explica a chamada; (2) "o nome aparece em linha que não começa por marcador de comentário" — satisfeito pelas linhas de **continuação** do comentário de BLOCO do `.mjs`, que não começam por marcador nenhum; (3) "o nome aparece entre aspas" — satisfeito pela **mensagem de erro** do próprio `.mjs`, que cita o nome da régua numa frase. A diferença que sobrevive às três: **numa chamada a string É o caminho; numa mensagem ela é uma frase que o contém.** A afirmação passou a comparar a string inteira em vez de procurar o nome dentro dela.
+
+**(c) E A IRONIA MEDIDA: a minha própria bancada redigitava 65.** Os mundos encenados de comparação traziam `aba.length <= 65` com o número digitado — então trocar o `define` do snippet para 58 fazia a bancada **REPROVAR O MUNDO BOM**. Era o defeito do achado 11 **dentro do portão escrito para fechá-lo**. Os mundos encenados passaram a se montar com o teto lido.
+
+Fecho: **19 mutações, 0 sobrevivente, 0 inerte, 0 sem a frase**.
+
+### 6. A VARREDURA SEPARA O QUE EXECUTA DO QUE NÃO EXECUTA, E ISSO TAMBÉM VEIO DE UM ACERTO CONTRA MIM MESMA
+
+A primeira versão denunciou os **comentários que esta passada escreveu para explicar o conserto**. Afrouxar o padrão para ele não morder a prosa seria **trocar a régua pelo resultado**. A separação certa é a pergunta "a linha MEDE alguma coisa ali?", e ela tem três respostas:
+
+- **`codigo`** — mede. É a única que **reprova**.
+- **`prosa`** — comentário, ou nome citado entre acentos graves (convenção de documentação desta pasta). Não mede nada, mas envelhece calado e manda o próximo leitor ao número errado, que é **metade** do defeito do achado 11. Vira **AVISO**, pelo desenho do E21 e do E25 do esquema desta ilha: o dado está certo e quem tem de obedecer é outra camada.
+- **`dado`** — o trecho está dentro de **aspas**, ou seja é texto que o arquivo manipula. É o caso da própria bancada, que encena mundos redigitados para provar que a varredura morde: o padrão **tem** de aparecer no texto dela. Silencioso.
+
+**O limite está escrito na régua em vez de ser descoberto depois:** isto não é um analisador de sintaxe, e medição montada dentro de um `exec` passaria. É o preço de uma régua de uma página que roda em `.py`, `.mjs` e `.php` com o mesmo critério.
+
+**A varredura de hoje, na pasta inteira: 0 denúncia, 3 avisos de prosa** — as duas linhas de comentário desta passada que citam o número para dizer que ele era o defeito, e uma do `teste-titulos-das-duas-fontes.py`. Nenhum é defeito, e os três estão impressos em vez de escondidos.
+
+### 7. OS PORTÕES
+
+**BANCADA APROVADO: 63 portões, 0 falha** — de 61 para 63 sem ninguém alimentar lista nenhuma, e a lista de denunciados ficou **vazia**. A `regua-teto-do-titulo.py` não foi denunciada (um portão a carrega pelo nome) e o `listar-teto-do-titulo.php` entrou como produção pelo prefixo `listar-`, igual ao `listar-promessas.php` que ele copia. **Os dois portões novos entraram na bancada no dia em que foram escritos, sem ninguém os inscrever.**
+
+- `teste-teto-do-titulo.py`: **76 afirmações, 0 falha**, em cinco metades.
+- `mutacoes-teto-do-titulo.py`: **19 mutações, 0 sobrevivente, 0 inerte, 0 sem a frase**, mais 3 mundos que têm de passar — e um deles é o que fecha o achado: **trocar o `define` do snippet para 58 NÃO reprova**, porque o número é lido.
+- `teste-titulo-no-ar.py`: **72 afirmações, 0 falha** (eram 69). A ilha de sombra dele ganhou **snippet próprio, com teto 60** — e isso virou a prova mais forte desta passada: se alguém redigitar o teto dentro do `conferir-titulo-no-ar.py`, o portão da sombra volta a relatar 65 e a linha fica vermelha no mesmo dia.
+- `teste-promessa-do-titulo.py`: **32 afirmações, 0 falha**. `teste-titulos-das-duas-fontes.py`: **160 afirmações, 0 falha**.
+
+**NO AR, e é a metade que a bancada sem rede não alcança:** `conferir-titulo-no-ar.py` **APROVADO** — **52 páginas** no ar, **6 com algarismo** no título, o mais longo em **64 de 65**, e esse 65 veio do **snippet pela régua**, não digitado no portão. Número por número igual à linha de base das 13h46Z de hoje: **zero deriva**, e o conserto não mexeu no que o portão mede. Rede no fecho pela 20.2: home em **200** nas três passadas, `/status` e `manifest.json` os dois na **revisão 122**.
+
+### 8. PRÓXIMO PASSO
+
+**A lista de 21/10 não mudou** e é a mesma do fecho das 13h27Z: declarar os cinco `divergiu` como conflitos (E9 e `dominio_por_campo`), gravar a fonte do danio e a do guppy (que fecha o `aviso [E15]`), decidir os três `regua-diferente`, regerar o catálogo, desembarcar as 74 linhas de deriva, e decidir a promoção da contagem por campo. Quem desembarcar roda `conferir-cano-de-links.py --gravar` **e também** `conferir-titulo-no-ar.py --gravar`.
+
+**ACHADO NÃO CONSERTADO, de propósito, pela 19.2:** o `teste-voz.mjs` carrega a lista de termos proibidos à mão **e está certo nisso** (item 1 do cabeçalho dele), mas a **`regua-prospeccao.py` e as irmãs** não foram varridas por nenhuma régua de "número que mora num lugar só" — esta passada mediu **uma** constante compartilhada (o teto do título) e não perguntou se há outras. A varredura nova é específica do título por desenho; generalizá-la é decisão, não continuação, e quem a tomar começa contando quantas constantes de snippet os portões redigitam hoje.
+
 ## 2026-10-19 13h27Z–14h20Z — O TÍTULO SERVIDO NO AR ERA A ÚNICA MEDIÇÃO OBRIGATÓRIA DESTA ILHA SEM INSTRUMENTO, E ELA É COBRADA EM DOIS DIAS
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; o último commit na pasta da ilha era de **hoje às 11h00Z**, mais de 40 minutos atrás, e era o fecho da execução das 10h16Z. Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `7383cd4` (**atualização forçada** do remoto: o `main` foi reescrito entre 16/10 e hoje), a branch `claude/dreamy-mccarthy-r2tv0a` com **zero commit** além dele e **nenhum PR aberto** — não havia o que mergear. Reserva aceita às **13h27Z** (`f28bb2b`), na primeira tentativa, sem force push.
