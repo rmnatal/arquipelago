@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-16T20:11Z
-executando_desde: null
+executando_desde: 2026-10-19T10:16Z
 bloco_atual: |
   A MEDICAO DA DERIVA ESCREVIA NO ARQUIVO QUE SERVE AS 52 URLs E O RESTAURAVA DE MEMORIA,
   TRES EXECUCOES SEGUIDAS — agora ela sai de uma RAIZ DE SOMBRA e o numero e CONTADO.
