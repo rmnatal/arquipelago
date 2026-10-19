@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-19T10:58Z
-executando_desde: null
+executando_desde: 2026-10-19T13:27Z
 bloco_atual: |
   O CANO DE LINKS DESTA ILHA — O CAMINHO DO DINHEIRO — ERA RELATORIO DATADO QUE NADA
   COMPARAVA COM O DO DIA ANTERIOR, e a prova disso estava escrita: a bancada denunciava o
