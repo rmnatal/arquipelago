@@ -5,82 +5,101 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-19T10:58Z
-executando_desde: 2026-10-19T13:53Z
+ultima_execucao: 2026-10-19T14:20Z
+executando_desde: null
 bloco_atual: |
-  O CANO DE LINKS DESTA ILHA — O CAMINHO DO DINHEIRO — ERA RELATORIO DATADO QUE NADA
-  COMPARAVA COM O DO DIA ANTERIOR, e a prova disso estava escrita: a bancada denunciava o
-  contar-cano-de-links.py desde 14/10 ("SEM CONVENCAO, ninguem roda") e a ronda da
-  Sentinela de 14/10 RECONTOU os quatro bancos A MAO para conferir o que ele imprimiu.
+  O TITULO SERVIDO NO AR ERA A UNICA MEDICAO OBRIGATORIA DESTA ILHA SEM INSTRUMENTO, E
+  ELA E COBRADA EM DOIS DIAS. A linha de 14/10 do dados/posicoes.md diz que a leitura de
+  21/10 e a primeira em que copiar o <title> servido significa alguma coisa "e ai e
+  OBRIGATORIO", e o criterio de pronto das Propostas 1 e 2 pede o titulo servido no dia.
+  O instrumento era uma aba de navegador: copiar 52 frases da tela e a recontagem a mao
+  que esta pasta mediu as 10h16Z de hoje, um andar abaixo, no cano de links.
   ZERO BYTE NO AR: nenhum Sync acionado, revisao 122 no manifest e no /status na abertura
-  e no fecho, home em 200 nas tres passadas da 20.2 mais uma no fecho, nenhuma leva do
+  e no fecho, home em 200 em tres passadas de abertura e tres de fecho, nenhuma leva do
   teto da 21.4 gasta (segue ZERADO nesta semana), e nada tocado em snippet, em title, em
-  meta description nem na /calculadora-de-litragem/ — a leitura de 14/10 proibe mexer
-  nessas superficies antes de 21/10. O diff e cinco arquivos de ferramentas/ e um de
-  dados/.
-  1. O BLOCO NAO E O PROXIMO PASSO ESCRITO, E O MOTIVO E A DATA. O proximo passo da fila
-     (o aviso [E15] do poecilia-reticulata) esta BARRADO por este mesmo banco: o
-     segundo_corpo_nao_entrou daquele registro diz, de 16/10, que acrescentar a fonte do
-     Seriously Fish o faz passar no portao de catalogo e ENTRAR nas tabelas de /peixes/ —
-     superficie, congelada ate 21/10/2026 e com a decisao marcada para aquela data.
-     Remedido hoje antes de escolher: 40 especies, 0 erro, 8 avisos, os mesmos 8 de 16/10.
-     URL nova segue travada pela 30.8 e a credencial da Search Console segue ausente (as
-     tres variaveis conferidas nesta data).
-  2. O QUE SOBRAVA ERA A UNICA DENUNCIA QUE A BANCADA REPETIA, e ela e de 14/10. A
-     contagem do cano morava DENTRO do contador: por isso nao podia ser rodada contra
-     banco encenado, por isso nao tinha teste, e por isso a Sentinela recontou a mao.
-     Recontagem a mao e a assinatura de instrumento sem portao — quando existe portao,
-     ninguem reconta. E a 25.2-b do contrato ja tinha escrito o preco: na Robometria, em
-     dois dias, o banco foi de 73 publicaveis com ZERO sem piso para 95 com 22 sem, porque
-     "a ilha cresceu mais rapido que os proprios acabamentos". Defeito de PORTAO, nao de
-     codigo.
-  3. O CONSERTO: regua-cano-de-links.py recebe a RAIZ, e e so isso que torna a conta
-     testavel. O portao conferir-cano-de-links.py (BANCADA: sem rede) afirma DUAS coisas
-     que ninguem afirmava: (a) que todos os bancos da pasta foram lidos — "0 sem piso"
-     sobre zero banco lido e VERDE VAZIO, e e a unica forma de este portao mentir sem
-     ninguem editar uma linha; (b) que o cano medido e o DECLARADO sao o mesmo ITEM POR
-     ITEM. A serie e dados/cano-de-links.md e cresce por cima, como a da deriva.
-  4. A DECLARACAO E POR ITEM E NAO POR TOTAL, pela licao de 16/10 um andar abaixo: 42 sem
-     ficha podem virar 42 OUTROS sem o total mudar. O teste encena exatamente isso — dois
-     registros trocando de estado entre si, com TODOS os totais e a distribuicao de degrau
-     identicos — e a comparacao item por item acusa as duas mudancas. MEDIDO HOJE: 78
-     registros, 0 sem url_busca (o piso da 25.2), 42 sem url_produto, 11 com url e sem
-     ficha, 11 intestavel, degrau 3 em 36, degrau 4 em 31 e nulo em 11. Bate com a
-     recontagem da Sentinela de 14/10 corrigida por baixo as 19h3xZ.
-  5. O QUE O PORTAO NAO FAZ, de proposito: nao julga registro um por um. Quem reprova
-     registro publicavel sem piso e a V26 do validar-produtos.py e quem confere a bandeira
-     intestavel e a V25. Terceira regua da mesma regra e a cicatriz de 16/10 ("agora a
-     regua e uma so" era falso no dia em que foi escrito: ela era QUATRO).
-  6. A BANCADA APRENDEU A PERGUNTA, E NAO UMA LISTA: "contar-" e producao SE um PORTAO
-     carregar a conta dele. E a pergunta do "regua-" ficou ESTRITA no mesmo commit, porque
-     ela aceitava arquivo de PRODUCAO citando a regua como prova de exercicio — regua
-     carregada so pelo gerador que a usa escaparia da denuncia sem portao nenhum a
-     exercitar. Medido: as sete reguas desta pasta seguem todas carregadas por portao,
-     entao a regra mais estrita nao denuncia ninguem hoje; ela fecha a porta antes de
-     alguem entrar por ela.
-  7. O TESTE ACHOU UM DEFEITO CONTRA MIM MESMO, E ELE E DA FAMILIA DO ARQUIVO. A metade
-     que cobra a denuncia da bancada escrevia o nome do contador de mentira INTEIRO — e
-     este arquivo e um portao, logo a bancada passava a ver o nome citado por um portao e
-     o chamava de protegido. O teste provava o contrario do que pretendia. Os nomes passam
-     a ser montados por pedaco, com o motivo escrito ao lado. E a mutacao 15 SOBREVIVEU na
-     primeira versao por causa disso: sem um arquivo de producao citando a falsa regua, a
-     metade ficava verde com a pergunta antiga e com a nova.
-  8. OS PORTOES. BANCADA APROVADO: 59 portoes, 0 falha — de 56 para 59 sem ninguem a
-     alimentar. teste-cano-de-links.py: 42 afirmacoes em CINCO metades (aritmetica
-     encenada; estrutural, que cobra que o contador nao conta e que o portao pergunta
-     quais bancos leu; o verde vazio contra raiz sem banco; o portao inteiro numa ilha de
-     sombra, verde com a serie, vermelho sem ela, vermelho na troca de total intacto,
-     vermelho com registro novo e verde depois do --gravar; e a denuncia da bancada nos
-     DOIS sentidos). mutacoes-cano-de-links.py: 15 mutacoes, 0 sobrevivente, 0 inerte,
-     todas cobradas pela FRASE.
-  9. PROXIMO PASSO: a lista de 21/10 nao mudou e e a mesma do fecho de 16/10 — declarar os
-     cinco `divergiu` como conflitos (E9 e dominio_por_campo), gravar a fonte do danio e a
-     do guppy (que fecha o aviso [E15]), decidir os tres `regua-diferente`, regerar o
-     catalogo e desembarcar as 74 linhas de deriva, e decidir a promocao da contagem por
-     campo. O que esta passada acrescenta a ela: depois do desembarque, quem regerar o
-     catalogo roda tambem conferir-cano-de-links.py --gravar, porque leva nova no banco
-     muda o cano e o portao fica vermelho ate alguem declarar — que e exatamente o que ele
-     existe para fazer.
+  meta description nem na /calculadora-de-litragem/. Nenhum item do manifest foi tocado,
+  conferido — e e por isso que nao havia Sync a acionar. O diff e quatro arquivos novos
+  de ferramentas/, um novo de dados/ e dois anotados (dados/posicoes.md e PROMPT.md).
+  1. O BLOCO NAO E O PROXIMO PASSO ESCRITO, PELO MESMO MOTIVO DAS 10h16Z — E DESTA VEZ A
+     FILA FICOU ANOTADA. O aviso [E15] do poecilia-reticulata segue barrado pelo campo
+     segundo_corpo_nao_entrou daquele registro, com decidir_em 2026-10-21 gravado: dar
+     corpo ao guppy o faz entrar nas tabelas de /peixes/, que e superficie congelada ate
+     21/10. As 10h16Z descobriram isso e escreveram no REGISTRO; a linha da FILA no
+     PROMPT.md continuou dizendo "cabe nesta semana", e por isso esta passada remediu a
+     mesma coisa pela terceira vez em um dia. O ponteiro esta escrito na fila agora.
+     Remedido: 40 especies, 0 erro, 8 avisos, os mesmos 8 de 16/10. URL nova segue
+     travada pela 30.8 e a credencial da Search Console segue ausente (as tres variaveis
+     conferidas nesta data).
+  2. O PORTAO DA PROMESSA NAO VE O AR, POR DESENHO, E AS TRES TRAVAS DELA SAO
+     SILENCIOSAS. teste-promessa-do-titulo.py e BANCADA e mede o REPOSITORIO. Se o numero
+     nao couber em 65 ou se a funcao do banco nao responder, o <title> volta a nome +
+     marca — que e SEMPRE VALIDO, e por isso ninguem ve a promessa desaparecer. Ate hoje
+     promessa que nao desembarca nao reprovava nada, e num desembarque quebrado entre
+     hoje e 21/10 a leitura semanal leria "as promessas nao funcionaram" quando o certo
+     seria "as promessas nao estavam la". E a cicatriz de 11/09/2026 desta ilha, citada
+     no cabecalho do conferir-datas-e-voz-no-ar.py: 293 afirmacoes verdes, o Sync dizendo
+     18 aplicados, e os nove titulos do ar sendo os de antes.
+  3. O QUE NASCEU: regua-titulo-no-ar.py (recebe HTML como TEXTO e o mapa de promessas
+     como DADO — e isso que deixa o teste encenar outra ilha sem subir PHP),
+     conferir-titulo-no-ar.py (abre o site, fica no --no-ar), dados/titulos-no-ar.md (a
+     serie, cresce por cima), teste-titulo-no-ar.py e mutacoes-titulo-no-ar.py.
+  4. A REGUA NAO REESCREVE A MONTAGEM DO TITULO, de proposito: ela NAO tem o separador e
+     NAO tem a marca. Quem monta nome + separador + promessa, com as tres travas e o
+     teto, e o aquametria_seo_titulo_do_documento() do snippet, e quem cobra a montagem
+     no repositorio e o teste-promessa-do-titulo.py. Esta le o que o ar serve e pergunta
+     se a promessa que o PROPRIO snippet resolve, perguntada a ele pelo
+     listar-promessas.php, chegou la dentro — com `in` e nao com igualdade. Terceira
+     regua da mesma regra e a cicatriz de 16/10 desta pasta.
+  5. A LINHA DE BASE, MEDIDA AS 13h46Z E NAO DIGITADA: 52 de 52 URLs do sitemap abertas,
+     0 sem title, 0 sem meta description, o title mais longo em 64 de 65, as CINCO
+     promessas servidas inteiras, o controle /calculadora-de-litragem/ servindo
+     "Quantos litros tem o seu aquario? - Aquametria" sem algarismo, e /status e manifest
+     os dois na revisao 122. Sao estes os titulos que produziram a janela que a leitura
+     de 21/10 vai ler.
+  6. A MEDICAO DECIDIU UMA AFIRMACAO QUE EU IA ESCREVER MAIS LARGA DO QUE ELA SUSTENTA:
+     sao SEIS os titulos com algarismo, nao cinco. O sexto e o artigo
+     /2026/09/08/quantos-watts-de-aquecedor-para-aquario/, cujo titulo e "Por que o 1 W
+     por litro erra para o mesmo lado" — o algarismo esta no NOME da pagina. A regra
+     "nenhuma pagina sem promessa tem algarismo" seria falsa no dia em que fosse escrita,
+     entao a ausencia de algarismo e cobrada SO no controle, e o motivo esta escrito no
+     portao com a data.
+  7. AS MUTACOES ACHARAM QUATRO FUROS NO MEU PROPRIO TESTE, E OS QUATRO ERAM REAIS: (a)
+     uma reprovava por TRACEBACK e nao por afirmacao, porque max() sobre vazio derruba a
+     bancada antes de ela dizer o que mediu; (b) a frase procurada no verde vazio aparece
+     tambem na linha ok, e o que distingue mundo mordido e a palavra FALHA; (c) a serie
+     de sombra tinha UMA secao so, entao o primeiro bloco json era tambem o ultimo e
+     quem lesse o ultimo ficava verde — agora o teste grava DUAS e prova que voltar ao
+     mundo da secao antiga REPROVA; (d) o mapa de promessas nunca falhava na sombra,
+     entao "o portao exige a resposta do listar-promessas.php" era afirmacao sobre nada.
+  8. E O TESTE ACHOU UM DEFEITO NO DIAGNOSTICO DA MINHA PROPRIA REGUA: com o titulo igual
+     e a DESCRICAO trocada, a frase da divergencia dizia "servido 'Titulo de A' contra
+     declarado 'Titulo de A'" — reprovava certo e mandava quem lesse procurar defeito no
+     campo correto. A frase passa a NOMEAR qual campo divergiu. Licao de 15/10 desta
+     pasta: reprovar nao e a mesma coisa que reprovar PELO MOTIVO CERTO.
+  9. OS PORTOES. BANCADA APROVADO: 61 portoes, 0 falha — de 59 para 61 sem ninguem
+     alimentar lista nenhuma, e a lista de denunciados ficou vazia. A
+     regua-titulo-no-ar.py nao foi denunciada (dois portoes a importam pelo nome) e o
+     conferir-titulo-no-ar.py ficou FORA da passada sem rede, como deve.
+     teste-titulo-no-ar.py: 69 afirmacoes, 0 falha, em seis metades.
+     mutacoes-titulo-no-ar.py: 21 mutacoes, 0 sobrevivente, 0 inerte, 0 sem a frase, mais
+     2 mundos bons. conferir-titulo-no-ar.py no ar: APROVADO.
+  10. PROXIMO PASSO: a lista de 21/10 nao mudou e e a mesma do fecho de 16/10 e das
+     10h16Z — declarar os cinco `divergiu` como conflitos (E9 e dominio_por_campo),
+     gravar a fonte do danio e a do guppy (que fecha o aviso [E15]), decidir os tres
+     `regua-diferente`, regerar o catalogo, desembarcar as 74 linhas de deriva, e decidir
+     a promocao da contagem por campo. Quem desembarcar roda conferir-cano-de-links.py
+     --gravar E TAMBEM conferir-titulo-no-ar.py --gravar: leva nova poe URL nova no
+     sitemap e o portao fica vermelho ate alguem declarar. E a leitura de 21/10 nao copia
+     mais o title da aba: ela CITA a secao de dados/titulos-no-ar.md daquela data, e o
+     ponteiro esta escrito no dados/posicoes.md do lado da linha que o exige.
+  11. ACHADO NAO CONSERTADO, de proposito, pela 19.2: o teto de 65 esta digitado A MAO em
+     QUATRO arquivos desta pasta — teste-promessa-do-titulo.py,
+     teste-titulos-das-duas-fontes.py, teste-voz.mjs e, desde hoje,
+     conferir-titulo-no-ar.py. Tres medem a frase do repositorio e o novo mede a do ar,
+     entao nao sao a mesma medicao, mas o NUMERO e o mesmo e o teto e definido num lugar
+     so, o AQUAMETRIA_TITULO_TETO do snippet. No dia em que o Google mudar o corte, tres
+     arquivos vao continuar dizendo 65 e ninguem vai ser avisado. Quem consertar LE o
+     teto do snippet, nao o redigita.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |

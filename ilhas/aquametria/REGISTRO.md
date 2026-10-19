@@ -14,6 +14,95 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-19 13h27Z–14h20Z — O TÍTULO SERVIDO NO AR ERA A ÚNICA MEDIÇÃO OBRIGATÓRIA DESTA ILHA SEM INSTRUMENTO, E ELA É COBRADA EM DOIS DIAS
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; o último commit na pasta da ilha era de **hoje às 11h00Z**, mais de 40 minutos atrás, e era o fecho da execução das 10h16Z. Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `7383cd4` (**atualização forçada** do remoto: o `main` foi reescrito entre 16/10 e hoje), a branch `claude/dreamy-mccarthy-r2tv0a` com **zero commit** além dele e **nenhum PR aberto** — não havia o que mergear. Reserva aceita às **13h27Z** (`f28bb2b`), na primeira tentativa, sem force push.
+
+**REDE PELA 20.2, MEDIDA E NÃO HERDADA:** `https://aquametria.com.br/` em **HTTP 200** nas três passadas de abertura e em mais três no fecho; `/status` na **revisão 122** na abertura e no fecho, a mesma do `manifest.json`.
+
+**ZERO BYTE NO AR:** nenhum Sync acionado, revisão **122** nos dois lados, nenhuma leva do teto da 21.4 gasta (segue **ZERADO** nesta semana), e nada tocado em snippet, em `<title>`, em meta description nem na `/calculadora-de-litragem/` — a leitura de 14/10 proíbe mexer nessas superfícies antes de 21/10, e esta passada **mede** essas superfícies em vez de as tocar. O diff é **quatro arquivos novos de `ferramentas/`**, **um arquivo novo de `dados/`** e **dois arquivos anotados** (`dados/posicoes.md` e `PROMPT.md`). Nenhum item do `manifest.json` foi tocado — conferido, e é por isso que não houve Sync a acionar.
+
+### 1. O BLOCO NÃO É O PRÓXIMO PASSO ESCRITO, PELO MESMO MOTIVO DAS 10h16Z — E DESTA VEZ A FILA FICOU ANOTADA
+
+O próximo passo que a fila nomeia — o `aviso [E15] poecilia-reticulata`, "de BANCO e não põe byte no ar" — está barrado pelo campo `segundo_corpo_nao_entrou` daquele registro, que traz `decidir_em: 2026-10-21` gravado: dar corpo de fonte ao guppy o faz passar no portão de catálogo e **entrar nas tabelas de `/peixes/`**, que é superfície congelada até 21/10. A execução das 10h16Z descobriu isso e escreveu no `REGISTRO.md`; **a linha da fila no `PROMPT.md` continuou dizendo "cabe nesta semana"**, e por isso esta passada remediu a mesma coisa pela terceira vez em um dia.
+
+**O conserto é de uma linha e está feito:** a fila do `PROMPT.md` ganhou o ponteiro, com a data do destravamento, a causa escrita e o número remedido. **Achado não consertado volta a custar uma medição por execução** — é a 19.2 lida ao contrário, e foi o que aconteceu aqui.
+
+Remedido hoje antes de escolher, para não herdar número: **40 espécies, 0 erro, 8 avisos** — os mesmos 8 de 16/10 e das 10h16Z. URL nova segue travada pela **30.8**; a credencial da Search Console segue **ausente** (`GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` conferidas nesta data).
+
+### 2. O QUE SOBRAVA ESTAVA ESCRITO EM TRÊS LUGARES DO REPOSITÓRIO, E OS TRÊS PEDIAM A MESMA MEDIÇÃO — QUE NÃO EXISTIA
+
+A `bancada.py` fechou as 10h16Z com a **lista de denunciados vazia**: não havia instrumento sem portão a consertar na pasta. O que havia era uma **medição obrigatória sem instrumento nenhum**, e ela tem data marcada:
+
+1. **`dados/posicoes.md`, linha de 14/10/2026:** *"NÃO COPIEI os `<title>` servidos para esta série, e digo por quê em vez de deixar em branco (...) A leitura de 21/10 é a primeira em que copiar o título servido significa alguma coisa — e aí é OBRIGATÓRIO."*
+2. **O despacho da leitura semanal de 14/10, item 2 (critério de pronto das Propostas 1 e 2):** *"a leitura de 21/10 registrar os dois critérios acima **com o `<title>` servido no dia copiado para `dados/posicoes.md`**, que aí passa a significar alguma coisa."*
+3. **A mesma série, no fecho do de-para:** *"sem o título copiado não há como distinguir 'o título não funcionou' de 'o título não estava lá'."*
+
+**Obrigatório em dois dias, e o instrumento era uma aba de navegador.** Copiar 52 frases da tela para a série é exatamente a **recontagem à mão** que esta pasta mediu há três horas, um andar abaixo, no cano de links: *"recontagem à mão é a assinatura de instrumento sem portão — quando existe portão, ninguém reconta."*
+
+**E A ALAVANCA DESTA ILHA DEPENDE DESSA CÓPIA.** A leitura de 14/10 escreveu que a aquametria não tem banda 11 a 20 — as 40 páginas com impressão estão entre 2,0 e 10,0 —, que **a única alavanca é título e meta**, que ela já foi puxada em 14/10, e que a semana de 14→21/10 tem um trabalho só: *"deixar quieto e medir"*. O que faltava era o **medir**.
+
+### 3. E O PORTÃO DA PROMESSA NÃO VÊ O AR, POR DESENHO — AS TRÊS TRAVAS DELA SÃO SILENCIOSAS
+
+`ferramentas/teste-promessa-do-titulo.py` é **BANCADA** e mede o **repositório**: reprova a página que declarou promessa e não serve dígito, reprova o controle que ganhar promessa, cobra o teto de 65. **Nada disso alcança o ar.** E o cabeçalho do `conferir-datas-e-voz-no-ar.py` já nomeia a cicatriz que isso cria, de 11/09/2026 nesta ilha: *"293 afirmações verdes, o Sync dizendo '18 aplicado(s)', e os nove títulos no ar continuando os de antes."*
+
+Pior que isso: **as três travas da promessa são silenciosas por desenho**, e está escrito no próprio snippet. Se o número não couber em 65, ou se a função do banco não responder, o `<title>` volta a nome + marca — **que é sempre válido, e por isso ninguém vê a promessa desaparecer**. Até hoje, promessa que não desembarca **não reprovava nada**. Num desembarque quebrado entre hoje e 21/10, a leitura semanal leria "as promessas não funcionaram" quando o certo seria "as promessas não estavam lá" — e é a diferença entre reprovar uma hipótese e reprovar um bug.
+
+### 4. O QUE NASCEU: UMA RÉGUA, UM PORTÃO QUE ABRE O SITE, UMA SÉRIE DECLARADA PÁGINA POR PÁGINA, UMA BANCADA E UMA BATERIA DE MUTAÇÕES
+
+- **`ferramentas/regua-titulo-no-ar.py`** — régua compartilhada, sem rede. Recebe **HTML como texto** e devolve o estado servido de cada página: `<title>` e `<meta name="description">` com as **entidades decodificadas**, o tamanho de cada um, e se o título tem algarismo. Recebe o mapa de promessas do `listar-promessas.php` como **dado**, e é isso que deixa o teste encenar outra ilha sem subir PHP — a mesma lição de raiz parametrizada que a régua do cano aprendeu hoje mais cedo.
+- **`ferramentas/conferir-titulo-no-ar.py`** — o portão, que **abre o site** (fica no `--no-ar`, como as irmãs). Lê as URLs do `wp-sitemap.xml` no ar, abre as 52 com quebra de cache, e afirma: o sitemap trouxe URL e todas foram abertas; toda URL serve título e descrição; nenhum título passa de 65 **decodificado**; as páginas que **declaram** promessa **servem** a promessa; o **controle** continua sem nenhuma; e o conjunto servido é o **declarado na série, página por página**. `--gravar` escreve a seção nova no topo.
+- **`dados/titulos-no-ar.md`** — a série. Cresce por cima, como `dados/posicoes.md`, `dados/cano-de-links.md` e `dados/deriva-do-catalogo.md`.
+- **`ferramentas/teste-titulo-no-ar.py`** — bancada sem rede, **69 afirmações, 0 falha**, em seis metades: a leitura (entidade, quebra de linha, atributo na tag, tag ausente, as duas grafias de aspas), a promessa (chegou, não chegou, truncada, vazia), o controle (intacto e perdido), o **verde vazio**, a **comparação página por página** e o **portão inteiro numa ilha de sombra**, com a rede trocada por um mapa de páginas.
+- **`ferramentas/mutacoes-titulo-no-ar.py`** — **21 mutações, 0 sobrevivente, 0 inerte, 0 sem a frase**, mais **2 mundos bons** que têm de passar.
+
+**A RÉGUA NÃO REESCREVE A MONTAGEM DO TÍTULO, e isso é escolha com motivo.** Quem monta `nome + separador + promessa`, com as três travas e o teto, é o `aquametria_seo_titulo_do_documento()` do snippet; quem cobra essa montagem no repositório é o `teste-promessa-do-titulo.py`. Esta régua **não tem o separador e não tem a marca**: ela lê o que o ar serve e pergunta se a promessa — a string que o próprio snippet resolve, perguntada a ele pelo `listar-promessas.php` — chegou lá dentro, com `in` e não com igualdade. **Terceira régua da mesma regra é a cicatriz de 16/10/2026 desta pasta** (*"agora a régua é uma só" era falso no dia em que foi escrito: ela era QUATRO*).
+
+### 5. A LINHA DE BASE, MEDIDA ÀS 13h46Z E NÃO DIGITADA
+
+**52 de 52** URLs do sitemap abertas · **0** sem `<title>` · **0** sem meta description · o `<title>` mais longo em **64** de 65 · **as cinco promessas servidas inteiras** · o controle **sem algarismo** · `/status` e `manifest.json` os dois na **revisão 122**.
+
+As cinco, com o título servido que a leitura de 21/10 vai citar em vez de transcrever:
+
+| URL | `<title>` servido | n |
+|---|---|---|
+| `/calculadora-de-iluminacao/` | `Quanta luz o seu aquário precisa? – de 10 a 60 lm por litro` | 59 |
+| `/calculadora-de-midia-filtrante/` | `Quanta mídia biológica cabe no seu filtro? – de 1,25 a 12,5 mL/L` | 64 |
+| `/calculadora-de-potencia-do-aquecedor/` | `Quantos watts de aquecedor você precisa? – de 1 a 2 W por litro` | 63 |
+| `/calculadora-de-vazao-do-filtro/` | `Qual filtro dá conta do seu aquário? – de 1,76 a 10 renovações/h` | 64 |
+| `/peixes/bettas/quantos-litros-para-betta/` | `Quantos litros para um betta? – de 40,5 a 54 litros` | 51 |
+
+**E O CONTROLE ESTÁ INTACTO, MEDIDO NO AR:** a `/calculadora-de-litragem/` serve `Quantos litros tem o seu aquário? – Aquametria`, sem promessa e sem algarismo. É a página que a leitura de 14/10 mediu indo de **27 para 82 impressões sem ser tocada**, e sem ela o crescimento de +56% da ilha seria creditado às promessas. **A partir de hoje, quem der promessa a ela reprova um portão** em vez de destruir a atribuição em silêncio.
+
+**A MEDIÇÃO TAMBÉM DECIDIU UMA AFIRMAÇÃO QUE EU IA ESCREVER MAIS LARGA DO QUE ELA SUSTENTA, e por isso ela foi feita antes.** São **SEIS** os títulos servidos com algarismo, não cinco: as cinco promessas e o artigo `/2026/09/08/quantos-watts-de-aquecedor-para-aquario/`, cujo título é *"Por que o 1 W por litro erra para o mesmo lado"* — o algarismo está no **nome da página**, não numa promessa. A regra "nenhuma página sem promessa tem algarismo" seria falsa no dia em que foi escrita. Por isso a ausência de algarismo é cobrada **só** na calculadora que o mapa devolve com promessa vazia, que é o controle, e o motivo está escrito no portão com a data da medição.
+
+### 6. AS MUTAÇÕES ACHARAM QUATRO FUROS NO MEU PRÓPRIO TESTE, E OS QUATRO ERAM REAIS
+
+A primeira bateria saiu com **1 sem a frase e 3 sobreviventes** — e nenhum deles era mutação ruim: os quatro eram o teste medindo menos do que dizia medir.
+
+- **A que reprovava por TRACEBACK e não por afirmação.** Desligar o `or [0]` do `max()` fazia `totais({})` explodir e **derrubar a bancada inteira antes de ela dizer o que mediu**. Código 1 com traceback não é reprovação: é o portão morrendo. O caso passou a medir a ausência de exceção explicitamente.
+- **A frase procurada aparecia também na linha `ok`.** A asserção do verde vazio procurava o rótulo `"verde vazio nao passa por aprovado"` — que o portão imprime nos **dois** vereditos. Passou a procurar `"FALHA o sitemap trouxe URL"`: o que distingue mundo mordido de mundo verde é a palavra FALHA, não o rótulo.
+- **A série de sombra tinha UMA seção só**, então o primeiro bloco `json` era também o último e uma leitura que pegasse o **último** ficava verde. O teste passou a gravar **duas** seções, conferir que a nova ficou por cima, e provar que **voltar ao mundo da seção antiga REPROVA** — porque a declaração que manda é a do topo.
+- **O mapa de promessas nunca falhava na sombra**, então "o portão exige a resposta do `listar-promessas.php`" era afirmação sobre nada. A sonda ganhou a alavanca de falhar, e o portão reprova até no `--gravar`: **portão que perde uma afirmação em silêncio é verde vazio com outro nome.**
+
+**E o teste achou um defeito no diagnóstico da minha própria régua.** Na metade da comparação, com o título igual e a **descrição** trocada, a frase da divergência saía dizendo *"servido 'Titulo de A' contra declarado 'Titulo de A'"* — reprovava certo e mandava quem lesse procurar defeito no campo que estava correto. A frase passa a **nomear qual campo divergiu**, e duas asserções novas cobram as duas direções. É a lição de 15/10 desta pasta: *"reprovar não é a mesma coisa que reprovar PELO MOTIVO CERTO."*
+
+### 7. OS PORTÕES
+
+**BANCADA APROVADO: 61 portões, 0 falha, e a lista de denunciados ficou vazia** — de 59 para **61** portões sem ninguém alimentar lista nenhuma, porque a `bancada.py` descobre pela convenção de nome. A `regua-titulo-no-ar.py` **não foi denunciada**, porque dois portões desta pasta a importam pelo nome; e o `conferir-titulo-no-ar.py` ficou **fora** da passada sem rede, como deve, por não declarar `BANCADA: sem rede`.
+
+- `teste-titulo-no-ar.py`: **69 afirmações, 0 falha**.
+- `mutacoes-titulo-no-ar.py`: **21 mutações, 0 sobrevivente, 0 inerte, 0 sem a frase**, mais 2 mundos bons.
+- `conferir-titulo-no-ar.py` no ar: **APROVADO**, 52 páginas declaradas página por página, 5 promessas chegando e o controle sem nenhuma.
+- `validar-especies.py` como regressão: **40 espécies, 0 erro, 8 avisos**, os mesmos 8 de 16/10.
+
+### 8. O PRÓXIMO PASSO DESBLOQUEADO
+
+- **A lista de 21/10 não mudou**, e é a mesma do fecho de 16/10 e das 10h16Z: declarar os **cinco `divergiu`** como conflitos (E9 e `dominio_por_campo`), gravar a fonte do **danio** e a do **guppy** (que fecha o `aviso [E15]`), decidir os **três `regua-diferente`**, regerar o catálogo, **desembarcar as 74 linhas de deriva**, e decidir a promoção da contagem por campo. Quem desembarcar roda também `conferir-cano-de-links.py --gravar`.
+- **O que esta passada acrescenta à lista, e é um comando:** quem desembarcar roda **também** `conferir-titulo-no-ar.py --gravar`. Leva nova põe URL nova no sitemap e o portão fica vermelho até alguém declarar — que é exatamente o que ele existe para fazer.
+- **E o que ela acrescenta à leitura de 21/10:** o `<title>` servido do dia **já não se copia da aba**. A leitura cita a seção de `dados/titulos-no-ar.md` daquela data, e o ponteiro para ela está escrito no `dados/posicoes.md`, do lado da linha de 14/10 que o exige.
+- **ACHADO NÃO CONSERTADO, de propósito, pela 19.2 e porque um bloco por execução:** a asserção do teto de 65 existe agora em **quatro** arquivos desta pasta — `teste-promessa-do-titulo.py`, `teste-titulos-das-duas-fontes.py`, `teste-voz.mjs` e, desde hoje, `conferir-titulo-no-ar.py`. Os quatro escrevem o número **65 à mão**. Três deles medem a frase do **repositório** e o novo mede a do **ar**, então não são a mesma medição — mas o **número** é o mesmo e está digitado quatro vezes, e o teto do `<title>` é definido num lugar só, o `AQUAMETRIA_TITULO_TETO` do snippet. **No dia em que o Google mudar o corte, três arquivos vão continuar dizendo 65 e ninguém vai ser avisado.** É a família do favicon em dois lugares e do título em duas fontes, que esta ilha já pagou duas vezes; a diferença é que aqui o custo está na constante e não no texto. Quem o consertar lê o teto do snippet, não o redigita.
+
 ## 2026-10-19 10h16Z–10h59Z — A ÚNICA DENÚNCIA QUE A BANCADA REPETIA ERA O CAMINHO DO DINHEIRO: O CANO DE LINKS SE CONTAVA SEM PORTÃO, E A PROVA É QUE A SENTINELA O RECONTOU À MÃO
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; o último commit na pasta da ilha era de **16/10 às 20h09Z**. Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `e325c9e`, a branch `claude/dreamy-mccarthy-ue3qp5` com **zero commit** além dele e nenhum PR aberto — não havia o que mergear. Reserva aceita às **10h16Z** (`26176f5`), na primeira tentativa, e **renovada** às 10h49Z pela 1.1.
