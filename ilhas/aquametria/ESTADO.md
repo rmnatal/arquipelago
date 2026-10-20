@@ -5,103 +5,34 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-20T11:20Z
-executando_desde: 2026-10-20T14:05Z
+ultima_execucao: 2026-10-20T14:22Z
+executando_desde: null
 bloco_atual: |
-  A BANCADA CLASSIFICAVA PORTAO PELA MARCA NO TEXTO, PROSA INCLUIDA — E A CONTA DEU
-  ZERO NA CLASSE ERRADA, ENQUANTO O CONSERTO LITERAL PORIA 18. Item 6(c) do fecho de
-  19/10, deixado sem conserto de proposito pela 19.2: 'a bancada mandou o portao novo
-  para a classe de Chromium DUAS vezes, e a segunda foi o comentario que explicava a
-  primeira'. Bloco de instrumento, dentro do congelamento de titulo e meta da leitura
-  de 14/10.
-  ZERO BYTE NO AR, CONFERIDO COM O GIT: 'git diff --stat' contra snippets/ e
-  manifest.json sai VAZIO, nenhum Sync acionado e nenhum a acionar, revisao 122 no
+  A PERGUNTA DO ITEM 7 TINHA DUAS RESPOSTAS E ELAS NAO SE SOMAM: ZERO ato invisivel
+  para a varredura por nome, e 142 de 196 atos que so sao visiveis POR ACIDENTE — o
+  literal esta no arquivo, mas o ato nao passa por ele. Item 7 do fecho de 20/10 as
+  10h17Z, deixado sem conserto de proposito pela 19.2: 'quantos portoes hoje nomeiam
+  o alvo deles por concatenacao ou variavel em vez de literal?'. Nasceram
+  regua-alvos-de-portao.py (le a ARVORE SINTATICA, que e o que a onde() declara nao
+  ser), teste-alvos-de-portao.py (33 afirmacoes, 16 mundos encenados) e
+  mutacoes-alvos-de-portao.py (22, zero sobrevivente). A afirmacao com dentes e uma
+  PROPRIEDADE e nao um numero: invisiveis() continua vazia, e nenhuma CARGA ficou por
+  resolver. Bloco de instrumento, dentro do congelamento de titulo e meta de 14/10.
+  A BANCADA PEGOU UM DEFEITO MEU: o mundo encenado do portao novo DESARMAVA a mutacao
+  18 do mutacoes-classes-da-bancada.py — o nome da regua orfa escrito entre aspas num
+  arquivo que E PORTAO a fazia passar por carregada por mim, e o alvo se protegia pelo
+  texto de um terceiro. E o laco que o comentario daquela mutacao ja descrevia para si
+  mesma; conserto pelo marcador ENCENACAO nas duas linhas.
+  E UM ROTULO QUE IMPRIMIA NUMERO ERRADO COM CARA DE MEDIDO: 'PORTOES NA CLASSE ERRADA
+  pela leitura cega: 2' contava DISCORDANCIA, e as duas sao a excecao da ENCENACAO
+  funcionando. Portao na classe errada continua ZERO. A frase era verdadeira quando
+  foi escrita, de manha, e deixou de ser na MESMA execucao que a escreveu.
+  BANCADA APROVADO em 69 portoes, 0 falha — de 67 para 69 sem ninguem alimentar lista
+  nenhuma, e a lista de denunciados VAZIA.
+  ZERO BYTE NO AR, CONFERIDO COM O GIT: 'git diff --stat' contra snippets/, conteudo/
+  e manifest.json sai VAZIO, nenhum Sync acionado e nenhum a acionar, revisao 122 no
   manifest e no /status, home em 200 nas tres passadas (20.2, com a robometria em 200
   como controle). Teto da 21.4 segue ZERADO e nenhuma URL nasceu.
-  O DESPACHO NAO TINHA ITEM PARA A FUNDACAO, conferido antes de abrir a fila (18.5): o
-  PROMPT.md nao e tocado desde 19/10 13h53Z, e os quatro abertos pedem SERP vista com
-  os olhos (30.8), a credencial GOOGLE_SA_B64 (reconferida hoje, AUSENTE, com as duas
-  irmas), a cota de indexacao do Google (esgotada) e a medicao de 21/10, que nao se
-  antecipa sem destruir o controle da /calculadora-de-litragem/.
-  1. A CONTA VEIO PRIMEIRO, COMO O ACHADO MANDAVA, E A RESPOSTA E ZERO: nenhum portao
-     estava na classe errada. Os DOIS mutacoes de vitrine que vao ao Chromium dirigem
-     o navegador de verdade, os SEIS conferir- que se declaram 'BANCADA: sem rede'
-     conferem o repositorio mesmo, e as ONZE reguas e contadores estavam todos
-     carregados por portao. O defeito era INTEIRAMENTE LATENTE — e por isso a conta
-     tinha de vir antes do conserto. Ela deixou de ser recontagem a mao no mesmo
-     commit: regua-classes-da-bancada.py --contar a imprime com a divergencia nomeada.
-  2. E A CONTA SALVOU O CONSERTO: ler 'a linha MEDE alguma coisa ali?' como 'so codigo
-     vale' poria 18 na classe errada, e cada numero foi medido. 2 portoes de navegador
-     rodariam SEM Playwright (o nome do .mjs mora entre aspas, porque e argumento de
-     subprocess: a onde() o chama de 'dado', e aqui 'dado' E a medicao). 6 conferir-
-     sairiam da passada padrao (a declaracao mora no CABECALHO, em 'prosa', de
-     proposito: aqui a onde() SE INVERTE). 10 reguas e contadores seriam DENUNCIADOS
-     (o idioma de carga desta pasta e spec_from_file_location, nome entre aspas).
-  3. A REGRA QUE SOBROU E MAIS CURTA QUE AS TRES EXCECOES: prosa nunca e ato. O que E
-     ato muda de classificador, e isso nao e incoerencia — os tres perguntam coisas
-     diferentes. Invocar e carregar sao atos de CODIGO; declarar e ato de PROSA, e so
-     dela. O buraco que isso fecha e o terceiro, e e o unico perigoso: um conferir-
-     que carregasse o marcador como DADO, sem o declarar, era lido como declarado e
-     passava a RODAR AS CEGAS na passada padrao. Os outros dois erram para o lado
-     seguro, que e ficar fora da passada e aparecer nomeado.
-  4. A PROVA DO REFATOR E LADO A LADO, NAO 'RODOU VERDE': a bancada do main foi rodada
-     em paralelo com a nova e as quatro classes comparadas arquivo por arquivo —
-     passada padrao 65 = 65, classe do ar 11 = 11, navegador 18 = 18, denunciados
-     0 = 0, IDENTICAS nos 94 arquivos que ja existiam. A unica diferenca e a entrada
-     dos dois portoes novos, que leva a passada padrao de 65 para 67. E e por isso que
-     a afirmacao de regua unica LE OS ARQUIVOS em vez de comparar comportamento, como
-     a secao 8 manda: comportamento igual no dado de hoje nao prova regua unica.
-  5. TRES ACERTOS CONTRA OS MEUS PROPRIOS INSTRUMENTOS. (a) A regua mandou o PORTAO
-     DELA MESMA para o Chromium: o portao ENCENA invocacao, e encenacao mora entre
-     aspas igual a invocacao de verdade. Conserto pela regra da casa — a exencao mora
-     na MESMA LINHA, com o marcador ENCENACAO, valendo por LINHA e nunca por ARQUIVO,
-     e o lado do erro e o seguro (declarar num portao real o joga na passada padrao,
-     onde reprova por falta de Playwright, alto e na hora). E o marcador CARREGA PESO:
-     o portao tira as proprias declaracoes do proprio texto e exige que a regua volte
-     a manda-lo ao Chromium. (b) IDENTIDADE DE OBJETO NAO PROVA IMPORTACAO: 'R.onde is
-     _TETO.onde' reprovava uma regua certa, porque cada spec_from_file_location cria
-     modulo novo; quem decide e de qual ARQUIVO o codigo veio. (c) A AFIRMACAO QUE EU
-     CHAMEI DE 'MEDICAO COM NOME PROPRIO' ERA LISTA DIGITADA, a quarta desta familia:
-     eu cobrava os dois nomes do navegador e o 'len(conferir) == 6' com um comentario
-     dizendo que nao era lista digitada. Era. Quem pegou foi o mundo B das mutacoes,
-     que PRODUZ um conferir- novo e exige que nada reprove. Agora se afirma a
-     PROPRIEDADE de cada membro da classe; a contagem e impressa, nao cobrada.
-  6. DOIS DEFEITOS EM PORTAO DE OUTRA FAMILIA, OS DOIS ACHADOS PELA BANCADA. Mover a
-     regua de arquivo cobrou o corolario de higiene da secao 8 na primeira vez que
-     teve chance. (a) mutacoes-cano-de-links.py ficou INERTE: a mutacao 15 mutila a
-     guarda 'quem carrega tem de ser PORTAO', que foi junto com as tres perguntas, e a
-     trava de alvo exato recusou operar e PAROU A BATERIA. (b) Reapontada, ela
-     SOBREVIVEU pelo motivo OPOSTO ao de 19/10: o mundo do teste-cano-de-links.py cria
-     um arquivo de producao que 'carrega' a regua falsa, e o corpo dele era um
-     COMENTARIO — bastava quando a pergunta era presenca, nao basta quando e posicao.
-     O conserto e no MUNDO e nao na regua: o corpo passou a carregar de verdade. Os
-     dois fecharam, em 42 afirmacoes e em 15 de 15 sem inerte.
-  7. OS PORTOES. BANCADA APROVADO em 67 portoes, 0 falha — de 65 para 67 sem ninguem alimentar lista nenhuma, e a lista de denunciados VAZIA. teste-classes-da-bancada.py: 91 afirmacoes, 0
-     falha, em tres metades (fiacao em 13 mundos encenados, conta na pasta real, regua
-     unica lida nos arquivos). mutacoes-classes-da-bancada.py: 24 mutacoes, 0
-     sobrevivente, 0 inerte, 0 sem a frase, mais TRES mundos que tem de passar. Os
-     dois arquivos novos entraram na bancada no dia em que foram escritos, pelos
-     prefixos, e a regua nova se DENUNCIOU sozinha enquanto nenhum portao a carregava.
-  8. ACHADO NAO CONSERTADO, DE PROPOSITO, PELA 19.2, E DA MESMA FAMILIA DO QUE ESTA
-     PASSADA FECHOU: a classe sai do TEXTO do arquivo e nao de executa-lo, entao
-     portao que montasse o nome do alvo por CONCATENACAO ou por VARIAVEL e invisivel
-     para a varredura por nome, nos tres classificadores de uma vez. Esta escrito na
-     docstring como LIMITE e nao como promessa de cobertura — mesmo desenho do achado
-     5 de 19/10. Quantos portoes desta pasta fazem isso hoje e pergunta que ninguem
-     fez. E o portao vermelho da vitrine da C15 segue vermelho, como o item 8 de 19/10
-     o deixou, com os tres numeros para reproduzir; nao foi tocado porque escolher
-     entre as tres saidas e decisao de superficie, e a superficie esta congelada ate
-     21/10.
-  9. PROXIMO PASSO: (1) a lista de 21/10 nao mudou e e a mesma dos tres fechos
-     anteriores — declarar os cinco 'divergiu' como conflitos (E9 e dominio_por_campo),
-     gravar a fonte do danio e a do guppy (que fecha o aviso [E15]), decidir os tres
-     'regua-diferente', regerar o catalogo, desembarcar as 74 linhas de deriva, e
-     decidir a promocao da contagem por campo; quem desembarcar roda
-     conferir-cano-de-links.py --gravar E TAMBEM conferir-titulo-no-ar.py --gravar.
-     (2) O portao vermelho da vitrine, com os tres numeros do item 8. (3) A contagem
-     dos alvos nomeados por concatenacao ou variavel, do item 8 — e ela COMECA
-     CONTANDO, pela mesma disciplina que impediu o conserto literal desta passada de
-     por 18 arquivos na classe errada.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |

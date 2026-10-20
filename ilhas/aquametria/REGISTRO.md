@@ -14,6 +14,75 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-20 13h18Z–14hZ — A PERGUNTA DO ITEM 7 TEM DUAS RESPOSTAS E ELAS NÃO SE SOMAM: **ZERO** ATOS INVISÍVEIS, E **142 DE 196** QUE SÓ SÃO VISÍVEIS POR ACIDENTE
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — não houve rotação nem comparação de `ultima_execucao` (1.2). Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `79b353c`, a branch `claude/dreamy-mccarthy-dhdqgk` **idêntica ao `main`** (zero commit à frente, zero atrás) e **nenhum PR aberto** — não havia o que mergear. Os cinco `ESTADO.md` estavam com `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não houve reserva vencida para o git desempatar. Reserva aceita às **13h19Z** (`e8614b0`), na primeira tentativa, sem force push, e **renovada às 13h56Z** (`e1b0ed4`) pela 1.1, porque o bloco passou de 40 minutos.
+
+**REDE PELA 20.2, MEDIDA E NÃO HERDADA:** três passadas, `aquametria.com.br` em **200** nas três, com `robometria.com.br` em 200 como controle nas mesmas três. `/status` na revisão **122**, igual à do `manifest.json`.
+
+**O DESPACHO NÃO TINHA ITEM PARA A FUNDAÇÃO, conferido antes de abrir a fila (18.5).** O `PROMPT.md` não é tocado desde 19/10 às 13h53Z, então o estado é o mesmo que as três execuções anteriores já mediram: os quatro itens abertos pedem **SERP brasileira vista com os olhos** (30.8), a **credencial** da Search Console, a **cota de indexação do Google** (esgotada, e não é defeito desta ilha) e a **medição de 21/10**, que não se antecipa sem destruir o controle da `/calculadora-de-litragem/`.
+
+**POR QUE ESTE BLOCO.** O fecho de 20/10 às 10h17Z deixou três próximos passos, e dois continuam travados **hoje**: a lista de 21/10 é de 21/10, e o portão vermelho da vitrine da C15 exige escolher entre esperar a animação, desligar o rolamento suave ou mexer na rolagem **no ar** — decisão de superfície, e a superfície está **congelada até 21/10** pela leitura de 14/10. Sobrou o item 7, que é instrumento puro e foi escrito com a ordem embutida: *"quantos portões desta pasta hoje nomeiam o alvo deles por concatenação ou variável em vez de literal? Quem a tomar **começa contando, não generalizando**."*
+
+### 1. A CONTA VEIO PRIMEIRO, E ELA SE PARTIU EM DUAS QUE NÃO SE SOMAM
+
+A pergunta do item 7 parece uma e é duas, e lê-las como uma só dá a resposta errada nas duas direções.
+
+- **Atos cujo nome é INVISÍVEL para a varredura por nome: ZERO.** Toda indirecção desta pasta termina num literal escrito no mesmo arquivo. Os três classificadores da `regua-classes-da-bancada.py` — `dirige_navegador()`, `exercitada_por_portao()` e `declara_sem_rede()` — são, os três, varredura por nome, e **hoje nenhum deles está cego**. Zero medido, e não zero por falta de medição.
+- **Atos que só chegam ao literal por indirecção: 142 de 196**, mais 6 por construção de nome. Só **48** nomeiam o alvo no próprio sítio do ato. Ou seja: **em três de cada quatro atos desta pasta, a visibilidade é um acidente** — o literal está no arquivo por outro motivo, nada o sustenta ali, e um renomeio que o apague derruba a visibilidade em silêncio.
+
+**A leitura, e é ela que decide o que fazer:** não há o que consertar, há o que **impedir**. Por isso o entregável não é um relatório com o número: é um portão que reprova no dia em que o primeiro ato invisível nascer. Instrumento sem portão é a assinatura que esta ilha pagou de 14 a 19/10 com o `contar-cano-de-links.py`, e o fecho de 20/10 de manhã já a tinha pago uma segunda vez.
+
+### 2. A RÉGUA LÊ A ÁRVORE SINTÁTICA, QUE É EXATAMENTE O QUE A `onde()` DECLARA NÃO SER
+
+A `regua-classes-da-bancada.py` escreve o próprio limite: *"a `onde()` não é um analisador de sintaxe"* e *"a classe sai do TEXTO do arquivo, não de executá-lo"*. O item 7 é o buraco que esse limite deixa, então respondê-lo com mais varredura de texto seria medir o defeito com o instrumento que o produz. A `regua-alvos-de-portao.py` usa o `ast` do próprio Python: ela **não executa nada** e **não adivinha nada** — segue o nome do alvo por constante, variável, parâmetro (até o sítio de chamada), chave de dicionário, `or` de valor padrão, junção de caminho e `pathlib`, e para onde a dobra de constantes para.
+
+**O ato é um de três, e só estes três contam:** `spec_from_file_location` (carregar), `subprocess.*` (invocar) e `open()` de irmão (que é o que todo `mutacoes-*` faz com o portão que mutila). `open()` de JSON em `dados/` **não** é ato sobre irmão e fica fora — os três classificadores não perguntam nada sobre ele, e deixá-lo entrar encheria o relatório de dado até ninguém o ler.
+
+**A POSIÇÃO ERRA PARA BAIXO DE PROPÓSITO.** Nome que passa por molde com buraco (f-string, `%`, `.replace()`) é chamado de CONSTRUÍDO mesmo quando o pedaço literal está escrito ali ao lado: a régua não executa molde e não finge saber o que sai dele. Quem decide se há buraco **de verdade** é a coluna `visivel`, medida contra o texto. Posição é um piso; `visivel` é o fato — e é só o fato que tem dentes.
+
+### 3. DUAS MUTAÇÕES SOBREVIVERAM, E AS DUAS ERAM DEFEITO DO MUNDO, NÃO DA RÉGUA
+
+As duas são a mesma lição do item 5(b) de 20/10 de manhã: **o mundo deixou de discriminar.**
+
+- **A f-string.** O mundo encenado era `f'regua-{alvo}.py'`, e **nenhuma constante dele é nome de arquivo** (`'.py'` sozinho não é). Rebaixar ou não rebaixar dava o mesmo conjunto vazio, então a mutação que desliga o rebaixamento passava medindo o nada. O mundo passou a ser `f'{P}/regua-alvo.py'`, onde a constante **é** o nome — e aí a mutação morde.
+- **O JSON.** O mundo abria `dados/produtos-filtros.json` numa pasta encenada que **não continha** esse arquivo, então a fronteira que o barra nunca era exercida. O mundo passou a pôr o JSON **dentro** da pasta, e a mutação deixou de mirar o `_base()` (código sem efeito observável) e passou a mirar a tupla `EXTENSOES`, que é quem barra de verdade.
+
+### 4. A BANCADA PEGOU UM DEFEITO MEU, E ELE É O LAÇO QUE A MUTAÇÃO 18 JÁ DESCREVIA PARA SI MESMA
+
+Depois de escrever os três arquivos, a mutação **18** do `mutacoes-classes-da-bancada.py` — *"uma régua ÓRFÃ aparece na pasta e o portão tem de denunciá-la"* — **sobreviveu**, e ela passava antes.
+
+A causa: o meu `mutacoes-alvos-de-portao.py` tem um mundo que cria uma `regua-orfa.py`, e o nome dela está escrito ali **entre aspas**. Meu arquivo é PORTÃO, e portão que cita um nome entre aspas está **carregando** pelo idioma desta pasta — então a órfã criada pela mutação 18 passava por **exercitada por mim**, na sombra onde os dois arquivos convivem. **O alvo se protegia pelo texto de um terceiro.**
+
+O comentário da própria mutação 18 descreve esse laço para si mesma e o resolve com o marcador `ENCENACAO`; o que faltou foi alguém aplicá-lo ao arquivo novo. Conserto: as duas linhas do meu arquivo que nomeiam irmão encenado se declaram encenação, com o motivo ao lado. **Nada disto foi achado por leitura — foi a bancada, na primeira vez que teve chance**, exatamente como em 19/10 e em 20/10 de manhã.
+
+### 5. UM RÓTULO QUE FICOU DE PÉ POR CIMA DE UMA MUDANÇA DO MESMO DIA, E ELE IMPRIMIA NÚMERO ERRADO COM CARA DE MEDIDO
+
+A `divergencias()` da `regua-classes-da-bancada.py` dizia na docstring *"`[]` é a resposta de hoje"*, e o `--contar` imprimia **"PORTÕES NA CLASSE ERRADA pela leitura cega: 2"**. As duas frases são de 20/10 de manhã e **eram verdadeiras quando foram escritas**: deixaram de ser algumas horas depois, na **mesma execução**, quando o `MARCADOR_DE_ENCENACAO` nasceu e os dois portões daquela régua passaram a divergir de propósito.
+
+Discordância não é erro. **Portões na classe errada continuam sendo ZERO**; o que são 2 são as discordâncias, e nas duas quem acerta é a régua nova. O `teste-classes-da-bancada.py` sempre soube disso — ele afirma a divergência **pela causa** e não pelo número — mas quem lesse só a saída leria dois portões quebrados. Rótulo e docstring corrigidos; o portão não mudou e continua em **92 afirmações, 0 falha**, com **24 mutações, 0 sobrevivente**.
+
+### 6. OS PORTÕES
+
+- **`ferramentas/regua-alvos-de-portao.py`** (novo): autoridade única da resolução de nome de alvo, por árvore sintática. Recebe a pasta como **dado**, e por isso o portão dela encena pastas que não existem. Imprime a conta inteira quando rodada à mão.
+- **`ferramentas/teste-alvos-de-portao.py`** (novo): **33 afirmações, 0 falha**, em três metades — a fiação em 16 mundos encenados, a conta na pasta real e a régua única lida nos arquivos.
+- **`ferramentas/mutacoes-alvos-de-portao.py`** (novo): **19 mutações + 3 mundos que têm de passar = 22, 0 sobrevivente, 0 inerte, 0 sem a frase.**
+- Os dois arquivos novos entraram na bancada **no dia em que foram escritos**, pelos prefixos `teste-` e `mutacoes-`, e a régua nova foi classificada como produção porque o portão dela a carrega. Lista de denunciados **vazia**.
+
+**A AFIRMAÇÃO COM DENTES É UMA PROPRIEDADE, E NÃO UM NÚMERO:** `invisiveis() == []`, mais *"nenhuma CARGA desta pasta ficou por resolver"* — carga sempre nomeia um arquivo só, e carga irresolvível é exatamente onde um alvo invisível se esconderia da régua. Os números de indirecção e de sítios por resolver são **impressos** como registro e **não** cobrados: cobrá-los seria a lista digitada que o achado 4(c) de 20/10 de manhã já pegou uma vez nesta mesma família. O mundo **A** das mutações prova isso — um `conferir-` novo e honesto entra na pasta e nada reprova.
+
+**BANCADA: APROVADO em 69 portões, 0 falha** — de 67 para 69 sem ninguém alimentar lista nenhuma, e a lista de denunciados **vazia**. A classe de navegador (18) e a do ar (11) ficaram fora desta passada, como sempre: nada foi ao ar, então não havia o que conferir nelas além da 20.2 e da revisão do `/status`. Os `validar-*` saíram com os avisos de sempre ([E21] do apistogramma, [V20] do Eheim Substrat Pro), que são os mesmos de 19/10 e não são defeito desta passada.
+
+**ZERO BYTE NO AR, CONFERIDO COM O GIT:** `git diff --stat` contra `snippets/`, `conteudo/` e `manifest.json` sai **vazio**, nenhum Sync acionado e nenhum a acionar, revisão **122** no manifest e no `/status`. Teto da 21.4 segue **ZERADO** e nenhuma URL nasceu. Bloco de instrumento, dentro do congelamento de título e meta da leitura de 14/10.
+
+### 7. O QUE ESTA MEDIÇÃO NÃO AUTORIZA, ESCRITO EM VEZ DE DESCOBERTO DEPOIS
+
+- **40 arquivos da pasta estão FORA do alcance desta régua**: todos os `.mjs` e todos os `.php`. A árvore é a do Python, e eles também agem sobre irmãos. A régua não promete cobertura; promete que o que mede, mede sem adivinhar — e imprime os 40 nomeados, pelo mesmo desenho da janela do log da 20.4.
+- **10 sítios falam da pasta e não resolveram**, e eles estão nomeados na saída. **Nenhum é carga** — são o idioma de quem varre a pasta inteira (`os.path.join(pasta, nome)` das três réguas que a leem) mais a `bancada.py` invocando o comando que ela própria montou, que é o desenho dela.
+- **A pergunta que esta passada deixa, e ela começa contando:** o `.mjs` e o `.php` desta pasta carregam e invocam irmãos, e **ninguém os mediu**. Quem a tomar responde primeiro quantos atos existem lá, antes de propor régua nenhuma.
+
+**PRÓXIMO PASSO:** (1) a lista de **21/10** destrava amanhã e é a mesma dos quatro fechos anteriores — declarar os cinco `divergiu` como conflitos (E9 e `dominio_por_campo`), gravar a fonte do danio e a do guppy (que fecha o aviso [E15]), decidir os três `regua-diferente`, regerar o catálogo, desembarcar as 74 linhas de deriva, e decidir a promoção da contagem por campo; quem desembarcar roda `conferir-cano-de-links.py --gravar` **e também** `conferir-titulo-no-ar.py --gravar`. (2) O portão vermelho da vitrine da C15, que destrava com o fim do congelamento (viewport 390×700, `window.scrollY = 1788`, `#aqm-c15-saida` com `top = -39 px` contra tolerância de −5). (3) A contagem dos atos sobre irmão nos `.mjs` e `.php`, do item 7 acima.
+
 ## 2026-10-20 10h17Z–11hZ — A BANCADA CLASSIFICAVA PORTÃO PELA MARCA NO **TEXTO**, PROSA INCLUÍDA: A CONTA DEU **ZERO NA CLASSE ERRADA**, E O CONSERTO LITERAL PORIA **18**
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — então não houve rotação nem comparação de `ultima_execucao` (1.2). Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `65ec1d7`, a branch `claude/dreamy-mccarthy-ga9uld` **idêntica ao `main`** (zero commit à frente, zero atrás) e **nenhum PR aberto** — não havia o que mergear. Os cinco `ESTADO.md` parseiam em `yaml.safe_load` e os cinco estavam com `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho — não houve reserva vencida para o git desempatar. Reserva aceita às **10h17Z** (`7ab2dfb`), na primeira tentativa, sem force push, e **renovada às 10h45Z** (`7d9b8be`) pela 1.1, porque o bloco passou de 40 minutos com a bancada inteira rodando.
