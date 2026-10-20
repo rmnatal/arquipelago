@@ -359,8 +359,17 @@ def ler_pasta(pasta=None):
     for nome in sorted(os.listdir(pasta)):
         if not nome.endswith((".py", ".mjs", ".php")):
             continue
+        # `errors="replace"` ACRESCENTADO EM 20/10/2026 as 19h4xZ, e nao e enfeite:
+        # sem ele um unico byte que nao e UTF-8 em QUALQUER arquivo desta pasta
+        # mata esta regua de `UnicodeDecodeError` — que e `ValueError` e NAO
+        # `OSError`, entao o `except` abaixo nao o pega. Medido pela
+        # `regua-exercitadores.py` no dia em que ela contou as copias desta funcao:
+        # ha CINCO `ler_pasta()` nesta pasta, em DUAS versoes, e as tres que ja
+        # tinham o `errors` sobreviviam ao mesmo mundo em que estas duas morriam.
+        # Quem cobra a propriedade e a metade 3 do `teste-exercitadores.py`, que
+        # DESCOBRE as copias pelo nome em vez de as listar.
         try:
-            with open(os.path.join(pasta, nome), encoding="utf-8") as f:
+            with open(os.path.join(pasta, nome), encoding="utf-8", errors="replace") as f:
                 saida[nome] = f.read()
         except OSError:
             continue

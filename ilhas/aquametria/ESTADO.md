@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-20T18:08Z
-executando_desde: 2026-10-20T19:16Z   # reserva da execucao de 20/10 19h1xZ. Hora saida do `date -u`, nunca de estimativa (a execucao de 16h18Z escreveu futuro duas vezes e corrigiu as duas).
+executando_desde: 2026-10-20T19:26Z   # reserva da execucao de 20/10 19h16Z, RENOVADA pela 1.1 (bloco longo: a bancada desta ilha roda em mais de uma hora). Hora do `date -u`.
 bloco_atual: |
   A PERGUNTA DO ITEM 7 FOI RESPONDIDA NAS DUAS METADES FORA DO PYTHON: 21 atos sobre
   irmao, ZERO invisiveis — 12 nos .php (21 arquivos) e 9 nos .mjs (20 arquivos). E a
