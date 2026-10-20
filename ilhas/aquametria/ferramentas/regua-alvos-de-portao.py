@@ -80,6 +80,20 @@ O LIMITE, escrito em vez de descoberto depois
   * **So le PYTHON.** A arvore sintatica e a do Python, entao `.mjs` e `.php`
     desta pasta ficam de fora — e eles tambem agem sobre irmaos. Esta regua nao
     promete cobertura; promete que o que ela mede, mede sem adivinhar.
+
+    > **PONTEIRO DE 20/10/2026 as 16h4xZ — A METADE DO PHP DEIXOU DE ESTAR SEM
+    > MEDICAO.** A `regua-alvos-em-php.py` le os 21 `.php` desta pasta pelo
+    > tokenizador do proprio PHP e mediu **12 atos sobre irmao, ZERO
+    > invisiveis** — os 12 sao carga e os 12 tem o mesmo alvo. Ela IMPORTA o
+    > vocabulario daqui (`_base`, as tres posicoes, as duas comparacoes de
+    > forca) em vez de o copiar, e o portao dela tem mutacao que mata o
+    > `PADRAO` deste arquivo para provar que a importacao esta viva. Os 20
+    > `.mjs` continuam sem portao, com a conta deles medida em
+    > `dados/atos-sobre-irmao-2026-10-20.md` (9 atos, zero invisiveis) e o
+    > bloqueio nomeado la: nao ha analisador de JavaScript declarado nesta
+    > ilha. O que existe no lugar e a metade 3 do `teste-alvos-em-php.py`, que
+    > cobra COBERTURA DECLARADA: todo arquivo desta pasta ou e lido por uma das
+    > duas reguas, ou aparece nomeado num limite.
   * **Resolucao parcial e declarada, nunca aprovada em silencio.** Sitio cujo
     alvo esta fora do alcance da dobra de constantes sai em `nao_resolvidos()`,
     com o texto da expressao, do mesmo jeito que a 20.4 manda registrar o item
