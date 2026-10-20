@@ -38,6 +38,15 @@ existe.
 
 AS CONVENCOES, e elas ja eram as desta pasta antes deste arquivo
 -----------------------------------------------------------------
+> PONTEIRO DE 20/10/2026: a lista abaixo continua sendo a convencao, e deixou de
+> ser o CODIGO. Quem classifica agora e a `regua-classes-da-bancada.py`, que
+> pergunta a POSICAO de cada marca em vez da presenca dela — porque este arquivo
+> classificava pelo TEXTO, prosa incluida, e mandou um portao novo para a classe
+> de Chromium duas vezes em 19/10/2026 (item 6(c) daquele fecho). A diferenca de
+> comportamento esta medida no `teste-classes-da-bancada.py`, e ela nao e
+> hipotetica em nenhuma das duas direcoes: a leitura antiga errava um arquivo
+> desta pasta hoje, e o conserto literal erraria 18.
+
   teste-*.php               -> php ferramentas/<x>.php .        (sem rede)
   teste-*.py                -> python3 ferramentas/<x>.py       (sem rede)
   testar-*.py               -> python3 ferramentas/<x>.py       (sem rede)
@@ -84,6 +93,7 @@ sai com 1 — ou que imprime vermelho e sai com 0 — e INERTE, e aparece nomead
 fim. Portao que so um dos dois lados enxerga e portao que mente para quem so le
 a ultima linha.
 """
+import importlib.util
 import os
 import re
 import subprocess
@@ -92,27 +102,29 @@ import sys
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PASTA = os.path.join(RAIZ, 'ferramentas')
 
-# Ferramentas de PRODUCAO: geram, coletam, listam ou publicam. Nao sao portao e
-# nao entram na bancada. Cada prefixo esta aqui porque o arquivo NAO afirma nada
-# sobre a ilha — quem afirma tem nome de portao.
-NAO_E_PORTAO = re.compile(
-    r'^(gerar|coletar|medir|aplicar|acentuar|atualizar|cobertura|render|varrer|listar|proteger|bancada)[-.]'
-)
-
-# QUEM DIRIGE O NAVEGADOR SE DECLARA PELO QUE CHAMA. Dois `mutacoes-*.py`
-# desta pasta nao sao bancada de repositorio: eles montam o HTML e entregam a
-# um `teste-navegador-*.mjs`, que abre Chromium de verdade. Sem isto eles
-# entravam na passada padrao e reprovavam por FALTA DE PLAYWRIGHT — falha de
-# ambiente lida como defeito da ilha, que e a leitura que faz a proxima
-# execucao desconfiar da bancada inteira. Medido em 22/09/2026, na primeira
-# passada deste arquivo. A pergunta e feita ao ARQUIVO, nao a uma lista aqui:
-# quem nomeia um teste-navegador- ou importa playwright, dirige o navegador.
-MARCA_NAVEGADOR = re.compile(r'teste-navegador-|playwright')
-
-# A DECLARACAO QUE TIRA UM `conferir-` DA LISTA DE REDE. Mora no cabecalho do
-# proprio arquivo, e nao aqui: lista de excecao escrita na bancada e exatamente
-# a lista escrita a mao que esta bancada existe para acabar.
-MARCA_SEM_REDE = 'BANCADA: sem rede'
+# A CLASSIFICACAO MORA NUMA REGUA COMPARTILHADA DESDE 20/10/2026
+# ---------------------------------------------------------------------------
+# As tres perguntas que decidem a classe — quem dirige navegador, quem se
+# declara sem rede e quem carrega uma regua — moravam AQUI, e as tres liam a
+# marca no TEXTO do arquivo, prosa incluida. Em 19/10/2026 isso mandou um portao
+# novo para a classe de Chromium DUAS vezes, e a segunda foi o COMENTARIO que
+# explicava a primeira (item 6(c) daquele fecho).
+#
+# Agora a autoridade e a `regua-classes-da-bancada.py`, que pergunta a POSICAO
+# de cada marca pela `onde()` do `regua-teto-do-titulo.py` — e que recebe a
+# pasta como DADO, para o portao dela poder encenar pastas que nao existem.
+# Quem a exercita e o `teste-classes-da-bancada.py`; quem a mutila e o
+# `mutacoes-classes-da-bancada.py`.
+#
+# **A contagem que decidiu o desenho, e ela esta no portao daquela regua:**
+# nenhum portao desta pasta estava na classe errada em 19/10 — o defeito era
+# inteiramente latente — e o conserto LITERAL ("so `codigo` mede") poria 18 na
+# classe errada, porque invocar e carregar se escrevem com o nome entre aspas
+# (`dado`) e declarar se escreve em comentario (`prosa`).
+_spec_classes = importlib.util.spec_from_file_location(
+    'regua_classes_da_bancada', os.path.join(PASTA, 'regua-classes-da-bancada.py'))
+CLASSES = importlib.util.module_from_spec(_spec_classes)
+_spec_classes.loader.exec_module(CLASSES)
 
 # A regua do veredito. A VERMELHA nunca casa com uma CONTAGEM ZERO: "0 falha(s)"
 # e a frase de aprovacao mais comum desta pasta, e uma regua que a lesse como
@@ -122,7 +134,7 @@ VERDE = re.compile(r'\bAPROVADO\b|\bTUDO OK\b|\b(?:0|zero|nenhuma?)\s+falhas?\b|
 VERMELHO = re.compile(r'\bREPROVADO\b|^FALHA\b|\bFALHA \[|\bfalharam\b|\b[1-9][0-9]*\s+FALHA\(S\)|\b[1-9][0-9]*\s+falhas?\b', re.I)
 
 
-# ---------------------------------------------------------------------------
+
 # A REGUA DO VEREDITO TEM REGUA PROPRIA
 # ---------------------------------------------------------------------------
 # As linhas abaixo sao REAIS: cada uma e a ultima linha impressa por um portao
@@ -147,7 +159,6 @@ LINHAS_REAIS_REPROVADAS = [
     '2 de 30 mutacoes falharam',
     'APROVADO: 12 medicoes, 1 falha.',
 ]
-
 
 def provar():
     erros = 0
@@ -184,24 +195,6 @@ def provar():
     return 0
 
 
-def texto_do(nome, limite=None):
-    try:
-        with open(os.path.join(PASTA, nome), encoding='utf-8', errors='replace') as f:
-            return f.read() if limite is None else f.read(limite)
-    except OSError:
-        return ''
-
-
-def declara_sem_rede(nome):
-    """A declaracao mora no arquivo, nao numa lista aqui dentro."""
-    return MARCA_SEM_REDE in texto_do(nome, 4000)
-
-
-def dirige_navegador(nome):
-    """O arquivo chama um teste de navegador, ou importa o proprio playwright."""
-    return bool(MARCA_NAVEGADOR.search(texto_do(nome)))
-
-
 def lint_dos_snippets():
     """`php -l` em TODO snippet da pasta, e a pasta e quem diz quais sao.
 
@@ -226,84 +219,14 @@ def lint_dos_snippets():
     return 1 if ruins else 0
 
 
-# QUEM CARREGA UMA REGUA PODE NAO SER PORTAO, E ISSO IMPORTA (19/10/2026). A
-# pergunta era "algum arquivo desta pasta cita este nome?", e arquivo de
-# PRODUCAO citando a regua bastava para ela passar por protegida — uma regua
-# carregada so pelo gerador que a usa escaparia da denuncia sem portao nenhum a
-# exercitar. A pergunta passou a ser "algum PORTAO carrega?", e os portoes se
-# reconhecem pela mesma convencao de nome que decide o resto deste arquivo.
-# Medido na mesma passada: as sete reguas desta pasta continuam todas carregadas
-# por portao, entao a regra mais estrita nao denuncia ninguem hoje — ela fecha a
-# porta antes de alguem entrar por ela.
-E_PORTAO = re.compile(r'^(teste|testar|mutacoes|validar|conferir)-')
-
-
-def regua_exercitada(nome):
-    """Algum PORTAO desta pasta carrega este arquivo pelo nome?
-
-    A pergunta e feita aos ARQUIVOS, nunca a uma lista aqui dentro — pelo mesmo
-    motivo que o resto deste arquivo nao tem lista. Regua que nenhum portao
-    carrega nao e protegida por nada, e o lado seguro do erro e ela aparecer
-    denunciada em vez de passar por "producao".
-    """
-    for outro in sorted(os.listdir(PASTA)):
-        if outro == nome or not outro.endswith(('.py', '.php', '.mjs')):
-            continue
-        if not E_PORTAO.match(outro):
-            continue
-        try:
-            with open(os.path.join(PASTA, outro), encoding='utf-8') as f:
-                if nome in f.read():
-                    return True
-        except OSError:
-            continue
-    return False
-
-
-def classificar(nome):
-    """Devolve (comando, categoria) ou (None, motivo) para o que nao roda aqui."""
-    if NAO_E_PORTAO.match(nome):
-        return None, 'producao'
-    if nome.startswith('regua-') and nome.endswith('.py'):
-        return (None, 'producao') if regua_exercitada(nome) else (None, 'sem_convencao')
-    # `contar-` E PRODUCAO PELA MESMA PERGUNTA QUE O `regua-`, E NAO POR ESTAR
-    # NUMA LISTA (19/10/2026). Arquivo que CONTA imprime relatorio e nao afirma
-    # nada — mas a contagem dele e numero que a ilha publica sobre si mesma
-    # (secao 8), entao ele so escapa da denuncia se algum portao desta pasta o
-    # carregar pelo nome: ou ele mesmo, ou a regua que ele usa. Foi assim que o
-    # `contar-cano-de-links.py` ficou denunciado de 14 a 19/10/2026 com razao —
-    # a contagem morava dentro dele e nada a exercitava, e a ronda da Sentinela
-    # de 14/10 RECONTOU os quatro bancos a mao para conferir o que ele imprimiu.
-    # Recontagem a mao e a assinatura de instrumento sem portao.
-    if nome.startswith('contar-') and nome.endswith('.py'):
-        regua_dele = nome.replace('contar-', 'regua-', 1)
-        exercitado = (regua_exercitada(nome)
-                      or (os.path.exists(os.path.join(PASTA, regua_dele))
-                          and regua_exercitada(regua_dele)))
-        return (None, 'producao') if exercitado else (None, 'sem_convencao')
-    if nome.startswith('teste-navegador-') and nome.endswith('.mjs'):
-        return ['node', os.path.join('ferramentas', nome), '.'], 'navegador'
-    if nome.startswith('conferir-'):
-        if not nome.endswith(('.py', '.mjs')):
-            return None, 'sem_convencao'
-        # O `.` so vai para os .mjs. Os .py desta pasta acham a raiz sozinhos, e
-        # um deles — o conferir-protecao-funcoes.py — trata ARGUMENTO COMO
-        # ARQUIVO: passar '.' a ele seria pedir que conferisse um diretorio e
-        # colher uma falha que nao e da ilha. A bancada roda com a raiz como
-        # diretorio de trabalho, entao o padrao deles ja e o certo.
-        cmd = (['node', os.path.join('ferramentas', nome), '.'] if nome.endswith('.mjs')
-               else ['python3', os.path.join('ferramentas', nome)])
-        return cmd, 'sem_rede' if declara_sem_rede(nome) else 'no_ar'
-    if nome.startswith('teste-') and nome.endswith('.php'):
-        return ['php', os.path.join('ferramentas', nome), '.'], 'sem_rede'
-    if nome.startswith('teste-') and nome.endswith('.mjs'):
-        return ['node', os.path.join('ferramentas', nome), '.'], 'sem_rede'
-    if nome.startswith(('teste-', 'testar-', 'mutacoes-', 'validar-')) and nome.endswith('.py'):
-        cat = 'navegador' if dirige_navegador(nome) else 'sem_rede'
-        return ['python3', os.path.join('ferramentas', nome)], cat
-    if nome.endswith(('.php', '.py', '.mjs')):
-        return None, 'sem_convencao'
-    return None, 'ignorado'
+# A `classificar()` DELEGA, E ESTE ARQUIVO NAO TEM MAIS COPIA NENHUMA DA REGRA
+# ---------------------------------------------------------------------------
+# A pasta e lida UMA vez por passada e entregue a regua como dado. Antes cada
+# pergunta reabria os arquivos — `regua_exercitada` sozinha relia a pasta
+# inteira uma vez por regua —, e a leitura repetida e o que fazia a regra morar
+# em tres lugares.
+def classificar(nome, arquivos):
+    return CLASSES.classificar(nome, arquivos)
 
 
 def main(argv):
@@ -315,11 +238,12 @@ def main(argv):
         print('=' * 70)
         return provar()
 
+    arquivos = CLASSES.ler_pasta(PASTA)
     fila, fora_ar, fora_nav, sem_convencao = [], [], [], []
-    for nome in sorted(os.listdir(PASTA)):
-        if nome.startswith('.') or nome == os.path.basename(__file__):
+    for nome in sorted(arquivos):
+        if nome == os.path.basename(__file__):
             continue
-        cmd, cat = classificar(nome)
+        cmd, cat = classificar(nome, arquivos)
         if cmd is None:
             if cat == 'sem_convencao':
                 sem_convencao.append(nome)

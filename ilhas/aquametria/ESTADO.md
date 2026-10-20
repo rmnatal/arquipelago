@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-19T20:11Z
-executando_desde: 2026-10-20T10:17Z   # reserva da execucao de 20/10 10h17Z, ilha em foco pela 1.2
+executando_desde: 2026-10-20T10:45Z   # reserva RENOVADA pela 1.1 as 10h45Z: o bloco segue vivo e a bancada inteira esta rodando
 bloco_atual: |
   "QUANTAS OUTRAS CONSTANTES OS PORTOES REDIGITAM?" TEM RESPOSTA, E A VARREDURA QUE A
   ACHARIA PELO VALOR NAO SERVE. Achado 11 do fecho das 17h04Z, deixado sem conserto de
