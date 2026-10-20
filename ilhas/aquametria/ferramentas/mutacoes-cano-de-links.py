@@ -43,6 +43,16 @@ PORTAO = os.path.join("ferramentas", "conferir-cano-de-links.py")
 CONTADOR = os.path.join("ferramentas", "contar-cano-de-links.py")
 TESTE = os.path.join("ferramentas", "teste-cano-de-links.py")
 BANCADA = os.path.join("ferramentas", "bancada.py")
+# A GUARDA QUE A MUTACAO 15 MUTILA MUDOU DE ARQUIVO EM 20/10/2026, e esta linha
+# e o conserto de uma mutacao que ficou INERTE por isso. A `bancada.py` deixou de
+# ter as tres perguntas da classificacao (a classe passou a sair da POSICAO da
+# marca, nao da presenca dela, pela `regua-classes-da-bancada.py`), e o filtro
+# "quem carrega tem de ser PORTAO" foi com elas. A mutacao continua medindo a
+# MESMA regra, no lugar onde ela mora agora — e quem a acusou foi a trava de
+# alvo exato do `troca_em`, que recusa operar quando o texto a mutar nao esta
+# mais la. E o corolario de higiene da secao 8 do contrato, cobrado na primeira
+# vez em que teve chance.
+REGUA_CLASSES = os.path.join("ferramentas", "regua-classes-da-bancada.py")
 
 inertes = []
 sobreviventes = []
@@ -247,9 +257,11 @@ mutacao("14. a serie passa a ser sobrescrita em vez de crescer por cima",
 # propria regua basta — e a denuncia passa a calar sempre, que e pior que nao
 # existir.
 mutacao("15. a bancada volta a aceitar qualquer arquivo como exercicio da regua",
-        lambda ilha: troca_em(ilha, BANCADA,
-                              "        if not E_PORTAO.match(outro):\n            continue\n",
-                              ""),
+        lambda ilha: troca_em(ilha, REGUA_CLASSES,
+                              "        if not E_PORTAO.match(outro):\n"
+                              "            continue\n"
+                              "        if e_ato_de_codigo(arquivos[outro], nome):\n",
+                              "        if e_ato_de_codigo(arquivos[outro], nome):\n"),
         "CONTINUA denunciado")
 
 print("")

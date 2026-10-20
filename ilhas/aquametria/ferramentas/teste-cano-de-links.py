@@ -392,8 +392,20 @@ def metade_e():
         # abaixo ficariam verdes com qualquer uma das duas perguntas — medido em
         # 19/10/2026, quando a mutacao que apaga o filtro SOBREVIVEU a esta
         # metade.
-        for nome, corpo in ((falso_contador, "# carrega %s\n" % falsa_regua),
-                            (falso_gerador, "# producao que carrega %s\n" % falsa_regua),
+        #
+        # E A CITACAO TEM DE SER UM ATO, NAO UM COMENTARIO (20/10/2026). Ate
+        # hoje o corpo do falso gerador era `# producao que carrega <regua>`, e
+        # isso bastava porque a bancada perguntava se o nome APARECIA no texto.
+        # Desde 20/10 ela pergunta em que POSICAO ele aparece, e comentario nao
+        # carrega nada — entao o mundo deixou de discriminar e a mutacao 15
+        # SOBREVIVEU outra vez, pelo motivo oposto ao de 19/10. O corpo agora
+        # CARREGA de verdade, no idioma desta pasta (o nome entre aspas dentro
+        # do `spec_from_file_location`), e o filtro do PORTAO volta a ser a
+        # unica coisa entre a falsa regua e a protecao.
+        carga = ('import importlib.util\n'
+                 '_s = importlib.util.spec_from_file_location("r", "%s")\n')
+        for nome, corpo in ((falso_contador, carga % falsa_regua),
+                            (falso_gerador, carga % falsa_regua),
                             (falsa_regua, "# nenhum portao me carrega\n")):
             with io.open(os.path.join(ilha, "ferramentas", nome), "w", encoding="utf-8") as f:
                 f.write("#!/usr/bin/env python3\n" + corpo)
