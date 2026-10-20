@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-20T11:20Z
-executando_desde: null
+executando_desde: 2026-10-20T13:19Z
 bloco_atual: |
   A BANCADA CLASSIFICAVA PORTAO PELA MARCA NO TEXTO, PROSA INCLUIDA — E A CONTA DEU
   ZERO NA CLASSE ERRADA, ENQUANTO O CONSERTO LITERAL PORIA 18. Item 6(c) do fecho de
