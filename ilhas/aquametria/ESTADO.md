@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-20T14:22Z
-executando_desde: 2026-10-20T17:14Z   # reserva RENOVADA pela 1.1 (5a vez): a bancada inteira roda em dezenas de minutos. A HORA DESTE CAMPO SAI DO `date -u`, nunca de estimativa: esta execucao escreveu hora no FUTURO duas vezes (16h58Z com o relogio em 16h45Z, e 17h25Z com o relogio em 17h00Z) e corrigiu as duas. Reserva adiantada estica a janela de 40 minutos da 1.1 e tranca a ilha para a execucao seguinte
+executando_desde: 2026-10-20T17:47Z   # reserva RENOVADA pela 1.1 (6a vez): a bancada inteira roda em dezenas de minutos. A HORA DESTE CAMPO SAI DO `date -u`, nunca de estimativa: esta execucao escreveu hora no FUTURO duas vezes (16h58Z com o relogio em 16h45Z, e 17h25Z com o relogio em 17h00Z) e corrigiu as duas. Reserva adiantada estica a janela de 40 minutos da 1.1 e tranca a ilha para a execucao seguinte
 bloco_atual: |
   A PERGUNTA DO ITEM 7 TINHA DUAS RESPOSTAS E ELAS NAO SE SOMAM: ZERO ato invisivel
   para a varredura por nome, e 142 de 196 atos que so sao visiveis POR ACIDENTE — o
