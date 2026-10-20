@@ -270,7 +270,7 @@ def main():
                     "import importlib.util, os\n"
                     "P = os.path.dirname(os.path.abspath(__file__))\n"
                     "s = importlib.util.spec_from_file_location(\n"
-                    "    'r', os.path.join(P, 'regua-robots.py'))\n")
+                    "    'r', os.path.join(P, 'regua-robots.py'))\n")  # ENCENACAO
         return True
 
     mundo_que_passa(
@@ -282,7 +282,16 @@ def main():
         # Regua que ninguem carrega: a `regua-classes-da-bancada.py` a denuncia,
         # e ESTA regua nao tem nada a dizer sobre ela. Portao que reprovasse aqui
         # estaria medindo a pergunta da outra.
-        with io.open(os.path.join(ilha, "ferramentas", "regua-orfa.py"),
+        #
+        # OS DOIS NOMES ABAIXO SE DECLARAM ENCENACAO, E ISSO NAO E ZELO: sem o
+        # marcador, a mutacao 18 do `mutacoes-classes-da-bancada.py` SOBREVIVE.
+        # Ela cria uma `regua-orfa.py` na sombra e espera ve-la denunciada; este
+        # arquivo e PORTAO, entao o nome dela escrito aqui entre aspas a fazia
+        # passar por CARREGADA por mim, e a orfa se protegia pelo texto de um
+        # terceiro. Medido pela bancada em 20/10/2026, 14h1xZ, no dia em que
+        # este arquivo nasceu — e e literalmente o laco que o comentario da
+        # mutacao 18 ja descrevia para si mesma.
+        with io.open(os.path.join(ilha, "ferramentas", "regua-orfa.py"),  # ENCENACAO
                      "w", encoding="utf-8") as f:
             f.write("# ninguem me carrega\n")
         return True

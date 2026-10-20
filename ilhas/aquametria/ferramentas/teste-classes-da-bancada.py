@@ -6,10 +6,12 @@ ENCENADAS e contra a pasta REAL desta ilha.
 Ele mede as duas metades que o achado do item 6(c) de 19/10/2026 juntou:
 
   1. **A CONTA**, no mundo real de hoje: quantos arquivos em cada classe, e
-     quantos estao na classe errada pela leitura cega. A resposta de hoje e
-     ZERO na classe errada, e esta afirmada aqui para deixar de ser recontagem
-     a mao — que e a assinatura de instrumento sem portao (`contar-` de 14 a
-     19/10).
+     onde as duas leituras discordam. **ZERO portoes estao na classe ERRADA** —
+     e as discordancias NAO sao zero: sao os arquivos que se declaram
+     encenacao, e neles quem acerta e a regua. As duas coisas nao sao a mesma,
+     e confundi-las foi um rotulo corrigido em 20/10 as 14h0xZ. A conta esta
+     afirmada aqui para deixar de ser recontagem a mao — que e a assinatura de
+     instrumento sem portao (`contar-` de 14 a 19/10).
   2. **A FIACAO**, nos mundos encenados: que a regua le a POSICAO de cada marca
      e nao a presenca dela. Conta certa com fiacao errada foi exatamente como o
      defeito de 19/10 nasceu, entao os dois lados sao cobrados.
@@ -349,7 +351,7 @@ def metade_da_conta():
     print('  pasta real: %d arquivos — %s'
           % (len(arquivos),
              ', '.join('%s %d' % (c, len(por_classe[c])) for c in sorted(por_classe))))
-    print('  na classe errada pela leitura cega: %d (%s)'
+    print('  onde as duas leituras discordam: %d (%s) — todas por encenacao declarada'
           % (len(div), ', '.join(n for n, _, _ in div) or 'nenhum'))
 
 

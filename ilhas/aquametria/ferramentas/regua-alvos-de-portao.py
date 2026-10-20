@@ -40,11 +40,16 @@ mede o quanto da visibilidade de hoje e sorte.
 
 A CONTA DE 20/10/2026, medida por esta regua na pasta desta ilha
 -----------------------------------------------------------------
-193 atos sobre irmao em 139 arquivos: **48 literais, 139 indiretos, 6
-construidos** — e **ZERO invisiveis**. Dos 193, **145 sao visiveis so por
+196 atos sobre irmao em 141 arquivos: **48 literais, 142 indiretos, 6
+construidos** — e **ZERO invisiveis**. Dos 196, **148 sao visiveis so por
 acidente**: o literal esta no arquivo, mas o ato nao passa por ele. 10 sitios
 que falam da pasta ficaram por resolver, **nenhum deles uma carga**, e 40
 arquivos (os `.mjs` e os `.php`) estao fora do alcance desta regua.
+
+Estes numeros sao de uma DATA e envelhecem com a pasta — quem quiser o de hoje
+roda `python3 ferramentas/regua-alvos-de-portao.py`, que os imprime. O que o
+portao cobra nao e nenhum deles: e a propriedade de `invisiveis()` continuar
+vazia, que nao envelhece.
 
 A leitura, em uma frase: **a varredura por nome nao esta cega hoje, e ela nao
 esta cega por sorte em tres de cada quatro atos.** Nao ha o que consertar — ha

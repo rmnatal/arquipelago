@@ -333,9 +333,24 @@ def _citada_cega(nome, arquivos):
 def divergencias(arquivos):
     """[(nome, categoria_cega, categoria_desta_regua)] onde as duas discordam.
 
-    `[]` e a resposta de hoje, e e uma MEDICAO e nao uma ausencia de medicao:
-    nenhum portao desta pasta esta na classe errada. Ela deixa de ser `[]` no
-    dia em que alguem citar uma marca em prosa — e aí este portao diz onde.
+    DISCORDANCIA NAO E ERRO, E A PRIMEIRA VERSAO DESTA FRASE DIZIA QUE ERA
+    (corrigido em 20/10/2026, 14h0xZ, pela execucao seguinte a que a escreveu).
+    Ela dizia *"`[]` e a resposta de hoje"* — e era verdade no instante em que
+    foi escrita e deixou de ser algumas horas depois, no MESMO dia e na MESMA
+    execucao, quando o `MARCADOR_DE_ENCENACAO` nasceu. Desde entao a resposta
+    e **2**, e os dois sao os portoes desta propria regua, que encenam a marca
+    do navegador e se declaram encenacao. Nos dois, quem acerta e esta regua.
+
+    O que esta lista conta, portanto, e **onde as duas leituras discordam** —
+    e cada discordancia e de uma destas duas familias:
+      * a leitura cega erra e esta regua acerta (encenacao declarada, hoje 2);
+      * esta regua erra, que e o caso que nunca aconteceu e que o
+        `teste-classes-da-bancada.py` cobra pela CAUSA, nao pelo numero: todo
+        arquivo que diverge tem de divergir porque a marca so aparece nele em
+        posicao que nao e ato.
+    Chamar isto de "portao na classe errada" era ler a segunda familia no
+    numero da primeira, que e o defeito que esta pasta chama de numero errado
+    com cara de medido.
     """
     saida = []
     for nome in sorted(arquivos):
@@ -373,7 +388,8 @@ if __name__ == '__main__':
         for cat in sorted(contas):
             print('  %-14s %d' % (cat, contas[cat]))
         div = divergencias(arquivos)
-        print('\nPORTOES NA CLASSE ERRADA pela leitura cega (prosa incluida): %d' % len(div))
+        print('\nONDE AS DUAS LEITURAS DISCORDAM (a cega inclui prosa): %d' % len(div))
+        print('  — discordancia nao e erro: nos de hoje quem acerta e esta regua.')
         for nome, cega, boa in div:
             print('  %-40s cega=%-10s regua=%s' % (nome, cega, boa))
         raise SystemExit(0)
