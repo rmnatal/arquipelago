@@ -116,11 +116,30 @@ INDIRETO = 'indireto'      # chega-se a ele por variavel, parametro ou chave
 CONSTRUIDO = 'construido'  # sai de concatenacao, f-string, % ou .replace()
 
 
+# Caracter de PADRAO, nunca de nome. `*.php` passa pelo teste de extensao e
+# pelo de tamanho, e dai em diante e tratado como se fosse um arquivo: o sitio
+# conta como RESOLVIDO e sai da lista do que nao resolveu, mas o "nome" nunca
+# esta na pasta, entao o ato tambem nao entra na conta. O sitio DESAPARECE das
+# duas listas de uma vez, que e a pior coisa que uma regua pode fazer.
+#
+# MEDIDO EM 20/10/2026 as 16h4xZ, e nao foi leitura: foi a `regua-alvos-em-php.py`
+# nascendo com uma COPIA desta funcao e o portao dela reprovando no mundo
+# `foreach ( glob( __DIR__ . '/*.php' ) as $f ) { require $f; }` — uma carga por
+# varredura de pasta, que e idioma real desta pasta. Aqui o defeito estava
+# ESCONDIDO por acidente de aritmetica: `*.py` tem 4 caracteres e o `> 4` o
+# barrava; `*.php` tem 5 e passa. Dois `glob` de `snippets/*.php` desta pasta
+# (na `bancada.py` e no `conferir-protecao-funcoes.py`) ja caiam nele, e nao
+# mudavam a conta so porque nao falam de `ferramentas/`.
+PADRAO = ('*', '?', '[')
+
+
 def _base(s):
     """O ultimo degrau de um caminho literal, se ele parecer arquivo desta pasta."""
     if not isinstance(s, str):
         return None
     ultimo = s.replace('\\', '/').split('/')[-1]
+    if any(c in ultimo for c in PADRAO):
+        return None
     return ultimo if ultimo.endswith(EXTENSOES) and len(ultimo) > 4 else None
 
 
