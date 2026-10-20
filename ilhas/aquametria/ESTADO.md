@@ -5,34 +5,63 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-20T14:22Z
-executando_desde: 2026-10-20T17:47Z   # reserva RENOVADA pela 1.1 (6a vez): a bancada inteira roda em dezenas de minutos. A HORA DESTE CAMPO SAI DO `date -u`, nunca de estimativa: esta execucao escreveu hora no FUTURO duas vezes (16h58Z com o relogio em 16h45Z, e 17h25Z com o relogio em 17h00Z) e corrigiu as duas. Reserva adiantada estica a janela de 40 minutos da 1.1 e tranca a ilha para a execucao seguinte
+ultima_execucao: 2026-10-20T18:08Z
+executando_desde: null   # a execucao de 20/10 16h18Z fechou. A HORA DESTE CAMPO SAI DO `date -u`, nunca de estimativa: aquela execucao escreveu hora no FUTURO duas vezes (16h58Z com o relogio em 16h45Z, e 17h25Z com o relogio em 17h00Z) e corrigiu as duas. Reserva adiantada estica a janela de 40 minutos da 1.1 e tranca a ilha para a execucao seguinte por mais tempo do que o trabalho dura
 bloco_atual: |
-  A PERGUNTA DO ITEM 7 TINHA DUAS RESPOSTAS E ELAS NAO SE SOMAM: ZERO ato invisivel
-  para a varredura por nome, e 142 de 196 atos que so sao visiveis POR ACIDENTE — o
-  literal esta no arquivo, mas o ato nao passa por ele. Item 7 do fecho de 20/10 as
-  10h17Z, deixado sem conserto de proposito pela 19.2: 'quantos portoes hoje nomeiam
-  o alvo deles por concatenacao ou variavel em vez de literal?'. Nasceram
-  regua-alvos-de-portao.py (le a ARVORE SINTATICA, que e o que a onde() declara nao
-  ser), teste-alvos-de-portao.py (33 afirmacoes, 16 mundos encenados) e
-  mutacoes-alvos-de-portao.py (22, zero sobrevivente). A afirmacao com dentes e uma
-  PROPRIEDADE e nao um numero: invisiveis() continua vazia, e nenhuma CARGA ficou por
-  resolver. Bloco de instrumento, dentro do congelamento de titulo e meta de 14/10.
-  A BANCADA PEGOU UM DEFEITO MEU: o mundo encenado do portao novo DESARMAVA a mutacao
-  18 do mutacoes-classes-da-bancada.py — o nome da regua orfa escrito entre aspas num
-  arquivo que E PORTAO a fazia passar por carregada por mim, e o alvo se protegia pelo
-  texto de um terceiro. E o laco que o comentario daquela mutacao ja descrevia para si
-  mesma; conserto pelo marcador ENCENACAO nas duas linhas.
-  E UM ROTULO QUE IMPRIMIA NUMERO ERRADO COM CARA DE MEDIDO: 'PORTOES NA CLASSE ERRADA
-  pela leitura cega: 2' contava DISCORDANCIA, e as duas sao a excecao da ENCENACAO
-  funcionando. Portao na classe errada continua ZERO. A frase era verdadeira quando
-  foi escrita, de manha, e deixou de ser na MESMA execucao que a escreveu.
-  BANCADA APROVADO em 69 portoes, 0 falha — de 67 para 69 sem ninguem alimentar lista
+  A PERGUNTA DO ITEM 7 FOI RESPONDIDA NAS DUAS METADES FORA DO PYTHON: 21 atos sobre
+  irmao, ZERO invisiveis — 12 nos .php (21 arquivos) e 9 nos .mjs (20 arquivos). E a
+  assimetria com o Python tem causa: 19 dos 21 nomeiam o alvo NO PROPRIO SITIO, contra
+  48 de 196 no Python, porque PHP e JS nao tem idioma de carga indireta. Os 12 do PHP
+  sao TODOS carga e TODOS com o MESMO alvo, o render-para-teste.php. Item 7 do fecho de
+  20/10 as 13h18Z: 'o .mjs e o .php desta pasta carregam e invocam irmaos, e ninguem os
+  mediu. Quem a tomar responde primeiro quantos atos existem la'. Nasceram
+  listar-atos-php.php (o tokenizador do PROPRIO PHP, idioma desta pasta desde 09/09),
+  regua-alvos-em-php.py, teste-alvos-em-php.py (53 afirmacoes) e
+  mutacoes-alvos-em-php.py (18, zero sobrevivente, CINCO delas mutilando o leitor em
+  PHP). A conta das duas metades esta em dados/atos-sobre-irmao-2026-10-20.md.
+  A BANCADA PEGOU UM DEFEITO NA REGUA IRMA, E ELE ESTAVA DORMINDO: _base('*.php')
+  devolvia o padrao de glob como se fosse NOME DE ARQUIVO, e o sitio desaparecia das
+  DUAS listas de uma vez — contava como resolvido e nao entrava na conta. A regua nova
+  tinha COPIADO essa funcao, e a copia nasceu errada no mesmo dia. Consertado no arquivo
+  que o possui (barreira PADRAO) e MEDIDO em isolamento: a conta do Python nao muda em um
+  unico numero (196 atos, 0 invisiveis, 148 por acidente, 10 por resolver nas duas
+  leituras), porque os dois glob de snippets/*.php nao falam de ferramentas/. Dormia no
+  Python e estava acordado no PHP, onde __DIR__ E a pasta. O conserto de verdade foi
+  APAGAR A COPIA: a regua nova IMPORTA o vocabulario da irma, e a mutacao 15 mata o
+  PADRAO do arquivo da irma para provar que a importacao esta viva.
+  E O CONSERTO ACORDOU UMA CARGA REAL QUE MOSTROU A AFIRMACAO ERRADA: 'nenhuma CARGA por
+  resolver' ficou vermelha no eval(file_get_contents) que varre snippets/ — e a afirmacao
+  estava errada, nao o codigo. Carga que varre OUTRA pasta nao pode esconder irmao, por
+  construcao; a perigosa e a que nao resolve E FALA desta pasta. Virou isso, e o
+  _fala_da_pasta passou a SEGUIR variavel, porque no idioma de quem varre a pasta o
+  __DIR__ esta na ATRIBUICAO e o sitio do ato so tem $f.
+  DUAS AFIRMACOES MINHAS NAO PODIAM PASSAR NUNCA, pela familia do achado 4 de manha:
+  procuravam no texto do PROPRIO arquivo a palavra que a frase da afirmacao escreve.
+  Afirmacao sobre o proprio TEXTO o autor nao satisfaz sem mentir; sobre o proprio
+  ESTADO, sim — passou a perguntar ao namespace.
+  E token_get_all() NAO RECUSA NADA: tokeniza qualquer byte e nunca falha, entao o grupo
+  'nao lido por recusa' e vazio por construcao e esta regua NAO e conferencia de sintaxe.
+  DUAS MUTACOES SOBREVIVERAM na primeira passada e as duas diziam a mesma coisa: o
+  _proprio() era codigo sem efeito observavel, porque o mundo encenado nao discriminava.
+  O mundo que importa e a re-invocacao que NOMEIA a pasta.
+  OS 20 .mjs CONTINUAM SEM PORTAO, com o bloqueio nomeado: o unico analisador de
+  JavaScript deste ambiente e de /opt/node-tools, nao esta no package.json e nem resolve
+  por import. Portao vermelho onde a dependencia nao existe ensina a ignorar o vermelho
+  (20.5). No lugar ficou a COBERTURA DECLARADA: todo arquivo da pasta e lido por uma das
+  duas reguas ou aparece NOMEADO num limite — com mundo de .sh provando que a irma nao
+  cobre linguagem nova.
+  E O MESMO DEFEITO ESTAVA NOS MEUS ARQUIVOS, TRES VEZES: _tem_buraco() na regua e
+  _uma_vez() no portao, definidas e nunca chamadas, mais um import sys sem uso. As tres
+  sairam antes do commit, com o portao remedido e as 15 ancoras de mutacao reconferidas.
+  Funcao sem chamador e afirmacao que ninguem pode contradizer, e numa pasta de reguas
+  ela parece cobertura.
+  BANCADA APROVADO em 71 portoes, 0 falha — de 69 para 71 sem ninguem alimentar lista
   nenhuma, e a lista de denunciados VAZIA.
-  ZERO BYTE NO AR, CONFERIDO COM O GIT: 'git diff --stat' contra snippets/, conteudo/
-  e manifest.json sai VAZIO, nenhum Sync acionado e nenhum a acionar, revisao 122 no
-  manifest e no /status, home em 200 nas tres passadas (20.2, com a robometria em 200
-  como controle). Teto da 21.4 segue ZERADO e nenhuma URL nasceu.
+  ZERO BYTE NO AR, CONFERIDO COM O GIT: 'git diff --stat' do main do inicio da execucao
+  (842adc8) ate o fecho, contra snippets/, conteudo/ e manifest.json, sai VAZIO, e a
+  arvore de trabalho tambem. Nenhum Sync acionado e nenhum a acionar; manifest na revisao
+  122 e /status em 122, iguais; home em 200 nas tres passadas da 20.2. Teto da 21.4 segue ZERADO e nenhuma URL nasceu. Bloco de instrumento,
+  dentro do congelamento de titulo e meta de 14/10.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |

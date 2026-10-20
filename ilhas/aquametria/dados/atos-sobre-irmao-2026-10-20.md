@@ -9,13 +9,19 @@ pergunta que o fecho de 20/10 às 13h18Z deixou escrita, com a ordem embutida:
 
 A `regua-alvos-de-portao.py` lê a árvore sintática do **Python** e escreve, no
 próprio cabeçalho, que os **40** arquivos `.mjs` e `.php` desta pasta estão fora
-do alcance dela. A resposta, nas duas metades:
+do alcance dela. **Hoje são 41**, e a diferença é desta passada: o
+`listar-atos-php.php`, que nasceu aqui, é o 21º `.php`. A resposta, nas duas
+metades, contada na pasta COM ele dentro:
 
 | metade | arquivos | atos sobre irmão | literal | indireto | construído | **invisíveis** | por resolver |
 |---|---|---|---|---|---|---|---|
 | `.php` | 21 | **12** | 12 | 0 | 0 | **0** | 1 (varre `snippets/`) |
 | `.mjs` | 20 | **9** | 7 | 2 | 0 | **0** | 0 |
 | **fora do Python** | **41** | **21** | 19 | 2 | 0 | **0** | 1 |
+
+*(Os 21 `.php` incluem o `listar-atos-php.php` desta passada, que não age sobre
+irmão nenhum — ele recebe o arquivo como argumento de linha de comando, igual ao
+`proteger-funcoes.php`.)*
 | (`.py`, pela régua irmã) | 103 | 196 | 48 | 142 | 6 | **0** | 10 |
 
 **A leitura, e é ela que decide o que fazer:** **zero** ato invisível nas duas

@@ -14,6 +14,119 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-20 16h18Z–18h0xZ — A PERGUNTA DO ITEM 7 FOI RESPONDIDA NAS DUAS METADES FORA DO PYTHON: **21 ATOS, ZERO INVISÍVEIS** — E A RÉGUA NOVA NASCEU COM UMA **CÓPIA** DA RÉGUA IRMÃ QUE JÁ ESTAVA ERRADA
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — não houve rotação nem comparação de `ultima_execucao` (1.2). Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `842adc8`, a branch `claude/dreamy-mccarthy-6p0ot6` **sem um commit à frente nem atrás** do `main` e **nenhum PR aberto** — não havia o que mergear. Os cinco `ESTADO.md` estavam com `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não houve reserva vencida para o git desempatar. Reserva aceita às **16h18Z** (`c76a190`), sem force push, e **renovada SEIS vezes** pela 1.1 (16h45Z, 16h59Z, 17h00Z, 17h14Z, 17h47Z), porque a bancada inteira desta ilha roda em mais de uma hora — o `mutacoes-peixes.py` sozinho leva cerca de 35 minutos.
+
+> **E A RENOVAÇÃO SAIU ERRADA DUAS VEZES, consertada por commit próprio nas duas (`da1148c` e o seguinte):** escrevi `16h58Z` com o relógio em `16h45Z`, e depois `17h25Z` com o relógio em `17h00Z`. **Reserva com hora no futuro estica a janela de 40 minutos da 1.1** e tranca a ilha para a execução seguinte por mais tempo do que o trabalho dura — o contrário do que a 1.1 existe para fazer. Campo com hora adiantada, lido por outra execução, não se distingue de reserva legítima.
+>
+> **E a segunda aconteceu porque a primeira correção consertou o VALOR e não o MÉTODO** — é a mesma família da 20.4 ("o que ficou escrito foi o CONSERTO e não a REGRA", e três dias depois o mesmo desembarque quebrou as mesmas páginas). Eu havia corrigido o número e continuado a **estimar** a hora de cabeça. **A hora deste campo passa a sair do `date -u`**, nunca de estimativa, e isso está escrito no próprio campo do `ESTADO.md` para a execução seguinte não repetir — nem por mim, nem por quem ler o campo como exemplo.
+
+**REDE PELA 20.2, MEDIDA E NÃO HERDADA:** três passadas, `aquametria.com.br` em **200** nas três, `www.` em **301** nas três (o redirecionamento de sempre). **Nada foi ao ar nesta passada**, então não houve Sync a acionar nem revisão a conferir: `git diff --stat` contra `snippets/`, `conteudo/` e `manifest.json` sai **vazio** no fecho.
+
+**O DESPACHO NÃO TINHA ITEM PARA A FUNDAÇÃO, conferido antes de abrir a fila (18.5).** O `PROMPT.md` não é tocado desde 19/10 às 13h53Z, e os quatro itens abertos continuam pedindo o que esta nuvem não alcança: **SERP brasileira vista com os olhos** (30.8), a **credencial** da Search Console, a **cota de indexação do Google** (esgotada, e não é defeito desta ilha) e a **medição de 21/10**, que não se antecipa sem destruir o controle da `/calculadora-de-litragem/`.
+
+**POR QUE ESTE BLOCO.** O fecho das 13h18Z deixou três próximos passos e dois continuam travados **hoje**: a lista de 21/10 é de 21/10, e o portão vermelho da vitrine da C15 exige decisão de **superfície**, que está congelada até 21/10 pela leitura de 14/10. Sobrou o item 7, que é instrumento puro e foi escrito com a ordem embutida: *"o `.mjs` e o `.php` desta pasta carregam e invocam irmãos, e **ninguém os mediu**. Quem a tomar responde primeiro quantos atos existem lá, antes de propor régua nenhuma."* **Comecei contando.**
+
+### 1. A CONTA, E ELA É A RESPOSTA INTEIRA DO ITEM 7
+
+| metade | arquivos | atos sobre irmão | literal | indireto | construído | **invisíveis** | por resolver |
+|---|---|---|---|---|---|---|---|
+| `.php` | 21 | **12** | 12 | 0 | 0 | **0** | 1 (varre `snippets/`) |
+| `.mjs` | 20 | **9** | 7 | 2 | 0 | **0** | 0 |
+| **fora do Python** | **41** | **21** | 19 | 2 | 0 | **0** | 1 |
+| (`.py`, pela régua irmã) | 103 | 196 | 48 | 142 | 6 | **0** | 10 |
+
+A medição inteira, com os 21 atos nomeados um por um, está em **`dados/atos-sobre-irmao-2026-10-20.md`**.
+
+**ZERO ato invisível nas duas metades novas** — a varredura por nome da `regua-classes-da-bancada.py` não está cega em nenhuma das três linguagens desta pasta hoje. E, ao contrário do Python, aqui ela **não está cega por sorte**: 19 dos 21 atos nomeiam o alvo no próprio sítio, contra 48 de 196 no Python.
+
+**A assimetria tem causa, e não é cultura: é a falta de um idioma.** O Python carrega irmão por `spec_from_file_location(apelido, caminho)` com o caminho montado por variável e por parâmetro, e os `mutacoes-*` recebem o alvo de fora. O PHP carrega por `require __DIR__ . '/<nome>.php'`, que não tem para onde esconder o nome; o `.mjs` invoca `execFileSync('php', [RAIZ + '/ferramentas/<nome>.php', ...])`, igual. **Linguagem sem indirecção de carga produz alvo visível por construção.**
+
+**E a metade do PHP tem uma concentração que vale como risco medido:** os **12 atos são todos `carrega` e os 12 têm o MESMO alvo**, o `render-para-teste.php`. Nenhum `invoca` e nenhum `abre` sobre irmão. Um renomeio dele toca doze arquivos de uma vez — e os doze o nomeiam literalmente, então o renomeio é visível para qualquer varredura.
+
+**Os dois únicos atos indirectos fora do Python são o mesmo sítio:** o `listarPelo(arquivo)` do `teste-voz.mjs:106`, que invoca `RAIZ + '/ferramentas/' + arquivo` com o nome chegando por parâmetro. Os dois literais estão nas linhas 127 e 128, e estão ali porque alguém os escreveu — nada os sustenta.
+
+### 2. QUEM LÊ PHP É O PHP, E ISSO JÁ ERA IDIOMA DESTA PASTA
+
+A `regua-classes-da-bancada.py` escreve o próprio limite — *"a classe sai do TEXTO do arquivo, não de executá-lo"* — e foi esse limite que custou o defeito de 20/10 de manhã (classificava portão pela marca no texto, prosa incluída). Responder o item 7 com mais varredura de texto seria medir o defeito com o instrumento que o produz.
+
+Então o leitor da metade do PHP é o **`token_get_all()` do próprio PHP**, que esta pasta já usa desde 09/09/2026 no `proteger-funcoes.php`. A divisão de trabalho é o que permite encenar pasta que não existe: **`listar-atos-php.php` recebe ARQUIVO e devolve a sequência de OPERANDOS** que o tokenizador vê; **`regua-alvos-em-php.py` recebe `{nome: texto}`** e decide a posição, sem saber de disco nenhum (os mundos encenados vão para pasta temporária **fora** de `ferramentas/`, para a `bancada.py` não os descobrir como portão novo).
+
+**A POSIÇÃO DO `.` É MEDIDA POR OPERANDO, E A DIFERENÇA COM A RÉGUA IRMÃ É DELIBERADA.** A irmã rebaixa toda concatenação `+` a `construido` e preserva o literal dentro de `os.path.join()`, escrevendo a causa: *"chamadas que só COMPÕEM caminho: atravessá-las não é indirecção, porque o nome continua escrito ali dentro"*. O PHP **não tem** chamada de composição de caminho — o `.` é a única que a linguagem oferece. Então aqui vale a CAUSA e não a letra. **E a diferença está medida: pela letra, 12 dos 12 atos sairiam como `construido` e a coluna de posição não discriminaria NADA** — o mesmo defeito que a leva 8 da C12 mediu numa régua de catálogo.
+
+### 3. O DEFEITO QUE A BANCADA PEGOU NÃO ERA DA RÉGUA NOVA: ERA DA IRMÃ, E ELE ESTAVA **DORMINDO**
+
+A régua nova nasceu com a própria **cópia** de `_base()`, das três posições e das duas comparações de força — 30 linhas iguais às da irmã. Na **primeira passada do portão**, o mundo encenado `foreach ( glob( __DIR__ . '/*.php' ) as $f ) { require $f; }` reprovou: `_base('*.php')` devolvia `*.php` **como se fosse nome de arquivo**.
+
+**O dano é o pior que uma régua pode fazer:** o sítio contava como RESOLVIDO e saía da lista do que não resolveu, mas o "nome" nunca está na pasta, então o ato também não entrava na conta. **Desaparecia das duas listas de uma vez.**
+
+E o defeito não era da cópia: era da função **original**, onde dormia escondido por aritmética — `*.py` tem 4 caracteres e o `> 4` o barrava, `*.php` tem 5 e passava. **Consertado no arquivo que o possui**, com a barreira `PADRAO = ('*', '?', '[')`, e o efeito **medido em isolamento** em vez de suposto: a conta da metade do Python **não muda em um único número** com o conserto — 196 atos, 0 invisíveis, 148 por acidente, 10 por resolver nas duas leituras —, porque os dois `glob` de `snippets/*.php` daquela metade (na `bancada.py` e no `conferir-protecao-funcoes.py`) não falam de `ferramentas/`. **O defeito estava dormindo no Python e acordado no PHP**, onde `__DIR__` É a pasta.
+
+**E o conserto de verdade foi apagar a cópia.** A régua nova passou a **IMPORTAR** o vocabulário da irmã, e a mutação **15** mata o `PADRAO` do arquivo da irmã para provar que a importação está viva — se ela sobreviver, a importação virou decoração e a cópia voltou por outro caminho. É a lição que a `bancada.py` já escreve sobre a régua de `noindex`: **regra escrita duas vezes erra de um lado só.** Levei 30 linhas para a repetir.
+
+### 4. O CONSERTO DO `_base` ACORDOU UMA CARGA REAL, E ELA MOSTROU QUE A AFIRMAÇÃO PERGUNTAVA A COISA ERRADA
+
+Com o `*.php` deixando de passar por nome de arquivo, apareceu uma carga por resolver que antes se disfarçava: `render-para-teste.php:188`, o `eval( file_get_contents( $arquivo ) )` dentro de `foreach ( glob( $raiz . '/snippets/*.php' ) as $arquivo )`.
+
+A afirmação que eu havia copiado da irmã — *"nenhuma CARGA desta pasta ficou por resolver"* — ficou vermelha. **E ela estava errada, não o código:** essa carga varre `snippets/`, não `ferramentas/`, e **carga que varre outra pasta não pode esconder irmão nenhum, por construção**. A carga perigosa é a que não resolve **E FALA desta pasta**, e é essa que o portão passou a cobrar; a outra é impressa como registro.
+
+**O que isso obrigou a consertar na régua:** o `_fala_da_pasta()` passou a **seguir variável**, como a `aponta_para_a_pasta()` da irmã já segue. No idioma de quem varre a pasta, o `__DIR__` está na **atribuição** e o sítio do ato só tem `$f` — perguntando apenas no sítio, a carga **mais perigosa que este idioma permite** responderia "não fala da pasta". A mutação 10 guarda as duas direções.
+
+### 5. DUAS AFIRMAÇÕES MINHAS NÃO PODIAM PASSAR NUNCA, E AS DUAS PELO MESMO MOTIVO — É A FAMÍLIA DO ACHADO 4 DE HOJE DE MANHÃ
+
+A metade 4 do portão confere que ninguém recopiou a leitura do PHP, e eu a escrevi **procurando, no texto do próprio arquivo, a palavra que a frase da afirmação escreve**. Duas versões, duas vermelhas: primeiro o nome da função do tokenizador, depois o nome do módulo que abre processo. **Arquivo que fala SOBRE uma convenção parece estar a usando** — exatamente o laço do achado 4 do fecho das 13h18Z, em que um nome entre aspas fazia um portão "exercitar" uma régua órfã.
+
+**O conserto não é procurar melhor no texto: é perguntar a coisa certa.** O que importa não é que palavra está escrita ali, e sim se o portão tem na mão algum módulo capaz de abrir processo — e isso se pergunta ao **namespace**, onde o literal da frase não contamina a resposta. A conclusão que vale para a próxima régua desta família: **afirmação sobre o próprio texto é a única que o autor não consegue satisfazer sem mentir; afirmação sobre o próprio estado, sim.**
+
+### 6. `token_get_all()` NÃO RECUSA NADA, E EU ESCREVI UMA AFIRMAÇÃO SUPONDO QUE SIM
+
+Encenei `require 1 1 1 ;` esperando que o leitor recusasse o arquivo — e ele **leu**. O tokenizador do PHP não é um analisador sintático: ele tokeniza qualquer sequência de bytes e **nunca falha**. Então o grupo "não lido por recusa do tokenizador" é **vazio por construção** para sintaxe, e a régua lê o `.php` quebrado medindo os atos que os tokens mostrarem — mais cobertura, não menos, e **não autoriza ninguém a ler esta régua como conferência de sintaxe** (quem confere isso é o `--check` do `conferir-entidades.mjs`). A falha de leitura que existe de verdade é o **leitor ausente**, e ela virou a afirmação (n), com o lado seguro do erro escrito: sem leitor, `invisiveis()` ficaria vazia por **falta de medição** e o portão aprovaria o nada — por isso a metade 2 cobra `falhos == []` em separado.
+
+### 7. DUAS MUTAÇÕES SOBREVIVERAM, E AS DUAS DIZIAM A MESMA COISA: O `_proprio()` ERA CÓDIGO SEM EFEITO OBSERVÁVEL
+
+As mutações que matam o reconhecimento de `__FILE__` — no leitor e na régua — **passavam**. A causa: o mundo que eu havia encenado era o `exec( escapeshellarg( __FILE__ ) )` do `teste-atualizador-sync.php`, e naquele sítio **nada depende do `_proprio()`**: o ato é `invoca`, não `carrega`, e não nomeia a pasta, então ele não seria reportado de qualquer maneira.
+
+O mundo em que isso importa é o da re-invocação **que nomeia a pasta**: `exec( 'php ' . __DIR__ . '/' . basename( __FILE__ ) )`. Ali o `__DIR__` faz o sítio falar desta pasta, e sem a pergunta do `__FILE__` ele sairia na lista do que não resolveu — **um limite inventado, num ato cujo alvo é perfeitamente conhecido.** É a mesma lição do item 3 do fecho das 13h18Z e do item 5(b) de manhã: **o mundo deixou de discriminar, e só a mutação que PRODUZ o mundo o enxerga.**
+
+**E uma das minhas mutações era um no-op:** a 14 trocava o retorno por `[] or [(...)]`, que em Python avalia para a segunda lista. Mutação que não muda comportamento não é sobrevivente do portão — é mutação que não foi feita, e o relatório a contaria como "0 sobrevivente".
+
+### 8. OS ARQUIVOS
+
+- **`ferramentas/listar-atos-php.php`** (novo): o leitor, pelo `token_get_all()` do próprio PHP. Não afirma nada e não decide posição — devolve a sequência de operandos de cada sítio de ato. `listar-` é produção pela convenção da `bancada.py`, como as outras seis listagens que o `teste-voz.mjs` já chama.
+- **`ferramentas/regua-alvos-em-php.py`** (novo): autoridade da posição, com o vocabulário **importado** da régua irmã. Os três atos traduzidos para o idioma do PHP: `require`/`include`/`eval` são **carga** (e o `file_get_contents` dentro do `eval` não conta duas vezes), `exec` e as irmãs são **invocação**, `file_get_contents` e as irmãs são **leitura**.
+- **`ferramentas/teste-alvos-em-php.py`** (novo): **53 afirmações, 0 falha**, em quatro metades — a fiação em mundos encenados, a conta na pasta real, a **cobertura declarada** e a régua única.
+- **`ferramentas/mutacoes-alvos-em-php.py`** (novo): **18 = 15 mutações + 3 mundos que têm de passar, 0 sobrevivente, 0 inerte, 0 sem a frase.** Cinco mutilam o **leitor em PHP** — as que ninguém escreveria lendo só o Python.
+- **`dados/atos-sobre-irmao-2026-10-20.md`** (novo): a conta das duas metades, os 21 atos nomeados, e o critério pré-registrado do portão do `.mjs`.
+- **`ferramentas/regua-alvos-de-portao.py`**: a barreira `PADRAO`, e o ponteiro para a régua nova no limite que dizia que os 40 arquivos estavam fora de alcance.
+
+**A AFIRMAÇÃO COM DENTES CONTINUA SENDO UMA PROPRIEDADE, E NÃO UM NÚMERO:** `invisiveis() == []` nos `.php`, mais *"nenhuma carga que fala de `ferramentas/` ficou por resolver"*. Os números de indirecção e de não resolvidos são **impressos** e **não** cobrados, pelo mesmo motivo da régua irmã — cobrá-los seria a lista digitada que o achado 4(c) de 20/10 de manhã já pegou nesta família. O mundo **A** das mutações prova isso: um `.php` novo e honesto entra na pasta e nada reprova.
+
+### 9. A COBERTURA DECLARADA — o que existe no lugar do portão do `.mjs`
+
+Os 20 `.mjs` **continuam sem portão**, e o bloqueio está nomeado em vez de implícito: a medição deles foi feita com a API de compilação do TypeScript, que resolve em **`/opt/node-tools`** — imagem do ambiente, **não declarada no `package.json`** desta ilha, e que nem carrega por `import` (só por `createRequire` com caminho absoluto). **Portão que fica vermelho onde a dependência não existe é pior que portão nenhum**, que é o dano escrito na 20.5 com todas as letras. Escrever um tokenizador de JavaScript à mão também não serve: literal de expressão regular contra divisão é a ambiguidade clássica da linguagem, e esta pasta tem `/^(\d{4})-(\d{2})-(\d{2})$/.exec(...)` em quatro arquivos. **Leitor errado é pior que limite declarado.**
+
+O que tem dentes no lugar é a metade 3: **todo arquivo de `ferramentas/` ou é lido por uma das duas réguas, ou aparece NOMEADO num limite de uma delas.** Isso não mede JavaScript nenhum — e o portão diz isso. O que impede é que uma **linguagem nova** entre nesta pasta e fique sem medição por um mês, que é exatamente o que aconteceu com estes 41 arquivos entre 22/09, quando a `bancada.py` passou a varrer a pasta, e hoje. A régua irmã só nomeia `.py`, `.mjs` e `.php`: um `.sh` ou um `.ts` não estaria em lista nenhuma, e há **afirmação e mutação guardando os dois lados** (a 13, e o mundo do `.sh` na metade 3).
+
+### 10. O QUE ESTA MEDIÇÃO NÃO AUTORIZA, escrito em vez de descoberto depois
+
+- **Alvo pendurado não é defeito desta régua.** `require __DIR__ . '/nao-existe.php'` é literal, visível, e simplesmente não aparece na conta, porque o alvo não é arquivo desta pasta. Quem quiser cobrar alvo que não existe precisa de outra régua, e ela não nasce aqui.
+- **Nenhuma afirmação sobre o que os `.mjs` fazem.** A metade 3 fala dos **nomes** deles, nunca dos atos.
+- **Nenhuma conferência de sintaxe de PHP**, pelo motivo do item 6.
+- **A conta é de uma DATA.** A do `.php` se refaz com `python3 ferramentas/regua-alvos-em-php.py`; a do `.mjs` **não tem comando** nesta ilha, e é por isso que ela está num arquivo com a data no nome em vez de prometida como se houvesse instrumento.
+
+### 11. E O MESMO DEFEITO DO ITEM 7 ESTAVA NOS MEUS PRÓPRIOS ARQUIVOS, TRÊS VEZES
+
+Depois de escrever o item 7 — *"o `_proprio()` era código sem efeito observável"* —, procurei a mesma doença nos arquivos que eu acabara de escrever, e ela estava lá: **`_tem_buraco()` na régua e `_uma_vez()` no portão, as duas definidas e nunca chamadas, mais um `import sys` que ninguém usa.** As três saíram antes do commit, com o portão medido depois (53 afirmações, 0 falha) e as âncoras das 15 mutações reconferidas uma a uma contra os três arquivos que elas mutilam.
+
+**A `buraco` continua importando, e é a mutação 3 que prova:** quem a trocar por variável comum faz a régua resolver alvo de **dentro de um molde que ela declara não executar**. O que deixou de existir é a FUNÇÃO que ninguém chamava, não o conceito. **Função sem chamador é afirmação que ninguém pode contradizer** — e numa pasta de réguas ela é pior que código morto qualquer: parece cobertura.
+
+**BANCADA: APROVADO em 71 portões, 0 falha** — de 69 para 71 sem ninguém alimentar lista nenhuma, e a lista de denunciados **vazia**. As duas réguas novas foram classificadas certo pela `regua-classes-da-bancada.py`: o `listar-atos-php.php` como produção (pelo prefixo `listar-`, como as outras seis listagens que o `teste-voz.mjs` já chama), e a `regua-alvos-em-php.py` como régua compartilhada, porque o portão dela a carrega pelo nome. **E a bancada da régua irmã continua verde depois do conserto do `_base`:** `teste-alvos-de-portao.py` e `mutacoes-alvos-de-portao.py` (22 mutações, 0 sobrevivente) passaram sem um ajuste. A classe de navegador (18) e a do ar (11) ficaram fora desta passada, como sempre: nada foi ao ar, então não havia o que conferir nelas além da 20.2. Os `validar-*` saíram com os avisos de sempre ([E21] do apistogramma, [V20] do Eheim Substrat Pro), que são os mesmos de 19/10 e não são defeito desta passada.
+
+**ZERO BYTE NO AR, CONFERIDO COM O GIT E NÃO AFIRMADO DE CABEÇA:** `git diff --stat` **do `main` do início da execução (`842adc8`) até o fecho** contra `snippets/`, `conteudo/` e `manifest.json` sai **vazio**, e a árvore de trabalho também — nenhum Sync acionado e nenhum a acionar. **`manifest.json` na revisão 122 e `/status` em 122**, iguais, medidos no fecho. **Teto da 21.4 segue ZERADO e nenhuma URL nasceu.** Bloco de instrumento, dentro do congelamento de título e meta da leitura de 14/10.
+
+**PRÓXIMO PASSO:** (1) a lista de **21/10** destrava amanhã e é a mesma dos cinco fechos anteriores — declarar os cinco `divergiu` como conflitos (E9 e `dominio_por_campo`), gravar a fonte do danio e a do guppy (que fecha o aviso [E15]), decidir os três `regua-diferente`, regerar o catálogo, desembarcar as 74 linhas de deriva, e decidir a promoção da contagem por campo; quem desembarcar roda `conferir-cano-de-links.py --gravar` **e também** `conferir-titulo-no-ar.py --gravar`. (2) O portão vermelho da vitrine da C15, que destrava com o fim do congelamento (viewport 390×700, `window.scrollY = 1788`, `#aqm-c15-saida` com `top = -39 px` contra tolerância de −5). (3) **O portão do `.mjs`, com os três desfechos PRÉ-REGISTRADOS em `dados/atos-sobre-irmao-2026-10-20.md`** — e o mais barato dos três não é declarar dependência nenhuma: é trocar o `listarPelo(arquivo)` do `teste-voz.mjs` por chamada direta nos dois sítios, que são os **dois únicos atos indirectos fora do Python** e os únicos cuja visibilidade é acidente nesta metade. Com eles literais, a metade do `.mjs` fica 9 de 9 no sítio e o portão perde o objeto. (4) **A pergunta que esta passada deixa, e ela começa contando:** o defeito do `_base` só foi achado porque um SEGUNDO leitor exercitou a mesma função sobre outra linguagem — ele estava dormindo havia dias com um caller só. **Quantas funções compartilhadas de `ferramentas/` têm hoje um único exercitador?** Quem a tomar conta primeiro, antes de propor conserto nenhum: função com um caller só é defeito dormindo com data de validade, e a conta diz quantos.
+
 ## 2026-10-20 13h18Z–14hZ — A PERGUNTA DO ITEM 7 TEM DUAS RESPOSTAS E ELAS NÃO SE SOMAM: **ZERO** ATOS INVISÍVEIS, E **142 DE 196** QUE SÓ SÃO VISÍVEIS POR ACIDENTE
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — não houve rotação nem comparação de `ultima_execucao` (1.2). Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `79b353c`, a branch `claude/dreamy-mccarthy-dhdqgk` **idêntica ao `main`** (zero commit à frente, zero atrás) e **nenhum PR aberto** — não havia o que mergear. Os cinco `ESTADO.md` estavam com `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não houve reserva vencida para o git desempatar. Reserva aceita às **13h19Z** (`e8614b0`), na primeira tentativa, sem force push, e **renovada às 13h56Z** (`e1b0ed4`) pela 1.1, porque o bloco passou de 40 minutos.
