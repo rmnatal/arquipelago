@@ -5,63 +5,72 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-20T18:08Z
-executando_desde: 2026-10-20T20:31Z   # reserva da execucao de 20/10 19h16Z, RENOVADA 6a vez pela 1.1: a bancada de 73 portoes esta na reta final (83 linhas). Hora do `date -u`.
+ultima_execucao: 2026-10-20T20:32Z
+executando_desde: null   # a execucao de 20/10 19h16Z fechou as 20h32Z. A HORA DESTE CAMPO SAI DO `date -u`, nunca de estimativa, e a reserva foi RENOVADA SEIS vezes pela 1.1 porque a bancada de 73 portoes roda em mais de uma hora (o mutacoes-peixes.py sozinho leva ~35min).
 bloco_atual: |
-  A PERGUNTA DO ITEM 7 FOI RESPONDIDA NAS DUAS METADES FORA DO PYTHON: 21 atos sobre
-  irmao, ZERO invisiveis — 12 nos .php (21 arquivos) e 9 nos .mjs (20 arquivos). E a
-  assimetria com o Python tem causa: 19 dos 21 nomeiam o alvo NO PROPRIO SITIO, contra
-  48 de 196 no Python, porque PHP e JS nao tem idioma de carga indireta. Os 12 do PHP
-  sao TODOS carga e TODOS com o MESMO alvo, o render-para-teste.php. Item 7 do fecho de
-  20/10 as 13h18Z: 'o .mjs e o .php desta pasta carregam e invocam irmaos, e ninguem os
-  mediu. Quem a tomar responde primeiro quantos atos existem la'. Nasceram
-  listar-atos-php.php (o tokenizador do PROPRIO PHP, idioma desta pasta desde 09/09),
-  regua-alvos-em-php.py, teste-alvos-em-php.py (53 afirmacoes) e
-  mutacoes-alvos-em-php.py (18, zero sobrevivente, CINCO delas mutilando o leitor em
-  PHP). A conta das duas metades esta em dados/atos-sobre-irmao-2026-10-20.md.
-  A BANCADA PEGOU UM DEFEITO NA REGUA IRMA, E ELE ESTAVA DORMINDO: _base('*.php')
-  devolvia o padrao de glob como se fosse NOME DE ARQUIVO, e o sitio desaparecia das
-  DUAS listas de uma vez — contava como resolvido e nao entrava na conta. A regua nova
-  tinha COPIADO essa funcao, e a copia nasceu errada no mesmo dia. Consertado no arquivo
-  que o possui (barreira PADRAO) e MEDIDO em isolamento: a conta do Python nao muda em um
-  unico numero (196 atos, 0 invisiveis, 148 por acidente, 10 por resolver nas duas
-  leituras), porque os dois glob de snippets/*.php nao falam de ferramentas/. Dormia no
-  Python e estava acordado no PHP, onde __DIR__ E a pasta. O conserto de verdade foi
-  APAGAR A COPIA: a regua nova IMPORTA o vocabulario da irma, e a mutacao 15 mata o
-  PADRAO do arquivo da irma para provar que a importacao esta viva.
-  E O CONSERTO ACORDOU UMA CARGA REAL QUE MOSTROU A AFIRMACAO ERRADA: 'nenhuma CARGA por
-  resolver' ficou vermelha no eval(file_get_contents) que varre snippets/ — e a afirmacao
-  estava errada, nao o codigo. Carga que varre OUTRA pasta nao pode esconder irmao, por
-  construcao; a perigosa e a que nao resolve E FALA desta pasta. Virou isso, e o
-  _fala_da_pasta passou a SEGUIR variavel, porque no idioma de quem varre a pasta o
-  __DIR__ esta na ATRIBUICAO e o sitio do ato so tem $f.
-  DUAS AFIRMACOES MINHAS NAO PODIAM PASSAR NUNCA, pela familia do achado 4 de manha:
-  procuravam no texto do PROPRIO arquivo a palavra que a frase da afirmacao escreve.
-  Afirmacao sobre o proprio TEXTO o autor nao satisfaz sem mentir; sobre o proprio
-  ESTADO, sim — passou a perguntar ao namespace.
-  E token_get_all() NAO RECUSA NADA: tokeniza qualquer byte e nunca falha, entao o grupo
-  'nao lido por recusa' e vazio por construcao e esta regua NAO e conferencia de sintaxe.
-  DUAS MUTACOES SOBREVIVERAM na primeira passada e as duas diziam a mesma coisa: o
-  _proprio() era codigo sem efeito observavel, porque o mundo encenado nao discriminava.
-  O mundo que importa e a re-invocacao que NOMEIA a pasta.
-  OS 20 .mjs CONTINUAM SEM PORTAO, com o bloqueio nomeado: o unico analisador de
-  JavaScript deste ambiente e de /opt/node-tools, nao esta no package.json e nem resolve
-  por import. Portao vermelho onde a dependencia nao existe ensina a ignorar o vermelho
-  (20.5). No lugar ficou a COBERTURA DECLARADA: todo arquivo da pasta e lido por uma das
-  duas reguas ou aparece NOMEADO num limite — com mundo de .sh provando que a irma nao
-  cobre linguagem nova.
-  E O MESMO DEFEITO ESTAVA NOS MEUS ARQUIVOS, TRES VEZES: _tem_buraco() na regua e
-  _uma_vez() no portao, definidas e nunca chamadas, mais um import sys sem uso. As tres
-  sairam antes do commit, com o portao remedido e as 15 ancoras de mutacao reconferidas.
-  Funcao sem chamador e afirmacao que ninguem pode contradizer, e numa pasta de reguas
-  ela parece cobertura.
-  BANCADA APROVADO em 71 portoes, 0 falha — de 69 para 71 sem ninguem alimentar lista
-  nenhuma, e a lista de denunciados VAZIA.
+  A PERGUNTA DO ITEM 4 ESTA RESPONDIDA, E A RESPOSTA E 96: sao 96 funcoes
+  COMPARTILHADAS de ferramentas/ com um exercitador so, e 92 delas sem leitor de
+  fora nenhum — estao em arquivo que irmaos carregam, logo alcancaveis, e ninguem
+  de fora as alcanca. E a condicao exata em que o _base dormiu. Por classe: 35 em
+  regua-* (12 arquivos, so 4 com leitor de fora), 31 em teste-*, 14 em coletar-*,
+  14 em conferir-*, 2 em validar-*. 842 funcoes de topo, 6.532 sitios, ZERO orfas.
+  Item 4 do fecho de 20/10 as 16h18Z: 'quantas funcoes compartilhadas de
+  ferramentas/ tem hoje um unico exercitador? Quem a tomar conta primeiro, antes
+  de propor conserto nenhum'. Nasceram regua-exercitadores.py,
+  teste-exercitadores.py (60 afirmacoes) e mutacoes-exercitadores.py (23, zero
+  sobrevivente). A conta esta em dados/exercitadores-2026-10-20.md.
+  O PRIMEIRO ACHADO FOI DA PROPRIA PERGUNTA: contar so a CHAMADA devolve 82 orfas
+  e as 82 sao FALSAS. As c_e1..c_e28 do testar-validador-especies.py nao sao
+  chamadas em lugar nenhum — entram numa tupla de casos e quem as chama e o laco,
+  pela REFERENCIA. E o idioma de toda bancada desta pasta. A regua conta tres
+  formas (chamada 4.148, referencia 1.913, por_nome 471) e orfas() exige a
+  ausencia das tres, errando de proposito para o lado de NAO acusar.
+  E A CONTA PRODUZIU UM ACHADO DA FAMILIA DO _base, UM ANDAR ACIMA: havia CINCO
+  ler_pasta() nesta pasta, cada copia com um exercitador so, e as cinco NAO eram
+  a mesma funcao. Tres tinham errors='replace' e duas nao. MEDIDO, nao lido: num
+  .py com o byte 0xe9 (o 'e' acentuado em latin-1) as tres sobrevivem e as duas
+  morrem de UnicodeDecodeError — que e ValueError e NAO OSError, logo o except
+  delas nao o pega. Morrem de TRACEBACK, nao de veredito. E a regua-teto-do-titulo
+  e carregada por SETE irmaos: um arquivo salvo na codificacao errada levaria sete
+  portoes a traceback enquanto tres reguas irmas seguiriam trabalhando.
+  Consertadas as duas, com a nota do motivo dentro de cada uma. A PROPRIEDADE
+  PASSOU A SER COBRADA: a metade 3 do portao DESCOBRE as copias pela arvore e
+  exige que cada uma sobreviva ao byte torto — nenhuma linha do portao nomeia
+  arquivo. A mutacao 15 poe uma SEXTA copia com o buraco de ontem e o portao a
+  reprova sem ninguem a ter listado; a 14 desfaz o conserto de hoje e tambem
+  reprova. As duas versoes conviveram sem ninguem notar porque cada uma tinha um
+  leitor so, e um leitor nunca discorda de si mesmo.
+  TRES MUTACOES NAO FECHARAM NA PRIMEIRA PASSADA E AS TRES ERAM DEFEITO MEU. A 9 e
+  a 17 SOBREVIVERAM pela mesma causa do achado 7 de 16h18Z, no mesmo dia: o mundo
+  encenado NAO DISCRIMINAVA. Com nome unico na pasta o atalho de dono unico
+  atribui o sitio sem consultar o grafo de carga, entao matar o grafo nao mudava
+  resposta. O grafo so DECIDE com nome homonimo e sitio em quem carrega uma das
+  duas; nasceu o mundo (h2). A 5 reprovava de traceback porque a mutacao nao fazia
+  o que o rotulo dizia — tirar o continue de um no que nao casa com ramo nenhum
+  nao muda nada; a certa faz o cabecalho APPENDAR um sitio.
+  O LIMITE DE ESCOPO DEIXOU DE SER PROSA E PASSOU A SER NUMERO: a regua nao tem
+  escopo, e nomes_sombreados() mede que 61 dos 485 nomes de funcao de topo sao
+  TAMBEM variavel ou parametro em algum arquivo (texto em 55, linha em 30, corpo
+  em 25). Funcao com nome nessa lista NUNCA sera acusada de orfa, porque a
+  variavel de outro arquivo ja conta como sitio; para os outros 424, orfas()
+  acusa. Duas afirmacoes e duas mutacoes (18 e 19) guardam o numero nas duas
+  direcoes. A alternativa foi medida e e pior: exigir que o sitio esteja em quem
+  CARREGA devolveria as 82 orfas falsas.
+  E O NUMERO SUBIU DE 95 PARA 96 ENTRE A SONDAGEM E O FECHO, escrito em vez de
+  trocado calado: a sondagem leu a pasta ANTES de a regua e o portao existirem.
+  Regua que se mede mede a si mesma.
+  BANCADA APROVADO em 73 portoes, 0 falha, com a lista de denunciados VAZIA e zero
+  inerte — de 71 para 73 sem ninguem alimentar lista nenhuma. O portao e as mutacoes
+  novas entraram na bancada no dia em que nasceram, pela convencao de nome.
   ZERO BYTE NO AR, CONFERIDO COM O GIT: 'git diff --stat' do main do inicio da execucao
-  (842adc8) ate o fecho, contra snippets/, conteudo/ e manifest.json, sai VAZIO, e a
+  (7955470) ate o fecho, contra snippets/, conteudo/ e manifest.json, sai VAZIO, e a
   arvore de trabalho tambem. Nenhum Sync acionado e nenhum a acionar; manifest na revisao
-  122 e /status em 122, iguais; home em 200 nas tres passadas da 20.2. Teto da 21.4 segue ZERADO e nenhuma URL nasceu. Bloco de instrumento,
-  dentro do congelamento de titulo e meta de 14/10.
+  122 e /status em 122, iguais; home em 200 nas TRES passadas da 20.2, com
+  robometria.com.br em 200 nas mesmas tres como controle. Teto da 21.4 segue ZERADO e
+  nenhuma URL nasceu. Bloco de instrumento, dentro do congelamento de titulo e meta de
+  14/10. Nao ha diretorio de memoria neste ambiente, entao o espelho em
+  /areas/projeto-aquametria.md nao foi escrito — o estado inteiro esta aqui e no
+  REGISTRO.md, como o PROMPT.md desta ilha manda quando a memoria falta.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |
