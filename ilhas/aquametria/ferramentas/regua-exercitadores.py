@@ -270,10 +270,56 @@ def orfas(arquivos):
 
     Conta o sitio ANTES da atribuicao, de proposito: um sitio que exercita
     `main` sem que se saiba qual `main` ainda e um sitio, e nenhuma das
-    homonimas e morta por causa dele."""
+    homonimas e morta por causa dele.
+
+    O QUE ELA NAO PODE ACUSAR: os nomes de `nomes_sombreados()`. Nome de funcao
+    que tambem e variavel local em algum arquivo tem sitio por construcao, e
+    esta lista nunca o alcanca. Sao 61 de 484 em 20/10/2026, e estao contados
+    la em vez de descobertos aqui."""
     tocados = {nome for _quem, _linha, nome, _forma in exercicios(arquivos)}
     return [(arq, nome, linha) for arq, nome, linha in definicoes(arquivos)
             if nome not in tocados and nome not in PROTOCOLO]
+
+
+def nomes_sombreados(arquivos):
+    """{nome: quantos arquivos} de nome de funcao de topo que TAMBEM e variavel
+    ou parametro em algum arquivo da pasta.
+
+    E o LIMITE desta regua medido em vez de descrito: ela nao tem escopo. Um
+    `ast.Name` em leitura conta como sitio, e ela nao sabe se aquele `texto` e
+    a funcao `texto()` de outro arquivo ou uma variavel local chamada `texto`.
+
+    A consequencia, dita com todas as letras: funcao cujo nome esta nesta lista
+    **nunca** sera acusada de orfa, porque a variavel de outro arquivo ja conta
+    como sitio. Para os nomes de fora da lista, `orfas()` acusa.
+
+    Medido em 20/10/2026: 61 dos 484 nomes distintos, com `texto` em 55
+    arquivos, `linha` em 30, `corpo` em 25, `valor` e `campo` em 21."""
+    nomes = {n for _a, n, _l in definicoes(arquivos)}
+    saida = {}
+    for quem in sorted(arquivos):
+        if not quem.endswith('.py'):
+            continue
+        arv = _arvore(arquivos[quem])
+        if arv is None:
+            continue
+        locais = set()
+        for no in ast.walk(arv):
+            if isinstance(no, ast.Assign):
+                for t in no.targets:
+                    for x in ast.walk(t):
+                        if isinstance(x, ast.Name):
+                            locais.add(x.id)
+            elif isinstance(no, (ast.For, ast.AsyncFor, ast.comprehension)):
+                for x in ast.walk(no.target):
+                    if isinstance(x, ast.Name):
+                        locais.add(x.id)
+            elif isinstance(no, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                for a in no.args.args + no.args.kwonlyargs:
+                    locais.add(a.arg)
+        for n in locais & nomes:
+            saida[n] = saida.get(n, 0) + 1
+    return saida
 
 
 def contagem(arquivos):

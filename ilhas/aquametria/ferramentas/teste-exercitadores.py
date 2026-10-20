@@ -144,6 +144,23 @@ def metade_da_fiacao():
     afirmar(conta_de(m)['regua-a.py|alvo'] == 2,
             'arquivo que carrega quem define e o segundo exercitador: %r' % (conta_de(m),))
 
+    # (h2) O MUNDO QUE SO O GRAFO DE CARGA RESOLVE, e ele e o unico em que a
+    #      carga DECIDE: nome homonimo em duas reguas, e o sitio num terceiro
+    #      arquivo que carrega UMA delas. Com nome unico, o atalho de dono
+    #      unico atribui sem consultar carga nenhuma — foi por isso que as
+    #      mutacoes 9 e 17 sobreviveram na primeira passada, e o defeito estava
+    #      no mundo e nao na regua.
+    m = mundo(**{'regua-a.py': 'def forma():\n    pass\n',
+                 'regua-b.py': 'def forma():\n    pass\n',
+                 'teste-a.py': "import importlib.util\n"
+                               "importlib.util.spec_from_file_location('r', 'regua-a.py')\n"
+                               "forma()\n"})
+    c = conta_de(m)
+    afirmar(c['regua-a.py|forma'] == 1 and c['regua-b.py|forma'] == 0,
+            'o homonimo vai para a regua que o sitio CARREGA, e so para ela: %r' % (c,))
+    afirmar(E.ambiguos(m) == [],
+            'e com a carga declarada o sitio nao e ambiguo: %r' % (E.ambiguos(m),))
+
     # (i) HOMONIMO: o mesmo nome em dois arquivos, e um terceiro que nao carrega
     #     nenhum dos dois. A regua NAO escolhe — o sitio vai para ambiguos().
     m = mundo(**{'regua-a.py': 'def main():\n    pass\n',
@@ -218,6 +235,24 @@ def metade_da_fiacao():
     afirmar(E.dormindo(m) == [],
             'com DOIS leitores ela sai de dormindo(): %r' % (E.dormindo(m),))
 
+    # (p0) O LIMITE DE ESCOPO, medido: nome de funcao que tambem e variavel
+    #      local em outro arquivo tem sitio por construcao, e `orfas()` nunca
+    #      o alcanca. A regua conta quantos sao, para o furo ter tamanho.
+    m = mundo(**{'regua-a.py': 'def texto():\n    pass\n'
+                               'def chama():\n    return texto()\n'
+                               'chama()\n',
+                 'teste-a.py': 'texto = "nada a ver com a funcao"\n'
+                               'print(texto)\n'})
+    somb = E.nomes_sombreados(m)
+    afirmar(somb == {'texto': 1},
+            'nome que tambem e variavel local aparece em nomes_sombreados: %r' % (somb,))
+    m2 = mundo(**{'regua-a.py': 'def so_funcao():\n    pass\n'
+                                'def chama():\n    return so_funcao()\n'
+                                'chama()\n'})
+    afirmar(E.nomes_sombreados(m2) == {},
+            'nome que nao e variavel em lugar nenhum nao e sombreado: %r'
+            % (E.nomes_sombreados(m2),))
+
     # (p) A pasta e dado, e a regua nao abre disco nenhum para decidir.
     m = mundo(**{'regua-a.py': 'def so_aqui():\n    pass\n'})
     afirmar([n for _a, n, _l in E.definicoes(m)] == ['so_aqui'],
@@ -285,6 +320,13 @@ def metade_da_conta():
           % (len(comp), len(dorm), len(E.so_o_proprio(arquivos))))
     print('   sitios: %d | nao atribuidos (homonimo): %d'
           % (len(ex), len(E.ambiguos(arquivos))))
+    somb = E.nomes_sombreados(arquivos)
+    nomes = {n for _a, n, _l in defs}
+    afirmar(len(somb) < len(nomes) // 2,
+            'o furo de escopo alcanca MENOS da metade dos nomes (%d de %d)'
+            % (len(somb), len(nomes)))
+    print('   nomes que orfas() nao pode acusar (furo de escopo): %d de %d'
+          % (len(somb), len(nomes)))
 
 
 # ---------------------------------------------------------------------------
