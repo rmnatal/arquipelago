@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-20T18:08Z
-executando_desde: 2026-10-20T19:50Z   # reserva da execucao de 20/10 19h16Z, RENOVADA 3a vez pela 1.1: a bancada inteira (73 portoes) segue rodando. Hora do `date -u`.
+executando_desde: 2026-10-20T19:52Z   # reserva da execucao de 20/10 19h16Z, RENOVADA 4a vez pela 1.1: a bancada chegou no mutacoes-peixes.py, que leva ~35min. Hora do `date -u`.
 bloco_atual: |
   A PERGUNTA DO ITEM 7 FOI RESPONDIDA NAS DUAS METADES FORA DO PYTHON: 21 atos sobre
   irmao, ZERO invisiveis — 12 nos .php (21 arquivos) e 9 nos .mjs (20 arquivos). E a

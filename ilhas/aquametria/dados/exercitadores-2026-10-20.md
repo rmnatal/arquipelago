@@ -23,19 +23,19 @@ Os números abaixo são de uma DATA e envelhecem com a pasta — quem quiser o d
 |---|---|
 | arquivos em `ferramentas/` | 148 |
 | `.py` que a régua lê | 107 |
-| funções de **topo** definidas neles | 841 |
-| sítios de exercício na pasta | 6.510 |
-| — por **chamada** (`nome(...)`, `M.nome(...)`) | 4.127 |
+| funções de **topo** definidas neles | 842 |
+| sítios de exercício na pasta | 6.532 |
+| — por **chamada** (`nome(...)`, `M.nome(...)`) | 4.148 |
 | — por **referência** (o nome como valor) | 1.913 |
-| — **por nome** (o nome como texto) | 470 |
+| — **por nome** (o nome como texto) | 471 |
 | **funções ÓRFÃS** (nenhum sítio, em nenhuma das três formas) | **0** |
-| funções **compartilhadas** (de arquivo que um irmão carrega) | 240 |
-| — com **1** exercitador | **95** |
+| funções **compartilhadas** (de arquivo que um irmão carrega) | 241 |
+| — com **1** exercitador | **96** |
 | — com 2 | 103 |
 | — com 3 ou mais | 42 |
 | das 95, **sem nenhum leitor de fora** (só o próprio arquivo) | **92** |
 
-**A RESPOSTA, em uma frase:** **95 funções compartilhadas desta pasta têm hoje um
+**A RESPOSTA, em uma frase:** **96 funções compartilhadas desta pasta têm hoje um
 exercitador só, e 92 delas não têm leitor de fora nenhum** — ou seja, estão num arquivo
 que irmãos carregam, logo são alcançáveis, e irmão nenhum as alcança. Essa é a condição
 exata em que o `_base` dormiu.
@@ -44,16 +44,23 @@ exata em que o `_base` dormiu.
 
 | classe | compartilhadas | com 1 exercitador |
 |---|---|---|
-| `regua-*` | 149 | **34** (em 12 arquivos; só **3** têm leitor de fora) |
+| `regua-*` | 150 | **35** (em 12 arquivos; só **4** têm leitor de fora) |
 | `teste-*` | 44 | 31 |
 | `coletar-*` | 24 | 14 |
 | `conferir-*` | 19 | 14 |
 | `validar-*` | 4 | 2 |
 
-As **34 de `regua-*`** são a resposta que importa: régua é código que nasceu para ser
+As **35 de `regua-*`** são a resposta que importa: régua é código que nasceu para ser
 lido por dois. As de `teste-*` e `conferir-*` são compartilhadas por acidente de carga
 (o `conferir-peixes-no-ar.py` carrega o `teste-peixes.py`, o `teste-coleta-shopee.py`
 carrega o `coletar-shopee.py`) e um exercitador nelas é desenho normal.
+
+**POR QUE A CONTA SUBIU DE 95 PARA 96 ENTRE A SONDAGEM E O FECHO, e isto não é correção
+de erro:** a sondagem leu a pasta **antes** de a régua, o portão e as mutações desta
+passada existirem; o fecho leu a pasta **com** eles. A `regua-exercitadores.py` é
+carregada pelo portão, logo as funções dela são compartilhadas e entram na conta — cinco
+delas com um exercitador só. **Régua que se mede mede a si mesma**, e esconder isso daria
+um número mais bonito e menos verdadeiro.
 
 ---
 
@@ -146,7 +153,7 @@ em **19** nomes, e `main` é definido em **77** arquivos desta pasta.
 
 ---
 
-## 5. OS TRÊS DESFECHOS PRÉ-REGISTRADOS PARA AS **34** DE `regua-*`
+## 5. OS TRÊS DESFECHOS PRÉ-REGISTRADOS PARA AS **35** DE `regua-*`
 
 Escritos ANTES de qualquer conserto, pela 1.2-b.4: *critério escrito depois do dado é
 critério dobrado para caber no dado que veio.*
@@ -180,6 +187,6 @@ que esta pasta já pegou três vezes — a do `teste-voz.mjs`, a da tabela de le
   e tudo em `.php` e `.mjs`, não foram medidos.
 - **Não autoriza nenhuma URL nova.** Bloco de instrumento, dentro do congelamento de
   título e meta de 14/10, e o teto da 21.4 segue **zerado**.
-- **Não autoriza ler as 95 como 95 defeitos.** São 95 funções em que um defeito teria hoje
+- **Não autoriza ler as 96 como 96 defeitos.** São 96 funções em que um defeito teria hoje
   um leitor só para o contradizer. Quantas delas têm defeito, ninguém mediu — e a seção 5
   é como se mede, uma a uma.

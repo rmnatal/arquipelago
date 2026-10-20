@@ -14,6 +14,69 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-20 19h16Z–20hXXZ — **96 FUNÇÕES COMPARTILHADAS COM UM EXERCITADOR SÓ**, E A CONTA ACHOU **CINCO** `ler_pasta()` EM DUAS VERSÕES QUE DISCORDAVAM NO AR DE UM BYTE
+
+**A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — não houve rotação nem comparação de `ultima_execucao` (1.2). Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `7955470`, a branch `claude/dreamy-mccarthy-wn77wi` **sem um commit à frente nem atrás** do `main` e **nenhum PR aberto** — não havia o que mergear. Os cinco `ESTADO.md` estavam com `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não houve reserva vencida para o git desempatar. Pela **18.1** li o topo dos cinco `PROMPT.md` antes de qualquer coisa: **nenhuma ilha tem despacho ALTO aberto em ilha no ar e quebrada**, que é a única coisa que fura o foco. Reserva aceita às **19h16Z** (`c3d1a49`), sem force push, e **renovada duas vezes** pela 1.1 (19h26Z e 19h38Z).
+
+**REDE PELA 20.2, RETESTADA E NÃO HERDADA:** três passadas, `aquametria.com.br` em **200** nas três, com `robometria.com.br` em 200 nas mesmas três como controle. `/status` na revisão **122**, igual à do `manifest.json`.
+
+**O BLOCO: o item 4 do PRÓXIMO PASSO do fecho de 16h18Z**, que esta mesma ilha escreveu três horas antes e que mandava, com todas as letras, **contar antes de propor conserto nenhum**: *"o defeito do `_base` só foi achado porque um SEGUNDO leitor exercitou a mesma função sobre outra linguagem — ele estava dormindo havia dias com um caller só. Quantas funções compartilhadas de `ferramentas/` têm hoje um único exercitador?"*
+
+### 1. A CONTA, E ELA RESPONDE A PERGUNTA INTEIRA
+
+**842 funções de topo** em 107 `.py`, **6.532 sítios de exercício**, **ZERO órfãs**. Das **241 compartilhadas** (de arquivo que um irmão carrega), **96 têm um exercitador só** e **92 não têm leitor de fora nenhum** — estão num arquivo que irmãos carregam, logo são alcançáveis de fora, e ninguém de fora as alcança. **É a condição exata em que o `_base` dormiu.**
+
+Por classe: **35 em `regua-*`** (em 12 arquivos, e só **4** com leitor de fora), 31 em `teste-*`, 14 em `coletar-*`, 14 em `conferir-*`, 2 em `validar-*`. As 35 de régua são a resposta que importa — régua é código que nasceu para ser lido por dois. As de `teste-*` e `conferir-*` são compartilhadas por acidente de carga (o `conferir-peixes-no-ar.py` carrega o `teste-peixes.py`) e um exercitador nelas é desenho normal.
+
+A conta inteira, com as tabelas e os três desfechos pré-registrados, está em **`dados/exercitadores-2026-10-20.md`**.
+
+### 2. O PRIMEIRO ACHADO FOI DA PRÓPRIA PERGUNTA: CONTAR SÓ A CHAMADA ERRA **82** VEZES
+
+A primeira sondagem contou `nome(...)` e devolveu **82 funções órfãs**. **As 82 eram falsas.** As `c_e1` … `c_e28` do `testar-validador-especies.py` não são chamadas em lugar nenhum — entram numa tupla de casos e quem as chama é o laço. O mesmo nas mutações do `mutacoes-purga-cache.py` e do `mutacoes-c15-regulagem.py`.
+
+**É o idioma de toda bancada desta pasta**, e a varredura por chamada é cega para ele — a mesma família da cegueira que a `regua-alvos-de-portao.py` nasceu ontem para medir. Por isso a régua conta **três formas**: `chamada` (4.148 sítios), `referencia` (1.913) e `por_nome` (471, o nome como texto, que é a forma mais fraca e a mais perigosa). **`orfas()` exige a ausência das três**, e erra de propósito para o lado de não acusar: string solta igual ao nome de uma função é prova fraca, e prova fraca não basta para chamar código de morto — mas basta para não o acusar.
+
+### 3. O ACHADO QUE A CONTA PRODUZIU, E É A FAMÍLIA DO `_base` UM ANDAR ACIMA
+
+`ler_pasta()` é a função mais copiada desta pasta: estava definida **cinco** vezes, cada cópia com **um** exercitador — o próprio arquivo. E as cinco não eram a mesma função: três (`regua-alvos-de-portao.py`, `regua-alvos-em-php.py`, `regua-classes-da-bancada.py`) tinham `errors="replace"` e duas (`regua-constantes-de-snippet.py`, `regua-teto-do-titulo.py`) não.
+
+**A divergência é de COMPORTAMENTO e foi MEDIDA, não lida.** Numa pasta com um `.py` que traz o byte `0xe9` (o `é` em latin-1, que é o jeito realista de isto acontecer numa ilha que escreve português acentuado), as três sobreviveram e **as duas morreram de `UnicodeDecodeError`** — que é `ValueError` e **não** `OSError`, então o `except OSError` do corpo delas não o pega. Morrem de **traceback**, não de veredito.
+
+**E o estrago não seria pequeno:** a `regua-teto-do-titulo.py` é **carregada por SETE irmãos** (`conferir-titulo-no-ar.py`, `regua-classes-da-bancada.py`, `regua-constantes-de-snippet.py`, `teste-classes-da-bancada.py`, `teste-promessa-do-titulo.py`, `teste-teto-do-titulo.py`, `teste-titulos-das-duas-fontes.py`). Um arquivo salvo na codificação errada levaria sete portões a traceback enquanto três réguas irmãs seguiriam trabalhando — e a bancada reportaria traceback no lugar de veredito.
+
+**Consertadas as duas**, com a nota do motivo dentro de cada uma, no arquivo que a possui. **E a propriedade passou a ser cobrada:** a metade 3 do `teste-exercitadores.py` **DESCOBRE** as cópias pela árvore sintática e exige que cada uma sobreviva ao byte torto — nenhuma linha do portão nomeia um arquivo. A mutação **15** prova que morde: põe uma **sexta** cópia na pasta de sombra, com o buraco de ontem, e o portão a reprova sem ninguém a ter listado. A mutação **14** desfaz o conserto de hoje e também reprova.
+
+**As duas versões conviveram sem ninguém notar porque cada uma tinha um leitor só, e um leitor nunca discorda de si mesmo.** É a frase da pergunta, aplicada ao achado que a resposta dela produziu.
+
+### 4. TRÊS MUTAÇÕES NÃO FECHARAM NA PRIMEIRA PASSADA E AS TRÊS ERAM DEFEITO MEU
+
+- **A 9 e a 17 SOBREVIVERAM, e a causa é a mesma do achado 7 do fecho de 16h18Z, no mesmo dia:** o mundo encenado **não discriminava**. Com nome **único** na pasta, o atalho de dono único atribui o sítio sem consultar o grafo de carga — então matar o grafo não mudava resposta nenhuma. O grafo só **decide** quando o nome é **homônimo** e o sítio está num terceiro arquivo que carrega **uma** das duas definições. O mundo (h2) nasceu para isso, e as duas mutações passaram a morder.
+- **A 5 reprovava de traceback em vez de pela frase**, e a mutação não fazia o que o rótulo dela dizia: tirar o `continue` de um nó que não casa com ramo nenhum depois não muda nada. A mutação certa faz o cabeçalho da definição **appendar** um sítio.
+
+**A bancada cobra a frase, e foi ela que separou "reprovou" de "reprovou pelo motivo certo"** — sem isso as três teriam passado por medidas.
+
+### 5. O LIMITE DE ESCOPO DEIXOU DE SER PROSA E PASSOU A SER NÚMERO
+
+**A régua não tem escopo.** Um `ast.Name` em leitura conta como sítio, e ela não sabe se aquele `texto` é a função `texto()` de outro arquivo ou uma variável local chamada `texto`. `nomes_sombreados()` mede o furo: **61 dos 485** nomes distintos de função de topo são **também** variável ou parâmetro em algum arquivo — `texto` em 55 arquivos, `linha` em 30, `corpo` em 25, `valor` e `campo` em 21.
+
+**A consequência, dita com todas as letras:** função cujo nome está nessa lista **nunca** será acusada de órfã, porque a variável de outro arquivo já conta como sítio. Para os outros **424**, `orfas()` acusa. Duas afirmações e duas mutações (18 e 19) guardam o número nas duas direções.
+
+**E a alternativa foi medida e é pior:** exigir que o sítio esteja num arquivo que CARREGA quem define devolveria as 82 órfãs falsas da seção 2, porque referência em tupla de casos mora no próprio arquivo.
+
+### 6. OS ARQUIVOS
+
+- **`ferramentas/regua-exercitadores.py`** — a régua. **IMPORTA** o vocabulário de pasta (`ler_pasta`, `EXTENSOES`) e o grafo de carga (`atos`) da `regua-alvos-de-portao.py` em vez de os copiar, que é a lição que o fecho de 16h18Z pagou: lá a cópia do `_base()` nasceu com o defeito da irmã no mesmo dia. **A mutação 16 mata o `EXTENSOES` da irmã** e a 17 mata a detecção de carga dela, as duas para provar que a importação está viva.
+- **`ferramentas/teste-exercitadores.py`** — **60 afirmações, 0 falha**, em quatro metades: a fiação (mundos encenados), a conta (pasta real, `orfas()` vazia), a propriedade das cinco cópias, e a régua única.
+- **`ferramentas/mutacoes-exercitadores.py`** — **23 mutações, 0 sobrevivente, 0 inerte, 0 sem a frase**: 19 quebras cada uma declarando a frase que espera ouvir, e 4 mundos que **têm de passar** (arquivo que ninguém carrega, `.py` que não parseia, byte latin-1 na pasta real, comentário que cita o nome de uma função).
+- **`dados/exercitadores-2026-10-20.md`** — a conta, os limites e os três desfechos pré-registrados.
+- **Consertados:** `ferramentas/regua-constantes-de-snippet.py` e `ferramentas/regua-teto-do-titulo.py`.
+
+### 7. O QUE ESTA MEDIÇÃO NÃO AUTORIZA, escrito em vez de descoberto depois
+
+- **Não autoriza dizer que a pasta não tem código morto.** Autoriza dizer que nenhuma função de topo de `.py` desta pasta está sem sítio nas três formas, com o furo de escopo da seção 5 nomeado e contado. Função dentro de classe, função dentro de função, e tudo em `.php` e `.mjs`, não foram medidos.
+- **Não autoriza ler as 96 como 96 defeitos.** São 96 funções em que um defeito teria hoje um leitor só para o contradizer. Quantas delas têm defeito, ninguém mediu.
+- **ZERO BYTE NO AR, CONFERIDO COM O GIT:** `git diff --stat` do `main` do início da execução (`7955470`) até o fecho, contra `snippets/`, `conteudo/` e `manifest.json`, sai **vazio**, e a árvore de trabalho também. **Nenhum Sync acionado e nenhum a acionar**; manifest na revisão 122 e `/status` em 122, iguais. Teto da 21.4 segue **ZERADO** e **nenhuma URL nasceu**. Bloco de instrumento, dentro do congelamento de título e meta de 14/10.
+
 ## 2026-10-20 16h18Z–18h0xZ — A PERGUNTA DO ITEM 7 FOI RESPONDIDA NAS DUAS METADES FORA DO PYTHON: **21 ATOS, ZERO INVISÍVEIS** — E A RÉGUA NOVA NASCEU COM UMA **CÓPIA** DA RÉGUA IRMÃ QUE JÁ ESTAVA ERRADA
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA.** `foco.md` nomeia a **aquametria** desde 14/10/2026 por decisão escrita do Raphael, com a janela esticada até 21/10 — não houve rotação nem comparação de `ultima_execucao` (1.2). Passo 1 conferido antes de tudo: `git fetch origin main` trouxe o `main` em `842adc8`, a branch `claude/dreamy-mccarthy-6p0ot6` **sem um commit à frente nem atrás** do `main` e **nenhum PR aberto** — não havia o que mergear. Os cinco `ESTADO.md` estavam com `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não houve reserva vencida para o git desempatar. Reserva aceita às **16h18Z** (`c76a190`), sem force push, e **renovada SEIS vezes** pela 1.1 (16h45Z, 16h59Z, 17h00Z, 17h14Z, 17h47Z), porque a bancada inteira desta ilha roda em mais de uma hora — o `mutacoes-peixes.py` sozinho leva cerca de 35 minutos.
