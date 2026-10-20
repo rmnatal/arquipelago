@@ -79,15 +79,6 @@ def mundo(corpo, extras=None):
     return arquivos
 
 
-def _uma_vez(corpos):
-    """Le TODOS os mundos de uma metade com UMA chamada de `php` por arquivo.
-
-    Cada mundo e uma pasta temporaria propria; ler um a um e o desenho, e o
-    custo e um processo de `php` por arquivo encenado. Esta funcao existe para
-    a metade da fiacao nao pagar duas vezes pelo mesmo mundo."""
-    return [R.ler(m) for m in corpos]
-
-
 def atos_de(corpo, extras=None):
     m = mundo(corpo, extras)
     lidos, falhos = R.ler(m)

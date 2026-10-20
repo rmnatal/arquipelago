@@ -114,7 +114,6 @@ import json
 import os
 import shutil
 import subprocess
-import sys
 import tempfile
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -293,10 +292,6 @@ def _resolver(operandos, atribuicoes, por_variavel=None):
         if b and b not in achados:
             achados[b] = CONSTRUIDO
     return achados
-
-
-def _tem_buraco(operandos):
-    return any(op.get('k') == 'buraco' for op in operandos or [])
 
 
 def _fala_da_pasta(operandos, atribuicoes=None, vistos=frozenset()):
