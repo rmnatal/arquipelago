@@ -61,8 +61,16 @@ bloco_atual: |
   mutacoes-peixes usa sobre este snippet continuam existindo nele, conferidas
   por programa nas duas versoes — nenhuma mutacao virou inerte com a
   reestruturacao, e foi por isso que nenhuma linha existente foi re-indentada.
-  O mutacoes-peixes INTEIRO foi disparado nesta passada e NAO TERMINOU dentro
-  dela.
+  O mutacoes-peixes INTEIRO terminou depois de o resto da execucao fechar:
+  101 DE 101 REPROVADAS, codigo de saida 0, sobre o arquivo exato da 1.19.1
+  (sha 5004625b7ede7e6d, o que o main serve). O numero vem de uma SEGUNDA
+  passada: o troca() desta bancada LE O ARQUIVO NO MOMENTO DE CADA MUTACAO,
+  nao uma vez no comeco, e a primeira passada (disparada as 18h03Z) pegou a
+  1.19.0 nas oito primeiras e a 1.19.1 nas outras 93, porque o snippet mudou
+  as 18h09Z — verde sobre arquivo que mudou no meio nao e afirmacao sobre
+  arquivo nenhum. Bancada que rele o arquivo por mutacao mede a HORA, nao a
+  versao: quem mexer no snippet enquanto ela roda tem de rodar de novo e
+  dizer qual sha mediu.
   A 20.5 APARECEU DE NOVO com a assinatura exata dela: o push da 133 entrou, o
   raw do GitHub ja servia 133, o Sync RODOU (log com timestamp de agora) e o
   /status respondeu 132. Cache, nao entrega que nao aconteceu; o conserto foi
