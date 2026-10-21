@@ -6168,3 +6168,70 @@ nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceir
 editado — o despacho da aquametria avisa que a janela vira em 22/10 e que a linha `ilha:` não troca sozinha, mas
 trocá-la não foi pedido e não é das mãos decidir. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no
 disparo.
+
+---
+
+## 2026-10-21 17:20 (Brasília) — 20h20Z — Errata do despacho da leitura semanal (aquametria), 1 operação
+
+**Assunto conferido antes do `git fetch`:** ilha **aquametria** do Arquipélago — dentro do escopo deste
+repositório. Instrução executada ao pé da letra, uma OP, arquivo único nomeado pela instrução
+(`ilhas/aquametria/PROMPT.md`) mais este `MAOS-LOG.md`.
+
+**Motivo da errata, como veio no disparo:** a OP 14 do disparo das 20h07Z não rodou porque `SHOPEE_APP_ID` e
+`SHOPEE_SECRET` estão AUSENTES no ambiente das MÃOS, e o item 6 do despacho que entrou no `main` em 8023625
+ficou descrevendo um ensaio que não existe. Esta errata troca aquele parágrafo por um texto que diz o que foi
+medido, registra o achado de arquitetura (a credencial existe no ambiente da Fundação e não no das MÃOS, logo a
+Sentinela não gera link por si) e nomeia o comando único que a Fundação roda.
+
+**Conferência de presença de credencial no ambiente desta rotina (presença, nunca valor), refeita neste
+disparo:**
+
+```
+SHOPEE_APP_ID presente? AUSENTE
+SHOPEE_SECRET presente? AUSENTE
+```
+
+Confere com o que a instrução afirmou — a errata não gravou suposição.
+
+**OP 1 — `ilhas/aquametria/PROMPT.md`:** parágrafo exato de uma linha (linha 88, aberta por
+"**Zero link gerado nesta execução, e o motivo é regra, não preguiça:**") trocado pelo bloco da errata. A
+substituição foi feita com casamento exato de string e asserção de ocorrência única (`count == 1`), sem
+reformatar, sem acrescentar linha fora da instrução e sem tocar em nenhum outro trecho do arquivo.
+
+`git status --porcelain` (após o commit do trabalho, antes deste log):
+
+```
+(vazio — árvore limpa)
+```
+
+`git diff --stat` do commit do trabalho:
+
+```
+ ilhas/aquametria/PROMPT.md | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+```
+
+**Hash que foi ao `main`:** `a163b1f8fe6d305fc3acf2d85b9f87c78d2e0bbe`
+(`Errata do despacho da leitura semanal — a credencial da Shopee nao existe no ambiente das MAOS (aquametria)`)
+
+Push aceito de primeira (`8023625..a163b1f  HEAD -> main`), sem rebase e sem force. Confirmado por
+`git fetch origin main && git log -1 origin/main`, que devolveu exatamente este hash — push que não aparece em
+`origin/main` não é push, e este aparece.
+
+**Contagem do que mudou, conferida relendo `ilhas/aquametria/PROMPT.md` DEPOIS de gravar (não pelo que se supõe
+ter escrito):**
+
+```
+linhas do arquivo ....................... 683
+diff ..................................... 13 inserções, 1 remoção, 1 arquivo
+bloco novo: parágrafos/linhas não-vazias .. 10
+bloco novo: itens de lista ("- ") .......... 4
+ocorrências de SHOPEE_APP_ID no arquivo .... 2
+```
+
+**Nenhum passo falhou neste disparo.** Nenhum arquivo além do nomeado e deste log foi tocado; nenhuma ilha
+reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado alterado, nenhum bloco de fila
+executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum
+contato pessoal de terceiro escrito. O ensaio da Shopee **não** foi tentado aqui: sem credencial no ambiente
+das MÃOS não há o que rodar, e rodar coleta não era o pedido — o pedido era corrigir o texto do despacho. O
+`ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo.
