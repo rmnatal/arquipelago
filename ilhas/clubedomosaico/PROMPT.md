@@ -215,38 +215,32 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO) — **REESCRITO PELA 18.3 EM 21/10/2026 às 16h2xZ: AS DUAS FERRAMENTAS SAÍRAM, FALTAM OS TRÊS GRUPOS DO MOLDE 32.2**
+## ~~DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO~~ — **FECHADO INTEIRO EM 21/10/2026 às 19h1xZ, as 20 PÁGINAS CONFERIDAS NO AR PELA 18.4**
 
-> **A 18.2 manda despacho sair inteiro; a 18.3 manda, quando um item não couber, resolver os que
-> couberem e reescrever o despacho deixando só os que faltam, com o motivo em uma linha. É o que
-> está feito aqui.**
+> **OS DOIS ITENS CUMPRIDOS E MEDIDOS NO AR**, celular de 390 px com quebra de cache. O detalhe página por página está no `REGISTRO.md` desta data; aqui ficam só os números que fecham o critério de pronto, e o que a próxima execução precisa saber para **não remedir**.
 >
-> **O QUE JÁ ESTÁ NO AR E CONFERIDO (não refaça):** as **duas ferramentas**, no molde **32.1** —
-> `/materiais/quantas-pastilhas-para-mosaico/` (F1 1.9.0) e `/materiais/qual-cola-usar-no-mosaico/`
-> (F2 1.14.0), com a **casca 1.24.0** e o manifest na **revisão 89**. Medido no ar, celular de 390 px:
-> formulário a **508** e **485 px** (o teto da 32.5 é 700) e primeiro botão de compra a **1.304** e
-> **1.220 px** (o teto é 1.400). As duas com rolagem horizontal 0, texto inteiro no HTML servido
-> (2.981 → 3.035 e 4.827 → 4.858 palavras), `title`/H1/URL/trilha/JSON-LD **idênticos** antes contra
-> depois no ar, zero frase da 32.4 e `pageerror` 0. Detalhe inteiro no `REGISTRO.md` de 21/10.
+> **AS 20 PÁGINAS DOS TRÊS GRUPOS, com os tetos da 32.5 (resposta antes de 700 px, primeiro botão de compra antes de 1.400 px):**
 >
-> **O MOTIVO DE NÃO TER SAÍDO INTEIRO, em uma linha:** os dois grupos entregues consumiram a execução,
-> porque foi nela que as **peças do molde nasceram na casca** (a dobra, a caixa de resultado, o bloco de
-> compra e a barra do rodapé, pela 32.6-b) e que **cinco portões aprenderam o molde**.
+> | grupo | páginas | resposta | 1º botão de compra | antes |
+> |---|---|---|---|---|
+> | `/materiais/acabamento/` + 6 filhas | 7 | **314 a 357** | **963 a 1.385** | 2.099 a 3.808 px |
+> | páginas de produto pelo nome | 8 | **272 a 314** | **712 a 1.162** | 1.081 a 1.471 px |
+> | peças de `/loja/` | 5 | **300 a 342** | **441 a 484** | preço a 1.138 px, sem botão na primeira tela |
 >
-> **E O CAMINHO ESTÁ MUITO MAIS CURTO PARA QUEM PEGAR O RESTO:** as quatro peças já existem na casca e
-> já foram medidas no ar em duas páginas. Use `cdm_casca_dobrar_secao()` para recolher seção que já
-> existe (o `<h2>` dela vira o título da dobra, sem segundo título digitado), `cdm_casca_resultado_html()`
-> para a caixa de resposta, `<div class="cdm-molde-compra" id="compra">` para o bloco de compra e
-> `cdm_casca_barra_html()` para a barra. **Atenção a duas coisas que custaram tempo nesta passada:** o
-> `valor` da caixa e o da barra são **HTML já escapado** (`cdm_casca_num()` devolve `<span>`), e todo
-> portão cuja fronteira seja `<div class="...">` ou `<h2>` de seção precisa aprender que a classe deixou
-> de ser sozinha e que o `<h2>` recolhido mora no `<summary>` — foram 25 afirmações vermelhas no
-> `conferir-no-ar.py` por isso, nenhuma delas defeito no ar.
-
-Lei: seção 32 do `ARQUIPELAGO.md`, inclusive a 32.6-b (mutirão: a lista inteira numa execução, e as ilhas em paralelo — esta ilha NÃO espera a aquametria terminar).
-1. Páginas de resposta/material/peça no molde **32.2**, nesta ordem: `/materiais/acabamento/` e as 6 filhas, as 8 páginas de material pelo nome do produto, e as 5 peças de `/loja/` (nas peças da artesã o botão é o "Verificar disponibilidade", que já existe, levado para a primeira tela — nada de link de afiliado em peça própria).
-2. Tirar todo texto de bastidor da 32.4. **Nas duas ferramentas isto está medido em zero**; falta varrer os três grupos acima.
-Pronto quando: 32.5 medido no ar em cada página.
+> **20 de 20 passam**, rolagem horizontal **0** e `pageerror` **0** nas vinte. Revisões 90, 91 e 92, com o portão da 20.4 aprovando cada uma lendo o log linha por linha. `title`, H1, `description` e JSON-LD **idênticos** antes contra depois nas vinte, e **zero palavra perdida** em cada uma.
+>
+> **ITEM 2 (a 32.4) MEDIDO EM ZERO NOS TRÊS GRUPOS.** A varredura achou "bancada" e "régua" numa página só, e as duas são do **produto** e não da fábrica: *"a cortadora de piso de bancada, aquela de obra com régua e alavanca"*.
+>
+> **O QUE A PRÓXIMA EXECUÇÃO HERDA PRONTO:**
+> - o **cartão de produto** do Guia agora é o da 32.1 item 5 — foto, marca, modelo, a especificação que fez o produto entrar, e **então** o botão de loja; os números declarados e a conta da espera são DETALHE e desceram dois parágrafos. A régua do item serve as duas metades (`espec` e `detalhe`), com `tudo` ainda sendo o padrão. **Só subir a seção não bastava:** com ela no alto o botão ainda caía entre 1.591 e 2.190 px;
+> - **a linha de procedência desceu para o fim do bloco de produto**, que é de quem ela fala, e aquilo valia 106 px da primeira tela — na página do pigmentado foi a diferença entre 1.486 e 1.364 px;
+> - **na peça, duas coisas do TEMA saíram, e só na peça:** a foto de destaque (`core/post-featured-image`, 220 px, a MESMA imagem que abre a galeria 60 px abaixo) e a assinatura "Escrito por Artesã em <data>" (75 px), que é cabeçalho de post de blog numa página de produto. Juntas valiam 295 px. Em página e em artigo o tema continua como está;
+> - **a seção extra com âncora da 30.4 NÃO entra em dobra**, e é a única exceção: ela é alvo de link por `#id`, e nem todo navegador abre um `<details>` fechado ao pular para dentro dele. Quem levar o molde a outra página com âncora leia esta linha antes.
+>
+> **E TRÊS PORTÕES COBRARAM O MOLDE, um deles achando defeito no meu próprio texto:**
+> - `teste-produto` casava a fronteira `<div class="cdm-produto-resposta">` **exata**, e a caixa passou a abrir com a classe do molde junto: 8 afirmações vermelhas sem defeito embaixo. É o que o despacho anterior avisou que custaria tempo;
+> - a afirmação *"a procedência NOMEIA a Shopee"* lia dali até o **fim do corpo** (`(.*?)$`). A barra do rodapé nova diz "ofertas conferidas na Shopee" e caiu dentro dessa leitura, então a **mutação 20 voltou a PASSAR** com a procedência muda — a **segunda** vez que a mesma mutação fura a mesma trava, pelas duas vezes por ponta solta. A fronteira agora fecha na dobra que embrulha a seção. **Régua com uma ponta solta mede o vizinho, e o vizinho muda sem avisar;**
+> - **cinco mutações ficaram INERTES** (3 em `mutacoes-produto`, 2 em `mutacoes-loja`) porque o código que elas editavam mudou de forma, e foram reapontadas. Mutação inerte é trava **não medida** com cara de trava verde.
 
 ## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael)
 

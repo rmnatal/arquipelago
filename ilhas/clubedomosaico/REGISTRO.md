@@ -3,6 +3,136 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+21/10/2026 18h10Z–19h1xZ — O DESPACHO DO MOLDE SAI INTEIRO: OS TRÊS GRUPOS QUE FALTAVAM, 20 PÁGINAS, E O QUE SÓ SUBIR A SEÇÃO NÃO RESOLVIA
+
+**A ESCOLHA DA ILHA: SEGUNDA TENTADA, E A CORRIDA DA PRIMEIRA SE PERDEU SEM AVISO — vale contar
+porque o mecanismo da seção 1 tem um buraco aqui.** `foco.md` nomeia a **aquametria**, e a exceção que
+o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria →
+clubedomosaico → robometria. Pedi a **aquametria** primeiro, como a ordem manda. O cabeçalho dela
+trazia `executando_desde: null`, fiz `git pull --rebase`, escrevi a reserva e **o push foi aceito**
+(commit `1c7d970`) — só que o pai dele era `84eaf10`, a reserva de **outra execução**, escrita às
+**17h45Z, no mesmo minuto**. O rebase replicou a minha linha **por cima** da dela e o push não foi
+recusado: a corrida se perdeu **em silêncio**, e o passo 5 da seção 1 só prevê perder por push
+recusado. Aquela execução renovou o campo, notou a corrida dupla no próprio comentário do `ESTADO.md`
+e fechou o item 2 do despacho da aquametria em `1e6a9e0`. **O trabalho duplicado que eu já tinha em
+árvore foi DESCARTADO**, sem force push e sem tocar numa linha do que ela entregou. Com a aquametria
+viva (reserva de 18:05Z, quatro minutos antes) e o despacho da robometria fechado às 16h1xZ, sobrou o
+desta ilha, que estava **ABERTO** — a **18.3** o havia reescrito às 16h2xZ deixando só os três grupos
+do molde 32.2. Aqui `executando_desde` estava **null** e o último commit na pasta era o de **fecho** da
+execução anterior, não bloco em andamento. Reserva aceita às **18:10Z**, e **renovada três vezes** pela
+1.1 — uma por grupo —, com a hora saindo do `date -u` na mesma linha de comando que grava o campo.
+**Passo 1:** nenhum PR aberto e nenhuma branch `claude/*` com trabalho pendente. **Rede pela 20.2, não
+herdada:** `clubedomosaico.com.br` e o `/status` em **200** nas três passadas.
+
+## O DESPACHO FECHOU INTEIRO, E COM ELE AS 22 PÁGINAS DESTA ILHA QUE RESPONDEM ALGUMA COISA ESTÃO NO MOLDE
+
+As duas ferramentas saíram às 16h2xZ (revisão 89). Nesta execução saíram os **três grupos**: as **7**
+páginas de `/materiais/acabamento/` (a mãe e as 6 filhas), as **8** de consulta de produto pelo nome e
+as **5** peças da artesã em `/loja/`. Revisões **90**, **91** e **92**, uma por grupo, e o portão da
+**20.4** (`conferir-desembarque.py`) aprovou as três lendo o log do `/status` linha por linha.
+
+**MEDIDO NO AR, celular de 390 px com quebra de cache.** Os tetos da **32.5** são 700 px para a caixa
+de resposta e 1.400 px para o primeiro botão de compra:
+
+| grupo | páginas | resposta | 1º botão de compra | antes |
+|---|---|---|---|---|
+| `/materiais/acabamento/` + 6 filhas | 7 | **314 a 357** | **963 a 1.385** | 2.099 a 3.808 px |
+| consulta de produto pelo nome | 8 | **272 a 314** | **712 a 1.162** | 1.081 a 1.471 px |
+| peças da artesã | 5 | **300 a 342** | **441 a 484** | preço a 1.138 px, sem botão na 1ª tela |
+
+**VINTE DE VINTE PASSAM**, com rolagem horizontal **0** e `pageerror` **0** nas vinte. A altura caiu
+perto da metade nas de produto (de 4.666–6.473 para 2.892–4.592 px). **Na peça o botão não é link de
+afiliado:** a 32.2 manda levar para a primeira tela o *"Verificar disponibilidade"* que já existia, e é
+ele que está a 441–484 px.
+
+**O QUE NÃO MUDOU, página por página:** `title`, H1, `description` e os nós de JSON-LD **idênticos**
+antes contra depois nas vinte, e **zero palavra perdida** em cada uma, contado forma por forma sobre o
+corpo servido com `<script>`, `<style>` e comentário fora. **A única forma que perdeu ocorrência em
+todo o trabalho foi "acima"**, de *"a tabela acima"*, que virou *"a tabela desta página"* porque o
+bloco de produto agora fica **antes** da tabela.
+
+**O ITEM 2 (a 32.4) ESTÁ EM ZERO NOS TRÊS GRUPOS.** A varredura achou "bancada" e "régua" numa página
+só, e as duas são do **produto** e não da fábrica: *"a cortadora de piso de bancada, aquela de obra com
+régua e alavanca"*.
+
+## AS TRÊS COISAS QUE SÓ SUBIR A SEÇÃO NÃO RESOLVIA, E AS TRÊS ESTÃO MEDIDAS
+
+A leitura óbvia do molde é "mova o bloco de compra para debaixo da resposta". **Nos três grupos isso
+foi necessário e em nenhum foi suficiente.**
+
+**1. O CARTÃO DE PRODUTO DO GUIA VIROU O DA 32.1 ITEM 5.** Com a seção já no alto, o primeiro botão
+ainda caía entre **1.591 e 2.190 px**, porque dentro do cartão o botão vinha depois da frase do
+fabricante entre aspas e do preparo. A 32.1 item 5 ordena o cartão: foto, marca e modelo, **a
+especificação que fez o produto entrar**, e **então** o botão de loja. Aqui a especificação é uma frase
+— quais das nossas superfícies a frase do fabricante nomeia — e era ela que decidia a entrada do
+produto no recorte. Os números declarados e a conta da espera são **detalhe** e desceram dois
+parágrafos: ajudam a escolher entre dois produtos, não a saber se este serve. A régua do item passou a
+servir as duas metades (`espec` e `detalhe`), com `tudo` ainda sendo o padrão. **A camada de prova não
+saiu de lugar nenhum:** a frase entre aspas, o preparo e a fonte continuam no cartão, logo abaixo do
+botão. O que mudou é que a prova deixou de ficar **entre** a pessoa e a ação.
+
+**2. A LINHA DE PROCEDÊNCIA DESCEU PARA O FIM DO BLOCO DE PRODUTO**, que é de quem ela fala. Aquilo
+valia **106 px** da primeira tela, e na página do pigmentado foi a diferença entre **1.486** e
+**1.364 px**. A procedência continua na página, com fonte nomeada e data em cada cartão.
+
+**3. NA PEÇA, DUAS COISAS DO TEMA SAÍRAM — e as duas são defeito, não só altura.** A foto de destaque
+do tema (`core/post-featured-image`), **220 px**, é a **MESMA imagem** que abre a galeria 60 px abaixo:
+duas vezes a mesma foto não é generosidade, é a primeira tela gasta mostrando o produto duas vezes. E a
+assinatura *"Escrito por Artesã em <data>"*, **75 px**, é cabeçalho de post de blog numa página de
+**produto** — a peça não foi escrita, e a data que importa a ela é o prazo de entrega, que a própria
+ficha publica. Juntas valiam **295 px**. O grupo inteiro da assinatura sai, e não só o nome: tirar só o
+nome deixaria *"Escrito por em"* na tela. **Saem só na peça**; em página e em artigo o tema continua
+como está.
+
+**E UMA QUARTA, QUE É UMA NÃO-DECISÃO DELIBERADA:** a seção extra com âncora da **30.4** (a pinça,
+dentro do alicate) **não entra em dobra**, e é a única exceção das vinte páginas. Ela é alvo de link
+por `#id`, e nem todo navegador abre um `<details>` fechado ao pular para dentro dele. **Âncora que
+leva a uma gaveta fechada é link quebrado que não parece quebrado.**
+
+## UM PORTÃO ACHOU DEFEITO NO MEU PRÓPRIO TEXTO, E É A SEGUNDA VEZ QUE A MESMA MUTAÇÃO FURA A MESMA TRAVA
+
+A afirmação *"a procedência NOMEIA a Shopee"* lia da procedência até o **fim do corpo** — `(.*?)$`. O
+comentário dela já contava que a **mutação 20** passara uma vez *"porque a palavra Shopee aparecia em
+outro parágrafo"*; o conserto daquele dia ancorou o **começo** da leitura e deixou o **fim** solto. A
+barra do rodapé que o molde trouxe diz *"ofertas conferidas na Shopee"* e caiu dentro dessa leitura:
+**a mutação 20 voltou a passar com a procedência muda.** Agora a fronteira fecha onde a seção fecha, na
+dobra que a embrulha. **Régua com uma ponta solta mede o vizinho, e o vizinho muda sem avisar.**
+
+**E DOIS PORTÕES APRENDERAM O MOLDE sem que nenhuma afirmação fosse afrouxada:** o `teste-produto`
+casava a fronteira `<div class="cdm-produto-resposta">` **exata**, e a caixa passou a abrir com a classe
+do molde junto — 8 afirmações vermelhas, nenhuma com defeito embaixo. É exatamente o que o despacho
+anterior avisou que custaria tempo, e custou.
+
+**CINCO MUTAÇÕES FICARAM INERTES** — 3 em `mutacoes-produto` (05 a resposta desce para depois da
+explicação, 06 o bloco de compra desce para depois da procedência, 23 o dado fino desce para depois da
+tabela) e 2 em `mutacoes-loja` (20 a folha volta para dentro do retorno, 35 a lupa volta para dentro do
+`the_content`) —, porque o código que elas editavam mudou de forma. **As cinco foram reapontadas e as
+cinco voltaram a reprovar. Mutação inerte é trava NÃO MEDIDA com cara de trava verde**, e é o jeito
+mais barato de perder uma trava: ninguém a apaga, ela só deixa de alcançar o código.
+
+## A BANCADA, DEPOIS DO TRABALHO
+
+`teste-guia` **232** verificações, `teste-produto` **306**, `teste-loja` **208** (72 estados da ficha,
+um processo cada), `teste-leads` **211**, `teste-casca` **1.041**, `teste-atelie` aprovado, `teste-f1`
+**230**, `teste-f2` **174**, e `conferir-no-ar` **530** afirmações medidas no HTML servido — todos com
+**0 falha**. Mutações: `guia` 31 de 31, `acabamento` 14 de 14, `produto` 25 de 25, `loja` 36 de 36,
+`leads` 48 de 48.
+
+**PROPORÇÃO DA 31.1:** esta execução entregou **20 páginas no ar** que o visitante vê, e nenhuma linha
+de portão novo — os três portões tocados foram **consertados**, não construídos (31.2).
+
+**PRÓXIMO PASSO:** (1) **a rampa desta ilha segue PARADA pela 14.6** e quem a destrava é a leitura
+semanal, não a Fundação: a de 14/10 mediu 32 URLs com 20 indexadas (63%) contra 21/18 (86%) em 07/10, e
+escreveu *"nenhuma leva nova até a leitura de 21/10"*. **Essa leitura é hoje e ainda não chegou ao
+repositório** — quem pegar esta ilha confere `ultima_ronda` antes de abrir leva. (2) **O molde desta
+ilha está fechado**, então a ilha volta a MODO DE MEDIÇÃO (1.2-b.1) e o foco manda sozinho: `foco.md`
+diz que a **jornadafly** entra em foco a partir de **22/10/2026**, e a linha `ilha:` **tem de ser
+editada na data** — se ninguém editar, o foco fica preso na aquametria, como ficou de 10/10 a 14/10.
+(3) O **soft 404 na borda** segue pendente com o Raphael desde 29/09 (origem 404, borda 1ª 404 e 2ª 200,
+`x-proxy-cache HIT`), e continua registro e não portão. (4) O **item 1 do despacho de 02/10 da
+robometria** não é desta ilha; aqui o que sobra da leitura de 14/10 é o cano de links — 43 publicáveis,
+0 sem `url_busca`, **19 sem `url_produto`**, todos degrau 4 com causa escrita.
+
 21/10/2026 15h06Z–16h2xZ — O MOLDE DE CONVERSÃO DA SEÇÃO 32 NO AR NAS DUAS FERRAMENTAS, E AS PEÇAS DELE NASCERAM NA CASCA
 
 **A ESCOLHA DA ILHA: O FOCO É A AQUAMETRIA, E ESTA ILHA ENTROU PELA 32.6-b.** `foco.md` nomeia a
