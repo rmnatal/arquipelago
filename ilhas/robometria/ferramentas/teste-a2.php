@@ -300,7 +300,16 @@ PHP;
 function rbm_a2_paragrafo( $raiz, $mutacao, $qual ) {
 	$html = rbm_a2_html_com_banco( $raiz, $mutacao );
 	if ( 'mestra' === $qual ) {
-		return preg_match( '#<p class="rbm-linha-mestra">(.*?)</p>#is', $html, $m )
+		/* A TESE DE ABERTURA MUDOU DE CAIXA EM 21/10/2026, e nao de lugar: pelo
+		   molde da 32.2 ela e a frase de leitura da CAIXA DE RESPOSTA, no topo
+		   da pagina, em vez de um <p class="rbm-linha-mestra"> solto. A regua
+		   procura os dois marcadores, nesta ordem, e continua devolvendo vazio —
+		   e portanto REPROVANDO — se nao achar nenhum: localizador que nao casa
+		   tem de gritar, nunca aprovar por ausencia. */
+		if ( preg_match( '#<p class="rbm-linha-mestra">(.*?)</p>#is', $html, $m ) ) {
+			return rbm_texto( $m[1] );
+		}
+		return preg_match( '#<p class="rbm-caixa-frase">(.*?)</p>#is', $html, $m )
 			? rbm_texto( $m[1] ) : '';
 	}
 	$juntos = '';

@@ -1,5 +1,12 @@
 /**
  * Robometria A1 — Existe filtro universal de robô aspirador?
+ * Versão: 1.6.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32, no formato de FICHA da 32.2: a caixa de
+ * resposta no topo (o numero e a condicao numa frase), o bloco de compra
+ * imediatamente abaixo dela, a tabela de alcance aberta, e o resto do texto em
+ * <details>. Medido no ar em 21/10/2026, celular de 390 px: a abertura ocupava
+ * 675 px e o primeiro botao de loja caia a 3.981 px, contra o teto de 1.400 da
+ * 32.5. Nenhuma palavra saiu da pagina.
+ *
  * Versão: 1.5.0 (16/09/2026) — datePublished e dateModified passam a sair de
  * robometria_casca_datas_da_pagina(). Antes datePublished era digitado aqui
  * (e no A2 não existia) e dateModified vinha de `gerado_em` dos fatos, que
@@ -76,7 +83,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A1_VERSAO', '1.5.0' );
+	define( 'ROBOMETRIA_A1_VERSAO', '1.6.0' );
 	define( 'ROBOMETRIA_A1_SLUG', 'filtro-universal-de-robo-aspirador' );
 	/* O TÍTULO DEIXOU DE AFIRMAR A TESE, e este é o terceiro lugar da mesma
 	   família. A tese deste artigo é uma contagem do banco, e por isso a frase de
@@ -365,12 +372,17 @@ function robometria_a1_vitrine( $f ) {
 	}
 	$total = count( $itens );
 
-	$html  = '<div class="rbm-secao rbm-compra"><h2>As peças de maior alcance declarado</h2>';
-	$html .= '<p>Nenhuma delas serve em tudo — e é essa a questão. Cada cartão diz quantos códigos de modelo o fabricante nomeou, porque é essa lista, e não a palavra "compatível" do anúncio, que decide se a peça encaixa.</p>';
+	$html  = '<div class="rbm-secao rbm-compra" id="rbm-compra"><h2>As peças de maior alcance declarado</h2>';
 
 	/* AVISO DE COMISSÃO VISÍVEL NO BLOCO DE COMPRA (seção 7), não só no rodapé.
 	   Quem vê o botão precisa ver o aviso sem rolar. */
-	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pelo número de modelos que o fabricante declarou, e só por ele. '
+	/* O AVISO DE COMISSAO EM UMA LINHA acima dos cartoes (32.1, item 5, herdado
+	   pela 32.2 no bloco de compra da ficha); o aviso completo desce para baixo
+	   do carrossel, sem perder uma palavra. */
+	$html .= '<p class="rbm-aviso-comissao">Links de afiliado: podemos receber comissão.</p>';
+
+	$depois  = '<p>Nenhuma delas serve em tudo — e é essa a questão. Cada cartão diz quantos códigos de modelo o fabricante nomeou, porque é essa lista, e não a palavra "compatível" do anúncio, que decide se a peça encaixa.</p>';
+	$depois .= '<p class="rbm-aviso-comissao">Os botões de compra acima são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pelo número de modelos que o fabricante declarou, e só por ele. '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
 			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
@@ -385,7 +397,7 @@ function robometria_a1_vitrine( $f ) {
 		} else {
 			$quantas = sprintf( '%d destas %d peças ainda não têm link de loja', $sem_link, $total );
 		}
-		$html .= '<p class="rbm-nota">' . esc_html( $quantas )
+		$depois .= '<p class="rbm-nota">' . esc_html( $quantas )
 			. esc_html( ', e o cartão diz isso em vez de fazer o bloco sumir. Enquanto o link não existe, o endereço da declaração do fabricante continua aqui — embaixo de cada cartão, como "fonte", para você conferir.' )
 			. '</p>';
 	}
@@ -453,7 +465,13 @@ function robometria_a1_vitrine( $f ) {
 		$html .= '</li>';
 	}
 
-	$html .= '</ul></div>';
+	$html .= '</ul>';
+
+	if ( '' !== $depois ) {
+		$html .= '<div class="rbm-compra-depois">' . $depois . '</div>';
+	}
+
+	$html .= '</div>';
 	return $html;
 }
 }
@@ -498,7 +516,7 @@ add_shortcode( 'robometria_a1', function () {
 	if ( empty( $f['resumo'] ) ) {
 		return robometria_casca_sem_banco_html(
 			'Este texto está sem a medição do banco no momento.',
-			'A tese deste artigo é um número, e o número é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a servir o texto sem o dado que o sustenta.'
+			'A tese deste artigo é um número contado do catálogo, e enquanto o catálogo não voltar preferimos avisar a servir o texto sem o dado que o sustenta. Tente de novo mais tarde.'
 		);
 	}
 
@@ -509,6 +527,38 @@ add_shortcode( 'robometria_a1', function () {
 	/* RESPOSTA ANTES DA EXPLICAÇÃO (seção 5.2): a primeira frase responde o
 	   título com número e critério, e sobrevive a ser citada fora de contexto. */
 	$atravessam = (int) $r['pecas_que_atravessam_marca'];
+
+	/* A CAIXA DE RESPOSTA NO TOPO (32.2): o número e a condição numa frase, em
+	   Mono, servida no HTML. O número responde o título desta página — quantas
+	   peças do banco são declaradas para mais de uma marca — e sai do MESMO
+	   resumo que a frase de abertura usa, nunca de uma segunda contagem. */
+	/* O NÚMERO VAI CRU PARA A CAIXA, e não por robometria_a1_num(): aquela função
+	   devolve o número JÁ embrulhado em <span class="rbm-num">, e a caixa escapa
+	   o que recebe — a marcação sairia impressa na tela. A caixa põe o número em
+	   Mono pelo CSS dela, que é o mesmo efeito por um caminho só. */
+	$html .= robometria_casca_caixa(
+		'Peças declaradas para mais de uma marca',
+		number_format_i18n( $atravessam ) . ' de ' . number_format_i18n( (int) $r['pecas_publicaveis'] ),
+		'',
+		/* A FRASE DA CAIXA FALA COM QUEM ENTROU, em segunda pessoa, porque desde
+		   a 1.6.0 a caixa é a ABERTURA da página e o `VOZ.md` cobra isso da
+		   primeira frase — o portão `teste-voz.php` mede exatamente esta. */
+		array( 0 === $atravessam
+			? 'Nenhuma delas é declarada pelo fabricante para modelos de mais de uma marca, então não existe peça universal que sirva no seu robô: a sua tem de estar na lista do fabricante dela.'
+			: sprintf(
+				1 === $atravessam
+					? 'Uma delas é declarada pelo fabricante para modelos de mais de uma marca e as outras %1$s, não — então não conte com peça universal no seu robô: a sua tem de estar na lista do fabricante dela.'
+					: '%2$s delas são declaradas pelo fabricante para modelos de mais de uma marca e as outras %1$s, não — então não conte com peça universal no seu robô: a sua tem de estar na lista do fabricante dela.',
+				number_format_i18n( (int) $r['pecas_publicaveis'] - $atravessam ),
+				number_format_i18n( $atravessam )
+			) )
+	);
+
+	/* O BLOCO DE COMPRA IMEDIATAMENTE ABAIXO DA RESPOSTA (32.2). Medido no ar em
+	   21/10/2026, celular de 390 px: o primeiro botão de loja caía a 3.981 px,
+	   com 675 px de abertura e duas tabelas acima dele, contra o teto de 1.400
+	   da 32.5. Nada saiu da página: a abertura inteira vem logo depois. */
+	$html .= robometria_a1_vitrine( $f );
 
 	$html .= '<div class="rbm-abertura">';
 
@@ -560,15 +610,10 @@ add_shortcode( 'robometria_a1', function () {
 		. '</p>';
 	$html .= '</div>';
 
-	$html .= '<div class="rbm-secao">';
-	$html .= '<h2>E não se herda nem dentro da mesma marca</h2>';
-	$html .= '<p>Esta é a parte que pega quem já sabe que peça de marca não serve em outra. Dentro do catálogo de um mesmo fabricante, cada peça tem a <em>sua</em> lista de modelos, e uma lista não vale para a peça seguinte.</p>';
-	$html .= robometria_a1_tabela_dispersao( $f );
-	$html .= '<p>Leia a tabela assim: quando os dois números são iguais, nenhuma peça daquele fabricante repete a lista de modelos de outra. O seu robô estar na lista do filtro não o coloca na lista da escova, e é por isso que a Robometria trata o par peça × modelo como a unidade — nunca a marca, nunca a linha.</p>';
-	$html .= '</div>';
-
-	/* A PORTA DE COMPRA VEM AQUI, ANTES DA PROVA DE PROCEDÊNCIA (seção 7). */
-	$html .= robometria_a1_vitrine( $f );
+	$corpo  = '<p>Esta é a parte que pega quem já sabe que peça de marca não serve em outra. Dentro do catálogo de um mesmo fabricante, cada peça tem a <em>sua</em> lista de modelos, e uma lista não vale para a peça seguinte.</p>';
+	$corpo .= robometria_a1_tabela_dispersao( $f );
+	$corpo .= '<p>Leia a tabela assim: quando os dois números são iguais, nenhuma peça daquele fabricante repete a lista de modelos de outra. O seu robô estar na lista do filtro não o coloca na lista da escova, e é por isso que a Robometria trata o par peça × modelo como a unidade — nunca a marca, nunca a linha.</p>';
+	$html .= robometria_casca_dobra( 'E não se herda nem dentro da mesma marca', $corpo, 'h2' );
 
 	$html .= '<div class="rbm-secao">';
 	$html .= '<h2>Como achar o código certo do seu modelo</h2>';
@@ -579,14 +624,12 @@ add_shortcode( 'robometria_a1', function () {
 		. ' — escolha marca e modelo e ela devolve o código da peça, o conjunto de modelos que o fabricante citou, o endereço da declaração e a data em que ela foi verificada. Quando não há declaração, ela responde "não localizamos" com essas palavras.</p>';
 	$html .= '</div>';
 
-	$html .= '<div class="rbm-secao">';
-	$html .= '<h2>Onde a Robometria ainda não sabe responder</h2>';
-	$html .= '<p>Das ' . robometria_a1_num( $r['celulas_total'] ) . ' combinações de modelo e tipo de peça que o banco cobre, '
+	$corpo  = '<p>Das ' . robometria_a1_num( $r['celulas_total'] ) . ' combinações de modelo e tipo de peça que o banco cobre, '
 		. robometria_a1_num( $r['celulas_sem_resposta'] )
 		. ' não têm nenhuma declaração de fabricante que a gente tenha localizado. Publicar esse número é parte do método — e por tipo de peça ele fica assim:</p>';
-	$html .= robometria_a1_tabela_cobertura( $f );
-	$html .= '<p>Um tipo com poucos modelos cobertos não quer dizer que a peça não exista: quer dizer que o fabricante não publicou a lista de compatibilidade dela em canal nenhum que a gente tenha alcançado. Nesses casos a resposta certa é "não sabemos", e ela é dada com essas palavras.</p>';
-	$html .= '</div>';
+	$corpo .= robometria_a1_tabela_cobertura( $f );
+	$corpo .= '<p>Um tipo com poucos modelos cobertos não quer dizer que a peça não exista: quer dizer que o fabricante não publicou a lista de compatibilidade dela em canal nenhum que a gente tenha alcançado. Nesses casos a resposta certa é "não sabemos", e ela é dada com essas palavras.</p>';
+	$html .= robometria_casca_dobra( 'Onde a Robometria ainda não sabe responder', $corpo, 'h2' );
 
 	/* A MALHA (seção 9): três irmãs, e a mão dupla com a ferramenta que este
 	   artigo apoia — a R1 aponta de volta para cá. */

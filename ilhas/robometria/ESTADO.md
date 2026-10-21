@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-21T20:09Z
-executando_desde: 2026-10-21T15:43Z   # reserva RENOVADA pela 1.1 (o bloco passou de 40 minutos) — a original foi as 15:07Z. Mutirao do molde da secao 32, despacho ALTO do Raphael de 21/10. TERCEIRA ilha tentada: aquametria reservada as 15:04Z e clubedomosaico as 15:06Z por outras execucoes.
+executando_desde: 2026-10-21T15:57Z   # reserva RENOVADA pela 1.1 (bloco longo). A original foi as 15:07Z. Mutirao do molde da secao 32, despacho ALTO do Raphael de 21/10. TERCEIRA ilha tentada: aquametria reservada as 15:04Z e clubedomosaico as 15:06Z.
 bloco_atual: |
   BLOCO 5b — A PRIMEIRA LEVA DE MALHA ESTA NO AR: /pecas/, /pecas/filtros/ e as tres filhas de marca (xiaomi, wap, electrolux). CINCO URLs novas (de 9 para 14 no sitemap), 5 de 10 do teto da 21.4 gastas, 1 leva de 3 na semana. Snippet robometria-malha.php v1.0.0 (#11 criado), casca 1.12.0, manifest 80 e /status em 80.
   SAO AS PRIMEIRAS PAGINAS DESTA ILHA COM PAI DE VERDADE (post_parent, 16.2): as nove antigas moram na raiz. Quem cria e o snippet da malha, na ordem da arvore, e a identidade canonica e o meta _robometria_id com a CHAVE (pecas-filtros-xiaomi), nunca o post_name — que e so o ultimo degrau e colidiria com /modelos/xiaomi/.

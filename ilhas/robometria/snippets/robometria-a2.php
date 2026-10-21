@@ -1,5 +1,10 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.6.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32, no formato de FICHA da 32.2, como na A1.
+ * Medido no ar em 21/10/2026, celular de 390 px: o primeiro botao de loja caia a
+ * 3.686 px, com duas secoes e duas tabelas acima dele. Junto saiu a frase de
+ * bastidor que a 32.4 proibe, a terceira copia dela nesta ilha.
+ *
  * Versão: 1.5.0 (16/09/2026) — datePublished e dateModified passam a sair de
  * robometria_casca_datas_da_pagina(). Antes datePublished era digitado aqui
  * (e no A2 não existia) e dateModified vinha de `gerado_em` dos fatos, que
@@ -80,7 +85,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.5.0' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.6.0' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -398,17 +403,23 @@ function robometria_a2_vitrine() {
 	   número", digitado, e era falso pelo mesmo motivo dos cartões. */
 	$atr = isset( $d['vitrine_atribuicao'] ) ? $d['vitrine_atribuicao'] : null;
 
-	$html  = '<div class="rbm-secao rbm-compra"><h2>'
+	$html  = '<div class="rbm-secao rbm-compra" id="rbm-compra"><h2>'
 		. esc_html( $atr
 			? sprintf( 'Os modelos cuja área por carga é declarada %s', $atr )
 			: 'Os modelos cuja área por carga é declarada, e por quem' )
 		. '</h2>';
-	$html .= '<p>São os <span class="rbm-num">' . esc_html( robometria_a2_n( $total ) )
+	/* O AVISO DE COMISSAO EM UMA LINHA acima dos cartoes (32.1, item 5, que a
+	   32.2 herda para o bloco de compra da ficha). A prosa que explica o recorte
+	   da lista desce para baixo do carrossel: nenhuma palavra sai da pagina, e o
+	   primeiro botao de loja sobe o que ela ocupava. */
+	$html .= '<p class="rbm-aviso-comissao">Links de afiliado: podemos receber comissão.</p>';
+
+	$depois  = '<p>São os <span class="rbm-num">' . esc_html( robometria_a2_n( $total ) )
 		. '</span> modelos deste banco sobre os quais a pergunta do título tem resposta '
 		. esc_html( $atr ? 'declarada ' . $atr : 'declarada por alguém, e cada cartão diz por quem' )
 		. '. <strong>Isto não é um ranking de limpeza</strong> — é a lista de quem publica a área por carga, que é o número sem o qual nenhuma conta de tempo começa.</p>';
 
-	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela área declarada, e só por isso. '
+	$depois .= '<p class="rbm-aviso-comissao">Os botões de compra acima são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela área declarada, e só por isso. '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
 			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
@@ -423,7 +434,7 @@ function robometria_a2_vitrine() {
 				? 'Um destes modelos ainda não tem link de loja'
 				: sprintf( '%s destes modelos ainda não têm link de loja', robometria_a2_n( $sem_link ) );
 		}
-		$html .= '<p class="rbm-nota">' . esc_html( $quantas )
+		$depois .= '<p class="rbm-nota">' . esc_html( $quantas )
 			. '. O lugar fica reservado assim mesmo: esconder o bloco enquanto o link não chega devolveria ao link de procedência o papel de única porta clicável da página.</p>';
 	}
 
@@ -516,7 +527,13 @@ function robometria_a2_vitrine() {
 
 		$html .= '</li>';
 	}
-	$html .= '</ul></div>';
+	$html .= '</ul>';
+
+	if ( '' !== $depois ) {
+		$html .= '<div class="rbm-compra-depois">' . $depois . '</div>';
+	}
+
+	$html .= '</div>';
 
 	return $html;
 }
@@ -532,7 +549,7 @@ add_shortcode( 'robometria_a2', function () {
 	if ( empty( $d['resumo'] ) ) {
 		return robometria_casca_sem_banco_html(
 			'Este artigo está sem o banco de modelos no momento.',
-			'A tese deste texto é uma contagem do banco publicado a partir do repositório da Robometria. Sem o banco, preferimos avisar a servir um texto cujos números não podem ser conferidos.'
+			'A tese deste texto é uma contagem do catálogo, e sem o catálogo preferimos avisar a servir um texto cujos números não podem ser conferidos. Tente de novo mais tarde.'
 		);
 	}
 
@@ -542,8 +559,37 @@ add_shortcode( 'robometria_a2', function () {
 
 	/* RESPOSTA ANTES DA EXPLICAÇÃO (seção 5.2): a tese inteira na primeira dobra,
 	   em frase autossuficiente que sobrevive a ser citada fora de contexto. */
+	/* A CAIXA DE RESPOSTA NO TOPO (32.2): o número e a condição numa frase, em
+	   Mono, servida no HTML. O número é a contagem de modelos com área por carga
+	   declarada — que é exatamente a pergunta do título desta página — e sai do
+	   MESMO resumo que a tese de abertura conta, nunca de uma segunda contagem.
+	   A tese inteira fica logo abaixo dela, aberta: ela é a frase autossuficiente
+	   que um modelo de linguagem cita fora de contexto (seção 5.2). */
+	/* O RÓTULO DA CAIXA NÃO ATRIBUI, e isso não é estilo: `pelo fabricante` é o
+	   `quem_declara` de dois degraus da escada, e os 5 modelos que hoje trazem o
+	   número vêm do degrau da LOJA OFICIAL da marca. Escrevê-lo aqui seria
+	   emprestar ao fabricante o que ele não publicou, no primeiro rótulo da
+	   página — e seria a atribuição DIGITADA, que o portão desta ilha proíbe
+	   justamente por isso. Quem nomeia o degrau é a frase derivada abaixo e o
+	   título do bloco de compra, os dois lidos do banco. */
+	$html .= robometria_casca_caixa(
+		'Modelos com área por carga declarada',
+		robometria_a2_n( $r['com_cobertura'] ) . ' de ' . robometria_a2_n( $r['modelos_publicaveis'] ),
+		'',
+		array( robometria_a2_tese_da_area() )
+	);
+
+	/* O BLOCO DE COMPRA IMEDIATAMENTE ABAIXO DA RESPOSTA (32.2). Medido no ar em
+	   21/10/2026, celular de 390 px: o primeiro botão de loja caía a 3.686 px,
+	   com duas seções inteiras e duas tabelas acima dele, contra o teto de 1.400
+	   da 32.5. Nenhuma delas saiu da página: as duas estão logo depois. */
+	$html .= robometria_a2_vitrine();
+
+	/* A PROVA DA TESE, abaixo do bloco de compra e ABERTA: quem declara, por que
+	   ninguém consegue dizer o tempo, e a dispersão. São as frases que esta
+	   página existe para publicar, e dobra fechada é texto que a busca lê e a
+	   pessoa não. */
 	$html .= '<div class="rbm-abertura">';
-	$html .= '<p class="rbm-linha-mestra">' . esc_html( robometria_a2_tese_da_area() ) . '</p>';
 	$html .= '<p class="rbm-prova">' . esc_html( robometria_a2_quem_declara() ) . '</p>';
 	$html .= '<p>' . esc_html( robometria_a2_tese_do_tempo() ) . '</p>';
 	$html .= '<p>' . esc_html( robometria_a2_tese_da_dispersao() ) . '</p>';
@@ -562,35 +608,34 @@ add_shortcode( 'robometria_a2', function () {
 	$html .= '</div>';
 
 	/* ------------------------------------------------------ os três números */
-	$html .= '<div class="rbm-secao"><h2>Por que ninguém consegue dizer quanto tempo o robô leva</h2>';
-	$html .= '<p>A pergunta que a pessoa faz não é "quantos minutos dura a bateria" — é <strong>quando a casa fica limpa</strong>. Para responder isso é preciso somar os ciclos e as recargas no meio, e a soma pede três números que o fabricante teria que declarar.</p>';
-	$html .= robometria_a2_tabela_tres_numeros();
+	$corpo  = '<p>A pergunta que a pessoa faz não é "quantos minutos dura a bateria" — é <strong>quando a casa fica limpa</strong>. Para responder isso é preciso somar os ciclos e as recargas no meio, e a soma pede três números que o fabricante teria que declarar.</p>';
+	$corpo .= robometria_a2_tabela_tres_numeros();
 	if ( ! empty( $d['com_recarga_ids'] ) ) {
 		$nomes = array();
 		foreach ( $d['com_recarga_ids'] as $m ) {
 			$nomes[] = $m['rotulo'];
 		}
-		$html .= '<p>Os modelos que declaram recarga são ' . esc_html( robometria_a2_lista( $nomes ) )
+		$corpo .= '<p>Os modelos que declaram recarga são ' . esc_html( robometria_a2_lista( $nomes ) )
 			. ' — e nenhum deles declara área por carga. É por isso que a linha da última coluna dá <span class="rbm-num">'
 			. esc_html( robometria_a2_n( $r['com_os_tres'] ) )
 			. '</span>: os dois conjuntos não se encontram.</p>';
 	}
-	$html .= '</div>';
-
-	/* ------------------------------------------------------------- a vitrine */
-	$html .= robometria_a2_vitrine();
+	$html .= robometria_casca_dobra( 'Por que ninguém consegue dizer quanto tempo o robô leva', $corpo, 'h2' );
 
 	/* --------------------------------------------------- como foi feito */
-	$html .= '<div class="rbm-secao"><h2>Como esta página foi montada</h2>';
-	$html .= '<p><strong>Nenhuma das páginas de fabricante deste banco foi lida diretamente.</strong> O acesso direto a esses endereços está bloqueado no ambiente em que a Robometria é construída, e tudo foi colhido por busca restrita ao domínio da própria fonte. Cada número traz o endereço da declaração para você conferir, e não para você acreditar.</p>';
-	$html .= '<p>Os números deste texto não estão escritos dentro dele: são recontados do banco a cada publicação. Se um fabricante passar a declarar área por carga amanhã, é a frase de abertura que muda — não um parágrafo que alguém teria que lembrar de reescrever.</p>';
-	$html .= '<p>' . ( function_exists( 'robometria_casca_link_html' )
+	/* COMO SABEMOS (32.1, item 7, e 32.4): a procedência continua — canal
+	   nomeado e data —, e o que saiu foi a frase que descrevia a OFICINA, com "o
+	   ambiente em que a Robometria é construída" e "busca restrita ao domínio da
+	   própria fonte". A 32.4 proíbe as duas com essas palavras. */
+	$corpo  = '<p><strong>Todo número desta página tem endereço e data.</strong> Cada declaração veio de um canal público da própria marca — a página do produto, o catálogo ou a loja oficial —, e o endereço de cada uma está na tabela, com o dia em que foi verificada. É por isso que ela está ali: para você conferir, e não para você acreditar.</p>';
+	$corpo .= '<p>Os números deste texto não estão escritos dentro dele: são recontados a cada publicação. Se um fabricante passar a declarar área por carga amanhã, é a frase de abertura que muda — não um parágrafo que alguém teria que lembrar de reescrever.</p>';
+	$corpo .= '<p>' . ( function_exists( 'robometria_casca_link_html' )
 		? robometria_casca_link_html( 'metodologia', 'A metodologia completa, com a escada de fontes' )
 		: 'A metodologia completa, com a escada de fontes' ) . ' &middot; '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' )
 			: 'Divulgação de afiliados' ) . '</p>';
-	$html .= '</div>';
+	$html .= robometria_casca_dobra( 'Como sabemos', $corpo, 'h2' );
 
 	/* MALHA (seção 9): três irmãs e mão dupla. Este artigo aponta para a
 	   ferramenta que ele apoia, para a outra ferramenta da ilha e para o outro

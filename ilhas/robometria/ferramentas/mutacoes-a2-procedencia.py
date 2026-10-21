@@ -89,14 +89,18 @@ MOLDE_DIGITADO = """\t\t$porque = sprintf(
 \t\t);
 """
 
-TITULO_DERIVADO = """\t$html  = '<div class="rbm-secao rbm-compra"><h2>'
+# NOTA DE 21/10/2026 — o bloco de compra ganhou id="rbm-compra" (a 32.1 manda a
+# barra do celular apontar para ele), e os dois alvos abaixo citam a abertura da
+# <div> por inteiro. Sem o id, a mutacao do titulo nao aplicava e a trava do
+# titulo derivado ficava sem exercicio nenhum.
+TITULO_DERIVADO = """\t$html  = '<div class="rbm-secao rbm-compra" id="rbm-compra"><h2>'
 \t\t. esc_html( $atr
 \t\t\t? sprintf( 'Os modelos cuja área por carga é declarada %s', $atr )
 \t\t\t: 'Os modelos cuja área por carga é declarada, e por quem' )
 \t\t. '</h2>';
 """
 
-TITULO_DIGITADO = """\t$html  = '<div class="rbm-secao rbm-compra"><h2>Os modelos cujo fabricante publica o número</h2>';
+TITULO_DIGITADO = """\t$html  = '<div class="rbm-secao rbm-compra" id="rbm-compra"><h2>Os modelos cujo fabricante publica o número</h2>';
 """
 
 CONJUNTO_EXIGE_ACORDO = """    origens = {i["procedencia"]["origem"] for i in itens}

@@ -47,7 +47,12 @@ NEGA = re.compile(
     r'(n[ãa]o t[ê e]m link de loja|Nenhum[a]? dest[ae]s?[^<.]{0,40}link de loja'
     r'|link de loja em breve)', re.I)
 
-BLOCO = re.compile(r'<div class="rbm-secao rbm-compra">(.*?)</div>', re.S)
+# O BLOCO DE COMPRA GANHOU id EM 21/10/2026 (a 32.1 manda a barra do celular
+# apontar para ele). O padrao lia a abertura da <div> pela classe EXATA: com o
+# atributo novo ele deixava de casar, esta regua passava a medir NADA e o ar
+# ficava sem o portao que denuncia a frase proibida dentro do bloco de compra.
+# Agora aceita atributo depois da classe, e a classe continua sendo cobrada.
+BLOCO = re.compile(r'<div class="rbm-secao rbm-compra"[^>]*>(.*?)</div>', re.S)
 
 
 def baixar(url):
