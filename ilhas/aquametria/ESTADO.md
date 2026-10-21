@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-21T18:21Z
-executando_desde: null   # a execucao de 21/10 17h45Z fechou as 18h2xZ. Reserva RENOVADA uma vez pela 1.1 (18h05Z): o mutirao da 32.2 nas 29 fichas passa de 40 minutos. CORRIDA DUPLA nesta janela — uma segunda execucao reservou a MESMA ilha no MESMO minuto (commit 1c7d970, contra o 84eaf10 desta); quem ganhou a corrida do push foi esta, e o rebase do ESTADO.md foi resolvido sem force push. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
+executando_desde: 2026-10-21T19:16Z   # reserva da execucao de 21/10 19h1xZ (secao 1, passo 5). Ilha em FOCO pela 1.2 (foco.md ate 21/10), e o despacho do molde da 32.2 ja fechou INTEIRO nas tres ilhas da excecao, entao o foco volta a mandar sozinho. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
 bloco_atual: |
   AS 29 FICHAS DE PEIXE DESTA ILHA ESTAO NO MOLDE DA 32.2, e com elas o despacho
   do Raphael de 21/10 FECHA INTEIRO pela 18.2 — os dois itens conferidos no ar
