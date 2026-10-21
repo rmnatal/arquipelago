@@ -6075,3 +6075,96 @@ atualizado (os arquivos trazem as linhas prontas para isso, mas colá-las não f
 nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta
 criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no
 disparo.
+
+---
+
+## 2026-10-21, 17h20 (BRT) — 20h20 (UTC) — Despacho da leitura semanal da Sentinela, 14 operações nas três ilhas
+
+**Assunto conferido antes de qualquer `git fetch`:** ilhas aquametria, robometria e clubedomosaico — Arquipélago.
+Instrução executada.
+
+**Commit que foi ao `main`:** `ea082c885495d2b14eb7597edac47a08a77f6dbb` —
+*Despacho da leitura semanal da Sentinela — 2026-10-21 (tres ilhas)*. Confirmado com
+`git fetch origin main && git log -1 origin/main`: o `origin/main` mostra este hash. Push aceito de primeira,
+sem rebase e sem force push.
+
+`git status --porcelain` logo depois do commit do trabalho (antes deste log):
+
+```
+(vazio — árvore limpa)
+```
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/aquametria/PROMPT.md              | 72 ++++++++++++++++++++++++++++++++-
+ ilhas/aquametria/dados/indexacao.md     |  1 +
+ ilhas/aquametria/dados/posicoes.md      | 15 +++++++
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 44 ++++++++++++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md  | 14 +++++++
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 28 +++++++++++++
+ ilhas/robometria/dados/indexacao.md     |  1 +
+ ilhas/robometria/dados/posicoes.md      |  5 +++
+ 12 files changed, 183 insertions(+), 4 deletions(-)
+```
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar** (não pelo que achei que escrevi):
+
+```
+  ilhas/aquametria/dados/indexacao.md        1 linha nova "| 2026-10-21 "   (OP 1)
+  ilhas/aquametria/dados/posicoes.md        15 linhas novas "| 2026-10-21 " (OP 2)
+  ilhas/aquametria/PROMPT.md                 1 cabeçalho "## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL" (OP 3)
+                                             + a linha do despacho de 14/10 marcada SUPERADO        (OP 4)
+  ilhas/aquametria/ESTADO.md                 1 linha ultima_ronda: 2026-10-21T19:54Z                 (OP 5)
+  ilhas/robometria/dados/indexacao.md        1 linha nova "| 2026-10-21 "   (OP 6)
+  ilhas/robometria/dados/posicoes.md         5 linhas novas "| 2026-10-21 " (OP 7)
+  ilhas/robometria/PROMPT.md                 1 cabeçalho "## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL" (OP 8)
+  ilhas/robometria/ESTADO.md                 1 linha ultima_ronda: 2026-10-21T19:54Z                 (OP 9)
+  ilhas/clubedomosaico/dados/indexacao.md    1 linha nova "| 2026-10-21 "   (OP 10)
+  ilhas/clubedomosaico/dados/posicoes.md    14 linhas novas "| 2026-10-21 " (OP 11)
+  ilhas/clubedomosaico/PROMPT.md             1 cabeçalho "## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL" (OP 12)
+  ilhas/clubedomosaico/ESTADO.md             1 linha ultima_ronda: 2026-10-21T19:54Z                 (OP 13)
+  ---
+  12 arquivos alterados, 0 arquivo novo, +183 linhas, -4 linhas
+  Marcas -----INICIO----- / -----FIM----- residuais nos três PROMPT.md: 0
+```
+
+As treze primeiras operações entraram byte a byte como vieram. Cada troca foi feita com casamento de texto exato
+e asserção de ocorrência única (`count == 1`) antes de gravar — nenhuma âncora ambígua, nenhuma reformatação,
+nenhuma linha acrescentada além das que a instrução trouxe. Os três comandos `python3` das OPs 5, 9 e 13 foram
+rodados exatamente como escritos, e os três imprimiram o seu `ok`.
+
+**OP 14 — O ENSAIO DO CANO DE LINKS DA AQUAMETRIA: NÃO RODOU, E ISSO É O RESULTADO, NÃO UMA FALHA ESCONDIDA.**
+
+Passo 1, conferência de PRESENÇA das credenciais (nunca do valor), rodado da raiz do repositório:
+
+```
+SHOPEE_APP_ID AUSENTE
+SHOPEE_SECRET AUSENTE
+```
+
+As duas variáveis estão **ausentes do ambiente desta execução**. Pelo passo 4 da própria OP 14 — *"Se alguma
+credencial estiver AUSENTE... NÃO crie arquivo nenhum"* — os passos 2 e 3 não foram executados:
+`coletar-shopee.py --ensaio` **não foi rodado**, `/tmp/ensaio-shopee-aquametria.json` **não foi gerado**,
+`ilhas/aquametria/dados/ensaio-shopee-2026-10-21.json` **não existe** e nenhuma pasta foi criada. Não há mensagem
+de erro de comando a transcrever porque nenhum comando falhou: a conferência de presença saiu com sucesso e o seu
+resultado é que as credenciais não estão lá. O script `ilhas/aquametria/ferramentas/coletar-shopee.py` existe no
+repositório (66.354 bytes) — o que falta é a credencial no ambiente, não a ferramenta.
+
+Nenhum valor de credencial foi impresso, gravado ou committado em passo nenhum deste disparo.
+
+**Consequência para quem ler isto:** o item 6 do despacho de 21/10 no `ilhas/aquametria/PROMPT.md` cita
+`dados/ensaio-shopee-2026-10-21.md` *"se o ensaio rodou"*. **Não rodou.** A leitura de 28/10 não tem ensaio para
+conferir com os olhos, e a proibição de rodar `--gravar` continua valendo igual.
+
+**O que NÃO foi feito:** nenhum arquivo além dos doze nomeados pelas OPs 1 a 13 e deste `MAOS-LOG.md` foi tocado.
+Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de estado além da linha `ultima_ronda:` que
+as OPs 5, 9 e 13 mandaram trocar, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação,
+nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `foco.md` não foi
+editado — o despacho da aquametria avisa que a janela vira em 22/10 e que a linha `ilha:` não troca sozinha, mas
+trocá-la não foi pedido e não é das mãos decidir. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no
+disparo.
