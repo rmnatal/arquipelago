@@ -5930,3 +5930,70 @@ dos três arquivos novos apontando estado final de jardinagem na fila, propostas
 Nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhum
 domínio registrado, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não
 foi aberto para decidir nada: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026, 16h26 de Brasília (19h26 UTC) — Bússola rodada 007, gravação 2 de 2 (fila e lista de fazendas)
+
+**Assunto:** Projeto Arquipélago / Bússola / rodada 007 (nicho jardinagem). É do Arquipélago — checagem de assunto
+passada antes do `git fetch`.
+
+**O que a instrução pediu:** quatro substituições de texto em dois arquivos preexistentes (`bussola/fila.md`, três
+delas; `bussola/BUSSOLA.md`, uma), num só commit, sem nenhum arquivo novo.
+
+**Trava de contagem, exigida antes de gravar.** Cada trecho antigo foi contado por script no arquivo de destino;
+exigência: exatamente 1. Resultado, com a gravação ainda não feita:
+
+```
+SUB 1  arquivo=bussola/fila.md  contagem=1
+SUB 2  arquivo=bussola/fila.md  contagem=1
+SUB 3  arquivo=bussola/fila.md  contagem=1
+SUB 4  arquivo=bussola/BUSSOLA.md  contagem=1
+TRAVA OK (4/4 com contagem 1) — sem gravar
+```
+
+Só depois disso o mesmo script foi rodado com `--gravar`, que repetiu as quatro contagens (1, 1, 1, 1) e substituiu
+cada trecho uma única vez.
+
+**`git status --porcelain` depois de gravar e antes do commit:**
+
+```
+ M bussola/BUSSOLA.md
+ M bussola/fila.md
+```
+
+**`git diff --stat` do que foi gravado:**
+
+```
+ bussola/BUSSOLA.md | 45 +++++++++++++++++++++++++++++++++++++
+ bussola/fila.md    | 66 +++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 110 insertions(+), 1 deletion(-)
+```
+
+**Commit que foi ao `main`:** `a7f77c0` — `Bússola rodada 007 — 21/10/2026 (fila e lista de fazendas)`, a mensagem
+exata que a instrução deu.
+
+**Push:** `git push origin HEAD:main` aceito de primeira, sem recusa e sem force push —
+`7da69ee..a7f77c0  HEAD -> main`. Confirmado com `git fetch origin main && git log -1 origin/main`: `origin/main`
+aponta para `a7f77c0`, o commit deste disparo.
+
+**Contagem do que mudou, conferida relendo os arquivos gravados (não pelo que eu acho que escrevi):**
+
+```
+  bussola/fila.md      263 linhas   40702 bytes   8 cabeçalhos    +65 linhas  -1 linha
+  bussola/BUSSOLA.md   225 linhas   25922 bytes   10 cabeçalhos   +45 linhas  -0 linha
+  ---
+  2 arquivos preexistentes alterados, 0 arquivos novos, +110 linhas, -1 linha
+```
+
+A única linha removida é a linha 3 de `bussola/fila.md` ("Última rodada que mexeu aqui: **006 …**"), trocada pelas
+três linhas da substituição 1. As outras três substituições preservam a linha antiga no fim do bloco novo, por isso
+são adição pura.
+
+**Nenhum passo falhou.** Nenhuma mensagem de erro a registrar.
+
+**O que NÃO foi feito:** nenhum arquivo além dos dois nomeados e deste `MAOS-LOG.md` foi tocado; nada reformatado,
+nada "melhorado", nenhuma linha acrescentada fora do texto da instrução. Nenhuma reserva de ilha, nenhum
+`executando_desde`, nenhum cabeçalho de estado alterado, nenhum bloco de fila executado, nenhum Sync acionado,
+nenhuma publicação, nenhum `publicar: true`, nenhum domínio registrado, nenhuma conta criada, nenhum contato
+pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo.
