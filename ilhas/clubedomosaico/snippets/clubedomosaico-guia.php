@@ -2,6 +2,26 @@
  * CLUBE DO MOSAICO — O GUIA DE MATERIAIS, CATEGORIA POR CATEGORIA (bloco 4c)
  * Snippet "Clube do Mosaico Guia", registrado pelo Sync.
  *
+ * Versão 1.6.0 (21/10/2026) — O MOLDE DA 32.2 NAS SETE PÁGINAS DESTA FAMÍLIA, e
+ * a mudança é de ORDEM, não de texto: nenhuma frase foi reescrita, nenhuma seção
+ * saiu e nenhum <h2> foi digitado duas vezes. Medido no ar em 21/10, celular de
+ * 390 px: o primeiro botão de loja aparecia entre 2.099 px (verniz) e 3.808 px
+ * (a mãe), contra o teto de 1.400 da 32.5, porque o bloco de produto era a
+ * QUARTA seção da página.
+ * A ORDEM NOVA: caixa de resposta do molde (com o número contado do banco em
+ * Mono) · bloco de compra com `id="compra"` · lista de filhas, visível, só na
+ * mãe · o resto nas dobras da casca · a barra do rodapé.
+ * E O CARTÃO DE PRODUTO VIROU O DA 32.1 ITEM 5: foto, marca, modelo, A
+ * ESPECIFICAÇÃO QUE FEZ O PRODUTO ENTRAR (quais das nossas superfícies a frase
+ * do fabricante nomeia) e então o botão de loja. Os números declarados e a conta
+ * da espera são DETALHE e desceram dois parágrafos — ajudam a escolher entre
+ * dois produtos, não a saber se este serve. A régua do item passou a servir as
+ * duas metades (`espec` e `detalhe`), com `tudo` ainda sendo o padrão.
+ * A CAMADA DE PROVA NÃO SAIU DE LUGAR NENHUM: a frase entre aspas, o preparo e a
+ * fonte continuam no cartão, logo abaixo do botão; a linha de procedência fecha
+ * o bloco de produto, que é de quem ela fala. Sete páginas, zero palavra
+ * perdida, `title`/H1/`description`/JSON-LD idênticos aos de antes.
+ *
  * Versão 1.5.0 (12/10/2026) — A TERCEIRA PERGUNTA DA MESMA CATEGORIA, E ELA
  * FECHA O `acabamento` POR PROPRIEDADE. O recorte dela é `pigmentado`, que era
  * a ÚLTIMA propriedade do banco de acabamento com 3 itens de lastro sem página
@@ -1599,9 +1619,24 @@ if ( ! function_exists( 'cdm_guia_item_do_acabamento' ) ) {
  * bloco `protecao`, que só o acabamento tem, e o relógio das demãos é uma conta
  * que o `rejunte` não faz.
  */
-function cdm_guia_item_do_acabamento( $item ) {
+function cdm_guia_item_do_acabamento( $item, $parte = 'tudo' ) {
 	$p   = isset( $item['protecao'] ) && is_array( $item['protecao'] ) ? $item['protecao'] : array();
 	$sup = cdm_guia_superficies();
+
+	/* O MIOLO DO CARTÃO SAI EM DUAS METADES DESDE 21/10/2026, pela 32.1 item 5.
+	   A ordem do cartão que o molde manda é: foto, marca e modelo, A
+	   ESPECIFICAÇÃO QUE FEZ O PRODUTO ENTRAR, e então o botão de loja. Aqui a
+	   especificação é UMA frase — quais das nossas superfícies a frase do
+	   fabricante nomeia —, e era ela que decidia a entrada do produto no
+	   recorte. Os números declarados e a conta da espera são DETALHE: ajudam a
+	   escolher entre dois produtos, não a saber se este serve.
+	   Medido no render desta bancada a 390 px: as duas metades juntas acima do
+	   botão o punham a 1.789 px na página do pigmentado, contra o teto de 1.400
+	   da 32.5. Nada saiu do cartão — o detalhe desceu dois parágrafos.
+	   `tudo` continua existindo e continua sendo o padrão: quem chamar a régua
+	   sem dizer a parte recebe o cartão inteiro, na ordem de sempre. */
+	$espec   = ( 'tudo' === $parte || 'espec' === $parte );
+	$detalhe = ( 'tudo' === $parte || 'detalhe' === $parte );
 
 	$html = '';
 
@@ -1615,11 +1650,15 @@ function cdm_guia_item_do_acabamento( $item ) {
 	foreach ( array_intersect( (array) ( isset( $p['tesselas_do_vocabulario_que_a_frase_nomeia'] ) ? $p['tesselas_do_vocabulario_que_a_frase_nomeia'] : array() ), $sup['tessela'] ) as $t ) {
 		$nomeia[] = cdm_guia_rotulo( 'tessela', $t );
 	}
-	if ( $nomeia ) {
+	if ( $espec && $nomeia ) {
 		$html .= '<p class="cdm-guia-nomeia">Das superfícies que a gente lista, a frase dele nomeia <strong>'
 			. esc_html( cdm_guia_lista_humana( $nomeia ) ) . '</strong>.</p>';
-	} else {
+	} elseif ( $espec ) {
 		$html .= '<p class="cdm-guia-nomeia">A frase dele não nomeia nenhuma das superfícies que a gente lista.</p>';
+	}
+
+	if ( ! $detalhe ) {
+		return $html;
 	}
 
 	$numeros = cdm_guia_numeros_do_item_do_acabamento( $item );
@@ -1763,8 +1802,29 @@ function cdm_guia_ficha_do_produto_html( $item, $categoria ) {
 
 	$miolo = cdm_guia_regua_da_categoria( $categoria, 'item' );
 	if ( '' !== $miolo ) {
-		$html .= call_user_func( $miolo, $item );
+		$html .= call_user_func( $miolo, $item, 'espec' );
 	}
+
+	/* O BOTÃO DE LOJA SOBE PARA DEPOIS DA ESPECIFICAÇÃO, e isto é a 32.1 item 5
+	   ao pé da letra: foto, marca e modelo, a especificação que fez o produto
+	   entrar, e então o botão de loja. Até 21/10/2026 ele vinha depois da frase
+	   do fabricante e do preparo, e com a seção de produto já no alto da página
+	   o primeiro botão ainda caía entre 1.591 e 2.190 px no celular de 390 px,
+	   contra o teto de 1.400 da 32.5 — medido no render desta mesma bancada.
+	   A CAMADA DE PROVA NÃO SAIU DE LUGAR NENHUM: a frase entre aspas, o preparo
+	   e a fonte continuam no cartão, logo abaixo. O que mudou é que a prova deixa
+	   de ficar ENTRE a pessoa e a ação, que é o que a seção 32 inteira existe
+	   para desfazer. */
+	if ( function_exists( 'cdm_f2_compra_html' ) ) {
+		$html .= cdm_f2_compra_html( isset( $item['afiliado'] ) ? $item['afiliado'] : array() );
+	} else {
+		$html .= '<p class="cdm-guia-sem-loja">A lista de onde comprar está fora do ar neste momento. O produto e a declaração acima continuam de pé.</p>';
+	}
+
+	if ( '' !== $miolo ) {
+		$html .= call_user_func( $miolo, $item, 'detalhe' );
+	}
+
 
 	/* A FRASE DO FABRICANTE, INTEIRA E ENTRE ASPAS. É a camada de prova desta
 	   página: a recomendação não é nossa, e quem quiser conferir tem o
@@ -1804,12 +1864,6 @@ function cdm_guia_ficha_do_produto_html( $item, $categoria ) {
 			. 'O produto e a declaração acima continuam de pé.</p>';
 	}
 
-	if ( function_exists( 'cdm_f2_compra_html' ) ) {
-		$html .= cdm_f2_compra_html( isset( $item['afiliado'] ) ? $item['afiliado'] : array() );
-	} else {
-		$html .= '<p class="cdm-guia-sem-loja">A lista de onde comprar está fora do ar neste momento. O produto e a declaração acima continuam de pé.</p>';
-	}
-
 	if ( $fonte && ! empty( $fonte['url'] ) ) {
 		$html .= '<span class="cdm-guia-fonte"><a href="' . esc_url( $fonte['url'] ) . '"'
 			. ' rel="nofollow noopener" target="_blank">fonte</a>'
@@ -1847,54 +1901,43 @@ function cdm_guia_html( $id ) {
 
 	$html = '<div class="cdm-bloco cdm-guia">';
 
-	/* A LINHA MESTRA — o que a pessoa recebe, em uma linha, na voz do VOZ.md:
-	   sem fabricante, sem data e sem a palavra "substrato". */
-	$html .= '<p class="cdm-linha-mestra">' . esc_html( $ficha['linha_mestra'] ) . '</p>';
+	/* ======================================================================
+	   A ORDEM DESTA PÁGINA É A DA 32.2 DESDE 21/10/2026, e a mudança é de
+	   ORDEM, não de texto: nenhuma frase foi reescrita, nenhuma seção saiu e
+	   nenhum <h2> foi digitado duas vezes.
+	   O QUE ESTAVA ERRADO, medido no ar no celular de 390 px nas SETE páginas
+	   desta família: o primeiro botão de loja aparecia entre 2.099 px (verniz) e
+	   3.808 px (a mãe), contra o teto de 1.400 px da 32.5. O bloco de produto
+	   era a QUARTA seção da página, depois da lista de filhas e do "o que é".
+	   A ORDEM NOVA: caixa de resposta · bloco de compra · lista de filhas (só na
+	   mãe, e visível, porque é o resumo dela e é o que a malha do silo precisa
+	   ver) · o resto em dobras da casca.
+	   ====================================================================== */
 
-	/* A RESPOSTA ANTES DA EXPLICAÇÃO, com o número contado do banco. A frase é
-	   da régua: ela fala dos números daquela família, e é por isso que ela não
-	   cabe aqui — "combinações de produto e superfície" é verdade do
-	   acabamento e seria invenção no rejunte. */
-	$html .= '<div class="cdm-guia-resposta"><p class="cdm-guia-frase">';
-	$html .= call_user_func( cdm_guia_regua( $id, 'resposta' ), $c, $forma );
-	$html .= '</p>';
-	$html .= '<p class="cdm-prova cdm-guia-prova">Cada número desta página é lido do que o fabricante publicou, '
-		. 'com o endereço e a data da leitura na ficha de cada produto. Onde ele não declara, está escrito que não declara.</p>';
-	$html .= '</div>';
+	/* 1. A CAIXA DE RESPOSTA (32.2). A linha mestra e a frase da régua são as
+	   mesmas de sempre; o que mudou é que as duas passam a viajar dentro da
+	   caixa do molde — a mesma das duas ferramentas desta ilha —, com o número
+	   que a página já contava do banco em Mono ao lado. O id `resposta` é o que
+	   as ferramentas usam e o que a barra do rodapé espera encontrar. */
+	$frases  = '<p class="cdm-linha-mestra">' . esc_html( $ficha['linha_mestra'] ) . '</p>';
+	$frases .= '<p class="cdm-guia-frase">'
+		. call_user_func( cdm_guia_regua( $id, 'resposta' ), $c, $forma )
+		. '</p>';
+	$rotulo_itens = 1 === (int) $c['n_itens'] ? 'produto medido nesta página' : 'produtos medidos nesta página';
+	$html .= cdm_casca_resultado_html(
+		array( array( 'valor' => cdm_casca_num( (int) $c['n_itens'] ), 'legenda' => $rotulo_itens ) ),
+		$frases,
+		'resposta',
+		'cdm-guia-resposta'
+	);
 
-	/* A MÃE LISTA TODAS AS FILHAS, com o texto-âncora igual à consulta-alvo de
-	   cada uma — 16.4(a) ao pé da letra, e nunca "saiba mais". */
-	if ( 'mae' === $forma ) {
-		$html .= '<div class="cdm-secao"><h2>' . esc_html( $ficha['titulo_das_filhas'] ) . '</h2>';
-		$html .= '<ul class="cdm-guia-filhas">';
-		foreach ( cdm_guia_filhas( $cat ) as $fid => $f ) {
-			$cf    = cdm_guia_contas( $fid );
-			$html .= '<li><h3>' . cdm_casca_link_html( $f['slug'], $f['consulta'] ) . '</h3>'
-				. '<p>' . esc_html( $f['resumo'] ) . '</p>'
-				. '<p class="cdm-guia-conta-filha">' . (int) $cf['n_itens'] . ' produtos no banco.</p></li>';
-		}
-		$html .= '</ul></div>';
-	}
-
-	/* O QUE É, E O QUE NÃO É. */
-	$html .= '<div class="cdm-secao"><h2>O que é, e o que não é</h2>';
-	$html .= '<p>' . esc_html( $ficha['o_que_e'] ) . '</p>';
-	$html .= '<p>' . esc_html( $ficha['o_que_nao_e'] ) . '</p>';
-	/* A PONTE PARA AS VIZINHAS DA CASA é da régua, e o motivo é de conteúdo: o
-	   acabamento vem DEPOIS do seletor de cola e rejunte, e o rejunte É o
-	   assunto daquele seletor. A mesma frase nas duas mandaria a pessoa uma
-	   etapa para trás quando ela já está no lugar certo. */
-	/* A PONTE RECEBE AS CONTAS desde 12/10/2026, e o motivo e o mesmo da
-	   resposta: a frase da ponte da filha-pergunta dizia "as tres etapas"
-	   com a palavra "tres" digitada, e a segunda pergunta atravessa DUAS.
-	   Frase que so esta certa por causa do recorte de ontem e a familia de
-	   defeito que esta ilha mais paga. */
-	$html .= call_user_func( cdm_guia_regua( $id, 'ponte' ), $forma, $mae, $c );
-	$html .= '</div>';
-
-	/* PRODUTO POR PRODUTO. Na mãe, agrupado pelos três tipos, para os dez
-	   aparecerem exatamente uma vez — que é a prestação de contas da seção 7. */
-	$html .= '<div class="cdm-secao"><h2>Produto por produto, com a frase do fabricante</h2>';
+	/* 2. O BLOCO DE COMPRA, IMEDIATAMENTE ABAIXO DA RESPOSTA (32.2). É a mesma
+	   seção "Produto por produto", com o mesmo <h2> e os mesmos cartões — só
+	   subiu de lugar e ganhou a classe e o id que a barra do rodapé vigia.
+	   Na mãe ela continua agrupada pelos três tipos, para os dez produtos
+	   aparecerem exatamente uma vez, que é a prestação de contas da seção 7. */
+	$html .= '<div class="cdm-molde-compra cdm-secao" id="compra">';
+	$html .= '<h2>Produto por produto, com a frase do fabricante</h2>';
 	if ( 'mae' === $forma ) {
 		foreach ( cdm_guia_filhas_de_tipo( $cat ) as $fid => $f ) {
 			$cf = cdm_guia_contas( $fid );
@@ -1915,21 +1958,81 @@ function cdm_guia_html( $id ) {
 		}
 		$html .= '</ul>';
 	}
+	/* A LINHA DE PROCEDÊNCIA FECHA O BLOCO DE PRODUTO, e não a caixa de resposta.
+	   Ela fala dos cartões — "a ficha de cada produto" —, então é aqui que ela
+	   está em casa; e na caixa de resposta ela custava 106 px da primeira tela,
+	   que na página do pigmentado era a diferença entre 1.486 e 1.380 px no
+	   botão de loja, contra o teto de 1.400 da 32.5. A procedência continua na
+	   página, com fonte nomeada e data em cada cartão, como a 32.4 manda. */
+	$html .= '<p class="cdm-prova cdm-guia-prova">Cada número desta página é lido do que o fabricante publicou, '
+		. 'com o endereço e a data da leitura na ficha de cada produto. Onde ele não declara, está escrito que não declara.</p>';
 	$html .= '</div>';
+
+	/* 3. A MÃE LISTA TODAS AS FILHAS, com o texto-âncora igual à consulta-alvo
+	   de cada uma — 16.4(a) ao pé da letra, e nunca "saiba mais". FICA VISÍVEL:
+	   recolher a lista de filhas seria pôr o silo inteiro atrás de um clique, e
+	   é ela o resumo da mãe para quem lê e para quem indexa (32.2, "a
+	   tabela-resumo visível"). */
+	if ( 'mae' === $forma ) {
+		$html .= '<div class="cdm-secao"><h2>' . esc_html( $ficha['titulo_das_filhas'] ) . '</h2>';
+		$html .= '<ul class="cdm-guia-filhas">';
+		foreach ( cdm_guia_filhas( $cat ) as $fid => $f ) {
+			$cf    = cdm_guia_contas( $fid );
+			$html .= '<li><h3>' . cdm_casca_link_html( $f['slug'], $f['consulta'] ) . '</h3>'
+				. '<p>' . esc_html( $f['resumo'] ) . '</p>'
+				. '<p class="cdm-guia-conta-filha">' . (int) $cf['n_itens'] . ' produtos no banco.</p></li>';
+		}
+		$html .= '</ul></div>';
+	}
+
+	/* 4. DAQUI PARA BAIXO, O TEXTO INTEIRO EM DOBRAS (32.2), na mesma ordem de
+	   antes. O título de cada dobra É o <h2> que a seção já emitia, pela
+	   `cdm_casca_dobrar_secao()` — ninguém digita um segundo título. */
+
+	/* O QUE É, E O QUE NÃO É. A ponte para as vizinhas da casa é da régua, e o
+	   motivo é de conteúdo: o acabamento vem DEPOIS do seletor de cola e
+	   rejunte, e o rejunte É o assunto daquele seletor. A mesma frase nas duas
+	   mandaria a pessoa uma etapa para trás quando ela já está no lugar certo.
+	   A PONTE RECEBE AS CONTAS desde 12/10/2026, pelo mesmo motivo da resposta:
+	   a frase da ponte da filha-pergunta dizia "as tres etapas" com a palavra
+	   "tres" digitada, e a segunda pergunta atravessa DUAS. Frase que só está
+	   certa por causa do recorte de ontem é a família de defeito que esta ilha
+	   mais paga. */
+	$o_que_e  = '<div class="cdm-secao"><h2>O que é, e o que não é</h2>';
+	$o_que_e .= '<p>' . esc_html( $ficha['o_que_e'] ) . '</p>';
+	$o_que_e .= '<p>' . esc_html( $ficha['o_que_nao_e'] ) . '</p>';
+	$o_que_e .= call_user_func( cdm_guia_regua( $id, 'ponte' ), $forma, $mae, $c );
+	$o_que_e .= '</div>';
+	$html    .= cdm_casca_dobrar_secao( $o_que_e );
 
 	/* O QUE NINGUÉM DECLARA — o achado desta família, contado, e a régua é a
 	   dona dele: o achado do acabamento é a cobertura que falta; o de outra
 	   categoria será outra ausência, medida de outro jeito. */
-	$html .= call_user_func( cdm_guia_regua( $id, 'achado' ), $id, $c, $forma );
+	$html .= cdm_casca_dobrar_secao(
+		call_user_func( cdm_guia_regua( $id, 'achado' ), $id, $c, $forma )
+	);
 
 	/* AS PERGUNTAS, com os números da própria página. */
-	$html .= '<div class="cdm-secao cdm-guia-faq"><h2>Perguntas</h2><dl>';
+	$perguntas = '<div class="cdm-secao cdm-guia-faq"><h2>Perguntas</h2><dl>';
 	foreach ( cdm_guia_faq( $id ) as $p ) {
-		$html .= '<dt>' . esc_html( $p['pergunta'] ) . '</dt><dd>' . esc_html( $p['resposta'] ) . '</dd>';
+		$perguntas .= '<dt>' . esc_html( $p['pergunta'] ) . '</dt><dd>' . esc_html( $p['resposta'] ) . '</dd>';
 	}
-	$html .= '</dl></div>';
+	$perguntas .= '</dl></div>';
+	$html      .= cdm_casca_dobrar_secao( $perguntas );
 
 	$html .= '</div>';
+
+	/* A BARRA DO RODAPÉ (32.2, última linha da 32.1): ela carrega o número da
+	   resposta e leva ao bloco de compra enquanto ele está fora da tela. Nasce
+	   SERVIDA, com o número que a página já conta — barra que dependesse de
+	   cálculo não existiria justamente para quem chega da busca e não mexe em
+	   nada, que aqui é todo mundo: estas páginas não têm formulário. */
+	$html .= cdm_casca_barra_html(
+		cdm_casca_num( (int) $c['n_itens'] ) . ' ',
+		$rotulo_itens,
+		'compra',
+		'Ver os produtos'
+	);
 
 	return $html;
 }

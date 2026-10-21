@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 89,
+  "revisao": 90,
   "atualizado_em": "2026-10-21",
   "estado": "nascendo",
   "desembarque": {
@@ -98,8 +98,8 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.5.0",
-      "sha256": "be09ff3bec73f14f2bfc811945ae815095fb738408760ac84216b555a8dcf474",
-      "descricao": "REVISAO 80 = O CONSERTO DA FALHA DE ATIVACAO, PELA QUARTA VEZ EM QUATRO DIAS, e NENHUM BYTE DO PHP MUDOU ENTRE 79 E 80. A revisao 79 gravou o snippet do Guia INATIVO (`gravado (#13) mas NAO ativado: o codigo nao passou na validacao`) e as SEIS paginas do Guia serviram shortcode CRU (`[cdm_guia_acabamento]`) e SEM `<meta name=description>` — casca sem miolo, com 200 na resposta. O Sync faz `return` ANTES de gravar o sha do item nessa falha, entao o item fica SEM sha e um sync COMUM o reaplica, agora com o snippet JA inativo, que e o mundo em que `activate_snippet()` passa na validacao. So falta ele nao sair cedo, e para isso a revisao sobe. E DESTA VEZ O SYNC COMUM FOI O PRIMEIRO A SER TENTADO, nao o `forcar=1`: a 79 foi sincronizada comum e a falha apareceu assim mesmo, o que separa as duas causas que o PROMPT.md trazia juntas — o `forcar=1` de 09/10 AGRAVA (reaplica os nove snippets) e nao e a causa. A causa e a reativacao de um snippet JA CARREGADO na requisicao, e ela acontece em sync comum sempre que o codigo do Guia muda. QUATRO OCORRENCIAS: 09/10 (revisao 72, consertada pela 73), 12/10 10h5xZ (75 -> 76), 12/10 13h5xZ (77 -> 78) e 12/10 16h4xZ (79 -> 80). O padrao e estavel e o conserto tambem: toda revisao que muda o PHP do Guia nasce com a revisao seguinte reservada. CONTEUDO DA 79, inalterado: Guia 1.5.0 — A TERCEIRA PERGUNTA DA MESMA CATEGORIA, e ela fecha o `acabamento` por propriedade. Sexta pagina: /materiais/acabamento/peca-de-mosaico-esbranquicada/, recorte `pigmentado`, a ULTIMA propriedade com 3 itens de lastro sem pagina no ar. A trava da regua: `pigmentados` conta `'sim'` por igualdade ESTRITA e NADA conta o complemento, porque `com_pigmento - pigmentados` chamaria de transparente um `parcialmente` que algum fabricante futuro declare — e a tela diz, com essas palavras, que NAO DIZER NADA NAO E DIZER QUE E TRANSPARENTE. Bancada: teste-guia 232, mutacoes-guia 31 de 31."
+      "sha256": "9bddc9afac2ba31cea75831dbdef86f3fa3695301cb6f90a13edd533613f2d29",
+      "descricao": "1.6.0 (21/10/2026): O MOLDE DA 32.2 NAS SETE PAGINAS DESTA FAMILIA — a mae /materiais/acabamento/ e as seis filhas. A mudanca e de ORDEM, nao de texto: caixa de resposta do molde com o numero contado do banco em Mono, bloco de compra com id=\"compra\" imediatamente abaixo dela, lista de filhas visivel so na mae, o resto nas dobras da casca e a barra do rodape. O cartao de produto virou o da 32.1 item 5: foto, marca, modelo, a especificacao que fez o produto entrar, e entao o botao de loja; os numeros declarados e a conta da espera desceram dois paragrafos, e a frase entre aspas, o preparo e a fonte continuam no cartao. Medido no ar antes: primeiro botao de loja entre 2.099 e 3.808 px no celular de 390 px, contra o teto de 1.400 da 32.5."
     },
     {
       "id": "produto",
@@ -484,7 +484,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "fc0a27092bc8f4da7add1dddad7966370de1ce98317beec5832493b4e8190677",
+      "sha256": "8a550784ecc02d9bb8d86170f90a2ad5c269188040456c55e9810f7e50e5749e",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 459 afirmacoes em 25/09/2026. Cobre a marca no cabecalho, a escada da secao 25 cartao a cartao, o cache do hospedeiro contra o canonico, A PORTA DE ENTRADA (sitemap, robots.txt e raiz do REST em 200 com o tipo certo, e caminho inexistente em 404 na pagina DESTA ilha, acrescentado em 24/09 depois de 16 das 17 URLs servirem a pagina de estacionamento da HostGator) e, desde 25/09, O LINK DE AFILIADO SERVIDO: varre as URLs do sitemap e reprova se aparecer encurtador de Shopee que o banco nao conhece, mais a afirmacao de que ela encontra algum — portao que nao encontra nada aprova por vacuidade. Essa secao NAO mede a CASA do sub-id: isso so se le no utm_content do 301 do encurtador, e esse salto e onde a Shopee conta o clique, entao quem mede a casa e ferramentas/conferir-sub-id.py, na raiz, com link de BANCADA (secao 25.8). REGUA PROPRIA: as medidas estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
@@ -640,13 +640,13 @@
     {
       "id": "mutacoes-f1",
       "arquivo": "ferramentas/mutacoes-f1.py",
-      "sha256": "0dec775e20206d0d969e3d6358babd4dbd47a14ae28d7508c5a0c1a67a66d92f",
+      "sha256": "a6ed0b7442473777fa4fa933bd1bf5173441e8309b78933cfd70605389592f0a",
       "descricao": "Quebra a F1 de proposito, uma mutacao por vez, e exige que teste-f1.php reprove cada uma. Bancada."
     },
     {
       "id": "mutacoes-f2",
       "arquivo": "ferramentas/mutacoes-f2.py",
-      "sha256": "f00dafece57928cf9d0aa22edeb778ee949c79c3d3774f98441a34f3bd209151",
+      "sha256": "7f24efba9a9ccfba39e10c107119b72f76ef3bcded115adcbd74e0e6258c115e",
       "descricao": "Quebra a F2 de proposito, uma mutacao por vez, e exige que teste-f2.php reprove cada uma. Bancada."
     },
     {
@@ -688,7 +688,7 @@
     {
       "id": "mutacoes-prestacao",
       "arquivo": "ferramentas/mutacoes-prestacao.py",
-      "sha256": "ba4c4706b5c8568592034f162155ec6df59b95156c607da8e3470816f862db87",
+      "sha256": "0d9e48142502ccb589703e2f9852953891197e14dbe6528b6f173656bf2059e4",
       "descricao": "Quebra a prestacao de contas do rejunte de proposito, uma mutacao por vez, e exige que teste-prestacao-rejunte.php reprove cada uma. As duas primeiras sao os dois defeitos do despacho de 12/09 escritos de volta. Bancada: nunca vai para o site."
     },
     {
