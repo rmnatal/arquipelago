@@ -200,18 +200,60 @@ def guppy_barrado(saida):
     return False
 
 
-def metade_c(banco_real):
+def metade_c(banco_real, regua, esquema):
     print("\n### (C) o mundo que o esquema permite e o banco ainda nao tem")
 
     cod, saida = gerador_sobre(banco_real)
     afirma("controle: o gerador roda sobre o banco real", cod == 0, saida[-400:])
-    afirma("controle: o guppy ja e barrado hoje por um corpo so", guppy_barrado(saida))
-    afirma("controle: 34 registros passam no portao de pagina",
-           "podem virar ficha: 34 de 34 no catalogo" in saida,
+    # O NUMERO DEIXOU DE SER LITERAL EM 21/10/2026. Esta afirmacao procurava
+    # "podem virar ficha: 34 de 34" e reprovou no dia em que o catalogo foi a 35,
+    # porque a lista de 21/10 deu segundo corpo ao guppy. Contagem de catalogo
+    # digitada num portao reprova em TODA leva — ela mede o calendario, nao a
+    # regua. O que esta metade precisa do controle e outra coisa: que as duas
+    # pontas da conta do gerador fechem entre si. Essa propriedade nao vence.
+    m_conta = re.search(r"podem virar ficha: (\d+) de (\d+) no catalogo", saida)
+    afirma("controle: o gerador declara a conta do catalogo, e as duas pontas fecham",
+           m_conta is not None and m_conta.group(1) == m_conta.group(2),
            [l for l in saida.split("\n") if "podem virar ficha" in l])
 
+    # O MUNDO DO CORPO UNICO E CONSTRUIDO, E NAO ENCONTRADO — 21/10/2026. Ate hoje
+    # estas afirmacoes usavam o guppy como ele estava no banco: ele era o unico
+    # registro barrado por UM motivo so, "duas fontes de corpos distintos", e isso
+    # o tornava a cobaia perfeita. A lista de 21/10 lhe deu o segundo corpo, o
+    # guppy entrou no catalogo, e as tres afirmacoes que o usavam viraram FALSAS
+    # de uma vez — nenhuma delas por defeito da regua. E a mesma lição dos quatro
+    # casos do E28 e da afirmacao do lado da deriva, consertados no mesmo dia:
+    # afirmacao presa ao estado de hoje do banco vence sozinha quando o banco anda.
+    #
+    # Agora o mundo e produzido: tiramos do guppy toda fonte cujo corpo CONTAVEL
+    # nao e o primeiro dele, o que o devolve ao estado de "um corpo so" seja qual
+    # for o banco do dia. A regua que decide isso e a mesma que esta metade mede —
+    # e ela esta sob as afirmacoes da metade (A), que a medem caso a caso.
+    regua.carregar(esquema)
+
+    def guppy_com_um_corpo_so(banco):
+        b = copy.deepcopy(banco)
+        for e in b["especies"]:
+            if e["id"] != "poecilia-reticulata":
+                continue
+            primeiro = regua.corpo_contavel(e["fontes"][0]["url"])
+            e["fontes"] = [f for f in e["fontes"]
+                           if regua.corpo_contavel(f["url"]) == primeiro]
+        return b
+
+    um_corpo = guppy_com_um_corpo_so(banco_real)
+    cod, saida_um = gerador_sobre(um_corpo)
+    afirma("o mundo PRODUZIDO tem o guppy barrado por um corpo so",
+           cod == 0 and guppy_barrado(saida_um),
+           [l for l in saida_um.split("\n") if "poecilia-reticulata" in l])
+    # E a outra ponta da mesma prova: no banco REAL de hoje ele nao esta barrado
+    # assim, senao a afirmacao de cima passaria sem o mundo ser produzido.
+    afirma("e no banco real de hoje ele NAO esta barrado por isso — o mundo e produzido mesmo",
+           not guppy_barrado(saida),
+           [l for l in saida.split("\n") if "poecilia-reticulata" in l])
+
     def com_fonte_no_guppy(f):
-        b = copy.deepcopy(banco_real)
+        b = copy.deepcopy(um_corpo)
         for e in b["especies"]:
             if e["id"] == "poecilia-reticulata":
                 e["fontes"].append(f)
@@ -294,7 +336,7 @@ def main():
 
     metade_a(regua, esquema)
     metade_b()
-    metade_c(banco_real)
+    metade_c(banco_real, regua, esquema)
 
     print("\n%d afirmacoes, %d falha(s)" % (total, falhas))
     return 1 if falhas else 0

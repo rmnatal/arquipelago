@@ -499,10 +499,27 @@ MUTACOES = [
            " Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',",
            " São 3 espécies nesta lista e 2 esperando.',")),
 
+    # O ALVO DESTA MUTACAO ENCURTOU EM 21/10/2026, e ela virou INERTE antes disso.
+    # Ele incluia a terceira linha do bloco — `$html .= 'Das '` — como ancora, e
+    # naquele dia a frase foi reescrita para CONCORDAR com o numero (o "1 estao na
+    # fila" que foi ao ar quando a fila de /peixes/vivaparos/ chegou a 1). O
+    # `troca` acusou INERTE em vez de passar calado, que e para isso que ele existe.
+    # A ancora agora e a classe mais o `if`, que e o que a mutacao de fato mede.
     ("A PROMESSA DO CRITERIO DEIXA DE SER CUMPRIVEL: o bloco de contagem sai da pagina de categoria",
      troca(PEIXES,
-           "\t$html .= '<p class=\"aqm-px-fora\">';\n\tif ( $na_fila > 0 ) {\n\t\t$html .= 'Das '",
-           "\t$html .= '<p class=\"aqm-px-nota\">';\n\tif ( $na_fila > 0 ) {\n\t\t$html .= 'Das '")),
+           "\t$html .= '<p class=\"aqm-px-fora\">';\n\tif ( $na_fila > 0 ) {",
+           "\t$html .= '<p class=\"aqm-px-nota\">';\n\tif ( $na_fila > 0 ) {")),
+
+    # A MUTACAO QUE GUARDA A CONCORDANCIA, escrita em 21/10/2026 junto com o
+    # conserto. Ela devolve o verbo ao plural fixo — exatamente o texto que foi ao
+    # ar — e o portao tem de reprovar pela afirmacao nova, que cobra as DUAS formas
+    # e cobra a errada como ausente. Sem ela, qualquer passada futura pode voltar a
+    # escrever o verbo literal e nada acusa, que e como este defeito sobreviveu
+    # desde a leva 2 ao lado de uma frase irma que a 1.8.0 ja tinha consertado.
+    ("A CONCORDANCIA DA FILA VOLTA AO PLURAL FIXO: a pagina serve '1 estao na fila' outra vez",
+     troca(PEIXES,
+           "esc_html( aquametria_peixes_concorda( $na_fila, 'está', 'estão' ) )",
+           "'estão'")),
 
     ("A CATEGORIA PREPARADA CAI ABAIXO DO MINIMO DO 16.5 E CONTINUA PREPARADA: o vivaparo novo perde a convivencia declarada",
      banco_json(lambda d: mut_campo(d, "xiphophorus-variatus", "convivencia", "cardume"))),
