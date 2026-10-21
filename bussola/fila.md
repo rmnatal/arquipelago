@@ -65,6 +65,43 @@ Retorno = M×0,40 + D×0,30 + R×0,15 + A×0,15 · Índice = média harmônica.
 > for que o piso valha só para nicho novo, isso precisa ser escrito na lei — hoje não está, e a rodada seguinte vai ler
 > a letra.
 
+## JARDINAGEM — REPROVAÇÃO REVERTIDA na mesma noite, pela SERP real (21/10/2026)
+
+**Leia este bloco antes do de baixo, que está superado.** O Raphael abriu a SERP brasileira no Chrome dele e a
+medição mudou o resultado. Arquivo: `bussola/medicoes/serp-jardinagem-chrome-2026-10-21.md`.
+
+| componente | valor da nuvem (superado) | **valor medido no Chrome** |
+|---|---|---|
+| S_par | 1 | **4** (mediana de 6 consultas, vistas com os olhos) |
+| resposta de IA no topo | não mensurável | **nenhuma das 6 tem** |
+| fazenda no top-10 | "em todas" | **nenhuma das 6 tem** |
+| calculadora ranqueando | "o eixo está morto" | **nenhuma das 6 tem** — as máquinas existem indexadas e **não ranqueiam** |
+| Tráfego (3.0-c) | 354 a 611/dia · reprova | **1.441/dia · PASSA**, faixa 865–1.441 pelo desconto de vídeo |
+| **M** | não calculado | **≈ 0,8** (R$ 2,40/venda a 3% sobre cesta de R$ 80) |
+| Comissão Shopee | não alcançada, 3 rodadas | **3% padrão, lida em 21/10/2026** em `help.shopee.com.br/portal/10/article/124095`; **não existe tabela por categoria**; extra do vendedor até 30% (`.../article/133798`) |
+| Retorno | não calculável | **3,16** |
+| D · R · A | 5 · 5 · 4 | mantidos |
+| S_com · P | não medidos | **seguem não medidos → sem índice (3.1)** |
+
+**Estado novo:** `passa no tráfego, travado no M — aguardando a comissão extra do vendedor`.
+
+**O gargalo trocou de lado.** Jardinagem não é mais um nicho difícil de ranquear: é um nicho **fácil de ranquear e
+quase sem dinheiro por venda**. A R$ 80 de cesta e 3%, a ilha faz **R$ 1.038/mês** a 1.441 visitas/dia. Com 10% de
+comissão extra do vendedor, faz **R$ 4.496/mês**. **Essa medição é a que decide, e ela se faz no painel de afiliado
+do Raphael**, filtrando produtos de jardinagem com Comissão Extra ativa.
+
+**Duas dívidas novas, as duas baratas:**
+- **O fator de bloco de vídeo.** As 6 SERPs têm a vaga de texto vazia e dez cartões de vídeo acima dela. A curva
+  Backlinko (18,7% em top-3) é média de SERPs de todo tipo e superestima aqui. O número real está no Search
+  Console da aquametria e da robometria, por posição — e vale para toda rodada futura, não só para jardinagem.
+- **A família D de jardinagem** ("como cuidar", "tipos de" — 23.440 buscas/mês) **não foi medida no Chrome** e
+  ficou fora da soma. Medi-la só sobe o número.
+
+**E uma correção de método que vale para a fila inteira:** a classificação de SERP brasileira feita da nuvem
+produziu, nestas seis consultas, uma lista de treze ocupantes dos quais **zero** estão lá. **Nenhuma nota de SERP
+desta página que tenha sido medida da nuvem deve ser tratada como medida** — e isso inclui as notas `S_par` dos
+quatro candidatos da fila de medição da rodada 006.
+
 ## JARDINAGEM — medida inteira na rodada 007 e REPROVADA (21/10/2026)
 
 O primeiro nicho da história da Bússola a ter **volume medido no Planejador e SERP medida na mesma semana**. Passou
