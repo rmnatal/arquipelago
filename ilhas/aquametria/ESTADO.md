@@ -5,72 +5,66 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-20T20:32Z
-executando_desde: 2026-10-21T12:24Z   # reserva RENOVADA pela 1.1 (6a vez nesta execucao). Reserva original as 10h17Z. O DESEMBARQUE ACONTECEU as 12h20Z: /status e manifest na revisao 125. Faltam os dois portoes de rede que varrem as 52 URLs. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE GRAVA O CAMPO.
+ultima_execucao: 2026-10-21T12:28Z
+executando_desde: null   # a execucao de 21/10 10h17Z fechou as 12:28Z. A reserva foi RENOVADA SEIS vezes pela 1.1: a bancada de 73 portoes roda em mais de uma hora e o mutacoes-peixes.py precisou de DUAS rodadas, porque duas mutacoes sobreviveram na primeira. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada — a 1a tentativa de renovacao desta execucao escreveu 10h52Z com o relogio em 10h41Z, que foi a QUARTA reserva no futuro desta ilha.
 bloco_atual: |
-  A PERGUNTA DO ITEM 4 ESTA RESPONDIDA, E A RESPOSTA E 96: sao 96 funcoes
-  COMPARTILHADAS de ferramentas/ com um exercitador so, e 92 delas sem leitor de
-  fora nenhum — estao em arquivo que irmaos carregam, logo alcancaveis, e ninguem
-  de fora as alcanca. E a condicao exata em que o _base dormiu. Por classe: 35 em
-  regua-* (12 arquivos, so 4 com leitor de fora), 31 em teste-*, 14 em coletar-*,
-  14 em conferir-*, 2 em validar-*. 842 funcoes de topo, 6.532 sitios, ZERO orfas.
-  Item 4 do fecho de 20/10 as 16h18Z: 'quantas funcoes compartilhadas de
-  ferramentas/ tem hoje um unico exercitador? Quem a tomar conta primeiro, antes
-  de propor conserto nenhum'. Nasceram regua-exercitadores.py,
-  teste-exercitadores.py (60 afirmacoes) e mutacoes-exercitadores.py (23, zero
-  sobrevivente). A conta esta em dados/exercitadores-2026-10-20.md.
-  O PRIMEIRO ACHADO FOI DA PROPRIA PERGUNTA: contar so a CHAMADA devolve 82 orfas
-  e as 82 sao FALSAS. As c_e1..c_e28 do testar-validador-especies.py nao sao
-  chamadas em lugar nenhum — entram numa tupla de casos e quem as chama e o laco,
-  pela REFERENCIA. E o idioma de toda bancada desta pasta. A regua conta tres
-  formas (chamada 4.148, referencia 1.913, por_nome 471) e orfas() exige a
-  ausencia das tres, errando de proposito para o lado de NAO acusar.
-  E A CONTA PRODUZIU UM ACHADO DA FAMILIA DO _base, UM ANDAR ACIMA: havia CINCO
-  ler_pasta() nesta pasta, cada copia com um exercitador so, e as cinco NAO eram
-  a mesma funcao. Tres tinham errors='replace' e duas nao. MEDIDO, nao lido: num
-  .py com o byte 0xe9 (o 'e' acentuado em latin-1) as tres sobrevivem e as duas
-  morrem de UnicodeDecodeError — que e ValueError e NAO OSError, logo o except
-  delas nao o pega. Morrem de TRACEBACK, nao de veredito. E a regua-teto-do-titulo
-  e carregada por SETE irmaos: um arquivo salvo na codificacao errada levaria sete
-  portoes a traceback enquanto tres reguas irmas seguiriam trabalhando.
-  Consertadas as duas, com a nota do motivo dentro de cada uma. A PROPRIEDADE
-  PASSOU A SER COBRADA: a metade 3 do portao DESCOBRE as copias pela arvore e
-  exige que cada uma sobreviva ao byte torto — nenhuma linha do portao nomeia
-  arquivo. A mutacao 15 poe uma SEXTA copia com o buraco de ontem e o portao a
-  reprova sem ninguem a ter listado; a 14 desfaz o conserto de hoje e tambem
-  reprova. As duas versoes conviveram sem ninguem notar porque cada uma tinha um
-  leitor so, e um leitor nunca discorda de si mesmo.
-  TRES MUTACOES NAO FECHARAM NA PRIMEIRA PASSADA E AS TRES ERAM DEFEITO MEU. A 9 e
-  a 17 SOBREVIVERAM pela mesma causa do achado 7 de 16h18Z, no mesmo dia: o mundo
-  encenado NAO DISCRIMINAVA. Com nome unico na pasta o atalho de dono unico
-  atribui o sitio sem consultar o grafo de carga, entao matar o grafo nao mudava
-  resposta. O grafo so DECIDE com nome homonimo e sitio em quem carrega uma das
-  duas; nasceu o mundo (h2). A 5 reprovava de traceback porque a mutacao nao fazia
-  o que o rotulo dizia — tirar o continue de um no que nao casa com ramo nenhum
-  nao muda nada; a certa faz o cabecalho APPENDAR um sitio.
-  O LIMITE DE ESCOPO DEIXOU DE SER PROSA E PASSOU A SER NUMERO: a regua nao tem
-  escopo, e nomes_sombreados() mede que 61 dos 485 nomes de funcao de topo sao
-  TAMBEM variavel ou parametro em algum arquivo (texto em 55, linha em 30, corpo
-  em 25). Funcao com nome nessa lista NUNCA sera acusada de orfa, porque a
-  variavel de outro arquivo ja conta como sitio; para os outros 424, orfas()
-  acusa. Duas afirmacoes e duas mutacoes (18 e 19) guardam o numero nas duas
-  direcoes. A alternativa foi medida e e pior: exigir que o sitio esteja em quem
-  CARREGA devolveria as 82 orfas falsas.
-  E O NUMERO SUBIU DE 95 PARA 96 ENTRE A SONDAGEM E O FECHO, escrito em vez de
-  trocado calado: a sondagem leu a pasta ANTES de a regua e o portao existirem.
-  Regua que se mede mede a si mesma.
-  BANCADA APROVADO em 73 portoes, 0 falha, com a lista de denunciados VAZIA e zero
-  inerte — de 71 para 73 sem ninguem alimentar lista nenhuma. O portao e as mutacoes
-  novas entraram na bancada no dia em que nasceram, pela convencao de nome.
-  ZERO BYTE NO AR, CONFERIDO COM O GIT: 'git diff --stat' do main do inicio da execucao
-  (7955470) ate o fecho, contra snippets/, conteudo/ e manifest.json, sai VAZIO, e a
-  arvore de trabalho tambem. Nenhum Sync acionado e nenhum a acionar; manifest na revisao
-  122 e /status em 122, iguais; home em 200 nas TRES passadas da 20.2, com
-  robometria.com.br em 200 nas mesmas tres como controle. Teto da 21.4 segue ZERADO e
-  nenhuma URL nasceu. Bloco de instrumento, dentro do congelamento de titulo e meta de
-  14/10. Nao ha diretorio de memoria neste ambiente, entao o espelho em
-  /areas/projeto-aquametria.md nao foi escrito — o estado inteiro esta aqui e no
-  REGISTRO.md, como o PROMPT.md desta ilha manda quando a memoria falta.
+  A LISTA DE 21/10 SAIU INTEIRA E ESTA NO AR, revisao 125, e o preco dela foram
+  TREZE afirmacoes presas ao banco de ontem, em SEIS portoes. As seis entradas de
+  segundo_corpo_nao_entrou com decidir_em 2026-10-21 estao decididas e superadas;
+  sobram CINCO abertas e nenhuma delas pede data (tres regua-diferente, um escopo,
+  um nao-cobre).
+  QUEM DECIDIU FOI A TABELA dominio_por_campo, campo por campo, e nao o tamanho da
+  divergencia. Porte (BIOLOGIA, manda a base cientifica): os TRES ficam — neon 2,2
+  SL, guppy 5,0 SL, disco 13,7 SL. A nota de 16/10 previa 'vai ao maior pela E9' e
+  errou de REGRA: a E9 so alcanca os quatro campos de bem-estar. Temperatura
+  (MANUTENCAO, manda o compendio): as QUATRO trocam — neon 21-25, guppy 17-28,
+  arlequim 21-28, gurami perola 24-30. Frente minima (bem-estar): guppy FICA em 60
+  e gurami FICA em 120.
+  A REGRA QUE O GURAMI PEDIU EM 16/10 EXISTE, no esquema (versao 11), em
+  dominio_por_campo.campos_de_bem_estar: quando a tabela e a E9 discordam no mesmo
+  campo, MANDA A E9 — a tabela decide de QUEM e o numero, a E9 decide para QUE LADO
+  se erra, e autoridade de fonte nao desempata risco. Medido: dos 18 conflitos de
+  bem-estar do banco as duas CONCORDAM em 16, e os 2 de hoje (guppy 60 contra 45,
+  gurami 120 contra 90) sao os PRIMEIROS da historia desta ilha. A lista dos quatro
+  campos saiu de dentro do validador e mora ao lado da regra; o validador a importa
+  e a mutacao 9 do mutacoes-alvo-dos-casos.py prova que a importacao esta viva.
+  O GUPPY GANHOU O SEGUNDO CORPO e deixou de ser barrado — era o unico registro
+  barrado por UM motivo so. Catalogo 34 -> 35, barrados 6 -> 5, deriva 74 -> 0
+  linhas, snippet 1.16.0 -> 1.17.0, manifest e /status 122 -> 125. O danio galaxia
+  continua barrado e o que mudou nele e a CAUSA que /peixes/ publica.
+  E UM DEFEITO FOI AO AR E FOI CONSERTADO NA MESMA PASSADA: o guppy no catalogo sem
+  ficha criou em /peixes/vivaparos/ o estado que esta ilha nunca tivera — ELEGIVEL
+  SEM FICHA — e com a fila em 1 a pagina serviu '1 estao na fila'. E a cicatriz que
+  a 1.8.0 pagou na frase VIZINHA em 14/09, a que fez nascer o
+  aquametria_peixes_concorda(): o ajudante existia havia cinco semanas e esta frase
+  nunca o chamou. Os TRES ramos da prestacao de contas passam a concordar. No ar
+  agora: 'Das 4 especies da tabela, 3 ja tem a conta inteira e 1 esta na fila'.
+  A MEDICAO DE CTR NAO FOI TOCADA, e esta medido: nenhum <title>, nenhuma meta e
+  nenhuma das seis paginas medidas mudou — a leva mexeu em corpo de tabela e de
+  ficha. conferir-titulo-no-ar.py --gravar APROVADO nas 52, com as cinco promessas
+  no ar e o controle /calculadora-de-litragem/ sem um algarismo no titulo. A serie
+  do dia em que a janela fecha esta gravada.
+  O QUE NAO FOI FEITO, por CRITERIO e nao por folego: a decisao da E27 pede 'a
+  leitura semanal JA REGISTRADA' e ela nao rodou hoje (nao existe
+  search-console-2026-10-21.md); e os tres regua-diferente tiveram a ESTRADA
+  decidida e nao o numero — a leitura nova esta fechada (seriouslyfish e fishbase
+  em 000, tres passadas de hoje) e a estrada que anda e a oracao da E25, que e
+  superficie e sai com o bloco da oracao na ficha.
+  BANCADA 73 portoes: a rodada de 11h2xZ reprovou 2 e os dois estao consertados e
+  reconferidos (teste-regua-de-corpos 28 afirmacoes 0 falha; mutacoes-peixes 101 de
+  101). teste-peixes 4302 afirmacoes 0 falha; validar-especies 0 erro e de 14 para 4
+  avisos; testar-validador-especies 66 testes 0 falha. No ar, sete portoes verdes,
+  entre eles conferir-peixes-no-ar com 1010 afirmacoes 0 falha e
+  conferir-desembarque APROVADO com toda linha do log da revisao 125 dizendo ok.
+  52 URLs, NENHUMA nova, teto da 21.4 ZERADO.
+  ACHADO QUE NAO E DESTE BLOCO E JA TEM NUMERO: a lista de especies da C5 nao sai
+  do banco — e uma lista DIGITADA de oito, de Petz e Aquarismo Paulista, repetida
+  DUAS vezes no mesmo arquivo (as <option> do PHP e o var ESPECIES do JavaScript),
+  as duas concordando hoje com nada as vigiando. E as duas divergem de /peixes/ em
+  SETE das oito especies; so o acara-disco coincide. As sete ja divergiam antes de
+  hoje. Eu escrevi a prosa errada antes de medir ('o gurami perola alimenta a C5',
+  repetido da entrada de 16/10) e corrigi antes de qualquer Sync: passar no portao
+  c5-aquecedor do validador nao e ser servido pela calculadora.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |
@@ -79,7 +73,19 @@ congelamento: |
   (3 levas por semana) continua inteiro e esta ZERADO: a ultima leva de malha desta ilha foi a 9, em
   23/09/2026, e nenhuma execucao criou URL desde entao — a de 24/09, as QUATRO de 14/10 (13h16Z,
   16h17Z, 17h0xZ e 19h16Z), as TRES de 15/10 (10h2xZ, 13h19Z e 16h17Z), a de 15/10 19h16Z e a de
-  16/10 10h17Z nao criaram nenhuma. O que
+  16/10 10h17Z, as TRES de 16/10 (13h24Z, 16h17Z e 19h17Z), as QUATRO de 19/10 (10h16Z,
+  13h27Z, 16h17Z e 19h16Z), as TRES de 20/10 (10h17Z, 13h18Z e 16h18Z), a de 20/10 19h16Z e a
+  de 21/10 10h17Z nao criaram nenhuma. A de 21/10 MEXEU NA SUPERFICIE de /peixes/vivaparos/
+  (o guppy entrou no catalogo e quatro faixas de temperatura trocaram de fonte) e NAO gastou
+  leva: o teto conta pagina de malha, e nenhuma URL nasceu, mudou de endereco ou saiu.
+  E O OUTRO CONGELAMENTO, QUE NAO E O DESTE CAMPO, ACABOU EM 21/10/2026: a leitura semanal de
+  14/10 proibia mexer na superficie desta ilha antes de 21/10 para nao destruir a medicao de
+  CTR em curso, e a execucao de 21/10 10h17Z foi a primeira a trabalhar depois do prazo. Ela
+  nao tocou em <title>, em meta description nem em nenhuma das SEIS paginas medidas — isso
+  esta medido pelo conferir-titulo-no-ar.py --gravar do mesmo dia, APROVADO nas 52, com o
+  controle /calculadora-de-litragem/ ainda sem um algarismo no titulo. O que ainda espera a
+  leitura de 21/10 ser REGISTRADA e a decisao da E27, pelo criterio que ela mesma escreveu.
+  O que
   decide o tamanho da proxima leva deixou de ser o piso e passou a ser a serie, pela 14.6 e pela 14.8, e a
   leitura de 07/10 ja escreveu a decisao: a rampa DOBRA, dentro do teto e nunca contra ele.
   --- historico, de quando a ilha estava abaixo do piso ---
