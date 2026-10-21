@@ -952,6 +952,10 @@ a.aqm-c15-vt-cartao:focus-visible{outline:2px solid var(--c15-lamina);outline-of
 .aqm-c15-barra-texto{flex:1 1 auto;font-family:var(--c15-mono);font-size:.8rem;line-height:1.3;color:var(--c15-tinta);font-variant-numeric:tabular-nums;}
 .aqm-c15-barra-botao{flex:0 0 auto;}
 @media (max-width:600px){.aqm-c15-valor{font-size:1.6rem;}
+/* Gutter do painel no celular: 1,2rem de folga em cima e embaixo de cada painel
+   custava tela numa largura em que tela e o recurso escasso. */
+.aqm-c15-painel{padding:.9rem .95rem;margin:0 0 .9rem;}
+.aqm-c15-faixa{padding:.85rem .95rem;}
 .aqm-c15-produto{grid-template-columns:1fr;}
 /* O CARTAO DEITA NO CELULAR. Em pe, com a foto quadrada de 158 px no topo, o
    botao de loja do primeiro cartao caia a 1.758 px — o teto da 32.5 e 1.400.
@@ -966,7 +970,7 @@ a.aqm-c15-vt-cartao:focus-visible{outline:2px solid var(--c15-lamina);outline-of
    o texto desce ao lado da foto e continua embaixo dela. */
 .aqm-c15-vt-cartao{display:block;}
 .aqm-c15-vt-cartao:after{content:"";display:block;clear:both;}
-.aqm-c15-vt-foto{float:left;width:5.5rem;margin:0 .75rem .3rem 0;}
+.aqm-c15-vt-foto{float:left;width:4.5rem;margin:0 .7rem .3rem 0;}
 .aqm-c15-vt-cartao > span{display:block;margin:0 0 .28rem;}
 .aqm-c15-vt-botao{margin-top:.25rem;}
 .aqm-c15-barra.aqm-c15-barra-ver{display:flex;}
@@ -2390,10 +2394,10 @@ function aquametria_c15_resposta_exemplo_html() {
 	$h .= '<div class="aqm-c15-faixa">';
 	$h .= '<span class="aqm-c15-rotulo">Lúmens que este aquário pede</span>';
 	$h .= '<span class="aqm-c15-valor">' . esc_html( $valor ) . '<span class="aqm-c15-unidade">lúmens</span></span>';
-	$h .= '<p class="aqm-c15-criterio">Para ' . esc_html( aquametria_c15_litros( $caso['volume'] ) ) . ' L de água e '
-		. esc_html( $e['rotulo'] ) . ', na faixa consolidada de '
-		. esc_html( number_format_i18n( $e['lm_l'][0], 0 ) ) . ' a ' . esc_html( number_format_i18n( $e['lm_l'][1], 0 ) )
-		. ( $e['aberto'] ? '+' : '' ) . ' lm/L — união das três leituras brasileiras, não a média.</p>';
+	$h .= '<p class="aqm-c15-criterio">' . esc_html( aquametria_c15_litros( $caso['volume'] ) ) . ' L de água e '
+		. esc_html( $e['rotulo'] ) . ', a ' . esc_html( number_format_i18n( $e['lm_l'][0], 0 ) ) . ' a '
+		. esc_html( number_format_i18n( $e['lm_l'][1], 0 ) ) . ( $e['aberto'] ? '+' : '' )
+		. ' lm/L — a união das três leituras, não a média.</p>';
 	$h .= '</div>';
 	$h .= '</div>';
 
@@ -3153,7 +3157,12 @@ function aquametria_c15_vitrine_servida_html() {
 	$divulgacao = aquametria_c15_url( AQUAMETRIA_C15_PAGINA_AFILIADOS );
 
 	$h  = '<div class="aqm-c15-painel aqm-c15-vitrine-servida" id="aqm-c15-compra">';
-	$h .= '<h3>As luminárias para um aquário plantado de ' . esc_html( number_format_i18n( $c, 0 ) ) . ' cm</h3>';
+	/* O TITULO CARREGA O RECORTE, e nao ha linha de apoio antes dos cartoes: a
+	   caixa de resultado imediatamente acima acabou de dar os mesmos dois
+	   numeros, e repeti-los em outras palavras custava 65 px da primeira tela
+	   no celular — medido no ar em 21/10/2026. */
+	$h .= '<h3>Luminárias para este aquário de ' . esc_html( number_format_i18n( $c, 0 ) ) . ' cm, a partir de '
+		. esc_html( aquametria_c15_lm( $e['min'] ) ) . ' lm</h3>';
 
 	if ( ! $lista ) {
 		$h .= '<p class="aqm-c15-sub">Nenhuma luminária do banco da Aquametria entrega hoje entre '
@@ -3170,9 +3179,6 @@ function aquametria_c15_vitrine_servida_html() {
 	   abaixo do topo do bloco de compra — a pessoa lia quatro frases sobre o
 	   criterio antes de ver um produto. Nenhuma palavra saiu: o paragrafo e o
 	   mesmo, logo abaixo do trilho. */
-	$h .= '<p class="aqm-c15-sub">' . esc_html( aquametria_c15_litros( $volume ) ) . ' litros de água e plantas de '
-		. esc_html( $e['rotulo'] ) . ' pedem a partir de ' . esc_html( aquametria_c15_lm( $e['min'] ) ) . ' lm. Estas cobrem o vidro e entregam o número.</p>';
-
 	$h .= '<ul class="aqm-c15-vt-trilho">';
 	foreach ( $lista as $p ) {
 		$h .= aquametria_c15_vitrine_cartao_html( $p, $e, $p['fluxo_lm'] > $e['max'] );
