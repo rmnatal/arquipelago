@@ -198,6 +198,26 @@ def _entrada_segundo_corpo(r):
     return r["segundo_corpo_nao_entrou"][0]
 
 
+def _entrada_ainda_aberta(r):
+    """A mesma entrada, com a RESOLUCAO desfeita: corrupcao que fala de decisao adiada
+    tem de falar de uma entrada que ainda espera decisao.
+
+    ESCRITO EM 21/10/2026, DEPOIS DE QUATRO CASOS DESTE ARQUIVO MORREREM NO MESMO DIA.
+    As quatro corrupcoes do calendario do E28 miravam entradas reais do banco e
+    ASSUMIAM que elas estavam abertas; no dia em que a lista de 21/10 foi decidida, as
+    seis entradas ganharam `superada_em`/`superada_por` e as duas metades da regra que
+    elas mediam passaram a sair pelo curto-circuito do `superada` — as corrupcoes
+    ficaram INERTES e o portao disse PASSOU BATIDO nas quatro. O conserto nao e na
+    regra, que esta certa, nem no banco, que foi decidido: e na corrupcao, que tem de
+    CONSTRUIR o mundo que mede em vez de o encontrar. E a mesma licao de 15/10/2026,
+    quando dois casos aprovavam sem corrupcao nenhuma — caso que depende do estado de
+    hoje do banco vence sozinho no dia em que o banco anda."""
+    ent = _entrada_segundo_corpo(r)
+    ent.pop("superada_em", None)
+    ent.pop("superada_por", None)
+    return ent
+
+
 def c_e28_campo_vazio(b):
     # A FRONTEIRA ENTRE AS DUAS LISTAS, do lado da E28, e e a metade que faltava: a E19
     # ja reprova RECUSA de campo preenchido desde 22/09/2026, e ate 16/10 nada reprovava
@@ -213,7 +233,7 @@ def c_e28_divergiu_sem_data(b):
     # DECISAO ADIADA SEM DATA E DECISAO PERDIDA. O desfecho continua `divergiu`, o campo
     # continua preenchido, tudo o mais fica igual — some so a data.
     r = pega(b, "poecilia-reticulata")
-    _entrada_segundo_corpo(r).pop("decidir_em", None)
+    _entrada_ainda_aberta(r).pop("decidir_em", None)
 
 
 def c_e28_confirmou_sem_data(b):
@@ -223,7 +243,7 @@ def c_e28_confirmou_sem_data(b):
     # porque uma mutacao SOBREVIVEU em 16/10/2026: estreitando PEDEM_DATA para
     # `divergiu` sozinho, nada reprovava, e a regra continuava no arquivo.
     r = pega(b, "danio-margaritatus")
-    _entrada_segundo_corpo(r).pop("decidir_em", None)
+    _entrada_ainda_aberta(r).pop("decidir_em", None)
 
 
 def c_e28_desfecho_fora_do_vocabulario(b):
@@ -247,7 +267,7 @@ def c_e28_prazo_vencido(b):
     # o passado, ela vira a divergencia que envelheceu calada enquanto a tela seguiu
     # publicando um numero so. E a licao da 25.4-b.3 do contrato, do lado do banco.
     r = pega(b, "poecilia-reticulata")
-    _entrada_segundo_corpo(r)["decidir_em"] = "2026-01-01"
+    _entrada_ainda_aberta(r)["decidir_em"] = "2026-01-01"
 
 
 def c_e28_sem_campos(b):
@@ -264,7 +284,7 @@ def c_e28_prazo_vence_hoje(b):
     # que ninguem esta olhando para ela. Caso que so usa data bem no passado nao separa
     # as duas leituras, que e a licao de metodo de 16/10/2026.
     r = pega(b, "poecilia-reticulata")
-    _entrada_segundo_corpo(r)["decidir_em"] = date.today().isoformat()
+    _entrada_ainda_aberta(r)["decidir_em"] = date.today().isoformat()
 
 
 def c_e16_numero(b):

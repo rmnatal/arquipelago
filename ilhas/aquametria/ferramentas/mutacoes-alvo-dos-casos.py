@@ -97,8 +97,14 @@ MUTACOES = [
   troca(PORTAO, [ANULA_E21])),
 
  ("5. a corrupcao do E15 e anulada",
-  "o mesmo, no segundo registro: a linha de base tem `aviso [E15] "
-  "poecilia-reticulata`, e a corrupcao anulada do corydoras-panda passava",
+  "o mesmo, no segundo registro. ATENCAO AO QUE MUDOU EM 21/10/2026: esta razao "
+  "foi escrita quando a linha de base TINHA `aviso [E15] poecilia-reticulata`, e era "
+  "a linha do vizinho que fazia a corrupcao anulada do corydoras-panda passar. O "
+  "guppy ganhou segundo corpo na lista de 21/10 e aquele aviso SAIU da linha de "
+  "base. A mutacao continua mordendo, por outro caminho e mais direto: sem vizinho "
+  "nenhum, corrupcao anulada nao produz linha de E15 alguma e o caso diz PASSOU "
+  "BATIDO. O que ela media em 15/10 — o alvo — so volta a ser medido aqui no dia em "
+  "que outro registro acusar E15 de pe",
   troca(PORTAO, [ANULA_E15])),
 
  ("6. a corrupcao de um caso de ERRO e anulada (controle)",
@@ -121,6 +127,39 @@ MUTACOES = [
   troca(PORTAO, [('        pegou = procurada in novas',
                   '        pegou = any(r == regra for _, r, _ in novas)'),
                  ANULA_E21])),
+
+ ("8. a corrupcao do calendario volta a ENCONTRAR o mundo em vez de o construir",
+  "a trava escrita em 21/10/2026, e ela guarda as QUATRO corrupcoes de calendario "
+  "do E28 de uma vez. As quatro miravam entradas reais de `segundo_corpo_nao_entrou` "
+  "e assumiam que estavam ABERTAS; no dia em que as seis entradas da lista de 21/10 "
+  "ganharam `superada_em`/`superada_por`, as duas metades da regra passaram a sair "
+  "pelo curto-circuito do `superada` e as quatro corrupcoes ficaram INERTES — o "
+  "portao disse PASSOU BATIDO nas quatro, medido antes de consertado. Esta mutacao "
+  "devolve o `_entrada_ainda_aberta` ao que ele era e cobra que o portao reprove: "
+  "sem ela, qualquer execucao futura pode reatar o acoplamento entre caso e estado "
+  "de hoje do banco sem nada acusar",
+  troca(PORTAO, [('    ent = _entrada_segundo_corpo(r)\n    ent.pop("superada_em", None)\n'
+                  '    ent.pop("superada_por", None)\n    return ent',
+                  '    return _entrada_segundo_corpo(r)  # MUTACAO: volta a ENCONTRAR o mundo')])),
+
+ ("9. um campo SAI da lista de bem-estar DO ESQUEMA, e a E9 tem de parar de o cobrar",
+  "a importacao escrita em 21/10/2026. A lista dos quatro campos em que o conservador "
+  "tem de ser o maior estava DIGITADA no validar-especies.py desde que a E9 nasceu, a "
+  "um arquivo de distancia da tabela dominio_por_campo com que ela desempata, e passou "
+  "a morar no esquema junto com a regra de precedencia. Esta mutacao tira "
+  "`comprimento_minimo_aquario_cm` da lista NO ESQUEMA — nao no validador — e o caso "
+  "do E9, que corrompe exatamente esse campo no chromobotia-macracanthus, tem de dizer "
+  "PASSOU BATIDO. Se o validador voltar a ter copia propria da lista, mexer no "
+  "original nao muda nada e a mutacao SOBREVIVE. Ela foi AFIADA em 21/10/2026: a "
+  "primeira escrita renomeava a chave inteira e reprovava derrubando o validador sobre "
+  "o banco limpo — 67 falhas e `banco-limpo-reprovado` —, o que distingue os dois "
+  "mundos mas nao mede a E9; esta versao falha UM caso nomeado, que e a diferenca "
+  "entre reprovar e reprovar pelo motivo certo. E a mesma trava que a "
+  "regua-exercitadores pos na importacao da regua irma em 20/10/2026",
+  troca("dados/esquema-especies.json",
+        [('    "cardume_minimo",\n    "comprimento_minimo_aquario_cm",\n'
+          '    "base_minima_cm",\n    "altura_minima_cm"',
+          '    "cardume_minimo",\n    "base_minima_cm",\n    "altura_minima_cm"')])),
 ]
 
 

@@ -3,7 +3,7 @@
  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E28 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
  "gerado_em": "2026-09-09",
  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16; revisado na versao 5 (22/09/2026): chao_declarado_para e as regras E20 a E22 — o arranjo para quem a fonte declarou a base",
- "versao_esquema": 10,
+ "versao_esquema": 11,
  "depende_de": [
   "dados/esquema-produtos.json",
   "dados/especificacao-calculadoras.md"
@@ -132,6 +132,21 @@
     "compendio-via-busca",
     "base-cientifica-via-busca"
    ]
+  },
+  "campos_de_bem_estar": {
+   "descricao": "Os campos em que errar PARA MENOS aperta o peixe, e por isso o valor conservador de um conflito e sempre o MAIOR deles. Esta lista estava DIGITADA dentro do validar-especies.py desde que a E9 nasceu, e passou a morar aqui em 21/10/2026, no mesmo lugar da tabela com que ela desempata: regua que mora longe da regra com que ela briga e a familia de defeito que esta ilha mais paga. O validador a IMPORTA daqui, e a mutacao 9 do mutacoes-alvo-dos-casos.py tira `comprimento_minimo_aquario_cm` desta lista para provar que a importacao esta viva: com o campo fora, o caso do E9 — que corrompe justamente esse campo no chromobotia-macracanthus — tem de dizer PASSOU BATIDO. Validador com copia propria da lista nao sentiria a falta.",
+   "lista": [
+    "cardume_minimo",
+    "comprimento_minimo_aquario_cm",
+    "base_minima_cm",
+    "altura_minima_cm"
+   ],
+   "quando_esta_tabela_e_a_E9_discordam": {
+    "manda": "a E9",
+    "por_que": "As duas perguntam coisas diferentes. Esta tabela decide de QUEM e o numero mais autorizado; a E9 decide para QUE LADO se erra num campo em que errar para menos aperta o peixe. Autoridade de fonte nao desempata risco. E a E9 e a unica das duas que o validador EXECUTA neste campo — ela reprova com erro e esta tabela e prosa —, entao a precedencia ja estava em portao antes de estar escrita.",
+    "como_se_rotula": "O tratamento do conflito e `publicar-os-dois`, nunca `nivel-mais-alto-vence`: o nivel mais alto num campo de manutencao e o compendio, e quando a E9 vence nao e o numero dele que vai a tela. Rotular de nivel-mais-alto-vence seria escrever no banco o contrario do que a tela serve.",
+    "quando_isto_aparece_e_quando_nao": "So aparece quando o numero MAIOR e o da fonte que a tabela poe por BAIXO. Medido no banco de 21/10/2026: dos 18 conflitos de campo de bem-estar, as duas reguas CONCORDAM em 16 e discordam em 2 — poecilia-reticulata (60 da base cientifica contra 45 do compendio) e trichopodus-leerii (120 contra 90), os dois decididos em 21/10/2026 e os dois PRIMEIROS da historia desta ilha. E por isso que a regra nunca precisou existir antes, e por isso que a entrada de segundo_corpo_nao_entrou do gurami perola escreveu, em 16/10, que sem ela 'declarar este conflito e escolher no escuro'."
+   }
   }
  },
  "campos": [

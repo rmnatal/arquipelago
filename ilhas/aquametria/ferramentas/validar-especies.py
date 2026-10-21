@@ -259,8 +259,14 @@ def main():
     status_por_origem = {n["origem"]: n["status"] for n in esquema["escada_de_fontes"]["niveis"]}
     dominio = esquema["dominio_por_campo"]
     campos_manutencao = set(dominio["manutencao"]["campos"])
-    campos_bem_estar = {"cardume_minimo", "comprimento_minimo_aquario_cm", "base_minima_cm",
-                        "altura_minima_cm"}
+    # A LISTA DE BEM-ESTAR SAI DO ESQUEMA desde 21/10/2026, e nao mais daqui. Ela
+    # estava digitada nesta linha desde que a E9 nasceu, a UM arquivo de distancia
+    # da tabela dominio_por_campo com que ela briga — e as duas brigaram pela
+    # primeira vez em 21/10/2026, nos conflitos de frente minima do guppy (60 da
+    # base cientifica contra 45 do compendio) e do gurami perola (120 contra 90).
+    # A precedencia esta escrita ao lado da lista, em
+    # dominio_por_campo.campos_de_bem_estar, com os tres numeros que a medem.
+    campos_bem_estar = set(dominio["campos_de_bem_estar"]["lista"])
     global ACENTUACAO, ACENTUACAO_CAMPOS
     ACENTUACAO = dict(esquema["acentuacao_de_texto_de_tela"]["tabela"])
     # A LISTA DE CAMPOS DE TELA MORA NO ESQUEMA, ao lado da tabela, desde
