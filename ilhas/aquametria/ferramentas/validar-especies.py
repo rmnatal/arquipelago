@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E28 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E29 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -224,6 +224,25 @@ PALAVRAS_DE_MAXIMO = ("max",)
 # numero do campo do texto da fonte, que e justamente o que o E16 confere. A
 # conversao mora aqui, num lugar so.
 EM_CENTIMETRO = {"cm": 1.0, "mm": 0.1}
+
+
+def numero_br(v):
+    """O numero como a fonte o escreve em portugues: sem casa decimal quando e inteiro."""
+    f = float(v)
+    return ("%d" % int(round(f))) if abs(f - round(f)) < 1e-9 else ("%s" % f).replace(".", ",")
+
+
+def pares_de_medida(valor, unidade):
+    """As formas em que a fonte pode ter escrito "<valor> <unidade>" na mesma frase.
+
+    Duas, e nao uma: o separador decimal muda de lingua para lingua dentro das
+    transcricoes deste banco, e exigir uma delas reprovaria uma entrada CERTA.
+    A quantidade de formas e o preco de conferir o par em vez de conferir as duas
+    metades soltas — e o par e o que pega a conversao feita na digitacao.
+    """
+    br = numero_br(valor)
+    return (("%s %s" % (br, unidade)).lower(),
+            ("%s %s" % (br.replace(",", "."), unidade)).lower())
 
 
 def sem_acento(texto):
@@ -596,6 +615,89 @@ def main():
                         aviso("E28", rid, "%s tem decidir_em %s, que ja chegou, e a divergencia "
                                           "continua nao declarada: a tela segue publicando um "
                                           "numero so" % (onde, decidir))
+
+            # E29 - A LEITURA EM OUTRA REGUA E CAMPO CONTAVEL (esquema versao 12,
+            # 21/10/2026).
+            #
+            # Nasceu no dia em que a PAGINA passou a publicar os dois numeros com o
+            # dono de cada um, que e o que a E25 ja mandava fazer com o tamanho
+            # comum do barbo rosado. Ate aqui o numero da outra leitura morava SO
+            # na prosa de `o_que_a_fonte_declara` — "comprimento padrao de 45 mm SL
+            # (4,5 cm)" —, e prosa nao se serve na tela: ou a ficha arrancaria o
+            # numero da frase com expressao regular, ou alguem o digitaria no
+            # snippet. As duas saidas sao a terceira copia do mesmo dado, que e o
+            # que a secao 8 do ARQUIPELAGO.md cobra, e a segunda e pior: numero
+            # digitado na pagina nao envelhece junto com o banco.
+            #
+            # E E ERRO, nao aviso como a E25, e a diferenca e de quem obedece: a
+            # E25 cobra uma FRASE da pagina sobre um dado que esta certo, e esta
+            # cobra o DADO sem o qual a frase nao pode existir.
+            leitura = c.get("leitura_em_outra_regua")
+            pede_leitura = (desfecho == "regua-diferente" and "porte_adulto_cm" in alvos)
+            if pede_leitura and leitura is None:
+                erro("E29", rid, "%s tem desfecho 'regua-diferente' em porte_adulto_cm e nao "
+                                 "declara leitura_em_outra_regua: a ficha publica os dois numeros "
+                                 "com o dono de cada um, e sem o campo o numero teria de sair da "
+                                 "prosa por expressao regular ou ser digitado no snippet" % onde)
+            if leitura is not None and not pede_leitura:
+                erro("E29", rid, "%s declara leitura_em_outra_regua com desfecho '%s': o numero em "
+                                 "outra regua so tem o que fazer onde a REGUA e a causa"
+                     % (onde, desfecho or "(vazio)"))
+            if leitura is not None:
+                if not isinstance(leitura, dict):
+                    erro("E29", rid, "%s.leitura_em_outra_regua tem de ser objeto "
+                                     "{valor, unidade, medida}" % onde)
+                else:
+                    prosa = str(c.get("o_que_a_fonte_declara") or "")
+                    plano = sem_acento(prosa)
+                    valor = leitura.get("valor")
+                    unidade = leitura.get("unidade")
+                    medida = leitura.get("medida")
+                    if not isinstance(valor, (int, float)) or isinstance(valor, bool) or valor <= 0:
+                        erro("E29", rid, "%s.leitura_em_outra_regua.valor tem de ser numero maior "
+                                         "que zero" % onde)
+                    if unidade not in EM_CENTIMETRO:
+                        erro("E29", rid, "%s.leitura_em_outra_regua.unidade '%s' fora de (cm, mm)"
+                             % (onde, unidade))
+                    # O PAR, E NAO O NUMERO E A UNIDADE SEPARADOS. Medido em
+                    # 21/10/2026: as tres prosas deste banco escrevem "comprimento
+                    # padrao de 120 mm SL (12,0 cm)", com os DOIS numeros e as DUAS
+                    # unidades dentro da mesma frase — entao "o numero aparece na
+                    # prosa" aprova 12,0 no lugar dos 120 mm, e "a unidade aparece
+                    # na prosa" aprova cm no lugar de mm. Os dois afrouxamentos
+                    # passaram batido na primeira versao desta regra, e os dois sao
+                    # o mesmo defeito: a conversao feita na digitacao, que e o que o
+                    # `comum` do E24 proibe com a mesma palavra. O par escrito junto
+                    # e a unica forma que a fonte usou.
+                    elif (isinstance(valor, (int, float)) and not isinstance(valor, bool)
+                            and valor > 0 and not any(par in plano for par in pares_de_medida(valor, unidade))):
+                        erro("E29", rid, "%s.leitura_em_outra_regua nao traz o par '%s %s' como a "
+                                         "fonte o escreveu — a prosa diz outra coisa, e numero ou "
+                                         "unidade convertidos na digitacao tiram o campo do texto "
+                                         "da fonte"
+                             % (onde, numero_br(valor), unidade))
+                    if medida not in ("SL", "TL"):
+                        erro("E29", rid, "%s.leitura_em_outra_regua.medida '%s' fora de (SL, TL)"
+                             % (onde, medida))
+                    elif sem_acento(medida) not in plano:
+                        erro("E29", rid, "%s.leitura_em_outra_regua.medida e '%s' e a prosa nao a "
+                                         "nomeia: a regua tambem se transcreve" % (onde, medida))
+                    # A REGUA QUE FAZ O DESFECHO SER O QUE ELE DIZ, e ela e um `if`
+                    # SOLTO e nao o `elif` da cadeia acima. Medido em 21/10/2026: em
+                    # cadeia, a conferencia de "a prosa nomeia a regua" MASCARAVA
+                    # esta, e a mutacao que apagava esta sobrevivia — o portao
+                    # parecia medi-la e media a de cima. Regra que pede duas coisas
+                    # so prova as duas quando as duas falam por si.
+                    #
+                    # Leitura na MESMA regua nao e regua-diferente: ou ela confirma
+                    # o campo, e entra como corpo, ou discorda dele, e e `divergiu`.
+                    # Chamar de regua-diferente o que esta na mesma regua esconde
+                    # uma das duas coisas. E so vale onde o desfecho a pede — em
+                    # `divergiu` quem reclama do campo e a linha do desfecho.
+                    if pede_leitura and medida == r.get("porte_medida"):
+                        erro("E29", rid, "%s declara a leitura em %s, a MESMA regua do registro: "
+                                         "leitura na mesma regua confirma o campo ou discorda dele, "
+                                         "e nenhum dos dois e 'regua-diferente'" % (onde, medida))
 
         # E18 - o teto da faixa de grupo (esquema versao 4, 14/09/2026)
         #

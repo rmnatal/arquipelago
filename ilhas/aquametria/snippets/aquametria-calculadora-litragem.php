@@ -1,5 +1,13 @@
 /**
  * Aquametria Calculadora de Litragem — C1
+ * Versão: 1.3.1 (21/10/2026) — A PROMESSA DA 32.1 PASSA A FALAR COM QUEM ENTROU.
+ * O portão da voz desta ilha estava VERMELHO em 110 afirmações desde o commit do
+ * molde, e ninguém o leu: medido no `main` de 21/10/2026 às 20h1xZ. A causa é que
+ * o molde põe a promessa ANTES da prosa, então ela passou a ser o primeiro
+ * parágrafo — e a régua do VOZ.md cobra segunda pessoa da abertura. Três das
+ * quatro promessas desta ilha já falavam com a pessoa ("o SEU cômodo", "o SEU
+ * filtro"); esta não. Não é régua velha: é voz que faltou em duas de quatro.
+ *
  * Versão: 1.3.0 (21/10/2026) — O MOLDE DE CONVERSÃO DA SEÇÃO 32 CHEGA AQUI, pela
  * 32.6-b (mutirão), e esta é a TERCEIRA das cinco calculadoras. Medido no ar
  * antes, celular de 390 px: 13.451 px de altura e 6 px de rolagem horizontal que
@@ -71,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C1_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C1_VERSAO', '1.3.0' );
+	define( 'AQUAMETRIA_C1_VERSAO', '1.3.1' );
 	define( 'AQUAMETRIA_C1_SLUG', 'calculadora-de-litragem' );
 	define( 'AQUAMETRIA_C1_VERIFICADO_EM', '07/09/2026' );
 	define( 'AQUAMETRIA_C1_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -601,8 +609,9 @@ function aquametria_c1_caso_exemplo() {
 if ( ! function_exists( 'aquametria_c1_promessa_html' ) ) {
 function aquametria_c1_promessa_html() {
 	return aquametria_casca_promessa_html(
-		'Entram as medidas em centímetros e a espessura do vidro; saem o volume bruto, '
-		. 'o interno e a água que de fato cabe — que é o número que as outras calculadoras usam.'
+		'Entram as medidas do seu aquário em centímetros e a espessura do vidro; saem o '
+		. 'volume bruto, o interno e a água que de fato cabe — que é o número que as outras '
+		. 'calculadoras usam.'
 	);
 }
 }

@@ -424,6 +424,17 @@ falhas = []
 contadas = [0]
 
 
+def sem_acento(t):
+    """Texto plano, para a afirmacao nao depender de como o acento foi escrito.
+
+    Mora no alto do arquivo e nao dentro de um teste: ate 21/10/2026 havia uma
+    copia local disto dentro da medicao dos barbos, e regua copiada e regua que
+    uma das copias deixa de receber o conserto.
+    """
+    return "".join(ch for ch in unicodedata.normalize("NFD", str(t or ""))
+                   if unicodedata.category(ch) != "Mn").lower()
+
+
 def ok(nome, cond, extra=""):
     contadas[0] += 1
     print("  %s %s%s" % ("ok   " if cond else "FALHA", nome, (" — " + extra) if extra else ""))
@@ -818,6 +829,179 @@ def medir_restricao_de_companhia(slug, e, c, t):
        "restricao em %d, tabela em %d" % (i_bloco, i_tabela))
 
 
+# AS PALAVRAS DE COMPARACAO QUE A E25 PROIBE quando as reguas diferem, escritas
+# AQUI a mao e nao derivadas do snippet — se viessem dele, apagar a frase do
+# snippet apagaria a regua junto. Sao as tres formas em que uma comparacao de
+# tamanho sai em portugues sem usar numero novo: a fracao, o multiplo e a razao.
+# "maior" e "menor" NAO estao na lista de proposito: a oracao certa diz "o maior
+# exemplar que a fonte conhece", e proibir a palavra reprovaria a frase correta.
+COMPARACAO_PROIBIDA = ("metade", "o dobro", " vezes ")
+
+# "REGUA" DENTRO DO BLOCO DE ESCOPO, e so dentro dele. Achada na varredura da
+# propria passada que escreveu a oracao, em 21/10/2026, 40 minutos depois de
+# "fabrica" e "vitrine" terem sido limpas de 40 paginas pela mesma regra: a
+# primeira versao dizia "a regua desse numero nao foi declarada", e "regua" nesta
+# ilha e o nome interno de um portao. A palavra do leitor e a da fonte, e e a que
+# a `observacao` do barbo rosado ja usava: MEDIDA.
+#
+# E ELA NAO E PROIBIDA NA PAGINA INTEIRA, de proposito — medido nas 29 fichas na
+# mesma varredura: todas dizem "as duas REGUAS de lotacao que circulam no
+# aquarismo brasileiro", e ali regua e vocabulario de quem monta aquario, nao de
+# quem monta a fabrica. Proibir a palavra na pagina reprovaria 29 frases certas.
+# A mesma palavra em dois vocabularios se separa pelo LUGAR, nao pela letra.
+PALAVRA_DE_BASTIDOR = ("regua",)
+
+
+def medir_escopo_do_porte(slug, e, c, t):
+    """O PORTE QUE AS TABELAS USAM E O MAXIMO REGISTRADO, e a ficha tem de dize-lo.
+
+    A metade de BANCO nasceu em 15/10/2026 (esquema versao 7, campo
+    `porte_e_maximo_registrado`) e nasceu CALADA de proposito: a leitura semanal de
+    14/10 proibia mexer na superficie desta ilha antes de 21/10, porque e o que
+    destroi a medicao de CTR em curso. Esta e a metade de PAGINA, e e ela que o
+    E25 nomeia por escrito — "quem executa essa metade e ferramentas/teste-peixes.py,
+    contra o HTML servido".
+
+    QUATRO FAMILIAS DE AFIRMACAO, e as duas primeiras sao as duas direcoes:
+      1. tantos blocos de escopo na tela quantos registros com a clausula no banco
+         — ZERO inclusive, que e o caso do peixe-espada, cuja fonte escreve "ate" e
+         nunca "max" (os tres registros assim foram VARRIDOS, nao supostos);
+      2. o bloco diz as duas coisas que a `observacao` do barbo rosado cobrava desde
+         23/09/2026: que o numero e MAXIMO REGISTRADO e que ele NAO e o tamanho
+         esperado em cativeiro. Uma das duas sozinha nao serve — "e o maximo" sem a
+         segunda metade e vocabulario de ficha tecnica, e "nao e o esperado" sem a
+         primeira nao diz o que ele e;
+      3. o tamanho comum, quando existe: na MESMA regua a pagina pode compara-los e
+         diz isso; em regua DIFERENTE ela publica os dois com o dono de cada um, diz
+         que a regua do comum nao foi declarada e NAO os compara — e a terceira
+         parte e a que tem dentes, porque e a frase que a pagina mais quer escrever
+         ("menos da metade") e a que a E25 proibe;
+      4. a CLAUSULA transcrita nao vai para a tela, como no bloco de restricao: ela
+         e prova de banco, sem acento e no vocabulario de quem colheu.
+    """
+    pmr = e.get("porte_e_maximo_registrado")
+    blocos = re.findall(r'<p class="aqm-px-escopo-porte">(.*?)</p>', c, re.S)
+    ok("%s: %d bloco(s) de escopo do porte na tela, um por clausula de maximo do banco"
+       % (slug, 1 if pmr else 0),
+       len(blocos) == (1 if pmr else 0), "%d na tela" % len(blocos))
+    if not pmr or not blocos:
+        return
+
+    bloco = texto(blocos[0])
+    plano = sem_acento(bloco)
+    porte = faixa_do_campo(e, "porte_adulto_cm")
+    ok("%s: o escopo diz que o numero e MAXIMO REGISTRADO" % slug,
+       "maximo registrado" in plano, bloco[:140])
+    ok("%s: o escopo diz que ele NAO e o tamanho esperado no aquario" % slug,
+       "nao o tamanho que se espera" in plano and "aquario" in plano, bloco[:160])
+    ok("%s: o escopo publica o numero (%s cm) e a regua (%s)"
+       % (slug, numero_br(porte[1]), e["porte_medida"]),
+       ("%s cm" % numero_br(porte[1])) in bloco and e["porte_medida"] in bloco, bloco[:140])
+
+    # o dono da clausula, perguntado ao banco e nao ao snippet
+    refs = [f for f in e.get("fontes", [])
+            if "porte_e_maximo_registrado" in (f.get("campos") or [])]
+    ok("%s: o banco tem fonte que declara porte_e_maximo_registrado" % slug, len(refs) >= 1)
+    if refs:
+        dono = corpo_da_referencia(refs[0].get("referencia"))
+        ok("%s: o escopo nomeia quem declarou o maximo (%s)" % (slug, dono),
+           bool(dono) and dono in bloco, bloco[:160])
+
+    ok("%s: a clausula transcrita do maximo NAO aparece no corpo" % slug,
+       str(pmr.get("frase") or "") not in t, str(pmr.get("frase") or "")[:60])
+    bastidor = [w for w in PALAVRA_DE_BASTIDOR if w in plano]
+    ok("%s: o escopo nao usa palavra de bastidor da fabrica (32.4)" % slug,
+       not bastidor, ", ".join(bastidor))
+
+    comum = pmr.get("comum")
+    if not comum:
+        # SEM TAMANHO COMUM A PAGINA NAO PODE INVENTAR UM. E a direcao que falta
+        # na maioria das fichas: 26 dos 29 registros com clausula de maximo nao
+        # tem `comum`, e o bloco delas nao pode falar de "maioria dos adultos".
+        ok("%s: sem tamanho comum no banco, o escopo nao fala da maioria dos adultos" % slug,
+           "maioria dos adultos" not in plano, bloco[-140:])
+        return
+
+    ok("%s: a clausula transcrita do tamanho comum NAO aparece no corpo" % slug,
+       str(comum.get("frase") or "") not in t, str(comum.get("frase") or "")[:60])
+    faixa_comum = (numero_br(comum["de"])
+                   + ("" if comum.get("ate") is None else " a " + numero_br(comum["ate"]))
+                   + " " + str(comum["unidade"]))
+    ok("%s: o escopo publica o tamanho comum como a fonte o declarou (%s)" % (slug, faixa_comum),
+       faixa_comum in bloco, bloco[-200:])
+    dono_comum = corpo_da_referencia(
+        next((f.get("referencia") for f in refs
+              if str(comum.get("frase") or "") in (f.get("referencia") or "")), ""))
+    ok("%s: o escopo nomeia quem declarou o tamanho comum (%s)" % (slug, dono_comum),
+       bool(dono_comum) and dono_comum in bloco, bloco[-180:])
+
+    if comum.get("medida") is not None and comum["medida"] == e["porte_medida"]:
+        ok("%s: as duas medidas estao na MESMA regua e o escopo diz isso" % slug,
+           "medido do mesmo jeito" in plano, bloco[-160:])
+    else:
+        # A E25 NA TELA. O aviso do validador existe porque o DADO esta certo e
+        # quem tem de obedecer e esta pagina.
+        ok("%s: o escopo diz que a fonte do comum NAO declarou a medida" % slug,
+           "nao disse com que medida" in plano, bloco[-200:])
+        ok("%s: o escopo diz que NAO compara os dois numeros" % slug,
+           "nao os compara" in plano, bloco[-160:])
+        achadas = [w for w in COMPARACAO_PROIBIDA if w in plano]
+        ok("%s: o escopo nao compara dois numeros de medidas diferentes" % slug,
+           not achadas, ", ".join(achadas))
+
+
+def medir_leitura_em_outra_regua(slug, e, c, t):
+    """A LEITURA DE OUTRO CORPO QUE FALA EM OUTRA REGUA (E29, esquema versao 12).
+
+    Tres entradas deste banco tem desfecho `regua-diferente` em `porte_adulto_cm`:
+    rasbora arlequim, gurami perola e acara-bandeira, as tres com SL contra TL. Duas
+    delas tem ficha — o gurami perola esta BARRADO no portao de pagina, por nao
+    declarar `convivencia`, e por isso o numero de blocos sai do BANCO daquele
+    registro e nunca de uma contagem escrita aqui.
+
+    E o caso mais perigoso da lista de desfechos, e esta e a frase que o desarma:
+    nos dois registros com ficha o numero BATE (45 mm contra 5,0 cm; 150 mm contra
+    15,0 cm) e a regua nao, e coincidencia de algarismo em reguas diferentes nao e
+    confirmacao. Calar a leitura esconderia que ela existe; servi-la como
+    confirmacao fabricaria um segundo corpo onde nao ha.
+    """
+    esperadas = [x for x in (e.get("segundo_corpo_nao_entrou") or [])
+                 if x.get("desfecho") == "regua-diferente"
+                 and "porte_adulto_cm" in (x.get("campos") or [])]
+    blocos = re.findall(r'<p class="aqm-px-outra-regua">(.*?)</p>', c, re.S)
+    ok("%s: %d bloco(s) de leitura em outra regua, um por entrada do banco"
+       % (slug, len(esperadas)),
+       len(blocos) == len(esperadas), "%d na tela, %d no banco" % (len(blocos), len(esperadas)))
+    if not esperadas or len(blocos) != len(esperadas):
+        return
+
+    porte = faixa_do_campo(e, "porte_adulto_cm")
+    for entrada, bruto in zip(esperadas, blocos):
+        bloco = texto(bruto)
+        plano = sem_acento(bloco)
+        leitura = entrada.get("leitura_em_outra_regua") or {}
+        ok("%s: a leitura de fora vem com o numero e a unidade da fonte (%s %s)"
+           % (slug, numero_br(leitura.get("valor")), leitura.get("unidade")),
+           ("%s %s" % (numero_br(leitura.get("valor")), leitura.get("unidade"))) in bloco,
+           bloco[:160])
+        ok("%s: a leitura de fora vem com a regua dela (%s)" % (slug, leitura.get("medida")),
+           str(leitura.get("medida")) in bloco, bloco[:160])
+        ok("%s: o bloco nomeia quem fez a leitura de fora (%s)" % (slug, entrada.get("corpo")),
+           str(entrada.get("corpo") or "") in bloco, bloco[:160])
+        ok("%s: o bloco publica o numero que esta ficha usa, com o dono e a regua" % slug,
+           ("%s cm" % numero_br(porte[1])) in bloco and e["porte_medida"] in bloco,
+           bloco[:200])
+        ok("%s: o bloco diz que as MEDIDAS diferem" % slug,
+           "as medidas diferem" in plano, bloco[:200])
+        ok("%s: o bloco diz que os dois numeros nao se comparam" % slug,
+           "nao se comparam" in plano, bloco[-160:])
+        # A PROSA DA ENTRADA NAO VAI PARA A TELA, como a clausula do E24: ela e
+        # prova de banco, sem acento e no vocabulario de quem colheu.
+        ok("%s: a prosa da entrada do segundo corpo NAO aparece no corpo" % slug,
+           str(entrada.get("o_que_a_fonte_declara") or "") not in t,
+           str(entrada.get("o_que_a_fonte_declara") or "")[:60])
+
+
 def medir_ficha(slug, ident, banco):
     e = banco[ident]
     pagina = servir(slug)
@@ -841,6 +1025,8 @@ def medir_ficha(slug, ident, banco):
        c.count('class="aqm-prova"') <= teto_prova, "%d blocos" % c.count('class="aqm-prova"'))
 
     medir_restricao_de_companhia(slug, e, c, t)
+    medir_escopo_do_porte(slug, e, c, t)
+    medir_leitura_em_outra_regua(slug, e, c, t)
 
     # --- o nome popular da especie certa, e nunca o de outra ficha
     nome = e["nomes_populares_br"][0]

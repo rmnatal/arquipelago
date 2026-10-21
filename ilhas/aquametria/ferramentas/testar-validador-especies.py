@@ -534,6 +534,80 @@ def c_e16_comum_numero(b):
     pega(b, "puntius-titteya")["porte_e_maximo_registrado"]["comum"]["de"] = 2.7
 
 
+def _regua_diferente(b, ident):
+    """A entrada de `regua-diferente` daquele registro, para a corrupcao editar.
+
+    E perguntada ao banco e nunca contada de cabeca: o dia em que um dos tres
+    desfechos virar `divergiu` por uma leitura nova, este helper para de achar a
+    entrada e o caso morre em INERTE em vez de medir outro registro em silencio.
+    """
+    for c in pega(b, ident).get("segundo_corpo_nao_entrou", []):
+        if c.get("desfecho") == "regua-diferente":
+            return c
+    raise SystemExit("CASO INERTE: %s nao tem entrada de segundo corpo com desfecho "
+                     "'regua-diferente'" % ident)
+
+
+def c_e29_sem_leitura(b):
+    """O desfecho que a PAGINA tem de publicar, sem o numero para publicar.
+
+    E o mundo de antes da versao 12 do esquema: a entrada diz 'regua-diferente' e o
+    numero da outra leitura mora so na prosa. A ficha teria de arranca-lo da frase
+    com expressao regular ou receber o numero digitado no snippet.
+    """
+    del _regua_diferente(b, "trigonostigma-heteromorpha")["leitura_em_outra_regua"]
+
+
+def c_e29_leitura_na_mesma_regua(b):
+    """A leitura declarada na MESMA regua do registro.
+
+    Leitura na mesma regua confirma o campo (e entra como corpo) ou discorda dele
+    (e e `divergiu`); nenhum dos dois e 'regua-diferente'. Sem esta metade a ilha
+    publicaria 'as reguas diferem' sobre duas leituras na mesma regua, que e a
+    frase mais errada que esta oracao pode servir.
+    """
+    c = _regua_diferente(b, "trichopodus-leerii")
+    # A PROSA VAI JUNTO, de proposito: declarar TL sem a prosa nomear TL cairia na
+    # conferencia de "a regua tambem se transcreve", e o caso mediria aquela metade
+    # em vez desta. Mundo corrompido pela metade mede a regua errada.
+    c["o_que_a_fonte_declara"] = "comprimento padrao de 120 mm TL."
+    c["leitura_em_outra_regua"]["medida"] = "TL"
+
+
+def c_e29_valor_que_a_prosa_nao_traz(b):
+    """O numero convertido na digitacao, no lugar do algarismo da fonte.
+
+    A prosa do gurami perola escreve 120 mm; 12,0 e o MESMO tamanho em outra
+    unidade, e e exatamente o numero que a ficha publicaria como se a fonte o
+    tivesse escrito. E a metade do E24 que pega a clausula que nao fala daquele
+    numero, um andar abaixo.
+    """
+    _regua_diferente(b, "trichopodus-leerii")["leitura_em_outra_regua"]["valor"] = 12.0
+
+
+def c_e29_unidade_convertida(b):
+    """A unidade que a prosa nao usa: as tres leituras declaram milimetro."""
+    _regua_diferente(b, "pterophyllum-scalare")["leitura_em_outra_regua"]["unidade"] = "cm"
+
+
+def c_e29_leitura_em_desfecho_que_nao_a_pede(b):
+    """O numero em outra regua pendurado num desfecho em que a regua nao e a causa.
+
+    O acara-disco divergiu no NUMERO, na mesma regua. Deixar o campo entrar ali
+    faria a ficha dele publicar 'as reguas diferem' sobre uma divergencia que nao
+    e de regua — e a E29 e a unica regua que ve isso, porque o dado, isolado, esta
+    bem formado.
+    """
+    for c in pega(b, "symphysodon-aequifasciatus").get("segundo_corpo_nao_entrou", []):
+        if c.get("desfecho") == "divergiu":
+            # BEM FORMADO em tudo o que a FORMA do campo cobra — o par "140 mm" e a
+            # regua SL estao na prosa daquela entrada —, para que o unico defeito
+            # seja o desfecho. Caso que tambem erra na forma mede a forma.
+            c["leitura_em_outra_regua"] = {"valor": 140, "unidade": "mm", "medida": "SL"}
+            return
+    raise SystemExit("CASO INERTE: symphysodon-aequifasciatus nao tem entrada 'divergiu'")
+
+
 def c_e25_duas_reguas(b):
     """O comum numa regua DECLARADA e diferente da do maximo.
 
@@ -576,6 +650,16 @@ TESTES = [
      c_e16_comum_numero, "erro", "puntius-titteya"),
     ("E25", "maximo e comum em reguas declaradas diferentes", c_e25_duas_reguas, "aviso",
      "puntius-titteya"),
+    ("E29", "desfecho de regua-diferente sem a leitura em outra regua", c_e29_sem_leitura,
+     "erro", "trigonostigma-heteromorpha"),
+    ("E29", "leitura declarada na MESMA regua do registro", c_e29_leitura_na_mesma_regua,
+     "erro", "trichopodus-leerii"),
+    ("E29", "valor da leitura convertido, e nao o algarismo da fonte",
+     c_e29_valor_que_a_prosa_nao_traz, "erro", "trichopodus-leerii"),
+    ("E29", "unidade da leitura convertida na digitacao", c_e29_unidade_convertida, "erro",
+     "pterophyllum-scalare"),
+    ("E29", "leitura em outra regua num desfecho em que a regua nao e a causa",
+     c_e29_leitura_em_desfecho_que_nao_a_pede, "erro", "symphysodon-aequifasciatus"),
     ("E20", "base dos dois lados sem chao_declarado_para", c_e20_sem_chao, "erro",
      "apistogramma-agassizii"),
     ("E20", "chao_declarado_para sem base dos dois lados", c_e20_chao_sem_base, "erro",

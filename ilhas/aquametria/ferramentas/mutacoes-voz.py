@@ -32,7 +32,7 @@ CASCA = 'snippets/aquametria-casca.php'
 ARTIGOS = 'snippets/aquametria-artigos.php'
 PEIXES = 'snippets/aquametria-peixes.php'
 C5_SNIPPET = 'snippets/aquametria-calculadora-aquecedor.php'
-C12_MD = 'conteudo/calculadora-de-midia-filtrante.md'
+C12_SNIPPET = 'snippets/aquametria-calculadora-midia.php'
 AFILIADOS_MD = 'conteudo/divulgacao-de-afiliados.md'
 
 
@@ -215,11 +215,39 @@ MUTACOES = [
               '## De onde vem o número que aparece no cartão',
               '## De onde vem a ficha técnica de cada produto'),
     ),
+    # A ABERTURA DA C12 MUDOU DE LUGAR, E ESTA MUTACAO MUDOU COM ELA (21/10/2026).
+    #
+    # Ate 21/10 ela corrompia o PRIMEIRO PARAGRAFO DO MARKDOWN desta pagina para o
+    # texto impessoal que a regua nasceu para pegar ("Pergunte na internet
+    # brasileira..."). Naquele dia o molde da secao 32 entrou nas cinco
+    # calculadoras e DESCEU o paragrafo de abertura do Markdown para dentro de uma
+    # dobra, pondo a frase de promessa da 32.1 no lugar dele — esta de ser a
+    # abertura, e e a promessa agora. Esta no comentario do proprio snippet:
+    # "duas promessas dizendo a mesma coisa com palavras diferentes custam a
+    # primeira tela sem acrescentar nada".
+    #
+    # Com isso a mutacao velha passou a SOBREVIVER, e ela sobreviveu porque estava
+    # certa sobre o mundo de ontem: a regua le a abertura da PAGINA, e a abertura
+    # da pagina deixou de ser aquele paragrafo. Ela foi reapontada para a frase que
+    # ABRE a pagina hoje, e quem a pega e a afirmacao nova de segunda pessoa sobre
+    # a promessa, no teste-voz.mjs.
+    #
+    # E O QUE SE PERDEU ESTA MEDIDO E ESCRITO, nao suposto: a abertura do Markdown
+    # dessas paginas nao e mais coberta por regua de voz nenhuma, e tres
+    # localizadores foram tentados em 21/10 para alcanca-la — "o primeiro <p> da
+    # primeira dobra" (30 falhas em prosa correta), "o primeiro <p> sem classe"
+    # (42 falhas, porque pega a caixa de resposta direta) e o renderizador de
+    # artigo (que serve a ferramenta junto, entao da no mesmo). Os tres reprovam
+    # pagina certa, e regua que reprova pagina certa custa mais do que a cobertura
+    # que ela devolve. O proximo passo esta no REGISTRO.md de 21/10 e ele NAO e um
+    # quarto localizador: e decidir se a prosa de dentro da dobra e "abertura" para
+    # o VOZ.md ou se ela passa a ter regua propria, com a regra escrita para o
+    # lugar onde ela esta hoje.
     (
-        'o primeiro paragrafo para de falar com a pessoa e passa a falar da internet',
-        troca(C12_MD,
-              'Num aquário de 100 litros, a mídia biológica que o seu filtro pede vai de **125 mililitros a 1,25 litro** — dez vezes de diferença, conforme a marca que você abrir. Não é erro de leitura: as dosagens que existem discordam nessa ordem de grandeza, e ninguém as coloca lado a lado.',
-              'Pergunte na internet brasileira quanta mídia biológica um aquário de 100 litros precisa e não virá um número. Virão conselhos: encha o cesto, quanto mais melhor, cerâmica embaixo e perlon em cima. Todos verdadeiros, nenhum quantificado.'),
+        'a frase que ABRE a pagina para de falar com a pessoa e passa a falar do aquario em geral',
+        troca(C12_SNIPPET,
+              "'Entram o volume de água e o seu filtro; saem os mililitros de mídia biológica, '",
+              "'Entram o volume de água e o filtro; saem os mililitros de mídia biológica, '"),
     ),
 
     # ------------------------------------------------------------------

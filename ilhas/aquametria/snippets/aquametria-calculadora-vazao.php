@@ -1,5 +1,13 @@
 /**
  * Aquametria Calculadora de Vazão do Filtro — C3
+ * Versão: 1.9.1 (21/10/2026) — A PROMESSA DA 32.1 PASSA A FALAR COM QUEM ENTROU.
+ * O portão da voz desta ilha estava VERMELHO em 110 afirmações desde o commit do
+ * molde, e ninguém o leu: medido no `main` de 21/10/2026 às 20h1xZ. A causa é que
+ * o molde põe a promessa ANTES da prosa, então ela passou a ser o primeiro
+ * parágrafo — e a régua do VOZ.md cobra segunda pessoa da abertura. Três das
+ * quatro promessas desta ilha já falavam com a pessoa ("o SEU cômodo", "o SEU
+ * filtro"); esta não. Não é régua velha: é voz que faltou em duas de quatro.
+ *
  * Versão: 1.9.0 (21/10/2026) — O MOLDE DE CONVERSÃO DA SEÇÃO 32, a QUINTA e última
  * calculadora da ilha. Medido no ar antes, no celular de 390 px: o formulário
  * começava a **1.816 px** (a 32.5 pede antes de 700), o primeiro botão de loja a
@@ -172,7 +180,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C3_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C3_VERSAO', '1.9.0' );
+	define( 'AQUAMETRIA_C3_VERSAO', '1.9.1' );
 	define( 'AQUAMETRIA_C3_SLUG', 'calculadora-de-vazao-do-filtro' );
 	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '09/09/2026' );
 	/* Constante 'eheim-classic-250-2213' (dados/constantes-calculadoras.json):
@@ -1548,8 +1556,8 @@ function aquametria_c3_resposta_exemplo_html() {
 if ( ! function_exists( 'aquametria_c3_promessa_html' ) ) {
 function aquametria_c3_promessa_html() {
 	return aquametria_casca_promessa_html(
-		'Entram o volume de água e o perfil do aquário; saem os litros por hora de filtro '
-		. 'e quais modelos atendem, com a faixa e a fonte de cada um.'
+		'Entram o volume de água e o perfil do seu aquário; saem os litros por hora de '
+		. 'filtro e quais modelos atendem, com a faixa e a fonte de cada um.'
 	);
 }
 }

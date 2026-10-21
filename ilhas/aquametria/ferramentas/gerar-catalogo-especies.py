@@ -248,6 +248,73 @@ def mapa_de_hosts(banco):
     return mapa
 
 
+def corpo_da_frase(frase, fontes):
+    """Quem escreveu aquela clausula, perguntado as fontes do proprio registro.
+
+    DERIVADO E NUNCA DIGITADO: a E24 exige que a frase seja trecho literal da
+    referencia de uma fonte que declare `porte_e_maximo_registrado` em `campos`,
+    entao o dono existe no banco e e so acha-lo. Digitar o nome do corpo no
+    snippet poria a pagina atribuindo o numero por memoria de quem a escreveu — e
+    no dia em que a fonte trocasse, a tela continuaria dizendo o nome velho.
+
+    Devolve "" quando nao houver frase: o registro sem o campo nao tem escopo a
+    publicar, e "" e o que o PHP le como ausencia.
+    """
+    frase = str(frase or "").strip()
+    if not frase:
+        return ""
+    for f in fontes:
+        if frase in (f.get("referencia") or ""):
+            return f.get("corpo") or ""
+    return ""
+
+
+def comum_para_a_tela(pmr, fontes):
+    """O tamanho comum como a ficha o serve: os numeros, a regua e o dono.
+
+    A `frase` NAO vem: ela e prova de banco, sem acento e no vocabulario de quem
+    colheu. A unidade vem como a fonte a escreveu — o compendio do barbo rosado
+    escreve milimetro — porque converter aqui tiraria o numero do texto da fonte,
+    que e o que a E24 confere. A conversao para centimetro, quando a pagina
+    precisar dela, e derivada e mora numa funcao so.
+    """
+    comum = (pmr or {}).get("comum")
+    if not comum:
+        return None
+    return {
+        "de": comum.get("de"),
+        "ate": comum.get("ate"),
+        "unidade": comum.get("unidade") or "",
+        "medida": comum.get("medida"),
+        "corpo": corpo_da_frase(comum.get("frase"), fontes),
+    }
+
+
+def leituras_em_outra_regua(e):
+    """As leituras de porte que nao entraram porque falam em outra regua (E29).
+
+    Sai de `segundo_corpo_nao_entrou`, filtrando por desfecho E por campo: uma
+    entrada de `regua-diferente` sobre temperatura nao tem o que fazer na oracao
+    do porte. O `corpo` ja esta na propria entrada, escrito por quem fez a
+    leitura, e o numero e a unidade vem do campo contavel que a E29 confere — a
+    prosa de `o_que_a_fonte_declara` fica no banco, onde ela e prova.
+    """
+    saida = []
+    for c in (e.get("segundo_corpo_nao_entrou") or []):
+        if c.get("desfecho") != "regua-diferente":
+            continue
+        if "porte_adulto_cm" not in (c.get("campos") or []):
+            continue
+        leitura = c.get("leitura_em_outra_regua") or {}
+        saida.append({
+            "corpo": c.get("corpo") or "",
+            "valor": leitura.get("valor"),
+            "unidade": leitura.get("unidade") or "",
+            "medida": leitura.get("medida") or "",
+        })
+    return saida
+
+
 def nome_do_valor(v, mapa_host):
     """O nome do corpo de um valor de conflito: pela referencia, ou pelo host."""
     nome = nome_do_corpo(v.get("referencia", ""))
@@ -428,6 +495,7 @@ def main():
             continue
 
         base = e.get("base_minima_cm") or {}
+        pmr = e.get("porte_e_maximo_registrado")
         dentro[e["id"]] = {
             "id": e["id"],
             "cientifico": e["nome_cientifico"],
@@ -466,6 +534,27 @@ def main():
             # papilocromis passou nove dias no ar servindo treze companheiros
             # contra a frase que ela propria cita.
             "restricoes": [x.get("tipo") for x in (e.get("restricoes_de_companhia") or [])],
+            # O ESCOPO DO PORTE, PARA A PAGINA PODER DIZE-LO (esquema versao 7 no
+            # banco, 21/10/2026 na tela). O numero que as tabelas de lotacao usam
+            # e o MAXIMO REGISTRADO de um individuo extremo, e a ficha nao tinha
+            # como dizer isso. SO O QUE A PAGINA SERVE VEM PARA CA, como no
+            # chao_para e nas restricoes: a CLAUSULA transcrita fica no banco, onde
+            # a E24 a confere, e publicar transcricao crua na tela e o defeito que
+            # a regua de acento pegou em outra ilha.
+            #
+            # O `corpo` de cada metade e DERIVADO da clausula, nunca digitado: e a
+            # fonte cuja referencia contem a frase daquele campo. Sem isso a ficha
+            # publicaria os dois numeros sem dono, que e o que a E25 proibe com
+            # todas as letras.
+            "porte_maximo": pmr is not None,
+            "porte_maximo_corpo": corpo_da_frase(pmr.get("frase") if pmr else None, fontes),
+            "porte_comum": comum_para_a_tela(pmr, fontes),
+            # AS LEITURAS EM OUTRA REGUA (esquema versao 12, 21/10/2026). O segundo
+            # corpo que nao entrou porque fala em outra regua nao e defeito nem
+            # segredo: a ficha publica as duas medidas com o dono de cada uma e diz
+            # que as reguas diferem, em vez de calar o numero ou de compara-lo. E a
+            # mesma frase que a E25 pede do tamanho comum do barbo rosado.
+            "porte_outra_regua": leituras_em_outra_regua(e),
             "temp_min": e["temperatura_C"]["min"],
             "temp_max": e["temperatura_C"]["max"],
             "status": e.get("status_registro") or "",

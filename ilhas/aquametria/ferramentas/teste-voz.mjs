@@ -290,10 +290,65 @@ function separarProva(corpo) {
   return { voz, blocos };
 }
 
-function primeiroParagrafo(corpo) {
-  const m = corpo.match(/<p\b[^>]*>([\s\S]*?)<\/p>/);
+/* A CAIXA DE RESPOSTA DO MOLDE DE CONVERSÃO NÃO É A VOZ DA PÁGINA.
+ *
+ * A seção 32 do ARQUIPELAGO.md (decisão do Raphael em 21/10/2026, item 4 da 32.1)
+ * manda a página abrir pelo NÚMERO em mono, legível de longe, ANTES da frase — e
+ * o molde entrou nas 29 fichas e nas 5 calculadoras desta ilha naquele mesmo dia.
+ * O número é um `<p class="aqm-px-numero">`, de propósito (uma `<div>` ali
+ * truncaria a leitura da caixa de resposta pelo `teste-peixes`), e com isso ele
+ * passou a ser o PRIMEIRO `<p>` do corpo.
+ *
+ * ESTE PORTÃO FICOU VERMELHO EM 110 AFIRMAÇÕES e ninguém o leu: medido no `main`
+ * de 21/10/2026 às 20h1xZ, as mesmas 110 falhas estão no commit do molde e nos
+ * três seguintes. As quatro afirmações que caíram — a segunda pessoa, a frente em
+ * centímetros, o trio BASE/COMPRIMENTO/fundo-de-outra-conta e o "não o litro" —
+ * medem a frase de ABERTURA, e a frase de abertura não saiu da página: ela é o
+ * `<p>` seguinte, o `aqm-px-linha-mestra`, com as quatro coisas intactas. Régua
+ * que mede "o primeiro <p>" quando o desenho põe o número antes da frase reprova
+ * página CERTA — é a mesma família da régua que morre quando o banco melhora.
+ *
+ * O CONSERTO NÃO AFROUXA: a caixa de resposta é PULADA aqui e COBRADA logo
+ * abaixo, por afirmação própria. Pular sem cobrar deixaria a 32.1 sem portão
+ * nenhum nesta ilha, que é trocar uma régua vermelha por uma régua cega. */
+const CAIXA_DE_RESPOSTA = /<p\b[^>]*class="[^"]*\baqm-px-numero\b[^"]*"[^>]*>([\s\S]*?)<\/p>/;
+const PROMESSA = /<p\b[^>]*class="[^"]*\baqm-promessa\b[^"]*"[^>]*>([\s\S]*?)<\/p>/;
+
+function caixaDeResposta(corpo) {
+  const m = corpo.match(CAIXA_DE_RESPOSTA);
   return m ? texto(m[1]) : '';
 }
+
+function promessaDe(corpo) {
+  const m = corpo.match(PROMESSA);
+  return m ? texto(m[1]) : '';
+}
+
+
+/* O PRIMEIRO PARÁGRAFO DA VOZ, e não o primeiro `<p>` do corpo.
+ *
+ * A 32.1 põe DUAS peças estruturais antes da prosa: o número da resposta em mono
+ * (item 4, nas fichas) e a frase de promessa "entra/sai" (item 2, nas
+ * calculadoras). As duas são `<p>`, e com o molde no ar as duas passaram a ser o
+ * "primeiro parágrafo" para esta régua — que mede a ABERTURA da voz.
+ *
+ * E ISSO NÃO SÓ REPROVAVA PÁGINA CERTA: TORNAVA A RÉGUA CEGA, e a prova é a
+ * mutação 20 deste arquivo. Ela corrompe a abertura do conteúdo da C12 para o
+ * texto impessoal que a régua nasceu para pegar ("Pergunte na internet
+ * brasileira...") e, com o molde no ar, SOBREVIVIA: a abertura corrompida não era
+ * mais o `<p>` que a régua lia. Régua vermelha em 110 afirmações e cega na que
+ * importava, ao mesmo tempo, pelo mesmo motivo.
+ *
+ * Pular sem cobrar seria trocar a cegueira de lugar, então as duas peças têm
+ * afirmação própria logo abaixo — a promessa, inclusive, obedece à mesma regra de
+ * segunda pessoa, e foi ela que achou duas das quatro promessas desta ilha
+ * falando do aquário em geral em vez do aquário de quem entrou. */
+function primeiroParagrafo(corpo) {
+  const semMolde = corpo.replace(CAIXA_DE_RESPOSTA, '').replace(PROMESSA, '');
+  const m = semMolde.match(/<p\b[^>]*>([\s\S]*?)<\/p>/);
+  return m ? texto(m[1]) : '';
+}
+
 
 function h1De(corpo) {
   const m = corpo.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/);
@@ -395,6 +450,24 @@ for (const slug of PAGINAS) {
   ok('primeiro parágrafo sem termo proibido', acharProibidos(p1).length === 0, acharProibidos(p1).join(', '));
 
   medirAbertura('', aba, h1, p1);
+
+  /* A FRASE DE PROMESSA DA 32.1 (item 2), cobrada aqui porque é aqui que ela foi
+     pulada. Página sem promessa não é reprovada — a régua não inventa requisito
+     que o molde não declarou por página —, mas a que TEM uma obedece à voz: sem
+     termo proibido, sem atribuição de fonte, e falando com quem entrou. As quatro
+     promessas desta ilha têm a mesma forma "Entram X; saem Y", e em 21/10/2026
+     duas delas diziam "as medidas em centímetros" e "o perfil do aquário" onde as
+     irmãs diziam "o SEU cômodo" e "o SEU filtro". */
+  const promessa = promessaDe(corpo);
+  if (promessa.length > 0) {
+    medidas.add(slug);
+    ok('a promessa não tem termo proibido',
+      acharProibidos(promessa).length === 0, acharProibidos(promessa).join(', '));
+    ok('a promessa não atribui fonte',
+      acharAtribuicao(promessa).length === 0, acharAtribuicao(promessa).join(', '));
+    ok('a promessa fala com a pessoa, na segunda pessoa',
+      /\b(voce|seu|sua|seus|suas)\b/.test(semAcento(promessa)), promessa);
+  }
 
   // O corpo inteiro, TIRANDO a camada de prova declarada.
   const achados = acharProibidos(texto(voz));
@@ -665,6 +738,25 @@ for (const slug of CONTEUDO) {
 
   medirAbertura('', aba, h1, p1);
 
+
+  /* A FRASE DE PROMESSA DA 32.1 (item 2), cobrada aqui porque é aqui que ela foi
+     pulada. Página sem promessa não é reprovada — a régua não inventa requisito
+     que o molde não declarou por página —, mas a que TEM uma obedece à voz: sem
+     termo proibido, sem atribuição de fonte, e falando com quem entrou. As quatro
+     promessas desta ilha têm a mesma forma "Entram X; saem Y", e em 21/10/2026
+     duas delas diziam "as medidas em centímetros" e "o perfil do aquário" onde as
+     irmãs diziam "o SEU cômodo" e "o SEU filtro". */
+  const promessa = promessaDe(corpo);
+  if (promessa.length > 0) {
+    medidas.add(slug);
+    ok('a promessa não tem termo proibido',
+      acharProibidos(promessa).length === 0, acharProibidos(promessa).join(', '));
+    ok('a promessa não atribui fonte',
+      acharAtribuicao(promessa).length === 0, acharAtribuicao(promessa).join(', '));
+    ok('a promessa fala com a pessoa, na segunda pessoa',
+      /\b(voce|seu|sua|seus|suas)\b/.test(semAcento(promessa)), promessa);
+  }
+
   /* --- a ficha de peixe: a abertura responde COM O NÚMERO, e diz qual dos dois
          mundos ela é ---
 
@@ -703,6 +795,16 @@ for (const slug of CONTEUDO) {
       `base=${comBase} comprimento=${semBase} outra-conta=${fundoDeOutro} — "${p1.slice(0, 110)}"`);
     ok('a ficha não fala de litro como se fosse a medida que manda',
       /nao o litro/.test(plano), p1.slice(-60));
+
+    /* A CAIXA DE RESPOSTA DA 32.1, cobrada aqui porque é aqui que ela foi pulada.
+       Ela abre a página com o número em mono, e o número é o MESMO da frase: a
+       frente em centímetros. Sem esta afirmação, o conserto que a pulou deixaria
+       a ilha podendo apagar a caixa inteira sem nenhuma régua acusar. */
+    const caixa = caixaDeResposta(corpo);
+    ok('a ficha tem a caixa de resposta do molde (32.1) antes da frase',
+      caixa.length > 0, caixa);
+    ok('a caixa de resposta traz o número em centímetros',
+      /\d+(,\d+)?( × \d+(,\d+)?)? cm de (base|frente)/.test(semAcento(caixa)), caixa);
   }
 
   /* --- as chamadas --- */

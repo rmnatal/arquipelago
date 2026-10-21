@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""MUTACOES DELIBERADAS CONTRA O PORTAO DO ESCOPO DO PORTE (E24/E25) — Aquametria.
+"""MUTACOES DELIBERADAS CONTRA O PORTAO DO ESCOPO DO PORTE (E24/E25/E29) — Aquametria.
 
     python3 ferramentas/mutacoes-porte-maximo.py
 
-Cada mutacao afrouxa UMA metade da regra E24 ou E25 em `validar-especies.py`, numa
+Cada mutacao afrouxa UMA metade da regra E24, E25 ou E29 em `validar-especies.py`, numa
 COPIA da ilha, e roda `ferramentas/testar-validador-especies.py` contra a copia.
 A mutacao tem de REPROVAR, com codigo de saida 1 e sem traceback. Mutacao que
 passa e o portao nao medindo nada — o defeito que a secao 8 do ARQUIPELAGO.md
@@ -105,6 +105,43 @@ MUTACOES = [
         "                        if medida is None or medida != r.get(\"porte_medida\"):",
         "                        if medida is None:")),
 
+ # E29 — A LEITURA EM OUTRA REGUA (esquema versao 12, 21/10/2026). Ela entrou
+ # neste arquivo e nao num novo porque e a MESMA familia: o escopo do numero do
+ # porte, agora do lado do segundo corpo que nao entrou. E as quatro sao a forma
+ # de sempre — regra que pede duas coisas, afrouxada para pedir uma.
+ ("E29 para de exigir a leitura quando o desfecho e regua-diferente",
+  "sem ela a entrada volta ao mundo de antes da versao 12: o numero da outra "
+  "leitura mora so na prosa, e a ficha teria de arranca-lo da frase por expressao "
+  "regular ou receber o numero digitado no snippet",
+  troca(VALIDADOR,
+        "            if pede_leitura and leitura is None:",
+        "            if False:")),
+
+ ("E29 aceita a leitura na MESMA regua do registro",
+  "a metade que separa 'regua-diferente' de 'divergiu': leitura na mesma regua "
+  "confirma o campo ou discorda dele, e sem ela a ficha publicaria 'as reguas "
+  "diferem' sobre duas leituras na mesma regua",
+  troca(VALIDADOR,
+        "                    if pede_leitura and medida == r.get(\"porte_medida\"):",
+        "                    if False:")),
+
+ ("E29 confere o numero e a unidade SOLTOS, e nao o par",
+  "e a mutacao que sobreviveu de verdade em 21/10/2026, antes de a regra virar o "
+  "par: as tres prosas deste banco escrevem 'comprimento padrao de 120 mm SL "
+  "(12,0 cm)', com os dois numeros e as duas unidades na mesma frase, entao a "
+  "conferencia solta aprova 12,0 no lugar de 120 mm e cm no lugar de mm",
+  troca(VALIDADOR,
+        "                            and valor > 0 and not any(par in plano for par in pares_de_medida(valor, unidade))):",
+        "                            and valor > 0 and round(float(valor), 4) not in numeros_no_texto(prosa)):")),
+
+ ("E29 deixa a leitura entrar em desfecho que nao a pede",
+  "o campo isolado fica bem formado, e a E29 e a unica regua que ve isso: o "
+  "acara-disco divergiu no NUMERO, na mesma regua, e a ficha dele passaria a "
+  "publicar 'as reguas diferem' sobre uma divergencia que nao e de regua",
+  troca(VALIDADOR,
+        "            if leitura is not None and not pede_leitura:",
+        "            if False:")),
+
  ("valores_numericos para de descer em objeto dentro de objeto",
   "a regua que nao ALCANCA o mundo novo, em vez de errar nele: sem a recursao o "
   "E16 nao ve os dois numeros do `comum` e da por conferido o unico par do banco "
@@ -117,7 +154,7 @@ MUTACOES = [
 
 
 def main():
-    print("== mutacoes contra o portao do escopo do porte (E24/E25) ==")
+    print("== mutacoes contra o portao do escopo do porte (E24/E25/E29) ==")
     falhas = []
     for titulo, porque, aplicar in MUTACOES:
         base = tempfile.mkdtemp(prefix="aqm-porte-mut-")

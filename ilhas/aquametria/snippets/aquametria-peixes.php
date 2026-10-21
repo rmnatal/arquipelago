@@ -1,5 +1,25 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.20.0 (21/10/2026) — A ORAÇÃO DO ESCOPO DO PORTE NAS 29 FICHAS, e ela
+ * fechou uma dívida de 23/09/2026. O `porte_adulto_cm` que as tabelas de lotação
+ * usam é o MÁXIMO REGISTRADO de um indivíduo extremo, e a ficha o servia calado:
+ * a proibição estava escrita na `observacao` do barbo rosado — "a ficha tem de
+ * publicar o número da fonte COM a medida dele E dizer que porte máximo
+ * registrado não é porte esperado em cativeiro, senão a C8 dimensiona para um
+ * peixe que ninguém tem" — e PROSA NÃO BARRA PÁGINA, pela quarta vez neste eixo.
+ * O banco ganhou o campo contável em 15/10 (esquema versão 7) e nasceu calado de
+ * propósito, porque a leitura semanal de 14/10 proibia mexer na superfície desta
+ * ilha antes de 21/10. O congelamento venceu e a oração entrou.
+ * TRÊS FRASES, cada uma só nascendo com o dado que a sustenta: o escopo do número
+ * (29 fichas), o tamanho comum (3 registros, e a MEDIDA decide se os dois se
+ * comparam — é a E25 na tela), e a leitura de outro corpo em outra medida (E29,
+ * esquema versão 12, nas fichas do rasbora arlequim e do acará-bandeira).
+ * E A PALAVRA "RÉGUA" SAIU DA ORAÇÃO pela 32.4, achada na varredura desta mesma
+ * passada: nesta ilha ela é nome interno de portão. A palavra é MEDIDA, que é a
+ * que a própria `observacao` do registro usa. O que NÃO mudou: o texto nasce
+ * dentro da dobra "O que as fontes declaram", que é `<details>` fechado — zero
+ * pixel acima da dobra, então os números da 32.5 medidos às 18h2xZ seguem de pé.
+ *
  * Versão: 1.19.1 (21/10/2026) — A 32.4 NO TEXTO QUE A 1.19.0 ACABOU DE ESCREVER,
  * e foi a varredura da própria passada que o achou: a nota do cartão do aquário
  * dizia "o banco de produtos desta FÁBRICA" e o aviso dizia "a VITRINE da
@@ -768,8 +788,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/* A CONSTANTE FICOU EM 1.18.0 POR DUAS VERSOES, e quem a achou foi o
+   `atualizar-manifest.py` nesta passada: ele RECUSA gravar quando a etiqueta do
+   manifest e a constante do arquivo discordam — "etiqueta sem constante que a
+   sustente e etiqueta que envelhece calada" — e a divergencia esta medida contra
+   o `main` de 21/10/2026 as 19h2xZ: o manifest dizia 1.19.1 e esta linha dizia
+   1.18.0. Ou seja, as duas passadas de hoje que subiram 1.19.0 e 1.19.1 ao ar
+   NAO rodaram este portao com sucesso, e a revisao 133 desembarcou com ele
+   vermelho. Corrigida aqui para 1.20.0, que e a versao desta passada. */
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.18.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.20.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -863,6 +891,10 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 20,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -948,6 +980,10 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 21,
 			'temp_max' => 25,
 			'status' => 'conflito',
@@ -1081,6 +1117,10 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 23,
 			'temp_max' => 27,
 			'status' => 'conflito',
@@ -1169,6 +1209,10 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 24,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -1272,6 +1316,10 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 20,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -1342,6 +1390,10 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 20,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -1405,6 +1457,10 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 18,
 			'temp_max' => 24,
 			'status' => 'conflito',
@@ -1496,6 +1552,10 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 22,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -1597,6 +1657,10 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 14,
 			'temp_max' => 22,
 			'status' => 'conflito',
@@ -1703,6 +1767,10 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 27,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -1762,6 +1830,10 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 26.5,
 			'temp_max' => 29,
 			'status' => 'conflito',
@@ -1855,6 +1927,10 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => false,
+			'porte_maximo_corpo' => '',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 17,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -1983,6 +2059,17 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(
+				array(
+					'corpo' => 'Seriously Fish',
+					'valor' => 45,
+					'unidade' => 'mm',
+					'medida' => 'SL',
+				),
+			),
 			'temp_min' => 21,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -2117,6 +2204,10 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 18,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -2186,6 +2277,10 @@ function aquametria_peixes_catalogo() {
 				'casal',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 24,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -2255,6 +2350,10 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 24,
 			'temp_max' => 26,
 			'status' => 'completo',
@@ -2316,6 +2415,10 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 18,
 			'temp_max' => 23,
 			'status' => 'conflito',
@@ -2396,6 +2499,10 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 21,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -2473,6 +2580,10 @@ function aquametria_peixes_catalogo() {
 			'restricoes' => array(
 				'nadadeiras-longas',
 			),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 20,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -2565,6 +2676,10 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 25,
 			'temp_max' => 28,
 			'status' => 'conflito',
@@ -2670,6 +2785,10 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 20,
 			'temp_max' => 26,
 			'status' => 'conflito',
@@ -2758,6 +2877,10 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 27,
 			'temp_max' => 30,
 			'status' => 'conflito',
@@ -2856,6 +2979,10 @@ function aquametria_peixes_catalogo() {
 				'casal',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 25,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -2917,6 +3044,10 @@ function aquametria_peixes_catalogo() {
 				'casal',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 26,
 			'temp_max' => 30,
 			'status' => 'conflito',
@@ -3018,6 +3149,16 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => array(
+				'de' => 65,
+				'ate' => 75,
+				'unidade' => 'mm',
+				'medida' => null,
+				'corpo' => 'Seriously Fish',
+			),
+			'porte_outra_regua' => array(),
 			'temp_min' => 18,
 			'temp_max' => 22,
 			'status' => 'conflito',
@@ -3120,6 +3261,17 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(
+				array(
+					'corpo' => 'Seriously Fish',
+					'valor' => 150,
+					'unidade' => 'mm',
+					'medida' => 'SL',
+				),
+			),
 			'temp_min' => 24,
 			'temp_max' => 30,
 			'status' => 'completo',
@@ -3205,6 +3357,10 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => false,
+			'porte_maximo_corpo' => '',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 22,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -3267,6 +3423,10 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 25,
 			'temp_max' => 30,
 			'status' => 'conflito',
@@ -3349,6 +3509,10 @@ function aquametria_peixes_catalogo() {
 				'um-exemplar',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 22,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -3407,6 +3571,10 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 0,
 			'temp_max' => 41,
 			'status' => 'conflito',
@@ -3495,6 +3663,10 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'Seriously Fish',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 22,
 			'temp_max' => 28,
 			'status' => 'completo',
@@ -3562,6 +3734,16 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => null,
 			'chao_para' => array(),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => array(
+				'de' => 3.9,
+				'ate' => null,
+				'unidade' => 'cm',
+				'medida' => 'TL',
+				'corpo' => 'FishBase',
+			),
+			'porte_outra_regua' => array(),
 			'temp_min' => 15,
 			'temp_max' => 25,
 			'status' => 'completo',
@@ -3618,6 +3800,10 @@ function aquametria_peixes_catalogo() {
 				'casal',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 26,
 			'temp_max' => 29,
 			'status' => 'completo',
@@ -3679,6 +3865,10 @@ function aquametria_peixes_catalogo() {
 			'restricoes' => array(
 				'comunitario-geral',
 			),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => null,
+			'porte_outra_regua' => array(),
 			'temp_min' => 22,
 			'temp_max' => 26,
 			'status' => 'completo',
@@ -3740,6 +3930,16 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
+			'porte_maximo' => true,
+			'porte_maximo_corpo' => 'FishBase',
+			'porte_comum' => array(
+				'de' => 2.5,
+				'ate' => null,
+				'unidade' => 'cm',
+				'medida' => 'TL',
+				'corpo' => 'FishBase',
+			),
+			'porte_outra_regua' => array(),
 			'temp_min' => 23,
 			'temp_max' => 27,
 			'status' => 'completo',
@@ -5535,6 +5735,105 @@ function aquametria_peixes_restricao_na_tela( $tipo, $nome ) {
  * "o que as fontes declaram". Sem a fonte a frase não sai — afirmação de recusa
  * sem dono é opinião de fórum, que é o que esta ilha existe para não ser.
  */
+/**
+ * O ESCOPO DO PORTE, NA TELA — a oração que faltava desde 23/09/2026.
+ *
+ * O `porte_adulto_cm` que as tabelas de lotação desta página usam é o MÁXIMO
+ * REGISTRADO: um número sobre um indivíduo extremo, não o tamanho que se espera
+ * de um adulto em aquário de casa. A proibição de servi-lo calado estava escrita
+ * na `observacao` do barbo rosado — "a ficha tem de publicar o número da fonte
+ * COM a medida dele E dizer que porte máximo registrado não é porte esperado em
+ * cativeiro, senão a C8 dimensiona para um peixe que ninguém tem" — e PROSA NÃO
+ * BARRA PÁGINA, pela quarta vez neste eixo. O banco ganhou o campo contável na
+ * versão 7 do esquema (15/10/2026) e a tela ganhou a oração hoje: a leitura
+ * semanal de 14/10 proibia mexer na superfície desta ilha antes de 21/10, porque
+ * é o que destrói a medição de CTR em curso, e o congelamento venceu.
+ *
+ * TRÊS ORAÇÕES, E CADA UMA SÓ NASCE COM O DADO QUE A SUSTENTA:
+ *   1. o escopo do número, sempre que o banco declara a cláusula de máximo;
+ *   2. o tamanho comum, quando a fonte declarou um — e aqui a régua decide a
+ *      frase: na MESMA régua os dois números se comparam, em régua DIFERENTE a
+ *      página publica os dois com o dono de cada um e DIZ que a régua do comum
+ *      não foi declarada, nunca comparando. É a E25, e ela é aviso no banco
+ *      justamente porque quem tem de obedecer é esta função;
+ *   3. a leitura em outra régua, quando um segundo corpo leu a mesma espécie e
+ *      falou em SL contra TL (E29). Coincidência de algarismo em réguas
+ *      diferentes não é confirmação, e calar o número seria esconder uma leitura
+ *      que existe.
+ *
+ * O QUE ESTA FUNÇÃO NÃO FAZ, e é decisão e não esquecimento: ela não converte
+ * milímetro em centímetro para aproximar os dois números. Converter aqui serviria
+ * a comparação que a E25 proíbe, com a conta feita pela própria página — e a
+ * unidade publicada é a da fonte, como o banco a guarda.
+ */
+if ( ! function_exists( 'aquametria_peixes_escopo_do_porte_html' ) ) {
+function aquametria_peixes_escopo_do_porte_html( $e, $nome, $porte ) {
+	$html = '';
+
+	/* O dono do número do porte sai da mesma função que nomeia o dono de toda
+	   linha da tabela acima — a ficha não tem um segundo jeito de atribuir. */
+	$f_porte = aquametria_peixes_fonte_do_campo( $e, 'porte_adulto_cm' );
+	$dono_porte = $f_porte ? $f_porte['corpo'] : '';
+	$maximo = aquametria_peixes_num( $porte[1] );
+	$medida = isset( $e['porte_medida'] ) ? $e['porte_medida'] : '';
+
+	if ( ! empty( $e['porte_maximo'] ) ) {
+		$quem = $e['porte_maximo_corpo'] ? $e['porte_maximo_corpo'] : $dono_porte;
+		$html .= '<p class="aqm-px-escopo-porte">Os ' . esc_html( $maximo ) . ' cm ('
+			. esc_html( $medida ) . ') da linha de porte são o <strong>máximo registrado</strong> pelo '
+			. esc_html( $quem ) . ' — o maior exemplar que a fonte conhece —, e '
+			. '<strong>não o tamanho que se espera</strong> de um ' . esc_html( $nome )
+			. ' adulto em aquário de casa. As tabelas desta página dimensionam por ele de '
+			. 'propósito: aquário que sobra espaço não machuca ninguém, e o que falta machuca.';
+
+		$comum = isset( $e['porte_comum'] ) ? $e['porte_comum'] : null;
+		if ( $comum ) {
+			$faixa = aquametria_peixes_num( $comum['de'] )
+				. ( null === $comum['ate'] ? '' : ' a ' . aquametria_peixes_num( $comum['ate'] ) )
+				. ' ' . $comum['unidade'];
+			$dono_comum = $comum['corpo'] ? $comum['corpo'] : $quem;
+			if ( null !== $comum['medida'] && $comum['medida'] === $medida ) {
+				/* MESMA RÉGUA: os dois números se comparam, e a página pode dizer
+				   qual é o tamanho de quem você vai ver no aquário. */
+				$html .= ' Para o tamanho da maioria dos adultos a fonte tem número: '
+					. esc_html( $faixa ) . ' (' . esc_html( $comum['medida'] ) . ') pelo '
+					. esc_html( $dono_comum ) . ', <strong>medido do mesmo jeito</strong> que o máximo ('
+					. esc_html( $medida ) . ') — esses dois dá para comparar.';
+			} else {
+				/* RÉGUA DIFERENTE: os dois números NÃO se comparam, e dizer "menos
+				   da metade" seria medição inventada. A ficha publica os dois com o
+				   dono de cada um e diz o que falta para compará-los. */
+				$html .= ' O ' . esc_html( $dono_comum ) . ' declara ' . esc_html( $faixa )
+					. ' para a maioria dos adultos, e <strong>não disse com que medida</strong> '
+					. 'chegou nesse número: pode ser só o corpo (SL) ou o peixe inteiro até a '
+					. 'cauda (' . esc_html( $medida ) . '), e um é bem maior que o outro. São dois '
+					. 'números de donos diferentes e de medidas que podem não ser a mesma, então '
+					. 'esta ficha publica os dois e <strong>não os compara</strong>.';
+			}
+		}
+		$html .= '</p>';
+	}
+
+	/* A LEITURA DE OUTRO CORPO EM OUTRA RÉGUA (E29). Parágrafo próprio e não
+	   oração do de cima: ela não qualifica o número do banco, ela conta que
+	   existe uma segunda leitura que não entrou — e o motivo de não ter entrado é
+	   o que o leitor precisa saber para não achar que uma das duas está errada. */
+	foreach ( (array) ( isset( $e['porte_outra_regua'] ) ? $e['porte_outra_regua'] : array() ) as $l ) {
+		$html .= '<p class="aqm-px-outra-regua">O ' . esc_html( $l['corpo'] ) . ' leu o '
+			. esc_html( $nome ) . ' e publicou ' . esc_html( aquametria_peixes_num( $l['valor'] ) )
+			. ' ' . esc_html( $l['unidade'] ) . ' (' . esc_html( $l['medida'] ) . '); esta ficha '
+			. 'publica ' . esc_html( $maximo ) . ' cm (' . esc_html( $medida ) . ') pelo '
+			. esc_html( $dono_porte ) . '. <strong>As medidas diferem</strong> — '
+			. esc_html( $l['medida'] ) . ' e ' . esc_html( $medida )
+			. ' não pegam o mesmo pedaço do peixe —, então os dois números '
+			. '<strong>não se comparam</strong> e a leitura de fora ficou de fora do número '
+			. 'que as tabelas usam.</p>';
+	}
+
+	return $html;
+}
+}
+
 if ( ! function_exists( 'aquametria_peixes_restricoes_html' ) ) {
 function aquametria_peixes_restricoes_html( $e, $nome ) {
 	$tipos = isset( $e['restricoes'] ) ? (array) $e['restricoes'] : array();
@@ -6355,6 +6654,13 @@ function aquametria_peixes_ficha_html( $slug ) {
 		$html .= '</td></tr>';
 	}
 	$html .= '</tbody></table></div>';
+
+	/* A ORAÇÃO DO ESCOPO DO PORTE vem LOGO DEPOIS da tabela que publica o número,
+	   e não no fim da dobra: a linha "Porte adulto" é o que ela qualifica, e
+	   ressalva longe do número é a mesma nota depois da lista que a leva 1 já
+	   aprendeu a não escrever (o mato-grosso, com treze companheiros servidos
+	   acima da nota que os desmentia). */
+	$html .= aquametria_peixes_escopo_do_porte_html( $e, $nome, $porte );
 
 	$por_individuo = aquametria_peixes_frente_por_individuo( $e );
 	if ( null !== $por_individuo ) {
