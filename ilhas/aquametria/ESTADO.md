@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-21T16:59Z
-executando_desde: null   # a execucao de 21/10 16h16Z fechou as 17h0xZ. Reserva RENOVADA tres vezes pela 1.1: o mutirao da 32.6-b nesta ilha passa de uma hora. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
+executando_desde: 2026-10-21T17:45Z   # reserva desta execucao (molde 32.2 nas fichas de peixe). Hora saida do `date -u` na mesma linha de comando que gravou.
 bloco_atual: |
   AS CINCO CALCULADORAS DESTA ILHA ESTAO NO MOLDE DA SECAO 32, e o item 1 do
   despacho do Raphael de 21/10 saiu INTEIRO pela 18.2 — as duas que faltavam
