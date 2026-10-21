@@ -5664,3 +5664,67 @@ como delimitador, não como conteúdo, e não entraram em arquivo nenhum. Nenhum
 `executando_desde`, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync
 acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro
 escrito. O `ARQUIPELAGO.md` não foi aberto para decidir coisa alguma: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026, 12h26 (horário de Brasília) — 15h26 UTC — Bússola rodada 006, gravação 2 de 2 (`rodadas/006.md` novo e `fila.md` reescrito por inteiro)
+
+**Assunto conferido antes do `git fetch`:** é do Arquipélago — Bússola, rodada 006, fila de nichos e ilhas
+(jornadafly, ohmetria, aquametria, robometria). Executado.
+
+**Instrução:** duas gravações de arquivo INTEIRO, as duas no `main`. Gravação 1: criar `bussola/rodadas/006.md`.
+Gravação 2: substituir `bussola/fila.md` por completo (não é append, não é patch). Mensagem de commit dada pela
+instrução, usada exatamente como veio.
+
+`git status --porcelain` logo antes do commit do trabalho:
+
+```
+M  bussola/fila.md
+A  bussola/rodadas/006.md
+```
+
+`git diff --cached --stat` do mesmo momento:
+
+```
+ bussola/fila.md        | 238 +++++++++++++++++++++++++++++++++-----------
+ bussola/rodadas/006.md | 263 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 441 insertions(+), 60 deletions(-)
+```
+
+**Commit que foi ao `main`:** `de723adf59e8f12e673976f3e10e08aecbd8c5be`
+Mensagem: `Bússola rodada 006 — 21/10/2026, primeira rodada com a 3.0-c (fila e rodada)`
+Push: `2b5d695..de723ad  HEAD -> main`, aceito na primeira tentativa, sem rebase e sem force.
+Confirmado com `git fetch origin main && git log -1 origin/main`, que devolveu o mesmo hash `de723ad` e a mesma
+mensagem. **O push está em `origin/main`.**
+
+**Contagem, conferida relendo os dois arquivos DEPOIS de gravados:**
+
+```
+bussola/rodadas/006.md   263 linhas; 22.677 bytes   (arquivo NOVO)
+bussola/fila.md          199 linhas; 32.938 bytes   (eram 81 linhas antes desta gravação)
+                         total 462 linhas; 55.615 bytes
+```
+
+**As três conferências que a instrução pediu, todas passaram, cada uma relida do disco depois da gravação:**
+
+```
+bussola/rodadas/006.md existe e contém '# RODADA 006' .......... 1 ocorrência
+bussola/fila.md contém 'O RANKING ESTÁ VAZIO' .................. 1 ocorrência
+tabela de registro — linhas numeradas encontradas:
+  1 2 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18   → 17 linhas
+  o número 3 NÃO existe na tabela ............... 0 ocorrências de '^| 3 |'
+```
+
+O buraco no número 3 é o esperado: era a energia solar off-grid, que a rodada 006 desqualificou e moveu para a tabela
+de desqualificados, e a própria página explica por que a coluna `#` não foi recompactada.
+
+**Nenhum passo falhou.** Nenhum arquivo além dos dois nomeados na instrução e deste log foi tocado. Nada foi
+reformatado, "melhorado" ou corrigido: os dois textos entraram byte a byte como vieram, incluindo os travessões `—`,
+as setas `→`, os pontos medianos `·`, as reticências `…`, o `×` de multiplicação, o `≈` e o `≤` das contas, o
+tachado `~~3,88~~`, o `⛔` e o `🛑` dos dois quadros do topo, as aspas curvas das citações da lei, as crases dos
+domínios e dos marcadores `nao-medida`, e todos os caixa-alta. As linhas `<<<INICIO-ARQUIVO-1>>>`,
+`<<<FIM-ARQUIVO-1>>>`, `<<<INICIO-ARQUIVO-2>>>` e `<<<FIM-ARQUIVO-2>>>` foram tratadas como delimitador, não como
+conteúdo, e não entraram em arquivo nenhum. Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de
+estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum
+`publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto
+para decidir coisa alguma: a decisão veio pronta no disparo.
