@@ -449,7 +449,16 @@ foreach ( array_keys( $publicam ) as $id ) {
 	   "quanto custa" mora na resposta. */
 	$partes   = explode( '-', $p['colhido_em'] );
 	$data_br  = $partes[2] . '/' . $partes[1] . '/' . $partes[0];
-	preg_match( '#<div class="cdm-produto-resposta">(.*?)</div>#s', $corpo, $mr );
+	/* A FRONTEIRA DEIXOU DE SER A CLASSE SOZINHA EM 21/10/2026, com o molde da
+	   32.2: a caixa de resposta agora e a do molde da casca, e a tag abre com
+	   `class="cdm-molde-resultado cdm-produto-resposta" id="resposta"`. A regex
+	   antiga casava a classe EXATA e deixou de achar a caixa nas oito paginas —
+	   oito afirmacoes vermelhas sem um defeito embaixo. E o que o despacho do
+	   molde avisou que custaria tempo: portao cuja fronteira e `class="..."`
+	   precisa aprender que a classe passou a ter companhia.
+	   O QUE A AFIRMACAO MEDE NAO MUDOU UMA VIRGULA: a data da coleta tem de
+	   estar DENTRO da caixa de resposta, e nao em qualquer lugar da tela. */
+	preg_match( '#<div class="[^"]*\bcdm-produto-resposta\b[^"]*"[^>]*>(.*?)</div>#s', $corpo, $mr );
 	$resposta = isset( $mr[1] ) ? $mr[1] : '';
 	pro_ok( false !== strpos( $resposta, $data_br ),
 		'a data da coleta sai DENTRO da resposta — preco sem data e preco sem validade',
@@ -461,7 +470,18 @@ foreach ( array_keys( $publicam ) as $id ) {
 	   A mutacao 20 passou porque a palavra Shopee aparecia em outro paragrafo
 	   depois de a procedencia deixar de nomea-la — e a procedencia e justamente
 	   o lugar onde a 30.2 manda a fonte estar. */
-	preg_match( '#<div class="cdm-secao cdm-prova cdm-produto-procedencia">(.*?)$#s', $corpo, $mp );
+	/* A FRONTEIRA DESTA AFIRMACAO ERA ABERTA — `(.*?)$` — E ISSO A QUEBROU EM
+	   21/10/2026, pela SEGUNDA vez e pelo mesmo motivo da primeira. O comentario
+	   acima conta que a mutacao 20 ja passara uma vez "porque a palavra Shopee
+	   aparecia em outro paragrafo"; o conserto daquele dia foi ancorar a leitura
+	   na procedencia, mas deixou o fim em `$`, ou seja em TUDO o que vier
+	   depois dela ate o fim do corpo. Com o molde da 32.2, o que vem depois
+	   passou a ser a barra do rodape, cuja legenda diz "ofertas conferidas na
+	   Shopee" — e a mutacao 20 voltou a passar com a procedencia muda.
+	   Agora a fronteira fecha onde a secao fecha: na dobra que a embrulha, ou no
+	   fim do corpo se um dia ela sair da dobra. Regua com uma ponta solta mede o
+	   vizinho, e o vizinho muda sem avisar. */
+	preg_match( '#<div class="[^"]*\bcdm-produto-procedencia\b[^"]*"[^>]*>(.*?)(?:</details>|$)#s', $corpo, $mp );
 	$proc = isset( $mp[1] ) ? pro_texto( $mp[1] ) : '';
 	pro_ok( '' !== $proc && false !== strpos( $proc, 'Shopee' ),
 		'a procedencia NOMEIA a Shopee — a fonte mora nela, nao numa frase solta' );

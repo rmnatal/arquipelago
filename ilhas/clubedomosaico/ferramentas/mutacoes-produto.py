@@ -121,11 +121,15 @@ def m05_resposta_depois_da_explicacao(raiz):
     O item 1 do despacho e a ORDEM: a pessoa recebe o que comprar e quanto custa
     antes de qualquer explicacao. Trocar a ordem nao quebra nada no PHP.
     """
+    # REAPONTADA EM 21/10/2026: com o molde da 32.2 a caixa de resposta deixou de
+    # ser um `<div class="cdm-produto-resposta">` escrito a mao e passou a sair de
+    # `cdm_casca_resultado_html()`. A mutacao ficou INERTE — nao achou o alvo — e
+    # mutacao inerte e trava NAO MEDIDA que se parece com trava verde.
     editar(raiz, SNIPPET,
-           "\t$html .= '<div class=\"cdm-produto-resposta\">';",
+           "\t$html .= cdm_casca_resultado_html(",
            "\t$html .= '<div class=\"cdm-secao\"><h2>O que é, e o que não é</h2>'\n"
            "\t\t. '<p>' . cdm_produto_preencher( $p['o_que_e'], $p ) . '</p></div>';\n"
-           "\t$html .= '<div class=\"cdm-produto-resposta\">';")
+           "\t$html .= cdm_casca_resultado_html(")
 
 
 def m06_compra_depois_da_procedencia(raiz):
@@ -137,11 +141,13 @@ def m06_compra_depois_da_procedencia(raiz):
     editar(raiz, SNIPPET,
            "\t$html .= cdm_produto_malha_html( $id );",
            "\t$html .= cdm_produto_malha_html( $id );\n\t$GLOBALS['__desce_compra'] = 1;")
+    # REAPONTADA EM 21/10/2026: a procedencia passou a ser montada em `$prova` e
+    # servida por `cdm_casca_dobrar_secao()`, entao o alvo antigo sumiu.
     editar(raiz, SNIPPET,
-           "\t$html .= '<div class=\"cdm-secao cdm-prova cdm-produto-procedencia\"><h2>Como a gente sabe</h2>';",
+           "\t$prova  = '<div class=\"cdm-secao cdm-prova cdm-produto-procedencia\"><h2>Como a gente sabe</h2>';",
            "\t$html = str_replace( '<td class=\"cdm-produto-compra\">', '<td class=\"cdm-produto-sem\">', $html );\n"
-           "\t$html .= '<div class=\"cdm-secao cdm-prova cdm-produto-procedencia\"><h2>Como a gente sabe</h2>';\n"
-           "\t$html .= '<a class=\"cdm-produto-botao\" href=\"https://s.shopee.com.br/x\" rel=\"sponsored noopener\">Ver na loja</a>';")
+           "\t$html .= '<a class=\"cdm-produto-botao\" href=\"https://s.shopee.com.br/x\" rel=\"sponsored noopener\">Ver na loja</a>';\n"
+           "\t$prova  = '<div class=\"cdm-secao cdm-prova cdm-produto-procedencia\"><h2>Como a gente sabe</h2>';")
 
 
 def m07_quantidade_adivinhada(raiz):
@@ -300,9 +306,11 @@ def m23_dado_fino_depois_da_tabela(raiz):
     A pagina do rejunte DIZ "vale ler o aviso abaixo antes de olhar o preco". Se
     o aviso desce, a frase vira promessa quebrada no mesmo paragrafo.
     """
+    # REAPONTADA EM 21/10/2026: o dado fino passou a entrar em `$frases`, dentro
+    # da caixa de resposta do molde, em vez de ser escrito direto em `$html`.
     editar(raiz, SNIPPET,
-           "\tif ( ! empty( $p['dado_fino'] ) ) {\n\t\t$html .= '<p class=\"cdm-produto-fino\">",
-           "\tif ( false ) {\n\t\t$html .= '<p class=\"cdm-produto-fino\">")
+           "\tif ( ! empty( $p['dado_fino'] ) ) {\n\t\t$frases .= '<p class=\"cdm-produto-fino\">",
+           "\tif ( false ) {\n\t\t$frases .= '<p class=\"cdm-produto-fino\">")
 
 
 def m24_ancora_da_pinca_some(raiz):

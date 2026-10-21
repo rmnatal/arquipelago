@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 90,
+  "revisao": 91,
   "atualizado_em": "2026-10-21",
   "estado": "nascendo",
   "desembarque": {
@@ -109,8 +109,8 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.0.0",
-      "sha256": "88abc72686bc02926c7f0f7676eb1331eab44f7931f3273ab2304c0356f90ddc",
-      "descricao": "Produto 1.0.0 — o motor das OITO paginas de consulta de produto do despacho do Raphael de 09/10/2026 (3): uma pagina por consulta, slug igual a consulta, filha direta de /materiais/ no nivel 2. Ele casa as duas metades pelo id — a voz declarada em dados/paginas-de-produto.json e o numero e o link gerados em dados/vitrine-de-produto.json — e NAO registra pagina que falhe em qualquer uma delas ou que chegue com menos de tres ofertas, que e o piso da 30.2. Nenhum preco e digitado na prosa: ela traz moldes ({MIN}, {MAX}, {N}, {UNIDADE}, {SOBRE}, {DATA}) que cdm_produto_preencher() enche da vitrine, nos dois modos — com espaco inquebravel na tela e com espaco normal no JSON-LD, porque &nbsp; publicado como texto da resposta e diferenca que nenhuma revisao humana ve. A tabela serve o que o anuncio sustenta (titulo, preco, foto e a quantidade quando ele a declara) e DIZ que ele nao declara medida nem para que serve, em vez de preencher coluna com palavra tirada do titulo."
+      "sha256": "ed94f1b91421bf5c803500bd88576ebec3b3cec060704a02ae2cb92104fe63b3",
+      "descricao": "1.1.0 (21/10/2026): O MOLDE DA 32.2 NAS OITO PAGINAS DE CONSULTA DE PRODUTO. Mudanca de ORDEM, nao de texto: caixa de resposta do molde da casca com a contagem de ofertas em Mono, a tabela de ofertas (o bloco de compra desta familia) com id=\"compra\" imediatamente abaixo dela e visivel, a secao da ancora da pinca tambem visivel, a malha, o resto nas dobras da casca e a barra do rodape. Medido no ar antes: primeiro botao de loja entre 1.081 e 1.471 px no celular de 390 px, com a pagina do rejunte ja estourando o teto de 1.400 da 32.5."
     }
   ],
   "conteudo": [],
@@ -929,7 +929,7 @@
     {
       "id": "teste-produto",
       "arquivo": "ferramentas/teste-produto.php",
-      "sha256": "342a5600a654d38c6a53bb82a8f4058dec2fd1ff87cdc7627bd0670faa4f87cd",
+      "sha256": "882136839681e9e2e8d928474870901e2d9ce4ee775daa1f24ae4302a20c9039",
       "descricao": "Bancada das oito paginas de consulta de produto: 306 afirmacoes medidas no HTML servido, uma pagina por processo. Reconta o numero proprio do JSON cru por um caminho que nao chama uma linha do snippet, cobra a ordem que o despacho pede (resposta em duas frases antes de qualquer explicacao, bloco de compra antes da procedencia), o link de afiliado por oferta com rel=sponsored e encurtado, o ItemList igual a tela, o FAQPage sem entidade HTML no texto, a data DENTRO da resposta, a Shopee nomeada DENTRO da procedencia, o link da mae pela 16.4(f) e o piso de tres ofertas num mundo FABRICADO com duas."
     },
     {
@@ -941,7 +941,7 @@
     {
       "id": "mutacoes-produto",
       "arquivo": "ferramentas/mutacoes-produto.py",
-      "sha256": "09997d7cd362f9866e5f72670cd49da87eac7e6e277e986bf37407405196f879",
+      "sha256": "5ed5ca1b57b4bf616d390263d313a83613fd47e9322d4fb01abec57e4a06928b",
       "descricao": "25 mutacoes da familia de produto, 25 reprovando. Roda em mkdtemp e nao pode sujar a arvore. Tres delas acharam LACUNA DE PORTAO e nao defeito de pagina, e os tres portoes nasceram por causa delas: a data era procurada em qualquer lugar da tela quando a procedencia a imprime por fora do molde; a Shopee era procurada em qualquer frase quando a 30.2 a quer na procedencia; e a contagem de orfa ficava verde sem o link da mae, porque as sete irmas ja davam sete."
     },
     {

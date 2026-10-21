@@ -1,6 +1,24 @@
 /**
  * Clube do Mosaico — PÁGINAS DE CONSULTA DE PRODUTO (seção 30 do ARQUIPELAGO.md)
  *
+ * Versão 1.1.0 — 21/10/2026 — O MOLDE DA 32.2 NAS OITO PÁGINAS, e a mudança é de
+ * ORDEM e não de texto. Medido no ar no celular de 390 px: o primeiro botão de
+ * loja aparecia entre 1.081 px (alicate) e 1.471 px (rejunte) — a do rejunte já
+ * estourava o teto de 1.400 da 32.5, e as outras sete passavam por uma margem
+ * que uma linha de texto a mais come.
+ * A ORDEM NOVA: caixa de resposta do molde da casca (com a contagem de ofertas
+ * em Mono) · a tabela de ofertas, que é o bloco de compra desta família, com
+ * `id="compra"` imediatamente abaixo dela e VISÍVEL, porque é a tabela-resumo
+ * que as IAs citam · a seção da âncora da pinça, também visível · a malha · o
+ * resto nas dobras da casca · a barra do rodapé.
+ * O NÚMERO DA CAIXA É A CONTAGEM DE OFERTAS E NÃO O PREÇO, de propósito: em três
+ * das oito o `de`/`ate` é preço POR PEÇA e nas outras cinco é preço do anúncio,
+ * e esta ilha não guarda o nome da unidade (`unidade_singular` é nulo nas oito).
+ * Número grande sem o rótulo certo ao lado é o que a seção 7 proíbe.
+ * A SEÇÃO EXTRA COM ÂNCORA NÃO ENTRA EM DOBRA: ela é alvo de link por `#id`, e
+ * nem todo navegador abre um `<details>` fechado ao pular para dentro dele.
+ * Oito páginas, zero palavra perdida, `title`/H1/`description`/JSON-LD idênticos.
+ *
  * Versão 1.0.0 — 09/10/2026
  *
  * O MOTOR DAS OITO PÁGINAS que nascem do despacho do Raphael de 09/10/2026 (3):
@@ -424,32 +442,55 @@ function cdm_produto_html( $id ) {
 
 	$html = '<div class="cdm-bloco cdm-produto">';
 
-	/* 1. A RESPOSTA EM DUAS FRASES, ANTES DE QUALQUER EXPLICAÇÃO: o que comprar
-	      e quanto custa. É o item que o despacho põe em primeiro lugar. */
-	$html .= '<div class="cdm-produto-resposta">';
+	/* ======================================================================
+	   A ORDEM DESTA PÁGINA É A DA 32.2 DESDE 21/10/2026, e a mudança é de
+	   ORDEM, não de texto. Medido no ar no celular de 390 px nas oito páginas:
+	   o primeiro botão de loja aparecia entre 1.081 px (alicate) e 1.471 px
+	   (rejunte) — a do rejunte já estourava o teto de 1.400 da 32.5, e as
+	   outras sete passavam por margem que uma linha de texto a mais come.
+	   A ORDEM NOVA: caixa de resposta do molde · a tabela de ofertas, que é o
+	   bloco de compra desta família, imediatamente abaixo dela · a malha, que é
+	   link interno e não dobra · o resto nas dobras da casca.
+	   ====================================================================== */
+
+	/* 1. A RESPOSTA, dentro da caixa do molde (32.2). As frases são as mesmas,
+	      na mesma ordem, e a classe antiga continua na caixa — o que entra é o
+	      número que a página já contava, em Mono.
+	      O NÚMERO É A CONTAGEM DE OFERTAS, e não o preço, de propósito: em três
+	      das oito páginas o `de`/`ate` é preço POR PEÇA e nas outras cinco é
+	      preço do anúncio, e esta ilha não guarda o nome da unidade (o campo
+	      `unidade_singular` é nulo nas oito). Um número grande sem o rótulo
+	      certo ao lado é exatamente o que a seção 7 proíbe; a faixa continua na
+	      primeira frase, onde o texto diz de que ela é. */
+	$frases = '';
 	foreach ( $p['resposta'] as $i => $frase ) {
-		$html .= '<p class="cdm-produto-frase' . ( 0 === $i ? ' cdm-produto-frase-1' : '' ) . '">'
+		$frases .= '<p class="cdm-produto-frase' . ( 0 === $i ? ' cdm-produto-frase-1' : '' ) . '">'
 			. cdm_produto_preencher( $frase, $p ) . '</p>';
 	}
-	$html .= '</div>';
 
-	/* 2. O DADO FINO, quando a faixa esconde algo — e ele vem ANTES da tabela,
-	      porque é aviso sobre o número que a pessoa está a um parágrafo de ler.
-	      É o caso do rejunte, nomeado no despacho: a faixa é larga porque uma
-	      das três ofertas é rejunte metálico de especialidade, e servir a faixa
-	      sem dizer isso seria servi-la como se fosse a do rejunte comum. */
+	/* 2. O DADO FINO, quando a faixa esconde algo — e ele continua ANTES da
+	      tabela, porque é aviso sobre o número que a pessoa está a um parágrafo
+	      de ler. É o caso do rejunte: a faixa é larga porque uma das três
+	      ofertas é rejunte metálico de especialidade, e servir a faixa sem dizer
+	      isso seria servi-la como se fosse a do rejunte comum. */
 	if ( ! empty( $p['dado_fino'] ) ) {
-		$html .= '<p class="cdm-produto-fino"><strong>Antes de olhar a faixa:</strong> '
+		$frases .= '<p class="cdm-produto-fino"><strong>Antes de olhar a faixa:</strong> '
 			. cdm_produto_preencher( $p['dado_fino'], $p ) . '</p>';
 	}
 
-	/* 3. O QUE É, E O QUE NÃO É — a armadilha da busca, medida e dita. */
-	$html .= '<div class="cdm-secao"><h2>O que é, e o que não é</h2>';
-	$html .= '<p>' . cdm_produto_preencher( $p['o_que_e'], $p ) . '</p>';
-	$html .= '<p>' . cdm_produto_preencher( $p['o_que_nao_e'], $p ) . '</p></div>';
+	$rotulo_ofertas = 1 === (int) $p['n_ofertas'] ? 'oferta conferida na Shopee' : 'ofertas conferidas na Shopee';
+	$html .= cdm_casca_resultado_html(
+		array( array( 'valor' => cdm_casca_num( (int) $p['n_ofertas'] ), 'legenda' => $rotulo_ofertas ) ),
+		$frases,
+		'resposta',
+		'cdm-produto-resposta'
+	);
 
-	/* 4. A TABELA, com o bloco de compra dentro de cada linha. */
-	$html .= '<div class="cdm-secao"><h2>As ' . number_format_i18n( (int) $p['n_ofertas'] )
+	/* 3. A TABELA, com o bloco de compra dentro de cada linha — e ela SOBE para
+	      debaixo da resposta, porque é ela o bloco de compra desta família
+	      (32.2). Fica VISÍVEL: é a tabela-resumo da 32.1 item 6 e é o que um
+	      modelo de linguagem cita. */
+	$html .= '<div class="cdm-molde-compra cdm-secao" id="compra"><h2>As ' . number_format_i18n( (int) $p['n_ofertas'] )
 		. ' ofertas que a gente conferiu</h2>';
 	$html .= '<div class="cdm-produto-rolagem"><table class="cdm-produto-tabela">';
 	$html .= '<thead><tr><th scope="col">Produto</th><th scope="col">Peças no anúncio</th>'
@@ -465,17 +506,32 @@ function cdm_produto_html( $id ) {
 		. 'coluna aqui, e quem as responde é o "qual escolher" abaixo.</p>';
 	$html .= '</div>';
 
-	/* 5. QUAL ESCOLHER, por uso. */
-	$html .= '<div class="cdm-secao"><h2>Qual escolher</h2><dl class="cdm-produto-usos">';
+	/* 4. DAQUI PARA BAIXO, O TEXTO INTEIRO EM DOBRAS (32.2), na mesma ordem de
+	      antes. O título de cada dobra É o <h2> que a seção já emitia, pela
+	      `cdm_casca_dobrar_secao()` — ninguém digita um segundo título. */
+
+	/* O QUE É, E O QUE NÃO É — a armadilha da busca, medida e dita. */
+	$o_que_e  = '<div class="cdm-secao"><h2>O que é, e o que não é</h2>';
+	$o_que_e .= '<p>' . cdm_produto_preencher( $p['o_que_e'], $p ) . '</p>';
+	$o_que_e .= '<p>' . cdm_produto_preencher( $p['o_que_nao_e'], $p ) . '</p></div>';
+	$html    .= cdm_casca_dobrar_secao( $o_que_e );
+
+	/* QUAL ESCOLHER, por uso. */
+	$escolher = '<div class="cdm-secao"><h2>Qual escolher</h2><dl class="cdm-produto-usos">';
 	foreach ( $p['qual_escolher'] as $u ) {
-		$html .= '<dt>' . esc_html( $u['uso'] ) . '</dt>'
+		$escolher .= '<dt>' . esc_html( $u['uso'] ) . '</dt>'
 			. '<dd>' . cdm_produto_preencher( $u['frase'], $p ) . '</dd>';
 	}
-	$html .= '</dl></div>';
+	$escolher .= '</dl></div>';
+	$html     .= cdm_casca_dobrar_secao( $escolher );
 
-	/* 6. A SEÇÃO EXTRA COM ÂNCORA — hoje só a pinça, dentro do alicate. É o que
+	/* A SEÇÃO EXTRA COM ÂNCORA — hoje só a pinça, dentro do alicate. É o que
 	      a 30.4 manda fazer com consulta que canibaliza uma irmã: ela vira
-	      âncora da página que já responde, não uma segunda URL. */
+	      âncora da página que já responde, não uma segunda URL.
+	      ELA NÃO ENTRA EM DOBRA, e é a única exceção desta página: é alvo de
+	      link de fora, por `#id`, e nem todo navegador abre um `<details>`
+	      fechado ao pular para uma âncora dentro dele. Âncora que leva a uma
+	      gaveta fechada é link quebrado que não parece quebrado. */
 	if ( ! empty( $p['secao_extra']['id'] ) ) {
 		$s     = $p['secao_extra'];
 		$html .= '<div class="cdm-secao" id="' . esc_attr( $s['id'] ) . '">'
@@ -486,25 +542,28 @@ function cdm_produto_html( $id ) {
 		$html .= '</div>';
 	}
 
-	/* 7. AS PERGUNTAS, com os números da própria página. */
-	$html .= '<div class="cdm-secao cdm-produto-faq"><h2>Perguntas</h2><dl>';
+	/* AS PERGUNTAS, com os números da própria página. */
+	$perguntas = '<div class="cdm-secao cdm-produto-faq"><h2>Perguntas</h2><dl>';
 	foreach ( cdm_produto_faq( $id ) as $q ) {
-		$html .= '<dt>' . esc_html( $q['pergunta'] ) . '</dt><dd>' . $q['resposta_html'] . '</dd>';
+		$perguntas .= '<dt>' . esc_html( $q['pergunta'] ) . '</dt><dd>' . $q['resposta_html'] . '</dd>';
 	}
-	$html .= '</dl></div>';
+	$perguntas .= '</dl></div>';
+	$html      .= cdm_casca_dobrar_secao( $perguntas );
 
-	/* 8. A MALHA: as ferramentas, as irmãs, a cola que já ranqueia e a loja.
+	/* A MALHA: as ferramentas, as irmãs, a cola que já ranqueia e a loja.
 	      Nenhuma órfã, e nenhum "saiba mais" — a âncora é a consulta (16.4-a). */
 	$html .= cdm_produto_malha_html( $id );
 
-	/* 9. A PROCEDÊNCIA, por último e DEPOIS do bloco de compra. */
-	$html .= '<div class="cdm-secao cdm-prova cdm-produto-procedencia"><h2>Como a gente sabe</h2>';
-	$html .= '<p>Os ' . number_format_i18n( (int) $p['n_ofertas'] ) . ' anúncios desta página foram lidos na '
+	/* A PROCEDÊNCIA, por último e DEPOIS do bloco de compra. Em dobra, como o
+	      resto do texto: ela continua inteira no HTML servido, legível com o
+	      JavaScript desligado (22.8). */
+	$prova  = '<div class="cdm-secao cdm-prova cdm-produto-procedencia"><h2>Como a gente sabe</h2>';
+	$prova .= '<p>Os ' . number_format_i18n( (int) $p['n_ofertas'] ) . ' anúncios desta página foram lidos na '
 		. '<strong>Shopee</strong> em ' . esc_html( cdm_casca_data_br( $p['colhido_em'] ) )
 		. ', pela busca <em>' . esc_html( $p['consulta'] ) . '</em>, e cada um passou por uma regra '
 		. 'escrita antes da leitura — é ela que tirou daqui a peça de reposição, o quadro decorativo '
 		. 'e o revestimento de obra que essa busca também devolve.</p>';
-	$html .= '<p>É uma leitura só, de um dia só: a loja devolve conjuntos diferentes a cada consulta, '
+	$prova .= '<p>É uma leitura só, de um dia só: a loja devolve conjuntos diferentes a cada consulta, '
 		. 'então a faixa acima é a da nossa coleta e não o catálogo inteiro da Shopee. Preço muda; '
 		. 'a gente republica quando mede de novo.</p>';
 	/* A FRASE NÃO CITA O ERRO QUE ELA EVITA. A versão anterior terminava em
@@ -512,18 +571,30 @@ function cdm_produto_html( $id ) {
 	   expressão que a regra proíbe, o que derrubou a afirmação da bancada em
 	   todas as oito. Regra declarada dentro do texto que ela governa é regra que
 	   se contradiz na primeira medição. */
-	$html .= '<p>O <strong>Mercado Livre não entra nesta página</strong>, e não é escolha nossa: '
+	$prova .= '<p>O <strong>Mercado Livre não entra nesta página</strong>, e não é escolha nossa: '
 		. 'nas três tentativas de 09/10/2026 ele recusou a leitura automática. Então quando esta '
 		. 'página diz Shopee, é Shopee — e ela não fala de preço que não mediu.</p>';
 	if ( $por_peca ) {
-		$html .= '<p>A conta por peça é o preço do anúncio dividido pelas peças que ele declara, e ela '
+		$prova .= '<p>A conta por peça é o preço do anúncio dividido pelas peças que ele declara, e ela '
 			. 'sai sobre ' . number_format_i18n( (int) $np['sobre_quantas_ofertas'] ) . ' das '
 			. number_format_i18n( (int) $p['n_ofertas'] ) . ' ofertas — as outras não declaram quantidade, '
 			. 'e dividir sem a contagem seria inventar o número.</p>';
 	}
-	$html .= '</div>';
+	$prova .= '</div>';
+	$html  .= cdm_casca_dobrar_secao( $prova );
 
 	$html .= '</div>';
+
+	/* A BARRA DO RODAPÉ (32.2): nasce SERVIDA, com a contagem que a página já
+	   faz, e leva ao bloco de compra enquanto ele está fora da tela. Estas
+	   páginas não têm formulário — se a barra dependesse de cálculo, ela não
+	   existiria para ninguém. */
+	$html .= cdm_casca_barra_html(
+		cdm_casca_num( (int) $p['n_ofertas'] ) . ' ',
+		$rotulo_ofertas,
+		'compra',
+		'Ver as ofertas'
+	);
 
 	return $html;
 }
