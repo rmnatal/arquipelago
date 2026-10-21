@@ -45,6 +45,13 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO — entra depois da aquametria, pela seção 32.6)
+
+O Raphael aprovou o novo layout e mandou levar a todas as ilhas. Lei: seção 32 do `ARQUIPELAGO.md`. Esta ilha começa quando a aquametria estiver com o despacho do molde cumprido.
+1. Ferramentas no molde 32.1 e páginas de resposta/material/peça no molde 32.2, nesta ordem: `/qual-peca-serve-no-meu-robo-aspirador/` (R1), `/quantos-pa-o-robo-aspirador-precisa/` (R2), `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, `/filtro-universal-de-robo-aspirador/` e as páginas de `/pecas/`. Esta ilha está em modo de medição: o molde é a ÚNICA construção autorizada nela.
+2. Tirar todo texto de bastidor da 32.4.
+Pronto quando: 32.5 medido no ar em cada página, uma por vez.
+
 ## DESPACHO DA SENTINELA — 2026-10-16 (RONDA DIÁRIA TÉCNICA, 14h4xZ) — UM ITEM NOVO, E UMA ERRATA DA PRÓPRIA SENTINELA
 
 **A ilha segue em MODO DE MEDIÇÃO (1.2-b.1) e este despacho não abre bloco.** O foco é a aquametria até 21/10. A ronda técnica roda em toda ilha no ar (decisão do Raphael de 28/09, seção 1.2), e foi ela que achou o que está abaixo. **Esta ilha foi a escolhida pela regra da dívida da seção 12:** nenhuma ilha publicou nada desde a última ronda (a aquametria executou em 15/10 e 16/10 e as duas foram zero byte no ar; a clubedomosaico não publica desde 12/10), o `ultima_ronda` das três está empatado em 14/10 19h58Z porque é a leitura semanal, e o desempate é a ronda diária técnica PRÓPRIA mais antiga — a última linha de `dados/consertos.md` desta ilha é de **02/10**, contra 14/10 na aquametria e 12/10 na clubedomosaico.

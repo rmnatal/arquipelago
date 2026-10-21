@@ -6,8 +6,8 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 
 | Papel | Seções |
 |---|---|
-| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30**, **31** |
-| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, **25**, 29 |
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30**, **31**, **32** |
+| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, **25**, 29, **32** |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
 | **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29, **31** |
 | **Bússola** | **7**, 10, 11, **12.2**, 14, **15**, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
@@ -66,6 +66,8 @@ Quando `foco.md` na raiz do repositório nomeia uma ilha, a Fundação trabalha 
 4. Se a linha disser `ilha: nenhuma`, ou o arquivo não existir, ou o slug não existir em `ilhas/`, volte à rotação normal da seção 1 e diga isso no relatório.
 
 **A ÚNICA coisa que fura o foco** é despacho marcado **ALTO** em ilha que está no ar e quebrada — página servindo erro, ferramenta devolvendo número errado, site fora do ar. Nesse caso a seção 18 vence, você conserta e volta ao foco na execução seguinte. Despacho NORMAL de ilha fora do foco **espera**, por mais antigo que seja.
+
+**Exceção acrescentada pelo Raphael em 21/10/2026: o DESPACHO DO MOLDE DE CONVERSÃO (seção 32) também fura o foco**, nesta ordem: aquametria, depois clubedomosaico, depois robometria. Enquanto uma dessas três ilhas tiver o despacho do molde aberto, a Fundação trabalha nela antes da ilha em foco. Quando as três estiverem com o molde no ar e conferido, o foco volta a mandar sozinho.
 
 **O que isto custa, escrito para ninguém se assustar depois:** as ilhas fora do foco param de receber bloco. Defeito NORMAL nelas acumula. **Ninguém ronda as ilhas fora do foco** — o despacho que já estava escrito fica esperando, não some, e despacho novo nelas não nasce, porque não há quem as olhe. Foi uma escolha do Raphael, com o custo na mesa: com 20 execuções por semana, cinco ilhas andando devagar valem menos que uma ilha terminada. *(Esta frase dizia "A Sentinela continua rondando todas e continua escrevendo despacho", escrito às 11h33Z de 16/09/2026; às 11h42Z do mesmo dia o parágrafo seguinte passou a dizer o contrário, com todas as letras — "Não abre, não mede e não relata nenhuma outra ilha". Alinhada à decisão mais nova pelo Pente Fino em 16/09/2026.)*
 
@@ -1151,3 +1153,31 @@ Medido na aquametria em 14/10/2026, montando a lista que o item 1 do despacho do
 **31.5** Nada aqui afrouxa a seção 13: portão de dado, rampa, verificação da URL no ar, visibilidade em IA e "nunca inventar dado" continuam iguais. Os portões que já existem continuam rodando; o que para é a construção de portão novo.
 
 **31.6** A Sentinela, na leitura semanal, conta a proporção da 31.1 na ilha em foco e escreve o número no despacho. Abaixo de 7 em 10, vira item de despacho com prioridade alta.
+
+---
+
+## 32. O MOLDE DE CONVERSÃO — ferramenta e compra na primeira tela, texto inteiro no HTML (decisão do Raphael, 21/10/2026)
+
+**Por que existe:** em 21/10/2026, medido no ar no celular, a calculadora de iluminação da aquametria tinha 6.632 palavras e 16.447 px de altura; o formulário começava a 1.007 px (fora da primeira tela) e o primeiro botão de loja só aparecia a 3.114 px. A ficha do betta, página de maior impressão da ilha, não tinha botão de compra nenhum. Ser encontrado não basta: a página tem de levar a pessoa à ferramenta e ao produto. O Raphael aprovou o desenho no canvas "Ilhas — novo layout de conversão" (https://claude.ai/artifact/DC4fCfnFLGFFqfTmQ4vxEu) e mandou levar o molde a TODAS as ilhas.
+
+**32.1 Ordem obrigatória da página de FERRAMENTA (calculadora, localizador, dimensionador), de cima para baixo:**
+1. trilha (breadcrumb) e H1 — sem mudança;
+2. UMA frase de promessa (o que a pessoa coloca e o que sai);
+3. o FORMULÁRIO, já preenchido com um caso de exemplo;
+4. a CAIXA DE RESULTADO, já pré-renderizada no HTML com o caso de exemplo (número em Mono, frase de leitura embaixo);
+5. o BLOCO DE COMPRA imediatamente abaixo do resultado: carrossel horizontal de 3 a 5 cartões (foto, marca e modelo, a especificação que fez o produto entrar, preço com data da coleta, botão de loja), mais o aviso de comissão em uma linha;
+6. a tabela "já calculado para outros tamanhos" (casos resolvidos, visível, nunca recolhida — é o que as IAs citam);
+7. o resto do texto em seções recolhíveis com `<details>`/`<summary>`: como chegamos no número, as réguas, perguntas frequentes, "como sabemos" (fontes e datas).
+No celular, barra fixa no rodapé com o número do resultado e o botão para o bloco de compra, aparecendo quando o bloco de compra está fora da tela.
+
+**32.2 Página de RESPOSTA ou FICHA (peixe, peça, material, guia):** caixa de resposta no topo (o número e a condição em uma frase), logo abaixo um bloco "Monte / Compre o que esta resposta pede" com 2 a 4 itens, cada um com dois botões: "Calcular" (leva à ferramenta da ilha, com o parâmetro da página já passado na URL) e "Ver produtos" (leva ao bloco de compra da ferramenta ou a link de afiliado do banco). Depois, a tabela-resumo visível e o resto do texto recolhível. Item vivo (peixe, planta) nunca tem link de compra — o equipamento tem.
+
+**32.3 O que NÃO muda, porque é SEO (seções 13, 14, 16, 22):** URL, `<title>`, H1, trilha e `BreadcrumbList`, JSON-LD, links internos e âncoras, a resposta antes da explicação. Nenhuma palavra do texto sai da página: o que vai para `<details>` continua no HTML servido, legível com o JavaScript desligado (22.8). Nada de conteúdo injetado por JS, nada de carrossel automático, imagem com `width`/`height`, LCP nunca lazy.
+
+**32.4 Texto de bastidor da fábrica é proibido na página pública.** Frases sobre como a fábrica trabalha — "egresso da nuvem", "SERP classificada", "snippet", "lista de reconferência da ilha", "busca restrita ao domínio", nome de seção do contrato, nome de rotina — saem de toda página. Procedência continua: fonte nomeada + data, na seção "Como sabemos".
+
+**32.5 Pronto quando (medido no ar, celular de 390 px, para cada página):** o formulário (ou a caixa de resposta, em ficha) começa antes de 700 px; o primeiro botão de compra aparece antes de 1.400 px; o HTML servido com JavaScript desligado contém o texto inteiro que existia antes; title, H1, URL, trilha e JSON-LD idênticos aos de antes da mudança; zero frase da lista 32.4; console limpo. A Sentinela confere isso na ronda e registra os números no `dados/consertos.md`.
+
+**32.6 Ordem de aplicação:** aquametria (as 5 calculadoras primeiro, depois as fichas de peixe) → clubedomosaico (F1, F2, as páginas de material e as de loja — molde LOJA, com o mesmo princípio: produto e ação na primeira tela) → robometria (R1, R2 e as páginas de peça). Ilha nova (jornadafly, ohmetria e qualquer outra) **nasce neste molde** — a casca já sai com ele, sem retrofit. Sem esperar medição de CTR entre uma ilha e outra.
+
+**32.7 Proporção da seção 31:** cada página convertida a este molde conta como entrega no ar para a 31.1.

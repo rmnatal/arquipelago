@@ -44,6 +44,14 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO — fura o foco pela 1.2 e pela seção 32)
+
+O Raphael aprovou o novo layout e mandou executar. Lei: seção 32 do `ARQUIPELAGO.md`. Esta ilha é a PRIMEIRA.
+1. As 5 calculadoras no molde 32.1, nesta ordem: `/calculadora-de-iluminacao/`, `/calculadora-de-midia-filtrante/`, `/calculadora-de-litragem/`, `/calculadora-de-potencia-do-aquecedor/`, `/calculadora-de-vazao-do-filtro/`.
+2. As fichas de peixe no molde 32.2, começando por `/peixes/bettas/quantos-litros-para-betta/` (a de mais impressão da ilha), depois `/peixes/tetras/quantos-litros-para-tetra-neon/`, `/peixes/acaras/quantos-litros-para-acara-bandeira/`, `/peixes/vivaparos/quantos-litros-para-platy/`, e o resto. Bloco "Monte o aquário": aquário (→ litragem), aquecedor (→ potência, com a faixa de temperatura da espécie), filtro (→ vazão).
+3. Tirar das páginas todo texto de bastidor da 32.4. Exemplo medido na ficha do betta: o parágrafo que fala que "o egresso da nuvem barra os domínios das duas fontes" e o que diz que "a SERP dessa consulta foi classificada ... e a classificação está escrita no snippet".
+Pronto quando: 32.5 medido no ar em cada página. Pode sair em mais de uma execução (18.3), uma página por vez conferida no ar, sem esperar as demais.
+
 ## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael)
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
