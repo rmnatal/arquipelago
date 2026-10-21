@@ -5427,3 +5427,52 @@ As duas substituições na tabela da seção 0 foram feitas por casamento exato 
 Nenhum passo falhou. Nenhum erro a registrar neste disparo. Push aceito na primeira tentativa, sem rebase, sem force push, sem PR.
 
 **Nenhum arquivo além dos quatro nomeados na instrução e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido; os textos entraram byte a byte como vieram, incluindo o link do canvas na seção 32 e as três listas de páginas dos despachos. Os marcadores `=== EDIÇÃO N ===` da instrução foram tratados como delimitador, não como conteúdo, e o `<ILHA>`/`<PÁGINAS>` do molde da edição 5 foi substituído só onde a instrução mandou. Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026 10h41 (Brasília) — 13h41 UTC — Bússola seção 3.0-c: piso de 1.000 visitas orgânicas/dia e Shopee como programa preferido
+
+**Checagem de assunto:** do Arquipélago. A instrução mexe na lei da Bússola (critério de nascimento de ilha, medição de SERP, cobertura de afiliado das ilhas). Executada.
+
+**Instrução:** duas edições em `bussola/BUSSOLA.md`, nada além disso. Partida do `main` real (`c2db7f9`), branch de trabalho `trabalho`, destino `main`.
+
+`git status --porcelain` depois de aplicar a mudança, antes do commit:
+
+```
+ M bussola/BUSSOLA.md
+```
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+ bussola/BUSSOLA.md | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+```
+
+Hash do commit que foi ao `main`:
+
+```
+2e22826e8afeab3aa08a5f687e7e393a0aaa2201 Bussola 3.0-c: piso de 1.000 visitas organicas por dia e Shopee como programa preferido (decisao do Raphael, 21/10/2026)
+```
+
+Confirmado em `origin/main` com `git fetch origin main && git log -1 origin/main`: o commit no topo de `origin/main` é `2e22826`, o meu. Push aceito na primeira tentativa, sem rebase, sem force push, sem PR.
+
+**Contagem conferida relendo o arquivo DEPOIS de gravar** (não pelo que eu acho que escrevi):
+
+```
+bussola/BUSSOLA.md .................. 22 linhas inseridas, 0 removidas, 0 substituídas
+  - EDIÇÃO 1: 2 linhas inseridas depois da linha que começa com
+    "**A escala ainda é magra e isto está dito de propósito:**" (linha 63)
+    -> 1 linha em branco (64) + o parágrafo "**SUPERADO EM PARTE em 21/10/2026:**" (65)
+  - EDIÇÃO 2: 20 linhas inseridas imediatamente antes de
+    "## 3.1 Nota que não foi medida não vira índice"
+    -> bloco da seção 3.0-c: cabeçalho em 67, subseções 3.0-c.1 a 3.0-c.5,
+       e a linha em branco final em 86; a "## 3.1" ficou em 87
+  - total do arquivo: 118 -> 140 linhas
+```
+
+As duas âncoras foram conferidas como ocorrência ÚNICA no arquivo antes de inserir (asserção no script de splice). Nenhuma linha existente foi tocada: o `diff --stat` é 22 inserções e 0 remoções, sem substituição.
+
+Nenhum passo falhou. Nenhum erro a registrar neste disparo.
+
+**Nenhum arquivo além do `bussola/BUSSOLA.md` nomeado na instrução e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido; os dois textos entraram byte a byte como vieram, incluindo a aspa da frase do Raphael, o `–` da faixa `1 mil – 10 mil`, o `—` do termo que conta zero, o `Σ`, o `×`, o `÷` e as setas `→`. Os marcadores `=== EDIÇÃO N ===` da instrução foram tratados como delimitador, não como conteúdo. Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
