@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 132,
+  "revisao": 133,
   "atualizado_em": "2026-10-21",
   "estado": "fundacao",
   "desembarque": {
@@ -129,10 +129,10 @@
       "arquivo": "snippets/aquametria-peixes.php",
       "escopo": "front-end",
       "ativo": true,
-      "versao": "1.19.0",
+      "versao": "1.19.1",
       "publicar": true,
-      "sha256": "2ab3e820d655df83816daabe83d9da783baf519504eee6759900e2c47e745bb6",
-      "descricao": "1.19.0 (21/10/2026): O MOLDE DE CONVERSAO DA 32.2 NAS 29 FICHAS DE PEIXE, numa passada, porque as 29 nascem da mesma funcao. Entra o numero da resposta em Mono no alto da caixa; entra o BLOCO DE ACAO logo abaixo dela, com os tres itens do despacho do Raphael de 21/10 (aquario -> litragem com c/l/a na URL, aquecedor -> potencia com a faixa de temperatura da especie, filtro -> vazao), cada um com a conta que o devolve e com o botao que leva a vitrine dela; as seis secoes de explicacao descem para <details> da casca, com o <h2> de cada uma indo para o <summary>; e nasce a barra fixa do rodape, a mesma da casca 1.13.0, levando ao bloco de acao. A tabela de lotacao fica VISIVEL (32.1 item 6). Nenhuma URL, title, H1, trilha ou JSON-LD muda (32.3), e nenhuma palavra sai do HTML servido. O parametro da pagina viaja na URL de UMA so das tres contas: o numero desta pagina e a BASE, so a litragem come base, e as outras duas comem volume de AGUA — mandar o litro bruto nelas seria o numero errado entrando por um link nosso."
+      "sha256": "5004625b7ede7e6d9c05bd7380229f9b4c5d70b43020b0495779870abb9bb23c",
+      "descricao": "1.19.1 (21/10/2026): a 32.4 no texto que a 1.19.0 acabou de escrever, achado pela varredura da propria passada: a nota do cartao do aquario dizia \"o banco de produtos desta FABRICA\" e o aviso dizia \"a VITRINE da calculadora\". As duas sao vocabulario de quem escreveu a fabrica; trocadas por \"esta ilha\" e \"a lista de produtos da calculadora\", que ja estavam na voz publicada. 1.19.0 (21/10/2026): O MOLDE DE CONVERSAO DA 32.2 NAS 29 FICHAS DE PEIXE, numa passada, porque as 29 nascem da mesma funcao. Entra o numero da resposta em Mono no alto da caixa; entra o BLOCO DE ACAO logo abaixo dela, com os tres itens do despacho do Raphael de 21/10 (aquario -> litragem com c/l/a na URL, aquecedor -> potencia com a faixa de temperatura da especie, filtro -> vazao), cada um com a conta que o devolve e com o botao que leva a vitrine dela; as seis secoes de explicacao descem para <details> da casca, com o <h2> de cada uma indo para o <summary>; e nasce a barra fixa do rodape, a mesma da casca 1.13.0, levando ao bloco de acao. A tabela de lotacao fica VISIVEL (32.1 item 6). Nenhuma URL, title, H1, trilha ou JSON-LD muda (32.3), e nenhuma palavra sai do HTML servido. O parametro da pagina viaja na URL de UMA so das tres contas: o numero desta pagina e a BASE, so a litragem come base, e as outras duas comem volume de AGUA — mandar o litro bruto nelas seria o numero errado entrando por um link nosso."
     }
   ],
   "conteudo": [

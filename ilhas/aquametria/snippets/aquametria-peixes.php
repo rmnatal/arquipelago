@@ -1,5 +1,13 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.19.1 (21/10/2026) — A 32.4 NO TEXTO QUE A 1.19.0 ACABOU DE ESCREVER,
+ * e foi a varredura da própria passada que o achou: a nota do cartão do aquário
+ * dizia "o banco de produtos desta FÁBRICA" e o aviso dizia "a VITRINE da
+ * calculadora". As duas são vocabulário de quem escreveu a fábrica, não de quem
+ * lê a página, e a varredura achou "fábrica" nas 29 fichas servidas e em mais
+ * nenhuma página da ilha. Trocadas por "esta ilha" e "a lista de produtos da
+ * calculadora", que já estavam na voz publicada. Texto novo nasce passando pela
+ * mesma varredura que o texto velho — senão a 32.4 vira limpeza de uma vez só.
  * Versão: 1.19.0 (21/10/2026) — O MOLDE DE CONVERSÃO DA 32.2 NAS 29 FICHAS DE
  * PEIXE, de uma passada: é o item 2 do despacho do Raphael de 21/10/2026, e as
  * 29 saem juntas porque as 29 nascem da MESMA função. Nada de URL, `title`, H1,
@@ -5862,7 +5870,12 @@ function aquametria_peixes_monte_html( $e, $nome, $frente, $larg, $litros_altura
 		$h .= '<p class="aqm-px-monte-acoes"><a class="aqm-px-botao" href="' . esc_url( $alvo ) . '">'
 			. ( null !== $litros ? 'Calcular os litros dessa base' : 'Abrir a conta dos litros' ) . '</a></p>';
 	}
-	$h .= '<p class="aqm-px-monte-nota">Aquário não tem botão de loja nesta ilha: o banco de produtos desta fábrica não registra vidro, '
+	/* 32.4: esta linha dizia "o banco de produtos desta FABRICA", e "fábrica" é
+	   vocabulário de quem escreveu a fábrica, não de quem lê a página — medido na
+	   varredura das 29 fichas servidas nesta mesma passada, que achou a palavra
+	   nas 29 e em mais nenhum lugar. "Ilha" fica porque já estava na voz
+	   publicada desta ficha antes desta mudança. */
+	$h .= '<p class="aqm-px-monte-nota">Aquário não tem botão de loja aqui: o banco de produtos desta ilha não registra vidro, '
 		. 'e produto que ninguém conferiu não entra em cartão nenhum.</p>';
 	$h .= '</div></li>';
 
@@ -5904,7 +5917,7 @@ function aquametria_peixes_monte_html( $e, $nome, $frente, $larg, $litros_altura
 
 	/* O AVISO DE COMISSAO EM UMA LINHA (32.1, item 5), e ele diz onde o link de
 	   afiliado mora de verdade: nao nesta pagina. */
-	$h .= '<p class="aqm-px-aviso">Os botões de produto levam à vitrine da calculadora, e é lá que os links de loja são de afiliado: '
+	$h .= '<p class="aqm-px-aviso">Os botões de produto levam à lista de produtos da calculadora, e é lá que os links de loja são de afiliado: '
 		. 'se você comprar por um deles, a Aquametria pode receber comissão, sem mudar o seu preço. '
 		. 'Cada cartão de produto traz cotação com a data da coleta, nunca preço cravado como atual.</p>';
 	$h .= '</div>';
