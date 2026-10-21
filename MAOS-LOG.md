@@ -5801,3 +5801,61 @@ Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de estado 
 cite), nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true` (o
 frontmatter grava `publicar: false`), nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O
 `ARQUIPELAGO.md` não foi aberto para decidir coisa alguma: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026, 15h46 (horário de Brasília — 18h46 UTC)
+
+**Assunto:** Projeto Arquipélago — Bússola (varredura de nichos por dado, via Planejador de palavras-chave).
+Passou a checagem de assunto: é da Bússola, componente do Arquipélago. Nenhum contato pessoal de terceiro no
+conteúdo — o número que aparece no texto é identificador de conta do Google Ads do próprio Raphael, não contato
+de terceiro, e veio na instrução.
+
+**Instrução recebida:** criar `bussola/medicoes/varredura-nichos-2026-10-21.md` com conteúdo literal fornecido
+entre `===INICIO===` e `===FIM===`, commit em `main` com mensagem dada, push, e não alterar nenhum outro arquivo
+além do `MAOS-LOG.md`.
+
+**O que foi feito:** parti de `origin/main` (`926b07a`) com `git checkout -B trabalho origin/main`. Gravei o
+arquivo byte a byte como veio, via heredoc com delimitador entre aspas (sem expansão de shell, sem reformatação,
+sem linha acrescentada). Commit e push direto para `main`, aceito de primeira — sem rebase, sem force push, sem PR.
+
+`git status --porcelain` (antes do commit do trabalho):
+
+```
+?? bussola/medicoes/varredura-nichos-2026-10-21.md
+```
+
+`git diff --stat` (commit do trabalho):
+
+```
+ bussola/medicoes/varredura-nichos-2026-10-21.md | 34 +++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+```
+
+**Hash que foi ao `main`:**
+
+```
+4a32f1d46a4f59b835fc7cbe6dda12f095c82373
+Bussola: varredura de nichos por dado (Planejador) — jardinagem passa a 3.0-c
+```
+
+Confirmado com `git fetch origin main && git log -1 origin/main`: `origin/main` aponta para `4a32f1d`, o commit
+desta sessão. Push que aparece em `origin/main` — push de verdade.
+
+**Contagem do que mudou, conferida relendo o arquivo gravado (não pelo que eu acho que escrevi):**
+
+```
+   34 linhas    4407 bytes    bussola/medicoes/varredura-nichos-2026-10-21.md
+    5 cabeçalhos (# 1, ## 4: Método, Resultado por fatia, Jardinagem — a que passa, Próximo passo da Bússola)
+    1 tabela, 6 linhas de nicho (pet/ração, bebê, crochê, cabelo, air fryer, jardinagem)
+    3 itens numerados na seção de próximo passo
+```
+
+**Nenhum passo falhou.** Um arquivo criado, nenhum arquivo preexistente alterado, nenhuma linha removida.
+
+**O que NÃO foi feito, embora o conteúdo gravado cite esses alvos:** nenhuma reserva de ilha, nenhum
+`executando_desde`, nenhum cabeçalho de estado tocado — `bussola/fila.md`, `bussola/rodadas/006.md`,
+`bussola/BUSSOLA.md` e `bussola/medicoes/para-medir-2026-10-21.md` ficaram intactos, mesmo o texto apontando
+próximos passos para a Bússola. Nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação,
+nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md`
+não foi aberto para decidir nada: a decisão veio pronta no disparo.
