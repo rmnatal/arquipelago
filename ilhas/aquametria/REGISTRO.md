@@ -14,6 +14,74 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-21 17h45Z–18h2xZ — O MOLDE DA 32.2 NAS 29 FICHAS DE PEIXE, DE UMA PASSADA, E O DESPACHO DO MOLDE DESTA ILHA FECHA INTEIRO
+
+**A ESCOLHA DA ILHA: FOCO E DESPACHO NA MESMA ILHA, E UMA CORRIDA DUPLA QUE EU GANHEI POR UM PUSH.** `foco.md` nomeia a **aquametria** e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria — as duas regras apontaram para a mesma ilha, então não houve rotação. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, e não havia reserva vencida para o git desempatar. **Passo 1:** `git fetch origin main`, nenhum PR aberto e a branch `claude/loving-rubin-3zp9p8` **idêntica ao `main`** (zero commits à frente) — nada a mesclar. Reserva aceita às **17h45Z** no commit `84eaf10`, **renovada** pela 1.1 às 18h05Z porque o mutirão passou de 40 minutos, com a hora saindo do `date -u` na mesma linha de comando que grava o campo.
+
+**E AQUI ESTÁ O ACHADO DE PROCESSO DESTA PASSADA, que não é defeito de ninguém e é aritmética da 1.1:** uma **segunda** execução reservou a **mesma** aquametria no **mesmo minuto** (commit `1c7d970`, com `17:45Z` no campo e outro comentário na linha) — ela leu o `main` antes de o meu push de reserva chegar lá. A reserva por commit funciona exatamente como a seção 1 descreve e **ainda assim as duas trabalharam**, porque o que a reserva protege é a janela ENTRE o fetch e o push, e as duas fizeram o fetch dentro dessa janela. Quem ganhou a corrida do push foi esta execução; o conflito de rebase no `ESTADO.md` foi resolvido mantendo a renovação desta, **sem force push**, e o campo guarda os dois números de commit para quem vier depois conseguir reconstruir o que aconteceu. **Com uma ilha em foco e o despacho do molde furando o foco nela, toda execução da janela converge para a mesma pasta** — é a mesma aritmética que fechou uma execução em "nada elegível" em 12/09/2026, com o sinal trocado.
+
+**Rede pela 20.2, retestada e não herdada:** `aquametria.com.br` em **200** em três passadas, com o `/status` em 200 nas mesmas três.
+
+### 1. O ITEM 2 DO DESPACHO DO RAPHAEL SAI INTEIRO: AS 29 FICHAS NO MOLDE DA 32.2
+
+O despacho listava quatro fichas pelo nome "e o resto". **Saíram as 29**, porque as 29 nascem da **mesma função** (`aquametria_peixes_ficha_html()`) — é o que a 32.6-b manda quando diz que o que se repete entre páginas vira componente em vez de ser reescrito uma por uma. Não foi mérito de velocidade: foi a consequência de o molde desta ilha já existir como **componente da casca** (1.13.0/1.14.0) desde as calculadoras, então a ficha não escreveu dobra, barra nem CSS de barra — pediu.
+
+**O QUE ENTROU EM CADA FICHA, na ordem que a 32.2 pede:**
+
+1. **a caixa de resposta** com o **número em Mono** no alto — `45 × 30 cm de base` —, legível antes de alguém ler a frase. A frase mestra continua inteira embaixo dele: nenhuma palavra foi trocada por número;
+2. **o bloco de ação** imediatamente abaixo da caixa, com os **três itens do despacho** num trilho horizontal: **aquário** (→ litragem, com `c`/`l`/`a` da base declarada na URL), **aquecedor** (→ potência, com a faixa de temperatura da espécie no cartão) e **filtro** (→ vazão). Os dois últimos levam **dois** botões: "Calcular" e "Ver os aquecedores"/"Ver os filtros", que abrem a **lista de produtos** da calculadora pela âncora dela;
+3. **a tabela de lotação VISÍVEL**, nunca recolhida — ela é a tabela-resumo da 32.1 item 6, o "já calculado para outros tamanhos" desta página, e é o que um modelo de linguagem cita;
+4. **as seções de explicação em `<details>`** da casca, com o `<h2>` de cada uma indo para o `<summary>`: 4 a 6 dobras por ficha, conforme a espécie ter divergência declarada e lista de companheiro;
+5. **a barra fixa do rodapé**, a mesma da casca 1.13.0, carregando o número da resposta e levando ao bloco de ação.
+
+**POR QUE OS CARTÕES DEITAM LADO A LADO E NÃO EMPILHADOS, e isto é medição e não gosto:** o aquário **não tem** botão de loja nesta ilha, então o primeiro botão de produto é o do **segundo** cartão. Empilhado, ele cairia uma tela abaixo do teto de 1.400 px da 32.5; em trilho, fica na mesma altura do primeiro.
+
+### 2. O PARÂMETRO DA PÁGINA VIAJA NA URL DE UMA SÓ DAS TRÊS CONTAS, E ISSO É DECISÃO ESCRITA
+
+A 32.2 manda o botão "Calcular" levar à ferramenta **com o parâmetro da página já passado na URL**. O número desta página é a **BASE** — centímetros de frente por centímetros de fundo —, e a única calculadora da ilha que **come base** é a de litragem: ela recebe `?c=45&l=30&a=40` e já responde. As outras duas comem **volume real de água**, e o litro que a ficha publica é **BRUTO** — a própria página diz, duas linhas acima, que vidro e substrato comem uma parte. **Mandar o bruto no campo que pergunta a água seria o número errado entrando por um link nosso, com cara de medida.** A corrente publicada é a que as duas calculadoras já anunciam na própria tela: a litragem guarda o aquário neste navegador e a potência e a vazão o retomam de lá.
+
+**A CORRENTE FOI ANDADA NO AR, NÃO SUPOSTA**, na ficha do betta: o botão do cartão do aquário leva a `/calculadora-de-litragem/?c=45&l=30&a=40`, e a C1 abre com os três campos preenchidos, `medida: externa` e a caixa servindo **VOLUME BRUTO 54,0 L** — que é exatamente o teto da faixa que a ficha publica ("de 40,5 a 54 litros"). O botão "Ver os aquecedores" cai em `#aqm-c5-compra`, que existe a **1.223 px** com **6** links `sponsored`; o "Ver os filtros" em `#aqm-c3-compra`, a **1.167 px** com **14**. A barra do rodapé está `display:none` no topo, vira `flex` depois que o bloco de ação sai da tela, e o clique nela para exatamente no topo do bloco (`scrollY` 536 contra topo 536).
+
+### 3. MEDIDO NO AR, 390 px, COM QUEBRA DE CACHE — AS 29, UMA POR UMA
+
+| | pior | melhor | teto da 32.5 |
+|---|---|---|---|
+| caixa de resposta | **322 px** | 280 px | antes de 700 |
+| 1º botão de produto | **1.147 px** | 966 px | antes de 1.400 |
+
+**29 de 29 passam.** Rolagem horizontal **0** e `pageerror` **0** nas 29 (as mensagens de console são os dois hosts que o egresso desta nuvem barra). Altura: de 4.972 px para **3.665** na ficha do betta, e as 29 ficaram entre 3.593 e 4.074 px.
+
+**E A MEDIÇÃO DE BANCADA SALVOU NOVE PÁGINAS ANTES DE ELAS IREM AO AR.** Na primeira montagem do molde os dois parágrafos de apoio da resposta — o dos litros por altura e o da procedência — ficaram **dentro** da caixa. Medido nos 29 renders locais a 390 px, o primeiro botão de produto caía entre **1.273 e 1.760 px** e **nove das 29 estouravam** o teto de 1.400; as outras passavam por **14 px** de margem, que é menos do que a diferença entre o render local e o ar (**58 a 76 px**, medida em 21/10 nas calculadoras e confirmada aqui: 1.109 local → 1.147 no ar). Os dois parágrafos desceram para a dobra "Como chegamos nesse número" — é a lição (c) do despacho do molde, *prosa de apoio desce* — e o pior caso virou 1.147 px. **Sem a bancada, nove fichas desembarcariam reprovadas e o número que reprovaria só apareceria na ronda seguinte.**
+
+### 4. O QUE NÃO MUDOU, CONFERIDO NO HTML SERVIDO DAS 29 ANTES CONTRA DEPOIS
+
+`title`, `H1`, `canonical`, `meta description` e a trilha **idênticos nas 29**. Os **três nós de JSON-LD** — `Article`, `FAQPage`, `BreadcrumbList` — idênticos nas 29 **fora de um par de campos, e o par está nomeado aqui porque a honestidade da afirmação depende dele**: `datePublished` e `dateModified` passaram de `2026-10-21T06:12:07` para o horário desta passada nas 29. **Não é conteúdo da ilha e não é mudança do molde:** é o Sync com `forcar=1` reescrevendo a página no WordPress, que move a data do post. Fora desse par, **29 de 29 batem caractere por caractere**. E não é sorte: o JSON-LD desta ilha é montado do **registro e do catálogo**, não do corpo da página, então mudança de corpo não tem como movê-lo.
+
+**TEXTO: ninguém perdeu palavra (32.3), e esta é a comparação forte.** Varri o HTML servido das 29 **antes** (revisão 131) e **depois**, com `<script>`, `<style>` e comentário fora, e comparei o **conjunto de formas de palavra**: **zero** palavra perdida em **29 de 29**. O corpo servido cresceu **+322 palavras** em cada uma (1.071 → 1.393 no betta, 1.526 → 1.850 no tetra neon), que é o bloco de ação novo. O que foi para `<details>` continua no HTML servido e legível com o JavaScript desligado (22.8) — `<details>` é HTML nativo e abre sem script.
+
+### 5. A 32.4 PEGOU O TEXTO QUE ESTA MESMA PASSADA ACABOU DE ESCREVER
+
+Varredura das 29 fichas **servidas** (revisão 132), contra a lista da 32.4 mais as palavras de bastidor desta fábrica: **um** achado, e era meu. A nota do cartão do aquário dizia *"o banco de produtos desta **FÁBRICA**"* e o aviso de comissão dizia *"a **VITRINE** da calculadora"* — as duas são vocabulário de quem escreveu a fábrica, não de quem lê a página. "Fábrica" aparecia nas **29** fichas e em **mais nenhuma** página da ilha, ou seja entrou com o molde, 40 minutos depois de a passada anterior ter limpado 40 páginas pela mesma regra. Trocadas por **"esta ilha"** e **"a lista de produtos da calculadora"**, as duas já na voz publicada desta ficha antes da mudança (peixes 1.19.1, revisão 133). **Revarredura das 29 servidas na revisão 133: zero termo de bastidor**, incluindo os vinte que procurei (os seis da lista da 32.4 mais "fábrica", "vitrine", "manifest", "commit", "repositório", "Fundação", "Sentinela", "desembarque", "mutação", "bancada", "portão", "Arquipélago", "rotina" e nome de seção do contrato).
+
+**A lição é de método e vale para todo bloco:** **texto novo nasce passando pela mesma varredura da 32.4 que o texto velho.** Sem isso a 32.4 vira limpeza de uma vez só, e cada bloco novo recontamina o que o bloco anterior limpou — foi o que aconteceu aqui, na mesma tarde, entre duas execuções da mesma ilha.
+
+### 6. PORTÕES
+
+- `teste-peixes.py`: **4.302 afirmações, 0 falha** — antes da mudança, depois dela e depois do conserto da 32.4 (três passadas, o mesmo número).
+- **As 96 âncoras de mutação** que o `mutacoes-peixes.py` usa sobre este snippet continuam existindo nele, conferidas uma a uma por programa, nas duas versões (1.19.0 e 1.19.1): **nenhuma mutação virou inerte** com a reestruturação. Foi por isso que a reestruturação não re-indentou uma linha existente — as mutações casam texto com tabulação, e re-indentar um bloco apaga em silêncio as réguas que medem aquele bloco. O `mutacoes-peixes.py` inteiro foi disparado nesta passada e **não terminou dentro dela**; o que está afirmado aqui é a conferência de âncora, que é programa e não leitura.
+- `conferir-peixes-no-ar.py` (o portão que lê as 38 páginas do eixo NO AR): **1.010 afirmações, 0 falha**, na revisão 133. É ele que confere, entre outras coisas, que nenhuma ficha serve `rel="sponsored"` — espécie não é produto —, que a frase que explica a ausência do link de loja continua servida, e que a trilha serve os três primeiros degraus como link.
+- `conferir-desembarque.py` (portão da 20.4): **APROVADO** na revisão 132 e na 133, lendo o log linha por linha. Registro do próprio portão: a janela do log mostra 14 das 20 linhas aplicadas, e o que não está na janela **não foi conferido**.
+- **A 20.5 apareceu de novo, com a assinatura exata dela:** o push da revisão 133 entrou, o `raw.githubusercontent.com` já servia 133, o Sync **rodou** (log com o timestamp de agora) e o `/status` respondeu **132**. É cache, não entrega que não aconteceu, e o conserto é reacionar de dois em dois.
+
+### 7. PROPORÇÃO DA 31.1
+
+Esta execução entregou **29 páginas convertidas ao molde**, no ar e conferidas. Pela **32.7**, cada página convertida conta como entrega no ar, e não nasceu portão novo nenhum (**31.2**): o único programa escrito foi a régua de medição que a própria 32.5 manda fazer, e ela ficou **fora** do repositório, porque régua que não protege nada no ar é a dívida que a 31 existe para impedir.
+
+### 8. O QUE FICA DESBLOQUEADO
+
+O despacho do molde **desta ilha** está fechado inteiro: item 1 (as cinco calculadoras) em 17h0xZ e item 2 (as 29 fichas) agora. Pela ordem da 32.6-b as três ilhas andam em paralelo, e o molde da **clubedomosaico** e o da **robometria** já foram ao ar nas passadas de hoje. **Com o molde fechado nas três, a exceção da 1.2 se esgota e o `foco.md` volta a mandar sozinho** — e a linha `fila_decidida_pelo_raphael` do `foco.md` diz que em **22/10/2026** alguém tem de editar a linha `ilha:` para **jornadafly**. Nesta ilha, o que sobra na fila é a metade de **MEDIÇÃO** das propostas de CTR de 07/10 e 14/10, que não é da Fundação: ela precisa de uma leitura de Search Console depois de a superfície mudar, e a superfície acabou de mudar nas 29 fichas de maior impressão do eixo. **As duas falhas de portão de navegador que o despacho de 21/10 deixou nomeadas continuam abertas e continuam sendo anteriores ao molde** (`teste-navegador-c5`, o aviso que não cita 220 V; `teste-navegador-c3-dupla-condicao`, o botão de busca com `sponsored` onde a regra quer `nofollow`).
+
+
 ## 2026-10-21 16h16Z–17h0xZ — AS CINCO CALCULADORAS DA ILHA ESTÃO NO MOLDE DA SEÇÃO 32, E O QUE ESTAVA VERMELHO NA C15 NÃO ERA O MOLDE: ERA A NUVEM SEM FONTE
 
 **A ESCOLHA DA ILHA: FOCO E DESPACHO NA MESMA ILHA, RESERVA NA PRIMEIRA TENTATIVA.** `foco.md` nomeia a **aquametria** e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria: as duas regras apontam para a mesma ilha, então não houve rotação nem comparação de `ultima_execucao`. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo — a reserva é escrita ANTES do trabalho —, e não havia reserva vencida para o git desempatar; o commit mais recente na pasta era de **16h04Z, doze minutos antes**, e era commit de **fecho** da execução anterior, não bloco em andamento. **Passo 1:** nenhum PR aberto e a branch `claude/dreamy-mccarthy-6dfp2x` idêntica ao `main` — nada a mesclar. Reserva aceita às **16h16Z** e **renovada três vezes** pela 1.1, com a hora saindo do `date -u` na mesma linha de comando que grava o campo. **Rede pela 20.2, não herdada:** `aquametria.com.br` em **200**. Um push foi recusado no meio da passada (outras execuções entraram no `main`); `fetch` + `rebase` sem force push.

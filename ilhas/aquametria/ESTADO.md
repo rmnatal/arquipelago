@@ -5,83 +5,78 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-21T16:59Z
-executando_desde: 2026-10-21T18:05Z   # reserva RENOVADA pela 1.1 (a reserva original desta execucao e de 17:45Z, commit 84eaf10, o PRIMEIRO push de reserva desta ilha nesta janela). CORRIDA DUPLA: uma SEGUNDA execucao reservou a mesma aquametria no MESMO minuto (commit 1c7d970) e reescreveu este comentario — ela leu o main antes de o meu push chegar. Pela secao 1, passo 5, quem perde a corrida do push escolhe outra ilha, e quem ganhou foi esta. A hora sai do `date -u` na mesma linha de comando que grava.
+ultima_execucao: 2026-10-21T18:21Z
+executando_desde: null   # a execucao de 21/10 17h45Z fechou as 18h2xZ. Reserva RENOVADA uma vez pela 1.1 (18h05Z): o mutirao da 32.2 nas 29 fichas passa de 40 minutos. CORRIDA DUPLA nesta janela — uma segunda execucao reservou a MESMA ilha no MESMO minuto (commit 1c7d970, contra o 84eaf10 desta); quem ganhou a corrida do push foi esta, e o rebase do ESTADO.md foi resolvido sem force push. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
 bloco_atual: |
-  AS CINCO CALCULADORAS DESTA ILHA ESTAO NO MOLDE DA SECAO 32, e o item 1 do
-  despacho do Raphael de 21/10 saiu INTEIRO pela 18.2 — as duas que faltavam
-  entraram nesta passada e foram conferidas no ar pela 18.4, uma a uma.
-  Revisao 131, /status em 131, portao da 20.4 APROVADO lendo o log linha por
-  linha. Snippets: casca 1.14.0, C5 1.9.0, C3 1.9.0 (C15 1.9.0, C12 1.7.0 e
-  C1 1.3.0 ja estavam).
-  MEDIDO NO AR, celular de 390 px com quebra de cache, NOS TRES ESTADOS da 32.5
-  (visitante novo / depois de calcular / quem volta com aquario guardado),
-  formulario e primeiro botao de loja:
-  C5 aquecedor 452 / 1.197 . 1.197 . 1.292 px (era 2.037 / 3.599, e 5.977 px
-  para quem voltava) . altura 22.636 -> 9.542 . rolagem horizontal 11 -> 0 px
-  C3 vazao     409 / 1.160 . 1.141 . 1.236 px (era 1.816 / 3.030, e 4.689 px
-  para quem voltava) . altura 15.317 -> 7.718 . rolagem 0
-  OITO DE OITO PASSAM: os tetos sao 700 px para o formulario e 1.400 para o
-  primeiro botao de compra. pageerror 0 nos seis estados.
-  O QUE NAO MUDOU, comparado no HTML servido do main de antes (b6353e4) contra o
-  de agora: title, H1, URL, trilha, meta description e os TRES nos de JSON-LD
-  (WebApplication, FAQPage com 14 e 13 perguntas, BreadcrumbList com 3 degraus),
-  com a unica diferenca sendo softwareVersion 1.8.0 -> 1.9.0, que e a versao da
-  propria calculadora. A funcao que monta o JSON-LD nao recebeu uma linha de
-  alteracao nas duas, conferido por git diff.
-  TEXTO: ninguem perdeu palavra (32.3). C5 5.142 -> 5.254 palavras no corpo
-  servido, C3 4.029 -> 4.110. As formas de palavra que deixaram de aparecer sao
-  sete na C5 e quatro na C3, e TODAS pertencem as tres frases reescritas — a
-  promessa (que a 32.1 item 2 define como UMA frase), a linha de apoio do
-  formulario (uma sentenca dela desceu para a dobra de campos) e a linha de apoio
-  da vitrine (os dois numeros dela subiram para o titulo do bloco, licao (c)) —
-  mais o numero de versao. Nenhuma secao, paragrafo, tabela ou aviso saiu.
-  O MARKDOWN DAS DUAS FOI CONVERTIDO JUNTO: shortcode no topo e cada ## virando
-  dobra, 9 na C5 e 7 na C3. Era isso que punha o formulario a 817 px no primeiro
-  render do molde.
-  A CASCA 1.14.0 CONSERTA OS 11 px DE ROLAGEM HORIZONTAL DA C5, E O CONSERTO NAO
-  ERA DA CALCULADORA: varrido todo no do documento a 390 px, o unico que passava
-  da janela era uma <table> SEM CLASSE — a tabela das quatro constantes de W/L,
-  escrita no MARKDOWN da pagina, 371 px de conteudo numa coluna de 330. A regra
-  nova e `body table:not([class])` com rolagem propria dentro da faixa de ate
-  600 px: alcanca so a tabela do Markdown (toda tabela montada em PHP leva classe
-  e ja viaja dentro de um .aqm-*-rolagem) e nao toca no desktop. VALE PARA TODA
-  PAGINA DA ILHA COM TABELA EM MARKDOWN, e e por isso que mora na casca.
-  O PORTAO VERMELHO DA VITRINE DA C15 TEM CAUSA MEDIDA, E NAO E O MOLDE: a casca
-  pede a folha do Google Fonts, o egresso desta nuvem a barra, e quando a
-  requisicao FALHA as metricas de fonte caem para a alternativa DEPOIS do
-  domcontentloaded. scrollIntoView suave ja tinha calculado o destino, entao a
-  pagina parava onde a caixa ESTAVA (-55 px na C5, -39 px na C15). Abrindo com
-  networkidle, a caixa para em top = 0. Dois consertos sairam dai: as duas
-  calculadoras medem a rolagem em DOIS QUADROS, e os portoes esperam a rede —
-  porque rede sem fonte e defeito da nuvem, e reprovar o molde por ela e acusar o
-  inocente. O PORTAO DA C15 DESTRAVA COM O MESMO CONSERTO.
-  UM PORTAO ACHOU DEFEITO DE VERDADE NO TRABALHO DESTA PASSADA, e ele e a licao
-  (d) num lugar que ela nao alcancava: com o formulario nascendo preenchido, quem
-  ESCOLHIA UMA ESPECIE (kinguio, 18 a 24 C) recebia a conta feita para os 26 C do
-  NOSSO exemplo, calando a ficha da especie em silencio. Agora o alvo que nos
-  preenchemos cede a vez na primeira troca de especie; quem digitou manda e
-  continua mandando. Na C5 o limparExemplo() limpa TRES campos por isso.
-  PORTOES: c5-vitrine TUDO OK, c3-vitrine TUDO OK, visibilidade-ia tudo passou
-  nas CINCO calculadoras (a regra da secao 5 medida pelo primeiro <h2>, licao
-  (f)), conferir-desembarque APROVADO. DUAS FALHAS SOBRAM E AS DUAS SAO
-  ANTERIORES A ESTA PASSADA, cada uma conferida rodando o portao de antes sobre o
-  render de antes tirado do git: o aviso de voltagem da C5 e o rel do botao de
-  busca da C3. Estao nomeadas no despacho.
-  A BANCADA INTEIRA (73 portoes, sem rede) FOI ACIONADA E NAO TERMINOU DENTRO
-  DESTA EXECUCAO: fechou verde em 24 portoes lidos, ZERO falha — a regua do
-  veredito, php -l nos 11 snippets, seis conferir-* e dezessete baterias de
-  mutacoes-*, todas com zero sobrevivente e zero inerte. Parou numa bateria longa
-  e foi INTERROMPIDA pelo limite de tempo de processo em segundo plano deste
-  ambiente — nao terminou e nao termina sozinha. 49 PORTOES FICARAM SEM LEITURA,
-  e portao nao
-  lido nao e portao verde: rode a bancada de ponta a ponta antes de abrir bloco
-  novo nesta ilha.
-  PROXIMO PASSO, desbloqueado: o ITEM 2 do despacho — as fichas de peixe no molde
-  32.2, comecando pela /peixes/bettas/quantos-litros-para-betta/, a de mais
-  impressao da ilha. As cinco calculadoras que as fichas vao linkar ja estao no
-  molde, entao o parametro passado na URL chega numa pagina cuja primeira tela e
-  formulario e resultado.
+  AS 29 FICHAS DE PEIXE DESTA ILHA ESTAO NO MOLDE DA 32.2, e com elas o despacho
+  do Raphael de 21/10 FECHA INTEIRO pela 18.2 — os dois itens conferidos no ar
+  pela 18.4. As 29 sairam numa passada so porque as 29 nascem da MESMA funcao,
+  que e o que a 32.6-b manda. Revisao 133, /status em 133, portao da 20.4
+  APROVADO lendo o log linha por linha. Snippet: peixes 1.19.1.
+  MEDIDO NO AR, celular de 390 px com quebra de cache, nas 29 uma por uma:
+  caixa de resposta 280 a 322 px (teto 700) e PRIMEIRO BOTAO DE PRODUTO 966 a
+  1.147 px (teto 1.400). 29 DE 29 PASSAM. Rolagem horizontal 0 e pageerror 0 nas
+  29. Altura 4.972 -> 3.665 px na ficha do betta; as 29 entre 3.593 e 4.074 px.
+  O QUE ENTROU EM CADA FICHA: o numero da resposta em Mono no alto da caixa; o
+  BLOCO DE ACAO logo abaixo dela, em trilho, com os tres itens do despacho
+  (aquario -> litragem com c/l/a da base na URL, aquecedor -> potencia com a
+  faixa de temperatura da especie, filtro -> vazao), os dois ultimos com
+  "Calcular" e com o botao que abre a lista de produtos da calculadora; as
+  secoes de explicacao em <details> da casca (4 a 6 por ficha), com a TABELA DE
+  LOTACAO ficando VISIVEL porque ela e a tabela-resumo da 32.1 item 6; e a barra
+  fixa do rodape da casca 1.13.0.
+  A CORRENTE FOI ANDADA NO AR, NAO SUPOSTA: o botao do cartao do aquario leva a
+  /calculadora-de-litragem/?c=45&l=30&a=40 e a C1 abre com os tres campos
+  preenchidos servindo VOLUME BRUTO 54,0 L, que e o teto da faixa que a ficha
+  publica. #aqm-c5-compra existe a 1.223 px com 6 links de loja e #aqm-c3-compra
+  a 1.167 px com 14. A barra esta display:none no topo, vira flex quando o bloco
+  de acao sai da tela, e o clique nela para exatamente no topo do bloco
+  (scrollY 536 contra topo 536).
+  O PARAMETRO DA PAGINA VIAJA NA URL DE UMA SO DAS TRES CONTAS, e e decisao: o
+  numero da ficha e a BASE, so a litragem come base, e as outras duas comem
+  volume de AGUA — o litro da ficha e BRUTO, e manda-lo nelas seria o numero
+  errado entrando por um link nosso.
+  O QUE NAO MUDOU, no HTML servido das 29 antes (revisao 131) contra depois:
+  title, H1, canonical, meta description e trilha identicos nas 29; os TRES nos
+  de JSON-LD (Article, FAQPage, BreadcrumbList) identicos nas 29 FORA de
+  datePublished/dateModified, que o Sync com forcar=1 reescreve em toda passada
+  e nao sao conteudo da ilha. ZERO PALAVRA PERDIDA em 29 de 29, comparando
+  conjunto de formas de palavra do corpo servido; o corpo cresceu +322 palavras
+  em cada uma (1.071 -> 1.393 no betta).
+  A BANCADA SALVOU NOVE PAGINAS ANTES DO AR: com os dois paragrafos de apoio
+  ainda dentro da caixa, o primeiro botao de produto caia entre 1.273 e 1.760 px
+  nos 29 renders locais e NOVE das 29 estouravam o teto de 1.400; as outras
+  passavam por 14 px, menos que a diferenca local->ar (58 a 76 px). Os dois
+  desceram para a dobra "Como chegamos nesse numero" — licao (c) do despacho.
+  A 32.4 PEGOU O TEXTO QUE ESTA PASSADA ACABOU DE ESCREVER: a varredura das 29
+  servidas achou "fabrica" nas 29 e "vitrine" no aviso de comissao —
+  vocabulario de quem escreveu a fabrica, entrado COM o molde, 40 minutos depois
+  de a passada anterior ter limpado 40 paginas pela mesma regra. Trocadas por
+  "esta ilha" e "a lista de produtos da calculadora" na 1.19.1, e a revarredura
+  das 29 na revisao 133 deu ZERO termo de bastidor. A licao e de metodo: texto
+  NOVO nasce passando pela mesma varredura da 32.4 que o texto velho.
+  PORTOES: teste-peixes 4.302 afirmacoes 0 falha (tres passadas, o mesmo
+  numero); conferir-peixes-no-ar 1.010 afirmacoes 0 falha na revisao 133;
+  conferir-desembarque APROVADO em 132 e em 133. As 96 ANCORAS DE MUTACAO que o
+  mutacoes-peixes usa sobre este snippet continuam existindo nele, conferidas
+  por programa nas duas versoes — nenhuma mutacao virou inerte com a
+  reestruturacao, e foi por isso que nenhuma linha existente foi re-indentada.
+  O mutacoes-peixes INTEIRO foi disparado nesta passada e NAO TERMINOU dentro
+  dela.
+  A 20.5 APARECEU DE NOVO com a assinatura exata dela: o push da 133 entrou, o
+  raw do GitHub ja servia 133, o Sync RODOU (log com timestamp de agora) e o
+  /status respondeu 132. Cache, nao entrega que nao aconteceu; o conserto foi
+  reacionar de dois em dois, e a 133 entrou na terceira rodada, tres minutos
+  depois.
+  PROXIMO PASSO DESBLOQUEADO: com o molde fechado nas tres ilhas, a excecao da
+  1.2 se esgota e o foco.md volta a mandar sozinho — e a linha
+  fila_decidida_pelo_raphael diz que em 22/10/2026 alguem tem de editar a linha
+  "ilha:" para jornadafly. Nesta ilha o que sobra na fila e a metade de MEDICAO
+  das propostas de CTR de 07/10 e 14/10, que nao e da Fundacao: precisa de uma
+  leitura de Search Console DEPOIS de a superficie mudar, e a superficie acabou
+  de mudar nas 29 fichas de maior impressao do eixo. As duas falhas de portao de
+  navegador nomeadas no despacho de 21/10 continuam abertas e continuam
+  ANTERIORES ao molde.
 ultima_ronda: 2026-10-21T14:57Z   # RONDA DIARIA TECNICA, no Chrome do Raphael mais medicao da nuvem. 52 de 52 URLs em 200 (a /politica-de-privacidade/ devolveu 504 numa primeira leitura e 200 em tres releituras seguidas — oscilacao do hospedeiro, nao da ilha). Porta de entrada da 29.2 inteira; 404 virgem na pagina da propria ilha; /status em 128 igual ao manifest. Zero defeito da lista 19.1 e ZERO conserto. TRES achados, os tres da lista fechada 19.2 e os tres despachados nesta data: (1) a caixa de resultado do topo da /calculadora-de-iluminacao/ e CONGELADA no exemplo de 170,1 L e nunca recalcula — a resposta real nasce numa SEGUNDA caixa, abaixo dela, e com isso o primeiro cartao de compra cai de 1.300 px para 5.839 px no celular de 390 px, contra o teto de 1.400 px da 32.5; (2) o bloco "Como sabemos" daquela pagina publica "seis registros e tres sugeridos" contra 26 registros e 15 sugeriveis recontados em dados/produtos-iluminacao.json; (3) o texto de bastidor da 32.4 esta em 30 das 52 paginas, nao so na ficha do betta. A regua mecanica passou inteira: zero &#038; dentro de script, zero noindex, JSON-LD e BreadcrumbList nas 52, zero img sem alt ou sem dimensao (13 imagens), description unica nas 52 e a maior com 149 caracteres, aria-expanded e aria-controls nas 52, favicon nas 52, zero corpo comecando por metadado, zero pagina com menos de 2 links de ENTRADA (contado pela 16.9 na direcao de quem aponta; a menor contagem e 3). Console sem uma mensagem. A tabela de casos da 32.1 item 6 esta visivel e as 6 linhas foram recontadas na mao, as 6 certas. Piso da 25.2 recontado nos quatro dados/produtos-*.json: 78 de 78 com url_busca e url_busca_produto, 11 intestaveis, 36 testaveis. TESTE DE VIDA DA 25.4: 0 de 36 medidos — a api/v4/pdp/get_pc devolveu error 90309999 na primeira chamada de DOIS contextos limpos (entrada por ficha e por busca) e as duas abas cairam em verify/captcha; nenhum clique de afiliado gasto e nenhum CAPTCHA resolvido. "Nao medido" nao e "vivo". E a sessao do Shopee Afiliados NAO esta deslogada: o cookie SPC_U estava presente, logo o que trava e o anti-robo, nao o login.
 bloqueada_por: null
 congelamento: |
