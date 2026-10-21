@@ -5597,3 +5597,70 @@ dados/PAINEL.md                        82 linhas, 14.765 bytes; 20 linhas na tab
 **Um tropeço no push, registrado porque o log existe para isto:** o primeiro `git push origin HEAD:main` foi recusado (non-fast-forward) porque outro commit entrou no `main` entre o `fetch` e o push — `ee266cf Reserva a clubedomosaico para a execucao de 21/10/2026 15h0xZ`. Resolvido na primeira tentativa seguinte com `git fetch origin main && git rebase origin/main` e novo `git push origin HEAD:main`, que passou (`ee266cf..331a1e8`). **Nenhum force push.** Nenhum outro passo falhou.
 
 **Nenhum arquivo além dos quatro nomeados na instrução e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido: os textos entraram byte a byte como vieram, incluindo os travessões `—`, as setas `→`, o `14h5xZ` com o `x` literal nos cabeçalhos e no painel, o `151 — **corrigido: 149** —` do painel, os pontos medianos `·` da tabela de casos e todos os caixa-alta. Os marcadores `===== ARQUIVO N de 4 =====` da instrução foram tratados como delimitador, não como conteúdo. Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026, 12h19 (horário de Brasília) — 15h19 UTC — Bússola rodada 006, gravação 1 de 2
+
+**Assunto conferido antes do `git fetch`, como manda a trava:** Bússola / rodada 006 / seção 3.0-c do `BUSSOLA.md`.
+É do Arquipélago. Executado.
+
+**O que a instrução mandou fazer, e foi feito:** duas gravações num só commit — um arquivo novo
+(`bussola/medicoes/para-medir-2026-10-21.md`) e uma substituição única em `bussola/BUSSOLA.md`. A conferência prévia
+exigida pela instrução foi feita: o TRECHO ANTIGO aparecia **exatamente uma vez** no arquivo (contagem por script,
+antes de gravar; a gravação só prosseguiu depois da checagem passar).
+
+```
+$ git status --porcelain      (antes do commit)
+ M bussola/BUSSOLA.md
+?? bussola/medicoes/para-medir-2026-10-21.md
+```
+
+```
+$ git diff --stat             (do commit)
+ bussola/BUSSOLA.md                        |  40 +++
+ bussola/medicoes/para-medir-2026-10-21.md | 487 ++++++++++++++++++++++++++++++
+ 2 files changed, 527 insertions(+)
+```
+
+```
+commit que foi ao main: e0a68382d497ef1baabca4015630b1da2f2d555c
+mensagem: Bússola rodada 006 — 21/10/2026, primeira rodada com a 3.0-c
+```
+
+**Conferido em `origin/main` depois do push** (`git fetch origin main && git log -1 origin/main`): o topo de
+`origin/main` é `e0a6838 Bússola rodada 006 — 21/10/2026, primeira rodada com a 3.0-c`. Push que não aparece em
+`origin/main` não é push — este aparece. O push passou na primeira tentativa (`94698a4..e0a6838`), sem recusa, sem
+rebase e **sem force push**.
+
+**Contagem do que mudou, conferida RELENDO os arquivos depois de gravar, não pelo que foi escrito:**
+
+```
+bussola/medicoes/para-medir-2026-10-21.md   487 linhas; 33.595 bytes; 65 linhas em branco
+                                            7 cabecalhos '# ', 11 cabecalhos '## ', 59 linhas de tabela
+                                            consultas por candidato, contadas no arquivo gravado:
+                                              candidato 1 (resistencia de chuveiro) ...... 50
+                                              candidato 2 (enxoval de cama) .............. 54
+                                              candidato 3 (hidraulica de reforma) ........ 50
+                                              candidato 4 (suporte de TV e cabeamento) ... 55
+bussola/BUSSOLA.md                          180 linhas (eram 140 antes desta gravacao; +40)
+                                            1 ocorrencia de '## 3.0-c PISO DE TRÁFEGO' — continua la
+                                            1 ocorrencia de 'AMPLIADA NA RODADA 006' — o bloco novo entrou
+```
+
+**Uma divergência entre a conferência esperada na instrução e o repositório real, registrada por honestidade e porque
+não mudou nada no resultado:** a instrução previa `bussola/BUSSOLA.md` indo "de 131 para ~171 linhas". O arquivo no
+`main` já estava com **140** linhas quando este disparo o leu, e terminou com **180**. O crescimento é de **+40
+linhas**, exatamente o previsto; o ponto de partida é que estava três gravações à frente do número citado. As duas
+conferências que a instrução pediu para o arquivo passaram: 487 linhas na lista de medição e `## 3.0-c PISO DE
+TRÁFEGO` ainda presente. Nada foi ajustado por causa disso.
+
+**Nenhum passo falhou.** Nenhum arquivo além dos dois nomeados na instrução e deste log foi tocado. Nada foi
+reformatado, "melhorado" ou corrigido: os dois textos entraram byte a byte como vieram, incluindo os travessões `—`,
+as setas `→`, os pontos medianos `·`, as reticências `…`, o `×` de multiplicação, o `Σ` e o `≈` das contas, as aspas
+curvas das citações do coletor, as crases dos domínios e dos marcadores `nao-medida`, e todos os caixa-alta. As linhas
+`<<<INICIO-ARQUIVO-1>>>`, `<<<FIM-ARQUIVO-1>>>`, `<<<INICIO-SUBSTITUICAO>>>` e `<<<FIM-SUBSTITUICAO>>>` foram tratadas
+como delimitador, não como conteúdo, e não entraram em arquivo nenhum. Nenhuma reserva de ilha, nenhum
+`executando_desde`, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync
+acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro
+escrito. O `ARQUIPELAGO.md` não foi aberto para decidir coisa alguma: a decisão veio pronta no disparo.
