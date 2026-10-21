@@ -5288,3 +5288,60 @@ Imprimiu `YAML ok`, então a ED4 ficou de pé e não houve o que desfazer. Nenhu
 Nenhum passo falhou. Nenhum erro a registrar neste disparo.
 
 **Nenhum arquivo além destes 4 e deste log foi tocado.** Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo, e eu só apliquei o que ela nomeou, byte a byte.
+
+---
+
+## 21/10/2026 — 10h05 de Brasília (13h05Z) — SEÇÃO 31 DO `ARQUIPELAGO.md`: TRÊS EDIÇÕES, UM COMMIT
+
+**Instrução recebida:** três edições no `ARQUIPELAGO.md`, na raiz, e nada além disso. Duas substituições exatas de linha na tabela da seção 0 (linha da **Fundação** e linha da **Sentinela — leitura semanal**, ambas ganhando `, **31**` no fim da lista de seções) e o acréscimo da seção **31. A EXECUÇÃO VAI PARA O SITE, NÃO PARA A BANCADA** ao fim do arquivo, depois de uma linha em branco.
+
+**Checagem de assunto, antes do `git fetch`:** assunto do Arquipélago. A instrução mexe no contrato `ARQUIPELAGO.md`, cita a Fundação, a Sentinela, a leitura semanal e a janela de foco da aquametria. Nenhum assunto de outro projeto. Executada.
+
+**Nenhum dado pessoal de terceiros no texto acrescentado** — nenhum e-mail, telefone, endereço ou contato de pessoa. Nada foi deixado de fora por esse motivo.
+
+`git status --porcelain` antes do commit:
+
+```
+M  ARQUIPELAGO.md
+```
+
+`git diff --stat` do commit do trabalho:
+
+```
+ ARQUIPELAGO.md | 22 ++++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+```
+
+**Hash do commit que foi ao `main`:**
+
+```
+758b69695bb09a6eca87e9a95aa527f7e091b28b
+Secao 31: a execucao vai para o site, nao para a bancada (decisao do Raphael, 21/10/2026)
+```
+
+**Push:** `git push origin HEAD:main` aceito de primeira, `06367e9..758b696  HEAD -> main`. Sem recusa, sem rebase, sem force push, sem PR.
+
+**Confirmação em `origin/main`,** por `git fetch origin main && git log -1 origin/main`:
+
+```
+758b69695bb09a6eca87e9a95aa527f7e091b28b
+Secao 31: a execucao vai para o site, nao para a bancada (decisao do Raphael, 21/10/2026)
+```
+
+**Contagem do que mudou, conferida relendo o arquivo DEPOIS de gravar:**
+
+```
+3 edições pedidas, 3 aplicadas
+2 substituições de linha (linhas 9 e 12, tabela da seção 0) — cada padrão de busca ocorria exatamente 1 vez antes da troca, conferido
+1 seção nova acrescentada ao fim: "## 31. A EXECUÇÃO VAI PARA O SITE, NÃO PARA A BANCADA"
+6 itens numerados dentro da seção 31 (31.1 a 31.6), contados por releitura do arquivo gravado
+20 linhas inseridas, 2 removidas
+1135 linhas antes → 1153 linhas depois
+```
+
+Linha 9 depois de gravar: `| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30**, **31** |`
+Linha 12 depois de gravar: `| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29, **31** |`
+
+Nenhum passo falhou. Nenhum erro a registrar neste disparo.
+
+**Nenhum arquivo além do `ARQUIPELAGO.md` e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido; o texto da seção 31 entrou byte a byte como veio na instrução, e a linha de fecho "FIM DO TEXTO A ACRESCENTAR." da instrução foi tratada como delimitador, não como conteúdo. Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
