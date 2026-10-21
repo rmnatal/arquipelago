@@ -5476,3 +5476,64 @@ As duas âncoras foram conferidas como ocorrência ÚNICA no arquivo antes de in
 Nenhum passo falhou. Nenhum erro a registrar neste disparo.
 
 **Nenhum arquivo além do `bussola/BUSSOLA.md` nomeado na instrução e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido; os dois textos entraram byte a byte como vieram, incluindo a aspa da frase do Raphael, o `–` da faixa `1 mil – 10 mil`, o `—` do termo que conta zero, o `Σ`, o `×`, o `÷` e as setas `→`. Os marcadores `=== EDIÇÃO N ===` da instrução foram tratados como delimitador, não como conteúdo. Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
+
+## Disparo de 21/10/2026, 12h03 (horário de Brasília) — 15h03 UTC — `ARQUIPELAGO.md` seção 32.6-b (mutirão: molde no site inteiro, ilhas em paralelo) e o despacho do molde em duas ilhas
+
+Instrução literal recebida no disparo, assunto do Arquipélago: a seção 32 do `ARQUIPELAGO.md` (molde de conversão) e o despacho do molde nas ilhas clubedomosaico e robometria. Ordem do Raphael na conversa de 21/10/2026 12h01 (Brasília): "Tem que aplicar o site inteiro, em todas as calculadoras possíveis." Checagem de assunto passada antes do `git fetch`: é do Arquipélago (lei do arquipélago e `PROMPT.md` de duas ilhas), nada de outro projeto, nenhum contato pessoal de terceiro na instrução.
+
+Três edições pedidas, três edições feitas, um commit. Nada além disso, fora este log.
+
+- **EDIÇÃO 1** — `ARQUIPELAGO.md`: inserido, logo depois da linha inteira que começa com `**32.6 Ordem de aplicação:**`, uma linha em branco e o parágrafo `**32.6-b MUTIRÃO, ordem do Raphael de 21/10/2026 12h01: ...**`.
+- **EDIÇÃO 2** — `ilhas/clubedomosaico/PROMPT.md`: substituída a linha "O Raphael aprovou o novo layout ... Esta ilha começa quando a aquametria estiver com o despacho do molde cumprido." pela nova linha que remete à 32.6-b e diz que esta ilha NÃO espera a aquametria terminar.
+- **EDIÇÃO 3** — `ilhas/robometria/PROMPT.md`: a mesma substituição da EDIÇÃO 2, com o mesmo texto antigo e o mesmo texto novo.
+
+`git status --porcelain` depois de aplicar as três edições, antes do commit:
+
+```
+ M ARQUIPELAGO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/robometria/PROMPT.md
+```
+
+`git status --porcelain` depois do commit e do push (antes de gravar este log): vazio — árvore limpa.
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+ ARQUIPELAGO.md                 | 2 ++
+ ilhas/clubedomosaico/PROMPT.md | 2 +-
+ ilhas/robometria/PROMPT.md     | 2 +-
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+```
+
+Hash do commit que foi ao `main`:
+
+```
+15409d37efb30b28c27ab0bade05770b770b2eea 32.6-b: molde em mutirao no site inteiro e ilhas em paralelo (ordem do Raphael, 21/10/2026 12h01)
+```
+
+Confirmado em `origin/main` com `git fetch origin main && git log -1 origin/main`: o commit no topo de `origin/main` é `15409d3`, o meu, datado de 2026-10-21 15:02:43 +0000. Push aceito na primeira tentativa (`git push origin HEAD:main`, `5316040..15409d3`), sem rebase, sem force push, sem PR.
+
+**Contagem conferida relendo os arquivos DEPOIS de gravar** (não pelo que eu acho que escrevi):
+
+```
+ARQUIPELAGO.md ...................... 2 linhas inseridas, 0 removidas, 0 substituídas
+  - a linha da 32.6 ficou em 1181 (intacta); linha em branco nova em 1182;
+    parágrafo da 32.6-b em 1183; a linha em branco que já existia virou 1184;
+    a "**32.7 Proporção da seção 31:**" desceu de 1183 para 1185
+  - total do arquivo: 1183 -> 1185 linhas
+
+ilhas/clubedomosaico/PROMPT.md ...... 1 linha substituída (1 inserida, 1 removida)
+  - linha 220, dentro do "## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO"
+  - total do arquivo: inalterado
+
+ilhas/robometria/PROMPT.md .......... 1 linha substituída (1 inserida, 1 removida)
+  - linha 50, dentro do "## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO"
+  - total do arquivo: inalterado
+```
+
+A âncora da EDIÇÃO 1 e o texto antigo das EDIÇÕES 2 e 3 foram conferidos como ocorrência ÚNICA em cada arquivo antes de escrever (asserção no script). As duas substituições usaram exatamente o mesmo texto antigo e o mesmo texto novo, como a instrução pediu.
+
+Nenhum passo falhou. Nenhum erro a registrar neste disparo.
+
+**Nenhum arquivo além dos três nomeados na instrução e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido; os textos entraram byte a byte como vieram, incluindo os `—` travessões, as setas `→`, o `<details>` entre crases e os caixa-alta `MUTIRÃO`, `SITE INTEIRO`, `TODAS`, `CASCA`, `EM PARALELO` e `NÃO`. Os marcadores `=== EDIÇÃO N ===` da instrução foram tratados como delimitador, não como conteúdo. Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. Não li o `ARQUIPELAGO.md` para decidir nada — só para localizar a linha da 32.6 que a instrução nomeou: a decisão veio pronta no disparo.
