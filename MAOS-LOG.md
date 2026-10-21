@@ -5345,3 +5345,85 @@ Linha 12 depois de gravar: `| **Sentinela — leitura semanal** | **1.2**, **1.2
 Nenhum passo falhou. Nenhum erro a registrar neste disparo.
 
 **Nenhum arquivo além do `ARQUIPELAGO.md` e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido; o texto da seção 31 entrou byte a byte como veio na instrução, e a linha de fecho "FIM DO TEXTO A ACRESCENTAR." da instrução foi tratada como delimitador, não como conteúdo. Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026, 10h20 (horário de Brasília) — 13h20Z — SEÇÃO 32 (molde de conversão) no `ARQUIPELAGO.md` e os três despachos do Raphael nas ilhas
+
+**Assunto:** Arquipélago (contrato + despachos das ilhas aquametria, clubedomosaico e robometria). Passou na checagem de assunto. Instrução autorizada pelo Raphael na conversa de 21/10/2026 10h17 (Brasília).
+
+**O que a instrução mandou:** cinco edições em quatro arquivos. (1) duas linhas da tabela da seção 0 do `ARQUIPELAGO.md` ganham o número **32**; (2) um parágrafo de exceção na seção 1.2, logo depois da linha "**A ÚNICA coisa que fura o foco**"; (3) a seção 32 inteira no fim do `ARQUIPELAGO.md`; (4) o despacho do molde em `ilhas/aquametria/PROMPT.md`, antes do primeiro `## DESPACHO`; (5) o mesmo molde, com a lista de páginas trocada, em `ilhas/clubedomosaico/PROMPT.md` e `ilhas/robometria/PROMPT.md`, também antes do primeiro `## DESPACHO` de cada um.
+
+`git status --porcelain` (com tudo já no índice, antes do commit):
+
+```
+M  ARQUIPELAGO.md
+M  ilhas/aquametria/PROMPT.md
+M  ilhas/clubedomosaico/PROMPT.md
+M  ilhas/robometria/PROMPT.md
+```
+
+`git diff --stat` do commit:
+
+```
+ ARQUIPELAGO.md                 | 34 ++++++++++++++++++++++++++++++++--
+ ilhas/aquametria/PROMPT.md     |  8 ++++++++
+ ilhas/clubedomosaico/PROMPT.md |  7 +++++++
+ ilhas/robometria/PROMPT.md     |  7 +++++++
+ 4 files changed, 54 insertions(+), 2 deletions(-)
+```
+
+`git diff --numstat` (inserções / remoções por arquivo):
+
+```
+32	2	ARQUIPELAGO.md
+8	0	ilhas/aquametria/PROMPT.md
+7	0	ilhas/clubedomosaico/PROMPT.md
+7	0	ilhas/robometria/PROMPT.md
+```
+
+**Hash do commit que foi ao `main`:**
+
+```
+a866e4106221743d4a9829f2e084885349b135be
+Secao 32: molde de conversao em todas as ilhas, e os despachos do Raphael de 21/10/2026
+```
+
+**Push confirmado em `origin/main`**, não só no local:
+
+```
+$ git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   f6b1447..a866e41  HEAD -> main
+
+$ git fetch origin main && git log -1 origin/main
+a866e4106221743d4a9829f2e084885349b135be Secao 32: molde de conversao em todas as ilhas, e os despachos do Raphael de 21/10/2026
+```
+
+**Contagem conferida relendo os arquivos DEPOIS de gravar** (não pelo que eu acho que escrevi):
+
+```
+ARQUIPELAGO.md ...................... 32 linhas inseridas, 2 substituídas
+  - 2 linhas da tabela da seção 0 (linhas 9 e 10) reescritas com **32**
+  - 2 linhas inseridas na seção 1.2 (1 em branco + o parágrafo da exceção, linhas 69-70)
+  - 28 linhas inseridas no fim do arquivo (seção 32: linhas 1156 a 1183, com o `---` em 1157 e o `## 32.` em 1159)
+  - total do arquivo: 1.153 -> 1.183 linhas
+ilhas/aquametria/PROMPT.md .......... 8 linhas inseridas, 0 removidas
+  - despacho inserido na linha 47, imediatamente antes de
+    "## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL...)"
+  - total do arquivo: 600 -> 608 linhas
+ilhas/clubedomosaico/PROMPT.md ...... 7 linhas inseridas, 0 removidas
+  - despacho inserido na linha 218, imediatamente antes de
+    "## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL...)"
+  - total do arquivo: 3.188 -> 3.195 linhas
+ilhas/robometria/PROMPT.md .......... 7 linhas inseridas, 0 removidas
+  - despacho inserido na linha 48, imediatamente antes de
+    "## DESPACHO DA SENTINELA — 2026-10-16 (RONDA DIÁRIA TÉCNICA...)"
+  - total do arquivo: 1.511 -> 1.518 linhas
+```
+
+As duas substituições na tabela da seção 0 foram feitas por casamento exato do texto antigo, conferido como ocorrência ÚNICA no arquivo antes de trocar. A linha-âncora da seção 1.2 também foi conferida como única.
+
+Nenhum passo falhou. Nenhum erro a registrar neste disparo. Push aceito na primeira tentativa, sem rebase, sem force push, sem PR.
+
+**Nenhum arquivo além dos quatro nomeados na instrução e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido; os textos entraram byte a byte como vieram, incluindo o link do canvas na seção 32 e as três listas de páginas dos despachos. Os marcadores `=== EDIÇÃO N ===` da instrução foram tratados como delimitador, não como conteúdo, e o `<ILHA>`/`<PÁGINAS>` do molde da edição 5 foi substituído só onde a instrução mandou. Nenhum `executando_desde`, nenhuma reserva de ilha, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. Não li o `ARQUIPELAGO.md` para decidir nada: a decisão veio pronta no disparo.
