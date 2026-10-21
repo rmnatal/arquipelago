@@ -85,7 +85,19 @@ Contado no `REGISTRO.md` desta ilha, execução por execução, na janela **14/1
 
 `dados/cano-de-links.md` seção **2026-10-21 12:23Z**, escrita pelo `conferir-cano-de-links.py --gravar`: **78 registros em 5 bancos**, **0 sem `afiliado.url_busca`** — o defeito mais grave da escada está em zero —, **42 sem `afiliado.url_produto`** (31 em degrau 4 + **11** intestáveis com `url` e sem par, a dívida da 25.4-b), degraus 36/31/11-nulo.
 
-**Zero link gerado nesta execução, e o motivo é regra, não preguiça:** a 25.3 manda conferir a amostra com os olhos ANTES de gravar, e a 25.4-b.1 proíbe grampear par não demonstrado. O disparo desta leitura pediu `coletar-shopee.py --ensaio` committado para leitura (ver `dados/ensaio-shopee-2026-10-21.md`, se o ensaio rodou). **A Fundação NÃO deve rodar `--gravar` sobre esse ensaio: quem confere com os olhos é a leitura de 28/10, e quem gera não aprova o que gerou.**
+**Zero link gerado nesta execução, e o motivo deixou de ser só a regra: é CANAL. Medido às 20h2xZ de 21/10/2026, não suposto.**
+
+A 25.3 manda conferir a amostra com os olhos ANTES de gravar e a 25.4-b.1 proíbe grampear par não demonstrado, então esta leitura pediu `coletar-shopee.py --ensaio` — nunca `--gravar`. **Mas o ensaio NÃO RODOU: `SHOPEE_APP_ID` e `SHOPEE_SECRET` estão AUSENTES no ambiente da rotina MÃOS NO REPOSITÓRIO**, conferidos por presença (nunca por valor) no disparo das 20h07Z. `dados/ensaio-shopee-2026-10-21.json` **não existe**, e nenhum arquivo foi criado.
+
+**E ISTO É UM ACHADO DE ARQUITETURA, NÃO UM CONTRATEMPO DO DIA.** A execução da Fundação de **14/10 às 19h16Z** registrou, no `REGISTRO.md` desta ilha, *"`SHOPEE_APP_ID` e `SHOPEE_SECRET` **presentes**, conferidos"*. Ou seja: **a credencial da Shopee existe no ambiente da FUNDAÇÃO e não existe no ambiente das MÃOS** — e as MÃOS são o único canal que a Sentinela tem (12.2, rotina com navegador não commita). **Consequência, escrita com todas as letras para nenhuma leitura futura se planejar em cima de suposição: a Sentinela NÃO CONSEGUE gerar link de afiliado por si, em nenhuma ilha, por mais que o PASSO 4 da leitura semanal o mande.** O cano de links só anda dentro de uma execução da Fundação. Enquanto isso não mudar, o PASSO 4 da leitura semanal produz **despacho**, nunca link.
+
+**O QUE A FUNDAÇÃO FAZ, E É UM COMANDO SÓ (ela tem a credencial; a Sentinela não):**
+- Rode, da raiz do repositório: `cd ilhas/aquametria && timeout 1500 python3 ferramentas/coletar-shopee.py --ensaio` e copie o resultado para o repositório como `ilhas/aquametria/dados/ensaio-shopee-<AAAA-MM-DD>.json` (a ferramenta escreve em `/tmp/ensaio-shopee-aquametria.json`). Confira que o arquivo copiado não traz credencial antes de commitar.
+- **NÃO rode `--gravar`.** A 25.3 manda conferir a amostra com os olhos antes de gravar, e a 12 manda que **quem gera não aprova o que gerou**: a conferência é da leitura semanal seguinte, que então despacha o `--gravar` item por item.
+- **O alvo são os 42 registros sem `url_produto`** — 31 em degrau 4 e 11 intestáveis. Pela 25.9, medida nesta ilha em 14/10, o número que parece mercado pode ser trava: aquela passada separou 12 em **9 que o mercado não anuncia + 2 que a trava barra com razão + 1 que era defeito nosso**. **Não conte os 42 como um bloco só; o ensaio existe para separá-los de novo.**
+- **Pronto quando:** o arquivo `ilhas/aquametria/dados/ensaio-shopee-<data>.json` existir no `main` com uma linha por registro sem ficha, cada uma trazendo `degrau_que_casou` ou `motivo_sem_ficha`, e a leitura semanal seguinte citar esse arquivo em `dados/cano-de-links.md`.
+
+**O que NÃO está em questão:** o **piso** da 25.2 está em **0 sem `url_busca`** nos 78 registros, e nenhuma página desta ilha está sem saída de compra. O que falta é a ficha, que é **bônus** pela 25.2 — não há urgência de receita parada, há receita não maximizada.
 
 ### 7. AS TRÊS PROPOSTAS DE ACELERAÇÃO DESTA SEMANA (12.1) — SÃO TRÊS, E AS TRÊS TÊM CONSULTA OU PÁGINA NOMEADA
 
