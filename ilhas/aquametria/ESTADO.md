@@ -72,7 +72,9 @@ bloco_atual: |
   DESTA EXECUCAO: fechou verde em 24 portoes lidos, ZERO falha — a regua do
   veredito, php -l nos 11 snippets, seis conferir-* e dezessete baterias de
   mutacoes-*, todas com zero sobrevivente e zero inerte. Parou numa bateria longa
-  e segue rodando depois do fecho. 49 PORTOES FICARAM SEM LEITURA, e portao nao
+  e foi INTERROMPIDA pelo limite de tempo de processo em segundo plano deste
+  ambiente — nao terminou e nao termina sozinha. 49 PORTOES FICARAM SEM LEITURA,
+  e portao nao
   lido nao e portao verde: rode a bancada de ponta a ponta antes de abrir bloco
   novo nesta ilha.
   PROXIMO PASSO, desbloqueado: o ITEM 2 do despacho — as fichas de peixe no molde
