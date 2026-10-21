@@ -215,12 +215,38 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO — entra depois da aquametria, pela seção 32.6)
+## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO) — **REESCRITO PELA 18.3 EM 21/10/2026 às 16h2xZ: AS DUAS FERRAMENTAS SAÍRAM, FALTAM OS TRÊS GRUPOS DO MOLDE 32.2**
 
-O Raphael aprovou o novo layout e mandou levar a todas as ilhas. Lei: seção 32 do `ARQUIPELAGO.md`, inclusive a 32.6-b (mutirão: a lista inteira numa execução, e as ilhas em paralelo — esta ilha NÃO espera a aquametria terminar).
-1. Ferramentas no molde 32.1 e páginas de resposta/material/peça no molde 32.2, nesta ordem: `/materiais/qual-cola-usar-no-mosaico/` (F2), `/materiais/quantas-pastilhas-para-mosaico/` (F1), `/materiais/acabamento/` e filhas, as páginas de material pelo nome do produto, e as 5 peças de `/loja/` (nas peças da artesã o botão é o "Verificar disponibilidade", que já existe, levado para a primeira tela — nada de link de afiliado em peça própria).
-2. Tirar todo texto de bastidor da 32.4.
-Pronto quando: 32.5 medido no ar em cada página, uma por vez.
+> **A 18.2 manda despacho sair inteiro; a 18.3 manda, quando um item não couber, resolver os que
+> couberem e reescrever o despacho deixando só os que faltam, com o motivo em uma linha. É o que
+> está feito aqui.**
+>
+> **O QUE JÁ ESTÁ NO AR E CONFERIDO (não refaça):** as **duas ferramentas**, no molde **32.1** —
+> `/materiais/quantas-pastilhas-para-mosaico/` (F1 1.9.0) e `/materiais/qual-cola-usar-no-mosaico/`
+> (F2 1.14.0), com a **casca 1.24.0** e o manifest na **revisão 89**. Medido no ar, celular de 390 px:
+> formulário a **508** e **485 px** (o teto da 32.5 é 700) e primeiro botão de compra a **1.304** e
+> **1.220 px** (o teto é 1.400). As duas com rolagem horizontal 0, texto inteiro no HTML servido
+> (2.981 → 3.035 e 4.827 → 4.858 palavras), `title`/H1/URL/trilha/JSON-LD **idênticos** antes contra
+> depois no ar, zero frase da 32.4 e `pageerror` 0. Detalhe inteiro no `REGISTRO.md` de 21/10.
+>
+> **O MOTIVO DE NÃO TER SAÍDO INTEIRO, em uma linha:** os dois grupos entregues consumiram a execução,
+> porque foi nela que as **peças do molde nasceram na casca** (a dobra, a caixa de resultado, o bloco de
+> compra e a barra do rodapé, pela 32.6-b) e que **cinco portões aprenderam o molde**.
+>
+> **E O CAMINHO ESTÁ MUITO MAIS CURTO PARA QUEM PEGAR O RESTO:** as quatro peças já existem na casca e
+> já foram medidas no ar em duas páginas. Use `cdm_casca_dobrar_secao()` para recolher seção que já
+> existe (o `<h2>` dela vira o título da dobra, sem segundo título digitado), `cdm_casca_resultado_html()`
+> para a caixa de resposta, `<div class="cdm-molde-compra" id="compra">` para o bloco de compra e
+> `cdm_casca_barra_html()` para a barra. **Atenção a duas coisas que custaram tempo nesta passada:** o
+> `valor` da caixa e o da barra são **HTML já escapado** (`cdm_casca_num()` devolve `<span>`), e todo
+> portão cuja fronteira seja `<div class="...">` ou `<h2>` de seção precisa aprender que a classe deixou
+> de ser sozinha e que o `<h2>` recolhido mora no `<summary>` — foram 25 afirmações vermelhas no
+> `conferir-no-ar.py` por isso, nenhuma delas defeito no ar.
+
+Lei: seção 32 do `ARQUIPELAGO.md`, inclusive a 32.6-b (mutirão: a lista inteira numa execução, e as ilhas em paralelo — esta ilha NÃO espera a aquametria terminar).
+1. Páginas de resposta/material/peça no molde **32.2**, nesta ordem: `/materiais/acabamento/` e as 6 filhas, as 8 páginas de material pelo nome do produto, e as 5 peças de `/loja/` (nas peças da artesã o botão é o "Verificar disponibilidade", que já existe, levado para a primeira tela — nada de link de afiliado em peça própria).
+2. Tirar todo texto de bastidor da 32.4. **Nas duas ferramentas isto está medido em zero**; falta varrer os três grupos acima.
+Pronto quando: 32.5 medido no ar em cada página.
 
 ## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael)
 

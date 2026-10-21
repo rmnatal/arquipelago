@@ -173,6 +173,45 @@ ok("remarketing" in corpo_pr, "[privacidade] e o que continua nao acontecendo co
 _DADOS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dados")
 
 
+def dobra_de(html, titulo):
+    """O CORPO de uma dobra pelo titulo dela. Existe desde o molde da secao 32
+    (21/10/2026): a `cdm_casca_dobrar_secao()` tira o `<h2>` do corpo da secao e
+    o poe no `<summary>`, entao a fronteira "do h2 ate o proximo marcador de
+    secao" passou a casar IMEDIATAMENTE e devolver bloco vazio. Vinte e cinco
+    afirmacoes deste arquivo reprovaram por isso, com a pagina inteira servida e
+    certa — e vermelho que nao e defeito e como se desliga um portao."""
+    m = re.search(r"<h2>" + re.escape(titulo) + r"</h2>\s*</summary>\s*"
+                  r'<div class="cdm-dobra-corpo">(.*?)</details>', html, re.S)
+    return m.group(1) if m else ""
+
+
+def f1_regiao_resposta(html):
+    """A CAIXA DE RESULTADO mais a dobra dos numeros — juntas, elas sao o que o
+    `<div class="cdm-f1-resposta">` servia antes do molde da secao 32. A caixa
+    leva as pastilhas e os gramas em Mono; a area, as pastilhas por metro e a
+    linha da cola foram para a dobra, e continuam no HTML servido."""
+    caixa = re.search(r'<div class="[^"]*\bcdm-f1-resposta\b[^"]*"[^>]*>(.*?)</div>\s*<div', html, re.S)
+    caixa = caixa.group(1) if caixa else ""
+    numeros = dobra_de(html, "Os números da sua peça, um por um")
+    if caixa == "" and numeros == "":
+        return ""
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", caixa + " " + numeros))
+
+
+def f2_regiao_recomendacao(html):
+    """A regiao em que produto RECOMENDADO pode aparecer: a caixa de resposta, a
+    dobra do preparo e da procedencia, e o bloco de compra. A secao de
+    eliminados fica fora de proposito — presenca do nome nao e recomendacao."""
+    caixa = re.search(r'<div class="[^"]*\bcdm-f2-resposta\b[^"]*"[^>]*>(.*?)(?='
+                      r'</div>\s*<div class="cdm-molde-compra"|<div class="cdm-f2-secao[ "]|<h2|$)',
+                      html, re.S)
+    caixa = caixa.group(1) if caixa else ""
+    resto = dobra_de(html, "Antes de colar: o preparo e de onde sai esta resposta")
+    compra = re.search(r'<div class="cdm-molde-compra"[^>]*>(.*?)</div>\s*</div>', html, re.S)
+    compra = compra.group(1) if compra else ""
+    return caixa + " " + resto + " " + compra
+
+
 def _conta_links(categorias):
     """(com ficha, sem ficha) somados nas categorias pedidas, lidos do repositorio."""
     com = sem = 0
@@ -598,8 +637,26 @@ for consulta_o, rotulo_o in [("", "ancora"),
         p_rej_o = corpo_o.index("cdm-f1-vitrine-rejunte")
         p_resp_o = corpo_o.find("cdm-f1-resposta")
         p_prova_o = corpo_o.find("cdm-prova")
-        ok(p_past_o < p_rej_o,
-           f"{marca_o} a vitrine de PASTILHA vem antes da de rejunte no HTML servido")
+        # A REGRA DE ORDEM E A DO MOLDE DA 32.1 DESDE 21/10/2026: vitrine sem
+        # cartao nao e bloco de compra. A pastilha vem primeiro quando TEM
+        # cartao; sem cartao ela desce para depois do bloco de compra, porque
+        # servida primeiro punha 345 px de "a gente nao tem" entre a resposta e
+        # o primeiro produto que a pagina de fato vende.
+        _bloco_past = re.search(r'<div class="cdm-f1-secao cdm-f1-vitrine-pastilha">(.*?)'
+                                r'(?=<div class="cdm-f1-secao|</main>)', corpo_o, re.S)
+        _past_tem_cartao = "cdm-f2-cartao" in (_bloco_past.group(1) if _bloco_past else "")
+        ok((p_past_o < p_rej_o) if _past_tem_cartao else (p_rej_o < p_past_o),
+           f"{marca_o} 32.1: a vitrine COM cartao vem primeiro, e a sem cartao desce",
+           ("tem cartao de pastilha" if _past_tem_cartao else "sem cartao de pastilha"))
+        # E O BLOCO DE COMPRA EXISTE, VEM DEPOIS DO RESULTADO E GUARDA OS CARTOES.
+        _p_compra_o = corpo_o.find("cdm-molde-compra")
+        _p_cartao_o = corpo_o.find("cdm-f2-cartao")
+        ok(-1 < p_resp_o < _p_compra_o,
+           f"{marca_o} 32.1: o bloco de compra existe e vem DEPOIS da caixa de resultado",
+           f"resposta {p_resp_o}, compra {_p_compra_o}")
+        ok(_p_cartao_o == -1 or _p_cartao_o > _p_compra_o,
+           f"{marca_o} e nenhum cartao de loja sai FORA do bloco de compra",
+           f"cartao {_p_cartao_o}, compra {_p_compra_o}")
         ok(-1 < p_resp_o < p_past_o,
            f"{marca_o} 22.2: a resposta continua antes das duas vitrines")
         ok(p_prova_o > p_rej_o,
@@ -621,8 +678,7 @@ for consulta, area, pastilhas, gramas in F1_CASOS:
     # SO o bloco de resposta: a tabela das doze pecas traz outros numeros, e
     # procurar na pagina inteira acharia qualquer um deles. Mesmo erro de contar
     # &#038; na pagina toda.
-    bloco = re.search(r'<div class="cdm-f1-resposta"[^>]*>(.*?)</div>\s*<div', html_c, re.S)
-    bloco = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco.group(1))) if bloco else ""
+    bloco = f1_regiao_resposta(html_c)
     ok(bloco != "", f"[F1 {consulta[:28]}] a resposta sai no HTML servido")
     ok(area + " cm²" in bloco, f"[F1 {consulta[:28]}] area {area} cm2")
     ok(pastilhas + " pastilhas" in bloco, f"[F1 {consulta[:28]}] {pastilhas} pastilhas")
@@ -630,8 +686,7 @@ for consulta, area, pastilhas, gramas in F1_CASOS:
 
 # A RECUSA DO BLOCO 3c, medida no ar: rejunte que nao e po nao ganha numero.
 html_e, codigo_e = buscar(BASE + F1 + "?forma=cilindro&d=15&h=20&pastilha=p10&junta=2&sobra=10&esp=4&rejunte=epoxi")
-bloco_e = re.search(r'<div class="cdm-f1-resposta"[^>]*>(.*?)</div>\s*<div', html_e, re.S)
-bloco_e = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco_e.group(1))) if bloco_e else ""
+bloco_e = f1_regiao_resposta(html_e)
 ok("200" == codigo_e, "[F1 epoxi] responde 200", codigo_e)
 ok(re.search(r"\d[\d\.,]* g\b", bloco_e) is None,
    "[F1 epoxi] NENHUM numero de rejunte na resposta (correcao do bloco 3c)", bloco_e[-90:])
@@ -657,7 +712,14 @@ REJUNTES = ["Rejunte Cerâmicas Quartzolit", "Rejunte Porcelanatos e Cerâmicas 
 def so_prosa(html, abre, fecha):
     """O bloco pedido, SEM os cartoes da vitrine: a prestacao de contas e prosa,
     e o nome dentro do cartao e a vitrine fazendo o trabalho dela."""
-    m = re.search(abre + r"(.*?)(?=" + fecha + r"|</main>)", html, re.S)
+    # O FIM DO TEXTO TAMBEM E FRONTEIRA, e isto nao era verdade ate 21/10/2026.
+    # Sem o `\Z`, bloco que nao tem o marcador de fim NEM `</main>` depois dele
+    # devolvia string VAZIA — e bloco vazio nao reprova por estar errado, reprova
+    # por nao ter sido lido. Apareceu no primeiro dia do molde da secao 32: com
+    # a secao dentro de uma dobra, o corpo da dobra acaba no `</details>` e nao
+    # tem `</main>` nenhum, entao `externo_exposto` acusou os cinco rejuntes como
+    # ausentes com os cinco servidos, uma vez cada.
+    m = re.search(abre + r"(.*?)(?=" + fecha + r"|</main>|\Z)", html, re.S)
     if not m:
         return ""
     corpo = re.sub(r"<li\b.*?</li>", " ", m.group(1), flags=re.S)
@@ -697,7 +759,15 @@ for consulta in ["base=ceramica_esmaltada_porcelana&caco=pastilha_ceramica&onde=
                  "base=ceramica_esmaltada_porcelana&caco=pastilha_ceramica&onde=externo_exposto&junta=2",
                  "base=vidro&caco=pastilha_vidro&onde=interno_molhado&junta=4"]:
     html_d, codigo_d = buscar(f"{BASE}{F2}?{consulta}")
-    bloco = so_prosa(html_d, r"<h2>E o rejunte, que vai entre os caquinhos</h2>", r'<div class="cdm-f2-secao[ "]')
+    # A SECAO DO REJUNTE PASSOU A SER UMA DOBRA (molde da 32): o h2 mora no
+    # <summary>, e so depois dele vem o <div class="cdm-f2-secao"> da propria
+    # secao. Entao o corpo da dobra e o ponto de partida, e dentro dele a
+    # fronteira antiga — o proximo marcador de secao — volta a valer, porque
+    # "Antes de rejuntar" e uma secao irma dentro da mesma dobra.
+    _dobra_rej = dobra_de(html_d, "E o rejunte, que vai entre os caquinhos")
+    bloco = (so_prosa(_dobra_rej, r'<div class="cdm-f2-secao[^"]*">', r'<div class="cdm-f2-secao[ "]')
+             if _dobra_rej else
+             so_prosa(html_d, r"<h2>E o rejunte, que vai entre os caquinhos</h2>", r'<div class="cdm-f2-secao[ "]'))
     marca = "[item 2 " + consulta.split("onde=")[1][:22] + "]"
     ok("200" == codigo_d, f"{marca} responde 200", codigo_d)
     faltando = [n for n in REJUNTES if conta(bloco, n) != 1]
@@ -818,10 +888,7 @@ for base, caco, onde, precisa, proibido in REGRA6_CASOS:
     # onde a secao 7 EXIGE que eles apareçam, cada um com o motivo de nao estar
     # ali. Presenca do nome nao e recomendacao; quem decide e a regiao, e a
     # regiao e marcada no markup. Mesmo erro de contar &#038; na pagina inteira.
-    reg = re.search(r'<div class="cdm-f2-resposta">(.*?)<div class="cdm-f2-secao cdm-f2-fora"', html_r, re.S)
-    if reg is None:
-        reg = re.search(r'<div class="cdm-f2-resposta">(.*?)<div class="cdm-f2-secao"', html_r, re.S)
-    bruto_rec = reg.group(1) if reg else ""
+    bruto_rec = f2_regiao_recomendacao(html_r)
     # o bloco de recusa mora dentro da resposta e nomeia produto para dizer que
     # ele NAO foi indicado: sai daqui, pelo mesmo motivo e pela mesma marcacao.
     bruto_rec = re.sub(r'<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>', " ", bruto_rec, flags=re.S)

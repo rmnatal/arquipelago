@@ -31,7 +31,7 @@ urls_publicadas: 32        # 31 -> 32 em 12/10/2026 17h5xZ: a SEXTA filha de /ma
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-14T10:30Z   # O ITEM 4 DO DESPACHO DE 07/10 FECHA NO PRIMEIRO DIA EM
+ultima_execucao: 2026-10-21T16:2xZ   # molde da secao 32 nas duas ferramentas, no ar e conferido na revisao 89
                                      # QUE O CRITERIO DELE PERMITIA, e o que o mantinha fechado NAO era
                                      # o que estava escrito nele. Nenhuma URL nova (a ilha segue em 32),
                                      # nenhum byte no ar, nenhum Sync: a leva 3 de 3 da semana da 21.4
@@ -130,18 +130,52 @@ bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabeca
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  O ITEM 4 DO DESPACHO DE 07/10 FECHA NO PRIMEIRO DIA EM QUE O CRITERIO DELE PERMITIA — E O QUE O MANTINHA FECHADO NAO ERA O QUE ESTAVA ESCRITO NELE. Nenhuma URL nova (a ilha segue em 32), nenhum byte no ar, nenhum Sync, revisao parada na 88: a leva 3 de 3 da semana da 21.4 foi gasta em 12/10 e zera em 19/10, e nada publicavel mudou nesta passada.
-  A CONTAGEM, conferida pela 18.4 antes de apagar o item: `dados/contagem-piso-de-compra-2026-10-14.json`, datado de hoje como o critério exige, com os quatro numeros que ele pede — 43 de 43 PUBLICAVEIS (eram 41 em 12/10; o banco cresceu dois), ZERO sem `url_busca`, ZERO sem `url_busca_produto`, 19 sem `url_produto`, escada 1:1 2:4 3:19 4:19. Derivada dos cinco bancos por `ferramentas/contar-piso-de-compra.py`, e ela bate com a escada que o `validar-banco.py` imprime por OUTRO caminho sobre o mesmo dado.
-  A CAUSA DE O ITEM TER FICADO SEIS DIAS PARADO, e e ela que vale guardar: a linha dele colava duas coisas numa — `exige sessao logada do Shopee Afiliados` E `o critério de pronto e datado de 14/10 ou depois`. A primeira e verdade para GERAR link e FALSA para CONTAR: os quatro numeros moram em campo lido por maquina e nao dependem de sessao, de navegador nem de rede. So a data o bloqueava, e a data era portao legitimo que quatro execucoes respeitaram. DEPENDENCIA DE TERCEIRO ESCRITA MAIS LARGA DO QUE E FAZ A EXECUCAO SEGUINTE NEM TENTAR.
-  A AFIRMACAO QUE NASCEU DE GRACA, e nenhum portao desta ilha a fazia: `sem url_produto` e `degrau 4` TEM de ser o mesmo conjunto, porque degrau 4 e por definicao da 25.1 o degrau de quem nao casou com ficha nenhuma. Hoje sao, 19 a 19. Os dois jeitos de quebrar sao defeito de dado: degrau 4 COM ficha e degrau que nao subiu, item sem ficha FORA do degrau 4 e degrau mentido. O `validar-banco.py` cobra que o degrau esteja ESCRITO (28/09) e que o 4 traga MOTIVO (30/09), nunca que ele DESCREVA o link ao lado. Os dois casos reprovam no `--autoteste` da ferramenta nova (8 casos, 0 falha).
-  O DOCUMENTO QUE FALTA FOI ACHADO, E O NOME QUE EU ESCREVI ONTEM ERA O DO VAREJO E NAO O DO FABRICANTE. Nao e `pastilhas exteriores quartzolit`: o fabricante o chama `argamassa pastilhas quartzolit` e o boletim e `BT_pastilhas_quartzolit.pdf`, ~867 KB, listado na pagina do produto ao lado da FISPQ. E a secao 26 ao pe da letra — o varejo batiza pela posicao, o fabricante pelo nome — e e por isso que oito chaves da Open API devolveram sete zeros em 13/10: a chave estava certa para a loja e errada para o fabricante.
-  ELE E UM TERCEIRO PRODUTO, DE 5 kg, E ISSO EXPLICA O ANUNCIO AMBIGUO SEM TRAVA NOVA. Quatro lojas o vendem em 5 kg com quatro nomes diferentes, um deles `pastilhas externo e interno`. O `motivo_sem_ficha` do irmao interno le os dois anuncios como `um anuncio so vendendo ESTE produto e o pastilhas fachadas` — armadilha 5 da 25.7. A leitura de hoje e mais barata: o anuncio nao cobre dois registros, ele nomeia UM produto que o banco nao tem. MAS `mais provavel` NAO E `medido`: enquanto o boletim nao for lido, nada entra no banco, e o irmao interno TAMBEM tem 5 kg.
-  O PEDIDO DO `quartzolit.weber` MUDOU DE FORMA, e e o achado que muda trabalho de verdade: por o dominio na lista de Dominios permitidos NAO destrava nada. 403 em tres passadas em quatro URLs — a raiz, o `/search-document` e DOIS PDFs de `/files/` — por DOIS canais que nao compartilham egresso, o curl desta rotina e o leitor da nuvem. Quem recusa e o servidor do fabricante, nao a politica de egresso. A ressalva de 05/10 virou veredito e o pedido virou NAVEGADOR: reescrito em `dados/despachos.md` e na lista do Raphael do topo deste arquivo.
-  O ESPELHO NAO TEM O DOCUMENTO, E ISSO E MEDIDO E NAO SUPOSTO: os quatro SKUs novos do produto (1614525, 1614606, 1614657, 750131) deram 404 nos tres hosts de espelho tentados, com `1458361.pdf` devolvendo 200 e 640.748 bytes na MESMA janela. Canal vivo, arquivo ausente — nao e tunel e nao e a borda (secao 4). Confirma com dado novo o que o PROMPT ja dizia: espelho de CDN e arquivo por nome conhecido, nao catalogo.
-  A CREDENCIAL, OITAVA MEDICAO (18.4): `env | grep -c GOOGLE_SA` devolve 0. Medida uma vez e seguida em frente, como a linha de 09/10 do proprio despacho autoriza. E hoje chegou a data do critério dos itens 2 e 3 do despacho de 07/10 — mas o critério pede `a leitura de 14/10`, e a leitura de 14/10 e da SENTINELA, nao da Fundacao; sem a credencial nem ela a faz. Os dois seguem abertos com o mesmo dono.
-  OS PORTOES: os dois da 29 rodaram ANTES de tudo — raiz em 200 pela 20.2, `conferir-no-ar.py` APROVADO com 524 afirmacoes e 0 falha nas 32 URLs, `leitura-do-visitante.py` REPROVADO por EXATAMENTE 1 defeito, o soft 404 da borda, que e do hospedeiro, tem dono escrito e e o vermelho esperado (33 URLs lidas, 0 em janela de cache, nenhum motivo NOVO de vermelho). Depois do trabalho: `validar-banco.py` OK (43 materiais, escada 1:1 2:4 3:19 4:19, degrau 4 com motivo 19 de 19), `atualizar-manifest.py` limpo com 1 sha gravado e nenhum arquivo fora do manifest, `contar-piso-de-compra.py --autoteste` 8 de 8.
-  O QUE ESTA EXECUCAO NAO RODOU, COM O MOTIVO: a bancada de snippet (teste-f1, f2, casca, guia, tecnicas, produto, loja, atelie, leads) e as 14 baterias de mutacao. Nenhum byte de snippet e nenhum registro de banco mudou nesta passada — o que mudou e uma ferramenta nova, dois arquivos de medicao e prosa — entao rodar duas horas de bateria mediria o mundo de ontem, que a passada de ontem ja mediu verde. Nenhum Sync foi acionado pelo mesmo motivo, e a 20.4 nao tem o que conferir onde nao houve desembarque.
-  O PROXIMO PASSO DESBLOQUEADO, E ELE E UM SO, porque os dois de ontem sairam hoje. O CAMINHO MAIS CURTO QUE NAO DEPENDE DE NINGUEM E A PERGUNTA NOVA EM CATEGORIA COM MAE NO AR — mas o `acabamento`, a unica mae no ar, nao tem mais propriedade livre desde 12/10, e as tres maes do Guia estao fechadas por canal ou por canibalizacao (lista no topo deste arquivo). Entao a proxima URL desta ilha custa ITEM DE BANCO, e item de banco novo hoje depende de documento: `BT_pastilhas_quartzolit.pdf` (pedido de navegador, acima), o curinga que nao e curinga, ou fabricante novo. QUEM ABRIR A PROXIMA EXECUCAO ANTES DE 19/10 NAO TEM LEVA DA 21.4 PARA GASTAR — a semana zera em 19/10 — e faz bem em comecar por `dados/cruzamento-14-9.md` e pela lista do topo daqui, nunca por contar itens do banco: LASTRO NAO E VAGA LIVRE.
+  O MOLDE DE CONVERSAO DA SECAO 32 ESTA NO AR NAS DUAS FERRAMENTAS:
+  /materiais/quantas-pastilhas-para-mosaico/ (F1 1.9.0) e
+  /materiais/qual-cola-usar-no-mosaico/ (F2 1.14.0), com a casca 1.24.0 e o
+  manifest na revisao 89. Item 1 do despacho do Raphael de 21/10, REESCRITO
+  PELA 18.3 — faltam os tres grupos do molde 32.2: /materiais/acabamento/ e as
+  6 filhas, as 8 paginas de material pelo nome do produto, e as 5 pecas de
+  /loja/.
+  MEDIDO NO AR, celular de 390 px, com quebra de cache. F1: formulario de 804
+  para 508 px (a 32.5 pede antes de 700) e primeiro botao de compra de 4.108
+  para 1.304 px (o teto e 1.400); altura de 13.493 para 5.070 px. F2:
+  formulario de 754 para 485 px e primeiro botao de compra de 2.446 para 1.220
+  px; altura de 37.526 para 31.575 px. Rolagem horizontal 0 nas duas. Texto
+  inteiro no HTML servido e MAIOR: 2.981 -> 3.035 palavras na F1 e 4.827 ->
+  4.858 na F2, com o JavaScript desligado. title, H1, URL, trilha e os TRES
+  blocos de JSON-LD de cada pagina conferidos no ar, antes contra depois, por
+  sha: IDENTICOS, sem uma unica diferenca. Zero frase da lista 32.4 no texto
+  visivel. pageerror 0 nas duas; a unica mensagem de console e um host que o
+  egresso desta nuvem barra.
+  AS PECAS DO MOLDE NASCERAM NA CASCA, como a 32.6-b manda: a dobra
+  (cdm_casca_dobra e cdm_casca_dobrar_secao, que recolhe secao que JA EXISTE
+  sem reescrever o titulo dela), a caixa de resultado (numero em Mono mais a
+  frase, pre-renderizada com o caso de exemplo), o bloco de compra
+  (.cdm-molde-compra, com o cartao deitado no telefone) e a barra do rodape
+  (vigia de IntersectionObserver no wp_footer). Quem pegar os tres grupos que
+  faltam reusa as quatro, nao escreve componente novo.
+  A UNICA REGRA DE ORDEM NOVA: VITRINE SEM CARTAO NAO E BLOCO DE COMPRA. Com
+  caquinho de 1 cm — o padrao da F1 — o banco nao tem nenhuma pastilha, e o
+  bloco dela punha 345 px de "a gente nao tem" entre a resposta e o primeiro
+  produto que a pagina vende. Ele desce para depois do bloco de compra e volta
+  ao primeiro lugar no dia em que houver pastilha daquele lado.
+  DESEMBARQUE PELA 20.4: Sync de dois em dois com forcar=1, revisao 89 no
+  manifest e no /status, 14 linhas de item todas dizendo ok, com o registro de
+  que a janela do log cortou 4 dos 18 aplicados — o que nao esta na janela NAO
+  foi conferido. A 20.5 nao apareceu: o /status veio 89 na primeira leitura.
+  BANCADA 0 FALHA, e CINCO PORTOES APRENDERAM O MOLDE SEM SER AFROUXADOS:
+  conferir-no-ar.py APROVADO com 530 afirmacoes (eram 524), teste-casca 1041,
+  teste-f1 230 (eram 228, com duas afirmacoes NOVAS: o bloco de compra depois
+  do resultado e nenhum cartao de loja fora dele), teste-f2 174,
+  teste-prestacao-rejunte 5, teste-guia 232, teste-loja 208, teste-produto 306,
+  teste-tecnicas 139, teste-leads 211. Os vermelhos eram portao casando
+  MARCACAO e nao defeito no ar: a classe da caixa de resposta deixou de ser
+  sozinha, o <h2> de secao recolhida passou a morar no <summary>, e o fim do
+  texto nao era fronteira no so_prosa() — 25 afirmacoes vermelhas no
+  conferir-no-ar.py, nenhuma delas defeito no ar. Seis mutacoes retargetadas.
+  leitura-do-visitante.py segue REPROVADO por 1 defeito, o soft 404 da borda,
+  que e do hospedeiro e nao desta ilha — vermelho esperado, como sempre.
 ---
 
 ## O QUE FALTA PARA ESTA ILHA ESTAR COMPLETA — 09/10/2026, 19h4xZ

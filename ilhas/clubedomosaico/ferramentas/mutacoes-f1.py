@@ -302,9 +302,11 @@ def m_nome_diverge_entre_trilha_e_titulo(raiz):
 def m_faq_promete_o_que_a_pagina_nao_diz(raiz):
     """Uma pergunta entra so no schema. FAQPage que promete o que a pagina nao
     mostra e a definicao de schema-spam, e custa a pagina inteira."""
+    # RETARGETADA EM 21/10/2026: com o molde da secao 32 o FAQ e montado numa
+    # variavel propria (`$faq`), porque ele entra na pagina dentro de uma dobra.
     editar(raiz, SNIPPET,
-           "\tforeach ( cdm_f1_perguntas() as $p ) {\n\t\t$html .= '<dt>'",
-           "\tforeach ( array_slice( cdm_f1_perguntas(), 0, 2 ) as $p ) {\n\t\t$html .= '<dt>'")
+           "\tforeach ( cdm_f1_perguntas() as $p ) {\n\t\t$faq .= '<dt>'",
+           "\tforeach ( array_slice( cdm_f1_perguntas(), 0, 2 ) as $p ) {\n\t\t$faq .= '<dt>'")
 
 
 def m_coluna_de_cola_some_em_vez_de_declarar(raiz):
@@ -461,8 +463,11 @@ def m_tabela_do_banco_some(raiz):
     """A tabela pre-renderizada do banco desaparece do HTML servido: a unica
     pagina indexada desta ferramenta e a de 1 cm, que tem zero elegivel, e sem a
     tabela ela deixa de citar um unico produto do catalogo (secao 5)."""
+    # RETARGETADA EM 21/10/2026: a tabela passou a sair dentro de uma dobra, pela
+    # `cdm_casca_dobrar_secao()`. O defeito que a mutacao produz e o mesmo —
+    # a tabela fora do HTML servido.
     editar(raiz, SNIPPET,
-           "	$html .= cdm_f1_tabela_pastilhas_html();",
+           "	$html .= cdm_casca_dobrar_secao( cdm_f1_tabela_pastilhas_html() );",
            "")
 
 
@@ -498,9 +503,13 @@ def m_vitrines_voltam_a_ordem_antiga(raiz):
     """O rejunte volta a vir antes da pastilha, que e a ordem de ate a 1.2.0. A
     pagina responde igual, com os mesmos cartoes; o que ela perde e o acordo
     entre o que o titulo promete (pastilha) e o que ela oferece primeiro."""
+    # RETARGETADA EM 21/10/2026, e o que ela produz hoje e a ordem antiga no
+    # estado em que a pastilha TEM cartao: o bloco de compra passa a servir o
+    # rejunte primeiro e a pastilha depois, dentro dele. A regra do molde (32.1)
+    # diz que a vitrine com cartao vem primeiro, e e ela que reprova.
     editar(raiz, SNIPPET,
-           "\t$html .= cdm_f1_vitrine_pastilha_html( $e );\n\t$html .= cdm_f1_vitrine_html( $e );",
-           "\t$html .= cdm_f1_vitrine_html( $e );\n\t$html .= cdm_f1_vitrine_pastilha_html( $e );")
+           "\tif ( $tem_pastilha ) {\n\t\t$html .= $pastilha_html;\n\t}\n\t$html .= cdm_f1_vitrine_html( $e );",
+           "\t$html .= cdm_f1_vitrine_html( $e );\n\tif ( $tem_pastilha ) {\n\t\t$html .= $pastilha_html;\n\t}")
 
 
 def m_titulo_da_pastilha_volta_com_o_conector(raiz):

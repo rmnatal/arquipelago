@@ -3,6 +3,166 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+21/10/2026 15h06Z–16h2xZ — O MOLDE DE CONVERSÃO DA SEÇÃO 32 NO AR NAS DUAS FERRAMENTAS, E AS PEÇAS DELE NASCERAM NA CASCA
+
+**A ESCOLHA DA ILHA: O FOCO É A AQUAMETRIA, E ESTA ILHA ENTROU PELA 32.6-b.** `foco.md` nomeia a
+**aquametria** (janela até 21/10), e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o
+despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria. A aquametria estava
+com `executando_desde: 2026-10-21T15:04Z` — **um minuto antes** —, então a **1.2.3** proibia pegá-la; e
+a **32.6-b** diz, com todas as letras, que *"as três ilhas andam EM PARALELO"* e que *"com mais de uma
+execução no ar, cada uma reserva uma ilha diferente"*. A clubedomosaico tem o despacho do molde aberto
+e `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo — não
+havia reserva vencida para o git desempatar. Reserva aceita às **15h06Z**, na primeira tentativa, e
+**renovada às 15h59Z** pela 1.1, porque o bloco passou de 40 minutos. **Passo 1:** nenhum PR aberto e a
+branch da sessão estava atrás do `main` por um commit, sem trabalho pendente — nada a mesclar; o push
+do bloco foi recusado uma vez (duas execuções da robometria e uma da aquametria entraram no meio),
+`rebase` sem force push e aceito na segunda. **Rede pela 20.2, não herdada:** `clubedomosaico.com.br`
+em **200**, e as duas sondas da porta de entrada (seção 29) rodadas ANTES de qualquer coisa —
+`conferir-no-ar.py` **APROVADO com 524 afirmações** e `leitura-do-visitante.py` reprovando apenas pelo
+soft 404 da borda, que é o vermelho esperado com dono escrito no `ESTADO.md`.
+
+### 1. O QUE FOI ENTREGUE, E ESTÁ NO AR: AS DUAS FERRAMENTAS NO MOLDE 32.1
+
+**A ordem das duas páginas passou a ser a da 32.1**, de cima para baixo: trilha e H1 → **uma** frase de
+promessa → o **formulário** → a **caixa de resultado** → o **bloco de compra** → a tabela de casos
+resolvidos, visível → o resto do texto em dobras.
+
+**A MEDIÇÃO QUE VALE É A DO AR, e ela é o critério de pronto da 32.5.** Chromium, celular de 390 px,
+revisão **89** servida, com quebra de cache:
+
+| | antes (21/10) | no ar agora | teto da 32.5 |
+|---|---|---|---|
+| **F1** `/materiais/quantas-pastilhas-para-mosaico/` | | | |
+| formulário começa em | 804 px | **508 px** | antes de 700 |
+| primeiro botão de compra | 4.108 px | **1.304 px** | antes de 1.400 |
+| altura da página | 13.493 px | **5.070 px** | — |
+| **F2** `/materiais/qual-cola-usar-no-mosaico/` | | | |
+| formulário começa em | 754 px | **485 px** | antes de 700 |
+| primeiro botão de compra | 2.446 px | **1.220 px** | antes de 1.400 |
+| altura da página | 37.526 px | **31.575 px** | — |
+
+Rolagem horizontal **0 px** nas duas. E os outros quatro critérios da 32.5, um a um: **texto inteiro no
+HTML servido** — F1 de 2.981 para **3.035** palavras, F2 de 4.827 para **4.858**, as duas com o
+JavaScript desligado, porque nenhuma palavra saiu e o que mudou foi a ordem e o que está recolhido;
+**title, H1, URL, trilha e JSON-LD idênticos** — os seis conferidos **no ar, antes contra depois**, com
+o HTML servido das duas páginas guardado antes do desembarque: `title`, `meta description`, `canonical`,
+`<h1>`, a etiqueta de robôs e a trilha visível **idênticos**, e os **três** blocos de JSON-LD de cada
+página idênticos por sha (`cdm-casca-jsonld`, `cdm-trilha-jsonld` e o da ferramenta) — **nenhuma
+diferença, nem a da versão do snippet**; **zero frase da lista 32.4** no texto visível das duas, varrido
+com os termos que a própria regra nomeia mais nome de rotina, de arquivo e de seção do contrato;
+**console limpo** — `pageerror` **0** nas duas, e a única mensagem de erro é um host que o egresso desta
+nuvem barra, não a página.
+
+**Desembarque pela 20.4:** Sync acionado **de dois em dois** com `forcar=1`, e o `conferir-desembarque.py`
+leu o log linha por linha: revisão **89** no manifest e no `/status`, **14 linhas de item, todas dizendo
+`ok`**, com o registro honesto de que a janela do log cortou 4 dos 18 aplicados — o que não está na
+janela **não foi conferido**. A 20.5 não apareceu nesta passada: o `/status` veio 89 na primeira leitura.
+
+### 2. AS PEÇAS DO MOLDE MORAM NA CASCA, PORQUE A 32.6-b MANDA
+
+A 32.6-b é explícita: *"o que se repete entre páginas (ordem dos blocos, carrossel de compra, barra fixa
+do rodapé, `<details>`) vira componente da CASCA, reaproveitado por todas as ferramentas, em vez de ser
+reescrito em cada snippet."* São quatro peças, na **casca 1.24.0**:
+
+- **A dobra.** `cdm_casca_dobra()` para seção nova e `cdm_casca_dobrar_secao()` para seção que **já
+  existe** — esta recolhe sem reescrever: o `<h2>` da seção vira o título da dobra, no mesmo nível e com
+  o mesmo texto. **São quinze seções entre as duas ferramentas, e zero título digitado duas vezes** —
+  copiar o título para um segundo lugar criaria quinze pares de frases que envelhecem separadas, que é o
+  defeito que esta ilha já pagou três vezes (a promessa em dois lugares, o disclosure velho, a frase da
+  vitrine que ficou falsa no banco).
+- **A caixa de resultado.** Número em Mono com tabular-nums e a frase de leitura embaixo,
+  **pré-renderizada com o caso de exemplo**: quem chega da busca — e todo modelo de linguagem que leia a
+  página — encontra número de resposta na primeira tela, sem preencher nada e sem script.
+- **O bloco de compra.** O lugar dele é logo abaixo do resultado, a seção de dentro não carrega a margem
+  dela para o topo do bloco, e no telefone o **cartão deita** (foto flutuando à esquerda, 4,5rem) — em
+  pé, o botão de loja do primeiro cartão caía fundo demais para o teto de 1.400 px.
+- **A barra do rodapé.** Leva o número do resultado e o botão para o bloco de compra, aparece enquanto
+  esse bloco está fora da tela, **nasce servida** com o caso de exemplo e só é **mostrada** pelo script.
+  Sem `IntersectionObserver` ela não aparece, de propósito: barra que pisca é pior que barra que não há.
+  O script sai no `wp_footer`, nunca dentro do retorno de shortcode (seção 8).
+
+**DOIS ESCAPES QUE CUSTARAM UMA TELA, e estão escritos no código para não voltarem:** o `valor` da caixa
+e o da barra são **HTML já escapado**, porque o número desta ilha sai de `cdm_casca_num()`, que devolve
+`<span class="cdm-num">720</span>`. Na primeira versão os dois passavam por `esc_html()` e a caixa
+publicou **a etiqueta impressa na tela** em vez do número.
+
+### 3. A ÚNICA REGRA DE ORDEM NOVA: VITRINE SEM CARTÃO NÃO É BLOCO DE COMPRA
+
+Com caquinho de **1 cm** — que é o padrão da F1 e o tamanho mais usado do mosaico — o nosso banco não
+tem **nenhuma** pastilha, e o bloco dela é explicação, não compra. Servido primeiro, ele punha **345 px**
+de "a gente não tem" entre a resposta e o primeiro produto que a página de fato vende. Então ele desce
+para logo **depois** do bloco de compra, com a prestação de contas inteira, e **volta ao primeiro lugar
+no dia em que houver pastilha daquele lado** — que é o que o cabeçalho do snippet (versão 1.3.0) manda,
+porque é da pastilha que falam o título, o H1 e a primeira frase da resposta.
+
+**E a afirmação antiga ficava verde justamente aí.** O portão dizia *"a vitrine de PASTILHA vem antes da
+de rejunte em todo estado"* e passava no estado **padrão** da página, em que a vitrine da pastilha é uma
+frase de recusa: ele media a ordem do **código**, não a ordem do que converte.
+
+### 4. CINCO PORTÕES APRENDERAM O MOLDE, E NENHUM FOI AFROUXADO — DOIS GANHARAM AFIRMAÇÃO NOVA
+
+**Bancada, 0 falha:** `teste-casca` **1041**, `teste-f1` **230** (eram 228), `teste-f2` **174**,
+`teste-prestacao-rejunte` **5**, `teste-guia` 232, `teste-loja` 208, `teste-produto` 306,
+`teste-tecnicas` 139, `teste-leads` 211. No ar: `conferir-no-ar.py` **APROVADO com 530 afirmações**
+(eram 524), 0 falha.
+
+**Os vermelhos eram portão casando MARCAÇÃO, e não defeito no ar — e vale escrever o que cada um
+ensinou**, porque vermelho que não é defeito é como se desliga um portão:
+
+- **A classe deixou de ser sozinha.** Quatro sítios do `teste-f2` e dois do `teste-f1` casavam
+  `<div class="cdm-f2-resposta">` com o atributo **inteiro**; com a classe da casca ao lado eles passaram
+  a devolver string **vazia**, e três afirmações reprovaram dizendo que produto recomendado *"sumiu da
+  página"* **quando ele estava na primeira frase**. As fronteiras da região da resposta da F2 passaram a
+  morar em **três funções, num lugar só**, em vez de quatro cópias do mesmo regex.
+- **O `<h2>` de seção recolhida mora no `<summary>`.** A fronteira *"do h2 até o próximo
+  `cdm-f2-secao`"* passou a casar **imediatamente**, e o bloco saía vazio: **3.789 erros** no
+  `teste-prestacao-rejunte` dizendo que cada rejunte *"aparece 0 vezes na prosa"*, com a prosa inteira
+  servida. No `conferir-no-ar.py` foram **25** afirmações pelo mesmo mecanismo.
+- **O fim do texto também é fronteira, e não era.** No `so_prosa()` do `conferir-no-ar.py`, bloco sem o
+  marcador de fim **e** sem `</main>` depois dele devolvia string vazia — e bloco vazio não reprova por
+  estar errado, reprova por **não ter sido lido**. Com a seção dentro de uma dobra o corpo acaba no
+  `</details>` e não tem `</main>` nenhum, então `externo_exposto` acusou os cinco rejuntes como
+  ausentes **com os cinco servidos, uma vez cada**. Entrou o `\Z` na alternativa.
+- **Duas afirmações NOVAS, nos dois portões de ordem:** o bloco de compra **existe e vem depois da caixa
+  de resultado**, e **nenhum cartão de loja sai fora dele**. Sem essa segunda metade, a regra de ordem
+  poderia ficar verde com a vitrine solta em qualquer lugar da página.
+- **Cinco mutações do `mutacoes-f1.py` foram retargetadas** porque o código que elas matavam mudou de
+  lugar — e nenhuma foi apagada: as duas que descem as vitrines para depois da prova, a que corta o
+  FAQPage, a que apaga a tabela do banco e a que volta à ordem antiga. Mutação inerte é mutação que
+  passa sem medir nada.
+
+**ACHADO QUE NÃO É DESTA PASSADA, e fica dito em vez de consertado:** o `mutacoes-prestacao.py` tem uma
+mutação **inerte desde antes deste bloco** — `o segundo e promovido a primeiro na frase`, que procura
+`return array( 'fora_do_ambiente', 0 );` seguido de `$score = 2 + (` no snippet da F2 e acha **zero**
+ocorrências. Conferido contra o snippet do commit **anterior** ao meu: zero lá também. Não é regressão
+desta execução e **não foi tocado**, porque a **31.3** proíbe trabalho de bancada enquanto houver item
+de conteúdo aberto em despacho — e há, o item 1 do despacho do molde segue com três grupos de página.
+
+### 5. O QUE ESTE BLOCO NÃO FEZ, E ESTÁ REESCRITO NO DESPACHO PELA 18.3
+
+O despacho do molde pede, no item 1, **cinco** grupos de página. Saíram **dois** — as duas ferramentas,
+que são as do molde 32.1. Faltam os três do molde **32.2**: `/materiais/acabamento/` e as seis filhas,
+as oito páginas de material pelo nome do produto, e as cinco peças de `/loja/`. O despacho foi
+**reescrito deixando só o que falta**, com o motivo em uma linha, como a 18.3 manda. **O caminho está
+muito mais curto para quem o pegar:** as quatro peças do molde já existem na casca e já foram medidas no
+ar em duas páginas; o que resta nelas é ordem de bloco e caixa de resposta, não componente novo.
+
+**PRÓXIMO PASSO:** (1) **o item 1 do despacho, nos três grupos que faltam**, pelo molde **32.2** (caixa
+de resposta no topo, bloco "Monte / Compre o que esta resposta pede" com dois botões, tabela visível,
+resto recolhido) — e nas cinco peças de `/loja/` o botão é o **"Verificar disponibilidade"** que já
+existe, levado para a primeira tela, **sem link de afiliado em peça própria**. (2) **A rampa continua
+parada** pelo item 1 da leitura semanal de 14/10: nenhuma leva nova de malha até a leitura de 21/10
+registrar 24 ou mais indexadas das 32, ou a URL Inspection devolver "Detectada" para 5 das 9
+desconhecidas. **A leitura de 21/10 é hoje e ainda não foi registrada** — quem a tiver na mão decide a
+rampa. (3) **O item 3 daquela leitura** — `<title>` e `meta description` da
+`/materiais/quantas-pastilhas-para-mosaico/`, que tem 32 impressões na posição 6,4 e zero clique em duas
+semanas — **continua aberto e não foi tocado por esta passada**: o molde mexeu em ordem de bloco, e a
+12.1 manda mudar uma alavanca por vez para a leitura seguinte ser legível. **A página está com a
+primeira tela nova desde hoje, então a leitura de 28/10 compara duas coisas ao mesmo tempo se o título
+mudar antes dela.**
+
+---
+
 14/10/2026 10h16Z–10h3xZ — O ITEM 4 DO DESPACHO DE 07/10 FECHA NO PRIMEIRO DIA EM QUE O CRITÉRIO DELE PERMITIA, E O QUE O MANTINHA FECHADO NÃO ERA O QUE ESTAVA ESCRITO NELE
 
 **NENHUMA URL NOVA, nenhum byte no ar, nenhum Sync, revisão parada na 88.** A ilha segue em **32 URLs**

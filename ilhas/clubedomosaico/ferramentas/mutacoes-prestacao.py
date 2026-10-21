@@ -83,11 +83,14 @@ def m_f1_a_prestacao_so_sai_quando_a_lista_esta_vazia(raiz):
     piscinas fica de fora em TODA combinacao, inclusive quando a lista de cima
     tem produto. Mutacao tem de escolher o alvo que existe no mundo do banco,
     nao o que parece simetrico no codigo."""
+    # RETARGETADA EM 21/10/2026: com o molde da secao 32 a prestacao de contas da
+    # vitrine do rejunte e montada em `$prosa`, para sair dentro de uma dobra. A
+    # mutacao e a MESMA — condicionar a linha do `sem_faixa` a lista estar vazia.
     editar(raiz, F1,
            "\tif ( $sem_faixa ) {\n"
-           "\t\t$html .= '<p class=\"cdm-f1-faixa\">De '",
+           "\t\t$prosa .= '<p class=\"cdm-f1-faixa\">De '",
            "\tif ( $sem_faixa && ! $do_tipo ) {\n"
-           "\t\t$html .= '<p class=\"cdm-f1-faixa\">De '")
+           "\t\t$prosa .= '<p class=\"cdm-f1-faixa\">De '")
 
 
 # --------------------------------------------- a contabilidade, sabotada
