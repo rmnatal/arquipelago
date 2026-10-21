@@ -44,6 +44,76 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL, 19h5xZ, Search Console pela nuvem)
+
+**Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
+
+**O QUE ESTA LEITURA MEDIU, para ninguém remedir.** Janela 13→19/10 pela nuvem (`dados/search-console-2026-10-21.md`): **625 impressões e 1 CLIQUE**, CTR 0,2%, posição média 6,9, **47 páginas distintas com impressão, as 47 lidas**. Indexação URL a URL pela URL Inspection: **50 de 52 (96%)**, 2 não indexadas, **0 sem veredito**. Consulta anonimizada em 98% — **5 consultas voltaram a ter nome**, depois de duas semanas em 100%. Títulos servidos: citados de `dados/titulos-no-ar.md` seção **2026-10-21 12:23Z**, revisão 125. Venda **NÃO medida** — ver item 5.
+
+**A RAMPA: A SÉRIE AUTORIZA DOBRAR.** Não gaste bloco perguntando isso de novo — o que trava URL nova aqui é a **seção 30**, não a 14.6.
+
+### 1. ~~PROPOSTA 1 (betta)~~ e ~~PROPOSTA 2 (as quatro calculadoras)~~ de 07/10 — **REPROVADAS. ESTE É O VEREDITO QUE 14/10 ADIOU, E ELE FECHOU PARA O LADO RUIM.**
+
+Esta é a **primeira janela inteiramente posterior** à troca de 14/10, e as promessas estavam no ar — conferidas em `titulos-no-ar.md`, as cinco inteiras, a mais longa em 64 de 65. **A distinção que 14/10 cobrou está resolvida do lado certo: o título estava servido e não funcionou.**
+
+- **Betta:** 136 impressões, **1 clique**, CTR 0,7%, posição 7,8 → 7,8. O critério pedia 3+ cliques **ou** CTR ≥ 2%. **Reprovada.**
+- **As quatro calculadoras:** mídia filtrante 43/0 (**perdeu os 2 cliques que tinha**), iluminação 41/0, vazão 33/0, aquecedor 31/0 — 148 impressões somadas, **zero clique**. O critério pedia 1+ clique em duas das quatro. **Reprovada, zero de quatro.**
+- **Nada a fazer neste item.** Ele está fechado por medição; o que sai dele é a Proposta B abaixo.
+
+### 2. ~~ITEM 4 DE 14/10 — a passada com credencial e a home sem veredito~~ — **FECHADO POR MEDIÇÃO EM 21/10/2026.**
+
+A leitura de hoje tem a seção **"URLs sem veredito da URL Inspection"** e ela diz, textual, *"(nenhuma — a URL Inspection deu veredito para toda URL do sitemap)"*, e a lista de não indexadas **não traz nenhum `— ?`**. O critério de pronto que o próprio item escreveu está cumprido pelas duas metades. **Não execute nada aqui.**
+
+### 3. ITEM 3 DE 14/10 — `/peixes/tetras/` — **CONTINUA ABERTO, 39 DIAS.**
+
+A URL Inspection de hoje devolve **"Discovered - currently not indexed"**. A alavanca da 14.7 segue esgotada por cota de conta de terceiro, medida em 14/10 nas duas propriedades. **Pronto quando:** a URL Inspection de `/peixes/tetras/` devolver "O URL está no Google". **Não é trabalho de código** e não vira bloco.
+
+### 4. 31.6 — A PROPORÇÃO DA 31.1 NA JANELA DO FOCO: **7 DE 24 (29%)**, CONTRA OS 7 EM 10 QUE A REGRA EXIGE — E O CORTE PELA DATA DA DECISÃO É O QUE IMPORTA
+
+Contado no `REGISTRO.md` desta ilha, execução por execução, na janela **14/10 13h16Z → 21/10 18h2xZ**: **24 execuções**, das quais **7** entregaram algo no ar que o visitante vê (os `<title>` de 14/10 13h16Z; a ficha/link conferido no ar de 14/10 19h16Z; e as cinco de 21/10, a lista das 10h17Z com Sync e as quatro do molde da 32) e **17** declararam elas mesmas **"ZERO BYTE NO AR"** com `git diff --stat` vazio.
+
+**E o corte pela data em que a seção 31 nasceu desarma a acusação:** de **14 a 20/10 foram 2 de 19 (11%)**; em **21/10, já com a 31 escrita, foram 5 de 5 (100%)**. **A régua mordeu no dia em que nasceu.** Portanto este item **não é conserto, é vigilância**: nenhum bloco nasce dele, e a leitura de 28/10 recontará a proporção na janela nova. **Se a janela de 22→28/10 fechar abaixo de 7 em 10, aí sim vira item de prioridade alta** — hoje não é, porque o número já virou.
+
+### 5. VENDA NÃO MEDIDA PELA TERCEIRA SEMANA — E A CAUSA É OUTRA, NUM NAVEGADOR OUTRO. NÃO MISTURE AS DUAS.
+
+- **Navegador interno da Sentinela (medido hoje, 19h4xZ):** `affiliate.shopee.com.br/dashboard` desvia para `shopee.com.br/buyer/login` e o painel de afiliados do Mercado Livre para `mercadolivre.com.br/login/identification`. **As duas sessões estão DESLOGADAS nesse perfil**, e entrar em conta é proibido para a Sentinela.
+- **Chrome do Raphael (medido pela ronda diária das 14h57Z do MESMO dia):** o cookie `SPC_U` da Shopee **está presente** — lá o que trava é o **anti-robô**, não o login.
+- **São dois obstáculos distintos em dois navegadores distintos, com consertos distintos.** Confundir os dois é a família do "bloqueio herdado lido como fato" da 20.2, e foi por isso que isto ficou escrito assim.
+- **Isto não é trabalho da Fundação:** é passo do Raphael, e é a medição de maior ROI que falta na fábrica — **a receita do Arquipélago em 21/10/2026 é desconhecida, não zero.**
+
+### 6. O CANO DE LINKS, CONTADO POR PORTÃO — E O PISO ESTÁ EM ZERO
+
+`dados/cano-de-links.md` seção **2026-10-21 12:23Z**, escrita pelo `conferir-cano-de-links.py --gravar`: **78 registros em 5 bancos**, **0 sem `afiliado.url_busca`** — o defeito mais grave da escada está em zero —, **42 sem `afiliado.url_produto`** (31 em degrau 4 + **11** intestáveis com `url` e sem par, a dívida da 25.4-b), degraus 36/31/11-nulo.
+
+**Zero link gerado nesta execução, e o motivo é regra, não preguiça:** a 25.3 manda conferir a amostra com os olhos ANTES de gravar, e a 25.4-b.1 proíbe grampear par não demonstrado. O disparo desta leitura pediu `coletar-shopee.py --ensaio` committado para leitura (ver `dados/ensaio-shopee-2026-10-21.md`, se o ensaio rodou). **A Fundação NÃO deve rodar `--gravar` sobre esse ensaio: quem confere com os olhos é a leitura de 28/10, e quem gera não aprova o que gerou.**
+
+### 7. AS TRÊS PROPOSTAS DE ACELERAÇÃO DESTA SEMANA (12.1) — SÃO TRÊS, E AS TRÊS TÊM CONSULTA OU PÁGINA NOMEADA
+
+**PROPOSTA A — `/calculadora-de-litragem/`, posição 11,1, 37 impressões: a banda do dinheiro nasceu nesta ilha e esta é a maior amostra dela em todo o arquipélago.**
+- O que falta: o pacote da banda 11 a 20 da 12.1 — `<title>` e meta com as palavras da consulta, a resposta direta subindo para o primeiro parágrafo, a tabela de exemplos pré-renderizada cobrindo o caso exato, e **três links internos de páginas irmãs que já rankeiam, com âncora igual à consulta** (candidatas medidas hoje: `/peixes/tetras/quantos-litros-para-tetra-neon/` 64 impressões em 4,7, `/peixes/acaras/quantos-litros-para-acara-bandeira/` 45 em 5,4, `/peixes/vivaparos/quantos-litros-para-platy/` 24 em 5,6).
+- **E NÃO DÊ A ELA A PROMESSA NUMÉRICA NO `<title>`.** Ela tem de continuar sem algarismo, porque é o braço "marca" do teste da Proposta B. O `<title>` muda as palavras, nunca o número. A URL não muda; o `<h1>` não muda.
+- **O custo declarado:** link interno e primeiro parágrafo são confundidores do teste de título, então a leitura de 28/10 tem de ler esta página como **trabalho de posição**, nunca como resultado de CTR.
+- **Pronto quando:** a leitura de 28/10 registrar posição **≤ 10,0** nesta página **ou** 1 ou mais cliques em 7 dias.
+
+**PROPOSTA B — REVERTER SÓ `/calculadora-de-midia-filtrante/` PARA `– Aquametria`, E MANTER AS OUTRAS TRÊS PROMESSADAS. É UM TESTE 1 CONTRA 3 DE UMA HIPÓTESE DE MECANISMO, E ELE É DE GRAÇA.**
+- **A hipótese, escrita antes do dado:** a promessa no `<title>` **entrega a resposta dentro da SERP**. "– de 40,5 a 54 litros" responde a pergunta sem o clique. Cinco páginas promessadas foram de 4 cliques para 1 com impressão subindo, e a irmã **robometria** tem títulos do mesmo tipo-promessa somando **32 impressões e 0 clique em três semanas**. Duas ilhas, o mesmo sinal.
+- **Por que a mídia filtrante e não outra:** é a única das quatro que **tinha** clique e **perdeu** (37/2 → 43/0), então é a que carrega o sinal mais limpo; e tem a segunda maior amostra das quatro (43 impressões).
+- **O que mexer, e só isto:** o `<title>` e a meta description dessa UMA página voltam à forma de marca, pelo mesmo mecanismo de banco em tempo de execução que as pôs lá (seção 3c do `aquametria-seo-tecnico.php`), sem digitar nada. **Iluminação, aquecedor e vazão ficam PARADAS com a promessa** — são o braço de controle, e trocar as quatro torna 28/10 ilegível.
+- **Pronto quando:** a leitura de 28/10 registrar, lado a lado, o CTR da mídia filtrante contra o das outras três, com o `<title>` servido de cada uma citado de `titulos-no-ar.md`. **O desfecho vale nos dois sentidos** e os dois são resultado: se a revertida ganhar clique e as três não, a promessa é o problema do arquipélago inteiro e isso é achado de contrato; se nada mudar, a hipótese cai e o CTR desta ilha é de assunto, como a leitura da clubedomosaico de 14/10 já sugeria.
+
+**PROPOSTA C — A CANIBALIZAÇÃO `tetra néon` × `tetra cardinal`, com consulta nomeada dos dois lados.**
+- O fato: a consulta `tetra cardinal` cai em `/peixes/tetras/quantos-litros-para-tetra-neon/` (posição 2,0) **enquanto `/peixes/tetras/quantos-litros-para-tetra-cardinal/` existe, está indexada e tem 7 impressões na 3,7**. É a 30.4 violada por dentro da própria malha.
+- O que falta: decidir qual das duas é a dona da consulta e **desambiguar pelo texto** — o título e o primeiro parágrafo da página do néon não podem disputar a palavra "cardinal", e a do cardinal tem de dizer a consulta com as palavras da consulta. **Nenhuma URL muda e nenhuma página nasce** — a 12.1 proíbe trocar URL de página posicionada, e as duas estão posicionadas.
+- **Pronto quando:** a leitura de 28/10 registrar a consulta `tetra cardinal` atribuída a `/peixes/tetras/quantos-litros-para-tetra-cardinal/`, **ou** registrar que ela continua na página do néon com a desambiguação já no ar — que também é desfecho, e aí o problema é do Google e não do texto.
+
+### 8. O QUE ESTA LEITURA NÃO FEZ, DITO COMO NÃO FEITO
+
+- **Não abri a SERP de nenhuma consulta.** Não verifiquei.
+- **Não medi venda nem clique de afiliado** (item 5).
+- **Não gerei link de afiliado** (item 6).
+- **Não contei a proporção da 31.1 nas outras duas ilhas** — a 31.6 a pede na ilha em foco, e a ilha em foco é esta.
+- **ATENÇÃO À TROCA DE FOCO:** o `foco.md` diz que a janela desta ilha termina **hoje, 21/10/2026**, e que a **jornadafly** entra em foco em **22/10** — e diz, com todas as letras, que a linha `ilha:` **não troca sozinha** e que o foco já ficou preso de 10 a 14/10 por ninguém a editar. **Quem abrir a próxima execução confere isso antes de reservar.**
+
 ## DESPACHO DA SENTINELA — 2026-10-21 (RONDA DIÁRIA TÉCNICA, 14h5xZ) — **FECHADO ÀS 15h5xZ DO MESMO DIA, OS TRÊS ITENS CONFERIDOS NO AR PELA 18.4**
 
 Os três itens eram da lista fechada **19.2**. Ficam aqui, por três dias, só o que a próxima execução precisa saber para **não remedir** — o resto está no `REGISTRO.md` desta data.
@@ -104,7 +174,7 @@ Os três itens eram da lista fechada **19.2**. Ficam aqui, por três dias, só o
 - `teste-navegador-c5` → *"aviso avisa que o anuncio era de outra voltagem"*: com a tomada em 220 V, o aviso do primeiro cartão não cita "220 V".
 - `teste-navegador-c3-dupla-condicao` → *"botao de anuncio e sponsored, botao de busca e nofollow"*: um botão de **busca** sai com `rel="sponsored noopener"`, e a regra quer `nofollow` nele.
 
-## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael)
+## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, medida no Chrome do Raphael) — **SUPERADO PELA LEITURA DE 21/10/2026: o item 2 (Propostas 1 e 2) está REPROVADO por medição e o item 4 (credencial/home sem veredito) está FECHADO. O item 3 (`/peixes/tetras/`) continua aberto e vive agora no despacho de 21/10. Leia o de 21/10 ANTES deste.**
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.
 

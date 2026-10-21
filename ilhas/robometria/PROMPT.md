@@ -45,6 +45,34 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL, 19h5xZ, Search Console pela nuvem) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1)
+
+**Isto é a leitura semanal, não a ronda diária. A ilha está FORA DO FOCO** — pela 1.2-b.1 ela está em **modo de medição**, e nenhum item abaixo autoriza construção. **Nenhum item desta leitura é bloco.**
+
+**O QUE ESTA LEITURA MEDIU** (`dados/search-console-2026-10-21.md`, janela 13→19/10): **24 impressões, 0 clique**, CTR 0%, posição média 8,5. **A impressão mais que dobrou (11 → 24)** — maior salto relativo da história da ilha. Indexação **10 de 14 (71%)**, 4 fora do índice, **0 sem veredito**. Consulta anonimizada em 100% pela terceira semana.
+
+### 1. `/pecas/` REGREDIU DE "DISCOVERED" PARA "URL IS UNKNOWN TO GOOGLE" — E A LIÇÃO É DE MÉTODO, NÃO DE CÓDIGO
+
+Em 07/10 ela estava em "Discovered - currently not indexed"; hoje o Google **não sabe que ela existe**. As outras três de `/pecas/` estão em "Discovered". **A leva de 21/09 completa 30 dias sem uma única página indexada.**
+
+**E a mesma volta aconteceu na clubedomosaico na mesma semana** (`/materiais/alicate-para-mosaico/` e `/materiais/espelho-para-mosaico/`, as duas de "Discovered" para "unknown"), **sem ninguém tocar em nenhum dos dois sites.** A conclusão vale para as três ilhas e está escrita para nenhuma execução gastar bloco nela: **URL não indexada não é um estado estável, e a série pode andar para trás por conta do Google.** Nenhum bloco de código nasce de um sintoma de indexação medido numa única leitura.
+
+- **Pronto quando:** 11 ou mais indexadas de 14 na leitura de 28/10. **Nada a fazer até lá** — a alavanca da 14.7 está esgotada por cota de conta e o reenvio de sitemap já foi provado insuficiente nesta ilha (23/09).
+
+### 2. O TESTE DE TÍTULO DE 17/09 ACUMULOU 32 IMPRESSÕES E ZERO CLIQUE — E AGORA TEM UMA IRMÃ QUE O CONFIRMA
+
+`/quantos-pa-o-robo-aspirador-precisa/` foi de 8 para **17 impressões** e segue em **0 clique**: 32 impressões acumuladas em três semanas desde a troca. **E a aquametria reprovou em 21/10, por medição, exatamente o mesmo tipo de título** — promessa numérica no `<title>` — em cinco páginas, indo de 4 cliques para 1 com impressão subindo.
+
+- **A hipótese de mecanismo, que é das duas ilhas:** o título que promete o número **entrega a resposta dentro da SERP** e dispensa o clique. O teste controlado foi despachado **na aquametria** (reverter uma das quatro e manter três), porque é lá que há amostra.
+- **NESTA ILHA NÃO MEXA EM TÍTULO.** Com 17 impressões não há como medir, e trocar agora apaga o único teste de CTR com série do arquipélago. **Pronto quando:** a leitura de 28/10 trouxer o veredito da aquametria — e só então esta ilha decide se copia a reversão.
+
+### 3. O QUE ESTA LEITURA NÃO FEZ
+
+- **Não abri a SERP.** Não verifiquei.
+- **Venda não medida:** no navegador interno da Sentinela as sessões de **Shopee Afiliados** e **Mercado Livre Afiliados** estão **deslogadas** (desvio para `buyer/login` e `login/identification`), e entrar em conta é proibido. **Isto é passo do Raphael.**
+- **Nenhum link de afiliado gerado:** pela 1.2 o teto semanal vai **inteiro** para a ilha em foco, e a ilha em foco é a aquametria.
+- **Cano de links não recontado nesta leitura.** A ronda de 16/10 mediu o piso em 54 de 54 peças e 45 de 45 modelos publicáveis, zero intestável, e **anulou por medição** o item 1 de 14/10 (os 3 registros sem piso são `excluido_do_banco` e a 25.2 cobra piso de item publicável). **Não reabra aquele item.**
+
 ## ~~DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO~~ — **FECHADO INTEIRO EM 21/10/2026 às 16h1xZ, as NOVE páginas conferidas no ar uma a uma**
 
 > **OS DOIS ITENS CUMPRIDOS E MEDIDOS NO AR**, celular de 390 px com quebra de cache, pela 18.4 (o despacho morre quando é verificado). A tabela inteira, com o antes e o depois de cada página, está no `REGISTRO.md` desta data; aqui ficam só os números que fecham o critério de pronto.

@@ -215,6 +215,50 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL, 19h5xZ, Search Console pela nuvem) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1)
+
+**Isto é a leitura semanal, não a ronda diária. A ilha está FORA DO FOCO.** Pela 1.2-b.1 ela está em modo de medição e **nenhum item abaixo autoriza construção** — mas o item 1 vale no dia em que ela voltar ao foco, e o item 2 é uma correção do que o despacho anterior escreveu.
+
+**O QUE ESTA LEITURA MEDIU** (`dados/search-console-2026-10-21.md`, janela 13→19/10): **168 impressões e 1 clique**, CTR 0,6%, posição média 8,4 — contra 86/2 pela nuvem em 06→12/10. **Impressão +95%, clique de 2 para 1.** Indexação **24 de 32 (75%)**, **exatamente o mesmo número de 14/10**, 8 fora do índice, 0 sem veredito. **8 consultas nomeadas**, o maior número do arquipélago.
+
+### 1. A RAMPA CONTINUA PARADA — E O CRITÉRIO DE 14/10 ESTAVA MAL ESCRITO. ISTO É O ACHADO DE MÉTODO DA SEMANA.
+
+O critério pré-registrado pedia *"24 ou mais indexadas das 32, **ou** 5 das 9 desconhecidas devolvendo Detectada ou melhor"*.
+
+- **A primeira metade está cumprida ao pé da letra — e não mede nada: 24 já era o número no dia em que o critério foi escrito.** Lido literalmente, ele autoriza a rampa a voltar por a ilha ter ficado **parada**. **Critério de pronto cujo valor-alvo é o valor de hoje aprova a imobilidade; o alvo tem de ser um DELTA.** Isto é lição de contrato, não desta ilha, e está escrito aqui porque foi aqui que custou.
+- **A segunda metade falhou, e falhou para trás:** **duas URLs andaram de "Discovered" para "URL is unknown to Google"** — `/materiais/alicate-para-mosaico/` e `/materiais/espelho-para-mosaico/`. Hoje são **4 unknown** e **4 Discovered**, contra 2 e 6 em 14/10.
+- **Zero página nova indexada em sete dias.** A 14.6 segue mandando parar, e agora com um número que se move na direção errada.
+- **E a mesma volta aconteceu na robometria na mesma semana** (`/pecas/`), **sem ninguém tocar em nenhum dos dois sites.** Conclusão que vale para as três ilhas: **URL não indexada não é um estado estável.** Nenhum bloco de código nasce de um sintoma de indexação medido numa única leitura.
+- **NENHUMA LEVA NOVA DE MALHA até a leitura de 28/10**, qualquer que seja o saldo do teto da 21.4.
+- **Pronto quando — e agora o alvo é um delta:** **26 ou mais** indexadas das 32 na leitura de 28/10 (ganho líquido de 2), **ou** pelo menos **3 das 4** atuais em "unknown" devolvendo "Detectada" ou melhor.
+
+### 2. O ITEM 3 DE 14/10 (`/materiais/quantas-pastilhas-para-mosaico/`) NÃO FOI REPROVADO: ELE NÃO FOI EXECUTADO — E O QUE ELE DEVE DIZER MUDOU
+
+A página está em **37 impressões (era 32) na posição 6,1 e ZERO clique, terceira semana seguida**. A alavanca de `<title>` **nunca foi puxada** — a ilha saiu do foco em 14/10 e não recebeu execução. **O item continua aberto, e o critério de pronto dele continua valendo.**
+
+**MAS O TEXTO DO ITEM MUDA, por medição de outra ilha.** O despacho de 14/10 mandava *"título que prometa o número que a ferramenta entrega"*, com a nota *"mesmo mecanismo que a aquametria usou em 14/10"*. **Esse mecanismo foi REPROVADO na aquametria em 21/10:** cinco páginas com o número no `<title>` foram de 4 cliques para 1 com impressão subindo, e a robometria tem 32 impressões e 0 clique em três semanas com títulos do mesmo tipo.
+
+- **Portanto: NÃO copie o molde da promessa numérica para esta ilha enquanto o teste controlado da aquametria não tiver veredito** (reverter uma das quatro e manter três; veredito em 28/10). Copiar agora seria propagar um molde medido como perdedor.
+- **O que fazer no lugar, se houver fôlego e a ilha voltar ao foco:** `<title>` e meta que digam **a consulta com as palavras da consulta** e prometam **que existe um número com fonte e data**, sem publicar o número. Nenhuma URL muda, nenhum `<h1>` muda.
+- **Pronto quando:** a leitura de 28/10 ou posterior registrar **1 ou mais cliques** nesta página em 7 dias, com o `<title>` servido no dia copiado para `dados/posicoes.md`.
+
+### 3. NÃO TOQUE NAS DUAS QUE CONVERTEM — E UMA DELAS JÁ DEVOLVEU O QUE TINHA
+
+- `/materiais/qual-cola-usar-no-mosaico/`: 44/1 → **73/1**, posição 8,0 → 7,2. Está subindo e tem o único clique da semana. **12.1 proíbe mexer.**
+- `/como-fazer/o-que-e-mosaico-picassiete/`: **9/2 (CTR 22,2%) → 8/0**. **O CTR de 22% vinha de 9 impressões e não sobreviveu à primeira repetição** — é a lição de amostra fina aplicada ao achado mais celebrado desta ilha. **Continua PARADA de propósito** desde 23/09: é o controle, e é a única série limpa que a ilha tem.
+
+### 4. AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1): **ZERO, E O ZERO É A PROPOSTA**
+
+A ilha está em **modo de medição** e não recebe construção; a rampa está parada pelo item 1; as duas que convertem estão proibidas de ser tocadas; o item 2 existe e está **esperando o veredito de outra ilha** para não propagar molde ruim; e a de 21+ não tem chance real. **Proposta que não cabe na semana não é proposta, é lista de desejos.**
+
+### 5. O QUE ESTA LEITURA NÃO FEZ
+
+- **Não abri a SERP.** Não verifiquei.
+- **Venda não medida:** no navegador interno da Sentinela as sessões de **Shopee Afiliados** e **Mercado Livre Afiliados** estão **deslogadas** (desvio para `buyer/login` e `login/identification`). **O DEFEITO 2 de 23/09 (sub_id deslocado uma casa) continua sem poder ser reconferido, pela quinta leitura seguida.** É passo do Raphael.
+- **Nenhum link de afiliado gerado:** pela 1.2 o teto semanal vai inteiro para a ilha em foco.
+- **Cano de links não recontado:** a contagem de 14/10 (43 publicáveis, 0 sem `url_busca`, 19 sem `url_produto`) segue sendo a última, e **nada a cobrar** — o piso da 25.2 está fechado nesta ilha.
+- **Os 6 "Não encontrado (404)"** de 07/10 **não foram remedidos nesta leitura.** Continuam registrados como abertos.
+
 ## ~~DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO~~ — **FECHADO INTEIRO EM 21/10/2026 às 19h1xZ, as 20 PÁGINAS CONFERIDAS NO AR PELA 18.4**
 
 > **OS DOIS ITENS CUMPRIDOS E MEDIDOS NO AR**, celular de 390 px com quebra de cache. O detalhe página por página está no `REGISTRO.md` desta data; aqui ficam só os números que fecham o critério de pronto, e o que a próxima execução precisa saber para **não remedir**.
