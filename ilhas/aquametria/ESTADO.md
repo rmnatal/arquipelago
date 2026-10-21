@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-21T18:21Z
-executando_desde: 2026-10-21T20:06Z   # RESERVA RENOVADA pela 1.1, 3a vez (19h16Z, 19h37Z e agora): a bancada sem rede desta ilha tem 73 portoes e os de mutacao copiam a arvore inteira por mutacao, entao ela sozinha passa de 40 minutos. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
+executando_desde: 2026-10-21T20:43Z   # RESERVA RENOVADA pela 1.1, 4a vez (19h16Z, 19h37Z, 20h06Z e agora): a bancada sem rede desta ilha passa de 40 minutos sozinha, e esta passada a rodou DUAS vezes porque a primeira achou o portao da voz vermelho em 110 afirmacoes, herdado do molde da 32.2. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
 bloco_atual: |
   AS 29 FICHAS DE PEIXE DESTA ILHA ESTAO NO MOLDE DA 32.2, e com elas o despacho
   do Raphael de 21/10 FECHA INTEIRO pela 18.2 — os dois itens conferidos no ar
