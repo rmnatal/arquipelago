@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-21T12:28Z
-executando_desde: 2026-10-21T13:22Z   # reserva da execucao de 21/10 13h2xZ (secao 1 passo 5 + 1.2): ilha em foco por foco.md e PRIMEIRA na ordem da 32.6. Hora do date -u na mesma linha de comando que grava.
+executando_desde: 2026-10-21T13:43Z   # RENOVADA pela 1.1 (a reserva desta execucao foi as 13h22Z e o bloco passou dos 40 min). Molde de conversao da secao 32 na calculadora de iluminacao: o render local roda em minutos, a bancada de 73 portoes passa de uma hora. Hora do date -u na mesma linha de comando que grava.
 bloco_atual: |
   A LISTA DE 21/10 SAIU INTEIRA E ESTA NO AR, revisao 125, e o preco dela foram
   TREZE afirmacoes presas ao banco de ontem, em SEIS portoes. As seis entradas de
