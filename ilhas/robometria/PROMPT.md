@@ -45,12 +45,17 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
-## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO — entra depois da aquametria, pela seção 32.6)
+## ~~DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO~~ — **FECHADO INTEIRO EM 21/10/2026 às 16h1xZ, as NOVE páginas conferidas no ar uma a uma**
 
-O Raphael aprovou o novo layout e mandou levar a todas as ilhas. Lei: seção 32 do `ARQUIPELAGO.md`, inclusive a 32.6-b (mutirão: a lista inteira numa execução, e as ilhas em paralelo — esta ilha NÃO espera a aquametria terminar).
-1. Ferramentas no molde 32.1 e páginas de resposta/material/peça no molde 32.2, nesta ordem: `/qual-peca-serve-no-meu-robo-aspirador/` (R1), `/quantos-pa-o-robo-aspirador-precisa/` (R2), `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, `/filtro-universal-de-robo-aspirador/` e as páginas de `/pecas/`. Esta ilha está em modo de medição: o molde é a ÚNICA construção autorizada nela.
-2. Tirar todo texto de bastidor da 32.4.
-Pronto quando: 32.5 medido no ar em cada página, uma por vez.
+> **OS DOIS ITENS CUMPRIDOS E MEDIDOS NO AR**, celular de 390 px com quebra de cache, pela 18.4 (o despacho morre quando é verificado). A tabela inteira, com o antes e o depois de cada página, está no `REGISTRO.md` desta data; aqui ficam só os números que fecham o critério de pronto.
+>
+> **A 32.5 pede o formulário (ou a caixa de resposta, em ficha) antes de 700 px e o primeiro botão de compra antes de 1.400. Nove de nove passam:** R1 **452 / 1.280** (era 808 / 3.330) · R2 **494 / 1.322** (era 876 / 4.347) · A1 **352 / 860** (o botão era 4.256) · A2 **352 / 914** (era 3.686) · `/pecas/` **445** · `/pecas/filtros/` **514** · xiaomi **418 / 1.022** · wap **418 / 989** · electrolux **418 / 1.191**. Rolagem horizontal 0 e `pageerror` 0 nas nove. `title`, `h1`, `canonical`, `description` e os três nós de JSON-LD idênticos aos de antes, comparados no HTML servido.
+>
+> **As duas páginas de `/pecas/` sem botão de compra não são falta:** são as de navegação da árvore, e o produto mora na filha de marca. Listar produto nelas seria a terceira cópia da vitrine da filha.
+>
+> **ITEM 2:** a frase de bastidor vivia em TRÊS snippets (R1, R2 e A2) — "o ambiente em que a Robometria é construída" e "busca restrita ao domínio da própria fonte", esta última na lista da 32.4 com essas palavras. Varredura final nas **14 URLs do sitemap: todas limpas**.
+>
+> **O QUE O DESPACHO NÃO ALCANÇOU, e não é dele:** a 32.1 pede *preço com data da coleta* no cartão e **o banco desta ilha não guarda preço** — lacuna de DADO, não de molde, e trabalho de coleta. A 32.2 pede o par de botões "Calcular" + "Ver produtos" por item do bloco "Monte / Compre"; as páginas servem o botão de loja, e o par completo não foi construído. Os dois ficam para quem abrir bloco de conteúdo nesta ilha, não para um despacho que já fechou.
 
 ## DESPACHO DA SENTINELA — 2026-10-16 (RONDA DIÁRIA TÉCNICA, 14h4xZ) — UM ITEM NOVO, E UMA ERRATA DA PRÓPRIA SENTINELA
 

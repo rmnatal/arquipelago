@@ -6597,3 +6597,162 @@ e isso e a 16.5 funcionando.
 - **Proximo passo: a leva 2 da malha** — `/pecas/escovas-laterais/` com as tres
   primeiras filhas, com RECONTAGEM e classificacao de SERP proprias antes de
   escrever pagina, exatamente como esta leva fez.
+
+## 2026-10-21 (15h07Z–16h1xZ) — O MOLDE DE CONVERSAO DA SECAO 32 NAS NOVE PAGINAS DA ILHA, conferido no ar uma a uma
+
+**Item 1 e item 2 do despacho do Raphael de 21/10/2026, FECHADOS INTEIROS pela
+18.2**, em mutirao pela 32.6-b (a lista inteira numa execucao). O despacho saiu
+do `PROMPT.md` nesta data, depois da conferencia no ar — nunca antes (18.4).
+
+**A ESCOLHA DA ILHA: TERCEIRA TENTADA, DUAS CORRIDAS DE PUSH PERDIDAS.** O
+`foco.md` nomeia a **aquametria**, e pela 1.2 nao haveria ilha a escolher — mas a
+excecao escrita pelo Raphael em 21/10/2026 poe o DESPACHO DO MOLDE acima do foco,
+na ordem aquametria → clubedomosaico → robometria, e a 32.6-b manda as tres
+andarem **em paralelo**, cada execucao numa ilha diferente. A aquametria estava
+reservada as **15:04Z** por outra execucao (sessao `012hU4aY…`); pedi a
+**clubedomosaico** e o push foi **recusado** — outra execucao a reservou as
+15:06Z. Rebase sem force push, voltei ao passo 2 e a **robometria** entrou as
+15:07Z, na terceira tentativa. A reserva foi **renovada duas vezes** pela 1.1,
+porque o bloco passou de 40 minutos.
+
+**REDE PELA 20.2, RETESTADA E NAO HERDADA:** tres passadas,
+`robometria.com.br` e `www.robometria.com.br` em **200 nas tres**.
+
+### O QUE FOI AO AR, E O QUE A 32.5 MEDIU NO AR (celular de 390 px, com quebra de cache)
+
+| pagina | formulario / caixa | 1o botao de compra | antes |
+|---|---|---|---|
+| `/qual-peca-serve-no-meu-robo-aspirador/` (R1) | **452** | **1.280** | 808 / 3.330 |
+| `/quantos-pa-o-robo-aspirador-precisa/` (R2) | **494** | **1.322** | 876 / 4.347 |
+| `/filtro-universal-de-robo-aspirador/` (A1) | **352** | **860** | — / 4.256 |
+| `/quantos-m2-o-robo-aspirador-limpa-por-carga/` (A2) | **352** | **914** | — / 3.686 |
+| `/pecas/` | **445** | — | — |
+| `/pecas/filtros/` | **514** | — | — |
+| `/pecas/filtros/xiaomi/` | **418** | **1.022** | — / 1.093 |
+| `/pecas/filtros/wap/` | **418** | **989** | — |
+| `/pecas/filtros/electrolux/` | **418** | **1.191** | — |
+
+A 32.5 pede o formulario (ou a caixa de resposta, em ficha) antes de **700 px** e
+o primeiro botao de compra antes de **1.400**. **Nove de nove passam.** As duas
+paginas de /pecas/ sem botao sao as de **navegacao** da arvore: o produto mora na
+filha de marca, e listar produto nelas seria a terceira copia da vitrine da
+filha. Rolagem horizontal **0** nas nove; `pageerror` **0** nas nove.
+
+**ALTURA DE PAGINA:** R1 15.467 → 13.140 px. R2 19.790 → 15.684. A1 6.770 →
+5.118. A2 5.161 → 3.551.
+
+**E O QUE NAO MUDOU, conferido no HTML servido antes contra depois, pagina por
+pagina:** `<title>`, `<h1>`, `canonical`, `<meta name="description">` e os **tres
+nos de JSON-LD** (Organization+WebSite, WebApplication+FAQPage, BreadcrumbList)
+**identicos** nas nove. Trilha e `BreadcrumbList` servidos nas nove.
+
+**O TEXTO NAO SAIU DA PAGINA (32.3), e a conta esta aberta:** R1 de 2.854 para
+2.910 palavras no HTML servido; A1 de 1.271 para 1.308; A2 de 1.305 para 1.325;
+`/pecas/` de 517 para 551; `/pecas/filtros/` de 666 para 704; a filha da Xiaomi
+de 542 para 577. **A R2 caiu de 4.013 para 3.791**, e a diferenca tem nome: a
+frase longa do cartao estava **duas vezes** na pagina, palavra por palavra, no
+cartao e na lista de modelos. Medido por conjunto de tokens, nenhum token unico
+saiu de nenhuma das nove — menos os 22 da frase de bastidor da 32.4.
+
+### 32.4 — O TEXTO DE BASTIDOR SAIU, E ELE ESTAVA EM TRES SNIPPETS
+
+A mesma frase vivia na R1, na R2 e na A2: dizia que o acesso aos enderecos de
+fabricante esta bloqueado **no ambiente em que a Robometria e construida** e que
+tudo foi colhido por **busca restrita ao dominio** da propria fonte. A segunda
+esta na lista da 32.4 com essas palavras. No lugar dela ficou o que importa para
+quem le: canal publico da marca, endereco e data, e nenhuma lista completada por
+analogia. Saiu tambem a mencao ao **repositorio** dos tres avisos de banco
+ausente. **VARREDURA FINAL NO AR: as 14 URLs do sitemap, limpas** — nenhuma das
+frases da lista da 32.4 em nenhuma delas.
+
+### O QUE VIROU COMPONENTE DA CASCA (1.13.0), pela 32.6-b
+
+`robometria_casca_caixa()` (a caixa de resultado: numero em Mono, frase de
+leitura embaixo), `robometria_casca_dobra()` (o `<details>` com o cabecalho da
+secao dentro do `<summary>`), o **cartao deitado** no celular (foto a esquerda,
+por float, 6rem) e o **par de campos** do formulario, que divide a linha
+inclusive no celular. Escrever cada uma no snippet que precisa dela seria
+combinar de divergir depois — a cicatriz que esta ilha pagou com a porta de
+compra copiada na R1.
+
+**E O COMPONENTE PAGOU NA HORA, sem uma linha de codigo da pagina mudar:** o
+cartao deitado trouxe o primeiro botao de loja de `/pecas/filtros/xiaomi/` de
+1.093 para **833 px**, medido no ar antes de a malha ser tocada. Depois a caixa
+de resposta dela subiu o botao para 1.022 — ainda 71 px abaixo de onde estava.
+
+### QUATRO DEFEITOS DE VERDADE, OS QUATRO FECHADOS NA MESMA EXECUCAO
+
+1. **O PARAGRAFO DE PROCEDENCIA DA R1 CAIU DENTRO DA FRONTEIRA DE OUTRA SECAO.**
+   Ele **cita** a frase de recusa ("nao localizamos declaracao do fabricante")
+   para explicar que ela aparece com essas palavras. Posto entre a resposta e a
+   tabela, entrou na fronteira declarada do `conferir-reservatorio-no-ar.py` (de
+   `id=resultado` a `id=rbm-exemplos`), e **quatro afirmacoes passaram a ler uma
+   resposta que recusa onde a resposta entrega a peca**. Nao era a regua: era
+   texto de outra secao dentro da fronteira de uma. O paragrafo foi para depois
+   da tabela, que e onde a 32.1 o poe de todo modo.
+2. **A CAIXA DA A2 CREDITAVA O FABRICANTE PELO QUE A LOJA OFICIAL DECLAROU.** O
+   rotulo que escrevi dizia "area por carga declarada pelo fabricante" — e "pelo
+   fabricante" e o `quem_declara` de dois degraus da escada, enquanto os 5
+   modelos que hoje trazem o numero vem do degrau da **loja oficial da marca**.
+   Era a atribuicao DIGITADA, no primeiro rotulo da pagina, e quem a viu foi o
+   portao que proibe texto de degrau dentro do snippet. O rotulo deixou de
+   atribuir.
+3. **A ABERTURA DA A1 PAROU DE FALAR COM QUEM ENTROU.** Com a caixa no topo, a
+   primeira frase da pagina passou a ser a dela, e a minha estava em terceira
+   pessoa; o `VOZ.md` cobra segunda pessoa da primeira frase e o
+   `teste-voz.php` mede exatamente essa.
+4. **O NUMERO DA CAIXA DA A1 SAIA COM A MARCACAO IMPRESSA NA TELA:**
+   `robometria_a1_num()` devolve o numero ja embrulhado em `<span
+   class="rbm-num">` e a caixa escapa o que recebe.
+
+### PORTOES: 41 DE 41 VERDES SEM REDE. SETE APRENDERAM O MOLDE, E NENHUM FOI AFROUXADO
+
+- `teste-r2`: a afirmacao da ORDEM media "o bloco de compra vem DEPOIS da lista",
+  que e a ordem que a 32.1 **inverteu**. Passou a cobrar as TRES posicoes na
+  ordem nova — caixa → compra → lista — em vez de ser apagada.
+- `teste-r1`: o padrao que recorta a cabeca do bloco de compra lia a `<div>` pela
+  classe EXATA, e o bloco ganhou `id` (a barra do celular aponta para ele).
+  A regua ficava medindo **string vazia**, e string vazia passa em "nao contem
+  frase proibida". Agora aceita atributo, cobra a classe, e ganhou uma afirmacao
+  que **denuncia a fronteira nao reconhecida**. E a afirmacao que proibe negar
+  link de loja numa resposta com botao passou a medir o **bloco inteiro**,
+  porque a frase de ausencia desceu para baixo dos cartoes: apontada para a
+  cabeca, ela ficaria cega exatamente para o defeito que existe para pegar.
+- `conferir-frase-de-compra-no-ar`: mesma causa, e esta e regua de **AR**. Sem o
+  conserto ela passaria a medir nada — verde por nao achar a frase proibida onde
+  deixou de procurar.
+- `teste-a2`: a tese de abertura e extraida por marcador declarado, e pela 32.2
+  ela e a frase de leitura da CAIXA. A regua procura os dois marcadores, nesta
+  ordem, e continua reprovando se nao achar nenhum.
+- `mutacoes-procedencia`: cinco alvos apontavam para uma secao que agora monta em
+  outra variavel. **Quatro saiam ERRO e uma aplicava no lugar errado** — e
+  bateria que nao morde e pior que bateria ausente.
+- `mutacoes-a2-procedencia`: os dois alvos do titulo citavam a abertura da `<div>`
+  sem o `id`, e a trava do titulo derivado ficava sem exercicio.
+
+### O QUE ESTA EXECUCAO NAO FEZ, dito em vez de escondido
+
+- **A 32.1 pede "preco com data da coleta" no cartao e o banco desta ilha nao
+  guarda preco.** Nao foi inventado: fica como lacuna de **DADO**, nao de molde,
+  e e trabalho de coleta.
+- **A 32.2 pede dois botoes por item do bloco "Monte / Compre"** — "Calcular" e
+  "Ver produtos". As paginas desta ilha servem o botao de loja; o par completo
+  nao foi construido.
+- **Esta ilha nao tem o portao `conferir-desembarque.py` da 20.4** (a
+  clubedomosaico tem). A 31.3 proibe construir portao novo enquanto houver item
+  de conteudo aberto, entao o log do `/status` foi lido **linha a linha** nas
+  tres revisoes desta execucao (84, 86 e 88): 15 linhas, 13 itens aplicados,
+  **todas dizendo ok**, nenhuma cortada pela janela. O portao fica como divida.
+- **A memoria da ilha nao foi atualizada**: este ambiente nao tem a ferramenta de
+  memoria, e o `PROMPT.md` manda nao parar por isso. O proximo passo esta aqui e
+  no cabecalho do `ESTADO.md`.
+
+**PROPORCAO DA 31.1:** as nove paginas convertidas contam como entrega no ar pela
+**32.7**. Esta execucao foi inteira para o site.
+
+- **Proximo passo: a leva 2 da malha** — `/pecas/escovas-laterais/` (13 itens, 5
+  marcas) e `/pecas/mops/` (19, 5), que o bloco 5b ja mediu como aprovadas no
+  portao de dado, com RECONTAGEM e classificacao de SERP proprias antes de
+  escrever pagina. **E ela nasce no molde da secao 32 de fabrica**, porque os
+  componentes da casca 1.13.0 ja servem a arvore inteira — nao ha retrofit a
+  fazer. Antes dela, conferir se a leitura semanal liberou o teto da 21.4.

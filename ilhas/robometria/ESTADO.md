@@ -5,19 +5,72 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
-ultima_execucao: 2026-09-21T20:09Z
-executando_desde: 2026-10-21T15:57Z   # reserva RENOVADA pela 1.1 (bloco longo). A original foi as 15:07Z. Mutirao do molde da secao 32, despacho ALTO do Raphael de 21/10. TERCEIRA ilha tentada: aquametria reservada as 15:04Z e clubedomosaico as 15:06Z.
+ultima_execucao: 2026-10-21T16:15Z
+executando_desde: null   # limpo as 16h1xZ de 21/10/2026 pela propria execucao que reservou as 15:07Z. A reserva foi RENOVADA duas vezes pela 1.1 (15:43Z e 15:57Z), porque o bloco passou de 40 minutos — e renovar e o que faz a proxima execucao nao precisar do git para saber.
 bloco_atual: |
-  BLOCO 5b — A PRIMEIRA LEVA DE MALHA ESTA NO AR: /pecas/, /pecas/filtros/ e as tres filhas de marca (xiaomi, wap, electrolux). CINCO URLs novas (de 9 para 14 no sitemap), 5 de 10 do teto da 21.4 gastas, 1 leva de 3 na semana. Snippet robometria-malha.php v1.0.0 (#11 criado), casca 1.12.0, manifest 80 e /status em 80.
-  SAO AS PRIMEIRAS PAGINAS DESTA ILHA COM PAI DE VERDADE (post_parent, 16.2): as nove antigas moram na raiz. Quem cria e o snippet da malha, na ordem da arvore, e a identidade canonica e o meta _robometria_id com a CHAVE (pecas-filtros-xiaomi), nunca o post_name — que e so o ultimo degrau e colidiria com /modelos/xiaomi/.
-  O PORTAO DE DADO FOI RECONTADO ANTES DE ESCREVER PAGINA, e o numero mudou: contando os KITS que declaram filtro na composicao, a categoria tem 16 itens em 5 marcas (11 avulsos + 5 kits) e a Electrolux tem 6. Kit nao e filtro e nenhuma frase o chama assim; e "nao vende avulso" e calculado por MODELO — em 5 dos 9 Electrolux o filtro so existe dentro do Kit Performance.
-  A CLASSIFICACAO DE SERP DA 14.9, que era pre-requisito escrito e nao feito, esta em dados/serp-malha-pecas-2026-09-21.md: nas cinco consultas o top 10 responde pelo APARELHO e a pergunta da PECA nao tem resposta publicada (no ERB60, 10 de 10). O arquivo tambem escreve o que a medicao NAO autoriza.
-  NENHUM NUMERO NASCE NO PHP: dados/malha-pecas.json e derivado do banco por gerar-malha-pecas.py, e teste-malha.php (146 afirmacoes) compara frase a frase, sem acento, as duas implementacoes. Os tres numeros de /pecas/ sao os da casca — recontar criaria a segunda copia de pares_declarados que a R1 1.8.0 mediu no ar.
-  QUATRO REGUAS FORAM VISTAS REPROVANDO PAGINA CERTA E FORAM CONSERTADAS: a URL montada a partir do slug (com tres niveis o slug nao e o endereco), a lista digitada de filhas do cluster, o no Article exigido para achar as duas datas do JSON-LD, e a regua do "em breve" — esta ultima subiu para o contrato, na 16.5: a secao 7 proibe "link de loja em breve" (promessa no lugar da compra) e a 16.5 MANDA "em breve" no cartao de categoria nao publicada.
-  TRES LISTAS DIGITADAS VIRARAM DERIVADAS na mesma leva (alvos do teste-arvore, alvos do teste-voz, paginas do conferir-no-ar), e o teto de irmas da casca ganhou nome porque mutacao precisa de alvo unico.
-  O QUE A LEVA NAO FEZ: o menu continua apontando "Pecas" para a FERRAMENTA e /ferramentas/ continua de pe — o ARVORE.md condiciona as duas trocas a /succao/ tambem existir, e ela nasce na leva 2.
-  A PROXIMA LEVA JA ESTA MEDIDA E NAO E DE FILTRO: /pecas/escovas-laterais/ (13 itens, 5 marcas) e /pecas/mops/ (19, 5) tambem passam no portao hoje; nao nasceram por causa da ordem de levas e do teto, nao por falta de dado.
-  BANCADA 41 portoes 0 falha sem rede e conferir-no-ar.py com 389 afirmacoes 0 falha.
+  O MOLDE DE CONVERSAO DA SECAO 32 ESTA NO AR NAS NOVE PAGINAS DESTA ILHA, e o
+  despacho do Raphael de 21/10 esta FECHADO INTEIRO pela 18.2 — os dois itens,
+  conferidos no ar uma pagina por vez pela 18.4. Revisao 88, /status em 88.
+  Snippets: casca 1.13.0, R1 1.12.0, R2 1.10.0, A1 1.6.0, A2 1.6.0, malha 1.1.0.
+  MEDIDO NO AR, celular de 390 px com quebra de cache, formulario-ou-caixa e
+  primeiro botao de compra (a 32.5 pede antes de 700 e antes de 1.400):
+  R1 452/1.280 (era 808/3.330) · R2 494/1.322 (era 876/4.347) · A1 352/860 (o
+  botao era 4.256) · A2 352/914 (era 3.686) · /pecas/ 445 · /pecas/filtros/ 514 ·
+  xiaomi 418/1.022 · wap 418/989 · electrolux 418/1.191. NOVE DE NOVE PASSAM.
+  As duas paginas de /pecas/ sem botao sao as de NAVEGACAO da arvore: o produto
+  mora na filha de marca, e listar produto nelas seria a terceira copia da
+  vitrine da filha. Rolagem horizontal 0 e pageerror 0 nas nove.
+  ALTURA: R1 15.467 -> 13.140 px. R2 19.790 -> 15.684. A1 6.770 -> 5.118.
+  A2 5.161 -> 3.551.
+  O QUE NAO MUDOU, comparado no HTML servido antes contra depois, pagina por
+  pagina: title, h1, canonical, meta description e os TRES nos de JSON-LD
+  identicos nas nove; trilha e BreadcrumbList servidos nas nove.
+  TEXTO: ninguem perdeu palavra (32.3). R1 2.854 -> 2.910 no HTML servido, A1
+  1.271 -> 1.308, A2 1.305 -> 1.325, /pecas/ 517 -> 551, /pecas/filtros/ 666 ->
+  704, xiaomi 542 -> 577. A R2 caiu de 4.013 para 3.791 e a diferenca tem nome:
+  a frase longa do cartao estava DUAS vezes na pagina, no cartao e na lista de
+  modelos. Medido por conjunto de tokens, nenhum token unico saiu de nenhuma das
+  nove — menos os 22 da frase de bastidor da 32.4.
+  32.4: a frase de bastidor vivia em TRES snippets (R1, R2 e A2). Varredura final
+  nas 14 URLs do sitemap: TODAS LIMPAS.
+  O QUE VIROU COMPONENTE DA CASCA, pela 32.6-b: robometria_casca_caixa(),
+  robometria_casca_dobra(), o cartao deitado no celular e o par de campos do
+  formulario. E o componente pagou na hora, sem uma linha da pagina mudar: o
+  cartao deitado trouxe o primeiro botao de /pecas/filtros/xiaomi/ de 1.093 para
+  833 px, medido no ar antes de a malha ser tocada.
+  QUATRO DEFEITOS DE VERDADE, fechados na mesma execucao e com a causa escrita no
+  REGISTRO: (1) o paragrafo de procedencia da R1 CITA a frase de recusa e, posto
+  entre a resposta e a tabela, caiu dentro da fronteira do
+  conferir-reservatorio-no-ar.py, fazendo quatro afirmacoes lerem uma resposta
+  que recusa onde a resposta entrega a peca; (2) a caixa da A2 creditava o
+  FABRICANTE pelo que a LOJA OFICIAL declarou, no primeiro rotulo da pagina;
+  (3) a abertura da A1 parou de falar com quem entrou; (4) o numero da caixa da
+  A1 saia com a marcacao impressa na tela.
+  PORTOES: 41 de 41 verdes sem rede. SETE aprenderam o molde e nenhum foi
+  afrouxado — entre eles duas reguas que ficariam CEGAS em silencio: o padrao do
+  bloco de compra no teste-r1 e no conferir-frase-de-compra-no-ar lia a <div>
+  pela classe EXATA, e o bloco ganhou id.
+  A ESCOLHA DA ILHA: TERCEIRA TENTADA. O foco.md nomeia a aquametria, mas a
+  excecao do Raphael de 21/10 poe o despacho do molde acima do foco e a 32.6-b
+  manda as tres ilhas em paralelo. A aquametria estava reservada as 15:04Z; pedi
+  a clubedomosaico e o push foi RECUSADO (reservada as 15:06Z); rebase sem force
+  push e a robometria entrou as 15:07Z.
+  REDE PELA 20.2, RETESTADA E NAO HERDADA: tres passadas, robometria.com.br e
+  www em 200 nas tres.
+  O QUE ESTA EXECUCAO NAO FEZ: a 32.1 pede preco com data da coleta no cartao e
+  o banco desta ilha NAO guarda preco — lacuna de DADO, nao de molde, e nao foi
+  inventado. A 32.2 pede o par "Calcular" + "Ver produtos" por item do bloco
+  Monte/Compre, e as paginas servem o botao de loja. Esta ilha nao tem o portao
+  conferir-desembarque.py da 20.4: o log do /status foi lido LINHA A LINHA nas
+  tres revisoes (84, 86 e 88), 15 linhas e 13 itens aplicados, todas dizendo ok
+  e nenhuma cortada pela janela, e o portao fica como divida (a 31.3 proibe
+  construir portao novo com item de conteudo aberto na fila).
+  PROXIMO PASSO: a leva 2 da malha — /pecas/escovas-laterais/ (13 itens, 5
+  marcas) e /pecas/mops/ (19, 5), que o bloco 5b ja mediu como aprovadas no
+  portao de dado, com RECONTAGEM e classificacao de SERP proprias antes de
+  escrever pagina. E ela NASCE no molde da secao 32 de fabrica, porque os
+  componentes da casca 1.13.0 ja servem a arvore inteira — nao ha retrofit.
+  Antes dela, conferir se a leitura semanal liberou o teto da 21.4.
 ultima_ronda: 2026-10-16T14:43Z   # RONDA DIARIA TECNICA, medida da nuvem (as 14 URLs em 200 pelo curl) mais navegador do Raphael para console e teste de vida. UM defeito novo, da lista 19.2: Article sem author em /quantos-m2-o-robo-aspirador-limpa-por-carga/, enquanto /filtro-universal-de-robo-aspirador/ tem — despachado nesta data. ZERO conserto: nada da lista 19.1 apareceu. O item 1 da leitura semanal de 14/10 (3 registros sem piso da 25.2) foi ANULADO POR MEDICAO: os tres sao excluido_do_banco e a 25.2 cobra piso de item publicavel; o piso recontado e 54 de 54 pecas e 45 de 45 modelos publicaveis, zero intestavel. Reconferidos no ar e CONTINUAM: o item 1 de 02/10 (91 contra 92 pares) e o item 1 de 30/09 (soft 404 na borda, 404 200 200 200 em duas sondas). Teste de vida 0 de 29 testaveis: a api de ficha da Shopee devolveu error 90309999 na primeira chamada de dois contextos limpos. /status em 81 igual ao manifest.
 bloqueada_por: null
 ---
