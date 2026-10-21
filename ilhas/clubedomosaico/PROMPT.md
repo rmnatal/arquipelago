@@ -217,7 +217,7 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO — entra depois da aquametria, pela seção 32.6)
 
-O Raphael aprovou o novo layout e mandou levar a todas as ilhas. Lei: seção 32 do `ARQUIPELAGO.md`. Esta ilha começa quando a aquametria estiver com o despacho do molde cumprido.
+O Raphael aprovou o novo layout e mandou levar a todas as ilhas. Lei: seção 32 do `ARQUIPELAGO.md`, inclusive a 32.6-b (mutirão: a lista inteira numa execução, e as ilhas em paralelo — esta ilha NÃO espera a aquametria terminar).
 1. Ferramentas no molde 32.1 e páginas de resposta/material/peça no molde 32.2, nesta ordem: `/materiais/qual-cola-usar-no-mosaico/` (F2), `/materiais/quantas-pastilhas-para-mosaico/` (F1), `/materiais/acabamento/` e filhas, as páginas de material pelo nome do produto, e as 5 peças de `/loja/` (nas peças da artesã o botão é o "Verificar disponibilidade", que já existe, levado para a primeira tela — nada de link de afiliado em peça própria).
 2. Tirar todo texto de bastidor da 32.4.
 Pronto quando: 32.5 medido no ar em cada página, uma por vez.

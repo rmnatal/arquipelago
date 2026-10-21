@@ -47,7 +47,7 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO — entra depois da aquametria, pela seção 32.6)
 
-O Raphael aprovou o novo layout e mandou levar a todas as ilhas. Lei: seção 32 do `ARQUIPELAGO.md`. Esta ilha começa quando a aquametria estiver com o despacho do molde cumprido.
+O Raphael aprovou o novo layout e mandou levar a todas as ilhas. Lei: seção 32 do `ARQUIPELAGO.md`, inclusive a 32.6-b (mutirão: a lista inteira numa execução, e as ilhas em paralelo — esta ilha NÃO espera a aquametria terminar).
 1. Ferramentas no molde 32.1 e páginas de resposta/material/peça no molde 32.2, nesta ordem: `/qual-peca-serve-no-meu-robo-aspirador/` (R1), `/quantos-pa-o-robo-aspirador-precisa/` (R2), `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, `/filtro-universal-de-robo-aspirador/` e as páginas de `/pecas/`. Esta ilha está em modo de medição: o molde é a ÚNICA construção autorizada nela.
 2. Tirar todo texto de bastidor da 32.4.
 Pronto quando: 32.5 medido no ar em cada página, uma por vez.
