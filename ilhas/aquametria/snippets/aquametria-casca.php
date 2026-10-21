@@ -1,5 +1,14 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.14.0 (21/10/2026) — A TABELA DO MARKDOWN PARA DE ESTOURAR A TELA DO
+ * CELULAR, e isto mora aqui porque o defeito e de TODA pagina da ilha que tenha
+ * tabela escrita em Markdown, nao da calculadora em que foi medido. Medido no ar
+ * a 390 px na `/calculadora-de-potencia-do-aquecedor/`: 11 px de rolagem
+ * horizontal, e o unico no do documento que passava da janela era a tabela das
+ * quatro constantes de W/L — 371 px de conteudo numa coluna de 330. A regra nova
+ * e `body table:not([class])` dentro da faixa de ate 600 px: ela alcanca SO a
+ * tabela do Markdown (toda tabela montada em PHP nesta ilha leva classe e viaja
+ * dentro de um `.aqm-*-rolagem`) e nao toca no desktop.
  * Versão: 1.13.0 (21/10/2026) — O MOLDE DA 32.1 VIRA COMPONENTE DESTA CASCA, por
  * ordem da 32.6-b (Raphael, 21/10/2026 12h01): a dobra em PHP
  * (`aquametria_casca_dobra_abre()`/`_fecha()`, o mesmo HTML e as mesmas classes
@@ -260,7 +269,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.13.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.14.0' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -1053,6 +1062,22 @@ body code,body kbd,body samp,body pre,body .aqm-num{font-family:var(--aqm-mono);
 body .wp-block-button__link,body button,body input[type=submit]{background-color:var(--aqm-lamina);color:var(--aqm-superficie);border:0;border-radius:2px;font-family:var(--aqm-texto);font-weight:600;}
 body hr,body .wp-block-separator{border-color:var(--aqm-traco);color:var(--aqm-traco);}
 body table{border-collapse:collapse;}
+/* A TABELA DO MARKDOWN DEIXA DE ESTOURAR A TELA DO CELULAR (32.5).
+   Medido no ar em 21/10/2026, 390 px, na /calculadora-de-potencia-do-aquecedor/:
+   a pagina tinha 11 px de rolagem HORIZONTAL, e o unico no do documento que
+   passava da janela era uma tabela de quatro colunas escrita no Markdown da
+   pagina — 371 px de conteudo numa coluna de 330. As tabelas que a ilha monta em
+   PHP nunca tiveram esse defeito porque viajam dentro de um `.aqm-*-rolagem`; a
+   do Markdown nao tem envelope nenhum, e nao vai ter: quem escreve conteudo
+   escreve `|---|`, nao `<div>`.
+   O recorte e deliberado: `:not([class])` alcanca SO a tabela do Markdown (toda
+   tabela desta ilha montada em PHP leva classe), e a regra vive dentro da faixa
+   estreita, onde a rolagem acontece. Com isso o desktop fica identico ao que era.
+   `display:block` e o que da a barra de rolagem PROPRIA a tabela: e a unica forma
+   de a caixa dela obedecer a `max-width` sem comprimir coluna. */
+@media (max-width:600px){
+body table:not([class]){display:block;width:max-content;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+}
 body table th,body table td{border:1px solid var(--aqm-traco);padding:.5rem .7rem;text-align:left;}
 body table th{background:var(--aqm-superficie);font-family:var(--aqm-display);font-weight:700;}
 body header .wp-block-group,body .wp-block-template-part header{background:var(--aqm-superficie);}

@@ -19,13 +19,15 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
+[aquametria_calculadora_aquecedor]
+
+[aqm_dobra titulo="Watts de aquecedor não saem do volume: saem do frio"]
+
 Watts de aquecedor não saem do volume: saem do frio. O seu aquário de 100 litros a 26 °C num apartamento em Belém, onde a madrugada não desce de 23 °C, tem três graus para vencer; o mesmo aquário numa casa em Curitiba, com o quarto a 11 °C numa noite de julho, tem quinze. Mesma água, mesmo vidro, mesmo volume — e cinco vezes mais frio pela frente.
 
 Por isso a conta aqui começa perguntando quanto frio faz no seu cômodo, que é a pergunta que o velho "1 W por litro" nunca fez.
-
-[aquametria_calculadora_aquecedor]
-
-## O que ela faz de diferente
+[aqm_dobra_fim]
+[aqm_dobra titulo="O que ela faz de diferente"]
 
 Ela pede **a temperatura mínima do cômodo onde o aquário fica** — não a média da cidade, não a mínima histórica do estado: quanto o ar daquele quarto marca na noite mais fria do ano. Dessa entrada sai a diferença de temperatura, o ΔT, que é o que um aquecedor de verdade tem de vencer.
 
@@ -33,7 +35,9 @@ Com o ΔT na mão, a calculadora faz uma coisa que nenhuma das fontes faz: **sep
 
 Saber qual regra **não** vale para você é parte da resposta. É, aliás, a parte que ninguém publica.
 
-## De onde vem cada extremo da faixa
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="De onde vem cada extremo da faixa"]
 
 O nosso levantamento de setembro de 2026 encontrou quatro afirmações sobre watts por litro circulando no aquarismo brasileiro. Elas discordam entre si, e apenas uma delas diz em que condição vale.
 
@@ -48,7 +52,9 @@ Verificado em 08/09/2026. Três das quatro não dizem para qual clima valem, e a
 
 A faixa que a calculadora devolve vai do menor watt por litro aplicável ao maior. Não é uma média: média entre fontes que discordam produz um número que ninguém publicou e que não tem de onde ser conferido. Cada extremo da nossa faixa carrega o nome de quem o afirmou.
 
-## Por que a caixa do aquecedor não resolve
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="Por que a caixa do aquecedor não resolve"]
 
 A saída fácil seria olhar o volume que o fabricante estampa na embalagem. Ela não resolve, e o próprio catálogo dos fabricantes mostra por quê.
 
@@ -73,7 +79,9 @@ Há ainda um terceiro caso, e ele é o mais desconfortável: uma ficha de varejo
 
 O volume da caixa serve para você escolher entre dois modelos parecidos. Ele não sabe quanto frio faz no seu quarto.
 
-## O que esta calculadora não faz, e por quê
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="O que esta calculadora não faz, e por quê"]
 
 **Não calcula pela física.** O caminho certo seria `P = U · A · ΔT`: potência igual ao coeficiente de troca térmica, vezes a área que troca calor, vezes a diferença de temperatura. Isso corrigiria por formato do aquário, por espessura do vidro, por tampa. Falta a constante `u-vidro-aquario`, que está **pendente** no nosso banco: o coeficiente global do vidro com convecção natural nas duas faces, mais a perda por evaporação na lâmina livre — que costuma ser a maior parcela e é a mais difícil de achar com fonte. Sem essa constante, a via física não sai. Quando sair, esta página deixa de depender de regra de bolso, e é a entrega que torna a Aquametria a única referência do nicho no Brasil com física atrás do número.
 
@@ -83,7 +91,9 @@ O volume da caixa serve para você escolher entre dois modelos parecidos. Ele n�
 
 **Não extrapola a regra de bolso.** Se a sua diferença passa de 10 °C, a única fonte que amarrou watts por litro a um delta já não fala do seu caso. A tela diz isso e entrega a faixa das regras genéricas como **piso**, avisando que pode ser insuficiente. Esticar o número da fonte para além do que ela afirmou seria a mesma coisa que inventá-lo.
 
-## O que aqui é critério nosso
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="O que aqui é critério nosso"]
 
 Duas escolhas desta página são convenção editorial da Aquametria, não constante com fonte, e por isso aparecem declaradas na própria tela do resultado:
 
@@ -93,7 +103,9 @@ Duas escolhas desta página são convenção editorial da Aquametria, não const
 
 Quando a espécie preenche a temperatura-alvo, usamos o **meio** da faixa que a ficha publica. A faixa tem fonte; mirar no meio dela é convenção, e a tela diz isso também.
 
-## As duas barreiras de segurança antes de qualquer produto
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="As duas barreiras de segurança antes de qualquer produto"]
 
 O bloco de aquecedores que aparece dentro do resultado é montado por adequação técnica, e só por ela. Mas duas condições vêm antes da adequação, porque são de segurança:
 
@@ -116,14 +128,19 @@ Na prática: quem quer 30 °C para acará-disco vê o Roxin na lista, porque as 
 
 A ficha de cada produto mostra o selo **faixa conservadora** e a frase que explica de onde o número saiu. Onde há uma fonte de fabricante, como na linha Eheim, a faixa declarada é usada direto e não há selo nenhum.
 
-## O caminho inverso
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="O caminho inverso"]
 
 A calculadora também responde à pergunta que a maioria das pessoas realmente tem: *o aquecedor de 100 W que eu já comprei serve?* Informe a potência e ela devolve até quantos litros ele cobre por cada regra, e quantos watts por litro ele entrega no seu aquário. Continua sem perguntar o frio — por isso o cálculo principal, lá em cima, é o que vale.
 
-## O que conversa com esta página
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="O que conversa com esta página"]
 
 - **[Quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/)** — de onde vem o volume real de água que esta página usa. Aquecedor se dimensiona sobre a água que existe, não sobre o número da etiqueta do aquário.
 - **[Vazão do filtro (C3)](https://aquametria.com.br/calculadora-de-vazao-do-filtro/)** — o outro aparelho que o mesmo volume dimensiona, e a mesma história de fontes que discordam.
 - **[Quantos watts de aquecedor o seu aquário precisa](https://aquametria.com.br/2026/09/08/quantos-watts-de-aquecedor-para-aquario/)** — o texto longo: de onde veio o "1 W por litro", por que ele erra sempre para o mesmo lado e o que muda quando se pergunta o frio.
 - **[Como a Aquametria calcula](https://aquametria.com.br/metodologia/)** — a escada de fontes, o que é constante e o que é convenção declarada.
 - **[Como a Aquametria ganha dinheiro](https://aquametria.com.br/divulgacao-de-afiliados/)** — link de afiliado, o que ele muda (nada na ordem) e o que não publicamos.
+[aqm_dobra_fim]

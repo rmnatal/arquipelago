@@ -1,5 +1,35 @@
 /**
  * Aquametria Calculadora de Potência do Aquecedor — C5
+ * Versão: 1.9.0 (21/10/2026) — O MOLDE DE CONVERSÃO DA SEÇÃO 32, quarta das cinco
+ * calculadoras da ilha. Medido no ar antes, no celular de 390 px: o formulário
+ * começava a **2.037 px** (a 32.5 pede antes de 700), o primeiro botão de loja a
+ * **3.599 px** (a 32.5 pede antes de 1.400), a página tinha **22.636 px** de
+ * altura e **11 px de rolagem horizontal**. E quem voltava com o aquário guardado
+ * no navegador — o estado em que alguém de fato usa a página — recebia o botão a
+ * **5.977 px**, com 31.052 px de altura.
+ * A ORDEM PASSOU A SER A DA 32.1: promessa → formulário JÁ PREENCHIDO com o
+ * aquário de 100 L / cômodo a 18 °C / água a 26 °C (o mesmo caso da vitrine
+ * servida, e os mesmos números que os campos já traziam como placeholder) →
+ * caixa de resultado PRÉ-RENDERIZADA em PHP → BLOCO DE COMPRA imediatamente
+ * abaixo → tabela dos seis aquários resolvidos → o DETALHE do cálculo → a
+ * resposta direta → o resto em <details>.
+ * AS SEIS LIÇÕES DO DESPACHO FORAM APLICADAS SEM SEREM REDESCOBERTAS: o teto se
+ * mede NO AR; o cartão DEITA no celular (float, não grid — o cartão tem número
+ * variável de filhos); a prosa de apoio DESCEU para baixo do trilho, com os dois
+ * números dela subindo para o título do bloco; o exemplo do formulário SE LIMPA
+ * antes de aplicar o que a URL ou o `localStorage` trazem (aqui são TRÊS campos,
+ * e o alvo é o mais perigoso: um 26 °C herdado calaria a ficha da espécie);
+ * a CAIXA e o DETALHE são DOIS BLOCOS, com a compra entre eles; e o grupo de
+ * campos secundários usa a dobra de CAMPOS da casca, sem `<h2>`.
+ * A BARRA FIXA DO RODAPÉ E A PROMESSA deixaram de ser desta página: são
+ * componentes da casca (1.13.0, seção 3g), por ordem da 32.6-b. Saíram daqui 3
+ * linhas de CSS, ~35 de JavaScript (o observador, o liga-desliga da classe e o
+ * listener do botão) e o HTML da barra. O que sobrou é o TEXTO dela, que é a
+ * única parte que depende da conta desta página — e ele nasce SERVIDO, com o
+ * caso do exemplo, em vez de só existir depois de um cálculo.
+ * NENHUMA FÓRMULA, CONSTANTE, FAIXA OU REGRA DE ELEGIBILIDADE MUDOU, e nenhuma
+ * palavra saiu da página: o que foi para `<details>` continua no HTML servido e
+ * legível com o JavaScript desligado (32.3 e 22.8).
  * Versão: 1.5.1 (13/09/2026) — só o catálogo embutido mudou: a única foto de produto
  * desta página passou a viajar com `largura` e `altura`, medidas no Chrome pela
  * ronda da Sentinela de 13/09/2026 (`naturalWidth` x `naturalHeight`) — o egresso
@@ -148,7 +178,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C5_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C5_VERSAO', '1.8.0' );
+	define( 'AQUAMETRIA_C5_VERSAO', '1.9.0' );
 	define( 'AQUAMETRIA_C5_SLUG', 'calculadora-de-potencia-do-aquecedor' );
 	define( 'AQUAMETRIA_C5_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C5_ARTIGO', 'quantos-watts-de-aquecedor-para-aquario' );
@@ -897,8 +927,11 @@ function aquametria_c5_vitrine_servida_html() {
 
 	$divulgacao = aquametria_c5_url( AQUAMETRIA_C5_PAGINA_AFILIADOS );
 
-	$h  = '<div class="aqm-c5-painel aqm-c5-vitrine-servida">';
-	$h .= '<h3>Os aquecedores para um aquário de ' . esc_html( aquametria_c5_litros( $volume ) ) . ' litros</h3>';
+	/* O id e o que a barra da casca vigia: ela aparece enquanto ESTE bloco esta
+	   fora da tela, e o botao dela rola a pagina ate aqui (32.1). */
+	$h  = '<div class="aqm-c5-painel aqm-c5-vitrine-servida" id="aqm-c5-compra">';
+	$h .= '<h3>Os aquecedores para um aquário de ' . esc_html( aquametria_c5_litros( $volume ) ) . ' litros — de '
+		. esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c5_watts( $e['teto'] ) ) . ' W</h3>';
 
 	if ( ! $lista ) {
 		$h .= '<p class="aqm-c5-sub">Nenhum aquecedor do banco da Aquametria fica hoje entre '
@@ -910,19 +943,24 @@ function aquametria_c5_vitrine_servida_html() {
 		return $h;
 	}
 
-	$h .= '<p class="aqm-c5-sub">Um aquário de ' . esc_html( aquametria_c5_litros( $volume ) )
-		. ' litros num cômodo que cai até ' . esc_html( AQUAMETRIA_C5_DELTA_COBERTO ) . ' °C abaixo da água pede de '
-		. esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c5_watts( $e['teto'] ) )
-		. ' W, e estes são os aquecedores do banco da Aquametria cuja potência cai nessa faixa. '
-		. 'A ordem é pela proximidade do topo dela; nada aqui é ordenado por comissão, e modelo sem anúncio escolhido aparece do mesmo jeito. '
-		. 'Esta lista de exemplo não aplica as duas barreiras de segurança do formulário — a voltagem da sua tomada e a faixa de ajuste alcançar a sua temperatura-alvo —, '
-		. 'porque um exemplo não sabe nenhuma das duas. Preencha o formulário acima para ver a lista do seu caso.</p>';
-
+	/* OS CARTOES VEM PRIMEIRO, E A PROSA QUE EXPLICA O RECORTE DESCE PARA BAIXO
+	   DO TRILHO. E a licao (c) que a C15 deixou escrita em 21/10/2026 e a C12
+	   confirmou: prosa de apoio acima dos cartoes e o que mais custa da primeira
+	   tela, e o teto de 1.400 px da 32.5 e o primeiro BOTAO de loja. Nenhuma
+	   palavra saiu; os dois numeros que a linha de apoio dizia subiram para o
+	   titulo do bloco, que e onde eles trabalham. */
 	$h .= '<ul class="aqm-c5-vt-trilho">';
 	foreach ( $lista as $p ) {
 		$h .= aquametria_c5_vitrine_cartao_html( $p, $e, $p['potencia_w'] > $e['teto'] );
 	}
 	$h .= '</ul>';
+
+	$h .= '<p class="aqm-c5-sub">Um aquário de ' . esc_html( aquametria_c5_litros( $volume ) )
+		. ' litros num cômodo que cai até ' . esc_html( AQUAMETRIA_C5_DELTA_COBERTO ) . ' °C abaixo da água pede essa faixa, '
+		. 'e estes são os aquecedores do banco da Aquametria cuja potência cai nela. '
+		. 'A ordem é pela proximidade do topo dela; nada aqui é ordenado por comissão, e modelo sem anúncio escolhido aparece do mesmo jeito. '
+		. 'Esta lista de exemplo não aplica as duas barreiras de segurança do formulário — a voltagem da sua tomada e a faixa de ajuste alcançar a sua temperatura-alvo —, '
+		. 'porque um exemplo não sabe nenhuma das duas. Preencha o formulário acima para ver a lista do seu caso.</p>';
 
 	$h .= '<p class="aqm-c5-criterio">' . esc_html( aquametria_c5_criterio_compra_texto( $lista ) ) . '</p>';
 
@@ -940,26 +978,93 @@ function aquametria_c5_vitrine_servida_html() {
 }
 }
 
-/* A linha de promessa, antes do formulário: o que a pessoa recebe se preencher.
-   Curta, sem exclamação, sem tom de anúncio (seção 6 do ARQUIPELAGO.md). */
-if ( ! function_exists( 'aquametria_c5_promessa_html' ) ) {
-function aquametria_c5_promessa_html() {
-	return '<p class="aqm-c5-promessa">Calcule a potência do aquecedor pelo frio que faz no seu cômodo '
-		. 'e veja quais aparelhos atendem, com a faixa de ajuste e a fonte de cada um.</p>';
+/* ---- O CASO DE EXEMPLO DA PAGINA ---------------------------------------------
+   UM lugar so, como na C12 e na C15: dele saem o formulario preenchido (32.1,
+   item 3), a caixa de resultado pre-renderizada (item 4) e a vitrine servida
+   (item 5). O caso e o aquario de referencia de 100 L que a vitrine desta pagina
+   ja publicava, com a mínima de 18 °C e o alvo de 26 °C que os campos ja traziam
+   como placeholder — ou seja, nenhum numero novo nasceu aqui.
+   OS TRES NUMEROS ANDAM JUNTOS DE PROPOSITO: a diferenca entre eles e 8 °C, que
+   esta dentro dos 10 °C que a unica fonte com delta declarado cobre. Formulario
+   preenchido com um caso que a propria pagina chama de nao coberto mostraria,
+   na primeira tela, a resposta que a pagina existe para evitar. */
+if ( ! function_exists( 'aquametria_c5_caso_exemplo' ) ) {
+function aquametria_c5_caso_exemplo() {
+	return array(
+		'volume'   => 100,
+		'minima'   => 18,
+		'alvo'     => 26,
+		'voltagem' => '110',
+	);
 }
 }
 
-/* A barra do celular. Ela só existe enquanto o resultado está fora da tela, e só
-   em tela estreita — o CSS a esconde acima de 600 px, e o script só liga a
-   classe depois de um cálculo. Fora do <form> de propósito: position:fixed
-   dentro de um painel com rolagem própria briga com o painel. */
+/* A CAIXA DE RESULTADO PRE-RENDERIZADA (32.1, item 4). Ela existe porque a caixa
+   do script nasce `-oculto` e so aparece depois de alguem preencher: quem chega
+   pela busca — e qualquer modelo de linguagem que leia esta pagina — via a
+   pagina SEM nenhum numero de resposta na primeira tela. Esta caixa e o caso do
+   formulario, resolvido em PHP, servido no HTML, sem script nenhum (32.3: nada
+   de conteudo injetado por JS). Quando a pessoa calcula de verdade, o script a
+   esconde e poe a dele no lugar — duas caixas de resultado na mesma tela seriam
+   duas respostas.
+   O QUE ELA NAO REPETE: a justificativa longa e as fichas de entrada. A 32.1
+   descreve a caixa como "numero em Mono, frase de leitura embaixo" — UMA frase —,
+   e foram quatro linhas a mais dentro da caixa que, na C12, puseram o botao de
+   loja de quem volta a 1.480 px contra o teto de 1.400. */
+if ( ! function_exists( 'aquametria_c5_resposta_exemplo_html' ) ) {
+function aquametria_c5_resposta_exemplo_html() {
+	$caso = aquametria_c5_caso_exemplo();
+	$e    = aquametria_c5_exemplo( $caso['volume'], true, false );
+
+	$h  = '<div class="aqm-c5-resultado aqm-c5-exemplo" id="aqm-c5-exemplo">';
+	$h .= '<div class="aqm-c5-faixa">';
+	/* Rotulo de UMA linha a 390 px: com "de aquecedor" no meio ele quebrava em
+	   duas e a caixa subia 21 px, que e tela comprada contra o teto da 32.5 sem
+	   dizer nada que o H1 e a promessa logo acima nao digam. */
+	$h .= '<span class="aqm-c5-rotulo">Potência que este caso pede</span>';
+	$h .= '<span class="aqm-c5-valor">' . esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' a '
+		. esc_html( aquametria_c5_watts( $e['teto'] ) ) . '<span class="aqm-c5-unidade">W</span></span>';
+	/* UMA frase, a mesma metrica da caixa do calculo: as duas sao a posicao 4 da
+	   32.1 e nunca estao na tela ao mesmo tempo. Caixa de exemplo mais alta que a
+	   do calculo poria o botao de loja de quem CHEGA mais longe que o de quem
+	   calcula, e e quem chega que esta pagina precisa alcancar. */
+	$h .= '<p class="aqm-c5-criterio">' . esc_html( aquametria_c5_litros( $caso['volume'] ) ) . ' L de água real '
+		. 'num cômodo que cai a ' . esc_html( number_format_i18n( $caso['minima'], 0 ) ) . ' °C, com a água a '
+		. esc_html( number_format_i18n( $caso['alvo'], 0 ) ) . ' °C — '
+		. esc_html( number_format_i18n( $caso['alvo'] - $caso['minima'], 0 ) ) . ' °C de diferença. '
+		. 'Na prateleira, um aparelho de ' . esc_html( aquametria_c5_comercial_texto( $e ) ) . '.</p>';
+	$h .= '</div>';
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
+/* A frase de promessa da 32.1, item 2: UMA, e quem a desenha e a casca (1.13.0,
+   secao 3g), para as cinco calculadoras nao terem cinco copias do mesmo
+   paragrafo com cinco classes diferentes. */
+if ( ! function_exists( 'aquametria_c5_promessa_html' ) ) {
+function aquametria_c5_promessa_html() {
+	return aquametria_casca_promessa_html(
+		'Entram o volume de água e o frio do seu cômodo; saem os watts de aquecedor '
+		. 'e quais aparelhos atendem na voltagem da sua tomada.'
+	);
+}
+}
+
+/* A BARRA FIXA DO RODAPE (32.1, ultima linha), desenhada pela casca 1.13.0. O
+   texto nasce SERVIDO, com o caso do formulario: barra que so ganha numero
+   depois de um calculo nao existe justamente para quem chega da busca e nao
+   preenche nada. O id do alvo e o bloco de COMPRA, nao o resultado — a 32.1
+   manda a barra levar ao produto. */
 if ( ! function_exists( 'aquametria_c5_barra_html' ) ) {
 function aquametria_c5_barra_html() {
-	$h  = '<div class="aqm-c5-barra" id="aqm-c5-barra" aria-hidden="true">';
-	$h .= '<span class="aqm-c5-barra-texto" id="aqm-c5-barra-texto"></span>';
-	$h .= '<button type="button" class="aqm-c5-barra-botao" id="aqm-c5-barra-ir">Ver o resultado</button>';
-	$h .= '</div>';
-	return $h;
+	$caso = aquametria_c5_caso_exemplo();
+	$e    = aquametria_c5_exemplo( $caso['volume'], true, false );
+	$txt  = aquametria_c5_watts( $e['piso'] ) . ' a ' . aquametria_c5_watts( $e['teto'] ) . ' W para '
+		. aquametria_c5_litros( $caso['volume'] ) . ' L';
+
+	return aquametria_casca_barra_html( $txt, 'Ver os aquecedores', 'aqm-c5-compra' );
 }
 }
 
@@ -1701,13 +1806,32 @@ a.aqm-c5-vt-cartao:focus-visible{outline:2px solid var(--c5-lamina);outline-offs
 .aqm-c5-piso:hover{color:var(--c5-lamina);}
 .aqm-c5-vt-selo{font-family:var(--c5-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c5-legenda);text-align:center;margin-top:.25rem;}
 .aqm-c5-vitrine-servida .aqm-c5-criterio{margin-top:.5rem;}
-.aqm-c5-barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;gap:.7rem;background:var(--c5-superficie);border-top:1px solid var(--c5-traco);padding:.55rem .85rem;}
-.aqm-c5-barra-texto{flex:1 1 auto;font-family:var(--c5-mono);font-size:.8rem;line-height:1.3;color:var(--c5-tinta);font-variant-numeric:tabular-nums;}
-.aqm-c5-barra-botao{flex:0 0 auto;}
+/* A caixa de resultado pre-renderizada (32.1, item 4) e a mesma moldura da caixa
+   do calculo, com menos folga embaixo: ela e a resposta de um caso de exemplo e
+   nao o fim de uma interacao. */
+.aqm-c5-exemplo .aqm-c5-faixa{margin-bottom:.7rem;}
+/* A BARRA FIXA DO RODAPE NAO TEM CSS AQUI: ela e componente da casca desde a
+   1.13.0 (32.6-b), e o estilo dela sai em toda pagina da ilha. */
 @media (max-width:600px){.aqm-c5-valor{font-size:1.6rem;}
+/* Gutter do painel no celular: 1,2rem de folga em cima e embaixo de cada painel
+   custava tela numa largura em que tela e o recurso escasso. */
+.aqm-c5-painel{padding:.9rem .95rem;margin:0 0 .9rem;}
+.aqm-c5-faixa{padding:.85rem .95rem;}
 .aqm-c5-produto{grid-template-columns:1fr;}
-.aqm-c5-vt-item{flex-basis:11.5rem;}
-.aqm-c5-barra.aqm-c5-barra-ver{display:flex;}
+/* O CARTAO DEITA NO CELULAR, e e a licao (b) que a C15 deixou medida em
+   21/10/2026 e a C12 confirmou: em pe, com a foto quadrada no topo, o botao de
+   loja do primeiro cartao nao cabe no teto de 1.400 px da 32.5. Deitado, a foto
+   vira uma coluna a esquerda e o texto inteiro, botao incluido, sobe junto.
+   Nenhuma linha do cartao saiu.
+   FLOAT, e nao grid: o cartao tem numero VARIAVEL de filhos irmaos diretos (a
+   ressalva, o preco, o selo e o piso de busca sao condicionais) e nenhuma regra
+   de grid sabe quantas linhas reservar para a foto sem contar filho. */
+.aqm-c5-vt-item{flex-basis:20rem;}
+.aqm-c5-vt-cartao{display:block;}
+.aqm-c5-vt-cartao:after{content:"";display:block;clear:both;}
+.aqm-c5-vt-foto{float:left;width:4.5rem;margin:0 .7rem .3rem 0;aspect-ratio:1/1;}
+.aqm-c5-vt-cartao > span{display:block;margin:0 0 .28rem;}
+.aqm-c5-vt-botao{margin-top:.25rem;}
 .aqm-c5-placa{min-height:0;flex-direction:row;gap:.5rem;align-items:baseline;justify-content:flex-start;}}
 @media (prefers-reduced-motion:reduce){.aqm-c5-vt-trilho{scroll-behavior:auto;}}
 CSS;
@@ -1983,6 +2107,40 @@ function aquametria_c5_js() {
 
 	/* ------------------------------------------------------------------ tela */
 
+	/* A CAIXA DE RESULTADO PRE-RENDERIZADA EM PHP e a resposta da pagina para quem
+	   nao calculou nada, e sai de cena quando o calculo de verdade entra: duas
+	   caixas de resultado na mesma tela seriam duas respostas. */
+	function mostrarExemplo(ver) {
+		var bloco = el('aqm-c5-exemplo');
+		if (!bloco) { return; }
+		bloco.classList.toggle('aqm-c5-oculto', !ver);
+		if (ver) { textoBarra(textoExemploBarra); }
+	}
+
+	/* A BARRA DO RODAPE E DA CASCA (1.13.0, 32.6-b): quem a mostra, quem a esconde
+	   e quem rola a pagina ate o bloco de compra e o script dela. O que sobra
+	   para esta calculadora e o TEXTO, que e o unico pedaco que depende da conta
+	   desta pagina. Guardado na carga para poder VOLTAR: depois de um calculo com
+	   erro a tela mostra o exemplo de novo, e a barra prometendo um numero que
+	   nao esta mais na tela seria pior do que barra nenhuma. */
+	var textoExemploBarra = (function () {
+		var n = el('aqm-barra-texto');
+		return n ? n.textContent : '';
+	}());
+
+	function textoBarra(t) {
+		var n = el('aqm-barra-texto');
+		if (n) { n.textContent = t; }
+	}
+
+	/* O detalhe nasce oculto e anda junto com a caixa do calculo: as duas sao o
+	   mesmo resultado, partido em dois lugares da pagina pela 32.1. */
+	function mostrarDetalhe(ver) {
+		var bloco = el('aqm-c5-detalhe');
+		if (!bloco) { return; }
+		bloco.classList.toggle('aqm-c5-oculto', !ver);
+	}
+
 	function pintar(r) {
 		var alvo = el('aqm-c5-saida');
 		var ul = el('aqm-c5-erros');
@@ -2001,9 +2159,14 @@ function aquametria_c5_js() {
 				ul.appendChild(li);
 			});
 			alvo.classList.add('aqm-c5-oculto');
+			mostrarDetalhe(false);
+			/* A tela nunca fica sem caixa de resultado: entrada invalida devolve
+			   a do exemplo, que e a resposta de um caso de verdade. */
+			mostrarExemplo(true);
 			return;
 		}
 
+		mostrarExemplo(false);
 		alvo.classList.remove('aqm-c5-oculto');
 
 		/* Delta zero ou negativo: não há conta de potência a fazer, e dizer isso
@@ -2011,30 +2174,43 @@ function aquametria_c5_js() {
 		var semDelta = el('aqm-c5-semdelta');
 		if (r.sem_delta) {
 			el('aqm-c5-corpo').classList.add('aqm-c5-oculto');
+			mostrarDetalhe(false);
 			semDelta.classList.remove('aqm-c5-oculto');
 			semDelta.innerHTML = '<strong>Com os números que você informou, a água nunca cai abaixo da temperatura-alvo.</strong> '
 				+ 'A mínima do ambiente (' + graus(r.entradas.minima) + ' °C) é igual ou maior que o alvo (' + graus(r.alvo.valor) + ' °C), '
 				+ 'então a diferença de temperatura é zero ou negativa e não existe potência a calcular: nenhuma regra do nosso levantamento dimensiona aquecedor para esse caso. '
 				+ 'O que um aquecedor ainda faz aí é segurar a oscilação do dia para a noite, e isso não é conta de watts — é termostato. '
 				+ 'Se a sua dúvida é o contrário, ou seja, como impedir que a água passe do alvo no verão, esse é outro problema (resfriamento) e nós ainda não publicamos número sobre ele.';
-			/* Sem faixa calculada não há o que a barra do celular prometa: ela
-			   ficaria oferecendo "ver o resultado" para uma resposta que é um
-			   parágrafo de texto já visível. */
-			barraLigada = false;
-			mostrarBarra(false);
+			/* Sem faixa calculada nao ha numero DESTE caso para a barra prometer,
+			   e ela nao desaparece: o bloco de compra continua na pagina, com os
+			   aquecedores do caso de exemplo. Entao a barra volta ao texto do
+			   exemplo em vez de ficar anunciando um numero que a tela nao tem. */
+			textoBarra(textoExemploBarra);
 			guardar(r);
 			atualizarEndereco(r.entradas);
 			return;
 		}
 		semDelta.classList.add('aqm-c5-oculto');
 		el('aqm-c5-corpo').classList.remove('aqm-c5-oculto');
+		mostrarDetalhe(true);
 
 		el('aqm-c5-faixa-valor').innerHTML = watts(r.piso) + ' a ' + watts(r.teto) + '<span class="aqm-c5-unidade">W</span>';
+		/* A barra do rodape passa a prometer o numero DO CALCULO, nao mais o do
+		   exemplo servido. */
+		textoBarra(watts(r.piso) + ' a ' + watts(r.teto) + ' W para ' + litros(r.entradas.volume) + ' L');
+		/* UMA frase de leitura na caixa (32.1, item 4): os watts por litro, o
+		   volume e a diferenca de temperatura. O POR QUE da largura da faixa — e o
+		   aviso de piso, quando a diferenca passa do que a fonte cobre — desceu
+		   para o detalhe, junto com as fichas de entrada: eram essas linhas que
+		   punham o primeiro botao de loja fora do teto da 32.5. */
 		el('aqm-c5-faixa-criterio').textContent =
-			'São ' + fmt(r.wl_piso, 2) + ' a ' + fmt(r.wl_teto, 2) + ' watts por litro aplicados aos ' + litros(r.entradas.volume) + ' L de água. '
-			+ (r.delta_coberto
-				? 'A faixa é larga porque as fontes brasileiras discordam entre si — e porque só uma delas diz para qual diferença de temperatura o número dela vale.'
-				: 'Trate esta faixa como piso: a sua diferença de temperatura está fora do que a única fonte com delta declarado cobre.');
+			'São ' + fmt(r.wl_piso, 2) + ' a ' + fmt(r.wl_teto, 2) + ' watts por litro aplicados aos ' + litros(r.entradas.volume) + ' L de água, '
+			+ 'com ' + graus(r.delta) + ' °C de diferença entre o cômodo e a água'
+			+ (r.comercial ? '. Na prateleira, um aparelho de ' + fmt(r.comercial, 0) + ' W.' : '.');
+
+		el('aqm-c5-faixa-porque').textContent = r.delta_coberto
+			? 'A faixa é larga porque as fontes brasileiras discordam entre si — e porque só uma delas diz para qual diferença de temperatura o número dela vale.'
+			: 'Trate esta faixa como piso: a sua diferença de temperatura está fora do que a única fonte com delta declarado cobre.';
 
 		el('aqm-c5-delta').innerHTML =
 			'<span>alvo <b>' + graus(r.alvo.valor) + ' °C</b></span>'
@@ -2107,7 +2283,6 @@ function aquametria_c5_js() {
 			+ 'o que na linha comercial vira ' + (r.comercial ? fmt(r.comercial, 0) + ' W' : 'mais de um aparelho')
 			+ '. Calculado pela Aquametria, ' + AQM_C5_DATA + '.';
 
-		armarBarra(r);
 		guardar(r);
 		atualizarEndereco(r.entradas);
 	}
@@ -2588,39 +2763,12 @@ function aquametria_c5_js() {
 		}
 	}
 
-	/* A barra do rodapé no celular: existe enquanto o resultado está fora da
-	   tela, e some quando ele entra. Quem decide se ela cabe é o CSS (só abaixo
-	   de 600 px); aqui só se liga e desliga a classe. */
-	var barraLigada = false;
-	var observador = null;
-
-	function armarBarra(r) {
-		var barra = el('aqm-c5-barra');
-		if (!barra) { return; }
-
-		el('aqm-c5-barra-texto').textContent = watts(r.piso) + ' a ' + watts(r.teto) + ' W para '
-			+ litros(r.entradas.volume) + ' L';
-		barraLigada = true;
-
-		if (observador || typeof window.IntersectionObserver !== 'function') {
-			if (!observador) { mostrarBarra(true); }
-			return;
-		}
-
-		observador = new window.IntersectionObserver(function (entradas) {
-			entradas.forEach(function (entrada) {
-				mostrarBarra(barraLigada && !entrada.isIntersecting);
-			});
-		}, { threshold: 0 });
-		observador.observe(el('aqm-c5-saida'));
-	}
-
-	function mostrarBarra(ver) {
-		var barra = el('aqm-c5-barra');
-		if (!barra) { return; }
-		barra.classList.toggle('aqm-c5-barra-ver', !!ver);
-		barra.setAttribute('aria-hidden', ver ? 'false' : 'true');
-	}
+	/* A BARRA DO RODAPE NAO MORA MAIS AQUI (casca 1.13.0, secao 3g, por ordem da
+	   32.6-b). Saiu desta funcao o observador, o liga-desliga da classe e o
+	   listener do botao: as cinco calculadoras tinham de ter cinco copias disso,
+	   e a primeira correcao de uma delas deixaria as outras quatro para tras em
+	   silencio. O que sobrou aqui e o TEXTO, em textoBarra(), porque e a unica
+	   parte que depende da conta desta pagina. */
 
 	function esc(t) {
 		return String(t === null || t === undefined ? '' : t)
@@ -2775,20 +2923,12 @@ function aquametria_c5_js() {
 		el('aqm-c5-form').reset();
 		el('aqm-c5-saida').classList.add('aqm-c5-oculto');
 		el('aqm-c5-erros').innerHTML = '';
-		barraLigada = false;
-		mostrarBarra(false);
+		mostrarDetalhe(false);
+		/* reset() devolve os campos ao caso de exemplo servido no HTML, e por isso
+		   a caixa de exemplo volta junto: ela e a resposta DESSE caso. */
+		mostrarExemplo(true);
 		mostrarEspecie();
 		try { window.history.replaceState(null, '', window.location.pathname); } catch (erro) { /* segue */ }
-	});
-
-	el('aqm-c5-barra-ir').addEventListener('click', function () {
-		var alvo = el('aqm-c5-saida');
-		if (!alvo || alvo.classList.contains('aqm-c5-oculto')) { return; }
-		try {
-			alvo.scrollIntoView({ block: 'start' });
-		} catch (erro) {
-			alvo.scrollIntoView();
-		}
 	});
 
 	el('aqm-c5-copiar').addEventListener('click', function () {
@@ -2807,11 +2947,28 @@ function aquametria_c5_js() {
 
 	mostrarEspecie();
 
+	/* O EXEMPLO SE LIMPA ANTES DE QUALQUER CASO DE FORA, e esta e a licao (d) que
+	   a C15 deixou escrita em 21/10/2026: com o formulario preenchido, quem chega
+	   por LINK trazendo so parte dos campos — ou quem tem um aquario guardado por
+	   outra calculadora neste navegador — recebia a conta DELE com os campos do
+	   EXEMPLO ao lado. Exemplo que vaza para o caso de outra pessoa nao e
+	   exemplo: e numero inventado com cara de resposta.
+	   AQUI ELE LIMPA TRES CAMPOS e nao um, porque o caso de exemplo desta pagina
+	   tem tres: o volume, a minima do comodo e o alvo. O alvo e o mais perigoso
+	   dos tres — quem volta com a especie guardada quer a ficha DELA decidindo a
+	   temperatura, e um 26 °C herdado do exemplo calaria a especie em silencio. */
+	function limparExemplo() {
+		el('aqm-c5-volume').value = '';
+		el('aqm-c5-minima').value = '';
+		el('aqm-c5-alvo').value = '';
+	}
+
 	/* Query string manda; senão, o aquário que a C1 guardou neste navegador.
 	   Diferente da C3, aqui o volume não basta para calcular: a mínima do
 	   ambiente é entrada e ninguém a adivinha. Então preenchemos e esperamos. */
 	var daUrl = lerQuery();
 	if (daUrl) {
+		limparExemplo();
 		preencher(daUrl);
 		mostrarEspecie();
 		pintar(calcular(campos()));
@@ -2819,6 +2976,7 @@ function aquametria_c5_js() {
 		var guardadoAntes = recuperar();
 		var volume = guardadoAntes && guardadoAntes.volumes ? guardadoAntes.volumes.real_L : null;
 		if (volume) {
+			limparExemplo();
 			el('aqm-c5-volume').value = String(volume).replace('.', ',');
 			var clima = guardadoAntes.clima || {};
 			if (clima.temp_min_ambiente_C !== null && clima.temp_min_ambiente_C !== undefined) {
@@ -2839,9 +2997,11 @@ function aquametria_c5_js() {
 			if (num(el('aqm-c5-minima').value) !== null) {
 				pintar(calcular(campos()));
 			}
-		} else {
-			el('aqm-c5-semvolume').classList.remove('aqm-c5-oculto');
 		}
+		/* Sem nada de fora, o formulario FICA com o caso de exemplo e a caixa
+		   pre-renderizada continua na tela: a pagina nunca esta sem resposta. O
+		   caminho para a calculadora de litragem deixou de ser revelado por
+		   script e mora, servido, na dobra de campos do formulario. */
 	}
 }());
 JS;
@@ -3165,24 +3325,54 @@ if ( ! function_exists( 'aquametria_c5_form_html' ) ) {
 function aquametria_c5_form_html() {
 	$c1 = aquametria_c5_url( 'calculadora-de-litragem' );
 
+	$caso = aquametria_c5_caso_exemplo();
+
+	/* O FORMULARIO JA VEM PREENCHIDO (32.1, item 3), com o MESMO caso da caixa de
+	   resultado e da vitrine abaixo. Nenhum campo saiu da pagina. */
 	$h  = '<form id="aqm-c5-form" class="aqm-c5-painel" novalidate>';
 	$h .= '<h3>O seu aquário e o seu inverno</h3>';
-	$h .= '<p class="aqm-c5-sub">A pergunta que decide a potência não é quantos litros o aquário tem — é quanto o cômodo esfria. ';
-	$h .= 'Se você já usou as outras calculadoras neste navegador, o volume vem preenchido daqui. Nada é enviado para servidor nenhum.</p>';
+	$h .= '<p class="aqm-c5-sub">Já preenchido com um aquário de '
+		. esc_html( aquametria_c5_litros( $caso['volume'] ) ) . ' litros de água real num cômodo que cai a '
+		. esc_html( number_format_i18n( $caso['minima'], 0 ) ) . ' °C: troque pelos seus números. ';
+	$h .= 'Nada é enviado para servidor nenhum.</p>';
 
 	$h .= '<div class="aqm-c5-grade">';
 
 	$h .= '<div class="aqm-c5-campo">';
 	$h .= '<label for="aqm-c5-volume">Volume real de água (L)</label>';
-	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c5-volume" name="volume" placeholder="110">';
+	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c5-volume" name="volume" placeholder="110" value="'
+		. esc_attr( number_format_i18n( $caso['volume'], 0 ) ) . '">';
 	$h .= '<span class="aqm-c5-dica">A água que está lá dentro, não o número da etiqueta.</span>';
 	$h .= '</div>';
 
 	$h .= '<div class="aqm-c5-campo">';
 	$h .= '<label for="aqm-c5-minima">Mínima do cômodo (°C)</label>';
-	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c5-minima" name="minima" placeholder="18">';
+	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c5-minima" name="minima" placeholder="18" value="'
+		. esc_attr( number_format_i18n( $caso['minima'], 0 ) ) . '">';
 	$h .= '<span class="aqm-c5-dica">Quanto o ar do cômodo chega a marcar na noite mais fria do ano — não a média da cidade. É a entrada que nenhuma outra calculadora pede.</span>';
 	$h .= '</div>';
+
+	$h .= '</div>';
+
+	/* OS CAMPOS QUE A MAIORIA NAO MEXE VAO PARA UMA DOBRA (32.1, itens 3 e 7), e
+	   e a DOBRA DE CAMPOS da casca — a que NAO leva <h2>, pela licao (f): o
+	   `teste-navegador-visibilidade-ia` mede a regra da secao 5 pelo PRIMEIRO
+	   <h2> da pagina, e um rotulo de grupo de campos ali faria a resposta direta
+	   parecer vir depois da explicacao. Nenhum campo saiu da pagina: <details> e
+	   HTML nativo e abre sem script. */
+	$h .= aquametria_casca_dobra_campos_abre( 'Espécie, temperatura-alvo, voltagem da tomada, tampa e região', 'c5-campos' );
+
+	/* A frase que explica POR QUE esta calculadora pergunta o frio do comodo
+	   morava na linha de apoio do formulario, acima dos dois campos. Ela nao saiu
+	   da pagina — desceu para dentro desta dobra, servida no HTML e legivel com o
+	   JavaScript desligado (32.3 e 22.8) — porque duas linhas de prosa entre o
+	   titulo do formulario e o primeiro campo custam, no celular, parte do teto
+	   de 1.400 px que a 32.5 cobra para o primeiro botao de loja. */
+	$h .= '<p class="aqm-c5-sub" style="margin-bottom:.9rem">A pergunta que decide a potência não é quantos litros o aquário tem — é quanto o cômodo esfria. ';
+	$h .= 'Os campos abaixo são os que a maioria não mexe: a espécie (que traz a temperatura-alvo da ficha dela), o alvo digitado, a voltagem da sua tomada, a tampa e a região. ';
+	$h .= 'Se você já usou as outras calculadoras neste navegador, o volume vem delas.</p>';
+
+	$h .= '<div class="aqm-c5-grade">';
 
 	$h .= '<div class="aqm-c5-campo">';
 	$h .= '<label for="aqm-c5-especie">Espécie principal</label>';
@@ -3202,7 +3392,8 @@ function aquametria_c5_form_html() {
 
 	$h .= '<div class="aqm-c5-campo">';
 	$h .= '<label for="aqm-c5-alvo">Temperatura-alvo (°C)</label>';
-	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c5-alvo" name="alvo" placeholder="26">';
+	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c5-alvo" name="alvo" placeholder="26" value="'
+		. esc_attr( number_format_i18n( $caso['alvo'], 0 ) ) . '">';
 	$h .= '<span class="aqm-c5-dica">Em branco, usamos a ficha da espécie. Preenchido, o seu número manda.</span>';
 	$h .= '</div>';
 
@@ -3229,21 +3420,32 @@ function aquametria_c5_form_html() {
 
 	$h .= '<label class="aqm-c5-caixa"><input type="checkbox" id="aqm-c5-sul"> <span>Moro na região Sul — quero que a leitura de 2,0 W/L entre na conta</span></label>';
 
+	/* O paragrafo do volume real mora aqui e NAO e mais revelado por script: com
+	   o formulario preenchido, uma pergunta "nao sabe o volume?" aparecendo ao
+	   lado de um campo que ja traz 100 L se contradizia na tela. O texto nao saiu
+	   da pagina — ele e, afinal, o caminho para a calculadora que produz essa
+	   entrada. */
+	$h .= '<p class="aqm-c5-criterio" id="aqm-c5-semvolume" style="margin-top:.9rem">';
+	$h .= 'Não sabe o volume real? Ele não é o número da etiqueta: o vidro, a borda livre e as rochas tiram uma parte, e a potência do aquecedor é calculada sobre a água que existe. ';
+	$h .= 'A <a href="' . esc_url( $c1 ) . '">quantos litros tem o seu aquário</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
+
+	$h .= aquametria_casca_dobra_fecha();
+
 	$h .= '<div class="aqm-c5-botoes">';
 	$h .= '<button type="submit">Calcular a potência</button>';
 	$h .= '<button type="button" class="aqm-c5-secundario" id="aqm-c5-limpar">Limpar</button>';
 	$h .= '<span class="aqm-c5-dica aqm-c5-oculto" id="aqm-c5-retomado"></span>';
 	$h .= '</div>';
 	$h .= '<ul class="aqm-c5-avisos" id="aqm-c5-erros"></ul>';
-	$h .= '<p class="aqm-c5-criterio aqm-c5-oculto" id="aqm-c5-semvolume" style="margin-top:.9rem">';
-	$h .= 'Não sabe o volume real? Ele não é o número da etiqueta: o vidro, a borda livre e as rochas tiram uma parte, e a potência do aquecedor é calculada sobre a água que existe. ';
-	$h .= 'A <a href="' . esc_url( $c1 ) . '">quantos litros tem o seu aquário</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
 	$h .= '</form>';
 
 	return $h;
 }
 }
 
+/* A CAIXA DE RESULTADO DO CALCULO (32.1, item 4) — e SO ela. O que o calculo
+   produz e nao e o numero da resposta desceu para o detalhe, abaixo da compra e
+   da tabela de casos. */
 if ( ! function_exists( 'aquametria_c5_resposta_html' ) ) {
 function aquametria_c5_resposta_html() {
 	$h  = '<div class="aqm-c5-resultado aqm-c5-oculto" id="aqm-c5-saida" aria-live="polite">';
@@ -3253,11 +3455,43 @@ function aquametria_c5_resposta_html() {
 	$h .= '<div id="aqm-c5-corpo">';
 
 	$h .= '<div class="aqm-c5-faixa">';
-	$h .= '<span class="aqm-c5-rotulo">Potência de aquecedor que o seu caso pede</span>';
+	$h .= '<span class="aqm-c5-rotulo">Potência que o seu caso pede</span>';
 	$h .= '<span class="aqm-c5-valor" id="aqm-c5-faixa-valor">—</span>';
 	$h .= '<p class="aqm-c5-criterio" id="aqm-c5-faixa-criterio"></p>';
-	$h .= '<div class="aqm-c5-delta" id="aqm-c5-delta"></div>';
 	$h .= '</div>';
+
+	$h .= '</div>';
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* O DETALHE DO CALCULO: tudo o que o calculo produz e nao e o numero da resposta
+   — as quatro regras lado a lado, o degrau comercial, os avisos, o confronto, os
+   criterios editoriais, a lista completa de produtos e o permalink.
+   POR QUE SEPARADO DA CAIXA, e isto foi medido no ar na IRMA desta pagina pela
+   ronda da Sentinela de 21/10/2026 as 14h5xZ, no Chrome do Raphael a 390 px: com
+   o detalhe dentro da caixa, calcular inseria todos esses paineis ENTRE o
+   resultado e a vitrine, e o primeiro cartao de loja da C15 ia de 1.300 px para
+   5.839 px — o teto da 32.5 e 1.400. A pagina passava no estado em que ninguem a
+   usou e falhava por 4,2 vezes no estado em que alguem a usou. A 32.1 item 5 diz
+   "bloco de compra IMEDIATAMENTE abaixo do resultado", e imediatamente e literal.
+   Nasce oculto, como a caixa, e aparece junto com ela — mas DEPOIS da compra e da
+   tabela de casos. */
+if ( ! function_exists( 'aquametria_c5_detalhe_html' ) ) {
+function aquametria_c5_detalhe_html() {
+	$h  = '<div class="aqm-c5-resultado aqm-c5-oculto" id="aqm-c5-detalhe">';
+
+	/* AS FICHAS DE ENTRADA E O PORQUE DA LARGURA DA FAIXA abrem o detalhe. Eles
+	   moravam DENTRO da caixa de resultado ate a 1.9.0, e eram quatro fichas mais
+	   uma frase entre o numero e o bloco de compra: no render de 390 px, o
+	   primeiro botao de loja de quem calcula ficava a 1.437 px e o de quem volta
+	   com o aquario guardado a 1.532 px, contra o teto de 1.400 da 32.5 — e no ar
+	   a pagina e mais alta que no render. A 32.1 item 4 descreve a caixa como
+	   "numero em Mono, frase de leitura embaixo": UMA frase. Nenhuma palavra saiu
+	   da pagina. */
+	$h .= '<div class="aqm-c5-delta" id="aqm-c5-delta"></div>';
+	$h .= '<p class="aqm-c5-criterio" id="aqm-c5-faixa-porque"></p>';
 
 	$h .= '<ul class="aqm-c5-cartoes" id="aqm-c5-regras"></ul>';
 
@@ -3282,7 +3516,6 @@ function aquametria_c5_resposta_html() {
 	$h .= '<p class="aqm-c5-dica" id="aqm-c5-guardado" style="margin-top:.4rem">Este aquário ficou guardado neste navegador para as próximas calculadoras.</p>';
 	$h .= '</div>';
 
-	$h .= '</div>';
 	$h .= '</div>';
 	return $h;
 }
@@ -3332,7 +3565,9 @@ function aquametria_c5_produtos_html() {
 if ( ! function_exists( 'aquametria_c5_tenho_html' ) ) {
 function aquametria_c5_tenho_html() {
 	$h  = '<div class="aqm-c5-painel">';
-	$h .= '<h3>Caminho inverso: o aquecedor que eu já tenho serve?</h3>';
+	/* Sem <h3> aqui: o titulo desta secao e o da DOBRA que a envolve (32.1, item
+	   7), dentro do <summary>. Repeti-lo daria dois titulos iguais na tela
+	   aberta. */
 	$h .= '<p class="aqm-c5-sub">Informe a potência que vem na caixa e devolvemos até quantos litros ele cobre por cada regra — e, se o volume estiver preenchido acima, quantos watts por litro ele entrega no seu aquário.</p>';
 	$h .= '<div class="aqm-c5-grade">';
 	$h .= '<div class="aqm-c5-campo"><label for="aqm-c5-tenho">Potência do aquecedor (W)</label>';
@@ -3350,7 +3585,7 @@ function aquametria_c5_fontes_html() {
 	$artigo = aquametria_c5_url( AQUAMETRIA_C5_ARTIGO );
 
 	$h  = '<div class="aqm-c5-painel">';
-	$h .= '<h3>De onde vem cada número desta página</h3>';
+	/* Sem <h3> aqui, pelo mesmo motivo: quem titula esta secao e a DOBRA. */
 	$h .= '<p class="aqm-c5-sub">Verificado em ' . esc_html( AQUAMETRIA_C5_VERIFICADO_EM ) . '. Calculadora versão ' . esc_html( AQUAMETRIA_C5_VERSAO ) . '.</p>';
 	$h .= '<div class="aqm-c5-rolagem"><table class="aqm-c5-fontes">';
 	$h .= '<tr><th>Constante</th><th>Valor</th><th>Origem e o que ela significa</th></tr>';
@@ -3517,15 +3752,42 @@ function aquametria_c5_shortcode() {
 	/* O comportamento e o estilo saem no rodapé, fora dos filtros de conteúdo. */
 	add_action( 'wp_footer', 'aquametria_c5_rodape', 20 );
 
+	/* A ORDEM E A DA SECAO 32.1 DO ARQUIPELAGO.md, e ela nao e arbitraria: em
+	   21/10/2026 esta pagina foi medida no ar, no celular de 390 px, com o
+	   formulario comecando a 2.037 px e o primeiro botao de loja a 3.599 px — a
+	   pessoa que chega aqui querendo saber quantos watts o aquario dela pede
+	   tinha de rolar cinco telas antes de ver um campo para preencher, e nove
+	   antes de ver um produto. Quem voltava com o aquario guardado no navegador
+	   recebia o botao a 5.977 px, e a pagina media 31.052 px.
+	   Agora: promessa, FORMULARIO ja preenchido, caixa de resultado ja
+	   renderizada no HTML, bloco de compra logo abaixo dela, tabela de casos
+	   resolvidos, o detalhe do calculo, a resposta direta e o resto em <details>. */
 	$h  = '<div class="aqm-c5">';
 	$h .= aquametria_c5_promessa_html();
-	$h .= aquametria_c5_resposta_direta_html();
 	$h .= aquametria_c5_form_html();
+	$h .= aquametria_c5_resposta_exemplo_html();
+	/* A caixa do CALCULO vem antes do bloco de compra, no mesmo lugar da caixa do
+	   exemplo: as duas sao a posicao 4 da 32.1 e nunca estao na tela ao mesmo
+	   tempo. Com ela depois da vitrine, calcular rolaria a pagina PARA BAIXO do
+	   bloco de compra e o produto ficaria atras do leitor. */
 	$h .= aquametria_c5_resposta_html();
 	$h .= aquametria_c5_vitrine_servida_html();
 	$h .= aquametria_c5_exemplos_html();
+	/* O DETALHE DO CALCULO vem DEPOIS da compra e da tabela: era ele que,
+	   nascendo entre a caixa de resultado e a vitrine, levava o primeiro cartao
+	   de loja da C15 de 1.300 para 5.839 px assim que alguem calculava. */
+	$h .= aquametria_c5_detalhe_html();
+	/* A resposta direta continua SERVIDA E VISIVEL, e continua antes de toda
+	   explicacao — o que mudou e que ela deixou de ser o pedagio do formulario.
+	   Dobrar este bloco seria afrouxar a secao 5 do contrato, que e de primeira
+	   classe; por isso ele e o unico texto longo que fica aberto. */
+	$h .= aquametria_c5_resposta_direta_html();
+	$h .= aquametria_casca_dobra_abre( 'Caminho inverso: o aquecedor que eu já tenho serve?', 'tenho' );
 	$h .= aquametria_c5_tenho_html();
+	$h .= aquametria_casca_dobra_fecha();
+	$h .= aquametria_casca_dobra_abre( 'De onde vem cada número desta página', 'fontes' );
 	$h .= aquametria_c5_fontes_html();
+	$h .= aquametria_casca_dobra_fecha();
 	$h .= aquametria_c5_adiante_html();
 	$h .= aquametria_c5_barra_html();
 	$h .= '</div>';
