@@ -1,5 +1,51 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.17.0 (21/10/2026) — A LISTA DE 21/10 DESEMBARCA: o GUPPY entra no
+ * catálogo e as quatro faixas de temperatura trocam de fonte. NENHUMA URL nasce,
+ * muda de endereço ou sai, e nenhuma leva do teto da 21.4 é gasta — o que muda é
+ * o conteúdo de tabela e de ficha nas 52 URLs que já existem.
+ *
+ *   O QUE A DATA DESTRAVOU, e ela estava escrita no banco desde 16/10/2026 em
+ *   `decidir_em`. A leitura semanal de 14/10 congelou a superfície desta ilha até
+ *   21/10 para não destruir a medição de CTR em curso, e seis entradas de
+ *   `segundo_corpo_nao_entrou` ficaram esperando o calendário. Hoje o próprio
+ *   validador começou a cobrar: os seis avisos `[E28]` entraram na linha de base
+ *   às 00h e DEIXARAM O PORTÃO VERMELHO antes de qualquer edição.
+ *
+ *   O GUPPY É A ÚNICA MUDANÇA DE POPULAÇÃO: ele era o único registro do banco
+ *   barrado por UM motivo só — "duas fontes de corpos distintos" —, ganhou o
+ *   segundo corpo e entra nas tabelas. O catálogo vai de 34 para 35 e a lista de
+ *   barrados de 6 para 5. O danio galáxia CONTINUA barrado, e o que muda nele é a
+ *   CAUSA que esta página publica: ele perdeu "duas fontes" e sobraram os três
+ *   campos que lhe faltam de verdade.
+ *
+ *   AS QUATRO FAIXAS DE TEMPERATURA que trocam de fonte — tetra neon 20–26 para
+ *   21–25, guppy 18–28 para 17–28, rasbora arlequim 22–25 para 21–28, gurami
+ *   pérola 24–28 para 24–30 — não são escolha desta versão: temperatura é campo de
+ *   MANUTENÇÃO e a tabela `dominio_por_campo` do esquema põe o compêndio acima da
+ *   base científica nesses campos.
+ *
+ *   E A C5 NÃO SENTE NENHUMA DAS QUATRO, ao contrário do que a entrada de 16/10
+ *   deste banco deixou escrito. Ela diz que o gurami pérola "ALIMENTA a C5", e o
+ *   que é verdade é que ele passa no portão `c5-aquecedor` do validador — passar
+ *   no portão não é ser servido. MEDIDO em 21/10/2026: a lista de espécies da C5
+ *   é uma lista DIGITADA de oito, de outras fontes (Petz e Aquarismo Paulista), e
+ *   não sai deste banco; o gurami pérola não está nela. Pior: ela está digitada
+ *   DUAS vezes no mesmo arquivo — nas `<option>` do PHP e no `var ESPECIES` do
+ *   JavaScript —, as duas concordam hoje e nada as vigia, no arquivo cujo próprio
+ *   comentário tirou as REGRAS do JavaScript em 09/09/2026 por este mesmo motivo.
+ *   E as duas listas publicam, para SETE das oito espécies, uma faixa diferente da
+ *   que esta malha publica para a mesma espécie — só o acará-disco coincide. Sete
+ *   de oito já divergiam antes de hoje e a conta não mudou com estas quatro
+ *   trocas. Fica medido aqui, e não consertado: é bloco próprio, não desta leva.
+ *
+ *   E OS TRÊS PORTES NÃO MUDARAM, de propósito: porte é campo de BIOLOGIA e a
+ *   mesma tabela põe a base científica acima do compêndio. A nota de 16/10 previa
+ *   "vai ao maior pela E9" e errou de regra — a E9 só alcança os quatro campos de
+ *   bem-estar, e `porte_adulto_cm` não está entre eles. Quem quiser a conta
+ *   inteira lê o `razao` de cada conflito novo nesta mesma malha: ele está no
+ *   banco, atribuído, e esta página o serve.
+ *
  * Versão: 1.16.0 (24/09/2026) — A PROPOSTA 1 DA LEITURA SEMANAL DE 23/09: o
  * `titulo` de `/peixes/ciclideos-anoes/` passa a dizer a consulta SINGULAR, e
  * NENHUMA URL nasce, muda de endereço ou sai. É um campo e uma linha; a metade
@@ -669,7 +715,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.16.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.17.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -778,6 +824,7 @@ function aquametria_peixes_catalogo() {
 						'porte_medida',
 						'porte_sexo',
 						'temperatura_C',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie: max length 2,0 cm SL macho/nao-sexado; tropical, 24 a 28 C; familia Acestrorhamphidae (tetras americanos); America do Sul, bacia do rio Araguaia.',
 				),
@@ -847,9 +894,9 @@ function aquametria_peixes_catalogo() {
 				'nao-declarado',
 			),
 			'restricoes' => array(),
-			'temp_min' => 20,
-			'temp_max' => 26,
-			'status' => 'completo',
+			'temp_min' => 21,
+			'temp_max' => 25,
+			'status' => 'conflito',
 			'fontes' => array(
 				array(
 					'corpo' => 'FishBase',
@@ -865,6 +912,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: max 2,2 cm SL; 20 a 26 C; pH 5,0 a 7,0; dH 1 a 2; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
 				),
@@ -888,8 +936,69 @@ function aquametria_peixes_catalogo() {
 					),
 					'referencia' => 'FishBase — ficha da especie: Characiformes > Acestrorhamphidae (tetras americanos).',
 				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/paracheirodon-innesi/',
+					'em' => '2026-10-16',
+					'campos' => array(
+						'comprimento_minimo_aquario_cm',
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: base de aquario de 60 x 30 cm (24 x 12 in); peixe de cardume, pacifico e proprio para aquario comunitario.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/paracheirodon-innesi/',
+					'em' => '2026-10-16',
+					'campos' => array(
+						'porte_adulto_cm',
+						'temperatura_C',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 30 mm SL (3,0 cm) e temperatura de 21 a 25 C.',
+				),
 			),
-			'conflitos' => array(),
+			'conflitos' => array(
+				array(
+					'campo' => 'porte_adulto_cm',
+					'valores' => array(
+						array(
+							'valor' => 2.2,
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase — ficha da especie: max 2,2 cm SL; 20 a 26 C; pH 5,0 a 7,0; dH 1 a 2; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
+						),
+						array(
+							'valor' => 3,
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 30 mm SL (3,0 cm) e temperatura de 21 a 25 C.',
+						),
+					),
+					'razao' => 'Porte e campo de BIOLOGIA, e a tabela dominio_por_campo poe a base cientifica ACIMA do compendio justamente nesses campos — tamanho de peixe e o assunto dela. A nota de 16/10 que previu este caso nomeou a E9 (\'fica o maior\'), e ela ERROU de regra: a E9 so alcanca os campos de bem-estar (cardume_minimo, comprimento_minimo_aquario_cm, base_minima_cm, altura_minima_cm) e porte_adulto_cm nao esta entre eles. As duas reguas que alcancam este campo apontam para o MESMO lado: a dominio_por_campo manda publicar o numero da base cientifica, e a E24 cobra que a clausula de porte_e_maximo_registrado traga o proprio numero publicado — a clausula de maximo deste registro e a da FishBase, e publicar o numero do compendio a tornaria falsa ou obrigaria a apagar o escopo que a versao 7 do esquema criou. E neste registro ha uma segunda razao, medida no proprio texto: a transcricao do compendio nao traz palavra de maximo nenhuma (\'comprimento padrao de 30 mm SL\'), entao o numero dele nao poderia nem ser qualificado como maximo registrado sem afirmar o que a fonte nao disse.',
+					'tratamento' => 'nivel-mais-alto-vence',
+				),
+				array(
+					'campo' => 'temperatura_C',
+					'valores' => array(
+						array(
+							'valor' => array(
+								'min' => 20,
+								'max' => 26,
+							),
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase — ficha da especie: max 2,2 cm SL; 20 a 26 C; pH 5,0 a 7,0; dH 1 a 2; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
+						),
+						array(
+							'valor' => array(
+								'min' => 21,
+								'max' => 25,
+							),
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 30 mm SL (3,0 cm) e temperatura de 21 a 25 C.',
+						),
+					),
+					'razao' => 'Temperatura e campo de MANUTENCAO, e a tabela dominio_por_campo do esquema poe o compendio ACIMA da base cientifica justamente nesses campos: a FishBase descreve a agua onde o peixe VIVE, o compendio descreve a agua em que ele e MANTIDO. Divergencia declarada em 21/10/2026, na data que o registro pre-registrou, e o valor publicado passa a ser o do compendio. A faixa do compendio e mais ESTREITA nas duas pontas, e isso nao a torna menos segura: ela e a agua de manutencao declarada por quem escreve sobre manter, e quem dimensiona aquecedor pelo piso de 21 C em vez de 20 C encomenda menos potencia por um grau — contra a faixa de 20 a 26, que e a agua do habitat.',
+					'tratamento' => 'nivel-mais-alto-vence',
+				),
+			),
 		),
 		'paracheirodon-axelrodi' => array(
 			'id' => 'paracheirodon-axelrodi',
@@ -935,6 +1044,7 @@ function aquametria_peixes_catalogo() {
 						'dureza_dgh',
 						'nivel_natacao',
 						'origem_geografica',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: 23 a 27 C, pH 4,0 a 6,0, dH 5 a 12; ocorre sobretudo em cardumes nas camadas medias da coluna; alto Orinoco e rio Negro. Max 2,5 cm SL na busca restrita de 09/09/2026 e 3,0 cm SL na busca aberta do mesmo dia (ver conflitos).',
 				),
@@ -1023,6 +1133,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Acestrorhamphidae (tetras americanos); max 3,3 cm TL; pH 6,0 a 8,0; dH 5 a 12; 24 a 28 C; secao de aquario: em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
 				),
@@ -1122,6 +1233,7 @@ function aquametria_peixes_catalogo() {
 						'temperatura_C',
 						'ph',
 						'dureza_dgh',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: max 3,3 cm TL; 20 a 25 C; pH 6,0 a 7,5; dH 2 a 18.',
 				),
@@ -1192,6 +1304,7 @@ function aquametria_peixes_catalogo() {
 						'temperatura_C',
 						'ph',
 						'dureza_dgh',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie (hoje publicada como Hoplisoma panda): familia Callichthyidae (callichthyid armored catfishes); max 3,8 cm SL; pH 6,0 a 8,0; dH 2 a 25; 20 a 25 C; alto Amazonas.',
 				),
@@ -1255,6 +1368,7 @@ function aquametria_peixes_catalogo() {
 						'dureza_dgh',
 						'cardume_minimo',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: max 3,8 cm SL; 18 a 24 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
 				),
@@ -1346,6 +1460,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comportamento',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Characidae (subfamilia Stethaprioninae); max 4 cm SL macho/nao sexado; pH 5,0 a 7,8; dH 10 a 25; 22 a 26 C; secao de aquario: agressivo, em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
 				),
@@ -1448,6 +1563,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie: max length 4,0 cm TL; 18 a 22 C, sobrevivendo a agua de ate 5 C; pH 6,0 a 8,0; dH 5 a 19; familia Tanichthyidae; Asia, China e Vietna; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 60 cm.',
 				),
@@ -1551,6 +1667,7 @@ function aquametria_peixes_catalogo() {
 						'dureza_dgh',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Cichlidae; max 4,2 cm SL; pH 5,0 a 6,0; dH 5 a 12; 27 a 30 C; secao de aquario: aquario minimo de 60 cm, aos pares.',
 				),
@@ -1607,6 +1724,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie (hoje publicada como Petitella rhodostoma): familia Characidae; max 5,0 cm TL; secao de aquario: em grupos de 5 ou mais individuos, aquario minimo de 80 cm; especie tropical das bacias do baixo Amazonas e do Orinoco.',
 				),
@@ -1661,6 +1779,130 @@ function aquametria_peixes_catalogo() {
 				),
 			),
 		),
+		'poecilia-reticulata' => array(
+			'id' => 'poecilia-reticulata',
+			'cientifico' => 'Poecilia reticulata',
+			'sinonimos' => array(),
+			'populares' => array(
+				'guppy',
+				'lebiste',
+				'barrigudinho',
+			),
+			'familia' => 'Poeciliidae',
+			'origem' => '',
+			'porte_cm' => 5,
+			'porte_medida' => 'SL',
+			'cardume' => 5,
+			'cardume_ate' => null,
+			'convivencia' => 'grupo',
+			'comportamento' => '',
+			'frente_cm' => 60,
+			'base_comprimento' => null,
+			'base_largura' => null,
+			'chao_para' => array(),
+			'restricoes' => array(),
+			'temp_min' => 17,
+			'temp_max' => 28,
+			'status' => 'conflito',
+			'fontes' => array(
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.org/summary/Poecilia_reticulata.html',
+					'em' => '2026-09-09',
+					'campos' => array(
+						'porte_adulto_cm',
+						'porte_medida',
+						'porte_sexo',
+						'temperatura_C',
+						'ph',
+						'dureza_dgh',
+						'cardume_minimo',
+						'comprimento_minimo_aquario_cm',
+						'convivencia',
+					),
+					'referencia' => 'FishBase — ficha da especie: femea ate 5 cm SL; 18 a 28 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
+				),
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.se/summary/Poecilia-reticulata.html',
+					'em' => '2026-09-09',
+					'campos' => array(
+						'familia',
+					),
+					'referencia' => 'FishBase — ficha da especie: Cyprinodontiformes (Rivulines, killifishes and live bearers) > Poeciliidae (Poeciliids) > subfamilia Poeciliinae.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/poecilia-reticulata',
+					'em' => '2026-10-16',
+					'campos' => array(
+						'porte_adulto_cm',
+						'temperatura_C',
+						'comprimento_minimo_aquario_cm',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 60 mm SL (6,0 cm), sem separar macho de femea; base de 45 x 30 cm (18 x 12 in); temperatura de 17 a 28 C, pH 7,0 a 8,5, dureza 8 a 30 dGH.',
+				),
+			),
+			'conflitos' => array(
+				array(
+					'campo' => 'porte_adulto_cm',
+					'valores' => array(
+						array(
+							'valor' => 5,
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase — ficha da especie: femea ate 5 cm SL; 18 a 28 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
+						),
+						array(
+							'valor' => 6,
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 60 mm SL (6,0 cm), sem separar macho de femea; base de 45 x 30 cm (18 x 12 in); temperatura de 17 a 28 C, pH 7,0 a 8,5, dureza 8 a 30 dGH.',
+						),
+					),
+					'razao' => 'Porte e campo de BIOLOGIA, e a tabela dominio_por_campo poe a base cientifica ACIMA do compendio justamente nesses campos — tamanho de peixe e o assunto dela. A nota de 16/10 que previu este caso nomeou a E9 (\'fica o maior\'), e ela ERROU de regra: a E9 so alcanca os campos de bem-estar (cardume_minimo, comprimento_minimo_aquario_cm, base_minima_cm, altura_minima_cm) e porte_adulto_cm nao esta entre eles. As duas reguas que alcancam este campo apontam para o MESMO lado: a dominio_por_campo manda publicar o numero da base cientifica, e a E24 cobra que a clausula de porte_e_maximo_registrado traga o proprio numero publicado — a clausula de maximo deste registro e a da FishBase, e publicar o numero do compendio a tornaria falsa ou obrigaria a apagar o escopo que a versao 7 do esquema criou. E aqui os dois numeros nem falam da mesma populacao: a FishBase declara \'femea ate 5 cm SL\' e este registro publica porte_sexo \'femea\', enquanto o compendio declara 60 mm SL SEM separar macho de femea. Trocar o numero publicado poria um porte nao-sexado num campo que diz, no registro vizinho, que fala da femea — e os dois caminhos levam ao mesmo lugar: fica o 5,0 da base cientifica.',
+					'tratamento' => 'nivel-mais-alto-vence',
+				),
+				array(
+					'campo' => 'temperatura_C',
+					'valores' => array(
+						array(
+							'valor' => array(
+								'min' => 18,
+								'max' => 28,
+							),
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase — ficha da especie: femea ate 5 cm SL; 18 a 28 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
+						),
+						array(
+							'valor' => array(
+								'min' => 17,
+								'max' => 28,
+							),
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 60 mm SL (6,0 cm), sem separar macho de femea; base de 45 x 30 cm (18 x 12 in); temperatura de 17 a 28 C, pH 7,0 a 8,5, dureza 8 a 30 dGH.',
+						),
+					),
+					'razao' => 'Temperatura e campo de MANUTENCAO, e a tabela dominio_por_campo do esquema poe o compendio ACIMA da base cientifica justamente nesses campos: a FishBase descreve a agua onde o peixe VIVE, o compendio descreve a agua em que ele e MANTIDO. Divergencia declarada em 21/10/2026, na data que o registro pre-registrou, e o valor publicado passa a ser o do compendio. O teto e o mesmo nas duas (28 C) e o piso do compendio e um grau mais baixo, 17 contra 18 C — e piso mais baixo e PERMISSAO do compendio, nao recomendacao: quem dimensiona aquecedor por ele encomenda mais potencia, que e o lado seguro do erro.',
+					'tratamento' => 'nivel-mais-alto-vence',
+				),
+				array(
+					'campo' => 'comprimento_minimo_aquario_cm',
+					'valores' => array(
+						array(
+							'valor' => 60,
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase — ficha da especie: femea ate 5 cm SL; 18 a 28 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
+						),
+						array(
+							'valor' => 45,
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 60 mm SL (6,0 cm), sem separar macho de femea; base de 45 x 30 cm (18 x 12 in); temperatura de 17 a 28 C, pH 7,0 a 8,5, dureza 8 a 30 dGH.',
+						),
+					),
+					'razao' => 'Frente minima e campo de MANUTENCAO e tambem campo de BEM-ESTAR, e as duas reguas desta casa apontam para lados OPOSTOS no mesmo campo: a dominio_por_campo poe o compendio acima da base cientifica e mandaria publicar o numero menor, e a E9 manda o conservador ser o MAIOR. QUEM MANDA E A E9, e a razao e que as duas perguntam coisas diferentes: a dominio_por_campo decide de QUEM e o numero mais autorizado, a E9 decide para QUE LADO se erra num campo em que errar para menos aperta o peixe. Autoridade de fonte nao desempata risco. E a E9 e a unica das duas que o validador EXECUTA neste campo — ela reprova com erro e a tabela e prosa —, entao a precedencia ja estava em portao antes de estar escrita. O tratamento e publicar-os-dois porque chamar isto de nivel-mais-alto-vence seria FALSO: o nivel mais alto neste campo e o compendio, e nao e o numero dele que vai a tela.',
+					'tratamento' => 'publicar-os-dois',
+				),
+			),
+		),
 		'trigonostigma-heteromorpha' => array(
 			'id' => 'trigonostigma-heteromorpha',
 			'cientifico' => 'Trigonostigma heteromorpha',
@@ -1687,8 +1929,8 @@ function aquametria_peixes_catalogo() {
 				'grupo',
 			),
 			'restricoes' => array(),
-			'temp_min' => 22,
-			'temp_max' => 25,
+			'temp_min' => 21,
+			'temp_max' => 28,
 			'status' => 'conflito',
 			'fontes' => array(
 				array(
@@ -1707,6 +1949,7 @@ function aquametria_peixes_catalogo() {
 						'origem_geografica',
 						'nivel_natacao',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: max 5,0 cm TL; 22 a 25 C; pH 5,0 a 7,0; dH 5 a 12; bentopelagica; Malasia, Singapura e Indonesia; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
 				),
@@ -1728,6 +1971,25 @@ function aquametria_peixes_catalogo() {
 						'familia',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Danionidae.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/trigonostigma-heteromorpha',
+					'em' => '2026-10-16',
+					'campos' => array(
+						'comprimento_minimo_aquario_cm',
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: a base de 60 x 30 cm (24 x 12 in) deve ser a menor considerada, porque a especie tem de ser mantida em numero; peixe de cardume, pacifico e proprio para aquario comunitario.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/trigonostigma-heteromorpha',
+					'em' => '2026-10-16',
+					'campos' => array(
+						'temperatura_C',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: temperatura de 21 a 28 C, pH 5,0 a 7,5, dureza 1 a 12 dGH.',
 				),
 			),
 			'conflitos' => array(
@@ -1753,6 +2015,29 @@ function aquametria_peixes_catalogo() {
 					),
 					'razao' => 'Intervalos encaixados, nao contraditorios: o compendio e mais estreito e mais acido. Campo de manutencao que NAO e de bem-estar direto, entao vale a intersecao conservadora da regra V17 do banco de produtos — a afirmacao que as duas fontes sustentam e 5,0 a 6,0.',
 					'tratamento' => 'intersecao-conservadora',
+				),
+				array(
+					'campo' => 'temperatura_C',
+					'valores' => array(
+						array(
+							'valor' => array(
+								'min' => 22,
+								'max' => 25,
+							),
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase — ficha da especie: max 5,0 cm TL; 22 a 25 C; pH 5,0 a 7,0; dH 5 a 12; bentopelagica; Malasia, Singapura e Indonesia; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
+						),
+						array(
+							'valor' => array(
+								'min' => 21,
+								'max' => 28,
+							),
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: temperatura de 21 a 28 C, pH 5,0 a 7,5, dureza 1 a 12 dGH.',
+						),
+					),
+					'razao' => 'Temperatura e campo de MANUTENCAO, e a tabela dominio_por_campo do esquema poe o compendio ACIMA da base cientifica justamente nesses campos: a FishBase descreve a agua onde o peixe VIVE, o compendio descreve a agua em que ele e MANTIDO. Divergencia declarada em 21/10/2026, na data que o registro pre-registrou, e o valor publicado passa a ser o do compendio. A faixa do compendio e mais LARGA nas duas pontas (21 a 28 contra 22 a 25), e as duas nao se contradizem: 22 a 25 cabe dentro de 21 a 28.',
+					'tratamento' => 'nivel-mais-alto-vence',
 				),
 			),
 		),
@@ -1794,6 +2079,7 @@ function aquametria_peixes_catalogo() {
 						'ph',
 						'dureza_dgh',
 						'comprimento_minimo_aquario_cm',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: max 4,0 cm TL macho e 6,0 cm TL femea; 18 a 25 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: aquario minimo de 60 cm.',
 				),
@@ -1860,6 +2146,7 @@ function aquametria_peixes_catalogo() {
 						'porte_sexo',
 						'temperatura_C',
 						'dureza_dgh',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: max 6,5 cm TL para o macho; 24 a 30 C; pH 6,0 a 8,0; dH 5 a 19.',
 				),
@@ -1933,6 +2220,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie: max length 6,5 cm SL; 24 a 26 C; pH 6,0 a 8,0; dH 5 a 19; familia Lebiasinidae; habita rios pequenos de pouca correnteza e brejos, formando grupos em que os machos dominam para defender territorio; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 60 cm.',
 				),
@@ -1992,6 +2280,7 @@ function aquametria_peixes_catalogo() {
 						'dureza_dgh',
 						'cardume_minimo',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie (publicada tambem como Hoplisoma paleatum): max length 6,6 cm SL macho/nao-sexado e 7,1 cm SL femea; 18 a 23 C; pH 6,0 a 8,0; dH 5 a 19; familia Callichthyidae; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 60 cm.',
 				),
@@ -2070,6 +2359,7 @@ function aquametria_peixes_catalogo() {
 						'temperatura_C',
 						'ph',
 						'dureza_dgh',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie (publicada tambem como Hoplisoma sterbai): max length 6,8 cm SL macho/nao-sexado; 21 a 25 C; pH 6,0 a 8,0; dH 2 a 25; familia Callichthyidae; America do Sul, Brasil central e Bolivia.',
 				),
@@ -2146,6 +2436,7 @@ function aquametria_peixes_catalogo() {
 						'dureza_dgh',
 						'convivencia',
 						'restricoes_de_companhia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie (barbo-de-sumatra): max 7,0 cm TL; 20 a 26 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, NAO manter com peixes de nadadeiras longas, aquario minimo de 60 cm.',
 				),
@@ -2238,6 +2529,7 @@ function aquametria_peixes_catalogo() {
 						'nivel_natacao',
 						'origem_geografica',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie (publicada tambem como Osteogaster aenea): max 7,5 cm SL; 25 a 28 C; pH 6,0 a 8,0; dH 5 a 19; demersal; da Colombia e Trinidad ate a bacia do Prata; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.',
 				),
@@ -2342,6 +2634,7 @@ function aquametria_peixes_catalogo() {
 						'dureza_dgh',
 						'comportamento',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Acestrorhamphidae (tetras americanos); max 7,5 cm SL; pH 6,0 a 8,0; dH 5 a 19; 20 a 26 C (subtropical); peixe de cardume pacifico.',
 				),
@@ -2429,6 +2722,7 @@ function aquametria_peixes_catalogo() {
 						'ph',
 						'dureza_dgh',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie: max length 9,0 cm SL macho/nao-sexado e 7,0 cm SL femea; 27 a 30 C; pH 7,0 a 8,0; dH 9 a 19; familia Melanotaeniidae; conhecida apenas dos lagos Ajamaru, Irian Jaya; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 80 cm.',
 				),
@@ -2525,6 +2819,7 @@ function aquametria_peixes_catalogo() {
 						'temperatura_C',
 						'ph',
 						'dureza_dgh',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Osphronemidae; max 9,5 cm TL macho/nao sexado; pH 6,0 a 8,0; dH 5 a 19; 25 a 28 C; Asia: Paquistao, India e Bangladesh.',
 				),
@@ -2570,7 +2865,7 @@ function aquametria_peixes_catalogo() {
 			'restricoes' => array(),
 			'temp_min' => 26,
 			'temp_max' => 30,
-			'status' => 'completo',
+			'status' => 'conflito',
 			'fontes' => array(
 				array(
 					'corpo' => 'FishBase',
@@ -2588,6 +2883,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie: max length 13,7 cm SL; 26 a 30 C; pH 5,0 a 8,0; dH 0 a 12; familia Cichlidae; America do Sul, baixo Amazonas; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 120 cm.',
 				),
@@ -2603,8 +2899,44 @@ function aquametria_peixes_catalogo() {
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: um casal reprodutor precisa de espaco na horizontal e na vertical, entao um aquario de 48 x 18 x 18 polegadas (120 x 45 x 45 cm), 255 litros, e recomendado para alguns juvenis ou um casal de adultos reprodutores; porte maximo relatado do disco selvagem em torno de 14 cm; peixe timido e assustadico, que precisa de esconderijo; o selvagem come sobretudo zooplancton, insetos e outros invertebrados pequenos.',
 				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/symphysodon-aequifasciatus/',
+					'em' => '2026-10-16',
+					'campos' => array(
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: o tipo social declarado na ficha e CARDUME (shoal), e o selvagem forma cardume em agua lenta e abrigada, entre raizes e pedras.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/symphysodon-aequifasciatus/',
+					'em' => '2026-10-16',
+					'campos' => array(
+						'porte_adulto_cm',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 140 mm SL (14,0 cm).',
+				),
 			),
-			'conflitos' => array(),
+			'conflitos' => array(
+				array(
+					'campo' => 'porte_adulto_cm',
+					'valores' => array(
+						array(
+							'valor' => 13.7,
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase - ficha da especie: max length 13,7 cm SL; 26 a 30 C; pH 5,0 a 8,0; dH 0 a 12; familia Cichlidae; America do Sul, baixo Amazonas; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 120 cm.',
+						),
+						array(
+							'valor' => 14,
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: comprimento padrao de 140 mm SL (14,0 cm).',
+						),
+					),
+					'razao' => 'Porte e campo de BIOLOGIA, e a tabela dominio_por_campo poe a base cientifica ACIMA do compendio justamente nesses campos — tamanho de peixe e o assunto dela. A nota de 16/10 que previu este caso nomeou a E9 (\'fica o maior\'), e ela ERROU de regra: a E9 so alcanca os campos de bem-estar (cardume_minimo, comprimento_minimo_aquario_cm, base_minima_cm, altura_minima_cm) e porte_adulto_cm nao esta entre eles. As duas reguas que alcancam este campo apontam para o MESMO lado: a dominio_por_campo manda publicar o numero da base cientifica, e a E24 cobra que a clausula de porte_e_maximo_registrado traga o proprio numero publicado — a clausula de maximo deste registro e a da FishBase, e publicar o numero do compendio a tornaria falsa ou obrigaria a apagar o escopo que a versao 7 do esquema criou. A divergencia e de tres milimetros na MESMA regua (13,7 contra 14,0 cm SL) e nao muda decisao nenhuma de quem le; o que decide e a tabela, nao o tamanho da diferenca — conflito pequeno resolvido por gosto e o precedente que resolve o grande por gosto.',
+					'tratamento' => 'nivel-mais-alto-vence',
+				),
+			),
 		),
 		'pethia-conchonius' => array(
 			'id' => 'pethia-conchonius',
@@ -2652,6 +2984,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie: max length 14,0 cm TL macho/nao-sexado; subtropical, 18 a 22 C; pH 6,0 a 8,0; dH 5 a 19; familia Cyprinidae; Asia: Afeganistao, Paquistao, India, Nepal e Bangladesh, com introducao no mundo todo; secao de aquario: manter em grupos de 5 ou mais individuos, tamanho minimo de aquario 80 cm.',
 				),
@@ -2667,6 +3000,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_recomendado_ate',
 						'convivencia',
 						'comportamento',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: dimensoes de base de pelo menos 100 x 30 cm ou equivalente sao necessarias; algumas formas chegam a 90 a 100 mm, mas a maioria esta adulta com 65 a 75 mm; e uma especie de cardume por natureza e o ideal e mante-la em grupo de pelo menos 8 a 10 exemplares - em numero decente o peixe fica menos nervoso, o conjunto fica mais natural e os machos mostram a melhor cor competindo entre si pela atencao das femeas; especie geralmente pacifica e residente ideal do aquario comunitario bem pesquisado, que nao impoe exigencia especial de quimica da agua e pode ser combinada com muitos dos peixes mais populares do hobby - outros pequenos ciprinideos, tetras, viviparos, peixes arco-iris, anabantoideos, cascudos e botias; considerada um dos pequenos ciprinideos mais resistentes do hobby, e excelente escolha para quem esta comecando.',
 				),
@@ -2750,6 +3084,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: max 15 cm TL; 24 a 30 C; pH 6,0 a 8,0; dH 5 a 13; secao de aquario: manter em grupos de 5 ou mais individuos, casais em aquario pequeno so para reproducao, aquario minimo de 100 cm.',
 				),
@@ -2774,6 +3109,17 @@ function aquametria_peixes_catalogo() {
 						'familia',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Cichlidae.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/pterophyllum-scalare/',
+					'em' => '2026-10-16',
+					'campos' => array(
+						'temperatura_C',
+						'comprimento_minimo_aquario_cm',
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie, releitura de 16/10/2026: base de 100 x 40 cm (39 x 16 in), e um aquario de 100 x 40 x 50 cm deve ser o menor considerado; temperatura de 24 a 30 C, pH 6,0 a 7,4, dureza 0 a 15 dGH; ciclideo em geral pacifico que pode implicar com os da propria especie, por isso melhor mantido em pequenos grupos.',
 				),
 			),
 			'conflitos' => array(),
@@ -2886,6 +3232,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Botiidae (pointface loaches); max 30,5 cm TL macho/nao sexado; pH 5,0 a 8,0; dH 5 a 12; 25 a 30 C; secao de aquario: em grupos de 5 ou mais individuos, aquario minimo de 150 cm.',
 				),
@@ -2964,6 +3311,7 @@ function aquametria_peixes_catalogo() {
 						'temperatura_C',
 						'ph',
 						'dureza_dgh',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: familia Cichlidae; max 45,7 cm TL; pH 6,0 a 8,0; dH 5 a 19; 22 a 25 C; habita aguas rasas e paradas de fundo de lama ou areia.',
 				),
@@ -3023,6 +3371,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: max 48,0 cm TL; faixa termica de 0 a 41 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 100 cm.',
 				),
@@ -3131,6 +3480,7 @@ function aquametria_peixes_catalogo() {
 						'cardume_minimo',
 						'cardume_recomendado_ate',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: comprimento padrao maximo de 55 mm SL, ou 5,5 cm; a especie nao e gregaria no sentido dos peixes de cardume, mas parece precisar da interacao com os seus e mostra comportamento mais interessante quando mantida em numero, de modo que a compra de nao menos que 4 a 6 exemplares e recomendada; o grupo desenvolve hierarquia visivel, com os dominantes enxotando os rivais na hora da comida e no ponto preferido do aquario; as femeas adultas sao visivelmente maiores que os machos.',
 				),
@@ -3173,6 +3523,7 @@ function aquametria_peixes_catalogo() {
 						'porte_sexo',
 						'temperatura_C',
 						'comprimento_minimo_aquario_cm',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase — ficha da especie: Cyprinodontiformes > Poeciliidae (Poeciliids); max 7,0 cm TL macho/nao sexado, comprimento comum 3,9 cm TL; secao de aquario: aquario minimo de 60 cm e faixa de manutencao de 15 a 25 C.',
 				),
@@ -3232,6 +3583,7 @@ function aquametria_peixes_catalogo() {
 						'dureza_dgh',
 						'comprimento_minimo_aquario_cm',
 						'convivencia',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie: Teleostei > Cichliformes > Cichlidae (Cichlids) > Geophaginae; max 4,2 cm SL macho/nao sexado; America do Sul, bacia do rio Amazonas, ao longo do Amazonas-Solimoes, do Peru, passando pelo Brasil, ate a bacia do rio Capim; agua doce, bentopelagica; tropical, 26 a 29 C; pH 5,0 a 7,0; dH 0 a 12; secao de aquario: varias femeas para um macho, aquario minimo de 60 cm.',
 				),
@@ -3288,6 +3640,7 @@ function aquametria_peixes_catalogo() {
 						'porte_medida',
 						'porte_sexo',
 						'temperatura_C',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie: Teleostei > Cichliformes > Cichlidae (Cichlids) > Cichlinae; max 5,6 cm SL macho/nao sexado; America do Sul, bacia do rio Amazonas, na drenagem do rio Guapore no Brasil e na Bolivia, e na drenagem do rio Mamore na Bolivia; agua doce, bentopelagica; tropical, 22 a 26 C.',
 				),
@@ -3349,6 +3702,7 @@ function aquametria_peixes_catalogo() {
 						'temperatura_C',
 						'ph',
 						'dureza_dgh',
+						'porte_e_maximo_registrado',
 					),
 					'referencia' => 'FishBase - ficha da especie (cherry barb), servida tambem pelo endereco de sinonimo Barbus-titteya: max 5,0 cm TL, comprimento comum 2,5 cm TL; 23 a 27 C; pH 6,0 a 8,0; dH 5 a 19; familia Cyprinidae; Asia: Sri Lanka, das bacias do Kelani ao Nilwala, em riachos muito sombreados de agua rasa e lenta, com substrato de silte e folhas. A secao de aquario NAO declara numero de grupo nem tamanho minimo de aquario.',
 				),
@@ -3413,19 +3767,6 @@ function aquametria_peixes_barrados() {
 				'temperatura_C',
 			),
 		),
-		'poecilia-reticulata' => array(
-			'id' => 'poecilia-reticulata',
-			'cientifico' => 'Poecilia reticulata',
-			'populares' => array(
-				'guppy',
-				'lebiste',
-				'barrigudinho',
-			),
-			'familia' => 'Poeciliidae',
-			'faltando' => array(
-				'duas fontes distintas',
-			),
-		),
 		'poecilia-sphenops' => array(
 			'id' => 'poecilia-sphenops',
 			'cientifico' => 'Poecilia sphenops',
@@ -3478,7 +3819,6 @@ function aquametria_peixes_barrados() {
 				'comprimento_minimo_aquario_cm',
 				'convivencia',
 				'temperatura_C',
-				'duas fontes distintas',
 			),
 		),
 	);

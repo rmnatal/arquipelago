@@ -14,6 +14,20 @@ Deriva **nao e defeito**: e valor de banco que ainda nao desembarcou, e ela
 desembarca junto com a primeira leva que regerar o catalogo. O que e defeito e
 deriva que ninguem contou.
 
+
+## 2026-10-21 10:36Z
+
+**Deriva ZERO**: o snippet do repositorio e o que o gerador produz do
+banco de hoje dizem a mesma coisa. Nada a desembarcar.
+
+```json
+{
+  "linhas": {},
+  "medido_em": "2026-10-21 10:36Z",
+  "total_de_linhas": 0
+}
+```
+
 ## 2026-10-16 19:34Z
 
 **74 linha(s) de deriva**, agrupadas por linha repetida:

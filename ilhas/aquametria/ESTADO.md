@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-20T20:32Z
-executando_desde: 2026-10-21T10:17Z   # reserva desta execucao (secao 1, passo 5), hora do `date -u` e nunca de estimativa. A reserva anterior era de 20/10 19h16Z e fechou as 20h32Z. Se o bloco passar de 40min, renovo este campo pela 1.1.
+executando_desde: 2026-10-21T10:41Z   # reserva RENOVADA pela 1.1 (1a vez nesta execucao). A reserva original foi as 10h17Z e o bloco e longo: a bancada sem rede roda em mais de uma hora. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE GRAVA O CAMPO, e nunca digitada — a primeira tentativa desta renovacao escreveu 10h52Z com o relogio em 10h41Z, que e a QUARTA vez que esta ilha escreve reserva no futuro (ver os commits de 15/10). Digitar a hora e o defeito; o pipe e o conserto.
 bloco_atual: |
   A PERGUNTA DO ITEM 4 ESTA RESPONDIDA, E A RESPOSTA E 96: sao 96 funcoes
   COMPARTILHADAS de ferramentas/ com um exercitador so, e 92 delas sem leitor de
