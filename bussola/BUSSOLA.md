@@ -62,6 +62,28 @@ Toda a régua acima é **relativa**. `S_par` e `S_com` medem quem ocupa a SERP; 
 
 **A escala ainda é magra e isto está dito de propósito:** hoje existem dois pontos de calibração — Aquametria 51% e Robometria 18% de consultas com volume mensurável. **Dois pontos não definem um corte numérico**, e por isso esta seção não fixa um percentual mínimo ainda. Fixa o PROCEDIMENTO e a obrigação de registrar. O corte se escreve quando houver a terceira ilha medida do mesmo jeito — e quem escrever o corte com dois pontos estará fazendo exatamente o que a 3.1 abaixo proíbe.
 
+**SUPERADO EM PARTE em 21/10/2026:** o corte numérico que este parágrafo deixava para depois foi fixado pelo Raphael, e não em percentual de consultas com volume, e sim em TRÁFEGO: é a seção 3.0-c, logo abaixo. O procedimento de medir e registrar desta seção continua valendo e alimenta a conta da 3.0-c.
+
+## 3.0-c PISO DE TRÁFEGO — 1.000 visitas orgânicas por dia, ou a ilha não nasce (decisão do Raphael, 21/10/2026)
+
+**A frase dele:** "Como a gente vai se basear em tráfego 100% orgânico, a Bússola tem que encontrar nichos que sejam, ao mesmo tempo, fáceis de ranquear e que tragam pelo menos 1.000 pessoas por dia. Se for menos de 1.000 pessoas por dia, não compensa fazer essa ilha. A conversão em venda fica em torno de 1%; ranquear fácil numa palavra que traz 10 ou 20 pessoas por mês não adianta nada. E tem que ter produto para vender para essas pessoas, de preferência na Shopee."
+
+**3.0-c.1 A trava, eliminatória:** nenhum nicho vira ilha se a conta abaixo der **menos de 1.000 visitas orgânicas por dia** com a ilha ranqueada no que ela consegue alcançar. Mais é melhor; menos desqualifica, por melhor que seja o índice da seção 3.
+
+**3.0-c.2 A conta, obrigatória em todo dossiê:**
+- Liste as consultas que a ilha vai atender **e que levam a um produto vendável** (a metade paramétrica e a de produto pelo nome, seção 30 do `ARQUIPELAGO.md`). Consulta sem produto no fim não entra na soma.
+- **Volume MEDIDO, nunca estimado:** Google Keyword Planner, Brasil, últimos 12 meses, registrado em `bussola/medicoes/` com data. Se a conta devolver faixa (`1 mil – 10 mil`), use o **piso da faixa**. Termo com `—` conta zero.
+- Para cada consulta, a **posição alcançável** pela classificação de SERP desta lei (S_par): SERP aberta → top 3; mista → 4 a 10; tomada → não entra na soma.
+- **CTR por posição** de uma curva pública de CTR orgânico com fonte e data registradas no dossiê, descontada a presença de resposta de IA no topo quando a SERP mostrar uma. A curva escolhida fica escrita no dossiê, para a próxima rodada usar a mesma.
+- **Visitas/dia = Σ (volume mensal × CTR da posição alcançável) ÷ 30.** Escreva o número, a soma por cluster e a lista das 20 consultas que mais pesam.
+- Ao lado, sempre: **vendas/dia esperadas = visitas/dia × 1%** e **comissão/dia = vendas × ticket típico × comissão do programa** (seção 3, M). É ordem de grandeza para decidir, marcada como estimativa — nunca promessa.
+
+**3.0-c.3 Tem que ter o que vender:** a busca precisa ter intenção clara num nicho específico, terminando em produto que a ilha consiga indicar como afiliado. **Shopee é o programa preferido do Raphael — centralizar nela sempre que possível.** A cobertura de afiliado da seção 2 passa a ser medida primeiro na Shopee: se 7 de 10 produtos que a ferramenta indicaria estão na Shopee com link rastreável, o nicho é Shopee-só; Mercado Livre e programa de operador entram apenas para o que a Shopee não vende, e o dossiê diz quantos itens dependem deles.
+
+**3.0-c.4 O que esta seção não faz:** não muda a facilidade (S, P) nem o índice — um nicho com 1.000 visitas/dia possíveis mas SERP tomada continua desqualificado pela seção 3. A ilha precisa passar nas DUAS: fácil de ranquear E com 1.000 visitas/dia no que é ranqueável.
+
+**3.0-c.5 Sem medição, sem ilha:** se o Planejador não abrir, ou a conta não fechar por falta de dado, o nicho vai para "fora do ranking" com o motivo escrito (seção 3.1). Nunca preencher a soma com palpite.
+
 ## 3.1 Nota que não foi medida não vira índice
 
 Três regras que nasceram da autocrítica da própria rodada 004, e valem da 005 em diante.
