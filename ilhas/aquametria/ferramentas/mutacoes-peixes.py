@@ -267,8 +267,21 @@ MUTACOES = [
     ("A COLISAO DE SLUG VOLTA: a categoria do C8 se chama 'peixes' outra vez",
      troca(CASCA, "\t\t'lotacao'           => 'Lotação',", "\t\t'peixes'            => 'Lotação',")),
 
-    ("o catalogo do snippet envelhece: o porte do neon muda no banco e ninguem roda o gerador",
-     troca(BANCO, '"porte_adulto_cm": 2.2,', '"porte_adulto_cm": 2.4,')),
+    # ESTA MUTACAO SOBREVIVEU EM 21/10/2026 E TROCOU DE ALVO, e o motivo e um achado
+    # sobre o que a pagina serve. Ela mudava o porte do NEON no banco e exigia que o
+    # portao visse o catalogo do snippet envelhecer. Naquele dia o neon ganhou um
+    # CONFLITO em porte_adulto_cm (FishBase 2,2 contra Seriously Fish 3,0), e a pagina
+    # passou a servir os dois numeros do conflito — "2,2 a 3 cm" —, nao o campo. Mover
+    # so o campo deixou de mover a tela, e a mutacao ficou cega sem nada acusar.
+    #
+    # MEDIDO, e e o que diz que o furo nao e grande: o VALIDADOR pega esse mesmo
+    # mundo, com dois erros e codigo 1 — E16 (o 2,4 nao aparece no texto de fonte
+    # nenhuma) e E24 (a clausula de maximo nao fala desse numero). Quem erra aqui e
+    # pego no banco, nao na pagina. O alvo passa a ser a CORIDORA STERBAI, que tem
+    # ficha publicada e cujo porte nao tem conflito, entao decide a tela sozinho; e
+    # quem lhe der um conflito de porte um dia tem de mover este alvo outra vez.
+    ("o catalogo do snippet envelhece: o porte da coridora sterbai muda no banco e ninguem roda o gerador",
+     troca(BANCO, '"porte_adulto_cm": 6.8,', '"porte_adulto_cm": 7.0,')),
 
     # -------------------------------------------------- 4. as regras da leva 2
     #
@@ -549,9 +562,19 @@ MUTACOES = [
            "\t\t$total = count( $catalogo ) + count( $barrados );",
            "\t\t$total = count( $catalogo );")),
 
+    # A CAUSA MAIS COMUM TROCOU DE NOME EM 21/10/2026, E A MUTACAO SOBREVIVEU POR ISSO.
+    # Ela apagava a traducao de 'duas fontes distintas', que era a causa de tres
+    # ausentes. A lista de 21/10 deu o segundo corpo ao guppy e reescreveu a causa do
+    # danio galaxia, e com isso NENHUM registro barrado tem mais essa causa: apagar a
+    # traducao dela deixou de mudar uma letra na tela. A entrada do mapa fica no
+    # snippet de proposito — a causa volta no dia em que um registro nascer com uma
+    # fonte so —, mas ela e, hoje, traducao que nenhum barrado usa.
+    # A causa de TRES ausentes hoje e `convivencia` (os dois Trichopodus e o danio
+    # galaxia), medida na saida do gerador, e e para ela que a mutacao aponta. Quem
+    # mover o banco confere qual causa tem tres antes de confiar no rotulo.
     ("A TRADUCAO DA CAUSA MAIS COMUM SOME DO MAPA: tres ausentes perdem o motivo na tela",
      troca(PEIXES,
-           "\t\t'duas fontes distintas'         => 'um segundo corpo de fonte (as duas referências do banco são do mesmo)',\n",
+           "\t\t'convivencia'                   => 'como a espécie vive (sozinha, em casal ou em grupo)',\n",
            "")),
 
     ("UM AUSENTE E APAGADO DO BLOCO GERADO: o snippet envelhece em relacao ao banco",
