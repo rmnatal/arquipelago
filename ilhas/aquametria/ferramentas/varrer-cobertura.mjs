@@ -123,6 +123,9 @@ for (const c of CALCS) {
     await page.evaluate(() => { try { localStorage.clear(); } catch (e) {} });
     await page.goto(url);
     for (let x = c.eixo.de; x <= c.eixo.ate; x += c.eixo.passo) {
+      /* A dobra dos ajustes finos da C15 (1.8.0) esconde a lamina; o Playwright
+         nao digita em campo invisivel. Abrir custa uma linha. */
+      await page.evaluate(() => { document.querySelectorAll('details.aqm-dobra').forEach((d) => { d.open = true; }); });
       await page.fill(c.eixo.campo, String(x));
       const acompanha = c.eixo.acompanha ? c.eixo.acompanha(x) : {};
       for (const [sel, v] of Object.entries({ ...acompanha, ...(cen.txt || {}) })) await page.fill(sel, v);

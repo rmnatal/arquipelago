@@ -246,6 +246,17 @@ if (servidos && servidos.length) {
 // medicao e no CORPO, nunca no HTML completo — procurar a frase na pagina
 // inteira acharia texto dentro de JSON-LD ou de comentario e passaria por
 // motivo errado (secao 8 do ARQUIPELAGO.md).
+/* AS DOBRAS SAO ABERTAS ANTES DE LER O CORPO. Desde a C15 1.8.0 (32.1, item 7)
+   o texto longo da pagina mora em <details>, e innerText nao devolve o que esta
+   dentro de dobra fechada — a frase sobre tarifa de energia virou vermelha sem
+   ter saido da pagina. Abrir e o que a pessoa faz com um toque, e a leitura
+   continua sendo do CORPO: a protecao contra achar a frase dentro de JSON-LD ou
+   de comentario, que e a razao de este portao nao olhar o HTML inteiro, fica de
+   pe. Que o texto exista no HTML servido sem script e medido em outro lugar,
+   pela 32.5. */
+await semJs.evaluate(() => {
+  document.querySelectorAll('details.aqm-dobra').forEach((d) => { d.open = true; });
+});
 const corpoServido = await semJs.evaluate(() => document.body.innerText);
 conferir('a pagina NAO diz mais que nao publica preco (a vitrine publica, com data)',
   !/n[aã]o publicamos pre[çc]o/i.test(corpoServido),
@@ -524,8 +535,21 @@ conferir('e a pagina DIZ por que a lista esta vazia (silencio parece defeito)',
   vazio.nada.length > 80 && /Nenhuma luminária/.test(vazio.nada), vazio.nada.slice(0, 120) + '...');
 
 /* ===================================================================== */
-/* 3. Celular: barra fixa enquanto o resultado esta fora da tela          */
+/* 3. Celular: barra fixa enquanto o BLOCO DE COMPRA esta fora da tela    */
 /* ===================================================================== */
+/* O QUE A BARRA VIGIA MUDOU NA C15 1.8.0, e com ele mudaram tres afirmacoes
+   desta secao. Pela 32.1 do ARQUIPELAGO.md a barra do celular carrega o numero
+   do resultado e o botao para o BLOCO DE COMPRA, e aparece enquanto esse bloco
+   esta fora da tela. Antes ela vigiava a caixa de resultado e so existia depois
+   de um calculo — o que deixava sem barra, e sem caminho para o produto,
+   exatamente quem chega da busca e nao preenche nada. Agora:
+     - ela nasce ligada, com o numero do caso de exemplo servido no HTML;
+     - ela some quando o bloco de compra entra na tela, e nao quando o
+       resultado entra;
+     - "Limpar" nao a desliga mais: o formulario volta ao exemplo e a caixa de
+       resultado do exemplo volta com ele, entao continua havendo numero na
+       tela para a barra prometer. Barra desligada ali seria a pagina escondendo
+       o caminho para a compra justamente no estado em que ela nasce. */
 
 console.log('\ncelular (390 x 720)');
 
@@ -570,32 +594,56 @@ const tamanho = await cel.evaluate(() => document.documentElement.outerHTML.leng
 conferir('a pagina medida tem o tamanho da pagina real, e nao a metade',
   tamanho > 100000, Math.round(tamanho / 1024) + ' KB');
 
-// Longe do resultado, a barra tem que aparecer.
-await cel.evaluate(() => window.scrollTo(0, 0));
-await cel.waitForTimeout(600);
-const barraNoTopo = await cel.$eval('#aqm-c15-barra',
+// Com o bloco de compra fora da tela, a barra tem que aparecer. O "fora da
+// tela" e medido, nao suposto: a altura do bloco depende do catalogo do dia.
+const foraDeVista = await cel.evaluate(async () => {
+  const alvo = document.querySelector('#aqm-c15-compra');
+  window.scrollTo(0, Math.max(0, alvo.getBoundingClientRect().top + window.scrollY + alvo.offsetHeight + 200));
+  await new Promise((r) => setTimeout(r, 600));
+  const c = alvo.getBoundingClientRect();
+  return c.bottom < 0 || c.top > window.innerHeight;
+});
+conferir('o bloco de compra saiu da tela antes de medir a barra', foraDeVista === true, String(foraDeVista));
+
+const barraForaDaCompra = await cel.$eval('#aqm-c15-barra',
   (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
-conferir('com o resultado fora da tela, a barra do celular aparece',
-  /flex/.test(barraNoTopo) && /false/.test(barraNoTopo), barraNoTopo);
+conferir('com o bloco de compra fora da tela, a barra do celular aparece',
+  /flex/.test(barraForaDaCompra) && /false/.test(barraForaDaCompra), barraForaDaCompra);
 
 const textoBarra = await cel.$eval('#aqm-c15-barra-texto', (n) => n.textContent.trim());
 conferir('a barra do celular carrega a faixa calculada, nao um texto generico',
   / lm /.test(textoBarra) && textoBarra.includes(br(VOLUME_N, 1)), textoBarra);
 
-// O botao dela leva ao resultado, e ai ela some.
+// O botao dela leva ao BLOCO DE COMPRA, e ai ela some.
 await cel.click('#aqm-c15-barra-ir');
-await cel.waitForTimeout(700);
-const barraNoResultado = await cel.$eval('#aqm-c15-barra',
-  (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
-conferir('com o resultado a vista, a barra some',
-  /none/.test(barraNoResultado) && /true/.test(barraNoResultado), barraNoResultado);
+await cel.waitForTimeout(900);
+const compraAVista = await cel.evaluate(() => {
+  const c = document.querySelector('#aqm-c15-compra').getBoundingClientRect();
+  return c.top >= -5 && c.top < window.innerHeight;
+});
+conferir('o botao da barra leva ao bloco de compra', compraAVista === true, String(compraAVista));
 
-// Limpar tem que desligar a barra, senao ela fica prometendo um resultado morto.
+const barraNaCompra = await cel.$eval('#aqm-c15-barra',
+  (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
+conferir('com o bloco de compra a vista, a barra some',
+  /none/.test(barraNaCompra) && /true/.test(barraNaCompra), barraNaCompra);
+
+// Limpar devolve o formulario ao exemplo, e a barra volta a prometer o numero
+// DELE — que e um numero que esta na tela, servido no HTML.
 await cel.click('#aqm-c15-limpar');
-await cel.evaluate(() => window.scrollTo(0, 0));
 await cel.waitForTimeout(500);
-const barraDepoisDeLimpar = await cel.$eval('#aqm-c15-barra', (n) => getComputedStyle(n).display);
-conferir('limpar o formulario desliga a barra', barraDepoisDeLimpar === 'none', barraDepoisDeLimpar);
+const exemploDeVolta = await cel.evaluate(() => {
+  const e = document.querySelector('#aqm-c15-exemplo');
+  const s = document.querySelector('#aqm-c15-saida');
+  return {
+    exemplo: !!e && !e.classList.contains('aqm-c15-oculto'),
+    saida: !!s && s.classList.contains('aqm-c15-oculto'),
+    barra: document.querySelector('#aqm-c15-barra-texto').textContent.trim(),
+  };
+});
+conferir('limpar devolve a caixa de resultado do exemplo', exemploDeVolta.exemplo === true, String(exemploDeVolta.exemplo));
+conferir('e esconde a caixa do calculo que acabou de sair', exemploDeVolta.saida === true, String(exemploDeVolta.saida));
+conferir('a barra volta a prometer o numero do exemplo', / lm /.test(exemploDeVolta.barra), exemploDeVolta.barra);
 
 await ctxCel.close();
 await navegador.close();

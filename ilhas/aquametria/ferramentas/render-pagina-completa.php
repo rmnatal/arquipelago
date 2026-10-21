@@ -245,12 +245,19 @@ if ( file_exists( $arquivo_md ) ) {
 	}
 
 	$html = aquametria_sync_md( $md );
+	/* SHORTCODE COM ATRIBUTO TAMBEM E EXPANDIDO. Ate 21/10/2026 o padrao aqui
+	   era `\[([a-z0-9_]+)\]` e so casava shortcode pelado: a dobra da secao
+	   32.1 — `[aqm_dobra titulo="..."]` — saia IMPRESSA na pagina medida, sendo
+	   que o do_shortcode do WordPress a expande sem reclamar. Bancada que nao
+	   enxerga o que o site serve nao mede nada. */
 	$html = preg_replace_callback(
-		'/\[([a-z0-9_]+)\]/i',
+		'/\[([a-z0-9_]+)((?:\s[^\]]*)?)\]/i',
 		function ( $m ) {
-			return isset( $GLOBALS['__shortcodes'][ $m[1] ] )
-				? call_user_func( $GLOBALS['__shortcodes'][ $m[1] ] )
-				: $m[0];
+			if ( ! isset( $GLOBALS['__shortcodes'][ $m[1] ] ) ) {
+				return $m[0];
+			}
+			$atts = shortcode_parse_atts( isset( $m[2] ) ? $m[2] : '' );
+			return call_user_func( $GLOBALS['__shortcodes'][ $m[1] ], $atts ? $atts : '' );
 		},
 		$html
 	);

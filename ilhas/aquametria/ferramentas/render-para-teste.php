@@ -28,9 +28,20 @@ define('ABSPATH', '/tmp/wp/'); define('OBJECT','OBJECT'); define('ARRAY_A','ARRA
 $GLOBALS['__filtros']=array(); $GLOBALS['__shortcodes']=array(); $GLOBALS['__acoes']=array();
 $GLOBALS['__conteudo_pagina']='';
 
-function add_filter($h,$f,$p=10,$a=1){ $GLOBALS['__filtros'][$h][]=$f; }
+/* A PRIORIDADE DO FILTRO E RESPEITADA, como o do_action logo abaixo ja fazia
+   com as acoes. Ate 21/10/2026 este add_filter jogava tudo numa fila de ordem de
+   REGISTRO, e com isso a bancada media uma ordem de filtros que o site nao tem:
+   quem registra depois com prioridade menor roda ANTES no WordPress e rodava
+   DEPOIS aqui. Mediu-se o custo no dia em que a dobra da secao 32.1 nasceu — o
+   filtro que fecha dobra aberta e prioridade 19 e o cluster "Veja tambem" e 20,
+   e na ordem de registro o cluster caia DENTRO da dobra. */
+function add_filter($h,$f,$p=10,$a=1){
+	$GLOBALS['__filtros'][$h][]=array($p,count($GLOBALS['__filtros'][$h]??[]),$f);
+}
 function apply_filters($h,$v){ $extra=array_slice(func_get_args(),2);
-	foreach(($GLOBALS['__filtros'][$h]??[]) as $f){ $v=call_user_func_array($f, array_merge(array($v),$extra)); } return $v; }
+	$lista = $GLOBALS['__filtros'][$h] ?? array();
+	usort($lista, function($a,$b){ return $a[0]===$b[0] ? $a[1]-$b[1] : $a[0]-$b[0]; });
+	foreach($lista as $item){ $v=call_user_func_array($item[2], array_merge(array($v),$extra)); } return $v; }
 function add_action($h,$f,$p=10,$a=1){ $GLOBALS['__acoes'][$h][]=array($p,count($GLOBALS['__acoes'][$h]??[]),$f); }
 function do_action($h){
 	$lista = $GLOBALS['__acoes'][$h] ?? array();
@@ -38,6 +49,26 @@ function do_action($h){
 	foreach ($lista as $item) { call_user_func($item[2]); }
 }
 function add_shortcode($t,$f){ $GLOBALS['__shortcodes'][$t]=$f; }
+/* shortcode_atts e shortcode_parse_atts do WordPress, na parte que esta ilha usa:
+   atributo nomeado com valor entre aspas. Sem eles, shortcode com atributo
+   derrubava a bancada com "Call to undefined function" — e o shortcode da dobra
+   da secao 32.1 tem atributo. */
+function shortcode_parse_atts($texto){
+	$atts = array();
+	if (!is_string($texto)) { return $atts; }
+	if (preg_match_all('/([a-zA-Z0-9_-]+)\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s\]]+))/', $texto, $m, PREG_SET_ORDER)) {
+		foreach ($m as $par) {
+			$valor = '' !== $par[2] ? $par[2] : ('' !== ($par[3] ?? '') ? $par[3] : ($par[4] ?? ''));
+			$atts[strtolower($par[1])] = $valor;
+		}
+	}
+	return $atts;
+}
+function shortcode_atts($padrao,$atts,$tag=''){
+	$atts = (array) $atts; $saida = array();
+	foreach ($padrao as $nome=>$valor) { $saida[$nome] = array_key_exists($nome,$atts) ? $atts[$nome] : $valor; }
+	return $saida;
+}
 /* remove_action DE VERDADE: casa gancho, funcao e prioridade, como o WordPress.
    Sem isso nao da para provar que o icone do WordPress saiu do wp_head. */
 function remove_action($h,$f,$p=10){

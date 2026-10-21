@@ -222,6 +222,7 @@ for (const nivelId of Object.keys(NIVEIS)) {
 
     await pagina.fill('#aqm-c15-volume', String(e.V));
     await pagina.fill('#aqm-c15-comprimento', String(cm));
+    await pagina.evaluate(() => { document.querySelectorAll('details.aqm-dobra').forEach((d) => { d.open = true; }); });
     await pagina.fill('#aqm-c15-lamina', '40');
     await pagina.selectOption('#aqm-c15-nivel', nivelId);
     await pagina.click('#aqm-c15-form button[type="submit"]');
@@ -321,6 +322,7 @@ if (semColheita.length) {
     const e = esperado(achou.cm, achou.nivelId);
     await pagina.fill('#aqm-c15-volume', String(e.V));
     await pagina.fill('#aqm-c15-comprimento', String(achou.cm));
+    await pagina.evaluate(() => { document.querySelectorAll('details.aqm-dobra').forEach((d) => { d.open = true; }); });
     await pagina.fill('#aqm-c15-lamina', '40');
     await pagina.selectOption('#aqm-c15-nivel', achou.nivelId);
     await pagina.click('#aqm-c15-form button[type="submit"]');

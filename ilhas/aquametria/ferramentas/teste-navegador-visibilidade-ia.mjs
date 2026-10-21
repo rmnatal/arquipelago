@@ -230,14 +230,41 @@ for (const caso of CASOS) {
     // Procedencia DENTRO da frase: fonte nomeada e data na mesma passagem.
     conferir(/\d{2}\/\d{2}\/\d{4}/.test(t), 'a resposta direta traz data de verificacao');
 
-    // Vem ANTES do formulario? Um modelo le de cima para baixo.
+    // VEM ANTES DA EXPLICACAO, e nao antes do formulario. A regra que importa
+    // para um modelo que le de cima para baixo e a da secao 5 do
+    // ARQUIPELAGO.md: a resposta antes da explicacao. Ate 21/10/2026 este
+    // portao a media como "antes do <form>", e a secao 32.1 inverteu
+    // justamente essa ordem — o formulario sobe para a primeira tela porque a
+    // medicao no ar mostrou que ele comecava a 1.007 px no celular e quase
+    // ninguem chegava nele. O que a 32.3 manda NAO mudar e a resposta antes da
+    // explicacao, e e isso que se mede aqui: a explicacao e o primeiro titulo
+    // de secao da pagina (<h2>), como o teste-navegador-artigos.mjs ja fazia.
     const ordem = await pagina.evaluate(p => {
       const d = document.querySelector('.' + p + '-direta');
-      const f = document.querySelector('form');
-      if (!d || !f) { return null; }
-      return (d.compareDocumentPosition(f) & Node.DOCUMENT_POSITION_FOLLOWING) ? 'antes' : 'depois';
+      if (!d) { return null; }
+      const h = document.querySelector('h2');
+      if (!h) { return 'sem secao'; }
+      return (d.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING) ? 'antes' : 'depois';
     }, caso.prefixo);
-    conferir(ordem === 'antes', 'a resposta vem antes do formulario no HTML', ordem);
+    conferir(ordem === 'antes' || ordem === 'sem secao',
+      'a resposta vem antes da primeira secao de explicacao no HTML', ordem);
+
+    // E A PAGINA TEM NUMERO DE RESPOSTA NA PRIMEIRA TELA, servido sem script.
+    // E a outra metade da mesma regra: com o formulario em cima, a prova de que
+    // a pagina responde sem que ninguem preencha nada passou a ser a caixa de
+    // resultado pre-renderizada da 32.1, item 4 — ou, nas calculadoras que
+    // ainda nao receberam o molde, a propria resposta direta.
+    const respostaNoAlto = await pagina.evaluate(p => {
+      const alvo = document.querySelector('.' + p + '-exemplo') || document.querySelector('.' + p + '-direta');
+      if (!alvo) { return null; }
+      const t = (alvo.innerText || '').trim();
+      const h = document.querySelector('h2');
+      const antes = !h || !!(alvo.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING);
+      return { numero: /\d/.test(t), antes: antes };
+    }, caso.prefixo);
+    conferir(!!respostaNoAlto && respostaNoAlto.numero && respostaNoAlto.antes,
+      'existe caixa de resposta COM NUMERO antes da primeira secao, sem script',
+      JSON.stringify(respostaNoAlto));
   }
 
   // ---------------------------------- e o que a pagina NAO pode ter feito

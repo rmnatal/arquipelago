@@ -39,7 +39,7 @@ const CASOS = [
   // REPROVAR exatamente o trabalho que a fila mandou fazer. O sinalizador saiu:
   // ver a regra escrita logo abaixo, na afirmação 5.
   { codigo: 'c15', arquivo: 'c15.html', produtos: true,
-    preencher: async p => { await p.fill('#aqm-c15-volume', '100'); await p.fill('#aqm-c15-comprimento', '80'); await p.fill('#aqm-c15-lamina', '45'); await p.selectOption('#aqm-c15-regime', 'normal'); } },
+    preencher: async p => { await p.evaluate(() => { document.querySelectorAll('details.aqm-dobra').forEach((d) => { d.open = true; }); }); await p.fill('#aqm-c15-volume', '100'); await p.fill('#aqm-c15-comprimento', '80'); await p.fill('#aqm-c15-lamina', '45'); await p.selectOption('#aqm-c15-regime', 'normal'); } },
 ];
 
 let falhas = 0;

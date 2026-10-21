@@ -49,14 +49,36 @@ page.on('console', m => {
 });
 page.on('pageerror', e => erros.push('pageerror: ' + e.message));
 
+/* AS DOBRAS SE ABREM ANTES DE PREENCHER. Desde a C15 1.8.0 (molde de conversao,
+   secao 32.1) os campos de lamina, momento do aquario, tipo de luminaria e CO2
+   moram numa dobra fechada dentro do formulario, e o Playwright nao digita em
+   campo invisivel — este portao parava com TimeoutError em `#aqm-c15-co2`. Abrir
+   a dobra e o que a pessoa faz com um toque; o portao faz o mesmo. */
+async function abrirDobras() {
+  await page.evaluate(() => {
+    document.querySelectorAll('details.aqm-dobra').forEach((d) => { d.open = true; });
+  });
+}
+
 async function preencher(v, opts = {}) {
   await page.goto(URL);
+  await abrirDobras();
   await page.evaluate(() => { try { localStorage.clear(); } catch (e) {} });
   await page.goto(URL);
+  await abrirDobras();
   await page.fill('#aqm-c15-volume', String(v));
-  if (opts.comprimento !== undefined) await page.fill('#aqm-c15-comprimento', String(opts.comprimento));
-  if (opts.lamina !== undefined) await page.fill('#aqm-c15-lamina', String(opts.lamina));
-  if (opts.nivel) await page.selectOption('#aqm-c15-nivel', opts.nivel);
+  /* Campo nao pedido pelo caso sai VAZIO, e nao herdado da tela. Pela mesma
+     razao do nivel abaixo: desde a C15 1.8.0 o formulario nasce com o caso de
+     exemplo, e o caso 8 deste portao se chama "sem comprimento". */
+  await page.fill('#aqm-c15-comprimento', opts.comprimento !== undefined ? String(opts.comprimento) : '');
+  await page.fill('#aqm-c15-lamina', opts.lamina !== undefined ? String(opts.lamina) : '');
+  /* O NIVEL E DITO SEMPRE, e nao herdado do que o formulario traz. Desde a
+     C15 1.8.0 o formulario nasce preenchido com o caso de exemplo da pagina
+     (90 cm, alta exigencia), e os casos deste portao que nao nomeavam o nivel
+     passaram a medir alta onde o proprio titulo deles diz "exigencia media" —
+     11 afirmacoes vermelhas por heranca de estado, nenhuma por conta errada.
+     Caso que depende de um padrao da tela e caso que muda quando a tela muda. */
+  await page.selectOption('#aqm-c15-nivel', opts.nivel || 'media');
   if (opts.regime) await page.selectOption('#aqm-c15-regime', opts.regime);
   if (opts.tipo) await page.selectOption('#aqm-c15-tipo', opts.tipo);
   if (opts.co2) await page.check('#aqm-c15-co2');
@@ -244,6 +266,7 @@ ok('lembra que lúmen não é fotossíntese', inverso.includes('não entregam a 
 
 console.log('\n16. estado compartilhado — mescla, nunca substituição');
 await page.goto(URL);
+await abrirDobras();
 await page.evaluate(() => {
   localStorage.setItem('aquametria.aquario', JSON.stringify({
     versao: 1, calculadora: 'c1-litragem',
@@ -255,6 +278,7 @@ await page.evaluate(() => {
   }));
 });
 await page.goto(URL);
+await abrirDobras();
 await page.waitForTimeout(150);
 ok('retomou o aquário guardado pela C1', (await txt('#aqm-c15-retomado')).includes('100 L'));
 ok('retomou também o comprimento', (await page.inputValue('#aqm-c15-comprimento')) === '80');
@@ -281,6 +305,7 @@ const citacao = await txt('#aqm-c15-citacao');
 ok('citação traz faixa, fotoperíodo e Kelvin', citacao.includes('2.200') && citacao.includes('h/dia')
   && citacao.includes('6.500'), citacao.slice(0, 120));
 await page.goto(URL);
+await abrirDobras();
 await page.fill('#aqm-c15-volume', '');
 await page.click('#aqm-c15-form button[type=submit]');
 await page.waitForTimeout(80);
@@ -293,6 +318,7 @@ ok('comprimento absurdo vira erro', (await txt('#aqm-c15-erros')).includes('entr
 
 console.log('\n19. quadro de fontes e recusas');
 await page.goto(URL);
+await abrirDobras();
 const fontes = await txt('.aqm-c15-fontes');
 ok('lista as três fontes de lm/L', fontes.includes('iluminacao-lumen-por-litro'));
 ok('publica a recusa do PPFD com o motivo achado na Chihiros',

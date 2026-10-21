@@ -245,7 +245,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.11.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.12.0' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -1141,6 +1141,21 @@ body:has(.aqm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
 .aqm-linha-mestra{font-size:1.15rem;}
 .aqm-wordmark{font-size:1.25rem;}
 }
+/* A dobra: o texto longo sai do caminho de quem chegou para usar a ferramenta e
+   nao sai da pagina. O porque esta no PHP, que nao e servido ao visitante. */
+.aqm-dobra{border:1px solid var(--aqm-traco);border-radius:3px;background:var(--aqm-superficie);margin:1rem 0 0;}
+.aqm-dobra + .aqm-dobra{margin-top:.6rem;}
+.aqm-dobra-titulo{display:flex;align-items:baseline;gap:.5rem;cursor:pointer;list-style:none;font-family:var(--aqm-display);font-size:.98rem;font-weight:700;line-height:1.35;color:var(--aqm-tinta);padding:.8rem .95rem;}
+.aqm-dobra-titulo h2,.aqm-dobra-titulo h3{font:inherit;color:inherit;margin:0;}
+.aqm-dobra-titulo::-webkit-details-marker{display:none;}
+.aqm-dobra-titulo:before{content:"+";flex:0 0 auto;font-family:var(--aqm-mono);font-weight:400;font-size:1.05rem;line-height:1;color:var(--aqm-lamina);}
+.aqm-dobra[open] > .aqm-dobra-titulo:before{content:"–";}
+.aqm-dobra-titulo:hover{color:var(--aqm-lamina);}
+.aqm-dobra-titulo:focus-visible{outline:2px solid var(--aqm-lamina);outline-offset:-2px;}
+.aqm-dobra[open] > .aqm-dobra-titulo{border-bottom:1px solid var(--aqm-traco);}
+.aqm-dobra-corpo{padding:.95rem .95rem 1.1rem;}
+.aqm-dobra-corpo > :first-child{margin-top:0;}
+.aqm-dobra-corpo > :last-child{margin-bottom:0;}
 /* Menu sanfona. 782 px e a largura em que o proprio WordPress considera que a
    tela virou celular; seguir a mesma quebra evita cabecalho meio empilhado.
    Tudo aqui depende de [data-aqm-menu]: sem JavaScript nada disso vale e o menu
@@ -1916,6 +1931,78 @@ add_action( 'wp_head', function () {
 		. "gtag('config'," . wp_json_encode( $id ) . ');'
 		. '</script>' . "\n";
 }, 23 );
+
+/* ---------------------------------------------------------------------------
+ * 3f. A DOBRA DO MARKDOWN — [aqm_dobra titulo="..."] ... [aqm_dobra_fim]
+ *
+ * Secao 32.1, item 7: na pagina de ferramenta o texto longo vai para secoes
+ * recolhiveis, e nenhuma palavra sai da pagina (32.3). O conversor de Markdown
+ * do Sync ESCAPA todo HTML do corpo, de proposito — escrever <details> no
+ * arquivo .md publicaria "&lt;details&gt;" na tela. O caminho que existe e o
+ * shortcode: a linha que so tem um shortcode sai sem <p> em volta, e isso o
+ * conversor ja garante desde a 1.1.1.
+ *
+ * SAO DUAS TAGS SOLTAS, e nao um shortcode com conteudo. O conversor trabalha
+ * linha por linha e [/aqm_dobra] NAO casa com o padrao de linha-de-shortcode
+ * dele (o padrao exige que o nome comece com letra ou digito), entao a tag de
+ * fechamento sairia dentro de um <p>. Com duas tags soltas cada linha casa, e o
+ * que fica entre elas e Markdown convertido normalmente.
+ *
+ * QUEM FECHA O QUE NAO FOI FECHADO: o contador. Dobra aberta e nao fechada
+ * deixaria o resto da pagina — inclusive o cluster "Veja tambem" e o rodape —
+ * dentro de um <details> fechado, que e pagina pela metade no ar. O filtro do
+ * the_content fecha o que sobrou, na prioridade 19: depois do do_shortcode (11)
+ * e antes do cluster (20).
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_casca_dobras_abertas' ) ) {
+function aquametria_casca_dobras_abertas( $delta = 0 ) {
+	static $abertas = 0;
+	$abertas += $delta;
+	if ( $abertas < 0 ) {
+		$abertas = 0;
+	}
+	return $abertas;
+}
+}
+
+add_shortcode( 'aqm_dobra', function ( $atts ) {
+	$atts   = shortcode_atts( array( 'titulo' => '' ), $atts, 'aqm_dobra' );
+	$titulo = trim( (string) $atts['titulo'] );
+	if ( '' === $titulo ) {
+		/* Dobra sem titulo seria uma caixa que ninguem sabe o que esconde. */
+		return '';
+	}
+	aquametria_casca_dobras_abertas( 1 );
+
+	/* O titulo da dobra E o <h2> da secao, dentro do <summary> — que e onde o
+	   HTML permite conteudo de cabecalho. Repetir o h2 dentro do corpo daria
+	   dois titulos iguais na tela aberta; tirar o h2 deixaria a pagina sem
+	   nenhum nivel 2, que e estrutura que a busca e os modelos leem. */
+	return '<details class="aqm-dobra"><summary class="aqm-dobra-titulo"><h2>' . esc_html( $titulo )
+		. '</h2></summary><div class="aqm-dobra-corpo">';
+} );
+
+add_shortcode( 'aqm_dobra_fim', function () {
+	if ( aquametria_casca_dobras_abertas() < 1 ) {
+		/* Fechamento sem abertura: tag solta no texto, e fecha-la aqui quebraria
+		   o HTML em vez de consertar nada. */
+		return '';
+	}
+	aquametria_casca_dobras_abertas( -1 );
+
+	return '</div></details>';
+} );
+
+add_filter( 'the_content', function ( $html ) {
+	$abertas = aquametria_casca_dobras_abertas();
+	if ( $abertas < 1 ) {
+		return $html;
+	}
+	aquametria_casca_dobras_abertas( -$abertas );
+
+	return $html . str_repeat( '</div></details>', $abertas );
+}, 19 );
 
 /**
  * A home, no molde GUIA do VOZ.md: a pergunta mais frequente em cima, as
