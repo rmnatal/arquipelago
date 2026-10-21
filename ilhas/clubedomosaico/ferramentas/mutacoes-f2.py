@@ -143,8 +143,11 @@ def m_secao_do_que_nao_usar_some(raiz):
     """A secao que da razao de ser a pagina desaparece. A recomendacao continua
     certa — e e por isso que a mutacao vale: um teste que so olhasse o topo da
     lista aprovaria."""
+    # RETARGETADA EM 21/10/2026: a secao passou a sair dentro de uma dobra, pela
+    # `cdm_casca_dobrar_secao()`. O defeito que a mutacao produz e o mesmo — a
+    # secao fora do HTML servido.
     editar(raiz, SNIPPET,
-           "\t$html .= cdm_f2_fora_html( $e['base'], $e['ambiente'], $e['tessela'] );",
+           "\t$html .= cdm_casca_dobrar_secao( cdm_f2_fora_html( $e['base'], $e['ambiente'], $e['tessela'] ) );",
            "\t$html .= '';")
 
 
@@ -223,9 +226,12 @@ def m_script_volta_para_dentro_do_shortcode(raiz):
     """O defeito que derrubou cinco calculadoras da Aquametria em 08/09/2026: o
     <script> volta para dentro do retorno do shortcode e o filtro do conteudo o
     mata convertendo o E-comercial."""
+    # RETARGETADA EM 21/10/2026: com o molde da secao 32 a barra do rodape entra
+    # entre o `</div>` do bloco e o `return`, entao a sequencia antiga nao existe
+    # mais. O alvo passa a ser o fecho do bloco, que e o mesmo lugar.
     editar(raiz, SNIPPET,
-           "\t$html .= '</div>';\n\n\treturn $html;\n} );",
-           "\t$html .= '<script>var a = 1 && 2;</script>';\n\t$html .= '</div>';\n\n\treturn $html;\n} );")
+           "\t$html .= '</div>';\n\n\t/* A BARRA DO RODAPÉ",
+           "\t$html .= '<script>var a = 1 && 2;</script>';\n\t$html .= '</div>';\n\n\t/* A BARRA DO RODAPÉ")
 
 
 def m_pagina_perde_a_mae(raiz):

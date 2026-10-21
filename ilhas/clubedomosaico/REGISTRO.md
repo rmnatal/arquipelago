@@ -138,6 +138,43 @@ ocorrências. Conferido contra o snippet do commit **anterior** ao meu: zero lá
 desta execução e **não foi tocado**, porque a **31.3** proíbe trabalho de bancada enquanto houver item
 de conteúdo aberto em despacho — e há, o item 1 do despacho do molde segue com três grupos de página.
 
+### 4b. AS MUTAÇÕES, E O ACHADO QUE ELAS DERAM — MEDIDO NOS DOIS MUNDOS, O MEU E O DE ANTES DELE
+
+**`mutacoes-f1.py`: 47 mutações, 47 reprovadas, 0 passaram.** Seis alvos foram retargetados porque o
+código que elas matavam mudou de lugar, e **nenhuma foi apagada nem afrouxada**: as duas que descem as
+vitrines para depois da camada de prova, a que corta o `FAQPage`, a que apaga a tabela do banco, a que
+volta à ordem antiga das vitrines e a que põe o `<script>` de volta dentro do shortcode. Antes do
+retarget elas eram **inertes** — e mutação inerte é mutação que passa sem medir nada, que é pior que
+mutação ausente, porque a conta de "47 reprovadas" a inclui.
+
+**`mutacoes-arvore.py` 30 de 30 e `mutacoes-voz-e-cabeca.py` 24 de 24**, as duas sem retarget nenhum.
+
+**`mutacoes-prestacao.py`: 11 mutações, 6 reprovadas, 5 passaram — E AS CINCO SÃO ANTERIORES A ESTE
+BLOCO.** Isto foi **medido, não suposto**: a execução extraiu a pasta da ilha no commit **pai** do meu
+(`git archive`) e rodou a mesma bancada lá. **O resultado é idêntico — 11, 6 e 5 —, com as mesmas
+quatro `PASSOU` nomeadas:** `F1 reporta como fora-pela-folga quem nao tem faixa`, `F2 conta como
+fora-pela-folga quem nao tem faixa`, `a tabela pre-renderizada volta a contar so dois grupos` e `F1 so
+presta contas quando a lista esta vazia`. **São quatro buracos do `teste-prestacao-rejunte.php`, não
+regressão desta passada** — e o quinto item é a mutação inerte pré-existente do parágrafo acima.
+
+**O que esta execução fez com eles: nada, e por regra.** A **31.3** proíbe ampliar portão enquanto a
+ilha tiver item de conteúdo aberto em despacho, e há — o item 1 do despacho do molde segue com três
+grupos de página. O que ela fez foi **devolver a mutação da F1 ao mundo vivo**: ela tinha ficado inerte
+pelo meu `$prosa`, e com o alvo corrigido ela volta a rodar e **passa igual ao que passava antes**, o
+que é exatamente o que torna o achado comparável. **Buraco que ninguém mediu parece conserto.**
+
+**`mutacoes-f2.py`: 71 mutações, 71 reprovadas, 0 passaram** — e ela custou três rodadas para fechar.
+A primeira morreu no teto de tempo do ambiente, a segunda acusou **duas** mutações inertes pelo molde
+(`<script> volta para dentro do shortcode`, porque a barra do rodapé entrou entre o `</div>` do bloco e
+o `return`, e `a secao do que nao usar desaparece`, porque a seção passou a sair dentro de uma dobra), e
+a terceira, com os dois alvos corrigidos, fechou **71 de 71**. Entre as que reprovam estão as de tela
+que mais importam nesta ilha: `silencio do fabricante vira 'pode'`, `ambiente critico passa a aceitar
+silencio`, `a faixa descoberta deixa de ser declarada` e `o acento volta a sumir numa string do banco`.
+
+**No total, NOVE mutações foram retargetadas nesta execução** — seis na F1, duas na F2 e uma na
+prestação — e **nenhuma foi apagada, afrouxada ou trocada por outra mais fácil**: cada uma produz hoje
+o mesmo defeito que produzia antes do molde, no lugar novo do código.
+
 ### 5. O QUE ESTE BLOCO NÃO FEZ, E ESTÁ REESCRITO NO DESPACHO PELA 18.3
 
 O despacho do molde pede, no item 1, **cinco** grupos de página. Saíram **dois** — as duas ferramentas,

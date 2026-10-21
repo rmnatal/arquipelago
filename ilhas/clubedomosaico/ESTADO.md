@@ -31,7 +31,7 @@ urls_publicadas: 32        # 31 -> 32 em 12/10/2026 17h5xZ: a SEXTA filha de /ma
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-21T16:2xZ   # molde da secao 32 nas duas ferramentas, no ar e conferido na revisao 89
+ultima_execucao: 2026-10-21T17:0xZ   # molde da secao 32 nas duas ferramentas, no ar e conferido na revisao 89
                                      # QUE O CRITERIO DELE PERMITIA, e o que o mantinha fechado NAO era
                                      # o que estava escrito nele. Nenhuma URL nova (a ilha segue em 32),
                                      # nenhum byte no ar, nenhum Sync: a leva 3 de 3 da semana da 21.4
@@ -114,7 +114,7 @@ ultima_execucao: 2026-10-21T16:2xZ   # molde da secao 32 nas duas ferramentas, n
                                      # 06/10 envelhecida sete dias: com DOIS produtos saindo pela regra
                                      # 7 na mesma celula, o teste-f2.php media a saida de cada um contra
                                      # o texto do bloco INTEIRO. Passa a medir por PARAGRAFO do produto.
-executando_desde: 2026-10-21T15:59Z   # reserva RENOVADA pela 1.1 (o bloco passou de 40 minutos; a primeira foi as 15:06Z) — molde da secao 32 nesta ilha, pela 32.6-b. A hora sai do `date -u` na mesma linha de comando que grava.
+executando_desde: null   # execucao de 21/10 15:06Z-17:0xZ FECHADA: molde da secao 32 no ar nas duas ferramentas, revisao 89, conferido no ar
                          # limpo as 20h2xZ de 13/10/2026 pela propria execucao que reservou as 19h17Z. Ele foi reescrito as 19h51Z, e o motivo que eu escrevi naquele commit estava errado: dizia que o bloco tinha passado de 40 minutos e ele tinha 34. Renovar antes nao fere nada (o campo so fica mais novo), mas o motivo escrito tinha de ser verdade — e e o mesmo deslize que o comentario da execucao de 13h18Z, mais abaixo, registra.
                          # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: no commit
                          # do bloco este campo saiu com `2026-10-13T13:45Z`, apresentado como renovacao da
@@ -173,7 +173,15 @@ bloco_atual: |
   MARCACAO e nao defeito no ar: a classe da caixa de resposta deixou de ser
   sozinha, o <h2> de secao recolhida passou a morar no <summary>, e o fim do
   texto nao era fronteira no so_prosa() — 25 afirmacoes vermelhas no
-  conferir-no-ar.py, nenhuma delas defeito no ar. Seis mutacoes retargetadas.
+  conferir-no-ar.py, nenhuma delas defeito no ar.
+  MUTACOES: f1 47 de 47, f2 71 de 71, arvore 30 de 30, voz-e-cabeca 24 de 24.
+  NOVE mutacoes foram retargetadas (seis na f1, duas na f2, uma na prestacao)
+  porque o codigo que elas matavam mudou de lugar — nenhuma apagada nem
+  afrouxada. E A PRESTACAO TEM QUATRO BURACOS, MEDIDOS NOS DOIS MUNDOS: a
+  mutacoes-prestacao.py fecha 11/6/5, e a MESMA bancada rodada na pasta da ilha
+  no commit PAI deste (git archive) da 11/6/5 com as MESMAS quatro PASSOU. Nao
+  e regressao desta passada e nao foi tocada: a 31.3 proibe ampliar portao
+  enquanto houver item de conteudo aberto em despacho, e ha tres grupos.
   leitura-do-visitante.py segue REPROVADO por 1 defeito, o soft 404 da borda,
   que e do hospedeiro e nao desta ilha — vermelho esperado, como sempre.
 ---

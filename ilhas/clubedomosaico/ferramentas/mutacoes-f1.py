@@ -277,9 +277,12 @@ def m_script_volta_para_dentro_do_shortcode(raiz):
     """O <script> volta para dentro do retorno do shortcode. Foi o que derrubou
     cinco calculadoras da Aquametria em 08/09/2026: o filtro de conteudo do
     WordPress converte o E-comercial duplo e mata o script inteiro."""
+    # RETARGETADA EM 21/10/2026: com o molde da secao 32 a barra do rodape entra
+    # entre o `</div>` do bloco e o `return`, entao a sequencia antiga nao existe
+    # mais. O alvo passa a ser o fecho do bloco, que e o mesmo lugar.
     editar(raiz, SNIPPET,
-           "\t$html .= '</div>';\n\n\treturn $html;\n} );",
-           "\t$html .= '</div><script>var a = 1 && 2;</script>';\n\n\treturn $html;\n} );")
+           "\t$html .= '</div>';\n\n\t/* A BARRA DO RODAPÉ",
+           "\t$html .= '</div><script>var a = 1 && 2;</script>';\n\n\t/* A BARRA DO RODAPÉ")
 
 
 def m_pagina_perde_a_mae(raiz):
