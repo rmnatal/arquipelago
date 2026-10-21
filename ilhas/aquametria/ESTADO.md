@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-21T12:28Z
-executando_desde: null   # a execucao de 21/10 10h17Z fechou as 12:28Z. A reserva foi RENOVADA SEIS vezes pela 1.1: a bancada de 73 portoes roda em mais de uma hora e o mutacoes-peixes.py precisou de DUAS rodadas, porque duas mutacoes sobreviveram na primeira. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada — a 1a tentativa de renovacao desta execucao escreveu 10h52Z com o relogio em 10h41Z, que foi a QUARTA reserva no futuro desta ilha.
+executando_desde: 2026-10-21T13:22Z   # reserva da execucao de 21/10 13h2xZ (secao 1 passo 5 + 1.2): ilha em foco por foco.md e PRIMEIRA na ordem da 32.6. Hora do date -u na mesma linha de comando que grava.
 bloco_atual: |
   A LISTA DE 21/10 SAIU INTEIRA E ESTA NO AR, revisao 125, e o preco dela foram
   TREZE afirmacoes presas ao banco de ontem, em SEIS portoes. As seis entradas de
