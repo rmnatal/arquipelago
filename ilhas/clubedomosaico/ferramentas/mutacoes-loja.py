@@ -224,8 +224,12 @@ def m20(r):
     """A folha volta para dentro do retorno do filtro. E a cicatriz de 08/09/2026
     que derrubou cinco calculadoras da Aquametria: os filtros do conteudo trocam o
     E-comercial por entidade e matam o bloco."""
-    trocar(r, SNIPPET, "	$html .= '</div>';\n\n\treturn $html;\n}\n}\n\n/* A FICHA ENTRA PELO `the_content`",
-           "	$html .= '</div>';\n\t$html .= '<style>.cdm-peca{max-width:60rem;}</style>';\n\n\treturn $html;\n}\n}\n\n/* A FICHA ENTRA PELO `the_content`")
+    # REAPONTADA EM 21/10/2026: com o molde da 32.2 a barra do rodape passou a
+    # ser a ultima coisa que a ficha monta, e o alvo antigo (o `</div>` colado no
+    # `return`) deixou de existir. A mutacao ficou INERTE, que e trava NAO MEDIDA
+    # com cara de trava verde.
+    trocar(r, SNIPPET, "\tif ( '' !== $preco_html ) {\n\t\t$html .= cdm_casca_barra_html(",
+           "\t$html .= '<style>.cdm-peca{max-width:60rem;}</style>';\n\tif ( '' !== $preco_html ) {\n\t\t$html .= cdm_casca_barra_html(")
 
 
 def m21(r):
@@ -292,8 +296,10 @@ def m35(r):
     """A lupa volta para dentro do `the_content`. O `wpautop` nao conhece `<dialog>`
     e parte a etiqueta ao meio: a abertura vai para dentro de um `<p>` e o
     fechamento vira paragrafo sozinho, na pagina que mais precisa estar inteira."""
-    trocar(r, SNIPPET, "\t\t$html .= '</div>';\n\t}\n\n\t/* 2. A RESPOSTA",
-           "\t\t$html .= '<dialog class=\"cdm-gal-lupa\"><div class=\"cdm-gal-lupa-palco\" data-cdm-lupa-palco></div></dialog>';\n\t\t$html .= '</div>';\n\t}\n\n\t/* 2. A RESPOSTA")
+    # REAPONTADA EM 21/10/2026: a resposta subiu para antes das fotos pelo molde
+    # da 32.2, entao depois do fecho da galeria vem a DESCRICAO e nao a resposta.
+    trocar(r, SNIPPET, "\t\t$html .= '</div>';\n\t}\n\n\t/* 4. A DESCRI\u00c7\u00c3O",
+           "\t\t$html .= '<dialog class=\"cdm-gal-lupa\"><div class=\"cdm-gal-lupa-palco\" data-cdm-lupa-palco></div></dialog>';\n\t\t$html .= '</div>';\n\t}\n\n\t/* 4. A DESCRI\u00c7\u00c3O")
 
 
 def m36(r):

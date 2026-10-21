@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 91,
+  "revisao": 92,
   "atualizado_em": "2026-10-21",
   "estado": "nascendo",
   "desembarque": {
@@ -65,8 +65,8 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.4.0",
-      "sha256": "843ae91fb0b1bc5066beb4af2fe31f2a7e169fdcdf4702d108fcd0e7b7367ffe",
-      "descricao": "Loja 1.4.0 — `cdm_loja_caminho_da_peca()`, UMA FUNCAO SO, E AS DUAS PONTAS SAEM DELA. O filtro `cdm_arvore` escrevia `$mapa[ $peca->post_name ]` e agora escreve `loja/<slug>`; o filtro novo `cdm_caminho_atual` da casca responde com o MESMO valor, da MESMA funcao. Duas pontas montando a propria string sao a origem do defeito e nao o conserto dele: se uma mudasse de formato e a outra nao, a trilha da peca sumiria da tela sem cor nenhuma, e o `teste-loja.php` cobra que so um lugar do snippet monte o caminho. Com a chave por caminho a colisao de slug deixa de existir por construcao (`loja/sobre` nao e `sobre`), e a decisao declarada continua de pe: a peca entra no mapa SO quando esta sendo servida, para a lista de irmas de /loja/ nao encher de peca. A linha `/loja/quadro-flores-do-campo/` entrou na tabela da secao 5 do ARVORE.md no mesmo commit, com portao de tres pernas — documento x codigo, documento x `dados/pecas.json` (a copia da secao 24) e TODA peca da copia x codigo."
+      "sha256": "7c2e111f1993636b6ec6f3594f9d178f7d7437b9cd5d615cd3d623af9ba6577b",
+      "descricao": "1.3.0 (21/10/2026): O MOLDE DA 32.2 NAS CINCO PECAS DA ARTESA — e em peca propria o botao nao e link de afiliado: a 32.2 manda levar para a primeira tela o \"Verificar disponibilidade\" que ja existia. Preco e disponibilidade na caixa do molde, o botao com id=\"compra\" logo abaixo, as fotos, a descricao, a ficha em numeros visivel, \"Quem fez\" em dobra, a malha e a barra do rodape. E SAEM DUAS COISAS DO TEMA que nao sao desta ilha, so na peca: a foto de destaque (220 px, a MESMA que abre a galeria 60 px abaixo) e a assinatura \"Escrito por Artesa em <data>\" (75 px), que e cabecalho de post de blog numa pagina de produto. Medido no ar antes: preco a 1.138 px, contra o teto de 700 da 32.5."
     },
     {
       "id": "atelie",
@@ -664,7 +664,7 @@
     {
       "id": "mutacoes-loja",
       "arquivo": "ferramentas/mutacoes-loja.py",
-      "sha256": "d0009ff5e4182358945a3f5c2db105b3e4eb1d16bd6f97c6b1fad5f3393bea7f",
+      "sha256": "e56dc33c1d36238c2c26aa6e8d70173525151b1fc43f9b2073eadf98a6677d3e",
       "descricao": "23 defeitos escritos de volta no snippet da Loja, 23 reprovados, 22 SO o portao novo pegou. Separa 'reprovou' de 'nao compila', porque codigo que nem carrega nao e evidencia de trava. ACHOU TRES COISAS na primeira passada: (a) a afirmacao da regra de reescrita lia um contador COMPARTILHADO com a casca, que ja estava acima de zero — apagar o flush da Loja passava verde; agora o teste zera o contador, limpa a marca, roda o init de novo e afirma sobre o delta, e cobra tambem que NAO remonte na visita seguinte; (b) a mutacao do %0D%0A na mensagem do WhatsApp nao fez portao nenhum reprovar porque o `str_replace` que ela apagava era CODIGO MORTO — rawurlencode de \\n ja devolve %0A —, e o conserto foi tirar a linha do snippet e a mutacao junto; (c) `===` contra `hash_equals` nao e observavel por comportamento, e a trava correspondente passou a ler o fonte, com a razao escrita. Bancada."
     },
     {

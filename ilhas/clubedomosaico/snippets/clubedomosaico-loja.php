@@ -1,5 +1,24 @@
 /**
  * Clube do Mosaico Loja — peças e vitrine
+ * Versão 1.3.0 (21/10/2026) — O MOLDE DA 32.2 NAS CINCO PEÇAS DA ARTESÃ, e aqui
+ * o botão não é link de afiliado: em peça própria a 32.2 manda levar para a
+ * primeira tela o "Verificar disponibilidade" que já existia.
+ * MEDIDO NO AR, celular de 390 px, nas cinco: o preço começava a 1.138 px, e a
+ * caixa de resposta tem de começar antes de 700 px. Quem comia a primeira tela
+ * era a galeria (532 px) mais DUAS coisas do TEMA que não são desta ilha, e que
+ * saem nesta passada: a foto de destaque (`core/post-featured-image`, 220 px),
+ * que é a MESMA imagem que abre a galeria 60 px abaixo, e a assinatura "Escrito
+ * por Artesã em <data>" (75 px), que é cabeçalho de post de blog numa página de
+ * PRODUTO — a peça não foi escrita, e a data que importa a ela é o prazo, que a
+ * própria ficha publica. As duas saem SÓ na peça; em página e em artigo o tema
+ * continua como está.
+ * A ORDEM NOVA: preço e disponibilidade na caixa do molde · o botão de contato
+ * com `id="compra"`, que é o bloco de compra desta família · as fotos · a
+ * descrição · a ficha em números, VISÍVEL, que é a tabela-resumo · "Quem fez" em
+ * dobra · a malha, visível · a barra do rodapé com o preço.
+ * A FOTO NÃO FOI REBAIXADA: ela começa logo abaixo do botão, dentro da primeira
+ * rolagem, e quem chega da Loja já a viu na miniatura de lá.
+ *
  * Versão 1.2.0 (14/09/2026) — A TÉCNICA PICA-SETE ENTRA NA LISTA. Item 3 do
  * despacho do Raphael de 14/09: "tem uma técnica chamada mosaico Picassiete,
  * precisa adicionar". A lista de técnicas tinha quatro e nenhuma delas é a que a
@@ -1107,7 +1126,79 @@ function cdm_loja_ficha_html( $peca ) {
 
 	$html = '<div class="cdm-peca">';
 
-	/* 1. AS FOTOS. Carrossel com scroll-snap: todas as fotos estão no HTML
+	/* ======================================================================
+	   A ORDEM DESTA PÁGINA É A DA 32.2 DESDE 21/10/2026. Medido no ar no
+	   celular de 390 px, nas cinco peças: o preço começava a 1.138 px e a
+	   caixa de resposta tinha de começar antes de 700. Quem come a primeira
+	   tela é a galeria (532 px) mais DUAS coisas do tema que não são desta
+	   ilha e que saíram nesta mesma passada — a foto de destaque repetida
+	   (220 px, a MESMA imagem que abre a galeria logo abaixo) e a assinatura
+	   "Escrito por Artesã em" (75 px), que é cabeçalho de post de blog numa
+	   página de produto.
+	   A ORDEM NOVA: preço e disponibilidade na caixa do molde · o botão de
+	   contato, que é o bloco de compra desta família (32.2: em peça própria
+	   não há link de afiliado, o botão é o "Verificar disponibilidade") · as
+	   fotos · a descrição · a ficha em números, visível, que é a
+	   tabela-resumo · o resto nas dobras da casca · a barra do rodapé.
+	   A FOTO NÃO FOI REBAIXADA: ela começa logo abaixo do botão, dentro da
+	   primeira rolagem, e quem chega da Loja já a viu na miniatura de lá.
+	   ====================================================================== */
+
+	/* 1. A RESPOSTA: preço e disponibilidade, na caixa do molde. As duas frases
+	      são as mesmas e as classes delas não mudaram — o que mudou é onde a
+	      caixa está. */
+	$preco_html = cdm_loja_preco_html( $preco );
+	$frase_disp = cdm_loja_disponibilidade_frase( $disp, $prazo );
+
+	$frases_topo = '';
+	if ( '' !== $preco_html ) {
+		$frases_topo .= '<p class="cdm-peca-preco"><span class="cdm-preco">' . $preco_html . '</span></p>';
+	}
+	if ( '' !== $frase_disp ) {
+		$frases_topo .= '<p class="cdm-peca-disp">' . esc_html( $frase_disp ) . '</p>';
+	}
+	$html .= cdm_casca_resultado_html( array(), $frases_topo, 'resposta', 'cdm-peca-topo' );
+
+	/* 2. O BLOCO DE AÇÃO, imediatamente abaixo da resposta (32.2) e com o id
+	      que a barra do rodapé vigia.
+
+	      O BLOCO SAI POR FILTRO desde a 1.1.0, e o que está abaixo é o PADRÃO —
+	      o que a ficha serve quando ninguém atende.
+
+	      Quem atende é o snippet de Leads (adendo 3), que troca o botão por
+	      "Verificar disponibilidade" e o formulário de nome e WhatsApp. A
+	      separação existe porque o Sync desembarca um item por vez: se o Leads
+	      não estiver no ar, a ficha continua exatamente como estava, e nunca
+	      com um botão que não leva a lugar nenhum.
+
+	      E O FILTRO É APLICADO DE VERDADE, o que nesta ilha precisa ser dito: em
+	      12/09 dois `add_filter` escritos aqui mesmo ficaram sem ninguém que os
+	      aplicasse, e portão que nunca roda é função morta. O `teste-loja.php`
+	      cobra que esta chamada exista e que um atendente mude o resultado. */
+	$zap    = cdm_loja_whatsapp();
+	$padrao = '';
+	if ( '' !== $zap ) {
+		$link    = 'https://wa.me/' . $zap . '?text=' . cdm_loja_mensagem_whatsapp( $titulo, $url, $disp, $prazo );
+		$padrao .= '<p class="cdm-peca-acao"><a class="cdm-botao" href="' . esc_url( $link ) . '" rel="noopener">Falar com a artesã sobre esta peça</a></p>';
+		$padrao .= '<p class="cdm-peca-nota">Você fala direto com quem fez. Ela confirma se a peça está disponível e como fica o envio.</p>';
+	} else {
+		$padrao .= '<div class="cdm-vazio cdm-peca-sem-contato">';
+		$padrao .= '<h3>O contato ainda não foi publicado</h3>';
+		$padrao .= '<p>Esta peça existe e está aqui, mas o canal de conversa do ateliê ainda não foi ligado — e a gente não inventa um número de telefone para o botão parecer pronto. Volte em algumas horas.</p>';
+		$padrao .= '</div>';
+	}
+
+	$html .= '<div class="cdm-molde-compra" id="compra">';
+	$html .= apply_filters( 'cdm_peca_acao', $padrao, $peca, array(
+		'titulo' => $titulo,
+		'url'    => $url,
+		'disp'   => $disp,
+		'prazo'  => $prazo,
+		'preco'  => $preco,
+	) );
+	$html .= '</div>';
+
+	/* 3. AS FOTOS. Carrossel com scroll-snap: todas as fotos estão no HTML
 	   servido (22.3), sem autoplay, e a navegação é o dedo ou a tecla. */
 	if ( $galeria ) {
 		$varias = count( $galeria ) > 1;
@@ -1149,53 +1240,7 @@ function cdm_loja_ficha_html( $peca ) {
 		$html .= '</div>';
 	}
 
-	/* 2. A RESPOSTA: preço, disponibilidade, botão. */
-	$html .= '<div class="cdm-peca-topo">';
-	$preco_html = cdm_loja_preco_html( $preco );
-	if ( '' !== $preco_html ) {
-		$html .= '<p class="cdm-peca-preco"><span class="cdm-preco">' . $preco_html . '</span></p>';
-	}
-	$frase_disp = cdm_loja_disponibilidade_frase( $disp, $prazo );
-	if ( '' !== $frase_disp ) {
-		$html .= '<p class="cdm-peca-disp">' . esc_html( $frase_disp ) . '</p>';
-	}
-
-	/* O BLOCO DE AÇÃO SAI POR FILTRO desde a 1.1.0, e o que está abaixo é o
-	   PADRÃO — o que a ficha serve quando ninguém atende.
-
-	   Quem atende é o snippet de Leads (adendo 3), que troca o botão por
-	   "Verificar disponibilidade" e o formulário de nome e WhatsApp. A separação
-	   existe porque o Sync desembarca um item por vez: se o Leads não estiver no
-	   ar, a ficha continua exatamente como estava, e nunca com um botão que não
-	   leva a lugar nenhum.
-
-	   E O FILTRO É APLICADO DE VERDADE, o que nesta ilha precisa ser dito: em
-	   12/09 dois `add_filter` escritos aqui mesmo ficaram sem ninguém que os
-	   aplicasse, e portão que nunca roda é função morta. O `teste-loja.php` cobra
-	   que esta chamada exista e que um atendente mude o resultado. */
-	$zap    = cdm_loja_whatsapp();
-	$padrao = '';
-	if ( '' !== $zap ) {
-		$link    = 'https://wa.me/' . $zap . '?text=' . cdm_loja_mensagem_whatsapp( $titulo, $url, $disp, $prazo );
-		$padrao .= '<p class="cdm-peca-acao"><a class="cdm-botao" href="' . esc_url( $link ) . '" rel="noopener">Falar com a artesã sobre esta peça</a></p>';
-		$padrao .= '<p class="cdm-peca-nota">Você fala direto com quem fez. Ela confirma se a peça está disponível e como fica o envio.</p>';
-	} else {
-		$padrao .= '<div class="cdm-vazio cdm-peca-sem-contato">';
-		$padrao .= '<h3>O contato ainda não foi publicado</h3>';
-		$padrao .= '<p>Esta peça existe e está aqui, mas o canal de conversa do ateliê ainda não foi ligado — e a gente não inventa um número de telefone para o botão parecer pronto. Volte em algumas horas.</p>';
-		$padrao .= '</div>';
-	}
-
-	$html .= apply_filters( 'cdm_peca_acao', $padrao, $peca, array(
-		'titulo' => $titulo,
-		'url'    => $url,
-		'disp'   => $disp,
-		'prazo'  => $prazo,
-		'preco'  => $preco,
-	) );
-	$html .= '</div>';
-
-	/* 3. A DESCRIÇÃO, com as palavras dela. */
+	/* 4. A DESCRIÇÃO, com as palavras dela. */
 	$descricao = trim( (string) $peca->post_content );
 	if ( '' !== $descricao ) {
 		$html .= '<div class="cdm-peca-texto">' . wpautop( wp_kses_post( $descricao ) ) . '</div>';
@@ -1233,10 +1278,11 @@ function cdm_loja_ficha_html( $peca ) {
 	/* 5. QUEM FEZ — a assinatura da peça (DESIGN.md, "A artesã"). Sem nome e sem
 	   foto enquanto o Raphael não entregar `identidade/artesa/`: o bloco fica de
 	   pé e vazio, como o PROMPT.md desta ilha manda, e não inventa uma pessoa. */
-	$html .= '<div class="cdm-secao cdm-peca-quem"><h2>Quem fez</h2>';
-	$html .= '<p>Esta peça foi montada à mão, pastilha por pastilha, no ateliê de uma artesã — ';
-	$html .= 'não é produção em série e não é revenda. A foto é desta peça, não de catálogo.</p>';
-	$html .= '</div>';
+	$quem  = '<div class="cdm-secao cdm-peca-quem"><h2>Quem fez</h2>';
+	$quem .= '<p>Esta peça foi montada à mão, pastilha por pastilha, no ateliê de uma artesã — ';
+	$quem .= 'não é produção em série e não é revenda. A foto é desta peça, não de catálogo.</p>';
+	$quem .= '</div>';
+	$html .= cdm_casca_dobrar_secao( $quem );
 
 	/* 6. OS LINKS DE SAÍDA (item 3 da malha automática, na versão de hoje). */
 	$guias = cdm_loja_guia_da_base();
@@ -1251,9 +1297,58 @@ function cdm_loja_ficha_html( $peca ) {
 
 	$html .= '</div>';
 
+	/* A BARRA DO RODAPÉ (32.2): leva o preço desta peça e o caminho de volta ao
+	   contato enquanto ele está fora da tela. Nasce SERVIDA, e só sai quando não
+	   há preço publicado — barra prometendo um número que a página não tem seria
+	   pior que barra nenhuma. O rótulo é 'Falar com a artesã' e não o texto do
+	   botão porque o botão muda com o Leads no ar ou fora dele, e a barra não
+	   pode prometer uma etiqueta que a página talvez não sirva. */
+	if ( '' !== $preco_html ) {
+		$html .= cdm_casca_barra_html( $preco_html, ' nesta peça', 'compra', 'Falar com a artesã' );
+	}
+
 	return $html;
 }
 }
+
+/* O TEMA PÕE DUAS COISAS DE POST DE BLOG NA PÁGINA DA PEÇA, e as duas saem aqui
+   desde 21/10/2026 — medidas no ar, no celular de 390 px, com o molde da 32.2 na
+   mão:
+
+   1. A FOTO DE DESTAQUE (`core/post-featured-image`), 220 px, e ela é a MESMA
+      imagem que abre a galeria 60 px abaixo. Duas vezes a mesma foto não é
+      generosidade: é a primeira tela gasta mostrando o produto duas vezes.
+   2. A ASSINATURA "Escrito por Artesã em <data>", 75 px. É cabeçalho de artigo
+      numa página de PRODUTO: a peça não foi "escrita", e a data que importa a
+      ela é o prazo de entrega, que a própria ficha publica. O grupo inteiro sai,
+      e não só o nome — tirar só o nome deixaria "Escrito por em" na tela, que é
+      pior do que a frase inteira.
+
+   Juntas elas custavam 295 px da primeira tela, e era essa a diferença entre o
+   preço começar a 1.138 px e começar antes dos 700 que a 32.5 pede. Sai só na
+   PEÇA: em página e em artigo o tema continua como está. */
+add_filter( 'render_block', function ( $conteudo, $bloco ) {
+	if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return $conteudo;
+	}
+	if ( ! cdm_loja_e_peca() ) {
+		return $conteudo;
+	}
+	$nome = isset( $bloco['blockName'] ) ? (string) $bloco['blockName'] : '';
+	if ( 'core/post-featured-image' === $nome ) {
+		return '';
+	}
+	if ( 'core/post-author-name' === $nome || 'core/post-date' === $nome ) {
+		return '';
+	}
+	/* O grupo da assinatura não tem nome próprio: o que o identifica é carregar
+	   o bloco do autor dentro. Grupo que não o carrega passa intocado. */
+	if ( 'core/group' === $nome && false !== strpos( (string) $conteudo, 'wp-block-post-author-name' ) ) {
+		return '';
+	}
+
+	return $conteudo;
+}, 10, 2 );
 
 /* A FICHA ENTRA PELO `the_content`, prioridade 5: antes do cinto de segurança da
    trilha (9) e do "Veja também" (20) da casca, para os dois continuarem
