@@ -60,9 +60,11 @@ bloco_atual: |
   main limpo (15409d3) com o mesmo comando, pela 31.4: c15 ("produto sem
   link..."), c12-vitrine (MicroMec, afirmacao presa ao banco de ontem) e
   c1-tabela (ERR_TUNNEL, host barrado pelo egresso desta nuvem).
-  E UMA BATERIA NAO CHEGOU AO FIM: mutacoes-peixes tem 101 mutacoes e foi
-  cortada por TIMEOUT na 80 (exit=124), nao por falha — a mesma bateria contra o
-  main limpo bateu no mesmo teto. O que nao rodou ate o fim nao foi medido.
+  O mutacoes-peixes precisou de DOIS lancamentos: com 900s ele foi cortado por
+  TIMEOUT na mutacao 80 de 101 (exit=124, e a mesma bateria contra o main limpo
+  bateu no mesmo teto — era relogio, nao falha). Relancado com 45 min, fechou
+  VERDE: 101 de 101 reprovadas. Quem o rodar de novo nesta ilha precisa contar
+  com cerca de 20 minutos so para ele.
   A REGUA DE PRONTO MUDOU DE FORMA, e e o que a proxima execucao mais precisa
   saber: a 32.5 se mede nos TRES estados. Medir so o visitante novo aprova
   pagina que falha por 4,2 vezes no estado em que alguem a usa.
