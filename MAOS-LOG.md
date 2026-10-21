@@ -5859,3 +5859,74 @@ desta sessão. Push que aparece em `origin/main` — push de verdade.
 próximos passos para a Bússola. Nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação,
 nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md`
 não foi aberto para decidir nada: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026, 16h20 (Brasília) — 19h20 UTC · Bússola rodada 007 (jardinagem)
+
+**Instrução recebida:** criar TRÊS arquivos novos, num só commit, com a mensagem exata
+`Bússola rodada 007 — 21/10/2026`. Assunto conferido antes do `git fetch`: Projeto Arquipélago / Bússola /
+rodada 007 — **é do Arquipélago**, executado. Nenhum dos três arquivos existia (conferido um a um antes de
+escrever); nenhum arquivo preexistente foi tocado.
+
+**`git status --porcelain` antes do commit:**
+
+```
+?? bussola/medicoes/para-medir-2026-10-21-jardinagem.md
+?? bussola/medicoes/serp-jardinagem-2026-10-21.md
+?? bussola/rodadas/007.md
+```
+
+**`git diff --stat` do commit:**
+
+```
+ .../medicoes/para-medir-2026-10-21-jardinagem.md   | 141 +++++++++
+ bussola/medicoes/serp-jardinagem-2026-10-21.md     | 211 +++++++++++++
+ bussola/rodadas/007.md                             | 340 +++++++++++++++++++++
+ 3 files changed, 692 insertions(+)
+```
+
+**Hash que foi ao `main`:**
+
+```
+ea360ab04a6f737113ca207283702afef2da11c5
+Bússola rodada 007 — 21/10/2026
+```
+
+**Push:** o primeiro `git push origin HEAD:main` foi recusado (non-fast-forward — o `main` havia andado de
+`081f49e` para `aa31975` durante a gravação). Mensagem do remoto:
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref.
+```
+
+Resolvido na primeira tentativa de recuperação, sem force push: `git fetch origin main && git rebase origin/main`
+(rebase limpo, 1 commit, sem conflito) e novo push, aceito — `aa31975..ea360ab  HEAD -> main`.
+
+Confirmado com `git fetch origin main && git log -1 origin/main`: `origin/main` aponta para `ea360ab`, o commit
+desta sessão. Push que aparece em `origin/main` — push de verdade.
+
+**Contagem do que mudou, conferida relendo os arquivos gravados (não pelo que eu acho que escrevi):**
+
+```
+  340 linhas   23256 bytes   bussola/rodadas/007.md
+                             19 cabeçalhos, 4 tabelas
+  211 linhas   17656 bytes   bussola/medicoes/serp-jardinagem-2026-10-21.md
+                             10 cabeçalhos, 6 tabelas, frontmatter com publicar: false
+  141 linhas    8721 bytes   bussola/medicoes/para-medir-2026-10-21-jardinagem.md
+                             6 fatias (## Fatia 1 a 6), frontmatter com publicar: false
+  ---
+  692 linhas   49633 bytes   em 3 arquivos novos, 0 arquivos preexistentes alterados, 0 linhas removidas
+```
+
+**Nenhum passo falhou** além da recusa de push acima, já resolvida.
+
+**O que NÃO foi feito, embora o conteúdo gravado cite esses alvos:** nenhuma reserva de ilha, nenhum
+`executando_desde`, nenhum cabeçalho de estado tocado — `bussola/fila.md`, `bussola/BUSSOLA.md`,
+`bussola/rodadas/006.md` e `bussola/medicoes/varredura-nichos-2026-10-21.md` ficaram intactos, mesmo o texto
+dos três arquivos novos apontando estado final de jardinagem na fila, propostas de régua e próximos passos.
+Nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhum
+domínio registrado, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não
+foi aberto para decidir nada: a decisão veio pronta no disparo.
