@@ -182,7 +182,15 @@ def _atribuicao_digitada(base):
 # nascer, e a ausencia dela que nao pode voltar ao silencio.
 # --------------------------------------------------------------------------
 
-NL_LINHA_FONTE = """\t\t\t$html .= '<span class="rbm-vitrine-fonte">'
+# NOTA DE 21/10/2026 — OS ALVOS DESTA SECAO PASSARAM DE `$html` PARA `$corpo`.
+# A secao "Exatamente no limiar" foi para uma dobra <details> pela 32.1 (molde de
+# conversao), e com isso ela e montada em `$corpo` e entregue a
+# robometria_casca_dobra() em vez de ser concatenada direto em `$html`. O texto
+# do alvo e o que casa: com `$html` as quatro mutacoes deste bloco saiam ERRO
+# ("alvo da mutacao nao esta unico: 0 ocorrencia(s)") em vez de reprovar, e
+# mutacao que nao aplica nao exercita trava nenhuma. Nenhuma trava foi afrouxada:
+# as quatro continuam sendo as mesmas quatro, no mesmo lugar do codigo.
+NL_LINHA_FONTE = """\t\t\t$corpo .= '<span class="rbm-vitrine-fonte">'
 \t\t\t\t. esc_html( 'Como sabemos \u2014 ' . $p['rotulo'] . ', verificado em '
 \t\t\t\t\t. robometria_r2_data( $p['verificado_em'] ) )
 \t\t\t\t. ( empty( $p['url'] ) ? '' : ' \u00b7 ' . ( function_exists( 'robometria_casca_fonte_link' )
@@ -191,11 +199,11 @@ NL_LINHA_FONTE = """\t\t\t$html .= '<span class="rbm-vitrine-fonte">'
 """
 
 NL_BLOCO_TAG = """\t\t\tif ( ! empty( $p['ressalva'] ) ) {
-\t\t\t\t$html .= '<span class="rbm-tag">' . esc_html( $p['ressalva'] ) . '</span>';
+\t\t\t\t$corpo .= '<span class="rbm-tag">' . esc_html( $p['ressalva'] ) . '</span>';
 \t\t\t}
 """
 
-NL_FRASE_SEM_PORTA = """\t\t$html .= '<p class="rbm-nota">' . esc_html( robometria_r2_frase_sem_porta() ) . '</p>';
+NL_FRASE_SEM_PORTA = """\t\t$corpo .= '<p class="rbm-nota">' . esc_html( robometria_r2_frase_sem_porta() ) . '</p>';
 """
 
 NL_ATRIBUICAO_PHP = """\t\t$m['procedencia']['quem_declara'],
@@ -284,10 +292,10 @@ MUTACOES = [
         'nasce uma porta de compra dentro da secao do limiar',
         'a pagina acabou de recusar estes modelos; botao embaixo da recusa e recomendar assim mesmo',
         troca(R2,
-              "\t\t\t$html .= '</li>';\n\t\t}\n\t\t$html .= '</ul></div>';",
-              "\t\t\t$html .= '<span class=\"rbm-vitrine-acao\"><span class=\"rbm-sem-saida\">"
+              "\t\t\t$corpo .= '</li>';\n\t\t}\n\t\t$corpo .= '</ul>';",
+              "\t\t\t$corpo .= '<span class=\"rbm-vitrine-acao\"><span class=\"rbm-sem-saida\">"
               "Saida de compra fora do ar agora</span></span>';\n"
-              "\t\t\t$html .= '</li>';\n\t\t}\n\t\t$html .= '</ul></div>';"),
+              "\t\t\t$corpo .= '</li>';\n\t\t}\n\t\t$corpo .= '</ul>';"),
     ),
     (
         'a ausencia da porta de compra volta a ser silencio',

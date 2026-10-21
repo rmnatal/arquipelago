@@ -734,11 +734,27 @@ rbm_ok( count( $mc[1] ) > 0 && 0 === $cartoes_fora_de_ordem,
 	'em cada cartao, a acao de compra vem antes da fonte',
 	count( $mc[1] ) . ' cartoes, ' . $cartoes_fora_de_ordem . ' fora de ordem' );
 
-/* O AVISO DE COMISSAO esta no proprio bloco de compra, e nao so no rodape. */
-preg_match( '#<div class="rbm-secao rbm-compra">(.*?)<ul class="rbm-vitrine">#is', $h_ancora, $mb );
+/* O AVISO DE COMISSAO esta no proprio bloco de compra, e nao so no rodape.
+   O BLOCO GANHOU id EM 21/10/2026 (a barra do celular aponta para ele, pela
+   32.1), e a regua lia a abertura da <div> pelo atributo class EXATO — quem
+   acrescentasse qualquer atributo a esta <div> deixaria esta afirmacao medindo
+   string vazia, e string vazia passa em "nao contem frase proibida" e reprova em
+   tudo o mais sem dizer por que. O padrao passa a aceitar atributo depois da
+   classe, e a classe continua sendo cobrada. */
+preg_match( '#<div class="rbm-secao rbm-compra"[^>]*>(.*?)<ul class="rbm-vitrine">#is', $h_ancora, $mb );
 $cabeca_compra = isset( $mb[1] ) ? $mb[1] : '';
+rbm_ok( '' !== $cabeca_compra,
+	'a abertura do bloco de compra foi reconhecida pelo padrao desta regua',
+	strlen( $cabeca_compra ) . ' bytes antes do carrossel' );
 rbm_ok( false !== strpos( $cabeca_compra, 'comissão' ),
-	'o aviso de comissao esta dentro do bloco de compra (secao 7)' );
+	'o aviso de comissao esta dentro do bloco de compra, ANTES dos cartoes (secao 7 e 32.1)' );
+
+/* O BLOCO INTEIRO, cabeca + carrossel + a prosa que a 32.1 desceu para baixo dos
+   cartoes. A frase de quantas pecas saem pela busca mora nessa prosa desde
+   21/10/2026: continua dentro do bloco de compra, e deixou de estar acima do
+   primeiro botao. Quem mede "esta no bloco" tem de medir o bloco. */
+preg_match( '#<div class="rbm-secao rbm-compra"[^>]*>(.*)#is', $h_ancora, $mbb );
+$bloco_compra = isset( $mbb[1] ) ? $mbb[1] : '';
 
 /* QUANTAS PECAS ESPERAM LINK — o numero na tela e o numero do banco. */
 $pecas_no_ancora   = array();
@@ -806,7 +822,7 @@ foreach ( $dados['respostas'][ $ancora ]['fabricante'] as $i ) {
    daria numero maior que o de cartoes na tela, e a frase fala dos cartoes. */
 $so_busca_ancora  = count( $so_busca_ancora_ids );
 $sem_porta_ancora = count( $sem_porta_ancora_ids );
-rbm_ok( $so_busca_ancora === 0 || false !== strpos( $cabeca_compra, (string) $so_busca_ancora ),
+rbm_ok( $so_busca_ancora === 0 || false !== strpos( $bloco_compra, (string) $so_busca_ancora ),
 	'a pagina publica quantas pecas saem pela busca em vez da ficha',
 	$so_busca_ancora . ' pela busca' );
 
@@ -817,9 +833,13 @@ rbm_ok( $so_busca_ancora === 0 || false !== strpos( $cabeca_compra, (string) $so
    vitrine, nenhuma frase do bloco pode negar link de loja. E a unica forma da regua
    que sobrevive a alguem reescrever o contador amanha, porque mede o que o leitor
    le, e nao o que o codigo achava que estava escrevendo. */
+/* E ELA MEDE O BLOCO INTEIRO desde 21/10/2026, nao so a cabeca dele: a 32.1
+   desceu a frase de ausencia para baixo dos cartoes, e uma regua apontada para a
+   cabeca ficaria CEGA para exatamente o defeito que ela existe para pegar —
+   verde por nao achar a frase onde a frase nao mora mais. */
 $nega_link_de_loja = preg_match(
 	'#(nao (tem|têm|tem) link de loja|não (tem|têm) link de loja|Nenhuma? [^<.]{0,40} link de loja|link de loja em breve)#iu',
-	$cabeca_compra );
+	$bloco_compra );
 $serve_botao = substr_count( $vitrine, 'rbm-comprar' ) > 0;
 rbm_ok( ! ( $serve_botao && $nega_link_de_loja ),
 	'nenhuma frase nega link de loja numa resposta que serve botao de compra (item 3, 18/09)',

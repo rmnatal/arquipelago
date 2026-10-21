@@ -1,5 +1,12 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.10.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32, como na R1. Medido no ar em 21/10/2026, no
+ * celular de 390 px: o formulario comecava a 876 px e o primeiro botao de loja a
+ * 4.347 px. O formulario perdeu um campo para uma dobra e ganhou um par de
+ * campos na mesma linha; a caixa de resultado traz o limiar em Mono; o bloco de
+ * compra subiu para logo abaixo dela; e a frase longa do cartao, que estava
+ * DUAS vezes na pagina, ficou so na dobra "A folga de cada modelo".
+ *
  * Versão: 1.9.0 (18/09/2026) — A MESMA CORREÇÃO DA R1, E AQUI ELA ERA MAIOR: a
  * frase dizia "6 destes modelos ainda não têm link de loja" numa tela que servia
  * NOVE botões de compra. A conta passou a sair de
@@ -146,7 +153,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.9.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.10.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -578,6 +585,34 @@ function robometria_r2_frase_cartao( $m, $s, $ressalvas ) {
 }
 
 /**
+ * A FRASE CURTA DO CARTAO (seção 32.1, item 5): a especificação que fez o robô
+ * entrar, e nada além dela.
+ *
+ * A ATRIBUIÇÃO CONTINUA DENTRO DO CARTÃO, e vem do mesmo degrau da escada que a
+ * frase longa usa. Ela é a metade que não pode sair daqui: sem ela, uma loja que
+ * só transcreveu herdaria, calada, a autoridade de quem fabricou — é a regra que
+ * a 1.5.0 da R1 e a seção 26 deixaram escritas, e os portões a cobram no cartão,
+ * dentro do repositório e no ar.
+ *
+ * O QUE FICOU DE FORA: o publicador do limiar, a ressalva de teto de utilidade e
+ * a de cobertura não declarada. Elas continuam na página, inteiras, na dobra "A
+ * folga de cada modelo" logo abaixo do carrossel — e estavam DUAS VEZES na
+ * página antes desta versão, palavra por palavra, custando 132 px dentro do
+ * cartão no celular.
+ */
+if ( ! function_exists( 'robometria_r2_frase_curta_do_cartao' ) ) {
+function robometria_r2_frase_curta_do_cartao( $m, $s ) {
+	return sprintf(
+		'%s Pa declarados %s, %s do limiar de %s Pa desta situação.',
+		robometria_r2_n( $m['pa'] ),
+		$m['procedencia']['quem_declara'],
+		( $m['pa'] > $s['limiar_seguro']['valor'] ) ? 'acima' : 'no mínimo',
+		robometria_r2_n( $s['limiar_seguro']['valor'] )
+	);
+}
+}
+
+/**
  * A frase de quem está EXATAMENTE no valor que a fonte escreve como "acima de".
  *
  * A ATRIBUIÇÃO DO Pa VEM DO DEGRAU, como no cartão. Até 12/09/2026 esta frase
@@ -930,11 +965,16 @@ function robometria_r2_vitrine( $itens, $s ) {
 		}
 	}
 
-	$html = '<div class="rbm-secao rbm-compra"><h3>Onde comprar estes robôs</h3>';
+	$html = '<div class="rbm-secao rbm-compra" id="rbm-compra"><h3>Onde comprar estes robôs</h3>';
 
-	/* AVISO DE COMISSÃO VISÍVEL NA PÁGINA (seção 7), dentro do bloco de compra e
-	   não só no rodapé: quem vê o botão precisa ver o aviso sem rolar. */
-	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pelo pascal que o fabricante declara contra o limiar que a fonte recomenda, e só por isso. '
+	/* AVISO DE COMISSÃO VISÍVEL NA PÁGINA (seção 7) E EM UMA LINHA (32.1, item
+	   5), dentro do bloco de compra e não só no rodapé: quem vê o botão precisa
+	   ver o aviso sem rolar. O resto do que ele dizia — que a comissão não muda
+	   a ordem da lista, e por que — desceu para baixo do carrossel, com a prosa
+	   do recorte. Nenhuma palavra saiu da página. */
+	$html .= '<p class="rbm-aviso-comissao">Links de afiliado: podemos receber comissão.</p>';
+
+	$depois = '<p class="rbm-aviso-comissao">Os botões de compra acima são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pelo pascal que o fabricante declara contra o limiar que a fonte recomenda, e só por isso. '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
 			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
@@ -953,7 +993,7 @@ function robometria_r2_vitrine( $itens, $s ) {
 				robometria_r2_n( $sem_porta )
 			);
 		}
-		$html .= '<p class="rbm-nota">' . esc_html( $quantas )
+		$depois .= '<p class="rbm-nota">' . esc_html( $quantas )
 			. '. O lugar fica reservado assim mesmo: esconder o bloco enquanto o link não chega devolveria ao link de procedência o papel de única porta clicável da página, e é justamente esse o defeito que não repetimos.</p>';
 	}
 
@@ -971,7 +1011,7 @@ function robometria_r2_vitrine( $itens, $s ) {
 				robometria_r2_n( $so_busca )
 			);
 		}
-		$html .= '<p class="rbm-nota">' . esc_html( $busca_frase )
+		$depois .= '<p class="rbm-nota">' . esc_html( $busca_frase )
 			. '. A busca não esgota e não sai do ar, e é por isso que ela é o piso: preferimos a vitrine certa a um link de produto que morre em doze horas.</p>';
 	}
 
@@ -997,7 +1037,16 @@ function robometria_r2_vitrine( $itens, $s ) {
 
 		$html .= '<span class="rbm-vitrine-tipo">' . esc_html( $m['rotulo'] ) . '</span>';
 		$html .= '<span class="rbm-vitrine-nome rbm-num">' . esc_html( robometria_r2_n( $m['pa'] ) . ' Pa' ) . '</span>';
-		$html .= '<span class="rbm-vitrine-porque">' . esc_html( $i['frase'] ) . '</span>';
+		/* A frase do cartão passou a ser a CURTA (ver
+		   robometria_r2_frase_curta_do_cartao): a especificação que fez o robô
+		   entrar, com a atribuição do degrau, que é o que a 32.1 (item 5) pede
+		   do cartão e o que os portões cobram dentro dele. A frase inteira é a
+		   MESMA que a dobra "A folga de cada modelo" imprime logo abaixo do
+		   carrossel — estava nos dois lugares, palavra por palavra, e no celular
+		   custava 132 px dentro do cartão, com o primeiro botão de loja caindo a
+		   1.442 px contra o teto de 1.400 da 32.5. */
+		$html .= '<span class="rbm-vitrine-porque">'
+			. esc_html( robometria_r2_frase_curta_do_cartao( $m, $s ) ) . '</span>';
 
 		if ( null !== $m['autonomia_min'] ) {
 			$html .= '<span class="rbm-vitrine-vida">Autonomia declarada: <span class="rbm-num">'
@@ -1042,7 +1091,13 @@ function robometria_r2_vitrine( $itens, $s ) {
 
 		$html .= '</li>';
 	}
-	$html .= '</ul></div>';
+	$html .= '</ul>';
+
+	if ( '' !== $depois ) {
+		$html .= '<div class="rbm-compra-depois">' . $depois . '</div>';
+	}
+
+	$html .= '</div>';
 
 	return $html;
 }
@@ -1051,6 +1106,25 @@ function robometria_r2_vitrine( $itens, $s ) {
 /* ---------------------------------------------------------------------------
  * 6. A resposta em HTML
  * ------------------------------------------------------------------------- */
+
+/**
+ * O NÚMERO QUE A BARRA DO CELULAR CARREGA (seção 32.1).
+ *
+ * É o MESMO limiar da caixa de resultado, lido do MESMO `limiar_seguro` — a
+ * barra não reconta nada. Duas contas com o mesmo nome calculadas em dois
+ * lugares divergem em silêncio no dia em que uma das duas muda.
+ */
+if ( ! function_exists( 'robometria_r2_numero_da_barra' ) ) {
+function robometria_r2_numero_da_barra() {
+	$c = robometria_r2_consulta();
+	$s = robometria_r2_situacao( $c['chave'] );
+	if ( ! $s || empty( $s['limiar_seguro']['valor'] ) ) {
+		return '';
+	}
+
+	return robometria_r2_n( $s['limiar_seguro']['valor'] ) . ' Pa';
+}
+}
 
 if ( ! function_exists( 'robometria_r2_resposta' ) ) {
 function robometria_r2_resposta( $c ) {
@@ -1102,9 +1176,21 @@ function robometria_r2_resposta( $c ) {
 		robometria_r2_rotulo_do_pelo( $c['pelo'] )
 	) ) . '</h2>';
 
-	/* A RESPOSTA ANTES DA EXPLICAÇÃO (seção 5.2): frase autossuficiente, com
-	   número, autor e data, que sobrevive a ser citada fora de contexto. */
-	$html .= '<p class="rbm-frase rbm-linha-mestra">' . esc_html( robometria_r2_frase_situacao( $s ) ) . '</p>';
+	/* A CAIXA DE RESULTADO DA 32.1 (item 4), pré-renderizada no HTML servido: o
+	   limiar de Pa em Mono e, embaixo dele, a frase de leitura que já existia —
+	   a mesma frase autossuficiente da seção 5.2, com número, autor e data, que
+	   sobrevive a ser citada fora de contexto. O número NÃO é digitado aqui:
+	   sai do mesmo `limiar_seguro` que classifica os modelos abaixo. */
+	$html .= robometria_casca_caixa(
+		'Sucção a procurar',
+		robometria_r2_n( $s['limiar_seguro']['valor'] ),
+		'Pa ou mais',
+		array( sprintf(
+			'Para %s %s.',
+			robometria_r2_rotulo_do_piso( $s['piso'] ),
+			robometria_r2_rotulo_do_pelo( $s['pelo'] )
+		) )
+	);
 
 	/* A procedência de cada limiar, logo abaixo da frase e em texto discreto —
 	   nunca um botão (seção 7). */
@@ -1117,6 +1203,13 @@ function robometria_r2_resposta( $c ) {
 	   onde houve uma. A chave da deduplicação é o ENDEREÇO com a data, não o nome
 	   do publicador: o mesmo veículo pode publicar dois artigos, e aí são duas
 	   fontes de verdade e as duas têm de aparecer. */
+	/* A FRASE AUTOSSUFICIENTE DA SEÇÃO 5.2 — com número, autor e data, que
+	   sobrevive a ser citada fora de contexto — continua inteira e continua no
+	   HTML servido; ela desceu da caixa de resultado para cá, abaixo do bloco de
+	   compra, porque na caixa ocupava 146 px entre o número e o primeiro botão
+	   de loja. Está ABERTA, não em dobra: é a frase que um modelo de linguagem
+	   cita quando resume esta página. */
+	$procedencia = '<p class="rbm-frase rbm-linha-mestra">' . esc_html( robometria_r2_frase_situacao( $s ) ) . '</p>';
 	$fontes = array();
 	$vistas = array();
 	foreach ( (array) $s['limiares'] as $l ) {
@@ -1129,7 +1222,7 @@ function robometria_r2_resposta( $c ) {
 			. ' ' . ( function_exists( 'robometria_casca_fonte_link' )
 				? robometria_casca_fonte_link( $l['url'] ) : '' );
 	}
-	$html .= '<p class="rbm-vitrine-fonte">' . implode( ' &middot; ', $fontes ) . '</p>';
+	$procedencia .= '<p class="rbm-vitrine-fonte">' . implode( ' &middot; ', $fontes ) . '</p>';
 
 	if ( ! empty( $s['faixa_confortavel'] ) ) {
 		$f = $s['faixa_confortavel'];
@@ -1138,7 +1231,7 @@ function robometria_r2_resposta( $c ) {
 		   confortável no banco de hoje é o Mundo Conectado, que é masculino. A
 		   Canaltech chegando aqui publicaria "dele" sobre um nome feminino, e
 		   nenhum portão veria — a mesma família do "A %s declara" da R1. */
-		$html .= '<p class="rbm-frase">' . esc_html( sprintf(
+		$procedencia .= '<p class="rbm-frase">' . esc_html( sprintf(
 			'%s ainda descreve uma faixa confortável entre %s e %s Pa para esta situação — não é um limiar, é onde a recomendação %s fica folgada.',
 			$f['publicador'], robometria_r2_n( $f['de'] ), robometria_r2_n( $f['ate'] ),
 			isset( $f['pronome_possessivo'] ) ? $f['pronome_possessivo'] : 'dela'
@@ -1147,69 +1240,91 @@ function robometria_r2_resposta( $c ) {
 
 	$teto = robometria_r2_frase_teto( $s );
 	if ( '' !== $teto ) {
-		$html .= '<p class="rbm-frase rbm-terceiro">' . esc_html( $teto ) . '</p>';
+		$procedencia .= '<p class="rbm-frase rbm-terceiro">' . esc_html( $teto ) . '</p>';
 	}
 
 	/* ------------------------------------------------ O bloco de recomendação */
-	$html .= '<div class="rbm-secao"><h3>Modelos do banco que atendem</h3>';
-
 	if ( $elegiveis ) {
+		/* O BLOCO DE COMPRA VEM IMEDIATAMENTE ABAIXO DO RESULTADO (32.1, item
+		   5). Até a 1.9.0 vinham antes dele a lista de fontes, a faixa
+		   confortável, o teto de utilidade, o parágrafo da ordem e a lista de
+		   frases dos modelos — e o primeiro botão de loja caía a 4.347 px,
+		   medidos no ar em 21/10/2026 no celular de 390 px, contra o teto de
+		   1.400 da 32.5. Nada disso saiu da página: tudo é impresso logo depois
+		   dos cartões, na mesma ordem de antes. */
+		$html .= robometria_r2_vitrine( $elegiveis, $s );
+
+		/* O TÍTULO DA SEÇÃO VEM DEPOIS DO CARROSSEL, e não antes: com ele em
+		   cima, dois <h3> seguidos — "Modelos do banco que atendem" e "Onde
+		   comprar estes robôs" — custavam 59 px entre a caixa de resultado e o
+		   bloco de compra, dizendo quase a mesma coisa duas vezes. */
+		$html .= '<div class="rbm-secao"><h3>Modelos do banco que atendem</h3>';
 		$html .= '<p>São <span class="rbm-num">' . esc_html( robometria_r2_n( count( $elegiveis ) ) )
 			. '</span> modelos que passam no limiar de <span class="rbm-num">'
 			. esc_html( robometria_r2_n( $s['limiar_seguro']['valor'] ) )
 			. '</span> Pa. A ordem não é por preço nem por comissão: dentro da faixa útil vem primeiro quem tem mais folga, e o que passa do teto de utilidade vem depois, do menor excesso para o maior.</p>';
 
-		$html .= '<ul class="rbm-lista-frases">';
+		$corpo  = '<ul class="rbm-lista-frases">';
 		foreach ( $elegiveis as $i ) {
-			$html .= '<li>' . esc_html( $i['frase'] ) . '</li>';
+			$corpo .= '<li>' . esc_html( $i['frase'] ) . '</li>';
 		}
-		$html .= '</ul>';
-
-		/* A PORTA DE COMPRA VEM AQUI, ANTES da prova de procedência de cada
-		   ficha (seção 7 do ARQUIPELAGO.md, cicatriz de 10/09/2026). */
-		$html .= robometria_r2_vitrine( $elegiveis, $s );
+		$corpo .= '</ul>';
+		$html .= robometria_casca_dobra( 'A folga de cada modelo, modelo a modelo', $corpo, 'h3' );
+		$html .= '</div>';
 	} else {
+		$html .= '<div class="rbm-secao"><h3>Modelos do banco que atendem</h3>';
 		$html .= '<p class="rbm-frase">' . esc_html( robometria_r2_frase_vazia( $s ) ) . '</p>';
+		$html .= '</div>';
 	}
-	$html .= '</div>';
+
+	/* A PROCEDÊNCIA DOS LIMIARES, abaixo do bloco de compra e ABERTA: são o
+	   autor e a data que um modelo de linguagem cita quando resume esta página,
+	   e dobra fechada é texto que ele lê e a pessoa não. */
+	if ( '' !== $procedencia ) {
+		$html .= '<div class="rbm-secao">' . $procedencia . '</div>';
+	}
 
 	/* SEÇÃO SEPARADA, ABAIXO, ROTULADA — nunca misturada, nunca em primeiro
 	   lugar (seção 7). Quem está exatamente no valor que a fonte escreve como
 	   "acima de" não é quem a fonte cobre. */
 	if ( $no_limiar ) {
-		$html .= '<div class="rbm-secao rbm-terceiro"><h3>Exatamente no limiar — não acima dele</h3>';
+		$corpo = '';
 
 		/* A ausência da porta de compra é DITA, não deixada em silêncio: ver
 		   robometria_r2_frase_sem_porta(). */
-		$html .= '<p class="rbm-nota">' . esc_html( robometria_r2_frase_sem_porta() ) . '</p>';
+		$corpo .= '<p class="rbm-nota">' . esc_html( robometria_r2_frase_sem_porta() ) . '</p>';
 
-		$html .= '<ul class="rbm-lista-frases">';
+		$corpo .= '<ul class="rbm-lista-frases">';
 		foreach ( $no_limiar as $i ) {
 			$m = $i['modelo'];
 			$p = $m['procedencia'];
 
-			$html .= '<li class="rbm-no-limiar-item">';
-			$html .= '<span class="rbm-no-limiar-frase">' . esc_html( $i['frase'] ) . '</span>';
+			$corpo .= '<li class="rbm-no-limiar-item">';
+			$corpo .= '<span class="rbm-no-limiar-frase">' . esc_html( $i['frase'] ) . '</span>';
 
 			/* A RESSALVA DO DEGRAU, igual à do cartão: é o elo mais fraco dito
 			   com todas as letras. Quem escolhe a palavra é a escada de fontes
 			   do banco, não este arquivo. */
 			if ( ! empty( $p['ressalva'] ) ) {
-				$html .= '<span class="rbm-tag">' . esc_html( $p['ressalva'] ) . '</span>';
+				$corpo .= '<span class="rbm-tag">' . esc_html( $p['ressalva'] ) . '</span>';
 			}
 
 			/* E a procedência do Pa, no mesmo molde do cartão — o rótulo entra
 			   depois do travessão e não regido por preposição (cicatriz da R1). */
-			$html .= '<span class="rbm-vitrine-fonte">'
+			$corpo .= '<span class="rbm-vitrine-fonte">'
 				. esc_html( 'Como sabemos — ' . $p['rotulo'] . ', verificado em '
 					. robometria_r2_data( $p['verificado_em'] ) )
 				. ( empty( $p['url'] ) ? '' : ' · ' . ( function_exists( 'robometria_casca_fonte_link' )
 					? robometria_casca_fonte_link( $p['url'] ) : '' ) )
 				. '</span>';
 
-			$html .= '</li>';
+			$corpo .= '</li>';
 		}
-		$html .= '</ul></div>';
+		$corpo .= '</ul>';
+
+		$html .= '<div class="rbm-terceiro">'
+			. robometria_casca_dobra( 'Exatamente no limiar — não acima dele', $corpo, 'h3' )
+			. '</div>';
 	}
 
 	/* ------------------------------------------------- Os ciclos da metragem */
@@ -1260,6 +1375,8 @@ function robometria_r2_formulario() {
 		. ( '' !== $e['area'] ? ' value="' . esc_attr( $e['area'] ) . '"' : '' )
 		. '></p>';
 
+	$html .= '<div class="rbm-form-par">';
+
 	$html .= '<p class="rbm-form-campo"><label for="rbm-piso">Tipo de piso</label>';
 	$html .= '<select id="rbm-piso" name="piso">';
 	foreach ( (array) $d['entrada']['pisos'] as $p ) {
@@ -1278,23 +1395,34 @@ function robometria_r2_formulario() {
 	}
 	$html .= '</select></p>';
 
+	$html .= '</div>';
+
+	/* O MODELO DE REFERÊNCIA VAI PARA UMA DOBRA (32.1, item 3: o formulário na
+	   primeira tela, já preenchido). Ele não entra no limiar de Pa — os três
+	   campos acima respondem isso inteiro — e só muda a conta de ciclos, que é
+	   a segunda pergunta da página. Empilhado, custava 84 px da primeira tela.
+	   Continua servido no HTML, com o mesmo nome e o mesmo valor padrão. */
+	$dobra = '';
+
 	/* O seletor de referência só oferece quem DECLARA cobertura por carga.
 	   Oferecer os 28 modelos do banco faria 23 deles devolverem "o fabricante
 	   não declara", que é a mesma escolha-que-sempre-recusa que a R1 tirou do
 	   seletor de tipo de peça. */
-	$html .= '<p class="rbm-form-campo"><label for="rbm-referencia">Modelo de referência</label>';
-	$html .= '<select id="rbm-referencia" name="referencia">';
+	$dobra .= '<p class="rbm-form-campo"><label for="rbm-referencia">Modelo de referência</label>';
+	$dobra .= '<select id="rbm-referencia" name="referencia">';
 	foreach ( (array) $d['modelos_de_referencia'] as $id ) {
 		$m = robometria_r2_modelo( $id );
 		if ( ! $m ) {
 			continue;
 		}
-		$html .= '<option value="' . esc_attr( $id ) . '"'
+		$dobra .= '<option value="' . esc_attr( $id ) . '"'
 			. ( $e['referencia'] === $id ? ' selected' : '' ) . '>'
 			. esc_html( $m['rotulo'] . ' — ' . robometria_r2_n( $m['cobertura_m2'] ) . ' m² por carga' )
 			. '</option>';
 	}
-	$html .= '</select></p>';
+	$dobra .= '</select></p>';
+
+	$html .= robometria_casca_dobra( 'Trocar o modelo de referência dos ciclos', $dobra, 'h3' );
 
 	$html .= '<p class="rbm-form-acao"><button type="submit">Ver a resposta para a minha casa</button></p>';
 	$html .= '</form>';
@@ -1423,7 +1551,7 @@ add_shortcode( 'robometria_r2', function () {
 	if ( empty( $d['situacoes'] ) ) {
 		return robometria_casca_sem_banco_html(
 			'Esta ferramenta está sem o banco de modelos no momento.',
-			'O banco é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a mostrar um formulário que responderia vazio para qualquer casa.'
+			'Enquanto o catálogo de modelos não voltar, preferimos avisar a mostrar um formulário que responderia vazio para qualquer casa. Tente de novo mais tarde.'
 		);
 	}
 
@@ -1433,27 +1561,34 @@ add_shortcode( 'robometria_r2', function () {
 	$html = '<div class="rbm-bloco">';
 
 	/* RESPOSTA ANTES DA EXPLICAÇÃO. */
+	/* UMA FRASE DE PROMESSA, NUM LUGAR SÓ (32.1, item 2). Havia duas — esta e a
+	   `rbm-promessa` do bloco "A sua casa" —, e com o parágrafo de procedência
+	   elas empurravam o formulário para 876 px, medidos no ar em 21/10/2026 no
+	   celular de 390 px; a 32.5 pede antes de 700. A segunda promessa e a
+	   procedência não saíram da página: desceram para baixo do bloco de compra,
+	   servidas no HTML e legíveis sem JavaScript (32.3). */
 	$html .= '<div class="rbm-abertura">';
 	$html .= '<p class="rbm-linha-mestra">Diga o tamanho da sua casa, o piso e se tem bicho: você vê quanta <strong>sucção</strong> procurar e quantas <strong>cargas</strong> o seu robô gasta para terminar.</p>';
-	$html .= '<p class="rbm-prova">Os números de pascal saem com o nome de quem os recomenda, porque as fontes brasileiras discordam entre si; os ciclos saem da cobertura por carga que o fabricante do robô declara. ' . esc_html( robometria_r2_frase_classe_de_fonte() ) . '</p>';
 	$html .= '</div>';
 
-	/* PROMESSA ANTES DO FORMULÁRIO (seção 6). */
 	$html .= '<div class="rbm-secao"><h2>A sua casa</h2>';
-	$html .= '<p class="rbm-promessa">Você recebe o limiar de Pa com o autor e a data, a lista dos modelos do banco que passam nele, e quantos ciclos a sua metragem exige. Sem cadastro e sem e-mail.</p>';
 	$html .= robometria_r2_formulario();
 	$html .= '</div>';
 
 	$html .= robometria_r2_resposta( $c );
+
+	$html .= '<div class="rbm-secao">';
+	$html .= '<p class="rbm-prova">Os números de pascal saem com o nome de quem os recomenda, porque as fontes brasileiras discordam entre si; os ciclos saem da cobertura por carga que o fabricante do robô declara. ' . esc_html( robometria_r2_frase_classe_de_fonte() ) . '</p>';
+	$html .= '<p class="rbm-promessa">Você recebe o limiar de Pa com o autor e a data, a lista dos modelos do banco que passam nele, e quantos ciclos a sua metragem exige. Sem cadastro e sem e-mail.</p>';
+	$html .= '</div>';
 
 	$html .= robometria_r2_todas_as_situacoes( $c['chave'] );
 
 	$html .= robometria_r2_tabela_exemplos();
 
 	/* ---------------------------------------------------------- O que falta */
-	$html .= '<div class="rbm-secao"><h2>O que esta ferramenta se recusa a fazer</h2>';
-	$html .= '<p>' . esc_html( robometria_r2_frase_conversao() ) . '</p>';
-	$html .= '<p>' . esc_html( sprintf(
+	$corpo  = '<p>' . esc_html( robometria_r2_frase_conversao() ) . '</p>';
+	$corpo .= '<p>' . esc_html( sprintf(
 		'A conta completa de tempo — ciclos × autonomia mais as recargas no meio — precisa de três números declarados pelo fabricante: cobertura por carga, autonomia e tempo de recarga. Dos %s modelos publicáveis do banco, %s declaram cobertura, %s declaram recarga e %s declaram os três. Por isso publicamos os ciclos e o tempo de limpeza somado, e não o tempo total: o número que falta não está publicado por ninguém.',
 		robometria_r2_n( $r['modelos_publicaveis'] ),
 		robometria_r2_n( $d['contexto']['tempo_total']['com_cobertura'] ),
@@ -1461,19 +1596,22 @@ add_shortcode( 'robometria_r2', function () {
 		( 0 === (int) $d['contexto']['tempo_total']['com_os_tres'] ) ? 'nenhum'
 			: robometria_r2_n( $d['contexto']['tempo_total']['com_os_tres'] )
 	) ) . '</p>';
-	$html .= '<p>' . esc_html( robometria_r2_frase_funil() ) . '</p>';
-	$html .= '</div>';
+	$corpo .= '<p>' . esc_html( robometria_r2_frase_funil() ) . '</p>';
+	$html .= robometria_casca_dobra( 'O que esta ferramenta se recusa a fazer', $corpo, 'h2' );
 
-	$html .= '<div class="rbm-secao"><h2>Como esta página foi montada</h2>';
-	$html .= '<p><strong>Nenhuma das páginas de fabricante deste banco foi lida diretamente.</strong> O acesso direto a esses endereços está bloqueado no ambiente em que a Robometria é construída, e tudo foi colhido por busca restrita ao domínio da própria fonte. É por isso que cada número traz o endereço da declaração: para você conferir, e não para você acreditar.</p>';
-	$html .= '<p>Os limiares de Pa vêm de veículos brasileiros e estão datados. Quando dois deles discordam, esta página <strong>não tira a média</strong> — publica os dois com o nome de cada um e trabalha com o maior, porque errar para baixo faz comprar um robô que não dá conta, e errar para cima só custa dinheiro até o teto de utilidade que a própria fonte marca.</p>';
-	$html .= '<p>' . ( function_exists( 'robometria_casca_link_html' )
+	/* COMO SABEMOS (32.1, item 7, e 32.4): a procedência continua — publicador
+	   nomeado e data —, e o que saiu foi a frase que descrevia a OFICINA, com
+	   "o ambiente em que a Robometria é construída" e "busca restrita ao
+	   domínio da própria fonte". A 32.4 proíbe as duas com essas palavras. */
+	$corpo  = '<p><strong>Todo número desta página tem endereço e data.</strong> Cada pascal declarado veio de um canal público da própria marca — a página do produto ou o catálogo —, e cada limiar veio de um veículo brasileiro nomeado, com o dia em que foi verificado. É por isso que o endereço está ali: para você conferir, e não para você acreditar.</p>';
+	$corpo .= '<p>Os limiares de Pa vêm de veículos brasileiros e estão datados. Quando dois deles discordam, esta página <strong>não tira a média</strong> — publica os dois com o nome de cada um e trabalha com o maior, porque errar para baixo faz comprar um robô que não dá conta, e errar para cima só custa dinheiro até o teto de utilidade que a própria fonte marca.</p>';
+	$corpo .= '<p>' . ( function_exists( 'robometria_casca_link_html' )
 		? robometria_casca_link_html( 'metodologia', 'A metodologia completa, com a escada de fontes' )
 		: 'A metodologia completa, com a escada de fontes' ) . ' &middot; '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' )
 			: 'Divulgação de afiliados' ) . '</p>';
-	$html .= '</div>';
+	$html .= robometria_casca_dobra( 'Como sabemos', $corpo, 'h2' );
 
 	/* INTERLINKAGEM entre as duas ferramentas, de mão dupla (seção 3 da
 	   especificação e seção 9 do ARQUIPELAGO.md): a R1 já aponta para cá, e sem
@@ -1652,6 +1790,14 @@ add_action( 'wp_head', function () {
 	$css = <<<'CSS'
 .rbm-resposta{margin:2.4rem 0 0;padding-top:1.6rem;border-top:1px solid var(--rbm-traco);}
 .rbm-resposta h2{margin:0 0 .8rem;font-size:1.3rem;}
+/* No celular a resposta encosta mais no formulario e o titulo dela cabe em
+   menos linhas: cada px entre o formulario e o primeiro botao de loja conta
+   para a 32.5, e o separador de 64 px era desenho de tela larga. */
+@media (max-width:782px){
+.rbm-resposta{margin-top:1.4rem;padding-top:1rem;}
+.rbm-resposta h2{font-size:1.1rem;margin-bottom:.6rem;}
+.rbm-legenda-bloco{font-size:.68rem;}
+}
 .rbm-resposta h3{margin:0 0 .6rem;font-size:1.08rem;}
 .rbm-legenda-bloco{font-family:var(--rbm-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--rbm-legenda);margin:0 0 .5rem;}
 .rbm-frase{margin:0 0 .8rem;}
@@ -1717,6 +1863,11 @@ add_action( 'wp_footer', function () {
 		alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
 	}
 
+	/* A BARRA VIGIA O BLOCO DE COMPRA, e nao a caixa de resultado (32.1: ela
+	   carrega o numero do resultado e leva ao bloco de compra, aparecendo
+	   enquanto esse bloco esta fora da tela). */
+	var compra = document.getElementById('rbm-compra') || alvo;
+
 	var barra = document.querySelector('.rbm-barra');
 	if (!barra || !('IntersectionObserver' in window)) { return; }
 
@@ -1725,7 +1876,7 @@ add_action( 'wp_footer', function () {
 			document.body.setAttribute('data-rbm-r2-barra', e.isIntersecting ? '0' : '1');
 		});
 	}, { threshold: 0 });
-	observador.observe(alvo);
+	observador.observe(compra);
 })();
 JS;
 
@@ -1740,7 +1891,13 @@ add_action( 'wp_footer', function () {
 	if ( empty( $d['situacoes'] ) ) {
 		return;
 	}
-	echo '<div class="rbm-barra"><a href="#resultado">Ver a resposta ↓</a></div>' . "\n";
+	/* A BARRA CARREGA O NUMERO DO RESULTADO, pela 32.1 — o mesmo limiar de Pa da
+	   caixa de resultado, servido pelo servidor e nao montado por script. O
+	   destino e o bloco de compra. */
+	$numero = robometria_r2_numero_da_barra();
+	echo '<div class="rbm-barra"><a href="#rbm-compra">'
+		. ( '' === $numero ? 'Ver onde comprar ↓' : esc_html( $numero ) . ' · ver onde comprar ↓' )
+		. '</a></div>' . "\n";
 }, 24 );
 
 add_filter( 'body_class', function ( $classes ) {

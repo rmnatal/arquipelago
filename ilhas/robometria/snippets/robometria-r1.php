@@ -1,5 +1,13 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.12.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32. A ordem da pagina passou a ser a da 32.1 —
+ * uma promessa, o formulario preenchido com o caso de exemplo, a caixa de
+ * resultado pre-renderizada, o bloco de compra imediatamente abaixo dela, a
+ * tabela de casos resolvidos aberta, e o resto do texto em <details>. Medido no
+ * ar em 21/10/2026, no celular de 390 px: o formulario comecava a 808 px (a 32.5
+ * pede antes de 700) e o primeiro botao de loja a 3.330 px (o teto e 1.400).
+ * Nenhuma palavra saiu da pagina, menos a frase de bastidor que a 32.4 proibe.
+ *
  * Versão: 1.11.1 (21/09/2026) — A CAUDA DA DIVERGÊNCIA CONCORDA EM GÊNERO. Ela
  * conta `declarações`, que é palavra feminina, e o numeral saía da tabela
  * masculina: com UM canal divergente a página servia "as dois declarações".
@@ -180,7 +188,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.11.1' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.12.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -893,6 +901,39 @@ function robometria_r1_entrada() {
 }
 }
 
+/**
+ * O NÚMERO QUE A BARRA DO CELULAR CARREGA (seção 32.1).
+ *
+ * É o MESMO número da caixa de resultado, e sai da mesma contagem — peças
+ * distintas que o fabricante declara para o modelo que está na tela. Duas
+ * contagens com o mesmo nome calculadas em dois lugares é o defeito que esta
+ * ferramenta já pagou na tabela de exemplos, então a barra chama esta função em
+ * vez de recontar.
+ */
+if ( ! function_exists( 'robometria_r1_numero_da_barra' ) ) {
+function robometria_r1_numero_da_barra() {
+	$d = robometria_r1_dados();
+	$e = robometria_r1_entrada();
+
+	$modelo_id = ( '' !== $e['modelo'] ) ? $e['modelo'] : ( isset( $d['ancora'] ) ? (string) $d['ancora'] : '' );
+	if ( '' === $modelo_id || empty( $d['respostas'][ $modelo_id ] ) ) {
+		return '';
+	}
+
+	$itens = robometria_r1_itens( $d['respostas'][ $modelo_id ]['fabricante'], $e['peca'] );
+	$pecas = array();
+	foreach ( (array) $itens as $i ) {
+		$pecas[ $i['peca'] ] = true;
+	}
+	$n = count( $pecas );
+	if ( $n < 1 ) {
+		return '';
+	}
+
+	return sprintf( 1 === $n ? '%s peça' : '%s peças', number_format_i18n( $n ) );
+}
+}
+
 /** Houve consulta de verdade? É o que decide o noindex e a rolagem. */
 if ( ! function_exists( 'robometria_r1_houve_consulta' ) ) {
 function robometria_r1_houve_consulta() {
@@ -996,7 +1037,7 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		}
 	}
 
-	$html  = '<div class="rbm-secao rbm-compra"><h3>Onde comprar estas peças</h3>';
+	$html  = '<div class="rbm-secao rbm-compra" id="rbm-compra"><h3>Onde comprar estas peças</h3>';
 
 	/* AVISO DE COMISSÃO VISÍVEL NA PÁGINA (seção 7), e no bloco de compra — não
 	   só no rodapé. Quem vê o botão precisa ver o aviso sem rolar. */
@@ -1005,7 +1046,19 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 	   da página para emprestar autoridade. O critério verdadeiro é a declaração
 	   de compatibilidade publicada na fonte de cada peça, seja ela o fabricante
 	   ou a loja oficial dele. */
-	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela declaração de compatibilidade publicada na fonte de cada peça, e só por ela. '
+	/* O AVISO DE COMISSAO EM UMA LINHA (32.1, item 5), acima dos cartoes. O resto
+	   do que ele dizia — que a comissao nao muda a ordem da lista, e por que —
+	   desceu para baixo do carrossel, com a prosa do recorte: eram 128 px entre
+	   o titulo do bloco e o primeiro cartao. Nenhuma palavra saiu da pagina. */
+	$html .= '<p class="rbm-aviso-comissao">Links de afiliado: podemos receber comissão.</p>';
+
+	/* A PROSA DO RECORTE DESCEU PARA BAIXO DOS CARTOES (32.1, item 5: o bloco de
+	   compra vem imediatamente abaixo do resultado, e o aviso de comissao em UMA
+	   linha). As duas notas abaixo ocupavam 363 px entre o titulo do bloco e o
+	   primeiro cartao, medidos no ar em 21/10/2026 no celular de 390 px — e sao
+	   informacao de compra, que quem ja viu o botao continua lendo. Nenhuma
+	   palavra saiu da pagina: elas sao impressas logo apos o carrossel. */
+	$depois = '<p class="rbm-aviso-comissao">Os botões de compra acima são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela declaração de compatibilidade publicada na fonte de cada peça, e só por ela. '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
 			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
@@ -1026,7 +1079,7 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 			$quantas = sprintf( '%d destas %d peças ainda não têm link de loja', $sem_porta, $total_pecas );
 		}
 
-		$html .= '<p class="rbm-nota">' . esc_html( $quantas )
+		$depois .= '<p class="rbm-nota">' . esc_html( $quantas )
 			. esc_html( ', e o cartão diz isso em vez de fazer o bloco sumir. Enquanto o link não existe, o endereço da declaração continua aqui — embaixo de cada cartão, como "fonte", para você conferir.' )
 			. '</p>';
 	}
@@ -1045,7 +1098,7 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		} else {
 			$busca_frase = sprintf( '%d destas %d peças abrem a busca da loja, já filtrada, em vez da ficha de um produto', $so_busca, $total_pecas );
 		}
-		$html .= '<p class="rbm-nota">' . esc_html( $busca_frase )
+		$depois .= '<p class="rbm-nota">' . esc_html( $busca_frase )
 			. esc_html( '. A busca não esgota e não sai do ar, e é por isso que ela é o piso: preferimos a vitrine certa a um link de produto que morre em doze horas.' )
 			. '</p>';
 	}
@@ -1132,7 +1185,13 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		$html .= '</li>';
 	}
 
-	$html .= '</ul></div>';
+	$html .= '</ul>';
+
+	if ( '' !== $depois ) {
+		$html .= '<div class="rbm-compra-depois">' . $depois . '</div>';
+	}
+
+	$html .= '</div>';
 	return $html;
 }
 }
@@ -1174,20 +1233,21 @@ function robometria_r1_divergencias( $itens ) {
 			$titulo = 'O que os canais declaram sobre ';
 			$regra  = 'Vale o conjunto mais estreito, e parte destas declarações não é do fabricante. Errar para o lado largo faria você comprar uma peça que não encaixa — e é essa assimetria, não a média, que decide a direção.';
 		}
-		$html .= '<div class="rbm-secao"><h3>' . esc_html( $titulo . $identificacao ) . '</h3>';
-		$html .= '<p>' . esc_html( $regra ) . '</p>';
-		$html .= '<div class="rbm-tabela"><table class="rbm-quadro"><thead><tr><th>Canal</th><th>Modelos que ele declara</th><th>Verificado em</th></tr></thead><tbody>';
+		$corpo  = '<p>' . esc_html( $regra ) . '</p>';
+		$corpo .= '<div class="rbm-tabela"><table class="rbm-quadro"><thead><tr><th>Canal</th><th>Modelos que ele declara</th><th>Verificado em</th></tr></thead><tbody>';
 		foreach ( $mapa[ $i['peca'] ] as $dv ) {
-			$html .= '<tr>';
+			$corpo .= '<tr>';
 			/* O nome do canal é o DADO da linha e sai como texto; o endereço vai
 			   junto como "fonte", discreto e com nofollow (seção 7). */
-			$html .= '<td>' . esc_html( $dv['canal'] )
+			$corpo .= '<td>' . esc_html( $dv['canal'] )
 				. ( empty( $dv['url'] ) ? '' : ' ' . robometria_r1_fonte_link( $dv['url'] ) ) . '</td>';
-			$html .= '<td>' . esc_html( robometria_r1_lista( $dv['conjunto'] ) ) . '</td>';
-			$html .= '<td class="rbm-n">' . esc_html( robometria_r1_data( $dv['verificado_em'] ) ) . '</td>';
-			$html .= '</tr>';
+			$corpo .= '<td>' . esc_html( robometria_r1_lista( $dv['conjunto'] ) ) . '</td>';
+			$corpo .= '<td class="rbm-n">' . esc_html( robometria_r1_data( $dv['verificado_em'] ) ) . '</td>';
+			$corpo .= '</tr>';
 		}
-		$html .= '</tbody></table></div></div>';
+		$corpo .= '</tbody></table></div>';
+
+		$html .= robometria_casca_dobra( $titulo . $identificacao, $corpo, 'h3' );
 	}
 
 	return $html;
@@ -1232,38 +1292,96 @@ function robometria_r1_resposta( $modelo_id, $tipo, $e_ancora = false ) {
 		? ' — o que o fabricante declara'
 		: ' — ' . esc_html( robometria_r1_nome_do_tipo( $tipo ) ) ) . '</h2>';
 
+	/* A CAIXA DE RESULTADO DA 32.1 (item 4), pré-renderizada no HTML servido.
+	   O número é CONTADO das peças que a vitrine abaixo vai mostrar — a mesma
+	   agregação por peça, porque um kit que responde filtro, mop e escova é UMA
+	   peça para comprar e três respostas. Duas contagens com o mesmo nome é o
+	   defeito que esta ferramenta já pagou na tabela de exemplos, e aqui o nome
+	   diz qual é: "peças para comprar". */
+	$pecas_distintas = array();
+	foreach ( $fabricante as $i ) {
+		$pecas_distintas[ $i['peca'] ] = true;
+	}
+	$quantas_pecas = count( $pecas_distintas );
+
+	$tipos_respondidos = array();
+	foreach ( $fabricante as $i ) {
+		$tipos_respondidos[ $i['tipo'] ] = true;
+	}
+	$nomes_dos_tipos = array_map( 'robometria_r1_nome_do_tipo', array_keys( $tipos_respondidos ) );
+
 	if ( $fabricante ) {
-		foreach ( $fabricante as $i ) {
-			$html .= '<p class="rbm-frase">' . esc_html( robometria_r1_frase( $i ) ) . '</p>';
-		}
+		$html .= robometria_casca_caixa(
+			'Peças declaradas pelo fabricante',
+			number_format_i18n( $quantas_pecas ),
+			( 1 === $quantas_pecas ? 'peça' : 'peças' ),
+			array(
+				sprintf(
+					1 === $quantas_pecas
+						? 'É a peça que o fabricante declara para o %1$s, e ela cobre %2$s.'
+						: 'São as peças que o fabricante declara para o %1$s, e elas cobrem %2$s.',
+					$rotulo,
+					robometria_r1_lista( $nomes_dos_tipos )
+				),
+			)
+		);
+	} else {
+		/* Sem declaração, a caixa continua existindo e é ela que RESPONDE — com
+		   o zero escrito, e não com um espaço em branco onde deveria haver um
+		   número. Página que some com a caixa quando a resposta é "não sabemos"
+		   ensina a ler o branco como defeito. */
+		$html .= robometria_casca_caixa(
+			'Peças declaradas pelo fabricante',
+			'0',
+			'peça',
+			array( sprintf( 'Não localizamos nenhuma declaração do fabricante para o %s. O que existe, e o que não existe, está escrito logo abaixo.', $rotulo ) )
+		);
 	}
 
 	if ( ! empty( $resp['aviso_de_variante'] ) ) {
 		$frase = robometria_r1_frase_variante( $resp['aviso_de_variante'] );
 		if ( '' !== $frase ) {
+			/* ESTE AVISO NÃO ENTRA EM DOBRA e não desce: ele muda o que a pessoa
+			   deve comprar, e fica entre a caixa e o botão de propósito. */
 			$html .= '<p class="rbm-nota"><strong>Antes de comprar:</strong> ' . esc_html( $frase ) . '</p>';
 		}
 	}
 
+	/* O BLOCO DE COMPRA IMEDIATAMENTE ABAIXO DA CAIXA (32.1, item 5). Até a
+	   1.11.1 as frases de cada peça vinham antes dele e custavam 1.358 px,
+	   medidos no ar em 21/10/2026 no celular de 390 px — o primeiro botão de
+	   loja caía a 3.330 px e a 32.5 pede antes de 1.400. As frases não saíram da
+	   página: estão logo depois dos cartões, na ordem de antes. */
 	$html .= robometria_r1_vitrine( $fabricante, $modelo );
+
+	if ( $fabricante ) {
+		$corpo = '';
+		foreach ( $fabricante as $i ) {
+			$corpo .= '<p class="rbm-frase">' . esc_html( robometria_r1_frase( $i ) ) . '</p>';
+		}
+		$html .= robometria_casca_dobra( 'A declaração de cada peça, com o endereço e a data', $corpo, 'h3' );
+	}
 
 	if ( $terceiro ) {
 		/* Seção separada, abaixo, rotulada — nunca misturada e nunca em
-		   primeiro lugar (seção 7 do contrato). */
-		$html .= '<div class="rbm-secao rbm-terceiro"><h3>Declarado por terceiro, não pelo fabricante</h3>';
-		$html .= '<p>O que vem abaixo foi afirmado por lojista ou anunciante. Não localizamos declaração do fabricante para estes casos, e por isso eles não sobem para a lista de cima.</p>';
+		   primeiro lugar (seção 7 do contrato). A dobra não muda nenhuma das
+		   três coisas: ela continua separada, continua rotulada no <summary> e
+		   continua abaixo. */
+		$corpo  = '<p>O que vem abaixo foi afirmado por lojista ou anunciante. Não localizamos declaração do fabricante para estes casos, e por isso eles não sobem para a lista de cima.</p>';
 		foreach ( $terceiro as $i ) {
-			$html .= '<p class="rbm-frase">' . esc_html( robometria_r1_frase( $i ) ) . '</p>';
+			$corpo .= '<p class="rbm-frase">' . esc_html( robometria_r1_frase( $i ) ) . '</p>';
 		}
-		$html .= '</div>';
+		$html .= '<div class="rbm-terceiro">'
+			. robometria_casca_dobra( 'Declarado por terceiro, não pelo fabricante', $corpo, 'h3' )
+			. '</div>';
 	}
 
 	if ( ! empty( $resp['kits_sem_composicao'] ) ) {
-		$html .= '<div class="rbm-secao"><h3>Um kit serve este modelo, e ainda não sabemos o que vem dentro</h3>';
+		$corpo = '';
 		foreach ( $resp['kits_sem_composicao'] as $k ) {
-			$html .= '<p class="rbm-frase">' . esc_html( robometria_r1_frase_kit( $k ) ) . '</p>';
+			$corpo .= '<p class="rbm-frase">' . esc_html( robometria_r1_frase_kit( $k ) ) . '</p>';
 		}
-		$html .= '</div>';
+		$html .= robometria_casca_dobra( 'Um kit serve este modelo, e ainda não sabemos o que vem dentro', $corpo, 'h3' );
 	}
 
 	$sem_resposta = array();
@@ -1274,21 +1392,28 @@ function robometria_r1_resposta( $modelo_id, $tipo, $e_ancora = false ) {
 	}
 
 	if ( $sem_resposta ) {
-		$html .= '<div class="rbm-secao"><h3>' . ( $fabricante
-			? 'O que não encontramos para este modelo'
-			: 'Não temos declaração de fabricante para este modelo' ) . '</h3>';
-		$html .= '<ul class="rbm-lista">';
+		$corpo = '<ul class="rbm-lista">';
 		foreach ( $sem_resposta as $t ) {
-			$html .= '<li>' . esc_html( robometria_r1_frase_recusa( $t ) ) . '</li>';
+			$corpo .= '<li>' . esc_html( robometria_r1_frase_recusa( $t ) ) . '</li>';
 		}
-		$html .= '</ul>';
+		$corpo .= '</ul>';
 		if ( ! $fabricante ) {
-			$html .= '<p>Isso não quer dizer que não exista peça: quer dizer que o fabricante não publicou, em canal que a gente tenha localizado, qual peça serve neste modelo. Anúncio de marketplace afirmando compatibilidade não conta como declaração, e é por isso que ele não aparece aqui.</p>';
+			$corpo .= '<p>Isso não quer dizer que não exista peça: quer dizer que o fabricante não publicou, em canal que a gente tenha localizado, qual peça serve neste modelo. Anúncio de marketplace afirmando compatibilidade não conta como declaração, e é por isso que ele não aparece aqui.</p>';
 			/* Seção 7: sem item que atenda, o bloco não lista — mas DIGA por quê.
 			   Silêncio no lugar do bloco de compra parece defeito de página. */
-			$html .= '<p><strong>E é por isso que esta resposta não tem bloco de compra.</strong> Nós ganhamos comissão quando alguém compra por um link nosso, e é exatamente por isso que ele não pode aparecer aqui: vender uma peça que o fabricante não declarou para o seu robô seria transformar em receita justamente o que a página não sabe.</p>';
+			$corpo .= '<p><strong>E é por isso que esta resposta não tem bloco de compra.</strong> Nós ganhamos comissão quando alguém compra por um link nosso, e é exatamente por isso que ele não pode aparecer aqui: vender uma peça que o fabricante não declarou para o seu robô seria transformar em receita justamente o que a página não sabe.</p>';
 		}
-		$html .= '</div>';
+
+		if ( $fabricante ) {
+			/* Com declaração na tela, a recusa dos outros tipos é complemento e
+			   vai para a dobra. */
+			$html .= robometria_casca_dobra( 'O que não encontramos para este modelo', $corpo, 'h3' );
+		} else {
+			/* SEM declaração, esta é A RESPOSTA, e resposta não se recolhe
+			   (32.1 e 32.3: a resposta vem antes da explicação, aberta). */
+			$html .= '<div class="rbm-secao"><h3>Não temos declaração de fabricante para este modelo</h3>'
+				. $corpo . '</div>';
+		}
 	}
 
 	$html .= robometria_r1_divergencias( $fabricante );
@@ -1329,6 +1454,20 @@ function robometria_r1_formulario() {
 
 	$html  = '<form class="rbm-form" method="get" action="' . esc_url( robometria_r1_url_da_pagina() ) . '">';
 
+	/* O FORMULARIO NASCE PREENCHIDO, pela 32.1 (item 3): o campo vem com o caso
+	   de exemplo, que e o MESMO modelo da caixa de resultado e da vitrine logo
+	   abaixo — tres lugares mostrando um caso so, em vez de um formulario vazio
+	   em cima de uma resposta de outro modelo. Quem escolhe o exemplo e o banco,
+	   pelo modelo-ancora, entao o dia em que a coleta melhorar outro modelo o
+	   exemplo muda sozinho.
+
+	   A OPCAO VAZIA FICA, e e a primeira: ela e o que permite voltar a "nenhum
+	   modelo" sem recarregar a pagina na mao, e o <select> continua sendo lista
+	   fechada. O que muda e qual delas vem marcada quando ninguem escolheu. */
+	$marcado = ( '' !== $e['modelo'] )
+		? $e['modelo']
+		: ( isset( $d['ancora'] ) ? (string) $d['ancora'] : '' );
+
 	$html .= '<p class="rbm-form-campo"><label for="rbm-modelo">O seu robô</label>';
 	$html .= '<select id="rbm-modelo" name="modelo">';
 	$html .= '<option value="">escolha a marca e o modelo</option>';
@@ -1337,7 +1476,7 @@ function robometria_r1_formulario() {
 		foreach ( $modelos as $m ) {
 			$rotulo = $m['codigo'] . ( empty( $m['linha'] ) ? '' : ' — ' . $m['linha'] );
 			$html  .= '<option value="' . esc_attr( $m['id'] ) . '"'
-				. ( $e['modelo'] === $m['id'] ? ' selected' : '' ) . '>'
+				. ( $marcado === $m['id'] ? ' selected' : '' ) . '>'
 				. esc_html( $rotulo ) . '</option>';
 		}
 		$html .= '</optgroup>';
@@ -1467,14 +1606,12 @@ function robometria_r1_lista_vazia() {
 	}
 	sort( $rotulos );
 
-	$html  = '<div class="rbm-secao"><h2>Onde esta ferramenta ainda não responde</h2>';
-	$html .= '<p>Em <span class="rbm-num">' . esc_html( count( $rotulos ) ) . '</span> dos <span class="rbm-num">'
+	$corpo  = '<p>Em <span class="rbm-num">' . esc_html( count( $rotulos ) ) . '</span> dos <span class="rbm-num">'
 		. esc_html( count( $d['modelos'] ) ) . '</span> modelos do banco, não localizamos nenhuma peça declarada pelo fabricante — e a ferramenta diz isso em vez de mostrar um anúncio: '
 		. esc_html( implode( ', ', $rotulos ) ) . '.</p>';
-	$html .= '<p>A causa é de mercado e está medida: Electrolux e Multi publicam página de peça com a lista de modelos compatíveis e não publicam sucção em pascal; Xiaomi e WAP publicam pascal e não publicam código de peça. Enquanto for assim, um robô costuma ter resposta numa ferramenta desta ilha e recusa na outra.</p>';
-	$html .= '</div>';
+	$corpo .= '<p>A causa é de mercado e está medida: Electrolux e Multi publicam página de peça com a lista de modelos compatíveis e não publicam sucção em pascal; Xiaomi e WAP publicam pascal e não publicam código de peça. Enquanto for assim, um robô costuma ter resposta numa ferramenta desta ilha e recusa na outra.</p>';
 
-	return $html;
+	return robometria_casca_dobra( 'Onde esta ferramenta ainda não responde', $corpo, 'h2' );
 }
 }
 
@@ -1490,7 +1627,7 @@ add_shortcode( 'robometria_r1', function () {
 		   servir um formulário que devolve vazio para tudo. */
 		return robometria_casca_sem_banco_html(
 			'Esta ferramenta está sem o banco de peças no momento.',
-			'O banco é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a mostrar um formulário que responderia vazio para qualquer modelo.'
+			'Enquanto o catálogo de peças não voltar, preferimos avisar a mostrar um formulário que responderia vazio para qualquer modelo. Tente de novo mais tarde.'
 		);
 	}
 
@@ -1503,42 +1640,70 @@ add_shortcode( 'robometria_r1', function () {
 
 	/* RESPOSTA ANTES DA EXPLICAÇÃO (seção 5.2): frase autossuficiente, com
 	   número e data, que sobrevive a ser citada fora de contexto. */
+	/* UMA FRASE DE PROMESSA, NUM LUGAR SÓ (32.1, item 2). Havia duas — esta e a
+	   `rbm-promessa` do bloco "Escolha o seu robô" — dizendo a mesma coisa com
+	   palavras diferentes, e juntas com o parágrafo de procedência empurravam o
+	   formulário para 808 px, medidos no ar em 21/10/2026 no celular de 390 px.
+	   A 32.5 pede o formulário antes de 700. A segunda promessa e o parágrafo de
+	   procedência não saíram da página: desceram para baixo do bloco de compra,
+	   onde continuam servidos no HTML e legíveis sem JavaScript (32.3). */
 	$html .= '<div class="rbm-abertura">';
 	$html .= '<p class="rbm-linha-mestra">Diga a marca e o modelo do seu robô e veja o filtro, a escova, o mop e a bateria que encaixam nele — e quais ninguém confirmou que encaixam.</p>';
-	$html .= '<p class="rbm-prova">Aqui só está escrito que uma peça serve quando o fabricante declarou que serve, com o código, o endereço da declaração e a data. Hoje são <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['pares_declarados'] ) ? $r['pares_declarados'] : 0 ) )
-		. '</span> pares peça × modelo declarados, em <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['marcas'] ) ? $r['marcas'] : 0 ) )
-		. '</span> marcas, cobrindo <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['modelos_que_respondem'] ) ? $r['modelos_que_respondem'] : 0 ) )
-		. '</span> dos <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['modelos_publicaveis'] ) ? $r['modelos_publicaveis'] : 0 ) )
-		. '</span> modelos do banco. Nos outros, a resposta é "não localizamos declaração do fabricante" — e ela aparece com essas palavras, porque supor qual peça encaixa é o erro que custa caro para quem compra.</p>';
 	$html .= '</div>';
 
-	/* PROMESSA ANTES DO FORMULÁRIO (seção 6): uma linha dizendo o que a pessoa
-	   recebe, antes de ela gastar um clique. */
 	$html .= '<div class="rbm-secao"><h2>Escolha o seu robô</h2>';
-	$html .= '<p class="rbm-promessa">Você recebe o código da peça, o conjunto de modelos que o fabricante citou, o endereço da declaração e a data em que ela foi verificada. Sem cadastro e sem e-mail.</p>';
 	$html .= robometria_r1_formulario();
 	$html .= '</div>';
 
 	$html .= robometria_r1_resposta( $escolhido, $e['peca'], ( '' === $e['modelo'] ) );
 
 	$html .= robometria_r1_tabela_exemplos();
+
+	/* A PROCEDÊNCIA E O QUE A FERRAMENTA ENTREGA, depois da tabela de casos
+	   resolvidos (que é a posição 6 da 32.1) e ABERTAS: são os números que um
+	   modelo de linguagem cita quando resume esta página, e dobra fechada é
+	   texto que ele lê e a pessoa não.
+
+	   E ELAS NÃO PODEM FICAR ENTRE A RESPOSTA E A TABELA, por um motivo que a
+	   bancada achou antes de qualquer visitante: o parágrafo de procedência
+	   CITA a frase de recusa ("não localizamos declaração do fabricante") para
+	   explicar que ela aparece com essas palavras — e a fronteira declarada do
+	   `conferir-reservatorio-no-ar.py` é de id="resultado" até id="rbm-exemplos".
+	   Com o parágrafo no meio, quatro afirmações passavam a ler uma resposta que
+	   recusa onde a resposta entrega a peça. Não foi a régua que ficou errada:
+	   era texto de outra seção dentro da fronteira de uma. */
+	$html .= '<div class="rbm-secao">';
+	$html .= '<p class="rbm-prova">Aqui só está escrito que uma peça serve quando o fabricante declarou que serve, com o código, o endereço da declaração e a data. Hoje são <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['pares_declarados'] ) ? $r['pares_declarados'] : 0 ) )
+		. '</span> pares peça × modelo declarados, em <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['marcas'] ) ? $r['marcas'] : 0 ) )
+		. '</span> marcas, cobrindo <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['modelos_que_respondem'] ) ? $r['modelos_que_respondem'] : 0 ) )
+		. '</span> dos <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['modelos_publicaveis'] ) ? $r['modelos_publicaveis'] : 0 ) )
+		. '</span> modelos do banco. Nos outros, a resposta é "não localizamos declaração do fabricante" — e ela aparece com essas palavras, porque supor qual peça encaixa é o erro que custa caro para quem compra.</p>';
+	$html .= '<p class="rbm-promessa">Você recebe o código da peça, o conjunto de modelos que o fabricante citou, o endereço da declaração e a data em que ela foi verificada. Sem cadastro e sem e-mail.</p>';
+	$html .= '</div>';
 	$html .= robometria_r1_lista_vazia();
 
-	$html .= '<div class="rbm-secao"><h2>Como esta página foi montada</h2>';
-	$html .= '<p><strong>Nenhuma das páginas de fabricante deste banco foi lida diretamente.</strong> O acesso direto a esses endereços está bloqueado no ambiente em que a Robometria é construída, e tudo foi colhido por busca restrita ao domínio da própria fonte. É por isso que cada resposta traz o endereço da declaração: para você conferir, e não para você acreditar.</p>';
-	$html .= '<p>Também não completamos lista por analogia. Um modelo estar na lista de compatibilidade de uma peça não o coloca na lista da peça seguinte, e isso não é cautela nossa — é o que o catálogo dos próprios fabricantes mostra.</p>';
+	/* COMO SABEMOS (32.1, item 7, e 32.4): a procedência continua — fonte
+	   nomeada e data —, e o que saiu foi a frase que descrevia a OFICINA.
+	   Ela dizia que "o acesso direto a esses endereços está bloqueado no
+	   ambiente em que a Robometria é construída" e que tudo veio por "busca
+	   restrita ao domínio da própria fonte": nome de ferramenta de fábrica numa
+	   página pública, e a 32.4 os proíbe com essas palavras. O fato que importa
+	   para quem lê é o que ficou: qual canal publicou, e que nada foi
+	   completado por analogia. */
+	$corpo  = '<p><strong>Toda compatibilidade desta página tem endereço e data.</strong> Cada declaração veio de um canal público da própria marca — a página da peça, o catálogo ou a loja oficial —, e o endereço de cada uma está na resposta, com o dia em que foi verificada. É por isso que ela está ali: para você conferir, e não para você acreditar.</p>';
+	$corpo .= '<p>Também não completamos lista por analogia. Um modelo estar na lista de compatibilidade de uma peça não o coloca na lista da peça seguinte, e isso não é cautela nossa — é o que o catálogo dos próprios fabricantes mostra.</p>';
 	if ( ! empty( $d['tipos_sem_nenhuma_peca_no_banco'] ) ) {
 		$nomes = array_map( 'robometria_r1_nome_do_tipo', (array) $d['tipos_sem_nenhuma_peca_no_banco'] );
-		$html .= '<p>O seletor acima não oferece ' . esc_html( robometria_r1_lista( $nomes ) )
-			. ' porque o banco não tem nenhuma peça desse tipo, em modelo nenhum. Oferecer a escolha só para devolver recusa seria gastar o seu tempo — o tipo volta ao seletor no dia em que a primeira peça dele entrar.</p>';
+		$corpo .= '<p>O seletor no alto não oferece ' . esc_html( robometria_r1_lista( $nomes ) )
+			. ' porque não temos nenhuma peça desse tipo, em modelo nenhum. Oferecer a escolha só para devolver recusa seria gastar o seu tempo — o tipo volta ao seletor no dia em que a primeira peça dele entrar.</p>';
 	}
-	$html .= '<p>' . ( function_exists( 'robometria_casca_link_html' )
+	$corpo .= '<p>' . ( function_exists( 'robometria_casca_link_html' )
 		? robometria_casca_link_html( 'metodologia', 'A metodologia completa, com a escada de fontes' )
 		: 'A metodologia completa, com a escada de fontes' ) . ' · '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' )
 			: 'Divulgação de afiliados' ) . '</p>';
-	$html .= '</div>';
+	$html .= robometria_casca_dobra( 'Como sabemos', $corpo, 'h2' );
 
 	/* INTERLINKAGEM entre as duas ferramentas (seção 3 da especificação): o
 	   conselho recorrente em fórum é "cheque a peça de reposição antes de
@@ -1711,13 +1876,22 @@ add_action( 'wp_head', function () {
 	$css = <<<'CSS'
 .rbm-resposta{margin:2.4rem 0 0;padding-top:1.6rem;border-top:1px solid var(--rbm-traco);}
 .rbm-resposta h2{margin:0 0 .8rem;font-size:1.3rem;}
+/* No celular a resposta encosta mais no formulario e o titulo dela cabe em
+   menos linhas: cada px entre o formulario e o primeiro botao de loja conta
+   para a 32.5, e o separador de 64 px era desenho de tela larga. */
+@media (max-width:782px){
+.rbm-resposta{margin-top:1.4rem;padding-top:1rem;}
+.rbm-resposta h2{font-size:1.1rem;margin-bottom:.6rem;}
+.rbm-legenda-bloco{font-size:.68rem;}
+}
 .rbm-legenda-bloco{font-family:var(--rbm-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--rbm-legenda);margin:0 0 .5rem;}
 .rbm-frase{margin:0 0 .8rem;}
 .rbm-terceiro{border-left:3px solid var(--rbm-alerta);padding-left:1rem;}
 .rbm-codigo-peca{font-size:.9rem;letter-spacing:.03em;}
 .rbm-leia-tambem{margin:2.4rem 0 0;padding-top:1.4rem;border-top:1px solid var(--rbm-traco);}
 .rbm-leia-tambem h2{margin:0 0 .5rem;font-size:1.15rem;}
-/* Barra fixa do celular: so aparece quando o resultado esta fora da tela, e so
+/* Barra fixa do celular: so aparece quando o BLOCO DE COMPRA esta fora da tela
+   (32.1), e so
    quando ha JavaScript para saber disso (o atributo vem do rodape). */
 .rbm-barra{display:none;}
 @media (max-width:782px){
@@ -1760,6 +1934,13 @@ add_action( 'wp_footer', function () {
 	var alvo = document.getElementById('resultado');
 	if (!alvo) { return; }
 
+	/* A BARRA VIGIA O BLOCO DE COMPRA, e nao a caixa de resultado (32.1: ela
+	   carrega o numero do resultado e leva ao bloco de compra, aparecendo
+	   enquanto esse bloco esta fora da tela). Com a caixa como alvo, a barra
+	   sumia justamente quando a pessoa estava lendo a resposta e ainda nao tinha
+	   visto um botao. */
+	var compra = document.getElementById('rbm-compra') || alvo;
+
 	/* Rolagem ate o resultado quando a pagina volta com uma consulta: o
 	   servidor ja escreveu a resposta, e a pessoa nao deveria ter que
 	   procura-la. Respeita quem pediu menos movimento no sistema. */
@@ -1778,7 +1959,7 @@ add_action( 'wp_footer', function () {
 			document.body.setAttribute('data-rbm-r1-barra', e.isIntersecting ? '0' : '1');
 		});
 	}, { threshold: 0 });
-	observador.observe(alvo);
+	observador.observe(compra);
 })();
 JS;
 
@@ -1801,7 +1982,14 @@ add_action( 'wp_footer', function () {
 	if ( empty( $d['modelos'] ) ) {
 		return;
 	}
-	echo '<div class="rbm-barra"><a href="#resultado">Ver a resposta ↓</a></div>' . "\n";
+	/* A BARRA CARREGA O NUMERO DO RESULTADO, pela 32.1. Ele e o mesmo numero da
+	   caixa de resultado, e sai do servidor: a barra existe no HTML servido com
+	   o numero do caso de exemplo, e nao e montada por script. O destino e o
+	   bloco de compra. */
+	$numero = robometria_r1_numero_da_barra();
+	echo '<div class="rbm-barra"><a href="#rbm-compra">'
+		. ( '' === $numero ? 'Ver onde comprar ↓' : esc_html( $numero ) . ' · ver onde comprar ↓' )
+		. '</a></div>' . "\n";
 }, 24 );
 
 /* O sinal que o script do rodapé lê para saber se houve consulta. Sai como

@@ -648,11 +648,26 @@ rbm_ok( 0 === $cru_pago,
 	'a busca crua nao se declara patrocinada: ninguem paga por aquele clique',
 	$cru_pago . ' carimbada(s) por engano' );
 
-/* E ele vem ANTES da prova de procedencia de cada modelo, na ordem do HTML. */
+/* A ORDEM DA 32.1 (item 5), E ELA INVERTEU A DESTA AFIRMACAO EM 21/10/2026.
+   Ate aqui a regua media "o bloco de compra vem DEPOIS da lista de modelos", que
+   era a ordem da secao 7 lida como ordem de TELA: primeiro a prova de cada
+   modelo, depois a porta de compra. A secao 32 decidiu o contrario para a tela —
+   o bloco de compra vem IMEDIATAMENTE ABAIXO da caixa de resultado, e a lista
+   com a folga de cada modelo vem depois dele —, porque o primeiro botao de loja
+   caia a 4.347 px no celular, medido no ar em 21/10/2026.
+
+   O QUE A REGUA NAO AFROUXOU: a exigencia de que a porta de compra esteja
+   DENTRO da mesma resposta continua, e passou a ser medida contra a CAIXA DE
+   RESULTADO, que e o marcador novo da 32.1. Trocar "depois da lista" por "nada"
+   seria apagar a regua em vez de corrigi-la: as tres posicoes sao cobradas na
+   ordem caixa -> compra -> lista. */
+$pos_caixa  = strpos( $h_ancora, 'rbm-caixa' );
 $pos_compra = strpos( $h_ancora, 'Onde comprar estes' );
 $pos_lista  = strpos( $h_ancora, 'Modelos do banco que atendem' );
-rbm_ok( false !== $pos_compra && $pos_compra > $pos_lista,
-	'o bloco de compra vem logo apos a lista, dentro da mesma resposta' );
+rbm_ok( false !== $pos_caixa && false !== $pos_compra && false !== $pos_lista
+		&& $pos_caixa < $pos_compra && $pos_compra < $pos_lista,
+	'a ordem da 32.1: caixa de resultado, bloco de compra, e so depois a lista dos modelos',
+	sprintf( 'caixa %d < compra %d < lista %d', (int) $pos_caixa, (int) $pos_compra, (int) $pos_lista ) );
 
 /* AVISO DE COMISSAO VISIVEL na propria pagina, nao so no rodape. */
 rbm_ok( false !== strpos( $h_ancora, 'links de afiliado' ) && false !== strpos( $h_ancora, 'comiss' ),

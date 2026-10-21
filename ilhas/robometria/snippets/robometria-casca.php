@@ -7,6 +7,17 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.13.0 (21/10/2026) — OS COMPONENTES DO MOLDE DE CONVERSAO (secao 32).
+ * O que se repete entre as paginas desta ilha passou a morar aqui, e nao em cada
+ * snippet (32.6-b): a CAIXA DE RESULTADO (numero em Mono e a frase de leitura
+ * embaixo, `robometria_casca_caixa`), a DOBRA (`robometria_casca_dobra`, que
+ * devolve <details> ja com o cabecalho da secao dentro do <summary>), o CARTAO
+ * DEITADO no celular (foto a esquerda, por float: em pe, o botao de loja do
+ * primeiro cartao da R1 caia 426 px abaixo do topo do cartao) e o PAR DE CAMPOS
+ * curtos do formulario, que divide a linha inclusive no celular. Escrever cada
+ * uma no snippet que precisa dela seria combinar de divergir depois, que e a
+ * cicatriz que esta ilha pagou com a porta de compra copiada na R1.
+ *
  * Versão: 1.12.0 (21/09/2026) — A ÁRVORE PASSA A TER TRÊS NÍVEIS DE VERDADE.
  * A malha de peças (bloco 5b) nasceu com páginas-mãe no WordPress, e a casca
  * precisava saber quem é mãe de quem para a trilha, o BreadcrumbList, as irmãs
@@ -244,7 +255,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.12.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.13.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -1227,6 +1238,11 @@ body:has(.rbm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
 .rbm-form input[type=number]{font-family:var(--rbm-mono);font-variant-numeric:tabular-nums;}
 .rbm-form select:focus-visible,.rbm-form input:focus-visible{outline:2px solid var(--rbm-varredura);outline-offset:2px;}
 .rbm-form-acao{margin:0;flex:0 0 auto;}
+/* O PAR DE CAMPOS CURTOS divide a linha, inclusive no celular: e o que faz um
+   formulario de quatro campos caber antes dos 700 px da 32.5 sem nenhum campo
+   sair da pagina. O par e declarado no HTML, nunca adivinhado pela largura. */
+.rbm-form-par{display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;flex:1 1 100%;margin:0;min-width:0;}
+.rbm-form-par > .rbm-form-campo{flex:1 1 8rem;}
 .rbm-form button{padding:.62rem 1.1rem;font-size:.95rem;cursor:pointer;}
 /* Atalhos por tipo de peca, logo abaixo do seletor da home. Sao links de
    verdade, nao botoes de JavaScript: quem le sem executar script (o crawler de
@@ -1246,6 +1262,7 @@ body:has(.rbm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
    continua sendo a fileira de links, visivel. */
 @media (max-width:782px){
 .rbm-form-campo{flex:1 1 100%;}
+.rbm-form-par > .rbm-form-campo{flex:1 1 8rem;}
 .rbm-form-acao,.rbm-form button{width:100%;}
 .rbm-nav-caixa[data-rbm-menu] .rbm-nav-botao{display:inline-flex;}
 .rbm-nav-caixa[data-rbm-menu] .rbm-nav{display:none;position:absolute;right:0;top:calc(100% + .55rem);z-index:60;min-width:13rem;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;box-shadow:0 12px 32px rgba(22,25,29,.16);padding:.35rem 0;}
@@ -1504,7 +1521,131 @@ function robometria_casca_css_vitrine() {
 .rbm-vitrine-fonte{font-size:.78rem;color:var(--rbm-legenda);line-height:1.4;}
 .rbm-fonte{font-size:.78rem;color:var(--rbm-legenda);text-decoration:underline;}
 .rbm-aviso-comissao{font-size:.86rem;color:var(--rbm-legenda);line-height:1.5;margin:.2rem 0 0;}
+/* ---------------------------------------------------------------------------
+ * O MOLDE DE CONVERSAO (secao 32 do contrato) — as tres pecas que se repetem
+ * em toda pagina desta ilha moram aqui, e nao em cada snippet: a CAIXA DE
+ * RESULTADO, a DOBRA e o cartao DEITADO no celular. Escrever cada uma no
+ * snippet que precisa dela seria combinar de divergir depois, que e a cicatriz
+ * que esta ilha ja pagou com a porta de compra copiada na R1.
+ * ------------------------------------------------------------------------- */
+/* A caixa de resultado: o numero em Mono, a frase de leitura embaixo. Ela e
+   servida PRE-RENDERIZADA no HTML, com o caso de exemplo, para quem chega da
+   busca e para quem le sem JavaScript. */
+.rbm-caixa{margin:1rem 0 0;padding:1rem 1.1rem;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-left:3px solid var(--rbm-tinta);border-radius:3px;}
+.rbm-caixa-rotulo{display:block;font-family:var(--rbm-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--rbm-legenda);margin:0 0 .35rem;}
+.rbm-caixa-numero{display:block;font-family:var(--rbm-mono);font-variant-numeric:tabular-nums;font-size:1.9rem;line-height:1.1;font-weight:600;color:var(--rbm-tinta);margin:0;}
+.rbm-caixa-unidade{font-size:1rem;font-weight:400;color:var(--rbm-legenda);}
+.rbm-caixa-frase{margin:.5rem 0 0;font-size:.95rem;line-height:1.5;}
+.rbm-caixa-frase:last-child{margin-bottom:0;}
+/* A dobra: o texto longo sai do caminho de quem chegou para usar a ferramenta
+   e nao sai da pagina (32.3 — o HTML servido continua inteiro). */
+.rbm-dobra{border:1px solid var(--rbm-traco);border-radius:3px;background:var(--rbm-superficie);margin:1rem 0 0;}
+.rbm-dobra + .rbm-dobra{margin-top:.6rem;}
+.rbm-dobra-titulo{display:flex;align-items:baseline;gap:.5rem;cursor:pointer;list-style:none;font-family:var(--rbm-display);font-size:.98rem;font-weight:700;line-height:1.35;color:var(--rbm-tinta);padding:.8rem .95rem;}
+.rbm-dobra-titulo h2,.rbm-dobra-titulo h3{font:inherit;color:inherit;margin:0;}
+.rbm-dobra-titulo::-webkit-details-marker{display:none;}
+.rbm-dobra-titulo:before{content:"+";flex:0 0 auto;font-family:var(--rbm-mono);font-weight:400;font-size:1.05rem;line-height:1;color:var(--rbm-legenda);}
+.rbm-dobra[open] > .rbm-dobra-titulo:before{content:"\2013";}
+.rbm-dobra-titulo:focus-visible{outline:2px solid var(--rbm-tinta);outline-offset:-2px;}
+.rbm-dobra[open] > .rbm-dobra-titulo{border-bottom:1px solid var(--rbm-traco);}
+.rbm-dobra-corpo{padding:.95rem .95rem 1.1rem;}
+.rbm-dobra-corpo > :first-child{margin-top:0;}
+.rbm-dobra-corpo > :last-child{margin-bottom:0;}
+/* A prosa que explica o recorte da vitrine desceu para baixo dos cartoes, pela
+   32.1: nenhuma palavra saiu, e o botao de loja subiu o que ela ocupava. */
+.rbm-compra-depois{margin:1rem 0 0;}
+.rbm-compra-depois > :first-child{margin-top:0;}
+@media (max-width:782px){
+/* O CARTAO DEITA NO CELULAR. Em pe, com a foto 4/3 em cima, o botao do
+   primeiro cartao caia 426 px abaixo do topo do cartao — medido no ar em
+   21/10/2026 na R1, com o primeiro botao de loja a 3.330 px. Deitado, a foto
+   ocupa 7rem a esquerda e o texto corre ao lado dela. */
+.rbm-vitrine-item{flex:0 0 88%;display:block;}
+.rbm-vitrine-foto{float:left;width:6rem;margin:0 .75rem .4rem 0;}
+.rbm-vitrine-tipo,.rbm-vitrine-nome,.rbm-vitrine-porque,.rbm-vitrine-vida{display:block;margin:0 0 .3rem;}
+.rbm-vitrine-acao{display:block;clear:both;margin:0;padding-top:.45rem;}
+.rbm-vitrine-fonte{display:block;clear:both;padding-top:.35rem;}
+.rbm-vitrine-item{padding:.85rem;}
+/* A caixa e o aviso tambem encolhem no celular, pelo mesmo motivo dos cartoes:
+   o teto da 32.5 e um numero de pixels, nao uma proporcao. */
+.rbm-caixa{padding:.85rem .9rem;}
+.rbm-caixa-numero{font-size:1.6rem;}
+.rbm-caixa-frase{font-size:.9rem;line-height:1.45;}
+.rbm-aviso-comissao{font-size:.82rem;line-height:1.45;}
+.rbm-vitrine-porque{font-size:.84rem;line-height:1.4;}
+/* O bloco de compra encosta na caixa de resultado: a 32.1 pede "imediatamente
+   abaixo", e o afastamento de secao era desenho de tela larga. */
+.rbm-compra{margin-top:1rem;}
+}
 CSS;
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * O MOLDE DE CONVERSAO EM PHP — a dobra e a caixa de resultado
+ *
+ * Secao 32 do contrato, e 32.6-b: o que se repete entre paginas vira
+ * componente da CASCA, reaproveitado por todas as ferramentas e fichas, em vez
+ * de ser reescrito em cada snippet. O conteudo das paginas desta ilha nasce em
+ * PHP (o post_content e o shortcode e nada mais), entao <details> sai daqui
+ * direto — nao ha Markdown para escapar e nao e preciso shortcode.
+ *
+ * O TITULO DA DOBRA E O CABECALHO DA SECAO, dentro do <summary>, que e onde o
+ * HTML permite conteudo de cabecalho. Repetir o titulo no corpo daria dois
+ * titulos iguais na tela aberta; tirar o cabecalho deixaria a pagina sem o
+ * nivel que a busca e os modelos leem (32.3: a estrutura nao muda).
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'robometria_casca_dobra' ) ) {
+function robometria_casca_dobra( $titulo, $corpo, $nivel = 'h2', $aberta = false ) {
+	$titulo = trim( (string) $titulo );
+	$corpo  = (string) $corpo;
+	if ( '' === $titulo || '' === trim( $corpo ) ) {
+		/* Dobra sem titulo e uma caixa que ninguem sabe o que esconde; dobra sem
+		   corpo e uma caixa vazia que promete texto. Nenhuma das duas vai ao ar,
+		   e devolver o corpo cru e melhor do que perde-lo. */
+		return $corpo;
+	}
+	$nivel = in_array( $nivel, array( 'h2', 'h3' ), true ) ? $nivel : 'h2';
+
+	return '<details class="rbm-dobra"' . ( $aberta ? ' open' : '' )
+		. '><summary class="rbm-dobra-titulo"><' . $nivel . '>' . esc_html( $titulo )
+		. '</' . $nivel . '></summary><div class="rbm-dobra-corpo">' . $corpo
+		. '</div></details>';
+}
+}
+
+/**
+ * A caixa de resultado da 32.1, item 4: o numero em Mono e a frase de leitura
+ * embaixo. Ela e SERVIDA no HTML com o caso de exemplo, sem depender de
+ * JavaScript, porque quem chega da busca e quem le a pagina por um modelo de
+ * linguagem recebem o HTML servido e mais nada.
+ *
+ * O rotulo e o que a caixa responde; a unidade sai em peso normal ao lado do
+ * numero, para o numero continuar sendo a unica coisa grande da caixa.
+ */
+if ( ! function_exists( 'robometria_casca_caixa' ) ) {
+function robometria_casca_caixa( $rotulo, $numero, $unidade, $frases, $atributos = '' ) {
+	$frases = is_array( $frases ) ? $frases : array( $frases );
+
+	$html = '<div class="rbm-caixa"' . ( '' === $atributos ? '' : ' ' . $atributos ) . '>';
+	if ( '' !== trim( (string) $rotulo ) ) {
+		$html .= '<span class="rbm-caixa-rotulo">' . esc_html( $rotulo ) . '</span>';
+	}
+	if ( '' !== trim( (string) $numero ) ) {
+		$html .= '<span class="rbm-caixa-numero">' . esc_html( $numero )
+			. ( '' === trim( (string) $unidade ) ? '' : ' <span class="rbm-caixa-unidade">' . esc_html( $unidade ) . '</span>' )
+			. '</span>';
+	}
+	foreach ( $frases as $f ) {
+		$f = trim( (string) $f );
+		if ( '' !== $f ) {
+			$html .= '<p class="rbm-caixa-frase">' . esc_html( $f ) . '</p>';
+		}
+	}
+	$html .= '</div>';
+
+	return $html;
 }
 }
 
