@@ -5,86 +5,79 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-21T18:21Z
-executando_desde: 2026-10-21T20:43Z   # RESERVA RENOVADA pela 1.1, 4a vez (19h16Z, 19h37Z, 20h06Z e agora): a bancada sem rede desta ilha passa de 40 minutos sozinha, e esta passada a rodou DUAS vezes porque a primeira achou o portao da voz vermelho em 110 afirmacoes, herdado do molde da 32.2. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
+ultima_execucao: 2026-10-21T21:48Z
+executando_desde: null   # a execucao de 21/10 19h16Z fechou as 21:48Z. Reserva RENOVADA QUATRO vezes pela 1.1 (19h37Z, 20h06Z, 20h43Z): o bloco mexeu em banco, esquema, validador, portao do validador, gerador, snippet e portao de pagina, e a bancada sem rede desta ilha passa de 40 minutos sozinha — ela rodou TRES vezes nesta execucao, porque a primeira achou o portao da voz vermelho em 110 afirmacoes e as duas primeiras foram invalidadas por operacao de git mexendo na arvore enquanto a bancada a lia (licao de metodo: nao se faz `git stash` nem `rebase` com bancada rodando). A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
 bloco_atual: |
-  AS 29 FICHAS DE PEIXE DESTA ILHA ESTAO NO MOLDE DA 32.2, e com elas o despacho
-  do Raphael de 21/10 FECHA INTEIRO pela 18.2 — os dois itens conferidos no ar
-  pela 18.4. As 29 sairam numa passada so porque as 29 nascem da MESMA funcao,
-  que e o que a 32.6-b manda. Revisao 133, /status em 133, portao da 20.4
-  APROVADO lendo o log linha por linha. Snippet: peixes 1.19.1.
-  MEDIDO NO AR, celular de 390 px com quebra de cache, nas 29 uma por uma:
-  caixa de resposta 280 a 322 px (teto 700) e PRIMEIRO BOTAO DE PRODUTO 966 a
-  1.147 px (teto 1.400). 29 DE 29 PASSAM. Rolagem horizontal 0 e pageerror 0 nas
-  29. Altura 4.972 -> 3.665 px na ficha do betta; as 29 entre 3.593 e 4.074 px.
-  O QUE ENTROU EM CADA FICHA: o numero da resposta em Mono no alto da caixa; o
-  BLOCO DE ACAO logo abaixo dela, em trilho, com os tres itens do despacho
-  (aquario -> litragem com c/l/a da base na URL, aquecedor -> potencia com a
-  faixa de temperatura da especie, filtro -> vazao), os dois ultimos com
-  "Calcular" e com o botao que abre a lista de produtos da calculadora; as
-  secoes de explicacao em <details> da casca (4 a 6 por ficha), com a TABELA DE
-  LOTACAO ficando VISIVEL porque ela e a tabela-resumo da 32.1 item 6; e a barra
-  fixa do rodape da casca 1.13.0.
-  A CORRENTE FOI ANDADA NO AR, NAO SUPOSTA: o botao do cartao do aquario leva a
-  /calculadora-de-litragem/?c=45&l=30&a=40 e a C1 abre com os tres campos
-  preenchidos servindo VOLUME BRUTO 54,0 L, que e o teto da faixa que a ficha
-  publica. #aqm-c5-compra existe a 1.223 px com 6 links de loja e #aqm-c3-compra
-  a 1.167 px com 14. A barra esta display:none no topo, vira flex quando o bloco
-  de acao sai da tela, e o clique nela para exatamente no topo do bloco
-  (scrollY 536 contra topo 536).
-  O PARAMETRO DA PAGINA VIAJA NA URL DE UMA SO DAS TRES CONTAS, e e decisao: o
-  numero da ficha e a BASE, so a litragem come base, e as outras duas comem
-  volume de AGUA — o litro da ficha e BRUTO, e manda-lo nelas seria o numero
-  errado entrando por um link nosso.
-  O QUE NAO MUDOU, no HTML servido das 29 antes (revisao 131) contra depois:
-  title, H1, canonical, meta description e trilha identicos nas 29; os TRES nos
-  de JSON-LD (Article, FAQPage, BreadcrumbList) identicos nas 29 FORA de
-  datePublished/dateModified, que o Sync com forcar=1 reescreve em toda passada
-  e nao sao conteudo da ilha. ZERO PALAVRA PERDIDA em 29 de 29, comparando
-  conjunto de formas de palavra do corpo servido; o corpo cresceu +322 palavras
-  em cada uma (1.071 -> 1.393 no betta).
-  A BANCADA SALVOU NOVE PAGINAS ANTES DO AR: com os dois paragrafos de apoio
-  ainda dentro da caixa, o primeiro botao de produto caia entre 1.273 e 1.760 px
-  nos 29 renders locais e NOVE das 29 estouravam o teto de 1.400; as outras
-  passavam por 14 px, menos que a diferenca local->ar (58 a 76 px). Os dois
-  desceram para a dobra "Como chegamos nesse numero" — licao (c) do despacho.
-  A 32.4 PEGOU O TEXTO QUE ESTA PASSADA ACABOU DE ESCREVER: a varredura das 29
-  servidas achou "fabrica" nas 29 e "vitrine" no aviso de comissao —
-  vocabulario de quem escreveu a fabrica, entrado COM o molde, 40 minutos depois
-  de a passada anterior ter limpado 40 paginas pela mesma regra. Trocadas por
-  "esta ilha" e "a lista de produtos da calculadora" na 1.19.1, e a revarredura
-  das 29 na revisao 133 deu ZERO termo de bastidor. A licao e de metodo: texto
-  NOVO nasce passando pela mesma varredura da 32.4 que o texto velho.
-  PORTOES: teste-peixes 4.302 afirmacoes 0 falha (tres passadas, o mesmo
-  numero); conferir-peixes-no-ar 1.010 afirmacoes 0 falha na revisao 133;
-  conferir-desembarque APROVADO em 132 e em 133. As 96 ANCORAS DE MUTACAO que o
-  mutacoes-peixes usa sobre este snippet continuam existindo nele, conferidas
-  por programa nas duas versoes — nenhuma mutacao virou inerte com a
-  reestruturacao, e foi por isso que nenhuma linha existente foi re-indentada.
-  O mutacoes-peixes INTEIRO terminou depois de o resto da execucao fechar:
-  101 DE 101 REPROVADAS, codigo de saida 0, sobre o arquivo exato da 1.19.1
-  (sha 5004625b7ede7e6d, o que o main serve). O numero vem de uma SEGUNDA
-  passada: o troca() desta bancada LE O ARQUIVO NO MOMENTO DE CADA MUTACAO,
-  nao uma vez no comeco, e a primeira passada (disparada as 18h03Z) pegou a
-  1.19.0 nas oito primeiras e a 1.19.1 nas outras 93, porque o snippet mudou
-  as 18h09Z — verde sobre arquivo que mudou no meio nao e afirmacao sobre
-  arquivo nenhum. Bancada que rele o arquivo por mutacao mede a HORA, nao a
-  versao: quem mexer no snippet enquanto ela roda tem de rodar de novo e
-  dizer qual sha mediu.
-  A 20.5 APARECEU DE NOVO com a assinatura exata dela: o push da 133 entrou, o
-  raw do GitHub ja servia 133, o Sync RODOU (log com timestamp de agora) e o
-  /status respondeu 132. Cache, nao entrega que nao aconteceu; o conserto foi
-  reacionar de dois em dois, e a 133 entrou na terceira rodada, tres minutos
-  depois.
-  PROXIMO PASSO DESBLOQUEADO: com o molde fechado nas tres ilhas, a excecao da
-  1.2 se esgota e o foco.md volta a mandar sozinho — e a linha
-  fila_decidida_pelo_raphael diz que em 22/10/2026 alguem tem de editar a linha
-  "ilha:" para jornadafly. Nesta ilha o que sobra na fila e a metade de MEDICAO
-  das propostas de CTR de 07/10 e 14/10, que nao e da Fundacao: precisa de uma
-  leitura de Search Console DEPOIS de a superficie mudar, e a superficie acabou
-  de mudar nas 29 fichas de maior impressao do eixo. As duas falhas de portao de
-  navegador nomeadas no despacho de 21/10 continuam abertas e continuam
-  ANTERIORES ao molde.
+  A ORACAO DO ESCOPO DO PORTE ESTA NO AR NAS 29 FICHAS, e com ela FECHA UMA DIVIDA
+  DE 23/09/2026 que morava em prosa dentro do banco: o `porte_adulto_cm` que as
+  tabelas de lotacao usam e o MAXIMO REGISTRADO de um individuo extremo, e a ficha
+  o servia calado. Revisao 135, /status em 135, portao da 20.4 APROVADO lendo o log
+  linha por linha. Snippets: peixes 1.20.0, litragem 1.3.1, vazao 1.9.1.
+  MEDIDO NO AR, 29 fichas uma por uma com quebra de cache: 28 com o bloco de escopo
+  e 0 FALHA. A unica sem e a do PEIXE-ESPADA, e ela esta certa — a fonte dele
+  escreve "ate" e nunca "max", que e o caso dos tres registros sem o campo.
+  TRES ORACOES, cada uma nascendo so com o dado que a sustenta: (1) o escopo do
+  numero, nas 28; (2) o tamanho comum, em 3 registros, e a MEDIDA decide a frase —
+  na mesma medida os dois se comparam (barbo cereja, plati variatus), em medida
+  diferente a ficha publica os dois com o dono de cada um e diz que a fonte nao
+  declarou a medida, sem comparar (barbo rosado). E a E25 na tela, que era aviso no
+  banco esperando por esta funcao; (3) a leitura de outro corpo em outra medida
+  (E29, esquema versao 12), no rasbora arlequim e no acara-bandeira. O terceiro
+  `regua-diferente` do banco e o GURAMI PEROLA, BARRADO no portao de pagina por nao
+  declarar convivencia: 3 no banco, 2 no ar — e o numero de blocos sai do banco de
+  cada registro, nunca de contagem escrita no portao.
+  32.5 DE PE: a oracao nasce dentro da dobra "O que as fontes declaram", que e
+  <details> FECHADO, entao custa ZERO pixel acima da dobra. Medido no ar a 390 px:
+  caixa de resposta 322 px (teto 700) e primeiro botao de produto 1.031 px (teto
+  1.400) nas duas fichas medidas; C3 vazao 409/1.160, identico ao de 17h0xZ; C1
+  litragem 433 e sem botao de produto, porque aquela pagina nao vende nada.
+  Rolagem horizontal 0 e pageerror 0 nos quatro.
+  E A BANCADA ACHOU O PORTAO DA VOZ VERMELHO EM 110 AFIRMACOES, herdado e nao
+  causado por esta passada: as mesmas 110 estao no main desde o commit do molde da
+  32.2 de hoje, medido contra HEAD em worktree separada. Duas causas no mesmo lugar,
+  e a segunda e pior: (a) o molde poe o numero da resposta e a promessa ANTES da
+  prosa, e as duas sao <p>, entao a regua de abertura lia a caixa de resposta em vez
+  da frase mestra e reprovava pagina CERTA em 29 fichas e 2 calculadoras; (b) com
+  isso ela ficou CEGA na que importava — a mutacao 20 do mutacoes-voz.py, que
+  corrompe a abertura para o texto impessoal que a regua existe para pegar,
+  SOBREVIVIA. O conserto pula as duas pecas do molde e as COBRA por afirmacao
+  propria, porque pular sem cobrar seria trocar regua vermelha por regua cega.
+  E A AFIRMACAO NOVA DE SEGUNDA PESSOA SOBRE A PROMESSA ACHOU DUAS DAS QUATRO
+  promessas desta ilha falando "do aquario" onde as irmas dizem "o SEU comodo" e "o
+  SEU filtro": litragem e vazao, consertadas e conferidas no ar. Nao e regua velha,
+  e voz que faltou em duas de quatro.
+  E A CONSTANTE DE VERSAO DO SNIPPET DE PEIXES ESTAVA EM 1.18.0 com o manifest em
+  1.19.1: o atualizar-manifest.py RECUSA gravar nesse estado, o que quer dizer que
+  as duas passadas de hoje que subiram 1.19.0 e 1.19.1 nao o rodaram com sucesso, e
+  a revisao 133 desembarcou com ele vermelho. Corrigida para 1.20.0.
+  O ITEM 6 DO DESPACHO DA LEITURA SEMANAL DE 21/10 TAMBEM FECHOU, e era um comando
+  so: dados/ensaio-shopee-2026-10-21.json esta no main com 78 itens, 37 com
+  degrau_que_casou e 41 com motivo_sem_ficha, SEM credencial nenhuma dentro (varrido
+  antes do commit). Rodado com --ensaio e nunca --gravar: a conferencia da amostra e
+  da leitura semanal seguinte, pela 25.3 e pela secao 12.
+  BANCADA SEM REDE: APROVADO, 73 portoes, 0 falha — validar-especies 40 especies 0
+  erro 4 aviso · testar-validador-especies 71 de 71 com alvo 0 falha (5 casos novos
+  de E29) · mutacoes-porte-maximo 12 de 12 0 sobrevivente (4 novas) · teste-peixes
+  4.609 afirmacoes 0 falha · teste-voz TUDO OK (era 110 falhas) · mutacoes-voz 30 de
+  30 · mutacoes-peixes 101 de 101. NO AR: conferir-desembarque APROVADO,
+  conferir-peixes-no-ar 1.010 afirmacoes 0 falha, conferir-cano-de-links APROVADO.
+  O PROXIMO PASSO DESBLOQUEADO, e ele e da leitura semanal de 21/10 que entrou
+  durante esta execucao: a PROPOSTA A dela — o pacote da banda 11 a 20 na
+  /calculadora-de-litragem/ (posicao 11,1, 37 impressoes), com a ressalva escrita no
+  proprio despacho de NAO dar promessa numerica ao <title> dela, porque ela e o braco
+  "marca" do teste da Proposta B. Os itens 1 e 2 daquele despacho fecharam por
+  medicao, o 3 e o 5 nao sao da Fundacao, o 4 e vigilancia e o 6 fechou nesta
+  execucao. ESTA ILHA NAO TEM DIRETORIO DE MEMORIA NESTE AMBIENTE, e o PROMPT.md
+  manda, nesse caso, nao parar: o estado mora aqui e no REGISTRO.md.
+  ACHADO NAO CONSERTADO, DE PROPOSITO, PELA 19.2 — e ele e de regua, nao de pagina:
+  com o molde, a ABERTURA DA PROSA DO MARKDOWN desceu para dentro de uma dobra e
+  deixou de ser coberta por regua de voz nenhuma. TRES localizadores foram tentados
+  nesta passada e os TRES reprovam pagina certa: "o primeiro <p> da primeira dobra"
+  (30 falhas em prosa correta), "o primeiro <p> sem classe" (42, porque pega a caixa
+  de resposta direta) e o renderizador de artigo (serve a ferramenta junto, da no
+  mesmo). O proximo passo NAO e um quarto localizador: e decidir se prosa dentro de
+  dobra e "abertura" para o VOZ.md ou se ela ganha regua propria, escrita para o
+  lugar onde ela esta hoje. Esta escrito tambem dentro do mutacoes-voz.py.
 ultima_ronda: 2026-10-21T19:54Z   # LEITURA SEMANAL da Sentinela, Search Console pela NUVEM (dados/search-console-2026-10-21.md, commit do disparo das 19h41Z). Janela 13→19/10: 625 impressoes e 1 CLIQUE, CTR 0,2%, posicao 6,9, 47 paginas com impressao, 50 de 52 indexadas (96%) e ZERO sem veredito. AS PROPOSTAS 1 E 2 DE 07/10 ESTAO REPROVADAS pelos criterios que elas mesmas escreveram: betta 136/1 (pedia 3+ cliques ou CTR 2%) e as quatro calculadoras 148 impressoes/ZERO clique (pedia 1+ clique em duas). As cinco promessas estavam no ar, conferidas em dados/titulos-no-ar.md secao 2026-10-21 12:23Z. O CONTROLE /calculadora-de-litragem/ CAIU de 8,1 para 11,1 e com isso NASCEU a banda 11 a 20 nesta ilha, com 37 impressoes — a maior amostra dessa banda no arquipelago. A consulta voltou a ter nome (5 nomeadas) e achou canibalizacao interna tetra neon x tetra cardinal. As 7 URLs /peixes-2__trashed/ que tomam impressao NAO sao defeito: respondem 301 para a pagina viva, medidas uma a uma. 31.6: a proporcao da 31.1 na janela do foco deu 7 de 24 (29%), e o corte pela data da decisao da 7 de 19 execucoes antes de 21/10 (11%) contra 5 de 5 no dia 21 (100%). Rampa: A SERIE AUTORIZA DOBRAR; o que trava URL nova e a secao 30. Venda NAO medida pela terceira semana: no navegador interno as sessoes de Shopee e Mercado Livre estao DESLOGADAS (desvio para buyer/login e login/identification) — e isso NAO e a medicao da ronda das 14h57Z, que achou o cookie SPC_U presente no Chrome do Raphael e o anti-robo como obstaculo. Cano de links: 78 registros, 0 sem piso, 42 sem url_produto. ZERO link gerado, pela 25.3 (ensaio antes de gravar). Tres propostas de aceleracao: o pacote 11-20 na litragem SEM promessa numerica, o teste 1 contra 3 revertendo so a midia filtrante, e a desambiguacao tetra neon x cardinal.
 bloqueada_por: null
 congelamento: |

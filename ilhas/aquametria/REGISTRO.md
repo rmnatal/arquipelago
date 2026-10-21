@@ -14,6 +14,97 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-21 19h16Z–21h5xZ — A ORAÇÃO DO ESCOPO DO PORTE NAS 29 FICHAS, E O PORTÃO DA VOZ DESTA ILHA ESTAVA VERMELHO EM 110 AFIRMAÇÕES SEM NINGUÉM LER
+
+**A ESCOLHA DA ILHA: O FOCO MANDOU SOZINHO, PORQUE A EXCEÇÃO DO MOLDE SE EXAURIU HOJE.** `foco.md` nomeia a **aquametria** (janela até 21/10), e a exceção que o Raphael acrescentou à **1.2** em 21/10 — o despacho do molde da 32.2 furando o foco na ordem aquametria → clubedomosaico → robometria — **está exaurida: as três fecharam o molde inteiro hoje**, lido no topo dos três `PROMPT.md`. Então não houve rotação nem conflito de prioridade. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, e não havia reserva vencida para o git desempatar. **Passo 1:** `git fetch origin main`, **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-spdihc` **idêntica ao `main`**, zero commits de cada lado — nada a mesclar. Reserva aceita às **19h16Z** (commit `aa31975`), **renovada QUATRO vezes** pela 1.1 (19h37Z, 20h06Z, 20h43Z), com a hora saindo do `date -u` na mesma linha de comando que grava o campo. **Rede pela 20.2, retestada e não herdada:** `aquametria.com.br` e o `/status` em **200**.
+
+**O BLOCO SAIU DA FILA, e ele estava desbloqueado por data:** a metade de banco do `porte_e_maximo_registrado` nasceu em 15/10 (esquema versão 7) e nasceu **calada de propósito**, porque a leitura semanal de 14/10 proibia mexer na superfície desta ilha antes de 21/10 — é o que destrói a medição de CTR em curso. O congelamento venceu, e a passada de 18h2xZ já havia trabalhado depois dele sem tocar em `<title>` nem em meta. Pela **18.5** li antes os despachos abertos: nenhum tinha item acionável pela Fundação naquele momento (a SERP brasileira vista com os olhos não é desta nuvem, a cota de indexação é de terceiro, a credencial da Search Console e a medição de CTR são da leitura semanal).
+
+### 1. A DÍVIDA DE 23/09/2026 FECHA, E ELA MORAVA EM PROSA DENTRO DO BANCO
+
+O `porte_adulto_cm` que as tabelas de lotação usam é o **MÁXIMO REGISTRADO** de um indivíduo extremo, e a ficha o servia calado. A proibição estava escrita na `observacao` do barbo rosado, em maiúsculas: *"a ficha tem de publicar o número da fonte COM a medida dele E dizer que porte máximo registrado não é porte esperado em cativeiro, senão a C8 dimensiona para um peixe que ninguém tem"* — e **prosa não barra página**, pela quarta vez neste eixo (o `chao_declarado_para` na versão 5, as `restricoes_de_companhia` na versão 6 e esta nasceram todas do mesmo jeito).
+
+**TRÊS ORAÇÕES, e cada uma só nasce com o dado que a sustenta:**
+
+1. **o escopo do número**, nas 28 fichas cuja fonte declara a cláusula de máximo — e **ZERO** na do **peixe-espada**, que está certa: a fonte dele escreve *"até"* e nunca *max*, que é o caso dos três registros sem o campo. A direção do zero é medida, não suposta;
+2. **o tamanho comum** (3 registros), e é a **MEDIDA** que decide a frase. Na mesma medida os dois números se comparam e a página diz isso (**barbo cereja** 2,5 cm TL contra 5 cm TL; **plati variatus** 3,9 contra 7). Em medida diferente ela publica os dois **com o dono de cada um**, diz que a fonte não declarou a medida e **não os compara** (**barbo rosado**: 14 cm TL pela FishBase contra 65 a 75 mm pelo Seriously Fish). **É a E25 na tela** — ela era aviso no banco desde 15/10 esperando exatamente por esta função, e o próprio texto do aviso diz quem a executa;
+3. **a leitura de outro corpo em outra medida** — a **E29**, esquema versão **12** —, nas fichas do **rasbora arlequim** (45 mm SL contra 5 cm TL) e do **acará-bandeira** (150 mm SL contra 15 cm TL).
+
+**OS TRÊS `regua-diferente` SAÍRAM JUNTOS E SÓ DOIS VIRARAM TELA, e o número não foi contado de cabeça:** o terceiro é o **gurami pérola**, que está **BARRADO** no portão de página por não declarar `convivencia`. São **3 no banco e 2 no ar**, e o portão pergunta ao banco de cada registro quantos blocos esperar, nunca a uma contagem escrita dentro dele — o dia em que o gurami passar no portão, a ficha dele nasce com o bloco e nenhuma régua precisa ser editada.
+
+### 2. A E29 NASCEU PORQUE A PÁGINA PRECISAVA DO NÚMERO, E A RÉGUA QUE IMPORTA É O PAR
+
+Até aqui o número da outra leitura morava **só na prosa** de `o_que_a_fonte_declara`. Para a ficha publicá-lo ela teria de arrancá-lo da frase com expressão regular ou receber o número **digitado no snippet** — as duas saídas são a terceira cópia do mesmo dado que a seção 8 cobra, e a segunda é pior, porque número digitado na página não envelhece junto com o banco. O campo `leitura_em_outra_regua` {valor, unidade, medida} é a mesma família do `comum` do E24: a **unidade é a da cláusula**, nunca convertida na digitação, e a conversão para centímetro é derivada, numa função só.
+
+**E A PRIMEIRA VERSÃO DA REGRA DEIXOU DOIS AFROUXAMENTOS SOBREVIVEREM, medidos e não imaginados.** As três prosas deste banco escrevem *"comprimento padrao de 120 mm SL (12,0 cm)"* — com os **dois** números e as **duas** unidades dentro da mesma frase. Então conferir *"o número aparece na prosa"* aprova **12,0 no lugar de 120 mm**, e conferir *"a unidade aparece na prosa"* aprova **cm no lugar de mm**. Os dois casos passaram batido no portão, e os dois são o mesmo defeito: a conversão feita na digitação. A regra virou o **PAR** `<valor> <unidade>` como a fonte o escreveu, que é a única forma que ela usou.
+
+**E AS METADES DEIXARAM DE SE ENCADEAR EM `elif`, o que é um achado de método e não desta regra.** Em cadeia, a conferência de *"a prosa nomeia a medida"* **mascarava** a de *"a medida difere da do registro"*: a mutação que apagava a segunda **sobrevivia**, porque o caso do portão caía na primeira. O portão parecia medir a segunda metade e media a de cima. **Regra que pede duas coisas só prova as duas quando as duas falam por si**, e o conserto foi tirar a segunda da cadeia.
+
+**PORTÕES, todos com mutação por cima:** `validar-especies.py` ganhou a E29 em cinco metades; `testar-validador-especies.py` ganhou **5 casos novos** e fechou **71 de 71 com alvo, 0 falha**; `mutacoes-porte-maximo.py` ganhou **4 mutações** e fechou **12 de 12, 0 sobrevivente**. Dois dos cinco casos tiveram de ser **reescritos** depois de a mutação mostrar que mediam a régua errada — o da mesma medida precisou corromper a **prosa junto**, senão caía na conferência de transcrição, e o do desfecho errado precisou ficar **bem formado em tudo o mais**, senão caía na forma do campo. **Mundo corrompido pela metade mede a régua errada.**
+
+### 3. A PALAVRA "RÉGUA" SAIU DA ORAÇÃO PELA 32.4, E A VARREDURA QUE A ACHOU FOI A DESTA MESMA PASSADA
+
+A primeira versão dizia *"a régua desse número não foi declarada"*. Nesta ilha **régua é nome interno de portão**, e a 32.4 proíbe vocabulário de bastidor na página pública. A palavra do leitor é a da própria `observacao` do registro: **MEDIDA**. Isto aconteceu **40 minutos** depois de a passada anterior ter limpado *"fábrica"* e *"vitrine"* de 40 páginas pela mesma regra — **texto novo nasce passando pela varredura, senão a 32.4 vira limpeza de uma vez só.**
+
+**E ELA NÃO FOI PROIBIDA NA PÁGINA INTEIRA, de propósito, e isto também foi medido:** as 29 fichas dizem *"as duas **RÉGUAS** de lotação que circulam no aquarismo brasileiro"*, e ali régua é vocabulário de quem monta aquário, não de quem monta a fábrica. Proibir a palavra na página reprovaria 29 frases certas. **A mesma palavra em dois vocabulários se separa pelo LUGAR, não pela letra** — e é por isso que a afirmação nova mora dentro do bloco de escopo e não na varredura da página.
+
+### 4. A BANCADA ACHOU O PORTÃO DA VOZ VERMELHO EM 110 AFIRMAÇÕES — HERDADO, NÃO CAUSADO, E COM UMA SEGUNDA CAUSA PIOR QUE A PRIMEIRA
+
+**A primeira passada da bancada reprovou 2 de 73 portões, e as 110 falhas não eram desta mudança:** medido contra o `HEAD` numa **worktree separada**, as **mesmas 110** estão no `main` desde o commit do molde da 32.2 de hoje. Ou seja, o molde desembarcou nas revisões 131 a 133 com o portão da voz desta ilha vermelho, e as execuções que o subiram relataram bancada.
+
+**CAUSA (a) — a régua reprovava página CERTA.** O molde põe o **número da resposta** (32.1 item 4, nas fichas) e a **frase de promessa** (32.1 item 2, nas calculadoras) **antes** da prosa, e as duas são `<p>`. A régua de abertura lê "o primeiro `<p>` do corpo", então passou a ler a caixa de resposta em vez da frase mestra — e as quatro afirmações que caíram (segunda pessoa, a frente em centímetros, o trio BASE/COMPRIMENTO/fundo-de-outra-conta e o "não o litro") medem a abertura, que **não saiu da página**: ela é o `<p>` seguinte, com as quatro coisas intactas. **É a família da régua que morre quando o desenho melhora.**
+
+**CAUSA (b), e é a pior — a mesma mudança deixou a régua CEGA na afirmação que mais importava.** A **mutação 20** do `mutacoes-voz.py` corrompe a abertura da C12 para o texto impessoal que a régua nasceu para pegar (*"Pergunte na internet brasileira..."*) e **SOBREVIVIA**, porque a abertura corrompida não era mais o `<p>` que a régua lia. **Vermelha em 110 afirmações e cega na que importava, ao mesmo tempo, pelo mesmo motivo e no mesmo dia.** Uma régua vermelha que ninguém lê é pior que régua nenhuma: ela esconde a perda de cobertura atrás do próprio vermelho.
+
+**O CONSERTO PULA AS DUAS PEÇAS DO MOLDE E AS COBRA POR AFIRMAÇÃO PRÓPRIA.** Pular sem cobrar seria trocar régua vermelha por régua cega, que é exatamente o defeito de (b) escrito de novo. A caixa de resposta ganhou duas afirmações (existe, e traz o número em centímetros) e a promessa ganhou três — sem termo proibido, sem atribuição de fonte, e **falando com a pessoa**.
+
+**E A AFIRMAÇÃO NOVA DA PROMESSA ACHOU DUAS DAS QUATRO PROMESSAS DESTA ILHA FORA DA VOZ.** A do aquecedor diz *"o frio do **SEU** cômodo"* e *"a **SUA** tomada"*; a da mídia diz *"o **SEU** filtro"*; a da litragem dizia *"as medidas em centímetros"* e a da vazão *"o perfil do aquário"*. **Não é régua velha: é voz que faltou em duas de quatro**, e as duas foram consertadas na mesma forma das irmãs (`litragem 1.3.1`, `vazao 1.9.1`) e conferidas no ar. Com isso o portão fechou **TUDO OK** e o `mutacoes-voz.py` fechou **30 de 30**, depois de a mutação 20 ser **reapontada** para a frase que abre a página hoje.
+
+### 5. A CONSTANTE DE VERSÃO DO SNIPPET DE PEIXES ESTAVA DUAS VERSÕES ATRÁS DO MANIFEST
+
+`AQUAMETRIA_PEIXES_VERSAO` estava em **1.18.0** com o manifest em **1.19.1**, medido no `main` às 19h2xZ. O `atualizar-manifest.py` **RECUSA gravar** nesse estado — *"etiqueta sem constante que a sustente é etiqueta que envelhece calada"* —, o que quer dizer que **as duas passadas de hoje que subiram 1.19.0 e 1.19.1 não o rodaram com sucesso**, e a revisão 133 desembarcou com esse portão vermelho. Corrigida para **1.20.0**, que é a versão desta passada, com a medição escrita ao lado da linha.
+
+### 6. O ITEM 6 DO DESPACHO DA LEITURA SEMANAL DE 21/10 FECHOU, E ERA UM COMANDO SÓ
+
+O despacho entrou no `main` **durante** esta execução e nomeia, com todas as letras, o único item que é da Fundação: o ensaio da Shopee, *"porque ela tem a credencial e a Sentinela não"*. Conferido por **presença e nunca por valor**: `SHOPEE_APP_ID` e `SHOPEE_SECRET` **presentes** neste ambiente — o que confirma o achado de arquitetura que o próprio despacho escreveu, de que a credencial existe na Fundação e não nas Mãos.
+
+`dados/ensaio-shopee-2026-10-21.json` está no `main` com **78 itens**, **37 com `degrau_que_casou`** (22 no degrau 1, 15 no 2, zero nos degraus 3 e 4) e **41 com `motivo_sem_ficha`** — conferido por afirmação e não por amostra: *todos* os sem ficha trazem motivo, *todos* os com ficha trazem degrau. Rodado com `--ensaio` e **nunca** `--gravar`: a conferência da amostra com os olhos é da leitura semanal seguinte, pela 25.3 e pela seção 12 (**quem gera não aprova o que gerou**). O arquivo foi **varrido antes do commit** e não traz nenhuma das duas credenciais, nem padrão de `secret`, `signature`, `token` ou `authorization`.
+
+**O QUE OS 41 DIZEM, e é o que a 25.9 mandava não contar como um bloco só:** a causa dominante é **zero resultados** na busca, degrau por degrau (33 no degrau 2, 27 no 4, 26 no 1, 22 no 3) — **mercado que não anuncia, não trava nossa**. E há um segundo grupo, menor e nomeado, em que a trava barra **com razão**: o título do anúncio abre por uma **peça** do aparelho (*"Balde Para Filtro Canister"*, *"Refil Do Filtros"*, *"Perna Leg Cantoneira"*, *"Tampa Do Cabeçote"*) ou não traz a marca (*"Caderno Five Nights At Freddy"*, casando por `At`).
+
+### 7. O QUE FOI MEDIDO NO AR, E É O QUE FECHA O BLOCO PELA 18.4
+
+Desembarque: revisão **135** no manifest e no `/status`, **toda linha do log desta revisão diz ok** pelo portão da 20.4, lido linha por linha e não pela revisão. O Sync foi acionado **duas vezes com `forcar=1`**, como a 20.4 manda por desenho.
+
+- **29 fichas lidas uma por uma, com quebra de cache: 28 com o bloco de escopo, 2 com bloco de leitura em outra medida, 0 FALHA.** As afirmações do ar são as mesmas do portão local, inclusive a de que a palavra de bastidor não aparece e a de que a comparação proibida não aparece onde as medidas diferem.
+- **32.5 de pé, e por construção:** a oração nasce dentro da dobra *"O que as fontes declaram"*, que é `<details>` **FECHADO** — custa **zero pixel acima da dobra**. Medido no ar a **390 px**: ficha do barbo rosado **322 / 1.031 px** e do rasbora arlequim **322 / 1.031** (tetos 700 e 1.400); **C3 vazão 409 / 1.160**, idêntico ao de 17h0xZ, o que prova que a troca da promessa não mexeu na dobra; **C1 litragem 433** e **sem botão de produto**, porque aquela página não vende nada — medido, não suposto (`0` ocorrências de botão de produto no HTML servido). Rolagem horizontal **0** e `pageerror` **0** nos quatro.
+- `conferir-peixes-no-ar.py`: **1.010 afirmações, 0 falha**. `conferir-cano-de-links.py`: **APROVADO**, 78 registros, **0 sem `url_busca`**.
+- **Bancada sem rede: APROVADO, 73 portões, 0 falha** — `testar-validador-especies` 71/71 com alvo, `mutacoes-porte-maximo` 12/12, `teste-peixes` **4.609** afirmações, `teste-voz` **TUDO OK** (era 110 falhas), `mutacoes-voz` 30/30, `mutacoes-peixes` 101/101, `validar-especies` 40 espécies 0 erro 4 aviso.
+
+### 8. DUAS LIÇÕES DE MÉTODO DESTA PASSADA, E AS DUAS CUSTARAM TEMPO DE VERDADE
+
+**A BANCADA RODOU TRÊS VEZES, e as duas primeiras foram INVALIDADAS POR MIM.** A bancada desta ilha lê a árvore de trabalho e os portões de mutação **copiam a árvore inteira por mutação**; eu rodei `git stash -u` e depois um `git rebase` **enquanto ela lia**, nas duas primeiras vezes, para poder empurrar a renovação da reserva. Operação de git que mexe na árvore durante a bancada **envenena a medição**, e medição envenenada relatada como verde é pior que bancada não rodada. A terceira passada rodou com a árvore limpa, o HEAD parado e nenhuma operação de git em voo — **e é só essa que está relatada acima.** A regra prática: ou se commita antes e se roda depois, ou se espera.
+
+**E UM ERRO DE LEITURA QUE EU CORRIGI SOZINHO, anotado porque o diagnóstico errado quase virou conserto:** ao investigar as 110 falhas, concluí que o molde servia `<p class="aqm-px-numero">` **sem fechar** e que isso estava no ar desde a revisão 131. **Falso.** O que aconteceu é que a janela de 120 caracteres com que eu imprimia o contexto **cortou a tag `</p>` ao meio**, e o que sobrou pareceu uma tag aberta. A fonte fecha certo. Diagnóstico de defeito no ar tirado de recorte de texto precisa ser reconferido no HTML inteiro antes de virar conserto — é a mesma família do "bloqueio herdado lido como fato" da 20.2, com o sinal trocado.
+
+### 9. ACHADO NÃO CONSERTADO, DE PROPÓSITO, PELA 19.2 — E ELE É DE RÉGUA, NÃO DE PÁGINA
+
+Com o molde, a **abertura da prosa do Markdown** dessas páginas desceu para dentro de uma dobra e **deixou de ser coberta por régua de voz nenhuma**. Isto não é hipótese: está escrito no comentário do próprio snippet da C12, que diz que *"o parágrafo de abertura do Markdown desta página desceu para dentro de uma dobra na mesma passada"*.
+
+**TRÊS LOCALIZADORES FORAM TENTADOS NESTA PASSADA PARA ALCANÇÁ-LA, E OS TRÊS REPROVAM PÁGINA CERTA** — por isso nenhum entrou: *"o primeiro `<p>` da primeira dobra"* deu **30 falhas em prosa correta** (a primeira dobra das fichas é técnica, não é prosa); *"o primeiro `<p>` sem classe"* deu **42**, porque pega a caixa de resposta direta; e o renderizador de artigo serve a ferramenta junto, então dá no mesmo. **Régua que reprova página certa custa mais do que a cobertura que ela devolve**, e eu não ia trocar 110 falsas por 42 falsas.
+
+**A mutação 20 foi reapontada para a frase que ABRE a página hoje** — a promessa —, e quem a pega é a afirmação nova de segunda pessoa. **O que se perdeu está escrito dentro do `mutacoes-voz.py`, em texto, com os três localizadores e os números de cada um**, para a próxima execução não refazer a mesma busca. **O próximo passo NÃO é um quarto localizador:** é decidir se prosa dentro de dobra é "abertura" para o `VOZ.md` ou se ela ganha régua própria, escrita para o lugar onde ela está hoje.
+
+### 10. PRÓXIMO PASSO DESBLOQUEADO
+
+**A PROPOSTA A da leitura semanal de 21/10**, que entrou no `main` durante esta execução: o pacote da **banda 11 a 20** na `/calculadora-de-litragem/` (posição **11,1**, 37 impressões — a maior amostra dessa banda em todo o arquipélago), **com a ressalva que o próprio despacho escreve: NÃO dar promessa numérica ao `<title>` dela**, porque ela é o braço "marca" do teste da Proposta B; o `<title>` muda as palavras, nunca o número, e a URL e o `<h1>` não mudam.
+
+Do mesmo despacho: os itens **1 e 2 fecharam por medição** (as propostas de título de 07/10 foram **reprovadas** — betta 1 clique, as quatro calculadoras zero de quatro —, e a home sem veredito fechou), o **3** e o **5** não são da Fundação, o **4** é vigilância que não vira bloco, e o **6** fechou nesta execução. **Sobram as Propostas A, B e C.**
+
+**ESTA ILHA NÃO TEM DIRETÓRIO DE MEMÓRIA NESTE AMBIENTE** — não há `/memories` nem ferramenta de memória nesta execução. O `PROMPT.md` da ilha manda, nesse caso, **não parar**: o estado mora no `ESTADO.md`, no `REGISTRO.md` e no `README.md` desta pasta, e o próximo passo está escrito nos dois primeiros.
+
+---
+
 ## 2026-10-21 17h45Z–18h2xZ — O MOLDE DA 32.2 NAS 29 FICHAS DE PEIXE, DE UMA PASSADA, E O DESPACHO DO MOLDE DESTA ILHA FECHA INTEIRO
 
 **A ESCOLHA DA ILHA: FOCO E DESPACHO NA MESMA ILHA, E UMA CORRIDA DUPLA QUE EU GANHEI POR UM PUSH.** `foco.md` nomeia a **aquametria** e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria — as duas regras apontaram para a mesma ilha, então não houve rotação. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, e não havia reserva vencida para o git desempatar. **Passo 1:** `git fetch origin main`, nenhum PR aberto e a branch `claude/loving-rubin-3zp9p8` **idêntica ao `main`** (zero commits à frente) — nada a mesclar. Reserva aceita às **17h45Z** no commit `84eaf10`, **renovada** pela 1.1 às 18h05Z porque o mutirão passou de 40 minutos, com a hora saindo do `date -u` na mesma linha de comando que grava o campo.

@@ -1,0 +1,1817 @@
+{
+ "resumo": {
+  "gerado_em": "2026-10-21",
+  "sub_id": "aquametria",
+  "registros": 78,
+  "piso_encurtado_agora": 0,
+  "piso_ja_tinha": 78,
+  "piso_falhou": 0,
+  "ficha_casou": 37,
+  "ficha_nao_casou": 41,
+  "com_foto_medida": 37,
+  "por_degrau_de_palavra_chave": {
+   "1": 22,
+   "2": 15,
+   "3": 0,
+   "4": 0
+  }
+ },
+ "itens": [
+  {
+   "id": "roxin-ht-1300-q3-25w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Roxin HT-1300 25 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/6AlFBdCQRd"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/1W090Uppd0",
+    "url_produto": "https://shopee.com.br/product/1182259119/58258088004",
+    "anuncio_shopee": "Termostato para Aquário Roxin Ht-1300 110V 25 W",
+    "loja": "PRIETTO HOLDING S.A",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-820l5-mmjgukvst7no1d",
+    "largura": 368,
+    "altura": 368,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "eheim-jager-50w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Eheim Jager 50 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/30oDPog505"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (Jager 50 W): zero resultados",
+    "degrau 2 (Eheim Jager 50 W): zero resultados",
+    "degrau 4 (Eheim Jager 50 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "maxxi-m-050-anuncio-220v",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Maxxi M-050",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/80CtN0aFEU"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/AUuxj2qprR",
+    "url_produto": "https://shopee.com.br/product/317352124/58250117043",
+    "anuncio_shopee": "Aquecedor Termostato Maxxi M-050 50w P Aquários Até 50l 220v",
+    "loja": "Only_Fish",
+    "nota": "4",
+    "outros_aprovados": 4
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-8259h-mge5jlcqmbyhc4",
+    "largura": 959,
+    "altura": 959,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "roxin-ht-1300-q3-50w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Roxin HT-1300 50 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9V1h9lm8Hu"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (HT-1300 50 W): zero resultados",
+    "degrau 2 (Roxin HT-1300 50 W): zero resultados",
+    "degrau 3 (Roxin HT-1300/Q3 50 W): zero resultados",
+    "degrau 4 (Roxin HT-1300 50 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "rs-50-50w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": " RS-50",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5AshzoFgvd"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Película Hidrogel Compatível C/ Huawei Mate 50 Rs Porsche\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso",
+    "degrau 1: \"10, 20 ou 50 Buchas Do Paralama Audi A1 A8 Q7 R8 TT RS\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Neon Led em Acrílico Espelhado Personalizado Dourado - RS - 0,50 x 0,5\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso",
+    "degrau 1: \"Kit 5 Adesivos Refletivo De Capacete M1 Compativel Aprilia Rs 50 Preto\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Kit 50 Pingentes para Bainha Faca Gaúcha Brasão RS e Cavalo - Atacado\" — o titulo anuncia um kit e o registro nao e um kit",
+    "degrau 1: \"Liga De Zinco Metal Exterior Chave Caso Capa Apto Para Lexus LM NX UX \" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso",
+    "degrau 1: \"Kit 25, 50 ou 100 Pingentes para Bainha Faca Gaúcha Brasão RS e Cavalo\" — o titulo anuncia um kit e o registro nao e um kit",
+    "degrau 1: \"Luxo Couro Do Plutônio Grande Lente Caso De Telefone Para Huawei Compa\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso",
+    "degrau 1: \"BALAO 7 SÃO ROQUE LISO RED C/50 RS TUTTI FRUTTI\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso",
+    "degrau 1: \"Pasta Catálogo Ofício Rosa com 50 Envelopes Ref. 134.RS ACP\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso",
+    "degrau 4: \"Termostato Aquecedor para Aquário RS-50 50W 220V\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso",
+    "degrau 4: \"Termostato Aquecedor para Aquário RS-50 50W 110V\" — o registro nao declara marca, e sem ela nao ha condicao necessaria para identificar o anuncio (25.3) — fica so com o piso"
+   ]
+  },
+  {
+   "id": "atman-at-100",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Atman AT-100",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5q8On2QUQG"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Camiseta De Volta Para o Futuro We're Out At Time Filme Retrô Vintage \" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Camiseta 100% Algodao Five Nights At Freddy Camisa Fazbears Pizza Fant\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Camisa De Manga Longa Camiseta 100% Algodão \" Five Nights at Freddy's \" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Camiseta Freddy Fazbears Pizza Five Nights At Freddys Fnaf Estampa Pre\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Camiseta Infantil Five Nights At Freddys Game Over Terror Game Algodão\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Camiseta Sailor Song Gigi Perez Álbum At The Beach, In Every Life Love\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Camiseta Five Nights At Freddys Freddy Fazbear Horror Game Filme Algod\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Camiseta FIVE NIGHTS AT FREDDY’S Música Rock Metal FNAF Terror Game Un\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Camiseta FIVE NIGHTS AT FREDDY’S FNAF Terror Game Unissex 100% Algodão\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Kit Camiseta Com Short Nasa At 1987 Bermuda Tactel Camisa 100% Algodão\" — o titulo anuncia um kit e o registro nao e um kit",
+    "degrau 2 (Atman AT-100): zero resultados",
+    "degrau 3 (Atman AT 100 W): zero resultados"
+   ]
+  },
+  {
+   "id": "eheim-jager-100w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Eheim Jager 100 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/6AlFBegot9"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (Jager 100 W): zero resultados",
+    "degrau 2 (Eheim Jager 100 W): zero resultados",
+    "degrau 4 (Eheim Jager 100 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "maxxi-m-100-anuncio-127v",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Maxxi M-100",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5q8On2qxOD"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/9pfGvq6AXH",
+    "url_produto": "https://shopee.com.br/product/262143062/58268427627",
+    "anuncio_shopee": "Maxxi Termostato M-100 100W",
+    "loja": "Kaluti Pet Shop",
+    "nota": "0",
+    "outros_aprovados": 6
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-8258v-mt9ybec7mx3ef6",
+    "largura": 450,
+    "altura": 450,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "roxin-ht-1300-q3-100w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Roxin HT-1300 100 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/70KMBC42tx"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (HT-1300 100 W): zero resultados",
+    "degrau 2 (Roxin HT-1300 100 W): zero resultados",
+    "degrau 3 (Roxin HT-1300/Q3 100 W): zero resultados",
+    "degrau 4 (Roxin HT-1300 100 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "atman-at-150",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Atman AT-150",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/6VO5aHRsXp"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Par Tampas Laterais Titan 150 Preto Preta + Adesivos 2004 at\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"AMORTECEDOR BROS 125 BROS 150/ 160 XRE 190 PRO-LINK ( AC-906 / 10670-E\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Capa Corrente Cg 150 Titan Fan 2014 At 2015 Cg 160 Titan Fan Start 201\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Aro Farol Cg 125 Titan 2000 At 2008 Cg 150 Fan 2009 At 2013\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Jogo Roda Liga Leve 6 Palitos Fazer 150 2016 At 2024\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Capa Banco Cg 150 Titan 2004 At 2008 Modelo Original Piracapas\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Bloco Otico Yamaha Fazer 150 2015 At 2017\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Carburador Completo Cg 150 Titan 2004 At 2008\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Placa Partida Cg 150 Titan 2004 At 2015 Cg 125 Fan 2009 At 2013 Cg 160\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Estator Bobina Pulso Cg 150 Titan 2004 At 2008\" — o titulo nao traz a marca Atman",
+    "degrau 2 (Atman AT-150): zero resultados",
+    "degrau 3 (Atman AT 150 W): zero resultados"
+   ]
+  },
+  {
+   "id": "eheim-jager-150w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Eheim Jager 150 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/8fSaAGbA1d"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (Jager 150 W): zero resultados",
+    "degrau 2 (Eheim Jager 150 W): zero resultados",
+    "degrau 4 (Eheim Jager 150 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "maxxi-m-150-anuncio-220v",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Maxxi M-150",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5Ashzq1kje"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/9zyh8A0f5Y",
+    "url_produto": "https://shopee.com.br/product/317352124/58200081280",
+    "anuncio_shopee": "Aquecedor Termostato Maxxi M-150 150w Para Aquários 220v",
+    "loja": "Only_Fish",
+    "nota": "0",
+    "outros_aprovados": 3
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-825ax-mgcqt3xqjrig60",
+    "largura": 959,
+    "altura": 959,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "oceantech-warmer-x-5-150w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Ocean Tech Warmer X-5 150 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/8pm0MaIf1o"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/50a1AyWpNi",
+    "url_produto": "https://shopee.com.br/product/611210337/11790923046",
+    "anuncio_shopee": "Termostato Aquecedor Warmer X-5 Ocean Tech 150 W P/aquário",
+    "loja": "BARBUS FISH AQUARISMO",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7qvd1-lfg13gownjbgc0",
+    "largura": 405,
+    "altura": 405,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "sicce-scuba-contactless-150w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Sicce Scuba Contactless 150",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/6q0vyuhnxE"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (Scuba Contactless 150): zero resultados",
+    "degrau 2 (Sicce Scuba Contactless 150): zero resultados",
+    "degrau 3 (Sicce Scuba Contactless 150 W NFC): zero resultados",
+    "degrau 4 (Sicce Scuba Contactless 150 aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "atman-at-200",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Atman AT-200",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/BU22fKS72"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Fonte Injetor PoE 802.3 Gigabit PoE 200 AT Intelbras\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Anéis De Retenção De Eixo M105-M200 SUS304 Para Equipamentos Industria\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"INJETOR POE 802.3AF/AT GIGABIT ETHERNET POE 200 AT INTELBRAS - 4710010\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Caderno Five Nights At Freddy 10 Matérias 200 Folhas\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Capa de Banco NX150/200/NXR AT 08 Vermelha ZAMP\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Caderno Five Nights At Freddy 10 Matérias 200 Folhas\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"KIT EMBREAGEM (PL/DI/RL) GOL G3 AT PARATI 200 MM  -  0RIGINAL LUK\" — o titulo anuncia um kit e o registro nao e um kit",
+    "degrau 1: \"Pedaleiras Aço Inox Black Volkswagen Polo 200 Tsi 2018... At\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Pedaleiras Em Aço Inox Black Volkswagen Virtus 200 Tsi At\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Pedaleiras Esportivas Em Aço Inox Black Mercedes Cla200 AT\" — o titulo nao traz a marca Atman",
+    "degrau 2 (Atman AT-200): zero resultados",
+    "degrau 3 (Atman AT 200 W): zero resultados"
+   ]
+  },
+  {
+   "id": "eheim-jager-200w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Eheim Jager 200 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/6L4fO0EZjX"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (Jager 200 W): zero resultados",
+    "degrau 2 (Eheim Jager 200 W): zero resultados",
+    "degrau 4 (Eheim Jager 200 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "maxxi-m-200-anuncio-110v",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Maxxi M-200",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/8pm0MbMelV"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/9zyh8BDaun",
+    "url_produto": "https://shopee.com.br/product/317352124/23299117833",
+    "anuncio_shopee": "Aquecedor Termostato Maxxi M-200 200w Para Aquários 110v",
+    "loja": "Only_Fish",
+    "nota": "4.5",
+    "outros_aprovados": 3
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-82592-mge61iekbci744",
+    "largura": 959,
+    "altura": 959,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "maxxi-m-200-anuncio-220v",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Maxxi M-200",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/6fhVmci2Gb"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/30ownJvhjo",
+    "url_produto": "https://shopee.com.br/product/317352124/58250117035",
+    "anuncio_shopee": "Aquecedor Termostato Maxxi M-200 200w Para Aquários 220v",
+    "loja": "Only_Fish",
+    "nota": "0",
+    "outros_aprovados": 3
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-8259h-mge5jlcqmbyhc4",
+    "largura": 959,
+    "altura": 959,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "roxin-ht-1300-q3-200w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Roxin HT-1300 200 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/2gBN1HEvl1"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (HT-1300 200 W): zero resultados",
+    "degrau 2 (Roxin HT-1300 200 W): zero resultados",
+    "degrau 3 (Roxin HT-1300/Q3 200 W): zero resultados",
+    "degrau 4 (Roxin HT-1300 200 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "oceantech-warmer-x-5-250w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Ocean Tech Warmer X-5 250 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9zxxkl0DEt"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (Warmer X-5 250 W): zero resultados",
+    "degrau 2 (Ocean Tech Warmer X-5 250 W): zero resultados",
+    "degrau 4 (Ocean Tech Warmer X-5 250 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "atman-at-300",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Atman AT-300",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/8pm0McMFio"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Pneu Moto Titan Dianteiro 2.75-18 Pro Tork AT 300 Fan Start YBR Factor\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Pneu Moto Titan Traseiro 90/90-18 Pro Tork AT 300 Fan Start YBR Factor\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"LOVEGOSHOP AT3600L Diamante Record Player Agulhas Substituição Stylus \" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Protetor de Cárter para Moto Honda Xre 300 de 2009 a 2023 Atos - PM-AT\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Accounting to Zoology: a comprehensive look at 300 graduate field of s\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Agulha Audio Technica At-sb727 At-lp60x At-lp60xbt At-pl300\" — o titulo nao traz a marca Atman",
+    "degrau 1: \"Agulha De Reposição Atn3600l Compativel At-lp60x  At-pl300\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Protetor de Cárter para Moto Honda Xre 300 de 2009 a 2023 Atos - PM-AT\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"[BANY] Caneta De Substituição De Agulhas Para Toca-Discos De Diamante \" — o titulo nao traz a marca Atman",
+    "degrau 1: \"PFG AT3600L Diamante Record Player Agulhas Substituição Stylus Para Áu\" — o titulo nao traz a marca Atman",
+    "degrau 2 (Atman AT-300): zero resultados",
+    "degrau 3 (Atman AT 300 W): zero resultados"
+   ]
+  },
+  {
+   "id": "maxxi-m-300-anuncio-110v",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Maxxi M-300",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/20vgE43rjD"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/2LZG06kdiw",
+    "url_produto": "https://shopee.com.br/product/1001662464/58200082151",
+    "anuncio_shopee": "Aquecedor Termostato Maxxi M-300 300w Para Aquários 110v",
+    "loja": "Onlyfish_Aquario",
+    "nota": "5",
+    "outros_aprovados": 3
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-825ap-mgcqyhcddg5pa4",
+    "largura": 959,
+    "altura": 959,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "maxxi-m-300-anuncio-220v",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Maxxi M-300",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/8AWJZOtepv"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/40hTzAvtPf",
+    "url_produto": "https://shopee.com.br/product/317352124/58200081272",
+    "anuncio_shopee": "Aquecedor Termostato Maxxi M-300 300w Para Aquários 220v",
+    "loja": "Only_Fish",
+    "nota": "0",
+    "outros_aprovados": 3
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-825ax-mgcqt3xqjrig60",
+    "largura": 959,
+    "altura": 959,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "roxin-ht-1300-q3-300w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Roxin HT-1300 300 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/40gkbkQyvR"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (HT-1300 300 W): zero resultados",
+    "degrau 2 (Roxin HT-1300 300 W): zero resultados",
+    "degrau 3 (Roxin HT-1300/Q3 300 W): zero resultados",
+    "degrau 4 (Roxin HT-1300 300 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "hopar-j-226-400w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Hopar J-226 400 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/gQIdcvPIM"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/113sPfP3Dl",
+    "url_produto": "https://shopee.com.br/product/1402882902/58268178500",
+    "anuncio_shopee": "Termostato Aquecedor Hopar J-226 400w Para Aquário 127v 127v 400 W",
+    "loja": "HE Ecommerce",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-8258f-mt5nna6b8a2vc7",
+    "largura": 500,
+    "altura": 500,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "hopar-j-226-500w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Hopar J-226 500 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5LC8CCmROM"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (J-226 500 W): zero resultados",
+    "degrau 2 (Hopar J-226 500 W): zero resultados",
+    "degrau 4 (Hopar J-226 500 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "oceantech-warmer-x-5-500w",
+   "banco": "dados/produtos-aquecedor.json",
+   "entidade": "aquecedor",
+   "titulo_do_registro": "Ocean Tech Warmer X-5 500 W",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/AAHNx5hAfn"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (Warmer X-5 500 W): zero resultados",
+    "degrau 2 (Ocean Tech Warmer X-5 500 W): zero resultados",
+    "degrau 4 (Ocean Tech Warmer X-5 500 W aquecedor aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "eheim-classic-250-2213",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Eheim classic 250 (2213)",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/2qUnDcMDf0"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/1gJZCtvi5J",
+    "url_produto": "https://shopee.com.br/product/523885308/19098113085",
+    "anuncio_shopee": "Filtro Canister Classic 250 440lh Eheim - 2213",
+    "loja": "Aquasam",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-m8eusegtvu9dea",
+    "largura": 726,
+    "altura": 726,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "sunsun-hw-303b",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "SunSun HW-303B",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5foyapOlln"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Lâmpada Filtro Canister Hw 303b / 304b Uv 9w Sunsun Aquario\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Lâmpada de 9W para Aquário, Lâmpada de Reposição para Filtros Sunsun H\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Lâmpada Filtro Canister Hw 303b / 304b Uv 9w Sunsun Aquario\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Lâmpada de 9W para Aquário, Lâmpada de Reposição para Filtros Sunsun H\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 3: \"Filtro Aquário Canister Sunsun Hw 404 B com UV 9 W 2000 L/H\" — o titulo nao traz o codigo (hw-303b)",
+    "degrau 4: \"Lâmpada Filtro Canister Hw 303b / 304b Uv 9w Sunsun Aquario\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 4: \"Lâmpada de 9W para Aquário, Lâmpada de Reposição para Filtros Sunsun H\" — o titulo abre com uma peca do aparelho, nao com o aparelho"
+   ]
+  },
+  {
+   "id": "atman-at-3338",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Atman AT-3338",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/6AlFBkeSug"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Atman Impeller Reparo Filtro Canister At-3337 / At-3338\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Balde Para Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-3338 Peça \" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Refil Do Filtros AT-3335 AT-3336 AT-3337 AT-3338 Atman Espuma Original\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Perna Leg Cantoneira Perna Filtro Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Tampa Do Cabeçote Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Refil do Filtro Canister ATMAN AT-3337 ou AT-3338 (Manta Acrílica + Es\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Atman Impeller Reparo Filtro Canister At-3337 / At-3338\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Balde Para Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-3338 Peça \" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Refil Do Filtros AT-3335 AT-3336 AT-3337 AT-3338 Atman Espuma Original\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Perna Leg Cantoneira Perna Filtro Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Tampa Do Cabeçote Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Refil do Filtro Canister ATMAN AT-3337 ou AT-3338 (Manta Acrílica + Es\" — o titulo abre com uma peca do aparelho, nao com o aparelho"
+   ]
+  },
+  {
+   "id": "atman-at-3338s",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Atman AT-3338S",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/8pm0Melm40"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Atman Impeller Reparo Filtro Canister At-3337 / At-3338\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Balde Para Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-3338 Peça \" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Refil Do Filtros AT-3335 AT-3336 AT-3337 AT-3338 Atman Espuma Original\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Perna Leg Cantoneira Perna Filtro Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Tampa Do Cabeçote Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Refil do Filtro Canister ATMAN AT-3337 ou AT-3338 (Manta Acrílica + Es\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Atman Impeller Reparo Filtro Canister At-3337 / At-3338\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Perna Leg Cantoneira Perna Filtro Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Balde Para Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-3338 Peça \" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Refil Do Filtros AT-3335 AT-3336 AT-3337 AT-3338 Atman Espuma Original\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Refil do Filtro Canister ATMAN AT-3337 ou AT-3338 (Manta Acrílica + Es\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Tampa Do Cabeçote Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho"
+   ]
+  },
+  {
+   "id": "seachem-tidal-55",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Seachem Tidal 55",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9V1h9swR4z"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/8AX2wrNgzw",
+    "url_produto": "https://shopee.com.br/product/534863221/13508554400",
+    "anuncio_shopee": "Filtro Externo Tidal 55 Seachem 1000l/h Para Aquários Até 200l - 110v",
+    "loja": "Aquariando",
+    "nota": "5",
+    "outros_aprovados": 7
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/632fd8b8b51fe5204548abd5d0965c84",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "atman-hf-0400",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Atman HF-0400",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/3B7dcFgXp9"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/1W090c4jxm",
+    "url_produto": "https://shopee.com.br/product/283728328/58215993686",
+    "anuncio_shopee": "Filtro Tipo Hang On HF-0400 Atman Hf0400 450 litros/hora Aquário até 110 Litros - 220 Volts",
+    "loja": "brechonovachance",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-820lc-mrrqsh10622v2d",
+    "largura": 494,
+    "altura": 494,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "atman-hf-0600",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Atman HF-0600",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/80CtN8k8xN"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/50a1B34Tdn",
+    "url_produto": "https://shopee.com.br/product/508960682/22992974003",
+    "anuncio_shopee": "Filtro Externo Silencioso Atman Hf- 0600 600 220v - 650 L/h",
+    "loja": "Projeto Aquário",
+    "nota": "5",
+    "outros_aprovados": 1
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lui6zlhf6icl91",
+    "largura": 551,
+    "altura": 551,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "atman-hf-0800",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Atman HF-0800",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5LC8CFGDzU"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/W7bomUPMB",
+    "url_produto": "https://shopee.com.br/product/347533126/23122271361",
+    "anuncio_shopee": "Filtro Externo Atman Hf-0800 110V",
+    "loja": "aquariumshop",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-23020-eoh8tincy8mv75",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "atman-at-3336",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Atman AT-3336",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5LC8CFTQKy"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Impeller para Filtro AT-3335 OU AT-3336 Atman Peça Reposição Rotor Hél\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Kit Impeller Rotor Hélice Reposição Filtro Atman At-3335 At-3336 + 2 T\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Kit Impeller Rotor Hélice Reposição Filtro Atman At-3335 At-3336 + 2 T\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Balde Para Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-3338 Peça \" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Tampa Trava Para Impeller Filtro Canister Atman AT-3335 AT-3336\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Refil Do Filtros AT-3335 AT-3336 AT-3337 AT-3338 Atman Espuma Original\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Kit 3 Unid Borracha Entre Cestos Canister Atman AT-3335 ou AT-3336\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Perna Leg Cantoneira Perna Filtro Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Tampa Do Cabeçote Filtro Canister Atman AT-3335 AT-3336 AT-3337 AT-333\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Impeller para Filtro AT-3335 OU AT-3336 Atman Peça Reposição Rotor Hél\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Kit Impeller Rotor Hélice Reposição Filtro Atman At-3335 At-3336 + 2 T\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Kit Impeller Rotor Hélice Reposição Filtro Atman At-3335 At-3336 + 2 T\" — o titulo abre com uma peca do aparelho, nao com o aparelho"
+   ]
+  },
+  {
+   "id": "sunsun-hw-603b",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "SunSun HW-603B",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/7AdmNceFXw"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/7puCYGSotP",
+    "url_produto": "https://shopee.com.br/product/1067990430/58251966673",
+    "anuncio_shopee": "Filtro Mini Canister Sunsun Hw-603b 400l/h para aquário",
+    "loja": "LIKA AQUARIUM FISH",
+    "nota": "5",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-81z1k-miahyxc8xc7a5c",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "sunsun-hw-302",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "SunSun HW-302",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5VVYOYxnH0"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Impeller Reposição Do Filtro Canister Sunsun Hw-402/302/702 a ou b\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Impeller Reposição Do Filtro Canister Sunsun Hw-302/402/702 A ou B\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"HOT WHEELS SILVERADO EV RST - 110/250 - LOTE 2024 HW GREEN SPEED - CÓD\" — o titulo nao traz a marca SunSun",
+    "degrau 1: \"HOT WHEELS ‘12 FORD MUSTANG BOSS 302 LAGUNA SECA 2012 HW PREMIERE GARI\" — o titulo nao traz a marca SunSun",
+    "degrau 1: \"HOT WHEELS 2012 MUSTANG BOSS 302 LAGUNA SECA BK 2012 HW PREMIERE GARIB\" — o titulo nao traz a marca SunSun",
+    "degrau 1: \"HOT WHEELS ‘12 FORD MUSTANG BOSS 302 LAGUNA SECA 2012 HW PREMIERE AZ G\" — o titulo nao traz a marca SunSun",
+    "degrau 1: \"Miniatura Hot Wheels 2012 Mustang Boss 302 Laguna Seca HW Premiere 8/5\" — o titulo nao traz a marca SunSun",
+    "degrau 2: \"Impeller Reposição Do Filtro Canister Sunsun Hw-402/302/702 a ou b\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2: \"Impeller Reposição Do Filtro Canister Sunsun Hw-302/402/702 A ou B\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 4: \"Impeller Reposição Do Filtro Canister Sunsun Hw-402/302/702 a ou b\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 4: \"Impeller Reposição Do Filtro Canister Sunsun Hw-302/402/702 A ou B\" — o titulo abre com uma peca do aparelho, nao com o aparelho"
+   ]
+  },
+  {
+   "id": "oceantech-ct-1000-3",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Ocean Tech CT-1000-3",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/50ZHneH5eC"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/6AlyZCvMy9",
+    "url_produto": "https://shopee.com.br/product/317352124/23397469327",
+    "anuncio_shopee": "Canister Ct-1000-3 Ocean Tech 1000l/h P Aqua Até 200l 110v",
+    "loja": "Only_Fish",
+    "nota": "5",
+    "outros_aprovados": 8
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rd71-lugyz1948b2tb3",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "sunsun-hw-702a-anuncio-110v",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "SunSun HW-702A",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/6VO5aPOmjB"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/50a1B4Cnti",
+    "url_produto": "https://shopee.com.br/product/401550703/14374577398",
+    "anuncio_shopee": "Filtro Canister Sunsun HW-702a Sun sun 1000l\\h Para Aquários Até 200 Litros Igual a HW-402a HW 702 a",
+    "loja": "Pet Hobby",
+    "nota": "5",
+    "outros_aprovados": 5
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-820m3-mr085emraz9ia1",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "sunsun-hw-702b-220v",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "SunSun HW-702B",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/5AshzxprKX"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/1BNIc1enoh",
+    "url_produto": "https://shopee.com.br/product/401550703/15474561382",
+    "anuncio_shopee": "Filtro Canister Sunsun HW 702B Com UV 9w P/ Aquários de até 200 Litros - Igual HW-402b agora Mais Moderno",
+    "loja": "Pet Hobby",
+    "nota": "5",
+    "outros_aprovados": 4
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/385a8539c99616049fb2ff19641dc9db",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "maxxi-pro-mp-600",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Maxxi MP-600",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9peXYXlDxZ"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/3VlDOJeVrR",
+    "url_produto": "https://shopee.com.br/product/688208146/23395147152",
+    "anuncio_shopee": "Filtro aquario Mini canister Hang on Maxxi Pro 600l/h mp-600",
+    "loja": "Mundo dos Bichos Taubate",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-8259u-mqxs78nksphcbc",
+    "largura": 913,
+    "altura": 913,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "sunsun-xbl-600",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "SunSun XBL-600",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/AUuELm0DTc"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/2gC6OmqU9C",
+    "url_produto": "https://shopee.com.br/product/362357768/23197602388",
+    "anuncio_shopee": "Filtro Externo Hangon Sunsun XBL-600 600l/h P/ Aquário",
+    "loja": "Amplo Comercial",
+    "nota": "5",
+    "outros_aprovados": 4
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rd54-lwzpxmk3asso33",
+    "largura": 800,
+    "altura": 800,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "aquaverso-apk-600",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Aquaverso APK-600",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/7VGcmGXZCV"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/9V2QXLdo8N",
+    "url_produto": "https://shopee.com.br/product/534863221/58264767821",
+    "anuncio_shopee": "Filtro Aquaverso Mini Canister Hang-On APK600 600l/h Completo",
+    "loja": "Aquariando",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-82581-mqyxa612o744e8",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "eheim-classic-600-2217-220v",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Eheim classic 600 (2217)",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/7KxCZxyjma"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/6L5OlX2vMr",
+    "url_produto": "https://shopee.com.br/product/317352124/22498323521",
+    "anuncio_shopee": "Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 220v",
+    "loja": "Only_Fish",
+    "nota": "0",
+    "outros_aprovados": 2
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rd58-m7bniamcy29b62",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "eheim-classic-600-2217-127v",
+   "banco": "dados/produtos-filtro.json",
+   "entidade": "filtro",
+   "titulo_do_registro": "Eheim classic 600 (2217)",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/7ptTAtNESR"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/qkSDQb3wk",
+    "url_produto": "https://shopee.com.br/product/325070633/21297921662",
+    "anuncio_shopee": "Filtro Canister Eheim Classic 600 (2217) 1000l/h 20w 127v",
+    "loja": "Only fish",
+    "nota": "5",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rdvk-m192mqgywnem2a",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "chihiros-wrgb-ii-pro-120",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros WRGB II Pro 120",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/2gBN1P7EOA"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (WRGB II Pro 120): zero resultados",
+    "degrau 2 (Chihiros WRGB II Pro 120): zero resultados",
+    "degrau 3 (Chihiros WRGB II Pro 120 cm): zero resultados",
+    "degrau 4 (Chihiros WRGB II Pro 120 luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "ista-i-401-45",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Ista I-401 45 cm",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/8fSaAR6SNp"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (I-401 45 cm): zero resultados",
+    "degrau 2 (Ista I-401 45 cm): zero resultados",
+    "degrau 3 (Ista I-401 45 cm luz branca): zero resultados",
+    "degrau 4 (Ista I-401 45 cm luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "soma-s-200-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Soma S-200",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9peXYaSPgJ"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/3qO3mx7deV",
+    "url_produto": "https://shopee.com.br/product/780415619/23893493361",
+    "anuncio_shopee": "Luminária Led Soma S-200 Bivolt Para Aquários Até 20 A 30cm",
+    "loja": "Peixe Boi",
+    "nota": "5",
+    "outros_aprovados": 9
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-maa9mjmg5v9576",
+    "largura": 800,
+    "altura": 800,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "soma-s-300-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Soma S-300",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/AKao9VqydZ"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/6AlyZFKp4E",
+    "url_produto": "https://shopee.com.br/product/716012232/19399371987",
+    "anuncio_shopee": "LUMINARIA LED SOMA S- 300 (12W) LED WRGB AUTOVOLT",
+    "loja": "DinhoS Reef Animal",
+    "nota": "5",
+    "outros_aprovados": 8
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rdy5-lzl63abnquuv37",
+    "largura": 598,
+    "altura": 598,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "chihiros-a-series-a301",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros A301",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/30oDQ2etT4"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Irrigador Oral Elétrico Jato D'água Limpador Dental E Bucal BM-A301\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Irrigador Oral Elétrico Jato D'água Limpador Dental E Bucal BM-A301\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Shorts Feminino Alfaiataria Com Cinto Corrente (A301)\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Placa Externa Vigilância Monitoramento Segurança 25x18cm a301\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Placa Externa Vigilância Monitoramento Segurança 25x18cm a301 vermelha\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Adesivo Carro Camionete Caminhão F-Outlaw 27x20cm a301\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Irrigador Dental Oral Portátil Recarregável USB 220ml Promoção Limpeza\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Short Feminino de Moletom Estampado Flores Minimalistas Azul A301\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Papel De Parede Canjiquinha Pedras Filetes Kit 02 Rolos A301\" — o titulo anuncia um kit e o registro nao e um kit",
+    "degrau 1: \"Cabo Carregador Veicular CS-A301 3 Metros USB + USB-C PD\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2 (Chihiros A301): zero resultados",
+    "degrau 3 (Chihiros A-Series 30 cm 18 W): zero resultados"
+   ]
+  },
+  {
+   "id": "soma-s-400-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Soma S-400",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/1VzPdI6bNq"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/7KxvxOl6vT",
+    "url_produto": "https://shopee.com.br/product/929201931/23794351500",
+    "anuncio_shopee": "LUMINARIA LED SOMA S- 400 (18W) LED WRGB AUTOVOLT",
+    "loja": "Animaruim Pet ",
+    "nota": "5",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-824i1-me0fwvflczk269",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "sunsun-ade-400c",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "SunSun ADE-400c",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/1VzPdISX1X"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/5fphyLDaj1",
+    "url_produto": "https://shopee.com.br/product/998189456/22091190574",
+    "anuncio_shopee": "Luminária Led Aquário 18w Sunsun Ade-400c 48 A 65cm Bivolt",
+    "loja": "Aquarius Hobby",
+    "nota": "0",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7qvec-lgnwdhm19sl384",
+    "largura": 259,
+    "altura": 259,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "chihiros-a-series-a361",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros A361",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/gQIdlrZ7j"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Adesivo  60x6cm O Rei da Estrada Para-brisa Caminhão Van Carro a361\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Botão Vidro Eletrico Tras Fiat Mobi 2020 1.0 4cc A361\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Placa Usb Áudio G40 G40-70 G40-80 Ns-a361 Aclu3\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Placa Usb Áudio G40 G40-70 G40-80 Ns-a361 Aclu3\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Papel De Parede Madeira Palha Geométrico Mosaico Sala A361\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Texamo/Texamo Tamaru A361 Cabeça de olho Deitado Silkworm Detalhe ilum\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Tubo de resfriamento médio Mitsubishi Pajello 4M41 de alta qualidade 1\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Young Guns Trouble Maker Trendy Heavy 270G Simples All-Match Gola Redo\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"A361 Conector Bord Usb Ac Hp Pavilion Dv6000 Ddat8apb3002507\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Placa Wifi 6301lc01081293 Wn6301l 76g096301-01 Original A361\" — o titulo nao traz a marca Chihiros",
+    "degrau 2 (Chihiros A361): zero resultados",
+    "degrau 3 (Chihiros A-Series 36 cm 21 W): zero resultados"
+   ]
+  },
+  {
+   "id": "soma-s-500-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Soma S-500",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9fL7MJjuLR"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/4fxAmVm3hd",
+    "url_produto": "https://shopee.com.br/product/344945744/23891190805",
+    "anuncio_shopee": "Luminaria de Led Soma S-500 -21W  - WRGB",
+    "loja": "World Fish",
+    "nota": "5",
+    "outros_aprovados": 9
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7qve5-lgmkpg13a5a74f",
+    "largura": 500,
+    "altura": 500,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "aquarios-do-rio-led-60cm",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": " Luminaria LED Aquario 60 cm full spectrum",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/qjiq5hj9c"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (Luminaria LED Aquario 60 cm full spectrum): zero resultados",
+    "degrau 4 (Luminaria LED Aquario 60 cm full spectrum luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "soma-s-600-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Soma S-600",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/2qUnDlnJSb"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/4B0uBb5hNA",
+    "url_produto": "https://shopee.com.br/product/929201931/23794351486",
+    "anuncio_shopee": "LUMINARIA LED SOMA S- 600 (24W) LED WRGB AUTOVOLT",
+    "loja": "Animaruim Pet ",
+    "nota": "5",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-824g8-me0fwo1ic1dzfc",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "soma-s-800-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Soma S-800",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/4Vd1CpyhjG"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/gR21AagsS",
+    "url_produto": "https://shopee.com.br/product/929201931/23994347616",
+    "anuncio_shopee": "LUMINARIA LED SOMA S- 800 (26W) LED WRGB AUTOVOLT",
+    "loja": "Animaruim Pet ",
+    "nota": "4.4",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-824ip-me0fwkh3l15227",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "chihiros-a-series-a451m",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros A451M",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/20vgEFLLsr"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (A451M): zero resultados",
+    "degrau 2 (Chihiros A451M): zero resultados",
+    "degrau 3 (Chihiros A-Series Marine 45 cm 27 W marinho): zero resultados",
+    "degrau 4 (Chihiros A451M luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "soma-s-1000-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Soma S-1000",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/qjiq6qBwD"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/4fxAmWq3SD",
+    "url_produto": "https://shopee.com.br/product/929201931/23898844156",
+    "anuncio_shopee": "LUMINARIA LED SOMA S-1000 (32W) LED WRGB AUTOVOLT",
+    "loja": "Animaruim Pet ",
+    "nota": "5",
+    "outros_aprovados": 9
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-824gr-me0ft632cykm5f",
+    "largura": 540,
+    "altura": 540,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "ista-il-401-60",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Ista IL-401 60 cm",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/2gBN1U5Lee"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (IL-401 60 cm): zero resultados",
+    "degrau 2 (Ista IL-401 60 cm): zero resultados",
+    "degrau 4 (Ista IL-401 60 cm luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "soma-s-1200-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Soma S-1200",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9fL7MLwEKA"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/1LgioPT8vu",
+    "url_produto": "https://shopee.com.br/product/325070633/20397636512",
+    "anuncio_shopee": "Luminaria Led Soma S-1200 36w 120cm Bivolt Aquario Até 130cm",
+    "loja": "Only fish",
+    "nota": "5",
+    "outros_aprovados": 7
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rcci-lsvttepph1z24a",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "wfish-wf-h600-wrgb",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "WFish WF-H600 WRGB",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/20vgEGpoaQ"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/60SYMzKFJM",
+    "url_produto": "https://shopee.com.br/product/1001662464/19697921439",
+    "anuncio_shopee": "Wfish Luminária Plant Led Wf-h600 Wrgb 36w Aquario Plantado",
+    "loja": "Onlyfish_Aquario",
+    "nota": "4.9",
+    "outros_aprovados": 0
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rdw4-m0w72k4leqdad4",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "chihiros-a-series-a601",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros A601",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/2qUnDo46UA"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Fechadura Porta Tras Dir Land Rover Vogue V8 2002 A601\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Cabo Flex Power Volume Compatível Asus Zenfone 6 A600 A601\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Calça Feminina de Moletom Estampada Coringa Carta A601\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Papel De Parede Infantil Ursinho Urso Bebe Kit 02 Rolos A601\" — o titulo anuncia um kit e o registro nao e um kit",
+    "degrau 1: \"Papel De Parede Infantil Ursinho Urso Bebe Animais Baby A601\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Papel De Parede Ursinho Urso Bebe Animais Baby Infantil A601\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Kit 2 Pneus 195/55R15 Aplus 85V A601 Aro15\" — o titulo anuncia um kit e o registro nao e um kit",
+    "degrau 1: \"Kit 4 Pneus 195/55R15 Aplus 85V A601 Aro15\" — o titulo anuncia um kit e o registro nao e um kit",
+    "degrau 1: \"Pneu 195/55R15 Aplus 85V A601 Aro15\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Caixa De Som Grande Bluetooth Fm Tws Aux 600w Cor Preto Fam A601/A602 \" — o titulo nao traz a marca Chihiros",
+    "degrau 2 (Chihiros A601): zero resultados",
+    "degrau 3 (Chihiros A-Series 60 cm 39 W): zero resultados"
+   ]
+  },
+  {
+   "id": "chihiros-a-series-a801",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros A801",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/7VGcmO8XkO"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Duto Tomada Ar Ford Focus 2015 Sedan A801\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"Raglan de Moletom Bolso na Manga My Hero Academy A801\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Calça Estilo Za r a Couro resinado A801/A802\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Par do Farol Principal  Toyota Corolla Cromado Manual Hb3/Hb4 Marca Ty\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Saia Tule bolo importado femininas modas A801\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Camiseta de Criança Personalizada Deus Responde Orações Arco-Íris Infa\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"A801 Kit Vareta Buchas Haste Capô Iveco Daily Até 2006 Dourado\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 1: \"A801-A850 Tapete de entrada de lama diatomácea Tapete de pé para porta\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"South Country Willie A4 Caixa de arquivo A801 Caixa de arquivo A4 Caix\" — o titulo nao traz a marca Chihiros",
+    "degrau 1: \"Lâmina de peças de reparo de engrenagem de moedor de carne Joyoung JYS\" — o titulo abre com uma peca do aparelho, nao com o aparelho",
+    "degrau 2 (Chihiros A801): zero resultados",
+    "degrau 3 (Chihiros A-Series 80 cm 50 W): zero resultados"
+   ]
+  },
+  {
+   "id": "chihiros-a-series-a901",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros A901",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9KiGxlRxi2"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/6L5Olc5J2B",
+    "url_produto": "https://shopee.com.br/product/459637699/18599265498",
+    "anuncio_shopee": "Luminária LED Chihiros A-Series A901 90cm 55W (8.200 lúmens) Bivolt para Aquário Plantado",
+    "loja": "aquabetta.studio",
+    "nota": "5",
+    "outros_aprovados": 1
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/sg-11134201-7rd3v-lvuh440s5u5jc3",
+    "largura": 692,
+    "altura": 692,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "2",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "chihiros-wrgb-ii-slim-90",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros WRGB II Slim 90",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/4Vd1Ct6Du4"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (WRGB II Slim 90): zero resultados",
+    "degrau 2 (Chihiros WRGB II Slim 90): zero resultados",
+    "degrau 3 (Chihiros WRGB II Slim 90 cm 69 W): zero resultados",
+    "degrau 4 (Chihiros WRGB II Slim 90 luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "chihiros-wrgb-ii-pro-60",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros WRGB II Pro 60",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/9zxxl07Hf1"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (WRGB II Pro 60): zero resultados",
+    "degrau 2 (Chihiros WRGB II Pro 60): zero resultados",
+    "degrau 3 (Chihiros WRGB II Pro 60 cm): zero resultados",
+    "degrau 4 (Chihiros WRGB II Pro 60 luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "chihiros-wrgb-ii-slim-120",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros WRGB II Slim 120",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/AAHNxJX2zj"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (WRGB II Slim 120): zero resultados",
+    "degrau 2 (Chihiros WRGB II Slim 120): zero resultados",
+    "degrau 3 (Chihiros WRGB II Slim 120 cm 90 W): zero resultados",
+    "degrau 4 (Chihiros WRGB II Slim 120 luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "chihiros-wrgb-ii-90",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros WRGB II 90",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/AKao9csTq7"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (WRGB II 90): zero resultados",
+    "degrau 2 (Chihiros WRGB II 90): zero resultados",
+    "degrau 3 (Chihiros WRGB II 90 cm 100 W): zero resultados",
+    "degrau 4 (Chihiros WRGB II 90 luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "chihiros-wrgb-ii-pro-90",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros WRGB II Pro 90",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/7VGcmQTfHE"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (WRGB II Pro 90): zero resultados",
+    "degrau 2 (Chihiros WRGB II Pro 90): zero resultados",
+    "degrau 3 (Chihiros WRGB II Pro 90 cm 110 W): zero resultados",
+    "degrau 4 (Chihiros WRGB II Pro 90 luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "chihiros-wrgb-ii-120",
+   "banco": "dados/produtos-iluminacao.json",
+   "entidade": "iluminacao",
+   "titulo_do_registro": "Chihiros WRGB II 120",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/905QZBk1PH"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (WRGB II 120): zero resultados",
+    "degrau 2 (Chihiros WRGB II 120): zero resultados",
+    "degrau 3 (Chihiros WRGB II 120 cm 130 W): zero resultados",
+    "degrau 4 (Chihiros WRGB II 120 luminaria aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "seachem-matrix-1l",
+   "banco": "dados/produtos-midia.json",
+   "entidade": "midia",
+   "titulo_do_registro": "Seachem Matrix 1 L",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/3B7dcTS9tf"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1: \"Carvão Ativado Matrix Carbon 1 L Seachem Filtragem Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon)",
+    "degrau 1: \"Seachem Matrix Carbon 1 L Carvão Ativado P/ Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon)",
+    "degrau 1: \"Produto único frito Wang!Armário 1.000+!Matrix de secagem rápida repel\" — o titulo nao traz a marca Seachem",
+    "degrau 2: \"Carvão Ativado Matrix Carbon 1 L Seachem Filtragem Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon)",
+    "degrau 2: \"Seachem Matrix Carbon 1 L Carvão Ativado P/ Aquário\" — o codigo vem seguido de sufixo que faz outro aparelho (irmao no banco: carbon)",
+    "degrau 4 (Seachem Matrix 1 L midia filtrante aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "eheim-substrat-pro-1l",
+   "banco": "dados/produtos-midia.json",
+   "entidade": "midia",
+   "titulo_do_registro": "Eheim SUBSTRAT pro 1 L",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/60RozgdInI"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (SUBSTRAT pro 1 L): zero resultados",
+    "degrau 2 (Eheim SUBSTRAT pro 1 L): zero resultados",
+    "degrau 4 (Eheim SUBSTRAT pro 1 L midia filtrante aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "jbl-micromec-1l",
+   "banco": "dados/produtos-midia.json",
+   "entidade": "midia",
+   "titulo_do_registro": "JBL MicroMec 1 L",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/8fSaAakkVs"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (MicroMec 1 L): zero resultados",
+    "degrau 2 (JBL MicroMec 1 L): zero resultados",
+    "degrau 3 (JBL MicroMec 1 L (650 g)): zero resultados",
+    "degrau 4 (JBL MicroMec 1 L midia filtrante aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "ocean-tech-bio-glass-1l",
+   "banco": "dados/produtos-midia.json",
+   "entidade": "midia",
+   "titulo_do_registro": "Ocean Tech Bio Glass 1 L",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/7fa2yl65R2"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/gR21EZ0QD",
+    "url_produto": "https://shopee.com.br/product/406238143/12220476757",
+    "anuncio_shopee": "Midia Biologica Bio Glass Oceantech 1 L + Bag P/ Filtro",
+    "loja": "Zooland_Pet",
+    "nota": "5",
+    "outros_aprovados": 2
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/a70f5cb3c45076a03c27e0f7c2f86552",
+    "largura": 1000,
+    "altura": 1000,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  },
+  {
+   "id": "seachem-matrixcarbon-250ml",
+   "banco": "dados/produtos-midia.json",
+   "entidade": "midia",
+   "titulo_do_registro": "Seachem MatrixCarbon 250 mL",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/3qNKPicPqK"
+   },
+   "ficha": null,
+   "imagem": null,
+   "degrau_que_casou": null,
+   "motivo_sem_ficha": [
+    "degrau 1 (MatrixCarbon 250 mL): zero resultados",
+    "degrau 2 (Seachem MatrixCarbon 250 mL): zero resultados",
+    "degrau 4 (Seachem MatrixCarbon 250 mL midia filtrante aquario): zero resultados"
+   ]
+  },
+  {
+   "id": "seachem-purigen-100ml",
+   "banco": "dados/produtos-midia.json",
+   "entidade": "midia",
+   "titulo_do_registro": "Seachem Purigen 100 mL",
+   "piso": {
+    "ja_tinha": "https://s.shopee.com.br/11392W0Kgj"
+   },
+   "ficha": {
+    "url": "https://s.shopee.com.br/3LRnC8gS8n",
+    "url_produto": "https://shopee.com.br/product/411974109/9147372003",
+    "anuncio_shopee": "Seachem Purigen Com Bag Original 100 Ml",
+    "loja": "HagiwaraAquadesign",
+    "nota": "5",
+    "outros_aprovados": 6
+   },
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/019ac121ffeafe4df9aeb01a03306188",
+    "largura": 1024,
+    "altura": 1024,
+    "fonte": "anuncio-shopee",
+    "bytes_lidos": true
+   },
+   "degrau_que_casou": "1",
+   "motivo_sem_ficha": null
+  }
+ ]
+}
