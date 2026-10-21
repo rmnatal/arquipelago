@@ -5728,3 +5728,76 @@ conteúdo, e não entraram em arquivo nenhum. Nenhuma reserva de ilha, nenhum `e
 estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum
 `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto
 para decidir coisa alguma: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026, 14:40 (BRT) — 17:40 (UTC): medição de volume da rodada 006 (Bússola, 3.0-c)
+
+Assunto conferido ANTES do `git fetch`: medição da Bússola, seção 3.0-c, candidatos da rodada 006 — **é do
+Arquipélago**, a instrução foi executada. Trabalho partiu de `origin/main` (`03bc7e1`), não da branch da sessão.
+
+Um arquivo NOVO criado, exatamente o nomeado na instrução, byte a byte como veio entre os delimitadores
+`===INÍCIO===` e `===FIM===` (que foram tratados como delimitador e não entraram no arquivo):
+`bussola/medicoes/volume-rodada-006-2026-10-21.md`.
+
+`git status --porcelain` logo depois de gravar, antes do `git add`:
+
+```
+?? bussola/medicoes/volume-rodada-006-2026-10-21.md
+```
+
+`git diff --stat` (do commit, `git diff --cached --stat`):
+
+```
+ bussola/medicoes/volume-rodada-006-2026-10-21.md | 34 ++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+```
+
+Hash do commit que foi ao `main`:
+
+```
+1ff312e6d8ef578fc6f0b456e71d04f1c21a32e2
+Bussola: volume medido dos 4 candidatos da rodada 006 (3.0-c) — nenhum passa
+```
+
+Push direto em `main` (`git push origin HEAD:main`), aceito de primeira, sem rebase e sem force:
+
+```
+To https://github.com/rmnatal/arquipelago
+   03bc7e1..1ff312e  HEAD -> main
+```
+
+Confirmação por `git fetch origin main && git log -1 origin/main` — o commit ESTÁ em `origin/main`:
+
+```
+1ff312e6d8ef578fc6f0b456e71d04f1c21a32e2 Bussola: volume medido dos 4 candidatos da rodada 006 (3.0-c) — nenhum passa
+ bussola/medicoes/volume-rodada-006-2026-10-21.md | 34 ++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+```
+
+**Contagem do que mudou, toda relida do arquivo DEPOIS de gravar (nenhum número vem de memória):**
+
+```
+linhas ............................. 34
+bytes .............................. 4453
+cabeçalho h1 ('# ') ................ 1   (# Resultado: nenhum dos quatro passa...)
+cabeçalhos h2 ('## ') .............. 3   (Lista da rodada / Termos-cabeça / A conta da 3.0-c)
+delimitadores de frontmatter ....... 2
+linha 'publicar: false' ............ 1
+linhas de tabela ('^|') ............ 6   (cabeçalho + separador + 4 candidatos)
+```
+
+Checagem de integridade do texto antes do commit, por `cat -A`: as crases de
+`` `para-medir-2026-10-21.md` ``, `` `—` `` e `` `Descobrir novas palavras-chave` `` sobreviveram como literais (o
+heredoc foi citado, sem expansão de shell), e os acentos, o `·`, o `×`, o `≈`, o `—` e o `–` entraram em UTF-8
+intactos.
+
+**Nenhum passo falhou.** Nenhum arquivo além do nomeado na instrução e deste log foi tocado. Nada foi reformatado,
+"melhorado" ou corrigido — inclusive o que poderia parecer erro e NÃO foi mexido: as consultas sem acento como vêm
+do Planejador (`medidas da cama queen`, `resistencia chuveiro`, `caixa d'agua`), a contagem de 209 consultas que
+viram 207 depois das 2 recusadas, o `1/2` de `registro de pressao 1/2` e o `< 200` da última linha da tabela.
+Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de estado que a instrução não nomeou (a
+`bussola/fila.md`, a `bussola/rodadas/006.md` e o `para-medir-2026-10-21.md` NÃO foram tocados, embora o texto os
+cite), nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true` (o
+frontmatter grava `publicar: false`), nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O
+`ARQUIPELAGO.md` não foi aberto para decidir coisa alguma: a decisão veio pronta no disparo.
