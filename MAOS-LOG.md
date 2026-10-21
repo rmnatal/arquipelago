@@ -5537,3 +5537,63 @@ A âncora da EDIÇÃO 1 e o texto antigo das EDIÇÕES 2 e 3 foram conferidos co
 Nenhum passo falhou. Nenhum erro a registrar neste disparo.
 
 **Nenhum arquivo além dos três nomeados na instrução e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido; os textos entraram byte a byte como vieram, incluindo os `—` travessões, as setas `→`, o `<details>` entre crases e os caixa-alta `MUTIRÃO`, `SITE INTEIRO`, `TODAS`, `CASCA`, `EM PARALELO` e `NÃO`. Os marcadores `=== EDIÇÃO N ===` da instrução foram tratados como delimitador, não como conteúdo. Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. Não li o `ARQUIPELAGO.md` para decidir nada — só para localizar a linha da 32.6 que a instrução nomeou: a decisão veio pronta no disparo.
+
+---
+
+## 21/10/2026, 12h07 (horário de Brasília) — 15h07Z — INSTRUÇÃO DA SENTINELA, RONDA DIÁRIA DA AQUAMETRIA, QUATRO ARQUIVOS NUM COMMIT
+
+**Assunto:** ilha **aquametria** do Arquipélago — ronda diária da Sentinela: despacho, registro de consertos e painel. Passou a checagem de assunto: é do Arquipélago.
+
+**O que a instrução mandou, e foi feito, nos quatro arquivos que ela nomeou:**
+
+1. `ilhas/aquametria/ESTADO.md` — a linha `ultima_ronda:` (que começava com `2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela`) foi substituída pela linha única de `2026-10-21T14:57Z`, inteira com o comentário, como veio.
+2. `ilhas/aquametria/dados/consertos.md` — (a) a célula final `| pendente — a ronda de 22/10 |` da linha de 2026-10-21 foi trocada pelo texto de conferência da ronda; (b) a linha nova de `2026-10-21 | — | **Nenhum conserto.** ...` foi acrescentada como última linha da tabela.
+3. `ilhas/aquametria/PROMPT.md` — (a) o despacho `## DESPACHO DA SENTINELA — 2026-10-14 (RONDA DIÁRIA TÉCNICA, 14h5xZ, ...)` foi apagado inteiro, do cabeçalho até imediatamente antes de `## DESPACHO DO RAPHAEL — 2026-10-09` (13.849 caracteres). O `## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL, 19h5xZ, ...)` NÃO foi tocado e continua no arquivo; (b) o `## DESPACHO DA SENTINELA — 2026-10-21 (RONDA DIÁRIA TÉCNICA, 14h5xZ, ...)` foi inserido imediatamente antes de `## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO`, no topo da fila de blocos.
+4. `dados/PAINEL.md` (raiz) — arquivo inteiro substituído pelo conteúdo da instrução.
+
+Todos os quatro trechos de ancoragem casaram com o texto exato. Nenhum trecho ficou sem casar, logo não há nada a relatar como "não encontrado".
+
+**`git status --porcelain` antes do commit:**
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/aquametria/dados/consertos.md
+```
+
+**`git diff --stat` antes do commit:**
+
+```
+ dados/PAINEL.md                     |  97 +++++++++++++++--------------
+ ilhas/aquametria/ESTADO.md          |   2 +-
+ ilhas/aquametria/PROMPT.md          | 121 ++++++++++++++++++------------------
+ ilhas/aquametria/dados/consertos.md |   3 +-
+ 4 files changed, 114 insertions(+), 109 deletions(-)
+```
+
+**Commit que foi ao `main`:**
+
+```
+331a1e8723462a8d0e7f64dfe1fbb7c953824375
+Sentinela 21/10: ronda diária da aquametria — caixa de resultado congelada e cartão de compra a 5.839 px despachados; painel reescrito
+```
+
+**Conferido em `origin/main` depois do push** (`git fetch origin main && git log -1 origin/main`): o commit `331a1e8` é o topo de `origin/main`. Push que não aparece em `origin/main` não é push — este aparece.
+
+**Contagem do que mudou, conferida RELENDO os arquivos depois de gravar, não pelo que foi escrito:**
+
+```
+ilhas/aquametria/ESTADO.md            573 linhas; 1 linha casando '^ultima_ronda: 2026-10-21T14:57Z'
+ilhas/aquametria/dados/consertos.md    13 linhas; 2 linhas de tabela comecando '| 2026-10-21 ';
+                                       0 ocorrencias restantes de 'pendente — a ronda de 22/10'
+ilhas/aquametria/PROMPT.md            612 linhas; 19 cabecalhos '## ';
+                                       1 '## DESPACHO DA SENTINELA — 2026-10-21';
+                                       0 '## DESPACHO DA SENTINELA — 2026-10-14 (RONDA DIARIA TECNICA' (apagado);
+                                       1 '## DESPACHO DA SENTINELA — 2026-10-14 (LEITURA SEMANAL' (preservado)
+dados/PAINEL.md                        82 linhas, 14.765 bytes; 20 linhas na tabela de despachos abertos
+```
+
+**Um tropeço no push, registrado porque o log existe para isto:** o primeiro `git push origin HEAD:main` foi recusado (non-fast-forward) porque outro commit entrou no `main` entre o `fetch` e o push — `ee266cf Reserva a clubedomosaico para a execucao de 21/10/2026 15h0xZ`. Resolvido na primeira tentativa seguinte com `git fetch origin main && git rebase origin/main` e novo `git push origin HEAD:main`, que passou (`ee266cf..331a1e8`). **Nenhum force push.** Nenhum outro passo falhou.
+
+**Nenhum arquivo além dos quatro nomeados na instrução e deste log foi tocado.** Nada foi reformatado, "melhorado" ou corrigido: os textos entraram byte a byte como vieram, incluindo os travessões `—`, as setas `→`, o `14h5xZ` com o `x` literal nos cabeçalhos e no painel, o `151 — **corrigido: 149** —` do painel, os pontos medianos `·` da tabela de casos e todos os caixa-alta. Os marcadores `===== ARQUIVO N de 4 =====` da instrução foram tratados como delimitador, não como conteúdo. Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de estado que a instrução não nomeou, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo.
