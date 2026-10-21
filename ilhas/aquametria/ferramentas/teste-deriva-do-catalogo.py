@@ -219,9 +219,26 @@ def metade_c(regua):
     afirma("a deriva de hoje e medida e esta inteira dentro dos blocos do gerador",
            hoje["fora_de_bloco"] == [] and hoje["gerador_codigo"] == 0,
            "fora %d, codigo %s" % (len(hoje["fora_de_bloco"]), hoje["gerador_codigo"]))
-    afirma("a deriva de hoje e toda do lado `+` — por isso o lado `-` se encena",
-           {m["lado"] for m in hoje["mudancas"]} == {"+"},
-           str({m["lado"] for m in hoje["mudancas"]}))
+    # ESTA AFIRMACAO EXIGIA QUE A DERIVA EXISTISSE, E REPROVOU NO DIA EM QUE ELA
+    # ZEROU — 21/10/2026, quando a lista de 21/10 regerou o catalogo e as 74
+    # linhas de 16/10 desembarcaram. Escrita como `== {"+"}`, ela cobrava duas
+    # coisas de uma vez: que nenhuma linha fosse do lado `-` (o que ela existe
+    # para dizer, porque e por isso que o lado `-` se encena nos mundos abaixo) e
+    # que houvesse PELO MENOS UMA linha (o que e o estado do banco naquele dia, e
+    # nao uma propriedade da regua). Deriva zero e o ALVO de todo desembarque,
+    # entao a segunda metade fazia o portao reprovar exatamente quando o trabalho
+    # dava certo. Agora ela cobra so a primeira, e conjunto vazio passa.
+    #
+    # E A FAMILIA E A MESMA DOS QUATRO CASOS DO E28 CONSERTADOS NO MESMO DIA, no
+    # `testar-validador-especies.py`: afirmacao presa ao estado de hoje do banco
+    # vence sozinha no dia em que o banco anda. Quem a reapertar para `== {"+"}`
+    # volta a travar o proximo desembarque, e a mutacao 11 do
+    # `mutacoes-deriva-do-catalogo.py` reprova se o lado `-` deixar de ser cobrado.
+    lados = {m["lado"] for m in hoje["mudancas"]}
+    afirma("a deriva de hoje nao tem linha do lado `-` — por isso o lado `-` se encena",
+           lados <= {"+"},
+           "lados medidos: %s (deriva de %d linha(s))" % (sorted(lados) or "nenhum",
+                                                          len(hoje["mudancas"])))
 
     # MUNDO 1: o banco perde um campo que o catalogo publica. A deriva tem de
     # MUDAR, e e assim que o portao descobre banco mexido sem declaracao.

@@ -36,6 +36,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGUA = os.path.join("ferramentas", "regua-deriva-do-catalogo.py")
 PORTAO = os.path.join("ferramentas", "conferir-deriva-do-catalogo.py")
 TESTE = os.path.join("ferramentas", "teste-deriva-do-catalogo.py")
+SNIPPET_REL = os.path.join("snippets", "aquametria-peixes.php")
 
 inertes = []
 sobreviventes = []
@@ -69,6 +70,16 @@ def troca_em(ilha, arquivo, velho, novo):
 
 def rodar_teste(ilha):
     p = subprocess.Popen([sys.executable, os.path.join(ilha, TESTE)],
+                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    saida = p.communicate()[0].decode("utf-8", "replace")
+    return p.returncode, saida
+
+
+def rodar_portao(ilha, *extra):
+    """O portao na ilha de sombra. Serve a mutacao que PRODUZ o mundo antes de o
+    quebrar: ela precisa declarar na serie a deriva que acabou de criar, e quem
+    escreve a serie e o proprio portao, com `--gravar`."""
+    p = subprocess.Popen([sys.executable, os.path.join(ilha, PORTAO)] + list(extra),
                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     saida = p.communicate()[0].decode("utf-8", "replace")
     return p.returncode, saida
@@ -188,9 +199,35 @@ mutacao("8. a regua para de achar o bloco BARRADOS",
                               ""),
         "blocos sao achados pelos marcadores")
 
-mutacao("9. o `--gravar` do portao grava o total e esquece as linhas",
-        lambda ilha: troca_em(ilha, PORTAO, '        "linhas": linhas,',
-                              '        "linhas": {},'),
+# A 9 PRODUZ O MUNDO ANTES DE O QUEBRAR, DESDE 21/10/2026, E ELA SOBREVIVEU NO
+# DIA EM QUE A DERIVA ZEROU. Ate 20/10 a ilha tinha 74 linhas de deriva de pe, e
+# gravar o total esquecendo as linhas deixava a serie dizendo "74 linhas, {}" —
+# que o portao reprova na releitura. Em 21/10 a lista de 21/10 regerou o catalogo,
+# a deriva virou 0 e {} passou a ser a resposta CERTA: a corrupcao ficou inerte
+# sem o `troca_em` perceber, porque o alvo continuava no arquivo. A mutacao passa
+# a CRIAR a deriva primeiro — apaga do snippet de sombra uma linha que o gerador
+# produz, o que da exatamente uma linha do lado `+` — e a declarar essa deriva na
+# serie com o portao LIMPO, para que o mundo de partida seja um mundo que passa.
+# So depois ela quebra o `--gravar`. E a "mutacao de duas edicoes" da secao 8 do
+# ARQUIPELAGO.md, e aqui a segunda edicao e o mundo, nunca uma segunda regra.
+LINHA_DO_CATALOGO = ("\t\t\t\t\t'url' => "
+                     "'https://www.fishbase.se/summary/Paracheirodon-innesi',\n")
+
+
+def mutacao_9(ilha):
+    # (1) o mundo: o snippet de sombra perde UMA linha que o gerador produz
+    if not troca_em(ilha, SNIPPET_REL, LINHA_DO_CATALOGO, ""):
+        return False
+    # (2) a serie declara essa deriva, escrita pelo portao ainda LIMPO
+    codigo, _ = rodar_portao(ilha, "--gravar")
+    if codigo != 0:
+        return False
+    # (3) e agora a quebra: o --gravar passa a gravar o total e a esquecer as linhas
+    return troca_em(ilha, PORTAO, '        "linhas": linhas,', '        "linhas": {},')
+
+
+mutacao("9. o `--gravar` do portao grava o total e esquece as linhas (com deriva PRODUZIDA)",
+        mutacao_9,
         "serie gravada pelo proprio portao")
 
 # A 10 E DUPLA DE PROPOSITO, E A RAZAO E UM ACHADO DESTA BATERIA. A primeira
@@ -200,6 +237,29 @@ mutacao("9. o `--gravar` do portao grava o total e esquece as linhas",
 # duas metades guardam a mesma porta, e e por isso que nenhuma mutacao SIMPLES
 # consegue abri-la — o que a bateria mede aqui e justamente isso: para o
 # silencio passar por verde, duas afirmacoes tem de cair juntas.
+# A 11 E A IRMA DA 9 E NASCEU NO MESMO DIA, E E ELA QUE GUARDA O CONSERTO DE
+# 21/10/2026. Naquele dia a afirmacao do lado da deriva foi afrouxada de
+# `== {"+"}` para `<= {"+"}`, porque a forma antiga cobrava DUAS coisas — que
+# nenhuma linha fosse do lado `-` e que houvesse pelo menos uma linha — e a
+# segunda fazia o portao reprovar justamente quando um desembarque zerava a
+# deriva. Afrouxar sem guarda e como se perde uma regua: esta mutacao produz o
+# mundo que a metade SOBREVIVENTE tem de pegar — uma linha do lado `-` — e exige
+# que o portao a nomeie. Ela e mundo e nao quebra de regra: o snippet de sombra
+# GANHA uma linha que o gerador nunca produz, e a serie declara essa deriva com o
+# portao limpo, para que a UNICA afirmacao que cai seja a do lado.
+MARCA_INICIO = "\t/* CATALOGO-INICIO — gerado por ferramentas/gerar-catalogo-especies.py */\n"
+
+
+def mutacao_11(ilha):
+    if not troca_em(ilha, SNIPPET_REL, MARCA_INICIO,
+                    MARCA_INICIO + "\t/* linha que o gerador nunca produz */\n"):
+        return False
+    codigo, _ = rodar_portao(ilha, "--gravar")
+    # o `--gravar` do portao limpo declara a deriva que acabamos de criar; se ele
+    # proprio nao conseguir aprovar depois disso, o mundo nao e o que queremos
+    return codigo == 0
+
+
 def mutacao_10(ilha):
     um = troca_em(ilha, PORTAO,
                   '    ok("a serie de deriva tem declaracao", declarado is not None,',
@@ -209,6 +269,10 @@ def mutacao_10(ilha):
                     "        return ([], [])")
     return um and dois
 
+
+mutacao("11. uma linha do lado `-` aparece na deriva, e o portao tem de a nomear",
+        mutacao_11,
+        "nao tem linha do lado `-`")
 
 mutacao("10. as DUAS afirmacoes que guardam a serie ausente caem juntas",
         mutacao_10,

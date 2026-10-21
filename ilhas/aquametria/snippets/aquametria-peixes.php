@@ -6561,18 +6561,37 @@ function aquametria_peixes_categoria_html( $slug ) {
 	$na_fila = count( $dentro ) - count( $com_ficha );
 	$html .= '<p class="aqm-px-fora">';
 	if ( $na_fila > 0 ) {
-		$html .= 'Das ' . esc_html( count( $dentro ) ) . ' espécies da tabela, '
-			. esc_html( count( $com_ficha ) ) . ' já têm a conta inteira numa página própria e '
-			. esc_html( $na_fila )
-			. ' estão na fila. A ordem não é alfabética nem por gosto: sai primeiro a que mais gente procura, e a próxima leva sai depois de medirmos se estas foram indexadas.';
+		/* TRÊS CONCORDÂNCIAS, E A DO MEIO FOI AO AR ERRADA EM 21/10/2026. Esta
+		   frase nasceu na leva 2 com os três números no plural e nunca viu um
+		   deles valer 1: a fila desta ilha esteve sempre em 0 ou em 2 ou mais,
+		   porque "elegível sem ficha" era estado que não existia — os registros
+		   sem ficha eram exatamente os sem categoria. A lista de 21/10 deu
+		   segundo corpo ao guppy, ele entrou em `/peixes/vivaparos/` sem ficha,
+		   a fila virou 1 e a página serviu "1 estão na fila". É a MESMA cicatriz
+		   que a 1.8.0 consertou na frase vizinha ("1 ficaram fora porque o banco
+		   OS declara agressivoS") e que fez nascer o
+		   `aquametria_peixes_concorda()` — a frase de baixo é a prova de que
+		   conserto que não procura os irmãos conserta um lugar só. */
+		$html .= esc_html( aquametria_peixes_concorda( count( $dentro ), 'Da', 'Das' ) ) . ' '
+			. esc_html( count( $dentro ) ) . ' '
+			. esc_html( aquametria_peixes_concorda( count( $dentro ), 'espécie', 'espécies' ) )
+			. ' da tabela, ' . esc_html( count( $com_ficha ) ) . ' já '
+			. esc_html( aquametria_peixes_concorda( count( $com_ficha ), 'tem', 'têm' ) )
+			. ' a conta inteira numa página própria e ' . esc_html( $na_fila ) . ' '
+			. esc_html( aquametria_peixes_concorda( $na_fila, 'está', 'estão' ) )
+			. ' na fila. A ordem não é alfabética nem por gosto: sai primeiro a que mais gente procura, e a próxima leva sai depois de medirmos se estas foram indexadas.';
 	} elseif ( $barradas_daqui ) {
 		/* FECHADA SÓ VALE QUANDO NÃO HÁ NINGUÉM ESPERANDO DO LADO DE FORA. A
 		   frase de baixo diz "fechada quer dizer que todo X que o banco
 		   sustenta já tem página" — com um barrado declarado nesta categoria
 		   ela passa a ser falsa sem mudar uma letra, que é a forma silenciosa
 		   do número de tela que envelhece. Aqui o texto muda de forma. */
-		$html .= 'As ' . esc_html( count( $dentro ) )
-			. ' espécies da tabela têm a conta inteira numa página própria, e a lista NÃO está fechada: o banco tem mais '
+		$html .= esc_html( aquametria_peixes_concorda( count( $dentro ), 'A', 'As' ) ) . ' '
+			. esc_html( count( $dentro ) ) . ' '
+			. esc_html( aquametria_peixes_concorda( count( $dentro ), 'espécie', 'espécies' ) )
+			. ' da tabela '
+			. esc_html( aquametria_peixes_concorda( count( $dentro ), 'tem', 'têm' ) )
+			. ' a conta inteira numa página própria, e a lista NÃO está fechada: o banco tem mais '
 			. esc_html( count( $barradas_daqui ) )
 			. ' desta mesma categoria que o portão ainda barra, e o que falta em cada uma está logo abaixo. '
 			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever.';
@@ -6587,8 +6606,12 @@ function aquametria_peixes_categoria_html( $slug ) {
 		   página das coridoras, medido no HTML servido em 14/09/2026. Ramo novo
 		   herda o texto do mundo antigo, e nenhuma contagem estava errada: só a
 		   palavra. Agora ela vem declarada por categoria, como o `plural`. */
-		$html .= 'As ' . esc_html( count( $dentro ) )
-			. ' espécies da tabela têm a conta inteira numa página própria — esta lista está fechada, e fechada quer dizer que '
+		$html .= esc_html( aquametria_peixes_concorda( count( $dentro ), 'A', 'As' ) ) . ' '
+			. esc_html( count( $dentro ) ) . ' '
+			. esc_html( aquametria_peixes_concorda( count( $dentro ), 'espécie', 'espécies' ) )
+			. ' da tabela '
+			. esc_html( aquametria_peixes_concorda( count( $dentro ), 'tem', 'têm' ) )
+			. ' a conta inteira numa página própria — esta lista está fechada, e fechada quer dizer que '
 			. esc_html( $cat['singular'] ) . ' que o banco desta ilha sustenta com duas fontes já tem a página dele. '
 			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever: espécie sem duas fontes de corpos distintos não entra na tabela, e espécie que vive em cardume sem o número do cardume declarado não ganha página, porque a página começa justamente por esse número.';
 	}

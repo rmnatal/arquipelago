@@ -291,16 +291,29 @@ CATEGORIAS = {
     # mais vendidos do Brasil, cada um a UM campo de entrar. Sem declara-los, a
     # frase de lista fechada desta pagina diria que todo viviparo do banco ja tem
     # pagina, e as duas Poecilia sumiriam de uma pagina que se chama Viviparos.
+    # O GUPPY TROCOU DE METADE EM 21/10/2026, e a troca e o ponto: ele saiu de
+    # `barradas` para `especies` porque a lista de 21/10 lhe deu o segundo corpo
+    # e o portao de catalogo deixou de o barrar. A lista do snippet nao mudou —
+    # ela declara as CINCO Poeciliidae desde a leva 5 e quem reparte as cinco
+    # entre tabela e lista de fora e o portao. O que mudou foi a reparticao, e e
+    # por isso que esta declaracao existe: sem ela, uma especie atravessando o
+    # portao mudaria a pagina sem mudar uma afirmacao sequer.
+    #
+    # E E A PRIMEIRA VEZ QUE ESTA ILHA TEM ELEGIVEL SEM FICHA: a fila de uma
+    # categoria no ar sempre esteve em 0 ou em 2 ou mais, porque os registros sem
+    # ficha eram exatamente os sem categoria. Com a fila em 1, a pagina serviu
+    # "1 estao na fila" — defeito de concordancia consertado na mesma passada,
+    # com o `aquametria_peixes_concorda()` que a 1.8.0 criou para a frase vizinha.
     "vivaparos": {
         "rotulo": "vivíparos",
         "barradas": [
-            "poecilia-reticulata",
             "poecilia-sphenops",
         ],
         "especies": [
             "xiphophorus-maculatus",
             "xiphophorus-hellerii",
             "xiphophorus-variatus",
+            "poecilia-reticulata",
         ],
     },
     # leva 6, 14/09/2026. `barradas` nasce VAZIA aqui e isso e uma afirmacao,
@@ -1459,8 +1472,20 @@ def medir_categoria(slug, banco):
     com_ficha = [i for i in ESPECIES if i in FICHAS.values()]
     na_fila = len(ESPECIES) - len(com_ficha)
     if na_fila > 0:
-        ok("%s: diz quantas ja tem ficha (%d) e quantas faltam (%d)" % (slug, len(FICHAS), na_fila),
-           ("%d já têm a conta inteira" % len(com_ficha)) in t and ("%d estão na fila" % na_fila) in t)
+        # A CONCORDANCIA E COBRADA, E ELA E A METADE QUE FALTAVA ATE 21/10/2026.
+        # A afirmacao procurava "N estao na fila" com o verbo SEMPRE no plural, e
+        # com isso ela nao podia pegar — e nao pegou — o "1 estao na fila" que a
+        # pagina serviu no dia em que a fila de `/peixes/vivaparos/` chegou a 1
+        # pela primeira vez. A frase esperada e escrita AQUI, com as duas formas,
+        # e nao importada do snippet: portao que importa a frase de quem ele mede
+        # concorda com o erro junto.
+        ok("%s: diz quantas ja tem ficha (%d) e quantas faltam (%d), CONCORDANDO"
+           % (slug, len(com_ficha), na_fila),
+           ("%d já %s a conta inteira" % (len(com_ficha),
+                                          "tem" if len(com_ficha) == 1 else "têm")) in t
+           and ("%d %s na fila" % (na_fila, "está" if na_fila == 1 else "estão")) in t)
+        ok("%s: e NAO serve a forma errada do verbo" % slug,
+           ("%d %s na fila" % (na_fila, "estão" if na_fila == 1 else "está")) not in t)
         ok("%s: nao diz que a lista esta fechada" % slug, "esta lista está fechada" not in t)
     elif CATEGORIAS[slug]["barradas"]:
         # FECHADA SO VALE SEM NINGUEM ESPERANDO DO LADO DE FORA. Com a fila
