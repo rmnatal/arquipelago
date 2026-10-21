@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 86,
+  "revisao": 88,
   "atualizado_em": "2026-10-21",
   "estado": "nascendo",
   "desembarque": {
@@ -75,8 +75,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "f1efdd1c69a5d00232a30caa9e7892ecd145cf7a49ddaacfb65a162f03b9bcb4",
-      "versao": "1.0.0",
+      "sha256": "71bbbb6adf5f69b58af6e6532642683d3be96377ab7cabc635c6656cb18e1f54",
+      "versao": "1.1.0",
       "descricao": "A MALHA NA 1.0.0 — A PRIMEIRA LEVA DO BLOCO 5b, e ela abre a arvore de tres niveis desta ilha: /pecas/, /pecas/filtros/ e as tres filhas de marca (Xiaomi, WAP, Electrolux). CINCO URLs, dentro do teto de 10 por leva da 21.4, escolhidas pela ordem de levas do ARVORE.md — a mae e as TRES filhas de maior intencao de compra, nunca uma filha de cada categoria espalhada. O portao de dado foi RECONTADO antes de escrever pagina nenhuma: 16 itens entregam filtro em 5 marcas, e so tres marcas tem tres ou mais itens. A classificacao de SERP da 14.9 foi feita para as cinco consultas e esta medida em dados/serp-malha-pecas-2026-09-21.md. A HIERARQUIA E DE VERDADE: as paginas nascem com post_parent, porque robometria_casca_garantir_paginas() cria pagina de slug plano e a 16.2 exige que nivel 1 e 2 sejam mae de verdade. NENHUM NUMERO E NENHUMA FRASE NASCEM NO PHP: os dois vem de dados/malha-pecas.json, derivado do banco por ferramentas/gerar-malha-pecas.py, e ferramentas/teste-malha.php compara frase a frase, sem acento, o que o PHP escreve com o que a referencia escreveu. OS TRES NUMEROS DA SECAO SAO OS DA CASCA (casca-fatos.json): recontar aqui criaria a segunda copia de pares_declarados que a R1 1.8.0 mediu no ar com dois valores. KIT NAO E FILTRO e a frase nao o chama assim — onde ha kit, o sujeito e 'itens que entregam filtro' e a composicao sai escrita; e 'nao vende avulso' e calculado por MODELO, so onde nenhuma peca avulsa daquele tipo responde por ele."
     }
   ],

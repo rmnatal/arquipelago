@@ -1,6 +1,14 @@
 /**
  * Robometria — MALHA DE PEÇAS (bloco 5b, primeira leva)
  *
+ * Versão: 1.1.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32, no formato de
+ * FICHA da 32.2, nas cinco paginas. A caixa de resposta nasce no topo das tres
+ * camadas da arvore (secao, categoria e filha de marca), com o numero contado da
+ * mesma medicao que as frases da pagina ja usavam; na categoria, os cartoes de
+ * marca — que sao a porta para o produto, porque o produto mora na pagina da
+ * marca — subiram para logo abaixo da caixa, e a prosa de prova desceu para
+ * baixo deles, aberta. Nenhuma palavra saiu de nenhuma das cinco.
+ *
  * Cinco páginas, uma árvore de três níveis:
  *
  *   /pecas/                        seção (nível 1)
@@ -45,7 +53,7 @@
  */
 
 if ( ! defined( 'ROBOMETRIA_MALHA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_MALHA_VERSAO', '1.0.0' );
+	define( 'ROBOMETRIA_MALHA_VERSAO', '1.1.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -650,7 +658,21 @@ function robometria_malha_pagina_secao() {
 	$html .= '<p class="rbm-linha-mestra">Quer trocar uma peça do seu robô e saber se ela '
 		. 'encaixa? Escolha o tipo de peça abaixo, ou vá direto para a ferramenta e diga a '
 		. 'marca e o modelo.</p>';
-	$html .= '<p class="rbm-prova">' . esc_html( $resposta ) . '</p>';
+	/* A CAIXA DE RESPOSTA NO TOPO (32.2). Os dois números saem de
+	   `robometria_casca_numeros()` — os MESMOS que a frase de prova abaixo, a
+	   metodologia e a home publicam, com a mesma régua. Recontar aqui criaria a
+	   segunda cópia de `pecas_publicaveis` que a R1 1.8.0 mediu no ar com dois
+	   valores; e quando a medição não chega, a caixa não sai, porque o aviso
+	   honesto acima já devolveu a página sem número nenhum. */
+	if ( isset( $numeros['pecas_publicaveis'], $numeros['marcas'] ) ) {
+		$html .= robometria_casca_caixa(
+			'Peças com modelo declarado pelo fabricante',
+			number_format_i18n( (int) $numeros['pecas_publicaveis'] ),
+			sprintf( 1 === (int) $numeros['marcas'] ? 'em 1 marca' : 'em %s marcas',
+				number_format_i18n( (int) $numeros['marcas'] ) ),
+			array( 'Peça de robô aspirador não é universal: o encaixe é por modelo. Diga o seu na ferramenta abaixo, ou escolha o tipo de peça.' )
+		);
+	}
 
 	/* A ferramenta é a porta principal desta seção: a filha de maior intenção
 	   de compra da ilha inteira, e ela já está no ar (VOZ.md, molde FERRAMENTA). */
@@ -674,6 +696,8 @@ function robometria_malha_pagina_secao() {
 		$previstas[] = $t['rotulo'];
 	}
 	$html .= robometria_malha_cartoes_de_filhas( 'pecas', $previstas );
+
+	$html .= '<p class="rbm-prova">' . esc_html( $resposta ) . '</p>';
 
 	/* O QUE JA ESTA NO AR — a tabela pré-renderizada desta página (seção 5).
 	   Ela fala só das filhas PUBLICADAS: contagem de categoria que não existe é
@@ -780,9 +804,27 @@ function robometria_malha_pagina_categoria( $chave ) {
 			. 'no seu não serve no do vizinho. Escolha a marca do seu robô e veja o que o '
 			. 'fabricante declarou.',
 		robometria_malha_maiuscula( $singular ) ) ) . '</p>';
-	$html .= '<p class="rbm-prova">' . esc_html( $frases['quantos'] ) . ' '
-		. esc_html( $frases['serve'] ) . ' ' . esc_html( $frases['marca_cruzada'] ) . '</p>';
+	/* A CAIXA DE RESPOSTA NO TOPO (32.2): o número e a condição numa frase. O
+	   número é CONTADO do mesmo `$c` que as frases abaixo contam — não há segunda
+	   contagem, e a condição ("o encaixe é por modelo") é a resposta desta
+	   página. */
+	$html .= robometria_casca_caixa(
+		sprintf( '%s no banco, com modelo declarado', robometria_malha_maiuscula( $plural ) ),
+		number_format_i18n( $c['itens_no_banco'] ),
+		sprintf( 1 === (int) $c['marcas_no_banco'] ? 'em 1 marca' : 'em %s marcas',
+			number_format_i18n( $c['marcas_no_banco'] ) ),
+		array( sprintf(
+			'Nenhum deles serve em todo robô: cada um vale nos modelos que o fabricante nomeou, e são %s cobertos até aqui. Escolha a marca do seu abaixo.',
+			( $c['modelos_cobertos'] > 1 )
+				? number_format_i18n( $c['modelos_cobertos'] ) . ' modelos'
+				: '1 modelo' ) )
+	);
 
+	/* OS CARTÕES DE MARCA SÃO O BLOCO DE AÇÃO DESTA PÁGINA, e por isso sobem
+	   para logo abaixo da caixa (32.2). O produto não mora aqui: mora na página
+	   da marca, e é para lá que cada cartão leva. A prova — a contagem inteira,
+	   em quantos modelos servem e a regra da marca cruzada — desce para baixo
+	   deles, aberta, sem perder uma palavra. */
 	$html .= '<h2>Escolha a marca do seu robô</h2>';
 
 	$previstas = array();
@@ -793,6 +835,9 @@ function robometria_malha_pagina_categoria( $chave ) {
 		$previstas[] = $f['marca_rotulo'];
 	}
 	$html .= robometria_malha_cartoes_de_filhas( $chave, $previstas );
+
+	$html .= '<p class="rbm-prova">' . esc_html( $frases['quantos'] ) . ' '
+		. esc_html( $frases['serve'] ) . ' ' . esc_html( $frases['marca_cruzada'] ) . '</p>';
 
 	/* A TABELA INTEIRA DA CATEGORIA, com a coluna de marca: é a resposta que um
 	   modelo de linguagem cita, e ela não depende de clicar em filha nenhuma. */
@@ -843,6 +888,20 @@ function robometria_malha_pagina_filha( $chave ) {
 		'Antes de comprar %s %s, confere o código na etiqueta embaixo do seu robô: é ele '
 			. 'que manda, não o nome do anúncio.',
 		( 'a' === $cat['gramatica']['artigo'] ) ? 'uma' : 'um', $singular ) ) . '</p>';
+
+	/* A CAIXA DE RESPOSTA (32.2): o número e a condição numa frase, logo abaixo
+	   da promessa e antes do bloco de compra. O número é CONTADO dos itens desta
+	   página — os mesmos que a vitrine lista — e os modelos saem do mesmo `$f`
+	   que as frases abaixo contam. */
+	$html .= robometria_casca_caixa(
+		sprintf( '%s %s no banco', robometria_malha_maiuscula( $plural ), $f['marca_rotulo'] ),
+		number_format_i18n( count( (array) $f['itens'] ) ),
+		sprintf( 1 === (int) $f['modelos_cobertos'] ? 'para 1 modelo' : 'para %s modelos',
+			number_format_i18n( (int) $f['modelos_cobertos'] ) ),
+		array( sprintf(
+			'São os que o fabricante declarou, com o código dele. Confira o código do seu robô antes de comprar: %s não encaixa em todo modelo da marca.',
+			$singular ) )
+	);
 
 	$html .= '<p class="rbm-prova">' . esc_html( $frases['quantos'] ) . ' '
 		. esc_html( $frases['serve'] ) . '</p>';
