@@ -5997,3 +5997,81 @@ nada "melhorado", nenhuma linha acrescentada fora do texto da instrução. Nenhu
 `executando_desde`, nenhum cabeçalho de estado alterado, nenhum bloco de fila executado, nenhum Sync acionado,
 nenhuma publicação, nenhum `publicar: true`, nenhum domínio registrado, nenhuma conta criada, nenhum contato
 pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo.
+
+---
+
+## Disparo de 21/10/2026, 16:54 (BRT) — 19:54 (UTC) — leitura Search Console das três ilhas
+
+**Instrução recebida:** para cada ilha em `[aquametria robometria clubedomosaico]`, rodar
+`python3 ferramentas/search-console.py <ilha> 2>&1 | grep -v '^\[notice\]\|WARNING: Running pip'` e gravar a saída
+inteira em `ilhas/<ilha>/dados/search-console-2026-10-21.md`; conferir `grep -c PRIVATE` = 0 em cada arquivo;
+commit `Leitura Search Console pela nuvem — 2026-10-21`; `git push origin HEAD:main`; confirmar com
+`git log -1 origin/main`. Assunto do Arquipélago (três ilhas e a ferramenta do próprio repositório) — executado.
+
+**Credencial:** `GOOGLE_SA_B64` lida do ambiente pelo script. O valor nunca foi impresso, nunca foi gravado em
+arquivo e nunca entrou em commit. Só a existência da variável foi verificada, não o conteúdo.
+
+**`git status --porcelain` antes do commit (já com os três arquivos no índice):**
+
+```
+A  ilhas/aquametria/dados/search-console-2026-10-21.md
+A  ilhas/clubedomosaico/dados/search-console-2026-10-21.md
+A  ilhas/robometria/dados/search-console-2026-10-21.md
+```
+
+**`git diff --stat` do que foi gravado:**
+
+```
+ .../aquametria/dados/search-console-2026-10-21.md  | 75 ++++++++++++++++++++++
+ .../dados/search-console-2026-10-21.md             | 49 ++++++++++++++
+ .../robometria/dados/search-console-2026-10-21.md  | 28 ++++++++
+ 3 files changed, 152 insertions(+)
+```
+
+**Commit que foi ao `main`:** `a817503` — `Leitura Search Console pela nuvem — 2026-10-21`, a mensagem exata que a
+instrução deu.
+
+**Push:** `git push origin HEAD:main` aceito de primeira, sem recusa e sem force push —
+`38f65b4..a817503  HEAD -> main`. Confirmado com `git fetch origin main && git log -1 origin/main`: `origin/main`
+aponta para `a817503`, o commit deste disparo. A branch de trabalho partiu de `origin/main` (`38f65b4`), não da
+branch da sessão.
+
+**Conferência de vazamento, arquivo por arquivo, relendo o que foi gravado:**
+
+```
+  ilhas/aquametria/dados/search-console-2026-10-21.md       grep -c PRIVATE = 0
+  ilhas/robometria/dados/search-console-2026-10-21.md       grep -c PRIVATE = 0
+  ilhas/clubedomosaico/dados/search-console-2026-10-21.md   grep -c PRIVATE = 0
+```
+
+Varredura extra, além da que a instrução pediu, nos três arquivos:
+`grep -lEi 'BEGIN (RSA )?PRIVATE|private_key|GOOGLE_SA_B64|service_account|client_email|-----BEGIN'` não casou com
+arquivo nenhum. Nenhum arquivo precisou ser apagado; nada vazou.
+
+**Contagem do que mudou, conferida relendo os arquivos gravados (não pelo que eu acho que escrevi):**
+
+```
+  ilhas/aquametria/dados/search-console-2026-10-21.md       75 linhas   4843 bytes   7 cabeçalhos
+  ilhas/robometria/dados/search-console-2026-10-21.md       28 linhas   1553 bytes   7 cabeçalhos
+  ilhas/clubedomosaico/dados/search-console-2026-10-21.md   49 linhas   3120 bytes   7 cabeçalhos
+  ---
+  3 arquivos novos, 0 arquivos preexistentes alterados, +152 linhas, -0 linha
+```
+
+As três pastas `ilhas/<ilha>/dados/` já existiam — nenhuma precisou ser criada. A saída de cada ilha entrou inteira,
+byte a byte como o script devolveu, inclusive a linha em branco que abre o arquivo da aquametria; nada foi
+reformatado, resumido ou corrigido.
+
+**Totais que as três leituras trouxeram** (transcritos dos arquivos, não recalculados): aquametria 1 clique e 625
+impressões, 50 de 52 URLs indexadas; robometria 0 clique e 24 impressões, 10 de 14 indexadas; clubedomosaico 1
+clique e 168 impressões, 24 de 32 indexadas. Janela 2026-10-13→2026-10-19 nas três.
+
+**Nenhum passo falhou.** Nenhuma mensagem de erro a registrar. Os três comandos saíram com sucesso; o `grep -v` do
+pipe não removeu linha de conteúdo nenhuma, só o ruído de pip que a instrução mandou tirar.
+
+**O que NÃO foi feito:** nenhum arquivo além dos três nomeados e deste `MAOS-LOG.md` foi tocado. Nenhuma reserva de
+ilha, nenhum `executando_desde`, nenhum cabeçalho de estado alterado, nenhum `indexacao.md` ou `posicoes.md`
+atualizado (os arquivos trazem as linhas prontas para isso, mas colá-las não foi pedido e não é das mãos decidir),
+nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, nenhuma conta
+criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no
+disparo.
