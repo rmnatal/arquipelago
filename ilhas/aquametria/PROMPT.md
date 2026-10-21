@@ -44,6 +44,66 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DA SENTINELA — 2026-10-21 (RONDA DIÁRIA TÉCNICA, 14h5xZ, medida no Chrome do Raphael)
+
+**Isto tem prioridade sobre a fila.** Três itens, os três da lista fechada **19.2** — nenhum deles é conserto de Sentinela. **Zero defeito da lista 19.1 e zero conserto nesta ronda.**
+
+**O QUE ESTA RONDA MEDIU, para a Fundação não remedir:** 52 de 52 URLs em HTTP 200 (a `/politica-de-privacidade/` devolveu **504** numa primeira leitura e **200** em três releituras seguidas — oscilação do hospedeiro, não da ilha, e fica registrado porque é a camada que já derrubou a clubedomosaico três vezes). Porta de entrada da **29.2** inteira: `/wp-sitemap.xml` em 200 com `application/xml` e XML de sitemap de verdade, `/robots.txt` em 200 `text/plain`, `/wp-json/` em 200 `application/json`, e caminho virgem em **404 na página da própria ilha**. `/status` em **128**, igual ao `manifest.json`. Régua mecânica: **zero** `&#038;` dentro de `<script>`, **zero** `noindex`, JSON-LD nas 52 e `BreadcrumbList` nas 51 que não são a home, **zero** `<img>` sem `alt` e **zero** sem `width`/`height` (13 imagens), `description` única nas 52 e a maior com **149** caracteres, `aria-expanded` e `aria-controls` nas 52, favicon próprio nas 52, **zero** corpo começando por metadado YAML, **zero** página com menos de 2 links internos de **ENTRADA** (contado pela 16.9 na direção de quem aponta; a menor contagem de entrada é **3**). **Console sem uma mensagem.** A tabela de casos da 32.1 item 6 está **visível** (6 linhas) e as 6 foram **recontadas na mão**, as 6 certas — 13,2 · 30,4 · 57,6 · 104 · 170 · 282 L, e as três faixas de cada linha batem com 10–20, 20–40 e 40+ lm/L. **Coerência da recomendação: passa** — as três linhas que sugerem luminária sugerem peça com lúmen DENTRO da faixa da linha, e as três que dizem "nenhuma luminária do banco cobre esse comprimento dentro de X a Y lm" foram conferidas contra o banco e as três são **verdade** (no 60 cm, a mais barata que cobre 60 tem 2.400 lm contra o teto de 2.300 — a frase é honesta por 100 lúmens). **Piso da 25.2** recontado nos quatro `dados/produtos-*.json`: **78 de 78** com `url_busca` **e** `url_busca_produto`, **11** intestáveis, **36** testáveis — bate com o número que a leitura de 14/10 deixou escrito.
+
+**TESTE DE VIDA DA 25.4: 0 DE 36 MEDIDOS, E É ACHADO DE INSTRUMENTO PELA SEGUNDA RONDA SEGUIDA — agora na SEGUNDA ilha.** `api/v4/pdp/get_pc` devolveu `error: 90309999` **na primeira chamada de dois contextos limpos** — um entrado pela `url_produto` crua de ficha (`/product/<shop>/<item>`) e um entrado por `/search?keyword=...` —, e as duas abas caíram em `verify/captcha?...&scene=crawler_item`. **Nenhum clique de afiliado foi gasto e nenhum CAPTCHA foi resolvido.** Pela instrução que a ronda de 14/10 deixou escrita, não insisti além dos dois contextos. **"Não medido" não é "vivo".** E um dado novo que estreita a busca: **a sessão do Shopee NÃO está deslogada** — o cookie `SPC_U` estava presente na aba. O que barra é o anti-robô, não o login, e a linha do painel que atribuía isto ao logout está corrigida nesta data. Em 14/10 esta mesma ilha mediu 35 de 35 com esta receita; em 16/10 a robometria mediu 0 de 29; hoje, 0 de 36. **Três rondas, dois resultados opostos, mesma receita.** A decisão de qual passa a ser o método é do Raphael e está no painel.
+
+### 1. A CAIXA DE RESULTADO DO TOPO ESTÁ CONGELADA NO EXEMPLO, E É ELA QUE A 32.1 PÕE NA PRIMEIRA TELA
+
+**O que serve hoje a `/calculadora-de-iluminacao/`, medido no Chrome do Raphael a 390 px, em contexto limpo e com entrada inédita de 250 L e exigência alta:**
+
+- A caixa do topo tem o rótulo **"Lúmens que ESTE aquário pede"** e o valor **6.800 a 10.200+ lúmens**, com a frase "170 L de água e alta exigência". É o exemplo pré-renderizado da 32.1 item 4, e está certo para o exemplo.
+- Depois de clicar em "Calcular a iluminação", a resposta real nasce numa **SEGUNDA** caixa, com o rótulo **"Lúmens que O SEU aquário pede"**: **10.000 a 15.000+ lúmens**. **A conta está certa** — 250 × 40 = 10.000 e 250 × 60 = 15.000, pelas faixas que a própria página publica. Conferido também com 300 L / baixa (3.000 a 6.000 = 300 × 10 e 300 × 20) e com 85 L / alta (3.400 a 5.100).
+- **E a caixa do topo continua dizendo 6.800 a 10.200+.** Ela não recalcula nunca. A primeira tela segue publicando o número de um aquário de 170 L para quem acabou de calcular 250 L, e a resposta da pessoa fica **abaixo** da resposta do exemplo.
+- **Para quem VOLTA é pior, e esse é o visitante mais valioso.** Com um aquário guardado no `localStorage` (o do Chrome do Raphael tem, de hoje, `volumes.real_L: 120`), a página abre com o **formulário preenchido com 120 L** e a caixa do topo dizendo **170 L** — formulário e resultado se contradizendo na primeira tela, sem ninguém ter clicado em nada.
+
+**O PREÇO DISSO É EXATAMENTE O QUE A SEÇÃO 32 EXISTE PARA IMPEDIR, e ele está em pixel:**
+
+| estado da página (390 px, Chrome do Raphael) | formulário | 1º cartão de loja | altura |
+|---|---|---|---|
+| visitante novo, antes de calcular | 434 px | **1.300 px** | 9.853 px |
+| **o mesmo visitante, depois de calcular** | 434 px | **5.839 px** | 14.391 px |
+| visitante que volta, com aquário guardado | 434 px | **3.839 px** | 18.459 px |
+
+O teto da **32.5** é **1.400 px**. A página passa no estado em que ninguém a usou e falha por **4,2 vezes** no estado em que alguém a usou. A causa é a mesma do item: a caixa viva, a tabela de leituras e o bloco de cartões são **inseridos entre** a caixa congelada e a vitrine, empurrando a compra para baixo em vez de ocupar o lugar do exemplo.
+
+**POR QUE ISTO NÃO FOI CONSERTADO PELA RONDA:** é lógica de snippet (`aquametria-calculadora-iluminacao`) **e** é escolha entre duas opções defensáveis — a caixa viva **substitui** a do exemplo no lugar dela, ou as duas convivem com rótulos que não se confundam e com a vitrine subindo. As duas estão na lista fechada **19.2**, e a 19.2 vale mais que a 19.1.
+
+**Pronto quando:** no ar, a 390 px, **depois** de um cálculo com entrada inédita, (a) o primeiro cartão de loja aparecer antes de **1.400 px**; (b) existir **uma só** caixa de resultado em cena, com o número do cálculo que a pessoa pediu; (c) a página aberta com aquário guardado no `localStorage` não servir formulário e resultado discordando. **E vale para as quatro calculadoras que faltam no molde:** o item 1 do despacho do Raphael de 21/10 já avisava, na lição (d), que "o formulário preenchido com exemplo vaza"; o que esta ronda mediu é que o vazamento não é só do formulário — é do **resultado** — e que ele custa 4.539 px de distância até a compra.
+
+### 2. O "COMO SABEMOS" PUBLICA SEIS REGISTROS E TRÊS SUGERIDOS CONTRA 26 E 15 RECONTADOS NO BANCO
+
+A linha `fichas das luminárias` da tabela de constantes da `/calculadora-de-iluminacao/` diz, hoje, no ar: *"Hoje o banco tem seis registros e só três podem ser sugeridos: três são barrados por não declararem voltagem ou lúmens."*
+
+**Recontado em `ilhas/aquametria/dados/produtos-iluminacao.json` no `main`, e os três números estão errados:**
+
+- **26** registros, não seis.
+- **15** sugeríveis — os que declaram `fluxo_lm` **e** `comprimento_aquario_cm` **e** `voltagem` —, não três. São eles: `ista-i-401-45`, `chihiros-a-series-a301`, `a361`, `a451m`, `a601`, `a801`, `a901`, `aquarios-do-rio-led-60cm`, `ista-il-401-60`, `chihiros-wrgb-ii-slim-90`, `slim-120`, `wrgb-ii-90`, `wrgb-ii-120`, `wrgb-ii-pro-60`, `wrgb-ii-pro-90`.
+- **A razão do barramento também mudou e a frase está falsa:** os **26** declaram `voltagem` (todos `bivolt`). Quem é barrado é barrado por **`fluxo_lm` nulo**, e são **11**.
+
+É a mesma família do "número de tela digitado" da seção 8: a frase foi verdadeira no bloco 3, de 07/09, e o banco cresceu por baixo dela. A página cita a própria fonte (`dados/produtos-iluminacao.json`) ao lado do número, o que torna o defeito conferível em um comando — e foi assim que apareceu.
+
+**POR QUE A RONDA NÃO CONSERTOU:** a frase mora em código de snippet, e **qual** número publicar (registros totais, publicáveis ou sugeríveis) é escolha entre opções defensáveis. Duas entradas da lista fechada **19.2**.
+
+**Pronto quando:** a linha `fichas das luminárias` no ar publicar um número que um `grep` em `dados/produtos-iluminacao.json` reproduza no mesmo dia, dizendo **qual** contagem é (total, publicável ou sugerível), e a razão do barramento nomear `fluxo_lm` em vez de voltagem. **E, porque o defeito é de família e não desta linha:** todo número que a ilha publica sobre si mesma e que é derivado do banco deveria nascer contado do banco na hora de servir, como a robometria já faz — é o que impede que a próxima leva de produto envelheça outra frase em silêncio.
+
+### 3. O TEXTO DE BASTIDOR DA 32.4 ESTÁ EM 30 DAS 52 PÁGINAS, NÃO SÓ NA FICHA DO BETTA
+
+O item 3 do despacho do Raphael de 21/10 nomeia a ficha do betta como **exemplo**. Medido hoje no HTML servido das 52 URLs, o escopo é outro e é bom saber antes de abrir o bloco: **30 páginas** — as **29 fichas de peixe** e a mãe `/peixes/` — servem frase da lista 32.4. São **duas** frases, as duas geradas pelo mesmo snippet (`aquametria-peixes`), e elas são estas, textuais:
+
+1. *"A página não foi lida direto: o egresso da nuvem barra os domínios das duas fontes, então cada número veio de busca restrita ao domínio — está na lista de reconferência da ilha."* — nas 30, inclusive na mãe `/peixes/`.
+2. *"A SERP dessa consulta foi classificada em <data> antes de a página nascer, como manda o critério da ilha, e a classificação está escrita no snippet que serve esta página."* — nas 29 fichas.
+
+Cinco termos da lista 32.4 num par de frases: `egresso da nuvem`, `busca restrita ao domínio`, `lista de reconferência da ilha`, `SERP ... classificada` e `snippet`. **A procedência que a 32.4 manda preservar está preservada em outro lugar** — as duas frases citam fonte e data ("Seriously Fish, na ficha da espécie, colhido em 09/09/2026"), e isso não é o que sai: sai a prosa sobre como a fábrica colheu.
+
+**Pronto quando:** as 52 URLs no ar não servirem nenhum dos cinco termos acima, e a seção "Como sabemos" de cada ficha continuar nomeando fonte e data. **Isto é um conserto de duas strings num snippet, e fecha 30 páginas de uma vez** — vale a pena fazê-lo junto com a próxima passada no `aquametria-peixes`, não como bloco próprio.
+
+---
+
 ## DESPACHO DO RAPHAEL — 21/10/2026 — MOLDE DE CONVERSÃO (ALTO — fura o foco pela 1.2 e pela seção 32)
 
 O Raphael aprovou o novo layout e mandou executar. Lei: seção 32 do `ARQUIPELAGO.md`. Esta ilha é a PRIMEIRA.
@@ -109,67 +169,6 @@ A janela desta leitura é **05→11/10**. As promessas de `<title>` subiram em *
 A 12.1 permite até três. **Esta leitura propõe nenhuma, de propósito, e o motivo é ROI:** toda alavanca desta ilha está ou puxada e não medida (título e meta, 14/10), ou esgotada por cota de terceiro (solicitação de indexação), ou travada por falta de SERP brasileira vista com os olhos (seção 30). **Propor um quarto trabalho em cima de três medições em curso é somar variáveis a quem já não consegue atribuir nada.** A semana de 14→21/10 tem um trabalho só: deixar quieto e medir.
 
 **O ÚNICO TRABALHO QUE VALE DINHEIRO AQUI E NÃO É DA FUNDAÇÃO** continua sendo o item 1 do despacho do Raphael de 09/10: abrir a SERP brasileira das 14 consultas `nao-medida`, começando por `luminária de LED para aquário plantado`. Com 580 impressões e 4 cliques, URL nova em consulta aprovada vale mais que qualquer ajuste de página existente.
-
-## DESPACHO DA SENTINELA — 2026-10-14 (RONDA DIÁRIA TÉCNICA, 14h5xZ, medida no Chrome do Raphael)
-
-**Isto tem prioridade sobre a fila.** Nesta ronda, porém, **não há item a aplicar: zero defeito novo e zero conserto.** O que está escrito aqui é medição, para a Fundação não remedir, e duas reconferências que fecharam.
-
-> **ESTE DESPACHO ESTÁ FECHADO — o único item que continuava aberto (a dívida da 25.4-b) foi cumprido e conferido no ar em 14/10/2026 às 19h3xZ.** O que sobrou dele é registro, não ordem de serviço: ver o item 1, riscado, com o critério de pronto medido linha por linha e os **onze** itens restantes, nenhum dos quais é trabalho da Fundação (nove são mercado e dois são a trava acertando). **Nada aqui pede passada nova.**
-
-**RECONFERÊNCIA DA 19.4(c).** A última linha de `dados/consertos.md` era a de 23/09 e registra **zero conserto**, então não havia conserto de ronda anterior a reabrir. O que esta ronda reconferiu foi o **despacho de 07/10**, no ar e no repositório, pelos critérios que ele mesmo declarou.
-
-**O ITEM 3 DO DESPACHO DE 07/10 (o cano de links) ESTÁ FECHADO E RECONFERIDO, número por número.** A ronda recontou os quatro `dados/produtos-*.json` do `main` por conta própria: **78** registros, **0** sem `url_busca`, **43** sem `url_produto`, `degrau` em **35** no 3, **31** no 4 e **12** nulo, e **12** com `url` e sem `url_produto`. Bate com `dados/cano-de-links-2026-10-14.md` em todos os campos. O bloco riscado dele foi apagado deste arquivo nesta passada, pela 18.4.
-
-**O ITEM 3 DO DESPACHO DE RONDA DE 23/09 TAMBÉM FECHOU.** Ele deixava escrito que a chave `Chihiros A361 luminaria aquario` tinha caído no desvio do CAPTCHA e **não** tinha sido medida, e mandava a ronda seguinte começar por ela. Esta ronda começou por ela: **200, sem erro, 5 itens**. O bloco foi apagado.
-
-**AS CINCO PROMESSAS DE `<title>` QUE A EXECUÇÃO DAS 13h16Z PUBLICOU ESTÃO CONFERIDAS CONTRA O TEXTO DA PRÓPRIA PÁGINA, UMA A UMA — AS CINCO SUSTENTADAS.** Não é conferência de tamanho: é conferência de procedência do número, que é o que a 19.1 chama de "número que não bate com a fonte já citada na própria página".
-- `/calculadora-de-vazao-do-filtro/` — "de 1,76 a 10 renovações/h". A página publica o piso do fabricante (Eheim classic 250, 440 L/h para até 250 L = 1,76 ×/h) e o teto de bolso do comunitário (5 a 10 ×/h, Aquarismo Paulista e AquaOnline). Os dois extremos estão na tela.
-- `/calculadora-de-potencia-do-aquecedor/` — "de 1 a 2 W por litro". 1,0 W/L é a regra brasileira que o próprio catálogo Eheim Jäger reproduz, e 2,0 W/L é a leitura do Sul, que está na tela como opção marcável. Os dois extremos estão na tela.
-- `/calculadora-de-midia-filtrante/` — "de 1,25 a 12,5 mL/L". São o piso Seachem e o teto Ocean Tech, as duas dosagens declaradas no banco e impressas no resultado.
-- `/calculadora-de-iluminacao/` — "de 10 a 60 lm por litro". São os extremos da tabela das três fontes brasileiras servida na página (10 no piso do aquarioturbinado, 60 no topo de peixeseaquarismo e aquariosplantados).
-- `/peixes/bettas/quantos-litros-para-betta/` — "de 40,5 a 54 litros". A frase "essa base dá de 40,5 litros a 54 litros de lâmina, conforme a altura do aquário ser 30 ou 40 cm" está no corpo da ficha.
-- **E o controle está intacto:** a `/calculadora-de-litragem/` continua servindo `<title>` "Quantos litros tem o seu aquário? – Aquametria", **sem promessa**, como a Proposta 2 pediu para a medição de CTR ter com o que comparar. **Quem der promessa a ela antes da leitura semanal destrói o controle das outras cinco.**
-
-**O QUE ESTA RONDA MEDIU E PASSOU, para a Fundação não refazer:** **52 de 52** URLs do sitemap em HTTP 200; `/status` na **revisão 120**, igual à do `manifest.json`; as três URLs da porta de entrada da 29.2 (`/wp-sitemap.xml` 200 `application/xml` com XML de sitemap de verdade, `/robots.txt` 200 `text/plain`, `/wp-json/` 200 `application/json`) e caminho virgem em **404 na página da própria ilha**; zero `&#038;` dentro de `<script>` nas 52 (contado só nos blocos `<script>`, nunca na página inteira); **zero página com menos de 2 links internos de ENTRADA** — contado na direção de quem aponta, pela 16.9, sobre o HTML servido das 52, nav e rodapé incluídos; zero `noindex` em URL do sitemap; `<title>` de 64 caracteres ou menos nas 52, medido depois de decodificar as entidades; `<meta name="description">` presente nas 52 e nenhuma acima de 160 caracteres; JSON-LD nas 52 e `BreadcrumbList` nas 51 que não são a home; breadcrumb visível; zero `<img>` sem `alt` e zero sem `width`/`height`; nenhuma palavra da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>` ou primeiro parágrafo; corpo nunca começa por metadado YAML; nenhum shortcode cru servido. **Console sem uma mensagem**, com recarga, na calculadora de aquecedor em estado com parâmetro.
-
-**AS CINCO CALCULADORAS FORAM EXECUTADAS COM ENTRADAS INÉDITAS E A CONTA FOI REFEITA NA MÃO, TODAS CERTAS:**
-- **C1**, 60 × 30 × 35 cm externas, sem espessura de vidro → **63,0 L brutos**, **volume interno "sem número"** com o motivo publicado, e **57,6 L reais**. Confere: 60 × 30 × 35 ÷ 1000 = 63,0; lâmina 32,0 = 35 − 3 cm de borda livre, e 60 × 30 × 32 ÷ 1000 = 57,6. A página avisa, sem ser perguntada, que sem a espessura o volume real sai superestimado.
-- **C3**, 200 L plantado carga pesada, tipo canister → **350 a 1.000 L/h**. Confere: 1,76 × 200 = 352, arredondado ao degrau de 5; 3 × 200 = 600 e 5 × 200 = 1.000; e o "mire o topo" em 1.000 porque a carga é pesada, declarado como convenção da ilha e não como constante com fonte.
-- **C5**, 120 L, mínima do cômodo 14 °C, acará-bandeira (alvo 26,0 °C), tampado, 110 V → **120 a 155 W**, degrau comercial 200 W, e o ramo da ReefFlow aparecendo rotulado **"REGRA COM DELTA DECLARADO — NÃO SE APLICA"** porque a diferença é de 12,0 °C e a fonte declara até 10. Confere: 1,00 e 1,30 W/L. **Conferido em quatro volumes** — 90 L → 90 a 115 (1,30 × 90 = 117), 100 L → 100 a 130, 120 L → 120 a 155 (1,30 × 120 = 156) e 160 L → 160 a 210 (1,30 × 160 = 208): o arredondamento é ao **múltiplo de 5 mais próximo**, consistente nos quatro, e por isso o 117 vira 115 e o 208 vira 210.
-- **C12**, 80 L → **100 mL a 1,00 L**. Confere: 1,25 × 80 = 100 e 12,50 × 80 = 1.000.
-- **C15**, 150 L exigência média → **3.000 a 6.000 lm**, na faixa consolidada de 20 a 40 lm/L. Confere, e as **nove células** da tabela das três fontes batem uma a uma (20 → 3.000; 10 a 20 → 1.500 a 3.000; 15 → 2.250; 30 a 40 → 4.500 a 6.000; 60 → 9.000).
-
-**Coerência da recomendação conferida lendo como leitor leria, não por regra:** nenhum cartão de produto afirma atender número que não atende, e na C5 o degrau comercial vem rotulado como degrau comercial, acima do topo da faixa.
-
-**TESTE DE VIDA DA 25.4 — 35 DE 35 ITENS TESTÁVEIS, 0 MORTO, 0 ESGOTADO.** Os 35 itens com `afiliado.url_produto` são todos Shopee de degrau 3, e os 35 devolveram `item_status: normal` pela API de ficha `api/v4/pdp/get_pc`, com o título do anúncio conferido contra o nome do registro. **Nenhum clique de afiliado foi gasto:** o teste abriu a `url_produto` crua, nunca o encurtado. Mais **10 chaves de `url_busca_produto`** medidas pela API de busca, **todas com resultado**. **Piso da 25.2 recontado no repositório: 78 de 78 com `url_busca`, zero sem.**
-
-> **O NÚMERO DESTA LINHA É DAS 14h53Z E JÁ NÃO É O DE HOJE — corrigido por baixo às 19h3xZ, sem tocar na medição da ronda.** O `eheim-classic-250-2213` ganhou `url_produto` nesta mesma noite (ver o item 1, riscado), então o teste de vida da **próxima** ronda tem **36** itens testáveis e não 35, e os `intestavel: true` são **11** e não 12. A medição da Sentinela fica como ela mediu: ela estava certa às 14h53Z.
-
-### ~~1. A DÍVIDA DA 25.4-b~~ — **A METADE QUE ERA NOSSA FECHOU EM 14/10/2026 ÀS 19h3xZ, CONFERIDA NO AR. SOBRAM 9 + 2, E NENHUM DOS ONZE É TRABALHO DA FUNDAÇÃO.**
-
-A medição que separou os 12 continua valendo e está inteira em **`dados/divida-25-4-b-2026-10-14.md`**. O que mudou é o único item em que a fábrica devia algo.
-
-**O QUE FECHOU, e por que ele estava preso:** o `eheim-classic-250-2213`. O anúncio certo existia e a Open API o devolvia; a trava o barrava porque `token_no_titulo()` exige as partes do código **contíguas** e o campo `modelo` deste registro — `"classic 250 (2213)"` — **empacotava dois identificadores num campo só**, o nome da linha e o código do fabricante, que o varejo brasileiro escreve separados com a vazão e a marca no meio. **A trava NÃO foi afrouxada**, como o critério de pronto exigia: o código de catálogo ganhou **campo próprio** (`codigo_catalogo`, `esquema-produtos.json` versão 13, ao lado do `gtin`, com a regra **V28** executável), o `codigo_base` deste registro passou de `classic 250 2213` para **`classic 250`**, e o `2213` voltou como **confirmação opcional** em `codigo_catalogo_conflitante()` — título que **cala** o código não barra, título que declara o código de um **irmão** da mesma marca barra sempre. Essa segunda proteção **não existia antes**, porque antes nenhum registro declarava código nenhum.
-
-**O critério de pronto, item por item, medido e não suposto:** campo próprio no esquema ✓ · `codigo_base` rendendo `classic 250` ✓ · `2213` como confirmação opcional ✓ · `--ensaio` casando no **degrau 1** (anúncio `"Filtro Canister Classic 250 440lh Eheim - 2213"`, loja Aquasam) ✓ · `mutacoes-coleta-shopee.py` **26 de 26 reprovadas, zero sobrevivente**, com a Chihiros WRGB II Pro e o SunSun HW-303B continuando a barrar o irmão (mutações 8, 10 e 11) ✓. `teste-coleta-shopee.py` foi de 177 para **279 afirmações, 0 falha**.
-
-**E O PAR FOI GRAVADO, porque a régua da própria ilha manda e não porque esta execução escolheu:** `preserva_ficha_existente()` diz, com duas mutações guardando as duas direções, que registro com `url` e sem `url_produto` *"se reescolhe INTEIRO, os dois campos da mesma oferta"* (25.4-b.1). Gravados juntos: `url`, `url_produto` crua, `degrau: 3` declarado, `intestavel: false`, e o `motivo_sem_url_produto` apagado porque a causa deixou de existir. O `sub_id_2` segue **C3** (sai da mesma tabela de onde o antigo saiu) e **a foto não foi tocada** — a procedência dela não é desta ferramenta, então o `alt` escrito por quem viu a imagem sobreviveu.
-
-**O NÚMERO, recontado do banco por `contar-cano-de-links.py` e não digitado:** itens com link e **sem** `url_produto` de **12 para 11**; `intestavel: true` de 12 para **11**; degrau 3 de 35 para **36**; sem `url_produto` de 43 para **42**. O teste de vida da próxima ronda tem **36 itens testáveis**, que é o **teto realista** que a medição de hoje nomeou. **Não faltava doze: faltava um, e era este.**
-
-**UMA LINHA CHEGOU À TELA, e foi conferida no ar:** o link de compra do classic 250 no catálogo da C3. O portão `teste-escada-compra.py` **reprovou** o snippet servindo o link velho (703 afirmações, 4 falhas) e passou depois de regenerado; `conferir-escada-no-ar.py` lê **7 cartões na C3, 7 pela ficha, 0 sem saída**, 130 afirmações 0 falha; e o HTML servido da `/calculadora-de-vazao-do-filtro/`, com quebra de cache, traz o link novo **2 vezes** e o velho **zero**. Manifest e `/status` na **revisão 121**, com `conferir-desembarque.py` APROVADO e **toda** linha do log da revisão dizendo `ok` (14 linhas visíveis de 20 aplicadas — a janela do log cortou 6, e o que não está na janela não foi conferido).
-
-**OS ONZE QUE SOBRAM, e a separação da 25.4-b.4 continua inteira:** **9** em que o produto **não está anunciado** (os quatro Roxin HT-1300, que são **um** evento e não quatro, o Sicce Scuba Contactless 150, o Ista I-401 45, a Chihiros A451M, a Chihiros WRGB II Pro 60 e o Eheim SUBSTRAT pro 1 L) — nenhuma trava acionada, só o mercado destrava, **não há trabalho a fazer neles**; e **2** barrados com a trava **certa** — o `seachem-matrix-1l`, cujo único anúncio é o Matrix **Carbon**, irmão declarado no banco e filtragem química (casar poria carvão ativado na vitrine da C12, que dimensiona mídia biológica), e o `rs-50-50w`, que é `marca: null` e **não casa por mais que o mercado mude**: precisa de decisão sobre o registro, não de coleta.
-
-**POR QUE A MEDIÇÃO DE HOJE VALEU O BLOCO, escrito para a próxima não repetir a pergunta:** a **25.4-b.3** diz que *"motivo envelhece calado, e motivo velho manda não tentar"*. O motivo escrito nos 12 era de **23/09**, e o número 12 apareceu igual em 13/09, 02/10, 12/10 e na ronda de hoje. **Quatro medições do mesmo número não eram a mesma medição repetida — eram a mesma pergunta mal feita quatro vezes**, e a quinta, feita direito, achou um item consertável onde doze pareciam mercado.
-
-### 2. NÃO É DEFEITO — É O ACHADO DE MÉTODO DA RONDA, COM NÚMERO, E VALE PARA O ARQUIPÉLAGO INTEIRO
-
-Chamada de **ficha** e chamada de **busca** não custam a mesma coisa para o anti-robô da Shopee. Numa aba entrada por URL de ficha, **39 chamadas de `api/v4/pdp/get_pc` passaram em sequência sem um único `error: 90309999`**. Na mesma aba, a **7ª** chamada de `api/v4/search/search_items` derrubou a sessão no `verify/captcha?...&scene=crawler_item`; em aba nova entrada por URL de busca, a **4ª** derrubou.
-
-**O orçamento escasso é o da busca, não o da ficha.** Quem medir primeiro as fichas — que são o que diz se o link morreu — e deixar a busca para o fim mede tudo numa ronda; quem começar pela busca perde a aba antes de chegar às fichas. A nota de 23/09 estimava "cerca de 15 chamadas por sessão" tratando as duas como o mesmo recurso: subestimava a ficha por quase três vezes e superestimava a busca por quatro. Resolver CAPTCHA continua proibido.
-
-**O QUE ESTA RONDA NÃO MEDIU, dito como não medido e não como zero:** clique de afiliado e venda por `Sub_id`, porque a sessão do Shopee Afiliados está deslogada; e qualquer número de Search Console, porque a credencial `GOOGLE_SA_B64` não existe neste ambiente. As duas estão no `dados/PAINEL.md`, na lista do Raphael.
 
 ## DESPACHO DO RAPHAEL — 2026-10-09 — PÁGINAS PELO NOME DO PRODUTO — **REESCRITO PELA 18.3 EM 14/10/2026 (16h3xZ): O ITEM 1 SAIU, E SÓ A METADE QUE ESTA NUVEM NÃO ALCANÇA FICOU**
 
