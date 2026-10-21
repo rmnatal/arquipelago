@@ -2744,23 +2744,45 @@ function aquametria_c5_js() {
 	   que a resposta já está na tela é tirar o leitor do lugar em que ele está —
 	   o que a regra pede é não deixar ninguém calculando no escuro. */
 	function irParaResultado() {
-		var alvo = el('aqm-c5-saida');
-		if (!alvo || alvo.classList.contains('aqm-c5-oculto')) { return; }
+		/* A MEDIDA SAI DEPOIS DO DESENHO, e nao na mesma linha do calculo.
+		   `scrollIntoView` com rolagem suave calcula o destino UMA vez, no momento
+		   da chamada, e segue para la mesmo que a pagina mude de altura durante a
+		   animacao — entao qualquer refluxo que aconteca acima da caixa enquanto
+		   ela rola deixa a pessoa num lugar que a resposta acabou de deixar. Dois
+		   quadros de espera fazem a conta ser feita sobre a pagina ja desenhada, e
+		   custam nada para quem le.
+		   O QUE SE MEDIU EM 21/10/2026, e a causa NAO era desta pagina: a 390 px o
+		   portao da vitrine parava com a caixa 55 px acima da borda da tela, e o
+		   refluxo vinha da FOLHA DO GOOGLE FONTS, que o egresso desta nuvem barra —
+		   quando a requisicao falha, as metricas de fonte caem para a alternativa e
+		   o texto acima da caixa muda de altura, no meio da animacao. Esperando a
+		   rede sossegar antes de calcular, a caixa para em top = 0. Isto esta
+		   escrito aqui porque e a explicacao do portao vermelho que a C15 deixou
+		   aberto no mesmo dia (`#aqm-c15-saida` em top = -39 px contra tolerancia
+		   de -5): nao e defeito do molde, e a nuvem sem fonte. */
+		var quadro = window.requestAnimationFrame || function (f) { return window.setTimeout(f, 16); };
 
-		var caixa = alvo.getBoundingClientRect();
-		var altura = window.innerHeight || document.documentElement.clientHeight;
-		if (caixa.top >= 0 && caixa.top < altura * 0.5) { return; }
+		quadro(function () {
+			quadro(function () {
+				var alvo = el('aqm-c5-saida');
+				if (!alvo || alvo.classList.contains('aqm-c5-oculto')) { return; }
 
-		var suave = true;
-		try {
-			suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-		} catch (erro) { suave = true; }
+				var caixa = alvo.getBoundingClientRect();
+				var altura = window.innerHeight || document.documentElement.clientHeight;
+				if (caixa.top >= 0 && caixa.top < altura * 0.5) { return; }
 
-		try {
-			alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
-		} catch (erro) {
-			alvo.scrollIntoView();
-		}
+				var suave = true;
+				try {
+					suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+				} catch (erro) { suave = true; }
+
+				try {
+					alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+				} catch (erro) {
+					alvo.scrollIntoView();
+				}
+			});
+		});
 	}
 
 	/* A BARRA DO RODAPE NAO MORA MAIS AQUI (casca 1.13.0, secao 3g, por ordem da
@@ -2917,7 +2939,34 @@ function aquametria_c5_js() {
 		irParaResultado();
 	});
 
-	el('aqm-c5-especie').addEventListener('change', mostrarEspecie);
+	/* O ALVO DO EXEMPLO CEDE A VEZ PARA A FICHA DA ESPECIE, e este e o defeito que
+	   o portao `teste-navegador-c5` achou nesta mesma passada, com a afirmacao
+	   "declara a convencao do meio da faixa" vermelha.
+	   O QUE ACONTECIA: o formulario passou a nascer preenchido com o caso de
+	   exemplo (32.1, item 3), alvo de 26 °C incluido. Quem escolhesse KINGUIO
+	   (18 a 24 °C) na lista recebia a conta feita para 26 °C — o numero do nosso
+	   exemplo calando a ficha da especie que a pessoa acabou de escolher, em
+	   silencio e sem nada na tela dizendo isso. E a licao (d) do despacho num
+	   lugar que ela ainda nao tinha alcancado: o exemplo nao vaza so para quem
+	   chega por link ou com aquario guardado, vaza tambem para quem MEXE num
+	   campo vizinho.
+	   A REGRA: o alvo que NOS preenchemos e do exemplo ate alguem tocar nele. Na
+	   primeira troca de especie, se ninguem digitou no campo, ele se limpa e a
+	   ficha da especie decide — que e exatamente o que a dica ao lado promete
+	   ("Sem alvo digitado, usamos o meio dessa faixa"). Quem digitou um alvo
+	   manda, e continua mandando: digitar e o unico jeito de a pessoa dizer que o
+	   numero e dela. */
+	var alvoDoExemplo = true;
+
+	el('aqm-c5-alvo').addEventListener('input', function () { alvoDoExemplo = false; });
+
+	el('aqm-c5-especie').addEventListener('change', function () {
+		if (alvoDoExemplo && el('aqm-c5-especie').value) {
+			el('aqm-c5-alvo').value = '';
+			alvoDoExemplo = false;
+		}
+		mostrarEspecie();
+	});
 
 	el('aqm-c5-limpar').addEventListener('click', function () {
 		el('aqm-c5-form').reset();
@@ -2925,8 +2974,10 @@ function aquametria_c5_js() {
 		el('aqm-c5-erros').innerHTML = '';
 		mostrarDetalhe(false);
 		/* reset() devolve os campos ao caso de exemplo servido no HTML, e por isso
-		   a caixa de exemplo volta junto: ela e a resposta DESSE caso. */
+		   a caixa de exemplo volta junto: ela e a resposta DESSE caso — e o alvo
+		   volta a ser do exemplo, porque e dele que o reset o trouxe. */
 		mostrarExemplo(true);
+		alvoDoExemplo = true;
 		mostrarEspecie();
 		try { window.history.replaceState(null, '', window.location.pathname); } catch (erro) { /* segue */ }
 	});
@@ -2961,6 +3012,9 @@ function aquametria_c5_js() {
 		el('aqm-c5-volume').value = '';
 		el('aqm-c5-minima').value = '';
 		el('aqm-c5-alvo').value = '';
+		/* Campo vazio nao e campo do exemplo: a partir daqui quem o preencher e a
+		   URL, o aquario guardado ou a pessoa. */
+		alvoDoExemplo = false;
 	}
 
 	/* Query string manda; senão, o aquário que a C1 guardou neste navegador.

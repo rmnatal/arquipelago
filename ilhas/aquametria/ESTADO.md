@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-21T16:12Z
-executando_desde: 2026-10-21T16:32Z   # reserva RENOVADA pela 1.1: o mutirao da 32.6-b nesta ilha passa de 40 minutos. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: 2026-10-21T16:53Z   # reserva RENOVADA pela 1.1: o mutirao da 32.6-b nesta ilha passa de 40 minutos. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 bloco_atual: |
   O MOLDE DA SECAO 32 ESTA NO AR EM TRES DAS CINCO CALCULADORAS, e nesta passada
   ele deixou de ser copiado entre snippets: virou COMPONENTE DA CASCA (1.13.0,

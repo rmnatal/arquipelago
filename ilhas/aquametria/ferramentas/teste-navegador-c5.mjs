@@ -42,9 +42,33 @@ page.on('console', m => {
 });
 page.on('pageerror', e => erros.push('pageerror: ' + e.message));
 
+/* OS DOIS CONSERTOS DE FIDELIDADE QUE A C5 1.9.0 PEDIU NESTE PORTAO (32.1):
+   - `abrirDobras` porque os campos secundarios foram para uma dobra e o
+     Playwright nao digita em campo invisivel — abrir e o que a pessoa faz;
+   - `limparExemplo` porque o formulario agora NASCE PREENCHIDO com o caso de
+     exemplo servido no HTML, e um teste que queira medir formulario VAZIO tem de
+     esvaziar os campos em vez de supor que eles vem vazios.
+   Nenhuma afirmacao deste arquivo foi afrouxada: o que mudou e o preparo da
+   pagina, nao a regua. */
+async function abrirDobras(pg) {
+  await pg.evaluate(() => {
+    document.querySelectorAll('#aqm-c5-form details.aqm-dobra').forEach((d) => { d.open = true; });
+  });
+}
+
+async function limparExemplo(pg) {
+  await pg.evaluate(() => {
+    ['aqm-c5-volume', 'aqm-c5-minima', 'aqm-c5-alvo'].forEach((id) => {
+      const n = document.getElementById(id);
+      if (n) { n.value = ''; }
+    });
+  });
+}
+
 async function preencher(v, min, opts = {}) {
   await page.evaluate(() => { try { localStorage.clear(); } catch(e){} });
   await page.goto(URL);
+  await abrirDobras(page);
   await page.fill('#aqm-c5-volume', String(v));
   await page.fill('#aqm-c5-minima', String(min));
   if (opts.alvo !== undefined) await page.fill('#aqm-c5-alvo', String(opts.alvo));
@@ -153,6 +177,7 @@ await page.waitForTimeout(100);
 ok('volume veio da C1', (await page.inputValue('#aqm-c5-volume')) === '54,5', await page.inputValue('#aqm-c5-volume'));
 ok('avisa que retomou', await page.locator('#aqm-c5-retomado').isVisible());
 ok('nao calcula sem a minima', !(await page.locator('#aqm-c5-saida').isVisible()));
+await abrirDobras(page);
 await page.fill('#aqm-c5-minima', '19');
 await page.fill('#aqm-c5-alvo', '26');
 await page.click('#aqm-c5-form button[type=submit]');
@@ -167,6 +192,10 @@ ok('C5 grava a voltagem', estado.eletrica.voltagem === '110');
 console.log('\n12. permalink e caminho inverso');
 const link = await page.inputValue('#aqm-c5-link');
 ok('permalink tem volume, minima e alvo', link.includes('v=54.5') && link.includes('min=19') && link.includes('alvo=26'), link);
+/* O caminho inverso foi para uma dobra na C5 1.9.0 (32.1, item 7): abre antes
+   de digitar. Aqui a dobra NAO e do formulario, e por isso o seletor e o da
+   pagina inteira. */
+await page.evaluate(() => { document.querySelectorAll('details.aqm-dobra').forEach((d) => { d.open = true; }); });
 await page.fill('#aqm-c5-tenho', '100');
 await page.click('#aqm-c5-tenho-calcular');
 await page.waitForTimeout(60);
@@ -177,6 +206,8 @@ console.log('\n13. erro de unidade e campos obrigatorios');
 await page.goto(URL);
 await page.evaluate(() => { try { localStorage.clear(); } catch(e){} });
 await page.goto(URL);
+await abrirDobras(page);
+await limparExemplo(page);
 await page.click('#aqm-c5-form button[type=submit]');
 await page.waitForTimeout(80);
 ok('lista os 3 erros', (await page.locator('#aqm-c5-erros li').count()) === 3, String(await page.locator('#aqm-c5-erros li').count()));
@@ -193,6 +224,7 @@ const mob = await browser.newContext({ viewport: { width: 390, height: 800 } });
 const p2 = await mob.newPage();
 p2.on('pageerror', e => erros.push('pageerror mobile: ' + e.message));
 await p2.goto(URL);
+await abrirDobras(p2);
 await p2.fill('#aqm-c5-volume', '110');
 await p2.fill('#aqm-c5-minima', '20');
 await p2.fill('#aqm-c5-alvo', '26');

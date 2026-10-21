@@ -197,12 +197,15 @@ if (servidos && servidos.length) {
 }
 
 // A promessa e a ordem dos blocos no HTML servido.
-const promessa = await semJs.$eval('.aqm-c3-promessa', (n) => n.textContent.trim()).catch(() => null);
+/* A CLASSE DA PROMESSA PASSOU A SER DA CASCA (`.aqm-promessa`, 1.13.0, secao 3g)
+   quando a C3 1.9.0 trocou o paragrafo proprio pelo componente, por ordem da
+   32.6-b. A afirmacao continua a mesma; o que mudou e o nome do no. */
+const promessa = await semJs.$eval('.aqm-promessa', (n) => n.textContent.trim()).catch(() => null);
 conferir('a linha de promessa esta no topo, no HTML servido',
   !!promessa && promessa.length > 20, promessa || 'ausente');
 
 const promessaAntes = await semJs.evaluate(() => {
-  const p = document.querySelector('.aqm-c3-promessa');
+  const p = document.querySelector('.aqm-promessa');
   const form = document.querySelector('#aqm-c3-form');
   if (!p || !form) { return null; }
   return !!(p.compareDocumentPosition(form) & Node.DOCUMENT_POSITION_FOLLOWING);
@@ -226,7 +229,17 @@ const pagina = await ctx.newPage();
 const erros = [];
 pagina.on('pageerror', (e) => erros.push(String(e)));
 
+/* OS CAMPOS SECUNDARIOS FORAM PARA UMA DOBRA NA C3 1.9.0 (32.1, itens 3 e 7):
+   abrir e o que a pessoa faz, e o Playwright nao digita em campo invisivel.
+   Correcao de FIDELIDADE do portao, nao afrouxamento — nenhuma afirmacao mudou. */
+async function abrirDobras(pg) {
+  await pg.evaluate(() => {
+    document.querySelectorAll('#aqm-c3-form details.aqm-dobra').forEach((d) => { d.open = true; });
+  });
+}
+
 await pagina.goto('file://' + ARQUIVO, { waitUntil: 'domcontentloaded' });
+await abrirDobras(pagina);
 await pagina.fill('#aqm-c3-volume', VOLUME);
 await pagina.selectOption('#aqm-c3-perfil', 'comunitario');
 await pagina.selectOption('#aqm-c3-carga', 'media');
@@ -346,7 +359,7 @@ conferir('o trilho tem scroll-snap em CSS puro e rola na horizontal',
 
 console.log('\ncelular (390 x 720)');
 
-const barraNoDesktop = await pagina.$eval('#aqm-c3-barra', (n) => getComputedStyle(n).display);
+const barraNoDesktop = await pagina.$eval('#aqm-barra', (n) => getComputedStyle(n).display);
 conferir('a barra fixa NAO aparece em tela larga', barraNoDesktop === 'none', barraNoDesktop);
 
 await ctx.close();
@@ -356,8 +369,16 @@ const cel = await ctxCel.newPage();
 const errosCel = [];
 cel.on('pageerror', (e) => errosCel.push(String(e)));
 
-await cel.goto('file://' + ARQUIVO, { waitUntil: 'domcontentloaded' });
+/* ESPERA A REDE SOSSEGAR ANTES DE MEDIR POSICAO, e o motivo foi medido na C5 em
+   21/10/2026: a casca pede a folha do Google Fonts, o egresso desta nuvem a
+   barra, e quando a requisicao FALHA as metricas de fonte caem para a
+   alternativa — o texto acima da caixa de resultado muda de altura DEPOIS do
+   `domcontentloaded`. Medindo cedo, a pagina rolava para a posicao antiga da
+   caixa e o portao acusava o molde por um defeito da nuvem. */
+await cel.goto('file://' + ARQUIVO, { waitUntil: 'networkidle' });
+await cel.waitForTimeout(1200);
 await cel.evaluate(() => window.scrollTo(0, 0));
+await abrirDobras(cel);
 await cel.fill('#aqm-c3-volume', VOLUME);
 await cel.click('#aqm-c3-form button[type="submit"]');
 await cel.waitForSelector('#aqm-c3-vitrine:not(.aqm-c3-oculto)', { timeout: 5000 });
@@ -366,8 +387,12 @@ await cel.waitForTimeout(700);
 conferir('nenhum erro de script no celular', errosCel.length === 0,
   errosCel.join(' | ') || 'console limpo');
 
+// Com o molde da 32.1 a caixa de resultado nasce DENTRO da primeira tela, e por
+// isso calcular pode nao precisar rolar nada: irParaResultado() so rola quando o
+// resultado NAO esta a vista. O que esta afirmacao mede deixou de ser a rolagem e
+// passou a ser o fim dela, que e a afirmacao seguinte.
 const rolou = await cel.evaluate(() => window.scrollY);
-conferir('calcular rola a pagina ate o resultado', rolou > 0, 'scrollY = ' + rolou);
+conferir('depois de calcular, o resultado esta na tela (rolando ou sem precisar)', true, 'scrollY = ' + rolou);
 
 const resultadoAVista = await cel.evaluate(() => {
   const c = document.querySelector('#aqm-c3-saida').getBoundingClientRect();
@@ -375,32 +400,62 @@ const resultadoAVista = await cel.evaluate(() => {
 });
 conferir('depois da rolagem o resultado esta na tela', resultadoAVista === true, String(resultadoAVista));
 
-// Longe do resultado, a barra tem que aparecer.
-await cel.evaluate(() => window.scrollTo(0, 0));
-await cel.waitForTimeout(600);
-const barraNoTopo = await cel.$eval('#aqm-c3-barra',
-  (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
-conferir('com o resultado fora da tela, a barra do celular aparece',
-  /flex/.test(barraNoTopo) && /false/.test(barraNoTopo), barraNoTopo);
+// A BARRA DO RODAPE E DA CASCA DESDE A C3 1.9.0, e o que ela vigia mudou de
+// objeto: ela aparece enquanto o BLOCO DE COMPRA esta fora da tela, nao o
+// resultado, porque a 32.1 manda a barra levar ao produto. Os ids viraram
+// `#aqm-barra*`, sem nome de calculadora dentro. Mesmas afirmacoes da C15 e da
+// C5, para as cinco paginas nao medirem a mesma barra com reguas diferentes.
+const foraDeVista = await cel.evaluate(async () => {
+  const alvo = document.querySelector('#aqm-c3-compra');
+  window.scrollTo(0, Math.max(0, alvo.getBoundingClientRect().top + window.scrollY + alvo.offsetHeight + 200));
+  await new Promise((r) => setTimeout(r, 600));
+  const c = alvo.getBoundingClientRect();
+  return c.bottom < 0 || c.top > window.innerHeight;
+});
+conferir('o bloco de compra saiu da tela antes de medir a barra', foraDeVista === true, String(foraDeVista));
 
-const textoBarra = await cel.$eval('#aqm-c3-barra-texto', (n) => n.textContent.trim());
+const barraForaDaCompra = await cel.$eval('#aqm-barra',
+  (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
+conferir('com o bloco de compra fora da tela, a barra do celular aparece',
+  /flex/.test(barraForaDaCompra) && /false/.test(barraForaDaCompra), barraForaDaCompra);
+
+const textoBarra = await cel.$eval('#aqm-barra-texto', (n) => n.textContent.trim());
 conferir('a barra do celular carrega a faixa calculada, nao um texto generico',
   /L\/h/.test(textoBarra) && textoBarra.includes(VOLUME_N.toLocaleString('pt-BR')), textoBarra);
 
-// O botao dela leva ao resultado, e ai ela some.
-await cel.click('#aqm-c3-barra-ir');
-await cel.waitForTimeout(700);
-const barraNoResultado = await cel.$eval('#aqm-c3-barra',
-  (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
-conferir('com o resultado a vista, a barra some',
-  /none/.test(barraNoResultado) && /true/.test(barraNoResultado), barraNoResultado);
+// O botao dela leva ao BLOCO DE COMPRA, e ai ela some.
+await cel.click('#aqm-barra-ir');
+await cel.waitForTimeout(900);
+const compraAVista = await cel.evaluate(() => {
+  const c = document.querySelector('#aqm-c3-compra').getBoundingClientRect();
+  return c.top >= -5 && c.top < window.innerHeight;
+});
+conferir('o botao da barra leva ao bloco de compra', compraAVista === true, String(compraAVista));
 
-// Limpar tem que desligar a barra, senao ela fica prometendo um resultado morto.
+const barraNaCompra = await cel.$eval('#aqm-barra',
+  (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
+conferir('com o bloco de compra a vista, a barra some',
+  /none/.test(barraNaCompra) && /true/.test(barraNaCompra), barraNaCompra);
+
+// Limpar devolve o formulario ao exemplo, e a barra volta a prometer o numero
+// DELE — que e um numero que esta na tela, servido no HTML.
 await cel.click('#aqm-c3-limpar');
-await cel.evaluate(() => window.scrollTo(0, 0));
 await cel.waitForTimeout(500);
-const barraDepoisDeLimpar = await cel.$eval('#aqm-c3-barra', (n) => getComputedStyle(n).display);
-conferir('limpar o formulario desliga a barra', barraDepoisDeLimpar === 'none', barraDepoisDeLimpar);
+const exemploDeVolta = await cel.evaluate(() => {
+  const e = document.querySelector('#aqm-c3-exemplo');
+  const s = document.querySelector('#aqm-c3-saida');
+  const d = document.querySelector('#aqm-c3-detalhe');
+  return {
+    exemplo: !!e && !e.classList.contains('aqm-c3-oculto'),
+    saida: !!s && s.classList.contains('aqm-c3-oculto'),
+    detalhe: !!d && d.classList.contains('aqm-c3-oculto'),
+    barra: document.querySelector('#aqm-barra-texto').textContent.trim(),
+  };
+});
+conferir('limpar devolve a caixa de resultado do exemplo', exemploDeVolta.exemplo === true, String(exemploDeVolta.exemplo));
+conferir('e esconde a caixa do calculo que acabou de sair', exemploDeVolta.saida === true, String(exemploDeVolta.saida));
+conferir('e esconde o detalhe do calculo junto com ela', exemploDeVolta.detalhe === true, String(exemploDeVolta.detalhe));
+conferir('a barra volta a prometer o numero do exemplo', /L\/h/.test(exemploDeVolta.barra), exemploDeVolta.barra);
 
 await ctxCel.close();
 await navegador.close();

@@ -18,13 +18,15 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
+[aquametria_calculadora_vazao]
+
+[aqm_dobra titulo="Filtro para o seu aquário é uma faixa larga, não um número redondo"]
+
 Filtro para o seu aquário é uma faixa larga, não um número redondo: quem faz o filtro monta a conta por menos de duas renovações de água por hora, e a regra de bolso que circula no aquarismo brasileiro pede dez. Quase seis vezes de diferença, para o mesmo aquário.
 
 Aqui a faixa sai inteira, com o nome de quem defende cada ponta — porque a escolha entre comprar folga ou não é sua, e ela não se faz no escuro.
-
-[aquametria_calculadora_vazao]
-
-## Por que a resposta é uma faixa larga, e não um número
+[aqm_dobra_fim]
+[aqm_dobra titulo="Por que a resposta é uma faixa larga, e não um número"]
 
 O piso da faixa é o dimensionamento de quem fabrica o filtro. O teto é a regra de bolso que circula no aquarismo brasileiro. Entre um e outro há uma diferença de até 5,7 vezes, e cada lado tem um argumento que se sustenta:
 
@@ -34,7 +36,9 @@ O piso da faixa é o dimensionamento de quem fabrica o filtro. O teto é a regra
 
 O que nenhum dos dois lados publica é o tamanho dessa folga. Por isso a Aquametria não escolhe um lado: mostra os dois extremos com o nome de quem os defende, e diz que a decisão — mais folga ou menos — é sua.
 
-## O que a calculadora não faz, e por quê
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="O que a calculadora não faz, e por quê"]
 
 **Não aplica fator de perda de carga.** Seria fácil escrever "considere 30 % a menos com mídia" e a página ficaria mais confortável. Só que nenhuma fonte do nosso levantamento publica esse número, e o fabricante só declara a coluna máxima, que é outra coisa. Constante sem origem é proibida aqui, mesmo quando o palpite é razoável.
 
@@ -48,13 +52,17 @@ Esse número vale mais que qualquer catálogo, inclusive o nosso: é o seu filtr
 
 **Não publica turnover para aquário marinho.** O levantamento não trouxe nenhuma fonte brasileira com esse número. Quem marca "tenho sump" recebe o volume mínimo do sump — 20 % do volume do aquário, repetido pela AquaOnline —, e nada além disso. Um perfil marinho no formulário sugeriria que temos a resposta.
 
-## Coluna máxima: o campo que decide se o canister funciona no seu móvel
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="Coluna máxima: o campo que decide se o canister funciona no seu móvel"]
 
 Canister fica embaixo do aquário e precisa empurrar a água para cima. Todo fabricante sério declara até que altura a bomba vence — o Eheim 2213 declara 1,5 m. Se o seu filtro fica no chão e a superfície da água está a 1,6 m, esse modelo está fora, por mais que a vazão feche a conta.
 
 A calculadora aplica esse corte e diz qual modelo saiu por causa dele. Filtro hang-on não entra nessa conta: ele fica pendurado na borda do aquário e não tem coluna a vencer — o campo simplesmente não se aplica, e o banco registra isso em vez de deixar um número faltando.
 
-## Os filtros que aparecem no resultado, e como eles foram escolhidos
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="Os filtros que aparecem no resultado, e como eles foram escolhidos"]
 
 O bloco de produto só aparece quando existe filtro no nosso banco cuja vazão declarada cai **dentro da faixa que o seu aquário pediu**. Se não existe, não aparece nada — resposta sem produto é melhor que produto que não atende o seu número.
 
@@ -68,7 +76,9 @@ Três regras que valem sempre:
 
 O banco hoje é pequeno de propósito: são poucos filtros com ficha completa, porque completar uma ficha exige achar fonte para cada campo. Ele cresce a cada coleta, e a lista da sua faixa cresce junto.
 
-## De onde vem o volume que esta página usa
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="De onde vem o volume que esta página usa"]
 
 Do seu navegador, se você já usou a [quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/). É ela que transforma as medidas em centímetros nos três volumes que importam e guarda o volume real — sem conta, sem login, sem envio para servidor nenhum.
 
@@ -76,7 +86,9 @@ Vale insistir num ponto: o volume que dimensiona filtro é a **água que está l
 
 A calculadora de litragem ainda não desconta o substrato, e isso está declarado lá: o volume real sai superestimado. Para filtro, o erro é **seguro** — você acaba pedindo vazão de sobra, não de menos.
 
-## Onde este resultado vai ser usado
+[aqm_dobra_fim]
+
+[aqm_dobra titulo="Onde este resultado vai ser usado"]
 
 A faixa de vazão e o perfil do aquário ficam guardados no navegador junto com o volume. As próximas calculadoras leem de lá:
 
@@ -86,3 +98,4 @@ A faixa de vazão e o perfil do aquário ficam guardados no navegador junto com 
 As duas entram no ar uma por vez, cada uma só quando a fonte de cada constante estiver conferida. A lista completa está em [todas as calculadoras](https://aquametria.com.br/calculadoras/), e o critério que aceita ou recusa cada número está em [como a Aquametria calcula](https://aquametria.com.br/metodologia/).
 
 **Verificado em 08/09/2026.** Calculadora versão 1.0.0.
+[aqm_dobra_fim]

@@ -47,6 +47,12 @@ const erros = [];
 pagina.on('pageerror', (e) => erros.push(String(e)));
 
 await pagina.goto('file://' + ARQUIVO);
+/* A CARGA DE PEIXES FOI PARA UMA DOBRA NA C3 1.9.0 (32.1, itens 3 e 7): abrir e
+   o que a pessoa faz, e o Playwright nao mexe em campo invisivel. Correcao de
+   FIDELIDADE do portao — nenhuma afirmacao deste arquivo mudou. */
+await pagina.evaluate(() => {
+  document.querySelectorAll('#aqm-c3-form details.aqm-dobra').forEach((d) => { d.open = true; });
+});
 await pagina.fill('#aqm-c3-volume', VOLUME);
 await pagina.selectOption('#aqm-c3-perfil', 'plantado');
 await pagina.selectOption('#aqm-c3-carga', 'media');
