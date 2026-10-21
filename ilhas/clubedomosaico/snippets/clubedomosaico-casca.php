@@ -309,7 +309,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.23.0' );
+	define( 'CDM_CASCA_VERSAO', '1.24.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1269,6 +1269,82 @@ body:has(.cdm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
 .cdm-nav-caixa[data-cdm-menu] .cdm-nav a,.cdm-nav-caixa[data-cdm-menu] .cdm-nav .cdm-sem-link{display:block;padding:.65rem 1.05rem;font-size:1rem;border-bottom:0;}
 .cdm-nav-caixa[data-cdm-menu] .cdm-nav a:hover{color:var(--cdm-coral);}
 }
+/* -------------------------------------------------------------------------
+   O MOLDE DE CONVERSAO (secao 32 do ARQUIPELAGO.md) — as pecas que TODA
+   pagina desta ilha reaproveita, em vez de cada snippet reescrever a sua.
+   A 32.6-b manda exatamente isto: o que se repete entre paginas (ordem dos
+   blocos, trilho de compra, barra fixa do rodape, dobra) vira componente da
+   casca. Nenhuma palavra sai da pagina — a dobra e <details>, que o HTML
+   servido carrega inteiro e que se le com o JavaScript desligado (22.8).
+   ------------------------------------------------------------------------- */
+.cdm-dobra{border:1px solid var(--cdm-traco);border-radius:2px;background:var(--cdm-papel);margin:1rem 0 0;}
+.cdm-dobra + .cdm-dobra{margin-top:.5rem;}
+.cdm-dobra-titulo{display:flex;align-items:baseline;gap:.5rem;cursor:pointer;list-style:none;font-family:var(--cdm-display);font-size:1rem;font-weight:600;line-height:1.35;color:var(--cdm-tinta);padding:.75rem .9rem;}
+.cdm-dobra-titulo h2,.cdm-dobra-titulo h3{font:inherit;color:inherit;margin:0;}
+.cdm-dobra-titulo::-webkit-details-marker{display:none;}
+.cdm-dobra-titulo:before{content:"+";flex:0 0 auto;font-family:var(--cdm-mono);font-weight:400;font-size:1.05rem;line-height:1;color:var(--cdm-rubi);}
+.cdm-dobra[open] > .cdm-dobra-titulo:before{content:"\2013";}
+.cdm-dobra-titulo:hover{color:var(--cdm-rubi);}
+.cdm-dobra-titulo:focus-visible{outline:2px solid var(--cdm-rubi);outline-offset:-2px;}
+.cdm-dobra[open] > .cdm-dobra-titulo{border-bottom:1px solid var(--cdm-traco);}
+.cdm-dobra-corpo{padding:.9rem .9rem 1rem;}
+.cdm-dobra-corpo > :first-child{margin-top:0;}
+.cdm-dobra-corpo > :last-child{margin-bottom:0;}
+/* A CAIXA DE RESULTADO da 32.1, item 4: o numero em Mono e a frase de leitura
+   embaixo. Ela nasce PRE-RENDERIZADA no HTML, com o caso de exemplo — quem
+   chega da busca, e todo modelo de linguagem que leia a pagina, encontra
+   numero de resposta na primeira tela. */
+.cdm-molde-resultado{border:1px solid var(--cdm-traco);border-left:3px solid var(--cdm-coral);border-radius:2px;background:var(--cdm-papel);padding:.85rem .95rem;margin:1rem 0 0;}
+.cdm-molde-numeros{display:flex;flex-wrap:wrap;gap:.35rem 1.6rem;margin:0 0 .5rem;padding:0;list-style:none;}
+.cdm-molde-numeros li{margin:0;}
+.cdm-molde-numero{display:block;font-family:var(--cdm-mono);font-variant-numeric:tabular-nums;font-size:1.6rem;line-height:1.1;font-weight:500;color:var(--cdm-tinta);}
+.cdm-molde-legenda{display:block;font-size:.8rem;line-height:1.25;color:var(--cdm-legenda);}
+.cdm-molde-resultado .cdm-molde-frase{margin:0;font-size:1rem;line-height:1.5;}
+.cdm-molde-resultado .cdm-molde-frase + .cdm-molde-frase{margin-top:.5rem;}
+/* O BLOCO DE COMPRA da 32.1, item 5. O trilho ja era horizontal nas duas
+   ferramentas; o que a casca acrescenta e o lugar (logo abaixo do resultado)
+   e o cartao DEITADO no telefone — em pe, o botao de loja do primeiro cartao
+   cai fundo demais para o teto de 1.400 px da 32.5. */
+.cdm-molde-compra{margin:.9rem 0 0;scroll-margin-top:.5rem;}
+.cdm-molde-compra > h2,.cdm-molde-compra > h3{margin:0 0 .2rem;}
+/* A SECAO DE DENTRO NAO CARREGA A MARGEM DELA PARA O TOPO DO BLOCO: as vitrines
+   das duas ferramentas sao `.cdm-f1-secao`/`.cdm-f2-secao`, com 2rem de margem
+   vertical, e essa margem punha 32 px entre a caixa de resultado e o primeiro
+   produto. O molde pede os dois colados (32.1, item 5). */
+.cdm-molde-compra > :first-child{margin-top:0;}
+.cdm-molde-compra > :last-child{margin-bottom:0;}
+.cdm-molde-compra .cdm-f1-vitrine,.cdm-molde-compra .cdm-f2-vitrine{margin-top:.6rem;}
+@media (max-width:782px){
+.cdm-molde-compra .cdm-f2-cartao{flex:0 0 88%;}
+.cdm-molde-compra .cdm-f2-cartao .cdm-f2-foto{float:left;width:4.5rem;height:auto;margin:0 .7rem .35rem 0;}
+.cdm-molde-compra .cdm-f2-cartao .cdm-f2-sem-foto{float:left;width:4.5rem;height:4.5rem;margin:0 .7rem .35rem 0;}
+.cdm-molde-compra .cdm-f2-cartao h3{clear:none;font-size:.95rem;line-height:1.25;}
+.cdm-molde-compra .cdm-f2-cartao{gap:.35rem;}
+.cdm-molde-compra .cdm-f2-cartao{padding:.75rem;}
+.cdm-molde-compra .cdm-f2-cartao .cdm-f2-motivo{font-size:.88rem;line-height:1.3;}
+.cdm-molde-compra .cdm-f1-vitrine,.cdm-molde-compra .cdm-f2-vitrine{margin-top:.35rem;}
+/* A FRASE DE PROMESSA (32.1, item 2) e a primeira coisa que a pessoa le depois
+   do H1, e no telefone ela tem de caber na primeira tela JUNTO com o comeco do
+   formulario. A 1,15rem da casca ela ocupava 149 px em quatro linhas. */
+.cdm-abertura .cdm-linha-mestra{font-size:1.06rem;}
+.cdm-dobra-titulo{padding:.6rem .8rem;}
+.cdm-molde-numeros{margin-bottom:.35rem;}
+}
+/* A BARRA FIXA DO RODAPE (32.1, ultima linha): leva o numero do resultado e o
+   botao para o bloco de compra, e aparece enquanto esse bloco esta fora da
+   tela. Ela nasce servida, com o caso do exemplo, e so e MOSTRADA pelo
+   script — sem JavaScript ninguem ganha barra presa na tela. E ela e do
+   TELEFONE: fora da faixa do celular a pagina inteira cabe sem ela, e barra
+   presa na tela de quem tem espaco e so estorvo. */
+.cdm-barra{display:none;}
+@media (max-width:782px){
+.cdm-barra[data-cdm-barra="1"]{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:70;align-items:center;gap:.6rem;padding:.5rem .8rem;background:var(--cdm-papel);border-top:1px solid var(--cdm-traco);box-shadow:0 -6px 18px rgba(31,23,21,.1);}
+.cdm-barra-valor{flex:1 1 auto;min-width:0;font-size:.82rem;line-height:1.2;color:var(--cdm-legenda);}
+.cdm-barra-valor strong{display:block;font-family:var(--cdm-mono);font-variant-numeric:tabular-nums;font-size:1.05rem;font-weight:500;color:var(--cdm-tinta);}
+.cdm-barra-botao{flex:0 0 auto;display:inline-block;background:var(--cdm-coral);color:var(--cdm-papel);font-family:var(--cdm-display);font-weight:600;font-size:.92rem;text-decoration:none;padding:.6rem .9rem;border-radius:2px;}
+.cdm-barra-botao:hover,.cdm-barra-botao:focus{color:var(--cdm-papel);background:var(--cdm-vinho);}
+body:has(.cdm-barra[data-cdm-barra="1"]) .cdm-rodape{padding-bottom:4.5rem;}
+}
 CSS;
 
 	echo '<style id="cdm-casca">' . $css . '</style>' . "\n";
@@ -1343,6 +1419,174 @@ JS;
 
 	echo '<script id="cdm-casca-menu">' . $js . '</script>' . "\n";
 }, 25 );
+
+/* ---------------------------------------------------------------------------
+ * 3c. AS PEÇAS DO MOLDE DE CONVERSÃO — seção 32 do ARQUIPELAGO.md
+ *
+ * A 32.6-b é explícita: o que se repete entre páginas vira componente da
+ * CASCA, reaproveitado por todas as ferramentas, em vez de ser reescrito em
+ * cada snippet. São três peças, e cada uma tem um motivo medido:
+ *
+ *   1. A DOBRA (`<details>`). O texto longo sai do caminho de quem chegou para
+ *      usar a ferramenta e NÃO sai da página: o HTML servido continua com
+ *      tudo, legível com o JavaScript desligado (22.8 e 32.3). Nenhuma palavra
+ *      do texto sai — é o que separa recolher de apagar.
+ *   2. A CAIXA DE RESULTADO. Número em Mono, frase de leitura embaixo, e ela
+ *      nasce PRÉ-RENDERIZADA com o caso de exemplo. Quem chega da busca — e
+ *      todo modelo de linguagem que leia a página — encontra número de
+ *      resposta na primeira tela, sem preencher nada e sem script.
+ *   3. A BARRA DO RODAPÉ. Leva o número do resultado e o botão para o bloco de
+ *      compra, e aparece enquanto esse bloco está fora da tela.
+ *
+ * O QUE ELAS NÃO FAZEM, e está escrito para ninguém tentar: nenhuma delas
+ * monta conteúdo. Quem sabe o número é a ferramenta; a casca sabe o FORMATO.
+ * É a mesma separação que a trilha e o cluster já seguem.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_casca_dobra' ) ) {
+/**
+ * Uma seção recolhível, com o título DENTRO do <summary> — o `<h2>` da seção
+ * continua sendo `<h2>`, porque a 32.3 proíbe mexer na estrutura de cabeçalho
+ * que o SEO usa. Recolher muda onde o texto está na tela, nunca o que a página
+ * diz nem como ela está marcada.
+ *
+ * `$aberta` existe para a tabela de casos resolvidos da 32.1 (item 6), que fica
+ * VISÍVEL por decisão: é o que as IAs citam.
+ */
+function cdm_casca_dobra( $titulo, $corpo, $nivel = 'h2', $aberta = false ) {
+	$nivel = in_array( $nivel, array( 'h2', 'h3' ), true ) ? $nivel : 'h2';
+
+	return '<details class="cdm-dobra"' . ( $aberta ? ' open' : '' ) . '>'
+		. '<summary class="cdm-dobra-titulo"><' . $nivel . '>' . esc_html( $titulo ) . '</' . $nivel . '></summary>'
+		. '<div class="cdm-dobra-corpo">' . $corpo . '</div>'
+		. '</details>';
+}
+}
+
+if ( ! function_exists( 'cdm_casca_dobrar_secao' ) ) {
+/**
+ * Recolhe uma seção que JÁ EXISTE, sem reescrevê-la: o `<h2>` dela vira o
+ * título da dobra, no mesmo nível e com o mesmo texto, e o resto vira o corpo.
+ *
+ * Por que é mecânico e não manual: as duas ferramentas desta ilha têm quinze
+ * seções entre elas, cada uma montada por uma função própria, e copiar o
+ * título para um segundo lugar criaria quinze pares de frases que envelhecem
+ * separadas — o defeito que esta ilha já pagou três vezes (a promessa em dois
+ * lugares, o disclosure velho, a frase da vitrine que ficou falsa no banco).
+ * Aqui o título continua tendo UMA fonte: o `<h2>` que a seção já emitia.
+ *
+ * Seção sem `<h2>` volta inteira, sem dobra: gaveta sem etiqueta é pior que
+ * texto corrido, e inventar título aqui seria a casca falando pela ferramenta.
+ */
+function cdm_casca_dobrar_secao( $html, $aberta = false ) {
+	if ( ! preg_match( '/<h2[^>]*>(.*?)<\/h2>/s', $html, $m ) ) {
+		return $html;
+	}
+	$titulo = $m[1];
+	$corpo  = preg_replace( '/<h2[^>]*>.*?<\/h2>/s', '', $html, 1 );
+
+	return '<details class="cdm-dobra"' . ( $aberta ? ' open' : '' ) . '>'
+		. '<summary class="cdm-dobra-titulo"><h2>' . $titulo . '</h2></summary>'
+		. '<div class="cdm-dobra-corpo">' . $corpo . '</div>'
+		. '</details>';
+}
+}
+
+if ( ! function_exists( 'cdm_casca_resultado_html' ) ) {
+/**
+ * A caixa de resultado da 32.1. `$numeros` é uma lista de
+ * `array( 'valor' => '1.004', 'legenda' => 'pastilhas para comprar' )` — o
+ * valor sai em Mono com tabular-nums, a legenda em texto. `$frases` é o HTML
+ * da leitura: a frase que sobrevive a ser citada fora de contexto (seção 5).
+ *
+ * `valor` É HTML JÁ ESCAPADO por quem monta, e isto está dito porque custou uma
+ * tela: na primeira versão ele passava por `esc_html()`, e como o número desta
+ * ilha sai de `cdm_casca_num()` — que devolve `<span class="cdm-num">720</span>`
+ * — a caixa publicou a etiqueta impressa na tela, em vez do número. `legenda`
+ * continua sendo TEXTO e é escapada aqui.
+ *
+ * O `id` é parâmetro porque as duas ferramentas desta ilha já ancoram o
+ * formulário em `#resposta` e trocar a âncora romperia link de fora.
+ */
+function cdm_casca_resultado_html( $numeros, $frases, $id = 'resposta', $classe = '' ) {
+	$html = '<div class="cdm-molde-resultado' . ( '' !== $classe ? ' ' . esc_attr( $classe ) : '' ) . '"'
+		. ( '' !== $id ? ' id="' . esc_attr( $id ) . '"' : '' ) . '>';
+
+	$numeros = array_values( array_filter( (array) $numeros ) );
+	if ( $numeros ) {
+		$html .= '<ul class="cdm-molde-numeros">';
+		foreach ( $numeros as $n ) {
+			$html .= '<li><span class="cdm-molde-numero">' . $n['valor'] . '</span>'
+				. '<span class="cdm-molde-legenda">' . esc_html( $n['legenda'] ) . '</span></li>';
+		}
+		$html .= '</ul>';
+	}
+
+	$html .= $frases;
+	$html .= '</div>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_barra_html' ) ) {
+/**
+ * A barra do rodapé. Nasce SERVIDA, com o caso do exemplo dentro — se ela
+ * dependesse de cálculo, não existiria justamente para quem chega da busca e
+ * não preenche nada, que é o defeito que a aquametria mediu em 21/10/2026.
+ *
+ * `$ancora` é o id do bloco de compra; é ele que o script vigia, e é para ele
+ * que o botão leva. `$valor` é HTML já escapado (vem de `cdm_casca_num()`),
+ * pelo mesmo motivo escrito na caixa de resultado acima; `$legenda` e
+ * `$rotulo` são texto.
+ */
+function cdm_casca_barra_html( $valor, $legenda, $ancora = 'compra', $rotulo = 'Ver onde comprar' ) {
+	return '<div class="cdm-barra" data-cdm-barra-de="' . esc_attr( $ancora ) . '">'
+		. '<span class="cdm-barra-valor"><strong>' . $valor . '</strong>' . esc_html( $legenda ) . '</span>'
+		. '<a class="cdm-barra-botao" href="#' . esc_attr( $ancora ) . '">' . esc_html( $rotulo ) . '</a>'
+		. '</div>';
+}
+}
+
+/* O COMANDO DA BARRA. Mesma regra do menu: o script sai no wp_footer, NUNCA
+   dentro do retorno de um shortcode — é a seção 8 do ARQUIPELAGO.md e a
+   cicatriz de 08/09/2026 na Aquametria, em que cada E-comercial virou entidade
+   numérica e o JavaScript inteiro morreu com erro de sintaxe.
+
+   A barra só é MOSTRADA aqui: o CSS a deixa oculta até o atributo aparecer, e
+   quem está sem JavaScript continua com a página inteira e sem barra presa.
+   Sem IntersectionObserver o script sai sem fazer nada — não há polyfill e não
+   há fallback por rolagem, porque barra que pisca é pior que barra que não há. */
+add_action( 'wp_footer', function () {
+	$js = <<<'JS'
+(function () {
+	var barras = document.querySelectorAll('.cdm-barra[data-cdm-barra-de]');
+	if (!barras.length || !('IntersectionObserver' in window)) { return; }
+
+	Array.prototype.forEach.call(barras, function (barra) {
+		var alvo = document.getElementById(barra.getAttribute('data-cdm-barra-de'));
+		if (!alvo) { return; }
+
+		function estado(mostrar) {
+			if (mostrar) { barra.setAttribute('data-cdm-barra', '1'); }
+			else { barra.removeAttribute('data-cdm-barra'); }
+		}
+
+		var vigia = new IntersectionObserver(function (entradas) {
+			Array.prototype.forEach.call(entradas, function (e) {
+				/* Fora da tela, a barra aparece; com o bloco de compra a vista,
+				   ela sai — ninguem precisa de atalho para o que esta na tela. */
+				estado(!e.isIntersecting);
+			});
+		}, { threshold: 0 });
+
+		vigia.observe(alvo);
+	});
+})();
+JS;
+
+	echo '<script id="cdm-casca-barra">' . $js . '</script>' . "\n";
+}, 26 );
 
 /* ---------------------------------------------------------------------------
  * 4. Números, listagens e conteúdo das páginas

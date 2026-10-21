@@ -77,6 +77,59 @@ function f2_recorte( $texto, $inicio, $fronteiras ) {
 	return mb_substr( $resto, 0, $fim );
 }
 
+/* AS TRES FRONTEIRAS DA REGIAO DA RESPOSTA, NUM LUGAR SO — e elas mudaram em
+ * 21/10/2026, com o molde da secao 32 do ARQUIPELAGO.md.
+ *
+ * O que mudou no HTML servido: a caixa da resposta passou a carregar TAMBEM a
+ * classe da casca (`cdm-f2-resposta cdm-molde-resultado`), e o bloco "Onde
+ * comprar" passou a vir dentro de `<div class="cdm-molde-compra" id="compra">`.
+ * Quatro sitios deste arquivo casavam `<div class="cdm-f2-resposta">` com o
+ * atributo INTEIRO e exigiam a vitrine colada na resposta; com o molde eles
+ * passaram a devolver string VAZIA, e tres afirmacoes reprovaram dizendo que
+ * produto recomendado "sumiu da pagina" quando ele estava na primeira frase.
+ *
+ * Em vez de corrigir o mesmo regex em quatro lugares — que e como a quinta copia
+ * nasce — as fronteiras passam a morar aqui, e os quatro sitios pedem a regiao.
+ * A regra que as afirmacoes cobram nao mudou: cada produto do banco e nomeado em
+ * exatamente UM lado, o recomendado na resposta ou na vitrine, o eliminado na
+ * secao de fora. */
+function f2_caixa_resposta( $corpo ) {
+	return preg_match( '#<div class="[^"]*\bcdm-f2-resposta\b[^"]*"[^>]*>(.*?)(?=</div>\s*<div class="cdm-molde-compra|<div class="cdm-f2-secao[ "]|<h2|$)#is', $corpo, $m )
+		? $m[1] : '';
+}
+
+function f2_bloco_compra( $corpo ) {
+	return preg_match( '#<div class="cdm-molde-compra"[^>]*>\s*<div class="cdm-f2-secao">\s*<h2>Onde comprar</h2>(.*?)</div>\s*</div>#is', $corpo, $m )
+		? $m[1] : '';
+}
+
+/** O RESTO DA RESPOSTA — o preparo e a linha de procedencia, que o molde da 32
+ *  recolheu numa dobra logo abaixo do bloco de compra. Ele continua sendo a
+ *  regiao da RESPOSTA e nao a dos eliminados: e ali que os elegiveis abaixo do
+ *  topo sao nomeados, e foi por nao le-lo que esta bancada passou a dizer que
+ *  produto recomendado "sumiu da pagina". */
+function f2_resto_da_resposta( $corpo ) {
+	return preg_match( '#<h2>Antes de colar: o preparo e de onde sai esta resposta</h2>\s*</summary>\s*<div class="cdm-dobra-corpo">(.*?)</details>#is', $corpo, $m )
+		? $m[1] : '';
+}
+
+/** A RESPOSTA INTEIRA: a caixa mais o que a dobra recolheu. E exatamente o que o
+ *  `<div class="cdm-f2-resposta">` servia antes do molde. */
+function f2_resposta_inteira( $corpo ) {
+	$caixa = f2_caixa_resposta( $corpo );
+	$resto = f2_resto_da_resposta( $corpo );
+
+	return ( '' === $resto ) ? $caixa : $caixa . ' ' . $resto;
+}
+
+/** A resposta inteira MAIS o bloco de compra — os dois lados em que o produto
+ *  recomendado pode aparecer. A secao de eliminados fica FORA de proposito. */
+function f2_regiao_resposta( $corpo ) {
+	$compra = f2_bloco_compra( $corpo );
+
+	return ( '' === $compra ) ? f2_resposta_inteira( $corpo ) : f2_resposta_inteira( $corpo ) . ' ' . $compra;
+}
+
 function f2_texto( $html ) {
 	return trim( preg_replace( '/\s+/u', ' ', html_entity_decode( strip_tags( $html ), ENT_QUOTES, 'UTF-8' ) ) );
 }
@@ -568,12 +621,7 @@ foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 	/* A FRASE-RESPOSTA e a vitrine sao onde o recomendado aparece. A secao de
 	   eliminados fica FORA desta medida de proposito: o nome de um produto
 	   proibido aparece la, e contar na pagina inteira encontraria os dois. */
-	$pedaco_html = '';
-	if ( preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>\s*<div class="cdm-f2-secao">\s*<h2>Onde comprar</h2>(.*?)(?=<div class="cdm-f2-secao">)#is', $corpo, $mp ) ) {
-		$pedaco_html = $mp[1] . $mp[2];
-	} elseif ( preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>#is', $corpo, $mp ) ) {
-		$pedaco_html = $mp[1];
-	}
+	$pedaco_html = f2_regiao_resposta( $corpo );
 	$pedaco = f2_texto( $pedaco_html );
 	$fora_html = preg_match( '#<div class="cdm-f2-secao cdm-f2-fora">(.*?)</div>#is', $corpo, $mf ) ? $mf[1] : '';
 	$fora      = f2_texto( $fora_html );
@@ -1549,10 +1597,7 @@ foreach ( $esquema['vocabularios']['base'] as $b_ ) {
 			   pagina que nomeia o produto sem nunca dizer de que lado ele esta.
 			   A regra que a secao 7 cobra e "cada item em exatamente UM lado", e
 			   e o lado que se mede. */
-			$resposta_html = '';
-			if ( preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>\s*<div class="cdm-f2-secao">\s*<h2>Onde comprar</h2>(.*?)(?=<div class="cdm-f2-secao">)#is', $corpo_, $mr_ ) ) {
-				$resposta_html = $mr_[1] . $mr_[2];
-			}
+			$resposta_html = f2_regiao_resposta( $corpo_ );
 			$recusa_html     = '';
 			if ( preg_match_all( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', $resposta_html, $mrec_ ) ) {
 				$recusa_html = implode( ' ', $mrec_[0] );
@@ -2002,7 +2047,7 @@ foreach ( $alvos_peca as $chave7 => $esperados ) {
 	$html7 = f2_corpo( f2_render( $raiz, 'base=' . $b7 . '&onde=' . $a7 . '&caco=' . $t7 ) );
 	$medidas_peca++;
 
-	$resp_html = preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>#is', $html7, $mr7 ) ? $mr7[1] : '';
+	$resp_html = f2_resposta_inteira( $html7 );
 	/* O bloco de recusa sai da resposta antes de qualquer afirmacao sobre quem
 	   esta recomendado — mesma trava que a regra 6 pagou em 13/09: a recusa
 	   NOMEIA o produto, e medir presenca de nome na regiao inteira leria a
@@ -2148,8 +2193,7 @@ foreach ( $alvos_peca as $chave7 => $esperados ) {
 	   regra 7 tivesse mudado. Regua que depende de contar `</div>` mede o HTML;
 	   fronteira de teste e marcador escrito — a mesma cicatriz que a Robometria
 	   deixou em 13/09/2026 e que o `pr_bloco_f1` do teste-prestacao-rejunte cita. */
-	$resp_c  = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '',
-		preg_match( '#<div class="cdm-f2-resposta">(.*?)(?=<div class="cdm-f2-secao[ "]|<h2|$)#is', $html_c, $mrc ) ? $mrc[1] : '' ) );
+	$resp_c  = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '', f2_resposta_inteira( $html_c ) ) );
 	$peca_c  = preg_match_all( '#<p class="cdm-f2-peca-fora">(.*?)</p>#is', $html_c, $mpc )
 		? f2_texto( implode( ' ', $mpc[1] ) ) : '';
 	foreach ( $esperados as $id7 ) {

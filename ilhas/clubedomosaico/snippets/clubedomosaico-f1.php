@@ -177,7 +177,7 @@
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.8.0' );
+	define( 'CDM_F1_VERSAO', '1.9.0' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -809,16 +809,31 @@ function cdm_f1_resposta_html( $e ) {
 	$r     = cdm_f1_calcular( $e['forma'], $e['medidas'], $e['lado_mm'], $e['junta'], $e['espessura'], $e['sobra'], $e['rejunte'] );
 	$forma = cdm_f1_formas();
 
-	$html = '<div class="cdm-f1-resposta" id="resposta">';
-
 	if ( null === $r['area_cm2'] ) {
-		$html .= '<p class="cdm-f1-frase cdm-f1-faixa">Com essas medidas a peça não fecha: o vão ficou maior que a moldura, '
-			. 'ou alguma medida ficou em branco. Confira os números aí em cima e a gente responde.</p></div>';
-
-		return $html;
+		return cdm_casca_resultado_html(
+			array(),
+			'<p class="cdm-molde-frase cdm-f1-frase cdm-f1-faixa">Com essas medidas a peça não fecha: o vão ficou maior que a moldura, '
+				. 'ou alguma medida ficou em branco. Confira os números aí em cima e a gente responde.</p>',
+			'resposta',
+			'cdm-f1-resposta'
+		);
 	}
 
-	$html .= '<p class="cdm-f1-frase">Uma peça assim, de <strong>' . cdm_f1_medida_em_texto( $e['forma'], $e['medidas'] )
+	/* OS DOIS NÚMEROS EM MONO, que são os que a pessoa leva para a loja. A lista
+	   inteira — área, pastilhas por metro, gramas, cola — continua na página,
+	   logo abaixo, numa dobra: o que a 32.1 pede na caixa é o número e a frase,
+	   e cinco linhas de rótulo empurravam o bloco de compra para 2.770 px. */
+	$numeros = array(
+		array( 'valor' => cdm_casca_num( $r['pastilhas'] ), 'legenda' => 'pastilhas para comprar' ),
+	);
+	if ( null !== $r['gramas'] ) {
+		$numeros[] = array(
+			'valor'   => cdm_f1_gramas_na_tela( $r['gramas'] ) . ' g',
+			'legenda' => 'de rejunte cimentício',
+		);
+	}
+
+	$html = '<p class="cdm-molde-frase cdm-f1-frase">Uma peça assim, de <strong>' . cdm_f1_medida_em_texto( $e['forma'], $e['medidas'] )
 		. '</strong>, tem <strong>' . cdm_casca_num( round( $r['area_cm2'] ) ) . ' cm²</strong> para revestir'
 		. ' e leva cerca de <strong>' . cdm_casca_num( $r['pastilhas'] ) . ' pastilhas</strong> de '
 		. esc_html( cdm_f1_lado_em_texto( $e['lado_mm'] ) ) . ' cm';
@@ -834,10 +849,28 @@ function cdm_f1_resposta_html( $e ) {
 	}
 	$html .= '</p>';
 
+	return cdm_casca_resultado_html( $numeros, $html, 'resposta', 'cdm-f1-resposta' );
+}
+}
+
+if ( ! function_exists( 'cdm_f1_numeros_html' ) ) {
+/**
+ * A LISTA INTEIRA DOS NÚMEROS DA PEÇA — a mesma de sempre, agora numa dobra
+ * (32.1, item 7). Nenhuma linha saiu: área em cm² e em m², pastilhas por metro
+ * quadrado, pastilhas para comprar, rejunte, e a linha da cola que nasce vazia
+ * com o motivo. Era ela que ocupava 536 px entre a resposta e o bloco de
+ * compra, medidos no ar em 21/10/2026.
+ */
+function cdm_f1_numeros_html( $e ) {
+	$r = cdm_f1_calcular( $e['forma'], $e['medidas'], $e['lado_mm'], $e['junta'], $e['espessura'], $e['sobra'], $e['rejunte'] );
+	if ( null === $r['area_cm2'] ) {
+		return '';
+	}
+
 	/* O QUE A PESSOA VAI FAZER COM O NÚMERO: a área em m², que é a unidade em
 	   que o material é vendido, e o rendimento por metro. Sem isso a resposta
 	   serve para conferir e não para comprar. */
-	$html .= '<ul class="cdm-f1-numeros">';
+	$html  = '<ul class="cdm-f1-numeros">';
 	$html .= '<li><span class="cdm-f1-rotulo">Área a revestir</span><span class="cdm-f1-valor">'
 		. cdm_casca_num( round( $r['area_cm2'] ) ) . ' cm² <span class="cdm-f1-nota">('
 		. esc_html( number_format_i18n( round( $r['area_cm2'] / 10000, 3 ), 3 ) ) . ' m², que é como o material é vendido)</span></span></li>';
@@ -868,8 +901,6 @@ function cdm_f1_resposta_html( $e ) {
 	$html .= '<li><span class="cdm-f1-rotulo">Gramas de cola</span><span class="cdm-f1-valor cdm-f1-vazio">a gente ainda não publica'
 		. ' <span class="cdm-f1-nota">(o fabricante do silicone declara rendimento por cordão, não por área, e o consumo por área da cimentcola a gente não conseguiu)</span></span></li>';
 	$html .= '</ul>';
-
-	$html .= '</div>';
 
 	return $html;
 }
@@ -1032,10 +1063,14 @@ function cdm_f1_vitrine_html( $e ) {
 
 	$html  = '<div class="cdm-f1-secao cdm-f1-vitrine-rejunte">';
 	$html .= '<h2>Qual rejunte cabe nessa folga</h2>';
+	$prosa = '';
 
 	if ( $do_tipo ) {
-		$html .= '<p>Com ' . $mm . ' de folga, e para peça ' . esc_html( $lugar )
-			. ', estes são os ' . esc_html( $nome_tipo ) . ' que o fabricante declara:</p>';
+		/* OS CARTÕES VÊM ANTES DA LINHA QUE OS APRESENTA, e a linha continua
+		   inteira logo abaixo deles. A frase tem 85 px no celular e o recorte que
+		   ela nomeia — a folga e o lugar — está dentro de cada cartão, no motivo.
+		   É o mesmo corte que a aquametria mediu em 21/10/2026: quem chegou para
+		   comprar vê o produto; quem quer o critério lê a linha seguinte. */
 		$html .= '<ul class="cdm-f1-vitrine">';
 		foreach ( $do_tipo as $id ) {
 			$p      = cdm_f2_perfil_rejunte( $por_id[ $id ] );
@@ -1043,6 +1078,8 @@ function cdm_f1_vitrine_html( $e ) {
 			$html  .= cdm_f2_cartao_html( $id, $motivo );
 		}
 		$html .= '</ul>';
+		$html .= '<p>Com ' . $mm . ' de folga, e para peça ' . esc_html( $lugar )
+			. ', estes são os ' . esc_html( $nome_tipo ) . ' que o fabricante declara.</p>';
 	} elseif ( ! $fora_folga && ! $sem_faixa && ! $fora_lugar && ! $fora_lugar_produto ) {
 		/* Nem eliminado, nem elegível: o tipo não existe no banco. */
 		$html .= '<p class="cdm-f1-faixa">Ainda não temos nenhum ' . esc_html( $nome_tipo ) . ' no nosso banco — nenhuma marca, '
@@ -1081,28 +1118,28 @@ function cdm_f1_vitrine_html( $e ) {
 		foreach ( $fora_lugar_produto as $id ) {
 			$p    = cdm_f2_perfil_rejunte( $por_id[ $id ] );
 			$lits = $p['literais_delimitacao'];
-			$html .= '<p class="cdm-f1-faixa-ambiente-do-produto">O que exclui '
+			$prosa .= '<p class="cdm-f1-faixa-ambiente-do-produto">O que exclui '
 				. esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( array( $id ) ) ) )
 				. ' é o LUGAR, não a folga: ' . $mm . ' cabe na faixa que o fabricante publica, '
 				. 'e ele declarou onde o produto pode ir';
 			if ( $lits ) {
-				$html .= ' — escreve <em>' . esc_html( cdm_f2_lista_humana( $lits ) ) . '</em>';
+				$prosa .= ' — escreve <em>' . esc_html( cdm_f2_lista_humana( $lits ) ) . '</em>';
 			}
-			$html .= '. Peça ' . esc_html( $lugar ) . ' não está nessa lista.</p>';
+			$prosa .= '. Peça ' . esc_html( $lugar ) . ' não está nessa lista.</p>';
 		}
 	}
 	if ( $fora_lugar ) {
-		$html .= '<p class="cdm-f1-faixa">O que exclui ' . esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $fora_lugar ) ) )
+		$prosa .= '<p class="cdm-f1-faixa">O que exclui ' . esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $fora_lugar ) ) )
 			. ' é o LUGAR, não a folga: ' . $mm . ' cabe na faixa que o fabricante publica para '
 			. ( 1 === count( $fora_lugar ) ? 'ele' : 'eles' ) . ', e o que ele não declara é peça '
 			. esc_html( $lugar ) . '.</p>';
 	}
 	if ( $fora_folga ) {
-		$html .= '<p class="cdm-f1-faixa">Fora por causa da folga de ' . $mm . ': '
+		$prosa .= '<p class="cdm-f1-faixa">Fora por causa da folga de ' . $mm . ': '
 			. implode( '; ', cdm_f1_faixas_de( $fora_folga, $por_id ) ) . '.</p>';
 	}
 	if ( $sem_faixa ) {
-		$html .= '<p class="cdm-f1-faixa">De ' . esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $sem_faixa ) ) )
+		$prosa .= '<p class="cdm-f1-faixa">De ' . esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $sem_faixa ) ) )
 			. ' a gente não conseguiu a faixa de folga que o fabricante publica, então '
 			. ( 1 === count( $sem_faixa ) ? 'ele não entra' : 'eles não entram' ) . ' em recomendação nenhuma — '
 			. 'nem para dizer que cabe, nem para dizer que não cabe.</p>';
@@ -1112,9 +1149,17 @@ function cdm_f1_vitrine_html( $e ) {
 		/* A célula da F2 já filtrou pela folga E pelo lugar, então dizer só
 		   "dentro dessa folga" dizia menos do que a página sabe — e era a metade
 		   que produzia a contradição. */
-		$html .= '<p class="cdm-f1-nota-lista">De outro tipo, e que servem nessa folga e nesse lugar: '
+		$prosa .= '<p class="cdm-f1-nota-lista">De outro tipo, e que servem nessa folga e nesse lugar: '
 			. esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $outro_tipo ) ) )
 			. '. Eles servem para a peça — o que a gente não tem é o número de consumo deles.</p>';
+	}
+
+	/* A PRESTAÇÃO DE CONTAS DOS REJUNTES NUMA DOBRA (32.1, item 7). Ela sai
+	   SEMPRE, inclusive quando a lista de cima tem produto — era por isso que
+	   nascera, e isso não mudou. Todo rejunte do banco continua nomeado uma vez,
+	   na vitrine ou aqui dentro, e continua no HTML servido. */
+	if ( '' !== $prosa ) {
+		$html .= cdm_casca_dobra( 'Os rejuntes que ficaram fora, e qual causa excluiu cada um', $prosa, 'h3' );
 	}
 
 	$html .= '<p class="cdm-f1-aviso">Alguns links desta página são de afiliado: se você comprar por eles, a gente pode receber uma comissão, '
@@ -1585,7 +1630,8 @@ function cdm_f1_vitrine_pastilha_html( $e ) {
 	   comprar a pastilha", e aquele "E" só era verdade enquanto este bloco vinha
 	   em segundo lugar. Título é a frase que um modelo de linguagem cita sozinho
 	   (seção 5), então ele não pode depender da posição em que foi servido. */
-	$html = '<div class="cdm-f1-secao cdm-f1-vitrine-pastilha"><h2>Onde comprar a pastilha</h2>';
+	$html  = '<div class="cdm-f1-secao cdm-f1-vitrine-pastilha"><h2>Onde comprar a pastilha</h2>';
+	$prosa = '';
 
 	/* Sem a F2 de pé não há escada de compra nem escada de fontes, e esta página
 	   não escreve uma segunda. Mesma saída do bloco do rejunte. */
@@ -1635,16 +1681,23 @@ function cdm_f1_vitrine_pastilha_html( $e ) {
 			/* SÓ QUANDO A CONTAGEM DESSE LADO É ZERO, e é por isso que a frase pode
 			   ser dita: ela afirma sobre o mercado, e no dia em que um 1 cm de
 			   fabricante entrar no banco esta linha deixa de sair sozinha. */
-			$html .= '<p class="cdm-f1-faixa">E isso não é descuido de coleta: 1 cm é o tamanho mais usado do mosaico '
+			$prosa .= '<p class="cdm-f1-faixa">E isso não é descuido de coleta: 1 cm é o tamanho mais usado do mosaico '
 				. 'e não aparece em catálogo de fabricante nenhum. Quem vende é armarinho e marketplace, a peso ou por peça solta — '
 				. 'e a peso a gente não consegue dizer quantas peças vêm, porque ninguém publica o peso de uma pastilha.</p>';
 		}
 	}
 
-	/* --- as três listas que não foram para a vitrine, uma frase por causa --- */
+	/* --- as três listas que não foram para a vitrine, uma frase por causa ---
+	 *
+	 * DAQUI PARA BAIXO TUDO VAI PARA `$prosa`, que sai numa dobra (32.1, item 7).
+	 * A prestação de contas da seção 7 do contrato continua inteira — todo item
+	 * do banco é nomeado uma vez, na vitrine ou aqui — e continua no HTML
+	 * servido, legível sem JavaScript. O que muda é que ela deixou de ocupar
+	 * 927 px entre a resposta e o primeiro botão de loja, medidos no ar em
+	 * 21/10/2026 nesta mesma página. */
 
 	if ( $c['outro_formato'] ) {
-		$html .= '<p class="cdm-f1-faixa">Do mesmo lado de ' . esc_html( $lado ) . ' cm, mas de outro formato: '
+		$prosa .= '<p class="cdm-f1-faixa">Do mesmo lado de ' . esc_html( $lado ) . ' cm, mas de outro formato: '
 			. esc_html( cdm_f2_lista_humana( cdm_f1_pastilha_codigos( $c['outro_formato'] ) ) )
 			. '. ' . ( 1 === count( $c['outro_formato'] ) ? 'Ele não é' : 'Eles não são' )
 			. ' quadradinho — a conta aqui em cima é de peça quadrada, então '
@@ -1652,14 +1705,14 @@ function cdm_f1_vitrine_pastilha_html( $e ) {
 	}
 
 	if ( $c['fonte_fraca'] ) {
-		$html .= '<p class="cdm-f1-faixa">O lado de ' . esc_html( $lado ) . ' cm é o mesmo em '
+		$prosa .= '<p class="cdm-f1-faixa">O lado de ' . esc_html( $lado ) . ' cm é o mesmo em '
 			. esc_html( cdm_f2_lista_humana( cdm_f1_pastilha_codigos( $c['fonte_fraca'] ) ) )
 			. ', e o que ' . ( 1 === count( $c['fonte_fraca'] ) ? 'exclui ele' : 'exclui eles' )
 			. ' é quem publica a medida: um distribuidor, não o fabricante. A gente só recomenda pelo que o fabricante publica.</p>';
 	}
 
 	if ( $c['outro_lado'] ) {
-		$html .= '<p class="cdm-f1-nota-lista">De outro lado, e no nosso banco: '
+		$prosa .= '<p class="cdm-f1-nota-lista">De outro lado, e no nosso banco: '
 			. esc_html( cdm_f2_lista_humana( cdm_f1_grupos_por_lado( $c['outro_lado'] ) ) ) . '.</p>';
 
 		/* O LADO EM QUE A PESSOA JÁ ESTÁ SAI DESTA LISTA: ela chegou aqui, o item
@@ -1667,7 +1720,7 @@ function cdm_f1_vitrine_pastilha_html( $e ) {
 		   pelo caquinho irregular seria mandá-la ao lugar onde ela está. */
 		$fora = cdm_f1_lados_fora_do_seletor( $e['lado_mm'] );
 		if ( $fora ) {
-			$html .= '<p class="cdm-f1-nota-lista">Os tamanhos aí em cima são cinco, e o nosso banco tem lado que eles não listam: '
+			$prosa .= '<p class="cdm-f1-nota-lista">Os tamanhos aí em cima são cinco, e o nosso banco tem lado que eles não listam: '
 				. esc_html( cdm_f2_lista_humana( $fora ) ) . '. Para comprar '
 				. ( 1 === count( $fora ) ? 'esse' : 'esses' ) . ', escolha <em>caquinho irregular</em> no formulário e digite o lado — '
 				. 'a conta é a mesma, e a lista daqui passa a mostrar o que serve.</p>';
@@ -1675,10 +1728,17 @@ function cdm_f1_vitrine_pastilha_html( $e ) {
 	}
 
 	/* O QUE A PLACA NÃO DIZ, dito uma vez e não em treze cartões. */
-	$html .= '<p class="cdm-f1-nota-lista">Uma coisa que nenhuma dessas placas diz: quantas pastilhas vêm nela. '
+	$prosa .= '<p class="cdm-f1-nota-lista">Uma coisa que nenhuma dessas placas diz: quantas pastilhas vêm nela. '
 		. 'A gente procurou nos ' . cdm_casca_num( $c['total'] ) . ' produtos do nosso banco e o fabricante não publica — '
 		. 'por isso o cartão fala em placa, e não em peça. '
 		. 'A tabela da placa, mais abaixo, mostra como você descobre isso com a embalagem na mão.</p>';
+
+	/* A PROSA DA PRESTAÇÃO DE CONTAS NUMA DOBRA, e o aviso de comissão FORA dela:
+	   a 32.1 pede o aviso em uma linha junto dos cartões, e aviso de afiliado
+	   recolhido é aviso que ninguém leu. */
+	if ( '' !== $prosa ) {
+		$html .= cdm_casca_dobra( 'As pastilhas que ficaram fora desta lista, e por quê', $prosa, 'h3' );
+	}
 
 	$html .= '<p class="cdm-f1-aviso">Alguns links desta página são de afiliado: se você comprar por eles, a gente pode receber uma comissão, '
 		. 'sem custo nenhum para você. Isso não muda a ordem da lista — quem decide é a declaração do fabricante.</p>';
@@ -1930,6 +1990,13 @@ function cdm_f1_tabela_consumo_html() {
 	);
 
 	$html  = '<div class="cdm-f1-secao"><h2>Por que a conta que circula por aí não serve para a sua peça</h2>';
+	/* ESTE PARÁGRAFO VEIO DA ABERTURA DA PÁGINA em 21/10/2026, quando a ordem da
+	   32.1 entrou. Ele era o segundo dos três de abertura, custava 170 px da
+	   primeira tela e falava exatamente do que ESTA seção mostra — então não foi
+	   apagado nem reescrito: foi posto onde a tabela dele está, uma linha acima
+	   dos dois números lado a lado que ele promete. */
+	$html .= '<p>É a diferença que faz você voltar à loja no meio da peça: a conta que circula por aí foi feita com azulejo grande, '
+		. 'e caquinho pequeno come muito mais rejunte que isso. Quanto mais, a tabela aqui embaixo mostra com os dois números lado a lado.</p>';
 	$html .= '<p>Todas as linhas saem da mesma fórmula, com o mesmo coeficiente. O que muda é o tamanho do caquinho — '
 		. 'e é ele que manda no consumo, muito mais do que a marca do rejunte.</p>';
 	$html .= '<div class="cdm-f1-rolagem"><table class="cdm-f1-tabela"><thead><tr>'
@@ -2071,19 +2138,38 @@ function cdm_f1_form_html( $e ) {
 		$html .= cdm_f1_numero_html( 'ladoeq', 'Lado médio do seu caquinho, em cm', $e['lado_eq'], '0.3', '10', '0.1',
 			'Meça uns cinco caquinhos e use a média. Não precisa ser exato: erro de 1 mm no lado muda pouco o total.' );
 	}
-	$html .= cdm_f1_numero_html( 'esp', 'Espessura da pastilha, em mm', $e['espessura'], '1', '20', '0.5',
+
+	/* OS CINCO CAMPOS DE AJUSTE NUMA DOBRA (32.1, item 3). Nenhum campo saiu do
+	   formulário e nenhum deixou de ter valor: todos nascem no caso de exemplo,
+	   que é o mesmo da caixa de resultado e do bloco de compra. O que muda é que
+	   os três campos que DECIDEM a conta — a forma, as medidas e o tamanho do
+	   caquinho — ficam abertos, e os que afinam ficam a um toque. Medido no ar em
+	   21/10/2026: com os nove campos abertos o formulário tinha 1.158 px e a
+	   primeira tela acabava no meio dele.
+
+	   O CAQUINHO IRREGULAR FICA FORA DA DOBRA de propósito: quando ele está
+	   escolhido, o lado médio é a medida sem a qual não há conta — esconder o
+	   único campo obrigatório daquele estado seria esconder a pergunta. */
+	$ajuste  = cdm_f1_numero_html( 'esp', 'Espessura da pastilha, em mm', $e['espessura'], '1', '20', '0.5',
 		'Meça a sua com uma régua. 4 mm é o que costuma vir, mas isso muda de fabricante para fabricante, e a espessura mexe direto no rejunte.' );
-	$html .= cdm_f1_select_html( 'junta', 'Quanto espaço entre uma pastilha e outra?', $juntas, $e['junta'],
+	$ajuste .= cdm_f1_select_html( 'junta', 'Quanto espaço entre uma pastilha e outra?', $juntas, $e['junta'],
 		'Entre 2 e 3 mm é o comum, mas quem decide é a sua peça.' );
-	$html .= cdm_f1_select_html( 'sobra', 'Quanto de sobra você quer?', cdm_f1_sobras(), $e['sobra'],
+	$ajuste .= cdm_f1_select_html( 'sobra', 'Quanto de sobra você quer?', cdm_f1_sobras(), $e['sobra'],
 		'Lote novo de pastilha muda de cor. Faltar dez peças no fim é pior que sobrar dez.' );
-	$html .= cdm_f1_select_html( 'rejunte', 'Qual rejunte você vai usar?', cdm_f1_tipos_de_rejunte(), $e['rejunte'] );
+	$ajuste .= cdm_f1_select_html( 'rejunte', 'Qual rejunte você vai usar?', cdm_f1_tipos_de_rejunte(), $e['rejunte'] );
 
 	if ( '' !== $e['ambiente'] && function_exists( 'cdm_f2_rotulos' ) ) {
-		$rot   = cdm_f2_rotulos();
-		$html .= cdm_f1_select_html( 'onde', 'Onde a peça vai ficar?', $rot['ambiente'], $e['ambiente'],
+		$rot     = cdm_f2_rotulos();
+		$ajuste .= cdm_f1_select_html( 'onde', 'Onde a peça vai ficar?', $rot['ambiente'], $e['ambiente'],
 			'Isto não muda a conta. Serve para a gente só mostrar rejunte que o fabricante declara para esse lugar.' );
 	}
+
+	/* A DOBRA DO FORMULÁRIO ABRE SOZINHA quando a pessoa mexeu em algum dos
+	   campos de dentro: fechá-la sobre a escolha de quem já escolheu esconderia
+	   o valor que a página está usando para responder. */
+	$mexeu = isset( $_GET['esp'] ) || isset( $_GET['junta'] ) || isset( $_GET['sobra'] )
+		|| isset( $_GET['rejunte'] ) || isset( $_GET['onde'] );
+	$html .= cdm_casca_dobra( 'Ajustar espessura, folga, sobra, rejunte e lugar', $ajuste, 'h3', $mexeu );
 
 	$html .= '<p class="cdm-f1-acao"><button type="submit" class="cdm-f1-botao">Ver a conta da minha peça</button></p>';
 	$html .= '</form>';
@@ -2098,53 +2184,122 @@ function cdm_f1_form_html( $e ) {
 
 add_shortcode( 'cdm_f1', function () {
 	$e = cdm_f1_entrada();
+	$r = cdm_f1_calcular( $e['forma'], $e['medidas'], $e['lado_mm'], $e['junta'], $e['espessura'], $e['sobra'], $e['rejunte'] );
 
+	/* A ORDEM DESTA PÁGINA É A DA SEÇÃO 32.1 DO ARQUIPELAGO.md, de cima para
+	   baixo: trilha e H1 (da casca) → UMA frase de promessa → o FORMULÁRIO →
+	   a CAIXA DE RESULTADO → o BLOCO DE COMPRA → a tabela de casos resolvidos,
+	   visível → o resto do texto em dobras.
+
+	   O QUE ESTAVA NO AR ANTES, medido em 21/10/2026 no celular de 390 px:
+	   formulário a 804 px (o teto da 32.5 é 700) e o primeiro botão de loja a
+	   4.108 px (o teto é 1.400). A página tinha 13.493 px de altura e quem
+	   chegava da busca percorria o formulário inteiro, a lista de cinco números
+	   e duas telas de prosa antes de ver um produto.
+
+	   NENHUMA PALAVRA SAIU: o que mudou é a ordem e o que está recolhido em
+	   `<details>`, que o HTML servido carrega inteiro (32.3 e 22.8). */
 	$html  = '<div class="cdm-bloco cdm-f1">';
 	$html .= '<div class="cdm-abertura">';
 	$html .= '<p class="cdm-linha-mestra">Diga o tamanho da sua peça e o do caquinho. A gente mostra quantas pastilhas comprar, '
 		. 'já com sobra, e quanto rejunte levar — na conta da pastilha pequena, não na do azulejo de obra.</p>';
-	$html .= '<p>É a diferença que faz você voltar à loja no meio da peça: a conta que circula por aí foi feita com azulejo grande, '
-		. 'e caquinho pequeno come muito mais rejunte que isso. Quanto mais, a tabela aqui embaixo mostra com os dois números lado a lado.</p>';
-	$html .= '<p>Esta página faz parte do nosso guia de ' . cdm_casca_link_html( 'materiais', 'Materiais' ) . '.</p>';
 	$html .= '</div>';
 
 	$html .= cdm_f1_form_html( $e );
 	$html .= cdm_f1_resposta_html( $e );
-	$html .= cdm_f1_recusa_html( $e );
-	/* A ORDEM DOS DOIS BLOCOS DE COMPRA É DECISÃO, e o cabeçalho deste arquivo
-	   (versão 1.3.0) diz por quê: a pastilha primeiro, porque é dela que falam o
-	   título, o H1 e a primeira frase da resposta. Os dois continuam ANTES da
-	   camada de prova, que é o que a seção 7 do contrato manda. */
-	$html .= cdm_f1_vitrine_pastilha_html( $e );
+
+	/* O BLOCO DE COMPRA, imediatamente abaixo do resultado (32.1, item 5), e os
+	   dois juntos num só bloco com âncora — é ele que a barra do rodapé vigia e
+	   para onde o botão dela leva.
+
+	   A ORDEM DOS DOIS É DECISÃO, e o cabeçalho deste arquivo (versão 1.3.0) diz
+	   por quê: a pastilha primeiro, porque é dela que falam o título, o H1 e a
+	   primeira frase da resposta. Os dois continuam ANTES da camada de prova, que
+	   é o que a seção 7 do contrato manda. */
+	/* VITRINE SEM CARTÃO NÃO É BLOCO DE COMPRA, e esta é a única regra de ordem
+	   que o molde acrescentou às duas que já existiam. Com caquinho de 1 cm — que
+	   é o padrão da página e o tamanho mais usado do mosaico — o nosso banco não
+	   tem nenhuma pastilha, e o bloco dela é explicação, não compra: servido
+	   primeiro, ele põe 345 px de "a gente não tem" entre a resposta e o primeiro
+	   produto que a página de fato vende. Então ele desce para logo DEPOIS do
+	   bloco de compra, com a prestação de contas inteira. Quando houver pastilha
+	   do lado escolhido, ele volta ao primeiro lugar, que é o que o cabeçalho
+	   deste arquivo (versão 1.3.0) manda: é da pastilha que falam o título, o H1
+	   e a primeira frase da resposta. */
+	$classificadas = ( function_exists( 'cdm_f2_nivel' ) && function_exists( 'cdm_f2_nivel_maximo' ) )
+		? cdm_f1_pastilhas_classificadas( $e['lado_mm'] )
+		: array( 'recomendadas' => array() );
+	$tem_pastilha  = ! empty( $classificadas['recomendadas'] );
+	$pastilha_html = cdm_f1_vitrine_pastilha_html( $e );
+
+	$html .= '<div class="cdm-molde-compra" id="compra">';
+	if ( $tem_pastilha ) {
+		$html .= $pastilha_html;
+	}
 	$html .= cdm_f1_vitrine_html( $e );
-	/* O CONFRONTO DA SOBRA VEM DEPOIS DOS DOIS BLOCOS DE COMPRA, de propósito. Ele
-	   fala do número que a pessoa ESCOLHEU e de um produto que hoje não é
-	   recomendável (fonte nível 5, acima do teto 3), então não pode vir antes dos
-	   produtos que são: a seção 22.1 põe ranqueamento antes de conversão e
-	   conversão antes de explicação, e este bloco é explicação. E ele cai no lugar
-	   certo para o leitor justamente no estado em que mais importa — com caquinho
-	   de 1,5 cm a vitrine não tem nenhum item para mostrar, e é logo abaixo dela
-	   que a pessoa lê por que. */
-	$html .= cdm_f1_sobra_confronto_html( $e );
+	$html .= '</div>';
+	if ( ! $tem_pastilha ) {
+		$html .= $pastilha_html;
+	}
+
+	/* A TABELA DE CASOS RESOLVIDOS FICA VISÍVEL (32.1, item 6): é o que as IAs
+	   citam, e recolhê-la seria trocar a visibilidade em IA — regra de primeira
+	   classe pela seção 5 — por 1.800 px de rolagem.
+
+	   A LINHA DO GUIA vem aqui, e não na abertura: ela custava 86 px da primeira
+	   tela e é a mesma ligação que a trilha, três linhas acima, já serve. O link
+	   interno continua existindo, visível e no mesmo documento (16.4). */
+	$html .= '<p>Esta página faz parte do nosso guia de ' . cdm_casca_link_html( 'materiais', 'Materiais' ) . '.</p>';
 	$html .= cdm_f1_tabela_pecas_html();
-	$html .= cdm_f1_tabela_pastilhas_html();
-	$html .= cdm_f1_tabela_consumo_html();
-	$html .= cdm_f1_placa_html();
+
+	/* DAQUI PARA BAIXO, O TEXTO INTEIRO EM DOBRAS (32.1, item 7). A ordem é a
+	   mesma de antes; o título de cada dobra É o `<h2>` que a seção já emitia,
+	   pela `cdm_casca_dobrar_secao()` — ninguém digita um segundo título. */
+	$html .= cdm_casca_dobra( 'Os números da sua peça, um por um', cdm_f1_numeros_html( $e ), 'h2' );
+
+	$recusa = cdm_f1_recusa_html( $e );
+	if ( '' !== $recusa ) {
+		$html .= cdm_casca_dobrar_secao( $recusa );
+	}
+
+	/* O CONFRONTO DA SOBRA VEM DEPOIS DO BLOCO DE COMPRA, de propósito. Ele fala
+	   do número que a pessoa ESCOLHEU e de um produto que hoje não é recomendável
+	   (fonte nível 5, acima do teto 3), então não pode vir antes dos produtos que
+	   são: a seção 22.1 põe ranqueamento antes de conversão e conversão antes de
+	   explicação, e este bloco é explicação. */
+	$sobra = cdm_f1_sobra_confronto_html( $e );
+	if ( '' !== $sobra ) {
+		$html .= cdm_casca_dobrar_secao( $sobra );
+	}
+
+	$html .= cdm_casca_dobrar_secao( cdm_f1_tabela_pastilhas_html() );
+	$html .= cdm_casca_dobrar_secao( cdm_f1_tabela_consumo_html() );
+	$html .= cdm_casca_dobrar_secao( cdm_f1_placa_html() );
 
 	/* PERGUNTAS QUE AS PESSOAS REALMENTE FAZEM — as mesmas do FAQPage. O texto
 	   da tela e o do schema saem da MESMA função, senão os dois envelhecem
 	   separados e o schema passa a prometer o que a página não diz. */
-	$html .= '<div class="cdm-f1-secao"><h2>Perguntas que sempre chegam</h2><dl class="cdm-f1-faq">';
+	$faq = '<div class="cdm-f1-secao"><h2>Perguntas que sempre chegam</h2><dl class="cdm-f1-faq">';
 	foreach ( cdm_f1_perguntas() as $p ) {
-		$html .= '<dt>' . esc_html( $p['pergunta'] ) . '</dt><dd>' . esc_html( $p['resposta'] ) . '</dd>';
+		$faq .= '<dt>' . esc_html( $p['pergunta'] ) . '</dt><dd>' . esc_html( $p['resposta'] ) . '</dd>';
 	}
-	$html .= '</dl></div>';
+	$faq .= '</dl></div>';
+	$html .= cdm_casca_dobrar_secao( $faq );
 
 	/* A CAMADA DE PROVA da página (15.2): de onde vem cada número, o documento e
 	   o dia em que foi lido, e o que a gente ainda não tem. */
-	$html .= cdm_f1_prova_html();
+	$html .= cdm_casca_dobrar_secao( cdm_f1_prova_html() );
 
 	$html .= '</div>';
+
+	/* A BARRA DO RODAPÉ, servida com o caso de exemplo dentro — ela existe para
+	   quem chega da busca e não preenche nada, que é a maioria. */
+	$html .= cdm_casca_barra_html(
+		null !== $r['area_cm2'] ? cdm_casca_num( $r['pastilhas'] ) . ' pastilhas' : 'Sem conta',
+		null !== $r['area_cm2'] ? ' para a peça da tela' : ' — confira as medidas',
+		'compra',
+		'Onde comprar'
+	);
 
 	return $html;
 } );
@@ -2672,8 +2827,12 @@ add_action( 'wp_footer', function () {
 .cdm-f1-acao{margin:1.2rem 0 0;}
 .cdm-f1-botao{display:inline-block;background:var(--cdm-coral);color:#FFFFFF;border:0;border-radius:2px;padding:.7rem 1.2rem;font-family:var(--cdm-display);font-weight:600;font-size:1rem;cursor:pointer;text-decoration:none;}
 .cdm-f1-botao:hover{background:var(--cdm-vinho);color:#FFFFFF;text-decoration:none;}
-.cdm-f1-resposta{margin:1.6rem 0;padding:1.2rem;border:1px solid var(--cdm-traco);border-left:3px solid var(--cdm-coral);border-radius:2px;}
-.cdm-f1-frase{font-size:1.15rem;line-height:1.5;margin:0;}
+/* A CAIXA DE RESULTADO E DA CASCA desde o molde da secao 32 (classe
+   `cdm-molde-resultado`, 21/10/2026): moldura, recuo e a coluna de numeros em
+   Mono moram la, para as duas ferramentas e as fichas nao terem tres caixas
+   diferentes. O que fica aqui e so o tamanho da frase de leitura, que e desta
+   pagina. */
+.cdm-f1-frase{font-size:1.1rem;line-height:1.5;margin:0;}
 .cdm-f1-numeros{list-style:none;margin:1.1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem;}
 .cdm-f1-numeros li{display:flex;flex-wrap:wrap;gap:.2rem 1rem;align-items:baseline;border-top:1px solid var(--cdm-traco);padding-top:.6rem;}
 .cdm-f1-rotulo{font-family:var(--cdm-display);font-weight:600;flex:0 0 14rem;}
@@ -2697,7 +2856,20 @@ add_action( 'wp_footer', function () {
 @media (max-width:600px){
 .cdm-f1-frase{font-size:1.05rem;}
 .cdm-f1-rotulo{flex:1 1 100%;}
-.cdm-f1-medidas .cdm-f1-campo{flex:1 1 100%;}
+/* AS DUAS MEDIDAS LADO A LADO, e nao empilhadas. Ate 21/10/2026 cada uma
+   ocupava a largura inteira: a dupla custava 163 px do formulario, contra 85 px
+   em duas colunas, e o teto da 32.5 e o formulario comecar antes de 700 px. Sao
+   sempre dois ou tres numeros curtos — diametro, altura, lado —, e o campo de
+   numero ja tem largura maxima de 10rem. */
+.cdm-f1-medidas{gap:.6rem;}
+.cdm-f1-medidas .cdm-f1-campo{flex:1 1 7rem;min-width:0;}
+.cdm-f1-medidas .cdm-f1-campo input[type=number]{max-width:100%;}
+/* O MOLDE DA 32 APERTA O FORMULARIO NO TELEFONE, e nenhum campo saiu por
+   isso: a moldura e as margens valiam 58 px na primeira tela. */
+.cdm-f1-form{margin:1rem 0 0;padding:.9rem;}
+.cdm-f1-campo{margin:0 0 .8rem;}
+.cdm-f1-acao{margin:.8rem 0 0;}
+.cdm-f1-form select,.cdm-f1-form input[type=number]{padding:.45rem .6rem;}
 }
 </style>
 <script id="cdm-f1-js">

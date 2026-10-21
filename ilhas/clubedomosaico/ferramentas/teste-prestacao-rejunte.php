@@ -89,6 +89,18 @@ function pr_render( $raiz, $alvo, $consulta ) {
 
 /** O bloco do rejunte da F2: do h2 dele ate a proxima secao. */
 function pr_bloco_f2( $corpo ) {
+	/* O H2 PASSOU A MORAR NO <summary> DE UMA DOBRA em 21/10/2026, com o molde da
+	   secao 32: a `cdm_casca_dobrar_secao()` tira o `<h2>` do corpo da secao e o
+	   poe no sumario, entao logo DEPOIS do h2 vem `</summary>` e so dai o
+	   `<div class="cdm-f2-secao">` da propria secao. A fronteira antiga — "va do
+	   h2 ate o proximo cdm-f2-secao" — passou a casar imediatamente, e o bloco
+	   saia VAZIO: 3.789 erros dizendo que cada rejunte "aparece 0 vezes na prosa",
+	   com a prosa inteira servida. O caminho da dobra vem primeiro; o antigo
+	   continua, para a secao que ainda nao foi recolhida. */
+	if ( preg_match( '#<h2>E o rejunte, que vai entre os caquinhos</h2>\s*</summary>\s*<div class="cdm-dobra-corpo">\s*<div class="cdm-f2-secao[^"]*">(.*?)(?=<div class="cdm-f2-secao[ "]|</details>|$)#is', $corpo, $md ) ) {
+		return $md[1];
+	}
+
 	return preg_match( '#<h2>E o rejunte, que vai entre os caquinhos</h2>(.*?)(?=<div class="cdm-f2-secao[ "]|$)#is', $corpo, $m )
 		? $m[1] : '';
 }

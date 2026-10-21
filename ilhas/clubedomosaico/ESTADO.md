@@ -114,7 +114,7 @@ ultima_execucao: 2026-10-14T10:30Z   # O ITEM 4 DO DESPACHO DE 07/10 FECHA NO PR
                                      # 06/10 envelhecida sete dias: com DOIS produtos saindo pela regra
                                      # 7 na mesma celula, o teste-f2.php media a saida de cada um contra
                                      # o texto do bloco INTEIRO. Passa a medir por PARAGRAFO do produto.
-executando_desde: 2026-10-21T15:06Z   # reserva da execucao de 21/10 15:06Z — despacho do molde da secao 32 nesta ilha, pela 32.6-b (ilhas em paralelo); a aquametria estava reservada desde 15:04Z. A hora sai do `date -u` na mesma linha de comando que grava.
+executando_desde: 2026-10-21T15:59Z   # reserva RENOVADA pela 1.1 (o bloco passou de 40 minutos; a primeira foi as 15:06Z) — molde da secao 32 nesta ilha, pela 32.6-b. A hora sai do `date -u` na mesma linha de comando que grava.
                          # limpo as 20h2xZ de 13/10/2026 pela propria execucao que reservou as 19h17Z. Ele foi reescrito as 19h51Z, e o motivo que eu escrevi naquele commit estava errado: dizia que o bloco tinha passado de 40 minutos e ele tinha 34. Renovar antes nao fere nada (o campo so fica mais novo), mas o motivo escrito tinha de ser verdade — e e o mesmo deslize que o comentario da execucao de 13h18Z, mais abaixo, registra.
                          # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: no commit
                          # do bloco este campo saiu com `2026-10-13T13:45Z`, apresentado como renovacao da

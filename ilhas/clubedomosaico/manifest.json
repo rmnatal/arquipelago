@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 88,
-  "atualizado_em": "2026-10-13",
+  "revisao": 89,
+  "atualizado_em": "2026-10-21",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.23.0",
-      "sha256": "d618ddafea6201220047ce594b32df645e5b8b379bed66a4ef0d14607c9ac873",
-      "descricao": "Casca 1.23.0 — A JANELA DE IRMAS PASSA A ROTACIONAR, E ISSO E 16.4(f) E NAO ESTETICA. Medido no ar em 12/10/2026 as 17h5xZ, contando links na pagina SERVIDA e nao lendo codigo: a SEXTA filha de /materiais/acabamento/ nasceu com UM unico link de entrada — o da mae — contra os DOIS que a 16.4(f) exige. A causa: `cdm_casca_irmas()` devolvia `array_slice( $irmas, 0, 4 )`, as quatro PRIMEIRAS da ordem do mapa, IGUAIS para todas as irmas. Com ate cinco filhas aquilo bastava (cada pagina via no maximo quatro candidatas e a lista saia inteira); da sexta em diante as quatro primeiras sao as mesmas em todas as paginas e a quinta e a sexta nao recebem link de irma NENHUMA. E O DEFEITO ERA MAIOR QUE A PAGINA NOVA: /materiais/ tem ONZE filhas desde 09/10, entao SETE delas — as oito paginas de consulta de produto entre elas — estavam no ar com um link de entrada so. A JANELA CICLICA conserta por construcao: cada pagina leva as quatro irmas que vem DEPOIS dela na ordem do mapa, dando a volta no fim. O grafo e circulante, entao o grau de ENTRADA de toda filha e igual ao de SAIDA — min(4, irmas) — qualquer que seja o numero de filhas. A BANCADA MEDIA SO UMA DIRECAO, e e por isso que o defeito viveu: o bloco 24 do teste-casca conta quantas irmas CADA PAGINA LISTA (2 a 4, todas no ar, todas da mesma mae) e fica verde nos dois mundos. Nasceu o bloco 24-b, que refaz a conta na direcao de ENTRADA a partir do HTML servido de todas as paginas, e a mutacao `a janela de irmas para de rotacionar` restaura o `array_slice` e REPROVA nela. Bancada: teste-casca 1041 (eram 1040) e mutacoes-arvore 30 de 30 (eram 29), com TRES alvos de mutacao retargeados porque o codigo que elas matavam mudou de lugar."
+      "versao": "1.24.0",
+      "sha256": "c732bb12b1221e6cfbac084c6cd2afcc0dee0a6c6c4c4993a89dc30a39850712",
+      "descricao": "Casca 1.24.0 — AS PECAS DO MOLDE DE CONVERSAO DA SECAO 32, e elas nascem na casca porque a 32.6-b manda: o que se repete entre paginas e componente da casca, nunca copia em cada snippet. Sao quatro, e cada uma tem um numero medido no ar atras dela, em 21/10/2026, no celular de 390 px. (1) A DOBRA (`cdm_casca_dobra()` e `cdm_casca_dobrar_secao()`): o texto longo vai para `<details>` e NAO sai da pagina — o HTML servido continua com tudo, legivel sem JavaScript (22.8 e 32.3). A `dobrar_secao` recolhe secao que JA EXISTE sem reescreve-la: o `<h2>` dela vira o titulo da dobra, no mesmo nivel e com o mesmo texto, entao o titulo continua tendo UMA fonte — quinze secoes entre as duas ferramentas, zero titulo digitado duas vezes. (2) A CAIXA DE RESULTADO (`cdm_casca_resultado_html()`): numero em Mono com tabular-nums e a frase de leitura embaixo, PRE-RENDERIZADA com o caso de exemplo, para quem chega da busca — e para todo modelo de linguagem que leia a pagina — achar numero de resposta na primeira tela. (3) O BLOCO DE COMPRA (`.cdm-molde-compra`): o lugar dele e logo abaixo do resultado, a secao de dentro nao carrega a margem dela para o topo do bloco, e no telefone o cartao DEITA (foto flutuando a esquerda, 4,5rem) — em pe, o botao de loja do primeiro cartao caia fundo demais para o teto de 1.400 px da 32.5. (4) A BARRA DO RODAPE (`cdm_casca_barra_html()`): leva o numero do resultado e o botao para o bloco de compra, aparece enquanto esse bloco esta fora da tela, nasce SERVIDA com o caso de exemplo e so e MOSTRADA pelo script — sem IntersectionObserver ela nao aparece, porque barra que pisca e pior que barra que nao ha. O script sai no wp_footer, nunca dentro do retorno de shortcode (secao 8). DOIS ESCAPES QUE CUSTARAM UMA TELA e estao escritos no codigo: `valor` da caixa e da barra e HTML JA ESCAPADO, porque o numero desta ilha sai de `cdm_casca_num()`, que devolve `<span class=\"cdm-num\">720</span>` — na primeira versao o `esc_html()` publicou a etiqueta impressa na tela. Bancada: teste-casca 1041 afirmacoes, 0 falha."
     },
     {
       "id": "f2",
@@ -31,9 +31,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.13.2",
-      "sha256": "b0c9c98a9a6e9c051078cc13c9e17552184fae235e0db10680328a88d149d178",
-      "descricao": "F2 1.13.2 — CODIGO MORTO REMOVIDO, e quem o apontou foi a bancada de mutacoes. A chave `colas` da `cdm_f2_cobertura()` e a `cdm_f2_quantas_colas()` tinham UM leitor so — a `description` que citava '7 colas em 270 casos' — e na 1.13.0 a frase passou a nomear a cola LIDER. A mutacao `as colas contadas com o banco inteiro` PASSOU na passada limpa de 08/10/2026 porque mutava um numero que nada publica. O conserto nao foi um portao novo (portao sobre numero que ninguem serve e verde sobre nada): a chave, a funcao e a mutacao sairam juntas, com o motivo escrito nos dois arquivos. A regra que ela guardava continua guardada pela prestacao de contas da secao 7, que conta as colas ATIVAS do arquivo e cobra cada uma em exatamente um lado da pagina, nos 270 estados. Nenhuma linha do HTML servido muda."
+      "versao": "1.14.0",
+      "sha256": "197a3ed7987ec26b60b5601abc2b15a052c04133f6fcf125c94504737227d50f",
+      "descricao": "F2 1.14.0 — A PAGINA NO MOLDE DA SECAO 32, com os numeros medidos no ar em 21/10/2026, celular de 390 px: o formulario comecava a 754 px (teto 700) e o primeiro botao de loja a 2.446 px (teto 1.400). A ordem passou a ser a da 32.1, e NENHUMA PALAVRA SAIU — o HTML servido foi de 4.841 para 4.868 palavras. O QUE FOI FEITO: a abertura ficou com a promessa, e o paragrafo que falava do que o fabricante proibe em espelho, cimento e vidro laminado foi para a secao que lista exatamente isso; o formulario ficou com os dois campos que decidem a COLA abertos — a base e o lugar — e os dois de ajuste numa dobra, porque o caquinho nao muda a cola (o proprio texto de ajuda dele diz isso) e a folga decide o rejunte; `cdm_f2_resposta_cola_html()` passou a servir em duas partes, `frase` para a caixa de resultado e `resto` para a dobra do preparo e da procedencia, com `tudo` intacto para quem a chamar de fora do molde; o bloco \"Onde comprar\" subiu para logo abaixo da caixa, dentro do bloco de compra com ancora; espera, rejunte, o que nao usar, faixas descobertas, perguntas e \"Como sabemos\" foram para dobras, com o `<h2>` de cada uma virando o titulo da sua. AS DUAS TABELAS DE CASOS RESOLVIDOS FICAM VISIVEIS, pela 32.1: sao o que as IAs citam. MEDIDO NO AR DEPOIS: formulario a 487 px, primeiro botao de compra a 1.221 px, altura de 37.526 para 31.816 px, rolagem horizontal 0. Bancada: teste-f2 174 afirmacoes 0 falha — e tres delas reprovavam dizendo que produto recomendado \"sumiu da pagina\" quando ele estava na primeira frase, porque quatro sitios do portao casavam `<div class=\"cdm-f2-resposta\">` com o atributo INTEIRO; as fronteiras da regiao da resposta passaram a morar em tres funcoes, num lugar so."
     },
     {
       "id": "tecnicas",
@@ -53,9 +53,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.8.0",
-      "sha256": "dc7890e33c804d316fa31e1168b79a27ee83f51670b97ebadc0b6223e517a4ef",
-      "descricao": "F1 1.8.0 — A PROMESSA DA SERP PASSA A SER A FAIXA, E NAO A CONTAGEM DE PECAS. O `<title>` passa de 'Quantas pastilhas e quanto rejunte comprar - 12 pecas calculadas' para '... - 23 a 960 pastilhas', e a `description` passa a COMECAR pelo numero ('De 23 a 960 pastilhas, pela medida que o fabricante publica: ...') em vez de repetir a pergunta. Os dois numeros continuam saindo de `cdm_f1_faixa_das_pecas()`, a mesma varredura que monta a tabela da tela. E o padrao que a Robometria serve em /quantos-pa-o-robo-aspirador-precisa/ desde 17/09/2026. Causa: leitura semanal de 07/10/2026, 19 impressoes na posicao 6,3 e ZERO clique, Proposta 2 — no mesmo commit da Proposta 1, para as duas serem medidas juntas contra a parada do Picassiete."
+      "versao": "1.9.0",
+      "sha256": "bf3168da93271d2050b5a06858726eea224e13692b16e9517b283a505d8d5b3c",
+      "descricao": "F1 1.9.0 — A PAGINA NO MOLDE DA SECAO 32, e os dois numeros que ela existia para consertar estao medidos no ar: em 21/10/2026, celular de 390 px, o formulario comecava a 804 px (o teto da 32.5 e 700) e o primeiro botao de loja a 4.108 px (o teto e 1.400). A ordem passou a ser a da 32.1: trilha e H1 -> UMA frase de promessa -> formulario -> caixa de resultado -> bloco de compra -> a tabela das doze pecas, VISIVEL -> o resto do texto em dobras. NENHUMA PALAVRA SAIU: o HTML servido foi de 2.981 para 3.031 palavras, e o que mudou e a ordem e o que esta recolhido. O QUE FOI FEITO, item por item: a abertura perdeu dois dos tres paragrafos para dentro da pagina — o da conta de obra foi para a secao que mostra a tabela dele, a linha do guia foi para cima da tabela das doze pecas —; o formulario ficou com os tres campos que DECIDEM a conta abertos e os cinco de ajuste numa dobra que abre sozinha quando a pessoa mexeu em algum deles; a caixa de resultado leva as pastilhas e os gramas em Mono mais a frase citavel, e a lista dos cinco numeros desceu para uma dobra (ela ocupava 536 px entre a resposta e o bloco de compra); as duas medidas da peca ficam lado a lado no telefone (163 px -> 73); a prestacao de contas das duas vitrines — toda pastilha e todo rejunte nomeado uma vez, pela secao 7 — foi para dobras, com o aviso de comissao FORA delas, porque aviso de afiliado recolhido e aviso que ninguem leu. A UNICA REGRA DE ORDEM NOVA: VITRINE SEM CARTAO NAO E BLOCO DE COMPRA. Com caquinho de 1 cm, que e o padrao da pagina e o tamanho mais usado do mosaico, o banco nao tem nenhuma pastilha — e o bloco dela, servido primeiro, punha 345 px de \"a gente nao tem\" entre a resposta e o primeiro produto que a pagina de fato vende. Ele desce para depois do bloco de compra, inteiro, e volta ao primeiro lugar no dia em que houver pastilha daquele lado. MEDIDO NO AR DEPOIS: formulario a 510 px e primeiro botao de compra a 1.306 px, altura de 13.493 para 5.090 px, rolagem horizontal 0. Bancada: teste-f1 230 afirmacoes 0 falha (duas afirmacoes NOVAS: o bloco de compra existe e vem depois do resultado, e nenhum cartao sai fora dele), teste-prestacao-rejunte 5 de 5."
     },
     {
       "id": "loja",
@@ -640,7 +640,7 @@
     {
       "id": "mutacoes-f1",
       "arquivo": "ferramentas/mutacoes-f1.py",
-      "sha256": "872fd6cdf008e17b0e1bb1823fb50c8b4f599561d0563b1b0adc639554c8f190",
+      "sha256": "0dec775e20206d0d969e3d6358babd4dbd47a14ae28d7508c5a0c1a67a66d92f",
       "descricao": "Quebra a F1 de proposito, uma mutacao por vez, e exige que teste-f1.php reprove cada uma. Bancada."
     },
     {
@@ -785,13 +785,13 @@
     {
       "id": "teste-f1",
       "arquivo": "ferramentas/teste-f1.php",
-      "sha256": "532d15d71c72becc963e303c9fa075b058a0812d48ca3e6a4eee03b7e14bb7ef",
+      "sha256": "81f31145b7b6a752fc51b37ad41199edb66c5b345b18a6d192485ac0ba3b608b",
       "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
     },
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "2ccae5d41f1957cb344f6626fd06cb85b2b2187b43921956675fb11341f29bc2",
+      "sha256": "c997b415ef2aaec02aaf490b2183be7a5c402413e117a773717d66ce9d4d61ef",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
     },
     {
@@ -821,7 +821,7 @@
     {
       "id": "teste-prestacao-rejunte",
       "arquivo": "ferramentas/teste-prestacao-rejunte.php",
-      "sha256": "9f90f88a6b99ce3cfee0c99fec321533724a4af31ef8bf4da61bf09835319043",
+      "sha256": "8dcc47ffe81851bb0e7c7d96ed167dcaa9c0ffb21ded6673bdf50ef14b658ca3",
       "descricao": "Portao do despacho da Sentinela de 12/09/2026: cobra que todo rejunte do banco seja nomeado uma vez em cada resposta — na frase que o recomenda ou numa linha que diz por que ele nao esta — e que a vitrine sirva exatamente o que a frase nomeia, nas duas ferramentas e na tabela pre-renderizada. Regua propria, recomputada dos perfis escritos a mao no esquema; 540 estados da F2, 180 da F1 e as 9 linhas da tabela, um processo por estado. Bancada: nunca vai para o site."
     },
     {

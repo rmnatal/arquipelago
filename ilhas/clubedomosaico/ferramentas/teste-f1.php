@@ -65,11 +65,19 @@ function f1_texto( $html ) {
 	return trim( preg_replace( '/\s+/u', ' ', html_entity_decode( strip_tags( $html ), ENT_QUOTES, 'UTF-8' ) ) );
 }
 
-/** SO o bloco de resposta daquele estado — onde a conta da pessoa e servida. */
+/** SO o bloco de resposta daquele estado — onde a conta da pessoa e servida.
+ *
+ * A CLASSE DEIXOU DE SER SOZINHA em 21/10/2026, com o molde da secao 32: a caixa
+ * de resultado passou a ser componente da casca e serve
+ * `class="cdm-f1-resposta cdm-molde-resultado"`. O regex antigo exigia o atributo
+ * INTEIRO igual a `cdm-f1-resposta` e devolvia string vazia — duas afirmacoes
+ * desta bancada reprovaram sem que a pagina tivesse defeito, e e o tipo de falso
+ * vermelho que faz alguem desligar o portao. Agora ele casa a classe DENTRO do
+ * atributo, que e o que a afirmacao sempre quis dizer. */
 function f1_bloco_resposta( $corpo ) {
-	return preg_match( '#<div class="cdm-f1-resposta"[^>]*>(.*?)</div>\s*<div#is', $corpo, $m )
+	return preg_match( '#<div class="[^"]*\bcdm-f1-resposta\b[^"]*"[^>]*>(.*?)</div>\s*<div#is', $corpo, $m )
 		? $m[1]
-		: ( preg_match( '#<div class="cdm-f1-resposta"[^>]*>(.*)#is', $corpo, $m2 ) ? $m2[1] : '' );
+		: ( preg_match( '#<div class="[^"]*\bcdm-f1-resposta\b[^"]*"[^>]*>(.*)#is', $corpo, $m2 ) ? $m2[1] : '' );
 }
 
 /** Um estado da ferramenta, servido por um processo so dele. */
@@ -1234,6 +1242,8 @@ $estados_ordem = array(
 
 $sem_marcador   = array();
 $fora_de_ordem  = array();
+$sem_bloco_de_compra  = array();
+$cartao_fora_do_bloco = array();
 $antes_da_conta = array();
 $depois_da_prova = array();
 $duplicados     = array();
@@ -1257,8 +1267,33 @@ foreach ( $estados_ordem as $consulta => $rotulo ) {
 	$p_resp  = mb_strpos( $corpo_o, 'cdm-f1-resposta' );
 	$p_prova = mb_strpos( $corpo_o, 'cdm-prova' );
 
-	if ( $p_past > $p_rej ) {
-		$fora_de_ordem[] = $rotulo;
+	/* A REGRA DE ORDEM MUDOU EM 21/10/2026, COM O MOLDE DA SECAO 32, e a nova e
+	   mais exigente que a velha em vez de mais frouxa: VITRINE SEM CARTAO NAO E
+	   BLOCO DE COMPRA. A pastilha vem primeiro quando TEM cartao — e e dela que
+	   falam o titulo, o H1 e a primeira frase —, e quando nao tem ela sai do
+	   bloco de compra e desce para depois dele, porque servida primeiro ela punha
+	   345 px de "a gente nao tem" entre a resposta e o primeiro produto que a
+	   pagina de fato vende (medido no ar, celular de 390 px, nesta pagina).
+
+	   A afirmacao antiga — "pastilha antes de rejunte em TODO estado" — passava
+	   verde justamente no estado padrao da pagina, o caquinho de 1 cm, em que a
+	   vitrine da pastilha e uma frase de recusa. Ela media a ordem do codigo e
+	   nao a ordem do que converte. */
+	$past_tem_cartao = ( mb_strpos( f1_bloco_pastilha( $corpo_o ), 'cdm-f2-cartao' ) !== false );
+	if ( $past_tem_cartao ? ( $p_past > $p_rej ) : ( $p_past < $p_rej ) ) {
+		$fora_de_ordem[] = $rotulo . ( $past_tem_cartao ? ' (tem cartao de pastilha)' : ' (sem cartao de pastilha)' );
+	}
+
+	/* E O BLOCO DE COMPRA TEM DE EXISTIR, VIR DEPOIS DA RESPOSTA E CONTER OS
+	   CARTOES. Sem esta metade, a regra acima poderia ficar verde com a vitrine
+	   solta em qualquer lugar da pagina. */
+	$p_compra = mb_strpos( $corpo_o, 'cdm-molde-compra' );
+	$p_cartao = mb_strpos( $corpo_o, 'cdm-f2-cartao' );
+	if ( false === $p_compra || false === $p_resp || $p_compra < $p_resp ) {
+		$sem_bloco_de_compra[] = $rotulo;
+	}
+	if ( false !== $p_cartao && ( false === $p_compra || $p_cartao < $p_compra ) ) {
+		$cartao_fora_do_bloco[] = $rotulo;
 	}
 	if ( false === $p_resp || $p_resp > $p_past ) {
 		$antes_da_conta[] = $rotulo;
@@ -1272,8 +1307,12 @@ f1_ok( empty( $sem_marcador ), 'as duas vitrines declaram o proprio marcador em 
 	empty( $sem_marcador ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $sem_marcador ) );
 f1_ok( empty( $duplicados ), 'e cada marcador sai UMA vez (marcador repetido faria a medida de posicao mentir)',
 	empty( $duplicados ) ? '' : implode( ' | ', $duplicados ) );
-f1_ok( empty( $fora_de_ordem ), 'a vitrine de PASTILHA vem antes da de rejunte em todo estado',
+f1_ok( empty( $fora_de_ordem ), '32.1: a vitrine COM cartao vem primeiro, e a sem cartao desce (vitrine vazia nao e bloco de compra)',
 	empty( $fora_de_ordem ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $fora_de_ordem ) );
+f1_ok( empty( $sem_bloco_de_compra ), '32.1: o bloco de compra existe e vem DEPOIS da caixa de resultado',
+	empty( $sem_bloco_de_compra ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $sem_bloco_de_compra ) );
+f1_ok( empty( $cartao_fora_do_bloco ), 'e nenhum cartao de loja sai FORA do bloco de compra',
+	empty( $cartao_fora_do_bloco ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $cartao_fora_do_bloco ) );
 f1_ok( empty( $antes_da_conta ), '22.2: a resposta continua vindo antes das duas vitrines',
 	empty( $antes_da_conta ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $antes_da_conta ) );
 f1_ok( empty( $depois_da_prova ), 'secao 7: as DUAS vitrines vem antes da camada de prova',
@@ -1371,8 +1410,12 @@ $p_past_sb = mb_strpos( $corpo_sem_banco, 'cdm-f1-vitrine-pastilha' );
 $p_rej_sb  = mb_strpos( $corpo_sem_banco, 'cdm-f1-vitrine-rejunte' );
 f1_ok( false !== $p_past_sb && false !== $p_rej_sb,
 	'sem banco, as duas vitrines AINDA declaram o marcador (a saida degradada nao perde o nome)' );
-f1_ok( false !== $p_past_sb && false !== $p_rej_sb && $p_past_sb < $p_rej_sb,
-	'sem banco, a pastilha continua vindo antes do rejunte' );
+/* SEM BANCO NENHUMA DAS DUAS TEM CARTAO, e pela regra do molde (32.1) a vitrine
+   sem cartao desce: a ordem esperada aqui e rejunte primeiro, pastilha depois.
+   A afirmacao continua medindo ordem; o que mudou e qual ordem e a certa, e ela
+   agora sai da MESMA regra que vale nos 15 estados varridos acima. */
+f1_ok( false !== $p_past_sb && false !== $p_rej_sb && $p_rej_sb < $p_past_sb,
+	'sem banco, as duas vitrines estao sem cartao, e a pastilha desce para depois do bloco de compra' );
 
 array_map( 'unlink', glob( $temp . '/snippets/*.php' ) );
 @unlink( $temp . '/manifest.json' );

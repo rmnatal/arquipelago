@@ -134,7 +134,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.13.2' );
+	define( 'CDM_F2_VERSAO', '1.14.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -1513,13 +1513,25 @@ function cdm_f2_motivo_proibicao( $id, $base, $ambiente ) {
  * ------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'cdm_f2_resposta_cola_html' ) ) {
-function cdm_f2_resposta_cola_html( $base, $ambiente, $tessela ) {
+function cdm_f2_resposta_cola_html( $base, $ambiente, $tessela, $parte = 'tudo' ) {
 	$rot    = cdm_f2_rotulos();
 	$celula = cdm_f2_celula_cola( $base, $ambiente, $tessela );
 	$nb     = $rot['base_curto'][ $base ];
 	$na     = $rot['ambiente_curto'][ $ambiente ];
 
-	$html = '<div class="cdm-f2-resposta">';
+	/* AS DUAS PARTES, e a razão está na seção 32.1 do ARQUIPELAGO.md: a CAIXA DE
+	   RESULTADO leva a frase da resposta, e o que vem depois dela — a instrução
+	   de preparo e a linha de procedência — é explicação, que o molde manda pôr
+	   numa dobra, abaixo do bloco de compra. Medido no ar em 21/10/2026 nesta
+	   página: a resposta inteira tinha 819 px e o primeiro botão de loja caía a
+	   2.446 px, com o teto da 32.5 em 1.400.
+
+	   `frase` devolve a caixa; `resto` devolve preparo e procedência; `tudo`
+	   devolve o que esta função sempre devolveu, para quem a chamar de fora do
+	   molde não mudar de comportamento. Nenhuma palavra é escrita duas vezes:
+	   quem monta a página pede as duas partes, uma vez cada. */
+	$classe = ( 'resto' === $parte ) ? 'cdm-f2-resposta' : 'cdm-f2-resposta cdm-molde-resultado';
+	$html   = '<div class="' . $classe . '">';
 
 	if ( $celula['recomendados_topo'] ) {
 		$nomes = array();
@@ -1676,13 +1688,21 @@ function cdm_f2_resposta_cola_html( $base, $ambiente, $tessela ) {
 	   recebe instrução de aplicação, porque instrução sem indicação é receita de
 	   usar o que a gente acabou de dizer que não serve. */
 	$recomendados = array_merge( $celula['recomendados_topo'], $celula['elegiveis_abaixo_do_topo'] );
-	$html .= cdm_f2_preparo_html( $recomendados, 'colar' );
+	$extra        = cdm_f2_preparo_html( $recomendados, 'colar' );
 
 	$provas = array_merge( $provas, cdm_f2_preparo_provas( $recomendados ) );
 	if ( $provas ) {
-		$html .= '<div class="cdm-prova"><p>' . implode( '. ', $provas ) . '.</p></div>';
+		$extra .= '<div class="cdm-prova"><p>' . implode( '. ', $provas ) . '.</p></div>';
 	}
 
+	if ( 'frase' === $parte ) {
+		return $html . '</div>';
+	}
+	if ( 'resto' === $parte ) {
+		return $extra;
+	}
+
+	$html .= $extra;
 	$html .= '</div>';
 
 	return $html;
@@ -1777,6 +1797,12 @@ function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
 
 	$html = '<div class="cdm-f2-secao cdm-f2-fora">';
 	$html .= '<h2>O que não usar em ' . esc_html( $rot['base_curto'][ $base ] ) . ', e por quê</h2>';
+	/* ESTE PARÁGRAFO VEIO DA ABERTURA DA PÁGINA em 21/10/2026, quando a ordem da
+	   32.1 entrou. Ele era o segundo dos três de abertura e custava 170 px da
+	   primeira tela — e fala exatamente do que ESTA seção lista, com os três
+	   substratos que a proibição do fabricante nomeia. Não foi apagado nem
+	   reescrito: foi posto onde as frases do fabricante estão. */
+	$html .= '<p>A resposta muda mais do que parece: a mesma peça feita para a sala e para o jardim leva material diferente, e a cola que a maioria dos tutoriais manda usar é justamente a que o fabricante proíbe em espelho, em cimento e em vidro laminado.</p>';
 
 	if ( $celula['eliminados_por_proibicao'] ) {
 		$html .= '<ul class="cdm-f2-lista-fora">';
@@ -2846,10 +2872,23 @@ function cdm_f2_form_html( $entrada ) {
 	$html  = '<form class="cdm-f2-form" method="get" action="' . esc_url( add_query_arg( array() ) ) . '#resposta">';
 	$html .= cdm_f2_select_html( 'base', 'Sobre o que você vai colar?', $rot['base'], $entrada['base'] );
 	$html .= cdm_f2_select_html( 'onde', 'Onde a peça vai ficar?', $rot['ambiente'], $entrada['ambiente'] );
-	$html .= cdm_f2_select_html( 'caco', 'O que você vai colar em cima?', $rot['tessela'], $entrada['tessela'],
+	/* OS DOIS CAMPOS DE AJUSTE NUMA DOBRA (32.1, item 3). Os dois que decidem a
+	   COLA — a base e o lugar — ficam abertos, porque é a cola que o título, o H1
+	   e a primeira frase da resposta prometem. O caquinho não muda a cola (o
+	   próprio texto de ajuda dele diz isso) e a folga decide o rejunte, que é a
+	   segunda metade da página. Nenhum campo saiu e os dois nascem no caso de
+	   exemplo. Medido no ar em 21/10/2026: com os quatro abertos o formulário
+	   tinha 614 px e a resposta começava a 1.342. */
+	$ajuste  = cdm_f2_select_html( 'caco', 'O que você vai colar em cima?', $rot['tessela'], $entrada['tessela'],
 		'Isto não muda a cola — quem manda na cola é a base. Serve para a gente avisar quando o fabricante do rejunte cita o seu caquinho por escrito.' );
-	$html .= cdm_f2_select_html( 'junta', 'Quanto espaço entre uma pastilha e outra?', $juntas, $entrada['junta'],
+	$ajuste .= cdm_f2_select_html( 'junta', 'Quanto espaço entre uma pastilha e outra?', $juntas, $entrada['junta'],
 		'Entre 2 e 3 mm é o comum, mas quem decide é a sua peça.' );
+
+	/* ABRE SOZINHA quando a pessoa mexeu num dos dois: esconder o valor que a
+	   página está usando para responder seria esconder a pergunta. */
+	$mexeu = isset( $_GET['caco'] ) || isset( $_GET['junta'] );
+	$html .= cdm_casca_dobra( 'Ajustar o caquinho e a folga entre as peças', $ajuste, 'h3', $mexeu );
+
 	$html .= '<p class="cdm-f2-acao"><button type="submit" class="cdm-f2-botao">Ver o que usar</button></p>';
 	$html .= '</form>';
 
@@ -2875,42 +2914,73 @@ add_shortcode( 'cdm_f2', function () {
 	$rot = cdm_f2_rotulos();
 	$n   = cdm_casca_numeros();
 
+	/* A ORDEM DESTA PÁGINA É A DA SEÇÃO 32.1 DO ARQUIPELAGO.md: trilha e H1 (da
+	   casca) → UMA frase de promessa → o FORMULÁRIO → a CAIXA DE RESULTADO → o
+	   BLOCO DE COMPRA → as tabelas de casos resolvidos, visíveis → o resto do
+	   texto em dobras.
+
+	   O QUE ESTAVA NO AR ANTES, medido em 21/10/2026 no celular de 390 px:
+	   formulário a 754 px (o teto da 32.5 é 700) e o primeiro botão de loja a
+	   2.446 px (o teto é 1.400). A página tinha 37.526 px de altura.
+
+	   NENHUMA PALAVRA SAIU: mudou a ordem e o que está em `<details>`, que o HTML
+	   servido carrega inteiro e se lê com o JavaScript desligado (32.3 e 22.8). */
 	$html  = '<div class="cdm-bloco cdm-f2">';
 	$html .= '<div class="cdm-abertura">';
 	$html .= '<p class="cdm-linha-mestra">Diga sobre o que você vai colar e onde a peça vai ficar. A gente mostra a cola, o rejunte, quanto esperar — e o que <em>não</em> usar no seu caso.</p>';
-	$html .= '<p>A resposta muda mais do que parece: a mesma peça feita para a sala e para o jardim leva material diferente, e a cola que a maioria dos tutoriais manda usar é justamente a que o fabricante proíbe em espelho, em cimento e em vidro laminado.</p>';
-	$html .= '<p>Esta página faz parte do nosso guia de ' . cdm_casca_link_html( 'materiais', 'Materiais' ) . '.</p>';
 	$html .= '</div>';
 
 	$html .= cdm_f2_form_html( $e );
 
 	$html .= '<div class="cdm-f2-saida" id="resposta">';
-	$html .= cdm_f2_resposta_cola_html( $e['base'], $e['ambiente'], $e['tessela'] );
+	$html .= cdm_f2_resposta_cola_html( $e['base'], $e['ambiente'], $e['tessela'], 'frase' );
+
+	/* O BLOCO DE COMPRA, imediatamente abaixo do resultado (32.1, item 5). É ele
+	   que a barra do rodapé vigia e para onde o botão dela leva. */
+	$html .= '<div class="cdm-molde-compra" id="compra">';
 	$html .= cdm_f2_vitrine_html( $e['base'], $e['ambiente'], $e['tessela'] );
-	$html .= cdm_f2_espera_html( $e['base'], $e['ambiente'], $e['tessela'] );
-	$html .= cdm_f2_resposta_rejunte_html( $e['junta'], $e['ambiente'], $e['tessela'] );
-	$html .= cdm_f2_fora_html( $e['base'], $e['ambiente'], $e['tessela'] );
 	$html .= '</div>';
 
+	/* DAQUI PARA BAIXO, O TEXTO INTEIRO EM DOBRAS (32.1, item 7), na mesma ordem
+	   de antes. O título de cada dobra É o `<h2>` que a seção já emitia, pela
+	   `cdm_casca_dobrar_secao()` da casca — ninguém digita um segundo título. */
+	$resto_da_cola = cdm_f2_resposta_cola_html( $e['base'], $e['ambiente'], $e['tessela'], 'resto' );
+	if ( '' !== $resto_da_cola ) {
+		$html .= cdm_casca_dobra( 'Antes de colar: o preparo e de onde sai esta resposta', $resto_da_cola, 'h2' );
+	}
+	$html .= cdm_casca_dobrar_secao( cdm_f2_espera_html( $e['base'], $e['ambiente'], $e['tessela'] ) );
+	$html .= cdm_casca_dobrar_secao( cdm_f2_resposta_rejunte_html( $e['junta'], $e['ambiente'], $e['tessela'] ) );
+	$html .= cdm_casca_dobrar_secao( cdm_f2_fora_html( $e['base'], $e['ambiente'], $e['tessela'] ) );
+	$html .= '</div>';
+
+	/* A LINHA DO GUIA vem aqui, e não na abertura: ela custava 56 px da primeira
+	   tela e é a mesma ligação que a trilha, três linhas acima do H1, já serve. O
+	   link interno continua existindo, visível e no mesmo documento (16.4). */
+	$html .= '<p>Esta página faz parte do nosso guia de ' . cdm_casca_link_html( 'materiais', 'Materiais' ) . '.</p>';
+
+	/* AS DUAS TABELAS DE CASOS RESOLVIDOS FICAM VISÍVEIS (32.1, item 6): são o
+	   que as IAs citam, e recolhê-las seria trocar a visibilidade em IA — regra
+	   de primeira classe pela seção 5 — pela rolagem que elas ocupam. */
 	$html .= cdm_f2_tabela_cola_html();
 	$html .= cdm_f2_tabela_rejunte_html();
 
-	$html .= cdm_f2_faixas_descobertas_html();
+	$html .= cdm_casca_dobrar_secao( cdm_f2_faixas_descobertas_html() );
 
 	/* PERGUNTAS QUE AS PESSOAS REALMENTE FAZEM — as mesmas do FAQPage abaixo. O
 	   texto na tela e o do schema saem da MESMA função, senão os dois envelhecem
 	   separados e o schema passa a prometer o que a página não diz. */
-	$html .= '<div class="cdm-f2-secao"><h2>Perguntas que sempre chegam</h2><dl class="cdm-f2-faq">';
+	$faq = '<div class="cdm-f2-secao"><h2>Perguntas que sempre chegam</h2><dl class="cdm-f2-faq">';
 	foreach ( cdm_f2_perguntas() as $p ) {
-		$html .= '<dt>' . esc_html( $p['pergunta'] ) . '</dt><dd>' . esc_html( $p['resposta'] ) . '</dd>';
+		$faq .= '<dt>' . esc_html( $p['pergunta'] ) . '</dt><dd>' . esc_html( $p['resposta'] ) . '</dd>';
 	}
-	$html .= '</dl></div>';
+	$faq .= '</dl></div>';
+	$html .= cdm_casca_dobrar_secao( $faq );
 
 	/* A CAMADA DE PROVA da página (15.2): quem declarou, em qual documento, em
 	   que dia a gente leu, e o que ainda não foi lido direto. */
-	$html .= '<div class="cdm-prova">';
-	$html .= '<h2>Como sabemos</h2>';
-	$html .= '<p>As ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas e os ' . cdm_casca_num( $n['materiais_rejunte'] )
+	$prova  = '<div class="cdm-prova">';
+	$prova .= '<h2>Como sabemos</h2>';
+	$prova .= '<p>As ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas e os ' . cdm_casca_num( $n['materiais_rejunte'] )
 		. ' rejuntes desta página vêm do que cada fabricante publica sobre o próprio produto, com o documento e a data em que foi lido. A recomendação é <em>recalculada</em> das declarações a cada carregamento, nunca digitada — são '
 		. cdm_casca_num( $n['celulas_matriz'] ) . ' combinações de base e ambiente e ' . cdm_casca_num( $n['celulas_rejunte'] )
 		. ' de folga e ambiente conferidas uma a uma.</p>';
@@ -2927,7 +2997,7 @@ add_shortcode( 'cdm_f2', function () {
 	   Entao a conta passa a ser CONTADA e a sair so pela via viva (`numeros_vivos`),
 	   como a da divulgacao: com o instantaneo, a pagina diz onde a leitura foi
 	   feita e nao afirma quantidade nenhuma. Numero de tela nasce contado. */
-	$html .= '<p>A mais importante delas é a ficha técnica BRSA004 do Silicone Acético Construção Tekbond, revisada em 10/2025, que lista espelho, concreto, cimento, tijolo, calcário, superfície alcalina, pintada ou porosa, acrílico, aquário, metal corrosível e imersão contínua entre as superfícies em que o produto não deve ser usado. '
+	$prova .= '<p>A mais importante delas é a ficha técnica BRSA004 do Silicone Acético Construção Tekbond, revisada em 10/2025, que lista espelho, concreto, cimento, tijolo, calcário, superfície alcalina, pintada ou porosa, acrílico, aquário, metal corrosível e imersão contínua entre as superfícies em que o produto não deve ser usado. '
 		. ( ! empty( $n['numeros_vivos'] )
 			? 'Dos ' . cdm_casca_num( $n['documentos_no_banco'] ) . ' documentos que o banco cita, '
 				. ( (int) $n['documentos_abertos'] > 0
@@ -2938,11 +3008,28 @@ add_shortcode( 'cdm_f2', function () {
 				. '; o resto foi lido no domínio de cada fabricante, e isso está declarado item a item no nosso banco.'
 			: 'A leitura foi feita no domínio de cada fabricante, e quais documentos foram abertos página a página está declarado item a item no nosso banco.' )
 		. '</p>';
-	$html .= '<p>Hoje ' . cdm_casca_num( $n['esperando_link'] ) . ' dos ' . cdm_casca_num( $n['itens_no_banco'] )
+	$prova .= '<p>Hoje ' . cdm_casca_num( $n['esperando_link'] ) . ' dos ' . cdm_casca_num( $n['itens_no_banco'] )
 		. ' itens do banco ainda esperam link de loja. O método inteiro está em ' . cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
-	$html .= '</div>';
+	$prova .= '</div>';
+
+	$html .= cdm_casca_dobrar_secao( $prova );
 
 	$html .= '</div>';
+
+	/* A BARRA DO RODAPÉ, servida com o caso de exemplo dentro — ela existe para
+	   quem chega da busca e não preenche nada, que é a maioria. O que ela carrega
+	   é o nome da cola, que é a resposta desta página. */
+	$celula = cdm_f2_celula_cola( $e['base'], $e['ambiente'], $e['tessela'] );
+	$nomes  = array();
+	foreach ( $celula['recomendados_topo'] as $id ) {
+		$nomes[] = cdm_f2_nome( $id );
+	}
+	$html .= cdm_casca_barra_html(
+		$nomes ? esc_html( $nomes[0] ) : 'Sem indicação',
+		$nomes ? ' para o caso da tela' : ' — veja por quê abaixo',
+		'compra',
+		'Onde comprar'
+	);
 
 	return $html;
 } );
@@ -3253,8 +3340,13 @@ add_action( 'wp_footer', function () {
 .cdm-f2-acao{margin:1.2rem 0 0;}
 .cdm-f2-botao{display:inline-block;background:var(--cdm-coral);color:#FFFFFF;border:0;border-radius:2px;padding:.7rem 1.2rem;font-family:var(--cdm-display);font-weight:600;font-size:1rem;cursor:pointer;text-decoration:none;}
 .cdm-f2-botao:hover{background:var(--cdm-vinho);color:#FFFFFF;text-decoration:none;}
-.cdm-f2-resposta{margin:1.6rem 0;padding:1.2rem;border:1px solid var(--cdm-traco);border-left:3px solid var(--cdm-coral);border-radius:2px;}
-.cdm-f2-frase{font-size:1.15rem;line-height:1.5;margin:0;}
+/* A CAIXA DE RESULTADO E DA CASCA desde o molde da secao 32 (classe
+   `cdm-molde-resultado`, 21/10/2026): moldura e recuo moram la, para as duas
+   ferramentas e as fichas nao terem tres caixas diferentes. A regra abaixo
+   continua existindo para a chamada `tudo` desta funcao, que nao passa pelo
+   molde. */
+.cdm-f2-resposta:not(.cdm-molde-resultado){margin:1.6rem 0;padding:1.2rem;border:1px solid var(--cdm-traco);border-left:3px solid var(--cdm-coral);border-radius:2px;}
+.cdm-f2-frase{font-size:1.1rem;line-height:1.5;margin:0;}
 /* A segunda linha da recomendacao — os que servem sem o fabricante nomear o
    lugar. Ela e frase, nao nota de rodape, entao fica no corpo do texto; o
    degrau de tamanho e o que diz ao olho que o primeiro e o primeiro. */
@@ -3315,6 +3407,12 @@ add_action( 'wp_footer', function () {
 @media (max-width:600px){
 .cdm-f2-cartao{flex:0 0 78%;}
 .cdm-f2-frase{font-size:1.05rem;}
+/* O MOLDE DA 32 APERTA O FORMULARIO NO TELEFONE, e nenhum campo saiu por isso:
+   a moldura e as margens valiam 58 px da primeira tela. */
+.cdm-f2-form{margin:1rem 0 0;padding:.9rem;}
+.cdm-f2-campo{margin:0 0 .8rem;}
+.cdm-f2-acao{margin:.8rem 0 0;}
+.cdm-f2-form select{padding:.45rem .6rem;}
 }
 </style>
 <script id="cdm-f2-js">

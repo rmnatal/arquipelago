@@ -518,12 +518,18 @@ def m_vitrine_da_pastilha_cai_depois_da_prova(raiz):
     passa a vir antes do bloco de compra, que e a cicatriz da Robometria de
     10/09/2026 na secao 7 do contrato — e a secao 4 deste teste nao a veria,
     porque ela mede a ordem DENTRO do cartao, nunca entre secoes."""
+    # RETARGETADA EM 21/10/2026, com o molde da secao 32: as duas chamadas em
+    # sequencia deixaram de existir — a vitrine da pastilha passou a sair de uma
+    # variavel, dentro ou fora do bloco de compra conforme ela tenha cartao. A
+    # mutacao continua sendo a MESMA: a pastilha desce para depois do "Como
+    # sabemos", a procedencia passa a vir antes do bloco de compra, e com isso a
+    # ordem das duas se inverte nos estados em que a pastilha TEM cartao.
     editar(raiz, SNIPPET,
-           "\t$html .= cdm_f1_vitrine_pastilha_html( $e );\n\t$html .= cdm_f1_vitrine_html( $e );",
-           "\t$html .= cdm_f1_vitrine_html( $e );")
+           "\t$html .= '<div class=\"cdm-molde-compra\" id=\"compra\">';\n\tif ( $tem_pastilha ) {\n\t\t$html .= $pastilha_html;\n\t}\n\t$html .= cdm_f1_vitrine_html( $e );\n\t$html .= '</div>';\n\tif ( ! $tem_pastilha ) {\n\t\t$html .= $pastilha_html;\n\t}",
+           "\t$html .= '<div class=\"cdm-molde-compra\" id=\"compra\">';\n\t$html .= cdm_f1_vitrine_html( $e );\n\t$html .= '</div>';")
     editar(raiz, SNIPPET,
-           "\t$html .= cdm_f1_prova_html();",
-           "\t$html .= cdm_f1_prova_html();\n\t$html .= cdm_f1_vitrine_pastilha_html( $e );")
+           "\t$html .= cdm_casca_dobrar_secao( cdm_f1_prova_html() );",
+           "\t$html .= cdm_casca_dobrar_secao( cdm_f1_prova_html() );\n\t$html .= $pastilha_html;")
 
 
 def m_marcador_da_pastilha_some(raiz):
@@ -555,12 +561,15 @@ def m_as_duas_vitrines_descem_para_depois_da_prova(raiz):
     e a procedencia vindo antes do bloco de compra — a cicatriz da Robometria de
     10/09/2026 na secao 7. Duas afirmacoes verdes por um motivo so e uma
     afirmacao com duas etiquetas."""
+    # RETARGETADA EM 21/10/2026 pelo mesmo motivo da irma acima. Aqui desce o
+    # BLOCO DE COMPRA inteiro, com a ordem interna intacta: a unica coisa errada
+    # continua sendo a procedencia vindo antes dele.
     editar(raiz, SNIPPET,
-           "\t$html .= cdm_f1_vitrine_pastilha_html( $e );\n\t$html .= cdm_f1_vitrine_html( $e );",
+           "\t$html .= '<div class=\"cdm-molde-compra\" id=\"compra\">';\n\tif ( $tem_pastilha ) {\n\t\t$html .= $pastilha_html;\n\t}\n\t$html .= cdm_f1_vitrine_html( $e );\n\t$html .= '</div>';\n\tif ( ! $tem_pastilha ) {\n\t\t$html .= $pastilha_html;\n\t}",
            "")
     editar(raiz, SNIPPET,
-           "\t$html .= cdm_f1_prova_html();",
-           "\t$html .= cdm_f1_prova_html();\n\t$html .= cdm_f1_vitrine_pastilha_html( $e );\n\t$html .= cdm_f1_vitrine_html( $e );")
+           "\t$html .= cdm_casca_dobrar_secao( cdm_f1_prova_html() );",
+           "\t$html .= cdm_casca_dobrar_secao( cdm_f1_prova_html() );\n\t$html .= '<div class=\"cdm-molde-compra\" id=\"compra\">';\n\tif ( $tem_pastilha ) {\n\t\t$html .= $pastilha_html;\n\t}\n\t$html .= cdm_f1_vitrine_html( $e );\n\t$html .= '</div>';\n\tif ( ! $tem_pastilha ) {\n\t\t$html .= $pastilha_html;\n\t}")
 
 
 MUTACOES = [
