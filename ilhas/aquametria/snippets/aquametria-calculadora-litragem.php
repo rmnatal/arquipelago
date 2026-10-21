@@ -1,5 +1,25 @@
 /**
  * Aquametria Calculadora de Litragem — C1
+ * Versão: 1.3.0 (21/10/2026) — O MOLDE DE CONVERSÃO DA SEÇÃO 32 CHEGA AQUI, pela
+ * 32.6-b (mutirão), e esta é a TERCEIRA das cinco calculadoras. Medido no ar
+ * antes, celular de 390 px: 13.451 px de altura e 6 px de rolagem horizontal que
+ * não deveria existir.
+ * COM UMA DIFERENÇA QUE É DECISÃO REGISTRADA DESTA ILHA, e não esquecimento:
+ * ESTA PÁGINA NÃO TEM BLOCO DE COMPRA. Litragem é geometria, e geometria não
+ * escolhe produto — é por isso que a C1 é a única das cinco que nunca recebeu
+ * vitrine. Sem bloco de compra não há item 5 da 32.1 e não há barra do rodapé:
+ * barra fixa que leva a lugar nenhum seria uma tarja comendo tela sem oferecer
+ * nada, e a própria função da casca recusa montá-la sem alvo.
+ * A ORDEM PASSOU A SER: promessa → formulário JÁ PREENCHIDO com o aquário de
+ * 80 × 40 × 40 cm (o quarto degrau da tabela de casos, que era justamente o
+ * exemplo que os `placeholder` insinuavam sem resolver) → caixa de resultado
+ * PRÉ-RENDERIZADA em PHP, pelo mesmo espelho que monta a tabela → tabela de casos
+ * resolvidos, aberta → resposta direta, aberta (seção 5, de primeira classe) → o
+ * resto em `<details>`. Quatro campos abertos, quatro na dobra de campos da casca.
+ * E A LIÇÃO (d) DA C15 FOI APLICADA SEM SER REDESCOBERTA: o exemplo se limpa
+ * antes de aplicar o que a URL ou o `localStorage` trazem. Quem volta com aquário
+ * guardado passa a receber a conta DELE pintada na tela, não a do exemplo — que é
+ * o item 1 do despacho da ronda de 21/10, aplicado aqui antes de nascer.
  * Versão: 1.2.0 (10/09/2026) — VISIBILIDADE EM IA (seção 5 do ARQUIPELAGO.md), as três peças de
  *   uma vez: resposta antes da explicação, tabela de exemplos pré-renderizada com seis aquários
  *   de 30 a 120 cm de frente, e JSON-LD (WebApplication + FAQPage) no wp_head. Era a última
@@ -51,7 +71,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C1_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C1_VERSAO', '1.2.0' );
+	define( 'AQUAMETRIA_C1_VERSAO', '1.3.0' );
 	define( 'AQUAMETRIA_C1_SLUG', 'calculadora-de-litragem' );
 	define( 'AQUAMETRIA_C1_VERIFICADO_EM', '07/09/2026' );
 	define( 'AQUAMETRIA_C1_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -285,6 +305,14 @@ function aquametria_c1_js() {
 
 	/* ------------------------------------------------------------------ tela */
 
+	/* A CAIXA DE RESULTADO PRE-RENDERIZADA EM PHP e a resposta da pagina para quem
+	   nao calculou nada, e sai de cena quando o calculo de verdade entra: duas
+	   caixas de resultado na mesma tela seriam duas respostas. */
+	function mostrarExemplo(ver) {
+		var bloco = el('aqm-c1-exemplo');
+		if (bloco) { bloco.classList.toggle('aqm-c1-oculto', !ver); }
+	}
+
 	function pintar(r) {
 		var alvo = el('aqm-c1-saida');
 		var ul = el('aqm-c1-erros');
@@ -303,9 +331,13 @@ function aquametria_c1_js() {
 				ul.appendChild(li);
 			});
 			alvo.classList.add('aqm-c1-oculto');
+			/* A tela nunca fica sem caixa de resultado: entrada invalida devolve a
+			   do exemplo, que e a resposta de um caso de verdade. */
+			mostrarExemplo(true);
 			return;
 		}
 
+		mostrarExemplo(false);
 		alvo.classList.remove('aqm-c1-oculto');
 
 		el('aqm-c1-bruto').innerHTML = litros(r.bruto) + '<span class="aqm-c1-unidade">L</span>';
@@ -489,6 +521,9 @@ function aquametria_c1_js() {
 	el('aqm-c1-limpar').addEventListener('click', function () {
 		el('aqm-c1-form').reset();
 		el('aqm-c1-saida').classList.add('aqm-c1-oculto');
+		/* reset() devolve os campos ao caso de exemplo servido no HTML, e por isso
+		   a caixa de exemplo volta junto: ela e a resposta DESSE caso. */
+		mostrarExemplo(true);
 		el('aqm-c1-erros').innerHTML = '';
 		try { window.history.replaceState(null, '', window.location.pathname); } catch (erro) { /* segue */ }
 	});
@@ -507,18 +542,34 @@ function aquametria_c1_js() {
 
 	el('aqm-c1-inv-calcular').addEventListener('click', inverso);
 
+	/* O EXEMPLO SE LIMPA ANTES DE QUALQUER CASO DE FORA, e esta e a licao (d) que a
+	   C15 deixou escrita em 21/10/2026: com o formulario preenchido, quem chega por
+	   LINK trazendo so parte das medidas — ou quem tem um aquario guardado por
+	   outra calculadora neste navegador — receberia a conta das medidas DELE
+	   misturada com as do EXEMPLO. Exemplo que vaza para o caso de outra pessoa nao
+	   e exemplo: e numero inventado com cara de resposta. */
+	function limparExemplo() {
+		['c', 'l', 'a', 'e'].forEach(function (id) { el('aqm-c1-' + id).value = ''; });
+	}
+
 	/* Query string manda; senão, o aquário guardado no navegador. */
 	var daUrl = lerQuery();
 	if (daUrl) {
+		limparExemplo();
 		preencher(daUrl);
 		pintar(calcular(campos()));
 	} else {
 		var guardadoAntes = recuperar();
 		/* Estado gravado só pela C3 ou pela C5 não tem medidas — nesse caso não
-		   há o que retomar aqui, e o formulário abre limpo. */
+		   há o que retomar aqui, e o formulário fica com o caso de exemplo. */
 		if (guardadoAntes && guardadoAntes.medidas) {
+			limparExemplo();
 			doEstado(guardadoAntes);
 			el('aqm-c1-retomado').classList.remove('aqm-c1-oculto');
+			/* Quem volta com aquario guardado recebe a conta DELE na tela, nao a do
+			   exemplo: formulario e resultado discordando na primeira tela foi o
+			   defeito que a ronda de 21/10 mediu na C15 (item 1 do despacho). */
+			pintar(calcular(campos()));
 		}
 	}
 }());
@@ -530,13 +581,83 @@ JS;
  * 4. Formulário e moldura da resposta
  * ------------------------------------------------------------------------- */
 
+/* ---- O CASO DE EXEMPLO DA PAGINA (32.1, itens 3 e 4) ------------------------
+   UM lugar so, como na C15 e na C12: dele saem o formulario preenchido e a caixa
+   de resultado pre-renderizada. O caso e o QUARTO degrau da tabela de casos
+   resolvidos desta pagina — o aquario de 80 x 40 x 40 cm, que e o mesmo que os
+   campos ja traziam como `placeholder`. Escolhido por isso: era o exemplo que a
+   pagina insinuava sem resolver, e agora ela o resolve.
+   O formulario nao recalcula por conta propria: se recalculasse, a pessoa veria
+   um numero na caixa e outro ao clicar em Calcular com o formulario intocado. */
+if ( ! function_exists( 'aquametria_c1_caso_exemplo' ) ) {
+function aquametria_c1_caso_exemplo() {
+	$casos = aquametria_c1_casos_exemplo();
+	return $casos[3];
+}
+}
+
+/* A frase de promessa da 32.1, item 2: UMA, o que entra e o que sai. Quem a
+   desenha e a casca 1.13.0 (32.6-b). */
+if ( ! function_exists( 'aquametria_c1_promessa_html' ) ) {
+function aquametria_c1_promessa_html() {
+	return aquametria_casca_promessa_html(
+		'Entram as medidas em centímetros e a espessura do vidro; saem o volume bruto, '
+		. 'o interno e a água que de fato cabe — que é o número que as outras calculadoras usam.'
+	);
+}
+}
+
+/* A CAIXA DE RESULTADO PRE-RENDERIZADA (32.1, item 4). A caixa do script nasce
+   `-oculto` e so aparece depois de alguem preencher: quem chega pela busca — e
+   qualquer modelo de linguagem que leia esta pagina — via a pagina SEM nenhum
+   numero de resposta na primeira tela. Esta e o caso do formulario, resolvido em
+   PHP pelo MESMO espelho que monta a tabela de casos, servido no HTML, sem
+   script nenhum (32.3). Quando a pessoa calcula de verdade, o script a esconde e
+   poe a dele no lugar: duas caixas de resultado seriam duas respostas. */
+if ( ! function_exists( 'aquametria_c1_resposta_exemplo_html' ) ) {
+function aquametria_c1_resposta_exemplo_html() {
+	$caso = aquametria_c1_caso_exemplo();
+	$e    = aquametria_c1_exemplo( $caso );
+
+	$h  = '<div class="aqm-c1-resultado aqm-c1-exemplo" id="aqm-c1-exemplo">';
+	$h .= '<ul class="aqm-c1-cartoes">';
+
+	$h .= '<li class="aqm-c1-cartao"><span class="aqm-c1-rotulo">Volume bruto</span>';
+	$h .= '<span class="aqm-c1-valor">' . esc_html( aquametria_c1_litros( $e['bruto'] ) ) . '<span class="aqm-c1-unidade">L</span></span>';
+	$h .= '<p class="aqm-c1-criterio">É o número que a loja anuncia, e não é a água que cabe.</p></li>';
+
+	$h .= '<li class="aqm-c1-cartao"><span class="aqm-c1-rotulo">Volume interno</span>';
+	$h .= '<span class="aqm-c1-valor">' . esc_html( aquametria_c1_litros( $e['interno'] ) ) . '<span class="aqm-c1-unidade">L</span></span>';
+	$h .= '<p class="aqm-c1-criterio">Descontado o vidro de ' . esc_html( aquametria_c1_fmt( $caso['e'], 0 ) ) . ' mm.</p></li>';
+
+	$h .= '<li class="aqm-c1-cartao aqm-c1-destaque"><span class="aqm-c1-rotulo">Volume real de referência</span>';
+	$h .= '<span class="aqm-c1-valor">' . esc_html( aquametria_c1_litros( $e['real'] ) ) . '<span class="aqm-c1-unidade">L</span></span>';
+	$h .= '<p class="aqm-c1-criterio">Para um aquário de ' . esc_html( aquametria_c1_fmt( $caso['c'], 0 ) ) . ' × '
+		. esc_html( aquametria_c1_fmt( $caso['l'], 0 ) ) . ' × ' . esc_html( aquametria_c1_fmt( $caso['a'], 0 ) )
+		. ' cm, com ' . esc_html( aquametria_c1_fmt( AQUAMETRIA_C1_BORDA_LIVRE_CM, 0 ) )
+		. ' cm de borda livre. É este o número que as outras calculadoras leem.</p></li>';
+
+	$h .= '</ul>';
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
 if ( ! function_exists( 'aquametria_c1_form_html' ) ) {
 function aquametria_c1_form_html() {
 	$borda = AQUAMETRIA_C1_BORDA_LIVRE_CM;
 
+	$caso = aquametria_c1_caso_exemplo();
+
+	/* O FORMULARIO JA VEM PREENCHIDO (32.1, item 3), com o MESMO aquario da caixa
+	   de resultado acima. Nenhum campo saiu da pagina. */
 	$h  = '<form id="aqm-c1-form" class="aqm-c1-painel" novalidate>';
 	$h .= '<h3>As medidas do seu aquário</h3>';
-	$h .= '<p class="aqm-c1-sub">Em centímetros. O resultado fica guardado no seu navegador e é reaproveitado pelas outras calculadoras — nada é enviado para servidor nenhum.</p>';
+	$h .= '<p class="aqm-c1-sub">Já preenchido com um aquário de '
+		. esc_html( aquametria_c1_fmt( $caso['c'], 0 ) ) . ' × ' . esc_html( aquametria_c1_fmt( $caso['l'], 0 ) )
+		. ' × ' . esc_html( aquametria_c1_fmt( $caso['a'], 0 ) ) . ' cm: troque pelas suas medidas, em centímetros. ';
+	$h .= 'O resultado fica guardado no seu navegador e é reaproveitado pelas outras calculadoras — nada é enviado para servidor nenhum.</p>';
 
 	$h .= '<div class="aqm-c1-opcoes">';
 	$h .= '<div class="aqm-c1-campo" style="max-width:16rem">';
@@ -548,11 +669,20 @@ function aquametria_c1_form_html() {
 	$h .= '<span class="aqm-c1-dica">Fita métrica por fora é o caso comum. A loja também anuncia por fora.</span>';
 	$h .= '</div></div>';
 
+	/* QUATRO campos abertos — os que decidem o numero — e os outros QUATRO numa
+	   dobra (32.1, itens 3 e 7). Medido antes da mudanca, no ar, a 390 px: com os
+	   oito empilhados mais o seletor de medida, o formulario desta pagina comecava
+	   a 1.863 px na irma de midia e a tabela de casos so aparecia depois de tres
+	   telas. Nenhum campo saiu: <details> e HTML nativo e abre sem script. */
 	$h .= '<div class="aqm-c1-grade">';
-	$h .= aquametria_c1_campo( 'c', 'Comprimento (cm)', 'a maior medida da frente', '80' );
-	$h .= aquametria_c1_campo( 'l', 'Largura (cm)', 'a profundidade, da frente ao fundo', '40' );
-	$h .= aquametria_c1_campo( 'a', 'Altura (cm)', 'do chão do aquário até a borda', '40' );
-	$h .= aquametria_c1_campo( 'e', 'Espessura do vidro (mm)', 'sem ela não há volume interno', '8' );
+	$h .= aquametria_c1_campo( 'c', 'Comprimento (cm)', 'a maior medida da frente', '80', $caso['c'] );
+	$h .= aquametria_c1_campo( 'l', 'Largura (cm)', 'a profundidade, da frente ao fundo', '40', $caso['l'] );
+	$h .= aquametria_c1_campo( 'a', 'Altura (cm)', 'do chão do aquário até a borda', '40', $caso['a'] );
+	$h .= aquametria_c1_campo( 'e', 'Espessura do vidro (mm)', 'sem ela não há volume interno', '8', $caso['e'] );
+	$h .= '</div>';
+
+	$h .= aquametria_casca_dobra_campos_abre( 'Lâmina d\'água, substrato, rochas e apelido', 'c1-campos' );
+	$h .= '<div class="aqm-c1-grade">';
 	$h .= aquametria_c1_campo( 'lamina', 'Altura da lâmina d\'água (cm)', 'em branco: altura interna menos ' . $borda . ' cm de borda livre — valor inicial, ajuste para a sua borda', 'ex.: ' . ( 40 - $borda ) );
 	$h .= aquametria_c1_campo( 'substrato', 'Altura do substrato (cm)', 'entra como aviso, não como desconto — veja por quê abaixo', 'ex.: 5' );
 	$h .= aquametria_c1_campo( 'rochas', 'Rochas e decoração (L)', 'desconto direto, se você souber o volume', 'ex.: 3' );
@@ -562,6 +692,7 @@ function aquametria_c1_form_html() {
 	$h .= '<span class="aqm-c1-dica">Só para você reconhecer o aquário guardado.</span>';
 	$h .= '</div>';
 	$h .= '</div>';
+	$h .= aquametria_casca_dobra_fecha();
 
 	$h .= '<div class="aqm-c1-botoes">';
 	$h .= '<button type="submit">Calcular</button>';
@@ -576,11 +707,14 @@ function aquametria_c1_form_html() {
 }
 
 if ( ! function_exists( 'aquametria_c1_campo' ) ) {
-function aquametria_c1_campo( $id, $rotulo, $dica, $exemplo ) {
+function aquametria_c1_campo( $id, $rotulo, $dica, $exemplo, $valor = null ) {
 	$h  = '<div class="aqm-c1-campo">';
 	$h .= '<label for="aqm-c1-' . esc_attr( $id ) . '">' . esc_html( $rotulo ) . '</label>';
 	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c1-' . esc_attr( $id ) . '"';
-	$h .= ' name="' . esc_attr( $id ) . '" placeholder="' . esc_attr( $exemplo ) . '">';
+	$h .= ' name="' . esc_attr( $id ) . '" placeholder="' . esc_attr( $exemplo ) . '"';
+	/* O valor servido e o caso de exemplo da 32.1 item 3; sem ele o campo nasce
+	   vazio, como ate a 1.3.0. */
+	$h .= ( null === $valor ? '' : ' value="' . esc_attr( aquametria_c1_fmt( $valor, 0 ) ) . '"' ) . '>';
 	$h .= '<span class="aqm-c1-dica">' . esc_html( $dica ) . '</span>';
 	$h .= '</div>';
 	return $h;
@@ -631,7 +765,8 @@ function aquametria_c1_resposta_html() {
 if ( ! function_exists( 'aquametria_c1_inverso_html' ) ) {
 function aquametria_c1_inverso_html() {
 	$h  = '<div class="aqm-c1-painel">';
-	$h .= '<h3>Caminho inverso: quero um aquário de tantos litros</h3>';
+	/* Sem <h3> aqui: o titulo desta secao e o da DOBRA que a envolve (32.1, item
+	   7), dentro do <summary>. */
 	$h .= '<p class="aqm-c1-sub">Você tem o volume que quer e duas das três medidas. Devolvemos a terceira, no volume bruto.</p>';
 	$h .= '<div class="aqm-c1-grade">';
 	$h .= '<div class="aqm-c1-campo"><label for="aqm-c1-inv-volume">Volume desejado (L)</label>';
@@ -653,7 +788,8 @@ function aquametria_c1_inverso_html() {
 if ( ! function_exists( 'aquametria_c1_fontes_html' ) ) {
 function aquametria_c1_fontes_html() {
 	$h  = '<div class="aqm-c1-painel">';
-	$h .= '<h3>De onde vem cada número desta página</h3>';
+	/* Sem <h3> aqui: o titulo desta secao e o da DOBRA que a envolve (32.1, item
+	   7), dentro do <summary>. */
 	$h .= '<p class="aqm-c1-sub">Verificado em ' . esc_html( AQUAMETRIA_C1_VERIFICADO_EM ) . '. Calculadora versão ' . esc_html( AQUAMETRIA_C1_VERSAO ) . '.</p>';
 	$h .= '<div class="aqm-c1-rolagem"><table class="aqm-c1-fontes">';
 	$h .= '<tr><th>Constante ou regra</th><th>Valor</th><th>Origem e o que ela significa</th></tr>';
@@ -1163,13 +1299,29 @@ function aquametria_c1_shortcode() {
 	/* O comportamento e o estilo saem no rodapé, fora dos filtros de conteúdo. */
 	add_action( 'wp_footer', 'aquametria_c1_rodape', 20 );
 
+	/* A ORDEM E A DA SECAO 32.1, com UMA diferenca que e decisao registrada desta
+	   ilha e nao esquecimento: ESTA PAGINA NAO TEM BLOCO DE COMPRA. Litragem e
+	   geometria, e geometria nao escolhe produto — e por isso a C1 e a unica das
+	   cinco que nunca recebeu vitrine. Sem bloco de compra nao ha item 5 e nao ha
+	   barra do rodape: barra fixa que leva a lugar nenhum seria uma tarja comendo
+	   tela e nao oferecendo nada (a propria funcao da casca recusa monta-la sem
+	   alvo).
+	   Entao: promessa, FORMULARIO ja preenchido, caixa de resultado ja
+	   renderizada no HTML, tabela de casos resolvidos aberta, resposta direta, e o
+	   resto do texto em <details>. */
 	$h  = '<div class="aqm-c1">';
-	$h .= aquametria_c1_resposta_direta_html();
+	$h .= aquametria_c1_promessa_html();
 	$h .= aquametria_c1_form_html();
+	$h .= aquametria_c1_resposta_exemplo_html();
 	$h .= aquametria_c1_resposta_html();
 	$h .= aquametria_c1_exemplos_html();
+	$h .= aquametria_c1_resposta_direta_html();
+	$h .= aquametria_casca_dobra_abre( 'Caminho inverso: quero um aquário de tantos litros', 'inverso' );
 	$h .= aquametria_c1_inverso_html();
+	$h .= aquametria_casca_dobra_fecha();
+	$h .= aquametria_casca_dobra_abre( 'De onde vem cada número desta página', 'fontes' );
 	$h .= aquametria_c1_fontes_html();
+	$h .= aquametria_casca_dobra_fecha();
 	$h .= aquametria_c1_adiante_html();
 	$h .= '</div>';
 

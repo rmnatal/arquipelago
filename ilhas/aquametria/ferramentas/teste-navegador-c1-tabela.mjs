@@ -71,6 +71,12 @@ for (const celulas of linhas) {
   const entrada = [medidas[1], medidas[2], medidas[3], vidro[1]];
   const rotulo = entrada.slice(0, 3).join(' × ') + ' cm, vidro de ' + entrada[3] + ' mm';
 
+  /* A lamina, o substrato e as rochas foram para a dobra de campos na C1 1.3.0
+     (32.1, item 3): o Playwright nao digita em campo invisivel, e abrir e o que a
+     pessoa faz com um toque. */
+  await pagina.evaluate(() => {
+    document.querySelectorAll('#aqm-c1-form details.aqm-dobra').forEach((d) => { d.open = true; });
+  });
   await pagina.fill('#aqm-c1-c', entrada[0]);
   await pagina.fill('#aqm-c1-l', entrada[1]);
   await pagina.fill('#aqm-c1-a', entrada[2]);

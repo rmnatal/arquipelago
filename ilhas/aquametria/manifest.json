@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 129,
+  "revisao": 130,
   "atualizado_em": "2026-10-21",
   "estado": "fundacao",
   "desembarque": {
@@ -64,8 +64,9 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "ef9764317dd379a71fde0e0996968cf08e4d417eeb5c5fac3c648a10810bce17",
-      "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve. v1.0.2 (08/09/2026): guardar() passou a MESCLAR o estado compartilhado em vez de substitui-lo — voltar a C1 para corrigir uma medida zerava a vazao que a C3 tinha calculado e o clima que a C5 tinha perguntado. A secao final passou a linkar a C5, que entrou no ar. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou. v1.2.0 (10/09/2026): VISIBILIDADE EM IA, as tres pecas de uma vez (secao 5 do ARQUIPELAGO.md). Era a ultima calculadora da ilha sem elas e a unica com jsonld_ok=0 no conferir-entidades.mjs. Entraram a resposta antes da explicacao no topo (os tres volumes de um aquario concreto, com a data de verificacao na frase), a tabela de exemplos pre-renderizada com seis aquarios de 30 a 120 cm de frente e o JSON-LD (WebApplication + FAQPage de nove perguntas) no wp_head. O eixo da tabela e o CENTIMETRO e nao o litro como na C3, na C5 e na C12, porque aqui o litro e a SAIDA: quem abre esta pagina tem a fita metrica na mao e nao sabe o volume, entao tabela indexada por litro responderia a pergunta que a pessoa ainda nao consegue fazer. A escada de comprimento e a mesma da C15, que e como a luminaria e vendida. As medidas e a espessura de cada linha sao ENTRADAS do exemplo, nao catalogo de fabricante nem recomendacao de vidro, e a nota da tabela diz isso. A tabela nao tem link de loja e explica por que: litragem e geometria e geometria nao escolhe produto — o bloco de produto nasce nas calculadoras que leem este volume. Nenhuma linha de calculo mudou: tudo que a tabela imprime e espelho em PHP das mesmas funcoes do script, e o teste-navegador-c1-tabela.mjs poe as duas frente a frente."
+      "sha256": "28d7dbf1041daeff04107d13851964f14dfec2c29ea71b6dc922dec84054fef8",
+      "descricao": "1.3.0 (21/10/2026): O MOLDE DA 32.1 CHEGA A TERCEIRA DAS CINCO CALCULADORAS. Medido no ar antes, celular de 390 px: 13.451 px de altura e 6 px de rolagem horizontal. Promessa, formulario JA PREENCHIDO com o aquario de 80x40x40 cm (o quarto degrau da tabela de casos, que era o exemplo que os placeholder insinuavam sem resolver), caixa de resultado PRE-RENDERIZADA em PHP pelo mesmo espelho que monta a tabela, tabela de casos aberta, resposta direta aberta, e o resto em <details>. Quatro campos abertos e quatro na dobra de campos da casca. ESTA PAGINA NAO TEM BLOCO DE COMPRA e isso e decisao registrada da ilha, nao esquecimento: litragem e geometria, e geometria nao escolhe produto — logo nao ha item 5 da 32.1 nem barra do rodape aqui. A licao (d) da C15 foi aplicada antes de nascer: o exemplo se limpa antes do que a URL ou o localStorage trazem, e quem volta com aquario guardado recebe a conta DELE pintada na tela, que e o item 1 do despacho da ronda de 21/10.",
+      "versao": "1.3.0"
     },
     {
       "id": "aquametria-calculadora-vazao",
@@ -149,7 +150,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "ab985e26f741283106c9564302b0375e3d567989b7994fc06ea6720cc8753fd3",
+      "sha256": "3c37bf5d6e993ad7b6e09e11dce12e0870aba0d2299951b4d082fa59fcf89998",
       "descricao": "Pagina da C1: abertura, o shortcode da calculadora e a explicacao metodologica — os tres volumes e para que serve cada um, a borda livre como convencao declarada, por que o substrato nao e descontado (conflito de 100 % na densidade, porosidade sem fonte) com a tabela de direcao do erro, o protocolo de medicao que libera o desconto, o caminho inverso e os links internos para o hub e a metodologia. Em 08/09/2026 a secao final passou a LINKAR a calculadora de vazao do filtro, que entrou no ar."
     },
     {
@@ -707,7 +708,7 @@
       "id": "teste-navegador-c1-tabela",
       "arquivo": "ferramentas/teste-navegador-c1-tabela.mjs",
       "publicar": false,
-      "sha256": "50995c24ba669e01c2bfbd53377727ab4e00bf71d4b61ab2f8dc8dec1e62f715",
+      "sha256": "856a211364b6277f326d622eb38da38ee28998554ccbed52f2ed02b7b6c2588c",
       "descricao": "Teste de navegador que poe a tabela pre-renderizada da C1 contra a propria C1 em Chromium de verdade (Playwright), com JavaScript LIGADO: le as seis linhas do HTML servido, extrai da coluna do aquario as medidas e a espessura que geraram cada linha, digita essas entradas no formulario e compara os tres volumes e a lamina. Nao guarda numero esperado nenhum — entradas e valores esperados saem da propria pagina —, entao mudar medidas de exemplo, borda livre ou arredondamento nao reprova nada: o que ele afirma e a promessa de que a tabela servida nao contradiz a calculadora, nunca o estado do catalogo. Confere tambem que todo volume citado na resposta direta do topo existe na tabela ja conferida, por token e nunca por substring, e que o console fica sem erro de pagina. Nao vai para o WordPress."
     },
     {
