@@ -106,6 +106,46 @@ buscageral, buscasempre, osreviews, mecanie, gdm, cabemcasa, mastereview, prosan
 sem medição própria, conta como fazenda — esteja nomeado aqui ou não. **A lista é atalho de reconhecimento, nunca a
 definição**, e toda rodada que encontrar um nome novo o acrescenta aqui.
 
+**AMPLIADA NA RODADA 006 (21/10/2026) — trinta e um nomes novos, agrupados por MOLDE, porque é o molde que reconhece
+o próximo.** Catorze candidatos foram medidos e dez morreram; quatro deles morreram por **calculadora já instalada e
+ranqueando que não é de varejista nem de fabricante** — ver a proposta de régua no fim deste bloco.
+- **Espelho de oferta de marketplace** (uma página por oferta, título igual ao do anúncio; são afiliados programáticos,
+  isto é, concorrentes diretos das ilhas): `escorregaopreco.com.br`, `melhoraopreco.com.br`, `descontostop.com`.
+- **Calculadora traduzida servindo uma página por valor do parâmetro** (`/plate-calculator/40-kg`, `/50-kg`, `/60-kg`…):
+  `size.ly`, `omnicalculator.com/pt`, `miniwebtool.com/br`, `arvo.guru/pt-BR/tools/`, `hacecuentas.com/pt`,
+  `calculadorabrasil.com.br`.
+- **Loja ou fabricante publicando sobre paramétrica alheia**: `maxturbos.com.br` (loja de turbina respondendo sobre
+  cama, pneu, óleo e relação — apareceu em TODAS as consultas automotivas da rodada, às vezes com 4 posições),
+  `labra.com.br`, `casadoseletrodomesticos.com.br`, `engehall.com.br`, `webarcondicionado.com.br`, `larpontual.com.br`.
+- **Parasita puro** (domínio sem relação nenhuma com o nicho): `auditorioibirapuera.com.br` (casa de espetáculos
+  respondendo "qual o fio certo para 220V", em elétrica E em chuveiro), `quintoandar.com.br/guias/` (portal
+  imobiliário, em ventilador E em caixa d'água), `projetoagathaedu.com.br` (questões do ENEM, em "dimensionar
+  bitolas"), `faq.blackpilado.com.br`.
+- **Banco de ficha ou de preço gerado por modelo**: `olhardigital.com.br/fichas-tecnicas/`,
+  `oficinadanet.com.br/smartphones/comparacao-`, `mercadolivre.com.br/blog/` e `/blog/reviews/<sku>`,
+  `shopee.com.br/blog/<modelo>-ficha-tecnica/`, `zoom.com.br`, `buscape.com.br`, `bondfaro.com.br` (os três do mesmo
+  grupo, uma página por string digitada), `orcamentor.com` (base SINAPI programática).
+- **Demais**: `clickpetroleoegas.com.br`, `digitei.com`, `mundodosreviews.com.br`, `motoragora.com.br`,
+  `portalinsights.com.br`, `engenharia360.com`, `cidesp.com.br`, `vocepergunta.com`, `essemundoenosso.com.br`,
+  `voltflow.net`, `uai.com.br`, `plataformaassaad.com.br`, `ecoautomacao.com.br`, `monitordomercado.com.br`,
+  `oantagonista.com.br/economia/`, `tupi.fm`, `revistaoeste.com`, `accelerated-ideas.com`.
+- **PORTAL GRANDE CONTADO COMO FAZENDA PELA RÉGUA DE FORMA, e isto é novo na prática**:
+  `canaltech.com.br/eletro/<a consulta inteira>`, `olhardigital.com.br/curiosidades/?p=<id>` (seis posições numa só
+  SERP), `opovo.com.br/trends/<a consulta>`, `tecmundo.com.br/produto/<id>-melhores-<x>-de-<ano>`. Autoridade de marca
+  não muda o molde: página por consulta sem medição própria é fazenda, venha de onde vier.
+
+**DOIS PADRÕES QUE A RODADA 006 MEDIU E QUE SÓ O RAPHAEL PODE TRANSFORMAR EM RÉGUA — ficam registrados, não aplicados:**
+1. **O molde `?p=<id>` sem slug apareceu em NOVE domínios distintos** numa só rodada (`olhardigital`, `maxturbos`,
+   `digitei`, `uai`, `quintoandar/guias`, `calculadorabrasil`, `plataformaassaad`, `ecoautomacao`,
+   `lojadomecanico/blog`). É WordPress publicando em massa sem nem gerar URL legível.
+2. **A régua da nota 0 está velha.** Ela diz "calculadora de grande varejista instalada", e a seção 3 fala em
+   fabricante. Mas quatro dos dez candidatos mortos na 006 foram mortos por calculadora que **não é nem de varejista
+   nem de fabricante** — `size.ly` (numeração de calçado), `omnicalculator.com/pt` (tamanho de sutiã, 2º lugar),
+   `miniwebtool.com/br` (tamanho de fralda e de ventilador de teto), `arvo.guru` (anilha, **nove de dez slots**). Pela
+   letra, nada disso dispara nota 0, e os coletores tiveram de propor 1 para não extrapolar a lei. **Proposta: a nota 0
+   passa a ser por FUNÇÃO — "a resposta paramétrica central do nicho já está em máquina, indexada e em português" —
+   independentemente de quem seja o dono.**
+
 ## 4. Toda rodada reavalia o topo (SERP aberta fecha)
 
 Antes de pontuar candidato novo, refaça a busca paramétrica dos **5 primeiros** da fila sem ilha nascida. Se entrou
