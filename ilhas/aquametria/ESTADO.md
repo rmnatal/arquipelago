@@ -5,69 +5,74 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-21T16:12Z
-executando_desde: 2026-10-21T16:53Z   # reserva RENOVADA pela 1.1: o mutirao da 32.6-b nesta ilha passa de 40 minutos. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+ultima_execucao: 2026-10-21T16:59Z
+executando_desde: null   # a execucao de 21/10 16h16Z fechou as 17h0xZ. Reserva RENOVADA tres vezes pela 1.1: o mutirao da 32.6-b nesta ilha passa de uma hora. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
 bloco_atual: |
-  O MOLDE DA SECAO 32 ESTA NO AR EM TRES DAS CINCO CALCULADORAS, e nesta passada
-  ele deixou de ser copiado entre snippets: virou COMPONENTE DA CASCA (1.13.0,
-  secao 3g), por ordem da 32.6-b. /calculadora-de-iluminacao/ (C15 1.9.0),
-  /calculadora-de-midia-filtrante/ (C12 1.7.0) e /calculadora-de-litragem/
-  (C1 1.3.0), revisoes 129 e 130. FALTAM DUAS: aquecedor e vazao, as duas com
-  bloco de compra. As fichas de peixe (item 2 do despacho) NAO comecaram.
-  A RONDA DAS 14h5xZ ENTROU NO MAIN DEPOIS DESTA EXECUCAO COMECAR, E O ITEM 1
-  DELA ERA DEFEITO DO MOLDE E NAO DE UMA PAGINA: ela mediu no ar que a C15
-  PASSAVA no estado em que ninguem usou a pagina (1.300 px) e FALHAVA POR 4,2
-  VEZES no estado em que alguem usou (5.839 px depois de um calculo, 3.839 px
-  para quem volta com aquario guardado), contra o teto de 1.400 da 32.5. Pela
-  18.5 o despacho foi fechado antes de qualquer pagina nova, e os TRES itens
-  dele estao conferidos no ar pela 18.4.
-  A CAUSA NAO ERA A CAIXA CONGELADA: era o DETALHE do calculo nascendo ENTRE o
-  resultado e a vitrine. A caixa e o detalhe passaram a ser dois blocos, com a
-  compra entre eles — a 32.1 item 5 diz "imediatamente abaixo do resultado", e
-  imediatamente e literal. Nenhuma palavra saiu da pagina.
-  MEDIDO NO AR, 390 px, nos TRES estados, primeiro botao de loja:
-  C15 1.177 / 1.325 / 1.352 px e C12 1.236 / 1.253 / 1.348 px — os seis sob o
-  teto. UMA SO caixa de resultado em cena nos tres estados, e quem volta com
-  aquario guardado recebe formulario e resultado concordando.
-  C12: formulario de 1.863 para 452 px, botao de loja de 3.168 para 1.236,
-  altura de 21.677 para 9.429, rolagem horizontal de 19 para 0, palavras no
-  corpo servido de 5.147 para 5.297. C1: altura de 13.451 para 7.536, rolagem
-  de 6 para 0, formulario a 409 px, palavras de 3.296 para 3.397. title, H1,
-  URL, trilha e JSON-LD identicos nas tres, com a unica diferenca sendo
-  softwareVersion, que e a versao da propria calculadora.
-  A 32.4 FECHOU AS 52 URLs, e o escopo era maior que o medido por quem o mediu:
-  a ronda contou 30 paginas, a varredura das 53 servidas achou mais DEZ de
-  categoria e DUAS fichas, por strings diferentes. Sairam seis strings do
-  aquametria-peixes (1.18.0), mais dois caminhos de arquivo do repositorio. A
-  procedencia ficou inteira — fonte nomeada e data em todas. Varredura final nas
-  52 URLs no ar: ZERO termo da lista 32.4.
-  UM DEFEITO DE ESTRUTURA ACHADO POR PORTAO, e valia para as cinco: a dobra de
-  SECAO poe um <h2> no <summary>, e o visibilidade-ia mede a regra da secao 5
-  pelo PRIMEIRO <h2> da pagina — com os campos do formulario dentro de uma dobra
-  de secao, a resposta direta passava a vir DEPOIS da explicacao para quem le
-  estrutura. Nasceu a dobra de CAMPOS, sem <h2>, e nenhum portao foi afrouxado.
-  ITEM 2 DA RONDA: a linha das fichas de luminaria nasce CONTADA do banco — 26
-  luminarias, 15 sugeriveis, 11 sem fluxo_lm — contra os "seis registros e tres
-  sugeridos" digitados em 07/09, que o banco envelheceu por baixo.
-  PORTOES: visibilidade-ia nas CINCO, cinco nas cinco, c12 (com cinco afirmacoes
-  novas), c12-vitrine, c15, c15-vitrine, c15-regulagem, c1-tabela,
-  navegador-arvore (658 medicoes), casca, casca-paginas, voz, arvore, entidades,
-  seo-tecnico, site-jsonld, conversor-markdown, escape-shortcode, apelidos,
-  purga-cache, atualizador-sync, teste-peixes, validar-especies, slugs,
-  protecao-funcoes, indice-de-levas, promessa-do-titulo, titulos-das-duas-fontes,
-  constantes-de-snippet, classes-da-bancada, alvos-em-php, conferir-desembarque
-  (duas vezes). TRES falhas, as TRES pre-existentes e conferidas vermelhas no
-  main limpo (15409d3) com o mesmo comando, pela 31.4: c15 ("produto sem
-  link..."), c12-vitrine (MicroMec, afirmacao presa ao banco de ontem) e
-  c1-tabela (ERR_TUNNEL, host barrado pelo egresso desta nuvem).
-  O mutacoes-peixes precisou de DOIS lancamentos: com 900s ele foi cortado por
-  TIMEOUT na mutacao 80 de 101 (exit=124, e a mesma bateria contra o main limpo
-  bateu no mesmo teto — era relogio, nao falha). Relancado com 45 min, fechou
-  VERDE: 101 de 101 reprovadas. Quem o rodar de novo nesta ilha precisa contar
-  com cerca de 20 minutos so para ele.
-  A REGUA DE PRONTO MUDOU DE FORMA, e e o que a proxima execucao mais precisa
-  saber: a 32.5 se mede nos TRES estados. Medir so o visitante novo aprova
-  pagina que falha por 4,2 vezes no estado em que alguem a usa.
+  AS CINCO CALCULADORAS DESTA ILHA ESTAO NO MOLDE DA SECAO 32, e o item 1 do
+  despacho do Raphael de 21/10 saiu INTEIRO pela 18.2 — as duas que faltavam
+  entraram nesta passada e foram conferidas no ar pela 18.4, uma a uma.
+  Revisao 131, /status em 131, portao da 20.4 APROVADO lendo o log linha por
+  linha. Snippets: casca 1.14.0, C5 1.9.0, C3 1.9.0 (C15 1.9.0, C12 1.7.0 e
+  C1 1.3.0 ja estavam).
+  MEDIDO NO AR, celular de 390 px com quebra de cache, NOS TRES ESTADOS da 32.5
+  (visitante novo / depois de calcular / quem volta com aquario guardado),
+  formulario e primeiro botao de loja:
+  C5 aquecedor 452 / 1.197 . 1.197 . 1.292 px (era 2.037 / 3.599, e 5.977 px
+  para quem voltava) . altura 22.636 -> 9.542 . rolagem horizontal 11 -> 0 px
+  C3 vazao     409 / 1.160 . 1.141 . 1.236 px (era 1.816 / 3.030, e 4.689 px
+  para quem voltava) . altura 15.317 -> 7.718 . rolagem 0
+  OITO DE OITO PASSAM: os tetos sao 700 px para o formulario e 1.400 para o
+  primeiro botao de compra. pageerror 0 nos seis estados.
+  O QUE NAO MUDOU, comparado no HTML servido do main de antes (b6353e4) contra o
+  de agora: title, H1, URL, trilha, meta description e os TRES nos de JSON-LD
+  (WebApplication, FAQPage com 14 e 13 perguntas, BreadcrumbList com 3 degraus),
+  com a unica diferenca sendo softwareVersion 1.8.0 -> 1.9.0, que e a versao da
+  propria calculadora. A funcao que monta o JSON-LD nao recebeu uma linha de
+  alteracao nas duas, conferido por git diff.
+  TEXTO: ninguem perdeu palavra (32.3). C5 5.142 -> 5.254 palavras no corpo
+  servido, C3 4.029 -> 4.110. As formas de palavra que deixaram de aparecer sao
+  sete na C5 e quatro na C3, e TODAS pertencem as tres frases reescritas — a
+  promessa (que a 32.1 item 2 define como UMA frase), a linha de apoio do
+  formulario (uma sentenca dela desceu para a dobra de campos) e a linha de apoio
+  da vitrine (os dois numeros dela subiram para o titulo do bloco, licao (c)) —
+  mais o numero de versao. Nenhuma secao, paragrafo, tabela ou aviso saiu.
+  O MARKDOWN DAS DUAS FOI CONVERTIDO JUNTO: shortcode no topo e cada ## virando
+  dobra, 9 na C5 e 7 na C3. Era isso que punha o formulario a 817 px no primeiro
+  render do molde.
+  A CASCA 1.14.0 CONSERTA OS 11 px DE ROLAGEM HORIZONTAL DA C5, E O CONSERTO NAO
+  ERA DA CALCULADORA: varrido todo no do documento a 390 px, o unico que passava
+  da janela era uma <table> SEM CLASSE — a tabela das quatro constantes de W/L,
+  escrita no MARKDOWN da pagina, 371 px de conteudo numa coluna de 330. A regra
+  nova e `body table:not([class])` com rolagem propria dentro da faixa de ate
+  600 px: alcanca so a tabela do Markdown (toda tabela montada em PHP leva classe
+  e ja viaja dentro de um .aqm-*-rolagem) e nao toca no desktop. VALE PARA TODA
+  PAGINA DA ILHA COM TABELA EM MARKDOWN, e e por isso que mora na casca.
+  O PORTAO VERMELHO DA VITRINE DA C15 TEM CAUSA MEDIDA, E NAO E O MOLDE: a casca
+  pede a folha do Google Fonts, o egresso desta nuvem a barra, e quando a
+  requisicao FALHA as metricas de fonte caem para a alternativa DEPOIS do
+  domcontentloaded. scrollIntoView suave ja tinha calculado o destino, entao a
+  pagina parava onde a caixa ESTAVA (-55 px na C5, -39 px na C15). Abrindo com
+  networkidle, a caixa para em top = 0. Dois consertos sairam dai: as duas
+  calculadoras medem a rolagem em DOIS QUADROS, e os portoes esperam a rede —
+  porque rede sem fonte e defeito da nuvem, e reprovar o molde por ela e acusar o
+  inocente. O PORTAO DA C15 DESTRAVA COM O MESMO CONSERTO.
+  UM PORTAO ACHOU DEFEITO DE VERDADE NO TRABALHO DESTA PASSADA, e ele e a licao
+  (d) num lugar que ela nao alcancava: com o formulario nascendo preenchido, quem
+  ESCOLHIA UMA ESPECIE (kinguio, 18 a 24 C) recebia a conta feita para os 26 C do
+  NOSSO exemplo, calando a ficha da especie em silencio. Agora o alvo que nos
+  preenchemos cede a vez na primeira troca de especie; quem digitou manda e
+  continua mandando. Na C5 o limparExemplo() limpa TRES campos por isso.
+  PORTOES: c5-vitrine TUDO OK, c3-vitrine TUDO OK, visibilidade-ia tudo passou
+  nas CINCO calculadoras (a regra da secao 5 medida pelo primeiro <h2>, licao
+  (f)), conferir-desembarque APROVADO. DUAS FALHAS SOBRAM E AS DUAS SAO
+  ANTERIORES A ESTA PASSADA, cada uma conferida rodando o portao de antes sobre o
+  render de antes tirado do git: o aviso de voltagem da C5 e o rel do botao de
+  busca da C3. Estao nomeadas no despacho.
+  PROXIMO PASSO, desbloqueado: o ITEM 2 do despacho — as fichas de peixe no molde
+  32.2, comecando pela /peixes/bettas/quantos-litros-para-betta/, a de mais
+  impressao da ilha. As cinco calculadoras que as fichas vao linkar ja estao no
+  molde, entao o parametro passado na URL chega numa pagina cuja primeira tela e
+  formulario e resultado.
 ultima_ronda: 2026-10-21T14:57Z   # RONDA DIARIA TECNICA, no Chrome do Raphael mais medicao da nuvem. 52 de 52 URLs em 200 (a /politica-de-privacidade/ devolveu 504 numa primeira leitura e 200 em tres releituras seguidas — oscilacao do hospedeiro, nao da ilha). Porta de entrada da 29.2 inteira; 404 virgem na pagina da propria ilha; /status em 128 igual ao manifest. Zero defeito da lista 19.1 e ZERO conserto. TRES achados, os tres da lista fechada 19.2 e os tres despachados nesta data: (1) a caixa de resultado do topo da /calculadora-de-iluminacao/ e CONGELADA no exemplo de 170,1 L e nunca recalcula — a resposta real nasce numa SEGUNDA caixa, abaixo dela, e com isso o primeiro cartao de compra cai de 1.300 px para 5.839 px no celular de 390 px, contra o teto de 1.400 px da 32.5; (2) o bloco "Como sabemos" daquela pagina publica "seis registros e tres sugeridos" contra 26 registros e 15 sugeriveis recontados em dados/produtos-iluminacao.json; (3) o texto de bastidor da 32.4 esta em 30 das 52 paginas, nao so na ficha do betta. A regua mecanica passou inteira: zero &#038; dentro de script, zero noindex, JSON-LD e BreadcrumbList nas 52, zero img sem alt ou sem dimensao (13 imagens), description unica nas 52 e a maior com 149 caracteres, aria-expanded e aria-controls nas 52, favicon nas 52, zero corpo comecando por metadado, zero pagina com menos de 2 links de ENTRADA (contado pela 16.9 na direcao de quem aponta; a menor contagem e 3). Console sem uma mensagem. A tabela de casos da 32.1 item 6 esta visivel e as 6 linhas foram recontadas na mao, as 6 certas. Piso da 25.2 recontado nos quatro dados/produtos-*.json: 78 de 78 com url_busca e url_busca_produto, 11 intestaveis, 36 testaveis. TESTE DE VIDA DA 25.4: 0 de 36 medidos — a api/v4/pdp/get_pc devolveu error 90309999 na primeira chamada de DOIS contextos limpos (entrada por ficha e por busca) e as duas abas cairam em verify/captcha; nenhum clique de afiliado gasto e nenhum CAPTCHA resolvido. "Nao medido" nao e "vivo". E a sessao do Shopee Afiliados NAO esta deslogada: o cookie SPC_U estava presente, logo o que trava e o anti-robo, nao o login.
 bloqueada_por: null
 congelamento: |

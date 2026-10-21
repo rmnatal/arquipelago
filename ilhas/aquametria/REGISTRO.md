@@ -14,6 +14,63 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-21 16h16Z–17h0xZ — AS CINCO CALCULADORAS DA ILHA ESTÃO NO MOLDE DA SEÇÃO 32, E O QUE ESTAVA VERMELHO NA C15 NÃO ERA O MOLDE: ERA A NUVEM SEM FONTE
+
+**A ESCOLHA DA ILHA: FOCO E DESPACHO NA MESMA ILHA, RESERVA NA PRIMEIRA TENTATIVA.** `foco.md` nomeia a **aquametria** e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria: as duas regras apontam para a mesma ilha, então não houve rotação nem comparação de `ultima_execucao`. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo — a reserva é escrita ANTES do trabalho —, e não havia reserva vencida para o git desempatar; o commit mais recente na pasta era de **16h04Z, doze minutos antes**, e era commit de **fecho** da execução anterior, não bloco em andamento. **Passo 1:** nenhum PR aberto e a branch `claude/dreamy-mccarthy-6dfp2x` idêntica ao `main` — nada a mesclar. Reserva aceita às **16h16Z** e **renovada três vezes** pela 1.1, com a hora saindo do `date -u` na mesma linha de comando que grava o campo. **Rede pela 20.2, não herdada:** `aquametria.com.br` em **200**. Um push foi recusado no meio da passada (outras execuções entraram no `main`); `fetch` + `rebase` sem force push.
+
+### 1. AS DUAS QUE FALTAVAM: `/calculadora-de-potencia-do-aquecedor/` (C5 1.9.0) E `/calculadora-de-vazao-do-filtro/` (C3 1.9.0)
+
+Com elas o **item 1 do despacho do Raphael sai inteiro** pela 18.2: as cinco calculadoras desta ilha estão no molde, conferidas no ar uma a uma pela 18.4. Revisão **131**, `/status` em 131, e o portão da 20.4 (`conferir-desembarque.py`) aprovou lendo o log linha por linha.
+
+**MEDIDO NO AR, 390 px, com quebra de cache, nos TRÊS estados que a 32.5 pede** — visitante novo · depois de calcular · quem volta com aquário guardado:
+
+| | antes (novo) | form | 1º botão de loja | altura | rolagem H |
+|---|---|---|---|---|---|
+| C5 aquecedor | 2.037 / 3.599 px | **452** | **1.197 · 1.197 · 1.292** | 22.636 → 9.542 | **11 → 0 px** |
+| C3 vazão | 1.816 / 3.030 px | **409** | **1.160 · 1.141 · 1.236** | 15.317 → 7.718 | 0 |
+
+Os teto da 32.5 são 700 px para o formulário e 1.400 para o primeiro botão de compra: **oito de oito passam**. E o estado que mais importa é o terceiro, porque é o estado em que alguém de fato usa a página: antes dele, o botão da C5 estava a **5.977 px** com 31.052 px de altura, e o da C3 a **4.689 px**. `pageerror` **0** nos seis estados; as mensagens de console são os dois hosts que o egresso desta nuvem barra.
+
+**O QUE NÃO MUDOU, comparado no HTML servido do `main` de antes (`b6353e4`) contra o de agora, página por página:** `title`, `H1`, URL, trilha, `meta description` e os **três** nós de JSON-LD — `WebApplication`, `FAQPage` (14 perguntas na C5, 13 na C3) e `BreadcrumbList` (3 degraus) —, com a única diferença sendo `softwareVersion` 1.8.0 → 1.9.0, que é a versão da própria calculadora. **A função que monta o JSON-LD não recebeu uma linha de alteração nas duas**, conferido por `git diff`.
+
+**TEXTO: ninguém perdeu palavra (32.3).** No corpo servido, com `<script>`, `<style>` e comentário fora: C5 **5.142 → 5.254** palavras, C3 **4.029 → 4.110**. As formas de palavra que deixaram de aparecer são **sete na C5 e quatro na C3**, e todas pertencem às **três frases reescritas**, contadas uma a uma: a frase de **promessa** (que a 32.1 item 2 define como UMA frase e por isso foi reescrita no formato "entra X, sai Y"), a linha de apoio do **formulário** (uma sentença dela desceu para dentro da dobra de campos) e a linha de apoio da **vitrine** (os dois números dela subiram para o título do bloco, pela lição (c)). Mais o número de versão. **Nenhuma seção, parágrafo, tabela ou aviso saiu da página**, e o que foi para `<details>` continua no HTML servido e legível com o JavaScript desligado (22.8).
+
+**O MARKDOWN DAS DUAS PÁGINAS FOI CONVERTIDO JUNTO**, como nas três anteriores: o shortcode subiu para o topo e cada `##` virou dobra — **9 dobras** na C5 e **7** na C3. Era isso que punha o formulário a 817 px no primeiro render do molde: dois parágrafos de abertura antes do shortcode.
+
+### 2. A CASCA 1.14.0 CONSERTA OS 11 px DE ROLAGEM HORIZONTAL, E O CONSERTO NÃO ERA DA CALCULADORA
+
+A C5 tinha **11 px de rolagem horizontal** desde antes do molde, e o despacho os registrava sem causa. Medido nesta passada, varrendo todo nó do documento a 390 px e guardando só o **mais externo** que passava da janela: o único era uma `<table>` **sem classe** — a tabela das quatro constantes de W/L, escrita no **Markdown** da página, com 371 px de conteúdo numa coluna de 330.
+
+As tabelas que a ilha monta em PHP nunca tiveram esse defeito porque viajam dentro de um `.aqm-*-rolagem`. A do Markdown não tem envelope nenhum, **e não vai ter: quem escreve conteúdo escreve `|---|`, não `<div>`.** Então a regra nasceu na casca: `body table:not([class])` com rolagem própria, dentro da faixa de até 600 px. O recorte é deliberado nas duas pontas — `:not([class])` alcança só a tabela do Markdown, e a faixa estreita é onde a rolagem acontece, então **o desktop ficou idêntico**. Isto vale para **toda página da ilha com tabela em Markdown**, não só para a calculadora em que foi medido, e é por isso que mora na casca e não no snippet.
+
+### 3. O PORTÃO VERMELHO DA VITRINE DA C15 TEM CAUSA, E ELA NÃO É O MOLDE: É A FOLHA DE FONTE QUE A NUVEM BARRA
+
+O `REGISTRO.md` carrega desde 20/10 um portão vermelho pendente: *"viewport 390×700, `window.scrollY = 1788`, `#aqm-c15-saida` com `top = -39 px` contra tolerância de −5"*. O mesmo apareceu na C5 nesta passada, com **−55 px**, e foi medido até o fim.
+
+**Não é o molde.** `scrollIntoView` com rolagem suave calcula o destino **uma vez**, no momento da chamada, e segue para lá mesmo que a página mude de altura durante a animação. A casca pede a folha do **Google Fonts**, o egresso desta nuvem a barra, e quando a requisição **falha** as métricas de fonte caem para a alternativa — o texto **acima** da caixa de resultado muda de altura **depois** do `domcontentloaded`, no meio da animação. A página parava onde a caixa **estava**, não onde ela ficou.
+
+A prova é de uma linha: o mesmo teste, com o mesmo código, abrindo a página com `waitUntil: 'networkidle'` e um compasso de espera, para a caixa em **`top = 0`**. Dois consertos saíram daí, e eles são de naturezas diferentes de propósito: as duas calculadoras passaram a medir a rolagem em **dois quadros** (`requestAnimationFrame` duplo, que é correto em qualquer navegador e custa nada), e os **portões** passaram a esperar a rede sossegar antes de medir posição — porque a rede sem fonte é defeito da nuvem, e reprovar o molde por ela é acusar o inocente. **O portão da C15 destrava com o mesmo conserto, e está escrito no despacho.**
+
+### 4. UM PORTÃO ACHOU UM DEFEITO DE VERDADE NO MEU PRÓPRIO TRABALHO, E ELE É A LIÇÃO (d) NUM LUGAR QUE ELA NÃO ALCANÇAVA
+
+O `teste-navegador-c5` reprovou a afirmação *"declara a convenção do meio da faixa"*. A causa: o formulário passou a nascer **preenchido** com o caso de exemplo, alvo de **26 °C** incluído — e quem **escolhesse uma espécie** na lista (kinguio, 18 a 24 °C) recebia a conta feita para os 26 °C **do nosso exemplo**, calando a ficha da espécie em silêncio, contra o que a dica ao lado da própria caixa promete (*"Sem alvo digitado, usamos o meio dessa faixa"*).
+
+A lição (d) do despacho dizia que o exemplo vaza para quem chega **por link** ou com **aquário guardado**. **Vaza também para quem mexe num campo vizinho**, e isso ninguém tinha medido. A regra nova: o alvo que **nós** preenchemos é do exemplo até alguém tocar nele; na primeira troca de espécie, se ninguém digitou, ele se limpa e a ficha decide. Quem digitou um alvo manda, e continua mandando — **digitar é o único jeito de a pessoa dizer que o número é dela.** Na C5 o `limparExemplo()` limpa **três** campos e não um, por isso.
+
+**Nenhum portão foi afrouxado para a mudança passar — foi a mudança que se corrigiu.** O que mudou nos portões foi **fidelidade**, declarada arquivo por arquivo: abrir a dobra antes de digitar (o Playwright não digita em campo invisível, e abrir é o que a pessoa faz), **esvaziar** os campos no teste que quer medir formulário vazio (ele nasce preenchido agora), e apontar as afirmações da promessa e da barra para as classes e ids da **casca** (`.aqm-promessa`, `#aqm-barra*`), que é onde elas moram desde a 1.13.0.
+
+### 5. PORTÕES
+
+`teste-navegador-c5-vitrine` **TUDO OK** (as afirmações da barra reescritas no molde da C15: ela vigia o **bloco de compra**, não o resultado, porque a 32.1 manda a barra levar ao produto). `teste-navegador-c3-vitrine` **TUDO OK**. `teste-navegador-visibilidade-ia` **tudo passou nas CINCO calculadoras** — e é ele que mede a regra da **seção 5** pelo primeiro `<h2>` da página, que é a lição (f): as duas usam a **dobra de CAMPOS** da casca, sem `<h2>`, e a resposta direta continua antes de toda explicação. `conferir-desembarque.py` **APROVADO**.
+
+**DUAS FALHAS SOBRAM, E AS DUAS SÃO ANTERIORES A ESTA PASSADA.** Não bastou dizer isso: cada uma foi conferida rodando **o portão de antes sobre o render de antes**, tirado do git, para não confundir dívida velha com defeito novo. São: `teste-navegador-c5` → *"aviso avisa que o anuncio era de outra voltagem"* (com a tomada em 220 V, o aviso do primeiro cartão não cita "220 V"), e `teste-navegador-c3-dupla-condicao` → *"botao de anuncio e sponsored, botao de busca e nofollow"* (um botão de **busca** sai com `rel="sponsored noopener"`). As duas estão escritas no despacho, nomeadas, para a próxima execução não as redescobrir nem as confundir com o molde.
+
+**UMA OBSERVAÇÃO DE VOCABULÁRIO, QUE NÃO É DEFEITO E NÃO FOI MEXIDA:** a varredura da **32.4** nas duas URLs no ar devolveu **zero** termo da lista. Varrendo também palavras que **não** estão na lista, a C5 usa **"corpus"** duas vezes (*"a única fonte do nosso corpus"*). Não é termo da 32.4 e a ronda que fechou o item 3 não o acusou, então **nada foi alterado** — mexer nisso por conta própria seria inventar régua, que é o que a 31.2 proíbe. Fica anotado como pergunta para a Sentinela ou para o Raphael: *"corpus"* é vocabulário de quem escreve o site ou de quem o lê?
+
+**PRÓXIMO PASSO, e ele está desbloqueado:** o **item 2 do despacho** — as **fichas de peixe** no molde **32.2**, começando por `/peixes/bettas/quantos-litros-para-betta/`, que é a página de mais impressão da ilha. As cinco calculadoras que as fichas vão linkar já estão no molde, então o parâmetro passado na URL chega numa página cuja primeira tela é formulário e resultado — que era a metade que faltava para o bloco "Monte o aquário" valer a pena. **Leia a lição (d) ampliada no despacho antes de preencher formulário nenhum.**
+
+---
+
 ## 2026-10-21 15h04Z–16h0xZ — O MOLDE VIRA COMPONENTE DA CASCA, DUAS CALCULADORAS NOVAS ENTRAM NELE — E A RONDA ACHOU QUE ELE **PASSAVA NO ESTADO EM QUE NINGUÉM USAVA A PÁGINA E FALHAVA POR 4,2 VEZES NO ESTADO EM QUE ALGUÉM USAVA**
 
 **A ESCOLHA DA ILHA: FOCO E DESPACHO NA MESMA ILHA, RESERVA GANHA NA SEGUNDA TENTATIVA.** `foco.md` nomeia a **aquametria** e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria: as duas regras apontam para a mesma ilha, então não houve rotação nem comparação de `ultima_execucao`. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo; o commit mais recente na pasta era de **14h10Z, 54 minutos antes**, e era commit de fecho da execução anterior, não bloco em andamento. **Passo 1:** nenhum PR aberto e a branch `claude/dreamy-mccarthy-aynfql` idêntica ao `main` — nada a mesclar. O primeiro push da reserva foi **RECUSADO** (outra execução tinha empurrado um `MAOS-LOG`); `fetch` + `rebase` sem force push e a reserva entrou às **15h04Z**, renovada **três** vezes pela 1.1 ao longo do bloco. **Rede pela 20.2, não herdada:** `aquametria.com.br` em **200** em duas passadas. **As ilhas irmãs foram reservadas por outras execuções na mesma janela** (clubedomosaico e robometria às 15h0xZ), que é exatamente o paralelo que a **32.6-b** prevê.
